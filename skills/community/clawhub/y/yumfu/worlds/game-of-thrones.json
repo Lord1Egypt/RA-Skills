@@ -1,0 +1,1457 @@
+{
+  "id": "game-of-thrones",
+  "name_zh": "权力的游戏",
+  "name_en": "Game of Thrones",
+  "language": "en",
+  "genre": "dark-fantasy-politics",
+  "era": "298-303 AC (After Aegon's Conquest)",
+  "age_rating": "Mature (18+)",
+  "themes": [
+    "power-struggle",
+    "political-intrigue",
+    "betrayal",
+    "war",
+    "family-loyalty",
+    "moral-ambiguity"
+  ],
+  "description_zh": "维斯特洛大陆，七大王国争夺铁王座。血与火的征服，权力与背叛的游戏，凛冬将至的预言。龙、异鬼、三眼乌鸦，谁将坐上铁王座？",
+  "description_en": "The Seven Kingdoms of Westeros torn by civil war. Dragons, White Walkers, and the Three-Eyed Raven. Play the game of thrones - you win or you die. Winter is coming.",
+  "main_questline": {
+    "main_objective": "Survive the struggle for power long enough to decide both who rules Westeros and whether the realm survives the Long Night.",
+    "current_major_tasks": [
+      "build and protect your house power base",
+      "navigate alliances, betrayals, and court intrigue",
+      "prepare for the White Walker threat before southern politics consumes everything",
+      "choose whether to pursue the Iron Throne, regional survival, or a realm-saving coalition"
+    ],
+    "major_story_threads": [
+      "the Iron Throne succession war",
+      "the rise of dragons and Daenerys in Essos",
+      "the hidden truth of Jon Snow and northern legitimacy",
+      "the White Walker invasion and the need to unify the realm",
+      "the final settlement of rule after the last war"
+    ],
+    "default_route_logic": "Even when the player detours into house drama or local intrigue, the story should keep pointing back to the linked pressures of succession war, alliance survival, and the coming Long Night."
+  },
+  "key_figures": [
+    {
+      "name": "Jon Snow",
+      "role": "northern war leader",
+      "drive": "protect the realm even when politics resists survival",
+      "ties": [
+        "Night’s Watch",
+        "Daenerys",
+        "Starks"
+      ]
+    },
+    {
+      "name": "Daenerys Targaryen",
+      "role": "exiled conqueror",
+      "drive": "reclaim rule and justify it through destiny and fire",
+      "ties": [
+        "Dragons",
+        "Essos followers",
+        "Iron Throne"
+      ]
+    },
+    {
+      "name": "Tyrion Lannister",
+      "role": "survivor-strategist",
+      "drive": "outthink stronger enemies and remain morally human",
+      "ties": [
+        "Lannisters",
+        "Daenerys",
+        "King’s Landing"
+      ]
+    },
+    {
+      "name": "Cersei Lannister",
+      "role": "queen of hard power",
+      "drive": "hold power at any human cost",
+      "ties": [
+        "Jaime",
+        "Children",
+        "the Crown"
+      ]
+    },
+    {
+      "name": "Bran Stark",
+      "role": "seer and memory-keeper",
+      "drive": "understand the deeper pattern behind history and winter",
+      "ties": [
+        "Three-Eyed Raven",
+        "Starks",
+        "White Walkers"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "King’s Landing",
+      "type": "capital",
+      "importance": "court intrigue, succession, spectacle, collapse"
+    },
+    {
+      "name": "Winterfell",
+      "type": "ancestral stronghold",
+      "importance": "northern identity, survival, Long Night defense"
+    },
+    {
+      "name": "Dragonstone",
+      "type": "Targaryen seat",
+      "importance": "legitimacy, dragons, invasion staging ground"
+    },
+    {
+      "name": "The Wall",
+      "type": "frontier defense",
+      "importance": "realm denial versus existential truth"
+    },
+    {
+      "name": "Meereen / Essos corridor",
+      "type": "eastern power base",
+      "importance": "Daenerys rise, liberation politics, army building"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "Starks / Lannisters",
+      "tension": "honor versus manipulation, vengeance versus survival"
+    },
+    {
+      "thread": "Daenerys / Jon / the throne",
+      "tension": "love, legitimacy, prophecy, command"
+    },
+    {
+      "thread": "Cersei / Jaime / Tyrion",
+      "tension": "family loyalty twisted by power and resentment"
+    },
+    {
+      "thread": "North / South",
+      "tension": "regional identity versus crown authority"
+    },
+    {
+      "thread": "Great Houses / White Walkers",
+      "tension": "petty war versus extinction-scale threat"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "Iron Throne",
+      "kind": "seat of rule",
+      "story_use": "legitimacy, obsession, symbolic end-state"
+    },
+    {
+      "name": "Valyrian steel weapons",
+      "kind": "rare anti-White Walker arms",
+      "story_use": "status, lineage, survival tech"
+    },
+    {
+      "name": "Dragons",
+      "kind": "living super-weapons",
+      "story_use": "fear, conquest, unstable supremacy"
+    },
+    {
+      "name": "Wildfire caches",
+      "kind": "catastrophic city weapon",
+      "story_use": "scorched power, terror, final gambits"
+    },
+    {
+      "name": "Raven and weirwood visions",
+      "kind": "mystic knowledge network",
+      "story_use": "history truth, prophecy, counter-planning"
+    }
+  ],
+  "mainline_stages": [
+    "Survive the first court fractures and choose where loyalty begins",
+    "Turn house pressure into war, marriage, espionage, or rebellion",
+    "Recognize that dragons and winter are changing the scale of the game",
+    "Force political rivals to confront the Long Night or exploit their denial",
+    "Resolve who rules after the dead are faced and the last war burns through the realm"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "King’s Landing court",
+      "core_members": [
+        "crown loyalists",
+        "small council remnants",
+        "spymasters",
+        "city watch"
+      ],
+      "internal_tension": "who controls information, succession, and fear"
+    },
+    {
+      "name": "Northern coalition",
+      "core_members": [
+        "Starks",
+        "banner houses",
+        "Night’s Watch remnants",
+        "wildling allies"
+      ],
+      "internal_tension": "independence versus wider realm necessity"
+    },
+    {
+      "name": "Daenerys war camp",
+      "core_members": [
+        "dragons",
+        "foreign advisers",
+        "freed armies",
+        "Westerosi converts"
+      ],
+      "internal_tension": "liberator ideals versus conquest logic"
+    },
+    {
+      "name": "Lannister survival bloc",
+      "core_members": [
+        "Cersei loyalists",
+        "gold network",
+        "remaining western leverage"
+      ],
+      "internal_tension": "prestige, vengeance, shrinking legitimacy"
+    },
+    {
+      "name": "Mystic north web",
+      "core_members": [
+        "Bran",
+        "green-seers",
+        "old gods believers",
+        "anti-White Walker knowledge holders"
+      ],
+      "internal_tension": "fate, knowledge burden, political uselessness until crisis"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "Winterfell war rooms",
+      "function": "northern defense, alliance strain, Long Night preparation"
+    },
+    {
+      "name": "King’s Landing court maze",
+      "function": "marriage bargains, trials, betrayals, wildfire stakes"
+    },
+    {
+      "name": "Dragonstone command center",
+      "function": "invasion planning, legitimacy claims, dragon deployment"
+    },
+    {
+      "name": "Riverlands / roads of war",
+      "function": "ambushes, house survival, atrocities, loyalty shifts"
+    },
+    {
+      "name": "Beyond-the-Wall / Wall frontier",
+      "function": "existential truth, scouting, horror survival, prophecy proof"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "King’s Landing",
+      "subzones": [
+        "Red Keep",
+        "Small Council chambers",
+        "Flea Bottom",
+        "city walls",
+        "Great Sept ruins",
+        "Blackwater approaches"
+      ]
+    },
+    {
+      "hub": "Winterfell",
+      "subzones": [
+        "Great Hall",
+        "crypts",
+        "godswood",
+        "courtyard training grounds",
+        "outer defenses"
+      ]
+    },
+    {
+      "hub": "Dragonstone",
+      "subzones": [
+        "war chamber",
+        "stone beaches",
+        "dragon approach points",
+        "Targaryen audience halls"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "Succession and legitimacy",
+      "pressure": "claims multiply faster than stable rule can be built"
+    },
+    {
+      "name": "House survival",
+      "pressure": "every alliance may save or erase a family line"
+    },
+    {
+      "name": "Long Night denial",
+      "pressure": "southern politics wastes time the dead are using"
+    },
+    {
+      "name": "Dragon power and civilian terror",
+      "pressure": "victory tools may destroy the future they are supposed to secure"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "Iron Throne",
+      "thread": "an object of desire that turns every alliance unstable"
+    },
+    {
+      "item": "Valyrian steel",
+      "thread": "family heritage becomes literal anti-apocalypse survival value"
+    },
+    {
+      "item": "Wildfire",
+      "thread": "the city always contains a buried doomsday option"
+    }
+  ],
+  "content_warnings": [
+    "Violence and gore",
+    "Political executions",
+    "Betrayal and treachery",
+    "Character death (permanent)",
+    "Morally grey choices"
+  ],
+  "gameplay_pacing": {
+    "quest_structure": "Multi-threaded storylines, player choices heavily affect outcomes",
+    "total_chapters": 8,
+    "chapter_duration": "4-6 hours each",
+    "cannot_skip_chapters": false,
+    "multiple_perspectives": true,
+    "chapter_milestones": [
+      "Chapter 1: The King's Arrival - Robert Baratheon visits Winterfell, Jon Arryn's murder",
+      "Chapter 2: King's Landing - Political intrigue, Ned's investigation, Joffrey's cruelty",
+      "Chapter 3: War of Five Kings - Ned's execution triggers civil war",
+      "Chapter 4: Battles and Betrayals - Robb's victories, Red Wedding, Purple Wedding",
+      "Chapter 5: Dragons Rise - Daenerys builds power in Essos, frees slaves",
+      "Chapter 6: The Long Night - White Walkers invade, Battle of Winterfell",
+      "Chapter 7: The Last War - Daenerys vs Cersei, King's Landing burns",
+      "Chapter 8: A Dream of Spring - Who sits the Iron Throne? (Multiple endings)"
+    ],
+    "death_system": {
+      "permadeath": true,
+      "description": "ANY character can die permanently based on choices. Major characters are NOT safe.",
+      "resurrection": "Only via Red Priests (very rare, requires Lord of Light's favor)",
+      "consequences": "Death of key allies changes entire storyline"
+    }
+  },
+  "character_creation": {
+    "customizable": true,
+    "house_selection": {
+      "description": "Choose your Great House - each has unique strengths, weaknesses, and starting position",
+      "houses": [
+        {
+          "id": "stark",
+          "name": "House Stark",
+          "seat": "Winterfell",
+          "region": "The North",
+          "words": "Winter is Coming",
+          "sigil": "Direwolf (grey on white)",
+          "traits": [
+            "Honorable",
+            "Loyal",
+            "Stubborn",
+            "Winter-hardened"
+          ],
+          "bonuses": {
+            "survival": 30,
+            "honor": 40,
+            "northern_respect": 50
+          },
+          "weaknesses": {
+            "political_intrigue": -20,
+            "southern_diplomacy": -15
+          },
+          "starting_allies": [
+            "House Arryn (Lysa)",
+            "Northern Lords"
+          ],
+          "starting_enemies": [
+            "House Lannister (potentially)"
+          ]
+        },
+        {
+          "id": "lannister",
+          "name": "House Lannister",
+          "seat": "Casterly Rock",
+          "region": "The Westerlands",
+          "words": "Hear Me Roar (unofficial: A Lannister Always Pays His Debts)",
+          "sigil": "Golden lion on crimson",
+          "traits": [
+            "Wealthy",
+            "Cunning",
+            "Ruthless",
+            "Proud"
+          ],
+          "bonuses": {
+            "wealth": 100,
+            "political_intrigue": 50,
+            "army_quality": 30
+          },
+          "weaknesses": {
+            "public_trust": -40,
+            "honor": -30
+          },
+          "starting_allies": [
+            "The Crown (Joffrey)",
+            "Tyrell (later)"
+          ],
+          "starting_enemies": [
+            "House Stark",
+            "Common folk"
+          ]
+        },
+        {
+          "id": "targaryen",
+          "name": "House Targaryen",
+          "seat": "Dragonstone (in exile)",
+          "region": "Essos (exiled from Westeros)",
+          "words": "Fire and Blood",
+          "sigil": "Three-headed dragon (red on black)",
+          "traits": [
+            "Dragon-blooded",
+            "Conquerors",
+            "Fire-resistant",
+            "Mad (sometimes)"
+          ],
+          "bonuses": {
+            "dragons": 3,
+            "fire_resistance": 100,
+            "essos_influence": 60
+          },
+          "weaknesses": {
+            "westeros_support": -50,
+            "madness_risk": 30
+          },
+          "starting_allies": [
+            "Unsullied (can acquire)",
+            "Dothraki (can acquire)"
+          ],
+          "starting_enemies": [
+            "Robert Baratheon",
+            "Most Westerosi lords"
+          ]
+        },
+        {
+          "id": "baratheon",
+          "name": "House Baratheon",
+          "seat": "Storm's End",
+          "region": "The Stormlands",
+          "words": "Ours is the Fury",
+          "sigil": "Crowned black stag on gold",
+          "traits": [
+            "Strong",
+            "Fierce",
+            "Proud",
+            "Short-tempered"
+          ],
+          "bonuses": {
+            "military_strength": 40,
+            "legitimacy": 50
+          },
+          "weaknesses": {
+            "internal_division": 30
+          },
+          "branches": [
+            "Robert (King's Landing)",
+            "Stannis (Dragonstone)",
+            "Renly (Storm's End)"
+          ],
+          "starting_allies": [
+            "House Lannister (Robert's reign)"
+          ],
+          "starting_enemies": [
+            "House Targaryen"
+          ]
+        },
+        {
+          "id": "greyjoy",
+          "name": "House Greyjoy",
+          "seat": "Pyke",
+          "region": "The Iron Islands",
+          "words": "We Do Not Sow",
+          "sigil": "Golden kraken on black",
+          "traits": [
+            "Ironborn",
+            "Reavers",
+            "Drowned God worshippers",
+            "Independent"
+          ],
+          "bonuses": {
+            "naval_power": 60,
+            "raiding": 50
+          },
+          "weaknesses": {
+            "mainland_respect": -40,
+            "resources": -20
+          },
+          "starting_allies": [
+            "None (rebellious)"
+          ],
+          "starting_enemies": [
+            "House Stark",
+            "Most mainland houses"
+          ]
+        },
+        {
+          "id": "tyrell",
+          "name": "House Tyrell",
+          "seat": "Highgarden",
+          "region": "The Reach",
+          "words": "Growing Strong",
+          "sigil": "Golden rose on green",
+          "traits": [
+            "Wealthy",
+            "Fertile lands",
+            "Politically savvy",
+            "Ambitious"
+          ],
+          "bonuses": {
+            "food_production": 80,
+            "wealth": 60,
+            "political_marriages": 40
+          },
+          "weaknesses": {
+            "military_reputation": -10
+          },
+          "starting_allies": [
+            "House Lannister (later)",
+            "Renly Baratheon (briefly)"
+          ],
+          "starting_enemies": [
+            "None initially"
+          ]
+        },
+        {
+          "id": "martell",
+          "name": "House Martell",
+          "seat": "Sunspear",
+          "region": "Dorne",
+          "words": "Unbowed, Unbent, Unbroken",
+          "sigil": "Red sun pierced by golden spear",
+          "traits": [
+            "Independent",
+            "Vengeful",
+            "Passionate",
+            "Poison experts"
+          ],
+          "bonuses": {
+            "desert_warfare": 50,
+            "poison_mastery": 60,
+            "dornish_law": 30
+          },
+          "weaknesses": {
+            "isolation": 20
+          },
+          "starting_allies": [
+            "House Targaryen (secretly)"
+          ],
+          "starting_enemies": [
+            "House Lannister (Elia's murder)"
+          ]
+        }
+      ]
+    },
+    "character_customization": {
+      "gender": [
+        "Male",
+        "Female"
+      ],
+      "role_options": [
+        "Lord/Lady (heir to Great House)",
+        "Bastard (Jon Snow path - can rise to power)",
+        "Knight/Warrior",
+        "Maester (advisor, knowledge focus)",
+        "Assassin (Faceless Men path)",
+        "Merchant (Littlefinger path - wealth & intrigue)"
+      ],
+      "starting_age": "16-40",
+      "skills_to_distribute": 100,
+      "skill_categories": [
+        "Combat (swordsmanship, archery, etc.)",
+        "Intrigue (scheming, deception, manipulation)",
+        "Diplomacy (alliances, marriages, negotiation)",
+        "Stewardship (managing lands, economy)",
+        "Learning (strategy, history, magic lore)",
+        "Charisma (inspiring loyalty, seduction)"
+      ]
+    }
+  },
+  "supernatural_elements": {
+    "dragons": {
+      "description": "Three dragon eggs hatched by Daenerys - Drogon, Rhaegal, Viserion",
+      "mechanics": {
+        "growth_stages": [
+          "Hatchling (cat-sized)",
+          "Young (horse-sized)",
+          "Adult (ship-sized)",
+          "Ancient (Balerion-sized)"
+        ],
+        "bond": "Only Targaryen blood can ride (usually)",
+        "combat_power": "Devastating, can destroy armies",
+        "weakness": "Scorpion ballistas, dragonbinder horn"
+      },
+      "player_access": "Only if playing Targaryen or bonding with wild dragon"
+    },
+    "white_walkers": {
+      "description": "Ancient ice demons from beyond the Wall, leading army of undead",
+      "threat_level": "Existential",
+      "abilities": [
+        "Raise dead as wights",
+        "Immune to normal weapons (dragonglass/Valyrian steel needed)",
+        "Freeze anything they touch",
+        "Shatter steel weapons"
+      ],
+      "weakness": [
+        "Dragonglass (obsidian)",
+        "Valyrian steel",
+        "Fire (dragons)",
+        "Kill Night King = all wights die"
+      ],
+      "arrival": "Chapter 6 (The Long Night)"
+    },
+    "magic_systems": {
+      "red_priests": {
+        "description": "Worship Lord of Light (R'hllor), can resurrect dead",
+        "key_figure": "Melisandre",
+        "abilities": [
+          "Shadow assassination",
+          "See visions in flames",
+          "Resurrection (rare)"
+        ],
+        "cost": "Life force, years of life"
+      },
+      "greensight": {
+        "description": "Warg into animals, see past/future through weirwood trees",
+        "key_figure": "Bran Stark (Three-Eyed Raven)",
+        "abilities": [
+          "Warg into animals/people",
+          "Time-travel visions",
+          "Weirwood network access"
+        ]
+      },
+      "faceless_men": {
+        "description": "Death cult assassins who can change faces",
+        "key_figure": "Jaqen H'ghar, Arya Stark (trainee)",
+        "abilities": [
+          "Wear faces of the dead",
+          "Silent kill",
+          "Poison mastery"
+        ],
+        "cost": "Give up identity ('No One')"
+      },
+      "warlocks": {
+        "description": "House of the Undying (Qarth), prophecy & illusions",
+        "abilities": [
+          "Visions",
+          "Shade of the evening (magic potion)"
+        ]
+      }
+    }
+  },
+  "major_events": [
+    {
+      "chapter": 1,
+      "name": "The King's Arrival",
+      "description": "Robert Baratheon visits Winterfell, asks Ned to be Hand of the King",
+      "key_discoveries": [
+        "Jon Arryn murdered (investigating Joffrey's parentage)",
+        "Bran pushed from tower (saw Cersei & Jaime)",
+        "Direwolves found (one per Stark child)"
+      ],
+      "player_choices": [
+        "Accept Hand position (Ned's path) OR refuse (change history)",
+        "Investigate Jon Arryn's death OR ignore",
+        "Trust Cersei/Jaime OR suspect them"
+      ]
+    },
+    {
+      "chapter": 2,
+      "name": "King's Landing Intrigue",
+      "description": "Political scheming, Ned discovers Joffrey is bastard of Jaime/Cersei",
+      "key_npcs": [
+        "Littlefinger",
+        "Varys",
+        "Cersei",
+        "Joffrey"
+      ],
+      "player_choices": [
+        "Support Ned's claim (Joffrey illegitimate) OR stay silent",
+        "Ally with Littlefinger OR Varys OR neither",
+        "Warn Cersei OR confront Robert immediately"
+      ],
+      "consequences": {
+        "warn_cersei": "She kills Robert, Ned imprisoned",
+        "tell_robert": "Robert dies before acting, chaos ensues",
+        "stay_silent": "Ned executed, War of Five Kings"
+      }
+    },
+    {
+      "chapter": 3,
+      "name": "War of the Five Kings",
+      "description": "Ned executed, five claimants fight for Iron Throne",
+      "kings": [
+        "Joffrey Baratheon (Lannister puppet, King's Landing)",
+        "Robb Stark (King in the North, Winterfell)",
+        "Stannis Baratheon (Dragonstone, rightful heir)",
+        "Renly Baratheon (Storm's End, popular pretender)",
+        "Balon Greyjoy (Iron Islands, independent)"
+      ],
+      "player_role": "Choose which king to support OR claim throne yourself",
+      "major_battles": [
+        "Battle of Blackwater (Stannis vs Joffrey - wildfire)",
+        "Robb's northern campaign (victories against Lannisters)"
+      ]
+    },
+    {
+      "chapter": 4,
+      "name": "Betrayals and Weddings",
+      "description": "Red Wedding, Purple Wedding, alliances shift",
+      "red_wedding": {
+        "description": "Robb Stark betrayed at Frey wedding feast, massacred with mother Catelyn",
+        "trigger": "Robb breaks marriage pact with Freys",
+        "player_choice": "If playing Stark: Keep pact (avoid massacre) OR follow heart (tragic end)",
+        "outcome": "House Stark nearly destroyed, North submits to Lannisters"
+      },
+      "purple_wedding": {
+        "description": "Joffrey poisoned at his own wedding to Margaery Tyrell",
+        "suspects": [
+          "Tyrion (accused)",
+          "Olenna Tyrell (actual)",
+          "Littlefinger (conspirator)"
+        ],
+        "player_choice": "Frame Tyrion OR reveal truth OR stay silent",
+        "outcome": "Tyrion flees to Essos, Tommen becomes king"
+      }
+    },
+    {
+      "chapter": 5,
+      "name": "Mother of Dragons",
+      "description": "Daenerys conquers Slaver's Bay, builds army",
+      "locations": [
+        "Astapor (Unsullied)",
+        "Yunkai (freed slaves)",
+        "Meereen (ruling city)"
+      ],
+      "key_acquisitions": [
+        "8,000 Unsullied (elite eunuch warriors)",
+        "Second Sons (sellsword company)",
+        "Dragons grow to battle-size"
+      ],
+      "player_choices": [
+        "Rule Meereen justly OR return to Westeros immediately",
+        "Execute slavers OR show mercy",
+        "Marry for alliance OR remain independent"
+      ],
+      "challenges": [
+        "Sons of the Harpy (insurgency)",
+        "Dothraki khalasar (Drogon burns khal, Dany takes over)",
+        "Ruling vs Conquering dilemma"
+      ]
+    },
+    {
+      "chapter": 6,
+      "name": "The Long Night",
+      "description": "White Walkers breach the Wall, Battle of Winterfell",
+      "trigger": "Night King gets ice dragon (Viserion), destroys Wall",
+      "alliances": [
+        "North (Starks)",
+        "Vale (Littlefinger brought knights)",
+        "Wildlings (Jon's peace)",
+        "Daenerys & Dragons",
+        "Unsullied & Dothraki"
+      ],
+      "battle_phases": [
+        "Wight army overruns defenses",
+        "Dragon battle (Drogon/Rhaegal vs Viserion)",
+        "Arya kills Night King (or player character if chosen)",
+        "All wights collapse"
+      ],
+      "player_choice": "Who kills Night King? (Arya canon, but player can claim glory)",
+      "casualties": "50-80% of defenders die (includes major characters randomly)"
+    },
+    {
+      "chapter": 7,
+      "name": "The Bells",
+      "description": "Daenerys vs Cersei, King's Landing burns",
+      "cersei_defenses": [
+        "Scorpions (dragon-killing ballistae)",
+        "Wildfire caches under city",
+        "Golden Company (sellswords)",
+        "Hostages (human shields)"
+      ],
+      "daenerys_choice": {
+        "player_controlled": true,
+        "options": [
+          "Accept surrender (bells ring) - Mercy",
+          "Burn Red Keep only - Justified",
+          "Burn entire city - Mad Queen path"
+        ],
+        "consequences": {
+          "mercy": "Peaceful transition, beloved queen",
+          "red_keep": "Feared but respected",
+          "genocide": "Tyranny, Jon/Tyrion turn against her"
+        }
+      },
+      "elephant_in_room": "Wildfire caches explode, causing massive destruction regardless"
+    },
+    {
+      "chapter": 8,
+      "name": "The Iron Throne",
+      "description": "Who rules the Seven Kingdoms?",
+      "candidates": [
+        "Daenerys Targaryen (if not killed)",
+        "Jon Snow (Aegon Targaryen, true heir)",
+        "Sansa Stark (Queen in the North, independent)",
+        "Tyrion Lannister (Hand, could claim)",
+        "Gendry Baratheon (bastard legitimized)",
+        "Player character (if built enough power)",
+        "Council of Lords (democracy - Bran becomes king)"
+      ],
+      "final_choice": {
+        "support_candidate": "Choose who sits throne",
+        "claim_yourself": "If you have: 3+ Great Houses, dragons/army, 80+ influence",
+        "destroy_throne": "Melt Iron Throne with dragonfire, end monarchy"
+      }
+    }
+  ],
+  "legendary_items": [
+    {
+      "name": "Longclaw",
+      "type": "Valyrian Steel Sword",
+      "rarity": "Legendary",
+      "damage": 120,
+      "effect": "Can kill White Walkers, +30% vs undead",
+      "lore": "House Mormont heirloom, given to Jon Snow",
+      "current_owner": "Jon Snow"
+    },
+    {
+      "name": "Oathkeeper & Widow's Wail",
+      "type": "Valyrian Steel Swords (reforged from Ice)",
+      "rarity": "Legendary",
+      "damage": 115,
+      "effect": "Can kill White Walkers",
+      "lore": "Ned Stark's sword melted down by Tywin Lannister",
+      "owners": [
+        "Brienne of Tarth (Oathkeeper)",
+        "Jaime Lannister (Widow's Wail)"
+      ]
+    },
+    {
+      "name": "Heartsbane",
+      "type": "Valyrian Steel Sword",
+      "rarity": "Legendary",
+      "damage": 118,
+      "effect": "Can kill White Walkers",
+      "current_owner": "Samwell Tarly (stole from father)"
+    },
+    {
+      "name": "Dragon Eggs",
+      "type": "Artifact",
+      "rarity": "Unique",
+      "effect": "Can hatch into dragons (requires fire ritual + Targaryen blood)",
+      "quantity": 3,
+      "owners": "Daenerys Targaryen"
+    },
+    {
+      "name": "The Iron Throne",
+      "type": "Symbol of Power",
+      "rarity": "Unique",
+      "effect": "Legitimacy to rule Seven Kingdoms (+100 authority)",
+      "lore": "Forged from 1,000 swords of Aegon's enemies",
+      "danger": "Uncomfortable, cuts those who sit (rejects unworthy)"
+    },
+    {
+      "name": "Dragonglass (Obsidian)",
+      "type": "Material",
+      "rarity": "Rare",
+      "damage": 80,
+      "effect": "Kills White Walkers, shatters on impact",
+      "source": "Dragonstone mines (abundant)"
+    },
+    {
+      "name": "Wildfire",
+      "type": "Explosive",
+      "rarity": "Rare",
+      "effect": "Green fire, burns on water, extremely volatile",
+      "uses": [
+        "Blackwater battle",
+        "Sept of Baelor destruction",
+        "King's Landing caches"
+      ],
+      "danger": "Can destroy entire districts"
+    }
+  ],
+  "skills_and_abilities": [
+    {
+      "name": "Swordsmanship",
+      "type": "Combat",
+      "masters": [
+        "Jaime Lannister (pre-hand loss)",
+        "Brienne of Tarth",
+        "Jon Snow"
+      ],
+      "learning_path": "Train with master-at-arms, battlefield experience"
+    },
+    {
+      "name": "Political Intrigue",
+      "type": "Social",
+      "masters": [
+        "Littlefinger",
+        "Varys",
+        "Tyrion Lannister"
+      ],
+      "abilities": [
+        "Blackmail",
+        "Spread rumors",
+        "Forge alliances",
+        "Betrayal"
+      ]
+    },
+    {
+      "name": "Dragon Riding",
+      "type": "Unique",
+      "requirement": "Targaryen blood (usually) or dragon bonds with you",
+      "effect": "Command dragon in battle, aerial combat",
+      "masters": "Daenerys Targaryen"
+    },
+    {
+      "name": "Archery",
+      "type": "Combat",
+      "masters": [
+        "Anguy (Brotherhood)",
+        "Theon Greyjoy"
+      ],
+      "special": "Can assassinate from distance"
+    },
+    {
+      "name": "Face Changing",
+      "type": "Magic",
+      "requirement": "Train with Faceless Men, give up identity",
+      "effect": "Wear faces of dead, perfect disguise",
+      "master": "Jaqen H'ghar"
+    },
+    {
+      "name": "Greensight/Warging",
+      "type": "Magic",
+      "requirement": "Born with gift (Stark blood often)",
+      "effect": "See through animals, visions of past/future",
+      "masters": [
+        "Bran Stark",
+        "Bloodraven (Three-Eyed Raven)"
+      ]
+    },
+    {
+      "name": "Shadow Binding",
+      "type": "Magic",
+      "requirement": "Red Priest/Priestess, Lord of Light's favor",
+      "effect": "Create shadow assassin (costs life force)",
+      "master": "Melisandre"
+    }
+  ],
+  "npcs": [
+    {
+      "name": "Jon Snow (Aegon Targaryen)",
+      "title": "King in the North, Prince of Dragonstone",
+      "house": "Stark (raised) / Targaryen (blood)",
+      "age": 24,
+      "level": 82,
+      "personality": "Honorable, brooding, reluctant leader, knows nothing",
+      "skills": [
+        "Swordsmanship (Longclaw)",
+        "Leadership",
+        "Warging (Ghost)"
+      ],
+      "arc": "Bastard → Night's Watch → Lord Commander → King in the North → Reveal as Targaryen heir",
+      "fate": "Canonical: Returns to Night's Watch or player-determined",
+      "relationship_routes": [
+        "Ally",
+        "Rival",
+        "Romance (if female player)"
+      ],
+      "famous_quotes": [
+        "I don't want it",
+        "She is my queen",
+        "The North remembers"
+      ]
+    },
+    {
+      "name": "Daenerys Targaryen",
+      "title": "Mother of Dragons, Breaker of Chains, Khaleesi",
+      "house": "Targaryen",
+      "age": 22,
+      "level": 88,
+      "personality": "Idealistic, fierce, liberation-focused, increasingly ruthless",
+      "dragons": [
+        "Drogon (black)",
+        "Rhaegal (green)",
+        "Viserion (cream, turned ice dragon)"
+      ],
+      "skills": [
+        "Dragon riding",
+        "Queenship",
+        "Fire resistance (100%)"
+      ],
+      "arc": "Exiled princess → Khaleesi → Slaver's Bane → Mad Queen (potentially)",
+      "madness_meter": "0-100 (player choices affect: mercy vs cruelty)",
+      "relationship_routes": [
+        "Ally",
+        "Lover (Jon)",
+        "Enemy"
+      ],
+      "famous_quotes": [
+        "I will take what is mine with fire and blood",
+        "Dracarys",
+        "I am not here to be queen of the ashes"
+      ]
+    },
+    {
+      "name": "Tyrion Lannister",
+      "title": "The Imp, Hand of the Queen",
+      "house": "Lannister",
+      "age": 38,
+      "level": 75,
+      "personality": "Witty, cynical, intelligent, drinks and knows things",
+      "skills": [
+        "Political intrigue",
+        "Strategy",
+        "Diplomacy"
+      ],
+      "arc": "Despised dwarf → Hand to Joffrey → Accused of murder → Hand to Daenerys",
+      "relationship_routes": [
+        "Advisor",
+        "Friend",
+        "Scapegoat"
+      ],
+      "famous_quotes": [
+        "I drink and I know things",
+        "A Lannister always pays his debts",
+        "That's what I do: I drink and I know things"
+      ]
+    },
+    {
+      "name": "Cersei Lannister",
+      "title": "Queen Regent, Lady of Casterly Rock",
+      "house": "Lannister",
+      "age": 42,
+      "level": 80,
+      "personality": "Ruthless, paranoid, protective mother, power-hungry",
+      "skills": [
+        "Political intrigue",
+        "Manipulation",
+        "Wildfire plots"
+      ],
+      "crimes": [
+        "Incest with Jaime",
+        "Killed Robert",
+        "Blew up Sept",
+        "Countless murders"
+      ],
+      "relationship_routes": [
+        "Enemy (default)",
+        "Uneasy ally",
+        "Manipulate her"
+      ],
+      "prophecy": "Gold their crowns, gold their shrouds (all children die)",
+      "famous_quotes": [
+        "When you play the game of thrones, you win or you die",
+        "Power is power",
+        "I choose violence"
+      ]
+    },
+    {
+      "name": "Arya Stark",
+      "title": "No One, Assassin",
+      "house": "Stark",
+      "age": 18,
+      "level": 78,
+      "personality": "Vengeful, determined, fierce, Faceless trained",
+      "skills": [
+        "Face changing",
+        "Assassination",
+        "Needle (sword)",
+        "List of names"
+      ],
+      "arc": "Noble girl → Fugitive → Faceless apprentice → Stark avenger → Night King slayer",
+      "kill_list": [
+        "The Hound (removed)",
+        "Cersei",
+        "Walder Frey (done)",
+        "etc."
+      ],
+      "relationship_routes": [
+        "Sister/Ally",
+        "Assassin for hire"
+      ],
+      "famous_quotes": [
+        "Not today (to Death)",
+        "A girl has no name",
+        "Valar Morghulis (All men must die)"
+      ]
+    },
+    {
+      "name": "Sansa Stark",
+      "title": "Queen in the North",
+      "house": "Stark",
+      "age": 20,
+      "level": 70,
+      "personality": "Resilient, politically savvy, learned from suffering",
+      "skills": [
+        "Political intrigue (learned from Cersei/Littlefinger)",
+        "Northern diplomacy"
+      ],
+      "arc": "Naive girl → Joffrey's victim → Ramsay's victim → Queen in the North",
+      "relationship_routes": [
+        "Ally",
+        "Political marriage",
+        "Northern independence"
+      ],
+      "famous_quotes": [
+        "I'm a slow learner, it's true. But I learn",
+        "The North is free"
+      ]
+    },
+    {
+      "name": "Jaime Lannister",
+      "title": "Kingslayer, Lord Commander of Kingsguard",
+      "house": "Lannister",
+      "age": 42,
+      "level": 85,
+      "personality": "Arrogant (early), honorable (later), conflicted twin lover",
+      "skills": [
+        "Swordsmanship (best in Westeros, pre-hand loss)",
+        "Military strategy"
+      ],
+      "arc": "Villain → Prisoner → Redemption → Dies with Cersei",
+      "hand_loss": "Chapter 3 (Vargo Hoat cuts off right hand, loses combat ability)",
+      "relationship_routes": [
+        "Enemy",
+        "Reluctant ally",
+        "Redemption path"
+      ],
+      "famous_quotes": [
+        "The things I do for love (pushes Bran)",
+        "I never cared much for the people, innocent or otherwise"
+      ]
+    },
+    {
+      "name": "The Night King",
+      "title": "Leader of White Walkers",
+      "race": "White Walker",
+      "age": "8,000+ years",
+      "level": 95,
+      "personality": "Silent, relentless, apocalyptic",
+      "abilities": [
+        "Raise dead as wights",
+        "Ice dragon (Viserion)",
+        "Immune to fire (but not dragonglass/Valyrian steel)",
+        "Winter storms"
+      ],
+      "weakness": "Kill him = all wights die",
+      "death": "Valyrian steel dagger to heart (Arya in canon, player can change)",
+      "goal": "Destroy all living, eternal winter"
+    },
+    {
+      "name": "Littlefinger (Petyr Baelish)",
+      "title": "Master of Coin, Lord of Harrenhal",
+      "house": "Baelish",
+      "age": 39,
+      "level": 83,
+      "personality": "Manipulative, ambitious, chaos-lover",
+      "skills": [
+        "Political intrigue (master-level)",
+        "Wealth management",
+        "Betrayal"
+      ],
+      "schemes": [
+        "Killed Jon Arryn (started War of Five Kings)",
+        "Betrayed Ned Stark",
+        "Killed Joffrey (with Olenna)"
+      ],
+      "goal": "Climb ladder of chaos to Iron Throne",
+      "relationship_routes": [
+        "Ally (dangerous)",
+        "Expose and kill"
+      ],
+      "death": "Sansa/Arya execute him (canon) or player-determined",
+      "famous_quotes": [
+        "Chaos isn't a pit. Chaos is a ladder",
+        "Always keep your foes confused"
+      ]
+    },
+    {
+      "name": "Varys (The Spider)",
+      "title": "Master of Whisperers",
+      "house": "None (eunuch)",
+      "age": 50,
+      "level": 81,
+      "personality": "Enigmatic, claims to serve the realm, information broker",
+      "skills": [
+        "Espionage (master)",
+        "Little birds network",
+        "Political strategy"
+      ],
+      "goal": "Support rightful ruler for peace (claims)",
+      "loyalty": "Targaryen → Jon Snow (when Dany goes mad)",
+      "relationship_routes": [
+        "Informant",
+        "Ally",
+        "Betray him first"
+      ],
+      "death": "Burned by Drogon (Daenerys discovers treason)",
+      "famous_quotes": [
+        "Power resides where men believe it resides",
+        "I serve the realm"
+      ]
+    }
+  ],
+  "political_mechanics": {
+    "alliances": {
+      "marriage": "Forge alliance via strategic marriage (+50 relations)",
+      "military_pact": "Promise troops in exchange for loyalty",
+      "hostages": "Hold noble children as insurance (risky)",
+      "gold": "Bribe houses with Lannister gold"
+    },
+    "betrayal": {
+      "red_wedding_style": "Violate guest right, massacre ally (-100 honor, +fear)",
+      "backstab": "Break oath for advantage (-honor, +power)",
+      "frame": "Make rival look guilty of crime"
+    },
+    "influence_score": {
+      "scale": "0-100",
+      "factors": [
+        "Number of bannermen",
+        "Wealth",
+        "Army size",
+        "Dragons (if any)",
+        "Reputation (honor vs fear)"
+      ],
+      "threshold_80": "Can claim Iron Throne legitimately"
+    }
+  },
+  "endings": [
+    {
+      "name": "Targaryen Restoration",
+      "requirement": "Daenerys or Jon sits Iron Throne, dragons alive",
+      "description": "Fire and Blood returns, Targaryens rule for generations"
+    },
+    {
+      "name": "Northern Independence",
+      "requirement": "Sansa remains Queen in the North, Seven Kingdoms split",
+      "description": "The North is free, Winterfell stands"
+    },
+    {
+      "name": "Democracy (The Wheel Broken)",
+      "requirement": "Destroy Iron Throne, establish council of lords",
+      "description": "Bran becomes elected king, hereditary monarchy ends"
+    },
+    {
+      "name": "Mad Queen Reign",
+      "requirement": "Daenerys burns King's Landing, kills Jon",
+      "description": "Tyranny of fire, feared but obeyed"
+    },
+    {
+      "name": "Night King Victory",
+      "requirement": "Fail to kill Night King in Chapter 6",
+      "description": "Long Night eternal, all living become wights - GAME OVER"
+    },
+    {
+      "name": "Player Ascension",
+      "requirement": "Influence ≥80, claim throne yourself",
+      "description": "You win the game of thrones through cunning, war, or dragons"
+    },
+    {
+      "name": "Littlefinger's Dream",
+      "requirement": "Betray everyone, eliminate all rivals, sit throne via chaos",
+      "description": "The ultimate ladder climb - but can you hold it?"
+    },
+    {
+      "name": "Apocalypse",
+      "requirement": "Wildfire caches + dragons = King's Landing destroyed, thousands dead",
+      "description": "The city of ashes, no throne remains"
+    }
+  ],
+  "art_style": {
+    "description": "Dark medieval fantasy, gritty realism, epic scale",
+    "color_palette": [
+      "Steel grey",
+      "Blood red",
+      "Ice blue",
+      "Dragon fire orange"
+    ],
+    "reference_artists": [
+      "HBO concept art",
+      "Marc Simonetti",
+      "Ted Nasmith"
+    ],
+    "scene_examples": [
+      "Iron Throne room (swords melted into throne)",
+      "Battle of Winterfell (night, fire vs ice)",
+      "King's Landing (red stone city, dragonfire)",
+      "The Wall (700 feet tall ice wall)",
+      "Dragonstone (volcanic island, dragon statues)"
+    ]
+  },
+  "achievement_system": {
+    "total_achievements": 60,
+    "categories": [
+      "Power",
+      "Combat",
+      "Intrigue",
+      "Survival",
+      "Hidden"
+    ],
+    "examples": [
+      {
+        "name": "Kingslayer",
+        "requirement": "Kill a king"
+      },
+      {
+        "name": "Dragon Rider",
+        "requirement": "Ride a dragon"
+      },
+      {
+        "name": "Game of Thrones Victor",
+        "requirement": "Sit the Iron Throne"
+      },
+      {
+        "name": "Winter Came",
+        "requirement": "Defeat Night King"
+      },
+      {
+        "name": "Master of Whispers",
+        "requirement": "Uncover 10 secrets"
+      },
+      {
+        "name": "The North Remembers",
+        "requirement": "Avenge Ned Stark"
+      },
+      {
+        "name": "Chaos is a Ladder",
+        "requirement": "Betray 5 allies and gain power each time"
+      },
+      {
+        "name": "No One",
+        "requirement": "Complete Faceless Men training"
+      },
+      {
+        "name": "Fire and Blood",
+        "requirement": "Burn 1000 enemies with dragons"
+      }
+    ]
+  },
+  "difficulty_settings": {
+    "storyteller": "No permadeath, easy combat, story focus",
+    "game_of_thrones": "Permadeath enabled, hard choices, political focus (recommended)",
+    "a_song_of_ice_and_fire": "Brutal difficulty, anyone can die anytime, max realism",
+    "iron_throne": "Nightmare mode, one life only (player permadeath)"
+  },
+  "trivia": {
+    "author": "George R.R. Martin",
+    "tv_series": "HBO (2011-2019)",
+    "book_series": "A Song of Ice and Fire (unfinished)",
+    "cultural_impact": "Redefined fantasy TV, 'Red Wedding' shocked world",
+    "famous_for": "Killing main characters unexpectedly, complex politics, dragons"
+  },
+  "world_id": "game-of-thrones",
+  "status": "playable",
+  "default_language": "en",
+  "supported_languages": [
+    "en",
+    "zh"
+  ],
+  "start_options": {
+    "option_a": "Create your character - choose a Great House and role",
+    "option_b": "Play as a canon character (Jon, Daenerys, Tyrion, Arya, Cersei)"
+  },
+  "playable_canon_characters": [
+    {
+      "id": "jon_snow",
+      "name": "Jon Snow",
+      "house": "stark",
+      "role": "Lord Commander / King in the North",
+      "skills": [
+        "Swordsmanship",
+        "Leadership",
+        "Knows nothing"
+      ],
+      "unique": "Targaryen secret heritage, resurrected by Melisandre",
+      "moral_alignment": "honorable"
+    },
+    {
+      "id": "daenerys",
+      "name": "Daenerys Targaryen",
+      "house": "targaryen",
+      "role": "Queen, Dragon Rider",
+      "skills": [
+        "Dragon command",
+        "Political vision",
+        "Armies of freed slaves"
+      ],
+      "unique": "3 dragons, unburnt, Mother of Dragons",
+      "moral_alignment": "complex"
+    },
+    {
+      "id": "tyrion",
+      "name": "Tyrion Lannister",
+      "house": "lannister",
+      "role": "Hand of the Queen/King",
+      "skills": [
+        "Political intrigue",
+        "Wit",
+        "Strategic mind"
+      ],
+      "unique": "Best dialogue in Westeros, impervious to direct combat",
+      "moral_alignment": "chaotic_good"
+    },
+    {
+      "id": "arya",
+      "name": "Arya Stark",
+      "house": "stark",
+      "role": "Faceless Man / Assassin",
+      "skills": [
+        "Stealth",
+        "Disguise",
+        "Assassination",
+        "Needle"
+      ],
+      "unique": "Faceless Men training, can change face",
+      "moral_alignment": "chaotic_neutral"
+    },
+    {
+      "id": "cersei",
+      "name": "Cersei Lannister",
+      "house": "lannister",
+      "role": "Queen Regent",
+      "skills": [
+        "Political manipulation",
+        "Poison",
+        "Wildfire tactics"
+      ],
+      "unique": "Control over King's Landing, ruthless ambition",
+      "moral_alignment": "villain"
+    }
+  ],
+  "language_switching": {
+    "trigger_en_to_zh": [
+      "切换中文",
+      "switch to Chinese"
+    ],
+    "trigger_zh_to_en": [
+      "switch to English",
+      "用英文"
+    ]
+  },
+  "art_style_key": "epic_fantasy_oil_painting",
+  "art_direction": {
+    "visual_style": "Dark epic fantasy, HBO series aesthetic",
+    "color_palette": "Desaturated, grey stone, golden throne, blood red",
+    "character_portraits": "Dramatic oil painting style, medieval costume detail",
+    "battle_scenes": "Epic scale battles - Blackwater, Bastards, Winterfell",
+    "reference": [
+      "HBO Game of Thrones",
+      "Medieval oil paintings",
+      "Dark fantasy illustration"
+    ]
+  }
+}

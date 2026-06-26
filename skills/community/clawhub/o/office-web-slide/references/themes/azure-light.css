@@ -1,0 +1,49 @@
+/*
+ * Theme: Azure Light
+ * 蓝调科技浅色 — 纯白背景，经典蓝 #0052D9 强调色，专业大气
+ * 适合：企业汇报、科技产品发布、ToB 方案展示、品牌宣讲
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #1a1a1a;
+  --color-secondary: #666666;
+  --color-accent: #0052D9;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #666666;
+  --color-text-on-primary: #ffffff;
+  --color-border: #dcdee0;
+
+  /* --- 字体 --- */
+  --font-heading: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Inter', sans-serif;
+  --font-body: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Inter', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-size-title: 3.94rem;
+  --font-size-heading: 2.81rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.27rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.62rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 2.25rem;
+  --spacing-lg: 3.38rem;
+  --spacing-xl: 5.06rem;
+
+  /* --- 效果 --- */
+  --border-radius: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,82,217,0.04);
+  --shadow-md: 0 4px 12px rgba(0,82,217,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,82,217,0.08);
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* --- 玻璃/渐变扩展（非玻璃主题保持默认值，零渲染开销） --- */
+  --surface-blur: 0px;
+  --surface-saturate: 100%;
+  --bg-pattern: none;
+}

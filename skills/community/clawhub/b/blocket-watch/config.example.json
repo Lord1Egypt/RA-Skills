@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "telegram_target": "YOUR_TELEGRAM_CHAT_ID",
+  "queries": [
+    {
+      "label": "Example — replace or remove",
+      "argv": ["search", "soffa", "-l", "stockholm", "-n", "10", "-o", "json"]
+    },
+    {
+      "label": "Example with price cap (SEK)",
+      "argv": ["search", "lego 10255", "-n", "20", "-o", "json"],
+      "max_price": 1600,
+      "max_price_currency": "SEK"
+    }
+  ]
+}

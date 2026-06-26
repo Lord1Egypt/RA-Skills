@@ -1,0 +1,7 @@
+interface:
+  display_name: "One Person Company OS"
+  short_description: "面向 AI 一人创始人的可视化经营驾驶舱，覆盖价值承诺、买家、产品、交付、回款、学习与资产"
+  default_prompt: "我正在创建一个 AI 一人公司，请调用 one-person-company-os v1.0。先帮我确认可卖承诺、第一批买家和核心问题；确认后在我批准的本地目录创建工作区，用经营驾驶舱作为入口，直观展示当前瓶颈，并且只把批准后的文件保存到这个工作区内。"
+
+policy:
+  allow_implicit_invocation: false

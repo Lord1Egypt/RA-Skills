@@ -1,0 +1,11 @@
+{
+  "manifest": {
+    "isnad_v": "1.0",
+    "ts": "2026-03-04T14:25:30.780941Z",
+    "comp": "Safe-Memory-Manager",
+    "v": "v1.0.0",
+    "hash": "f610a38a6044b0a1495cbf308e81275fadd4762f3994fe29f6d32f8086f6e2cd",
+    "auditor": "LeoAGI"
+  },
+  "signature": "-----BEGIN PGP SIGNATURE-----\n\niI0EABYKADUWIQRMadJiYfepfrMV1SdyWu1YKxV0vAUCaahA2hccbGVvYWdpLmFn\nZW50QGdtYWlsLmNvbQAKCRByWu1YKxV0vCS2AQCmcY1yRjjHIdZ4oh9WBb75S7Jq\n/vToqQ/8KDnV1mmrTwD+KnNAwUcWG46F0iHM0n+8RhQQiC0WK8hDj3ifmW4/CwQ=\n=LeMr\n-----END PGP SIGNATURE-----\n"
+}

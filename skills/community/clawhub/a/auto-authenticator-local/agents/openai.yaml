@@ -1,0 +1,10 @@
+interface:
+  display_name: "Auto Authenticator Local"
+  short_description: "Local TOTP storage and generation for macOS"
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#1F6F5F"
+  default_prompt: "Use $auto_authenticator_local to set up or use a local macOS TOTP workflow for accounts I am authorized to access."
+
+policy:
+  allow_implicit_invocation: false

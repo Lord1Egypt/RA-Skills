@@ -1,0 +1,79 @@
+{
+  "name": "clawpilot",
+  "version": "1.0.1",
+  "description": "Clawpilot is your skill installation advisor. It analyzes task intent, recommends suitable skills, compares tradeoffs, explains risk, and suggests an installation order. Version 1 provides advice only and does not install skills automatically.",
+  "entry": "handler.py",
+  "runtime": "python3",
+  "author": "Harry",
+  "tags": [
+    "skill",
+    "recommendation",
+    "advisor",
+    "installation",
+    "skill-radar",
+    "安装顾问"
+  ],
+  "triggers": [
+    "有什么skill",
+    "有什么工具",
+    "我想查快递",
+    "我想学",
+    "推荐skill",
+    "装什么",
+    "有什么能帮我",
+    "skill推荐",
+    "压力好大",
+    "焦虑",
+    "写合同",
+    "法律",
+    "相亲",
+    "找对象",
+    "购物",
+    "点外卖",
+    "打车",
+    "看病",
+    "挂号"
+  ],
+  "capabilities": [
+    "任务意图识别（关键词+规则引擎）",
+    "候选 skill 推荐（1-3个）",
+    "skill 差异比较说明",
+    "风险分级（低/中/高/待确认）",
+    "安装顺序建议",
+    "中高风险强制免责声明",
+    "无法识别时的友好拒绝"
+  ],
+  "boundaries": [
+    "第一版不做自动安装，只提供建议",
+    "不爬取 skill 源码或技术实现",
+    "不推荐境外快递/国际服务",
+    "不提供医疗诊断、投资建议"
+  ],
+  "input_schema": {
+    "userQuery": "string (required): 用户任务描述，如'我想查快递到哪了'",
+    "installedSkills": "list[string] (optional): 用户已安装的 skill 列表，用于排除",
+    "riskPreference": "string (optional): conservative|moderate|aggressive，影响推荐策略"
+  },
+  "output_schema": {
+    "format": "markdown",
+    "sections": [
+      "intent (识别到的意图)",
+      "recommendations (推荐列表，含 skill 名称、理由、安装顺序、风险分级)",
+      "installSuggestion (安装建议)",
+      "disclaimer (免责声明，中高风险 skill 存在时必显示)",
+      "boundaries (边界说明)"
+    ]
+  },
+  "acceptance_criteria": [
+    "意图识别准确（主流意图 ≥ 80%）",
+    "推荐相关性（前3个至少1个相关）",
+    "风险分级一致性（法律/医疗类正确标注高风险）",
+    "免责声明触发（高风险 skill 推荐时包含 disclaimer）",
+    "友好拒绝（无法识别时给出友好提示而非空响应）",
+    "响应时间 ≤ 2 秒"
+  ],
+  "data_files": [
+    "data/skill-db.json",
+    "data/intent-map.json"
+  ]
+}

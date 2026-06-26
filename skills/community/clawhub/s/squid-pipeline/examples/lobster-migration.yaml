@@ -1,0 +1,83 @@
+# ─── LOBSTER → SQUID-CLAW MIGRATION EXAMPLE ──────────────────────────
+#
+# BEFORE (Lobster):
+# ─────────────────────────────────────────
+# name: jacket-advice
+# args:
+#   location:
+#     default: Phoenix
+# steps:
+#   - id: fetch
+#     run: weather --json ${location}         # Shell command
+#   - id: confirm
+#     approval: Want jacket advice?            # Approval = separate step type
+#     stdin: $fetch.json                       # stdin-based data flow
+#   - id: advice
+#     pipeline: >                              # Lobster pipeline DSL
+#       llm.invoke --prompt "..."
+#     stdin: $fetch.json
+#     when: $confirm.approved
+#
+# PROBLEMS:
+#   - No retry on weather API failure
+#   - Can't spawn a sub-agent for the LLM call
+#   - No parallel execution possible
+#   - pipeline: string is Bash-like glue
+#
+# AFTER (Squid):
+# ─────────────────────────────────────────
+
+name: jacket-advice
+description: Weather-based jacket recommendation (migrated from Lobster)
+
+args:
+  location:
+    default: Phoenix
+    description: Location to check weather for
+
+steps:
+  - id: fetch
+    type: run
+    description: Fetch weather data
+    run: weather --json ${args.location}
+    retry:                              # NEW: Built-in retry
+      maxAttempts: 3
+      backoff: exponential
+
+  - id: confirm
+    type: gate                          # CHANGED: Explicit gate type
+    description: Confirm jacket advice
+    gate:
+      prompt: "Want jacket advice for ${args.location}?"
+      preview: $fetch.json              # NEW: Preview data in approval UI
+
+  - id: advice
+    type: spawn                         # CHANGED: Native sub-agent instead of pipeline glue
+    description: Get jacket recommendation from AI
+    input: $fetch.json
+    spawn:
+      task: |
+        Given this weather data for ${args.location}:
+        ${fetch.json}
+        Should I wear a jacket? Consider temperature, precipitation, and wind.
+        Respond with JSON: { "recommendation": "yes"|"no", "reason": "..." }
+      model: claude-haiku-4-5
+      timeout: 30
+    when: $confirm.approved
+
+# ─── MIGRATION CHEAT SHEET ──────────────────────────────
+#
+# | Lobster                  | Squid                    |
+# |--------------------------|-------------------------------|
+# | run: cmd                 | type: run, run: cmd           |
+# | approval: "prompt"       | type: gate, gate: "prompt"    |
+# | pipeline: cmd | cmd      | type: spawn (or type: run)    |
+# | stdin: $step.json        | input: $step.json             |
+# | when: $step.approved     | when: $step.approved          |
+# | (no retry)               | retry: { maxAttempts: 3 }     |
+# | (no parallel)            | type: parallel, parallel: {}  |
+# | (no loop)                | type: loop, loop: { over: }   |
+# | (no branch)              | type: branch, branch: {}      |
+# | (no sub-agents)          | type: spawn, spawn: { task: } |
+# | lobster run --file f     | squid run f              |
+# | lobster resume --token   | squid resume f --token   |

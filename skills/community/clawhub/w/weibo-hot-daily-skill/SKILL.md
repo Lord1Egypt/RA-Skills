@@ -1,35 +1,126 @@
 ---
-name: "获取微博热搜榜单，智能分类热点话题，生成分段式结构化日报。"
-description: "微博热点日报生成技能。获取微博热搜榜单，智能分类热点，生成分段式日报。触发词：微博热点日报、微博热搜、微博热榜、weibo hot。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weibo-hot-daily-skill"
-sourceUrl: "https://clawhub.ai/skills/weibo-hot-daily-skill"
+name: weibo-hot-daily
+description: 微博热点日报生成技能。获取微博热搜榜单，智能分类热点，生成分段式日报。触发词：微博热点日报、微博热搜、微博热榜、weibo hot。
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+        - curl
 ---
 
-# 获取微博热搜榜单，智能分类热点话题，生成分段式结构化日报。
+# 微博热点日报
 
-> 微博热点日报生成技能。获取微博热搜榜单，智能分类热点，生成分段式日报。触发词：微博热点日报、微博热搜、微博热榜、weibo hot。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weibo-hot-daily-skill`
-- **Source URL:** [https://clawhub.ai/skills/weibo-hot-daily-skill](https://clawhub.ai/skills/weibo-hot-daily-skill)
+获取微博热搜榜单，智能分类热点话题，生成分段式结构化日报。
 
-## Overview
+**核心功能**：
+- 从微博热搜源获取最新榜单
+- 智能分类热点（财经科技/社会民生/文体娱乐/网络热点）
+- 分段展示不同类型热点
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weibo-hot-daily-skill
+- 查看当日微博热搜
+- 分析热点趋势分布
+- 获取分类热点概览
+
+## 数据源
+
+- **主源**：https://weibo.g.renyuzhuo.cn/
+
+## 日报格式
+
 ```
+【微博热点日报 | YYYY-MM-DD】
+
+📊 财经科技
+- 热点1：简要说明
+- 热点2：简要说明
+
+📰 社会民生
+- 热点1：简要说明
+- 热点2：简要说明
+
+🎬 文体娱乐
+- 热点1：简要说明
+- 热点2：简要说明
+
+🔥 网络热点
+- 热点1：简要说明
+- 热点2：简要说明
+
+---
+by OpenClaw
+```
+
+## 热点分类
+
+### 财经科技
+股市行情、经济动态、科技新闻、企业动态、AI发展、新能源汽车等
+
+### 社会民生
+社会事件、民生话题、公共安全、教育话题、医疗健康等
+
+### 文体娱乐
+影视综艺、音乐动态、体育赛事、明星新闻、游戏动漫等
+
+### 网络热点
+网络流行、梗文化、网友讨论、生活趣事、情感话题等
+
+## 使用方法
+
+```
+用户：微博热点日报
+用户：今天的微博热搜
+用户：微博热搜榜单
+用户：生成微博热点日报
+```
+
+## 工作流程
+
+1. **获取数据**：访问微博热搜源，解析榜单
+2. **智能分类**：按财经科技/社会民生/文体娱乐/网络热点分类
+3. **分段展示**：每个分类独立段落，清晰展示
+4. **生成日报**：按格式输出
+
+## 示例输出
+
+```
+【微博热点日报 | 2026-03-31】
+
+📊 财经科技
+- A股3月收官：沪指失守3900点但展现韧性
+- AI短剧偷脸事件：普通人被AI盗脸成猥琐角色
+
+📰 社会民生
+- 河南一高中近半历史老师无学生可教
+- 女子冒充老师谈恋爱诈骗20多万
+
+🎬 文体娱乐
+- 月鳞绮纪定档：全员be结局引爆期待
+- 国足0比2不敌喀麦隆：9分钟连丢2球
+
+🔥 网络热点
+- 麻辣烫里最夯的是啥菜
+- 养了一年猫感觉嘴里都是猫毛
+
+---
+by OpenClaw
+```
+
+## 相关文件
+
+- `scripts/weibo_hot_daily.py`：Python 辅助脚本，提供热搜获取和分类功能
+
+## 注意事项
+
+1. **分段展示**：每个分类独立成段，便于阅读
+2. **落款格式**：`by OpenClaw`（简洁版）
+3. **无发送功能**：仅生成内容，不自动发送
+
+## 更新日志
+
+**v1.1.1** (2026-03-31)
+- 初始版本

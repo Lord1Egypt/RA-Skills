@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "vibe-ui/resources-manifest/v1",
+  "generatedAt": "2026-06-04T09:52:41.482Z",
+  "source": {
+    "repo": "nexu-io/open-design",
+    "url": "https://github.com/nexu-io/open-design",
+    "branch": "main",
+    "commit": "18169ee52ac6f24eef277dba345a9f3a0e4e1b36",
+    "commitDate": "2026-06-04T09:13:50Z",
+    "commitSubject": "Improve export fidelity contract for editable PPTX and PDF readiness (#3628)",
+    "license": "Apache-2.0"
+  },
+  "counts": {
+    "designSystems": 150,
+    "designTemplates": 111,
+    "templateSourceFiles": 730,
+    "templateRecipes": 11
+  },
+  "outputs": {
+    "systems": "generated/open-design-systems.json",
+    "templateIndex": "generated/open-design-template-index.json",
+    "templateSources": "generated/open-design-template-sources.json",
+    "templateRecipes": "generated/open-design-template-recipes.json",
+    "snapshot": "snapshot/open-design"
+  },
+  "hashes": {
+    "systems": "a65fa94e200e43fc1295fd56e45693229ea32e3a87e8035e77fbd6e40dc6e265",
+    "templateIndex": "04846c604ddd355b53bfee7ae9598d8968367441d7592b93b99552df63902db6",
+    "templateSources": "71b6d69ba10af82b81484bc667050bc10f7474fc2be08d80d425cf35b52f24f5",
+    "templateRecipes": "2be476e6466674b8dfe9168ecfebf27314720ce51baa8ca4dc2c819ba72cf8fa"
+  }
+}

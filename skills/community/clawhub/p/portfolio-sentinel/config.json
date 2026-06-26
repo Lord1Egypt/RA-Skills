@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-sentinel",
+  "type": "analysis",
+  "schedule": "*/30 * * * *",
+  "models": {
+    "primary": "google/gemini-3-flash-preview",
+    "fallback": "nvidia/moonshotai/kimi-k2.5"
+  },
+  "tiers": {
+    "top_watchers": ["NBIS"]
+  },
+  "rules": "buffett"
+}

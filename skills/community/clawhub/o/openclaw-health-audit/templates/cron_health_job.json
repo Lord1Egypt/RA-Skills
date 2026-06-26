@@ -1,0 +1,14 @@
+{
+  "_comment": "48h health monitor cron job template. Replace {SKILL_DIR} with actual path.",
+  "id": "{UUID}",
+  "name": "48h-health-monitor",
+  "schedule": "0 2 */2 * *",
+  "sessionKey": null,
+  "status": "active",
+  "payload": {
+    "kind": "agentTurn",
+    "model": "custom-llmapi-lovbrowser-com/google/gemini-2.5-flash",
+    "timeoutSeconds": 120,
+    "prompt": "执行系统健康检查：python3 {SKILL_DIR}/scripts/health_monitor.py --report\n\n将输出结果通过 Telegram 发送给用户。若有问题，等待用户回复后按指令执行修复：\n- 用户回复 \"health fix all\" → python3 {SKILL_DIR}/scripts/health_monitor.py --fix all\n- 用户回复 \"health fix 1,2\" → python3 {SKILL_DIR}/scripts/health_monitor.py --fix \"1,2\"\n- 用户回复 \"health skip\" → 跳过"
+  }
+}

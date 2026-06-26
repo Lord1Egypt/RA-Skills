@@ -1,0 +1,33 @@
+name: fund-analyzer-pro
+version: 2.1.3
+description: 基金分析专家 - 整合天天基金 API+ 且慢 MCP，提供八大分析模块（单一基金/基金对比/基金诊断/持仓诊断/基金经理/机会分析/投资方式/报告信号）。新增信号监控提醒（signal_checker.py），支持季报/经理/规模/波动/风格/买卖信号自动推送。修复风险等级计算逻辑 + 增强诊断维度。skill-evolve 测试评分 10/10（完全收敛）
+author: 燃冰 & ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - fund-analysis
+  - investment
+  - portfolio-diagnosis
+  - fund-manager
+  - qieman-mcp
+  - ttfund
+
+data_sources:
+  - 天天基金 API (ttfund-skills)
+  - 且慢 MCP (qieman-mcp)
+  - 基金 e 账户 (Excel 导入)
+
+features:
+  - 单一基金分析（基础信息/业绩/风险/费率/持仓/经理）
+  - 基金对比（2-5 只基金全方位对比）
+  - 基金诊断（风格/持仓/业绩/风险四维诊断）
+  - 持仓诊断（Beta 分析/重合度检测/底层资产穿透）⭐
+  - 基金经理分析（5 大维度评估体系）
+  - 机会分析（赛道 + 业绩 + 经理三维筛选）
+  - 投资方式（配置建议 + 费用优化）
+  - 报告信号（季报/经理变更/规模变化等信号）
+
+requirements:
+  - TTFUND_APIKEY 环境变量
+  - 且慢 MCP 配置（x-api-key）
+  - Python 3.8+

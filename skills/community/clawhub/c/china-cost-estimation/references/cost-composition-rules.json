@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2026-03-29",
+    "based_on": [
+      "GB/T 50500-2024 建设工程工程量清单计价标准",
+      "建标[2013]44号 建筑安装工程费用项目组成",
+      "江苏省建设工程费用定额(2024)"
+    ]
+  },
+  "project_investment_structure": {
+    "description": "建设项目总投资构成",
+    "components": [
+      {
+        "code": "1",
+        "name": "建设投资",
+        "description": "项目建设所需的全部费用",
+        "components": [
+          {
+            "code": "1.1",
+            "name": "工程费用",
+            "description": "建筑安装工程费和设备购置费",
+            "components": [
+              {"code": "1.1.1", "name": "建筑工程费", "description": "建筑物、构筑物建造费用"},
+              {"code": "1.1.2", "name": "安装工程费", "description": "设备、管线安装费用"},
+              {"code": "1.1.3", "name": "设备购置费", "description": "设备、工器具购置费用"}
+            ]
+          },
+          {
+            "code": "1.2",
+            "name": "工程建设其他费用",
+            "description": "建设用地费、建设管理费等",
+            "components": [
+              {"code": "1.2.1", "name": "建设用地费", "description": "土地征用及拆迁补偿费"},
+              {"code": "1.2.2", "name": "建设管理费", "description": "建设单位管理费、监理费等"},
+              {"code": "1.2.3", "name": "前期工作费", "description": "可行性研究、勘察设计费等"},
+              {"code": "1.2.4", "name": "专项评价费", "description": "环评、安评、节能评估等"},
+              {"code": "1.2.5", "name": "工程保险费", "description": "建筑工程一切险等"},
+              {"code": "1.2.6", "name": "其他费用", "description": "招标代理、造价咨询等"}
+            ]
+          },
+          {
+            "code": "1.3",
+            "name": "预备费",
+            "description": "基本预备费和价差预备费",
+            "components": [
+              {"code": "1.3.1", "name": "基本预备费", "description": "设计和施工变更等不可预见费"},
+              {"code": "1.3.2", "name": "价差预备费", "description": "建设期内价格变动预备费"}
+            ]
+          }
+        ]
+      },
+      {
+        "code": "2",
+        "name": "建设期利息",
+        "description": "项目建设期间贷款利息"
+      },
+      {
+        "code": "3",
+        "name": "流动资金",
+        "description": "生产经营所需流动资金"
+      }
+    ]
+  },
+  "construction_cost_elements": {
+    "description": "建筑安装工程费用按构成要素划分",
+    "elements": [
+      {
+        "code": "1",
+        "name": "人工费",
+        "description": "支付给从事建筑安装工程施工的生产工人和附属生产单位工人的各项费用",
+        "components": [
+          "计时工资或计件工资",
+          "奖金",
+          "津贴补贴",
+          "加班加点工资",
+          "特殊情况下支付的工资",
+          "社会保险费",
+          "住房公积金"
+        ]
+      },
+      {
+        "code": "2",
+        "name": "材料费",
+        "description": "施工过程中耗费的原材料、辅助材料、构配件、零件、半成品或成品、工程设备的费用",
+        "components": [
+          "材料原价",
+          "运杂费",
+          "运输损耗费",
+          "采购及保管费"
+        ]
+      },
+      {
+        "code": "3",
+        "name": "施工机具使用费",
+        "description": "施工作业所发生的施工机械、仪器仪表使用费或其租赁费",
+        "components": [
+          "施工机械使用费（折旧费、检修费、维护费、安拆费及场外运费、人工费、燃料动力费、其他费）",
+          "仪器仪表使用费"
+        ]
+      },
+      {
+        "code": "4",
+        "name": "企业管理费",
+        "description": "建筑安装企业组织施工生产和经营管理所需的费用",
+        "components": [
+          "管理人员工资",
+          "办公费",
+          "差旅交通费",
+          "固定资产使用费",
+          "工具用具使用费",
+          "劳动保险和职工福利费",
+          "劳动保护费",
+          "检验试验费",
+          "工会经费",
+          "职工教育经费",
+          "财产保险费",
+          "财务费",
+          "税金",
+          "其他"
+        ],
+        "rates_jiangsu_2024": {
+          "建筑工程": {"base": "人工费+机械费", "rate_min": 28, "rate_max": 32},
+          "装饰工程": {"base": "人工费+机械费", "rate_min": 30, "rate_max": 35},
+          "安装工程": {"base": "人工费+机械费", "rate_min": 32, "rate_max": 38},
+          "市政工程": {"base": "人工费+机械费", "rate_min": 25, "rate_max": 30},
+          "园林绿化": {"base": "人工费+机械费", "rate_min": 22, "rate_max": 28}
+        }
+      },
+      {
+        "code": "5",
+        "name": "利润",
+        "description": "施工企业完成所承包工程获得的盈利",
+        "rates_jiangsu_2024": {
+          "建筑工程": {"base": "人工费+机械费", "rate": 12},
+          "装饰工程": {"base": "人工费+机械费", "rate": 13},
+          "安装工程": {"base": "人工费+机械费", "rate": 14},
+          "市政工程": {"base": "人工费+机械费", "rate": 11},
+          "园林绿化": {"base": "人工费+机械费", "rate": 10}
+        }
+      },
+      {
+        "code": "6",
+        "name": "规费",
+        "description": "按国家法律、法规规定，由省级政府和省级有关权力部门规定必须缴纳或计取的费用",
+        "components": [
+          "社会保险费（养老、失业、医疗、生育、工伤）",
+          "住房公积金",
+          "工程排污费/环境保护税"
+        ],
+        "rates_jiangsu_2024": {
+          "description": "按人工费为计算基础",
+          "social_insurance": {"rate_min": 25, "rate_max": 30},
+          "housing_fund": {"rate_min": 8, "rate_max": 12}
+        }
+      },
+      {
+        "code": "7",
+        "name": "税金",
+        "description": "国家税法规定应计入建筑安装工程造价内的增值税销项税额",
+        "rate": 9,
+        "base": "税前造价"
+      }
+    ]
+  },
+  "cost_by_formation": {
+    "description": "建筑安装工程费用按造价形成划分",
+    "components": [
+      {
+        "code": "1",
+        "name": "分部分项工程费",
+        "description": "各专业工程的分部分项工程应予列支的各项费用",
+        "calculation": "∑(工程量 × 综合单价)",
+        "proportion": "70-80%"
+      },
+      {
+        "code": "2",
+        "name": "措施项目费",
+        "description": "为完成建设工程施工，发生于该工程施工前和施工过程中的技术、生活、安全、环境保护等方面的费用",
+        "components": [
+          {
+            "name": "安全文明施工费",
+            "description": "不可竞争费用",
+            "sub_components": ["环境保护费", "文明施工费", "安全施工费", "临时设施费"],
+            "rate": "2.0%-3.5%",
+            "base": "分部分项工程费"
+          },
+          {
+            "name": "夜间施工增加费",
+            "rate": "2%-4%",
+            "base": "人工费"
+          },
+          {
+            "name": "二次搬运费",
+            "rate": "1%-2%",
+            "base": "人工费"
+          },
+          {
+            "name": "冬雨季施工增加费",
+            "rate": "1%-3%",
+            "base": "人工费"
+          },
+          {
+            "name": "已完工程及设备保护费",
+            "calculation": "按实计算"
+          },
+          {
+            "name": "脚手架费",
+            "rate": "15-50元/㎡",
+            "base": "建筑面积"
+          },
+          {
+            "name": "模板费",
+            "rate": "30-80元/㎡",
+            "base": "接触面积"
+          },
+          {
+            "name": "超高施工增加费",
+            "calculation": "按实计算"
+          },
+          {
+            "name": "大型机械设备进出场及安拆费",
+            "calculation": "按实计算"
+          }
+        ],
+        "proportion": "5-15%"
+      },
+      {
+        "code": "3",
+        "name": "其他项目费",
+        "description": "暂列金额、暂估价、计日工、总承包服务费等",
+        "components": [
+          {"name": "暂列金额", "description": "招标人在工程量清单中暂定并包括在合同价款中的一笔款项"},
+          {"name": "暂估价", "description": "招标人在工程量清单中提供的用于支付必然发生但暂时不能确定价格的材料、工程设备的单价以及专业工程的金额"},
+          {"name": "计日工", "description": "在施工过程中，承包人完成发包人提出的施工图纸以外的零星项目或工作所需的费用"},
+          {"name": "总承包服务费", "description": "总承包人为配合、协调发包人进行的专业工程发包，对发包人自行采购的材料、工程设备等进行保管以及施工现场管理、竣工资料汇总整理等服务所需的费用"}
+        ],
+        "proportion": "2-5%"
+      },
+      {
+        "code": "4",
+        "name": "规费",
+        "description": "按国家法律、法规规定计取的费用",
+        "proportion": "3-5%"
+      },
+      {
+        "code": "5",
+        "name": "税金",
+        "description": "增值税销项税额",
+        "rate": "9%",
+        "base": "税前造价"
+      }
+    ]
+  },
+  "other_costs": {
+    "description": "工程建设其他费用参考费率",
+    "items": [
+      {"name": "建设管理费", "base": "工程费用", "rate_min": 0.8, "rate_max": 2.5, "document": "财建[2016]504号"},
+      {"name": "可行性研究费", "base": "估算投资额", "rate_min": 0.1, "rate_max": 1.5, "document": "计价格[1999]1283号"},
+      {"name": "勘察设计费", "base": "工程费用", "rate_min": 2.0, "rate_max": 4.5, "document": "计价格[2002]10号"},
+      {"name": "工程监理费", "base": "工程费用", "rate_min": 1.0, "rate_max": 3.3, "document": "发改价格[2007]670号"},
+      {"name": "招标代理费", "base": "中标金额", "rate_min": 0.1, "rate_max": 1.0, "document": "计价格[2002]1980号"},
+      {"name": "造价咨询费", "base": "工程造价", "rate_min": 0.2, "rate_max": 1.5, "document": "中价协[2013]35号"},
+      {"name": "环境影响评价费", "base": "估算投资额", "rate_min": 0.02, "rate_max": 0.5, "document": "计价格[2002]125号"},
+      {"name": "劳动安全卫生评价费", "base": "工程费用", "rate_min": 0.1, "rate_max": 0.5, "document": "按实计取"}
+    ]
+  },
+  "contingency": {
+    "description": "预备费计算标准",
+    "basic_contingency": {
+      "description": "基本预备费",
+      "base": "工程费用 + 工程建设其他费",
+      "rate_min": 5,
+      "rate_max": 8,
+      "applicable_stage": "可研/初设阶段"
+    },
+    "price_contingency": {
+      "description": "价差预备费",
+      "calculation": "按价格指数计算",
+      "applicable": "建设期较长的项目"
+    }
+  }
+}

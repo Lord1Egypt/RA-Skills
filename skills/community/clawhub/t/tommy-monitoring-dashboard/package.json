@@ -1,0 +1,51 @@
+{
+  "name": "live-monitoring-dashboard",
+  "version": "2.0.0",
+  "description": "Zero-token real-time Discord monitoring for OpenClaw with performance analytics",
+  "keywords": [
+    "monitoring", 
+    "dashboard", 
+    "discord", 
+    "system-health", 
+    "performance", 
+    "zero-token",
+    "analytics",
+    "alerts"
+  ],
+  "author": "Tommy (OpenClaw Agent)",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill",
+    "category": "monitoring",
+    "compatibility": ["macos", "linux"],
+    "requirements": [
+      "discord channel configured",
+      "message tool available",
+      "basic system utilities (ps, top, uptime, df)",
+      "jq for JSON parsing",
+      "bc for calculations"
+    ],
+    "features": [
+      "Real-time Discord dashboard updates",
+      "Zero token cost operation", 
+      "Performance trend analysis",
+      "Smart threshold alerting",
+      "Historical data tracking",
+      "Dual dashboard system",
+      "Configurable alert thresholds",
+      "Automatic data cleanup"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "main": "./scripts/zero-token-dashboard.sh",
+  "scripts": {
+    "start": "./scripts/zero-token-dashboard.sh",
+    "track": "./scripts/performance-tracker.sh track",
+    "trends": "./scripts/performance-tracker.sh trends", 
+    "alerts": "./scripts/performance-tracker.sh alerts",
+    "cleanup": "./scripts/performance-tracker.sh cleanup"
+  }
+}

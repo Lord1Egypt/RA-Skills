@@ -1,0 +1,35 @@
+slug: cli-design-framework
+name: CLI Design Framework
+tagline: Classify first. Design second.
+version: 1.0.2
+summary: Classification-first framework for designing and reviewing CLIs.
+description: Use when designing a new CLI, reviewing an existing CLI, or resolving uncertainty about a CLI's role, user type, interaction form, statefulness, risk profile, or human-vs-machine surfaces.
+license: MIT-0
+tags:
+  - latest
+  - cli
+  - design
+  - review
+  - framework
+entrypoint: SKILL.md
+readme: ../../README.md
+repository:
+  type: git
+  path: ../..
+compatibility:
+  agents:
+    - claude-code
+    - codex
+    - openclaw
+  distribution:
+    - skills-cli
+    - clawhub
+contents:
+  references:
+    - references/taxonomy.md
+    - references/output-templates.md
+    - references/classification-examples.md
+  examples:
+    - examples/design-blueprint-example.md
+    - examples/review-example.md
+    - examples/anti-patterns.md

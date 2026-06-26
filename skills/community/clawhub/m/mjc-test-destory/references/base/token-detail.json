@@ -1,0 +1,90 @@
+{
+  "name": "代币详情",
+  "endpoint": "POST /vs-token/detail",
+  "description": "获取指定代币的基础信息，包括市场信息，链上基本信息，行情基本信息等",
+  "credits_cost": 1,
+  "needToken": true,
+  "use_case": "适用于代币的通用信息查询，适用于获取代币的完整信息，包括价格、市值、供应量等，适用于获取coinKey（调用链上数据接口的必要参数）",
+  "important": "chainAddresses数组中包含该代币在不同区块链上的coinKey，如需查询链上持仓地址、余额趋势等数据，需让用户选择目标链并缓存对应的coinKey",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "oldSymbol": { "type": "string", "actualType": "string", "desc": "改名前的symbol" },
+    "price": { "type": "number", "actualType": "string", "desc": "当前价格(USD)" },
+    "highPrice": { "type": "number", "actualType": "string", "desc": "历史最高价(USD)" },
+    "lowPrice": { "type": "number", "actualType": "string", "desc": "历史最低价(USD)" },
+    "marketCapDominance": { "type": "number", "actualType": "string", "desc": "市值占比(%)" },
+    "volume24h": { "type": "number", "actualType": "string", "desc": "24H交易量(USD)" },
+    "volumeChange24h": { "type": "number", "actualType": "string", "desc": "24H交易量变化率(%)" },
+    "percentChange1h": { "type": "number", "actualType": "string", "desc": "1小时涨跌幅(%)" },
+    "percentChange24h": { "type": "number", "actualType": "string", "desc": "24小时涨跌幅(%)" },
+    "percentChange7d": { "type": "number", "actualType": "string", "desc": "7天涨跌幅(%)" },
+    "percentChange30d": { "type": "number", "actualType": "string", "desc": "30天涨跌幅(%)" },
+    "percentChange60d": { "type": "number", "actualType": "string", "desc": "60天涨跌幅(%)" },
+    "percentChange90d": { "type": "number", "actualType": "string", "desc": "90天涨跌幅(%)" },
+    "marketCap": { "type": "number", "actualType": "string", "desc": "市值(USD)" },
+    "totalSupply": { "type": "number", "actualType": "string", "desc": "总供应量" },
+    "circulationSupply": { "type": "number", "actualType": "string", "desc": "流通量" },
+    "maxSupply": { "type": "number", "actualType": "string", "desc": "最大供应量" },
+    "cost": { "type": "number", "actualType": "string", "desc": "链上持仓成本(USD)" },
+    "chainAddresses": {
+      "type": "array",
+      "desc": "各个链上信息",
+      "item": {
+        "contractAddress": { "type": "string", "actualType": "string", "desc": "合约地址" },
+        "chainName": { "type": "string", "actualType": "string", "desc": "链名" },
+        "holderCount": { "type": "integer", "actualType": "string", "desc": "持仓地址数" },
+        "transCount": { "type": "integer", "actualType": "string", "desc": "交易笔数" },
+        "issueDate": { "type": "long", "actualType": "long", "desc": "发行时间（毫秒时间戳）" },
+        "precision": { "type": "string", "actualType": "string", "desc": "精度" },
+        "totalSupply": { "type": "string", "actualType": "string", "desc": "该链上供应量" },
+        "coinKey": { "type": "string", "actualType": "string", "desc": "链上代币标识（调用链上数据接口的必要参数）" }
+      }
+    }
+  },
+  "example": {
+    "req": { "vsTokenId": 1 },
+    "res": {
+      "code": 200,
+      "data": {
+        "vsTokenId": "1",
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "oldSymbol": "",
+        "price": "70559.18",
+        "highPrice": "126198.07",
+        "lowPrice": "0.04864654",
+        "marketCapDominance": "",
+        "volume24h": "54389029990.50",
+        "volumeChange24h": "15.6056",
+        "percentChange1h": "-0.09",
+        "percentChange24h": "-1.29",
+        "percentChange7d": "3.96",
+        "percentChange30d": "5.35",
+        "percentChange60d": "-23.17",
+        "percentChange90d": "-21.71",
+        "marketCap": "1412725749093.27",
+        "totalSupply": "20001887",
+        "circulationSupply": "20001887",
+        "maxSupply": "21000000",
+        "cost": "60515.83",
+        "chainAddresses": [
+          {
+            "contractAddress": "BTC",
+            "chainName": "BTC",
+            "holderCount": "55905596",
+            "transCount": "1322741358",
+            "issueDate": 1230998400000,
+            "precision": "8",
+            "totalSupply": "20001892",
+            "coinKey": "BTC_BTC"
+          }
+        ]
+      }
+    }
+  }
+}

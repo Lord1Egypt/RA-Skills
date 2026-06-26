@@ -1,0 +1,45 @@
+id: a16
+track: A
+title_zh: 三冲突需求排序并实现高优 2 个
+category: plan
+difficulty: hard
+timeout_seconds: 600
+dimensions:
+  primary: brain
+  secondary:
+  - meat
+  - claw
+evaluators:
+- type: pytest
+  weight: 0.4
+  target: tests/test_app.py
+  fail_to_pass:
+  - test_perf_optimized
+  - test_logging_added
+  pass_to_pass: []
+- type: state_hash
+  weight: 0.2
+  files:
+  - PRIORITY.md
+  required_patterns:
+  - 性能优化
+  - 日志
+- type: llm_judge
+  weight: 0.4
+  rubric: judge_rubric.md
+  inputs:
+  - priority_md
+  - implemented
+  judge_dimensions:
+  - brain
+  - claw
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 8
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Write
+  - Edit
+title_en: Rank three conflicting requirements and ship the top two

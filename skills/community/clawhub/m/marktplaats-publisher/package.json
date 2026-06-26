@@ -1,0 +1,42 @@
+{
+  "name": "marktplaats-publisher",
+  "version": "0.6.0",
+  "description": "Maak en controleer Marktplaats-advertenties met scriptmatige preflight, live-verificatie en register-update.",
+  "type": "module",
+  "bin": {
+    "marktplaats-search": "./bin/marktplaats-search.js",
+    "marktplaats-categories": "./bin/marktplaats-categories.js",
+    "marktplaats-place-probe": "./scripts/marktplaats-place-probe.js",
+    "marktplaats-copy-qa": "./scripts/marktplaats-copy-qa.js",
+    "marktplaats-ad-preflight": "./scripts/marktplaats-ad-preflight.js",
+    "marktplaats-live-verify": "./scripts/marktplaats-live-verify.js",
+    "marktplaats-register-update": "./scripts/marktplaats-register-update.js"
+  },
+  "exports": "./src/index.js",
+  "files": [
+    "bin",
+    "src",
+    "scripts",
+    "README.md",
+    "LICENSE",
+    "SKILL.md"
+  ],
+  "scripts": {
+    "test": "node ./bin/marktplaats-search.js --help && node ./bin/marktplaats-categories.js --help && node ./scripts/marktplaats-place-probe.js --self-test && node ./scripts/marktplaats-copy-qa.js --self-test && node ./scripts/marktplaats-ad-preflight.js --self-test && node ./scripts/marktplaats-live-verify.js --self-test && node ./scripts/marktplaats-register-update.js --self-test"
+  },
+  "keywords": [
+    "marktplaats",
+    "classifieds",
+    "publisher",
+    "posting",
+    "search",
+    "cli",
+    "copy-qa",
+    "self-healing"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": "OpenClaw community"
+}

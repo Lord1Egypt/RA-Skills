@@ -1,0 +1,7 @@
+interface:
+  display_name: "ALab Experiment Worker"
+  short_description: "Run and submit ALab experiment worktrees"
+  default_prompt: "Use $alab-experiment-worker to inspect visible prior evidence, improve the current ALab experiment worktree, run evaluation, submit with meaningful refs when a passed run supports it, and report the run evidence."
+
+policy:
+  allow_implicit_invocation: true

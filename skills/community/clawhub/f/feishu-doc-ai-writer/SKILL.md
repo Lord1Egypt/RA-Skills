@@ -1,35 +1,82 @@
 ---
-name: "飞书文档 AI 写作助手"
-description: "飞书文档AI写作助手 — 自动撰写、格式化、美化飞书文档。支持周报生成、会议纪要、项目方案、产品文档等飞书文档的智能创建。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, automation, docs, feishu, lark, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-doc-ai-writer"
-sourceUrl: "https://clawhub.ai/skills/feishu-doc-ai-writer"
+name: feishu-doc-ai-writer
+description: 飞书文档AI写作助手 — 自动撰写、格式化、美化飞书文档。支持周报生成、会议纪要、项目方案、产品文档等飞书文档的智能创建。
+version: 1.0.0
 ---
 
 # 飞书文档 AI 写作助手
 
-> 飞书文档AI写作助手 — 自动撰写、格式化、美化飞书文档。支持周报生成、会议纪要、项目方案、产品文档等飞书文档的智能创建。
+飞书文档智能写作技能。自动生成结构化文档、美化排版、插入表格和图片。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-doc-ai-writer`
-- **Source URL:** [https://clawhub.ai/skills/feishu-doc-ai-writer](https://clawhub.ai/skills/feishu-doc-ai-writer)
+## 能力
 
-## Overview
+### 1. 智能文档生成
+根据用户需求自动创建飞书文档，支持：
+- 周报/日报/月报
+- 会议纪要
+- 项目方案
+- 产品需求文档 (PRD)
+- 技术方案文档
 
+### 2. 文档美化
+- 标题层级自动排版
+- 关键信息高亮/加粗
+- 表格格式化
+- 图片/附件插入
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-doc-ai-writer
+### 3. 批量操作
+- 批量创建系列文档
+- 模板化文档生成
+- 文档内容批量替换
+
+## 使用方式
+
+### 创建周报
 ```
+用户: "帮我写本周工作周报，本周完成了用户登录模块开发和API接口优化，下周计划做支付集成和性能优化"
+
+Agent:
+1. 调用 feishu_doc create → 创建新文档
+2. 写入结构化周报内容（标题/正文/表格）
+3. 返回文档链接
+```
+
+### 生成会议纪要
+```
+用户: "帮我整理今天产品评审会的会议纪要，讨论了v2.0需求、排期、风险点"
+
+Agent:
+1. 创建飞书文档
+2. 写入格式化会议纪要（时间/参会人/议题/决议/待办）
+3. 插入待办事项表格
+```
+
+### 创建项目方案
+```
+用户: "写一份飞书多维表格自动化项目的技术方案"
+
+Agent:
+1. 创建文档
+2. 写入结构化技术方案（背景/目标/技术选型/实施计划/风险）
+3. 插入甘特图表格
+```
+
+## 输出格式
+
+所有文档遵循飞书标准排版：
+- H1: 文档标题
+- H2: 主要章节
+- H3: 子章节
+- 表格: 数据/对比/清单
+- 加粗: 关键信息和行动项
+
+## 与其他技能的关系
+
+- **feishu-bitable-butler**: 负责多维表格数据操作
+- **feishu-doc-ai-writer**: 负责文档内容创建和美化的"兄弟技能"
+- 两者可组合使用：用 butler 分析数据 → 用 writer 生成报告文档
+
+---
+
+> 🐟 ClawHub | 版本 1.0.0
+> 作者: Young Joey | 飞书 AI 自动化系列

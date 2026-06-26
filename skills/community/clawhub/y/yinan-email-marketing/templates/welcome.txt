@@ -1,0 +1,28 @@
+Subject: Welcome to {{store_name}}! 🎉
+
+Hi {{first_name}},
+
+Welcome to the {{store_name}} family! We're thrilled to have you with us.
+
+As a welcome gift, here's {{welcome_discount}} off your first order!
+Use code: {{promo_code}}
+
+ Start Shopping: {{shop_link}}
+
+What to expect from us:
+• Exclusive deals and promotions
+• New product announcements
+• Tips and tutorials
+• Early access to sales
+
+We're here to help! If you have any questions, just reply to this email.
+
+Happy shopping!
+
+The {{store_name}} Team
+
+---
+🏪 Taobao: {{taobao_link}}
+📱 Douyin: {{douyin_link}}
+
+Unsubscribe: {{unsubscribe_link}}

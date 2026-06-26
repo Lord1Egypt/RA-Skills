@@ -1,0 +1,39 @@
+name: ontology
+version: 1.0.0
+description: 类型化知识图谱，结构化代理记忆，实体关系管理
+author: clawd
+homepage: https://clawhub.com/skills/ontology
+
+triggers:
+  - 知识图谱
+  - 实体管理
+  - 关系链接
+  - 图谱查询
+  - ontology
+  - 知识管理
+  - 实体关联
+  - 依赖查询
+
+features:
+  - 类型化实体管理
+  - 关系图谱构建
+  - 约束验证
+  - 图遍历查询
+  - 跨技能状态共享
+
+config:
+  ONTOLOGY_PATH:
+    type: string
+    default: ~/clawd/ontology
+    description: 知识图谱存储路径
+
+pricing:
+  basic: free
+  pro: $2.99/month
+  team: $7.99/month
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot
+  node: ">=18.0.0"

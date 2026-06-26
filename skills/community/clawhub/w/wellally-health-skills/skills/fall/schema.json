@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/fall-risk-assessment.json",
+  "title": "FallRiskAssessment",
+  "description": "跌倒风险评估的数据结构定义",
+  "type": "object",
+  "properties": {
+    "fall_history": {
+      "type": "array",
+      "description": "跌倒历史记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "time": { "type": "string", "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" },
+          "location": {
+            "type": "string",
+            "enum": ["bathroom", "bedroom", "living_room", "kitchen", "stairs", "other"]
+          },
+          "cause": {
+            "type": "string",
+            "enum": ["slippery_floor", "trip", "loss_balance", "dizziness", "weak", "sudden_movement", "other"]
+          },
+          "injury_level": {
+            "type": "string",
+            "enum": ["none", "bruise", "cut", "fracture", "head_injury", "other"]
+          },
+          "description": { "type": "string" },
+          "required_medical_attention": { "type": "boolean" }
+        }
+      }
+    },
+    "fall_count": {
+      "type": "integer",
+      "description": "跌倒总次数"
+    },
+    "last_fall": {
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "location": { "type": "string" },
+        "injury_level": { "type": "string" }
+      }
+    },
+    "balance_tests": {
+      "type": "object",
+      "properties": {
+        "tug_test": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "date": { "type": "string", "format": "date" },
+              "time_seconds": { "type": "number", "minimum": 0 },
+              "interpretation": { "type": "string" },
+              "fall_risk": { "type": "string", "enum": ["低风险", "中风险", "高风险"] }
+            }
+          }
+        },
+        "berg_balance_scale": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "date": { "type": "string", "format": "date" },
+              "score": { "type": "integer", "minimum": 0, "maximum": 56 },
+              "interpretation": { "type": "string" },
+              "fall_risk": { "type": "string" }
+            }
+          }
+        },
+        "single_leg_stance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "date": { "type": "string", "format": "date" },
+              "eyes_open_seconds": { "type": "number" },
+              "eyes_closed_seconds": { "type": "number" },
+              "interpretation": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "gait_analysis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "speed_m_per_s": { "type": "number" },
+          "abnormalities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["shortened_step", "widened_base", "unsteady_gait", "shuffling", "asymmetric", "normal"]
+            }
+          },
+          "interpretation": { "type": "string" }
+        }
+      }
+    },
+    "home_safety": {
+      "type": "object",
+      "properties": {
+        "last_assessed": { "type": "string", "format": "date" },
+        "living_room": {
+          "type": "object",
+          "properties": {
+            "floor_slippery": { "type": "boolean" },
+            "adequate_lighting": { "type": "boolean" },
+            "obstacles_removed": { "type": "boolean" },
+            "rugs_secure": { "type": "boolean" }
+          }
+        },
+        "bedroom": {
+          "type": "object",
+          "properties": {
+            "bedside_light": { "type": "boolean" },
+            "night_light": { "type": "boolean" },
+            "bed_height_appropriate": { "type": "boolean" },
+            "clutter_free": { "type": "boolean" }
+          }
+        },
+        "bathroom": {
+          "type": "object",
+          "properties": {
+            "non_slip_mat": { "type": "boolean" },
+            "grab_bars": { "type": "boolean" },
+            "shower_chair": { "type": "boolean" },
+            "easy_access": { "type": "boolean" }
+          }
+        },
+        "stairs": {
+          "type": "object",
+          "properties": {
+            "handrails": { "type": "boolean" },
+            "non_slip_treads": { "type": "boolean" },
+            "adequate_lighting": { "type": "boolean" },
+            "clutter_free": { "type": "boolean" }
+          }
+        },
+        "recommendations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "risk_factors": {
+      "type": "object",
+      "properties": {
+        "age_over_75": { "type": "boolean" },
+        "previous_falls": { "type": "boolean" },
+        "balance_problems": { "type": "boolean" },
+        "gait_abnormalities": { "type": "boolean" },
+        "muscle_weakness": { "type": "boolean" },
+        "vision_problems": { "type": "boolean" },
+        "cognitive_impairment": { "type": "boolean" },
+        "multiple_medications": { "type": "boolean" },
+        "chronic_conditions": { "type": "boolean" },
+        "home_hazards": { "type": "boolean" }
+      }
+    },
+    "overall_risk": {
+      "type": "string",
+      "enum": ["低风险", "中风险", "高风险"],
+      "description": "综合跌倒风险等级"
+    },
+    "risk_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18,
+      "description": "风险评分"
+    },
+    "interventions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "干预措施建议"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": { "type": "string", "format": "date-time" },
+        "last_updated": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

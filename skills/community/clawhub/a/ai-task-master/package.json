@@ -1,0 +1,9 @@
+{
+  "name": "task-planner",
+  "version": "1.0.0",
+  "description": "Intelligent task planner with Plan-and-Solve",
+  "main": "index.js",
+  "keywords": ["task", "planning", "productivity", "goals"],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

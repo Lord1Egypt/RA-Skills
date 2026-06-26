@@ -1,35 +1,34 @@
 ---
-name: "Date Tool"
-description: "Display and format date and time values from the command line. Use when you need to get the current date, format timestamps, or calculate date differences."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/date-tool"
-sourceUrl: "https://clawhub.ai/skills/date-tool"
+name: date-tool
+description: Display and format date and time values from the command line. Use when you need to get the current date, format timestamps, or calculate date differences.
 ---
 
-# Date Tool
+# Date Tool - Date and Time Utilities
 
-> Display and format date and time values from the command line. Use when you need to get the current date, format timestamps, or calculate date differences.
+Display current date/time in various formats, convert between timezones, and perform date arithmetic calculations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/date-tool`
-- **Source URL:** [https://clawhub.ai/skills/date-tool](https://clawhub.ai/skills/date-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/date-tool
+date-tool +"%Y-%m-%d %H:%M:%S"
+```
+
+## Features
+
+- Display current date/time in custom formats
+- Convert between timezones
+- Calculate date differences
+- Parse timestamps from various formats
+
+## Examples
+
+```bash
+# Current date in ISO format
+date-tool +"%Y-%m-%d"
+
+# Current time in 24-hour format
+date-tool +"%H:%M:%S"
+
+# Unix timestamp
+date-tool +"%s"
 ```

@@ -1,0 +1,24 @@
+# ─── E2E Test: Claude Code Adapter ─────────────────────────────────────
+#
+# Minimal pipeline that spawns a real Claude Code agent.
+# Validates that the adapter correctly invokes claude CLI and parses output.
+#
+# Requires: claude CLI installed and authenticated
+# Run: squid run skills/squid-pipeline/examples/e2e/e2e-claude-code.yaml -v
+
+name: e2e-claude-code
+description: End-to-end test for Claude Code adapter
+agent: claude-code
+
+steps:
+  - id: hello
+    type: spawn
+    description: Ask Claude Code to return structured JSON
+    spawn:
+      task: 'Reply with exactly this JSON and nothing else: {"status": "ok", "agent": "claude-code", "test": true}'
+      timeout: 60
+
+  - id: verify
+    type: transform
+    description: Verify the response
+    transform: $hello.json

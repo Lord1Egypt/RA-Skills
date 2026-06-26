@@ -1,0 +1,63 @@
+{
+  "name": "skill-secure-checker",
+  "version": "0.1.0",
+  "description": "自动扫描技能代码，识别安全风险（恶意模式、密钥泄露、危险函数），支持 VirusTotal API 集成。适用于ClawHub发布前的自动安全审查。",
+  "details": "Skills must be secure before publishing. This scanner automatically detects:\n- Malicious code patterns (eval, exec, __import__, subprocess with shell=True)\n- Hardcoded secrets (API keys, passwords, tokens)\n- Suspicious network operations\n- OWASP Top 10 patterns\n- Optional VirusTotal API integration for file reputation checks\n\nOutputs: JSON report + optional HTML dashboard (beautified with frontend-design).",
+  "tags": ["security", "devops", "quality", "publishing"],
+  "author": "小叮当",
+  "license": "MIT",
+  "inputs": [
+    {
+      "name": "skill_path",
+      "type": "string",
+      "description": "Path to skill directory to scan (absolute or relative)",
+      "required": true
+    },
+    {
+      "name": "output_format",
+      "type": "string",
+      "description": "Report format: json, html, or both",
+      "default": "json"
+    },
+    {
+      "name": "virustotal_api_key",
+      "type": "string",
+      "description": "Optional VirusTotal API key for file reputation scanning",
+      "required": false
+    },
+    {
+      "name": "severity_threshold",
+      "type": "string",
+      "description": "Minimum severity to report: low, medium, high, critical",
+      "default": "low"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "report",
+      "type": "object",
+      "description": "Security scan results with findings count, risk score, and detailed issues"
+    }
+  ],
+  "examples": [
+    {
+      "title": "扫描一个技能目录",
+      "description": "Basic scan of skill directory, outputs JSON report",
+      "command": "skill-secure-checker skill_path=\"./skills/batch-renamer\" output_format=json"
+    },
+    {
+      "title": "生成HTML报告（使用frontend-design美化）",
+      "description": "Scan and produce a beautiful HTML dashboard",
+      "command": "skill-secure-checker skill_path=\"./skills/social-publisher\" output_format=html"
+    },
+    {
+      "title": "启用VirusTotal文件扫描",
+      "description": "Include file reputation checks via VirusTotal API",
+      "command": "skill-secure-checker skill_path=\"./skills/xiaohongshu-proxy-manager\" virustotal_api_key=\"${VT_API_KEY}\" output_format=both"
+    }
+  ],
+  "error": "If skill fails to load or run, provide troubleshooting tips: Check Python 3.8+, ensure skill_path exists, verify VirusTotal API key format if used.",
+  "scripts": {
+    "install": "install.sh"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "pubmed-verifier",
+  "version": "1.1.0",
+  "description": "PubMed文献引用批量验证工具 | Batch PMID verification tool\n\n🔍 一键验证文献引用真实性，告别AI文献幻觉\n\n## 解决什么问题？\nAI辅助写作时经常编造不存在的文献编号（PMID）、标题、期刊名和DOI。手动逐条验证耗时且痛苦。本工具自动调用PubMed API批量验证，5分钟查完200+条引用。\n\n## 功能特性\n- ✅ PMID存在性验证（PubMed E-utilities API）\n- ✅ 文献标题与内容关键词匹配度检查\n- ✅ 无效引用自动推荐替代文献（PubMed搜索）\n- ✅ HTML/JSON/CLI多格式报告输出\n- ✅ 支持单文件、文件夹、纯PMID列表\n\n## 真实案例\n对35个医学病例文件（225条PMID引用）进行全量验证：\n- 222条完全正确\n- 3条无效PMID成功检出并修正\n- 6条跨领域引用标记供人工复核\n- 总耗时约5分钟\n\n## 适用场景\n- 📚 系统性综述/荟萃分析文献验证\n- 🏥 临床病例报告引用核查\n- 📝 论文投稿前引用自检\n- 🤖 AI生成内容的文献真实性审核\n- 📖 医学知识库/教材引用质量控制\n\n## 使用方法\n```bash\n# 验证单个HTML文件\npython3 scripts/verify_pmids.py file.html\n\n# 验证整个文件夹\npython3 scripts/verify_pmids.py /path/to/folder/\n\n# 验证PMID列表\npython3 scripts/verify_pmids.py --pmids 31018962 22213727 99999999\n```\n\n关键词：PubMed验证 | PMID核查 | 文献真实性 | AI幻觉检测 | 学术诚信 | 论文引用检查 | 医学文献 | reference verification | citation checking | academic integrity",
+  "author": "docsor1212",
+  "tags": ["pubmed", "pmid", "文献验证", "引用核查", "AI幻觉", "学术写作", "医学文献", "citation", "verification", "academic"],
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/docsor1212/pubmed-verifier"
+}

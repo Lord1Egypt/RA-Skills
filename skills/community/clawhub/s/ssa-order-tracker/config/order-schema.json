@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://farreach.local/schemas/order.json",
+  "title": "订单数据模型 (Order Data Schema)",
+  "description": "本地订单跟踪系统的数据结构定义，用于 task-005 订单管理模块",
+  "type": "object",
+  "required": [
+    "order_id",
+    "customer_name",
+    "customer_email",
+    "product_list",
+    "quantity",
+    "unit_price",
+    "currency",
+    "delivery_date",
+    "status",
+    "status_history",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "order_id": {
+      "type": "string",
+      "description": "订单唯一标识（UUID 或自定义编号）",
+      "examples": ["ORD-20260324-001", "550e8400-e29b-41d4-a716-446655440000"]
+    },
+    "customer_name": {
+      "type": "string",
+      "description": "客户名称",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "客户邮箱（用于通知）",
+      "maxLength": 255
+    },
+    "customer_company": {
+      "type": "string",
+      "description": "客户公司名称（可选）",
+      "maxLength": 200
+    },
+    "product_list": {
+      "type": "array",
+      "description": "产品清单",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["sku", "name", "quantity", "unit_price"],
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "产品 SKU",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "产品名称",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "产品描述（可选）"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "产品数量",
+            "minimum": 1
+          },
+          "unit_price": {
+            "type": "number",
+            "description": "产品单价",
+            "minimum": 0
+          },
+          "currency": {
+            "type": "string",
+            "description": "货币单位（可选，默认使用订单级 currency）",
+            "pattern": "^[A-Z]{3}$"
+          }
+        }
+      }
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "订单总数量",
+      "minimum": 1
+    },
+    "unit_price": {
+      "type": "number",
+      "description": "订单单价（或平均单价）",
+      "minimum": 0
+    },
+    "total_amount": {
+      "type": "number",
+      "description": "订单总金额（可选，可自动计算）",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "description": "货币单位",
+      "pattern": "^[A-Z]{3}$",
+      "examples": ["USD", "CNY", "EUR", "GBP"]
+    },
+    "delivery_date": {
+      "type": "string",
+      "format": "date",
+      "description": "预计交期（ISO 8601 日期）",
+      "examples": ["2026-04-15"]
+    },
+    "status": {
+      "type": "string",
+      "description": "当前订单状态",
+      "enum": [
+        "pending_production",
+        "in_production",
+        "ready_to_ship",
+        "shipped",
+        "completed",
+        "cancelled"
+      ]
+    },
+    "status_history": {
+      "type": "array",
+      "description": "状态变更历史记录",
+      "items": {
+        "type": "object",
+        "required": ["status", "changed_at", "changed_by"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "变更后的状态",
+            "enum": [
+              "pending_production",
+              "in_production",
+              "ready_to_ship",
+              "shipped",
+              "completed",
+              "cancelled"
+            ]
+          },
+          "changed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "变更时间（ISO 8601）"
+          },
+          "changed_by": {
+            "type": "string",
+            "description": "变更操作者（manual/system/用户名）",
+            "examples": ["manual", "system", "jaden", "wilson"]
+          },
+          "notes": {
+            "type": "string",
+            "description": "变更备注（可选）"
+          },
+          "notification_sent": {
+            "type": "boolean",
+            "description": "是否已发送客户通知",
+            "default": false
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "订单创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注信息（可选）",
+      "maxLength": 2000
+    },
+    "shipping_address": {
+      "type": "object",
+      "description": "收货地址（可选）",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "address_line1": {
+          "type": "string"
+        },
+        "address_line2": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        }
+      }
+    },
+    "tracking_number": {
+      "type": "string",
+      "description": "物流运单号（发货后填写）",
+      "maxLength": 100
+    },
+    "carrier": {
+      "type": "string",
+      "description": "物流承运商（可选）",
+      "maxLength": 100
+    }
+  },
+  "additionalProperties": false
+}

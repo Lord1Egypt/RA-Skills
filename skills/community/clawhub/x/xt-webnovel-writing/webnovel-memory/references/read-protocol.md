@@ -1,0 +1,201 @@
+# 读取协议 · 生成任何新章节之前必须执行
+
+下游 skill（`webnovel-plot-design` 的正文模式、`webnovel-excitement-and-craft` 的加爽/改写）在启动前调用本协议，拉齐**最小必要上下文**，避免跨章 / 跨会话失忆。
+
+## 输入
+
+```yaml
+project_root: <作品根目录绝对路径>
+target_chapter: <要生成或改写的章号>
+mode: draft | revise | diagnose
+```
+
+## Phase 1 · 常驻上下文（永远读）
+
+按以下顺序读，全部加载后预计 ≤ 4800 字上下文占用（硬上限 5500）：
+
+1. `book.yaml` → 书籍元数据
+2. `fingerprint.md` → 作者指纹（风格锁定）
+3. `bible/power-system.md` + `bible/glossary.md` → 避免设定自相矛盾
+4. `state/foreshadow.md`（只取 `live` 行） → 不能遗忘的伏笔
+5. `state/used-excitement.md`（最近 10 行，含 `interruption` 列） → 避免同类爽点堆叠 + 抽取本章必须使用的打断类型
+6. `state/used-patterns.md` → 当前禁用句式 / 动词清单 + 反 AI 味监控面板最近 3 章状态（主语分布 / 段长熵 / 非理性噪声 / 质量方差 / 反派套餐 / 灵魂渗透缺位名单 / 动物独立反应缺位名单 / **definition_style_hits 近 3 章累计 / bold_theme_hits 近 3 章累计 / emotion_token_solo_paragraphs 近 3 章累计 / emotion_token_bold 近 3 章累计 / single_sentence_run_max 近 3 章累计 / single_sentence_para_ratio 近 3 章 / long_paras_over_80 近 3 章累计 / long_paras_over_120 近 3 章累计 / signature_明牌超限名单 / setting_reveal_overload_hits / transition_types 近 3 章分布 / filler_count 近 3 章 / side_char_autonomous_agenda_count 近 3 章 / waste_option_ratio 近 3 章 / meta_language_hits 近 3 章 / opening_hook_spike 近 3 章 / curiosity_gap_markers 近 3 章均值 / flat_atmosphere_streak_max 近 3 章峰值 / opening_entry_mode 近 3 章 / opening_mode_streak_max_5ch 近 3 章峰值 / wakeup_opening_count_10ch 当前值 / prev_hook_carryover_present 上章值 / time_skip_bridge_present 上章值 / system_prompt_template_hits 近 3 章 / coincidence_chain_hits 近 3 章 / forced_detour_hits 近 3 章 / tech_jargon_density_per_1k 近 3 章 / tech_exposition_block_over_120 近 3 章 / tech_mechanism_closure_hits 近 3 章 / lexeme_cluster_repeat_hits 近 3 章 / abstract_aura_token_density_per_1k 近 3 章 / contrastive_negation_hits 近 3 章 / keyzone_contrastive_negation_hits 近 3 章（反 R-补充） / **cultural_shorthand_clash_hits 近 3 章 / withhold_beat_present 近 3 章（反 P-补充2） / dialogue_subtext_misalignment_hits 近 3 章 / fully_matched_qa_chain_max 近 3 章峰值（反 I-补充） / weirdness_seed_type 近 3 章分布（反 P-1 题材化） / chapter_pacing_matrix 近 3 章（relation_tension / mc_info_delta / chapter_mood / ending_hook_type） / romance_arc_step 近 3 章 / friendship_arc_step 近 3 章 / romance_step_delta_from_prev 近 3 章 / friendship_step_delta_from_prev 近 3 章 / relationship_progression_beats 近 3 章 / relationship_jump_without_cause_hits 近 3 章 / relationship_jump_with_cause_hits 近 3 章 / post_jump_emotional_turbulence_hits 近 3 章（反 E-扩展6） / combat_target_ratio 近 3 章 / combat_presence_hits 近 3 章 / protagonist_distinctive_traits_count 近 3 章 / protagonist_initiative_conflict_hits 近 3 章 / protagonist_impulse_or_humor_hits 近 3 章 / protagonist_template_similarity_hits 近 3 章（反 E-扩展7） / style_temperature_band 近 3 章 / human_noise_hits 近 3 章 / clean_closure_hits 近 3 章 / exposition_density_band 近 3 章 / dialogue_mismatch_ratio 近 3 章 / detail_density_std 近 3 章 / detail_density_flat_run_max 近 3 章 / emotion_temp_range 近 3 章 / flat_affect_streak_max 近 3 章（绿线分布） / era_lexicon_collision_hits 近 3 章 / modern_metaphor_unanchored_hits 近 3 章 / cross_era_bridge_present 近 3 章 / persona_crack_template_hits 近 3 章 / decorative_crack_hits 近 3 章 / crack_followup_payoff_hits 近 3 章 / symmetry_closure_hits 近 3 章 / closure_neatness_score 近 3 章 / anti_closure_noise_present 近 3 章 / single_mode_streak_max 近 3 章 / para_function_type_count 近 3 章 / micro_closeup_ratio 近 3 章**）
+7. `state/power-level.md` → 主角当前修为状态
+8. `state/open-threads.md` → 未收束矛盾
+9. `state/anti-trope-log.md`（最近 3 章）→ 最近使用的"真实接续"列表（避免复用）+ 最近的怪异预算 / 延迟兑付清单（避免同质化）
+10. `全书企划/00-总览.md` → 全书总目标（总章数 / 每章字数 / 阶段主题 / 矛盾链）
+11. `全书企划/blocks-index.md` → 章节到 Block 的映射与当前进度
+
+## Phase 2 · 当前 arc 上下文
+
+1. 从 `arcs/_index.md` 查 `target_chapter` 所属 arc
+2. 读该 arc 文件（矛盾 / 八步位置 / 已写到第几步）
+3. 根据八步位置，决定本章承担步骤
+4. 从 `全书企划/blocks-index.md` 计算 `target_chapter` 所属 10 章 Block，只读取该 Block 文件（`全书企划/blocks/block-<NNN>-ch<start>-ch<end>.md`）
+5. 若 `target_chapter` 为 Block 首章（`chapter % 10 == 1`），必须先确认该 Block 文件存在"详细10章纲要"；缺失则中止正文生成并先补全详细纲要
+
+## Phase 3 · 相邻章节上下文
+
+1. 读 `index/volume_<VOLUME_NO>_index.md`，取 `target_chapter - 3` 到 `target_chapter - 1` 共 3 条摘要
+2. 读 `state/chapter_meta/ch<target_chapter - 1:4位零填充>.yaml`（取 `hooks_planted` / `characters` / `locations` 等章元；**不**从 `chapters/*.md` 取 frontmatter——正文文件仅 H1+小说正文）。若需核对收束/语气，可**仅**扫读上一章 `chapters/ch<NNNN>_*.md` 的纯正文，章元以本 yaml 为准
+3. 若 `target_chapter - 1` 的 `hooks_planted` 非空，本章必须至少承接 1 条
+
+## Phase 4 · 相关角色按需加载
+
+1. 从 Phase 3 拿到 `characters` 列表
+2. 读 `characters/_index.md` 定位文件路径
+3. 每个角色读 frontmatter + "当前修为" + "最近状态" + **"灵魂字段 soul_fields"** + "灵魂渗透记录 soul_bleed_log 最近 3 行" + **"signature 明牌化计数"**；不读完整历史
+4. 若本章将**首次引入关键角色**（主角 / POV / 女男主 / 核心反派 / 固定配角 top 5）：**必须同时加载其完整 soul_fields（≥ 2 条），并在 prompt 中明确标记"首次登场章灵魂渗透为回滚级硬门"**
+5. 若本章将首次引入次要 / 路人角色，跳过此步，但在 Phase 5 写入时创建新人物卡并强制要求 `soul_fields` 至少非空 1 条（反 O）
+6. 若角色为动物 / 灵兽 / 灵物（species != 人），额外加载其"独立反应坐标轴"字段
+
+## Phase 5 · 检索型查询（可选，按生成需要）
+
+当 agent 生成过程中不确定：
+- 某人物/地点/法宝上一次出现在哪章 → 查 `index/volume_<VOLUME_NO>_index.md` 的卷内导航区
+- 某专有名词是否已存在（避免误撞同名） → 查 `bible/glossary.md`
+
+## Phase 6 · 加载公共 references
+
+1. `../../references/anti-ai-tells.md` → 反 AI 味 18 主条款 + 7 子条款 · 共 25 项（含 D / G+1 / G-细 / E / E+2 / N-细 / O **+ O-在场** / P / Q / **R** / K-补充 / **A-补充** 等回滚级硬门；I-补充 / P-补充2 等并入扩展不额外计数）
+2. `../../references/foxsan-webnovel-manual.md` → 方法论底本
+
+## 上下文装填模板
+
+Phase 1–4 的结果在进 prompt 前压成下列结构，而不是原样塞入：
+
+```markdown
+## 记忆快照 · 第 N 章
+
+### 书籍常量
+- 书名 / 类型 / 主角 / 主线 L1 / 作者指纹（浓缩 3 行）
+
+### 当前 arc
+- arc-NN · 矛盾句 · 现在处于八步的第 X 步
+
+### 全书企划
+- 全书目标：总章数 / 每章字数 / 阶段目标（浓缩）
+- 当前 Block：block-<NNN>（ch<start>-ch<end>）
+- Block 目标与结束状态（2-4 行）
+- 若本章为 Block 首章：已确认本块 10 章详细纲要存在
+
+### 必须承接
+- 第 N-1 章钩子：<原话 1 句>
+- 当前 live 伏笔（top 3）：
+  - F-001 · 埋于第 X 章 · 预期兑现 <范围>
+
+### 必须规避
+- 禁用句式（10 章内已过量）：<列出>
+- 禁用爽点类型（最近 3 章已用 2 次以上）：<列出>
+- 禁用设定冲突：<从 glossary 挑 5 条相关名词列出正确定义>
+
+### 反 AI 味强制输入（来自 used-patterns.md，本章必须遵守）
+- 主语分布：本章 top-1 主语段占比 **必须 ≤ 40%**（上一章命中 Y%）
+- 段长分布硬门：**> 80 字长段 ≥ 3 段，其中 ≥ 1 段 > 120 字**；单句成段占比 ≤ 30%（反 K · 全章 0 长段 = 回滚级 FAIL · 2026-04 收紧）
+- **单句段瀑布流硬门（反 C · 2026-04 收紧）**：最长连续单句成段 ≤ 2；全章 ≥ 3 段的丛数 ≤ 2；单句段占比 ≤ 0.3；**≥ 6 连续或占比 > 0.5 = 回滚级 FAIL**。段落默认 2–5 句；想换行前先检查是否已经连续 3 次短句——是则必须并段
+- 非理性噪声：**所有 ≥ 300 字主角思考段必须各含 ≥ 1 条**（误判 / 走神 / 情绪干扰 / 杂念 / 非最优选择）
+- 质量方差：本章成稿后**必须挑 1 段亮化 + 1 段回退粗化**；段落具象度方差必须 ≥ 0.8
+- 反派 signature：本章出现的反派 NPC 的标准套餐命中 ≤ 2，signature 反应命中 ≥ 2；引用 `characters/<反派>.md` 的 signature_reactions 字段
+- 爽点打断：本章每条爽点必须预先标注 delay / denied / cost 之一，并在正文中兑现
+- **定义体禁令（反 G+1 · 回滚级）**：9 种 "不是 A，是 B" 系列模板单章命中 ≤ 2 次；≥ 5 次 → 整章退回 plot-design 重写。9 种禁用模板在 prompt 中明文列出：
+  1. `不是 A，是 B`
+  2. `不是 A——是 B`
+  3. `不是那种 A——是 B`
+  4. `不是那种 A。是 B`
+  5. `不是 A。是某种 B`
+  6. `不是对 A 的 X。是对 B 的 X`
+  7. `不是 A 的 X。是 B 的 X`
+  8. `不是 A 了。是 B 了`
+  9. `X，意味着——Y`
+- **粗体禁令（反 N-细 / E · 回滚级）**：全章粗体总数 ≤ 1，且仅用于物理文本（招牌 / 字条 / 强调的实体文字）；禁止用于情绪 / 主题 / 感悟 / 点题 / 内心独白。任一违反 = 回滚级 FAIL
+- **情感标签禁令（反 E · 回滚级）**：不得将情绪词（名词或两字词）写成"独立句子 + 句号 + 独立段落"；不得用粗体强化情绪 / 主题词。Emotion_token + 粗体 ≥ 1 次 = 回滚级 FAIL
+- **设定首现禁令（反 G-细）**：设定专有名词首次出现时，同一对话 / 叙述段内只允许携带 ≤ 1 项结构性信息（规模 / 性质 / 运作 / 历史 / 日常 / 识别法二选一）；禁止角色"PPT 直讲"设定；同次发言 ≥ 2 个设定专名必须拆段
+- **signature 明牌禁令（反 E+2）**：同一 signature 反应在单章内被明文指认 + 解读 ≤ 1 次；上一章已命中该 signature 的明牌 → 本章只允许描述现象，不得再指认
+- **灵魂渗透（反 O · 回滚级）**：
+  - 本章出场 ≥ 2 次的**每个**有名角色，必须至少 1 处非功能性灵魂渗透（删除该句后剧情推进不受影响）
+  - **本章首次登场的关键角色**（主角 / POV / 女男主 / 核心反派 / 固定配角 top 5）必须至少 1 处灵魂渗透 = 回滚级硬门，命中失败 → 退回 story-blueprint 补 soul_fields → 再回 plot-design 重写
+  - 上一章"纯功能性角色名单"中的角色 → 本章强制兑现
+- **动物独立反应（反 O · species != 人）**：本章动物 / 灵兽段落不得 100% 服务于主角意图；上一章若出现纯工具化 → 本章必须补 1 处独立行动
+- **反派第三维度（反 O）**：本章出现的反派必须至少 1 处与主角无关 / 与权力无关的私人维度
+- **角色可互换度自检**：本章结束后做"台词对调实验"——把任意两个同类角色台词对换，若剧情不受影响 → 视为 FAIL，回退重写
+- **O-补充 人物镜头分层（并入 O）**：章纲先做“关键/重要/次要”镜头配重；若本章关键角色 ≥ 2，至少 1 人必须拿到重点镜头（人物性描写拍点累计 ≥ 2），且至少 1 处“对景写人/以物映人”同框；重要角色至少 1 处不可互换拍点；次要角色可轻写但不可模板化。落盘字段见 `write-protocol`：`character_focus_plan_declared` / `key_character_portrayal_beats` / `important_character_portrayal_beats` / `scenic_counterpoint_portrayal_hits` / `equal_treatment_flatness_hits`
+- **世界自主生活硬门（反 D · 回滚级）**：
+  - 闲笔段数 ≥ 5 / 章（天气 / 无意识小动作 / 无关物件 / 远处声音 / 身体状态 / 气味），其中 ≥ 2 处与剧情完全无关（≥ 5 章不回收）；< 3 处 = 回滚级 FAIL
+  - ≥ 1 位非主角配角必须有 ≥ 80 字"与主角无关的自主议题"（自己的家事 / 八卦 / 烦恼 / 与主角无关的八卦）；全配角围绕主角 = 回滚级 FAIL
+  - 若本章含选择 / 系统 / 抽奖机制且触发 ≥ 3 次：必须 ≥ 1 次主动选"反直觉 / 废选项"，由性格驱动；3 次全最优 = 回滚级 FAIL
+  - 动笔前必须为 ≥ 1 位配角预定义自主议题（写进 prompt）
+  - **D-4 句法缀笔（反「剪辑体过简」· 与 D-1 不同层）**：限知/第一人称下，避免连续「短句推进 + 比喻金句对仗、零迟疑零连接」；每 ≈1000 字安排 ≥1 处**迟疑/从句套层/而则缀笔**（**不是** R 的「不是…是…」），落盘后 `narration_buffer_marks` / `clip_style_chain_max` 见 `write-protocol` 硬门
+- **想象力硬门（反 P · 回滚级）**：
+  - **P-4 反套路预声明**（动笔前必填，落盘到 `state/anti-trope-log.md`）：
+    ```
+    当前场景 / 冲突上下文：______
+    最常见 5 种接续：
+    1. ______（禁用）
+    2. ______（禁用）
+    3. ______（禁用）
+    4. ______（候选）
+    5. ______（候选）
+    真实写的接续：______（必须 ≠ 1–3，且由主角性格驱动）
+    ```
+  - **P-1 怪异预算**：本章必须 ≥ 1 处"剧情无法吸收"的设定 / 场景 / 细节（5 章内不回收，写作时自问"这个三章内会被回收吗？会 = 换一个"）；= 0 = 回滚级 FAIL（退 story-blueprint 补世界观）
+  - **P-3 延迟兑付**：本章必须 ≥ 1 处不在 5 章内回收的伏笔 / 细节；不得在章末用"他不知道的是……"这类独白暗示是伏笔
+  - **P-2 废选项**：至少一方（主角 / 配角 / 反派）做 ≥ 1 个"非最优"的性格驱动选择
+  - **P-补充2 文化 shorthand + 收束节拍**（并入 P，不增 25 项计数）：`cultural_shorthand_clash_hits ≥ 1`（共有文化/历史/典故/俗语与**对抗动作**同场并置，禁止纯【】标题式点名）；`withhold_beat_present == true`（至少一处「抬高预期 → 拒展示/留白/一句挡回」）。**cultural = 0 → 回滚级 FAIL**；**withhold = false → FAIL（补收束后才可 PERSIST）**；连续 2 章 cultural = 0 → 下一章按回滚级硬门（见 `anti-ai-tells`）
+- **I-补充 对话次文本错位**（并入 I，不增 25 项计数）：高张力场景需 `dialogue_subtext_misalignment_hits ≥ 1`，且 `fully_matched_qa_chain_max ≤ 3`；否则本章需重写对话链。
+- **绿线分布（非阻断）**：读取近 3 章 `style_temperature_band` / `human_noise_hits` / `clean_closure_hits` / `exposition_density_band` / `dialogue_mismatch_ratio`，用于本章“分布校准”，只产生偏离告警与下章纠偏建议，**不得**作为回滚硬门。
+- **分布去模板化补充（非阻断）**：读取近 3 章 `detail_density_std` / `detail_density_flat_run_max` / `emotion_temp_range` / `flat_affect_streak_max`，若连续过稳则本章必须声明“疏密变化点 + 情绪折返点”。
+- **结构化痕迹补充（硬门随主条款）**：读取 `modern_metaphor_unanchored_hits` / `decorative_crack_hits` / `closure_neatness_score` / `single_mode_streak_max` 等近 3 章趋势；若连续命中，按 B/E/G/O/N/C 对应条款收紧本章阈值。
+- **身体感与留白补充（硬门随主条款）**：读取近 3 章 `opening_body_sensation_anchor_present` / `opening_exposition_first_screen_hits` / `forced_realization_statement_hits` / `knowledge_resonance_present` / `key_role_visual_anchor_on_debut` / `concrete_anchor_vs_abstract_ratio` / `dual_function_dialogue_beats` / `tangible_hook_present` / `narrator_explanation_overt_hits`；若连续偏离，本章强制做“身体感切入 + 可视锚留白 + 实物钩子收束”。
+- **隐性时序补充（硬门随 D-补充6）**：读取近 3 章 `temporal_anchor_consistency_score` / `seasonal_sensory_conflict_hits` / `implicit_time_transition_bridge_hits` / `hard_timestamp_overuse_hits`；若出现季节温感冲突或跳跃无桥，本章必须先补隐性时序桥，再写主线推进。
+- **章际节奏矩阵**：读取近 3 章 `chapter_pacing_matrix`（`relation_tension` / `mc_info_delta` / `chapter_mood` / `ending_hook_type`），若任一维度连续 3 章同值，本章该维度强制变向。
+- **转场硬门（反 Q · 回滚级）**：
+  - 本章每次场景切换必须显式声明使用的桥类型（**Q-1 感官桥 / Q-2 物件桥 / Q-3 对话打断桥 / Q-4 摩擦点桥 / Q-5 情绪错位桥**）+ 锚点（具体感官 / 具体物件 / 具体对话 / 具体摩擦 / 具体情绪错位）
+  - **禁用转场词（零容忍，≥ 2 次 = 回滚级 FAIL）**：就在这时 / 与此同时 / 然而就在 / 就在他以为 / 三天后 / 第二天 / 一个星期后 / 半个月过去 / 时间一晃 / 转眼间
+  - **瞬移切换**（上段结束在 A，下段直接在 B，中间无任何桥）≥ 1 次 = 回滚级 FAIL
+  - **摩擦点必填**：任何超过 5 分钟的场景跨度必须含 ≥ 1 处摩擦点（小意外 / 小延迟 / 小错位）
+  - 近 3 章单一桥类型使用 ≥ 3 次 → 本章禁用该类型
+  - 最近 3 章"真实接续"列表已在 Phase 1 读入 → 本章新选的"真实接续"不得与最近 3 章重复
+- **说明书句法硬门（反 R · 回滚级，见 anti-ai-tells §R）**：
+  - **R-1**：禁止生活流「不是…不是…是/而是/只剩」双否定目录；同段若已有 G+1 定义体命中，禁止任何排除式枚举
+  - **R-2**：同一情绪节拍、无对白无心理时，纯动作微步**单段 ≤ 3**；连续微步 ≥ 5 / 200 字窗 = 回滚级 FAIL
+  - **R-3**：禁止「又/再」串动作后接两个 ≤ 8 字的纯状态验收短句（如「界面没关。」「白字还在。」）；须合并或插入半句主观感受
+  - **R-补充**：**全章零容忍**禁止「不是…，是…」「不是…、是…」「不是…，也不是…，是…」等否定对照收束（与 `anti-ai-tells.md` · R-补充 / G-扩展 1 同禁）；`contrastive_negation_hits ≥ 1` 或 `keyzone_contrastive_negation_hits ≥ 1` = 回滚级 FAIL
+  - 落盘后 `exclusion_enum_hits` / `tutorial_microstep_chain_max` / `catalog_afterthought_pairs` / `contrastive_negation_hits` / `keyzone_contrastive_negation_hits` 必须写入 `chapter_meta.stats`
+- **场景块分段（反 K-补充）**：跨 ≥30 分钟或换建筑级空间 → 正文 **Markdown 空一行** 起新段；`k_scene_block_violations` ≥ 5 = 回滚级 FAIL
+- **元叙事禁入（反 O-在场 · 并入主条款 O · 回滚级）**：叙述 / 对白 / 内心**禁止**「上一章 / 下一章 / 本章 / 读者 / 作者 / 弹幕 / 评论区」等书籍体外坐标；人物只知道故事内时间——用「刚才 / 昨天夜里 / 前一阵 / 上次点开时」。`meta_language_hits ≥ 1` = 回滚级 FAIL
+- **章首抓眼 + 好奇缝隙（反 A-补充 · 并入主条款 A · 回滚级）**：章首 ≈200 字内须有 **刺点钉子**（非常规关系或称谓 + 非常规动作/声音/物件并置，参见 `anti-ai-tells` 小姨子范式）；全章 `curiosity_gap_markers` ≥ max(2, chapter_word_count // 1200)；`flat_atmosphere_streak_max` ≤ 5（连续纯氛围 / 纯位移段计峰；≥ 6 = 回滚级 FAIL）；`opening_hook_spike` = true
+- **章首入场模板池（反 A-补充2 · 并入主条款 A · 回滚级）**：章首必须声明 `opening_entry_mode`（`carryover / in_medias_res / aftermath / time_skip_bridge / relationship_slice / object_trigger / wakeup / other`）；`opening_mode_streak_max_5ch` ≤ 2；`wakeup_opening_count_10ch` ≤ 3；若 `opening_entry_mode != time_skip_bridge` 则 `prev_hook_carryover_present` = true；若 `opening_entry_mode == time_skip_bridge` 则 `time_skip_bridge_present` = true。
+
+### 活跃角色当前状态 + 灵魂字段（必入 prompt，反 O）
+- 叶无尘：金丹中期；情绪 = 冷静；位置 = 天剑峰；**soul_fields**：core_wound = "师妹挡剑那事"；private_desire = "再去一次北境看雪"
+- 柳长风：重伤；情绪 = 怨恨；位置 = 宗门后殿；**signature_reactions**：<2 条从卡上摘>；**soul_fields**：第三维度 = "每月初一去一座无名坟前坐半个时辰"
+- 小焰（灵兽）：非本能偏好 = "只听竹笛声才会停下"；async_emotion = "主角紧张时它盯飞虫"
+
+**装填规则**：
+- 每个本章**出场 ≥ 2 次的有名角色**必须至少渲染 1 条 soul_fields 进 prompt
+- 每个本章**首次登场的关键角色**必须渲染 ≥ 2 条 soul_fields（回滚级硬门准备）
+- 动物 / 灵兽必须至少渲染 1 条独立反应坐标轴
+- 反派必须同时渲染第三维度
+- Agent 在正文中必须"让这条灵魂字段被偶然看见"：**不推动剧情、不解释、不兑现**；删除该句后剧情应保持可运行（deletion_verified 硬门）
+
+### 作者指纹（全文生成必须贴合）
+- 动词偏好：...
+- 物象偏好：...
+- 断句偏好：...
+```
+
+## 缓存规则
+
+- Phase 1 + 2 的内容在同一会话内可缓存；`book.yaml` 或 `fingerprint.md` 被修改 → 失效
+- Phase 3 + 4 每次生成新章前都必须重读（会频繁更新）
+- Phase 5 是按需查询，不缓存
+
+## 失败降级
+
+| 缺文件 | 降级方式 |
+|---|---|
+| `book.yaml` 不存在 | 拒绝生成；引导用户先跑 `webnovel-story-blueprint` |
+| `fingerprint.md` 不存在 | 允许生成但警告"作品将无作者指纹"；生成完强烈建议补卡 |
+| `state/*` 任一缺失 | 即时创建空文件继续 |
+| `index/volume_<VOLUME_NO>_index.md` 缺失 | 从 `state/chapter_meta/ch*.yaml`（主）与 `chapters/ch*_*.md` 章号对照明细手工或 AUDIT 脚本重建；**不得**依赖章节 `.md` 首部的 YAML（正文文件无元数据） |
+| `arcs/_index.md` 缺失 | 视为处于默认 arc；提示用户补 arc 划分 |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fly Flight"
+  short_description: "Find China domestic flights and high-speed rail in one transport skill"
+  default_prompt: "Use $fly-flight to find China domestic transport options. Route flight requests to the public flight provider and train requests to the official 12306 public train provider."

@@ -1,0 +1,11 @@
+{
+  "action": "sell",
+  "symbol": "EURUSD",
+  "price": "1.0821",
+  "interval": "4H",
+  "strategy": "RSI Divergence",
+  "sl": "1.0860",
+  "tp": "1.0750",
+  "lot": "0.5",
+  "message": "Bearish RSI divergence on 4H. Entry on retest."
+}

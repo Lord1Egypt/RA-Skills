@@ -1,35 +1,123 @@
 ---
-name: "Risk Guard"
+name: risk-guard
 description: "JVS Claw 风险守卫技能。诊断常见假性故障，对高风险操作强制执行前确认，确保任何不可逆操作都由先生掌控。触发词：自检、诊断、风险确认。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/risk-guard"
-sourceUrl: "https://clawhub.ai/skills/risk-guard"
 ---
 
-# Risk Guard
+> **依赖说明**：本技能使用 Python 标准库（urllib、subprocess、json、pathlib），无需额外安装。需 Python 3.6+，仅支持 Windows。
 
-> JVS Claw 风险守卫技能。诊断常见假性故障，对高风险操作强制执行前确认，确保任何不可逆操作都由先生掌控。触发词：自检、诊断、风险确认。
+# 🛡️ Risk Guard — 风险守卫技能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/risk-guard`
-- **Source URL:** [https://clawhub.ai/skills/risk-guard](https://clawhub.ai/skills/risk-guard)
+> 本技能**只诊断，不自动修复**。任何重启、删除、覆盖等不可逆操作都必须先生确认后才能执行。
+>
+> **例外**：自动清理工作区中超过10分钟的 `.lock` 和 `.tmp` 文件（安全可逆）。
 
-## Overview
+## 核心原则
 
+1. **先生始终掌控不可逆操作** — 删除、格式化、覆盖等高风险操作必须先生确认
+2. **假性故障优先软修** — 路径错误、输出量大、超时等问题不轻易重启
+3. **执行前必判断风险等级** — 查 Skill → 查工具 → 查先生是否在场
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/risk-guard
+---
+
+## 一、风险分级（L0-L3）
+
+| 等级 | 操作类型 | 示例 | 确认要求 |
+|------|---------|------|---------|
+| **L0** | 只读、安全可逆 | 搜索、读文件、查询状态 | 无需确认 |
+| **L1** | 修改数据但不删除 | 写文件、改配置、重命名 | 执行后告知先生 |
+| **L2** | 删除/覆盖/不可逆 | 删除文件、格式化、覆盖配置 | **执行前必须先生确认** |
+| **L3** | 高危不可逆+系统级 | 删除系统文件、泄露密钥、修改注册表 | **禁止或先生明确授权** |
+
+---
+
+## 二、假性故障自检清单
+
+> 以下命令需在 **PowerShell** 中执行（skill自动处理，先生无需手动运行）
+
+先生工具卡住时，按以下顺序快速判断：
+
+### 检查1：输出量过大（最常见）
+先生看到"已完成"但没有输出？可能是递归遍历大量文件导致前端卡死。
+
+```powershell
+Get-ChildItem $env:TEMP -File | Measure-Object | Select-Object -ExpandProperty Count
+```
+如果返回数字（小于1万）→ exec 正常，是假故障，先生继续正常使用。
+
+### 检查2：路径不存在
+```powershell
+Test-Path "目标路径"
+```
+返回 False → 路径不存在，不是工具坏了。
+
+### 检查3：端口占用
+```powershell
+netstat -ano | findstr "18789"
+```
+如果有其他进程占用 → 报告先生，询问是否结束。
+
+> 注：部分端口检查可能需要管理员权限才能获取准确结果。
+
+### 检查4：subagent 残留
+```powershell
+tasklist | findstr "node.exe"
+```
+如果超过20个 node.exe → subagent 泄漏，先生手动结束。
+
+---
+
+## 三、高风险操作先生确认模板
+
+当 Agent 判断操作为 L2 时，必须先生确认后才能执行：
+
+```
+⚠️ 检测到高风险操作
+
+操作：[描述具体操作]
+风险等级：L2（不可逆）
+影响范围：[说明可能的后果]
+
+先生，请确认是否执行？
+请回复：确认 / 取消
+```
+
+---
+
+## 四、不可逆操作禁止清单（L3）
+
+以下操作**绝对禁止**执行，除非先生明确说"临时授权"：
+
+- 删除工作区外的任何文件
+- 修改系统注册表
+- 格式化磁盘
+- 泄露 API 密钥
+- 修改 gateway.bind、gateway.auth 等安全配置
+- 执行 `rm -rf` 或等效的危险命令
+
+---
+
+## 五、诊断执行
+
+先生触发词：`自检` / `诊断` / `风险确认`
+
+诊断内容：
+1. exec 基础功能
+2. 输出量/假故障
+3. 网关进程状态
+4. 网关端口监听
+5. 网关健康端点
+6. 残留锁文件
+7. node 进程泄漏
+8. 工作区路径
+
+---
+
+## 六、文件结构
+
+```
+risk-guard/
+├── SKILL.md
+├── skill.json
+└── scripts/
+    └── diagnose.py   # 诊断脚本（只诊断，不自动修复）
 ```

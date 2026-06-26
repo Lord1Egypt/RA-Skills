@@ -1,35 +1,113 @@
 ---
-name: "Smart Product Selector"
-description: "数据驱动的选品决策，让爆款可预测。分析趋势、评估竞争、测算利润、判断季节性，生成专业选品报告，适合亚马逊卖家、外贸选品和新品开发团队。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-product-selector"
-sourceUrl: "https://clawhub.ai/skills/smart-product-selector"
+name: 智能选品Agent
+slug: smart-product-selector
+description: 数据驱动的选品决策，让爆款可预测。分析趋势、评估竞争、测算利润、判断季节性，生成专业选品报告，适合亚马逊卖家、外贸选品和新品开发团队。
+tags:
+  - 选品
+  - 趋势分析
+  - 利润测算
+  - 亚马逊
+  - 市场调研
 ---
 
-# Smart Product Selector
+# 智能选品Agent
 
-> 数据驱动的选品决策，让爆款可预测。分析趋势、评估竞争、测算利润、判断季节性，生成专业选品报告，适合亚马逊卖家、外贸选品和新品开发团队。
+## 记忆点
+**数据驱动的选品决策，让爆款可预测**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-product-selector`
-- **Source URL:** [https://clawhub.ai/skills/smart-product-selector](https://clawhub.ai/skills/smart-product-selector)
+## 四维选品模型
 
-## Overview
+| 维度 | 权重 | 评估要素 |
+|-----|------|---------|
+| 需求维度 | 30% | 搜索量/月销量/增长趋势 |
+| 竞争维度 | 25% | 卖家数量/评论数/垄断度 |
+| 利润维度 | 30% | 毛利率/ROI/定价空间 |
+| 季节维度 | 15% | 稳定性/旺季机会 |
 
+## 选品决策
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-product-selector
+| 综合得分 | 决策建议 | 风险等级 |
+|---------|---------|---------|
+| 8-10分 | 强烈推荐 | 低风险 |
+| 6-8分 | 推荐 | 中低风险 |
+| 4-6分 | 谨慎考虑 | 中高风险 |
+| <4分 | 不建议 | 高风险 |
+
+## 核心功能
+
+### 1. 市场调研
+- 关键词搜索量分析
+- 竞品销量估算
+- 价格区间分布
+- 评论数据分析
+
+### 2. 竞争分析
+- 头部卖家市场份额
+- 新品进入机会
+- 差异化空间评估
+
+### 3. 利润测算
+- 产品成本结构分析
+- FBA费用计算
+- 定价策略建议
+- ROI测算
+
+### 4. 季节性判断
+- 全年需求波动
+- 旺季时间窗口
+- 节日营销机会
+
+## 选品报告模板
+
+```markdown
+# 选品分析报告
+
+## 产品基本信息
+- 产品名称：
+- 类目：
+- 目标市场：
+
+## 市场分析
+- 月搜索量：
+- 月销量估算：
+- 价格区间：
+
+## 竞争分析
+- 头部卖家数量：
+- 平均评论数：
+- 垄断程度：
+
+## 利润测算
+- 产品成本：
+- FBA费用：
+- 定价建议：
+- 利润率：
+
+## 季节性评估
+- 需求稳定性：
+- 旺季时间：
+- 风险提示：
+
+## 综合评分
+- 总分：X/10
+- 建议：XX
+
+## 风险提示
+- 资金需求：
+- 备货周期：
+- 主要风险：
 ```
+
+## 使用场景
+
+1. **亚马逊新卖家**：建立选品方法论
+2. **老卖家优化**：评估现有产品线
+3. **外贸选品**：海外市场机会识别
+4. **新品开发**：降低试错成本
+
+## 关键指标监控
+
+- 搜索量趋势（>1000/月为佳）
+- 竞争度（卖家数<500为佳）
+- 利润率（>25%为佳）
+- 评论数差距（新进入机会）

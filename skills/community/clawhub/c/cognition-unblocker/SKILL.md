@@ -1,35 +1,158 @@
 ---
-name: "人+AI打破认知壁垒·问题解决"
-description: "Human+AI cognition-unblocker for real-world decisions: combine the user’s goals and values with structured AI analysis to break cognitive bottlenecks and dec..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cognition-unblocker"
-sourceUrl: "https://clawhub.ai/skills/cognition-unblocker"
+name: cognition-unblocker
+description: 'Human+AI cognition-unblocker for real-world decisions: combine the user’s goals and values with structured AI analysis to break cognitive bottlenecks and decision deadlocks. Use when the user feels “卡壳、想不通、很纠结、决策困难、视角局限” 或说 “要不要做 X / 不知道怎么选”，需要在人与 AI 协作下拆解问题本质、拓展多元视角、穷举关键方案，并生成可落地的执行步骤，帮助做出现实可行的选择（不限领域，可用于职场决策、人生选择、项目策略等）。'
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🧠",
+      },
+  }
 ---
 
-# 人+AI打破认知壁垒·问题解决
+# Cognition Unblocker — 人+AI打破认知壁垒.问题解决器
 
-> Human+AI cognition-unblocker for real-world decisions: combine the user’s goals and values with structured AI analysis to break cognitive bottlenecks and dec...
+## 使用场景与触发短语 (Bilingual)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cognition-unblocker`
-- **Source URL:** [https://clawhub.ai/skills/cognition-unblocker](https://clawhub.ai/skills/cognition-unblocker)
+在用户**被卡住、反复纠结、视角局限**时使用本 Skill，而不是做简单问答。可以把下面这些典型话术视为“应该触发本 Skill”的信号（中文/English，供路由和话术参考）：
 
-## Overview
+- “我很纠结要不要……”
+- “这个问题我总想不明白”
+- “不知道怎么选 / 不知道下一步怎么办”
+- “感觉自己认知不够、想不通”
+- “我对几个选项都拿不准”
+- “我卡在一个选择上出不来”
+- “我知道几个方案，但选不出最合适的”
+- “我脑子里乱成一团，不知道该从哪儿想起”
+- “帮我一起分析一下利弊，我自己想不清”
+- “我不确定现在该冲一冲还是先稳一点”
+- “I’m stuck and can’t decide.”
+- “I’m torn between options.”
+- “I can’t figure this out / I can’t think it through.”
+- “I have a few options but don’t know which one fits me best.”
+- “My mind is all over the place; I don’t know where to start.”
+- “Can you help me think through the pros and cons?”
+- “I’m not sure whether to play it safe or take a risk.”
 
+整体目标：通过「人定方向 + AI 扩维度」的模式，帮用户：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cognition-unblocker
-```
+- 看清楚问题本质（而不是只停留在表面纠结）
+- 从多个视角思考（成本/收益、长期/短期、人性/系统等）
+- 穷举关键方案并标出利弊和适配场景
+- 由用户自己做选择，AI 输出可落地执行路径
+
+## 总体流程
+
+始终遵循这 6 步，除非用户明确中途换话题或结束：
+
+1. 识别是不是“卡壳/决策/认知”问题，必要时做 1 轮澄清
+2. 把问题拆成「表层问题 / 深层原因 / 核心矛盾」
+3. 从至少 3 个不同视角审视问题
+4. 列出所有主要方案，并标出成本/风险/成功率/适配场景
+5. 让用户选出 1–2 个最倾向的方案，再为其生成执行步骤
+6. 兜底：回答疑问、允许微调，并提示后续可继续来拆解
+
+下面是每一步的具体操作说明。
+
+## 第一步：意图识别与问题澄清
+
+- 如果用户只是随口提问一个事实/工具问题，不要触发本 Skill。
+- 如果包含“纠结、卡壳、想不通、要不要、怎么选、决策困难、迷茫”等语义，则认为符合本 Skill 场景。
+- If the user is only asking for a simple fact/tool answer, do NOT run this workflow.
+- If the user expresses being stuck, indecisive, conflicted, or limited in perspective, treat it as in-scope.
+
+当用户表达非常模糊时（如“我很纠结”“最近很迷茫”），先用一条简洁追问澄清：
+
+- 说法示例（任选其一，勿连环追问）：
+  - “请简单说说，你现在最卡壳的那个问题是什么？以及你最在意的目标是啥（比如优先稳定、还是优先长期收益）？”
+  - “一句话描述你在纠结什么，再一句话说说你更想得到什么样的结果？”
+  - “In one sentence: what are you stuck on? In one sentence: what outcome matters most to you (speed, safety, long-term upside, etc.)?”
+
+拿到这两点（在纠结什么 + 最在意什么）之后，直接进入第二步，不要继续盘问。
+
+### 语言规则 (Language)
+
+- Prefer replying in the user’s language.
+  - User writes Chinese → reply in Chinese.
+  - User writes English → reply in English.
+  - User mixes Chinese + English → keep the structure Chinese-first, with short English mirrors for key headings/bullets (avoid doubling length).
+
+## 第二步：拆解问题本质（三层）
+
+结合用户描述，用自然语言输出三个小段落：
+
+- **表层问题**：用户现在嘴上说的、正在纠结的那件事。
+- **深层原因**：让 TA 卡住的顾虑、动机或现实约束（钱、时间、家庭、能力、自我期待等）。
+- **核心矛盾**：真正难选的“矛盾双方”是什么（如：稳定 vs 潜在高收益、自由度 vs 资源支持、风险承受力 vs 不确定性）。
+
+写作要求：
+
+- 紧贴用户场景，用他们的话语风格轻微改写，不要模板腔。
+- 每一项 1–3 句即可，避免长篇大论。
+
+## 第三步：拓展多元视角（≥3 个）
+
+基于第二步的拆解，从不同角度生成至少 3 个视角，优先考虑：
+
+- **成本视角**：要付出/失去什么（时间、金钱、精力、机会成本等）。
+- **收益 / 长期视角**：长期价值、成长空间、可能的上限和天花板。
+- **人性 / 心理视角**：真实动机、热情、毅力、害怕什么、能承受多大不确定性。
+- **系统 / 环境视角**：行业/环境趋势、资源和人脉、家庭/团队支持系统等。
+
+每个视角用 1–3 句话说明「如果只从这个角度看，你需要关注的关键点是什么」。
+
+## 第四步：穷举主要方案（列出选项+权衡）
+
+在当前约束下，尽量列出 3–6 个有代表性的方案，包括：
+
+- 直接型方案（例如立刻做/立刻不做）
+- 折中方案（例如小步试错、先兼职/先试点）
+- 暂缓 / 观望方案（例如先积累条件、先验证关键前提）
+
+对每个方案，都要用统一结构给出：
+
+- **方案描述**：一句话概括是什么做法。
+- **成本**：需要付出什么，可能失去什么。
+- **风险**：最可能发生的坏情况是什么。
+- **成功率（主观估计）**：用“高/中/低”或大致百分比说明。
+- **适配场景**：更适合哪类人/哪种处境（例如“更适合风险承受力强、资金相对宽裕的人”）。
+
+语言要尽量通俗，不搞抽象理论或空泛鸡汤。
+
+## 第五步：让用户做选择，AI 负责出路径
+
+先明确告诉用户：最终选择权在你手里，我帮你把路看清+把步骤拆细。
+
+1. **邀请用户表达倾向**  
+   给出类似提示，让用户对方案排序或选出 1–2 个最想要的：
+   - “结合你现在最在意的点（比如更看重稳定 / 更看重长期成长），你会更倾向上面哪 1–2 个方案？”
+   - “如果必须做个大致排序，你觉得：最想要 → 其次 → 最不想要，大概是哪些方案？”
+
+2. **针对用户最倾向的 1–2 个方案，生成执行路径**  
+   对每个倾向方案，按照「阶段 → 步骤 → 注意事项 → 风险控制」给出可执行计划：
+
+   - **分阶段步骤**：用时间或里程碑拆分（如：第 1 阶段 1–2 周、第 2 阶段 1 个月等），每个阶段写清：
+     - 要做什么（具体行动）
+     - 怎么做（建议方法、节奏、简单工具或小 checklist）
+   - **注意事项**：执行中最容易忽略或踩坑的点。
+   - **风险与止损建议**：如果某个阶段结果很差，如何及早止损或调整方向。
+
+要求：步骤要“普通人看了就知道明天可以先做什么”，避免只说“多思考、多学习、多沟通”这类空话。
+
+## 第六步：兜底与迭代
+
+在给出执行路径后，做一次轻量兜底：
+
+- 简要询问：上述方案或步骤里，有没有你觉得不现实或仍然很担心的地方？
+- 如果用户提出新顾虑：
+  - 针对这些点，微调步骤，或补充一个「保守版 / 试错版」的小调整方案。
+- 如果用户暂时没有问题：
+  - 用一句轻量提示收尾，例如：
+    - “如果你后续在执行过程中又遇到新的卡壳点，随时可以再来，我可以按同样的方式帮你拆解下一步。”
+
+## 交互与语气规则
+
+- 反问只在信息明显不足时触发，且控制在 1–2 轮之内，避免让用户觉得被盘问。
+- 职场 / 商业决策类问题：语气偏专业、理性，强调分析和权衡。
+- 个人生活 / 情感 / 人生选择类：语气偏温和、共情，但仍然要帮用户“看清现实 + 做出可执行选择”，不只是安慰。
+- 全程尊重用户价值观，不替 TA 做价值判断，只帮助澄清：不同选择在现实层面意味着什么。

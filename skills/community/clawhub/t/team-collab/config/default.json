@@ -1,0 +1,69 @@
+{
+  "version": "1.2.0",
+  "description": "Team Collab 默认角色配置",
+  "roles": {
+    "product_manager": {
+      "name": "产品经理",
+      "model": "bailian/qwen-plus",
+      "type": "core",
+      "description": "需求分析、功能设计、优先级排序",
+      "enabled": true
+    },
+    "developer": {
+      "name": "程序员",
+      "model": "bailian/glm-5",
+      "type": "core",
+      "description": "代码开发、功能实现、技术方案",
+      "enabled": true
+    },
+    "designer": {
+      "name": "设计师",
+      "model": "bailian/qwen3.5-plus",
+      "type": "core",
+      "description": "UI设计、视觉优化、交互方案",
+      "enabled": true
+    },
+    "tester": {
+      "name": "测试工程师",
+      "model": "deepseek-coder",
+      "type": "core",
+      "description": "功能测试、Bug定位、测试报告",
+      "enabled": true
+    },
+    "reviewer": {
+      "name": "代码审查员",
+      "model": "bailian/qwen-max",
+      "type": "core",
+      "description": "代码审查、性能优化、安全检查",
+      "enabled": true
+    },
+    "legal_advisor": {
+      "name": "法律顾问",
+      "model": "bailian/qwen-max",
+      "type": "advisor",
+      "description": "合规审查、风险防控、知识产权",
+      "enabled": false
+    },
+    "art_expert": {
+      "name": "艺术专家",
+      "model": "bailian/qwen3.5-plus",
+      "type": "advisor",
+      "description": "创意指导、审美把控、艺术风格",
+      "enabled": false
+    },
+    "market_analyst": {
+      "name": "市场分析专家",
+      "model": "bailian/qwen-plus",
+      "type": "advisor",
+      "description": "市场调研、竞品分析、商业策略",
+      "enabled": false
+    }
+  },
+  "presets": {
+    "minimal": ["product_manager", "developer"],
+    "core": ["product_manager", "developer", "designer", "tester", "reviewer"],
+    "full": ["product_manager", "market_analyst", "developer", "designer", "art_expert", "legal_advisor", "tester", "reviewer"],
+    "business": ["product_manager", "market_analyst", "developer", "designer", "legal_advisor", "reviewer"],
+    "startup": ["product_manager", "market_analyst", "developer", "designer", "tester", "legal_advisor", "reviewer"]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "skill-evolve-pro",
+  "version": "1.0.0",
+  "description": "AI 技能自动进化引擎。基于 ReflACT 框架，通过失败轨迹 → 反思 → 编辑 → 验证的循环，让技能文档自动优化迭代。",
+  "keywords": [
+    "进化",
+    "优化",
+    "skill",
+    "自动改进",
+    "失败轨迹",
+    "技能迭代",
+    "reflact"
+  ],
+  "author": "skill-evolve-pro team",
+  "homepage": "",
+  "requires": {
+    "python": ">=3.10",
+    "openclaw": ">=2.0"
+  },
+  "dependencies": [],
+  "configuration": {
+    "required": [
+      {
+        "name": "DEEPSEEK_API_KEY",
+        "description": "DeepSeek API Key，用于调用 LLM 进行反思分析",
+        "type": "env",
+        "env_var": "DEEPSEEK_API_KEY"
+      },
+      {
+        "name": "OPENCLAW_WORKSPACE",
+        "description": "OpenClaw 工作区根目录路径",
+        "type": "env",
+        "env_var": "OPENCLAW_WORKSPACE",
+        "default": "~/.jvs/workspace"
+      }
+    ],
+    "optional": [
+      {
+        "name": "PYTHON_PATH",
+        "description": "Python 解释器路径",
+        "type": "env",
+        "env_var": "PYTHON_PATH",
+        "example": "C:\\Users\\YourName\\AppData\\Local\\Programs\\Python\\Python310\\python.exe"
+      },
+      {
+        "name": "DEEPSEEK_MODEL",
+        "description": "使用的 DeepSeek 模型",
+        "type": "env",
+        "env_var": "DEEPSEEK_MODEL",
+        "default": "deepseek-chat"
+      }
+    ]
+  },
+  "entry_points": {
+    "cli": "python scripts/run_evolve.py",
+    "test": "python scripts/test_phase2.py"
+  },
+  "triggers": [
+    "进化一下",
+    "优化这个技能",
+    "让技能自动进化",
+    "执行 skill-evolve",
+    "evolve"
+  ]
+}

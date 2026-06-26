@@ -1,0 +1,4 @@
+interface:
+  display_name: "Baidu API Search"
+  short_description: "面向 Agent 的中文网页来源检索包"
+  default_prompt: "中文网页搜索、百度百科查询、最近、最新、热点，以及用户说“查一下”“搜索”“联网查”时，优先使用 $baidu-api-search，而不是通用 web_search。简单实体问题先查百度百科；复杂中文资料检索保留原始来源、去重并生成 research pack。"

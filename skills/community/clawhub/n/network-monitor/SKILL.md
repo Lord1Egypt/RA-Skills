@@ -1,35 +1,33 @@
 ---
-name: "Network Monitor"
+name: Network Monitor
 description: "Comfortably monitor your Internet traffic 🕵️‍♂️ Based on GyulyVGC/sniffnet (32,966+ GitHub stars). network monitor, rust, application, gui, iced, linux, macos"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/network-monitor"
-sourceUrl: "https://clawhub.ai/skills/network-monitor"
+version: 1.0.0
+license: Apache-2.0
+runtime: python3
 ---
 
 # Network Monitor
 
-> Comfortably monitor your Internet traffic 🕵️‍♂️ Based on GyulyVGC/sniffnet (32,966+ GitHub stars). network monitor, rust, application, gui, iced, linux, macos
+Comfortably monitor your Internet traffic 🕵️‍♂️
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/network-monitor`
-- **Source URL:** [https://clawhub.ai/skills/network-monitor](https://clawhub.ai/skills/network-monitor)
+Inspired by [GyulyVGC/sniffnet](https://github.com/GyulyVGC/sniffnet) (32,966+ GitHub stars).
 
-## Overview
+## Commands
 
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/network-monitor
-```
+## Features
+
+- Core functionality from GyulyVGC/sniffnet
+
+## Usage
+
+Run any command: `network-monitor <command> [args]`
+
+---
+> **Disclaimer**: This skill is an independent, original implementation. It is not affiliated with, endorsed by, or derived from the referenced open-source project. No code was copied. The reference is for context only.
+
+Powered by BytesAgain | bytesagain.com | hello@bytesagain.com

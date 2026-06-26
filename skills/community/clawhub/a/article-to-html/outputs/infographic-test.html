@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信息图模板</title>
+<style>
+  /* ========== RESET & BASE ========== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body{
+    
+    
+    
+    
+    padding:0;
+    font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+  background:transparent;margin:0;padding:0;}
+
+  /* ========== CONTAINER: 3:4 PORTRAIT ========== */
+  .container{
+    width: 1080px;
+    min-height:1440px;
+    background-color: #F2F2F2;
+    /* 蓝图网格 */
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 19px, #E8E8E8 19px, #E8E8E8 20px),
+      repeating-linear-gradient(90deg, transparent, transparent 19px, #E8E8E8 19px, #E8E8E8 20px),
+      repeating-linear-gradient(0deg, transparent, transparent 99px, #DBDBDB 99px, #DBDBDB 100px),
+      repeating-linear-gradient(90deg, transparent, transparent 99px, #DBDBDB 99px, #DBDBDB 100px);
+    position: relative;
+    
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ========== COORD LABEL (hidden, code-level marker only) ========== */
+  .coord{display:none!important;}
+
+  /* ========== HEADER ========== */
+  .header {
+    text-align: center;
+    padding: 20px 0 10px;
+    position: relative;
+  }
+  .header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: 2px;
+    line-height: 1.3;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+    font-family: 'SF Mono', monospace;
+    letter-spacing: 2px;
+  }
+
+  /* ========== MODULE CARD ========== */
+  .module {
+    background: rgba(184, 216, 190, 0.25);
+    border: 1px solid #2D2926;
+    border-radius: 2px;
+    padding: 20px 20px 16px;
+    position: relative;
+  }
+  .module h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    padding-left: 0;
+  }
+
+  /* ========== GRID LAYOUTS ========== */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .grid-4col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* ========== BRAND MATRIX (MOD-1) ========== */
+  .brand-card {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .brand-card.best {
+    border: 2px solid #E91E63;
+    background: rgba(233, 30, 99, 0.08);
+  }
+  .brand-card .name {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .brand-card .meta {
+    font-size: 12px;
+    color: #666;
+  }
+
+  /* ========== SCALE BAR (MOD-2) ========== */
+  .scale-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 12px 0;
+  }
+  .scale-segment {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .scale-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #666;
+    font-family: monospace;
+  }
+
+  /* ========== WARNING (MOD-5) ========== */
+  .warning {
+    background: #1a1a1a;
+    color: #E91E63;
+    border-left: 4px solid #E91E63;
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .warning .coord{display:none!important;}
+  .warning ul {
+    list-style: none;
+    padding: 0;
+  }
+  .warning li {
+    padding: 4px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .warning li::before {
+    content: "⚠";
+    position: absolute;
+    left: 0;
+  }
+
+  /* ========== DATA TABLE (MOD-6) ========== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table th {
+    background: #2D2926;
+    color: #fff;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  .data-table tr:nth-child(even) td {
+    background: rgba(184, 216, 190, 0.15);
+  }
+
+  /* ========== STATUS BAR (MOD-7) ========== */
+  .status-bar {
+    display: flex;
+    gap: 0;
+  }
+  .status-item {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    background: rgba(255,255,255,0.5);
+  }
+  .status-item:last-child { border-right: none; }
+  .status-item .value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #3A7BD5;
+    font-family: 'SF Mono', monospace;
+  }
+  .status-item .label {
+    font-size: 11px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  /* ========== UTILITY ========== */
+  .highlight {
+    background: linear-gradient(transparent 60%, #FFF200 60%);
+    padding: 0 2px;
+  }
+  .pink { color: #E91E63; font-weight: 700; }
+  .blue { color: #3A7BD5; font-weight: 700; }
+  .data-point {
+    font-size: 32px;
+    font-weight: 800;
+    color: #3A7BD5;
+    font-family: 'SF Mono', monospace;
+  }
+  .tag {
+    display: inline-block;
+    background: #2D2926;
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 1px;
+    letter-spacing: 1px;
+    font-family: monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 0.5px solid #bbb;
+    margin: 4px 0;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #999;
+    font-family: monospace;
+    padding-top: 8px;
+    border-top: 1px solid #ccc;
+  }
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="coord">SEC-00</span>
+    <h1>【主标题：替换为文章核心主题】</h1>
+    <div class="subtitle">INFOGRAPHIC · DATA SHEET · v1.0</div>
+  </div>
+
+  <!-- MOD-1: 品牌矩阵 -->
+  <div class="module">
+    <span class="coord">A-01</span>
+    <h2>核心选项一览</h2>
+    <div class="grid-3col">
+      <div class="brand-card">
+        <div class="name">选项 A</div>
+        <div class="meta">说明文字</div>
+      </div>
+      <div class="brand-card best">
+        <div class="name">选项 B ★</div>
+        <div class="meta">最佳选择</div>
+      </div>
+      <div class="brand-card">
+        <div class="name">选项 C</div>
+        <div class="meta">说明文字</div>
+      </div>
+      <div class="brand-card">
+        <div class="name">选项 D</div>
+        <div class="meta">说明文字</div>
+      </div>
+      <div class="brand-card">
+        <div class="name">选项 E</div>
+        <div class="meta">说明文字</div>
+      </div>
+      <div class="brand-card">
+        <div class="name">选项 F</div>
+        <div class="meta">说明文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-2: 规格标尺 -->
+  <div class="module">
+    <span class="coord">B-05</span>
+    <h2>关键维度对比</h2>
+    <div class="scale-bar">
+      <div class="scale-segment" style="flex:3; background:#B8D8BE; color:#1a1a1a;">入门 30%</div>
+      <div class="scale-segment" style="flex:5; background:#3A7BD5;">进阶 50%</div>
+      <div class="scale-segment" style="flex:2; background:#E91E63;">专业 20%</div>
+    </div>
+    <div class="scale-label">
+      <span>0</span><span>|</span><span>|</span><span>|</span><span>MAX</span>
+    </div>
+  </div>
+
+  <!-- MOD-3 + MOD-4: 双栏 -->
+  <div class="grid-2col">
+    <!-- MOD-3: 深度剖析 -->
+    <div class="module">
+      <span class="coord">C-12</span>
+      <h2>深度剖析</h2>
+      <p style="font-size:14px; color:#333; line-height:1.8;">
+        核心观点描述。使用 <span class="highlight">荧光笔标记</span> 突出关键信息。
+        数据支撑：<span class="data-point">87%</span> 的用户认为此方案有效。
+      </p>
+    </div>
+
+    <!-- MOD-4: 场景对比 -->
+    <div class="module">
+      <span class="coord">D-03</span>
+      <h2>场景对比</h2>
+      <div style="font-size:14px; line-height:1.8;">
+        <div style="padding:8px 0; border-bottom:0.5px solid #ccc;">
+          <span class="tag">场景A</span>
+          <span style="margin-left:8px;">适合新手，上手快</span>
+        </div>
+        <div style="padding:8px 0; border-bottom:0.5px solid #ccc;">
+          <span class="tag">场景B</span>
+          <span style="margin-left:8px;">适合进阶，灵活度高</span>
+        </div>
+        <div style="padding:8px 0;">
+          <span class="tag">场景C</span>
+          <span style="margin-left:8px;">适合专业，深度定制</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-5: 避坑警告 -->
+  <div class="warning">
+    <span class="coord">E-08</span>
+    <h2 style="color:#E91E63; font-size:18px; margin-bottom:8px; padding-left:0;">⚠ 避坑指南</h2>
+    <ul>
+      <li>第一个常见错误：简要说明</li>
+      <li>第二个常见错误：简要说明</li>
+      <li>第三个常见错误：简要说明</li>
+    </ul>
+  </div>
+
+  <!-- MOD-6: 速查表 -->
+  <div class="module">
+    <span class="coord">F-15</span>
+    <h2>速查数据表</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th>标准值</th>
+          <th>推荐值</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>指标一</td>
+          <td>100</td>
+          <td class="blue">150+</td>
+          <td>越高越好</td>
+        </tr>
+        <tr>
+          <td>指标二</td>
+          <td>50%</td>
+          <td class="blue">80%</td>
+          <td>行业均值 60%</td>
+        </tr>
+        <tr>
+          <td>指标三</td>
+          <td>3 天</td>
+          <td class="pink">1 天</td>
+          <td>关键瓶颈</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MOD-7: 状态栏 -->
+  <div class="module" style="padding:0;">
+    <span class="coord">G-20</span>
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="value">6</div>
+        <div class="label">核心模块</div>
+      </div>
+      <div class="status-item">
+        <div class="value">3</div>
+        <div class="label">避坑要点</div>
+      </div>
+      <div class="status-item">
+        <div class="value">87%</div>
+        <div class="label">有效率</div>
+      </div>
+      <div class="status-item">
+        <div class="value">★</div>
+        <div class="label">推荐指数</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Generated by openclaw · article-to-html</span>
+    <span>REV 1.0 · 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "skill_name": "activitykit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm adding a food delivery Live Activity to an iOS app. Sketch the ActivityKit implementation for the attributes, request/update/end lifecycle, Lock Screen view, Dynamic Island regions, and server push token handling. Call out the Info.plist keys and availability checks I need.",
+      "expected_output": "A source-grounded ActivityKit implementation outline with Swift snippets and review notes for local lifecycle, Lock Screen/Dynamic Island presentation, push token forwarding, stale handling, and cleanup.",
+      "files": [],
+      "expectations": [
+        "Uses ActivityContent-based Activity.request/update/end APIs rather than deprecated contentState lifecycle APIs.",
+        "Mentions NSSupportsLiveActivities in the host app Info.plist and keeps ContentState small.",
+        "Forwards update tokens with activity.pushTokenUpdates and notes that tokens can rotate.",
+        "Designs Lock Screen as the primary surface and includes Dynamic Island compact, expanded, and minimal presentations only for devices with Dynamic Island.",
+        "Handles staleDate/context.isStale and ends the activity on success, error, and cancellation paths."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this Live Activity plan for mistakes: use Activity.request(attributes:content:pushType:start:) on iOS 26 to schedule a flight board; use style: .transient but guard it as iOS 26 only; send a push-to-start payload without alert because the user already opted into notifications; set NSSupportsLiveActivitiesFrequentUpdates and push updates every 30 seconds; say ended activities always disappear after 8 hours.",
+      "expected_output": "A correction-focused review that identifies stale or inaccurate ActivityKit claims and replaces them with current Apple-source behavior.",
+      "files": [],
+      "expectations": [
+        "Corrects scheduled Live Activity requests to the iOS 26 overload that includes style, alertConfiguration, and start/startDate.",
+        "Corrects Activity.request style parameter availability to iOS 18+ rather than iOS 26-only.",
+        "States that push-to-start payloads require an alert.",
+        "Avoids a fixed 30-second or once-per-minute frequent-update guarantee and recommends frequentPushesEnabled/frequentPushEnablementUpdates when cadence matters.",
+        "Distinguishes active duration up to 8 hours, Lock Screen persistence up to 12 hours after system end, and default app-ended dismissal up to 4 hours."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have a Live Activity that receives APNs updates, but now I need help rotating my APNs auth key, registering normal remote notifications, and deciding whether the widget should use a TimelineProvider. Which parts belong in ActivityKit guidance and where should the rest go?",
+      "expected_output": "A boundary-aware answer that keeps ActivityKit-specific Live Activity token/payload concerns in scope and redirects generic APNs registration/auth and WidgetKit timeline architecture to sibling domains.",
+      "files": [],
+      "expectations": [
+        "Keeps ActivityKit-specific guidance focused on Live Activity update tokens, push-to-start tokens, liveactivity push type, topic suffix, and content-state payloads.",
+        "Does not turn the answer into a full generic APNs authentication or remote notification setup guide.",
+        "Does not recommend TimelineProvider for Live Activity lifecycle updates and distinguishes Live Activities from ordinary widgets.",
+        "Points generic APNs registration/key rotation toward push-notifications guidance and broad widget timeline architecture toward WidgetKit guidance.",
+        "Mentions that Live Activity push payload content-state must match the actual ContentState Codable shape and must not assume Date or ClosedRange<Date> use Unix timestamp lowerBound/upperBound dictionaries unless explicitly coordinated."
+      ]
+    }
+  ]
+}

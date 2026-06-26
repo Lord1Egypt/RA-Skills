@@ -1,0 +1,120 @@
+{
+  "product_name": "HE121D KVM CABLE",
+  "length_mm": "3050+50/-0",
+  "material_code": "5001-127A",
+  "packaging_spec": "B31009F-9072",
+  "model_no": "",
+  "mold_info": "INNER MOLDING: AV19P142, OUTER MOLDING: USB.A-01, USB.B-02, MF427, AV19P141, SR063",
+  "mold_number": "",
+  "bom": [
+    {
+      "no": "9",
+      "part_name": "SHIELD",
+      "spec": "FOIL-CU-5MM",
+      "quantity": "45*4 MM"
+    },
+    {
+      "no": "8",
+      "part_name": "MODEL",
+      "spec": "LLPE",
+      "quantity": "15 G"
+    },
+    {
+      "no": "7",
+      "part_name": "MODEL",
+      "spec": "TPE-BK",
+      "quantity": "60 G"
+    },
+    {
+      "no": "6",
+      "part_name": "PLUG",
+      "spec": "USB3.0 BM",
+      "quantity": "1 PCS"
+    },
+    {
+      "no": "5",
+      "part_name": "PLUG",
+      "spec": "USB3.0 AM",
+      "quantity": "1 PCS"
+    },
+    {
+      "no": "4",
+      "part_name": "Copper foil",
+      "spec": "HDMI 30AWG 2.0,cable plastic clip",
+      "quantity": "2 PCS"
+    },
+    {
+      "no": "3",
+      "part_name": "shell",
+      "spec": "HDMI A/M upper and lower tinplate",
+      "quantity": "2 PCS"
+    },
+    {
+      "no": "2",
+      "part_name": "PLUG",
+      "spec": "HDMI A/M, G/F Nickel plated",
+      "quantity": "2 PCS"
+    },
+    {
+      "no": "1",
+      "part_name": "CABLE",
+      "spec": "[(1P*28#+D+AL)*4+5C*28#+AB(80)]*1+(1P*28#+D+AL)*2+4C*28#+AB(80)]*1+4C*28#+AB(80)]*1, BLACK TPE, OD:7.3±0.1MM",
+      "quantity": "3050 MM"
+    }
+  ],
+  "tolerances": [],
+  "pin_assignment": {
+    "connectors": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "description": "P1: 1-16, SHELL(BRAID+Drain); P2: 1-2; P3: 1-8, SHELL(BRAID+Drain); P4: 1-4"
+  },
+  "test_requirements": [
+    "1. OPEN/SHORT/INTERMITTENCE 100% TEST.",
+    "2. DIELECTRIC STRENGTH:200 VOLTS AC 2mA MAX/0.02S.",
+    "3. INSULATION RESISTANCE:300V DC/0.02SEC, 5MΩ MIN.",
+    "4. CONDUCTIVE RESISTANCE:3Ω MAX.",
+    "5. THE DIMENSIONS MARKED ▼ SHALL BE CHECKED BY QC.",
+    "7. HDMI PASS 4K@60HZ TEST",
+    "USB 3.0 5V/1A 5Gb"
+  ],
+  "dimensions": [
+    "3050+50/-0",
+    "330±20",
+    "12±0.5",
+    "Ø5.0",
+    "Ø6.3±0.3",
+    "Ø5.0",
+    "Ø5.3±0.3"
+  ],
+  "notes": [
+    "ROHS COMPLIANT",
+    "6. ROHS Compliant"
+  ],
+  "revision_history": [
+    {
+      "revision": "A",
+      "date": "2022.08.31",
+      "description": ""
+    }
+  ],
+  "company": "珠海福睿电子 FARREACH",
+  "drawing_date": "2022.08.31",
+  "drawn_by": "",
+  "checked_by": "CUSTOMER:C331",
+  "approved_by": "",
+  "products": [
+    {
+      "customer_item": "HE121D KVM CABLE",
+      "length_mm": "3050+50/-0",
+      "material_code": "5001-127A",
+      "packaging_spec": "B31009F-9072"
+    }
+  ],
+  "source_file": "dd633a96-49ec-48e2-a820-c0859d6713f3.pdf",
+  "extraction_method": "vision_openrouter",
+  "pages": 2
+}

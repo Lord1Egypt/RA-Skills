@@ -1,0 +1,8 @@
+interface:
+  display_name: "Repo Growth Operator"
+  short_description: "Recommend practical growth steps for a public repo"
+  default_prompt: "Use $repo-growth-operator to suggest the next small marketing and maintenance actions for a public GitHub repository."
+
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,44 @@
+{
+  "name": "looking-for-someone",
+  "version": "1.0.0",
+  "description": "A local missing person assistance tool for organizing cases, managing clues, generating notices, and providing search guidance",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node scripts/cli.js"
+  },
+  "keywords": [
+    "missing-person",
+    "safety",
+    "local-assistance",
+    "case-management",
+    "search",
+    "emergency"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/looking-for-someone"
+  },
+  "homepage": "https://clawhub.ai/harrylabsj/looking-for-someone",
+  "bugs": {
+    "url": "https://github.com/harrylabsj/looking-for-someone/issues"
+  },
+  "clawhub": {
+    "skill": true,
+    "category": "utility",
+    "tags": [
+      "missing-person",
+      "safety",
+      "local-assistance",
+      "case-management"
+    ],
+    "compatibility": {
+      "openclaw": ">=1.0.0"
+    }
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

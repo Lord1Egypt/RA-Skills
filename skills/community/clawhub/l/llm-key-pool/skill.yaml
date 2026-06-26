@@ -1,0 +1,36 @@
+---
+name: llm-key-pool
+description: 多平台API Key分层轮询池 | 自动切换配额，1亿+免费Token高可用调用
+author: OpenClaw
+version: 0.1.0
+license: Apache-2.0
+tags:
+  - llm
+  - api-key
+  - load-balancing
+  - failover
+  - alibaba-bailian
+  - model
+
+arguments:
+  - name: prompt
+    description: 用户提示词
+    required: true
+  - name: system-prompt
+    description: 系统提示词（可选）
+    required: false
+  - name: temperature
+    description: 温度参数（默认: 0.7）
+    required: false
+  - name: max-tokens
+    description: 最大Token数（默认: 2000）
+    required: false
+
+# Python依赖
+dependencies:
+  python:
+    - pyyaml>=6.0.0
+    - requests>=2.28.0
+
+# 入口脚本
+entrypoint: scripts/run.sh

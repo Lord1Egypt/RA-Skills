@@ -1,0 +1,152 @@
+# browser-ops evaluation task suite
+# Tests routing decisions, tool selection, and trigger accuracy
+
+name: browser-ops
+version: "1.0.0"
+description: "Web access router skill evaluation"
+
+tasks:
+  # --- Positive triggers (should activate skill) ---
+  - id: fetch-article
+    prompt: "帮我抓取 https://paulgraham.com/worked.html 的正文内容"
+    should_trigger: true
+    expected_behavior: "选择 WebFetch/Jina 轻量抓取，不启动浏览器"
+    pass_criteria:
+      - "uses WebFetch or Jina or curl"
+      - "does not launch browser-use or Stagehand"
+
+  - id: twitter-search
+    prompt: "搜索 Twitter 上关于 AI agent 的最新讨论"
+    should_trigger: true
+    expected_behavior: "使用 opencli twitter search"
+    pass_criteria:
+      - "uses opencli twitter search"
+
+  - id: stock-price
+    prompt: "查一下招商银行今天的股价"
+    should_trigger: true
+    expected_behavior: "使用 opencli 或金融 API 查询股价"
+    pass_criteria:
+      - "uses opencli or financial API"
+      - "returns price data"
+
+  - id: batch-stocks
+    prompt: "帮我同时查 100 只 A 股的实时行情"
+    should_trigger: true
+    expected_behavior: "识别批量场景，使用批量 API"
+    pass_criteria:
+      - "identifies batch scenario"
+      - "does not use opencli 100 times serially"
+
+  - id: cloudflare-blocked
+    prompt: "这个网站被 Cloudflare 拦截了打不开"
+    should_trigger: true
+    expected_behavior: "使用 Zendriver 或 Camoufox 反爬"
+    pass_criteria:
+      - "identifies anti-bot scenario"
+      - "uses Zendriver or Camoufox"
+
+  - id: xiaohongshu-search
+    prompt: "帮我在小红书上搜索旅行攻略"
+    should_trigger: true
+    expected_behavior: "使用 opencli xiaohongshu search"
+    pass_criteria:
+      - "uses opencli xiaohongshu"
+
+  - id: internal-screenshot
+    prompt: "打开内部网站并截图"
+    should_trigger: true
+    expected_behavior: "使用 opencli operate screenshot (首选) 或 browser-use screenshot"
+    pass_criteria:
+      - "uses opencli operate screenshot or browser-use screenshot"
+
+  - id: zhihu-hot
+    prompt: "获取知乎热榜前 20 条"
+    should_trigger: true
+    expected_behavior: "使用 opencli zhihu hot"
+    pass_criteria:
+      - "uses opencli zhihu hot"
+
+  - id: hackernews-trending
+    prompt: "帮我看看 HackerNews 今天的热门"
+    should_trigger: true
+    expected_behavior: "使用 opencli hackernews top"
+    pass_criteria:
+      - "uses opencli hackernews"
+
+  - id: download-images
+    prompt: "下载这个网页的所有图片"
+    should_trigger: true
+    expected_behavior: "使用 browser-use 或 WebFetch 提取图片"
+    pass_criteria:
+      - "identifies web content download scenario"
+
+  - id: url-broken
+    prompt: "这个URL打不开 https://broken-link.invalid/page"
+    should_trigger: true
+    expected_behavior: "尝试替代方案（opencli/browser-use）"
+    pass_criteria:
+      - "tries fallback chain"
+
+  - id: slow-page
+    prompt: "帮我抓取这个网页但是它加载很慢经常超时"
+    should_trigger: true
+    expected_behavior: "识别超时场景，调整超时配置"
+    pass_criteria:
+      - "identifies timeout scenario"
+
+  - id: captcha-site
+    prompt: "这个网站需要验证码才能访问"
+    should_trigger: true
+    expected_behavior: "识别反爬场景，升级到 Zendriver"
+    pass_criteria:
+      - "identifies anti-bot scenario"
+
+  - id: batch-download
+    prompt: "帮我批量下载这50个网页的内容"
+    should_trigger: true
+    expected_behavior: "选择并发方案"
+    pass_criteria:
+      - "identifies batch scenario"
+
+  - id: browser-click
+    prompt: "用浏览器打开 https://example.com 然后点击登录按钮"
+    should_trigger: true
+    expected_behavior: "使用 opencli operate (首选) 或 browser-use CLI"
+    pass_criteria:
+      - "uses opencli operate open + click or browser-use"
+
+  - id: form-fill
+    prompt: "帮我在这个网页上填写表单"
+    should_trigger: true
+    expected_behavior: "使用 opencli operate type/select"
+    pass_criteria:
+      - "uses opencli operate for form filling"
+
+  - id: opencli-unavailable
+    prompt: "opencli 没装，帮我读一下这个内网页面"
+    should_trigger: true
+    expected_behavior: "降级到 browser-use --connect 或告知需要安装 opencli"
+    pass_criteria:
+      - "falls back to browser-use or suggests installing opencli"
+
+  # --- Negative triggers (should NOT activate skill) ---
+  - id: python-coding
+    prompt: "帮我写一段 Python 代码来排序数组"
+    should_trigger: false
+    expected_behavior: "不触发 browser-ops"
+
+  - id: cpp-error
+    prompt: "这个 C++ 编译报错怎么修"
+    should_trigger: false
+    expected_behavior: "不触发 browser-ops"
+
+  - id: refactor
+    prompt: "帮我重构这个函数"
+    should_trigger: false
+    expected_behavior: "不触发 browser-ops"
+
+  - id: explain-concept
+    prompt: "解释一下什么是递归"
+    should_trigger: false
+    expected_behavior: "不触发 browser-ops"

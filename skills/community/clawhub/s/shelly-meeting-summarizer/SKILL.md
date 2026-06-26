@@ -1,35 +1,37 @@
----
-name: "Meeting Notes Summarizer"
-description: "Generates concise meeting summaries highlighting key decisions, action items with owners, follow-up dates, and a brief 3-sentence overview."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shelly-meeting-summarizer"
-sourceUrl: "https://clawhub.ai/skills/shelly-meeting-summarizer"
----
+# Meeting Notes Summarizer 📋
 
-# Meeting Notes Summarizer
+Transform raw meeting transcripts into structured, actionable summaries.
 
-> Generates concise meeting summaries highlighting key decisions, action items with owners, follow-up dates, and a brief 3-sentence overview.
+## What It Does
+Takes messy meeting transcript text and extracts:
+- **Key Decisions** made during the meeting
+- **Action Items** with assigned owners
+- **Follow-up Dates** and deadlines
+- **3-Sentence Summary** of the entire meeting
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shelly-meeting-summarizer`
-- **Source URL:** [https://clawhub.ai/skills/shelly-meeting-summarizer](https://clawhub.ai/skills/shelly-meeting-summarizer)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/shelly-meeting-summarizer
+# From a file
+./summarize.sh < transcript.txt
+
+# From clipboard
+pbpaste | ./summarize.sh
+
+# Inline
+echo "your transcript text..." | ./summarize.sh
 ```
+
+## Requirements
+- `bash` 4+
+- `curl`
+- `ANTHROPIC_API_KEY` environment variable set
+
+## Output Format
+Markdown with four sections: Summary, Key Decisions, Action Items, Follow-up Dates.
+
+## Example
+See `example-output.md` for sample output.
+
+## Author
+Shelly 🦞 — [@ShellyToMillion](https://x.com/ShellyToMillion)

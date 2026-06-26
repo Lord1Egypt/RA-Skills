@@ -1,0 +1,217 @@
+# AI博主配置文件
+# ZeeLin X Creator Briefing Skill
+
+# 英文顶级AI博主
+english_creators:
+  - handle: "AndrewYNg"
+    name: "吴恩达"
+    tags: ["AI教育", "深度学习", "行业趋势"]
+    priority: 1
+    active: true
+
+  - handle: "drfeifei"
+    name: "李飞飞"
+    tags: ["计算机视觉", "AI研究", "学术界"]
+    priority: 1
+    active: true
+
+  - handle: "karpathy"
+    name: "Andrej Karpathy"
+    tags: ["AI教育", "编程", "Vibe Coding"]
+    priority: 1
+    active: true
+
+  - handle: "ylecun"
+    name: "Yann LeCun"
+    tags: ["Meta AI", "AI研究", "争议观点"]
+    priority: 1
+    active: true
+
+# 中文AI博主
+chinese_creators:
+  - handle: "zarazhangrui"
+    name: "张咋啦"
+    tags: ["AI前沿", "工具分享", "实战"]
+    priority: 2
+    active: true
+
+  - handle: "dotey"
+    name: "宝玉"
+    tags: ["AI工具", "实战经验", "产品思考"]
+    priority: 2
+    active: true
+
+  - handle: "op7418"
+    name: "Orange"
+    tags: ["AI产品", "行业资讯", "OpenAI"]
+    priority: 2
+    active: true
+
+  - handle: "oran_ge"
+    name: "Orange(归藏)"
+    tags: ["AI产品", "行业资讯", "Prompt", "工具"]
+    priority: 2
+    active: true
+
+  - handle: "ShunyuYao12"
+    name: "姚顺雨"
+    tags: ["AI研究", "创业", "前沿技术"]
+    priority: 2
+    active: true
+
+  - handle: "frxiaobei"
+    name: "凡人小北"
+    tags: ["AI Agent", "工作流", "实战"]
+    priority: 2
+    active: true
+
+  - handle: "FinanceYF5"
+    name: "AI WILL"
+    tags: ["行业分析", "增长顾问", "AI前沿"]
+    priority: 2
+    active: true
+
+  - handle: "MANISH1027512"
+    name: "古一"
+    tags: ["AI摄影", "Midjourney", "AIGC"]
+    priority: 3
+    active: true
+
+  - handle: "joshesye"
+    name: "行者AI视频"
+    tags: ["AI视频", "AIGC", "教程"]
+    priority: 3
+    active: true
+
+  - handle: "zstmfhy"
+    name: "AI奶爸"
+    tags: ["AI漫画", "视频生成", "教程"]
+    priority: 3
+    active: true
+
+  - handle: "bozhou_ai"
+    name: "泊舟"
+    tags: ["AI编程", "提示词", "工作流"]
+    priority: 3
+    active: true
+
+  - handle: "CuiMao"
+    name: "崔毛"
+    tags: ["AI开发", "技术分享", "开发者"]
+    priority: 3
+    active: true
+
+  - handle: "RookieRicardoR"
+    name: "耳朵"
+    tags: ["AI应用", "跨领域", "深度思考"]
+    priority: 3
+    active: true
+
+  - handle: "wlzh"
+    name: "M."
+    tags: ["AI工具", "内容分享"]
+    priority: 3
+    active: true
+
+  - handle: "cnyzgkc"
+    name: "木马人"
+    tags: ["Claude", "AI实战", "大厂视角"]
+    priority: 3
+    active: true
+
+# 抓取配置
+fetch:
+  days: 10  # 抓取最近多少天
+  max_tweets_per_creator: 50  # 每个博主最多抓取多少条
+  timeout: 30  # 请求超时时间（秒）
+  retry: 3  # 失败重试次数
+
+# 过滤配置
+filter:
+  min_likes: 5  # 最少点赞数
+  min_retweets: 2  # 最少转发数
+  min_replies: 1  # 最少回复数
+  exclude_keywords:
+    - "广告"
+    - "推广"
+    - "AD"
+    - "ad"
+    - "sponsor"
+    - "赞助"
+  require_media: false  # 是否要求包含媒体（图片/视频）
+
+# 评分配置
+scoring:
+  weights:
+    originality: 0.3  # 原创性权重
+    practicality: 0.3  # 实用性权重
+    timeliness: 0.2  # 时效性权重
+    engagement: 0.2  # 互动数据权重
+
+  # 互动数据标准化
+  engagement:
+    likes_weight: 1.0
+    retweets_weight: 2.0
+    replies_weight: 1.5
+    views_weight: 0.001
+
+# 发布配置
+publish:
+  platforms:
+    - name: "twitter"
+      enabled: true
+      max_length: 280
+      auto_post: true
+
+    - name: "xiaohongshu"
+      enabled: false
+      max_length: 1000
+      auto_post: false
+
+    - name: "zhihu"
+      enabled: false
+      max_length: 0  # 无限制
+      auto_post: false
+
+  hashtags:
+    - "#AI"
+    - "#OpenClaw"
+    - "#Agent"
+    - "#MachineLearning"
+
+  # 发布时间
+  schedule:
+    timezone: "Asia/Shanghai"
+    default_time: "08:00"  # 默认发布时间
+
+# 输出配置
+output:
+  briefing_dir: "reports"
+  archive_dir: "archive/briefings"
+  log_dir: "logs"
+
+  # 文件命名格式
+  filename_format: "x-creator-briefing-{date}.md"
+  date_format: "%Y-%m-%d"
+
+  # 简报模板
+  template: "templates/briefing-template.md"
+
+# 通知配置
+notification:
+  on_success: false
+  on_failure: true
+  on_empty: true  # 当没有抓取到内容时通知
+
+  # 通知方式
+  methods:
+    - type: "console"
+      enabled: true
+
+    - type: "email"
+      enabled: false
+      address: ""
+
+    - type: "webhook"
+      enabled: false
+      url: ""

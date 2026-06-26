@@ -1,0 +1,12 @@
+
+{
+  "name": "建筑学长AI工作流",
+  "id": "architect-xuezhang-ai-workflow",
+  "version": "1.0.0",
+  "description": "基于建筑学长官网AI能力，搭建室内设计方案从无到有全流程自动化工作流",
+  "author": "温州隐室空间设计",
+  "license": "MIT",
+  "tags": ["室内设计", "AI设计", "工作流", "建筑学长"],
+  "keywords": ["设计方案", "AI出图", "效率提升"],
+  "readme": "SKILL.md"
+}

@@ -1,35 +1,26 @@
----
-name: "Tradebot Tuning"
-description: "Adjust tradebot parameters incrementally to improve tradability safely based on market regime and diagnostic signals while maintaining risk controls."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tradebot-tuning"
-sourceUrl: "https://clawhub.ai/skills/tradebot-tuning"
----
+# tradebot-tuning
 
-# Tradebot Tuning
+## Purpose
+Increase tradability **safely** by adjusting parameters one step at a time based on regime and diagnostics.
 
-> Adjust tradebot parameters incrementally to improve tradability safely based on market regime and diagnostic signals while maintaining risk controls.
+## Use when
+- No trades for long periods
+- Diagnostics show gates failing (trend_ok/breakout_ok always 0)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tradebot-tuning`
-- **Source URL:** [https://clawhub.ai/skills/tradebot-tuning](https://clawhub.ai/skills/tradebot-tuning)
+## Safety rails
+- Keep risk controls enabled (daily loss cap, max trades).
+- One change per cycle; log before/after.
 
-## Overview
+## Tuning ladder (preferred order)
+1) Switch strategy based on regime:
+   - RANGE → reversion
+   - TREND → breakout
+2) vol_surge → 1.0
+3) adx_period → 0
+4) cooldown_m ↓ (min 1)
+5) lookback ↓ (min 6)
+6) max_hold_m ↑ (max 30)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tradebot-tuning
-```
+## Verification
+- After each change: confirm signals updating and `signal` sometimes flips.
+- If losses exceed limits: tighten / halt.

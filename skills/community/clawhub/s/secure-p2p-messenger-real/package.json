@@ -1,0 +1,39 @@
+{
+  "name": "@clawhub/secure-p2p-messenger-real",
+  "version": "1.0.14",
+  "description": "小龙虾安全点对点加密通讯技能：端到端加密的消息传递、文件传输和身份验证系统",
+  "author": "柏然 <xiaoboren0@gmail.com> (https://github.com/puppetcat-fire)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puppetcat-fire/openclaw-skills.git"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "encryption",
+    "p2p",
+    "security",
+    "messaging"
+  ],
+  "files": [
+    "SKILL.md",
+    "secure-messenger.sh",
+    "install.sh",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "openclaw": {
+    "skill": true,
+    "emoji": "🔒🦞",
+    "requires": {
+      "bins": [
+        "bash",
+        "openssl",
+        "jq",
+        "base64"
+      ]
+    }
+  }
+}

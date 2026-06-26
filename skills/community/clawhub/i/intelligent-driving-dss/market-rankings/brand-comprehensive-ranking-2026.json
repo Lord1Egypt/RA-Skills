@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "source": "盖世汽车/乘联会/MarkLines 交叉验证",
+    "update_time": "2026-05-15T16:40:00+08:00",
+    "data_period": "2026 年 4 月（最新数据）",
+    "note": "品牌市场份额统计，含 BEV/PHEV 细分"
+  },
+  "brand_rankings": [
+    {
+      "rank": 1,
+      "brand": "比亚迪",
+      "total_sales": 89456,
+      "bev_share": "68%",
+      "phev_share": "32%",
+      "top_models": ["Model Y","海豚","海鸥","元 UP","宋 PLUS DM-i"]
+    },
+    {
+      "rank": 2,
+      "brand": "特斯拉",
+      "total_sales": 79470,
+      "bev_share": "100%",
+      "phev_share": "0%",
+      "top_models": ["Model Y","Model 3"]
+    },
+    {
+      "rank": 3,
+      "brand": "理想汽车",
+      "total_sales": 26584,
+      "bev_share": "100%",
+      "phev_share": "0%",
+      "top_models": ["理想 i6","理想 L6"]
+    },
+    {
+      "rank": 4,
+      "brand": "小米汽车",
+      "total_sales": 36702,
+      "bev_share": "100%",
+      "phev_share": "0%",
+      "top_models": ["SU7","YU7"]
+    },
+    {
+      "rank": 5,
+      "brand": "吉利汽车",
+      "total_sales": 42358,
+      "bev_share": "85%",
+      "phev_share": "15%",
+      "top_models": ["吉利星愿","银河星舰 7"]
+    }
+  ],
+  "global_top_brands": [
+    {"brand": "比亚迪", "global_rank": 1, "beve_sales_millions": 2.8},
+    {"brand": "特斯拉", "global_rank": 2, "beve_sales_millions": 2.1},
+    {"brand": "吉利", "global_rank": 3, "beve_sales_millions": 0.9}
+  ],
+  "market_trends": {
+    "dominant_force": "国产自主品牌统治中国市场",
+    "foreign_presence": ["特斯拉","丰田","大众"],
+    "emerging_players": ["零跑","小鹏","极氪"]
+  }
+}

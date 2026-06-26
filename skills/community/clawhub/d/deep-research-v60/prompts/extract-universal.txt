@@ -1,0 +1,39 @@
+你是一名跨领域研究分析师。请从以下文本中提取结构化信息。
+
+【上下文配置】
+- 研究领域：{{research_domain}}
+- 关键指标：{{key_metrics}}
+- 文本类型：{{text_type}}  # full_text / abstract / web_snippet
+
+【🔴 核心原则：诚实 > 完整 > 格式】
+1. 如果文本未报告某个指标，必须填"未提及"，禁止编造
+2. 如果提到"显著提升"但无数字，标注"⚠️ 定性结论，缺定量"
+3. 数值必须带单位/上下文（如"85% accuracy on ImageNet"）
+4. 原文引用必须≥30字，并标注大致位置（如"Section 3.2"）
+
+【🔴 提取逻辑】
+1. 先识别研究类型：实验/综述/理论/应用
+2. 按 key_metrics 顺序尝试提取，找到即止
+3. 对性能指标，优先提取：指标名 + 数值 + 数据集/场景 + 对比基线
+4. 对方法论，提取：模型类型 + 关键创新 + 验证方式
+
+【🔴 输出格式（严格 JSON）】
+{
+  "study_type": "experimental/survey/theoretical/applied",
+  "key_findings": [
+    {
+      "metric": "accuracy",
+      "value": "85.2%",
+      "context": "on ImageNet dataset",
+      "baseline_comparison": "vs ResNet-50: +3.1%",
+      "statistical_significance": "p<0.01 or 未报告",
+      "source_location": "Table 2, p.5"
+    }
+  ],
+  "methodology_summary": "模型类型 + 关键创新 + 验证方式",
+  "limitations_mentioned": ["数据偏差", "计算成本高", ...] or "未提及",
+  "data_completeness": "high(有数值 + 统计)/medium(有方向无数值)/low(仅定性)",
+  "missing_critical_metrics": ["latency", "energy_consumption", ...],
+  "full_text_verification_needed": true/false,
+  "verification_suggestion": "获取全文/验证数据的具体路径"
+}

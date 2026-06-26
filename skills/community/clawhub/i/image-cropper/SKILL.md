@@ -1,35 +1,53 @@
----
-name: "Image Cropper"
-description: "Crop objects from images using bounding box annotations in COCO, YOLO, VOC, or LabelMe formats with optional padding and batch processing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-cropper"
-sourceUrl: "https://clawhub.ai/skills/image-cropper"
----
-
 # Image Cropper
 
-> Crop objects from images using bounding box annotations in COCO, YOLO, VOC, or LabelMe formats with optional padding and batch processing.
+Crop images based on bounding box annotations. Supports COCO, YOLO, VOC, and LabelMe formats. Use when user needs to extract objects from images based on annotation boxes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-cropper`
-- **Source URL:** [https://clawhub.ai/skills/image-cropper](https://clawhub.ai/skills/image-cropper)
+## Features
 
-## Overview
+- **Multi-format Support**: COCO, YOLO, VOC, LabelMe
+- **Batch Processing**: Crop entire datasets
+- **Padding**: Add padding around bounding boxes
+- **Output Options**: Individual files or sprite sheet
+- **Handle Missing**: Gracefully handle images without annotations
 
+## Usage
+
+```bash
+# Crop YOLO annotations
+python scripts/cropper.py yolo images/ labels/ output/
+
+# Crop COCO annotations
+python scripts/cropper.py coco annotations.json images/ output/
+
+# Crop with padding
+python scripts/cropper.py yolo images/ labels/ output/ --padding 10
+
+# Crop all objects to individual files
+python scripts/cropper.py yolo images/ labels/ output/ --objects
+```
+
+## Examples
+
+```
+$ python scripts/cropper.py yolo ./images ./labels ./output
+
+Processing 100 images...
+✓ Cropped 250 objects from image_001.jpg
+✓ Cropped 180 objects from image_002.jpg
+...
+Total: 500 cropped images
+```
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/image-cropper
+pip install pillow
 ```
+
+## Options
+
+- `--padding`: Padding around box (pixels, default: 0)
+- `--objects`: Save each object as separate file
+- `--min-size`: Minimum box size to crop (pixels)
+- `--format`: Output format (jpg, png, default: jpg)
+- `--quality`: JPEG quality 1-100 (default: 95)

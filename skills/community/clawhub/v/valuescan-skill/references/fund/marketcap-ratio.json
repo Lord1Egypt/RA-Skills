@@ -1,0 +1,44 @@
+{
+  "name": "资金市值比",
+  "endpoint": "POST /trade/getCoinTradeInflowMarketCapRatio",
+  "description": "提供代币实时主力资金与市值的比值查询，支持现货和合约两种交易类型",
+  "credits_cost": 3,
+  "needToken": true,
+  "use_case": "适用于实时主力资金在市场的积累占比情况监测，适用于判断资金流入强度和市场关注度，适用于筛选资金关注度较高的代币标的",
+  "update_frequency": "实时更新",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "marketCap": { "type": "number", "actualType": "string", "desc": "市值" },
+    "spotTradeInflow": { "type": "number", "actualType": "string", "desc": "现货交易净流入金额" },
+    "spotMarketCapRatio": { "type": "number", "actualType": "number", "desc": "现货资金市值比率" },
+    "contractTradeInflow": { "type": "number", "actualType": "string", "desc": "合约交易净流入金额" },
+    "contractMarketCapRatio": { "type": "number", "actualType": "number", "desc": "合约资金市值比率" },
+    "totalTradeInflow": { "type": "number", "actualType": "string", "desc": "现货+合约交易净流入金额" },
+    "totalMarketCapRatio": { "type": "number", "actualType": "number", "desc": "现货+合约资金市值比率" }
+  },
+  "example": {
+    "req": { "vsTokenId": 1 },
+    "res": {
+      "code": 200,
+      "data": {
+        "updateTime": 1771001700000,
+        "vsTokenId": "1",
+        "symbol": "BTC",
+        "name": "Bitcoin",
+        "marketCap": "1380637213701.34",
+        "spotTradeInflow": "6952062.18",
+        "spotMarketCapRatio": 5.04E-4,
+        "contractTradeInflow": "6952062.18",
+        "contractMarketCapRatio": 5.04E-4,
+        "totalTradeInflow": "13904124.37",
+        "totalMarketCapRatio": 0.001
+      }
+    }
+  }
+}

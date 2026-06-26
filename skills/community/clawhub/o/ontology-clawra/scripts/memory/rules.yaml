@@ -1,0 +1,18 @@
+# 业务规则库
+# 格式: rule_id: { condition, action, enabled }
+
+rules:
+  strategy_red_ocean:
+    condition: "市场 == 红海"
+    action: "建议差异化方向"
+    enabled: true
+    
+  user_role_startup:
+    condition: "role == AI创业者"
+    action: "推荐技术调研 + 商业分析"
+    enabled: true
+    
+  goal_clarity:
+    condition: "目标不清晰"
+    action: "主动询问澄清"
+    enabled: true

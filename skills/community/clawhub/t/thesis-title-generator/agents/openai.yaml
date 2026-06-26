@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Title Generator"
+  short_description: "Generate Chinese and English thesis title options"
+  default_prompt: "Use $thesis-title-generator to generate three Chinese and English alternative thesis titles from my complete thesis."

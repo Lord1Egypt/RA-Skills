@@ -1,0 +1,88 @@
+{
+  "id": "ssh-remote",
+  "name": "SSH 远程服务器管理",
+  "version": "1.0.0",
+  "description": "SSH 远程服务器管理工具。支持多服务器连接管理、命令执行、文件传输、系统监控、服务管理等功能，适用于 Linux/Unix 服务器运维。",
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "keywords": ["ssh", "remote", "server", "linux", "运维", "cloud"],
+  "repository": "https://github.com/YOUR_USERNAME/ssh-remote-skill",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "ssh2": "^1.15.0"
+  },
+  "skills": [
+    {
+      "name": "ssh-connect",
+      "description": "SSH 连接管理",
+      "trigger": ["ssh 连接", "ssh connect", "ssh 登录", "连接服务器"],
+      "action": "src/connect.js"
+    },
+    {
+      "name": "ssh-exec",
+      "description": "执行远程命令",
+      "trigger": ["ssh 执行", "ssh exec", "远程命令", "ssh 运行"],
+      "action": "src/exec.js"
+    },
+    {
+      "name": "ssh-upload",
+      "description": "上传文件到服务器",
+      "trigger": ["ssh 上传", "ssh upload", "传输文件到服务器"],
+      "action": "src/upload.js"
+    },
+    {
+      "name": "ssh-download",
+      "description": "从服务器下载文件",
+      "trigger": ["ssh 下载", "ssh download", "从服务器下载"],
+      "action": "src/download.js"
+    },
+    {
+      "name": "ssh-monitor",
+      "description": "服务器系统监控",
+      "trigger": ["ssh 监控", "ssh monitor", "服务器状态", "系统资源"],
+      "action": "src/monitor.js"
+    },
+    {
+      "name": "ssh-service",
+      "description": "系统服务管理",
+      "trigger": ["ssh 服务", "ssh service", "systemctl", "服务管理"],
+      "action": "src/service.js"
+    },
+    {
+      "name": "ssh-log",
+      "description": "日志查看与分析",
+      "trigger": ["ssh 日志", "ssh log", "查看日志", "日志分析"],
+      "action": "src/log.js"
+    },
+    {
+      "name": "ssh-security",
+      "description": "安全检查与加固",
+      "trigger": ["ssh 安全", "ssh security", "安全检查", "服务器加固"],
+      "action": "src/security.js"
+    }
+  ],
+  "config": {
+    "ssh": {
+      "servers": {
+        "type": "array",
+        "required": false,
+        "description": "SSH 服务器配置列表",
+        "items": {
+          "name": { "type": "string", "description": "服务器名称/别名" },
+          "host": { "type": "string", "description": "服务器 IP 或域名" },
+          "port": { "type": "number", "default": 22, "description": "SSH 端口" },
+          "username": { "type": "string", "description": "SSH 用户名" },
+          "password": { "type": "string", "description": "SSH 密码（或使用私钥）" },
+          "privateKeyPath": { "type": "string", "description": "私钥文件路径" },
+          "passphrase": { "type": "string", "description": "私钥密码" }
+        }
+      }
+    }
+  }
+}

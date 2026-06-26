@@ -1,35 +1,130 @@
----
-name: "Ai Invest Agent"
-description: "基于四步复盘法和多市场指数温度计，提供跨市场投资分析及多格式报告，支持周度复盘、每日快检与单标的深度评估。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-invest-agent"
-sourceUrl: "https://clawhub.ai/skills/ai-invest-agent"
----
+# AI 投资 Agent - 投资复盘与决策助手
 
-# Ai Invest Agent
+## 技能描述
+基于 AIPMAndy/ai-invest-agent 项目的核心能力，在 OpenClaw 中实现的独立投资分析 agent。提供跨市场（A 股/港股/美股）的四步复盘法分析、33 个指数温度计系统、10 维度持仓深度评估，输出 MD/DOCX/XLSX 多格式报告。
 
-> 基于四步复盘法和多市场指数温度计，提供跨市场投资分析及多格式报告，支持周度复盘、每日快检与单标的深度评估。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-invest-agent`
-- **Source URL:** [https://clawhub.ai/skills/ai-invest-agent](https://clawhub.ai/skills/ai-invest-agent)
+### 1. 四步复盘法（标准投资分析框架）
 
-## Overview
+**Step 1: 宏观分析**
+- 政策面：美联储/中国货币财政政策/地缘风险
+- 资金面：美债/美元/中美利差/北向/南向/黄金/比特币
+- 基本面：美中经济数据+三大市场估值
+- 重大事件与风险评估
 
+**Step 2: 板块分析**
+- 覆盖四大板块：科技/医疗/红利/消费
+- 同时分析 A 股/港股/美股三大市场
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-invest-agent
+**Step 3: 指数温度计**
+- 33 个指数估值分位量化（A 股 20 个 + 港股 8 个 + 美股 5 个）
+- 温度 = PE 历史分位 × 100
+- 操作区间：0-30℃买入 | 30-50℃合理 | 50-100℃卖出
+
+**Step 4: 标的深度分析**
+- 10 维度深度评估：①基本面 ②估值 ③护城河 ④驱动因素 ⑤风险因素
+- ⑥趋势买卖点 ⑦长期温度 ⑧短期温度 ⑨评级 ⑩操作建议
+- 结合用户持仓数据生成操作计划
+
+### 2. 多场景支持
+
+**周度复盘**
+- 加载完整 Prompt 进行系统性分析
+- 生成详细版/简版双版本报告
+
+**每日快检**
+- 5 分钟掌握市场状态
+- 三大市场涨跌幅、资金流向、重大事件汇总
+
+**单标的分析**
+- 按 10 维度框架输出深度报告
+- 适用于个股/基金/指数基金
+
+**温度计快速更新**
+- 针对特定指数列表更新 PE 温度
+- 快速判断操作建议
+
+### 3. 输出格式
+
+- **Markdown** (.md) - 网页浏览友好
+- **Word** (.docx) - 带楷体字体的正式报告
+- **Excel** (.xlsx) - 持仓数据表格化分析
+- **数据表** - 可直接嵌入 Feishu 文档
+
+## 使用方式
+
+### 通过 OpenClaw 调用
+
+#### 周度复盘任务
 ```
+/invest-weekly-review
+```
+
+#### 每日快速检查
+```
+/invest-daily-check
+```
+
+#### 单标的深度分析
+```
+/invest-analysis {标的名称}
+```
+
+#### 温度计更新
+```
+/invest-temperature {指数列表}
+```
+
+### 通过 Feishu 集成
+
+- 直接在 Feishu 文档中使用 `/invest-` 命令
+- 输出报告自动保存到指定目录
+- 支持 Feishu 表格数据导入/导出
+
+## 覆盖指数 (33 个)
+
+### A 股 (20 个)
+- **宽基**：上证 50、沪深 300、中证 500、中证 1000、创业板指、科创 50
+- **科技**：人工智能、半导体、传媒 (游戏)、光伏产业、新能源车
+- **医疗**：创新药、中证医疗、中药
+- **红利**：中证红利、红利低波
+- **消费**：中证白酒、主要消费
+- **金融**：中证银行、证券保险
+
+### 港股 (8 个)
+- **宽基**：恒生指数、恒生国企
+- **科技**：恒生科技、中概互联
+- **医疗**：恒生医药
+- **红利**：港股央企红利、港股高股息
+- **消费**：恒生消费
+
+### 美股 (5 个)
+- **宽基**：标普 500、纳斯达克 100、道琼斯工业
+- **科技**：费城半导体
+- **红利**：美股 REITs
+
+## 安全与合规
+
+- **免责声明**：本项目仅供学习交流和工程实践，不构成任何投资建议
+- **数据源**：通过联网搜索获取最新数据
+- **风险提示**：投资决策需谨慎，历史表现不代表未来
+
+## 技术架构
+
+基于 OpenClaw subagent 框架实现，支持：
+- Web 搜索联网获取最新数据
+- Feishu 文档/表格读写集成
+- 多格式报告生成
+- 结构化投资分析输出
+
+## 适用场景
+
+- 个人投资者周度复盘
+- 基金经理持仓管理
+- 投资顾问市场分析
+- 机构投资组合评估
+- 量化策略回测准备
+
+---
+**注意**：此 agent 继承自开源项目 AIPMAndy/ai-invest-agent，遵循 Apache 2.0 许可证。

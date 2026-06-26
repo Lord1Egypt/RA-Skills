@@ -1,0 +1,10 @@
+[project]
+name = "used-price-compare"
+version = "0.6.4"
+description = "Multi-platform second-hand price comparison and item evaluation skills"
+requires-python = ">=3.10"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

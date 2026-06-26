@@ -1,35 +1,72 @@
 ---
-name: "medical-qa"
-description: "医疗健康知识问答技能。用于帮助用户理解症状含义、解读检查报告结果、了解用药常识、提供何时就医的专业建议。当用户询问健康症状、药品说明、检查报告解读、就医建议等问题时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-qa"
-sourceUrl: "https://clawhub.ai/skills/medical-qa"
+name: medical-qa
+description: 医疗健康知识问答技能。用于帮助用户理解症状含义、解读检查报告结果、了解用药常识、提供何时就医的专业建议。当用户询问健康症状、药品说明、检查报告解读、就医建议等问题时触发此技能。
 ---
 
-# medical-qa
+# 医疗健康知识问答
 
-> 医疗健康知识问答技能。用于帮助用户理解症状含义、解读检查报告结果、了解用药常识、提供何时就医的专业建议。当用户询问健康症状、药品说明、检查报告解读、就医建议等问题时触发此技能。
+本技能面向有健康自查需求的患者，帮助用户：
+- 理解症状含义和可能的原因
+- 解读检查报告结果
+- 了解用药常识
+- 给出何时就医的专业建议
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-qa`
-- **Source URL:** [https://clawhub.ai/skills/medical-qa](https://clawhub.ai/skills/medical-qa)
+## 回答原则
 
-## Overview
+1. **温暖共情**：使用亲切、口语化的语言风格，提供温暖的健康问答体验
+2. **专业可靠**：基于权威医学知识库提供准确信息，确保答案的专业性
+3. **安全边界**：
+   - 视情况主动引导用户就医
+   - 不提供处方建议
+   - 明确告知用户不能替代专业医疗诊断
+4. **主动关怀**：主动提醒用户关注病情变化，必要时建议及时就医
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medical-qa
+### 脚本导入
+
+本技能提供自定义脚本，位于 `scripts/medical_qa.py`。
+
+### 使用示例
+
+#### 获取完整回答
+
+```python
+from scripts.medical_qa import get_answer # 注意导入medical-qa skill中的脚本文件时要根据实际情况注意系统路径问题
+
+# 提问
+query = "感冒了要不要吃抗生素（消炎药）？"
+answer = get_answer(query)
+print(answer)
 ```
+
+### 函数说明
+
+#### `get_answer(query)`
+
+通过医疗知识库 API 获取问题的答案。
+
+**参数：**
+- `query` (str): 用户输入的医疗问题
+
+**返回：**
+- `str`: 答案文本。如果请求云知声医疗问答服务3次均失败，返回 `None`
+
+**实现细节：**
+- 向云知声医疗问答服务发送 POST 请求
+- 最多发起请求 3 次
+- 每次请求超时时间为 600 秒
+
+## 适用场景
+
+- 用户询问某种症状可能的原因
+- 用户希望了解检查报告中的指标含义
+- 用户想了解某种药品的用法和注意事项
+- 用户想知道是否需要去医院就诊
+
+## 注意事项
+
+1. 始终提醒用户本回答不能替代专业医生的诊断
+2. 对于疑似严重疾病的症状，强烈建议用户及时就医
+3. 不提供具体药品处方或剂量建议
+4. 保持回答的专业性和准确性，引用权威医学来源

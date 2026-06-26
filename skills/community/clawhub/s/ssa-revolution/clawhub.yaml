@@ -1,0 +1,32 @@
+# Auto-Evolution / Revolution
+
+**Version:** 0.5.7  
+**Category:** Agent Orchestration  
+**Author:** Wilson AI Team  
+**License:** MIT
+
+---
+
+## 简介
+
+全自动多 Agent 进化系统，通过 Sonnet 审阅 + Qwen 执行的三步流程，自动完成复杂任务的迭代开发。
+
+## 安装
+
+```bash
+clawhub install revolution
+```
+
+## 快速开始
+
+1. 配置 Wilson 和 Warden 心跳（见 README.md）
+2. 在 `evolution/tasks/` 目录创建任务文件
+3. 系统自动每 5 分钟推进任务
+
+## 文档
+
+完整文档请查看 [README.md](README.md)
+
+## 版本
+
+0.5.7 (2026-03-27)

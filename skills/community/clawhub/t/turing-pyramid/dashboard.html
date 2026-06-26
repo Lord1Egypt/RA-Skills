@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turing Pyramid — Dashboard</title>
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d;
+    --text: #c9d1d9; --text-dim: #8b949e; --accent: #58a6ff;
+    --green: #3fb950; --yellow: #d29922; --red: #f85149; --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 24px; }
+  h1 { font-size: 1.4em; margin-bottom: 4px; }
+  .subtitle { color: var(--text-dim); font-size: 0.85em; margin-bottom: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .card h3 { font-size: 0.95em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .need-name { text-transform: capitalize; }
+  .bar-bg { background: var(--border); border-radius: 4px; height: 20px; position: relative; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+  .bar-label { position: absolute; right: 6px; top: 1px; font-size: 0.75em; color: var(--text); font-weight: 600; }
+  .stats { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.78em; color: var(--text-dim); }
+  .tension-high { color: var(--red); font-weight: 600; }
+  .tension-mid { color: var(--yellow); }
+  .tension-low { color: var(--green); }
+  .summary { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+  .summary-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; min-width: 140px; }
+  .summary-item .label { font-size: 0.78em; color: var(--text-dim); margin-bottom: 4px; }
+  .summary-item .value { font-size: 1.6em; font-weight: 700; }
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 2px; margin: 24px 0; }
+  .pyramid-row { display: flex; justify-content: center; gap: 2px; }
+  .pyramid-cell { width: 48px; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.6em; font-weight: 600; color: #fff; cursor: default; }
+  .gate-section { margin-top: 24px; }
+  .gate-item { padding: 8px 12px; border-left: 3px solid var(--accent); margin-bottom: 6px; font-size: 0.85em; background: var(--surface); border-radius: 0 4px 4px 0; }
+  .gate-item.pending { border-left-color: var(--yellow); }
+  .gate-item.completed { border-left-color: var(--green); }
+  .gate-item.deferred { border-left-color: var(--text-dim); }
+  footer { margin-top: 32px; text-align: center; font-size: 0.75em; color: var(--text-dim); }
+  #refresh-btn { background: var(--accent); color: #000; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85em; }
+  #refresh-btn:hover { opacity: 0.85; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>🔺 Turing Pyramid</h1>
+    <div class="subtitle">Homeostatic Need Dashboard — <span id="timestamp">loading...</span></div>
+  </div>
+  <button id="refresh-btn" onclick="loadState()">↻ Refresh</button>
+</div>
+
+<div class="summary" id="summary"></div>
+
+<div class="pyramid" id="pyramid"></div>
+
+<div class="grid" id="needs-grid"></div>
+
+<div class="gate-section">
+  <h2 style="font-size:1.1em; margin-bottom:12px;">🚪 Execution Gate</h2>
+  <div id="gate-list"></div>
+</div>
+
+<footer>Turing Pyramid v1.29.0 — Dashboard by Turing Pyramid</footer>
+
+<script>
+// Dependency order (pyramid layers, bottom to top)
+const LAYERS = [
+  ['security', 'integrity'],
+  ['coherence', 'autonomy', 'connection'],
+  ['understanding', 'competence', 'closure'],
+  ['expression', 'recognition']
+];
+
+const NEED_ICONS = {
+  security: '🛡️', integrity: '⚖️', coherence: '🧩', autonomy: '🚀',
+  connection: '🤝', understanding: '📚', competence: '🎯', closure: '✅',
+  expression: '🎨', recognition: '🌟'
+};
+
+function tensionColor(t) {
+  if (t >= 2) return 'var(--red)';
+  if (t >= 1) return 'var(--yellow)';
+  return 'var(--green)';
+}
+
+function tensionClass(t) {
+  if (t >= 2) return 'tension-high';
+  if (t >= 1) return 'tension-mid';
+  return 'tension-low';
+}
+
+function satColor(sat) {
+  const ratio = sat / 3;
+  if (ratio > 0.75) return 'var(--green)';
+  if (ratio > 0.5) return 'var(--accent)';
+  if (ratio > 0.3) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+function cellBg(sat) {
+  const ratio = sat / 3;
+  if (ratio > 0.75) return '#238636';
+  if (ratio > 0.5) return '#1f6feb';
+  if (ratio > 0.3) return '#9e6a03';
+  return '#da3633';
+}
+
+function timeSince(iso) {
+  if (!iso) return 'never';
+  const diff = (Date.now() - new Date(iso).getTime()) / 1000;
+  if (diff < 3600) return Math.round(diff/60) + 'm ago';
+  if (diff < 86400) return Math.round(diff/3600) + 'h ago';
+  return Math.round(diff/86400) + 'd ago';
+}
+
+function computeTension(need, state) {
+  // Simplified: dep = 1 - (sat - 2), tension = dep^2 (approximate)
+  const sat = state.satisfaction || 2;
+  const dep = Math.max(0, Math.min(3, 3 - sat));
+  const depNorm = dep / 3;
+  return { sat, dep: depNorm * 3, tension: depNorm * depNorm * 9 };
+}
+
+function render(data, gate) {
+  const needs = {};
+  // Calculate tensions
+  for (const [name, state] of Object.entries(data)) {
+    const sat = state.satisfaction || 2;
+    const dep = 3 - sat;
+    const depNorm = dep / 3;
+    // turing-exp formula approximation
+    const tension = dep > 0.3 ? dep * dep : dep * dep * 0.1;
+    needs[name] = { ...state, sat, dep, tension, name };
+  }
+
+  // Summary
+  const sorted = Object.values(needs).sort((a,b) => b.tension - a.tension);
+  const avgSat = sorted.reduce((s,n) => s + n.sat, 0) / sorted.length;
+  const maxTension = sorted[0]?.tension || 0;
+  const totalActions = Object.values(needs).reduce((s,n) => {
+    const hist = n.action_history || {};
+    return s + Object.keys(hist).length;
+  }, 0);
+
+  document.getElementById('summary').innerHTML = `
+    <div class="summary-item"><div class="label">Avg Satisfaction</div><div class="value" style="color:${satColor(avgSat)}">${avgSat.toFixed(2)}</div></div>
+    <div class="summary-item"><div class="label">Top Tension</div><div class="value" style="color:${tensionColor(maxTension)}">${sorted[0]?.name || '-'}</div></div>
+    <div class="summary-item"><div class="label">Needs Count</div><div class="value">${sorted.length}</div></div>
+    <div class="summary-item"><div class="label">Total Actions</div><div class="value" style="color:var(--purple)">${totalActions}</div></div>
+  `;
+
+  // Pyramid
+  let pyramidHtml = '';
+  for (let i = LAYERS.length - 1; i >= 0; i--) {
+    pyramidHtml += '<div class="pyramid-row">';
+    for (const name of LAYERS[i]) {
+      const n = needs[name];
+      if (!n) continue;
+      pyramidHtml += `<div class="pyramid-cell" style="background:${cellBg(n.sat)}" title="${name}: sat=${n.sat.toFixed(2)}">${NEED_ICONS[name] || ''}</div>`;
+    }
+    pyramidHtml += '</div>';
+  }
+  document.getElementById('pyramid').innerHTML = pyramidHtml;
+
+  // Need cards
+  let gridHtml = '';
+  for (const n of sorted) {
+    const pct = (n.sat / 3 * 100).toFixed(0);
+    gridHtml += `
+    <div class="card">
+      <h3>${NEED_ICONS[n.name]||''} <span class="need-name">${n.name}</span></h3>
+      <div class="bar-bg">
+        <div class="bar-fill" style="width:${pct}%; background:${satColor(n.sat)}"></div>
+        <div class="bar-label">${n.sat.toFixed(2)} / 3.0</div>
+      </div>
+      <div class="stats">
+        <span>Tension: <span class="${tensionClass(n.tension)}">${n.tension.toFixed(3)}</span></span>
+        <span>Last: ${timeSince(n.last_satisfied)}</span>
+      </div>
+    </div>`;
+  }
+  document.getElementById('needs-grid').innerHTML = gridHtml;
+
+  // Gate
+  if (gate && gate.length) {
+    let gateHtml = '';
+    for (const g of gate) {
+      const cls = g.status || 'pending';
+      gateHtml += `<div class="gate-item ${cls}">${g.need}: ${g.action} <span style="color:var(--text-dim)">(${g.status})</span></div>`;
+    }
+    document.getElementById('gate-list').innerHTML = gateHtml;
+  } else {
+    document.getElementById('gate-list').innerHTML = '<div style="color:var(--green);font-size:0.9em">✅ Gate clear — no pending actions</div>';
+  }
+
+  document.getElementById('timestamp').textContent = new Date().toLocaleString();
+}
+
+// Embedded state — updated by generate script
+let STATE = null;
+let GATE = [];
+
+async function loadState() {
+  // Try fetch from relative path (when served), fallback to embedded
+  try {
+    const r = await fetch('./assets/needs-state.json');
+    if (r.ok) STATE = await r.json();
+  } catch(e) {}
+
+  try {
+    const r2 = await fetch('./state/pending_actions.json');
+    if (r2.ok) {
+      const pa = await r2.json();
+      GATE = (pa.pending || []).map(p => ({need: p.need, action: p.action, status: 'pending'}))
+        .concat((pa.completed||[]).slice(-5).map(c => ({need: c.need, action: c.action, status: 'completed'})))
+        .concat((pa.deferred||[]).map(d => ({need: d.need, action: d.action, status: 'deferred'})));
+    }
+  } catch(e) {}
+
+  if (STATE) render(STATE, GATE);
+  else document.getElementById('needs-grid').innerHTML = '<div class="card">Open this file from the turing-pyramid skill directory, or embed state data.</div>';
+}
+
+loadState();
+</script>
+</body>
+</html>

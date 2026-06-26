@@ -1,0 +1,35 @@
+{
+  "slug": "openclaw-file-manager-1-0-0",
+  "name": "File Manager",
+  "description": "文件管理 - 批量文件操作、智能分类",
+  "version": "1.0.0",
+  "tags": [
+    "file",
+    "manager",
+    "automation",
+    "organize"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "references/"
+  ],
+  "main": "SKILL.md",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "optimization": {
+    "optimized": true,
+    "date": "2026-03-16",
+    "principles": [
+      "karpathy-minimalism",
+      "education-first",
+      "test-coverage"
+    ],
+    "quality_score": 93.8,
+    "batch": "2026-03-16-mass-optimization"
+  }
+}

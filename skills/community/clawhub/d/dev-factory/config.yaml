@@ -1,0 +1,73 @@
+# Builder Agent Configuration (Enhanced v6.0)
+# 환경 변수는 ${VAR_NAME} 형식으로 참조
+
+# Feature Flags
+features:
+  adaptive_scoring: true        # 적응형 다차원 점수 시스템 사용
+  checkpoint_resume: true       # 체크포인트 및 재개 기능 사용
+  coverage_validation: true     # 테스트 커버리지 검증 사용 (80%+)
+  spec_validation: true         # 스펙 품질 검증 사용
+  dynamic_templates: true       # 동적 스펙 템플릿 사용
+  parallel_builds: false        # 병렬 빌드 처리 (P2 - 개발 중)
+  multi_agent: false            # 멀티에이전트 협업 (P2 - 개발 중)
+  continuous_learning: true     # 지속적 학습 시스템 사용
+
+discovery:
+  output_dir: "/tmp/builder-discovery"
+  cache_ttl_seconds: 3600
+
+  github:
+    enabled: true
+    method: "browser"          # "api" | "browser"
+    language: "python"
+    max_results: 5
+
+  cve:
+    enabled: true
+    lookback_days: 7
+    min_score: 7.0
+    severity: "HIGH"           # "HIGH" | "CRITICAL"
+    max_results: 20
+
+  security_news:
+    enabled: true
+    keywords:
+      - ransomware
+      - vulnerability
+      - malware
+      - phishing
+      - zero-day
+      - supply-chain
+
+correction:
+  max_retries: 3
+  test_timeout_seconds: 60
+  acp_mode: "direct"          # "direct" | "cli" | "manual"
+
+orchestration:
+  simple_engine: "glm"        # GLM API
+  medium_engine: "claude"     # Claude Code CLI
+  complex_engine: "claude"    # Claude Code CLI + templates
+  claude_timeout_seconds: 300
+  enable_fallback: true       # Claude 실패 시 GLM으로 fallback
+  fallback_on_errors:
+    - token_exhausted
+    - rate_limit
+    - timeout
+    - cli_not_found
+    - unexpected_error
+
+notion:
+  database_id: "2fc6e4a4-bd20-8041-a77b-fad0f48390ce"
+  max_queue_per_run: 10
+  rate_limit_seconds: 0.5
+  enable_sync: true
+
+github:
+  auto_publish: true
+  private: false
+  license: "MIT"
+
+logging:
+  level: "INFO"
+  file: "/tmp/builder-agent/builder.log"

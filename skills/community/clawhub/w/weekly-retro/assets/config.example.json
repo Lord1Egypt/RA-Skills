@@ -1,0 +1,9 @@
+{
+  "memory_dir": "/Users/openclaw/.openclaw/workspace/memory",
+  "vault_output_dir": "/Users/openclaw/.openclaw/workspace/vault/weekly-retro",
+  "history_file": "/Users/openclaw/.openclaw/workspace/skills/weekly-retro/history.json",
+  "soul_path": "/Users/openclaw/.openclaw/workspace/SOUL.md",
+  "agents_path": "/Users/openclaw/.openclaw/workspace/AGENTS.md",
+  "lookback_days": 7,
+  "week_score_bias": 0
+}

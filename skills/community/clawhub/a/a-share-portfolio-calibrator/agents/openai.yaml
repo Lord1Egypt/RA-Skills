@@ -1,0 +1,4 @@
+interface:
+  display_name: "A股组合校准"
+  short_description: "把截图或列表转成仓位、权重、集中度和约束的组合工作包"
+  default_prompt: "Use a-share-portfolio-calibrator to把用户持仓整理成标准化组合工作包。"

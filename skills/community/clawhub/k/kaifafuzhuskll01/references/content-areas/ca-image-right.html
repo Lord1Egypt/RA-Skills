@@ -1,0 +1,35 @@
+<!-- ca-image-right — 左文右图，镜像版 -->
+<div class="content-area" style="align-items:stretch;padding:40px 80px">
+  <!-- 左侧文字区（60%） -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;margin-right:48px">
+    {{#if title}}
+    <h2 style="font-family:var(--font);font-size:26px;font-weight:600;color:var(--color-text);margin:0 0 22px 0">{{title}}</h2>
+    {{/if}}
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px">
+      {{#each points}}
+      <li style="display:flex;align-items:flex-start;gap:12px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--color-primary);margin-top:7px;flex-shrink:0"></div>
+        <div style="display:flex;flex-direction:column;gap:3px">
+          <span style="font-family:var(--font);font-size:17px;font-weight:500;color:var(--color-text);line-height:1.6">{{text}}</span>
+          {{#if sub}}
+          <span style="font-family:var(--font);font-size:14px;color:var(--color-text-secondary);line-height:1.5">{{sub}}</span>
+          {{/if}}
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <!-- 右侧图片区（40%） -->
+  <div style="flex:0 0 40%;background:var(--color-bg-alt);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;position:relative;overflow:hidden">
+    {{#if image_icon}}
+    <div style="width:80px;height:80px;border-radius:50%;background:var(--color-primary-light);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <use href="#{{image_icon}}"/>
+      </svg>
+    </div>
+    {{/if}}
+    {{#if image_desc}}
+    <span style="font-family:var(--font);font-size:15px;font-weight:500;color:var(--color-text-secondary);text-align:center">{{image_desc}}</span>
+    {{/if}}
+  </div>
+</div>

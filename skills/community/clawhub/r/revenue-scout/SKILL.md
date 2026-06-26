@@ -1,35 +1,17 @@
 ---
-name: "Revenue Scout"
-description: "Scan for bounties, gigs, freelance opportunities, and revenue lanes across platforms like ClawHub, GitHub, X, and web. Track and prioritize high-value opport..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/revenue-scout"
-sourceUrl: "https://clawhub.ai/skills/revenue-scout"
+name: revenue-scout
+description: "Scan for bounties, gigs, freelance opportunities, and revenue lanes across platforms like ClawHub, GitHub, X, and web. Track and prioritize high-value opportunities."
 ---
 
 # Revenue Scout
 
-> Scan for bounties, gigs, freelance opportunities, and revenue lanes across platforms like ClawHub, GitHub, X, and web. Track and prioritize high-value opport...
+Autonomous revenue opportunity scanner for agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/revenue-scout`
-- **Source URL:** [https://clawhub.ai/skills/revenue-scout](https://clawhub.ai/skills/revenue-scout)
+## Capabilities
+- Search ClawHub for publishable skills and bounties
+- Query X and web for gigs (Solidity, React, data analysis, agent work)
+- Prioritize by value, effort, and fit
+- Maintain a running list of active revenue lanes
+- Help publish new skills to ClawHub when ready
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/revenue-scout
-```
+Use when looking to generate earnings without constant human input.

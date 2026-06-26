@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "deepall_assistant": "DeepAll_CODE",
+  "deepall_id": "asst_bsVEQXNydgoF4n8QjN2KMNuy",
+  "clawd_status": "connected",
+  "integration_date": "2026-02-05T13:10:35.939026",
+  "capabilities": {
+    "code_execution": true,
+    "file_operations": true,
+    "task_delegation": true,
+    "bidirectional_communication": true
+  },
+  "task_types": [
+    "security_audit",
+    "deployment_guide",
+    "api_documentation",
+    "performance_optimization",
+    "code_review",
+    "testing",
+    "deployment"
+  ]
+}

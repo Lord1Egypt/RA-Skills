@@ -1,0 +1,38 @@
+{
+  "name": "simple-local-memory",
+  "version": "1.0.0",
+  "description": "Zero-dependency AI memory system. No API keys. Pure local storage with intelligent search.",
+  "keywords": [
+    "memory",
+    "ai-agent",
+    "long-term-memory",
+    "local-memory",
+    "no-api",
+    "offline",
+    "vector-search",
+    "persistent-context",
+    "claude",
+    "chatgpt",
+    "cursor"
+  ],
+  "author": "OpenSource",
+  "license": "MIT",
+  "bin": {
+    "memory-init": "./bin/memory-init.js",
+    "memory-store": "./bin/memory-store.js",
+    "memory-search": "./bin/memory-search.js",
+    "memory-list": "./bin/memory-list.js",
+    "memory-stats": "./bin/memory-stats.js",
+    "memory-export": "./bin/memory-export.js",
+    "memory-import": "./bin/memory-import.js"
+  },
+  "files": [
+    "SKILL.md",
+    "bin/",
+    "lib/",
+    "templates/"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

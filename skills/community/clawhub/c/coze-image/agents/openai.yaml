@@ -1,0 +1,7 @@
+interface:
+  display_name: "Coze Image Skill"
+  short_description: "Return Coze-generated images as Base64 for OpenClaw."
+  default_prompt: "Use $coze-image-skill to call a Coze image project and return the generated image as an inline Base64 data URI."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,22 @@
+# OpenClaw Skill Quality Tools
+
 ---
-name: "my skill"
-description: "Provides tools to review and improve SKILL.md quality based on defined standards and grading criteria."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-improver"
-sourceUrl: "https://clawhub.ai/skills/skill-improver"
+name: skill-standard
+description: "Skill quality standard for OpenClaw SKILL.md. Defines description as the only trigger, three-layer progressive disclosure, six review dimensions, and grade rating A/B/C/D. Use when designing or auditing skills."
 ---
 
-# my skill
+## Workflow
 
-> Provides tools to review and improve SKILL.md quality based on defined standards and grading criteria.
+**Step 1 — Review:**
+Load skill-reviewer to audit the target SKILL.md.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-improver`
-- **Source URL:** [https://clawhub.ai/skills/skill-improver](https://clawhub.ai/skills/skill-improver)
+**Step 2 — Conditional:**
 
-## Overview
+| Result | Action |
+|--------|--------|
+| Grade A or B | Done. SKILL.md meets standard. Do NOT load skill-standard. |
+| Grade C or D | Load skill-standard to fix the issues. |
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-improver
-```
+_Version: v1.0.0_

@@ -1,35 +1,224 @@
 ---
-name: "PDCA+ISO9001质量管理"
-description: "PDCA+ISO9001质量管理决策系统技能 - 基于PDCA循环和ISO9001质量体系的AI决策质量管控技能，实现任务全生命周期管理、标准化流程、持续改进"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quality-management-pdca"
-sourceUrl: "https://clawhub.ai/skills/quality-management-pdca"
+name: quality-management
+slug: quality-management
+version: 1.0.0
+description: PDCA+ISO9001质量管理决策系统技能 - 基于PDCA循环和ISO9001质量体系的AI决策质量管控技能，实现任务全生命周期管理、标准化流程、持续改进
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+      os:
+        - linux
+        - darwin
+        - win32
+    author: QClaw Team
+    tags:
+      - pdca
+      - iso9001
+      - quality-management
+      - decision-making
+      - workflow
 ---
 
-# PDCA+ISO9001质量管理
-
-> PDCA+ISO9001质量管理决策系统技能 - 基于PDCA循环和ISO9001质量体系的AI决策质量管控技能，实现任务全生命周期管理、标准化流程、持续改进
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quality-management-pdca`
-- **Source URL:** [https://clawhub.ai/skills/quality-management-pdca](https://clawhub.ai/skills/quality-management-pdca)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/quality-management-pdca
+# Quality Management 质量管理技能
+## 🎯 技能定位
+基于PDCA循环+ISO9001质量管理体系的决策系统核心技能，实现任务全生命周期的质量管控、标准化流程、持续改进机制，为决策提供科学、严谨、可追溯的质量保障。
+### 核心思想
+- 以事实为依据的循证决策
+- 全流程闭环质量管理
+- 持续改进的动态优化
+- 可复用的经验沉淀机制
+## 📋 适用场景
+- ✅ 重要决策质量校验
+- ✅ 项目/任务全流程管控
+- ✅ 问题根因分析与整改
+- ✅ 流程标准化与优化
+- ✅ 质量报告与复盘分析
+- ✅ 经验库沉淀与复用
+## 🏗️ 核心架构
+### 四大核心模块
+#### 1. PDCA循环引擎
 ```
+┌─────────────────────────────────────────────────────┐
+│ P - 策划阶段 (Plan)                                 │
+│ • 需求分析与目标设定                                │
+│ • 风险评估与资源配置                                │
+│ • 流程制定与标准定义                                │
+│ • 质量指标与验收标准                                │
+└─────────────────────────────────────────────────────┘
+          ↓
+┌─────────────────────────────────────────────────────┐
+│ D - 执行阶段 (Do)                                   │
+│ • 任务派发与进度跟踪                                │
+│ • 标准化操作指引                                    │
+│ • 过程数据全记录                                    │
+│ • 异常实时预警                                      │
+└─────────────────────────────────────────────────────┘
+          ↓
+┌─────────────────────────────────────────────────────┐
+│ C - 检查阶段 (Check)                               │
+│ • 质量节点自动校验                                  │
+│ • 结果与目标对比分析                                │
+│ • 偏差识别与根因诊断                                │
+│ • 质量评分与问题清单                                │
+└─────────────────────────────────────────────────────┘
+          ↓
+┌─────────────────────────────────────────────────────┐
+│ A - 处置阶段 (Act)                                  │
+│ • 问题整改与效果验证                                │
+│ • 成功经验标准化                                    │
+│ • 流程优化与预防措施                                │
+│ • 知识沉淀与复用                                    │
+└─────────────────────────────────────────────────────┘
+```
+#### 2. ISO9001质量体系融合
+遵循ISO9001七项质量管理原则：
+1. **以顾客为关注焦点**：所有决策以满足用户需求为核心
+2. **领导作用**：明确责任分工与决策权限
+3. **全员参与**：支持多角色协同与意见收集
+4. **过程方法**：将活动作为相互关联的连贯系统进行管理
+5. **改进**：持续改进是永恒目标
+6. **循证决策**：基于数据和信息的决策方法
+7. **关系管理**：与相关方保持互利共赢关系
+#### 3. 决策质量校验引擎
+- 决策前提验证：信息真实性、完整性校验
+- 决策逻辑校验：推理过程严谨性、合理性检查
+- 风险评估：潜在风险识别与应对措施评估
+- 影响分析：短期/长期影响、利益相关方影响评估
+- 可行性验证：资源、时间、技术可行性分析
+#### 4. 知识沉淀与复用机制
+- 经验库：成功案例、失败教训、最佳实践自动归档
+- 模板库：标准化流程、文档、检查清单模板复用
+- 规则库：质量校验规则、决策规则自动更新
+- 模式库：常见问题、解决方案、优化模式提炼
+## 🛠️ 核心功能
+### 📊 策划阶段功能
+| 功能 | 说明 |
+|------|------|
+| 目标管理 | SMART目标制定、分解、追踪 |
+| 风险评估 | 多维度风险识别、分级、应对方案制定 |
+| 流程设计 | 可视化流程建模、节点定义、职责分配 |
+| 标准制定 | 质量标准、验收准则、操作规范定义 |
+| 资源规划 | 人力、时间、成本、工具资源配置优化 |
+### 🏃 执行阶段功能
+| 功能 | 说明 |
+|------|------|
+| 任务派发 | 自动分配任务、通知责任人 |
+| 进度跟踪 | 里程碑跟踪、甘特图展示、延误预警 |
+| 过程记录 | 操作日志、数据留痕、证据留存 |
+| 异常处理 | 异常自动识别、告警、升级机制 |
+| 协同支持 | 多方协作、意见收集、实时沟通 |
+### 🔍 检查阶段功能
+| 功能 | 说明 |
+|------|------|
+| 质量校验 | 多节点自动校验、人工复核机制 |
+| 偏差分析 | 实际结果与目标对比、偏差量化 |
+| 根因诊断 | 5Why分析、鱼骨图、故障树分析 |
+| 质量评分 | 多维度质量评分、健康度评估 |
+| 问题管理 | 问题识别、分级、跟踪、闭环 |
+### ♻️ 处置阶段功能
+| 功能 | 说明 |
+|------|------|
+| 整改跟踪 | 整改方案制定、执行跟踪、效果验证 |
+| 流程优化 | 瓶颈识别、流程再造、效率提升 |
+| 经验沉淀 | 最佳实践、失败教训自动入库 |
+| 标准更新 | 标准、规范、模板迭代优化 |
+| 报告生成 | 质量报告、复盘报告、改进报告自动生成 |
+## 📁 目录结构
+```
+quality-management/
+├── SKILL.md                          # 技能说明文档（本文件）
+├── config.json                       # 技能配置文件
+├── scripts/
+│   ├── __init__.py
+│   ├── pdca_engine.py                # PDCA循环核心引擎
+│   ├── iso9001_validator.py          # ISO9001质量体系校验
+│   ├── decision_checker.py           # 决策质量校验引擎
+│   ├── knowledge_manager.py          # 知识沉淀与复用管理
+│   ├── template_engine.py            # 模板引擎
+│   ├── report_generator.py           # 报告生成器
+│   └── utils.py                      # 工具函数
+├── templates/                        # 标准化模板库
+│   ├── plan/                         # 策划阶段模板
+│   ├── execution/                    # 执行阶段模板
+│   ├── check/                        # 检查阶段模板
+│   ├── act/                          # 处置阶段模板
+│   └── common/                       # 通用模板
+├── docs/                             # 文档
+└── knowledge_base/                   # 知识库（运行时自动生成）
+```
+## ⚙️ 配置说明
+### 核心配置项
+```json
+{
+  "quality": {
+    "enable_auto_check": true,
+    "quality_score_threshold": 80,
+    "risk_level_threshold": "medium",
+    "enable_auto_warning": true
+  },
+  "pdca": {
+    "enable_phase_gate": true,
+    "require_review_before_next_phase": true,
+    "auto_archive_on_complete": true
+  },
+  "knowledge": {
+    "enable_auto_learning": true,
+    "experience_extraction_threshold": 3,
+    "auto_update_templates": true
+  }
+}
+```
+## 🚀 使用指南
+### 快速开始
+1. **启动新项目质量管理**
+   ```
+   python scripts/pdca_engine.py init --name "项目名称" --type "project"
+   ```
+2. **策划阶段**
+   ```
+   python scripts/pdca_engine.py plan --id <项目ID> --config plan_config.json
+   ```
+3. **执行阶段**
+   ```
+   python scripts/pdca_engine.py do --id <项目ID> --action start
+   ```
+4. **检查阶段**
+   ```
+   python scripts/pdca_engine.py check --id <项目ID> --full-check
+   ```
+5. **处置阶段**
+   ```
+   python scripts/pdca_engine.py act --id <项目ID> --improve
+   ```
+### 决策质量校验
+```
+python scripts/decision_checker.py validate --decision <决策内容> --context <上下文文件>
+```
+### 生成质量报告
+```
+python scripts/report_generator.py generate --id <项目ID> --type full --output report.md
+```
+## 🎯 核心优势
+### 1. 科学严谨
+融合PDCA循环和ISO9001国际标准，决策过程有章可循、有据可依
+### 2. 全流程闭环
+从策划到改进形成完整闭环，每个环节都有记录、可追溯、可验证
+### 3. 智能高效
+自动校验、自动分析、自动报告，大幅提升质量管理效率
+### 4. 持续进化
+知识沉淀机制让系统越用越智能，不断积累最佳实践和优化经验
+### 5. 灵活适配
+支持自定义流程、自定义标准、自定义模板，适配各种场景需求
+## 📈 质量指标
+- 决策准确率提升：≥90%
+- 问题重复发生率降低：≤10%
+- 流程标准化覆盖率：≥95%
+- 质量问题发现及时率：≥98%
+- 经验复用率：≥60%
+## 🤝 贡献指南
+欢迎提交Issue和PR，共同完善质量管理技能！
+---
+**遵循标准**：ISO 9001:2015 质量管理体系要求  
+**设计理念**：实事求是、严谨科学、持续改进

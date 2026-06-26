@@ -1,0 +1,11 @@
+{
+  "owner": "zhengxinjipai",
+  "slug": "deep-research-gemini",
+  "displayName": "Deep Research Gemini",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772795331050,
+    "commit": "https://github.com/openclaw/skills/commit/f1820898f19aec444774729a493792cef9b443b9"
+  },
+  "history": []
+}

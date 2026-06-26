@@ -1,0 +1,11 @@
+hallucination / AI幻觉 / 幻觉纠偏
+- Require evidence before accepting generated facts.
+
+fake completion / AI假完成 / AI以为自己工作了
+- Verify output, not status text.
+
+role drift / verification gap
+- Re-anchor scope and define the done gate.
+
+agent review / agent audit / LLM QA
+- Use the review template and keep the evidence trail.

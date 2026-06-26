@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 18px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > * {
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 小红书情绪管理风格 ===== */
+/* 封面样式 */
+.card-cover-xiaohongshu {
+  background: #8863cf;
+  box-shadow: 0 10px 25px rgba(136, 99, 207, 0.15);
+  position: relative;
+}
+
+.card-cover-xiaohongshu .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(136, 99, 207, 0.2),
+    rgba(136, 99, 207, 0.7)
+  );
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-xiaohongshu .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 17.5);
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-xiaohongshu .cover-content {
+  background: white;
+  padding: calc(var(--spacing) * 6);
+  border-top: none;
+  position: relative;
+}
+
+.card-cover-separate.card-cover-xiaohongshu .cover-content:before {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * 3);
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 0.5);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 15px,
+    #8863cf 15px,
+    #8863cf 20px
+  );
+}
+
+.card-cover-xiaohongshu .cover-title {
+  color: #8863cf;
+  position: relative;
+  text-align: center;
+  margin-bottom: calc(var(--spacing) * 5);
+}
+
+.card-cover-xiaohongshu .cover-title:after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -2.5);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 15);
+  height: calc(var(--spacing) * 0.5);
+  background: #8863cf;
+  opacity: 0.5;
+}
+
+.card-cover-xiaohongshu .cover-description {
+  color: #333;
+  text-align: center;
+}
+
+.card-cover-xiaohongshu .cover-tag {
+  background-color: #f5f0ff;
+  color: #8863cf;
+  border: 1px solid #d5c8f0;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.card-cover-xiaohongshu .cover-tag:hover {
+  background-color: #e8dcff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(136, 99, 207, 0.2);
+}
+
+.card-cover-xiaohongshu .cover-date {
+  color: #6b4da8;
+}
+
+/* 卡片样式 */
+.card-xiaohongshu {
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(136, 99, 207, 0.15);
+  background: #8863cf;
+  padding: calc(var(--spacing) * 8.75) calc(var(--spacing) * 6.25)
+    calc(var(--spacing) * 6.25);
+  position: relative;
+  --highlight-color: #8863cf;
+  --highlight-bg-color: #f5f0ff;
+}
+
+/* 顶部日历穿孔效果 */
+.card-xiaohongshu:before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * 6);
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 0.5);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 15px,
+    #fff 15px,
+    #fff 20px
+  );
+}
+
+/* 紫色圆环装饰 */
+.card-xiaohongshu:after {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * 2.5);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  border-radius: 50%;
+  border: 3px solid #ca6ce5;
+  background: white;
+  box-shadow: 0 2px 5px rgba(136, 99, 207, 0.2);
+}
+
+.card-xiaohongshu .card-content-inner {
+  position: relative;
+  z-index: 1;
+}
+.card-xiaohongshu .card-content {
+  position: relative;
+  background: rgb(203, 108, 230);
+  border: 2px solid #000;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 9)
+    calc(var(--spacing) * 6) calc(var(--spacing) * 4);
+  height: 100%;
+  transform: translate(10px, 10px);
+}
+
+.card-xiaohongshu .card-content::before {
+  content: "";
+  background: #fff;
+  border: 2px solid #000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: calc(var(--spacing) * -2.5);
+  right: calc(var(--spacing) * 2.5);
+}
+
+/* 主标题样式 - 手写风格紫色字体 */
+.card-xiaohongshu h1 {
+  font-size: calc(var(--spacing) * 7);
+  color: rgb(201, 168, 238); /* 文字颜色 */
+  margin-bottom: calc(var(--spacing) * 2);
+  letter-spacing: 4px;
+  font-weight: 600;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+/* 使用伪元素实现描边效果 */
+.card-xiaohongshu h1:before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  -webkit-text-stroke: 4px rgb(82, 49, 119);
+  color: transparent;
+}
+
+/* 副标题样式 - 黑色常规字体 */
+.card-xiaohongshu h2 {
+  color: #333;
+  margin-bottom: calc(var(--spacing) * 6);
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 2.5);
+}
+
+.card-xiaohongshu h2:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 15);
+  height: calc(var(--spacing) * 0.5);
+  background: #8863cf;
+  opacity: 0.5;
+}
+
+/* 段落样式 */
+.card-xiaohongshu p {
+  color: #333;
+  font-size: inherit;
+}
+
+.card-xiaohongshu em {
+  color: #8863cf;
+  font-style: italic;
+}
+
+.card-xiaohongshu p a {
+  color: #8863cf;
+  text-decoration: none;
+  border-bottom: 1px dashed #d5c8f0;
+  transition: all 0.3s ease;
+}
+
+.card-xiaohongshu p a:hover {
+  color: #6b4da8;
+  border-bottom: 1px solid #8863cf;
+}
+
+/* 有序列表样式 - 带圆圈数字 */
+
+.card-xiaohongshu li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 5);
+  color: #333;
+  font-size: inherit;
+}
+
+/* 序号用带圆圈数字 */
+.card-xiaohongshu li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -8.5);
+  top: calc(var(--spacing) * -0.75);
+  width: calc(var(--spacing) * 7);
+  height: calc(var(--spacing) * 7);
+  border-radius: 50%;
+  border: 2px solid #8863cf;
+  background: white;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+/* 小标题为黑色加粗字体 */
+.card-xiaohongshu h3 {
+  display: block;
+  color: #333;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4);
+  font-weight: 600;
+}
+
+/* 表格样式 */
+.card-xiaohongshu table {
+  box-shadow: 0 4px 15px rgba(136, 99, 207, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-xiaohongshu th {
+  background-color: #f5f0ff;
+  color: #8863cf;
+  border-bottom: 2px solid #d5c8f0;
+}
+
+.card-xiaohongshu td {
+  color: #333;
+}
+
+.card-xiaohongshu tr {
+  border-bottom-color: #f5f0ff;
+}
+
+.card-xiaohongshu tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* 代码块样式 */
+.card-xiaohongshu pre {
+  border: 1px solid #d5c8f0;
+  box-shadow: 0 4px 15px rgba(136, 99, 207, 0.1);
+  background-color: #f9f7fc;
+}
+
+.card-xiaohongshu code:not(pre code) {
+  background-color: #f5f0ff;
+  color: #8863cf;
+}
+
+/* 引用块样式 */
+.card-xiaohongshu blockquote {
+  background-color: #f9f7fc;
+  border-left: 4px solid #8863cf;
+  color: #6b4da8;
+}
+
+.card-content ol,
+.card-content ul {
+  padding-left: calc(var(--spacing) * 10);
+}
+.card-xiaohongshu ul > li {
+  position: relative;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 4);
+}
+
+.card-xiaohongshu ul > li:before {
+  content: "✦";
+  color: #8863cf;
+  font-size: calc(var(--spacing) * 4);
+}
+
+/* 水平线样式 */
+.card-xiaohongshu hr {
+  background: linear-gradient(to right, transparent, #8863cf, transparent);
+  height: calc(var(--spacing) * 0.25);
+  opacity: 0.5;
+}
+
+/* 图片样式 */
+.card-xiaohongshu img {
+  border: 2px solid #f5f0ff;
+  box-shadow: 0 4px 15px rgba(136, 99, 207, 0.1);
+}
+
+.card-xiaohongshu .card-footer {
+  position: relative;
+}
+
+.card-xiaohongshu .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  position: absolute;
+  right: calc(var(--spacing) * 2.5);
+  top: calc(var(--spacing) * -6);
+  z-index: 100;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-xiaohongshu">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

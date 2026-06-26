@@ -1,35 +1,29 @@
----
-name: "Smart README Generator"
-description: "Automatically generates professional README.md files with installation, usage, badges, and project overview for Node.js, Python, Rust, and Go projects."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, docs, github, markdown]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-readme-generator"
-sourceUrl: "https://clawhub.ai/skills/smart-readme-generator"
----
-
 # Smart README Generator
 
-> Automatically generates professional README.md files with installation, usage, badges, and project overview for Node.js, Python, Rust, and Go projects.
+Automatically generates professional README.md files for GitHub repositories.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-readme-generator`
-- **Source URL:** [https://clawhub.ai/skills/smart-readme-generator](https://clawhub.ai/skills/smart-readme-generator)
+## Features
+- Detects project structure
+- Generates installation instructions
+- Creates usage examples
+- Adds badges and sections automatically
+- Supports Node.js, Python, Rust, Go projects
 
-## Overview
+## Usage
 
+Provide a repository or source files and the skill will generate:
+- README.md
+- Quick start guide
+- API section
+- Project structure overview
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-readme-generator
-```
+## Example Prompt
+
+Generate a README for my Express API project with Docker support.
+
+## Requirements
+- Internet access enabled
+- Markdown output support
+
+## License
+MIT-0

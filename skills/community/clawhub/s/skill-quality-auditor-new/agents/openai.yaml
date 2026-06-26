@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Quality Auditor"
+  short_description: "Review a skill for quality and compliance."
+  default_prompt: "Use $skill-quality-auditor to review this skill and summarize whether it passes."

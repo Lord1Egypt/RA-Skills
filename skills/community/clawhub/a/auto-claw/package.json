@@ -1,0 +1,14 @@
+{
+  "name": "auto-claw",
+  "version": "1.0.0",
+  "description": "Autonomous WordPress operations AI agent - 19 capabilities",
+  "main": "cli.py",
+  "keywords": ["wordpress", "ai", "automation", "seo", "ab-testing", "wordpress-management"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicepkg/auto-company"
+  },
+  "scripts": {
+    "audit": "python3 cli.py full-audit"
+  }
+}

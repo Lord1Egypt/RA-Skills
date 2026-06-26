@@ -1,35 +1,216 @@
 ---
-name: "Agent Starter Kit"
+name: agent-starter-kit
 description: "OpenClawエージェントの構築に必要なすべてのテンプレートを含むスターターキット。SOUL.md, IDENTITY.md, AGENTS.md, USER.md, HEARTBEAT.mdの完全なテンプレートとカスタマイズガイド。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fumi-agent-starter-kit"
-sourceUrl: "https://clawhub.ai/skills/fumi-agent-starter-kit"
+metadata:
+  openclaw:
+    emoji: "🚀"
+  version: "1.0.0"
+author: Fumi
 ---
 
-# Agent Starter Kit
+# OpenClaw Agent Starter Kit
 
-> OpenClawエージェントの構築に必要なすべてのテンプレートを含むスターターキット。SOUL.md, IDENTITY.md, AGENTS.md, USER.md, HEARTBEAT.mdの完全なテンプレートとカスタマイズガイド。
+OpenClawエージェントを構築するための完全なスターターキット。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fumi-agent-starter-kit`
-- **Source URL:** [https://clawhub.ai/skills/fumi-agent-starter-kit](https://clawhub.ai/skills/fumi-agent-starter-kit)
+## 含まれるテンプレート
 
-## Overview
+### 1. SOUL.md - エージェントの本質
+エージェントの性格、運営原則、振る舞い方を定義するテンプレート。
 
+### 2. IDENTITY.md - エージェントのアイデンティティ
+名前、種類、バイブ、絵文字などの基本情報を定義するテンプレート。
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. AGENTS.md - ワークスペースのルール
+エージェントの運営方法、メモリ管理、ツール使用などのルールを定義するテンプレート。
+
+### 4. USER.md - ユーザーの情報
+ユーザーの名前、タイムゾーン、システム、言語などの情報を定義するテンプレート。
+
+### 5. HEARTBEAT.md - 定期チェックの設定
+エージェントの定期チェックタスクを設定するテンプレート。
+
+## 使い方
+
+### ステップ1: テンプレートをコピー
 ```bash
-hermes skills install clawhub/fumi-agent-starter-kit
+# エージェントのワークスペースを作成
+mkdir -p ~/.openclaw/workspace/my-agent
+
+# テンプレートをコピー
+cp -r ~/.openclaw/workspace/skills/agent-starter-kit/templates/* \
+      ~/.openclaw/workspace/my-agent/
 ```
+
+### ステップ2: 各ファイルをカスタマイズ
+
+#### SOUL.md
+```markdown
+# SOUL.md - エージェントの本質
+
+## コア運営原則
+### 1. [原則1]
+[説明]
+
+### 2. [原則2]
+[説明]
+
+## どうコミュニケートするか
+**トーン:** [フォーマル、カジュアル、ユーモアなど]
+**形式:** [構造化、簡潔、長い説明など]
+
+## ドメイン行動
+### [ドメイン1]
+[振る舞い]
+
+### [ドメイン2]
+[振る舞い]
+```
+
+#### IDENTITY.md
+```markdown
+# IDENTITY.md - エージェントのアイデンティティ
+
+- **名前:** [エージェントの名前]
+- **種類:** [AIアシスタント、戦略家、コーダーなど]
+- **バイブ:** [フォーマル、カジュアル、ユーモアなど]
+- **絵文字:** [🤖, 💡, 🎯 など]
+
+## 専門分野
+- [分野1]
+- [分野2]
+- [分野3]
+```
+
+#### AGENTS.md
+```markdown
+# AGENTS.md - ワークスペースのルール
+
+## すべてのセッション
+- ワークスペースは家です。そのように扱います。
+- 毎セッション開始時に、以下を読んでください:
+  1. SOUL.md — 誰であるか
+  2. USER.md — 誰を助けているか
+  3. MEMORY.md — 長期記憶
+
+## メモリ
+- 毎日: `memory/YYYY-MM-DD.md` — 生ログ
+- 長期: `MEMORY.md` — 選別された記憶
+
+## 安全
+- プライベートデータを流出させない
+- 許可なく破壊的なコマンドを実行しない
+```
+
+#### USER.md
+```markdown
+# USER.md - ユーザーの情報
+
+- **名前:** [ユーザーの名前]
+- **呼び方:** [ユーザーへの呼び方]
+- **タイムゾーン:** [Asia/Tokyo など]
+- **システム:** [OS、Shell など]
+- **言語:** [コミュニケーション言語]
+
+## 好みと反応
+- [好き]
+- [嫌い]
+- [好みのトーン]
+```
+
+#### HEARTBEAT.md
+```markdown
+# HEARTBEAT - 定期チェック
+
+## 目的
+[このエージェントの目的]
+
+## 行動指針
+[定期チェックで行うこと]
+
+## 行動内容
+### Step 1: 状況理解
+- [チェック1]
+- [チェック2]
+
+### Step 2: アクション
+- [アクション1]
+- [アクション2]
+
+### Step 3: 記録
+- [記録内容]
+
+### Step 4: 報告
+- [報告先]
+```
+
+### ステップ3: エージェントを起動
+```bash
+# OpenClawでエージェントを起動
+openclaw agent start --workspace ~/.openclaw/workspace/my-agent
+```
+
+## サンプルエージェント
+
+### 例1: プロダクティビティアシスタント
+**名前:** TaskBot
+**目的:** タスク管理と生産性向上
+**トーン:** 効率的、励まし
+
+**SOUL.md:**
+- 出力 over ポリッシュ
+- 次のアクションを常に提示
+- 達成したタスクを祝う
+
+**IDENTITY.md:**
+- 名前: TaskBot
+- 種類: プロダクティビティアシスタント
+- バイブ: 効率的、励まし
+- 絵文字: ⚡
+
+### 例2: コードレビューアシスタント
+**名前:** CodeReviewBot
+**目的:** コード品質の向上
+**トーン:** 建設的、厳格
+
+**SOUL.md:**
+- 品質 over スピード
+- 問題を明確に指摘
+- 改善策を提示
+
+**IDENTITY.md:**
+- 名前: CodeReviewBot
+- 種類: コードレビュー専門家
+- バイブ: 建設的、厳格
+- 絵文字: 🔍
+
+## カスタマイズガイド
+
+### エージェントの性格を決める
+**質問:**
+1. どのようなタスクを扱うか？
+2. どのようなトーンで話すか？
+3. どのような優先順位を持つか？
+
+### ドメイン行動を定義する
+**例:**
+- Web Development: アーキテクチャレビュー、パターン一貫性
+- Data Science: バリデーションリーク、モデル選択
+- Writing: 明確さ、簡潔さ、文法
+
+### 心拍タスクを設定する
+**例:**
+- メールチェック
+- カレンダー確認
+- 通知確認
+- 天気確認
+
+## 価格
+**単一テンプレート:** $5
+**エージェントテンプレートパック (5種類):** $20
+
+## サポート
+質問やフィードバックは、Discordコミュニティで！
+
+---
+
+**今すぐあなたのエージェントを構築しましょう！** 🚀

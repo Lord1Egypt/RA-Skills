@@ -1,0 +1,41 @@
+{
+  "skill_name": "kanbn-todo-api",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我在 Kan.bn 里新建一个 TODO：标题是 Pay electricity bill，备注 Before Friday，明天上午 9 点到期。",
+      "expected_output": "The agent discovers or uses the correct target list, creates a Kan.bn card with the requested title, description, and due date, then clearly confirms the result.",
+      "files": [],
+      "expectations": [
+        "The run uses the Kan.bn skill workflow rather than giving generic planning advice.",
+        "The run attempts creation with todo-create after resolving or identifying the target list.",
+        "The result preserves the requested title, description, and due date semantics.",
+        "The final response clearly confirms the created TODO or explicitly explains what blocked creation."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "把 Kan.bn 里那张 invoice follow-up 的卡片标成 P1，并移动到 DOING。",
+      "expected_output": "The agent searches for the likely task, resolves ambiguity if needed, applies priority via label toggling rather than title changes, and moves the card to the DOING list.",
+      "files": [],
+      "expectations": [
+        "The run searches or otherwise identifies the target task before mutation when the card ID is not already known.",
+        "The run applies priority through label handling instead of editing the task title.",
+        "The run changes task status by moving the card to the DOING list.",
+        "The final response summarizes both the priority change and the status move."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "搜索我在 Kan.bn workspace 里和 invoice 有关的任务，然后告诉我有哪些、分别在什么状态。",
+      "expected_output": "The agent uses workspace search, summarizes the matching tasks, and reports their current workflow/list status clearly.",
+      "files": [],
+      "expectations": [
+        "The run uses workspace search instead of inventing task data.",
+        "The result summarizes all plausible invoice-related matches found in the search output.",
+        "The final response reports task status using list or workflow state information.",
+        "The response stays in read-only summary mode and does not mutate tasks."
+      ]
+    }
+  ]
+}

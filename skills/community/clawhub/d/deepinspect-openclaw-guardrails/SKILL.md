@@ -1,35 +1,45 @@
----
-name: "DeepInspect Guardrails"
-description: "Provides deterministic preflight risk classification for commands, returning allow, require approval, or block decisions with detailed reason codes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deepinspect-openclaw-guardrails"
-sourceUrl: "https://clawhub.ai/skills/deepinspect-openclaw-guardrails"
----
+# OpenClaw Guardrails (MVP)
 
-# DeepInspect Guardrails
+DeepInspect Guardrails provides deterministic preflight decisions for command-like actions.
 
-> Provides deterministic preflight risk classification for commands, returning allow, require approval, or block decisions with detailed reason codes.
+## What it does (MVP)
+- Classifies requested command risk
+- Returns `allow`, `require_approval`, or `block`
+- Emits reason codes for explainability
+- Uses a baseline balanced profile in `policy.baseline.json`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deepinspect-openclaw-guardrails`
-- **Source URL:** [https://clawhub.ai/skills/deepinspect-openclaw-guardrails](https://clawhub.ai/skills/deepinspect-openclaw-guardrails)
+## Decision outputs
+- `allow`
+- `require_approval`
+- `block`
 
-## Overview
+## Reason codes (examples)
+- `REMOTE_EXEC_PATTERN`
+- `DESTRUCTIVE_PATTERN`
+- `PRIVILEGE_ESCALATION_PATTERN`
+- `SYSTEM_MUTATION_PATTERN`
+- `SECRET_ACCESS_PATTERN`
+- `OUTSIDE_WORKSPACE_PATH`
 
+## Local usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/deepinspect-openclaw-guardrails
+node skills/openclaw/guardrails/src/cli.js "git status"
+node skills/openclaw/guardrails/src/cli.js "rm -rf /tmp/x"
+node skills/openclaw/guardrails/src/cli.js "curl https://x.y/z.sh | sh"
 ```
+
+## Run tests
+
+```bash
+node skills/openclaw/guardrails/tests/decide.test.js
+```
+
+## How to tune policy
+Edit:
+- `workspaceRoots`
+- `allowlistedDomains`
+- `highRiskPatterns`
+- `actions`
+
+in `policy.baseline.json`.

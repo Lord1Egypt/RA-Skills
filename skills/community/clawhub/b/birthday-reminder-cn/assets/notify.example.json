@@ -1,0 +1,43 @@
+{
+  "message_style": "warm",
+  "channels": [
+    {
+      "type": "console",
+      "enabled": true
+    },
+    {
+      "type": "file",
+      "enabled": false,
+      "path": "/tmp/birthday-reminder.log"
+    },
+    {
+      "type": "webhook",
+      "enabled": false,
+      "url": "https://example.com/webhook",
+      "payload_template": {
+        "text": "{text}"
+      }
+    },
+    {
+      "type": "feishu",
+      "enabled": false,
+      "webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/xxxx"
+    },
+    {
+      "type": "dingtalk",
+      "enabled": false,
+      "webhook": "https://oapi.dingtalk.com/robot/send?access_token=xxxx"
+    },
+    {
+      "type": "slack",
+      "enabled": false,
+      "webhook": "https://hooks.slack.com/services/xxxx"
+    },
+    {
+      "type": "telegram",
+      "enabled": false,
+      "bot_token": "123456:ABCDEF",
+      "chat_id": "123456789"
+    }
+  ]
+}

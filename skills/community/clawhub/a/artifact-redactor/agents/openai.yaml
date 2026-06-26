@@ -1,0 +1,4 @@
+interface:
+  display_name: "Artifact Redactor"
+  short_description: "Redact private paths, secret-like strings, private URLs, and common PII from text artifacts before sharing"
+  default_prompt: "Use $artifact-redactor to scan text artifacts, redact private paths, secret-like strings, private URLs, emails, and phone numbers, then check the redacted output, surface any skipped files as manual-review-required, and render a concise markdown report."

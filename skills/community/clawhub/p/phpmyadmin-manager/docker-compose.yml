@@ -1,0 +1,19 @@
+services:
+  phpmyadmin:
+    image: phpmyadmin:5.2-apache
+    container_name: ${PMA_CONTAINER:-codai_phpmyadmin}
+    restart: unless-stopped
+    environment:
+      PMA_HOST: ${MYSQL_CONTAINER:-codai_db}
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
+      UPLOAD_LIMIT: ${PMA_UPLOAD_LIMIT:-64M}
+    ports:
+      - "127.0.0.1:${PMA_PORT:-8081}:80"
+    networks:
+      - codai_net
+
+networks:
+  codai_net:
+    external: true
+    name: ${CODAI_NETWORK:-nginx-proxy_net}

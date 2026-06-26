@@ -1,35 +1,14 @@
----
-name: "fp-skill"
-description: "Check the authenticity of nationwide VAT invoices by querying the official VAT invoice verification platform."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fp-skill"
-sourceUrl: "https://clawhub.ai/skills/fp-skill"
----
+# FP Skill 发票
 
-# fp-skill
+这是一个用于查询全国增值税发票真假的的OpenClaw Skill。用户可以提问帮我查询发票的真伪，该skill会访问全国增值税发票平台，查询该发票的真伪，并返回查询结果。
 
-> Check the authenticity of nationwide VAT invoices by querying the official VAT invoice verification platform.
+用于自动化网页操作，包括打开网页、查找元素、点击、输入和截图。
+## 功能
+- 打开指定 URL
+- 查找页面元素（如输入框、按钮）
+- 填写表单或点击元素
+- 截取当前页面并保存截图
+- 支持传入参数控制行为
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fp-skill`
-- **Source URL:** [https://clawhub.ai/skills/fp-skill](https://clawhub.ai/skills/fp-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fp-skill
-```
+## 使用方法
+见 README.md

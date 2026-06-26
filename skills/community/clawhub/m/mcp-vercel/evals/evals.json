@@ -1,0 +1,20 @@
+{
+  "skill_name": "mcp-vercel",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a Next.js app on Vercel and I want to add an MCP endpoint so AI agents can use my API. The API has 3 endpoints: GET /recipes (list), GET /recipes/:id (detail), POST /recipes (create). Can you set it up?",
+      "expected_output": "Creates app/api/mcp/route.ts with createMcpHandler, registers 3 tools with proper annotations (2 readOnly, 1 write), uses streamableHttpEndpoint, installs mcp-handler and zod"
+    },
+    {
+      "id": 2,
+      "prompt": "Deploy my Express API as an MCP server on AWS Lambda with SSE transport",
+      "expected_output": "Should NOT trigger this skill — this is about AWS Lambda and Express, not Vercel/Next.js"
+    },
+    {
+      "id": 3,
+      "prompt": "Set up a remote MCP server with 5 tools for my recipe database on Vercel. I need: search recipes, get recipe details, create recipe, update recipe, and delete recipe. Make sure it works with Claude Desktop and Smithery.",
+      "expected_output": "Creates the full MCP route with 5 tools, correct safety annotations (search/get are readOnly, create/update are write, delete is destructive), includes prompt templates, mentions Smithery publishing"
+    }
+  ]
+}

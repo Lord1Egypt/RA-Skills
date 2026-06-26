@@ -1,35 +1,49 @@
 ---
-name: "Ifeng"
-description: "检索凤凰网公开新闻和频道页，提供关键词新闻摘要、频道热点统计及深度报道段落要点提取。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ifeng"
-sourceUrl: "https://clawhub.ai/skills/ifeng"
+name: ifeng-hot-trend
+description: 注册“凤凰网”热门技能；当需要访问或自动化凤凰网相关内容时调用。
+homepage: `https://www.ifeng.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Ifeng
+# 凤凰网
 
-> 检索凤凰网公开新闻和频道页，提供关键词新闻摘要、频道热点统计及深度报道段落要点提取。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ifeng`
-- **Source URL:** [https://clawhub.ai/skills/ifeng](https://clawhub.ai/skills/ifeng)
+- 面向公开新闻页与频道页的检索与内容摘要
+- 不提供接口逆向或批量抓取能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.ifeng.com/
+- 要闻/财经/科技频道：频道入口
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ifeng
-```
+常见任务
+
+- 指定关键词的新闻集合摘要（标题、来源、发布时间、互动指标）
+- 频道页的热点条目与题材分布统计
+- 深度报道的段落摘要与要点提取
+
+数据字段
+
+- 标题、来源、作者（若标注）、发布时间、正文摘要、标签、链接
+- 互动指标（评论数/点赞数，如公开展示）
+- 频道名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染，需等待页面加载完成后解析
+- 频率控制，不进行批量抓取；结果标注采集时间
+- 对长文执行段落摘要，避免过度采集
+
+示例流程
+
+- 关键词摘要：输入关键词 → 搜索 → 抽取条目 → 输出摘要清单
+- 频道统计：访问频道页 → 抽取热点 → 题材分布与来源统计
+- 长文要点：访问文章页 → 抽取小标题与段落 → 输出要点列表
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

@@ -1,0 +1,17 @@
+{
+  "name": "llmconclave",
+  "version": "1.2.0",
+  "description": "Multi-model AI debate platform. Submit a topic and multiple AIs deliberate across rounds, producing structured insights and a polished research report.",
+  "homepage": "https://llmconclave.com",
+  "skillVersion": 2,
+  "files": {
+    "skill": "https://llmconclave.com/skill.md"
+  },
+  "metadata": {
+    "emoji": "⚖️",
+    "category": "research",
+    "api_base": "https://llmconclave.com/api",
+    "auth": "bearer",
+    "keyPrefix": "llmc_"
+  }
+}

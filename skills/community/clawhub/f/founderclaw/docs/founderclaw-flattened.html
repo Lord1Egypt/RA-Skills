@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FounderClaw — Flattened Structure</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0a0a; color: #e0e0e0;
+    min-height: 100vh; padding: 40px;
+  }
+  h1 { text-align: center; font-size: 28px; margin-bottom: 6px;
+    background: linear-gradient(135deg, #ff6b35, #f7c948);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .sub { text-align: center; color: #666; margin-bottom: 40px; font-size: 13px; }
+  
+  .tree { max-width: 900px; margin: 0 auto; }
+  
+  .root { 
+    background: linear-gradient(135deg, #1a1008, #0a0a0a);
+    border: 2px solid #ff6b35; border-radius: 16px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .root-title { 
+    font-size: 22px; font-weight: 800; color: #ff6b35;
+    margin-bottom: 4px; }
+  .root-sub { color: #888; font-size: 13px; margin-bottom: 16px; }
+  
+  .row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  
+  .card {
+    background: #111; border: 1px solid #222; border-radius: 10px;
+    padding: 14px; flex: 1; min-width: 200px; transition: all 0.2s;
+  }
+  .card:hover { border-color: #444; transform: translateY(-1px); }
+  
+  .card-head { 
+    font-weight: 700; font-size: 14px; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px; }
+  .card-desc { font-size: 11px; color: #777; margin-bottom: 8px; }
+  
+  .file { 
+    font-size: 12px; color: #888; padding: 2px 0 2px 10px;
+    border-left: 2px solid #2a2a2a; margin-left: 2px; margin-bottom: 2px; }
+  .file:hover { color: #ccc; }
+  .file.locked { color: #ef4444; }
+  .file.shared { color: #4ade80; }
+  
+  /* Color coding */
+  .ceo { border-left: 3px solid #ff6b35; }
+  .ceo .card-head { color: #ff6b35; }
+  
+  .project { border-left: 3px solid #f7c948; }
+  .project .card-head { color: #f7c948; }
+  
+  .dept { border-left: 3px solid #60a5fa; }
+  .dept .card-head { color: #60a5fa; }
+  
+  .company { border-left: 3px solid #a78bfa; }
+  .company .card-head { color: #a78bfa; }
+  
+  .skills { border-left: 3px solid #34d399; }
+  .skills .card-head { color: #34d399; }
+  
+  .section-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2px; margin: 20px 0 10px; padding: 4px 10px;
+    border-radius: 4px; display: inline-block; }
+  .sl-ceo { background: #2a1508; color: #ff6b35; }
+  .sl-proj { background: #2a2008; color: #f7c948; }
+  .sl-dept { background: #0a1a2a; color: #60a5fa; }
+  .sl-co { background: #1a0a2a; color: #a78bfa; }
+  .sl-sk { background: #0a2a1a; color: #34d399; }
+  
+  .divider { border: none; border-top: 1px solid #1a1a1a; margin: 24px 0; }
+  
+  .example-project {
+    background: #0d0d0d; border: 1px dashed #333; border-radius: 10px;
+    padding: 16px; margin-top: 8px; }
+  .ep-title { font-size: 13px; color: #f7c948; font-weight: 700; margin-bottom: 10px; }
+  .ep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .ep-item {
+    background: #141414; border-radius: 6px; padding: 8px; text-align: center;
+    font-size: 12px; }
+  .ep-item .icon { font-size: 18px; display: block; margin-bottom: 4px; }
+  .ep-item .label { color: #888; }
+  
+  .access-table {
+    width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
+  .access-table th { 
+    text-align: left; padding: 8px; border-bottom: 1px solid #333;
+    color: #888; font-weight: 600; }
+  .access-table td { padding: 8px; border-bottom: 1px solid #1a1a1a; }
+  .yes { color: #4ade80; }
+  .no { color: #ef4444; }
+  .ro { color: #f7c948; }
+</style>
+</head>
+<body>
+
+<h1>FounderClaw — Flattened Structure</h1>
+<p class="sub">Company model: CEO + Departments + Shared Projects</p>
+
+<div class="tree">
+
+<!-- ROOT -->
+<div class="root">
+  <div class="root-title">🏗️ ~/.openclaw/founderclaw/</div>
+  <div class="root-sub">The entire company. One workspace root. All agents share this path.</div>
+</div>
+
+<!-- CEO -->
+<div class="section-label sl-ceo">🎯 CEO Office</div>
+<div class="row">
+  <div class="card ceo">
+    <div class="card-head">🎯 ceo/</div>
+    <div class="card-desc">FounderClaw Main's private office. The orchestrator.</div>
+    <div class="file">SOUL.md — personality & leadership style</div>
+    <div class="file">AGENTS.md — how to run the company</div>
+    <div class="file">memory.md — long-term CEO memory</div>
+    <div class="file">active-projects.md — what I'm managing now</div>
+    <div class="file">sessions/ — all conversations</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<div class="section-label sl-proj">📚 Projects (Shared)</div>
+<div class="row">
+  <div class="card project" style="flex:2">
+    <div class="card-head">📚 projects/</div>
+    <div class="card-desc">All projects live here. Each project is self-contained. Flattened — no deep nesting.</div>
+    
+    <div class="example-project">
+      <div class="ep-title">📁 projects/todo-app/ — one project</div>
+      <div class="ep-grid">
+        <div class="ep-item"><span class="icon">📋</span>README.md<br><span class="label">overview</span></div>
+        <div class="ep-item"><span class="icon">📊</span>STATUS.md<br><span class="label">auto-updated</span></div>
+        <div class="ep-item"><span class="icon">💻</span>code/<br><span class="label">shared rw</span></div>
+        <div class="ep-item"><span class="icon">🎨</span>design/<br><span class="label">strategy</span></div>
+        <div class="ep-item"><span class="icon">📝</span>reviews/<br><span class="label">shipper</span></div>
+        <div class="ep-item"><span class="icon">🧪</span>qa/<br><span class="label">tester</span></div>
+        <div class="ep-item"><span class="icon">🔒</span>security/<br><span class="label">safety</span></div>
+        <div class="ep-item"><span class="icon">📊</span>history/<br><span class="label">observer</span></div>
+        <div class="ep-item"><span class="icon">📁</span>projects/beta/<br><span class="label">same structure</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DEPARTMENTS -->
+<div class="section-label sl-dept">🏢 Departments (Private)</div>
+<div class="row">
+  <div class="card dept">
+    <div class="card-head">📐 strategy-dept/</div>
+    <div class="card-desc">Product thinking & design</div>
+    <div class="file">SOUL.md</div>
+    <div class="file">processes.md — how I do office-hours</div>
+    <div class="file">memory.md — patterns I've learned</div>
+    <div class="file">project-log.md — history of work</div>
+    <div class="file">sessions/</div>
+  </div>
+  <div class="card dept">
+    <div class="card-head">🚀 shipping-dept/</div>
+    <div class="card-desc">Code quality & deployment</div>
+    <div class="file">SOUL.md</div>
+    <div class="file">processes.md — how I do reviews</div>
+    <div class="file">memory.md</div>
+    <div class="file">project-log.md</div>
+    <div class="file">sessions/</div>
+  </div>
+  <div class="card dept">
+    <div class="card-head">🔍 testing-dept/</div>
+    <div class="card-desc">QA & browser testing</div>
+    <div class="file">SOUL.md</div>
+    <div class="file">processes.md — how I do QA</div>
+    <div class="file">memory.md</div>
+    <div class="file">project-log.md</div>
+    <div class="file">sessions/</div>
+  </div>
+</div>
+<div class="row">
+  <div class="card dept">
+    <div class="card-head">🛡️ security-dept/</div>
+    <div class="card-desc">Security & guardrails</div>
+    <div class="file">SOUL.md</div>
+    <div class="file">processes.md</div>
+    <div class="file">memory.md</div>
+    <div class="file">project-log.md</div>
+    <div class="file">sessions/</div>
+  </div>
+  <div class="card dept">
+    <div class="card-head">📊 history-dept/</div>
+    <div class="card-desc">Debugging & retrospectives</div>
+    <div class="file">SOUL.md</div>
+    <div class="file">processes.md</div>
+    <div class="file">memory.md</div>
+    <div class="file">project-log.md</div>
+    <div class="file">sessions/</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- COMPANY -->
+<div class="section-label sl-co">🏢 Company (Shared)</div>
+<div class="row">
+  <div class="card company">
+    <div class="card-head">🏢 company/</div>
+    <div class="card-desc">Company-wide config and records</div>
+    <div class="file">roster.md — all agents, roles, status</div>
+    <div class="file">project-list.md — active & completed projects</div>
+    <div class="file">models.md — model tiers configured</div>
+    <div class="file">config.json — tool policies</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<div class="section-label sl-sk">🧰 Skills (Shared)</div>
+<div class="row">
+  <div class="card skills">
+    <div class="card-head">🧰 skills/</div>
+    <div class="card-desc">29 founderclaw skills. Available to all agents.</div>
+    <div class="file">office-hours/ review/ qa/ ship/ browse/ ...</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ACCESS TABLE -->
+<div class="section-label sl-co">🔐 Access Matrix</div>
+<table class="access-table">
+  <tr>
+    <th>Who</th>
+    <th>Own Dept</th>
+    <th>Other Depts</th>
+    <th>Projects (own)</th>
+    <th>Projects (other)</th>
+    <th>CEO files</th>
+    <th>Company/</th>
+  </tr>
+  <tr>
+    <td>🎯 CEO</td>
+    <td class="yes">rw</td>
+    <td class="yes">rw</td>
+    <td class="yes">rw</td>
+    <td class="yes">rw</td>
+    <td class="yes">rw</td>
+    <td class="yes">rw</td>
+  </tr>
+  <tr>
+    <td>📐 Strategy</td>
+    <td class="yes">rw</td>
+    <td class="no">no</td>
+    <td class="yes">rw (design/)</td>
+    <td class="ro">read only</td>
+    <td class="no">no</td>
+    <td class="ro">read only</td>
+  </tr>
+  <tr>
+    <td>🚀 Shipper</td>
+    <td class="yes">rw</td>
+    <td class="no">no</td>
+    <td class="yes">rw (reviews/, code/)</td>
+    <td class="ro">read only</td>
+    <td class="no">no</td>
+    <td class="ro">read only</td>
+  </tr>
+  <tr>
+    <td>🔍 Tester</td>
+    <td class="yes">rw</td>
+    <td class="no">no</td>
+    <td class="yes">rw (qa/, code/ read)</td>
+    <td class="ro">read only</td>
+    <td class="no">no</td>
+    <td class="ro">read only</td>
+  </tr>
+</table>
+
+</div>
+
+</body>
+</html>

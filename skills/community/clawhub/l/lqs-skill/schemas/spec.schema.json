@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lqs.local/skill/schemas/spec.schema.json",
+  "title": "SkillSpec",
+  "type": "object",
+  "required": ["module", "entity", "table", "fields", "artifacts"],
+  "properties": {
+    "module": { "type": "string", "default": "Admin" },
+    "entity": { "type": "string" },
+    "table": { "type": "string" },
+    "pk": { "type": "string", "default": "id" },
+    "base_controller": { "type": "string", "default": "BackendBaseController" },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "required": { "type": "boolean" },
+          "default": {},
+          "enum": { "type": "array", "items": { "type": "string" } },
+          "searchable": { "type": "boolean" },
+          "editable": { "type": "boolean" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "apis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["method", "path", "action"],
+        "properties": {
+          "method": { "type": "string" },
+          "path": { "type": "string" },
+          "action": { "type": "string" }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["controller", "model", "view", "migration", "test"]
+      },
+      "default": ["controller", "model", "view", "migration"]
+    },
+    "target_paths": {
+      "type": "object",
+      "properties": {
+        "controller": { "type": "string" },
+        "model": { "type": "string" },
+        "view": { "type": "string" },
+        "migration": { "type": "string" }
+      }
+    },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["mapping", "source"],
+        "properties": {
+          "mapping": { "type": "string" },
+          "source": { "type": "string", "enum": ["requirement", "context", "template_pack", "pattern", "history"] },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "impact"],
+        "properties": {
+          "topic": { "type": "string" },
+          "impact": { "type": "string" },
+          "default_resolution": { "type": "string" },
+          "next_step": { "type": "string" }
+        }
+      }
+    }
+  }
+}

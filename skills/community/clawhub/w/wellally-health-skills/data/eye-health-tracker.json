@@ -1,0 +1,80 @@
+{
+  "eye_health_management": {
+    "diagnosis_date": null,
+    "conditions": [],
+
+    "vision_readings": [],
+
+    "average_vision": {
+      "left_uncorrected": null,
+      "right_uncorrected": null,
+      "left_corrected": null,
+      "right_corrected": null,
+      "calculation_period": null,
+      "readings_count": 0
+    },
+
+    "intraocular_pressure": {
+      "readings": [],
+      "average_iop": {
+        "left": null,
+        "right": null,
+        "calculation_period": null,
+        "readings_count": 0
+      }
+    },
+
+    "fundus_exams": [],
+
+    "screenings": {
+      "glaucoma": {
+        "status": "not_screened",
+        "last_screening": null,
+        "next_screening": null,
+        "risk_level": null
+      },
+      "cataract": {
+        "status": "not_screened",
+        "last_screening": null,
+        "grade": null
+      },
+      "amd": {
+        "status": "not_screened",
+        "last_screening": null,
+        "stage": null
+      },
+      "diabetic_retinopathy": {
+        "status": "not_screened",
+        "last_screening": null,
+        "grade": null
+      },
+      "dry_eye": {
+        "status": "not_assessed",
+        "last_assessment": null,
+        "severity": null
+      }
+    },
+
+    "eye_habits": {
+      "daily_screen_time": null,
+      "daily_outdoor_time": null,
+      "break_20_20_20_compliance": null,
+      "reading_distance": null,
+      "lighting_conditions": null,
+      "last_updated": null
+    },
+
+    "medications": [],
+
+    "checkup_reminders": {
+      "routine_exam": null,
+      "glaucoma_screening": null,
+      "diabetic_retinopathy_exam": null
+    },
+
+    "metadata": {
+      "created_at": null,
+      "last_updated": null
+    }
+  }
+}

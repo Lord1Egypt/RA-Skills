@@ -1,0 +1,12 @@
+﻿{
+    "version":  "1.1.1",
+    "skill":  "ai-company-cpo",
+    "tags":  [
+                 "ai-company",
+                 "c-suite"
+             ],
+    "description":  "AI Company cpo.ToUpper() skill",
+    "created":  "2026-04-12",
+    "name":  "ai-company-cpo",
+    "author":  "johnsmithfan"
+}

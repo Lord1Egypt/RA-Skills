@@ -1,0 +1,20 @@
+name: stardots-backup
+version: 1.0.0
+description: Upload images to stardots.io cloud storage platform with automatic MD5 authentication
+author:
+  name: StarDots
+  email: support@stardots.io
+
+triggers:
+  - pattern: "备份到stardots"
+    type: "exact"
+  - pattern: "上传.*stardots"
+    type: "regex"
+  - pattern: "stardots.*备份"
+    type: "regex"
+
+permissions:
+  - network
+  - filesystem
+
+runtime: nodejs18

@@ -1,0 +1,3634 @@
+meta:
+  id: finance-bp-105-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-105
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:49.775031+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  upgraded_from: finance-bp-105-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:28.159836+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-105--open-climate-investing/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-105--open-climate-investing/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-MACRO-DATA-001
+  title: SEC EDGAR Rate Limit Violation
+  description: When implementing SEC API calls without applying rate limiting decorators, requests exceed the regulatory 10
+    requests per second limit. This causes IP blocking from SEC EDGAR, preventing all subsequent access to critical financial
+    filings and completely disrupting the data collection pipeline. FinRobot demonstrates that SEC enforces strict rate limits
+    and missing User-Agent headers compound this by causing silent request failures.
+  project_source: finance-bp-074--FinRobot
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-002
+  title: Temporal Knowledge Graph Look-Ahead Bias
+  description: When implementing temporal data splitting for knowledge graphs, using non-temporal train/val/test splits causes
+    the model to see future events during training. The violation of train_edges occurring before val_edges and test_edges
+    temporally results in inflated metrics that do not reflect real-world performance. This produces overfit models that fail
+    catastrophically when deployed for actual temporal prediction tasks.
+  project_source: finance-bp-080--FinDKG
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-003
+  title: Technical Indicator Look-Ahead Bias via Missing Shift
+  description: When implementing SMA crossover detection (golden/death cross) without using shift(1) to compare current bar
+    state with prior bar state, crossover detection uses current bar data causing look-ahead bias. Signals appear to fire
+    at the same bar as the cross occurs, producing unrealistic backtest results that fail in live trading. Rationalizing this
+    with 'we need the current bar signal immediately' leads to future information leaking into current signals.
+  project_source: finance-bp-083--Economic-Dashboard
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-004
+  title: EIOPA Non-Compliant Curve Extrapolation
+  description: When implementing the Smith-Wilson algorithm for EIOPA Solvency II calculations, using non-EIOPA compliant
+    formulas or incorrect convergence point calculations violates regulatory specifications. The convergence point must use
+    max(U+40, 60) years per EIOPA paragraph 120. Non-compliant formulas will fail regulatory audits for insurance liability
+    calculations and produce incorrect risk-free rates, leading to materially wrong liability valuations.
+  project_source: finance-bp-077--Open_Source_Economic_Model
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-005
+  title: Factor Regression Using Raw Returns Instead of Excess Returns
+  description: When computing returns for CAPM/Fama-French factor regression, using raw stock returns instead of subtracting
+    the risk-free rate (Rf) violates standard financial econometric methodology. CAPM/FF regression requires excess returns
+    (Return - Rf); using raw returns produces incorrect beta estimates that misrepresent a stock's systematic risk exposure.
+    This leads to fundamentally flawed risk attribution and portfolio construction decisions.
+  project_source: finance-bp-105--open-climate-investing
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-006
+  title: Percentage vs Decimal Unit Mismatch in Factor Data
+  description: When importing Fama-French factors from CSV files, failing to divide percentage-formatted factors (e.g., 5.2)
+    by 100 before regression causes coefficients scaled by 100x. This produces statistically invalid inference and meaningless
+    factor loadings. The same issue applies to risk-free rate values, corrupting all CAPM beta calculations downstream.
+  project_source: finance-bp-105--open-climate-investing
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-007
+  title: Insufficient Regression Observations for Statistical Validity
+  description: When implementing factor regression analysis, using fewer than 20 data points after filtering (inner join,
+    winsorization, date range) produces unreliable or undefined t-statistics and p-values. OLS with insufficient observations
+    produces meaningless regression coefficients, making it impossible to distinguish significant factor exposures from noise.
+    This commonly occurs when combining multiple data sources with missing values.
+  project_source: finance-bp-105--open-climate-investing
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-008
+  title: DGL Graph Attribute Propagation Failure in Temporal Batching
+  description: When implementing temporal knowledge graph data collation without propagating graph attributes (num_relations,
+    num_all_nodes, time_interval) to subgraph variants created by collate_fn, downstream model components encounter missing
+    attribute errors. The EmbeddingUpdater and EdgeModel expect these attributes on all graph objects including subgraphs,
+    causing training to fail with AttributeError.
+  project_source: finance-bp-080--FinDKG
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-009
+  title: CSV BOM Encoding Corruption in Data Import
+  description: When importing CSV portfolio files with special characters without using 'utf-8-sig' encoding to handle BOM
+    markers, CSV files with UTF-8 BOM markers fail to parse correctly. This causes KeyError exceptions when reading row fields,
+    preventing portfolio data from loading entirely. The BOM marker silently corrupts the first column name read by pandas.
+  project_source: finance-bp-077--Open_Source_Economic_Model
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-010
+  title: OHLCV Data Quality Validation Failure
+  description: When calculating technical indicators from OHLCV data without verifying required columns (open, high, low,
+    close, volume), missing required OHLCV columns causes ValueError and prevents technical indicator calculation for affected
+    tickers. This blocks downstream regime classification and pattern detection for all tickers with incomplete data.
+  project_source: finance-bp-083--Economic-Dashboard
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-011
+  title: Inconsistent Primary Key Schema Causing JOIN Failures
+  description: When storing derived features in DuckDB with a different primary key schema than technical_features table,
+    inconsistent primary keys prevent JOIN operations between tables. This breaks regime classification and pattern detection
+    pipelines. The composite primary key (ticker, date) must be consistent across all feature tables to enable efficient querying
+    and data integrity.
+  project_source: finance-bp-083--Economic-Dashboard
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-012
+  title: Frequency Column Enforcement Missing in Time Series Schema
+  description: When creating PostgreSQL schema for time series tables without explicit frequency column enforcement of 'MONTHLY'
+    or 'DAILY' text values, mixed frequency data corrupts regression calculations. Combining incompatible data frequencies
+    produces statistically invalid regression results. The database must enforce frequency consistency to prevent silent data
+    corruption.
+  project_source: finance-bp-105--open-climate-investing
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-013
+  title: PostgreSQL Fork in Multiprocessing Context
+  description: When implementing multiprocessing for parallel regression execution using fork start method with psycopg2 database
+    connections, child processes inherit corrupted connection state. This causes 'connection already closed' errors or corrupted
+    connection state in child processes, resulting in failed database writes and incomplete factor regression calculations.
+  project_source: finance-bp-105--open-climate-investing
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-014
+  title: Temporal DataLoader Shuffling Breaking Graph Ordering
+  description: When configuring DataLoader for temporal knowledge graph training with shuffle=True, the temporal ordering
+    required for cumulative graph construction is violated. The model receives edges in non-chronological order, breaking
+    the prior_G, batch_G, cumulative_G construction logic that depends on edges_before_batch occurring before edges_in_batch.
+  project_source: finance-bp-080--FinDKG
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+cross_project_wisdom:
+- wisdom_id: CW-MACRO-DATA-001
+  source_project: finance-bp-080--FinDKG, finance-bp-083--Economic-Dashboard
+  pattern_name: Temporal Ordering Enforcement
+  description: Across temporal knowledge graphs and financial time series, strict temporal ordering must be enforced in train/val/test
+    splits and data loading. Train edges must occur strictly before validation edges, which must occur strictly before test
+    edges. DataLoaders must never shuffle temporal data. Apply this pattern whenever implementing any time-series ML pipeline
+    to prevent look-ahead bias that inflates evaluation metrics.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-002
+  source_project: finance-bp-077--Open_Source_Economic_Model, finance-bp-105--open-climate-investing
+  pattern_name: Regulatory Formula Compliance
+  description: When implementing financial calculations subject to regulatory oversight (EIOPA Solvency II, CAPM, Fama-French),
+    use exact formula specifications from authoritative sources. The Smith-Wilson convergence point must follow EIOPA paragraph
+    120, factor regressions must use excess returns with properly scaled inputs. Apply this pattern when calculations will
+    be used for regulatory reporting or investment decision-making.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-003
+  source_project: finance-bp-083--Economic-Dashboard, finance-bp-077--Open_Source_Economic_Model
+  pattern_name: Strict Data Schema Enforcement
+  description: Financial data pipelines require strict schema validation at ingestion points. OHLCV requires specific columns,
+    CSV imports require exact column names matching field access, INI files require specific sections. Missing or malformed
+    schema elements should fail loudly rather than produce silent corruption. Apply this pattern during data import to catch
+    errors early before downstream calculations use bad data.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-004
+  source_project: finance-bp-105--open-climate-investing, finance-bp-080--FinDKG, finance-bp-083--Economic-Dashboard
+  pattern_name: Composite Primary Key Uniqueness
+  description: Time-series financial databases require composite primary keys (ticker, date) to ensure uniqueness and enable
+    efficient querying. Inconsistent primary keys across tables break JOIN operations essential for feature merging. Apply
+    this pattern when designing any financial database schema involving time-series measurements with multiple entities.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-005
+  source_project: finance-bp-074--FinRobot
+  pattern_name: External API Rate Limiting
+  description: When accessing external financial APIs (SEC EDGAR, data vendors), strict rate limiting must be implemented
+    before deployment. SEC EDGAR enforces 10 requests per second with IP blocking consequences. Use decorators and proper
+    User-Agent headers. Apply this pattern when integrating any external financial data API to prevent service disruption
+    that blocks critical data access.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-006
+  source_project: finance-bp-080--FinDKG, finance-bp-105--open-climate-investing
+  pattern_name: Graph Attribute Propagation in Batching
+  description: When creating subgraph variants during batch collation in graph-based ML, all metadata attributes (num_nodes,
+    num_relations, time_interval) must be explicitly propagated to each subgraph. Downstream model components expect these
+    attributes on all graph objects. Apply this pattern whenever implementing custom collate functions for graph neural networks
+    to prevent training failures.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-007
+  source_project: finance-bp-105--open-climate-investing, finance-bp-083--Economic-Dashboard
+  pattern_name: Statistical Validity Thresholds
+  description: Factor regressions and statistical calculations require minimum observation counts (typically 20+) for reliable
+    inference. Inner joins, winsorization, and date filtering reduce observations; pipeline validation must check for sufficient
+    data points before regression. Apply this pattern whenever computing regression statistics to ensure results are meaningful
+    rather than spurious.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-008
+  source_project: finance-bp-080--FinDKG, finance-bp-077--Open_Source_Economic_Model
+  pattern_name: Data Type Strictness for ML Operations
+  description: Graph operations and time calculations require strict dtype consistency (float32 for time values, integer for
+    node types, boolean for masks). Type mismatches cause silent failures in edge_subgraph, degree calculations, and time
+    interval transformations. Apply this pattern when preparing data for graph neural networks or any numerical ML pipeline
+    to catch dtype issues early.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: scripts/bmg_analyze.py
+  business_problem: Identifies how many stocks from an index fall into each sector and screens for stocks with statistically
+    significant factor regression results based on p-values.
+  intent_keywords:
+  - sector composition
+  - significant regression
+  - p-value screening
+  - stock sectors
+  - factor analysis
+  stage: factor_computation
+  data_domain: holding_data
+  type: screening
+- kuc_id: KUC-102
+  source_file: scripts/correlate.py
+  business_problem: Computes correlations between different factors over time to understand factor relationship dynamics and
+    potential multicollinearity issues.
+  intent_keywords:
+  - factor correlation
+  - correlation matrix
+  - factor relationships
+  - multicollinearity
+  - time series correlation
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-103
+  source_file: scripts/regression_function.py
+  business_problem: Performs ordinary least squares regression on factor data with comprehensive diagnostic tests including
+    Durbin-Watson, Jarque-Bera, and Breusch-Pagan tests.
+  intent_keywords:
+  - OLS regression
+  - diagnostic tests
+  - statistical tests
+  - regression analysis
+  - residual analysis
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-104
+  source_file: scripts/bulk_script.py
+  business_problem: Builds custom Fama-French style factor models by merging stock returns, Fama-French factors, and carbon
+    risk factors into unified datasets for analysis.
+  intent_keywords:
+  - Fama-French model
+  - factor model
+  - carbon risk
+  - factor construction
+  - data merging
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-105
+  source_file: scripts/stock_price_function.py
+  business_problem: Downloads historical stock price data from Yahoo Finance with support for daily and monthly frequencies,
+    including automatic retry on timeout.
+  intent_keywords:
+  - stock prices
+  - price download
+  - yfinance
+  - historical data
+  - market data
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-106
+  source_file: scripts/bmg_series.py
+  business_problem: Creates Brown-Green (BMG) factor series by calculating the return differential between brown (high carbon)
+    and green (low carbon) stocks for carbon risk analysis.
+  intent_keywords:
+  - BMG factor
+  - carbon risk
+  - brown green stocks
+  - factor creation
+  - environmental factor
+  stage: factor_computation
+  data_domain: financial_data
+  type: builtin_factor
+- kuc_id: KUC-107
+  source_file: scripts/get_regressions.py
+  business_problem: Executes factor regression analysis across multiple stocks in parallel using multiprocessing, loading
+    Fama-French and carbon risk factors from database.
+  intent_keywords:
+  - regression
+  - multiprocessing
+  - parallel analysis
+  - factor regression
+  - batch analysis
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-108
+  source_file: scripts/get_stocks.py
+  business_problem: Imports stock return data from CSV or downloads from yfinance, with support for incremental updates to
+    maintain current database with stock returns.
+  intent_keywords:
+  - import stocks
+  - stock data
+  - data import
+  - stock returns
+  - database update
+  stage: data_collection
+  data_domain: trading_data
+  type: data_pipeline
+- kuc_id: KUC-109
+  source_file: scripts/setup_db.py
+  business_problem: Initializes database schema and imports Fama-French, bond, and carbon risk factors into PostgreSQL tables,
+    including BMG factor data.
+  intent_keywords:
+  - database setup
+  - schema initialization
+  - factor import
+  - carbon data
+  - bond factors
+  stage: data_collection
+  data_domain: financial_data
+  type: data_pipeline
+component_capability_map:
+  project: finance-bp-105--open-climate-investing
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 7
+    total_classes: 25
+    total_functions: 0
+    total_stages: 7
+  modules:
+    stock_data_collection:
+      class_count: 2
+      stage_id: data_collection
+      stage_order: 1
+      responsibility: Fetches stock price data from Yahoo Finance API with monthly/daily frequency support. Provides retry
+        logic and incomplete data filtering. Acts as the primary data ingestion point for each downstream analysis.
+      classes:
+      - name: stock_grabber
+        file: stock_data_collection/stock-grabber.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: data_source
+        file: stock_data_collection/data-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    database_setup_&_data_import:
+      class_count: 4
+      stage_id: data_import
+      stage_order: 2
+      responsibility: Initializes PostgreSQL schema, imports Fama-French factors, carbon risk factors, stock constituents,
+        and other reference data. Provides batch CSV ingestion with idempotent upsert behavior.
+      classes:
+      - name: load_data_files
+        file: database_setup_&_data_import/load-data-files.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: import_monthly_ff_data_factors_into_sql
+        file: database_setup_&_data_import/import-monthly-ff-data-factors-into-sql.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: import_msci_constituents_into_sql
+        file: database_setup_&_data_import/import-msci-constituents-into-sql.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: database
+        file: database_setup_&_data_import/database.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 5
+    bmg_factor_computation:
+      class_count: 4
+      stage_id: bmg_factor_computation
+      stage_order: 3
+      responsibility: Computes Brown-Minus-Green (BMG) carbon risk factor from index constituent returns. BMG = Brown Returns
+        - Green Returns. Positive BMG means brown stocks outperform green, indicating carbon risk premium.
+      classes:
+      - name: add_bmg_series
+        file: bmg_factor_computation/add-bmg-series.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: get_bmg_series
+        file: bmg_factor_computation/get-bmg-series.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: load_stocks_returns_from_db
+        file: bmg_factor_computation/load-stocks-returns-from-db.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: factor_definition
+        file: bmg_factor_computation/factor-definition.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    factor_regression_analysis:
+      class_count: 4
+      stage_id: factor_regression
+      stage_order: 4
+      responsibility: Runs OLS regressions of stock returns on carbon risk factor and Fama-French factors. Computes coefficients,
+        t-stats, p-values, and diagnostic statistics with proper data alignment and validation.
+      classes:
+      - name: run_regression
+        file: factor_regression_analysis/run-regression.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: regression_input_output
+        file: factor_regression_analysis/regression-input-output.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: merge_data
+        file: factor_regression_analysis/merge-data.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: regression_model
+        file: factor_regression_analysis/regression-model.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 6
+    bulk_regression_execution:
+      class_count: 5
+      stage_id: bulk_regression
+      stage_order: 5
+      responsibility: Runs rolling-window regressions across multiple stocks with multiprocessing support. Stores results
+        incrementally in PostgreSQL using UPSERT pattern. Enables analysis of large stock universes.
+      classes:
+      - name: run_regression
+        file: bulk_regression_execution/run-regression.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: run_regression_internal
+        file: bulk_regression_execution/run-regression-internal.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: store_regression_into_db
+        file: bulk_regression_execution/store-regression-into-db.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: window_type
+        file: bulk_regression_execution/window-type.py
+        line: 0
+        kind: replaceable_point
+      - name: parallelization
+        file: bulk_regression_execution/parallelization.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 6
+    factor_correlation_&_orthogonalization:
+      class_count: 3
+      stage_id: factor_orthogonalization
+      stage_order: 6
+      responsibility: Analyzes correlation between BMG factor and other factors (Fama-French), then orthogonalizes BMG by
+        regressing on significantly correlated factors and storing residuals. Removes factor contamination.
+      classes:
+      - name: process_factor
+        file: factor_correlation_&_orthogonalization/process-factor.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: execute_batch
+        file: factor_correlation_&_orthogonalization/execute-batch.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: orthogonalization_method
+        file: factor_correlation_&_orthogonalization/orthogonalization-method.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    regression_results_analysis:
+      class_count: 3
+      stage_id: results_analysis
+      stage_order: 7
+      responsibility: Queries stored regression results to identify stocks and sectors with significant carbon risk exposure.
+        Aggregates statistics by sector and significance level for actionable insights.
+      classes:
+      - name: get_stocks_with_significant_regressions
+        file: regression_results_analysis/get-stocks-with-significant-regressions.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: get_sectors_with_significant_final_regression
+        file: regression_results_analysis/get-sectors-with-significant-final-regre.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: significance_criteria
+        file: regression_results_analysis/significance-criteria.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.03260869565217391
+    evidence_invalid: 89
+    evidence_verified: 3
+    evidence_auto_fixed: 0
+    audit_coverage: 39/39 (100%)
+    audit_pass_rate: 0/39 (0%)
+    audit_fail_total: 20
+    audit_finance_universal:
+      pass: 0
+      warn: 9
+      fail: 11
+    audit_subdomain_totals:
+      pass: 0
+      warn: 10
+      fail: 9
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-105. Evidence verify ratio
+    = 3.3% and audit fail total = 20. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-105-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc:
+  - UC-101
+  - UC-102
+  - UC-103
+  - UC-106
+  - UC-107
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Sector Stock Count and Significant Factor Regression Analyzer
+    positive_terms:
+    - sector composition
+    - significant regression
+    - p-value screening
+    - stock sectors
+    - factor analysis
+    data_domain: holding_data
+    negative_terms:
+    - stock price download
+    - correlation calculation
+    - factor series creation
+    - database setup
+    - bulk factor model
+    ambiguity_question: Are you looking to screen stocks by sector distribution from an index, or to find stocks with statistically
+      significant factor relationships?
+  - uc_id: UC-102
+    name: Factor Correlation Calculator
+    positive_terms:
+    - factor correlation
+    - correlation matrix
+    - factor relationships
+    - multicollinearity
+    - time series correlation
+    data_domain: financial_data
+    negative_terms:
+    - stock screening
+    - price download
+    - BMG factor
+    - regression execution
+    - database setup
+    ambiguity_question: Do you want to see how different factors correlate with each other, or are you looking to run factor
+      regressions on individual stocks?
+  - uc_id: UC-103
+    name: OLS Regression with Diagnostic Statistics
+    positive_terms:
+    - OLS regression
+    - diagnostic tests
+    - statistical tests
+    - regression analysis
+    - residual analysis
+    data_domain: financial_data
+    negative_terms:
+    - correlation
+    - stock screening
+    - data download
+    - factor creation
+    - database utilities
+    ambiguity_question: Are you trying to run regression analysis with statistical diagnostics, or do you need something else
+      like factor correlations or data loading?
+  - uc_id: UC-104
+    name: Fama-French Factor Model Generator
+    positive_terms:
+    - Fama-French model
+    - factor model
+    - carbon risk
+    - factor construction
+    - data merging
+    data_domain: mixed
+    negative_terms:
+    - stock screening
+    - correlation
+    - price download
+    - database setup
+    - BMG factor
+    ambiguity_question: Are you building a custom factor model combining multiple data sources, or are you analyzing existing
+      factors for correlations or regressions?
+  - uc_id: UC-105
+    name: Stock Price Data Downloader
+    positive_terms:
+    - stock prices
+    - price download
+    - yfinance
+    - historical data
+    - market data
+    data_domain: market_data
+    negative_terms:
+    - regression
+    - correlation
+    - screening
+    - BMG factor
+    - database setup
+    ambiguity_question: Are you trying to download raw stock price data, or are you looking to perform analysis like regressions,
+      correlations, or screening?
+  - uc_id: UC-106
+    name: BMG Factor Series Creator
+    positive_terms:
+    - BMG factor
+    - carbon risk
+    - brown green stocks
+    - factor creation
+    - environmental factor
+    data_domain: financial_data
+    negative_terms:
+    - regression
+    - correlation
+    - stock prices
+    - screening
+    - database setup
+    ambiguity_question: Are you creating a new BMG (brown-minus-green) carbon risk factor series, or are you using an existing
+      factor for analysis like regressions or correlations?
+  - uc_id: UC-107
+    name: Multi-Stock Factor Regression Runner
+    positive_terms:
+    - regression
+    - multiprocessing
+    - parallel analysis
+    - factor regression
+    - batch analysis
+    data_domain: financial_data
+    negative_terms:
+    - correlation
+    - screening
+    - price download
+    - BMG creation
+    - database setup
+    ambiguity_question: Are you running factor regressions on multiple stocks at scale, or are you looking for single-stock
+      analysis, factor correlations, or data loading?
+  - uc_id: UC-108
+    name: Stock Data Import and Update
+    positive_terms:
+    - import stocks
+    - stock data
+    - data import
+    - stock returns
+    - database update
+    data_domain: trading_data
+    negative_terms:
+    - regression
+    - correlation
+    - screening
+    - BMG factor
+    - factor model
+    ambiguity_question: Are you loading or updating stock return data in the database, or are you performing analysis like
+      regressions, screening, or factor computations?
+  - uc_id: UC-109
+    name: Database Schema Initialization and Data Import
+    positive_terms:
+    - database setup
+    - schema initialization
+    - factor import
+    - carbon data
+    - bond factors
+    data_domain: financial_data
+    negative_terms:
+    - regression
+    - correlation
+    - screening
+    - stock prices
+    - factor analysis
+    ambiguity_question: Are you setting up the database schema and loading factor data, or are you performing analysis like
+      regressions, correlations, or screening?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 124
+    fatal_constraints_count: 39
+    non_fatal_constraints_count: 139
+    use_cases_count: 9
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions:
+    - id: BD-001
+      type: B/BA
+      summary: Monthly interval uses 1mo yfinance interval (NOT 1d)
+    - id: BD-002
+      type: BA
+      summary: Drops last entry assuming incomplete candle
+    - id: BD-003
+      type: BA/DK
+      summary: Monthly dates aligned to MonthEnd via pandas offset
+    - id: BD-004
+      type: B
+      summary: 3 retry attempts on JSON decode errors
+    - id: BD-031
+      type: T
+      summary: Default data frequency is MONTHLY across each operations
+    - id: BD-035
+      type: T
+      summary: Minimum 20 data points required for valid regression
+    - id: BD-036
+      type: T
+      summary: Returns capped at ±50% (0.5) during regression to remove outliers
+    - id: BD-037
+      type: T
+      summary: Abnormal returns > 100% (>1) are filtered out from stock data
+    - id: BD-038
+      type: T
+      summary: Inner join used when merging stock returns with factor data
+    - id: BD-039
+      type: B/DK
+      summary: Use Yahoo Finance (yfinance) as source for stock price data
+    - id: BD-040
+      type: B
+      summary: Store BMG series in database for reuse across analysis
+    - id: BD-047
+      type: T
+      summary: Drop last (incomplete) data point when fetching stock history
+    - id: BD-048
+      type: T
+      summary: For composites with no price data, compute and store only returns
+    - id: BD-054
+      type: T
+      summary: Skip components with missing percentage when computing composite returns
+    - id: BD-058
+      type: T
+      summary: Fama-French factors converted from decimal to percentage (divided by 100)
+    - id: BD-061
+      type: B/RC
+      summary: 'Store stock details: EBITDA, enterprise value, P/E, cash, debt, shares outstanding'
+    - id: BD-GAP-001
+      type: RC
+      summary: 'Missing: Timezone explicit annotation + UTC'
+    - id: BD-GAP-002
+      type: DK
+      summary: 'Missing: Point-in-Time data availability'
+    - id: BD-GAP-003
+      type: DK
+      summary: 'Missing: Stale data detection and expiry'
+    - id: BD-GAP-004
+      type: B
+      summary: 'Missing: PnL conservation (realized + unrealized)'
+    - id: BD-GAP-005
+      type: B
+      summary: 'Missing: Train/test time split integrity'
+    - id: BD-GAP-006
+      type: DK
+      summary: 'Missing: Random seed full coverage'
+    - id: BD-GAP-007
+      type: RC
+      summary: 'Missing: Settlement and delivery time convention'
+    - id: BD-GAP-008
+      type: DK
+      summary: 'Missing: Rebalancing Trigger Mechanism'
+    - id: BD-GAP-009
+      type: M
+      summary: 'Missing: Transition Matrix Time Homogeneity & Conditioning'
+    - id: BD-GAP-010
+      type: DK
+      summary: 'Missing: Versioned Writes & Snapshot Semantics'
+    - id: BD-GAP-011
+      type: DK
+      summary: 'Missing: ** "Implement UTC timezone normalization for each datetime fields. Add tzinfo awareness to stock_data,
+        carbon_risk_factor, and ff_factor tables.'
+    - id: BD-GAP-012
+      type: DK
+      summary: 'Missing: ** "Add random.seed(42) or equivalent to each stochastic operations. Document reproducibility requirements
+        in regression_function.py and correlate.py.'
+    - id: BD-GAP-013
+      type: RC
+      summary: 'Missing: ** "Replace ON CONFLICT DO UPDATE with versioned INSERT (add valid_from/valid_to timestamps). Implement
+        append-only audit table for carbon_risk_factor changes.'
+    - id: BD-GAP-014
+      type: B
+      summary: 'Missing: ** "Add data_version column to each factor tables. Track run_id and experiment_id in regression results
+        table.'
+    - id: BD-GAP-015
+      type: DK
+      summary: 'Missing: Stale data detection and expiry'
+    - id: BD-GAP-016
+      type: B
+      summary: 'Missing: PnL conservation (realized + unrealized)'
+    - id: BD-GAP-017
+      type: M/DK
+      summary: 'Missing: Day count convention'
+    - id: BD-GAP-018
+      type: M
+      summary: 'Missing: Covariance Matrix PSD Fix Strategy'
+    - id: BD-GAP-019
+      type: B
+      summary: 'Missing: Default Definition & IFRS 9 Staging'
+    - id: BD-GAP-020
+      type: B
+      summary: 'Missing: PD/LGD/EAD Estimation (IRB vs Standard)'
+    - id: BD-GAP-021
+      type: B
+      summary: 'Missing: Vasicek Single-Factor Asset Correlation'
+    - id: BD-GAP-022
+      type: M
+      summary: 'Missing: ** "Implement covariance matrix PSD repair strategy (nearest correlation, eigenvalue clipping, or
+        shrinkage estimator).'
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 25 source groups: Composite
+        Calculation(1), Date Handling(1), Date Normalization(2), Index Definition(1), Model Diagnostics(1), Model Validity(1),
+        and 19 more.'
+      key_decisions: 86 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-043
+      type: T
+      summary: 'Composite stock returns calculated as weighted average: sum(pct*return) / sum(pct)'
+    - id: BD-053
+      type: T
+      summary: Use minimum available date when user start_date precedes data range
+    - id: BD-051
+      type: T
+      summary: Monthly dates anchored to end-of-month using MonthEnd(1)
+    - id: BD-052
+      type: T
+      summary: WML factors adjusted to month-end by subtracting 1 day from date
+    - id: BD-042
+      type: B/DK
+      summary: 'Index stocks: IVV = S&P 500, XWD.TO = MSCI World'
+    - id: BD-046
+      type: T
+      summary: 'Store three statistical tests: Jarque-Bera, Breusch-Pagan, Durbin-Watson'
+    - id: BD-060
+      type: T
+      summary: Require at least N+10 data points where N is number of factors in regression
+    - id: BD-049
+      type: T
+      summary: '''DEFAULT'' is reserved factor name, cannot be used for custom BMG series'
+    - id: BD-050
+      type: T
+      summary: Bulk regression mode loads each stocks from DB and joins in memory
+    - id: BD-041
+      type: T
+      summary: Convert stock prices to excess returns by subtracting risk-free rate (Rf)
+    - id: BD-032
+      type: T
+      summary: Default significance threshold = 0.05 for regression analysis
+    - id: BD-010
+      type: B
+      summary: BMG = Brown Returns - Green Returns
+    - id: BD-011
+      type: B
+      summary: Composite stock returns = weighted average of components
+    - id: BD-012
+      type: BA
+      summary: NaN values removed before storing BMG
+    - id: BD-030
+      type: B/BA
+      summary: BMG (Brown-Minus-Green) factor = Brown stock returns minus Green stock returns, calculated as return_x - return_y
+    - id: BD-044
+      type: T
+      summary: Orthogonalize BMG factor by regressing on FF factors, storing residuals
+    - id: BD-019
+      type: BA/M
+      summary: Default interval = 60 months (5 years) for MONTHLY
+    - id: BD-020
+      type: BA/DK
+      summary: Default interval = 730 days (2 years) for DAILY
+    - id: BD-021
+      type: B/DK
+      summary: Rolling window advances by interval (NOT by 1 month)
+    - id: BD-022
+      type: B/RC
+      summary: multiprocessing.set_start_method('spawn')
+    - id: BD-023
+      type: B/BA
+      summary: Connection pool size = 20
+    - id: BD-024
+      type: BA
+      summary: Data loaded once, passed to workers via itertools.repeat
+    - id: BD-005
+      type: B
+      summary: ON CONFLICT DO NOTHING for data imports
+    - id: BD-006
+      type: BA
+      summary: Uses COPY FROM PROGRAM with grep to filter raw FF files
+    - id: BD-007
+      type: B
+      summary: WML (weak momentum) stored in same ff_factor table
+    - id: BD-008
+      type: B
+      summary: Stores both close price AND computed return in stock_data
+    - id: BD-009
+      type: B
+      summary: Frequency column on each time series tables
+    - id: BD-057
+      type: T
+      summary: CSV dates must be in YYYYMMDD or YYYYMM format for import
+    - id: BD-059
+      type: T
+      summary: Delete existing data before importing new factor data
+    - id: BD-080
+      type: B/BA
+      summary: Frequency defaults to MONTHLY; DAILY requires explicit specification
+    - id: BD-081
+      type: B/BA
+      summary: Factor data divided by 100 before regression; Close adjusted by risk-free rate
+    - id: BD-088
+      type: M/BA
+      summary: '''DEFAULT'' is reserved factor_name; cannot be used for user-defined BMG series'
+    - id: BD-092
+      type: B/BA
+      summary: Default interval 0 becomes 60 months (MONTHLY) or 730 days (DAILY)
+    - id: BD-025
+      type: BA/M
+      summary: Significance threshold filter (default 0.1)
+    - id: BD-026
+      type: B
+      summary: Orthogonalized factor stored with -ORTHO suffix
+    - id: BD-027
+      type: B
+      summary: Residuals become the orthogonalized factor
+    - id: BD-033
+      type: T
+      summary: Orthogonalization significance threshold = 0.10
+    - id: BD-013
+      type: B
+      summary: Inner join on dates for each DataFrame merges
+    - id: BD-014
+      type: B
+      summary: Excess returns = Close - Rf (risk-free rate)
+    - id: BD-015
+      type: BA
+      summary: 'Winsorization: keep only |value| < 0.5'
+    - id: BD-016
+      type: BA/M
+      summary: Minimum 20 data points required
+    - id: BD-017
+      type: B/BA
+      summary: FF factors and RF stored as percentage, divided by 100 before use
+    - id: BD-018
+      type: M/DK
+      summary: Custom DateInRangeError for date boundary validation
+    - id: BD-062
+      type: B/BA
+      summary: Pearson correlation for factor correlation matrix
+    - id: BD-063
+      type: B/BA
+      summary: OLS regression for factor orthogonalization
+    - id: BD-064
+      type: B/BA
+      summary: Significance threshold for variable selection at p-value 0.1
+    - id: BD-065
+      type: B
+      summary: Two-stage sequential regression for orthogonalization
+    - id: BD-066
+      type: B/BA
+      summary: OLS residuals as orthogonalized factor values
+    - id: BD-094
+      type: B/DK
+      summary: 'INTERACTION: BD-021 (rolling window by interval) × BD-055 (rolling window by 1 period) → Contradictory window
+        advancement logic'
+    - id: BD-095
+      type: B/BA
+      summary: 'INTERACTION: BD-036 (±0.5 winsorization) × BD-091 (≤1.0 abnormal filter) → Inconsistent outlier handling across
+        pipeline stages'
+    - id: BD-096
+      type: BA
+      summary: 'INTERACTION: BD-009 (frequency column on tables) × BD-013 (inner join on dates) × BD-038 (inner join for stock-factor
+        merge) → Hidden data loss cascade'
+    - id: BD-097
+      type: B/BA
+      summary: 'INTERACTION: BD-021 (rolling window by interval) × BD-019 (60-month default) × BD-020 (730-day default) ×
+        BD-080 (MONTHLY default) → Risk cascade of window size misinterpretation'
+    - id: BD-098
+      type: BA
+      summary: 'INTERACTION: BD-039 (Yahoo Finance source) × BD-008 (precomputed returns stored) × BD-047 (drop last incomplete
+        entry) → Amplification of data quality risks'
+    - id: BD-099
+      type: BA/M
+      summary: 'INTERACTION: BD-017 (FF factors /100) × BD-041 (excess returns = Close - Rf) × BD-081 (factor /100 and Close
+        - Rf) → Overlapping normalization decisions with latent contradiction risk'
+    - id: BD-100
+      type: BA/DK
+      summary: 'INTERACTION: BD-022 (spawn multiprocessing) × BD-090 (connection pool get/put pairing) × BD-024 (data loaded
+        once, passed via repeat) → Hidden dependency on spawn-specific behavior'
+    - id: BD-101
+      type: B
+      summary: 'INTERACTION: BD-059 (DELETE before INSERT) × BD-005 (ON CONFLICT DO NOTHING) × BD-093 (refresh_views after
+        completion) → Risk cascade of atomicity violations'
+    - id: BD-102
+      type: BA
+      summary: 'INTERACTION: BD-015 (±0.5 winsorization) × BD-072 (outlier filter [-0.5, 0.5]) × BD-087 ([-0.5, 0.5] bounds)
+        → Redundant outlier decisions across scripts'
+    - id: BD-085
+      type: DK
+      summary: Composite stocks compute returns via component weighted average BEFORE regression
+    - id: BD-082
+      type: BA
+      summary: Sliding window regression requires data_end_date <= end_date to terminate loop
+    - id: BD-083
+      type: BA/M
+      summary: Minimum 20 data points required for valid OLS regression
+    - id: BD-087
+      type: BA
+      summary: Outlier filter bounds returns to [-0.5, 0.5] before regression
+    - id: BD-091
+      type: BA/DK
+      summary: 'Abnormal returns filtered: data[''r''] <= 1 before DB insert'
+    - id: BD-079
+      type: B/BA
+      summary: BMG factor MUST be brown minus green (subtraction order is critical)
+    - id: BD-084
+      type: B/DK
+      summary: 'Date range validation: start_date < max_data AND end_date > min_data required'
+    - id: BD-089
+      type: B
+      summary: 'Data merge order: stock → carbon → ff → rf (inner join on dates)'
+    - id: BD-086
+      type: BA
+      summary: Multiprocessing uses spawn method with explicit data duplication per worker
+    - id: BD-090
+      type: BA
+      summary: 'Connection pool lifecycle: getconn() must be paired with putconn()'
+    - id: BD-093
+      type: M
+      summary: Database refresh_views called after each regressions complete
+    - id: BD-071
+      type: B/BA
+      summary: OLS regression for stock factor analysis
+    - id: BD-072
+      type: B
+      summary: Data clipping to [-0.5, 0.5] range for outlier removal
+    - id: BD-073
+      type: B
+      summary: Minimum sample size requirement n > k + 10 for regression
+    - id: BD-074
+      type: B/BA
+      summary: Jarque-Bera test for normality of residuals
+    - id: BD-075
+      type: B/BA
+      summary: Breusch-Pagan test for heteroscedasticity
+    - id: BD-076
+      type: B/BA
+      summary: Durbin-Watson test for autocorrelation
+    - id: BD-077
+      type: B
+      summary: R-squared for model fit assessment
+    - id: BD-028
+      type: B/BA
+      summary: Significance defined as bmg_p_gt_abs_t < threshold
+    - id: BD-029
+      type: BA
+      summary: 'Majority rule: >50% of periods significant'
+    - id: BD-034
+      type: T
+      summary: 'Regression interval defaults: 60 months for MONTHLY, 730 days for DAILY'
+    - id: BD-045
+      type: T
+      summary: 'Run two-stage OLS: first with each factors, then only significant factors'
+    - id: BD-055
+      type: T
+      summary: Rolling window advances by 1 period (month or day) between regressions
+    - id: BD-056
+      type: T
+      summary: Daily frequency uses 730-day (2-year) interval when not specified
+    - id: BD-067
+      type: B
+      summary: Simple percentage change for return calculation
+    - id: BD-068
+      type: B
+      summary: Return cap at 100% for abnormal return filtering
+    - id: BD-069
+      type: B/BA
+      summary: Weighted average for composite stock returns
+    - id: BD-070
+      type: B/RC
+      summary: Outer join for merging component stock data
+    - id: BD-078
+      type: B
+      summary: Decimal type for percentage-weighted return multiplication
+resources:
+  packages:
+  - name: pandas
+    version_pin: ==1.5.3
+  - name: numpy
+    version_pin: ==1.24.4
+  - name: matplotlib
+    version_pin: '>=2'
+  - name: requests
+    version_pin: ==2.31.0
+  - name: scipy
+    version_pin: '>=1.3.0'
+  - name: scikit-learn
+    version_pin: '>1.4.2'
+  - name: pytest
+    version_pin: '>=8.3'
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When fetching monthly frequency stock data
+    action: Use yfinance interval='1mo' (monthly candles), NOT interval='1d'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using daily data for monthly frequency causes incorrect MonthEnd date alignment, leading to misaligned returns
+      that corrupt downstream factor regressions
+    stage_ids:
+    - data_collection
+  - id: finance-C-002
+    when: When fetching stock price data from yfinance
+    action: Drop the last entry assuming it is an incomplete candle
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Partial last-period candle causes incomplete return calculations, producing NaN or incorrect values when
+      computing pct_change in downstream stages
+    stage_ids:
+    - data_collection
+  - id: finance-C-007
+    when: When fetching stock data with yfinance
+    action: Limit frequency to DAILY or MONTHLY only (raises Exception for other values)
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Unsupported frequency triggers Exception at stock_price_function.py:25, aborting the data fetch and leaving
+      downstream stages without required data
+    stage_ids:
+    - data_collection
+  - id: finance-C-011
+    when: When computing returns from stock price data
+    action: Verify Close column contains numeric float values (not strings or objects)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-numeric Close values cause pct_change() to return NaN for all rows, producing empty regression inputs
+      and invalid factor loadings
+    stage_ids:
+    - data_collection
+  - id: finance-C-016
+    when: When importing Fama-French factor data from raw CSV files
+    action: apply grep preprocessing to filter header rows before COPY import
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Raw FF CSV files contain header rows that would corrupt the database with invalid date strings, causing all
+      factor data imports to fail or contain garbage values
+    stage_ids:
+    - data_import
+  - id: finance-C-017
+    when: When creating PostgreSQL schema for time series tables
+    action: define frequency column with text type and enforce 'MONTHLY' or 'DAILY' values
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit frequency enforcement, mixed frequency data causes regression calculations to combine incompatible
+      data, producing statistically invalid results
+    stage_ids:
+    - data_import
+  - id: finance-C-020
+    when: When importing Fama-French factors
+    action: remove rows with any null factor values (mkt_rf, smb, hml, wml) after import
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incomplete factor rows cause matrix inversion failures in regressions, as factor covariance matrix cannot
+      be computed with null values
+    stage_ids:
+    - data_import
+  - id: finance-C-022
+    when: When setting up the data infrastructure
+    action: use PostgreSQL as the database backend with COPY FROM PROGRAM support
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: The import scripts rely on PostgreSQL-specific features (COPY FROM PROGRAM, materialized views, ON CONFLICT).
+      Using incompatible databases causes all imports to fail
+    stage_ids:
+    - data_import
+  - id: finance-C-029
+    when: When initializing database schema
+    action: 'create each seven required tables: stocks, stock_data, carbon_risk_factor, ff_factor, risk_free, stock_components,
+      stock_stats'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing any required table causes downstream scripts to fail with relation does not exist errors, blocking
+      all factor regression calculations
+    stage_ids:
+    - data_import
+  - id: finance-C-046
+    when: When implementing factor regression data alignment
+    action: use inner join to merge stock returns, carbon factor, FF factors, and risk-free rate on matching dates
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Regression coefficients become statistically invalid when data points lack complete factor coverage, causing
+      biased estimates and unreliable inference
+    stage_ids:
+    - factor_regression
+  - id: finance-C-047
+    when: When computing excess returns for factor regression
+    action: subtract risk-free rate (Rf) from stock Close price to compute excess returns, not raw returns
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: CAPM/FF regression requires excess returns (Close - Rf); using raw returns violates standard financial econometric
+      methodology and produces incorrect beta estimates
+    stage_ids:
+    - factor_regression
+  - id: finance-C-048
+    when: When preparing Fama-French factors and risk-free rate for OLS regression
+    action: divide percentage-formatted FF factors and risk-free rate by 100 before using in regression
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: FF factors stored as percentages (e.g., 5.2) must be converted to decimals (0.052); using raw percentages
+      produces coefficients scaled by 100x and invalid inference
+    stage_ids:
+    - factor_regression
+  - id: finance-C-050
+    when: When validating regression data sufficiency
+    action: require at least 20 data points after each filtering (inner join, winsorization, date range)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: OLS with fewer than 20 observations produces unreliable t-statistics and p-values; standard practice requires
+      minimum 20 monthly observations for statistical validity
+    stage_ids:
+    - factor_regression
+  - id: finance-C-061
+    when: When implementing regression analysis with factor models
+    action: Use at least 20 data points for statistical validity of regression coefficients
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Regression statistics (t-stats, p-values, R²) become unreliable or undefined with fewer than 20 observations,
+      producing meaningless or misleading factor loadings
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-065
+    when: When implementing multiprocessing for parallel regression execution
+    action: Use spawn method instead of fork for multiprocessing start
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Forking a process with psycopg2 connections causes 'connection already closed' errors or corrupted connection
+      state in child processes, resulting in failed database writes
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-067
+    when: When acquiring database connections from the pool
+    action: Return connections to the pool after use with putconn()
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Connection leak exhausts the pool, causing subsequent operations to block indefinitely waiting for available
+      connections
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-075
+    when: When implementing factor orthogonalization using OLS regression
+    action: Add a constant term (intercept) to the regression model via x.insert(0, 'Constant', 1)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Regression without intercept will produce biased estimates of factor loadings, causing the orthogonalization
+      to incorrectly attribute variance to the constant term instead of the BMG factor
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-076
+    when: When selecting factors for orthogonalization regression
+    action: Use p-values from the initial full regression to filter factors where p-value is below the significance threshold
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Including non-significant factors in orthogonalization introduces noise and may overfit the regression model,
+      producing unreliable residuals that contaminate downstream factor analysis
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-077
+    when: When naming the orthogonalized factor
+    action: Append the -ORTHO suffix to the original factor name to distinguish it from raw factor values
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without the -ORTHO suffix, downstream regression scripts cannot distinguish between raw and orthogonalized
+      BMG factors, causing incorrect factor selection and contaminated regression results
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-078
+    when: When storing orthogonalization results in the database
+    action: Delete any existing orthogonalized factor with the same name before inserting new results to prevent duplicate
+      primary key violations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate entries in carbon_risk_factor table will cause primary key constraint violations and corrupt downstream
+      regression analysis that depends on unique factor-date combinations
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-080
+    when: When storing orthogonalized factor values
+    action: Store the regression residuals (model.resid.values) as the bmg column in carbon_risk_factor table
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Storing fitted values instead of residuals defeats the purpose of orthogonalization, as the resulting factor
+      still contains variance explained by correlated factors
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-082
+    when: When ensuring orthogonalized factors are available for downstream regressions
+    action: Store orthogonalized factors in the carbon_risk_factor table with matching frequency parameter so get_regressions.py
+      can query them by factor_name
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Storing orthogonalized factors in a separate table or with different schema breaks the data access pattern
+      used by subsequent regression scripts, making the orthogonalized factors unavailable for selection
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-091
+    when: When implementing significance filtering for BMG coefficient
+    action: Use bmg_p_gt_abs_t < threshold to identify significant results
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect significance test direction (e.g., bmg_p_gt_abs_t > threshold) would include non-significant
+      results, causing false positive climate risk identifications
+    stage_ids:
+    - results_analysis
+  - id: finance-C-092
+    when: When implementing majority significance counting across periods
+    action: Use HAVING count(CASE WHEN bmg_p_gt_abs_t < threshold THEN 1 END) > count(CASE WHEN bmg_p_gt_abs_t >= threshold
+      THEN 1 END) for majority rule
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using >= 50% threshold instead of > 50% would misclassify stocks with exactly 50% significant periods as
+      having significant exposure
+    stage_ids:
+    - results_analysis
+  - id: finance-C-101
+    when: When presenting analysis results to users
+    action: Present backtest regression results as definitive proof of live trading performance
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting backtest results as live performance would mislead users into expecting similar trading returns,
+      violating financial regulatory guidance and causing potential financial loss
+    stage_ids:
+    - results_analysis
+  - id: finance-C-102
+    when: When using analysis results for investment decisions
+    action: Treat BMG factor regression results as guaranteed investment returns
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Regression coefficients reflect historical market pricing of climate risk and do not predict future returns,
+      leading to potential financial losses if used for direct trading
+    stage_ids:
+    - results_analysis
+  - id: finance-C-128
+    when: When implementing time series data handling across each stages
+    action: Use Date index with name 'Date' for each time series DataFrames
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Merging and correlation calculations fail when date index naming is inconsistent, causing regression to produce
+      incorrect factor loadings and invalid climate risk measurements
+  - id: finance-C-129
+    when: When storing or processing time series data across each stages
+    action: Use only 'MONTHLY' or 'DAILY' values for the frequency field
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid frequency values cause unsupported frequency exceptions, preventing data storage and blocking all
+      regression analysis
+  - id: finance-C-130
+    when: When storing or processing percentage values across each stages
+    action: Store percentage values as percentage format (e.g., 5.2) NOT decimal format (e.g., 0.052)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Factor values multiplied by 100 during calculation but stored without conversion, causing regression coefficients
+      to be 100x too large and producing meaningless BMG climate risk loadings
+  - id: finance-C-131
+    when: When running regression analysis across each stages
+    action: Verify inner join on dates across stock returns, carbon risk factor, and Fama-French factors
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing date alignment causes rows with NaN values in regression, producing invalid OLS coefficients and
+      unreliable climate risk factor loadings
+  - id: finance-C-132
+    when: When running regression analysis across each stages
+    action: Require at least 20 data points for valid statistical regression results
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Regression with insufficient data points produces unreliable t-statistics and p-values, causing incorrect
+      conclusions about climate risk factor significance
+  - id: finance-C-134
+    when: When naming BMG climate risk factors across each stages
+    action: Use 'DEFAULT' as a custom factor name — it is reserved as the system default BMG factor
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Overwriting DEFAULT factor causes all downstream regressions to use wrong climate risk data, invalidating
+      entire analysis
+  - id: finance-C-143
+    when: When operating this system in production
+    action: Require PostgreSQL database infrastructure — the system stores each stock data, factor data, and regression results
+      in database tables
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Without PostgreSQL, no data can be stored or retrieved, completely blocking all analysis and regression workflows
+    stage_ids:
+    - data_import
+  - id: finance-C-148
+    when: When executing the regression workflow
+    action: 'Follow the required data flow order: load factors from DB → merge on dates using inner join → calculate stock
+      returns with pct_change → filter outliers → run OLS regression'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Deviation from the required workflow order causes data misalignment, resulting in incorrect factor loadings
+      and invalid climate risk measurements
+  - id: finance-C-165
+    when: When implementing BMG (Brown-Minus-Green) factor calculation for carbon risk regression analysis
+    action: Calculate BMG factor as return_x minus return_y (Brown stock returns minus Green stock returns) to construct a
+      long-short portfolio capturing pure carbon risk premium without contamination from other factor exposures
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect BMG calculation (e.g., reversed subtraction order or different weighting) corrupts the primary
+      dependent variable in carbon risk analysis, causing strategies to be built on wrong factor exposures and potentially
+      losing capital on mispriced carbon risk
+    derived_from_bd_id: BD-030
+  - id: finance-C-174
+    when: When implementing or refactoring BMG factor computation logic
+    action: Maintain BMG formula as Brown Returns minus Green Returns (Brown - Green); changing the order to Green minus Brown
+      inverts the entire framework's interpretation of positive values
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Inverting the BMG formula causes all climate factor analysis to report opposite results, producing false
+      carbon alpha signals and misidentifying brown stock outperformance as green stock outperformance
+    derived_from_bd_id: BD-010
+  - id: finance-C-177
+    when: When implementing or using rolling window regression API
+    action: Explicitly specify overlap parameter behavior when requesting rolling window advancement; do not rely on ambiguous
+      window advancement logic that contradicts between BD-021 (non-overlapping for statistical independence) and BD-055 (1-period
+      advancement)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Contradictory window advancement logic between non-overlapping (BD-021) and overlapping (BD-055) specifications
+      produces invalid rolling regression results with silent errors in beta estimates and statistical inference
+    derived_from_bd_id: BD-094
+  - id: finance-C-181
+    when: When normalizing factor returns for regression
+    action: 'Verify consistent application of factor normalization: FF factors must be divided by 100 AND excess returns must
+      be computed as Close minus risk-free rate; verify both operations are applied to maintain consistent scale between factors
+      and returns'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent normalization (applying only one of factor/100 or Close-Rf) creates scale mismatches in regression
+      coefficients, causing systematic pricing errors and invalid factor risk premium estimates
+    derived_from_bd_id: BD-099
+  - id: finance-C-205
+    when: When configuring rolling window regression parameters
+    action: Verify window advancement size matches the interval default (60 months for MONTHLY, 730 days for DAILY) — BD-019,
+      BD-020, BD-080, and BD-021 must be consistent; verify that interval advancement logic uses the same unit (months vs
+      days) as the window size
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Window size misinterpretation due to unit mismatch (month-based window advancing by day-based interval) causes
+      incorrect beta estimates, invalid t-statistics, and wrong BMG premium conclusions that appear statistically valid but
+      are structurally flawed
+    derived_from_bd_id: BD-097
+  regular:
+  - id: finance-C-003
+    when: When aligning monthly stock data timestamps
+    action: Add MonthEnd(1) offset to index for proper financial convention alignment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without MonthEnd alignment, monthly return dates do not match financial reporting periods, causing misalignment
+      with Fama-French factors and BMG climate data
+    stage_ids:
+    - data_collection
+  - id: finance-C-004
+    when: When processing stock data with the Close column
+    action: Drop NaN values from the Close series before returning
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: NaN values in Close column propagate to pct_change calculations, producing all-NaN rows and corrupting downstream
+      regression inputs
+    stage_ids:
+    - data_collection
+  - id: finance-C-005
+    when: When returning stock data from stock_df_grab
+    action: Verify the DataFrame index is named 'Date' as per interface contract
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Downstream stages like bulk_script.py:15 expect index.rename('Date') and merge operations fail when index
+      name is missing or incorrect
+    stage_ids:
+    - data_collection
+  - id: finance-C-006
+    when: When using yfinance API for stock data
+    action: Assume yfinance provides real-time data without delay
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: yfinance data has inherent delays (15+ minutes for US stocks), presenting historical data as real-time causes
+      incorrect trading signals and performance claims
+    stage_ids:
+    - data_collection
+  - id: finance-C-008
+    when: When yfinance JSON decode fails (transient network error)
+    action: Retry up to 3 attempts before raising ValueError timeout
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without retry logic, transient network failures cause immediate data fetch failures, preventing bulk stock
+      imports from completing
+    stage_ids:
+    - data_collection
+  - id: finance-C-009
+    when: When importing stock data into the database
+    action: Skip stocks that fail to fetch (raise ValueError and catch in calling code)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Uncaught exceptions from invalid tickers or API failures halt the entire batch import process, preventing
+      valid stocks from being processed
+    stage_ids:
+    - data_collection
+  - id: finance-C-010
+    when: When the fetch ticker is invalid or data unavailable
+    action: Return empty DataFrame, not crash the calling process
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Invalid ticker causing unhandled exception terminates multiprocessing pool workers, losing progress on all
+      pending stocks in bulk imports
+    stage_ids:
+    - data_collection
+  - id: finance-C-012
+    when: When representing fetched stock data as results
+    action: Claim yfinance historical data represents real-time trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting historical backtest results as live trading performance violates financial regulations and misleads
+      investors about expected returns
+    stage_ids:
+    - data_collection
+  - id: finance-C-013
+    when: When handling fetched stock price data
+    action: Use raw yfinance data as the sole source without validation against other data providers
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Relying exclusively on yfinance without cross-validation risks data quality issues (delays, missing data,
+      incorrect splits) being undetected and propagated to analysis
+    stage_ids:
+    - data_collection
+  - id: finance-C-014
+    when: When accessing stock price data in downstream stages
+    action: Use stock_df_grab() wrapper function as the data entry point, not yfinance directly
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Bypassing the data ingestion layer causes missing Date column formatting, incorrect index naming, and inconsistent
+      data format across downstream stages
+    stage_ids:
+    - data_collection
+  - id: finance-C-015
+    when: When formatting stock data output
+    action: Convert Date index to date objects and position Date column as first column in DataFrame
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent date handling causes merge operations in bulk_script.py and factor_regression.py to fail, producing
+      incorrect or empty merged datasets
+    stage_ids:
+    - data_collection
+  - id: finance-C-018
+    when: When storing financial factor values in PostgreSQL
+    action: use DECIMAL data type with specified precision instead of FLOAT
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Floating-point representation causes rounding errors in financial calculations, leading to incorrect factor
+      loadings and misstated investment performance metrics
+    stage_ids:
+    - data_import
+  - id: finance-C-019
+    when: When inserting stock return data
+    action: accept returns greater than 100% or NaN values into stock_data table
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Abnormal returns (>100%) and NaN values cause division errors and corrupt downstream regressions, producing
+      meaningless beta/alpha estimates
+    stage_ids:
+    - data_import
+  - id: finance-C-021
+    when: When performing data imports via COPY command
+    action: use staging tables with ON CONFLICT DO NOTHING to prevent duplicate key violations on re-runs
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without idempotent upsert behavior, re-running data imports throws unique constraint violations, blocking
+      incremental updates and requiring full database recreation
+    stage_ids:
+    - data_import
+  - id: finance-C-023
+    when: When importing MSCI constituents and weights
+    action: populate both stocks table (with ticker, name, sector) and stock_components table (with parent ticker, component
+      stock, percentage)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing either stocks or stock_components records breaks the parent-component relationship, preventing composite
+      ETF return calculations and sector analysis
+    stage_ids:
+    - data_import
+  - id: finance-C-024
+    when: When importing Fama-French factors
+    action: store each four factors (Mkt-RF, SMB, HML, WML) in the ff_factor table with unified structure
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without WML (weak momentum) in the same table, factor regressions miss the momentum factor, producing incorrect
+      four-factor model estimates
+    stage_ids:
+    - data_import
+  - id: finance-C-025
+    when: When storing stock price data
+    action: store both close price and pre-computed return in stock_data table
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without pre-computed returns, every query must recalculate pct_change, causing repeated O(n) scans over large
+      time series and slow dashboard queries
+    stage_ids:
+    - data_import
+  - id: finance-C-026
+    when: When creating database tables
+    action: define explicit PRIMARY KEY constraints on each tables
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without primary keys, duplicate rows can accumulate silently, causing one-to-many relationship failures in
+      JOIN queries and incorrect regression results
+    stage_ids:
+    - data_import
+  - id: finance-C-027
+    when: When importing index constituent data
+    action: clear existing constituents for the same parent ticker before inserting new ones
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without deleting old constituents first, the stock_components table accumulates stale entries, causing outdated
+      index weights to pollute regression analysis
+    stage_ids:
+    - data_import
+  - id: finance-C-028
+    when: When importing bond factor data
+    action: delete each existing rows before import (non-idempotent full replacement)
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Unlike other tables, bond_factor uses DELETE + COPY without ON CONFLICT, so stale data remains if import
+      fails midway through the file
+    stage_ids:
+    - data_import
+  - id: finance-C-030
+    when: When performing data imports
+    action: claim that imported historical data equals real-time market conditions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting historical backtest results as equivalent to live trading violates regulatory standards and investor
+      protection requirements, as past performance does not guarantee future results
+    stage_ids:
+    - data_import
+  - id: finance-C-031
+    when: When using the system for investment decisions
+    action: claim that simulated portfolio returns from imported data represent actual trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Simulated returns exclude transaction costs, slippage, and liquidity constraints, causing material overstatement
+      of expected live trading profits
+    stage_ids:
+    - data_import
+  - id: finance-C-049
+    when: When filtering extreme returns from regression input
+    action: exclude observations where |return| >= 0.5 (50%) using winsorization to remove outliers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Extreme returns exceeding 50% likely represent data errors or corporate actions that dominate regression
+      coefficients, causing spurious factor loadings
+    stage_ids:
+    - factor_regression
+  - id: finance-C-051
+    when: When generating output DataFrames from factor regression
+    action: set DateTime index name to 'Date' in merged DataFrame to maintain naming consistency
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Downstream scripts (get_regressions.py) expect 'Date' index name; mismatched index names cause merge failures
+      and silent data loss
+    stage_ids:
+    - factor_regression
+  - id: finance-C-052
+    when: When validating date range inputs against available data
+    action: raise custom DateInRangeError when start_date >= max_date or end_date <= min_date
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Invalid date boundaries cause empty regression datasets or silent data truncation, producing meaningless
+      or missing results without clear error messages
+    stage_ids:
+    - factor_regression
+  - id: finance-C-053
+    when: When ensuring OLS has sufficient degrees of freedom
+    action: require number of observations to exceed number of factors by at least 10 (shape[0] > shape[1] + 10)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Insufficient degrees of freedom causes OLS estimation to fail or produce unstable estimates; the +10 buffer
+      ensures reliable standard error estimation
+    stage_ids:
+    - factor_regression
+  - id: finance-C-054
+    when: When computing factor regression coefficients
+    action: include intercept term (constant) as first column in regression design matrix
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: FF factor models require an intercept to capture abnormal returns; omitting the constant produces biased
+      coefficient estimates
+    stage_ids:
+    - factor_regression
+  - id: finance-C-055
+    when: When performing rolling/interval regression analysis
+    action: only run regression when overlapping data exists between stock, FF factors, and carbon factor after start_date
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Regression without complete factor coverage produces invalid coefficients; attempting regression with missing
+      data raises ValueError in code
+    stage_ids:
+    - factor_regression
+  - id: finance-C-056
+    when: When presenting factor regression results
+    action: claim that backtest regression coefficients predict future stock performance or guarantee investment returns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Past factor loadings do not guarantee future results; regression captures historical relationships that may
+      change due to market regime shifts, structural breaks, or factor decay
+    stage_ids:
+    - factor_regression
+  - id: finance-C-057
+    when: When using regression coefficients for investment decisions
+    action: present the software output as financial investment advice or recommendation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Disclaimer explicitly states this is not investment advice; presenting regression output as recommendations
+      violates the stated purpose and creates legal/regulatory risk
+    stage_ids:
+    - factor_regression
+  - id: finance-C-058
+    when: When running bulk regressions for multiple stocks
+    action: enable silent mode to suppress verbose output and improve processing performance
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Verbose printing for each of hundreds of stocks creates excessive I/O overhead, significantly slowing bulk
+      regression processing
+    stage_ids:
+    - factor_regression
+  - id: finance-C-059
+    when: When converting date inputs for factor regression
+    action: parse date strings in YYYY-MM-DD format; non-string dates are passed through unchanged
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrectly formatted date strings cause ValueError in datetime.strptime; silent pass-through of non-string
+      dates prevents type checking
+    stage_ids:
+    - factor_regression
+  - id: finance-C-060
+    when: When handling edge case of empty merged DataFrame
+    action: raise ValueError immediately when merged DataFrame length is zero before attempting regression
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Attempting OLS on empty DataFrame causes downstream errors; explicit validation with clear error message
+      prevents cryptic failures
+    stage_ids:
+    - factor_regression
+  - id: finance-C-062
+    when: When implementing bulk data processing with rolling windows
+    action: Handle missing data by dropping rows with NaN values before regression
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inner join on dates with missing factor data produces empty DataFrames, causing silent failures and missing
+      regression results for affected stocks
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-063
+    when: When setting the default regression interval
+    action: Use 60 months (5 years) as default for MONTHLY frequency and 730 days (2 years) for DAILY frequency
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using insufficient observations reduces statistical significance; using too many observations includes stale
+      data that degrades factor model accuracy
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-064
+    when: When configuring PostgreSQL connection pool for bulk regression
+    action: Limit connection pool to maximum 20 concurrent connections
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Exceeding pool size causes connection exhaustion errors, blocking all database operations and halting regression
+      execution mid-process
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-066
+    when: When loading factor data for bulk regression workers
+    action: Load each factor data once and share via itertools.repeat across workers
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Per-worker data loading causes redundant database queries, multiplying I/O load by number of workers and
+      drastically slowing bulk regression execution
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-068
+    when: When storing regression results in the database
+    action: Use DELETE before INSERT pattern for UPSERT semantics on stock_stats table
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Duplicate key violations prevent regression storage; without idempotent writes, re-running regressions produces
+      constraint errors instead of updates
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-069
+    when: When completing bulk regression processing
+    action: Refresh materialized views (stock_and_stats, stock_component_and_stats, stock_parent_and_stats) after bulk completion
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Stale materialized view data causes queries to return outdated regression results, misleading downstream
+      analysis and portfolio construction
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-070
+    when: When implementing rolling window regression advancement
+    action: Advance window by interval_freq (1 day/month) to create overlapping windows
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-overlapping windows reduce time-series observations; overlapping windows provide more data points for
+      statistical significance while maintaining temporal ordering
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-071
+    when: When configuring frequency parameter for regression
+    action: Use only MONTHLY or DAILY as valid frequency values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: 'Unsupported frequency causes Exception with message ''Unsupported frequency: {value}'', preventing any regression
+      from running'
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-072
+    when: When presenting regression results to users
+    action: Claim that backtest regression results predict future trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting historical factor loadings as predictive of future returns violates regulatory guidance and misleads
+      investors about actual expected performance
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-073
+    when: When displaying regression coefficient results
+    action: Present statistical results as investment recommendations
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Factor loadings (beta, t-stats) are analytical outputs, not buy/sell signals; presenting them as recommendations
+      violates the project's stated purpose and legal disclaimers
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-074
+    when: When using ThreadedConnectionPool for database operations
+    action: Use ThreadedConnectionPool (not SimpleConnectionPool) to support concurrent thread access
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: SimpleConnectionPool does not handle concurrent thread access safely, causing race conditions and intermittent
+      'connection already closed' errors
+    stage_ids:
+    - bulk_regression
+  - id: finance-C-079
+    when: When merging factor dataframes for orthogonalization
+    action: Use left join when merging additional factors to preserve each BMG observations, then call dropna() to remove
+      incomplete rows
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using outer join or skipping dropna() will include rows with missing factor values, producing NaN residuals
+      that corrupt the orthogonalized factor series
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-081
+    when: When running batch processing of each BMG series
+    action: Skip factor names that already end with -ORTHO to prevent re-orthogonalization of already-orthogonalized factors
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Re-orthogonalizing already-orthogonalized factors produces doubly-transformed residuals with degraded statistical
+      properties and unpredictable factor loadings
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-083
+    when: When executing orthogonalization batch processing
+    action: Use psycopg2.extras.execute_batch() with parameterized queries to safely insert DataFrame rows into the database
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: String formatting SQL queries exposes the system to SQL injection attacks and will fail when factor names
+      contain special characters like dashes or underscores
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-084
+    when: When requiring data availability for orthogonalization
+    action: Verify carbon_risk_factor, ff_factor, and additional_factors tables contain overlapping date ranges for the selected
+      frequency
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: If date ranges do not overlap, the inner merge will produce an empty DataFrame, the regression will fail,
+      and no orthogonalized factor will be generated
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-085
+    when: When processing orthogonalization in batch mode with --each flag
+    action: Verify that the database connection pool is properly initialized before accessing it in process_factor()
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Accessing uninitialized connection pool will raise an AttributeError, causing the batch orthogonalization
+      script to fail entirely
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-086
+    when: When interpreting orthogonalization results
+    action: Claim that orthogonalized factor returns equal or predict live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested orthogonalization results do not guarantee future live trading returns. Orthogonalization removes
+      historical correlation structure but market dynamics may change, invalidating the factor's predictive power in forward-looking
+      trading
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-087
+    when: When using the orthogonalization system
+    action: Present orthogonalization results as investment advice or specific security recommendations
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The system is for informational and research purposes only. Orthogonalization is a mathematical transformation
+      that removes statistical correlation—it does not constitute financial advice about particular securities or investment
+      strategies
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-088
+    when: When running orthogonalization with the --each flag
+    action: Process factors that are already orthogonalized (ending with -ORTHO) to avoid double transformation
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Processing already-orthogonalized factors produces doubly-transformed residuals that have degraded statistical
+      properties and unpredictable behavior in subsequent regressions
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-089
+    when: When configuring the significance threshold for orthogonalization
+    action: Use a threshold of 0.1 (10%) as the default p-value cutoff for including factors in orthogonalization
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using an overly strict threshold (e.g., 0.05) may exclude factors that have meaningful correlation with the
+      BMG factor, leaving residual correlation that contaminates downstream analysis
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-090
+    when: When verifying orthogonalization completeness
+    action: Confirm the correlation between the orthogonalized factor and each FF factor is below the significance threshold
+      after orthogonalization
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: If orthogonalized factor still shows significant correlation with any FF factor, the orthogonalization was
+      incomplete, leading to factor contamination in subsequent regression analysis
+    stage_ids:
+    - factor_orthogonalization
+  - id: finance-C-093
+    when: When retrieving the most recent regression results
+    action: Query max(thru_date) within each (ticker, bmg_factor_name) group to identify final period results
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without max(thru_date) filtering, results may include stale regression periods causing outdated analysis
+      and incorrect conclusions
+    stage_ids:
+    - results_analysis
+  - id: finance-C-094
+    when: When joining stock_stats with stocks table
+    action: Use LEFT JOIN for stocks table to preserve stocks without sector assignments
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using INNER JOIN would exclude stocks with missing sector information, causing incomplete sector aggregation
+      and missing climate risk identification
+    stage_ids:
+    - results_analysis
+  - id: finance-C-095
+    when: When specifying BMG factor name for analysis
+    action: Use 'DEFAULT' as a factor_name parameter value
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: DEFAULT is a reserved factor name in the carbon_risk_factor table, passing it as a filter parameter would
+      return no results or unintended data
+    stage_ids:
+    - results_analysis
+  - id: finance-C-096
+    when: When accessing regression results from the database
+    action: REFRESH MATERIALIZED VIEW before querying to verify latest results are available
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Without refreshing materialized views, query results may be stale, showing outdated regression periods instead
+      of current analysis
+    stage_ids:
+    - results_analysis
+  - id: finance-C-097
+    when: When analyzing sector-level climate risk exposure
+    action: Group by both sector and bmg_factor_name to avoid mixing different climate factors
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper grouping by factor_name, sector aggregations would mix results from different BMG series,
+      causing misleading climate risk assessments
+    stage_ids:
+    - results_analysis
+  - id: finance-C-098
+    when: When aggregating stock-level results to sector level
+    action: Count distinct tickers per sector, not raw rows, to avoid double-counting
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without distinct ticker counting, stocks appearing in multiple regression periods would be counted multiple
+      times, inflating sector significance numbers
+    stage_ids:
+    - results_analysis
+  - id: finance-C-099
+    when: When accepting p-value threshold input from users
+    action: Use default significance threshold of 0.05 (5% level) when no threshold specified
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without a reasonable default, users might accidentally filter results with threshold 0 (no significant results)
+      or fail to specify threshold at all
+    stage_ids:
+    - results_analysis
+  - id: finance-C-100
+    when: When calculating ratio of significant stocks to index stocks by sector
+    action: Handle missing sector counts by returning None or zero ratio, not causing division errors
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Division by sector count of zero would crash the analysis output, preventing users from identifying climate
+      risk patterns
+    stage_ids:
+    - results_analysis
+  - id: finance-C-103
+    when: When interpreting BMG coefficient significance results
+    action: Consider p-value significance only within the context of model assumption diagnostics (Jarque-Bera, Breusch-Pagan,
+      Durbin-Watson)
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: Ignoring model diagnostics and treating p-value alone as proof of climate risk could identify spurious correlations
+      due to non-normal residuals or heteroskedasticity
+    stage_ids:
+    - results_analysis
+  - id: finance-C-104
+    when: When evaluating statistical significance of BMG coefficients
+    action: Skip validation of Jarque-Bera p-value > 0.05 confirming Gaussian residuals
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: OLS regression assumes Gaussian-distributed residuals; violating this assumption makes p-values unreliable
+      and significance conclusions invalid
+    stage_ids:
+    - results_analysis
+  - id: finance-C-105
+    when: When comparing climate risk results across different BMG factor series
+    action: Separate analysis by bmg_factor_name to avoid mixing orthogonalized and non-orthogonalized climate factors
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mixing results from different BMG series (e.g., XOP-SMOG vs XOP-SMOG_HML_HYGIEI) would produce inconsistent
+      and incomparable climate risk assessments
+    stage_ids:
+    - results_analysis
+  - id: finance-C-106
+    when: When interpreting sector-level climate risk aggregation
+    action: Conclude that each stocks in a sector have the same climate risk profile based on aggregate counts
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Sector aggregation shows distribution of significant exposures, not uniform risk; individual stock-level
+      analysis is required for portfolio construction
+    stage_ids:
+    - results_analysis
+  - id: finance-C-133
+    when: When handling composite stock tickers across each stages
+    action: Populate stock_components table with component_stock and percentage weights before processing composite tickers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing stock_components entries cause division by zero or NaN composite returns, breaking portfolio-level
+      BMG climate risk analysis
+  - id: finance-C-135
+    when: When processing stock return data across each stages
+    action: Filter out and exclude returns exceeding 100% (return > 1) as abnormal data
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Abnormal returns from data errors distort regression coefficients, leading to incorrect BMG factor loadings
+      and misguided climate risk assessments
+  - id: finance-C-136
+    when: When running OLS regression across each stages
+    action: Cap regression input values at [-0.5, 0.5] range to filter extreme outliers before estimation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Extreme outliers in returns corrupt OLS estimation, producing unreliable coefficients and invalid statistical
+      tests (Jarque-Bera, Breusch-Pagan, Durbin-Watson)
+  - id: finance-C-137
+    when: When presenting or reporting this system's regression results to users
+    action: Claim that backtested factor loadings equal expected live trading returns — regression analysis ignores transaction
+      costs, slippage, market impact, and execution delays
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users allocate live capital based on inflated backtest returns, leading to severe underperformance in live
+      trading and potential financial loss
+  - id: finance-C-138
+    when: When marketing or describing this system's capabilities
+    action: Claim real-time trading support — this is a historical factor analysis and regression system, NOT a live trading
+      execution platform
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users purchase or implement this system expecting live trading capabilities that do not exist, leading to
+      implementation failures and missed investment opportunities
+  - id: finance-C-139
+    when: When applying this system's models to non-equity asset classes
+    action: Claim BMG climate risk factor applicability to bonds, commodities, or other non-equity assets — the Fama-French-Carhart
+      model is designed for equity analysis
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Invalid factor model application to non-equity assets produces meaningless risk loadings, leading to incorrect
+      portfolio construction and financial losses
+  - id: finance-C-140
+    when: When presenting statistical significance results
+    action: Claim predictive certainty based on p-values < 0.05 — statistical significance in historical regression does not
+      guarantee future factor effectiveness
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Overconfidence in statistical significance leads to over-trading, concentrated positions, and losses when
+      market regimes change
+  - id: finance-C-141
+    when: When using yfinance for stock data retrieval
+    action: Acknowledge that yfinance provides delayed data (approximately 15 minutes for US stocks, longer for international)
+      — it is NOT real-time market data
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Backtested returns computed with delayed data differ from real-time prices, causing look-ahead bias and overestimated
+      strategy performance
+  - id: finance-C-142
+    when: When depending on external factor data providers
+    action: Verify Fama-French factor data availability from Ken French Data Library — external factors have coverage limitations
+      and may not extend to current dates
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Missing factor data blocks regression execution, leaving portfolios without updated climate risk loadings
+      during critical market periods
+  - id: finance-C-144
+    when: When computing BMG factor loadings for stocks
+    action: Use rolling window intervals of at least 60 months for MONTHLY frequency or 730 days for DAILY frequency to verify
+      statistical validity
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Shorter intervals produce statistically unreliable factor loadings due to insufficient sample size, leading
+      to incorrect climate risk rankings
+  - id: finance-C-145
+    when: When updating stock or factor data in the database
+    action: Refresh materialized views (stock_and_stats, stock_component_and_stats, stock_parent_and_stats) after data modifications
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Stale materialized views show outdated regression results, causing users to make portfolio decisions based
+      on old climate risk assessments
+  - id: finance-C-146
+    when: When loading international stock tickers
+    action: Use correct exchange suffix format for non-US tickers (e.g., .L for London, .TO for Toronto, .AS for Amsterdam,
+      .SW for Switzerland)
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Incorrect ticker format causes data retrieval failures, blocking climate risk analysis for international
+      equities
+  - id: finance-C-147
+    when: When accessing data across each analysis stages
+    action: Access each stock data through database load functions (load_stocks_from_db, load_stocks_data_with_returns_from_db)
+      to verify consistent data format and caching
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct data access bypasses caching and format conversion, causing inconsistent regression results across
+      different analysis runs
+  - id: finance-C-149
+    when: When accessing database resources
+    action: Use database connection pool for concurrent operations — never create new connections in parallel processing loops
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Unmanaged connection creation exhausts database connections, causing connection failures and blocking all
+      analysis operations
+  - id: finance-C-150
+    when: When maintaining data integrity across database operations
+    action: Use autocommit mode for read-only database operations to avoid holding locks on materialized views
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Transaction locks on materialized views block concurrent analysis requests, causing analysis delays and timeout
+      failures
+  - id: finance-C-151
+    when: When collecting monthly interval data using yfinance
+    action: Verify that the 1mo yfinance interval provides MonthEnd-aligned data for the specific stock universe being analyzed;
+      validate that returned dates match known MonthEnd dates (e.g., 2023-01-31, 2023-02-28) and not arbitrary calendar month
+      boundaries
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using 1mo interval assumes proper MonthEnd alignment, but yfinance may return non-aligned dates causing monthly
+      return calculations to shift by days, leading to systematic misalignment between backtest returns and actual financial
+      reporting periods
+    derived_from_bd_id: BD-001
+  - id: finance-C-152
+    when: When implementing multiprocessing for bulk regression processing
+    action: Use multiprocessing.set_start_method('spawn') to create fresh processes with inherited state; must NOT use 'fork'
+      method as it causes psycopg2 connection corruption on Linux and crashes on macOS/Windows
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Forking processes with psycopg2 connections causes connection sharing corruption, leading to 'connection
+      already closed' errors or data corruption in database operations during bulk regression batches
+    derived_from_bd_id: BD-022
+  - id: finance-C-153
+    when: When implementing database materialized view refresh strategy for batch regression workloads
+    action: Call refresh_views only after each regression batch completes to batch materialized view updates into single operations;
+      must NOT refresh during regression processing as concurrent queries may see partially-updated views
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Refreshing views during regression processing creates a window where concurrent queries receive partially-updated
+      data, causing inconsistent factor values and potentially generating incorrect regression coefficients that differ between
+      runs
+    derived_from_bd_id: BD-093
+  - id: finance-C-154
+    when: When validating factor_name input for BMG series insertion
+    action: Reject or sanitize any user-provided factor_name equal to 'DEFAULT' at insert time; enforce schema constraint
+      that 'DEFAULT' is reserved for system use and cannot be user-defined
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Allowing 'DEFAULT' as a user-defined factor_name creates ambiguity in queries that rely on the schema default
+      value, causing queries to return unexpected mixed results instead of the intended default factor
+    derived_from_bd_id: BD-088
+  - id: finance-C-155
+    when: When implementing factor data storage or modifying database schema in the data_import stage
+    action: Store WML (weak momentum) in the same ff_factor table as other Fama-French factors — do not separate into a different
+      table or external storage
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Separating WML into a different table breaks existing JOIN queries that assume unified factor storage, causing
+      factor data access failures and requiring schema refactoring across multiple modules
+    derived_from_bd_id: BD-007
+  - id: finance-C-156
+    when: When configuring database connection pool for bulk_regression workers
+    action: Set connection pool size to exactly 20 to support up to 20 concurrent regression workers — do not exceed PostgreSQL
+      connection limits or reduce below this threshold
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Connection pool smaller than 20 causes worker queuing and dramatically slows bulk regression; pool larger
+      than 20 exceeds PostgreSQL connection limits and causes database connection failures
+    derived_from_bd_id: BD-023
+  - id: finance-C-157
+    when: When using the framework's default connection pool size parameter for bulk regression processing
+    action: Verify that connection pool size = 20 matches the available PostgreSQL connection limits and actual worker count
+      requirements; adjust based on system resources if needed
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Hardcoded pool size of 20 may exhaust connections on systems with limited PostgreSQL allocation or cause
+      insufficient parallelism when running more than 20 workers concurrently
+    derived_from_bd_id: BD-023
+  - id: finance-C-158
+    when: When defining index benchmarks for factor model estimation in the Index Definition stage
+    action: Use IVV for S&P 500 US market proxy and XWD.TO for MSCI World global market proxy — do not substitute with SPY,
+      EEM, or other ETFs without re-evaluating factor model representativeness
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using SPY instead of IVV increases expense ratio costs; using EEM changes the benchmark from developed markets
+      to emerging markets, distorting global factor exposure estimates
+    derived_from_bd_id: BD-042
+  - id: finance-C-159
+    when: When implementing stock data merging logic in the returns.calculation stage
+    action: Use OUTER JOIN when merging component stock data to preserve each observations from each stock — do not use INNER
+      JOIN as it loses data when trading dates misalign
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inner join silently drops observations where dates don't align, reducing sample size unpredictably and causing
+      survivorship bias in factor calculations
+    derived_from_bd_id: BD-070
+  - id: finance-C-160
+    when: When computing BMG factor values in the bmg_factor_computation stage
+    action: Remove NaN values before storing BMG — inner join on returns to verify valid paired brown and green observations;
+      do not forward-fill or leave NaN values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: NaN values in BMG series corrupt factor time series and cause regression analysis to fail or produce invalid
+      coefficients due to missing observation pairs
+    derived_from_bd_id: BD-012
+  - id: finance-C-161
+    when: When using the framework's default abnormal return filter for data validation in the invariant stage
+    action: Verify that the threshold data['r'] <= 1 correctly identifies data errors versus valid extreme returns for your
+      asset universe; manually review returns above 100% before inclusion
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: The 100% threshold may filter legitimate intraday spikes or overnight gap returns in volatile markets, removing
+      valid observations that could significantly affect factor calculations
+    derived_from_bd_id: BD-091
+  - id: finance-C-162
+    when: When implementing rolling window logic for MONTHLY factor estimation
+    action: Use exactly 60 months (5 years) as the default rolling window for MONTHLY frequency — this window provides sufficient
+      data points for statistical significance while remaining responsive to regime changes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Windows shorter than 60 months for MONTHLY frequency have insufficient data points for statistically significant
+      factor detection; windows longer than 60 months introduce regime shift contamination
+    derived_from_bd_id: BD-019
+  - id: finance-C-163
+    when: When implementing factor orthogonalization logic in the factor_orthogonalization stage
+    action: Only orthogonalize against factors with p-value below 0.1 — factors with higher p-values are due to chance correlation
+      and should be retained as-is to avoid destroying valid signal
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Orthogonalizing factors with non-significant correlation removes useful information from the model, causing
+      factor exposure estimates to be systematically biased and backtest returns to be overstated
+    derived_from_bd_id: BD-025
+  - id: finance-C-164
+    when: When implementing or modifying statistical significance testing in carbon risk regression analysis
+    action: Define statistical significance using the two-tailed p-value condition bmg_p_gt_abs_t < threshold (typically 0.05),
+      where bmg_p is the p-value for the BMG coefficient and abs_t is the absolute value of the t-statistic
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using one-tailed test or different p-value formulations produces incorrect significance decisions, causing
+      strategies to incorrectly accept or reject carbon risk factors based on flawed statistical inference
+    derived_from_bd_id: BD-028
+  - id: finance-C-166
+    when: When implementing date range validation for factor regression input data
+    action: 'Enforce strict inequality validation: start_date < max_data AND end_date > min_data, ensuring at least one data
+      point exists on each side of the requested window; raise DateInRangeError if violated instead of silent truncation'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting the bidirectional date range check allows regressions to run with truncated input data, producing
+      biased coefficients and misleading performance attribution that leads to strategies with incorrect risk factor loadings
+    derived_from_bd_id: BD-084
+  - id: finance-C-167
+    when: When applying winsorization to factor regression input data
+    action: Apply winsorization threshold of |value| < 0.5 to remove extreme returns exceeding 50x monthly return as likely
+      data errors (stock splits, delistings); verify the threshold matches actual data error patterns and adjust if needed
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using a different winsorization threshold or disabling it entirely causes outliers to dominate regression
+      coefficients, leading to strategies that overweight stocks with data errors and underweight legitimate high-volatility
+      periods
+    derived_from_bd_id: BD-015
+  - id: finance-C-168
+    when: When implementing multiprocessing for production database operations
+    action: Maintain the interaction contract between BD-022 (spawn start method), BD-090 (connection get/put pairing), and
+      BD-024 (data pre-loading via itertools.repeat); do not change spawn to fork, do not reorder data pre-loading relative
+      to worker spawning, and preserve connection pairing discipline
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Breaking the spawn/get-put/preload interaction causes connection pool corruption or N×memory consumption
+      from deep-copying DataFrames to each worker, leading to database connection errors or memory exhaustion in production
+    derived_from_bd_id: BD-100
+  - id: finance-C-169
+    when: When implementing OLS regression for factor analysis
+    action: Enforce minimum 20 data points for valid OLS regression; reject or warn when fewer observations are available
+      as standard errors become unreliable, t-statistics lose validity, and confidence intervals widen unpredictably
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Running regression with fewer than 20 data points produces unreliable standard errors and invalid t-statistics,
+      causing strategies to be selected based on statistically meaningless regressions that appear valid
+    derived_from_bd_id: BD-083
+  - id: finance-C-170
+    when: When processing data in production data collection pipeline
+    action: Assume the framework handles stale data detection and automatic expiry — this capability is confirmed absent;
+      the framework does not validate data freshness or expire outdated records
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Using stale data in regression analysis produces incorrect coefficients based on outdated market conditions,
+      leading to strategies with wrong factor loadings and significant capital losses in live trading
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-171
+    when: When implementing data collection pipeline for factor regression
+    action: 'Implement timestamp validation for each data record: compare record timestamp against current time, flag records
+      exceeding configured expiry_threshold (e.g., 30 days for daily data), and prevent processing of stale data without explicit
+      user acknowledgment via a data_freshness_warning parameter'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without stale data detection, regression analysis uses outdated market data leading to wrong factor coefficients
+      and strategies that fail to adapt to current market conditions
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-172
+    when: When implementing or modifying any code involving random number generation
+    action: Assume each random number generators have reproducible seeds by default — random seed coverage is confirmed incomplete;
+      numpy.random, random module, and other RNG calls may lack explicit seed configuration
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Using non-reproducible RNG seeds causes backtest results to vary between runs, making it impossible to reproduce
+      strategy performance or verify code changes against established benchmarks
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-173
+    when: When implementing any code involving random number generation for factor analysis
+    action: Audit each numpy.random, random, and other RNG calls in the codebase; verify each has an explicit seed parameter
+      or inherits from a global RNG with a configurable seed; call set_random_seed(global_seed) at initialization and document
+      seed requirements in code comments
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Missing random seed coverage causes backtest results to be non-reproducible, preventing verification of strategy
+      changes and making it impossible to distinguish code changes from random variation in results
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-175
+    when: When calculating composite index fund returns (IVV, XWD.TO)
+    action: Use weighted average of components based on index constituent weights, not equal weighting; weighted averaging
+      accurately represents actual index composition while equal weighting over-weights small-cap stocks
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using equal weighting instead of weighted averaging over-weights small-cap stocks that comprise small portions
+      of indices, causing composite returns to diverge from actual index performance and distorting backtest results
+    derived_from_bd_id: BD-011
+  - id: finance-C-176
+    when: When performing factor orthogonalization using OLS regression
+    action: Validate homoscedasticity and absence of autocorrelation in factor residuals before applying OLS; if these assumptions
+      are violated, use Generalized Least Squares (GLS) to handle heteroscedastic errors
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: OLS assumes homoscedastic errors and no autocorrelation; violating these assumptions produces biased factor
+      decompositions that cause the orthogonalization to attribute variance incorrectly between market and idiosyncratic components
+    derived_from_bd_id: BD-063
+  - id: finance-C-178
+    when: When loading data for parallel bulk regression processing
+    action: Load each data before spawning worker processes and pass pre-loaded DataFrames via reference (e.g., itertools.repeat);
+      do not implement per-worker data loading as it creates race conditions if underlying data changes between worker start
+      times
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Per-worker data loading introduces race conditions where different workers may process inconsistent snapshots
+      of data if the dataset changes between worker initialization, causing inconsistent regression results across parallel
+      windows
+    derived_from_bd_id: BD-024
+  - id: finance-C-179
+    when: When determining factor significance using rolling window analysis
+    action: Apply majority rule threshold (>50% of non-overlapping periods significant) for factor significance determination;
+      do not use stricter 100% threshold (every period significant) or lenient single-period threshold
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using incorrect significance thresholds produces false positives (single-period) or false negatives (100%
+      rule); majority rule guards against finding statistical significance by chance in small numbers of non-overlapping windows
+      while remaining robust to power limitations
+    derived_from_bd_id: BD-029
+  - id: finance-C-180
+    when: When implementing factor normalization across the framework
+    action: Centralize normalization logic into a single, documented normalization function that applies both FF factors divided
+      by 100 and excess returns computed as Close minus risk-free rate; avoid distributed normalization code that applies
+      these operations inconsistently across different modules
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Distributed normalization decisions (BD-017, BD-041, BD-081) create latent contradiction risk where future
+      modifications may apply division/subtraction incorrectly, masking errors across multiple overlapping decisions and causing
+      silent factor mis-specification
+    derived_from_bd_id: BD-099
+  - id: finance-C-182
+    when: When implementing data merging logic for factor regression
+    action: Use inner join to merge DataFrames by date — only periods with each required data should be included in regression
+      analysis
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using outer join introduces NaN values that cause regression failures or produce biased coefficient estimates,
+      making factor analysis unreliable and non-reproducible
+    derived_from_bd_id: BD-013
+  - id: finance-C-183
+    when: When calculating returns for factor regression input
+    action: Calculate excess returns as Close minus risk-free rate (Rf) to isolate the risk premium component that factors
+      aim to explain
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using raw returns violates standard CAPM/FF financial econometrics methodology, producing meaningless factor
+      loadings that cannot be compared to academic literature or used for portfolio construction
+    derived_from_bd_id: BD-014
+  - id: finance-C-184
+    when: When storing orthogonalized factors in database or analysis outputs
+    action: Append -ORTHO suffix to orthogonalized factor names to distinguish processed factors from raw factors in database
+      queries and analysis scripts
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without the -ORTHO suffix, raw and orthogonalized factors become indistinguishable in database queries, causing
+      data misuse where raw factors are accidentally used where orthogonalized ones are required
+    derived_from_bd_id: BD-026
+  - id: finance-C-185
+    when: When implementing variable selection logic for factor regression
+    action: Use p-value 0.1 as the significance threshold for variable inclusion — factors with p-value below 0.1 should be
+      included in the model
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using stricter 0.05 threshold may exclude economically meaningful factors, while 0.2 looser threshold may
+      introduce overfitting; incorrect threshold selection leads to either underfitting or overfitting
+    derived_from_bd_id: BD-064
+  - id: finance-C-186
+    when: When implementing factor orthogonalization for multi-factor models
+    action: Use OLS residuals as orthogonalized factor values — regress each factor against market and use residuals to capture
+      the component orthogonal to market
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: OLS orthogonalization assumes linear relationship between factors and market; non-linear patterns are captured
+      in residuals, enabling multi-factor models without multicollinearity — alternative methods (Schmidt, Gram-Schmidt) may
+      produce different results
+    derived_from_bd_id: BD-066
+  - id: finance-C-187
+    when: When implementing sliding window regression loop termination logic
+    action: Check that data_end_date <= end_date as the loop termination condition — return (None, False) when data extends
+      beyond requested range to prevent silent failures
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without this termination check, the loop produces incomplete or misleading regression results when data extends
+      beyond requested range, causing silent data loss at boundaries
+    derived_from_bd_id: BD-082
+  - id: finance-C-188
+    when: When implementing parallel OLS computations using multiprocessing
+    action: Use spawn method with explicit data duplication via itertools.repeat for each worker — pass carbon_data, ff_data,
+      and rf_data as independent copies to prevent shared-state corruption
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using fork method with shared memory causes race conditions in pandas operations, producing non-reproducible
+      results across runs and potentially incorrect factor coefficients
+    derived_from_bd_id: BD-086
+  - id: finance-C-189
+    when: When implementing outlier filtering for returns data before regression
+    action: Clip returns to [-0.5, 0.5] (±50% single-period returns) to exclude data entry errors and survivorship bias artifacts
+      while capturing legitimate extreme events
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without proper outlier bounds, extreme returns disproportionately influence OLS coefficients, which are sensitive
+      to leverage points; standard-deviation based bounds are rejected due to sensitivity to the very outliers they would
+      filter
+    derived_from_bd_id: BD-087
+  - id: finance-C-190
+    when: When processing datetime fields from multi-timezone data sources (US, EU, Asia markets)
+    action: Assume the framework handles UTC timezone normalization for datetime fields — the framework does not implement
+      timezone awareness for stock_data, carbon_risk_factor, and ff_factor tables
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without UTC timezone normalization, multi-timezone data ingestion produces incorrect timestamp alignment,
+      causing cross-market factor regression to use mismatched dates and produce invalid results
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-191
+    when: When processing datetime fields from multi-timezone data sources
+    action: Add explicit timezone conversion ensuring each datetime fields are normalized to UTC before storage; add tzinfo
+      awareness to stock_data, carbon_risk_factor, and ff_factor tables using standard library timezone utilities
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Multi-timezone data ingestion without explicit timezone handling causes timestamp misalignment across markets,
+      making factor regression results unreliable and non-reproducible
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-192
+    when: When implementing or refactoring stochastic operations in factor regression scripts
+    action: Assume the framework sets random seeds for reproducibility — stochastic operations do not have deterministic behavior
+      by default
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without random seed initialization, stochastic operations produce different results on each run, compromising
+      research reproducibility, model comparison, and peer review
+    derived_from_bd_id: BD-GAP-012
+  - id: finance-C-193
+    when: When implementing or refactoring stochastic operations in factor regression scripts
+    action: Add random.seed(42) or equivalent seed initialization to each stochastic operations in regression_function.py
+      and correlate.py; document reproducibility requirements in both modules
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Research results without seeded randomness cannot be reproduced, compromising model comparison and peer review
+      — different runs produce different factor coefficients, making validation impossible
+    derived_from_bd_id: BD-GAP-012
+  - id: finance-C-194
+    when: When implementing factor regression or using FF factor data in calculations
+    action: Divide stored FF factor values (RF, market premium, SMB, HML, etc.) by 100 before passing to OLS or statistical
+      functions — factors are stored as percentages (e.g., 5.2) but must be converted to decimals (0.052) for proper model
+      estimation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using undivided percentage values in OLS regression causes coefficients to be off by a factor of 100, making
+      factor loadings meaningless and alpha estimates completely incorrect
+    derived_from_bd_id: BD-017
+  - id: finance-C-195
+    when: When selecting or switching stock price data sources in production pipelines
+    action: Verify any data source alternative to yfinance provides adjusted close prices that account for dividends and splits
+      — verify the source delivers total return data, not just price returns
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Switching to a data source that provides unadjusted close prices causes return calculations to overstate
+      actual investment performance by ignoring dividend reinvestment, leading to systematic overestimation of backtested
+      returns
+    derived_from_bd_id: BD-039
+  - id: finance-C-196
+    when: When constructing value-investing factors or screening stocks by fundamentals
+    action: Verify that EBITDA, enterprise value, P/E ratio, cash, debt, and shares outstanding fields are populated for each
+      target stocks before executing EV/EBITDA or P/E screening — handle NULL/missing values explicitly (do not assume default
+      zero)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Screening for value stocks using incomplete fundamental data causes stocks with missing P/E or EV fields
+      to be incorrectly included or excluded, distorting factor returns and potentially selecting overvalued stocks
+    derived_from_bd_id: BD-061
+  - id: finance-C-197
+    when: When importing Fama-French factor files into the database
+    action: Preprocess FF CSV files with grep to remove header rows before executing COPY FROM PROGRAM — the raw FF files
+      contain metadata headers that would cause parsing errors or corrupt factor data if loaded directly
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Loading FF factor files without header removal causes PostgreSQL to interpret header strings as numeric factor
+      values, corrupting all factor data and producing NaN coefficients in regression outputs
+    derived_from_bd_id: BD-006
+  - id: finance-C-198
+    when: When implementing BMG factor calculation in factor analysis
+    action: Verify BMG is calculated as brown minus green (merged['return_x'] - merged['return_y']), NOT green minus brown
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Reversing the subtraction order produces negative BMG returns that fundamentally invert factor direction,
+      corrupting all downstream alpha calculations and portfolio exposure estimates
+    derived_from_bd_id: BD-079
+  - id: finance-C-199
+    when: When running factor regressions without explicit frequency parameter
+    action: Verify frequency matches the actual data source periodicity; be aware that MONTHLY default uses 60 months while
+      DAILY uses 730 days with 12x memory footprint
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using DAILY frequency on monthly-sourced fundamental data produces misleadingly precise estimates that don't
+      reflect actual data availability, inflating apparent statistical power while degrading model validity
+    derived_from_bd_id: BD-080
+  - id: finance-C-200
+    when: When preparing data for factor regression analysis
+    action: Divide factor returns by 100 to convert percentage to decimal form AND subtract risk-free rate from Close to isolate
+      excess returns
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting the /100 normalization produces coefficients 100x larger than expected, making interpretation impossible
+      and comparisons across factors misleading
+    derived_from_bd_id: BD-081
+  - id: finance-C-201
+    when: When using Durbin-Watson test to detect autocorrelation in factor regression residuals
+    action: Be aware that DW test has a 'dead zone' (1.5 to 2.5) where it cannot detect autocorrelation; use Breusch-Godfrey
+      test or Newey-West HAC standard errors when DW is inconclusive
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: DW values between 1.5 and 2.5 indicate inconclusive results where autocorrelation may be present but undetected,
+      leading to underestimated standard errors and spurious statistical significance
+    derived_from_bd_id: BD-076
+  - id: finance-C-202
+    when: When implementing or refactoring interval parameter handling in rolling regression logic
+    action: Treat interval=0 as a request for default history length (60 months for MONTHLY, 730 days for DAILY) — do not
+      interpret interval=0 as zero-length window or skip processing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Interpreting interval=0 as zero produces empty windows, causing rolling regressions to return NaN or default
+      to incomplete samples, making all beta estimates and BMG premium conclusions unreliable
+    derived_from_bd_id: BD-092
+  - id: finance-C-203
+    when: When using the framework's default interval parameter for rolling window calculations
+    action: Verify that interval=0 defaults align with the intended statistical sample size (60 months for monthly data, 730
+      days for daily data) and document any override of these defaults
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default interval=0 produces 5-year monthly or 2-year daily samples; changing defaults to shorter windows
+      reduces statistical power while longer windows may include structural breaks, both distorting BMG premium estimates
+    derived_from_bd_id: BD-092
+  - id: finance-C-204
+    when: When implementing outlier filtering logic in the returns processing pipeline
+    action: 'Verify consistent outlier threshold application: winsorization threshold (±0.5 or ±50%) must match or be derived
+      from the abnormal return filter threshold (<=1.0 or 100%) — document any intentional asymmetry'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent thresholds (±50% winsorization vs <=100% filter) cause the same return data to be treated differently
+      across pipeline stages, biasing factor loadings toward moderate-return stocks and distorting BMG premium conclusions
+    derived_from_bd_id: BD-095
+  - id: finance-C-206
+    when: When implementing return calculation logic that multiplies percentage values
+    action: Use Decimal type for percentage-weighted return multiplication to prevent floating-point rounding errors — do
+      not replace Decimal with float even if performance concerns are raised
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using float instead of Decimal in percentage multiplication introduces rounding errors that accumulate across
+      thousands of transactions, causing reported returns to differ from actual returns by basis points that compound into
+      material losses in high-frequency strategies
+    derived_from_bd_id: BD-078
+  - id: finance-C-207
+    when: When implementing data merge logic in the factor regression pipeline
+    action: 'Maintain the sequential merge order: stock → carbon → ff → rf using inner joins on dates — do not reorder or
+      use different join types'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Reversing the merge order changes which dates are retained at each step, producing different filtered datasets
+      and invalidating regression results. The invariant that all final rows contain dates present across all four datasets
+      would be broken.
+    derived_from_bd_id: BD-089
+  - id: finance-C-208
+    when: When calculating portfolio returns, equity curves, or position PnL
+    action: Assume the framework automatically conserves PnL across realized and unrealized components — the framework does
+      not implement PnL conservation validation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without PnL conservation validation, realized and unrealized PnL components can diverge silently, causing
+      equity curve misstatement and incorrect performance attribution in backtesting results
+    derived_from_bd_id: BD-GAP-004
+  - id: finance-C-209
+    when: When implementing PnL tracking and portfolio accounting
+    action: Verify total_pnl = realized_pnl + unrealized_pnl is mathematically conserved across each calculations; validate
+      that closing a position correctly transfers unrealized PnL to realized PnL and maintains the invariant at every rebalance
+      point
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: PnL components that fail to reconcile indicate accounting errors; in live trading this causes position discrepancies
+      and incorrect profit/loss reporting
+    derived_from_bd_id: BD-GAP-004
+  - id: finance-C-210
+    when: When performing model training, backtesting, or evaluating strategy performance
+    action: Assume the framework enforces strict temporal train/test split integrity without data leakage — the framework
+      does not implement temporal split validation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without temporal split integrity enforcement, future data can leak into training sets, causing look-ahead
+      bias where backtest results are systematically inflated compared to live trading
+    derived_from_bd_id: BD-GAP-005
+  - id: finance-C-211
+    when: When implementing train/test split logic for factor regression models
+    action: Verify that each training samples precede test samples chronologically using split_date as the boundary; verify
+      no temporal overlap exists and that the split is deterministic based on experiment_id for reproducibility
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Temporal data leakage causes strategies to appear profitable in backtesting but fail in live trading, leading
+      to direct financial losses from deploying overfitted models
+    derived_from_bd_id: BD-GAP-005
+  - id: finance-C-212
+    when: When running factor regressions, model experiments, or any reproducible analysis
+    action: Assume the framework tracks data versions and experiment lineage automatically — the framework does not implement
+      data versioning or run tracking columns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without data versioning and run tracking, exact model state cannot be reproduced, making A/B testing impossible
+      and invalidating scientific claims about strategy improvements
+    derived_from_bd_id: BD-GAP-014
+  - id: finance-C-213
+    when: When defining factor tables and regression metadata schema
+    action: Add data_version column to each factor table to track which input dataset was used; populate run_id and experiment_id
+      columns in the regression_results table for every execution to enable traceability and A/B comparison
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing versioning metadata makes it impossible to reproduce model state, conduct valid A/B tests between
+      strategy versions, or diagnose why performance changed over time
+    derived_from_bd_id: BD-GAP-014
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-105 / Sector Stock Count and Significant Factor Regression Analyzer
+    version: v5.3
+    intent_keywords:
+    - sector composition
+    - significant regression
+    - p-value screening
+    - stock sectors
+    - factor analysis
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (4 distinct values, balanced distribution)
+      groups:
+      - group_id: screening
+        name: Screening
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-101
+          name: Sector Stock Count and Significant Factor Regression Analyzer
+          short_description: Identifies how many stocks from an index fall into each sector and screens for stocks with statistically
+            significant factor regression results based o
+          sample_triggers:
+          - sector composition
+          - significant regression
+          - p-value screening
+      - group_id: research_analysis
+        name: Research Analysis
+        description: ''
+        emoji: 📦
+        uc_count: 3
+        ucs:
+        - uc_id: UC-102
+          name: Factor Correlation Calculator
+          short_description: Computes correlations between different factors over time to understand factor relationship dynamics
+            and potential multicollinearity issues
+          sample_triggers:
+          - factor correlation
+          - correlation matrix
+          - factor relationships
+        - uc_id: UC-103
+          name: OLS Regression with Diagnostic Statistics
+          short_description: 'Performs ordinary least squares regression on factor data with comprehensive diagnostic tests
+            including Durbin-Watson, Jarque-Bera, and Breusch-Pagan '
+          sample_triggers:
+          - OLS regression
+          - diagnostic tests
+          - statistical tests
+        - uc_id: UC-107
+          name: Multi-Stock Factor Regression Runner
+          short_description: Executes factor regression analysis across multiple stocks in parallel using multiprocessing,
+            loading Fama-French and carbon risk factors from databas
+          sample_triggers:
+          - regression
+          - multiprocessing
+          - parallel analysis
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 4
+        ucs:
+        - uc_id: UC-104
+          name: Fama-French Factor Model Generator
+          short_description: Builds custom Fama-French style factor models by merging stock returns, Fama-French factors,
+            and carbon risk factors into unified datasets for analysi
+          sample_triggers:
+          - Fama-French model
+          - factor model
+          - carbon risk
+        - uc_id: UC-105
+          name: Stock Price Data Downloader
+          short_description: Downloads historical stock price data from Yahoo Finance with support for daily and monthly frequencies,
+            including automatic retry on timeout
+          sample_triggers:
+          - stock prices
+          - price download
+          - yfinance
+        - uc_id: UC-108
+          name: Stock Data Import and Update
+          short_description: Imports stock return data from CSV or downloads from yfinance, with support for incremental updates
+            to maintain current database with stock returns
+          sample_triggers:
+          - import stocks
+          - stock data
+          - data import
+        - uc_id: UC-109
+          name: Database Schema Initialization and Data Import
+          short_description: Initializes database schema and imports Fama-French, bond, and carbon risk factors into PostgreSQL
+            tables, including BMG factor data
+          sample_triggers:
+          - database setup
+          - schema initialization
+          - factor import
+      - group_id: builtin_factor
+        name: Builtin Factor
+        description: ''
+        emoji: 🧮
+        uc_count: 1
+        ucs:
+        - uc_id: UC-106
+          name: BMG Factor Series Creator
+          short_description: Creates Brown-Green (BMG) factor series by calculating the return differential between brown
+            (high carbon) and green (low carbon) stocks for carbon ri
+          sample_triggers:
+          - BMG factor
+          - carbon risk
+          - brown green stocks
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try sector stock count and significant factor regression analyzer
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try factor correlation calculator
+      auto_selected: true
+    - uc_id: UC-103
+      beginner_prompt: Try ols regression with diagnostic statistics
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 9 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - OLS Regression with Diagnostic Statistics
+    - Factor Correlation Calculator
+    - Sector Stock Count and Significant Factor Regression Analyzer
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "xiaodu": {
+      "baseUrl": "https://xiaodu.baidu.com/dueros_mcp_server/mcp/",
+      "headers": {
+        "ACCESS_TOKEN": "<你的 AccessToken>"
+      }
+    },
+    "xiaodu-iot": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "dueros-iot-mcp"
+      ],
+      "env": {
+        "ACCESS_TOKEN": "<你的 AccessToken>"
+      }
+    }
+  }
+}

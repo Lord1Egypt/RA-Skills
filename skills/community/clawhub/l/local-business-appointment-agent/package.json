@@ -1,0 +1,13 @@
+
+{
+  "name": "local-business-appointment-agent",
+  "version": "1.0.0",
+  "description": "AI agent for local businesses to handle appointment scheduling, reminders, and cancellations.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["ai", "agent", "appointment", "scheduling", "local-business"],
+  "author": "",
+  "license": "MIT"
+}

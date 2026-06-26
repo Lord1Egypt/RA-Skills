@@ -1,0 +1,9 @@
+{
+  "name": "ai-company-builder",
+  "version": "1.0.0",
+  "description": "Build an AI-run company in 72 hours. Complete playbook with memory system, safety rails, and launch automation.",
+  "author": "TalonForge",
+  "license": "MIT",
+  "keywords": ["ai", "automation", "company", "startup", "autonomous"],
+  "repository": "https://github.com/TalonForgeHQ/talonforge"
+}

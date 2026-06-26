@@ -1,35 +1,46 @@
 ---
-name: "A Stock Leader Identification 1.0.0"
-description: "快速找到板块内的"真龙"，识别龙头股。用于A股短线交易选股。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-leader-identification-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/a-stock-leader-identification-1-0-0"
+name: leader-stock-identification
+description: 快速找到板块内的"真龙"，识别龙头股。用于A股短线交易选股。
 ---
 
-# A Stock Leader Identification 1.0.0
+# 龙头股识别 Skill
 
-> 快速找到板块内的"真龙"，识别龙头股。用于A股短线交易选股。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-leader-identification-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-leader-identification-1-0-0](https://clawhub.ai/skills/a-stock-leader-identification-1-0-0)
+快速找到板块内的"真龙"，而不是跟风杂毛。
 
-## Overview
+## 龙头股识别规则
 
+### 启动信号
+- 板块内第一个涨停
+- 封单量占流通盘比例 > 1%
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-leader-identification-1-0-0
-```
+### 强度验证
+- 连续2日涨停
+- 换手率保持在 10%-20%
+  - 过高易出货
+  - 过低易炸板
+
+### 辨识度
+- 叠加多重题材（如"人工智能+算力"）
+- 或为行业龙头公司
+
+## 实战流程
+
+1. 板块爆发时，先找第一个涨停的标的
+2. 看封单强度和题材正宗度
+3. 锁定龙头后直接跟进
+4. 避免在跟风股上浪费时间
+
+## 排除杂毛的特征
+
+- 跟风涨停，非板块引领者
+- 封单量小，易被砸
+- 题材不正宗，纯炒概念
+- 换手率异常（过高或过低）
+
+## 触发场景
+
+- "谁是AI板块龙头"
+- "这个板块谁是真龙"
+- "能追吗还是买跟风股"

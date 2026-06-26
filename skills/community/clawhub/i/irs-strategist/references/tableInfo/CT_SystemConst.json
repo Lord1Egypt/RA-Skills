@@ -1,0 +1,132 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "LB",
+        "columnChiName": "常量分类编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "常量分类编码(LB)：与业务表单关联使用，需要限制固定LB进行关联，如：是否有效(IfEffected)与本表中的DM字段关联，令LB = 999。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "LBMC",
+        "columnChiName": "常量分类名称",
+        "columnType": "varchar(50)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "MS",
+        "columnChiName": "常量描述",
+        "columnType": "varchar(300)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "DM",
+        "columnChiName": "常量代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "常量代码(DM)：与业务表单关联使用，需要业务表单的该值等于本表的DM，如：是否有效(IfEffected)与本表中的DM字段关联，令LB = 999。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "CVALUE",
+        "columnChiName": "字符值",
+        "columnType": "varchar(2000)",
+        "isNullable": 1,
+        "remark": "字符值(CVALUE)：用于特殊含义标识，一般为内部使用字段，针对不同的LB有不同的含义，无需特别关注。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "9.77",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "DVALUE",
+        "columnChiName": "日期值",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "remark": "日期值(DVALUE)：用于特殊含义标识，一般为内部使用字段，针对不同的LB有不同的含义，无需特别关注。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.1",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "FVALUE",
+        "columnChiName": "浮点值",
+        "columnType": "float",
+        "isNullable": 1,
+        "remark": "浮点值(FVALUE)：用于特殊含义标识，一般为内部使用字段，针对不同的LB有不同的含义，无需特别关注。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "4.03",
+        "remarkNo": "注5"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "IVALUE",
+        "columnChiName": "整型值",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "整型值(IVALUE)：用于特殊含义标识，一般为内部使用字段，针对不同的LB有不同的含义，无需特别关注。部分特殊含义详见Q&A。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "19.57",
+        "remarkNo": "注6"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "XGRQ",
+        "columnChiName": "修改日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

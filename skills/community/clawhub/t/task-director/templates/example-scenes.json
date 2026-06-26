@@ -1,0 +1,38 @@
+[
+  {
+    "name": "环境准备",
+    "description": "检查并配置基础运行环境",
+    "estimated_time": "30s",
+    "shots": [
+      {"action": "检查 Python 版本", "command": "python --version"},
+      {"action": "检查 pip 是否可用", "command": "pip --version"},
+      {
+        "action": "安装依赖包",
+        "command": "pip install flask requests",
+        "fallback": {
+          "action": "使用国内镜像安装",
+          "command": "pip install flask requests -i https://pypi.tuna.tsinghua.edu.cn/simple"
+        }
+      }
+    ]
+  },
+  {
+    "name": "项目构建",
+    "description": "下载和构建目标项目",
+    "estimated_time": "2min",
+    "shots": [
+      {"action": "创建项目目录", "command": "mkdir -p my-project && cd my-project"},
+      {"action": "初始化项目文件", "command": "echo 'hello' > app.py"},
+      {"action": "检查文件是否创建成功", "command": "ls -la my-project/"}
+    ]
+  },
+  {
+    "name": "服务验证",
+    "description": "确认一切正常工作",
+    "estimated_time": "10s",
+    "shots": [
+      {"action": "检查文件内容", "command": "cat my-project/app.py"},
+      {"action": "清理临时文件", "command": "rm -rf my-project"}
+    ]
+  }
+]

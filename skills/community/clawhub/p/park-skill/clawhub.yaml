@@ -1,0 +1,116 @@
+# ClawHub 发布配置文件
+# ClawHub Publishing Configuration
+
+schema_version: "1.0"
+publish_info:
+  name: park-skill
+  display_name: 
+    zh-CN: 园区智能运营助手
+    en-US: Park Smart Operations Assistant
+  version: "1.0.0"
+  category: 
+    - enterprise
+    - property_management
+    - business_service
+  tags:
+    - 园区运营
+    - 招商管理
+    - 企业服务
+    - 物业管理
+    - industrial_park
+    - operations
+
+author:
+  name: Coze User
+  contact: ""
+
+description:
+  zh-CN: |
+    为产业园区、科技园区、工业园区打造的智能化运营助手技能，
+    覆盖招商服务、企业服务、运营管理、数据看板等核心场景。
+    支持多语言（中英文），提供结构化数据输出和表格化呈现。
+  en-US: |
+    An intelligent operations assistant for industrial parks, technology parks,
+    and business parks. Covers core scenarios including business recruitment,
+    enterprise services, operations management, and data dashboards.
+    Supports multilingual (Chinese/English) with structured data output.
+
+screenshots:
+  - ./examples/screenshot_zh.png
+  - ./examples/screenshot_en.png
+
+features:
+  - id: park_overview
+    name: 
+      zh-CN: 园区概况
+      en-US: Park Overview
+    description: 
+      zh-CN: 园区基础信息、交通配套、生活配套、核心优势
+      en-US: Basic info, transportation, amenities, core advantages
+  
+  - id: recruitment
+    name:
+      zh-CN: 招商服务
+      en-US: Business Recruitment
+    description:
+      zh-CN: 政策解读、房源管理、入驻流程、资质要求
+      en-US: Policy interpretation, property management, move-in process, qualifications
+
+  - id: enterprise_service
+    name:
+      zh-CN: 企业服务
+      en-US: Enterprise Services
+    description:
+      zh-CN: 工商注册、政策申报、人才服务、融资对接
+      en-US: Business registration, policy application, HR services, financing
+
+  - id: operations
+    name:
+      zh-CN: 运营管理
+      en-US: Operations Management
+    description:
+      zh-CN: 物业服务、安全管理、环保合规、投诉处理
+      en-US: Property services, safety management, environmental compliance, complaints
+
+  - id: data_dashboard
+    name:
+      zh-CN: 数据看板
+      en-US: Data Dashboard
+    description:
+      zh-CN: 入驻率统计、产业分布、税收贡献、企业成长
+      en-US: Occupancy rate, industry distribution, tax contribution, enterprise growth
+
+supported_languages:
+  - zh-CN
+  - en-US
+
+platforms:
+  - coze
+  - clawhub
+
+installation:
+  method: skill_load
+  requires:
+    - config_file
+    - i18n_files
+
+changelog:
+  - version: "1.0.0"
+    date: "2025-01"
+    changes:
+      zh-CN:
+        - 初始版本发布
+        - 支持5大核心模块
+        - 中英文多语言支持
+      en-US:
+        - Initial release
+        - 5 core modules supported
+        - Chinese and English multilingual support
+
+homepage: https://xiaping.coze.site
+license: MIT
+
+maintenance:
+  status: active
+  last_updated: "2025-01-15"
+  support_contact: ""

@@ -1,35 +1,139 @@
 ---
-name: "AI Decision Coach - 决策教练"
-description: "AI决策助手。帮用户分析决策困境，权衡利弊，给出建议。不是替用户做决定，而是帮用户看清局面。"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, chinese, decision]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-decision-coach"
-sourceUrl: "https://clawhub.ai/skills/ai-decision-coach"
+name: decision-helper
+description: AI决策助手。帮用户分析决策困境，权衡利弊，给出建议。不是替用户做决定，而是帮用户看清局面。
+version: 1.0.0
+tags:
+  - 决策
+  - 选择
+  - 分析
+  - 利弊
+metadata:
+  openclaw:
+    version: "1.0.0"
+    author: "008"
+    license: "MIT"
 ---
 
-# AI Decision Coach - 决策教练
+# Decision Helper — 选择困难症终结者
 
-> AI决策助手。帮用户分析决策困境，权衡利弊，给出建议。不是替用户做决定，而是帮用户看清局面。
+## 使用方法
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-decision-coach`
-- **Source URL:** [https://clawhub.ai/skills/ai-decision-coach](https://clawhub.ai/skills/ai-decision-coach)
+当用户面临选择困境、纠结、犹豫不决时，执行以下分析流程。
 
-## Overview
+## 分析框架
 
+### 1. 明确决策问题
+- 用户要做什么决定？
+- 有哪些选项？
+- 决策的截止时间？
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-decision-coach
+### 2. 利弊分析（每个选项）
+
+| 维度 | 选项A | 选项B | 选项C |
+|------|-------|-------|-------|
+| 短期收益 | | | |
+| 长期收益 | | | |
+| 风险 | | | |
+| 机会成本 | | | |
+| 情感倾向 | | | |
+
+### 3. 风险评估
+- **最坏情况**：如果选错了，最坏会怎样？
+- **后悔概率**：10年后回头看，哪个选择更可能后悔？
+- **不可逆性**：这个决定可以撤回吗？
+
+### 4. 决策风格匹配
+根据用户的决策风格给出建议：
+- **理性型**：用数据和逻辑说话
+- **直觉型**：相信第一感觉
+- **焦虑型**：先解决安全感问题
+- **冲动型**：先冷静下来
+
+### 5. 输出格式
+
+```json
+{
+  "summary": "一句话总结决策困境",
+  "options": ["选项A", "选项B", "选项C"],
+  "analysis": {
+    "pros_cons": "利弊分析",
+    "risk": "风险评估",
+    "opportunity_cost": "机会成本"
+  },
+  "recommendation": "建议（但不替用户做决定）",
+  "next_steps": ["第一步", "第二步", "第三步"]
+}
 ```
+
+## 输出模板
+
+```
+# 决策分析
+
+## 问题
+{summary}
+
+## 选项对比
+
+| 维度 | {option_a} | {option_b} |
+|------|-----------|-----------|
+| 短期收益 | | |
+| 长期收益 | | |
+| 风险 | | |
+| 机会成本 | | |
+
+## 风险评估
+{risk}
+
+## 我的建议
+{recommendation}
+
+## 下一步
+1. {step1}
+2. {step2}
+3. {step3}
+```
+
+## 分析原则
+
+1. **不替用户做决定** — 只帮分析，最终选择权在用户
+2. **不回避风险** — 直接指出可能的坏结果
+3. **考虑情感因素** — 不只是冷冰冰的数据
+4. **给出可执行的下一步** — 不只是分析，还要有行动指南
+
+## 示例
+
+**用户输入：** "我在纠结要不要辞职创业，现在工作稳定但没激情"
+
+**分析结果：**
+
+# 决策分析
+
+## 问题
+稳定工作 vs 辞职创业，安全感 vs 激情
+
+## 选项对比
+
+| 维度 | 继续工作 | 辞职创业 |
+|------|---------|---------|
+| 短期收益 | 稳定收入 | 可能零收入 |
+| 长期收益 | 缓慢积累 | 可能爆发增长 |
+| 风险 | 低（但可能后悔） | 高（失败风险） |
+| 机会成本 | 错过创业机会 | 失去稳定收入 |
+
+## 风险评估
+- 最坏情况：创业失败，6个月没收入
+- 后悔概率：如果不试，10年后更可能后悔
+- 不可逆性：创业可以失败后再找工作，但年龄越大越难
+
+## 我的建议
+先不要辞职。用6个月时间验证创业想法：
+1. 周末做 MVP 测试
+2. 找到第一个付费用户
+3. 存够6个月生活费
+4. 再辞职
+
+## 下一步
+1. 这周末写出创业计划书
+2. 找3个潜在客户访谈
+3. 计算最低生存成本

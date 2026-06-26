@@ -1,0 +1,51 @@
+{
+  "name": "rerange-agent-skills",
+  "version": "1.0.2",
+  "protocol": "Rerange",
+  "category": "non_custodial_liquidity_execution",
+  "deployments": "https://github.com/rerange-xyz/info/tree/main/protocol/deployments",
+  "abi": "https://github.com/rerange-xyz/info/tree/main/protocol/abi",
+  "interfaces": "https://github.com/rerange-xyz/info/tree/main/protocol/interfaces",
+  "canonical_interfaces": {
+    "hub": "IRerangeHub",
+    "vault": "IRerangeVault",
+    "adapter": "IAdapter"
+  },
+  "skills": [
+    {
+      "id": "protocol-discovery",
+      "file": "https://github.com/rerange-xyz/info/blob/main/skills/protocol-discovery.md",
+      "capabilities": ["deployment_resolution", "pool_selection", "vault_resolution", "abi_resolution"]
+    },
+    {
+      "id": "intent-order-builder",
+      "file": "https://github.com/rerange-xyz/info/blob/main/skills/intent-order-builder.md",
+      "capabilities": ["sell_high", "buy_low", "passive_exit", "preview_open", "order_param_construction"]
+    },
+    {
+      "id": "order-monitor",
+      "file": "https://github.com/rerange-xyz/info/blob/main/skills/order-monitor.md",
+      "capabilities": ["state_reading", "progress_tracking", "fee_tracking", "event_indexing", "memory_updates"]
+    },
+    {
+      "id": "resolver-rerange",
+      "file": "https://github.com/rerange-xyz/info/blob/main/skills/resolver-rerange.md",
+      "capabilities": ["preview_rerange", "permissionless_rerange", "batch_rerange", "gas_profitability"]
+    },
+    {
+      "id": "vault-manager",
+      "file": "https://github.com/rerange-xyz/info/blob/main/skills/vault-manager.md",
+      "capabilities": ["vault_creation", "manager_delegation", "order_close", "balance_policy"]
+    },
+    {
+      "id": "strategy-composer",
+      "file": "https://github.com/rerange-xyz/info/blob/main/skills/strategy-composer.md",
+      "capabilities": ["dca", "grid", "passive_exit", "rebalance", "treasury_execution"]
+    },
+    {
+      "id": "safety-risk",
+      "file": "https://github.com/rerange-xyz/info/blob/main/skills/safety-risk.md",
+      "capabilities": ["simulation", "cooldown_check", "twap_check", "slippage_check", "exposure_limits"]
+    }
+  ]
+}

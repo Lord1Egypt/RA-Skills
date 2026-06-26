@@ -1,0 +1,14 @@
+# Newsletter Growth Hacker
+# Python 依赖
+
+# 核心功能无需外部依赖
+# 可选：数据分析增强
+# pandas>=2.0.0
+# numpy>=1.24.0
+
+# 测试
+# pytest>=7.0.0
+
+# 代码质量
+# black>=23.0.0
+# flake8>=6.0.0

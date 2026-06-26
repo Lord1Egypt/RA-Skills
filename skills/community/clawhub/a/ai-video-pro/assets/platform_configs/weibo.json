@@ -1,0 +1,26 @@
+{
+  "platform": "weibo",
+  "display_name": "微博",
+  "video": {
+    "max_resolution": {"width": 1920, "height": 1080},
+    "max_file_size_mb": 500,
+    "max_duration_seconds": 900,
+    "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+    "preferred_aspect_ratio": "16:9",
+    "format": "mp4",
+    "video_codec": "libx264",
+    "audio_codec": "aac",
+    "audio_bitrate": "128k",
+    "fps": 30,
+    "crf": 23,
+    "preset": "medium"
+  },
+  "api": {
+    "base_url": "https://api.weibo.com/2/",
+    "upload_endpoint": "statuses/upload_video.json",
+    "auth_type": "oauth2",
+    "env_var": "WEIBO_ACCESS_TOKEN",
+    "doc_url": "https://open.weibo.com/wiki/"
+  },
+  "ffmpeg_command": "ffmpeg -i {input} -c:v libx264 -preset medium -crf 23 -c:a aac -b:a 128k -movflags +faststart -vf \"scale='min(1920,iw)':'min(1080,ih)'\" {output}"
+}

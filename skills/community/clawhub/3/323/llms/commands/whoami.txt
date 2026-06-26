@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------
+title: "whoami"
+description: "Display the currently authenticated user."
+source: "/llms/commands/whoami.txt"
+--------------------------------------------------------------------------------
+
+# whoami — Current User Info
+
+Display information about the currently authenticated user.
+
+## Syntax
+
+```bash
+ai-skills whoami [options]
+```
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `--json` | Output as JSON (bypasses mode selection) |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Behavior
+
+### `--json` Mode
+
+Outputs JSON directly without going through CLI/Pure routing:
+
+- **Logged in**: `{"loggedIn":true,"username":"zhangsan","name":"张三","email":"z@test.com"}`
+- **Not logged in**: `{"loggedIn":false}`
+
+### CLI Mode
+
+- **Logged in**: Calls `success()` with formatted user info
+- **Not logged in**: Calls `warn()` with not-logged-in message
+
+### Pure Mode (`--pure`)
+
+- **Logged in**: Outputs `张三 (zhangsan@bytedance.com)` (plain text, no ANSI codes)
+- **Not logged in**: Outputs `Not logged in. Run ai-skills login to authenticate.`
+
+## Examples
+
+```bash
+# Check current user
+ai-skills whoami --pure
+
+# Get JSON output (for programmatic use)
+ai-skills whoami --json
+```
+
+## Pure Mode Output
+
+**Logged in:**
+```
+张三 (zhangsan@bytedance.com)
+```
+
+**Not logged in:**
+```
+Not logged in. Run ai-skills login to authenticate.
+```
+
+## JSON Output
+
+**Logged in:**
+```json
+{"loggedIn":true,"username":"zhangsan","name":"张三","email":"z@test.com"}
+```
+
+**Not logged in:**
+```json
+{"loggedIn":false}
+```

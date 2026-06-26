@@ -1,35 +1,41 @@
 ---
-name: "Slacrawl"
+name: slacrawl
 description: "Slack archive: search, sync freshness, threads/DMs, SQL counts, and Slacrawl repo work."
-category: "other"
-source: "ClawHub"
-tags: [archive, crawler, local-first, paperchase]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/slacrawl"
-sourceUrl: "https://clawhub.ai/skills/slacrawl"
+metadata:
+  openclaw:
+    homepage: https://github.com/openclaw/slacrawl
+    requires:
+      bins:
+        - slacrawl
+    install:
+      - kind: go
+        module: github.com/openclaw/slacrawl/cmd/slacrawl@latest
+        bins:
+          - slacrawl
 ---
 
 # Slacrawl
 
-> Slack archive: search, sync freshness, threads/DMs, SQL counts, and Slacrawl repo work.
+Use local Slack archive data first. Check freshness for recent/current questions:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/slacrawl`
-- **Source URL:** [https://clawhub.ai/skills/slacrawl](https://clawhub.ai/skills/slacrawl)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/slacrawl
+slacrawl doctor
+slacrawl status --json
 ```
+
+Refresh only when stale or asked:
+
+```bash
+slacrawl sync --source desktop
+slacrawl sync --source api --latest-only
+```
+
+Query with bounded slices:
+
+```bash
+slacrawl search --limit 20 "query"
+slacrawl messages --since 7d --limit 50
+slacrawl sql "select count(*) from messages;"
+```
+
+Report workspace/channel names, absolute date spans, counts, and token/source limits. Use read-only SQL for exact counts/rankings. API sync and full thread/DM hydration require Slack tokens; do not assume they exist.

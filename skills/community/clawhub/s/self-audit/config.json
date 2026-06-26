@@ -1,0 +1,13 @@
+{
+  "name": "Self-Audit",
+  "slug": "self-audit",
+  "version": "1.0.0",
+  "description": "Audit your own tool usage. Discover which calls are necessary vs reflexive.",
+  "author": "xaxia_summer",
+  "tags": ["audit", "self", "tool", "efficiency", "introspection", "observability"],
+  "homepage": "",
+  "repository": "",
+  "license": "MIT",
+  "entry": "self-audit",
+  "runtime": "shell"
+}

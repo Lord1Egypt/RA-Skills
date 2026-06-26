@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=67", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "armorclaw"
+version = "1.0.0"
+description = "Encrypted secrets manager for OpenClaw agents — AES-256 vault for API keys"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "PHRAIMWORK LLC", email = "ken@phraimwork.com" }]
+keywords = ["openclaw", "secrets", "vault", "api-keys", "encryption", "security"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security :: Cryptography",
+]
+
+[project.scripts]
+armorclaw = "armorclaw.cli:main"
+
+[project.urls]
+Homepage   = "https://phraimwork.com"
+Repository = "https://github.com/phraimwork/armorclaw"
+
+[project.optional-dependencies]
+fast = ["cryptography>=42.0"]
+
+# Recommended install for production-grade AES:
+# pip install armorclaw[secure]
+secure = ["cryptography>=42.0"]
+
+[tool.setuptools.packages.find]
+where   = ["."]
+include = ["armorclaw*"]

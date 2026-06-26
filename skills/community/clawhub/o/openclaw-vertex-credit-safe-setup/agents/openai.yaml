@@ -1,0 +1,4 @@
+spec_version: "1"
+display_name: "Vertex Credit-Safe Setup"
+short_description: "Safely configure OpenClaw Vertex AI with minimal-cost verification"
+default_prompt: "Use $openclaw-vertex-credit-safe-setup to configure Google Vertex AI for a fresh OpenClaw setup, prefer service-account JSON auth, keep models on google-vertex routes, run one tiny verification request, and explain how to verify billing and credits."

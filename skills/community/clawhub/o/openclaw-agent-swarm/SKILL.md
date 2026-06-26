@@ -1,35 +1,41 @@
 ---
-name: "OpenClaw Agent Swarm"
-description: "Multi-agent coding system. Spawn and manage autonomous coding agents with OpenClaw."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-agent-swarm"
-sourceUrl: "https://clawhub.ai/skills/openclaw-agent-swarm"
+name: agent-swarm
+description: Multi-agent coding system. Spawn and manage autonomous coding agents with OpenClaw.
+metadata:
+  openclaw:
+    emoji: "🤖"
 ---
 
-# OpenClaw Agent Swarm
+# Agent Swarm
 
-> Multi-agent coding system. Spawn and manage autonomous coding agents with OpenClaw.
+Multi-agent coding system based on Elvis's Agent Swarm architecture and Cursor's Self-Driving Codebases research.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-agent-swarm`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-agent-swarm](https://clawhub.ai/skills/openclaw-agent-swarm)
+## Quick Start
 
-## Overview
+```
+"Spawn an agent to add dark mode"
+"Check on running agents"
+```
 
+## Features
+
+- Spawn multiple coding agents
+- Monitor agent progress
+- Automatic PR creation
+- Handoff notes for continuity
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/openclaw-agent-swarm
+npm install -g @openai/codex
+npm install -g @anthropic-ai/claude-code
 ```
+
+## Configuration
+
+Set up API keys in `~/.openclaw/workspace/.clawdbot/.agent-env`
+
+## References
+
+- [Elvis: Agent Swarm](https://x.com/elvissun/status/2025920521871716562)
+- [Cursor: Self-Driving Codebases](https://cursor.com/blog/self-driving-codebases)

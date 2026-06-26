@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-03-07T08:53:02.034Z",
+  "source": "tavily",
+  "market": "all",
+  "total": 5,
+  "articles": [
+    {
+      "title": "Artificial Intelligence Trends And Top AI Stocks To Watch",
+      "url": "https://www.investors.com/news/technology/ai-stocks-artificial-intelligence-trends-and-news/",
+      "summary": "Bookmark this page for news and analysis of AI stocks like Nvidia (NVDA), Microsoft (MSFT), Alphabet (GOOGL), Apple (AAPL), Meta Platforforms (META) and Amazon",
+      "source": "tavily",
+      "relevance": 3
+    },
+    {
+      "title": "'For every employee, there will be 50 to 100 AI agents' - YouTube",
+      "url": "https://www.youtube.com/watch?v=qN3j0huZpwQ",
+      "summary": "... latest earnings report, agentic artificial intelligence, and more. ... Turn to CNBC TV for the latest stock market news and analysis. From",
+      "source": "tavily",
+      "relevance": 2
+    },
+    {
+      "title": "C3.ai (AI) 新聞動態 - 富途牛牛",
+      "url": "https://www.futunn.com/hk/stock/AI-US/news",
+      "summary": "養龍蝦，今年最大AI風暴 · 五角大樓合作風波過後，Claude用戶增長持續飆升 · 本週股價大幅波動的股票：C3.ai、ADT、Xerox、康寧和KLA Corporation · OpenAI發佈最強專業模型GPT-",
+      "source": "tavily",
+      "relevance": 2
+    },
+    {
+      "title": "AI-linked fears roil stocks after years of hype, gains - NBC News",
+      "url": "https://www.nbcnews.com/business/markets/ai-fears-stock-market-hype-gains-rcna260408",
+      "summary": "AI-linked fears roil some corners of Wall Street after years of hype and gains. Some investors now worry that artificial intelligence is too",
+      "source": "tavily",
+      "relevance": 1
+    },
+    {
+      "title": "人工智能相关股票、成分股、图表和最新新闻 - Moomoo",
+      "url": "https://www.moomoo.com/hans/sectors/Artificial-Intelligence-BK2136",
+      "summary": "用moomoo查看人工智能的成分股、相关股票行情、最新新闻、历史走势图。使用moomoo「概念板块」功能，捕捉行业概念投资机会！",
+      "source": "tavily",
+      "relevance": 1
+    }
+  ]
+}

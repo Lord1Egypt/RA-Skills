@@ -1,35 +1,94 @@
 ---
-name: "Visual Benchmarker"
-description: "(元技能) 视觉对标视频搜索器，通过指导AI调用其他工具，为项目确认视觉风格。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/visual-benchmarker"
-sourceUrl: "https://clawhub.ai/skills/visual-benchmarker"
+name: visual-benchmarker
+description: (元技能) 视觉对标视频搜索器，通过指导AI调用其他工具，为项目确认视觉风格。
+metadata:
+  version: 1.0.0
+  source: https://github.com/your-repo/visual-benchmarker
+  author: an
+  tags: [metaskill, workflow, video, marketing, research]
+  license: MIT
+  requirements:
+    - "skill:douyin-video-search"
 ---
 
-# Visual Benchmarker
+# 技能名称：视觉对标视频搜索器 (visual-benchmarker)
 
-> (元技能) 视觉对标视频搜索器，通过指导AI调用其他工具，为项目确认视觉风格。
+### 核心目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/visual-benchmarker`
-- **Source URL:** [https://clawhub.ai/skills/visual-benchmarker](https://clawhub.ai/skills/visual-benchmarker)
+这是一个**元技能 (Meta-Skill)**，它本身不包含代码，而是作为一个行动手册，指导AI通过组合自身能力和外部工具，为项目（如短视频拍摄）确认视觉风格和剪辑风格，从而避免返工。
 
-## Overview
+---
 
+## 🧠 工作流程（三步走）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/visual-benchmarker
+### 第一步：AI 提取关键词
+
+AI 需要根据用户上传的资料（如文本文件），提取核心品类与搜索关键词。**这一步完全依赖 AI 的推理能力，无需代码**，只需执行以下提示词：
+
+```markdown
+**提示词模板：**
+
+你是一位资深的短视频内容策略师。请仔细阅读以下客户资料，从中提取可用于抖音搜索的“核心品类”和“关键词”。
+
+**客户资料：**
+{此处粘贴用户上传的作战地图/产品资料/启动会录音文本}
+
+**要求：**
+1. 首先确定核心品类（例如：女装、母婴、知识付费等）。
+2. 然后围绕该品类，提取 3-5 个精准搜索关键词（例如：极简通勤穿搭、亲子互动、职场口才等）。
+3. 以 JSON 数组形式输出，例如：["女装", "通勤穿搭", "轻熟风", "一衣多穿"]。
 ```
+
+### 第二步：调用 `douyin-video-search` 技能获取视频
+
+AI 将第一步生成的关键词，作为参数，**调用已安装的 `douyin-video-search` 技能**来获取视频列表。
+
+**调用示例 (可移植):**
+```
+# AI应使用工具调用，而不是执行固定路径的脚本
+# 以下为概念性示例，实际调用取决于AI对工具的封装
+tools.douyin_video_search(keyword="科技公司 办公空间", sort="1", publish="7")
+```
+*AI应优先选择按点赞量排序 (`--sort "1"`) 的结果，以筛选高热度视频，并可使用分页参数 (`--cursor`) 获取更多结果。*
+
+### 第三步：AI 筛选与输出案例
+
+AI 对第二步获取的视频列表进行筛选，保留点赞量高、视觉风格独特、与项目定位匹配的视频，最终输出 **3 个以上的对标视频案例**，并附上简要分析。
+
+**输出格式示例：**
+```
+## 对标视频案例推荐
+
+### 案例 1：极简通勤穿搭｜一衣多穿公式
+- **视频链接**：https://www.douyin.com/video/1234567890
+- **亮点分析**：视频开头3秒直接展示穿搭前后对比，节奏紧凑；画面干净高级，符合“极简风”定位。
+- **可借鉴元素**：开头的痛点提问方式、快速切换的搭配镜头。
+
+### 案例 2：小户型收纳｜3招让空间大一倍
+- **视频链接**：https://www.douyin.com/video/2345678901
+- **亮点分析**：采用第一视角拍摄，代入感强；字幕设计清晰，信息密度高。
+- **可借鉴元素**：第一视角运镜、关键信息字幕包装。
+```
+
+---
+
+## 🛠️ 使用说明
+
+### 输入
+
+用户需提供一份包含战略信息的文本文件（作战地图、产品资料等）。
+
+### 输出
+
+一个包含至少 3 个对标视频的 Markdown 格式报告。
+
+### 依赖技能
+
+- **`skill:douyin-video-search`**: 必须已安装并在 `config.json` 中配置好 `tikhub_api_token`。
+
+---
+
+## ⚠️ 注意事项
+
+- **动态调用**: AI 在执行第二步时，**必须**通过工具系统动态调用 `douyin-video-search` 技能，**绝不能**依赖或执行任何写死的本地文件路径。
+- **关键词质量**: 第一步的关键词提取质量直接影响最终结果，AI 可与用户交互，对关键词进行确认或调整。

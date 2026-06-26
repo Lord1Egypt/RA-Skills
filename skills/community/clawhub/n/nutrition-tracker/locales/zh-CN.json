@@ -1,0 +1,10 @@
+{
+  "profile_saved": "✅ 已保存营养档案：{path}",
+  "logged": "✅ 已记录：{path}",
+  "missing_profile": "未找到营养档案（profile.json）。请先运行 nutrition_init.sh 初始化。",
+  "today_summary": "{date} 合计：kcal={kcal}（剩余 {kcalRemain}）| P={p}g C={c}g F={f}g",
+  "targets": "目标：kcal={kcalTarget} | P≥{pTarget}g | F={fMin}-{fMax}g | C={cMin}-{cMax}g",
+  "status_ok": "✅ 达标项：{ok}; 未达标项：{bad}",
+  "status_all_ok": "✅ 全部达标",
+  "diff": "差值：kcal {kcalDiff}; P {pDiff}g; C {cDiff}g; F {fDiff}g"
+}

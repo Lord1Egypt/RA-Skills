@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>预订链接 · 意大利 & 法国</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --paper: #faf9f7;
+  --accent: #c45a3c;
+  --accent-light: #f0e0d8;
+  --muted: #6b6560;
+  --border: #e0ddd8;
+  --price: #b71c1c;
+  --blue: #1565c0;
+  --green: #2d8a4e;
+  --green-light: #e8f5e9;
+  --blue-light: #e3f2fd;
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono: 'SF Mono', 'Fira Code', Consolas, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #eeedea;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 880px;
+  margin: 40px auto;
+  background: var(--paper);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.07);
+}
+
+.header {
+  padding: 52px 52px 36px;
+  border-bottom: 2.5px solid var(--accent);
+}
+
+.header-meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.header h1 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.header .h1-cn {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.header-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+section {
+  padding: 36px 52px 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-family: var(--serif);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+h2 .cn {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.section-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+th {
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: 9px 14px;
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+tr:hover td { background: #f6f5f2; }
+
+.name-en { font-weight: 700; }
+.name-primary { font-weight: 700; font-size: 14px; color: var(--ink); }
+.reason { font-size: 12px; color: var(--accent); font-style: italic; margin-top: 2px; }
+
+.col-price {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--price);
+  white-space: nowrap;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+.col-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.link-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link-cell a {
+  color: var(--blue);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.link-cell a:hover { text-decoration: underline; }
+
+.copy-btn {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+}
+
+.copy-btn:hover { background: var(--blue-light); border-color: var(--blue); }
+.copy-btn:active { transform: scale(0.92); }
+.copy-btn svg { width: 13px; height: 13px; stroke: var(--muted); stroke-width: 2; }
+.copy-btn:hover svg { stroke: var(--blue); }
+.copy-btn.copied { background: var(--green-light); border-color: var(--green); }
+.copy-btn.copied svg { stroke: var(--green); }
+
+.na { color: var(--muted); font-style: italic; font-size: 13px; font-weight: 400; }
+
+.footer {
+  padding: 24px 52px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .header, section, .footer { padding-left: 20px; padding-right: 20px; }
+  .header h1 { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="header">
+  <div class="header-meta">签证行程单 &middot; 预订链接</div>
+  <h1>意大利 & 法国</h1>
+  
+  <div class="header-sub">fly.ai 实时搜索 · 2026年3月31日 · 所有链接指向飞猪</div>
+</div>
+
+<!-- Flights 航班 -->
+<section>
+  <div class="section-label">FLIGHTS</div>
+  <h2>航班</h2>
+  <div class="section-desc">以下航班价格为单人经济舱含税价，实际价格以预订时为准</div>
+  <table>
+    <thead><tr><th>航线</th><th>航班</th><th>单价</th><th>飞猪链接</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="name-primary">杭州 → 米兰</div>
+          <div class="col-sub">Apr 27 · 4月27日</div>
+        </td>
+        <td>
+          <div class="name-primary">卡塔尔航空 QR891+QR127</div>
+        </td>
+        <td class="col-price">¥3,290</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/08rXE4')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/08rXE4" target="_blank">https://a.feizhu.com/08rXE4</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-primary">罗马 → 尼斯</div>
+          <div class="col-sub">May 2 · 5月2日</div>
+        </td>
+        <td>
+          <div class="name-primary">ITA航空 EC1686</div>
+        </td>
+        <td class="col-price">¥225</td>
+        <td><span class="na">暂无链接</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-primary">巴黎 → 杭州</div>
+          <div class="col-sub">May 4 · 5月4日</div>
+        </td>
+        <td>
+          <div class="name-primary">阿提哈德 EY032+EY870 → 港龙 HX112</div>
+        </td>
+        <td class="col-price">¥3,577</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1TWb2F')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1TWb2F" target="_blank">https://a.feizhu.com/1TWb2F</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Hotels 酒店 -->
+<section>
+  <div class="section-label">HOTELS</div>
+  <h2>酒店</h2>
+  <div class="section-desc">建议预订支持免费取消的酒店，万一拒签可全额退款</div>
+  <table>
+    <thead><tr><th>城市</th><th>酒店</th><th>每晚</th><th>飞猪链接</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="name-primary">米兰</div>
+          <div class="col-sub">Apr 27-29 · 2晚</div>
+        </td>
+        <td>
+          <div class="name-primary">米兰斯堪的纳维亚乌纳酒店</div>
+          <div class="reason">高档型 · 近和平门 · 2013年装修</div>
+        </td>
+        <td class="col-price">¥825</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/3OwpqL')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/3OwpqL" target="_blank">https://a.feizhu.com/3OwpqL</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-primary">威尼斯</div>
+          <div class="col-sub">Apr 29-30 · 1晚</div>
+        </td>
+        <td>
+          <div class="name-primary">阿拉维特多拉塔酒店</div>
+          <div class="reason">高档型 · 近圣马可广场</div>
+        </td>
+        <td class="col-price">¥1,145</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0HQwRo')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0HQwRo" target="_blank">https://a.feizhu.com/0HQwRo</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-primary">佛罗伦萨</div>
+          <div class="col-sub">Apr 30-May 1 · 1晚</div>
+        </td>
+        <td>
+          <div class="name-primary">内罗利别墅</div>
+          <div class="reason">别墅型住宿</div>
+        </td>
+        <td class="col-price">¥1,237</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0YauhQ')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0YauhQ" target="_blank">https://a.feizhu.com/0YauhQ</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-primary">罗马</div>
+          <div class="col-sub">May 1-2 · 1晚</div>
+        </td>
+        <td>
+          <div class="name-primary">达芬奇旅馆</div>
+          <div class="reason">舒适型 · 近梵蒂冈博物馆</div>
+        </td>
+        <td class="col-price">¥738</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1I6zBw')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1I6zBw" target="_blank">https://a.feizhu.com/1I6zBw</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-primary">尼斯</div>
+          <div class="col-sub">May 2-3 · 1晚</div>
+        </td>
+        <td>
+          <span class="na">待确认 · To be confirmed</span>
+        </td>
+        <td>—</td>
+        <td><span class="na">请在飞猪搜索尼斯酒店</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-primary">巴黎</div>
+          <div class="col-sub">May 3-4 · 1晚</div>
+        </td>
+        <td>
+          <div class="name-primary">B&B酒店马恩河畔尚格尼</div>
+          <div class="reason">经济型 · 近巴黎市区</div>
+        </td>
+        <td class="col-price">¥746</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1iNGoU')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1iNGoU" target="_blank">https://a.feizhu.com/1iNGoU</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Attractions 景点 -->
+<section>
+  <div class="section-label">ATTRACTIONS</div>
+  <h2>景点</h2>
+  <div class="section-desc">以下景点均可在飞猪购买门票，部分景点免费参观</div>
+  <table>
+    <thead><tr><th>城市</th><th>景点</th><th>飞猪链接</th></tr></thead>
+    <tbody>
+      <tr><td><div class="name-primary">米兰</div></td><td><div class="name-primary">米兰大教堂</div><div class="reason">宗教场所 · 米兰地标</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/08k6yf')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/08k6yf" target="_blank">https://a.feizhu.com/08k6yf</a></div></td></tr>
+
+      <tr><td><div class="name-primary">米兰</div></td><td><div class="name-primary">最后的晚餐</div><div class="reason">博物馆 · 达芬奇名作 · 需提前预约</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1IlyBx')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1IlyBx" target="_blank">https://a.feizhu.com/1IlyBx</a></div></td></tr>
+
+      <tr><td><div class="name-primary">米兰</div></td><td><div class="name-primary">埃马努埃莱二世长廊</div><div class="reason">地标建筑 · 免费参观</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/2X7N5t')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/2X7N5t" target="_blank">https://a.feizhu.com/2X7N5t</a></div></td></tr>
+
+      <tr><td><div class="name-primary">威尼斯</div></td><td><div class="name-primary">圣马可大教堂</div><div class="reason">宗教场所 · 威尼斯地标</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1Ru3ow')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1Ru3ow" target="_blank">https://a.feizhu.com/1Ru3ow</a></div></td></tr>
+
+      <tr><td><div class="name-primary">威尼斯</div></td><td><div class="name-primary">总督宫</div><div class="reason">历史古迹 · 圣马可广场旁</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/4gE9zW')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/4gE9zW" target="_blank">https://a.feizhu.com/4gE9zW</a></div></td></tr>
+
+      <tr><td><div class="name-primary">威尼斯</div></td><td><div class="name-primary">贡多拉游船</div><div class="reason">水上体验 · 威尼斯必玩</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0yb2rn')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0yb2rn" target="_blank">https://a.feizhu.com/0yb2rn</a></div></td></tr>
+
+      <tr><td><div class="name-primary">佛罗伦萨</div></td><td><div class="name-primary">圣母百花大教堂</div><div class="reason">宗教场所 · 佛罗伦萨地标 · 穹顶必登</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/102qFq')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/102qFq" target="_blank">https://a.feizhu.com/102qFq</a></div></td></tr>
+
+      <tr><td><div class="name-primary">佛罗伦萨</div></td><td><div class="name-primary">乌菲兹美术馆</div><div class="reason">展览馆 · 文艺复兴藏品 · 建议提前购票</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/48UFDp')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/48UFDp" target="_blank">https://a.feizhu.com/48UFDp</a></div></td></tr>
+
+      <tr><td><div class="name-primary">佛罗伦萨</div></td><td><div class="name-primary">乔托钟楼</div><div class="reason">地标建筑 · 百花大教堂旁</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/16uuwx')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/16uuwx" target="_blank">https://a.feizhu.com/16uuwx</a></div></td></tr>
+
+      <tr><td><div class="name-primary">罗马</div></td><td><div class="name-primary">罗马斗兽场</div><div class="reason">历史古迹 · 罗马必去 · 建议提前购票</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0UJBIJ')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0UJBIJ" target="_blank">https://a.feizhu.com/0UJBIJ</a></div></td></tr>
+
+      <tr><td><div class="name-primary">罗马</div></td><td><div class="name-primary">万神殿</div><div class="reason">历史古迹 · 古罗马建筑典范</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0n4XX1')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0n4XX1" target="_blank">https://a.feizhu.com/0n4XX1</a></div></td></tr>
+
+      <tr><td><div class="name-primary">罗马</div></td><td><div class="name-primary">梵蒂冈博物馆</div><div class="reason">博物馆 · 西斯廷教堂 · 排队较长</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0AO6d5')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0AO6d5" target="_blank">https://a.feizhu.com/0AO6d5</a></div></td></tr>
+
+      <tr><td><div class="name-primary">尼斯</div></td><td><div class="name-primary">英国人散步大道</div><div class="reason">城市观光 · 免费 · 蔚蓝海岸标志</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0qXo5z')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0qXo5z" target="_blank">https://a.feizhu.com/0qXo5z</a></div></td></tr>
+
+      <tr><td><div class="name-primary">巴黎</div></td><td><div class="name-primary">卢浮宫</div><div class="reason">博物馆 · 世界三大博物馆之一</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1q1EjB')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1q1EjB" target="_blank">https://a.feizhu.com/1q1EjB</a></div></td></tr>
+
+      <tr><td><div class="name-primary">巴黎</div></td><td><div class="name-primary">埃菲尔铁塔</div><div class="reason">地标建筑 · 巴黎必去</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1BekgP')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1BekgP" target="_blank">https://a.feizhu.com/1BekgP</a></div></td></tr>
+
+      <tr><td><div class="name-primary">巴黎</div></td><td><div class="name-primary">奥赛博物馆</div><div class="reason">博物馆 · 印象派藏品</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1HFqXK')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1HFqXK" target="_blank">https://a.feizhu.com/1HFqXK</a></div></td></tr>
+
+      <tr><td><div class="name-primary">巴黎</div></td><td><div class="name-primary">巴黎塞纳河游船</div><div class="reason">水上体验 · 沿途看铁塔和圣母院</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/07T71O')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/07T71O" target="_blank">https://a.feizhu.com/07T71O</a></div></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="footer">基于 fly.ai 实时搜索结果 · 所有预订链接指向飞猪</div>
+
+</div>
+<script>
+function copyLink(btn,url){navigator.clipboard.writeText(url).then(()=>{btn.classList.add('copied');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';},1500)})}
+</script>
+</body>
+</html>

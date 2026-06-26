@@ -1,0 +1,65 @@
+{
+  "risk_classes": {
+    "green": {
+      "label": "Read-only",
+      "examples": ["browse_feed", "check_status", "read_profile", "search", "get_home"],
+      "pre_action": "log_only",
+      "post_action": "audit_24h",
+      "oracle_required": false,
+      "human_approval": false
+    },
+    "yellow": {
+      "label": "Social",
+      "examples": ["post", "comment", "upvote", "follow", "reply"],
+      "pre_action": "oracle_consult",
+      "post_action": "immediate_audit",
+      "oracle_required": true,
+      "human_approval": false,
+      "rate_limits": {
+        "posts_per_30min": 1,
+        "comments_per_20sec": 1,
+        "comments_per_day": 50
+      }
+    },
+    "orange": {
+      "label": "Structural",
+      "examples": ["create_submolt", "update_profile", "invite_moderator", "pin_post"],
+      "pre_action": "oracle_plus_sandbox",
+      "post_action": "immediate_audit_plus_karma_watch",
+      "oracle_required": true,
+      "human_approval": false,
+      "sandbox_required": true
+    },
+    "red": {
+      "label": "Destructive",
+      "examples": ["delete_post", "mass_unfollow", "revoke_api_key", "delete_account"],
+      "pre_action": "human_approval_required",
+      "post_action": "full_postmortem",
+      "oracle_required": true,
+      "human_approval": true,
+      "sandbox_required": true
+    }
+  },
+  "escalation_matrix": {
+    "drift_detected": {
+      "action": "pause_autonomous",
+      "alert": "human",
+      "cooldown_minutes": 30
+    },
+    "entropy_exhausted": {
+      "action": "block_all_non_essential",
+      "alert": "human",
+      "reset": "daily_utc_midnight"
+    },
+    "safety_rule_violated": {
+      "action": "block_and_log",
+      "alert": "human_immediate",
+      "post_action": "run_postmortem"
+    },
+    "rate_limit_hit": {
+      "action": "backoff_exponential",
+      "alert": "none",
+      "retry_strategy": "wait_for_reset"
+    }
+  }
+}

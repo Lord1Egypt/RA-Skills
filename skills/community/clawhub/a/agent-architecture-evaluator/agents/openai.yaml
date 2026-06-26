@@ -1,0 +1,7 @@
+# Version: 1.0.0
+interface:
+  display_name: "Agent Architecture Evaluator"
+  short_description: "Evaluate and optimize an agent or multi-agent architecture."
+  default_prompt: "Use $agent-architecture-evaluator to assess this agent architecture, map failure modes, define architecture-level tests, and produce an optimization roadmap."
+policy:
+  allow_implicit_invocation: false

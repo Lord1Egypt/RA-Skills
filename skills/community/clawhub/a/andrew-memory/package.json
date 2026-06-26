@@ -1,0 +1,26 @@
+{
+  "name": "@andrew/andrew-memory",
+  "version": "1.0.0",
+  "description": "Product-grade memory layer for Andrew - LanceDB vector storage with semantic search, Core Identity, and conversation distillation",
+  "type": "module",
+  "main": "src/MemoryClient.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "memory",
+    "vector",
+    "lancedb",
+    "semantic-search",
+    "ai-agent"
+  ],
+  "author": "Andrew",
+  "license": "MIT",
+  "openclaw": {
+    "extensions": ["./index.js"]
+  },
+  "dependencies": {
+    "@lancedb/lancedb": "^0.27.1"
+  }
+}

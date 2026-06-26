@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "updated_at": "2026-03-15",
+    "source": "do-it 数据采集",
+    "coverage": "财务/财务BP 岗位薪资数据"
+  },
+  "data": [
+    {
+      "id": "SZ-FP&A-001",
+      "city": "深圳",
+      "role": "财务BP",
+      "industry": "跨境电商",
+      "experience_years": "5-8",
+      "salary_min": 20000,
+      "salary_median": 25000,
+      "salary_max": 35000,
+      "sample_size": 50,
+      "data_source": "拉勾网/Boss 直聘",
+      "updated_at": "2026-03-15"
+    },
+    {
+      "id": "SZ-FP&A-002",
+      "city": "深圳",
+      "role": "财务BP 经理",
+      "industry": "跨境电商",
+      "experience_years": "8-12",
+      "salary_min": 30000,
+      "salary_median": 35000,
+      "salary_max": 50000,
+      "sample_size": 30,
+      "data_source": "猎聘网",
+      "updated_at": "2026-03-15"
+    },
+    {
+      "id": "SZ-FP&A-003",
+      "city": "深圳",
+      "role": "财务专家",
+      "industry": "互联网/科技",
+      "experience_years": "10-15",
+      "salary_min": 35000,
+      "salary_median": 40000,
+      "salary_max": 60000,
+      "sample_size": 25,
+      "data_source": "猎聘网/脉脉",
+      "updated_at": "2026-03-15"
+    },
+    {
+      "id": "GZ-FP&A-001",
+      "city": "广州",
+      "role": "财务 BP",
+      "industry": "跨境电商",
+      "experience_years": "5-8",
+      "salary_min": 18000,
+      "salary_median": 22000,
+      "salary_max": 30000,
+      "sample_size": 40,
+      "data_source": "拉勾网/Boss 直聘",
+      "updated_at": "2026-03-15"
+    },
+    {
+      "id": "GZ-FP&A-002",
+      "city": "广州",
+      "role": "财务专家",
+      "industry": "电商物流",
+      "experience_years": "10-15",
+      "salary_min": 25000,
+      "salary_median": 30000,
+      "salary_max": 40000,
+      "sample_size": 20,
+      "data_source": "猎聘网",
+      "updated_at": "2026-03-15"
+    },
+    {
+      "id": "CS-FP&A-001",
+      "city": "长沙",
+      "role": "财务 BP",
+      "industry": "跨境电商",
+      "experience_years": "5-8",
+      "salary_min": 12000,
+      "salary_median": 15000,
+      "salary_max": 20000,
+      "sample_size": 30,
+      "data_source": "Boss 直聘",
+      "updated_at": "2026-03-15"
+    },
+    {
+      "id": "CS-FP&A-002",
+      "city": "长沙",
+      "role": "财务经理",
+      "industry": "跨境电商",
+      "experience_years": "10-15",
+      "salary_min": 18000,
+      "salary_median": 22000,
+      "salary_max": 30000,
+      "sample_size": 15,
+      "data_source": "猎聘网",
+      "updated_at": "2026-03-15"
+    },
+    {
+      "id": "HZ-FP&A-001",
+      "city": "惠州",
+      "role": "财务专家",
+      "industry": "电商物流",
+      "experience_years": "10-15",
+      "salary_min": 20000,
+      "salary_median": 25000,
+      "salary_max": 35000,
+      "sample_size": 10,
+      "data_source": "Boss 直聘",
+      "updated_at": "2026-03-15"
+    }
+  ]
+}

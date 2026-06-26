@@ -1,0 +1,255 @@
+{
+  "template_name": "professional-en",
+  "template_description": "Professional English resume template optimized for senior roles and executive positions with emphasis on leadership and strategic impact",
+  "language": "en",
+  "style": "professional",
+  "target_audience": "Senior-level, executive, and management positions",
+  "sections": {
+    "contact": {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "location": "",
+      "linkedin": "",
+      "website": "",
+      "notes": "Executive contact format. Professional email required. Include LinkedIn and any relevant professional profiles."
+    },
+    "executive_summary": {
+      "title": "Executive Summary",
+      "content": "",
+      "guidelines": "3-4 sentences. Lead with title/role identity. Include scope of impact (team size, budget, revenue). Mention 2-3 signature achievements with metrics.",
+      "example": "Senior Engineering Executive with 15+ years leading high-performance teams of 50+ engineers across 3 continents. Delivered $50M+ in revenue impact through platform modernization and operational efficiency initiatives. Track record of scaling organizations from Series A to IPO while maintaining 95%+ retention of top talent."
+    },
+    "core_competencies": {
+      "title": "Core Competencies",
+      "layout": "grid-2-column",
+      "items": [],
+      "categories": {
+        "leadership": {
+          "title": "Leadership",
+          "items": [],
+          "examples": ["Strategic Planning", "Organizational Design", "Talent Development", "Change Management"]
+        },
+        "technical": {
+          "title": "Technical Strategy",
+          "items": [],
+          "examples": ["Cloud Architecture", "Platform Engineering", "Data Strategy", "AI/ML Roadmap"]
+        },
+        "business": {
+          "title": "Business Acumen",
+          "items": [],
+          "examples": ["P&L Management", "Vendor Negotiation", "Board Presentations", "M&A Integration"]
+        }
+      },
+      "notes": "Use 2-column grid for space efficiency. Focus on executive-level competencies."
+    },
+    "professional_experience": {
+      "title": "Professional Experience",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "title": "",
+          "company": "",
+          "location": "",
+          "start_date": "",
+          "end_date": "",
+          "scope": "",
+          "bullet_points": [],
+          "guidelines": "Start with role scope (team size, budget, revenue responsibility). Then 3-5 achievement bullets. Lead with business impact ($, %, scale).",
+          "example_bullet": "Transformed engineering organization from waterfall to agile, increasing delivery velocity by 3x and reducing production incidents by 60% across 12 teams"
+        }
+      ],
+      "notes": "Last 10-15 years only. Earlier career summarized in 'Earlier Career' section if needed."
+    },
+    "education": {
+      "title": "Education",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "degree": "",
+          "field": "",
+          "institution": "",
+          "graduation_date": "",
+          "notes": "Brief. Focus on highest degree and any executive education."
+        }
+      ]
+    },
+    "board_advisory": {
+      "title": "Board & Advisory Roles",
+      "entries": [
+        {
+          "organization": "",
+          "role": "",
+          "start_date": "",
+          "end_date": "",
+          "description": "",
+          "notes": "Include current and past board/advisory positions."
+        }
+      ],
+      "notes": "Optional. Include if you have board or advisory experience."
+    },
+    "speaking_publications": {
+      "title": "Speaking & Publications",
+      "entries": [
+        {
+          "title": "",
+          "venue": "",
+          "date": "",
+          "type": "speaking|publication|patent",
+          "url": ""
+        }
+      ],
+      "notes": "Optional. Include notable speaking engagements, publications, or patents."
+    },
+    "certifications": {
+      "title": "Certifications & Awards",
+      "entries": [
+        {
+          "name": "",
+          "issuing_organization": "",
+          "date": "",
+          "notes": "Include only executive-relevant certifications."
+        }
+      ],
+      "notes": "Optional. Brief list of most prestigious items."
+    }
+  },
+  "formatting": {
+    "font": {
+      "name": "Times New Roman",
+      "fallback": "Georgia, serif",
+      "size_body": 11,
+      "size_headings": 14,
+      "size_name": 22,
+      "notes": "Traditional serif font conveys professionalism and gravitas. Widely accepted in conservative industries."
+    },
+    "spacing": {
+      "margins": 0.8,
+      "line_spacing": 1.15,
+      "section_spacing": 14,
+      "bullet_spacing": 4
+    },
+    "layout": {
+      "columns": 1,
+      "alignment": "left",
+      "notes": "Clean, authoritative single-column layout. Generous margins for readability. Subtle section dividers."
+    },
+    "file_format": {
+      "preferred": "docx",
+      "acceptable": "pdf (text-based)"
+    },
+    "color_scheme": {
+      "primary": "#1A1A1A",
+      "accent": "#2C5282",
+      "text": "#2D3748",
+      "notes": "Conservative color palette. Black text with subtle navy accent. Professional and understated."
+    }
+  },
+  "ats_guidelines": {
+    "do": [
+      "Use standard section headings",
+      "Keep single-column layout",
+      "Include leadership metrics throughout",
+      "Match executive-level keywords from JD",
+      "Use .docx for maximum ATS compatibility"
+    ],
+    "dont": [
+      "Use graphics, photos, or logos",
+      "Include full career history (focus on last 10-15 years)",
+      "Use tables or multi-column layouts",
+      "Include salary history or expectations",
+      "Use excessive formatting or design elements"
+    ]
+  },
+  "example_resume": {
+    "contact": {
+      "name": "Sarah Mitchell",
+      "email": "sarah.mitchell@email.com",
+      "phone": "(212) 555-0189",
+      "location": "New York, NY",
+      "linkedin": "linkedin.com/in/sarahmitchell",
+      "website": ""
+    },
+    "executive_summary": "Senior Engineering Executive with 18+ years leading global technology organizations. Scaled engineering teams from 10 to 200+ across US, Europe, and Asia. Delivered $80M+ in combined revenue impact through digital transformation, platform modernization, and operational efficiency. Proven track record of building high-performing cultures with 92%+ retention of top talent over 5+ years.",
+    "core_competencies": {
+      "leadership": ["Organizational Design", "Strategic Planning", "Talent Development", "Executive Communication", "Cross-Functional Leadership"],
+      "technical": ["Cloud Architecture", "Platform Engineering", "Data & Analytics Strategy", "AI/ML Product Development", "DevSecOps Transformation"],
+      "business": ["P&L Management ($15M+)", "Vendor & Partner Management", "Board Presentations", "M&A Technical Due Diligence", "Budget Planning & Optimization"]
+    },
+    "professional_experience": [
+      {
+        "title": "Vice President of Engineering",
+        "company": "FinTech Innovations Corp",
+        "location": "New York, NY",
+        "start_date": "March 2019",
+        "end_date": "Present",
+        "scope": "Led global engineering organization of 200+ FTEs and contractors across 5 offices. $25M annual budget responsibility.",
+        "bullet_points": [
+          "Drove $40M revenue increase by leading cloud-native platform rebuild, reducing time-to-market from quarters to weeks",
+          "Restructured engineering organization into autonomous product teams, improving delivery velocity by 3x and employee satisfaction scores by 35%",
+          "Reduced infrastructure costs by 45% ($8M/year) through cloud optimization and strategic vendor renegotiation",
+          "Established engineering excellence program reducing production incidents by 70% and improving system availability to 99.99%",
+          "Led acquisition technical integration of 3 companies ($200M+ combined), completing all within 6 months of close"
+        ]
+      },
+      {
+        "title": "Senior Director of Engineering",
+        "company": "TechScale Solutions",
+        "location": "San Francisco, CA",
+        "start_date": "January 2015",
+        "end_date": "February 2019",
+        "scope": "Managed 80+ person engineering team across platform, infrastructure, and developer experience. $12M budget.",
+        "bullet_points": [
+          "Scaled engineering team from 30 to 80+ while maintaining 95% annual retention through structured career frameworks",
+          "Delivered $25M revenue platform supporting company growth from $50M to $200M ARR",
+          "Championed DevOps transformation, reducing deployment cycle from monthly to continuous delivery (200+ deploys/week)"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "MBA",
+        "field": "Technology Management",
+        "institution": "MIT Sloan School of Management",
+        "graduation_date": "2010"
+      },
+      {
+        "degree": "M.S.",
+        "field": "Computer Science",
+        "institution": "Carnegie Mellon University",
+        "graduation_date": "2003"
+      }
+    ],
+    "board_advisory": [
+      {
+        "organization": "TechStars NYC",
+        "role": "Startup Mentor",
+        "start_date": "2020",
+        "end_date": "Present",
+        "description": "Mentor early-stage B2B SaaS startups on technical strategy, team building, and go-to-market."
+      }
+    ],
+    "speaking_publications": [
+      {
+        "title": "Scaling Engineering Organizations from 10 to 200",
+        "venue": "QCon San Francisco",
+        "date": "2023",
+        "type": "speaking"
+      },
+      {
+        "title": "The Platform Engineering Playbook",
+        "venue": "O'Reilly Media",
+        "date": "2022",
+        "type": "publication",
+        "url": "oreilly.com/platform-engineering-playbook"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect - Professional",
+        "issuing_organization": "Amazon Web Services",
+        "date": "2021"
+      }
+    ]
+  }
+}

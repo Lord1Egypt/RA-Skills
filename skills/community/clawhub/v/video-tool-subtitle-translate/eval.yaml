@@ -1,0 +1,19 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: video-tool-subtitle-translate
+trigger_tests:
+  - id: explicit
+    should_trigger: true
+    prompt: "Translate the subtitles in this HTTPS video to English with WeryAI.."
+  - id: negative-gen
+    should_trigger: false
+    prompt: "Strip all subtitles from the video without translating."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/video_subtitle_translate.js"

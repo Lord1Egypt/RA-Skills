@@ -1,0 +1,8 @@
+{
+  "name": "Masquerade IoT to WAN",
+  "type": "masquerade",
+  "description": "Source NAT for IoT VLAN outbound internet traffic",
+  "enabled": true,
+  "protocol": "all",
+  "src_address": "10.0.30.0/24"
+}

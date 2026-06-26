@@ -1,0 +1,121 @@
+{
+  "name": "bilibili-video-transcriber",
+  "version": "2.2.0",
+  "description": "专业处理 B 站视频字幕问题，支持语音转文字、字幕下载、内容分析、热门评论获取、飞书文档创建，Vosk 低内存分块转写",
+  "main": "bilibili_transcriber.py",
+  "scripts": {
+    "install": "python setup.py",
+    "test": "python test_install.py",
+    "clean": "rm -rf __pycache__ *.log bilibili_transcripts"
+  },
+  "keywords": [
+    "bilibili",
+    "transcribe",
+    "comments",
+    "whisper",
+    "vosk",
+    "subtitle",
+    "speech-to-text",
+    "ai",
+    "video-processing",
+    "smart-selection"
+  ],
+  "author": "B 站视频转录专家团队",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adolescen-he/bilibili-video-transcriber.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adolescen-he/bilibili-video-transcriber/issues"
+  },
+  "homepage": "https://github.com/adolescen-he/bilibili-video-transcriber#readme",
+  "dependencies": {
+    "bilibili-api": ">=5.2.0",
+    "requests": ">=2.28.0",
+    "pydub": ">=0.25.1",
+    "faster-whisper": ">=1.0.0",
+    "vosk": ">=0.3.45",
+    "pyyaml": ">=6.0",
+    "tqdm": ">=4.65.0",
+    "colorama": ">=0.4.6",
+    "psutil": ">=5.9.0",
+    "qrcode": ">=7.4.0"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "files": [
+    "bilibili_transcriber.py",
+    "cli.py",
+    "config.yaml",
+    "setup.py",
+    "requirements.txt",
+    "README.md",
+    "SKILL.md",
+    "package.json",
+    "test_install.py",
+    "test_v2.py",
+    "examples/"
+  ],
+  "bin": {
+    "bilibili-transcribe": "cli.py"
+  },
+  "clawhub": {
+    "category": "video-processing",
+    "tags": [
+      "bilibili",
+      "transcription",
+      "whisper",
+      "vosk",
+      "subtitle",
+      "smart-selection"
+    ],
+    "icon": "🎬",
+    "minOpenClawVersion": "1.0.0",
+    "compatibility": {
+      "platforms": [
+        "linux",
+        "darwin",
+        "win32"
+      ],
+      "python": ">=3.8"
+    },
+    "installation": {
+      "type": "python-package",
+      "command": "python setup.py"
+    },
+    "usage": {
+      "command": "bilibili-transcribe",
+      "examples": [
+        "bilibili-transcribe BV1txQGByERW",
+        "bilibili-transcribe --batch bv_list.txt",
+        "bilibili-transcribe --check-cookie",
+        "bilibili-transcribe --engine vosk"
+      ]
+    },
+    "changelog": {
+      "2.1.0": {
+        "date": "2026-05-07",
+        "changes": [
+          "💬 新增热门评论获取功能：自动获取按点赞排序的评论及回复",
+          "📝 评论数据集成到 Markdown、JSON 和 CLI 输出",
+          "🛡️ 评论获取为非关键路径，失败不影响主流程",
+          "📖 更新 README 文档，突出评论功能"
+        ]
+      },
+      "2.0.0": {
+        "date": "2026-04-19",
+        "changes": [
+          "🚀 优化处理优先级（CC 字幕→AI 字幕→音频转录→视频下载）",
+          "🧠 添加系统资源检测，智能选择模型",
+          "🔄 添加镜像源自动切换功能",
+          "💾 添加 Vosk 离线引擎支持",
+          "📱 添加扫码登录功能",
+          "⚡ 性能提升 96%（有字幕场景）",
+          "📏 视频时长策略：<10 分钟 Vosk，>20 分钟 Whisper 在线"
+        ]
+      }
+    }
+  }
+}

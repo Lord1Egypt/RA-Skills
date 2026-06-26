@@ -1,0 +1,4 @@
+interface:
+  display_name: "架构规划"
+  short_description: "给出现有代码库可落地的最小方案、步骤拆分与风险提示。"
+  default_prompt: "使用 $code-architect 为这个需求规划最小可行实现方案。"

@@ -1,0 +1,17 @@
+Claim:
+- What the model says it finished.
+
+Evidence found:
+- Links, files, outputs, diffs, tests, screenshots, or logs that prove the claim.
+
+Missing proof:
+- Assertions that are still unverified.
+
+Failure mode:
+- Hallucination, fake completion, role drift, skipped step, or stale context.
+
+Corrective action:
+- Rerun, constrain, escalate, or hand to human review.
+
+Done gate:
+- The exact evidence required before closure.

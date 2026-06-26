@@ -1,0 +1,223 @@
+"""HTTP client for community-projects gateway endpoints."""
+from __future__ import annotations
+import os
+import json
+import urllib.request
+import urllib.error
+from typing import Any
+
+
+def _gateway_url() -> str:
+    return os.environ.get(
+        "COMMUNITY_GATEWAY_URL",
+        os.environ.get("COMMUNITY_PUBLIC_URL", "https://community.iamstarchild.com"),
+    ).rstrip("/")
+
+
+def _gateway_key() -> str:
+    key = os.environ.get("COMMUNITY_GATEWAY_KEY", "")
+    if not key:
+        raise RuntimeError("COMMUNITY_GATEWAY_KEY not set in environment")
+    return key
+
+
+def _request(method: str, path: str, body: dict | None = None, timeout: int = 60) -> tuple[int, dict]:
+    url = f"{_gateway_url()}{path}"
+    data = json.dumps(body).encode("utf-8") if body is not None else None
+    headers = {"X-Internal-Key": _gateway_key()}
+    if data is not None:
+        headers["Content-Type"] = "application/json"
+    req = urllib.request.Request(url, data=data, headers=headers, method=method)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.status, json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        try:
+            return e.code, json.loads(e.read().decode("utf-8"))
+        except Exception:
+            return e.code, {"error": str(e)}
+
+
+def publish(req_body: dict) -> tuple[int, dict]:
+    """POST /api/code-projects/publish.
+
+    req_body may include `commit_message` (free-form string). When present,
+    gateway uses it as the body of the GitHub commit; otherwise falls back
+    to an auto-generated template.
+    """
+    return _request("POST", "/api/code-projects/publish", req_body)
+
+
+def unpublish(user_id: str, slug: str, requesting_user_id: str) -> tuple[int, dict]:
+    return _request("POST", "/api/code-projects/unpublish", {
+        "user_id": user_id,
+        "slug": slug,
+        "requesting_user_id": requesting_user_id,
+    })
+
+
+def list_(type: str | None = None, tag: str | None = None, user_id: str | None = None, q: str | None = None) -> tuple[int, dict]:
+    """GET /api/code-projects/list — flat catalog, query param name is 'user_id'.
+
+    Note: /api/code-projects/explore uses 'user' instead. Two endpoints,
+    two param names. Source of truth: scg/src/routes/code-projects.ts.
+    """
+    qs = []
+    if type: qs.append(f"type={type}")
+    if tag: qs.append(f"tag={tag}")
+    if user_id: qs.append(f"user_id={user_id}")
+    if q:
+        from urllib.parse import quote
+        qs.append(f"q={quote(q)}")
+    qstr = "?" + "&".join(qs) if qs else ""
+    return _request("GET", f"/api/code-projects/list{qstr}")
+
+
+def get(user_id: str, slug: str) -> tuple[int, dict]:
+    """Fetch the current state of an open-sourced project.
+
+    Versioned snapshots are no longer addressable — git is the version
+    control, so the gateway always serves the latest committed state.
+    """
+    return _request("GET", f"/api/code-projects/{user_id}/{slug}")
+
+
+def link_listing(public_slug: str, code_user_id: str, code_slug: str,
+                 version: str, github_url: str) -> tuple[int, dict]:
+    """Manual escape hatch: directly wire a code project to a listing.
+
+    Normally not needed — cross-link happens automatically via the
+    publisher: { code_slug, public_slug } binding in project.yaml. Use this
+    only for repair scenarios (e.g. relinking after a manual rename).
+    """
+    return _request("POST", "/api/code-projects/link-listing", {
+        "public_slug": public_slug,
+        "code_user_id": code_user_id,
+        "code_slug": code_slug,
+        "version": version,
+        "github_url": github_url,
+    })
+
+
+def fetch_raw_file(raw_url_prefix: str, file_path: str) -> bytes:
+    """Fetch a single file from raw.githubusercontent.com — no auth needed for public repo."""
+    url = f"{raw_url_prefix.rstrip('/')}/{file_path.lstrip('/')}"
+    req = urllib.request.Request(url, headers={"User-Agent": "community-publish-skill"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return resp.read()
+
+
+# ── Stage 1: Service URL Publish (preview registry on community gateway) ──
+# These hit /api/register, /api/unregister, /api/list — the in-memory
+# preview-slug ↔ machine ↔ port routing table on sc-community-gateway.
+# Distinct from /api/code-projects/* which is GitHub-backed code archive.
+
+def preview_register(slug: str, machine_id: str, port: int,
+                     owner_user_id: str, title: str = "",
+                     publisher_code_slug: str | None = None) -> tuple[int, dict]:
+    """Register a preview slug → public URL mapping.
+
+    publisher_code_slug: optional binding to a code project this listing is
+    paired with. When set, gateway either links immediately (if code exists)
+    or records a pending entry consumed when the code is open-sourced.
+    """
+    body: dict = {
+        "slug": slug,
+        "machine_id": machine_id,
+        "port": port,
+        "owner_user_id": owner_user_id,
+        "title": title,
+    }
+    if publisher_code_slug:
+        body["publisher"] = {"code_slug": publisher_code_slug}
+    return _request("POST", "/api/register", body, timeout=10)
+
+
+def preview_unregister(slug: str, owner_user_id: str) -> tuple[int, dict]:
+    return _request("POST", "/api/unregister", {
+        "slug": slug,
+        "owner_user_id": owner_user_id,
+    }, timeout=10)
+
+
+def preview_list(owner_user_id: str) -> tuple[int, dict]:
+    from urllib.parse import quote
+    return _request("GET", f"/api/list?owner_user_id={quote(owner_user_id)}", timeout=10)
+
+
+# ─── Listing CRUD (preview-side dashboard visibility) ──────────────
+# These talk to /api/projects-query/listing — the internal-key version
+# of the JWT-protected /api/projects/listing routes used by the web
+# frontend. Same DB row, same ownership checks; the gateway exposes
+# both surfaces because clawd containers don't carry user JWTs.
+#
+# What this controls: whether a published preview is DISCOVERABLE on
+# the public Project Dashboard. It does NOT control whether the URL
+# is reachable — that lives on /api/register / /api/unregister
+# (preview_register / preview_unregister above). The two are
+# completely orthogonal:
+#
+#   publish_preview()  → URL works, others can visit if they know it
+#   list_in_dashboard()→ URL is browseable from the public gallery
+#
+# A preview can be in any combination: URL-only (default after
+# publish_preview), URL + listed, URL + listed + open-sourced.
+
+def listing_publish(
+    slug: str,
+    owner_user_id: str,
+    name: str,
+    description: str = "",
+    cover_url: str | None = None,
+    tags: list[str] | None = None,
+    is_public: bool = True,
+) -> tuple[int, dict]:
+    """Create or update a project listing on the public dashboard.
+
+    Defaults is_public=True: callers reach this function specifically
+    to put a preview on the dashboard, so the common path is publish.
+    Pass is_public=False to convert a public listing back to private
+    without deleting it (preserves view_count / favorite_count).
+    """
+    body: dict = {
+        "slug": slug,
+        "owner_user_id": owner_user_id,
+        "name": name,
+        "is_public": is_public,
+    }
+    if description:
+        body["description"] = description
+    if cover_url:
+        body["cover_url"] = cover_url
+    if tags:
+        body["tags"] = tags
+    return _request("POST", "/api/projects-query/listing", body, timeout=15)
+
+
+def listing_unlist(slug: str, owner_user_id: str) -> tuple[int, dict]:
+    """Remove a listing from the public dashboard.
+
+    Preview URL keeps working — only the dashboard row is deleted,
+    along with view/favorite counts. To temporarily hide instead of
+    permanently remove, use listing_publish(..., is_public=False).
+    """
+    from urllib.parse import quote
+    return _request(
+        "DELETE",
+        f"/api/projects-query/listing/{quote(slug)}?owner_user_id={quote(owner_user_id)}",
+        timeout=10,
+    )
+
+
+def listing_get(slug: str) -> tuple[int, dict]:
+    """Return current listing state — used to answer 'is this listed?'.
+
+    Reuses the existing /api/projects-query/by-slug/:slug endpoint
+    which is_public-agnostic (returns the row regardless of visibility).
+    """
+    from urllib.parse import quote
+    return _request(
+        "GET",
+        f"/api/projects-query/by-slug/{quote(slug)}",
+        timeout=10,
+    )

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Background gradient - deep purple to violet, Apple-style -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B46C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4C1D95;stop-opacity:1" />
+    </linearGradient>
+    <!-- Gem facet highlights -->
+    <linearGradient id="gemTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E9D5FF;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#A78BFA;stop-opacity:0.6" />
+    </linearGradient>
+    <linearGradient id="gemLeft" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4B5FD;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:0.5" />
+    </linearGradient>
+    <linearGradient id="gemRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#5B21B6;stop-opacity:0.8" />
+    </linearGradient>
+    <!-- Link arc gradient -->
+    <linearGradient id="linkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F5F3FF;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#DDD6FE;stop-opacity:0.85" />
+    </linearGradient>
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#2D1B69" flood-opacity="0.4"/>
+    </filter>
+    <filter id="gemShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1E0A4A" flood-opacity="0.5"/>
+    </filter>
+    <clipPath id="roundRect">
+      <rect width="512" height="512" rx="112" ry="112"/>
+    </clipPath>
+  </defs>
+
+  <!-- App icon background - rounded square, Apple-style -->
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#bgGrad)"/>
+
+  <!-- Subtle inner highlight at top (Apple gloss effect) -->
+  <ellipse cx="256" cy="80" rx="180" ry="60" fill="white" opacity="0.06"/>
+
+  <!-- Obsidian gem shape - centered, clean diamond -->
+  <g filter="url(#gemShadow)" transform="translate(256, 228)">
+    <!-- Gem: top facet -->
+    <polygon points="0,-108  80,-28  -80,-28" fill="url(#gemTop)"/>
+    <!-- Gem: left facet -->
+    <polygon points="-80,-28  0,108  0,-28" fill="url(#gemLeft)"/>
+    <!-- Gem: right facet -->
+    <polygon points="80,-28  0,108  0,-28" fill="url(#gemRight)"/>
+    <!-- Gem: center dividing line (subtle) -->
+    <line x1="0" y1="-28" x2="0" y2="108" stroke="white" stroke-width="1.5" opacity="0.3"/>
+    <line x1="-80" y1="-28" x2="80" y2="-28" stroke="white" stroke-width="1.5" opacity="0.25"/>
+  </g>
+
+  <!-- Link icon below gem - represents the "integration" / connection concept -->
+  <g transform="translate(256, 400)">
+    <!-- Left ring of chain link -->
+    <rect x="-72" y="-18" width="54" height="36" rx="18" ry="18"
+          fill="none" stroke="url(#linkGrad)" stroke-width="14" opacity="0.9"/>
+    <!-- Right ring of chain link -->
+    <rect x="18" y="-18" width="54" height="36" rx="18" ry="18"
+          fill="none" stroke="url(#linkGrad)" stroke-width="14" opacity="0.9"/>
+    <!-- Center overlap mask (makes it look like a proper chain link) -->
+    <rect x="-22" y="-14" width="44" height="28" rx="0"
+          fill="#5B21B6" opacity="1"/>
+    <!-- Center connecting bar -->
+    <rect x="-22" y="-9" width="44" height="18" rx="9" ry="9"
+          fill="url(#linkGrad)" opacity="0.9"/>
+  </g>
+</svg>

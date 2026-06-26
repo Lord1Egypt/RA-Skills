@@ -1,0 +1,32 @@
+{
+  "name": "youtube-live-broadcast-checking",
+  "version": "1.3.7",
+  "description": "Checks upcoming live broadcast schedules and current live status for YouTube channels using YouTube Data API v3",
+  "main": "skill.js",
+  "scripts": {
+    "test": "node test/test-upcoming.js"
+  },
+  "keywords": [
+    "openclaw",
+    "youtube",
+    "live",
+    "broadcast"
+  ],
+  "author": "Steven Ho <stevenho1394@users.noreply.github.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StevenHo1394/openclaw.git",
+    "directory": "skills/youtube-live-broadcast-checking"
+  },
+  "bugs": {
+    "url": "https://github.com/StevenHo1394/openclaw/issues"
+  },
+  "homepage": "https://github.com/StevenHo1394/openclaw/tree/main/skills/youtube-live-broadcast-checking",
+  "dependencies": {
+    "googleapis": "^126.0.0"
+  },
+  "devDependencies": {
+    "nock": "^13.5.6"
+  }
+}

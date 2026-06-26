@@ -1,35 +1,15 @@
----
-name: "Henry Skill Installer"
-description: "Scaffolds new skills safely in the workspace by creating skill folders, generating SKILL.md and minimal files, and verifying skill registration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/henry-skill-installer"
-sourceUrl: "https://clawhub.ai/skills/henry-skill-installer"
----
+# henry-skill-installer
 
-# Henry Skill Installer
+Purpose: scaffold new skills inside <workspace>/skills safely.
 
-> Scaffolds new skills safely in the workspace by creating skill folders, generating SKILL.md and minimal files, and verifying skill registration.
+Rules:
+- Never delete files unless explicitly told.
+- Only write within /Users/clawdbot/.openclaw/workspace/skills/
+- Prefer /usr/bin/tee for writes and verify by /bin/cat afterwards.
+- Never print tool JSON; call exec.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/henry-skill-installer`
-- **Source URL:** [https://clawhub.ai/skills/henry-skill-installer](https://clawhub.ai/skills/henry-skill-installer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/henry-skill-installer
-```
+Workflow:
+1) Ask for skill name + 1-paragraph spec.
+2) Create folder workspace/skills/<name>/
+3) Generate SKILL.md + minimal files.
+4) Verify skill appears in `openclaw skills list`.

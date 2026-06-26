@@ -1,0 +1,33 @@
+name: nano-banana-pro-clawd
+version: 1.0.0
+description: 图片生成技能，基于API易代理站的NanoBananaPro模型，支持文生图和图生图编辑，无需访问外网。
+author: clawd
+homepage: https://clawhub.com/skills/nano-banana-pro-image-gen
+
+triggers:
+  - 生成图片
+  - AI画图
+  - 图片生成
+  - 文生图
+  - 图生图
+  - generate image
+  - image generation
+
+config:
+  API_KEY:
+    type: string
+    required: true
+    secret: true
+    description: API易代理站密钥
+
+features:
+  - 文本生成图片
+  - 图片编辑修改
+  - 多种宽高比支持(1:1/16:9/4:3等)
+  - 多分辨率(1K/2K/4K)
+  - 国内代理访问，无需翻墙
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

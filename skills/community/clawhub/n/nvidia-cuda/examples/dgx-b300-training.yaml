@@ -1,0 +1,35 @@
+hardware_tier: dgx-b300
+objective: frontier single-node training
+
+precision:
+  baseline: bf16
+  fp8_candidate: true
+  accuracy_gate_required: true
+
+distributed:
+  launcher: torchrun
+  backend: nccl
+  data_parallel: true
+  fsdp: true
+  fsdp_strategy: full_shard
+  tensor_parallel: evaluate
+  sequence_parallel: evaluate_if_tp
+  context_parallel: evaluate_for_long_context
+  activation_checkpointing: selective_after_sharding
+
+dataloader:
+  pin_memory: true
+  persistent_workers: true
+  prefetch_factor: 4
+  num_workers_per_rank: 8
+
+benchmark_order:
+  - eager_bf16
+  - torch_compile
+  - fused_attention_backend_compare
+  - fp8_candidate
+  - distributed_scaling
+
+notes:
+  - Use DGX B300 as the newest top-end single-node training reference in this repository.
+  - Shard state before broad checkpointing when memory pressure comes from replicated params, grads, or optimizer state.

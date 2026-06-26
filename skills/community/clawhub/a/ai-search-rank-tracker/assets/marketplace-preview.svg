@@ -1,0 +1,58 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="32" fill="#0B1020"/>
+  <rect x="24" y="24" width="1552" height="852" rx="28" fill="url(#bg)" stroke="#1F2A44"/>
+
+  <text x="72" y="110" fill="#FFFFFF" font-size="54" font-family="Inter, Arial, sans-serif" font-weight="700">AI Search Rank Tracker</text>
+  <text x="72" y="154" fill="#9FB0D0" font-size="24" font-family="Inter, Arial, sans-serif">Track whether ChatGPT, Claude, Gemini, and Perplexity recommend your startup.</text>
+
+  <rect x="72" y="210" width="760" height="540" rx="24" fill="#0F172A" stroke="#22304D"/>
+  <text x="108" y="270" fill="#7DD3FC" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="700">Example Brand</text>
+  <text x="108" y="305" fill="#FFFFFF" font-size="32" font-family="Inter, Arial, sans-serif" font-weight="700">clawlite.ai</text>
+  <text x="108" y="360" fill="#A5B4FC" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="700">Prompt</text>
+  <rect x="108" y="382" width="688" height="64" rx="16" fill="#111827" stroke="#334155"/>
+  <text x="132" y="423" fill="#E5E7EB" font-size="26" font-family="JetBrains Mono, Menlo, monospace">best openclaw alternative</text>
+
+  <text x="108" y="495" fill="#FFFFFF" font-size="26" font-family="Inter, Arial, sans-serif" font-weight="700">Engine results</text>
+
+  <rect x="108" y="525" width="320" height="86" rx="18" fill="#111827" stroke="#334155"/>
+  <text x="132" y="560" fill="#FFFFFF" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">ChatGPT</text>
+  <text x="132" y="594" fill="#86EFAC" font-size="22" font-family="Inter, Arial, sans-serif">#2 clawlite.ai</text>
+
+  <rect x="476" y="525" width="320" height="86" rx="18" fill="#111827" stroke="#334155"/>
+  <text x="500" y="560" fill="#FFFFFF" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">Claude</text>
+  <text x="500" y="594" fill="#FCA5A5" font-size="22" font-family="Inter, Arial, sans-serif">Not mentioned</text>
+
+  <rect x="108" y="635" width="320" height="86" rx="18" fill="#111827" stroke="#334155"/>
+  <text x="132" y="670" fill="#FFFFFF" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">Gemini</text>
+  <text x="132" y="704" fill="#FCD34D" font-size="22" font-family="Inter, Arial, sans-serif">#4 clawlite.ai</text>
+
+  <rect x="476" y="635" width="320" height="86" rx="18" fill="#111827" stroke="#334155"/>
+  <text x="500" y="670" fill="#FFFFFF" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">Perplexity</text>
+  <text x="500" y="704" fill="#86EFAC" font-size="22" font-family="Inter, Arial, sans-serif">#1 clawlite.ai</text>
+
+  <rect x="874" y="210" width="654" height="540" rx="24" fill="#0F172A" stroke="#22304D"/>
+  <text x="914" y="270" fill="#FFFFFF" font-size="28" font-family="Inter, Arial, sans-serif" font-weight="700">Visibility Snapshot</text>
+
+  <rect x="914" y="310" width="260" height="120" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="944" y="350" fill="#7DD3FC" font-size="20" font-family="Inter, Arial, sans-serif">Mention rate</text>
+  <text x="944" y="405" fill="#FFFFFF" font-size="46" font-family="Inter, Arial, sans-serif" font-weight="700">75%</text>
+
+  <rect x="1194" y="310" width="294" height="120" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="1224" y="350" fill="#A5B4FC" font-size="20" font-family="Inter, Arial, sans-serif">Average rank</text>
+  <text x="1224" y="405" fill="#FFFFFF" font-size="46" font-family="Inter, Arial, sans-serif" font-weight="700">2.3</text>
+
+  <rect x="914" y="458" width="574" height="144" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="944" y="500" fill="#FDE68A" font-size="20" font-family="Inter, Arial, sans-serif">Visibility score</text>
+  <text x="944" y="568" fill="#FFFFFF" font-size="72" font-family="Inter, Arial, sans-serif" font-weight="700">66/100</text>
+
+  <rect x="914" y="626" width="574" height="96" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="944" y="665" fill="#C4B5FD" font-size="20" font-family="Inter, Arial, sans-serif">Top competitors</text>
+  <text x="944" y="705" fill="#E5E7EB" font-size="26" font-family="Inter, Arial, sans-serif">LazyClaw · ZeroClaw · OpenClaw forks</text>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

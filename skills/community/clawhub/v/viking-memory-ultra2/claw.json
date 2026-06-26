@@ -1,0 +1,14 @@
+{
+  "name": "viking-memory-ultra",
+  "version": "1.3.0",
+  "description": "Viking Memory System Ultra - 分层记忆基座，支持动态回流、智能权重、可逆归档",
+  "author": "tsangho (哈基咪公司)",
+  "license": "MIT",
+  "permissions": ["filesystem"],
+  "entry": "SKILL.md",
+  "tags": ["memory", "viking", "knowledge-management", "archive", "recall"],
+  "models": ["minimax-*", "claude-*", "gpt-*", "qwen-*"],
+  "minOpenClawVersion": "0.8.0",
+  "os": ["linux", "darwin"],
+  "bins": ["bash", "python3", "curl"]
+}

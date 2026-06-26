@@ -1,35 +1,43 @@
 ---
-name: "Game Audit Scorecard"
-description: "Summarize audit findings into a structured multi-dimensional scorecard for UI/UX, feedback, mechanics, scope completeness, maintainability, and live risk."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/game-audit-scorecard"
-sourceUrl: "https://clawhub.ai/skills/game-audit-scorecard"
+name: game-audit-scorecard
+description: Summarize audit findings into a structured multi-dimensional scorecard for UI/UX, feedback, mechanics, scope completeness, maintainability, and live risk.
+license: MIT
+compatibility: Claude Code and Codex. Best results with file read/write access; shell/build access improves evidence quality.
+metadata:
+  author: game-superpowers
+  version: "1.1.0"
+  domain: game-development
 ---
 
 # Game Audit Scorecard
 
-> Summarize audit findings into a structured multi-dimensional scorecard for UI/UX, feedback, mechanics, scope completeness, maintainability, and live risk.
+## Goal
+Normalize audit findings into a structured scorecard that future sessions can read, compare, and build from.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/game-audit-scorecard`
-- **Source URL:** [https://clawhub.ai/skills/game-audit-scorecard](https://clawhub.ai/skills/game-audit-scorecard)
+## Deliverables
+Create or update:
+- `docs/game-studio/audit/scorecard.json`
+- `docs/game-studio/audit/audit-summary.md`
 
-## Overview
+Use:
+- `./shared/templates/audit-scorecard.md`
+- `./schemas/audit-scorecard.schema.json`
+- `./shared/reference/audit-confidence-and-evidence.md`
 
+## Required dimensions
+- `ux_flow`
+- `hud_readability`
+- `feedback_design`
+- `audio_feedback`
+- `game_feel`
+- `mechanics_clarity`
+- `scope_completeness`
+- `production_readiness`
+- `architecture_health`
+- `live_risk`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/game-audit-scorecard
-```
+## Important
+Scores should be justified by written evidence.
+Do not give false precision.
+Use consistent severity language and explain uncertainty where runtime evidence is missing.
+

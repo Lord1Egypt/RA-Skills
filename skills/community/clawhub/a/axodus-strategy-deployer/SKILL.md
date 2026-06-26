@@ -1,35 +1,76 @@
 ---
-name: "Strategy Deployer"
-description: "Deploy trading strategies with risk gating, monitoring, and guarded live promotion."
-category: "other"
-source: "ClawHub"
-tags: [dev]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/axodus-strategy-deployer"
-sourceUrl: "https://clawhub.ai/skills/axodus-strategy-deployer"
+name: strategy-deployer
+description: Deploy trading strategies with risk gating, monitoring, and guarded live promotion.
+metadata:
+  author: RedHat Dev
+  version: 1.0.0
+  owner: RedHat Dev Agent
+  category: trading
 ---
 
-# Strategy Deployer
+# SKILL: strategy-deployer
 
-> Deploy trading strategies with risk gating, monitoring, and guarded live promotion.
+## Purpose
+Deploy trading strategies safely using an explicit lifecycle: validate â†’ risk-check â†’ paper deploy â†’ monitor â†’ (guarded) live promote â†’ scale/stop.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/axodus-strategy-deployer`
-- **Source URL:** [https://clawhub.ai/skills/axodus-strategy-deployer](https://clawhub.ai/skills/axodus-strategy-deployer)
+## When to Use
+- A strategy is ready after backtesting.
+- Moving from research to paper trading.
+- Promoting a paper-tested strategy to live trading (guarded).
 
-## Overview
+## Inputs
+- `strategy_spec` (required, object|string): rules, signals, markets, timeframes.
+- `mode` (optional, enum: `paper|live`, default: `paper`)
+- `risk_limits` (required, object): max risk per trade, max drawdown, exposure caps.
+- `validation_artifacts` (optional, object): backtest report, paper performance stats.
+- `approval` (optional, string): explicit user/Morpheus approval reference for `live`.
 
+## Steps
+1. Verify prerequisites:
+   - strategy has a written hypothesis and defined invalidation conditions
+   - backtest/paper artifacts exist (as applicable)
+2. Run risk checks:
+   - enforce risk per trade
+   - enforce exposure caps
+   - enforce max drawdown thresholds
+   - ensure kill-switch is configured
+3. Deploy to paper (default):
+   - start with small allocation
+   - emit logs for every signal and order
+4. Monitor and record:
+   - trades
+   - slippage
+   - drawdown
+   - regime notes
+5. Promote to live only if:
+   - explicit `mode=live`
+   - explicit approval is present
+   - preflight checks pass
+6. Define rollback/stop rules and execute them on trigger.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/axodus-strategy-deployer
+## Validation
+- Paper mode produces complete logs and trade history entries.
+- Live mode is blocked unless approval + flags are present.
+- Risk constraints are enforced before every order.
+- Stop conditions are tested (kill-switch works).
+
+## Output
+```yaml
+deployment: "paper|live"
+strategy: "<name/id>"
+markets: ["..."]
+risk_limits: { "...": "..." }
+status: "deployed|blocked|stopped"
+audit_events: ["signal_detected", "risk_check_passed", "order_submitted", "order_filled", "trade_recorded"]
 ```
+
+## Safety Rules
+- Never bypass risk checks to â€œcapture opportunityâ€.
+- Never deploy live without explicit approval and a paper validation phase.
+- Never imply profit certainty; report performance as historical/conditional.
+
+## Example
+Paper deploy:
+- `strategy_spec`: â€œMean reversion in range regime, 5m timeframe.â€
+- `mode`: `paper`
+- Output: deployment report + monitoring checklist + stop triggers.

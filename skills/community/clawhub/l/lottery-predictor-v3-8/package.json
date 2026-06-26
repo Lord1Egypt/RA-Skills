@@ -1,0 +1,62 @@
+{
+  "name": "lottery-predictor-v3-8",
+  "version": "3.8.0",
+  "description": "基于机器学习的双色球预测工具，随机森林+Gradient Boosting+ 规则集成，15 维特征工程，红球准确率 80.8%",
+  "author": "田七七",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/tree/main/lottery-predictor-v3-8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "lottery-predictor-v3-8"
+  },
+  "keywords": [
+    "彩票",
+    "预测",
+    "双色球",
+    "机器学习",
+    "随机森林",
+    "V3.8",
+    "数据分析",
+    "集成学习"
+  ],
+  "pricing": {
+    "type": "freemium",
+    "freeCalls": 3,
+    "paidPrice": 29,
+    "paidCurrency": "CNY",
+    "paidPeriod": "month",
+    "paidFeatures": [
+      "无限次预测",
+      "历史预测记录",
+      "准确率验证",
+      "多期对比分析",
+      "ML 模型训练报告",
+      "优先支持"
+    ]
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "system": [
+      "sqlite3"
+    ],
+    "pip": [
+      "scikit-learn",
+      "numpy",
+      "pandas"
+    ],
+    "env": [
+      "LOTTERY_DB_PATH"
+    ]
+  },
+  "scripts": {
+    "predict": "scripts/v3.8_ml_model.py",
+    "backtest": "scripts/backtest_v3.8.py",
+    "verify": "scripts/verify.py"
+  },
+  "permissions": {
+    "filesystem": "read",
+    "network": "none",
+    "execute": ["python3", "sqlite3"]
+  }
+}

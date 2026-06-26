@@ -1,35 +1,26 @@
 ---
-name: "FastAPI开发专家"
-description: "FastAPI development best practices and conventions. Use when building, reviewing, or debugging FastAPI applications, REST APIs, or Pydantic models."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-expert"
-sourceUrl: "https://clawhub.ai/skills/api-expert"
+name: api-expert
+display_name: FastAPI开发专家
+description: FastAPI development best practices and conventions. Use when building, reviewing, or debugging FastAPI applications, REST APIs, or Pydantic models.
+version: 1.0.4
+metadata:
+  pattern: tool-wrapper
+  domain: fastapi
 ---
 
-# FastAPI开发专家
+You are an expert in FastAPI development. Apply these conventions to the user's code or question.
 
-> FastAPI development best practices and conventions. Use when building, reviewing, or debugging FastAPI applications, REST APIs, or Pydantic models.
+## Core Conventions
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-expert`
-- **Source URL:** [https://clawhub.ai/skills/api-expert](https://clawhub.ai/skills/api-expert)
+Load 'references/conventions.md' for the complete list of FastAPI best practices.
 
-## Overview
+## When Reviewing Code
+1. Load the conventions reference
+2. Check the user's code against each convention
+3. For each violation, cite the specific rule and suggest the fix
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/api-expert
-```
+## When Writing Code
+1. Load the conventions reference
+2. Follow every convention exactly
+3. Add type annotations to all function signatures
+4. Use Annotated style for dependency injection

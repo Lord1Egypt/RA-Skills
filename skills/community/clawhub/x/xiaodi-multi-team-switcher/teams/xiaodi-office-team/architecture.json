@@ -1,0 +1,238 @@
+{
+  "version": "2.0.0",
+  "architecture": {
+    "pattern": "master-worker",
+    "description": "办公室主任作为协调者，分发任务给专业角色"
+  },
+  "coordinator": {
+    "id": "office-director",
+    "name": "办公室主任",
+    "role": "任务协调与分发",
+    "responsibilities": [
+      "理解用户需求",
+      "分解复杂任务",
+      "分发给专业角色",
+      "整合输出结果",
+      "质量把控"
+    ],
+    "tools": {
+      "allowlist": [
+        "read", "write", "memory_search", "memory_get",
+        "sessions_send", "sessions_list", "message"
+      ]
+    },
+    "delegation": {
+      "enabled": true,
+      "strategy": "parallel",
+      "timeout": 120,
+      "retry": {
+        "maxAttempts": 2,
+        "backoff": "exponential"
+      }
+    }
+  },
+  "agents": {
+    "schedule-manager": {
+      "name": "日程管理师",
+      "role": "日程安排、会议预约、提醒服务",
+      "icon": "📅",
+      "model": {
+        "primary": "bailian/glm-5",
+        "fallbacks": ["bailian/qwen3.5-plus"]
+      },
+      "tools": {
+        "allowlist": ["read", "write", "cron", "message"]
+      },
+      "capabilities": [
+        "智能日程冲突检测",
+        "会议优先级排序",
+        "提醒事项管理",
+        "时区自动转换"
+      ],
+      "output_format": {
+        "daily_overview": "今日日程概览",
+        "meeting_reminder": "会议准备提醒",
+        "todo_list": "待办事项列表"
+      }
+    },
+    "email-processor": {
+      "name": "邮件处理师",
+      "role": "邮件分类、关键信息提取、回复草稿",
+      "icon": "📧",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search", "message"]
+      },
+      "capabilities": [
+        "邮件智能分类",
+        "关键信息提取",
+        "智能回复草稿生成",
+        "邮件追踪提醒"
+      ],
+      "templates": ["正式回复", "礼貌拒绝", "询价回复", "会议确认"]
+    },
+    "document-manager": {
+      "name": "文档管理师",
+      "role": "文档整理、格式规范、版本管理",
+      "icon": "📄",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "exec", "pdf"]
+      },
+      "capabilities": [
+        "文档格式标准化",
+        "多格式转换",
+        "版本追踪",
+        "文档归档"
+      ],
+      "format_standards": {
+        "font": "仿宋_GB2312",
+        "font_size": "三号(16pt)",
+        "line_spacing": "28磅",
+        "margins": {
+          "top": "3.7cm",
+          "bottom": "3.5cm",
+          "left": "2.8cm",
+          "right": "2.6cm"
+        }
+      }
+    },
+    "meeting-assistant": {
+      "name": "会议助手",
+      "role": "会议纪要、待办追踪、决议落实",
+      "icon": "🎙️",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "memory_search", "message"]
+      },
+      "capabilities": [
+        "会议纪要生成",
+        "语音转文字纠错",
+        "待办事项提取",
+        "决议跟踪"
+      ],
+      "scripts": ["meeting_minutes.py"]
+    },
+    "mindmap-builder": {
+      "name": "思维构建师",
+      "role": "思维导图生成、内容结构化、知识体系构建",
+      "icon": "🧠",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search"]
+      },
+      "capabilities": [
+        "文本结构提取",
+        "多格式输出",
+        "关键词快速生成",
+        "知识体系构建"
+      ],
+      "output_formats": ["mermaid", "markdown", "markmap", "plantuml"],
+      "scripts": ["mindmap.py"]
+    }
+  },
+  "workflows": {
+    "email_processing": {
+      "name": "智能邮件处理流程",
+      "steps": [
+        {
+          "id": "classify",
+          "agent": "email-processor",
+          "action": "classify_emails"
+        },
+        {
+          "id": "urgent_check",
+          "condition": "${classify.urgent_count} > 0",
+          "agent": "office-director",
+          "action": "notify_urgent"
+        },
+        {
+          "id": "draft_replies",
+          "agent": "email-processor",
+          "parallel": true,
+          "action": "generate_replies"
+        }
+      ]
+    },
+    "meeting_workflow": {
+      "name": "会议处理流程",
+      "steps": [
+        {
+          "id": "generate_minutes",
+          "agent": "meeting-assistant",
+          "action": "create_minutes"
+        },
+        {
+          "id": "extract_todos",
+          "agent": "meeting-assistant",
+          "action": "extract_action_items"
+        },
+        {
+          "id": "update_schedule",
+          "agent": "schedule-manager",
+          "action": "add_reminders"
+        },
+        {
+          "id": "create_mindmap",
+          "agent": "mindmap-builder",
+          "parallel": true,
+          "action": "visualize_meeting"
+        }
+      ]
+    },
+    "document_workflow": {
+      "name": "文档整理流程",
+      "steps": [
+        {
+          "id": "analyze",
+          "agent": "document-manager",
+          "action": "analyze_structure"
+        },
+        {
+          "id": "format",
+          "agent": "document-manager",
+          "action": "apply_standards"
+        },
+        {
+          "id": "visualize",
+          "agent": "mindmap-builder",
+          "condition": "${analyze.has_structure}",
+          "action": "create_outline_map"
+        }
+      ]
+    }
+  },
+  "communication": {
+    "message_bus": {
+      "enabled": true,
+      "topics": ["tasks", "results", "alerts"]
+    },
+    "inter_agent": {
+      "protocol": "sessions_send",
+      "timeout": 60
+    }
+  },
+  "monitoring": {
+    "performance_tracking": true,
+    "agent_health_check": {
+      "interval": 300000,
+      "timeout": 5000
+    }
+  },
+  "settings": {
+    "timezone": "Asia/Shanghai",
+    "language": "zh-CN",
+    "date_format": "YYYY年MM月DD日",
+    "time_format": "HH:mm",
+    "auto_switch": true,
+    "fallback_action": "ask"
+  }
+}

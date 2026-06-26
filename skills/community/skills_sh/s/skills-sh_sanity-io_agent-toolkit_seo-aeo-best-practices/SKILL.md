@@ -1,35 +1,37 @@
 ---
-name: "seo-aeo-best-practices"
-description: "Indexed by skills.sh from sanity-io/agent-toolkit"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sanity-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sanity-io/agent-toolkit/seo-aeo-best-practices"
-sourceUrl: "https://skills.sh/sanity-io/agent-toolkit/seo-aeo-best-practices"
+name: seo-aeo-best-practices
+description: SEO and AEO best practices for metadata, Open Graph, sitemaps, robots.txt, hreflang, JSON-LD structured data, EEAT, and content optimized for search engines and AI answer surfaces. Use this skill when implementing page SEO, technical SEO, schema markup, international SEO, AI-overview readiness, or improving content for Google, ChatGPT, Perplexity, and similar assistants.
 ---
 
-# seo-aeo-best-practices
+# SEO & AEO Best Practices
 
-> Indexed by skills.sh from sanity-io/agent-toolkit
+Principles for optimizing content for both traditional search engines (SEO) and AI-powered answer engines (AEO). Includes Google's EEAT guidelines and structured data implementation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sanity-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sanity-io/agent-toolkit/seo-aeo-best-practices`
-- **Source URL:** [https://skills.sh/sanity-io/agent-toolkit/seo-aeo-best-practices](https://skills.sh/sanity-io/agent-toolkit/seo-aeo-best-practices)
+## When to Apply
 
-## Overview
+Reference these guidelines when:
+- Implementing metadata and Open Graph tags
+- Creating sitemaps and robots.txt
+- Adding JSON-LD structured data
+- Optimizing content for featured snippets
+- Preparing content for AI assistants (ChatGPT, Perplexity, etc.)
+- Evaluating content quality using EEAT principles
 
+## Core Concepts
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sanity-io/agent-toolkit/seo-aeo-best-practices
-```
+### SEO (Search Engine Optimization)
+Optimizing content to rank well in traditional search results (Google, Bing).
+
+### AEO (Answer Engine Optimization)
+Optimizing content to be selected as authoritative answers by AI systems.
+
+### EEAT (Experience, Expertise, Authoritativeness, Trustworthiness)
+Google's framework for evaluating content quality.
+
+## References
+
+Start with the one reference that matches the task, such as technical SEO, structured data, EEAT, or AI-answer readiness. See `references/` for detailed guidance:
+- `references/eeat-principles.md` — EEAT implementation and author schema
+- `references/structured-data.md` — JSON-LD patterns (Article, FAQ, Breadcrumb, Product)
+- `references/technical-seo.md` — Technical SEO checklist (metadata, sitemaps, hreflang, robots.txt)
+- `references/aeo-considerations.md` — AI/AEO considerations (AI Overviews, crawler management)

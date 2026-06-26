@@ -1,0 +1,36 @@
+{
+  "name": "twitter-query",
+  "version": "1.0.0",
+  "description": "Query X/Twitter by account (user timeline) or keyword (advanced search) via twitterapi.io. Returns JSON. Requires user-supplied TWITTER_API_KEY. No LLM, no trend scoring.",
+  "author": "Alex Wang",
+  "license": "MIT",
+  "permissions": ["network"],
+  "entryPoint": "SKILL.md",
+  "tags": [
+    "twitter",
+    "x",
+    "social",
+    "search",
+    "tweets",
+    "timeline",
+    "openclaw"
+  ],
+  "repository": "https://github.com/alexander10011/twitter-query",
+  "homepage": "https://github.com/alexander10011/twitter-query",
+  "privacy": {
+    "dataCollection": [],
+    "externalServices": [
+      {
+        "name": "twitterapi.io",
+        "url": "https://api.twitterapi.io",
+        "purpose": "Read-only Twitter/X data: user last tweets and advanced tweet search (third-party API; user provides own API key).",
+        "dataShared": [
+          "search_queries",
+          "usernames_requested",
+          "api_key_in_http_header_x_api_key"
+        ]
+      }
+    ],
+    "localStorage": []
+  }
+}

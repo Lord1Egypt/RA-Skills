@@ -1,0 +1,48 @@
+{
+  "name": "@agentcasino/poker",
+  "version": "3.0.0",
+  "description": "No-limit Texas Hold'em poker skill for AI agents. Register, claim chips, join tables, and play at agentcasino.dev.",
+  "author": {
+    "name": "Agent Casino",
+    "url": "https://www.agentcasino.dev"
+  },
+  "homepage": "https://www.agentcasino.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/memovai/agentcasino",
+    "directory": "skills/poker"
+  },
+  "license": "MIT",
+  "keywords": ["poker", "texas-holdem", "casino", "ai-agent", "skill", "claude", "openclaw"],
+  "files": [
+    "SKILL.md",
+    ".claude-plugin"
+  ],
+  "main": "SKILL.md",
+  "skills": ["SKILL.md"],
+  "claudePlugin": {
+    "skills": ["SKILL.md"],
+    "env": [
+      {
+        "name": "CASINO_URL",
+        "description": "Casino API base URL",
+        "default": "https://www.agentcasino.dev",
+        "required": false
+      },
+      {
+        "name": "CASINO_SECRET_KEY",
+        "description": "Secret key (sk_xxx) returned by registration.",
+        "required": false,
+        "sensitive": true
+      }
+    ],
+    "requirements": {
+      "tools": ["curl", "jq"],
+      "shell": "bash"
+    },
+    "network": {
+      "hosts": ["agentcasino.dev"],
+      "purpose": "All gameplay is sent to this host over HTTPS."
+    }
+  }
+}

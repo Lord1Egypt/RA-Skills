@@ -1,0 +1,5 @@
+{
+  "appId": "你的 AppID",
+  "appSecret": "你的 AppSecret",
+  "ipWhitelist": ["你的服务器 IP"]
+}

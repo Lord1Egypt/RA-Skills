@@ -1,0 +1,48 @@
+meta:
+  author: Mars
+  github: Mars2003
+  date: 2026-04-28
+  version: 1.0.0
+  description: Cursor platform lightweight overlay profile for workspace-governance.
+  cursor_version:
+    min: "0.44.0"
+    recommended: "latest"
+    max: "99.99.99"
+
+platform_profile:
+  platform: cursor
+
+  detection_signals:
+    - path: ".cursor/"
+    - path: ".cursor/rules/"
+    - path: ".cursor/skills/"
+    - env: "CURSOR_TRACE_ID"
+
+  immutable_dirs:
+    - ".cursor/"
+    - ".cursor/rules/"
+    - ".cursor/skills/"
+
+  protected_files:
+    - ".cursor/**/*.json"
+    - ".cursor/**/*.yaml"
+    - ".cursor/**/*.yml"
+    - ".env"
+    - ".env.*"
+    - "*.key"
+    - "*.pem"
+    - "*.p12"
+    - "*.pfx"
+
+  non_interactive_policy:
+    enforce_blocked_on_ask_user: true
+    enforce_fail_fast_on_unconfirmed_destructive: true
+
+  merge_rules:
+    immutable_dirs:
+      strategy: union
+    protected_files:
+      strategy: union
+    destructive_guard:
+      strategy: override
+      constraint: strict_only

@@ -1,0 +1,21 @@
+{
+  "name": "hellofresh-skill",
+  "version": "1.0.0",
+  "description": "HelloFresh meal planning skill for OpenClaw",
+  "main": "handler.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@onkernel/sdk": "^1.0.0",
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "openclaw": {
+    "name": "hellofresh",
+    "description": "Interact with your HelloFresh account"
+  }
+}

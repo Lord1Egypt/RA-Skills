@@ -1,0 +1,43 @@
+id: NX2-004
+name: "status --json 模式 + 统一错误码"
+type: coding
+created_at: "2026-03-29T09:00:00Z"
+
+scope:
+  files:
+    - packages/cli/src/commands/status.ts
+    - packages/core/src/errors.ts
+    - packages/core/src/index.ts
+  boundaries:
+    - packages/spawn/
+    - packages/prompts/
+    - packages/notify/
+  conflicts_with: [NX2-002, NX2-003]
+
+deliverables:
+  - "packages/core/src/errors.ts：NexumError class（extends Error），包含 code: string 字段；ErrorCode 枚举，包含：TASK_NOT_FOUND、CONTRACT_NOT_FOUND、INVALID_VERDICT、CONFIG_INVALID、GIT_ERROR、SESSION_TIMEOUT"
+  - "packages/cli/src/commands/status.ts：新增 --json flag，输出 JSON 格式的任务列表（含 id/name/status/iteration/acp_session_key/acp_stream_log 字段）；方便编排者程序化解析"
+  - "packages/core/src/index.ts：导出 NexumError 和 ErrorCode"
+  - "各 CLI 命令中的 throw new Error(...) 改为 throw new NexumError(message, ErrorCode.XXX)"
+  - "pnpm build 通过"
+
+eval_strategy:
+  type: integration
+  criteria:
+    - id: C1
+      desc: "nexum status --json 输出合法 JSON 数组，包含所有任务的 id/name/status 字段"
+      method: "integration: 在有 active-tasks.json 的目录运行，验证 JSON 输出"
+      threshold: pass
+    - id: C2
+      desc: "NexumError 包含 code 字段，ErrorCode 枚举包含所有定义的错误码"
+      method: "review: 检查 errors.ts 实现"
+      threshold: pass
+    - id: C3
+      desc: "pnpm build 通过"
+      method: "integration: 运行 pnpm build"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: [NX2-001]

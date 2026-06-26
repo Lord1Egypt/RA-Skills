@@ -1,35 +1,34 @@
 ---
-name: "Spotify Player"
-description: "Terminal Spotify playback/search via spogo (preferred) or spotify_player."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/spotify-player"
-sourceUrl: "https://clawhub.ai/skills/spotify-player"
+name: spotify-player
+description: Terminal Spotify playback/search via spogo (preferred) or spotify_player.
+homepage: https://www.spotify.com
+metadata: {"clawdbot":{"emoji":"🎵","requires":{"anyBins":["spogo","spotify_player"]},"install":[{"id":"brew","kind":"brew","formula":"spogo","tap":"steipete/tap","bins":["spogo"],"label":"Install spogo (brew)"},{"id":"brew","kind":"brew","formula":"spotify_player","bins":["spotify_player"],"label":"Install spotify_player (brew)"}]}}
 ---
 
-# Spotify Player
+# spogo / spotify_player
 
-> Terminal Spotify playback/search via spogo (preferred) or spotify_player.
+Use `spogo` **(preferred)** for Spotify playback/search. Fall back to `spotify_player` if needed.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/spotify-player`
-- **Source URL:** [https://clawhub.ai/skills/spotify-player](https://clawhub.ai/skills/spotify-player)
+Requirements
+- Spotify Premium account.
+- Either `spogo` or `spotify_player` installed.
 
-## Overview
+spogo setup
+- Import cookies: `spogo auth import --browser chrome`
 
+Common CLI commands
+- Search: `spogo search track "query"`
+- Playback: `spogo play|pause|next|prev`
+- Devices: `spogo device list`, `spogo device set "<name|id>"`
+- Status: `spogo status`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/spotify-player
-```
+spotify_player commands (fallback)
+- Search: `spotify_player search "query"`
+- Playback: `spotify_player playback play|pause|next|previous`
+- Connect device: `spotify_player connect`
+- Like track: `spotify_player like`
+
+Notes
+- Config folder: `~/.config/spotify-player` (e.g., `app.toml`).
+- For Spotify Connect integration, set a user `client_id` in config.
+- TUI shortcuts are available via `?` in the app.

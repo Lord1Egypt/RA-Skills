@@ -1,0 +1,20 @@
+{
+  "name": "atlas-banana-imagetoimage",
+  "version": "1.0.0",
+  "description": "Generate images from images e prompts using AtlasCloud Nanobanana model",
+  "main": "generate.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node generate.js",
+    "generate": "node generate.js --params-file params.json"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "Guilherme Funchal",
+  "license": "MIT",
+  "keywords": ["atlascloud", "nanobanana", "image-to-image", "ai", "image-generation"],
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

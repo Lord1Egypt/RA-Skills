@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/radiation-reference-data.json",
+  "title": "RadiationReferenceData",
+  "description": "辐射剂量计算参考数据",
+  "type": "object",
+  "properties": {
+    "ct_doses": {
+      "type": "object",
+      "properties": {
+        "head": {"type": "number", "description": "头部CT剂量"},
+        "chest": {"type": "number", "description": "胸部CT剂量"},
+        "abdomen": {"type": "number", "description": "腹部CT剂量"},
+        "pelvis": {"type": "number", "description": "盆腔CT剂量"},
+        "spine": {"type": "number", "description": "脊柱CT剂量"},
+        "limbs": {"type": "number", "description": "四肢CT剂量"},
+        "whole_body": {"type": "number", "description": "全身CT剂量"}
+      }
+    },
+    "xray_doses": {
+      "type": "object",
+      "properties": {
+        "chest": {"type": "number"},
+        "abdomen": {"type": "number"},
+        "limbs": {"type": "number"},
+        "dental": {"type": "number"}
+      }
+    },
+    "other_doses": {
+      "type": "object",
+      "properties": {
+        "pet_ct": {"type": "number"},
+        "bone_scan": {"type": "number"},
+        "angiography": {"type": "number"},
+        "mammography": {"type": "number"}
+      }
+    },
+    "safety_thresholds": {
+      "type": "object",
+      "properties": {
+        "natural_background": {"type": "number"},
+        "public_limit": {"type": "number"},
+        "occupational_limit": {"type": "number"},
+        "medical_advisory": {"type": "number"}
+      }
+    }
+  }
+}

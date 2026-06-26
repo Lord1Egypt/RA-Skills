@@ -1,35 +1,59 @@
 ---
-name: "D4 World Boss Tracker"
-description: "暗黑4世界BOSS刷新时间查询。使用 @D4世界boss 或询问暗黑4世界boss时触发。自动获取踩蘑菇地图的世界BOSS刷新时间，并询问是否设置定时提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/d4-world-boss"
-sourceUrl: "https://clawhub.ai/skills/d4-world-boss"
+name: d4-world-boss
+description: 暗黑4世界BOSS刷新时间查询。使用 @D4世界boss 或询问暗黑4世界boss时触发。自动获取踩蘑菇地图的世界BOSS刷新时间，并询问是否设置定时提醒。
 ---
 
-# D4 World Boss Tracker
+暗黑4世界BOSS查询
 
-> 暗黑4世界BOSS刷新时间查询。使用 @D4世界boss 或询问暗黑4世界boss时触发。自动获取踩蘑菇地图的世界BOSS刷新时间，并询问是否设置定时提醒。
+## 使用方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/d4-world-boss`
-- **Source URL:** [https://clawhub.ai/skills/d4-world-boss](https://clawhub.ai/skills/d4-world-boss)
+**触发方式**：
+- `@D4世界boss`
+- `暗黑4世界boss`
+- `D4世界boss刷新时间`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+**执行**：
 ```bash
-hermes skills install clawhub/d4-world-boss
+cd ~/.openclaw/skills/d4-world-boss && python3 scripts/fetch_boss.py
 ```
+
+## 输出格式
+
+**BOSS 即将刷新时**：
+```
+🔥 暗黑4 世界BOSS
+
+【当前BOSS】"诅咒之金"贪魔
+【状态】🔄 刷新倒计时
+【倒计时】30分19秒
+
+📊 数据来源: https://map.caimogu.cc/d4.html
+
+💡 需要设置刷新提醒吗？
+```
+
+**BOSS 正在出现时**：
+```
+🔥 暗黑4 世界BOSS
+
+【当前BOSS】"诅咒之金"贪魔
+【状态】⚔️ BOSS已出现，战斗中
+【倒计时】12分12秒
+
+📊 数据来源: https://map.caimogu.cc/d4.html
+
+⚠️ BOSS正在出现中，无需设置提醒
+```
+
+## 定时提醒逻辑
+
+- **刷新倒计时/等待出现**：显示"需要设置刷新提醒吗？"
+- **正在出现**：显示"BOSS正在出现中，无需设置提醒"
+- 避免在BOSS已出现时设置无意义的提醒
+
+## 定时提醒
+
+查询后询问用户是否需要设置定时提醒。如果需要，使用 cron 工具在刷新前提醒：
+
+- 提醒时间：预计刷新前 15 分钟
+- 消息示例："🔥 暗黑4 世界BOSS 即将刷新！预计时间：2026-02-09 14:30"

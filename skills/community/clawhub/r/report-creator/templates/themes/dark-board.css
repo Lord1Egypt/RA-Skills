@@ -1,0 +1,31 @@
+/* Theme: dark-board — Dark Board · Architecture */
+:root {
+  --primary: #58A6FF; --primary-light: #1C2D40; --accent: #79C0FF;
+  --bg: #0D1117; --surface: #161B22; --text: #E6EDF3; --text-muted: #8B949E;
+  --border: #30363D; --success: #3FB950; --warning: #D29922; --danger: #F85149;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace; --radius: 6px;
+  --accent-1: #58A6FF; --accent-2: #3FB950; --accent-3: #D29922;
+  --accent-4: #BC8CFF; --accent-5: #79C0FF; --accent-6: #F85149;
+}
+body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.55; }
+h1 { font-size: 1.9rem; font-weight: 700; color: var(--primary); margin-bottom: 1.25rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
+h2 { font-size: 1.3rem; font-weight: 600; color: var(--text); margin-top: 0; margin-bottom: .75rem; }
+h3 { font-size: 1.05rem; font-weight: 600; color: var(--accent); margin-top: .9rem; }
+p { margin: .5rem 0; } a { color: var(--primary); }
+strong { font-weight: 700; color: var(--accent); } blockquote { border-left: 2px solid var(--border); margin: .75rem 0; padding: .4rem .9rem; color: var(--text-muted); font-family: var(--font-mono); font-size: .88rem; }
+/* Board layout: each section rendered as a panel with per-section colored top border */
+section[data-section] { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--section-accent, var(--primary)); border-radius: var(--radius); padding: 1rem 1.25rem; margin: .75rem 0; }
+section[data-section] h2 { border-left: 3px solid var(--section-accent, var(--primary)); padding-left: .6rem; color: var(--section-accent, var(--primary)); }
+section[data-section]:nth-child(6n+1) { --section-accent: var(--accent-1); }
+section[data-section]:nth-child(6n+2) { --section-accent: var(--accent-2); }
+section[data-section]:nth-child(6n+3) { --section-accent: var(--accent-3); }
+section[data-section]:nth-child(6n+4) { --section-accent: var(--accent-4); }
+section[data-section]:nth-child(6n+5) { --section-accent: var(--accent-5); }
+section[data-section]:nth-child(6n) { --section-accent: var(--accent-6); }
+
+/* === POST-SHARED OVERRIDE (append AFTER shared.css) === */
+/* Dense KPI grid for board layout */
+.kpi-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: .6rem; margin: .75rem 0; }
+.kpi-card { padding: .75rem .6rem; }
+/* Note: dark-board uses github-dark.min.css for code blocks (same as dark-tech) */

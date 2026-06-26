@@ -1,0 +1,4 @@
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+pdfplumber>=0.10.0
+python-docx>=0.8.11

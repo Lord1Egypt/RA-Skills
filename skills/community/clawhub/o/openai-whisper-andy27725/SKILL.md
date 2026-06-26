@@ -1,35 +1,38 @@
 ---
-name: "Openai Whisper Andy27725"
-description: "Local speech-to-text with the Whisper CLI (no API key)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openai-whisper-andy27725"
-sourceUrl: "https://clawhub.ai/skills/openai-whisper-andy27725"
+name: openai-whisper
+description: Local speech-to-text with the Whisper CLI (no API key).
+homepage: https://openai.com/research/whisper
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎤",
+        "requires": { "bins": ["whisper"] },
+        "install":
+          [
+            {
+              "id": "brew",
+              "kind": "brew",
+              "formula": "openai-whisper",
+              "bins": ["whisper"],
+              "label": "Install OpenAI Whisper (brew)",
+            },
+          ],
+      },
+  }
 ---
 
-# Openai Whisper Andy27725
+# Whisper (CLI)
 
-> Local speech-to-text with the Whisper CLI (no API key).
+Use `whisper` to transcribe audio locally.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openai-whisper-andy27725`
-- **Source URL:** [https://clawhub.ai/skills/openai-whisper-andy27725](https://clawhub.ai/skills/openai-whisper-andy27725)
+Quick start
 
-## Overview
+- `whisper /path/audio.mp3 --model medium --output_format txt --output_dir .`
+- `whisper /path/audio.m4a --task translate --output_format srt`
 
+Notes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openai-whisper-andy27725
-```
+- Models download to `~/.cache/whisper` on first run.
+- `--model` defaults to `turbo` on this install.
+- Use smaller models for speed, larger for accuracy.

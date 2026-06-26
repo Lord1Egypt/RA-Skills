@@ -1,0 +1,35 @@
+{
+  "name": "bathroom-remodeling-marketing-kit",
+  "version": "1.0.0",
+  "description": "Compliance-moated marketing kit for bathroom remodeling contractors. 7 gates: NRS 624 license scope, EPA RRP (40 CFR Part 745), Clark County permit, ADA scope accuracy, mold/moisture boundary, structural/PE disclosure, Magnuson-Moss/FTC/TCPA.",
+  "skillNumber": 202,
+  "bundle": "home-services-trades-v2",
+  "bundleSkillCount": 43,
+  "complianceMoats": [
+    "NRS 624 B-2 license scope + C-1/C-2 sub disclosure gate",
+    "EPA RRP 40 CFR Part 745 — pre-1978 home Firm Cert + CR gate",
+    "Clark County permit gate — 'no permit needed' permanently blocked",
+    "ADA Title III scope accuracy — 'ADA compliant' blocked for residential; ANSI A117.1 aging-in-place required",
+    "IICRC S520 mold/moisture scope boundary gate",
+    "NRS 625 structural/load-bearing wall PE disclosure gate",
+    "Magnuson-Moss §104 warranty terms + FTC 2023 + TCPA PEWC gate"
+  ],
+  "targetMarket": "bathroom remodeling contractors, design-build firms, kitchen & bath showrooms, insurance restoration contractors",
+  "pricing": {
+    "oneTime": 49,
+    "monthly": 19.99,
+    "bundle": 99
+  },
+  "author": "Max (10bf10max@gmail.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GitFlopez/bathroom-remodeling-marketing-kit"
+  },
+  "keywords": [
+    "bathroom remodeling marketing",
+    "bathroom contractor marketing",
+    "bath remodel advertising",
+    "home remodeling marketing kit",
+    "contractor compliance marketing"
+  ]
+}

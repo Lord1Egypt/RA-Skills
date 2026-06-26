@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maton-browse-plan/schema/maton-plan/v1.json",
+  "title": "MatonBrowseDerivedPlan",
+  "type": "object",
+  "required": ["schemaVersion", "source", "skillTarget", "matonProductUrl", "generatedAt", "suggestions"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "source": { "type": "string" },
+    "skillTarget": { "type": "string", "description": "clawhub:byungkyu/api-gateway" },
+    "matonProductUrl": { "type": "string", "format": "uri" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "capturePreset": {
+      "type": "string",
+      "description": "History window label from extension (e.g. 1h, 24h, 3d, 7d, 30d)"
+    },
+    "suggestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rank", "origin", "siteUrl", "matonHints", "resourceUrls"],
+        "properties": {
+          "rank": { "type": "integer", "minimum": 1 },
+          "origin": { "type": "string", "format": "uri" },
+          "siteUrl": { "type": "string", "format": "uri" },
+          "matonHints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["matonConnectorHint", "matchedRule"],
+              "properties": {
+                "matonConnectorHint": { "type": "string" },
+                "matchedRule": { "type": "string" }
+              }
+            }
+          },
+          "resourceUrls": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    }
+  }
+}

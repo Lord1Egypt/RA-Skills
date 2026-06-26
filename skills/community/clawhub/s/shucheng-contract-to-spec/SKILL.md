@@ -1,35 +1,85 @@
 ---
-name: "合同文档转写技能"
-description: "将合同文件转换为需求规格说明书。使用场景：用户提供合同文件名（如"合同 -XXX 系统.docx"），需要生成完整的需求规格说明书。自动完成：1) 读取合同提取项目信息 2) 生成系统架构图 3) 生成 6 个子功能原型图 4) 生成带格式的 Word 文档到桌面。"
-category: "other"
-source: "ClawHub"
-tags: [latest contract docx spec ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shucheng-contract-to-spec"
-sourceUrl: "https://clawhub.ai/skills/shucheng-contract-to-spec"
+name: contract-to-spec
+description: 将合同文件转换为需求规格说明书。使用场景：用户提供合同文件名（如"合同 -XXX 系统.docx"），需要生成完整的需求规格说明书。自动完成：1) 读取合同提取项目信息 2) 生成系统架构图 3) 生成 6 个子功能原型图 4) 生成带格式的 Word 文档到桌面。
 ---
 
 # 合同文档转写技能
 
-> 将合同文件转换为需求规格说明书。使用场景：用户提供合同文件名（如"合同 -XXX 系统.docx"），需要生成完整的需求规格说明书。自动完成：1) 读取合同提取项目信息 2) 生成系统架构图 3) 生成 6 个子功能原型图 4) 生成带格式的 Word 文档到桌面。
+将项目合同文件转换为标准化的需求规格说明书。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shucheng-contract-to-spec`
-- **Source URL:** [https://clawhub.ai/skills/shucheng-contract-to-spec](https://clawhub.ai/skills/shucheng-contract-to-spec)
+## 触发条件
 
-## Overview
+用户提供合同文件名，例如：
+- "帮我生成合同 - 华龙航空预算管理系统.docx 的需求规格说明书"
+- "根据合同文件 XXX.docx 生成需求规格说明书"
+- "我有个新合同，文件名是 XXX，帮我转成需求规格说明书"
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shucheng-contract-to-spec
-```
+### 1. 读取合同文件
+
+使用 Python 读取桌面上的合同文件（.docx 格式），提取：
+- 项目名称
+- 委托方/受托方
+- 合同编号
+- 功能清单
+- 项目描述
+
+### 2. 生成系统架构图
+
+创建 HTML 文件（五层架构：用户层、应用层、服务层、数据层、外部系统），使用 Playwright 截图为 PNG。
+
+### 3. 生成 N 个子功能原型图
+
+为每个功能模块创建独立的 HTML 原型图（科技大厂风格）：
+- 组织架构管理（紫色系）
+- 预算编报管理（粉红色系）
+- 预算执行管理（蓝色系）
+- 预算分析管理（绿色系）
+- 预算考核管理（橙黄色系）
+- 接口集成管理（紫色系）
+
+每个原型图包含：侧边栏菜单、统计卡片、表格表单、搜索框、下拉框、图表等元素。
+
+使用 Playwright 逐个截图为 PNG。
+
+### 4. 生成 Word 文档
+
+按照以下格式规范生成.docx 文件到桌面：
+
+**封面（第一页）**
+- 第一行：项目名称，宋体一号，黑色，居中
+- 第二行："需求规格说明书"，宋体二号，黑色，居中
+- 其它：合同编号、委托方、受托方、日期、版本，宋体小四，黑色，居中
+
+**文档修改记录（第二页）**
+- 7 列表格：章节编号 | 修订日期 | 修订内容简述 | 版本 | 作者 | 审核 | 发布日期
+- 宋体小四，黑色
+
+**目录（第三页）**
+- 使用 Word TOC 字段，可点击跳转
+- 宋体 11 号
+
+**正文（第四页起）**
+- 一级标题（1. 概述）：Heading 1，宋体小二，黑色
+- 二级标题（1.1 行业分析）：Heading 2，宋体小三，黑色
+- 三级标题（2.2.1 组织架构模块）：Heading 3，宋体小四，黑色
+- 四级标题（3.1.1 系统架构）：Heading 4，宋体小四，黑色
+- 正文：宋体小四，黑色，首行缩进 2 字符
+- 无 Markdown 格式（无斜体、无"-"符号）
+- 图片插入对应章节，带图注
+
+### 5. 输出
+
+文档命名：`{项目名称} 需求规格说明书_v6.0.docx`
+保存位置：用户桌面
+
+## 脚本说明
+
+执行 `scripts/generate_spec.py` 完成全部流程。
+
+## 参考
+
+- 架构图模板：`references/architecture_template.html`
+- 原型图模板：`references/prototype_templates/`
+- 文档格式规范：`references/format_spec.md`

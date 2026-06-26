@@ -1,0 +1,21 @@
+name: neuropay
+version: 1.0.9
+description: NeuroPay API automation agent for bots, marketplace, orders and reviews
+license: MIT
+
+entrypoint: SKILL.md
+
+env:
+  - NEUROPAY_API_KEY: optional
+
+metadata:
+  author: OpenClaw Agent
+  visibility: public
+  secure: true
+
+capabilities:
+  - bots
+  - marketplace
+  - orders
+  - reviews
+  - users

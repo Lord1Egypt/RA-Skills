@@ -1,0 +1,177 @@
+{
+  "name": "{{@env:displayName}} Lock Release{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:lr-trigger}}",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [-16, 0],
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            { "name": "scope" },
+            { "name": "lock_id" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:lr-prep}}",
+      "name": "Build Release Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [208, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\n// Build the n8n-lock-<scope> + :meta key pair to GET-then-verify before deleting.\nconst scope = $json.scope || 'default';\nconst lockId = $json.lock_id || null;\nconst key = `n8n-lock-${scope}`;\nconst metaKey = `${key}:meta`;\nreturn [{ json: { scope, key, meta_key: metaKey, provided_lock_id: lockId } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:lr-get-meta}}",
+      "name": "GET Lock Meta",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [432, 0],
+      "parameters": {
+        "operation": "get",
+        "propertyName": "LOCK_META",
+        "key": "={{ $('Build Release Context').first().json.meta_key }}",
+        "keyType": "string",
+        "options": {}
+      },
+      "credentials": {
+        "redis": {
+          "id": "{{@env:credentials.redis.id}}",
+          "name": "{{@env:credentials.redis.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:lr-parse}}",
+      "name": "Parse + Verify Ownership",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [656, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\n// Three outcomes:\n//   - GET miss   → lock already released (TTL or earlier release). Idempotent success.\n//   - lock_id match → caller owns the lock. DEL counter + meta to release.\n//   - lock_id mismatch → ownership violation. StopAndError so the caller learns\n//     they're trying to release someone else's lock — usually a logic bug.\nconst ctx = $('Build Release Context').first().json;\nconst lockValue = $json.LOCK_META;\nconst providedLockId = ctx.provided_lock_id;\n\nif (lockValue === null || lockValue === undefined || lockValue === '') {\n  return [{\n    json: {\n      is_match: true,\n      already_released: true,\n      provided_lock_id: providedLockId,\n      stored_lock_id: null,\n      workflow_id: 'none',\n      workflow_name: 'none (key absent)',\n      execution_id: 'none',\n      locked_at: 'none',\n      scope: ctx.scope,\n      key: ctx.key,\n      meta_key: ctx.meta_key,\n    },\n  }];\n}\n\nlet parsedLock;\ntry {\n  parsedLock = JSON.parse(lockValue);\n} catch (e) {\n  // Legacy / corrupt meta — fall through as unknown identity, mark not-mine.\n  parsedLock = { lock_id: String(lockValue), workflow_id: 'unknown', workflow_name: 'unknown (legacy meta)', execution_id: 'unknown', locked_at: 'unknown' };\n}\nif (parsedLock === null || typeof parsedLock !== 'object') {\n  parsedLock = { lock_id: String(lockValue), workflow_id: 'unknown', workflow_name: 'unknown (legacy meta)', execution_id: 'unknown', locked_at: 'unknown' };\n}\n\nconst isMatch = parsedLock.lock_id === providedLockId;\nreturn [{\n  json: {\n    is_match: isMatch,\n    already_released: false,\n    provided_lock_id: providedLockId,\n    stored_lock_id: parsedLock.lock_id,\n    workflow_id: parsedLock.workflow_id,\n    workflow_name: parsedLock.workflow_name,\n    execution_id: parsedLock.execution_id || 'unknown',\n    locked_at: parsedLock.locked_at,\n    scope: ctx.scope,\n    key: ctx.key,\n    meta_key: ctx.meta_key,\n  },\n}];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:lr-if-match}}",
+      "name": "Match?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [880, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "{{@uuid:lr-cond-match}}",
+              "leftValue": "={{ $json.is_match }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:lr-del-counter}}",
+      "name": "DEL Lock Counter",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [1104, -64],
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Build Release Context').first().json.key }}"
+      },
+      "credentials": {
+        "redis": {
+          "id": "{{@env:credentials.redis.id}}",
+          "name": "{{@env:credentials.redis.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:lr-del-meta}}",
+      "name": "DEL Lock Meta",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [1328, -64],
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Build Release Context').first().json.meta_key }}"
+      },
+      "credentials": {
+        "redis": {
+          "id": "{{@env:credentials.redis.id}}",
+          "name": "{{@env:credentials.redis.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:lr-result}}",
+      "name": "Build Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1552, -64],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst ctx = $('Build Release Context').first().json;\nconst parsed = $('Parse + Verify Ownership').first().json;\nreturn [{ json: { released: true, idempotent: parsed.already_released === true, scope: ctx.scope, lock_id: parsed.provided_lock_id } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:lr-stop-mismatch}}",
+      "name": "Ownership Mismatch — Stop",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [1104, 128],
+      "parameters": {
+        "errorMessage": "=LOGIC ERROR: Lock held by {{ $json.workflow_name }} (id: {{ $json.workflow_id }}, execution: {{ $json.execution_id }}) since {{ $json.locked_at }}, not by lock_id={{ $json.provided_lock_id }}"
+      }
+    }
+  ],
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [[{ "node": "Build Release Context", "type": "main", "index": 0 }]]
+    },
+    "Build Release Context": {
+      "main": [[{ "node": "GET Lock Meta", "type": "main", "index": 0 }]]
+    },
+    "GET Lock Meta": {
+      "main": [[{ "node": "Parse + Verify Ownership", "type": "main", "index": 0 }]]
+    },
+    "Parse + Verify Ownership": {
+      "main": [[{ "node": "Match?", "type": "main", "index": 0 }]]
+    },
+    "Match?": {
+      "main": [
+        [{ "node": "DEL Lock Counter", "type": "main", "index": 0 }],
+        [{ "node": "Ownership Mismatch — Stop", "type": "main", "index": 0 }]
+      ]
+    },
+    "DEL Lock Counter": {
+      "main": [[{ "node": "DEL Lock Meta", "type": "main", "index": 0 }]]
+    },
+    "DEL Lock Meta": {
+      "main": [[{ "node": "Build Result", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

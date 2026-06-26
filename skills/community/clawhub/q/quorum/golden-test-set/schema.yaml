@@ -1,0 +1,129 @@
+# Golden Test Set — Annotation Schema v1.0
+#
+# Each artifact in the golden test set has a sidecar annotation file
+# following this schema. The annotation is the "answer key" that Quorum's
+# output is scored against.
+#
+# ID Convention: GT-### = Golden Test ground truth finding
+# See docs/ID_CONVENTIONS.md (planned) for the full prefix registry.
+#
+# Matching rules: see DESIGN.md § Matching & Scoring Rules
+
+# --- Schema Definition ---
+
+schema_version:
+  type: string
+  required: true
+  description: "Schema version (currently '1.0')"
+  example: "1.0"
+
+artifact:
+  type: string
+  required: true
+  description: "Relative path from golden-test-set/ to the artifact file"
+  example: "artifacts/python/vulnerable-api.py"
+
+artifact_sha256:
+  type: string
+  required: true
+  description: "SHA-256 hex digest of the artifact file. Ensures annotation matches the exact file version."
+
+expected_verdict:
+  type: string
+  required: true
+  enum: [PASS, PASS_WITH_NOTES, REVISE, REJECT]
+  description: "The verdict Quorum should produce for this artifact"
+
+findings:
+  type: list
+  required: true  # empty list [] for clean PASS artifacts
+  description: "Expected findings — the answer key"
+  items:
+    id:
+      type: string
+      required: true
+      pattern: "GT-\\d{3}"
+      description: "Unique ground truth finding ID"
+    description:
+      type: string
+      required: true
+      description: "What the issue is — human-readable"
+    location:
+      type: string
+      required: false
+      description: "Where in the artifact (e.g. 'line 42-48', 'section 3.2'). Matched with ±5 line tolerance."
+    severity:
+      type: string
+      required: true
+      enum: [CRITICAL, HIGH, MEDIUM, LOW, INFO]
+      description: "Expected severity level"
+    category:
+      type: string
+      required: true
+      enum: [security, correctness, completeness, code_hygiene, cross_consistency]
+      description: "Defect class — must match critic domain"
+    critic:
+      type: string
+      required: true
+      enum: [security, correctness, completeness, code_hygiene, cross_consistency]
+      description: "Which critic should catch this finding"
+    rubric_criterion:
+      type: string
+      required: false
+      description: "Specific rubric criterion ID if applicable"
+    notes:
+      type: string
+      required: false
+      description: "Human notes explaining why this is a finding"
+
+false_positive_traps:
+  type: list
+  required: false
+  description: "Things that LOOK like issues but aren't. If Quorum flags these, they count against precision."
+  items:
+    description:
+      type: string
+      required: true
+      description: "What the non-issue is"
+    location:
+      type: string
+      required: false
+      description: "Where in the artifact"
+    notes:
+      type: string
+      required: false
+      description: "Why this is NOT an issue"
+
+metadata:
+  type: object
+  required: true
+  fields:
+    source:
+      type: string
+      required: true
+      enum: [synthetic, natural, modified-natural]
+      description: "How the artifact was created"
+    domain:
+      type: string
+      required: true
+      enum: [python-code, yaml-config, markdown-doc, shell-script, cross-artifact]
+    complexity:
+      type: string
+      required: true
+      enum: [low, medium, high]
+    rubric:
+      type: string
+      required: true
+      description: "Rubric name to use for evaluation"
+    depth:
+      type: string
+      required: true
+      enum: [quick, standard, thorough]
+      description: "Recommended depth for this test"
+    author:
+      type: string
+      required: true
+    created:
+      type: string
+      required: true
+      description: "ISO date string"

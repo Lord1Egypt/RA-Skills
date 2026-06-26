@@ -1,0 +1,183 @@
+{
+  "$schema": "https://openclaw.io/schemas/plugin.json",
+  "id": "human-like-mem",
+  "name": "Human-Like Memory Plugin",
+  "description": "Long-term memory plugin with automatic recall, storage, and agent-accessible memory tools.",
+  "version": "1.0.1",
+  "kind": "memory",
+  "extensions": ["./index.js"],
+  "requirements": {
+    "openclaw": ">=2026.2.0"
+  },
+  "author": {
+    "name": "hanlaomo"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "memory",
+    "openclaw",
+    "long-term-memory",
+    "agentic-memory"
+  ],
+  "tools": [
+    {
+      "name": "memory_search",
+      "description": "Search user's long-term memory for relevant past conversations and knowledge."
+    },
+    {
+      "name": "memory_store",
+      "description": "Save important information to user's long-term memory."
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["apiKey"],
+    "properties": {
+      "apiKey": {
+        "type": "string",
+        "description": "API key (apply at https://plugin.human-like.me)",
+        "minLength": 1
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "Memory API base URL",
+        "default": "https://plugin.human-like.me"
+      },
+      "userId": {
+        "type": "string",
+        "description": "User identifier",
+        "default": "openclaw-user"
+      },
+      "agentId": {
+        "type": "string",
+        "description": "Agent identifier"
+      },
+      "recallEnabled": {
+        "type": "boolean",
+        "description": "Enable memory recall",
+        "default": true
+      },
+      "addEnabled": {
+        "type": "boolean",
+        "description": "Enable memory storage",
+        "default": true
+      },
+      "recallGlobal": {
+        "type": "boolean",
+        "description": "Search memories globally",
+        "default": true
+      },
+      "memoryLimitNumber": {
+        "type": "number",
+        "description": "Maximum number of recalled memories",
+        "default": 6
+      },
+      "minScore": {
+        "type": "number",
+        "description": "Minimum relevance score",
+        "default": 0.0
+      },
+      "tags": {
+        "type": "array",
+        "description": "Memory tags",
+        "items": {
+          "type": "string"
+        }
+      },
+      "minTurnsToStore": {
+        "type": "number",
+        "description": "Store once every N turns (stores latest N*2 turns)",
+        "default": 5
+      },
+      "sessionTimeoutMs": {
+        "type": "number",
+        "description": "Session timeout in milliseconds before auto-flush",
+        "default": 300000
+      },
+      "stripPlatformMetadata": {
+        "type": "boolean",
+        "description": "Strip platform user IDs (Feishu/Discord) from metadata",
+        "default": true
+      }
+    }
+  },
+  "config": {
+    "apiKey": {
+      "type": "string",
+      "description": "API key (apply at https://plugin.human-like.me)",
+      "required": true
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "Memory API base URL",
+      "default": "https://plugin.human-like.me"
+    },
+    "userId": {
+      "type": "string",
+      "description": "User identifier",
+      "default": "openclaw-user"
+    },
+    "agentId": {
+      "type": "string",
+      "description": "Agent identifier"
+    },
+    "recallEnabled": {
+      "type": "boolean",
+      "description": "Enable memory recall",
+      "default": true
+    },
+    "addEnabled": {
+      "type": "boolean",
+      "description": "Enable memory storage",
+      "default": true
+    },
+    "recallGlobal": {
+      "type": "boolean",
+      "description": "Search memories globally",
+      "default": true
+    },
+    "memoryLimitNumber": {
+      "type": "number",
+      "description": "Maximum number of recalled memories",
+      "default": 6
+    },
+    "minScore": {
+      "type": "number",
+      "description": "Minimum relevance score",
+      "default": 0.0
+    },
+    "tags": {
+      "type": "array",
+      "description": "Memory tags"
+    },
+    "minTurnsToStore": {
+      "type": "number",
+      "description": "Store once every N turns (stores latest N*2 turns)",
+      "default": 5
+    },
+    "sessionTimeoutMs": {
+      "type": "number",
+      "description": "Session timeout in milliseconds before auto-flush",
+      "default": 300000
+    },
+    "stripPlatformMetadata": {
+      "type": "boolean",
+      "description": "Strip platform user IDs (Feishu/Discord) from metadata",
+      "default": true
+    }
+  },
+  "uiHints": {
+    "apiKey": {
+      "label": "API Key",
+      "sensitive": true,
+      "placeholder": "mp_xxxxxx",
+      "help": "Required. Configure via: openclaw config set plugins.entries.human-like-mem.config.apiKey \"mp_xxx\". Get your key at https://plugin.human-like.me",
+      "tags": ["required", "credential"]
+    },
+    "baseUrl": {
+      "label": "API Base URL",
+      "help": "Default: https://plugin.human-like.me. Configure via plugins.entries.human-like-mem.config.baseUrl."
+    }
+  }
+}

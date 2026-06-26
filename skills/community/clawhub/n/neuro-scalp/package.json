@@ -1,0 +1,25 @@
+{
+  "name": "neuro-scalp",
+  "version": "1.0.2",
+  "description": "AI-driven high-frequency crypto scalping bot for OKX",
+  "author": "shayuqiang671-rgb",
+  "license": "MIT-0",
+  "main": "main.py",
+  "keywords": ["crypto", "trading", "okx", "ai", "bot"],
+  "pricing": {
+    "free": {
+      "price": 0,
+      "features": ["Testnet mode", "Basic strategies", "Community support"]
+    },
+    "premium": {
+      "price": 9.99,
+      "billing": "monthly",
+      "features": ["Live trading", "All strategies", "Priority support", "Custom parameters"]
+    },
+    "lifetime": {
+      "price": 49.99,
+      "billing": "once",
+      "features": ["All premium features", "1-on-1 support", "Lifetime updates"]
+    }
+  }
+}

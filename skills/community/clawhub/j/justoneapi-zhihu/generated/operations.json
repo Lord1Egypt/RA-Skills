@@ -1,0 +1,218 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Search Zhihu topics, inspect answer lists, read column article detail, and track column article feeds through JustOneAPI.",
+  "displayName": "Zhihu",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Zhihu answer List data, including answer content, author profiles, and interaction metrics, for question analysis and answer research.",
+      "method": "GET",
+      "operationId": "getAnswerListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Question ID",
+          "enumValues": [],
+          "location": "query",
+          "name": "questionId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination cursor from previous result.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Start offset, begins with 0.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "_updated",
+          "description": "Sorting criteria for answers.\n\nAvailable Values:\n- `_default`: Default sorting.\n- `_updated`: Sorted by updated time.",
+          "enumValues": [
+            "_default",
+            "_updated"
+          ],
+          "location": "query",
+          "name": "order",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Session ID from previous result.",
+          "enumValues": [],
+          "location": "query",
+          "name": "sessionId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/zhihu/get-answer-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Answer List",
+      "tags": [
+        "Zhihu"
+      ]
+    },
+    {
+      "description": "Get Zhihu column Article Details data, including title, author, and content, for article archiving and content research.",
+      "method": "GET",
+      "operationId": "getColumnArticleDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Article ID",
+          "enumValues": [],
+          "location": "query",
+          "name": "id",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/zhihu/get-column-article-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Column Article Details",
+      "tags": [
+        "Zhihu"
+      ]
+    },
+    {
+      "description": "Get Zhihu column Article List data, including article metadata and list ordering, for column monitoring and content collection.",
+      "method": "GET",
+      "operationId": "getColumnArticleListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Column ID",
+          "enumValues": [],
+          "location": "query",
+          "name": "columnId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Start offset, begins with 0.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/zhihu/get-column-article-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Column Article List",
+      "tags": [
+        "Zhihu"
+      ]
+    },
+    {
+      "description": "Get Zhihu keyword Search data, including matched results, metadata, and ranking signals, for topic discovery and content research.",
+      "method": "GET",
+      "operationId": "searchZhihuV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keywords.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Start offset, begins with 0.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/zhihu/search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Keyword Search",
+      "tags": [
+        "Zhihu"
+      ]
+    }
+  ],
+  "platformKey": "zhihu",
+  "primaryTag": "Zhihu",
+  "skillName": "justoneapi_zhihu",
+  "slug": "justoneapi-zhihu",
+  "sourceTitle": "OpenAPI definition"
+}

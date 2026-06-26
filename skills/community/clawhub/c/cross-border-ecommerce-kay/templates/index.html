@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨境电商选品工具 - Product Selection Tool</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 1.1em;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .tab-content {
+            display: none;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-size: 0.9em;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1em;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .result-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .result-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+        
+        .status-high { background: #e74c3c; }
+        .status-medium { background: #f39c12; }
+        .status-low { background: #27ae60; }
+        
+        .competitor-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .competitor-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .competitor-info h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .competitor-meta {
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .competitor-price {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1em;
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .listing-output {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .listing-output h4 {
+            color: #667eea;
+            margin: 15px 0 10px;
+        }
+        
+        .listing-output h4:first-child {
+            margin-top: 0;
+        }
+        
+        .listing-output pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #ccc;
+        }
+        
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .keyword-tag {
+            background: rgba(102, 126, 234, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛒 跨境电商选品工具</h1>
+            <p class="subtitle">Cross-Border E-commerce Product Selection Tool MVP</p>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('keyword')">🔍 关键词分析</button>
+            <button class="tab-btn" onclick="switchTab('competitor')">📊 竞品分析</button>
+            <button class="tab-btn" onclick="switchTab('profit')">💰 利润计算</button>
+            <button class="tab-btn" onclick="switchTab('listing')">✨ AI Listing</button>
+        </div>
+        
+        <!-- 关键词分析 -->
+        <div id="keyword" class="tab-content active">
+            <h2>关键词分析</h2>
+            <p style="color:#888;margin-bottom:20px;">输入品类关键词，获取搜索量、竞争度等数据</p>
+            
+            <div class="form-group">
+                <label>关键词</label>
+                <input type="text" id="keyword-input" placeholder="例如: wireless earbuds, phone case" value="wireless earbuds">
+            </div>
+            <button class="btn btn-primary" onclick="analyzeKeyword()">分析</button>
+            
+            <div id="keyword-result"></div>
+        </div>
+        
+        <!-- 竞品分析 -->
+        <div id="competitor" class="tab-content">
+            <h2>竞品分析</h2>
+            <p style="color:#888;margin-bottom:20px;">抓取亚马逊/eBay同类产品，分析价格、评分、销量</p>
+            
+            <div class="form-group">
+                <label>产品关键词</label>
+                <input type="text" id="competitor-keyword" placeholder="输入产品关键词" value="laptop stand">
+            </div>
+            <div class="form-group">
+                <label>平台</label>
+                <select id="competitor-platform">
+                    <option value="amazon">Amazon</option>
+                    <option value="ebay">eBay</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="analyzeCompetitors()">分析</button>
+            
+            <div id="competitor-result"></div>
+        </div>
+        
+        <!-- 利润计算 -->
+        <div id="profit" class="tab-content">
+            <h2>利润计算器</h2>
+            <p style="color:#888;margin-bottom:20px;">计算产品预估利润，帮助定价决策</p>
+            
+            <div class="form-group">
+                <label>平台</label>
+                <select id="profit-platform">
+                    <option value="amazon">Amazon</option>
+                    <option value="ebay">eBay</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>产品成本 (USD)</label>
+                <input type="number" id="product-cost" placeholder="产品成本" value="10">
+            </div>
+            <div class="form-group">
+                <label>运费 (USD)</label>
+                <input type="number" id="shipping-cost" placeholder="运费" value="3">
+            </div>
+            <div class="form-group">
+                <label>售价 (USD)</label>
+                <input type="number" id="selling-price" placeholder="售价" value="35">
+            </div>
+            <div class="form-group">
+                <label>其他成本 (USD)</label>
+                <input type="number" id="other-cost" placeholder="包装费等" value="1">
+            </div>
+            <div class="form-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="is-fba">
+                    使用FBA
+                </label>
+            </div>
+            <button class="btn btn-primary" onclick="calculateProfit()">计算利润</button>
+            
+            <div id="profit-result"></div>
+        </div>
+        
+        <!-- AI Listing -->
+        <div id="listing" class="tab-content">
+            <h2>AI Listing 生成</h2>
+            <p style="color:#888;margin-bottom:20px;">基于分析结果，生成优化的产品标题和描述</p>
+            
+            <div class="form-group">
+                <label>产品名称</label>
+                <input type="text" id="listing-product" placeholder="输入产品名称" value="Portable Bluetooth Speaker">
+            </div>
+            <div class="form-group">
+                <label>目标市场</label>
+                <select id="listing-market">
+                    <option value="US">美国 (US)</option>
+                    <option value="UK">英国 (UK)</option>
+                    <option value="DE">德国 (DE)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>关联分析</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="include-keyword" checked>
+                        包含关键词分析
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="include-competitor" checked>
+                        包含竞品分析
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="generateListing()">生成 Listing</button>
+            
+            <div id="listing-result"></div>
+        </div>
+        
+        <footer>
+            <p>跨境电商选品工具 MVP v1.0 | 技术栈: Python + Flask + MySQL/Redis</p>
+            <p style="margin-top:5px;">Powered by AI</p>
+        </footer>
+    </div>
+    
+    <script>
+        const API_BASE = '';
+        
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        async function apiCall(url, data) {
+            const res = await fetch(API_BASE + url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            return res.json();
+        }
+        
+        async function analyzeKeyword() {
+            const keyword = document.getElementById('keyword-input').value.trim();
+            if (!keyword) return alert('请输入关键词');
+            
+            const resultDiv = document.getElementById('keyword-result');
+            resultDiv.innerHTML = '<div class="loading">分析中...</div>';
+            
+            const res = await apiCall('/api/keyword/analyze', { keyword });
+            
+            if (res.success) {
+                const d = res.data;
+                const trendColors = { rising: '#27ae60', stable: '#f39c12', falling: '#e74c3c' };
+                
+                resultDiv.innerHTML = `
+                    <div class="result-card">
+                        <h3>📈 ${d.keyword} 分析结果</h3>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">${d.search_volume.toLocaleString()}</div>
+                                <div class="stat-label">月搜索量</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${(d.competition * 100).toFixed(0)}%</div>
+                                <div class="stat-label">竞争度</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color:${trendColors[d.trend]}">${d.trend === 'rising' ? '📈' : d.trend === 'falling' ? '📉' : '➡️'} ${d.trend}</div>
+                                <div class="stat-label">趋势</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$${d.suggested_bid}</div>
+                                <div class="stat-label">建议竞价</div>
+                            </div>
+                        </div>
+                        <h4 style="margin-top:20px;color:#667eea">相关关键词</h4>
+                        <div class="keyword-tags">
+                            ${d.related_keywords.map(k => `<span class="keyword-tag">${k}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<div class="error">${res.error}</div>`;
+            }
+        }
+        
+        async function analyzeCompetitors() {
+            const keyword = document.getElementById('competitor-keyword').value.trim();
+            const platform = document.getElementById('competitor-platform').value;
+            if (!keyword) return alert('请输入关键词');
+            
+            const resultDiv = document.getElementById('competitor-result');
+            resultDiv.innerHTML = '<div class="loading">抓取竞品数据...</div>';
+            
+            const res = await apiCall('/api/competitor/scrape', { keyword, platform, limit: 10 });
+            
+            if (res.success) {
+                const { competitors, market_analysis } = res.data;
+                
+                resultDiv.innerHTML = `
+                    <div class="result-card">
+                        <h3>📊 ${keyword} 市场分析 (${platform})</h3>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">$${market_analysis.avg_price}</div>
+                                <div class="stat-label">平均价格</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$${market_analysis.min_price} - $${market_analysis.max_price}</div>
+                                <div class="stat-label">价格区间</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${market_analysis.avg_rating} ⭐</div>
+                                <div class="stat-label">平均评分</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${market_analysis.total_competitors}</div>
+                                <div class="stat-label">竞品数量</div>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-top:20px;color:#667eea">Top 竞品</h4>
+                        <div class="competitor-list">
+                            ${competitors.slice(0, 5).map(c => `
+                                <div class="competitor-item">
+                                    <div class="competitor-info">
+                                        <h4>${c.title}</h4>
+                                        <div class="competitor-meta">
+                                            ⭐ ${c.rating} | ${c.reviews_count.toLocaleString()} 评论 | 排名 #${c.sales_rank}
+                                        </div>
+                                    </div>
+                                    <div class="competitor-price">$${c.price}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<div class="error">${res.error}</div>`;
+            }
+        }
+        
+        async function calculateProfit() {
+            const data = {
+                platform: document.getElementById('profit-platform').value,
+                product_cost: parseFloat(document.getElementById('product-cost').value) || 0,
+                shipping_cost: parseFloat(document.getElementById('shipping-cost').value) || 0,
+                selling_price: parseFloat(document.getElementById('selling-price').value) || 0,
+                other_cost: parseFloat(document.getElementById('other-cost').value) || 0,
+                is_fba: document.getElementById('is-fba').checked
+            };
+            
+            const resultDiv = document.getElementById('profit-result');
+            resultDiv.innerHTML = '<div class="loading">计算中...</div>';
+            
+            const res = await apiCall('/api/profit/calculate', data);
+            
+            if (res.success) {
+                const d = res.data;
+                const profitColor = d.profit >= 0 ? '#27ae60' : '#e74c3c';
+                
+                resultDiv.innerHTML = `
+                    <div class="result-card">
+                        <h3>💰 利润分析</h3>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">$${d.total_cost.toFixed(2)}</div>
+                                <div class="stat-label">总成本</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color:${profitColor}">$${d.profit.toFixed(2)}</div>
+                                <div class="stat-label">利润</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color:${profitColor}">${d.profit_margin}%</div>
+                                <div class="stat-label">利润率</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${d.profit_status}</div>
+                                <div class="stat-label">利润等级</div>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-top:20px;color:#667eea">成本明细</h4>
+                        <div style="color:#ccc;margin-top:10px;">
+                            <p>产品成本: $${d.product_cost.toFixed(2)}</p>
+                            <p>运费: $${d.shipping_cost.toFixed(2)}</p>
+                            <p>平台费用: $${d.platform_fee.toFixed(2)}</p>
+                            <p>其他成本: $${d.other_cost.toFixed(2)}</p>
+                            <p style="margin-top:10px;border-top:1px solid rgba(255,255,255,0.1);padding-top:10px;">
+                                <strong>售价: $${d.selling_price.toFixed(2)}</strong>
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<div class="error">${res.error}</div>`;
+            }
+        }
+        
+        async function generateListing() {
+            const productName = document.getElementById('listing-product').value.trim();
+            if (!productName) return alert('请输入产品名称');
+            
+            const resultDiv = document.getElementById('listing-result');
+            resultDiv.innerHTML = '<div class="loading">AI生成中...</div>';
+            
+            const res = await apiCall('/api/ai/generate-listing', {
+                product_name: productName,
+                target_market: document.getElementById('listing-market').value,
+                include_keyword_analysis: document.getElementById('include-keyword').checked,
+                include_competitor_analysis: document.getElementById('include-competitor').checked,
+                platform: 'amazon'
+            });
+            
+            if (res.success) {
+                const d = res.data;
+                resultDiv.innerHTML = `
+                    <div class="listing-output">
+                        <h4>📝 产品标题</h4>
+                        <p style="color:#fff;font-size:1.1em;">${d.title}</p>
+                        
+                        <h4>⚡ 5点描述</h4>
+                        <pre>${d.short_description}</pre>
+                        
+                        <h4>📋 完整描述</h4>
+                        <pre>${d.full_description}</pre>
+                        
+                        <h4>🏷️ 关键词</h4>
+                        <div class="keyword-tags">
+                            ${d.keywords.map(k => `<span class="keyword-tag">${k}</span>`).join('')}
+                        </div>
+                        
+                        <h4>💵 建议售价</h4>
+                        <p style="color:#667eea;font-size:1.3em;font-weight:bold;">$${d.suggested_price.toFixed(2)} USD</p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<div class="error">${res.error}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>

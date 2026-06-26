@@ -1,0 +1,55 @@
+# ClawHub Skill Manifest
+name: stock-monitor-siyou
+display_name: Stock Monitor Skill - 股票自动监控
+version: 2.0.0
+description: 自动监控股票价格，集合竞价/涨停跌停/10 分钟振幅三重提醒
+author: 司幼 (SiYou)
+license: MIT
+
+tags:
+  - stock
+  - monitor
+  - feishu
+  - voice
+  - alert
+  - chinese
+  - 股票
+  - 监控
+  - 集合竞价
+  - 涨停跌停
+
+category: finance
+
+requirements:
+  - jq
+  - bc
+  - ffmpeg
+  - curl
+
+env_vars:
+  - FEISHU_APP_ID
+  - FEISHU_APP_SECRET
+  - FEISHU_CHAT_ID
+  - NOIZ_API_KEY
+
+entry_point: scripts/monitor.sh
+
+pricing:
+  type: paid
+  price: 19.9
+  currency: CNY
+
+changelog: |
+  v2.0.0:
+  - ✅ 集合竞价监控（9:15-9:25）：涨跌≥2% 提醒
+  - ✅ 涨停跌停监控：连发 3 条语音
+  - ✅ 10 分钟振幅监控：振幅>2% 提醒
+  - ✅ 支持 14 只自选股
+  - ✅ 智能时段识别
+  - ✅ 节假日自动跳过
+  
+  v1.2.0:
+  - ✅ 新增节假日识别
+  
+  v1.1.0:
+  - ✅ 多数据源支持

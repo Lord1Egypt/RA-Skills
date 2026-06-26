@@ -1,0 +1,4 @@
+interface:
+  display_name: "导入模板数据生成"
+  short_description: "根据导入模板结构和客户业务场景生成可直接导入的数据样例"
+  default_prompt: "Use $generate-import-template-data to inspect the uploaded template and generate import-ready data that matches the customer's described scenario."

@@ -1,0 +1,579 @@
+<#
+.SYNOPSIS
+    Windows 磁盘空间扫描脚本 - 安全扫描，不删除任何文件
+.DESCRIPTION
+    扫描 Windows 系统磁盘，分析空间占用情况，输出 JSON 格式的扫描结果。
+    所有操作只读，不会修改或删除任何文件。
+.PARAMETER Drive
+    要扫描的驱动器盘符，默认为系统盘（通常是 C:）
+.PARAMETER OutputPath
+    JSON 结果输出路径，默认输出到当前目录的 scan_result.json
+.PARAMETER TopN
+    大文件扫描时返回前 N 个最大文件，默认 50
+.EXAMPLE
+    .\scan_disk.ps1
+    .\scan_disk.ps1 -Drive "D:" -TopN 100
+#>
+
+param(
+    [string]$Drive = $env:SystemDrive,
+    [string]$OutputPath = ".\scan_result.json",
+    [int]$TopN = 50
+)
+
+$ErrorActionPreference = "SilentlyContinue"
+
+# 判断是否为系统盘
+$isSystemDrive = ($Drive.TrimEnd(':\') -eq $env:SystemDrive.TrimEnd(':\'))
+
+# ============================================================
+# 辅助函数
+# ============================================================
+
+function Get-FolderSizeQuick {
+    param([string]$Path, [int]$TimeoutSeconds = 30)
+    if (-not (Test-Path $Path)) { return 0 }
+    $size = 0
+    try {
+        $job = Start-Job -ScriptBlock {
+            param($p)
+            (Get-ChildItem -Path $p -Recurse -File -Force -ErrorAction SilentlyContinue |
+                Measure-Object -Property Length -Sum).Sum
+        } -ArgumentList $Path
+        $completed = Wait-Job $job -Timeout $TimeoutSeconds
+        if ($completed) {
+            $size = Receive-Job $job
+        }
+        Remove-Job $job -Force
+    } catch {
+        $size = 0
+    }
+    if ($null -eq $size) { $size = 0 }
+    return [long]$size
+}
+
+function Format-SizeString {
+    param([long]$Bytes)
+    if ($Bytes -ge 1GB) { return "{0:N2} GB" -f ($Bytes / 1GB) }
+    if ($Bytes -ge 1MB) { return "{0:N2} MB" -f ($Bytes / 1MB) }
+    if ($Bytes -ge 1KB) { return "{0:N2} KB" -f ($Bytes / 1KB) }
+    return "$Bytes B"
+}
+
+function Test-CommandExists {
+    param([string]$Command)
+    return [bool](Get-Command $Command -ErrorAction SilentlyContinue)
+}
+
+# ============================================================
+# 磁盘基本信息
+# ============================================================
+
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host "  Windows 磁盘清理扫描工具" -ForegroundColor Cyan
+Write-Host "  扫描目标: $Drive" -ForegroundColor Cyan
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host ""
+
+$driveInfo = Get-PSDrive -Name ($Drive.TrimEnd(':')) -PSProvider FileSystem
+$totalSpace = $driveInfo.Used + $driveInfo.Free
+$usedSpace = $driveInfo.Used
+$freeSpace = $driveInfo.Free
+$usedPercent = [math]::Round(($usedSpace / $totalSpace) * 100, 1)
+
+Write-Host "[磁盘概览]" -ForegroundColor Yellow
+Write-Host "  总空间: $(Format-SizeString $totalSpace)"
+Write-Host "  已用:   $(Format-SizeString $usedSpace) ($usedPercent%)"
+Write-Host "  可用:   $(Format-SizeString $freeSpace)"
+Write-Host ""
+
+$result = @{
+    scan_time    = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+    drive        = $Drive
+    total_bytes  = $totalSpace
+    used_bytes   = $usedSpace
+    free_bytes   = $freeSpace
+    used_percent = $usedPercent
+    username     = $env:USERNAME
+    categories   = @{
+        safe   = @()
+        review = @()
+    }
+    tools_detected = @()
+    top_large_files = @()
+}
+
+# ============================================================
+# 🟢 安全删除项扫描
+# ============================================================
+
+Write-Host "[扫描安全删除项...]" -ForegroundColor Green
+
+# --- Windows Temp（仅系统盘）---
+if ($isSystemDrive) {
+$userTemp = $env:TEMP
+$sysTemp = "$Drive\Windows\Temp"
+
+$userTempSize = Get-FolderSizeQuick $userTemp
+$sysTempSize = Get-FolderSizeQuick $sysTemp
+$tempTotal = $userTempSize + $sysTempSize
+
+if ($tempTotal -gt 0) {
+    $result.categories.safe += @{
+        name = "Windows 临时文件"
+        paths = @($userTemp, $sysTemp)
+        size_bytes = $tempTotal
+        size_display = Format-SizeString $tempTotal
+        clean_command = "Remove-Item -Path `"$userTemp\*`" -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path `"$sysTemp\*`" -Recurse -Force -ErrorAction SilentlyContinue"
+        description = "系统和用户临时文件，删除不影响任何功能"
+    }
+    Write-Host "  临时文件: $(Format-SizeString $tempTotal)"
+}
+
+# --- Windows Update 缓存 ---
+$wuPath = "$Drive\Windows\SoftwareDistribution\Download"
+$wuSize = Get-FolderSizeQuick $wuPath
+if ($wuSize -gt 0) {
+    $result.categories.safe += @{
+        name = "Windows Update 下载缓存"
+        paths = @($wuPath)
+        size_bytes = $wuSize
+        size_display = Format-SizeString $wuSize
+        clean_command = "Stop-Service wuauserv -Force; Remove-Item -Path `"$wuPath\*`" -Recurse -Force; Start-Service wuauserv"
+        description = "已安装的 Windows 更新包，可安全删除"
+    }
+    Write-Host "  Windows Update 缓存: $(Format-SizeString $wuSize)"
+}
+
+} # end if ($isSystemDrive) — 系统盘专属扫描项结束
+
+# --- 缩略图缓存 ---
+$thumbPath = "$env:LOCALAPPDATA\Microsoft\Windows\Explorer"
+$thumbSize = 0
+if (Test-Path $thumbPath) {
+    $thumbSize = (Get-ChildItem "$thumbPath\thumbcache_*" -Force -ErrorAction SilentlyContinue |
+        Measure-Object -Property Length -Sum).Sum
+    if ($null -eq $thumbSize) { $thumbSize = 0 }
+}
+if ($thumbSize -gt 0) {
+    $result.categories.safe += @{
+        name = "缩略图缓存"
+        paths = @($thumbPath)
+        size_bytes = [long]$thumbSize
+        size_display = Format-SizeString $thumbSize
+        clean_command = "Remove-Item -Path `"$thumbPath\thumbcache_*`" -Force -ErrorAction SilentlyContinue"
+        description = "文件预览缩略图缓存，会自动重建"
+    }
+    Write-Host "  缩略图缓存: $(Format-SizeString $thumbSize)"
+}
+
+# --- 错误报告和崩溃转储 ---
+$crashPaths = @(
+    "$env:LOCALAPPDATA\CrashDumps",
+    "$env:LOCALAPPDATA\Microsoft\Windows\WER",
+    "$Drive\ProgramData\Microsoft\Windows\WER"
+)
+$crashTotal = 0
+$existingCrashPaths = @()
+foreach ($cp in $crashPaths) {
+    if (Test-Path $cp) {
+        $s = Get-FolderSizeQuick $cp
+        $crashTotal += $s
+        $existingCrashPaths += $cp
+    }
+}
+if ($crashTotal -gt 0) {
+    $result.categories.safe += @{
+        name = "错误报告和崩溃转储"
+        paths = $existingCrashPaths
+        size_bytes = $crashTotal
+        size_display = Format-SizeString $crashTotal
+        clean_command = ($existingCrashPaths | ForEach-Object { "Remove-Item -Path `"$_\*`" -Recurse -Force -ErrorAction SilentlyContinue" }) -join "; "
+        description = "Windows 错误报告文件，通常不再需要"
+    }
+    Write-Host "  错误报告: $(Format-SizeString $crashTotal)"
+}
+
+# --- 回收站 ---
+$recycleBinSize = 0
+try {
+    $shell = New-Object -ComObject Shell.Application
+    $recycleBin = $shell.Namespace(0x0a)
+    if ($recycleBin -and $recycleBin.Items().Count -gt 0) {
+        foreach ($item in $recycleBin.Items()) {
+            $recycleBinSize += $item.Size
+        }
+    }
+} catch { }
+if ($recycleBinSize -gt 0) {
+    $result.categories.safe += @{
+        name = "回收站"
+        paths = @("回收站")
+        size_bytes = $recycleBinSize
+        size_display = Format-SizeString $recycleBinSize
+        clean_command = "Clear-RecycleBin -Force -ErrorAction SilentlyContinue"
+        description = "回收站中的已删除文件"
+    }
+    Write-Host "  回收站: $(Format-SizeString $recycleBinSize)"
+}
+
+# --- 开发工具缓存 ---
+Write-Host ""
+Write-Host "[检测开发工具...]" -ForegroundColor Green
+
+# npm
+if (Test-CommandExists "npm") {
+    $result.tools_detected += "npm"
+    $npmCachePath = "$env:APPDATA\npm-cache"
+    if (-not (Test-Path $npmCachePath)) {
+        try { $npmCachePath = (npm config get cache 2>$null).Trim() } catch {}
+    }
+    if (Test-Path $npmCachePath) {
+        $npmSize = Get-FolderSizeQuick $npmCachePath
+        if ($npmSize -gt 0) {
+            $result.categories.safe += @{
+                name = "npm 缓存"
+                paths = @($npmCachePath)
+                size_bytes = $npmSize
+                size_display = Format-SizeString $npmSize
+                clean_command = "npm cache clean --force"
+                description = "Node.js 包管理器缓存，清理后下次安装会重新下载"
+            }
+            Write-Host "  npm 缓存: $(Format-SizeString $npmSize)"
+        }
+    }
+}
+
+# pip
+if (Test-CommandExists "pip") {
+    $result.tools_detected += "pip"
+    $pipCachePath = "$env:LOCALAPPDATA\pip\cache"
+    if (Test-Path $pipCachePath) {
+        $pipSize = Get-FolderSizeQuick $pipCachePath
+        if ($pipSize -gt 0) {
+            $result.categories.safe += @{
+                name = "pip 缓存"
+                paths = @($pipCachePath)
+                size_bytes = $pipSize
+                size_display = Format-SizeString $pipSize
+                clean_command = "pip cache purge"
+                description = "Python 包管理器缓存"
+            }
+            Write-Host "  pip 缓存: $(Format-SizeString $pipSize)"
+        }
+    }
+}
+
+# conda
+if (Test-CommandExists "conda") {
+    $result.tools_detected += "conda"
+    $condaPkgs = "$env:USERPROFILE\.conda\pkgs"
+    if (Test-Path $condaPkgs) {
+        $condaSize = Get-FolderSizeQuick $condaPkgs
+        if ($condaSize -gt 0) {
+            $result.categories.safe += @{
+                name = "Conda 包缓存"
+                paths = @($condaPkgs)
+                size_bytes = $condaSize
+                size_display = Format-SizeString $condaSize
+                clean_command = "conda clean --all -y"
+                description = "Conda 已解压的包缓存和压缩档"
+            }
+            Write-Host "  conda 缓存: $(Format-SizeString $condaSize)"
+        }
+    }
+}
+
+# Docker
+if (Test-CommandExists "docker") {
+    $result.tools_detected += "docker"
+    try {
+        $dockerDf = docker system df --format "{{.Size}}" 2>$null
+        $result.categories.safe += @{
+            name = "Docker 未使用资源"
+            paths = @("docker system")
+            size_bytes = -1
+            size_display = "运行 docker system df 查看详情"
+            clean_command = "docker system prune -af --volumes"
+            description = "悬空镜像、停止的容器、未使用网络和卷。注意：--volumes 会删除未使用的卷"
+        }
+        Write-Host "  Docker: 已检测到，运行 'docker system df' 查看详情"
+    } catch { }
+}
+
+# Gradle
+$gradlePath = "$env:USERPROFILE\.gradle\caches"
+if (Test-Path $gradlePath) {
+    $result.tools_detected += "gradle"
+    $gradleSize = Get-FolderSizeQuick $gradlePath
+    if ($gradleSize -gt 0) {
+        $result.categories.safe += @{
+            name = "Gradle 构建缓存"
+            paths = @($gradlePath)
+            size_bytes = $gradleSize
+            size_display = Format-SizeString $gradleSize
+            clean_command = "Remove-Item -Path `"$gradlePath\*`" -Recurse -Force -ErrorAction SilentlyContinue"
+            description = "Gradle 构建缓存，清理后下次构建会重新下载"
+        }
+        Write-Host "  Gradle 缓存: $(Format-SizeString $gradleSize)"
+    }
+}
+
+# NuGet
+$nugetPath = "$env:LOCALAPPDATA\NuGet\v3-cache"
+if (Test-Path $nugetPath) {
+    $result.tools_detected += "nuget"
+    $nugetSize = Get-FolderSizeQuick $nugetPath
+    if ($nugetSize -gt 0) {
+        $result.categories.safe += @{
+            name = "NuGet 缓存"
+            paths = @($nugetPath)
+            size_bytes = $nugetSize
+            size_display = Format-SizeString $nugetSize
+            clean_command = "dotnet nuget locals all --clear"
+            description = ".NET 包缓存"
+        }
+        Write-Host "  NuGet 缓存: $(Format-SizeString $nugetSize)"
+    }
+}
+
+# --- 浏览器缓存 ---
+Write-Host ""
+Write-Host "[扫描浏览器缓存...]" -ForegroundColor Green
+
+$browsers = @(
+    @{ Name = "Chrome"; Path = "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Cache" },
+    @{ Name = "Chrome (Code Cache)"; Path = "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Code Cache" },
+    @{ Name = "Edge"; Path = "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Default\Cache" },
+    @{ Name = "Edge (Code Cache)"; Path = "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Default\Code Cache" },
+    @{ Name = "Firefox"; Path = "$env:LOCALAPPDATA\Mozilla\Firefox\Profiles" },
+    @{ Name = "Brave"; Path = "$env:LOCALAPPDATA\BraveSoftware\Brave-Browser\User Data\Default\Cache" }
+)
+
+foreach ($browser in $browsers) {
+    if (Test-Path $browser.Path) {
+        $bSize = Get-FolderSizeQuick $browser.Path
+        if ($bSize -gt 1MB) {
+            $result.categories.safe += @{
+                name = "$($browser.Name) 缓存"
+                paths = @($browser.Path)
+                size_bytes = $bSize
+                size_display = Format-SizeString $bSize
+                clean_command = "Remove-Item -Path `"$($browser.Path)\*`" -Recurse -Force -ErrorAction SilentlyContinue"
+                description = "浏览器缓存文件，关闭浏览器后清理，会自动重建"
+            }
+            Write-Host "  $($browser.Name): $(Format-SizeString $bSize)"
+        }
+    }
+}
+
+# ============================================================
+# 🟡 需确认项扫描
+# ============================================================
+
+Write-Host ""
+Write-Host "[扫描需确认项...]" -ForegroundColor Yellow
+
+# --- Windows.old ---
+$winOldPath = "$Drive\Windows.old"
+if (Test-Path $winOldPath) {
+    $winOldSize = Get-FolderSizeQuick $winOldPath 60
+    $result.categories.review += @{
+        name = "Windows.old (旧系统残留)"
+        paths = @($winOldPath)
+        size_bytes = $winOldSize
+        size_display = Format-SizeString $winOldSize
+        clean_command = "需通过'磁盘清理'工具的'清理系统文件'选项删除"
+        description = "Windows 升级后保留的旧系统文件。如果新系统运行正常且已超过10天，通常可安全删除"
+        risk = "medium"
+    }
+    Write-Host "  Windows.old: $(Format-SizeString $winOldSize) (旧系统残留)"
+}
+
+# --- 下载文件夹（大文件和旧文件）---
+$downloadsPath = "$env:USERPROFILE\Downloads"
+if (Test-Path $downloadsPath) {
+    $dlFiles = Get-ChildItem -Path $downloadsPath -File -Force -ErrorAction SilentlyContinue |
+        Where-Object { $_.Length -gt 50MB } |
+        Sort-Object Length -Descending |
+        Select-Object -First 20
+
+    if ($dlFiles.Count -gt 0) {
+        $dlTotal = ($dlFiles | Measure-Object -Property Length -Sum).Sum
+        $dlDetails = $dlFiles | ForEach-Object {
+            @{
+                name = $_.Name
+                size_bytes = $_.Length
+                size_display = Format-SizeString $_.Length
+                last_modified = $_.LastWriteTime.ToString("yyyy-MM-dd")
+                path = $_.FullName
+            }
+        }
+        $result.categories.review += @{
+            name = "Downloads 大文件 (>50MB)"
+            paths = @($downloadsPath)
+            size_bytes = $dlTotal
+            size_display = Format-SizeString $dlTotal
+            files = $dlDetails
+            clean_command = "# 请从下方列表中选择要删除的文件"
+            description = "下载文件夹中超过 50MB 的文件，请检查是否仍然需要"
+            risk = "high"
+        }
+        Write-Host "  Downloads 大文件: $(Format-SizeString $dlTotal) ($($dlFiles.Count) 个文件)"
+    }
+}
+
+# --- 全盘大文件扫描 ---
+Write-Host ""
+Write-Host "[扫描大文件 (>500MB)...]" -ForegroundColor Yellow
+
+# 系统盘扫描用户目录，非系统盘扫描整个盘根
+if ($isSystemDrive) {
+    $scanRoot = $env:USERPROFILE
+    $largeFiles = Get-ChildItem -Path $scanRoot -Recurse -File -Force -ErrorAction SilentlyContinue |
+        Where-Object {
+            $_.Length -gt 500MB -and
+            $_.FullName -notmatch '\\\.git\\' -and
+            $_.FullName -notmatch '\\AppData\\Local\\Microsoft\\' -and
+            $_.FullName -notmatch '\\AppData\\Local\\Google\\' -and
+            $_.DirectoryName -ne $downloadsPath
+        } |
+        Sort-Object Length -Descending |
+        Select-Object -First $TopN
+} else {
+    $scanRoot = "$Drive\"
+    $largeFiles = Get-ChildItem -Path $scanRoot -Recurse -File -Force -ErrorAction SilentlyContinue |
+        Where-Object {
+            $_.Length -gt 500MB -and
+            $_.FullName -notmatch '\\\.git\\' -and
+            $_.FullName -notmatch '\\\$Recycle\.Bin\\'
+        } |
+        Sort-Object Length -Descending |
+        Select-Object -First $TopN
+}
+
+if ($largeFiles.Count -gt 0) {
+    $result.top_large_files = $largeFiles | ForEach-Object {
+        @{
+            name = $_.Name
+            path = $_.FullName
+            size_bytes = $_.Length
+            size_display = Format-SizeString $_.Length
+            last_modified = $_.LastWriteTime.ToString("yyyy-MM-dd")
+            extension = $_.Extension
+        }
+    }
+    $lfTotal = ($largeFiles | Measure-Object -Property Length -Sum).Sum
+    Write-Host "  发现 $($largeFiles.Count) 个大文件，总计 $(Format-SizeString $lfTotal)"
+}
+
+# --- node_modules 扫描（常见开发目录）---
+Write-Host ""
+Write-Host "[扫描 node_modules...]" -ForegroundColor Yellow
+
+$devPaths = @(
+    "$env:USERPROFILE\projects",
+    "$env:USERPROFILE\workspace",
+    "$env:USERPROFILE\code",
+    "$env:USERPROFILE\dev",
+    "$env:USERPROFILE\repos",
+    "$env:USERPROFILE\Documents",
+    "$env:USERPROFILE\Desktop"
+)
+
+$nodeModulesList = @()
+foreach ($devPath in $devPaths) {
+    if (Test-Path $devPath) {
+        $nms = Get-ChildItem -Path $devPath -Directory -Recurse -Filter "node_modules" -Depth 3 -Force -ErrorAction SilentlyContinue
+        foreach ($nm in $nms) {
+            # 跳过嵌套的 node_modules
+            if ($nm.FullName -match 'node_modules\\.*\\node_modules') { continue }
+            $nmSize = Get-FolderSizeQuick $nm.FullName 20
+            if ($nmSize -gt 10MB) {
+                $parentProject = Split-Path $nm.FullName -Parent
+                $lastAccess = (Get-Item $parentProject -Force).LastAccessTime
+                $nodeModulesList += @{
+                    project = Split-Path $parentProject -Leaf
+                    path = $nm.FullName
+                    size_bytes = $nmSize
+                    size_display = Format-SizeString $nmSize
+                    last_access = $lastAccess.ToString("yyyy-MM-dd")
+                    days_since_access = [math]::Round(((Get-Date) - $lastAccess).TotalDays)
+                }
+            }
+        }
+    }
+}
+
+if ($nodeModulesList.Count -gt 0) {
+    $nmTotal = ($nodeModulesList | ForEach-Object { $_.size_bytes } | Measure-Object -Sum).Sum
+    $result.categories.review += @{
+        name = "node_modules（项目依赖）"
+        paths = ($nodeModulesList | ForEach-Object { $_.path })
+        size_bytes = $nmTotal
+        size_display = Format-SizeString $nmTotal
+        items = $nodeModulesList
+        clean_command = "# 对每个项目可运行: Remove-Item -Recurse -Force '<path>\node_modules'"
+        description = "各项目的 Node.js 依赖，删除后可通过 npm install 重新安装"
+        risk = "low"
+    }
+    Write-Host "  node_modules: $(Format-SizeString $nmTotal) ($($nodeModulesList.Count) 个项目)"
+}
+
+# ============================================================
+# 📁 顶层目录占用分析（非系统盘时特别有用）
+# ============================================================
+
+if (-not $isSystemDrive) {
+    Write-Host ""
+    Write-Host "[分析顶层目录占用...]" -ForegroundColor Yellow
+    $topDirs = Get-ChildItem -Path "$Drive\" -Directory -Force -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -notmatch '^\$|^System Volume' }
+    $dirSizes = @()
+    foreach ($dir in $topDirs) {
+        $dSize = Get-FolderSizeQuick $dir.FullName 30
+        if ($dSize -gt 100MB) {
+            $dirSizes += @{
+                name = $dir.Name
+                path = $dir.FullName
+                size_bytes = $dSize
+                size_display = Format-SizeString $dSize
+            }
+            Write-Host "  $($dir.Name): $(Format-SizeString $dSize)"
+        }
+    }
+    $result.top_directories = $dirSizes | Sort-Object { $_.size_bytes } -Descending
+}
+
+# ============================================================
+# 汇总
+# ============================================================
+
+$safeTotal = ($result.categories.safe | ForEach-Object { if ($_.size_bytes -gt 0) { $_.size_bytes } else { 0 } } | Measure-Object -Sum).Sum
+$reviewTotal = ($result.categories.review | ForEach-Object { if ($_.size_bytes -gt 0) { $_.size_bytes } else { 0 } } | Measure-Object -Sum).Sum
+
+$result.summary = @{
+    safe_total_bytes = $safeTotal
+    safe_total_display = Format-SizeString $safeTotal
+    review_total_bytes = $reviewTotal
+    review_total_display = Format-SizeString $reviewTotal
+    potential_total_bytes = $safeTotal + $reviewTotal
+    potential_total_display = Format-SizeString ($safeTotal + $reviewTotal)
+}
+
+Write-Host ""
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host "  扫描完成!" -ForegroundColor Cyan
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host "  🟢 安全删除项: $(Format-SizeString $safeTotal)" -ForegroundColor Green
+Write-Host "  🟡 需确认项:   $(Format-SizeString $reviewTotal)" -ForegroundColor Yellow
+Write-Host "  📊 潜在可释放: $(Format-SizeString ($safeTotal + $reviewTotal))" -ForegroundColor White
+Write-Host "  已检测工具: $($result.tools_detected -join ', ')" -ForegroundColor Gray
+Write-Host ""
+
+# 输出 JSON
+$jsonOutput = $result | ConvertTo-Json -Depth 10
+$jsonOutput | Out-File -FilePath $OutputPath -Encoding utf8
+
+Write-Host "扫描结果已保存到: $OutputPath" -ForegroundColor Green
+Write-Host "请将此文件交给 AI 助手生成清理报告。" -ForegroundColor Gray

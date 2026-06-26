@@ -1,0 +1,326 @@
+# Image Forge Style Library Index
+# 两层结构：
+#   signature_styles  — 高度具体的视觉方案（有完整 YAML prompt recipe）
+#   rendering_styles  — 通用渲染技法类别（inline modifier，直接注入 prompt）
+#
+# 路由规则：
+#   用户提到风格名/关键词 → 先匹配 signature_styles.aliases，再匹配 rendering_styles.aliases
+#   Signature 命中 → 加载对应 YAML，走 Path S，默认后端按 preferred_backend
+#   Rendering 命中 → 取 modifier 字段注入 prompt，走 Path R-lite，按 preferred_backend 调度
+
+# ──────────────────────────────────────────
+# Tier 1: Signature Styles（有独立 YAML 文件）
+# ──────────────────────────────────────────
+signature_styles:
+
+  - id: constructivism
+    file: constructivism.yaml
+    category: print-art
+    aliases: [俄国构成主义, 苏联构成主义, 构成主义, 几何宣传, constructivism, soviet poster, bauhaus-soviet]
+    aspect_ratio: "3:4"
+    preferred_backend: nano-banana-2
+    tags: [geometric, vintage, poster, high-contrast]
+    use_case_affinity: [poster-flyer, social-media-post]
+    avoid_for: [ecommerce-main-image, product-marketing]
+
+  - id: glitch-window-v1
+    file: glitch-window-v1.yaml
+    category: digital-art
+    aliases: [错位矩形, 故障艺术, 数字碎片, glitch, pixel sorting, glitch art]
+    aspect_ratio: "3:4"
+    preferred_backend: nano-banana-2
+    tags: [glitch, anime, digital, cyber]
+    use_case_affinity: [profile-avatar, social-media-post, poster-flyer]
+    avoid_for: [ecommerce-main-image, product-marketing]
+
+  - id: glitch-window-v2
+    file: glitch-window-v2.yaml
+    category: digital-art
+    aliases: [错位矩形v2, 窗口重叠, 数字拼贴, window overlay, glitch v2]
+    aspect_ratio: "3:4"
+    preferred_backend: nano-banana-2
+    tags: [glitch, anime, sky, dreamy]
+    use_case_affinity: [profile-avatar, social-media-post]
+    avoid_for: [ecommerce-main-image]
+
+  - id: mixed-media
+    file: mixed-media.yaml
+    category: illustration
+    aliases: [混合媒介, 线稿摄影, 素描背景, mixed media, sketch photo]
+    aspect_ratio: "1:1"
+    preferred_backend: nano-banana-2
+    tags: [mixed-media, sketch, photography, lo-fi]
+    use_case_affinity: [profile-avatar, social-media-post, poster-flyer]
+
+  - id: tri-color
+    file: tri-color.yaml
+    category: minimal
+    aliases: [黑蓝红, 三色限定, 极简剪影, tri-color, three color, silhouette]
+    aspect_ratio: "16:9"
+    preferred_backend: nano-banana-2
+    tags: [minimal, silhouette, landscape, cinematic]
+    use_case_affinity: [poster-flyer, youtube-thumbnail, social-media-post]
+
+  - id: engraving-halftone
+    file: engraving-halftone.yaml
+    category: print-art
+    aliases: [半调雕刻, 铜版画, 雕刻线稿, engraving, halftone, etching]
+    aspect_ratio: "3:4"
+    preferred_backend: nano-banana-2
+    tags: [engraving, halftone, minimal, modern-poster]
+    use_case_affinity: [poster-flyer, profile-avatar]
+
+  - id: risograph-magazine
+    file: risograph-magazine.yaml
+    category: print-art
+    aliases: [半调杂志, risograph, 印刷风, riso, retro print, magazine]
+    aspect_ratio: "3:4"
+    preferred_backend: nano-banana-2
+    tags: [risograph, vintage, pop, magazine]
+    use_case_affinity: [poster-flyer, social-media-post, profile-avatar]
+    avoid_for: [ecommerce-main-image, product-marketing]
+
+  - id: pop-ink-splash
+    file: pop-ink-splash.yaml
+    category: illustration
+    aliases: [波普水墨, 波普喷溅, 克莱因波普, pop art, ink splash, pop ink]
+    aspect_ratio: "9:16"
+    preferred_backend: nano-banana-2
+    tags: [pop, ink, dynamic, urban]
+    use_case_affinity: [profile-avatar, social-media-post, poster-flyer]
+
+  - id: klein-blue-order
+    file: klein-blue-order.yaml
+    category: minimal
+    aliases: [克莱因秩序, 克莱因蓝, 极简仰拍, klein blue, klein order, summer cool]
+    aspect_ratio: "1:1"
+    preferred_backend: nano-banana-2
+    tags: [minimal, anime, clean, summer]
+    use_case_affinity: [profile-avatar, social-media-post]
+
+  - id: high-contrast-industrial
+    file: high-contrast-industrial.yaml
+    category: digital-art
+    aliases: [高对比度工业, 数字工业, 故障工业, electric blue, industrial glitch]
+    aspect_ratio: "1:1"
+    preferred_backend: nano-banana-2
+    tags: [industrial, high-contrast, glitch, film-noir]
+    use_case_affinity: [poster-flyer, youtube-thumbnail, product-marketing]
+
+
+
+# ──────────────────────────────────────────
+# Tier 2: Rendering Styles（inline modifier）
+# Prompt modifier 来源：YouMind/awesome-gpt-image-2、EvoLinkAI/awesome-gpt-image-2-prompts 实战案例精炼
+# ──────────────────────────────────────────
+rendering_styles:
+
+  - id: photography
+    category: photo
+    aliases: [摄影, 写真, 真实照片, photography, photo-realistic, realistic photo, 胶片写真]
+    modifier: "ultra-realistic DSLR photography, Fujifilm film simulation, natural bokeh with shallow depth of field, sharp subject with authentic film texture, professional studio or natural window lighting, candid documentary quality"
+    preferred_backend: gpt-image-2
+    examples_file: "references/photography-examples.json"
+    tags: [realistic, photo, natural]
+
+  - id: cinematic-film-still
+    category: photo
+    aliases: [电影感, 胶片, cinematic, film still, movie screenshot, 电影截图, 大片质感]
+    modifier: "cinematic film still, anamorphic lens compression, dramatic chiaroscuro lighting, color-graded footage, shallow depth of field, subtle film grain, widescreen composition, blockbuster movie production quality"
+    preferred_backend: gpt-image-2
+    tags: [cinematic, dramatic, film]
+
+  - id: anime-manga
+    category: illustration
+    aliases: [动漫, 二次元, 漫画风, anime, manga, 动漫风格, 日式动画]
+    modifier: "anime illustration style, vibrant saturated colors, clean precise linework, expressive character design, Japanese animation aesthetic, detailed cel-shading, dynamic composition, professional anime production quality"
+    preferred_backend: nano-banana-2
+    tags: [anime, illustration, japanese]
+
+  - id: illustration
+    category: illustration
+    aliases: [插画, 手绘插画, 商业插画, illustration, digital illustration, 插图, 小清新插画]
+    modifier: "professional digital illustration, editorial quality artwork, bold graphic shapes with intentional composition, commercial illustration standard, vector-friendly clean linework, balanced color harmony"
+    preferred_backend: nano-banana-2
+    tags: [illustration, digital, editorial]
+
+  - id: sketch-line-art
+    category: illustration
+    aliases: [素描, 线稿, 速写, sketch, line art, pencil drawing, 铅笔画, 手绘线稿]
+    modifier: "clean precise line art sketch, technical pen-and-ink illustration quality, confident ink outlines with varying stroke weight, cross-hatching for shadow depth, white paper background, architectural or editorial drawing standard"
+    preferred_backend: nano-banana-2
+    tags: [sketch, lineart, hand-drawn]
+
+  - id: 3d-render
+    category: 3d
+    aliases: [3D渲染, 三维渲染, 3D, 3D render, CGI, octane render, 产品渲染]
+    modifier: "photorealistic 3D render, ray-traced global illumination, physically-based materials, subsurface scattering on skin, HDRI studio lighting, high-poly detail, product visualization quality, Octane or Cinema4D aesthetic"
+    preferred_backend: gpt-image-2
+    tags: [3d, render, cgi]
+
+  - id: chibi-q-style
+    category: illustration
+    aliases: [Q版, chibi, 可爱风, 萌系, cute chibi, q-style, 萨娜风]
+    modifier: "chibi Q-style character illustration, 2:1 oversized head to tiny body ratio, large expressive sparkly eyes, rounded soft shapes, vibrant kawaii color palette, playful energetic pose, professional anime chibi production quality"
+    preferred_backend: nano-banana-2
+    tags: [chibi, cute, kawaii]
+
+  - id: isometric
+    category: 3d
+    aliases: [等距视角, 等轴测, isometric, 2.5D, 等距投影]
+    modifier: "clean isometric illustration, precise 30-degree axonometric projection, flat-shaded geometric forms with consistent upper-left light source, muted pastel or corporate palette, architectural diagram precision, clean vector quality"
+    preferred_backend: gpt-image-2
+    tags: [isometric, geometric, clean]
+
+  - id: pixel-art
+    category: digital-art
+    aliases: [像素艺术, 像素风, pixel art, retro game, 8-bit, 16-bit, 象素风格]
+    modifier: "authentic pixel art, 32px to 256px sprite scale, limited 16-32 color palette, sharp aliased edges with no anti-aliasing, retro 16-bit game aesthetic, clean sprite-quality detail, SNES or Mega Drive era visual language"
+    preferred_backend: nano-banana-2
+    tags: [pixel, retro, game]
+
+  - id: oil-painting
+    category: fine-art
+    aliases: [油画, 古典油画, oil painting, classical painting, 干笔油画]
+    modifier: "classical oil painting technique, visible impasto brushstrokes with palette knife texture, rich deep color saturation with glazed translucent layers, chiaroscuro light modeling, Baroque or Dutch Golden Age quality, textured canvas weave visible"
+    preferred_backend: nano-banana-2
+    tags: [oil-painting, classical, fine-art]
+
+  - id: watercolor
+    category: fine-art
+    aliases: [水彩, 水彩画, watercolor, aquarelle, 水彩漫画]
+    modifier: "loose expressive watercolor painting, wet-on-wet color bleeding with granulation, white paper showing through as negative space, organic soft edges with diffusion, lyrical editorial wash quality, Winsor & Newton pigment richness"
+    preferred_backend: nano-banana-2
+    tags: [watercolor, soft, transparent]
+
+  - id: ink-chinese-style
+    category: fine-art
+    aliases: [水墨, 中国画, 国画, 水墨风, ink wash, Chinese painting, chinese ink, 山水画, 墨笔画]
+    modifier: "Chinese ink wash painting (shuimo hua), xieyi freehand brushwork with confident calligraphic strokes, black ink gradation from rich dense to dilute translucent wash, rice paper texture, generous negative space (liu bai) as compositional element, classical scholar-painter aesthetic"
+    preferred_backend: nano-banana-2
+    tags: [ink, chinese, minimalist]
+
+  - id: retro-vintage
+    category: print-art
+    aliases: [复古, 复古风, retro, vintage, 老照片, 年代感, 胶片复古]
+    modifier: "authentic vintage aesthetic, expired film grain and halation glow, warm amber-sepia color shift with faded muted tones, soft vignette with light leaks, analog photography feel, 1950s-70s era visual language, aged paper or print texture"
+    preferred_backend: gpt-image-2
+    tags: [retro, vintage, nostalgic]
+
+  - id: cyberpunk-sci-fi
+    category: digital-art
+    aliases: [赛博朋克, 科幻, 未来感, cyberpunk, sci-fi, neon dystopia, 霓虹, 赛博]
+    modifier: "cyberpunk dystopian aesthetic, high-saturation neon signs reflected in rain-slicked streets, holographic interference patterns, volumetric fog and atmospheric haze, vibrant magenta-cyan-amber color language, Blade Runner or Ghost in the Shell atmosphere"
+    preferred_backend: gpt-image-2
+    tags: [cyberpunk, neon, futuristic]
+
+  - id: minimalism
+    category: minimal
+    aliases: [极简, 极简主义, 简约, minimalist, minimalism, clean design, 日式极简]
+    modifier: "radical minimalism with maximum negative space, single hero element with precise geometric relationships, monochromatic or strictly limited 2-color palette, breathing room as deliberate design choice, Swiss International Style discipline, Muji or Apple-level restraint"
+    preferred_backend: gpt-image-2
+    tags: [minimal, clean, design]
+
+
+# ──────────────────────────────────────────
+# Tier 3: Logo Showcase Backgrounds（来源 logo-generator skill）
+# 专为品牌 logo 展示场景，配合 brand-logo-showcase 用途使用
+# 触发：用户说"展示图"/"showcase"/"背景风格" + 下列名称
+# ──────────────────────────────────────────
+logo_showcase_backgrounds:
+
+  - id: logo-void
+    category: logo-showcase
+    aliases: [虚空, the void, 极简黑, 绝对黑]
+    modifier: "pure black background, extremely fine silver-white electronic film grain micro-noise, cold icy blue corner glow at extreme edge, generous negative space, professional brand identity presentation, white or silver logo color"
+    preferred_backend: nano-banana-2
+    suitable_for: [hardcore tech, data security, infrastructure]
+    tags: [dark, logo, minimal, tech]
+
+  - id: logo-frosted
+    category: logo-showcase
+    aliases: [磨砂穹顶, frosted horizon, 钛色背景, Apple风格展示]
+    modifier: "deep titanium gray background, organic film-like dust texture, large area cold gray-blue light halo dissolved at edges like mist, Apple-presentation breathing quality, white logo"
+    preferred_backend: nano-banana-2
+    suitable_for: [premium products, design brands]
+    tags: [dark, premium, metal]
+
+  - id: logo-fluid-abyss
+    category: logo-showcase
+    aliases: [流体深渊, fluid abyss, AI风格展示, 深紫背景]
+    modifier: "deep midnight purple background, fluid fusion of dark orange and dark blue slowly interweaving, nebula-quality texture, AI-native computational atmosphere, white logo centered"
+    preferred_backend: nano-banana-2
+    suitable_for: [AI products, data systems]
+    tags: [dark, ai, fluid]
+
+  - id: logo-spotlight
+    category: logo-showcase
+    aliases: [影棚, studio spotlight, 杂志风展示, 编辑风]
+    modifier: "extremely dark warm carbon gray background, larger grain simulating low-light photography, single-side softbox creating natural vignette, editorial magazine quality, white logo centered"
+    preferred_backend: nano-banana-2
+    suitable_for: [editorial brands, professional services]
+    tags: [dark, editorial, studio]
+
+  - id: logo-analog-liquid
+    category: logo-showcase
+    aliases: [物理流体, analog liquid, 金属麦叶, 创意品牌展示]
+    modifier: "Klein blue solid color base, metallic gold dust flow and iridescent pigment shimmer overlay, chaotic organic metallic texture contrasting with clean vector logo, artistic brand identity"
+    preferred_backend: nano-banana-2
+    suitable_for: [creative tools, artistic brands]
+    tags: [dark, creative, metallic]
+
+  - id: logo-led-matrix
+    category: logo-showcase
+    aliases: [数字硬件, LED matrix, 赛博朋克展示, 点阵矩阵]
+    modifier: "pure black background with glowing dot matrix patterns, CRT display artifacts and halftone dots, retro LED billboard aesthetic, cyberpunk retro-futurism, white logo as solid entity in front"
+    preferred_backend: nano-banana-2
+    suitable_for: [Web3, AI computing, hardware]
+    tags: [dark, cyberpunk, retro]
+
+  - id: logo-editorial-paper
+    category: logo-showcase
+    aliases: [纸本编辑, editorial paper, 小众美学展示, 高级白背景]
+    modifier: "off-white alabaster paper background, watercolor rough art paper texture, natural diffused light, subtle warm gray corner vignette, humanistic independent magazine quality, dark logo"
+    preferred_backend: nano-banana-2
+    suitable_for: [humanistic brands, fashion, professional services]
+    tags: [light, paper, editorial]
+
+  - id: logo-iridescent-frost
+    category: logo-showcase
+    aliases: [幻彩透砂, iridescent frost, 彩虹砂面, 光学材质]
+    modifier: "extremely light silver-gray background, frosted glass or sandblasted aluminum surface, soft holographic iridescent colors — light purple, light blue, soft pink — through thick frosted glass, Apple hardware render quality, dark logo"
+    preferred_backend: nano-banana-2
+    suitable_for: [tech hardware, scientific applications]
+    tags: [light, iridescent, optical]
+
+  - id: logo-morning-aura
+    category: logo-showcase
+    aliases: [晨雾光域, morning aura, 温柔AI展示, 温暖背景]
+    modifier: "warm ivory cream background, soft morning mist noise, blurred low-saturation pastels — mint green, baby blue, dawn orange — dissolving into warm white, approachable intelligent atmosphere, dark logo"
+    preferred_backend: nano-banana-2
+    suitable_for: [accessible AI, health tech, consumer apps]
+    tags: [light, soft, warm]
+
+  - id: logo-clinical
+    category: logo-showcase
+    aliases: [无菌影棚, clinical studio, 白色影棚, 算法品牌]
+    modifier: "pure white or extremely light cold gray background, high-frequency sharp digital micro-noise, large softbox from above creating smooth gradient shadow, sterile spatial order, algorithm-driven confidence, dark logo"
+    preferred_backend: nano-banana-2
+    suitable_for: [SaaS, data-centric brands]
+    tags: [light, clinical, minimal]
+
+  - id: logo-ui-container
+    category: logo-showcase
+    aliases: [容器化界面, ui container, App展示风格, 磨砂玻璃展示]
+    modifier: "frosted glass container with rounded corners and subtle transparency, micro drop-shadow depth, clean gradient background behind container, UI-native digital product presentation, SaaS platform aesthetic, logo inside container"
+    preferred_backend: nano-banana-2
+    suitable_for: [digital products, apps, SaaS]
+    tags: [light, digital, ui]
+
+  - id: logo-swiss-flat
+    category: logo-showcase
+    aliases: [瑞士扁平, swiss flat, 纯色展示, 经典权威展示]
+    modifier: "100% pure solid deep vintage green background, absolutely flat with zero gradients, zero noise, zero effects, pure graphic design with only color and form, Swiss International Style authority, white logo, maximum negative space"
+    preferred_backend: nano-banana-2
+    suitable_for: [established brands, environmental products, classic institutions]
+    tags: [solid, swiss, flat]

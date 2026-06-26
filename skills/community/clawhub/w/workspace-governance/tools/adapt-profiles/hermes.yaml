@@ -1,0 +1,174 @@
+meta:
+  author: Mars
+  github: Mars2003
+  date: 2026-04-28
+  version: 1.0.0
+  description: Hermes platform overlay profile for workspace-governance skill.
+  hermes_version:
+    min: "2026.01.0"
+    recommended: "2026.04.0"
+    max: "2026.99.99"
+  compatibility_notes:
+    - ">= 2026.04.0 supports SKILL_ADAPT.yaml profile workflow."
+    - "2026.01.0 - 2026.03.x may require HERMES_LEGACY_ADAPT=1."
+    - "< 2026.01.0 is not supported for this governance profile."
+
+platform_profile:
+  platform: hermes
+
+  detection_signals:
+    - env: "HERMES_HOME"
+    - env: "HERMES_VERSION"
+    - env: "HERMES_CONFIG"
+    - path: ".hermes/config.yaml"
+    - path: ".hermes/.env"
+    - path: ".hermes/profiles/"
+    - path: ".hermes/sessions/"
+    - path: ".hermes/skills/"
+    - path: ".hermes/cron/"
+    - path: ".hermes/memory/"
+    - path: ".hermes/mcp/"
+    - path: ".hermes/gateway/"
+    - path: ".openclaw/"
+    - path: "/opt/hermes/"
+    - path: "/usr/local/hermes/"
+
+  immutable_dirs:
+    - ".hermes/"
+    - ".hermes/config.yaml"
+    - ".hermes/.env"
+    - ".hermes/profiles/"
+    - ".hermes/credentials/"
+    - ".hermes/identity/"
+    - ".hermes/skills/"
+    - ".hermes/sessions/"
+    - ".hermes/cron/"
+    - ".hermes/memory/"
+    - ".hermes/mcp/"
+    - ".hermes/plugins/"
+    - ".hermes/extensions/"
+    - ".hermes/logs/"
+    - ".hermes/trajectories/"
+    - ".hermes/skins/"
+
+  protected_files:
+    - ".env"
+    - ".env.*"
+    - ".hermes/.env*"
+    - "*.key"
+    - "*.pem"
+    - "*.p12"
+    - "*.pfx"
+    - "*.cer"
+    - "*.crt"
+    - "*token*"
+    - "*secret*"
+    - "*auth*"
+    - "*credential*"
+    - "*id_rsa*"
+    - "*id_ed25519*"
+    - "*.mobileprovision"
+    - "*.hermes-credential*"
+    - "config.yaml"
+    - "auth.json"
+    - "session.db"
+    - "*.db"
+    - ".openclaw/credentials/**"
+    - ".openclaw/identity/**"
+    - ".openclaw/**/*.key"
+    - ".openclaw/**/*.pem"
+    - ".openclaw/**/token*"
+    - ".openclaw/**/secrets*"
+
+  non_interactive_policy:
+    enforce_blocked_on_ask_user: true
+    enforce_fail_fast_on_unconfirmed_destructive: true
+    must_not_be_overridden: true
+    blocked_output_format:
+      status: blocked
+      pending_decisions:
+        - item: "<path>"
+          proposed_action: "<action>"
+          block_reason: no_confirmation_channel
+          needed_input: "<user_decision_requirement>"
+
+  logs_policy:
+    base_dir: "${HERMES_HOME}/logs/"
+    allowed_actions:
+      - rotate
+      - compress
+      - archive
+    forbidden_actions:
+      - manual_delete
+      - immediate_delete
+    retention:
+      default_days: 90
+      min_days: 7
+      archive_older_than: 30days
+    trajectory:
+      separate_retention: true
+      default_days: 30
+      max_size_gb: 10
+
+  extensions_policy:
+    base_dir: "${HERMES_HOME}/extensions/"
+    allowed_without_confirmation:
+      - install_new_extension
+      - update_extension
+    requires_confirmation:
+      - delete_extension
+      - rename_extension
+      - disable_extension
+    forbidden:
+      - modify_extension_code
+      - patch_extension_files
+
+  merge_rules:
+    immutable_dirs:
+      strategy: union
+      constraint: security_items_only
+    protected_files:
+      strategy: union
+    destructive_guard:
+      strategy: override
+      constraint: strict_only
+    cache_policy:
+      strategy: override
+    logs_policy:
+      strategy: override
+      constraint: min_retention_days_only
+    extensions_policy:
+      strategy: union
+
+  skill_management:
+    install_allowed: true
+    update_allowed: true
+    delete_requires_confirm: true
+    external_dirs_enabled: true
+
+  session_policy:
+    db_immutable: true
+    backup_before_archive: true
+
+  cron_policy:
+    jobs_immutable: true
+    archive_old_jobs: true
+
+  high_risk_examples:
+    - action: delete
+      target: "${HERMES_HOME}/sessions/session.db"
+      block_reason: "Active session database; deletion causes data loss."
+      severity: critical
+    - action: overwrite
+      target: "${HERMES_HOME}/.env"
+      block_reason: "Credential file overwrite may destroy all keys."
+      severity: critical
+      safe_alternative: "Use hermes config edit or explicit append mode."
+    - action: delete_recursive
+      target: "${HERMES_HOME}/logs/"
+      block_reason: "Recursive log deletion removes audit trail."
+      severity: high
+    - action: archive
+      target: "${HERMES_HOME}/logs/hermes-2026-01-*.log.gz"
+      condition: "age > 90days"
+      safe: true

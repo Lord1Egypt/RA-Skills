@@ -1,0 +1,18 @@
+[
+  {"query":"My partner and I keep having the same fight about money. Can you coach me through a better conversation?","should_trigger":true,"reason":"relationship conflict coaching"},
+  {"query":"Write a softer script for telling my husband I feel lonely without blaming him.","should_trigger":true,"reason":"soft startup script"},
+  {"query":"We love each other but sex feels dead. I want a concrete intimacy reset.","should_trigger":true,"reason":"sex and desire coaching"},
+  {"query":"My girlfriend has a rape fantasy and I want to discuss CNC safely without shaming her.","should_trigger":true,"reason":"kink-aware consent coaching"},
+  {"query":"I need a flirty Hinge message that is confident but not creepy.","should_trigger":true,"reason":"flirting and dating script"},
+  {"query":"My wife has lower libido and feels pressured; I feel rejected. What should I do?","should_trigger":true,"reason":"desire discrepancy"},
+  {"query":"Use attachment theory to help me stop chasing someone avoidant.","should_trigger":true,"reason":"attachment relationship coaching"},
+  {"query":"Can love languages help if my partner wants acts of service and I feel resentful?","should_trigger":true,"reason":"love languages applied to relationship"},
+  {"query":"My boyfriend tracks my location and threatens me when I ask for space. What now?","should_trigger":true,"reason":"relationship safety redirect"},
+  {"query":"Summarise Chapter 2 of Mating in Captivity from this PDF.","should_trigger":false,"reason":"book summarisation, not relationship coaching"},
+  {"query":"Find me the cheapest paperback copy of She Comes First.","should_trigger":false,"reason":"shopping"},
+  {"query":"Write Python code to analyse dating app matches from a CSV.","should_trigger":false,"reason":"coding/data task"},
+  {"query":"What is the plot of the film Marriage Story?","should_trigger":false,"reason":"entertainment facts"},
+  {"query":"Create a spreadsheet of my wedding guest list.","should_trigger":false,"reason":"spreadsheet task"},
+  {"query":"Translate 'I love you' into German, French, and Spanish.","should_trigger":false,"reason":"translation"},
+  {"query":"What does the word attachment mean in an email client?","should_trigger":false,"reason":"technical vocabulary near-miss"}
+]

@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "tags": ["stripe", "node.js", "webhooks", "stripe-payments"],
+      "owner": {
+        "account_id": 12345678,
+        "reputation": 1247,
+        "user_id": 12345678,
+        "user_type": "registered",
+        "profile_image": "https://i.stack.imgur.com/ABCDE.jpg?s=256&g=1",
+        "display_name": "BackendDev42",
+        "link": "https://stackoverflow.com/users/12345678/backenddev42"
+      },
+      "is_answered": true,
+      "view_count": 3200,
+      "accepted_answer_id": 78901234,
+      "answer_count": 4,
+      "score": 28,
+      "last_activity_date": 1738300800,
+      "creation_date": 1736553600,
+      "last_edit_date": 1736640000,
+      "question_id": 78800042,
+      "content_license": "CC BY-SA 4.0",
+      "link": "https://stackoverflow.com/questions/78800042/stripe-webhooks-constructevent-not-a-function-after-upgrade",
+      "title": "stripe webhooks constructEvent not a function after upgrade"
+    },
+    {
+      "tags": ["stripe", "node.js", "migration", "breaking-changes"],
+      "owner": {
+        "account_id": 87654321,
+        "reputation": 3841,
+        "user_id": 87654321,
+        "user_type": "registered",
+        "profile_image": "https://i.stack.imgur.com/FGHIJ.jpg?s=256&g=1",
+        "display_name": "FullStackEngineer",
+        "link": "https://stackoverflow.com/users/87654321/fullstackengineer"
+      },
+      "is_answered": true,
+      "view_count": 890,
+      "accepted_answer_id": 78902100,
+      "answer_count": 2,
+      "score": 15,
+      "last_activity_date": 1737820800,
+      "creation_date": 1736726400,
+      "last_edit_date": 1736812800,
+      "question_id": 78802100,
+      "content_license": "CC BY-SA 4.0",
+      "link": "https://stackoverflow.com/questions/78802100/stripe-v8-breaking-changes-migration-guide",
+      "title": "stripe v8 breaking changes migration guide"
+    }
+  ],
+  "has_more": false,
+  "quota_max": 300,
+  "quota_remaining": 276
+}

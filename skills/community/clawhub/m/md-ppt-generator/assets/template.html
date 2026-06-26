@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        {{css}}
+    </style>
+</head>
+<body>
+    <!-- 定义全局 SVG 渐变，供所有图标引用 -->
+    <svg width="0" height="0" style="position:absolute;">
+        <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#a8dadc;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#b8c1ec;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8e9aaf;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- 顶部渐变进度条 -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- 右侧空灵导航点 -->
+    <div class="nav-dots" id="navDots"></div>
+
+    <main id="mainContainer">
+        {{slides}}
+    </main>
+
+    <script>
+        const container = document.getElementById('mainContainer');
+        const sections = document.querySelectorAll('section');
+        const navDots = document.getElementById('navDots');
+        const progressBar = document.getElementById('progressBar');
+
+        // 1. 动态生成导航点
+        sections.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            
+            // 点击跳转
+            dot.addEventListener('click', () => {
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            navDots.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        // 2. 监听滚动更新状态 (IntersectionObserver)
+        const observerOptions = {
+            root: container,
+            threshold: 0.6 
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(sections).indexOf(entry.target);
+                    updateActiveDot(index);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        function updateActiveDot(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        // 3. 实时进度条计算
+        container.addEventListener('scroll', () => {
+            const scrollTop = container.scrollTop;
+            const scrollHeight = container.scrollHeight - container.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        // 4. 键盘翻页支持 (上下左右、空格)
+        window.addEventListener('keydown', (e) => {
+            const currentScroll = container.scrollTop;
+            const height = container.clientHeight;
+            let targetIndex = Math.round(currentScroll / height);
+
+            if (['ArrowDown', 'ArrowRight', ' '].includes(e.key)) {
+                e.preventDefault();
+                if (targetIndex < sections.length - 1) {
+                    sections[targetIndex + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (['ArrowUp', 'ArrowLeft'].includes(e.key)) {
+                e.preventDefault();
+                if (targetIndex > 0) {
+                    sections[targetIndex - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // 5. 呼吸感增强：为 section 内的元素自动添加延迟动画
+        sections.forEach(section => {
+            const children = section.querySelectorAll('h1, p, .cards-container, .tags-container, svg');
+            children.forEach((child, i) => {
+                child.classList.add('fade-in-up');
+                child.style.animationDelay = `${i * 0.15}s`;
+            });
+        });
+    </script>
+</body>
+</html>

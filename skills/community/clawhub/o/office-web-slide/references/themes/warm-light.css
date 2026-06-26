@@ -1,0 +1,49 @@
+/*
+ * Theme: Warm Light
+ * 暖调学院浅色 — 奶油白背景，手绘质感，人文温度
+ * 适合：AI/科研汇报、品牌故事、人文科技主题、温暖叙事
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #141413;
+  --color-secondary: #615f59;
+  --color-accent: #c4642d;
+  --color-bg: #faf9f5;
+  --color-bg-alt: #f0efe8;
+  --color-surface: #ffffff;
+  --color-text: #141413;
+  --color-text-secondary: #615f59;
+  --color-text-on-primary: #faf9f5;
+  --color-border: #d8d5cd;
+
+  /* --- 字体 --- */
+  --font-heading: 'Tiempos Headline', 'Georgia', 'Noto Serif SC', serif;
+  --font-body: 'Soehne', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Soehne Mono', 'Fira Code', monospace;
+  --font-size-title: 3.94rem;
+  --font-size-heading: 2.7rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.27rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.62rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 2.25rem;
+  --spacing-lg: 3.38rem;
+  --spacing-xl: 4.5rem;
+
+  /* --- 效果 --- */
+  --border-radius: 8px;
+  --shadow-sm: 0 1px 3px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.06);
+  --shadow-lg: 0 8px 24px rgba(20,20,19,0.08);
+  --transition-speed: 0.3s;
+  --transition-easing: ease;
+
+  /* --- 玻璃/渐变扩展（非玻璃主题保持默认值，零渲染开销） --- */
+  --surface-blur: 0px;
+  --surface-saturate: 100%;
+  --bg-pattern: none;
+}

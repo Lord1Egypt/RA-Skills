@@ -1,35 +1,54 @@
----
-name: "Mio智能聊天"
-description: "基于用户习惯动态判断空闲状态，主动发起对话并智能识别任务分类分发给子Agent处理。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, chat, companion]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mio-smart-chat"
-sourceUrl: "https://clawhub.ai/skills/mio-smart-chat"
----
+# Mio-Smart-Chat
 
-# Mio智能聊天
+> 主动聊天 + 任务分发系统 - 学习用户习惯，按状态主动聊天，智能任务分发
 
-> 基于用户习惯动态判断空闲状态，主动发起对话并智能识别任务分类分发给子Agent处理。
+## 功能
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mio-smart-chat`
-- **Source URL:** [https://clawhub.ai/skills/mio-smart-chat](https://clawhub.ai/skills/mio-smart-chat)
+1. **习惯学习** - 记录用户的活跃时间、话题偏好、聊天模式
+2. **主动聊天** - 检测到空闲时主动发起对话（非定时）
+3. **任务分发** - 智能识别任务类型并分发给子Agent处理
+4. **动态判断** - 基于学习到的习惯判断空闲状态
 
-## Overview
+## 工作流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mio-smart-chat
 ```
+用户输入
+    ↓
+┌──────────────────┐
+│  意图识别         │ ← 判断闲聊/任务/情绪
+└────────┬─────────┘
+         ↓
+    ┌────┴────┐
+    ↓         ↓
+  闲聊      任务
+    ↓         ↓
+ 记住习惯   分发子Agent
+    ↓
+ 检测空闲
+    ↓
+ 主动聊天
+```
+
+## 触发方式
+
+- 用户消息触发：实时处理输入
+- 主动触发：基于习惯动态判断（非定时）
+
+## 文件结构
+
+```
+mio-smart-chat/
+├── SKILL.md          # 技能说明
+├── index.js          # 主入口
+├── data/            # 数据目录
+│   ├── habits.json  # 用户习惯
+│   └── tasks.json  # 待办任务
+└── config.json      # 配置
+```
+
+## 技术实现
+
+- 意图识别：基于关键词的任务分类
+- 习惯学习：统计聊天时间和话题
+- 空闲检测：动态判断，非固定时间
+- 任务分发：spawn子Agent处理

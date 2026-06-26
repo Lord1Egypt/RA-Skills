@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "version": "2.0.0",
+    "title": "RenderingVideo Demo",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "background": {
+      "type": "linear",
+      "angle": 135,
+      "stops": [
+        { "offset": 0, "color": "#1a1a2e" },
+        { "offset": 0.5, "color": "#16213e" },
+        { "offset": 1, "color": "#0f3460" }
+      ]
+    }
+  },
+  "tracks": [
+    {
+      "id": "main-track",
+      "clips": [
+        {
+          "type": "circle",
+          "start": 0,
+          "duration": 5,
+          "transform": { "x": "20%", "y": "30%" },
+          "radius": 80,
+          "style": { "fill": "#e94560", "opacity": 0.8 },
+          "animations": [
+            { "type": "scale", "from": 0, "to": 1, "duration": 0.8 }
+          ]
+        },
+        {
+          "type": "circle",
+          "start": 0.3,
+          "duration": 5,
+          "transform": { "x": "80%", "y": "70%" },
+          "radius": 60,
+          "style": { "fill": "#0ead69", "opacity": 0.7 },
+          "animations": [
+            { "type": "scale", "from": 0, "to": 1, "duration": 0.6 }
+          ]
+        },
+        {
+          "type": "rect",
+          "start": 0.5,
+          "duration": 5,
+          "transform": { "x": "85%", "y": "25%" },
+          "width": 100,
+          "height": 100,
+          "style": { "fill": "#ffc857", "opacity": 0.75 },
+          "animations": [
+            { "type": "rotate", "from": 0, "to": 360, "duration": 4 }
+          ]
+        },
+        {
+          "type": "text",
+          "start": 0.8,
+          "duration": 4.2,
+          "text": "RenderingVideo",
+          "transform": { "x": "50%", "y": "40%" },
+          "style": {
+            "fontFamily": "Arial",
+            "fontSize": 96,
+            "fontWeight": 700,
+            "fill": "#ffffff",
+            "textAlign": "center"
+          },
+          "animations": [
+            { "type": "slideIn", "direction": "up", "distance": 80, "duration": 0.8 }
+          ]
+        },
+        {
+          "type": "text",
+          "start": 1.5,
+          "duration": 3.5,
+          "text": "Programmatic Video Engine",
+          "transform": { "x": "50%", "y": "55%" },
+          "style": {
+            "fontFamily": "Arial",
+            "fontSize": 36,
+            "fontWeight": 400,
+            "fill": "#a0a0a0",
+            "textAlign": "center"
+          },
+          "animations": [
+            { "type": "fadeIn", "duration": 0.6 }
+          ]
+        },
+        {
+          "type": "text",
+          "start": 2.2,
+          "duration": 2.8,
+          "text": "Create videos with JSON",
+          "transform": { "x": "50%", "y": "75%" },
+          "style": {
+            "fontFamily": "Arial",
+            "fontSize": 28,
+            "fontWeight": 500,
+            "fill": "#0ead69",
+            "textAlign": "center"
+          },
+          "animations": [
+            { "type": "slideIn", "direction": "down", "distance": 40, "duration": 0.5 }
+          ]
+        }
+      ]
+    }
+  ]
+}

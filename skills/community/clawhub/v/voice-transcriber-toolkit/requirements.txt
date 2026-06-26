@@ -1,0 +1,3 @@
+openai-whisper>=20230314
+vosk>=0.3.45
+pytest>=7.0.0

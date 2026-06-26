@@ -1,0 +1,48 @@
+{
+  "name": "principles-agent",
+  "version": "0.2.0",
+  "description": "First-principles iterative task decomposition framework for OpenClaw",
+  "author": "Xiaohei & Xiaolong",
+  "license": "MIT",
+  "keywords": ["agent", "first-principles", "task-decomposition", "iterative", "openclaw-skill"],
+  "dependencies": {},
+  "peerDependencies": {
+    "python": ">=3.8"
+  },
+  "permissions": {
+    "description": "principles-agent 是纯流程编排框架，权限边界清晰：",
+    "items": [
+      {
+        "permission": "llm_call",
+        "type": "injected",
+        "description": "LLM 调用由 OpenClaw 主 Agent 注入，skill 不直接访问网络或 API",
+        "what_it_does": "接收主 Agent 提供的 LLM 调用结果，进行流程控制和决策"
+      },
+      {
+        "permission": "file_system_read",
+        "type": "limited",
+        "description": "仅读取 skill 自身目录内的源代码文件",
+        "what_it_does": "Python 模块加载，不读取工作区外或用户文件"
+      },
+      {
+        "permission": "file_system_write",
+        "type": "user_initiated",
+        "description": "仅在用户通过 --output 参数指定时写入报告文件",
+        "what_it_does": "写入分析结果报告到用户指定路径"
+      },
+      {
+        "permission": "network",
+        "type": "none",
+        "description": "skill 不发起任何网络请求",
+        "what_it_does": "所有 LLM 调用由主 Agent 执行"
+      },
+      {
+        "permission": "environment",
+        "type": "none",
+        "description": "skill 不读取任何环境变量",
+        "what_it_does": "所有配置通过调用参数传入"
+      }
+    ],
+    "responsibility_summary": "skill 负责：需求分析 → 第一性原理推导 → 原子任务拆解 → 迭代精炼 → 依赖排序 → 结果整合 → 质量验证。所有实际 LLM 调用和任务执行由 OpenClaw 主 Agent 完成。"
+  }
+}

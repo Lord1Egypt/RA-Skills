@@ -1,0 +1,22 @@
+{
+  "name": "heartbeat-ollama-guard",
+  "version": "1.0.0",
+  "description": "将 OpenClaw 心跳切换为本地 Ollama 模型并部署配置守卫",
+  "scripts": {
+    "setup": "python3 heartbeat_ollama_guard.py --setup",
+    "status": "python3 heartbeat_ollama_guard.py --status",
+    "check": "python3 heartbeat_ollama_guard.py --check",
+    "uninstall": "python3 heartbeat_ollama_guard.py --uninstall"
+  },
+  "engines": {
+    "python": ">=3.9"
+  },
+  "keywords": [
+    "ollama",
+    "heartbeat",
+    "openclaw",
+    "local-model",
+    "cost-control"
+  ],
+  "license": "MIT"
+}

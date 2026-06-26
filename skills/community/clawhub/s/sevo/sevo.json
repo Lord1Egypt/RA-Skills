@@ -1,0 +1,30 @@
+{
+  "managed": true,
+  "pipelines": [
+    {
+      "slug": "sevo-endgame",
+      "stage": "specify",
+      "createdAt": "2026-05-22T09:53:00Z",
+      "description": "终局修复流水线：修复 SEVO 剩余 P1/P2 缺口，推进到终局",
+      "scope": [
+        "FR-29: Tiered Endgame Gap Scan - L3 运行时验证默认检查项补充",
+        "FR-22: 角色-任务匹配调度约束 - 独立验证模块",
+        "FR-11: Proactive Clarification - 自动触发链路集成验证",
+        "FR-14: Package Distribution & CLI - 单 Agent 降级场景覆盖",
+        "FR-15: Progressive Disclosure - CLI 交互层分层配置深度",
+        "FR-16: Onboarding Experience - demo 项目自动推进验证",
+        "FR-13: PipelineEngine - 两个目录残留统一",
+        "FR-08a: Commercialization Gate - 商用化检查清单扩展"
+      ]
+    },
+    {
+      "slug": "sevo-spec-sections-gate",
+      "stage": "implement",
+      "createdAt": "2026-05-23T01:55:00Z",
+      "description": "FR-02 AC-4.9: spec-review-gate 强制检查四章节（用户人群/痛点/原始需求/用户体验流）",
+      "scope": [
+        "FR-02: Spec Review Gate - AC-4.9 四章节强制检查规则实现"
+      ]
+    }
+  ]
+}

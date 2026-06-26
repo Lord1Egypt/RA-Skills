@@ -1,0 +1,13 @@
+{
+  "name": "示例空间",
+  "description": "示例文档查询助手",
+  "space_id": "",
+  "root_node_token": "",
+  "root_url": "",
+  "trigger_keywords": [],
+  "trigger_semantic": "",
+  "search_depth": "recursive",
+  "supported_formats": ["docx", "sheet", "bitable", "board"],
+  "answer_style": "专业简洁，引用原文",
+  "not_found_message": "抱歉，在文档库中未找到相关信息。"
+}

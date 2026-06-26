@@ -1,0 +1,25 @@
+{
+  "goal": "Read-only seven-day campaign performance report",
+  "requires_user_approval": false,
+  "commands": [
+    {
+      "id": "current-account",
+      "intent": "Confirm the current ad account context",
+      "command": ["meta", "ads", "adaccount", "current"]
+    },
+    {
+      "id": "campaigns",
+      "intent": "List campaigns for context",
+      "command": ["meta", "ads", "campaign", "list", "--limit", "50"]
+    },
+    {
+      "id": "seven-day-insights",
+      "intent": "Fetch recent performance metrics",
+      "command": ["meta", "ads", "insights", "get", "--date-preset", "last_7d", "--fields", "campaign_id,campaign_name,spend,impressions,clicks,ctr,cpc,cpm,conversions,cost_per_conversion"]
+    }
+  ],
+  "verification": [
+    "Confirm date range and fields in the final response.",
+    "Separate recommendations from changes; this plan performs no writes."
+  ]
+}

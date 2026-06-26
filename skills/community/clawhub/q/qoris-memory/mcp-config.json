@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "qoris-memory": {
+      "url": "https://mcp.qoris.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${QORIS_API_KEY}",
+        "X-Workspace-ID": "${QORIS_WORKSPACE_ID}"
+      },
+      "description": "Qoris persistent agent memory — versioned, branched, cross-session memory with semantic search"
+    }
+  }
+}

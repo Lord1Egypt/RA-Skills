@@ -1,0 +1,113 @@
+{
+  "description": "快递公司官方查询入口映射表",
+  "priority": ["官网", "小程序", "权威聚合页", "搜索摘要"],
+  "sources": {
+    "顺丰速运": {
+      "name": "顺丰速运",
+      "website": "https://www.sf-express.com",
+      "query_path": "/trackingParams/",
+      "app": "顺丰速运",
+      "keywords": ["顺丰", "SF"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "中通快递": {
+      "name": "中通快递",
+      "website": "https://www.zto.com",
+      "query_path": "/search",
+      "app": "中通快递",
+      "keywords": ["中通", "ZTO"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "圆通速递": {
+      "name": "圆通速递",
+      "website": "https://www.yto.net.cn",
+      "query_path": "/tracking",
+      "app": "圆通速运",
+      "keywords": ["圆通", "YTO"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "韵达速递": {
+      "name": "韵达速递",
+      "website": "https://www.yundaex.com",
+      "query_path": "/www/track/trace",
+      "app": "韵达快递",
+      "keywords": ["韵达", "YUNDA"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "申通快递": {
+      "name": "申通快递",
+      "website": "https://www.sto.cn",
+      "query_path": "/search",
+      "app": "申通快递",
+      "keywords": ["申通", "STO"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "极兔速递": {
+      "name": "极兔速递",
+      "website": "https://www.jtexpress.com.cn",
+      "query_path": "/track",
+      "app": "极兔快递",
+      "keywords": ["极兔", "J&T", "JT"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "京东物流": {
+      "name": "京东物流",
+      "website": "https://www.jd.com",
+      "query_path": "/track",
+      "app": "京东物流",
+      "keywords": ["京东", "JD"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "邮政快递": {
+      "name": "邮政快递",
+      "website": "https://www.ems.com.cn",
+      "query_path": "/query",
+      "app": "中国邮政EMS",
+      "keywords": ["邮政", "EMS", "中国邮政"],
+      "response_pattern": "已签收|投递|运输中"
+    },
+    "德邦物流": {
+      "name": "德邦物流",
+      "website": "https://www.deppon.com",
+      "query_path": "/fweb/index/trace",
+      "app": "德邦快递",
+      "keywords": ["德邦", "DP"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "安能物流": {
+      "name": "安能物流",
+      "website": "https://www.ane56.com",
+      "query_path": "/search",
+      "app": "安能物流",
+      "keywords": ["安能", "ANE"],
+      "response_pattern": "已签收|派送中|运输中"
+    },
+    "跨越速运": {
+      "name": "跨越速运",
+      "website": "https://www.ky-express.com",
+      "query_path": "/track",
+      "app": "跨越速运",
+      "keywords": ["跨越", "KY"],
+      "response_pattern": "已签收|派送中|运输中"
+    }
+  },
+  "aggregators": {
+    "快递100": {
+      "name": "快递100",
+      "website": "https://www.kuaidi100.com",
+      "query_param": "nu",
+      "api": "https://www.kuaidi100.com/api/trace",
+      "description": "聚合查询平台，支持3000+快递公司"
+    },
+    "快递鸟": {
+      "name": "快递鸟",
+      "website": "https://www.kdniao.com",
+      "description": "聚合查询API服务"
+    },
+    "爱查快递": {
+      "name": "爱查快递",
+      "website": "https://www.ickd.cn",
+      "description": "快递查询导航"
+    }
+  }
+}

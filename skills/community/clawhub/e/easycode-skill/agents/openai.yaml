@@ -1,0 +1,4 @@
+version: 1
+display_name: EasyCode Generator
+short_description: Generate Java code from DB tables with EasyCode template groups and memory.
+default_prompt: Generate Java files from my database tables using EasyCode templates and my last-used config.

@@ -1,35 +1,49 @@
 ---
-name: "Gws Modelarmor Sanitize Response"
+name: gws-modelarmor-sanitize-response
 description: "Google Model Armor: Sanitize a model response through a Model Armor template."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-modelarmor-sanitize-response"
-sourceUrl: "https://clawhub.ai/skills/gws-modelarmor-sanitize-response"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "security"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws modelarmor +sanitize-response --help"
 ---
 
-# Gws Modelarmor Sanitize Response
+# modelarmor +sanitize-response
 
-> Google Model Armor: Sanitize a model response through a Model Armor template.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-modelarmor-sanitize-response`
-- **Source URL:** [https://clawhub.ai/skills/gws-modelarmor-sanitize-response](https://clawhub.ai/skills/gws-modelarmor-sanitize-response)
+Sanitize a model response through a Model Armor template
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-modelarmor-sanitize-response
+gws modelarmor +sanitize-response --template <NAME>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--template` | ✓ | — | Full template resource name (projects/PROJECT/locations/LOCATION/templates/TEMPLATE) |
+| `--text` | — | — | Text content to sanitize |
+| `--json` | — | — | Full JSON request body (overrides --text) |
+
+## Examples
+
+```bash
+gws modelarmor +sanitize-response --template projects/P/locations/L/templates/T --text 'model output'
+model_cmd | gws modelarmor +sanitize-response --template ...
+```
+
+## Tips
+
+- Use for outbound safety (model -> user).
+- For inbound safety (user -> model), use +sanitize-prompt.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-modelarmor](../gws-modelarmor/SKILL.md) — All filter user-generated content for safety commands

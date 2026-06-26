@@ -1,0 +1,7 @@
+{
+  "name": "aap-agent-bounty",
+  "version": "1.0.10",
+  "private": true,
+  "description": "Instruction-only skill package metadata",
+  "license": "MIT"
+}

@@ -1,0 +1,40 @@
+{
+  "skill_name": "cart-recovery",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our checkout has three steps. 40% leave after address, 15% after shipping method, 25% after payment (of those who started). What should we do?",
+      "expected_output": "Funnel map; branch table with shipping comp for address-heavy, BNPL/trust for payment; resistance classification; 4+ row matrix; mandatory three emails labeled Urgency, Trust rebuild, Ultimatum with A/B subjects.",
+      "files": [],
+      "expectations": [
+        "Maps or references a three-step checkout model (contact/address, shipping, payment)",
+        "Applies branch logic: stronger shipping compensation or clarity emphasis when address-step drop is high; installment/BNPL or payment trust when payment-step drop is notable",
+        "Includes a section or equivalent for resistance classification",
+        "Includes a Markdown table with at least four rows linking checkout step to resistance, tactic, and email reinforcement",
+        "Includes exactly three email blocks labeled with Urgency, Trust rebuild, and Ultimatum (or exact bracket labels [Urgency], [Trust rebuild], [Ultimatum])",
+        "Each of the three emails includes two subject line variants and a body skeleton with CTA and compliance-friendly language"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "People abandon checkout a lot. That's it.",
+      "expected_output": "Pushy: still outputs three-part Urgency/Trust/Ultimatum emails; full framework for all three steps with instrumentation if no data.",
+      "files": [],
+      "expectations": [
+        "Still provides the three-part email sequence with Urgency, Trust rebuild, and Ultimatum themes",
+        "Does not refuse email scripts solely because the user did not ask for them",
+        "Covers all three checkout steps with default branch hypotheses when step data is absent"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Track my package 9400111899223344556677 only.",
+      "expected_output": "Brief WISMO style; no full checkout recovery funnel or three-email mandate.",
+      "files": [],
+      "expectations": [
+        "Does not output the full mandatory three-theme abandoned-checkout email sequence as the primary deliverable",
+        "Does not force step-based shipping or BNPL compensation strategy for a tracking-only request"
+      ]
+    }
+  ]
+}

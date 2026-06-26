@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: MIT-0
+# Copyright 2026 InvestorClaw Contributors
+#
+# zeroclaw skill manifest for InvestorClaw v4.0.
+# This manifest is MIT-0-licensed; the InvestorClaw service it points to
+# is Apache 2.0. Audit-compliant for zeroclaw 0.7.3+: metadata only,
+# no scripts, no symlinks, no executable payload.
+
+[skill]
+name = "investorclaw"
+version = "4.1.22"
+description = "Portfolio analysis and memory via MCP-HTTP. Connects zeroclaw to the InvestorClaw v4.0 service (deterministic engine + mnemos memory) running locally as a Docker compose stack."
+license = "MIT-0"
+homepage = "https://investorclaw.app"
+repository = "https://github.com/argonautsystems/InvestorClaw"
+authors = ["InvestorClaw Contributors"]
+maintainer = "Jason Perlow <jperlow@gmail.com>"
+
+[skill.tags]
+tags = ["finance", "portfolio", "investing", "mcp", "analysis", "memory"]
+
+[skill.runtime]
+# This skill connects to MCP servers; it ships no executable code.
+# zeroclaw should treat it as metadata-only (manifest + SKILL.md).
+type = "mcp-client"
+audit_compliant = true
+
+[skill.requires]
+# This skill is INERT without the InvestorClaw v4.0 service running.
+# It expects two MCP servers reachable from the zeroclaw process.
+# See INSTALL.md (in this directory) for the compose-up procedure.
+service = "investorclaw-v4.0"
+docker = true
+
+[[skill.requires.mcp_servers]]
+name = "investorclaw"
+transport = "http"
+default_url = "http://localhost:18090/mcp"
+purpose = "Portfolio analysis (holdings, performance, bonds, optimization, scenarios)."
+
+[[skill.requires.mcp_servers]]
+name = "mnemos"
+transport = "http"
+default_url = "http://localhost:5002/mcp"
+purpose = "Memory + knowledge graph for cross-session continuity."
+
+[skill.guardrails]
+educational_only = true
+no_trade_execution = true
+no_account_access = true
+disclaimer_envelope = "all-outputs"

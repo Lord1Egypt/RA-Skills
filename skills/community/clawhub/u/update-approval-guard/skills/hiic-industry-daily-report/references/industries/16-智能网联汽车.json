@@ -1,0 +1,35 @@
+{
+  "id": "16",
+  "name": "智能网联汽车",
+  "category": "先进制造业",
+  "keywords": [
+    "智能网联汽车",
+    "自动驾驶",
+    "新能源汽车",
+    "车联网",
+    "智能座舱",
+    "电动化"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🚗",
+    "maxDescriptionLength": 200
+  }
+}

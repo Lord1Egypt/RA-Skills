@@ -1,35 +1,59 @@
----
-name: "Batch Image Processor Pro"
-description: "批量处理图片，支持压缩、裁剪、水印、格式转换、重命名及色彩调整，适用于电商和社交媒体图片优化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/batch-image-processor-pro"
-sourceUrl: "https://clawhub.ai/skills/batch-image-processor-pro"
----
+# Batch Image Processor - 批量图片处理工具
 
-# Batch Image Processor Pro
+## 功能描述
+批量图片处理工具，支持压缩、裁剪、水印、格式转换等操作。
 
-> 批量处理图片，支持压缩、裁剪、水印、格式转换、重命名及色彩调整，适用于电商和社交媒体图片优化。
+## 使用场景
+- 电商图片批量处理
+- 社交媒体配图批量生成
+- 照片批量压缩
+- 图片批量加水印
+- 格式批量转换
+- 批量裁剪调整
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/batch-image-processor-pro`
-- **Source URL:** [https://clawhub.ai/skills/batch-image-processor-pro](https://clawhub.ai/skills/batch-image-processor-pro)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/batch-image-processor-pro
+### 批量压缩
 ```
+压缩图片 目录=./images 质量=80% 输出目录=./compressed
+```
+
+### 批量加水印
+```
+图片加水印 目录=./photos 水印=logo.png 位置=右下角 输出=./watermarked
+```
+
+### 批量转换格式
+```
+转换图片格式 目录=./src 格式=jpg 输出目录=./output
+```
+
+### 批量裁剪
+```
+裁剪图片 目录=./photos 尺寸=1080x1080 模式=居中 输出=./cropped
+```
+
+### 批量重命名
+```
+重命名图片 目录=./photos 格式=product_001.jpg 输出=./renamed
+```
+
+## 支持格式
+**输入**: JPG, PNG, GIF, WEBP, BMP, TIFF
+**输出**: JPG, PNG, WEBP, GIF, BMP
+
+## 处理功能
+- 压缩优化
+- 格式转换
+- 添加水印
+- 裁剪调整
+- 尺寸缩放
+- 批量重命名
+- EXIF 信息清理
+- 色彩调整
+
+## 特性
+- 批量处理
+- 保持质量
+- 快速处理
+- 支持大图

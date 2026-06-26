@@ -1,0 +1,436 @@
+<!-- ====================== 组件库 Demo 指引 ======================
+ * 注意：Header和Footer为全局固定模板，已经通过JS引入，无需修改
+ * 所有开发工作仅需在【页面主体内容区域】内完成
+ * 公共样式：assets/css/common.css（全局统一规范，禁止私自修改）
+ * ========================================================= -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财经探子 - 组件库与设计规范 Demo</title>
+    <!-- 全局公共样式（固定引用，禁止删除） -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    <!-- FontAwesome 6 图标库（固定引用，可直接使用所有免费图标） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 页面独立样式（展示组件库特定的样式或未来需要提取到 common.css 的样式） -->
+    <style>
+        /* =====================================================
+           Demo 页面专属布局样式 (仅供本页面排版使用)
+           ===================================================== */
+        .demo-section {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--zl-border);
+        }
+        .demo-section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--zl-text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-section-title i {
+            color: var(--zl-primary);
+        }
+        .demo-section-desc {
+            font-size: 14px;
+            color: var(--zl-text-secondary);
+            margin-bottom: 32px;
+            background: var(--zl-bg-light);
+            padding: 12px 16px;
+            border-left: 4px solid var(--zl-primary);
+            border-radius: 0 var(--zl-radius-md) var(--zl-radius-md) 0;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .demo-flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* =====================================================
+           后续可复用的组件样式 (可根据需要提取到 common.css 中)
+           ===================================================== */
+        
+        /* --- 1. 扩展按钮样式 --- */
+        .btn-text {
+            background: transparent;
+            border: none;
+            color: var(--zl-primary);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-text:hover {
+            background: var(--zl-primary-opacity);
+            border-radius: var(--zl-radius-md);
+        }
+        .btn-danger {
+            background: var(--zl-danger);
+            border: none;
+            border-radius: var(--zl-radius-full);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--zl-shadow-sm);
+        }
+        .btn-danger:hover {
+            background: #d9534f;
+            box-shadow: var(--zl-shadow-md);
+            transform: translateY(-1px);
+        }
+
+        /* --- 2. 扩展标签 (Tag) 与徽章 (Badge) 样式 --- */
+        .tag-success { background: #f6ffed; color: var(--zl-success); border: 1px solid #b7eb8f; }
+        .tag-warning { background: #fffbe6; color: var(--zl-warning); border: 1px solid #ffe58f; }
+        .tag-danger { background: #fff2f0; color: var(--zl-danger); border: 1px solid #ffccc7; }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--zl-danger);
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 0 6px;
+            height: 20px;
+            border-radius: 10px;
+            min-width: 20px;
+        }
+
+        /* --- 3. 页面头部 Banner (提取自 list-template) --- */
+        .page-header-banner {
+            background: var(--zl-primary-opacity);
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: var(--zl-radius-xl);
+            margin-bottom: 40px;
+        }
+        .page-header-banner .title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--zl-primary);
+            margin-bottom: 16px;
+        }
+        .page-header-banner .subtitle {
+            font-size: 16px;
+            color: var(--zl-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- 4. 提示框 (Alert / Highlight Box) (提取自 detail-template) --- */
+        .alert-box {
+            background: var(--zl-primary-opacity);
+            border: 1px solid var(--zl-primary-opacity);
+            border-radius: var(--zl-radius-lg);
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .alert-box.warning {
+            background: #fffbe6;
+            border-color: #ffe58f;
+            color: var(--zl-warning);
+        }
+        .alert-icon {
+            font-size: 20px;
+            color: var(--zl-primary);
+        }
+        .alert-box.warning .alert-icon {
+            color: var(--zl-warning);
+        }
+        
+        /* --- 5. 表单组件 (提取自 tool-template) --- */
+        .form-group { margin-bottom: 24px; }
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--zl-text-primary);
+        }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--zl-border);
+            border-radius: var(--zl-radius-md);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: var(--zl-bg);
+            color: var(--zl-text-primary);
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--zl-primary);
+            box-shadow: 0 0 0 3px var(--zl-primary-opacity);
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局固定Header（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/header.js"></script>
+
+    <!-- ==============================================
+         页面主体内容区域
+         ============================================== -->
+    <main class="container" style="padding-top: 88px;">
+        
+        <!-- 页面主标题 -->
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h1 style="color: var(--zl-primary); margin-bottom: 16px;">UI 组件库与设计规范 Demo</h1>
+            <p class="text-secondary">为未来的 AI Agent 和开发者提供标准的组件调用参考，严格遵循 Google Material Design 3 极简扁平化风格与紫色系配色。</p>
+        </div>
+
+        <!-- ================== 1. 排版与文本 (Typography) ================== -->
+        <section class="demo-section">
+            <h2 class="demo-section-title"><i class="fa-solid fa-font"></i> 排版与文本 (Typography)</h2>
+            <div class="demo-section-desc">全局排版规范已在 <code>common.css</code> 中定义，直接使用原生 HTML 标签或相应的 class 即可。字体颜色通过中性色变量控制。</div>
+            
+            <div style="background: var(--zl-bg-light); padding: 32px; border-radius: var(--zl-radius-lg);">
+                <h1>H1 页面主标题 (32px, Bold)</h1>
+                <h2>H2 区块标题 (22px, Bold)</h2>
+                <h3>H3 模块小标题 (18px, Bold)</h3>
+                <p>正文内容 (p标签)：这是一段标准的正文内容。字号为16px，行距1.8，颜色为深灰色 <code>--zl-text-primary</code>，提供舒适的阅读体验。不要使用纯黑，以免视觉疲劳。</p>
+                <div class="text-secondary" style="margin-bottom: 16px;">次要文本 (.text-secondary)：用于描述性文字、副标题等。字号14px，颜色更浅。</div>
+                <div class="text-minor">辅助极小文本 (.text-minor)：用于时间、来源、版权等。字号12px。</div>
+            </div>
+        </section>
+
+        <!-- ================== 2. 颜色规范展示 (Colors) ================== -->
+        <section class="demo-section">
+            <h2 class="demo-section-title"><i class="fa-solid fa-palette"></i> 颜色规范 (Colors)</h2>
+            <div class="demo-section-desc">优先使用 <code>var(--zl-primary)</code> 作为核心色，避免复杂渐变。状态颜色用于特定的成功、警告、危险场景。</div>
+            
+            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+                <!-- 品牌色 -->
+                <div style="background: var(--zl-primary); color: #fff; padding: 24px; border-radius: var(--zl-radius-md); text-align: center;">
+                    <strong>Primary</strong><br><small>#695ddf</small>
+                </div>
+                <div style="background: var(--zl-primary-opacity); color: var(--zl-primary); padding: 24px; border-radius: var(--zl-radius-md); text-align: center;">
+                    <strong>Primary Opacity</strong><br><small>#695ddf1a</small>
+                </div>
+                <!-- 状态色 -->
+                <div style="background: var(--zl-success); color: #fff; padding: 24px; border-radius: var(--zl-radius-md); text-align: center;">
+                    <strong>Success</strong><br><small>var(--zl-success)</small>
+                </div>
+                <div style="background: var(--zl-warning); color: #fff; padding: 24px; border-radius: var(--zl-radius-md); text-align: center;">
+                    <strong>Warning</strong><br><small>var(--zl-warning)</small>
+                </div>
+                <div style="background: var(--zl-danger); color: #fff; padding: 24px; border-radius: var(--zl-radius-md); text-align: center;">
+                    <strong>Danger</strong><br><small>var(--zl-danger)</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== 3. 按钮组件 (Buttons) ================== -->
+        <section class="demo-section">
+            <h2 class="demo-section-title"><i class="fa-solid fa-stop"></i> 按钮组件 (Buttons)</h2>
+            <div class="demo-section-desc">按钮遵循 Material Design 的药丸形圆角 <code>--zl-radius-full</code>。提供主按钮、次按钮、文本按钮等。</div>
+            
+            <div class="demo-flex-row" style="background: var(--zl-bg-light); padding: 32px; border-radius: var(--zl-radius-lg);">
+                <button class="btn-primary">主按钮 (Primary)</button>
+                <button class="btn-secondary">次按钮 (Secondary)</button>
+                <button class="btn-danger">危险操作 (Danger)</button>
+                <button class="btn-text">文本按钮 (Text)</button>
+                <button class="btn-primary" disabled style="opacity: 0.5; cursor: not-allowed;">禁用状态</button>
+            </div>
+        </section>
+
+        <!-- ================== 4. 标签与徽章 (Tags & Badges) ================== -->
+        <section class="demo-section">
+            <h2 class="demo-section-title"><i class="fa-solid fa-tags"></i> 标签与徽章 (Tags & Badges)</h2>
+            <div class="demo-section-desc">标签用于分类和状态展示。默认标签已在 <code>common.css</code> 定义。徽章常用于消息提示。</div>
+            
+            <div class="demo-flex-row" style="margin-bottom: 24px;">
+                <span class="tag">默认标签 (Primary)</span>
+                <span class="tag tag-success">成功状态</span>
+                <span class="tag tag-warning">警告状态</span>
+                <span class="tag tag-danger">失败/危险</span>
+            </div>
+
+            <div class="demo-flex-row">
+                <div style="position: relative; display: inline-block; margin-right: 20px;">
+                    <i class="fa-regular fa-bell" style="font-size: 24px;"></i>
+                    <span class="badge" style="position: absolute; top: -8px; right: -10px;">12</span>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <button class="btn-secondary">消息中心</button>
+                    <span class="badge" style="position: absolute; top: -8px; right: -8px;">新</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== 5. 卡片组件 (Cards) ================== -->
+        <section class="demo-section">
+            <h2 class="demo-section-title"><i class="fa-regular fa-id-card"></i> 卡片组件 (Cards)</h2>
+            <div class="demo-section-desc">卡片是基础的容器组件。默认拥有 <code>--zl-radius-xl</code> 圆角和轻量阴影。悬浮时会有主题色边框和上浮效果。</div>
+            
+            <div class="demo-grid">
+                <!-- 基础卡片 -->
+                <div class="card">
+                    <span class="tag" style="margin-bottom: 12px;">常规卡片</span>
+                    <h3>人工智能在金融领域的应用</h3>
+                    <p class="text-secondary" style="margin: 12px 0;">通过大数据分析和机器学习，AI正在重塑投资研究和量化交易的边界...</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+                        <span class="text-minor">2023-10-25</span>
+                        <a href="#" style="color: var(--zl-primary); font-size: 14px; font-weight: 600;">阅读更多 <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 图文卡片 -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div style="height: 160px; background: var(--zl-primary-opacity); display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-image" style="font-size: 48px; color: var(--zl-primary);"></i>
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3>带封面的图文卡片</h3>
+                        <p class="text-secondary" style="margin: 12px 0; margin-bottom: 0;">适合用于列表页展示文章、工具等实体内容。</p>
+                    </div>
+                </div>
+                
+                <!-- 操作卡片 -->
+                <div class="card" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--zl-primary-opacity); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                        <i class="fa-solid fa-robot" style="font-size: 28px; color: var(--zl-primary);"></i>
+                    </div>
+                    <h3>AI 分析工具</h3>
+                    <p class="text-secondary" style="margin: 12px 0;">一键分析财报数据</p>
+                    <button class="btn-primary" style="margin-top: auto; width: 100%;">立即使用</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== 6. 提示框 (Alerts) ================== -->
+        <section class="demo-section">
+            <h2 class="demo-section-title"><i class="fa-solid fa-circle-exclamation"></i> 提示框 (Alerts / Highlight Boxes)</h2>
+            <div class="demo-section-desc">常用于文章详情页或工具页，用来高亮提示重要信息、免责声明等。</div>
+            
+            <div class="alert-box" style="margin-bottom: 16px;">
+                <div class="alert-icon"><i class="fa-solid fa-circle-info"></i></div>
+                <div>
+                    <h4 style="margin-bottom: 4px; color: var(--zl-primary);">主要提示信息</h4>
+                    <div class="text-secondary">这是普通的主题色提示框，背景使用了 <code>--zl-primary-opacity</code>。</div>
+                </div>
+            </div>
+
+            <div class="alert-box warning">
+                <div class="alert-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div>
+                    <h4 style="margin-bottom: 4px; color: var(--zl-warning);">免责声明 / 警告信息</h4>
+                    <div class="text-secondary">股市有风险，投资需谨慎。本平台提供的数据仅供参考，不构成任何投资建议。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== 7. 页面横幅 (Banner) ================== -->
+        <section class="demo-section">
+            <h2 class="demo-section-title"><i class="fa-regular fa-window-maximize"></i> 页面横幅 (Banner)</h2>
+            <div class="demo-section-desc">用于列表页或工具页顶部的 Header 区域，统一采用扁平化透明背景色。</div>
+            
+            <div class="page-header-banner">
+                <div class="title">发现最新的财经数据工具</div>
+                <div class="subtitle">我们为您提供最专业的 AI 赋能的金融分析模型和实时市场洞察，助力您的投资决策。</div>
+            </div>
+        </section>
+
+        <!-- ================== 8. 表单组件 (Forms) ================== -->
+        <section class="demo-section" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+            <h2 class="demo-section-title"><i class="fa-solid fa-keyboard"></i> 表单组件 (Forms)</h2>
+            <div class="demo-section-desc">用于工具操作面板或信息收集，聚焦时有主题色的发光阴影效果。</div>
+            
+            <div style="background: var(--zl-bg-light); padding: 32px; border-radius: var(--zl-radius-lg); max-width: 600px;">
+                <div class="form-group">
+                    <label class="form-label">股票代码</label>
+                    <input type="text" class="form-input" placeholder="例如：AAPL 或 00700.HK">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">分析维度</label>
+                    <select class="form-select">
+                        <option>全面基本面分析</option>
+                        <option>近期新闻与情绪</option>
+                        <option>技术面指标</option>
+                    </select>
+                </div>
+                <button class="btn-primary" style="width: 100%;">开始生成报告</button>
+            </div>
+        </section>
+
+    </main>
+    <!-- ==============================================
+         页面主体内容区域结束
+         ============================================== -->
+
+    <!-- Idea介绍浮层（领导查看用，固定在右下角） -->
+    <div class="idea-float-panel" id="ideaFloatPanel">
+        <div class="idea-float-header" onclick="toggleIdeaPanel()">
+            <div class="idea-float-header-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span id="ideaPanelTitle">Idea介绍</span>
+            </div>
+            <button class="idea-float-header-toggle" id="ideaPanelToggle">
+                <i class="fa-solid fa-minus" id="ideaPanelToggleIcon"></i>
+            </button>
+        </div>
+        <div class="idea-float-content" id="ideaPanelContent">
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-tag"></i> 点子信息</div>
+                <div class="idea-float-section-content">
+                    <span class="idea-float-tag" id="ideaTag1">组件库</span>
+                    <span class="idea-float-tag" id="ideaTag2">设计规范</span>
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-star"></i> 一句话卖点</div>
+                <div class="idea-float-section-content" id="ideaOneLine">
+                    所有Demo页面的标准组件库和设计规范参考
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-puzzle-piece"></i> 设计想法</div>
+                <div class="idea-float-section-content" id="ideaDesign">
+                    统一所有Demo页面的组件样式，确保风格完全一致
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局固定Footer（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/footer.js"></script>
+
+    <!-- 全局公共脚本（固定引用，禁止删除） -->
+    <script src="assets/js/common.js"></script>
+    <!-- 页面独立脚本（仅写当前页面独有脚本） -->
+    <script>
+        // Idea浮层折叠/展开功能
+        function toggleIdeaPanel() {
+            const panel = document.getElementById('ideaFloatPanel');
+            const content = document.getElementById('ideaPanelContent');
+            const toggleIcon = document.getElementById('ideaPanelToggleIcon');
+            panel.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+            if (panel.classList.contains('collapsed')) {
+                toggleIcon.className = 'fa-solid fa-plus';
+            } else {
+                toggleIcon.className = 'fa-solid fa-minus';
+            }
+        }
+        // 页面独立脚本写在这里
+    </script>
+</body>
+</html>

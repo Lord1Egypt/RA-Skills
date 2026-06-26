@@ -1,0 +1,61 @@
+{
+  "domain": "投研域",
+  "level": "L3",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_research.md",
+  "includes_L2": true,
+  "exception_patterns": [
+    {"pattern": "静默期违规发布", "trigger": "分析师在静默期内发布相关研报", "handling": "系统自动拦截静默期标的的发布请求"},
+    {"pattern": "合规审查超时", "trigger": "合规审查超过4小时", "handling": "自动提醒审查人员，紧急报告2小时"},
+    {"pattern": "研报数据错误", "trigger": "发布后发现财务数据引用错误", "handling": "撤回+更正流程，通知所有已推送客户"},
+    {"pattern": "推送失败", "trigger": "邮件/平台推送失败", "handling": "重试3次(5min/15min/30min)，仍失败告警"},
+    {"pattern": "提前泄露", "trigger": "研报发布前内容被泄露", "handling": "访问权限控制+操作审计追溯"},
+    {"pattern": "数据源中断", "trigger": "关键数据源不可用", "handling": "降级策略(使用缓存数据+标记)和告警"},
+    {"pattern": "因子失效", "trigger": "已上线因子IC持续为负(3个月)", "handling": "触发因子审查流程，考虑下线/替换"},
+    {"pattern": "模型过拟合", "trigger": "样本内优异但样本外失效", "handling": "强制样本外验证，交叉验证+正则化"},
+    {"pattern": "模型漂移", "trigger": "上线模型性能持续下降", "handling": "夏普<0.5持续30天触发自动告警"},
+    {"pattern": "回测数据泄露", "trigger": "未来数据泄露到历史回测", "handling": "回测框架时间戳严格控制"}
+  ],
+  "intermediate_state_handling": [
+    {"state": "内部评审", "duration": "1个工作日内", "rules": "审查中研报加编辑锁，不可被他人修改"},
+    {"state": "合规审查", "duration": "4小时内(紧急2小时)", "rules": "超时自动提醒"},
+    {"state": "待发布", "duration": "不超过3个工作日", "rules": "可持续至指定发布时间"},
+    {"state": "模拟运行", "duration": "通常3个月", "rules": "期间监控各项指标，不达标退回开发"},
+    {"state": "回测中", "duration": "取决于数据量和模型复杂度", "rules": "必须覆盖3年以上历史数据"}
+  ],
+  "boundary_values": [
+    {"field": "静默期", "boundary": "IPO后恰好第40天", "behavior": "静默期结束，可发布研报"},
+    {"field": "静默期", "boundary": "IPO后第39天", "behavior": "仍在静默期，拦截发布"},
+    {"field": "合规审查时限", "boundary": "恰好4小时", "behavior": "触发超时提醒"},
+    {"field": "数据缺失率", "boundary": "恰好1%", "behavior": "通过质量检查(≤1%)"},
+    {"field": "数据缺失率", "boundary": "1.01%", "behavior": "质量检查不通过"},
+    {"field": "回测区间", "boundary": "恰好3年", "behavior": "满足最低要求"},
+    {"field": "回测区间", "boundary": "2年11个月", "behavior": "不满足，需补充数据"},
+    {"field": "夏普比率", "boundary": "恰好1.0", "behavior": "达标(≥1.0)"},
+    {"field": "夏普比率", "boundary": "0.99", "behavior": "不达标"},
+    {"field": "模拟运行期", "boundary": "恰好3个月", "behavior": "可申请上线评审"},
+    {"field": "模拟运行期", "boundary": "2个月29天", "behavior": "不可申请"},
+    {"field": "VIP优先阅读期", "boundary": "恰好24小时", "behavior": "优先期结束，向普通客户开放"},
+    {"field": "因子IC", "boundary": "连续3个月为负", "behavior": "触发因子审查"},
+    {"field": "因子IC", "boundary": "连续2个月为负", "behavior": "预警但不触发审查"},
+    {"field": "模型性能", "boundary": "夏普<0.5持续30天", "behavior": "触发自动告警"},
+    {"field": "模型性能", "boundary": "夏普<0.5持续29天", "behavior": "不触发"}
+  ],
+  "idempotency_retry_rules": [
+    {"operation": "研报发布", "idempotent_key": "reportId + version", "retry_strategy": "重复发布返回已有结果"},
+    {"operation": "研报推送", "idempotent_key": "reportId + channelId + pushTime", "retry_strategy": "失败重试3次(5min/15min/30min)"},
+    {"operation": "合规审查", "idempotent_key": "reportId + reviewRound", "retry_strategy": "同一轮审查不可重复提交"},
+    {"operation": "数据采集", "idempotent_key": "dataSourceId + collectDate", "retry_strategy": "支持断点续传，已采集不重复"},
+    {"operation": "模型回测", "idempotent_key": "modelId + backtestId", "retry_strategy": "同一回测任务不重复执行"}
+  ],
+  "violation_consequences": [
+    {"violation": "静默期发布研报", "consequence": "合规处罚，分析师面临暂停执业"},
+    {"violation": "研报使用内幕信息", "consequence": "涉嫌内幕交易，监管调查，可能刑事追诉"},
+    {"violation": "提前泄露研报", "consequence": "违反公平披露原则，监管处罚"},
+    {"violation": "评级频繁变更无依据", "consequence": "合规警示，影响分析师评价"},
+    {"violation": "合规审查绕过", "consequence": "严重合规违规，分析师和管理层问责"},
+    {"violation": "模型回测作弊", "consequence": "模型上线后可能造成重大损失，相关人员问责"},
+    {"violation": "数据质量问题未处理", "consequence": "影响研究结论准确性，可能误导投资者"},
+    {"violation": "利益冲突未披露", "consequence": "监管处罚，研报可信度受损"}
+  ]
+}

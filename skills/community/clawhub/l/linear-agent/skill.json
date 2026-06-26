@@ -1,0 +1,401 @@
+{
+  "name": "linear-agent",
+  "version": "1.0.2",
+  "description": "Full Linear project management via GraphQL API — create/update issues, manage cycles, summarize backlogs, sync from git commits.",
+  "author": "clawbotworker",
+  "license": "MIT",
+  "entrypoint": "index.js",
+  "runtime": "node",
+  "category": "productivity",
+  "tags": [
+    "linear",
+    "project-management",
+    "issues",
+    "sprints",
+    "backlog",
+    "git"
+  ],
+  "pricing": {
+    "model": "per-call",
+    "currency": "USDC",
+    "amount": 0.001
+  },
+  "env": [
+    {
+      "name": "LINEAR_API_KEY",
+      "description": "Your Linear personal API key (Settings → API → Personal API keys)",
+      "required": true,
+      "secret": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "create-issue",
+      "description": "Create a new Linear issue",
+      "parameters": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "description": "Issue title"
+        },
+        "teamId": {
+          "type": "string",
+          "required": true,
+          "description": "Team ID or key (e.g. ENG)"
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "description": "Issue body (markdown)"
+        },
+        "priority": {
+          "type": "number",
+          "required": false,
+          "description": "0=none 1=urgent 2=high 3=medium 4=low"
+        },
+        "assigneeId": {
+          "type": "string",
+          "required": false,
+          "description": "Assignee user ID"
+        },
+        "stateId": {
+          "type": "string",
+          "required": false,
+          "description": "Workflow state ID"
+        },
+        "labelIds": {
+          "type": "array",
+          "required": false,
+          "description": "Array of label IDs"
+        },
+        "dueDate": {
+          "type": "string",
+          "required": false,
+          "description": "ISO date string"
+        },
+        "estimate": {
+          "type": "number",
+          "required": false,
+          "description": "Story point estimate"
+        }
+      }
+    },
+    {
+      "name": "update-issue",
+      "description": "Update an existing Linear issue",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "Issue ID or identifier (e.g. ENG-123)"
+        },
+        "title": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "required": false
+        },
+        "stateId": {
+          "type": "string",
+          "required": false,
+          "description": "New workflow state ID"
+        },
+        "priority": {
+          "type": "number",
+          "required": false
+        },
+        "assigneeId": {
+          "type": "string",
+          "required": false
+        },
+        "labelIds": {
+          "type": "array",
+          "required": false
+        },
+        "dueDate": {
+          "type": "string",
+          "required": false
+        },
+        "estimate": {
+          "type": "number",
+          "required": false
+        }
+      }
+    },
+    {
+      "name": "get-issue",
+      "description": "Get a single issue by ID or identifier",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "Issue ID or identifier (e.g. ENG-123)"
+        }
+      }
+    },
+    {
+      "name": "list-issues",
+      "description": "List / filter issues across a team",
+      "parameters": {
+        "teamId": {
+          "type": "string",
+          "required": false
+        },
+        "assigneeId": {
+          "type": "string",
+          "required": false
+        },
+        "stateType": {
+          "type": "string",
+          "required": false,
+          "description": "triage|backlog|unstarted|started|completed|cancelled"
+        },
+        "cycleId": {
+          "type": "string",
+          "required": false
+        },
+        "projectId": {
+          "type": "string",
+          "required": false
+        },
+        "priority": {
+          "type": "number",
+          "required": false
+        },
+        "first": {
+          "type": "number",
+          "required": false,
+          "description": "Max results (default 50)"
+        }
+      }
+    },
+    {
+      "name": "search-issues",
+      "description": "Full-text search issues",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "required": true
+        },
+        "teamId": {
+          "type": "string",
+          "required": false
+        },
+        "first": {
+          "type": "number",
+          "required": false
+        }
+      }
+    },
+    {
+      "name": "move-issue",
+      "description": "Move an issue to a different workflow state",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "Issue ID or identifier"
+        },
+        "stateId": {
+          "type": "string",
+          "required": false,
+          "description": "Target state ID (mutually exclusive with stateName)"
+        },
+        "stateName": {
+          "type": "string",
+          "required": false,
+          "description": "Target state name (e.g. 'In Progress')"
+        },
+        "teamId": {
+          "type": "string",
+          "required": false,
+          "description": "Required when using stateName"
+        }
+      }
+    },
+    {
+      "name": "list-states",
+      "description": "List workflow states for a team",
+      "parameters": {
+        "teamId": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "list-teams",
+      "description": "List all teams in the workspace",
+      "parameters": {}
+    },
+    {
+      "name": "get-cycle",
+      "description": "Get a cycle and its issues",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "Cycle ID"
+        }
+      }
+    },
+    {
+      "name": "list-cycles",
+      "description": "List cycles for a team",
+      "parameters": {
+        "teamId": {
+          "type": "string",
+          "required": true
+        },
+        "active": {
+          "type": "boolean",
+          "required": false,
+          "description": "Only return active/current cycle"
+        }
+      }
+    },
+    {
+      "name": "cycle-progress",
+      "description": "Get completion progress for a cycle",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "description": "Cycle ID"
+        },
+        "teamId": {
+          "type": "string",
+          "required": false,
+          "description": "Team ID — returns active cycle progress"
+        }
+      }
+    },
+    {
+      "name": "create-project",
+      "description": "Create a new project",
+      "parameters": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "teamIds": {
+          "type": "array",
+          "required": true,
+          "description": "Array of team IDs"
+        },
+        "description": {
+          "type": "string",
+          "required": false
+        },
+        "state": {
+          "type": "string",
+          "required": false,
+          "description": "planned|started|paused|completed|cancelled"
+        },
+        "leadId": {
+          "type": "string",
+          "required": false
+        },
+        "targetDate": {
+          "type": "string",
+          "required": false,
+          "description": "ISO date string"
+        }
+      }
+    },
+    {
+      "name": "update-project",
+      "description": "Update an existing project",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "required": false
+        },
+        "state": {
+          "type": "string",
+          "required": false
+        },
+        "leadId": {
+          "type": "string",
+          "required": false
+        },
+        "targetDate": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "name": "list-projects",
+      "description": "List projects, optionally filtered by team",
+      "parameters": {
+        "teamId": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "name": "post-comment",
+      "description": "Post a comment on an issue",
+      "parameters": {
+        "issueId": {
+          "type": "string",
+          "required": true,
+          "description": "Issue ID or identifier"
+        },
+        "body": {
+          "type": "string",
+          "required": true,
+          "description": "Comment body (markdown)"
+        }
+      }
+    },
+    {
+      "name": "backlog-summary",
+      "description": "Generate a plain-English summary of a team's backlog",
+      "parameters": {
+        "teamId": {
+          "type": "string",
+          "required": true
+        },
+        "first": {
+          "type": "number",
+          "required": false,
+          "description": "Max issues to include (default 100)"
+        }
+      }
+    },
+    {
+      "name": "sync-commit",
+      "description": "Parse a git commit message and update referenced issues (e.g. 'fixes ENG-42')",
+      "parameters": {
+        "message": {
+          "type": "string",
+          "required": true,
+          "description": "Git commit message"
+        },
+        "teamId": {
+          "type": "string",
+          "required": false,
+          "description": "Team key to scope identifier lookup"
+        },
+        "doneState": {
+          "type": "string",
+          "required": false,
+          "description": "State name to move resolved issues to (default: 'Done')"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "workspace-hygiene",
+  "evals": [
+    {
+      "id": 1,
+      "should_trigger": true,
+      "prompt": "This repo got messy after several agent runs. Help me identify temporary files that can be cleaned up, but do not delete anything yet.",
+      "expected_output": "Runs or describes a dry-run workspace inventory, groups safe candidates, review-required paths, and protected paths, and avoids deleting anything."
+    },
+    {
+      "id": 2,
+      "should_trigger": true,
+      "prompt": "I need to free some space in this coding workspace. Archive old test outputs and caches, but don't touch source changes or data files.",
+      "expected_output": "Identifies generated caches/test outputs as safe, treats data/source files as protected or review-required, and asks for confirmation before archiving."
+    },
+    {
+      "id": 3,
+      "should_trigger": true,
+      "prompt": "Clean up agent-generated logs and screenshots. Do not touch databases or .env files.",
+      "expected_output": "Plans cleanup for logs/screenshots with confirmation, protects .env, treats databases as review-required, and keeps actions inside the workspace root."
+    }
+  ]
+}

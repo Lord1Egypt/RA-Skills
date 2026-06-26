@@ -1,0 +1,46 @@
+{
+  "ticker": "BMY",
+  "company": "Bristol-Myers Squibb Company",
+  "analysis_year": 2020,
+  "data_source": "Bristol-Myers Squibb FY2019 10-K, Bristol-Myers Squibb Q3 2020 10-Q, and Berkshire 2020-09-30 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.168, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": true },
+    "g2_fcf_to_ni": { "value": -276.3, "fcf": 12157, "net_income": -44, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.04, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $20.78B in 2017 to $22.56B in 2018 to $26.15B in 2019, and nine-month 2020 revenue of $31.45B reflected an even larger platform after Celgene. No structural decline was visible at the decision point.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin stayed healthy but not pristine: roughly 71.1% in 2017, 71.3% in 2018, and 69.1% in 2019. That was one year of compression, not a two-year deterioration.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": -0.0003, "net_income_m": -44, "ev_m": 163578, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": "ip", "description": "Bristol-Myers had important oncology and immunology assets, but in late 2020 the thesis depended on digesting a huge merger, managing Revlimid patent erosion, and continually replenishing the pipeline. That can make for a profitable drug company, but not a simple decade-long tollbooth with Buffett-level moat clarity.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "sales_2019_usd_m": 26145,
+    "net_income_2019_usd_m": 3439,
+    "operating_cash_flow_2019_usd_m": 8210,
+    "capital_expenditures_2019_usd_m": 836,
+    "cash_2020q3_usd_m": 19435,
+    "debt_2020q3_usd_m": 44949,
+    "ttm_net_income_2020q3_usd_m": -44,
+    "ttm_operating_cash_flow_2020q3_usd_m": 12878,
+    "ttm_capex_2020q3_usd_m": 721,
+    "implied_price_2020q3_usd": 60.29,
+    "market_value_2020q3_usd_m": 138064,
+    "berkshire_shares_2020q3_m": 29.971,
+    "berkshire_value_2020q3_usd_m": 1807.0
+  },
+
+  "control_groups": [
+    { "ticker": "PFE", "company": "Pfizer Inc.", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — another mega-cap pharma operator, but with no clearer company-level moat and a more mature legacy portfolio." },
+    { "ticker": "GSK", "company": "GlaxoSmithKline plc", "year": 2020, "gates_failed": ["g1_roe_roic", "g4_revenue_trend", "g7_moat"], "conclusion": "PASS — globally scaled, yet weaker on recent economics and still dependent on portfolio renewal rather than a singular tollbooth." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire disclosed 29,971,194 Bristol-Myers shares worth about $1.81B at September 30, 2020 via its 13F-HR.",
+  "actual_result": "Berkshire cut the stake to 5,202,674 shares by 2021-12-31 and it no longer appeared in the 2022-12-31 13F. The position never developed into a defining Berkshire compounder.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A post-merger pharma platform can throw off cash and still fail Buffett-style underwriting when GAAP earnings vanish, moat clarity weakens, and the thesis depends on ongoing pipeline replacement."
+}

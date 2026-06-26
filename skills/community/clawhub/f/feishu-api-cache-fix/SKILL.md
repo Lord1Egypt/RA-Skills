@@ -1,35 +1,21 @@
----
-name: "Feishu Api Cache Fix"
-description: "Reduces Feishu API calls from every minute to once every 2 hours by caching bot status, saving 99% of API quota usage."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-api-cache-fix"
-sourceUrl: "https://clawhub.ai/skills/feishu-api-cache-fix"
----
+# feishu-api-cache-fix
 
-# Feishu Api Cache Fix
+> Fix Feishu API rate limit issue
 
-> Reduces Feishu API calls from every minute to once every 2 hours by caching bot status, saving 99% of API quota usage.
+**Version**: 1.0.1
+**Author**: @bryan-chx
+**Tags**: feishu, api, fix, performance
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-api-cache-fix`
-- **Source URL:** [https://clawhub.ai/skills/feishu-api-cache-fix](https://clawhub.ai/skills/feishu-api-cache-fix)
+## Problem
 
-## Overview
+Gateway calls Feishu API every minute, causing rate limit exhaustion.
 
+## Solution
 
-## Installation
-To install this skill, run the following command in your terminal:
+Add 2-hour cache to probe.ts
+
+## Usage
+
 ```bash
-hermes skills install clawhub/feishu-api-cache-fix
+sudo bash fix_feishu_cache.sh
 ```

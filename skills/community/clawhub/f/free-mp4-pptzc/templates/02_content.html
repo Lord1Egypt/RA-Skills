@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>幻灯片模板 - 内容页</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 1920px;
+            height: 1080px;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+        }
+        
+        /* 顶部栏 */
+        .header {
+            height: 120px;
+            background: linear-gradient(90deg, #003366 0%, #004080 50%, #003366 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066ff, #00cc66);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        
+        .header-icon i {
+            font-size: 24px;
+            color: white;
+        }
+        
+        .header-title {
+            font-size: 42px;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        /* 内容区 */
+        .content {
+            padding: 50px 80px;
+            height: calc(100% - 120px);
+        }
+        
+        /* 主内容块 */
+        .main-block {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            height: calc(100% - 100px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 章节标题 */
+        .section-title {
+            font-size: 28px;
+            color: #0066ff;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title i {
+            background: linear-gradient(135deg, #0066ff, #00cc66);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        
+        /* 内容列表 */
+        .content-list {
+            list-style: none;
+            flex: 1;
+        }
+        
+        .content-list li {
+            font-size: 26px;
+            color: #333333;
+            padding: 15px 0;
+            padding-left: 50px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .content-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #0066ff, #00cc66);
+            border-radius: 50%;
+        }
+        
+        .content-list li.highlight {
+            color: #0066ff;
+            font-weight: bold;
+        }
+        
+        .content-list li.highlight::before {
+            background: linear-gradient(135deg, #00cc66, #0066ff);
+        }
+        
+        /* 子列表 */
+        .sub-list {
+            list-style: none;
+            margin-top: 10px;
+            margin-left: 30px;
+        }
+        
+        .sub-list li {
+            font-size: 22px;
+            color: #666666;
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .sub-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #0066ff;
+            font-size: 18px;
+        }
+        
+        /* 装饰元素 */
+        .decor-dots {
+            position: absolute;
+            right: 40px;
+            bottom: 40px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .decor-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0066ff;
+            opacity: 0.3;
+        }
+        
+        .decor-dots span:nth-child(2) { opacity: 0.5; }
+        .decor-dots span:nth-child(3) { opacity: 0.7; }
+        .decor-dots span:nth-child(4) { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-icon">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        <h1 class="header-title">创建记忆系统</h1>
+    </div>
+    
+    <div class="content">
+        <div class="main-block">
+            <div class="section-title">
+                <i class="fas fa-calendar-check"></i>
+                <span>5月3日：初始化记忆机制</span>
+            </div>
+            
+            <ul class="content-list">
+                <li class="highlight">创建的文件结构</li>
+                <ul class="sub-list">
+                    <li>MEMORY.md - 长期记忆库</li>
+                    <li>memory/ - 每日日志文件夹</li>
+                    <li>memory/2026-05-03.md - 首篇日记</li>
+                </ul>
+                <li class="highlight">记忆系统功能</li>
+                <ul class="sub-list">
+                    <li>记录重要决策和事件</li>
+                    <li>跨会话保持上下文</li>
+                    <li>知识沉淀与复用</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="decor-dots">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</body>
+</html>

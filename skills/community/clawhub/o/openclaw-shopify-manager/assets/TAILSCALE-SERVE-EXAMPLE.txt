@@ -1,0 +1,7 @@
+Example commands if the connector runs on 127.0.0.1:8787 and should be exposed on /shopify-manager
+
+tailscale serve --https=443 /shopify-manager http://127.0.0.1:8787
+tailscale funnel --https=443 on
+
+Then verify:
+https://YOUR-TAILSCALE-HOSTNAME/shopify-manager/healthz

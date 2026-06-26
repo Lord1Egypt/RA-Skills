@@ -1,35 +1,20 @@
----
-name: "Is Token Safe?"
-description: "Evaluates a crypto token's contract for scam risks and flags its safety level with reasons for trading and decision-making purposes."
-category: "security"
-source: "ClawHub"
-tags: [erc20, scam, security, token]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/is-token-safe"
-sourceUrl: "https://clawhub.ai/skills/is-token-safe"
----
+# IsTokenSafe
 
-# Is Token Safe?
+Checks whether a given crypto token is potentially malicious or risky.
 
-> Evaluates a crypto token's contract for scam risks and flags its safety level with reasons for trading and decision-making purposes.
+## What it does
+- Analyzes token contract metadata
+- Flags common scam or rug-pull patterns
+- Provides a quick safety signal for trading bots and agents
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/is-token-safe`
-- **Source URL:** [https://clawhub.ai/skills/is-token-safe](https://clawhub.ai/skills/is-token-safe)
+## Use cases
+- Automated trading bots
+- Polymarket / prediction market agents
+- Token discovery pipelines
 
-## Overview
+## Input
+- Token address
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/is-token-safe
-```
+## Output
+- Risk level (low / medium / high)
+- Reason summary

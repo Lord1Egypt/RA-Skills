@@ -1,35 +1,64 @@
 ---
-name: "Tvs Clean Code"
-description: "代码清洁与整理，并添加增强用户理解的注释，让代码意图清晰、自解释，大幅降低阅读和维护的认知成本。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tvs-clean-code"
-sourceUrl: "https://clawhub.ai/skills/tvs-clean-code"
+name: tvs-clean-code
+description: 代码清洁与整理，并添加增强用户理解的注释，让代码意图清晰、自解释，大幅降低阅读和维护的认知成本。
 ---
 
-# Tvs Clean Code
+# 代码清洁与整理指南
 
-> 代码清洁与整理，并添加增强用户理解的注释，让代码意图清晰、自解释，大幅降低阅读和维护的认知成本。
+核心目标：
+让代码**意图清晰、自解释**，大幅降低阅读和维护的认知成本。
+主动询问，若用户未指定要清理哪些代码，就要主动询问要清理的代码的文件路径，或者某些模块，某些目录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tvs-clean-code`
-- **Source URL:** [https://clawhub.ai/skills/tvs-clean-code](https://clawhub.ai/skills/tvs-clean-code)
+## 优先级最高的清理原则（先做这些，收益最大）
 
-## Overview
+1. **去除无意义的包装层和冗余代码**（最常见、最高优先级）
+   - 多余的单行箭头函数 / 简单 setter 包装
+   - 只用一次且名字没增加信息的中间变量
+   - 不必要的解构 + 重新组装对象
+   - 能用可选链 `?.` / `??` 解决的复杂条件判断
 
+2. **禁止把核心业务逻辑分散到副作用钩子中**
+   - 坏：`handleSubmit() → 改状态 → watch 监听到状态 → 执行保存`
+   - 好：`async handleSubmit() { 设置状态 → await 保存 → 更新状态 }`
+   - 原则：能写成顺序代码的，尽量不要拆成「动作 + 监听」
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tvs-clean-code
-```
+3. **命名必须表达意图而非实现细节**
+   - 差：`handleData`、`changeStatus`、`doSubmit`
+   - 好：`submitFormAndNotifyTeam`、`toggleFavorite`、`formatPriceWithCurrency`
+4. **必须补充关键注释**
+  至少要注释：
+  - 所有的响应式变量，函数，特别是核心业务函数
+  - 复杂的业务规则 / 计算逻辑
+  - 重要分支的「为什么」
+  - 边界情况 / 特殊处理的原因
+  - 难以从名字一眼看出的副作用
+
+## 重要但次优先的改进点
+
+- **结构与现代风格调整**
+  - 函数过长（>30–40行）→ 拆成单一职责小函数
+  - 魔法值 → 抽取为命名常量（优先用 const enum / as const）
+  - 嵌套过深（>3层）→ 优先使用早返回（guard clause）
+  - 重复逻辑 → 抽取为 composable / util / shared hook
+
+- **顺序与分组规范**
+  - 推荐顺序（从上到下）：
+    1. import（分组：第三方 → @/别名 → ./相对路径）
+    2. 类型 / 接口 / const enum
+    3. 常量 / 配置
+    4. ref / reactive / 计算属性（数据）
+    5. 核心业务函数（按调用频率或重要性排序）
+    6. 事件处理函数（handleXxx）
+    7. 生命周期钩子 / watch / onMounted 等副作用（尽量少）
+
+## 输出格式建议（给用户看改动时使用）
+
+```diff
+改动概要（用中文，简洁有力）
+示例：
+  - 删除了 4 处无意义单行函数包装
+  - 合并了分散在 watch 中的保存逻辑到 handleSubmit
+  - 优化命名：handleData → refreshAndNotify
+  - 减少临时变量 5 个，代码行数减少约 18%
+  - 核心业务逻辑增加 3 处「为什么」注释
+

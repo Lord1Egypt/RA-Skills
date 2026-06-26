@@ -1,35 +1,135 @@
 ---
-name: "Music Helper"
-description: "音乐助手 - 歌曲推荐、歌单生成、音乐搜索、歌词获取"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/music-helper"
-sourceUrl: "https://clawhub.ai/skills/music-helper"
+name: music-helper
+description: 音乐助手 - 歌曲推荐、歌单生成、音乐搜索、歌词获取
+version: 1.0.0
 ---
 
-# Music Helper
+# 🎵 Music Helper - 音乐助手
 
-> 音乐助手 - 歌曲推荐、歌单生成、音乐搜索、歌词获取
+## 触发规则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/music-helper`
-- **Source URL:** [https://clawhub.ai/skills/music-helper](https://clawhub.ai/skills/music-helper)
+**关键词：**
+- 推荐歌曲、歌单推荐、听什么歌
+- 网易云、QQ 音乐、酷狗
+- 歌词、这首歌叫什么
+- 歌手、专辑、MV
 
-## Overview
+**场景：**
+- 用户想听歌但不知道选什么
+- 用户查询某首歌的信息
+- 用户需要歌词
+- 用户想找类似风格的音乐
 
+## 功能描述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/music-helper
+### 核心功能
+
+1. **音乐推荐**
+   - 根据心情推荐（开心/难过/放松/运动）
+   - 根据场景推荐（学习/工作/睡眠/运动）
+   - 根据风格推荐（流行/摇滚/民谣/电子/古典）
+   - 根据语种推荐（华语/欧美/日韩/粤语）
+
+2. **音乐搜索**
+   - 歌曲搜索（歌名/歌词片段）
+   - 歌手搜索
+   - 专辑搜索
+   - MV 搜索
+
+3. **歌词获取**
+   - 实时歌词查询
+   - 歌词翻译（中英/中日）
+   - 歌词海报生成
+
+4. **歌单管理**
+   - 创建个人歌单
+   - 收藏喜欢的歌曲
+   - 每日推荐
+
+### 推荐维度
+
+- 🎵 风格：流行、摇滚、民谣、电子、嘻哈、R&B、古典、爵士
+- 😊 心情：开心、难过、放松、兴奋、治愈、emo
+- 🎯 场景：学习、工作、睡眠、运动、通勤、派对
+- 🌍 语种：华语、欧美、日韩、粤语、泰语
+- 📅 年代：2020s、2010s、经典老歌
+
+## 权限需求
+
+- [x] 网络访问（音乐平台 API）
+- [x] 文件读写（歌单存储）
+- [ ] 外部 API（网易云/QQ 音乐）
+
+## 数据源
+
+- 网易云音乐（主）
+- QQ 音乐（备用）
+- 酷狗音乐（备用）
+- 歌词网（歌词）
+
+## 示例对话
+
 ```
+用户：推荐几首好听的歌
+助手：你想听什么风格的？流行、摇滚、民谣还是电子？或者告诉我你现在的心情/场景~
+
+用户：学习的时候听什么
+助手：推荐这 5 首适合学习的纯音乐：
+1. 《Summer》- 久石让 ⭐4.9 - 轻快治愈
+2. 《雨的印记》- 李闰珉 ⭐4.8 - 安静钢琴
+3. 《卡农》- 帕赫贝尔 ⭐4.9 - 经典古典
+4. 《风居住的街道》- 矶村由纪子 ⭐4.8 - 二胡钢琴
+5. 《神秘园之歌》- Secret Garden ⭐4.7 - 新世纪音乐
+
+用户：查一下《晴天》的歌词
+助手：《晴天》- 周杰伦
+📀 专辑：《叶惠美》(2003)
+⭐ 评分：9.8
+
+故事的小黄花 从出生那年就飘着
+童年的荡秋千 随记忆一直晃到现在
+...
+
+用户：推荐类似周杰伦的歌
+助手：基于周杰伦的 R&B/中国风风格，推荐：
+1. 林俊杰 - 《江南》《不为谁而作的歌》
+2. 王力宏 - 《花田错》《大城小爱》
+3. 陶喆 - 《爱很简单》《小镇姑娘》
+4. 方大同 - 《Love Song》《特别的人》
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/music-helper/favorites.json
+{
+  "favorite_songs": [
+    {
+      "title": "晴天",
+      "artist": "周杰伦",
+      "added_date": "2026-03-16",
+      "play_count": 42
+    }
+  ],
+  "playlists": [
+    {
+      "name": "学习专用",
+      "songs": ["Summer", "雨的印记", "卡农"]
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 实现网易云音乐 API 对接
+- [ ] 实现歌词爬取
+- [ ] 创建歌单存储
+- [ ] 添加推荐算法
+- [ ] 测试搜索准确性
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

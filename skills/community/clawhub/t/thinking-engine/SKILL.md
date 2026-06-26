@@ -1,35 +1,264 @@
 ---
-name: "Multi-Angle-Thinking"
-description: "A deep thinking engine that first gathers real global data via web search, then analyzes through 11 lenses (philosophical, ethical, practical, historical, ps..."
-category: "other"
-source: "ClawHub"
-tags: [latest-analysis-simulation-arabic-strategy-decision-making]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/thinking-engine"
-sourceUrl: "https://clawhub.ai/skills/thinking-engine"
+name: multi-angle-thinking
+description: >
+  A deep thinking engine that first gathers real global data via web search, then analyzes through 11 lenses (philosophical, ethical, practical, historical, psychological, systems, financial, technological, competitive, environmental, counterfactual), then builds a full realistic simulation with real characters — delivering narrative + findings + real surprises. Use this skill whenever the user wants to think deeply, explore multiple angles, challenge assumptions, surface hidden biases, uncover counterintuitive conclusions, or simulate what would really happen. Trigger on: "analyze this", "think deeply about", "challenge my thinking", "what am I missing", "simulate this", "what would really happen", "فكر معي في", "حلل هذا", "ما الزوايا التي لم أفكر فيها", "ما النتائج غير المتوقعة", "جرب هذا", "ماذا سيحدث لو", or any complex idea needing deep analysis. Only invoke on explicit user request — do not self-trigger on simple or conversational queries.
 ---
 
-# Multi-Angle-Thinking
+# محرك التفكير الاستخباراتي + المحاكاة الواقعية
+## Intelligence-Grade Thinking Engine + Reality Simulation
 
-> A deep thinking engine that first gathers real global data via web search, then analyzes through 11 lenses (philosophical, ethical, practical, historical, ps...
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/thinking-engine`
-- **Source URL:** [https://clawhub.ai/skills/thinking-engine](https://clawhub.ai/skills/thinking-engine)
+## Guardrails & Limits
 
-## Overview
+These rules apply at all times — no exceptions:
 
+- **Web search limit:** Maximum 6 search queries per analysis. Do not fetch login-protected, paywalled, or private data.
+- **Real people simulations:** When simulating real named individuals, clearly label all dialogue and behavior as fictional inference — never present it as factual. Avoid simulating private individuals without clear public relevance to the topic.
+- **Sensitive topics:** For topics involving personal trauma, mental health, violence, or political extremism — apply extra caution in simulation depth. Prioritize factual framing over dramatic narrative.
+- **User consent:** Only run the full pipeline when the user explicitly requests deep analysis or simulation. Never self-invoke on casual or simple queries.
+- **Data privacy:** Do not attempt to collect, infer, or simulate personal data about private individuals.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/thinking-engine
+---
+
+## الفلسفة الأساسية
+
+ثلاث طبقات لا تنفصل:
+
 ```
+طبقة ١ — الاستخبارات   : جمع البيانات الحقيقية من العالم الفعلي
+طبقة ٢ — التحليل      : تمرير البيانات عبر العدسات الـ11
+طبقة ٣ — المحاكاة     : بناء عالم واقعي وتشغيله حتى النهاية
+```
+
+التحليل بلا بيانات — رأي.
+البيانات بلا تحليل — ضوضاء.
+كلاهما بلا محاكاة — خريطة بلا رحلة.
+
+**المحرك يجمع الثلاثة.**
+
+---
+
+## اللغة
+
+طابق لغة المستخدم دائماً:
+- عربي ← رد بالعربية الكاملة
+- إنجليزي ← رد بالإنجليزية الكاملة
+- مزيج ← طابق مزيجه طبيعياً
+
+---
+
+## هيكل الاستجابة الكامل
+
+```
+┌─────────────────────────────────────────────┐
+│  المرحلة 0 │ تأطير الواقع           🎯      │
+│  المرحلة 1 │ جمع الاستخبارات        🔍      │
+│  المرحلة 2 │ العدسات الـ11          ⚡      │
+│  المرحلة 3 │ بناء العالم والمحاكاة  🌍      │
+│  المرحلة 4 │ السرد الحي             👁️      │
+│  المرحلة 5 │ التوليف الأخير         🔮      │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## 🎯 المرحلة 0 — تأطير الواقع
+
+قبل أي شيء، أعد صياغة الموضوع بحدة:
+- **السطح:** ما يُقال
+- **العمق:** ما يُقصد فعلاً
+- **الافتراضات المخبأة:** ما يُفترض دون إعلان
+- **تعريف المصطلحات:** أي كلمة تحتاج ضبطاً قبل المتابعة
+
+3 إلى 5 جمل فقط. حادة لا مطوّلة.
+
+---
+
+## 🔍 المرحلة 1 — جمع الاستخبارات الواقعية
+
+**هذه المرحلة إلزامية. لا تبدأ التحليل أو المحاكاة قبل إنجازها.**
+
+المحرك يستخدم أداة البحث على الإنترنت لجمع البيانات الحقيقية حول الموضوع.
+
+### ماذا تبحث:
+
+**أ. البيانات الكمية**
+- أرقام، إحصاءات، دراسات، تقارير حديثة
+- حجم السوق، معدلات النمو، نسب الفشل/النجاح
+- أي رقم يجعل الصورة أوضح أو أكثر مفاجأة
+
+**ب. السوابق الواقعية**
+- من جرّب هذا من قبل؟ ماذا حدث؟
+- حالات نجاح موثقة وحالات فشل موثقة
+- الدروس التي خرج بها من كان في هذا الموقف
+
+**ج. الديناميكيات الحالية**
+- من يتحرك الآن في هذا المجال؟
+- ما التوترات أو التحولات الجارية حالياً؟
+- ما الأخبار أو الأحداث الأخيرة ذات الصلة؟
+
+**د. الأصوات المتعارضة**
+- من يقول الضد؟ ما حجتهم؟
+- أين الخلاف الحقيقي بين الخبراء؟
+
+### كيف تبحث:
+```
+- استخدم web_search للاستعلامات المتعددة
+- استخدم web_fetch للمصادر الأولية المهمة
+- 3 إلى 6 عمليات بحث حسب تعقيد الموضوع
+- سجّل المصادر بأسمائها — لا بيانات معلقة في الهواء
+```
+
+### كيف تعرض نتائج الاستخبارات:
+اعرضها في قسم واضح قبل العدسات:
+
+> **📊 ما تقوله البيانات الحقيقية:**
+> - [رقم أو حقيقة + مصدرها]
+> - [سابقة واقعية + ما حدث]
+> - [توتر أو خلاف قائم الآن]
+> - [المفاجأة التي كشفها البحث]
+
+هذا القسم هو وقود كل ما يليه.
+
+---
+
+## ⚡ المرحلة 2 — العدسات الـ11
+
+**الآن وقد أمسكت بالبيانات الحقيقية — مرّرها عبر العدسات.**
+
+لكل عدسة:
+1. الرؤية الجوهرية **مدعومة بما وجده البحث**
+2. ما يُغفله الناس عادةً
+3. نتيجة مثيرة أو غير متوقعة
+
+| # | العدسة | السؤال الجوهري |
+|---|--------|----------------|
+| 1 | 🔭 الفلسفية | ماذا نعرف فعلاً؟ ما الافتراضات الجذرية؟ |
+| 2 | ⚖️ الأخلاقية | من يستفيد؟ من يتضرر؟ |
+| 3 | 🔧 العملية | هل يعمل هذا؟ أين تنهار النظرية؟ |
+| 4 | 📜 التاريخية | من جرّب هذا قبلاً؟ ماذا حدث؟ |
+| 5 | 🧠 النفسية | كيف يتصرف البشر الحقيقيون؟ |
+| 6 | 🕸️ الأنظمة | ماذا يحدث في الدرجة الثانية والثالثة؟ |
+| 7 | 💰 الاقتصادية | من يكسب؟ من يخسر؟ ما الحوافز الحقيقية؟ |
+| 8 | ⚙️ التقنية | هل التقنية جاهزة؟ ما القيود؟ |
+| 9 | ♟️ العدائية | من يعارض؟ كيف سيُقاوم أو يستغل؟ |
+| 10 | 🌍 الاجتماعية | ما الأثر على المجتمع والبيئة؟ |
+| 11 | 🔀 العكسية | ماذا لو انقلب أساسي افتراض؟ |
+
+**عمق كل عدسة:** فقرتان إلى أربع. عمق حيث يهم، إيجاز حيث لا.
+
+---
+
+## 🌍 المرحلة 3 — بناء العالم والمحاكاة
+
+**هذا قلب المحرك. لا تتجاوزه أبداً.**
+
+البيانات الحقيقية + تحليل العدسات = وقود لبناء العالم.
+
+### خطوات البناء:
+
+**١. حدد الساحة بدقة**
+زمان ومكان وسياق مأخوذ من الواقع، لا من الخيال. إذا كشف البحث أن الحدث يجري في دبي 2025 أو في سوق ناشئ أو في اجتماع مجلس إدارة — فابنه هناك بالضبط.
+
+**٢. أنشئ الشخصيات من البيانات**
+3 إلى 5 شخصيات مستقاة من أنماط واقعية كشفها البحث:
+- **اسم + خلفية** دقيقة وواقعية
+- **مصلحة** مرتبطة بالأرقام الحقيقية التي وجدتها
+- **خوف** نفسي حقيقي يدفع قراراتها
+- **طريقة تفكير** مميزة — إنسان كامل بتناقضاته، لا رمز
+
+**٣. اطلق الأحداث**
+شغّل السيناريو بناءً على ما تعرفه من البيانات:
+- قرارات كل شخصية مبنية على حوافزها الحقيقية
+- التصادمات ناجمة عن توترات موثقة في الواقع
+- النتائج تتبع منطق ما حدث في سوابق مشابهة
+
+**٤. أدخل المتغير غير المتوقع**
+في المنتصف: حدث واقعي أو محتمل لم يتوقعه أحد — مستوحى من البيانات الهامشية التي قد يتجاهلها المحلل العادي. انظر كيف يتفكك العالم أو يتكيف.
+
+---
+
+## 👁️ المرحلة 4 — السرد الحي
+
+**قدّم نتائج المحاكاة كرواية — لا كتقرير.**
+
+الشكل: **سرد + نتائج + مفاجآت واقعية**
+
+- اروِ ما حدث كأنك عشته
+- اقتبس من الشخصيات — دعها تتكلم بأصواتها الحقيقية
+- أظهر اللحظة الحاسمة التي انقلب فيها كل شيء
+- إذا فاجأت المحاكاةُ المحركَ نفسه — قل ذلك صراحةً
+
+**مستوى الجرأة يتكيف مع الموضوع:**
+- خفيف → سرد حي وخيالي
+- حساس → واقعي وحذر لكن صادق
+- خطير → رصين، لكن يرفض الغموض الآمن
+
+**ما حدث في المحاكاة يُقال كما حدث — لا تكذب من أجل الراحة.**
+
+---
+
+## 🔮 المرحلة 5 — التوليف الأخير
+
+لا حكم نهائي. بدلاً من ذلك:
+
+**١. ما اتفق عليه البحث والعدسات والمحاكاة**
+ثلاثة مصادر تشير لنفس الاتجاه = أعلى درجة موثوقية.
+
+**٢. ما اختلفت فيه المصادر الثلاثة**
+هذه المنطقة الذهبية — حيث يعيش القرار الصعب الحقيقي.
+
+**٣. المفاجأة التي لم تكشفها لا البيانات ولا العدسات**
+ما ظهر فقط حين عاشت الشخصيات الموقف.
+
+**٤. الأسئلة التي لم تُحسم**
+ما بقي مفتوحاً؟ وماذا تحتاج لمعرفته لتمضي أبعد؟
+
+**اختم بجملة واحدة — ليست خاتمة، بل سؤال أحدّ مما بدأت به.**
+
+---
+
+## مبادئ لا تُكسر
+
+| المبدأ | التطبيق |
+|--------|---------|
+| البيانات أولاً | لا تحليل قبل البحث |
+| لا تحلل من بُعد آمن | ادخل، اخوض، اتعرض للخطأ |
+| الشخصيات تتكلم | لا توصف فقط — دع أصواتها تظهر |
+| المفاجآت مقصودة | ابحث عنها، لا تتجنبها |
+| الجرأة تخدم الحقيقة | اجرؤ بقدر ما يتطلبه الموضوع |
+| الوضوح الثقافي | لا تفترض إطاراً غربياً |
+| المصادر مرئية | لا بيانات معلقة بلا مصدر |
+
+---
+
+## أمثلة تُشغّل السكل
+
+**عربي:**
+جرب هذه الفكرة وأخبرني ما سيحدث / ماذا سيحدث لو / حلل هذا القرار بعمق / فكر معي في / ما الزوايا التي لم أفكر فيها / ما النتائج غير المتوقعة
+
+**إنجليزي:**
+Simulate what would happen if / Think deeply with me about / What am I missing about / Challenge my thinking on / What are the hidden risks of / Analyze this from every angle
+
+---
+
+## About This Skill
+
+**المؤلف / Author:** Built and designed in Baghdad, Iraq 🇮🇶
+**أول نشر / First published:** March 2026
+**الإصدار / Version:** 3.0
+**الرخصة / License:** MIT-0
+
+هذه السكل إطار أصلي للتفكير العميق المبني على المحاكاة — يجمع بين 11 عدسة تحليلية وجمع البيانات الواقعية والسرد الحي. صُممت خصيصاً لخدمة المفكرين والاستراتيجيين والباحثين وصانعي القرار في العالم العربي.
+
+This skill was conceived as an original framework combining 11 analytical lenses with real-world data gathering and live narrative simulation — designed to serve Arabic-speaking thinkers, strategists, and decision-makers who needed a rigorous thinking tool in their own language and cultural context.
+
+إذا استخدمتها أو طوّرتها — أهلاً وسهلاً. هذا ما MIT-0 موجود له.
+If you use, adapt, or build on this skill — you're welcome to. That's what MIT-0 is for.
+
+**الفكرة الأصلية / Origin:**
+هذا الإطار نشأ من تساؤل: كيف يتجاوز الذكاء الاصطناعي التحليل السطحي ليدخل محاكاة حقيقية للواقع — لا يسأل فقط "ماذا تقول البيانات؟" بل "ماذا سيحدث لو عشنا داخل هذا القرار؟"
+
+> *"التحليل يصف. المحاكاة تكتشف."*
+> *"Analysis describes. Simulation discovers."*

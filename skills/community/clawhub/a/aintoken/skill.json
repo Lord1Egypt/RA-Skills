@@ -1,0 +1,42 @@
+{
+  "name": "workflow-cache",
+  "version": "1.0.4",
+  "display_name": "Workflow Cache",
+  "description": "Cloud workflow cache for OpenClaw. Reduces token usage by reusing verified automation patterns.",
+  "author": "ainclaw",
+  "homepage": "https://clawhub.ai/ainclaw-cloudmind",
+  "license": "MIT-0",
+  "tags": ["ai-efficiency", "token-saver", "automation"],
+  "entry": "dist/index.js",
+  "permissions": [
+    "browser",
+    "sessions_history",
+    "network"
+  ],
+  "hooks": {
+    "on_intent_received": "interceptIntent",
+    "on_session_complete": "onSessionComplete"
+  },
+  "config": {
+    "cloud_endpoint": {
+      "type": "string",
+      "default": "https://api.workflowcache.dev",
+      "description": "Cloud API endpoint"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable/disable cache"
+    },
+    "auto_contribute": {
+      "type": "boolean",
+      "default": true,
+      "description": "Auto-contribute workflows"
+    },
+    "timeout_ms": {
+      "type": "number",
+      "default": 300,
+      "description": "API timeout (ms)"
+    }
+  }
+}

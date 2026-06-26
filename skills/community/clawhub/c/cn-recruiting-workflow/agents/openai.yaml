@@ -1,0 +1,4 @@
+interface:
+  display_name: "招聘推进助手 / Recruiting Follow-up Copilot"
+  short_description: "汇总面试反馈，生成推进话术、纪要和跟进记录 / Debrief, follow-up, and tracker updates"
+  default_prompt: "使用 $cn-recruiting-workflow 处理招聘推进场景，优先输出简体中文，并直接给我结论、候选人沟通稿和可回写记录。"

@@ -1,35 +1,241 @@
 ---
-name: "groove-admin-claude-hooks"
-description: "Indexed by skills.sh from andreadellacorte/groove"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andreadellacorte"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andreadellacorte/groove/groove-admin-claude-hooks"
-sourceUrl: "https://skills.sh/andreadellacorte/groove/groove-admin-claude-hooks"
+name: groove-admin-claude-hooks
+description: "Install groove's Claude Code native shell hooks into .claude/settings.json. Enables deterministic session-end reminders, git activity capture, automatic session-capture drafts, and managed-path protection."
+license: MIT
+allowed-tools: Read Write Edit Glob Bash(git:*) Bash(mkdir:*) Bash(chmod:*) AskUserQuestion
+metadata:
+  author: andreadellacorte
 ---
+
+<!-- groove:managed — do not edit; changes will be overwritten by groove update -->
 
 # groove-admin-claude-hooks
 
-> Indexed by skills.sh from andreadellacorte/groove
+Install groove's Claude Code native shell hooks. These run outside the model — deterministic, unconditional — and complement groove's advisory markdown hooks (`.groove/hooks/start.md`, `end.md`).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andreadellacorte
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andreadellacorte/groove/groove-admin-claude-hooks`
-- **Source URL:** [https://skills.sh/andreadellacorte/groove/groove-admin-claude-hooks](https://skills.sh/andreadellacorte/groove/groove-admin-claude-hooks)
+Use `--disable <hook>` to remove a specific hook. Use `--list` to show current status.
 
-## Overview
+## Outcome
 
+Selected hooks are registered in `.claude/settings.json` and shell scripts are written to `.groove/hooks/claude/`. Hooks fire automatically on Claude Code lifecycle events without any model involvement.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Available hooks
+
+| Name | Event | Matcher | What it does |
+|---|---|---|---|
+| `daily-end-reminder` | `Stop` | — | If hour is 16–21 local time and `.groove/index.md` exists, prints a reminder to run `/groove-daily-end` |
+| `git-activity-buffer` | `PostToolUse` | `Bash` | If the Bash command contains `git commit`, appends a timestamped line to `.groove/.cache/git-activity-buffer.txt` |
+| `block-managed-paths` | `PreToolUse` | `Write`, `Edit` | If `file_path` starts with `.agents/skills/groove` or `skills/groove`, exits non-zero to block the write with an explanatory message |
+| `context-reprime` | `SessionStart` | `startup\|compact` | Runs the prime script directly — ensures full workflow context is loaded after every session start and compaction |
+| `version-check` | `PostToolUse` | — | Checks for a new groove version once per hour; calls `groove-utilities-check` |
+| `session-capture` | `Stop` | — | If there is git activity this session (commits since midnight, working changes, or buffered commits), stages a capture draft to `.groove/.cache/pending-capture.md` for next-session review. Silent. |
+
+## Steps
+
+### `--list`
+
+Read `.claude/settings.json` if it exists. Report which groove hooks are registered and which scripts exist in `.groove/hooks/claude/`. Exit.
+
+### `--disable <hook>`
+
+Remove the named hook's entry from `.claude/settings.json` (leave the script in place). Report removed / not found. Exit.
+
+### Default (install)
+
+1. Ask which hooks to enable (default: all six):
+   ```
+   Which hooks to install? (all / comma-separated: daily-end-reminder, git-activity-buffer, block-managed-paths, context-reprime, version-check, session-capture)
+   Press enter for all.
+   ```
+
+2. Read `.claude/settings.json` if it exists; parse as JSON (default `{}`). Never discard existing non-groove entries.
+
+3. Create `.groove/hooks/claude/` directory if absent. Make each script executable (`chmod +x`).
+
+4. For each selected hook: write the shell script and merge the hook entry into `.claude/settings.json`.
+
+5. Write `.claude/settings.json` with the merged result.
+
+6. Report summary:
+   ```
+   ✓ daily-end-reminder  — Stop hook → .groove/hooks/claude/daily-end-reminder.sh
+   ✓ git-activity-buffer — PostToolUse/Bash hook → .groove/hooks/claude/git-activity-buffer.sh
+   ✓ block-managed-paths — PreToolUse/Write+Edit hook → .groove/hooks/claude/block-managed-paths.sh
+   ✓ context-reprime     — SessionStart hook → groove-utilities-prime.sh
+   ✓ version-check       — PostToolUse hook → .groove/hooks/claude/version-check.sh
+   ✓ session-capture     — Stop hook → .groove/hooks/claude/session-capture.sh
+   ✓ .claude/settings.json updated
+   ```
+
+## Shell script templates
+
+Write these verbatim to `.groove/hooks/claude/`. Never overwrite an existing script without showing a diff and confirming.
+
+### `daily-end-reminder.sh`
+
 ```bash
-hermes skills install skills-sh/andreadellacorte/groove/groove-admin-claude-hooks
+#!/usr/bin/env bash
+# groove: Stop hook — remind about /groove-daily-end during work hours
+hour=$(date +%H)
+if [ -f "$CLAUDE_PROJECT_DIR/.groove/index.md" ] && [ "$hour" -ge 16 ] && [ "$hour" -le 21 ]; then
+  echo "groove: end of work hours — consider running /groove-daily-end"
+fi
 ```
+
+### `git-activity-buffer.sh`
+
+```bash
+#!/usr/bin/env bash
+# groove: PostToolUse/Bash hook — buffer git commits for memory log
+input=$(cat)
+command=$(echo "$input" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('command',''))" 2>/dev/null)
+if echo "$command" | grep -q "git commit"; then
+  msg=$(echo "$command" | grep -oP '(?<=-m ")[^"]+' | head -1)
+  mkdir -p "$CLAUDE_PROJECT_DIR/.groove/.cache"
+  echo "$(date '+%Y-%m-%d %H:%M') | ${msg:-<no message>}" >> "$CLAUDE_PROJECT_DIR/.groove/.cache/git-activity-buffer.txt"
+fi
+```
+
+### `block-managed-paths.sh`
+
+```bash
+#!/usr/bin/env bash
+# groove: PreToolUse/Write+Edit hook — block edits to managed groove paths
+input=$(cat)
+path=$(echo "$input" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('file_path',''))" 2>/dev/null)
+if echo "$path" | grep -qE '^(\.agents/skills/groove|skills/groove)'; then
+  echo "groove: blocked — '$path' is managed by groove update. Edit under skills/ and rsync to .agents/skills/." >&2
+  exit 1
+fi
+```
+
+### `version-check.sh`
+
+```bash
+#!/usr/bin/env bash
+# groove: PostToolUse hook — check for new groove version (once per hour)
+CACHE="$CLAUDE_PROJECT_DIR/.groove/.cache/last-version-check-ts"
+mkdir -p "$CLAUDE_PROJECT_DIR/.groove/.cache"
+now=$(date +%s)
+if [ -f "$CACHE" ]; then
+  last=$(cat "$CACHE")
+  diff=$((now - last))
+  [ "$diff" -lt 3600 ] && exit 0
+fi
+echo "$now" > "$CACHE"
+bash "$CLAUDE_PROJECT_DIR/.agents/skills/groove-utilities-check/scripts/check.sh" 2>/dev/null || true
+```
+
+### `session-capture.sh`
+
+```bash
+#!/usr/bin/env bash
+# groove: Stop hook — stage a session capture draft from git activity for next-session review
+ROOT="${CLAUDE_PROJECT_DIR:-$PWD}"
+[ -f "$ROOT/.groove/index.md" ] || exit 0
+command -v git >/dev/null 2>&1 || exit 0
+git -C "$ROOT" rev-parse --git-dir >/dev/null 2>&1 || exit 0
+
+CACHE="$ROOT/.groove/.cache"
+PENDING="$CACHE/pending-capture.md"
+BUFFER="$CACHE/git-activity-buffer.txt"
+
+commits=$(git -C "$ROOT" log --since=midnight --oneline 2>/dev/null)
+changes=$(git -C "$ROOT" diff --stat HEAD 2>/dev/null)
+buffered=""
+[ -s "$BUFFER" ] && buffered=$(cat "$BUFFER")
+
+# No activity → clear any stale draft and stay silent.
+if [ -z "$commits" ] && [ -z "$changes" ] && [ -z "$buffered" ]; then
+  rm -f "$PENDING"
+  exit 0
+fi
+
+mkdir -p "$CACHE"
+{
+  echo "# Pending capture — $(date '+%Y-%m-%d %H:%M')"
+  echo
+  echo "## Commits since midnight"
+  echo "${commits:-(none)}"
+  echo
+  echo "## Working changes"
+  echo "${changes:-(none)}"
+  if [ -n "$buffered" ]; then
+    echo
+    echo "## Buffered commit messages"
+    echo "$buffered"
+  fi
+} > "$PENDING"
+```
+
+## `.claude/settings.json` entries
+
+Merge these into the `hooks` key. Preserve all other keys.
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash $CLAUDE_PROJECT_DIR/.groove/hooks/claude/daily-end-reminder.sh" }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "bash $CLAUDE_PROJECT_DIR/.groove/hooks/claude/session-capture.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash $CLAUDE_PROJECT_DIR/.groove/hooks/claude/git-activity-buffer.sh" }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "bash $CLAUDE_PROJECT_DIR/.groove/hooks/claude/version-check.sh" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          { "type": "command", "command": "bash $CLAUDE_PROJECT_DIR/.groove/hooks/claude/block-managed-paths.sh" }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          { "type": "command", "command": "bash $CLAUDE_PROJECT_DIR/.groove/hooks/claude/block-managed-paths.sh" }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $CLAUDE_PROJECT_DIR/.agents/skills/groove-utilities-prime/scripts/groove-utilities-prime.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+When merging: if a `hooks` key already exists, append groove entries to the relevant event arrays. Do not create duplicates — check if a groove command entry already exists before appending.
+
+## Constraints
+
+- Never overwrite non-groove entries in `.claude/settings.json`
+- Never overwrite an existing script without diff + confirmation
+- Scripts use `python3` to parse JSON stdin — if python3 is absent, skip that hook and warn
+- `block-managed-paths` is aggressive: if it causes false positives the user can disable it with `--disable block-managed-paths`
+- After install: remind the user that hooks take effect on the next Claude Code session restart
+- `.groove/hooks/claude/` follows the `git.hooks` git strategy from `.groove/index.md`

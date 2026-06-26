@@ -1,0 +1,11 @@
+{
+  "eval_id": 5,
+  "eval_name": "technical-spec-with-code",
+  "prompt": "Convert technical spec with code blocks and tables to .docx",
+  "assertions": [
+    {"name": "output_file_exists", "description": "Generated .docx file exists"},
+    {"name": "valid_docx", "description": "Output is a valid .docx file"},
+    {"name": "headings_present", "description": "Headings rendered correctly"},
+    {"name": "bold_text_preserved", "description": "Code blocks and formatting preserved"}
+  ]
+}

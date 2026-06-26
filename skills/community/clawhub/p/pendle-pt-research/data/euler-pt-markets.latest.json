@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-04-02T03:14:27.599627+00:00",
+  "targetCount": 11,
+  "matchedTokenCount": 0,
+  "verifiedMarketCount": 0,
+  "matchedTokens": [],
+  "markets": [],
+  "notes": "Euler verification is considered protocol-live only when target Pendle PTs match Euler tokenlist and vault relationships. Zero matches means no current verification for this target PT set, not that Euler has no Pendle PT support globally."
+}

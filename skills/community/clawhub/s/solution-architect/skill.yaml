@@ -1,0 +1,89 @@
+skill:
+  name: solution-architect
+  version: 1.0.0
+  description: 解决方案架构师 - 提供经过验证的商业解决方案框架（增长营销/内容升级/平台增长）
+  author: 董国华（清醒建造者）
+  created: 2026-04-02
+  type: cli
+  language: zh-CN
+  license: CC-BY-NC-SA-4.0
+
+execution:
+  entry: script.py
+  timeout: 300
+  sandbox: false
+
+parameters:
+  - name: action
+    type: string
+    required: true
+    description: "执行动作（solve/plan/enhance/show/list）"
+  - name: problem
+    type: string
+    required: false
+    description: "问题描述（用于 solve 动作）"
+  - name: goal
+    type: string
+    required: false
+    description: "目标描述（用于 plan 动作）"
+  - name: solution
+    type: string
+    required: false
+    description: "解决方案名称（用于 show 动作）"
+  - name: my-plan
+    type: string
+    required: false
+    description: "我的方案文件路径（用于 enhance 动作）"
+  - name: reference
+    type: string
+    required: false
+    description: "参考解决方案（用于 enhance 动作）"
+
+dependencies:
+  - name: python3
+    type: cli
+    required: true
+  - name: pyyaml
+    type: python
+    required: true
+
+tags:
+  - solution
+  - strategy
+  - marketing
+  - content
+  - platform
+  - growth
+  - chinese
+
+examples:
+  - description: "查找解决方案"
+    command: "python3 script.py solve --problem '内容团队效率低，想引入 AI'"
+  - description: "规划实施路径"
+    command: "python3 script.py plan --goal '6 个月内开发者从 1000 到 10 万'"
+  - description: "查看方案详情"
+    command: "python3 script.py show growth-marketing"
+  - description: "优化现有方案"
+    command: "python3 script.py enhance --my-plan plan.md --reference growth-marketing"
+  - description: "列出所有方案"
+    command: "python3 script.py list"
+
+notes: |
+  solution-architect v1.0 - 解决方案架构师
+  
+  核心解决方案：
+  - 增长营销（特斯拉方案）- AI 驱动的内容飞轮×社群裂变×跨界破圈
+  - 内容升级（36 氪方案）- 一核两翼三驱动，内容产品化转型
+  - 平台增长（小米 MiMo 方案）- 三层驱动引擎，构建开发者生态
+  
+  使用场景：
+  - 有业务问题，寻找经过验证的解决方案
+  - 有目标，需要实施路径和 KPI
+  - 有方案，需要对比优化建议
+  
+  注意事项：
+  - 方案需根据具体场景适配
+  - 市场数据需更新为最新
+  - 本地使用，不发布到外部平台
+  
+  许可证：CC BY-NC-SA 4.0（非商业使用）

@@ -1,0 +1,37 @@
+{
+  "slug": "stakeholder-update-drafter",
+  "title": "干系人更新草拟器",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "同一组事实分别输出老板版、客户版、执行版和风险透明版项目更新。",
+  "inputHint": "项目进展、风险、下一步",
+  "sections": [
+    "统一事实底稿",
+    "老板版摘要",
+    "客户版摘要",
+    "执行版摘要",
+    "风险说明",
+    "下一步"
+  ],
+  "useCases": [
+    "管理层沟通",
+    "客户同步",
+    "内部广播"
+  ],
+  "positiveExamples": [
+    "给老板和客户分别写一版进度更新",
+    "把同一事实拆成多个受众版本"
+  ],
+  "negativeExamples": [
+    "不要夸大成果",
+    "不要隐瞒关键风险"
+  ],
+  "risk": "默认保留风险透明表达，不做过度包装。",
+  "tags": [
+    "stakeholder",
+    "status-update",
+    "communication",
+    "executive"
+  ]
+}

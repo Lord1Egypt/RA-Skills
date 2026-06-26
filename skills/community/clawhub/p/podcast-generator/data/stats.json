@@ -1,0 +1,14 @@
+{
+  "generations": [
+    {
+      "id": 1,
+      "title": "Test Article",
+      "format": "solo",
+      "audio_seconds": 120,
+      "cost": 0.001,
+      "timestamp": "2026-03-06T08:52:15.955147"
+    }
+  ],
+  "total_audio_seconds": 120,
+  "total_calls": 1
+}

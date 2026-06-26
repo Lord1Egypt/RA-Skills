@@ -1,0 +1,23 @@
+{
+  "skill_name": "ali-esa-acme-ssl-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My domain is on Alibaba Cloud ESA and its NS is atrustdns. Help me issue a certificate for test.example.com and configure it to Nginx automatically.",
+      "expected_output": "Provide dependency checks, the single-domain script command, completion criteria, and the Nginx certificate path.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to issue both example.com and *.example.com together using ESA DNS automation.",
+      "expected_output": "Provide the wildcard issuance command (-d example.com -d '*.example.com') and emphasize wildcard quoting and DNS propagation waiting.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I got the error 'No TXT record found at _acme-challenge.example.com'. How should I troubleshoot it?",
+      "expected_output": "Explain authoritative NS checks, timeout adjustment guidance, and the difference between ESA DNS and traditional AliDNS control planes.",
+      "files": []
+    }
+  ]
+}

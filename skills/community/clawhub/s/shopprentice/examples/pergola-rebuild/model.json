@@ -1,0 +1,68 @@
+{
+  "deps": [
+    {
+      "body": "wall",
+      "ref": "origin"
+    },
+    {
+      "body": "ground",
+      "ref": "wall"
+    },
+    {
+      "body": "post1",
+      "ref": "ground"
+    },
+    {
+      "body": "post2",
+      "ref": "ground"
+    },
+    {
+      "body": "post1_upper",
+      "ref": "post1"
+    },
+    {
+      "body": "post2_upper",
+      "ref": "post2"
+    },
+    {
+      "body": "wedge1",
+      "ref": "post1"
+    },
+    {
+      "body": "wedge2",
+      "ref": "post2"
+    },
+    {
+      "body": "Body1",
+      "ref": "post1_upper"
+    },
+    {
+      "body": "Body2",
+      "ref": "post2_upper"
+    },
+    {
+      "body": "Body3",
+      "ref": "Body1"
+    },
+    {
+      "body": "Body4",
+      "ref": "Body2"
+    },
+    {
+      "body": "Body5",
+      "ref": "Body1"
+    },
+    {
+      "body": "Body6",
+      "ref": "Body2"
+    },
+    {
+      "body": "left_brace",
+      "ref": "post1_upper"
+    },
+    {
+      "body": "right_brace",
+      "ref": "post2_upper"
+    }
+  ]
+}

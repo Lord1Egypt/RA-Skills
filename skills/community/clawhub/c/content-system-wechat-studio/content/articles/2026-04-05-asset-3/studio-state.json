@@ -1,0 +1,80 @@
+{
+  "source": {
+    "originalName": "如果生活乏味-那就把自己扔进街区-article.md",
+    "markdownPath": "content/articles/2026-04-05-asset-3/source.md",
+    "uploadedAt": "2026-04-05 23:41:07",
+    "warnings": [
+      "已导入文章。请先选择风格、配色并确认提示词，再手动生成预览、封面和正文配图。"
+    ]
+  },
+  "layout": {
+    "theme": "winter-slate",
+    "template": "xiumi-winter-ins",
+    "themeFile": "",
+    "referenceUrl": "",
+    "warning": "",
+    "extractionMeta": {},
+    "updatedAt": "2026-04-06 14:16:56"
+  },
+  "tone": {
+    "theme": "winter-slate",
+    "primaryColor": "#5f77f2",
+    "saturation": 100,
+    "opacity": 88,
+    "updatedAt": "2026-04-06 14:16:56"
+  },
+  "typography": {
+    "template": "xiumi-winter-ins",
+    "titleStyle": "standard",
+    "bodySize": 16,
+    "lineHeight": 1.9,
+    "paragraphGap": 16,
+    "sectionStyle": "editorial",
+    "imageRadius": 24,
+    "imageSpacing": 22,
+    "updatedAt": "2026-04-06 14:16:56"
+  },
+  "cover": {
+    "candidatePath": "content/articles/2026-04-05-asset-3/studio-assets/cover-magazine-20260406-141713.png",
+    "generated": null,
+    "history": [],
+    "customPrompt": "",
+    "updatedAt": "2026-04-06 14:32:00"
+  },
+  "coverModules": {
+    "current": null,
+    "history": [],
+    "style": "collage-editorial",
+    "updatedAt": ""
+  },
+  "inlineImages": {
+    "items": [],
+    "history": [],
+    "archivedHistory": [],
+    "positions": {},
+    "promptOverrides": {},
+    "customPrompt": "",
+    "slots": [],
+    "nextSlotIndex": 1,
+    "updatedAt": ""
+  },
+  "sectionModules": {
+    "items": [],
+    "history": [],
+    "customPrompt": "",
+    "updatedAt": ""
+  },
+  "draft": {
+    "mediaId": "",
+    "title": "",
+    "pushedAt": "",
+    "lastError": "",
+    "theme": "",
+    "themeFile": "",
+    "template": ""
+  },
+  "preview": {
+    "initialized": true,
+    "updatedAt": "2026-04-06 14:16:56"
+  }
+}

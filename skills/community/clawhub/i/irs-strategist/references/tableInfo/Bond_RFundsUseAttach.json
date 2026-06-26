@@ -1,0 +1,100 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "RID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "RID：与“债券募集资金用途Bond_RaiseFundsUse”表的ID字段相关联。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "EventType",
+        "columnChiName": "事件类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "事件类型(EventType)与(CT_SystemConst)表中的DM字段关联，令LB = 2270，得到事件类型的具体描述：1-募资投向项目类型。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "EventTypeF",
+        "columnChiName": "事件分类一级",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "事件分类一级(EventTypeF)与(CT_SystemConst)表中的DM字段关联，令LB = 2271 AND IVALUE = 1，得到事件分类一级的具体描述：10-充实资金，20-偿还债务，30-投资经营，40-城市更新项目，80-地方政府债相关，99-其他。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "EventTypeS",
+        "columnChiName": "事件分类二级",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "事件分类二级(EventTypeS)与(CT_SystemConst)表中的DM字段关联，令LB = 2271 and IVALUE = 2，得到事件分类二级的具体描述：1001-补充营运资金，1002-充实资本，2001-偿还借款，2002-偿还到期债券，8001-地方政府债(专项)，8002-地方政府债(一般)，8003-地方政府债(置换)，8004-地方政府债(新增)。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "88.04",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

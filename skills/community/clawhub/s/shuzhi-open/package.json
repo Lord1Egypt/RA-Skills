@@ -1,0 +1,30 @@
+{
+  "name": "shuzhi-open",
+  "version": "1.0.0",
+  "description": "数秦开放平台统一接口",
+  "main": "lib/client.js",
+  "scripts": {
+    "chain:upload": "node scripts/chain/upload.js",
+    "chain:query": "node scripts/chain/query.js",
+    "evidence:create": "node scripts/evidence/create-task.js",
+    "evidence:query": "node scripts/evidence/query.js",
+    "evidence:download": "node scripts/evidence/download.js",
+    "evidence:device": "node scripts/evidence/device.js",
+    "cert:create": "node scripts/certificate/create.js",
+    "cert:download": "node scripts/certificate/download.js",
+    "sign:enterprise": "node scripts/sign/enterprise.js",
+    "sign:person": "node scripts/sign/person.js",
+    "sign:flow": "node scripts/sign/sign-flow.js"
+  },
+  "keywords": [
+    "shuzhi",
+    "blockchain",
+    "evidence",
+    "sign",
+    "test"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

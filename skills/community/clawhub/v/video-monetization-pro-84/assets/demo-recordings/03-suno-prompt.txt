@@ -1,0 +1,29 @@
+🎵 生成 Suno 提示词
+主题：油价狂飙
+风格：rock
+
+## Suno 提示词
+
+```
+Rock ballad, smoky female vocals (Chinese), emotional, powerful, mid-tempo, 80-100 BPM, electric guitar, drums, bass, professional production, radio quality
+```
+
+## 中文提示词
+
+```
+Rock ballad，烟嗓女声（中文），emotional, powerful，mid-tempo, 80-100 BPM，electric guitar, drums, bass，专业制作，电台音质
+```
+
+## 使用指南
+
+1. 登录 Suno.com
+2. 选择 Custom Mode
+3. 粘贴提示词到 Style 字段
+4. 填写歌词到 Lyrics 字段
+5. 点击 Create
+
+## 注意事项
+- 账号：手机号 4454654118（美国区号 +1）
+- 验证码：https://api.sms8.net/api/record?token=age41qfusk74s7g3po9sr2ljazq0omw4m3jz&format=json3
+- 登录态有效期：7 天
+- 如显示 50 积分无会员 → 清理历史记录（cookie）

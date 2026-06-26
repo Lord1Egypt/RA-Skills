@@ -1,0 +1,23 @@
+{
+  "name": "github-to-skill",
+  "version": "2.0.1",
+  "description": "GitHub 项目转 OpenClaw 技能参考指南 - 纯文档，无可执行代码",
+  "type": "documentation",
+  "main": "SKILL.md",
+  "keywords": [
+    "github",
+    "openclaw",
+    "skill-generator",
+    "documentation",
+    "guide",
+    "meta-skill"
+  ],
+  "author": "SuperMike",
+  "license": "MIT-0",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "homepage": "https://github.com/openclaw/openclaw#readme"
+}

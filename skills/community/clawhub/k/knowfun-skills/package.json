@@ -1,0 +1,94 @@
+{
+  "name": "knowfun-skills",
+  "version": "1.0.15",
+  "description": "KnowFun AI multimodal content generator - Create AI PPT/presentations, posters, interactive games, and educational films. Lightning-fast REST API for educators, content creators, and learners. Integrate with Claude Code, Cursor, Cline, OpenClaw AI assistants",
+  "type": "module",
+  "agentSkill": "skill.json",
+  "bin": {
+    "knowfun": "knowfun.js"
+  },
+  "scripts": {
+    "test": "./scripts/test-api.sh",
+    "prepare": "chmod +x ./knowfun.js && chmod +x ./scripts/knowfun-cli.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MindStarAI/KnowFun-Skills.git"
+  },
+  "keywords": [
+    "knowfun",
+    "ai",
+    "agent-skill",
+    "claude-skill",
+    "clawhub",
+    "ai-ppt",
+    "presentation",
+    "multimodal",
+    "education",
+    "educational-content",
+    "content-generation",
+    "content-creator",
+    "course",
+    "poster",
+    "interactive-game",
+    "learning-game",
+    "game",
+    "film",
+    "video-generation",
+    "ai-video",
+    "educators",
+    "trainers",
+    "learners",
+    "rest-api",
+    "automation",
+    "claude-code",
+    "cursor",
+    "cline",
+    "openclaw",
+    "ai-assistant",
+    "developer-tools",
+    "cli",
+    "openapi",
+    "mcp"
+  ],
+  "author": "Knowfun.io Team <support@knowfun.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MindStarAI/KnowFun-Skills/issues"
+  },
+  "homepage": "https://knowfun.io",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "files": [
+    "knowfun.js",
+    "scripts/",
+    "integrations/",
+    "SKILL.md",
+    "skill.json",
+    "README.md",
+    "README_CN.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "CLAWHUB_VERIFICATION.md",
+    "api-reference.md",
+    "api-reference_CN.md",
+    "examples.md",
+    "examples_CN.md",
+    "QUICKSTART.md",
+    "QUICKSTART_CN.md",
+    "INSTALLATION.md",
+    "INSTALLATION_CN.md",
+    ".env.example"
+  ],
+  "funding": {
+    "type": "individual",
+    "url": "https://knowfun.io"
+  }
+}

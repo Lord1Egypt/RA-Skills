@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+psycopg2-binary
+pgvector
+pymupdf
+httpx
+python-multipart
+websockets
+vt-py
+git+https://github.com/internetarchive/openlibrary-client.git

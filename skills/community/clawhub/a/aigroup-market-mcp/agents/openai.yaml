@@ -1,0 +1,17 @@
+interface:
+  display_name: "AIGroup Market MCP"
+  short_description: "China-market data and Tushare-oriented operations"
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#B45309"
+  default_prompt: "Use $aigroup-market-mcp for China-market data such as stock, index, flow, fund, or macro requests."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "aigroup-market-mcp"
+      description: "China-market and Tushare-oriented data server"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true

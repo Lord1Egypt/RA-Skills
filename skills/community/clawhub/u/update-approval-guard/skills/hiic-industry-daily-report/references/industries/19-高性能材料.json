@@ -1,0 +1,35 @@
+{
+  "id": "19",
+  "name": "高性能材料",
+  "category": "未来产业",
+  "keywords": [
+    "高性能材料",
+    "新材料",
+    "石墨烯",
+    "碳纤维",
+    "复合材料",
+    "特种材料"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🧪",
+    "maxDescriptionLength": 200
+  }
+}

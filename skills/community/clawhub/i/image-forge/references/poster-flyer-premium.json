@@ -1,0 +1,66 @@
+[
+  {
+    "title": "VR Headset Exploded View Poster",
+    "source": "YouMind/awesome-gpt-image-2 @wory37303852 — Featured",
+    "prompt": "Exploded view product diagram poster of {subject}, clean high-tech 3D render style, studio lighting with glowing accents, soft purple and blue gradient background, vertically stacked exploded view showing distinct internal component layers, callout labels on left and right sides with technical descriptions, product name header with subtitle, footer with descriptive text block and logo, professional tech product launch poster layout",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["product", "exploded view", "tech", "3D", "poster"]
+  },
+  {
+    "title": "Vintage Travel Poster",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @WolfRiccardo",
+    "prompt": "Vintage travel poster for {subject}, retro 1950s-60s graphic design aesthetic, bold simplified illustration with flat color areas, Art Deco typography, warm Mediterranean palette of terracotta, cream, and cobalt blue, destination name in large serif font at top, atmospheric landscape illustration, subtle paper aging texture",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["travel", "vintage", "retro", "art deco", "poster"]
+  },
+  {
+    "title": "Futuristic Mandala Illustration Poster",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @4WEB1",
+    "prompt": "Futuristic mandala poster centered on {subject}, sacred geometry meets digital technology, intricate circular patterns with circuit board elements and cosmic motifs, deep space background with nebula colors — indigo, gold, electric blue, symmetrical ornate composition, spiritual-technological fusion aesthetic, dramatic scale contrast",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["mandala", "futuristic", "spiritual", "geometric", "poster"]
+  },
+  {
+    "title": "Super Famicom Retro Game Poster",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @lilimliliychan",
+    "prompt": "Retro Super Famicom / SNES era game box art poster for {subject}, bold primary colors, pixel art character illustrations, dramatic perspective composition, Japanese Kanji title in stylized font, action-packed scene with multiple characters, authentic 16-bit era aesthetic with slight scan lines, nostalgic gaming poster format",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["retro", "game", "famicom", "pixel", "poster"]
+  },
+  {
+    "title": "Dark Fantasy Epic Silhouette Poster",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @A9Quant",
+    "prompt": "Dark fantasy epic poster of {subject}, dramatic silhouette figure against vast luminous sky, extreme scale contrast between character and environment, cinematic color grading with deep navy and amber-gold, moody atmospheric fog layers, heroic composition with figure at 1/3 position, film poster quality, emotional gravity",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["dark fantasy", "epic", "silhouette", "cinematic", "poster"]
+  },
+  {
+    "title": "New Chinese Ink Landscape Poster",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @liyue_ai",
+    "prompt": "Contemporary Chinese ink landscape poster of {subject}, fusion of classical 水墨 ink wash technique with modern graphic design, bold simplified mountain forms in graduated ink tones, traditional red seal stamp accent, modern sans-serif Chinese typography, generous white negative space, cultural heritage meets contemporary aesthetics",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["chinese", "ink", "landscape", "traditional", "modern", "poster"]
+  },
+  {
+    "title": "Science Fiction Movie Poster",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @underwoodxie96",
+    "prompt": "Cinematic science fiction movie poster for {subject}, wide-angle establishing shot of futuristic environment, dramatic one-point perspective, mist and volumetric light rays, cool blue-green color palette with warm accent lighting, heroic figure silhouette at center, bold title treatment at bottom, blockbuster movie production quality",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["sci-fi", "movie", "cinematic", "futuristic", "poster"]
+  },
+  {
+    "title": "Chinese Minimalist S-Shaped Composition Poster",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @liyue_ai",
+    "prompt": "Elegant minimalist poster with S-shaped compositional flow for {subject}, inspired by classical Chinese aesthetic of 留白 negative space, elements arranged in graceful S-curve guiding eye through composition, limited palette of 2-3 tones, subtle texture suggesting silk or rice paper, refined typographic balance, meditative calm",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["minimalist", "chinese", "composition", "elegant", "poster"]
+  }
+]

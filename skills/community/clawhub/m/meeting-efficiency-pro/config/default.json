@@ -1,0 +1,36 @@
+{
+  "ai_provider": "openai",
+  "ai_api_key": "",
+  "calendar_type": "none",
+  "calendar_credentials": {},
+  "task_manager": "none",
+  "task_manager_token": "",
+  "auto_briefing": true,
+  "briefing_time": "08:00",
+  "efficiency_threshold": 70,
+  "email_integration": false,
+  "smtp_settings": {},
+  "notifications": {
+    "efficiency_alerts": true,
+    "daily_briefing": true,
+    "weekly_report": true
+  },
+  "analytics": {
+    "track_efficiency": true,
+    "track_time_savings": true,
+    "track_costs": true
+  },
+  "integrations": {
+    "google_calendar": false,
+    "outlook_calendar": false,
+    "todoist": false,
+    "asana": false,
+    "slack": false
+  },
+  "reporting": {
+    "weekly_report_day": "monday",
+    "report_format": "text",
+    "include_cost_analysis": true,
+    "include_trends": true
+  }
+}

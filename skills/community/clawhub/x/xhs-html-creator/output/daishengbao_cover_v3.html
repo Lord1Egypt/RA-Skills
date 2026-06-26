@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>待产包清单 - 封面 v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1350px;
+  background: #FDF0E0;
+  font-family: 'Noto Sans SC', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+.bg-texture {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(160,120,80,0.05) 27px, rgba(160,120,80,0.05) 28px);
+  pointer-events: none;
+}
+.tape {
+  position: absolute;
+  width: 150px; height: 38px;
+  background: rgba(255,235,150,0.8);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.tape-left { top: 18px; left: 25px; transform: rotate(-4deg); }
+.tape-right { top: 18px; right: 25px; transform: rotate(4deg); }
+.sticker-large {
+  position: absolute;
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 6px;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+  letter-spacing: 2px;
+}
+.sticker-red { top: 70px; right: 28px; background: #E84040; transform: rotate(5deg); }
+.sticker-yellow { top: 125px; left: 28px; background: #FFD700; color: #333; transform: rotate(-3deg); }
+.hero-section {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  right: 30px;
+  text-align: center;
+}
+.hero-eyebrow {
+  font-size: 30px;
+  color: #B85C3D;
+  font-weight: bold;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
+}
+.hero-title {
+  font-size: 100px;
+  font-weight: 900;
+  color: #3D2010;
+  font-family: 'Ma Shan Zheng', cursive;
+  line-height: 1.05;
+  letter-spacing: 4px;
+  text-shadow: 4px 4px 0 rgba(180,120,60,0.2);
+}
+.hero-sub {
+  font-size: 48px;
+  color: #8B5A2B;
+  font-family: 'Ma Shan Zheng', cursive;
+  margin-top: 10px;
+  letter-spacing: 8px;
+}
+.big-number {
+  font-size: 72px;
+  font-weight: 900;
+  color: #E84040;
+  font-family: 'Ma Shan Zheng', cursive;
+}
+.divider {
+  width: 260px; height: 5px;
+  background: linear-gradient(90deg, transparent, #D4853D, transparent);
+  margin: 16px auto;
+}
+.category-row {
+  position: absolute;
+  top: 390px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  justify-content: space-around;
+  gap: 14px;
+}
+.cat-item {
+  flex: 1;
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  padding: 18px 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 2px solid #E8D5C0;
+}
+.cat-icon { font-size: 48px; margin-bottom: 6px; }
+.cat-name { font-size: 28px; font-weight: 900; color: #3D2010; }
+.cat-items { font-size: 17px; color: #8B6F5C; margin-top: 4px; line-height: 1.5; }
+.red-list, .black-list {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  border-radius: 14px;
+  padding: 16px 22px;
+}
+.red-list { top: 660px; background: #FFF5F5; border: 3px solid #FF6B6B; }
+.black-list { top: 810px; background: #F5F5F5; border: 3px solid #999; }
+.list-title { font-size: 26px; font-weight: 900; margin-bottom: 8px; }
+.red-list .list-title { color: #E84040; }
+.black-list .list-title { color: #666; }
+.list-items { font-size: 20px; color: #5C3010; line-height: 1.8; }
+.red-dot { color: #E84040; font-weight: bold; margin-right: 6px; }
+.black-dot { color: #999; font-weight: bold; margin-right: 6px; }
+.cta-bar {
+  position: absolute;
+  bottom: 40px;
+  left: 30px;
+  right: 30px;
+  background: #FFEFF0;
+  border: 3px solid #FF6B6B;
+  border-radius: 16px;
+  padding: 18px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cta-text {
+  font-size: 32px;
+  font-weight: 900;
+  color: #E84040;
+  letter-spacing: 3px;
+  text-align: center;
+}
+.deco { position: absolute; font-size: 50px; }
+.deco-1 { bottom: 100px; left: 45px; }
+.deco-2 { bottom: 100px; right: 45px; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-left"></div>
+<div class="tape tape-right"></div>
+<div class="sticker-large sticker-red">精简版</div>
+<div class="sticker-large sticker-yellow">30+项</div>
+
+<div class="hero-section">
+  <div class="hero-eyebrow">10年经验整理 · 无广 · 纯干货</div>
+  <div class="hero-title">待产包清单</div>
+  <div class="big-number">30+项 实测！</div>
+  <div class="hero-sub">宝宝 · 妈妈 · 证件</div>
+  <div class="divider"></div>
+</div>
+
+<div class="category-row">
+  <div class="cat-item">
+    <div class="cat-icon">📋</div>
+    <div class="cat-name">证件篇</div>
+    <div class="cat-items">身份证、医保卡<br>产检本、准生证</div>
+  </div>
+  <div class="cat-item">
+    <div class="cat-icon">👶</div>
+    <div class="cat-name">宝宝篇</div>
+    <div class="cat-items">半背衣、NB尿裤<br>奶瓶、包被、胎帽</div>
+  </div>
+  <div class="cat-item">
+    <div class="cat-icon">🤱</div>
+    <div class="cat-name">妈妈篇</div>
+    <div class="cat-items">产褥垫、刀纸<br>吸管杯、月子服</div>
+  </div>
+</div>
+
+<div class="red-list">
+  <div class="list-title">✅ 红榜 · 实测好用</div>
+  <div class="list-items"><span class="red-dot">·</span>计量产褥垫 <span class="red-dot">·</span>弯头吸管杯 <span class="red-dot">·</span>NB码尿裤 <span class="red-dot">·</span>护臀膏</div>
+</div>
+
+<div class="black-list">
+  <div class="list-title">❌ 黑榜 · 用了闲置</div>
+  <div class="list-items"><span class="black-dot">·</span>产妇卫生巾（太厚）<span class="black-dot">·</span>婴儿手套（没必要）<span class="black-dot">·</span>肚脐贴（医嘱再说）</div>
+</div>
+
+<div class="cta-bar">
+  <div class="cta-text">👉 建议收藏，随时查漏补缺！</div>
+</div>
+
+<div class="deco deco-1">🤰</div>
+<div class="deco deco-2">🍼</div>
+</body>
+</html>

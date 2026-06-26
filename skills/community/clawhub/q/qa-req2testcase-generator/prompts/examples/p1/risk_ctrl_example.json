@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-RISK-001",
+  "feature_tree": [
+    {
+      "id": "F-001",
+      "name": "个股持仓集中度预警",
+      "description": "监控投资者单一股票持仓市值占总资产比例，超阈值触发预警",
+      "children": [
+        {
+          "id": "F-001-01",
+          "name": "集中度实时计算",
+          "description": "系统实时计算投资者单一股票持仓市值占总资产的比例",
+          "children": []
+        },
+        {
+          "id": "F-001-02",
+          "name": "阈值判定",
+          "description": "根据集中度比例判定预警级别：30%提醒、50%警告、70%禁止买入",
+          "children": []
+        },
+        {
+          "id": "F-001-03",
+          "name": "预警通知推送",
+          "description": "触发预警后通过APP推送和短信通知投资者",
+          "children": []
+        },
+        {
+          "id": "F-001-04",
+          "name": "买入拦截",
+          "description": "集中度达到70%时禁止投资者继续买入该股票",
+          "children": []
+        },
+        {
+          "id": "F-001-05",
+          "name": "阈值管理",
+          "description": "管理员可查看和调整预警阈值配置",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "coverage_check": {
+    "total_features": 6,
+    "covered_requirements": ["集中度计算", "阈值判定", "预警通知", "买入拦截", "阈值管理"],
+    "uncovered_items": []
+  }
+}

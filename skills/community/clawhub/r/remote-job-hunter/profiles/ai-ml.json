@@ -1,0 +1,16 @@
+{
+  "domain": "ai-ml",
+  "label": "AI/ML Architect",
+  "salary_filter_enabled": true,
+  "phrases": [
+    "machine learning", "deep learning", "mlops", "ml engineer", "ml architect",
+    "ai engineer", "ai architect", "genai", "gen ai", "llm", "large language",
+    "data scientist", "nlp engineer", "computer vision", "ai/ml",
+    "generative ai", "foundation model", "rag", "retrieval augmented",
+    "llamaindex", "langchain"
+  ],
+  "title_keywords": [
+    "machine learning", "ml ", "ai ", "genai", "llm", "nlp",
+    "data scientist", "mlops", "computer vision", "deep learning"
+  ]
+}

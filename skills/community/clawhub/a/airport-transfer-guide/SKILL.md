@@ -1,35 +1,376 @@
 ---
-name: "Airport Transfer Guide"
-description: "Guide travelers through international airport transit connections step-by-step with Chinese-language instructions, terminal maps/photos, live queue or crowd..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/airport-transfer-guide"
-sourceUrl: "https://clawhub.ai/skills/airport-transfer-guide"
+name: airport-transfer-guide
+description: "Guide travelers through international airport transit connections step-by-step with Chinese-language instructions, terminal maps/photos, live queue or crowd signals when available, and baggage re-check confirmation using baggage tags/receipts. Trigger when someone asks about airport transfers, connecting flights, transit procedures, layovers, terminal changes, whether they need immigration, whether checked bags go through, or what to do after a delay."
+metadata:
+  clawdbot:
+    requires:
+      bins: ["python3"]
+compatibility:
+  - Requires outbound HTTPS access to ifly.com, flightqueue.com, and airport official websites for images and crowd data.
+  - Optional: Chrome/Chromium browser for CDP screenshot fallback on JS-rendered pages.
+  - Degrades gracefully without network access or Chrome.
 ---
 
-# Airport Transfer Guide
+# 境外中转导航
 
-> Guide travelers through international airport transit connections step-by-step with Chinese-language instructions, terminal maps/photos, live queue or crowd...
+**重要：所有输出必须使用中文（简体），包括标题、表格内容、步骤说明、图片说明。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/airport-transfer-guide`
-- **Source URL:** [https://clawhub.ai/skills/airport-transfer-guide](https://clawhub.ai/skills/airport-transfer-guide)
+将“我在[机场]转机”转化为可离线保存、可截图分享的分步行动卡：从落地到登上下一班飞机，覆盖路线、证件、行李、现场图片、拥挤度、延误应急。
 
-## Overview
+## 核心原则
 
+1. **先给结论，再给步骤**：先明确要不要入境、要不要取行李、要不要换航站楼、时间够不够。
+2. **涉及联网信息必须标注来源与抓取时间**：使用绝对时间和时区，例如 `2026-04-01 16:20 JST`。
+3. **不知道就明确说不知道**：不要编造图片 URL、排队分钟数、签证结论、行李直挂结论。
+4. **行李判断以“行李小票/回执”优先**：它比 App 展示、票号、口头推测更可靠。
+5. **图片只贴对当前行动有帮助的图**：优先贴地图、站点图、动线图，不贴无关风景照。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 两种模式
+
+### Mode A：普通转机指引
+用户在规划转机，或即将落地转机，需要完整分步指引。
+
+### Mode B：延误应急
+用户前序航班已经延误，需要判断能否赶上下一班，并给出抢时间或改签方案。
+
+---
+
+## Mode A：普通转机指引
+
+### Step 1：收集关键信息
+
+| 字段 | 是否必需 | 示例 |
+|------|----------|------|
+| transit_airport | 是 | `NRT` |
+| inbound_flight | 是 | `CX524` |
+| outbound_flight | 是 | `NH205` |
+| transit_duration | 是 | `3h20m` |
+| inbound_terminal | 否 | `T2` |
+| outbound_terminal | 否 | `T1` |
+| separate_ticket | 否 | `true` |
+| is_codeshare | 否 | `false` |
+| has_checked_baggage | 否 | `true` |
+| has_all_boarding_passes | 否 | `false` |
+| baggage_tag_destination | 否 | `LHR` |
+| baggage_receipt_text | 否 | `PVG-HKG-LHR` |
+| nationality / visa_status | 否 | `中国护照 / 无日本签证` |
+
+如果信息不全，先基于已知信息给出方案，同时明确写出“以下判断仍需用户补充确认”的字段。
+
+### Step 2：获取基础转机数据
+
+优先调用：
+
+- `flight-helper:transit_guide`：获取航站楼、是否需入境、换乘动线、安检/摆渡信息
+- `flight-helper:baggage_rules`：获取行李能否直挂、是否可能需要重托运、航司/票务规则
+
+若涉及签证、入境、免签过境：
+
+- **只有在工具结果或官方来源明确支持时，才能说“可以免签/可不入境”**
+- 如信息不够，写：`此处涉及入境资格，当前未拿到足够官方信息，请以航空公司值机柜台/驻外机构/机场边检要求为准`
+- 不要自行发明“岸上许可 / 过境免签”之类说法
+### Step 2.5：调用脚本获取图片与实时现场信息
+
+运行取数脚本获取机场图片、拥挤度和行李备注：
+
 ```bash
-hermes skills install clawhub/airport-transfer-guide
+python3 {baseDir}/scripts/fetch_transit_context.py \
+  --airport [机场三字码] \
+  --inbound-terminal [到达航站楼] \
+  --outbound-terminal [出发航站楼] \
+  --transit-datetime "[ISO格式时间]" \
+  --mode [normal|delay] \
+  --output transit_context.json
 ```
+
+脚本输出 JSON 包含 `images`、`crowd`、`baggage_note`、`support` 四个核心字段，供后续模块 2/3/5 消费。详细 JSON schema 见 `{baseDir}/references/transit_context_guide.md`。
+
+#### 脚本运行失败时的降级方案
+
+如果脚本不可用（无 Python、无网络、运行报错），按以下优先级手动获取：
+
+**图片**：
+1. 机场官网 terminal map / passenger guide
+2. 航空公司官网 terminal guide
+3. 可信第三方（ifly.com、Wikimedia Commons）
+4. 不要使用：小红书、微博、论坛帖、无法直接打开的假图片 URL
+
+**拥挤度**：
+1. 官方实时等待时间页面
+2. FlightQueue（`https://flightqueue.com/airport/[CODE]`）
+3. 航班密度代理判断
+4. 如果什么都没有，写：`该机场当前未找到可网页抓取的公开实时人流数据`
+
+**数据类型标注规则**：
+- 官方实时分钟数 → "官方实时"
+- FlightQueue 预估 → "FlightQueue 预估"
+- 航班密度推断 → "代理判断（非官方实时分钟数）"
+
+#### 行李是否需要重新托运：四级判断优先级
+
+按以下顺序判断，越靠前越优先：
+
+1. **行李小票 / baggage tag / baggage receipt**
+2. **值机柜台或航空公司地勤明确确认**
+3. **同一张票 / 联程 / interline / alliance 规则**
+4. **通用经验判断**
+
+必须告诉用户如何看行李小票：
+
+你的行李小票有两种形式：
+- **条形码挂条**（贴在行李把手上）：长条形，印有航段代码、最终目的地三字码、航班号、件数
+- **热敏纸回执**（值机时给你的小票）：印有与挂条相同的信息，是你的凭证
+
+关键看点：
+- **最终目的地三字码**：挂条上最后一个三字码是否是最终城市
+- **航段数量**：如果只有一段（如 `PVG-NRT`），说明行李只到中转机场
+- **`INTERLINE` / `ONLINE` 标记**：表示跨航司或同航司转运
+- 柜台是否明确说了 `checked through / through-check`
+- 是否同时发了后一段登机牌；这是强信号，但**不等于**一定直挂
+
+判断规则：
+
+- 若行李小票终点就是最终目的地，且柜台明确表示直挂，可写：`大概率无需重新托运，但仍需留意是否存在首次入境清关后再交运行李的当地规则`
+- 若行李小票只到中转机场，或只显示第一段，直接写：`需要提取行李并重新托运`
+- 若是非联程票、不同航司、没有行李小票证据，默认写：`大概率需要重新托运`
+- 若航空公司 App、订单页、客服说法互相矛盾，**以行李小票 + 现场柜台答复为准**
+### Step 3：生成“可执行”的转机行动卡
+
+输出结构必须尽量接近下面格式：
+
+```md
+## [机场名]（[代码]）转机行动卡
+[入境航班] → [后续航班] | 中转时间：[时长]
+
+### 一句话结论
+- 是否需要入境：[需要 / 不需要 / 当前无法确认]
+- 是否需要重新托运：[需要 / 大概率不需要 / 暂不能确认]
+- 是否需要换航站楼：[需要 / 不需要]
+- 时间压力：[宽松 / 正常 / 紧张]
+
+### 关键判断依据
+| 项目 | 结论 | 依据 |
+|------|------|------|
+| 入境/签证 | ... | ... |
+| 行李重托运 | ... | 行李小票 / 票务结构 / 航司规则 |
+| 航站楼变化 | ... | ... |
+| MCT / 缓冲时间 | ... | ... |
+```
+
+然后继续输出下面几个模块。
+
+#### 模块 1：分步转机指引
+
+必须用**有序步骤**，每一步包含：
+
+- 当前动作
+- 跟随什么标识牌
+- 预计用时
+- 需要准备什么
+- 如果走错最常见会错在哪里
+
+示例格式：
+
+```md
+### 第 1 步：下机后先去哪里
+**预计用时：5-10 分钟**
+
+- 跟随 `Arrivals / Immigration`
+- 不要误走 `Transfer / Transit`
+- 你这一段的目标是：先进入 [入境审查 / 中转安检 / 摆渡车]
+```
+
+#### 模块 2：现场图片导航
+
+普通转机模式下，**尽量提供 2-4 张图片**，优先级如下：
+
+1. 航站楼总图 / 楼层图
+2. 航站楼摆渡车站点图 / 轨道交通换乘图
+3. 值机区或安检入口示意图
+4. 连接通道 / 卫星厅 / gate 区示意图
+
+输出格式：
+
+```md
+### 现场图片导航（抓取时间：2026-04-01 16:20 JST）
+
+![T2 到达层与入境方向示意图](图片URL)
+来源：[页面标题](页面链接)
+你要看什么：确认自己下机后在几层，先朝 `Arrivals / Immigration` 方向走
+
+![T2 前往 T1 的摆渡车站点图](图片URL)
+来源：[页面标题](页面链接)
+你要看什么：出海关后去找几号站、在哪一层、站牌长什么样
+```
+
+要求：
+
+- 优先贴“对当前下一步最有帮助”的图，而不是贴得多
+- 每张图都要有“你要看什么”
+- 如果只有 PDF 地图，没有直接图片 URL，就给地图链接并说明“当前未拿到可直接嵌入的图片”
+
+#### 模块 3：实时人流 / 排队情况
+
+普通转机模式下，能抓到就加；抓不到就诚实说明。
+
+输出格式：
+
+```md
+### 实时人流 / 排队情况
+
+| 环节 | 当前情况 | 数据类型 | 来源 | 抓取时间 |
+|------|----------|----------|------|----------|
+| 入境审查 | 约 25-35 分钟 / 中等偏高 | 官方实时 / 第三方实时 / 代理判断 | ... | ... |
+| 安检 | 暂无公开实时分钟数，预计中等 | 代理判断 | ... | ... |
+| 行李提取 | 暂无公开数据 | 无公开实时数据 | ... | ... |
+```
+
+如果没有官方实时数据，可用“代理判断”：
+
+- `低`：用户落地/出发前后 60 分钟内，同航站楼国际到达/出发较少
+- `中`：航班密度正常
+- `高`：同一时间段密集到达或密集出发，且需经过入境/安检/摆渡
+
+**不要把代理判断写成“官方实时排队时间”。**
+
+#### 模块 4：时间预算与 MCT
+
+必须量化：
+
+- 各步骤预计耗时
+- 总预计耗时
+- 剩余缓冲
+- 若能拿到 MCT，则同时展示 `中转总时长 vs MCT vs 实际预计需求`
+
+#### 模块 5：行李是否需要重新托运
+
+必须单独成段，不要只藏在某一步里。
+
+输出格式：
+
+```md
+### 行李是否需要重新托运
+
+**结论：** [需要 / 大概率不需要 / 暂不能确认]
+
+**为什么这样判断：**
+- 行李小票终点显示：...
+- 当前票务结构：...
+- 航司/机场规则：...
+
+**你现在就该怎么确认：**
+1. 看行李小票上的最终目的地三字码
+2. 如果只到中转机场，落地后要去提取行李
+3. 如果看不懂，直接把小票给值机柜台或转机柜台，问：`请帮我确认这件托运行李是不是直挂到最终目的地`
+```
+
+必须提醒：
+
+- 国际航司系统同步可能滞后
+- 非联程票即使工作人员口头说“可能能转”，也要以行李小票打印结果为准
+
+#### 模块 6：离线信息包
+
+- 航司客服电话
+- 机场问讯处位置或联系方式
+- 免费 Wi-Fi
+- 关键柜台 / 帮助台位置
+- 若用户第一次出国，再加“最容易走错的 3 个点”
+
+### Step 4：时间压力分层
+
+| 缓冲 | 标签 | 处理 |
+|------|------|------|
+| > 90 分钟 | 宽松 | 可加休息/吃饭建议 |
+| 45-90 分钟 | 正常 | 输出标准动作卡 |
+| < 45 分钟 | 紧张 | 加粗所有关键动作，删除低优先级建议 |
+
+---
+
+## Mode B：延误应急
+
+当用户提到前序航班延误或提供 `delay_minutes` 时，切换到本模式。
+
+### Step 1：先做能否赶上的量化判断
+
+至少比较下面几项：
+
+- 剩余中转时间 = 原中转时间 - 延误时间
+- MCT（若可得）
+- 实际预计需求 = 下机 + 转运 + 入境/安检 + 步行 + 登机截止
+
+如果能拿到实时/近实时排队信息，也一起纳入判断。
+
+### Step 2：先输出结论，再给动作
+
+#### 赶得上
+
+```md
+## 紧急赶机方案
+- 剩余时间：...
+- MCT / 实际预计需求：...
+- 当前排队情况：...
+- 结论：有机会赶上，但必须立刻执行以下动作
+```
+
+必须包含：
+
+- 让机组帮忙优先下机
+- 直奔转机安检/转机柜台
+- 跳过吃饭/购物/取现等非必要动作
+- 如果行李状态不清楚，优先确认“人能不能登机”，再补查行李
+
+#### 大概率赶不上
+
+```md
+## 赶不上时怎么处理
+1. 去哪里改签
+2. 航司应该承担什么
+3. 需要保留哪些凭证
+4. 延误险怎么报
+```
+
+若是联程票，优先说明航司改签责任；若是非联程票，明确说明风险更高。
+
+### Step 3：延误模式中的图片与拥挤度
+
+- 图片不是主角，只在“找转机柜台 / 找摆渡车 / 找值机区”非常关键时补 1-2 张
+- 拥挤度优先展示最影响结果的环节：转机安检、入境审查、摆渡、值机柜台
+
+---
+
+## 机场覆盖范围
+
+**Tier 1：重点机场**（注册表中有自定义 URL + 官方数据源，详见 `{baseDir}/references/airport_registry.json`）
+NRT, HND, HKG, DXB, SIN, ICN, BKK, DOH, IST, KUL
+
+**Tier 2：较好覆盖**
+LHR, CDG, FRA, AMS, TPE, SYD, LAX, JFK, ORD
+
+**全球覆盖**（通过第三方聚合站自动支持）
+其他所有机场通过 airportguide.com（图片，375+ 机场）+ flightqueue.com（等待时间，8000+ 机场）自动覆盖，无需在注册表中手动添加，脚本自动构造 URL。
+
+非注册机场仍然应尝试补充：
+- 机场官网地图 / 转机页面
+- 航司 terminal guide
+- 官方或第三方等待时间 / 航班密度代理信号
+
+---
+
+## 常见边界情况
+
+| 情况 | 处理方式 |
+|------|----------|
+| 非联程票 + 不同航司 | 默认提醒：大概率需取行李并重托运，除非行李小票明确直挂 |
+| 已拿到后一段登机牌，但行李状态不明 | 不要默认行李直挂；单独做“行李小票确认”模块 |
+| 官方没有实时排队数据 | 明说没有，再用航班密度做代理判断 |
+| 只有 PDF 地图，没有图片 | 给 PDF 链接并说明用途，不要伪造图片 |
+| 入境规则不确定 | 不要给肯定结论；要求以官方/航司确认 |
+| 用户第一次出国 | 增加“最容易走错的点”“遇到不会英语怎么问” |
+
+---
+
+## 与其他技能联动
+
+- 如果用户担心重新托运后的行李规则、超重、锂电池、液体限制，建议联动 **flight-baggage-check**
+- 如果用户带老人、婴儿、轮椅需求，建议联动 **family-travel-care**

@@ -1,0 +1,45 @@
+{
+  "skill_name": "spritekit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a concise iOS 26 SpriteKit setup note for a SwiftUI mini-game. It needs an SKScene with player/enemy sprites, SpriteView integration, physics contacts for hits, a camera/HUD, and texture atlas preloading. Keep it as snippets and review checklist guidance, not a full Xcode project.",
+      "expected_output": "A SpriteKit implementation note that uses a retained SpriteView scene, configures SKScene/SKView rendering, sets physics masks and contact delegate correctly, queues contact effects until update, uses SKCameraNode for camera/HUD, and preloads texture atlases with current SpriteKit APIs.",
+      "files": [],
+      "assertions": [
+        "Stores the SpriteKit scene so SwiftUI body re-evaluation does not recreate it, such as by using @State with SpriteView.",
+        "Configures the scene in didMove(to:) and chooses a suitable scaleMode for the game layout.",
+        "Sets physicsWorld.contactDelegate in didMove(to:) and configures categoryBitMask, collisionBitMask, and contactTestBitMask distinctly.",
+        "Queues or flags contact effects in didBegin(_:) and applies node, body, or physics-world mutations later in update(_:) or an equivalent scene callback.",
+        "Uses SKCameraNode for camera positioning and HUD attachment rather than moving every world node manually.",
+        "Uses SKTextureAtlas preloading, including the native async preload API when showing async Swift code."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this SpriteKit advanced-effects plan: use withCheckedContinuation around SKTextureAtlas.preloadTextureAtlases, document u_sprite_size as a SpriteKit built-in shader variable, create one SKShader per enemy every spawn, and remove physics bodies from didBegin(_:) as soon as contacts happen. Correct the plan for current SpriteKit.",
+      "expected_output": "A correction-focused review that uses SpriteKit's native async texture-atlas preload APIs, distinguishes SpriteKit built-in shader symbols from app-defined uniforms or attributes, recommends shader reuse and launch-time shader creation, and defers physics-world mutations out of contact callbacks.",
+      "files": [],
+      "assertions": [
+        "Replaces the withCheckedContinuation preload wrapper with native SpriteKit async APIs such as SKTextureAtlas.preloadTextureAtlasesNamed(_:) or preloadTextureAtlases(_:).",
+        "Does not list u_sprite_size as a SpriteKit-provided built-in shader symbol; treats it as a custom uniform or attribute if needed.",
+        "Names the actual SpriteKit shader built-ins relevant to the review, including u_texture, u_time, v_tex_coord, v_color_mix, v_path_distance or SKDefaultShading() where applicable.",
+        "Recommends creating and sharing SKShader instances rather than compiling or changing shader source per spawned enemy.",
+        "Explains that SKPhysicsContactDelegate callbacks run during physics simulation and physics-world/body mutations should be deferred."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want one iOS game architecture note covering SpriteKit gameplay rendering, Game Center sign-in and leaderboards, SceneKit 3D cutscenes, TabletopKit board rules, and SharePlay voice chat. What belongs in SpriteKit and what should be handed to sibling frameworks?",
+      "expected_output": "A boundary-aware architecture note that keeps SpriteKit focused on 2D rendering, animation, physics, particles, tile maps, camera, input, audio nodes, and SpriteView integration while handing Game Center, 3D SceneKit content, TabletopKit board/rules logic, and SharePlay sessions to sibling framework guidance.",
+      "files": [],
+      "assertions": [
+        "Keeps SpriteKit ownership to 2D scene rendering, node hierarchy, sprites, actions, physics, contacts, particles, tile maps, camera, input, SKAudioNode, and SpriteView integration.",
+        "Routes Game Center authentication, access point, leaderboards, achievements, matchmaking, saved games, and identity verification to GameKit guidance.",
+        "Routes 3D cutscenes or 3D board scenes to SceneKit or RealityKit guidance instead of expanding SpriteKit scope beyond SK3DNode embedding boundaries.",
+        "Routes board-game rules, pieces, cards, dice, spatial table sessions, and visionOS table logic to TabletopKit guidance.",
+        "Routes SharePlay voice or synchronized group sessions to GroupActivities or SharePlay guidance rather than presenting them as SpriteKit APIs."
+      ]
+    }
+  ]
+}

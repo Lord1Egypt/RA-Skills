@@ -1,0 +1,167 @@
+# 大明朝廷监控配置
+
+# 监控级别
+monitoring:
+  level: "comprehensive"  # basic/standard/comprehensive
+  
+  # 实时监控
+  realtime:
+    enabled: true
+    check_interval: 10  # 检查间隔（秒）
+    alert_delay: 5      # 预警延迟（秒）
+    
+  # 定期检查
+  periodic:
+    enabled: true
+    intervals:
+      hourly: true
+      daily: true
+      weekly: true
+      monthly: true
+
+# 预警阈值
+thresholds:
+  # 决策相关
+  decision:
+    too_fast: 5      # 决策时间少于5秒
+    too_slow: 300    # 决策时间超过300秒
+    no_alternatives: true  # 没有提供备选方案
+    
+  # 审核相关
+  review:
+    approval_rate_high: 0.95  # 审核通过率高于95%
+    approval_rate_low: 0.5    # 审核通过率低于50%
+    no_feedback: true         # 没有提供反馈意见
+    
+  # 执行相关
+  execution:
+    deviation_high: 0.3       # 执行偏差高于30%
+    progress_stalled: 300     # 进度停滞超过300秒
+    resource_overuse: 1.2     # 资源使用超过预算120%
+    
+  # 质量相关
+  quality:
+    score_low: 0.6           # 质量分数低于60%
+    standards_missing: true  # 缺少质量标准
+    inspection_skipped: true # 跳过验收检查
+    
+  # 协同相关
+  coordination:
+    score_low: 0.5           # 协同分数低于50%
+    communication_gap: 60    # 沟通间隔超过60秒
+    dependency_blocked: true # 依赖被阻塞
+
+# 预警渠道
+alert_channels:
+  # 实时预警
+  realtime:
+    enabled: true
+    methods:
+      - console
+      - log_file
+      - system_event
+    
+  # 每日摘要
+  daily_summary:
+    enabled: true
+    time: "18:00"  # 每天18:00发送
+    methods:
+      - summary_file
+      - email
+    
+  # 每周报告
+  weekly_report:
+    enabled: true
+    day: "monday"  # 每周一发送
+    time: "09:00"
+    methods:
+      - report_file
+      - email
+      
+  # 每月审计
+  monthly_audit:
+    enabled: true
+    day: 1         # 每月1号
+    time: "10:00"
+    methods:
+      - audit_report
+      - email
+
+# 预警级别
+alert_levels:
+  info:
+    color: "blue"
+    notify: false
+    require_acknowledgment: false
+    
+  warning:
+    color: "yellow"
+    notify: true
+    require_acknowledgment: false
+    
+  error:
+    color: "red"
+    notify: true
+    require_acknowledgment: true
+    
+  critical:
+    color: "red"
+    notify: true
+    require_acknowledgment: true
+    escalate: true
+
+# 预警模板
+alert_templates:
+  decision_too_fast: "中书省决策过快（{time}秒），可能考虑不周"
+  approval_too_high: "门下省审核通过率过高（{rate}%），可能存在风险"
+  execution_deviation: "尚书省执行偏差过大（{deviation}%），需要关注"
+  quality_low: "礼部验收质量分数低（{score}），需要检查"
+  coordination_problem: "六部协同出现问题（{score}分），效率降低"
+  resource_overuse: "户部资源使用超过预算（{usage}%）"
+  audit_coverage_low: "刑部审计覆盖不足（{coverage}%），存在盲区"
+
+# 监控指标
+metrics:
+  # 决策指标
+  decision_metrics:
+    - decision_time
+    - alternatives_count
+    - risk_assessment_completeness
+    
+  # 审核指标
+  review_metrics:
+    - review_time
+    - approval_rate
+    - feedback_quality
+    
+  # 执行指标
+  execution_metrics:
+    - progress_rate
+    - deviation_percentage
+    - resource_usage
+    
+  # 质量指标
+  quality_metrics:
+    - quality_score
+    - standards_compliance
+    - inspection_results
+    
+  # 协同指标
+  coordination_metrics:
+    - communication_frequency
+    - dependency_resolution
+    - conflict_resolution
+    
+  # 审计指标
+  audit_metrics:
+    - audit_coverage
+    - issue_count
+    - resolution_rate
+
+# 数据保留
+data_retention:
+  realtime_metrics: "7d"     # 实时指标保留7天
+  daily_summaries: "30d"     # 每日摘要保留30天
+  weekly_reports: "90d"      # 每周报告保留90天
+  monthly_audits: "365d"     # 每月审计保留365天
+  project_archives: "forever" # 项目档案永久保留

@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "schema": "pmax-create/v1",
+    "doc": "pmax-create-template.md",
+    "note": "以 _ 开头的键仅作说明，CLI 提交前会剥离；字段名 camelCase，对齐网关 CreatePmaxCampaignRequest",
+    "agentPitfalls": [
+      "勿与 Search campaign-create-template.json 混用（PMax 走 POST .../campaign/pmax，非 batch-asyncs）",
+      "budget / targetCpa_BidingAmount 填主币种「元」，CLI 提交前 ×100 转 API 整型",
+      "三张图：只填 imagePaths（pmax-create 会自动上传为 assetId）；勿把 Base64 写入 JSON",
+      "brandGuidelinesEnabled 省略时网关默认 true（Google v21+）；品牌在 Campaign 级 brandAssets[]，首个 AG 不含 Logo/商家名",
+      "改已上线品牌：先 pmax-get 看 _brandGuidelinesActive；true 用 pmax-brand-assets-edit，false 用 pmax-assets-update 或 pmax-brand-guidelines-enable",
+      "本地视频：填 videoPath（或别名 video）；创建后 CLI 自动 PyAPI 上传并链接，与 --json-out 无关",
+      "提交前：ad pmax-validate → 用户确认 → ad pmax-create",
+      "campaignExtensions 默认必填：宣传信息≥20、结构化摘要≥20、站内链接≥6、leadForm、businessMessage",
+      "文案门禁：headlines 15、longHeadlines 5（Google 上限须填满）、descriptions 5",
+      "勿用 Search 的 ExtensionsForBatchJob；PMax 用 campaignExtensions（CLI 会尝试自动转换 CALLOUT/SNIPPET）",
+      "Lead Gen/B2B 询盘方案：默认保留 campaignExtensions.leadForm（勿只写 callouts/snippets）；用户明确不要表单才删 leadForm",
+      "方案 Markdown 须单列「潜在客户表单」节（标题/描述/字段/privacyPolicyUrl）；与 JSON 一致",
+      "不需要任何附加资产时设 skipCampaignExtensions: true（勿仅删除 campaignExtensions 块）"
+    ]
+  },
+
+  "account": "REPLACE_mediaCustomerId",
+  "name": "PMAX_Brand_US_2026",
+  "budget": 50,
+  "budgetName": "PMAX_Daily_Budget",
+  "assetGroupName": "AG_Default",
+  "finalUrls": ["https://www.example.com"],
+  "businessName": "Example Brand Co",
+  "headlines": [
+    "Headline one for performance max",
+    "Headline two for performance max",
+    "Headline three for performance max"
+  ],
+  "longHeadlines": ["Long headline text for performance max campaign asset group"],
+  "descriptions": [
+    "Description one text for the asset group here",
+    "Description two text for the asset group here"
+  ],
+  "imagePaths": {
+    "marketing": "./REPLACE_marketing_1200x628.png",
+    "square": "./REPLACE_square_1200x1200.png",
+    "logo": "./REPLACE_logo_1200x1200.png"
+  },
+  "targetedLocations": [{ "id": "2840" }],
+  "targetedLanguages": [{ "id": 1000 }],
+  "biddingStrategyTypeV2": "MAXIMIZE_CONVERSIONS",
+  "targetCpa_BidingAmount": 0,
+  "targetRoas": 0,
+
+  "campaignExtensions": {
+    "callouts": ["Free shipping", "24/7 support"],
+    "structuredSnippets": [
+      {
+        "header": "Services",
+        "values": ["Design", "Install", "Support"]
+      }
+    ],
+    "leadForm": {
+      "businessName": "Example Brand Co",
+      "headline": "Get a free quote",
+      "description": "Tell us about your project.",
+      "privacyPolicyUrl": "https://www.example.com/privacy",
+      "finalUrl": "https://www.example.com",
+      "fields": [
+        { "inputType": "FULL_NAME" },
+        { "inputType": "EMAIL" },
+        { "inputType": "PHONE_NUMBER" }
+      ]
+    },
+    "businessMessage": {
+      "starterMessage": "Hi! How can we help you today?",
+      "callToActionSelection": "CONTACT_US",
+      "callToActionDescription": "Message us on WhatsApp",
+      "whatsapp": {
+        "countryCode": "US",
+        "phoneNumber": "2125550100"
+      }
+    }
+  }
+}

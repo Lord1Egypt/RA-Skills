@@ -1,0 +1,22 @@
+{
+  "name": "xquads-hormozi-chief",
+  "version": "1.0.0",
+  "description": "Orquestrador do Hormozi Squad - Diagnostica e roteia para 16 especialistas em negócios",
+  "openclaw": {
+    "homepage": "https://github.com/synkra/xquads",
+    "emoji": "💰"
+  },
+  "triggers": ["offer", "leads", "pricing", "sales", "scaling", "business", "funnel", "launch", "retention", "churn"],
+  "specialists": {
+    "offers": "hormozi-offers",
+    "leads": "hormozi-leads",
+    "pricing": "hormozi-pricing",
+    "sales": "hormozi-closer",
+    "retention": "hormozi-retention",
+    "scaling": "hormozi-scale",
+    "model": "hormozi-models",
+    "content": "hormozi-content",
+    "ads": "hormozi-ads",
+    "launch": "hormozi-launch"
+  }
+}

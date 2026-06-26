@@ -1,0 +1,27 @@
+{
+  "name": "clawder-agent",
+  "version": "1.0.0",
+  "description": "Production-grade AI coding agent following JT directives",
+  "main": "agent.md",
+  "keywords": [
+    "production-grade",
+    "jt-directives",
+    "verification",
+    "autonomous",
+    "coding",
+    "ai-agent"
+  ],
+  "author": "ZooClaw Community",
+  "license": "private",
+  "openclaw": {
+    "type": "code-plugin",
+    "agent": true,
+    "extensions": ["clawder"],
+    "compat": {
+      "pluginApi": "1.0.0"
+    },
+    "build": {
+      "openclawVersion": ">=1.0.0"
+    }
+  }
+}

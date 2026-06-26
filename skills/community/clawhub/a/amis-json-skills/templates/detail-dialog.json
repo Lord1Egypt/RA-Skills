@@ -1,0 +1,68 @@
+/**
+ * 详情查看弹层模板
+ * 适用场景：查看数据详情
+ * 核心组件：Dialog + static
+ */
+{
+  "type": "page",
+  "body": {
+    "type": "button",
+    "label": "查看详情",
+    "actionType": "dialog",
+    "dialog": {
+      "title": "详情",
+      "size": "md",
+      "body": {
+        "type": "form",
+        "controls": [
+          {
+            "type": "static",
+            "name": "name",
+            "label": "名称"
+          },
+          {
+            "type": "static",
+            "name": "email",
+            "label": "邮箱"
+          },
+          {
+            "type": "static",
+            "name": "phone",
+            "label": "电话"
+          },
+          {
+            "type": "static",
+            "name": "status",
+            "label": "状态",
+            "map": {
+              "1": "启用",
+              "0": "禁用"
+            }
+          },
+          {
+            "type": "static",
+            "name": "created_at",
+            "label": "创建时间",
+            "format": "YYYY-MM-DD HH:mm"
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "static",
+            "name": "description",
+            "label": "描述",
+            "mode": "normal"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "button",
+          "label": "关闭",
+          "actionType": "close"
+        }
+      ]
+    }
+  }
+}

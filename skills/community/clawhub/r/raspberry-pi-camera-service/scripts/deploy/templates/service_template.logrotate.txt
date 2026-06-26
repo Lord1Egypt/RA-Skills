@@ -1,0 +1,13 @@
+{{WORKING_DIR}}/logs/*.log {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 {{SERVICE_USER}} {{SERVICE_GROUP}}
+    sharedscripts
+    postrotate
+        systemctl reload {{SERVICE_NAME}} 2>/dev/null || true
+    endscript
+}

@@ -1,35 +1,66 @@
 ---
-name: "自媒体内容创作大师---一键生成"
+name: content-workflow
 description: "通用内容创作工作流：选题策划→主编审核→文案创作→主编审核，产出平台无关的Markdown定稿。触发词：写文章、内容创作、选题创作、启动创作流程。需先安装 content-creation。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-workflow"
-sourceUrl: "https://clawhub.ai/skills/content-workflow"
+license: MIT
 ---
 
-# 自媒体内容创作大师---一键生成
+# 内容创作流水线
 
-> 通用内容创作工作流：选题策划→主编审核→文案创作→主编审核，产出平台无关的Markdown定稿。触发词：写文章、内容创作、选题创作、启动创作流程。需先安装 content-creation。
+协调内容创作团队完成从选题到定稿的全流程，产出平台无关的 Markdown 定稿。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-workflow`
-- **Source URL:** [https://clawhub.ai/skills/content-workflow](https://clawhub.ai/skills/content-workflow)
+## 前置条件
 
-## Overview
+- 已通过 `/content-creation` 部署墨白、探风、锦书三人团队
+- 如未部署，提示用户先执行 `/content-creation`
 
+## 工作流概述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/content-workflow
 ```
+探风(选题) → 墨白(审核) → 锦书(创作) → 墨白(审核) → 定稿输出
+```
+
+2 个阶段，墨白在每个阶段做质量门控。
+
+## Phase 1：选题（探风主导，墨白审核）
+
+1. 探风产出 3 个选题提案，每个包含：
+   - 标题方向
+   - 核心论点（一句话）
+   - 目标读者
+   - 切入角度
+   - 预估热度（★☆制）
+   - 参考素材
+2. 提交给墨白审核
+3. 墨白给出结论：通过 / 修改 / 淘汰
+4. 最多迭代 2 轮
+5. 输出物：确定的选题 Brief
+
+## Phase 2：创作（锦书主导，墨白审核）
+
+1. 锦书根据选题 Brief 完成：
+   - 文章初稿（Markdown）
+   - 3-5 个标题方案（标★为推荐）
+   - 金句摘录（2-3 句可独立传播的句子）
+2. 提交给墨白审核
+3. 墨白给出具体段落级修改意见
+4. 最多迭代 3 轮
+5. 输出物：Markdown 定稿 + 最终标题 + 金句摘录
+
+## 灵活调用规则
+
+- 用户可以跳过选题（如"直接写关于 XX 的文章"）
+- 用户可以提供已有选题（如"我已经有选题了，直接进入创作"）
+- 用户可以单独与某个角色对话
+
+## 质量门控规则
+
+- 所有阶段产出必须经墨白审核后才能进入下一阶段
+- 单阶段最多迭代指定轮次（选题 2 轮，创作 3 轮）
+- 发现事实性错误 → 立即要求修正
+
+## 输出完成后
+
+提示用户下一步选项：
+1. 如需发布到微信公众号 → 使用 `/wechat-publish-pipeline`
+2. 如需发布到其他平台 → 使用对应平台的发布流水线
+3. 如需直接导出 → 定稿已在 Markdown 中，可直接使用

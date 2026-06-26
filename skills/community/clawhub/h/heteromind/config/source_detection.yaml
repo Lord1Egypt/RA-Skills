@@ -1,0 +1,182 @@
+# HeteroMind - Source Detection Configuration
+# Configures the 4-layer knowledge source detection system
+
+# =============================================================================
+# Layer Weights
+# Controls contribution of each layer to the final decision
+# All weights should sum to 1.0
+# =============================================================================
+weights:
+  rule_based: 0.15      # Layer 1: Fast keyword/pattern matching
+  llm_based: 0.35       # Layer 2: LLM semantic classification
+  schema_based: 0.25    # Layer 3a/3b: Schema matching & entity linking
+  verification: 0.25    # Layer 3c: Entity retrieval verification
+
+# =============================================================================
+# Confidence Thresholds
+# Determines action based on final confidence score
+# =============================================================================
+thresholds:
+  high_confidence: 0.95   # Auto-execute only with very high confidence
+  medium_confidence: 0.7  # Execute with fallback strategies ready
+  low_confidence: 0.5     # Ask user for clarification before proceeding
+
+# Auto-execution control (SAFETY)
+auto_execute: false         # Set to true only after testing
+require_confirmation: true  # Always require user confirmation for execution
+
+# =============================================================================
+# Verification Boost
+# Score boost applied when entities are verified to exist in source
+# =============================================================================
+verification_boost: 0.3   # 30% boost for verified entities
+
+# =============================================================================
+# Layer 2: LLM Configuration
+# =============================================================================
+llm:
+  provider: "openai"      # openai, anthropic, azure, local
+  model: "gpt-4"          # Model name
+  temperature: 0.1        # Low temp for deterministic output
+  max_tokens: 500         # Max response tokens
+  timeout_seconds: 30     # Request timeout
+
+# =============================================================================
+# Layer 3: Schema & Knowledge Graph Configuration
+# =============================================================================
+schemas:
+  # SQL Database schemas (auto-discovered or manually defined)
+  sql_databases:
+    - name: "company_db"
+      type: "mysql"
+      connection_env: "MYSQL_CONNECTION_STRING"
+      auto_discover: true
+      cache_ttl_seconds: 3600
+      tables:
+        - name: "employees"
+          description: "Employee records with department, salary, hire date"
+          columns:
+            - name: "employee_id"
+              type: "INT"
+              alias: "emp_id"
+            - name: "name"
+              type: "VARCHAR"
+            - name: "department_id"
+              type: "INT"
+            - name: "salary"
+              type: "DECIMAL"
+        - name: "projects"
+          description: "Project records with budget, status, timeline"
+          columns:
+            - name: "project_id"
+              type: "INT"
+            - name: "name"
+              type: "VARCHAR"
+            - name: "budget"
+              type: "DECIMAL"
+            - name: "status"
+              type: "VARCHAR"
+
+knowledge_graph:
+  # SPARQL endpoints
+  endpoints:
+    - name: "dbpedia"
+      url: "https://dbpedia.org/sparql"
+      enabled: true
+      priority: 1
+      timeout_seconds: 10
+    
+    - name: "wikidata"
+      url: "https://query.wikidata.org/sparql"
+      enabled: true
+      priority: 2
+      timeout_seconds: 10
+    
+    - name: "custom_kg"
+      url_env: "CUSTOM_KG_ENDPOINT"
+      enabled: false
+      priority: 3
+  
+  # Entity linking settings
+  entity_linking:
+    max_candidates: 5     # Max candidates per entity mention
+    min_similarity: 0.7   # Min similarity score for matches
+    use_fuzzy: true       # Enable fuzzy matching
+    fuzzy_threshold: 0.8  # Fuzzy match threshold
+
+# =============================================================================
+# Layer 3c: Entity Verification Configuration
+# =============================================================================
+entity_verification:
+  # SQL verification
+  sql:
+    enabled: true
+    search_columns: ["name", "title", "label", "description"]
+    case_sensitive: false
+    min_match_length: 3
+  
+  # KG verification
+  kg:
+    enabled: true
+    use_ask_query: true   # Use SPARQL ASK for existence check
+    cache_results: true
+    cache_ttl_seconds: 300
+  
+  # Table file verification (DISABLED BY DEFAULT FOR SAFETY)
+  tables:
+    enabled: false          # Set to true only after explicit user consent
+    paths: []               # Manually specify paths, no wildcards
+    search_all_columns: false
+    max_file_size_mb: 10
+    explicit_paths_only: true  # Only scan explicitly specified files
+
+# =============================================================================
+# Execution Plan Settings
+# =============================================================================
+execution:
+  # Parallel execution settings
+  parallel:
+    enabled: true
+    max_concurrent: 3     # Max sources to query in parallel
+  
+  # Fallback strategy
+  fallback:
+    enabled: true
+    max_retries: 2
+    retry_delay_seconds: 1
+  
+  # Timeout settings
+  timeout:
+    total_seconds: 60     # Total timeout for all sources
+    per_source_seconds: 20
+
+# =============================================================================
+# Logging & Debugging
+# =============================================================================
+logging:
+  level: "INFO"           # DEBUG, INFO, WARNING, ERROR
+  log_layer_outputs: true
+  log_verification_details: true
+  
+  # Debug mode: include all intermediate results in final decision
+  debug_mode: false
+
+# =============================================================================
+# Performance Tuning
+# =============================================================================
+performance:
+  # Cache settings
+  cache:
+    enabled: true
+    ttl_seconds: 300      # Cache TTL for detection results
+    max_size: 1000        # Max cached queries
+  
+  # Batch settings
+  batch:
+    enabled: true
+    max_batch_size: 10    # Max entities to verify in one batch
+  
+  # Async settings
+  async:
+    enabled: true
+    max_concurrent_tasks: 5

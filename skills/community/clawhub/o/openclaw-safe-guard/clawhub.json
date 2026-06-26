@@ -1,0 +1,37 @@
+{
+  "name": "龙虾安全卫士",
+  "id": "openclaw-safe-guard",
+  "version": "1.2.3",
+  "description": "提供对 OpenClaw 系统安全检查设置及已安装和你想要安装的 Skills 进行静态安全扫描，检测权限风险、恶意代码和依赖风险并生成中文风险评估报告",
+  "author": {
+    "name": "ansengu11",
+    "url": "https://github.com/ansengu11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ansengu11/openclaw-safe-guard"
+  },
+  "homepage": "https://clawhub.ai/ansengu11/openclaw-safe-guard",
+  "license": "MIT-0",
+  "requirements": {
+    "binaries": ["curl", "jq", "git", "grep", "find"],
+    "filesystem": {
+      "read": ["~/.openclaw/skills", "~/.openclaw/workspace/skills"],
+      "write": ["/tmp"]
+    },
+    "network": {
+      "domains": ["api.github.com", "github.com"]
+    }
+  },
+  "security": {
+    "risk_level": "medium",
+    "warnings": [
+      "读取 ~/.openclaw/skills 目录可能暴露其他技能中的敏感信息",
+      "检测覆盖有限，需配合人工审查",
+      "建议在隔离环境运行"
+    ],
+    "noninteractive_warning": "设置 OPENCLAW_NONINTERACTIVE=true 会跳过确认，请谨慎使用",
+    "isolate_recommended": true,
+    "always_enabled": false
+  }
+}

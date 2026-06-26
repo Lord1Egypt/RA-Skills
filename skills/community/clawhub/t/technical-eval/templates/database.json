@@ -1,0 +1,78 @@
+{
+  "template_name": "database",
+  "template_description": "数据库技术选型评估模板",
+  "evaluation_dimensions": {
+    "performance": {
+      "weight": 0.25,
+      "metrics": {
+        "read_throughput": {"unit": "ops/sec", "benchmark_source": "官方基准测试/TPC-C"},
+        "write_throughput": {"unit": "ops/sec", "benchmark_source": "官方基准测试/TPC-C"},
+        "latency_p95": {"unit": "ms", "benchmark_source": "MLPerf/YCSB"},
+        "concurrent_connections": {"unit": "connections", "benchmark_source": "官方文档"}
+      }
+    },
+    "scalability": {
+      "weight": 0.20,
+      "metrics": {
+        "horizontal_scaling": {"scale": "1-5", "description": "水平扩展能力评分"},
+        "vertical_scaling": {"scale": "1-5", "description": "垂直扩展能力评分"},
+        "sharding_support": {"binary": true, "description": "是否支持分片"},
+        "replication_lag": {"unit": "ms", "benchmark_source": "实际测试数据"}
+      }
+    },
+    "reliability": {
+      "weight": 0.20,
+      "metrics": {
+        "durability_guarantee": {"scale": "1-5", "description": "持久性保证级别"},
+        "backup_recovery_time": {"unit": "minutes", "benchmark_source": "官方文档/用户案例"},
+        "high_availability": {"binary": true, "description": "是否支持高可用"},
+        "disaster_recovery": {"scale": "1-5", "description": "灾难恢复能力"}
+      }
+    },
+    "ecosystem": {
+      "weight": 0.15,
+      "metrics": {
+        "github_stars": {"unit": "count", "source": "GitHub API"},
+        "stack_overflow_questions": {"unit": "count/month", "source": "Stack Overflow API"},
+        "job_postings": {"unit": "count/month", "source": "技术招聘网站"},
+        "third_party_tools": {"unit": "count", "description": "第三方工具和集成数量"}
+      }
+    },
+    "cost": {
+      "weight": 0.10,
+      "metrics": {
+        "licensing_cost": {"unit": "USD/month", "description": "许可成本"},
+        "operational_cost": {"unit": "USD/month", "description": "运维成本估算"},
+        "total_cost_ownership": {"unit": "USD/year", "description": "3年总拥有成本"}
+      }
+    },
+    "team_fit": {
+      "weight": 0.10,
+      "metrics": {
+        "learning_curve": {"scale": "1-5", "description": "学习曲线陡峭程度（1=容易，5=困难）"},
+        "documentation_quality": {"scale": "1-5", "description": "文档质量评分"},
+        "community_support": {"scale": "1-5", "description": "社区支持活跃度"}
+      }
+    }
+  },
+  "maturity_indicators": {
+    "github_activity": {"threshold": "100 commits/month", "confidence_interval": "±15%"},
+    "production_adoption": {"threshold": "至少3个大型企业案例", "confidence_interval": "定性分析"},
+    "release_frequency": {"threshold": "每季度至少1次主要版本", "confidence_interval": "±1个月"},
+    "security_track_record": {"threshold": "过去12个月无严重安全漏洞", "confidence_interval": "定性分析"}
+  },
+  "risk_factors": [
+    "数据迁移复杂性",
+    "供应商锁定风险",
+    "性能瓶颈在特定场景",
+    "团队技能匹配度",
+    "合规性和数据主权要求"
+  ],
+  "poc_validation_scenarios": [
+    "高并发读写混合负载测试",
+    "故障恢复和高可用测试",
+    "数据迁移和兼容性测试",
+    "备份恢复时间验证",
+    "扩展性压力测试"
+  ]
+}

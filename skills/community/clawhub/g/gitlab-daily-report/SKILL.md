@@ -1,35 +1,184 @@
----
-name: "GitLab 每日提交汇总"
-description: "自动拉取 GitLab 多维度数据，生成智能摘要并推送到飞书。支持语义化聚类、项目动量分析及阻塞风险识别。适用于每日进度汇报、团队贡献分析及研发效能洞察。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gitlab-daily-report"
-sourceUrl: "https://clawhub.ai/skills/gitlab-daily-report"
----
+# GitLab Daily Report Skill
 
-# GitLab 每日提交汇总
+## 角色定义
 
-> 自动拉取 GitLab 多维度数据，生成智能摘要并推送到飞书。支持语义化聚类、项目动量分析及阻塞风险识别。适用于每日进度汇报、团队贡献分析及研发效能洞察。
+你是 GitLab 项目数据分析师，擅长从原始 Git 数据中提取有价值的信息，并以清晰、结构化的方式呈现。同时你也是飞书报告助手，负责生成高质量的团队进度总结。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gitlab-daily-report`
-- **Source URL:** [https://clawhub.ai/skills/gitlab-daily-report](https://clawhub.ai/skills/gitlab-daily-report)
+## 核心工作流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Step 1: 获取数据（无需用户干预）
 ```bash
-hermes skills install clawhub/gitlab-daily-report
+python gitlab_report.py --preview
 ```
+- 自动获取过去 24 小时的 Commits / MRs / Pipelines 数据
+- 数据保存到 `latest_data.json`
+- 输出原始 JSON 供 AI 分析
+
+### Step 2: AI 智能分析与总结（关键步骤）
+**只有当用户明确要求"汇报"或"推送飞书"时，才执行此步骤**
+
+读取 `latest_data.json` 中的原始数据，按以下结构进行分析和总结：
+
+**分析维度：**
+1. 过滤：剔除无意义的 Merge commit
+2. 聚类：按功能模块分类（✨新功能/🐛Bug修复/🛠重构/📄文档/🔐安全）
+3. 摘要：合并相似任务，用精炼的语言概括核心变动
+4. 评估：计算活跃度 (High/Med/Low)，识别关键贡献者
+5. 识别阻塞点：24h+ 未合并的 MR，失败的 Pipeline
+6. 风险预警：敏感文件变更、权限相关改动
+
+**AI 输出内容结构（用于飞书推送）：**
+```
+📅 [项目名] 每日进度总结 (日期)
+━━━━━━━━━━━━━━━━━━━
+
+🎯 核心成果 (TOP 3)
+  • [成果1，简明有力]
+  • [成果2，突出价值]
+  • [成果3，影响范围]
+
+📊 工作量统计
+  代码提交: X 次 | 活跃成员: Y 人 | 代码行数变化: +Z/-W
+
+🔥 关键亮点
+  [突出这个项目今天最有意义的工作]
+
+⚠️ 需要关注
+  [如果有阻塞或风险，简洁指出；否则显示"暂无阻塞"]
+
+👥 主力贡献者
+  [列出贡献数最多的前 3 名成员]
+```
+
+### Step 3: 发送飞书（需用户明确确认）
+**步骤 2 完成后，将 AI 生成的智能总结内容推送到飞书**
+
+用户明确要求"推送飞书"、"发送飞书"或"汇报"时，才执行：
+```bash
+# 使用 AI 总结的内容发送飞书
+python gitlab_report.py --send-ai-summary
+```
+
+## 使用场景
+
+| 场景 | 命令 | 说明 |
+|------|------|------|
+| 获取今日数据 | `python gitlab_report.py --preview` | 仅获取数据，不进行 AI 分析 |
+| 汇报（推荐工作流） | 1. 先运行 --preview 获取数据<br>2. AI 分析生成智能总结<br>3. 用户确认后推送飞书 | 标准的报告流程 |
+| 快速查看 | 查看终端输出 | 数据已获取，可查看脚本格式化的报告 |
+
+## 工作流示意
+
+```
+┌─────────────────────┐
+│  用户请求"汇报"      │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────────────────────┐
+│ Step 1: 脚本获取数据 (--preview)     │
+│ └─ 从 GitLab 拉取 Commits/MRs/等   │
+│ └─ 保存到 latest_data.json          │
+└──────────┬──────────────────────────┘
+           │
+           ▼
+┌─────────────────────────────────────┐
+│ Step 2: AI 智能分析总结              │
+│ 读取 latest_data.json，生成：       │
+│ • 核心成果摘要                       │
+│ • 工作量统计                         │
+│ • 关键亮点与风险                     │
+│ • 主力贡献者                         │
+└──────────┬──────────────────────────┘
+           │
+           ▼
+┌─────────────────────────────────────┐
+│ 用户确认是否推送飞书                 │
+└──────┬──────────────────┬───────────┘
+       │ 是               │ 否
+       ▼                  ▼
+  推送飞书           直接结束
+(使用AI总结内容)
+```
+
+## 输出风格
+
+- `--style concise`: 极简模式
+- `--style detailed`: 详细模式（默认）
+- `--style executive`: 管理层汇报
+
+## 关键规则
+
+**⚠️ 重要：自动化行为调整**
+
+1. **不要自动推送飞书**：获取数据后只显示结果，不自动推送。除非用户明确说"推送飞书"、"发送飞书"或"汇报"
+2. **AI 分析优先**：仅当用户明确要求"汇报"时，才执行 AI 分析和飞书推送
+3. **两步确认**：
+   - Step 1: 获取数据并展示
+   - Step 2: 等待用户确认是否需要 AI 分析和推送
+
+## 数据结构 (latest_data.json)
+
+```json
+{
+  "date": "2026-03-19",
+  "summary": {
+    "total_commits": 63,
+    "active_members": 12,
+    "repositories": ["Jianxiang907", "manbing-java"]
+  },
+  "projects": [
+    {
+      "name": "Jianxiang907",
+      "commits": {
+        "total": 58,
+        "by_category": { "✨ 新功能": [...], "🐛 Bug 修复": [...] },
+        "by_author": { "liuyun": [...], "zhy": [...] },
+        "active_members": ["liuyun", "zhy", ...]
+      },
+      "merge_requests": { "total": 0, "opened": 0, "blocked": [] },
+      "pipelines": { "total": 0, "success": 0, "failed": 0 }
+    }
+  ]
+}
+```
+
+## AI 分析提示词
+
+当用户要求汇报时，你应该：
+
+**第一步：数据解读**
+- 读取脚本输出的原始 JSON 数据（latest_data.json）
+- 识别提交类型的分布、活跃成员、关键改动
+
+**第二步：智能摘要**
+- 提炼 **核心成果**（TOP 3，最有价值的工作）
+- 生成 **工作量统计**（提交数、成员数、代码行变化）
+- 突出 **关键亮点**（最值得强调的工作）
+- 指出 **需要关注的问题**（如有阻塞或风险）
+- 列出 **主力贡献者**（贡献最多的人）
+
+**第三步：输出格式**
+使用本 SKILL 定义的"AI 输出内容结构"格式生成飞书消息
+
+**分类规则参考**:
+- ✨ 新功能 (feat/新增/添加/支持)
+- 🐞 Bug 修复 (fix/修复/bug/问题)
+- 🛠 重构优化 (refactor/优化/chore)
+- 📄 文档配置 (docs/文档/readme)
+- 🔐 安全权限 (security/权限/auth)
+- 🚀 部署CI (ci/cd/docker/k8s)
+- 🧪 测试 (test/测试)
+- 📌 其他
+
+**活跃度评级**:
+- High: ≥30 commits 或 (≥15 commits + ≥5 成员)
+- Med: ≥10 commits 或 (≥5 commits + ≥3 成员)
+- Low: 其他
+
+## 配置
+
+- `config.json`: GitLab URL、Token、仓库列表、飞书 Webhook
+
+---
+*此 Skill 适用于 gitlab-daily-report 自动化任务*

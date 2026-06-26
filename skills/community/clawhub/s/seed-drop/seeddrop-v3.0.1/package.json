@@ -1,0 +1,15 @@
+{
+  "name": "seeddrop",
+  "version": "3.0.1",
+  "type": "module",
+  "private": true,
+  "description": "Community engagement assistant — OpenClaw Skill",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}

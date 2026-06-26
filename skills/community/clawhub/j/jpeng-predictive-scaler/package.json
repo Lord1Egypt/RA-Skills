@@ -1,0 +1,15 @@
+{
+  "name": "predictive-scaler",
+  "version": "1.0.0",
+  "description": "Analyze resource usage patterns and predict future scaling needs using trend analysis and forecasting methods",
+  "main": "index.js",
+  "keywords": [
+    "predictive-scaling",
+    "auto-scaling",
+    "capacity-planning",
+    "resource-prediction",
+    "forecasting"
+  ],
+  "author": "evolver",
+  "license": "MIT"
+}

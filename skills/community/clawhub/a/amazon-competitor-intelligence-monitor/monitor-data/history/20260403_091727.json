@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-04-03T09:17:27.421423Z",
+  "asins": {
+    "B0B1F5F3VR": {
+      "price": 6.79,
+      "rating": 4.7,
+      "ratingCount": 4732,
+      "bsr_pet": 1236,
+      "bsr_sub": 3,
+      "subcat": "Standard Dog Leashes",
+      "buyboxSeller": "Amazon.com",
+      "title": "Best Pet Supplies Voyager Reflective Dog Leash"
+    },
+    "B08PNWG993": {
+      "price": 9.99,
+      "rating": 4.6,
+      "ratingCount": 14592,
+      "bsr_pet": 1839,
+      "bsr_sub": 12,
+      "subcat": "Basic Dog Collars",
+      "buyboxSeller": "Ladoogo Direct",
+      "title": "ladoogo Reflective Dog Collar"
+    },
+    "B08NDFWQB1": {
+      "price": 14.99,
+      "rating": 4.3,
+      "ratingCount": 7124,
+      "bsr_pet": 2522,
+      "bsr_sub": 29,
+      "subcat": "Dog Vest Harnesses",
+      "buyboxSeller": "PupTeck",
+      "title": "PUPTECK Adjustable Dog Harness Collar and Leash Set"
+    },
+    "B004XNLCPC": {
+      "price": 26.99,
+      "rating": 4.2,
+      "ratingCount": 7558,
+      "bsr_pet": 2932,
+      "bsr_sub": 2,
+      "subcat": "Headcollars",
+      "buyboxSeller": "Amazon.com",
+      "title": "Halti Head Collar"
+    },
+    "B081YHK13N": {
+      "price": 6.55,
+      "rating": 4.4,
+      "ratingCount": 7985,
+      "bsr_pet": null,
+      "bsr_sub": null,
+      "subcat": null,
+      "buyboxSeller": "AmaGoodSHIP",
+      "title": "AMAGOOD 6 FT Puppy Leash"
+    },
+    "B0CQ567YLN": {
+      "price": 24.49,
+      "rating": 4.3,
+      "ratingCount": 1747,
+      "bsr_pet": 3432,
+      "bsr_sub": null,
+      "subcat": null,
+      "buyboxSeller": "Lobeve-us",
+      "title": "Lobeve No Pull Dog Harness Set"
+    },
+    "B07DZBN74T": {
+      "price": 123.99,
+      "rating": 4.2,
+      "ratingCount": 4748,
+      "bsr_pet": 5524,
+      "bsr_sub": null,
+      "subcat": null,
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425X"
+    },
+    "B07DZ1752D": {
+      "price": 134.99,
+      "rating": 4.1,
+      "ratingCount": 2333,
+      "bsr_pet": 14440,
+      "bsr_sub": null,
+      "subcat": null,
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425XS"
+    }
+  }
+}

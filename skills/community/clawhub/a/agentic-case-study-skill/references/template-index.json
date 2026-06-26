@@ -1,0 +1,31 @@
+{
+  "templates": [
+    {"id": "case-study-intake-questionnaire", "stage": "intake", "type": "questionnaire"},
+    {"id": "client-outcome-interview-guide", "stage": "intake", "type": "guide"},
+    {"id": "internal-case-study-brief", "stage": "internal", "type": "brief"},
+    {"id": "anonymized-case-study", "stage": "case_study", "type": "case_study"},
+    {"id": "public-named-client-case-study", "stage": "case_study", "type": "case_study"},
+    {"id": "before-after-workflow-summary", "stage": "proof", "type": "summary"},
+    {"id": "implementation-story", "stage": "proof", "type": "story"},
+    {"id": "technical-implementation-note", "stage": "technical", "type": "note"},
+    {"id": "risk-control-summary", "stage": "proof", "type": "summary"},
+    {"id": "human-approval-gate-summary", "stage": "proof", "type": "summary"},
+    {"id": "evaluation-results-summary", "stage": "proof", "type": "summary"},
+    {"id": "testimonial-request", "stage": "testimonial", "type": "request"},
+    {"id": "testimonial-draft", "stage": "testimonial", "type": "draft"},
+    {"id": "proof-point-library", "stage": "library", "type": "library"},
+    {"id": "sales-one-pager", "stage": "sales", "type": "one_pager"},
+    {"id": "website-case-study", "stage": "web", "type": "case_study"},
+    {"id": "linkedin-post", "stage": "social", "type": "post"},
+    {"id": "email-nurture-story", "stage": "email", "type": "story"},
+    {"id": "referral-enablement-blurb", "stage": "referral", "type": "blurb"},
+    {"id": "portfolio-entry", "stage": "portfolio", "type": "entry"},
+    {"id": "speaker-podcast-pitch", "stage": "thought_leadership", "type": "pitch"},
+    {"id": "award-submission-draft", "stage": "award", "type": "draft"},
+    {"id": "press-release-draft", "stage": "press", "type": "draft"},
+    {"id": "customer-quote-approval-checklist", "stage": "approval", "type": "checklist"},
+    {"id": "confidentiality-and-anonymization-checklist", "stage": "approval", "type": "checklist"},
+    {"id": "micro-proof-snippet", "stage": "sales", "type": "snippet"},
+    {"id": "proof-approval-status-tracker", "stage": "approval", "type": "tracker"}
+  ]
+}

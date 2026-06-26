@@ -1,35 +1,36 @@
 ---
-name: "Clawmatch"
-description: "Use this skill when the user wants to find compatible people — romantic partners, business partners, or friends — based on deep psychological profiling. Trig..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawmatch"
-sourceUrl: "https://clawhub.ai/skills/clawmatch"
+name: clawmatch
+description: Use this skill when the user wants to find compatible people — romantic partners, business partners, or friends — based on deep psychological profiling. Triggers on phrases like "find my match", "find me a business partner", "who am I compatible with", "ClawMatch".
+version: 0.1.0
+author: ivanschmidt
+license: MIT
 ---
 
-# Clawmatch
+# ClawMatch 🦞❤️
 
-> Use this skill when the user wants to find compatible people — romantic partners, business partners, or friends — based on deep psychological profiling. Trig...
+**AI-powered human compatibility matching based on psychological depth — not interests.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawmatch`
-- **Source URL:** [https://clawhub.ai/skills/clawmatch](https://clawhub.ai/skills/clawmatch)
+ClawMatch analyzes who you really are — how you handle conflict, make decisions, spend energy — and finds people who complement you across three connection types:
 
-## Overview
+- ❤️ Romantic partner
+- 💼 Business partner
+- 🤝 Friend
 
+## Status
+
+🚧 **Coming soon.** Profile builder and matching engine in development.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/clawmatch
+clawhub install clawmatch
 ```
+
+## Usage
+
+Just tell your agent:
+
+- "Find me a business partner"
+- "ClawMatch — who am I compatible with?"
+
+Built on OpenClaw. Your data stays local. Always.

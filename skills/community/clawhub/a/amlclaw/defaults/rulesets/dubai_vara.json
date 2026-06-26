@@ -1,0 +1,366 @@
+[
+  {
+    "rule_id": "UAE-VARA-DEP-SEVERE-001",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Inflow Direct Interaction — Sanctions/Terrorism (Hop 1)",
+    "description": "Freeze if direct inflow (Hop 1) from Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Direct interaction with sanctioned entities is Critical-level per OFAC and UAE EOCN guidance.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "UAE Federal AML Law & VARA Rulebook Section 3.1 & OFAC SDN Direct Contact = Critical"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-SEVERE-002",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Inflow Near-Distance — Sanctions/Terrorism (Hop 2-3)",
+    "description": "Freeze if near-distance inflow (Hop 2-3) from Sanctions, Terrorism, or Frozen entities. VARA mandates zero tolerance for sanctioned fund sources within traceable distance.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "UAE EOCN & VARA Compliance Guidelines 2.1"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-HIGH-001",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 4,
+    "max_hops": 5,
+    "name": "Inflow Far-Distance — Sanctions/Terrorism (Hop 4-5)",
+    "description": "Trigger EDD if far-distance inflow (Hop 4-5) from Sanctions, Terrorism, or Frozen entities. Pollution decay reduces severity but sanctions exposure still requires enhanced investigation.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "UAE EOCN & Pollution Decay Principle"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-HIGH-002",
+    "category": "Deposit",
+    "direction": "inflow",
+    "name": "Inflow Exposure — Obfuscation (Zero-Tolerance)",
+    "description": "Reject deposits with any exposure (>0%) to Obfuscation (Mixers, Privacy Tokens). VARA explicitly prohibits anonymity-enhanced crypto assets.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Obfuscation"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 0,
+        "unit": "%"
+      }
+    ],
+    "risk_level": "High",
+    "action": "Reject",
+    "reference": "VARA Prohibited Activities (Anonymity-Enhanced Crypto)"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-HIGH-003",
+    "category": "Deposit",
+    "direction": "inflow",
+    "name": "Inflow Exposure — Cybercrime/Gambling/High-Risk (Threshold)",
+    "description": "Trigger EDD if inflow exposure to Cybercrime, Gambling, or High-Risk Entities exceeds 10% AND risk amount > 100 USD.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Gambling", "High-Risk Entities"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "parameter": "path.risk_amount_usd",
+        "operator": ">",
+        "value": 100,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "TrustIn UAE VARA Guide 2.3"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-OUT-SEVERE-001",
+    "category": "Deposit",
+    "direction": "outflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Outflow History — Target Directly Funded Sanctions/Terrorism (Hop 1)",
+    "description": "Freeze if the target address has directly sent funds (Hop 1 outflow) to Sanctions, Terrorism, or Frozen entities. Direct outflow to sanctioned entities indicates intentional interaction.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "UAE Federal AML Law & OFAC Prohibition on Providing Indirect Benefits"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-OUT-HIGH-001",
+    "category": "Deposit",
+    "direction": "outflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Outflow History — Target Indirectly Funded Sanctions/Terrorism (Hop 2-3)",
+    "description": "Trigger EDD if the target address has indirectly funded (Hop 2-3 outflow) Sanctions or Terrorism entities through intermediaries.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "UAE Federal AML Law & OFAC Indirect Benefits Prohibition"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-SELF-SEVERE-001",
+    "category": "Deposit",
+    "name": "Target Self-Tag — Sanctions/Freeze/Illicit",
+    "description": "Freeze if the target address itself is tagged as Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Applies to both onboarding and deposit.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Public Freezing Action", "Illicit Markets", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "UAE Federal AML Law & VARA Rulebook Section 3.1 (CDD) & FATF Recommendation 10"
+  },
+  {
+    "rule_id": "UAE-VARA-DEP-SELF-HIGH-001",
+    "category": "Deposit",
+    "name": "Target Self-Tag — Cybercrime/Obfuscation",
+    "description": "Trigger EDD if the target address itself is tagged as Cybercrime or Obfuscation. Addresses may acquire new risk labels after onboarding due to evolving threat intelligence.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "VARA Rulebook Section 3.1 (EDD/Ongoing CDD)"
+  },
+  {
+    "rule_id": "UAE-VARA-WHL-001",
+    "category": "Deposit",
+    "name": "CEX & TradFi Whitelist",
+    "description": "Stop penetrating graph paths if a compliant Centralized Exchange or TradFi institution is encountered.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.secondary_category",
+        "operator": "IN",
+        "value": ["CEX", "TradFi"]
+      }
+    ],
+    "risk_level": "Low",
+    "action": "Whitelist",
+    "reference": "TrustIn UAE VARA Guide Section 2.1"
+  },
+  {
+    "rule_id": "UAE-VARA-WDR-SEVERE-001",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Outflow Direct Interaction — Sanctions/Terrorism Destination (Hop 1)",
+    "description": "Freeze if direct outflow (Hop 1) reaches Sanctions, Terrorism, or Frozen destination.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "UAE Federal AML Law & VARA Rulebook Section 4 (STR)"
+  },
+  {
+    "rule_id": "UAE-VARA-WDR-SEVERE-002",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Outflow Near-Distance — Sanctions/Terrorism Destination (Hop 2-3)",
+    "description": "Freeze if near-distance outflow (Hop 2-3) reaches Sanctions or Terrorism destination.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "UAE Federal AML Law & VARA Rulebook Section 4 (Outflow Hop 2-3)"
+  },
+  {
+    "rule_id": "UAE-VARA-WDR-HIGH-001",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 4,
+    "max_hops": 5,
+    "name": "Outflow Far-Distance — Sanctions/Terrorism Destination (Hop 4-5)",
+    "description": "Trigger EDD if far-distance outflow (Hop 4-5) reaches Sanctions or Terrorism destination. Pollution decay applies but sanctions obligations require enhanced investigation.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "UAE EOCN & Pollution Decay Principle"
+  },
+  {
+    "rule_id": "UAE-VARA-WDR-HIGH-002",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "name": "Outflow Exposure — Cybercrime/Obfuscation/Gambling Destination (Threshold)",
+    "description": "Trigger EDD if outflow reaches Cybercrime, Obfuscation, Gambling, or High-Risk destination with exposure > 10% AND amount > 100 USD.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation", "Gambling", "High-Risk Entities"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "parameter": "path.risk_amount_usd",
+        "operator": ">",
+        "value": 100,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "VARA Rulebook Section 3.1 (EDD on Outflow)"
+  },
+  {
+    "rule_id": "UAE-VARA-WDR-SELF-SEVERE-001",
+    "category": "Withdrawal",
+    "name": "Withdrawal Gate — Target Self-Tagged (Sanctions/Freeze/Illicit)",
+    "description": "Freeze withdrawal if the target address itself is tagged as Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Public Freezing Action", "Illicit Markets", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "UAE Federal AML Law & VARA Rulebook Section 4 (Ongoing CDD)"
+  },
+  {
+    "rule_id": "UAE-VARA-WDR-SELF-HIGH-001",
+    "category": "Withdrawal",
+    "name": "Withdrawal Gate — Target Self-Tagged (Cybercrime/Obfuscation)",
+    "description": "Trigger EDD on withdrawal if the target address itself is tagged as Cybercrime or Obfuscation.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "VARA Rulebook Section 3.1 (Ongoing CDD)"
+  },
+  {
+    "rule_id": "UAE-VARA-TX-001",
+    "category": "Withdrawal",
+    "name": "VARA Travel Rule & CDD Trigger",
+    "description": "Trigger Travel Rule and mandatory CDD for transactions > 950 USD (approx AED 3500).",
+    "conditions": [
+      {
+        "parameter": "path.amount",
+        "operator": ">",
+        "value": 950,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "Medium",
+    "action": "Review",
+    "reference": "UAE Federal AML Threshold (AED 3,500)"
+  },
+  {
+    "rule_id": "UAE-VARA-CDD-HIGH-001",
+    "category": "CDD",
+    "name": "Single Transaction KYC Trigger (>950 USD)",
+    "description": "Trigger full KYC/CDD verification if a single transaction exceeds 950 USD (~AED 3500) per UAE threshold.",
+    "conditions": [
+      {
+        "parameter": "path.amount",
+        "operator": ">",
+        "value": 950,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "UAE Federal AML Threshold (AED 3,500) & VARA CDD Requirements"
+  },
+  {
+    "rule_id": "UAE-VARA-TX-002",
+    "category": "Ongoing Monitoring",
+    "name": "VARA Structuring Alert",
+    "description": "Trigger review if daily cumulative volume > 950 USD to detect smurfing.",
+    "conditions": [
+      {
+        "parameter": "target.daily_deposit_usd",
+        "operator": ">",
+        "value": 950,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "Review",
+    "reference": "TrustIn UAE VARA Guide 3"
+  }
+]

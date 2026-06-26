@@ -1,0 +1,37 @@
+# multi-group-chat-manager 通用配置文件
+# =======================================
+# 运行时参数由 config.json 读取，此文件仅供人类参考。
+# 修改配置请编辑 config.json，所有 Python 脚本统一从中读取参数。
+
+# ═══ 上下线会话管理 ═══
+session:
+  recovery_window_hours: 24     # 意外中断恢复时扫多少小时的历史
+  recovery_max_messages: 1000   # 恢复时最多读取的消息数（大群撑得住）
+  default_max_messages: 100     # 正常下线时每个群最多读取的消息数
+
+# ═══ 画像系统 ═══
+profiling:
+  min_update_interval: 300      # 同一用户最小更新间隔（秒），防止高频重复更新
+  auto_dedup: true              # 自动去重，不存储与已有画像重复的信息
+  max_items_per_field: 50       # 每个字段最大条目数，超出则需提醒归档
+  output_language: "zh-CN"      # 输出语言
+
+# ═══ 液态记忆引擎 ═══
+memory:
+  lambda_decay: 0.05            # 遗忘速度（每天衰减率）
+  alpha_boost: 0.2              # 访问强化系数
+  score_threshold: 0.15         # 低于此值自动归档
+  new_memory_score: 0.8         # 新记忆初始分
+  auto_decay_interval: 86400    # 自动衰减扫描间隔（秒，默认24h）
+
+# ═══ 好感度系统 ═══
+affection:
+  default_score: 50             # 新用户默认好感度
+  small_group_default_score: 85 # 小群群友初始好感度
+  small_group_ids: []           # 小群群友 QQ 号列表（首次部署时填写）
+  brief_query_hours: 24         # 群友查询时默认显示近多少小时的记录
+  detail_max_entries: 20        # 管理员查询时最多显示多少条记录
+  min_score: 0                  # 最低分
+  max_score: 100                # 最高分
+  lock_timeout: 10              # 文件锁等待超时（秒）
+  lock_stale_seconds: 5         # 锁文件超过此秒数视为僵尸锁，强制清除

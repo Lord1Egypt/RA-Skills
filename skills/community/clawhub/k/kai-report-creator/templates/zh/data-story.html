@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年度增长故事 · 2024</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── Theme: data-story ── */
+    :root {
+      --primary: #E63946; --primary-light: #FDE8EA; --accent: #F4A261;
+      --bg: #FAFAFA; --surface: #F0F0F0; --text: #1A1A2E; --text-muted: #6B6B7B;
+      --border: #E0E0E8; --success: #2D6A4F; --warning: #E76F51; --danger: #C1121F;
+      --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace; --radius: 10px;
+      --gradient: linear-gradient(135deg, #E63946 0%, #F4A261 100%);
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.6; }
+    h1 { font-size: 2.4rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1.5rem; letter-spacing: -.03em; }
+    h2 { font-size: 1.45rem; font-weight: 700; color: var(--text); margin-top: 1.75rem; position: relative; padding-left: 1rem; }
+    h2::before { content: ''; position: absolute; left: 0; top: .2em; bottom: .2em; width: 4px; background: var(--gradient); border-radius: 2px; }
+    h3 { font-size: 1.1rem; font-weight: 600; color: var(--primary); margin-top: 1.1rem; }
+    p { margin: .6rem 0; } a { color: var(--primary); }
+    strong { font-weight: 700; color: var(--primary); }
+    blockquote { border-left: 3px solid var(--accent); margin: .75rem 0; padding: .6rem 1rem; background: var(--primary-light); border-radius: 0 var(--radius) var(--radius) 0; color: var(--text); }
+
+    /* ── Shared Components ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; }
+    .kpi-value { font-size: 2rem; font-weight: 800; line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .report-table th { background: var(--report-surface, var(--surface)); border-bottom: 2px solid var(--report-structure, var(--primary)); padding: .7rem 1rem; text-align: left; font-weight: 600; }
+    .report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); }
+    .report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--note { background: #EFF6FF; border-color: #3B82F6; }
+    .callout--tip { background: #F0FDF4; border-color: #22C55E; }
+    .callout--warning { background: #FFFBEB; border-color: #F59E0B; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .93rem; }
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; }
+    .timeline-content { color: var(--text); line-height: 1.6; }
+    [data-component="chart"] { margin: 1.1rem 0; }
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    body.no-animations .fade-in-up { opacity: 1; transform: none; transition: none; }
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+    .toc-sidebar { position: fixed; top: 0; left: 0; width: 240px; height: 100vh; overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface); border-right: 1px solid var(--border); font-size: .83rem; z-index: 100; transform: translateX(-100%); transition: transform .28s ease; }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.1); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .78rem; opacity: .85; }
+    .toc-toggle { position: fixed; top: .75rem; left: .75rem; z-index: 200; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+<script type="application/json" id="report-summary">
+{
+  "title": "年度增长故事 · 2024",
+  "author": "战略分析团队",
+  "date": "2024-12-31",
+  "abstract": "2024年全年营收增长34%，突破8200万元，用户规模突破52万，NPS创历史新高72分，业务进入高速增长轨道。",
+  "sections": ["核心增长指标", "营收增长轨迹", "用户增长分析", "关键里程碑", "增长归因分析", "2025年展望"],
+  "kpis": [
+    {"label": "全年营收", "value": "¥8,200万", "trend": "↑34%"},
+    {"label": "活跃用户", "value": "52万", "trend": "↑61%"},
+    {"label": "NPS评分", "value": "72", "trend": "↑12"},
+    {"label": "客户留存率", "value": "87%", "trend": "↑5%"}
+  ]
+}
+</script>
+
+<div class="edit-hotzone" id="edit-hotzone"></div>
+<button class="edit-toggle" id="edit-toggle" title="编辑模式 (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 打印 / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 保存图片（桌面）</button>
+    <button class="export-item" id="export-png-mobile">📱 保存图片（手机）</button>
+    <button class="export-item" id="export-im-share">💬 IM 分享长图</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="导出">↓ 导出</button>
+
+<button class="toc-toggle" id="toc-toggle-btn" aria-label="目录" aria-expanded="false">☰</button>
+<nav class="toc-sidebar" id="toc-sidebar" aria-label="报告目录">
+  <h4>目录</h4>
+  <a href="#section-he-xin-zeng-zhang-zhi-biao" data-section="核心增长指标">核心增长指标</a>
+  <a href="#section-ying-shou-zeng-zhang-gui-ji" data-section="营收增长轨迹">营收增长轨迹</a>
+  <a href="#section-yong-hu-zeng-zhang-fen-xi" data-section="用户增长分析">用户增长分析</a>
+  <a href="#section-guan-jian-li-cheng-bei" data-section="关键里程碑">关键里程碑</a>
+  <a href="#section-zeng-zhang-gui-yin-fen-xi" data-section="增长归因分析">增长归因分析</a>
+  <a href="#section-2025-nian-zhan-wang" data-section="2025年展望">2025年展望</a>
+</nav>
+
+<div class="main-with-toc">
+  <div class="report-wrapper">
+    <h1>年度增长故事 · 2024</h1>
+    <p class="report-meta">战略分析团队 · 2024-12-31</p>
+
+    <section data-section="核心增长指标" data-summary="2024年四项核心指标均创历史新高，业务全面进入增长快车道">
+      <h2 id="section-he-xin-zeng-zhang-zhi-biao">核心增长指标</h2>
+      <p>2024年是公司发展历程中的关键一年。经历了前两年的产品打磨与市场验证，我们在这一年迎来了全面爆发式增长，四项核心指标均创下历史最优水平。</p>
+      <div data-component="kpi" class="kpi-grid">
+        <div class="kpi-card fade-in-up">
+          <div class="kpi-label">全年营收</div>
+          <div class="kpi-value" data-target-value="8200" data-prefix="¥" data-suffix="万">¥8,200万</div>
+          <div class="kpi-trend kpi-trend--up">↑34% YoY</div>
+        </div>
+        <div class="kpi-card fade-in-up">
+          <div class="kpi-label">活跃用户</div>
+          <div class="kpi-value" data-target-value="52" data-suffix="万">52万</div>
+          <div class="kpi-trend kpi-trend--up">↑61% YoY</div>
+        </div>
+        <div class="kpi-card fade-in-up">
+          <div class="kpi-label">NPS 评分</div>
+          <div class="kpi-value" data-target-value="72">72</div>
+          <div class="kpi-trend kpi-trend--up">↑12分</div>
+        </div>
+        <div class="kpi-card fade-in-up">
+          <div class="kpi-label">客户留存率</div>
+          <div class="kpi-value" data-target-value="87" data-suffix="%">87%</div>
+          <div class="kpi-trend kpi-trend--up">↑5%</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-section="营收增长轨迹" data-summary="Q1低开高走，Q4单季度营收突破2800万，全年加速明显">
+      <h2 id="section-ying-shou-zeng-zhang-gui-ji">营收增长轨迹</h2>
+      <p>全年营收呈现出明显的加速曲线。Q1受春节假期影响基础较低，Q2随着新产品线发布开始明显回升，Q3企业客户大批量续约推动突破性增长，Q4冲刺收官创下单季度最高纪录。</p>
+      <div data-component="chart" data-type="bar" data-raw='{"labels":["Q1","Q2","Q3","Q4"],"datasets":[{"label":"2024年营收（万元）","data":[1450,1900,2050,2800]},{"label":"2023年营收（万元）","data":[1100,1450,1520,2050]}]}' class="fade-in-up">
+        <canvas id="chart-revenue-quarterly" height="280"></canvas>
+        <script>
+          new Chart(document.getElementById('chart-revenue-quarterly'), {
+            type: 'bar',
+            data: {
+              labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+              datasets: [
+                { label: '2024年营收（万元）', data: [1450, 1900, 2050, 2800], backgroundColor: 'rgba(230,57,70,0.85)', borderRadius: 6 },
+                { label: '2023年营收（万元）', data: [1100, 1450, 1520, 2050], backgroundColor: 'rgba(244,162,97,0.6)', borderRadius: 6 }
+              ]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true } } }
+          });
+        </script>
+      </div>
+    </section>
+
+    <section data-section="用户增长分析" data-summary="免费用户向付费用户的转化率提升至8.3%，企业客户贡献了68%的营收">
+      <h2 id="section-yong-hu-zeng-zhang-fen-xi">用户增长分析</h2>
+      <p>用户增长是今年最亮眼的故事线之一。总用户规模从年初的32万增长至52万，增幅61%。更重要的是，用户质量也显著提升：</p>
+      <div data-component="table" class="table-wrapper fade-in-up">
+        <table class="report-table">
+          <caption>用户分层增长数据</caption>
+          <thead>
+            <tr><th>用户层级</th><th>年初</th><th>年末</th><th>增幅</th><th>ARPU（元/月）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>免费用户</td><td>27.8万</td><td>43.7万</td><td>+57%</td><td>0</td></tr>
+            <tr><td>个人付费</td><td>3.2万</td><td>6.1万</td><td>+91%</td><td>29</td></tr>
+            <tr><td>企业版</td><td>1,200家</td><td>2,180家</td><td>+82%</td><td>680</td></tr>
+            <tr><td><strong>合计 MAU</strong></td><td><strong>32万</strong></td><td><strong>52万</strong></td><td><strong>+61%</strong></td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--tip fade-in-up">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">企业客户虽然仅占总用户数的0.4%，但贡献了全年68%的营收。Q4专项企业客户成功计划将续约率提升至92%。</div>
+      </div>
+    </section>
+
+    <section data-section="关键里程碑" data-summary="全年7个关键里程碑，每次节点突破都直接推动了后续增长">
+      <h2 id="section-guan-jian-li-cheng-bei">关键里程碑</h2>
+      <div data-component="timeline" class="timeline fade-in-up">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024-02</div>
+          <div class="timeline-content"><strong>企业版 2.0 发布</strong> — 支持 SSO、审计日志和团队权限管理，企业客户采购周期从90天压缩至28天</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024-04</div>
+          <div class="timeline-content"><strong>用户数突破 40 万</strong> — 达成年度目标，实际比计划提前了6周</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024-06</div>
+          <div class="timeline-content"><strong>AI 助手功能上线</strong> — 用户日活提升 38%，付费转化率从 5.1% 跃升至 8.3%</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024-09</div>
+          <div class="timeline-content"><strong>完成 B 轮融资</strong> — 融资1.2亿元，投后估值8亿元，弹药充足支撑后续扩张</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024-11</div>
+          <div class="timeline-content"><strong>营收突破年度目标</strong> — 提前完成全年计划，Q4开始超额运营</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024-12</div>
+          <div class="timeline-content"><strong>NPS 创历史新高 72 分</strong> — 大幅超越行业均值 43 分，客户口碑成为新增长引擎</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-section="增长归因分析" data-summary="产品驱动和口碑传播是本年度最高ROI的增长来源">
+      <h2 id="section-zeng-zhang-gui-yin-fen-xi">增长归因分析</h2>
+      <p>从新增用户的来源归因来看，产品驱动增长（PLG）策略效果显著，自然流量和口碑推荐合计贡献了57%的新用户来源，获客成本同比下降41%。</p>
+      <div data-component="chart" data-type="pie" data-raw='{"labels":["口碑推荐","自然搜索","付费广告","内容营销","合作渠道"],"datasets":[{"data":[32,25,18,15,10]}]}' class="fade-in-up">
+        <canvas id="chart-acquisition" height="280"></canvas>
+        <script>
+          new Chart(document.getElementById('chart-acquisition'), {
+            type: 'pie',
+            data: {
+              labels: ['口碑推荐', '自然搜索', '付费广告', '内容营销', '合作渠道'],
+              datasets: [{ data: [32, 25, 18, 15, 10], backgroundColor: ['#E63946','#F4A261','#2D6A4F','#457B9D','#A8DADC'] }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'right' } } }
+          });
+        </script>
+      </div>
+    </section>
+
+    <section data-section="2025年展望" data-summary="2025年目标营收1.5亿，重点布局国际化和AI深度集成">
+      <h2 id="section-2025-nian-zhan-wang">2025年展望</h2>
+      <p>站在2024年底，我们有充足的信心和资本储备迎接2025年的挑战。核心战略方向聚焦三条主线：</p>
+      <ul style="padding-left:1.5rem;line-height:1.9">
+        <li><strong>国际化扩张</strong> — Q2进入东南亚市场（新加坡、马来西亚、泰国），Q4布局北美</li>
+        <li><strong>AI 深度集成</strong> — 将 AI 能力从辅助工具升级为核心生产力模块，目标 AI 功能使用率达 70%</li>
+        <li><strong>企业客户深耕</strong> — 将企业版客户数从 2,180 家增长至 5,000 家，ASP 提升至 880 元/月</li>
+      </ul>
+      <div class="callout callout--note fade-in-up">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body"><strong>2025年目标</strong>：全年营收 1.5 亿元（↑83%），MAU 突破 100 万，完成 C 轮融资，市场份额进入行业前三。</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  // Auto-reveal in headless/screenshot environments
+  if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+  if (!document.body.classList.contains('no-animations')) {
+    const fadeObs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } }), { threshold: 0.08 });
+    document.querySelectorAll('.fade-in-up').forEach(el => fadeObs.observe(el));
+    const kpiObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target, target = parseFloat(el.dataset.targetValue);
+        if (isNaN(target)) return;
+        const prefix = el.dataset.prefix || '', suffix = el.dataset.suffix || '';
+        const isFloat = String(target).includes('.'), decimals = isFloat ? String(target).split('.')[1].length : 0;
+        let startTime = null;
+        const animate = ts => {
+          if (!startTime) startTime = ts;
+          const p = Math.min((ts - startTime) / 1200, 1), ease = 1 - Math.pow(1 - p, 3);
+          const cur = isFloat ? (ease * target).toFixed(decimals) : Math.floor(ease * target).toLocaleString();
+          el.textContent = prefix + cur + suffix;
+          if (p < 1) requestAnimationFrame(animate);
+          else el.textContent = prefix + (isFloat ? target.toFixed(decimals) : target.toLocaleString()) + suffix;
+        };
+        requestAnimationFrame(animate); kpiObs.unobserve(el);
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.kpi-value[data-target-value]').forEach(el => kpiObs.observe(el));
+  }
+  const tocBtn = document.getElementById('toc-toggle-btn'), tocSidebar = document.getElementById('toc-sidebar');
+  if (tocBtn && tocSidebar) {
+    let locked = false, closeTimer;
+    const openToc = () => { clearTimeout(closeTimer); tocSidebar.classList.add('open'); tocBtn.setAttribute('aria-expanded', 'true'); };
+    const scheduleClose = () => { closeTimer = setTimeout(() => { if (!locked) { tocSidebar.classList.remove('open'); tocBtn.setAttribute('aria-expanded', 'false'); } }, 150); };
+    tocBtn.addEventListener('mouseenter', openToc); tocSidebar.addEventListener('mouseenter', openToc);
+    tocBtn.addEventListener('mouseleave', scheduleClose); tocSidebar.addEventListener('mouseleave', scheduleClose);
+    tocBtn.addEventListener('click', () => { locked = !locked; tocBtn.classList.toggle('locked', locked); if (locked) openToc(); else scheduleClose(); });
+    document.querySelectorAll('.toc-sidebar a').forEach(a => a.addEventListener('click', () => { if (!locked) scheduleClose(); }));
+  }
+  const secObs = new IntersectionObserver(entries => entries.forEach(e => { const id = e.target.dataset.section; const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`); if (link) link.classList.toggle('active', e.isIntersecting); }), { rootMargin: '-10% 0px -60% 0px' });
+  document.querySelectorAll('section[data-section]').forEach(s => secObs.observe(s));
+</script>
+<script>
+  (function() {
+    const hotzone = document.getElementById('edit-hotzone'), toggle = document.getElementById('edit-toggle');
+    if (!hotzone || !toggle) return;
+    let active = false, hideTimer;
+    const showBtn = () => { clearTimeout(hideTimer); toggle.classList.add('show'); };
+    const schedHide = () => { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); };
+    hotzone.addEventListener('mouseenter', showBtn); hotzone.addEventListener('mouseleave', schedHide);
+    toggle.addEventListener('mouseenter', showBtn); toggle.addEventListener('mouseleave', schedHide);
+    const enterEdit = () => { active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done'; document.body.classList.add('edit-mode'); document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true')); };
+    const exitEdit = () => { active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit'; document.body.classList.remove('edit-mode'); document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable')); schedHide(); };
+    hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+    toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+    document.addEventListener('keydown', e => {
+      if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) { active ? exitEdit() : enterEdit(); }
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML; const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([html], {type:'text/html'})), download: location.pathname.split('/').pop() || 'report.html' }); a.click(); URL.revokeObjectURL(a.href); }
+    });
+  })();
+</script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

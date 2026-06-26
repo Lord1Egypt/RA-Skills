@@ -1,0 +1,22 @@
+{
+  "name": "省钱配置模板",
+  "description": "最大化使用本地模型，节约 90% 成本",
+  "version": "2026.4.15",
+  "changes": {
+    "agents.defaults.model.primary": "qwen/qwen-turbo",
+    "session.maxContextTokens": 120000,
+    "session.compaction.threshold": 0.6,
+    "session.reset.idleMinutes": 60
+  },
+  "notes": [
+    "主模型从 qwen3.6-plus 降级到 qwen-turbo，节约 90% 成本",
+    "Compassion 任务全部使用 Ollama 本地模型（免费）",
+    "启用自动压缩，60% 触发",
+    "设置 60 分钟空闲超时自动重置"
+  ],
+  "estimated_savings": {
+    "before": "¥500/月 (估算)",
+    "after": "¥50/月 (估算)",
+    "savings": "90%"
+  }
+}

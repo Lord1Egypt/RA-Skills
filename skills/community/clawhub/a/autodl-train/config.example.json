@@ -1,0 +1,31 @@
+{
+  "host": "YOUR_AUTODL_HOST",
+  "port": 22,
+  "username": "root",
+  "ssh_key_path": "~/.ssh/id_rsa",
+  "strict_host_key_checking": "accept-new",
+  "project_path": "/root/autodl-tmp/your-project",
+  "allowed_project_roots": [
+    "/root/autodl-tmp"
+  ],
+  "env_name": "your_env",
+  "conda_sh_path": "/root/miniconda3/etc/profile.d/conda.sh",
+  "venv_path": "venv",
+  "env_activate": "",
+  "train_command": "python train.py --config configs/train.yaml",
+  "resume_argument_template": "--resume-from {checkpoint}",
+  "process_match": "train.py --config configs/train.yaml",
+  "log_path": "logs/train.log",
+  "log_candidates": [
+    "logs/train.log",
+    "outputs/latest.log",
+    "nohup.out"
+  ],
+  "status_log_tail": 40,
+  "summary_log_tail": 400,
+  "resource_warn_disk_pct": 85,
+  "resource_warn_memory_pct": 90,
+  "resource_warn_gpu_memory_pct": 90,
+  "resource_low_gpu_util_pct": 30,
+  "extra_ssh_options": []
+}

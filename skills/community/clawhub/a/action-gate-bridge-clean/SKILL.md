@@ -1,35 +1,32 @@
 ---
-name: "Action Gate Bridge"
-description: "Route risky communications next steps through a typed action-intent bridge so external writes, bookings, settings changes, public posts, and spend decisions..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/action-gate-bridge-clean"
-sourceUrl: "https://clawhub.ai/skills/action-gate-bridge-clean"
+name: action-gate-bridge
+description: Route risky communications next steps through a typed action-intent bridge so external writes, bookings, settings changes, public posts, and spend decisions require explicit policy and approval handling instead of informal reasoning.
 ---
 
 # Action Gate Bridge
 
-> Route risky communications next steps through a typed action-intent bridge so external writes, bookings, settings changes, public posts, and spend decisions...
+Use this skill when a communications workflow moves from analysis into a possible external action.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/action-gate-bridge-clean`
-- **Source URL:** [https://clawhub.ai/skills/action-gate-bridge-clean](https://clawhub.ai/skills/action-gate-bridge-clean)
+## Core workflow
 
-## Overview
+1. Read `references/action-bridge.md` first.
+2. Read `references/approval-matrix.md` before proposing any action.
+3. Pick the narrowest typed action that fits the next step.
+4. Create a proposal or route the write intent through the sidecar.
+5. Interpret the result as `allowed`, `needs_approval`, `blocked`, or `accepted`.
+6. Decide what to show the user; do not silently execute a risky action.
 
+## Helpers
 
-## Installation
-To install this skill, run the following command in your terminal:
+Use the bundled scripts when the host environment supports them:
+
 ```bash
-hermes skills install clawhub/action-gate-bridge-clean
+node scripts/propose-action.js communications send_email target@example.com "Subject" "Summary" "Program"
+node scripts/route-http-write.js communications api-target "Summary" /path '{"hello":"world"}' "Program" "credentials-ref"
 ```
+
+## Safety
+
+- Red actions require explicit user approval.
+- Do not send, post, submit, confirm, or spend by default.
+- If policy, scope, approval, or reversibility is unclear, escalate instead of acting.

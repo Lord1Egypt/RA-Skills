@@ -1,0 +1,162 @@
+# Agent Configuration File Template
+
+system:
+  name: "multi-agent-system"
+  version: "1.0.0"
+  description: "System description"
+
+# Agent Definitions
+agents:
+  - id: "coordinator"
+    name: "Coordinator"
+    description: "Responsible for overall coordination and task distribution"
+    type: "coordinator"
+    capabilities:
+      - task_dispatch
+      - state_management
+      - error_handling
+    config:
+      max_concurrent_tasks: 100
+      heartbeat_interval: 30
+    endpoints:
+      - name: "dispatch"
+        path: "/api/dispatch"
+        method: "POST"
+      - name: "status"
+        path: "/api/status"
+        method: "GET"
+
+  - id: "worker-1"
+    name: "Worker Node 1"
+    description: "Responsible for data processing"
+    type: "worker"
+    capabilities:
+      - data_processing
+      - validation
+    config:
+      queue_size: 50
+      timeout: 30
+    dependencies:
+      - coordinator
+    endpoints:
+      - name: "process"
+        path: "/api/process"
+        method: "POST"
+
+  - id: "worker-2"
+    name: "Worker Node 2"
+    description: "Responsible for result analysis"
+    type: "worker"
+    capabilities:
+      - analysis
+      - report_generation
+    config:
+      queue_size: 30
+      timeout: 60
+    dependencies:
+      - coordinator
+      - worker-1
+    endpoints:
+      - name: "analyze"
+        path: "/api/analyze"
+        method: "POST"
+
+# Communication Configuration
+communication:
+  protocol: "websocket"
+  host: "localhost"
+  port: 8080
+  
+  message_format:
+    type: "json"
+    schema: "message-schema.json"
+  
+  reliability:
+    delivery: "at_least_once"
+    ordering: "preserve_order"
+    
+  security:
+    authentication: "jwt"
+    encryption: "tls"
+
+# Workflow Definitions
+workflows:
+  - id: "main-workflow"
+    name: "Main Workflow"
+    description: "Main system processing flow"
+    type: "sequential"
+    
+    steps:
+      - id: "step-1"
+        name: "Task Dispatch"
+        agent: "coordinator"
+        action: "dispatch"
+        input_mapping:
+          request: "$input.request"
+        output_mapping:
+          task_id: "$output.task_id"
+          
+      - id: "step-2"
+        name: "Data Processing"
+        agent: "worker-1"
+        action: "process"
+        input_mapping:
+          data: "$step-1.output.data"
+        output_mapping:
+          result: "$output.processed_data"
+        retry:
+          max_attempts: 3
+          delay: 5
+          
+      - id: "step-3"
+        name: "Result Analysis"
+        agent: "worker-2"
+        action: "analyze"
+        input_mapping:
+          data: "$step-2.output.result"
+        output_mapping:
+          report: "$output.analysis_report"
+        
+    error_handling:
+      strategy: "retry_then_fallback"
+      fallback:
+        agent: "coordinator"
+        action: "handle_error"
+
+# Monitoring Configuration
+monitoring:
+  enabled: true
+  
+  metrics:
+    - name: "task_duration"
+      type: "histogram"
+      labels: ["agent", "task_type"]
+      
+    - name: "task_count"
+      type: "counter"
+      labels: ["agent", "status"]
+      
+    - name: "agent_health"
+      type: "gauge"
+      labels: ["agent_id"]
+  
+  logging:
+    level: "info"
+    format: "json"
+    output: "stdout"
+    
+  tracing:
+    enabled: true
+    sampler: "probability"
+    sample_rate: 0.1
+
+# Resource Limits
+resources:
+  coordinator:
+    cpu: "1"
+    memory: "2Gi"
+    
+  worker:
+    cpu: "2"
+    memory: "4Gi"
+    replicas: 3

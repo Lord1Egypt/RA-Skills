@@ -1,0 +1,21 @@
+{
+  "name": "ironclaw-security-guard",
+  "version": "0.2.0",
+  "description": "A lightweight OpenClaw security guard skill for blocking dangerous commands, detecting prompt injection, redacting secrets, and keeping audit trails.",
+  "author": "Dawei + Codex",
+  "homepage": "https://github.com/wd041216-bit/openclaw-ironclaw-security-guard",
+  "metadata": {
+    "tags": [
+      "openclaw",
+      "security",
+      "prompt-injection",
+      "secret-redaction",
+      "audit",
+      "plugin"
+    ],
+    "categories": [
+      "Security",
+      "Development"
+    ]
+  }
+}

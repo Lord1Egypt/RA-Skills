@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@pixel/pptx"
+  },
+  "imports": {
+    "@pixel/pptx": "jsr:@pixel/pptx@0.15",
+    "@pixel/pptx/jsx-runtime": "jsr:@pixel/pptx@0.15/jsx-runtime"
+  }
+}

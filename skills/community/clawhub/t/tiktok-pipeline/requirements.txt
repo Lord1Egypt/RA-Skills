@@ -1,0 +1,4 @@
+requests
+openai-whisper
+mlx-whisper
+ffmpeg

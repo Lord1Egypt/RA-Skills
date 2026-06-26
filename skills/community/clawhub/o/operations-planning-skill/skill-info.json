@@ -1,0 +1,37 @@
+{
+  "name": "operations-planning",
+  "display_name": "运营策划技能",
+  "version": "1.0.0",
+  "author": "窗台上有只猫-岗位未知",
+  "created_date": "2026-03-20",
+  "description": "综合运营策划技能，专注于活动策划和产品运营策划，针对内容平台和社区运营场景。支持自动化生成策划方案、数据分析和项目管理。",
+  "keywords": [
+    "运营策划",
+    "活动策划",
+    "产品运营",
+    "数据分析",
+    "项目管理"
+  ],
+  "categories": [
+    "运营",
+    "策划",
+    "管理",
+    "工具"
+  ],
+  "compatibility": {
+    "openclaw": ">= 2026.3.0",
+    "model": "所有兼容模型"
+  },
+  "files": {
+    "main": "SKILL.md",
+    "references": [
+      "references/project-management-tools.md",
+      "references/data-analysis-tools.md"
+    ],
+    "directories": [
+      "scripts",
+      "assets",
+      "references"
+    ]
+  }
+}

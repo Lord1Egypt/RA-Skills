@@ -1,0 +1,4 @@
+interface:
+  display_name: "Idea Trace"
+  short_description: "Don't just save ideas - trace how they mature."
+  default_prompt: "Use $idea-trace to trace how this idea took shape over time and identify what changed it."

@@ -1,0 +1,122 @@
+{
+  "name": "vocab-voyage",
+  "displayName": "Vocab Voyage Sparkle",
+  "description": "Agent-accessible vocabulary tutor and standardized test prep tools for ISEE, SSAT, SAT, PSAT, GRE, GMAT, LSAT, and academic vocabulary.",
+  "version": "1.0.0",
+  "url": "https://vocab.voyage",
+  "provider": {
+    "name": "Vocab Voyage",
+    "url": "https://vocab.voyage"
+  },
+  "capabilities": [
+    "vocabulary_definition_lookup",
+    "word_of_the_day",
+    "test_specific_quiz_generation",
+    "course_word_lists",
+    "study_plan_preview",
+    "mcp_tools",
+    "public_rest_api"
+  ],
+  "skills": [
+    {
+      "id": "vocabulary_lookup",
+      "name": "Vocabulary definition lookup",
+      "description": "Define words with part of speech, examples, synonyms, and antonyms."
+    },
+    {
+      "id": "test_prep_quiz",
+      "name": "Test-specific vocabulary quizzes",
+      "description": "Generate quizzes for ISEE, SSAT, SAT, PSAT, GRE, GMAT, LSAT, and General Vocabulary."
+    },
+    {
+      "id": "study_planning",
+      "name": "Study plan preview",
+      "description": "Create a 7-day vocabulary study plan preview."
+    }
+  ],
+  "endpoints": {
+    "openapi": "https://vocab.voyage/openapi.json",
+    "mcpServerCard": "https://vocab.voyage/.well-known/mcp/server-card.json",
+    "mcpTransport": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server",
+    "publicApi": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/vocab-api",
+    "docs": "https://vocab.voyage/developers",
+    "authDocs": "https://vocab.voyage/developers/auth",
+    "nlwebAsk": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/nlweb-ask",
+    "apiCatalog": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/api-catalog",
+    "mcpDiscovery": "https://vocab.voyage/.well-known/mcp.json",
+    "mcpApps": "https://vocab.voyage/.well-known/mcp/apps.json",
+    "schemamap": "https://vocab.voyage/schemamap.xml",
+    "cliRoadmap": "https://vocab.voyage/cli.md"
+  },
+  "authentication": {
+    "publicApi": "No authentication required for public endpoints.",
+    "mcp": "Anonymous tools are available; optional vv_mcp personal tokens support scoped authenticated access.",
+    "scopes": ["mcp.read", "mcp.tools", "profile.read", "progress.read"],
+    "tokenIssuance": "https://vocab.voyage/mcp",
+    "reference": "https://vocab.voyage/developers/auth",
+    "oauthProtectedResource": "https://vocab.voyage/.well-known/oauth-protected-resource"
+  },
+  "nlweb": {
+    "ask": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/nlweb-ask",
+    "method": "POST",
+    "body": { "query": "string", "prefer": { "streaming": "boolean" } },
+    "responseMeta": { "response_type": "vocab-voyage.nlweb.answer", "version": "1.0.0" },
+    "streaming": "Send Accept: text/event-stream OR prefer.streaming=true. Events: start, result, complete."
+  },
+  "uiResources": {
+    "manifest": "https://vocab.voyage/.well-known/mcp/apps.json",
+    "resources": [
+      "ui://vocab-voyage/word-of-the-day",
+      "ui://vocab-voyage/flashcards",
+      "ui://vocab-voyage/quiz",
+      "ui://vocab-voyage/study-plan",
+      "ui://vocab-voyage/progress",
+      "ui://vocab-voyage/session-debrief",
+      "ui://vocab-voyage/game/word_match",
+      "ui://vocab-voyage/game/spelling_bee",
+      "ui://vocab-voyage/game/speed_round",
+      "ui://vocab-voyage/game/synonym_showdown",
+      "ui://vocab-voyage/game/word_scramble",
+      "ui://vocab-voyage/game/fill_in_blank",
+      "ui://vocab-voyage/game/context_clues",
+      "ui://vocab-voyage/game/word_guess",
+      "ui://vocab-voyage/game/picture_match",
+      "ui://vocab-voyage/game/crossword",
+      "ui://vocab-voyage/game/word_search"
+    ]
+  },
+  "tools": [
+    "get_word_of_the_day", "get_definition", "generate_quiz", "get_course_word_list",
+    "list_courses", "explain_word_in_context", "study_plan_preview",
+    "get_flashcards", "get_my_progress", "play_game", "get_sparkle_guidance",
+    "set_persona", "get_recommended_next_action", "list_starter_prompts",
+    "record_word_result", "record_session_complete", "award_game_xp",
+    "mark_word_known", "mark_word_difficult", "update_adaptive_level"
+  ],
+  "widgets": [
+    { "uri": "ui://vocab-voyage/word-of-the-day", "name": "Word of the Day", "category": "learn" },
+    { "uri": "ui://vocab-voyage/flashcards", "name": "Flashcards", "category": "learn" },
+    { "uri": "ui://vocab-voyage/quiz", "name": "Quiz", "category": "learn" },
+    { "uri": "ui://vocab-voyage/study-plan", "name": "Study Plan", "category": "learn" },
+    { "uri": "ui://vocab-voyage/progress", "name": "My Progress", "category": "progress" },
+    { "uri": "ui://vocab-voyage/session-debrief", "name": "Session Debrief", "category": "coach" },
+    { "uri": "ui://vocab-voyage/game/word_match", "name": "Game · Word Match", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/spelling_bee", "name": "Game · Spelling Bee", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/speed_round", "name": "Game · Speed Round", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/synonym_showdown", "name": "Game · Synonym Showdown", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/word_scramble", "name": "Game · Word Scramble", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/fill_in_blank", "name": "Game · Fill in the Blank", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/context_clues", "name": "Game · Context Clues", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/word_guess", "name": "Game · Word Guess", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/picture_match", "name": "Game · Picture Match", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/crossword", "name": "Game · Crossword", "category": "play" },
+    { "uri": "ui://vocab-voyage/game/word_search", "name": "Game · Word Search", "category": "play" }
+  ],
+  "listings": [
+    { "registry": "mcp_registry", "url": "https://registry.modelcontextprotocol.io/?q=vocab-voyage" },
+    { "registry": "glama", "url": "https://glama.ai/mcp/servers/jaideepdhanoa/vocab-voyage-mcp" },
+    { "registry": "smithery", "url": "https://smithery.ai/servers/vocab-voyage/vocab-voyage-mcp" },
+    { "registry": "clawhub", "url": "https://clawhub.ai/jaideepdhanoa/vocab-voyage-mcp" },
+    { "registry": "mcpmarket", "url": "https://mcpmarket.com/server/vocab-voyage" }
+  ]
+}

@@ -1,0 +1,23 @@
+name: train_ticket_ocr
+version: 1.0.3
+description: 支持从火车票中识别出发站、到达站、车次、座位号、票价、乘车日期、身份证号及售票点信息
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/train_ticket_ocr.git  # 请替换为实际仓库地址
+
+dependencies:
+  - python3
+  - requests

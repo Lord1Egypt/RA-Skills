@@ -1,0 +1,27 @@
+{
+  "name": "heartbeat-memory",
+  "version": "0.0.7",
+  "description": "Heartbeat 自动记忆保存",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node scripts/post-install.js",
+    "test": "echo \"Tests are in development\"",
+    "check": "node index.js --check-config"
+  },
+  "keywords": [
+    "heartbeat",
+    "memory",
+    "openclaw",
+    "skill"
+  ],
+  "author": "",
+  "license": "MIT",
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

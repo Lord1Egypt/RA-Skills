@@ -1,0 +1,51 @@
+# 数据报告自动化：获取数据 → 生成图表 → 插入模板 → 发布
+# 使用技能：tushare-finance, data-chart-tool, social-publisher
+
+name: "weekly-stock-report"
+steps:
+  - name: "Step 1: 获取股票数据"
+    skill: tushare-finance
+    args:
+      - pro
+      - ts_daily
+      - -t
+      - "000001.SZ"
+      - -s
+      - "2025-01-01"
+      - -e
+      - "2025-12-31"
+      - -o
+      - /tmp/stock_data.csv
+    output: raw_data
+
+  - name: "Step 2: 生成趋势图"
+    skill: data-chart-tool
+    args:
+      - --input
+      - "{{raw_data}}"
+      - --type
+      - line
+      - --x
+      - trade_date
+      - -y
+      - close,volume
+      - --output
+      - /tmp/chart.png
+      - --title
+      - "平安银行股价走势"
+    output: chart
+
+  - name: "Step 3: 生成报告草稿"
+    skill: social-publisher
+    args:
+      - --input
+      - "{{chart}}"
+      - --template
+      - weekly-report
+      - --output
+      - /tmp/report.md
+    output: report
+
+# 说明：
+# 需要安装 tushare-finance 并配置 token
+# 执行：composer.py run weekly-stock-report.yaml

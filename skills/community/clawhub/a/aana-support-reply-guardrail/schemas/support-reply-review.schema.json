@@ -1,0 +1,116 @@
+{
+  "title": "AANA Support Reply Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "reply_summary",
+    "claim_support_status",
+    "refund_or_policy_promise_status",
+    "private_data_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reply_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "support_context": {
+      "type": "string",
+      "enum": [
+        "refund",
+        "billing",
+        "payment",
+        "subscription",
+        "cancellation",
+        "delivery",
+        "warranty",
+        "account",
+        "technical_support",
+        "policy",
+        "legal",
+        "health",
+        "general",
+        "unknown"
+      ]
+    },
+    "claim_support_status": {
+      "type": "string",
+      "enum": [
+        "all_supported",
+        "unsupported_account_facts",
+        "unsupported_policy_claims",
+        "mixed",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "refund_or_policy_promise_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "conditional_safe_language",
+        "promise_detected",
+        "policy_overclaim_detected",
+        "approval_required",
+        "unknown"
+      ]
+    },
+    "private_data_status": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "needs_redaction",
+        "private_data_exposed",
+        "unauthorized_third_party_data",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "authorized",
+        "unclear",
+        "unauthorized",
+        "not_needed"
+      ]
+    },
+    "unsupported_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "redactions_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "safeguards_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "retrieve",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

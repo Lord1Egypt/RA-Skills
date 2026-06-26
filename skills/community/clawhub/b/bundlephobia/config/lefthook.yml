@@ -1,0 +1,22 @@
+# BundlePhobia — lefthook configuration
+# Installed by: bundlephobia hooks install
+# Documentation: https://bundlephobia.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    bundlephobia-scan:
+      glob: "*.{js,jsx,ts,tsx,mjs,cjs,json}"
+      run: |
+        BUNDLEPHOBIA_SKILL_DIR="${BUNDLEPHOBIA_SKILL_DIR:-$HOME/.openclaw/skills/bundlephobia}"
+        if [[ -f "$BUNDLEPHOBIA_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$BUNDLEPHOBIA_SKILL_DIR/scripts/patterns.sh"
+          source "$BUNDLEPHOBIA_SKILL_DIR/scripts/analyzer.sh"
+          hook_bundlephobia_scan
+        else
+          echo "[BundlePhobia] Skill not found at $BUNDLEPHOBIA_SKILL_DIR — skipping scan"
+        fi
+      fail_text: |
+        Bundle bloat detected in staged files!
+        Run 'bundlephobia scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

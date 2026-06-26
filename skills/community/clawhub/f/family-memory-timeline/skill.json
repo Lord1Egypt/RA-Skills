@@ -1,0 +1,13 @@
+{
+  "name": "family-memory-timeline",
+  "version": "0.1.0",
+  "description": "家庭记忆时光机 - 整理和呈现家庭记忆的 skill. 通过分析家庭照片、视频和对话文字，自动生成结构化的时间线故事。",
+  "keywords": ["family","memory","timeline","photos","stories"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/family-memory-timeline",
+  "language": ["en","zh"],
+  "tags": ["family","memory","timeline","photos","stories"],
+  "createdAt": "2026-04-06",
+  "updatedAt": "2026-04-06"
+}

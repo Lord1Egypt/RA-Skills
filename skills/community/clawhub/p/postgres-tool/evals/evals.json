@@ -1,0 +1,23 @@
+{
+  "skill_name": "postgres-tool",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我查看数据库中有哪些表",
+      "expected_output": "列出数据库中的所有表名",
+      "files": ["db_config.json"]
+    },
+    {
+      "id": 2,
+      "prompt": "查看 users 表的结构，包括列名、数据类型和约束",
+      "expected_output": "显示 users 表的详细结构信息",
+      "files": ["db_config.json"]
+    },
+    {
+      "id": 3,
+      "prompt": "查询 products 表的前 20 条记录，并导出为 Excel 文件",
+      "expected_output": "显示查询结果并生成 products_export.xlsx 文件",
+      "files": ["db_config.json"]
+    }
+  ]
+}

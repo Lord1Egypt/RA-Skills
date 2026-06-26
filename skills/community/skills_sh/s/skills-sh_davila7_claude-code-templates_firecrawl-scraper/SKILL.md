@@ -1,35 +1,37 @@
 ---
-name: "firecrawl-scraper"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/firecrawl-scraper"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/firecrawl-scraper"
+name: firecrawl-scraper
+description: Deep web scraping, screenshots, PDF parsing, and website crawling using Firecrawl API
 ---
 
 # firecrawl-scraper
 
-> Indexed by skills.sh from davila7/claude-code-templates
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/firecrawl-scraper`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/firecrawl-scraper](https://skills.sh/davila7/claude-code-templates/firecrawl-scraper)
-
 ## Overview
+Deep web scraping, screenshots, PDF parsing, and website crawling using Firecrawl API
 
+## When to Use
+- When you need deep content extraction from web pages
+- When page interaction is required (clicking, scrolling, etc.)
+- When you want screenshots or PDF parsing
+- When batch scraping multiple URLs
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/davila7/claude-code-templates/firecrawl-scraper
+npx skills add -g BenedictKing/firecrawl-scraper
 ```
+
+## Step-by-Step Guide
+1. Install the skill using the command above
+2. Configure Firecrawl API key
+3. Use naturally in Claude Code conversations
+
+## Examples
+See [GitHub Repository](https://github.com/BenedictKing/firecrawl-scraper) for examples.
+
+## Best Practices
+- Configure API keys via environment variables
+
+## Troubleshooting
+See the GitHub repository for troubleshooting guides.
+
+## Related Skills
+- context7-auto-research, tavily-web, exa-search, codex-review

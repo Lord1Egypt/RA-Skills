@@ -1,0 +1,5 @@
+# This skill uses Python standard library only.
+# No external dependencies required.
+#
+# Standard library modules used:
+# - json, urllib, re, datetime, os, sys, hashlib, argparse

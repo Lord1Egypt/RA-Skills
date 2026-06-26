@@ -1,0 +1,132 @@
+{
+  "chip": "esp32",
+  "series": "Classic ESP32 (Dual-core / Single-core)",
+  "arch": "Xtensa® Dual-Core 32-bit LX6",
+  "vendor": "Espressif",
+
+  "physical_limits": {
+    "gpio_range": [0, 39],
+    "total_gpios": 40,
+    "input_only_pins": {
+      "pins": [34, 35, 36, 37, 38, 39],
+      "restriction": "INPUT_ONLY",
+      "has_internal_pull": false,
+      "warning": "这些引脚没有输出驱动能力，且缺少内部上下拉电阻。若外接按键必须加物理上拉。"
+    },
+    "internal_flash_psram": {
+      "pins": [6, 7, 8, 9, 10, 11],
+      "interface": "SPI_MUX",
+      "warning": "连接内部 Flash/PSRAM。代码中禁用这些 GPIO，否则触发 Cache Error 导致系统死机。"
+    },
+    "strapping_pins": {
+      "pins": [0, 2, 5, 12, 15],
+      "critical_logic": {
+        "0": "Boot模式控制：启动时须为高电平；低电平进入下载模式。",
+        "2": "下载模式控制：烧录时须为低电平或悬空。",
+        "5": "SDIO定时控制：启动瞬间电平会影响硬件初始化。",
+        "12": "MTDI/Flash电压：启动时高电平设Flash为1.8V，低电平为3.3V（极易导致启动失败）。",
+        "15": "控制启动时 UART0 调试日志的输出开关。"
+      },
+      "audit_level": "CRITICAL"
+    }
+  },
+
+  "performance": {
+    "cpu_frequency": {
+      "min_mhz": 2,
+      "max_mhz": 240,
+      "standard_steps": [80, 160, 240],
+      "constraints": {
+        "wifi_bt_min_mhz": 80,
+        "warning": "开启 Wi-Fi/BT 时主频不得低于 80MHz，否则协议栈崩溃。"
+      }
+    },
+    "bus_frequency": {
+      "apb_max_mhz": 80,
+      "note": "CPU降频会同步导致APB降频，需注意UART/I2C波特率偏移。"
+    }
+  },
+
+  "power_management": {
+    "voltage": {
+      "min_v": 2.3,
+      "max_v": 3.6,
+      "recommended": 3.3
+    },
+    "modes": {
+      "active": {
+        "current_ma": [160, 260],
+        "note": "取决于 RF 功率和 CPU 负载，建议供电能力 >500mA。"
+      },
+      "modem_sleep": {
+        "current_ma": [30, 68],
+        "condition": "CPU运行，无源无线电"
+      },
+      "light_sleep": {
+        "current_ma": 0.8,
+        "wakeup_latency_us": 50
+      },
+      "deep_sleep": {
+        "current_ua": 10,
+        "requirement": "进入前须调用 gpio_hold_en() 锁定引脚状态防止漏电。"
+      },
+      "hibernation": {
+        "current_ua": 5,
+        "note": "仅 RTC 定时器工作，基本关闭所有内存。"
+      }
+    }
+  },
+
+  "storage": {
+    "flash_modes": {
+      "QIO": {
+        "pins_required": 4,
+        "speed": "HIGHEST",
+        "hardware_req": "必须连接 GPIO 9(WP) 和 10(HD)"
+      },
+      "DIO": {
+        "pins_required": 2,
+        "speed": "STABLE",
+        "note": "最通用的模式，兼容性最高"
+      }
+    },
+    "flash_voltage_warning": "若使用 3.3V Flash，须确保 GPIO 12 在启动瞬间不被外部电路拉高，否则 Flash 会因 1.8V 供电不足而无法加载程序。"
+  },
+
+  "peripherals": {
+    "adc": {
+      "adc1": [32, 33, 34, 35, 36, 37, 38, 39],
+      "adc2": [0, 2, 4, 12, 13, 14, 15, 25, 26, 27],
+      "conflict": {
+        "target": "adc2",
+        "with": "Wi-Fi",
+        "warning": "Wi-Fi 开启时 ADC2 无法使用，请优先选用 ADC1 引脚。"
+      }
+    },
+    "dac": [25, 26],
+    "uart_default": {
+      "uart0": { "tx": 1, "rx": 3, "role": "Flash/Debug" }
+    }
+  },
+
+  "expert_audit_rules": [
+    {
+      "id": "ERR_FLASH_PINS",
+      "condition": "GPIO 6-11 configured as I/O",
+      "level": "FATAL",
+      "message": "检测到对 Flash 专用引脚的操作，这将导致系统 Crash。"
+    },
+    {
+      "id": "WARN_INPUT_ONLY",
+      "condition": "GPIO 34-39 configured as OUTPUT",
+      "level": "ERROR",
+      "message": "GPIO 34-39 物理上不支持输出模式。"
+    },
+    {
+      "id": "WARN_WIFI_FREQ",
+      "condition": "Wi-Fi enabled AND CPU Freq < 80MHz",
+      "level": "CRITICAL",
+      "message": "Wi-Fi 模式下主频过低将导致系统断连或崩溃。"
+    }
+  ]
+}

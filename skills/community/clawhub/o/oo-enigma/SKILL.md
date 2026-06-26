@@ -1,35 +1,89 @@
 ---
-name: "Enigma"
-description: "Enigma (enigma.com). Use this skill for ANY Enigma request — reading, creating, updating, and deleting data. Whenever a task involves Enigma, use this skill..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-enigma"
-sourceUrl: "https://clawhub.ai/skills/oo-enigma"
+name: oo-enigma
+description: "Enigma (enigma.com). Use this skill for ANY Enigma request — reading, creating, updating, and deleting data. Whenever a task involves Enigma, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Enigma"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["enigma"]
+  icon: "https://static.oomol.com/logo/third-party/Enigma.svg"
 ---
 
 # Enigma
 
-> Enigma (enigma.com). Use this skill for ANY Enigma request — reading, creating, updating, and deleting data. Whenever a task involves Enigma, use this skill...
+Operate **Enigma** through your OOMOL-connected account. This skill calls the `enigma` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-enigma`
-- **Source URL:** [https://clawhub.ai/skills/oo-enigma](https://clawhub.ai/skills/oo-enigma)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected Enigma. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-enigma
+oo connector schema "enigma" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "enigma" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `create_list` — Create a user-managed Enigma list from a search definition or input file, with optional aliases, column ordering, and column mapping. [write]
+- `create_suggestion` — Submit a suggestion to Enigma for data correction or enrichment feedback using the official GraphQL suggestion mutation. [write]
+- `delete_list` — Delete a user-managed Enigma list by ID. [destructive]
+- `get_account` — Retrieve the current Enigma account metadata available to the connected API key, including customer, billing, and auto-recharge details.
+- `get_aggregate_counts` — Run the official Enigma GraphQL `aggregate` query to count matching entities or related entities for a search request.
+- `get_background_task` — Retrieve the latest status for an Enigma background task created by an asynchronous GraphQL search or export workflow.
+- `get_business` — Retrieve a single Enigma entity by GraphQL entity ID and entity type, returning a normalized summary plus the raw enriched entity payload.
+- `get_graphql_schema_extended` — Retrieve Enigma's extended GraphQL schema metadata, including types, projections, and data-asset descriptors.
+- `get_list_materialization` — Retrieve an Enigma list materialization by ID, including progress, generated resource URI, metrics, and billing details.
+- `search_graphql` — Search Enigma entities through the official GraphQL `search` query, supporting direct lookups, structured filters, natural-language prompts, and asynchronous output generation.
+- `search_lists` — Query user-created Enigma lists with optional name or ID filters and Relay-style pagination controls.
+- `verify_business_v2` — Verify a business with Enigma's KYB v2 API, returning a normalized risk summary and the raw verification payload.
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Enigma state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Enigma is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=enigma
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- Enigma homepage: https://www.enigma.com

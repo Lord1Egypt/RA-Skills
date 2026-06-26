@@ -1,0 +1,10 @@
+{
+  "name": "edvisage-agent-ops",
+  "version": "1.0.0",
+  "description": "Operational visibility for AI agents. Cost tracking by model and task type, action logging with timestamps, daily summary reports, cost alerts for unusual spending, and model routing awareness.",
+  "author": "Edvisage Global <info@edvisageglobal.com>",
+  "license": "MIT",
+  "homepage": "https://edvisageglobal.com/ai-tools",
+  "repository": "https://github.com/edvisage/agent-ops",
+  "keywords": ["openclaw", "agent", "skill", "ai-safety", "edvisage", "operations", "cost-tracking", "monitoring", "agent-ops"]
+}

@@ -1,35 +1,44 @@
----
-name: "Envato Comment → Task → Google Sheet"
-description: "Analyzes Envato comments to classify and prioritize tasks, extracting details into JSON formatted for Google Sheets integration."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, envato, google-sheets, support, task-manager]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/envato-comment-task-to-sheet"
-sourceUrl: "https://clawhub.ai/skills/envato-comment-task-to-sheet"
----
-
 # Envato Comment → Task → Google Sheet
-
-> Analyzes Envato comments to classify and prioritize tasks, extracting details into JSON formatted for Google Sheets integration.
-
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/envato-comment-task-to-sheet`
-- **Source URL:** [https://clawhub.ai/skills/envato-comment-task-to-sheet](https://clawhub.ai/skills/envato-comment-task-to-sheet)
 
 ## Overview
 
+This skill analyzes ThemeForest / CodeCanyon comments and converts them into structured development tasks.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/envato-comment-task-to-sheet
-```
+It classifies the comment type, assigns priority, extracts technical details, and outputs a JSON object designed to be pushed directly into Google Sheets.
+
+## Input Parameters
+
+- product_name
+- product_url
+- product_type (wordpress_theme | html_template | code_script)
+- comment_text
+- comment_url (optional)
+- customer_name (optional)
+
+## Output
+
+Structured JSON task object formatted for Google Sheets row insertion.
+
+## Classification Types
+
+- bug
+- feature_request
+- support_question
+- update_required
+- refund_risk
+- positive_feedback
+
+## Priority Rules
+
+- Fatal error / site break → critical
+- Refund mention → critical
+- Broken feature → high
+- Feature request → medium
+- Question → low
+
+## Use Case
+
+- Automate support workflow
+- Track product health
+- Improve update planning
+- Reduce missed issues

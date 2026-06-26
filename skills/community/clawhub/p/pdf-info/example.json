@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/pdf/info",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://pdfapihub.com/sample.pdf" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "is_encrypted": false,
+      "page_count": 5,
+      "file_size_bytes": 184320,
+      "metadata": { "title": "Annual Report 2026", "author": "Acme Corp", "subject": "Financials", "creator": "PDFMunk API" }
+    }
+  }
+}

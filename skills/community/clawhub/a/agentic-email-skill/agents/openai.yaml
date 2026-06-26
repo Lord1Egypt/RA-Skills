@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Email Skill"
+  short_description: "Draft agentic development sales emails"
+  default_prompt: "Use $agentic-email-skill to create a tailored outbound and follow-up email sequence for agentic development services."
+
+policy:
+  allow_implicit_invocation: false

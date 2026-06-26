@@ -1,0 +1,157 @@
+{
+  "_comment": "KPI 规格Schema — 定义 KPI 原始值到结构化展示数据的转换规则",
+  "_source": "由 data-query 技能生成，用于驾驶舱 KPI 卡片渲染",
+  "_updated": "2026-03-31",
+
+  "KPI计算类型": {
+    "count": {
+      "_description": "计数类：直接返回 COUNT 结果",
+      "sql_agg": "COUNT(*)",
+      "display_type": "integer",
+      "format": "千分位分隔符",
+      "示例": {
+        "raw": 1234,
+        "formatted": "1,234"
+      }
+    },
+    "sum_money": {
+      "_description": "金额求和类：产值、成本等",
+      "sql_agg": "SUM(amount_field)",
+      "display_type": "currency",
+      "format": "2位小数 + ¥前缀 + 千分位",
+      "示例": {
+        "raw": 1234567.89,
+        "formatted": "¥1,234,567.89"
+      }
+    },
+    "avg_percent": {
+      "_description": "百分比平均类：完成率、进度偏差等",
+      "sql_agg": "AVG(percent_field)",
+      "display_type": "percent",
+      "format": "2位小数 + %",
+      "示例": {
+        "raw": 0.875,
+        "formatted": "87.50%"
+      }
+    },
+    "ratio_percent": {
+      "_description": "比率类：健康度、工时利用率等",
+      "sql_agg": "SUM(...) / COUNT(...)",
+      "display_type": "percent",
+      "format": "2位小数 + %",
+      "示例": {
+        "raw": 0.923,
+        "formatted": "92.30%"
+      }
+    },
+    "health_score": {
+      "_description": "健康度评分：多维度综合评分（0-100分）",
+      "sql_agg": "复合SQL（见下方公式）",
+      "display_type": "score",
+      "format": "整数 + 颜色",
+      "示例": {
+        "raw": 85,
+        "formatted": "85",
+        "status": "normal"
+      }
+    }
+  },
+
+  "状态判定规则（status）": {
+    "_description": "前端根据 status 字段决定颜色：green=正常 orange=警告 red=危险",
+    "green": {
+      "health_score": { "min": 80, "max": 100 },
+      "completion_rate": { "min": 0.8 },
+      "resource_load": { "min": null, "max": 0.9 }
+    },
+    "orange": {
+      "health_score": { "min": 60, "max": 80 },
+      "completion_rate": { "min": 0.6, "max": 0.8 },
+      "resource_load": { "min": 0.9, "max": 1.0 }
+    },
+    "red": {
+      "health_score": { "min": 0, "max": 60 },
+      "completion_rate": { "min": 0, "max": 0.6 },
+      "resource_load": { "min": 1.0, "max": null }
+    }
+  },
+
+  "KPI Spec 声明式定义（给驾驶舱用）": {
+    "_description": "在 sqlMap 中每个 KPI 条目可带 kpi_spec，说明如何渲染",
+
+    "示例 - kpi_progress（项目完成率）": {
+      "kpi_spec": {
+        "type": "avg_percent",
+        "value_field": "COMPLETE_PCT",
+        "display_name": "项目完成率",
+        "unit": "%",
+        "decimal_places": 2,
+        "status_field": null,
+        "static_thresholds": {
+          "green": { "min": 80 },
+          "orange": { "min": 60, "max": 80 },
+          "red": { "min": 0, "max": 60 }
+        }
+      },
+      "sql": "SELECT ID, NAME, COMPLETE_PCT FROM wsd_plan_project WHERE ID = ? AND DEL = 0"
+    },
+
+    "示例 - kpi_health（任务健康度）": {
+      "kpi_spec": {
+        "type": "health_score",
+        "value_field": "health_score",
+        "display_name": "任务健康度",
+        "unit": "分",
+        "decimal_places": 0,
+        "sql_calculation": "健康度 = (按期完成数 + 正常进行中数) / 总任务数 * 100",
+        "status_field": "status",
+        "static_thresholds": {
+          "green": { "min": 80 },
+          "orange": { "min": 60, "max": 80 },
+          "red": { "min": 0, "max": 60 }
+        }
+      },
+      "sql": "SELECT COUNT(CASE WHEN feedback_status = '2' AND act_end_time <= plan_end_time THEN 1 END) * 100.0 / NULLIF(COUNT(*), 0) AS health_score FROM wsd_plan_task WHERE PROJECT_ID = ? AND DEL = 0"
+    },
+
+    "示例 - kpi_risk（风险敞口）": {
+      "kpi_spec": {
+        "type": "count",
+        "value_field": "risk_count",
+        "display_name": "风险敞口",
+        "unit": "项",
+        "decimal_places": 0,
+        "status_field": null,
+        "static_thresholds": {
+          "green": { "max": 3 },
+          "orange": { "min": 3, "max": 8 },
+          "red": { "min": 8 }
+        }
+      },
+      "sql": "SELECT COUNT(*) AS risk_count FROM wsd_risk_register WHERE PROJECT_ID = ? AND IS_CLOSE = 'N'"
+    }
+  },
+
+  "驾驶舱模板渲染逻辑（给 generate_page.js 参考）": {
+    "_description": "模板 JS 读取 kpi_spec，将 raw SQL 结果渲染为结构化数据",
+
+    "渲染函数签名": "function renderKpi(rawValue, kpiSpec) => { value, formatted, status }",
+
+    "颜色阈值判断伪代码": {
+      "health_score": "value >= 80 → green; value >= 60 → orange; value < 60 → red",
+      "resource_load": "value <= 0.9 → green; value <= 1.0 → orange; value > 1.0 → red",
+      "risk_count": "value <= 3 → green; value <= 8 → orange; value > 8 → red"
+    },
+
+    "前端渲染示例": {
+      "健康度85分": "<span class='kpi-value kpi-green'>85</span>",
+      "资源负载95%": "<span class='kpi-value kpi-orange'>95%</span>",
+      "风险敞口10项": "<span class='kpi-value kpi-red'>10</span>"
+    }
+  },
+
+  "verifySql unified 模式下的 KPI 验证": {
+    "_description": "使用 --source unified 验证 KPI SQL 时，同时返回 MySQL 和 API 结果，便于对比",
+    "验证重点": "KPI SQL 通常只有1行1个值（聚合结果），验证时注意 LIMIT 1"
+  }
+}

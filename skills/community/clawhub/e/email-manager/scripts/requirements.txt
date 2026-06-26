@@ -1,0 +1,2 @@
+# No external dependencies needed - uses Python standard library only!
+# imaplib, smtplib, email are built-in

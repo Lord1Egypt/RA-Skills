@@ -1,0 +1,16 @@
+{
+  "id": "gworkspace",
+  "name": "G.workspace",
+  "description": "Shared file space for Discord servers. Registers slash commands that proxy to G.workspace REST API. Single bot, no conflict.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "port": {
+        "type": "number",
+        "default": 3080,
+        "description": "G.workspace web server port (default: 3080)"
+      }
+    }
+  }
+}

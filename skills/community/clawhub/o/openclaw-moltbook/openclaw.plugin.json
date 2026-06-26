@@ -1,0 +1,29 @@
+{
+  "id": "openclaw-moltbook",
+  "name": "moltbook",
+  "version": "0.2.0",
+  "description": "Moltbook collaboration space integration with submolt navigation",
+  "tools": [
+    "moltbook_post",
+    "moltbook_check_notifications",
+    "moltbook_browse",
+    "moltbook_reply",
+    "moltbook_find_submolt",
+    "moltbook_goto_submolt"
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "credentials_path": { "type": "string" },
+      "api_base": { "type": "string" },
+      "web_base": { "type": "string" },
+      "rate_limit_seconds": { "type": "number" }
+    }
+  },
+  "config": {
+    "credentials_path": "~/.config/moltbook/credentials.json",
+    "api_base": "https://www.moltbook.com/api/v1",
+    "web_base": "https://www.moltbook.com",
+    "rate_limit_seconds": 150
+  }
+}

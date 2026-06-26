@@ -1,0 +1,60 @@
+{
+  "lottery": "ssq",
+  "name": "双色球",
+  "red": {
+    "count": 6,
+    "min": 1,
+    "max": 33
+  },
+  "blue": {
+    "count": 1,
+    "min": 1,
+    "max": 16
+  },
+  "generation": {
+    "candidate_pool_size": 3000,
+    "output_main": 2,
+    "output_backup": 3,
+    "max_consecutive_groups": 2,
+    "preferred_odd_even": [[3,3],[4,2],[2,4]],
+    "preferred_zone_splits": [[2,2,2],[1,2,3],[3,2,1],[2,1,3]],
+    "sum_range": [90, 120],
+    "allow_repeat_from_last_draw": [0,1,2,3],
+    "hot_period": 10,
+    "warm_period": 20,
+    "cold_period": 30,
+    "omission_threshold": 10,
+    "ac_min": 4,
+    "ac_max": 10,
+    "span_min": 18,
+    "span_max": 30,
+    "tail_sum_range": [10, 25],
+    "strategies": {
+      "stable": {
+        "hot": 1.1,
+        "warm": 1.2,
+        "cold": 0.95,
+        "omission": 1.05,
+        "balance": 1.25,
+        "consecutive_penalty": 0.85
+      },
+      "balanced": {
+        "hot": 1.0,
+        "warm": 1.15,
+        "cold": 1.05,
+        "omission": 1.1,
+        "balance": 1.2,
+        "consecutive_penalty": 0.9
+      },
+      "aggressive": {
+        "hot": 0.95,
+        "warm": 1.0,
+        "cold": 1.2,
+        "omission": 1.25,
+        "balance": 1.1,
+        "consecutive_penalty": 0.95
+      }
+    },
+    "default_strategy": "balanced"
+  }
+}

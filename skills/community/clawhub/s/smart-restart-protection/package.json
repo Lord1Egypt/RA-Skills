@@ -1,0 +1,44 @@
+{
+  "name": "smart-restart-protection",
+  "version": "1.0.0",
+  "description": "智能重启保护：防止无限循环，确保OpenClaw Gateway安全重启和状态恢复",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"运行测试: node test.js\" && node test.js",
+    "lint": "echo \"代码检查待实现\"",
+    "docs": "echo \"生成文档待实现\""
+  },
+  "keywords": [
+    "openclaw",
+    "restart",
+    "protection",
+    "gateway",
+    "safety",
+    "recovery",
+    "infinite-loop-prevention"
+  ],
+  "author": "龍哥 & 小包子",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/smart-restart-protection.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/smart-restart-protection/issues"
+  },
+  "homepage": "https://github.com/your-username/smart-restart-protection#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "SKILL.md",
+    "index.js",
+    "smart-restart.sh",
+    "check-status.sh",
+    "reset-protection.sh",
+    "README.md",
+    "package.json"
+  ]
+}

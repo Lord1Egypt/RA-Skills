@@ -1,0 +1,30 @@
+{
+  "id": "task_1775534609657_kvxw",
+  "title": "20:00 观点思考",
+  "description": "每天20点推送观点思考到飞书群",
+  "source": "scheduled",
+  "assignedTo": "Marketing",
+  "status": "inbox",
+  "priority": "P1",
+  "intent": "scheduled",
+  "subtasks": [],
+  "createdAt": "2026-04-07T04:03:29.657Z",
+  "updatedAt": "2026-04-11T08:10:00.369Z",
+  "stateChangedAt": "2026-04-07T04:03:29.657Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 2,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6006分钟",
+      "at": "2026-04-11T08:09:59.358Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6007分钟",
+      "at": "2026-04-11T08:10:00.369Z"
+    }
+  ]
+}

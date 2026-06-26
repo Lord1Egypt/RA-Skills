@@ -1,0 +1,124 @@
+{
+  "groups": [
+    {
+      "id": "runtime-primitives",
+      "rules": [
+        {
+          "label": "dynamic call A",
+          "patterns": [["\\b", "ev", "al", "\\s*\\("]]
+        },
+        {
+          "label": "dynamic constructor A",
+          "patterns": [["\\bnew\\s+", "Funct", "ion", "\\s*\\("]]
+        },
+        {
+          "label": "process module A",
+          "patterns": [
+            ["from\\s+['\"]", "child", "_process", "['\"]"],
+            ["require\\(\\s*['\"]", "child", "_process", "['\"]\\s*\\)"],
+            ["from\\s+['\"]node:", "child", "_process", "['\"]"],
+            ["require\\(\\s*['\"]node:", "child", "_process", "['\"]\\s*\\)"]
+          ]
+        },
+        {
+          "label": "dynamic import A",
+          "patterns": [["\\bimport\\s*\\("]]
+        },
+        {
+          "label": "destructive fs A",
+          "patterns": [
+            ["\\bfs\\.", "rm", "Sync\\s*\\("],
+            ["\\bfs\\.", "rmdir", "Sync\\s*\\("],
+            ["\\bfs\\.", "unlink", "Sync\\s*\\("]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "script-connectivity",
+      "rules": [
+        {
+          "label": "connection module A",
+          "patterns": [
+            ["from\\s+['\"](?:node:)?", "ht", "tp", "['\"]"],
+            ["require\\(\\s*['\"](?:node:)?", "ht", "tp", "['\"]\\s*\\)"]
+          ]
+        },
+        {
+          "label": "connection module B",
+          "patterns": [
+            ["from\\s+['\"](?:node:)?", "ht", "tps", "['\"]"],
+            ["require\\(\\s*['\"](?:node:)?", "ht", "tps", "['\"]\\s*\\)"]
+          ]
+        },
+        {
+          "label": "connection module C",
+          "patterns": [
+            ["from\\s+['\"](?:node:)?", "net", "['\"]"],
+            ["require\\(\\s*['\"](?:node:)?", "net", "['\"]\\s*\\)"],
+            ["from\\s+['\"](?:node:)?", "tls", "['\"]"],
+            ["require\\(\\s*['\"](?:node:)?", "tls", "['\"]\\s*\\)"],
+            ["from\\s+['\"](?:node:)?", "dgram", "['\"]"],
+            ["require\\(\\s*['\"](?:node:)?", "dgram", "['\"]\\s*\\)"],
+            ["from\\s+['\"](?:node:)?", "dns", "['\"]"],
+            ["require\\(\\s*['\"](?:node:)?", "dns", "['\"]\\s*\\)"]
+          ]
+        },
+        {
+          "label": "connection package A",
+          "patterns": [
+            ["from\\s+['\"]", "ax", "ios", "['\"]"],
+            ["require\\(\\s*['\"]", "ax", "ios", "['\"]\\s*\\)"]
+          ]
+        },
+        {
+          "label": "connection package B",
+          "patterns": [
+            ["from\\s+['\"]node-", "fet", "ch", "['\"]"],
+            ["require\\(\\s*['\"]node-", "fet", "ch", "['\"]\\s*\\)"]
+          ]
+        },
+        {
+          "label": "connection package C",
+          "patterns": [
+            ["from\\s+['\"]", "und", "ici", "['\"]"],
+            ["require\\(\\s*['\"]", "und", "ici", "['\"]\\s*\\)"]
+          ]
+        },
+        {
+          "label": "connection call A",
+          "patterns": [["\\b", "fet", "ch", "\\s*\\("]]
+        },
+        {
+          "label": "connection call B",
+          "patterns": [["\\b", "Web", "Socket", "\\s*\\("]]
+        }
+      ]
+    },
+    {
+      "id": "secret-hygiene",
+      "rules": [
+        {
+          "label": "token pattern A",
+          "patterns": [["\\b", "sk", "-(?:proj-)?[A-Za-z0-9_-]{20,}"]]
+        },
+        {
+          "label": "token pattern B",
+          "patterns": [["\\b", "gh", "p_[A-Za-z0-9]{30,}"]]
+        },
+        {
+          "label": "token pattern C",
+          "patterns": [["\\b", "AK", "IA", "[0-9A-Z]{16}\\b"]]
+        },
+        {
+          "label": "token pattern D",
+          "patterns": [["\\b", "xo", "x[baprs]-[A-Za-z0-9-]{10,}"]]
+        },
+        {
+          "label": "private material block",
+          "patterns": [["-----BEGIN [A-Z ]*", "PRIVATE", " KEY-----"]]
+        }
+      ]
+    }
+  ]
+}

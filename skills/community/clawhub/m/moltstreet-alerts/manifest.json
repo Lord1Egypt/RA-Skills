@@ -1,0 +1,16 @@
+{
+  "name": "MoltStreet Alerts",
+  "version": "1.0.1",
+  "description": "High-conviction AI trading signals — only the strongest ETF calls from 6 opposing analysts. Free, no API key.",
+  "homepage": "https://moltstreet.com",
+  "documentation": "https://moltstreet.com/skill.md",
+  "api": {
+    "base_url": "https://moltstreet.com/api/v1",
+    "auth": { "required": false }
+  },
+  "capabilities": [
+    { "name": "Actionable Signals", "endpoint": "/signals/actionable", "method": "GET", "auth_required": false },
+    { "name": "Ticker Detail", "endpoint": "/ticker-summary/:symbol", "method": "GET", "auth_required": false }
+  ],
+  "disclaimer": { "text": "AI-generated. Not financial advice.", "url": "https://moltstreet.com/disclaimer" }
+}

@@ -1,35 +1,39 @@
 ---
-name: "video"
-description: "Generate video using SkillBoss API Hub (video generation, auto-routed via /v1/pilot)."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jx-video"
-sourceUrl: "https://clawhub.ai/skills/jx-video"
+name: veo
+description: Generate video using SkillBoss API Hub (video generation, auto-routed via /v1/pilot).
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎬",
+        "requires":
+          {
+            "env": { "SKILLBOSS_API_KEY": "" },
+            "bins": ["uv"],
+          },
+      },
+  }
 ---
 
-# video
+# Veo (Video Generation via SkillBoss API Hub)
 
-> Generate video using SkillBoss API Hub (video generation, auto-routed via /v1/pilot).
+Generate video clips using SkillBoss API Hub's video generation capability.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jx-video`
-- **Source URL:** [https://clawhub.ai/skills/jx-video](https://clawhub.ai/skills/jx-video)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Generate video
 ```bash
-hermes skills install clawhub/jx-video
+uv run {baseDir}/scripts/generate_video.py --prompt "your video description" --filename "output.mp4"
 ```
+
+Options
+- `--duration` / `-d`: Video duration in seconds (default: 8, max varies by model)
+- `--aspect-ratio` / `-a`: Aspect ratio (16:9, 9:16, 1:1)
+- `--model`: Optional model hint (SkillBoss API Hub auto-routes to optimal video model)
+
+API key
+- `SKILLBOSS_API_KEY` env var
+
+Notes
+- SkillBoss API Hub automatically routes to the best available video model
+- Output is MP4 format
+- Supports image-to-video with `--input-image`
+- The script prints a `MEDIA:` line for Clawdbot to auto-attach on supported chat providers.

@@ -1,35 +1,24 @@
 ---
-name: "Live-stream Script Planner"
-description: "根据用户输入（产品、目标、直播类型等）生成专业的直播间口播、互动和逼单脚本。支持参数化调用，可指定带货类/种草类/品牌宣讲类等不同风格。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/live-script-planner"
-sourceUrl: "https://clawhub.ai/skills/live-script-planner"
+name: live-script-planner
+description: 根据用户输入（产品、目标、直播类型等）生成专业的直播间口播、互动和逼单脚本。支持参数化调用，可指定带货类/种草类/品牌宣讲类等不同风格。
 ---
 
-# Live-stream Script Planner
+# SKILL.md for live-script-planner
 
-> 根据用户输入（产品、目标、直播类型等）生成专业的直播间口播、互动和逼单脚本。支持参数化调用，可指定带货类/种草类/品牌宣讲类等不同风格。
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/live-script-planner`
-- **Source URL:** [https://clawhub.ai/skills/live-script-planner](https://clawhub.ai/skills/live-script-planner)
+这是一个参数化的直播脚本策划技能，可根据用户传入的参数生成不同风格的直播话术方案。支持**带货类**、**种草类**、**品牌宣讲类**等多种直播类型。
 
-## Overview
+## Core Parameters
 
+| 参数名 | 必填 | 说明 |
+|---|---|---|
+| `live_stream_type` | 否 | 直播类型 (带货类/种草类/品牌宣讲类) |
+| `product_name` | 是 | 产品名称 |
+| `key_selling_points` | 是 | 核心卖点（3-5 个） |
+| `promotional_details` | 是 | 优惠信息 |
+| `live_stream_duration` | 否 | 直播时长 (e.g., 60 分钟) |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/live-script-planner
-```
+## Dependencies
+
+- `prompt_template.txt` - 核心提示词模板

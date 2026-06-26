@@ -1,0 +1,274 @@
+<!--
+  Heyvideogen Apple 风格模板 — 9:16 竖屏 (1080×1920)
+  用法：复制此文件到 heyvideogen-project/index.html，按需修改 clips/ 路径和文本内容
+-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080, height=1920" />
+  <title>HeyVideoGen — Apple Style</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; overflow: hidden; }
+
+    /* Apple 色板 */
+    :root {
+      --bg:       linear-gradient(180deg, #111111 0%, #1c1c1e 100%);
+      --text:     #FFFFFF;
+      --accent:   #007AFF;
+      --muted:    #8E8E93;
+      --border:   #3a3a3c;
+      --card:     #2c2c2e;
+    }
+
+    /* ========== 场景容器 ========== */
+    #main {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      overflow: hidden;
+      font-family: "Inter", "SF Pro Display", "Noto Sans SC", sans-serif;
+    }
+
+    /* ========== 背景 ========== */
+    .bg { position: absolute; inset: 0; background: var(--bg); }
+
+    /* ========== 装饰层 ========== */
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,122,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ========== 场景标签（左上角） ========== */
+    .scene-tag {
+      position: absolute;
+      top: 80px;
+      left: 60px;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ========== 大标题 ========== */
+    .hero-title {
+      position: absolute;
+      top: 160px;
+      left: 60px;
+      right: 60px;
+      font-size: 88px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    /* ========== 二级标题 ========== */
+    .section-title {
+      position: absolute;
+      top: 360px;
+      left: 60px;
+      right: 60px;
+      font-size: 44px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    /* ========== 内容卡片 ========== */
+    .card {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 36px;
+    }
+    .card-title {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .card-body {
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ========== 字幕（底部） ========== */
+    .caption {
+      position: absolute;
+      bottom: 200px;
+      left: 60px;
+      right: 60px;
+      font-size: 52px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.9);
+      line-height: 1.4;
+    }
+
+    /* ========== 标签组（底部） ========== */
+    .tag-group {
+      position: absolute;
+      bottom: 100px;
+      left: 60px;
+      right: 60px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 20px;
+    }
+    .tag.accent {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ========== 分隔线 ========== */
+    .divider {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ========== 进度条 ========== */
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 6px;
+      background: var(--accent);
+      width: 0%;
+    }
+
+    /* ========== 节点圆 ========== */
+    .flow-node {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div id="main" data-composition-id="main" data-start="0" data-width="1080" data-height="1920">
+
+    <!-- ===== 背景装饰 ===== -->
+    <div class="bg"></div>
+    <div id="bg-glow" class="glow" style="width:600px;height:600px;top:-100px;right:-100px;opacity:0.6;"></div>
+
+    <!-- ===== AI 视频片段（嵌入背景） ===== -->
+    <video
+      id="clip-1"
+      data-start="0"
+      data-duration="5"
+      data-track-index="0"
+      src="clips/clip_01.mp4"
+      muted playsinline
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;">
+    </video>
+
+    <!-- ===== 场景标签 ===== -->
+    <div id="scene-tag" class="scene-tag" data-start="0" data-duration="57" data-track-index="1">开场</div>
+
+    <!-- ===== 大标题 ===== -->
+    <div id="hero-title" class="hero-title" data-start="0.2" data-duration="57" data-track-index="1">
+      主标题文字<br>换行显示
+    </div>
+
+    <!-- ===== 分隔线 ===== -->
+    <div class="divider" style="top:580px;" data-start="0.5" data-duration="57" data-track-index="1"></div>
+
+    <!-- ===== 内容卡片 ===== -->
+    <div id="card-1" class="card" data-start="0.8" data-duration="10" data-track-index="1"
+      style="top:620px;">
+      <div class="card-title">核心观点 1</div>
+      <div class="card-body">这是第一段详细说明文字</div>
+    </div>
+
+    <!-- ===== 字幕 ===== -->
+    <div id="caption-1" class="caption" data-start="0.5" data-duration="4" data-track-index="2">
+      旁白台词显示在这里
+    </div>
+
+    <!-- ===== 标签组 ===== -->
+    <div id="tag-group" class="tag-group" data-start="1" data-duration="57" data-track-index="2">
+      <span class="tag accent">标签一</span>
+      <span class="tag">标签二</span>
+      <span class="tag">标签三</span>
+    </div>
+
+    <!-- ===== 进度条 ===== -->
+    <div id="progress-bar" class="progress-bar" data-start="0" data-duration="57" data-track-index="3"></div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const DURATION = 57;
+
+    // 背景光晕呼吸动画
+    tl.from("#bg-glow", {
+      scale: 0.9, opacity: 0.3, duration: 3,
+      repeat: Math.ceil(DURATION / 3) - 1,
+      yoyo: true, ease: "sine.inOut"
+    }, 0.5);
+
+    // 场景标签淡入
+    tl.from("#scene-tag", { opacity: 0, x: -20, duration: 0.5, ease: "power2.out" }, 0.3);
+
+    // 主标题淡入上移
+    tl.from("#hero-title", { y: 60, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.5);
+
+    // 分隔线
+    tl.from(".divider", { scaleX: 0, duration: 0.6, ease: "power2.out" }, 0.7);
+
+    // 卡片入场
+    tl.from("#card-1", { y: 50, opacity: 0, duration: 0.6, ease: "power3.out" }, 1.0);
+
+    // 字幕
+    tl.from("#caption-1", { y: 20, opacity: 0, duration: 0.4 }, 0.8);
+    tl.to("#caption-1", { opacity: 0, duration: 0.3 }, 3.8);
+
+    // 标签组
+    tl.from(".tag", { y: 20, opacity: 0, duration: 0.4, stagger: 0.1 }, 1.2);
+
+    // 进度条（跟随时间增长）
+    // 注：GSAP 无法直接驱动 CSS 变量，结合 JS 或用 GSAP.to + onUpdate
+    tl.to("#progress-bar", {
+      width: "100%", duration: DURATION, ease: "none",
+    }, 0);
+
+    // 延长 timeline 至总时长
+    tl.set({}, {}, DURATION);
+
+    window.__timelines["main"] = tl;
+  </script>
+</body>
+</html>

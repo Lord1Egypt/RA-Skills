@@ -1,35 +1,249 @@
+# SKILL.md - 上海物业查询合同到期
+
+## 📋 技能描述
+
+这个技能用于查询上海市物业项目的合同到期信息，通过分析招标公告、中标公告和评标结果公告，提取合同期限和中标日期，计算合同到期时间。
+
+**适用场景**：
+- 查询某个区域的物业项目合同到期情况
+- 识别即将到期的物业项目
+- 为物业续约决策提供数据支持
+
 ---
-name: "Shwuyechaxunhetongdaoqi"
-description: "查询上海市物业项目合同到期信息，提取招标公告合同期限和中标/评标日期，计算合同到期时间并生成CSV。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shwuyechaxunhetongdaoqi"
-sourceUrl: "https://clawhub.ai/skills/shwuyechaxunhetongdaoqi"
----
 
-# Shwuyechaxunhetongdaoqi
+## 🎯 核心功能
 
-> 查询上海市物业项目合同到期信息，提取招标公告合同期限和中标/评标日期，计算合同到期时间并生成CSV。
+### 1. 数据源
+- **上海市物业招标公告网站**：https://962121.fgj.sh.gov.cn/wyweb/web/front/common/greenmorelist.jsp
+- **公告类型**：
+  - 招标公告：提取合同期限
+  - 中标公告：提取中标日期（优先级1）
+  - 评标结果公告：提取中标日期（优先级2）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shwuyechaxunhetongdaoqi`
-- **Source URL:** [https://clawhub.ai/skills/shwuyechaxunhetongdaoqi](https://clawhub.ai/skills/shwuyechaxunhetongdaoqi)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shwuyechaxunhetongdaoqi
+### 2. 处理流程
 ```
+1. 搜索指定区域的物业项目
+2. 分类整理招标公告、中标公告、评标结果公告
+3. 下载PDF文件
+4. OCR识别PDF内容
+5. 提取合同期限和中标日期
+6. 计算合同到期时间
+7. 生成CSV结果文件
+```
+
+### 3. 优先级规则
+- **合同期限来源**：招标公告
+- **中标日期来源**：
+  - 优先级1：中标公告
+  - 优先级2：评标结果公告（当中标公告不存在时）
+- **合同到期时间计算**：中标日期 + 合同期限
+
+---
+
+## ⚠️ 常见错误与解决方案
+
+### 错误1：大量项目中标日期为空
+
+**现象**：
+- 很多项目有合同期限，但没有中标日期
+- 导致无法计算合同到期时间
+
+**原因**：
+- 只处理了中标公告，但很多项目没有中标公告
+- 评标结果公告比中标公告多得多（3014 vs 878）
+
+**解决方案**：
+```python
+# 增加评标结果公告的处理
+projects[project_name] = {
+    '招标公告': [],
+    '中标公告': [],
+    '评标结果公告': []  # 新增
+}
+
+# 优先级逻辑
+if 中标公告存在:
+    使用中标公告的日期
+elif 评标结果公告存在:
+    使用评标结果公告的日期
+```
+
+**效果**：
+- 提取率从36%提升到73%
+- 识别出的2026年内到期项目从1个增加到10个
+
+---
+
+### 错误2：OCR识别日期格式不匹配
+
+**现象**：
+- OCR成功识别，但日期提取失败
+- 不同公告的日期格式不统一
+
+**原因**：
+- 正则表达式模式不够全面
+- 日期格式多样（YYYY年MM月DD日、YYYY-MM-DD、MM月DD日等）
+
+**解决方案**：
+```python
+# 增加多种日期格式的正则表达式
+patterns = [
+    r'(\d{4})年(\d{1,2})月(\d{1,2})日',  # 2024年7月2日
+    r'(\d{4})-(\d{1,2})-(\d{1,2})',       # 2024-07-02
+    r'(\d{1,2})月(\d{1,2})日',             # 7月2日（假设当前年份）
+    r'(\d{2})年(\d{1,2})月(\d{1,2})日',   # 24年7月2日
+]
+```
+
+---
+
+### 错误3：PDF下载失败
+
+**现象**：
+- 部分公告的PDF文件下载失败
+- 导致无法提取信息
+
+**原因**：
+- 网络问题
+- PDF链接失效
+- 服务器限流
+
+**解决方案**：
+```python
+# 增加重试机制
+for attempt in range(3):
+    try:
+        response = requests.get(pdf_url, timeout=30)
+        if response.status_code == 200:
+            break
+    except:
+        time.sleep(2)
+```
+
+---
+
+## 📊 最佳实践
+
+### 1. 数据源选择
+- **优先使用中标公告**：数据最准确
+- **评标结果公告作为补充**：覆盖更多项目
+- **招标公告提取合同期限**：必须处理
+
+### 2. 批量处理
+- 使用后台进程处理大量项目
+- 定期汇报进度（避免用户长时间等待）
+- 生成CSV文件便于后续分析
+
+### 3. 数据验证
+- 检查日期格式的合理性
+- 标注数据来源（中标公告/评标结果公告）
+- 标注失败原因（PDF下载失败、未找到公告等）
+
+---
+
+## 🔧 技术实现
+
+### 核心脚本
+- **脚本位置**：`~/.openclaw/workspace/skills/shwuyeyanjiu/scripts/`
+- **主要脚本**：
+  - `batch_extract_dates.py`：初版脚本
+  - `batch_extract_dates_v2.py`：改进版脚本（增加评标结果公告处理）
+
+### 依赖库
+```python
+requests          # HTTP请求
+beautifulsoup4    # HTML解析
+pdf2image         # PDF转图片
+pytesseract       # OCR识别
+python-dateutil   # 日期处理
+```
+
+### 运行方式
+```bash
+cd ~/.openclaw/workspace/skills/shwuyeyanjiu/scripts
+uv run --with requests --with beautifulsoup4 --with pdf2image --with pytesseract --with python-dateutil python3 batch_extract_dates_v2.py
+```
+
+---
+
+## 📈 效果对比
+
+### 改进前（只处理中标公告）
+- 处理项目：96个
+- 成功提取中标日期：35个（36%）
+- 成功计算合同到期时间：34个（35%）
+- 2026年内到期项目：1个
+
+### 改进后（增加评标结果公告）
+- 处理项目：96个
+- 成功提取中标日期：约70个（73%）
+- 成功计算合同到期时间：约70个（73%）
+- 2026年内到期项目：10个
+
+---
+
+## 💡 关键教训
+
+1. **数据源的重要性**
+   - 评标结果公告比中标公告多得多
+   - 必须同时处理多种公告类型
+
+2. **用户反馈的价值**
+   - 用户指出了数据不完整的问题
+   - 提出了具体的改进建议
+   - 这些建议非常有效
+
+3. **OCR识别的挑战**
+   - PDF扫描件需要OCR
+   - 日期格式多样，需要多种正则表达式
+
+4. **批量处理的注意事项**
+   - 需要后台运行
+   - 需要定期汇报进度
+   - 需要处理失败情况
+
+---
+
+## 🎯 使用示例
+
+### 查询静安区2026年内到期项目
+```python
+# 运行改进版脚本
+python3 batch_extract_dates_v2.py
+
+# 结果文件
+jingan_contract_dates_v2.csv
+```
+
+### 结果示例
+```
+项目名称,合同期限,中标日期,合同到期时间,备注
+微星彭浦公寓,3,2023-04-21,2026-04-30, (日期来源: 评标结果公告)
+市北云盛公寓,3,2023-04-08,2026-04-30, (日期来源: 评标结果公告)
+闸北区339街坊北上海物流号地块配套商品房,2,2024-07-02,2026-07-31, (日期来源: 中标公告)
+```
+
+---
+
+## 📝 未来改进方向
+
+1. **提高OCR识别准确率**
+   - 尝试其他OCR引擎
+   - 优化图像预处理
+
+2. **增加数据验证**
+   - 自动检查日期合理性
+   - 标注异常数据
+
+3. **支持更多区域**
+   - 扩展到其他行政区
+   - 支持全市范围查询
+
+4. **实时更新**
+   - 定期自动更新数据
+   - 监控即将到期的项目
+
+---
+
+**技能创建时间**：2026-04-08
+**创建者**：傲小喵 (Ao Xiao Miao) 🐱

@@ -1,35 +1,84 @@
 ---
-name: "全球股市技术分析报告"
-description: "A股个股技术分析报告生成工具。当用户请求生成股票技术分析报告、查询A股个股行情、分析个股走势时触发。支持输入股票代码和股票名称，自动抓取东方财富实时数据并生成结构化技术分析报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eastmoney-stock-analysis"
-sourceUrl: "https://clawhub.ai/skills/eastmoney-stock-analysis"
+name: a-stock-technical-analysis
+description: A股个股技术分析报告生成工具。当用户请求生成股票技术分析报告、查询A股个股行情、分析个股走势时触发。支持输入股票代码和股票名称，自动抓取东方财富实时数据并生成结构化技术分析报告。
 ---
 
-# 全球股市技术分析报告
+# A股技术分析报告 Skill
 
-> A股个股技术分析报告生成工具。当用户请求生成股票技术分析报告、查询A股个股行情、分析个股走势时触发。支持输入股票代码和股票名称，自动抓取东方财富实时数据并生成结构化技术分析报告。
+输入股票代码（如 002281）和股票名称（如 光迅科技），自动生成一份结构完整、逻辑清晰、语言专业克制的技术分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eastmoney-stock-analysis`
-- **Source URL:** [https://clawhub.ai/skills/eastmoney-stock-analysis](https://clawhub.ai/skills/eastmoney-stock-analysis)
+## 工作流程
 
-## Overview
+### 第一步：获取实时行情数据
 
+用浏览器访问东方财富个股页面：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eastmoney-stock-analysis
 ```
+openclaw browser navigate https://quote.eastmoney.com/sz{代码}.html
+```
+
+等待页面加载完成后执行：
+
+```
+openclaw browser snapshot
+```
+
+同时尝试 eastmoney 实时行情 API（成功率不稳定，多试几次）：
+
+```
+http://push2.eastmoney.com/api/qt/stock/get?secid=0.{代码}&fields=f43,f44,f45,f46,f47,f48,f57,f58,f60,f170,f171
+```
+
+> 注意：secid 规则 — 深圳用 0.，上海用 1.。如光迅科技 002281 → secid=0.002281
+
+### 第二步：获取指数数据（大盘环境）
+
+从个股页面快照中已包含上证/深证指数数据。若需单独确认：
+
+```
+http://push2.eastmoney.com/api/qt/stock/get?secid=1.000001&fields=f43,f57,f58,f60
+http://push2.eastmoney.com/api/qt/stock/get?secid=0.399001&fields=f43,f57,f58,f60
+```
+
+### 第三步：解析关键数据
+
+从页面快照中提取以下字段：
+
+**个股行情：**
+- 现价、涨幅、涨跌额
+- 今开、昨日收盘（昨收）
+- 最高、最低
+- 成交量、成交额
+- 换手率、量比
+- 市盈率(动)、市净率
+- 总市值、流通市值
+
+**基本面（页面已有）：**
+- 净利润、营收、ROE、毛利率、净利率
+- 负债率
+- 股东户数变化
+
+**重要事件（从个股大事列表中提取）：**
+- 限售解禁日
+- 年报/季报预约披露日
+- 近期龙虎榜记录
+- 近期研报标题
+- 大宗交易记录
+
+**板块/题材：**
+- 所属板块涨幅
+
+**资金面（若有）：**
+- 主力净流入、超大单净流入
+- 大宗交易信息
+
+### 第四步：生成报告
+
+按 `references/report-template.md` 中的结构填充数据，生成完整报告。
+
+## 注意事项
+
+1. **网络不稳定时**：eastmoney API 可能连接失败（code 52），此时以浏览器快照数据为准
+2. **技术指标数据有限**：东方财富页面不直接展示完整 MACD/KDJ/RSI，需要时用 `stock_zh_a_hist` 获取历史数据后自行计算，或标注"暂无数据"
+3. **不以任何形式编造数据**：数据不足时必须写"暂无数据"或"无法判断"
+4. **报告末尾必须附言**："以上内容仅为技术面分析，不构成投资建议。"

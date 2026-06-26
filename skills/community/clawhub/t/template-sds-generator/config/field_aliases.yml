@@ -1,0 +1,29 @@
+product_name:
+  - product name
+  - product identifier
+product_number:
+  - product number
+  - product no
+  - catalog no
+cas_number:
+  - cas
+  - cas no
+ec_number:
+  - ec no
+signal_word:
+  - signal word
+emergency_telephone:
+  - emergency phone
+  - emergency telephone
+  - emergency telephone number
+flash_point:
+  - flash point
+molecular_weight:
+  - molecular weight
+  - mw
+relevant_identified_uses:
+  - identified uses
+  - relevant identified uses
+storage_temperature:
+  - recommended storage temperature
+  - storage temperature

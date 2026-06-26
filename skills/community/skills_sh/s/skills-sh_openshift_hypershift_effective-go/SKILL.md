@@ -1,35 +1,32 @@
 ---
-name: "effective-go"
-description: "Indexed by skills.sh from openshift/hypershift"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "openshift"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/openshift/hypershift/effective-go"
-sourceUrl: "https://skills.sh/openshift/hypershift/effective-go"
+name: Effective Go
+description: "Apply Go best practices, idioms, and conventions from golang.org/doc/effective_go. Use when writing, reviewing, or refactoring Go code to ensure idiomatic, clean, and efficient implementations."
 ---
 
-# effective-go
+# Effective Go
 
-> Indexed by skills.sh from openshift/hypershift
+Apply best practices and conventions from the official [Effective Go guide](https://go.dev/doc/effective_go) to write clean, idiomatic Go code.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** openshift
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/openshift/hypershift/effective-go`
-- **Source URL:** [https://skills.sh/openshift/hypershift/effective-go](https://skills.sh/openshift/hypershift/effective-go)
+## When to Apply
 
-## Overview
+Use this skill automatically when:
+- Writing new Go code
+- Reviewing Go code
+- Refactoring existing Go implementations
 
+## Key Reminders
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/openshift/hypershift/effective-go
-```
+Follow the conventions and patterns documented at https://go.dev/doc/effective_go, with particular attention to:
+
+- **Formatting**: Always use `gofmt` - this is non-negotiable
+- **Naming**: No underscores, use MixedCaps for exported names, mixedCaps for unexported
+- **Error handling**: Always check errors; return them, don't panic
+- **Concurrency**: Share memory by communicating (use channels)
+- **Interfaces**: Keep small (1-3 methods ideal); accept interfaces, return concrete types
+- **Documentation**: Document all exported symbols, starting with the symbol name
+
+## References
+
+- Official Guide: https://go.dev/doc/effective_go
+- Code Review Comments: https://github.com/golang/go/wiki/CodeReviewComments
+- Standard Library: Use as reference for idiomatic patterns

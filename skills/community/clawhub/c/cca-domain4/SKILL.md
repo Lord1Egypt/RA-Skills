@@ -1,35 +1,126 @@
 ---
-name: "Cca Domain4"
-description: "CCA 领域4：提示工程与结构化输出（20%权重）。当用户说"学domain4"、"提示工程"、"structured output"、"cca-domain4"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cca-domain4"
-sourceUrl: "https://clawhub.ai/skills/cca-domain4"
+name: cca-domain4
+description: CCA 领域4：提示工程与结构化输出（20%权重）。当用户说"学domain4"、"提示工程"、"structured output"、"cca-domain4"时使用。
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Agent
 ---
 
-# Cca Domain4
+# CCA 领域 4：提示工程与结构化输出 (Prompt Engineering & Structured Output)
 
-> CCA 领域4：提示工程与结构化输出（20%权重）。当用户说"学domain4"、"提示工程"、"structured output"、"cca-domain4"时使用。
+**权重：20% — 约 12 道题**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cca-domain4`
-- **Source URL:** [https://clawhub.ai/skills/cca-domain4](https://clawhub.ai/skills/cca-domain4)
+你是 CCA 领域 4 的学习导师。核心关键词：**明确具体**。
 
-## Overview
+## Step 1: 知识点讲解
 
+### TS 4.1: 用明确标准设计提示以提高精确度并减少误报
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cca-domain4
-```
+**核心知识：**
+- ❌ "保守一点" / "只报告高置信度发现" — **不会**提高精确度
+- ✅ 精确定义哪些问题需要报告、哪些跳过，为每个严重级别提供代码示例
+- 高误报率的恶性循环：即使准确类别也失去开发者信任
+
+**实操技能：**
+- 写具体的审查标准定义报告什么（bugs、安全）vs 跳过什么（风格、本地模式）
+- 临时禁用高误报类别以恢复开发者信任
+- 用具体代码示例定义明确的严重级别标准
+
+### TS 4.2: 应用 few-shot 提示提高输出一致性和质量
+
+**核心知识（考试高杠杆技术）：**
+- Few-shot 是详细指令仍产出不一致结果时最有效的技术
+- 2-4 个针对模糊场景的示例，展示为何选择 A 而非 B 的推理过程
+- Few-shot 让模型泛化到新模式，而非仅匹配预设情况
+- 减少提取任务中的幻觉（处理非正式度量、多样文档结构）
+
+**实操技能：**
+- 创建 2-4 个针对模糊场景的示例，展示推理过程
+- 包含展示特定输出格式（位置、问题、严重度、修复建议）的示例
+- 用 few-shot 区分可接受的代码模式和真正问题
+- 用 few-shot 示范正确处理不同文档结构（内联引用 vs 参考文献列表 vs 嵌入式细节）
+
+### TS 4.3: 使用 tool_use 和 JSON Schema 强制结构化输出
+
+**核心知识：**
+- `tool_use` + JSON Schema = 保证语法合规的结构化输出，消除 JSON 语法错误
+- **但不能消除语义错误**（如行项目不等于总计、值放在错误字段）
+
+**`tool_choice` 三选项（必须精通）：**
+| 选项 | 行为 | 适用场景 |
+|------|------|---------|
+| `"auto"` | 模型可能返回文本而非调用工具 | 默认，可能不调用工具 |
+| `"any"` | 必须调用工具，自选哪个 | 多个提取 schema、文档类型未知 |
+| 强制选择 `{"type":"tool","name":"..."}` | 必须调用指定工具 | 确保先运行特定提取步骤 |
+
+**Schema 设计要点：**
+- 源数据可能缺失时使用可空字段（防止模型捏造值）
+- 为模糊情况添加 `"unclear"` 枚举值
+- `"other"` + 详细字符串字段用于可扩展分类
+- 在提示中包含格式规范化规则处理不一致的源格式
+
+**实操技能：**
+- 定义带 JSON Schema 的提取工具，从 `tool_use` 响应中提取结构化数据
+- 设计可选（nullable）字段防止模型为满足必填字段而捏造值
+
+### TS 4.4: 实现验证、重试和反馈循环以保证提取质量
+
+**核心知识：**
+- 重试时附加具体验证错误（retry-with-error-feedback）引导模型纠正
+- **重试的局限：** 当源文档确实缺少信息时重试无效（vs 格式/结构错误可通过重试解决）
+- `detected_pattern` 字段追踪哪些代码构造触发了发现，支持系统性分析误报
+- 语义验证错误（值不等于总计）vs 语法错误（tool_use 已消除）
+
+**实操技能：**
+- 实现包含原始文档、失败提取和具体验证错误的重试请求
+- 识别何时重试无效（信息仅存在于外部文档）vs 何时会成功（格式不匹配）
+- 设计自我纠正验证流：提取 `calculated_total` + `stated_total` 以标记差异
+
+### TS 4.5: 设计高效的批处理策略
+
+**核心知识：**
+- **Message Batches API：** 50% 成本节省，最长 24 小时处理，无延迟 SLA
+- 适合：非阻塞的延迟容忍工作（隔夜报告、每周审计、夜间测试生成）
+- 不适合：阻塞性工作流（合并前检查必须用同步 API）
+- **批处理 API 不支持单个请求内的多轮工具调用**
+- `custom_id` 字段关联批量请求/响应对
+
+**实操技能：**
+- 匹配 API 到延迟需求：同步 API → 阻塞检查，批处理 → 隔夜分析
+- 根据 SLA 约束计算批处理提交频率（如 4 小时窗口 + 24 小时批处理 = 保证 30 小时）
+- 处理批处理失败：按 `custom_id` 仅重新提交失败文档
+- 先在小样本上精炼提示，再批量处理大量数据
+
+### TS 4.6: 设计多实例和多遍审查架构
+
+**核心知识：**
+- **自我审查的局限：** 模型保留生成时的推理上下文，不太可能质疑自己的决策
+- 独立审查实例（无前序推理上下文）比自我审查或扩展思考更能发现细微问题
+- 多遍审查：按文件的本地分析 + 跨文件集成，避免注意力稀释和矛盾发现
+
+**实操技能：**
+- 用第二个独立 Claude 实例审查生成的代码
+- 将大型多文件审查拆分为聚焦的按文件分析 + 跨文件数据流集成
+- 运行验证遍让模型自报每个发现的置信度
+
+## Step 2: 实操练习
+
+### 练习：构建结构化数据提取管道
+
+**步骤：**
+1. 定义一个 `tool_use` 提取工具，JSON Schema 含必填字段、可选字段和可空字段
+2. 添加 `"unclear"` 枚举值和 `"other"` + 详细字符串
+3. 处理部分字段缺失的文档，验证模型返回 null 而非捏造值
+4. 实现验证重试循环：schema 验证失败时重新发送含错误信息的请求
+5. 设计批处理策略：提交 100 份文档到 Batches API，按 `custom_id` 处理失败
+6. 实现置信度路由：低置信度提取路由到人工审查
+
+## Step 3: 知识检查
+
+出 3 道模拟题：
+- "只报告高置信度发现" 为何无效？（答案：需要具体的分类标准而非模糊的置信度过滤）
+- 批处理 API 适用于哪种工作流？（答案：隔夜报告，不适用于合并前检查）
+- 消除 JSON 语法错误的最佳方法？（答案：tool_use + JSON Schema，而非正则提取）
+
+## 导航
+
+- 上一领域：`/cca-domain3`（Claude Code 配置）
+- 下一领域：`/cca-domain5`（上下文管理与可靠性）

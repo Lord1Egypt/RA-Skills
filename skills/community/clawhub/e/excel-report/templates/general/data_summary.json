@@ -1,0 +1,109 @@
+{
+  "id": "general_data_summary",
+  "name": "月度数据汇总报表",
+  "name_en": "Monthly Data Summary Report",
+  "industry": "general",
+  "scene": "经营分析",
+  "description": "企业整体数据汇总、多维度分析，适配企业高层决策场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month"]},
+        {"field": "revenue", "label": "营收", "type": "number", "aliases": ["营收", "revenue", "收入", "营业收入"]},
+        {"field": "profit", "label": "利润", "type": "number", "aliases": ["利润", "profit", "净利润"]},
+        {"field": "cost", "label": "成本", "type": "number", "aliases": ["成本", "cost", "总成本"]},
+        {"field": "employee_count", "label": "人数", "type": "number", "aliases": ["人数", "employee_count", "员工数", "在职人数"]},
+        {"field": "target_revenue", "label": "目标营收", "type": "number", "aliases": ["目标营收", "target_revenue", "营收目标"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_revenue",
+          "label": "总营收",
+          "formula": "SUM(revenue)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "profit_margin",
+          "label": "利润率",
+          "formula": "SUM(profit)/SUM(revenue)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.15
+        },
+        {
+          "id": "revenue_achievement",
+          "label": "营收达成率",
+          "formula": "SUM(revenue)/SUM(target_revenue)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 1.0
+        },
+        {
+          "id": "yoy_growth",
+          "label": "营收同比增长",
+          "formula": "(SUM(revenue) - LAG_SUM(revenue, 12)) / LAG_SUM(revenue, 12)",
+          "format": "percent",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "revenue_trend",
+          "type": "line",
+          "title": "核心指标月度趋势",
+          "x": "month",
+          "y": ["revenue", "profit", "cost"],
+          "series_names": ["营收", "利润", "成本"],
+          "position": {"row": 1, "col": 1, "width": 18, "height": 10}
+        },
+        {
+          "id": "yoy_compare",
+          "type": "bar",
+          "title": "同比/环比对比",
+          "x": "month",
+          "y": ["yoy", "mom"],
+          "series_names": ["同比", "环比"],
+          "format": "percent",
+          "position": {"row": 1, "col": 20, "width": 12, "height": 10}
+        },
+        {
+          "id": "cost_pie",
+          "type": "pie",
+          "title": "成本构成",
+          "dimension": "cost_type",
+          "metric": "cost",
+          "position": {"row": 12, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "revenue_pie",
+          "type": "pie",
+          "title": "营收构成",
+          "dimension": "revenue_type",
+          "metric": "revenue",
+          "position": {"row": 12, "col": 12, "width": 10, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "月度明细",
+      "type": "detail",
+      "source": "原始数据",
+      "computed_fields": [
+        {"field": "profit_margin", "label": "利润率", "formula": "profit / revenue", "format": "percent"},
+        {"field": "yoy", "label": "同比增长", "formula": "(revenue - LAG(revenue, 12)) / LAG(revenue, 12)", "format": "percent"},
+        {"field": "mom", "label": "环比增长", "formula": "(revenue - LAG(revenue, 1)) / LAG(revenue, 1)", "format": "percent"},
+        {"field": "revenue_achievement", "label": "达成率", "formula": "revenue / target_revenue", "format": "percent"},
+        {"field": "per_capita_revenue", "label": "人均营收", "formula": "revenue / employee_count", "format": "currency"}
+      ],
+      "sort_by": {"field": "month", "order": "desc"}
+    }
+  ],
+  "output_filename": "通用-月度数据汇总报表-{month}.xlsx"
+}

@@ -1,0 +1,409 @@
+{
+  "history": [
+    {
+      "timestamp": "2026-03-23T11:08:20.362771",
+      "name": "黑皮",
+      "template": "wide",
+      "style": "anime",
+      "format": "wide",
+      "output": "黑皮_wide_anime_wide.jpg",
+      "has_social": true,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:48:42.839188",
+      "name": "Ai子",
+      "template": "wide",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_wide_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:48:43.072898",
+      "name": "Ai子",
+      "template": "wide",
+      "style": "anime",
+      "format": "mobile",
+      "output": "Ai子_wide_anime_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:49:51.030934",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:49:51.913493",
+      "name": "Ai子",
+      "template": "floating",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_floating_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:49:52.645368",
+      "name": "Ai子",
+      "template": "hero",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_hero_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:52:13.596894",
+      "name": "Ai子",
+      "template": "wide",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_wide_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:52:14.385531",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:52:15.225119",
+      "name": "Ai子",
+      "template": "floating",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_floating_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:53:46.438316",
+      "name": "Ai子",
+      "template": "wide",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_wide_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:53:47.224113",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:53:48.050729",
+      "name": "Ai子",
+      "template": "floating",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_floating_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:53:48.737718",
+      "name": "Ai子",
+      "template": "hero",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_hero_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:53:49.466890",
+      "name": "Ai子",
+      "template": "grid6",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_grid6_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T12:55:48.010271",
+      "name": "Ai子",
+      "template": "wide",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_wide_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T12:55:48.176292",
+      "name": "Ai子",
+      "template": "wide",
+      "style": "anime",
+      "format": "mobile",
+      "output": "Ai子_wide_anime_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T12:55:48.943703",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T12:55:49.119377",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "mobile",
+      "output": "Ai子_sidebar_anime_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T12:57:39.312023",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T12:57:39.514602",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "mobile",
+      "output": "Ai子_sidebar_anime_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T13:19:08.831547",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T13:19:08.998633",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "mobile",
+      "output": "Ai子_sidebar_anime_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 4
+    },
+    {
+      "timestamp": "2026-03-23T13:19:09.827205",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:19:10.090828",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "mobile",
+      "output": "Ai子_sidebar_anime_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:19:19.860464",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:19:20.097616",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "mobile",
+      "output": "Ai子_sidebar_anime_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:20:53.706942",
+      "name": "Ai子",
+      "template": "wide",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_wide_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:20:54.495383",
+      "name": "Ai子",
+      "template": "sidebar",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_sidebar_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:20:55.333342",
+      "name": "Ai子",
+      "template": "floating",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_floating_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:20:56.037659",
+      "name": "Ai子",
+      "template": "hero",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_hero_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:20:56.746193",
+      "name": "Ai子",
+      "template": "grid6",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_grid6_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T13:20:57.577863",
+      "name": "Ai子",
+      "template": "compact",
+      "style": "anime",
+      "format": "wide",
+      "output": "Ai子_compact_anime_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T16:52:54.747161",
+      "name": "Ai子",
+      "template": "magazine",
+      "style": "japanese",
+      "format": "wide",
+      "output": "Ai子_magazine_japanese_wide.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    },
+    {
+      "timestamp": "2026-03-23T16:52:55.105204",
+      "name": "Ai子",
+      "template": "magazine",
+      "style": "japanese",
+      "format": "mobile",
+      "output": "Ai子_magazine_japanese_mobile.jpg",
+      "has_social": false,
+      "has_location": true,
+      "photo_count": 6
+    }
+  ],
+  "preferences": {
+    "templates": {
+      "wide": 8,
+      "sidebar": 14,
+      "floating": 4,
+      "hero": 3,
+      "grid6": 2,
+      "compact": 1,
+      "magazine": 2
+    },
+    "styles": {
+      "anime": 32,
+      "japanese": 2
+    },
+    "formats": {
+      "wide": 26,
+      "mobile": 8
+    }
+  },
+  "best_configs": [
+    {
+      "name": "黑皮",
+      "template": "wide",
+      "style": "anime",
+      "format": "wide",
+      "timestamp": "2026-03-23T11:14:31.917716"
+    }
+  ],
+  "default_template": "wide",
+  "default_style": "anime",
+  "default_format": "wide"
+}

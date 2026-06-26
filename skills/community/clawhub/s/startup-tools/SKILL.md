@@ -1,35 +1,44 @@
 ---
-name: "Startup Tools"
+version: "2.0.0"
+name: startup-tools
 description: "创业工具包。创业清单、公司注册、MVP规划、融资准备、法律合规、增长策略。Startup toolkit with checklist, register, MVP planning, fundraise, legal compliance."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/startup-tools"
-sourceUrl: "https://clawhub.ai/skills/startup-tools"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
+# startup-tools
 
-# Startup Tools
+创业工具包。创业清单、公司注册、MVP规划、融资准备、法律合规、增长策略。Startup toolkit with checklist, register, MVP planning, fundraise, legal compliance, and growth strategies.
 
-> 创业工具包。创业清单、公司注册、MVP规划、融资准备、法律合规、增长策略。Startup toolkit with checklist, register, MVP planning, fundraise, legal compliance.
+## 使用场景
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/startup-tools`
-- **Source URL:** [https://clawhub.ai/skills/startup-tools](https://clawhub.ai/skills/startup-tools)
+> 💡 无论你是新手还是专业人士，都能快速上手
 
-## Overview
+## 命令速查
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/startup-tools
 ```
+  checklist       checklist
+  register        register
+  mvp             mvp
+  fundraise       fundraise
+  legal           legal
+  growth          growth
+```
+
+## 专业建议
+
+- Identify the stage: idea / validation / MVP / launch / growth / scale
+- Run: `bash scripts/startup.sh <command> [stage] [industry]`
+- Present actionable guidance
+- Connect related tools (checklist → register → mvp → fundraise)
+- Idea** — problem validation, market sizing, competitor analysis
+
+---
+*startup-tools by BytesAgain*
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Commands
+
+Run `startup-tools help` to see all available commands.

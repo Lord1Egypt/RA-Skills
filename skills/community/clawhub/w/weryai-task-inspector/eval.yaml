@@ -1,0 +1,35 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 300
+  threshold: 0.8
+
+skill: weryai-task-inspector
+trigger_tests:
+  - id: explicit-task
+    should_trigger: true
+    prompt: "Use the weryai-task-inspector skill to inspect this WeryAI task ID."
+  - id: explicit-batch
+    should_trigger: true
+    prompt: "Query this WeryAI batch ID and summarize task progress."
+  - id: implicit-podcast-status
+    should_trigger: true
+    prompt: "Check whether this podcast task already reached audio-success."
+  - id: negative-submit
+    should_trigger: false
+    prompt: "Generate a new video from this prompt."
+
+outcome_tests:
+  - id: package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/task-inspector.js"
+      - file_exists: "references/tasks-api.md"
+  - id: doc-quality
+    type: llm_rubric
+    rubric: |
+      Scope fidelity (0-0.25): Does the skill stay read-only and avoid blurring into generation skills?
+      Workflow clarity (0-0.25): Does it clearly explain taskId vs batchId routing and normalized outputs?
+      Constraint honesty (0-0.25): Does it explicitly document podcast content_status handling and non-mutating behavior?
+      API fidelity (0-0.25): Are the task and batch query behaviors faithful to the WeryAI docs without inventing undocumented task actions?

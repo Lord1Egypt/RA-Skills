@@ -1,0 +1,11 @@
+monitoring:
+  frequency: daily
+  threshold: 0.05
+
+pricing_sources:
+  - source: website
+    priority: 1
+  - source: g2
+    priority: 2
+  - source: capterra
+    priority: 3

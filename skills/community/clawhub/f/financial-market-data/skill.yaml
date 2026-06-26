@@ -1,0 +1,29 @@
+---
+name: financial-market-data
+version: "1.0.1"
+description: 统一金融行情数据接口 - 多源互补自动降级，支持A股/港股/美股/期货/ETF，安装即用含东方财富MX API Key
+tags: [finance, stock, kline, realtime, A股, 港股, 美股, 期货, ETF, 板块, 资金流, 财务数据]
+
+installation:
+  clone_path: "skills/financial-market-data/"
+  dependencies:
+    uv_sync: true
+    pip_install: "tickflow akshare baostock pytdx requests pandas"
+  token_required:
+    - name: "东方财富MX API"
+      key: "mkt_HFeitkf4UQNDF8rpr6wZMVfweIxmPegsR1jJK0kF0_I"
+      usage: "A股/港股/美股实时行情查询"
+
+[project]
+name = "financial-market-data"
+version = "0.1.1"
+description = "Unified financial market data interface - multi-source fallback, A-share/H-share/US-stock/futures/ETF"
+requires-python = ">=3.10"
+dependencies = [
+    "tickflow>=0.1.17",
+    "akshare>=1.18.51",
+    "baostock>=0.8.9",
+    "pytdx>=1.72",
+    "requests>=2.33.0",
+    "pandas>=3.0.0",
+]

@@ -1,35 +1,33 @@
 ---
-name: "Meeting Minutes Task Extractor"
-description: "Free basic version that extracts actionable tasks from meeting minutes. Reserves premium upgrade hooks for deeper action decomposition and project tracker ex..."
-category: "productivity"
-source: "ClawHub"
-tags: [free, meeting, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meeting-minutes-task-extractor"
-sourceUrl: "https://clawhub.ai/skills/meeting-minutes-task-extractor"
+name: meeting-minutes-task-extractor
+description: Free basic version that extracts actionable tasks from meeting minutes. Reserves premium upgrade hooks for deeper action decomposition and project tracker export.
 ---
 
-# Meeting Minutes Task Extractor
+# Meeting Minutes → Task Extractor
 
-> Free basic version that extracts actionable tasks from meeting minutes. Reserves premium upgrade hooks for deeper action decomposition and project tracker ex...
+## Value
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meeting-minutes-task-extractor`
-- **Source URL:** [https://clawhub.ai/skills/meeting-minutes-task-extractor](https://clawhub.ai/skills/meeting-minutes-task-extractor)
+- Free tier: extract up to 5 actionable tasks with assignee/due-date hints.
+- Premium tier (reserved): extract up to 20 tasks, milestone decomposition, and tracker export.
 
-## Overview
+## Input
 
+- `user_id`
+- `meeting_title`
+- `meeting_notes`
+- optional `tier` (`free`/`premium`)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Run
+
 ```bash
-hermes skills install clawhub/meeting-minutes-task-extractor
+python3 scripts/meeting_minutes_task_extractor.py \
+  --user-id user_002 \
+  --meeting-title "增长周会" \
+  --meeting-notes "由小王负责落地页改版，截止2026-03-08"
+```
+
+## Tests
+
+```bash
+python3 -m unittest scripts/test_meeting_minutes_task_extractor.py -v
 ```

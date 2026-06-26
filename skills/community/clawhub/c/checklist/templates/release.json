@@ -1,0 +1,21 @@
+{
+  "name": "Release Checklist",
+  "description": "Software release preparation and deployment workflow",
+  "category": "devops",
+  "items": [
+    {"id": 1, "text": "Update version number in configuration", "required": true},
+    {"id": 2, "text": "Update changelog with all changes", "required": true},
+    {"id": 3, "text": "Run full test suite locally", "required": true},
+    {"id": 4, "text": "Ensure all tests pass on CI/CD", "required": true},
+    {"id": 5, "text": "Run security scans", "required": true},
+    {"id": 6, "text": "Update API documentation if needed", "required": false},
+    {"id": 7, "text": "Create release branch", "required": true},
+    {"id": 8, "text": "Run integration tests on staging", "required": true},
+    {"id": 9, "text": "Perform smoke tests", "required": true},
+    {"id": 10, "text": "Create release tag", "required": true},
+    {"id": 11, "text": "Deploy to production", "required": true},
+    {"id": 12, "text": "Verify production deployment", "required": true},
+    {"id": 13, "text": "Send release announcement", "required": true},
+    {"id": 14, "text": "Monitor error rates for 30 minutes", "required": true}
+  ]
+}

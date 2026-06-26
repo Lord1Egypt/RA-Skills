@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gumtree Skills"
+  short_description: "Operate Gumtree in a real Chrome session"
+  default_prompt: "Use $gumtree-skills to work with Gumtree through the local Chrome bridge for login checks, search, listing inspection, messaging, favourites, or post-ad category selection."

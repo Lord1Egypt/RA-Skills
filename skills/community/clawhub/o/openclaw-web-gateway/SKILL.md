@@ -1,35 +1,55 @@
----
-name: "Web Gateway"
-description: "Minimal Flask-based multi-user chat interface enabling OpenClaw HTTP integration with persistent UI state and optional Google Maps support."
-category: "other"
-source: "ClawHub"
-tags: [web gateway ui flask openclaw chat, openclaw flask web-ui chat gateway, openclaw flask web-ui chat gateway ai-agent, openclaw web-ui chat gateway flask]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-web-gateway"
-sourceUrl: "https://clawhub.ai/skills/openclaw-web-gateway"
----
 
-# Web Gateway
+# OpenClaw Web Gateway
 
-> Minimal Flask-based multi-user chat interface enabling OpenClaw HTTP integration with persistent UI state and optional Google Maps support.
+## Type
+interface
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-web-gateway`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-web-gateway](https://clawhub.ai/skills/openclaw-web-gateway)
+## Runtime
+python
 
-## Overview
+## Description
+Lightweight Flask web interface that forwards chat requests to a configured OpenClaw HTTP endpoint.
+
+The gateway provides a browser chat UI and stores minimal local state.
+
+## Requirements
+- Python 3.10+
+- A reachable OpenClaw instance
+
+## Configuration
+
+Configuration is done using environment variables.
+
+Typical values:
+
+OPENCLAW_BASE=http://127.0.0.1:18789
+
+OPENCLAW_AUTH=
+OPENCLAW_AGENT=main
+OPENCLAW_CHANNEL=web-gateway
+OPENCLAW_MODEL=default
+DEFAULT_USER=family
+PORT=5002
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-web-gateway
-```
+`OPENCLAW_AUTH` is optional and only required if the upstream OpenClaw endpoint requires authentication.
+
+## Run
+
+
+python app.py
+
+Then open:
+
+http://127.0.0.1:5002
+
+
+## Notes
+
+The application may create small local runtime files in directories such as:
+
+memory/
+state/
+
+
+These directories are intended for local runtime data and should not be committed to version control.

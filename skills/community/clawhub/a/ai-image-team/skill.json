@@ -1,0 +1,46 @@
+{
+  "name": "ai-image-team",
+  "displayName": "🎨 AI 电商图片创作团队",
+  "version": "1.0.0",
+  "description": "3 人 Agent 团队协作，完成电商图片创作全流程（策划 + 执行 + 质检）",
+  "author": "AI Image Team",
+  "tags": ["ai", "image", "team", "ecommerce", "design", "jimeng", "liblib"],
+  "category": "image-generation",
+  "visible": true,
+  "icon": "users",
+  "order": 0,
+  "featured": true,
+  "entry": "agent.py",
+  "capabilities": [
+    "需求深度分析",
+    "创意简报生成",
+    "AI 图片生成（即梦/Liblib）",
+    "质量评估把关",
+    "迭代优化",
+    "电商场景适配",
+    "视频生成（预留）"
+  ],
+  "team": {
+    "members": [
+      {"skill": "ai-planner", "role": "🧠 策划师", "description": "需求分析、创意简报"},
+      {"skill": "ai-maker", "role": "🎭 执行师", "description": "图片生成"},
+      {"skill": "ai-reviewer", "role": "✅ 质检师", "description": "质量把关"}
+    ]
+  },
+  "dependencies": ["ai-planner", "ai-maker", "ai-reviewer"],
+  "input": {
+    "type": "text",
+    "language": "zh-CN",
+    "format": "自然语言需求描述"
+  },
+  "output": {
+    "type": "json",
+    "format": "交付结果"
+  },
+  "config": {
+    "language": "zh-CN",
+    "quality_threshold": 0.8,
+    "max_iterations": 3,
+    "auto_mode": true
+  }
+}

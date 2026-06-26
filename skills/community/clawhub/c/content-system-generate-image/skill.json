@@ -1,0 +1,14 @@
+{
+  "id": "generate-image",
+  "name": "Generate Image",
+  "layer": "visual",
+  "executor": "generate_image_card_v1",
+  "input_kind": "article_markdown",
+  "output_kind": "png_image",
+  "description": "Read the article draft and render a simple infographic card PNG.",
+  "workbench": {
+    "id": "wechat-studio",
+    "role": "optional_manual_assist",
+    "notes": "Use wechat-studio when you need preview, prompt adjustment, asset selection, or manual visual tuning."
+  }
+}

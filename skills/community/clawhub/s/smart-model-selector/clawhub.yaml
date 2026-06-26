@@ -1,0 +1,75 @@
+name: smart-model-selector
+version: 1.0.0
+description: 🧠 智能模型选择器 - 根据任务自动选择最优模型，越用越聪明
+author: xuyun
+license: MIT
+tags:
+  - model-routing
+  - ai-optimization
+  - cost-saving
+  - smart-selection
+category: productivity
+homepage: https://github.com/xuyun/smart-model-selector
+repository: https://github.com/xuyun/smart-model-selector
+
+# 技能类型
+type: hook
+
+# 入口文件
+entry: hooks/smart_model_selector.py
+
+# 依赖
+dependencies: []
+
+# 触发事件
+events:
+  - session.start
+  - message.received
+  - response.sent
+  - session.end
+
+# 命令
+commands:
+  - name: model-stats
+    description: 查看模型使用统计
+  - name: model-use
+    description: 手动指定模型
+    args:
+      - name: model
+        required: true
+        description: 模型 ID (qwen3.5-plus/qwen-max/qwen-coder-plus)
+  - name: model-rate
+    description: 评分反馈
+    args:
+      - name: rating
+        required: true
+        description: 评分 (1-5)
+  - name: model-reset
+    description: 重置当前任务
+  - name: model-help
+    description: 查看帮助
+
+# 配置
+config:
+  default_model: qwen3.5-plus
+  auto_select: true
+  show_reason: true
+  db_path: data/model_selection.db
+
+# 系统要求
+requirements:
+  python: ">=3.11"
+
+# 截图（可选）
+screenshots: []
+
+# 更新日志
+changelog:
+  - version: 1.0.0
+    date: 2026-03-14
+    changes:
+      - 初始版本发布
+      - 支持自动模型选择
+      - 基于规则的冷启动
+      - 反馈学习系统
+      - 统计面板

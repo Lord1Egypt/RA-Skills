@@ -1,0 +1,26 @@
+{
+    "_comment": "Template for global phoneme dictionary. Copied to phonemes.json on first run. Edit phonemes.json to add your entries — it won't be overwritten by skill updates.",
+
+    "一行命令": "yì háng mìng lìng",
+    "一行代码": "yì háng dài mǎ",
+    "一行": "yì háng",
+    "命令行": "mìng lìng háng",
+    "代码行": "dài mǎ háng",
+    "单行": "dān háng",
+    "多行": "duō háng",
+    "行数": "háng shù",
+    "几行": "jǐ háng",
+
+    "重做": "chóng zuò",
+    "重新": "chóng xīn",
+    "重复": "chóng fù",
+    "重试": "chóng shì",
+    "重置": "chóng zhì",
+
+    "执行器": "zhí xíng qì",
+    "执行": "zhí xíng",
+    "运行": "yùn xíng",
+    "并行": "bìng xíng",
+    "可行": "kě xíng",
+    "行为": "xíng wéi"
+}

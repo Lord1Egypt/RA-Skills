@@ -1,0 +1,162 @@
+{
+  "title": "Sample App Workflow Map",
+  "description": "Example source JSON for a single-page interactive map. Replace node names and handoffs with the target app's actual packages and components.",
+  "groups": [
+    {
+      "id": "client",
+      "label": "Client",
+      "color": "#2563eb"
+    },
+    {
+      "id": "server",
+      "label": "Server",
+      "color": "#0f766e"
+    },
+    {
+      "id": "data",
+      "label": "Data",
+      "color": "#7c3aed"
+    },
+    {
+      "id": "build",
+      "label": "Build",
+      "color": "#b45309"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "web-app",
+      "label": "Web App",
+      "type": "package",
+      "group": "client",
+      "description": "Admin-facing UI package that starts user and build workflows."
+    },
+    {
+      "id": "api-gateway",
+      "label": "API Gateway",
+      "type": "service",
+      "group": "server",
+      "description": "Receives authenticated commands and routes them to domain services."
+    },
+    {
+      "id": "identity-service",
+      "label": "Identity Service",
+      "type": "service",
+      "group": "server",
+      "description": "Owns invite creation, role validation, and membership state."
+    },
+    {
+      "id": "app-db",
+      "label": "Application DB",
+      "type": "database",
+      "group": "data",
+      "description": "Stores workspaces, invites, memberships, and build metadata."
+    },
+    {
+      "id": "mailer",
+      "label": "Mailer Adapter",
+      "type": "external",
+      "group": "server",
+      "description": "Sends transactional email through the configured provider."
+    },
+    {
+      "id": "ci",
+      "label": "CI Pipeline",
+      "type": "build",
+      "group": "build",
+      "description": "Checks out source, runs tests, and starts desktop packaging jobs."
+    },
+    {
+      "id": "desktop-builder",
+      "label": "ToDesktop Builder",
+      "type": "build",
+      "group": "build",
+      "description": "Wraps the web app into signed desktop artifacts."
+    },
+    {
+      "id": "release-storage",
+      "label": "Release Storage",
+      "type": "external",
+      "group": "build",
+      "description": "Receives generated desktop artifacts and update metadata."
+    }
+  ],
+  "actions": [
+    {
+      "id": "invite-new-user",
+      "label": "Invite new user",
+      "summary": "An admin sends a one-time invitation and the identity service persists the pending membership.",
+      "trigger": "Admin submits invite form",
+      "owner": "Workspace admin",
+      "steps": [
+        {
+          "from": "web-app",
+          "to": "api-gateway",
+          "label": "POST /invites",
+          "payload": "email, role, workspaceId",
+          "notes": "The UI sends an authenticated command from the invite dialog."
+        },
+        {
+          "from": "api-gateway",
+          "to": "identity-service",
+          "label": "CreateInvite command",
+          "payload": "actorId, workspaceId, invitedEmail, targetRole",
+          "notes": "The gateway passes the validated command to the membership boundary."
+        },
+        {
+          "from": "identity-service",
+          "to": "app-db",
+          "label": "insert invite",
+          "payload": "inviteId, workspaceId, emailHash, role, expiresAt",
+          "notes": "The service persists the pending invite and expiration timestamp.",
+          "risk": "Role escalation must be rejected before this write."
+        },
+        {
+          "from": "identity-service",
+          "to": "mailer",
+          "label": "send invite email",
+          "payload": "recipient, inviteUrl, workspaceName",
+          "notes": "Only the one-time invite URL and display metadata leave the app boundary."
+        }
+      ]
+    },
+    {
+      "id": "todesktop-build",
+      "label": "ToDesktop build",
+      "summary": "CI packages the web app into desktop installers and publishes update metadata.",
+      "trigger": "Release branch or manual build",
+      "owner": "Release engineering",
+      "steps": [
+        {
+          "from": "ci",
+          "to": "web-app",
+          "label": "build web bundle",
+          "payload": "commit SHA, production config, asset manifest",
+          "notes": "CI builds the web package that will be embedded in the desktop shell."
+        },
+        {
+          "from": "ci",
+          "to": "desktop-builder",
+          "label": "start packaging job",
+          "payload": "bundle path, version, signing profile",
+          "notes": "The packaging service receives the compiled app and release version."
+        },
+        {
+          "from": "desktop-builder",
+          "to": "release-storage",
+          "label": "upload installers",
+          "payload": "dmg, exe, blockmap, update manifest",
+          "notes": "Signed desktop artifacts and update metadata become available for release.",
+          "risk": "Signing credentials must stay inside the build provider."
+        },
+        {
+          "from": "desktop-builder",
+          "to": "app-db",
+          "label": "record build",
+          "payload": "version, artifact URLs, checksum, channel",
+          "notes": "The app stores release metadata so admins can audit the shipped build."
+        }
+      ]
+    }
+  ]
+}

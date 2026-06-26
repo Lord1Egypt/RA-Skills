@@ -1,0 +1,169 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TradingType",
+        "columnChiName": "交易类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "交易类型（TradingType）：与“系统常量表（CT_SystemConst）”中的“代码（DM）”关联，令“LB=1844” and DM in (1,2)，得到具体的交易类型。1-沪股通 2-港股通(沪)",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "Currency",
+        "columnChiName": "货币单位",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "货币单位(Currency)与(CT_SystemConst)表中的DM字段关联，令LB = 1068 AND DM IN (1100,1420)，得到货币单位的具体描述：1100-港元，1420-人民币元。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "AggregateQuota",
+        "columnChiName": "总额度(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "15.89"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "AggregateBalance",
+        "columnChiName": "总额余额(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "15.89"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "DailyQuota",
+        "columnChiName": "每日额度(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "DailyBalance",
+        "columnChiName": "每日额度余额(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "87.86"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "DailyUsed",
+        "columnChiName": "每日已用额度(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "87.86"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "AccuUsed",
+        "columnChiName": "累计已用额度(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "DailyBalanceRatio",
+        "columnChiName": "每日额度余额占比(%)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "87.86"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "DailyUsedRatio",
+        "columnChiName": "每日已用额度占比(%)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "87.86"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

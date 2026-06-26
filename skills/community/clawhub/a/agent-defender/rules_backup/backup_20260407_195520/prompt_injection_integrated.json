@@ -1,0 +1,39 @@
+{
+  "attack_type": "prompt_injection",
+  "generated_at": "2026-03-23T07:34:35.404581",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-Prompt_Injection_Direct",
+      "name": "检测直接提示词注入攻击",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测直接提示词注入攻击",
+      "author": "security-sample-generator",
+      "tags": [
+        "prompt_injection",
+        "T1566.004"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$ignore_prev = /ignore previous|ignore all previous| disregard previous/i",
+          "$new_instruction = /new instruction|new instructions|following instruction/i",
+          "$system_prompt = /system prompt|system message|original instruction/i",
+          "$output_secret = /output.*secret|reveal.*secret|print.*secret/i",
+          "$bypass_limit = /bypass.*limit|without restriction|no restriction/i"
+        ],
+        "condition": "($ignore_prev or $new_instruction) and ($system_prompt or $output_secret or $bypass_limit)",
+        "raw_rule": "// YARA 规则：提示词注入检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：直接注入、角色扮演、分隔符攻击、上下文溢出\n\nrule Prompt_Injection_Direct {\n    meta:\n        description = \"检测直接提示词注入攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $ignore_prev = /ignore previous|ignore all previous| disregard previous/i\n        $new_instruction = /new instruction|new instructions|following instruction/i\n        $system_prompt = /system prompt|system message|original instruction/i\n        $output_secret = /output.*secret|reveal.*secret|print.*secret/i\n        $bypass_limit = /bypass.*limit|without restriction|no restriction/i\n    \n    condition:\n        ($ignore_prev or $new_instruction) and ($system_prompt or $output_secret or $bypass_limit)\n}\n\nrule Prompt_Injection_Roleplay {\n    meta:\n        description = \"检测角色扮演提示词注入\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $role_play = /you are now|act as|pretend to be|role play/i\n        $debug_mode = /debug mode|developer mode|god mode/i\n        $no_restriction = /no ethical|no safety|no restriction|without limit/i\n        $unlimited = /unlimited|unrestricted|uncensored/i\n        $jailbreak = /jailbreak|unlock|free from constraint/i\n    \n    condition:\n        ($role_play or $debug_mode) and ($no_restriction or $unlimited or $jailbreak)\n}\n\nrule Prompt_Injection_Separator {\n    meta:\n        description = \"检测分隔符提示词注入攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $separator = /---+|===+|\"\"\"|'''|\\[\\[|\\]\\]|<\\|end\\|>/\n        $context_break = /end of context|start new|from now on/i\n        $instruction_inject = /system instruction|admin command|override/i\n        $priority = /priority|highest priority|must follow/i\n    \n    condition:\n        $separator and ($context_break or $instruction_inject or $priority)\n}\n\nrule Prompt_Injection_Data_Leak {\n    meta:\n        description = \"检测数据泄露提示词注入\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $api_key = /api key|apikey|api_key|API_KEY/i\n        $token = /token|bearer|auth_token/i\n        $password = /password|passwd|pwd/i\n        $credential = /credential|secret|private key/i\n        $training_data = /training data|training set|weights/i\n        $config = /config|configuration|settings/i\n    \n    condition:\n        ($api_key or $token or $password or $credential or $training_data) and $output_secret\n}\n\nrule Prompt_Injection_Context {\n    meta:\n        description = \"检测上下文溢出攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $context_overflow = /repeat above|summarize above|output everything/i\n        $context_window = /context window|token limit|memory limit/i\n        $full_output = /full output|complete output|all content/i\n        $from_beginning = /from beginning|from start|from the very first/i\n    \n    condition:\n        ($context_overflow or $context_window) and ($full_output or $from_beginning)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Prompt_Injection_Direct",
+        "converted_at": "2026-03-23T07:34:35.392182",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/prompt_injection.yar",
+        "mitre_id": "T1566.004",
+        "attack_type": "prompt_injection"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_create_module",
+		"description": "Create workflow module.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Workflow module ID (use camelCase naming, unique within the system, must not duplicate existing modules)."
+				},
+				"name": {
+					"type": "string",
+					"description": "Name of the workflow module."
+				},
+				"parentId": {
+					"type": "string",
+					"description": "Module group ID, the tool _query_app_define_designer can get the module group definition list"
+				}
+			},
+			"required": ["id", "name"]
+		}
+	}
+}

@@ -1,0 +1,3 @@
+**设备信息查询工具 dev_info**
+   - 工具调用格式：<tool_call>{"tool_name":"dev_info"}</tool_call>
+   - 无参数。

@@ -1,35 +1,117 @@
 ---
-name: "rollinggo-hotel"
-description: "Hotel search and pricing via the RollingGo CLI. Use when the user wants to search hotels by destination, filter by date/star/budget/tags/distance, inspect ho..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rollinggo-hotel"
-sourceUrl: "https://clawhub.ai/skills/rollinggo-hotel"
+name: rollinggo-searchhotel
+description: Hotel search and pricing via the RollingGo CLI. Use when the user wants to search hotels by destination, filter by date/star/budget/tags/distance, inspect hotel detail and room pricing, or look up hotel tags. Trigger phrases — "search hotels", "find hotels near", "hotel detail", "hotel pricing", "hotel tags", "rollinggo".
+homepage: https://mcp.agentichotel.cn
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🏨",
+      "skillKey": "rollinggo-searchhotel",
+      "primaryEnv": "RollingGo_API_KEY",
+      "requires": {
+        "anyBins": ["rollinggo", "npx", "node", "uvx", "uv"],
+        "env": ["RollingGo_API_KEY"]
+      },
+      "install": [
+        {
+          "id": "node",
+          "kind": "node",
+          "package": "rollinggo@latest",
+          "bins": ["rollinggo"],
+          "label": "Install rollinggo (npm)"
+        }
+      ]
+    }
+  }
 ---
 
-# rollinggo-hotel
+# RollingGo Hotel CLI
 
-> Hotel search and pricing via the RollingGo CLI. Use when the user wants to search hotels by destination, filter by date/star/budget/tags/distance, inspect ho...
+## When to Use
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rollinggo-hotel`
-- **Source URL:** [https://clawhub.ai/skills/rollinggo-hotel](https://clawhub.ai/skills/rollinggo-hotel)
+✅ **Use this skill when:**
+- **Searching Candidates:** User wants to find hotels near a specific city, landmark, or address (e.g., "Find hotels near Tokyo Disneyland").
+- **Complex Filtering:** User needs to narrow down options using natural language queries combined with exact dates, guest count, star ratings, budget limits, or distance radius.
+- **Tag & Brand Matching:** User wants to find hotels with specific attributes (e.g., "family friendly", "breakfast included", "Marriott") by first checking the tag dictionary to build exact filters.
+- **Deep Dive & Pricing:** User wants to inspect detailed room plans, real-time pricing, cancellation policies, or availability for a specific hotel ID.
+- **Comparison & Evaluation:** User wants to compare multiple candidate hotels based on returning structured data and current rates.
+- **Hotel Booking:** User is ready to select a room and book a hotel. The returned booking URLs and detail page links can be provided to guide the user to complete their reservation.
 
-## Overview
+❌ **Don't use this skill when:**
+- User asks about non-hotel travel booking (flights, trains, transfers, car rentals).
 
+## API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+Resolution order: `--api-key` flag → `RollingGo_API_KEY` env var.
+
+No key yet? Apply at: https://mcp.agentichotel.cn/apply
+
+## Runtime
+
+Default to [references/rollinggo-npx.md](references/rollinggo-npx.md); switch to [references/rollinggo-uv.md](references/rollinggo-uv.md) if the user specifies `uv`/`uvx`/Python. For API key persistence see [references/claw-host-env.md](references/claw-host-env.md).
+
+## Version Freshness (Always Latest)
+
+Default policy for this skill: use the newest release on every run.
+
+- **npm/npx:** `npx --yes --package rollinggo@latest rollinggo ...`
+- **uvx:** `uvx --refresh --from rollinggo@latest rollinggo ...`
+
+If using an installed command instead of temporary execution, upgrade first:
+
+- **npm global:** `npm install -g rollinggo@latest`
+- **uv tool:** `uv tool upgrade rollinggo@latest`
+
+## Primary Workflow
+
+Run these steps in order unless the user is already at a later step.
+
+1. Clarify: destination, dates, nights, occupancy, budget, stars, tags, distance
+2. If tag filters needed → run `hotel-tags` first to get valid tag strings
+3. Run `search-hotels` → parse JSON → extract `hotelId`
+4. Run `hotel-detail --hotel-id <id>` for room plans and pricing
+5. If results are weak → loosen filters and retry
+
+## Commands Quick Reference
+
 ```bash
-hermes skills install clawhub/rollinggo-hotel
+# Discover tags
+rollinggo hotel-tags
+
+# Search hotels (minimum required flags)
+rollinggo search-hotels \
+  --origin-query "<user's natural language request>" \
+  --place "<destination>" \
+  --place-type "<value from --help>"
+
+# Hotel detail with pricing
+rollinggo hotel-detail \
+  --hotel-id <id> \
+  --check-in-date YYYY-MM-DD \
+  --check-out-date YYYY-MM-DD \
+  --adult-count 2 --room-count 1
+
+# Discover all flags
+rollinggo search-hotels --help
+rollinggo hotel-detail --help
 ```
+
+## Key Rules
+
+- `--place-type` must use exact values from `rollinggo search-hotels --help`
+- `--star-ratings` format: `min,max` e.g. `4.0,5.0`
+- `--format table` allowed **only** on `search-hotels`; rejected by `hotel-detail` and `hotel-tags`
+- `--child-count` must match the count of `--child-age` flags
+- `--check-out-date` must be later than `--check-in-date`
+- Prefer `--hotel-id` over `--name` whenever available
+
+## Output
+
+- stdout → result payload (JSON by default)
+- stderr → errors only
+- Exit `0` success · `1` HTTP/network failure · `2` CLI validation failure
+- Results include booking URLs and hotel detail page links for downstream use
+
+## Filter Loosening (when no results)
+
+Try in order: remove `--star-ratings` → increase `--size` → increase `--distance-in-meter` → remove tag filters → widen dates or budget

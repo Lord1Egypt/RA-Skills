@@ -1,0 +1,21 @@
+{
+  "name": "memory-referee",
+  "version": "0.1.0",
+  "description": "Memory hygiene and adjudication layer for OpenClaw agent workflows",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "tsx": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}

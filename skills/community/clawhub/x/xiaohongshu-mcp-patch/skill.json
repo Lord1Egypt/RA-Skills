@@ -1,0 +1,8 @@
+{
+  "name": "xiaohongshu-mcp-patch",
+  "version": "1.0.0",
+  "description": "小红书 MCP 部署补丁包 - 自动修复常见问题",
+  "author": "OpenClaw Community",
+  "tags": ["xiaohongshu", "mcp", "patch", "fix", "小红书", "部署"],
+  "homepage": "https://github.com/openclaw-community/xiaohongshu-mcp-patch"
+}

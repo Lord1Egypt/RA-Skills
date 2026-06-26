@@ -1,0 +1,27 @@
+{
+  "mode": "preview",
+  "haunt_id": 1,
+  "collateral": "ETH",
+  "traits": {
+    "energy": 50,
+    "aggressiveness": 50,
+    "spookiness": 50,
+    "brain": 50,
+    "eye_shape": 50,
+    "eye_color": 50
+  },
+  "wearables": {
+    "body": 56,
+    "face": 55,
+    "eyes": 57,
+    "head": 59,
+    "hand_left": 0,
+    "hand_right": 58,
+    "pet": 0,
+    "bg": 0
+  },
+  "output": {
+    "slug": "my-svg-gotchi",
+    "dir": "./Renders"
+  }
+}

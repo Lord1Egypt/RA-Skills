@@ -1,0 +1,11 @@
+{
+  "eval_id": 4,
+  "eval_name": "red-header-dispatch",
+  "prompt": "Generate a red-header official dispatch document",
+  "assertions": [
+    {"name": "output_file_exists", "description": "Generated .docx file exists"},
+    {"name": "valid_docx", "description": "Output is a valid .docx file"},
+    {"name": "headings_present", "description": "Headings rendered correctly"},
+    {"name": "dispatch_red_h1", "description": "H1 uses red color (#FF0000) in styles"}
+  ]
+}

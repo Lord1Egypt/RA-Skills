@@ -1,35 +1,138 @@
 ---
-name: "icp to article generation"
-description: "从产品关键词到批量英文文章生成的完整闭环，涵盖信息采集、ICP生成、英文标题推荐和文章创作；当用户需要基于产品特点批量生产英文营销文章、系统化内容创作或快速生成系列内容时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/icptoarticlegeneration"
-sourceUrl: "https://clawhub.ai/skills/icptoarticlegeneration"
+name: article-creation-workflow
+description: 从产品关键词到批量英文文章生成的完整闭环，涵盖信息采集、ICP生成、英文标题推荐和文章创作；当用户需要基于产品特点批量生产英文营销文章、系统化内容创作或快速生成系列内容时使用
 ---
 
-# icp to article generation
+# 文章生成闭环工作流
 
-> 从产品关键词到批量英文文章生成的完整闭环，涵盖信息采集、ICP生成、英文标题推荐和文章创作；当用户需要基于产品特点批量生产英文营销文章、系统化内容创作或快速生成系列内容时使用
+## 任务目标
+- 本Skill用于：从产品关键词和企业信息出发，批量生成英文营销文章
+- 能力包含：信息采集、ICP自动生成、英文标题推荐、批量文章创作
+- 触发条件：用户需要批量创作英文营销文章、快速生成系列内容、或系统化生产针对特定受众的内容
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/icptoarticlegeneration`
-- **Source URL:** [https://clawhub.ai/skills/icptoarticlegeneration](https://clawhub.ai/skills/icptoarticlegeneration)
+## 操作步骤
 
-## Overview
+### 第一步：采集产品关键词
+- **执行方式**：智能体引导用户输入
+- **操作要点**：
+  1. 询问用户产品/服务的核心关键词（3-5个主题类关键词）
+  2. 引导用户说明关键词的含义和应用场景
+  3. **关键词要求**：
+     - 关键词必须为英文，或可翻译为英文
+     - 关键词将用于标题生成，需确保准确性和专业性
+     - 建议提供关键词的英文原文或标准翻译
+  4. 示例提问：
+     - "What are the core keywords for your product/service?"
+     - "Which keywords do users typically search for when looking for your product?"
+     - "What core concepts do you want to highlight in your articles?"
+- **输出**：英文产品关键词列表及说明
 
+### 第二步：采集企业信息
+- **执行方式**：智能体引导用户输入
+- **操作要点**：
+  1. 询问企业所属行业和主营业务
+  2. 了解企业的核心产品/服务及其价值主张
+  3. 询问企业的目标市场定位（B2B/B2C、高端/大众等）
+  4. 可选：了解企业的差异化优势和品牌调性
+- **输出**：企业信息摘要（行业、业务、定位、优势）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/icptoarticlegeneration
-```
+### 第三步：生成理想客户画像(ICP)
+- **执行方式**：智能体基于前两步信息自动生成
+- **操作要点**：
+  1. 结合产品关键词和企业信息，推导目标客户特征
+  2. 参照 `references/icp-framework.md` 完善画像各维度
+  3. 重点识别：
+     - 目标客户的基本特征（行业、规模、职位等）
+     - 核心痛点（基于产品关键词推导客户面临的问题）
+     - 购买动机和决策因素
+     - 内容偏好和语言风格
+  4. 输出完整ICP供用户确认，如有必要可调整优化
+- **输出**：使用 `assets/icp-template.md` 生成完整的ICP文档
+
+### 第四步：推荐文章标题（英文）
+- **执行方式**：智能体基于ICP痛点生成英文标题列表
+- **操作要点**：
+  1. 提取ICP中的核心痛点（3-5个最紧迫的问题）
+  2. **标题必须满足两个条件**：
+     - **必须为英文**
+     - **必须包含至少一个第一步输入的核心关键词**
+  3. 结合产品关键词，为每个痛点设计2-3个英文标题
+  4. 标题设计遵循：
+     - 明确受众：让目标客户一眼识别"这是给我的"
+     - 痛点切入：直接回应客户面临的问题
+     - 价值承诺：清晰说明文章能带来什么好处
+     - 关键词嵌入：自然融入核心关键词
+  5. 参照 `references/title-generation-guide.md` 的方法论
+  6. 输出8-15个英文标题供用户选择
+- **输出**：英文标题推荐列表（标注每个标题包含的关键词、对应痛点和文章类型）
+
+### 第五步：批量生成英文文章
+- **执行方式**：智能体根据用户选择批量创作英文文章
+- **操作要点**：
+  1. 询问用户选择方式：
+     - **全部生成**：为所有推荐标题生成完整英文文章
+     - **部分生成**：用户指定3-5个标题生成英文文章
+  2. 对于每个选定的标题：
+     - 设计文章结构（参照 `references/article-structures.md`）
+     - **全部内容使用英文创作**
+     - 基于ICP的语言风格创作内容
+     - 融入产品关键词和企业价值主张
+     - 添加明确的英文行动召唤(CTA)
+  3. 每篇文章独立成文，逻辑完整
+  4. 可选：生成后对照 `references/quality-standards.md` 自检
+- **输出**：完整英文文章集合（每篇文章独立保存）
+
+## 资源索引
+- **ICP方法论**：见 [references/icp-framework.md](references/icp-framework.md)（何时读取：生成或完善客户画像时）
+- **标题生成指南**：见 [references/title-generation-guide.md](references/title-generation-guide.md)（何时读取：基于ICP推荐英文标题时）
+- **文章结构模板**：见 [references/article-structures.md](references/article-structures.md)（何时读取：创作文章时选择合适结构）
+- **质量标准**：见 [references/quality-standards.md](references/quality-standards.md)（何时读取：检查文章质量时）
+- **ICP模板**：见 [assets/icp-template.md](assets/icp-template.md)（直接用于：记录客户画像信息）
+- **文章大纲模板**：见 [assets/article-outline-template.md](assets/article-outline-template.md)（直接用于：输出文章结构框架）
+
+## 典型使用场景
+
+### 场景一：新产品上市，批量生产英文营销内容
+- 用户输入新产品英文关键词和企业信息
+- 自动生成ICP并推导痛点
+- 批量生成10-15篇英文文章快速占领内容阵地
+
+### 场景二：已有ICP，快速生成系列英文文章
+- 用户已明确目标客户画像
+- 跳过ICP生成，直接推荐英文标题
+- 选择部分标题生成针对性英文文章
+
+### 场景三：特定主题英文内容生产
+- 用户指定特定产品英文关键词
+- 围绕关键词展开ICP推导
+- 生成主题聚焦的系列英文文章
+
+## 流程优化建议
+
+### 快速模式
+如果用户已明确目标客户：
+- 简化第一步和第二步，快速确认关键信息
+- 重点执行第三步到第五步
+- 适合快速产出英文内容
+
+### 深度模式
+如果用户需要精准定位：
+- 详细采集产品英文关键词和企业信息
+- 深入推导ICP各维度
+- 基于ICP精细化设计英文标题和内容
+- 适合高价值英文内容生产
+
+### 迭代模式
+- 先生成少量英文文章验证效果
+- 根据反馈调整ICP
+- 持续优化英文标题和内容方向
+- 适合长期英文内容体系建设
+
+## 注意事项
+- **语言要求**：所有标题和文章内容必须使用英文
+- **关键词必须性**：每个推荐标题必须包含至少一个第一步输入的核心关键词
+- **渐进式采集**：分步引导用户输入，避免一次性要求过多信息
+- **ICP确认节点**：生成ICP后必须让用户确认，确保后续方向准确
+- **标题选择灵活**：允许用户调整推荐标题或提出新的标题方向
+- **批量生成质量控制**：批量生成时确保每篇英文文章独立完整，避免模板化痕迹
+- **充分利用智能体能力**：全流程由智能体完成，无需额外脚本

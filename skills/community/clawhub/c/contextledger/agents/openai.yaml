@@ -1,0 +1,4 @@
+interface:
+  display_name: "知识账本"
+  short_description: "证据优先的知识审计卡，标记来源、时效、冲突与推断路径"
+  default_prompt: "Use $contextledger to audit my notes, docs, research, or connector outputs, show which sources support each conclusion, which cited source is oldest or stale, where sources conflict, what is evidence versus inference, and answer in Chinese."

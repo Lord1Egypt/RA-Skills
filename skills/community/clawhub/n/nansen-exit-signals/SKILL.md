@@ -1,35 +1,39 @@
 ---
-name: "Nansen Exit Signals"
+name: nansen-exit-signals
 description: "Is smart money exiting a token I hold? Net flow direction, seller breakdown by label, and recent SM trades."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-exit-signals"
-sourceUrl: "https://clawhub.ai/skills/nansen-exit-signals"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# Nansen Exit Signals
+# Exit Signal
 
-> Is smart money exiting a token I hold? Net flow direction, seller breakdown by label, and recent SM trades.
+**Answers:** "Is smart money exiting a token I hold? Should I be worried?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-exit-signals`
-- **Source URL:** [https://clawhub.ai/skills/nansen-exit-signals](https://clawhub.ai/skills/nansen-exit-signals)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-exit-signals
+TOKEN=<address> CHAIN=ethereum
+
+nansen research token flow-intelligence --token $TOKEN --chain $CHAIN
+# → net_flow_usd per label: smart_trader, whale, exchange, fresh_wallets (negative = selling)
+
+nansen research token who-bought-sold --token $TOKEN --chain $CHAIN --limit 20
+# → address, address_label, bought/sold_volume_usd, trade_volume_usd
+
+nansen research smart-money netflow --chain $CHAIN --limit 10
+# → token_symbol, net_flow_1h/24h/7d/30d_usd, trader_count
+
+nansen research token dex-trades --token $TOKEN --chain $CHAIN --limit 20
+# → block_timestamp, action (BUY/SELL), trader_address_label, estimated_value_usd
 ```
+
+Red flag: negative smart_trader_net_flow_usd + Smart Trader labels in who-bought-sold sellers = exit signal.

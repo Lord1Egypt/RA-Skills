@@ -1,35 +1,55 @@
 ---
-name: "获取职位信息并总结"
-description: "用于抓取并总结指定城市（如上海、北京）在特定领域（如人工智能、大模型、算法）的岗位信息。当用户询问某地的某类职位招聘情况时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/extract-boss-job"
-sourceUrl: "https://clawhub.ai/skills/extract-boss-job"
+name: ai-job-crawler
+description: 用于抓取并总结指定城市（如上海、北京）在特定领域（如人工智能、大模型、算法）的岗位信息。当用户询问某地的某类职位招聘情况时触发。
 ---
 
-# 获取职位信息并总结
-
-> 用于抓取并总结指定城市（如上海、北京）在特定领域（如人工智能、大模型、算法）的岗位信息。当用户询问某地的某类职位招聘情况时触发。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/extract-boss-job`
-- **Source URL:** [https://clawhub.ai/skills/extract-boss-job](https://clawhub.ai/skills/extract-boss-job)
+# AI岗位抓取与汇总 Skill（智联 / 猎聘 / BOSS）
 
 ## Overview
 
+该 Skill 用于根据用户指定的城市，在主流招聘平台中检索**人工智能相关岗位**，并将结果保存为本地表格文件（Excel/CSV），同时**重点识别并标记今日新增职位**，便于用户优先投递。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/extract-boss-job
-```
+支持平台：
+* BOSS直聘
+
+输出为结构化数据，适用于求职跟踪、筛选与分析。
+
+---
+
+## Instructions
+
+严格按照以下步骤执行：
+
+### 前置要求：
+首先运行类似：
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="D:\chrome_debug"，你可能需要自己寻找用户chrome.exe的位置
+同时要求用户先登录boss直聘账号，否则会爬取信息失败。
+需要检查用户是否有python环境，python路径，以及是否已经安装对应的python三方库（参考boss.py下的三方库），如果没有，则自行安装python环境以及对应的三方库。
+
+### 1. 运行boss.py（爬取boss文件的脚本）
+检查文件夹下是否已经存在提取好的csv，如果有，则不需要运行脚本了。
+使用python运行boss.py。你可能需要修改检索关键词等参数。
+城市参数信息：北京101010100；上海101020100 ；杭州101210100；广州101280100；深圳101280600；成都101270100；武汉101200100
+该脚本会爬取boss直聘的前20页大模型相关的岗位，并且保存为csv。 
+注意你应该修改脚本，使他的csv能保存到你的工作空间。保存应该体现出提取的日期。
+
+### 2. 分析
+你应该仔细分析爬取出的csv数据。不限于以下的内容：
+你应该分析今天的职位情况，如薪资范围、是否存在“降薪趋势”、公司信息、公司类型等。
+你应该比较今天的新增职位，并且说明和上一次采集的变化。如职位增减，薪资增减等。
+忽略其中公司名称不明确（如某互联网公司、某小型公司）的公司。
+你应该关注岗位描述的关键词，统计方向的变化，是否有新趋势等。
+你应该考虑作为求职者，最关注什么信息，如投递建议，新增了哪些岗位，不要只关注高薪工作，更多关注新增的20-50k岗位，还有应届生可以投递的机会。
+你应该从其他文件夹中读取上一次采集的信息。
+注意：必须只在相同的城市进行比较。如果没有则不比较。
+
+### 3. 生成一段话
+将2中的结果总结成一段话。将这段话保存为一个txt文件，你应该考虑文字的长度和格式。必须包含今日新增亮点部分。
+然后生成一个html网页文件，你可以参考文件夹中已有的html。
+你应该将生成的文件保存到日期文件夹下。
+
+### 4.转换为图片结构（默认不开启，除非用户在输入时说明）
+将这个网页生成几张图片html，你可以参考昨日生成的图片和html
+
+## 成功判定
+当成功生成包含 AI 岗位数据的本地表格文件，并且成功输出总结、网页时，即视为执行成功。

@@ -1,35 +1,15 @@
 ---
-name: "Env Health Check"
-description: "Inspect environment variables, critical directories, and write permissions, then produce a health report. Use when validating deployment readiness, local run..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neo1307-env-health-check"
-sourceUrl: "https://clawhub.ai/skills/neo1307-env-health-check"
+name: env-health-check
+description: Inspect environment variables, critical directories, and write permissions, then produce a health report. Use when validating deployment readiness, local runtime setup, workspace health, or missing env/config prerequisites.
 ---
 
 # Env Health Check
 
-> Inspect environment variables, critical directories, and write permissions, then produce a health report. Use when validating deployment readiness, local run...
+Inspect runtime prerequisites and emit a compact health report.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neo1307-env-health-check`
-- **Source URL:** [https://clawhub.ai/skills/neo1307-env-health-check](https://clawhub.ai/skills/neo1307-env-health-check)
+## Workflow
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/neo1307-env-health-check
-```
+1. Pass required env var names with `--env` flags.
+2. Pass critical directories with `--dir` flags.
+3. Run `index.js` and review OK/WARN/FAIL output.
+4. Treat missing write access as a blocker unless the path is intentionally read-only.

@@ -1,35 +1,42 @@
 ---
-name: "Wifi Qr"
+name: wifi-qr
 description: "Generate QR code for Wi-Fi credentials"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wifi-qr"
-sourceUrl: "https://clawhub.ai/skills/wifi-qr"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📶",
+        "requires": { "bins": ["qrencode"] },
+        "install":
+          [
+            {
+              "id": "dnf",
+              "kind": "dnf",
+              "package": "qrencode",
+              "bins": ["qrencode"],
+              "label": "Install via dnf",
+            },
+          ],
+      },
+  }
 ---
 
-# Wifi Qr
+# Wi-Fi QR
 
-> Generate QR code for Wi-Fi credentials
+Generate a QR code for Wi-Fi credentials. Scan the QR code with a phone to instantly connect to the network without typing the password.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wifi-qr`
-- **Source URL:** [https://clawhub.ai/skills/wifi-qr](https://clawhub.ai/skills/wifi-qr)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/wifi-qr
+# Generate a QR code for a Wi-Fi network (defaults to WPA)
+wifi-qr "MyNetwork" "mypassword"
+
+# Specify the security type explicitly
+wifi-qr "MyNetwork" "mypassword" --type WPA
+```
+
+## Install
+
+```bash
+sudo dnf install qrencode
 ```

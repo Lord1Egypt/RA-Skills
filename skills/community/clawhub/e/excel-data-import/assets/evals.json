@@ -1,0 +1,40 @@
+{
+  "skill_name": "excel-data-import",
+  "description": "Excel 数据导入技能的测试用例集，覆盖配置解析、数据映射和批量导入功能",
+  "version": "1.0.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "config-parsing",
+      "description": "测试 YAML 配置文件解析功能",
+      "prompt": "解析以下 YAML 配置文件并说明导入任务的关键参数：\n```yaml\ntask_name: \"人员信息导入\"\nsource:\n  file_path: \"data/source.xlsx\"\n  sheet_name: \"Sheet1\"\n  key_field: \"身份证号\"\ntarget:\n  file_path: \"templates/template.xlsx\"\n  output_path: \"output/result.xlsx\"\n```",
+      "expected_output": "应正确解析出以下关键参数：\n1. 任务名称：人员信息导入\n2. 源文件：data/source.xlsx\n3. 目标模板：templates/template.xlsx\n4. 主键字段：身份证号",
+      "expected_tools": [
+        "Read"
+      ],
+      "success_criteria": "正确识别所有配置参数，包括源文件、目标文件和主键字段"
+    },
+    {
+      "id": 2,
+      "name": "data-mapping",
+      "description": "测试数据映射规则的正确性",
+      "prompt": "根据以下映射规则，说明如何将源数据映射到目标字段：\n源字段：[姓名, 身份证号, 入职日期]\n目标字段：[员工姓名, 证件号码, 到职日期]",
+      "expected_output": "应识别字段映射关系：\n1. 姓名 -> 员工姓名\n2. 身份证号 -> 证件号码\n3. 入职日期 -> 到职日期",
+      "expected_tools": [
+        "Read"
+      ],
+      "success_criteria": "正确建立源字段到目标字段的映射关系"
+    },
+    {
+      "id": 3,
+      "name": "batch-import",
+      "description": "测试批量导入功能",
+      "prompt": "说明如何使用目录导入模式批量处理多个 Excel 文件",
+      "expected_output": "应说明：\n1. 配置目录导入模式\n2. 设置源文件目录路径\n3. 处理结果汇总\n4. 错误处理机制",
+      "expected_tools": [
+        "Read"
+      ],
+      "success_criteria": "正确描述批量导入的工作流程和配置方法"
+    }
+  ]
+}

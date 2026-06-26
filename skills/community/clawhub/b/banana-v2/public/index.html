@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="app.title">云羲AI绘图分影工具</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/win.css">
+    <link rel="stylesheet" href="/css/logo.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo" id="logo-btn" style="cursor: pointer;"></div>
+            <span class="title" data-i18n="app.title">云羲AI绘图分影工具</span>
+        </div>
+        <div class="nav-right">
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input" placeholder="搜索提示词..." data-i18n-placeholder="nav.searchPlaceholder">
+            </div>
+            <button class="nav-btn active icon icon-bianji" id="btn-editor" title="编辑器" data-i18n-title="nav.editor">
+       
+            </button>
+            <button class="nav-btn" id="btn-list" title="列表" data-i18n-title="nav.list" onclick="location.href='list.html'">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="5" x2="21" y2="5"></line>
+                    <line x1="4" y1="12" x2="21" y2="12"></line>
+                    <line x1="4" y1="19" x2="21" y2="19"></line>
+                </svg>
+            </button>
+            <!-- 语言选择 -->
+            <div class="lang-selector">
+                <button class="nav-btn lang-btn" id="btn-lang" title="语言" data-i18n-title="nav.language">
+                    <span class="lang-text" id="lang-text">中</span>
+                </button>
+                <div class="lang-menu" id="lang-menu">
+                    <!-- 语言选项由JavaScript动态生成 -->
+                </div>
+            </div>
+            <button class="nav-btn" id="btn-theme" title="主题切换" data-i18n-title="nav.theme">
+                <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button class="nav-btn" id="btn-settings" title="设置" data-i18n-title="nav.settings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </button>
+            <button class="nav-btn" id="btn-close" title="关闭服务" data-i18n-title="nav.close">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <div class="gallery" id="gallery">
+            <!-- 瀑布流图片列表 -->
+        </div>
+    </main>
+
+    <!-- 编辑器 -->
+    <div class="editor" id="editor">
+        <div class="editor-upload" id="editor-upload" style="display: none;">
+            <!-- 上传的图片列表 -->
+        </div>
+        <div class="editor-main">
+            <button class="upload-btn icon icon-image-up" style="font-size: 24px;color: #666;" id="upload-btn" title="上传图片" data-i18n-title="editor.upload">
+  
+            </button>
+            <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+            <div class="editor-input" id="editor-input" contenteditable="plaintext-only" data-i18n-placeholder="editor.placeholder"></div>
+        </div>
+        <div class="editor-controls">
+            <div class="param-selector">
+                <button class="param-btn" id="model-btn">
+                    <span class="param-icon">🍌</span>
+                    <span class="param-text">Nano Banana Pro</span>
+                </button>
+                <div class="param-menu" id="model-menu"></div>
+            </div>
+            <div class="param-selector" id="size-selector">
+                <button class="param-btn" id="size-btn">
+                    <div class="ratio-icon"><div class="ratio-box"></div></div>
+                    <span class="param-text">1:1 方形</span>
+                </button>
+                <div class="param-menu" id="size-menu"></div>
+            </div>
+            <div class="param-selector" id="quality-selector">
+                <button class="param-btn" id="quality-btn">
+                 <icon class="quality-icon icon icon-fenbianshuai"></icon>
+         
+                    <span class="param-text">2K (2048px)</span>
+                </button>
+                <div class="param-menu" id="quality-menu"></div>
+            </div>
+            <div class="param-selector" id="cut-selector">
+                <button class="param-btn" id="cut-btn">
+                    <div class="cut-icon"><div class="cut-box single"></div></div>
+                    <span class="param-text">不切割</span>
+                </button>
+                <div class="param-menu" id="cut-menu"></div>
+            </div>
+            <button class="ai-prompt-btn icon icon-AI" id="ai-prompt-btn" title="AI生成提示词" data-i18n-title="editor.aiPrompt">
+     
+            </button>
+            <button class="submit-btn" id="submit-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 图片查看器 -->
+    <div class="viewer" id="viewer" style="display: none;">
+        <button class="viewer-close icon icon-close-fill" id="viewer-close"></button>
+        <div class="viewer-content">
+            <div class="viewer-actions-left">
+                <button class="viewer-action-btn" id="action-info" title="信息" data-i18n-title="viewer.info">ℹ️</button>
+                <button class="viewer-action-btn" id="action-folder" title="打开文件夹" data-i18n-title="viewer.openFolder">📁</button>
+                <button class="viewer-action-btn icon icon-chuangzuo1" id="action-edit" title="编辑" data-i18n-title="viewer.edit"></button>
+            </div>
+            <div class="viewer-main-area">
+                <div class="viewer-image-container">
+                    <img class="viewer-image" id="viewer-image" src="" alt="">
+                </div>
+            </div>
+            <div class="viewer-cuts" id="viewer-cuts">
+                <!-- 切割图列表 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 通知容器 -->
+    <div id="toast-container"></div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/win.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

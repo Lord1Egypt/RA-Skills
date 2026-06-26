@@ -1,0 +1,25 @@
+# ============================================================
+# Binance Trade Hunter 配置文件
+# ============================================================
+
+# Binance API (必填)
+# ⚠️ 强烈建议使用子账户的 API Key，保护主账户资金安全
+binance:
+  api_key: "YOUR_API_KEY"
+  private_key_path: "PATH_TO_PRIVATE_KEY"
+  key_type: "Ed25519"
+
+# Telegram 推送 (可选)
+# 不填则自动使用当前 OpenClaw 对话的 TG Bot 发送通知
+# 如需发送到其他 Bot 或对话，在此手动指定
+# telegram:
+#   bot_token: "YOUR_BOT_TOKEN"
+#   chat_id: "YOUR_CHAT_ID"
+
+# 分析器配置
+analyzer:
+  interval_seconds: 3600
+
+# 交易配置
+trading:
+  whitelist: ["BTC", "ETH"]

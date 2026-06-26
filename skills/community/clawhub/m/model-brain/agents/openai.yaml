@@ -1,0 +1,3 @@
+display_name: Model Brain
+short_description: Route each message to the right Bankr model or zero-LLM path.
+default_prompt: Use Model Brain to choose the most appropriate Bankr model or zero-LLM workflow for each incoming message based on cost, risk, and task type.

@@ -1,35 +1,77 @@
 ---
-name: "Awscli"
+name: awscli
 description: "Manage AWS Lightsail and EC2 instances using AWS CLI"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/awscli"
-sourceUrl: "https://clawhub.ai/skills/awscli"
+version: 1.0.0
+author: RajithSanjaya
 ---
 
-# Awscli
+# AWS CLI Control Skill
 
-> Manage AWS Lightsail and EC2 instances using AWS CLI
+This skill manages AWS Lightsail instances.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/awscli`
-- **Source URL:** [https://clawhub.ai/skills/awscli](https://clawhub.ai/skills/awscli)
+## Requirements
 
-## Overview
+- AWS CLI installed on host
+- AWS credentials configured (IAM user or role)
+- Environment variables:
 
+  - AWS_REGION
+  - ALLOWED_INSTANCES
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/awscli
-```
+  ## Environment Variables
+
+This skill requires the following environment variables:
+
+- AWS_REGION (e.g., ap-southeast-1)
+- ALLOWED_INSTANCES (comma-separated list)
+
+Example:
+
+AWS_REGION=ap-southeast-1
+ALLOWED_INSTANCES=Ubuntu,Binami
+
+## Available Operations
+
+### 1. List Instances
+
+action: "list"
+
+Example:
+{
+"action": "list"
+}
+
+---
+
+### 2. Reboot Instance
+
+action: "reboot"  
+instance: "<instance-name>"
+
+Example:
+{
+"action": "reboot",
+"instance": "Ubuntu-1"
+}
+
+---
+
+### 3. Start Instance
+
+action: "start"  
+instance: "<instance-name>"
+
+---
+
+### 4. Stop Instance
+
+action: "stop"  
+instance: "<instance-name>"
+
+---
+
+## Notes
+
+- Only use structured JSON input.
+- Do NOT generate AWS CLI commands.
+- Instance names must exactly match existing Lightsail instances.

@@ -1,35 +1,39 @@
 ---
-name: "flags"
-description: "Indexed by skills.sh from facebook/react"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "facebook"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/facebook/react/flags"
-sourceUrl: "https://skills.sh/facebook/react/flags"
+name: flags
+description: Use when you need to check feature flag states, compare channels, or debug why a feature behaves differently across release channels.
 ---
 
-# flags
+# Feature Flags
 
-> Indexed by skills.sh from facebook/react
+Arguments:
+- $ARGUMENTS: Optional flags
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** facebook
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/facebook/react/flags`
-- **Source URL:** [https://skills.sh/facebook/react/flags](https://skills.sh/facebook/react/flags)
+## Options
 
-## Overview
+| Option | Purpose |
+|--------|---------|
+| (none) | Show all flags across all channels |
+| `--diff <ch1> <ch2>` | Compare flags between channels |
+| `--cleanup` | Show flags grouped by cleanup status |
+| `--csv` | Output in CSV format |
 
+## Channels
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/facebook/react/flags
-```
+- `www`, `www-modern` - Meta internal
+- `canary`, `next`, `experimental` - OSS channels
+- `rn`, `rn-fb`, `rn-next` - React Native
+
+## Legend
+
+✅ enabled, ❌ disabled, 🧪 `__VARIANT__`, 📊 profiling-only
+
+## Instructions
+
+1. Run `yarn flags $ARGUMENTS`
+2. Explain the output to the user
+3. For --diff, highlight meaningful differences
+
+## Common Mistakes
+
+- **Forgetting `__VARIANT__` flags** - These are tested both ways in www; check both variants
+- **Comparing wrong channels** - Use `--diff` to see exact differences

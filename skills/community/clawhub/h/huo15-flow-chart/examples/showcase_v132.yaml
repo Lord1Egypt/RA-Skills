@@ -1,0 +1,49 @@
+type: flowchart
+title: CI/CD 流水线
+direction: TB
+
+# v1.3.2 新特性展示：
+# - :icon_name: 图标前缀
+# - semantic 语义边（success/warning/error/info）
+# - category 色系分组
+# - stadium 终端节点 / diamond 判断 / cylinder 数据节点
+
+groups:
+  - id: g_dev
+    label: 开发阶段
+    children: [n_start, commit, lint, unit]
+  - id: g_build
+    label: 构建 & 测试
+    children: [build, scan, integration]
+  - id: g_deploy
+    label: 发布
+    children: [stage_check, prod, rollback, n_end]
+
+nodes:
+  - { id: n_start, label: ":rocket: 开始", shape: stadium }
+  - { id: n_end,   label: ":check: 完成", shape: stadium }
+
+  - { id: commit,  label: ":git: 代码提交",          category: 1 }
+  - { id: lint,    label: ":tools: 代码规范检查",    category: 1 }
+  - { id: unit,    label: ":test: 单元测试",         category: 1 }
+
+  - { id: build,   label: ":build: 构建镜像",        category: 2 }
+  - { id: scan,    label: ":shield: 安全扫描",       category: 2 }
+  - { id: integration, label: ":test: 集成测试",     category: 2 }
+
+  - { id: stage_check, label: "Staging 通过？", shape: diamond }
+  - { id: prod,     label: ":deploy: 发布生产",      category: 3 }
+  - { id: rollback, label: ":alarm: 回滚",           category: 3 }
+
+edges:
+  - { from: n_start, to: commit,        semantic: info }
+  - { from: commit,  to: lint,          semantic: info }
+  - { from: lint,    to: unit,          semantic: success }
+  - { from: unit,    to: build,         semantic: success }
+  - { from: build,   to: scan,          semantic: info }
+  - { from: scan,    to: integration,   semantic: success }
+  - { from: integration, to: stage_check }
+  - { from: stage_check, to: prod,      semantic: success, label: "通过 ✓" }
+  - { from: stage_check, to: rollback,  semantic: error,   label: "失败 ✗" }
+  - { from: prod,    to: n_end,         semantic: success }
+  - { from: rollback, to: commit,       semantic: warning, label: "修复重来", kind: dashed }

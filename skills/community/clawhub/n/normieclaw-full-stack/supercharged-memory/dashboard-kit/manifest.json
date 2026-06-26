@@ -1,0 +1,32 @@
+{
+  "skill_id": "supercharged-memory",
+  "display_name": "Supercharged Memory",
+  "description": "Vector-powered memory system with semantic search, timeline, and topic clustering.",
+  "icon": "Brain",
+  "accent_color": "#38bdf8",
+  "sidebar": {
+    "route": "/memory",
+    "label": "Memory",
+    "icon": "Brain",
+    "children": [
+      { "label": "Browser", "route": "/memory" },
+      { "label": "Timeline", "route": "/memory/timeline", "icon": "Clock" },
+      { "label": "Topic Clusters", "route": "/memory/clusters", "icon": "Network" },
+      { "label": "Stats", "route": "/memory/stats", "icon": "BarChart3" }
+    ]
+  },
+  "database": {
+    "prefix": "mem",
+    "tables": [
+      { "name": "mem_memories", "description": "Stored memories with embeddings", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"content","type":"TEXT"},{"name":"category","type":"TEXT","default":"general"},{"name":"source_file","type":"TEXT"},{"name":"tags","type":"TEXT[]","default":"{}"},{"name":"importance","type":"NUMERIC(3,2)","default":0.5},{"name":"embedding","type":"VECTOR(1536)"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_mem_memories_user","columns":["user_id"]},{"name":"idx_mem_memories_category","columns":["user_id","category"]}] },
+      { "name": "mem_stats", "description": "Daily memory statistics", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"date","type":"DATE"},{"name":"total_memories","type":"INTEGER","default":0},{"name":"vector_count","type":"INTEGER","default":0},{"name":"categories_breakdown","type":"JSONB","default":"{}"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_mem_stats_user_date","columns":["user_id","date DESC"]}] }
+    ]
+  },
+  "widgets": [
+    { "id": "memory-count", "type": "stat", "title": "Total Memories", "description": "Memories stored in the vault", "size": "1x1" }
+  ],
+  "settings": [
+    { "key": "auto_categorize", "label": "Auto-Categorize", "type": "toggle", "default": true }
+  ],
+  "sync": { "mode": "json", "source_files": ["supercharged-memory/data/"] }
+}

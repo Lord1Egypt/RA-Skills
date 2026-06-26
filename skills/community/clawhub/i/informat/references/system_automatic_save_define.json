@@ -1,0 +1,868 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_automatic_save_define",
+		"description": "Save automation configuration. Used to create or update a complete automation workflow definition.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Automation ID (system unique). Must NOT be provided when creating; must be provided when editing."
+				},
+				"name": {
+					"type": "string",
+					"description": "Automation name."
+				},
+				"parentId": {
+					"type": "string",
+					"description": "Automation group ID."
+				},
+				"varList": {
+					"type": "array",
+					"description": "Variable definition list.",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"data": {
+								"type": "string"
+							},
+							"optional": {
+								"type": "boolean",
+								"default": false
+							}
+						},
+						"required": [
+							"id",
+							"name"
+						]
+					}
+				},
+				"funcSettingList": {
+					"type": "array",
+					"description": "Automation step list.",
+					"items": {
+						"$ref": "#/definitions/AutomaticFunction"
+					}
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"funcSettingList"
+			],
+			"additionalProperties": false,
+			"definitions": {
+				"FilterCondition": {
+					"type": "object",
+					"description": "Filter condition structure (recursive).",
+					"properties": {
+						"opt": {
+							"type": "string",
+							"description": "Condition connection method. Only one of the following values can be used: and (AND), or (OR). Default is and.",
+							"default": "and"
+						},
+						"conditionList": {
+							"type": "array",
+							"description": "Basic condition list.",
+							"items": {
+								"$ref": "#/definitions/Condition"
+							},
+							"default": []
+						},
+						"children": {
+							"type": "array",
+							"description": "Nested filter conditions.",
+							"items": {
+								"$ref": "#/definitions/FilterCondition"
+							},
+							"default": []
+						}
+					},
+					"required": [
+						"opt"
+					],
+					"additionalProperties": false
+				},
+				"Condition": {
+					"type": "object",
+					"description": "Basic filter condition item.",
+					"properties": {
+						"fieldId": {
+							"type": "string",
+							"description": "Field ID (TableField id)."
+						},
+						"opt": {
+							"type": "string",
+							"description": "Operator. Only one of the following values can be used (corresponding to Java OPT_* constants):\neq (equals), ne (not equals), gt (greater than), ge (greater than or equal), lt (less than), le (less than or equal),\ncontains (contains), notcontains (does not contain), startswith (starts with), endswith (ends with),\nisnull (is null), isnotnull (is not null), in (in list), notin (not in list),\nbetween (between range), notbetween (not between range),\nparentrooteq (root parent equals), parenteq (parent equals), parentcontains (parent contains),\nmultipleandquery (multi-value AND query), multipleorquery (multi-value OR query), intree (in tree)"
+						},
+						"value": {
+							"type": "string",
+							"description": "Comparison value expression. If an expression function is used, it must be defined in the Informat Expression SDK documentation and must not be fabricated. Therefore, you must first call the tool `_read_informat_expression_doc` to read the expression documentation before generating any function."
+						},
+						"func": {
+							"type": "string",
+							"description": "Field processing function name. Only one of the following values can be used:\nlength (length), nlevel (number of levels), nameOfAccount (account name),\nday (day), month (month), week (week), quarter (quarter), year (year),\ndayofyear (day of year), dayofmonth (day of month), weekofyear (week of year),\ndaytonow (days to now), weektonow (weeks to now), monthtonow (months to now),\nquartertonow (quarters to now), yeartonow (years to now),\nfmtday (formatted day), fmtweek (formatted week), fmtmonth (formatted month),\nfmtquarter (formatted quarter), fmtyear (formatted year),\nhour (hour), minute (minute), second (second)"
+						},
+						"var": {
+							"type": "boolean",
+							"description": "Whether it is an expression. Must be set to true, indicating the value is an expression. Default is true.",
+							"default": true
+						},
+						"ignoreNull": {
+							"type": "boolean",
+							"description": "Ignore null values.",
+							"default": false
+						}
+					},
+					"required": [
+						"fieldId",
+						"opt",
+						"var"
+					],
+					"additionalProperties": false
+				},
+				"FieldMappingItem": {
+					"type": "object",
+					"description": "Field assignment mapping.user for InsertRecord / UpdateRecord。",
+					"properties": {
+						"fieldId": {
+							"type": "string",
+							"description": "Target field ID."
+						},
+						"valueType": {
+							"type": "string",
+							"description": "Value type. Must be set to var, indicating the value is an expression."
+						},
+						"valueVar": {
+							"type": "string",
+							"description": "Expression value."
+						}
+					},
+					"required": [
+						"fieldId",
+						"valueType",
+						"valueVar"
+					],
+					"additionalProperties": false
+				},
+				"AutomaticFunction": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"name": {
+							"type": "string"
+						},
+						"remark": {
+							"type": "string"
+						},
+						"type": {
+							"type": "string",
+							"description": "Step type. [Strict constraint] Only one of the following values can be used; using any type not listed is strictly prohibited:\nLog (print log), Http (HTTP request), If (conditional branch; must include two child nodes: If.true and If.false),\nIf.true (true branch child node of If), If.false (false branch child node of If),\nForEach (loop iteration), Abort (terminate execution), Sleep (wait), Script (execute script),\nInsertRecord (insert record), UpdateRecord (update record), DeleteRecord (delete record),\nQueryRecordList (query record list), QueryRecordListCount (query record count),\nSetReturnValue (set return value), Notification (send notification),\nOutputDynamicForm (output dynamic form), OutputConfirm (output confirmation dialog), OutputUpload (file upload interaction)"
+						},
+						"disabled": {
+							"type": "boolean",
+							"default": false
+						},
+						"children": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/AutomaticFunction"
+							}
+						},
+						"retValues": {
+							"type": "array",
+							"description": "Output variable list of the current step. Subsequent steps can reference them using ${variableName}.",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string",
+										"description": "Variable ID (internal identifier, English)."
+									},
+									"name": {
+										"type": "string",
+										"description": "Variable display name (used in expressions)."
+									}
+								},
+								"required": [
+									"id",
+									"name"
+								]
+							},
+							"default": []
+						},
+						"abortFuncSetting": {
+							"type": "object",
+							"properties": {
+								"isError": {
+									"type": "boolean",
+									"description": "Whether this is an abnormal termination. If true, the automation transaction will be rolled back."
+								},
+								"remarkVar": {
+									"type": "string",
+									"description": "Error message description. Only effective when isError is true"
+								}
+							},
+							"required": [
+								"isError"
+							]
+						},
+						"logFuncSetting": {
+							"type": "object",
+							"properties": {
+								"logValue": {
+									"type": "string",
+									"description": "Log output string expression."
+								}
+							},
+							"required": [
+								"expression"
+							]
+						},
+						"sleepFuncSetting": {
+							"type": "object",
+							"properties": {
+								"sleepTime": {
+									"type": "string",
+									"description": "Sleep time in milliseconds expression. For example, 5000 means 5 seconds."
+								}
+							},
+							"required": [
+								"sleepTime"
+							]
+						},
+						"ifFuncSetting": {
+							"type": "object",
+							"description": "If is a control node and cannot execute logic directly. It must contain exactly two child nodes: If.true and If.false. Actual execution steps must be defined inside their children.",
+							"properties": {
+								"expression": {
+									"type": "string",
+									"description": "Boolean expression"
+								}
+							},
+							"required": [
+								"expression"
+							]
+						},
+						"forEachFuncSetting": {
+							"type": "object",
+							"properties": {
+								"listVar": {
+									"type": "string",
+									"description": "List expression such as ${list}. Must reference a variable from previous steps. Cannot be arbitrarily defined."
+								}
+							},
+							"required": [
+								"listVar"
+							]
+						},
+						"httpFuncSetting": {
+							"type": "object",
+							"properties": {
+								"url": {
+									"type": "string",
+									"description": "Request URL. Expressions are supported."
+								},
+								"method": {
+									"type": "string",
+									"description": "HTTP request method. Only one of the following values can be used: Get, Post, Put, Delete, Head, Options."
+								},
+								"headers": {
+									"type": "array",
+									"items": {
+								        "type": "object",
+								        "additionalProperties": false,
+								        "properties": {
+								          "name": {
+								            "type": "string"
+								          },
+								          "value": {
+								            "type": "string"
+								          }
+								        },
+								        "required": ["name", "value"]
+								      },
+								      "default": []
+								},
+								"bodyFormat": {
+									"type": "string",
+									"description": "Request body format. Only one of the following values can be used:\nNone (no request body), UrlEncode (URL-encoded, used together with bodyUrlEncodeList),\nFormData (form data, used together with bodyFormDataList), Raw (raw content, used together with bodyRaw)"
+								},
+								"bodyRaw": {
+									"type": "string",
+									"description": "Raw request body content. Only valid when bodyFormat=Raw."
+								},
+								"bodyFormDataList": {
+							      "type": "array",
+							      "description": "FormData body. Only valid when bodyFormat=FormData.",
+							      "items": {
+							        "$ref": "#/definitions/KeyValue"
+							      },
+							      "default": []
+							    },
+							    "bodyUrlEncodeList": {
+							      "type": "array",
+							      "description": "UrlEncode body. Only valid when bodyFormat=UrlEncode.",
+							      "items": {
+							        "$ref": "#/definitions/KeyValue"
+							      },
+							      "default": []
+							    },
+								"timeout": {
+									"type": "integer",
+									"description": "Request timeout in seconds. 0 means use default 30 seconds.",
+									"default": 30,
+									"minimum": 0
+								},
+								"followRedirect": {
+									"type": "boolean",
+									"description": "Allow HTTP redirect.",
+									"default": false
+								}
+							},
+							"required": [
+								"url",
+								"method"
+							]
+						},
+						"notificationFuncSetting": {
+							"type": "object",
+							"properties": {
+								"titleVar": {
+									"type": "string"
+								},
+								"accountVar": {
+									"type": "string",
+									"description": "accountId expression ${record.assignee.id}"
+								},
+								"contentVar": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string",
+									"description": "Notification type. Only one of the following values can be used, and the corresponding setting must be provided based on the type:\nopenurl (open a link, urlSetting must also be provided),\nopenrecord (open a form record, recordSetting must also be provided),\nopenbpmntask (open a BPMN task, bpmnTaskSetting must also be provided),\ninvokeautomatic (invoke automation, automaticSetting must also be provided)"
+								},
+								"urlSetting": {
+							      "type": "object",
+							      "additionalProperties": false,
+								  "description": "url config，only valid when type=openurl",
+							      "properties": {
+							        "urlVar": {
+							          "type": "string",
+							          "description": "URL expression"
+							        },
+							        "isAppURL": {
+							          "type": "boolean",
+							          "default": false
+							        }
+							      },
+							      "required": ["urlVar"]
+							    },
+								"recordSetting": {
+							      "type": "object",
+							      "additionalProperties": false,
+								  "description": "open record setting，only valid when type=openrecord",
+							      "properties": {
+							        "recordIdVar": {
+							          "type": "string"
+							        },
+							        "moduleId": {
+							          "type": "string"
+							        }
+							      },
+							      "required": ["recordIdVar", "moduleId"]
+							    },
+								"bpmnTaskSetting": {
+							      "type": "object",
+								  "description": "open bpmn task，only valid when type=openbpmntask",
+							      "additionalProperties": false,
+							      "properties": {
+							        "taskIdVar": {
+							          "type": "string"
+							        },
+							        "moduleId": {
+							          "type": "string"
+							        }
+							      },
+							      "required": ["taskIdVar", "moduleId"]
+							    },
+								"automaticSetting": {
+							      "type": "object",
+								  "description": "call automatic，only valid when type=invokeautomatic",
+							      "additionalProperties": false,
+							      "properties": {
+							        "automaticId": {
+							          "type": "string"
+							        },
+							        "args": {
+							          "type": "array",
+							          "items": {
+							            "type": "object",
+							            "properties": {
+							              "valueVar": {
+							                "type": "string"
+							              }
+							            },
+							            "required": ["valueVar"],
+							            "additionalProperties": false
+							          }
+							        }
+							      },
+							      "required": ["automaticId"]
+							    }
+							},
+							"required": [
+								"titleVar",
+								"accountVar",
+								"contentVar",
+								"type"
+							]
+						},
+						"scriptFuncSetting": {
+							"type": "object",
+							"properties": {
+								"code": {
+									"type": "string",
+									"description": "Script code. Do not use 'return' at the end of the script. If you need to set a return value for the entire automation, use automatic.setReturnValue. Before writing scripts, refer to the Informat script documentation. You can use the tool `_read_office_file` to retrieve the documentation."
+								}
+							},
+							"required": [
+								"code"
+							]
+						},
+						"insertRecordFuncSetting": {
+							"type": "object",
+							"properties": {
+								"tableId": {
+									"type": "string"
+								},
+								"fieldMappingList": {
+									"items": {
+									    "$ref": "#/definitions/FieldMappingItem"
+									}
+								}
+							},
+							"required": [
+								"tableId","fieldMappingList"
+							]
+						},
+						"updateRecordFuncSetting": {
+							"type": "object",
+							"properties": {
+								"tableId": {
+									"type": "string"
+								},
+								"filter": {
+									"$ref": "#/definitions/FilterCondition"
+								},
+								"fieldMappingList": {
+									"items": {
+									    "$ref": "#/definitions/FieldMappingItem"
+									}
+								}
+							},
+							"required": [
+								"tableId","FieldMappingField"
+							]
+						},
+						"deleteRecordFuncSetting": {
+							"type": "object",
+							"properties": {
+								"tableId": {
+									"type": "string"
+								},
+								"filter": {
+									"$ref": "#/definitions/FilterCondition"
+								}
+							},
+							"required": [
+								"tableId","filter"
+							]
+						},
+						"queryRecordListFuncSetting": {
+							"type": "object",
+							"properties": {
+								"countVar": {
+									"type": "string",
+									"default": "1000",
+									"description": "Page size (string expression). For example: \"100\" or ${pageSize}."
+								},
+								"indexVar": {
+									"type": "string",
+									"default": "1",
+									"description": "Page index (string expression). For example: \"1\" or ${pageIndex}."
+								},
+								"tableId": {
+									"type": "string"
+								},
+								"filter": {
+									"$ref": "#/definitions/FilterCondition"
+								},
+								"orderByList": {
+									"type": "array",
+									"description": "Sorting rule list.",
+									"items": {
+										"type": "object",
+										"properties": {
+											"field": {
+												"type": "string",
+												"description": "Sorting field ID."
+											},
+											"type": {
+												"type": "string",
+												"description": "Sorting order. asc = ascending, desc = descending."
+											}
+										},
+										"required": [
+											"field",
+											"type"
+										]
+									}
+								},
+								"fieldList": {
+									"type": "array",
+									"description": "ist of fields to query (used in non-aggregation queries). Empty means query all fields.",
+									"items": {
+										"type": "string"
+									}
+								},
+								"aggregation": {
+									"type": "boolean",
+									"default": false,
+									"description": "Whether to execute an aggregation query."
+								},
+								"aggregationQueryList": {
+									"type": "array",
+									"description": "Aggregation query definition list (required when aggregation=true).",
+									"items": {
+										"type": "object",
+										"description": "Single aggregation query definition.",
+										"properties": {
+											"func": {
+												"type": "string",
+												"description": "Aggregation function (required). Only one of the following values can be used:\ncount (count; fieldId can be omitted to represent count(*); distinct is meaningful),\navg (average; fieldId must be provided; distinct is meaningless and should not be set to true),\nsum (sum; fieldId must be provided; distinct is meaningless),\nmax (maximum; fieldId must be provided; distinct is meaningless),\nmin (minimum; fieldId must be provided; distinct is meaningless)"
+											},
+											"fieldId": {
+												"type": "string",
+												"description": "Aggregation field ID. For count, it can be empty to represent count(*)."
+											},
+											"distinct": {
+												"type": "boolean",
+												"default": false,
+												"description": "Whether to apply DISTINCT (only meaningful for count)."
+											}
+										},
+										"required": [
+											"func"
+										]
+									},
+									"minItems": 1
+								},
+								"groupByFieldList": {
+									"type": "array",
+									"description": "Group-by field list (used when aggregation=true).",
+									"items": {
+										"type": "string"
+									}
+								},
+								"aggregationSplitMultiValue": {
+									"type": "boolean",
+									"default": false,
+									"description": "Whether to split multi-value fields during aggregation."
+								},
+								"returnOptionName": {
+									"type": "boolean",
+									"default": false,
+									"description": "Whether to return the display name of option fields."
+								}
+							},
+							"required": [
+								"tableId"
+							]
+						},
+						"queryRecordListCountFuncSetting": {
+							"type": "object",
+							"properties": {
+								"tableId": {
+									"type": "string"
+								},
+								"filter": {
+									"$ref": "#/definitions/FilterCondition"
+								}
+							},
+							"required": [
+								"tableId"
+							]
+						},
+						"outputConfirmFuncSetting": {
+						  "type": "object",
+						  "description": "Confirmation dialog configuration. Used to pause the automation flow and wait for user confirmation.",
+						  "additionalProperties": false,
+						  "properties": {
+							"confirmDialogTitleVar": {
+						      "type": "string",
+						      "description": "Dialog title expression."
+						    },
+						    "confirmTitleVar": {
+						      "type": "string",
+						      "description": "Confirmation message expression."
+						    },
+						    "confirmButtonTextVar": {
+						      "type": "string",
+						      "description": "Confirm button text expression."
+						    },
+						    "cancelButtonTextVar": {
+						      "type": "string",
+						      "description": "Cancel button text expression."
+						    },
+						    "confirmDialogTopVar": {
+						      "type": "string",
+						      "description": "Dialog top position expression."
+						    },
+						    "confirmDialogWidthVar": {
+						      "type": "string",
+						      "description": "Dialog width expression."
+						    },
+						    "confirmDialogHeightVar": {
+						      "type": "string",
+						      "description": "Dialog height expression."
+						    },
+						    "confirmTitleHorizontalAlign": {
+						      "type": "string",
+						      "description": "Text horizontal alignment. Only one of the following values can be used: left (align left), center (align center), right (align right)."
+						    },
+						    "confirmTitleVerticalAlign": {
+						      "type": "string",
+						      "description": "Text vertical alignment. Only one of the following values can be used: top (top), middle (middle), bottom (bottom)."
+						    }
+						  }
+						},
+						"outputUploadFuncSetting": {
+						  "type": "object",
+						  "description": "File upload interaction node",
+						  "additionalProperties": false,
+						  "properties": {
+						    "acceptVar": {
+						      "type": "string",
+						      "description": "Allowed file type expression. Example: .pdf,.doc"
+						    },
+						    "titleVar": {
+						      "type": "string",
+						      "description": "Upload dialog title expression."
+						    },
+						    "dialogTopVar": {
+						      "type": "string",
+						      "description": "Dialog top position expression."
+						    },
+						    "uploadType": {
+						      "type": "string",
+						      "description": "File storage mode. File = store in shared storage. Base64 = return Base64 encoded content.",
+						      "default": "File"
+						    },
+						    "maxSize": {
+						      "type": "integer",
+						      "description": "Maximum file size (MB). 0 means no limit.",
+						      "minimum": 1
+						    },
+						    "multiple": {
+						      "type": "boolean",
+						      "description": "Allow multiple file uploads.",
+						      "default": false
+						    },
+						    "limit": {
+						      "type": "integer",
+						      "description": "Maximum number of files allowed.",
+						      "minimum": 1,
+						      "default": 10
+						    },
+						    "remark": {
+						      "type": "string",
+						      "description": "Upload instruction text."
+						    }
+						  }
+						},
+						"outputDynamicFormFuncSetting": {
+						  "type": "object",
+						  "description": "Dynamic form configuration. ",
+						  "properties": {
+						    "dynamicFormTitleVar": {
+						      "type": "string"
+						    },
+						    "dynamicFormHeightVar": {
+						      "type": "string"
+						    },
+						    "dynamicFormStyle": {
+						      "type": "string"
+						    },
+						    "dynamicFormFieldStyle": {
+						      "type": "string"
+						    },
+						    "dynamicFormSubmitButtonTextVar": {
+						      "type": "string",
+						      "default": "Submit"
+						    },
+						    "dynamicFormTopVar": {
+						      "type": "string"
+						    },
+						    "dynamicFormTitle": {
+						      "type": "string"
+						    },
+						    "dynamicFormStyleWidth": {
+						      "type": "integer",
+						      "default": 700
+						    },
+						    "dynamicFormStyleWidthUnit": {
+						      "type": "string"
+						    },
+						    "dynamicFormHeight": {
+						      "type": "string"
+						    },
+						    "dynamicFormFieldList": {
+						      "type": "array",
+						      "description": "List of form field definitions.",
+						      "items": {
+						        "type": "object",
+						        "description": "Field definition.",
+						        "properties": {
+						          "id": {
+						            "type": "string",
+						            "description": "Field ID. Must be lowercase letters, 10–13 characters, randomly generated and unique."
+						          },
+						          "name": {
+						            "type": "string",
+						            "description": "Field display name."
+						          },
+								  "key": {
+  						            "type": "string",
+  						            "description": "Field identifier. CamelCase format, letters only, randomly generated and unique."
+  						          },
+						          "type": {
+						            "type": "string",
+									"description": "Dynamic form field type. Only one of the following values can be used:\nSingleText (single-line text), MultiText (multi-line text), RichText (rich text),\nInteger (integer), Double (decimal), Date (date), ListSelect (dropdown select),\nAttachment (attachment), Checkbox (checkbox), User (user), Department (department),\nCoordinate (coordinate), RelationRecord (relation record), Children (tree structure), ID (business ID)"
+						          }
+						        },
+						        "required": ["id", "name", "key", "type"],
+						        "additionalProperties": false
+						      }
+						    },
+						    "dynamicFormFieldMappingList": {
+						      "type": "array",
+						      "description": "Default field values. Optional.",
+						      "items": {
+						        "type": "object",
+						        "properties": {
+						          "fieldId": {
+						            "type": "string",
+						            "description": "Target field ID. Must exist in dynamicFormFieldList."
+						          },
+						          "valueVar": {
+						            "type": "string",
+						            "description": "Value expression."
+						          }
+						        },
+						        "required": ["fieldId","valueVar"],
+						        "additionalProperties": false
+						      }
+						    },
+						    "dynamicFormSubmitButtonText": {
+						      "type": "string",
+						      "description": "Submit button text."
+						    },
+						    "tableId": {
+						      "type": "string",
+						      "description": "Associated table ID."
+						    },
+						    "toolbarButtonList": {
+						      "type": "array",
+						      "description": "Toolbar button list.",
+						      "items": {
+						        "type": "object",
+						        "properties": {
+						          "id": {
+						            "type": "string",
+						            "description": "Button ID."
+						          },
+						          "name": {
+						            "type": "string",
+						            "description": "Button name."
+						          }
+						        },
+						        "required": ["id", "name"],
+						        "additionalProperties": false
+						      }
+						    },
+						    "dynamicFormSubmitBeforeAutomaticId": {
+						      "type": "string",
+						      "description": "Automation ID to execute before form submission."
+						    },
+						    "dynamicFormSubmitBeforeAutomaticVarList": {
+						      "type": "array",
+						      "description": "Parameter list for the pre-submit automation.",
+						      "items": {
+						        "type": "object",
+						        "properties": {
+						          "valueVar": {
+						            "type": "string",
+						            "description": "Parameter expression."
+						          }
+						        },
+						        "required": ["valueVar"],
+						        "additionalProperties": false
+						      }
+						    },
+						    "dynamicFormModal": {
+						      "type": "boolean",
+						      "description": "Whether to enable modal mode.",
+						      "default": false
+						    },
+						    "submitDisableExpression": {
+						      "type": "string"
+						    },
+						    "dynamicFormTop": {
+						      "type": "string"
+						    },
+						    "dynamicFormEnableFieldValidate": {
+						      "type": "boolean",
+							  "description": "Whether to enable field validation. Currently fixed to false; do not set it to true.",
+						      "default": false
+						    },
+						    "dynamicFormCloseAutomaticId": {
+						      "type": "string"
+						    },
+						    "dynamicFormCloseAutomaticVarList": {
+						      "type": "array",
+						      "items": {
+						        "type": "object",
+						        "properties": {
+						          "valueVar": {
+						            "type": "string"
+						          }
+						        },
+						        "required": ["valueVar"],
+						        "additionalProperties": false
+						      }
+						    }
+						  },
+						  "required": ["tableId", "dynamicFormFieldList"],
+						  "additionalProperties": false
+						}
+					},
+					"required": [
+						"name",
+						"type"
+					],
+					"description": "Automation step node.\n\n[type → Required setting and retValues rules (mandatory; missing any is a serious error)]\n\n  Log               → logFuncSetting must be provided\n  Sleep             → sleepFuncSetting must be provided\n  Abort             → abortFuncSetting must be provided\n  Script            → scriptFuncSetting must be provided\n  If                → ifFuncSetting and children must be provided (children must contain exactly two child nodes:\n                       the first type=If.true, the second type=If.false; the actual execution steps are written inside their children)\n  If.true           → no additional setting required; exists as a child node of If\n  If.false          → no additional setting required; exists as a child node of If\n  ForEach           → forEachFuncSetting and retValues must be provided (fixed 2 items:\n                       item1: {id:'object', name:'List item'}; item2: {id:'idx', name:'Index'})\n  Http              → httpFuncSetting and retValues must be provided (fixed 3 items:\n                       {id:'response',name:'Response value'}, {id:'code',name:'Response code'}, {id:'header',name:'Response header'})\n  Notification      → notificationFuncSetting must be provided\n  InsertRecord      → insertRecordFuncSetting and retValues must be provided (fixed 1 item: {id:'record',name:'Inserted record'})\n  UpdateRecord      → updateRecordFuncSetting and retValues must be provided (fixed 2 items:\n                       {id:'count',name:'Updated record count'}, {id:'recordIdList',name:'Updated record ID list'})\n  DeleteRecord      → deleteRecordFuncSetting must be provided\n  QueryRecordList   → queryRecordListFuncSetting and retValues must be provided (fixed 1 item: {id:'list',name:'Record list'})\n                       When referenced in subsequent steps use ${recordList} instead of ${list}, and use ${recordList.size()} instead of .length for the count\n  QueryRecordListCount → queryRecordListCountFuncSetting and retValues must be provided (fixed 1 item: {id:'result',name:'Query list count'})\n  OutputConfirm     → outputConfirmFuncSetting and retValues must be provided (fixed 1 item: {id:'result',name:'Confirmed or not'})\n  OutputUpload      → outputUploadFuncSetting and retValues must be provided (fixed 1 item: {id:'result',name:'File list'})\n                       When referenced in subsequent steps use ${fileList} instead of ${result}, and use ${fileList.size()} for the count\n  OutputDynamicForm → outputDynamicFormFuncSetting and retValues must be provided (fixed 1 item: {id:'result',name:'Form data'})\n  SetReturnValue    → no additional setting required"
+				}
+			}
+		}
+	}
+}

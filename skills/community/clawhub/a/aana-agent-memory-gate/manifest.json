@@ -1,0 +1,68 @@
+{
+  "name": "aana-agent-memory-gate",
+  "slug": "aana-agent-memory-gate",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded agent memory gate instructions requiring approval before storing, reusing, editing, or deleting user memory.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_approval_for_memory_storage": true,
+  "requires_approval_for_memory_editing": true,
+  "requires_approval_for_memory_deletion": true,
+  "requires_approval_for_sensitive_memory_reuse": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_data_minimization": true,
+    "forbidden_memory_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "raw medical records",
+      "raw legal records",
+      "raw financial records",
+      "government ID numbers",
+      "biometric data",
+      "full private messages",
+      "full logs with sensitive values",
+      "full account records",
+      "unrelated private data",
+      "speculative sensitive inferences"
+    ]
+  },
+  "memory_gate_boundary": {
+    "must_identify_memory_operation": true,
+    "must_check_memory_relevance": true,
+    "must_check_memory_source": true,
+    "must_classify_memory_sensitivity": true,
+    "must_require_explicit_approval_before_storing_memory": true,
+    "must_require_explicit_approval_before_editing_or_deleting_memory": true,
+    "must_require_approval_before_sensitive_memory_reuse": true,
+    "must_not_treat_silence_as_approval": true,
+    "must_not_store_unnecessary_sensitive_data": true,
+    "must_not_reuse_memory_for_unrelated_tasks": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/agent-memory-gate.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-agent-memory-gate.json"
+  ]
+}

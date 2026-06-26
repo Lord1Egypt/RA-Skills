@@ -1,0 +1,7 @@
+{
+  "name": "soyoung-clinic-doctor",
+  "version": "2.2.0",
+  "description": "新氧青春诊所医生与排班技能：按医生姓名、门店、城市关键词检索医生信息与排班。 | Soyoung clinic doctor & schedule OpenClaw sub-skill for Soyoung (soyoung) clinic: doctor_search, doctor info, weekly schedule. Keywords: Soyoung, soyoung, clinic, doctor, schedule, medical aesthetic.",
+  "keywords": ["soyoung", "clinic", "doctor", "schedule", "新氧", "医生", "排班", "诊所", "sy"],
+  "license": "MIT"
+}

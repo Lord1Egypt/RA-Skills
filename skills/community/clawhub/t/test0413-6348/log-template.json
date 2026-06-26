@@ -1,0 +1,119 @@
+{
+  "time": "2026-03-24T10:04:00Z",
+  "log_id": "b0b7a0c3-0a0c-4bfe-8b8a-3d4cc3c0a9d2",
+  "action": "pre-install|post-install|pre-update|post-update|remove|scan-detected",
+  "result": "success|fail|skipped",
+  "owner_id": "kn70pywhg0fyz996kpa8xj89s57yhv26",
+  "slug": "skills-audit",
+  "version": "1.4.0",
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+
+  "observed": {
+    "install_path": "/root/.openclaw/workspace/skills/skills-audit",
+    "workspace_dir": "/root/.openclaw/workspace",
+    "openclaw_version": "2026.3.13",
+    "skillhub_version": "2026.3.18",
+    "clawhub_cli_version": "0.8.0"
+  },
+
+  "capabilities": ["browser", "network"],
+
+  "risk": {
+    "level": "low|medium|high|extreme",
+    "decision": "allow|allow_with_caution|require_sandbox|deny",
+    "risk_signals": [
+      {
+        "rule_id": "NET_DOMAIN",
+        "severity": "medium",
+        "context": "real_execution|rule_sample|doc_example|config_sample",
+        "evidence": {
+          "file": "scripts/install.sh",
+          "line": 12,
+          "snippet": "curl https://api.example.com/..."
+        }
+      }
+    ],
+    "dependencies": {
+      "added": ["requests==2.31.0"],
+      "removed": [],
+      "changed": ["urllib3 2.0.2 -> 2.2.1"]
+    },
+    "network": {
+      "domains": ["api.example.com"],
+      "ips": [],
+      "evidence_files": ["scripts/install.sh"]
+    }
+  },
+
+  "semantic_analysis_required": true,
+
+  "semantic_analysis": {
+    "engine": "local-llm-style-heuristic",
+    "status": "required",
+    "dangerous_functions": {
+      "summary": "检测到潜在危险函数/模式若干",
+      "signals": [
+        {
+          "name": "eval",
+          "severity": "high",
+          "file": "scripts/install.sh",
+          "snippet": "eval \"$(curl ...)\""
+        }
+      ]
+    },
+    "capability_analysis": {
+      "summary": "该 skill 具备网络访问、文件写入与定时任务管理能力",
+      "tags": ["network", "filesystem", "cron"]
+    },
+    "intent_analysis": {
+      "summary": "未发现明显恶意意图",
+      "signals": [],
+      "risk": "low|medium|high|extreme"
+    },
+    "result": {
+      "level": "low|medium|high|extreme",
+      "decision": "allow|allow_with_caution|require_sandbox|deny",
+      "reason": "以语义意图为主判维度，结合能力风险综合判断"
+    }
+  },
+
+  "diff": {
+    "commit": "a1b2c3d4e5f6",
+    "parent_commit": "f6e5d4c3b2a1",
+    "stat": [
+      {
+        "file": "scripts/main.py",
+        "added": 10,
+        "deleted": 3,
+        "status": "modified|added|deleted"
+      }
+    ],
+    "total_added": 10,
+    "total_deleted": 3,
+    "total_files_changed": 1,
+    "full_diff_lines": 25
+  },
+
+  "file_changes": {
+    "files_added": [],
+    "files_removed": [],
+    "files_changed": []
+  },
+
+  "approved": false,
+
+  "operator": {
+    "who": "user|agent|cron",
+    "channel": "wecom"
+  },
+
+  "command": {
+    "argv": ["skillhub", "install", "skills-audit"],
+    "exit_code": 0,
+    "stdout_tail": "...",
+    "stderr_tail": "...",
+    "redactions_applied": true
+  },
+
+  "notes": "short human-readable summary"
+}

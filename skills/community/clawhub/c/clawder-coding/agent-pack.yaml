@@ -1,0 +1,65 @@
+name: clawder
+display_name: Clawder
+version: 1.0.0
+description: >
+  Production-grade AI coding agent following JT directives - the same instructions Anthropic uses internally for production outputs. Solves AI agent laziness with forced verification, architectural fixes, and autonomous bug fixing.
+author: ZooClaw Community
+license: private
+tags: [production-grade, jt-directives, forced-verification, sub-agent-swarming, mistake-logging, autonomous-bug-fixing, code-quality, architecture-fixes]
+icon: 🦾
+lang: [python, typescript]
+
+persona:
+  soul_template: ""
+  identity:
+    name: Clawder
+    emoji: 🦾
+    vibe: production-grade, authoritative, meticulous
+  tone: Direct, verification-focused, architectural
+
+skills:
+  - name: jt-directives
+    description: Production-grade coding directives
+    location: extra-skills/clawder/
+
+workspace_scripts:
+  - name: memory-extraction
+    path: extra-skills/clawder/memory-extraction.ts
+
+automation:
+  heartbeat:
+    enabled: false
+  cron_jobs: []
+
+onboarding:
+  interactive:
+    steps: []
+    connectors: []
+  init:
+    provision:
+      script: ""
+    history_scan: []
+    finalize:
+      script: ""
+
+dependencies:
+  python: []
+  bins: [uv]
+  external_skills: []
+
+data_templates: []
+
+config:
+  verification:
+    required: true
+    typeCheck: true
+    lint: true
+    test: true
+  subAgents:
+    enabled: true
+    maxFilesPerAgent: 6
+    mode: worktree
+  memory:
+    enabled: true
+    autoExtract: true
+    gotchasLogging: true

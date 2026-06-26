@@ -1,0 +1,2 @@
+# 使用Python标准库，无需额外依赖
+# 如需使用requests库，请安装：pip install requests

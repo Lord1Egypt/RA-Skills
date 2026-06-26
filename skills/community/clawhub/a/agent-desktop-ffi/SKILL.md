@@ -1,35 +1,116 @@
 ---
-name: "Agent Desktop Ffi"
-description: "C-ABI bindings over agent-desktop's PlatformAdapter. Consumers (Python ctypes, Swift, Node ffi-napi, Go cgo, C++, Ruby fiddle) link libagent_desktop_ffi.{dyl..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-desktop-ffi"
-sourceUrl: "https://clawhub.ai/skills/agent-desktop-ffi"
+name: agent-desktop-ffi
+version: 0.3.0
+tags: ffi, c-bindings, cdylib, python, swift, node, go, rust-ffi
+requirements:
+  - agent-desktop-ffi
+description: >
+  C-ABI bindings over agent-desktop's PlatformAdapter. Consumers
+  (Python ctypes, Swift, Node ffi-napi, Go cgo, C++, Ruby fiddle)
+  link libagent_desktop_ffi.{dylib,so,dll} and call `ad_*` functions
+  directly instead of spawning the CLI binary per call.
 ---
 
-# Agent Desktop Ffi
+# agent-desktop-ffi
 
-> C-ABI bindings over agent-desktop's PlatformAdapter. Consumers (Python ctypes, Swift, Node ffi-napi, Go cgo, C++, Ruby fiddle) link libagent_desktop_ffi.{dyl...
+Direct C-ABI access to every PlatformAdapter operation. Build the
+cdylib with the workspace's `release-ffi` profile:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-desktop-ffi`
-- **Source URL:** [https://clawhub.ai/skills/agent-desktop-ffi](https://clawhub.ai/skills/agent-desktop-ffi)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-desktop-ffi
+```sh
+cargo build --profile release-ffi -p agent-desktop-ffi
 ```
+
+The output is `target/release-ffi/libagent_desktop_ffi.dylib`
+(`.so` on Linux, `.dll` on Windows) plus a committed C header at
+`crates/ffi/include/agent_desktop.h`.
+
+Four reference topics, loaded as needed:
+
+- [ownership.md](references/ownership.md) — who allocates / who frees,
+  for every `*mut T` the FFI hands back to the caller.
+- [error-handling.md](references/error-handling.md) — errno-style
+  last-error contract, enum validation, panic boundary.
+- [threading.md](references/threading.md) — macOS main-thread rule,
+  AXIsProcessTrusted inheritance when Python/Node dlopens the cdylib,
+  and the single-owner handle invariant.
+- [build-and-link.md](references/build-and-link.md) — minimum working
+  example for Python ctypes and a C program that links the dylib.
+
+## ⚠ Core constraints before you integrate
+
+- **Main thread only (macOS).** Call every adapter-touching entrypoint
+  (`ad_get_tree`, `ad_resolve_element`, `ad_execute_action`,
+  `ad_screenshot`, clipboard, launch/close, window ops, observation,
+  notifications, etc.) from the process's main thread. The FFI enforces
+  this at runtime in **every build profile** — a worker-thread call
+  returns `AD_RESULT_ERR_INTERNAL` with a diagnostic last-error. On
+  non-macOS platforms the check is a compile-time true; there is no
+  runtime cost.
+
+- **Release profile.** `cargo build --release` produces
+  `panic = "abort"` — any Rust panic inside an `extern "C"` fn will
+  `SIGABRT` the host. Use `--profile release-ffi` to get the correct
+  `panic = "unwind"` profile. CI enforces this.
+
+- **Last-error lifetime.** Pointers returned by `ad_last_error_*`
+  remain valid across any number of subsequent *successful* FFI calls
+  on the same thread. Only the next failing call rotates them. Cache
+  the pointer once, read it as many times as you need.
+
+- **Handle release.** Every `ad_resolve_element` result must be
+  released with `ad_free_handle(adapter, handle)` on the same adapter
+  that produced it before that adapter is destroyed. On macOS this
+  balances the internal `CFRetain`; on Windows/Linux the call is a no-op
+  but safe to issue.
+
+- **Action policy.** `ad_execute_action` uses headless policy by default.
+  `ad_execute_ref_action_with_policy` should also use headless for semantic
+  ref actions that must fail closed, except `AD_ACTION_KIND_TYPE_TEXT`: use
+  `AD_POLICY_KIND_FOCUS_FALLBACK` for CLI `type` parity because typing needs
+  focus but not cursor movement. Use `AD_POLICY_KIND_HEADED` only for explicit
+  headed input semantics.
+
+- **Ref-action preflight.** `ad_execute_ref_action_with_policy` resolves the
+  ref strictly and runs the live actionability preflight (visible, stable,
+  enabled, supported action, policy, editable) before dispatching — a disabled
+  or unsupported target fails before any platform call. On
+  `AD_RESULT_ERR_ACTION_FAILED`, the structured check report is available as
+  JSON via `ad_last_error_details()`. Details may carry element names, values,
+  and window titles from the user's screen — treat them as sensitive
+  diagnostics and keep them out of shared log surfaces.
+
+- **Action result steps.** `AdActionResult.steps` mirrors the CLI `steps`
+  array for activation-chain actions. Each entry has `label` and `outcome`
+  strings and is owned by the result; release it with
+  `ad_free_action_result(&out)`.
+
+- **Tracing.** CLI `--trace` is not inherited by the C ABI; FFI hosts should
+  record `AdResult`, `ad_last_error_*`, action results, and host correlation IDs
+  in their own logs.
+
+- **No wait surface.** The CLI's `wait` command (element predicates including
+  `--predicate actionable --action ...`, window/text/menu/notification waits)
+  is not exposed over the C ABI. FFI hosts own their own polling loops; the
+  actionability preflight inside `ad_execute_ref_action_with_policy` is the
+  equivalent per-call readiness check.
+
+- **Text input privacy.** On macOS, focus-fallback or headed text insertion may
+  briefly use the clipboard for non-ASCII text. For sensitive text, prefer
+  `AD_ACTION_KIND_SET_VALUE` with `AD_POLICY_KIND_HEADLESS` when the target
+  supports settable values. Do not use headless `AD_ACTION_KIND_TYPE_TEXT` as
+  CLI-parity ref input; actionability rejects it before dispatch.
+
+- **Enum discriminants.** Every `#[repr(i32)]` enum field is validated
+  at the C boundary — invalid discriminants return
+  `AD_RESULT_ERR_INVALID_ARGS` instead of undefined behavior.
+
+- **ABI is unstable before 1.0.** The header lists the exact current
+  shapes. Anything added or reordered in a later patch is a breaking
+  change; pin the version of libagent_desktop_ffi you link against.
+
+- **`ad_get_tree` returns a raw adapter tree, not the CLI snapshot.**
+  Ref IDs are always null, no skeleton/drill-down pipeline is wired
+  through, and `interactive_only` / `compact` follow adapter
+  semantics which may diverge slightly from the CLI's post-processed
+  shape. Use `ad_find` + `ad_get` / `ad_is` for point lookups, or
+  invoke the CLI if you need CLI-parity JSON snapshots.

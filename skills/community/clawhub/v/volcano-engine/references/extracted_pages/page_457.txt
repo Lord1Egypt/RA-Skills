@@ -1,0 +1,30 @@
+向量化 Embedding
+注意
+文本向量化模型已经逐步下线，建议您使用多模态向量化模型。
+多模态向量化能力
+ 模型不支持 OpenAI API ，请使用 方舟 SDK，详细请参见 多模态向量化
+。
+LangChain OpenAI SDK
+安装 LangChain OpenAI SDK：
+示例代码from  openai import  OpenAI
+import  os
+client = OpenAI(   
+# The base URL for model invocation
+    base_url= "https://ark.cn-beijing.volces.com/api/v3" ,  
+# Replace with your API Key
+    api_key=os.environ.get( "ARK_API_KEY" ), 
+)
+completion = client.chat.completions.create(
+# Replace with Model ID
+    model= "doubao-seed-1-6-251015" , 
+    messages = [
+        { "role" : "user" , "content" : "Hello" },
+    ],
+# 自定义request id
+    extra_headers={ "X-Client-Request-Id" : "202406251728190000B7EA7A9648AC08D9" }
+)
+print (completion.choices[ 0].message.content)Python
+• 
+• 
+pip install langchain-openaiPythonAPI参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 452/485

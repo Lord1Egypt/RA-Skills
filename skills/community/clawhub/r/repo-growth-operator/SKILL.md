@@ -1,35 +1,33 @@
 ---
-name: "Repo Growth Operator"
-description: "Recommend small, practical growth actions for a public GitHub repository based on releases, skills, docs, and current positioning."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/repo-growth-operator"
-sourceUrl: "https://clawhub.ai/skills/repo-growth-operator"
+name: repo-growth-operator
+description: Recommend small, practical growth actions for a public GitHub repository based on releases, skills, docs, and current positioning.
+version: 1.0.0
 ---
 
 # Repo Growth Operator
 
-> Recommend small, practical growth actions for a public GitHub repository based on releases, skills, docs, and current positioning.
+Plan practical next-step growth work for a public repository.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/repo-growth-operator`
-- **Source URL:** [https://clawhub.ai/skills/repo-growth-operator](https://clawhub.ai/skills/repo-growth-operator)
+## Workflow
 
-## Overview
+1. Review the current repo positioning.
+2. Identify the strongest entrypoint feature or skill.
+3. Recommend a small growth action set for the next 1 to 7 days.
+4. Prefer actions that create visible maintenance signals.
 
+## Action types
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/repo-growth-operator
-```
+- homepage improvement
+- short marketing post
+- release follow-up
+- issue creation
+- example expansion
+- community reply prep
+
+## Rules
+
+- Prefer small repeatable actions over big campaigns.
+- Tie recommendations to current repo assets.
+- Call out the main entrypoint explicitly.
+- Do not assume traction that is not visible.
+

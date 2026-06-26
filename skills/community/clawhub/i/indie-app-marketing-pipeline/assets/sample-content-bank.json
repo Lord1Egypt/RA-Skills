@@ -1,0 +1,112 @@
+[
+  {
+    "id": "lost-note-frustration",
+    "hook": "I lost 4 hours last week looking for a note I took on my phone",
+    "texts": [
+      "I took a note during a meeting. A good one. Gone.",
+      "Searched everywhere — notes app, photos, voice memos, browser history. Nothing.",
+      "Turns out I'd left it in a completely different app I forgot I'd used that day.",
+      "That was the moment I decided to fix this once and for all."
+    ],
+    "caption": "If you've ever lost a note you actually needed 😭 #IndieApp #Productivity #AppDev"
+  },
+  {
+    "id": "phone-check-habit",
+    "hook": "I checked my phone 94 times yesterday and got almost nothing done",
+    "texts": [
+      "I turned on screen time tracking as a joke.",
+      "94 unlocks. 4.5 hours of screen time. And my to-do list barely moved.",
+      "Most of those unlocks were to check something I'd already seen.",
+      "The problem isn't willpower — it's that there's no system."
+    ],
+    "caption": "Screen time numbers don't lie 😬 #Productivity #DigitalWellness #IndieApp"
+  },
+  {
+    "id": "good-ideas-commute",
+    "hook": "My best ideas always come during my commute and disappear before I get home",
+    "texts": [
+      "On the train. Great idea. I'll remember it. I will definitely remember it.",
+      "I did not remember it.",
+      "I've started treating every commute like a creative session — capture everything, review later.",
+      "The ideas didn't get better. I just stopped losing them."
+    ],
+    "caption": "The commute-to-desk idea graveyard is real 🪦 #IndieApp #AppDev #ProductivityHack"
+  },
+  {
+    "id": "app-store-day-one",
+    "hook": "I published my first app and got 3 downloads in the first week — one was my mom",
+    "texts": [
+      "Year one of indie dev is a masterclass in humility.",
+      "3 downloads. 3. And I'd spent 6 months building the thing.",
+      "What I didn't know then: the app was fine, the marketing was invisible.",
+      "The product is only half the job."
+    ],
+    "caption": "Indie dev origin story 😅 #IndieAppDev #AppStore #BuildInPublic #iOSDev"
+  },
+  {
+    "id": "sunday-reset-system",
+    "hook": "I used to dread Mondays until I figured out the 20-minute Sunday reset",
+    "texts": [
+      "Sunday evening. Open the app. 20 minutes.",
+      "Review what happened last week. Note what carried over. Set 3 priorities for Monday.",
+      "Not a full review, not a life audit — just enough to start Monday with direction.",
+      "That's it. 20 minutes and Mondays feel completely different."
+    ],
+    "caption": "20-minute Sunday reset changed my whole week 🔄 #Productivity #SundayReset #IndieApp"
+  },
+  {
+    "id": "meeting-notes-chaos",
+    "hook": "My meeting notes are a crime scene — scattered across 4 apps and 3 notebooks",
+    "texts": [
+      "Google Docs for the important ones. Apple Notes for the quick ones.",
+      "Voice memo for when I couldn't type fast enough. Slack DM to myself when I was lazy.",
+      "Action items? Somewhere in there. Good luck finding them.",
+      "The system that works is the one you'll actually use consistently."
+    ],
+    "caption": "Meeting notes archaeology 🕵️ #ProductivityHack #MeetingNotes #AppDev"
+  },
+  {
+    "id": "zero-downloads-paid-ads",
+    "hook": "I spent $200 on ads and got 2 downloads — here's what I learned",
+    "texts": [
+      "Ran a campaign. Set it up carefully. Watched the dashboard.",
+      "$200 later: 2 downloads, 0 reviews, and a lot of lessons.",
+      "The problem wasn't the ad. It was that I had no idea who I was talking to.",
+      "Paid traffic amplifies what's already there — organic first."
+    ],
+    "caption": "Expensive lesson on day 60 of indie dev 💸 #IndieAppDev #AppMarketing #BuildInPublic"
+  },
+  {
+    "id": "shipping-anxiety",
+    "hook": "The most stressful part of shipping an app isn't the code — it's the waiting",
+    "texts": [
+      "App submitted. Review pending. Nothing to do but wait.",
+      "You find 3 bugs you want to fix. You can't. It's out of your hands.",
+      "Apple approves it. Users download it. And then you hold your breath again.",
+      "Shipping never gets less stressful. You just get better at sitting with it."
+    ],
+    "caption": "The post-submit waiting game 😰 #iOSDev #AppStore #IndieAppDev #SwiftUI"
+  },
+  {
+    "id": "small-wins-compound",
+    "hook": "The people I know who are the most productive don't have better tools — they have smaller goals",
+    "texts": [
+      "I used to set massive weekly goals. I hit maybe half.",
+      "I switched to daily goals of 3 things. I hit most of them.",
+      "Small wins are underrated. They compound. They build confidence.",
+      "Ambition is good. But it works better in small doses, every day."
+    ],
+    "caption": "Small wins > big goals 🎯 #Productivity #SmallWins #IndieApp #AppDev"
+  },
+  {
+    "id": "indie-dev-why",
+    "hook": "People ask why I do indie dev when it would be easier to just work at a company",
+    "texts": [
+      "Honest answer: it would be easier. The pay, the stability, the perks.",
+      "But I'd be building someone else's thing, for someone else's users, toward someone else's goals.",
+      "Indie dev is harder. It's also mine.",
+      "Every user who finds the app useful — that's a direct line from me to them. No middleman."
+    ],
+    "caption": "Why indie dev despite everything 🛠️ #IndieAppDev #BuildInPublic #iOSDev #SoloFounder"
+  }
+]

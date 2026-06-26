@@ -1,0 +1,9 @@
+{
+  "name": "Hum2Song",
+  "slug": "hum2song",
+  "description": "Hum2Song turns a hummed or sung melody into a complete song using local MIDI extraction and music generation tools, so users can build songs from melodic ideas without sending sensitive audio to third-party services.",
+  "version": "3.0.4",
+  "author": "Golden Bean",
+  "tags": ["music", "audio", "midi", "song-generation", "humming", "local-processing"],
+  "entry": "scripts/hum2song.py"
+}

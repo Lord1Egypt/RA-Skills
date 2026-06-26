@@ -1,35 +1,63 @@
 ---
-name: "Brand Guidelines Zh"
-description: "品牌规范 / VI手册 / 视觉识别系统 / Brand Guidelines / 品牌形象手册生成器。快速创建Logo使用规范、品牌色彩体系、字体规范、图片风格、品牌语气文案的完整规范文档。适合品牌经理、市场总监、设计主管、创意代理商快速统一品牌形象、提升团队协作效率、降低品牌使用混乱风险。新品牌从零搭建视觉体..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brand-guidelines-zh"
-sourceUrl: "https://clawhub.ai/skills/brand-guidelines-zh"
+name: brand-guidelines-zh
+description: >
+  品牌规范 / VI手册 / 视觉识别系统 / Brand Guidelines / 品牌形象手册生成器。快速创建Logo使用规范、品牌色彩体系、字体规范、图片风格、品牌语气文案的完整规范文档。适合品牌经理、市场总监、设计主管、创意代理商快速统一品牌形象、提升团队协作效率、降低品牌使用混乱风险。新品牌从零搭建视觉体系，老品牌整理规范档案，一键生成专业可用的企业级品牌手册。常见搜索：品牌规范怎么写、VI手册制作、视觉识别系统搭建、品牌色彩规范、设计规范文档、品牌资产管理、品牌形象统一、企业品牌指南。
+tags: [品牌规范, VI手册, 视觉识别, brand-guidelines, 品牌手册, 设计规范, 品牌形象, style-guide, 品牌管理, 企业视觉系统]
 ---
 
-# Brand Guidelines Zh
+# 品牌规范手册生成器
 
-> 品牌规范 / VI手册 / 视觉识别系统 / Brand Guidelines / 品牌形象手册生成器。快速创建Logo使用规范、品牌色彩体系、字体规范、图片风格、品牌语气文案的完整规范文档。适合品牌经理、市场总监、设计主管、创意代理商快速统一品牌形象、提升团队协作效率、降低品牌使用混乱风险。新品牌从零搭建视觉体...
+帮助企业快速创建结构完整的品牌视觉与语言规范文档，确保内外部团队在所有渠道保持一致的品牌形象。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brand-guidelines-zh`
-- **Source URL:** [https://clawhub.ai/skills/brand-guidelines-zh](https://clawhub.ai/skills/brand-guidelines-zh)
+## Tools Required
+- create_docx
+- create_pptx
 
-## Overview
+## Usage
+- "帮我为公司新品牌生成一份完整的VI品牌规范手册，包含Logo用法、主色调和字体规范"
+- "我们品牌色是#FF5A00和深灰色，帮我整理一份设计规范文档发给外包设计公司"
+- "帮我写品牌语气与文案风格指南，我们的用户是25-35岁都市白领，风格要专业但不冷漠"
 
+## Examples
+输入：公司名"启程科技"，主色#2B6CB0（科技蓝），辅色#E2E8F0，Logo为抽象火箭图标，目标用户为B端企业客户，品牌调性：专业、可靠、创新
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/brand-guidelines-zh
-```
+输出：
+# 启程科技 品牌规范手册 v1.0
+
+## 一、品牌概述
+**品牌使命**：用技术驱动企业数字化转型，让每一次启程都更确定。
+**品牌愿景**：成为中国中小企业最信赖的数字化伙伴。
+**核心价值观**：专业 · 可靠 · 创新
+
+---
+
+## 二、Logo 使用规范
+- **主版Logo**：横版蓝底白字 + 火箭图标，用于官网、PPT封面、合同抬头
+- **最小尺寸**：印刷不小于20mm宽，数字端不小于80px宽
+- **安全间距**：Logo四周留白不少于Logo高度的1/4
+- **禁止行为**：❌ 拉伸变形 ❌ 改变颜色 ❌ 添加阴影或描边
+
+---
+
+## 三、品牌色彩体系
+| 色彩角色 | 色值 | 用途 |
+|--------|------|------|
+| 主色·科技蓝 | #2B6CB0 | 按钮、标题、强调元素 |
+| 辅色·浅灰 | #E2E8F0 | 背景、卡片、分割线 |
+| 文字色 | #1A202C | 正文 |
+| 警示色 | #E53E3E | 错误提示、警告 |
+
+---
+
+## 四、字体规范
+- **中文**：思源黑体 CN（标题 Bold / 正文 Regular）
+- **英文/数字**：Inter（可替换为 Helvetica Neue）
+- **禁用字体**：华文彩云、方正综艺等装饰性字体
+
+---
+
+## 五、品牌语气与文案风格
+- **整体风格**：专业不刻板，亲切不随意
+- **常用句式**：主动句 > 被动句；数据支撑 > 空洞描述
+- ✅ 推荐表达："帮助300+企业降低30%运营成本"
+- ❌ 避免表达："我们非常努力地为您服务"

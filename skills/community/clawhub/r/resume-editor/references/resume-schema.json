@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chijiang.dev/resume-editor/resume-schema.json",
+  "title": "Resume Data",
+  "type": "object",
+  "required": ["personal"],
+  "additionalProperties": true,
+  "properties": {
+    "personal": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "github": { "type": "string" },
+        "photo": {
+          "type": "string",
+          "description": "Optional portrait. Accepts a file path (resolved relative to the resume JSON's directory), an http(s) URL, or a data: base64 URI. Rendering is opt-in per theme; built-in themes hide it by default."
+        }
+      }
+    },
+    "summary": { "type": "string" },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "institution": { "type": "string" },
+          "degree": { "type": "string" },
+          "period": { "type": "string" },
+          "location": { "type": "string" },
+          "gpa": { "type": "string" },
+          "honors": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "company": { "type": "string" },
+          "position": { "type": "string" },
+          "period": { "type": "string" },
+          "location": { "type": "string" },
+          "description": { "type": "string" },
+          "responsibilities": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "achievements": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "period": { "type": "string" },
+          "technologies": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "description": { "type": "string" },
+          "achievements": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          { "type": "string" }
+        ]
+      }
+    }
+  }
+}

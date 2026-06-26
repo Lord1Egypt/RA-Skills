@@ -1,0 +1,158 @@
+{
+  "$schema": "https://clawhub.ai/schema/skill.v1.json",
+  "name": "vocab-voyage",
+  "display_name": "Vocab Voyage",
+  "version": "1.1.1",
+  "description": "Vocabulary tools for SAT, ISEE, SSAT, PSAT, GRE, GMAT, LSAT prep — 20 MCP tools + 17 interactive widgets (flashcards, quiz, study plan, progress, 11 mini-games, session debrief). 13 test-prep courses. Hosted endpoint, no install required.",
+  "publisher": {
+    "name": "Vocab Voyage",
+    "homepage": "https://vocab.voyage",
+    "support": "https://vocab.voyage/mcp"
+  },
+  "license": "MIT",
+  "categories": [
+    "education",
+    "test-prep",
+    "vocabulary",
+    "productivity"
+  ],
+  "keywords": [
+    "sat",
+    "isee",
+    "ssat",
+    "gre",
+    "gmat",
+    "lsat",
+    "psat",
+    "vocabulary",
+    "tutor",
+    "k12"
+  ],
+  "skill": {
+    "entrypoint": "SKILL.md"
+  },
+  "mcp_server": {
+    "type": "remote",
+    "transport": "streamable-http",
+    "url": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server?ref=clawhub",
+    "auth": {
+      "anonymous": true,
+      "bearer": {
+        "description": "Optional personal MCP token (vv_mcp_…) — generate at https://vocab.voyage/mcp to unlock personalized tools.",
+        "token_url": "https://vocab.voyage/mcp",
+        "docs_url": "https://vocab.voyage/developers/auth",
+        "scopes": [
+          "mcp.read",
+          "mcp.tools",
+          "profile.read",
+          "progress.read"
+        ]
+      }
+    }
+  },
+  "tools": [
+    "get_word_of_the_day",
+    "get_definition",
+    "generate_quiz",
+    "get_course_word_list",
+    "list_courses",
+    "explain_word_in_context",
+    "study_plan_preview",
+    "get_flashcards",
+    "get_my_progress",
+    "play_game",
+    "get_sparkle_guidance",
+    "set_persona",
+    "get_recommended_next_action",
+    "list_starter_prompts",
+    "record_word_result",
+    "record_session_complete",
+    "award_game_xp",
+    "mark_word_known",
+    "mark_word_difficult",
+    "update_adaptive_level"
+  ],
+  "ui_resources": [
+    {
+      "uri": "ui://vocab-voyage/word-of-the-day",
+      "description": "Hero card with today's vocab word, definition, audio button, and add-to-queue CTA. Powered by get_word_of_the_day."
+    },
+    {
+      "uri": "ui://vocab-voyage/flashcards",
+      "description": "Tap-to-flip flashcard deck. 'I knew this / I didn't' buttons persist mastery via the same tables as the web app. Powered by get_flashcards."
+    },
+    {
+      "uri": "ui://vocab-voyage/quiz",
+      "description": "Interactive multiple-choice quiz. Per-answer events flow to record_word_result; session totals to record_session_complete. Powered by generate_quiz."
+    },
+    {
+      "uri": "ui://vocab-voyage/study-plan",
+      "description": "Seven-day expandable plan grid. 'Start Day N' launches a flashcard session seeded with that day's words. Powered by study_plan_preview."
+    },
+    {
+      "uri": "ui://vocab-voyage/progress",
+      "description": "Auth-only personal dashboard: streak, XP, mastery split, next-up words, and recent misses. Powered by get_my_progress."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_match",
+      "description": "Tap a word, then tap its definition. Per-pair answers persist via record_word_result; round end awards XP. Powered by play_game (slug=word_match)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/spelling_bee",
+      "description": "Type the word from its definition (with audio). Per-word results persist; round XP awards via award_game_xp. Powered by play_game (slug=spelling_bee)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/speed_round",
+      "description": "60-second timed sprint with streak bonuses. Powered by play_game (slug=speed_round)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/synonym_showdown",
+      "description": "Pick the closest synonym for each word. Powered by play_game (slug=synonym_showdown)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_scramble",
+      "description": "Unscramble the letters to spell each vocab word. Powered by play_game (slug=word_scramble)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/fill_in_blank",
+      "description": "Pick the word that completes each sentence. Powered by play_game (slug=fill_in_blank)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/context_clues",
+      "description": "Infer each word's meaning from a surrounding sentence. Powered by play_game (slug=context_clues)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_guess",
+      "description": "Hangman-style letter guessing for vocab words. Powered by play_game (slug=word_guess)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/picture_match",
+      "description": "Match each word to its emoji-cued image. Powered by play_game (slug=picture_match)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/crossword",
+      "description": "Mini vocabulary crossword. Powered by play_game (slug=crossword)."
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_search",
+      "description": "Find hidden vocab words in a letter grid. Powered by play_game (slug=word_search)."
+    },
+    {
+      "uri": "ui://vocab-voyage/session-debrief",
+      "description": "Post-session summary with weak words, next-up queue, and Sparkle's recommended next action. Powered by get_sparkle_guidance / get_my_progress."
+    }
+  ],
+  "discovery": {
+    "agent_card": "https://vocab.voyage/.well-known/agent-card.json",
+    "server_card": "https://vocab.voyage/.well-known/mcp/server-card.json",
+    "mcp_apps": "https://vocab.voyage/.well-known/mcp/apps.json",
+    "api_catalog": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/api-catalog",
+    "nlweb_ask": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/nlweb-ask",
+    "auth_docs": "https://vocab.voyage/developers/auth",
+    "openapi": "https://vocab.voyage/openapi.json",
+    "schemamap": "https://vocab.voyage/schemamap.xml"
+  },
+  "install": {
+    "command": "openclaw skills install vocab-voyage"
+  }
+}

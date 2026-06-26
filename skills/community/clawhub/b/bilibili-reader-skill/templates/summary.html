@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title_cn }} — B站视频学习笔记</title>
+    <style>
+{% filter indent(width=4) %}{% include "base.css" %}{% endfilter %}
+    </style>
+</head>
+<body>
+
+    {# ── 标题区 ── #}
+    {% include "components/_header.html" %}
+
+    {# ── TLDR ── #}
+    {% include "components/_tldr.html" %}
+
+    {# ── ★ v2.0 新增：我的解读（概念层理论阐述）── #}
+    {% include "components/_my_analysis.html" %}
+
+    {# ── ★ v2.0 新增：视频完整陈述 ── #}
+    {% include "components/_video_transcript.html" %}
+
+    {# ── 降级：原有摘要区块（v2.0 字段为空时显示）── #}
+    {% if not my_analysis or not my_analysis.concepts %}
+        {% if summary_cn %}
+        <div class="section">
+            <h3 class="section-title">📋 内容摘要</h3>
+            <div class="content-block">{{ summary_cn }}</div>
+        </div>
+        {% endif %}
+    {% endif %}
+
+    {# ── 核心要点（v1.0 + v2.0 通用）── #}
+    {% include "components/_key_points.html" %}
+
+    {# ── 通用学习导向区块 ── #}
+    {% include "components/_prerequisites.html" %}
+    {% include "components/_difficulty.html" %}
+    {% include "components/_misconceptions.html" %}
+    {% include "components/_insights.html" %}
+
+    {# ── 体裁专用区块 ── #}
+    {% include "components/_genre_tech.html" %}
+    {% include "components/_genre_tech_code.html" %}
+    {% include "components/_pitfalls.html" %}
+    {% include "components/_genre_academic.html" %}
+    {% include "components/_genre_language.html" %}
+    {% include "components/_genre_deepdive.html" %}
+    {% include "components/_genre_methodology.html" %}
+    {% include "components/_genre_career.html" %}
+    {% include "components/_genre_book.html" %}
+    {% include "components/_genre_life.html" %}
+
+    {# ── 后续行动 ── #}
+    {% if next_steps_cn %}
+    <div class="section">
+        <h3 class="section-title">🚀 后续行动</h3>
+        <div class="content-block">{{ next_steps_cn }}</div>
+    </div>
+    {% endif %}
+
+    <hr class="divider">
+
+    {# ── ★ v2.0 新增：测验区 ── #}
+    {% include "components/_quiz.html" %}
+
+    {# ── 评论区 ── #}
+    {% include "components/_comments.html" %}
+
+    {# ── 推荐区 ── #}
+    {% include "components/_recommendation.html" %}
+
+    {# ── 页脚 ── #}
+    {% include "components/_footer.html" %}
+
+</body>
+</html>

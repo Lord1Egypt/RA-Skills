@@ -1,0 +1,87 @@
+[
+  {
+    "id": "discord_dm_only",
+    "user_message": "Can you reply in #general?",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": [
+          "memory/always_on.md",
+          "memory/topics/discord-rules.md"
+        ],
+        "max_daily_log_snippets": 0
+      },
+      "context_pack": {
+        "task_type": "ops",
+        "must_follow_contains": [
+          "Discord DM-only"
+        ],
+        "unknowns_count_max": 2
+      }
+    }
+  },
+  {
+    "id": "briefing_missed",
+    "user_message": "I didn\u2019t receive today\u2019s briefing again",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": [
+          "memory/automation.md",
+          "memory/topics/openclaw-ops.md"
+        ],
+        "max_daily_log_snippets": 3
+      },
+      "context_pack": {
+        "task_type": "ops"
+      }
+    }
+  },
+  {
+    "id": "doc_review_mode",
+    "user_message": "Review this customer-facing doc paragraph and tell me what claims need validation",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": [
+          "memory/topics/doc-review-mode.md"
+        ],
+        "max_daily_log_snippets": 0
+      },
+      "context_pack": {
+        "task_type": "doc_review"
+      }
+    }
+  },
+  {
+    "id": "memory_pipeline_question",
+    "user_message": "How does our retrieval + compression memory pipeline work?",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": [
+          "memory/always_on.md"
+        ],
+        "max_daily_log_snippets": 0
+      },
+      "context_pack": {
+        "task_type": "planning"
+      }
+    }
+  },
+  {
+    "id": "work_order_evidence_contract",
+    "user_message": "WORK ORDER: Summarize the latest pipeline spec. Evidence required: Retrieval Bundle JSON with snippet IDs, Context Pack JSON, and NOT EXECUTED fallback if anything fails.",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": [
+          "memory/always_on.md"
+        ],
+        "max_daily_log_snippets": 0
+      },
+      "context_pack": {
+        "task_type": "other",
+        "must_follow_contains": [
+          "Emit the Retrieval Bundle JSON",
+          "If any step cannot be completed, reply NOT EXECUTED"
+        ]
+      }
+    }
+  }
+]

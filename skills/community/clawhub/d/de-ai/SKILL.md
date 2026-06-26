@@ -1,35 +1,71 @@
 ---
-name: "Humanize Text"
-description: "文案去AI味优化器。检测和修复AI生成文本中常见的机械感、模板化表达、过度礼貌等问题， 让文本更像人写的。适用于小红书文案、客服回复、产品介绍等场景。 触发词：去AI味、优化文案、自然一点、别像AI写的、口语化、更像人"
-category: "creative"
-source: "ClawHub"
-tags: [ai-detection, copywriting, text-optimization, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/de-ai"
-sourceUrl: "https://clawhub.ai/skills/de-ai"
+name: humanize-text
+description: >
+  文案去AI味优化器。检测和修复AI生成文本中常见的机械感、模板化表达、过度礼貌等问题，
+  让文本更像人写的。适用于小红书文案、客服回复、产品介绍等场景。
+  触发词：去AI味、优化文案、自然一点、别像AI写的、口语化、更像人
 ---
 
-# Humanize Text
+# 文案去AI味优化器
 
-> 文案去AI味优化器。检测和修复AI生成文本中常见的机械感、模板化表达、过度礼貌等问题， 让文本更像人写的。适用于小红书文案、客服回复、产品介绍等场景。 触发词：去AI味、优化文案、自然一点、别像AI写的、口语化、更像人
+> AI味越少，转化越高。这个skill帮你把机器生成的内容改得像人写的。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/de-ai`
-- **Source URL:** [https://clawhub.ai/skills/de-ai](https://clawhub.ai/skills/de-ai)
+## 六大AI味检测点
 
-## Overview
+### 1. 开头太套路
+- ❌ "在当今数字化时代，..."
+- ❌ "随着科技的不断发展，..."
+- ✅ 直接说事，用"昨天"、"上周"、"刚发现"开头
 
+### 2. 爱用长句和连接词
+- ❌ "此外，值得注意的是，..."
+- ❌ "综上所述，我们可以得出结论..."
+- ✅ 短句。一句说完就说下一句。不用过渡词。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/de-ai
+### 3. 过度礼貌/委婉
+- ❌ "如果您方便的话，建议您可以考虑..."
+- ❌ "我们诚挚地建议您..."
+- ✅ "试一下这个方法" / "别这么做"
+
+### 4. 模板化结尾
+- ❌ "希望以上建议对您有所帮助"
+- ❌ "如果您有任何问题，请随时与我们联系"
+- ✅ 自然收尾或不收尾
+
+### 5. 缺少个人痕迹
+- ❌ 完美的逻辑结构、每段等长、完美排版
+- ✅ 偶尔的口语、括号吐槽、个人经历
+
+### 6. 用词太书面
+- ❌ "获取"、"进行"、"共计"、"鉴于"
+- ✅ "拿到"、"搞"、"一共"、"因为"
+
+## 优化规则
+
+### 小红书/自媒体风格
+```markdown
+1. 每段不超过3行
+2. 用表情符号但不要堆砌
+3. 可以有括号碎碎念（就像这样）
+4. 用"！"表示兴奋，"？"装疑惑
+5. 适当留白，不用填满每个空格
+6. 第一人称："我"、"我们"
+7. 不要总结，不要升华
 ```
+
+### 客服/回复风格
+```markdown
+1. 先共情再给方案
+2. 少用"您好"，用"嗨"或直接说事
+3. 可以适当用语气词："哈"、"嘛"、"吧"
+4. 不要"很高兴为您服务"
+5. 不懂直接说"这个我查一下"
+```
+
+## 修改示例
+
+| 原文（AI味） | 修改后（人味） |
+|-------------|---------------|
+| 如果您遇到数据丢失问题，建议您立即停止使用该设备 | 数据丢了？先别往里头写东西 |
+| 我们的产品具有卓越的性能表现 | 用起来很快，不卡 |
+| 综上所述，我们推荐您选择方案A | 选A就对了 |

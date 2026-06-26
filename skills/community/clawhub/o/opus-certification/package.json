@@ -1,0 +1,44 @@
+{
+  "name": "opus-certification",
+  "version": "1.0.0",
+  "description": "Opus 4.6 Quality Certification program for ClawHub skills",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "demo": "node index.js check meeting-efficiency-pro"
+  },
+  "keywords": [
+    "certification",
+    "quality",
+    "audit",
+    "security",
+    "performance",
+    "clawhub",
+    "opus"
+  ],
+  "author": "ClawHub",
+  "license": "MIT-0",
+  "dependencies": {},
+  "openclaw": {
+    "skill": true,
+    "price": 0,
+    "category": "quality",
+    "tags": ["certification", "quality", "audit", "security", "performance"],
+    "compatibility": "openclaw>=1.5.0",
+    "commands": [
+      "certification check",
+      "certification audit",
+      "certification apply",
+      "certification criteria",
+      "certification list",
+      "certification self-assessment",
+      "certification status"
+    ]
+  },
+  "clawhub": {
+    "price": 0,
+    "category": "quality",
+    "tags": ["certification", "quality", "audit", "security", "performance"]
+  }
+}

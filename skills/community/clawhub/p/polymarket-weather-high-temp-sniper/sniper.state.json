@@ -1,0 +1,14 @@
+{
+  "traded_today": [],
+  "last_report_ts": 1773859213.5250258,
+  "date": "2026-03-18",
+  "last_discovery_ts": 1773836505.9694548,
+  "imports_today": 0,
+  "last_import_date": "2026-03-18",
+  "last_redeem_ts": 1773859213.5250258,
+  "redeem_stats": {
+    "checked": 0,
+    "redeemed": 0,
+    "failed": 0
+  }
+}

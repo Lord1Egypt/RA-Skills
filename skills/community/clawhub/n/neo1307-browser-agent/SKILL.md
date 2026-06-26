@@ -1,35 +1,31 @@
 ---
-name: "Browser Agent"
-description: "Browser automation with Playwright for opening pages, taking screenshots, finding or clicking DOM elements, filling forms, extracting text, and managing cook..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neo1307-browser-agent"
-sourceUrl: "https://clawhub.ai/skills/neo1307-browser-agent"
+name: browser-agent
+description: Browser automation with Playwright for opening pages, taking screenshots, finding or clicking DOM elements, filling forms, extracting text, and managing cookies/session state. Use when Codex needs deterministic browser control against real web pages, smoke-testing a site, grabbing DOM evidence, or automating straightforward UI flows.
 ---
 
 # Browser Agent
 
-> Browser automation with Playwright for opening pages, taking screenshots, finding or clicking DOM elements, filling forms, extracting text, and managing cook...
+Use Playwright-backed browser control for reproducible page actions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neo1307-browser-agent`
-- **Source URL:** [https://clawhub.ai/skills/neo1307-browser-agent](https://clawhub.ai/skills/neo1307-browser-agent)
+## Workflow
 
-## Overview
+1. Run `index.js` with a target URL.
+2. Use action flags to open, screenshot, extract title/text, click selectors, fill inputs, or save/load session state.
+3. Keep selectors explicit when clicking or filling.
+4. Save evidence (screenshots / extracted text) to `out/`.
 
+## Supported actions
+- page open
+- screenshot
+- title read
+- text extraction by selector
+- click by selector
+- fill input/textarea by selector
+- save cookies/storage state
+- load cookies/storage state
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example
+
 ```bash
-hermes skills install clawhub/neo1307-browser-agent
+node skills/browser-agent/index.js --url https://example.com --screenshot out/example.png --title --extract h1
 ```

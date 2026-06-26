@@ -1,0 +1,72 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "brand": "Bambu Lab",
+    "material": "PLA",
+    "color": "Matte Black",
+    "weight_initial_g": 1000.0,
+    "weight_remaining_g": 740.0,
+    "cost_usd": 19.99,
+    "location": "Shelf A",
+    "notes": "[2024-01-15] Used for phone stand print",
+    "status": "active",
+    "added_date": "2024-01-10",
+    "finished_date": null
+  },
+  {
+    "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "brand": "Hatchbox",
+    "material": "PETG",
+    "color": "Transparent Blue",
+    "weight_initial_g": 1000.0,
+    "weight_remaining_g": 1000.0,
+    "cost_usd": 24.99,
+    "location": "Shelf B",
+    "notes": null,
+    "status": "active",
+    "added_date": "2024-01-20",
+    "finished_date": null
+  },
+  {
+    "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+    "brand": "eSUN",
+    "material": "ABS",
+    "color": "White",
+    "weight_initial_g": 1000.0,
+    "weight_remaining_g": 65.0,
+    "cost_usd": 18.50,
+    "location": "Drawer 1",
+    "notes": "[2024-02-01] Almost empty — reorder soon",
+    "status": "active",
+    "added_date": "2023-12-05",
+    "finished_date": null
+  },
+  {
+    "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+    "brand": "SainSmart",
+    "material": "TPU",
+    "color": "Clear",
+    "weight_initial_g": 500.0,
+    "weight_remaining_g": 0.0,
+    "cost_usd": 22.00,
+    "location": null,
+    "notes": "[2024-01-28] Used for phone bumpers, ran out",
+    "status": "finished",
+    "added_date": "2023-11-15",
+    "finished_date": "2024-01-28"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-1234-efab-345678901234",
+    "brand": "Overture",
+    "material": "PLA",
+    "color": "Galaxy Silver",
+    "weight_initial_g": 1000.0,
+    "weight_remaining_g": 900.0,
+    "cost_usd": 21.99,
+    "location": "Shelf A",
+    "notes": null,
+    "status": "active",
+    "added_date": "2024-02-10",
+    "finished_date": null
+  }
+]

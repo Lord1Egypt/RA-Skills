@@ -1,35 +1,130 @@
 ---
-name: "What to Eat Today | 今天吃什么"
-description: "智能解决”今天吃什么”难题。根据用户地点、天气、心情、预算、就餐方式（外卖/堂食/自己做）快速推荐菜品， 并附图片参考。**当用户说”今天吃什么”、”不知道吃啥”、”帮我推荐”、”想吃XX”或表达任何餐饮需求时，必须使用此技能。** 目标是少问问题、快给结果，必要时最多补问 1-2 个关键问题。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eat-what-today-skill"
-sourceUrl: "https://clawhub.ai/skills/eat-what-today-skill"
+name: eat-what-today-skill
+description: >
+  智能解决”今天吃什么”难题。根据用户地点、天气、心情、预算、就餐方式（外卖/堂食/自己做）快速推荐菜品，
+  并附图片参考。**当用户说”今天吃什么”、”不知道吃啥”、”帮我推荐”、”想吃XX”或表达任何餐饮需求时，必须使用此技能。**
+  目标是少问问题、快给结果，必要时最多补问 1-2 个关键问题。
+compatibility:
+  requires:
+    - Python 3
 ---
 
-# What to Eat Today | 今天吃什么
+# Eat What Today Skill
 
-> 智能解决”今天吃什么”难题。根据用户地点、天气、心情、预算、就餐方式（外卖/堂食/自己做）快速推荐菜品， 并附图片参考。**当用户说”今天吃什么”、”不知道吃啥”、”帮我推荐”、”想吃XX”或表达任何餐饮需求时，必须使用此技能。** 目标是少问问题、快给结果，必要时最多补问 1-2 个关键问题。
+用于在对话中快速完成“吃什么”决策，避免长链路盘问。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eat-what-today-skill`
-- **Source URL:** [https://clawhub.ai/skills/eat-what-today-skill](https://clawhub.ai/skills/eat-what-today-skill)
+## 何时使用
 
-## Overview
+- 用户表达“今天吃什么”“不知道吃啥”“帮我推荐外卖/做饭”
+- 用户给出任意偏好信息：地点、天气、心情、预算、时间段、是否想自己做
 
+## 交互原则（重点）
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 先猜后问：优先从用户原话中提取偏好，不要一上来连续提问。
+2. 快速收敛：首次直接给 3 个候选 + 各自理由。
+3. 最少追问：仅在推荐分歧大时，补问最多 1-2 个问题（优先问预算上限、忌口）。
+4. 给出画面感：每个候选附一张图片路径，方便进一步发送给客户参考。
+5. 能落地：每个推荐明确适合外卖/堂食/自己做。
+
+## 推荐流程
+
+1. 抓取用户输入中的关键词：地点、天气、心情、预算、方式、时段。
+2. 执行脚本生成推荐结果。
+3. 将结果整理为自然语言输出给用户。
+4. 若用户选择其中一个候选，再给同类不重复备选。
+
+## 执行脚本
+
+在技能目录下执行：
+
 ```bash
-hermes skills install clawhub/eat-what-today-skill
+cd /path/to/eat-what-today-skill
+python scripts/skill_cli.py "用户原话"
 ```
+
+或使用直接调用：
+
+```bash
+python /path/to/eat-what-today-skill/scripts/skill_cli.py "用户原话"
+```
+
+可选覆盖参数（当你已明确拿到信息时）：
+
+```bash
+python scripts/eat_what_today.py "今天吃什么" --weather rainy --mood tired --mode takeaway --budget low --city_tag south
+```
+
+统一入口也支持同样参数：
+
+```bash
+python scripts/skill_cli.py "今天吃什么" --weather rainy --mood tired --mode takeaway --budget low --city_tag south
+```
+
+## 输出格式要求
+
+- 先给结论：3 个菜品推荐。
+- 每个推荐说明：推荐理由、预算档、辣度、就餐方式。
+- 每个推荐附图片参考路径与 markdown 图片链接。
+- 结尾给一个轻量动作建议：
+  - “回我 1/2/3，我给你同类不重样备选”
+
+## 注意事项
+
+- 不做医疗建议，不处理严重饮食禁忌诊断。
+- 若用户明确说”别问了，直接拍板”，直接给单一最优推荐 + 1 个备选。
+- 若用户信息极少，仍然先给推荐，再补问最多 1 个关键问题。
+
+## 飞书发图片（重要！）
+
+### ✅ 当前稳定方案（direct runtime 兼容）
+
+当在 OpenClaw 飞书环境发送本地图片时：
+
+1. **先复制图片**：将推荐菜品图片复制到工作目录：
+   ```
+   /home/azureuser/.openclaw/workspace/
+   ```
+
+2. **使用 media 字段发送**：调用 `message` 工具时，使用 `media` 字段传递 workspace 路径
+
+3. **发送顺序规则**（推荐列表必须遵守）：
+   - 一段文字说明 → 一张图 → 一段文字 → 一张图（顺序发送）
+   - 禁止使用 Markdown 本地路径图片（如 `![img](local/path.jpg)`）
+   - 禁止只发文字不发图
+
+4. **标准结构示例**（推荐 3 个菜品时）：
+   ```
+   # 今日推荐 🍽️
+
+   ## 1. 红烧肉（¥25-35）
+   肥而不腻，入口即化，适合雨天暖身...
+   [发送图片1]
+
+   ## 2. 宫保鸡丁（¥20-30）
+   经典川菜，麻辣鲜香...
+   [发送图片2]
+
+   ## 3. 清炒时蔬（¥12-18）
+   清爽解腻，营养均衡...
+   [发送图片3]
+
+   回复 1/2/3 继续推荐同类菜品 🚀
+   ```
+
+5. **单张图片场景**：
+   - 文字说明 → 立即发送对应图片
+   - 禁止分开发送（文字和图片必须连续）
+
+### ⚠️ 禁止事项
+
+- ❌ 禁止使用 Markdown 本地图片路径
+- ❌ 禁止只发文字描述不发送实际图片
+- ❌ 禁止一次性发送多张图片（必须逐张发送）
+- ❌ 禁止在图片发送前插入无关内容
+
+### 适用场景
+
+此规则适用于：
+- OpenClaw direct runtime 环境
+- 飞书消息推送
+- 任何需要发送本地图片的对话场景

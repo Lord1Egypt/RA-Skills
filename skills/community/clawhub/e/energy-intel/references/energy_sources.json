@@ -1,0 +1,105 @@
+{
+  "skill_name": "Global Energy & Natural Resources Intelligence",
+  "slug": "energy-intel",
+  "version": "1.0.0",
+  "data_sources": {
+    "oil_and_gas": [
+      {"name": "IEA Oil Market Report", "url": "https://www.iea.org/reports/oil-market-report", "type": "monthly", "region": "global"},
+      {"name": "OPEC Monthly Oil Market Report", "url": "https://www.opec.org/opec_web/en/publications/338.htm", "type": "monthly", "region": "global"},
+      {"name": "EIA Short-Term Energy Outlook", "url": "https://www.eia.gov/outlooks/steo/", "type": "monthly", "region": "US/global"},
+      {"name": "JODI Oil World Database", "url": "https://www.jodidata.org/oil/", "type": "monthly", "region": "190+ countries"},
+      {"name": "BP Statistical Review of World Energy", "url": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html", "type": "annual", "region": "global"},
+      {"name": "Rystad Energy", "url": "https://www.rystadenergy.com/", "type": "real-time", "region": "global"},
+      {"name": "S&P Global Platts", "url": "https://www.spglobal.com/commodityinsights/", "type": "real-time", "region": "global"},
+      {"name": "Baker Hughes Rig Count", "url": "https://rigcount.bakerhughes.com/", "type": "weekly", "region": "global"}
+    ],
+    "renewable_energy": [
+      {"name": "IRENA Renewable Capacity Statistics", "url": "https://www.irena.org/Data", "type": "annual", "region": "global"},
+      {"name": "IEA Renewables Market Update", "url": "https://www.iea.org/reports/renewable-energy-market-update", "type": "semi-annual", "region": "global"},
+      {"name": "BloombergNEF (BNEF)", "url": "https://about.bnef.com/", "type": "real-time", "region": "global"},
+      {"name": "Global Wind Energy Council (GWEC)", "url": "https://gwec.net/", "type": "annual", "region": "global"},
+      {"name": "SolarPower Europe", "url": "https://www.solarpowereurope.org/", "type": "annual", "region": "EU/global"},
+      {"name": "National Renewable Energy Laboratory (NREL)", "url": "https://www.nrel.gov/", "type": "ongoing", "region": "US/global"}
+    ],
+    "nuclear": [
+      {"name": "IAEA PRIS Database", "url": "https://pris.iaea.org/", "type": "real-time", "region": "global, 440+ reactors"},
+      {"name": "WNA World Nuclear Association", "url": "https://world-nuclear.org/", "type": "ongoing", "region": "global"},
+      {"name": "WNN World Nuclear News", "url": "https://www.world-nuclear-news.org/", "type": "daily", "region": "global"}
+    ],
+    "minerals_and_metals": [
+      {"name": "USGS Mineral Commodity Summaries", "url": "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries", "type": "annual", "region": "global"},
+      {"name": "London Metal Exchange (LME)", "url": "https://www.lme.com/", "type": "real-time", "region": "global"},
+      {"name": "Cochilco (Chilean Copper Commission)", "url": "https://www.cochilco.cl/", "type": "monthly", "region": "Chile/global copper"},
+      {"name": "SMM Shanghai Metals Market", "url": "https://www.metal.com/", "type": "daily", "region": "Asia/global"},
+      {"name": "Benchmark Mineral Intelligence", "url": "https://www.benchmarkminerals.com/", "type": "ongoing", "region": "global battery minerals"}
+    ],
+    "coal": [
+      {"name": "IEA Coal Market Update", "url": "https://www.iea.org/reports/coal-information-overview", "type": "annual", "region": "global"},
+      {"name": "Global Coal Plant Tracker", "url": "https://globalenergymonitor.org/projects/global-coal-plant-tracker/", "type": "ongoing", "region": "global"}
+    ],
+    "carbon_and_climate": [
+      {"name": "EU ETS Carbon Price", "url": "https://www.eea.europa.eu/data-and-maps/dashboards/emissions-trading-viewer-1", "type": "daily", "region": "EU"},
+      {"name": "World Bank Carbon Pricing Dashboard", "url": "https://carbonpricingdashboard.worldbank.org/", "type": "ongoing", "region": "70+ initiatives"},
+      {"name": "Global Carbon Project", "url": "https://www.globalcarbonproject.org/", "type": "annual", "region": "global"}
+    ],
+    "grid_and_power": [
+      {"name": "ENTSO-E Transparency Platform", "url": "https://transparency.entsoe.eu/", "type": "real-time", "region": "EU"},
+      {"name": "EIA Electricity Data Browser", "url": "https://www.eia.gov/electricity/data/browser/", "type": "monthly", "region": "US"},
+      {"name": "Ember Global Electricity Review", "url": "https://ember-energy.org/", "type": "annual", "region": "global"}
+    ]
+  },
+  "commodity_benchmarks": {
+    "brent_crude": {"unit": "$/bbl", "sources": ["ICE", "NYMEX"]},
+    "wti_crude": {"unit": "$/bbl", "sources": ["NYMEX", "CME"]},
+    "natural_gas_henry_hub": {"unit": "$/MMBtu", "sources": ["NYMEX"]},
+    "natural_gas_ttf": {"unit": "€/MWh", "sources": ["ICE"]},
+    "thermal_coal_newcastle": {"unit": "$/metric ton", "sources": ["ICE"]},
+    "uranium_u3o8": {"unit": "$/lb", "sources": ["UxC", "TradeTech"]},
+    "lithium_carbonate": {"unit": "¥/ton", "sources": ["SMM", "Benchmark"]},
+    "cobalt": {"unit": "$/lb", "sources": ["LME"]},
+    "copper": {"unit": "$/metric ton", "sources": ["LME", "COMEX"]},
+    "nickel": {"unit": "$/metric ton", "sources": ["LME"]},
+    "rare_earth_basket": {"unit": "¥/kg", "sources": ["SMM"]},
+    "carbon_eu_ets": {"unit": "€/ton CO2", "sources": ["ICE"]}
+  },
+  "key_organizations": {
+    "intergovernmental": ["IEA", "OPEC", "IRENA", "IAEA", "UNFCCC", "World Bank Energy"],
+    "national_agencies": ["EIA (US)", "NEA (China)", "METI (Japan)", "DG Energy (EU)", "MNRE (India)"],
+    "majors_and_ngos": ["BP", "Shell", "TotalEnergies", "ExxonMobil", "Chevron", "Rystad", "Wood Mackenzie", "BNEF", "IHS Markit", "Global Energy Monitor"]
+  },
+  "energy_transition_technologies": [
+    "Solar PV (mono-Si, perovskite, bifacial)",
+    "Wind (onshore, offshore fixed, floating)",
+    "Battery Storage (Li-ion, LFP, sodium-ion, solid-state, flow)",
+    "Green Hydrogen (PEM, alkaline, SOEC electrolysis)",
+    "Nuclear (SMR, Gen IV, fusion ITER/SPARC)",
+    "CCUS (Post-combustion, direct air capture, bioenergy CCS)",
+    "Grid Modernization (HVDC, smart grid, VPP, demand response)",
+    "Geothermal (conventional, EGS, AGS)",
+    "Marine Energy (tidal stream, wave, OTEC)",
+    "Sustainable Aviation Fuel (SAF, e-kerosene)"
+  ],
+  "critical_minerals_for_energy": {
+    "ev_batteries": ["Lithium", "Cobalt", "Nickel", "Manganese", "Graphite"],
+    "solar_pv": ["Polysilicon", "Silver", "Copper", "Indium", "Tellurium"],
+    "wind_turbines": ["Rare Earths (Nd, Dy, Pr)", "Copper", "Zinc", "Molybdenum"],
+    "hydrogen_electrolyzers": ["Platinum", "Iridium", "Nickel"],
+    "nuclear": ["Uranium", "Zirconium", "Hafnium"]
+  },
+  "regulatory_frameworks": {
+    "climate_agreements": ["Paris Agreement (NDCs)", "COP30 Belem 2025", "EU Fit for 55", "US IRA 2022", "China 30-60 Goals"],
+    "carbon_markets": ["EU ETS", "UK ETS", "China National ETS", "California Cap-and-Trade", "RGGI"],
+    "energy_security": ["IEA Emergency Response", "EU RePowerEU", "Japan Strategic Petroleum Reserves", "India SPR"]
+  },
+  "geopolitical_chokepoints": [
+    {"name": "Strait of Hormuz", "flow": "21M bpd crude", "risk": "Iran tensions"},
+    {"name": "Malacca Strait", "flow": "16M bpd crude + products", "risk": "piracy, SCS disputes"},
+    {"name": "Suez Canal / SUMED", "flow": "5.5M bpd", "risk": "regional instability"},
+    {"name": "Bab el-Mandeb", "flow": "6.2M bpd", "risk": "Yemen/Houthi conflict"},
+    {"name": "Panama Canal", "flow": "0.9M bpd", "risk": "drought/low water levels"},
+    {"name": "Turkish Straits", "flow": "3.4M bpd", "risk": "regulatory, congestion"},
+    {"name": "DRC-Cobalt Corridor", "flow": "70% global cobalt", "risk": "conflict minerals"},
+    {"name": "South China Sea", "flow": "40% global LNG trade", "risk": "territorial disputes"}
+  ]
+}
+（内容由AI生成，仅供参考）

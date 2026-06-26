@@ -1,0 +1,150 @@
+{
+  "name": "boss_recruitment_full_workflow",
+  "description": "完整BOSS直聘招聘工作流（支持断点续跑）",
+  "version": "2.0",
+  "state_file": ".workflow_state.json",
+  "global_vars": {
+    "boss_wechat_ids": ["孙博1", "孙博2", "孙博3"],
+    "daily_kpi_resumes": 100,
+    "target_jobs": [],
+    "resume_folder": "C:\\Users\\liuxuejiao\\Desktop\\招聘简历\\{{date}}",
+    "wechat_group_prefix": "实习生-"
+  },
+  "steps": [
+    {
+      "name": "daily_init",
+      "description": "每日开始前确认招聘岗位",
+      "tool": "message",
+      "parameters": {
+        "message": "请确认今日招聘岗位（全职/兼职/实习）及要求"
+      },
+      "on_complete": "update_target_jobs",
+      "state": "pending"
+    },
+    {
+      "name": "dashboard_screenshot",
+      "description": "截图数据概览并发送到群",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/boss_automation.py --click dashboard --screenshot --suffix daily_dashboard"
+      },
+      "dependencies": ["daily_init"],
+      "state": "pending"
+    },
+    {
+      "name": "interact_favorited",
+      "description": "处理收藏牛人列表",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/boss_automation.py --click favorite_talents --batch_chat"
+      },
+      "dependencies": ["dashboard_screenshot"],
+      "state": "pending"
+    },
+    {
+      "name": "interact_interested",
+      "description": "处理对我感兴趣列表",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/boss_automation.py --click interested_me --batch_chat"
+      },
+      "dependencies": ["interact_favorited"],
+      "state": "pending"
+    },
+    {
+      "name": "greeting_strategy",
+      "description": "根据岗位筛选候选人并打招呼",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/boss_automation.py --filter \"age:16-21,education:海外,activity:刚刚活跃\" --batch_chat"
+      },
+      "dependencies": ["interact_interested"],
+      "state": "pending"
+    },
+    {
+      "name": "candidate_response",
+      "description": "处理候选人回复（交换微信/拉群）",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/boss_automation.py --process_chat --wechat_group_prefix \"{{global_vars.wechat_group_prefix}}\""
+      },
+      "dependencies": ["greeting_strategy"],
+      "state": "pending"
+    },
+    {
+      "name": "resume_collection",
+      "description": "收集并整理简历",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/resume_manager.py --collect --folder \"{{global_vars.resume_folder}}\""
+      },
+      "dependencies": ["candidate_response"],
+      "state": "pending"
+    },
+    {
+      "name": "resume_print",
+      "description": "打印简历并标记等级",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/resume_manager.py --print --mark"
+      },
+      "dependencies": ["resume_collection"],
+      "state": "pending"
+    },
+    {
+      "name": "phone_contact",
+      "description": "联系筛选通过的候选人",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/phone_manager.py --call --shortlist"
+      },
+      "dependencies": ["resume_print"],
+      "state": "pending"
+    },
+    {
+      "name": "send_offer",
+      "description": "根据老板反馈发送offer",
+      "tool": "exec",
+      "parameters": {
+        "command": "python scripts/offer_manager.py --send --boss_feedback"
+      },
+      "dependencies": ["phone_contact"],
+      "state": "pending"
+    },
+    {
+      "name": "daily_report",
+      "description": "汇报当日招聘数据",
+      "tool": "message",
+      "parameters": {
+        "message": "今日招聘数据：打招呼{{greet_count}}次，收到简历{{resume_count}}份，发送offer{{offer_count}}份"
+      },
+      "dependencies": ["send_offer"],
+      "state": "pending"
+    },
+    {
+      "name": "attend_meeting",
+      "description": "参加公司会议了解业务需求",
+      "tool": "message",
+      "parameters": {
+        "message": "请提醒我参加今日公司会议"
+      },
+      "dependencies": ["daily_report"],
+      "state": "pending"
+    }
+  ],
+  "resume_config": {
+    "enabled": true,
+    "check_interval": 60,
+    "save_state_on_step": true
+  },
+  "error_handling": {
+    "retry_limit": 3,
+    "retry_delay": 10,
+    "on_failure": "notify_admin"
+  },
+  "notifications": {
+    "admin_contact": "openclaw-control-ui",
+    "success_message": "招聘工作流完成！",
+    "failure_message": "工作流执行失败，请检查错误日志"
+  }
+}

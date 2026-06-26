@@ -1,0 +1,21 @@
+{
+  "_说明": "微信公众号配置文件 — 请填入你的公众号信息后重命名为 config.json",
+  
+  "appId": "你的公众号 AppID",
+  "appSecret": "你的公众号 AppSecret",
+  
+  "_获取方式": "登录 mp.weixin.qq.com → 设置与开发 → 基本配置 → 开发者ID",
+  "_IP白名单": "记得把你电脑的公网 IP 加到 IP 白名单里",
+  
+  "title": "AI 时代，产品经理怎么做产品决策？我用了一套「AI 思考搭子」方法论",
+  "author": "",
+  "digest": "不给答案，只帮你问出更好的问题。五场对话，从模糊直觉到清晰行动。",
+  
+  "_封面图二选一": "thumbMediaId 填已有的永久素材ID；或用 thumbImagePath 指向本地图片自动上传",
+  "thumbMediaId": "",
+  "thumbImagePath": "../cover.png",
+  
+  "contentSourceUrl": "https://github.com/viliawang-pm/product-sense-coach",
+  "needOpenComment": 0,
+  "onlyFansCanComment": 0
+}

@@ -1,35 +1,57 @@
 ---
-name: "Graphql Builder"
+name: "graphql-builder"
+version: "3.0.0"
 description: "Build and validate GraphQL queries, mutations, and schemas. Use when working with GraphQL APIs."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/graphql-builder"
-sourceUrl: "https://clawhub.ai/skills/graphql-builder"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Graphql Builder
+# graphql-builder
 
-> Build and validate GraphQL queries, mutations, and schemas. Use when working with GraphQL APIs.
+Build and validate GraphQL queries, mutations, and schemas. Use when working with GraphQL APIs.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/graphql-builder`
-- **Source URL:** [https://clawhub.ai/skills/graphql-builder](https://clawhub.ai/skills/graphql-builder)
+## Commands
 
-## Overview
+### `query`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/graphql-builder
+scripts/script.sh query <type fields>
 ```
+
+### `mutation`
+
+```bash
+scripts/script.sh mutation <type fields>
+```
+
+### `validate`
+
+```bash
+scripts/script.sh validate <file>
+```
+
+### `format`
+
+```bash
+scripts/script.sh format <file>
+```
+
+### `introspect`
+
+```bash
+scripts/script.sh introspect <url>
+```
+
+### `schema`
+
+```bash
+scripts/script.sh schema <file>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/graphql-builder/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

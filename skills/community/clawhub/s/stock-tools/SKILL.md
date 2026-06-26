@@ -1,35 +1,245 @@
 ---
-name: "Stock Tools"
-description: "自选股管理与A股行情对话能力。Use when the user asks in natural language to add/remove/list/clear watchlist stocks, or asks about a stock / watchlist行情、涨跌幅、走势、表现、概览，例如“添加 0..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-tools"
-sourceUrl: "https://clawhub.ai/skills/stock-tools"
+name: stock-tools
+description: 自选股管理与A股行情对话能力。Use when the user asks in natural language to add/remove/list/clear watchlist stocks, or asks about a stock / watchlist行情、涨跌幅、走势、表现、概览，例如“添加 000009 中国宝安”“删除 600519”“查看自选股”“看一下贵州茅台行情”“我的自选股今天怎么样”。优先由大模型直接回答行情相关问题；仅在需要持久化维护自选股列表时使用本地文件操作。
 ---
 
 # Stock Tools
 
-> 自选股管理与A股行情对话能力。Use when the user asks in natural language to add/remove/list/clear watchlist stocks, or asks about a stock / watchlist行情、涨跌幅、走势、表现、概览，例如“添加 0...
+使用这个 skill 处理两类事情：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-tools`
-- **Source URL:** [https://clawhub.ai/skills/stock-tools](https://clawhub.ai/skills/stock-tools)
+1. **自选股管理**：把股票持久化保存到本地列表
+2. **轻量行情查询**：通过公开、轻量、免鉴权的行情接口获取最新报价
 
-## Overview
+核心原则：
 
+- **行情相关问题优先走轻量公开接口，快速返回最新报价**
+- **本地文件/脚本负责两件事：自选股持久化 + 轻量行情拉取**
+- **若接口失败或时间字段不可靠，要明确说明，不要编造数据**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-tools
+## Capability Split
+
+### A. 行情问答：优先使用轻量公开接口获取最新报价
+
+当用户说这些话时，先识别股票代码/名称；能确定代码后，优先调用本 skill 的轻量行情脚本获取最新报价：
+
+- 看一下贵州茅台最新行情
+- 600519 今天怎么样
+- 中国宝安涨了吗
+- 我的自选股今天表现如何
+- 给我一个自选股行情概览
+- 这几只股票最近表现怎么样
+
+处理原则：
+
+- 直接按用户意图回答
+- 输出保持简洁，突出关键信息
+- 如果有不确定性，要明确说清楚
+- 不要先要求用户换一种命令说法
+- 不要为了“像工具”而把自然语言强行降级成 CLI 交互
+- 若用户要求“最新价格 / 最新行情 / 现在多少钱”，每次都应重新拉取一次公开行情数据，不能复用旧值
+- 若需要详情页，可附同花顺链接：`https://stockpage.10jqka.com.cn/{code}/`
+- 如果报价时间无法可靠确认，就明确写“报价时间不可用/未确认”，不要伪造时间
+- 优先使用脚本：`node skills/stock-tools/scripts/fetch_quote.js <code...>`
+- 默认轻量接口：新浪公开行情 `https://hq.sinajs.cn/list=...`（免鉴权、返回快，适合单只/少量股票查询）
+- A 股市场前缀规则：`6/5/9` 开头默认 `sh`，其余 6 位代码默认 `sz`
+
+### B. 自选股管理：仅用于持久化
+
+当用户明确要维护一个长期保存的自选股列表时，再使用本地文件操作。
+
+支持操作：
+
+- 添加股票
+- 删除股票
+- 查看列表
+- 清空列表
+
+文件格式：
+
+```text
+000009|中国宝安
+000533|顺钠股份
+600847|万里股份
+000576|甘化科工
 ```
+
+默认文件位置：
+
+```text
+stocks-data/stocklist.txt
+```
+
+## Intent Mapping
+
+### 1. 添加股票
+
+触发示例：
+
+- 添加 000009 中国宝安
+- 把 600519 贵州茅台加到自选股
+- 自选股加入 000533 顺钠股份
+
+执行方式：
+
+- 使用本地文件写入 `stocks-data/stocklist.txt`
+- 校验股票代码必须是 6 位数字
+- 若代码已存在，则更新名称
+- 这是持久化操作；不能只在回复里说“已添加”而不实际写入文件
+
+### 2. 删除股票
+
+触发示例：
+
+- 删除 000009
+- 把 600519 从自选股移除
+- 去掉 000533
+
+执行方式：
+
+- 按代码精确匹配删除
+
+### 3. 查看自选股列表
+
+触发示例：
+
+- 查看自选股
+- 我的自选股有哪些
+- 列一下股票列表
+
+执行方式：
+
+- 主动读取 workspace 下独立数据目录中的持久化文件 `stocks-data/stocklist.txt` 并直接展示
+- 不要根据当前对话上下文、最近提到过的股票、或模型记忆来臆测列表内容
+- 若未实际读取到持久化列表，就明确说明“当前未读取到自选股列表”或“自选股列表为空”
+
+### 4. 清空自选股
+
+触发示例：
+
+- 清空自选股
+- 把自选股全删了
+- 重置股票列表
+
+执行方式：
+
+- 明确用户意图后清空本地列表
+
+### 5. 个股行情 / 自选股行情
+
+触发示例：
+
+- 查看 600519 行情
+- 看一下贵州茅台最新行情
+- 我的自选股今天怎么样
+- 给我自选股一个概览
+
+执行方式：
+
+- **单只股票行情**：优先识别股票代码，然后调用 `node skills/stock-tools/scripts/fetch_quote.js <code>` 获取最新报价
+- **当前自选股行情**：必须先主动读取 `stocks-data/stocklist.txt`，再把列表中的代码批量传给 `node skills/stock-tools/scripts/fetch_quote.js <code1> <code2> ...`
+- 如果当前未实际读取到 `stocks-data/stocklist.txt`，就明确说明无法确认当前自选股行情，不要根据上下文臆测
+- 一旦成功读取到列表，就不要只停留在“当前自选股有这些”，而要继续给出对应的行情摘要
+- 当用户要求“最新价格 / 最新行情 / 现在多少钱”时，每次都要重新访问公开行情数据源，不能直接复用先前回答中的旧价格
+- 如果行情源能可靠提供报价时间，就一并返回；如果时间字段不可靠或无法确认，就明确写“报价时间不可用/未确认”
+- 如果轻量接口失败：先明确提示“轻量行情源暂时不可用”，必要时再退回到网页检索或更重的数据源
+
+## Output Style
+
+### 行情问答
+
+保持简洁、直接，优先输出：
+
+- 股票代码和名称（如果明确）
+- 最新价
+- 涨跌额 / 涨跌幅
+- 当日高低点（需要时）
+- 报价时间（如果能可靠获取）
+- 必要时补一句风险说明或不确定性说明
+- 如有需要，再附详情链接
+
+示例：
+
+```text
+600519 贵州茅台
+最新价：xxxx.xx 元
+涨跌：+xx.xx（+x.xx%）
+报价时间：2026-04-08 09:35:12
+详情：https://stockpage.10jqka.com.cn/600519/
+```
+
+### 自选股管理
+
+管理类回复保持明确即可：
+
+```text
+已添加：000009 中国宝安
+```
+
+```text
+已删除：600519 贵州茅台
+```
+
+```text
+当前自选股：
+000009 中国宝安
+600519 贵州茅台
+```
+
+## Notes
+
+- 行情问答默认优先走轻量公开接口，而不是纯靠模型口述
+- 本地脚本既可用于持久化管理自选股列表，也可用于轻量联网获取行情
+- 当用户只是问行情，不要先把他带到“添加自选股”流程里
+- 当用户明确说“记到自选股里”，再进行文件写入
+- 凡是涉及“当前自选股有哪些 / 自选股列表 / 是否已加入自选股 / 当前自选股行情”这类问题，必须以持久化存储为准，不要根据聊天上下文推断结果
+- 轻量接口适合快速报价，不保证覆盖所有复杂字段；如果用户要财报、资金流、分时、K线、板块或更深分析，再考虑更重的数据源
+- 不要把工具感做得太重；体验应当像自然对话，而不是命令行壳子
+
+## Lightweight Quote Script
+
+脚本路径：`skills/stock-tools/scripts/fetch_quote.js`
+
+用途：
+
+- 查询单只股票最新报价
+- 批量查询当前自选股行情
+- 输出 JSON，便于后续整理成自然语言回复
+
+调用示例（默认短文本输出，避免输出过长被截断）：
+
+```bash
+node skills/stock-tools/scripts/fetch_quote.js 600519
+node skills/stock-tools/scripts/fetch_quote.js 600519 000009 000001
+```
+
+如需 JSON（便于程序化处理）：
+
+```bash
+node skills/stock-tools/scripts/fetch_quote.js --json 600519
+```
+
+默认短输出格式（每行一只）：
+
+- `代码 名称｜最新价｜涨跌（涨跌幅）｜报价时间`
+- 非交易时段/无有效现价：`代码 名称｜非交易时段或无有效实时报价｜昨收：xx.xx 元｜报价时间`
+
+JSON 模式返回字段重点：
+
+- `code`
+- `name`
+- `price`
+- `change`
+- `pct`
+- `high`
+- `low`
+- `quoteDate`
+- `quoteTime`
+- `detailUrl`
+- `valid`
+- `note`
+
+如果脚本报错：
+
+- 先说明轻量接口暂不可用
+- 不要伪造行情数据
+- 必要时再降级到网页检索或其他更重的数据源

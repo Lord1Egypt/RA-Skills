@@ -1,0 +1,24 @@
+{
+  "skill_name": "geo-conversion-optimizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You are given a SaaS product landing page that drives free-trial sign-ups. The marketing team wants to make it more GEO-friendly so AI models will cite it for relevant queries, but they are afraid of hurting the trial signup conversion rate. Using the geo-conversion-optimizer skill, propose a new page structure and content strategy that balances AI citation readiness with trial conversion.",
+      "expected_output": "A structured recommendation that (1) states the business and conversion goals; (2) maps user and AI intents; (3) proposes a section-by-section page blueprint with both GEO and conversion roles per section; and (4) includes a simple experiment and measurement plan with guardrail metrics for conversion rate.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "An e-commerce brand has a high-traffic product detail page (PDP) for a flagship item. They want to retrofit it for GEO so it can appear in AI answers for \"best [product category] for [use case]\" queries, but previous SEO changes have reduced add-to-cart rate. Using the geo-conversion-optimizer skill, design recommendations that improve GEO and AI citability while protecting or improving add-to-cart conversion.",
+      "expected_output": "A PDP-focused conversion-aware GEO plan that (1) clarifies primary and secondary conversion goals; (2) audits likely issues that past SEO/GEO changes caused; (3) defines key sections such as hero, benefits, proof, comparison, FAQs, and their GEO vs. conversion functions; and (4) suggests specific copy and CTA improvements plus an A/B test plan.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "A B2B company uses long-form comparison articles (\"[Product] vs [Competitor]\") to feed their sales pipeline. These articles now receive traffic from AI recommendations, but sales says the leads are low intent and not converting. Using the geo-conversion-optimizer skill, redesign the content strategy for one comparison article to keep it attractive for AI while improving lead quality and sales conversion.",
+      "expected_output": "A comparison-article strategy that (1) redefines the article's role in the funnel; (2) maps user and AI intents around comparison queries; (3) proposes a new outline that includes clear POV, qualification content, and targeted CTAs; and (4) outlines how to measure lead quality and protect sales conversion while adjusting for GEO.",
+      "files": []
+    }
+  ]
+}
+

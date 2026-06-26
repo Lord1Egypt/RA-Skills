@@ -1,0 +1,44 @@
+{
+  "slug": "home-noise-evidence-log",
+  "name": "Home Noise Evidence Log",
+  "displayName": "Home Noise Evidence Log",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build a calm, factual home noise documentation packet with a timestamped incident log, proof index, pattern summary, and neutral message draft.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Home & Admin",
+  "triggerKeywords": [
+    "noise log",
+    "apartment noise evidence",
+    "neighbor noise documentation",
+    "noise complaint template",
+    "quiet hours log",
+    "landlord noise message",
+    "property manager noise report",
+    "HOA noise record",
+    "home noise incident log",
+    "neutral noise message"
+  ],
+  "tags": [
+    "home",
+    "documentation",
+    "noise",
+    "housing",
+    "admin",
+    "communication"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

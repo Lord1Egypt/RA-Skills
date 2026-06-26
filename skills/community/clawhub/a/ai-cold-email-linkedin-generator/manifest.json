@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "id": "ai-cold-email-linkedin-generator",
+  "name": "AI Cold Email & LinkedIn Outreach Generator",
+  "version": "1.2.0",
+  "description": "Generate high-reply-rate cold emails and LinkedIn messages for B2B sales outreach. Includes A/B variants, follow-up sequences, and human-sounding copy.",
+  "author": {
+    "name": "ClawHub Skill Publisher"
+  },
+  "category": "Sales & Marketing",
+  "tags": [
+    "cold email",
+    "linkedin outreach",
+    "sales",
+    "lead generation",
+    "copywriting",
+    "follow-up",
+    "B2B",
+    "GTM"
+  ],
+  "icon": "mail",
+  "license": "MIT-0",
+  "input_config": "config.json",
+  "prompt_file": "prompt.txt",
+  "pricing_tier": "free",
+  "visibility": "public",
+  "created_at": "2026-03-22",
+  "updated_at": "2026-03-22"
+}

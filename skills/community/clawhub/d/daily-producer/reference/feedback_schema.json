@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "日报反馈数据",
+  "description": "由前端 JS 在页面离开时生成完整 session summary，写入 data/feedback/{date}.json，供下次日报生成时读取；中途事件批量包不应写入正式反馈文件",
+  "type": "object",
+  "description": "单日反馈文件，顶层为 sessions 数组；每个 session 由前端在离开页面时生成并由服务端追加写入",
+  "properties": {
+    "sessions": {
+      "type": "array",
+      "description": "每次页面访问产生一条 session",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "日报日期",
+            "example": "2026-03-21"
+          },
+          "session": {
+            "type": "object",
+            "properties": {
+              "session_id": { "type": "string", "description": "本次页面访问的唯一 ID，用于服务端幂等去重" },
+              "total_time_seconds": { "type": "integer", "description": "用户阅读总时长（秒）" },
+              "total_events": { "type": "integer", "description": "事件总数" },
+              "page_load": { "type": "string", "description": "页面加载时间（ISO8601）" }
+            },
+            "required": ["session_id", "total_time_seconds", "total_events", "page_load"]
+          },
+          "explicit_feedback": {
+            "type": "object",
+            "description": "用户主动操作的反馈",
+            "properties": {
+              "voted": {
+                "type": "array",
+                "description": "用户投票的资讯",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "title": { "type": "string" },
+                    "tags": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              },
+              "bookmarked": {
+                "type": "array",
+                "description": "用户收藏的资讯（结构同 voted）"
+              },
+              "tags_followed": {
+                "type": "array",
+                "description": "用户主动关注的标签",
+                "items": { "type": "string" },
+                "example": ["#行业动态", "#开源"]
+              },
+              "tags_unfollowed": {
+                "type": "array",
+                "description": "用户取消关注的标签",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "implicit_feedback": {
+            "type": "object",
+            "description": "用户无感知的行为数据",
+            "properties": {
+              "dwell_ranking": {
+                "type": "array",
+                "description": "卡片停留时长排名（>5秒才记录）",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "articleId": { "type": "string" },
+                    "title": { "type": "string" },
+                    "tags": { "type": "array", "items": { "type": "string" } },
+                    "dwell_seconds": { "type": "integer" }
+                  }
+                }
+              },
+              "articles_clicked": {
+                "type": "array",
+                "description": "用户点击原文链接的资讯"
+              },
+              "articles_copied": {
+                "type": "array",
+                "description": "用户复制内容的资讯"
+              }
+            }
+          },
+          "ai_interaction": {
+            "type": "object",
+            "description": "用户与 AI 工具的交互",
+            "properties": {
+              "tools_used": {
+                "type": "object",
+                "description": "各工具使用次数",
+                "example": { "claude": 2, "chatgpt": 1, "copy": 3 }
+              },
+              "detail": {
+                "type": "array",
+                "description": "每次 AI 工具调用的详情",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tool": { "type": "string" },
+                    "prompt_preview": { "type": "string", "description": "prompt 前 100 字" }
+                  }
+                }
+              }
+            }
+          },
+          "interest_profile": {
+            "type": "object",
+            "description": "基于本次所有行为加权计算的兴趣画像",
+            "properties": {
+              "tag_scores": {
+                "type": "array",
+                "description": "标签兴趣度评分（按分数降序）",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tag": { "type": "string" },
+                    "score": { "type": "number" }
+                  }
+                }
+              },
+              "top_interests": {
+                "type": "array",
+                "description": "Top 5 兴趣标签",
+                "items": { "type": "string" },
+                "example": ["#行业动态", "#平台更新", "#开源", "#合规", "#技术趋势"]
+              }
+            }
+          },
+          "all_events": {
+            "type": "array",
+            "description": "可选调试字段，保留本次 session 的原始事件日志，便于排查反馈采集问题",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string" },
+                "timestamp": { "type": "string", "description": "事件发生时间（ISO8601）" }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "required": [
+          "date",
+          "session",
+          "explicit_feedback",
+          "implicit_feedback",
+          "ai_interaction",
+          "interest_profile"
+        ]
+      }
+    }
+  },
+  "required": ["sessions"]
+}

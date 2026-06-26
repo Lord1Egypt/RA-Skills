@@ -1,0 +1,13 @@
+{
+  "name": "career-compass",
+  "version": "1.0.0",
+  "description": "职场罗盘 by Barry — 一站式求职辅助 Skill",
+  "license": "MIT-0",
+  "author": "Barry",
+  "tags": ["career", "job-search", "resume", "interview", "boss-cli"],
+  "openclaw": {
+    "runtime": {
+      "requires": ["boss", "pdftotext", "tesseract"]
+    }
+  }
+}

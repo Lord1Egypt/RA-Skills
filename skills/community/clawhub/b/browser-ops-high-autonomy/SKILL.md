@@ -1,35 +1,29 @@
----
-name: "Browser Ops High Autonomy"
-description: "Automates browser tasks end-to-end on approved domains with minimal intervention, escalating only for security, legal, payment, or login issues."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/browser-ops-high-autonomy"
-sourceUrl: "https://clawhub.ai/skills/browser-ops-high-autonomy"
----
-
 # Browser Ops High Autonomy
 
-> Automates browser tasks end-to-end on approved domains with minimal intervention, escalating only for security, legal, payment, or login issues.
+High-autonomy browser workflow skill for approved domains.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/browser-ops-high-autonomy`
-- **Source URL:** [https://clawhub.ai/skills/browser-ops-high-autonomy](https://clawhub.ai/skills/browser-ops-high-autonomy)
+## What it does
+- Completes routine browser tasks end-to-end with minimal interruption.
+- Restricts operations to explicitly approved domains.
+- Escalates only when legal/payment/login/security challenge events occur.
 
-## Overview
+## Escalation statuses
+- `LOGIN_REQUIRED`
+- `SECURITY_CHALLENGE`
+- `LEGAL_REVIEW_REQUIRED`
+- `PAYMENT_REVIEW_REQUIRED`
+- `DOMAIN_NOT_ALLOWED`
+- `BLOCKED`
+- `DONE`
 
+## Security policy
+- Never bypasses security controls.
+- Never bypasses access restrictions.
+- Returns explicit status and next action metadata.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/browser-ops-high-autonomy
-```
+## Typical use cases
+- Customer support workflows
+- Email operations
+- CRM updates
+- Administrative forms and platform operations
+- Structured data extraction and research

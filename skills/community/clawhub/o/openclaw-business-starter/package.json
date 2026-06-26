@@ -1,0 +1,39 @@
+{
+  "name": "openclaw-business-starter",
+  "version": "1.0.0",
+  "description": "Turn your OpenClaw bot into an autonomous business operator with PARA memory, daily automation, and proven workflows",
+  "author": "Tara Quinn <taraquinnai@fastmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tara-quinn-ai/openclaw-business-starter.git"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "business",
+    "automation",
+    "autonomous",
+    "ai-agent",
+    "para",
+    "memory",
+    "workflow"
+  ],
+  "openclaw": {
+    "type": "skill",
+    "version": "2026.2",
+    "category": "productivity",
+    "tags": ["business", "automation", "workflow", "memory"]
+  },
+  "scripts": {
+    "setup": "./scripts/setup-foundation.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "templates/",
+    "config/",
+    "docs/"
+  ]
+}

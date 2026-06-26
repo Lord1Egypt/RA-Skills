@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 玻璃拟态风格 ===== */
+.card-glassmorphism {
+  width: 100%;
+  background: #161616;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  padding: calc(var(--spacing) * 7.5) calc(var(--spacing) * 6.25);
+  position: relative;
+  color: rgba(255, 255, 255, 0.85);
+  --highlight-color: #00f2fe;
+  --highlight-bg-color: rgba(0, 242, 254, 0.1);
+}
+.card-glassmorphism:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#f00, #f0f);
+  clip-path: circle(50px at 88% 95%);
+}
+
+.card-glassmorphism:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#2196f3, #e91e63);
+  clip-path: circle(50px at 50px 50px);
+}
+.card-glassmorphism .card-content {
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  padding: calc(var(--spacing) * 6);
+  height: 100%;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.card-glassmorphism .card-content-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* 主标题样式 */
+.card-glassmorphism h1 {
+  font-size: calc(var(--spacing) * 7);
+  color: #00f2fe;
+  margin-bottom: calc(var(--spacing) * 3.75);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  position: relative;
+  text-align: center;
+}
+
+.card-glassmorphism h1:after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -2);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 15);
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+}
+
+/* 副标题样式 */
+.card-glassmorphism h2 {
+  font-size: calc(var(--spacing) * 4);
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: calc(var(--spacing) * 6);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative;
+}
+
+/* 小标题样式 */
+.card-glassmorphism h3 {
+  display: block;
+  color: #00f2fe;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 段落样式 */
+.card-glassmorphism p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: inherit;
+  position: relative;
+}
+
+.card-glassmorphism strong {
+  color: #00f2fe;
+  font-weight: 600;
+}
+
+.card-glassmorphism em {
+  color: #00f2fe;
+  font-style: italic;
+}
+
+.card-glassmorphism a {
+  color: #4facfe;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(79, 172, 254, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card-glassmorphism a:hover {
+  color: #00f2fe;
+  border-bottom: 1px solid #00f2fe;
+  text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+}
+
+/* 有序列表样式 */
+.card-glassmorphism ol {
+  counter-reset: item;
+  padding-left: 0;
+  margin: calc(var(--spacing) * 5) 0;
+}
+
+.card-glassmorphism ol > li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 4);
+  padding-left: calc(var(--spacing) * 10);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  font-size: inherit;
+}
+
+/* 序号样式 */
+.card-glassmorphism ol > li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  top: calc(var(--spacing) * -0.75);
+  width: calc(var(--spacing) * 7);
+  height: calc(var(--spacing) * 7);
+  background: rgba(79, 172, 254, 0.2);
+  border: 1px solid rgba(79, 172, 254, 0.4);
+  color: #4facfe;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6.5);
+  font-weight: bold;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* 表格样式 */
+.card-glassmorphism table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: calc(var(--spacing) * 5) 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-glassmorphism th {
+  background: rgba(79, 172, 254, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: calc(var(--spacing) * 3);
+  font-weight: 600;
+  text-align: left;
+}
+
+.card-glassmorphism td {
+  color: rgba(255, 255, 255, 0.8);
+  padding: calc(var(--spacing) * 3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-glassmorphism tr:last-child td {
+  border-bottom: none;
+}
+
+.card-glassmorphism tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 代码块样式 */
+.card-glassmorphism pre {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: calc(var(--spacing) * 4);
+  margin: calc(var(--spacing) * 5) 0;
+  overflow-x: auto;
+  position: relative;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.card-glassmorphism pre:before {
+  content: "</>";
+  position: absolute;
+  top: calc(var(--spacing) * 1);
+  right: calc(var(--spacing) * 2.5);
+  background: rgba(0, 0, 0, 0.6);
+  color: #4facfe;
+  font-size: calc(var(--spacing) * 2.5);
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+  border-radius: 4px;
+  border: 1px solid rgba(79, 172, 254, 0.3);
+}
+
+.card-glassmorphism code:not(pre code) {
+  background: rgba(79, 172, 254, 0.15);
+  color: #00f2fe;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
+  border-radius: 4px;
+  font-family: "SF Mono", "Menlo", monospace;
+  font-size: calc(var(--spacing) * 3.6);
+  border: 1px solid rgba(79, 172, 254, 0.2);
+}
+
+/* 引用块样式 */
+.card-glassmorphism blockquote {
+  background: rgba(0, 0, 0, 0.1);
+  border-left: 3px solid #4facfe;
+  color: rgba(255, 255, 255, 0.8);
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 5) 0;
+  font-style: italic;
+  position: relative;
+  border-radius: 0 8px 8px 0;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.card-glassmorphism blockquote:before {
+  content: "“";
+  position: absolute;
+  left: calc(var(--spacing) * 2.5);
+  top: calc(var(--spacing) * 1.25);
+  color: rgba(79, 172, 254, 0.3);
+  font-size: calc(var(--spacing) * 7.5);
+  font-family: Georgia, serif;
+}
+
+/* 无序列表样式 */
+.card-glassmorphism ul {
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: calc(var(--spacing) * 5) 0;
+}
+
+.card-glassmorphism ul > li::before {
+  display: none;
+}
+.card-glassmorphism ul > li {
+  margin: 0;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: calc(var(--spacing) * 3.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.3s ease;
+}
+.card-glassmorphism .task-list-item input[type="checkbox"] {
+  position: static;
+}
+
+/* 水平线样式 */
+.card-glassmorphism hr {
+  border: 0;
+  height: calc(var(--spacing) * 0.25);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 172, 254, 0.5),
+    transparent
+  );
+  margin: calc(var(--spacing) * 6.25) 0;
+}
+
+/* 图片样式 */
+.card-glassmorphism img {
+  max-width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* 特殊元素：信息卡片 */
+.card-glassmorphism .info-card {
+  background: rgba(79, 172, 254, 0.1);
+  border: 1px solid rgba(79, 172, 254, 0.3);
+  border-radius: 8px;
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  position: relative;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.card-glassmorphism .info-card:before {
+  content: "i";
+  position: absolute;
+  top: calc(var(--spacing) * -2.5);
+  left: calc(var(--spacing) * 3.75);
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5);
+  border-radius: 50%;
+  background: #4facfe;
+  color: white;
+  text-align: center;
+  line-height: calc(var(--spacing) * 5);
+  font-weight: bold;
+  font-style: italic;
+  font-size: calc(var(--spacing) * 3);
+}
+
+/* 特殊元素：标签 */
+.card-glassmorphism .tag {
+  display: inline-block;
+  background: rgba(79, 172, 254, 0.15);
+  color: #4facfe;
+  padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 2.5);
+  border-radius: 20px;
+  font-size: calc(var(--spacing) * 3);
+  margin-right: calc(var(--spacing) * 2);
+  margin-bottom: calc(var(--spacing) * 2);
+  border: 1px solid rgba(79, 172, 254, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.card-glassmorphism .tag:hover {
+  background: rgba(79, 172, 254, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(79, 172, 254, 0.2);
+}
+
+/* 封面样式*/
+.card-cover-glassmorphism {
+  background: #161616;
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-glassmorphism .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding-top: calc(var(--spacing) * 17.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-glassmorphism .cover-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: calc(var(--spacing) * 6);
+  border-top: none;
+  margin-top: calc(var(--spacing) * -7.5);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+}
+
+.card-cover-separate.card-cover-glassmorphism .cover-content:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 0.25);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+}
+
+.card-cover-glassmorphism .cover-title {
+  color: #00f2fe;
+  position: relative;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-bottom: calc(var(--spacing) * 5);
+  font-weight: 600;
+}
+
+.card-cover-glassmorphism .cover-title:after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -2.5);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 15);
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+}
+
+.card-cover-glassmorphism .cover-description {
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+}
+
+.card-cover-glassmorphism .cover-tag {
+  background: rgba(79, 172, 254, 0.15);
+  color: #4facfe;
+  border: 1px solid rgba(79, 172, 254, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.card-cover-glassmorphism .cover-tag:hover {
+  background: rgba(79, 172, 254, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(79, 172, 254, 0.2);
+}
+
+.card-cover-glassmorphism .cover-date {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 特殊元素：进度条 */
+.card-glassmorphism .progress-bar {
+  width: 100%;
+  height: calc(var(--spacing) * 1.5);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin: calc(var(--spacing) * 5) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-glassmorphism .progress-bar:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70%; /* 可调整进度 */
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  border-radius: 3px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-glassmorphism">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

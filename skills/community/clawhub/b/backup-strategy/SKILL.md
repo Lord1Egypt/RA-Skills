@@ -1,35 +1,201 @@
 ---
-name: "Backup Strategy"
-description: "备份策略助手。用于制定数据备份策略、设计备份方案、规划恢复流程。当需要制定备份方案、设计灾备策略时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/backup-strategy"
-sourceUrl: "https://clawhub.ai/skills/backup-strategy"
+name: backup-strategy
+description: 备份策略助手。用于制定数据备份策略、设计备份方案、规划恢复流程。当需要制定备份方案、设计灾备策略时触发。
 ---
 
-# Backup Strategy
+# 备份策略助手
 
-> 备份策略助手。用于制定数据备份策略、设计备份方案、规划恢复流程。当需要制定备份方案、设计灾备策略时触发。
+## 备份类型
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/backup-strategy`
-- **Source URL:** [https://clawhub.ai/skills/backup-strategy](https://clawhub.ai/skills/backup-strategy)
+| 类型 | 说明 | 频率 | 保留时间 |
+|------|------|------|----------|
+| 全量备份 | 备份所有数据 | 每周一次 | 4周 |
+| 增量备份 | 备份新增数据 | 每天 | 7天 |
+| 差异备份 | 备份与上次全量差异 | 每天 | 7天 |
+| 实时备份 | 数据变化即时同步 | 实时 | - |
 
-## Overview
+## 备份策略模板
 
+```markdown
+# 数据备份策略
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/backup-strategy
+版本：V1.0
+更新日期：YYYY-MM-DD
+维护人：XXX
+
+---
+
+## 1. 备份目标
+
+### 1.1 备份范围
+| 数据类型 | 重要程度 | 数据量 | 说明 |
+|----------|----------|--------|------|
+| 业务数据 | 关键 | XX GB | 核心业务数据 |
+| 用户数据 | 关键 | XX GB | 用户信息 |
+| 配置数据 | 重要 | XX MB | 系统配置 |
+| 日志数据 | 一般 | XX GB | 操作日志 |
+| 代码仓库 | 重要 | XX GB | Git仓库 |
+
+### 1.2 恢复时间目标（RTO）
+- 关键业务：≤1小时
+- 一般业务：≤4小时
+
+### 1.3 恢复点目标（RPO）
+- 关键业务：≤15分钟
+- 一般业务：≤1小时
+
+---
+
+## 2. 备份策略
+
+### 2.1 数据库备份
+| 备份类型 | 执行时间 | 保留策略 |
+|----------|----------|----------|
+| 全量备份 | 每周日 02:00 | 保留4周 |
+| 差异备份 | 每天 02:00 | 保留7天 |
+| 日志备份 | 每15分钟 | 保留7天 |
+
+### 2.2 文件备份
+| 备份类型 | 执行时间 | 保留策略 |
+|----------|----------|----------|
+| 全量备份 | 每周日 03:00 | 保留4周 |
+| 增量备份 | 每天 03:00 | 保留7天 |
+
+### 2.3 配置备份
+| 备份类型 | 执行时间 | 保留策略 |
+|----------|----------|----------|
+| 变更时备份 | 配置变更时 | 保留10个版本 |
+
+---
+
+## 3. 备份存储
+
+### 3.1 存储架构
 ```
+本地磁盘（每日）
+    ↓
+本地备份服务器（每周）
+    ↓
+异地云存储（每月）
+```
+
+### 3.2 存储位置
+| 层级 | 位置 | 用途 |
+|------|------|------|
+| L1 | 应用服务器本地 | 快速恢复 |
+| L2 | 备份服务器 | 本地冗余 |
+| L3 | 云存储（OSS/S3） | 异地容灾 |
+
+### 3.3 存储容量规划
+| 数据类型 | 日增量 | 月总量 | 存储规划 |
+|----------|--------|--------|----------|
+| 数据库 | XX GB | XX GB | 留100%余量 |
+| 文件 | XX GB | XX GB | 留50%余量 |
+
+---
+
+## 4. 备份脚本示例
+
+### MySQL备份脚本
+```bash
+#!/bin/bash
+# MySQL全量备份脚本
+
+DATE=$(date +%Y%m%d)
+BACKUP_DIR="/backup/mysql"
+MYSQL_USER="backup"
+MYSQL_PASS="password"
+DATABASE="myapp"
+
+# 创建备份目录
+mkdir -p ${BACKUP_DIR}/${DATE}
+
+# 执行备份
+mysqldump -u${MYSQL_USER} -p${MYSQL_PASS} \
+  --single-transaction \
+  --routines --triggers \
+  ${DATABASE} | gzip > ${BACKUP_DIR}/${DATE}/${DATABASE}.sql.gz
+
+# 删除7天前的备份
+find ${BACKUP_DIR} -type d -mtime +7 -exec rm -rf {} \;
+
+# 记录日志
+echo "[$(date)] Backup completed: ${DATABASE}" >> /var/log/backup.log
+```
+
+### 文件备份脚本
+```bash
+#!/bin/bash
+# 文件增量备份脚本
+
+DATE=$(date +%Y%m%d)
+SOURCE_DIR="/data/app"
+BACKUP_DIR="/backup/files"
+REMOTE_BUCKET="s3://mybackup"
+
+# 创建备份目录
+mkdir -p ${BACKUP_DIR}/${DATE}
+
+# 增量备份（使用rsync）
+rsync -av --delete \
+  ${SOURCE_DIR}/ \
+  ${BACKUP_DIR}/${DATE}/
+
+# 同步到云存储
+aws s3 sync ${BACKUP_DIR}/${DATE}/ ${REMOTE_BUCKET}/${DATE}/
+
+# 记录日志
+echo "[$(date)] File backup completed" >> /var/log/backup.log
+```
+
+---
+
+## 5. 恢复流程
+
+### 5.1 数据库恢复
+
+```bash
+# 全量恢复
+gunzip < backup.sql.gz | mysql -u root -p database
+
+# 基于时间点恢复
+mysqlbinlog --stop-datetime="2024-01-01 10:00:00" binlog.000001 | mysql
+```
+
+### 5.2 文件恢复
+
+```bash
+# 从本地恢复
+rsync -av /backup/files/20240101/ /data/app/
+
+# 从云存储恢复
+aws s3 sync s3://mybackup/20240101/ /data/app/
+```
+
+---
+
+## 6. 备份验证
+
+### 6.1 验证清单
+- [ ] 备份任务执行成功
+- [ ] 备份文件完整性校验（MD5）
+- [ ] 备份可恢复（定期演练）
+- [ ] 备份通知发送成功
+
+### 6.2 恢复演练
+| 频率 | 内容 | 执行人 |
+|------|------|--------|
+| 每季度 | 完整恢复演练 | DBA |
+| 每月 | 数据抽样恢复测试 | 运维 |
+| 每周 | 备份完整性检查 | 自动 |
+
+---
+
+## 7. 备份监控
+
+| 监控项 | 阈值 | 告警方式 |
+|--------|------|----------|
+| 备份任务状态 | 失败 | 短信/邮件 |
+| 备份大小异常 | 变化>50% | 邮件 |
+| 存储空间 | 使用>80% | 邮件 |
+| 恢复演练 | 未执行>90天 | 邮件 |

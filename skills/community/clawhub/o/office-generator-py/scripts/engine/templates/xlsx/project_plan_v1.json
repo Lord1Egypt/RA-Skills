@@ -1,0 +1,15 @@
+{
+  "documentType": "xlsx",
+  "templateId": "project_plan_v1",
+  "title": "项目计划表",
+  "purpose": "用于项目任务排期与进度管理",
+  "contentSpec": {
+    "sheets": [
+      {
+        "name": "计划",
+        "columns": ["阶段", "任务", "负责人", "开始日期", "结束日期", "状态", "备注"],
+        "rows": []
+      }
+    ]
+  }
+}

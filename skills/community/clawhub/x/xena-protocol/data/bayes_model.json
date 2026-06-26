@@ -1,0 +1,1123 @@
+{
+  "version": "openclaw-hackathon-v1",
+  "phish_email_count": 43,
+  "ham_email_count": 53,
+  "vocab_size": 223,
+  "tokens": {
+    "about": {
+      "phish": 51,
+      "ham": 1,
+      "p_phish": 0.969
+    },
+    "access": {
+      "phish": 53,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "account": {
+      "phish": 266,
+      "ham": 4,
+      "p_phish": 0.985
+    },
+    "activity": {
+      "phish": 51,
+      "ham": 1,
+      "p_phish": 0.969
+    },
+    "alert": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "amazon": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "america": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "anti": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "aol": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "apartment": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "app": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "apple": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "approvals": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "asking": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "assistance": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "attached": {
+      "phish": 206,
+      "ham": 3,
+      "p_phish": 0.984
+    },
+    "audited": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "avoid": {
+      "phish": 53,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "bank": {
+      "phish": 109,
+      "ham": 0,
+      "p_phish": 0.993
+    },
+    "banking": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "before": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "below": {
+      "phish": 53,
+      "ham": 1,
+      "p_phish": 0.971
+    },
+    "best": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "billing": {
+      "phish": 51,
+      "ham": 2,
+      "p_phish": 0.955
+    },
+    "bitcoin": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "call": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "candidate": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "card": {
+      "phish": 105,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "cards": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "cfo": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "check": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "claim": {
+      "phish": 54,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "click": {
+      "phish": 105,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "code": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "comment": {
+      "phish": 0,
+      "ham": 3,
+      "p_phish": 0.234
+    },
+    "commission": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "commit": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "company": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "compensation": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "computer": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "conference": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "confidential": {
+      "phish": 54,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "confirm": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "confirmed": {
+      "phish": 0,
+      "ham": 6,
+      "p_phish": 0.149
+    },
+    "congratulations": {
+      "phish": 52,
+      "ham": 1,
+      "p_phish": 0.97
+    },
+    "consultation": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "contains": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "credit": {
+      "phish": 105,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "crypto": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "cup": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "customer": {
+      "phish": 104,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "data": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "dear": {
+      "phish": 53,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "delivery": {
+      "phish": 1,
+      "ham": 2,
+      "p_phish": 0.449
+    },
+    "department": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "details": {
+      "phish": 105,
+      "ham": 11,
+      "p_phish": 0.915
+    },
+    "detected": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "device": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "discussion": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "document": {
+      "phish": 52,
+      "ham": 2,
+      "p_phish": 0.956
+    },
+    "dollars": {
+      "phish": 3,
+      "ham": 1,
+      "p_phish": 0.71
+    },
+    "download": {
+      "phish": 102,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "email": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "enter": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "estimated": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "excel": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "expedite": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "failure": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "family": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "fee": {
+      "phish": 53,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "fifa": {
+      "phish": 53,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "file": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "flight": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "foreign": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "friday": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "frozen": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "full": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "funds": {
+      "phish": 4,
+      "ham": 0,
+      "p_phish": 0.859
+    },
+    "gift": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "happy": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "hardware": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "help": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "here": {
+      "phish": 53,
+      "ham": 2,
+      "p_phish": 0.957
+    },
+    "hour": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "hours": {
+      "phish": 55,
+      "ham": 0,
+      "p_phish": 0.986
+    },
+    "identity": {
+      "phish": 103,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "immediately": {
+      "phish": 105,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "information": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "inheritance": {
+      "phish": 4,
+      "ham": 0,
+      "p_phish": 0.859
+    },
+    "install": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "invoice": {
+      "phish": 53,
+      "ham": 2,
+      "p_phish": 0.957
+    },
+    "issue": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "join": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "late": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "latest": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "link": {
+      "phish": 52,
+      "ham": 1,
+      "p_phish": 0.97
+    },
+    "locked": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "log": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "lottery": {
+      "phish": 55,
+      "ham": 0,
+      "p_phish": 0.986
+    },
+    "may": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "meeting": {
+      "phish": 1,
+      "ham": 3,
+      "p_phish": 0.379
+    },
+    "mentioned": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "merged": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "million": {
+      "phish": 5,
+      "ham": 0,
+      "p_phish": 0.88
+    },
+    "monthly": {
+      "phish": 0,
+      "ham": 3,
+      "p_phish": 0.234
+    },
+    "moscow": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "name": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "need": {
+      "phish": 5,
+      "ham": 0,
+      "p_phish": 0.88
+    },
+    "new": {
+      "phish": 105,
+      "ham": 6,
+      "p_phish": 0.949
+    },
+    "newsletter": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "next": {
+      "phish": 0,
+      "ham": 5,
+      "p_phish": 0.169
+    },
+    "nigerian": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "nordea": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "notes": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "notice": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "now": {
+      "phish": 52,
+      "ham": 1,
+      "p_phish": 0.97
+    },
+    "number": {
+      "phish": 157,
+      "ham": 2,
+      "p_phish": 0.985
+    },
+    "obligations": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "onboarding": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "one": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "online": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "open": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "order": {
+      "phish": 52,
+      "ham": 4,
+      "p_phish": 0.928
+    },
+    "out": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "package": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "partner": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "passport": {
+      "phish": 55,
+      "ham": 0,
+      "p_phish": 0.986
+    },
+    "password": {
+      "phish": 155,
+      "ham": 1,
+      "p_phish": 0.99
+    },
+    "pay": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "payment": {
+      "phish": 52,
+      "ham": 2,
+      "p_phish": 0.956
+    },
+    "penalties": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "percent": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "phrase": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "plan": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "please": {
+      "phish": 263,
+      "ham": 5,
+      "p_phish": 0.982
+    },
+    "prince": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "prize": {
+      "phish": 54,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "process": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "processing": {
+      "phish": 53,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "product": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "project": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "proposal": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "protect": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "provide": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "pull": {
+      "phish": 0,
+      "ham": 4,
+      "p_phish": 0.196
+    },
+    "quanta": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "ready": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "receipt": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "receive": {
+      "phish": 4,
+      "ham": 0,
+      "p_phish": 0.859
+    },
+    "recent": {
+      "phish": 1,
+      "ham": 4,
+      "p_phish": 0.328
+    },
+    "recruitment": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "reminder": {
+      "phish": 0,
+      "ham": 3,
+      "p_phish": 0.234
+    },
+    "renewed": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "rental": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "reply": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "report": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "repository": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "request": {
+      "phish": 2,
+      "ham": 3,
+      "p_phish": 0.478
+    },
+    "required": {
+      "phish": 206,
+      "ham": 0,
+      "p_phish": 0.996
+    },
+    "reservation": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "reset": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "respond": {
+      "phish": 102,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "result": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "review": {
+      "phish": 103,
+      "ham": 7,
+      "p_phish": 0.941
+    },
+    "scan": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "schedule": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "secure": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "security": {
+      "phish": 104,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "see": {
+      "phish": 1,
+      "ham": 2,
+      "p_phish": 0.449
+    },
+    "seed": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "send": {
+      "phish": 105,
+      "ham": 3,
+      "p_phish": 0.97
+    },
+    "service": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "shared": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "shipped": {
+      "phish": 0,
+      "ham": 4,
+      "p_phish": 0.196
+    },
+    "shortlist": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "sign": {
+      "phish": 54,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "social": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "spam": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "staging": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "storage": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "subscription": {
+      "phish": 1,
+      "ham": 3,
+      "p_phish": 0.379
+    },
+    "suspension": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "suspicious": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "swift": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "tax": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "team": {
+      "phish": 0,
+      "ham": 5,
+      "p_phish": 0.169
+    },
+    "temporarily": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "thanks": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "thread": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "thursday": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "ticket": {
+      "phish": 51,
+      "ham": 1,
+      "p_phish": 0.969
+    },
+    "tickets": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "today": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "tomorrow": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "tool": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "tracking": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "transaction": {
+      "phish": 1,
+      "ham": 1,
+      "p_phish": 0.55
+    },
+    "transfer": {
+      "phish": 54,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "transferring": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "tuesday": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "unclaimed": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "unlock": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "update": {
+      "phish": 53,
+      "ham": 1,
+      "p_phish": 0.971
+    },
+    "updated": {
+      "phish": 51,
+      "ham": 2,
+      "p_phish": 0.955
+    },
+    "urgent": {
+      "phish": 156,
+      "ham": 0,
+      "p_phish": 0.995
+    },
+    "urgently": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "usd": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "used": {
+      "phish": 52,
+      "ham": 1,
+      "p_phish": 0.97
+    },
+    "username": {
+      "phish": 103,
+      "ham": 0,
+      "p_phish": 0.992
+    },
+    "vendor": {
+      "phish": 2,
+      "ham": 0,
+      "p_phish": 0.786
+    },
+    "verification": {
+      "phish": 51,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "verify": {
+      "phish": 157,
+      "ham": 0,
+      "p_phish": 0.995
+    },
+    "view": {
+      "phish": 1,
+      "ham": 11,
+      "p_phish": 0.169
+    },
+    "wallet": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "week": {
+      "phish": 0,
+      "ham": 7,
+      "p_phish": 0.133
+    },
+    "weekly": {
+      "phish": 0,
+      "ham": 3,
+      "p_phish": 0.234
+    },
+    "welcome": {
+      "phish": 0,
+      "ham": 2,
+      "p_phish": 0.289
+    },
+    "winner": {
+      "phish": 3,
+      "ham": 0,
+      "p_phish": 0.83
+    },
+    "wire": {
+      "phish": 55,
+      "ham": 0,
+      "p_phish": 0.986
+    },
+    "within": {
+      "phish": 55,
+      "ham": 0,
+      "p_phish": 0.986
+    },
+    "won": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    },
+    "work": {
+      "phish": 0,
+      "ham": 3,
+      "p_phish": 0.234
+    },
+    "world": {
+      "phish": 52,
+      "ham": 0,
+      "p_phish": 0.985
+    }
+  }
+}

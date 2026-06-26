@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "report": {
+    "overview": {
+      "total_asset": 10007.98,
+      "total_value": 1052.0,
+      "money_remain": 8955.98,
+      "position_rate": 10.51,
+      "total_profit": 7.98,
+      "profit_rate": 0.77,
+      "stock_count": 1
+    },
+    "positions": [
+      {
+        "stock_code": "300098",
+        "stock_name": "高新兴",
+        "ticker": "300098.SS",
+        "hold_count": 200,
+        "cost_price": 5.21,
+        "current_price": 5.26,
+        "market_value": 1052.0,
+        "hold_profit": 7.98,
+        "profit_pct": 0.96,
+        "hold_days": 2,
+        "today_change_pct": 0,
+        "position_rate": 1.0,
+        "sector": "综合"
+      }
+    ],
+    "sector_distribution": [
+      {
+        "sector": "综合",
+        "value": 1052.0,
+        "pct": 100.0
+      }
+    ],
+    "risk_alerts": [],
+    "suggestions": [
+      "本月最佳：高新兴（+1.0%）最差：高新兴（+1.0%）"
+    ],
+    "summary": "总资产 10,007.98 元，持仓市值 1,052.00 元（10.5% 仓位），可用资金 8,955.98 元，持有 1 只股票。整体盈利 7.98 元（+0.77%）。",
+    "generated_at": "2026-03-25 21:07"
+  }
+}

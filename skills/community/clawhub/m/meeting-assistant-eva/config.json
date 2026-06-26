@@ -1,0 +1,65 @@
+{
+  "conda_env": {
+    "name": "meeting-assistant",
+    "python": "D:/program/codesupport/anaconda/envs/meeting-assistant/python.exe",
+    "whisper": "D:/program/codesupport/anaconda/envs/meeting-assistant/Scripts/whisper.exe",
+    "scripts_dir": "D:/program/codesupport/anaconda/envs/meeting-assistant/Scripts",
+    "ffmpeg": "D:/program/codesupport/anaconda/envs/meeting-assistant/Library/bin/ffmpeg.exe"
+  },
+  "docker": {
+    "exe": "C:/Program Files/Docker/Docker/resources/bin/docker.exe",
+    "compose_plugin": true
+  },
+
+  "screenshot_interval": 30,
+  "audio_chunk_minutes": 5,
+  "whisper_model": "base",
+  "whisper_language": "zh",
+  "mode": "general",
+  "output_base_dir": "recordings",
+
+  "audio": {
+    "sample_rate": 16000,
+    "channels": 1,
+    "format": "wav",
+    "device": "default"
+  },
+
+  "screenshot": {
+    "scale": 0.5,
+    "quality": 70,
+    "use_pc_control": true
+  },
+
+  "medical": {
+    "enabled": false,
+    "terminology_explanation": true,
+    "prescription_highlight": true,
+    "patient_summary": true,
+    "languages": ["zh", "en"]
+  },
+
+  "bot": {
+    "vexa_url": "http://localhost:8056",
+    "vexa_api_key": "dGosC39FSoaw0UpIVdhroaz42heFR0ou4bC5yiIc",
+    "bot_name": "OpenClaw 助手",
+    "auto_transcribe": true,
+    "auto_record": true
+  },
+
+  "claude": {
+    "_comment": "Set api_key here OR use ANTHROPIC_API_KEY environment variable (recommended)",
+    "api_key": "",
+    "model": "claude-sonnet-4-6",
+    "max_tokens": 1024,
+    "analysis_interval_cycles": 1
+  },
+
+  "chat_poll_interval": 5,
+
+  "integration": {
+    "pc_control_port": 18888,
+    "tts_url": "http://localhost:9001/v1",
+    "whisper_device": "cpu"
+  }
+}

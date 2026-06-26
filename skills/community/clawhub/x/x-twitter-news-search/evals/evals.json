@@ -1,0 +1,30 @@
+{
+  "skill_name": "x-twitter-news-search",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Search twitter for tweets about AI agents from the last 24 hours with at least 50 likes",
+      "expected_output": "Returns JSON array of tweets matching 'AI agent' keywords, each with id, text, author, likes >= 50, retweets, views, url fields"
+    },
+    {
+      "id": 2,
+      "prompt": "Find me recent tweets about agentic AI and agent frameworks, in English and French, minimum 100 likes and 10 retweets",
+      "expected_output": "Returns tweets matching 'agentic AI' OR 'agent framework' with lang:en OR lang:fr filter, engagement >= 100 likes and >= 10 retweets"
+    },
+    {
+      "id": 3,
+      "prompt": "Get tweets about EU AI Act from the last 48 hours",
+      "expected_output": "Returns tweets matching 'EU AI Act' with start_time set to 48 hours ago, default engagement thresholds, no replies or retweets"
+    },
+    {
+      "id": 4,
+      "prompt": "Search X for Shopify AI product tools, at least 20 likes, last 12 hours, max 10 results",
+      "expected_output": "Returns max 10 tweets matching Shopify AI keywords, likes >= 20, from last 12 hours"
+    },
+    {
+      "id": 5,
+      "prompt": "Check twitter for what people are saying about on-chain AI agents",
+      "expected_output": "Returns tweets matching 'on-chain agent' or similar crypto AI keywords with default filters applied"
+    }
+  ]
+}

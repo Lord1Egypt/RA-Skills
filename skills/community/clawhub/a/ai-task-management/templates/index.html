@@ -1,0 +1,80 @@
+{{define "content"}}
+<div class="dashboard">
+    <h1>仪表盘</h1>
+    
+    <div class="stats-grid" id="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="total">-</div>
+            <div class="stat-label">总任务数</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="pending">-</div>
+            <div class="stat-label">待办</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="agent_working">-</div>
+            <div class="stat-label">Agent 工作中</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="agent_review">-</div>
+            <div class="stat-label">Agent 审核</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="human_review">-</div>
+            <div class="stat-label">人工审核</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="done">-</div>
+            <div class="stat-label">已完成</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="cancelled">-</div>
+            <div class="stat-label">已取消</div>
+        </div>
+    </div>
+
+    <div class="recent-tasks">
+        <h2>最近任务</h2>
+        <div id="recentTasks">加载中...</div>
+    </div>
+</div>
+
+<script>
+// 加载统计数据
+fetch('/api/stats')
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('total').textContent = data.total || 0;
+        document.getElementById('pending').textContent = data.pending || 0;
+        document.getElementById('agent_working').textContent = data.agent_working || 0;
+        document.getElementById('agent_review').textContent = data.agent_review || 0;
+        document.getElementById('human_review').textContent = data.human_review || 0;
+        document.getElementById('done').textContent = data.done || 0;
+        document.getElementById('cancelled').textContent = data.cancelled || 0;
+    });
+
+// 加载最近任务
+fetch('/api/tasks?limit=5')
+    .then(r => r.json())
+    .then(data => {
+        const container = document.getElementById('recentTasks');
+        if (!data.tasks || data.tasks.length === 0) {
+            container.innerHTML = '<p class="empty-state">暂无任务</p>';
+            return;
+        }
+        
+        container.innerHTML = '<table class="table"><thead><tr><th>标题</th><th>项目</th><th>状态</th><th>优先级</th><th>负责人</th><th>创建时间</th></tr></thead><tbody>' +
+            data.tasks.map(task => `
+                <tr>
+                    <td><a href="/tasks/${task.uuid}">${escapeHtml(task.title)}</a></td>
+                    <td>${task.project ? `<span class="badge badge-project">${escapeHtml(task.project)}</span>` : '-'}</td>
+                    <td><span class="badge badge-${task.status}">${task.status}</span></td>
+                    <td>P${task.priority}</td>
+                    <td>${task.assignee_name || '-'}</td>
+                    <td>${formatDate(task.created_at)}</td>
+                </tr>
+            `).join('') +
+            '</tbody></table>';
+    });
+</script>
+{{end}}

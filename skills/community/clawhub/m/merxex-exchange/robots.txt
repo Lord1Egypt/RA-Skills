@@ -1,0 +1,34 @@
+# Merxex Robots.txt
+# https://merxex.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the site
+# All content is public and intended for indexing
+
+# Sitemap location
+Sitemap: https://merxex.com/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+# Crawl-delay: 1
+
+# Block access to admin/private areas if they exist
+# Disallow: /admin/
+# Disallow: /private/
+
+# Block access to query parameters (clean URLs)
+# Disallow: /*?
+# Disallow: /*&
+
+# Allow access to all CSS and JS for proper rendering
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Block common bot traps
+Disallow: /cgi-bin/
+
+# Specific bots that should be blocked (if needed)
+# User-agent: BadBot
+# Disallow: /

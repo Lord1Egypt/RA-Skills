@@ -1,0 +1,50 @@
+{
+  "name": "travel-blind-box",
+  "version": "3.0.0",
+  "description": "真正的盲盒旅行规划器！只需提供当前位置、日期和预算，自动推荐未去过的目的地并生成轻松行程。内置历史记录系统，永不重复推荐。主打新奇体验和随意放松。",
+  "author": "Your Name",
+  "license": "MIT",
+  "keywords": [
+    "travel",
+    "blind-box",
+    "trip-planner",
+    "budget",
+    " itinerary",
+    "random",
+    "surprise"
+  ],
+  "category": "lifestyle",
+  "dependencies": {
+    "flyai": ">=1.0.0"
+  },
+  "scripts": [
+    {
+      "name": "budget_allocator",
+      "path": "scripts/budget_allocator.py",
+      "runtime": "python3"
+    },
+    {
+      "name": "history_manager",
+      "path": "scripts/history_manager.py",
+      "runtime": "python3"
+    }
+  ],
+  "entryPoint": "SKILL.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/travel-blind-box.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/travel-blind-box/issues"
+  },
+  "homepage": "https://github.com/your-repo/travel-blind-box#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "meta": {
+    "createdAt": "2026-04-01",
+    "updatedAt": "2026-04-01",
+    "featured": false,
+    "verified": false
+  }
+}

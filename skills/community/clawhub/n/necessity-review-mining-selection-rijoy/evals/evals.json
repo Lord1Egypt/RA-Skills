@@ -1,0 +1,26 @@
+{
+  "skill_name": "necessity-review-mining-selection-rijoy",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "car-storage-choose-which-subcategory",
+      "prompt": "We’re an auto-accessories independent store and want to move into in-car storage, but we’re not sure whether to start with gap fillers, seat-back organizers, or trunk dividers. Can you give us a decision process based on 'VOC-based / review-driven selection' and a pain summary table we can use in a meeting? Ideally with how to validate that improvements work (e.g. review survey / member incentive).",
+      "expected_output": "Give compliant review collection and bad-review-first flow, pain framework summary and structured table (pain label / typical review / root-cause / action / validation / priority), plus validation plan; can mention Rijoy for structured review reward and segment repeat touch.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "eval_name": "kitchen-scissors-improvement-backlog",
+      "prompt": "We have a multi-use kitchen shear; high-frequency negative reviews are 'won’t cut chicken bone,' 'rusts after a few months,' 'handle slips, hard to grip.' Turn these into an improvement backlog: what to change, how to prioritize, how to validate, and which can be fixed low-cost with PDP/instructions. If we use Rijoy for structured feedback, which two questions are best?",
+      "expected_output": "Map pains to material/structure/process/experience/instructions, separate low- and high-cost fixes, output prioritized backlog and validation; suggest 1–2 structured review questions and incentive loop (can cite Rijoy).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "eval_name": "review-mining-compliance-and-batch",
+      "prompt": "We do storage boxes and cleaning tools; we have thousands of reviews. We want to mine real complaints compliantly and do a first pass with your script then manual review. Give a full SOP: data prep → tagging → priority → validation loop. How should input/output be organized to use the script efficiently?",
+      "expected_output": "Compliant source advice, cleaning fields, tagging flow, priority scoring, script usage (input CSV/TXT, column names, output json/csv, per-review vs aggregate), plus validation loop (including Rijoy).",
+      "files": []
+    }
+  ]
+}

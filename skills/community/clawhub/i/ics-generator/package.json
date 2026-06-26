@@ -1,0 +1,11 @@
+{
+  "name": "ics-generator",
+  "version": "1.0.0",
+  "description": "Generates Google Calendar‑compatible .ics files",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {}
+}

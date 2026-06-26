@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI前沿哨兵 - 你的AI情报指挥中心</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --accent: #8b5cf6;
+            --success: #10b981;
+            --bg-dark: #0a0a0f;
+            --bg-card: #111118;
+            --bg-card-hover: #1a1a24;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #1e293b;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 9999px;
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 32px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '⚡';
+            font-size: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .hero-subtitle span {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Install Section */
+        .install-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 700px;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .install-tabs {
+            display: flex;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+        }
+
+        .install-tab {
+            flex: 1;
+            padding: 12px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .install-tab:hover {
+            color: var(--text-primary);
+        }
+
+        .install-tab.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .install-content {
+            display: none;
+        }
+
+        .install-content.active {
+            display: block;
+        }
+
+        .install-command-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .install-command-box code {
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 14px;
+            color: var(--primary-light);
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .install-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .install-note::before {
+            content: '💡';
+        }
+
+        /* Chat Install */
+        .chat-install-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .chat-install-title {
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .chat-install-support {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .chat-command {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            text-align: left;
+            word-break: break-word;
+        }
+
+        /* ZIP Install */
+        .zip-install-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .zip-install-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .zip-install-item:hover {
+            border-color: var(--primary);
+        }
+
+        .zip-install-item .platform {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .zip-install-item .platform-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .zip-install-item .platform-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .zip-install-item .platform-url {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary);
+            color: var(--primary-light);
+        }
+
+        /* Usage Section */
+        .usage-section {
+            margin-top: 48px;
+            padding: 28px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            animation: fadeInUp 0.6s ease-out 0.5s both;
+        }
+
+        .usage-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .usage-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .usage-command {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--primary-light);
+        }
+
+        .usage-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Section */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Commands */
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .command-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .command-item:hover {
+            border-color: var(--primary);
+        }
+
+        .command-item code {
+            display: block;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .command-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Sources */
+        .sources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 48px;
+        }
+
+        .source-badge {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .source-badge:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary);
+            color: var(--text-primary);
+        }
+
+        /* Report Preview */
+        .report-preview {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .report-header {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .report-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .report-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .report-content {
+            padding: 32px;
+        }
+
+        .report-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .report-item:last-child {
+            border-bottom: none;
+        }
+
+        .report-item h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .report-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .install-section {
+                padding: 24px 16px;
+            }
+
+            .install-tabs {
+                flex-wrap: wrap;
+            }
+
+            .install-tab {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+
+            .install-command-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .install-command-box code {
+                font-size: 13px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .report-preview {
+                margin: 0 -12px;
+                border-radius: 0;
+            }
+
+            .zip-install-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">OpenClaw 技能</div>
+            <h1>AI前沿哨兵</h1>
+            <p class="hero-subtitle">
+                你的<span>AI情报指挥中心</span><br>
+                自动采集 · 智能分析 · 定时报告
+            </p>
+            
+            <!-- Install Section -->
+            <div class="install-section">
+                <div class="install-tabs">
+                    <button class="install-tab active" onclick="switchTab('chat')">
+                        💬 对话安装
+                    </button>
+                    <button class="install-tab" onclick="switchTab('command')">
+                        ⌨️ 命令安装
+                    </button>
+                    <button class="install-tab" onclick="switchTab('zip')">
+                        📦 ZIP安装
+                    </button>
+                </div>
+
+                <!-- Chat Install -->
+                <div id="chat-install" class="install-content active">
+                    <div class="chat-install-box">
+                        <div class="chat-install-title">第一步：安装技能</div>
+                        <div class="chat-install-support">支持ClawHub的AI助手：OpenClaw、WorkBuddy、QClaw等</div>
+                        <div class="chat-command">安装 ClawHub 和技能<br><br>请先检查是否已安装 ClawHub 商店，若未安装，请执行：<br>npm i -g clawhub<br><br>然后安装 ai-intelligence-sentinel 技能。</div>
+                        <button class="copy-btn" onclick="copyText('安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。')">
+                            <span id="copyText-chat">📋 复制安装指令</span>
+                        </button>
+                        <div class="chat-install-title" style="margin-top: 24px;">第二步：使用技能</div>
+                        <div class="chat-command">使用 ai-intelligence-sentinel 技能生成今日AI情报报告</div>
+                        <button class="copy-btn" onclick="copyText('使用 ai-intelligence-sentinel 技能生成今日AI情报报告')">
+                            <span id="copyText-use">📋 复制使用指令</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Command Install -->
+                <div id="command-install" class="install-content">
+                    <div class="install-command-box">
+                        <code>npx clawhub@latest install ai-intelligence-sentinel</code>
+                        <button class="copy-btn" onclick="copyText('npx clawhub@latest install ai-intelligence-sentinel')">
+                            <span id="copyText-command">📋 复制</span>
+                        </button>
+                    </div>
+                    <div class="install-note">需要 Node.js 18+ 环境，首次安装可能需要几分钟</div>
+                </div>
+
+                <!-- ZIP Install -->
+                <div id="zip-install" class="install-content">
+                    <div class="zip-install-list">
+                        <div class="zip-install-item">
+                            <div class="platform">
+                                <div class="platform-icon">🦞</div>
+                                <div>
+                                    <div class="platform-name">ClawHub</div>
+                                    <div class="platform-url">clawhub.ai/skills/ai-intelligence-sentinel</div>
+                                </div>
+                            </div>
+                            <button class="copy-btn" onclick="openLink('https://clawhub.ai/skills/ai-intelligence-sentinel')">
+                                🔗 打开
+                            </button>
+                        </div>
+                        <div class="zip-install-item">
+                            <div class="platform">
+                                <div class="platform-icon">🦐</div>
+                                <div>
+                                    <div class="platform-name">虾评 Skill</div>
+                                    <div class="platform-url">xiaping.coze.site</div>
+                                </div>
+                            </div>
+                            <button class="copy-btn" onclick="openLink('https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2')">
+                                🔗 打开
+                            </button>
+                        </div>
+                        <div class="zip-install-item">
+                            <div class="platform">
+                                <div class="platform-icon">🐙</div>
+                                <div>
+                                    <div class="platform-name">GitHub</div>
+                                    <div class="platform-url">github.com/xiaopengs/ai-sentinel</div>
+                                </div>
+                            </div>
+                            <button class="copy-btn" onclick="openLink('https://github.com/xiaopengs/ai-sentinel')">
+                                🔗 打开
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tags">
+                <span class="tag">AI情报</span>
+                <span class="tag">AI哨兵</span>
+                <span class="tag">AI资讯</span>
+                <span class="tag">科技新闻</span>
+                <span class="tag">论文追踪</span>
+                <span class="tag">开源项目</span>
+                <span class="tag">晨报</span>
+                <span class="tag">晚报</span>
+            </div>
+
+            <!-- Usage Section -->
+            <div class="usage-section">
+                <div class="usage-title">🚀 使用方法</div>
+                <div class="usage-box">
+                    <div class="usage-command">用AI哨兵技能生成今日AI情报报告</div>
+                    <button class="copy-btn" onclick="copyText('用AI哨兵技能生成今日AI情报报告')">
+                        <span>📋 复制</span>
+                    </button>
+                </div>
+                <div class="usage-note">安装后，发送此指令给你的 Agent，自动采集并生成完整报告</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>🎯 核心能力</h2>
+                <p>六个维度，全方位掌控AI前沿动态</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔍</div>
+                    <h3>多源采集</h3>
+                    <p>GitHub Trending、arXiv、HackerNews、Twitter/X、15+官方博客RSS，覆盖全球AI动态</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⏰</div>
+                    <h3>定时调度</h3>
+                    <p>晨报 08:00、晚报 20:00 自动生成，准时送达，解放你的时间</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📊</div>
+                    <h3>智能评分</h3>
+                    <p>热度 + 新鲜度 + 来源可信度 + 质量，四维评分体系，快速识别高价值内容</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📄</div>
+                    <h3>多格式报告</h3>
+                    <p>Markdown 格式，支持晨报 / 晚报 / 完整报告 / 小红书风格，满足不同场景需求</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎛️</div>
+                    <h3>WebUI 管理</h3>
+                    <p>可视化配置信息源、查看报告、添加自定义模板，零代码即可上手</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🌏</div>
+                    <h3>双语支持</h3>
+                    <p>英文主 README + 中文版，全球用户均可使用，国际化设计</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands Section -->
+    <section class="section" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>⌨️ 基本命令</h2>
+                <p>一行命令，即刻开始</p>
+            </div>
+            <div class="commands-grid">
+                <div class="command-item fade-in">
+                    <code>python reporter.py --all</code>
+                    <p>采集所有信息源</p>
+                </div>
+                <div class="command-item fade-in">
+                    <code>python reporter.py --type morning</code>
+                    <p>生成晨报</p>
+                </div>
+                <div class="command-item fade-in">
+                    <code>python reporter.py --type evening</code>
+                    <p>生成晚报</p>
+                </div>
+                <div class="command-item fade-in">
+                    <code>python reporter.py --type full</code>
+                    <p>完整报告（采集+分析+生成）</p>
+                </div>
+                <div class="command-item fade-in">
+                    <code>python reporter.py --source github</code>
+                    <p>单源采集 · GitHub Trending</p>
+                </div>
+                <div class="command-item fade-in">
+                    <code>python reporter.py --source arxiv</code>
+                    <p>单源采集 · arXiv 论文</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>📡 信息源覆盖</h2>
+                <p>17个高质量信源，实时追踪全球AI动态</p>
+            </div>
+            <div class="sources fade-in">
+                <span class="source-badge">GitHub Trending</span>
+                <span class="source-badge">arXiv (cs.AI/LG/CL)</span>
+                <span class="source-badge">HackerNews</span>
+                <span class="source-badge">Twitter/X</span>
+                <span class="source-badge">OpenAI Blog</span>
+                <span class="source-badge">Anthropic</span>
+                <span class="source-badge">Google AI</span>
+                <span class="source-badge">DeepMind</span>
+                <span class="source-badge">HuggingFace</span>
+                <span class="source-badge">xAI</span>
+                <span class="source-badge">Cursor</span>
+                <span class="source-badge">InfoQ</span>
+                <span class="source-badge">TechCrunch AI</span>
+                <span class="source-badge">VentureBeat AI</span>
+                <span class="source-badge">智谱AI</span>
+                <span class="source-badge">MiniMax</span>
+                <span class="source-badge">扣子 Coze</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Preview -->
+    <section class="section" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>📰 报告示例</h2>
+                <p>结构清晰，重点突出，一目了然</p>
+            </div>
+            <div class="report-preview fade-in">
+                <div class="report-header">
+                    <div class="report-date">2026年4月11日 · 晚报</div>
+                    <div class="report-title">GPT-6官宣4月14日发布 · DeepSeek V4定档4月下旬</div>
+                </div>
+                <div class="report-content">
+                    <div class="report-item">
+                        <h4><span class="priority-badge">P0</span> GPT-6预训练完成</h4>
+                        <p>200万Token上下文，$2.5/百万Token，性能提升40%</p>
+                    </div>
+                    <div class="report-item">
+                        <h4><span class="priority-badge">P0</span> DeepSeek V4定档</h4>
+                        <p>万亿参数+MoE架构，百万上下文，全适配国产芯片</p>
+                    </div>
+                    <div class="report-item">
+                        <h4><span class="priority-badge">P1</span> Meta转向闭源</h4>
+                        <p>Muse Spark发布，143亿美元投入，开源策略重大调整</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="fade-in">立即开始使用</h2>
+            <p class="fade-in">一行命令，开启你的AI情报之旅</p>
+            <div class="cta-buttons fade-in">
+                <a href="https://github.com/xiaopengs/ai-sentinel" class="btn btn-primary" target="_blank">
+                    📦 GitHub 仓库
+                </a>
+                <a href="https://clawhub.ai/skills/ai-intelligence-sentinel" class="btn btn-secondary" target="_blank">
+                    🔗 ClawHub 安装
+                </a>
+                <a href="https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2" class="btn btn-secondary" target="_blank">
+                    🦐 虾评 Skill
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/xiaopengs/ai-sentinel" target="_blank">GitHub</a>
+                <a href="https://clawhub.ai/skills/ai-intelligence-sentinel" target="_blank">ClawHub</a>
+                <a href="https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2" target="_blank">虾评 Skill</a>
+                <a href="https://github.com/xiaopengs/ai-sentinel/blob/main/README_CN.md" target="_blank">中文文档</a>
+            </div>
+            <p class="footer-copy">AI前沿哨兵 © 2026 · MIT License</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(tab) {
+            // Update tabs
+            document.querySelectorAll('.install-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.install-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tab + '-install').classList.add('active');
+        }
+
+        // Open link function
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+
+        // Copy function - works on all browsers
+        function copyText(text) {
+            // Create a temporary textarea
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            textarea.style.top = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    // Find the button that was clicked
+                    const btn = event.target.closest('.copy-btn');
+                    const span = btn.querySelector('span');
+                    const originalText = span.textContent;
+                    
+                    span.textContent = '✓ 已复制';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        span.textContent = originalText;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制: ' + text);
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "name": "openclaw-skill-reading-notes",
+  "version": "1.0.0",
+  "description": "Expand reading insights into detailed reviews using local templates only",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && esbuild src/index.ts --bundle --platform=node --outfile=dist/bundle.js",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build && npm test",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "reading-notes",
+    "reading",
+    "notes",
+    "local-processing",
+    "safe"
+  ],
+  "author": "Digital Partners Team (珍珠, 贝尔, 哈利, 喜羊羊)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabs0913/openclaw-skill-reading-notes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harrylabs0913/openclaw-skill-reading-notes/issues"
+  },
+  "homepage": "https://github.com/harrylabs0913/openclaw-skill-reading-notes#readme",
+  "dependencies": {
+    "openclaw": "^2026.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "esbuild": "^0.19.8",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "name": "reading-notes",
+    "description": "Expand reading insights into detailed reviews using local templates only",
+    "version": "1.0.0",
+    "author": "Digital Partners Team",
+    "commands": [
+      {
+        "name": "reading-notes",
+        "description": "Expand a reading insight into a detailed review",
+        "usage": "/reading-notes [insight]"
+      },
+      {
+        "name": "reading-brief",
+        "description": "Generate a brief reading note",
+        "usage": "/reading-brief [insight]"
+      },
+      {
+        "name": "reading-related",
+        "description": "Get related concepts for a reading insight",
+        "usage": "/reading-related [insight]"
+      }
+    ]
+  }
+}

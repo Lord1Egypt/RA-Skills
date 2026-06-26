@@ -1,0 +1,9 @@
+{
+  "apiKey": "your-zhipu-api-key-here",
+  "engine": "search_std",
+  "intent": false,
+  "count": 10,
+  "recency": "noLimit",
+  "content": "medium",
+  "domain": ""
+}

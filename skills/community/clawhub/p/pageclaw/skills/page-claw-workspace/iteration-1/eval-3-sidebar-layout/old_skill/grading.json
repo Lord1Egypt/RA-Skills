@@ -1,0 +1,26 @@
+{
+  "eval_id": 3,
+  "configuration": "old_skill",
+  "expectations": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": false,
+      "evidence": "Old skill CSS signatures contain no '· layout:' descriptor; 'Terminal Scholar' has only decorative properties"
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": false,
+      "evidence": "design.md explicitly specifies 'single-column reading layout... No sidebar, no multi-column grid' — no Layout structure field as a positive spec"
+    },
+    {
+      "text": "index.html is structurally distinct from plain single-column (asymmetric grid, full-bleed, etc.)",
+      "passed": false,
+      "evidence": "Single-column 720px centered layout — identical structure to eval-2 old skill despite different bold Q2 choice"
+    },
+    {
+      "text": "The HTML structure clearly reflects the bold Q2 layout descriptor rather than defaulting to generic layout",
+      "passed": false,
+      "evidence": "No layout descriptor existed; model defaulted to single-column regardless of bold Q2 aesthetic choice (Terminal Scholar)"
+    }
+  ]
+}

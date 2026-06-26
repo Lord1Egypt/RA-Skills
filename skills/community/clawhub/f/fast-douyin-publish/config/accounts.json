@@ -1,0 +1,32 @@
+{
+  "douyin": {
+    "enabled": true,
+    "username": "",
+    "password": "",
+    "qr_login": true
+  },
+  "wechat_channels": {
+    "enabled": true,
+    "username": "",
+    "password": "",
+    "qr_login": true
+  },
+  "xiaohongshu": {
+    "enabled": true,
+    "username": "",
+    "password": "",
+    "qr_login": true
+  },
+  "bilibili": {
+    "enabled": true,
+    "username": "",
+    "password": "",
+    "qr_login": false
+  },
+  "youtube": {
+    "enabled": true,
+    "username": "",
+    "password": "",
+    "qr_login": false
+  }
+}

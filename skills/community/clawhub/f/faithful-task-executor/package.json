@@ -1,0 +1,44 @@
+{
+  "name": "faithful-task-executor",
+  "version": "1.0.0",
+  "description": "任务规则忠实执行器。确保工作任务按初始要求执行，子代理/子任务始终遵循原始规则，减少 AI 幻觉和执行偏差。支持并发任务编排、规则持久化传递、执行一致性校验。",
+  "author": "aclory",
+  "license": "MIT",
+  "keywords": [
+    "task-executor",
+    "rule-faithful",
+    "anti-hallucination",
+    "consistency",
+    "subagent-orchestration",
+    "concurrent-tasks",
+    "quality-assurance"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "execute": "node scripts/execute-task.js",
+    "validate": "node scripts/validate-rules.js",
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aclory/openclaw-skills.git",
+    "directory": "skills/faithful-task-executor"
+  },
+  "homepage": "https://clawhub.com/skills/faithful-task-executor",
+  "engines": {
+    "openclaw": ">=1.0.0",
+    "node": ">=16.0.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=1.0.0"
+  },
+  "config": {
+    "rulesPath": ".task-rules/rules.md",
+    "maxParallelSubagents": 5,
+    "rulePropagation": true,
+    "preExecutionCheck": true,
+    "periodicRuleReview": true,
+    "reviewInterval": 0.25
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "run_id": "failure-path-run",
+  "label": "validation-fallback-failure",
+  "created_at": "2026-04-29T13:49:04.675Z",
+  "brief_path": "brief.md",
+  "selected_models": [
+    "openai-codex/gpt-5.4",
+    "anthropic/claude-sonnet-4-6"
+  ],
+  "orchestrator_model": "openai-codex/gpt-5.4",
+  "orchestrator_model_source": "explicit",
+  "round_count": 2,
+  "status": "failed",
+  "stop_reason": "ERROR",
+  "artifacts": {
+    "round_1_dir": "round-1",
+    "round_2_dir": "round-2",
+    "final": "final.md"
+  },
+  "failed_at": "2026-04-29T13:50:37.714Z",
+  "error": "round-1: OpenClaw fell back away from requested model anthropic/claude-sonnet-4-6.\n[model-fallback/decision] model fallback decision: decision=skip_candidate requested=anthropic/claude-sonnet-4-6 candidate=anthropic/claude-sonnet-4-6 reason=billing next=openai-codex/gpt-5.4 detail=Provider anthropic has billing issue (skipping all models)\n[model-fallback/decision] model fallback decision: decision=candidate_succeeded requested=anthropic/claude-sonnet-4-6 candidate=openai-codex/gpt-5.4 reason=unknown next=none"
+}

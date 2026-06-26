@@ -1,0 +1,15 @@
+{
+  "users": {
+    "test001": {
+      "nickname": "唐总",
+      "level": 1,
+      "total_picks": 0,
+      "successful_picks": 0,
+      "preferred_styles": [],
+      "liked_stocks": [],
+      "disliked_stocks": [],
+      "created_at": "2026-03-13T01:14:57.481633",
+      "last_active": "2026-03-13T01:14:58.213351"
+    }
+  }
+}

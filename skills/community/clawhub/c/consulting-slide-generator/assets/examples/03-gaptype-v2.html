@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200,height=675">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 w-[1200px] h-[675px] overflow-hidden">
+  
+  <div class="h-full px-16 py-10">
+    
+    <!-- Header -->
+    <div class="mb-6">
+      <div class="text-sm font-medium text-slate-400 tracking-wider uppercase mb-2">
+        Gap Classification
+      </div>
+      <h1 class="text-3xl font-black text-slate-900">
+        4つの<span class="text-indigo-600">GapType</span>で品質課題を分類
+      </h1>
+    </div>
+    
+    <!-- 2x2 True Matrix with Axes -->
+    <div class="flex gap-8">
+      
+      <!-- Y-Axis Label -->
+      <div class="flex flex-col justify-center items-center w-8">
+        <div class="transform -rotate-90 whitespace-nowrap text-sm font-bold text-slate-500">
+          機能の存在 →
+        </div>
+      </div>
+      
+      <!-- Matrix -->
+      <div class="flex-1">
+        
+        <!-- X-Axis Label -->
+        <div class="text-center text-sm font-bold text-slate-500 mb-4">
+          検証の完了度 →
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          
+          <!-- Top-Left: MissingFeature (機能なし・検証不可) -->
+          <div class="bg-white border-2 border-red-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">!</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-red-500 px-2 py-0.5 rounded">CRITICAL</span>
+              <span class="text-xl font-black text-red-700">MissingFeature</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">機能が存在しない</div>
+            <div class="text-sm text-slate-500 mb-3">要件にある機能・画面・ボタンが実装されていない</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-red-600">実装を最優先</span>
+            </div>
+          </div>
+          
+          <!-- Top-Right: Untested (機能あり・検証なし) -->
+          <div class="bg-white border-2 border-blue-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">?</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-blue-500 px-2 py-0.5 rounded">LOW</span>
+              <span class="text-xl font-black text-blue-700">Untested</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">検証がない</div>
+            <div class="text-sm text-slate-500 mb-3">機能はあるが、テストケース・証跡が存在しない</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-blue-600">テスト追加</span>
+            </div>
+          </div>
+          
+          <!-- Bottom-Left: Ambiguous (要件不明・判定不能) -->
+          <div class="bg-white border-2 border-amber-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center text-white text-xs font-bold">~</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-amber-500 px-2 py-0.5 rounded">MEDIUM</span>
+              <span class="text-xl font-black text-amber-700">Ambiguous</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">要件が曖昧</div>
+            <div class="text-sm text-slate-500 mb-3">「適切に」「十分に」など、合否判定ができない</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-amber-600">要件を明確化</span>
+            </div>
+          </div>
+          
+          <!-- Bottom-Right: NotMet (機能あり・検証済み・NG) -->
+          <div class="bg-white border-2 border-orange-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">×</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-orange-500 px-2 py-0.5 rounded">HIGH</span>
+              <span class="text-xl font-black text-orange-700">NotMet</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">要件を満たさない</div>
+            <div class="text-sm text-slate-500 mb-3">機能はあるが、受け入れ条件を満たしていない</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-orange-600">バグ修正</span>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Axis Labels -->
+        <div class="flex justify-between mt-4 text-xs text-slate-400">
+          <span>検証不可</span>
+          <span>検証済み</span>
+        </div>
+        
+      </div>
+      
+      <!-- Side Legend -->
+      <div class="w-40 flex flex-col justify-center text-xs text-slate-400 space-y-2">
+        <div>機能なし ↑</div>
+        <div class="h-32"></div>
+        <div>機能あり ↓</div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+</body>
+</html>

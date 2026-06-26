@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Feed Recsys Reviewer"
+  short_description: "Review public feed recsys evidence and artifact readiness."
+  default_prompt: "Use $open-feed-recsys-lab to review this public feed recommendation repository or claim with source-backed evidence, artifact readiness, and cautious architecture notes."

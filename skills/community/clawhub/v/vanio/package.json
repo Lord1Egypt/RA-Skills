@@ -1,0 +1,17 @@
+{
+  "name": "@vanio-ai/cli",
+  "version": "0.1.0",
+  "description": "Vanio AI CLI — manage your vacation rental portfolio from the command line",
+  "main": "dist/index.cjs",
+  "bin": {
+    "vanio": "dist/index.cjs"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && node dist/index.cjs"
+  },
+  "dependencies": {},
+  "keywords": ["vanio", "property-management", "vacation-rental", "ai-agent", "openclaw", "mcp", "cli"],
+  "license": "MIT",
+  "files": ["dist", "SKILL.md", "README.md"]
+}

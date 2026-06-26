@@ -1,0 +1,27 @@
+# rest_commands.yaml — Bird Buddy Telegram notification command
+#
+# Copy this file to {{HA_CONFIG_DIR}}/rest_commands.yaml and substitute
+# your Telegram credentials. Then add the following line to configuration.yaml:
+#
+#   rest_command: !include rest_commands.yaml
+#
+# IMPORTANT: chat_id must be a bare integer (no quotes).
+#   ✅  "chat_id": -1001234567890
+#   ❌  "chat_id": "-1001234567890"   ← Telegram API will reject this
+#
+# Variables to substitute:
+#   {{TELEGRAM_BOT_TOKEN}}  — your bot token from @BotFather
+#   {{TELEGRAM_CHAT_ID}}    — integer chat/group ID (negative for groups)
+#   {{TELEGRAM_THREAD_ID}}  — message thread/topic ID (omit line if no topics)
+
+birdbuddy_telegram_notify:
+  url: "https://api.telegram.org/bot{{TELEGRAM_BOT_TOKEN}}/sendMessage"
+  method: POST
+  content_type: "application/json"
+  payload: >-
+    {
+      "chat_id": {{ chat_id }},
+      "message_thread_id": {{ thread_id }},
+      "text": "{{ message }}",
+      "parse_mode": "Markdown"
+    }

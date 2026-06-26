@@ -1,0 +1,19 @@
+{
+  "MONTHLY_BUDGET": 100.0,
+  "ALERT_THRESHOLDS": {
+    "warning": 80,
+    "critical": 95
+  },
+  "DEFAULT_TIME_PERIOD": "day",
+  "TOP_MODELS_LIMIT": 10,
+  "TOP_TASKS_LIMIT": 10,
+  "TREND_CHART_DAYS": 30,
+  "DASHBOARD_THEME": "default",
+  "DEFAULT_EXPORT_FORMAT": "json",
+  "EXPORT_INCLUDE_RAW": true,
+  "WASTE_THRESHOLD": 0.10,
+  "WASTE_MIN_REQUESTS": 10,
+  "ENABLE_CACHE": false,
+  "DEBUG": false,
+  "TIMEZONE": null
+}

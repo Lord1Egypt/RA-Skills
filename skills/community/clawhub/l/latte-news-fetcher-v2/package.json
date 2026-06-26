@@ -1,0 +1,8 @@
+{
+  "name": "latte-news-fetcher-v2",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

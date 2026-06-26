@@ -1,0 +1,25 @@
+{
+  "name": "mikrotik",
+  "displayName": "MikroTik RouterOS 管理",
+  "version": "1.8.5",
+  "description": "通过 API 连接和管理 MikroTik RouterOS 设备。支持查看设备状态、防火墙规则、网络配置，执行自定义 RouterOS 命令。",
+  "author": "2944721178",
+  "license": "MIT",
+  "tags": ["mikrotik", "routeros", "network", "firewall", "router"],
+  "repository": "https://github.com/2944721178/openclaw-mikrotik-skill",
+  "main": "handler.py",
+  "engines": {
+    "openclaw": ">=2026.3.2",
+    "python": ">=3.6"
+  },
+  "environment": {
+    "MIKROTIK_HOST": "RouterOS 设备 IP 地址",
+    "MIKROTIK_USER": "用户名 (默认：admin)",
+    "MIKROTIK_PASS": "密码 (支持空密码)"
+  },
+  "security": {
+    "networkScan": true,
+    "subprocess": true,
+    "credentials": "stored in TOOLS.md or environment variables"
+  }
+}

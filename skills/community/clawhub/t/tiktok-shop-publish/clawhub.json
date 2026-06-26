@@ -1,0 +1,120 @@
+{
+  "name": "tiktok-shop-automation",
+  "version": "1.0.0",
+  "description": "TikTok Shop 跨境电商一站式自动化解决方案",
+  "author": "ClawHub Team <dev@clawhub.com>",
+  "license": "Commercial",
+  "price": 149,
+  "currency": "USD",
+  "billing": "monthly",
+  "category": "ecommerce",
+  "tags": [
+    "tiktok",
+    "ecommerce",
+    "automation",
+    "cross-border",
+    "social-media",
+    "marketing",
+    "shop",
+    "video"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawhub-skills/tiktok-shop-automation"
+  },
+  "homepage": "https://clawhub.com/skills/tiktok-shop-automation",
+  "bugs": "https://github.com/clawhub-skills/tiktok-shop-automation/issues",
+  "main": "bin/cli.js",
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "features": [
+    "视频批量发布",
+    "多账号管理",
+    "商品管理",
+    "订单自动化",
+    "数据分析",
+    "广告优化",
+    "竞品监控",
+    "飞书集成"
+  ],
+  "pricing_tiers": [
+    {
+      "name": "标准版",
+      "price": 149,
+      "limits": {
+        "accounts": 3,
+        "video_posts_per_month": 1000,
+        "analytics": "basic"
+      }
+    },
+    {
+      "name": "专业版",
+      "price": 299,
+      "limits": {
+        "accounts": 10,
+        "video_posts_per_month": -1,
+        "analytics": "advanced",
+        "ad_optimization": true,
+        "competitor_tracking": true
+      }
+    },
+    {
+      "name": "企业版",
+      "price": 599,
+      "limits": {
+        "accounts": -1,
+        "video_posts_per_month": -1,
+        "analytics": "enterprise",
+        "custom_integration": true,
+        "dedicated_support": true,
+        "sla": true
+      }
+    }
+  ],
+  "requirements": [
+    "TikTok Shop Seller 账号",
+    "TikTok Shop API 访问权限",
+    "Node.js >= 18.0.0",
+    "稳定的网络连接"
+  ],
+  "integrations": [
+    {
+      "name": "TikTok Shop",
+      "type": "required",
+      "docs": "https://partner.tiktokshop.com/"
+    },
+    {
+      "name": "TikTok Marketing API",
+      "type": "optional",
+      "docs": "https://business-api.tiktok.com/"
+    },
+    {
+      "name": "飞书多维表格",
+      "type": "optional",
+      "docs": "https://open.feishu.cn/"
+    }
+  ],
+  "regions": [
+    "US",
+    "UK",
+    "SEA",
+    "ID"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2024-03-15",
+      "changes": [
+        "初始版本发布",
+        "视频批量发布功能",
+        "商品管理功能",
+        "订单同步到飞书",
+        "基础数据报表"
+      ]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "thumbnail-qa-skill",
+  "version": "1.0.0",
+  "description": "Thumbnail image QA: detect poorly cropped images, compute optimal object-position values, and auto-fix with before/after evidence.",
+  "settings": []
+}

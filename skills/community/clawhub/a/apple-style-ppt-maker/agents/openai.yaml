@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Apple Style PPT Maker"
+  short_description: "Apple-minimal PPT workflow with strict JSON and page regeneration"
+  default_prompt: "Use $open-apple-style-ppt-maker to clarify requirements, review a strict slide JSON plan, generate 2K WebP slides, and regenerate any requested page."

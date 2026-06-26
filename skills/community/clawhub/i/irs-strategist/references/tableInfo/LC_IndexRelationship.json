@@ -1,0 +1,173 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到指数的代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SecuCode",
+        "columnChiName": "证券代码",
+        "columnType": "varchar(20)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "SecuMarket",
+        "columnChiName": "证券市场",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券市场/主表（SecuMarket）：与“系统常量表（CT_SystemConst）”中的“代码（DM）”关联，令“LB=201”，得到该字段的具体描述。\n当代码关联方式=30（同一指数不同代码关联），这里的描述即为指数所属的市场。83-上海证券交易所，90-深圳证券交易所,84-其他市场，72-香港联交所\n当代码关联方式=56（同一指数不同内码关联），这里的描述代指指数所在的主表。83，90，84等均表证券主表（SecuMain），72-表港股证券主表（HK_SecuMain），此处优先用证券主表。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "CodeDefine",
+        "columnChiName": "关联方式",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "关联方式(CodeDefine)与(CT_SystemConst)表中的DM字段关联，令LB = 2014，得到关联方式的具体描述：1-币种不同，2-分红规则不同，3-分红规则和币种都不同，4-税后分红，5-主指数，6-待偿期限不同，7-分红规则和待偿期限都不同，8-税后分红和待偿期限不同，9-对冲指数，30-转发指数，31-加权方式不同。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnChiName": "关联代码/内码信息",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "Market",
+        "columnChiName": "关联对应证券市场",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "关联对应证券市场/主表（Market）：与“系统常量表（CT_SystemConst）”中的“代码（DM）”关联，令“LB=201”，得到该字段的具体描述。\n当代码关联方式=30（同一指数不同代码关联），这里的描述即为指数所属的市场。83-上海证券交易所，90-深圳证券交易所,84-其他市场，72-香港联交所\n当代码关联方式=56（同一指数不同内码关联），这里的描述代指指数所在的主表。83，90，84等均表证券主表（SecuMain），72-表港股证券主表（HK_SecuMain），此处优先用证券主表。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "RelatedInnerCode",
+        "columnChiName": "关联对应内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "关联对应内部编码（RelatedInnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到指数的代码、简称。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注5"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "RelatedSecuCode",
+        "columnChiName": "关联对应证券代码",
+        "columnType": "varchar(20)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "CancelDate",
+        "columnChiName": "取消日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.04"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "IfEffected",
+        "columnChiName": "是否有效",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司代码(无效字段)",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": false,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "RelatedCompanyCode",
+        "columnChiName": "关联对应公司代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": false,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    }
+]

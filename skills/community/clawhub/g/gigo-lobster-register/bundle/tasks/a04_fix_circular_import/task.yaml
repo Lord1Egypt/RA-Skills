@@ -1,0 +1,41 @@
+id: a04
+track: A
+title_zh: 修复循环依赖导致的 ImportError
+category: bug_fix
+difficulty: medium
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.7
+  target: tests/test_imports.py
+  fail_to_pass:
+  - test_import_user
+  - test_import_order
+  - test_create_order_with_user
+  pass_to_pass: []
+- type: state_hash
+  weight: 0.2
+  files:
+  - src/user.py
+  - src/order.py
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A04_7d1e
+metadata:
+  estimated_minutes: 6
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Fix the circular import

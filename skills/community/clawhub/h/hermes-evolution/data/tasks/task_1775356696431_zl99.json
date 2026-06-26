@@ -1,0 +1,19 @@
+{
+  "id": "task_1775356696431_zl99",
+  "title": "Gateway健康检查",
+  "description": "检查端口18790可用性、进程状态、备份执行",
+  "source": "scheduled",
+  "assignedTo": "CEO",
+  "status": "done",
+  "priority": "P0",
+  "intent": "operations",
+  "subtasks": [],
+  "createdAt": "2026-04-05T02:38:16.431Z",
+  "updatedAt": "2026-04-05T02:38:38.828Z",
+  "stateChangedAt": "2026-04-05T02:38:38.828Z",
+  "createdBy": "sensen",
+  "result": "✅ Gateway正常 | 端口18790可用 | 备份已执行",
+  "error": null,
+  "timeoutCount": 0,
+  "alerts": []
+}

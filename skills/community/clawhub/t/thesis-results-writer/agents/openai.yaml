@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Results Writer"
+  short_description: "Chinese academic results chapter writer"
+  default_prompt: "Use $thesis-results-writer to write a rigorous Chinese results chapter from my data, tables, statistics, or qualitative themes."

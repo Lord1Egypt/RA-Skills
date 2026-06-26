@@ -1,0 +1,643 @@
+{
+  "updatedAt": "2026-03-29T23:31:00.000Z",
+  "createdAt": "2026-03-18T15:12:11.437Z",
+  "id": "5XPvppQyxrVpR7MC",
+  "name": "FlowClaw Notion Trigger",
+  "description": "v1.0: Schema v2 update — removed Type/Budget/GDPR/Phase/Role/etc. fields. Simplified Fastlane validation to Pre-Approved only. Updated Size mapping (Fastlane/Standard/Complex). Removed Medium task type entirely. Routing now based on Size field.",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "databaseId": "YOUR_DATABASE_ID"
+      },
+      "id": "notion-trigger",
+      "name": "Notion Trigger - New Task",
+      "type": "n8n-nodes-base.notionTrigger",
+      "typeVersion": 1,
+      "position": [
+        256,
+        304
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "kdvMRjkDpVSN5FoE",
+          "name": "Notion account"
+        }
+      },
+      "notes": "Polls Notion Tasks DB (Schema v2) every minute for new tasks. Fields: Name, Status, Size, Project, Assigned To, Pre-Approved, Notes"
+    },
+    {
+      "parameters": {
+        "mode": "rules",
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "switch-fastlane",
+                    "leftValue": "={{ $json.Size }}",
+                    "rightValue": "Fastlane",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Fastlane"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "switch-standard",
+                    "leftValue": "={{ $json.Size }}",
+                    "rightValue": "Standard",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Standard"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "switch-complex",
+                    "leftValue": "={{ $json.Size }}",
+                    "rightValue": "Complex",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Complex"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Unknown Size"
+        }
+      },
+      "id": "switch-task-size",
+      "name": "Switch - Task Size Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        528,
+        304
+      ],
+      "notes": "v1.0: Routes by Size field (replaces Type). Output 0=Fastlane, 1=Standard, 2=Complex, 3=Unknown (fallback)."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Log unknown task size and prepare Discord alert payload\nconst task = $input.first().json;\nconst taskSize = task.Size || 'null/undefined';\nconst taskName = task.Name || task.name || task.properties?.Name?.title?.[0]?.plain_text || 'Unnamed Task';\nconst taskId = task.id || 'unknown-id';\n\nreturn [{\n  json: {\n    taskSize: taskSize,\n    taskName: taskName,\n    taskId: taskId,\n    originalTask: task,\n    alertMessage: `⚠️ **Unknown Task Size**\\n\\nTask: ${taskName}\\nSize: ${taskSize}\\nID: ${taskId}\\n\\nManual review required.`,\n    loggedAt: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "code-unknown-size-log",
+      "name": "Log Unknown Task Size",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        560
+      ],
+      "notes": "v1.0: Captures unknown/null task sizes and prepares alert."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8765/notify/discord",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-Key",
+              "value": "={{ $env.WORKFLOW_EXECUTOR_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({channelId: 'YOUR_CHANNEL_ID', message: $json.alertMessage}) }}"
+      },
+      "id": "discord-unknown-size-alert",
+      "name": "Discord - Unknown Size Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1040,
+        560
+      ],
+      "notes": "v1.0: Sends alert to #project_calls channel for manual review of unknown task sizes"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Simplified Fastlane Validation (Schema v2)\n// Only check: Pre-Approved = true\nconst task = $input.first().json;\nconst preApproved = task['Pre-Approved'] === true;\n\nreturn [{\n  json: {\n    fastlaneValid: preApproved,\n    failedChecks: preApproved ? [] : ['not_pre_approved'],\n    taskId: task.id,\n    taskName: task.Name || 'Unnamed',\n    task: task\n  }\n}];"
+      },
+      "id": "code-validate-fastlane",
+      "name": "Validate Fastlane Criteria",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        736,
+        128
+      ],
+      "notes": "v1.0: Simplified — only checks Pre-Approved checkbox. If true = valid Fastlane."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "fastlane-valid",
+              "leftValue": "={{ $json.fastlaneValid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-fastlane-valid",
+      "name": "IF Fastlane Valid",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        928,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": "YOUR_DATABASE_ID",
+        "options": {}
+      },
+      "id": "notion-downgrade-to-standard",
+      "name": "Downgrade to Standard",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        304
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "kdvMRjkDpVSN5FoE",
+          "name": "Notion account"
+        }
+      },
+      "notes": "v1.0: Fastlane criteria not met → downgrade Size to Standard"
+    },
+    {
+      "name": "Discord - Fastlane Rejected",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1296,
+        304
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8765/notify/discord",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-Key",
+              "value": "={{ $env.WORKFLOW_EXECUTOR_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({channelId: 'YOUR_CHANNEL_ID', message: '⚠️ **Fastlane Rejected**\\n\\nTask: ' + ($json.Name || $json.name || 'Unknown') + '\\nReason: Not pre-approved\\nDowngraded to Standard.'}) }}"
+      },
+      "id": "GENERIC_NODE_ID"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Create Fastlane Sub-Tasks (Schema v2)\nconst task = $input.first().json.task || $input.first().json;\nconst taskName = task.Name || task.name || 'Unnamed Task';\n\nconst subTasks = [\n  {\n    name: 'Concept: ' + taskName,\n    phase: 'Concept',\n    assignedTo: task['Assigned To'] || 'Engineering',\n    mainTaskId: task.id,\n    taskName: taskName,\n    project: task.Project || '',\n    isFastlane: true,\n    taskSize: 'Fastlane'\n  },\n  {\n    name: 'Design: ' + taskName,\n    phase: 'Design',\n    assignedTo: 'Design & Content',\n    mainTaskId: task.id,\n    taskName: taskName,\n    project: task.Project || '',\n    isFastlane: true,\n    taskSize: 'Fastlane'\n  },\n  {\n    name: 'Frontend: ' + taskName,\n    phase: 'Frontend',\n    assignedTo: 'Engineering',\n    mainTaskId: task.id,\n    taskName: taskName,\n    project: task.Project || '',\n    isFastlane: true,\n    taskSize: 'Fastlane'\n  },\n  {\n    name: 'QA: ' + taskName,\n    phase: 'QA',\n    assignedTo: 'Quality & Testing',\n    mainTaskId: task.id,\n    taskName: taskName,\n    project: task.Project || '',\n    isFastlane: true,\n    taskSize: 'Fastlane'\n  },\n  {\n    name: 'Deploy: ' + taskName,\n    phase: 'Deploy',\n    assignedTo: 'Infrastructure & Ops',\n    mainTaskId: task.id,\n    taskName: taskName,\n    project: task.Project || '',\n    isFastlane: true,\n    taskSize: 'Fastlane'\n  }\n];\n\nreturn subTasks.map(t => ({json: t}));"
+      },
+      "id": "code-fastlane-subtasks",
+      "name": "Create Fastlane Sub-Tasks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        -48
+      ],
+      "notes": "v1.0: Creates Fastlane phase subtasks using Schema v2 field names (Size, Project, Assigned To as select)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Create Standard Sub-Tasks (Schema v2)\n// Replaces 'Simple' from v1.0\nconst mainTask = $input.first().json;\nconst projectName = mainTask.Project || mainTask.projectName || 'Unknown';\nconst taskName = mainTask.properties?.Name?.title?.[0]?.plain_text || mainTask.Name || 'Unnamed Task';\n\nconst subTasks = [\n  {\n    name: `[${projectName}] Concept: ${taskName}`,\n    phase: 'Concept',\n    assignedTo: 'Product & Strategy',\n    mainTaskId: mainTask.id,\n    taskName: taskName,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Standard'\n  },\n  {\n    name: `[${projectName}] Design: ${taskName}`,\n    phase: 'Design',\n    assignedTo: 'Design & Content',\n    mainTaskId: mainTask.id,\n    taskName: taskName,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Standard'\n  },\n  {\n    name: `[${projectName}] Frontend: ${taskName}`,\n    phase: 'Frontend',\n    assignedTo: 'Engineering',\n    mainTaskId: mainTask.id,\n    taskName: taskName,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Standard'\n  },\n  {\n    name: `[${projectName}] QA: ${taskName}`,\n    phase: 'QA',\n    assignedTo: 'Quality & Testing',\n    mainTaskId: mainTask.id,\n    taskName: taskName,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Standard'\n  },\n  {\n    name: `[${projectName}] Deploy: ${taskName}`,\n    phase: 'Deploy',\n    assignedTo: 'Infrastructure & Ops',\n    mainTaskId: mainTask.id,\n    taskName: taskName,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Standard'\n  }\n];\n\nreturn subTasks.map(task => ({json: task}));"
+      },
+      "id": "code-standard-subtasks",
+      "name": "Create Standard Sub-Tasks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        304
+      ],
+      "notes": "v1.0: Renamed from 'Create Simple Sub-Tasks'. Uses Standard size terminology."
+    },
+    {
+      "name": "Create Complex Sub-Tasks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        480
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Create Complex Sub-Tasks (Schema v2)\nconst mainTask = $input.first().json;\nconst projectName = mainTask.Project || mainTask.projectName || 'Unknown Project';\nconst taskName = mainTask.properties?.Name?.title?.[0]?.plain_text || mainTask.Name || 'Unnamed Task';\n\nconst subTasks = [\n  {\n    name: `[${projectName}] Concept: ${taskName}`,\n    phase: 'Concept',\n    assignedTo: 'Product & Strategy',\n    mainTaskId: mainTask.id,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Complex'\n  },\n  {\n    name: `[${projectName}] Architecture Review: ${taskName}`,\n    phase: 'Architecture Review',\n    assignedTo: 'Engineering',\n    mainTaskId: mainTask.id,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Complex'\n  },\n  {\n    name: `[${projectName}] Design: ${taskName}`,\n    phase: 'Design',\n    assignedTo: 'Design & Content',\n    mainTaskId: mainTask.id,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Complex'\n  },\n  {\n    name: `[${projectName}] Frontend: ${taskName}`,\n    phase: 'Frontend',\n    assignedTo: 'Engineering',\n    mainTaskId: mainTask.id,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Complex'\n  },\n  {\n    name: `[${projectName}] Backend: ${taskName}`,\n    phase: 'Backend',\n    assignedTo: 'Engineering',\n    mainTaskId: mainTask.id,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Complex'\n  },\n  {\n    name: `[${projectName}] QA: ${taskName}`,\n    phase: 'QA',\n    assignedTo: 'Quality & Testing',\n    mainTaskId: mainTask.id,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Complex'\n  },\n  {\n    name: `[${projectName}] Deploy: ${taskName}`,\n    phase: 'Deploy',\n    assignedTo: 'Infrastructure & Ops',\n    mainTaskId: mainTask.id,\n    project: projectName,\n    isFastlane: false,\n    taskSize: 'Complex'\n  }\n];\n\nreturn subTasks.map(task => ({json: task}));"
+      },
+      "id": "GENERIC_NODE_ID",
+      "notes": "v1.0: Uses Schema v2 field names. Project from select field."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8765/workflow/execute",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-Key",
+              "value": "={{ $env.WORKFLOW_EXECUTOR_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ \"workflowName\": $json.workflowName || \"simple-task\", \"context\": { \"taskId\": $json.mainTaskId || $json.taskId, \"taskName\": $json.name || $json.taskName, \"taskSize\": $json.taskSize || $json.Size || \"Standard\", \"project_name\": $json.project || \"unknown\" } }) }}",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1872,
+        -48
+      ],
+      "id": "flowclaw-executor-node",
+      "name": "Execute via FlowClaw",
+      "notes": "v1.0: workflowName from Map Workflow Name node. Uses taskSize instead of taskType."
+    },
+    {
+      "name": "Update Main Task Status",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2100,
+        250
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Update Notion task status + call FlowClaw Executor (v1.0)\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const mainTaskId = item.json.mainTaskId || item.json.taskId;\n  \n  if (!mainTaskId) {\n    results.push({json: {status: 'skipped', reason: 'no mainTaskId'}});\n    continue;\n  }\n  \n  try {\n    const resp = await fetch('http://127.0.0.1:8765/workflow/execute', {\n      method: 'POST',\n      headers: {'Content-Type': 'application/json'},\n      body: JSON.stringify({\n        workflowName: 'fastlane-deploy',\n        context: {\n          taskId: mainTaskId,\n          project_name: item.json.project || item.json.projectName || 'unknown',\n          taskName: item.json.taskName || item.json.name || 'Fastlane Task',\n          description: 'Auto-triggered by n8n v1.0'\n        }\n      })\n    });\n    \n    const data = await resp.json();\n    results.push({json: {\n      status: data.status,\n      run_id: data.run_id,\n      mainTaskId: mainTaskId,\n      taskName: item.json.taskName || item.json.name\n    }});\n  } catch (err) {\n    results.push({json: {status: 'error', error: err.message, mainTaskId}});\n  }\n}\n\nreturn results;"
+      },
+      "id": "GENERIC_NODE_ID"
+    },
+    {
+      "name": "Discord - Fastlane Success",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        2200,
+        250
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8765/notify/discord",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-Key",
+              "value": "={{ $env.WORKFLOW_EXECUTOR_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({channelId: 'YOUR_CHANNEL_ID', message: '✅ **Fastlane Complete**\\n\\nTask: ' + ($json.taskName || 'Unknown') + '\\nRun: ' + ($json.run_id || 'n/a')}) }}"
+      },
+      "id": "GENERIC_NODE_ID"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize data after Downgrade to Standard (v1.0)\nconst item = $input.first().json;\n\n// Extract from Notion update response\nconst taskId = item.id;\nconst taskName = item.properties?.Name?.title?.[0]?.plain_text || 'Unnamed';\nconst project = item.properties?.Project?.select?.name || '';\nconst taskSize = 'Standard'; // After downgrade\n\n// Return in Notion Trigger format expected by Create Standard Sub-Tasks\nreturn [{\n  json: {\n    id: taskId,\n    Name: taskName,\n    Size: taskSize,\n    Project: project,\n    properties: {\n      Name: { title: [{ plain_text: taskName }] },\n      Project: { select: { name: project } },\n      Size: { select: { name: taskSize } }\n    }\n  }\n}];"
+      },
+      "id": "code-normalize-downgrade-data",
+      "name": "Normalize Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1496,
+        304
+      ],
+      "notes": "v1.0: Updated for Schema v2. Project is now a select field (not relation). Size replaces Type."
+    },
+    {
+      "parameters": {
+        "jsCode": "// v1.0: Map task Size to correct workflow YAML name\n// Fastlane → fastlane-deploy\n// Standard → simple-task\n// Complex  → complex-task\nconst item = $input.first().json;\n\nconst sizeMap = {\n  'Fastlane': 'fastlane-deploy',\n  'Standard': 'simple-task',\n  'Complex': 'complex-task'\n};\n\nconst size = item.taskSize || item.Size || 'Standard';\nconst workflowName = sizeMap[size] || 'simple-task';\n\nreturn [{\n  json: {\n    ...item,\n    workflowName: workflowName,\n    _routedBy: 'Map Workflow Name v1.0'\n  }\n}];"
+      },
+      "id": "code-map-workflow-name",
+      "name": "Map Workflow Name",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        -48
+      ],
+      "notes": "v1.0: Maps Size to workflow. Fastlane→fastlane-deploy, Standard→simple-task, Complex→complex-task. Removed Medium."
+    }
+  ],
+  "connections": {
+    "Notion Trigger - New Task": {
+      "main": [
+        [
+          {
+            "node": "Switch - Task Size Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch - Task Size Router": {
+      "main": [
+        [
+          {
+            "node": "Validate Fastlane Criteria",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Standard Sub-Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Complex Sub-Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Unknown Task Size",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Fastlane Criteria": {
+      "main": [
+        [
+          {
+            "node": "IF Fastlane Valid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Fastlane Valid": {
+      "main": [
+        [
+          {
+            "node": "Create Fastlane Sub-Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Downgrade to Standard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Downgrade to Standard": {
+      "main": [
+        [
+          {
+            "node": "Discord - Fastlane Rejected",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Normalize Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Fastlane Sub-Tasks": {
+      "main": [
+        [
+          {
+            "node": "Map Workflow Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Standard Sub-Tasks": {
+      "main": [
+        [
+          {
+            "node": "Map Workflow Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Complex Sub-Tasks": {
+      "main": [
+        [
+          {
+            "node": "Map Workflow Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute via FlowClaw": {
+      "main": [
+        [
+          {
+            "node": "Update Main Task Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Main Task Status": {
+      "main": [
+        [
+          {
+            "node": "Discord - Fastlane Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Unknown Task Size": {
+      "main": [
+        [
+          {
+            "node": "Discord - Unknown Size Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Data": {
+      "main": [
+        [
+          {
+            "node": "Create Standard Sub-Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Workflow Name": {
+      "main": [
+        [
+          {
+            "node": "Execute via FlowClaw",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "staticData": {
+    "node:Notion Trigger - New Task": {
+      "lastTimeChecked": "2026-03-29T23:31:00.000Z",
+      "possibleDuplicates": []
+    }
+  },
+  "meta": {
+    "version": "4.0",
+    "changelog": "v1.0.0 (2026-03-29): Initial public release."
+  },
+  "pinData": {},
+  "versionId": "v1.0.0",
+  "activeVersionId": "v1.0.0",
+  "versionCounter": 400,
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-03-29T23:31:00.000Z",
+      "createdAt": "2026-03-18T15:12:11.439Z",
+      "role": "workflow:owner",
+      "workflowId": "5XPvppQyxrVpR7MC",
+      "projectId": "xlJvvUINFBEXFmoF",
+      "project": {
+        "updatedAt": "2026-03-08T14:29:39.212Z",
+        "createdAt": "2026-03-08T13:43:37.089Z",
+        "id": "xlJvvUINFBEXFmoF",
+        "name": "YOUR_NAME <your@email.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "creatorId": "YOUR_CREATOR_ID"
+      }
+    }
+  ],
+  "tags": [],
+  "authors": "YOUR_NAME"
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Resource 2 NAS"
+  short_description: "Search media resources, save Quark/Baidu shares, inspect OpenList tasks, and copy saved resources to NAS storage"
+  default_prompt: "Use $resource-2-nas when the user searches media, provides a Quark/Baidu share link directly, asks whether a saved resource is visible in OpenList, asks about OpenList task progress/cancellation, or wants a NAS/SMB copy. For delegated sub-agent work, read SUBAGENT.md and prefer JSON tools. Search defaults to Baidu/Quark and returns the top 50 ranked links after filtering. On fresh installs run npm run check-ready; continue real saves/copies only when check-ready.nextAction is ready. Quark and Baidu are alternatives, so one valid provider is enough; if the user names one provider, do not start the other. Cloud saves must follow preview -> confirmation -> --yes save; pass Agent-decided --context-name and --resource-type. For task progress use npm run openlist-tasks. Before OpenList copy, report source, exact object, destination, and final naming, then use npm run openlist-copy and verify with refresh:true. Never print or persist Cookies/Tokens."
+policy:
+  allow_implicit_invocation: true

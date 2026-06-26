@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw YouTube Publisher"
+  short_description: "Publish a YouTube Short through OpenClaw with reusable reporting and source tracking for Midjourney, Suno, or local edits."
+  default_prompt: "Use $youtube-creator-ops to publish a YouTube Short through OpenClaw, capture provenance for Midjourney, Suno, or other upstream tools when relevant, and export a reusable run report with any required public credits."

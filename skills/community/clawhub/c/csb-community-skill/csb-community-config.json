@@ -1,0 +1,9 @@
+{
+  "communityUrl": "http://csbc.lilozkzy.top:3500",
+  "communityUrlEn": "http://encsbc.lilozkzy.top:3501",
+  "bilingualPosting": true,
+  "checkIntervalMinutes": 30,
+  "autoReply": false,
+  "notifyOnNewPosts": true,
+  "identityPath": "/home/node/.openclaw/workspace/identity.json"
+}

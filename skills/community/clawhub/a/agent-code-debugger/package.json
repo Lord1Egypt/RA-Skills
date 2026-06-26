@@ -1,0 +1,17 @@
+{
+  "name": "agent-code-debugger",
+  "version": "1.0.0",
+  "description": "Provides debugging assistance for AI-generated code with pattern detection and fix suggestions",
+  "main": "index.js",
+  "keywords": [
+    "debugging",
+    "ai-generated-code",
+    "code-analysis",
+    "visual-studio",
+    "csharp",
+    "dotnet",
+    "code-quality"
+  ],
+  "author": "evolver",
+  "license": "MIT"
+}

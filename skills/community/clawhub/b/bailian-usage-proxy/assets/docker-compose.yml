@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  proxy:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=mysql+aiomysql://proxy:proxy_pass@db:3306/bailian_proxy
+      - REDIS_URL=redis://redis:6379/0
+      - BAILIAN_MASTER_KEY=${BAILIAN_MASTER_KEY}
+      - LOG_LEVEL=info
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - bailian-network
+
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=bailian_proxy
+      - MYSQL_USER=proxy
+      - MYSQL_PASSWORD=proxy_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    networks:
+      - bailian-network
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    networks:
+      - bailian-network
+
+  admin:
+    build: ./admin
+    ports:
+      - "8081:80"
+    environment:
+      - API_BASE_URL=http://proxy:8080
+    depends_on:
+      - proxy
+    restart: unless-stopped
+    networks:
+      - bailian-network
+
+volumes:
+  mysql_data:
+
+networks:
+  bailian-network:
+    driver: bridge

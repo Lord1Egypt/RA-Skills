@@ -1,35 +1,25 @@
 ---
-name: "Arxiv Skill Learning"
-description: "Orchestrates the continuous learning of new skills from arXiv papers. Use this to trigger a learning cycle, which fetches papers, extracts code/skills, and s..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arxiv-skill-learning"
-sourceUrl: "https://clawhub.ai/skills/arxiv-skill-learning"
+name: arxiv-skill-learning
+description: Orchestrates the continuous learning of new skills from arXiv papers. Use this to trigger a learning cycle, which fetches papers, extracts code/skills, and solidifies them.
 ---
 
-# Arxiv Skill Learning
+# ArXiv Skill Learning
 
-> Orchestrates the continuous learning of new skills from arXiv papers. Use this to trigger a learning cycle, which fetches papers, extracts code/skills, and s...
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arxiv-skill-learning`
-- **Source URL:** [https://clawhub.ai/skills/arxiv-skill-learning](https://clawhub.ai/skills/arxiv-skill-learning)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/arxiv-skill-learning
+```javascript
+const learner = require('./index');
+const result = await learner.main();
 ```
+
+## Workflow
+
+1.  **Patrol**: Checks arXiv for relevant new papers (Agent, LLM, Tool Use).
+2.  **Extract**: Uses `arxiv-skill-extractor` to generate skill code.
+3.  **Test**: Runs generated tests.
+4.  **Solidify**: Commits the new skill to the workspace.
+
+## Configuration
+
+- Target Categories: cs.AI, cs.CL, cs.LG, cs.SE
+- Schedule: Hourly

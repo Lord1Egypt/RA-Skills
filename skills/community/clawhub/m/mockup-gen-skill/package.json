@@ -1,0 +1,16 @@
+{
+  "name": "mockup-gen-skill",
+  "version": "1.8.0",
+  "type": "module",
+  "description": "AI Mockup Generator — AI-powered ai mockup generator",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

@@ -1,35 +1,45 @@
 ---
-name: "firecrawl-scraper"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/firecrawl-scraper"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/firecrawl-scraper"
+name: firecrawl-scraper
+description: "Deep web scraping, screenshots, PDF parsing, and website crawling using Firecrawl API. Use when you need deep content extraction from web pages, page interaction is required (clicking, scrolling, etc.), or you want screenshots or PDF parsing."
+risk: unknown
+source: community
+date_added: "2026-02-27"
 ---
 
 # firecrawl-scraper
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/firecrawl-scraper`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/firecrawl-scraper](https://skills.sh/sickn33/antigravity-awesome-skills/firecrawl-scraper)
-
 ## Overview
+Deep web scraping, screenshots, PDF parsing, and website crawling using Firecrawl API
 
+## When to Use
+- When you need deep content extraction from web pages
+- When page interaction is required (clicking, scrolling, etc.)
+- When you want screenshots or PDF parsing
+- When batch scraping multiple URLs
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/firecrawl-scraper
+npx skills add -g BenedictKing/firecrawl-scraper
 ```
+
+## Step-by-Step Guide
+1. Install the skill using the command above
+2. Configure Firecrawl API key
+3. Use naturally in Claude Code conversations
+
+## Examples
+See [GitHub Repository](https://github.com/BenedictKing/firecrawl-scraper) for examples.
+
+## Best Practices
+- Configure API keys via environment variables
+
+## Troubleshooting
+See the GitHub repository for troubleshooting guides.
+
+## Related Skills
+- context7-auto-research, tavily-web, exa-search, codex-review
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -1,0 +1,16 @@
+{
+  "name": "yearbook-photo-skill",
+  "version": "1.6.0",
+  "type": "module",
+  "description": "AI Yearbook Photo Generator — AI-powered ai yearbook photo generator",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

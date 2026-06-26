@@ -1,0 +1,27 @@
+{
+  "name": "smart-coding-assistant",
+  "version": "1.0.0",
+  "description": "智能多模型编程助手，根据任务类型自动选择最优代码大模型。支持代码生成、审查、调试、重构、测试等场景。",
+  "author": "davidme6",
+  "license": "MIT",
+  "keywords": [
+    "programming",
+    "coding",
+    "multi-model",
+    "ai-assistant",
+    "code-generation",
+    "code-review",
+    "debugging"
+  ],
+  "main": "SKILL.md",
+  "scripts": [
+    "scripts/model_router.py",
+    "scripts/coding_assistant.py",
+    "scripts/example_usage.py"
+  ],
+  "references": [
+    "references/model-profiles.md",
+    "references/task-taxonomy.md",
+    "references/best-practices.md"
+  ]
+}

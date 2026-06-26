@@ -1,0 +1,7 @@
+interface:
+  display_name: "Interbank Funding Trader"
+  short_description: "Distill CNY interbank funding trader workflows"
+  default_prompt: "Use $interbank-funding-trader to analyze an interbank funding market scenario and produce trader-style actions."
+
+policy:
+  allow_implicit_invocation: true

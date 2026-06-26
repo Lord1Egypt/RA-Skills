@@ -1,0 +1,62 @@
+{
+  "id": "openclaw-cli-bridge-elvatis",
+  "slug": "openclaw-cli-bridge-elvatis",
+  "name": "OpenClaw CLI Bridge",
+  "version": "2.8.1",
+  "license": "MIT",
+  "description": "Phase 1: openai-codex auth bridge. Phase 2: local HTTP proxy routing model calls through gemini/claude CLIs (vllm provider).",
+  "providers": [
+    "openai-codex"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "codexAuthPath": {
+        "type": "string",
+        "description": "Path to ~/.codex/auth.json (default: auto)"
+      },
+      "enableCodex": {
+        "type": "boolean",
+        "description": "Register openai-codex provider from Codex CLI auth (default: true)"
+      },
+      "enableProxy": {
+        "type": "boolean",
+        "description": "Start the local CLI proxy server for gemini/claude (default: true)"
+      },
+      "proxyPort": {
+        "type": "number",
+        "description": "Port for the local CLI proxy server (default: 31337)"
+      },
+      "proxyApiKey": {
+        "type": "string",
+        "description": "API key the vllm provider uses to auth with the proxy (default: cli-bridge)"
+      },
+      "proxyTimeoutMs": {
+        "type": "number",
+        "description": "Base timeout for CLI responses in ms (default: 300000). Scales dynamically with conversation size."
+      },
+      "modelTimeouts": {
+        "type": "object",
+        "description": "Per-model timeout overrides in ms. Keys are model IDs (e.g. 'cli-claude/claude-sonnet-4-6'). Use this to give heavy models more time or limit fast models. When not set, falls back to proxyTimeoutMs.",
+        "additionalProperties": {
+          "type": "number"
+        },
+        "default": {
+          "cli-claude/claude-opus-4-6": 300000,
+          "cli-claude/claude-sonnet-4-6": 300000,
+          "cli-claude/claude-haiku-4-5": 90000,
+          "cli-gemini/gemini-2.5-pro": 300000,
+          "cli-gemini/gemini-2.5-flash": 180000,
+          "cli-gemini/gemini-3-pro-preview": 300000,
+          "cli-gemini/gemini-3-flash-preview": 180000,
+          "openai-codex/gpt-5.4": 300000,
+          "openai-codex/gpt-5.3-codex": 180000,
+          "openai-codex/gpt-5.1-codex-mini": 90000,
+          "gemini-api/gemini-2.5-pro": 300000,
+          "gemini-api/gemini-2.5-flash": 180000
+        }
+      }
+    }
+  }
+}

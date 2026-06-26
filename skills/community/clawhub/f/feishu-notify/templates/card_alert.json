@@ -1,0 +1,31 @@
+{
+  "msg_type": "interactive",
+  "card": {
+    "header": {
+      "title": {
+        "tag": "plain_text",
+        "content": "{{title}}"
+      },
+      "template": "{{color}}"
+    },
+    "elements": [
+      {
+        "tag": "div",
+        "text": {
+          "tag": "lark_md",
+          "content": "{{message}}"
+        }
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "text": {
+          "tag": "lark_md",
+          "content": "**时间:** {{time}}\n**来源:** {{source}}"
+        }
+      }
+    ]
+  }
+}

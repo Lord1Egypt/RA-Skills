@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 中国传统风格 ===== */
+/* 封面样式 */
+.card-cover-traditional-chinese {
+  background: #f8f0e0; /* 米黄色背景，模拟宣纸 */
+  box-shadow: 0 10px 25px rgba(160, 82, 45, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 右上角印章装饰 */
+.card-cover-traditional-chinese:after {
+  content: "福";
+  position: absolute;
+  top: calc(var(--spacing) * 3.75);
+  right: calc(var(--spacing) * 3.75);
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+  background: #a52a2a;
+  color: #f8f0e0;
+  font-size: calc(var(--spacing) * 6);
+  text-align: center;
+  line-height: calc(var(--spacing) * 10);
+  border-radius: 3px;
+  transform: rotate(15deg);
+  box-shadow: 0 2px 5px rgba(165, 42, 42, 0.3);
+  z-index: 30;
+}
+
+.card-cover-traditional-chinese .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(165, 42, 42, 0.1),
+    rgba(165, 42, 42, 0.3)
+  );
+  z-index: 2;
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-traditional-chinese .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(248, 240, 224, 0.95),
+    rgba(248, 240, 224, 0.8) 50%,
+    rgba(248, 240, 224, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+  z-index: 10;
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-traditional-chinese .cover-content {
+  background: rgba(248, 240, 224, 0.8);
+  border-top: 1px solid rgba(165, 42, 42, 0.3);
+  padding: calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 10;
+}
+
+.card-cover-traditional-chinese .cover-title {
+  color: #8b0000;
+  letter-spacing: 4px;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  padding: calc(var(--spacing) * 2.5) 0;
+}
+
+/* 标题装饰 - 双线边框 */
+.card-cover-traditional-chinese .cover-title:before,
+.card-cover-traditional-chinese .cover-title:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: calc(var(--spacing) * 0.25);
+  background: #a52a2a;
+}
+
+.card-cover-traditional-chinese .cover-title:before {
+  top: 0;
+}
+
+.card-cover-traditional-chinese .cover-title:after {
+  bottom: 0;
+}
+
+.card-cover-traditional-chinese .cover-description {
+  color: #5c3317;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.card-cover-traditional-chinese .cover-tag {
+  background: rgba(248, 240, 224, 0.8);
+  color: #8b0000;
+  border: 1px solid rgba(165, 42, 42, 0.3);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.card-cover-traditional-chinese .cover-tag:hover {
+  background: rgba(165, 42, 42, 0.1);
+  transform: translateY(-2px);
+}
+
+.card-cover-traditional-chinese .cover-date {
+  color: #5c3317;
+}
+.card-traditional-chinese {
+  width: 100%;
+  background: #f8f0e0; /* 米黄色背景，模拟宣纸 */
+  padding: calc(var(--spacing) * 7.5) calc(var(--spacing) * 6.25)
+    calc(var(--spacing) * 3);
+  position: relative;
+  box-shadow: 0 10px 25px rgba(160, 82, 45, 0.15);
+  --highlight-color: #8b0000;
+  --highlight-bg-color: rgba(248, 240, 224, 0.8);
+}
+
+/* 右上角印章装饰 */
+.card-traditional-chinese:after {
+  content: "福";
+  position: absolute;
+  top: calc(var(--spacing) * 3.75);
+  right: calc(var(--spacing) * 3.75);
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+  background: #a52a2a;
+  color: #f8f0e0;
+  font-size: calc(var(--spacing) * 6);
+  text-align: center;
+  line-height: calc(var(--spacing) * 10);
+  border-radius: 3px;
+  transform: rotate(15deg);
+  box-shadow: 0 2px 5px rgba(165, 42, 42, 0.3);
+  z-index: 3;
+}
+
+/* 左下角水墨装饰 */
+.card-traditional-chinese .card-content:before {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -5);
+  left: calc(var(--spacing) * -5);
+  width: calc(var(--spacing) * 30);
+  height: calc(var(--spacing) * 30);
+  background: radial-gradient(
+    circle,
+    rgba(165, 42, 42, 0.1) 10%,
+    rgba(165, 42, 42, 0.05) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.card-traditional-chinese .card-content-inner {
+  position: relative;
+  z-index: 3;
+}
+
+.card-traditional-chinese .card-content {
+  position: relative;
+  background: rgba(248, 240, 224, 0.8);
+  padding: calc(var(--spacing) * 5);
+  min-height: calc(var(--card-height) - calc(var(--spacing) * 20));
+  border-radius: 4px;
+  border: 1px solid rgba(165, 42, 42, 0.3);
+}
+
+/* 主标题样式 - 书法风格 */
+.card-traditional-chinese h1 {
+  font-size: calc(var(--spacing) * 8);
+  position: relative;
+  color: #8b0000; /* 暗红色 */
+  margin-bottom: calc(var(--spacing) * 5);
+  letter-spacing: 4px;
+  font-weight: 600;
+  text-align: center;
+  padding: calc(var(--spacing) * 2.5) 0;
+  line-height: 1.5;
+}
+
+/* 标题装饰 - 双线边框 */
+.card-traditional-chinese h1:before,
+.card-traditional-chinese h1:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: calc(var(--spacing) * 0.25);
+  background: #a52a2a;
+}
+
+.card-traditional-chinese h1:before {
+  top: 0;
+}
+
+.card-traditional-chinese h1:after {
+  bottom: 0;
+}
+
+/* 副标题样式 */
+.card-traditional-chinese h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #5c3317; /* 深棕色 */
+  margin-bottom: calc(var(--spacing) * 6);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 3.75);
+}
+
+.card-traditional-chinese h2:after {
+  content: "•";
+  position: absolute;
+  bottom: calc(var(--spacing) * -1.25);
+  left: 50%;
+  transform: translateX(-50%);
+  color: #a52a2a;
+  font-size: calc(var(--spacing) * 5);
+}
+
+/* 段落样式 */
+.card-traditional-chinese p {
+  color: #333;
+}
+
+.card-traditional-chinese strong {
+  color: #8b0000;
+  font-weight: 600;
+}
+
+.card-traditional-chinese em {
+  color: #a52a2a;
+  font-style: italic;
+}
+
+.card-traditional-chinese p a {
+  color: #8b0000;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(165, 42, 42, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card-traditional-chinese p a:hover {
+  color: #a52a2a;
+  border-bottom: 1px solid #a52a2a;
+}
+
+/* 有序列表样式 */
+
+.card-traditional-chinese li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 5);
+  color: #333;
+  font-size: inherit;
+  text-align: justify;
+}
+
+/* 序号中国风样式 */
+.card-traditional-chinese li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -9);
+  top: 0;
+  width: calc(var(--spacing) * 7);
+  height: calc(var(--spacing) * 7);
+  border: 1px solid #a52a2a;
+  color: #8b0000;
+  text-align: center;
+  line-height: calc(var(--spacing) * 7);
+  font-weight: bold;
+  background: rgba(248, 240, 224, 0.8);
+}
+
+/* 小标题样式 */
+.card-traditional-chinese h3 {
+  display: block;
+  color: #8b0000;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4.25);
+  font-weight: 600;
+}
+
+/* 表格样式 */
+.card-traditional-chinese table {
+  border-collapse: collapse;
+  margin: calc(var(--spacing) * 5) 0;
+  width: 100%;
+  border: 1px solid #a52a2a;
+}
+
+.card-traditional-chinese th {
+  background-color: rgba(165, 42, 42, 0.1);
+  color: #8b0000;
+  padding: calc(var(--spacing) * 2.5);
+  text-align: center;
+  border: 1px solid #a52a2a;
+  font-weight: 600;
+}
+
+.card-traditional-chinese td {
+  color: #333;
+  padding: calc(var(--spacing) * 2.5);
+  border: 1px solid rgba(165, 42, 42, 0.3);
+  text-align: center;
+}
+
+.card-traditional-chinese tr:nth-child(even) {
+  background-color: rgba(248, 240, 224, 0.5);
+}
+
+/* 代码块样式 */
+.card-traditional-chinese pre {
+  border: 1px solid rgba(165, 42, 42, 0.3);
+  background-color: rgba(248, 240, 224, 0.5);
+  border-radius: 4px;
+  padding: calc(var(--spacing) * 3.75);
+  overflow-x: auto;
+}
+
+.card-traditional-chinese code:not(pre code) {
+  background-color: rgba(165, 42, 42, 0.1);
+  color: #8b0000;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.25);
+  border-radius: 3px;
+}
+
+/* 引用块样式 */
+.card-traditional-chinese blockquote {
+  background-color: rgba(248, 240, 224, 0.7);
+  border-left: 4px solid #a52a2a;
+  color: #5c3317;
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 5) 0;
+  font-style: italic;
+  position: relative;
+}
+
+.card-traditional-chinese blockquote:before {
+  content: "“";
+  position: absolute;
+  top: calc(var(--spacing) * 1.25);
+  left: calc(var(--spacing) * 1.25);
+  color: rgba(165, 42, 42, 0.2);
+  font-size: calc(var(--spacing) * 10);
+}
+
+.card-traditional-chinese blockquote:after {
+  content: "”";
+  position: absolute;
+  bottom: calc(var(--spacing) * -2.5);
+  right: calc(var(--spacing) * 1.25);
+  color: rgba(165, 42, 42, 0.2);
+  font-size: calc(var(--spacing) * 10);
+}
+
+.card-content ol,
+.card-content ul {
+  padding-left: calc(var(--spacing) * 10);
+}
+.card-traditional-chinese ul > li:before {
+  content: "•";
+  color: #a52a2a;
+  font-size: calc(var(--spacing) * 5);
+  font-weight: bold;
+  border: 0;
+}
+
+/* 水平线样式 */
+.card-traditional-chinese hr {
+  height: calc(var(--spacing) * 0.25);
+  border: none;
+  background: repeating-linear-gradient(
+    90deg,
+    #a52a2a,
+    #a52a2a 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  margin: calc(var(--spacing) * 6.25) 0;
+}
+
+/* 图片样式 */
+.card-traditional-chinese img {
+  border: 4px double #a52a2a;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 添加中国传统风格的页脚装饰 */
+.card-traditional-chinese .card-footer {
+  text-align: right;
+  margin-top: calc(var(--spacing) * 3);
+  font-size: calc(var(--spacing) * 3.5);
+  color: #5c3317;
+}
+
+.card-traditional-chinese .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  color: #6a737d;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-traditional-chinese">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

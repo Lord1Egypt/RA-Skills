@@ -1,0 +1,9 @@
+{
+  "name": "seeing-someone",
+  "version": "1.4.2",
+  "description": "Early-stage rapport: phase updates, question relay, and summaries while things are still forming. Same official AILove agent API as loveq.",
+  "homepage": "https://heerweiyi.cc",
+  "license": "MIT-0",
+  "env": ["AILOVE_API_KEY"],
+  "tags": ["early-stage", "rapport", "social", "ai-proxy-chat"]
+}

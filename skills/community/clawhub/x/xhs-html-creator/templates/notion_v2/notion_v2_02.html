@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head><body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Inter:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1080px;background:#fff;font-family:'Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased;}
+.page{width:1080px;position:relative;overflow:hidden;background:#fff;}
+/* notion唯一装饰：左边红线 */
+.page::before{content:'';position:absolute;top:0;left:32px;bottom:0;width:1.5px;background:#cc0000;z-index:1;}
+.hw{font-family:'Ma Shan Zheng',cursive;}
+/* 封面大标题 */
+.bigtitle{font-size:76px;font-weight:700;color:#111;letter-spacing:2px;line-height:1.15;}
+.sub{font-size:36px;color:#999;font-weight:300;letter-spacing:0.5px;}
+/* notion原生表格样式 */
+.tbl{border-collapse:collapse;width:100%;}
+.tbl-header th{
+  font-size:36px;font-weight:500;color:#999;letter-spacing:1px;
+  text-align:left;padding:6px 8px 6px 0;
+  border-bottom:1.5px solid #111;text-transform:uppercase;
+}
+.tbl-row td{
+  font-size:36px;color:#111;font-family:'Ma Shan Zheng',cursive;
+  padding:9px 8px 9px 0;border-bottom:1px solid #f0f0f0;
+  vertical-align:top;
+}
+.tbl-row td:nth-child(2){
+  font-size:36px;color:#888;font-family:'Noto Sans SC',sans-serif;font-weight:300;white-space:nowrap;
+}
+/* callout样式 */
+.callout{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 0;border-bottom:1px solid #f0f0f0;
+}
+.callout-dot{width:6px;height:6px;background:#cc0000;flex-shrink:0;margin-top:8px;}
+.callout-text{flex:1;font-size:36px;color:#333;font-family:'Ma Shan Zheng',cursive;}
+/* 统计数据 */
+.stat-num{font-size:48px;font-weight:700;color:#111;letter-spacing:-1px;}
+.stat-label{font-size:36px;color:#bbb;font-weight:300;letter-spacing:1px;}
+/* 页码 */
+.pagenum{font-size:36px;color:#ccc;font-weight:300;letter-spacing:2px;}
+/* CTA checklist */
+.clrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #f5f5f5;}
+.clbox{width:18px;height:18px;border:1.5px solid #ccc;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.cltext{flex:1;font-size:36px;color:#333;font-family:'Ma Shan Zheng',cursive;}
+.clcheck .clbox{border-color:#2e7d32;background:#f0fff0;}
+.clcheck .cltext{color:#2e7d32;}
+</style>
+<div class="page" style="min-height:1443px;padding:48px 60px 48px 56px;">
+  <!-- 页眉 -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-left:16px;">
+    <div class="pagenum">PAGE 1 / 5</div>
+    <div class="pagenum" style="color:#eee;">待产包清单</div>
+  </div>
+  <div style="padding-left:16px;margin-bottom:24px;">
+    <div class="bigtitle hw">待产包清单</div>
+    <div style="margin-top:8px;"><span class="sub">生完才敢说完整版 &middot; 住院待产包</span></div>
+  </div>
+  <div style="height:1px;background:#eee;margin-bottom:20px;"></div>
+  <!-- 三大分类callout -->
+  <div style="padding-left:16px;margin-bottom:20px;">
+    <div class="callout">
+      <div class="callout-dot"></div>
+      <div class="callout-text">证件篇 &mdash; 5项必带，入院第一步</div>
+    </div>
+    <div class="callout">
+      <div class="callout-dot"></div>
+      <div class="callout-text">宝宝物品 &mdash; 衣物、喂养、护理全覆盖</div>
+    </div>
+    <div class="callout">
+      <div class="callout-dot"></div>
+      <div class="callout-text">妈妈物品 &mdash; 产房+住院3天所需</div>
+    </div>
+  </div>
+  <!-- 物品总表 -->
+  <div style="padding-left:16px;">
+    <table class="tbl">
+      <thead class="tbl-header">
+        <tr><th style="width:60%">物品名称</th><th>数量/备注</th></tr>
+      </thead>
+      <tbody>
+        <tr class="tbl-row">
+          <td>夫妻双方身份证原件</td><td>必带</td>
+        </tr>
+        <tr class="tbl-row">
+          <td>医保卡</td><td>出院结算报销</td>
+        </tr>
+        <tr class="tbl-row">
+          <td>产检手册+检查报告单</td><td>医生必看</td>
+        </tr>
+        <tr class="tbl-row">
+          <td>NB码纸尿裤</td><td>1包 &middot; 先买别囤</td>
+        </tr>
+        <tr class="tbl-row">
+          <td>产褥垫</td><td>15片+ &middot; 进产房就要铺</td>
+        </tr>
+        <tr class="tbl-row">
+          <td>吸管杯</td><td>剖腹产必带</td>
+        </tr>
+        <tr class="tbl-row">
+          <td>一次性内裤</td><td>15条+</td>
+        </tr>
+        <tr class="tbl-row">
+          <td>吸奶器</td><td>开奶全靠它</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- 统计数据 -->
+  <div style="display:flex;gap:0;margin-top:24px;padding-left:16px;">
+    <div style="flex:1;">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">种物品</div>
+    </div>
+    <div style="flex:1;">
+      <div class="stat-num">3天</div>
+      <div class="stat-label">住院够用</div>
+    </div>
+    <div style="flex:1;">
+      <div class="stat-num" style="color:#cc0000;">&check;</div>
+      <div class="stat-label">过来人验证</div>
+    </div>
+  </div>
+</div>
+</body></html>

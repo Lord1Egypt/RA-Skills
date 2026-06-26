@@ -1,0 +1,18 @@
+<!-- ending — 深蓝全屏结束页 + 居中致谢 -->
+<section class="slide" data-page="{{page}}" data-layout="ending">
+  <div class="ppt-slide" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--color-primary);position:relative;overflow:hidden">
+    <!-- 装饰圆 — 右上大 -->
+    <div style="position:absolute;top:-160px;right:-160px;width:500px;height:500px;border-radius:50%;background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))" aria-hidden="true"></div>
+    <!-- 装饰圆 — 左下小 -->
+    <div style="position:absolute;bottom:-100px;left:-100px;width:300px;height:300px;border-radius:50%;background:linear-gradient(135deg, rgba(255,255,255,0.04), transparent)" aria-hidden="true"></div>
+    <!-- 内容 -->
+    <h1 style="font-family:var(--font);font-size:48px;font-weight:700;color:#fff;margin:0 0 20px 0;z-index:1;letter-spacing:1px">{{thanks}}</h1>
+    <div style="width:48px;height:3px;background:linear-gradient(90deg, var(--color-accent), rgba(255,255,255,0.3));border-radius:2px;margin-bottom:16px;z-index:1"></div>
+    {{#if subtitle}}
+    <p style="font-family:var(--font);font-size:18px;color:rgba(255,255,255,0.55);margin:0;z-index:1">{{subtitle}}</p>
+    {{/if}}
+    {{#if contact}}
+    <p style="font-family:var(--font);font-size:15px;color:rgba(255,255,255,0.4);margin:24px 0 0 0;z-index:1">{{contact}}</p>
+    {{/if}}
+  </div>
+</section>

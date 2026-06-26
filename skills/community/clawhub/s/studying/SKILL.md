@@ -1,35 +1,40 @@
 ---
 name: "Studying"
+version: "1.0.1"
+changelog: "Preferences now persist across skill updates"
 description: "Auto-learns your study habits for academic success. Adapts techniques, timing, and materials to you."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/studying"
-sourceUrl: "https://clawhub.ai/skills/studying"
 ---
 
-# Studying
+## Auto-Adaptive Study Preferences
 
-> Auto-learns your study habits for academic success. Adapts techniques, timing, and materials to you.
+This skill auto-evolves. User preferences persist in `~/studying/memory.md`. Create on first use:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/studying`
-- **Source URL:** [https://clawhub.ai/skills/studying](https://clawhub.ai/skills/studying)
+```markdown
+## Techniques
+<!-- Study methods that work. Format: "method: context (level)" -->
+<!-- Examples: Active recall for facts (confirmed), Mind maps for concepts (pattern) -->
 
-## Overview
+## Schedule
+<!-- When/how they study best. Format: "preference (level)" -->
+<!-- Examples: Morning sessions (confirmed), 25min blocks (pattern) -->
 
+## Materials
+<!-- Preferred formats. Format: "type: context (level)" -->
+<!-- Examples: Video lectures for intro (confirmed), Textbooks for deep (pattern) -->
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/studying
+## Exams
+<!-- Exam prep patterns. Format: "pattern (level)" -->
+<!-- Examples: Past papers week before (confirmed), Cramming doesn't work (locked) -->
+
+## Never
+<!-- Approaches that fail. Format: "approach (level)" -->
+<!-- Examples: Rereading (confirmed), Highlighting only (pattern) -->
 ```
+
+*Empty sections = no preference yet. Observe and fill. Levels: pattern → confirmed → locked*
+
+**Rules:**
+- Detect patterns from what study methods work and which don't
+- Focused on academic contexts (exams, courses, grades)
+- Confirm after 2+ consistent signals
+- Check `dimensions.md` for categories, `criteria.md` for format

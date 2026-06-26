@@ -1,0 +1,35 @@
+{
+  "name": "openclaw-cost-guard",
+  "version": "0.1.0",
+  "description": "This skill should be used when the user asks to reduce OpenClaw token spend, audit model and cron cost risk, prevent denial-of-wallet incidents, add budget guardrails, review expensive agent defaults, or tighten AI-agent cost governance before wider rollout.",
+  "type": "module",
+  "bin": {
+    "openclaw-cost-guard": "./scripts/cost-guard.mjs"
+  },
+  "scripts": {
+    "check": "node scripts/cost-guard.mjs",
+    "test": "node tests/test.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "cost",
+    "budget",
+    "token",
+    "cron",
+    "denial-of-wallet",
+    "guardrails",
+    "governance"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "scripts/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "publication-readiness-smoke",
+  "description": "Bounded ToolFlow smoke run for the bundled OpenClaw publication path.",
+  "inputs": {
+    "topic": "ToolFlow bundled OpenClaw publication readiness"
+  },
+  "steps": [
+    {
+      "id": "read_install_readme",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/tmp/toolflow-public-release/packages/openclaw-skill/README.md"
+      }
+    },
+    {
+      "id": "read_plugin_manifest",
+      "action": "read_file",
+      "dependsOn": [
+        "read_install_readme"
+      ],
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/tmp/toolflow-public-release/packages/plugin/package.json"
+      }
+    },
+    {
+      "id": "publication_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_plugin_manifest"
+      ],
+      "args": {
+        "query": "${inputs.topic}",
+        "sources": [
+          "/Users/jarvis/.openclaw/workspace/tmp/toolflow-public-release/packages/openclaw-skill/README.md",
+          "/Users/jarvis/.openclaw/workspace/tmp/toolflow-public-release/docs/openclaw-integration.md",
+          "/Users/jarvis/.openclaw/workspace/tmp/toolflow-public-release/docs/install.md"
+        ]
+      }
+    },
+    {
+      "id": "publication_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "publication_research_note"
+      ],
+      "args": {
+        "prompt": "Record that the bundled ToolFlow OpenClaw publication smoke workflow completed after install verification, bundle verification, and clean-copy install validation."
+      }
+    }
+  ]
+}

@@ -1,35 +1,93 @@
----
-name: "Paper Reader Deep"
-description: "深入理解PDF论文，提取关键信息，批判性分析并生成结构化深度阅读报告，关联用户研究方向。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paper-reader-deep"
-sourceUrl: "https://clawhub.ai/skills/paper-reader-deep"
----
+# Paper Reader Deep Skill - 论文深度阅读助手
 
-# Paper Reader Deep
+## 功能描述
 
-> 深入理解PDF论文，提取关键信息，批判性分析并生成结构化深度阅读报告，关联用户研究方向。
+真正深度阅读PDF论文，进行理解性分析，生成具有研究价值的深度阅读报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paper-reader-deep`
-- **Source URL:** [https://clawhub.ai/skills/paper-reader-deep](https://clawhub.ai/skills/paper-reader-deep)
+## 核心原则
 
-## Overview
+**真正理解 + 结构化输出 + 用户研究关联**
 
+## 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
+用户要求深度阅读论文、生成深度阅读报告时激活。
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/paper-reader-deep
+# 触发深度阅读
+深度阅读 /path/to/pdfs/
 ```
+
+## 工作流程
+
+### Step 1: 自动提取基础信息
+- 提取PDF全文
+- 解析元数据（标题、DOI、作者、期刊等）
+- 自动提取关键数据
+
+### Step 2: 人工理解分析
+- 读取PDF内容进行深度理解
+- 按照分析框架进行批判性分析
+- 生成真正有研究价值的分析内容
+
+### Step 3: 生成深度阅读报告
+- 基础信息（自动）
+- 核心理解（ai）
+- 批判性分析（ai）
+- 与用户研究的关联（预留用户补充）
+
+### Step 4: 保存到MEMORY.md
+- 仅记录阅读行为，不记录报告内容
+
+## 报告结构
+
+### 第一部分：基础信息（自动提取）
+- 标题、期刊、DOI、作者、日期
+- 一句话概括
+
+### 第二部分：核心理解（ai分析）
+1. 这篇论文到底在做什么？
+2. 为什么要做这个？（研究动机）
+3. 是怎么做到的？（技术路线）
+4. 做得怎么样？（关键数据）
+5. 意味着什么？（研究意义）
+
+### 第三部分：批判性分析
+1. 优点/亮点
+2. 潜在问题/局限
+3. 未解决的关键问题
+
+### 第四部分：与用户研究的关联（用户补充）
+1. 相关度评估：高/中/低
+2. 可借鉴之处
+3. 可能的应用场景
+
+## 分析要点（给AI用）
+
+当我分析论文时，按以下要点进行：
+
+1. **科学问题**：作者真正想回答什么问题？这个问题的价值在哪里？
+2. **方法论**：技术路线为什么这样设计？有什么优劣势？
+3. **逻辑链**：假设→实验→结论的推理是否严密？
+4. **创新性**：真正的新贡献是什么？与现有方法的本质区别？
+5. **局限性**：哪些问题没有解决？改进空间在哪里？
+
+## 写作风格
+
+- 专业但易懂
+- 逻辑清晰
+- 重点突出
+- 与用户研究方向关联
+
+## 依赖
+
+- Python 3.8+
+- pdfplumber
+- PyYAML
+
+## 输出
+
+- 每个PDF对应一个深度阅读报告（*_深度阅读报告.md）
+- 汇总报告（深度阅读汇总.md）
+- 报告保存在与PDF相同目录

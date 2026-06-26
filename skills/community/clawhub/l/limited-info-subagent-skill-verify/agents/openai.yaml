@@ -1,0 +1,7 @@
+interface:
+  display_name: "Limited Info Skill Verify"
+  short_description: "Test whether a skill works with minimal subagent input"
+  default_prompt: "Use $limited-info-subagent-skill-verify to test whether another skill succeeds when a subagent receives only a minimal invocation."
+
+policy:
+  allow_implicit_invocation: true

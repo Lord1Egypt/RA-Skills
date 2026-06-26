@@ -1,0 +1,15 @@
+name: backup-2-github
+description: Backup OpenClaw personalized configuration and user data to GitHub
+version: 1.0.0
+author: OpenClaw
+
+capabilities:
+  - backup
+  - restore
+  - github
+
+install: pip install -r requirements.txt
+start: python backup.py
+dependencies:
+  - git
+  - github_token

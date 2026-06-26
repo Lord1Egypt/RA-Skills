@@ -1,0 +1,43 @@
+{
+  "trend_indicators": [
+    "rising demand",
+    "increasing search volume",
+    "positive sentiment",
+    "growing market size"
+  ],
+  "risk_factors": [
+    "high competition",
+    "declining interest",
+    "negative reviews",
+    "regulatory issues"
+  ],
+  "optimization_areas": [
+    "pricing strategy",
+    "product features",
+    "marketing channels",
+    "customer service"
+  ],
+  "category_weights": {
+    "electronics": {
+      "innovation": 0.3,
+      "price": 0.25,
+      "brand": 0.2,
+      "features": 0.15,
+      "support": 0.1
+    },
+    "fashion": {
+      "style": 0.3,
+      "price": 0.2,
+      "brand": 0.2,
+      "quality": 0.2,
+      "trend": 0.1
+    },
+    "home_goods": {
+      "durability": 0.25,
+      "price": 0.2,
+      "design": 0.2,
+      "functionality": 0.2,
+      "reviews": 0.15
+    }
+  }
+}

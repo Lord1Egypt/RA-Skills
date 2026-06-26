@@ -1,0 +1,4 @@
+interface:
+  display_name: "Windows Computer-Use Skill"
+  short_description: "Use the bundled top-level Windows computer-use skill and standalone runtime"
+  default_prompt: "Use the bundled top-level Windows computer-use skill, build the standalone runtime if needed, let it self-bootstrap, and avoid any dependency on a local Claude installation or hidden app assets."

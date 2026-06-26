@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skool Challenge Launcher"
+  short_description: "Design a public-safe 7-day proof challenge"
+  default_prompt: "Use $skool-challenge-launcher to design a 7-day Skool challenge with public-safe prompts, redacted proof, reminder comments, a free-course trust CTA, success metrics, and follow-up product signals."

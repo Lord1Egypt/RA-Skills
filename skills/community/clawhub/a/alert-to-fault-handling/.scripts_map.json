@@ -1,0 +1,18 @@
+{
+  "nginx": {
+    "name": "nginx服务重启",
+    "script_id": 187,
+    "keywords": ["nginx", "Nginx", "NGINX", "web", "80端口", "http服务", "服务停止"],
+    "classifications": [102],
+    "chat_groups": ["oc_cfe1ce2fea538b9c65ae8f56588a4440"],
+    "description": "重启Nginx服务，适用于服务停止、无响应等场景"
+  },
+  "disk": {
+    "name": "主机磁盘空间清理",
+    "script_id": 197,
+    "keywords": ["磁盘", "disk", "空间", "storage", "/var", "/tmp", "使用率", "满", "清理"],
+    "classifications": [101],
+    "chat_groups": ["oc_7e627a830d40ab220ff3bf243b113fee"],
+    "description": "清理日志文件和临时文件，释放磁盘空间"
+  }
+}

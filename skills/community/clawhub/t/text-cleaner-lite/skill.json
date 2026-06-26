@@ -1,0 +1,21 @@
+﻿{
+    "skill_id":  "skill_001",
+    "name":  "text-cleaner-lite",
+    "version":  "0.1.0",
+    "description":  "Normalize whitespace, remove duplicated blank lines, and trim leading/trailing spaces.",
+    "source_template":  "skillsmp_download/1/SKILL.md",
+    "category":  "text-processing",
+    "risk_level":  "L1",
+    "entry":  "main.py",
+    "inputs":  [
+                   "raw_text (string), keep_newlines (boolean, optional)"
+               ],
+    "outputs":  [
+                    "cleaned_text (string)"
+                ],
+    "tags":  [
+                 "text-processing",
+                 "normalization",
+                 "safe"
+             ]
+}

@@ -1,0 +1,42 @@
+{
+  "ticker": "CHTR",
+  "company": "Charter Communications, Inc.",
+  "analysis_year": 2020,
+  "data_source": "Charter FY2019 10-K and Berkshire 2020-12-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.099, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": false },
+    "g2_fcf_to_ni": { "value": 2.286, "fcf": 4553, "net_income": 1992, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 6.34, "pass": false },
+    "g4_revenue_trend": { "description": "Revenue climbed from $41.6B in 2017 to $43.6B in 2018 to $45.8B in 2019 as broadband and cable bundles remained resilient. No structural decline was visible at the decision point.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Contribution margins were stable to improving as broadband mix increased. The issue was leverage and price, not a two-year margin unwind.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.008, "net_income_m": 1992, "ev_m": 257608, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "Charter had a real local-market moat: last-mile infrastructure, customer switching friction, and strong broadband positioning in many territories. But the capital structure and price already left almost no room for underwriting error.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "The low earnings yield partly reflected the scarcity value of broadband infrastructure and local-network economics.",
+      "reason_for_low_yield": "Investors were paying up for a real moat, but they were also accepting leverage and valuation risk that sat well outside the framework's comfort zone.",
+      "decision_impact": "Even after acknowledging the moat, the combined g3 and g6 failures keep the conclusion at PASS."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "There was no integrity veto. The rejection comes from leverage and price, not stewardship concerns."
+    }
+  },
+
+  "control_groups": [
+    { "ticker": "DISH", "company": "DISH Network Corporation", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — weaker customer position and far less dependable broadband economics." },
+    { "ticker": "ATUS", "company": "Altice USA, Inc.", "year": 2020, "gates_failed": ["g3_leverage", "g7_moat"], "conclusion": "PASS — similar industry, but a weaker competitive footprint and even more leverage strain." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 5,213,461 Charter shares worth about $3.45B at 2020-12-31 in its 13F-HR.",
+  "actual_result": "Berkshire still owned 3,828,941 shares at both 2021-12-31 and 2022-12-31, but the quoted value was far below the late-2020 level by the end of 2022. This was not a clean Buffett-style compounding win.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A real moat does not rescue a business when leverage is above 6x and the earnings yield is still under 1%."
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Security Review Checklist",
+  "description": "Pre-release security verification",
+  "category": "security",
+  "items": [
+    {"id": 1, "text": "All user inputs are validated and sanitized", "required": true},
+    {"id": 2, "text": "Authentication mechanisms are secure (not using weak methods)", "required": true},
+    {"id": 3, "text": "Authorization checks on all protected resources", "required": true},
+    {"id": 4, "text": "Passwords are hashed with strong algorithms (bcrypt, argon2)", "required": true},
+    {"id": 5, "text": "Session management is secure", "required": true},
+    {"id": 6, "text": "CSRF protection is implemented", "required": true},
+    {"id": 7, "text": "XSS protection is in place", "required": true},
+    {"id": 8, "text": "No sensitive data in URLs or logs", "required": true},
+    {"id": 9, "text": "API rate limiting is configured", "required": true},
+    {"id": 10, "text": "Security headers are set (CSP, HSTS, etc.)", "required": true},
+    {"id": 11, "text": "Database uses parameterized queries", "required": true},
+    {"id": 12, "text": "File uploads are properly validated", "required": true},
+    {"id": 13, "text": "Dependencies scanned for vulnerabilities", "required": true},
+    {"id": 14, "text": "No exposed debug endpoints in production", "required": true},
+    {"id": 15, "text": "Error messages don't leak sensitive info", "required": true}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "provider": "bailian",
+  "model": "qwen3.5-plus",
+  "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "apiKey": "",
+  "timeout": 120,
+  "temperature": 0.7,
+  "maxTokens": 2000,
+  "enableLogging": true,
+  "lastUpdated": "2026-04-06T02:47:00"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P6 Input Schema",
+  "type": "object",
+  "properties": {
+    "p5_output": { "type": "object" },
+    "domain": { "type": "string", "enum": ["trade", "asset_mgmt", "risk_ctrl", "crm", "etrading", "ops_mgmt", "compliance", "it_infra"] },
+    "p7_feedback": {
+      "type": "object",
+      "description": "P7 质量自检回传的修正反馈（仅重试时传入）"
+    }
+  },
+  "required": ["p5_output"],
+  "additionalProperties": true
+}

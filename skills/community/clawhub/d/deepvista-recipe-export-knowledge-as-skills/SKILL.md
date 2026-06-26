@@ -1,35 +1,54 @@
 ---
-name: "Deepvista Recipe Export Knowledge As Skills"
+name: deepvista-recipe-export-knowledge-as-skills
 description: "Recipe: Export Recipes as installable SKILL.md files for AI agents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deepvista-recipe-export-knowledge-as-skills"
-sourceUrl: "https://clawhub.ai/skills/deepvista-recipe-export-knowledge-as-skills"
+metadata:
+  openclaw:
+    category: recipe
+    requires:
+      bins:
+        - deepvista
+      skills:
+        - deepvista-recipe
+    install:
+      - kind: uv
+        package: deepvista-cli
+        bins: [deepvista]
+    homepage: https://cli.deepvista.ai
+    cliHelp: "deepvista recipe export --help"
 ---
 
-# Deepvista Recipe Export Knowledge As Skills
+# Export Knowledge as Skills
 
-> Recipe: Export Recipes as installable SKILL.md files for AI agents.
+> **PREREQUISITE:** Load the following skill: `deepvista-recipe`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deepvista-recipe-export-knowledge-as-skills`
-- **Source URL:** [https://clawhub.ai/skills/deepvista-recipe-export-knowledge-as-skills](https://clawhub.ai/skills/deepvista-recipe-export-knowledge-as-skills)
+Export Recipes as SKILL.md files that can be installed in any AI agent (Claude Code, Cursor, OpenCode, and others).
 
-## Overview
+## Steps
 
+1. **List all Recipes:**
+   ```bash
+   deepvista recipe list
+   ```
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deepvista-recipe-export-knowledge-as-skills
-```
+2. **For each Recipe to export**, generate the SKILL.md:
+   ```bash
+   deepvista recipe export <recipe_id> --format skill
+   ```
+
+3. **Save each skill** to the agent's skills directory:
+   ```bash
+   mkdir -p ~/.agents/skills/<skill-name>/
+   # Write the SKILL.md content from the JSON output to that directory
+   ```
+
+4. **Verify** — the skill should now be discoverable by the agent.
+
+## Tips
+
+- Read-only recipe — only generates files, does not modify Recipes.
+- This is the Recipe-as-Skill pipeline: author workflows in DeepVista's GUI, export them as installable agent skills so anyone on your team can load them.
+- The exported SKILL.md includes the full checklist and instructions in a format agents can follow directly.
+
+## See Also
+
+- [deepvista-recipe](../deepvista-recipe/SKILL.md) — Recipe commands

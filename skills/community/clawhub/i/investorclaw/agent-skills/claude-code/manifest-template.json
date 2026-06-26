@@ -1,0 +1,85 @@
+{
+  "// SPDX-License-Identifier": "MIT-0",
+  "// Copyright": "2026 InvestorClaw Contributors",
+  "// note": "This manifest is MIT-0-licensed. The InvestorClaw service it points to is Apache 2.0. Schema field names below reflect the Claude Code marketplace conventions as understood at v4.1 release; fields marked TODO need final verification against the published marketplace schema before listing submission.",
+
+  "name": "investorclaw",
+  "displayName": "InvestorClaw",
+  "version": "4.1.22",
+  "description": "Portfolio analysis via local Docker service. Adds /ask and /refresh slash commands plus 15 MCP tools for holdings, performance, bonds, optimization, and more. Educational only — never investment advice.",
+  "author": {
+    "name": "InvestorClaw Contributors",
+    "url": "https://investorclaw.app"
+  },
+  "license": "MIT-0",
+  "homepage": "https://investorclaw.app",
+  "repository": "https://github.com/mnemos-os/mnemos-ic-runtime",
+
+  "// TODO: confirm marketplace category vocabulary": null,
+  "category": "finance",
+  "tags": ["portfolio", "investing", "finance", "analysis", "mcp", "docker"],
+
+  "// TODO: confirm icon path/format expected by current marketplace schema": null,
+  "icon": "assets/icon.png",
+
+  "skill": {
+    "// note": "Path to the SKILL.md the plugin loads into Claude Code's skill catalog.",
+    "path": "SKILL.md"
+  },
+
+  "slashCommands": [
+    {
+      "name": "ask",
+      "description": "Ask InvestorClaw a portfolio question (deterministic engine).",
+      "// TODO: confirm slash-command-to-MCP-tool routing field name": "may be 'tool', 'mcpTool', 'invokes', or require a small handler script depending on schema version",
+      "tool": "investorclaw.portfolio_ask",
+      "argSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "Natural-language portfolio question (e.g., 'what are my top dividend payers?')"
+          }
+        },
+        "required": ["question"]
+      }
+    },
+    {
+      "name": "refresh",
+      "description": "Refresh market data without re-uploading portfolio files.",
+      "tool": "investorclaw.portfolio_refresh",
+      "argSchema": { "type": "object", "properties": {}, "required": [] }
+    }
+  ],
+
+  "mcpServers": {
+    "investorclaw": {
+      "transport": "http",
+      "url": "http://localhost:18090/mcp",
+      "// note": "Portfolio analysis tools. Service runs in user's Docker (mnemos-os/ic-engine:4.1.33-cpu)."
+    },
+    "mnemos": {
+      "transport": "http",
+      "url": "http://localhost:5002/mcp",
+      "// note": "Memory + knowledge graph. Service runs in user's Docker (mnemos-os/mnemos-rs:4.2)."
+    }
+  },
+
+  "prerequisites": {
+    "// note": "Plugin does NOT auto-install Docker. INSTALL.md gives the user the brew/winget/get-docker.com command per platform.",
+    "docker": ">=24.0",
+    "dockerCompose": ">=2.20"
+  },
+
+  "postInstall": {
+    "// TODO: confirm postInstall field name and message-rendering convention": null,
+    "message": "InvestorClaw plugin installed. To finish setup, run:\n\n  mkdir -p ~/.investorclaw\n  curl -sSL https://raw.githubusercontent.com/ncz-os/mnemos-ic-runtime/main/compose.yml > ~/.investorclaw/compose.yml\n  cd ~/.investorclaw && docker compose up -d\n\nThen open http://localhost:18092 to upload a portfolio. See INSTALL.md for full details."
+  },
+
+  "// poweredBy attribution surfaced on listing page": null,
+  "poweredBy": {
+    "name": "InvestorClaw",
+    "url": "https://investorclaw.app",
+    "license": "Apache-2.0"
+  }
+}

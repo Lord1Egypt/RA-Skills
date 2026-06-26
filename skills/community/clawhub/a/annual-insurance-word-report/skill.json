@@ -1,0 +1,20 @@
+{
+  "name": "annual_insurance_word_report",
+  "version": "1.0.0",
+  "description": "Generate an annual insurance welfare Word report from gh_hg_bscyearall_dues using a fixed template and MySQL metadata.",
+  "entry": "src/main.py",
+  "inputs": [
+    { "name": "request_text", "type": "string", "required": false },
+    { "name": "year", "type": "string", "required": false },
+    { "name": "template_path", "type": "string", "required": false },
+    { "name": "output_path", "type": "string", "required": false },
+    { "name": "db_host", "type": "string", "required": false },
+    { "name": "db_port", "type": "number", "required": false },
+    { "name": "db_user", "type": "string", "required": false },
+    { "name": "db_password", "type": "string", "required": false },
+    { "name": "database", "type": "string", "required": false },
+    { "name": "table_name", "type": "string", "required": false },
+    { "name": "charset", "type": "string", "required": false },
+    { "name": "mysql_cli", "type": "string", "required": false }
+  ]
+}

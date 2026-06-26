@@ -1,0 +1,14 @@
+{
+  "issue_content_max_chars": 3000,
+  "history_issues_limit": 100,
+  "history_days": 365,
+  "deepwiki_timeout": 120,
+  "deepwiki_max_retries": 3,
+  "bm25_similarity_threshold": 5.0,
+  "bm25_top_k": 5,
+  "dry_run": false,
+  "enable_deepwiki": true,
+  "api_timeout": 30,
+  "cache_ttl_seconds": 300,
+  "enable_cache": true
+}

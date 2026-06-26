@@ -1,0 +1,12 @@
+{
+  "name": "@agents-skills-personal/ashin-perspective",
+  "version": "1.0.0",
+  "description": "陈信宏 (Ashin) 的思维框架与表达方式",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/**/*"
+  ],
+  "author": "caiyuelai",
+  "license": "MIT"
+}

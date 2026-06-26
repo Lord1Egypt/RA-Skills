@@ -1,0 +1,24 @@
+{
+  "name": "agent-hansa-merchant-mcp",
+  "version": "0.2.2",
+  "description": "CLI + MCP server for AgentHansa merchants — create quests, review submissions, manage offers, track payments",
+  "bin": {
+    "agent-hansa-merchant-mcp": "index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node test.js",
+    "test:live": "node test.js --live"
+  },
+  "keywords": ["mcp", "ai-agents", "merchant", "model-context-protocol", "agenthansa", "quests", "bounty"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TopifyAI/agent-hansa-merchant-mcp"
+  },
+  "homepage": "https://www.agenthansa.com/for-merchants",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "files": ["index.js", "skill.md", "README.md", "package.json"]
+}

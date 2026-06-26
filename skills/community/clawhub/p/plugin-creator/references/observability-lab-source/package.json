@@ -1,0 +1,15 @@
+{
+  "name": "@openclaw/observability-lab",
+  "version": "2026.3.23",
+  "private": true,
+  "description": "OpenClaw 原生插件脚手架：演示 skills、hooks、tools 与 slash 命令。",
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

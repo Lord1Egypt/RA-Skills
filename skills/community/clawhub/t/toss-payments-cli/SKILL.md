@@ -1,35 +1,50 @@
 ---
-name: "Toss Payments CLI"
-description: "Command-line tool for Toss Payments API to retrieve payment details and perform full or partial payment cancellations using payment keys."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toss-payments-cli"
-sourceUrl: "https://clawhub.ai/skills/toss-payments-cli"
+name: Toss Payments CLI
+slug: toss-payments-cli
+version: 0.1.0
+author: Chloe Park
+license: MIT
+summary: Minimal CLI for Toss Payments Core API — get payment details and cancel payments.
+tags:
+  - latest
+  - payments
+  - korea
+  - api
+  - cli
+metadata:
+  openclaw:
+    requires:
+      env:
+        - TOSS_SECRET_KEY
+    primaryEnv: TOSS_SECRET_KEY
 ---
 
 # Toss Payments CLI
 
-> Command-line tool for Toss Payments API to retrieve payment details and perform full or partial payment cancellations using payment keys.
+토스페이먼츠 코어 API를 간단히 호출하는 최소 CLI 스킬이다. `paymentKey`로 결제를 조회하고, 전체/부분 취소를 수행한다. 테스트/실서비스 키 모두 지원한다.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toss-payments-cli`
-- **Source URL:** [https://clawhub.ai/skills/toss-payments-cli](https://clawhub.ai/skills/toss-payments-cli)
+## Features
+- GET /payments/{paymentKey}
+- POST /payments/{paymentKey}/cancel (cancelReason, optional cancelAmount)
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/toss-payments-cli
+export TOSS_SECRET_KEY="test_sk_xxx"
+
+# 결제 조회
+toss-pay get-payment --payment-key {paymentKey}
+
+# 결제 취소 (전체/부분)
+toss-pay cancel-payment --payment-key {paymentKey} --reason "고객 요청"
+toss-pay cancel-payment --payment-key {paymentKey} --reason "부분 환불" --amount 5000
 ```
+
+Base URL: https://api.tosspayments.com/v1 (환경변수 TOSS_BASE_URL로 오버라이드 가능)
+
+## Install
+```bash
+pipx install .  # 또는 pip install .
+```
+
+## Docs
+- Toss Payments Core API: https://docs.tosspayments.com/reference#tag/Payments

@@ -1,0 +1,30 @@
+{
+  "id": "task_1775534609630_g38i",
+  "title": "09:00 小红书热门话题汇总",
+  "description": "每天9点推送5个热门话题到飞书群",
+  "source": "scheduled",
+  "assignedTo": "Marketing",
+  "status": "inbox",
+  "priority": "P0",
+  "intent": "scheduled",
+  "subtasks": [],
+  "createdAt": "2026-04-07T04:03:29.630Z",
+  "updatedAt": "2026-04-11T08:10:00.365Z",
+  "stateChangedAt": "2026-04-07T04:03:29.630Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 2,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6006分钟",
+      "at": "2026-04-11T08:09:59.353Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6007分钟",
+      "at": "2026-04-11T08:10:00.365Z"
+    }
+  ]
+}

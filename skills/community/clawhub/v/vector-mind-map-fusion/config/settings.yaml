@@ -1,0 +1,77 @@
+# Vector-Mind Map-Fusion 全局配置
+
+# ===== 路径配置 =====
+paths:
+  # OpenClaw 会话目录
+  sessions_dir: "~/.openclaw/agents/main/sessions"
+
+  # Neural Memory 数据库
+  brain_db: "~/.local/share/neural-memory/brains.db"
+
+  # 数据层
+  l2a_dir: "memory/layers/l2a"
+  l2_dir: "memory/layers/l2"
+  hnsw_dir: "memory/layers/hnsw"
+  infinitydb_dir: "memory/layers/infinitydb"
+
+# ===== Ollama 配置 =====
+ollama:
+  base_url: "http://localhost:11434"
+  model: "bge-m3"
+  batch_size: 20
+  timeout_sec: 30
+  max_retries: 3
+
+# ===== L1 配置 =====
+l1:
+  max_chunk_chars: 250
+  overlap_chars: 50
+  cosine_threshold: 0.85
+  max_content_length: 5000
+  ttl_days: 7
+
+# ===== L2 配置 =====
+l2:
+  window_size: 200
+  overlap: 100
+  sqlite_batch_size: 200
+  max_chunks_per_run: 5000
+  # Type 协同阈值
+  cosine_thresholds:
+    boundary: 0.85
+    default: 0.90
+  hnsw_threshold: 0.95
+
+# ===== L3 配置 =====
+l3:
+  schema_threshold: 5  # session ≥5 chunks 生成 schema
+  schema_priority: 4
+  sqlite_batch_size: 200
+  hnsw_batch_size: 500
+  max_elements: 10000
+
+# ===== 定时任务（Asia/Shanghai）=====
+# ===== 定时任务（Asia/Shanghai，实际 cron jobs 列表）=====
+# L1: 每 4 小时一次（5 个时间点）
+# L2: 每天 00:30
+# L3: 每两天 03:00
+# 注意：这些值仅供参考，实际 cron job 由 OpenClaw 管理
+# ===== 定时任务（CST = Asia/Shanghai = UTC+8）=====
+# L1: 每 4 小时一次，共 5 个时间点
+# L2: 每天 00:30
+# L3: 每两天 03:00
+cron:
+  l1_07cst: "0 7 * * *"     # 07:00 CST = 23:00 UTC (-1天)
+  l1_11cst: "0 11 * * *"    # 11:00 CST = 03:00 UTC
+  l1_15cst: "0 15 * * *"    # 15:00 CST = 07:00 UTC
+  l1_19cst: "0 19 * * *"    # 19:00 CST = 11:00 UTC
+  l1_23cst: "0 23 * * *"    # 23:00 CST = 15:00 UTC
+  l2: "30 0 * * *"          # 00:30 CST = 17:30 UTC (-1天)
+  l3: "0 3 */2 * *"        # 03:00 CST = 19:00 UTC (-1天)
+
+# ===== 召回配置 =====
+recall:
+  max_spread_hops: 3
+  activation_threshold: 0.3
+  diminishing_returns_enabled: true
+  diminishing_returns_threshold: 0.15

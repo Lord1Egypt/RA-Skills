@@ -1,0 +1,40 @@
+{
+  "enabled": true,
+  "alerts": [
+    {
+      "name": "单股仓位过重",
+      "condition": "position_rate_above",
+      "threshold": 30,
+      "message": "单股仓位超过30%，建议适当减仓",
+      "cooldown_hours": 24
+    },
+    {
+      "name": "亏损超过20%",
+      "condition": "profit_rate_below",
+      "threshold": -20,
+      "message": "亏损超过20%，注意止损风险",
+      "cooldown_hours": 24
+    },
+    {
+      "name": "持仓超1年",
+      "condition": "hold_days_above",
+      "threshold": 365,
+      "message": "持仓超过1年，建议重新评估",
+      "cooldown_hours": 168
+    },
+    {
+      "name": "总仓位过高",
+      "condition": "total_position_above",
+      "threshold": 80,
+      "message": "总仓位超过80%，建议预留现金应对波动",
+      "cooldown_hours": 24
+    },
+    {
+      "name": "单日亏损过大",
+      "condition": "daily_loss_above",
+      "threshold": 5,
+      "message": "持仓股单日亏损超5%，注意市场风险",
+      "cooldown_hours": 12
+    }
+  ]
+}

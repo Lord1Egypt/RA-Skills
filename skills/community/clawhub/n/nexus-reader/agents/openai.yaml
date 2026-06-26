@@ -1,0 +1,5 @@
+interface:
+  display_name: "Nexus Reader"
+  short_description: "微信读书飙升榜每日推荐卡片生成器，抓取榜单数据并生成精美 HTML/PNG 读书推荐卡片。"
+  icon: "📚"
+  primary_color: "#9d7a58"

@@ -1,0 +1,37 @@
+{
+  "id": "codeflow-enforcer",
+  "name": "Codeflow Enforcer",
+  "description": "Thread-scoped hard enforcement for Codeflow skill workflows.",
+  "version": "2.0.2",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "blockSubagents": {
+        "type": "boolean"
+      },
+      "queryCacheMs": {
+        "type": "number",
+        "minimum": 0
+      },
+      "commandTimeoutMs": {
+        "type": "number",
+        "minimum": 1000
+      }
+    }
+  },
+  "uiHints": {
+    "blockSubagents": {
+      "label": "Block Subagents",
+      "help": "When enabled, Codeflow blocks AI tool calls to sessions_spawn and subagents while enforcement is active. User /subagents commands are not intercepted here."
+    },
+    "queryCacheMs": {
+      "label": "Query Cache (ms)",
+      "help": "Short in-memory cache for guard state lookups."
+    },
+    "commandTimeoutMs": {
+      "label": "Command Timeout (ms)",
+      "help": "Timeout for codeflow guard shell calls."
+    }
+  }
+}

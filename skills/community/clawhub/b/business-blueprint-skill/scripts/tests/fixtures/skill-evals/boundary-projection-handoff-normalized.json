@@ -1,0 +1,37 @@
+{
+  "runner": "fixture",
+  "trace_format_version": "normalized-v1",
+  "tool_calls": [],
+  "shell_commands": [
+    "python3 scripts/business_blueprint/cli.py --validate scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json",
+    "python3 scripts/business_blueprint/cli.py --project scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json"
+  ],
+  "failed_shell_commands": [],
+  "read_paths": [
+    "SKILL.md",
+    "references/blueprint-schema.md",
+    "references/entities-schema.md",
+    "references/systems-schema.md",
+    "references/prompt-orchestration-templates.md"
+  ],
+  "write_paths": [
+    "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json",
+    "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.projection.json"
+  ],
+  "artifact_paths": [
+    "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json",
+    "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.projection.json"
+  ],
+  "input_tokens": 15400,
+  "output_tokens": 3500,
+  "wall_ms": 46000,
+  "run_completed": true,
+  "skill_evidence": {
+    "skill_contract_read": true,
+    "blueprint_flow_observed": true,
+    "validate_observed": true,
+    "export_observed": false,
+    "projection_observed": true
+  },
+  "runner_warnings": []
+}

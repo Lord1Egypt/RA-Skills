@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dataify Amazon Product List"
+  short_description: "Submit Dataify Amazon product list collection tasks"
+  default_prompt: "Use $dataify-amazon-product-list to submit Amazon product list collection tasks through Dataify and return the task_id."
+
+policy:
+  allow_implicit_invocation: true

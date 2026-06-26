@@ -1,0 +1,304 @@
+# opencli 可用平台目录
+# 用于初始化时供用户选择，以及 build_queries 自动生成采集命令
+# 最后更新：2026-04-04
+
+# ━━ 国内平台 ━━
+cn:
+  - id: weibo
+    name: "微博"
+    description: "国内最大社交媒体，热搜 + 关键词搜索"
+    category: "社交媒体"
+    login_required: partial
+    commands:
+      hot: "weibo hot --limit 30 -f json"
+      search: "weibo search \"{keyword}\" --limit 10 -f json"
+      detail: "weibo post {id}"
+
+  - id: xiaohongshu
+    name: "小红书"
+    description: "生活方式社区，图文/视频笔记搜索"
+    category: "社交媒体"
+    login_required: yes
+    commands:
+      search: "xiaohongshu search \"{keyword}\" --limit 10 -f json"
+      feed: "xiaohongshu feed --limit 10 -f json"
+      detail: "xiaohongshu note {id}"
+
+  - id: bilibili
+    name: "B站"
+    description: "视频社区，热门 + 关键词搜索"
+    category: "视频"
+    login_required: partial
+    commands:
+      hot: "bilibili hot --limit 20 -f json"
+      search: "bilibili search \"{keyword}\" --limit 10 -f json"
+      detail: "bilibili subtitle {bvid}"
+
+  - id: zhihu
+    name: "知乎"
+    description: "知识问答社区，热榜 + 搜索"
+    category: "知识社区"
+    login_required: partial
+    commands:
+      hot: "zhihu hot --limit 20 -f json"
+      search: "zhihu search \"{keyword}\" -f json"
+
+  - id: douban
+    name: "豆瓣"
+    description: "影视/图书/音乐评分社区"
+    category: "文化娱乐"
+    login_required: partial
+    commands:
+      search: "douban search \"{keyword}\" -f json"
+      hot_movie: "douban movie-hot -f json"
+      hot_book: "douban book-hot -f json"
+
+  - id: tieba
+    name: "百度贴吧"
+    description: "兴趣社区，按吧搜索"
+    category: "社区"
+    login_required: no
+    commands:
+      hot: "tieba hot -f json"
+      search: "tieba search \"{keyword}\" -f json"
+
+  - id: jike
+    name: "即刻"
+    description: "兴趣社交，科技/创业圈活跃"
+    category: "社交媒体"
+    login_required: yes
+    commands:
+      search: "jike search \"{keyword}\" -f json"
+      feed: "jike feed -f json"
+
+  - id: douyin
+    name: "抖音"
+    description: "短视频平台，话题/热点搜索"
+    category: "视频"
+    login_required: yes
+    commands:
+      hashtag: "douyin hashtag search \"{keyword}\" -f json"
+
+  - id: xueqiu
+    name: "雪球"
+    description: "投资社区，股票讨论/热门动态"
+    category: "金融"
+    login_required: partial
+    commands:
+      hot: "xueqiu hot -f json"
+      search: "xueqiu search \"{keyword}\" -f json"
+
+  - id: 36kr
+    name: "36氪"
+    description: "科技创业媒体，热榜 + 搜索"
+    category: "科技媒体"
+    login_required: no
+    commands:
+      hot: "36kr hot -f json"
+      search: "36kr search \"{keyword}\" -f json"
+      news: "36kr news -f json"
+
+  - id: v2ex
+    name: "V2EX"
+    description: "开发者/创意工作者社区"
+    category: "技术社区"
+    login_required: no
+    commands:
+      hot: "v2ex hot -f json"
+      latest: "v2ex latest -f json"
+
+  - id: sinafinance
+    name: "新浪财经"
+    description: "财经快讯/行情/滚动新闻"
+    category: "金融"
+    login_required: no
+    commands:
+      news: "sinafinance news -f json"
+      rolling: "sinafinance rolling-news -f json"
+
+# ━━ 国外平台 ━━
+global:
+  - id: twitter
+    name: "Twitter/X"
+    description: "全球社交媒体，实时热点 + 搜索"
+    category: "社交媒体"
+    login_required: yes
+    commands:
+      search: "twitter search \"{keyword}\" --limit 15 --filter top -f json"
+      trending: "twitter trending --limit 20 -f json"
+      search_live: "twitter search \"{keyword}\" --limit 15 --filter live -f json"
+
+  - id: reddit
+    name: "Reddit"
+    description: "全球最大论坛，子版块 + 搜索"
+    category: "社区"
+    login_required: no
+    commands:
+      search: "reddit search \"{keyword}\" --sort relevance --time week --limit 15 -f json"
+      hot: "reddit hot --limit 20 -f json"
+      subreddit: "reddit subreddit \"{name}\" --limit 15 -f json"
+
+  - id: hackernews
+    name: "Hacker News"
+    description: "技术/创业新闻社区"
+    category: "技术社区"
+    login_required: no
+    commands:
+      top: "hackernews top -f json"
+      search: "hackernews search \"{keyword}\" -f json"
+      new: "hackernews new -f json"
+
+  - id: youtube
+    name: "YouTube"
+    description: "全球视频平台，搜索 + 字幕提取"
+    category: "视频"
+    login_required: no
+    commands:
+      search: "youtube search \"{keyword}\" -f json"
+      transcript: "youtube transcript \"{url}\""
+
+  - id: linkedin
+    name: "LinkedIn"
+    description: "职业社交，招聘/行业动态"
+    category: "职业"
+    login_required: yes
+    commands:
+      search: "linkedin search \"{keyword}\" -f json"
+      timeline: "linkedin timeline -f json"
+
+  - id: producthunt
+    name: "Product Hunt"
+    description: "新产品发布社区"
+    category: "产品"
+    login_required: no
+    commands:
+      hot: "producthunt hot -f json"
+      today: "producthunt today -f json"
+
+  - id: arxiv
+    name: "arXiv"
+    description: "学术论文预印本"
+    category: "学术"
+    login_required: no
+    commands:
+      search: "arxiv search \"{keyword}\" -f json"
+
+  - id: stackoverflow
+    name: "Stack Overflow"
+    description: "编程问答社区"
+    category: "技术社区"
+    login_required: no
+    commands:
+      hot: "stackoverflow hot -f json"
+      search: "stackoverflow search \"{keyword}\" -f json"
+
+  - id: medium
+    name: "Medium"
+    description: "英文博客/长文平台"
+    category: "内容平台"
+    login_required: no
+    commands:
+      search: "medium search \"{keyword}\" -f json"
+      feed: "medium feed -f json"
+
+  - id: substack
+    name: "Substack"
+    description: "Newsletter/独立写作平台"
+    category: "内容平台"
+    login_required: no
+    commands:
+      search: "substack search \"{keyword}\" -f json"
+
+  - id: bloomberg
+    name: "Bloomberg"
+    description: "全球财经新闻（RSS）"
+    category: "财经媒体"
+    login_required: no
+    commands:
+      tech: "bloomberg tech -f json"
+      markets: "bloomberg markets -f json"
+      main: "bloomberg main -f json"
+
+  - id: bbc
+    name: "BBC"
+    description: "BBC 新闻（RSS）"
+    category: "新闻"
+    login_required: no
+    commands:
+      news: "bbc news -f json"
+
+  - id: reuters
+    name: "Reuters"
+    description: "路透社新闻搜索"
+    category: "新闻"
+    login_required: no
+    commands:
+      search: "reuters search \"{keyword}\" -f json"
+
+  - id: bluesky
+    name: "Bluesky"
+    description: "去中心化社交网络"
+    category: "社交媒体"
+    login_required: no
+    commands:
+      trending: "bluesky trending -f json"
+      search: "bluesky search \"{keyword}\" -f json"
+
+  - id: instagram
+    name: "Instagram"
+    description: "图片/视频社交"
+    category: "社交媒体"
+    login_required: yes
+    commands:
+      search: "instagram search \"{keyword}\" -f json"
+      explore: "instagram explore -f json"
+
+  - id: tiktok
+    name: "TikTok"
+    description: "国际版短视频"
+    category: "视频"
+    login_required: yes
+    commands:
+      search: "tiktok search \"{keyword}\" -f json"
+      explore: "tiktok explore -f json"
+
+  - id: facebook
+    name: "Facebook"
+    description: "全球社交网络"
+    category: "社交媒体"
+    login_required: yes
+    commands:
+      search: "facebook search \"{keyword}\" -f json"
+      feed: "facebook feed -f json"
+
+  - id: devto
+    name: "DEV.to"
+    description: "开发者博客社区"
+    category: "技术社区"
+    login_required: no
+    commands:
+      top: "devto top -f json"
+
+  - id: lobsters
+    name: "Lobsters"
+    description: "技术新闻社区（类 HN）"
+    category: "技术社区"
+    login_required: no
+    commands:
+      hot: "lobsters hot -f json"
+
+# ━━ 通用能力（始终可用）━━
+builtin:
+  - id: google
+    name: "Google 搜索"
+    description: "通用搜索 + site: 定向 + 新闻"
+    commands:
+      search: "google search \"{keyword}\" -f json"
+      news: "google news \"{keyword}\" -f json"
+      site: "google search \"site:{domain} {keyword}\" -f json"
+
+  - id: web
+    name: "通用网页抓取"
+    description: "任意 URL 转 Markdown"
+    commands:
+      read: "web read --url \"{url}\""

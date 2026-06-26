@@ -1,0 +1,116 @@
+{
+  "name": "clawdgo",
+  "version": "1.3.2",
+  "buildDate": "2026-03-25",
+  "description": "ClawdGo 龙虾网安训练营）。",
+  "category": "security-training",
+  "license": "MIT-0",
+  "author": "ClawdGo Team",
+  "files": {
+    "skill": "SKILL.md"
+  },
+  "requires": {
+    "env": [],
+    "bins": []
+  },
+  "sideEffects": {
+    "fileWrites": [],
+    "autonomousModes": [
+      {
+        "mode": "B self-train",
+        "description": "先选择前台/后台形态；前台默认配置 cron 自动逐场推送，后台批次训练后汇总。"
+      },
+      {
+        "mode": "F arena",
+        "description": "5 轮连续红蓝对抗，可由用户发送暂停/退出中断。"
+      },
+      {
+        "mode": "H internal-test",
+        "description": "联网斗虾处于内测提示阶段，不执行任何 duel 子命令。"
+      }
+    ],
+    "cronNote": "B/H 模式包含 cron 示例；执行失败必须返回真实错误，不得伪造成功。"
+  },
+  "capabilities": [
+    "world-mode",
+    "guided-training",
+    "self-training",
+    "exam-mode",
+    "teach-mode",
+    "evolve-mode",
+    "scene-workshop-mode",
+    "arena-mode",
+    "vaccine-mode",
+    "chant-mode",
+    "h-mode-duel",
+    "arena-server-integration",
+    "duel-auto-polling",
+    "duel-squad-orchestration",
+    "12-dimension-scoring"
+  ],
+  "triggers": [
+    "clawdgo",
+    "小白",
+    "龙虾世界",
+    "安全世界",
+    "我的龙虾",
+    "clawdgo world",
+    "小白汇报",
+    "clawdgo world update",
+    "小白你最近怎么样",
+    "开始训练",
+    "导航",
+    "菜单",
+    "主页",
+    "帮助",
+    "指令",
+    "命令",
+    "help",
+    "clawdgo train",
+    "clawdgo self-train",
+    "自主训练",
+    "B前台",
+    "B后台",
+    "B显式",
+    "B隐式",
+    "B观摩",
+    "B后台训练",
+    "clawdgo exam",
+    "clawdgo teach",
+    "教教我",
+    "clawdgo evolve",
+    "clawdgo workshop",
+    "场景工坊",
+    "场景扩库",
+    "进化训练",
+    "clawdgo arena",
+    "对抗训练",
+    "红蓝对抗",
+    "clawdgo vaccine",
+    "安全疫苗",
+    "clawdgo duel",
+    "clawdgo h",
+    "对抗竞技场",
+    "斗虾",
+    "双龙虾对战",
+    "clawdgo chant",
+    "安全口诀",
+    "口诀",
+    "clawdgo memory",
+    "clawdgo status",
+    "clawdgo reset",
+    "clawdgo uninstall",
+    "clawdgo version"
+  ],
+  "keywords": [
+    "security",
+    "phishing",
+    "social-engineering",
+    "training",
+    "red-team",
+    "blue-team",
+    "adversarial",
+    "openclaw",
+    "clawhub"
+  ]
+}

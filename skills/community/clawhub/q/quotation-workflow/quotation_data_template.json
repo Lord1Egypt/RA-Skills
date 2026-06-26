@@ -1,0 +1,28 @@
+{
+  "customer": {
+    "company_name": "_________________",
+    "contact": "_________________",
+    "email": "_________________",
+    "phone": "_________________",
+    "address": "_________________"
+  },
+  "quotation": {
+    "quotation_no": "QT-YYYYMMDD-001",
+    "date": "YYYY-MM-DD",
+    "valid_until": "YYYY-MM-DD"
+  },
+  "products": [
+    {
+      "description": "产品描述 Product Description",
+      "specification": "规格型号 Specification",
+      "quantity": 0,
+      "unit_price": 0.00
+    }
+  ],
+  "currency": "USD",
+  "payment_terms": "T/T 30% deposit, 70% before shipment",
+  "lead_time": "15-20 days after deposit",
+  "freight": 0.00,
+  "tax": 0.00,
+  "notes": "1. 以上价格基于当前原材料成本，如有变动将另行通知。\n2. 最终价格以确认为准。"
+}

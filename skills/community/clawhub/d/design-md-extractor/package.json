@@ -1,0 +1,14 @@
+{
+  "name": "design-md-extractor-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:publish": "node test/publish-readiness.test.mjs",
+    "test:fixture": "node scripts/extract-design.mjs --url file://$PWD/fixtures/product.html --out /tmp/design-md-extractor-fixture.md --snapshot /tmp/design-md-extractor-fixture.snapshot.json",
+    "test": "npm run test:publish && npm run test:fixture"
+  },
+  "dependencies": {
+    "playwright": "1.60.0"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "home-food-planner",
+  "version": "1.0.0",
+  "description": "家庭膳食规划工具，提供一周菜单规划、营养搭配分析、购物清单生成、食材管理、食谱推荐等功能",
+  "author": "Harry",
+  "license": "MIT",
+  "keywords": [
+    "家庭膳食",
+    "菜单规划",
+    "食材管理",
+    "购物清单",
+    "营养分析",
+    "食谱推荐",
+    "meal-planning",
+    "food-planner",
+    "nutrition",
+    "recipes"
+  ],
+  "categories": [
+    "lifestyle",
+    "health",
+    "productivity"
+  ],
+  "homepage": "",
+  "repository": "",
+  "bugs": "",
+  "icon": "🍽️"
+}

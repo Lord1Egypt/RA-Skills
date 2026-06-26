@@ -1,0 +1,20 @@
+[project]
+name = "polymarket"
+version = "0.1.0"
+description = "Polymarket prediction market integration"
+readme = "SKILL.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31.0",
+    "py-clob-client>=1.5.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]

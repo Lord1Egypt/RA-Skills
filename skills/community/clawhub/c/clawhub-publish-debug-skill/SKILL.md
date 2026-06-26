@@ -1,35 +1,28 @@
 ---
-name: "Clawhub Publish Debug Skill"
-description: "A minimal but concrete diagnostic skill used to verify whether ClawHub publish and install return the same SKILL.md content."
-category: "software-development"
-source: "ClawHub"
-tags: [debug, test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-publish-debug-skill"
-sourceUrl: "https://clawhub.ai/skills/clawhub-publish-debug-skill"
+name: clawhub-publish-debug-skill
+description: A minimal but concrete diagnostic skill used to verify whether ClawHub publish and install return the same SKILL.md content.
 ---
 
-# Clawhub Publish Debug Skill
+# ClawHub Publish Debug Skill
 
-> A minimal but concrete diagnostic skill used to verify whether ClawHub publish and install return the same SKILL.md content.
+This skill exists only to verify that a freshly published SKILL.md is the same content later returned by ClawHub install/update.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-publish-debug-skill`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-publish-debug-skill](https://clawhub.ai/skills/clawhub-publish-debug-skill)
+## Expected verification marker
 
-## Overview
+`debug-marker: 2026-04-01-a`
 
+## How to verify
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawhub-publish-debug-skill
-```
+After installing this skill from ClawHub, open the installed `SKILL.md` and confirm that:
+
+- the description mentions publish/install consistency
+- the expected verification marker is exactly `2026-04-01-a`
+- this file contains the phrase `freshly published skill content`
+
+If any of those checks fail, the installed content does not match the published content.
+
+## Why this exists
+
+This is not a production skill. It is a controlled fixture for diagnosing possible stale content, cache mismatch, or registry/install inconsistencies in the ClawHub publish pipeline.
+
+The expected phrase is: freshly published skill content.

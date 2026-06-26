@@ -1,35 +1,127 @@
----
-name: "Brainstorming"
-description: "自动追问澄清模糊需求，分步确认设计方案，确保代码实现前需求明确，降低返工风险，支持分块确认与TDD流程。"
-category: "other"
-source: "ClawHub"
-tags: [local, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sipoon-brainstorming"
-sourceUrl: "https://clawhub.ai/skills/sipoon-brainstorming"
+# brainstorming
+
+> **借鉴来源**：Superpowers (obra/superpowers) 的 brainstorming skill
+>
+> 在动手写代码之前，先通过追问把需求搞清楚，展示设计方案给用户确认，再动手。
+>
+> **核心理念**：写代码前不问清楚 = 返工成本 10x。
+
 ---
 
-# Brainstorming
+## 触发条件
 
-> 自动追问澄清模糊需求，分步确认设计方案，确保代码实现前需求明确，降低返工风险，支持分块确认与TDD流程。
+满足以下任一场景时**自动激活**，无需用户调用：
+- 用户要求创建一个新的功能/模块/项目
+- 用户描述了一个需求，但没有明确的范围边界
+- 用户说"帮我做个 XXX"（模糊请求）
+- 用户要求实现某个功能，但没有说明输入/输出/边界条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sipoon-brainstorming`
-- **Source URL:** [https://clawhub.ai/skills/sipoon-brainstorming](https://clawhub.ai/skills/sipoon-brainstorming)
+**不适用于**：纯搜索、纯阅读、简单确认、快速修复已知 bug。
 
-## Overview
+---
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sipoon-brainstorming
+### Step 1：追问澄清（不跳步）
+
+遇到模糊需求，按以下清单追问：
+
 ```
+[需求澄清]
+1. 用户故事：谁在什么场景下需要这个功能？
+2. 输入：数据从哪来？格式是什么？
+3. 输出：期望的结果是什么？格式是什么？
+4. 边界：什么情况算成功？什么情况算失败？
+5. 优先级：这个功能的核心价值是什么？MVP 是什么？
+6. 约束：有没有技术限制？性能要求？兼容性要求？
+```
+
+**规则**：
+- 一次问 2-3 个最重要的问题，不要一次问完（减少用户认知负担）
+- 用户回答后继续追问，直到需求明确
+- 如果用户拒绝回答，告诉用户这会影响实现质量，让他决定是否继续
+
+### Step 2：产出设计文档（分块展示）
+
+需求明确后，产出设计文档，但**不要一次性全部展示**，分块展示：
+
+```
+## 设计草案 v0.1
+
+### 模块结构
+[文字描述]
+
+### 风险点
+[列出 1-2 个最需要用户确认的点]
+
+---
+请确认以上方向是否正确，我会继续细化。
+```
+
+**原则**：每次展示用户能在 30 秒内读完的分量。
+
+### Step 3：用户确认 → 产出实施计划
+
+用户确认设计后，产出实施计划：
+
+```
+## 实施计划（简化版）
+
+| 阶段 | 任务 | 验收标准 |
+|------|------|---------|
+| Phase 1 | [任务描述] | [标准] |
+| Phase 2 | [任务描述] | [标准] |
+
+每个 Phase 完成后再进入下一个。
+```
+
+### Step 4：TDD 循环（用户说"go"之后）
+
+**进入此步之前，必须先通过 `grill-me` 确认**。
+
+- 每个任务：先写失败测试 → 再实现 → 再验证
+- 每完成一个任务，主动报告进度
+- 遇到阻塞，立刻报告，不要等
+- 完成后 → 调用 `skill-compounding` 检查是否值得沉淀
+
+---
+
+## 关键原则
+
+| 原则 | 说明 |
+|------|------|
+| **不猜需求** | 有歧义就问，不要假设 |
+| **用户决策权** | 设计方向用户定，AI 只执行 |
+| **分块确认** | 不一次性给完整方案，分段确认 |
+| **先测试后实现** | TDD 循环，减少返工 |
+| **阻塞即升级** | 遇到问题立刻报告，不沉默 |
+
+---
+
+## 下一跳（Skill 链式调用）
+
+brainstorming 是**入口技能**，完成后按以下路径自动调用：
+
+```
+brainstorming → grill-me → [implementation]
+              ↘ agent-teams（需要多角度审查时）
+              ↘ conductor（大型项目/多阶段任务）
+```
+
+**下一跳触发条件**：
+- 设计确认后 → 自动调用 `grill-me` 做实施前最后确认
+- 需要多角色并行审查 → 调用 `agent-teams`
+- 项目规模大/多阶段 → 调用 `conductor` 接管后续流程
+- 解决方案有复用价值 → 调用 `skill-compounding`
+
+## 与其他 Skill 的配合
+
+- `skill-compounding`：如果这个需求的解决方案值得复用，在完成后提取为 Skill
+- `refactoring`：如果发现现有代码结构不合理，先讨论再改
+- `test-specialist`：测试用例设计有疑问时调用
+
+---
+
+## 触发命令
+
+**自动触发**，不需要用户手动调用。当检测到模糊需求时主动激活。

@@ -1,0 +1,38 @@
+{
+  "name": "xquads-traffic-masters",
+  "version": "1.0.0",
+  "description": "Squad de 16 especialistas em paid traffic",
+  "openclaw": {
+    "homepage": "https://github.com/synkra/xquads",
+    "emoji": "📈"
+  },
+  "agents": [
+    "traffic-chief",
+    "ralph-burns",
+    "molly-pittman",
+    "nicholas-kusmich",
+    "kasim-aslam",
+    "tom-breeze",
+    "pedro-sobral",
+    "depesh-mandalia",
+    "scale-optimizer",
+    "fiscal",
+    "creative-analyst",
+    "ads-analyst",
+    "pixel-specialist",
+    "media-buyer",
+    "ad-midas",
+    "performance-analyst"
+  ],
+  "tasks": [
+    "create-ad-strategy",
+    "audit-ad-account",
+    "create-ad-creative",
+    "setup-tracking",
+    "scale-campaign",
+    "manage-budget",
+    "analyze-performance",
+    "diagnose",
+    "review"
+  ]
+}

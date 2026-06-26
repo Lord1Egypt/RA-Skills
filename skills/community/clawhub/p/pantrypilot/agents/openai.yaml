@@ -1,0 +1,4 @@
+interface:
+  display_name: "PantryPilot 补货参谋"
+  short_description: "把一次性下单升级成家庭补货系统，按平台路由每周复购"
+  default_prompt: "Use $pantrypilot to turn a household menu, pantry status, or repeat-purchase list into a replenishment plan across Meituan, PDD, and Taobao, then recommend the cheapest, fastest, and lowest-friction restock path in Chinese."

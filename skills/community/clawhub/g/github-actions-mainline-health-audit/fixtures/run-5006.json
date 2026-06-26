@@ -1,0 +1,12 @@
+{
+  "databaseId": 5006,
+  "workflowName": "CI Build",
+  "event": "pull_request",
+  "conclusion": "success",
+  "headBranch": "feature/new-ui",
+  "headSha": "abc5006",
+  "createdAt": "2026-03-06T00:00:00Z",
+  "updatedAt": "2026-03-06T00:08:30Z",
+  "url": "https://github.com/acme/api/actions/runs/5006",
+  "repository": "acme/api"
+}

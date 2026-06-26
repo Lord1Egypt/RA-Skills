@@ -1,0 +1,4 @@
+interface:
+  display_name: "NanoGPT"
+  short_description: "Use the NanoGPT API from local OpenClaw workflows for text, image, or video tasks"
+  default_prompt: "Use NanoGPT through the local CLI wrappers to answer this request or generate text, images, or video. Use it only when the user wants the NanoGPT API, and only upload local media files the user explicitly provided."

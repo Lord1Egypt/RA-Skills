@@ -1,0 +1,31 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_task_create",
+    "description": "Automatically break down user requirements into multiple executable tasks (Task) and store them in a structured manner. Each task should have clear goals, contextual descriptions, and execution prompts, which can be used to drive subsequent AI Agent automatic execution or human collaborative processing.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "threadId": {
+          "type": "string",
+          "description": "Current session ID, used to associate task context"
+        },
+        "name": {
+          "type": "string",
+          "description": "Task name, should clearly express the task goal or output content (it is recommended to include verb + object, such as \"Generate customer management system data table structure\")",
+          "minLength": 4,
+          "maxLength": 500
+        },
+        "remark": {
+          "type": "string",
+          "description": "Detailed task description, used as a prompt for the agent to execute the task, should include background, input information, expected results, or constraints"
+        },
+		"moduleId": {
+          "type": "string",
+          "description": "Informat AI agent ID, needs to call the tool `_task_doc` to obtain"
+        }
+      },
+      "required": ["threadId", "name", "remark", "moduleId"]
+    }
+  }
+}

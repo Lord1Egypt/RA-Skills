@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+# pr-auto-review.sh — Automated PR review pipeline
+# Usage: bash pr-auto-review.sh [--pr-url <url>] [--branch <branch>] [--discord-webhook <url>] [--skip-healthcheck]
+set -euo pipefail
+
+PR_URL=""
+BRANCH=""
+DISCORD_WEBHOOK=""
+SKIP_HEALTHCHECK=false
+REPORT_FILE=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --pr-url)        PR_URL="$2"; shift 2 ;;
+    --branch)        BRANCH="$2"; shift 2 ;;
+    --discord-webhook) DISCORD_WEBHOOK="$2"; shift 2 ;;
+    --skip-healthcheck) SKIP_HEALTHCHECK=true; shift ;;
+    --report)        REPORT_FILE="$2"; shift 2 ;;
+    *) echo "Unknown option: $1"; exit 1 ;;
+  esac
+done
+
+TMPDIR=$(mktemp -d)
+trap 'rm -rf "$TMPDIR"' EXIT
+REPORT="$TMPDIR/report.md"
+TIMESTAMP=$(date -u +"%Y-%m-%dT%HZ")
+
+echo "# PR Auto-Review Report — $TIMESTAMP" > "$REPORT"
+echo "" >> "$REPORT"
+
+# ── Phase 1: Code Review ──────────────────────────────────────────
+echo "## 1. Code Review" >> "$REPORT"
+echo "" >> "$REPORT"
+
+if [[ -n "$PR_URL" ]]; then
+  # Extract PR number from URL (supports github.com/org/repo/pull/123)
+  PR_NUM=$(echo "$PR_URL" | grep -oE '/pull/[0-9]+' | grep -oE '[0-9]+')
+  if [[ -n "$PR_NUM" ]]; then
+    # Get PR diff
+    DIFF=$(gh pr diff "$PR_NUM" 2>/dev/null || echo "UNABLE_TO_FETCH_DIFF")
+    PR_TITLE=$(gh pr view "$PR_NUM" --json title --jq '.title' 2>/dev/null || echo "Unknown PR")
+    PR_AUTHOR=$(gh pr view "$PR_NUM" --json author --jq '.author.login' 2>/dev/null || echo "unknown")
+    PR_FILES=$(gh pr diff "$PR_NUM" --name-only 2>/dev/null || echo "")
+    FILE_COUNT=$(echo "$PR_FILES" | grep -c . || echo "0")
+
+    echo "**PR**: [#${PR_NUM}](${PR_URL}) — ${PR_TITLE}" >> "$REPORT"
+    echo "**Author**: ${PR_AUTHOR}" >> "$REPORT"
+    echo "**Files changed**: ${FILE_COUNT}" >> "$REPORT"
+    echo "" >> "$REPORT"
+
+    # CI/CD status
+    CI_STATUS=$(gh pr checks "$PR_NUM" 2>/dev/null || echo "UNABLE_TO_CHECK")
+    if echo "$CI_STATUS" | grep -q "fail"; then
+      echo "### ⚠️ CI/CD: FAILURES DETECTED" >> "$REPORT"
+      echo '```' >> "$REPORT"
+      echo "$CI_STATUS" >> "$REPORT"
+      echo '```' >> "$REPORT"
+    else
+      echo "### ✅ CI/CD: All checks passing" >> "$REPORT"
+    fi
+    echo "" >> "$REPORT"
+
+    # Quick static analysis
+    echo "### Changed Files" >> "$REPORT"
+    echo "$PR_FILES" | while read -r f; do
+      [[ -z "$f" ]] && continue
+      echo "- \`${f}\`" >> "$REPORT"
+    done
+    echo "" >> "$REPORT"
+  else
+    echo "Could not parse PR number from URL. Manual review required." >> "$REPORT"
+  fi
+elif [[ -n "$BRANCH" ]]; then
+  DIFF=$(git diff "main...${BRANCH}" 2>/dev/null || git diff "master...${BRANCH}" 2>/dev/null || echo "UNABLE_TO_FETCH_DIFF")
+  echo "**Branch**: ${BRANCH}" >> "$REPORT"
+  echo "" >> "$REPORT"
+else
+  DIFF=$(git diff HEAD~1 2>/dev/null || echo "UNABLE_TO_FETCH_DIFF")
+  echo "**Mode**: Last commit on current branch" >> "$REPORT"
+  echo "" >> "$REPORT"
+fi
+
+# Security quick scan on diff
+if [[ "$DIFF" != "UNABLE_TO_FETCH_DIFF" ]]; then
+  SECRETS=$(echo "$DIFF" | grep -iE '(password|secret|api_key|token|private_key)\s*[:=]' || true)
+  if [[ -n "$SECRETS" ]]; then
+    echo "### 🔴 Potential Secrets Detected" >> "$REPORT"
+    echo "Review the diff for hardcoded credentials." >> "$REPORT"
+    echo "" >> "$REPORT"
+  fi
+fi
+
+echo "---" >> "$REPORT"
+echo "" >> "$REPORT"
+
+# ── Phase 2: Health Check ─────────────────────────────────────────
+echo "## 2. Service Health Check" >> "$REPORT"
+echo "" >> "$REPORT"
+
+if [[ "$SKIP_HEALTHCHECK" == true ]]; then
+  echo "_Skipped (—skip-healthcheck)_" >> "$REPORT"
+else
+  HEALTHCHECK_SCRIPT=$(find /root/.openclaw/skills/healthcheck -name "healthcheck.sh" 2>/dev/null | head -1)
+  if [[ -n "$HEALTHCHECK_SCRIPT" && -x "$HEALTHCHECK_SCRIPT" ]]; then
+    HEALTH_JSON=$("$HEALTHCHECK_SCRIPT" --json 2>/dev/null || echo '{"error":"script failed"}')
+    echo '```json' >> "$REPORT"
+    echo "$HEALTH_JSON" >> "$REPORT"
+    echo '```' >> "$REPORT"
+  else
+    # Fallback: basic curl checks
+    echo "Running basic health probes..." >> "$REPORT"
+    declare -A SERVICES=(
+      [nginx]="http://127.0.0.1:8888/"
+      [api]="http://127.0.0.1:8000/health"
+      [ollama]="http://127.0.0.1:11434/api/tags"
+    )
+    for svc in "${!SERVICES[@]}"; do
+      URL="${SERVICES[$svc]}"
+      STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 "$URL" 2>/dev/null || echo "000")
+      if [[ "$STATUS" == "200" ]]; then
+        echo "- ✅ ${svc}: HTTP ${STATUS}" >> "$REPORT"
+      elif [[ "$STATUS" == "000" ]]; then
+        echo "- 🔴 ${svc}: unreachable" >> "$REPORT"
+      else
+        echo "- 🟡 ${svc}: HTTP ${STATUS}" >> "$REPORT"
+      fi
+    done
+  fi
+fi
+echo "" >> "$REPORT"
+echo "---" >> "$REPORT"
+echo "" >> "$REPORT"
+
+# ── Phase 3: Summary ──────────────────────────────────────────────
+echo "## 3. Summary" >> "$REPORT"
+echo "" >> "$REPORT"
+echo "_Review the above sections for actionable items. Critical issues should be addressed before merge._" >> "$REPORT"
+echo "" >> "$REPORT"
+echo "---" >> "$REPORT"
+echo "_Generated by pr-auto-review skill · $TIMESTAMP_" >> "$REPORT"
+
+# Output report
+cat "$REPORT"
+
+if [[ -n "$REPORT_FILE" ]]; then
+  cp "$REPORT" "$REPORT_FILE"
+  echo "" >&2
+  echo "Report saved to: $REPORT_FILE" >&2
+fi
+
+# ── Phase 4: Discord Notification ─────────────────────────────────
+if [[ -n "$DISCORD_WEBHOOK" ]]; then
+  echo "" >&2
+  echo "Sending to Discord..." >&2
+  # Discord webhook: content field max 2000 chars
+  CONTENT=$(head -c 1900 "$REPORT")
+  curl -s -X POST "$DISCORD_WEBHOOK" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg c "$CONTENT" '{content: $c}')" > /dev/null 2>&1
+  echo "Discord notification sent." >&2
+fi

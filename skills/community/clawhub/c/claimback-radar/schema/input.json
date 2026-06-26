@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["source", "content"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": ["email_text", "pdf_text", "screenshot_ocr", "raw_text"],
+      "description": "Type of input content"
+    },
+    "content": {
+      "type": "string",
+      "description": "Raw text content to analyze"
+    },
+    "user_timezone": {
+      "type": "string",
+      "default": "UTC",
+      "description": "User timezone for date calculations"
+    },
+    "current_date": {
+      "type": "string",
+      "format": "date",
+      "default": "today",
+      "description": "Reference date for deadline calculations"
+    },
+    "user_context": {
+      "type": "object",
+      "properties": {
+        "last_used_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Last known usage date of the service"
+        },
+        "monthly_budget": {
+          "type": "number",
+          "description": "User's monthly subscription budget"
+        }
+      }
+    }
+  }
+}

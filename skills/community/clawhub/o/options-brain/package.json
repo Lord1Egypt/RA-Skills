@@ -1,0 +1,9 @@
+{
+  "name": "options-brain",
+  "version": "1.1.0",
+  "description": "Deep analysis of unusual options activity and walls.",
+  "author": "ssidharHubble",
+  "license": "MIT",
+  "main": "index.js",
+  "type": "module"
+}

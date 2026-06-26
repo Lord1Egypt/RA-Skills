@@ -1,0 +1,133 @@
+:root {
+  --primary-color: #166534;
+  --secondary-color: #4d7c0f;
+  --text-color: #1f2937;
+  --surface-color: #f7fee7;
+  --quote-bg: #f0fdf4;
+  --line-color: #bbf7d0;
+}
+
+#wenyan {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-color);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+#wenyan p,
+#wenyan ul,
+#wenyan ol {
+  margin: 1em 0;
+}
+
+#wenyan a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(22, 101, 52, 0.45);
+}
+
+#wenyan strong {
+  color: var(--primary-color);
+}
+
+#wenyan h1,
+#wenyan h2,
+#wenyan h3,
+#wenyan h4,
+#wenyan h5,
+#wenyan h6 {
+  margin: 1.2em 0 0.9em;
+  color: #14532d;
+}
+
+#wenyan h1 {
+  text-align: center;
+  font-size: 1.6em;
+}
+
+#wenyan h1 span {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 18px;
+  background: #ecfccb;
+}
+
+#wenyan h2 {
+  padding: 8px 0 8px 12px;
+  font-size: 1.22em;
+  border-left: 5px solid var(--secondary-color);
+  background: linear-gradient(90deg, rgba(220, 252, 231, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+#wenyan h3 {
+  font-size: 1.08em;
+}
+
+#wenyan blockquote {
+  margin: 1.2em 0;
+  padding: 14px 18px;
+  border: 1px dashed var(--line-color);
+  border-radius: 16px;
+  background: var(--quote-bg);
+  color: #166534;
+}
+
+#wenyan p code,
+#wenyan li code {
+  padding: 2px 6px;
+  margin: 0 2px;
+  border-radius: 6px;
+  color: #166534;
+  background: #ecfccb;
+  font-size: 0.86em;
+}
+
+#wenyan pre {
+  margin: 1em 0;
+  padding: 0.5em;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(22, 101, 52, 0.12);
+}
+
+#wenyan img {
+  display: block;
+  max-width: 100%;
+  margin: 1.2em auto;
+  border-radius: 16px;
+}
+
+#wenyan table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  overflow: hidden;
+  border-radius: 12px;
+  table-layout: fixed;
+}
+
+#wenyan table th,
+#wenyan table td {
+  padding: 10px 12px;
+  border: 1px solid #dcfce7;
+  word-break: break-all;
+}
+
+#wenyan table th {
+  color: #14532d;
+  background: #ecfccb;
+}
+
+#wenyan table tr:nth-child(odd) {
+  background: #f7fee7;
+}
+
+#wenyan hr {
+  border: 0;
+  height: 1px;
+  margin: 1.8em 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.55) 50%, transparent 100%);
+}
+
+#wenyan .footnote {
+  color: var(--primary-color);
+}

@@ -1,0 +1,50 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 180
+  threshold: 0.8
+
+cases:
+  - id: explicit-trigger-skill-seo
+    prompt: |
+      Use the skill-seo skill to audit this skill for ClawHub and skills.sh discoverability before publication.
+    expect:
+      should_trigger: true
+
+  - id: implicit-trigger-listing-optimization
+    prompt: |
+      I need to improve this skill's slug, description, example prompts, and listing copy so it is easier to discover on ClawHub.
+    expect:
+      should_trigger: true
+
+  - id: negative-trigger-runtime-debugging
+    prompt: |
+      Fix the Python exception inside this skill's script and add regression tests, but do not review listing copy or metadata.
+    expect:
+      should_trigger: false
+
+  - id: structure-check
+    prompt: |
+      Verify that this skill package includes its analyzer and discovery references.
+    expect:
+      files_exist:
+        - SKILL.md
+        - scripts/analyze_skill_seo.py
+        - references/platform-signals.md
+        - references/optimization-patterns.md
+
+  - id: command-docs-check
+    prompt: |
+      Confirm that the documentation includes the local analyzer command and the keyword-audit variant.
+    expect:
+      body_contains:
+        - "python3 {baseDir}/scripts/analyze_skill_seo.py /path/to/skill"
+        - "--keywords \"postgres backup, disaster recovery, wal archiving\""
+
+  - id: anti-pattern-guidance
+    prompt: |
+      Confirm that the skill explicitly warns against manipulative ranking tactics and treating optional extras as mandatory.
+    expect:
+      body_contains:
+        - "Suggest fake installs, fake stars, fake usage, or other manipulative ranking tactics"
+        - "Flag missing `eval.yaml` or `agents/openai.yaml` as if they were mandatory"

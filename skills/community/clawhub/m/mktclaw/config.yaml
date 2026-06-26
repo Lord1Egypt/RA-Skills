@@ -1,0 +1,128 @@
+# MktClaw 配置中心
+# Version 由 version.json SSOT 管理
+
+version: "6.0.0"
+
+# ── 加载策略 ──
+loading_strategy:
+  hot_layer:
+    description: "入口必读，常驻上下文"
+    files:
+      - SKILL.md
+      - agents/intake-agent.md
+      - agents/router-agent.md
+      - agents/transition-agent.md
+      - references/agency-types.md
+  warm_layer:
+    description: "按需加载，仅当前 type"
+    pattern: "agents/types/{type}/main-agent.md + workflow.yaml"
+  cold_layer:
+    description: "按需引用，绝不预读"
+    shared_protocols:
+      - references/_shared/quality-protocol.md
+      - references/_shared/brief-output-spec.md
+      - references/_shared/compliance-protocol.md
+    industries:
+      - references/industries/README.md
+      - references/industries/beauty-personal-care.md
+      - references/industries/fnb.md
+      - references/industries/3c-digital.md
+      - references/industries/maternity-baby.md
+      - references/industries/education.md
+      - references/industries/saas-b2b.md
+      - references/industries/medical-aesthetic.md
+      - references/industries/apparel.md
+      - references/industries/finance.md
+      - references/industries/automotive.md
+
+# ── 路由配置 ──
+routing:
+  strategy: "hybrid"
+  weights:
+    keyword: 40
+    semantic: 35
+    context: 25
+  confidence_threshold:
+    high: 85
+    medium: 65
+    low: 45
+  max_retries: 3
+  industry_passthrough: true
+
+# ── Agent 配置 ──
+agents:
+  intake:
+    max_clarification_rounds: 3
+    questions_per_round: 3
+    modes: ["fast", "standard"]
+    industry_detection: required
+    compliance_risk_flagging: true
+  router:
+    pitch_mode_trigger:
+      keywords: ["多视角", "多个方案", "对比", "pitch"]
+  type_agents:
+    quality_protocol:
+      shared_reference: "references/_shared/quality-protocol.md"
+      output_spec: "references/_shared/brief-output-spec.md"
+      compliance_protocol: "references/_shared/compliance-protocol.md"
+      tournament_mode: "swiss_system_when_4plus"
+      adversarial_review: true
+      llm_as_judge: true
+      evaluation_dimensions: 5
+    industry_overlay:
+      enabled: true
+      path_pattern: "references/industries/{industry-id}.md"
+      fallback: "references/benchmark-database.md"
+
+# ── 工作流配置 ──
+workflows:
+  parallel_execution: true
+  max_parallel_agents: 5
+  pitch_mode:
+    enabled: true
+    default_views: 3
+    max_views: 5
+  checkpoints:
+    enabled: true
+    user_confirmation_required: true
+
+# ── 性能目标 ──
+performance:
+  token_targets:
+    hot_layer_max: 12000
+    warm_layer_max: 8000
+    cold_layer_per_ref_max: 5000
+
+# ── 合规配置 ──
+compliance:
+  enabled: true
+  enforcement: strict
+  user_bypass_allowed: false
+  blocker_keywords:
+    - "最"
+    - "第一"
+    - "顶级"
+    - "极致"
+    - "100%"
+    - "永不"
+    - "治疗"
+    - "治愈"
+  industry_blocker:
+    beauty: ["美白", "祛斑", "抗衰", "防脱", "换肤"]
+    fnb: ["提高免疫力", "排毒", "减肥", "降血糖", "降血压"]
+    medical-aesthetic: ["无创", "无痛", "保证效果"]
+    education: ["包过", "保过", "升学率"]
+    finance: ["保本", "稳赚", "零风险", "高额回报"]
+  platform_red_lines:
+    douyin: ["Before/After过度", "低俗擦边"]
+    xiaohongshu: ["软广未声明", "夸大功效"]
+    weixin: ["多级分销", "诱导分享"]
+
+# ── 创意多样性 ──
+creative_diversity:
+  enabled: true
+  forced_divergence: true
+  anti_consensus_required: true
+  cross_industry_borrowing: true
+  swiss_system_threshold: 4
+  llm_as_judge: true

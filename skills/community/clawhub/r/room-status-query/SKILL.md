@@ -1,35 +1,129 @@
 ---
-name: "Room Status Query"
+name: "room-status-query"
 description: "查询会议室当前状态（空闲/已释放）。当用户询问当前有哪些空闲会议室或最近有哪些会议室被释放时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/room-status-query"
-sourceUrl: "https://clawhub.ai/skills/room-status-query"
 ---
 
-# Room Status Query
+# 会议室状态查询
 
-> 查询会议室当前状态（空闲/已释放）。当用户询问当前有哪些空闲会议室或最近有哪些会议室被释放时调用。
+提供两个 API 接口查询会议室当前状态，数据来自本地缓存（1-5 分钟同步一次）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/room-status-query`
-- **Source URL:** [https://clawhub.ai/skills/room-status-query](https://clawhub.ai/skills/room-status-query)
+## 服务器地址
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/room-status-query
 ```
+https://smartrooms.ke.com
+```
+
+## 可用接口
+
+### 1. 获取空闲会议室列表
+
+```
+GET /api/rooms/available
+```
+
+**返回示例：**
+```json
+{
+  "code": 0,
+  "data": {
+    "total": 5,
+    "list": [
+      {
+        "room_id": 12345,
+        "room_name": "4F 洽谈间4",
+        "area_name": "东方电子科技大厦",
+        "floor": "4层",
+        "hold_num": 6,
+        "room_status": 1,
+        "room_config": {
+          "additional_resource": ["电视", "白板"]
+        }
+      }
+    ],
+    "grouped": {
+      "北京|东方电子科技大厦": [ ... ]
+    },
+    "syncTime": "2026-06-04T16:11:44.920+08:00",
+    "syncTimestamp": 1780560704920
+  }
+}
+```
+
+### 2. 获取已释放会议室列表
+
+```
+GET /api/rooms/released
+```
+
+**返回示例：**
+```json
+{
+  "code": 0,
+  "data": {
+    "total": 2,
+    "list": [
+      {
+        "id": 2807122,
+        "room_id": 16795,
+        "room_name": "4F 洽谈间4",
+        "area_name": "东方电子科技大厦",
+        "city_name": "北京",
+        "start_time": 1780563601000,
+        "end_time": 1780567200000,
+        "booker_username": "张三",
+        "subject": "会议"
+      }
+    ],
+    "syncTime": "2026-06-04T16:11:44.920+08:00",
+    "syncTimestamp": 1780560704920
+  }
+}
+```
+
+## 输出格式
+
+返回的数据必须按以下格式呈现给用户，**不要直接输出 JSON 原始数据**。
+
+> 输出最顶部显示：`会议室更新时间：2026-06-04 16:11（UTC+8）`  
+> 第二行显示：`目前只支持查询，不支持预定`
+>
+> **注意：** 用户提到"八街"时，指的就是"东方电子科技大厦"；提到"融科"时，指的就是"融科融智创新园"。查询和展示时自动替换为正式名称。
+
+### 空闲会议室
+
+按 **城市 / 办公区** 分组，每个办公区用表格展示：
+
+```
+📌 北京 / 东方电子科技大厦
+| 会议室 | 楼层 | 容纳人数 | 配套设备 |
+|--------|------|---------|---------|
+| 4F 洽谈间4 | 4层 | 6人 | 电视、白板 |
+| 4F 洽谈间5 | 4层 | 6人 | 电视 |
+
+📌 北京 / 汇众大厦-1号楼
+| 会议室 | 楼层 | 容纳人数 | 配套设备 |
+|--------|------|---------|---------|
+| 3-02 玉渊潭 | 3层 | 10人 | 电视 |
+| 3-04 陶然亭 | 3层 | 8人 | 无 |
+```
+
+如果没有空闲会议室，输出：`当前没有空闲会议室。`
+
+### 已释放会议室
+
+按 **城市 / 办公区** 分组，每个办公区用表格展示：
+
+```
+📌 北京 / 东方电子科技大厦
+| 会议室 | 预约人 | 会议主题 | 释放时间 |
+|--------|--------|---------|---------|
+| 4F 洽谈间4 | 欧阳鹏 | 会议 | 11:00 |
+```
+
+如果没有已释放的会议室，输出：`最近没有已释放的会议室。`
+
+> 时间字段按北京时间显示，释放时间取 `end_time` 转换。
+>
+> 输出末尾添加：`立即预定：[https://new-meeting.ke.com/](https://new-meeting.ke.com/)`
+
+<!-- skill 来源仓库：https://git.lianjia.com/netsys-ainative/muwei002/-/tree/main/IT_SKILL -->

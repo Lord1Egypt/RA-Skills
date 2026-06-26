@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-RISK-001",
+  "test_points": [
+    {
+      "id": "TP-001",
+      "source_scenario": "集中度预警-30%提醒触发",
+      "category": "main_flow",
+      "description": "投资者单一股票持仓市值占总资产比例达到30%时，系统触发提醒级别预警并推送通知",
+      "precondition": "投资者持有某股票，买入后持仓占比达到30%",
+      "related_rules": ["占比30%触发提醒", "预警通知通过APP推送+短信"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-002",
+      "source_scenario": "集中度预警-50%警告触发",
+      "category": "main_flow",
+      "description": "投资者单一股票持仓市值占总资产比例达到50%时，系统触发警告级别预警",
+      "precondition": "投资者持有某股票，持仓占比达到50%",
+      "related_rules": ["占比50%触发警告"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-003",
+      "source_scenario": "集中度预警-70%禁止买入",
+      "category": "main_flow",
+      "description": "投资者单一股票持仓市值占总资产比例达到70%时，系统禁止继续买入该股票",
+      "precondition": "投资者持有某股票，持仓占比达到70%",
+      "related_rules": ["占比70%禁止买入"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-004",
+      "source_scenario": "集中度预警-通知渠道验证",
+      "category": "integration",
+      "description": "预警触发后同时通过APP推送和短信两个渠道通知投资者",
+      "precondition": "投资者已绑定手机号且开启APP推送权限",
+      "related_rules": ["预警通知通过APP推送+短信"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-005",
+      "source_scenario": "集中度预警-管理员调整阈值",
+      "category": "permission",
+      "description": "管理员登录后台调整预警阈值，调整后新阈值立即生效",
+      "precondition": "管理员账户正常，具有阈值管理权限",
+      "related_rules": ["管理员可调整阈值"],
+      "related_roles": ["管理员"],
+      "priority_hint": "P1",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-006",
+      "source_scenario": "集中度预警-阈值边界值",
+      "category": "boundary",
+      "description": "投资者持仓占比恰好为29.99%时不触发预警，30.00%时触发提醒",
+      "precondition": "投资者持有某股票，持仓占比接近30%",
+      "related_rules": ["占比30%触发提醒"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P1",
+      "pci_required": false,
+      "pci_description": ""
+    }
+  ],
+  "coverage_summary": {
+    "total": 6,
+    "by_category": {
+      "main_flow": 3,
+      "integration": 1,
+      "permission": 1,
+      "boundary": 1
+    }
+  }
+}

@@ -1,35 +1,32 @@
----
-name: "Sage Planning"
-description: "Enables high-level strategic planning, architectural critique, and analysis by adopting the Great Sage persona focused on thoughtful design over execution."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sage-planning"
-sourceUrl: "https://clawhub.ai/skills/sage-planning"
----
+# Sage Planning (Great Sage Persona)
 
-# Sage Planning
+This skill implements the **Great Sage (大贤者)** persona, a specialized mode for high-level planning, architectural critique, and strategic analysis.
 
-> Enables high-level strategic planning, architectural critique, and analysis by adopting the Great Sage persona focused on thoughtful design over execution.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sage-planning`
-- **Source URL:** [https://clawhub.ai/skills/sage-planning](https://clawhub.ai/skills/sage-planning)
+To provide a distinct, high-reasoning capability that separates "doing" from "planning". The Great Sage does not execute code; it designs the plan that others execute.
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Installation
+Ensure the persona memory exists:
 ```bash
-hermes skills install clawhub/sage-planning
+node skills/sage-planning/index.js install
 ```
+
+### 2. Activation
+When you need to enter "Sage Mode":
+1.  Read `memory/personas/sage_planning.md`.
+2.  Adopt the persona defined therein.
+3.  Output your analysis.
+
+### 3. Context Integration
+This skill is designed to be called when the user asks for:
+- "Make a plan for..."
+- "Critique this..."
+- "Analyze the architecture of..."
+- "Sage mode" / "大贤者模式"
+
+## Files
+- `index.js`: Installation and prompt generation logic.
+- `package.json`: Metadata.

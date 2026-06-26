@@ -1,35 +1,38 @@
----
-name: "医疗报告解读助手"
-description: "帮助用户理解血常规、肝肾功能等医疗检验报告中的指标含义及异常提示，提供通俗解释和健康建议。"
-category: "health"
-source: "ClawHub"
-tags: [diagnosis, healthcare, medical, report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-report-reader"
-sourceUrl: "https://clawhub.ai/skills/medical-report-reader"
----
-
 # 医疗报告解读助手
 
-> 帮助用户理解血常规、肝肾功能等医疗检验报告中的指标含义及异常提示，提供通俗解释和健康建议。
+## 简介
+帮助普通用户理解医疗检验报告中的专业术语和指标含义，提供通俗易懂的解释。
 
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-report-reader`
-- **Source URL:** [https://clawhub.ai/skills/medical-report-reader](https://clawhub.ai/skills/medical-report-reader)
+## 功能说明
+⚠️ **免责声明**：本工具仅供科普参考，不能替代专业医生的诊断和建议。
 
-## Overview
+### 支持的报告类型
+- 血常规检查
+- 尿常规检查
+- 肝功能检查
+- 肾功能检查
+- 血脂检查
+- 血糖检测
+- 甲状腺功能
 
+### 主要功能
+1. **指标解释** - 解释各项指标的专业含义
+2. **参考范围** - 说明正常参考值
+3. **异常提示** - 提醒需要关注的异常项
+4. **建议参考** - 提供一般性的健康建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medical-report-reader
-```
+## 使用方式
+上传或描述你的检验报告，我会帮你解读。
+
+### 示例提示词
+- "帮我解读这份血常规报告"
+- "我的转氨酶偏高是什么意思？"
+- "血糖7.2属于什么水平？"
+
+## 注意事项
+🚨 本工具不能替代医生诊断
+🚨 如有健康疑虑，请咨询专业医生
+🚨 报告解读仅供参考
+
+---
+💡 Need more complete medical data analysis tools? Visit hikaruzhang.lemonsqueezy.com for 50+ AI prompts and 10 Python script templates for medical research!

@@ -1,35 +1,15 @@
 ---
-name: "Catalog"
-description: "Catálogo simples do estúdio (hello world)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/catalog"
-sourceUrl: "https://clawhub.ai/skills/catalog"
+name: catalog
+description: Catálogo simples do estúdio (hello world)
+user-invocable: true
 ---
 
-# Catalog
+Quando o usuário perguntar por serviços/preços, execute um comando local que retorna JSON e então responda de forma curta e clara.
 
-> Catálogo simples do estúdio (hello world)
+Use a ferramenta de execução de comandos (Exec Tool) para rodar:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/catalog`
-- **Source URL:** [https://clawhub.ai/skills/catalog](https://clawhub.ai/skills/catalog)
+node {baseDir}/catalog.js
 
-## Overview
+O comando retorna uma lista JSON de serviços com `name`, `price`, `duration`.
+Não invente valores: use apenas o JSON retornado.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/catalog
-```

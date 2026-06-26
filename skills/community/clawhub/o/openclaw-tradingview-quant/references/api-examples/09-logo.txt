@@ -1,0 +1,6 @@
+curl --request GET \
+	--url 'https://tradingview-data1.p.rapidapi.com/logo?url=apple&big=false' \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY'
+
+

@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  # 一次性爬取任务
+  crawler:
+    build: .
+    env_file: .env
+    volumes:
+      - crawler_data:/app/data
+      - ./config:/app/config:ro
+    command: ["crawl", "webnovel"]
+    profiles:
+      - crawl
+
+  # 定时调度器（常驻）
+  scheduler:
+    build: .
+    env_file: .env
+    volumes:
+      - crawler_data:/app/data
+      - ./config:/app/config:ro
+    command: ["schedule", "--action=start"]
+    restart: unless-stopped
+
+  # RSS 生成（定时运行）
+  rss-gen:
+    build: .
+    env_file: .env
+    volumes:
+      - crawler_data:/app/data
+      - ./config:/app/config:ro
+      - rss_output:/app/data/rss
+    command: ["rss", "--output=/app/data/rss/feed.xml"]
+    profiles:
+      - rss
+
+volumes:
+  crawler_data:
+  rss_output:

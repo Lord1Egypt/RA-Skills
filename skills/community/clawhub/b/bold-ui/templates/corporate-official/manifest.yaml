@@ -1,0 +1,113 @@
+# Corporate Official — Template Manifest
+
+meta:
+  name: "Corporate Official"
+  id: corporate-official
+  version: "1.0"
+  tags: [corporate, professional, trustworthy, gradient, card-based, sans-serif]
+  best_for:
+    - 企业官网
+    - 落地页
+    - B2B 产品
+    - SaaS 营销
+  not_for:
+    - 个人博客
+    - 实验性艺术项目
+  flexibility:
+    colors: moderate
+    typography: moderate
+    spacing: moderate
+    motion: loose
+    layout: moderate        # 卡片布局是核心
+  icon_preferences:
+    primary_source: heroicons
+    fallback_sources: [lucide, tabler]
+    style: outline
+    stroke_width: 2
+    size: 20
+
+# ====== Design Tokens ======
+tokens:
+  colors:
+    primary:
+      base: "#1E40AF"       # Deep Corporate Blue
+      light: "#3B82F6"
+      dark: "#1E3A8A"
+    secondary:
+      base: "#D97706"       # Trust Gold
+      light: "#F59E0B"
+      dark: "#B45309"
+    background:
+      page: "#F9FAFB"
+      surface: "#FFFFFF"
+      elevated: "#FFFFFF"
+    text:
+      primary: "#111827"    # Gray 900
+      secondary: "#4B5563"  # Gray 600
+      muted: "#9CA3AF"      # Gray 400
+    border:
+      default: "#E5E7EB"
+      focus: "#3B82F6"
+    functional:
+      success: "#059669"
+      warning: "#D97706"
+      error: "#DC2626"
+      info: "#2563EB"
+
+  typography:
+    heading_font: "'Inter', 'Segoe UI', system-ui, sans-serif"
+    body_font: "'Inter', 'Segoe UI', system-ui, sans-serif"
+    mono_font: "'JetBrains Mono', 'Fira Code', monospace"
+    scale:
+      xs:   "0.75rem"       # 12px
+      sm:   "0.875rem"      # 14px
+      base: "1rem"          # 16px
+      lg:   "1.125rem"      # 18px
+      xl:   "1.25rem"       # 20px
+      2xl:  "1.5rem"        # 24px
+      3xl:  "2rem"          # 32px
+      4xl:  "2.75rem"       # 44px — hero headings
+    weight:
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  spacing:
+    unit: 4
+    scale: [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128]
+
+  border:
+    radius:
+      none:  "0"
+      sm:    "0.25rem"       # 4px
+      md:    "0.5rem"        # 8px
+      lg:    "0.75rem"       # 12px
+      xl:    "1rem"          # 16px
+      full:  "9999px"
+
+  shadows:
+    none: "none"
+    sm:   "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
+    md:   "0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05)"
+    lg:   "0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)"
+    xl:   "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05)"
+
+  motion:
+    duration:
+      instant: "0ms"
+      fast:    "150ms"
+      normal:  "200ms"
+      slow:    "300ms"
+      gradual: "500ms"
+    easing:
+      default: "cubic-bezier(0.4, 0, 0.2, 1)"
+      in:      "cubic-bezier(0.4, 0, 1, 1)"
+      out:     "cubic-bezier(0, 0, 0.2, 1)"
+      spring:  "cubic-bezier(0.34, 1.56, 0.64, 1)"
+
+  decorations:
+    gradient_primary: "linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #60A5FA 100%)"
+    gradient_subtle: "linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 100%)"
+    gradient_hero: "linear-gradient(135deg, #1E3A8A 0%, #1E40AF 30%, #3B82F6 100%)"
+    pattern: none

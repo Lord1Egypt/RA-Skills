@@ -1,0 +1,3 @@
+/* ===== CHART CARD ===== */
+.chart-card{background:#fafbfc;border:1px solid var(--border);border-radius:0;padding:16px;margin-bottom:0}
+.chart-card canvas{max-height:300px}

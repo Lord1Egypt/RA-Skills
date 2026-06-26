@@ -1,0 +1,27 @@
+{
+  "slug": "sv-storyboard-planner",
+  "name": "Short Video Storyboard Planner",
+  "description": "Guides creators through visual storyboarding — shot-by-shot planning with framing, composition, text overlays, and timing notes.",
+  "type": "descriptive",
+  "requires_api": false,
+  "readiness": "stable",
+  "tags": [
+    "video",
+    "storyboard",
+    "pre-production",
+    "planning",
+    "visual",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "storyboard",
+    "shot list",
+    "shot planning",
+    "visual plan",
+    "pre-production",
+    "shot breakdown"
+  ],
+  "max_files": 4,
+  "language": "en",
+  "safety": "document-only informational guidance"
+}

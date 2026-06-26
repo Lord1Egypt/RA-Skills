@@ -1,0 +1,71 @@
+{
+  "name": "js-x-monitor-skill",
+  "version": "1.0.0",
+  "description": "X.com (Twitter) 账号监控自动化 Skill",
+  "author": "imjszhang",
+  "license": "MIT",
+  "minOpenClawVersion": "2026.3.0",
+  "dependencies": {
+    "js-eyes": ">=1.4.0",
+    "js-search-x": ">=1.0.0"
+  },
+  "tools": [
+    {
+      "name": "x_monitor_add_account",
+      "description": "添加一个 X.com 账号到监控列表"
+    },
+    {
+      "name": "x_monitor_remove_account",
+      "description": "从监控列表移除一个 X.com 账号"
+    },
+    {
+      "name": "x_monitor_list_accounts",
+      "description": "列出所有正在监控的 X.com 账号"
+    },
+    {
+      "name": "x_monitor_get_status",
+      "description": "获取监控任务的运行状态"
+    },
+    {
+      "name": "x_monitor_test_account",
+      "description": "测试单个账号的监控功能"
+    }
+  ],
+  "commands": {
+    "init": {
+      "description": "初始化 x-monitor 配置",
+      "script": "scripts/init.js"
+    },
+    "add": {
+      "description": "添加监控账号",
+      "script": "scripts/add.js",
+      "args": ["username"]
+    },
+    "remove": {
+      "description": "移除监控账号",
+      "script": "scripts/remove.js",
+      "args": ["username"]
+    },
+    "list": {
+      "description": "列出监控账号",
+      "script": "scripts/list.js"
+    },
+    "start": {
+      "description": "启动监控任务",
+      "script": "scripts/start.js"
+    },
+    "stop": {
+      "description": "停止监控任务",
+      "script": "scripts/stop.js"
+    },
+    "status": {
+      "description": "查看监控状态",
+      "script": "scripts/status.js"
+    },
+    "test": {
+      "description": "测试单个账号",
+      "script": "scripts/test.js",
+      "args": ["username"]
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "orders": [
+    {
+      "order_id": "ORD-20260324-001",
+      "customer_name": "John Smith",
+      "customer_email": "john.smith@acmecorp.com",
+      "customer_company": "Acme Corp",
+      "product_list": [
+        {
+          "sku": "SKW-HDMI-2.1-2M",
+          "name": "HDMI 2.1 Cable 2M",
+          "description": "High-speed HDMI 2.1 cable, 48Gbps, 8K support",
+          "quantity": 500,
+          "unit_price": 8.5,
+          "currency": "USD"
+        },
+        {
+          "sku": "SKW-DP-1.4-3M",
+          "name": "DisplayPort 1.4 Cable 3M",
+          "description": "DP 1.4 cable, 32.4Gbps, 8K@60Hz",
+          "quantity": 300,
+          "unit_price": 12,
+          "currency": "USD"
+        }
+      ],
+      "quantity": 800,
+      "unit_price": 10,
+      "total_amount": 7850,
+      "currency": "USD",
+      "delivery_date": "2026-04-20",
+      "status": "in_production",
+      "status_history": [
+        {
+          "status": "pending_production",
+          "changed_at": "2026-03-24T10:30:00+08:00",
+          "changed_by": "jaden",
+          "notes": "订单确认，等待生产排期",
+          "notification_sent": true
+        },
+        {
+          "status": "in_production",
+          "changed_at": "2026-03-24T09:11:30.699Z",
+          "changed_by": "manual",
+          "notes": "生产计划确认，开始生产",
+          "notification_sent": true,
+          "notification_template": "order_production_started"
+        }
+      ],
+      "created_at": "2026-03-24T10:30:00+08:00",
+      "updated_at": "2026-03-24T09:11:30.699Z",
+      "notes": "客户为英国分销商，首次下单，需重点关注质量",
+      "shipping_address": {
+        "country": "United Kingdom",
+        "city": "London",
+        "address_line1": "123 Tech Park Road",
+        "postal_code": "SW1A 1AA"
+      }
+    },
+    {
+      "order_id": "ORD-20260320-002",
+      "customer_name": "Emily Davis",
+      "customer_email": "emily.davis@globaltech.com",
+      "customer_company": "GlobalTech Inc",
+      "product_list": [
+        {
+          "sku": "SKW-USB-C-1M",
+          "name": "USB-C to USB-C Cable 1M",
+          "description": "USB-C 3.2 Gen2, 10Gbps, 100W PD",
+          "quantity": 1000,
+          "unit_price": 6.8,
+          "currency": "USD"
+        },
+        {
+          "sku": "SKW-USB-C-2M",
+          "name": "USB-C to USB-C Cable 2M",
+          "description": "USB-C 3.2 Gen2, 10Gbps, 100W PD",
+          "quantity": 800,
+          "unit_price": 8.5,
+          "currency": "USD"
+        }
+      ],
+      "quantity": 1800,
+      "unit_price": 7.56,
+      "total_amount": 13600,
+      "currency": "USD",
+      "delivery_date": "2026-04-10",
+      "status": "in_production",
+      "status_history": [
+        {
+          "status": "pending_production",
+          "changed_at": "2026-03-20T14:00:00+08:00",
+          "changed_by": "wilson",
+          "notes": "订单确认",
+          "notification_sent": true
+        },
+        {
+          "status": "in_production",
+          "changed_at": "2026-03-22T09:15:00+08:00",
+          "changed_by": "system",
+          "notes": "生产排期完成，已开始生产",
+          "notification_sent": true
+        }
+      ],
+      "created_at": "2026-03-20T14:00:00+08:00",
+      "updated_at": "2026-03-22T09:15:00+08:00",
+      "notes": "美国老客户，常规订单，交期紧张",
+      "shipping_address": {
+        "country": "United States",
+        "state": "California",
+        "city": "San Francisco",
+        "address_line1": "456 Market Street",
+        "postal_code": "94102"
+      }
+    },
+    {
+      "order_id": "ORD-20260315-003",
+      "customer_name": "Robert Wilson",
+      "customer_email": "robert.wilson@techsolutions.de",
+      "customer_company": "TechSolutions GmbH",
+      "product_list": [
+        {
+          "sku": "SKW-HDMI-2.0-5M",
+          "name": "HDMI 2.0 Cable 5M",
+          "description": "HDMI 2.0 cable, 18Gbps, 4K@60Hz",
+          "quantity": 200,
+          "unit_price": 15,
+          "currency": "EUR"
+        }
+      ],
+      "quantity": 200,
+      "unit_price": 15,
+      "total_amount": 3000,
+      "currency": "EUR",
+      "delivery_date": "2026-03-28",
+      "status": "shipped",
+      "status_history": [
+        {
+          "status": "pending_production",
+          "changed_at": "2026-03-15T11:00:00+08:00",
+          "changed_by": "jaden",
+          "notes": "订单确认",
+          "notification_sent": true
+        },
+        {
+          "status": "in_production",
+          "changed_at": "2026-03-17T10:00:00+08:00",
+          "changed_by": "system",
+          "notes": "开始生产",
+          "notification_sent": true
+        },
+        {
+          "status": "ready_to_ship",
+          "changed_at": "2026-03-21T16:30:00+08:00",
+          "changed_by": "wilson",
+          "notes": "生产完成，待发货",
+          "notification_sent": true
+        },
+        {
+          "status": "shipped",
+          "changed_at": "2026-03-23T14:00:00+08:00",
+          "changed_by": "wilson",
+          "notes": "已发货，DHL 快递",
+          "notification_sent": true
+        }
+      ],
+      "created_at": "2026-03-15T11:00:00+08:00",
+      "updated_at": "2026-03-23T14:00:00+08:00",
+      "notes": "德国客户，要求 CE 认证，已提供",
+      "shipping_address": {
+        "country": "Germany",
+        "city": "Munich",
+        "address_line1": "789 Industriestrasse",
+        "postal_code": "80331"
+      },
+      "tracking_number": "DHL1234567890",
+      "carrier": "DHL Express"
+    }
+  ],
+  "metadata": {
+    "schema_version": "1.0",
+    "schema_ref": "order-schema.json",
+    "created_at": "2026-03-24T16:55:00+08:00",
+    "created_by": "iron",
+    "total_orders": 3,
+    "status_summary": {
+      "pending_production": 0,
+      "in_production": 2,
+      "ready_to_ship": 0,
+      "shipped": 2,
+      "completed": 0,
+      "cancelled": 0
+    },
+    "updated_at": "2026-03-25T01:59:53.138Z",
+    "updated_by": "manual"
+  }
+}

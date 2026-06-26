@@ -1,0 +1,5 @@
+name: "skill-creator"
+version: "1.0"
+scope: "universal"
+registry_slug: "skill-creator-usm"
+description: "A specialized tool for scoping, drafting, and iteratively improving AI skills."

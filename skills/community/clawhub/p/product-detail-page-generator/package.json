@@ -1,0 +1,59 @@
+{
+  "name": "product-detail-page-generator",
+  "version": "2.5.0",
+  "description": "\u4e00\u952e\u751f\u6210\u9ad8\u7aef\u5546\u54c1H5\u8be6\u60c5\u9875\u3002\u63d0\u4f9b\u4ea7\u54c1\u56fe+\u63cf\u8ff0\uff0cAI\u81ea\u52a8\u5b8c\u6210\u8bc6\u522b\u3001\u7b56\u5212\u3001\u6587\u6848\u3001\u751f\u56fe\u3001\u6392\u7248\uff0c5-10\u5206\u949f\u4ea4\u4ed8\u3002\u542b\u4e00\u6b21\u514d\u8d39\u7cbe\u4fee\u3002",
+  "author": "XiongWang11",
+  "tags": [
+    "\u7535\u5546",
+    "\u8be6\u60c5\u9875",
+    "H5",
+    "AI\u751f\u56fe",
+    "\u5546\u54c1\u5c55\u793a",
+    "\u5e7b\u5986\u79c0",
+    "\u7cbe\u4fee"
+  ],
+  "category": "ecommerce",
+  "pricing": {
+    "type": "per-call",
+    "basic": 99,
+    "standard": 199,
+    "premium": 499,
+    "bulk": 69,
+    "saas": "free",
+    "currency": "CNY",
+    "revisionPolicy": "1 free revision included per order"
+  },
+  "requirements": {
+    "platform": "show.3diy.world",
+    "browser": true
+  },
+  "changelog": [
+    {
+      "version": "2.5.0",
+      "changes": "Verified all share links, only 2 products render correctly on share page"
+    },
+    {
+      "version": "2.3.0",
+      "changes": "Updated to 31 live demos across 25+ industries, all dead links replaced with active products, expanded industry coverage"
+    },
+    {
+      "version": "2.2.0",
+      "changes": "Fixed 5 dead demo links (removed products), updated showcase examples"
+    },
+    {
+      "version": "2.1.0",
+      "date": "2026-05-31",
+      "changes": "Added revision policy (1 free revision per order), bilingual order forms (CN/EN), SaaS pricing tier"
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-05-29",
+      "changes": "Multilingual version (EN/CN/AR/RU/FR/ES), 21 live demos, contact info"
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-05-29",
+      "changes": "\u521d\u59cb\u7248\u672c\uff0c\u5df2\u9a8c\u8bc1\u5047\u53d1/\u5973\u5305/\u95e8\u7a97/\u666e\u6d31\u8336/\u5316\u5986\u54c1/\u98df\u54c1/\u65c5\u884c\u7bb1/\u7f8e\u7532\u7b498+\u884c\u4e1a"
+    }
+  ]
+}

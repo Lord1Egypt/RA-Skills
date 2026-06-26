@@ -1,0 +1,41 @@
+{
+  "skill_name": "scenekit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Review this SceneKit asset-loading plan for an existing iOS app: load hero.usdz directly with SCNScene(url:), keep new models in OBJ because artists already export it, and move everything to RealityKit later. Correct the SceneKit loading guidance and explain the handoff boundary.",
+      "expected_output": "A correction-focused review that names documented SceneKit scene-source formats, recommends .scnassets for bundled SceneKit content, and routes USD/USDZ or significant migration work to RealityKit.",
+      "files": [],
+      "assertions": [
+        "States that documented SceneKit scene-source formats are .scn, .dae, and .abc rather than presenting .usdz or .obj as the primary SceneKit loading path.",
+        "Recommends placing bundled SceneKit scene files in a .scnassets folder and textures in asset catalogs for Xcode optimization.",
+        "Frames USD/USDZ as the RealityKit migration or new-project path, not as default SceneKit asset-loading guidance.",
+        "Mentions that SceneKit is soft-deprecated or maintenance-mode and RealityKit is preferred for new projects or significant updates."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Fix this SceneKit shader modifier snippet: material.shaderModifiers = [.geometry: \"_geometry.position.y += sin(scn_frame.time);\"]; material.setValue(Float(scn_frame.time), forKey: \"elapsed\"). Explain how values and built-in time should be handled.",
+      "expected_output": "A corrected SceneKit shader modifier explanation that uses documented shader modifier uniforms such as u_time, passes custom values from Swift by matching #pragma arguments names, and does not use scn_frame outside SCNProgram Metal shader functions.",
+      "files": [],
+      "assertions": [
+        "Replaces scn_frame.time in shader modifier code with documented shader modifier uniforms such as u_time.",
+        "Explains that Swift should pass custom values with setValue(_:forKey:) matching #pragma arguments declarations, not read scn_frame.time.",
+        "Distinguishes shader modifiers from SCNProgram Metal shader functions where SCNSceneBuffer scn_frame can be used.",
+        "Does not present scn_frame as a shader modifier built-in."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Audit these SceneKit maintenance snippets: scene.setAttribute([\"UnitMetersPerUnit\": 1.0], forKey: SCNScene.Attribute.unit.rawValue); node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: mesh)); and a plan to rewrite gameplay scoring with GameKit while touching the 3D scene. What should change?",
+      "expected_output": "A SceneKit maintenance review that replaces undocumented scene attribute usage with documented load options or scene attributes, fixes the SCNPhysicsShape initializer, and keeps GameKit limited to a Game Center handoff.",
+      "files": [],
+      "assertions": [
+        "Flags SCNScene.Attribute.unit as unsupported and uses SCNSceneSource.LoadingOption.convertUnitsToMeters for load-time unit scaling.",
+        "Mentions documented SCNScene.Attribute keys only for scene metadata such as startTime, endTime, frameRate, or upAxis.",
+        "Corrects SCNPhysicsShape construction to include the options: parameter.",
+        "Keeps GameKit out of SceneKit rendering/gameplay scene-graph guidance except as a boundary handoff for Game Center features."
+      ]
+    }
+  ]
+}

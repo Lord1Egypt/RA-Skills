@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "created_from": "first-gift-onboarding",
+  "updated_at": "2026-03-27T20:30:00+08:00",
+  "confidence_note": "These are playful first impressions gathered during onboarding, not verified facts.",
+  "first_impressions": [
+    "Responds well to playful teasing when the tone stays affectionate.",
+    "Seems more like a night person than a morning person.",
+    "Likes gifts that feel visually crafted rather than purely functional."
+  ],
+  "preference_signals": {
+    "liked": [
+      "cats",
+      "rainy-night mood",
+      "warm low-light scenes"
+    ],
+    "disliked": [
+      "dry questionnaires",
+      "overly preachy interpretation"
+    ],
+    "taste_pairs": [
+      {
+        "prompt": "coffee_vs_tea",
+        "choice": "coffee"
+      },
+      {
+        "prompt": "mountains_vs_ocean",
+        "choice": "ocean"
+      },
+      {
+        "prompt": "morning_vs_night",
+        "choice": "night"
+      }
+    ],
+    "vibe_labels": [
+      "night-owl",
+      "warm-wry",
+      "soft-chaotic"
+    ]
+  },
+  "corrected_guesses": [
+    {
+      "guess": "OpenClaw guessed the user is a strict morning person.",
+      "correction": "Actually tends to stay up late and becomes more alive at night."
+    }
+  ],
+  "reusable_hooks": [
+    "Night owl framing can work for future late-evening gifts.",
+    "Animal-based playful characters are likely to land well.",
+    "Humor should feel companion-like, not lecturer-like."
+  ]
+}

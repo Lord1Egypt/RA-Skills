@@ -1,35 +1,39 @@
 ---
-name: "Claudius"
-description: "Crypto intelligence powered by Claudius. Get technical analysis, prices, and insights."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, crypto, moltbot]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claudius"
-sourceUrl: "https://clawhub.ai/skills/claudius"
+name: claudius
+description: Crypto intelligence powered by Claudius. Get technical analysis, prices, and insights.
 ---
 
 # Claudius
 
-> Crypto intelligence powered by Claudius. Get technical analysis, prices, and insights.
+Use this skill to answer questions about cryptocurrency prices, technical analysis, market trends, and investment risks.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claudius`
-- **Source URL:** [https://clawhub.ai/skills/claudius](https://clawhub.ai/skills/claudius)
+To use this skill, execute the following script with the user's query as the argument:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/claudius
+node scripts/claudius.js "YOUR_QUERY_HERE"
 ```
+
+## Examples
+
+**Prices:**
+- "BTC price"
+- "What's ETH trading at?"
+
+**Technical Indicators:**
+- "BTC RSI"
+- "ETH EMA50"
+- "Bitcoin RSI14 1d"
+
+**Market Analysis:**
+- "What's the market looking like?"
+- "Market sentiment"
+- "What's trending in crypto?"
+
+**Investment & Risk:**
+- "Should I buy Bitcoin now?"
+- "Is SOL risky right now?"
+- "Analyze BTC for investment"
+
+**Education:**
+- "What is RSI?"
+- "Explain MACD indicator"

@@ -1,35 +1,70 @@
 ---
-name: "Google Keep"
-description: "Google Keep notes via gkeepapi. List, search, create, and manage notes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gkeep"
-sourceUrl: "https://clawhub.ai/skills/gkeep"
+name: gkeep
+description: Google Keep notes via gkeepapi. List, search, create, and manage notes.
+homepage: https://github.com/kiwiz/gkeepapi
+metadata: {"openclaw":{"emoji":"📝","requires":{"bins":["gkeep"]}}}
 ---
 
-# Google Keep
+# gkeep
 
-> Google Keep notes via gkeepapi. List, search, create, and manage notes.
+CLI wrapper for Google Keep using gkeepapi (unofficial API).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gkeep`
-- **Source URL:** [https://clawhub.ai/skills/gkeep](https://clawhub.ai/skills/gkeep)
+## Setup
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Login with your Google account:
 ```bash
-hermes skills install clawhub/gkeep
+gkeep login your.email@gmail.com
 ```
+
+**Important:** Use an [App Password](https://myaccount.google.com/apppasswords), not your regular password. 2FA must be enabled.
+
+## Commands
+
+List notes:
+```bash
+gkeep list
+gkeep list --limit 10
+```
+
+Search:
+```bash
+gkeep search "shopping"
+```
+
+Get a specific note:
+```bash
+gkeep get <note_id>
+```
+
+Create a note:
+```bash
+gkeep create "Title" "Body text here"
+```
+
+Archive:
+```bash
+gkeep archive <note_id>
+```
+
+Delete (trash):
+```bash
+gkeep delete <note_id>
+```
+
+Pin:
+```bash
+gkeep pin <note_id>
+```
+
+Unpin:
+```bash
+gkeep unpin <note_id>
+```
+
+## Notes
+
+- This uses an unofficial API that reverse-engineers Google Keep
+- Could break if Google changes their internal API
+- Token stored in `~/.config/gkeep/token.json`
+- First run bootstraps a local venv at `skills/gkeep/.venv`
+- Active project with recent updates (as of Jan 2026)

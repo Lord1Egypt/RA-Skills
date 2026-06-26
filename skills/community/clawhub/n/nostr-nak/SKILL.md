@@ -1,35 +1,28 @@
 ---
-name: "Nostr Nak"
-description: "General purpose skill for using the Nostr Army Knife (nak) CLI tool with PTY support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nostr-nak"
-sourceUrl: "https://clawhub.ai/skills/nostr-nak"
+name: nostr-nak
+description: General purpose skill for using the Nostr Army Knife (nak) CLI tool with PTY support.
 ---
+# nostr-nak
 
-# Nostr Nak
+General purpose skill for using the Nostr Army Knife (nak) CLI tool.
 
-> General purpose skill for using the Nostr Army Knife (nak) CLI tool with PTY support.
+## Critical Technical Note (PTY Requirement)
+`nak` hangs in non-interactive environments due to stdout buffering. 
+**Always** wrap `nak` commands in `script` to force a pseudo-TTY:
+`script -q -c "nak req ..." /dev/null | cat`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nostr-nak`
-- **Source URL:** [https://clawhub.ai/skills/nostr-nak](https://clawhub.ai/skills/nostr-nak)
+## Relay Logic
+By default, use discovery relays if no relay is specified:
+- `wss://relay.damus.io`
+- `wss://relay.primal.net`
+- `wss://relay.nostr.band`
 
-## Overview
+If the user specifies a relay, override these defaults.
 
+## Identity Handling
+- **Querying**: Use `npub...` or hex pubkey with the `-a` flag.
+- **Posting**: Use `nsec...` or hex private key with the `--sec` flag.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nostr-nak
-```
+## Usage Examples
+Fetch last 5 notes:
+`script -q -c "nak req -k 1 -a <npub> <relays> -l 5" /dev/null | cat`

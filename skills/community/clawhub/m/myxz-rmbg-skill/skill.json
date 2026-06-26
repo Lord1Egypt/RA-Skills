@@ -1,0 +1,53 @@
+{
+  "name": "妙言小智 AI 智能抠图 (RMBG)",
+  "id": "myxz-rmbg-skill",
+  "version": "1.0.0",
+  "description": "由妙言小智提供的智能抠图工具。支持批量本地图片、网络图片去背景，内置缓存机制。请至 pictech.cc 获取 API Key。",
+  "author": "妙言小智",
+  "main": "index.js",
+  "python": false,
+  "config": {
+    "type": "object",
+    "properties": {
+      "vk": {
+        "type": "string",
+        "title": "API 密钥 (VK)",
+        "description": "在 https://www.pictech.cc 获取，只需填写一次"
+      }
+    },
+    "required": [
+      "vk"
+    ]
+  },
+  "params": [
+    {
+      "name": "input",
+      "label": "待处理素材",
+      "type": "string",
+      "required": true,
+      "placeholder": "本地目录、文件路径或网络URL",
+      "description": "支持批量处理，多个路径请用逗号分隔。"
+    },
+    {
+      "name": "saveDir",
+      "label": "保存目录 (可选)",
+      "type": "string",
+      "required": false,
+      "placeholder": "例如: D:/Output/RMBG 留空则默认保存在用户目录的 myxz-result 下",
+      "description": "处理后的图片将按日期分类保存至该目录。"
+    },
+    {
+      "name": "backgroundColor",
+      "label": "背景颜色 (可选)",
+      "type": "string",
+      "required": false,
+      "placeholder": "例如: red, #FFFFFF",
+      "description": "不填则输出透明背景 PNG。"
+    }
+  ],
+  "dependencies": {
+    "fs-extra": "^11.1.0",
+    "axios": "^1.4.0",
+    "form-data": "^4.0.0"
+  }
+}

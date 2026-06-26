@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "meta": {},
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [],
+    "actors": [],
+    "flowSteps": [],
+    "systems": []
+  },
+  "relations": [],
+  "views": [],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {},
+  "industryHints": {
+    "title": "零售行业蓝图关注点",
+    "description": "生成零售行业业务蓝图时，请确保覆盖以下关键领域，不要遗漏：",
+    "checklist": [
+      "门店运营：排班、客流、陈列、导购管理",
+      "会员运营：标签分层、个性化营销、流失预警与召回",
+      "POS 与收银：交易处理、异常识别、多渠道对账",
+      "订单履约：拣货路径、配送预测、退换货审核",
+      "供应链：缺货预警、智能补货、供应商协同",
+      "门店管理：店长助手、日报、异常报警、目标预测",
+      "员工体验：培训推荐、排班偏好、绩效分析",
+      "商品管理：品类规划、定价策略、促销管理",
+      "全渠道：线上线下一体化、库存共享、统一会员"
+    ]
+  }
+}

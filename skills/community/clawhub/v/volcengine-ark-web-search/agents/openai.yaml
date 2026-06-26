@@ -1,0 +1,5 @@
+interface:
+  display_name: "Volcengine ARK Web Search"
+  short_description: "Search the web with Volcengine ARK Responses API"
+  default_prompt: "Use $volcengine-ark-web-search to search the web with Volcengine ARK and summarize the latest results in Chinese with dates and links."
+  brand_color: "#1677FF"

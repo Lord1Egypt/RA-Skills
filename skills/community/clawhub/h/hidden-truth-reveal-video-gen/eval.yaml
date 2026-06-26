@@ -1,0 +1,29 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 600
+  threshold: 0.8
+skill: "hidden-truth-reveal-video-gen"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use hidden-truth-reveal-video-gen for a vertical short: polished product vs harsh origin, one-line verdict, English captions on a fixed beat."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "99% don’t know where their daily coffee really comes from—need brutal contrast edit with timed English subtitles."
+  - id: implicit-paraphrase
+    should_trigger: true
+    prompt: "Create a Reels ‘supply chain shock’ storyboard: shelf glamour then factory realism, last line lands the thesis on screen."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Write a Kubernetes deployment YAML for me."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+  - id: prompt-expansion-required
+    type: llm_rubric
+    rubric: |
+      SKILL.md must require prompt expansion, four-beat subtitle order with scaling for duration, and confirmation-table full prompt before submit.

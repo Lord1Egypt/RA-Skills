@@ -1,35 +1,160 @@
 ---
-name: "Overseas Engineering Bd"
-description: "海外工程业务拓展领域负载物——针对东非市场（坦桑尼亚/乌干达）的工程、光伏、钢结构业务。覆盖情报采集（爬虫/PDF OCR/文库搜索）、智能提取（DeepSeek API）、背景调查、联系补全、名录管理、触达执行（邮件/WhatsApp）、看板展示全价值链。5域18种任务，含依赖拓扑和UTOS接口。触发词：海外工..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/overseas-engineering-bd"
-sourceUrl: "https://clawhub.ai/skills/overseas-engineering-bd"
+name: overseas-engineering-bd
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 海外工程业务拓展领域负载物——针对东非市场（坦桑尼亚/乌干达）的工程、光伏、钢结构业务。覆盖情报采集（爬虫/PDF OCR/文库搜索）、智能提取（DeepSeek API）、背景调查、联系补全、名录管理、触达执行（邮件/WhatsApp）、看板展示全价值链。5域18种任务，含依赖拓扑和UTOS接口。触发词：海外工程、非洲BD、国际工程投标、光伏微电网、钢结构厂房、海外合作伙伴、overseas engineering、Africa BD。
 ---
 
-# Overseas Engineering Bd
+# 海外工程业务拓展知识参考库
 
-> 海外工程业务拓展领域负载物——针对东非市场（坦桑尼亚/乌干达）的工程、光伏、钢结构业务。覆盖情报采集（爬虫/PDF OCR/文库搜索）、智能提取（DeepSeek API）、背景调查、联系补全、名录管理、触达执行（邮件/WhatsApp）、看板展示全价值链。5域18种任务，含依赖拓扑和UTOS接口。触发词：海外工...
+## 定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/overseas-engineering-bd`
-- **Source URL:** [https://clawhub.ai/skills/overseas-engineering-bd](https://clawhub.ai/skills/overseas-engineering-bd)
+本技能是 **Universal Task OS 的领域负载物仓库**，不包含任何执行框架。只提供海外工程业务拓展的"是什么"和"长什么样"——执行全部委托UTOS。
 
-## Overview
+| 本技能提供 | UTOS消费方式 |
+|-----------|-------------|
+| 海外工程BD任务清单+依赖拓扑 | 内容轴·清单法的任务目录 + 执行轴·管线编排的依赖输入 |
+| 数据采集/分析/触达要求 | 内容轴·清单法的组件清单 |
+| 优秀范本（待填充） | 内容轴·样本法的样本 |
 
+## 三层结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/overseas-engineering-bd
 ```
+第一层：任务清单与依赖拓扑   →  references/oe-catalog.md
+第二层：结构要求清单         →  references/oe-requirements.md
+第三层：优秀范本库           →  references/exemplars.md
+```
+
+## 依赖声明
+
+本技能**强依赖** Universal Task OS (universal-task-os)。没有UTOS，本技能只有参考查阅能力，无法执行任何海外工程BD任务。
+
+**加载检查流程**（每次激活时执行）：
+
+1. 检测 `universal-task-os` 技能是否已安装
+2. **未安装** → 自动安装 `universal-task-os` 技能
+3. **安装成功** → 同时加载UTOS，按本技能"使用规则"执行
+4. **安装失败** → 降级为**只读参考模式**：
+   - ✅ 允许：查阅任务清单、结构要求、范本索引
+   - ❌ 拒绝：任何涉及数据采集、信息提取、触达执行的任务，并提示"需先安装 Universal Task OS"
+
+**任务模式判定**：
+
+| 任务类型 | 无UTOS | 有UTOS |
+|---------|--------|--------|
+| 查阅任务清单/要求/范本 | ✅ 只读参考 | ✅ 完整 |
+| 按清单法产出情报/名录 | ❌ 拒绝 | ✅ UTOS编排执行 |
+| 依赖拓扑推导采集管线 | ❌ 拒绝 | ✅ UTOS执行轴 |
+| 合规/数据质量检查点插入 | ❌ 拒绝 | ✅ UTOS守护单元 |
+
+## 使用规则
+
+1. **依赖检查**：激活时按上述流程检测并安装UTOS
+2. **首次加载**：读取 `references/oe-catalog.md`，获取域分类、依赖拓扑、UTOS元操作映射提示
+3. **按需深入**：确认目标BD任务类型后，读取 `references/oe-requirements.md` 获取组件清单；如需样本法，读取 `references/exemplars.md` 获取范本
+4. **委托UTOS**：将任务清单作为清单法输入、范本作为样本法输入、依赖拓扑作为管线编排输入，交给UTOS执行轴+内容轴处理
+5. **用户可自行补充**：将实际项目中产生的高质量情报、名录、触达话术等脱敏后存入 `references/exemplars/` 目录
+
+## 与UTOS的接口
+
+当UTOS处理海外工程BD领域任务时：
+
+- **Step 0 三轴判定**：海外工程BD任务通常为复杂+数据密集型+交互驱动 → 全轴激活，S/C/I权重高
+- **Step 1 领域校准**：R1(信息密度)=高→S↑C↑ + R2(创造性)=中→A标准 + R3(交互性)=高→I↑ + R4(规范性)=中高→G中高 + R5(迭代性)=高→循环多 → 数据采集+分析+触达并重，每轮迭代末尾G校验
+- **Step 2 内容轴**：清单法用本技能的oe-requirements；样本法用本技能的exemplars
+- **Step 3 执行轴**：管线编排基于本技能的依赖拓扑自动推导元操作序列
+- **Step 4 交付**：G类守护单元自动插入数据准确性校验、合规性检查、触达合规性审查
+
+## 领域特有维度
+
+### 地理市场维度
+
+#### 坦桑尼亚核心数据源
+
+| 机构/平台 | 网址 | 情报价值 |
+|----------|------|---------|
+| TANES (国家电子采购系统) | www.taneps.go.tz | 最高优先级。政府公开招投标唯一指定发布平台，重点抓Tenders栏工程类项目 |
+| REA (农村能源局) | www.rea.go.tz | 微电网/光伏专属，重点抓Tenders和Projects板块 |
+| TANESCO (国家电力公司) | www.tanesco.co.tz | 变电站、大型光伏电站、储能项目发包方 |
+| TIC (投资中心) | www.tic.go.tz | 大型外商直接投资(FDI)核准公告，极早期厂房/基建项目信号 |
+| CRB (承包商注册局) | www.crb.go.tz | 最权威建筑商名录，抓取Class 1/2级Civil和Mechanical承包商 |
+| ERB (工程师注册局) | www.erb.go.tz | 注册设计院、顾问工程公司名录 |
+| AQRB (建筑师与工料测量师注册局) | www.aqrb.go.tz | 工料测量师名录，控制项目造价和选材的关键人 |
+
+#### 乌干达核心数据源
+
+| 机构/平台 | 网址 | 情报价值 |
+|----------|------|---------|
+| GPP (政府采购门户) | gpp.ppda.go.ug | 最高优先级。全国公共采购数据中心，抓Tender Notices和Best Evaluated Bidder |
+| MEMD (能源与矿产部) | energyandminerals.go.ug | 电力微电网项目源头发布地 |
+| ERA (电力监管局) | era.go.ug | License Notices（发电许可证公示），私人投资电站即将开工信号 |
+| UNABCEC (国家建筑与民用工程承包商协会) | www.unabcec.co.ug | 最大本地建筑商俱乐部，会员名单含金量极高 |
+| ERB Uganda (工程师注册局) | erb.or.ug | 本土工程顾问与设计院核心名录 |
+
+#### 国际多边资金源（覆盖两国）
+
+| 机构 | 网址 | 情报价值 |
+|------|------|---------|
+| 世界银行项目库 | projects.worldbank.org | 通过API或高级搜索筛选国家TZ/UG、行业Energy/Construction |
+| 非洲开发银行 | www.afdb.org/en/projects-and-operations | 资金最充足、回款最安全的项目来源 |
+
+#### 文库情报平台（用于找合作伙伴）
+
+| 平台 | 用途 | 搜索策略 |
+|------|------|---------|
+| Scribd | 企业画册、行业年鉴、通讯录 | Google Dorks: site:scribd.com "Uganda" AND "Architects" |
+| Issuu | 企业画册、行业年鉴 | Google Dorks: site:issuu.com "Tanzania" "Contractors" "WhatsApp" |
+| Yumpu | 企业画册、行业年鉴 | 类似Issuu搜索策略 |
+| SlideShare | 工程咨询公司投标PPT、项目报告 | Google Dorks: "Tanzania" "solar" "list of participants" site:slideshare.net |
+| Academia.edu | 非洲大学教授兼任国家工程顾问的研究报告 | 搜索教授姓名+国家+工程领域 |
+| ResearchGate | 工程顾问研究报告和联系方式 | 类似Academia.edu搜索策略 |
+
+#### 全球化职场商务源
+
+| 平台 | 用途 | 使用方式 |
+|------|------|---------|
+| LinkedIn API/Scraper | 反查官方名录中企业的关键人员 | 通过企业名搜索Procurement Manager/Estimator/Managing Director |
+
+### 业务类型维度
+
+| 业务 | 目标客户 | 关键触点 |
+|------|---------|---------|
+| 光伏微电网 | REA/MEMD、电力承包商 | 技术规格、项目招标 |
+| 钢结构厂房 | 工业开发商、设计院 | 建筑师名录、工程顾问 |
+| 电力基础设施 | TANESCO/ERA、电力安装商 | 变电站项目、许可证公示 |
+
+### 情报价值分层
+
+| 情报类型 | 价值等级 | 时效性 |
+|---------|---------|--------|
+| 招标公告 | ★★★★★ | 实时（截标前） |
+| 中标结果 | ★★★★☆ | 即时（分包机会） |
+| 许可证公示 | ★★★★☆ | 早期信号 |
+| FDI核准公告 | ★★★☆☆ | 极早期 |
+| 协会名录 | ★★★☆☆ | 季度/年度更新 |
+
+### 成本控制维度
+
+| 项目 | 月预算 | 说明 |
+|------|--------|------|
+| 海外轻量云服务器(VPS) | $5 | Hetzner或阿里云海外，1核2G |
+| DeepSeek-V3 API | $10-20 | 按量计费，用于清洗名录文本和生成定制开发信 |
+| LinkedIn数据抓取服务(可选) | $30 | Proxycurl API，单次查询几美分，按需调用 |
+| 邮件群发系统(SMTP) | $5 | Amazon SES群发1万封信$1，或企业现有邮箱 |
+| 飞书多维表格 | $0 | 免费 |
+| **月总运行成本** | **约$50** | 约合350元人民币 |
+
+## 业务域概览
+
+按价值链组织，共5域18种核心任务：
+
+| 域 | 任务数 | 职责 | 典型任务 |
+|----|--------|------|---------|
+| OE1 数据采集 | 4 | 原始数据获取 | 网站爬虫、PDF OCR、文库搜索、异常重试 |
+| OE2 智能处理 | 6 | 数据分析与增强 | API集成、信息提取、数据清洗、背景调查、联系补全、伙伴画像 |
+| OE3 数据管理 | 3 | 存储与展示 | 飞书导入、表格设计、数据推流 |
+| OE4 触达准备 | 3 | 渠道与内容准备 | 号码预检、邮件设计、话术生成 |
+| OE5 触达执行 | 2 | 执行与跟进 | SOP执行、效果追踪 |
+
+**价值链逻辑流**：OE1(采集) → OE2(处理) → OE3(管理) → OE4(准备) → OE5(执行)
+
+完整清单见 `references/oe-catalog.md`。

@@ -1,0 +1,58 @@
+{
+  "description": "White-listed WeChat Mini Program wx.* APIs referenced by this project or SKILL.md. Source docs must be official (developers.weixin.qq.com).",
+  "source": "https://developers.weixin.qq.com/miniprogram/dev/api/",
+  "apis": [
+    {
+      "name": "wx.request",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html"
+    },
+    {
+      "name": "wx.showToast",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/ui/interaction/wx.showToast.html"
+    },
+    {
+      "name": "wx.showModal",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/ui/interaction/wx.showModal.html"
+    },
+    {
+      "name": "wx.navigateTo",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.navigateTo.html"
+    },
+    {
+      "name": "wx.redirectTo",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.redirectTo.html"
+    },
+    {
+      "name": "wx.switchTab",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.switchTab.html"
+    },
+    {
+      "name": "wx.reLaunch",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.reLaunch.html"
+    },
+    {
+      "name": "wx.getStorageSync",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.getStorageSync.html"
+    },
+    {
+      "name": "wx.setStorageSync",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorageSync.html"
+    },
+    {
+      "name": "wx.removeStorageSync",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.removeStorageSync.html"
+    },
+    {
+      "name": "wx.getAppBaseInfo",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/base/app/app-info/wx.getAppBaseInfo.html"
+    },
+    {
+      "name": "wx.getSystemInfoSync",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/base/system/wx.getSystemInfoSync.html"
+    },
+    {
+      "name": "wx.login",
+      "doc": "https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html"
+    }
+  ]
+}

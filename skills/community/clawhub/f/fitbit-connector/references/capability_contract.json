@@ -1,0 +1,130 @@
+{
+  "source": {
+    "fitbit_web_api": "https://dev.fitbit.com/build/reference/web-api/explore/fitbit-web-api-swagger.json",
+    "authorization_guide": "https://dev.fitbit.com/build/reference/web-api/developer-guide/authorization/"
+  },
+  "oauth_scopes": [
+    "activity",
+    "cardio_fitness",
+    "electrocardiogram",
+    "heartrate",
+    "irregular_rhythm_notifications",
+    "location",
+    "nutrition",
+    "oxygen_saturation",
+    "profile",
+    "respiratory_rate",
+    "settings",
+    "sleep",
+    "social",
+    "temperature",
+    "weight"
+  ],
+  "domains": [
+    {
+      "domain": "activity_steps",
+      "path": "activities/steps/date/{date}/1d.json",
+      "required_scope": "activity",
+      "inspire3_expected": "yes",
+      "notes": "Core tracker metric."
+    },
+    {
+      "domain": "activity_distance",
+      "path": "activities/distance/date/{date}/1d.json",
+      "required_scope": "activity",
+      "inspire3_expected": "yes",
+      "notes": "Derived from activity tracking."
+    },
+    {
+      "domain": "activity_floors",
+      "path": "activities/floors/date/{date}/1d.json",
+      "required_scope": "activity",
+      "inspire3_expected": "conditional",
+      "notes": "May be empty/estimated depending on device/account behavior."
+    },
+    {
+      "domain": "activity_calories",
+      "path": "activities/calories/date/{date}/1d.json",
+      "required_scope": "activity",
+      "inspire3_expected": "yes",
+      "notes": "Calories out summary."
+    },
+    {
+      "domain": "activity_azm",
+      "path": "activities/active-zone-minutes/date/{date}/1d.json",
+      "required_scope": "activity",
+      "inspire3_expected": "yes",
+      "notes": "Active Zone Minutes is expected on modern trackers."
+    },
+    {
+      "domain": "heart_daily",
+      "path": "activities/heart/date/{date}/1d.json",
+      "required_scope": "heartrate",
+      "inspire3_expected": "yes",
+      "notes": "Resting HR and heart zones; can be sparse if not worn enough."
+    },
+    {
+      "domain": "hrv_daily",
+      "path": "hrv/date/{date}.json",
+      "required_scope": "heartrate",
+      "inspire3_expected": "conditional",
+      "notes": "Depends on main sleep detection and eligible overnight signal quality."
+    },
+    {
+      "domain": "sleep_daily",
+      "path": "sleep/date/{date}.json",
+      "required_scope": "sleep",
+      "inspire3_expected": "yes",
+      "notes": "Requires sleep session sync."
+    },
+    {
+      "domain": "weight_daily",
+      "path": "body/log/weight/date/{date}.json",
+      "required_scope": "weight",
+      "inspire3_expected": "conditional",
+      "notes": "Requires manual/scale weight logs."
+    },
+    {
+      "domain": "foods_daily",
+      "path": "foods/log/date/{date}.json",
+      "required_scope": "nutrition",
+      "inspire3_expected": "conditional",
+      "notes": "Requires manual food logging in Fitbit app."
+    },
+    {
+      "domain": "profile",
+      "path": "profile.json",
+      "required_scope": "profile",
+      "inspire3_expected": "yes",
+      "notes": "Account profile always available with scope grant."
+    },
+    {
+      "domain": "oxygen_saturation",
+      "path": "spo2/date/{date}/all.json",
+      "required_scope": "oxygen_saturation",
+      "inspire3_expected": "conditional",
+      "notes": "Device/region/firmware dependent and may be unavailable per account."
+    },
+    {
+      "domain": "respiratory_rate",
+      "path": "br/date/{date}/all.json",
+      "required_scope": "respiratory_rate",
+      "inspire3_expected": "conditional",
+      "notes": "Usually tied to overnight sleep physiology processing."
+    },
+    {
+      "domain": "temperature",
+      "path": "temp/skin/date/{date}.json",
+      "required_scope": "temperature",
+      "inspire3_expected": "conditional",
+      "notes": "Nightly skin temperature variation; account/device dependent."
+    },
+    {
+      "domain": "cardio_fitness",
+      "path": "cardioscore.json",
+      "required_scope": "cardio_fitness",
+      "inspire3_expected": "conditional",
+      "notes": "Availability varies by account/device support and computed readiness."
+    }
+  ]
+}

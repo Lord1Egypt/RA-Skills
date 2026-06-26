@@ -1,0 +1,37 @@
+{
+  "pas": [
+    {
+      "name": "Heleni",
+      "phone": "+972555193968",
+      "owner": "Netanel Abergel",
+      "owner_phone": "+972548834688",
+      "owner_role": "Director R&D",
+      "owner_email": "netanelab@monday.com",
+      "status": "active",
+      "notes": "Example entry — replace with your own network"
+    }
+  ],
+  "groups": [
+    {
+      "name": "PA Coordination",
+      "jid": "XXXXXXXXXXX@g.us",
+      "purpose": "pa_coordination"
+    },
+    {
+      "name": "PA Onboarding",
+      "jid": "XXXXXXXXXXX@g.us",
+      "purpose": "onboarding"
+    }
+  ],
+  "owners": [
+    {
+      "name": "Netanel Abergel",
+      "phone": "+972548834688",
+      "role": "Director R&D",
+      "email": "netanelab@monday.com",
+      "pa": "Heleni",
+      "pa_phone": "+972555193968",
+      "contact_preference": "pa_first"
+    }
+  ]
+}

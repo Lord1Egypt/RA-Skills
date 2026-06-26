@@ -1,0 +1,35 @@
+{
+  "name": "ai-maker",
+  "displayName": "🎭 AI 执行师",
+  "version": "1.0.0",
+  "description": "电商图片创作团队的双手，负责调用 AI 工具生成图片",
+  "author": "AI Image Team",
+  "tags": ["ai", "image", "maker", "generator", "jimeng", "liblib"],
+  "category": "image-generation",
+  "visible": true,
+  "icon": "palette",
+  "order": 2,
+  "entry": "agent.py",
+  "capabilities": [
+    "即梦图片生成",
+    "LiblibAI 图片生成",
+    "多方案生成",
+    "参数调优",
+    "ControlNet 控制",
+    "视频生成（预留）"
+  ],
+  "input": {
+    "type": "text",
+    "language": "zh-CN",
+    "format": "创意简报或自然语言描述"
+  },
+  "output": {
+    "type": "json",
+    "format": "生成结果"
+  },
+  "config": {
+    "default_tool": "jimeng",
+    "fallback_enabled": true,
+    "max_quantity": 4
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "blitzreels-video-editing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have project 44cd9c76 as the target and project c063f41e as the previous video. Copy the previous video's caption fixes, caption style settings, and editable overlay placement to the target. Also tell me what cannot be copied through the public API.",
+      "expected_output": "Uses documented context/caption-style/timeline routes, avoids /caption-themes and project rename guesses, mentions no public background audio insertion, and verifies with preview/context.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Using the BlitzReels API, remove most programming keywords from workspace protected words and add IA, Claude Code, Codex, and our latest-video terms. Do not change the workspace description.",
+      "expected_output": "Reads /workspace/settings, patches only protected_words or safe_words (not both), avoids echoing both aliases back, reads back settings, and checks for sibling-field drift.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Find asset e6d63547-e791-4673-9fdf-2e34ee867d9e in the media library, inspect its transcript/captions, and fix Cloud Code to Claude Code if needed.",
+      "expected_output": "Uses /workspace/media/assets/{assetId}, respects media list limit max 100, uses single-token transcript corrections only when safe, and falls back if /captions/words fails.",
+      "files": []
+    }
+  ]
+}

@@ -1,35 +1,61 @@
 ---
-name: "Gold Price Summary (Ray1012)"
-description: "总结当日金价涨跌并给出投资建议。当用户询问金价、今日金价、黄金行情、黄金分析、黄金投资建议、金价走势时激活。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gold-price-summary-ray1012"
-sourceUrl: "https://clawhub.ai/skills/gold-price-summary-ray1012"
+name: gold-price-summary
+version: 1.0.0
+description: 总结当日金价涨跌并给出投资建议。当用户询问金价、今日金价、黄金行情、黄金分析、黄金投资建议、金价走势时激活。
 ---
 
-# Gold Price Summary (Ray1012)
+# 金价日报 Skill
 
-> 总结当日金价涨跌并给出投资建议。当用户询问金价、今日金价、黄金行情、黄金分析、黄金投资建议、金价走势时激活。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gold-price-summary-ray1012`
-- **Source URL:** [https://clawhub.ai/skills/gold-price-summary-ray1012](https://clawhub.ai/skills/gold-price-summary-ray1012)
+1. **搜索实时金价**
+   - 搜索 `gold price today XAU USD` 获取国际金价
+   - 搜索 `今日金价 国内` 获取国内金价（人民币/克）
+   - 搜索 `gold price news today` 获取市场动态
 
-## Overview
+2. **分析数据**
+   - 当日开盘价、收盘价、最高价、最低价
+   - 涨跌幅（绝对值 + 百分比）
+   - 近期趋势（1日、1周、1月）
+   - 影响因素（美元指数、利率、地缘风险等）
 
+3. **输出结构化报告**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gold-price-summary-ray1012
 ```
+📊 **【今日金价速报】**
+
+**国际金价（XAU/USD）**
+- 当前价格：$xxxx/盎司
+- 当日涨跌：+/$xxx (+x.xx%)
+- 开盘：$xxxx | 最高：$xxxx | 最低：$xxxx
+
+**国内金价（人民币/克）**
+- 今日报价：¥xxx 元/克
+- 当日涨跌：+/-¥xx
+
+**近期走势**
+- 1个月：...
+- 3个月：...
+
+📰 **市场影响因素**
+- 美元走势：...
+- 利率环境：...
+- 地缘风险：...
+
+💡 **投资建议**
+（分风险等级说明）
+```
+
+## 投资建议框架
+
+| 风险偏好 | 建议 |
+|---------|------|
+| 保守型 | 观望，等回调再考虑定投 |
+| 稳健型 | 定投黄金ETF，控制在总资产10-20% |
+| 激进型 | 可配置20-30%，关注回调买入机会 |
+
+## 注意事项
+
+- 所有价格数据以搜索结果为准，标注数据来源和时间
+- 投资建议仅供参考，不构成实际投资建议
+- 提及"市场有风险，投资需谨慎"

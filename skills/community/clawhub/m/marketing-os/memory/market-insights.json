@@ -1,0 +1,42 @@
+{
+    "version": "1.0.0",
+    "description": "Long-term market intelligence memory — stores analyzed signals, opportunities, and trends",
+    "schema_version": "2024-01",
+    "last_updated": "",
+    "entries": [
+        {
+            "insight_id": "EXAMPLE-001",
+            "timestamp": "2024-01-15T09:00:00Z",
+            "type": "opportunity",
+            "title": "[EXAMPLE] Sample market insight — replace with real data",
+            "description": "This is an example entry showing the expected structure",
+            "signal_strength": 0,
+            "source": "system_initialization",
+            "related_opportunities": [],
+            "status": "example",
+            "tags": [
+                "example",
+                "template"
+            ],
+            "confidence": "low",
+            "expiry": null
+        }
+    ],
+    "metadata": {
+        "total_entries": 1,
+        "active_entries": 0,
+        "archived_entries": 0,
+        "categories": {
+            "opportunity": 0,
+            "trend": 0,
+            "risk": 0,
+            "competitor_move": 0,
+            "audience_signal": 0
+        },
+        "retention_policy": {
+            "active_window": "90 days",
+            "archive_after": "90 days",
+            "delete_after": "365 days"
+        }
+    }
+}

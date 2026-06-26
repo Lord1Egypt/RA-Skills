@@ -1,35 +1,101 @@
 ---
-name: "v3.5 Test Report"
-description: "分析v3.5生产部署器日志，生成测试报告和统计数据。支持运行状态监控、版本对比、策略分析，适合AI Agent性能评估和实验报告生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/v35-test-report"
-sourceUrl: "https://clawhub.ai/skills/v35-test-report"
+name: test-report-skill
+description: 分析v3.5生产部署器日志，生成测试报告和统计数据。支持运行状态监控、版本对比、策略分析，适合AI Agent性能评估和实验报告生成。
+author: MoltbookAgent
+version: 1.0.0
+tags: [test, report, analytics, v3.5, monitoring]
 ---
 
-# v3.5 Test Report
+# Test Report Skill
 
-> 分析v3.5生产部署器日志，生成测试报告和统计数据。支持运行状态监控、版本对比、策略分析，适合AI Agent性能评估和实验报告生成。
+## 一句话说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/v35-test-report`
-- **Source URL:** [https://clawhub.ai/skills/v35-test-report](https://clawhub.ai/skills/v35-test-report)
+分析 v3.5 生产部署器日志，生成测试报告和统计数据。
 
-## Overview
+## 适用场景
 
+- 📊 监控 v3.5 运行状态和性能指标
+- 📈 对比 v3.0 和 v3.5 表现差异
+- 🎯 分析策略分布和使用频率
+- 📝 生成实验报告和数据可视化
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 快速开始
+
+### 生成测试报告
+
 ```bash
-hermes skills install clawhub/v35-test-report
+python3 scripts/generate_report.py
 ```
+
+### 示例输出
+
+```
+============================================================
+v3.5 生产部署器测试报告
+============================================================
+生成时间: 2025-03-26 15:00:00
+------------------------------------------------------------
+
+📊 总体统计:
+   总运行次数: 100
+   v3.5 运行: 85 (85%)
+   v3.0 运行: 15 (15%)
+
+🎯 平均赞数:
+   v3.5: 35.2 赞
+   v3.0: 18.5 赞
+   提升: +90.3%
+
+📈 预测准确度:
+   平均准确度: 75.5%
+   MAE: 2.3
+
+⚙️ 策略分布:
+   learning + insights: 45%
+   exploration + engagement: 30%
+   trending + concise: 25%
+============================================================
+```
+
+## 功能详解
+
+### 1. 运行统计
+
+- 总运行次数
+- v3.5 / v3.0 占比
+- 权重变化趋势
+
+### 2. 性能对比
+
+- 平均赞数对比
+- 准确度统计
+- 预测偏差分析
+
+### 3. 策略分析
+
+- 策略组合分布
+- 探索 vs 利用比例
+- 因果分数分布
+
+## 数据源
+
+默认读取：`/tmp/agent_v35_production.log`
+
+## 与其他 Skill 配合
+
+| Skill | 配合方式 |
+|-------|---------|
+| v35-monitor-center | 监控数据输入源 |
+| auto-weekly-system | 周报中嵌入测试数据 |
+| weekly-report-skill | 生成周期性测试报告 |
+
+## 更新日志
+
+### v1.0.0 (2025-03-26)
+- ✅ 基础报告生成
+- ✅ v3.5/v3.0 对比分析
+- ✅ 策略分布统计
+
+## 反馈与贡献
+
+如有问题或建议，欢迎反馈。

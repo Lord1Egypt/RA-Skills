@@ -1,0 +1,376 @@
+                  state.creating = true;
+                  state.createError = null;
+                  try {
+                    const name = state.wizardResult.name;
+                    const slug = name
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/^-|-$/g, "");
+                    const workspace = `~/.openclaw/workspaces/${slug}/`;
+                    const params: Record<string, unknown> = {
+                      name,
+                      workspace,
+                      emoji: state.wizardResult.emoji,
+                    };
+                    const res = (await state.client?.request("agents.create", params)) as {
+                      ok?: boolean;
+                      agentId?: string;
+                      error?: string;
+                    } | null;
+                    if (res?.ok) {
+                      // Write the generated SOUL.md to the agent's workspace
+                      try {
+                        await state.client?.request("agents.files.set", {
+                          agentId: res.agentId,
+                          name: "SOUL.md",
+                          content: state.wizardResult.soul,
+                        });
+                      } catch {
+                        /* best effort */
+                      }
+                      state.showCreateForm = false;
+                      state.wizardResult = null;
+                      state.wizardDescription = "";
+                      state.createMode = "manual";
+                      state.agentsLoading = true;
+                      const list = await state.client?.request("agents.list", {});
+                      state.agentsList = list as typeof state.agentsList;
+                      state.agentsLoading = false;
+                      // Refresh configForm so the new agent is found when selected
+                      await loadConfig(state);
+                    } else {
+                      state.createError =
+                        (res as { ok?: boolean; error?: string } | null)?.error ??
+                        "Failed to create agent";
+                    }
+                  } catch (err) {
+                    state.createError = String(err);
+                  } finally {
+                    state.creating = false;
+                  }
+                },
+                agentsList: state.agentsList,
+                selectedAgentId: resolvedAgentId,
+                activePanel: state.agentsPanel,
+                agentToolsSubTab: state.agentToolsSubTab,
+                onAgentToolsSubTabChange: (tab: "core" | "pipedream" | "zapier") => {
+                  state.agentToolsSubTab = tab;
+                  const agentId = resolvedAgentId;
+                  if (!agentId || !state.client) {
+                    return;
+                  }
+                  if (tab === "pipedream") {
+                    const setPd = (
+                      fn: (
+                        prev: typeof state.agentPipedreamState,
+                      ) => typeof state.agentPipedreamState,
+                    ) => {
+                      state.agentPipedreamState = fn(state.agentPipedreamState);
+                    };
+                    void loadAgentPipedreamState(state.client, agentId, setPd);
+                  } else if (tab === "zapier") {
+                    const setZp = (
+                      fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                    ) => {
+                      state.agentZapierState = fn(state.agentZapierState);
+                    };
+                    void loadAgentZapierState(state.client, agentId, setZp);
+                  }
+                },
+                agentPipedreamState: state.agentPipedreamState,
+                onPipedreamSave: (externalUserId: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void saveAgentPipedream(state.client, resolvedAgentId, externalUserId, setPd);
+                },
+                onPipedreamDelete: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void deleteAgentPipedream(state.client, resolvedAgentId, setPd);
+                },
+                onPipedreamEditUserId: (editing: boolean) => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    editingUserId: editing,
+                  };
+                },
+                onPipedreamDraftChange: (value: string) => {
+                  state.agentPipedreamState = { ...state.agentPipedreamState, draftUserId: value };
+                },
+                onPipedreamRefresh: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void loadAgentPipedreamState(state.client, resolvedAgentId, setPd);
+                },
+                onPipedreamConnectApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void connectAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamDisconnectApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void disconnectAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamToggleExpand: (slug: string) => {
+                  const next = new Set(state.agentPipedreamState.expandedApps);
+                  if (next.has(slug)) {
+                    next.delete(slug);
+                  } else {
+                    next.add(slug);
+                  }
+                  state.agentPipedreamState = { ...state.agentPipedreamState, expandedApps: next };
+                },
+                onPipedreamTestApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void testAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamActivateApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void activateAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamOpenAppBrowser: () => {
+                  if (!state.client) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void openAgentAppBrowser(state.client, setPd);
+                },
+                onPipedreamPreviewTools: (app) => {
+                  if (!state.client) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void previewAgentAppTools(state.client, app, setPd);
+                },
+                onPipedreamCloseToolPreview: () => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    previewingToolsApp: null,
+                    toolPreviewAppName: null,
+                    toolPreviewFetchedAt: null,
+                    toolPreviewTools: [],
+                    loadingToolPreview: false,
+                  };
+                },
+                onPipedreamRefreshCatalog: () => {
+                  if (!state.client) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void refreshAgentCatalog(state.client, setPd);
+                },
+                onPipedreamCloseAppBrowser: () => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    showAppBrowser: false,
+                  };
+                },
+                onPipedreamAppBrowserSearchChange: (value: string) => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    appBrowserSearch: value,
+                  };
+                },
+                onPipedreamManualSlugChange: (value: string) => {
+                  state.agentPipedreamState = { ...state.agentPipedreamState, manualSlug: value };
+                },
+                onPipedreamConnectManualSlug: () => {
+                  if (
+                    !state.client ||
+                    !resolvedAgentId ||
+                    !state.agentPipedreamState.manualSlug.trim()
+                  ) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void connectAgentApp(
+                    state.client,
+                    resolvedAgentId,
+                    state.agentPipedreamState.manualSlug.trim(),
+                    setPd,
+                  );
+                },
+                agentZapierState: state.agentZapierState,
+                onZapierSaveUrl: (url: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void saveAgentZapierUrl(state.client, resolvedAgentId, url, setZp);
+                },
+                onZapierDelete: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void deleteAgentZapier(state.client, resolvedAgentId, setZp);
+                },
+                onZapierEditUrl: (editing: boolean) => {
+                  state.agentZapierState = { ...state.agentZapierState, editingUrl: editing };
+                },
+                onZapierDraftChange: (value: string) => {
+                  state.agentZapierState = { ...state.agentZapierState, draftUrl: value };
+                },
+                onZapierRefresh: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void loadAgentZapierState(state.client, resolvedAgentId, setZp);
+                },
+                onZapierRefreshTools: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void loadAgentZapierTools(state.client, resolvedAgentId, setZp);
+                },
+                onZapierToggleTool: (toolName: string, enabled: boolean) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void toggleAgentZapierTool(
+                    state.client,
+                    resolvedAgentId,
+                    toolName,
+                    enabled,
+                    setZp,
+                  );
+                },
+                basePath,
+                config: {
+                  form: configValue,
+                  loading: state.configLoading,
+                  saving: state.configSaving,
+                  dirty: state.configFormDirty,
+                },
+                channels: {
+                  snapshot: state.channelsSnapshot,
+                  loading: state.channelsLoading,
+                  error: state.channelsError,
+                  lastSuccess: state.channelsLastSuccess,
+                },
+                cron: {
+                  status: state.cronStatus,
+                  jobs: state.cronJobs,
+                  loading: state.cronLoading,
+                  error: state.cronError,
+                },
+                agentFiles: {
+                  list: state.agentFilesList,
+                  loading: state.agentFilesLoading,
+                  error: state.agentFilesError,
+                  active: state.agentFileActive,
+                  contents: state.agentFileContents,
+                  drafts: state.agentFileDrafts,
+                  saving: state.agentFileSaving,
+                },
+                agentIdentityLoading: state.agentIdentityLoading,
+                agentIdentityError: state.agentIdentityError,
+                agentIdentityById: state.agentIdentityById,
+                agentSkills: {
+                  report: state.agentSkillsReport,

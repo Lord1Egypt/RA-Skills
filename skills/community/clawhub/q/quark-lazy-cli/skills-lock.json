@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "quark-lazy-cli": {
+      "source": "jesustoachild/quark-lazy-cli",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "3702bd1b9267170319101c3eca4fa10e47e5fc17a212fb838618a70b2eb200dd"
+    }
+  }
+}

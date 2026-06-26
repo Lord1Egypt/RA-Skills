@@ -1,35 +1,51 @@
----
-name: "微信朋友圈爆款文案生成器"
-description: "根据产品、场景和风格自动生成适合微信朋友圈的爆款文案，包含配图建议和互动引导。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-moments-viral-generator"
-sourceUrl: "https://clawhub.ai/skills/wechat-moments-viral-generator"
----
+# 微信朋友圈爆款文案生成器 v1.0
 
-# 微信朋友圈爆款文案生成器
+## 核心功能
+输入产品/场景/情绪，自动生成微信朋友圈爆款文案。支持微商出货、种草安利、个人IP、励志鸡血、限时促销5种风格。
 
-> 根据产品、场景和风格自动生成适合微信朋友圈的爆款文案，包含配图建议和互动引导。
+## 定价
+- 单次：9.9元
+- 包月：59元
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-moments-viral-generator`
-- **Source URL:** [https://clawhub.ai/skills/wechat-moments-viral-generator](https://clawhub.ai/skills/wechat-moments-viral-generator)
+## 输入参数
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| product_scene | string | 产品或场景描述 |
+| style | string | reseller（微商出货）/ promote（种草安利）/ personal_ip（个人IP）/ motivational（励志鸡血）/ flash_sale（限时促销） |
+| count | number | 生成条数（3-20条） |
 
-## Overview
+## 输出结构
+每条文案包含：
+1. **主文案** — 直接可发的朋友圈文字
+2. **配套emoji组合** — 吸睛排版
+3. **配图建议** — 文字说明
+4. **发布时间** — 早/中/晚哪个时段最佳
+5. **互动引导** — 评论引导话术
 
+## 执行流程
+1. 分析目标受众画像
+2. 选择最适合的风格模型
+3. 生成主文案（制造稀缺/制造羡慕/制造焦虑）
+4. 匹配emoji组合
+5. 给出配图和发布时间建议
+6. 生成互动引导语
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-moments-viral-generator
+## 适用场景
+- 微商朋友圈运营
+- 社群推广
+- 个人品牌打造
+- 私域转化
+- 限时活动促销
+
+## Skill配置
+```json
+{
+  "name": "微信朋友圈爆款文案生成器",
+  "category": "内容创作",
+  "price_single": 9.9,
+  "price_monthly": 59,
+  "icon": "📱",
+  "delivery": "即时",
+  "requires_input": ["product_scene", "style", "count"]
+}
 ```

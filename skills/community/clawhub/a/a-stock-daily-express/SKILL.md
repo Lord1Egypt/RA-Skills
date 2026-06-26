@@ -1,35 +1,100 @@
 ---
-name: "A Stock Daily Express"
-description: "📈 A股每日快报自动生成 - 自动获取今日大盘行情、涨跌排名、热点板块，一键生成小红书/公众号文章，直接就能发。炒股懒人必备，每天省你半小时整理时间。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-daily-express"
-sourceUrl: "https://clawhub.ai/skills/a-stock-daily-express"
+name: a-stock-daily-express
+description: 📈 A股每日快报自动生成 - 自动获取今日大盘行情、涨跌排名、热点板块，一键生成小红书/公众号文章，直接就能发。炒股懒人必备，每天省你半小时整理时间。
 ---
 
-# A Stock Daily Express
+# 📈 A 股每日快报 - 自动生成
 
-> 📈 A股每日快报自动生成 - 自动获取今日大盘行情、涨跌排名、热点板块，一键生成小红书/公众号文章，直接就能发。炒股懒人必备，每天省你半小时整理时间。
+自动获取今日 A 股行情 → 统计涨跌 → 分析热点板块 → 生成适合小红书/公众号的每日快报，直接复制就能发。炒股懒人必备，每天省半小时整理时间。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-daily-express`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-daily-express](https://clawhub.ai/skills/a-stock-daily-express)
+## ✨ 特色功能
 
-## Overview
+| 功能 | 说明 |
+|------|------|
+| 📊 **自动行情获取** | 自动获取今日大盘点位、涨跌幅、涨跌家数 |
+| 🏆 **涨跌排名** | 自动统计涨幅榜、跌幅榜前 10 |
+| 🔥 **热点板块** | 分析今日涨幅靠前板块 |
+| 📝 **一键生成** | 直接生成小红书/公众号格式文章 |
+| ✅ **事实核查** | 内置数据验证，保证数据准确 |
+| 📤 **导出** | 支持 markdown / HTML 导出 |
 
+## 🎨 输出格式支持
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-daily-express
+| 平台 | 风格 |
+|------|------|
+| **小红书** | 短句+emoji+分点清单+自动标签 |
+| **公众号** | 标题+小标题+适合手机阅读 |
+| **朋友圈** | 简洁短文+行情要点 |
+
+## 🚀 使用方法
+
+### 生成今日快报（小红书）
+
 ```
+a-stock-daily-express 今日 A 股行情快报 --platform xiaohongshu
+```
+
+### 生成公众号版本
+
+```
+a-stock-daily-express 今日收盘总结 --platform wechat
+```
+
+### 手动指定日期
+
+```
+a-stock-daily-express 2026-03-28 --platform xiaohongshu
+```
+
+## 📋 工作流程
+
+1. **获取数据** - 调用 akshare / 东方财富接口获取今日行情
+2. **统计分析** - 计算涨跌分布、板块涨幅、排名
+3. **生成内容** - 根据平台风格生成对应格式
+4. **事实核查** - 验证关键数据一致性
+5. **导出成品** - 输出 markdown，直接复制发布
+
+## 🔧 依赖
+
+- `akshare` - 财经数据接口（需要 `pip install akshare`）
+- `ai-fact-checker` - 可选，用于数据一致性验证
+- 不需要额外 API 密钥，数据免费获取
+
+## 💡 示例输出（小红书）
+
+```
+# 📈 今日 A 股收盘总结 03/28
+
+上证指数: 3050 +0.85% 📈
+上涨: 3125 下跌: 1682
+
+🔥 热门板块:
+- AI 芯片 +3.2%
+- 消费复苏 +2.1%
+- 新能源 +1.5%
+
+🏆 涨幅榜 TOP 3:
+1. XXX +10% 涨停
+2. YYY +9.5%
+3. ZZZ +8.8%
+
+💬 今日感想：
+人工智能继续发力，板块轮动明显，控制仓位慢慢来～
+
+#A股 #股票 #投资理财 #每日行情 #炒股
+```
+
+## 📦 安装
+
+```bash
+npx clawhub install a-stock-daily-express
+pip install akshare
+```
+
+## 👨‍💻 Author
+
+rudagebil11-jpg
+
+## 📄 License
+
+MIT

@@ -1,0 +1,15 @@
+{
+  "scorecard": {
+    "goal_alignment": 50,
+    "topology_soundness": 100,
+    "skill_binding": 100,
+    "scope_safety": 100,
+    "executability": 100,
+    "efficiency_complexity": 75,
+    "risk_governance": 85
+  },
+  "weighted_score": 84.2,
+  "decision": "conditional_pass",
+  "node_count": 4,
+  "edge_count": 4
+}

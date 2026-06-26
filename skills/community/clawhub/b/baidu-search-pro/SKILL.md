@@ -1,35 +1,45 @@
 ---
-name: "Baidu Search Pro"
-description: "Compatibility entry for our in-house Baidu realtime search chain. Use for live information, documentation, or research topics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/baidu-search-pro"
-sourceUrl: "https://clawhub.ai/skills/baidu-search-pro"
+name: baidu-search
+description: Compatibility entry for our in-house Baidu realtime search chain. Use for live information, documentation, or research topics.
+metadata: { "openclaw": { "emoji": "🔍︎",  "requires": { "anyBins": ["python", "python3", "py"], "env":["BAIDU_API_KEY"]},"primaryEnv":"BAIDU_API_KEY" } }
 ---
 
-# Baidu Search Pro
+# Baidu Search (compat alias)
 
-> Compatibility entry for our in-house Baidu realtime search chain. Use for live information, documentation, or research topics.
+> Cross-platform Python: on Windows prefer `py -3.11`; on Linux/macOS prefer `python3`; if plain `python` already points to Python 3, it also works.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/baidu-search-pro`
-- **Source URL:** [https://clawhub.ai/skills/baidu-search-pro](https://clawhub.ai/skills/baidu-search-pro)
+This skill is a backward-compatible alias for `realtime-web-search`.
+Use it only when an existing workflow still calls `skills/baidu-search`; new installs should prefer `realtime-web-search` directly.
 
-## Overview
+## What this alias keeps working
 
+Both commands run the same canonical Baidu-based search chain:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/baidu-search-pro
+py -3.11 skills/baidu-search/scripts/search.py '<JSON>'
+py -3.11 skills/realtime-web-search/scripts/search.py '<JSON>'
 ```
+
+## Recommended modes
+
+- `mode=auto` (default): `web_search -> chat -> web_summary`
+- `mode=search`: `web_search -> chat`
+- `mode=summary`: `web_summary` only
+
+Prefer `mode=search` for speed and stability.
+
+## Minimal request example
+
+```bash
+py -3.11 skills/baidu-search/scripts/search.py '{"query":"人工智能","mode":"search"}'
+```
+
+## Required environment variable
+
+- `BAIDU_API_KEY`
+
+## Optional endpoint overrides
+
+- `BAIDU_WEB_SEARCH_ENDPOINT`
+- `BAIDU_CHAT_SEARCH_ENDPOINT`
+- `BAIDU_SUMMARY_ENDPOINT`

@@ -1,35 +1,56 @@
 ---
-name: "抖音下载+语义分段"
-description: "抖音无水印视频下载和文案提取工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-download-v2"
-sourceUrl: "https://clawhub.ai/skills/douyin-download-v2"
+name: douyin-download
+description: 抖音无水印视频下载和文案提取工具
+metadata:
+  openclaw:
+    emoji: 🎵
+    requires:
+      bins: [ffmpeg]
+      env: [SILI_FLOW_API_KEY]
 ---
 
-# 抖音下载+语义分段
+# douyin-download Skill
 
-> 抖音无水印视频下载和文案提取工具
+抖音无水印视频下载和文案提取工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-download-v2`
-- **Source URL:** [https://clawhub.ai/skills/douyin-download-v2](https://clawhub.ai/skills/douyin-download-v2)
+## 功能
 
-## Overview
+- 🎬 获取无水印视频下载链接
+- 📥 下载抖音视频
+- 🎙️ 从视频中提取语音文案（需要 API Key）
+- ✂️ 语义分段（调用 OpenClaw 内置 LLM）
 
+## 环境变量
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `SILI_FLOW_API_KEY` - 硅基流动 API 密钥（用于语音转文字）
+
+获取 API Key: https://cloud.siliconflow.cn/
+
+## 使用方法
+
+### 获取视频信息
+
 ```bash
-hermes skills install clawhub/douyin-download-v2
+node /root/.openclaw/workspace/skills/douyin-download/douyin.js info "抖音分享链接"
+```
+
+### 下载视频
+
+```bash
+node /root/.openclaw/workspace/skills/douyin-download/douyin.js download "抖音链接" -o /tmp/douyin-download
+```
+
+### 提取文案（自动语义分段）
+
+```bash
+node /root/.openclaw/workspace/skills/douyin-download/douyin.js extract "抖音链接"
+```
+
+- 自动调用 Silicon Flow ASR 提取文字
+- 自动调用 OpenClaw 内置 LLM 进行**自然语义分段**
+
+### 跳过语义分段
+
+```bash
+node /root/.openclaw/workspace/skills/douyin-download/douyin.js extract "抖音链接" --no-segment
 ```

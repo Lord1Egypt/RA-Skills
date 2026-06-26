@@ -1,35 +1,65 @@
 ---
-name: "Indigo IPFS"
+name: indigo-ipfs
 description: "Store and retrieve data on IPFS and query collector UTXOs for the Indigo Protocol."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indigo-ipfs"
-sourceUrl: "https://clawhub.ai/skills/indigo-ipfs"
+allowed-tools: Read, Glob, Grep
+license: MIT
+metadata:
+  author: indigoprotocol
+  version: '0.1.0'
 ---
 
-# Indigo IPFS
+# Indigo IPFS & Collector
 
-> Store and retrieve data on IPFS and query collector UTXOs for the Indigo Protocol.
+Store and retrieve data on IPFS and query collector UTXOs for the Indigo Protocol on Cardano.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indigo-ipfs`
-- **Source URL:** [https://clawhub.ai/skills/indigo-ipfs](https://clawhub.ai/skills/indigo-ipfs)
+## MCP Tools
 
-## Overview
+### store_on_ipfs
 
+Store text content on IPFS.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/indigo-ipfs
-```
+**Parameters:**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `text` | string | Yes | Text content to store on IPFS |
+
+**Returns:** The IPFS content identifier (CID) for the stored content.
+
+---
+
+### retrieve_from_ipfs
+
+Retrieve content from IPFS by CID.
+
+**Parameters:**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `cid` | string | Yes | IPFS content identifier (CID) |
+
+**Returns:** The text content stored at the given CID.
+
+---
+
+### get_collector_utxos
+
+Get collector UTXOs for fee distribution.
+
+**Parameters:**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `length` | number | No | Maximum number of UTXOs to return |
+
+**Returns:** A list of collector UTXOs with their values and assets.
+
+## Sub-Skills
+
+- [IPFS Storage](sub-skills/ipfs-storage.md) — Store and retrieve data on IPFS
+- [Collector](sub-skills/collector.md) — Query collector UTXOs for fee distribution
+
+## References
+
+- [MCP Tools Reference](references/mcp-tools.md) — Detailed tool parameters and return types
+- [Concepts](references/concepts.md) — IPFS content addressing and collector fee distribution

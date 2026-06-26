@@ -1,0 +1,4 @@
+interface:
+  display_name: "ELPA"
+  short_description: "Trigger real ELPA multi-model training"
+  default_prompt: "Use $elpa to orchestrate real sub-model training and produce an ELPA ensemble policy from validation errors."

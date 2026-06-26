@@ -1,35 +1,28 @@
 ---
-name: "explore-codebase"
-description: "Indexed by skills.sh from tirth8205/code-review-graph"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "tirth8205"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/tirth8205/code-review-graph/explore-codebase"
-sourceUrl: "https://skills.sh/tirth8205/code-review-graph/explore-codebase"
+name: Explore Codebase
+description: Navigate and understand codebase structure using the knowledge graph
 ---
 
-# explore-codebase
+## Explore Codebase
 
-> Indexed by skills.sh from tirth8205/code-review-graph
+Use the code-review-graph MCP tools to explore and understand the codebase.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** tirth8205
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/tirth8205/code-review-graph/explore-codebase`
-- **Source URL:** [https://skills.sh/tirth8205/code-review-graph/explore-codebase](https://skills.sh/tirth8205/code-review-graph/explore-codebase)
+### Steps
 
-## Overview
+1. Run `list_graph_stats` to see overall codebase metrics.
+2. Run `get_architecture_overview_tool` for high-level community structure.
+3. Use `list_communities_tool` to find major modules, then `get_community` for details.
+4. Use `semantic_search_nodes_tool` to find specific functions or classes.
+5. Use `query_graph_tool` with patterns like `callers_of`, `callees_of`, `imports_of` to trace relationships.
+6. Use `list_flows` and `get_flow` to understand execution paths.
 
+### Tips
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/tirth8205/code-review-graph/explore-codebase
-```
+- Start broad (stats, architecture) then narrow down to specific areas.
+- Use `children_of` on a file to see all its functions and classes.
+- Use `find_large_functions` to identify complex code.
+
+## Token Efficiency Rules
+- ALWAYS start with `get_minimal_context(task="<your task>")` before any other graph tool.
+- Use `detail_level="minimal"` on all calls. Only escalate to "standard" when minimal is insufficient.
+- Target: complete any review/debug/refactor task in ≤5 tool calls and ≤800 total output tokens.

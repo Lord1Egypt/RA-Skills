@@ -1,0 +1,65 @@
+{
+  "agentId": "cc-mini",
+  "timezone": "America/Los_Angeles",
+  "maxTotalLines": 2000,
+  "steps": {
+    "sharedContext": {
+      "path": "~/.openclaw/workspace/SHARED-CONTEXT.md",
+      "label": "SHARED-CONTEXT.md",
+      "stepNumber": 2,
+      "critical": true
+    },
+    "journals": {
+      "dir": "~/wipcomputerinc/team/cc-mini/documents/journals",
+      "label": "Most Recent Journal (Parker)",
+      "stepNumber": 3,
+      "maxLines": 80,
+      "strategy": "most-recent"
+    },
+    "workspaceDailyLogs": {
+      "dir": "~/.openclaw/workspace/memory",
+      "label": "Workspace Daily Logs",
+      "stepNumber": 4,
+      "maxLines": 40,
+      "strategy": "daily-logs",
+      "days": ["today", "yesterday"]
+    },
+    "fullHistory": {
+      "label": "Full History",
+      "stepNumber": 5,
+      "reminder": "Read on cold start: staff/Parker/Claude Code - Mini/documents/cc-full-history.md"
+    },
+    "context": {
+      "path": "~/.ldm/agents/cc-mini/CONTEXT.md",
+      "label": "CC CONTEXT.md",
+      "stepNumber": 6,
+      "critical": true
+    },
+    "soul": {
+      "path": "~/.ldm/agents/cc-mini/SOUL.md",
+      "label": "CC SOUL.md",
+      "stepNumber": 7
+    },
+    "ccJournals": {
+      "dir": "~/.ldm/agents/cc-mini/memory/journals",
+      "label": "Most Recent CC Journal",
+      "stepNumber": 8,
+      "maxLines": 80,
+      "strategy": "most-recent"
+    },
+    "ccDailyLog": {
+      "dir": "~/.ldm/agents/cc-mini/memory/daily",
+      "label": "CC Daily Log",
+      "stepNumber": 9,
+      "maxLines": 60,
+      "strategy": "daily-logs",
+      "days": ["today", "yesterday"]
+    },
+    "repoLocations": {
+      "path": "~/.claude/projects/-Users-lesa--openclaw/memory/repo-locations.md",
+      "label": "repo-locations.md",
+      "stepNumber": 10,
+      "critical": true
+    }
+  }
+}

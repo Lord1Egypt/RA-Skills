@@ -1,0 +1,17 @@
+{
+  "name": "ai-code-generator",
+  "version": "1.0.0",
+  "description": "AI code generator using Plan-and-Solve + ReAct",
+  "main": "index.js",
+  "scripts": {
+    "example": "node examples/generate-example.js"
+  },
+  "keywords": [
+    "code-generation",
+    "plan-and-solve",
+    "react",
+    "full-stack"
+  ],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

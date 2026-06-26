@@ -1,0 +1,173 @@
+{
+  "_description": "키워드-문서 매핑 테이블. 자주 검색되는 키워드/질문 패턴을 관련 문서로 빠르게 매핑한다. doc_recommender.py에서 사전 매칭 단계로 사용.",
+  "_version": "1.0",
+  "_usage": "키워드 exact match → shortcut 결과 반환. 매칭 실패 시 TF-IDF 기반 full search로 폴백.",
+
+  "keyword_groups": {
+    "evtol_certification": {
+      "keywords": ["eVTOL", "전기수직이착륙", "전기항공기", "electric VTOL", "powered lift"],
+      "primary_documents": ["EASA-SC-VTOL-02", "FAA-14CFR-Part23", "ASTM-F3230", "ICAO-Annex-8"],
+      "secondary_documents": ["SAE-ARP4754A", "RTCA-DO-178C", "FAA-AC-20-193"],
+      "context": "eVTOL 항공기 형식 인증 및 감항 기준"
+    },
+    "uam_policy": {
+      "keywords": ["UAM", "도심항공교통", "Urban Air Mobility", "AAM", "Advanced Air Mobility"],
+      "primary_documents": ["ICAO-Annex-8", "ICAO-Circular-328", "EASA-SC-VTOL-02", "NAAN-Roadmap"],
+      "secondary_documents": ["ICAO-Annex-11", "ICAO-Annex-14", "FAA-14CFR-Part107"],
+      "context": "도심항공교통/선진항공교통 정책 및 운영 프레임워크"
+    },
+    "airworthiness": {
+      "keywords": ["감항성", "감항", "airworthiness", "certification", "형식증명", "type certificate"],
+      "primary_documents": ["ICAO-Annex-8", "FAA-14CFR-Part21", "FAA-14CFR-Part23", "EASA-CS-23"],
+      "secondary_documents": ["ICAO-Doc-9760", "FAA-AC-20-193"],
+      "context": "항공기 감항성 인증 및 형식증명 기준"
+    },
+    "drone_uas": {
+      "keywords": ["드론", "UAS", "무인기", "무인항공기", "RPAS", "drone", "unmanned"],
+      "primary_documents": ["ICAO-Circular-328", "FAA-14CFR-Part107", "ICAO-Annex-8"],
+      "secondary_documents": ["ASTM-F3548", "EASA-SC-VTOL-02"],
+      "context": "무인항공기 시스템(UAS/드론) 규정 및 운용 기준"
+    },
+    "remote_id": {
+      "keywords": ["원격식별", "remote identification", "remote ID", "Remote-ID"],
+      "primary_documents": ["FAA-14CFR-Part107", "ASTM-F3548"],
+      "secondary_documents": ["ICAO-Circular-328"],
+      "context": "무인항공기 원격 식별 요건 및 표준"
+    },
+    "noise_regulation": {
+      "keywords": ["소음", "noise", "소음기준", "noise standard", "환경보호"],
+      "primary_documents": ["ICAO-Annex-16", "FAA-14CFR-Part36"],
+      "secondary_documents": ["ICAO-Annex-8"],
+      "context": "항공기 소음 규제 및 환경보호 기준"
+    },
+    "air_traffic_management": {
+      "keywords": ["항공교통관리", "ATM", "ATC", "관제", "공역", "airspace", "air traffic"],
+      "primary_documents": ["ICAO-Annex-11", "ICAO-Annex-2"],
+      "secondary_documents": ["ICAO-Annex-14", "FAA-14CFR-Part107"],
+      "context": "항공교통관리 및 공역 운영 규정"
+    },
+    "safety_management": {
+      "keywords": ["안전관리", "SMS", "safety management", "안전관리시스템", "사고조사"],
+      "primary_documents": ["ICAO-Annex-19", "ICAO-Doc-9859"],
+      "secondary_documents": ["ICAO-Annex-8", "FAA-14CFR-Part21"],
+      "context": "항공 안전관리 시스템(SMS) 및 안전 감독"
+    },
+    "software_avionics": {
+      "keywords": ["항전", "소프트웨어", "avionics", "software", "DO-178", "DO-254", "FPGA"],
+      "primary_documents": ["RTCA-DO-178C", "RTCA-DO-254"],
+      "secondary_documents": ["SAE-ARP4754A", "SAE-ARP4761A"],
+      "context": "항공 전자장비 소프트웨어/하드웨어 인증 표준"
+    },
+    "development_assurance": {
+      "keywords": ["개발보증", "development assurance", "ARP4754", "시스템 개발", "안전성 평가"],
+      "primary_documents": ["SAE-ARP4754A", "SAE-ARP4761A"],
+      "secondary_documents": ["RTCA-DO-178C", "RTCA-DO-254"],
+      "context": "항공기 시스템 개발보증 및 안전성 평가 프로세스"
+    },
+    "aerodrome": {
+      "keywords": ["비행장", "공항", "활주로", "aerodrome", "airport", "heliport", "vertiport"],
+      "primary_documents": ["ICAO-Annex-14"],
+      "secondary_documents": ["ICAO-Annex-11", "FAA-14CFR-Part107"],
+      "context": "비행장/버티포트 설계 및 운영 기준"
+    },
+    "engine_propulsion": {
+      "keywords": ["엔진", "추진", "engine", "propulsion", "전기추진", "electric propulsion", "turbine"],
+      "primary_documents": ["FAA-14CFR-Part33", "FAA-14CFR-Part35", "FAA-AC-20-193"],
+      "secondary_documents": ["ICAO-Annex-8", "ICAO-Annex-16"],
+      "context": "항공기 엔진/추진 시스템 감항 기준"
+    },
+    "international_law": {
+      "keywords": ["시카고협약", "Chicago Convention", "국제항공법", "몬트리올", "국제조약"],
+      "primary_documents": ["Chicago-Convention"],
+      "secondary_documents": ["ICAO-Annex-1", "ICAO-Annex-2"],
+      "context": "국제 민간항공 협약 및 조약"
+    },
+    "pilot_licensing": {
+      "keywords": ["조종사", "면허", "자격증명", "pilot", "license", "licensing", "ATPL", "CPL"],
+      "primary_documents": ["ICAO-Annex-1"],
+      "secondary_documents": ["ICAO-Annex-6"],
+      "context": "조종사 및 항공 종사자 자격/면허"
+    },
+    "flight_operations": {
+      "keywords": ["운항", "운용", "operation", "비행운영", "항공기운항"],
+      "primary_documents": ["ICAO-Annex-6"],
+      "secondary_documents": ["ICAO-Annex-2", "ICAO-Annex-11"],
+      "context": "항공기 운항 규정 및 절차"
+    }
+  },
+
+  "question_patterns": {
+    "_description": "자연어 질문 패턴을 키워드 그룹으로 매핑",
+    "patterns": [
+      {
+        "regex": "(?i)(eVTOL|전기.*이착륙).*(인증|certification|감항|airworthiness)",
+        "keyword_group": "evtol_certification"
+      },
+      {
+        "regex": "(?i)(UAM|도심항공|AAM|선진항공).*(정책|규정|regulation|policy|법)",
+        "keyword_group": "uam_policy"
+      },
+      {
+        "regex": "(?i)(드론|UAS|무인).*(규정|법|regulation|rule|운용)",
+        "keyword_group": "drone_uas"
+      },
+      {
+        "regex": "(?i)(소음|noise).*(규정|기준|standard|regulation)",
+        "keyword_group": "noise_regulation"
+      },
+      {
+        "regex": "(?i)(원격.*식별|remote.*id)",
+        "keyword_group": "remote_id"
+      },
+      {
+        "regex": "(?i)(소프트웨어|DO-178|DO-254|항전).*(인증|certification|표준|standard)",
+        "keyword_group": "software_avionics"
+      },
+      {
+        "regex": "(?i)(안전관리|SMS|safety management)",
+        "keyword_group": "safety_management"
+      },
+      {
+        "regex": "(?i)(관제|airspace|공역|ATM|air traffic)",
+        "keyword_group": "air_traffic_management"
+      },
+      {
+        "regex": "(?i)(버티포트|vertiport|비행장|공항|aerodrome)",
+        "keyword_group": "aerodrome"
+      },
+      {
+        "regex": "(?i)(개발보증|ARP.*4754|시스템.*개발|development assurance)",
+        "keyword_group": "development_assurance"
+      },
+      {
+        "regex": "(?i)(시카고.*협약|Chicago.*Convention|국제항공법)",
+        "keyword_group": "international_law"
+      },
+      {
+        "regex": "(?i)(조종사|pilot).*(면허|license|자격)",
+        "keyword_group": "pilot_licensing"
+      }
+    ]
+  },
+
+  "synonym_map": {
+    "_description": "동의어/약어 매핑. 검색 시 키워드를 정규화하는 데 사용.",
+    "eVTOL": ["전기수직이착륙기", "전기수직이착륙", "electric vertical takeoff and landing", "powered lift"],
+    "UAM": ["도심항공교통", "Urban Air Mobility", "도심항공"],
+    "AAM": ["선진항공교통", "Advanced Air Mobility"],
+    "UAS": ["무인항공기시스템", "Unmanned Aircraft System", "드론", "drone"],
+    "RPAS": ["원격조종항공기", "Remotely Piloted Aircraft System"],
+    "SMS": ["안전관리시스템", "Safety Management System"],
+    "ATM": ["항공교통관리", "Air Traffic Management"],
+    "AD": ["감항성개선지시", "Airworthiness Directive"],
+    "AC": ["자문회보", "Advisory Circular"],
+    "SARPs": ["국제표준및권고사항", "Standards and Recommended Practices"],
+    "NOTAM": ["항공고시보", "Notice to Air Missions"],
+    "TSO": ["기술표준품", "Technical Standard Order"],
+    "vertiport": ["버티포트", "수직이착륙장"],
+    "heliport": ["헬리포트", "헬기장"],
+    "airworthiness": ["감항성", "감항"],
+    "certification": ["인증", "형식증명"],
+    "regulation": ["규정", "규칙", "법규"]
+  }
+}

@@ -1,35 +1,42 @@
 ---
-name: "discord-bot"
+name: jpeng-discord-bot
 description: "Send messages to Discord"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-discord-bot"
-sourceUrl: "https://clawhub.ai/skills/jpeng-discord-bot"
+version: "1.0.0"
+author: "jpeng"
+tags: ["chat", "discord", "communication"]
 ---
 
-# discord-bot
+# Discord Bot
 
-> Send messages to Discord
+Send messages to Discord
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-discord-bot`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-discord-bot](https://clawhub.ai/skills/jpeng-discord-bot)
+## When to Use
 
-## Overview
+- User needs chat related functionality
+- Automating discord tasks
+- Communication operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-discord-bot
+python3 scripts/discord_bot.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export DISCORD_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

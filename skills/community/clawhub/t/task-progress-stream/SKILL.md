@@ -1,35 +1,55 @@
 ---
-name: "task-progress-stream"
-description: "Stream long-running task progress into the OpenClaw chat UI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-progress-stream"
-sourceUrl: "https://clawhub.ai/skills/task-progress-stream"
+name: task-progress-stream
+description: Stream long-running task progress into the OpenClaw chat UI.
+version: 0.1.0
+author: LiyooYin
+license: MIT
+tags:
+  - monitoring
+  - progress
+  - training
 ---
 
 # task-progress-stream
 
-> Stream long-running task progress into the OpenClaw chat UI.
+Use this skill when the user wants **real-time progress updates inside the OpenClaw chat UI** for a long-running task such as:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-progress-stream`
-- **Source URL:** [https://clawhub.ai/skills/task-progress-stream](https://clawhub.ai/skills/task-progress-stream)
+- model training
+- evaluation
+- inference
+- data preprocessing
+- long shell jobs
+- benchmark runs
 
-## Overview
+It works in two modes:
 
+1. **run**  
+   Start a command, capture stdout/stderr, parse common metrics, and periodically inject progress summaries into chat.
 
-## Installation
-To install this skill, run the following command in your terminal:
+2. **tail**  
+   Monitor an existing log file and periodically inject parsed progress summaries into chat.
+
+## What it extracts
+
+It tries to recognize common fields from logs:
+
+- epoch / max_epoch
+- step / max_step
+- loss
+- learning rate
+- validation metric
+- best metric
+- ETA
+- speed
+
+## Typical usage
+
+### Start a training job and stream progress into chat
+
 ```bash
-hermes skills install clawhub/task-progress-stream
-```
+node ./scripts/task_progress_stream.js run \
+  --session main \
+  --label train \
+  --cwd /path/to/project \
+  --cmd "python src/train.py --config configs/train.yaml" \
+  --interval-sec 20

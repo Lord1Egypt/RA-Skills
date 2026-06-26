@@ -1,0 +1,66 @@
+/* huo15-markdown-export — GitHub
+ * 流派:Tech-doc(GitHub README)
+ * 适合:开源项目 / API 文档 / 技术 README
+ * 关键差异化:GitHub 官方视觉一致 + 行高 1.7(原版 1.5 中文偏紧,本主题中文友好化)
+ *
+ * v0.4.0:行高 1.5 → 1.7(中文长文不勒)
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     var(--font-sans);
+  --font-heading:  var(--font-sans);
+  --color-bg:      #ffffff;
+  --color-fg:      #1f2328;
+  --color-muted:   #59636e;
+  --color-rule:    #d1d9e0;
+  --color-accent:  #0969da;
+  --color-accent-soft: rgba(9, 105, 218, 0.08);
+  --color-code-bg: #f6f8fa;
+  --quote-bar-color: #d1d9e0;
+  --quote-bg:      transparent;
+  --quote-fg:      var(--color-muted);
+  --table-th-bg:   var(--color-code-bg);
+  --table-stripe-bg: #f6f8fa;
+  --measure:       var(--measure-full);
+  --leading:       1.7;
+  --fs-base:       16px;
+}
+
+/* === GitHub 特征 === */
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  font-weight: 600;
+  line-height: 1.25;
+}
+.markdown-body h1 { padding-bottom: 0.3em; border-bottom: 1px solid var(--color-rule); }
+.markdown-body h2 { padding-bottom: 0.3em; border-bottom: 1px solid var(--color-rule); }
+
+.markdown-body a { text-decoration: none; }
+.markdown-body a:hover { text-decoration: underline; }
+
+.markdown-body strong { font-weight: 600; }
+
+/* GitHub 代码块用专属配色 */
+.markdown-body code {
+  font-size: 85%;
+  background: rgba(175, 184, 193, 0.2);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+.markdown-body pre {
+  padding: 16px;
+  border-radius: 6px;
+  font-size: 85%;
+  line-height: 1.45;
+}
+
+/* GitHub 表格横向 overflow */
+.markdown-body table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+.markdown-body table th, .markdown-body table td { padding: 6px 13px; }

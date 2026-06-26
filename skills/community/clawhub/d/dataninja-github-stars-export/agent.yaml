@@ -1,0 +1,20 @@
+name: github-stars-notion-sync-agent
+version: 1.0.0
+description: An agent that manages GitHub starred repository backups and Notion sync.
+
+tools:
+  - name: export_stars
+    description: Export all GitHub starred repositories categorized by custom lists to a local Markdown file.
+    command: bash scripts/export_stars.sh
+  
+  - name: sync_to_notion
+    description: Sync the exported GitHub starred repositories to a Notion database.
+    command: python3 scripts/sync_stars_to_notion_db.py
+
+environment:
+  required_vars:
+    - NOTION_API_KEY
+  dependencies:
+    - python: requests
+    - cli: gh
+    - cli: jq

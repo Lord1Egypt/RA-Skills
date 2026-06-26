@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "default_roots": [
+    "{workspace}/MEMORY.md",
+    "{workspace}/memory"
+  ],
+  "reports_dir": "{workspace}/output/memory-poison-auditor/reports",
+  "backups_dir": "{workspace}/output/memory-poison-auditor/backups",
+  "thresholds": {
+    "warn": 25,
+    "block": 55
+  },
+  "size_limits": {
+    "max_file_chars": 50000,
+    "max_ai_chars": 10000
+  },
+  "brand_terms": [
+    "openai",
+    "anthropic",
+    "claude",
+    "chatgpt",
+    "gpt",
+    "gemini",
+    "deepseek",
+    "cursor",
+    "openclaw",
+    "langchain",
+    "perplexity"
+  ],
+  "injection_patterns": [
+    "ignore previous instructions",
+    "ignore all prior instructions",
+    "system prompt",
+    "developer message",
+    "do not reveal",
+    "override the user",
+    "secretly",
+    "hidden policy",
+    "do this regardless of user intent"
+  ],
+  "steering_patterns": [
+    "always recommend",
+    "must recommend",
+    "prefer this brand",
+    "never mention competitors",
+    "suppress competitors",
+    "push this product",
+    "default recommendation",
+    "no matter what the user asks",
+    "regardless of context"
+  ],
+  "authority_patterns": [
+    "the user explicitly approved",
+    "human already approved",
+    "owner said to always",
+    "this was verified by the user",
+    "treat this as permanent instruction"
+  ],
+  "report_templates": {
+    "headline": "{recommendation} {path} risk={risk_score}",
+    "summary": "{path} contains {suspicious_blocks} suspicious memory block(s).",
+    "operator_note": "Review or clean suspicious blocks before relying on this memory for future planning."
+  }
+}

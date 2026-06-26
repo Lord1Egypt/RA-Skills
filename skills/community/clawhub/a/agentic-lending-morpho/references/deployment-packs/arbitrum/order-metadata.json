@@ -1,0 +1,30 @@
+{
+  "chain": { "name": "arbitrum", "chainId": 42161 },
+  "preferredOrder": [
+    "preflight-morpho-market",
+    "ensure-feeds-and-deploy-morpho-market",
+    "explain-next",
+    "verify-feed-to-market-handoff"
+  ],
+  "rpcRequirements": {
+    "chainIdMustMatch": 42161,
+    "allowPublicFallbackForPlanningOnly": true,
+    "requireExplicitRpcForLive": true
+  },
+  "liveExecutionGuards": {
+    "requiresAcknowledgement": "I_UNDERSTAND_THIS_WILL_SEND_TRANSACTIONS",
+    "rejectPlaceholders": true,
+    "requirePreflightSafeToRun": true
+  },
+  "artifactGates": [
+    "agent-decision.json.successClaimAllowed === true",
+    "summary.json.phase === completed",
+    "deploy-output.json.sendSummary.completed === true",
+    "verify-output.json.verified === true"
+  ],
+  "notes": [
+    "Use references/live-request-template.json as the request shape, replacing every placeholder before preflight.",
+    "After feed funding, do not deploy until propagation.json.ready is true.",
+    "Use verify-feed-to-market-handoff before reporting a final market deployment success."
+  ]
+}

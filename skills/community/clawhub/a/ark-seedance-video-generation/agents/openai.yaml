@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ark Seedance Video"
+  short_description: "Production SOP for Seedance video generation"
+  default_prompt: "Use $ark-seedance-video-generation to first select a Seedance model ID, then execute the full SOP with ARK_API_KEY, including generation, polling, verification, and asset download."

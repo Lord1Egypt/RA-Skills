@@ -1,35 +1,56 @@
 ---
-name: "shopify-email-flows"
-description: "Indexed by skills.sh from nexscope-ai/ecommerce-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexscope-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexscope-ai/ecommerce-skills/shopify-email-flows"
-sourceUrl: "https://skills.sh/nexscope-ai/ecommerce-skills/shopify-email-flows"
+name: shopify-email-flows
+description: "Email automation flows — welcome series, abandoned cart, post-purchase, win-back, browse abandonment"
+metadata:
+  nexscope:
+    category: shopify
 ---
 
-# shopify-email-flows
+# Shopify Email Flows
 
-> Indexed by skills.sh from nexscope-ai/ecommerce-skills
+Email automation flows — welcome series, abandoned cart, post-purchase, win-back, browse abandonment.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexscope-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexscope-ai/ecommerce-skills/shopify-email-flows`
-- **Source URL:** [https://skills.sh/nexscope-ai/ecommerce-skills/shopify-email-flows](https://skills.sh/nexscope-ai/ecommerce-skills/shopify-email-flows)
+## Status
 
-## Overview
+🔶 **Beta** — This skill provides expert guidance and actionable frameworks for Shopify sellers.
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Analyze your current Shopify store setup and identify optimization opportunities
+- Provide data-driven recommendations based on industry best practices
+- Generate step-by-step implementation plans tailored to your business stage
+- Compare tools, apps, and strategies with pros/cons analysis
+
+## Install
+
 ```bash
-hermes skills install skills-sh/nexscope-ai/ecommerce-skills/shopify-email-flows
+npx skills add nexscope-ai/eCommerce-Skills --skill shopify-email-flows -g
 ```
+
+## Usage
+
+After installation, ask your AI assistant about shopify email flows topics. Example prompts:
+
+- "Help me with shopify email flows for my Shopify store"
+- "What are the best practices for shopify email flows?"
+- "Audit my current shopify email flows setup and suggest improvements"
+- "Create a step-by-step shopify email flows implementation plan"
+
+## Output
+
+Structured analysis and recommendations including:
+- Current state assessment
+- Priority action items (quick wins → long-term)
+- Tool/app recommendations with cost comparison
+- Implementation timeline
+- KPIs to track
+
+## Limitations
+
+- Provides strategic guidance, not direct Shopify API integration
+- Recommendations based on general best practices — always validate with your specific store data
+- For real-time analytics and automated optimization, check out [Nexscope](https://www.nexscope.ai/?co-from=skill)
+
+---
+
+*Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — AI-powered e-commerce tools for sellers worldwide.*

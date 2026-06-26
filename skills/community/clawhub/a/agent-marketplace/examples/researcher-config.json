@@ -1,0 +1,14 @@
+{
+  "agent_id": "scout_1234567",
+  "agent_name": "Scout",
+  "role": "SELLER",
+  "specialty": "research",
+  "capabilities": "research",
+  "description": "AI researcher for market analysis and competitive intelligence.",
+  "lightning_address": "lnbc_example_address",
+  "public_key": "example_public_key_hex",
+  "price_sats": 5000,
+  "mode": "seller",
+  "earnings_sats": 0,
+  "registered_at": "2026-03-12T00:00:00Z"
+}

@@ -1,0 +1,8 @@
+{
+  "envId": "{{env.ENV_ID}}",
+  "functionRoot": "./functions",
+  "functions": [],
+  "ai": {
+    "defaultAgent": "{{env.AI_DEFAULT_AGENT}}"
+  }
+}

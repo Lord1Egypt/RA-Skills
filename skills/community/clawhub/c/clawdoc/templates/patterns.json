@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "infinite-retry",
+    "category": "cost-hemorrhage",
+    "severity": "critical",
+    "description": "Same tool called 5+ times consecutively with similar arguments",
+    "detection_key": "consecutive_tool_calls >= 5"
+  },
+  {
+    "id": 2,
+    "name": "non-retryable-retry",
+    "category": "silent-failure",
+    "severity": "high",
+    "description": "Deterministic validation error followed by identical retry",
+    "detection_key": "error_text matches validation_pattern AND identical_retry within 2 turns"
+  },
+  {
+    "id": 3,
+    "name": "tool-as-text",
+    "category": "silent-failure",
+    "severity": "high",
+    "description": "Tool invocation syntax in assistant text without corresponding toolCall blocks",
+    "detection_key": "assistant_text matches tool_name_pattern AND no_toolcall_in_same_turn"
+  },
+  {
+    "id": 4,
+    "name": "context-exhaustion",
+    "category": "operational",
+    "severity": "medium",
+    "description": "inputTokens approaching contextTokens limit",
+    "detection_key": "inputTokens > 0.70 * contextTokens"
+  },
+  {
+    "id": 5,
+    "name": "subagent-replay",
+    "category": "operational",
+    "severity": "medium",
+    "description": "Duplicate assistant messages in subagent sessions",
+    "detection_key": "sessionKey matches subagent_pattern AND duplicate_assistant_messages >= 3"
+  },
+  {
+    "id": 6,
+    "name": "cost-spike",
+    "category": "cost-hemorrhage",
+    "severity": "high",
+    "description": "Single turn cost exceeds $0.50 or session cost unusually high",
+    "detection_key": "turn_cost > 0.50 OR session_cost > 1.00"
+  },
+  {
+    "id": 7,
+    "name": "skill-miss",
+    "category": "operational",
+    "severity": "low",
+    "description": "Tool call fails because required binary/skill dependency is missing",
+    "detection_key": "toolResult contains 'command not found'"
+  },
+  {
+    "id": 8,
+    "name": "model-routing-waste",
+    "category": "cost-hemorrhage",
+    "severity": "medium",
+    "description": "Expensive model used for low-complexity cron/heartbeat sessions",
+    "detection_key": "sessionKey matches cron_pattern AND model in premium_tier"
+  },
+  {
+    "id": 9,
+    "name": "cron-accumulation",
+    "category": "cost-hemorrhage",
+    "severity": "medium",
+    "description": "Growing inputTokens across sequential cron session starts",
+    "detection_key": "sessionKey starts with 'cron:' AND inputTokens_growth > 20%"
+  },
+  {
+    "id": 10,
+    "name": "compaction-damage",
+    "category": "silent-failure",
+    "severity": "medium",
+    "description": "Post-compaction tool call repetition — agent re-does already-completed work",
+    "detection_key": "inputTokens_drop > 40% AND post_compaction_tool_matches_pre_compaction_tool"
+  },
+  {
+    "id": 11,
+    "name": "workspace-overhead",
+    "category": "cost-hemorrhage",
+    "severity": "medium",
+    "description": "System prompt + workspace files consume >15% of context window at session start",
+    "detection_key": "first_assistant_inputTokens > 0.15 * contextTokens"
+  },
+  {
+    "id": 12,
+    "name": "task-drift",
+    "category": "silent-failure",
+    "severity": "medium",
+    "description": "Agent drifts to unrelated directories after compaction, or enters exploration spiral (10+ reads without edits)",
+    "detection_key": "post_compaction_new_dirs >= 3 AND new_dir_pct >= 50% OR consecutive_read_only_tools >= 10"
+  },
+  {
+    "id": 13,
+    "name": "unbounded-walk",
+    "category": "cost-hemorrhage",
+    "severity": "high",
+    "description": "Repeated unscoped recursive filesystem commands (find, grep -r) or exponentially growing tool output",
+    "detection_key": "unscoped_recursive_exec_count >= 3 OR consecutive_output_doublings >= 3"
+  },
+  {
+    "id": 14,
+    "name": "tool-misuse",
+    "category": "cost-hemorrhage",
+    "severity": "medium",
+    "description": "Same file read 3+ times without intervening edit, or identical search repeated 3+ times",
+    "detection_key": "same_file_read_without_edit >= 3 OR identical_search_count >= 3"
+  }
+]

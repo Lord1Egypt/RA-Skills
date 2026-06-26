@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Self-Improvement-Cyber-Bye Memory Index",
+  "type": "object",
+  "required": ["version", "updated", "stats", "errors", "fixes", "improvements", "patterns", "crons"],
+  "properties": {
+    "version":  { "type": "string" },
+    "updated":  { "type": "string", "format": "date" },
+    "stats": {
+      "type": "object",
+      "required": ["total_captured","total_fixed","total_escalated","total_promoted","fix_rate_pct","trend"],
+      "properties": {
+        "total_captured":  { "type": "integer", "minimum": 0 },
+        "total_fixed":     { "type": "integer", "minimum": 0 },
+        "total_escalated": { "type": "integer", "minimum": 0 },
+        "total_promoted":  { "type": "integer", "minimum": 0 },
+        "fix_rate_pct":    { "type": "number",  "minimum": 0, "maximum": 100 },
+        "trend":           { "enum": ["improving","stable","worsening","insufficient-data"] },
+        "by_type":         { "type": "object", "additionalProperties": { "type": "integer" } }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug","type","severity","status","captured"],
+        "properties": {
+          "slug":         { "type": "string" },
+          "type":         { "enum": ["hallucination","user-correction","logic-error","code-bug","tool-misuse","skill-breach","behavior-drift","memory-gap","omission","judgment-error"] },
+          "severity":     { "enum": ["critical","high","medium","low"] },
+          "status":       { "enum": ["raw","reviewed","fix-attempted","fixed","escalated","resolved","promoted"] },
+          "captured":     { "type": "string", "format": "date-time" },
+          "reviewed":     { "type": ["string","null"] },
+          "resolved":     { "type": ["string","null"] },
+          "promoted":     { "type": ["string","null"] },
+          "fix_entry":    { "type": ["string","null"] },
+          "impr_entry":   { "type": ["string","null"] },
+          "context_area": { "type": ["string","null"] },
+          "summary":      { "type": "string" }
+        }
+      }
+    },
+    "fixes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug","error_slug","fix_type","created"],
+        "properties": {
+          "slug":       { "type": "string" },
+          "error_slug": { "type": "string" },
+          "fix_type":   { "enum": ["self-fix","owner-fix"] },
+          "created":    { "type": "string", "format": "date" },
+          "summary":    { "type": "string" },
+          "promoted":   { "type": "boolean" }
+        }
+      }
+    },
+    "improvements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug","category","created"],
+        "properties": {
+          "slug":        { "type": "string" },
+          "category":    { "enum": ["behavioral","factual","code","process","judgment"] },
+          "source_type": { "enum": ["self-fix","owner-fix","pattern-resolution"] },
+          "created":     { "type": "string", "format": "date" },
+          "lesson":      { "type": "string" }
+        }
+      }
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pattern_id","error_type","count","first_seen","last_seen","status"],
+        "properties": {
+          "pattern_id":   { "type": "string" },
+          "error_type":   { "type": "string" },
+          "context_area": { "type": ["string","null"] },
+          "count":        { "type": "integer", "minimum": 3 },
+          "first_seen":   { "type": "string", "format": "date" },
+          "last_seen":    { "type": "string", "format": "date" },
+          "status":       { "enum": ["active","resolved","monitoring"] },
+          "root_cause":   { "type": ["string","null"] },
+          "proposed_fix": { "type": ["string","null"] }
+        }
+      }
+    },
+    "crons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["cron_id","type","schedule_ist","purpose","fire_once","auto_delete","status","created"],
+        "properties": {
+          "cron_id":      { "type": "string" },
+          "type":         { "enum": ["permanent","temp"] },
+          "schedule_ist": { "type": "string" },
+          "purpose":      { "type": "string" },
+          "fire_once":    { "type": "boolean" },
+          "auto_delete":  { "type": "boolean" },
+          "status":       { "enum": ["active","fired","cancelled","expired"] },
+          "created":      { "type": "string", "format": "date" },
+          "fired_at":     { "type": ["string","null"] },
+          "deleted_at":   { "type": ["string","null"] }
+        }
+      }
+    }
+  }
+}

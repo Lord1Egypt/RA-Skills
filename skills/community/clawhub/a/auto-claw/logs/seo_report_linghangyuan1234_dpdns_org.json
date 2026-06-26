@@ -1,0 +1,132 @@
+{
+  "site": "http://linghangyuan1234.dpdns.org",
+  "scanned_pages": 8,
+  "total_issues": 40,
+  "avg_score": 44.375,
+  "pages": [
+    {
+      "url": "http://linghangyuan1234.dpdns.org",
+      "title": "AI tools",
+      "score": 35,
+      "issues": [
+        "[ERROR] 缺少 meta description",
+        "[WARNING] Title 过短 (8 字符，建议 30-60)",
+        "[ERROR] 缺少 meta description",
+        "[INFO] 缺少 OG title",
+        "[INFO] 缺少 OG image",
+        "[INFO] 缺少 Schema.org JSON-LD 结构化数据"
+      ],
+      "word_count": 1653,
+      "images_without_alt": 0,
+      "has_schema": false
+    },
+    {
+      "url": "http://linghangyuan1234.dpdns.org/?p=8",
+      "title": "OpenClaw Auto",
+      "score": 35,
+      "issues": [
+        "[ERROR] 缺少 meta description",
+        "[WARNING] Title 过短 (8 字符，建议 30-60)",
+        "[ERROR] 缺少 meta description",
+        "[INFO] 缺少 OG title",
+        "[INFO] 缺少 OG image",
+        "[INFO] 缺少 Schema.org JSON-LD 结构化数据"
+      ],
+      "word_count": 1653,
+      "images_without_alt": 0,
+      "has_schema": false
+    },
+    {
+      "url": "http://linghangyuan1234.dpdns.org/?p=2",
+      "title": "示例页面",
+      "score": 35,
+      "issues": [
+        "[ERROR] 缺少 meta description",
+        "[WARNING] Title 过短 (21 字符，建议 30-60)",
+        "[ERROR] 缺少 meta description",
+        "[INFO] 缺少 OG title",
+        "[INFO] 缺少 OG image",
+        "[INFO] 缺少 Schema.org JSON-LD 结构化数据"
+      ],
+      "word_count": 1374,
+      "images_without_alt": 0,
+      "has_schema": false
+    },
+    {
+      "url": "http://linghangyuan1234.dpdns.org/?p=11",
+      "title": "Auto-Claw 生产级演示文章",
+      "score": 45,
+      "issues": [
+        "[ERROR] 缺少 meta description",
+        "[ERROR] 缺少 meta description",
+        "[INFO] 缺少 OG title",
+        "[INFO] 缺少 OG image",
+        "[INFO] 缺少 Schema.org JSON-LD 结构化数据"
+      ],
+      "word_count": 1685,
+      "images_without_alt": 0,
+      "has_schema": false
+    },
+    {
+      "url": "http://linghangyuan1234.dpdns.org/?p=10",
+      "title": "Auto-Claw 演示文章 #2",
+      "score": 45,
+      "issues": [
+        "[ERROR] 缺少 meta description",
+        "[ERROR] 缺少 meta description",
+        "[INFO] 缺少 OG title",
+        "[INFO] 缺少 OG image",
+        "[INFO] 缺少 Schema.org JSON-LD 结构化数据"
+      ],
+      "word_count": 1657,
+      "images_without_alt": 0,
+      "has_schema": false
+    },
+    {
+      "url": "http://linghangyuan1234.dpdns.org/?p=9",
+      "title": "Auto-Claw Test Post",
+      "score": 45,
+      "issues": [
+        "[ERROR] 缺少 meta description",
+        "[ERROR] 缺少 meta description",
+        "[INFO] 缺少 OG title",
+        "[INFO] 缺少 OG image",
+        "[INFO] 缺少 Schema.org JSON-LD 结构化数据"
+      ],
+      "word_count": 1629,
+      "images_without_alt": 0,
+      "has_schema": false
+    },
+    {
+      "url": "http://linghangyuan1234.dpdns.org/?p=1",
+      "title": "世界，您好！",
+      "score": 35,
+      "issues": [
+        "[ERROR] 缺少 meta description",
+        "[WARNING] Title 过短 (23 字符，建议 30-60)",
+        "[ERROR] 缺少 meta description",
+        "[INFO] 缺少 OG title",
+        "[INFO] 缺少 OG image",
+        "[INFO] 缺少 Schema.org JSON-LD 结构化数据"
+      ],
+      "word_count": 1700,
+      "images_without_alt": 0,
+      "has_schema": false
+    },
+    {
+      "url": "http://linghangyuan1234.dpdns.org/category/uncategorized",
+      "title": "未分类",
+      "score": 80,
+      "issues": [
+        "[ERROR] HTTP 404"
+      ],
+      "word_count": 0,
+      "images_without_alt": 0,
+      "has_schema": false
+    }
+  ],
+  "recommendations": [
+    "🔴 修复 15 个错误问题（影响搜索收录）",
+    "🟡 优化 4 个警告问题（影响排名）"
+  ]
+}

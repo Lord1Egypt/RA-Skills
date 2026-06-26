@@ -1,0 +1,17 @@
+verdict: pass
+strategy_results:
+  - strategy_type: integration
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: 'packages/cli/package.json declares bin as {"nexum":"./dist/index.js"}.'
+      - id: C2
+        result: pass
+        evidence: 'packages/core, packages/spawn, packages/prompts, packages/notify, and packages/cli all declare version "0.1.0" in package.json.'
+      - id: C3
+        result: pass
+        evidence: 'Running "node packages/cli/dist/index.js --help" listed commands init, spawn, track, status, eval, and complete.'
+      - id: C4
+        result: pass
+        evidence: 'Running "pnpm --filter @nexum/cli build" exited with code 0 and completed TypeScript compilation for @nexum/cli.'
+feedback: "NX2-006 passes all required checks. CLI bin mapping, package version alignment, help output, and filtered build behavior all meet the stated criteria."

@@ -1,35 +1,171 @@
 ---
-name: "早餐推荐助手"
-description: "智能早餐推荐助手，根据冰箱食材推荐早餐、管理食材、记录偏好与历史。当用户告知冰箱食材、询问早餐推荐、更新食材、设置饮食偏好、或要求定时推荐早餐时激活。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/breakfast-recommender"
-sourceUrl: "https://clawhub.ai/skills/breakfast-recommender"
+name: breakfast-recommender
+description: 智能早餐推荐助手，根据冰箱食材推荐早餐、管理食材、记录偏好与历史。当用户告知冰箱食材、询问早餐推荐、更新食材、设置饮食偏好、或要求定时推荐早餐时激活。
+metadata: { "openclaw": { "category": "lifestyle", "emoji": "🍳" } }
 ---
 
-# 早餐推荐助手
+## Breakfast Recommender
 
-> 智能早餐推荐助手，根据冰箱食材推荐早餐、管理食材、记录偏好与历史。当用户告知冰箱食材、询问早餐推荐、更新食材、设置饮食偏好、或要求定时推荐早餐时激活。
+智能早餐推荐助手，根据你冰箱里的食材，每天为你推荐营养均衡、简单易做的早餐方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/breakfast-recommender`
-- **Source URL:** [https://clawhub.ai/skills/breakfast-recommender](https://clawhub.ai/skills/breakfast-recommender)
+## Data Directory
 
-## Overview
+所有数据文件存储在用户独立目录，避免多用户冲突：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/breakfast-recommender
 ```
+~/.openclaw/workspace/breakfast-recommender/
+  ├── fridge.md        # 冰箱食材清单
+  ├── history.md       # 推荐历史（最近30条）
+  └── preferences.md   # 饮食偏好（按需创建）
+```
+
+如目录不存在，首次使用时自动创建。
+
+## When to Run
+
+- 用户告知冰箱里有哪些食物（如："冰箱里有鸡蛋、牛奶、面包..."）
+- 用户主动询问早餐推荐（如："明天早餐吃什么"、"推荐个早餐"）
+- 用户要求设置定时任务（如："每天晚上8点提醒推荐早餐"）
+- 用户动态更新食材（如："买了xxx"、"吃完了xxx"、"用掉了xxx"）
+- 用户设置饮食偏好（如："我不吃香菜"、"我对花生过敏"）
+- 用户查询冰箱（如："冰箱里有什么"、"查看食材"）
+
+## Workflow
+
+### 场景1：更新食材清单
+
+当用户告知冰箱里有哪些食物时（"冰箱里有A、B、C"，注意区别于"冰箱里有什么"查询）：
+
+- 解析用户提供的食材列表
+- 如果用户主动提到保质期（如"牛奶还有3天"），一并记录；否则不追问
+- 将食材列表写入 `~/.openclaw/workspace/breakfast-recommender/fridge.md`（完整覆盖）
+- 确认更新成功，读取文件并以表格展示冰箱当前全部食材（含本次新增）
+
+### 场景2：推荐早餐
+
+当用户询问早餐推荐时：
+
+- 读取 `fridge.md` 获取当前食材；若文件为空或不存在，提示用户先告知冰箱食材
+- 读取 `preferences.md` 获取用户偏好（文件不存在则跳过）
+- 读取 `history.md` 获取历史推荐记录，避免重复（文件不存在则跳过）
+- 检查是否有即将过期的食材（3天内），优先使用
+- 根据推荐原则生成营养均衡的早餐方案
+- 按照输出格式展示推荐结果
+- 将本次推荐追加到 `history.md`；若记录超过30条，自动删除最旧的记录，保持最多30条
+
+### 场景3：设置定时推荐
+
+当用户要求定期推荐时：
+
+- 使用 cron 工具创建定时任务
+- 默认时间：每天 20:00（可按用户要求调整）
+- sessionTarget: "isolated"，payload.kind: "agentTurn"
+- 任务 message 模板：「请执行早餐推荐：读取用户冰箱食材（~/.openclaw/workspace/breakfast-recommender/fridge.md），结合偏好和历史记录，推荐一份明天的早餐方案，发送给用户。」
+- 创建后告知用户定时时间和取消方式
+
+### 场景4：动态更新食材
+
+当用户提到以下关键词时触发：
+
+| 关键词 | 操作 |
+|------|------|
+| 买了、新增、补货了、囤了 | 添加食材 |
+| 吃完了、没有了、用完了、用掉了、消耗了 | 删除食材 |
+| 坏了、扔了、过期了 | 删除食材 |
+| 还剩xxx | 更新数量 |
+
+执行流程：
+
+- 读取 `fridge.md` 获取当前食材列表
+- 根据用户描述进行增删改操作
+- 更新最后修改时间
+- 写回 `fridge.md`
+- 读取文件并以表格展示冰箱当前全部食材（用 ✅ 标注新增、❌ 标注删除、✏️ 标注修改的食材）
+
+### 场景5：设置饮食偏好
+
+当用户说"我不吃xxx"、"我对xxx过敏"、"我喜欢xxx"时：
+
+- 读取 `preferences.md`（不存在则创建）
+- 更新对应的偏好设置（过敏/禁忌/喜好分类存储）
+- 确认更新成功，展示当前全部偏好设置
+- 后续推荐将自动遵循这些偏好
+
+### 场景6：查看即将过期食材
+
+当用户问"有什么快过期的"时：
+
+- 读取 `fridge.md`
+- 筛选 3 天内到期的食材
+- 按紧急程度排序展示（今天到期 > 明天 > 后天）
+- 给出优先使用建议
+
+### 场景7：查询冰箱（只读）
+
+当用户问"冰箱里有什么"、"查看食材"、"我冰箱里还有什么"时：
+
+- 读取 `fridge.md`
+- 以表格展示当前全部食材
+- 不做任何写入操作
+
+## Output Format
+
+推荐早餐时使用以下格式：
+
+```
+🍳 明天早餐推荐
+
+主食：xxx（做法简述）
+蛋白质：xxx（做法简述）
+蔬菜/水果：xxx
+饮品：xxx
+
+⏱ 预计准备时间：xx 分钟
+💡 小提示：xxx（营养亮点、季节搭配原因或注意事项）
+
+---
+消耗食材：xxx x2、xxx 200ml
+```
+
+极简模式（食材不足时）：
+
+```
+🥪 极简早餐方案
+
+当前可用食材有限，推荐：xxx
+
+建议补充：蛋白质类（鸡蛋/牛奶）、主食类（面包/燕麦）
+```
+
+## Recommendation Principles
+
+遵循以下原则进行推荐：
+
+- **营养均衡**：确保主食 + 蛋白质 + 蔬菜/水果的组合
+- **简单易做**：优先推荐 15 分钟内可完成的方案
+- **优先消耗**：即将过期的食材（3天内）、数量较多需要消耗的食材
+- **不重复**：每次推荐前必须读取 history.md，确保方案（主食+蛋白质+蔬菜组合）与历史记录中任意一条都不完全相同；若食材有限导致组合重复，至少在做法或搭配比例上做出区分，并在推荐时注明与上次的差异
+- **季节适宜**：根据当前月份考虑温热/清爽搭配，在「小提示」中说明原因
+  - 冬季（11-2月）：温热为主（热粥、煎蛋、热饮）
+  - 夏季（6-8月）：清爽为主（沙拉、冷饮、水果）
+  - 春秋：均衡搭配
+- **尊重偏好**：严格遵守用户设置的饮食限制和过敏信息
+- **时间适配**：工作日推荐快速方案（<15分钟）
+
+## File Structure
+
+| 文件路径 | 说明 | 自动创建 |
+|---------|------|---------|
+| `~/.openclaw/workspace/breakfast-recommender/fridge.md` | 冰箱食材列表（含保质期） | 是 |
+| `~/.openclaw/workspace/breakfast-recommender/history.md` | 历史推荐记录，保留最近 30 条 | 是 |
+| `~/.openclaw/workspace/breakfast-recommender/preferences.md` | 用户饮食偏好设置 | 按需创建 |
+
+## Limitations
+
+此 Skill 不适用于：
+
+- 正餐/晚餐推荐（仅限早餐场景）
+- 外卖点餐建议
+- 餐厅推荐
+- 食材购买/采购清单生成
+- 复杂烹饪教程（仅提供简单做法说明）

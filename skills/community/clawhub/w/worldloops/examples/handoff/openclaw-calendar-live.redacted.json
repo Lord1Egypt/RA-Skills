@@ -1,0 +1,11 @@
+{
+  "source": "calendar",
+  "sourceType": "event",
+  "externalWrite": false,
+  "text": "[REDACTED] Upcoming meeting on [DATE] at [TIME] — prep materials not yet distributed. Action required before event.",
+  "observedAt": "2026-05-21T09:00:00.000Z",
+  "summary": "[REDACTED] Calendar event with pending prep action",
+  "metadata": {
+    "note": "Place actual OpenClaw-read payload at .worldloops/inbox/openclaw-calendar-live.json before running guard:calendar"
+  }
+}

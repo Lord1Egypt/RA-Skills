@@ -1,0 +1,38 @@
+{
+  "id": "popadex-finance-copilot",
+  "name": "PopaDex Finance Copilot",
+  "version": "0.1.1",
+  "description": "Read-only personal finance copilot for net worth insights, global salary/tax comparisons, and retirement planning guidance.",
+  "category": "finance",
+  "visibility": "public",
+  "maintainer": {
+    "name": "PopaDex",
+    "website": "https://popadex.com",
+    "support": "https://app.popadex.com/help"
+  },
+  "entry": "SKILL.md",
+  "requires": {
+    "mcp": true,
+    "tools": [
+      "get_net_worth_summary",
+      "get_account_allocation",
+      "run_salary_comparison",
+      "run_tax_estimate",
+      "run_retirement_projection",
+      "compare_disposable_income",
+      "build_budget_sankey",
+      "get_portfolio_total_value",
+      "get_portfolio_performance",
+      "get_portfolio_historical_timeline",
+      "export_portfolio_csv"
+    ]
+  },
+  "tags": [
+    "personal-finance",
+    "net-worth",
+    "retirement",
+    "salary",
+    "tax"
+  ],
+  "license": "Proprietary"
+}

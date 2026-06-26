@@ -1,0 +1,55 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_execute_informat_script_designer",
+		"description": "Execute the specified method of the Informat script file in the [Application Designer Environment]. Mainly used for script development, debugging, and verification.\n\nExecution instructions:\n- The executed script must exist in the [Designer Script List] (unpublished status is also acceptable)\n- If scriptId is not specified, the script to be executed can be inferred based on context\n- If the script is newly created but not yet saved, the script file should be saved first before executing the method\n- If functionName is not specified, the method to be called can be inferred based on user intent\n- Only real functions exported through export in the script can be called, calling non-existent methods is prohibited\n- The execution process will not modify the script content, nor will it create temporary or test script files\n\nApplicable scenarios:\n- In-designer script debugging\n- Function verification and logic testing\n- Script execution before application release.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"scriptId": {
+					"description": "Script ID",
+					"type": "string"
+				},
+				"functionName": {
+					"description": "Function name, needs to be an exported method",
+					"type": "string"
+				},
+				"functionParams": {
+				  "type": "array",
+				  "description": "Input parameters required to execute the target function, passed in order; if the function requires no parameters, an empty array [] can be passed",
+				  "items": {
+				    "oneOf": [
+				      { "type": "string" },
+				      { "type": "number" },
+				      { "type": "boolean" },
+				      { "type": "null" },
+				      {
+				        "type": "object",
+				        "additionalProperties": true
+				      },
+				      {
+				        "type": "array",
+				        "items": {
+				          "oneOf": [
+				            { "type": "string" },
+				            { "type": "number" },
+				            { "type": "boolean" },
+				            { "type": "null" },
+				            {
+				              "type": "object",
+				              "additionalProperties": true
+				            }
+				          ]
+				        }
+				      }
+				    ]
+				  },
+				  "default": []
+				}
+			},
+			"required": [
+					"scriptId","functionName"
+				]
+			}
+		}
+}

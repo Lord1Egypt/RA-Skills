@@ -1,0 +1,40 @@
+{
+  "name": "tesseract-ocr-skill",
+  "version": "1.0.0",
+  "description": "基于Tesseract引擎的OCR技能，专门用于处理中医教材截图",
+  "author": "仁风助手",
+  "skills": [
+    {
+      "id": "tesseract_ocr_extraction",
+      "name": "Tesseract OCR Extraction",
+      "description": "使用Tesseract引擎从图像中提取文字内容",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_path": {
+            "type": "string",
+            "description": "图像文件路径"
+          },
+          "language": {
+            "type": "string",
+            "enum": ["chi_sim", "eng", "chi_sim+eng"],
+            "default": "chi_sim+eng",
+            "description": "识别语言：简体中文、英文、中英混合"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["text", "structured", "question_answer"],
+            "default": "text",
+            "description": "输出格式"
+          }
+        },
+        "required": ["image_path"]
+      },
+      "implementation": {
+        "type": "script",
+        "engine": "python",
+        "path": "./scripts/tesseract_ocr.py"
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "version": "2.0.0",
+  "description": "Claude Code Team 模式 - 多平台自动识别",
+  "autoDetectPlatform": true,
+  "modelMapping": {
+    "bailian": {
+      "产品经理": "bailian/qwen-max",
+      "设计师": "bailian/qwen-plus",
+      "程序员": "bailian/glm-5",
+      "架构师": "bailian/qwen-max",
+      "测试员": "bailian/glm-5",
+      "审查员": "bailian/glm-5",
+      "运维师": "bailian/glm-5",
+      "文档师": "bailian/glm-5",
+      "技术总监": "bailian/qwen-max",
+      "技术大拿": "bailian/glm-5",
+      "技术老人": "bailian/qwen-coder-plus",
+      "技术新秀": "bailian/qwen-coder-next",
+      "市场猎手": "bailian/qwen-max",
+      "商业顾问": "bailian/qwen-max",
+      "流量操盘手": "bailian/qwen-plus",
+      "内容专家": "bailian/qwen-plus",
+      "财务管家": "bailian/glm-5",
+      "风险控制官": "bailian/qwen-max",
+      "美术设计师": "bailian/qwen-plus",
+      "质量把控员": "bailian/glm-5",
+      "创意专家": "bailian/qwen-plus"
+    },
+    "volcengine": {
+      "产品经理": "volcengine/doubao-pro-32k",
+      "设计师": "volcengine/doubao-pro-32k",
+      "程序员": "volcengine/doubao-lite-32k",
+      "架构师": "volcengine/doubao-pro-32k",
+      "测试员": "volcengine/doubao-lite-32k",
+      "审查员": "volcengine/doubao-lite-32k",
+      "运维师": "volcengine/doubao-lite-32k",
+      "文档师": "volcengine/doubao-lite-32k",
+      "技术总监": "volcengine/doubao-pro-32k",
+      "技术大拿": "volcengine/doubao-lite-32k",
+      "技术老人": "volcengine/doubao-lite-32k",
+      "技术新秀": "volcengine/doubao-lite-32k"
+    },
+    "openai": {
+      "产品经理": "gpt-4o",
+      "设计师": "gpt-4o",
+      "程序员": "gpt-4o-mini",
+      "架构师": "gpt-4o",
+      "测试员": "gpt-4o-mini",
+      "审查员": "gpt-4o-mini",
+      "运维师": "gpt-4o-mini",
+      "文档师": "gpt-4o-mini",
+      "技术总监": "gpt-4o",
+      "技术大拿": "gpt-4o-mini",
+      "技术老人": "gpt-4o-mini",
+      "技术新秀": "gpt-4o-mini"
+    }
+  },
+  "teams": {
+    "软件开发团队": {
+      "name": "软件开发团队",
+      "description": "负责软件开发、功能实现、代码质量",
+      "members": [
+        { "role": "产品经理", "model": "bailian/qwen-max", "responsibility": "需求分析、用户体验、功能优先级" },
+        { "role": "设计师", "model": "bailian/qwen-plus", "responsibility": "视觉设计、动画效果、颜色方案" },
+        { "role": "程序员", "model": "bailian/glm-5", "responsibility": "代码实现、技术评估、性能优化" },
+        { "role": "测试员", "model": "bailian/glm-5", "responsibility": "测试用例、质量检查、Bug 追踪" },
+        { "role": "审查员", "model": "bailian/glm-5", "responsibility": "代码审查、安全检查、规范检查" },
+        { "role": "架构师", "model": "bailian/qwen-max", "responsibility": "系统架构、技术选型、最终决策" },
+        { "role": "运维师", "model": "bailian/glm-5", "responsibility": "部署运维、监控告警、性能优化" },
+        { "role": "文档师", "model": "bailian/glm-5", "responsibility": "文档编写、API 文档、用户手册" }
+      ]
+    },
+    "技术中台团队": {
+      "name": "技术中台团队",
+      "description": "负责技术攻坚、架构设计、性能优化",
+      "members": [
+        { "role": "技术总监", "model": "bailian/qwen-max", "responsibility": "统筹决策、技术方向" },
+        { "role": "技术大拿", "model": "bailian/glm-5", "responsibility": "核心攻坚、技术难点" },
+        { "role": "技术老人", "model": "bailian/qwen-coder-plus", "responsibility": "资深开发、经验建议" },
+        { "role": "技术新秀", "model": "bailian/qwen-coder-next", "responsibility": "执行任务、学习成长" }
+      ]
+    },
+    "搞钱特战队": {
+      "name": "搞钱特战队",
+      "description": "负责商业机会、变现模式、市场推广",
+      "members": [
+        { "role": "市场猎手", "model": "bailian/qwen-max", "responsibility": "发现赚钱机会" },
+        { "role": "商业顾问", "model": "bailian/qwen-max", "responsibility": "评估可行性" },
+        { "role": "技术专家", "model": "bailian/glm-5", "responsibility": "技术方案" },
+        { "role": "流量操盘手", "model": "bailian/qwen-plus", "responsibility": "获客推广" },
+        { "role": "内容专家", "model": "bailian/qwen-plus", "responsibility": "内容生产" },
+        { "role": "财务管家", "model": "bailian/glm-5", "responsibility": "资金管理" },
+        { "role": "风险控制官", "model": "bailian/qwen-max", "responsibility": "风险防控" },
+        { "role": "美术设计师", "model": "bailian/qwen-plus", "responsibility": "视觉设计" },
+        { "role": "质量把控员", "model": "bailian/glm-5", "responsibility": "质量检查" },
+        { "role": "创意专家", "model": "bailian/qwen-plus", "responsibility": "创意策划" }
+      ]
+    }
+  },
+  "defaultModel": "bailian/glm-5",
+  "modelMapping": {
+    "产品经理": "bailian/qwen-max",
+    "设计师": "bailian/qwen-plus",
+    "程序员": "bailian/glm-5",
+    "架构师": "bailian/qwen-max",
+    "测试员": "bailian/glm-5",
+    "审查员": "bailian/glm-5",
+    "运维师": "bailian/glm-5",
+    "文档师": "bailian/glm-5",
+    "技术总监": "bailian/qwen-max",
+    "技术大拿": "bailian/glm-5",
+    "技术老人": "bailian/qwen-coder-plus",
+    "技术新秀": "bailian/qwen-coder-next",
+    "市场猎手": "bailian/qwen-max",
+    "商业顾问": "bailian/qwen-max",
+    "流量操盘手": "bailian/qwen-plus",
+    "内容专家": "bailian/qwen-plus",
+    "财务管家": "bailian/glm-5",
+    "风险控制官": "bailian/qwen-max",
+    "美术设计师": "bailian/qwen-plus",
+    "质量把控员": "bailian/glm-5",
+    "创意专家": "bailian/qwen-plus"
+  }
+}

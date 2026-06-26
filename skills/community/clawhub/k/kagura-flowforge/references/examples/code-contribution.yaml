@@ -1,0 +1,56 @@
+name: code-contribution
+description: Generic open source contribution workflow
+start: study
+
+nodes:
+  study:
+    task: |
+      Study the codebase and understand the project:
+      - Read README, CONTRIBUTING, and documentation
+      - Explore project structure and key files
+      - Identify the issue or feature to work on
+      - Understand coding patterns and conventions
+    next: implement
+
+  implement:
+    task: |
+      Write code changes following project patterns:
+      - Create necessary files or modify existing ones
+      - Follow the project's coding style
+      - Keep changes focused and minimal
+      - Add comments where logic is complex
+    next: test
+
+  test:
+    task: |
+      Test the implementation locally:
+      - Run the project's test suite
+      - Add tests for new functionality
+      - Verify changes work as expected
+      - Check for regressions
+    branches:
+      - condition: tests pass
+        next: submit
+      - condition: tests fail
+        next: implement
+
+  submit:
+    task: |
+      Create a pull request:
+      - Write clear PR title and description
+      - Reference related issues
+      - Explain what changed and why
+      - Add screenshots/examples if applicable
+      - Push branch to fork/origin
+      - Create PR via GitHub UI or gh CLI
+    next: verify
+
+  verify:
+    task: |
+      Monitor and respond to review feedback:
+      - Check for CI/test failures
+      - Read reviewer comments
+      - Make requested changes if needed
+      - Answer questions
+      - Update PR as necessary
+    terminal: true

@@ -1,0 +1,12 @@
+{
+  "name": "prompt-shield-lite",
+  "version": "0.1.3",
+  "description": "Minimal anti-prompt-injection guardrail for OpenClaw agents.",
+  "author": "durubot",
+  "license": "MIT",
+  "tags": ["security", "prompt-injection", "guardrail", "privacy"],
+  "compatibility": {
+    "agents": ["openclaw"],
+    "minVersion": "2026.1.0"
+  }
+}

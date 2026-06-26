@@ -1,0 +1,13 @@
+{
+  "postType": "CAROUSEL",
+  "requestorId": "user123",
+  "templateId": "YOUR_TEMPLATE_ID",
+  "brandId": "YOUR_BRAND_ID",
+  "presetId": "YOUR_PRESET_ID",
+  "responseType": "PNG",
+  "aiGeneration": {
+    "type": "article",
+    "context": "https://example.com/blog/social-media-strategy-2026",
+    "instructions": "Extract the 5 most actionable points. Keep slide text concise. End with a clear call-to-action."
+  }
+}

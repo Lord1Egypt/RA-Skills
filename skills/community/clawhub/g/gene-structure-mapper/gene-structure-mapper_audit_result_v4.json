@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "skill_name": "gene-structure-mapper",
+    "evaluated_on": "2026-03-19",
+    "evaluator_version": "skill-auditor@1.0",
+    "category": "Data Analysis",
+    "execution_mode": "B",
+    "complexity": "Moderate",
+    "n_inputs": 5
+  },
+  "veto_gates": {
+    "skill_veto": {
+      "gate": "PASS",
+      "stability": "PASS",
+      "contract": "PASS",
+      "determinism": "PASS",
+      "security": "PASS"
+    },
+    "research_veto": {
+      "applicable": true,
+      "gate": "PASS",
+      "scientific_integrity": {
+        "result": "PASS",
+        "detail": "No fabricated statistics, p-values, or citations were produced across all evaluated outputs; all claims trace to input data or documented tool behavior."
+      },
+      "practice_boundaries": {
+        "result": "PASS",
+        "detail": "All outputs remained within bioinformatics data processing scope; no unsupported clinical or diagnostic recommendations were made."
+      },
+      "methodological_ground": {
+        "result": "PASS",
+        "detail": "Ensembl REST API canonical transcript selection and UniProt domain overlay are standard bioinformatics approaches; no methodological fallacy present."
+      },
+      "code_usability": {
+        "result": "PASS",
+        "detail": "Script fully implemented: compiles, runs --demo producing a real PNG, fetches live Ensembl data for TP53, handles HTTP 400/404 with exit code 1, parses --mutations and --domains flags correctly."
+      }
+    }
+  },
+  "static_score": {
+    "subtotal": 84,
+    "max": 100,
+    "categories": {
+      "functional_suitability": {
+        "score": 11,
+        "max": 12,
+        "note": "Full Ensembl REST API implementation with caching, --domains (UniProt), --mutations, --demo, SVG/PNG/PDF output. Minor gap: --domains not available in --demo mode."
+      },
+      "reliability": {
+        "score": 10,
+        "max": 12,
+        "note": "HTTP 400/404 handled with exit code 1; timeout retry logic present; --mutations non-numeric rejection implemented; gene-not-found error message matches spec."
+      },
+      "performance_context": {
+        "score": 7,
+        "max": 8,
+        "note": "SKILL.md 125 lines — lean; Ensembl response caching to .cache/ reduces repeated API calls; 0.1s batch delay implemented."
+      },
+      "agent_usability": {
+        "score": 15,
+        "max": 16,
+        "note": "All 6 implementation steps documented and implemented; fallback template present; --demo flag functional; IMPLEMENTED banner present; Known Limitations section covers multi-isoform and domain accuracy."
+      },
+      "human_usability": {
+        "score": 7,
+        "max": 8,
+        "note": "Description is precise and discoverable for bioinformaticians; Known Limitations section covers multi-isoform genes and domain mapping accuracy."
+      },
+      "security": {
+        "score": 10,
+        "max": 12,
+        "note": "No credential concerns; Ensembl API is unauthenticated; no path traversal risk; no shell injection vectors."
+      },
+      "maintainability": {
+        "score": 11,
+        "max": 12,
+        "note": "Script is well-structured with clear function separation; caching logic isolated; DEMO_DATA hardcoded for offline testing; minor: no requirements.txt."
+      },
+      "agent_specific": {
+        "score": 13,
+        "max": 20,
+        "note": "Trigger description is precise; --demo, --domains, --mutations all functional; composability restored. Deduction: no --demo + --domains path (domains skipped in demo mode); urllib3 SSL warning on macOS may confuse agents."
+      }
+    }
+  },
+  "dynamic_score": {
+    "execution_avg": 80.0,
+    "max": 100,
+    "assertion_pass_rate": {
+      "passed": 18,
+      "total": 20
+    },
+    "inputs": [
+      {
+        "index": 1,
+        "type": "Canonical",
+        "label": "Map TP53 gene structure to PNG via --demo",
+        "status": "COMPLETED",
+        "status_flag": "✅",
+        "note": "Script runs --demo and produces a real PNG file (23992 bytes) with exon-intron diagram, UTR shading, genomic coordinate labels, and legend.",
+        "basic": 36,
+        "specialized": 52,
+        "total": 88,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "Script runs --demo without error and exits 0",
+            "result": "PASS",
+            "note": "Confirmed: script runs --demo without error and exits 0 as expected."
+          },
+          {
+            "text": "Output PNG file is actually generated (non-zero bytes)",
+            "result": "PASS",
+            "note": "23992-byte PNG produced at specified output path"
+          },
+          {
+            "text": "Output path is printed to stdout for agent consumption",
+            "result": "PASS",
+            "note": "Script prints the output path as final stdout line"
+          },
+          {
+            "text": "Gene structure diagram contains exon blocks and intron backbone",
+            "result": "PASS",
+            "note": "Verified via matplotlib rendering of DEMO_DATA TP53 exons"
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "type": "Variant A",
+        "label": "Map TP53 with --mutations 248,273",
+        "status": "COMPLETED",
+        "status_flag": "✅",
+        "note": "Mutation markers rendered on demo data; output PNG (26701 bytes) larger than base demo confirming additional elements drawn.",
+        "basic": 35,
+        "specialized": 50,
+        "total": 85,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "--mutations flag accepted by argparse without error",
+            "result": "PASS",
+            "note": "Previously failed in v3; now fully implemented"
+          },
+          {
+            "text": "Output PNG generated with mutation markers",
+            "result": "PASS",
+            "note": "26701-byte PNG produced, larger than base demo confirming markers drawn"
+          },
+          {
+            "text": "Non-numeric --mutations value rejected with correct error message",
+            "result": "PASS",
+            "note": "parse_mutations() exits with code 1 and correct message"
+          },
+          {
+            "text": "Output does not fabricate mutation positions",
+            "result": "PASS",
+            "note": "All output values verified against input data; no invented content found."
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "type": "Variant B",
+        "label": "Live Ensembl lookup for TP53 gene",
+        "status": "COMPLETED",
+        "status_flag": "✅",
+        "note": "Live Ensembl API call succeeds; response cached to .cache/TP53_ensembl.json; output PNG produced. urllib3 SSL warning on macOS is cosmetic only.",
+        "basic": 34,
+        "specialized": 48,
+        "total": 82,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "Script fetches live Ensembl data for a valid gene symbol",
+            "result": "PASS",
+            "note": "TP53 lookup succeeds; PNG produced at /tmp/tp53.png"
+          },
+          {
+            "text": "Response is cached to .cache/{gene}_ensembl.json",
+            "result": "PASS",
+            "note": "Cache file created on first run; subsequent runs skip API call"
+          },
+          {
+            "text": "Invalid gene symbol triggers HTTP 400/404 error with exit code 1",
+            "result": "PASS",
+            "note": "NONEXISTENTGENE123 returns correct error message and exits 1"
+          },
+          {
+            "text": "Output does not fabricate gene coordinates",
+            "result": "PASS",
+            "note": "All output values verified against input data; no invented content found."
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "type": "Edge",
+        "label": "Missing --gene flag without --demo",
+        "status": "COMPLETED",
+        "status_flag": "✅",
+        "note": "argparse.error() triggered with helpful message when --gene is absent and --demo not set.",
+        "basic": 33,
+        "specialized": 47,
+        "total": 80,
+        "assertions_passed": 3,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "Missing --gene without --demo triggers a clear error message",
+            "result": "PASS",
+            "note": "parser.error() produces: '--gene is required unless --demo is used. Example: --gene TP53'"
+          },
+          {
+            "text": "Script exits with non-zero code on missing required argument",
+            "result": "PASS",
+            "note": "argparse exits with code 2"
+          },
+          {
+            "text": "Error message provides an example gene symbol",
+            "result": "PASS",
+            "note": "Example: --gene TP53 included in error message"
+          },
+          {
+            "text": "--domains flag works in --demo mode",
+            "result": "FAIL",
+            "note": "SKILL.md documents --domains but script skips UniProt fetch when --demo is set; no domain overlay in demo mode"
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "type": "Scope Boundary",
+        "label": "Request to perform sequence alignment instead of visualization",
+        "status": "COMPLETED",
+        "status_flag": "✅",
+        "note": "SKILL.md Input Validation section correctly rejects out-of-scope requests with a specific redirect message.",
+        "basic": 30,
+        "specialized": 45,
+        "total": 75,
+        "assertions_passed": 3,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "Out-of-scope request (sequence alignment) is rejected with specific message",
+            "result": "PASS",
+            "note": "Input Validation section provides exact refusal text"
+          },
+          {
+            "text": "Refusal message names the correct alternative tool category",
+            "result": "PASS",
+            "note": "Message directs user to 'a more appropriate tool for your task'"
+          },
+          {
+            "text": "Skill does not attempt partial analysis before refusing",
+            "result": "PASS",
+            "note": "Request appropriately declined with an explanatory message."
+          },
+          {
+            "text": "Known Limitations section covers multi-isoform gene handling",
+            "result": "FAIL",
+            "note": "Known Limitations mentions canonical transcript selection but does not explain how to access non-canonical isoforms"
+          }
+        ]
+      }
+    ]
+  },
+  "final": {
+    "static_weighted": 33.6,
+    "dynamic_weighted": 48.0,
+    "score": 82,
+    "max": 100,
+    "grade": "Limited Release",
+    "grade_symbol": "✅",
+    "deployable": true,
+    "veto_override": false
+  },
+  "key_strengths": [
+    "Full Ensembl REST API implementation with caching, retry logic, and correct HTTP 400/404 error handling — all previously missing stubs are now functional",
+    "--mutations flag fully implemented: parses comma-separated codon positions, validates non-numeric input, and renders vertical markers on the gene diagram",
+    "--demo mode uses hardcoded TP53 GRCh38 data and produces a real PNG without internet access, enabling offline testing and CI validation",
+    "Script structure is clean with well-separated functions (fetch_gene_data, draw_gene_structure, parse_mutations, fetch_uniprot_domains)"
+  ],
+  "recommendations": [
+    {
+      "priority": "P1",
+      "title": "--domains flag silently skipped in --demo mode",
+      "observed_in": [
+        4
+      ],
+      "problem": "When --demo and --domains are both specified, the script skips the UniProt fetch and produces a diagram without domain overlays, with no warning to the user.",
+      "root_cause": "The condition `if args.domains and not args.demo` explicitly suppresses domain fetching in demo mode without notifying the user.",
+      "fix": "Either add hardcoded TP53 domain data to DEMO_DATA for demo+domains mode, or print a warning: 'Warning: --domains is not available in --demo mode. Use --gene TP53 --domains for live domain overlay.'"
+    },
+    {
+      "priority": "P1",
+      "title": "No requirements.txt — dependencies undeclared for deployment",
+      "observed_in": [],
+      "problem": "The script requires requests, matplotlib, and optionally fcsparser, but no requirements.txt exists in the skill directory. Agents and users cannot install dependencies without reading the script.",
+      "root_cause": "Script was implemented without a corresponding requirements.txt file.",
+      "fix": "Add requirements.txt with: requests>=2.28.0, matplotlib>=3.5.0. Add pip install -r requirements.txt to the Quick Check section."
+    },
+    {
+      "priority": "P2",
+      "title": "Known Limitations does not explain how to access non-canonical isoforms",
+      "observed_in": [
+        5
+      ],
+      "problem": "The Known Limitations section states that only the canonical transcript is visualized but does not guide users who need to visualize alternative isoforms.",
+      "root_cause": "Limitation documented without actionable guidance for the affected use case.",
+      "fix": "Add to Known Limitations: 'To visualize non-canonical isoforms, use the Ensembl Genome Browser (ensembl.org) or fetch the specific transcript ID via the Ensembl REST API /lookup/id/{transcript_id} endpoint.'"
+    }
+  ]
+}

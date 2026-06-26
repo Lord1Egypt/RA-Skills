@@ -1,0 +1,8 @@
+interface:
+  display_name: "七宗罪.skill / 7 Sins.skill"
+  short_description: "用七宗罪审判产品、功能、商业构想与人生选择，撕掉包装，只留下欲望、代价与真相。"
+  brand_color: "#B63A1E"
+  default_prompt: "Use $7sins-infernal-council to brutally pressure-test this concept and return the infernal verdict. / 用 $7sins-infernal-council 冷酷施压这个构想并输出最终地狱裁决。"
+
+policy:
+  allow_implicit_invocation: true

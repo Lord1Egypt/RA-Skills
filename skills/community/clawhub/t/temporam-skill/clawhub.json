@@ -1,0 +1,12 @@
+{
+  "name": "Temporam Temp Mail",
+  "tagline": "Generate temporary emails, receive and read messages via Temporam API",
+  "description": "A skill that provides temporary email functionality powered by the Temporam API. It enables AI agents to generate disposable email addresses, list incoming emails for any address, and retrieve full email content — ideal for automated email verification, sign-up flows, and temporary communication scenarios.",
+  "category": "utility",
+  "tags": ["email", "temporary-email", "automation", "verification", "api"],
+  "version": "1.1.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/shulkme/temporam-skill/issues",
+  "homepage": "https://github.com/shulkme/temporam-skill"
+}

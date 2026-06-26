@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms of Service - Kaleidoscope Demo</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  background: #FFFDF5;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 24px 80px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) 20px 12px;
+  background: rgba(255, 253, 245, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+}
+
+.header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: #8a8580;
+  margin-bottom: 8px;
+}
+
+.updated {
+  font-size: 13px;
+  color: #b0aaa4;
+  margin-bottom: 40px;
+}
+
+section {
+  padding: 28px 0;
+  border-top: 1px solid #e8e5de;
+}
+
+section:last-of-type {
+  border-bottom: 1px solid #e8e5de;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3a;
+  margin-bottom: 12px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+ul li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3a;
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+ul li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: #b0aaa4;
+}
+
+a {
+  color: #1a1a1a;
+}
+
+footer {
+  margin-top: 48px;
+  text-align: center;
+  font-size: 12px;
+  color: #b0aaa4;
+  line-height: 1.6;
+}
+
+footer span {
+  display: block;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a id="navIcon" href="/demo/"></a>
+</div>
+<div class="container">
+
+  <h1>Terms of Service</h1>
+  <p class="subtitle">Kaleidoscope Demo</p>
+  <p class="updated">Last updated: April 2, 2026</p>
+
+  <section>
+    <p>This is a technology demonstration by WIP Computer, Inc.</p>
+  </section>
+
+  <section>
+    <h2>The Demo</h2>
+    <p>This demo showcases passkey authentication, biometric permission, and AI image generation. It is not a production service.</p>
+  </section>
+
+  <section>
+    <h2>Your Account</h2>
+    <p>Your account is created with a passkey. No email or password is stored. Your passkey lives on your device.</p>
+  </section>
+
+  <section>
+    <h2>Your Wallet</h2>
+    <p>The demo wallet starts with $5.00 in simulated credits. No real money is charged. The wallet balance is for demonstration purposes only.</p>
+  </section>
+
+  <section>
+    <h2>Generated Content</h2>
+    <p>Images generated through this demo are created using third-party AI APIs (xAI Grok Imagine). Generated content is dual-licensed:</p>
+    <ul>
+      <li>MIT License for personal, non-commercial use</li>
+      <li>Apache 2.0 License for commercial use</li>
+    </ul>
+    <p>Both you and WIP Computer, Inc. retain rights to generated content. We may use generated images for product development, marketing, and research.</p>
+  </section>
+
+  <section>
+    <h2>Uploaded Media</h2>
+    <p>Photos taken through the camera feature are processed locally in your browser. They are not uploaded to or stored on our servers. Camera access is optional and can be denied.</p>
+  </section>
+
+  <section>
+    <h2>No Warranty</h2>
+    <p>This demo is provided "as is" without warranty of any kind. WIP Computer, Inc. is not liable for any damages arising from use of this demo.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p><a href="mailto:hello@wip.computer">hello@wip.computer</a></p>
+  </section>
+
+  <footer>
+    <div id="kscope-footer" style="text-align:center;"></div>
+  </footer>
+  <script src="/demo/footer.js"></script>
+</div>
+<script>
+var SPRITE_COLS = 8, SPRITE_ROWS = 3, SPRITE_TOTAL = 24;
+var navIdx = Math.floor(Math.random() * SPRITE_TOTAL);
+function updateNavIcon() {
+  var el = document.getElementById('navIcon');
+  if (!el) return;
+  var col = navIdx % SPRITE_COLS;
+  var row = Math.floor(navIdx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  el.innerHTML = '<div style="width:28px;height:28px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+  navIdx = (navIdx + 1) % SPRITE_TOTAL;
+}
+updateNavIcon();
+setInterval(updateNavIcon, 6000);
+</script>
+</body>
+</html>

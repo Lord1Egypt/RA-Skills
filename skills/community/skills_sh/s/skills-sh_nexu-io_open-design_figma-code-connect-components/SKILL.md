@@ -1,35 +1,42 @@
 ---
-name: "figma-code-connect-components"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/figma-code-connect-components"
-sourceUrl: "https://skills.sh/nexu-io/open-design/figma-code-connect-components"
+name: figma-code-connect-components
+description: |
+  Connect Figma design components to code components using Code Connect so design-system updates flow into the codebase automatically.
+triggers:
+  - "figma code connect"
+  - "design to code"
+  - "figma components"
+  - "code connect"
+od:
+  mode: design-system
+  category: figma
+  upstream: "https://github.com/figma/skills"
 ---
 
 # figma-code-connect-components
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Figma's MCP server guide.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/figma-code-connect-components`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/figma-code-connect-components](https://skills.sh/nexu-io/open-design/figma-code-connect-components)
+## What it does
 
-## Overview
+Connect Figma design components to code components using Code Connect so design-system updates flow into the codebase automatically.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/figma/skills
+- Category: `figma`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/figma-code-connect-components
+# Inspect the upstream README for exact paths
+open https://github.com/figma/skills
 ```
+
+Then ask the agent to invoke this skill by name (`figma-code-connect-components`) or with
+one of the trigger phrases listed in this skill's frontmatter.

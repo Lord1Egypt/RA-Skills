@@ -1,0 +1,18 @@
+{
+  "requestId": "ppt-task-bench-dryrun-001",
+  "pptPath": "tmp/可执行PPT模板规范_v1.pptx",
+  "confidenceThreshold": 0.8,
+  "fallbackPolicy": "structured_first_with_ocr",
+  "execution": {
+    "dryRun": true,
+    "force": true,
+    "rollbackPolicy": "rollback_all",
+    "bundleZip": false,
+    "timeoutMs": 180000
+  },
+  "delivery": {
+    "outputDir": "tmp/bench/ppt-delivery",
+    "zipName": "all-images.zip",
+    "copySelectedOnly": true
+  }
+}

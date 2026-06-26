@@ -1,35 +1,18 @@
----
-name: "Auto README Generator (ChloePark85)"
-description: "Generates a professional README.md file for a project, including name, description, installation, usage, and license sections based on project contents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chloepark85-auto-readme-generator"
-sourceUrl: "https://clawhub.ai/skills/chloepark85-auto-readme-generator"
----
+# README Generator Skill
 
-# Auto README Generator (ChloePark85)
+## Description
+Generates a professional README.md for a project based on its contents, including project name, description, installation, usage, and license sections.
 
-> Generates a professional README.md file for a project, including name, description, installation, usage, and license sections based on project contents.
+## Usage
+`readme-generator [path]`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chloepark85-auto-readme-generator`
-- **Source URL:** [https://clawhub.ai/skills/chloepark85-auto-readme-generator](https://clawhub.ai/skills/chloepark85-auto-readme-generator)
+## Commands
 
-## Overview
+### `generate`
+Generates a README.md file.
 
+#### Arguments
+- `--path <path>`: (Optional) Path to the project directory. Defaults to the current working directory.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chloepark85-auto-readme-generator
-```
+#### Example
+`readme-generator generate --path ./my-project`

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MATLAB仿真程序优化"
+  short_description: "对照论文审计并优化 MATLAB 仿真源码，保持算法硬性条件不变"
+  default_prompt: "Use $matlab-simulation-optimizer to compare MATLAB simulation code with a paper, optimize the source code, and write a change summary."

@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weixin/get-article-detail/v1 for WeChat Official Accounts Article Details through JustOneAPI with articleUrl.",
+  "displayName": "WeChat Official Accounts Article Details",
+  "endpointPath": "get-article-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get WeChat Official Accounts article Details data, including body content, for article archiving, research, and content analysis.",
+      "method": "GET",
+      "operationId": "getWeixinArticleDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The URL of the Weixin article.",
+          "enumValues": [],
+          "location": "query",
+          "name": "articleUrl",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weixin/get-article-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Article Details",
+      "tags": [
+        "WeChat Official Accounts"
+      ]
+    }
+  ],
+  "platformKey": "weixin",
+  "primaryTag": "WeChat Official Accounts",
+  "skillName": "justoneapi_weixin_get_article_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-weixin-get-article-detail",
+  "sourceTitle": "OpenAPI definition"
+}

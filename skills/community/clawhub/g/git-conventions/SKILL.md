@@ -1,35 +1,34 @@
 ---
-name: "git-conventions"
-description: "Git commit message conventions and workflow rules. Use when making git commits, pushing changes, or performing git operations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/git-conventions"
-sourceUrl: "https://clawhub.ai/skills/git-conventions"
+name: git-conventions
+description: Git commit message conventions and workflow rules. Use when making git commits, pushing changes, or performing git operations.
 ---
 
-# git-conventions
+# Git Commit Conventions
 
-> Git commit message conventions and workflow rules. Use when making git commits, pushing changes, or performing git operations.
+## Commit Message Format
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/git-conventions`
-- **Source URL:** [https://clawhub.ai/skills/git-conventions](https://clawhub.ai/skills/git-conventions)
+Use semantic commit format: `<type>(<scope>): <subject>`
 
-## Overview
+### Commit Types
 
+- `feat`: add new feature
+- `fix`: correct bug
+- `docs`: update documentation
+- `style`: format code (no functional changes)
+- `refactor`: restructure code
+- `test`: add/modify tests
+- `chore`: update build tasks
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/git-conventions
-```
+## Workflow Rules
+
+1. **Language**: Use English only for git commit messages.
+
+2. **Force Push**: Always confirm before `git push --force`.
+
+3. **Sign-off**: Include `--signoff` flag with all commits.
+
+4. **Consolidation**: Consolidate changes into meaningful commits.
+
+5. **Push Confirmation**: After making a local commit, ALWAYS prompt the user whether they want to push to the remote repository.
+
+6. **Display URL**: After successfully pushing to remote, display the repository's access URL.

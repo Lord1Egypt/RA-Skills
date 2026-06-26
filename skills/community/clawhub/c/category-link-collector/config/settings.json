@@ -1,0 +1,8 @@
+{
+  "default_output_dir": "/Users/zhangqirong/工作/caiji",
+  "csv_encoding": "utf-8-sig",
+  "include_timestamp": false,
+  "auto_create_dir": true,
+  "log_level": "INFO",
+  "max_links_per_file": 1000
+}

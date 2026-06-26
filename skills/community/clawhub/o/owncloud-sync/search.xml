@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<d:searchrequest xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns">
+  <d:basicsearch>
+    <d:select>
+      <d:prop>
+        <d:displayname/>
+        <d:getcontenttype/>
+        <d:getetag/>
+        <d:getlastmodified/>
+        <d:getcontentlength/>
+        <oc:fileid/>
+        <oc:permissions/>
+      </d:prop>
+    </d:select>
+    <d:from>
+      <d:scope>
+        <d:href>/files/TesLaMent963/</d:href>
+        <d:depth>infinity</d:depth>
+      </d:scope>
+    </d:from>
+    <d:where>
+      <d:contains>
+        <d:prop>
+          <d:displayname/>
+        </d:prop>
+        <d:literal>facture</d:literal>
+      </d:contains>
+    </d:where>
+    <d:orderby>
+      <d:order>
+        <d:prop>
+          <d:getlastmodified/>
+        </d:prop>
+        <d:descending/>
+      </d:order>
+    </d:orderby>
+  </d:basicsearch>
+</d:searchrequest>

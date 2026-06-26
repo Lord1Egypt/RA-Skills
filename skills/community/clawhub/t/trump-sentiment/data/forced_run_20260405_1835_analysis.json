@@ -1,0 +1,172 @@
+﻿{
+    "checked":  "2026-04-05T10:39:08.5126012Z",
+    "count":  12,
+    "interpretation":  "地缘/宏观是当前市场主线，关注美伊谈判进展和油价走势 | 能源/黄金等大宗商品受到关注，通胀预期可能升温 | 美股市场情绪偏强，关注持续性 | （来源：X/Twitter，12 条高信号）",
+    "noteworthy":  [
+                       {
+                           "url":  "https://x.com/KobeissiLetter/status/2040638055204397277",
+                           "time":  "2026-04-05 12:35 CST",
+                           "title":  "BREAKING: Second F-15E crew member rescued after heavy firefight - must still exfiltrate from Iran",
+                           "signal":  "高",
+                           "category":  "equity",
+                           "snippet":  "The second crew member from the downed F-15E has been rescued after a heavy firefight. Missing crew member confirmed rescued but not safe yet as they must still exfiltrate from Iran.",
+                           "keywords":  [
+                                            "突发",
+                                            "美股",
+                                            "Trump地缘"
+                                        ],
+                           "score":  8
+                       },
+                       {
+                           "url":  "https://x.com/KobeissiLetter/status/2040645075424735296",
+                           "time":  "2026-04-05 12:35 CST",
+                           "title":  "BREAKING: Trump announces second F-15E pilot shot down on Friday has been rescued from Iran",
+                           "signal":  "高",
+                           "category":  "equity",
+                           "snippet":  "President Trump announces that the second F-15E pilot who was shot down on Friday has been rescued from Iran.",
+                           "keywords":  [
+                                            "突发",
+                                            "美股",
+                                            "Trump地缘"
+                                        ],
+                           "score":  8
+                       },
+                       {
+                           "url":  "https://x.com/grok/status/2040739243069186427",
+                           "time":  "2026-04-05 18:30 CST",
+                           "title":  "China condemns US/Israeli strikes on Iran, calls civilian protection \u0027red line\u0027, supports Iran\u0027s sovereignty",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "China has condemned US/Israeli strikes on Iran, called civilian protection a \u0027red line,\u0027 urged an immediate ceasefire, and said it supports Iran\u0027s sovereignty and right to defend itself. No military c",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议",
+                                            "宏观CHINA"
+                                        ],
+                           "score":  6
+                       },
+                       {
+                           "url":  "https://x.com/skalazo85/status/2040739991546990704",
+                           "time":  "2026-04-05 18:33 CST",
+                           "title":  "US begging Iran for 48hr ceasefire - Pete Hegseth accused",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "You are currently begging Iran for a 48hr ceasefire - mockery of Pete Hegseth and US posture.",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议"
+                                        ],
+                           "score":  5
+                       },
+                       {
+                           "url":  "https://x.com/Celt404/status/2040738160376967552",
+                           "time":  "2026-04-05 18:26 CST",
+                           "title":  "Iran gives Trump excuse to massively escalate - deadline for deal in first hour after futures open tomorrow",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "Iran targeted neighbour states\u0027 civilian infrastructure. Gives Trump an excuse to massively escalate tomorrow in the timeframe he gave them to make a deal (first hour after futures open tomorrow).",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议",
+                                            "交易信号"
+                                        ],
+                           "score":  6
+                       },
+                       {
+                           "url":  "https://x.com/Krzysztof_Szy/status/2040739646162747731",
+                           "time":  "2026-04-05 18:32 CST",
+                           "title":  "JCPOA history: Trump tore up Iran nuclear deal in previous term - Iran still complied with IAEA rules",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "Iran and US already had nuclear deal that was torn up by Trump in his last time in white house and it had verification methods built in. They got screwed once already when they were holding their end,",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议"
+                                        ],
+                           "score":  5
+                       },
+                       {
+                           "url":  "https://x.com/mayasweetm/status/2040738863279120869",
+                           "time":  "2026-04-05 18:23 CST",
+                           "title":  "Trump deadline on Strait of Hormuz expires Monday - Two US aircraft downed in 48 hours, Iran rejects all ceasefire frameworks",
+                           "signal":  "高",
+                           "category":  "equity",
+                           "snippet":  "Trump\u0027s deadline on the Strait of Hormuz expires Monday. Two downed U.S. aircraft over Iran in 48 hours, Kuwait\u0027s state oil headquarters still burning, Iran rejecting every ceasefire framework. Strait",
+                           "keywords":  [
+                                            "能源",
+                                            "美股",
+                                            "Trump地缘",
+                                            "停火协议"
+                                        ],
+                           "score":  9
+                       },
+                       {
+                           "url":  "https://x.com/clashreport",
+                           "time":  "2026-04-05 ~17:35 CST",
+                           "title":  "Iran launched overnight drone/missile strikes on Kuwait, UAE, Bahrain targeting energy infrastructure",
+                           "signal":  "高",
+                           "category":  "commodity",
+                           "snippet":  "Iran launched overnight drone/missile strikes on Kuwait, UAE, and Bahrain, targeting energy infrastructure. Kuwait: Oil Ministry building, power plants, desalination sites, oil facilities hit. UAE: ga",
+                           "keywords":  [
+                                            "能源",
+                                            "Trump地缘",
+                                            "交易信号"
+                                        ],
+                           "score":  6
+                       },
+                       {
+                           "url":  "https://x.com/truthforall13/status/2040738871516754302",
+                           "time":  "2026-04-05 18:29 CST",
+                           "title":  "US Ultimatum to Iran has 24 hours left - Trump angry at Japan and France negotiating separately with Iran",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "The US Ultimatum for Iran to accept its demands has 24 hour left. Japan, France are the newest given permission to pass. Trump is said to be Angry that these Countries Negotiated a separate deal with ",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议"
+                                        ],
+                           "score":  5
+                       },
+                       {
+                           "url":  "https://x.com/EchaMichel64697/status/2040738122678272340",
+                           "time":  "2026-04-05 18:26 CST",
+                           "title":  "Oman and Iran meet to discuss Strait of Hormuz transit - Ceasefire odds drop to 1%",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "Oman and Iran meet to discuss transit through Strait of Hormuz amid ceasefire doubts. Ceasefire odds drop to 1%.",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议",
+                                            "Polymarket"
+                                        ],
+                           "score":  6
+                       },
+                       {
+                           "url":  "https://x.com/MSBIntel/status/2040738519501677010",
+                           "time":  "2026-04-05 18:27 CST",
+                           "title":  "Iran FM tells Pakistan: Tehran determined to defend itself using all capabilities - Gulf conflict enters sixth week",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "Iran FM tells Pakistan that Tehran is determined to defend itself using all capabilities, as the Gulf conflict enters its sixth week with no ceasefire in sight.",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议"
+                                        ],
+                           "score":  5
+                       },
+                       {
+                           "url":  "https://x.com/FlowPredict_io/status/2040739288967479511",
+                           "time":  "2026-04-05 18:26 CST",
+                           "title":  "Prediction markets: US x Iran ceasefire by April 30 = 18 cents, by May 31 = 34 cents - Jet fuel costs skyrocket",
+                           "signal":  "高",
+                           "category":  "macro",
+                           "snippet":  "Prediction markets are moving: US x Iran ceasefire by April 30? 18¢. US x Iran ceasefire by May 31? 34¢. Jet fuel costs skyrocket amid Iran war.",
+                           "keywords":  [
+                                            "Trump地缘",
+                                            "停火协议"
+                                        ],
+                           "score":  5
+                       }
+                   ],
+    "total_results":  12
+}

@@ -1,0 +1,92 @@
+{
+  "description": "Global salary benchmark data template. Use as starting point for salary reports. Update with current market data.",
+  "version": "1.0",
+  "currency": "USD",
+  "last_updated": "2026-04-29",
+  "regions": {
+    "us": {
+      "name": "United States",
+      "currency": "USD",
+      "roles": {
+        "software_engineer": {
+          "junior": {"min": 70000, "median": 95000, "max": 130000, "p75": 115000, "p90": 128000},
+          "mid": {"min": 100000, "median": 140000, "max": 200000, "p75": 175000, "p90": 195000},
+          "senior": {"min": 150000, "median": 200000, "max": 350000, "p75": 280000, "p90": 340000},
+          "staff": {"min": 220000, "median": 300000, "max": 500000, "p75": 420000, "p90": 490000}
+        },
+        "product_manager": {
+          "junior": {"min": 75000, "median": 100000, "max": 130000, "p75": 120000, "p90": 128000},
+          "mid": {"min": 110000, "median": 145000, "max": 190000, "p75": 170000, "p90": 188000},
+          "senior": {"min": 150000, "median": 195000, "max": 280000, "p75": 240000, "p90": 275000},
+          "staff": {"min": 200000, "median": 270000, "max": 400000, "p75": 350000, "p90": 390000}
+        },
+        "data_scientist": {
+          "junior": {"min": 75000, "median": 100000, "max": 135000, "p75": 120000, "p90": 133000},
+          "mid": {"min": 110000, "median": 145000, "max": 195000, "p75": 175000, "p90": 192000},
+          "senior": {"min": 155000, "median": 200000, "max": 300000, "p75": 250000, "p90": 295000}
+        },
+        "ux_designer": {
+          "junior": {"min": 60000, "median": 85000, "max": 110000, "p75": 100000, "p90": 108000},
+          "mid": {"min": 90000, "median": 120000, "max": 160000, "p75": 145000, "p90": 158000},
+          "senior": {"min": 130000, "median": 170000, "max": 230000, "p75": 200000, "p90": 225000}
+        },
+        "marketing_manager": {
+          "junior": {"min": 55000, "median": 75000, "max": 95000, "p75": 88000, "p90": 94000},
+          "mid": {"min": 80000, "median": 110000, "max": 150000, "p75": 135000, "p90": 148000},
+          "senior": {"min": 120000, "median": 160000, "max": 220000, "p75": 190000, "p90": 215000}
+        },
+        "sales_representative": {
+          "junior": {"min": 45000, "median": 65000, "max": 90000, "p75": 82000, "p90": 88000, "ote": 90000},
+          "mid": {"min": 65000, "median": 95000, "max": 140000, "p75": 120000, "p90": 135000, "ote": 140000},
+          "senior": {"min": 90000, "median": 130000, "max": 200000, "p75": 170000, "p90": 195000, "ote": 200000}
+        }
+      }
+    },
+    "europe": {
+      "name": "Western Europe (avg)",
+      "currency": "EUR",
+      "multiplier_vs_us": 0.75,
+      "roles": {
+        "software_engineer": {
+          "junior": {"min": 35000, "median": 50000, "max": 70000, "p75": 62000, "p90": 68000},
+          "mid": {"min": 50000, "median": 72000, "max": 105000, "p75": 90000, "p90": 102000},
+          "senior": {"min": 75000, "median": 105000, "max": 160000, "p75": 135000, "p90": 155000}
+        },
+        "product_manager": {
+          "mid": {"min": 55000, "median": 75000, "max": 105000, "p75": 92000, "p90": 102000},
+          "senior": {"min": 80000, "median": 110000, "max": 155000, "p75": 135000, "p90": 152000}
+        }
+      }
+    },
+    "uk": {
+      "name": "United Kingdom",
+      "currency": "GBP",
+      "roles": {
+        "software_engineer": {
+          "junior": {"min": 30000, "median": 45000, "max": 65000, "p75": 58000, "p90": 63000},
+          "mid": {"min": 50000, "median": 70000, "max": 100000, "p75": 88000, "p90": 97000},
+          "senior": {"min": 75000, "median": 100000, "max": 150000, "p75": 130000, "p90": 145000}
+        }
+      }
+    },
+    "asia_pacific": {
+      "name": "Asia Pacific (avg)",
+      "currency": "USD",
+      "multiplier_vs_us": 0.45,
+      "roles": {
+        "software_engineer": {
+          "junior": {"min": 18000, "median": 30000, "max": 50000, "p75": 42000, "p90": 48000},
+          "mid": {"min": 30000, "median": 50000, "max": 80000, "p75": 68000, "p90": 78000},
+          "senior": {"min": 55000, "median": 80000, "max": 130000, "p75": 110000, "p90": 128000}
+        }
+      }
+    }
+  },
+  "notes": [
+    "Figures represent base salary only unless noted (OTE = On-Target Earnings for sales roles)",
+    "Tech hub premiums: SF/NYC +20%, London +15%, Berlin +10%",
+    "Remote roles typically at 85-95% of local market rate",
+    "Equity/RSUs typically add 10-40% on top for tech roles at scale-ups",
+    "Update quarterly with latest market data from Glassdoor, Levels.fyi, etc."
+  ]
+}

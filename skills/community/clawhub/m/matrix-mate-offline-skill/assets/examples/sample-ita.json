@@ -1,0 +1,196 @@
+{
+  "success": true,
+  "itinerary": {
+    "currency": "USD",
+    "currencySymbol": "$",
+    "highestCabinClass": "Economy",
+    "pax": {
+      "adult": 1
+    },
+    "price": 872.06,
+    "prices": {
+      "adult": {
+        "totalFare": 385,
+        "totalTax": 487.06,
+        "total": 872.06
+      }
+    },
+    "segments": [
+      {
+        "legs": [
+          {
+            "originName": "Chicago",
+            "origin": "ORD",
+            "destinationName": "Shanghai",
+            "destination": "PVG",
+            "carrierName": "American",
+            "flightNumber": "289",
+            "aircraft": "Boeing 787",
+            "bookingCode": "O",
+            "cabinClass": "Economy",
+            "carrier": "AA",
+            "originCountry": "us",
+            "originTimezone": "America/Chicago",
+            "destinationCountry": "cn",
+            "destinationTimezone": "Asia/Chongqing",
+            "departureTime": "2018-09-03T15:35:00.000Z",
+            "arrivalTime": "2018-09-04T06:00:00.000Z",
+            "fareBasis": "OLXBC8G1",
+            "ticketingCarrier": "AA"
+          }
+        ],
+        "originName": "Chicago",
+        "origin": "ORD",
+        "destinationName": "Shanghai",
+        "destination": "PVG",
+        "carrierName": "American",
+        "flightNumber": "289",
+        "aircraft": "Boeing 787",
+        "bookingCode": "O",
+        "cabinClass": "Economy",
+        "carrier": "AA",
+        "originCountry": "us",
+        "originTimezone": "America/Chicago",
+        "destinationCountry": "cn",
+        "destinationTimezone": "Asia/Chongqing",
+        "departureTime": "2018-09-03T15:35:00.000Z",
+        "arrivalTime": "2018-09-04T06:00:00.000Z",
+        "fareBasis": "OLXBC8G1",
+        "ticketingCarrier": "AA"
+      },
+      {
+        "legs": [
+          {
+            "originName": "Shanghai",
+            "origin": "PVG",
+            "destinationName": "Hong Kong",
+            "destination": "HKG",
+            "carrierName": "Cathay Dragon",
+            "flightNumber": "809",
+            "aircraft": "Airbus A330",
+            "bookingCode": "Q",
+            "cabinClass": "Economy",
+            "carrier": "KA",
+            "originCountry": "cn",
+            "originTimezone": "Asia/Chongqing",
+            "destinationCountry": "hk",
+            "destinationTimezone": "Asia/Hong_Kong",
+            "departureTime": "2018-09-05T12:45:00.000Z",
+            "arrivalTime": "2018-09-05T15:25:00.000Z",
+            "fareBasis": "QLX5C8G1",
+            "ticketingCarrier": "AA"
+          }
+        ],
+        "originName": "Shanghai",
+        "origin": "PVG",
+        "destinationName": "Hong Kong",
+        "destination": "HKG",
+        "carrierName": "Cathay Dragon",
+        "flightNumber": "809",
+        "aircraft": "Airbus A330",
+        "bookingCode": "Q",
+        "cabinClass": "Economy",
+        "carrier": "KA",
+        "originCountry": "cn",
+        "originTimezone": "Asia/Chongqing",
+        "destinationCountry": "hk",
+        "destinationTimezone": "Asia/Hong_Kong",
+        "departureTime": "2018-09-05T12:45:00.000Z",
+        "arrivalTime": "2018-09-05T15:25:00.000Z",
+        "fareBasis": "QLX5C8G1",
+        "ticketingCarrier": "AA"
+      }
+    ],
+    "slices": [
+      [
+        {
+          "legs": [
+            {
+              "originName": "Chicago",
+              "origin": "ORD",
+              "destinationName": "Shanghai",
+              "destination": "PVG",
+              "carrierName": "American",
+              "flightNumber": "289",
+              "aircraft": "Boeing 787",
+              "bookingCode": "O",
+              "cabinClass": "Economy",
+              "carrier": "AA",
+              "originCountry": "us",
+              "originTimezone": "America/Chicago",
+              "destinationCountry": "cn",
+              "destinationTimezone": "Asia/Chongqing",
+              "departureTime": "2018-09-03T15:35:00.000Z",
+              "arrivalTime": "2018-09-04T06:00:00.000Z",
+              "fareBasis": "OLXBC8G1",
+              "ticketingCarrier": "AA"
+            }
+          ],
+          "originName": "Chicago",
+          "origin": "ORD",
+          "destinationName": "Shanghai",
+          "destination": "PVG",
+          "carrierName": "American",
+          "flightNumber": "289",
+          "aircraft": "Boeing 787",
+          "bookingCode": "O",
+          "cabinClass": "Economy",
+          "carrier": "AA",
+          "originCountry": "us",
+          "originTimezone": "America/Chicago",
+          "destinationCountry": "cn",
+          "destinationTimezone": "Asia/Chongqing",
+          "departureTime": "2018-09-03T15:35:00.000Z",
+          "arrivalTime": "2018-09-04T06:00:00.000Z",
+          "fareBasis": "OLXBC8G1",
+          "ticketingCarrier": "AA"
+        },
+        {
+          "legs": [
+            {
+              "originName": "Shanghai",
+              "origin": "PVG",
+              "destinationName": "Hong Kong",
+              "destination": "HKG",
+              "carrierName": "Cathay Dragon",
+              "flightNumber": "809",
+              "aircraft": "Airbus A330",
+              "bookingCode": "Q",
+              "cabinClass": "Economy",
+              "carrier": "KA",
+              "originCountry": "cn",
+              "originTimezone": "Asia/Chongqing",
+              "destinationCountry": "hk",
+              "destinationTimezone": "Asia/Hong_Kong",
+              "departureTime": "2018-09-05T12:45:00.000Z",
+              "arrivalTime": "2018-09-05T15:25:00.000Z",
+              "fareBasis": "QLX5C8G1",
+              "ticketingCarrier": "AA"
+            }
+          ],
+          "originName": "Shanghai",
+          "origin": "PVG",
+          "destinationName": "Hong Kong",
+          "destination": "HKG",
+          "carrierName": "Cathay Dragon",
+          "flightNumber": "809",
+          "aircraft": "Airbus A330",
+          "bookingCode": "Q",
+          "cabinClass": "Economy",
+          "carrier": "KA",
+          "originCountry": "cn",
+          "originTimezone": "Asia/Chongqing",
+          "destinationCountry": "hk",
+          "destinationTimezone": "Asia/Hong_Kong",
+          "departureTime": "2018-09-05T12:45:00.000Z",
+          "arrivalTime": "2018-09-05T15:25:00.000Z",
+          "fareBasis": "QLX5C8G1",
+          "ticketingCarrier": "AA"
+        }
+      ]
+    ],
+    "totalPax": 1,
+    "totalSeats": 1,
+    "tripType": "roundtrip"
+  }
+}

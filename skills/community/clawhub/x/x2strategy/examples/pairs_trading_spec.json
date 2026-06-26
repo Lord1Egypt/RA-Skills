@@ -1,0 +1,1020 @@
+{
+  "paper_title": "Pairs trading  does volatility timing matter ",
+  "num_detected": 3,
+  "strategies": [
+    {
+      "strategy_name": "Minimum Distance Pairs Trading",
+      "strategy_type": "technical",
+      "asset_class": [
+        "equity"
+      ],
+      "description": "A pairs trading strategy that selects pairs by minimizing the sum of squared differences (SSD) of normalized price series during a formation period. Trades are triggered when the normalized spread diverges by more than 2 or 3 standard deviations from its mean, with positions held until convergence or a fixed 6-month horizon. The portfolio is dollar-neutral and equal-weighted across active pairs.",
+      "plan_id": null,
+      "strategy_id": null,
+      "backtest_id": null,
+      "price_data": true,
+      "volume_data": false,
+      "fundamental_data": [],
+      "alternative_data": [
+        "VIX",
+        "market volatility index (Japan)"
+      ],
+      "lookback_period": 252,
+      "data_frequency": "daily",
+      "data_source": "Bloomberg, Kenneth French's data library",
+      "time_period": "July 2003 to June 2013",
+      "universe_assets": [
+        "S&P 500 components",
+        "Nikkei 225 components"
+      ],
+      "universe_selection_criteria": "Large-cap components of S&P 500 or Nikkei 225. Pre-filter: pairs with total return difference > 10% over formation period are discarded (for Minimum Distance method).",
+      "expected_sharpe": null,
+      "expected_return": null,
+      "max_drawdown": null,
+      "expected_performance": {},
+      "indicators": [
+        {
+          "indicator_id": "normalized_price",
+          "name": "Normalized Price Series",
+          "category": "technical",
+          "formula": "For each stock, scale the price series to start at $1 at the beginning of the formation period. For each day t in the formation period, compute normalized price = price_t / price_0, where price_0 is the price at the start of the formation period.",
+          "latex": "P_t^i = \\frac{\\text{price}_t^i}{\\text{price}_0^i}",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "sum_squared_differences",
+          "name": "Sum of Squared Differences",
+          "category": "technical",
+          "formula": "For each candidate pair (i,j), compute the sum of squared differences between their normalized price series over the formation period. SSD = Σ_{t=1 to T} (P_t^i - P_t^j)^2, where P_t^i and P_t^j are normalized prices on day t, and T is the formation period length.",
+          "latex": "SSD_{i,j} = \\sum_{t=1}^{T} (P_t^i - P_t^j)^2",
+          "inputs": [
+            "normalized_price_i",
+            "normalized_price_j"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "pair_selection_ranking",
+          "name": "Pair Selection Ranking by Minimum SSD",
+          "category": "derived",
+          "formula": "For each stock, find the partner stock that minimizes the SSD. Rank all candidate pairs by their SSD values in ascending order. Select the top 20 pairs with the lowest SSD values for trading.",
+          "latex": "",
+          "inputs": [
+            "sum_squared_differences"
+          ],
+          "parameters": {
+            "top_n_pairs": 20
+          },
+          "scope": "cross_sectional",
+          "output_type": "ranking"
+        },
+        {
+          "indicator_id": "pre_selection_filter",
+          "name": "Total Return Difference Filter",
+          "category": "technical",
+          "formula": "Compute the total return difference between two stocks over the formation period. If the absolute difference exceeds a threshold, discard the pair from consideration. Return difference = (price_T^i / price_0^i) - (price_T^j / price_0^j), where T is the end of formation period.",
+          "latex": "\\Delta R_{i,j} = \\left| \\frac{\\text{price}_T^i}{\\text{price}_0^i} - \\frac{\\text{price}_T^j}{\\text{price}_0^j} \\right|",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252,
+            "threshold": 0.1
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "normalized_spread",
+          "name": "Normalized Price Spread",
+          "category": "technical",
+          "formula": "During the trading period, compute the spread as the difference between the normalized prices of the two stocks. The normalization is recalculated at the start of the trading period using the same method as in formation: spread_t = P_t^i - P_t^j, where P_t^i and P_t^j are normalized to $1 at the start of the trading period.",
+          "latex": "S_t = P_t^i - P_t^j",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {},
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "spread_mean",
+          "name": "Spread Mean",
+          "category": "technical",
+          "formula": "Calculate the mean of the normalized spread series during the formation period. μ = (1/T) * Σ_{t=1 to T} S_t, where S_t is the spread during formation and T is the formation period length.",
+          "latex": "\\mu = \\frac{1}{T} \\sum_{t=1}^{T} S_t",
+          "inputs": [
+            "normalized_spread"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "spread_std",
+          "name": "Spread Standard Deviation",
+          "category": "technical",
+          "formula": "Calculate the standard deviation of the normalized spread series during the formation period. σ = sqrt[(1/(T-1)) * Σ_{t=1 to T} (S_t - μ)^2], where μ is the spread mean and T is the formation period length.",
+          "latex": "\\sigma = \\sqrt{\\frac{1}{T-1} \\sum_{t=1}^{T} (S_t - \\mu)^2}",
+          "inputs": [
+            "normalized_spread",
+            "spread_mean"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "entry_signal",
+          "name": "Entry Signal Trigger",
+          "category": "derived",
+          "formula": "Generate a trade entry signal when the absolute normalized spread exceeds a multiple of the formation period standard deviation from the mean. Signal = |S_t| > m * σ, where m is the threshold multiplier, σ is spread standard deviation, and S_t is current spread.",
+          "latex": "\\text{Entry} = |S_t| > m \\cdot \\sigma",
+          "inputs": [
+            "normalized_spread",
+            "spread_std"
+          ],
+          "parameters": {
+            "threshold_multiplier": 2
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "exit_signal_convergence",
+          "name": "Exit Signal on Convergence",
+          "category": "derived",
+          "formula": "Close the position when the spread returns to zero (converges). Exit = sign(initial_spread) * current_spread ≤ 0, where initial_spread is the spread at trade entry.",
+          "latex": "",
+          "inputs": [
+            "normalized_spread"
+          ],
+          "parameters": {},
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "exit_signal_time",
+          "name": "Time-based Exit Signal",
+          "category": "derived",
+          "formula": "Close the position at the end of the 6-month trading period (126 trading days) regardless of convergence status.",
+          "latex": "",
+          "inputs": [],
+          "parameters": {
+            "trading_period": 126
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "position_direction",
+          "name": "Position Direction Assignment",
+          "category": "derived",
+          "formula": "When entry signal triggers, go long the stock with lower normalized price (loser) and short the stock with higher normalized price (winner) in dollar-neutral amounts ($1 long, $1 short).",
+          "latex": "",
+          "inputs": [
+            "normalized_spread"
+          ],
+          "parameters": {},
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "portfolio_fill_signal",
+          "name": "Portfolio Fill Signal",
+          "category": "derived",
+          "formula": "If fewer than 10 pairs are active on a given day, fill the portfolio with a long position in the equity market premium (S&P 500 premium for US, Topix premium for Japan).",
+          "latex": "",
+          "inputs": [],
+          "parameters": {
+            "min_active_pairs": 10
+          },
+          "scope": "cross_sectional",
+          "output_type": "boolean"
+        }
+      ],
+      "logic_pipeline": [
+        {
+          "step_id": "step1",
+          "description": "Pre-filter pairs based on total return difference over formation period",
+          "function": "filter",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "pre_selection_filter"
+          ],
+          "parameters": {
+            "threshold": 0.1
+          },
+          "expression": "Keep pair if |total_return_i - total_return_j| ≤ 0.10 (0.20 for cointegration on Nikkei 225)",
+          "output": "filtered_pairs",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step2",
+          "description": "Calculate normalized price series for each stock over formation period",
+          "function": "arithmetic",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "normalized_price"
+          ],
+          "parameters": {
+            "scaling_factor": 1.0
+          },
+          "expression": "P_t^i = price_t^i / price_0^i (scaled to $1 at start of formation period)",
+          "output": "normalized_price_series",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step3",
+          "description": "Compute sum of squared differences (SSD) for each candidate pair",
+          "function": "arithmetic",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "normalized_price_series",
+            "sum_squared_differences"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "expression": "SSD = Σ_{t=1 to T} (P_t^i - P_t^j)^2 where T = 252 trading days (12-month formation)",
+          "output": "pair_ssd",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step4",
+          "description": "Rank filtered pairs by SSD (ascending)",
+          "function": "rank",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "pair_ssd"
+          ],
+          "parameters": {
+            "ascending": true
+          },
+          "expression": "Rank all filtered pairs from lowest SSD (most similar) to highest SSD",
+          "output": "pair_selection_ranking",
+          "output_type": "ranking"
+        },
+        {
+          "step_id": "step5",
+          "description": "Select top 20 pairs with minimum SSD",
+          "function": "filter",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "pair_selection_ranking"
+          ],
+          "parameters": {
+            "top_n": 20
+          },
+          "expression": "Keep pairs where rank ≤ 20",
+          "output": "selected_pairs",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step6",
+          "description": "Calculate normalized spread for each selected pair at start of trading period",
+          "function": "arithmetic",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "normalized_price_series",
+            "normalized_spread"
+          ],
+          "parameters": {},
+          "expression": "spread_t = P_t^i - P_t^j (recalculated at start of 6-month trading period)",
+          "output": "current_spread",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step7",
+          "description": "Compute spread statistics from formation period",
+          "function": "arithmetic",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "spread_mean",
+            "spread_std"
+          ],
+          "parameters": {},
+          "expression": "μ_spread = mean(spread over formation period), σ_spread = std(spread over formation period)",
+          "output": "spread_stats",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step8",
+          "description": "Generate entry signal when spread diverges beyond threshold",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "current_spread",
+            "spread_stats"
+          ],
+          "parameters": {
+            "threshold_multiplier": 2
+          },
+          "expression": "IF |spread_t| > threshold_multiplier * σ_spread THEN entry_signal = TRUE",
+          "output": "entry_signal",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step9",
+          "description": "Assign position direction based on spread sign",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "current_spread"
+          ],
+          "parameters": {},
+          "expression": "IF spread_t > 0 THEN long stock j, short stock i (spread positive means P_i > P_j) ELSE long stock i, short stock j",
+          "output": "position_direction",
+          "output_type": "label"
+        },
+        {
+          "step_id": "step10",
+          "description": "Generate exit signal on convergence",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "current_spread"
+          ],
+          "parameters": {},
+          "expression": "IF spread_t crosses 0 (changes sign) THEN exit_signal_convergence = TRUE",
+          "output": "exit_signal_convergence",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step11",
+          "description": "Generate time-based exit signal after 126 trading days",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [],
+          "parameters": {
+            "holding_period": 126
+          },
+          "expression": "IF days_in_position ≥ 126 THEN exit_signal_time = TRUE",
+          "output": "exit_signal_time",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step12",
+          "description": "Final trade signal combining entry and exit conditions",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "entry_signal",
+            "exit_signal_convergence",
+            "exit_signal_time",
+            "position_direction"
+          ],
+          "parameters": {},
+          "expression": "IF entry_signal = TRUE AND no existing position THEN OPEN position with direction from position_direction; IF exit_signal_convergence = TRUE OR exit_signal_time = TRUE THEN CLOSE position",
+          "output": "final_trade_signal",
+          "output_type": "label"
+        },
+        {
+          "step_id": "step13",
+          "description": "Portfolio fill signal when fewer than 10 active pairs",
+          "function": "condition",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [],
+          "parameters": {
+            "min_active_pairs": 10
+          },
+          "expression": "IF count(active_pairs) < 10 THEN fill missing positions with long market premium (S&P 500/Topix)",
+          "output": "portfolio_fill_signal",
+          "output_type": "boolean"
+        }
+      ],
+      "execution_plan": [
+        {
+          "plan_id": "exec_1",
+          "description": "Monthly rebalancing of pairs portfolio with staggered 6-month trading windows. Each month, a new formation period ends, top 20 pairs are selected, and they enter a 6-month trading period. The overall portfolio consists of six overlapping sub-portfolios staggered by one month.",
+          "trigger": {
+            "trigger_type": "time_driven",
+            "frequency": "monthly",
+            "signal_lookup": null,
+            "delay_bars": 1,
+            "price_type": "close"
+          },
+          "action": {
+            "signal_source": "final_trade_signal",
+            "logic": "WHEN 'entry_long_short': OPEN PAIR POSITION (LONG 'loser', SHORT 'winner'); WHEN 'exit_convergence' OR 'exit_time': CLOSE PAIR POSITION",
+            "default_action": "hold"
+          },
+          "position_sizing": {
+            "method": "equal_weight",
+            "max_position_pct": null,
+            "total_exposure": 1.0,
+            "long_short": "long_short"
+          }
+        }
+      ],
+      "risk_management": [
+        "Portfolio fill rule: If fewer than 10 pairs are active on a given day, fill the portfolio with a long position in the equity market premium (S&P 500 premium for U.S., Topix index return minus risk-free rate for Japan) to maintain full investment.",
+        "Position sizing: Dollar-neutral within each pair ($1 long the 'loser' stock, $1 short the 'winner' stock).",
+        "Maximum holding period: Fixed 6-month (126 trading days) horizon for each pair position.",
+        "Pre-selection filter: Discard candidate pairs if the total return difference over the formation period exceeds 10%.",
+        "Transaction costs: Incorporated as 30 bps round-trip (commissions + market impact) plus a 1% annual short-selling fee."
+      ]
+    },
+    {
+      "strategy_name": "Stationarity-Based Pairs Trading (ADF Test)",
+      "strategy_type": "technical",
+      "asset_class": [
+        "equity"
+      ],
+      "description": "A pairs trading strategy that selects 20 pairs from S&P 500 or Nikkei 225 components based on the lowest ADF t-statistics of their price ratio, indicating strongest stationarity. Trades are triggered when the normalized price spread exceeds 2 or 3 standard deviations (estimated during formation). Positions are dollar-neutral ($1 long undervalued, $1 short overvalued) and held until spread reverts to zero or 6-month trading period ends.",
+      "plan_id": null,
+      "strategy_id": null,
+      "backtest_id": null,
+      "price_data": true,
+      "volume_data": false,
+      "fundamental_data": [],
+      "alternative_data": [
+        "VIX",
+        "market volatility indices"
+      ],
+      "lookback_period": 252,
+      "data_frequency": "daily",
+      "data_source": "Bloomberg, Kenneth French data library",
+      "time_period": "July 2003 - June 2013",
+      "universe_assets": [
+        "S&P 500 components",
+        "Nikkei 225 components"
+      ],
+      "universe_selection_criteria": "Large-cap components of major indices (S&P 500 or Nikkei 225). Pre-filter: pairs with total return difference >10% during formation period are discarded. Daily adjusted prices (dividends and splits).",
+      "expected_sharpe": null,
+      "expected_return": null,
+      "max_drawdown": null,
+      "expected_performance": {},
+      "indicators": [
+        {
+          "indicator_id": "adf_t_statistic_price_ratio",
+          "name": "Augmented Dickey-Fuller t-statistic for price ratio",
+          "category": "technical",
+          "formula": "Perform Augmented Dickey-Fuller test on the price ratio series of two stocks over the formation period. The price ratio is calculated as stock A price divided by stock B price. The ADF test determines if the price ratio series has a unit root (non-stationary) or is stationary. The t-statistic from the test is used as the selection criterion.",
+          "latex": "\\text{ADF test on } \\frac{P_t^A}{P_t^B} \\text{ for } t = 1 \\text{ to } T",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252,
+            "test_type": "ADF on price ratio"
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "normalized_price_spread",
+          "name": "Normalized price spread",
+          "category": "technical",
+          "formula": "Calculate the spread between two normalized price series. First, normalize each stock's price series to $1 at the start of the trading period. Then compute the spread as the difference between the two normalized price series. Finally, standardize the spread by subtracting its mean and dividing by its standard deviation, where mean and standard deviation are estimated during the formation period.",
+          "latex": "S_t = \\frac{(P_t^A - P_t^B) - \\mu_S}{\\sigma_S}",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252,
+            "trading_period": 126
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "spread_standard_deviation",
+          "name": "Spread standard deviation",
+          "category": "technical",
+          "formula": "Calculate the standard deviation of the price spread during the formation period. The spread is computed as the difference between normalized price series of two stocks.",
+          "latex": "\\sigma_S = \\sqrt{\\frac{1}{T-1} \\sum_{t=1}^T (S_t - \\mu_S)^2}",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "total_return_difference",
+          "name": "Total return difference filter",
+          "category": "technical",
+          "formula": "Calculate the absolute difference in total returns between two stocks over the formation period. Used as a pre-selection filter to discard pairs with divergent performance.",
+          "latex": "|R^A - R^B| \\text{ where } R^i = \\frac{P_T^i}{P_1^i} - 1",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252,
+            "threshold": 0.1
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "spread_deviation_signal",
+          "name": "Spread deviation trading signal",
+          "category": "technical",
+          "formula": "Generate trading signal when the absolute value of the normalized spread exceeds a threshold number of standard deviations. Signal is true when |normalized_spread| > threshold × σ, where σ is the standard deviation estimated during formation period.",
+          "latex": "\\text{Signal} = |S_t| > m \\cdot \\sigma_S",
+          "inputs": [
+            "normalized_price_spread"
+          ],
+          "parameters": {
+            "threshold": 2,
+            "alternative_threshold": 3
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "pair_selection_ranking",
+          "name": "Pair selection ranking by ADF t-statistic",
+          "category": "technical",
+          "formula": "Rank all candidate pairs by their ADF t-statistics in ascending order (lowest t-statistics indicate strongest rejection of unit root, i.e., strongest stationarity). Select the top 20 pairs with the lowest t-statistics.",
+          "latex": "\\text{Rank} = \\text{argsort}(\\text{ADF t-stat})[1:20]",
+          "inputs": [
+            "adf_t_statistic_price_ratio"
+          ],
+          "parameters": {
+            "top_n_pairs": 20
+          },
+          "scope": "cross_sectional",
+          "output_type": "ranking"
+        }
+      ],
+      "logic_pipeline": [
+        {
+          "step_id": "step1",
+          "description": "Pre-filter pairs based on total return difference to reduce computation",
+          "function": "filter",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "total_return_difference"
+          ],
+          "parameters": {
+            "threshold": 0.1
+          },
+          "expression": "IF ABS(total_return_difference) <= 0.1 THEN keep_pair ELSE discard_pair",
+          "output": "prefiltered_pairs",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step2",
+          "description": "Rank all pre-filtered pairs by ADF t-statistic of price ratio (lowest = most stationary)",
+          "function": "rank",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "adf_t_statistic_price_ratio"
+          ],
+          "parameters": {
+            "ascending": true
+          },
+          "expression": "RANK(adf_t_statistic_price_ratio) WHERE ascending = True (lower t-statistic = better rank)",
+          "output": "pair_selection_ranking",
+          "output_type": "ranking"
+        },
+        {
+          "step_id": "step3",
+          "description": "Select top 20 ranked pairs for trading portfolio",
+          "function": "filter",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "pair_selection_ranking"
+          ],
+          "parameters": {
+            "threshold": 20
+          },
+          "expression": "IF pair_selection_ranking <= 20 THEN select_pair ELSE discard_pair",
+          "output": "selected_pairs_portfolio",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step4",
+          "description": "Monitor normalized price spread for each selected pair during 6-month trading period",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "normalized_price_spread",
+            "spread_standard_deviation"
+          ],
+          "parameters": {
+            "threshold_multiplier": 2
+          },
+          "expression": "ABS(normalized_price_spread) > (threshold_multiplier * spread_standard_deviation)",
+          "output": "spread_deviation_signal",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step5",
+          "description": "Generate final trade signal: long undervalued stock, short overvalued stock when spread exceeds threshold",
+          "function": "custom",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "spread_deviation_signal",
+            "normalized_price_spread"
+          ],
+          "parameters": {
+            "position_size": 1,
+            "dollar_neutral": true
+          },
+          "expression": "IF spread_deviation_signal = True THEN: IF normalized_price_spread > 0 THEN SHORT stock_A $position_size, LONG stock_B $position_size ELSE IF normalized_price_spread < 0 THEN SHORT stock_B $position_size, LONG stock_A $position_size",
+          "output": "final_trade_signal",
+          "output_type": "label"
+        }
+      ],
+      "execution_plan": [
+        {
+          "plan_id": "exec_1",
+          "description": "Monthly rolling formation and trading cycle with daily monitoring and signal-driven execution",
+          "trigger": {
+            "trigger_type": "signal_driven",
+            "frequency": "daily",
+            "signal_lookup": "spread_deviation_signal",
+            "delay_bars": 1,
+            "price_type": "close"
+          },
+          "action": {
+            "signal_source": "final_trade_signal",
+            "logic": "WHEN spread_zscore < -2: LONG undervalued_stock, SHORT overvalued_stock; WHEN spread_zscore > 2: SHORT overvalued_stock, LONG undervalued_stock; WHEN |spread_zscore| < 0.5 OR trading_period_end: CLOSE ALL",
+            "default_action": "hold"
+          },
+          "position_sizing": {
+            "method": "equal_weight",
+            "max_position_pct": null,
+            "total_exposure": 1.0,
+            "long_short": "long_short"
+          }
+        },
+        {
+          "plan_id": "exec_2",
+          "description": "Monthly portfolio rebalancing - formation period analysis and pair selection",
+          "trigger": {
+            "trigger_type": "time_driven",
+            "frequency": "monthly",
+            "signal_lookup": null,
+            "delay_bars": 1,
+            "price_type": "close"
+          },
+          "action": {
+            "signal_source": "selected_pairs_portfolio",
+            "logic": "WHEN new_formation_period: RUN prefilter (10% total return difference filter) → RANK by ADF t-statistic (lowest 20) → SELECT top 20 pairs → INITIALIZE 6-month trading period",
+            "default_action": "maintain existing positions"
+          },
+          "position_sizing": {
+            "method": "equal_weight",
+            "max_position_pct": null,
+            "total_exposure": 1.0,
+            "long_short": "long_short"
+          }
+        }
+      ],
+      "risk_management": [
+        "Dollar-neutral positions: $1 long and $1 short per pair",
+        "Minimum portfolio size: If fewer than 10 pairs active, fill with long position in equity market premium",
+        "Maximum trading period: 6 months (126 trading days) per pair",
+        "Position closure: Close when spread converges to zero (|zscore| < 0.5) or at end of 6-month period",
+        "Transaction costs: 30 bps round-trip + 1% annual short-selling fee incorporated",
+        "Pre-filter: Discard pairs with total return difference > 10% during formation period"
+      ]
+    },
+    {
+      "strategy_name": "Johansen Cointegration Pairs Trading with Volatility Timing",
+      "strategy_type": "technical",
+      "asset_class": [
+        "equity"
+      ],
+      "description": "A pairs trading strategy that selects 20 pairs from S&P 500 or Nikkei 225 components using the Johansen cointegration test (highest trace statistics). Trades are initiated when the normalized price spread exceeds 2 or 3 standard deviations from its formation-period mean, with positions closed upon convergence or after 6 months. The strategy operates on rolling 12/24-month formation and 6-month trading windows, rebalanced monthly.",
+      "plan_id": null,
+      "strategy_id": null,
+      "backtest_id": null,
+      "price_data": true,
+      "volume_data": false,
+      "fundamental_data": [],
+      "alternative_data": [
+        "VIX",
+        "market volatility index (Japan)"
+      ],
+      "lookback_period": 252,
+      "data_frequency": "daily",
+      "data_source": "Bloomberg, Kenneth French data library",
+      "time_period": "July 2003 - June 2013",
+      "universe_assets": [
+        "S&P 500 components",
+        "Nikkei 225 components"
+      ],
+      "universe_selection_criteria": "Large-cap index components; pre-filter: pairs with total return difference >10% (20% for cointegration on Nikkei) during formation period are discarded",
+      "expected_sharpe": null,
+      "expected_return": null,
+      "max_drawdown": null,
+      "expected_performance": {},
+      "indicators": [
+        {
+          "indicator_id": "johansen_trace_statistic",
+          "name": "Johansen Cointegration Trace Statistic",
+          "category": "technical",
+          "formula": "For each candidate pair (i,j), perform the Johansen cointegration test on their price series over the formation period. First, determine the optimal lag length using a likelihood ratio test (testing up to 10 lags). Then, compute the trace statistic from the Johansen procedure, which tests the null hypothesis of no cointegration against the alternative of cointegration. The trace statistic measures the strength of the cointegrating relationship.",
+          "latex": "\\text{Trace statistic from Johansen (1988) procedure: } \\lambda_{\\text{trace}} = -T \\sum_{i=r+1}^{n} \\ln(1-\\hat{\\lambda}_i)",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "max_lags": 10,
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "normalized_price_spread",
+          "name": "Normalized Price Spread",
+          "category": "technical",
+          "formula": "For a selected pair (i,j), compute the spread as the difference between their normalized price series. During the formation period, normalize both price series to start at $1. The spread is calculated as spread_t = P_t^i - P_t^j, where P_t^i and P_t^j are the normalized prices. At the start of the trading period, the spread is normalized to have zero mean and unit standard deviation using the mean and standard deviation estimated during the formation period.",
+          "latex": "\\text{spread}_t = P_t^i - P_t^j, \\quad \\text{normalized spread}_t = \\frac{\\text{spread}_t - \\mu_{\\text{spread}}}{\\sigma_{\\text{spread}}}",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "spread_standard_deviation",
+          "name": "Spread Standard Deviation (Formation Period)",
+          "category": "technical",
+          "formula": "The standard deviation of the normalized price spread calculated over the formation period (252 or 504 trading days). This is used to set the entry thresholds.",
+          "latex": "\\sigma_{\\text{spread}} = \\sqrt{\\frac{1}{T-1} \\sum_{t=1}^{T} (\\text{spread}_t - \\mu_{\\text{spread}})^2}",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "total_return_difference_filter",
+          "name": "Total Return Difference Filter",
+          "category": "technical",
+          "formula": "Pre-selection filter: For each candidate pair, compute the absolute difference in total returns over the formation period. If this difference exceeds a threshold, the pair is discarded. For S&P 500 pairs, threshold is 10%. For Nikkei 225 pairs using cointegration, threshold is 20%.",
+          "latex": "\\text{Filter} = |R_i - R_j| < \\text{threshold}, \\quad \\text{where } R_i = \\frac{P_T^i}{P_0^i} - 1",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "formation_period": 252,
+            "threshold_sp500": 0.1,
+            "threshold_nikkei_cointegration": 0.2
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "entry_signal_threshold",
+          "name": "Entry Signal Threshold",
+          "category": "technical",
+          "formula": "Trading signal triggered when the absolute value of the normalized spread exceeds a multiple of its formation-period standard deviation. The paper tests thresholds of 2 and 3 standard deviations.",
+          "latex": "\\text{Entry Signal} = |\\text{normalized spread}_t| > m \\cdot \\sigma_{\\text{spread}}, \\quad m \\in \\{2, 3\\}",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "threshold_multiple": 2
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "exit_signal_convergence",
+          "name": "Exit Signal (Convergence)",
+          "category": "technical",
+          "formula": "Position is closed when the spread returns to zero (converges to its equilibrium mean). This occurs when the normalized spread crosses zero.",
+          "latex": "\\text{Exit Signal} = \\text{sign}(\\text{normalized spread}_t) \\neq \\text{sign}(\\text{normalized spread}_{t-1}) \\text{ and } \\text{normalized spread}_t \\approx 0",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {},
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "exit_signal_time_based",
+          "name": "Exit Signal (Time-Based)",
+          "category": "technical",
+          "formula": "Position is automatically closed at the end of the 6-month (126 trading day) trading period, regardless of convergence.",
+          "latex": "",
+          "inputs": [],
+          "parameters": {
+            "trading_period": 126
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        },
+        {
+          "indicator_id": "pair_ranking_trace_statistic",
+          "name": "Pair Ranking by Trace Statistic",
+          "category": "technical",
+          "formula": "After computing the Johansen trace statistic for all candidate pairs that pass the pre-filter, rank pairs in descending order by their trace statistic value. Select the top 20 pairs.",
+          "latex": "",
+          "inputs": [
+            "close"
+          ],
+          "parameters": {
+            "top_n": 20
+          },
+          "scope": "cross_sectional",
+          "output_type": "ranking"
+        }
+      ],
+      "logic_pipeline": [
+        {
+          "step_id": "step1",
+          "description": "Apply pre-selection filter to discard pairs with excessive total return difference",
+          "function": "filter",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "total_return_difference_filter"
+          ],
+          "parameters": {
+            "threshold": 0.1
+          },
+          "expression": "Keep pair if total return difference over formation period ≤ 10% (20% for cointegration on Nikkei 225)",
+          "output": "filtered_pairs",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step2",
+          "description": "Rank filtered pairs by Johansen trace statistic",
+          "function": "rank",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "johansen_trace_statistic"
+          ],
+          "parameters": {
+            "direction": "descending"
+          },
+          "expression": "Rank all pairs from highest to lowest trace statistic value",
+          "output": "pair_ranking_trace_statistic",
+          "output_type": "ranking"
+        },
+        {
+          "step_id": "step3",
+          "description": "Select top 20 pairs for trading portfolio",
+          "function": "filter",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "pair_ranking_trace_statistic"
+          ],
+          "parameters": {
+            "top_n": 20
+          },
+          "expression": "Select pairs with rank ≤ 20",
+          "output": "selected_pairs",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step4",
+          "description": "Monitor normalized price spread for entry signals",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "normalized_price_spread",
+            "spread_standard_deviation"
+          ],
+          "parameters": {
+            "threshold_multiplier": 2
+          },
+          "expression": "IF ABS(normalized_price_spread) > threshold_multiplier × spread_standard_deviation THEN entry_signal = TRUE",
+          "output": "entry_signal_threshold",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step5",
+          "description": "Determine trade direction based on spread deviation",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "normalized_price_spread"
+          ],
+          "parameters": {},
+          "expression": "IF normalized_price_spread > 0 THEN short stock A, long stock B ELSE long stock A, short stock B",
+          "output": "trade_direction",
+          "output_type": "label"
+        },
+        {
+          "step_id": "step6",
+          "description": "Monitor for convergence exit signal",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "normalized_price_spread"
+          ],
+          "parameters": {},
+          "expression": "IF normalized_price_spread crosses through 0 THEN exit_signal = TRUE",
+          "output": "exit_signal_convergence",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step7",
+          "description": "Apply time-based exit after 6 months",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [],
+          "parameters": {
+            "holding_period_days": 126
+          },
+          "expression": "IF days since trade entry ≥ 126 THEN exit_signal = TRUE",
+          "output": "exit_signal_time_based",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step8",
+          "description": "Generate final trade execution signals",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "entry_signal_threshold",
+            "exit_signal_convergence",
+            "exit_signal_time_based"
+          ],
+          "parameters": {},
+          "expression": "IF entry_signal_threshold = TRUE AND no existing position THEN OPEN position with trade_direction; IF exit_signal_convergence = TRUE OR exit_signal_time_based = TRUE THEN CLOSE position",
+          "output": "trade_execution_signal",
+          "output_type": "label"
+        }
+      ],
+      "execution_plan": [
+        {
+          "plan_id": "exec_1",
+          "description": "Monthly rolling formation and trading cycle with daily monitoring for entry/exit signals",
+          "trigger": {
+            "trigger_type": "time_driven",
+            "frequency": "monthly",
+            "signal_lookup": null,
+            "delay_bars": 1,
+            "price_type": "close"
+          },
+          "action": {
+            "signal_source": "trade_execution_signal",
+            "logic": "WHEN 'open_long_short': LONG undervalued stock, SHORT overvalued stock; WHEN 'close_convergence': CLOSE ALL positions for that pair; WHEN 'close_time_based': CLOSE ALL positions for that pair",
+            "default_action": "hold"
+          },
+          "position_sizing": {
+            "method": "equal_weight",
+            "max_position_pct": null,
+            "total_exposure": 1.0,
+            "long_short": "long_short"
+          }
+        }
+      ],
+      "risk_management": [
+        "Portfolio minimum: If fewer than 10 pairs are active on a given day, fill remaining positions with a long position in the equity market premium (S&P 500 premium for U.S., Topix index return minus risk-free rate for Japan)",
+        "Maximum holding period: 6 months (126 trading days) per pair",
+        "Transaction costs: 30 bps round-trip (commissions + market impact) plus 1% annual short-selling fee",
+        "Pre-selection filter: Discard pairs with total return difference > 20% during formation period (for cointegration method on Nikkei 225)"
+      ]
+    }
+  ]
+}

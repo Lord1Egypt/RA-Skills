@@ -1,0 +1,18 @@
+{
+  "sentences": [
+    {
+      "text": "大家好，我是李明。",
+      "source_text": "大家好，我是李明。",
+      "reason": "保留",
+      "action": "keep",
+      "start_time": 290, // 必需字段
+      "end_time": 1770, // 必需字段
+      "actionTime": [
+        {
+          "start_time": 290,
+          "end_time": 1770
+        }
+      ]
+    }
+  ]
+}

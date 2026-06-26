@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Log Viewer</title>
+<link rel="stylesheet" href="/cdn/npm/xterm@5.3.0/css/xterm.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #0a0a0a; overflow: hidden; }
+
+  #terminal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  body:not(.embed) #terminal-container { bottom: 24px; }
+  body.embed #terminal-container { bottom: 0; }
+
+  #status-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 24px;
+    background: #111;
+    border-top: 1px solid #222;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 11px;
+    color: #666;
+    gap: 8px;
+  }
+  #status-bar .dot {
+    width: 6px; height: 6px; border-radius: 50%; display: inline-block;
+  }
+  #status-bar .dot.connected { background: #4caf50; }
+  #status-bar .dot.disconnected { background: #f44336; }
+  #status-bar .dot.connecting { background: #ff9800; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  body.embed #status-bar { display: none; }
+
+  .xterm { height: 100% !important; }
+  .xterm-viewport {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position;
+    scrollbar-width: thin !important;
+    scrollbar-color: #333 transparent !important;
+  }
+</style>
+</head>
+<body>
+
+<div id="terminal-container"></div>
+<div id="status-bar">
+  <span class="dot" id="status-dot"></span>
+  <span id="status-text">Initializing...</span>
+</div>
+
+<script src="/cdn/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+<script src="/cdn/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+<script>
+(function() {
+  const isEmbed = new URLSearchParams(window.location.search).has('embed');
+  if (isEmbed) document.body.classList.add('embed');
+
+  const container = document.getElementById('terminal-container');
+  const dot = document.getElementById('status-dot');
+  const statusText = document.getElementById('status-text');
+
+  function setStatus(state, text) {
+    dot.className = 'dot ' + state;
+    statusText.textContent = text;
+  }
+
+  const term = new Terminal({
+    cursorBlink: true,
+    cursorStyle: 'bar',
+    cols: Math.max(80, Math.floor(window.innerWidth / 8)),
+    rows: Math.max(24, Math.floor((window.innerHeight - (isEmbed ? 0 : 24)) / 19)),
+    scrollback: 100000,
+    fontSize: 13,
+    lineHeight: 1.2,
+    fontFamily: "'Courier New', 'JetBrains Mono', 'Fira Code', monospace",
+    allowTransparency: false,
+    convertEol: true,
+    theme: {
+      background: '#0a0a0a',
+      foreground: '#e0e0e0',
+      cursor: '#e0e0e0',
+      selectionBackground: '#264f78',
+      black: '#000000',
+      red: '#da7756',
+      green: '#00d68f',
+      yellow: '#e6db74',
+      blue: '#569cd6',
+      magenta: '#c586c0',
+      cyan: '#4fc1ff',
+      white: '#d4d4d4',
+      brightBlack: '#808080',
+      brightRed: '#c15f3c',
+      brightGreen: '#5de4c7',
+      brightYellow: '#f1fa8c',
+      brightBlue: '#89b4fa',
+      brightMagenta: '#f5c2e7',
+      brightCyan: '#89ebff',
+      brightWhite: '#ffffff',
+    },
+  });
+
+  const fitAddon = new FitAddon.FitAddon();
+  term.loadAddon(fitAddon);
+  term.open(container);
+  fitAddon.fit();
+
+  const fixTimer = setInterval(() => {
+    const vp = container.querySelector('.xterm-viewport');
+    if (vp) {
+      vp.style.setProperty('overflow-y', 'scroll', 'important');
+      vp.style.setProperty('overflow-x', 'hidden', 'important');
+      vp.style.setProperty('touch-action', 'pan-y', 'important');
+      vp.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+      clearInterval(fixTimer);
+    }
+  }, 100);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => fitAddon.fit(), 150);
+  });
+
+  let autoScroll = true;
+  setInterval(() => {
+    if (autoScroll) term.scrollToBottom();
+  }, 100);
+
+  container.addEventListener('wheel', (e) => {
+    const vp = container.querySelector('.xterm-viewport');
+    if (!vp) return;
+    const atBottom = vp.scrollTop + vp.clientHeight >= vp.scrollHeight - 10;
+    autoScroll = e.deltaY > 0 && atBottom;
+  }, { passive: true });
+
+  let lastTouchY = 0;
+  container.addEventListener('touchstart', (e) => {
+    lastTouchY = e.touches[0].clientY;
+  }, { passive: true });
+  container.addEventListener('touchmove', (e) => {
+    const vp = container.querySelector('.xterm-viewport');
+    if (!vp) return;
+    if (vp.scrollHeight > vp.clientHeight + 2) {
+      autoScroll = false;
+    }
+  }, { passive: true });
+
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const wsUrl = protocol + '//' + window.location.host;
+  let ws = null;
+  let reconnectTimer = null;
+  let reconnectAttempts = 0;
+
+  function connect() {
+    if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) return;
+    setStatus('connecting', 'Connecting...');
+
+    ws = new WebSocket(wsUrl);
+    ws.onopen = () => {
+      setStatus('connected', 'Connected');
+      reconnectAttempts = 0;
+      try { ws.send('sync'); } catch {}
+    };
+    ws.onmessage = (ev) => {
+      try {
+        const msg = JSON.parse(ev.data);
+        if (msg.type === 'history' || msg.type === 'data') {
+          term.write(msg.data);
+        }
+      } catch { term.write(ev.data); }
+    };
+    ws.onclose = () => {
+      setStatus('disconnected', 'Disconnected');
+      scheduleReconnect();
+    };
+    ws.onerror = () => {};
+  }
+
+  function scheduleReconnect() {
+    if (reconnectTimer) clearTimeout(reconnectTimer);
+    reconnectAttempts++;
+    const delay = Math.min(1000 * Math.pow(2, reconnectAttempts), 30000);
+    setStatus('connecting', 'Reconnect in ' + Math.round(delay/1000) + 's...');
+    reconnectTimer = setTimeout(connect, delay);
+  }
+
+  connect();
+
+  setInterval(() => {
+    if (ws && ws.readyState === WebSocket.OPEN) ws.send('ping');
+  }, 10000);
+
+  if (isEmbed && window.parent !== window) {
+    window.logViewer = {
+      write: (t) => term.write(t),
+      clear: () => term.clear(),
+      scrollToBottom: () => term.scrollToBottom(),
+    };
+  }
+})();
+</script>
+</body>
+</html>

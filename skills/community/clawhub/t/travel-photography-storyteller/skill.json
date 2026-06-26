@@ -1,0 +1,20 @@
+{
+  "name": "Travel Photography Storyteller",
+  "slug": "travel-photography-storyteller",
+  "version": "1.0.0",
+  "description": "Helps travelers plan meaningful travel photography",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel photography storyteller",
+    "travel photography storyteller"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

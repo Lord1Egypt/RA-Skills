@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clash Verge Auto Switch"
+  short_description: "Auto-detect live Clash groups and switch fastest nodes"
+  default_prompt: "Use $clash-verge-auto-switch to detect the currently used Clash groups, test their nodes, and switch each target selector to the fastest healthy proxy."

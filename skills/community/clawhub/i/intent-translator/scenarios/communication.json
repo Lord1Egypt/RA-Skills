@@ -1,0 +1,28 @@
+{
+  "name": "沟通策略设计",
+  "description": "设计高情商的沟通话术（谈薪/谈判/处理矛盾）",
+  "version": "1.0.0",
+  "questions": [
+    {
+      "id": "communication_goal",
+      "text": "你这次沟通，最想达成的具体结果是什么？",
+      "purpose": "明确目标"
+    },
+    {
+      "id": "relationship_context",
+      "text": "和对方是什么关系？这段关系对你重要吗？",
+      "purpose": "评估关系权重"
+    },
+    {
+      "id": "potential_pushback",
+      "text": "对方最可能怎么拒绝或反驳你？",
+      "purpose": "预判阻力"
+    },
+    {
+      "id": "emotional_state",
+      "text": "你现在情绪怎么样？能冷静地谈吗？",
+      "purpose": "评估情绪状态"
+    }
+  ],
+  "prompt_template": "【角色】高情商沟通顾问\n\n【沟通目标】\n{communication_goal}\n\n【关系背景】\n{relationship_context}\n\n【预期阻力】\n{potential_pushback}\n\n【情绪状态】\n{emotional_state}\n\n【目标】\n设计沟通话术 + 时机选择 + 应对方案"
+}

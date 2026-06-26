@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>词霸每日一句 · 横款明信片</title>
+  <style>
+    :root { --ink:#211812; --muted:#806f5a; --paper:#fbf1e2; --paper2:#fff9ef; --accent:#b77f3a; --post:#d9b882; --shadow: 0 28px 90px rgba(39,29,18,.22), 0 10px 30px rgba(39,29,18,.14); }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; min-height: 100%; }
+    body { min-height: 100vh; display: grid; place-items: center; background: radial-gradient(circle at 10% 12%, #fff 0 8%, transparent 28%), linear-gradient(135deg,#e9dece,#f7efe3 54%,#ded0bd); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .card { width: [[WIDTH]]px; height: [[HEIGHT]]px; position: relative; overflow: hidden; border-radius: 30px; background: var(--paper); box-shadow: var(--shadow); isolation: isolate; display: grid; grid-template-columns: 52% 48%; }
+    .card::before { content:""; position:absolute; inset:0; z-index:20; pointer-events:none; opacity:.24; background-image: radial-gradient(circle, rgba(67,49,29,.13) 0 1px, transparent 1.4px), linear-gradient(90deg,rgba(73,52,30,.035) 1px, transparent 1px); background-size: 8px 8px, 32px 32px; mix-blend-mode:multiply; }
+    .card::after { content:""; position:absolute; inset:18px; border:1px solid rgba(95,74,48,.18); border-radius:22px; z-index:21; pointer-events:none; }
+    .photo { position: relative; overflow: hidden; margin: 30px 0 30px 30px; border-radius: 18px; clip-path: polygon(0 2%, 9% 0, 19% 3%, 30% 1%, 43% 4%, 56% 0, 69% 4%, 81% 1%, 94% 3%, 100% 0, 98% 100%, 86% 97%, 73% 100%, 59% 96%, 47% 100%, 33% 97%, 20% 100%, 8% 96%, 0 100%); box-shadow: 0 18px 36px rgba(47,35,23,.2); }
+    .photo img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.98) contrast(1.04); }
+    .photo::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg,rgba(0,0,0,.06),transparent 45%,rgba(0,0,0,.26)); }
+    .label { position:absolute; left:58px; top:54px; z-index:8; display:inline-flex; gap:10px; align-items:center; padding:11px 16px; color:#241a12; background:rgba(244,218,176,.92); box-shadow:0 10px 22px rgba(35,25,15,.18); clip-path:polygon(3% 0,100% 7%,96% 100%,0 92%); transform:rotate(-2.6deg); font-weight:800; font-size:15px; letter-spacing:.08em; }
+    .label svg { width:20px; height:20px; }
+    .postcard { position:relative; padding:54px 54px 46px 46px; background: linear-gradient(110deg,rgba(255,255,255,.6),transparent 38%), var(--paper2); display:flex; flex-direction:column; justify-content:space-between; }
+    .postcard::before { content:""; position:absolute; left:0; top:34px; bottom:34px; width:2px; background:repeating-linear-gradient(180deg,rgba(115,86,50,.28) 0 10px, transparent 10px 18px); }
+    .postcard::after { content:"POST CARD"; position:absolute; right:54px; top:34px; color:rgba(91,72,48,.36); font-family:Georgia,serif; font-size:34px; letter-spacing:.18em; font-weight:bold; }
+    .stamp-box { position:absolute; right:54px; top:86px; width:126px; height:104px; border:2px dashed rgba(112,86,52,.42); border-radius:14px; display:grid; place-items:center; color:rgba(96,73,46,.48); font-family:Georgia,serif; font-size:18px; transform:rotate(2deg); }
+    .stamp-box span { display:block; text-align:center; line-height:1.15; }
+    .date-chip { position:absolute; right:204px; top:94px; min-width:106px; padding:12px 13px; background:#f1e0c4; box-shadow:0 10px 20px rgba(64,45,26,.13); clip-path:polygon(5% 0,100% 7%,95% 100%,0 93%); transform:rotate(-1.5deg); text-align:center; }
+    .date-chip b { display:block; font-family:Georgia,serif; font-size:32px; line-height:.9; }
+    .date-chip small { display:block; margin-top:5px; color:var(--muted); font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+    .message { margin-top:160px; max-width: 470px; }
+    .quote-mark { height:42px; color:rgba(154,126,87,.68); font-family:Georgia,serif; font-size:92px; line-height:.55; }
+    h1 { margin:14px 0 18px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:[[QUOTE_SIZE]]px; line-height:1.03; letter-spacing:-.045em; text-wrap:balance; }
+    .rule { width:76px; height:5px; border-radius:999px; background:var(--accent); opacity:.78; margin-bottom:18px; }
+    .cn { margin:0; color:#2b241e; font-size:25px; line-height:1.5; font-weight:560; text-wrap:balance; }
+    .address-lines { margin-top:34px; display:grid; gap:14px; }
+    .address-lines i { display:block; height:1px; background:rgba(90,68,42,.28); }
+    .footer { display:grid; grid-template-columns:1fr auto; align-items:end; gap:22px; }
+    .meta { color:var(--muted); }
+    .translation { display:inline-flex; align-items:center; gap:8px; font-size:17px; border-bottom:2px solid rgba(126,111,86,.32); padding:0 12px 7px 0; }
+    .translation svg { width:24px; height:24px; }
+    .dateline { margin-top:11px; font-family:Georgia,"Times New Roman",serif; font-size:21px; letter-spacing:.03em; }
+    .qr { position:relative; width:132px; padding:9px 9px 10px; background:#f0dfc3; box-shadow:0 12px 24px rgba(54,40,24,.14); clip-path:polygon(5% 0,100% 6%,95% 100%,0 94%); text-align:center; transform:rotate(-1.4deg); }
+    .qr::before { content:""; position:absolute; width:18px; height:18px; right:12px; top:-8px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff1aa 0 12%,#c7962d 48%,#805319 100%); box-shadow:0 4px 8px rgba(70,45,14,.34); }
+    .qr img { display:block; width:112px; height:112px; margin:0 auto 7px; background:#fff; padding:4px; border-radius:8px; }
+    .qr small { display:block; color:#4d3e2c; font-size:10px; line-height:1.22; letter-spacing:.04em; font-weight:800; }
+    .tape { position:absolute; z-index:9; width:126px; height:38px; background:linear-gradient(90deg,transparent 0 8%,rgba(255,255,255,.2) 8% 11%,transparent 11% 20%), rgba(214,184,128,.72); box-shadow:0 8px 16px rgba(61,45,28,.14); clip-path:polygon(7% 0,100% 9%,93% 100%,0 84%); mix-blend-mode:multiply; }
+    .tape.a { left:38%; top:35px; transform:rotate(18deg); }
+    .tape.b { left:46%; bottom:42px; transform:rotate(-14deg); }
+    .status { position:absolute; right:28px; bottom:14px; z-index:31; font-size:10px; color:rgba(58,46,33,.50); letter-spacing:.1em; text-transform:uppercase; }
+  </style>
+</head>
+<body>
+  <main class="card" id="card">
+    <section class="photo"><img src="[[HERO_URI]]" alt="[[HERO_ALT]]" /></section>
+    <div class="label"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M12 38C19 22 28 12 40 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 29c-6-7-8-13-6-18 7 4 9 10 6 18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M30 17c7-2 12-1 15 3-5 4-10 3-15-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>[[CAPTION]]</span></div>
+    <section class="postcard">
+      <div class="stamp-box"><span>VOICE<br/>STAMP</span></div>
+      <div class="date-chip"><b>[[ISSUE_DAY]]</b><small>[[ISSUE_TEXT]]</small></div>
+      <article class="message">
+        <div class="quote-mark" aria-hidden="true">“</div>
+        <h1>[[CONTENT]]</h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="cn">[[NOTE]]</p>
+        <div class="address-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+      </article>
+      <footer class="footer">
+        <div class="meta"><div class="translation"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M12 38C19 22 28 12 40 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 29c-6-7-8-13-6-18 7 4 9 10 6 18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M30 17c7-2 12-1 15 3-5 4-10 3-15-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>[[TRANSLATION]]</span></div><div class="dateline">[[DATELINE]]</div></div>
+        <div class="qr" title="长按识别二维码，听 TTS 发音"><img src="[[QR_URI]]" alt="TTS 发音二维码" /><small>长按识别<br/>听发音</small></div>
+      </footer>
+    </section>
+    <div class="tape a" aria-hidden="true"></div><div class="tape b" aria-hidden="true"></div>
+    <div class="status">[[STATUS]]</div>
+  </main>
+</body>
+</html>

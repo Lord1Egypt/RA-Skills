@@ -1,35 +1,52 @@
 ---
-name: "Firm N8n Bridge Pack"
-description: "n8n workflow bridge pack. Export OpenClaw pipelines to n8n format and import n8n workflows. 2 bridge tools."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firm-n8n-bridge-pack"
-sourceUrl: "https://clawhub.ai/skills/firm-n8n-bridge-pack"
+name: firm-n8n-bridge-pack
+version: 1.0.0
+description: >
+  n8n workflow bridge pack.
+  Export OpenClaw pipelines to n8n format and import n8n workflows. 2 bridge tools.
+author: romainsantoli-web
+license: MIT
+metadata:
+  openclaw:
+    registry: ClawHub
+    requires:
+      - mcp-openclaw-extensions >= 3.0.0
+tags:
+  - n8n
+  - workflow
+  - bridge
+  - automation
+  - export
 ---
 
-# Firm N8n Bridge Pack
+# firm-n8n-bridge-pack
 
-> n8n workflow bridge pack. Export OpenClaw pipelines to n8n format and import n8n workflows. 2 bridge tools.
+> ⚠️ Contenu généré par IA — validation humaine requise avant utilisation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firm-n8n-bridge-pack`
-- **Source URL:** [https://clawhub.ai/skills/firm-n8n-bridge-pack](https://clawhub.ai/skills/firm-n8n-bridge-pack)
+## Purpose
 
-## Overview
+Bridges OpenClaw workflows with n8n automation platform. Exports OpenClaw pipelines
+to n8n JSON format (20 node type mappings) and imports n8n workflows back with validation.
 
+## Tools (2)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/firm-n8n-bridge-pack
+| Tool | Description |
+|------|-------------|
+| `openclaw_n8n_workflow_export` | Export OpenClaw pipeline to n8n JSON |
+| `openclaw_n8n_workflow_import` | Import n8n workflow into OpenClaw |
+
+## Usage
+
+```yaml
+skills:
+  - firm-n8n-bridge-pack
+
+# Export/import workflows:
+openclaw_n8n_workflow_export config_path=/path/to/config.json pipeline_name=my-pipeline
+openclaw_n8n_workflow_import workflow_path=/path/to/workflow.json
 ```
+
+## Requirements
+
+- `mcp-openclaw-extensions >= 3.0.0`
+- n8n >= 1.0 (recommended)

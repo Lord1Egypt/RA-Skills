@@ -1,0 +1,16 @@
+{
+  "name": "wechat-look-ocr",
+  "version": "1.0.0",
+  "description": "OCR module for wechat-look skill using Tesseract.js",
+  "main": "ocr_simple.js",
+  "scripts": {
+    "test": "node ocr_simple.js"
+  },
+  "dependencies": {
+    "tesseract.js": "^5.0.0",
+    "node-fetch": "^2.6.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

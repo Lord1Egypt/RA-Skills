@@ -1,0 +1,16 @@
+{
+  "skill_name": "fetch-archive-to-lexiang",
+  "display_name": "Fetch & Archive to Lexiang",
+  "version": "2.8.2",
+  "github_repo": "ajaxhe/fetch-archive-to-lexiang",
+  "category": "research",
+  "tags": ["fetch", "archive", "youtube", "podcast", "pdf", "transcribe", "lexiang", "paywall", "substack", "medium", "chinese"],
+  "clawscan_note": "Uses Chrome CDP for authenticated scraping, Lexiang MCP APIs, yt-dlp/Whisper for transcription. Requires lexiang MCP connector.",
+  "pr_description": "## fetch-archive-to-lexiang\n\nUniversal web article fetcher and archiver for AI agents.\n\n**Features:**\n- Bypass paywalls (Substack, Medium, 知识星球, Weibo)\n- YouTube download + Whisper transcription\n- Podcast audio + transcription\n- PDF extraction + bilingual translation\n- Archive to Lexiang knowledge base",
+  "platforms": {
+    "clawhub": { "enabled": true },
+    "agentskillhub": { "enabled": true },
+    "skillshubai": { "enabled": true },
+    "agentskillshub": { "enabled": false }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "ai-intelligent-expense-management",
+  "version": "1.0.0",
+  "description": "企业费用管理，报销 + 控制 + 分析",
+  "author": "yang1002378395-cmyk",
+  "tags": ["expense", "finance", "enterprise", "chinese", "ai"],
+  "category": "finance",
+  "license": "MIT",
+  "price": 0,
+  "currency": "USD"
+}

@@ -1,0 +1,50 @@
+{
+  "skill_name": "swiftui-patterns",
+  "evals": [
+    {
+      "id": 0,
+      "name": "observation-actor-ownership",
+      "prompt": "Design the SwiftUI state architecture for an iOS 26 profile settings screen. The screen edits a profile name, stores a theme preference in UserDefaults, loads remote suggestions asynchronously, and passes editable state into child fields. Use modern Observation and explain what should be @MainActor, @State, @Bindable, @Environment, and .task.",
+      "expected_output": "A modern SwiftUI patterns answer that uses a UI-bound @MainActor @Observable store owned by @State, @Bindable only where bindings are needed, environment injection for deeply shared state, .task for cancellable async loading, and either keeps @AppStorage in views or uses normal UserDefaults-backed stored properties inside observable models.",
+      "files": [],
+      "assertions": [
+        "Uses `@MainActor` for the UI-bound observable store or view model without claiming every observable domain model must be main-actor isolated.",
+        "Uses `@State` in the owning view for the observable object lifecycle.",
+        "Uses `@Bindable` only where a child view needs `$property` bindings.",
+        "Uses `@Environment(Type.self)` for shared observable state instead of `@EnvironmentObject` on iOS 17+.",
+        "Uses `.task` or `.task(id:)` for async loading and mentions automatic cancellation.",
+        "Avoids putting `@AppStorage` directly inside an `@Observable` class for view reactivity; uses view-level `@AppStorage` or normal UserDefaults-backed stored properties instead."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "migration-accuracy-review",
+      "prompt": "Review this SwiftUI iOS 26 migration note: always mark every @Observable type @MainActor; `Color(uiColor:)` is deprecated and replaced by shader libraries; SwiftUI `.copyable`, `.cuttable`, and `.pasteDestination` are iOS 16 APIs; `matchedTransitionSource` and `navigationTransition(.zoom)` are iOS 26 only; `PreviewProvider`, `EditButton`, and `.onDelete` are all deprecated. Correct the note.",
+      "expected_output": "A source-grounded correction that narrows actor isolation to UI-bound observable state, keeps Color(uiColor:) valid for UIKit bridging, states current Apple docs list copy/cut/command paste modifiers as macOS 13+ and iOS/iPadOS 27 beta rather than iOS 16/iOS 26 defaults, marks matchedTransitionSource/navigation zoom as iOS 18+, and distinguishes modern defaults from APIs that are not formally deprecated.",
+      "files": [],
+      "assertions": [
+        "Narrows `@MainActor` guidance to UI-bound observable stores/view models and avoids a universal rule for every `@Observable` type.",
+        "States that `Color(uiColor:)` remains valid for bridging existing UIKit colors.",
+        "Does not recommend `.copyable`, `.cuttable`, or command-based `.pasteDestination(for:action:validator:)` as iOS 16 or iOS 26 defaults; cites current Apple docs as macOS 13+ and iOS/iPadOS 27 beta for those command modifiers.",
+        "Corrects `matchedTransitionSource` and `navigationTransition(.zoom)` availability to iOS 18+.",
+        "Treats `#Preview` as the modern preview default without falsely saying all `PreviewProvider` use is compiler-deprecated.",
+        "Treats `EditButton`, `.onDelete`, and `.onMove` as still valid for edit-mode list workflows while recommending `.swipeActions` for contextual row actions."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "sibling-boundary-routing",
+      "prompt": "A SwiftUI dashboard needs a shared store, child edit forms, async refresh, a NavigationStack path with deep links, a large searchable grid, a matched hero transition, and iOS 26 Liquid Glass scroll-edge polish. Which parts should the swiftui-patterns skill own, and what should be routed to sibling skills?",
+      "expected_output": "A boundary-aware routing answer that keeps swiftui-patterns focused on MV architecture, Observation ownership, binding/environment wiring, view decomposition, and .task refresh, while routing NavigationStack/deep links to swiftui-navigation, grid/search/layout work to swiftui-layout-components, detailed matched-transition work to swiftui-animation, and Liquid Glass polish to swiftui-liquid-glass.",
+      "files": [],
+      "assertions": [
+        "Keeps shared store ownership, `@Observable`, `@State`, `@Bindable`, and environment wiring in `swiftui-patterns` scope.",
+        "Keeps async refresh with `.task` or `.refreshable` in `swiftui-patterns` scope.",
+        "Routes NavigationStack path and deep-link implementation details to `swiftui-navigation`.",
+        "Routes large searchable grid, layout, List/Form/Search UI details to `swiftui-layout-components`.",
+        "Routes detailed matched hero transition implementation to `swiftui-animation`.",
+        "Routes iOS 26 Liquid Glass and scroll-edge visual treatment details to `swiftui-liquid-glass`."
+      ]
+    }
+  ]
+}

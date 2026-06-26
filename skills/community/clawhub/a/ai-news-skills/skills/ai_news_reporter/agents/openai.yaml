@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI News Reporter"
+  short_description: "从原始新闻表生成日报和早报导读"
+  default_prompt: "Use $ai_news_reporter to read raw AI news from Feishu, build signals, update the daily report doc, and prepare the morning briefing."
+
+policy:
+  allow_implicit_invocation: true

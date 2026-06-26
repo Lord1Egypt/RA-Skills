@@ -1,0 +1,4 @@
+interface:
+  display_name: "CNInfo Reports"
+  short_description: "Download A-share annual and semiannual CNInfo report PDFs."
+  default_prompt: "Use $cninfo-report-downloader to download A-share annual and semiannual report PDFs from CNInfo with a stock-code CSV."

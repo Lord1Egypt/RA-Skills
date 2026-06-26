@@ -1,0 +1,11 @@
+{
+  "name": "food-safety-sentiment-monitor",
+  "version": "1.0.1",
+  "title": "Food Safety Sentiment Monitor | 食品安全舆情监控",
+  "author": {
+    "name": "Kevin(凯文老师)",
+    "email": "maifieldai@gmail.com"
+  },
+  "category": "monitor",
+  "triggers": ["manual"]
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<!--
+  Xiaohongshu cover — a starting template, not a rigid spec.
+  The cover decides the click. Keep the title short and bold.
+  Edit the text and CSS variables. Render at 1080×1440 (3:4):
+    node ../scripts/render-image.js xiaohongshu-cover.html out.png --width=1080 --height=1440
+-->
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --bg1: #fff1f2;
+        --bg2: #ffe4e6;
+        --ink: #1f2937;
+        --accent: #fb7185;
+        --chip: #ffffff;
+      }
+      * { margin: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1440px; }
+      body {
+        background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%);
+        color: var(--ink);
+        font-family: "PingFang SC", "Microsoft YaHei", -apple-system, "Segoe UI", sans-serif;
+        padding: 110px 90px;
+        display: flex;
+        flex-direction: column;
+      }
+      .chip {
+        align-self: flex-start;
+        background: var(--chip);
+        color: var(--accent);
+        font-size: 34px;
+        font-weight: 700;
+        padding: 16px 32px;
+        border-radius: 999px;
+        box-shadow: 0 8px 24px rgba(251, 113, 133, 0.25);
+      }
+      h1 {
+        margin-top: 56px;
+        font-size: 104px;
+        font-weight: 900;
+        line-height: 1.18;
+        letter-spacing: -1px;
+      }
+      h1 .hl {
+        background: linear-gradient(transparent 62%, var(--accent) 62%);
+        padding: 0 6px;
+      }
+      .sub {
+        margin-top: 40px;
+        font-size: 42px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #475569;
+      }
+      .points { margin-top: auto; display: flex; flex-direction: column; gap: 26px; }
+      .point { display: flex; align-items: center; gap: 22px; font-size: 40px; font-weight: 600; }
+      .num {
+        width: 64px; height: 64px; flex: none;
+        border-radius: 18px; background: var(--accent); color: #fff;
+        display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="chip">Indie · Retrospective</span>
+    <h1>Rewrote <span class="hl">onboarding</span> 3×<br />before churn dropped</h1>
+    <p class="sub">Thought it was a bug — the empty state was lying to users.</p>
+    <div class="points">
+      <div class="point"><span class="num">1</span>Why the first two versions failed</div>
+      <div class="point"><span class="num">2</span>The one detail the third version changed</div>
+      <div class="point"><span class="num">3</span>Churn before vs. after</div>
+    </div>
+  </body>
+</html>

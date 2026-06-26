@@ -1,0 +1,28 @@
+{
+  "name": "s2-swarm-sync-protocol",
+  "version": "1.1.0",
+  "description": "S2-SWM Zero-Trust Swarm Synchronization Engine. Authenticates peer signatures before executing Federated Perception or Right-of-Way Arbitration, preventing physical spoofing attacks in MAS environments.",
+  "main": "handler.py",
+  "scripts": { "start": "python3 handler.py" },
+  "openclaw": {
+    "extensions": ["openclaw.plugin.json"],
+    "compat": { "pluginApi": ">=3.22.0" },
+    "build": { "openclawVersion": "4.2.0" },
+    "capabilities": [
+      "cryptographic_handshake", 
+      "authenticated_tensor_sharing", 
+      "secure_arbitration"
+    ],
+    "configSchema": {
+      "type": "object",
+      "required": ["S2_SWARM_PKI_ROOT"],
+      "properties": {
+        "S2_SWARM_PKI_ROOT": {
+          "type": "string",
+          "description": "The cryptographic public key or PKI root used to authenticate peer signatures in the P2P Mesh."
+        }
+      }
+    }
+  },
+  "author": "Space2.world (Miles Xiang)"
+}

@@ -1,0 +1,47 @@
+{
+  "skill_name": "web-scraping-tool-selection-strategy",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我需要从京东的商品页面抓取评论数据，特别是这个链接 https://item.jd.com/44541018110.html#comment 的用户评价，但是直接访问总是被反爬限制，有什么好的解决方案吗？",
+      "expectations": [
+        "推荐使用playwright-cli工具，因为它能复用已登录的Chrome浏览器状态绕过反爬机制",
+        "提供具体命令：playwright-cli goto \"https://item.jd.com/44541018110.html#comment\"",
+        "解释为什么playwright-cli比其他工具更适合处理京东这类电商网站的反爬机制"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "想批量获取小红书上关于'护肤'相关的笔记数据，包括点赞数、评论数这些信息，之前用python爬虫经常被封IP，有没有更稳定的工具推荐？",
+      "expectations": [
+        "推荐使用opencli工具，因为小红书有官方适配器",
+        "提供具体命令：opencli xiaohongshu search \"护肤\" --limit 10 -f json",
+        "说明opencli能提供结构化JSON输出，包含完整的作者、标题、点赞数、发布时间等字段"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "帮我看下怎么从知乎热榜抓取最新的热门话题，还要包含回答数量和热度指标，另外顺便看看能不能也抓点微博的数据，最近项目要用",
+      "expectations": [
+        "推荐使用opencli抓取知乎热榜：opencli zhihu hot --limit 5 -f json",
+        "说明知乎有专门的适配器可以获取结构化数据",
+        "建议分别处理不同平台，因为各平台需要不同的抓取策略",
+        "提及需要先验证工具连通性确保正常运行"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "老板让搞个竞品分析，需要监控几个电商平台的价格变化，像淘宝啊1688啊这种，每天自动更新数据，但是这些网站反爬都挺严的，有啥好办法没？或者简单点的工具也行，主要是要稳定",
+      "expectations": [
+        "推荐使用playwright-cli作为主要工具，因为它能处理复杂的反爬机制",
+        "提供1688抓取示例：playwright-cli goto \"https://s.1688.com/selloffer/offer_search.htm?keywords=相关产品\"",
+        "解释为什么对于淘宝、1688这类电商网站，playwright-cli比其他方案更稳定可靠",
+        "建议复用已登录的浏览器状态来提高成功率"
+      ],
+      "trigger_confidence": "medium"
+    }
+  ]
+}

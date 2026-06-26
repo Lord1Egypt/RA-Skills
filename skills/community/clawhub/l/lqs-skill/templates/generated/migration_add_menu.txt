@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Capsule\Manager as DB;
+
+// 注意：生成器会把目标文件名设为 "{{timestamp}}_add_menu_{{module}}.php"
+// 迁移加载器期望类名为 Migration{filename}，因此类名需包含 module。
+class Migration{{timestamp}}_add_menu_{{module}}
+{
+    public function up()
+    {
+        // 请在生成时替换下面的变量：module, controller, action, name, p_id
+        $module = '{{module}}';
+        $controller = '{{controller}}';
+        $action = '{{action}}';
+        $name = '{{name}}';
+        $p_id = {{p_id}};
+
+        // 检查是否已存在（幂等插入）
+        $checkSql = "select count(1) as c from `permissions` where `module` = ? and `controller` = ? and `action` = ?";
+        $exists = DB::select($checkSql, [$module, $controller, $action]);
+        $count = 0;
+        if (!empty($exists) && isset($exists[0]->c)) {
+            $count = intval($exists[0]->c);
+        }
+
+        if ($count === 0) {
+            $sql = "insert into `permissions` (`p_id`,`module`,`controller`,`action`,`args`,`name`,`icon`) values (?, ?, ?, ?, '', ?, '')";
+            DB::statement($sql, [$p_id, $module, $controller, $action, $name]);
+        }
+    }
+
+    public function down()
+    {
+        // 回滚：删除由此迁移创建的菜单项（基于 module/controller/action/name 精确匹配）
+        $module = '{{module}}';
+        $controller = '{{controller}}';
+        $action = '{{action}}';
+        $name = '{{name}}';
+        $sql = "delete from `permissions` where `module` = ? and `controller` = ? and `action` = ? and `name` = ?";
+        DB::statement($sql, [$module, $controller, $action, $name]);
+    }
+}

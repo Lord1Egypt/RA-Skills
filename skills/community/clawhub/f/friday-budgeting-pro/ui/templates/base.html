@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Friday Budgeting Pro{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="/">📊 Friday Budgeting Pro</a>
+      {% block nav %}
+      {% if current_page %}
+      <nav>
+        <a href="/dashboard" {% if current_page == 'dashboard' %}class="active"{% endif %}>Dashboard</a>
+        <a href="/accounts" {% if current_page == 'accounts' %}class="active"{% endif %}>Accounts</a>
+        <a href="/ledgers" {% if current_page == 'ledgers' %}class="active"{% endif %}>Ledgers</a>
+        <a href="/settings" {% if current_page == 'settings' %}class="active"{% endif %}>Settings</a>
+        <a href="/logout" style="margin-left:auto">Log out</a>
+      </nav>
+      {% endif %}
+      {% endblock %}
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>Local · Private · Yours</p>
+  </footer>
+
+  <script>
+  // Convert data-utc Unix timestamps to local datetime strings.
+  // Works for any <span class="datetime-local" data-utc="<int>"> element.
+  (function () {
+    document.querySelectorAll('.datetime-local').forEach(function (el) {
+      var ts = parseInt(el.dataset.utc, 10);
+      if (!ts) { el.textContent = 'Never'; return; }
+      el.textContent = new Date(ts * 1000).toLocaleString();
+    });
+  })();
+  </script>
+</body>
+</html>

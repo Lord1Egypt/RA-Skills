@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<style>
+body {
+  margin: 0;
+  background: #1e1e1e;
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  padding: 40px;
+  font-size: 28px;
+}
+.status {
+  border: 2px solid #00ff41;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+h1 {
+  color: #00ff41;
+  font-size: 48px;
+  margin: 0 0 20px 0;
+  text-shadow: 0 0 10px #00ff41;
+}
+.task {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+.timestamp {
+  color: #888;
+  font-size: 20px;
+}
+</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="status">
+  <h1>🦀 OpenClaw // Work Mode</h1>
+  <div class="task">▸ Status: <span style="color: #0f0">ACTIVE</span></div>
+  <div class="task">▸ Session: Building Streaming Infrastructure</div>
+  <div class="task">▸ Current: OBS Scene Development</div>
+  <div class="task timestamp">▸ <span id="time"></span></div>
+</div>
+<script>
+function updateTime() {
+  document.getElementById('time').textContent = new Date().toLocaleTimeString();
+}
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+</body>
+</html>

@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☯ 阴阳道 - 像素版</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      image-rendering: pixelated;
+    }
+    
+    body {
+      background: #0f0f1a;
+      color: #e0e0e0;
+      font-family: 'Press Start 2P', cursive;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background-image: 
+        linear-gradient(#1a1a2e 1px, transparent 1px),
+        linear-gradient(90deg, #1a1a2e 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    
+    h1 {
+      color: #ffd700;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      text-shadow: 4px 4px 0 #8b0000;
+      letter-spacing: 2px;
+    }
+    
+    .game-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    #game {
+      background: #000;
+      border: 4px solid #4a4a6a;
+      padding: 8px;
+      font-size: 14px;
+      line-height: 1.3;
+      white-space: pre;
+      box-shadow: 
+        inset 0 0 20px rgba(0,0,0,0.8),
+        0 0 0 4px #2a2a3a;
+    }
+    
+    .panel {
+      background: #1a1a2e;
+      border: 4px solid #4a4a6a;
+      padding: 12px;
+      min-width: 180px;
+      box-shadow: 0 4px 0 #0a0a15;
+    }
+    
+    .panel h2 {
+      color: #7dd3fc;
+      font-size: 0.6rem;
+      margin-bottom: 10px;
+      border-bottom: 2px dashed #3a3a5a;
+      padding-bottom: 5px;
+    }
+    
+    .stat { 
+      margin: 6px 0; 
+      font-size: 0.5rem;
+    }
+    .stat-label { color: #888; }
+    .stat-value { color: #fff; float: right; }
+    
+    .hp-bar {
+      background: #0a0a15;
+      height: 16px;
+      margin: 8px 0;
+      position: relative;
+      border: 2px solid #3a3a5a;
+    }
+    
+    .hp-fill {
+      background: linear-gradient(180deg, #ff6b6b 0%, #c0392b 100%);
+      height: 100%;
+      transition: width 0.2s;
+    }
+    
+    .hp-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 8px;
+      color: #fff;
+    }
+    
+    #log {
+      height: 120px;
+      overflow-y: auto;
+      font-size: 0.45rem;
+      border-top: 2px dashed #3a3a5a;
+      margin-top: 8px;
+      padding-top: 8px;
+      line-height: 1.6;
+    }
+    
+    .log-entry { margin: 2px 0; }
+    .log-combat { color: #f97316; }
+    .log-item { color: #ffd700; }
+    .log-heal { color: #34d399; }
+    .log-death { color: #ef4444; }
+    .log-level { color: #a78bfa; }
+    .log-win { color: #34d399; }
+    .log-skill { color: #c084fc; }
+    .log-curse { color: #f43f5e; }
+    .log-damage { color: #ff6b6b; }
+    
+    .controls {
+      margin-top: 15px;
+      color: #666;
+      font-size: 0.45rem;
+    }
+    
+    .controls kbd {
+      background: #2a2a3a;
+      padding: 3px 6px;
+      border: 2px solid #4a4a6a;
+      color: #7dd3fc;
+      margin: 0 2px;
+    }
+    
+    #inventory {
+      list-style: none;
+      font-size: 0.45rem;
+    }
+    
+    #inventory li {
+      padding: 2px 0;
+      color: #ffd700;
+    }
+    
+    .weapon-slot {
+      display: inline-block;
+      margin: 2px;
+      padding: 2px 4px;
+      background: #2a2a3a;
+      border: 1px solid #4a4a6a;
+    }
+    
+    .rarity-common { color: #aaa; }
+    .rarity-uncommon { color: #34d399; }
+    .rarity-rare { color: #7dd3fc; }
+    .rarity-epic { color: #a855f7; }
+    
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    
+    .modal h2 {
+      color: #ffd700;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 0 #8b0000;
+    }
+    
+    .class-options {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .class-card {
+      background: #1a1a2e;
+      border: 4px solid #4a4a6a;
+      padding: 15px;
+      width: 160px;
+      cursor: pointer;
+      transition: all 0.1s;
+      box-shadow: 0 4px 0 #0a0a15;
+    }
+    
+    .class-card:hover {
+      border-color: #ffd700;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #0a0a15;
+    }
+    
+    .class-card h3 {
+      color: #34d399;
+      font-size: 0.6rem;
+      margin-bottom: 8px;
+    }
+    
+    .class-card .desc {
+      color: #888;
+      font-size: 0.4rem;
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+    
+    .class-card .skill {
+      color: #c084fc;
+      font-size: 0.4rem;
+    }
+    
+    .game-over {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    
+    .game-over h2 {
+      font-size: 1.2rem;
+      color: #ef4444;
+      margin-bottom: 15px;
+      text-shadow: 3px 3px 0 #8b0000;
+    }
+    
+    .game-over button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.5rem;
+      padding: 10px 20px;
+      background: #7dd3fc;
+      border: none;
+      cursor: pointer;
+      color: #0a0a0f;
+      box-shadow: 0 4px 0 #3a7a9a;
+    }
+    
+    .game-over button:hover {
+      background: #38bdf8;
+    }
+    
+    .game-over button:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #3a7a9a;
+    }
+    
+    .hidden { display: none !important; }
+    
+    .curse-badge {
+      color: #f43f5e;
+      font-size: 0.4rem;
+      margin-top: 5px;
+    }
+
+    .shop-item {
+      background: #1a1a2e;
+      border: 2px solid #4a4a6a;
+      padding: 10px;
+      width: 120px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .shop-item:hover {
+      border-color: #ffd700;
+    }
+    .shop-item h3 {
+      font-size: 0.5rem;
+      color: #34d399;
+      margin-bottom: 5px;
+    }
+    .shop-item p {
+      font-size: 0.4rem;
+      color: #888;
+      margin: 2px 0;
+    }
+    .shop-item .price {
+      color: #ffd700;
+    }
+
+    .skill-btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      font-family: inherit;
+      font-size: 0.4rem;
+      background: #2a2a3a;
+      border: 1px solid #4a4a6a;
+      color: #e0e0e0;
+      cursor: pointer;
+      text-align: left;
+    }
+    .skill-btn:hover {
+      background: #3a3a5a;
+    }
+    .skill-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .skill-cost {
+      float: right;
+      color: #7dd3fc;
+    }
+    
+    .weapon-display {
+      margin-top: 8px;
+      padding: 5px;
+      background: #0a0a15;
+      border: 2px solid #3a3a5a;
+    }
+    
+    .weapon-icon {
+      font-size: 1rem;
+      display: block;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+    
+    .weapon-name {
+      font-size: 0.4rem;
+      text-align: center;
+      color: #ffd700;
+    }
+    
+    /* 移动端虚拟按键 */
+    .mobile-controls {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      gap: 5px;
+      z-index: 50;
+    }
+    
+    .dpad {
+      display: grid;
+      grid-template-columns: 50px 50px 50px;
+      grid-template-rows: 50px 50px;
+      gap: 2px;
+    }
+    
+    .dpad-btn {
+      width: 50px;
+      height: 50px;
+      background: rgba(74, 74, 106, 0.8);
+      border: 2px solid #6a6a8a;
+      border-radius: 8px;
+      color: #7dd3fc;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .dpad-btn:active {
+      background: rgba(125, 211, 252, 0.3);
+    }
+    
+    .dpad-up { grid-column: 2; grid-row: 1; }
+    .dpad-left { grid-column: 1; grid-row: 2; }
+    .dpad-down { grid-column: 2; grid-row: 2; }
+    .dpad-right { grid-column: 3; grid-row: 2; }
+    
+    @media (max-width: 768px) {
+      .mobile-controls {
+        display: flex;
+      }
+      body {
+        padding-bottom: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>☯ 阴阳道</h1>
+  
+  <div class="game-container">
+    <div id="game"></div>
+    
+    <div class="panel">
+      <h2>▣ 状态</h2>
+      <div class="hp-bar">
+        <div class="hp-fill" id="hp-fill"></div>
+        <span class="hp-text" id="hp-text">100/100</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">境界</span>
+        <span class="stat-value" id="level">筑基期</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">经验</span>
+        <span class="stat-value" id="exp">0/100</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">攻击</span>
+        <span class="stat-value" id="attack">10</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">防御</span>
+        <span class="stat-value" id="defense">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">灵气</span>
+        <span class="stat-value" id="gold">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">层数</span>
+        <span class="stat-value" id="floor">1</span>
+      </div>
+      <div class="curse-badge" id="curse"></div>
+      <div class="curse-badge" id="key-badge" style="color: #22c55e; display: none;">🔑 钥匙</div>
+      
+      <div class="weapon-display">
+        <span class="weapon-icon" id="weapon-icon">✊</span>
+        <span class="weapon-name" id="weapon-name">徒手</span>
+      </div>
+      
+      <div class="weapon-display" id="pet-display" style="display: none;">
+        <span class="weapon-icon" id="pet-icon">🐾</span>
+        <span class="weapon-name" id="pet-name" style="color: #f472b6;">灵兽</span>
+      </div>
+      
+      <h2>▣ 储物袋</h2>
+      <ul id="inventory"></ul>
+    </div>
+    
+    <div class="panel">
+      <h2>▣ 技能</h2>
+      <div id="skill-panel">
+        <div class="stat">
+          <span class="stat-label">灵气</span>
+          <span class="stat-value" id="energy">100/100</span>
+        </div>
+        <div id="skills-list"></div>
+      </div>
+      <h2>▣ 日志</h2>
+      <div id="log"></div>
+    </div>
+  </div>
+  
+  <div class="controls">
+    <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动 | 
+    <kbd>R</kbd> 重新开始 | 
+    <button onclick="saveGame()" style="font-family:inherit; font-size:0.45rem; cursor:pointer;">存档</button>
+    <button onclick="loadGame()" style="font-family:inherit; font-size:0.45rem; cursor:pointer;">读取</button>
+  </div>
+  
+  <!-- 移动端虚拟按键 -->
+  <div class="mobile-controls">
+    <div class="dpad">
+      <button class="dpad-btn dpad-up" ontouchstart="handleTouch(event, 'up')">↑</button>
+      <button class="dpad-btn dpad-left" ontouchstart="handleTouch(event, 'left')">←</button>
+      <button class="dpad-btn dpad-down" ontouchstart="handleTouch(event, 'down')">↓</button>
+      <button class="dpad-btn dpad-right" ontouchstart="handleTouch(event, 'right')">→</button>
+    </div>
+  </div>
+  
+  <!-- 开场剧情 -->
+  <div id="story-modal" class="modal">
+    <h2 style="color: #ffd700; font-size: 1rem; margin-bottom: 15px;">☯ 阴阳道 ☯</h2>
+    <div style="background: #1a1a2e; padding: 20px; margin: 10px 0; border: 2px solid #4a4a6a; max-height: 300px; overflow-y: auto; text-align: left;">
+      <p style="color: #aaa; font-size: 0.45rem; line-height: 1.8; margin-bottom: 10px;">
+        <span style="color: #7dd3fc;">【序章】</span><br><br>
+        天地初开，阴阳交汇，灵气复苏。<br><br>
+        自古以来，修仙者追求长生不老，渡劫飞升。<br><br>
+        然修仙之路艰难险阻，需历经十层天劫，方可突破凡尘，位列仙班。<br><br>
+        如今，灵气复苏，万物觉醒。<br><br>
+        北方深山之中，旱魃苏醒，为祸人间。<br><br>
+        各大门派广招弟子，修炼阴阳之道，誓要击败旱魃，渡劫飞升！<br><br>
+        <span style="color: #ffd700;">—— 你的修仙之路，即将开始 ——</span>
+      </p>
+    </div>
+    <button onclick="closeStory()" style="font-family: 'Press Start 2P', cursive; font-size: 0.5rem; padding: 12px 24px; background: #7dd3fc; border: none; cursor: pointer; color: #0a0a0f; box-shadow: 0 4px 0 #3a7a9a; margin-top: 10px;">进入游戏</button>
+  </div>
+  
+  <!-- 职业选择 -->
+  <div id="class-select" class="modal">
+    <h2>✦ 选择修炼方向 ✦</h2>
+    <div class="class-options">
+      <div class="class-card" onclick="selectClass('医师')">
+        <h3>🧑‍⚕️ 医师</h3>
+        <div class="desc">HP+20 防御+2</div>
+        <div class="skill">针灸暴击+30%</div>
+      </div>
+      <div class="class-card" onclick="selectClass('炼药师')">
+        <h3>⚗️ 炼药师</h3>
+        <div class="desc">攻击+3 HP-10</div>
+        <div class="skill">每层回复15HP</div>
+      </div>
+      <div class="class-card" onclick="selectClass('武痴')">
+        <h3>⚔️ 武痴</h3>
+        <div class="desc">攻击+5 防御-1</div>
+        <div class="skill">破甲穿透+2</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 游戏结束 -->
+  <div id="game-over" class="game-over hidden">
+    <h2>💀 身死道消 💀</h2>
+    <p id="go-msg" style="color:#666;margin-bottom:15px;font-size:0.5rem"></p>
+    <button onclick="showClassSelect()">↻ 轮回重修</button>
+  </div>
+
+  <!-- 商店 -->
+  <div id="shop-modal" class="modal hidden">
+    <h2>🛒 灵气商店</h2>
+    <p style="font-size:0.5rem; margin-bottom:10px;">每层只能购买 1 次</p>
+    <div id="shop-items" class="shop-items" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;"></div>
+    <button onclick="closeShop()" style="margin-top:20px; font-family:inherit; padding:10px 20px; cursor:pointer;">离开商店</button>
+  </div>
+
+  <script>
+    const WIDTH = 25;
+    const HEIGHT = 15;
+    
+    // 武器系统 - 带特效
+    const WEAPONS = {
+      'fist': { name: '徒手', icon: '✊', atk: 0, rarity: 'common', effect: null },
+      'needle': { name: '银针', icon: '📍', atk: 5, rarity: 'common', effect: 'poison', effectChance: 0.15, effectValue: 3 },
+      'gourd': { name: '葫芦', icon: '🍶', atk: 8, rarity: 'uncommon', effect: 'heal', effectChance: 0.1, effectValue: 5 },
+      '拂尘': { name: '拂尘', icon: '🧹', atk: 10, rarity: 'uncommon', effect: 'stun', effectChance: 0.1 },
+      'sword': { name: '太极剑', icon: '⚔️', atk: 12, rarity: 'rare', effect: 'crit', effectChance: 0.2, effectValue: 1.5 },
+      '铁鞭': { name: '铁鞭', icon: '🔨', atk: 14, rarity: 'rare', effect: 'armorBreak', effectChance: 0.25 },
+      '冰剑': { name: '冰剑', icon: '❄️', atk: 16, rarity: 'epic', effect: 'freeze', effectChance: 0.15 },
+      '血刃': { name: '血刃', icon: '🩸', atk: 18, rarity: 'epic', effect: 'lifesteal', effectChance: 0.2, effectValue: 0.3 },
+      '雷锤': { name: '雷锤', icon: '⚡', atk: 20, rarity: 'epic', effect: 'shock', effectChance: 0.2, effectValue: 5 },
+      '丹炉': { name: '炼丹炉', icon: '🔥', atk: 15, rarity: 'epic', effect: 'explode', effectChance: 0.2, effectValue: 1.5 }
+    };
+    
+    // 武器特效说明
+    const WEAPON_EFFECTS = {
+      'poison': { name: '中毒', desc: '敌人每回合损失生命', color: '#84cc16' },
+      'heal': { name: '吸血', desc: '攻击时回复生命', color: '#ef4444' },
+      'stun': { name: '眩晕', desc: '敌人本回合无法行动', color: '#fbbf24' },
+      'crit': { name: '暴击', desc: '伤害×1.5', color: '#f97316' },
+      'armorBreak': { name: '破甲', desc: '敌人防御减半', color: '#94a3b8' },
+      'freeze': { name: '冰冻', desc: '敌人无法移动', color: '#06b6d4' },
+      'lifesteal': { name: '吸血', desc: '造成伤害的30%回复自身', color: '#dc2626' },
+      'shock': { name: '雷电', desc: '额外雷电伤害', color: '#fbbf24' },
+      'explode': { name: '爆炸', desc: '暴击伤害×1.5', color: '#f97316' }
+    };
+    
+    const WEAPON_ORDER = ['fist', 'needle', 'gourd', '拂尘', 'sword', '铁鞭', '冰剑', '血刃', '雷锤', '丹炉'];
+    
+    const COLORS = {
+      '#': '#4a4a6a',
+      '.': '#1a1a2e',
+      '@': '#34d399',
+      'z': '#84cc16',
+      'd': '#f97316',
+      's': '#e2e8f0',
+      'D': '#a855f7',
+      '!': '#34d399',
+      '$': '#ffd700',
+      '>': '#7dd3fc',
+      'X': '#ef4444',
+      'B': '#fbbf24',
+      'T': '#06b6d4',
+      'K': '#22c55e',
+      'M': '#ec4899',
+      'P': '#14b8a6',
+      'c': '#f472b6',
+      'O': '#a78bfa',
+      'v': '#94a3b8',
+      'w': '#818cf8',
+      'y': '#4ade80',
+      'E': '#dc2626', // 魍魉
+      'F': '#a855f7', // 幽魂
+      'H': '#ef4444', // 血魔
+      'L': '#fbbf24', // 雷灵
+      'R': '#64748b'  // 盾卫
+    };
+    
+    const ENEMIES = {
+      // 普通敌人
+      'z': { name: '僵尸', hp: 25, atk: 6, def: 0, exp: 15, gold: 8 },
+      'd': { name: '毒虫', hp: 35, atk: 10, def: 3, exp: 25, gold: 15 },
+      's': { name: '煞尸', hp: 50, atk: 15, def: 6, exp: 50, gold: 30 },
+      
+      // BOSS
+      'D': { name: '旱魃', hp: 120, atk: 25, def: 12, exp: 300, gold: 200, isBoss: true, skills: ['喷火', '召唤'] },
+      
+      // 精英怪 - 魍魉（诅咒）
+      'E': { name: '魍魉', hp: 80, atk: 18, def: 8, exp: 120, gold: 80, isElite: true, skill: '诅咒', desc: '攻击附加诅咒' },
+      
+      // 精英怪 - 幽魂（分裂）
+      'F': { name: '幽魂', hp: 60, atk: 14, def: 4, exp: 100, gold: 60, isElite: true, skill: '分裂', desc: '死亡时分裂' },
+      
+      // 精英怪 - 血魔（瞬移）
+      'H': { name: '血魔', hp: 70, atk: 20, def: 5, exp: 110, gold: 70, isElite: true, skill: '瞬移', desc: '闪避攻击' },
+      
+      // 精英怪 - 雷灵（连锁）
+      'L': { name: '雷灵', hp: 65, atk: 22, def: 3, exp: 130, gold: 90, isElite: true, skill: '连锁', desc: '攻击可连锁' },
+      
+      // 精英怪 - 盾卫（反甲）
+      'G': { name: '盾卫', hp: 100, atk: 12, def: 15, exp: 140, gold: 100, isElite: true, skill: '反甲', desc: '反弹伤害' }
+    };
+    
+    const ITEMS = {
+      '!': { name: '九转还魂丹', type: 'heal', value: 50 },
+      '$': { name: '灵气', type: 'gold', value: 15 },
+      'needle': { name: '银针', type: 'weapon', weaponKey: 'needle' },
+      'gourd': { name: '葫芦', type: 'weapon', weaponKey: 'gourd' },
+      'sword': { name: '太极剑', type: 'weapon', weaponKey: 'sword' },
+      '拂尘': { name: '拂尘', type: 'weapon', weaponKey: '拂尘' },
+      '丹炉': { name: '炼丹炉', type: 'weapon', weaponKey: '丹炉' },
+      'K': { name: '青铜钥匙', type: 'key', value: 1 },
+      'B': { name: '宝箱', type: 'chest', value: 50 }
+    };
+    
+    // 地图事件
+    const EVENTS = {
+      'M': { name: '神秘商人', type: 'shop', desc: '出售稀有道具' },
+      'P': { name: '修炼蒲团', type: 'exp', value: 35, desc: '获得修炼经验' },
+      'c': { name: '灵兽蛋', type: 'pet', desc: '孵化灵兽伙伴' },
+      'O': { name: '神秘老人', type: 'elder', desc: '神秘三选一' },
+      'v': { name: '陷阱', type: 'trap', damage: 20, desc: '小心脚下' },
+      'w': { name: '占卜台', type: 'divine', desc: '预示命运' },
+      'y': { name: '悟道树', type: 'awaken', desc: '境界突破' }
+    };
+    
+    const LEVELS = ['筑基期', '金丹期', '元婴期', '化神期', '炼虚期', '大乘期', '渡劫期'];
+
+    // Audio Module
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let bgmOsc = null;
+    let bgmPlaying = false;
+    
+    const audio = {
+      playBgm: () => {
+        if (bgmPlaying) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        
+        // Simple ambient drone
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const lfo = audioCtx.createOscillator();
+        const lfoGain = audioCtx.createGain();
+        
+        lfo.frequency.value = 0.2;
+        lfoGain.gain.value = 20;
+        lfo.connect(lfoGain);
+        lfoGain.connect(osc.frequency);
+        
+        osc.type = 'sine';
+        osc.frequency.value = 110;
+        gain.gain.value = 0.03;
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start();
+        lfo.start();
+        
+        bgmOsc = { osc, gain, lfo };
+        bgmPlaying = true;
+      },
+      stopBgm: () => {
+        if (bgmOsc) {
+          bgmOsc.osc.stop();
+          bgmOsc.lfo.stop();
+          bgmOsc = null;
+          bgmPlaying = false;
+        }
+      },
+      play: (type) => {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        const now = audioCtx.currentTime;
+        if (type === 'attack') {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(150, now);
+          osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+          osc.start(now);
+          osc.stop(now + 0.1);
+        } else if (type === 'buy') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(600, now);
+          osc.frequency.setValueAtTime(800, now + 0.1);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        } else if (type === 'skill') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(300, now);
+          osc.frequency.linearRampToValueAtTime(600, now + 0.3);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } else if (type === 'chest') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(400, now);
+          osc.frequency.setValueAtTime(600, now + 0.1);
+          osc.frequency.setValueAtTime(800, now + 0.2);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        }
+      }
+    };
+
+    const SHOP_ITEMS = [
+      { id: 'sword_shop', name: '新手剑', price: 50, effect: { type: 'atk', value: 5 }, type: 'weapon', desc: 'ATK +5' },
+      { id: 'armor_shop', name: '铁甲', price: 50, effect: { type: 'def', value: 3 }, type: 'armor', desc: 'DEF +3' },
+      { id: 'potion_hp', name: '生命药水', price: 20, effect: { type: 'heal', value: 30 }, type: 'potion', desc: 'HP +30' },
+      { id: 'potion_str', name: '力量药水', price: 30, effect: { type: 'temp_atk', value: 3 }, type: 'potion', desc: 'ATK +3 (本层)' }
+    ];
+
+    const SKILLS = {
+      '医师': [
+        { id: 'acupuncture', name: '针灸', cost: 20, desc: '治疗自己 30 HP' },
+        { id: 'poison_needle', name: '毒针', cost: 15, desc: '敌人中毒，每回合 5 HP' },
+        { id: 'resurrection', name: '还魂', cost: 50, desc: '复活一次 (濒死自动触发)' }
+      ],
+      '炼药师': [
+        { id: 'alchemy', name: '炼丹', cost: 30, desc: '攻击力 +50% (本层)' },
+        { id: 'explosive', name: '炸药', cost: 25, desc: '范围伤害 20' },
+        { id: 'confuse', name: '迷惑', cost: 20, desc: '敌人本回合不攻击' }
+      ],
+      '武痴': [
+        { id: 'break_armor', name: '破甲', cost: 25, desc: '敌人 DEF -50%' },
+        { id: 'combo', name: '连击', cost: 30, desc: '攻击两次' },
+        { id: 'guard', name: '护体', cost: 40, desc: '本回合无敌' }
+      ]
+    };
+
+    let player, map, enemies, items, floor, logs, playerClass, curse, shopAllowed;
+    
+    function selectClass(cls) {
+      playerClass = cls;
+      document.getElementById('class-select').classList.add('hidden');
+      initGame();
+    }
+    
+    function showClassSelect() {
+      document.getElementById('game-over').classList.add('hidden');
+      const storyModal = document.getElementById('story-modal');
+      if (storyModal) storyModal.classList.add('hidden');
+      document.getElementById('class-select').classList.remove('hidden');
+    }
+    
+    function closeStory() {
+      document.getElementById('story-modal').classList.add('hidden');
+      document.getElementById('class-select').classList.remove('hidden');
+    }
+    
+    function initGame() {
+      const baseStats = {
+        '医师': { hp: 120, maxHp: 120, atk: 10, def: 2 },
+        '炼药师': { hp: 90, maxHp: 90, atk: 13, def: 0 },
+        '武痴': { hp: 110, maxHp: 110, atk: 15, def: -1 }
+      };
+      
+      const stats = baseStats[playerClass];
+      player = { 
+        x: 1, y: 1, 
+        hp: stats.hp, maxHp: stats.maxHp, 
+        atk: stats.atk, def: stats.def, 
+        gold: 0, exp: 0, level: 0, expTo: 100,
+        class: playerClass,
+        crit: playerClass === '医师' ? 30 : 0,
+        regen: playerClass === '炼药师' ? 15 : 0,
+        armorPen: playerClass === '武痴' ? 2 : 0,
+        weapon: 'fist',
+        energy: 100,
+        maxEnergy: 100,
+        confused: false,
+        guard: false,
+        tempBuffs: [],
+        poison: 0,
+        hasKey: false,
+        cursed: false,
+        pet: null,
+        totalSpent: 0,
+        kills: 0,
+        cycle: currentCycle
+      };
+      
+      // 应用周目加成
+      const bonus = getCycleBonus();
+      player.maxHp += bonus.hpBonus;
+      player.hp = player.maxHp;
+      player.atk += bonus.atkBonus;
+      
+      if (currentCycle > 1) {
+        log(`✦ 第${currentCycle}周目开始！敌人强化${(currentCycle-1)*20}%！`, 'log-level');
+      }
+      
+      floor = 1;
+      curse = null;
+      shopAllowed = true;
+      enemies = [];
+      items = [];
+      logs = [];
+      gameStartTime = Date.now();
+      
+      document.getElementById('game-over').classList.add('hidden');
+      generateMap();
+      spawnPlayer();
+      spawnEnemies();
+      spawnItems();
+      log('☯ 欢迎来到阴阳道！', 'log-item');
+      log('探索修仙世界，击败旱魃飞升！', 'log-item');
+      renderSkills();
+      updateUI();
+    }
+    
+    function generateMap() {
+      map = [];
+      for (let y = 0; y < HEIGHT; y++) {
+        map[y] = [];
+        for (let x = 0; x < WIDTH; x++) {
+          map[y][x] = '#';
+        }
+      }
+      
+      const rooms = [];
+      const numRooms = 5 + Math.floor(Math.random() * 4);
+      
+      for (let i = 0; i < numRooms; i++) {
+        const w = 4 + Math.floor(Math.random() * 4);
+        const h = 3 + Math.floor(Math.random() * 3);
+        const x = 1 + Math.floor(Math.random() * (WIDTH - w - 2));
+        const y = 1 + Math.floor(Math.random() * (HEIGHT - h - 2));
+        
+        rooms.push({ x, y, w, h });
+        
+        for (let ry = y; ry < y + h; ry++) {
+          for (let rx = x; rx < x + w; rx++) {
+            map[ry][rx] = '.';
+          }
+        }
+      }
+      
+      if (curse && Math.random() < 0.3) {
+        const room = rooms[Math.floor(Math.random() * rooms.length)];
+        map[Math.floor(room.y + room.h/2)][Math.floor(room.x + room.w/2)] = 'X';
+      }
+      
+      // 传送门 (10% 概率)
+      if (Math.random() < 0.1) {
+        const room = rooms[Math.floor(Math.random() * rooms.length)];
+        map[Math.floor(room.y + room.h/2)][Math.floor(room.x + room.w/2) - 1] = 'T';
+      }
+      
+      // 地图事件 (30% 概率每个房间)
+      const eventKeys = Object.keys(EVENTS);
+      rooms.forEach((room, idx) => {
+        if (idx === 0) return; // 第一个房间不放事件
+        if (Math.random() < 0.3) {
+          const eventKey = eventKeys[Math.floor(Math.random() * eventKeys.length)];
+          const ex = Math.floor(room.x + room.w / 2);
+          const ey = Math.floor(room.y + room.h / 2);
+          // 确保不覆盖出口和其他特殊格子
+          if (map[ey][ex] === '.') {
+            map[ey][ex] = eventKey;
+          }
+        }
+      });
+      
+      for (let i = 1; i < rooms.length; i++) {
+        const r1 = rooms[i - 1];
+        const r2 = rooms[i];
+        const x1 = Math.floor(r1.x + r1.w / 2);
+        const y1 = Math.floor(r1.y + r1.h / 2);
+        const x2 = Math.floor(r2.x + r2.w / 2);
+        const y2 = Math.floor(r2.y + r2.h / 2);
+        
+        const hx1 = Math.min(x1, x2), hx2 = Math.max(x1, x2);
+        for (let x = hx1; x <= hx2; x++) {
+          if (y1 >= 0 && y1 < HEIGHT) map[y1][x] = '.';
+        }
+        
+        const hy1 = Math.min(y1, y2), hy2 = Math.max(y1, y2);
+        for (let y = hy1; y <= hy2; y++) {
+          if (y >= 0 && y < HEIGHT) map[y][x2] = '.';
+        }
+      }
+      
+      const lastRoom = rooms[rooms.length - 1];
+      map[Math.floor(lastRoom.y + lastRoom.h / 2)][Math.floor(lastRoom.x + lastRoom.w / 2)] = '>';
+    }
+    
+    function spawnPlayer() {
+      for (let y = 0; y < HEIGHT; y++) {
+        for (let x = 0; x < WIDTH; x++) {
+          if (map[y][x] === '.') {
+            player.x = x;
+            player.y = y;
+            return;
+          }
+        }
+      }
+    }
+    
+    function spawnEnemies() {
+      enemies = [];
+      const numEnemies = floor >= FINAL_FLOOR ? 5 : 3 + floor * 2;
+      
+      for (let i = 0; i < numEnemies; i++) {
+        let x, y;
+        do {
+          x = Math.floor(Math.random() * WIDTH);
+          y = Math.floor(Math.random() * HEIGHT);
+        } while (map[y][x] !== '.' || (x === player.x && y === player.y));
+        
+        let type;
+        // 第10层必定有BOSS
+        if (floor >= FINAL_FLOOR && i === 0) {
+          type = 'D'; // 旱魃
+        } else if (floor >= 2 && floor < FINAL_FLOOR && Math.random() < 0.25) {
+          // 精英怪刷新（2层以上25%概率）
+          const eliteTypes = ['E', 'F', 'H', 'L', 'R'];
+          type = eliteTypes[Math.floor(Math.random() * eliteTypes.length)];
+        } else if (floor >= 3 && Math.random() < 0.15) type = 'D';
+        else if (floor >= 2 && Math.random() < 0.4) type = 's';
+        else if (Math.random() < 0.6) type = 'd';
+        else type = 'z';
+        
+        const data = ENEMIES[type];
+        // 周目敌人加成
+        const cycleMultiplier = 1 + (currentCycle - 1) * 0.2;
+        enemies.push({
+          x, y, type,
+          name: data.name,
+          hp: Math.floor((data.hp + floor * 5) * cycleMultiplier),
+          maxHp: Math.floor((data.hp + floor * 5) * cycleMultiplier),
+          atk: Math.floor((data.atk + floor * 2) * cycleMultiplier),
+          def: data.def,
+          exp: Math.floor(data.exp * (1 + (currentCycle - 1) * 0.15)),
+          gold: Math.floor(data.gold * (1 + (currentCycle - 1) * 0.15)),
+          isBoss: data.isBoss || false,
+          isElite: data.isElite || false,
+          skill: data.skill || null,
+          skills: data.skills || [],
+          usedSkill: false
+        });
+      }
+    }
+    
+    function spawnItems() {
+      items = [];
+      const numItems = 2 + Math.floor(Math.random() * 3);
+      
+      // 钥匙 (20% 概率)
+      if (Math.random() < 0.2) {
+        let x, y;
+        do {
+          x = Math.floor(Math.random() * WIDTH);
+          y = Math.floor(Math.random() * HEIGHT);
+        } while (map[y][x] !== '.' || enemies.some(e => e.x === x && e.y === y));
+        items.push({ x, y, ...ITEMS['K'] });
+      }
+      
+      // 宝箱 (15% 概率)
+      if (Math.random() < 0.15) {
+        let x, y;
+        do {
+          x = Math.floor(Math.random() * WIDTH);
+          y = Math.floor(Math.random() * HEIGHT);
+        } while (map[y][x] !== '.' || enemies.some(e => e.x === x && e.y === y) || items.some(i => i.x === x && i.y === y));
+        items.push({ x, y, ...ITEMS['B'] });
+      }
+      
+      for (let i = 0; i < numItems; i++) {
+        let x, y;
+        do {
+          x = Math.floor(Math.random() * WIDTH);
+          y = Math.floor(Math.random() * HEIGHT);
+        } while (map[y][x] !== '.' || enemies.some(e => e.x === x && e.y === y) || items.some(i => i.x === x && i.y === y));
+        
+        // 武器掉落（根据层数和稀有度）
+        const weaponRand = Math.random();
+        let weaponItem = null;
+        
+        if (weaponRand < 0.1) {
+          // 稀有武器 (10%)
+          const rareWeapons = ['铁鞭', '冰剑', '血刃', '雷锤'];
+          const w = rareWeapons[Math.floor(Math.random() * rareWeapons.length)];
+          weaponItem = { name: w, type: 'weapon', weaponKey: w };
+        } else if (weaponRand < 0.3) {
+          // 普通武器 (20%)
+          const commonWeapons = ['needle', 'gourd', '拂尘', 'sword'];
+          const w = commonWeapons[Math.floor(Math.random() * commonWeapons.length)];
+          weaponItem = { name: WEAPONS[w].name, type: 'weapon', weaponKey: w };
+        } else if (weaponRand < 0.5) {
+          items.push({ x, y, ...ITEMS['!'] });
+          continue;
+        } else if (weaponRand < 0.7) {
+          items.push({ x, y, ...ITEMS['$'] });
+          continue;
+        } else {
+          // 消耗品
+          const consumables = ['!', '$'];
+          items.push({ x, y, ...ITEMS[consumables[Math.floor(Math.random() * consumables.length)]] });
+          continue;
+        }
+        
+        if (weaponItem) {
+          items.push({ x, y, ...weaponItem });
+        }
+        }
+      }
+    }
+    
+    function getChar(x, y) {
+      if (x === player.x && y === player.y) return '@';
+      const enemy = enemies.find(e => e.x === x && e.y === y);
+      if (enemy) return enemy.type;
+      const item = items.find(i => i.x === x && i.y === y);
+      if (item) {
+        if (item.type === 'heal') return '!';
+        if (item.type === 'gold') return '$';
+        if (item.type === 'key') return 'K';
+        if (item.type === 'chest') return 'B';
+        return item.name.charAt(0);
+      }
+      if (map[y][x] === '>') return '>';
+      if (map[y][x] === 'X') return 'X';
+      if (map[y][x] === 'T') return 'T';
+      // 事件格子
+      if (EVENTS[map[y][x]]) return map[y][x];
+      return map[y][x];
+    }
+    
+    function render() {
+      let output = '';
+      for (let y = 0; y < HEIGHT; y++) {
+        for (let x = 0; x < WIDTH; x++) {
+          const char = getChar(x, y);
+          const color = COLORS[char] || '#fff';
+          output += `<span style="color:${color}">${char}</span>`;
+        }
+        output += '\n';
+      }
+      document.getElementById('game').innerHTML = output;
+    }
+    
+    function move(dx, dy) {
+      // 首次移动时播放背景音乐
+      if (!bgmPlaying) {
+        audio.playBgm();
+      }
+      
+      const nx = player.x + dx;
+      const ny = player.y + dy;
+      
+      if (nx < 0 || nx >= WIDTH || ny < 0 || ny >= HEIGHT) return;
+      if (map[ny][nx] === '#') return;
+      
+      // 祭坛
+      if (map[ny][nx] === 'X') {
+        if (curse) {
+          curse = null;
+          log('✦ 祭坛祈福，诅咒解除！', 'log-heal');
+        } else {
+          log('✦ 太乙祭坛，可解除诅咒', 'log-item');
+        }
+      }
+      
+      // 敌人 - 攻击
+      const enemy = enemies.find(e => e.x === nx && e.y === ny);
+      if (enemy) {
+        attack(enemy);
+        enemyTurn();
+        updateUI();
+        return;
+      }
+      
+      // 出口
+      if (map[ny][nx] === '>') {
+        nextFloor();
+        return;
+      }
+      
+      // 移动
+      player.x = nx;
+      player.y = ny;
+      
+      // 拾取
+      const itemIdx = items.findIndex(i => i.x === nx && i.y === ny);
+      if (itemIdx !== -1) {
+        const item = items[itemIdx];
+        if (item.type === 'heal') {
+          player.hp = Math.min(player.maxHp, player.hp + item.value);
+          log(`◈ 服用${item.name}，恢复${item.value}气血！`, 'log-heal');
+        } else if (item.type === 'gold') {
+          player.gold += item.value;
+          log(`◈ 吸纳${item.value}点灵气！`, 'log-item');
+        } else if (item.type === 'weapon') {
+          const weapon = WEAPONS[item.weaponKey];
+          player.atk += weapon.atk;
+          player.weapon = item.weaponKey;
+          updateWeaponDisplay();
+          log(`◈ 获得${weapon.icon}${weapon.name}，攻击+${weapon.atk}！`, 'log-item');
+        } else if (item.type === 'key') {
+          player.hasKey = true;
+          log(`◈ 获得${item.name}！可用于开启宝箱`, 'log-item');
+        } else if (item.type === 'chest') {
+          if (player.hasKey) {
+            player.hasKey = false;
+            player.gold += item.value;
+            player.hp = Math.min(player.maxHp, player.hp + 30);
+            log(`◈ 打开宝箱，获得${item.value}灵气和30气血！`, 'log-win');
+            audio.play('chest');
+          } else {
+            log(`◈ 需要钥匙才能开启宝箱！`, 'log-curse');
+            return; // Don't pick up the chest
+          }
+        }
+        items.splice(itemIdx, 1);
+      }
+      
+      // 传送门
+      if (map[ny][nx] === 'T') {
+        // 随机传送到另一个房间
+        const rooms = [];
+        for (let y = 0; y < HEIGHT; y++) {
+          for (let x = 0; x < WIDTH; x++) {
+            if (map[y][x] === '.') rooms.push({x, y});
+          }
+        }
+        if (rooms.length > 0) {
+          const target = rooms[Math.floor(Math.random() * rooms.length)];
+          player.x = target.x;
+          player.y = target.y;
+          log(`◈ 传送门触发！随机传送到另一处！`, 'log-skill');
+        }
+      }
+      
+      // 地图事件触发
+      const eventKey = map[ny][nx];
+      if (EVENTS[eventKey]) {
+        triggerEvent(eventKey, nx, ny);
+      }
+      
+      enemyTurn();
+      updateUI();
+    }
+    
+    // 事件触发处理
+    function triggerEvent(eventKey, x, y) {
+      const event = EVENTS[eventKey];
+      if (!event) return;
+      
+      switch(event.type) {
+        case 'exp':
+          const expGain = 20 + Math.floor(Math.random() * 30);
+          player.exp += expGain;
+          log(`◈ 修炼蒲团：获得${expGain}经验！`, 'log-item');
+          if (player.exp >= player.expTo) levelUp();
+          map[y][x] = '.'; // 事件消耗
+          break;
+          
+        case 'pet':
+          if (!player.pet) {
+            player.pet = { name: '灵兽', atk: 3 + floor };
+            log(`◈ 灵兽蛋孵化！获得灵兽伙伴，攻击+${player.pet.atk}！`, 'log-item');
+          } else {
+            const bonus = 2 + floor;
+            player.pet.atk += bonus;
+            log(`◈ 灵兽成长，攻击+${bonus}！`, 'log-item');
+          }
+          map[y][x] = '.';
+          break;
+          
+        case 'trap':
+          const trapDmg = 15 + Math.floor(floor * 3);
+          player.hp -= trapDmg;
+          log(`◈ 陷阱触发！损失${trapDmg}气血！`, 'log-damage');
+          if (player.hp <= 0) {
+            gameOver();
+            return;
+          }
+          // 陷阱消失或保留（30%消失）
+          if (Math.random() < 0.3) map[y][x] = '.';
+          break;
+          
+        case 'divine':
+          const divineRoll = Math.random();
+          if (divineRoll < 0.4) {
+            const heal = 30;
+            player.hp = Math.min(player.maxHp, player.hp + heal);
+            log(`◈ 占卜台：今日大吉！恢复${heal}气血！`, 'log-heal');
+          } else if (divineRoll < 0.7) {
+            const gold = 25 + floor * 5;
+            player.gold += gold;
+            log(`◈ 占卜台：财运亨通！获得${gold}灵气！`, 'log-item');
+          } else if (divineRoll < 0.9) {
+            const dmg = 20;
+            player.hp -= dmg;
+            log(`◈ 占卜台：今日大凶！损失${dmg}气血！`, 'log-damage');
+            if (player.hp <= 0) {
+              gameOver();
+              return;
+            }
+          } else {
+            player.hasKey = true;
+            log(`◈ 占卜台：神秘启示！获得青铜钥匙！`, 'log-item');
+          }
+          map[y][x] = '.';
+          break;
+          
+        case 'awaken':
+          log(`◈ 悟道树：天地共鸣！境界突破！`, 'log-level');
+          player.level++;
+          player.exp = 0;
+          player.expTo = Math.floor(player.expTo * 1.3);
+          player.maxHp += 20;
+          player.hp = player.maxHp;
+          player.atk += 3;
+          const realm = LEVELS[Math.min(player.level, LEVELS.length - 1)];
+          log(`◈ 晋升${realm}！`, 'log-level');
+          map[y][x] = '.';
+          break;
+          
+        case 'elder':
+          showElderChoice();
+          // 不清除事件，可重复触发
+          break;
+          
+        case 'shop':
+          showEventShop();
+          break;
+      }
+    }
+    
+    // 神秘老人三选一
+    function showElderChoice() {
+      const choices = [
+        { id: 'heal', name: '疗伤', desc: '恢复50气血', action: () => {
+          player.hp = Math.min(player.maxHp, player.hp + 50);
+          log('◈ 老人施展神通，恢复50气血！', 'log-heal');
+        }},
+        { id: 'buff', name: '传功', desc: '永久攻击+3', action: () => {
+          player.atk += 3;
+          log('◈ 老人传授功法，攻击+3！', 'log-item');
+        }},
+        { id: 'curse', name: '考验', desc: '30%几率获得强大诅咒，70%获得50灵气', action: () => {
+          if (Math.random() < 0.3) {
+            curse = '道心不稳';
+            player.expTo = Math.floor(player.expTo * 1.5);
+            log('◈ 考验失败！施加诅咒：道心不稳', 'log-curse');
+          } else {
+            player.gold += 50;
+            log('◈ 考验通过！获得50灵气！', 'log-item');
+          }
+        }}
+      ];
+      
+      // 简化版：直接随机执行一个
+      const choice = choices[Math.floor(Math.random() * choices.length)];
+      choice.action();
+    }
+    
+    // 神秘商店
+    const EVENT_SHOP_ITEMS = [
+      { id: 'event_sword', name: '仙剑', price: 150, atk: 20, desc: 'ATK+20' },
+      { id: 'event_armor', name: '仙甲', price: 120, def: 10, desc: 'DEF+10' },
+      { id: 'event_heal', name: '仙丹', price: 80, heal: 100, desc: 'HP全满' },
+      { id: 'event_key', name: '金钥匙', price: 50, desc: '直接开宝箱' }
+    ];
+    
+    function showEventShop() {
+      const choice = confirm('神秘商人出现！购买稀有道具？(确定=进入，取消=离开)');
+      if (!choice) return;
+      
+      // 随机一件商品
+      const item = EVENT_SHOP_ITEMS[Math.floor(Math.random() * EVENT_SHOP_ITEMS.length)];
+      const buy = confirm(`${item.name} - ${item.price}灵气\n${item.desc}\n\n确认购买？`);
+      if (buy) {
+        if (player.gold >= item.price) {
+          player.gold -= item.price;
+          if (item.atk) player.atk += item.atk;
+          if (item.def) player.def += item.def;
+          if (item.heal) player.hp = player.maxHp;
+          if (item.id === 'event_key') player.hasKey = true;
+          log(`◈ 购买${item.name}成功！`, 'log-item');
+          audio.play('buy');
+        } else {
+          log('◈ 灵气不足！', 'log-curse');
+        }
+      }
+    }
+    
+    function attack(enemy) {
+      let isCrit = false;
+      let extraDmg = 0;
+      
+      // 医师暴击
+      if (player.crit > 0 && Math.random() * 100 < player.crit) {
+        isCrit = true;
+      }
+      
+      // 武器攻击力
+      const weapon = WEAPONS[player.weapon];
+      let baseAtk = player.atk;
+      
+      // 临时攻击力加成
+      if (player.tempBuffs) {
+        player.tempBuffs.forEach(buff => {
+          if (buff.type === 'atk_mult') {
+            baseAtk = Math.floor(baseAtk * (1 + buff.value));
+          }
+        });
+      }
+      
+      // 武痴破甲
+      let def = Math.max(0, enemy.def - player.armorPen);
+      let dmg = Math.max(1, baseAtk - def);
+      
+      // 武器特效处理
+      if (weapon.effect && Math.random() < (weapon.effectChance || 0)) {
+        const effect = weapon.effect;
+        const effectInfo = WEAPON_EFFECTS[effect];
+        
+        switch(effect) {
+          case 'poison':
+            enemy.poison = (enemy.poison || 0) + (weapon.effectValue || 3);
+            log(`◈ ${weapon.icon}淬毒！${enemy.name}中毒！`, 'log-skill');
+            break;
+          case 'heal':
+          case 'lifesteal':
+            const healAmount = Math.floor(dmg * (weapon.effectValue || 0.3));
+            player.hp = Math.min(player.maxHp, player.hp + healAmount);
+            log(`◈ ${weapon.icon}吸血！回复${healAmount}气血！`, 'log-heal');
+            break;
+          case 'stun':
+            enemy.stunned = true;
+            log(`◈ ${weapon.icon}眩晕${enemy.name}！`, 'log-skill');
+            break;
+          case 'crit':
+            dmg = Math.floor(dmg * (weapon.effectValue || 1.5));
+            log(`◈ ${weapon.icon}暴击！`, 'log-skill');
+            break;
+          case 'armorBreak':
+            enemy.def = Math.floor(enemy.def * 0.5);
+            log(`◈ ${weapon.icon}破甲！${enemy.name}防御下降！`, 'log-skill');
+            break;
+          case 'freeze':
+            enemy.frozen = true;
+            log(`◈ ${weapon.icon}冰冻${enemy.name}！`, 'log-skill');
+            break;
+          case 'shock':
+            extraDmg = weapon.effectValue || 5;
+            log(`◈ ${weapon.icon}雷电伤害+${extraDmg}！`, 'log-skill');
+            break;
+          case 'explode':
+            dmg = Math.floor(dmg * (weapon.effectValue || 1.5));
+            log(`◈ ${weapon.icon}爆炸！`, 'log-skill');
+            break;
+        }
+      }
+      
+      if (isCrit) {
+        dmg = Math.floor(dmg * 1.5);
+        log(`◈ ✦针灸暴击✦ 对${enemy.name}造成${dmg}伤害！`, 'log-skill');
+      } else {
+        log(`◈ 攻击${enemy.name}，${dmg}伤害！`, 'log-combat');
+      }
+      
+      // 成就检测：一拳超人（单次50+伤害）
+      if (dmg >= 50) unlockAchievement('one_punch');
+      
+      enemy.hp -= dmg;
+      enemy.hp -= extraDmg;
+      
+      // 血魔（瞬移）- 30%闪避
+      if (enemy.skill === '瞬移' && Math.random() < 0.3) {
+        // 闪避成功，随机移动
+        let nx, ny;
+        do {
+          nx = Math.floor(Math.random() * WIDTH);
+          ny = Math.floor(Math.random() * HEIGHT);
+        } while (map[ny][nx] !== '.' || enemies.some(e => e.x === nx && e.y === ny));
+        enemy.x = nx;
+        enemy.y = ny;
+        log(`▸ ${enemy.name}瞬间移动闪避了攻击！`, 'log-combat');
+      }
+      
+      // 灵兽协助攻击
+      if (player.pet && enemy.hp > 0) {
+        const petDmg = Math.max(1, Math.floor(player.pet.atk * 0.6));
+        enemy.hp -= petDmg;
+        log(`◈ ${player.pet.name}协助攻击，造成${petDmg}伤害！`, 'log-skill');
+      }
+      
+      audio.play('attack');
+      
+      if (enemy.hp <= 0) {
+        log(`◈ 击败${enemy.name}！获得${enemy.exp}经验、${enemy.gold}灵气！`, 'log-win');
+        player.exp += enemy.exp;
+        player.gold += enemy.gold;
+        
+        // 记录击杀
+        player.kills = (player.kills || 0) + 1;
+        
+        // 成就检测
+        if (enemy.isElite) unlockAchievement('elite_killer');
+        if (enemy.isBoss) unlockAchievement('boss_killer');
+        
+        // 精英怪特殊死亡效果
+        if (enemy.skill === '分裂' && Math.random() < 0.5) {
+          // 幽魂分裂 - 召唤两个小怪
+          for (let i = 0; i < 2; i++) {
+            let sx, sy;
+            do {
+              sx = Math.floor(Math.random() * WIDTH);
+              sy = Math.floor(Math.random() * HEIGHT);
+            } while (map[sy][sx] !== '.' || enemies.some(e => e.x === sx && e.y === sy) || (sx === player.x && sy === player.y));
+            enemies.push({ 
+              x: sx, y: sy, type: 'z', name: '游魂', 
+              hp: 15, maxHp: 15, atk: 5, def: 0, exp: 5, gold: 3,
+              isBoss: false, isElite: false
+            });
+          }
+          log(`◈ ${enemy.name}分裂成2个游魂！`, 'log-combat');
+        }
+        
+        // 检查是否是BOSS击败
+        if (enemy.isBoss && floor >= FINAL_FLOOR) {
+          log('✦ 旱魃已除！天劫降临！', 'log-level');
+          setTimeout(() => attemptTribulation(), 1000);
+        }
+        
+        enemies = enemies.filter(e => e !== enemy);
+        
+        if (player.exp >= player.expTo) {
+          levelUp();
+        }
+      }
+    }
+    
+    function levelUp() {
+      player.level++;
+      player.exp -= player.expTo;
+      player.expTo = Math.floor(player.expTo * 1.5);
+      player.maxHp += 25;
+      player.hp = player.maxHp;
+      player.atk += 4;
+      player.def += 2;
+      
+      const realm = LEVELS[Math.min(player.level, LEVELS.length - 1)];
+      log(`◈ ✦突破境界✦ 晋升${realm}！`, 'log-level');
+    }
+    
+    function enemyTurn() {
+      if (player.confused) {
+        player.confused = false;
+        log('◈ 敌人被迷惑，跳过攻击！', 'log-skill');
+        return;
+      }
+
+      for (const enemy of enemies) {
+        // 眩晕状态
+        if (enemy.stunned) {
+          enemy.stunned = false;
+          log(`▸ ${enemy.name}眩晕中，跳过攻击！`, 'log-skill');
+          continue;
+        }
+        
+        // 冰冻状态
+        if (enemy.frozen) {
+          enemy.frozen = false;
+          log(`▸ ${enemy.name}冰冻中，无法移动！`, 'log-skill');
+          continue;
+        }
+        
+        // Poison damage
+        if (enemy.poison > 0) {
+          enemy.hp -= enemy.poison;
+          log(`▸ ${enemy.name}中毒，-${enemy.poison}气血`, 'log-skill');
+          enemy.poison--;
+        }
+
+        // Boss skills (旱魃)
+        if (enemy.isBoss && !enemy.usedSkill && enemy.hp < enemy.maxHp * 0.5) {
+          const skill = enemy.skills[Math.floor(Math.random() * enemy.skills.length)];
+          if (skill === '喷火') {
+            // AOE damage
+            const dist = Math.abs(player.x - enemy.x) + Math.abs(player.y - enemy.y);
+            if (dist <= 3) {
+              let dmg = Math.floor(enemy.atk * 1.2);
+              player.hp -= dmg;
+              log(`▸ ${enemy.name}喷火！${dmg}范围伤害！`, 'log-damage');
+            }
+            enemy.usedSkill = true;
+          } else if (skill === '召唤') {
+            // Summon a minion
+            let x, y;
+            do {
+              x = Math.floor(Math.random() * WIDTH);
+              y = Math.floor(Math.random() * HEIGHT);
+            } while (map[y][x] !== '.' || enemies.some(e => e.x === x && e.y === y) || (x === player.x && y === player.y));
+            enemies.push({ x, y, type: 'z', name: '僵尸', hp: 20, maxHp: 20, atk: 5, def: 0, exp: 10, gold: 5 });
+            log(`▸ ${enemy.name}召唤僵尸！`, 'log-skill');
+            enemy.usedSkill = true;
+          }
+        }
+        
+        // Elite enemy skill (魍魉)
+        if (enemy.isElite && !enemy.usedSkill) {
+          if (enemy.skill === '诅咒' && Math.random() < 0.3) {
+            player.cursed = true;
+            log(`▸ ${enemy.name}施加诅咒！防御-30%！`, 'log-curse');
+            enemy.usedSkill = true;
+          }
+        }
+
+        const dx = Math.sign(player.x - enemy.x);
+        const dy = Math.sign(player.y - enemy.y);
+        
+        const dist = Math.abs(player.x - enemy.x) + Math.abs(player.y - enemy.y);
+        if (dist === 1) {
+          let dmg = Math.max(1, enemy.atk - player.def);
+          if (curse === '血光') dmg = Math.floor(dmg * 1.2);
+          if (player.cursed) dmg = Math.floor(dmg * 1.3);
+          
+          // 雷灵连锁攻击 - 额外伤害
+          if (enemy.skill === '连锁') {
+            dmg = Math.floor(dmg * 1.3);
+            log(`▸ ${enemy.name}雷电连锁！伤害提升！`, 'log-damage');
+          }
+          
+          if (player.guard) {
+            dmg = 0;
+            log(`▸ ${enemy.name}攻击，被护体格挡！`, 'log-skill');
+            player.guard = false;
+          } else {
+            player.hp -= dmg;
+            
+            // 盾卫反甲 - 反弹伤害
+            if (enemy.skill === '反甲' && dmg > 0) {
+              const reflectDmg = Math.floor(dmg * 0.3);
+              enemy.hp -= reflectDmg;
+              log(`▸ ${enemy.name}反甲！反弹${reflectDmg}伤害！`, 'log-damage');
+              if (enemy.hp <= 0) {
+                log(`◈ 敌人被自己的反甲击杀！`, 'log-win');
+                enemies = enemies.filter(e => e !== enemy);
+              }
+            }
+            
+            log(`▸ ${enemy.name}攻击，${dmg}伤害！`, 'log-damage');
+          }
+          
+          if (player.hp <= 0) {
+            gameOver();
+            return;
+          }
+        } else if (dist <= 6) {
+          let nx = enemy.x + dx;
+          let ny = enemy.y + dy;
+          if (map[ny][nx] === '.' && !enemies.some(e => e.x === nx && e.y === ny) && !(nx === player.x && ny === player.y)) {
+            enemy.x = nx;
+            enemy.y = ny;
+          }
+        }
+      }
+    }
+    
+    function renderSkills() {
+      const container = document.getElementById('skills-list');
+      container.innerHTML = '';
+      const skills = SKILLS[player.class];
+      skills.forEach(skill => {
+        const btn = document.createElement('button');
+        btn.className = 'skill-btn';
+        btn.id = `skill-${skill.id}`;
+        btn.innerHTML = `${skill.name} <span class="skill-cost">${skill.cost}</span><br><span style="color:#888">${skill.desc}</span>`;
+        btn.onclick = () => castSkill(skill.id);
+        container.appendChild(btn);
+      });
+    }
+
+    function castSkill(skillId) {
+      const skills = SKILLS[player.class];
+      const skill = skills.find(s => s.id === skillId);
+      if (!skill) return;
+
+      if (player.energy < skill.cost) {
+        log('灵气不足！', 'log-curse');
+        return;
+      }
+
+      player.energy -= skill.cost;
+      audio.play('skill');
+
+      // Skill effects
+      if (skill.id === 'acupuncture') {
+        player.hp = Math.min(player.maxHp, player.hp + 30);
+        log('◈ 针灸治疗，恢复30气血！', 'log-heal');
+      } else if (skill.id === 'poison_needle') {
+        // Apply poison to nearest enemy
+        const nearest = getNearestEnemy();
+        if (nearest) {
+          nearest.poison = 5; // 5 damage per turn
+          log(`◈ 毒针命中${nearest.name}！`, 'log-skill');
+        }
+      } else if (skill.id === 'alchemy') {
+        if (!player.tempBuffs) player.tempBuffs = [];
+        player.tempBuffs.push({ type: 'atk_mult', value: 0.5 });
+        log('◈ 炼丹生效，攻击力提升50%！', 'log-skill');
+      } else if (skill.id === 'explosive') {
+        enemies.forEach(e => {
+          const dist = Math.abs(player.x - e.x) + Math.abs(player.y - e.y);
+          if (dist <= 3) {
+            e.hp -= 20;
+            log(`◈ 炸药伤害${e.name}！`, 'log-skill');
+          }
+        });
+        enemies = enemies.filter(e => e.hp > 0);
+      } else if (skill.id === 'confuse') {
+        player.confused = true;
+        log('◈ 迷惑敌人，本回合不攻击！', 'log-skill');
+      } else if (skill.id === 'break_armor') {
+        const nearest = getNearestEnemy();
+        if (nearest) {
+          nearest.def = Math.floor(nearest.def * 0.5);
+          log(`◈ 破甲${nearest.name}！`, 'log-skill');
+        }
+      } else if (skill.id === 'combo') {
+        const nearest = getNearestEnemy();
+        if (nearest) {
+          // Attack twice (simplified)
+          let dmg = Math.max(1, player.atk - nearest.def);
+          nearest.hp -= dmg;
+          nearest.hp -= dmg;
+          log(`◈ 连击${nearest.name}！`, 'log-skill');
+          if (nearest.hp <= 0) {
+            log(`◈ 击败${nearest.name}！获得${nearest.exp}经验、${nearest.gold}灵气！`, 'log-win');
+            player.exp += nearest.exp;
+            player.gold += nearest.gold;
+            enemies = enemies.filter(e => e !== nearest);
+          }
+        }
+      } else if (skill.id === 'guard') {
+        player.guard = true;
+        log('◈ 护体开启，本回合无敌！', 'log-skill');
+      }
+
+      updateUI();
+    }
+
+    function getNearestEnemy() {
+      let nearest = null;
+      let minDist = Infinity;
+      for (const enemy of enemies) {
+        const dist = Math.abs(player.x - enemy.x) + Math.abs(player.y - enemy.y);
+        if (dist < minDist) {
+          minDist = dist;
+          nearest = enemy;
+        }
+      }
+      return nearest;
+    }
+
+    // 成就系统
+    const ACHIEVEMENTS = {
+      'first_blood': { name: '初战告捷', desc: '击败第一个敌人', icon: '⚔️' },
+      'elite_killer': { name: '精英杀手', desc: '击败精英怪', icon: '💀' },
+      'boss_killer': { name: '屠魔', desc: '击败Boss', icon: '👹' },
+      'shopaholic': { name: '购物狂', desc: '在商店消费100灵气', icon: '💰' },
+      'pet_master': { name: '御兽师', desc: '获得灵兽', icon: '🐾' },
+      'no_damage': { name: '无伤', desc: '击败Boss时满血', icon: '🛡️' },
+      'one_punch': { name: '一拳超人', desc: '单次攻击造成50+伤害', icon: '💥' },
+      'survivor': { name: '幸存者', desc: '生命低于10%存活', icon: '❤️' },
+      'rich': { name: '灵气冲天', desc: '单局获得500+灵气', icon: '💎' },
+      'speedrun': { name: '速通', desc: '10分钟内通关', icon: '⏱️' },
+      'tribulation': { name: '渡劫成功', desc: '通关游戏', icon: '✈️' },
+      'all_classes': { name: '三修', desc: '用三个职业各通关一次', icon: '🔄' }
+    };
+    
+    let playerAchievements = JSON.parse(localStorage.getItem('rogueDungeonAchievements') || '[]');
+    let currentCycle = parseInt(localStorage.getItem('rogueDungeonCycle') || '1');
+    let maxCycle = parseInt(localStorage.getItem('rogueDungeonMaxCycle') || '1');
+    
+    // 周目系统
+    const CYCLE_BONUSES = {
+      1: { hpBonus: 0, atkBonus: 0, goldBonus: 0, expBonus: 0 },
+      2: { hpBonus: 20, atkBonus: 2, goldBonus: 0.1, expBonus: 0.1 },
+      3: { hpBonus: 40, atkBonus: 4, goldBonus: 0.2, expBonus: 0.2 },
+      4: { hpBonus: 60, atkBonus: 6, goldBonus: 0.3, expBonus: 0.3 },
+      5: { hpBonus: 80, atkBonus: 8, goldBonus: 0.4, expBonus: 0.4 }
+    };
+    
+    function getCycleBonus() {
+      return CYCLE_BONUSES[Math.min(currentCycle, 5)] || CYCLE_BONUSES[5];
+    }
+    let gameStartTime = Date.now();
+    
+    // 成就解锁
+    function unlockAchievement(id) {
+      if (!playerAchievements.includes(id)) {
+        playerAchievements.push(id);
+        localStorage.setItem('rogueDungeonAchievements', JSON.stringify(playerAchievements));
+        log(`🏆 成就解锁：${ACHIEVEMENTS[id].name}！`, 'log-win');
+      }
+    }
+    
+    // 最终层数
+    const FINAL_FLOOR = 10;
+    
+    function nextFloor() {
+      // 检查是否是最终层
+      if (floor >= FINAL_FLOOR) {
+        // 触发渡劫
+        triggerTribulation();
+        return;
+      }
+      shopAllowed = true;
+      openShop();
+    }
+    
+    // 渡劫系统
+    function triggerTribulation() {
+      log('✦ 抵达第十层！天劫降临！', 'log-level');
+      log('◈ 旱魃Boss出现！击败它才能渡劫！', 'log-combat');
+      // 不开商店了，直接进入最终战斗
+      shopAllowed = false;
+    }
+    
+    // 渡劫结果判定
+    function attemptTribulation() {
+      // 渡劫成功率计算
+      let successRate = 0.5; // 基础50%
+      
+      // 影响因素
+      if (player.maxHp >= 150) successRate += 0.1;
+      if (player.atk >= 30) successRate += 0.1;
+      if (player.def >= 10) successRate += 0.1;
+      if (player.pet) successRate += 0.1;
+      if (curse) successRate -= 0.2;
+      
+      // 随机判定
+      const roll = Math.random();
+      const success = roll < successRate;
+      
+      if (success) {
+        victory();
+      } else {
+        log('◈ 渡劫失败！天劫之下，灰飞烟灭...', 'log-death');
+        gameOver();
+      }
+    }
+    
+    // 通关胜利
+    function victory() {
+      audio.stopBgm();
+      
+      const stats = {
+        floors: floor,
+        realm: LEVELS[Math.min(player.level, LEVELS.length - 1)],
+        totalGold: player.gold,
+        kills: player.kills || 0,
+        pet: player.pet ? player.pet.name : '无'
+      };
+      
+      // 更新最高周目
+      if (currentCycle > maxCycle) {
+        maxCycle = currentCycle;
+        localStorage.setItem('rogueDungeonMaxCycle', maxCycle.toString());
+      }
+      
+      // 解锁成就
+      unlockAchievement('tribulation');
+      if (player.pet) unlockAchievement('pet_master');
+      if (player.gold >= 500) unlockAchievement('rich');
+      if (stats.kills >= 1) unlockAchievement('first_blood');
+      
+      // 检查无伤
+      if (player.hp >= player.maxHp) unlockAchievement('no_damage');
+      
+      // 显示成就
+      let achievementsHtml = '';
+      const newAchievements = playerAchievements.slice(-5); // 显示最近的
+      newAchievements.forEach(id => {
+        const a = ACHIEVEMENTS[id];
+        achievementsHtml += `<span style="display:inline-block; margin:3px; padding:4px 8px; background:#2a2a3a; border:1px solid #4a4a6a; border-radius:4px;"><span style="margin-right:4px;">${a.icon}</span><span style="color:#ffd700; font-size:0.4rem;">${a.name}</span></span>`;
+      });
+      
+      // 周目加成信息
+      const nextCycle = currentCycle + 1;
+      const bonus = getCycleBonus();
+      const nextBonus = CYCLE_BONUSES[Math.min(nextCycle, 5)] || CYCLE_BONUSES[5];
+      
+      // 显示胜利画面
+      const victoryModal = document.createElement('div');
+      victoryModal.id = 'victory-modal';
+      victoryModal.className = 'modal';
+      victoryModal.innerHTML = `
+        <h2 style="color: #ffd700; font-size: 1.2rem; margin-bottom: 20px; text-shadow: 4px 4px 0 #8b0000;">✦ 渡劫飞升 ✦</h2>
+        <p style="color: #7dd3fc; font-size: 0.6rem; margin-bottom: 10px;">恭喜渡过天劫，位列仙班！</p>
+        <div style="background: #1a1a2e; padding: 15px; margin: 10px 0; border: 2px solid #4a4a6a;">
+          <p style="color: #fff; font-size: 0.5rem;">当前周目：第${currentCycle}周目</p>
+          <p style="color: #fff; font-size: 0.5rem;">抵达境界：${stats.realm}</p>
+          <p style="color: #fff; font-size: 0.5rem;">通关层数：第${stats.floors}层</p>
+          <p style="color: #ffd700; font-size: 0.5rem;">总灵气：${stats.totalGold}</p>
+          <p style="color: #f472b6; font-size: 0.5rem;">灵兽伙伴：${stats.pet}</p>
+        </div>
+        <div style="margin: 10px 0;">
+          <p style="color: #888; font-size: 0.45rem; margin-bottom: 5px;">🏆 成就 (${playerAchievements.length}/${Object.keys(ACHIEVEMENTS).length})</p>
+          <div style="font-size: 0;">${achievementsHtml || '<span style="color:#666; font-size:0.4rem;">暂无成就</span>'}</div>
+        </div>
+        <div style="margin-top: 15px;">
+          <button onclick="continueNextCycle(${nextCycle})" style="font-family: 'Press Start 2P', cursive; font-size: 0.45rem; padding: 10px 20px; background: #a855f7; border: none; cursor: pointer; color: #fff; box-shadow: 0 4px 0 #6b21a8; margin: 5px;">✈️ 第${nextCycle}周目</button>
+          <button onclick="showClassSelect()" style="font-family: 'Press Start 2P', cursive; font-size: 0.45rem; padding: 10px 20px; background: #7dd3fc; border: none; cursor: pointer; color: #0a0a0f; box-shadow: 0 4px 0 #3a7a9a; margin: 5px;">↻ 重新开始</button>
+        </div>
+      `;
+      document.body.appendChild(victoryModal);
+      
+      log('✦ 渡劫成功！位列仙班！', 'log-win');
+    }
+    
+    // 继续下一周目
+    function continueNextCycle(cycle) {
+      currentCycle = cycle;
+      localStorage.setItem('rogueDungeonCycle', currentCycle.toString());
+      
+      // 移除胜利界面
+      const modal = document.getElementById('victory-modal');
+      if (modal) modal.remove();
+      
+      // 重新开始，但保留周目
+      showClassSelect();
+    }
+    
+    function gameOver() {
+      audio.stopBgm();
+      const realm = LEVELS[Math.min(player.level, LEVELS.length - 1)];
+      
+      // 成就检测：幸存者
+      const hpPercent = player.hp / player.maxHp;
+      if (hpPercent < 0.1 && hpPercent > 0) unlockAchievement('survivor');
+      
+      // 显示成就
+      let achievementsHtml = '';
+      const newAchievements = playerAchievements.slice(-3);
+      newAchievements.forEach(id => {
+        const a = ACHIEVEMENTS[id];
+        achievementsHtml += `<span style="display:inline-block; margin:2px; padding:2px 4px; background:#2a2a3a; border:1px solid #4a4a6a; border-radius:2px;"><span style="margin-right:2px;">${a.icon}</span><span style="color:#ffd700; font-size:0.35rem;">${a.name}</span></span>`;
+      });
+      
+      document.getElementById('go-msg').innerHTML = `第${floor}层 ${realm} | 灵气${player.gold}<br><span style="font-size:0.35rem; color:#888;">🏆 ${playerAchievements.length}个成就</span>`;
+      document.getElementById('game-over').classList.remove('hidden');
+      log('✦ 身死道消...', 'log-death');
+    }
+    
+    function log(msg, cls = '') {
+      logs.unshift({ msg, cls });
+      if (logs.length > 30) logs.pop();
+      
+      const logEl = document.getElementById('log');
+      logEl.innerHTML = logs.map(l => `<div class="log-entry ${l.cls}">${l.msg}</div>`).join('');
+    }
+    
+    function updateWeaponDisplay() {
+      const weapon = WEAPONS[player.weapon];
+      document.getElementById('weapon-icon').innerText = weapon.icon;
+      document.getElementById('weapon-name').innerText = weapon.name;
+      document.getElementById('weapon-name').className = 'weapon-name rarity-' + weapon.rarity;
+    }
+    
+    function openShop() {
+      if (!shopAllowed) {
+        log('已离开商店', 'log-item');
+        nextFloorAfterShop();
+        return;
+      }
+      document.getElementById('shop-modal').classList.remove('hidden');
+      renderShop();
+    }
+
+    function closeShop() {
+      document.getElementById('shop-modal').classList.add('hidden');
+      shopAllowed = false;
+      nextFloorAfterShop();
+    }
+
+    function renderShop() {
+      const container = document.getElementById('shop-items');
+      container.innerHTML = '';
+      SHOP_ITEMS.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'shop-item';
+        div.onclick = () => buyItem(item.id);
+        div.innerHTML = `
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <p class="price">${item.price} 灵气</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function buyItem(itemId) {
+      const item = SHOP_ITEMS.find(i => i.id === itemId);
+      if (!item) return;
+      
+      if (player.gold < item.price) {
+        log('灵气不足！', 'log-curse');
+        return;
+      }
+
+      player.gold -= item.price;
+      
+      // 累计消费追踪
+      player.totalSpent = (player.totalSpent || 0) + item.price;
+      if (player.totalSpent >= 100) unlockAchievement('shopaholic');
+      
+      if (item.effect.type === 'atk') {
+        player.atk += item.effect.value;
+        log(`购买 ${item.name}，攻击+${item.effect.value}`, 'log-item');
+      } else if (item.effect.type === 'def') {
+        player.def += item.effect.value;
+        log(`购买 ${item.name}，防御+${item.effect.value}`, 'log-item');
+      } else if (item.effect.type === 'heal') {
+        player.hp = Math.min(player.maxHp, player.hp + item.effect.value);
+        log(`购买 ${item.name}，恢复${item.effect.value}气血`, 'log-heal');
+      } else if (item.effect.type === 'temp_atk') {
+        // Apply temp buff logic here (simplified: just add ATK for now, maybe reset on floor change)
+        // For now, let's just add permanent ATK as a simple implementation
+        // Or better, track temp buffs in player object
+        if (!player.tempBuffs) player.tempBuffs = [];
+        player.tempBuffs.push({ type: 'atk', value: item.effect.value });
+        player.atk += item.effect.value;
+        log(`饮用 ${item.name}，攻击+${item.effect.value} (本层)`, 'log-item');
+      }
+      
+      updateUI();
+      renderShop();
+      audio.play('buy');
+    }
+
+    function nextFloorAfterShop() {
+      // Reset temp buffs
+      if (player.tempBuffs) {
+        player.tempBuffs.forEach(buff => {
+          if (buff.type === 'atk') player.atk -= buff.value;
+        });
+        player.tempBuffs = [];
+      }
+      
+      // Reset skill statuses
+      player.confused = false;
+      player.guard = false;
+      
+      // Regenerate energy
+      player.energy = Math.min(player.maxEnergy, player.energy + 20);
+      
+      floor++;
+      
+      // 检查是否是最终层
+      if (floor >= FINAL_FLOOR) {
+        log('✦ 最后一层！击败旱魃，渡劫飞升！', 'log-level');
+      }
+      
+      if (player.regen > 0) {
+        player.hp = Math.min(player.maxHp, player.hp + player.regen);
+        log(`◈ 炼丹生效，回复${player.regen}气血！`, 'log-skill');
+      }
+      
+      // 最终层不生成诅咒
+      if (floor < FINAL_FLOOR && floor > 1 && !curse && Math.random() < 0.25) {
+        const curses = {
+          '血光': '受伤+20%',
+          '灵气流失': '灵气-30%',
+          '道心不稳': '经验+50%'
+        };
+        const curseNames = Object.keys(curses);
+        curse = curseNames[Math.floor(Math.random() * curseNames.length)];
+        log(`⚠️ ${curse}：${curses[curse]}`, 'log-curse');
+        
+        if (curse === '灵气流失') {
+          player.gold = Math.floor(player.gold * 0.7);
+        }
+        if (curse === '道心不稳') {
+          player.expTo = Math.floor(player.expTo * 1.5);
+        }
+      }
+      
+      log(`▸ 进入第${floor}层...`, 'log-level');
+      generateMap();
+      spawnPlayer();
+      spawnEnemies();
+      spawnItems();
+      updateUI();
+    }
+
+    function saveGame() {
+      const saveData = {
+        player: player,
+        floor: floor,
+        curse: curse,
+        shopAllowed: shopAllowed
+      };
+      localStorage.setItem('rogueDungeonSave', JSON.stringify(saveData));
+      log('游戏已保存！', 'log-item');
+      audio.play('buy'); // Use buy sound for save
+    }
+
+    function loadGame() {
+      const saveData = localStorage.getItem('rogueDungeonSave');
+      if (!saveData) {
+        log('没有找到存档！', 'log-curse');
+        return;
+      }
+      
+      const data = JSON.parse(saveData);
+      player = data.player;
+      floor = data.floor;
+      curse = data.curse;
+      shopAllowed = data.shopAllowed;
+      
+      // Regenerate floor state
+      generateMap();
+      spawnPlayer();
+      spawnEnemies();
+      spawnItems();
+      
+      // Restore UI
+      renderSkills();
+      updateUI();
+      
+      log('游戏已读取！', 'log-item');
+      audio.play('buy');
+    }
+
+    function updateUI() {
+      const hpPercent = (player.hp / player.maxHp) * 100;
+      document.getElementById('hp-fill').style.width = hpPercent + '%';
+      document.getElementById('hp-text').innerText = `${player.hp}/${player.maxHp}`;
+      
+      const realm = LEVELS[Math.min(player.level, LEVELS.length - 1)];
+      document.getElementById('level').innerText = realm;
+      document.getElementById('exp').innerText = `${player.exp}/${player.expTo}`;
+      document.getElementById('attack').innerText = player.atk;
+      document.getElementById('defense').innerText = player.def;
+      document.getElementById('gold').innerText = player.gold;
+      document.getElementById('floor').innerText = floor;
+      document.getElementById('energy').innerText = `${player.energy}/${player.maxEnergy}`;
+      
+      // Update skill buttons state
+      if (player.class) {
+        const skills = SKILLS[player.class];
+        skills.forEach(skill => {
+          const btn = document.getElementById(`skill-${skill.id}`);
+          if (btn) {
+            btn.disabled = player.energy < skill.cost;
+          }
+        });
+      }
+      
+      const curseEl = document.getElementById('curse');
+      if (curse) {
+        curseEl.innerText = `⚠ ${curse}`;
+        curseEl.style.display = 'block';
+      } else {
+        curseEl.style.display = 'none';
+      }
+      
+      const keyEl = document.getElementById('key-badge');
+      if (player.hasKey) {
+        keyEl.style.display = 'block';
+      } else {
+        keyEl.style.display = 'none';
+      }
+      
+      // 灵兽显示
+      const petEl = document.getElementById('pet-display');
+      if (player.pet) {
+        petEl.style.display = 'block';
+        document.getElementById('pet-name').innerText = `${player.pet.name} +${player.pet.atk}`;
+      } else {
+        petEl.style.display = 'none';
+      }
+      
+      render();
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      const key = e.key.toLowerCase();
+      if (key === 'w' || key === 'arrowup') move(0, -1);
+      else if (key === 's' || key === 'arrowdown') move(0, 1);
+      else if (key === 'a' || key === 'arrowleft') move(-1, 0);
+      else if (key === 'd' || key === 'arrowright') move(1, 0);
+      else if (key === 'r') showClassSelect();
+    });
+    
+    // 首次显示开场剧情，之后显示职业选择
+    const storyModal = document.getElementById('story-modal');
+    const seenStory = localStorage.getItem('rogueDungeonSeenStory');
+    if (storyModal && !seenStory) {
+      storyModal.classList.remove('hidden');
+      localStorage.setItem('rogueDungeonSeenStory', 'true');
+    } else {
+      document.getElementById('class-select').classList.remove('hidden');
+    }
+    
+    // 移动端触摸控制
+    function handleTouch(e, dir) {
+      e.preventDefault();
+      if (dir === 'up') move(0, -1);
+      else if (dir === 'down') move(0, 1);
+      else if (dir === 'left') move(-1, 0);
+      else if (dir === 'right') move(1, 0);
+    }
+    
+    // ========== AI 接口 ==========
+    window.YinYangDAO = {
+      // 获取完整游戏状态
+      getState: () => {
+        if (!player) return null;
+        
+        // 构建有效动作列表
+        const validActions = ['wait'];
+        const dirs = ['up', 'down', 'left', 'right'];
+        dirs.forEach(d => {
+          validActions.push('move:' + d);
+        });
+        
+        // 检查周围敌人
+        const attackDirs = [
+          { dx: 0, dy: -1, dir: 'up' },
+          { dx: 0, dy: 1, dir: 'down' },
+          { dx: -1, dy: 0, dir: 'left' },
+          { dx: 1, dy: 0, dir: 'right' }
+        ];
+        attackDirs.forEach(({ dx, dy, dir }) => {
+          const nx = player.x + dx;
+          const ny = player.y + dy;
+          if (enemies.some(e => e.x === nx && e.y === ny)) {
+            validActions.push('attack:' + dir);
+          }
+        });
+        
+        // 技能
+        if (player.class && SKILLS[player.class]) {
+          SKILLS[player.class].forEach(skill => {
+            if (player.energy >= skill.cost) {
+              validActions.push('skill:' + skill.id);
+            }
+          });
+        }
+        
+        // 出口
+        for (let y = 0; y < HEIGHT; y++) {
+          for (let x = 0; x < WIDTH; x++) {
+            if (map[y][x] === '>') {
+              if (Math.abs(player.x - x) + Math.abs(player.y - y) === 1) {
+                validActions.push('down');
+              }
+            }
+          }
+        }
+        
+        return {
+          player: {
+            x: player.x,
+            y: player.y,
+            hp: player.hp,
+            maxHp: player.maxHp,
+            atk: player.atk,
+            def: player.def,
+            gold: player.gold,
+            exp: player.exp,
+            level: player.level,
+            expTo: player.expTo,
+            realm: LEVELS[Math.min(player.level, LEVELS.length - 1)],
+            class: player.class,
+            weapon: player.weapon,
+            energy: player.energy,
+            maxEnergy: player.maxEnergy,
+            hasKey: player.hasKey,
+            cursed: !!curse,
+            curse: curse,
+            pet: player.pet
+          },
+          map: map.map(row => row.join('')).join('\n'),
+          enemies: enemies.map(e => ({
+            x: e.x,
+            y: e.y,
+            name: e.name,
+            hp: e.hp,
+            maxHp: e.maxHp,
+            atk: e.atk,
+            def: e.def,
+            isBoss: e.isBoss,
+            isElite: e.isElite,
+            skill: e.skill
+          })),
+          items: items.map(i => ({
+            x: i.x,
+            y: i.y,
+            name: i.name,
+            type: i.type,
+            value: i.value
+          })),
+          floor: floor,
+          logs: logs.slice(0, 10).map(l => l.msg),
+          validActions: validActions
+        };
+      },
+      
+      // 执行动作
+      action: (actionType, param) => {
+        if (!player) return { success: false, error: '游戏未初始化' };
+        
+        try {
+          if (actionType === 'move') {
+            const dirs = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+            const d = dirs[param];
+            if (!d) return { success: false, error: '无效方向' };
+            move(d[0], d[1]);
+            return { success: true };
+          } else if (actionType === 'attack') {
+            const dirs = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+            const d = dirs[param];
+            if (!d) return { success: false, error: '无效方向' };
+            const nx = player.x + d[0];
+            const ny = player.y + d[1];
+            const enemy = enemies.find(e => e.x === nx && e.y === ny);
+            if (!enemy) return { success: false, error: '该方向没有敌人' };
+            attack(enemy);
+            enemyTurn();
+            updateUI();
+            return { success: true };
+          } else if (actionType === 'skill') {
+            const skillId = param;
+            const skills = SKILLS[player.class];
+            const skill = skills.find(s => s.id === skillId);
+            if (!skill) return { success: false, error: '无效技能' };
+            if (player.energy < skill.cost) return { success: false, error: '灵气不足' };
+            castSkill(skillId);
+            enemyTurn();
+            updateUI();
+            return { success: true };
+          } else if (actionType === 'wait') {
+            enemyTurn();
+            updateUI();
+            return { success: true };
+          } else if (actionType === 'down') {
+            // 尝试下楼
+            for (let y = 0; y < HEIGHT; y++) {
+              for (let x = 0; x < WIDTH; x++) {
+                if (map[y][x] === '>' && Math.abs(player.x - x) + Math.abs(player.y - y) === 1) {
+                  move(x - player.x, y - player.y);
+                  return { success: true };
+                }
+              }
+            }
+            return { success: false, error: '无法下楼' };
+          } else if (actionType === 'useItem') {
+            // 使用物品（简化版：使用背包第一个可用的）
+            return { success: false, error: '物品系统简化中' };
+          } else {
+            return { success: false, error: '未知动作' };
+          }
+        } catch (e) {
+          return { success: false, error: e.message };
+        }
+      },
+      
+      // 重置游戏
+      reset: (playerClass) => {
+        if (playerClass && ['医师', '炼药师', '武痴'].includes(playerClass)) {
+          selectClass(playerClass);
+        } else {
+          showClassSelect();
+        }
+        return { success: true };
+      },
+      
+      // 获取可读状态摘要
+      getSummary: () => {
+        if (!player) return '游戏未初始化';
+        
+        const state = YinYangDAO.getState();
+        const realm = state.player.realm;
+        
+        let summary = `【${realm}】HP:${state.player.hp}/${state.player.maxHp} 攻击:${state.player.atk} 防御:${state.player.def} 灵气:${state.player.gold} 第${state.floor}层`;
+        
+        if (state.player.cursed) {
+          summary += ` 诅咒:${state.player.curse}`;
+        }
+        
+        if (state.player.pet) {
+          summary += ` 灵兽:${state.player.pet.name}+${state.player.pet.atk}`;
+        }
+        
+        // 威胁评估
+        const threats = state.enemies
+          .filter(e => Math.abs(e.x - state.player.x) + Math.abs(e.y - state.player.y) <= 2)
+          .map(e => `${e.name}(${e.hp}/${e.maxHp})`);
+        
+        if (threats.length > 0) {
+          summary += `\n⚠ 临近威胁: ${threats.join(', ')}`;
+        }
+        
+        // 可拾取物品
+        const nearbyItems = state.items
+          .filter(i => Math.abs(i.x - state.player.x) + Math.abs(i.y - state.player.y) <= 3)
+          .map(i => i.name);
+        
+        if (nearbyItems.length > 0) {
+          summary += `\n📦 附近物品: ${nearbyItems.join(', ')}`;
+        }
+        
+        return summary;
+      }
+    };
+  </script>
+</body>
+</html>

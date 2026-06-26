@@ -1,0 +1,36 @@
+{
+    "name":  "case_exporter",
+    "version":  "1.0.0",
+    "description":  "Exports evidence package including screenshots and DOM snapshots.",
+    "allowedTools":  [
+                         "browser.get_dom",
+                         "browser.screenshot"
+                     ],
+    "input_schema":  {
+                         "type":  "object",
+                         "properties":  {
+                                            "selectors":  {
+                                                              "type":  "array",
+                                                              "items":  {
+                                                                            "type":  "string"
+                                                                        }
+                                                          },
+                                            "includeDom":  {
+                                                               "type":  "boolean"
+                                                           }
+                                        }
+                     },
+    "output_schema":  {
+                          "type":  "object",
+                          "properties":  {
+                                             "artifactIds":  {
+                                                                 "type":  "array",
+                                                                 "items":  {
+                                                                               "type":  "string"
+                                                                           }
+                                                             }
+                                         }
+                      },
+    "notes":  "Artifacts are written to local workspace files (for example screenshots) by the runtime. No IndexedDB/Service Worker export path is used by this skill package.",
+    "id":  "case_exporter"
+}

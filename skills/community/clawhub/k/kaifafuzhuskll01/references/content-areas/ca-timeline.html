@@ -1,0 +1,24 @@
+<!-- ca-timeline — 垂直时间线/流程步骤 -->
+<div class="content-area" style="align-items:flex-start;padding:40px 80px;flex-direction:column">
+  {{#if title}}
+  <h2 style="font-family:var(--font);font-size:26px;font-weight:600;color:var(--color-text);margin:0 0 28px 0;width:100%">{{title}}</h2>
+  {{/if}}
+  <div style="position:relative;padding-left:32px;flex:1;width:100%">
+    <!-- 垂直竖线 -->
+    <div style="position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--color-border)"></div>
+    {{#each events}}
+    <div style="position:relative;margin-bottom:24px;padding-left:20px">
+      <!-- 圆点 -->
+      <div style="position:absolute;left:-25px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--color-primary);border:3px solid var(--color-bg);z-index:1"></div>
+      <!-- 时间标签 -->
+      <div style="font-family:var(--font);font-size:13px;font-weight:600;color:var(--color-primary);margin-bottom:6px">{{time}}</div>
+      <!-- 标题 -->
+      <div style="font-family:var(--font);font-size:17px;font-weight:500;color:var(--color-text);margin-bottom:4px">{{title}}</div>
+      {{#if desc}}
+      <!-- 描述 -->
+      <div style="font-family:var(--font);font-size:14px;color:var(--color-text-secondary);line-height:1.5">{{desc}}</div>
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
+</div>

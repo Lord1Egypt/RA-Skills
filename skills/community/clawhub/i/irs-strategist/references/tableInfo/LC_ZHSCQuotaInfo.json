@@ -1,0 +1,149 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TradingType",
+        "columnChiName": "交易类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "交易类型(TradingType)与(CT_SystemConst)表中的DM字段关联，令LB = 1844 and DM IN (3,4)，得到交易类型的具体描述：3-深股通，4-港股通（深）。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "Currency",
+        "columnChiName": "货币单位",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "货币单位(Currency)与(CT_SystemConst)表中的DM字段关联，令LB = 1068 and DM in (1100,1420)，得到货币单位的具体描述：1100-港元，1420-人民币元。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "DailyQuota",
+        "columnChiName": "每日额度(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "DailyBalance",
+        "columnChiName": "每日额度余额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "85.12"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "DailyUsed",
+        "columnChiName": "每日已用额度(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "85.12"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "AccuUsed",
+        "columnChiName": "累计已用额度(元)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "96.66"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "DailyBalanceRatio",
+        "columnChiName": "每日额度余额占比(%)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "85.12"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "DailyUsedRatio",
+        "columnChiName": "每日已用额度占比(%)",
+        "columnType": "decimal(18,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "85.12"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

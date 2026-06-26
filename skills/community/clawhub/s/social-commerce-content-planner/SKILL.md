@@ -1,35 +1,117 @@
----
-name: "Social Commerce Content Planner"
-description: "帮助社交电商运营系统规划内容主题、日历、直播脚本及短视频文案模板，提升选题与转化效果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/social-commerce-content-planner"
-sourceUrl: "https://clawhub.ai/skills/social-commerce-content-planner"
----
-
 # Social Commerce Content Planner
 
-> 帮助社交电商运营系统规划内容主题、日历、直播脚本及短视频文案模板，提升选题与转化效果。
+## 1. Overview
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/social-commerce-content-planner`
-- **Source URL:** [https://clawhub.ai/skills/social-commerce-content-planner](https://clawhub.ai/skills/social-commerce-content-planner)
+**Name:** Social Commerce Content Planner
+**Slug:** social-commerce-content-planner
+**Type:** Descriptive content generation & planning skill
+**Target Users:** 社交电商运营、直播带货主播、内容创作者，1-5人团队
 
-## Overview
+帮助用户系统化地规划社交电商内容，包括：
+- 趋势分析与热点捕捉
+- 内容主题规划
+- 创意生成与优化
+- 内容日历排期
+- 直播脚本与短视频文案模板
 
+**Note:** 本技能聚焦描述性内容生成（模板、检查清单、最佳实践库），不接入实时API。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/social-commerce-content-planner
+---
+
+## 2. Trigger
+
+触发方式（任选其一）：
+- 明确指令：`"规划本周内容"` / `"给我一个直播脚本模板"` / `"生成本月内容日历"`
+- 场景关键词：`内容规划`、`直播脚本`、`带货文案`、`短视频主题`、`内容日历`、`电商趋势`
+- 模糊需求：`我需要做电商内容`、`帮我规划下周直播`
+
+---
+
+## 3. Workflow
+
+### Phase 1: 需求理解
+- 识别用户是运营/主播/创作者身份
+- 确认内容平台（抖音/快手/小红书/视频号/淘宝直播等）
+- 确认行业品类（美妆/服饰/食品/家电等）
+- 明确输出类型：主题/日历/脚本/文案/检查清单
+
+### Phase 2: 趋势分析（描述性）
+- 基于行业品类提供该领域的季节性趋势描述
+- 给出节日营销节点建议（以年度节日历呈现）
+- 提供该品类内容风格趋势（叙事型/测评型/对比型/故事型等）
+
+### Phase 3: 内容规划
+- 结合品类+平台+目标用户，生成内容主题列表
+- 提供内容形式建议（短视频/图文/直播/种草笔记）
+- 按周/月维度编排内容日历
+- 为每个内容节点标注：目标-形式-核心卖点
+
+### Phase 4: 创意与模板输出
+- 生成具体脚本模板（直播逐字稿/口播文案/短视频分镜）
+- 提供多种风格变体（专业型/亲和型/促销型/种草型）
+- 输出内容检查清单（违禁词/合规性/转化路径）
+
+### Phase 5: 最佳实践建议
+- 各平台发布时间建议
+- 互动率优化技巧
+- 转化链路设计建议
+- 数据复盘维度
+
+---
+
+## 4. Input / Output
+
+### 典型输入
 ```
+平台：抖音
+品类：美妆护肤
+目标用户：18-25岁女性
+需求：本周内容主题 + 直播脚本模板
+```
+
+### 典型输出
+- 本周内容主题清单（含选题方向）
+- 内容日历（周维度，含每天内容类型+主题）
+- 直播脚本模板（含开场/产品/促销/结尾结构）
+- 短视频口播模板（3种风格）
+- 内容自检清单
+
+---
+
+## 5. Safety
+
+- 内容需符合各平台社区规范（禁止虚假宣传/绝对化用语/违禁词）
+- 生成的营销文案需提醒用户自行核实信息来源
+- 不生成医疗/药品/金融等特殊行业的夸大宣传内容
+- 不接入实时数据，用户需自行核实节日/热点日期的准确性
+
+---
+
+## 6. Examples
+
+### Example 1: 直播脚本生成
+**Input:** 平台抖音，品类服装，需求女装夏季新款直播脚本
+**Output:** 结构化直播逐字稿模板，含开场预热→产品介绍→试穿展示→限时促销→结尾引流各环节
+
+### Example 2: 内容日历规划
+**Input:** 平台小红书，品类母婴，需求6月内容日历
+**Output:** 按周编排的内容日历，含主题/形式/发布时间/核心卖点
+
+### Example 3: 短视频主题创意
+**Input:** 品类食品-零食，需求10个短视频选题
+**Output:** 分类选题列表（测评类/开箱类/剧情类/教程类），每个附创意方向说明
+
+### Example 4: 种草文案模板
+**Input:** 品类家电-空气炸锅，需求小红书种草笔记模板
+**Output:** 多种风格的种草文案模板，含标题公式/正文结构/标签建议
+
+---
+
+## 7. Acceptance Criteria
+
+- [ ] 给定品类+平台+需求，可输出完整内容规划方案
+- [ ] 支持生成：主题列表、内容日历、直播脚本、短视频文案、种草笔记、检查清单
+- [ ] 模板输出结构完整，包含各模块的占位说明
+- [ ] 建议具有品类和平台的针对性（非通用废话）
+- [ ] 自测脚本 `python3 handler.py` 可正常运行并输出有效JSON结果
+- [ ] 测试用例 `python3 tests/test_handler.py` 全部通过

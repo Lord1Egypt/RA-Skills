@@ -1,35 +1,37 @@
----
-name: "Pipeworx rickmorty"
-description: "Access detailed information on Rick and Morty characters, locations, and episodes across all show seasons using specific IDs or searches."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-rickmorty"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-rickmorty"
----
+# Rick and Morty
 
-# Pipeworx rickmorty
+Wubba lubba dub dub! Query the Rick and Morty universe -- characters, locations, and episodes from all seasons of the show.
 
-> Access detailed information on Rick and Morty characters, locations, and episodes across all show seasons using specific IDs or searches.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-rickmorty`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-rickmorty](https://clawhub.ai/skills/pipeworx-rickmorty)
+| Tool | What it does |
+|------|-------------|
+| `search_characters` | Find characters by name (returns status, species, gender, origin, location, episode count) |
+| `get_character` | Full character details by ID |
+| `get_location` | Location details by ID (name, type, dimension, resident count) |
+| `get_episode` | Episode details by ID (name, air date, episode code, character count) |
 
-## Overview
+## Example: look up Rick Sanchez
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-rickmorty
+curl -X POST https://gateway.pipeworx.io/rickmorty/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_character","arguments":{"id":1}}}'
+```
+
+## Handy IDs
+
+- Character 1: Rick Sanchez
+- Character 2: Morty Smith
+- Location 1: Earth (C-137)
+- Episode 1: Pilot (S01E01)
+
+```json
+{
+  "mcpServers": {
+    "rickmorty": {
+      "url": "https://gateway.pipeworx.io/rickmorty/mcp"
+    }
+  }
+}
 ```

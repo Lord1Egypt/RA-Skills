@@ -1,0 +1,28 @@
+你是一个逻辑一致性检查员。请仔细检查以下回答是否存在自相矛盾的地方。
+
+## 待检查回答
+{{ANSWER}}
+
+## 任务
+分析回答中是否存在自相矛盾的表述，例如：
+- 前面说A，后面说非A
+- 数字/时间/地点前后不一致
+- 因果关系互相矛盾
+
+## 输出格式（严格JSON，不要额外解释）
+{
+  "consistent": true,
+  "contradictions": []
+}
+
+如果检测到矛盾，consistent 为 false，并在 contradictions 中列出：
+{
+  "consistent": false,
+  "contradictions": [
+    {"location": "第2段", "description": "前面说成立于1984年，后面说成立于1986年"}
+  ]
+}
+
+## 注意
+- 只有真正的逻辑矛盾才标记，不同角度的描述不算矛盾
+- 如果无法确定是否矛盾（信息不足），标记为 consistent: true（倾向于相信）

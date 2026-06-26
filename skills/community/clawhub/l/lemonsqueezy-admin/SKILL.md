@@ -1,35 +1,39 @@
 ---
-name: "Lemonsqueezy Admin"
-description: "Admin CLI for Lemon Squeezy stores. View orders, subscriptions, and customers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lemonsqueezy-admin"
-sourceUrl: "https://clawhub.ai/skills/lemonsqueezy-admin"
+name: lemonsqueezy-admin
+version: 1.0.0
+description: Admin CLI for Lemon Squeezy stores. View orders, subscriptions, and customers.
+author: abakermi
+metadata:
+  openclaw:
+    emoji: "🍋"
+    requires:
+      env: ["LEMONSQUEEZY_API_KEY"]
 ---
 
-# Lemonsqueezy Admin
+# Lemon Squeezy Admin 🍋
 
-> Admin CLI for Lemon Squeezy stores. View orders, subscriptions, and customers.
+Manage your Lemon Squeezy store from the command line.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lemonsqueezy-admin`
-- **Source URL:** [https://clawhub.ai/skills/lemonsqueezy-admin](https://clawhub.ai/skills/lemonsqueezy-admin)
+## Setup
 
-## Overview
+1. Get an API Key from [Lemon Squeezy Settings > API](https://app.lemonsqueezy.com/settings/api).
+2. Set it: `export LEMONSQUEEZY_API_KEY="your_key"`
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Orders
 ```bash
-hermes skills install clawhub/lemonsqueezy-admin
+ls-admin orders --limit 10
+# Output: #1234 - $49.00 - john@example.com (Paid)
+```
+
+### Subscriptions
+```bash
+ls-admin subscriptions
+# Output: Active: 15 | MMR: $450
+```
+
+### Stores
+```bash
+ls-admin stores
 ```

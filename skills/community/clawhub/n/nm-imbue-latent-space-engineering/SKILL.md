@@ -1,35 +1,73 @@
 ---
-name: "Nm Imbue Latent Space Engineering"
-description: "Shape agent behavior through instruction framing, emotional priming, and style transfer rather than information density alone"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-imbue-latent-space-engineering"
-sourceUrl: "https://clawhub.ai/skills/nm-imbue-latent-space-engineering"
+name: latent-space-engineering
+description: Shapes agent behavior via instruction framing and style transfer
+version: 1.9.8
+triggers:
+  - prompt-engineering
+  - agent-behavior
+  - instruction-framing
+  - style-transfer
+  - review-optimization
+  - composing dispatch prompts or writing skill instructions for parallel review agents
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/imbue", "emoji": "\ud83e\udd9e"}}
+source: claude-night-market
+source_plugin: imbue
 ---
 
-# Nm Imbue Latent Space Engineering
-
-> Shape agent behavior through instruction framing, emotional priming, and style transfer rather than information density alone
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-imbue-latent-space-engineering`
-- **Source URL:** [https://clawhub.ai/skills/nm-imbue-latent-space-engineering](https://clawhub.ai/skills/nm-imbue-latent-space-engineering)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-imbue-latent-space-engineering
-```
+# Latent Space Engineering
+
+Shape agent behavior by framing instructions for
+optimal performance. Distinct from context engineering
+(packing the right information), this skill addresses
+HOW instructions are framed to put agents in productive
+mental states.
+
+## When To Use
+
+- Composing agent dispatch prompts
+- Writing skill instructions that guide behavior
+- Dispatching 3+ parallel review agents
+- Generating code or documentation that must match
+  an existing style
+
+## When NOT To Use
+
+- Packing factual context (use context-optimization)
+- Simple single-shot tasks with no behavioral nuance
+- Tasks where instruction tone is irrelevant
+
+## Core Techniques
+
+### 1. Emotional Framing
+
+Replace threat-based prompting with calm, confident
+instructions. Fear-based prompts cause rushing and
+corner-cutting.
+
+**Load module**: `modules/emotional-framing.md`
+
+### 2. Style Gene Transfer
+
+Inject exemplar code or prose into context before
+requesting output. Agents reproduce stylistic
+attributes from pre-loaded samples.
+
+**Load module**: `modules/style-gene-transfer.md`
+
+### 3. Competitive Review
+
+Frame multi-agent review dispatch with competitive
+incentives to increase rigor and thoroughness.
+
+**Load module**: `modules/competitive-review.md`
+
+## Quick Reference
+
+| Technique | When | Module |
+|-----------|------|--------|
+| Emotional framing | Any agent prompt | emotional-framing |
+| Style gene transfer | Code/doc generation | style-gene-transfer |
+| Competitive review | 3+ parallel reviewers | competitive-review |

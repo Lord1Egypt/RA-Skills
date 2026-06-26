@@ -1,0 +1,13 @@
+{
+  "name": "claw-code-suite",
+  "version": "1.0.1",
+  "description": "Claw Code Python-only integration - 184 tools, 207 commands, NO NETWORK, OFFLINE ONLY",
+  "main": "run.sh",
+  "scripts": {
+    "test": "./run.sh summary",
+    "verify-clean": "find . -name \"*.rs\" -o -name \"Cargo.*\" -o -name \"*.toml\" | grep -q . && echo \"❌ Rust files found\" || echo \"✅ No Rust files\""
+  },
+  "keywords": ["claw-code", "tools", "commands", "integration", "offline", "security", "python-only"],
+  "author": "OpenClaw Team",
+  "license": "MIT"
+}

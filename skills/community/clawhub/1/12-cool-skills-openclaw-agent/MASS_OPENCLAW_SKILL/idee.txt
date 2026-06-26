@@ -1,0 +1,9 @@
+1 Alertes prix (ex: “BTC descend sous 30 000$”) via les plateforme ou on voit le btx sans se connecter.
+2 Résumeur automatique d’articles ou PDF.
+3 Alertes sécurité : phishing, scams, vulnérabilités connues.
+4 Try vulnerability on website ( sql injection, open port, devtool problems ) on your own website !
+5 Générateur d’exemples d’API pour tests rapides.
+6 Bot qui exécute des scripts sandbox et renvoie le résultat.
+7 Bot de scouting NFT : signale les collections qui montent ( user doit donner la plateforme souhaiter pour faire le scouting )
+8 Détecteur de rug-pulls / scams sur les nouveaux tokens , pour cela le bot va sur browser et https://dexscreener.com/solana/(token du memecoin) , ( le user doit donner le toke avant ).
+9 Assistant de design UX via figma site online (user doit etre connecter a figma ) : analyse pages et propose améliorations.

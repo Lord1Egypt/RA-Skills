@@ -1,35 +1,143 @@
 ---
-name: "Book Infographic"
-description: "深度解析PDF书籍内容并生成可编辑的高质量信息图；当你需要提取书籍核心知识点、制作章节摘要、数据可视化展示或生成可二次编辑的图表时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-infographic"
-sourceUrl: "https://clawhub.ai/skills/book-infographic"
+name: book-infographic
+description: 深度解析PDF书籍内容并生成可编辑的高质量信息图；当你需要提取书籍核心知识点、制作章节摘要、数据可视化展示或生成可二次编辑的图表时使用
+dependency:
+  python:
+    - pdfplumber==0.10.3
 ---
 
-# Book Infographic
+# Book Infographic - 书籍信息图生成技能
 
-> 深度解析PDF书籍内容并生成可编辑的高质量信息图；当你需要提取书籍核心知识点、制作章节摘要、数据可视化展示或生成可二次编辑的图表时使用
+## 任务目标
+- 本 Skill 用于：将 PDF 书籍转化为结构化知识信息图
+- 能力包含：PDF 解析、深度内容理解、知识点提取、信息图生成、二次编辑支持
+- 触发条件：用户提供书籍 PDF 并要求生成信息图、整理知识点、制作可视化摘要
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-infographic`
-- **Source URL:** [https://clawhub.ai/skills/book-infographic](https://clawhub.ai/skills/book-infographic)
+## 前置准备
+- 依赖说明：`pdfplumber==0.10.3` 用于 PDF 文本提取
+- 非标准文件准备：用户提供待处理的 PDF 文件（路径相对于当前工作目录）
 
-## Overview
+## 操作步骤
 
+### 完整工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-infographic
-```
+#### 第一阶段：PDF 解析
+1. 使用 `pdf_parser.py` 提取书籍内容
+   ```bash
+   python scripts/pdf_parser.py --input ./book.pdf --output ./extracted_content.json
+   ```
+2. 脚本返回 JSON 格式内容，包含页面级文本和识别到的章节结构
+3. 读取解析结果，分析书籍整体结构（目录、章节、页数）
+
+#### 第二阶段：深度内容理解
+1. 逐章节阅读提取的内容，建立知识结构图谱
+2. 识别并提取关键要素：
+   - **核心概念**：每个章节的主要术语和定义
+   - **关键论点**：作者的主要观点和论证
+   - **数据/案例**：支撑论点的具体例子、数据、案例
+   - **章节关联**：各章节之间的逻辑关系
+3. 对每个章节生成结构化总结：
+   ```json
+   {
+     "chapter_title": "章节标题",
+     "page_range": "页码范围",
+     "key_concepts": ["概念1", "概念2"],
+     "main_arguments": ["论点1", "论点2"],
+     "examples": ["案例1", "案例2"],
+     "summary": "章节总结（100-200字）"
+   }
+   ```
+
+#### 第三阶段：信息图生成
+1. 根据书籍内容选择信息图类型：
+   - **知识结构图**：展示章节关系和知识体系
+   - **时间线图**：适合历史类、传记类书籍
+   - **对比图表**：适合商业、科技类书籍
+   - **流程图**：适合方法论、教程类书籍
+   - **统计图表**：适合含数据分析和研究报告类书籍
+
+2. 生成 HTML 信息图（推荐）或 Markdown 格式
+
+3. HTML 信息图结构：
+   ```html
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>书籍信息图 - [书名]</title>
+     <script src="echarts.js"></script>
+     <style>/* 自定义样式 */</style>
+   </head>
+   <body>
+     <!-- 书籍封面区 -->
+     <div class="header">
+       <h1>[书名]</h1>
+       <p>作者 | 出版年份 | 核心主题</p>
+     </div>
+     
+     <!-- 核心概念区 -->
+     <div class="concepts">
+       <h2>核心概念</h2>
+       <!-- 图表容器 -->
+       <div id="conceptChart"></div>
+     </div>
+     
+     <!-- 章节摘要区 -->
+     <div class="chapters">
+       <h2>章节概览</h2>
+       <!-- 章节卡片或图表 -->
+     </div>
+     
+     <!-- 关键数据区 -->
+     <div class="data">
+       <h2>关键数据</h2>
+       <!-- 数据可视化 -->
+     </div>
+   </body>
+   </html>
+   ```
+
+#### 第四阶段：质量检查与优化
+1. 验证信息图覆盖所有关键内容
+2. 检查数据准确性和逻辑完整性
+3. 优化视觉呈现和布局
+4. 确保可编辑性（CSS 样式与数据分离）
+
+## 使用示例
+
+### 示例 1：商业书籍信息图
+- **场景/输入**：用户提供 `the-lean-startup.pdf`，要求生成知识可视化
+- **预期产出**：包含精益创业方法论核心概念、章节流程、关键指标的信息图
+- **关键要点**：
+  - 提取"构建-测量-学习"循环
+  - 可视化 MVP 开发流程
+  - 图表展示核心指标关系
+
+### 示例 2：学术著作信息图
+- **场景/输入**：用户提供学术 PDF，要求生成论文/书籍结构图
+- **预期产出**：展示研究框架、理论模型、方法论、主要发现的综合图表
+- **关键要点**：
+  - 识别并标注核心论点
+  - 展示理论模型关系
+  - 可视化研究方法流程
+
+### 示例 3：历史书籍信息图
+- **场景/输入**：用户提供历史类 PDF，要求生成时间线图
+- **预期产出**：重大事件时间线、因果关系图、人物关系图
+- **关键要点**：
+  - 按时间顺序排列关键事件
+  - 标注事件因果关系
+  - 人物/事件交互可视化
+
+## 资源索引
+
+- 脚本：见 [scripts/pdf_parser.py](scripts/pdf_parser.py)（功能：PDF 解析与内容提取，支持章节识别）
+- 参考：见 [references/infographic-guide.md](references/infographic-guide.md)（何时读取：需要生成或编辑信息图时）
+- 模板：见 [assets/templates/](assets/templates/)（直接用于生成：HTML 信息图模板）
+
+## 注意事项
+
+- PDF 解析时请确保文件可读，避免加密或图片型 PDF
+- 内容理解时优先提取可结构化的知识点
+- 信息图生成后建议在浏览器中预览效果
+- 二次编辑时请参考 `references/infographic-guide.md` 中的指南
+- 确保所有关键内容都被覆盖，生成前检查完整性

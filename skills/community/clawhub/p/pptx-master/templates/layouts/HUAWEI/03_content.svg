@@ -1,0 +1,23 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full Screen Background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#F5F5F5" />
+  <!-- Top Accent Bar -->
+  <rect x="0" y="0" width="1280" height="6" fill="#E60012" />
+  <!-- Safe Area Anchor Points -->
+  <path d="M40 140 L50 140 M40 140 L40 150" stroke="#E60012" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M1240 140 L1230 140 M1240 140 L1240 150" stroke="#E60012" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M40 650 L50 650 M40 650 L40 640" stroke="#191919" stroke-width="1" stroke-opacity="0.3" />
+  <path d="M1240 650 L1230 650 M1240 650 L1240 640" stroke="#191919" stroke-width="1" stroke-opacity="0.3" />
+  <!-- Key Message Bar -->
+  <rect x="40" y="95" width="4" height="25" fill="#E60012" />
+  <text x="55" y="115" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="18" font-weight="bold" fill="#191919">{{KEY_MESSAGE}}</text>
+  <!-- Page Title -->
+  <text x="40" y="180" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="28" font-weight="bold" fill="#191919">{{PAGE_TITLE}}</text>
+  <!-- Content Area -->
+  <g id="{{CONTENT_AREA}}">
+    <rect x="40" y="220" width="1200" height="400" fill="#FFFFFF" rx="4" fill-opacity="0.9" />
+  </g>
+  <!-- Footer -->
+  <text x="40" y="685" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="12" fill="#888888">{{CHAPTER_NAME}}</text>
+  <text x="1240" y="685" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="12" fill="#888888" text-anchor="end">{{PAGE_NUM}} | 华为技术有限公司</text>
+</svg>

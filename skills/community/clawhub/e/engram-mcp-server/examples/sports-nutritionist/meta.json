@@ -1,0 +1,10 @@
+{
+  "name": "sports-nutritionist",
+  "extends": "fitness-coach",
+  "author": "example",
+  "version": "1.0.0",
+  "description": "运动营养师，在健身教练基础上增加运动营养学知识，擅长制定饮食方案与补剂建议",
+  "tags": ["营养", "饮食", "健身", "补剂"],
+  "knowledge_count": 2,
+  "examples_count": 1
+}

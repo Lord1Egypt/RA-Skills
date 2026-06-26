@@ -1,0 +1,19 @@
+{
+  "<your-host-id>": {
+    "url": "https://your-host.example.test",
+    "token_file": "secrets/hooks_token_<your-host-id>",
+    "peer_secret_file": "secrets/antenna-peer-<your-host-id>.secret",
+    "exchange_public_key": "age1...",
+    "agentId": "antenna",
+    "display_name": "My Host",
+    "self": true
+  },
+  "<remote-peer-id>": {
+    "url": "https://remote-host.example.test",
+    "token_file": "secrets/hooks_token_<remote-peer-id>",
+    "peer_secret_file": "secrets/antenna-peer-<remote-peer-id>.secret",
+    "exchange_public_key": "age1...",
+    "agentId": "antenna",
+    "display_name": "Remote Host"
+  }
+}

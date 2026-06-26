@@ -1,35 +1,88 @@
 ---
-name: "network-debugging"
-description: "Indexed by skills.sh from aj-geddes/useful-ai-prompts"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aj-geddes"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aj-geddes/useful-ai-prompts/network-debugging"
-sourceUrl: "https://skills.sh/aj-geddes/useful-ai-prompts/network-debugging"
+name: network-debugging
+description: >
+  Debug network issues using browser tools and network analysis. Diagnose
+  connection problems, latency, and data transmission issues.
 ---
 
-# network-debugging
+# Network Debugging
 
-> Indexed by skills.sh from aj-geddes/useful-ai-prompts
+## Table of Contents
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aj-geddes
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aj-geddes/useful-ai-prompts/network-debugging`
-- **Source URL:** [https://skills.sh/aj-geddes/useful-ai-prompts/network-debugging](https://skills.sh/aj-geddes/useful-ai-prompts/network-debugging)
+- [Overview](#overview)
+- [When to Use](#when-to-use)
+- [Quick Start](#quick-start)
+- [Reference Guides](#reference-guides)
+- [Best Practices](#best-practices)
 
 ## Overview
 
+Network debugging identifies connectivity issues, latency problems, and data transmission errors that impact application performance.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aj-geddes/useful-ai-prompts/network-debugging
+## When to Use
+
+- Slow loading times
+- Failed requests
+- Intermittent connectivity
+- CORS errors
+- SSL/TLS issues
+- API communication problems
+
+## Quick Start
+
+Minimal working example:
+
+```yaml
+Chrome DevTools Network Tab:
+
+Columns:
+  - Name: Request file/endpoint
+  - Status: HTTP status code
+  - Type: Resource type (xhr, fetch, etc)
+  - Initiator: What triggered request
+  - Size: Resource size / transferred size
+  - Time: Total time to complete
+  - Waterfall: Timeline visualization
+
+Timeline Breakdown:
+  - Queueing: Waiting in queue
+  - DNS: Domain name resolution
+  - Initial connection: TCP handshake
+  - SSL: SSL/TLS negotiation
+  - Request sent: Time to send request
+  - Waiting (TTFB): Time to first byte
+  - Content Download: Receiving response
+
+---
+Network Conditions:
+
+Throttling Presets:
+  - Fast 3G: 1.6 Mbps down, 750 Kbps up
+// ... (see reference guides for full implementation)
 ```
+
+## Reference Guides
+
+Detailed implementations in the `references/` directory:
+
+| Guide | Contents |
+|---|---|
+| [Browser Network Tools](references/browser-network-tools.md) | Browser Network Tools |
+| [Common Network Issues](references/common-network-issues.md) | Common Network Issues |
+| [Debugging Tools & Techniques](references/debugging-tools-techniques.md) | Debugging Tools & Techniques |
+| [Checklist](references/checklist.md) | Checklist |
+
+## Best Practices
+
+### ✅ DO
+
+- Follow established patterns and conventions
+- Write clean, maintainable code
+- Add appropriate documentation
+- Test thoroughly before deploying
+
+### ❌ DON'T
+
+- Skip testing or validation
+- Ignore error handling
+- Hard-code configuration values

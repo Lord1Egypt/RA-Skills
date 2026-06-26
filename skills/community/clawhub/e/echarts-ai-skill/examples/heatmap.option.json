@@ -1,0 +1,64 @@
+{
+  "title": {
+    "text": "Study heatmap",
+    "left": "center"
+  },
+  "tooltip": {
+    "position": "top"
+  },
+  "grid": {
+    "left": 60,
+    "right": 20,
+    "top": 72,
+    "bottom": 40
+  },
+  "xAxis": {
+    "type": "category",
+    "data": [
+      "Mon",
+      "Tue"
+    ]
+  },
+  "yAxis": {
+    "type": "category",
+    "data": [
+      "09:00",
+      "10:00"
+    ]
+  },
+  "visualMap": {
+    "min": 0,
+    "max": 9,
+    "calculable": true,
+    "orient": "horizontal",
+    "left": "center",
+    "bottom": 0
+  },
+  "series": [
+    {
+      "type": "heatmap",
+      "data": [
+        [
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          1,
+          6
+        ],
+        [
+          1,
+          0,
+          7
+        ],
+        [
+          1,
+          1,
+          9
+        ]
+      ]
+    }
+  ]
+}

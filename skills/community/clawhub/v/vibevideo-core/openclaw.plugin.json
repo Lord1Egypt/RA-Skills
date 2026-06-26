@@ -1,0 +1,31 @@
+{
+  "id": "vibevideoio-ai-script-to-video",
+  "name": "VibeVideoIO AI Script to Video",
+  "description": "Create AI videos from prompts or scripts, log into bollo.video or vibevideo.io, list Studio projects, and create Studio episodes. Chinese requests default to bollo.video; English requests default to vibevideo.io unless explicitly overridden.",
+  "skills": [
+    "./skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "defaultSite": {
+        "type": "string",
+        "enum": [
+          "bollo",
+          "vibevideo"
+        ]
+      },
+      "defaultAspectRatio": {
+        "type": "string"
+      },
+      "defaultLocale": {
+        "type": "string",
+        "enum": [
+          "zh",
+          "en"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "audit_time": "2026-04-07T21:53:23.473775",
+  "skill_name": "ihg-monitor",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "文件存在性: 技能主文档",
+      "file": "SKILL.md",
+      "status": "PASS",
+      "details": "文件存在"
+    },
+    {
+      "check": "文件存在性: 技能配置文件",
+      "file": "skills.json",
+      "status": "PASS",
+      "details": "文件存在"
+    },
+    {
+      "check": "文件存在性: Gogo调用指南",
+      "file": "GOGO_INSTRUCTIONS.md",
+      "status": "PASS",
+      "details": "文件存在"
+    },
+    {
+      "check": "文件存在性: 变更日志",
+      "file": "references/CHANGELOG.md",
+      "status": "PASS",
+      "details": "文件存在"
+    },
+    {
+      "check": "文件存在性: 版本审计脚本",
+      "file": "scripts/version_audit.py",
+      "status": "PASS",
+      "details": "文件存在"
+    },
+    {
+      "check": "版本一致性检查",
+      "status": "PASS",
+      "details": "SKILL.md: v2.0.0, CHANGELOG.md: v2.0.0"
+    },
+    {
+      "check": "skills.json配置验证",
+      "status": "PASS",
+      "details": "技能ID: ihg-monitor, 名称: IHG积分房查询"
+    },
+    {
+      "check": "目录结构扫描",
+      "status": "PASS",
+      "details": "共扫描 3 个目录"
+    }
+  ],
+  "warnings": [],
+  "errors": [],
+  "directory_structure": {
+    "根目录": {
+      "directories": [
+        "references",
+        "scripts"
+      ],
+      "files": [
+        "skills.json",
+        "SKILL.md",
+        "GOGO_INSTRUCTIONS.md"
+      ],
+      "file_count": 3,
+      "file_hashes": {
+        "skills.json": "e7d92b0a",
+        "SKILL.md": "1b0d60c4",
+        "GOGO_INSTRUCTIONS.md": "228a4751"
+      }
+    },
+    "references": {
+      "directories": [],
+      "files": [
+        "CHANGELOG.md",
+        "audit_report.json"
+      ],
+      "file_count": 2,
+      "file_hashes": {
+        "references/CHANGELOG.md": "a381e840",
+        "references/audit_report.json": "61f77317"
+      }
+    },
+    "scripts": {
+      "directories": [],
+      "files": [
+        "version_audit.py"
+      ],
+      "file_count": 1,
+      "file_hashes": {
+        "scripts/version_audit.py": "99f40fa7"
+      }
+    }
+  },
+  "summary": {
+    "total_checks": 8,
+    "passed_checks": 8,
+    "warn_checks": 0,
+    "fail_checks": 0,
+    "warning_count": 0,
+    "error_count": 0
+  }
+}

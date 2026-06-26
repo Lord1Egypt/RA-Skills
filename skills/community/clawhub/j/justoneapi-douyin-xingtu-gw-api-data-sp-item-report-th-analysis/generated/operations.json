@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/data_sp/item_report_th_analysis/v1 for Douyin Creator Marketplace (Xingtu) Item Report Analysis through JustOneAPI with itemId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Item Report Analysis",
+  "endpointPath": "gw/api/data_sp/item_report_th_analysis",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) item Report Analysis data, including performance interpretation, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "gwApiDataSpItemReportThAnalysisV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Item's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/data_sp/item_report_th_analysis/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Item Report Analysis",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_data_sp_item_report_th_analysis",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-data-sp-item-report-th-analysis",
+  "sourceTitle": "OpenAPI definition"
+}

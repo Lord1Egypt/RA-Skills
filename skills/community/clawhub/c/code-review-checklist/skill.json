@@ -1,0 +1,11 @@
+{
+  "name": "code-review-checklist",
+  "description": "A comprehensive code review checklist and guidance tool. Use when user asks about 代码审查、代码检查、PR review、代码质量, or wants to conduct or prepare for a code review. Provides systematic checklist items and best practices.",
+  "version": "1.0.0",
+  "author": "Harry",
+  "tags": ["code", "review", "quality", "checklist", "programming", "pr"],
+  "modules": {
+    "handler": "handler.py"
+  },
+  "entry": "handler.py"
+}

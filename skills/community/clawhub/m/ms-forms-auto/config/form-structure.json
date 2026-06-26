@@ -1,0 +1,76 @@
+{
+  "default": "daily-org-report",
+  "forms": [
+    {
+      "name": "daily-org-report",
+      "description": "Daily org activity logging form",
+      "url": "https://forms.cloud.microsoft/r/LsxLaEv13i",
+      "formId": "y4gQvsRJ0kSBTieaxXz5Ouhw_jegv2RBj77g1YxvQURUMFhYRzZQTFdSRUMzRlY5NVM5VVE1SEJKRSQlQCN0PWcu",
+      "questions": [
+        {
+          "ordinal": 1,
+          "label": "Date of Reporting",
+          "questionId": "QuestionId_r4920b5f203694c6aad4a6256d747d8a5",
+          "type": "date",
+          "required": true
+        },
+        {
+          "ordinal": 2,
+          "label": "Training Hours",
+          "questionId": "QuestionId_rcd2a9123ac0545b098b5cec473f44ec0",
+          "type": "number",
+          "required": true
+        },
+        {
+          "ordinal": 3,
+          "label": "Content Dev Hours",
+          "questionId": "QuestionId_r65c9820bcced4c06857f7eaeafe632a0",
+          "type": "number",
+          "required": true
+        },
+        {
+          "ordinal": 4,
+          "label": "Content Dev Topic",
+          "questionId": "QuestionId_r6b219847cf374323bb5ae5abe164c8bd",
+          "type": "text",
+          "required": true
+        },
+        {
+          "ordinal": 5,
+          "label": "Learning Hours",
+          "questionId": "QuestionId_rcccf5ae08f184b60bbb744c66ef3f940",
+          "type": "number",
+          "required": true
+        },
+        {
+          "ordinal": 6,
+          "label": "Learning Topic",
+          "questionId": "QuestionId_r4b0f3d4527134ad78aff24ec5c3b0c61",
+          "type": "text",
+          "required": true
+        },
+        {
+          "ordinal": 7,
+          "label": "Other Items",
+          "questionId": "QuestionId_rafa8dc21a65a4e0f9aaa5e6919e7b5ee",
+          "type": "text",
+          "required": false
+        },
+        {
+          "ordinal": 8,
+          "label": "Managing Team (Only for Leads)",
+          "questionId": "QuestionId_r245865fa8a1347449143c43b2cbabb1f",
+          "type": "number",
+          "required": false
+        },
+        {
+          "ordinal": 9,
+          "label": "Managing Team Description",
+          "questionId": "QuestionId_r65acc32b219d4cbdb3e41f1e930589ed",
+          "type": "text",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

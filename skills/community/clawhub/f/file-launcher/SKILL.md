@@ -1,35 +1,28 @@
 ---
-name: "File Launcher"
+name: file-launcher
+version: 1.0.0
 description: "This skill allows the assistant to launch files and open them with their default applications."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/file-launcher"
-sourceUrl: "https://clawhub.ai/skills/file-launcher"
+author: BadWolf & Susan
+tags: [play, open]
 ---
 
-# File Launcher
+# File Launcher Skill
 
-> This skill allows the assistant to launch files and open them with their default applications.
+## Description
+This skill allows the assistant to launch files and open them with their default applications.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/file-launcher`
-- **Source URL:** [https://clawhub.ai/skills/file-launcher](https://clawhub.ai/skills/file-launcher)
+## Usage
+- Ask the assistant to open a specific file
+- Request to play a media file
+- Ask to launch a program
 
-## Overview
+## Notes
+- The assistant will use `Invoke-Item` to open files
+- No need to wait for confirmation as Windows programs are UI-based
+- Opens any file for which Windows has a default player or program to manage it
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/file-launcher
-```
+## Example Commands
+- "Open my playlist"
+- "Play the music file"
+- "Launch the document"
+- "Open the image"

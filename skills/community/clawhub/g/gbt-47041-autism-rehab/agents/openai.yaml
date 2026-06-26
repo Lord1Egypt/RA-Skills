@@ -1,0 +1,4 @@
+interface:
+  display_name: "GB/T 47041 孤独症康复机构"
+  short_description: "GB/T 47041 孤独症康复机构评价与合规助手"
+  default_prompt: "Use $gbt-47041-autism-rehab to assess an autism rehabilitation institution against GB/T 47041-2026."

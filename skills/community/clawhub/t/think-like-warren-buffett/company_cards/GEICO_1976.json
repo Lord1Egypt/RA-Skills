@@ -1,0 +1,36 @@
+{
+  "ticker": "GEICO",
+  "company": "GEICO Corporation",
+  "analysis_year": 1976,
+  "data_source": "Berkshire Hathaway 1985 and 1986 shareholder letters",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": null, "metric_used": "ROE", "years_averaged": "1975-1976", "pass": null },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": null, "pass": null },
+    "g3_leverage": { "metric_used": "Capital / solvency", "value": null, "pass": null },
+    "g4_revenue_trend": { "description": "The company had suffered a brutal period, but the underlying direct-auto model was not structurally broken; the issue was solvency and execution, not franchise logic.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Near-bankruptcy obscured near-term margin figures, but the enduring economics came from GEICO's lower cost structure rather than temporary accounting cleanliness.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": null, "pass": null },
+    "g7_moat": { "verdict": "PASS", "moat_type": "cost_advantage", "description": "Buffett later described GEICO's cost gap versus competitors as a moat around the castle. Direct distribution gave GEICO materially lower operating costs than both traditional insurers and even other direct writers. That cost advantage was durable enough that once the company was recapitalized and properly managed, the franchise could compound brilliantly.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "premium_volume_1986_m": 500,
+    "combined_ratio_1986": 0.969,
+    "underwriting_expense_plus_lae_ratio_1986": 0.235
+  },
+
+  "control_groups": [
+    { "ticker": "ALL", "company": "Allstate", "year": 1976, "gates_failed": ["g7_moat"], "conclusion": "PASS — large scale, but materially higher cost structure than GEICO." },
+    { "ticker": "TRV", "company": "Travelers", "year": 1976, "gates_failed": ["g7_moat"], "conclusion": "PASS — important insurer, but without GEICO's direct-distribution moat in auto." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Buffett bought GEICO aggressively during the 1976 rescue period and later made it a permanent Berkshire pillar.",
+  "actual_result": "A historic winner. Buffett later credited Jack Byrne's revival and GEICO's moat for enormous gains to Berkshire.",
+  "verdict": "✅ aligned",
+  "key_insight": "A near-death experience does not negate a moat if the underlying cost advantage is real and recapitalization fixes the immediate crisis."
+}

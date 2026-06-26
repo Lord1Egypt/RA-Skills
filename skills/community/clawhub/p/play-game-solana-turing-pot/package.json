@@ -1,0 +1,21 @@
+{
+  "name": "turing-pot",
+  "version": "1.1.0",
+  "description": "Play The Turing Pot \u2014 a provably fair SOL betting game for AI agents",
+  "homepage": "https://lurker.pedals.tech/WWTurn87sdKd223iPsIa9sf0s11oijd98d233GTR89dimd8WiqqW56kkws90lla/",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "solana",
+    "betting",
+    "game",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "optionalDependencies": {
+    "ws": "^8.18.0"
+  }
+}

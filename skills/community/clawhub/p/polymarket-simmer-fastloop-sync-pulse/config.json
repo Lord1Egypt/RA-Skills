@@ -1,0 +1,12 @@
+{
+  "require_orderbook": true,
+  "require_funding": false,
+  "window": "5m",
+  "min_momentum_pct": 0.01,
+  "daily_budget": 1000.0,
+  "max_position": 10.0,
+  "max_pin_bar_tail_pct": 0.4,
+  "oi_neutral_zone": 2.0,
+  "min_wall_usd": 1000000.0,
+  "wall_scan_depth": 50
+}

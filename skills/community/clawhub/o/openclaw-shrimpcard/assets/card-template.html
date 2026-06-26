@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Share Card Poster</title>
+  <style>
+    :root {
+      --bg: #fff7df;
+      --surface: rgba(255,255,255,0.78);
+      --text: #141414;
+      --muted: #5d5d5d;
+      --border: #111111;
+      --accent: #ff7548;
+      --accent-strong: #0d8f87;
+      --accent-2: #0d8f87;
+      --tag-1: #ffd865;
+      --tag-2: #ffb78a;
+      --tag-3: #9de2d3;
+      --shadow: 0 18px 48px rgba(0,0,0,0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 26%),
+        linear-gradient(180deg, #fff8e8 0%, #ffecc9 100%);
+      padding: 28px 16px 48px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      gap: 22px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 480px) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .poster-wrap {
+      width: 480px;
+      max-width: 100%;
+    }
+
+    .poster-frame {
+      border: 3px solid var(--border);
+      border-radius: 36px;
+      padding: 12px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.92), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72));
+      box-shadow: var(--shadow);
+    }
+
+    .poster-card {
+      position: relative;
+      background: var(--bg);
+      border: 3px solid var(--border);
+      border-radius: 30px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .poster-photo {
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 auto;
+      min-height: 352px;
+      background:
+        radial-gradient(circle at 26% 18%, rgba(255,255,255,0.22), transparent 16%),
+        radial-gradient(circle at 72% 28%, rgba(255,255,255,0.16), transparent 18%),
+        linear-gradient(180deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 72%, #ffffff 28%) 40%, var(--accent-2) 100%);
+      border-bottom: 3px solid var(--border);
+    }
+
+    .poster-card[data-guide-mode="true"] .poster-photo {
+      background: #ffffff;
+    }
+
+    .poster-card[data-guide-mode="true"] .poster-photo::before,
+    .poster-card[data-guide-mode="true"] .poster-photo::after {
+      content: none;
+    }
+
+    .poster-card[data-guide-mode="true"] .poster-badge,
+    .poster-card[data-guide-mode="true"] .poster-id,
+    .poster-card[data-guide-mode="true"] .photo-placeholder {
+      display: none !important;
+    }
+
+    .poster-photo img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .poster-photo[data-empty="true"] {
+      background:
+        linear-gradient(180deg, #fffdf7 0%, #f8f1df 100%);
+    }
+
+    .poster-photo[data-empty="true"] .poster-headline {
+      color: var(--text);
+      text-shadow: none;
+    }
+
+    .poster-photo[data-empty="true"] .poster-subline {
+      background: rgba(255,255,255,0.96);
+    }
+
+    .poster-photo[data-guide-mode="true"] img {
+      display: none !important;
+    }
+
+    .poster-badge,
+    .poster-id {
+      position: absolute;
+      z-index: 2;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.94);
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .poster-badge { top: 14px; left: 14px; }
+    .poster-id { top: 14px; right: 14px; }
+
+    .photo-placeholder {
+      position: absolute;
+      left: 50%;
+      top: 44%;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 2px solid var(--border);
+      background: rgba(255,255,255,0.9);
+      color: var(--text);
+      font-weight: 900;
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 1;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .poster-body {
+      flex: 0 0 auto;
+      padding: 16px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .identity-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .name {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 980;
+      letter-spacing: -0.04em;
+      word-break: break-word;
+    }
+
+    .role {
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--muted);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      word-break: break-word;
+    }
+
+    .tagline {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.3;
+      font-weight: 900;
+    }
+
+    .persona-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .persona-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 2px solid var(--border);
+      font-size: 12px;
+      font-weight: 900;
+      background: #fff;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .share-caption {
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.76));
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.42;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .poster-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 2px;
+    }
+
+    .poster-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .poster-mark::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 2px solid var(--border);
+      background: var(--accent-strong);
+      display: inline-block;
+    }
+
+    .owner {
+      display: grid;
+      gap: 3px;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .owner-line {
+      margin: 0;
+    }
+
+    .qr-box {
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border-radius: 16px;
+      border: 3px solid var(--border);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .qr-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .qr-placeholder {
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      border: 3px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .headline {
+      margin: 0 0 10px;
+      font-size: 46px;
+      line-height: 0.94;
+      font-weight: 980;
+      letter-spacing: -0.06em;
+      max-width: 11ch;
+    }
+
+    .subheadline {
+      margin: 0;
+      max-width: 42ch;
+      font-size: 18px;
+      line-height: 1.58;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .meta-pill {
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card,
+    .prompt-card,
+    .proof {
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,0.82);
+    }
+
+    .mini-label,
+    .proof-label {
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .mini-value,
+    .proof-text {
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 800;
+    }
+
+    .prompt-card pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.56;
+      color: #202020;
+      max-height: 260px;
+      overflow: auto;
+    }
+
+    @media (max-width: 940px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .poster-wrap {
+        width: 100%;
+      }
+
+      .headline {
+        max-width: none;
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body { padding: 18px 10px 36px; }
+      .poster-headline { font-size: 36px; }
+      .poster-photo { min-height: 280px; }
+      .poster-headline { font-size: 34px; }
+      .name { font-size: 28px; }
+      .tagline { font-size: 18px; }
+      .mini-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="poster-wrap">
+        <div class="poster-frame">
+          <article class="poster-card" id="exportCard">
+            <section class="poster-photo">
+              <span class="poster-badge" id="posterBadge">Share Card</span>
+              <img id="mainImage" alt="Agent selfie image">
+              <div class="photo-placeholder" id="photoPlaceholder">等待附加图片</div>
+            </section>
+
+            <section class="poster-body">
+              <div class="identity-row">
+                <h1 class="name" id="name">Agent Name</h1>
+                <div class="role" id="role">Share Card Preview</div>
+              </div>
+
+              <p class="tagline" id="tagline">这是首页预览空态，不代表任何真实 agent 内容。</p>
+
+              <div class="persona-tags" id="personaTags">
+                <span class="persona-tag">结构预览</span>
+                <span class="persona-tag">字段映射</span>
+                <span class="persona-tag">待附加图片</span>
+              </div>
+
+              <div class="share-caption" id="shareCaption">载入正式数据后，这里会显示最终对外摘要。</div>
+
+              <div class="poster-footer">
+                <div class="owner" id="ownerBlock">
+                  <p class="owner-line">主人 @owner</p>
+                </div>
+                <div class="poster-mark" id="posterMark">Shareable Agent Poster</div>
+              </div>
+            </section>
+          </article>
+        </div>
+      </div>
+
+      <div class="side">
+        <section class="panel">
+          <h2 class="headline" id="sideHeadline">Agent Share Card Preview</h2>
+          <p class="subheadline" id="subheadline">首页默认展示的是空态预览。载入真实的 share-card 数据和最终图片后，这里才会显示正式内容。</p>
+          <div class="meta-row" id="metaKeywords">
+            <span class="meta-pill">memory-first</span>
+            <span class="meta-pill">agent poster</span>
+            <span class="meta-pill">shareable identity</span>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="mini-grid">
+            <div class="mini-card">
+              <div class="mini-label">Best For</div>
+              <div class="mini-value" id="bestFor">适合先读取真实记忆，再决定公开定位的 agent。</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-label">Why It Spreads</div>
+              <div class="mini-value" id="spreadReason">一眼看懂它真实稳定做什么，而不是看到旧案例拼接。</div>
+            </div>
+          </div>
+
+          <div class="proof" style="margin-top: 14px;">
+            <div class="proof-label">Why This Fits</div>
+            <div class="proof-text" id="proofAnchor">基于真实 evidence 提炼，而不是沿用旧案例描述。</div>
+          </div>
+
+          <div class="mini-card" style="margin-top: 14px;">
+            <div class="mini-label">Memory Basis</div>
+            <div class="mini-value" id="memoryBasis">Built from real evidence when provided.</div>
+          </div>
+
+          <div class="prompt-card" style="margin-top: 14px;">
+            <div class="mini-label">Selfie Prompt Preview</div>
+            <pre id="selfiePrompt">Agent selfie prompt preview</pre>
+          </div>
+
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- CARD_DATA -->
+  <script>
+    const defaultData = {
+      schema_version: "share-card/1.0",
+      card_id: "card:placeholder",
+      name: "Agent Name",
+      role: "Share Card Preview",
+      tagline: "这是首页预览空态，不代表任何真实 agent 内容。",
+      value_line: "用于检查卡片结构、字段映射和图片附加效果。",
+      top_capabilities: ["结构预览", "字段映射", "待附加图片"],
+      best_for: "在接入真实 share-card.json 之前检查首页展示状态。",
+      proof_anchor: "当前页面使用的是内置空态数据，不是实际 submission 结果。",
+      persona_tags: ["结构预览", "字段映射", "待附加图片"],
+      share_caption: "载入正式数据后，这里会显示最终对外摘要。",
+      spread_line: "Share Card Preview：当前展示的是空态预览，不是正式卡片。",
+      memory_basis: "No live card data loaded yet.",
+      owner: { name: "Preview Mode" },
+      image: null,
+      qr: null,
+      theme: {
+        background: "#FFF7DF",
+        border: "#111111",
+        accent: "#FF7548",
+        tag_colors: ["#FFD865", "#FFB78A", "#9DE2D3"]
+      },
+      selfie_prompt: "A validated 8-bit image prompt will appear here after real card data is loaded.",
+      i18n: {
+        zh: {
+          role: "仅供预览",
+          tagline: "这是首页预览空态，不代表任何真实 agent 内容。",
+          value_line: "用于检查卡片结构、字段映射和图片附加效果。",
+          top_capabilities: ["结构预览", "字段映射", "待附加图片"],
+          best_for: "在接入真实 share-card.json 之前检查首页展示状态。",
+          proof_anchor: "当前页面使用的是内置 fixture 数据，不是实际 submission 结果。",
+          spread_line: "仅供预览：当前展示的是空态预览，不是正式卡片。",
+          memory_basis: "当前尚未载入真实卡片数据。",
+          selfie_prompt: "载入真实卡片数据后，这里会显示校验后的 8-bit 图片提示词。",
+          persona_tags: ["结构预览", "字段映射", "待附加图片"],
+          share_caption: "载入正式数据后，这里会显示最终对外摘要。",
+          share_keywords: ["preview", "empty-state", "image-pending"]
+        },
+        en: {
+          role: "Fixture Preview Only",
+          tagline: "This is an empty preview state, not real agent content.",
+          value_line: "Use it to check layout, field mapping, and image attachment behavior.",
+          top_capabilities: ["Layout Preview", "Field Mapping", "Image Pending"],
+          best_for: "Checking the page before loading a real share-card.json payload.",
+          proof_anchor: "The page is using built-in fixture data, not an actual submission result.",
+          spread_line: "Fixture preview only: this page is showing an empty preview state.",
+          memory_basis: "No live card data loaded yet.",
+          selfie_prompt: "A validated 8-bit image prompt will appear here after real card data is loaded.",
+          persona_tags: ["Layout Preview", "Field Mapping", "Image Pending"],
+          share_caption: "The final public summary will appear here after real data is loaded.",
+          share_keywords: ["preview", "empty-state", "image-pending"]
+        }
+      }
+    };
+
+    const uiText = {
+      zh: {
+        bestFor: "适用场景",
+        whySpreads: "适合分享的原因",
+        whyFits: "为什么像它",
+        memoryBasis: "记忆来源",
+        promptPreview: "自拍提示词预览",
+        exportPng: "导出海报 PNG",
+        deployedBy: "主人",
+        qr: "二维码",
+        photoPlaceholder: "等待附加图片",
+        sideHeadline: "Agent 分享卡片预览",
+        sideSubheadline: "首页默认展示的是空态预览。载入真实的 share-card 数据和最终图片后，这里才会显示正式内容。",
+        posterMark: "Agent 分享卡片"
+      },
+      en: {
+        bestFor: "Best For",
+        whySpreads: "Why It Spreads",
+        whyFits: "Why This Fits",
+        memoryBasis: "Memory Basis",
+        promptPreview: "Selfie Prompt Preview",
+        exportPng: "Export Poster PNG",
+        deployedBy: "DEPLOYED BY",
+        qr: "QR",
+        photoPlaceholder: "Image not attached",
+        sideHeadline: "Agent Share Card Preview",
+        sideSubheadline: "The home page starts in an empty preview state. Real content appears only after a valid share-card payload and final image are loaded.",
+        posterMark: "Agent Share Card"
+      }
+    };
+
+    let currentLanguage = document.documentElement.lang === "en" ? "en" : "zh";
+
+    function readAsset(asset) {
+      if (!asset) return null;
+      if (typeof asset === "string") return asset;
+      if (typeof asset === "object") return asset.data_url || asset.url || null;
+      return null;
+    }
+
+    function normalizeShareCard(raw) {
+      if (!raw || raw.schema_version !== "share-card/1.0") return defaultData;
+      return {
+        ...defaultData,
+        ...raw,
+        owner: { ...defaultData.owner, ...(raw.owner || {}) },
+        top_capabilities: Array.isArray(raw.top_capabilities) ? raw.top_capabilities.slice(0, 3) : defaultData.top_capabilities,
+        persona_tags: Array.isArray(raw.persona_tags) ? raw.persona_tags.slice(0, 3) : defaultData.persona_tags,
+        theme: { ...defaultData.theme, ...(raw.theme || {}) },
+        image: readAsset(raw.image),
+        qr: readAsset(raw.qr),
+        i18n: raw.i18n && typeof raw.i18n === "object" ? raw.i18n : null,
+      };
+    }
+
+    function resolveLocalizedCard(card, lang) {
+      const localized = card?.i18n?.[lang];
+      if (!localized) return card;
+      return {
+        ...card,
+        role: localized.role || card.role,
+        tagline: localized.tagline || card.tagline,
+        value_line: localized.value_line || card.value_line,
+        top_capabilities: Array.isArray(localized.top_capabilities) ? localized.top_capabilities.slice(0, 3) : card.top_capabilities,
+        best_for: localized.best_for || card.best_for,
+        proof_anchor: localized.proof_anchor || card.proof_anchor,
+        spread_line: localized.spread_line || card.spread_line,
+        memory_basis: localized.memory_basis || card.memory_basis,
+        selfie_prompt: localized.selfie_prompt || card.selfie_prompt,
+        poster_headline: localized.poster_headline || card.poster_headline,
+        poster_subline: localized.poster_subline || card.poster_subline,
+        persona_tags: Array.isArray(localized.persona_tags) ? localized.persona_tags.slice(0, 3) : card.persona_tags,
+        share_caption: localized.share_caption || card.share_caption,
+        share_keywords: Array.isArray(localized.share_keywords) ? localized.share_keywords : card.share_keywords,
+      };
+    }
+
+    function inferRoleBackdrop(role) {
+      if (!role) return "";
+      if (role.includes("销售")) return "pipeline";
+      if (role.includes("产品") || role.includes("策略")) return "strategy";
+      if (role.includes("招聘")) return "hiring";
+      if (role.includes("支持") || role.includes("客服")) return "support";
+      return "";
+    }
+
+    function inferPosterBadge(card) {
+      const name = String(card?.name || "").trim();
+      if (name.includes("ShrimpCard")) return "ShrimpCard";
+      if (name) return name.length <= 18 ? name : "Share Card";
+      return "Share Card";
+    }
+
+    function applyTheme(theme) {
+      const root = document.documentElement;
+      root.style.setProperty("--bg", theme.background || defaultData.theme.background);
+      root.style.setProperty("--border", theme.border || defaultData.theme.border);
+      root.style.setProperty("--accent", theme.accent || defaultData.theme.accent);
+      const tagColors = Array.isArray(theme.tag_colors) && theme.tag_colors.length >= 3 ? theme.tag_colors : defaultData.theme.tag_colors;
+      root.style.setProperty("--tag-1", tagColors[0]);
+      root.style.setProperty("--tag-2", tagColors[1]);
+      root.style.setProperty("--tag-3", tagColors[2]);
+      root.style.setProperty("--accent-strong", tagColors[2]);
+      root.style.setProperty("--accent-2", tagColors[2]);
+    }
+
+    function renderTags(tags) {
+      const node = document.getElementById("personaTags");
+      if (!node) return;
+      const colors = ["var(--tag-1)", "var(--tag-2)", "var(--tag-3)"];
+      node.replaceChildren(...tags.map((tag, index) => {
+        const span = document.createElement("span");
+        span.className = "persona-tag";
+        span.style.background = colors[index] || "#fff";
+        span.textContent = tag;
+        return span;
+      }));
+    }
+
+    function renderOwner(owner, lang) {
+      const node = document.getElementById("ownerBlock");
+      if (!node) return;
+      const lines = [];
+      if (owner.name) lines.push(`${uiText[lang].deployedBy} ${owner.name}`);
+      if (owner.contact) lines.push(owner.contact);
+      node.replaceChildren(...lines.map((line) => {
+        const div = document.createElement("div");
+        div.textContent = line;
+        return div;
+      }));
+    }
+
+    function renderImage(src, imageId, placeholderId) {
+      const img = document.getElementById(imageId);
+      const placeholder = document.getElementById(placeholderId);
+      const photo = img ? img.closest(".poster-photo") : null;
+      if (!img || !placeholder) return;
+      if (src) {
+        img.src = src;
+        img.style.display = "block";
+        placeholder.style.display = "none";
+        if (photo) photo.dataset.empty = "false";
+      } else {
+        img.removeAttribute("src");
+        img.style.display = "none";
+        placeholder.style.display = "flex";
+        if (photo) photo.dataset.empty = "true";
+      }
+    }
+
+    function applyImageStrategy(card) {
+      const photo = document.querySelector(".poster-photo");
+      if (!photo) return;
+      photo.dataset.guideMode = card.image ? "false" : "true";
+      const roleBackdrop = card.role_backdrop || "";
+      photo.dataset.roleBackdrop = roleBackdrop;
+      const exportCard = document.getElementById("exportCard");
+      if (exportCard) {
+        exportCard.dataset.roleBackdrop = roleBackdrop;
+        exportCard.dataset.guideMode = card.image ? "false" : "true";
+      }
+    }
+
+    function renderKeywords(card) {
+      const keywords = (Array.isArray(card.share_keywords) ? card.share_keywords : []).slice(0, 4);
+      const node = document.getElementById("metaKeywords");
+      if (!node) return;
+      node.replaceChildren(...keywords.map((keyword) => {
+        const span = document.createElement("span");
+        span.className = "meta-pill";
+        span.textContent = keyword;
+        return span;
+      }));
+    }
+
+    function applyUiLanguage(lang) {
+      const ui = uiText[lang] || uiText.zh;
+      const labels = document.querySelectorAll(".mini-label");
+      if (labels[0]) labels[0].textContent = ui.bestFor;
+      if (labels[1]) labels[1].textContent = ui.whySpreads;
+      if (labels[2]) labels[2].textContent = ui.memoryBasis;
+      if (labels[3]) labels[3].textContent = ui.promptPreview;
+      const proofLabel = document.querySelector(".proof-label");
+      if (proofLabel) proofLabel.textContent = ui.whyFits;
+      const qrPlaceholder = document.getElementById("qrPlaceholder");
+      if (qrPlaceholder) qrPlaceholder.textContent = ui.qr;
+      const photoPlaceholder = document.getElementById("photoPlaceholder");
+      if (photoPlaceholder) photoPlaceholder.textContent = ui.photoPlaceholder;
+      const posterMark = document.getElementById("posterMark");
+      if (posterMark) posterMark.textContent = ui.posterMark;
+    }
+
+    function renderCard(rawData, lang = currentLanguage) {
+      const ui = uiText[lang] || uiText.zh;
+      const baseCard = normalizeShareCard(rawData);
+      const card = resolveLocalizedCard(baseCard, lang);
+      const roleBackdrop = baseCard.role_backdrop || inferRoleBackdrop(baseCard.role);
+      card.role_backdrop = roleBackdrop;
+      card.image = baseCard.image;
+      applyTheme(card.theme || {});
+      applyUiLanguage(lang);
+
+      const posterBadge = document.getElementById("posterBadge");
+      if (posterBadge) posterBadge.textContent = inferPosterBadge(card);
+      const sideHeadline = document.getElementById("sideHeadline");
+      if (sideHeadline) sideHeadline.textContent = card.poster_headline || card.role || ui.sideHeadline;
+      const subheadline = document.getElementById("subheadline");
+      if (subheadline) subheadline.textContent = card.poster_subline || card.value_line || card.tagline || ui.sideSubheadline;
+      const name = document.getElementById("name");
+      if (name) name.textContent = card.name;
+      const role = document.getElementById("role");
+      if (role) role.textContent = card.role;
+      const tagline = document.getElementById("tagline");
+      if (tagline) tagline.textContent = card.tagline;
+      const shareCaption = document.getElementById("shareCaption");
+      if (shareCaption) shareCaption.textContent = card.share_caption || card.spread_line;
+      const bestFor = document.getElementById("bestFor");
+      if (bestFor) bestFor.textContent = card.best_for;
+      const spreadReason = document.getElementById("spreadReason");
+      if (spreadReason) spreadReason.textContent = card.spread_line;
+      const proofAnchor = document.getElementById("proofAnchor");
+      if (proofAnchor) proofAnchor.textContent = card.proof_anchor;
+      const memoryBasis = document.getElementById("memoryBasis");
+      if (memoryBasis) memoryBasis.textContent = card.memory_basis;
+      const selfiePrompt = document.getElementById("selfiePrompt");
+      if (selfiePrompt) selfiePrompt.textContent = card.selfie_prompt || defaultData.selfie_prompt;
+      renderTags(card.persona_tags && card.persona_tags.length ? card.persona_tags : defaultData.persona_tags);
+      renderOwner(card.owner || {}, lang);
+      renderKeywords(card);
+      applyImageStrategy(card);
+      renderImage(card.image, "mainImage", "photoPlaceholder");
+    }
+
+    const cardSource = window.__CARD_DATA__ || defaultData;
+    renderCard(cardSource, currentLanguage);
+  </script>
+</body>
+</html>

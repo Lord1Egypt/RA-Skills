@@ -1,0 +1,3 @@
+display_name: 微信公众号写作
+short_description: 写作、改写和优化微信公众号文章，提升标题、结构、信息密度和中文语感。
+default_prompt: 使用 $wechat-article-writer 策划、写作或修订微信公众号文章。先明确目标读者、文章目标、标题承诺、结构、声口、事实边界、标题选项、开头、正文节奏和结尾动作。

@@ -1,0 +1,4 @@
+npm_package: @openclawline/clawline-setup
+install_command: openclaw plugins install @openclawline/clawline-setup
+runtime: node
+min_openclaw_version: 1.0.0

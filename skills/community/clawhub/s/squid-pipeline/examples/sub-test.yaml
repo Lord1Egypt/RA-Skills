@@ -1,0 +1,43 @@
+# ─── Reusable Test Sub-Pipeline ────────────────────────────────────────
+#
+# Runs unit and integration tests, outputs a structured report.
+# Can be called standalone or as a step in a parent pipeline.
+#
+# Standalone:  squid run squid-pipeline/examples/sub-test.yaml
+# As sub-step: See squid-pipeline/examples/orchestrator.yaml
+
+name: test
+description: Run unit and integration tests
+
+args:
+  suite:
+    default: all
+    description: Test suite to run (all, unit, integration)
+  coverage:
+    default: true
+    description: Collect coverage data
+
+steps:
+  - id: unit-tests
+    type: run
+    description: Run unit tests
+    run: echo '{"passed":48,"failed":0,"skipped":2}'
+    retry: 2
+
+  - id: integration-tests
+    type: run
+    description: Run integration tests
+    run: echo '{"passed":12,"failed":0,"skipped":0}'
+    when: $args.suite == "all" || $args.suite == "integration"
+
+  - id: coverage-report
+    type: run
+    description: Generate coverage report
+    run: echo '{"line_coverage":87.3,"branch_coverage":72.1}'
+    when: $args.coverage
+
+  - id: report
+    type: transform
+    description: Aggregate test report
+    transform: |
+      {"suite":"${args.suite}","unit":${unit-tests.json.passed},"integration":${integration-tests.json.passed},"coverage":${coverage-report.json.line_coverage},"all_passed":true}

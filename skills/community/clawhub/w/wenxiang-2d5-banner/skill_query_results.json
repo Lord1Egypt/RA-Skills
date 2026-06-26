@@ -1,0 +1,124 @@
+{
+  "queries": {
+    "飞书文档生成": [
+      {
+        "skill_name": "feishu-document-generation",
+        "similarity": 0.791,
+        "filename": "SKILL.md",
+        "preview": "﻿# Feishu Document Generation - 飞书文档生成 Skill  > 版本：V1.0   > 状态：🆕 新建   > 最后更新：2026-03-08 00:30   > 创建原因：标准化飞书文档生成流程，解决空白文档问题  ---  ## 📋 Skill 定义  **名称：** 飞书文档生成 Skill   **编号：** SKILL-FEISHU-DOC-001   *"
+      },
+      {
+        "skill_name": "create-feishu-doc",
+        "similarity": 0.785,
+        "filename": "SKILL.md",
+        "preview": "﻿# create-feishu-doc - 飞书文档创建技能  _版本：V1.0 | 创建时间：2026-03-08 | 状态：已上线_  ---  ## 📋 技能描述  创建飞书文档时，**必须分块写入**（block by block），不能一次性长文本写入。  **原因：** - 飞书 API 对单次写入长度有限制 - 分块写入更稳定，错误易定位 - 便于后续增量更新（定位到具体 bloc"
+      },
+      {
+        "skill_name": "md-to-feishu-doc",
+        "similarity": 0.738,
+        "filename": "SKILL.md",
+        "preview": "# MD 转飞书文档 - Markdown 转飞书云文档  _将本地 Markdown 文档转换为飞书云文档，支持手机端查看_  ## 核心原则  **⚠️ 绝对不要用长文字写入飞书文档！**  - ❌ 错误：用 `feishu_doc --action write --content \"长文本...\"` - ✅ 正确：用 `feishu_doc --action create` 创建文档，然后用"
+      }
+    ],
+    "TTS 语音": [
+      {
+        "skill_name": "tts-automation",
+        "similarity": 0.751,
+        "filename": "SKILL.md",
+        "preview": "⚙️ 偏好设置  ### TTS 配置 - **提供商：** 阿里云（Aliyun） - **声音：** zh-CN-yunxi - **语言：** zh-CN（中文） - **格式：** MP3 - **采样率：** 24000 Hz - **码率：** 48 kbitrate  ### 文件管理 - **存储位置：** `workspace/tts/` - **命名规则：** `voice-时"
+      }
+    ],
+    "记忆同步": [
+      {
+        "skill_name": "goodnight-memory-sync",
+        "similarity": 0.67,
+        "filename": "SKILL.md",
+        "preview": "# Goodnight Memory Sync - 晚安记忆同步  ## 技能描述  每天晚安时自动将当日记忆文件、工作日志、重要文档备份到 OneDrive 离线文档文件夹，确保数据安全和本地可访问。  ## 触发条件  - 用户说\"晚安\"、\"睡觉\"、\"休息\"等 - 每日固定时间（23:00-02:00）会话结束时 - 用户明确要求\"同步到 OneDrive\"  ## 核心能力  1. **识别"
+      }
+    ],
+    "项目管理": [
+      {
+        "skill_name": "standard-project-initiation",
+        "similarity": 0.664,
+        "filename": "SKILL.md",
+        "preview": "---  ## ✅ 检查清单  ### 立项前检查 - [ ] 项目名称已确认 - [ ] 一句话描述已准备 - [ ] 项目背景已梳理 - [ ] 项目目标已定义 - [ ] 核心成员已确认  ### 立项中检查 - [ ] 8 步流程已执行 - [ ] 3 个文档已生成 - [ ] 文档格式已检查 - [ ] 里程碑已规划 - [ ] 风险已识别  ### 立项后检查 - [ ] 飞书文档已追"
+      },
+      {
+        "skill_name": "project-triple-sync",
+        "similarity": 0.612,
+        "filename": "SKILL.md",
+        "preview": "盖）   - Master 周报中已有项目索引，跳过   - 项目日报：创建新文件（日期不同）   - Master 日报：追加项目索引（如日期相同则更新） ```  ---  ## 📊 监控指标  - **同步成功率**：目标 100% - **平均同步时间**：<120 秒/项目（含项目 worklog + Master 汇总） - **Worklog 创建率**：目标 100%（项目专属 +"
+      }
+    ],
+    "emoji 表情": [
+      {
+        "skill_name": "axiang-emoji-trigger",
+        "similarity": 0.697,
+        "filename": "SKILL.md",
+        "preview": "了 | `sleepy/` | 😴 | | 默认/亮相 | `-` | 🦞 |  ---  ## 🔧 配置要求  ### 文件结构  ``` workspace/ ├── axiang-emoji/ │   ├── happy/ │   │   ├── happy1_thumb.png │   │   ├── happy2_thumb.png │   │   └── ... │   ├── shy"
+      },
+      {
+        "skill_name": "feishu-emoji-trigger",
+        "similarity": 0.696,
+        "filename": "SKILL.md",
+        "preview": "| `$emotion = \"touched\"` | 🥺 | | 自信/得意 | confident | 3 张 | axiang-emoji/confident/confident1_thumb.png | ~25KB | `$emotion = \"confident\"` | 😎 | | 欢呼/庆祝 | cheer | 2 张 | axiang-emoji/cheer/cheer1_thumb."
+      }
+    ]
+  },
+  "combinations": {
+    "create-feishu-doc": [
+      "project-triple-sync"
+    ],
+    "doubao-session-archiver": [
+      "doubao-expert-review"
+    ],
+    "emoji-usage": [
+      "self-improving-agent-cn",
+      "standard-project-initiation",
+      "three-line-sync",
+      "using-superpowers"
+    ],
+    "find-skills": [
+      "github"
+    ],
+    "goodnight-memory-sync": [
+      "doubao-expert-review",
+      "project-knowledge-expert"
+    ],
+    "html-expert-review": [
+      "doubao-session-archiver"
+    ],
+    "player-exp-system": [
+      "html-expert-review",
+      "project-summary-report"
+    ],
+    "project-progress-sync": [
+      "weekly-report-generator"
+    ],
+    "project-summary-report": [
+      "html-expert-review"
+    ],
+    "SKILL-DOUBAO-001": [
+      "doubao-expert-review",
+      "doubao-session-archiver",
+      "html-expert-review",
+      "三线更新"
+    ],
+    "skill-vetting": [
+      "github"
+    ],
+    "three-line-sync": [
+      "三线更新"
+    ],
+    "using-superpowers": [
+      "find-skills",
+      "html-expert-review"
+    ],
+    "voice-control-enhanced": [
+      "github"
+    ],
+    "weda-integration": [
+      "github"
+    ]
+  }
+}

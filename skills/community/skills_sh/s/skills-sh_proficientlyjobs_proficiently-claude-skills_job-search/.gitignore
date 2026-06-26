@@ -1,0 +1,10 @@
+# Personal data - don't commit
+assets/resume/
+assets/job-history.md
+assets/matching-rules.md
+
+# Logs
+logs/
+
+# Keep templates
+!assets/templates/

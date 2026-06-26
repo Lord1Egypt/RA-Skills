@@ -1,0 +1,54 @@
+{
+  "ticker": "DIS",
+  "company": "The Walt Disney Company",
+  "analysis_year": 2000,
+  "data_source": "Disney FY1999 10-K, SEC EDGAR; Berkshire 2000-03-31 13F-HR/A",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.090, "metric_used": "ROE", "years_averaged": "1997-1999", "pass": false },
+    "g2_fcf_to_ni": { "value": 2.66, "fcf": 3454.0, "net_income": 1300.0, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.37, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue was still growing into 1999, rising from $22.5B to $23.0B to $23.4B. The issue was not top-line shrinkage but weakening profitability and a more complex conglomerate mix.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Disney's operating margin deteriorated for two consecutive years, from roughly 19.8% in 1997 to 17.5% in 1998 to 14.7% in 1999, reflecting weaker studio results, Internet losses, and broader integration drag.", "declining_2plus_years": true, "pass": false },
+    "g6_earnings_yield": { "value": 0.019, "net_income_m": 1300.0, "ev_m": 70079, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "Disney unquestionably had a moat: unmatched family IP, parks, media distribution, consumer-products licensing, and a library of characters and franchises that competitors could not duplicate. The question in 2000 was not whether Disney owned great assets, but whether the conglomerate's economics and valuation still left a meaningful margin of safety.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "Disney's sub-2% earnings yield reflected peak late-1990s enthusiasm around media franchises, Internet optionality, and conglomerate prestige.",
+      "reason_for_low_yield": "Unlike elite tollbooths such as Moody's, this low yield did not sit on top of rising returns on capital; it coincided with declining margins and more complex capital demands.",
+      "decision_impact": "The note reinforces rather than softens the PASS. Disney had wonderful assets, but the price and return profile did not look like a Buffett-grade bargain."
+    },
+    "management_veto": {
+      "status": "watch",
+      "summary": "No integrity red flag dominates the file, but the capital-allocation picture was more complicated than at Berkshire's cleanest compounders because the business mix, studio volatility, and Internet ambitions were already muddying the economics."
+    }
+  },
+
+  "metrics_snapshot": {
+    "revenue_1999_usd_m": 23402,
+    "operating_income_1999_usd_m": 3444,
+    "net_income_1999_usd_m": 1300,
+    "cash_provided_by_operations_1999_usd_m": 5588,
+    "capital_expenditures_1999_usd_m": 2134,
+    "cash_1999_usd_m": 414,
+    "borrowings_1999_usd_m": 11693,
+    "berkshire_shares_q1_2000_m": 2.332,
+    "berkshire_market_value_q1_2000_usd_m": 96.2
+  },
+
+  "control_groups": [
+    { "ticker": "TWX", "company": "Time Warner Inc.", "year": 2000, "gates_failed": ["g5_gross_margin_trend", "g6_earnings_yield"], "conclusion": "PASS — another great library-and-distribution asset base, but conglomerate complexity and lofty pricing offered little safety." },
+    { "ticker": "VIA", "company": "Viacom Inc.", "year": 2000, "gates_failed": ["g3_leverage", "g6_earnings_yield"], "conclusion": "PASS — strong media assets, but more leverage and no clearer bargain than Disney at the time." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "By March 31, 2000 Berkshire disclosed 2,331,762 Walt Disney shares valued at about $96.2M.",
+  "actual_result": "Disney remained a culturally dominant company, but the stock did not deliver the kind of immediate or clean compounding Berkshire's best ideas produced from their entry points; the late-1990s valuation premium had already pulled a lot of future success forward.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A world-class brand portfolio can still be a pass when returns on capital are softening and the market is already capitalizing perfection."
+}

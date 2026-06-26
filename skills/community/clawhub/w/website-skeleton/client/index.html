@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="极客商城 — 正品保证，极速发货，打造极客的最优选货平台">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="极客商城">
+  <meta property="og:description" content="正品保证，极速发货，打造极客的最优选货平台">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+
+  <title>Website Skeleton</title>
+
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand" data-nav>
+        <span class="brand-icon">⚡</span>
+        <span>极客商城</span>
+      </a>
+
+      <ul class="navbar-links">
+        <li><a href="/" data-nav class="active">首页</a></li>
+        <li><a href="/products" data-nav>商品</a></li>
+        <li><a href="/orders" data-nav>订单</a></li>
+        <li><a href="/cart" data-nav>购物车</a></li>
+      </ul>
+
+      <div class="navbar-right" id="navbar-right">
+        <a href="/cart" class="cart-badge" data-nav aria-label="购物车">
+          🛒
+          <span class="cart-count" id="cart-count" style="display:none">0</span>
+        </a>
+        <div class="user-menu" id="user-menu">
+          <button class="user-menu-trigger" id="user-menu-btn">
+            <span class="user-menu-avatar" id="user-avatar">U</span>
+            <span id="user-name">登录</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="app"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

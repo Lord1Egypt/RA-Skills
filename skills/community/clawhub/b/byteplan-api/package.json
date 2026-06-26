@@ -1,0 +1,16 @@
+{
+  "name": "byteplan-api",
+  "version": "1.0.0",
+  "description": "BytePlan 数据平台 API 封装",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "keywords": [
+    "byteplan",
+    "api",
+    "data-platform"
+  ],
+  "author": "",
+  "license": "MIT"
+}

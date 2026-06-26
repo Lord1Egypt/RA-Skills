@@ -1,0 +1,32 @@
+[
+  {
+    "repo": "lirantal/dependency-confusion-demo",
+    "label": "risky",
+    "notes": "Dependency confusion demonstration with package-resolution attack context."
+  },
+  {
+    "repo": "spaceraccoon/npm-zoo",
+    "label": "risky",
+    "notes": "Collection of malicious npm package samples."
+  },
+  {
+    "repo": "moser/malicious-pypi-pkg",
+    "label": "risky",
+    "notes": "Malicious setup.py demonstration with download-and-exec behavior."
+  },
+  {
+    "repo": "directivecommons/prompt-injection-benchmark",
+    "label": "risky",
+    "notes": "Prompt injection benchmark corpus."
+  },
+  {
+    "repo": "DataDog/guarddog",
+    "label": "good",
+    "notes": "Security scanner codebase; useful for detector-rules false-positive checks."
+  },
+  {
+    "repo": "BehiSecc/awesome-claude-skills",
+    "label": "good",
+    "notes": "Large index of skills resources; typically low direct execution risk."
+  }
+]

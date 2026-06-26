@@ -1,0 +1,15 @@
+{
+  "description": "Local project path to GitHub repository URL mapping. Used by git-publish skill to skip asking for repo URL.",
+  "mappings": {
+    "C:\\Users\\zhangxiuyu\\.claude\\skills\\paper-innov-compare": "https://github.com/orbisz/paper-innov-compare-skill.git",
+    "C:\\Users\\zhangxiuyu\\.claude\\skills\\git-publish": "https://github.com/orbisz/git-publish-skill.git",
+    "C:\\Users\\zhangxiuyu\\.codex\\skills\\simulation-paper-auditor": "https://github.com/orbisz/simulation-paper-auditor-skill.git",
+    "C:\\Users\\zhangxiuyu\\.codex\\skills\\paper-matlab-reproduction": "https://github.com/orbisz/paper-matlab-reproduction.git",
+    "C:\\Users\\zhangxiuyu\\.codex\\skills\\simulation-doc-writer": "https://github.com/orbisz/simulation-doc-writer-skill.git",
+    "C:\\Users\\zhangxiuyu\\.codex\\skills\\multi-paper-innovation-comparator": "https://github.com/orbisz/multi-paper-innovation-comparator.git",
+    "C:\\Users\\zhangxiuyu\\.claude\\skills\\agent-init": "https://github.com/orbisz/agent-init-skill.git",
+    "C:\\Users\\zhangxiuyu\\.codex\\skills\\matlab-simulation-optimizer": "https://github.com/orbisz/matlab-simulation-optimizer-skill.git",
+    "C:\\Users\\zhangxiuyu\\.claude\\skills\\obsidian-quartz-blog-setup": "https://github.com/orbisz/Obsidian-Quartz-Blog-Setup-skill.git",
+    "C:\\Users\\zhangxiuyu\\.claude\\skills\\skill-publish": "https://github.com/orbisz/skill-publish-skill.git"
+  }
+}

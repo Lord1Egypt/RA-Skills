@@ -1,0 +1,12 @@
+{
+  "template": "auto",
+  "category": "蛋白粉",
+  "image": "/path/to/protein.jpg",
+  "lines": [
+    {"text": "兄弟们，练完这一组", "action": "拿起产品"},
+    {"text": "蛋白吸收率高得离谱", "action": "展示成分"},
+    {"text": "练大一年，从这罐开始", "action": "握拳鼓励"}
+  ],
+  "subtitle": true,
+  "output": "/tmp/huo15/protein.mp4"
+}

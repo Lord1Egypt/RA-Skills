@@ -1,0 +1,102 @@
+{
+  "$schema": "https://openclaw.ai/schemas/claude-plugin-marketplace.v1.json",
+  "name": "skillboss",
+  "displayName": "SkillBoss — The Wallet for AI Agents",
+  "slug": "skillboss",
+  "version": "0.1.1",
+  "description": "Give your OpenClaw agent access to 354+ tools (100+ LLMs via Claude/GPT/Gemini/DeepSeek, web scraping, search, image/video/audio generation, email) through one API key with signed JWT audit trail. Free $0.50 trial, no signup. Implements Agent Shopping Protocol v0.1.",
+  "author": {
+    "name": "SkillBoss",
+    "url": "https://www.skillboss.co",
+    "email": "support@skillboss.co"
+  },
+  "homepage": "https://www.skillboss.co",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SkillBoss-AI/skillboss.git",
+    "directory": "packages/openclaw-plugin"
+  },
+  "license": "MIT",
+  "keywords": [
+    "wallet",
+    "agent-wallet",
+    "llm",
+    "llm-gateway",
+    "web-scraping",
+    "web-search",
+    "image-generation",
+    "video-generation",
+    "text-to-speech",
+    "email",
+    "claude",
+    "gpt",
+    "gemini",
+    "deepseek",
+    "agent-shopping-protocol",
+    "x402",
+    "mpp",
+    "one-api-key",
+    "no-signup",
+    "free-trial"
+  ],
+  "categories": ["wallet", "llm", "tools", "gateway"],
+  "capabilities": [
+    "executes-code",
+    "makes-network-requests",
+    "reads-environment-variables"
+  ],
+  "install": {
+    "npm": "skillboss-openclaw-plugin",
+    "command": "npm install skillboss-openclaw-plugin"
+  },
+  "env": {
+    "required": ["SKILLBOSS_API_KEY"],
+    "how_to_get": {
+      "trial": "curl -X POST https://www.skillboss.co/api/try/anonymous-wallet -H 'Content-Type: application/json' -d '{}'",
+      "signup": "https://www.skillboss.co/console"
+    }
+  },
+  "tools": [
+    {
+      "name": "skillboss_run",
+      "description": "Universal escape hatch — invoke any of the 354+ SkillBoss skills by id with a JSON inputs payload."
+    },
+    {
+      "name": "skillboss_chat",
+      "description": "Call any of 100+ LLMs (Claude, GPT, Gemini, DeepSeek, Llama, Grok, Qwen, etc.)."
+    },
+    {
+      "name": "skillboss_web_scrape",
+      "description": "Fetch a URL and return cleaned markdown via Firecrawl."
+    },
+    {
+      "name": "skillboss_web_search",
+      "description": "Live web search via Perplexity Sonar."
+    },
+    {
+      "name": "skillboss_generate_image",
+      "description": "Generate an image from a text prompt (FLUX, Imagen, DALL·E)."
+    },
+    {
+      "name": "skillboss_send_email",
+      "description": "Send a transactional email via AWS SES."
+    },
+    {
+      "name": "skillboss_get_balance",
+      "description": "Fetch the current SkillBoss wallet balance."
+    },
+    {
+      "name": "skillboss_catalog_search",
+      "description": "Natural-language search over the 354-skill catalog — find a skill by intent instead of guessing model IDs."
+    }
+  ],
+  "links": {
+    "catalog": "https://www.skillboss.co/api/catalog",
+    "bootstrap": "https://www.skillboss.co/api/agent/bootstrap",
+    "status": "https://www.skillboss.co/api/status",
+    "protocol": "https://www.skillboss.co/docs/agent-shopping-protocol",
+    "docs": "https://www.skillboss.co/docs",
+    "npm": "https://www.npmjs.com/package/skillboss-openclaw-plugin"
+  },
+  "disclaimer": "SkillBoss is an independent multi-provider gateway and is not affiliated with, endorsed by, or sponsored by OpenClaw, Anthropic, OpenAI, Google, or any model vendor. All third-party product names and trademarks belong to their respective owners. See https://www.skillboss.co/legal/intellectual-property-policy for our full IP policy."
+}

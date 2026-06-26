@@ -1,0 +1,34 @@
+{
+  "name": "platform-script",
+  "version": "1.0.0",
+  "description": "提供自研业务平台的脚本模板和编码规范。包含 Groovy 后端脚本、JavaScript 表单脚本、SQL 查询、附件处理等完整模板。",
+  "author": "Lan2898408767",
+  "license": "MIT",
+  "tags": ["script", "groovy", "javascript", "sql", "template", "platform"],
+  "homepage": "https://clawhub.com/skills/platform-script",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "脚本模板",
+    "Groovy",
+    "JavaScript",
+    "SQL 查询",
+    "附件处理",
+    "表单脚本",
+    "数据查询"
+  ],
+  "category": "Development Tools",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  }
+}

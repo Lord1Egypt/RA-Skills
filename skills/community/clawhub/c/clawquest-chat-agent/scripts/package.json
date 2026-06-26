@@ -1,0 +1,11 @@
+{
+  "name": "clawquest-skill-scripts",
+  "version": "1.0.0",
+  "description": "ClawQuest skill automation scripts",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,54 @@
+# OpenClaw 工作流定义 (Phase 1 MVP)
+version: "1.0"
+name: tech_event_daily_digest
+description: 每日定时检索技术大会/论坛，智能过滤后推送至企微/飞书
+
+triggers:
+  - type: cron
+    schedule: "0 8 * * *"
+    timezone: "Asia/Shanghai"
+
+variables:
+  config_file: "./config.json"
+
+nodes:
+  # 1. 全网检索
+  - id: search_tech_events
+    type: tool_call
+    tool: "tavily-search"
+    params:
+      query: "{{config.keywords}} 会议 论坛 展会 交流会 2024 2025"
+      max_results: 50
+      search_depth: "basic"
+      days: 30
+      include_domains: ["activity.hqtime.cn", "huodongxing.com", "mp.weixin.qq.com", "gov.cn", "tech.sina.com.cn"]
+
+  # 2. 智能解析与过滤（调用 Skill）
+  - id: parse_and_filter
+    type: skill_call
+    skill: "tech_event_intelligence_parser"
+    inputs:
+      raw_search_data: "{{search_tech_events.raw_json}}"
+      config:
+        window_days: 30
+        max_results: "{{config.max_push_count}}"
+        min_score: "{{config.filter_threshold}}"
+        region: "{{config.region_filter}}"
+
+  # 3. 状态去重（简易本地KV）
+  - id: dedup_check
+    type: state_filter
+    key: "tech_events_pushed_{{date}}"
+    input: "{{parse_and_filter.output}}"
+    strategy: "skip_if_hash_match"
+
+  # 4. 渲染推送卡片并发送
+  - id: push_notification
+    type: http_request
+    method: "POST"
+    url: "{{config.webhook_url}}"
+    headers: { "Content-Type": "application/json" }
+    body_template: "push_card.json"
+    params:
+      digest_content: "{{dedup_check.filtered_output}}"
+      push_channel: "{{config.push_channel}}"

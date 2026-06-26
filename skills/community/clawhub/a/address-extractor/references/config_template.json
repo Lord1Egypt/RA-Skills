@@ -1,0 +1,40 @@
+{
+  "amap_api_config": {
+    "api_key": "your-amap-api-key-here",
+    "base_url": "https://restapi.amap.com/v3/geocode/geo",
+    "timeout": 10,
+    "retry_count": 3,
+    "rate_limit": {
+      "requests_per_second": 10,
+      "daily_limit": 100000
+    }
+  },
+  "address_patterns": {
+    "province_weight": 1.0,
+    "city_weight": 0.9,
+    "district_weight": 0.8,
+    "town_weight": 0.7,
+    "village_weight": 0.6,
+    "road_weight": 0.5,
+    "house_number_weight": 0.9,
+    "building_weight": 0.8,
+    "poi_weight": 0.7
+  },
+  "text_cleaning": {
+    "remove_special_chars": true,
+    "remove_invalid_notes": true,
+    "normalize_whitespace": true,
+    "preserve_chinese_punctuation": true
+  },
+  "output_format": {
+    "include_coordinates": true,
+    "include_components": true,
+    "include_standardized": true,
+    "coordinate_precision": 6
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(levelname)s - %(message)s",
+    "file_output": false
+  }
+}

@@ -1,0 +1,33 @@
+# photo-grader 配置
+
+# 原始照片目录（RAW/JPG/HEIC 文件所在路径）
+raw_dir = ""
+
+# 调色输出目录
+output_dir = ""
+
+# 输出 JPEG 画质 (1-100)，调色输出建议 95
+jpeg_quality = 95
+
+# 是否覆盖已存在的输出文件
+overwrite = false
+
+# 并行工作进程数，0 = 自动（取 CPU 核数，最多 8）
+workers = 0
+
+# ── RawTherapee 引擎配置 ──────────────────────────────────────
+
+# RawTherapee CLI 路径（空字符串自动从 PATH 查找 rawtherapee-cli）
+rawtherapee_cli = ""
+
+# 快速导出模式 (-f)：跳过不需要的处理模块加速渲染
+fast_export = false
+
+# 输出位深：8 或 16 (TIFF/PNG 有效；JPEG 固定 8-bit)
+output_bpp = 8
+
+# 是否启用镜头校正 (lensfun)
+lens_correction = true
+
+# 是否使用 Auto-Matched Camera Profile (匹配机内 JPEG 风格)
+auto_matched_curve = true

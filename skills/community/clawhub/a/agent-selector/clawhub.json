@@ -1,0 +1,81 @@
+{
+  "name": "agent-selector",
+  "version": "2.0.0",
+  "description": "全局人格身份切换技能 - 基于 Agency-Agent 人格库，自动切换 146+ 专业 Agent，任务完成自动恢复默认身份",
+  "author": "Krislu",
+  "license": "MIT",
+  "summary": "Agent Selector - 自动身份管理技能，根据对话自动适配专家人格，支持缓存优化和懒加载",
+  "tags": [
+    "agent",
+    "selector",
+    "persona",
+    "identity",
+    "role-switching",
+    "security-hardened",
+    "auto-coding",
+    "roundtable",
+    "productivity"
+  ],
+  "main": "__init__.py",
+  "files": [
+    "__init__.py",
+    "agent_selector.py",
+    "SKILL.md",
+    "README.md"
+  ],
+  "dependencies": [],
+  "requirements": {
+    "python": ">=3.10",
+    "external_apis": false,
+    "system_access": "filesystem_readonly"
+  },
+  "features": [
+    "自动 Agent 选择（关键词匹配）",
+    "手动人格切换",
+    "自动身份恢复（任务完成）",
+    "RoundTable 集成",
+    "Auto-Coding 集成",
+    "路径白名单验证",
+    "文件大小限制（100KB）",
+    "输入长度限制（10000 字符）",
+    "符号链接验证",
+    "文件编码验证",
+    "错误信息脱敏",
+    "Prompt 缓存优化",
+    "懒加载机制"
+  ],
+  "security": {
+    "pathWhitelist": ["agency-agents", "agency-agents-zh", "agency"],
+    "maxFileSize": "100KB",
+    "maxInputLength": "10000 chars",
+    "symlinkValidation": true,
+    "encodingValidation": true,
+    "noExternalAPI": true,
+    "readOnlyFileSystem": true,
+    "noInstallScripts": true,
+    "noExternalWrites": true
+  },
+  "scope": {
+    "description": "本地 Agent 选择和 Prompt 加载，不写入外部目录",
+    "allowedOperations": ["read_prompt_files", "select_agent", "cache_prompts"],
+    "deniedOperations": ["write_external_files", "install_to_tools", "create_symlinks"]
+  },
+  "performance": {
+    "cacheEnabled": true,
+    "lazyLoading": true,
+    "avgSwitchTime": "<1ms",
+    "avgLoadTime": "50-200ms"
+  },
+  "examples": [
+    "from agent_selector_skill import AgentSelector",
+    "selector = AgentSelector()",
+    "selector.analyze_and_switch('代码安全检查')",
+    "prompt = selector.get_prompt()",
+    "selector.complete_task()"
+  ],
+  "integrations": [
+    "roundtable-skill",
+    "auto-coding"
+  ],
+  "changelog": "v2.0.0: 添加自动身份管理（D 方案），性能优化（缓存 + 懒加载），安全加固（6 层防护），隐私清理（无硬编码地址）"
+}

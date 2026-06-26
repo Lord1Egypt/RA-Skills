@@ -1,0 +1,7 @@
+interface:
+  display_name: "Use ClawRSS"
+  short_description: "Operate ClawRSS feeds, digests, sync, and push"
+  default_prompt: "Use $use-clawrss to work with ClawRSS feeds, saved articles, digest records, and Apple push notifications in the current OpenClaw workspace."
+
+policy:
+  allow_implicit_invocation: true

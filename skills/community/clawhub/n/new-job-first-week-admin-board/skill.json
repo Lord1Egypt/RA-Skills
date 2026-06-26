@@ -1,0 +1,37 @@
+{
+  "name": "new-job-first-week-admin-board",
+  "displayName": "New Job First-Week Admin Board",
+  "version": "1.0.1",
+  "description": "Create a first-week new-job admin board for access requests, forms, equipment, meetings, questions, deadlines, blockers, and follow-ups while avoiding passwords, identity numbers, payroll details, and sensitive HR data.",
+  "triggerKeywords": [
+    "new job first week",
+    "first week admin board",
+    "new employee checklist",
+    "onboarding admin checklist",
+    "first week work setup",
+    "access request tracker",
+    "new hire equipment checklist",
+    "onboarding questions board",
+    "first week deadlines",
+    "job start logistics"
+  ],
+  "tags": [
+    "onboarding",
+    "admin",
+    "workplace",
+    "checklist",
+    "logistics"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "requiresApi": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Tracks first-week admin status, owners, deadlines, questions, blockers, and follow-ups only; never store passwords, one-time codes, full IDs, bank details, tax values, medical details, immigration details, background-check details, or sensitive HR data."
+}

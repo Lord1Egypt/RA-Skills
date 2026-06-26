@@ -1,35 +1,23 @@
----
-name: "Log Sift"
-description: "Filter large log files by keywords and date ranges quickly from the command line for efficient troubleshooting and analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/log-sift"
-sourceUrl: "https://clawhub.ai/skills/log-sift"
----
+# LogSift
 
-# Log Sift
+Quickly filter large log files by keyword or date range right from the command line — no more scrolling or manual searching.
 
-> Filter large log files by keywords and date ranges quickly from the command line for efficient troubleshooting and analysis.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/log-sift`
-- **Source URL:** [https://clawhub.ai/skills/log-sift](https://clawhub.ai/skills/log-sift)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/log-sift
+# Filter by keyword
+log_sift application.log -k "ERROR" -k "timeout"
+
+# Filter by date range
+log_sift application.log --since "2023-05-01 14:00:00" --until "2023-05-01 15:00:00"
+
+# From stdin
+tail -n 1000 app.log | log_sift -k "failed" --since "2023-05-01"
+
+# Mixed filtering
+log_sift -k "Warning" --since "2023-05-01" server.log
 ```
+
+## Price
+
+$2.50

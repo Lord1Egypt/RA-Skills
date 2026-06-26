@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, "PingFang SC", "Hiragino Sans GB",
+                 "Microsoft YaHei", "Source Han Serif SC", serif;
+    font-size: 10.5pt;
+    line-height: 1.85;
+    color: #1c1c1c;
+    background: #fafaf8;
+}
+
+/* 第一页（封面）无边距，全出血 */
+@page :first { margin: 0; }
+/* 后续所有正文页：顶部 48px，左右 40px */
+@page { margin: 48px 40px; }
+
+/* 封面：撑满整页 */
+.cover {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 60px 80px;
+    background: #1a3a5c;
+    color: white;
+    text-align: center;
+}
+.cover .bar { width: 60px; height: 5px; background: #c8a84b; margin: 0 auto 40px; }
+.cover h1 {
+    font-size: 28pt;
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin: 0 0 12px;
+}
+.cover .subtitle {
+    font-size: 12pt;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 48px;
+}
+.cover .meta { font-size: 10pt; color: rgba(255,255,255,0.65); line-height: 2.2; }
+.cover .meta strong { color: #c8a84b; }
+
+/* 正文容器 */
+.content {
+    padding: 16px;
+}
+
+h1 { display: none; }
+
+h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #1a3a5c;
+    border-left: 4px solid #c8a84b;
+    padding-left: 12px;
+    margin: 30px 0 10px;
+    break-after: avoid;
+    break-inside: avoid;
+}
+
+h3 {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #1a3a5c;
+    margin: 18px 0 6px;
+    break-after: avoid;
+    break-inside: avoid;
+}
+
+p {
+    margin-bottom: 9px;
+    text-align: justify;
+    orphans: 3;
+    widows: 3;
+}
+
+em { color: #5a5a5a; font-style: normal; font-size: 9pt; }
+
+strong { color: #1a3a5c; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+th { background: #1a3a5c; color: white; padding: 7px 10px; text-align: left; }
+td { padding: 5px 10px; border-bottom: 1px solid #d4d4d4; }
+tr:nth-child(even) td { background: #f3f3ef; }
+
+hr {
+    border: none;
+    border-top: 1px solid #d4d4d4;
+    margin: 20px 0;
+    break-after: avoid;
+}
+
+ul, ol { margin: 6px 0 10px 20px; }
+li { margin-bottom: 3px; }
+
+blockquote {
+    border-left: 3px solid #c8a84b;
+    padding: 6px 14px;
+    color: #5a5a5a;
+    font-size: 9.5pt;
+    background: #f6f4ee;
+    margin: 10px 0;
+    break-inside: avoid;
+}
+
+.content > *:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+    <div class="bar"></div>
+    <h1>全球财经简报</h1>
+    <div class="subtitle">GLOBAL FINANCIAL BRIEF</div>
+    <div class="meta">
+        <strong>报告日期</strong>&nbsp;&nbsp;{{REPORT_DATE}}<br>
+        覆盖时段：过去 24 小时<br>
+        来源：Bloomberg &middot; Reuters &middot; CNBC &middot; 新浪财经 &middot; 东方财富
+    </div>
+</div>
+
+<!-- 正文（由脚本替换 {{BODY}} 占位符） -->
+<div class="content">
+{{BODY}}
+</div>
+
+</body>
+</html>

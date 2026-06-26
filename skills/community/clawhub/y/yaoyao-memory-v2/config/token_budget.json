@@ -1,0 +1,8 @@
+{
+  "total": 4000,
+  "identity_context": 500,
+  "memory_retrieval": 2000,
+  "search_results": 1000,
+  "governance_overhead": 300,
+  "reserved": 200
+}

@@ -1,0 +1,179 @@
+{
+  "id": "iaskaster",
+  "name": "iaskaster",
+  "version": "0.0.2",
+  "description": "命理八字分析工具 - 调用外部 iaskaster API 生成专业 PDF 命理报告",
+  "author": "",
+  "main": "index.ts",
+  "permissions": ["network"],
+  "externalApi": {
+    "enabled": true,
+    "description": "调用 iaskaster 外部 API 生成命理报告",
+    "endpoint": "https://iaskmaster.cn"
+  },
+  "requiresAuth": true,
+  "description": "此技能会调用 iaskaster 外部 API 服务器生成专业命理报告（PDF格式），包含以下步骤：\n1. 用户手机号/邮箱验证码登录\n2. 提交出生信息\n3. API 生成命理报告（约30秒）\n4. 下载 PDF 报告到本地",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "IASKASTER_API_URL": {
+        "type": "string",
+        "description": "iaskaster API地址",
+        "default": "https://iaskmaster.cn"
+      }
+    }
+  },
+  "triggers": [
+    {
+      "patterns": ["算命", "排八字", "看八字", "命理分析", "八字分析", "算一卦", "命盘", "排盘", "算卦", "五行分析", "八字测算", "运势"],
+      "description": "命理分析请求"
+    },
+    {
+      "patterns": ["登录", "验证码", "注册", "充值"],
+      "description": "登录相关"
+    },
+    {
+      "patterns": ["报告", "结果", "下载", "查看", "解读"],
+      "description": "报告查询"
+    }
+  ],
+  "tools": [
+    {
+      "name": "iaskaster_auto",
+      "description": "一键自动命理分析脚本。此脚本可直接执行（无需大模型额外解析参数），执行路径: node scripts/autoFlow.ts。支持的 action: form(获取表单), check_login(检查登录), send_code(发送验证码), verify_code(验证登录), submit(提交分析), status(查询状态)。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["form", "check_login", "send_code", "verify_code", "submit", "status"],
+            "description": "操作类型：form获取表单/check_login检查登录/send_code发送验证码/verify_code验证登录/submit提交分析/status查询状态"
+          },
+          "contact": {
+            "type": "string",
+            "description": "手机号或邮箱，用于发送验证码或验证"
+          },
+          "code": {
+            "type": "string",
+            "description": "收到的验证码"
+          },
+          "name": {
+            "type": "string",
+            "description": "姓名（可选）"
+          },
+          "birthInfo": {
+            "type": "string",
+            "description": "出生信息，支持格式：姓名：XXX\\n性别：男\\n婚姻：未婚\\n出生日期：1990年5月15日\\n出生时间：14时30分\\n日历类型：公历\\n省份：XXX\\n城市：XXX"
+          }
+        }
+      }
+    },
+    {
+      "name": "iaskaster_form",
+      "description": "获取出生信息填写表单模板",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "iaskaster_list",
+      "description": "查询命理报告列表"
+    },
+    {
+      "name": "iaskaster_download",
+      "description": "查看或下载命理报告PDF",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "description": "报告ID"
+          },
+          "action": {
+            "type": "string",
+            "enum": ["show", "download", "list"],
+            "default": "show"
+          },
+          "outputPath": {
+            "type": "string",
+            "description": "下载保存路径"
+          }
+        },
+        "required": ["reportId"]
+      }
+    },
+    {
+      "name": "iaskaster_balance",
+      "description": "查询账户余额/额度"
+    },
+    {
+      "name": "iaskaster_recharge",
+      "description": "获取充值页面链接"
+    },
+    {
+      "name": "iaskaster_read",
+      "description": "读取已下载的命理报告PDF（Base64）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "PDF文件路径"
+          }
+        },
+        "required": ["filename"]
+      }
+    },
+    {
+      "name": "iaskaster_fortune",
+      "description": "运势分析（财运、事业、健康、感情等）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "intent": {
+            "type": "string",
+            "description": "查询意图"
+          },
+          "period": {
+            "type": "string",
+            "description": "时间段"
+          },
+          "naturalText": {
+            "type": "string",
+            "description": "自然语言描述"
+          }
+        }
+      }
+    },
+    {
+      "name": "iaskaster_bazi",
+      "description": "八字命盘解读",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "description": "报告ID"
+          },
+          "aspect": {
+            "type": "string",
+            "description": "解读方面"
+          }
+        }
+      }
+    }
+  ],
+  "commands": [
+    {
+      "name": "iaskaster",
+      "description": "命理分析完整流程",
+      "usage": "iaskaster [手机号|邮箱] [验证码] [出生信息]"
+    },
+    {
+      "name": "iaskaster-form",
+      "description": "获取出生信息表单",
+      "usage": "iaskaster-form"
+    }
+  ]
+}

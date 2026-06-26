@@ -1,0 +1,22 @@
+{
+  "name": "conversation-miner",
+  "version": "2.0.0",
+  "description": "对话价值提取助手 - 从 AI 对话中自动总结、提取待办/想法/决策",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Conversation Miner Skill v2.0.0'"
+  },
+  "keywords": [
+    "conversation",
+    "miner",
+    "summarize",
+    "extract",
+    "openclaw",
+    "skill"
+  ],
+  "author": "万万粥 <wanwan_app@163.com>",
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

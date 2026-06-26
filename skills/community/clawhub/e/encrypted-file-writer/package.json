@@ -1,0 +1,41 @@
+{
+  "name": "encrypted-file-writer",
+  "version": "1.1.0",
+  "description": "写入内容到本地加密/受保护的文件，支持企业安全策略环境。支持文本文件、代码文件、配置文件等 80+ 种格式，通过正确的编码处理避免乱码问题。",
+  "author": "aclory",
+  "license": "MIT",
+  "keywords": [
+    "encrypted-file",
+    "file-writer",
+    "text-file",
+    "code-generation",
+    "config-file",
+    "enterprise",
+    "protected-file",
+    "utf8",
+    "encoding"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "write": "python write_file.py",
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aclory/encrypted-file-writer.git"
+  },
+  "homepage": "https://clawhub.com/skills/encrypted-file-writer",
+  "engines": {
+    "openclaw": ">=1.0.0",
+    "python": ">=3.6"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=1.0.0"
+  },
+  "config": {
+    "pythonPath": "python",
+    "scriptPath": "write_file.py",
+    "defaultEncoding": "utf-8"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "evidence-gap-mapper",
+  "title": "证据缺口绘图师",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "structured_brief",
+  "summary": "在报告、方案或演示稿中定位结论先行但证据不足的位置，并给出补证优先级。",
+  "inputHint": "文稿、结论、现有证据",
+  "sections": [
+    "主要结论",
+    "证据现状",
+    "缺口列表",
+    "补证优先级",
+    "可降级表述",
+    "下一步"
+  ],
+  "useCases": [
+    "报告质控",
+    "演示审稿",
+    "决策支持"
+  ],
+  "positiveExamples": [
+    "找出这份报告里证据不足的地方",
+    "给我一个补证优先级"
+  ],
+  "negativeExamples": [
+    "不要伪造数据支撑结论",
+    "不要忽略高风险假设"
+  ],
+  "risk": "适合作为质检器使用。",
+  "tags": [
+    "evidence",
+    "gap-analysis",
+    "research",
+    "quality"
+  ]
+}

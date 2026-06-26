@@ -1,0 +1,11 @@
+{
+  "users": {
+    "test001": {
+      "installed_skills": [
+        "ai-calls-china-phone"
+      ],
+      "phone_enabled": true,
+      "voice_enabled": false
+    }
+  }
+}

@@ -1,35 +1,128 @@
 ---
-name: "飞书多维表格 AI 管家"
+name: feishu-bitable-butler
 description: "飞书多维表格 AI 管家 — 自动化多维表格的数据清洗、批量录入、报表生成、字段管理和智能摘要。当用户需要操作飞书多维表格（Bitable）、批量处理表格数据、自动生成报表/周报、清洗整理数据、或管理多维表格结构时使用。触发词：多维表格、Bitable、飞书表格、自动报表、批量录入、数据清洗、飞书数据。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, automation, bitable, database, feishu, lark, spreadsheet]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-bitable-butler"
-sourceUrl: "https://clawhub.ai/skills/feishu-bitable-butler"
 ---
 
 # 飞书多维表格 AI 管家
 
-> 飞书多维表格 AI 管家 — 自动化多维表格的数据清洗、批量录入、报表生成、字段管理和智能摘要。当用户需要操作飞书多维表格（Bitable）、批量处理表格数据、自动生成报表/周报、清洗整理数据、或管理多维表格结构时使用。触发词：多维表格、Bitable、飞书表格、自动报表、批量录入、数据清洗、飞书数据。
+自动化飞书多维表格（Bitable）操作，让 Agent 成为你的表格管家。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-bitable-butler`
-- **Source URL:** [https://clawhub.ai/skills/feishu-bitable-butler](https://clawhub.ai/skills/feishu-bitable-butler)
+## 核心能力
 
-## Overview
+### 1. 表格结构管理
+- 创建多维表格应用和表
+- 增删字段（文本/数字/单选/多选/日期/人员/链接等）
+- 查看表格元数据和字段列表
 
+### 2. 数据批量操作
+- 批量创建记录（支持格式自动适配）
+- 批量更新记录
+- 分页查询和遍历
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-bitable-butler
+### 3. 智能报表生成
+- 从表格提取数据 → 生成摘要
+- 按条件筛选 + 统计分析
+- 自动写入报表结果到新表/新字段
+
+### 4. 数据清洗
+- 格式标准化
+- 去重检测
+- 空值/异常值标记
+
+---
+
+## 快速开始
+
+### 场景 1：接到一个飞书表格链接，不知道里面有什么
+
 ```
+用户：帮我看看这个表格 https://abc.feishu.cn/base/XXX?table=YYY
+```
+
+操作流程：
+1. `feishu_bitable_get_meta` 解析 URL → 获取 app_token + table_id + 表列表
+2. `feishu_bitable_list_fields` 列出所有字段
+3. `feishu_bitable_list_records` 读取前 20 条数据
+4. 总结表结构 + 数据概况
+
+### 场景 2：批量录入数据
+
+```
+用户：帮我在"客户跟进表"里录入这 5 条记录
+张三 | 138xxxx | 意向客户 | 2026-05-07
+李四 | 139xxxx | 已成交 | 2026-05-06
+...
+```
+
+操作流程：
+1. 先用 `feishu_bitable_list_fields` 确认字段名和类型
+2. 按字段类型格式化数据：
+   - 文本：直接传字符串
+   - 单选：传选项文本（如 `"意向客户"`）
+   - 多选：传数组 `["A", "B"]`
+   - 日期：传毫秒时间戳或 ISO 字符串
+3. 逐条/批量调用 `feishu_bitable_create_record`
+4. 完成后回报录入结果
+
+### 场景 3：从表格生成周报
+
+```
+用户：根据"本周任务"表给我生成周报
+```
+
+操作流程：
+1. `feishu_bitable_list_fields` 了解字段
+2. `feishu_bitable_list_records` 抓取全部记录（翻页直到无更多数据）
+3. 分析数据：完成数、未完成数、关键成果
+4. 格式化输出报告
+5. 可选：用 `feishu_bitable_create_record` 将报告写入"周报"表
+
+### 场景 4：数据清洗
+
+```
+用户：帮我检查"员工信息表"里的数据有没有问题
+```
+
+操作流程：
+1. 读取全量数据
+2. 检查：空字段、手机号格式、日期范围、选项值是否在有效范围内
+3. 标记异常记录
+4. 可选：用 `feishu_bitable_update_record` 在"数据状态"字段标记
+
+---
+
+## 字段类型速查
+
+| 类型ID | 名称 | 数据格式 |
+|--------|------|---------|
+| 1 | 文本 | `"字符串"` |
+| 2 | 数字 | `123` |
+| 3 | 单选 | `"选项名"` |
+| 4 | 多选 | `["选项A", "选项B"]` |
+| 5 | 日期 | 毫秒时间戳（如 `1715040000000`） |
+| 7 | 复选框 | `true/false` |
+| 11 | 人员 | `[{id: "ou_xxx"}]` |
+| 13 | 手机号 | `"138xxxx"` |
+| 15 | 链接 | `{text: "显示", link: "https://..."}` |
+| 17 | 附件 | 文件token数组 |
+| 22 | 位置 | 经纬度对象 |
+
+详见 [references/field-types.md](references/field-types.md)
+
+---
+
+## 最佳实践
+
+1. **先看结构再动数据** — 每次操作前先 `list_fields` 确认字段名和类型
+2. **翻页完整** — `list_records` 支持 `page_token` 翻页，确保读完所有数据
+3. **批量优于逐条** — 多条数据合并为一次讲话，避免逐条单独调用
+4. **写后验证** — 批量录入后抽样 `get_record` 验证
+5. **异常先标记不直接删** — 数据清洗时优先标记问题，由人确认后再处理
+
+---
+
+## 注意事项
+
+- 需要飞书应用有 Bitable 权限（`bitable:app` scope）
+- 操作前确保 app_token 和 table_id 正确（从 URL 提取或由用户提供）
+- 大表操作注意分页，单页最多 500 条

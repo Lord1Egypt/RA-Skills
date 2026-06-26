@@ -1,0 +1,22 @@
+{
+  "name": "Labor-Solana-Skill",
+  "version": "1.0.2",
+  "private": true,
+  "description": "OpenClaw skill: Solana ecosystem tools",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "transfer": "npm run build --silent && node dist/scripts/transfer-sol.js"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.0",
+    "bs58": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2"
+  }
+}

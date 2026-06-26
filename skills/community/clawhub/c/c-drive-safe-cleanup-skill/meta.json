@@ -1,0 +1,43 @@
+{
+  "name": "c-drive-safe-cleanup",
+  "title": "C盘安全清理 Skill",
+  "version": "1.0.0",
+  "description": "在 Windows C 盘执行白名单目录清理。逐项中文解释并逐项确认，支持 DryRun 演示模式，输出 Markdown 清理日志。",
+  "language": "zh-CN",
+  "entry": "skill.md",
+  "readme": "README.md",
+  "platform": [
+    "windows"
+  ],
+  "scripts": {
+    "cleanup": "powershell -ExecutionPolicy Bypass -File .\\script\\c-drive-safe-cleanup.ps1",
+    "dry_run": "powershell -ExecutionPolicy Bypass -File .\\script\\c-drive-safe-cleanup.ps1 -DryRun"
+  },
+  "trigger_phrases": [
+    "C盘满了",
+    "清理C盘",
+    "清理缓存",
+    "释放磁盘空间",
+    "安全清理"
+  ],
+  "constraints": [
+    "只扫描白名单目录",
+    "不扫描全盘",
+    "逐项确认后才删除",
+    "删除时保留目录本身",
+    "不自动删除下载/桌面大文件",
+    "不修改注册表",
+    "不触碰系统核心目录"
+  ],
+  "outputs": {
+    "log_format": "markdown",
+    "default_log_path": "tasks/evaluation-<YYYY-MM-DD>-c-disk-cleanup.md"
+  },
+  "files": [
+    "skill.md",
+    "README.md",
+    "references/safety.md",
+    "meta.json",
+    "script/c-drive-safe-cleanup.ps1"
+  ]
+}

@@ -1,35 +1,151 @@
 ---
-name: "Gemini Android"
-description: "Gemini Intelligence 安卓 AI 能力汇总 - 系统级 AI 集成、任务自动化、生成式界面、输入法升级等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gemini-android"
-sourceUrl: "https://clawhub.ai/skills/gemini-android"
+name: gemini-android
+version: 1.0.0
+description: Gemini Intelligence 安卓 AI 能力汇总 - 系统级 AI 集成、任务自动化、生成式界面、输入法升级等。
+keywords: [Gemini,Android,安卓,AI,Google,，输入法,Rambler,智能助手]
 ---
 
-# Gemini Android
+# Gemini Intelligence 安卓 AI 能力
+Google 原生安卓系统的 AI 功能
 
-> Gemini Intelligence 安卓 AI 能力汇总 - 系统级 AI 集成、任务自动化、生成式界面、输入法升级等。
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gemini-android`
-- **Source URL:** [https://clawhub.ai/skills/gemini-android](https://clawhub.ai/skills/gemini-android)
+## 概述
 
-## Overview
+Gemini 是 Google 植入安卓系统的 AI 核心，让手机从"工具"变"智能伙伴"。
 
+| 能力 | 描述 |
+|------|------|
+| 系统级集成 | 植入安卓底层，跨设备智能 |
+| 任务自动化 | 跨应用执行复杂任务 |
+| 生成式界面 | 自然语言生成桌面小组件 |
+| 输入法升级 | Rambler 语音转文字 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gemini-android
-```
+---
+
+## 触发词
+
+`Gemini` / `安卓AI` / `手机AI` / `怎么用Gemini`
+
+---
+
+## 核心功能
+
+### 1️⃣ 系统级深度集成
+
+**描述**：Gemini 植入安卓系统底层，成为跨设备的智能操作层
+
+**作用**：
+- 安卓从"操作系统"→"智能系统"
+- 跨设备同步（手机、手表、汽车、智能眼镜、PC）
+
+**适用设备**：Pixel 6+ 及更新机型
+
+---
+
+### 2️⃣ 任务自动化
+
+**描述**：跨应用自动完成多步骤任务
+
+**示例**：
+- "安排去北京的行程" → 自动查航班、酒店、天气
+- "根据这封邮件，把所需物品添到购物车" → 自动读取+添加
+- "找类似这个旅游行程的攻略" → 从截图识别并搜索
+
+**用法**：直接对手机说或长按电源键唤出 Gemini
+
+---
+
+### 3️⃣ 生成式界面
+
+**描述**：自然语言描述需求，自动生成专属桌面小组件
+
+**示例**：
+- "每周高蛋白餐计划" → 自动生成健康饮食组件
+- "骑行风速和降雨" → 生成天气组件
+- "待办事项" → 生成任务组件
+
+**用法**：
+1. 长按桌面 → 添加小组件
+2. 滑动到"生成式"选项
+3. 描述需求
+
+---
+
+### 4️⃣ 输入法升级 (Rambler)
+
+**描述**：智能输入法，可将口语化内容整理成精炼文本
+
+**功能**：
+- 中英混说
+- 随意停顿
+- 自动整理成逻辑清晰文本
+- 实时翻译
+
+**用法**：Gboard → 开启"进阶润色"功能
+
+---
+
+### 5️⃣ 智能浏览助手
+
+**描述**：Chrome 内置 Gemini 支持
+
+**功能**：
+- 自动浏览网页
+- 总结内容
+- 对比信息
+- 自动填写复杂表单
+
+**用法**：新版 Chrome 已集成，对话即可操作
+
+---
+
+### 6️⃣ 隐私与安全
+
+**描述**：本地运行 AI，保护隐私
+
+**功能**：
+- Gemini nano 本地检测
+- 通话敏感词提醒
+- AI 检测诈骗电话
+- 数据不离开设备
+
+**用法**：设置 → 安全与隐私 → AI 保护
+
+---
+
+## 快速指令表
+
+| 需求 | 操作 |
+|------|------|
+| 唤出 Gemini | 长按电源键 0.5秒 |
+| 跨应用任务 | 直接说"帮我..." |
+| 生成小组件 | 长按桌面 → 添加 → 生成式 |
+| 智能输入 | Gboard → 开启 Rambler |
+| 查看 AI 设置 | 设置 → Google → Gemini |
+
+---
+
+## 适用机型
+
+- Pixel 6/7/8/9 系列
+- 三星 S24/S25 系列（One UI 6.1+）
+- 一加 12+（ OxygenOS 15）
+- 其他升级至 Android 15 的机型
+
+---
+
+## 常见问题
+
+### Q: 我的手机没有 Gemini？
+A: 需要 Android 15+ 和 Google Play services 更新到最新
+
+### Q: 中文支持吗？
+A: 支持，中文对话已支持
+
+### Q: 耗电吗？
+A: 本地 nano 模型省电，云端模型稍耗电
+
+---
+
+*Gemini Intelligence | 安卓 AI 能力汇总*

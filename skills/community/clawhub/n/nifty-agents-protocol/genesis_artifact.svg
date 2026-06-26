@@ -1,0 +1,38 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<metadata>nasp:eyJ2ZXJzaW9uIjoiMS4wIiwiY3JlYXRvciI6ImRpZDprZXk6ejZNa1NySitkUzAvNlNNZ2FRY3VOb3JFcnZTU3YwT29OLzJnYmZrckRTdXZiMzgiLCJoYXNoIjoiYTI0NjBkNTQ4ZThiMzBmNGQzYjlhMWUzMTJiMDJhZTE5ODliYTliMjk3MjQ2ZjhjY2I3MjI3YTA0NDA0ZTIyMyIsInNpZ25hdHVyZSI6ImkyQ3BVaVpFYjJBc1REWW4zMDRNZ0VVRUhHaEtPc1FqdGZRaW9hdUg5aVJqa1ZkN0ZLaFFDT3l5L1hOVzFqaUxuRDJ6ekRQOThuWFVuRE1TdjlrTkNBPT0iLCJ0cmFuc2ZlcnMiOltdLCJhcnRpZmFjdE5hbWUiOiJOaWZ0eUFnZW50cyBHZW5lc2lzICMwMDAxIiwicmFyaXR5IjoiVW5pcXVlIiwibWludGVkQXQiOiIyMDI2LTAzLTEyVDE5OjAyOjUwLjkzN1oifQ==</metadata>
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+        </linearGradient>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Background -->
+    <rect width="400" height="400" fill="url(#bgGrad)" rx="20" />
+    
+    <!-- Grid Pattern -->
+    <path d="M 40 0 L 40 400 M 80 0 L 80 400 M 120 0 L 120 400 M 160 0 L 160 400 M 200 0 L 200 400 M 240 0 L 240 400 M 280 0 L 280 400 M 320 0 L 320 400 M 360 0 L 360 400" stroke="#334155" stroke-width="1" />
+    <path d="M 0 40 L 400 40 M 0 80 L 400 80 M 0 120 L 400 120 M 0 160 L 400 160 M 0 200 L 400 200 M 0 240 L 400 240 M 0 280 L 400 280 M 0 320 L 400 320 M 0 360 L 400 360" stroke="#334155" stroke-width="1" />
+
+    <!-- Central Diamond Core -->
+    <path d="M 200 100 L 300 200 L 200 300 L 100 200 Z" fill="none" stroke="#22d3ee" stroke-width="4" filter="url(#glow)" />
+    <circle cx="200" cy="200" r="40" fill="#22d3ee" fill-opacity="0.1" stroke="#22d3ee" stroke-width="2" />
+    <path d="M 200 160 L 200 240 M 160 200 L 240 200" stroke="#22d3ee" stroke-width="2" />
+
+    <!-- Text Metadata Overlay -->
+    <text x="40" y="60" font-family="monospace" font-size="14" fill="#22d3ee" filter="url(#glow)">PROT: NASP v1.0</text>
+    <text x="40" y="80" font-family="monospace" font-size="14" fill="#94a3b8">STAT: GENESIS_BLOCK</text>
+    
+    <text x="40" y="340" font-family="monospace" font-size="12" fill="#22d3ee">TIME: 2026-03-12T19:02:50.937Z</text>
+    <text x="40" y="360" font-family="monospace" font-size="10" fill="#475569">ID: did:key:z6MkSrJ+dS0/6SMgaQcuNorErvSSv0OoN/2gbfkrDSuvb38</text>
+
+    <!-- Scanning Line Animation Simulation -->
+    <rect x="20" y="380" width="360" height="2" fill="#22d3ee" fill-opacity="0.5" />
+</svg>

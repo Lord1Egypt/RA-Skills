@@ -1,0 +1,12 @@
+{
+  "name": "Pesquisa Profunda",
+  "tagline": "Pipeline de 8 fases para pesquisas profundas com citações verificadas em português",
+  "description": "Metodologia estruturada de pesquisa que garante qualidade e verificabilidade. Inclui escopo, planejamento, recuperação, triangulação, síntese, crítica, refinamento e empacotamento. Gera relatórios profissionais com citações, metodologia e limitações. Ideal para desenvolvedores brasileiros que precisam de pesquisas confiáveis e verificáveis.",
+  "category": "research",
+  "tags": ["pesquisa", "research", "analise", "portugues", "brasil", "citacoes", "verificacao"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/eve-agent/pesquisa-profunda/issues",
+  "homepage": "https://github.com/eve-agent/pesquisa-profunda"
+}

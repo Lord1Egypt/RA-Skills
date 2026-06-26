@@ -1,0 +1,140 @@
+{
+  "categories": {
+    "high_quality_channels": {
+      "label": "高质量内容渠道",
+      "priority": 0,
+      "sources": [
+        { "name": "微信公众号(全网)", "type": "wechat_global" },
+        { "name": "知乎", "domain": "zhihu.com", "type": "site_search" },
+        { "name": "少数派", "domain": "sspai.com", "type": "site_search" },
+        { "name": "掘金", "domain": "juejin.cn", "type": "site_search" },
+        { "name": "InfoQ 中文", "domain": "infoq.cn", "type": "site_search" },
+        { "name": "极客公园", "domain": "geekpark.net", "type": "site_search" },
+        { "name": "虎嗅", "domain": "huxiu.com", "type": "site_search" },
+        { "name": "36氪", "domain": "36kr.com", "type": "site_search" }
+      ]
+    },
+    "wechat_top": {
+      "label": "微信公众号头部账号",
+      "priority": 1,
+      "sources": [
+        { "name": "机器之心", "searchName": "机器之心", "type": "wechat" },
+        { "name": "量子位", "searchName": "量子位", "type": "wechat" },
+        { "name": "AI科技评论", "searchName": "AI科技评论", "type": "wechat" },
+        { "name": "新智元", "searchName": "新智元", "type": "wechat" },
+        { "name": "DataFunTalk", "searchName": "DataFunTalk", "type": "wechat" },
+        { "name": "PaperWeekly", "searchName": "PaperWeekly", "type": "wechat" },
+        { "name": "深度学习自然语言处理", "searchName": "深度学习自然语言处理", "type": "wechat" }
+      ]
+    },
+    "cn_tech_blog": {
+      "label": "中文技术博客",
+      "priority": 2,
+      "sources": [
+        { "name": "CSDN", "domain": "blog.csdn.net", "type": "site_search" },
+        { "name": "博客园", "domain": "cnblogs.com", "type": "site_search" },
+        { "name": "掘金", "domain": "juejin.cn", "type": "site_search" },
+        { "name": "知乎专栏", "domain": "zhuanlan.zhihu.com", "type": "site_search" },
+        { "name": "SegmentFault", "domain": "segmentfault.com", "type": "site_search" },
+        { "name": "简书", "domain": "jianshu.com", "type": "site_search" },
+        { "name": "少数派", "domain": "sspai.com", "type": "site_search" }
+      ]
+    },
+    "cn_bigtech": {
+      "label": "国内大厂官方号",
+      "priority": 3,
+      "sources": [
+        { "name": "阿里达摩院", "searchName": "达摩院", "type": "wechat" },
+        { "name": "腾讯AI Lab", "searchName": "腾讯AI Lab", "type": "wechat" },
+        { "name": "百度AI", "searchName": "百度AI", "type": "wechat" },
+        { "name": "字节AILab", "searchName": "字节跳动AI", "type": "wechat" },
+        { "name": "华为诺亚方舟实验室", "searchName": "华为诺亚方舟", "type": "wechat" },
+        { "name": "智谱AI", "searchName": "智谱AI", "type": "wechat" }
+      ]
+    },
+    "intl_ai_official": {
+      "label": "国际头部 AI 公司官方",
+      "priority": 4,
+      "sources": [
+        { "name": "OpenAI Blog", "domain": "openai.com/blog", "type": "site_search" },
+        { "name": "Google AI Blog", "domain": "blog.google/technology/ai", "type": "site_search" },
+        { "name": "Meta AI", "domain": "ai.meta.com/blog", "type": "site_search" },
+        { "name": "Anthropic Blog", "domain": "anthropic.com/news", "type": "site_search" },
+        { "name": "Stability AI", "domain": "stability.ai/news", "type": "site_search" }
+      ]
+    },
+    "intl_media": {
+      "label": "国际权威媒体",
+      "priority": 5,
+      "sources": [
+        { "name": "TechCrunch", "domain": "techcrunch.com", "type": "site_search" },
+        { "name": "MIT Technology Review", "domain": "technologyreview.com", "type": "site_search" },
+        { "name": "The Verge", "domain": "theverge.com", "type": "site_search" },
+        { "name": "Reuters 中文", "domain": "cn.reuters.com", "type": "site_search" },
+        { "name": "Bloomberg 中文", "domain": "bloombergchina.com", "type": "site_search" },
+        { "name": "FT 中文", "domain": "ftchinese.com", "type": "site_search" },
+        { "name": "财新", "domain": "caixin.com", "type": "site_search" }
+      ]
+    },
+    "cn_tech_media": {
+      "label": "国内科技媒体",
+      "priority": 6,
+      "sources": [
+        { "name": "36氪", "domain": "36kr.com", "type": "site_search" },
+        { "name": "品玩", "domain": "pingwest.com", "type": "site_search" },
+        { "name": "极客公园", "domain": "geekpark.net", "type": "site_search" },
+        { "name": "虎嗅", "domain": "huxiu.com", "type": "site_search" },
+        { "name": "钛媒体", "domain": "tmtpost.com", "type": "site_search" },
+        { "name": "InfoQ", "domain": "infoq.cn", "type": "site_search" }
+      ]
+    },
+    "dev_community": {
+      "label": "开发者社区",
+      "priority": 7,
+      "sources": [
+        { "name": "Hacker News", "type": "hackernews", "minScore": 100 },
+        { "name": "GitHub Trending", "type": "github_trending" },
+        { "name": "Product Hunt", "type": "producthunt" },
+        { "name": "V2EX", "domain": "v2ex.com", "type": "site_search" }
+      ]
+    },
+    "platform_blogs": {
+      "label": "平台官方 Blog",
+      "priority": 8,
+      "sources": [
+        { "name": "GitHub Blog", "domain": "github.blog", "type": "site_search" },
+        { "name": "Hugging Face Blog", "domain": "huggingface.co/blog", "type": "site_search" }
+      ]
+    },
+    "academic": {
+      "label": "学术/研究",
+      "priority": 9,
+      "sources": [
+        { "name": "arXiv", "type": "arxiv" },
+        { "name": "Papers With Code", "domain": "paperswithcode.com", "type": "site_search" }
+      ]
+    },
+    "investment": {
+      "label": "投资/商业视角",
+      "priority": 10,
+      "sources": [
+        { "name": "投中网", "domain": "chinaventure.com.cn", "type": "site_search" },
+        { "name": "IT桔子", "domain": "itjuzi.com", "type": "site_search" }
+      ]
+    },
+    "cn_tech_other": {
+      "label": "其他中文科技媒体",
+      "priority": 11,
+      "sources": [
+        { "name": "雷锋网", "domain": "leiphone.com", "type": "site_search" },
+        { "name": "亿欧", "domain": "iyiou.com", "type": "site_search" }
+      ]
+    }
+  },
+  "defaults": {
+    "searchEngine": "brave",
+    "maxPerSource": 3,
+    "totalMax": 20,
+    "defaultCategories": ["high_quality_channels", "dev_community"]
+  }
+}

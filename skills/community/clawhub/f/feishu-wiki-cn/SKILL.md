@@ -1,35 +1,26 @@
----
-name: "Feishu Wiki"
-description: "Manage Feishu Wiki knowledge bases by listing spaces, viewing, creating, moving, and renaming wiki pages with appropriate permissions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-wiki-cn"
-sourceUrl: "https://clawhub.ai/skills/feishu-wiki-cn"
----
+# Feishu Wiki Skill
 
-# Feishu Wiki
+Use this skill when user wants to manage Feishu (飞书) knowledge base (wiki) spaces and nodes.
 
-> Manage Feishu Wiki knowledge bases by listing spaces, viewing, creating, moving, and renaming wiki pages with appropriate permissions.
+## Tools Available
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-wiki-cn`
-- **Source URL:** [https://clawhub.ai/skills/feishu-wiki-cn](https://clawhub.ai/skills/feishu-wiki-cn)
+- `feishu_wiki`: List spaces, nodes, get content, create, move, rename wiki nodes
 
-## Overview
+## Use Cases
 
+- List knowledge base spaces
+- List nodes in a wiki space
+- Get wiki page content
+- Create new wiki pages
+- Move/reorganize wiki nodes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-wiki-cn
-```
+## Auth
+
+User must have Feishu account with appropriate permissions to access knowledge base.
+
+## Examples
+
+- "帮我列出飞书知识库的空间"
+- "列出这个知识库下的所有页面"
+- "创建一个新的知识库页面"
+- "移动这个页面到另一个分类"

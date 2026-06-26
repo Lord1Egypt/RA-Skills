@@ -1,0 +1,19 @@
+{
+  "name": "pipeline-keeper",
+  "version": "1.0.0",
+  "description": "商机跟进官 Pipeline Keeper - 盯销售漏斗、识别卡单和丢单风险，给出今天最该推进的客户与跟进文案",
+  "keywords": [
+    "pipeline-keeper",
+    "sales",
+    "crm",
+    "pipeline",
+    "follow-up",
+    "sales-ops",
+    "deal-risk",
+    "revenue-ops",
+    "b2b",
+    "followup-copy"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

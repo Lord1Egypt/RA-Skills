@@ -1,0 +1,32 @@
+{
+  "name": "memory-hamster",
+  "version": "1.0.1",
+  "description": "Agent 记忆进化系统 - 温度模型 + 自动归档 + 学习记录 + 技能提炼",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "evolution",
+    "learning",
+    "self-improvement",
+    "archive",
+    "skill-extraction",
+    "temperature-model",
+    "agent"
+  ],
+  "homepage": "https://clawhub.com/skills/memory-hamster",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/memory-hamster"
+  },
+  "scripts": {
+    "gc": "./scripts/memory-gc.sh",
+    "reflect": "./scripts/nightly-reflection.sh",
+    "extract": "./scripts/extract-skill.sh",
+    "search": "node ./scripts/search-memory.cjs"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "openclaw": ">=2026.2.0"
+  }
+}

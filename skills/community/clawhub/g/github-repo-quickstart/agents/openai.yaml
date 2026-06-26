@@ -1,0 +1,15 @@
+interface:
+  display_name: "GitHub Repo Quickstart"
+  short_description: "Fast onboarding for unfamiliar GitHub repos"
+  default_prompt: "Use $github-repo-quickstart to analyze this GitHub repository, then answer in the user's language with a fast-start guide."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "github"
+      description: "GitHub MCP server for repository structure, releases, and maintenance checks"
+      transport: "streamable_http"
+      url: "https://api.githubcopilot.com/mcp/"
+
+policy:
+  allow_implicit_invocation: true

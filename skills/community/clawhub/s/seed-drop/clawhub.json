@@ -1,0 +1,15 @@
+{
+  "name": "seeddrop",
+  "version": "3.0.0",
+  "description": "社区互动助手。监控B站、贴吧、知乎、小红书等平台的相关讨论，生成有价值的回复。",
+  "category": "social-media",
+  "tags": ["community", "engagement", "social-listening", "reply-assistant", "bilibili", "tieba", "zhihu", "xiaohongshu"],
+  "pricing": "free",
+  "license": "MIT-0",
+  "platforms": ["linux", "darwin", "win32"],
+  "requires": {
+    "tools": ["bash", "browser"],
+    "anyBins": ["node", "npx"]
+  },
+  "companion_skills": ["social-vault"]
+}

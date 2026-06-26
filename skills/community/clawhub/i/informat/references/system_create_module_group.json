@@ -1,0 +1,25 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_create_module_group",
+    "description": "Create module group.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Group name, the name cannot use special characters like , . / \\"
+        },
+		"expand": {
+          "type": "boolean",
+          "description": "Whether to expand the group by default"
+        },
+		"parentId": {
+          "type": "string",
+          "description": "Parent group ID"
+        }
+      },
+      "required": ["name", "expand"]
+    }
+  }
+}

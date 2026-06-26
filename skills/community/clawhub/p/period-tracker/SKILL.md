@@ -1,35 +1,131 @@
 ---
-name: "经期管理 / Period Tracker"
-description: "经期管理 / Period Tracker - 女性健康周期追踪工具。全自然语言交互，无需记命令。功能：(1) 经期记录 - 说'月经来了'即可记录；(2) 症状记录 - 说'痛经2级'或'心情烦躁'；(3) 周期预测 - 说'下次月经什么时候'；(4) 排卵期管理 - 受孕概率日历；(5) 定时提醒 - 说'帮..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/period-tracker"
-sourceUrl: "https://clawhub.ai/skills/period-tracker"
+name: 经期管理 / Period Tracker
+description: "经期管理 / Period Tracker - 女性健康周期追踪工具。全自然语言交互，无需记命令。功能：(1) 经期记录 - 说'月经来了'即可记录；(2) 症状记录 - 说'痛经2级'或'心情烦躁'；(3) 周期预测 - 说'下次月经什么时候'；(4) 排卵期管理 - 受孕概率日历；(5) 定时提醒 - 说'帮我设置经期提醒'；(6) 健康统计；(7) 数据导出。触发词：记录经期、月经来了、大姨妈、排卵期、安全期、易孕期、受孕概率、备孕、经期统计、月经周期、经期日历、经期提醒。"
 ---
 
 # 经期管理 / Period Tracker
 
-> 经期管理 / Period Tracker - 女性健康周期追踪工具。全自然语言交互，无需记命令。功能：(1) 经期记录 - 说'月经来了'即可记录；(2) 症状记录 - 说'痛经2级'或'心情烦躁'；(3) 周期预测 - 说'下次月经什么时候'；(4) 排卵期管理 - 受孕概率日历；(5) 定时提醒 - 说'帮...
+**全自然语言交互** - 无需记命令，直接对AI助手说话即可。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/period-tracker`
-- **Source URL:** [https://clawhub.ai/skills/period-tracker](https://clawhub.ai/skills/period-tracker)
+## 快速开始
 
-## Overview
+告诉你的AI助手：
+- **"月经来了"** → 自动记录经期
+- **"痛经2级"** 或 **"心情烦躁"** → 记录症状
+- **"下次月经什么时候"** → 查看预测
+- **"帮我设置经期提醒"** → 设置定时提醒
 
+## 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/period-tracker
+| 功能 | 自然语言指令 | 说明 |
+|------|-------------|------|
+| 记录经期 | "月经来了" / "大姨妈来了" | 自动记录开始日期 |
+| 记录症状 | "痛经3级" / "心情烦躁" / "经血量多" | 记录痛经、情绪、经血量 |
+| 查看状态 | "今天什么情况" | 显示经期状态、排卵信息、受孕概率 |
+| 周期预测 | "下次月经什么时候" | 预测下次经期、排卵日 |
+| 定时提醒 | "帮我设置经期提醒" / "每天早上9点发报告" | 自动提醒经期和排卵 |
+| 检查更新 | "检查更新" / "更新skill" | 自动检查并更新到最新版本 |
+| 健康统计 | "查看统计" | 平均周期、规律性分析 |
+| 数据导出 | "导出数据" | 导出JSON/CSV格式 |
+
+## 技术信息
+
+- 核心脚本：`scripts/period_tracker.py`
+- 数据文件：`~/.openclaw/workspace/period_tracker/data.json`
+- 依赖：Python 3（标准库，无需安装额外包）
+- 数据存储：本地JSON文件，不上传云端
+
+## 示例交互
+
+**用户：** 月经来了  
+**AI：** ✅ 已记录经期：2026-03-18。可以说"痛经2级"记录症状。
+
+**用户：** 痛经2级  
+**AI：** ✅ 已记录：痛经2级。
+
+**用户：** 今天什么情况  
+**AI：** 📍 今日状态：经期第1天，还有5天结束。排卵日：4月1日...
+
+**用户：** 帮我设置经期提醒  
+**AI：** ✅ 已设置！预测经期前3天自动提醒。
+
+**用户：** 检查更新  
+**AI：** 🆕 发现新版本：1.2.0，是否更新？(y/n)
+
+## 隐私说明
+
+- 所有数据存储在本地电脑
+- 不上传任何服务器
+- 无需注册账号
+- 数据文件可随时导出或删除
+
+# 添加经期记录
+python3 $SCRIPT add 2025-03-01 --end 2025-03-06 \
+  --pain 3 --flow 中 --mood 烦躁 --tags 头痛,腰痛
+
+# 预测下次经期 + 排卵期 + 安全期 + 今日受孕概率
+python3 $SCRIPT predict
+
+# 排卵期管理（7天受孕概率日历 + 备孕建议）
+python3 $SCRIPT ovulation
+
+# 健康统计报告
+python3 $SCRIPT stats
+
+# 年度日历（含排卵日/易孕期标注）
+python3 $SCRIPT calendar --year 2025
+
+# 历史记录列表
+python3 $SCRIPT list --limit 10
+
+# 导出数据
+python3 $SCRIPT export --format csv   # 或 json
+
+# 编辑/删除记录
+python3 $SCRIPT edit 2025-03-01 --end 2025-03-06
+python3 $SCRIPT delete 2025-03-01
 ```
+
+---
+
+## 用户请求处理指南
+
+### 记录经期
+
+| 用户说 | 操作 |
+|--------|------|
+| "月经来了" / "大姨妈来了" | 询问开始日期 → `add <start>` |
+| "月经结束了" | 询问结束日期 → `edit <start> --end <end>` |
+| "从3月1号到6号，痛经比较严重" | `add 2025-03-01 --end 2025-03-06 --pain 4` |
+
+### 症状参数
+
+| 参数 | 取值 | 说明 |
+|------|------|------|
+| `--pain` | 1-5 | 1=轻微，5=剧烈 |
+| `--flow` | 少/中/多 | 经血量 |
+| `--mood` | 开心/平静/烦躁/低落/焦虑 | 情绪 |
+| `--tags` | 逗号分隔 | 头痛、腰痛、痘痘、浮肿等 |
+
+### 排卵期 & 受孕概率
+
+用户说"排卵期" / "易孕期" / "受孕概率" / "备孕"
+→ 调用 `ovulation`
+
+受孕概率分级：
+- 🔴 排卵日：最高（25-30%）
+- 🟠 排卵前1-2天：高（20-25%）
+- 🟡 排卵前3-5天：中（10-15%）
+- 🔵 排卵后1-2天：低（5-10%）
+- 🟢 其他时间：极低（< 3%）
+
+### 今日状态
+
+用户说"今天是什么时期" / "今天安全吗"
+→ 调用 `today`，输出：经期中/排卵日/易孕期/安全期 + 受孕概率
+
+---
+
+## 数据格式
+
+详见 `references/data-schema.md`

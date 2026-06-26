@@ -1,35 +1,73 @@
 ---
-name: "Task Scheduler"
-description: "智能任务调度技能 - 定时任务、周期任务、一次性提醒的创建与管理。适用于自动化运维、定时报告、提醒通知。觸發詞：定時、排程、排程任務、自動化、提醒、周期任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jw-task-scheduler"
-sourceUrl: "https://clawhub.ai/skills/jw-task-scheduler"
+name: Task Scheduler
+description: 智能任务调度技能 - 定时任务、周期任务、一次性提醒的创建与管理。适用于自动化运维、定时报告、提醒通知。觸發詞：定時、排程、排程任務、自動化、提醒、周期任务。
+version: 1.0.0
+author: 贾维斯
+slug: task-scheduler
 ---
 
 # Task Scheduler
 
-> 智能任务调度技能 - 定时任务、周期任务、一次性提醒的创建与管理。适用于自动化运维、定时报告、提醒通知。觸發詞：定時、排程、排程任務、自動化、提醒、周期任务。
+智能任务调度技能，帮助您创建和管理定时任务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jw-task-scheduler`
-- **Source URL:** [https://clawhub.ai/skills/jw-task-scheduler](https://clawhub.ai/skills/jw-task-scheduler)
+## 功能
 
-## Overview
+### 1. 定时任务
+- 周期性执行（每X分钟/小时/天）
+- 特定时间执行（每天07:30、每周一09:00）
+- 一次性任务（20分钟后提醒、明天中午12:00）
 
+### 2. 任务管理
+- 查看任务列表
+- 暂停/恢复任务
+- 删除任务
+- 修改任务配置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jw-task-scheduler
+### 3. 通知渠道
+- 飞书消息推送
+- 控制台输出
+- 日志文件记录
+
+## 使用方式
+
+### 创建定时任务
 ```
+帮我创建一个定时任务，每天07:30发早汇报
+```
+
+### 创建提醒
+```
+20分钟后提醒我喝水
+```
+
+### 查看任务列表
+```
+查看所有定时任务
+```
+
+### 删除任务
+```
+删除"早汇报"定时任务
+```
+
+## 任务格式示例
+
+### Cron表达式
+- `0 30 7 * * *` - 每天07:30
+- `0 0 9 * * 1` - 每周一09:00
+- `0 */4 * * *` - 每4小时
+- `0 0 22 * * *` - 每天22:00
+
+### 任务描述
+```
+任务名称：早汇报
+执行时间：每天07:30
+执行内容：读取昨日记忆，生成汇报，通过飞书发送
+通知渠道：飞书消息
+```
+
+## 注意事项
+
+- 任务执行时会自动读取相关文件（memory/昨日.md）
+- 重要任务失败会自动重试（最多3次）
+- 任务执行结果会记录到日志

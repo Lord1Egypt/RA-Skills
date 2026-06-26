@@ -1,35 +1,68 @@
 ---
-name: "Ai工作流 43de14"
+name: ai工作流-43de14
 description: "从抖音视频学习: AI工作流 — 2026Coze 扣子工作流智能体保姆级搭建教程，专为零基础 AI 新手量身打造，10 分钟无代码手把手实操，解决不会设"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-43de14"
-sourceUrl: "https://clawhub.ai/skills/ai-43de14"
+compatibility: opencode
+trigger: "AI工作流 / 2026Coze / 扣子工作流智能体保姆级搭建教程 / 专为零基础"
+tags: [guide, AI工作流, video-learned]
 ---
 
-# Ai工作流 43de14
+# AI工作流
 
-> 从抖音视频学习: AI工作流 — 2026Coze 扣子工作流智能体保姆级搭建教程，专为零基础 AI 新手量身打造，10 分钟无代码手把手实操，解决不会设
+> 从 @星野小邮差 的视频中学到的技能
+> 关键词: 2026Coze, 扣子工作流智能体保姆级搭建教程, 专为零基础, AI, 新手量身打造, 10, 分钟无代码手把手实操, 解决不会设计流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-43de14`
-- **Source URL:** [https://clawhub.ai/skills/ai-43de14](https://clawhub.ai/skills/ai-43de14)
+## 描述
 
-## Overview
+2026Coze 扣子工作流智能体保姆级搭建教程，专为零基础 AI 新手量身打造，10 分钟无代码手把手实操，解决不会设计流程、智能体没效果痛点，小白也能学会。
 
+## 操作步骤
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-43de14
-```
+1. 理解核心概念: AI工作流
+2. 掌握关键技巧: 2026Coze, 扣子工作流智能体保姆级搭建教程, 专为零基础, AI
+3. 参考案例: 星野小邮差 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @星野小邮差
+- 学习时间: 2026-06-01 21:01
+- 领域标签: guide
+
+## 触发场景
+- 用户说"AI工作流"
+- 用户说"2026Coze"
+- 用户需要AI工作流相关帮助
+
+## B站学习
+> 学习时间: 2026-06-01 21:07
+
+- **植物僵尸观察王**: 【中字】海外博主实操：AI Agent让工作全自动化
+- **述人间事**: 3年后，你现在的工作会被AI取代吗？
+- **芙兰芙影**: 反恐精英：全球攻势 2024-03-28 14-27-43
+
+## 融合来源: ai工作流-43de14-f9f0ce
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-02 07:52
+- **勃尔波特**: AIChat 9x——为 Windows 95/NT 等遗留系统打造的 AI 聊天客户端
+- **英文白斑马**: 【熟肉】自优化AI,Opus 4.8,英伟达新成果,游戏可用3D模型,杂耍机器人:AI新闻汇总 - AI Search
+- **影视飓风**: AI真的好用吗？影视飓风全新工作流分享！
+
+## B站学习 (第1轮)
+> 学习时间: 2026-06-02 09:20
+
+- **极速种草官**: ThinkBook14 2026 AI全能本评测：酷睿Ultra5-336H怎么样？国家补贴后16G/1T/2.8K用后分享，值得推荐吗？Vm
+  https://www.bilibili.com/video/BV1FsVf6ME9D
+- **述人间事**: 3年后，你现在的工作会被AI取代吗？
+  https://www.bilibili.com/video/BV13b96BPEPo
+- **小怡日常种草**: 戴尔XPS14 2026新款AI商务轻薄本评测：第三代酷睿Ultra X7配32G 1T 2.8K OLED触控，120Hz高刷用后分享怎么样？推荐入手吗？
+  https://www.bilibili.com/video/BV1LKoEBnEJp
+
+## B站学习 (第2轮)
+> 学习时间: 2026-06-02 09:32
+
+- **极速种草官**: ThinkBook14 2026 AI全能本评测：酷睿Ultra5-336H怎么样？国家补贴后16G/1T/2.8K用后分享，值得推荐吗？Vm
+  https://www.bilibili.com/video/BV1FsVf6ME9D
+- **述人间事**: 3年后，你现在的工作会被AI取代吗？
+  https://www.bilibili.com/video/BV13b96BPEPo
+- **小怡日常种草**: 戴尔XPS14 2026新款AI商务轻薄本评测：第三代酷睿Ultra X7配32G 1T 2.8K OLED触控，120Hz高刷用后分享怎么样？推荐入手吗？
+  https://www.bilibili.com/video/BV1LKoEBnEJp

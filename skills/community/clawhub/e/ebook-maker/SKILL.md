@@ -1,35 +1,288 @@
----
-name: "Ebook Maker"
-description: "一站式电子书生成流程，涵盖需求确认、深度调研、内容架构、插图制作、排版写作和PDF自动导出。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ebook-maker"
-sourceUrl: "https://clawhub.ai/skills/ebook-maker"
----
+# Ebook Maker — AI 电子书制作工作流
 
-# Ebook Maker
+从调研到成书的一站式电子书生成引擎，支持即梦插图、统一排版、自动 PDF 导出。
 
-> 一站式电子书生成流程，涵盖需求确认、深度调研、内容架构、插图制作、排版写作和PDF自动导出。
+## 配置文件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ebook-maker`
-- **Source URL:** [https://clawhub.ai/skills/ebook-maker](https://clawhub.ai/skills/ebook-maker)
+本 Skill 由 3 个文件组成，视觉相关的规范独立可改：
 
-## Overview
+| 文件 | 职责 | 何时修改 |
+|------|------|--------|
+| `SKILL.md`（本文件） | 主流程、阶段定义、调研策略、交付规范 | 改流程逻辑时 |
+| `layout.md` | 排版规范：配色、字体、间距、对齐、分页、PDF 命令 | 改排版风格时 |
+| `illustration.md` | 插图规范：即梦参数、风格模板、比例选择、压缩规则 | 改插图风格时 |
 
+**执行时必须同时读取这 3 个文件。** 排版和插图的具体参数以配置文件为准，本文件只定义流程。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ebook-maker
+## 触发条件
+
+用户提到以下关键词时触发：
+- "帮我写一本" / "写本电子书" / "出一本书"
+- "做个 PDF 手册" / "写个小册子"
+- "ebook" / "电子书" / "手册"
+
+## 总体流程
+
 ```
+Stage 1 需求确认 → Stage 2 深度调研 → Stage 3 内容架构
+→ Stage 4 插图规划 → Stage 5 写书排版 → Stage 6 交付报告
+```
+
+---
+
+# Stage 1：需求确认
+
+触发后，先向用户确认以下参数（能从指令推断的不问，推断不了的才问）：
+
+> **收到，准备制作电子书。请确认以下信息：**
+>
+> 1. **书名**：「{从指令推断}」，可以吗？
+> 2. **目标读者**：小白 / 有基础 / 专业人士？
+> 3. **语言风格**：通俗大白话 / 专业严谨 / 混合？
+> 4. **篇幅偏好**：精简（8-12 章）/ 详尽（15+ 章）？
+> 5. **是否需要插图**：是 / 否？
+> 6. **末尾引导**：需要加公众号/个人品牌引导吗？如果是，名称是？
+>
+> 直接回复修改项即可，没问题的我直接开始。
+
+**快捷模式**：如果用户在触发时已说明足够信息（如"帮我写一本关于 XX 的小白手册，加插图，末尾加公众号阿真Irene"），跳过确认直接执行。
+
+**参数默认值**（用户未指定时）：
+- 目标读者：小白
+- 语言风格：通俗大白话
+- 篇幅：精简（10-12 章）
+- 插图：否
+- 末尾引导：无
+
+---
+
+# Stage 2：深度调研
+
+## 调研策略
+
+根据主题拆分为 4-5 个独立方向，派出并行 Agent 搜索：
+
+```
+Agent 1：核心概念与定义
+Agent 2：工具/方法/技术细节
+Agent 3：行业案例与对比
+Agent 4：常见问题与最佳实践
+Agent 5：视频/社区资源（可选）
+```
+
+每个 Agent 的指令模板：
+
+```
+Use WebSearch and WebFetch to research [方向描述]. Search for:
+1. [搜索词 1]
+2. [搜索词 2]
+3. [搜索词 3]
+4. [搜索词 4]
+5. [搜索词 5（中文信源）]
+
+For each search, WebFetch the top 2-3 most relevant results.
+Return a comprehensive report covering: [期望内容列表]
+Include all source URLs.
+```
+
+## 调研质量要求
+
+- 信源总数 ≥ 20 个
+- S/A 级信源占比 ≥ 50%
+- 信源质量分级：S（一手）→ A（权威）→ B（从业者）→ C（社区）
+- 所有关键事实需要至少 2 个独立信源交叉验证
+
+## 调研文件保存
+
+自动保存到 `~/Downloads/调研报告/`，命名格式：`YYYYMMDD-[方向简述]调研.md`
+
+---
+
+# Stage 3：内容架构
+
+## 大纲生成
+
+基于调研结果，生成章节大纲。每章包含：
+- 章节编号和标题
+- 本章覆盖的核心概念（3-8 个）
+- 一句话概括本章价值
+
+## 用户确认
+
+将大纲展示给用户确认：
+
+> **以下是初步大纲，请确认或修改：**
+>
+> Chapter 01 — [标题]（[概括]）
+> Chapter 02 — [标题]（[概括]）
+> ...
+> 附录 — [内容]
+>
+> 需要增删改章节吗？没问题我开始写。
+
+**快捷模式**：如果用户要求"直接写不用确认"，跳过此步。
+
+## 排版风格确认
+
+默认使用「简洁专业风」排版模板（详见 Stage 5）。如果用户有参考 PDF，先用 Read 工具读取其风格特征，然后对齐。
+
+---
+
+# Stage 4：插图规划
+
+**仅在 Stage 1 确认需要插图时执行此阶段。**
+
+**所有插图参数（数量规划、风格模板、比例选择、压缩规则）详见 `illustration.md` 配置文件。**
+
+执行流程：
+
+1. **规划**：根据章节数选插图数量和位置（见 illustration.md 数量表）
+2. **定风格**：根据书的主题组装 STYLE_PREFIX（见 illustration.md 主色调方案）
+3. **锚定确认**：用 STYLE_PREFIX 生成 1 张锚定图 → 展示给用户确认风格
+4. **批量生成**：确认后逐个串行生成其余插图（即梦不支持并发）
+5. **下载压缩**：下载图片 + sips 压缩（见 illustration.md 压缩规则）
+6. **记录**：在工作报告中记录每张图的 submit_id、prompt、状态
+
+---
+
+# Stage 5：写书 + 排版
+
+## 排版规范
+
+**所有排版参数（配色、字体、间距、对齐规则、分页、打印适配、PDF 命令）详见 `layout.md` 配置文件。**
+
+生成 HTML 时，从 `layout.md` 读取 CSS 参数。排版自检清单也在 `layout.md` 中。
+
+## 内容写作规范
+
+### 每个术语/概念的结构
+
+```html
+<div class="term">
+  <div class="term-name">中文名</div>
+  <div class="term-en">English Name / 补充说明</div>
+  <p>通俗解释正文...</p>
+  <div class="tip">
+    <span class="analogy">类比：生活化的比喻...</span><br>
+    <span class="hint">实用提示或注意事项...</span>
+  </div>
+  <hr class="term-sep">
+</div>
+```
+
+### 写作风格规则
+
+- 小白向：用「就是」「就像」「简单说」等口语化连接
+- 类比优先选择中国用户熟悉的场景
+- 代码用 `<span class="code">` 包裹，橙色显示
+- 每章开头有 `ch-intro` 段落，概括本章价值
+- 不堆砌术语，每个概念独立可理解
+
+### 末尾引导页模板
+
+```html
+<div class="ending">
+  <h2>感谢阅读</h2>
+  <hr>
+  <div class="cta">如果这本小册子对你有帮助，欢迎关注我的公众号</div>
+  <div class="account">@{公众号名称}</div>
+  <div class="desc">{一句话介绍}<br>{一句话价值主张}</div>
+  <div class="action">微信搜索「{名称}」或扫描公众号二维码关注</div>
+</div>
+```
+
+## PDF 生成
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new \
+  --disable-gpu \
+  --no-sandbox \
+  --print-to-pdf="输出路径.pdf" \
+  --print-to-pdf-no-header \
+  --no-pdf-header-footer \
+  "file:///HTML文件路径.html"
+```
+
+**注意**：
+- HTML 中引用的图片必须和 HTML 在同一目录（用相对路径）
+- `--print-to-pdf-no-header` 去除 Chrome 默认的 URL 页脚
+- 配合 CSS `@page` 的 `content: none` 双重保障
+
+---
+
+# Stage 6：交付 + 工作报告
+
+## 交付动作
+
+1. 打开生成的 PDF：`open "输出路径.pdf"`
+2. 报告文件大小
+3. 汇总章节数、术语数、信源数等关键数据
+
+## 工作报告自动生成
+
+保存到 `~/Downloads/调研报告/YYYYMMDD-[书名]-工作报告.md`
+
+**工作报告模板**：
+
+```markdown
+# 工作报告：[书名]
+
+> **项目**：[一句话描述]
+> **完成时间**：YYYY-MM-DD
+> **最终交付**：`文件名.pdf`（大小）
+
+---
+
+## 一、任务理解
+[用户原始需求 + 推断的参数]
+
+## 二、调研阶段
+[N 个 Agent、搜索次数、信源数、各 Agent 核心发现摘要]
+
+## 三、内容架构
+[章节列表 + 术语数]
+
+## 四、插图生成（如有）
+[即梦 CLI 生成记录：submit_id、prompt、状态、用于位置]
+[风格 prompt 模板]
+[下载/压缩处理记录]
+
+## 五、排版与 PDF
+[HTML 模板、Chrome headless 转换、对齐检查结果]
+
+## 六、产出文件清单
+[完整文件树]
+
+## 七、关键数据
+[表格：章节数、术语数、信源数、插图数、PDF 大小等]
+```
+
+---
+
+# 全局规则
+
+## 文件保存路径
+- 调研报告：`~/Downloads/调研报告/`
+- 电子书 HTML/PDF：`~/Downloads/调研报告/`
+- 插图文件：与 HTML 同目录
+- 工作报告：`~/Downloads/调研报告/`
+
+## 即梦 CLI 注意事项
+- **必须串行调用**，不支持并发（并发会 EOF）
+- 每次生成前检查 `dreamina user_credit`，余额不足时提醒用户
+- 生成失败时自动重试 1 次，仍然失败则跳过并记录
+- 图片下载：字节跳动 CDN 偶发 SSL 错误，用 `--retry 3 --max-time 30`
+- 下载失败不阻塞流程，在报告中标注
+
+## 排版铁律
+- 所有内容元素左右对齐，不允许宽度不一
+- 图片 max-width 不超过正文区域
+- 页脚不显示文件路径
+- 打印时保留背景色（`print-color-adjust: exact`）
+
+## 禁止事项
+- 不使用花哨的渐变、阴影、多彩卡片
+- 不在 HTML 中内嵌 base64 图片（文件过大）
+- 不在生成过程中向用户发过长的中间结果
+- 不跳过用户确认环节（除非用户明确说"直接做"）

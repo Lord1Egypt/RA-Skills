@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>openclaw · face</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d0d0d;
+    color: #e0e0e0;
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 40px;
+    overflow: hidden;
+  }
+
+  /* ── Emoji face ───────────────────────────────────────── */
+  #face-wrap {
+    position: relative;
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1),
+                filter 0.6s ease;
+  }
+  #emoji {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    user-select: none;
+    filter: drop-shadow(0 0 40px rgba(100,140,255,0.15));
+  }
+
+  /* ── Status bar ───────────────────────────────────────── */
+  #status-bar {
+    width: 340px;
+    background: #141418;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    min-height: 80px;
+  }
+  #state-label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; color: #555;
+    transition: color 0.4s ease;
+  }
+  #task-label {
+    color: #bbb; font-size: 14px;
+    line-height: 1.5; min-height: 20px;
+  }
+  #progress-text {
+    color: #555; font-size: 11px;
+    font-family: "SF Mono", monospace; min-height: 14px;
+  }
+
+  /* Connection dot */
+  #conn-dot {
+    position: fixed; top: 16px; right: 16px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #333; transition: background 0.4s ease;
+  }
+  #conn-dot.connected { background: #3a3; }
+  #conn-dot.error     { background: #a33; }
+
+  /* ── State-specific glow ──────────────────────────────── */
+  body.sleeping #emoji { filter: drop-shadow(0 0 20px rgba(80,80,120,0.1)); opacity: 0.5; }
+  body.sleeping #state-label { color: #444; }
+  body.idle #emoji { filter: drop-shadow(0 0 30px rgba(100,140,255,0.2)); }
+  body.idle #state-label { color: #6688bb; }
+  body.alert #emoji { filter: drop-shadow(0 0 40px rgba(160,170,255,0.35)); }
+  body.alert #state-label { color: #8899ff; }
+  body.thinking #emoji { filter: drop-shadow(0 0 35px rgba(220,150,50,0.3)); }
+  body.thinking #state-label { color: #cc8833; }
+  body.happy #emoji { filter: drop-shadow(0 0 40px rgba(50,200,100,0.3)); }
+  body.happy #state-label { color: #44cc88; }
+  body.error #emoji { filter: drop-shadow(0 0 35px rgba(220,60,60,0.3)); }
+  body.error #state-label { color: #cc4444; }
+
+  /* ── Animations ───────────────────────────────────────── */
+  @keyframes float     { 0%,100%{transform:translateY(0)}   50%{transform:translateY(-6px)} }
+  @keyframes bounce-in { 0%{transform:scale(.8)} 50%{transform:scale(1.12)} 100%{transform:scale(1)} }
+  @keyframes think-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.03)} }
+  @keyframes wiggle    { 0%,100%{transform:rotate(0)} 20%{transform:rotate(-6deg)} 40%{transform:rotate(6deg)} 60%{transform:rotate(-4deg)} 80%{transform:rotate(3deg)} }
+  @keyframes shake     { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+  @keyframes css-shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-3px)} 80%{transform:translateX(3px)} }
+
+  body.idle #face-wrap     { animation: float 3s ease-in-out infinite; }
+  body.alert #face-wrap    { animation: bounce-in 0.45s ease; }
+  body.thinking #face-wrap { animation: think-pulse 1.6s ease-in-out infinite; }
+  body.happy #face-wrap    { animation: wiggle 0.6s ease; }
+  body.error #face-wrap    { animation: shake 0.5s ease; }
+
+  /* ══════════════════════════════════════════════════════ */
+  /*  Widget mode                                          */
+  /* ══════════════════════════════════════════════════════ */
+  body.widget-mode {
+    background: transparent;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0; padding: 0;
+    height: 100%;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  body.widget-mode #conn-dot { display: none; }
+  body.widget-mode #emoji { width: 20px; height: 20px; }
+  body.widget-mode #face-wrap {
+    flex-shrink: 0; padding: 0 6px 0 12px;
+    display: flex; align-items: center; height: 100%;
+  }
+  body.widget-mode #status-bar {
+    width: auto; flex: 1; background: transparent;
+    border: none; border-radius: 0; padding: 0 12px 0 0;
+    min-height: 0; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    height: 100%; gap: 0;
+  }
+  body.widget-mode #state-label { font-size: 12px; font-weight: 600; letter-spacing: 0; color: #eee; }
+  body.widget-mode #agent-count { display: none; font-size: 12px; font-weight: 600; color: #6688bb; padding-right: 12px; flex-shrink: 0; }
+  body.widget-mode #task-label { font-size: 11px !important; color: #ccc !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 0; line-height: 1.3; max-width: 170px; }
+  body.widget-mode #progress-text { display: none; }
+
+  /* Widget animations */
+  body.widget-mode.idle #face-wrap     { animation: none; }
+  body.widget-mode.alert #face-wrap    { animation: bounce-in 0.4s ease; }
+  body.widget-mode.thinking #emoji     { animation: think-pulse 1.6s ease-in-out infinite; }
+  body.widget-mode.happy #face-wrap    { animation: wiggle 0.5s ease; }
+  body.widget-mode.error #face-wrap    { animation: shake 0.4s ease; }
+
+  /* ── Compact row ────────────────────────────────────── */
+  body.widget-mode #compact-row {
+    display: flex; align-items: center;
+    width: 100%; height: 38px; flex-shrink: 0;
+  }
+
+  /* ── Expanded state ─────────────────────────────────── */
+  body.widget-mode #expanded-list {
+    display: none; width: 100%; padding: 0 14px 14px; overflow: hidden;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  body.widget-mode.expanded { flex-direction: column; align-items: stretch; justify-content: flex-start; }
+  body.widget-mode.expanded #expanded-list { display: block; opacity: 1; transform: translateY(0); }
+  body.widget-mode.expanded #compact-row { justify-content: center; }
+  body.widget-mode.expanded #face-wrap { display: none; }
+  body.widget-mode.expanded #agent-count { display: none !important; }
+  body.widget-mode.expanded #state-label { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: #aaa; text-align: center; width: 100%; }
+  body.widget-mode.expanded #status-bar { align-items: center; }
+  body.widget-mode.expanded #task-label { display: none; }
+
+  .agent-row { display: flex; align-items: center; padding: 4px 0; font-size: 12px; gap: 8px; }
+  .agent-group { border-radius: 6px; padding: 4px 6px; transition: background 0.15s ease; }
+  .agent-group.hovered { background: rgba(255,255,255,0.06); }
+  .agent-group[data-link].hovered { cursor: pointer; background: rgba(255,255,255,0.08); }
+  .agent-row .a-emoji { width: 16px; height: 16px; object-fit: contain; flex-shrink: 0; }
+  .agent-row .a-name  { color: #eee; font-weight: 500; font-size: 12px; flex-shrink: 0; }
+
+  .msg-row { padding: 1px 0 1px 26px; font-size: 11px; color: #999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.5; }
+  .msg-row::before { content: '→ '; color: #666; }
+
+  /* ── Preview state ──────────────────────────────────── */
+  body.widget-mode.previewing #task-label { color: #ccc; max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+</style>
+</head>
+<body class="sleeping">
+
+<div id="conn-dot"></div>
+<div id="compact-row">
+  <div id="face-wrap"><img id="emoji" src="/emolog/idle.png"></div>
+  <div id="status-bar">
+    <div id="state-label">休眠中</div>
+    <div id="task-label"></div>
+    <div id="progress-text"></div>
+  </div>
+  <div id="agent-count"></div>
+</div>
+<div id="expanded-list"></div>
+
+<script>
+// ── Constants ────────────────────────────────────────────────────────────────
+
+const STATES = {
+  sleeping:        { emoji: '😴', img: '/emolog/idle.png',     label: '休眠中' },
+  idle:            { emoji: '😊', img: '/emolog/idle.png',     label: '翔哥,有啥吩咐' },
+  alert:           { emoji: '👀', img: '/emolog/alert.png',    label: '收到消息' },
+  message_received:{ emoji: '👀', img: '/emolog/alert.png',    label: '收到消息' },
+  thinking:        { emoji: '🤔', img: '/emolog/thinking.png', label: '思考中…' },
+  happy:           { emoji: '😄', img: '/emolog/done.png',     label: '搞定了' },
+  done:            { emoji: '😄', img: '/emolog/done.png',     label: '搞定了' },
+  error:           { emoji: '😰', img: '/emolog/error.png',    label: '出错了' },
+  task_error:      { emoji: '😰', img: '/emolog/error.png',    label: '出错了' },
+};
+
+const isWidget = location.search.includes('widget');
+
+// ── State ────────────────────────────────────────────────────────────────────
+
+let currentState = 'sleeping';
+let stateTimer = null;
+let idleTimer = null;  // Independent timer to return to idle
+let previewAutoCollapse = null; // Auto-collapse timer for preview
+let isExpanded = false;
+let isPreviewing = false;
+let previewTimer = null;
+let AGENT_NAMES = {};
+let AGENT_LINKS = {};
+let cfgWsPort = 7789;
+const agentStates = new Map();
+const agentMessages = new Map(); // agent → [{text, ts}]
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+// Audio — unlock on first interaction, then play via AudioContext
+let audioCtx = null;
+let audioUnlocked = false;
+
+function unlockAudio() {
+  if (audioUnlocked) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  // Play silent buffer to unlock
+  const buf = audioCtx.createBuffer(1, 1, 22050);
+  const src = audioCtx.createBufferSource();
+  src.buffer = buf;
+  src.connect(audioCtx.destination);
+  src.start(0);
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  audioUnlocked = true;
+}
+
+// Unlock on any user interaction
+document.addEventListener('click', unlockAudio, { once: false });
+document.addEventListener('touchstart', unlockAudio, { once: false });
+// Also try to unlock immediately
+setTimeout(unlockAudio, 100);
+
+function playBeep(freq, duration) {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.frequency.value = freq;
+  osc.type = 'sine';
+  gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+let resizeTimer = null;
+function sendResize(w, h, radius) {
+  // Debounce: only the last resize within 50ms fires
+  if (resizeTimer) clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    resizeTimer = null;
+    doResize(w, h, radius);
+  }, 50);
+}
+function doResize(w, h, radius) {
+  if (window.webkit?.messageHandlers?.resize) {
+    window.webkit.messageHandlers.resize.postMessage({ w, h, radius });
+  }
+}
+
+// Priority: error(5) > thinking(4) > alert(3) > happy(2) > idle(1) > sleeping(0)
+const STATE_PRIORITY = { error: 5, task_error: 5, thinking: 4, alert: 3, message_received: 3, happy: 2, done: 2, idle: 1, sleeping: 0 };
+
+function getTopAgent() {
+  const now = Date.now();
+  let top = null;
+  let topPri = -1;
+  let topTs = 0;
+  for (const [id, info] of agentStates) {
+    // Auto-timeout: thinking for 60s+ → mark as error
+    if (info.state === 'thinking' && (now - info.ts) > 60000) {
+      info.state = 'error';
+      info.label = '响应超时';
+    }
+    const pri = STATE_PRIORITY[info.state] || 0;
+    // Higher priority wins; same priority → most recent wins
+    if (pri > topPri || (pri === topPri && info.ts > topTs)) {
+      topPri = pri;
+      topTs = info.ts;
+      top = info;
+    }
+  }
+  return top;
+}
+
+function applyClasses() {
+  let cls = isWidget ? 'widget-mode ' : '';
+  cls += currentState;
+  if (isExpanded) cls += ' expanded';
+  if (isPreviewing) cls += ' previewing';
+  document.body.className = cls;
+}
+
+// ── setState ─────────────────────────────────────────────────────────────────
+
+function setState(name, taskLabel, progressText, agentName) {
+  const cfg = STATES[name];
+  if (!cfg) return;
+  currentState = name;
+
+  document.getElementById('emoji').src = cfg.img;
+
+  // When expanded, lock header to "VIBE ISLAND"
+  if (isExpanded) {
+    document.getElementById('state-label').textContent = 'VIBE ISLAND';
+    document.getElementById('task-label').textContent = '';
+    document.getElementById('agent-count').style.display = 'none';
+  } else if (isWidget && (name === 'idle' || name === 'sleeping')) {
+    if (isPreviewing) collapsePreview();
+    // Compact: idle/sleeping → emoji left, count right
+    const activeCount = name === 'sleeping' ? 0
+      : Object.keys(AGENT_NAMES).length;
+    document.getElementById('state-label').textContent = '';
+    document.getElementById('task-label').textContent = '';
+    document.getElementById('progress-text').textContent = '';
+    document.getElementById('agent-count').textContent = activeCount;
+    document.getElementById('agent-count').style.display = 'block';
+    document.getElementById('agent-count').style.color = name === 'sleeping' ? '#444' : '#6688bb';
+    applyClasses();
+    sendResize(220, 38, 19);
+    return;
+  } else {
+    document.getElementById('agent-count').style.display = 'none';
+    const label = (isWidget && agentName)
+      ? `${cfg.label} · ${agentName}`
+      : cfg.label;
+    document.getElementById('state-label').textContent = label;
+    if (taskLabel !== undefined) document.getElementById('task-label').textContent = taskLabel || '';
+  }
+  if (progressText !== undefined) document.getElementById('progress-text').textContent = progressText || '';
+
+  applyClasses();
+
+  // Fixed pill size for all compact states
+  if (isWidget && !isExpanded && !isPreviewing) {
+    sendResize(220, 38, 19);
+  }
+
+  // After 5s of happy/error, re-evaluate based on all agents' priority
+  if (name === 'happy' || name === 'error') {
+    if (idleTimer) { clearTimeout(idleTimer); }
+    idleTimer = setTimeout(() => {
+      idleTimer = null;
+      // Re-check: use top agent priority instead of forcing idle
+      const t = getTopAgent();
+      if (t && STATE_PRIORITY[t.state] > 1) {
+        setState(t.state, t.label || '', '', t.name || '');
+      } else {
+        setState('idle', '', '', '');
+      }
+    }, 5000);
+  }
+}
+
+// ── Agent tracking ───────────────────────────────────────────────────────────
+
+function trackAgent(agent, evType, label, name) {
+  if (!agent) return;
+  const mapped = evType === 'message_received' ? 'alert'
+    : evType === 'done' ? 'happy'
+    : evType === 'task_error' ? 'error'
+    : evType === 'thinking' ? 'thinking' : 'idle';
+  agentStates.set(agent, { state: mapped, label, name, ts: Date.now() });
+  if (mapped === 'happy' || mapped === 'error' || mapped === 'alert') {
+    setTimeout(() => {
+      const cur = agentStates.get(agent);
+      if (cur && cur.state === mapped) { cur.state = 'idle'; cur.label = ''; }
+      if (isExpanded) renderExpandedList();
+    }, 5000);
+  }
+  if (isExpanded) renderExpandedList();
+}
+
+// ── Expand / Collapse (hover-based) ─────────────────────────────────────────
+
+let collapseTimer = null;
+let expandedAt = 0; // timestamp of last expand, for cooldown
+
+function startExpand() {
+  if (collapseTimer) { clearTimeout(collapseTimer); collapseTimer = null; }
+  if (isExpanded) return;
+  if (isPreviewing) collapsePreview();
+  isExpanded = true;
+  expandedAt = Date.now();
+  document.getElementById('state-label').textContent = 'VIBE ISLAND';
+  document.getElementById('task-label').textContent = '';
+  renderExpandedList();
+  applyClasses();
+}
+
+function stopExpand() {
+  if (!isExpanded) return;
+  if (collapseTimer) return; // already pending
+  collapseTimer = setTimeout(() => {
+    collapseTimer = null;
+    isExpanded = false;
+    document.getElementById('expanded-list').innerHTML = '';
+    // Restore compact state
+    const top = getTopAgent();
+    if (top && STATE_PRIORITY[top.state] > 1) {
+      setState(top.state, top.label || '', '', top.name || '');
+    } else {
+      setState('idle', '', '', '');
+    }
+  }, 200);
+}
+
+function renderExpandedList() {
+  const el = document.getElementById('expanded-list');
+  const allAgents = new Map();
+  for (const [id, name] of Object.entries(AGENT_NAMES)) {
+    allAgents.set(id, agentStates.get(id) || { state: 'idle', label: '', name, ts: 0 });
+  }
+  for (const [id, info] of agentStates) {
+    if (!allAgents.has(id)) allAgents.set(id, info);
+  }
+  if (!allAgents.size) {
+    el.innerHTML = '<div class="agent-row"><span style="color:#666;font-size:11px">暂无 Agent</span></div>';
+    sendResize(200, 38 + 24 + 14, 16);
+    return;
+  }
+  let html = '';
+  let totalH = 0; // content height only, CSS padding-bottom handled in sendResize
+  for (const [id, info] of allAgents) {
+    const cfg = STATES[info.state] || STATES.idle;
+    const name = info.name || AGENT_NAMES[id] || id.split('-').pop();
+    const link = AGENT_LINKS[id] || '';
+    const clickAttr = link ? ` data-link="${link}"` : '';
+    html += `<div class="agent-group"${clickAttr}>`;
+    html += `<div class="agent-row"><img class="a-emoji" src="${cfg.img}"><span class="a-name">${name}</span></div>`;
+    // Add up to 2 latest messages
+    const msgs = agentMessages.get(id) || [];
+    const recent = msgs.slice(-2);
+    for (const m of recent) {
+      html += `<div class="msg-row">${m.text}</div>`;
+    }
+    html += `</div>`;
+    totalH += 30 + recent.length * 20; // agent row + messages
+  }
+  el.innerHTML = html;
+  const w = 400;
+  const h = 38 + totalH + 14; // 38=title bar, totalH=content, 14=CSS padding-bottom
+  sendResize(w, h, 16);
+}
+
+// ── Message preview ──────────────────────────────────────────────────────────
+
+function showPreview() {
+  if (isExpanded) return;
+  if (previewTimer) { clearTimeout(previewTimer); previewTimer = null; }
+  isPreviewing = true;
+  applyClasses();
+  sendResize(220, 38, 19);
+}
+
+function collapsePreview() {
+  if (!isPreviewing) return;
+  if (previewTimer) { clearTimeout(previewTimer); previewTimer = null; }
+  isPreviewing = false;
+  applyClasses();
+  sendResize(220, 38, 19);
+}
+
+// ── Event handler ────────────────────────────────────────────────────────────
+
+function handleEvent(ev) {
+  const label = ev.label || ev.text || '';
+  const agent = ev.agent || '';
+  const shortName = AGENT_NAMES[agent] || '';
+
+  // Clear auto-collapse timer on new event
+  if (previewAutoCollapse) { clearTimeout(previewAutoCollapse); previewAutoCollapse = null; }
+
+  trackAgent(agent, ev.type, label, shortName);
+
+  // Store message for expanded view (both user messages and agent replies)
+  if ((ev.type === 'message_received' || ev.type === 'done') && label && agent) {
+    if (!agentMessages.has(agent)) agentMessages.set(agent, []);
+    const q = agentMessages.get(agent);
+    const prefix = ev.type === 'message_received' ? '你: ' : '';
+    q.push({ text: prefix + label, ts: Date.now() });
+    if (q.length > 10) q.shift();
+    if (isExpanded) renderExpandedList();
+  }
+
+  // Sound + shake
+  if (ev.type === 'done') {
+    try { window.webkit.messageHandlers.shake.postMessage('done'); } catch(e) {}
+  } else if (ev.type === 'task_error') {
+    try { window.webkit.messageHandlers.shake.postMessage('error'); } catch(e) {}
+  }
+
+  // Preview handling — show task text for alert, thinking, and done
+  if (ev.type === 'message_received' && isWidget && !isExpanded && label) {
+    setState('alert', label, '', shortName);
+    showPreview();
+    return;
+  }
+  if (ev.type === 'thinking' && isWidget && !isExpanded && label) {
+    setState('thinking', label, '', shortName);
+    showPreview();
+    return;
+  }
+  if (ev.type === 'done' && isWidget && !isExpanded && label) {
+    setState('done', label, '', shortName);
+    showPreview();
+    if (previewAutoCollapse) clearTimeout(previewAutoCollapse);
+    previewAutoCollapse = setTimeout(() => {
+      previewAutoCollapse = null;
+      if (isPreviewing) collapsePreview();
+      // Re-evaluate state after collapse
+      const t = getTopAgent();
+      if (t && STATE_PRIORITY[t.state] > 1) {
+        setState(t.state, t.label || '', '', t.name || '');
+      } else {
+        setState('idle', '', '', '');
+      }
+    }, 3000);
+    return;
+  }
+
+  // Use highest-priority agent state for compact display
+  const top = getTopAgent();
+  if (top && !isExpanded) {
+    const mapped = top.state === 'alert' ? 'alert'
+      : top.state === 'happy' ? 'happy'
+      : top.state === 'error' ? 'error'
+      : top.state === 'thinking' ? 'thinking'
+      : 'idle';
+    setState(mapped, top.label || '', '', top.name || '');
+  } else if (ev.type === 'connected') {
+    setState('idle', '', '', '');
+  }
+}
+
+// ── WebSocket ────────────────────────────────────────────────────────────────
+
+const dot = document.getElementById('conn-dot');
+let ws, reconnectTimer;
+
+function connect() {
+  ws = new WebSocket(`ws://localhost:${cfgWsPort}`);
+  ws.onopen = () => {
+    dot.className = 'connected';
+    if (reconnectTimer) { clearInterval(reconnectTimer); reconnectTimer = null; }
+    setState('idle');
+  };
+  ws.onclose = () => {
+    dot.className = 'error';
+    setState('sleeping');
+    reconnectTimer = setTimeout(connect, 2000);
+  };
+  ws.onerror = () => { dot.className = 'error'; };
+  ws.onmessage = (e) => {
+    try { handleEvent(JSON.parse(e.data)); } catch {}
+  };
+}
+
+// ── Boot ─────────────────────────────────────────────────────────────────────
+
+fetch('/config').then(r => r.json()).then(cfg => {
+  AGENT_NAMES = cfg.agent_names || {};
+  AGENT_LINKS = cfg.agent_links || {};
+  cfgWsPort = cfg.ws_port || 7789;
+}).catch(() => {}).finally(() => {
+  connect();
+});
+
+if (isWidget) {
+  document.body.classList.add('widget-mode');
+  // Click on agent row with link still opens URL
+  document.body.addEventListener('click', (e) => {
+    const group = e.target.closest('.agent-group[data-link]');
+    if (group) {
+      try { window.webkit.messageHandlers.openURL.postMessage(group.dataset.link); } catch(ex) {}
+    }
+  });
+}
+
+// Called by Swift HoverView
+function handleHoverEnter() { startExpand(); }
+function handleHoverLeave() {
+  stopExpand();
+  const h = document.querySelector('.agent-group.hovered');
+  if (h) h.classList.remove('hovered');
+}
+
+// Called by Swift HoverView on mouse move — highlight agent group under cursor
+let _hoveredGroup = null;
+function handleHoverMove(x, y) {
+  const groups = document.querySelectorAll('.agent-group');
+  let found = null;
+  for (const g of groups) {
+    const r = g.getBoundingClientRect();
+    if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) { found = g; break; }
+  }
+  if (found !== _hoveredGroup) {
+    if (_hoveredGroup) _hoveredGroup.classList.remove('hovered');
+    if (found) found.classList.add('hovered');
+    _hoveredGroup = found;
+  }
+}
+</script>
+</body>
+</html>

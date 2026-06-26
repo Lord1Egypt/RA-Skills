@@ -1,35 +1,233 @@
 ---
-name: "效率操作系统（中文版）"
-description: "中文效率操作系统 — 集目标/项目/任务/习惯/复盘于一体，结合微信/钉钉/飞书生态，专为中国职场人设计，含变现路径指导。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/productivity-os-cn"
-sourceUrl: "https://clawhub.ai/skills/productivity-os-cn"
+name: Productivity-OS-CN
+description: 中文效率操作系统 — 集目标/项目/任务/习惯/复盘于一体，结合微信/钉钉/飞书生态，专为中国职场人设计，含变现路径指导。
+version: 1.0.0
+tag: productivity
+icon: 💰
+source: community
 ---
 
-# 效率操作系统（中文版）
+# Productivity-OS-CN 中文效率操作系统
 
-> 中文效率操作系统 — 集目标/项目/任务/习惯/复盘于一体，结合微信/钉钉/飞书生态，专为中国职场人设计，含变现路径指导。
+## 🚨 执行前必读
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/productivity-os-cn`
-- **Source URL:** [https://clawhub.ai/skills/productivity-os-cn](https://clawhub.ai/skills/productivity-os-cn)
+- ✅ **本地优先**：所有数据存本地 `~/productivity/`（或 `~/效率系统/`），不上云
+- ⚠️ **不要囤积**：任务只存"下一步行动"，不是想法仓库，超过 50 条要清理
+- ⚠️ **复盘比计划重要**：每周必须复盘，否则系统会崩溃
+- ⚠️ **能量管理优先于时间管理**：低谷期做简单事，高峰期做重要事
+- ❌ **不接急单**：承诺前看能量，不看时间
+- ❌ **不发无关紧要的微信**：消息→判断→删除/归档/下一步
 
-## Overview
+---
 
+## 📋 快速索引：意图 → 行动 → 文件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/productivity-os-cn
+| 用户说 | 行动 | 文件 |
+|--------|------|------|
+| 设定目标 | 目标→项目→任务拆解 | `goals/active.md` |
+| 本周计划 | 能量+优先级排布 | `planning/weekly.md` |
+| 每日聚焦 | 3件事+番茄钟 | `planning/daily.md` |
+| 习惯养成 | 触发→行为→奖励 | `habits/active.md` |
+| 失控了 | 清空→分类→重置 | `inbox/triage.md` |
+| 赚更多钱 | 变现方向诊断 | `monetize/direction.md` |
+| 每周复盘 | 更新进度+清理+计划 | `reviews/weekly.md` |
+| 记录想法 | 2分钟内捕获 | `inbox/capture.md` |
+
+---
+
+## 🎯 系统架构
+
 ```
+~/效率系统/
+├── inbox/              # 快速捕获
+│   ├── capture.md      # 2分钟内写下想法
+│   └── triage.md       # 分类：删除/存档/任务/项目/目标
+├── dashboard.md        # 仪表盘：本月核心目标+当前能量
+├── goals/              # 目标（结果导向）
+│   ├── active.md       # 正在追求的目标
+│   └── someday.md     # 未来想做但未承诺
+├── projects/           # 项目（行动集合）
+│   ├── active.md       # 进行中的项目
+│   └── waiting.md      # 等待中的项目
+├── tasks/              # 任务（下一步行动）
+│   ├── next.md         # 下一步行动清单
+│   ├── this-week.md    # 本周承诺
+│   ├── waiting.md      # 等待别人
+│   └── done.md         # 已完成
+├── habits/             # 习惯（重复行为）
+│   ├── active.md       # 当前习惯+连续天数
+│   └── friction.md    # 打断习惯的因素
+├── planning/           # 计划
+│   ├── daily.md        # 今日3件事+能量峰值
+│   ├── weekly.md       # 本周目标+时间块
+│   └── focus-blocks.md # 深度工作时间块
+├── reviews/            # 复盘
+│   ├── weekly.md       # 周复盘（周日/周一）
+│   └── monthly.md     # 月复盘
+├── monetize/           # 💰 变现模块
+│   ├── direction.md    # 当前变现方向诊断
+│   ├── income-tracker.md # 收入追踪
+│   └── action-plan.md  # 下一步变现行动
+├── memory.md           # 个人偏好（需确认才写）
+└── routines/          # 例程
+    ├── morning.md      # 早晨例程
+    └── shutdown.md     # 结束日例程
+```
+
+---
+
+## 💰 变现模块（核心功能）
+
+### 变现诊断三问
+
+当你不知道该往哪个方向赚钱时，问自己：
+
+1. **你擅长什么？**（技能/知识/经验）
+2. **谁需要这个？**（目标用户）
+3. **他们愿意付多少？**（定价验证）
+
+### 变现方向速查
+
+| 方向 | 适合人群 | 起步方式 |
+|------|---------|---------|
+| **技能服务** | 有专业技能（编程/设计/文案） | 接单平台（Upwork/猪八戒）|
+| **信息产品** | 有行业知识 | 卖教程/模板/文档 |
+| **流量变现** | 有粉丝/内容能力 | 广告/带货/付费订阅 |
+| **自动化服务** | 懂 AI + 流程 | 帮人搭系统 |
+| **咨询** | 有深度行业经验 | 按小时/项目收费 |
+
+### 收入追踪
+
+每次变现行动后更新 `monetize/income-tracker.md`：
+
+```markdown
+## 收入记录
+
+| 日期 | 来源 | 金额 | 耗时 | 备注 |
+|------|------|------|------|------|
+| 2026-05-17 | 编程服务 | ¥2000 | 4h | 客户A |
+```
+
+### 下一步变现行动
+
+每周从 `monetize/action-plan.md` 选一个最高优先级的行动执行，不要同时做超过 2 个变现实验。
+
+---
+
+## ⚡ 核心规则
+
+### 1. 能量 > 时间
+
+不是"有时间再做"，而是"能量够就做最重要的事"。
+
+| 能量状态 | 适合做 |
+|---------|--------|
+| 🔴 低（<50%） | 机械任务（整理/归档/邮件） |
+| 🟡 中（50-80%） | 协作任务（开会/讨论） |
+| 🟢 高（>80%） | 深度工作（写作/编程/决策） |
+
+### 2. 任务只有下一步
+
+每个任务必须能回答："下一步做什么？"不能是"做项目X"。
+
+### 3. 承诺前看能量，不看时间
+
+"我有空" ≠ "我能做好"。能量低时接单，交付质量差，信誉受损。
+
+### 4. 每周复盘，否则系统崩溃
+
+不复盘的问题会累积，最终系统失效。
+
+---
+
+## 📊 Quick Queries（快速查询）
+
+| 场景 | 操作 |
+|------|------|
+| "开始用效率系统" | 创建目录结构 + `dashboard.md` |
+| "今天干啥" | 读取 `dashboard.md` + `planning/daily.md` |
+| "本周计划" | 读取 `goals/` + `planning/weekly.md` |
+| "任务清单" | 读取 `tasks/next.md` |
+| "我有好多事" | 引导到 `inbox/triage.md` |
+| "想赚更多钱" | 引导到 `monetize/direction.md` |
+| "习惯坚持不了" | 读取 `habits/friction.md` |
+| "每周复盘" | 执行 `reviews/weekly.md` 流程 |
+
+---
+
+## 🔧 操作限制
+
+| 限制 | 说明 |
+|------|------|
+| 同时进行项目 | ≤ 3 个（超过要暂停） |
+| 每日任务数 | ≤ 5 个核心任务 |
+| 捕获清单 | 随时可写，但每周清理 |
+| 承诺 | 能量 > 80% 才接 |
+
+---
+
+## ⚠️ 错误码速查
+
+| 现象 | 原因 | 解决 |
+|------|------|------|
+| 任务列表越来越长 | 没复盘 | 执行周复盘 |
+| 习惯坚持不了 | 目标太大 | 缩小到 5 分钟版本 |
+| 不知道该做什么 | 没有优先级 | 更新 `dashboard.md` |
+| 赚不到钱 | 没有变现方向 | 填写 `monetize/direction.md` |
+| 能量低效率差 | 没有能量管理 | 强制休息 30 分钟 |
+
+---
+
+## 💡 使用流程
+
+### 新用户启动
+
+1. 创建 `~/效率系统/` 目录结构
+2. 填写 `dashboard.md`（本月核心目标）
+3. 填写 `monetize/direction.md`（变现方向）
+4. 从 `tasks/next.md` 开始行动
+
+### 每日流程
+
+1. 早：看 `planning/daily.md`（今日3件事）
+2. 中：根据能量做任务
+3. 晚：更新 `tasks/done.md` + 捕获新想法
+
+### 每周流程（周日/周一）
+
+1. 复盘上周（`reviews/weekly.md`）
+2. 清理任务（完成/删除/延后）
+3. 制定本周计划（`planning/weekly.md`）
+4. 更新变现进展（`monetize/income-tracker.md`）
+
+---
+
+## 📌 适用场景
+
+- ✅ 职场人（需要管理多个项目和任务）
+- ✅ 创业者（需要效率系统+变现追踪）
+- ✅ 自由职业者（需要时间管理+客户管理）
+- ✅ 学生（需要学习+目标管理）
+- ⚠️ 不适合：只需要简单待办清单的人
+
+---
+
+## 🔗 配套 Skills
+
+| Skill | 用途 |
+|-------|------|
+| `data` | 数据分析和可视化 |
+| `monetize` | 定价和变现策略 |
+| `ecommerce` | 电商运营（如果做电商） |
+
+---
+
+## 🎓 学习资源
+
+- 效率系统：《深度工作》《原子习惯》
+- 变现：《营销人》《创业维艰》
+- 中国场景：参考「赚钱实战 Playbook」
+
+---
+
+*版本：1.0.0 | 基于 V2 Skill 规范 | MIT-0 免费商用*

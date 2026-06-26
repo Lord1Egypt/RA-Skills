@@ -1,0 +1,47 @@
+# 纠正记录插件默认配置
+
+# 文件路径配置
+corrections_file: "~/self-improving/corrections.md"
+max_lines_per_file: 1000
+archive_directory: "~/self-improving/archive/"
+
+# 健康检查配置
+enable_health_check: true
+health_check_interval_seconds: 300
+
+# 性能配置
+enable_caching: true
+cache_ttl_seconds: 60
+
+# 适配器配置
+adapter:
+  name: "correction_logger"
+  version: "0.1.0"
+  dependencies:
+    - "self-improving"
+  
+  # 适配器健康检查配置
+  health_check:
+    enabled: true
+    timeout_seconds: 5
+    
+  # 日志配置
+  logging:
+    level: "INFO"
+    file: "/tmp/correction-logger-adapter.log"
+    max_size_mb: 10
+    backup_count: 3
+
+# 插件元数据
+plugin:
+  name: "correction-logger"
+  description: "纠正记录插件 - SIPA 单功能拆分试点"
+  author: "OpenClaw Workspace"
+  license: "MIT"
+  homepage: "https://clawhub.com/plugins/correction-logger"
+  
+# 向后兼容配置
+compatibility:
+  preserve_file_format: true
+  allow_direct_file_access: false  # 是否允许直接文件访问（不通过适配器）
+  migration_mode: "adapter_first"  # 迁移模式: adapter_first | direct_only | hybrid

@@ -1,35 +1,32 @@
 ---
-name: "RetailMeNot优惠助手"
-description: "RetailMeNot优惠券聚合与返利平台工具，美国主流优惠券网站，提供数千商家的优惠码、折扣信息和现金返利。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/retailmenot"
-sourceUrl: "https://clawhub.ai/skills/retailmenot"
+name: RetailMeNot优惠助手
+description: RetailMeNot优惠券聚合与返利平台工具，美国主流优惠券网站，提供数千商家的优惠码、折扣信息和现金返利。
+version: 0.1.0
 ---
 
 # RetailMeNot优惠助手
 
-> RetailMeNot优惠券聚合与返利平台工具，美国主流优惠券网站，提供数千商家的优惠码、折扣信息和现金返利。
+RetailMeNot优惠券聚合与返利平台工具。美国主流优惠券网站（Ziff Davis旗下），聚合数千商家的优惠码、折扣信息和现金返利，月访问量数千万，是海外购物找优惠的首选工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/retailmenot`
-- **Source URL:** [https://clawhub.ai/skills/retailmenot](https://clawhub.ai/skills/retailmenot)
+## 触发词
 
-## Overview
+retailmenot、retailmenot优惠、retailmenot返利、美国优惠券、海外优惠码
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/retailmenot
+- **优惠码聚合**：数千商家的最新优惠码
+- **现金返利**：部分商家提供现金返利
+- **线下优惠**：餐厅和实体店优惠信息
+- **移动端支持**：APP内直接使用优惠
+
+## 输出格式
+
+```
+🏷️ RetailMeNot优惠查询
+
+商家：[商家名称]
+可用优惠码：
+  ① [优惠码] - [描述]（成功率[X]%）
+  ② [优惠码] - [描述]（成功率[X]%）
+现金返利：[X]%
 ```

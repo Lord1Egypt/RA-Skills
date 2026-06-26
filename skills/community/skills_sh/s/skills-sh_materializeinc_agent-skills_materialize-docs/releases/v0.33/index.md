@@ -1,0 +1,24 @@
+# Materialize v0.33
+## v0.33.0
+
+* Add support for connecting to Kafka brokers using an [SSH tunnel connection](/sql/create-connection/#ssh-tunnel)
+to an SSH bastion server.
+
+  ```mzsql
+  CREATE CONNECTION kafka_connection TO KAFKA (
+    BROKERS (
+      'broker1:9092' USING SSH TUNNEL ssh_connection,
+      'broker2:9092' USING SSH TUNNEL ssh_connection
+      )
+  );
+  ```
+
+* Add [`mz_internal.mz_source_status`](/reference/system-catalog/mz_internal/#mz_source_statuses) and
+  [`mz_internal.mz_source_status_history`](/reference/system-catalog/mz_internal/#mz_source_status_history)
+  to the system catalog. These objects respectively expose the current
+  and historical state for each source in the system, including potential
+  error messages and additional metadata helpful for debugging.
+
+* Add [`mz_internal.mz_cluster_replica_metrics`](https://materialize.com/docs/reference/system-catalog/mz_internal/#mz_cluster_replica_metrics) to the system
+  catalog. This table records the last known CPU and RAM utilization statistics
+  for all processes of all extant cluster replicas.

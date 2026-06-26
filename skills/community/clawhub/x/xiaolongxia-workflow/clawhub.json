@@ -1,0 +1,51 @@
+{
+  "slug": "xiaolongxia-workflow",
+  "name": "小龙虾分层任务工作流",
+  "version": "0.5.0",
+  "description": "系统化、工程化的复杂任务处理框架，支持分层分解、错误恢复、自动备份和进度跟踪",
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "tags": ["workflow", "task-decomposition", "error-handling", "automation", "project-management"],
+  "repository": "https://github.com/openclaw/openclaw",
+  "homepage": "https://docs.openclaw.ai",
+  "requires": {
+    "openclaw": ">=2026.3.0"
+  },
+  "files": [
+    "SKILL.md",
+    "clawhub.json",
+    "config/",
+    "scripts/",
+    "templates/",
+    "tests/",
+    "references/"
+  ],
+  "entrypoints": {
+    "workflow": "scripts/run_workflow.py",
+    "analyzer": "scripts/task_analyzer.py",
+    "decomposer": "scripts/step_decomposer.py",
+    "executor": "scripts/step_executor.py"
+  },
+  "configSchema": {
+    "project_base_dir": {
+      "type": "string",
+      "description": "项目基础目录",
+      "default": "/root/.openclaw/workspace/projects"
+    },
+    "max_decomposition_depth": {
+      "type": "number",
+      "description": "最大分解深度",
+      "default": 4
+    },
+    "email.enabled": {
+      "type": "boolean",
+      "description": "启用邮件通知",
+      "default": false
+    },
+    "backup.enabled": {
+      "type": "boolean",
+      "description": "启用自动备份",
+      "default": false
+    }
+  }
+}

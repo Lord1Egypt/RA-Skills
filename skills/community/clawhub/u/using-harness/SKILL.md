@@ -1,35 +1,34 @@
 ---
-name: "using-harness"
-description: "Force Harness mode for task decomposition, routing, package-first execution, and verifier-first completion evidence."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/using-harness"
-sourceUrl: "https://clawhub.ai/skills/using-harness"
+name: using-harness
+description: Force Harness mode for task decomposition, routing, package-first execution, and verifier-first completion evidence.
 ---
 
 # using-harness
 
-> Force Harness mode for task decomposition, routing, package-first execution, and verifier-first completion evidence.
+## When to use
+Use this skill whenever the task involves:
+- project advancement
+- dispatch
+- execution
+- verification
+- delivery
+- governance escalation
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/using-harness`
-- **Source URL:** [https://clawhub.ai/skills/using-harness](https://clawhub.ai/skills/using-harness)
+## Mandatory order
+1. Lock Task Object first:
+   - TaskType
+   - BusinessObjective
+   - TargetObject
+   - MinimumSuccessArtifact
+   - VerifierRole
+   - BlockerCondition
+2. Choose route from TASK_ROUTING_MATRIX.
+3. Create Task Package before downstream execution.
+4. Create Verifier Package before independent verification.
+5. Do not claim VERIFIED or BusinessClosed without verifier evidence.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/using-harness
-```
+## Forbidden
+- Do not jump into cron / shell / wrapper troubleshooting first.
+- Do not dispatch without a formal package.
+- Do not let verifier repair files.
+- Do not narrate CREATED / DELIVERED into VERIFIED.

@@ -1,0 +1,10 @@
+interface:
+  display_name: "OpenClaw Multi-Agent Wizard"
+  short_description: "Set up OpenClaw multi-agent step by step"
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $openclaw-multi-agent-wizard to help me choose a beginner-friendly OpenClaw multi-agent mode, create the agents, and set up Feishu step by step."
+
+policy:
+  allow_implicit_invocation: true

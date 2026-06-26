@@ -1,0 +1,59 @@
+{
+  "name": "xuanself",
+  "version": "1.0.0",
+  "packagedAt": "2026-04-06T17:48:00.000Z",
+  "description": "医疗器械俄罗斯市场深度调研标准工作流，输出专业Word报告",
+  "author": "WorkBuddy Custom",
+  "license": "MIT-0",
+  "language": "zh-CN",
+  "tags": [
+    "医疗器械",
+    "俄罗斯市场",
+    "俄罗斯Country Manager",
+    "医疗器械报告",
+    "医学进展",
+    "多语种调研",
+    "糖尿病",
+    "血糖检测",
+    "Word报告",
+    "实时数据",
+    "IDF",
+    "SerpAPI",
+    "市场调研",
+    "俄语"
+  ],
+  "trigger_words": [
+    "生成俄罗斯医疗器械报告",
+    "俄罗斯医疗器械市场调研",
+    "俄罗斯糖尿病市场报告",
+    "血糖仪俄罗斯市场报告",
+    "生成xuanself报告",
+    "俄罗斯医疗器械最新动态",
+    "俄罗斯医疗市场深度调研",
+    "俄罗斯医疗行业报告"
+  ],
+  "dependencies": {
+    "python_pkgs": [
+      "python-docx",
+      "fake-useragent",
+      "beautifulsoup4",
+      "lxml",
+      "requests",
+      "matplotlib",
+      "pillow"
+    ],
+    "external_apis": [
+      "SerpAPI (serpapi.com) — 必需",
+      "TGStat (tgstat.ru) — 可选"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "PORTING_NOTES.md",
+    "MANIFEST.json",
+    "scripts/word_exporter.py",
+    "scripts/run_report.py",
+    "data/data_sources.json"
+  ]
+}

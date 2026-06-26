@@ -1,0 +1,12 @@
+{
+  "channel": "#travel",
+  "channel_id": "C01TRAVEL1",
+  "messages": [
+    {
+      "user": "team_member",
+      "text": "Safe travels everyone!",
+      "ts": "1716286800.000000"
+    }
+  ],
+  "count": 1
+}

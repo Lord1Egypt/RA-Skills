@@ -1,0 +1,39 @@
+# SearXNG Configuration
+# Configure your SearXNG meta-search engine settings
+
+# SearXNG instance URL
+# Use a public instance or your own self-hosted instance
+# Public instances: https://searx.space/
+base_url: "https://searx.be"
+
+# Default search settings
+defaults:
+  language: "en-US"        # Search language (en-US, de-DE, fr-FR, etc.)
+  safesearch: 0           # 0 = off, 1 = moderate, 2 = strict
+  time_range: ""          # Filter by time: day, week, month, year, or empty
+  results_per_page: 10    # Default number of results
+
+# Preferred search engines (optional)
+# If empty, SearXNG uses its default set
+engines:
+  - google
+  - duckduckgo
+  - bing
+  - brave
+  - wikipedia
+  - wikidata
+
+# Search categories mapping
+categories:
+  general: "general"      # General web search
+  news: "news"           # News articles
+  images: "images"       # Image search
+  videos: "videos"       # Video search
+  files: "files"         # File search (PDFs, etc.)
+  science: "science"     # Scientific papers
+  social: "social media" # Social media
+
+# Performance settings
+performance:
+  timeout_seconds: 30    # Request timeout
+  rate_limit: 0.5         # Seconds between requests (be nice to public instances)

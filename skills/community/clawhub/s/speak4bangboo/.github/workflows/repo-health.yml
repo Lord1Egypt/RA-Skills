@@ -1,0 +1,23 @@
+name: Repo Health
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+jobs:
+  required-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required files
+        run: |
+          test -f README.md
+          test -f LICENSE
+          test -f CONTRIBUTING.md
+          test -f CHANGELOG.md
+          test -f prompts/core-rules.md
+          test -f prompts/claude-project.md
+          test -f prompts/openclaw-system.md
+          test -f .cursor/skills/speak4bangboo/SKILL.md
+          test -f .cursor/skills/speak4bangboo/reference-lexicon.md

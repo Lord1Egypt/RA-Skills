@@ -1,35 +1,42 @@
+````skill
 ---
-name: "Media.io Text to Video API"
-description: "Generate high-quality AI videos from text prompts using the Media.io Text to Video API with supported top models and task progress tracking."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mediaio-text-to-video-api"
-sourceUrl: "https://clawhub.ai/skills/mediaio-text-to-video-api"
+name: mediaio-text-to-video-api
+description: "Generate AI videos from text descriptions using Media.io OpenAPI. Provide a text prompt to receive a high-quality AI-generated video. Supports top models."
+metadata: {"mediaio": {"emoji": "", "requires": {"env": ["API_KEY"]}, "priority": "P0", "core_goal_keywords": ["text-to-video"], "trigger_keywords": ["text to video", "text-to-video API", "generate video from text"]}, "publisher": "Community Maintainer", "source": "https://platform.media.io/docs/"}
 ---
 
-# Media.io Text to Video API
-
-> Generate high-quality AI videos from text prompts using the Media.io Text to Video API with supported top models and task progress tracking.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mediaio-text-to-video-api`
-- **Source URL:** [https://clawhub.ai/skills/mediaio-text-to-video-api](https://clawhub.ai/skills/mediaio-text-to-video-api)
+# Text to Video API
 
 ## Overview
+This skill focuses on text-to-video generation via Media.io OpenAPI.
+It includes only common APIs (`Credits`, `Task Result`) and one text-to-video model API for this skill.
 
+## Core Trigger Keywords
+text to video, text-to-video API, generate video from text
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mediaio-text-to-video-api
+## Core Goal Keywords
+text-to-video
+
+## Environment Variable
+- `API_KEY` (required): Media.io OpenAPI key used as `X-API-KEY`.
+
+## Quick Start
+```python
+import os
+from scripts.skill_router import Skill
+
+skill = Skill('scripts/c_api_doc_detail.json')
+api_key = os.getenv('API_KEY', '')
+result = skill.invoke('Credits', {}, api_key=api_key)
+print(result)
 ```
+
+## Available APIs
+- `Credits` (`user-credits`)
+- `Task Result` (`generation-result`)
+- `Vidu Q3 (Text To Video)` (`t2v-vidu-q3`)
+
+## Notes
+- Use exact `api_name` from `scripts/c_api_doc_detail.json` when invoking.
+- Generation APIs return `task_id`; poll with `Task Result`.
+````

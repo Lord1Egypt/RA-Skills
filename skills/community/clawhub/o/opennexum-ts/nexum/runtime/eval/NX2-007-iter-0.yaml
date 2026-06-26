@@ -1,0 +1,19 @@
+verdict: fail
+strategy_results:
+  - strategy_type: integration
+    criteria_results:
+      - id: C1
+        result: fail
+        evidence: 'Integration run in a temp project with `node packages/cli/dist/index.js callback NX2-007 --project <tmp>` printed `{"ok":true,"taskId":"NX2-007"}`, but the resulting `nexum/active-tasks.json` lost the `status` field entirely instead of updating it to `generator_done`. The runtime root cause is that [packages/core/dist/types.js](/Users/tongyaojin/code/nexum-ts/packages/core/dist/types.js#L4) and [packages/core/dist/types.d.ts](/Users/tongyaojin/code/nexum-ts/packages/core/dist/types.d.ts#L31) do not include `TaskStatus.GeneratorDone`, even though [packages/cli/src/commands/callback.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/callback.ts#L11) writes it.'
+      - id: C3
+        result: pass
+        evidence: 'Integration run in a temp project with `node packages/cli/dist/index.js init --project <tmp>` created `CLAUDE.md` containing exactly one `<!-- nexum:callback:start --> ... <!-- nexum:callback:end -->` block. A second run printed `nexum already initialized, nothing to do.` and `grep -c "nexum:callback:start" <tmp>/CLAUDE.md` returned `1`. The implementation is in [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L16) and [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L57).'
+      - id: C4
+        result: fail
+        evidence: 'Running `pnpm --filter @nexum/cli build` exited with code 2. TypeScript reported `src/commands/callback.ts(12,24): error TS2339: Property ''GeneratorDone'' does not exist on type ''typeof TaskStatus''` and the same error at line 29. This matches the stale exported type surface in [packages/core/dist/types.d.ts](/Users/tongyaojin/code/nexum-ts/packages/core/dist/types.d.ts#L31).'
+  - strategy_type: review
+    criteria_results:
+      - id: C2
+        result: pass
+        evidence: '[packages/core/src/types.ts](/Users/tongyaojin/code/nexum-ts/packages/core/src/types.ts#L37) defines `TaskStatus.GeneratorDone = "generator_done"` at line 41.'
+feedback: "NX2-007 does not pass as submitted. The source-level additions for `GeneratorDone` and `init` callback-block upsert are present, but the shipped `@nexum/core` dist artifacts are stale: they omit `GeneratorDone`, which makes `@nexum/cli` fail to build and causes the current runtime `callback` command to remove `status` instead of setting it to `generator_done`."

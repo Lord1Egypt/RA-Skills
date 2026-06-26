@@ -1,0 +1,17 @@
+[project]
+name = "trading-agents-skill"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "akshare>=1.18.51",
+    "numpy>=2.0.2",
+    "pandas>=2.3.3",
+    "yfinance>=1.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.9",
+]

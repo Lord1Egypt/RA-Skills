@@ -1,0 +1,22 @@
+{
+  "name": "Xiaohongshu Research Kit",
+  "tagline": "Extract metadata, images, and stats from Xiaohongshu (Little Red Book) notes",
+  "description": "A content research toolkit for Xiaohongshu (小红书 / Little Red Book / RED). Extract note text, images, engagement stats, user profiles, and topic content — powered by yt-dlp and gallery-dl locally. Supports both image notes and video notes. Perfect for Chinese social media research and content analysis.",
+  "category": "data",
+  "tags": [
+    "xiaohongshu",
+    "小红书",
+    "red",
+    "little-red-book",
+    "chinese",
+    "social-media",
+    "research",
+    "metadata",
+    "content-analysis"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/xuya227939/xiaohongshu-research-kit/issues",
+  "homepage": "https://snapvee.com"
+}

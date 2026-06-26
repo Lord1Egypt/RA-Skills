@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claw Search - 免费 AI 搜索 API</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #FF6B35;
+      --primary-dark: #E55A2B;
+      --bg: #0D0D0D;
+      --bg-secondary: #1A1A1A;
+      --text: #FFFFFF;
+      --text-secondary: #A0A0A0;
+      --border: #2A2A2A;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-size: 24px; font-weight: 700; color: var(--primary); }
+    .logo span { color: var(--text); }
+    nav { display: flex; align-items: center; gap: 20px; }
+    nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; }
+    nav a:hover { color: var(--text); }
+    
+    /* Language Selector */
+    .lang-selector {
+      position: relative;
+      display: inline-block;
+    }
+    .lang-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-top: 5px;
+      z-index: 100;
+      min-width: 120px;
+    }
+    .lang-dropdown.show { display: block; }
+    .lang-option {
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lang-option:hover { background: var(--border); }
+    
+    /* Hero */
+    .hero { text-align: center; padding: 80px 20px 40px; max-width: 900px; margin: 0 auto; }
+    .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
+    .hero h1 .highlight { color: var(--primary); }
+    .hero p { font-size: 18px; color: var(--text-secondary); margin-bottom: 30px; }
+    
+    /* Search Box */
+    .search-box {
+      display: flex;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      background: var(--bg-secondary);
+      border-radius: 50px;
+      padding: 8px;
+      border: 1px solid var(--border);
+    }
+    .search-box input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 15px 25px;
+      font-size: 16px;
+      color: var(--text);
+      outline: none;
+    }
+    .search-box button {
+      background: var(--primary);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+    }
+    
+    /* API Demo */
+    .api-demo {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: left;
+      max-width: 700px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+    }
+    .api-demo h3 { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+    .api-demo pre {
+      background: #000;
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      color: #A0A0A0;
+    }
+    .keyword { color: var(--primary); }
+    .string { color: #98C379; }
+    
+    /* Stats */
+    .stats-section {
+      background: var(--bg-secondary);
+      padding: 50px 20px;
+      margin-top: 50px;
+    }
+    .stats-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .stats-title {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .stat-value { font-size: 32px; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: 14px; color: var(--text-secondary); margin-top: 5px; }
+    
+    /* Country Stats */
+    .country-stats {
+      margin-top: 40px;
+    }
+    .country-stats h3 { font-size: 20px; margin-bottom: 20px; text-align: center; }
+    .country-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+    .country-card {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .country-flag { font-size: 24px; }
+    .country-name { font-size: 14px; color: var(--text-secondary); }
+    .country-count { font-size: 18px; font-weight: 600; color: var(--primary); margin-top: 5px; }
+    
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 40px;
+    }
+    .feature-card {
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+    }
+    .feature-icon { font-size: 36px; margin-bottom: 15px; }
+    .feature-card h3 { font-size: 18px; margin-bottom: 12px; }
+    .feature-card p { color: var(--text-secondary); font-size: 14px; }
+    
+    /* Footer */
+    footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 14px; }
+    footer a { color: var(--primary); text-decoration: none; }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .features { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Claw<span>Search</span></div>
+    <nav>
+      <a href="#features" data-i18n="features">功能</a>
+      <a href="#docs" data-i18n="docs">文档</a>
+      <a href="#pricing" data-i18n="free">免费</a>
+      <div class="lang-selector">
+        <button class="lang-btn" onclick="toggleLang()">
+          <span id="currentLang">🌐 中文</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <div class="lang-option" onclick="setLang('zh')">🇨🇳 中文</div>
+          <div class="lang-option" onclick="setLang('en')">🇺🇸 English</div>
+          <div class="lang-option" onclick="setLang('ja')">🇯🇵 日本語</div>
+          <div class="lang-option" onclick="setLang('ko')">🇰🇷 한국어</div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1 data-i18n="hero_title">让 AI Agents 拥有<br>免费搜索能力<span class="highlight">🦔</span></h1>
+    <p data-i18n="hero_desc">类似 Brave Search 的 Web Search API，专为 AI Agents 设计。无需 API Key，完全免费。</p>
+    
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜索anything..." onkeypress="if(event.key==='Enter')doSearch()" />
+      <button onclick="doSearch()" data-i18n="search">搜索</button>
+    </div>
+    
+    <!-- 搜索结果展示 -->
+    <div id="searchResults" style="max-width: 700px; margin: 20px auto; text-align: left;"></div>
+    
+    <div class="api-demo">
+      <h3 data-i18n="curl_demo">cURL 示例</h3>
+      <pre><span class="keyword">curl</span> -X POST https://api.claw-search.com/api/search \
+  -H <span class="string">"Content-Type: application/json"</span> \
+  -d '<span class="string">{"query": "openclaw ai agent", "count": 10}</span>'</pre>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <h2 class="stats-title" data-i18n="api_stats">API 调用统计</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="totalCalls">-</div>
+          <div class="stat-label" data-i18n="total_calls">总调用次数</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="todayCalls">-</div>
+          <div class="stat-label" data-i18n="today_calls">今日调用</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="countryCount">-</div>
+          <div class="stat-label" data-i18n="country_count">国家/地区</div>
+        </div>
+      </div>
+      
+      <div class="country-stats">
+        <h3 data-i18n="country_ranking">各国调用排行</h3>
+        <div class="country-grid" id="countryStats">
+          <!-- 动态加载 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="feature-card">
+      <div class="feature-icon">🔑</div>
+      <h3 data-i18n="feature1_title">无需 API Key</h3>
+      <p data-i18n="feature1_desc">完全免费使用，无需申请 API Key。让你的 AI Agents 立即拥有搜索能力。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3>智能意图识别</h3>
+      <p>自动识别教程、新闻、官网等搜索意图，返回更精准的结果。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <h3>多语言支持</h3>
+      <p>支持中文、英文、日文、韩文等10+语言，自动匹配最佳搜索结果。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>内容提取</h3>
+      <p>支持 URL 内容提取，自动获取网页主要内容，AI 直接可用。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>智能缓存</h3>
+      <p>15分钟智能缓存，重复查询毫秒级响应，降低服务器压力。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>调用统计</h3>
+      <p>实时统计调用量、延迟、缓存命中率等数据，便于监控分析。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Claw Search. <span data-i18n="footer">开源免费，可自托管。</span></p>
+    <p style="margin-top: 10px;">
+      <a href="mailto:455288542@qq.com">📧 合作联系: 455288542@qq.com</a>
+    </p>
+  </footer>
+
+  <script>
+    // i18n translations
+    const translations = {
+      zh: {
+        hero_title: '让 AI Agents 拥有<br>免费搜索能力🦔',
+        hero_desc: '类似 Brave Search 的 Web Search API，专为 AI Agents 设计。无需 API Key，完全免费。',
+        search: '搜索',
+        curl_demo: 'cURL 示例',
+        features: '功能',
+        docs: '文档',
+        free: '免费',
+        api_stats: 'API 调用统计',
+        total_calls: '总调用次数',
+        today_calls: '今日调用',
+        country_count: '国家/地区',
+        country_ranking: '各国调用排行',
+        feature1_title: '无需 API Key',
+        feature1_desc: '完全免费使用，无需申请 API Key。让你的 AI Agents 立即拥有搜索能力。',
+        feature2_title: '通用兼容',
+        feature2_desc: '兼容 OpenClaw、Claude Code、LangChain 等各种 Agent 框架。',
+        feature3_title: '快速响应',
+        feature3_desc: '优化的搜索体验，低延迟返回结果。支持分页和多种筛选条件。',
+        feature4_title: '一键部署',
+        feature4_desc: '支持 Docker 一键部署到任意服务器。开源免费，可自托管。',
+        feature5_title: 'RESTful API',
+        feature5_desc: '标准 REST API 设计，兼容 Brave Search 格式，学习成本为零。',
+        feature6_title: '多语言支持',
+        feature6_desc: '支持中文、英文、日文、韩文等多语言搜索，自动根据 IP 切换语言。',
+        footer: '开源免费，可自托管。'
+      },
+      en: {
+        hero_title: 'Give Your AI Agents<br>Free Search Power 🦔',
+        hero_desc: 'Like Brave Search Web Search API, designed for AI Agents. No API Key needed, completely free.',
+        search: 'Search',
+        curl_demo: 'cURL Example',
+        features: 'Features',
+        docs: 'Docs',
+        free: 'Free',
+        api_stats: 'API Usage Statistics',
+        total_calls: 'Total Calls',
+        today_calls: 'Today',
+        country_count: 'Countries',
+        country_ranking: 'Top Countries',
+        feature1_title: 'No API Key Required',
+        feature1_desc: 'Completely free to use. No API Key needed. Give your AI agents search power immediately.',
+        feature2_title: 'Universal Compatibility',
+        feature2_desc: 'Compatible with OpenClaw, Claude Code, LangChain and other Agent frameworks.',
+        feature3_title: 'Fast Response',
+        feature3_desc: 'Optimized search experience with low latency. Supports pagination and filters.',
+        feature4_title: 'One-Click Deploy',
+        feature4_desc: 'Docker one-click deployment to any server. Open source and free, self-hostable.',
+        feature5_title: 'RESTful API',
+        feature5_desc: 'Standard REST API design, compatible with Brave Search format.',
+        feature6_title: 'Multi-language',
+        feature6_desc: 'Supports Chinese, English, Japanese, Korean and more. Auto-detects language from IP.',
+        footer: 'Open source and free to self-host.'
+      },
+      ja: {
+        hero_title: 'AIエージェントに<br>無料検索能力を🦔',
+        hero_desc: 'Brave SearchのようなWeb検索API、AIエージェント向け。APIキー不要、完全無料。',
+        search: '検索',
+        curl_demo: 'cURL 例',
+        features: '機能',
+        docs: 'ドキュメント',
+        free: '無料',
+        api_stats: 'API使用統計',
+        total_calls: '総呼び出し',
+        today_calls: '今日',
+        country_count: '国',
+        country_ranking: '国別ランキング',
+        feature1_title: 'APIキー不要',
+        feature1_desc: '完全無料で使用可能。APIキーを申請する必要はありません。',
+        feature2_title: '汎用互換性',
+        feature2_desc: 'OpenClaw、Claude Code、LangChainなど、様々なエージェントフレームワークに対応。',
+        feature3_title: '高速応答',
+        feature3_desc: '最適化された検索体験。低レイテンシ。ページネーション対応。',
+        feature4_title: 'ワンクリックデプロイ',
+        feature4_desc: 'Docker対応。任意のサーバーにデプロイ可能。',
+        feature5_title: 'RESTful API',
+        feature5_desc: 'Brave Search互換の標準REST API設計。',
+        feature6_title: '多言語対応',
+        feature6_desc: '中国語、英語、日本語、韓国語などに対応。IPから自動検出。',
+        footer: 'オープンソースで無料、自己ホスト可能。'
+      },
+      ko: {
+        hero_title: 'AI 에이전트에<br>무료 검색 능력 부여 🦔',
+        hero_desc: 'Brave Search와 같은 웹 검색 API, AI 에이전트용. API 키 불필요, 완전 무료.',
+        search: '검색',
+        curl_demo: 'cURL 예제',
+        features: '기능',
+        docs: '문서',
+        free: '무료',
+        api_stats: 'API 사용 통계',
+        total_calls: '총 호출',
+        today_calls: '오늘',
+        country_count: '국가',
+        country_ranking: '국가별 순위',
+        feature1_title: 'API 키 불필요',
+        feature1_desc: '완전 무료 사용. API 키 신청 필요 없음.',
+        feature2_title: '범용 호환성',
+        feature2_desc: 'OpenClaw, Claude Code, LangChain 등 다양한 에이전트 프레임워크와 호환.',
+        feature3_title: '빠른 응답',
+        feature3_desc: '최적화된 검색 경험, 낮은 지연 시간. 페이지네이션 지원.',
+        feature4_title: '원클릭 배포',
+        feature4_desc: 'Docker 지원. 모든 서버에 배포 가능.',
+        feature5_title: 'RESTful API',
+        feature5_desc: 'Brave Search 호환 표준 REST API 설계.',
+        feature6_title: '다국어 지원',
+        feature6_desc: '중국어, 영어, 일본어, 한국어 등 지원. IP 기반 자동 감지.',
+        footer: '오픈소스 무료, 자체 호스팅 가능.'
+      }
+    };
+
+    // Country flags
+    const countryFlags = {
+      'CN': '🇨🇳', 'US': '🇺🇸', 'JP': '🇯🇵', 'KR': '🇰🇷', 
+      'GB': '🇬🇧', 'DE': '🇩🇪', 'FR': '🇫🇷', 'IN': '🇮🇳',
+      'BR': '🇧🇷', 'RU': '🇷🇺', 'AU': '🇦🇺', 'CA': '🇨🇦',
+      'SG': '🇸🇬', 'HK': '🇭🇰', 'TW': '🇹🇼', 'OTHER': '🌍'
+    };
+
+    let currentLang = 'zh';
+
+    function toggleLang() {
+      document.getElementById('langDropdown').classList.toggle('show');
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.getElementById('currentLang').innerText = ['🇨🇳 中文', '🇺🇸 English', '🇯🇵 日本語', '🇰🇷 한국어'][['zh','en','ja','ko'].indexOf(lang)];
+      document.getElementById('langDropdown').classList.remove('show');
+      
+      // Update all translations
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          if (el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3') {
+            el.innerHTML = translations[lang][key];
+          } else {
+            el.innerText = translations[lang][key];
+          }
+        }
+      });
+      
+      // Save preference
+      localStorage.setItem('claw-lang', lang);
+    }
+
+    function doSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (!query) return;
+      
+      const resultsDiv = document.getElementById('searchResults');
+      resultsDiv.innerHTML = '<div style="text-align:center;padding:20px;">🔍 搜索中...</div>';
+      
+      fetch('https://api.claw-search.com/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: query, count: 5 })
+      })
+      .then(res => res.json())
+      .then(data => {
+        let html = '';
+        
+        // 显示免费API匹配结果
+        if (data.freeApis && data.freeApis.length > 0) {
+          html += '<div style="margin-bottom:25px;">';
+          html += '<h4 style="color:var(--primary);margin-bottom:12px;">🆓 免费API推荐</h4>';
+          data.freeApis.forEach(api => {
+            html += `<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;padding:15px;margin-bottom:10px;border:1px solid #FF6B35;">
+              <a href="${api.url}" target="_blank" style="color:#FF6B35;font-size:16px;text-decoration:none;font-weight:600;">${api.name}</a>
+              <p style="color:#aaa;font-size:13px;margin:5px 0 0 0;">${api.description}</p>
+            </div>`;
+          });
+          html += '</div>';
+        }
+        
+        // 显示搜索结果
+        if (data.results && data.results.length > 0) {
+          html += '<h4 style="color:var(--text-secondary);margin-bottom:12px;">🔍 网页搜索结果</h4>';
+          data.results.forEach(r => {
+            html += `<div style="background:var(--bg-secondary);border-radius:12px;padding:20px;margin-bottom:15px;border:1px solid var(--border);">
+              <a href="${r.url}" target="_blank" style="color:var(--primary);font-size:18px;text-decoration:none;font-weight:600;display:block;margin-bottom:8px;">${r.title}</a>
+              <p style="color:var(--text-secondary);font-size:14px;margin:0;">${r.description || ''}</p>
+              <p style="color:#666;font-size:12px;margin:8px 0 0 0;">🔗 ${r.url.substring(0,60)}...</p>
+            </div>`;
+          });
+        } else if (!data.freeApis || data.freeApis.length === 0) {
+          html += '<div style="text-align:center;padding:20px;color:var(--text-secondary);">未找到结果</div>';
+        }
+        
+        resultsDiv.innerHTML = html;
+      })
+      .catch(e => {
+        resultsDiv.innerHTML = '<div style="text-align:center;padding:20px;color:red;">搜索出错: ' + e.message + '</div>';
+      });
+    }
+
+    // Load stats
+    async function loadStats() {
+      try {
+        const resp = await fetch('https://api.claw-search.com/api/stats');
+        const data = await resp.json();
+        
+        document.getElementById('totalCalls').innerText = data.total_calls?.toLocaleString() || '0';
+        document.getElementById('todayCalls').innerText = data.today_calls?.toLocaleString() || '0';
+        document.getElementById('countryCount').innerText = data.countries?.length || '0';
+        
+        // Render country stats
+        const container = document.getElementById('countryStats');
+        container.innerHTML = (data.countries || []).map(c => `
+          <div class="country-card">
+            <div class="country-flag">${countryFlags[c.code] || '🌍'}</div>
+            <div class="country-name">${c.name || c.code}</div>
+            <div class="country-count">${c.count?.toLocaleString() || 0}</div>
+          </div>
+        `).join('');
+      } catch(e) {
+        console.log('Stats not available');
+      }
+    }
+
+    // Auto detect language from IP (simulated - would need server-side)
+    async function detectLang() {
+      // Check localStorage first
+      const saved = localStorage.getItem('claw-lang');
+      if (saved) {
+        setLang(saved);
+        return;
+      }
+      
+      // Try to detect from browser
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang.startsWith('ja')) setLang('ja');
+      else if (browserLang.startsWith('ko')) setLang('ko');
+      else if (browserLang.startsWith('en')) setLang('en');
+      else setLang('zh');
+    }
+
+    // Initialize
+    detectLang();
+    loadStats();
+    
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lang-selector')) {
+        document.getElementById('langDropdown').classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>

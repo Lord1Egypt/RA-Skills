@@ -1,35 +1,134 @@
 ---
-name: "个人理财预算规划助手"
-description: "Use this skill when helping users plan personal finances, create monthly budgets, track expenses, set savings goals, or optimize spending habits. Covers budg..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/budget-planner-cn"
-sourceUrl: "https://clawhub.ai/skills/budget-planner-cn"
+name: budget-planner-cn
+description: >
+  Use this skill when helping users plan personal finances, create monthly
+  budgets, track expenses, set savings goals, or optimize spending habits.
+  Covers budgeting frameworks, expense categorization, debt management, and
+  emergency fund planning for Chinese users.
 ---
 
 # 个人理财预算规划助手
 
-> Use this skill when helping users plan personal finances, create monthly budgets, track expenses, set savings goals, or optimize spending habits. Covers budg...
+## 适用场景
+- 制定月度/年度个人预算计划
+- 分析收支结构，找到节流空间
+- 设定储蓄目标（买房/旅行/应急金）
+- 债务管理与还款优先级排序
+- 工资涨薪后的资金重新分配
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/budget-planner-cn`
-- **Source URL:** [https://clawhub.ai/skills/budget-planner-cn](https://clawhub.ai/skills/budget-planner-cn)
+## 核心工作流
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/budget-planner-cn
+### Step 1：收集财务现状
+收集以下信息（引导用户填写）：
 ```
+月收入（税后）：_____ 元
+固定支出：房租_____ / 房贷_____ / 车贷_____
+日常开销：餐饮_____ / 交通_____ / 购物_____
+其他：娱乐_____ / 订阅服务_____ / 人情往来_____
+当前存款：_____ 元
+负债情况：信用卡_____ / 网贷_____ / 其他_____
+```
+
+### Step 2：应用预算框架
+
+#### 50/30/20 法则（入门推荐）
+| 分类 | 比例 | 用途 |
+|------|------|------|
+| 必要支出 | 50% | 房租/餐饮/交通/水电 |
+| 弹性消费 | 30% | 娱乐/购物/社交 |
+| 储蓄投资 | 20% | 紧急备用金/理财/还债 |
+
+#### 六罐子理财法（精细化）
+| 罐子 | 比例 | 用途 |
+|------|------|------|
+| 生活必需 | 55% | 基本生活开销 |
+| 长期储蓄 | 10% | 大额目标（买房/教育） |
+| 教育成长 | 10% | 学习/技能提升 |
+| 财务自由 | 10% | 投资理财 |
+| 享乐休闲 | 10% | 旅游/娱乐 |
+| 慈善公益 | 5% | 礼金/公益 |
+
+### Step 3：制定月度预算表
+
+```
+📊 月度预算模板（月收入：10,000元为例）
+
+【收入】
+  工资收入：9,500
+  副业收入：500
+  ─────────────────
+  月收入合计：10,000
+
+【必要支出（目标≤5,000）】
+  房租/房贷：2,500
+  餐饮伙食：1,200
+  交通出行：300
+  水电网费：200
+  手机话费：100
+  ─────────────────
+  必要支出小计：4,300
+
+【弹性消费（目标≤3,000）】
+  购物消费：800
+  娱乐休闲：500
+  社交人情：400
+  健身美容：300
+  ─────────────────
+  弹性消费小计：2,000
+
+【储蓄投资（目标≥2,000）】
+  紧急备用金：500
+  定期理财：1,000
+  投资账户：500
+  ─────────────────
+  储蓄合计：2,000
+
+当月结余：1,700（可补充备用金或再投资）
+```
+
+### Step 4：紧急备用金计划
+- **目标金额**：3-6个月生活费（最低标准）
+- **建议存放**：货币基金（余额宝/零钱通）或活期理财
+- **到达时间**：建议12个月内建立完整备用金
+
+```
+备用金规划示例：
+  月生活开销：5,000元
+  目标备用金：5,000 × 6 = 30,000元
+  现有备用金：10,000元
+  缺口：20,000元
+  每月补充：1,000元 → 20个月达标
+```
+
+### Step 5：负债清理策略
+
+#### 雪崩法（省利息，适合理性型）
+按利率从高到低排序，先还利率最高的债务
+
+#### 雪球法（有成就感，适合需要激励型）
+按余额从小到大排序，先还最小的债务，建立还款信心
+
+```
+负债优先级示例：
+  1. 网贷 5,000元 @ 年化18% → 优先还清
+  2. 信用卡 20,000元 @ 年化15% → 其次
+  3. 家人借款 10,000元 @ 0% → 最后
+```
+
+## 输出建议格式
+
+生成用户的个性化预算时，包含：
+1. **当前财务诊断**：收支比、储蓄率、负债率
+2. **优化建议**：3个可立即执行的改进点
+3. **月度预算表**：详细到每个分类的金额
+4. **3个月目标**：可量化的短期里程碑
+5. **年度目标**：与用户价值观相关的大目标
+
+## 关键财务健康指标
+
+| 指标 | 健康值 | 警戒值 |
+|------|--------|--------|
+| 储蓄率 | ≥20% | <10% |
+| 负债收入比 | <30% | >50% |
+| 备用金 | 3-6个月支出 | <1个月 |
+| 必要支出比 | <50% | >70% |

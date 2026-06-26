@@ -1,0 +1,6 @@
+{
+  "canvas_token": "YOUR_CANVAS_API_TOKEN_HERE",
+  "base_url": "https://oc.sjtu.edu.cn",
+  "save_dir": "~/Downloads/Canvas课件",
+  "calendar_name": "Canvas作业"
+}

@@ -1,0 +1,37 @@
+{
+  "timestamp": 1773276945565,
+  "strategies": [
+    {
+      "symbol": "BTCUSDT",
+      "timestamp": 1773276946317,
+      "metrics": {
+        "currentPrice": 70181.46,
+        "volatility": 3.3902278520873046,
+        "orders": 0,
+        "buyOrders": 0,
+        "sellOrders": 0,
+        "fills24h": 0,
+        "profit24h": 0
+      },
+      "suggestions": [
+        "增加买单数量"
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "timestamp": 1773276946806,
+      "metrics": {
+        "currentPrice": 86.67,
+        "volatility": 4.397297617636593,
+        "orders": 0,
+        "buyOrders": 0,
+        "sellOrders": 0,
+        "fills24h": 0,
+        "profit24h": 0
+      },
+      "suggestions": [
+        "增加买单数量"
+      ]
+    }
+  ]
+}

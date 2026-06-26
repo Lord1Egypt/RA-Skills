@@ -1,0 +1,104 @@
+{
+  "github": {
+    "token": "YOUR_GITHUB_PERSONAL_ACCESS_TOKEN",
+    "username": "YOUR_GITHUB_USERNAME",
+    "defaultRepo": "username/repository-name",
+    "webhookUrl": "https://your-webhook-url.com/webhook",
+    "environments": {
+      "development": {
+        "branch": "develop",
+        "autoDeploy": true,
+        "notifyOnFailure": true,
+        "requiredChecks": ["test", "lint"]
+      },
+      "staging": {
+        "branch": "staging",
+        "autoDeploy": false,
+        "requireApproval": true,
+        "requiredChecks": ["test", "lint", "build"]
+      },
+      "production": {
+        "branch": "main",
+        "autoDeploy": false,
+        "requireApproval": true,
+        "requireReview": 2,
+        "requiredChecks": ["test", "lint", "build", "security-scan"]
+      }
+    },
+    "reviewSettings": {
+      "requireTests": true,
+      "requireDocumentation": true,
+      "maxFileSize": 1000,
+      "autoAssignReviewers": true,
+      "reviewDeadlineHours": 48
+    },
+    "changelogSettings": {
+      "autoGenerate": true,
+      "includeTypes": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore"],
+      "excludeScopes": ["deps", "ci"],
+      "template": "keepachangelog"
+    },
+    "ciCdSettings": {
+      "autoSetup": true,
+      "testOnPush": true,
+      "deployOnTag": true,
+      "notifySlack": false,
+      "slackWebhook": ""
+    },
+    "issueSettings": {
+      "autoLabel": true,
+      "autoAssign": true,
+      "triageEnabled": true,
+      "bugTemplate": "default",
+      "featureTemplate": "default"
+    },
+    "projectSettings": {
+      "autoSync": true,
+      "defaultBoard": "Development",
+      "autoCreateCards": true,
+      "weeklyReport": true
+    }
+  },
+  "notifications": {
+    "email": "your-email@example.com",
+    "slack": {
+      "enabled": false,
+      "webhook": ""
+    },
+    "discord": {
+      "enabled": false,
+      "webhook": ""
+    },
+    "telegram": {
+      "enabled": false,
+      "botToken": "",
+      "chatId": ""
+    }
+  },
+  "security": {
+    "tokenRotationDays": 90,
+    "auditLogging": true,
+    "rateLimitAlert": true,
+    "backupEnabled": true,
+    "backupFrequency": "weekly"
+  },
+  "automation": {
+    "dailyChecks": {
+      "enabled": true,
+      "time": "09:00",
+      "checks": ["pr-review", "ci-status", "issue-triage", "security-alerts"]
+    },
+    "weeklyTasks": {
+      "enabled": true,
+      "day": "monday",
+      "time": "10:00",
+      "tasks": ["cleanup-old-branches", "generate-reports", "update-dependencies"]
+    },
+    "monthlyTasks": {
+      "enabled": true,
+      "day": 1,
+      "time": "11:00",
+      "tasks": ["performance-review", "security-audit", "backup-verification"]
+    }
+  }
+}

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>agentMemo Dashboard</title>
+<style>
+:root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #c9d1d9; --accent: #58a6ff; --green: #3fb950; --red: #f85149; --yellow: #d29922; --purple: #bc8cff; --input-bg: #0d1117; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+.container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+h1 { color: var(--accent); font-size: 28px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+h1 span.ver { font-size: 14px; color: var(--text); opacity: 0.5; font-weight: normal; }
+.subtitle { color: var(--text); opacity: 0.6; margin-bottom: 24px; }
+.header-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+#status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); display: inline-block; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.stat-card .label { font-size: 11px; text-transform: uppercase; color: var(--text); opacity: 0.5; margin-bottom: 4px; letter-spacing: 0.5px; }
+.stat-card .value { font-size: 28px; font-weight: 700; color: var(--accent); }
+.stat-card .value.green { color: var(--green); }
+.stat-card .value.yellow { color: var(--yellow); }
+.stat-card .value.purple { color: var(--purple); }
+.tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--card); border-radius: 12px; padding: 4px; border: 1px solid var(--border); overflow-x: auto; }
+.tab { padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--text); opacity: 0.6; transition: all 0.2s; border: none; background: none; white-space: nowrap; }
+.tab:hover { opacity: 0.8; }
+.tab.active { background: var(--accent); color: #fff; opacity: 1; }
+.panel { display: none; }
+.panel.active { display: block; }
+.section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.section h2 { font-size: 16px; margin-bottom: 16px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+.search-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.search-bar input, .search-bar select { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 8px; font-size: 14px; }
+.search-bar input[type=text] { flex: 1; min-width: 200px; }
+.search-bar select { min-width: 120px; }
+.btn { background: var(--accent); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: opacity 0.2s; }
+.btn:hover { opacity: 0.85; }
+.btn.sm { padding: 6px 12px; font-size: 12px; }
+.btn.red { background: var(--red); }
+.btn.green { background: var(--green); }
+.btn.yellow { background: var(--yellow); color: #000; }
+.result { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s; }
+.result:hover { border-color: var(--accent); }
+.result .text { margin-bottom: 8px; line-height: 1.5; }
+.result .meta { font-size: 12px; color: var(--text); opacity: 0.5; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.result .score { color: var(--green); font-weight: 600; }
+.tag { display: inline-block; background: var(--accent); color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-right: 4px; opacity: 0.8; }
+.event-stream { max-height: 300px; overflow-y: auto; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; }
+.event-item { padding: 6px 0; border-bottom: 1px solid var(--border); }
+.event-item .type { color: var(--yellow); font-weight: 600; }
+.event-item .ns { color: var(--accent); }
+.event-item .time { color: var(--text); opacity: 0.4; font-size: 11px; }
+.ns-tag { display: inline-block; background: var(--card); border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; margin: 4px; cursor: pointer; transition: border-color 0.2s; }
+.ns-tag:hover { border-color: var(--accent); }
+.ns-tag .count { color: var(--accent); font-size: 12px; }
+.metric-item { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
+.metric-item .m-label { font-size: 11px; text-transform: uppercase; opacity: 0.5; margin-bottom: 4px; }
+.metric-item .m-value { font-size: 20px; font-weight: 700; color: var(--accent); }
+#metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+/* Modal */
+.modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+.modal.open { display: flex; }
+.modal-content { background: var(--card); border: 1px solid var(--border); border-radius: 16px; max-width: 700px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 24px; }
+.field { margin-bottom: 12px; }
+.field label { font-size: 12px; text-transform: uppercase; opacity: 0.5; display: block; margin-bottom: 4px; }
+.field .val { font-size: 14px; line-height: 1.5; }
+.version-item { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+.v-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.v-num { color: var(--purple); font-weight: 700; }
+/* Create form */
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--text); opacity: 0.7; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 8px; font-size: 14px; font-family: inherit; }
+.form-group textarea { min-height: 100px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.toast { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: 600; z-index: 2000; display: none; }
+.toast.error { background: var(--red); }
+.modal-actions { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
+#search-info { display: none; font-size: 13px; opacity: 0.6; margin-bottom: 12px; }
+#no-results { display: none; text-align: center; padding: 40px; opacity: 0.4; }
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 12px; }
+  h1 { font-size: 22px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .stat-card .value { font-size: 22px; }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab { padding: 8px 14px; font-size: 13px; }
+  .search-bar { flex-direction: column; }
+  .search-bar input[type=text] { min-width: unset; }
+  .form-row { grid-template-columns: 1fr; }
+  .modal-content { padding: 16px; }
+  #metrics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat-card { padding: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-row">
+    <div>
+      <h1>🧠 agentMemo <span class="ver">v3.0.0</span> <span id="status-dot" title="checking..."></span></h1>
+      <div class="subtitle">Semantic Memory Mesh for AI Agents</div>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="label">Memories</div><div class="value" id="stat-memories">—</div></div>
+    <div class="stat-card"><div class="label">Events</div><div class="value green" id="stat-events">—</div></div>
+    <div class="stat-card"><div class="label">Namespaces</div><div class="value yellow" id="stat-namespaces">—</div></div>
+    <div class="stat-card"><div class="label">Storage</div><div class="value purple" id="stat-storage">—</div></div>
+    <div class="stat-card"><div class="label">HNSW Vectors</div><div class="value" id="stat-hnsw">—</div></div>
+    <div class="stat-card"><div class="label">Cache Hits</div><div class="value green" id="stat-cache">—</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('search')">🔍 Search</button>
+    <button class="tab" onclick="switchTab('create')">➕ Create</button>
+    <button class="tab" onclick="switchTab('namespaces')">📁 Namespaces</button>
+    <button class="tab" onclick="switchTab('events')">📡 Events</button>
+    <button class="tab" onclick="switchTab('metrics')">📊 Metrics</button>
+  </div>
+
+  <!-- Search Panel -->
+  <div id="panel-search" class="panel active">
+    <div class="section">
+      <h2>🔍 Search Memories</h2>
+      <div class="search-bar">
+        <input type="text" id="search-q" placeholder="Search query..." />
+        <select id="search-mode"><option value="semantic">Semantic</option><option value="keyword">Keyword</option><option value="hybrid">Hybrid</option></select>
+        <select id="search-ns"><option value="">All namespaces</option></select>
+        <input type="text" id="search-tags" placeholder="Tags (comma-sep)" style="max-width:160px;" />
+        <input type="number" id="search-limit" placeholder="Limit" value="10" style="max-width:80px;" />
+        <button class="btn" onclick="doSearch()">Search</button>
+      </div>
+      <div id="search-info"></div>
+      <div id="search-results"></div>
+      <div id="no-results">No results found</div>
+    </div>
+  </div>
+
+  <!-- Create Panel -->
+  <div id="panel-create" class="panel">
+    <div class="section">
+      <h2>➕ Create Memory</h2>
+      <div class="form-group">
+        <label>Text *</label>
+        <textarea id="create-text" placeholder="Memory text content..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Namespace</label>
+          <input type="text" id="create-ns" value="default" />
+        </div>
+        <div class="form-group">
+          <label>Importance (0-1)</label>
+          <input type="number" id="create-importance" value="0.5" min="0" max="1" step="0.1" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tags (comma-separated)</label>
+          <input type="text" id="create-tags" placeholder="tag1, tag2" />
+        </div>
+        <div class="form-group">
+          <label>TTL (seconds, optional)</label>
+          <input type="number" id="create-ttl" placeholder="e.g. 3600" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Metadata (JSON, optional)</label>
+        <input type="text" id="create-metadata" placeholder='{"key": "value"}' />
+      </div>
+      <button class="btn green" onclick="createMemory()" style="width:100%;">Create Memory</button>
+      <div id="create-result" style="margin-top:12px;font-size:13px;"></div>
+    </div>
+  </div>
+
+  <!-- Namespaces Panel -->
+  <div id="panel-namespaces" class="panel">
+    <div class="section">
+      <h2>📁 Namespaces</h2>
+      <div id="ns-list"></div>
+    </div>
+  </div>
+
+  <!-- Events Panel -->
+  <div id="panel-events" class="panel">
+    <div class="section">
+      <h2>📡 Live Events</h2>
+      <div class="event-stream" id="event-stream"><span style="opacity:0.4">Listening for events...</span></div>
+    </div>
+  </div>
+
+  <!-- Metrics Panel -->
+  <div id="panel-metrics" class="panel">
+    <div class="section">
+      <h2>📊 Performance Metrics</h2>
+      <div id="metrics-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Memory Detail Modal -->
+<div class="modal" id="memory-modal">
+  <div class="modal-content">
+    <div id="memory-detail"></div>
+    <div id="memory-versions"></div>
+    <div class="modal-actions">
+      <button class="btn red sm" id="delete-mem-btn" onclick="deleteCurrentMemory()">🗑 Delete</button>
+      <button class="btn sm" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+let currentMemoryId = null;
+
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError ? ' error' : '');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 3000);
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.querySelector(`.tab[onclick="switchTab('${name}')"]`).classList.add('active');
+  if (name === 'metrics') loadMetrics();
+  if (name === 'namespaces') loadNamespaces();
+}
+
+async function loadStats() {
+  try {
+    const r = await fetch('/v1/stats');
+    const d = await r.json();
+    document.getElementById('stat-memories').textContent = d.total_memories;
+    document.getElementById('stat-events').textContent = d.total_events;
+    document.getElementById('stat-namespaces').textContent = d.total_namespaces;
+    document.getElementById('stat-storage').textContent = d.storage_size_human;
+  } catch(e) {}
+  try {
+    const m = await fetch('/metrics');
+    const d = await m.json();
+    document.getElementById('stat-hnsw').textContent = d.hnsw_index_size;
+    document.getElementById('stat-cache').textContent = d.embedding_cache_hits;
+  } catch(e) {}
+}
+
+async function loadNamespaces() {
+  try {
+    const r = await fetch('/v1/namespaces');
+    const d = await r.json();
+    const el = document.getElementById('ns-list');
+    el.innerHTML = d.map(ns =>
+      `<div class="ns-tag" onclick="searchByNamespace('${ns.namespace}')">${ns.namespace} <span class="count">${ns.memory_count} mem</span> / <span class="count">${ns.event_count} evt</span></div>`
+    ).join('');
+    if (!d.length) el.innerHTML = '<span style="opacity:0.4">No namespaces yet</span>';
+    // Update namespace dropdown
+    const sel = document.getElementById('search-ns');
+    const current = sel.value;
+    sel.innerHTML = '<option value="">All namespaces</option>' + d.map(ns => `<option value="${ns.namespace}">${ns.namespace} (${ns.memory_count})</option>`).join('');
+    if (current) sel.value = current;
+  } catch(e) {}
+}
+
+function searchByNamespace(ns) {
+  document.getElementById('search-ns').value = ns;
+  document.getElementById('search-q').value = '*';
+  switchTab('search');
+  doSearch();
+}
+
+async function doSearch() {
+  const q = document.getElementById('search-q').value;
+  if (!q) return;
+  const ns = document.getElementById('search-ns').value;
+  const mode = document.getElementById('search-mode').value;
+  const tags = document.getElementById('search-tags').value;
+  const limit = document.getElementById('search-limit').value || 10;
+  const params = new URLSearchParams({q, limit, mode, min_score: '0.1'});
+  if (ns) params.set('namespace', ns);
+  if (tags) params.set('tags', tags);
+  const t0 = performance.now();
+  try {
+    const r = await fetch('/v1/memories/search?' + params);
+    const elapsed = (performance.now() - t0).toFixed(0);
+    const respTime = r.headers.get('X-Response-Time') || elapsed + 'ms';
+    const d = await r.json();
+    const el = document.getElementById('search-results');
+    const nr = document.getElementById('no-results');
+    const info = document.getElementById('search-info');
+    info.style.display = 'block';
+    info.textContent = `Mode: ${d.mode} | ${d.results.length} results | ${d.total_tokens} tokens | ${respTime}`;
+    if (!d.results.length) { el.innerHTML = ''; nr.style.display = 'block'; return; }
+    nr.style.display = 'none';
+    el.innerHTML = d.results.map(m => {
+      const tagsHtml = (m.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('');
+      return `<div class="result" onclick="showMemory('${m.id}')">
+        <div class="text">${esc(m.text)}</div>
+        <div class="meta">
+          <span class="score">Score: ${m.score}</span>
+          <span>Importance: ${m.effective_importance.toFixed(3)}</span>
+          <span>NS: ${esc(m.namespace)}</span>
+          <span>${m.created_at}</span>
+          ${tagsHtml}
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) { console.error(e); }
+}
+
+async function createMemory() {
+  const text = document.getElementById('create-text').value.trim();
+  if (!text) { showToast('Text is required', true); return; }
+  const ns = document.getElementById('create-ns').value || 'default';
+  const importance = parseFloat(document.getElementById('create-importance').value) || 0.5;
+  const tagsStr = document.getElementById('create-tags').value;
+  const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(Boolean) : [];
+  const ttlStr = document.getElementById('create-ttl').value;
+  const ttl = ttlStr ? parseInt(ttlStr) : null;
+  let metadata = {};
+  try {
+    const metaStr = document.getElementById('create-metadata').value;
+    if (metaStr) metadata = JSON.parse(metaStr);
+  } catch(e) { showToast('Invalid metadata JSON', true); return; }
+  const body = {text, namespace: ns, importance, tags};
+  if (ttl) body.ttl_seconds = ttl;
+  if (Object.keys(metadata).length) body.metadata = metadata;
+  try {
+    const r = await fetch('/v1/memories', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)});
+    const d = await r.json();
+    if (r.ok) {
+      showToast(`Memory created: ${d.id.slice(0,8)}...`);
+      document.getElementById('create-text').value = '';
+      document.getElementById('create-result').innerHTML = `<span style="color:var(--green)">✓ Created ID: <code>${d.id}</code></span>`;
+      loadStats();
+    } else {
+      showToast(d.detail || 'Error creating memory', true);
+    }
+  } catch(e) { showToast('Network error', true); }
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+async function showMemory(id) {
+  currentMemoryId = id;
+  try {
+    const r = await fetch(`/v1/memories/${id}`);
+    const m = await r.json();
+    const tagsHtml = (m.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('') || '<em>none</em>';
+    const metaStr = JSON.stringify(m.metadata, null, 2);
+    document.getElementById('memory-detail').innerHTML = `
+      <div class="field"><label>ID</label><div class="val" style="font-family:monospace;font-size:12px;">${esc(m.id)}</div></div>
+      <div class="field"><label>Text</label><div class="val">${esc(m.text)}</div></div>
+      <div class="field"><label>Namespace</label><div class="val">${esc(m.namespace)}</div></div>
+      <div class="field"><label>Tags</label><div class="val">${tagsHtml}</div></div>
+      <div class="field"><label>Importance</label><div class="val">${m.importance} (effective: ${m.effective_importance})</div></div>
+      <div class="field"><label>Version</label><div class="val">${m.version}</div></div>
+      <div class="field"><label>Age</label><div class="val">${m.age_hours.toFixed(1)} hours</div></div>
+      <div class="field"><label>TTL</label><div class="val">${m.ttl_seconds || 'none'}</div></div>
+      <div class="field"><label>Metadata</label><div class="val"><pre style="font-size:12px;color:var(--text);opacity:0.8;overflow-x:auto;">${esc(metaStr)}</pre></div></div>
+      <div class="field"><label>Created</label><div class="val">${m.created_at}</div></div>
+    `;
+    const vr = await fetch(`/v1/memories/${id}/versions`);
+    const versions = await vr.json();
+    const vEl = document.getElementById('memory-versions');
+    if (versions.length) {
+      vEl.innerHTML = '<h3 style="color:var(--purple);margin-bottom:8px;">Version History</h3>' +
+        versions.map(v => `<div class="version-item">
+          <div class="v-header">
+            <span class="v-num">v${v.version}</span>
+            <span style="font-size:11px;opacity:0.5;">${v.created_at}</span>
+            <button class="btn sm yellow" onclick="rollbackTo('${id}', ${v.version})">Rollback</button>
+          </div>
+          <div style="font-size:13px;opacity:0.8;">${esc(v.text.substring(0, 200))}${v.text.length > 200 ? '...' : ''}</div>
+          <div style="margin-top:4px;">${(v.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+        </div>`).join('');
+    } else {
+      vEl.innerHTML = '<p style="opacity:0.4;font-size:13px;">No previous versions</p>';
+    }
+    document.getElementById('memory-modal').classList.add('open');
+  } catch(e) { console.error(e); }
+}
+
+async function deleteCurrentMemory() {
+  if (!currentMemoryId) return;
+  if (!confirm('Delete this memory permanently?')) return;
+  try {
+    const r = await fetch(`/v1/memories/${currentMemoryId}`, {method: 'DELETE'});
+    if (r.ok) {
+      showToast('Memory deleted');
+      closeModal();
+      loadStats();
+      doSearch();
+    } else {
+      showToast('Delete failed', true);
+    }
+  } catch(e) { showToast('Network error', true); }
+}
+
+async function rollbackTo(id, version) {
+  if (!confirm(`Rollback to version ${version}?`)) return;
+  try {
+    await fetch(`/v1/memories/${id}/rollback?version=${version}`, {method: 'POST'});
+    showMemory(id);
+    showToast(`Rolled back to v${version}`);
+  } catch(e) { console.error(e); }
+}
+
+function closeModal() {
+  document.getElementById('memory-modal').classList.remove('open');
+  currentMemoryId = null;
+}
+
+async function loadMetrics() {
+  try {
+    const r = await fetch('/metrics');
+    const d = await r.json();
+    const items = [
+      {label: 'Uptime', value: `${(d.uptime_seconds/60).toFixed(1)} min`},
+      {label: 'Total Requests', value: d.total_requests},
+      {label: 'Requests/min', value: d.requests_per_minute},
+      {label: 'Total Memories', value: d.total_memories},
+      {label: 'Total Events', value: d.total_events},
+      {label: 'Namespaces', value: d.total_namespaces},
+      {label: 'Storage', value: `${(d.storage_size_bytes/1024).toFixed(1)} KB`},
+      {label: 'Embed Cache', value: `${d.embedding_cache_size} entries`},
+      {label: 'Cache Hits', value: d.embedding_cache_hits},
+      {label: 'Cache Misses', value: d.embedding_cache_misses},
+      {label: 'Hit Rate', value: d.embedding_cache_hits + d.embedding_cache_misses > 0 ? `${(d.embedding_cache_hits / (d.embedding_cache_hits + d.embedding_cache_misses) * 100).toFixed(1)}%` : 'N/A'},
+      {label: 'HNSW Index', value: `${d.hnsw_index_size} vec`},
+      {label: 'WebSockets', value: d.active_websockets},
+    ];
+    document.getElementById('metrics-grid').innerHTML = items.map(i =>
+      `<div class="metric-item"><div class="m-label">${i.label}</div><div class="m-value">${i.value}</div></div>`
+    ).join('');
+  } catch(e) {}
+}
+
+async function checkHealth() {
+  try {
+    const r = await fetch('/health');
+    const d = await r.json();
+    const dot = document.getElementById('status-dot');
+    dot.style.background = d.status === 'healthy' ? 'var(--green)' : 'var(--yellow)';
+    dot.title = `${d.status} | v${d.version} | uptime ${(d.uptime_seconds/60).toFixed(0)}m`;
+  } catch(e) {
+    document.getElementById('status-dot').style.background = 'var(--red)';
+  }
+}
+
+// SSE
+const evtStream = document.getElementById('event-stream');
+let firstEvent = true;
+const es = new EventSource('/v1/events/stream');
+es.onmessage = (e) => {
+  if (firstEvent) { evtStream.innerHTML = ''; firstEvent = false; }
+  try {
+    const d = JSON.parse(e.data);
+    const time = new Date(d.created_at || Date.now()).toLocaleTimeString();
+    evtStream.innerHTML = `<div class="event-item"><span class="time">${time}</span> <span class="type">${esc(d.type)}</span> <span class="ns">[${esc(d.namespace)}]</span> ${esc(JSON.stringify(d.payload).slice(0,120))}</div>` + evtStream.innerHTML;
+  } catch(err) {}
+  loadStats();
+};
+
+document.getElementById('search-q').addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
+document.getElementById('memory-modal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+loadStats();
+loadNamespaces();
+checkHealth();
+setInterval(loadStats, 10000);
+setInterval(checkHealth, 30000);
+</script>
+</body>
+</html>

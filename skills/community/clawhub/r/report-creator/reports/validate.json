@@ -1,0 +1,377 @@
+{
+  "skill_name": "kai-report-creator",
+  "skill_version": "1.22.0",
+  "profile": "kingdee-cloud-agent",
+  "validator_version": "1.0.0",
+  "rule_set_hash": "sha256:b894cc469a78a2d454f8296c1f966b1d",
+  "generated_at": "2026-04-30T03:45:47.825122Z",
+  "static_score": 97,
+  "realtime_score": 96,
+  "total_score": 97,
+  "verdict": "pass",
+  "hits": [
+    {
+      "rule_id": "R2",
+      "machine_id": "SCK-SCH-002",
+      "domain": "V1",
+      "severity": "info",
+      "layer": "static",
+      "title": "description Use-when / Do-not-use clauses (advisory)",
+      "message": "description does not include: Do not use ... — this is now advisory, not required.",
+      "location": {
+        "file": "SKILL.md",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R5",
+      "machine_id": "SCK-SCH-005",
+      "domain": "V1",
+      "severity": "error",
+      "layer": "static",
+      "title": "name does not match directory",
+      "message": "frontmatter name 'kai-report-creator' != directory 'report-creator'",
+      "location": {
+        "file": "SKILL.md",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R13",
+      "machine_id": "SCK-STR-013",
+      "domain": "V2",
+      "severity": "error",
+      "layer": "static",
+      "title": "skill content size threshold exceeded",
+      "message": "non-asset content is 2146.6 KB",
+      "location": null,
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R13b",
+      "machine_id": "SCK-STR-013b",
+      "domain": "V2",
+      "severity": "error",
+      "layer": "static",
+      "title": "post-trigger context tokens exceed 12,000",
+      "message": "estimated 32306 tokens — too large for 200k-context budget hygiene",
+      "location": null,
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R16",
+      "machine_id": "SCK-STR-016",
+      "domain": "V2",
+      "severity": "warning",
+      "layer": "static",
+      "title": "orphan references",
+      "message": "- references/impeccable-anti-patterns.md",
+      "location": null,
+      "fix_it": "Link from references/INDEX.md or SKILL.md, or delete unused files.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R18",
+      "machine_id": "SCK-STR-018",
+      "domain": "V2",
+      "severity": "warning",
+      "layer": "static",
+      "title": "API parameter table inlined in SKILL.md",
+      "message": "line 25: ~5 rows under header `| `--theme <name>` | Override the theme. Built-ins: `corpora…`",
+      "location": {
+        "file": "SKILL.md",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": "Keep ≤ 7 high-stakes fields inline (with their coupling constraints) and move the rest into references/main/<api>.md. Add a single-line pointer in SKILL.md so Step N pulls the file on demand.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R22",
+      "machine_id": "SCK-DESC-022",
+      "domain": "V3",
+      "severity": "error",
+      "layer": "static",
+      "title": "description lacks specific business vocabulary",
+      "message": "only 0 business terms detected (threshold ≥ 3)",
+      "location": {
+        "file": "SKILL.md",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R51",
+      "machine_id": "SCK-EVAL-51",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "insufficient exception cases",
+      "message": "found 0, need ≥ 5",
+      "location": {
+        "file": "evals/exception_cases.yaml",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R52",
+      "machine_id": "SCK-EVAL-52",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "insufficient permission cases",
+      "message": "found 0, need ≥ 3",
+      "location": {
+        "file": "evals/permission_cases.yaml",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R53",
+      "machine_id": "SCK-EVAL-53",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "insufficient adversarial cases",
+      "message": "found 0, need ≥ 3",
+      "location": {
+        "file": "evals/adversarial_cases.yaml",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R54",
+      "machine_id": "SCK-EVAL-54",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "insufficient tool_failure cases",
+      "message": "found 0, need ≥ 3",
+      "location": {
+        "file": "evals/tool_failure_cases.yaml",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R55",
+      "machine_id": "SCK-EVAL-55",
+      "domain": "V6",
+      "severity": "error",
+      "layer": "static",
+      "title": "insufficient context_bloat cases",
+      "message": "found 0, need ≥ 1",
+      "location": {
+        "file": "evals/context_bloat_cases.yaml",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R56",
+      "machine_id": "SCK-EVAL-56",
+      "domain": "V6",
+      "severity": "error",
+      "layer": "static",
+      "title": "insufficient multi_skill cases",
+      "message": "found 0, need ≥ 1",
+      "location": {
+        "file": "evals/multi_skill_cases.yaml",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R75",
+      "machine_id": "SCK-SEC-075",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "dangerous call",
+      "message": "scripts/verify-release.py: subprocess.run(",
+      "location": {
+        "file": "scripts/verify-release.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R82",
+      "machine_id": "SCK-DEP-082",
+      "domain": "V8",
+      "severity": "warning",
+      "layer": "static",
+      "title": "SBOM not generated",
+      "message": "scripts/sbom.json missing — recommended for compliance",
+      "location": null,
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R96",
+      "machine_id": "SCK-MNT-096",
+      "domain": "V9",
+      "severity": "info",
+      "layer": "static",
+      "title": "no `## Hard Rules` / `## 宪法块` section",
+      "message": "Skills with write tools or non-trivial scripts benefit from a single constitution block (HR-1, HR-2, ...) where each rule maps to a log event. Reduces rule dilution under context pressure.",
+      "location": {
+        "file": "SKILL.md",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": "Add a `## 不可违反的硬规则（宪法块）` section near the top of SKILL.md, listing HR-1..HR-N. Pair each rule with a `step_logger emit` call so the eval framework can assert compliance from logs.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R98",
+      "machine_id": "SCK-MNT-098",
+      "domain": "V9",
+      "severity": "info",
+      "layer": "static",
+      "title": "undocumented exit-code contract",
+      "message": "scripts emit non-zero codes (1) but no reference documents the contract.",
+      "location": null,
+      "fix_it": "Add a table to references/main/<script>-usage.md mapping each exit code to (meaning, REQUIRED_ACTION). The structured stderr should mirror the same fields (exit_code, error_id, expected, actual, REQUIRED_ACTION).",
+      "enforced": false
+    }
+  ],
+  "radar": {
+    "V1": {
+      "domain": "V1",
+      "current": 8,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V2": {
+      "domain": "V2",
+      "current": 6,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 2
+    },
+    "V3": {
+      "domain": "V3",
+      "current": 10,
+      "max_score": 10,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V4": {
+      "domain": "V4",
+      "current": 10,
+      "max_score": 10,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V5": {
+      "domain": "V5",
+      "current": 8,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V6": {
+      "domain": "V6",
+      "current": 10,
+      "max_score": 10,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V7": {
+      "domain": "V7",
+      "current": 14,
+      "max_score": 14,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V8": {
+      "domain": "V8",
+      "current": 7,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 1
+    },
+    "V9": {
+      "domain": "V9",
+      "current": 6,
+      "max_score": 6,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V10": {
+      "domain": "V10",
+      "current": 18,
+      "max_score": 18,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    }
+  },
+  "freshness": {
+    "sources": {
+      "cve_offline": "2026-04-28T16:17:44.431788Z"
+    }
+  },
+  "diff_against_previous": null,
+  "content_hash": "sha256:b59892e237734af225f5e5fa1ae0fcb78730235c8f8dcafb4d55506cde235026"
+}

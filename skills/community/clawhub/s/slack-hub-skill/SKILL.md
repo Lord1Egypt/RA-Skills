@@ -1,35 +1,26 @@
----
-name: "Slack Hub Skill"
-description: "Send messages, reply in threads, search workspace content, and list public channels using Slack Bot integration with rate-limit handling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/slack-hub-skill"
-sourceUrl: "https://clawhub.ai/skills/slack-hub-skill"
----
-
 # Slack Hub Skill
 
-> Send messages, reply in threads, search workspace content, and list public channels using Slack Bot integration with rate-limit handling.
+Professional Slack integration for OpenClaw. Supports messaging, threading, and workspace search.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/slack-hub-skill`
-- **Source URL:** [https://clawhub.ai/skills/slack-hub-skill](https://clawhub.ai/skills/slack-hub-skill)
+## Configuration
+Requires a Slack Bot Token (`xoxb-...`) in your `.env` as `SLACK_BOT_TOKEN`.
 
-## Overview
+## Tools
 
+### slack_send
+Send a message to a channel or user.
+- `target`: Channel ID or name (e.g., "#general").
+- `message`: Text content.
+- `thread_ts`: (Optional) Timestamp for replying to a thread.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/slack-hub-skill
-```
+### slack_search
+Search the workspace for messages or files.
+- `query`: The search term.
+
+### slack_list_channels
+List all public channels in the workspace.
+
+## Implementation Notes
+- Uses `https://slack.com/api/chat.postMessage`
+- Uses `https://slack.com/api/search.messages`
+- Implements rate-limit handling for high-volume workspaces.

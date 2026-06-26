@@ -1,0 +1,3608 @@
+[
+  {
+    "name": "Albert Einstein",
+    "asc": "Gemini",
+    "asc_match": true,
+    "expected_asc": "Gemini",
+    "d9_asc": "Aquarius",
+    "dk7": "Sun",
+    "dk8": "Sun",
+    "dk_sign": "Pisces",
+    "dk_house": 10,
+    "seven_lord": "Jupiter",
+    "seven_lord_house": 9,
+    "multidim": {
+      "UL": {
+        "sign": "Pisces",
+        "lord": "Jupiter",
+        "ul_2nd_sign": "Aries",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "UL=DK sign"
+      },
+      "DP": {
+        "sign": "Virgo",
+        "lord": "Mercury"
+      },
+      "Argala_7H": {
+        "support": [
+          "Ketu(H2)"
+        ],
+        "block": [
+          "Sun(H10)",
+          "Mercury(H10)",
+          "Venus(H10)",
+          "Saturn(H10)"
+        ],
+        "net": -3,
+        "verdict": "block"
+      },
+      "D7": {
+        "asc": "Virgo",
+        "dk": "Virgo",
+        "7_sign": "Pisces"
+      },
+      "D60": {
+        "asc": "Sagittarius",
+        "dk": "Gemini",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Taurus",
+        "7th_from_km": "Scorpio",
+        "7L": "Mars",
+        "meaning": "灵魂渴望的伴侣类型指向Scorpio领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            10
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "6L(Mars)在H8 → Vipareeta"
+      ],
+      "Death_Sign": {
+        "12L": "Venus",
+        "12L_house": 10,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Mileva Maric",
+        "date": "1903-01-06",
+        "dasha": {
+          "maha": "Venus",
+          "antar": "Mars",
+          "pratyantar": "Venus"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Venus PAC 7H(Aspect(10))",
+              "Venus PAC LL(Position)",
+              "Venus PAC D9_7L(Sun)",
+              "Mars PAC LL(Aspect(3))",
+              "Mars PAC D9_7L(Sun)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Mars) Jaimini-aspects Pisces",
+              "Chara Antar(Mars) Jaimini-aspects Virgo",
+              "Chara Antar(Mars) Jaimini-aspects Pisces"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter directly in Vivah Saham H8"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Jupiter) PAC natal LL(Mercury): Aspect(3)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(3))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 6,
+            "total": 8,
+            "percentage": 75.0,
+            "prediction": "极强婚姻信号(6+)"
+          }
+        },
+        "divorce": {
+          "date": "1919-02-14",
+          "dasha": {
+            "maha": "Sun",
+            "antar": "Saturn",
+            "pratyantar": "Saturn"
+          }
+        }
+      },
+      {
+        "spouse": "Elsa Einstein",
+        "date": "1919-06-02",
+        "dasha": {
+          "maha": "Sun",
+          "antar": "Saturn",
+          "pratyantar": "Venus"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Sun PAC 7H(Aspect(10))",
+              "Sun PAC LL(Position,Conjunction)",
+              "Sun PAC D9_7L(Sun)",
+              "Saturn PAC 7H(Aspect(10))",
+              "Saturn PAC LL(Position,Conjunction)",
+              "Saturn PAC D9_7L(Sun)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Antar(Saturn)在DK 1-7轴"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": []
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit LL(Mercury) PAC natal 7L(Jupiter): Aspect(10)",
+              "Transit 7L(Jupiter) PAC natal LL(Mercury): Aspect(10)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(10))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Jupiter)在Lagna"
+            ]
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Steve Jobs",
+    "asc": "Leo",
+    "asc_match": true,
+    "expected_asc": "Leo",
+    "d9_asc": "Virgo",
+    "dk7": "Mars",
+    "dk8": "Mars",
+    "dk_sign": "Aries",
+    "dk_house": 9,
+    "seven_lord": "Saturn",
+    "seven_lord_house": 3,
+    "multidim": {
+      "UL": {
+        "sign": "Pisces",
+        "lord": "Jupiter",
+        "ul_2nd_sign": "Aries",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [
+          "Mars"
+        ],
+        "marriage_stability": "weak",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Taurus",
+        "lord": "Venus"
+      },
+      "Argala_7H": {
+        "support": [
+          "Jupiter(H11)",
+          "Ketu(H11)"
+        ],
+        "block": [
+          "Saturn(H3)"
+        ],
+        "net": 1,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Aquarius",
+        "dk": "Taurus",
+        "7_sign": "Leo"
+      },
+      "D60": {
+        "asc": "Gemini",
+        "dk": "Pisces",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Gemini",
+        "7th_from_km": "Sagittarius",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Sagittarius领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mars",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            4,
+            9
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Mercury",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            11
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            6,
+            7
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Moon",
+        "12L_house": 8,
+        "warning": "12L在8宫: 死亡征象"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Laurene Powell",
+        "date": "1991-03-18",
+        "dasha": {
+          "maha": "Venus",
+          "antar": "Rahu",
+          "pratyantar": "Ketu"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Venus PAC 7H(Aspect(3))",
+              "Venus PAC LL(Aspect(3))",
+              "Venus PAC D9_7L(Jupiter)",
+              "Rahu PAC Lagna(Aspect(9))",
+              "Rahu PAC 7H(Aspect(3))",
+              "Rahu PAC LL(Aspect(3))",
+              "Rahu PAC D9_7L(Jupiter)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Rahu) Jaimini-aspects Taurus",
+              "Chara Antar(Rahu) Jaimini-aspects Taurus"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H12 aspects Vivah Saham H2"
+            ]
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [],
+            "saturn_targets": [
+              "7L"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": true,
+            "details": [
+              "7H聚集: Sun(1)"
+            ]
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Princess Diana",
+    "asc": "Scorpio",
+    "asc_match": true,
+    "expected_asc": "Scorpio",
+    "d9_asc": "Leo",
+    "dk7": "Venus",
+    "dk8": "Venus",
+    "dk_sign": "Taurus",
+    "dk_house": 7,
+    "seven_lord": "Venus",
+    "seven_lord_house": 7,
+    "multidim": {
+      "UL": {
+        "sign": "Taurus",
+        "lord": "Venus",
+        "ul_2nd_sign": "Gemini",
+        "benefics_in_ul2": [
+          "Mercury"
+        ],
+        "malefics_in_ul2": [
+          "Sun"
+        ],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "UL=DK sign"
+      },
+      "DP": {
+        "sign": "Sagittarius",
+        "lord": "Jupiter"
+      },
+      "Argala_7H": {
+        "support": [
+          "Moon(H4)",
+          "Ketu(H4)"
+        ],
+        "block": [
+          "Mars(H10)",
+          "Jupiter(H3)",
+          "Saturn(H3)",
+          "Rahu(H10)"
+        ],
+        "net": -2,
+        "verdict": "block"
+      },
+      "D7": {
+        "asc": "Libra",
+        "dk": "Scorpio",
+        "7_sign": "Aries"
+      },
+      "D60": {
+        "asc": "Aquarius",
+        "dk": "Leo",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Aquarius",
+        "7th_from_km": "Leo",
+        "7L": "Sun",
+        "meaning": "灵魂渴望的伴侣类型指向Leo领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Venus",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            12
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            5
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Venus",
+        "12L_house": 7,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Prince Charles",
+        "date": "1981-07-29",
+        "dasha": {
+          "maha": "Rahu",
+          "antar": "Mars",
+          "pratyantar": "Mercury"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Rahu PAC 7H(Aspect(10))",
+              "Rahu PAC LL(Position,Conjunction)",
+              "Rahu PAC 7L(Aspect(10))",
+              "Mars PAC Lagna(Aspect(4))",
+              "Mars PAC 7H(Aspect(10))",
+              "Mars PAC LL(Position,Conjunction)",
+              "Mars PAC 7L(Aspect(10))"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Mars) Jaimini-aspects Capricorn"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter directly in Vivah Saham H11"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: Lagna"
+            ],
+            "jupiter_targets": [
+              "7H",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": [
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Venus) PAC natal LL(Mars): Position,Conjunction"
+            ]
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        },
+        "divorce": {
+          "date": "1996-08-28",
+          "dasha": {
+            "maha": "Jupiter",
+            "antar": "Rahu",
+            "pratyantar": "Saturn"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Barack Obama",
+    "asc": "Capricorn",
+    "asc_match": true,
+    "expected_asc": "Capricorn",
+    "d9_asc": "Scorpio",
+    "dk7": "Saturn",
+    "dk8": "Saturn",
+    "dk_sign": "Capricorn",
+    "dk_house": 1,
+    "seven_lord": "Moon",
+    "seven_lord_house": 5,
+    "multidim": {
+      "UL": {
+        "sign": "Capricorn",
+        "lord": "Saturn",
+        "ul_2nd_sign": "Aquarius",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [
+          "Ketu"
+        ],
+        "marriage_stability": "weak",
+        "dk_ul_relation": "UL=DK sign"
+      },
+      "DP": {
+        "sign": "Sagittarius",
+        "lord": "Jupiter"
+      },
+      "Argala_7H": {
+        "support": [
+          "Ketu(H2)"
+        ],
+        "block": [],
+        "net": 1,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Sagittarius",
+        "dk": "Cancer",
+        "7_sign": "Gemini"
+      },
+      "D60": {
+        "asc": "Capricorn",
+        "dk": "Gemini",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Virgo",
+        "7th_from_km": "Pisces",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Pisces领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Venus",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            5,
+            10
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            1,
+            2
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Jupiter",
+        "12L_house": 1,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Michelle Robinson",
+        "date": "1992-10-03",
+        "dasha": {
+          "maha": "Rahu",
+          "antar": "Venus",
+          "pratyantar": "Mercury"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Rahu PAC 7L(Aspect(10))",
+              "Venus PAC D9_7L(Venus)"
+            ]
+          },
+          "P2": {
+            "hit": false,
+            "details": []
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: Lagna,LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(10))"
+            ]
+          },
+          "P7": {
+            "hit": true,
+            "details": [
+              "7H聚集: Sun,Mercury(2)"
+            ]
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Bill Gates",
+    "asc": "Cancer",
+    "asc_match": true,
+    "expected_asc": "Cancer",
+    "d9_asc": "Taurus",
+    "dk7": "Jupiter",
+    "dk8": "Rahu",
+    "dk_sign": "Scorpio",
+    "dk_house": 5,
+    "seven_lord": "Saturn",
+    "seven_lord_house": 4,
+    "multidim": {
+      "UL": {
+        "sign": "Virgo",
+        "lord": "Mercury",
+        "ul_2nd_sign": "Libra",
+        "benefics_in_ul2": [
+          "Venus"
+        ],
+        "malefics_in_ul2": [
+          "Sun",
+          "Saturn"
+        ],
+        "marriage_stability": "weak",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Taurus",
+        "lord": "Venus"
+      },
+      "Argala_7H": {
+        "support": [
+          "Sun(H4)",
+          "Jupiter(H2)",
+          "Venus(H4)",
+          "Saturn(H4)",
+          "Ketu(H11)"
+        ],
+        "block": [
+          "Mars(H3)",
+          "Mercury(H3)"
+        ],
+        "net": 3,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Capricorn",
+        "dk": "Scorpio",
+        "7_sign": "Cancer"
+      },
+      "D60": {
+        "asc": "Pisces",
+        "dk": "Aries",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Sagittarius",
+        "7th_from_km": "Gemini",
+        "7L": "Mercury",
+        "meaning": "灵魂渴望的伴侣类型指向Gemini领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mars",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            5,
+            10
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            8
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Mercury",
+        "12L_house": 3,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Melinda French",
+        "date": "1994-01-01",
+        "dasha": {
+          "maha": "Venus",
+          "antar": "Jupiter",
+          "pratyantar": "Venus"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Venus PAC Lagna(Aspect(10))",
+              "Venus PAC 7L(Position,Conjunction)",
+              "Jupiter PAC 7L(Aspect(3))"
+            ]
+          },
+          "P2": {
+            "hit": false,
+            "details": []
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter directly in Vivah Saham H4"
+            ]
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": []
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit LL(Moon) PAC natal 7L(Saturn): Aspect(3)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Position)"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        },
+        "divorce": {
+          "date": "2021-05-03",
+          "dasha": {
+            "maha": "Mars",
+            "antar": "Saturn",
+            "pratyantar": "Mars"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Michael Jackson",
+    "asc": "Gemini",
+    "asc_match": true,
+    "expected_asc": "Gemini",
+    "d9_asc": "Sagittarius",
+    "dk7": "Mercury",
+    "dk8": "Mercury",
+    "dk_sign": "Leo",
+    "dk_house": 3,
+    "seven_lord": "Jupiter",
+    "seven_lord_house": 5,
+    "multidim": {
+      "UL": {
+        "sign": "Cancer",
+        "lord": "Moon",
+        "ul_2nd_sign": "Leo",
+        "benefics_in_ul2": [
+          "Mercury"
+        ],
+        "malefics_in_ul2": [
+          "Sun"
+        ],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Taurus",
+        "lord": "Venus"
+      },
+      "Argala_7H": {
+        "support": [
+          "Mars(H11)",
+          "Venus(H2)",
+          "Ketu(H11)"
+        ],
+        "block": [
+          "Sun(H3)",
+          "Mercury(H3)"
+        ],
+        "net": 1,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Cancer",
+        "dk": "Leo",
+        "7_sign": "Capricorn"
+      },
+      "D60": {
+        "asc": "Libra",
+        "dk": "Sagittarius",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Sagittarius",
+        "7th_from_km": "Gemini",
+        "7L": "Mercury",
+        "meaning": "灵魂渴望的伴侣类型指向Gemini领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            10
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "8L(Saturn)在H6 → Vipareeta"
+      ],
+      "Death_Sign": {
+        "12L": "Venus",
+        "12L_house": 2,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Lisa Marie Presley",
+        "date": "1994-05-26",
+        "dasha": {
+          "maha": "Mercury",
+          "antar": "Venus",
+          "pratyantar": "Mercury"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Mercury PAC LL(Position,Conjunction)",
+              "Mercury PAC 7L(Aspect(3))",
+              "Mercury PAC D9_7L(Mercury)",
+              "Venus PAC LL(Conjunction)",
+              "Venus PAC D9_7L(Mercury)"
+            ]
+          },
+          "P2": {
+            "hit": false,
+            "details": []
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H5 aspects Vivah Saham H9"
+            ]
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "7H",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(10))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 3,
+            "total": 8,
+            "percentage": 37.5,
+            "prediction": "弱信号(<4)"
+          }
+        },
+        "divorce": {
+          "date": "1996-01-18",
+          "dasha": {
+            "maha": "Mercury",
+            "antar": "Moon",
+            "pratyantar": "Jupiter"
+          }
+        }
+      },
+      {
+        "spouse": "Debbie Rowe",
+        "date": "1996-11-14",
+        "dasha": {
+          "maha": "Mercury",
+          "antar": "Moon",
+          "pratyantar": "Venus"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Mercury PAC LL(Position,Conjunction)",
+              "Mercury PAC 7L(Aspect(3))",
+              "Mercury PAC D9_7L(Mercury)",
+              "Moon PAC LL(Aspect(7))",
+              "Moon PAC D9_7L(Mercury)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Moon) Jaimini-aspects Capricorn",
+              "Chara Antar(Moon) Jaimini-aspects Cancer",
+              "Antar(Moon)在DK 1-7轴"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H7 aspects Vivah Saham H9"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: 7H"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ],
+            "saturn_targets": [
+              "7H"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Jupiter) PAC natal LL(Mercury): Aspect(9)"
+            ]
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        },
+        "divorce": {
+          "date": "1999-10-01",
+          "dasha": {
+            "maha": "Mercury",
+            "antar": "Rahu",
+            "pratyantar": "Venus"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Nelson Mandela",
+    "asc": "Taurus",
+    "asc_match": true,
+    "expected_asc": "Taurus",
+    "d9_asc": "Capricorn",
+    "dk7": "Sun",
+    "dk8": "Sun",
+    "dk_sign": "Cancer",
+    "dk_house": 3,
+    "seven_lord": "Mars",
+    "seven_lord_house": 5,
+    "multidim": {
+      "UL": {
+        "sign": "Virgo",
+        "lord": "Mercury",
+        "ul_2nd_sign": "Libra",
+        "benefics_in_ul2": [
+          "Moon"
+        ],
+        "malefics_in_ul2": [],
+        "marriage_stability": "strong",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Aries",
+        "lord": "Mars"
+      },
+      "Argala_7H": {
+        "support": [
+          "Jupiter(H2)"
+        ],
+        "block": [
+          "Sun(H3)",
+          "Mercury(H3)",
+          "Saturn(H3)"
+        ],
+        "net": -2,
+        "verdict": "block"
+      },
+      "D7": {
+        "asc": "Scorpio",
+        "dk": "Capricorn",
+        "7_sign": "Taurus"
+      },
+      "D60": {
+        "asc": "Scorpio",
+        "dk": "Scorpio",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Virgo",
+        "7th_from_km": "Pisces",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Pisces领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mars",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            12
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Mercury",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            5
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            9,
+            10
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Mars",
+        "12L_house": 5,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Evelyn Mase",
+        "date": "1944-10-05",
+        "dasha": {
+          "maha": "Saturn",
+          "antar": "Moon",
+          "pratyantar": "Mercury"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Saturn PAC 7L(Aspect(3))",
+              "Moon PAC D9_7L(Moon)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Moon) Jaimini-aspects Virgo"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "LL",
+              "Lagna"
+            ],
+            "saturn_targets": []
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Mars) PAC natal LL(Venus): Aspect(8)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(10))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        },
+        "divorce": {
+          "date": "1958-01-01",
+          "dasha": {
+            "maha": "Mercury",
+            "antar": "Venus",
+            "pratyantar": "Ketu"
+          }
+        }
+      },
+      {
+        "spouse": "Winnie Madikizela",
+        "date": "1958-06-14",
+        "dasha": {
+          "maha": "Mercury",
+          "antar": "Sun",
+          "pratyantar": "Jupiter"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Mercury PAC 7L(Aspect(3))",
+              "Sun PAC 7L(Aspect(3))"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Sun) Jaimini-aspects Virgo",
+              "Antar(Sun)在DK 1-7轴"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H5 aspects Vivah Saham H7"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: 7H,Lagna,LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Mars) PAC natal LL(Venus): Aspect(3)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(9))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 6,
+            "total": 8,
+            "percentage": 75.0,
+            "prediction": "极强婚姻信号(6+)"
+          }
+        },
+        "divorce": {
+          "date": "1996-03-19",
+          "dasha": {
+            "maha": "Sun",
+            "antar": "Moon",
+            "pratyantar": "Rahu"
+          }
+        }
+      },
+      {
+        "spouse": "Graca Machel",
+        "date": "1998-07-18",
+        "dasha": {
+          "maha": "Sun",
+          "antar": "Jupiter",
+          "pratyantar": "Mars"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Sun PAC 7L(Aspect(3))",
+              "Jupiter PAC LL(Conjunction)",
+              "Jupiter PAC D9_7L(Moon)"
+            ]
+          },
+          "P2": {
+            "hit": false,
+            "details": []
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H11 aspects Vivah Saham H7"
+            ]
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": []
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(3))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 3,
+            "total": 8,
+            "percentage": 37.5,
+            "prediction": "弱信号(<4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Tom Cruise",
+    "asc": "Libra",
+    "asc_match": true,
+    "expected_asc": "Libra",
+    "d9_asc": "Cancer",
+    "dk7": "Mars",
+    "dk8": "Mars",
+    "dk_sign": "Taurus",
+    "dk_house": 8,
+    "seven_lord": "Mars",
+    "seven_lord_house": 8,
+    "multidim": {
+      "UL": {
+        "sign": "Taurus",
+        "lord": "Venus",
+        "ul_2nd_sign": "Gemini",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [
+          "Sun"
+        ],
+        "marriage_stability": "weak",
+        "dk_ul_relation": "UL=DK sign"
+      },
+      "DP": {
+        "sign": "Sagittarius",
+        "lord": "Jupiter"
+      },
+      "Argala_7H": {
+        "support": [
+          "Saturn(H4)",
+          "Ketu(H4)"
+        ],
+        "block": [
+          "Moon(H10)",
+          "Venus(H10)",
+          "Rahu(H10)"
+        ],
+        "net": -1,
+        "verdict": "block"
+      },
+      "D7": {
+        "asc": "Sagittarius",
+        "dk": "Scorpio",
+        "7_sign": "Gemini"
+      },
+      "D60": {
+        "asc": "Cancer",
+        "dk": "Scorpio",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Leo",
+        "7th_from_km": "Aquarius",
+        "7L": "Saturn",
+        "meaning": "灵魂渴望的伴侣类型指向Aquarius领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mars",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            7
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            4,
+            5
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Mercury",
+        "12L_house": 8,
+        "warning": "12L在8宫: 死亡征象"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Mimi Rogers",
+        "date": "1987-05-09",
+        "dasha": {
+          "maha": "Mercury",
+          "antar": "Saturn",
+          "pratyantar": "Saturn"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Mercury PAC LL(Aspect(3))",
+              "Mercury PAC 7L(Position)",
+              "Saturn PAC Lagna(Aspect(10))",
+              "Saturn PAC LL(Aspect(7))",
+              "Saturn PAC D9_7L(Saturn)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Saturn) Jaimini-aspects Sagittarius"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: 7L"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7L"
+            ],
+            "saturn_targets": [
+              "7L"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit LL(Venus) PAC natal 7L(Mars): Aspect(3)",
+              "Transit 7L(Mars) PAC natal LL(Venus): Aspect(3)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(5))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        },
+        "divorce": {
+          "date": "1990-02-04",
+          "dasha": {
+            "maha": "Ketu",
+            "antar": "Ketu",
+            "pratyantar": "Saturn"
+          }
+        }
+      },
+      {
+        "spouse": "Nicole Kidman",
+        "date": "1990-12-24",
+        "dasha": {
+          "maha": "Ketu",
+          "antar": "Venus",
+          "pratyantar": "Saturn"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Venus PAC 7H(Aspect(10))",
+              "Venus PAC LL(Position,Conjunction)",
+              "Venus PAC D9_7L(Saturn)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Venus) Jaimini-aspects Sagittarius"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: LL"
+            ],
+            "jupiter_targets": [
+              "7H",
+              "LL"
+            ],
+            "saturn_targets": [
+              "LL",
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Mars) PAC natal LL(Venus): Aspect(3)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Position,Conjunction)"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        },
+        "divorce": {
+          "date": "2001-08-08",
+          "dasha": {
+            "maha": "Venus",
+            "antar": "Moon",
+            "pratyantar": "Jupiter"
+          }
+        }
+      },
+      {
+        "spouse": "Katie Holmes",
+        "date": "2006-11-18",
+        "dasha": {
+          "maha": "Venus",
+          "antar": "Rahu",
+          "pratyantar": "Mars"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Venus PAC 7H(Aspect(10))",
+              "Venus PAC LL(Position,Conjunction)",
+              "Venus PAC D9_7L(Saturn)",
+              "Rahu PAC 7H(Aspect(10))",
+              "Rahu PAC LL(Position,Conjunction)",
+              "Rahu PAC D9_7L(Saturn)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Rahu) Jaimini-aspects Sagittarius"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H2 aspects Vivah Saham H11"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: LL,7L"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL",
+              "Lagna",
+              "7L"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit LL(Venus) PAC natal 7L(Mars): Aspect(7)",
+              "Transit 7L(Mars) PAC natal LL(Venus): Aspect(10)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(9))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Mars)在Lagna"
+            ]
+          },
+          "summary": {
+            "hit_count": 7,
+            "total": 8,
+            "percentage": 87.5,
+            "prediction": "极强婚姻信号(6+)"
+          }
+        },
+        "divorce": {
+          "date": "2012-07-09",
+          "dasha": {
+            "maha": "Venus",
+            "antar": "Saturn",
+            "pratyantar": "Jupiter"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Elon Musk",
+    "asc": "Gemini",
+    "asc_match": true,
+    "expected_asc": "Gemini",
+    "d9_asc": "Capricorn",
+    "dk7": "Jupiter",
+    "dk8": "Jupiter",
+    "dk_sign": "Scorpio",
+    "dk_house": 6,
+    "seven_lord": "Jupiter",
+    "seven_lord_house": 6,
+    "multidim": {
+      "UL": {
+        "sign": "Taurus",
+        "lord": "Venus",
+        "ul_2nd_sign": "Gemini",
+        "benefics_in_ul2": [
+          "Mercury"
+        ],
+        "malefics_in_ul2": [
+          "Sun"
+        ],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Gemini",
+        "lord": "Mercury"
+      },
+      "Argala_7H": {
+        "support": [
+          "Ketu(H2)"
+        ],
+        "block": [
+          "Moon(H3)",
+          "Venus(H12)",
+          "Saturn(H12)"
+        ],
+        "net": -2,
+        "verdict": "block"
+      },
+      "D7": {
+        "asc": "Leo",
+        "dk": "Taurus",
+        "7_sign": "Aquarius"
+      },
+      "D60": {
+        "asc": "Cancer",
+        "dk": "Leo",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Sagittarius",
+        "7th_from_km": "Gemini",
+        "7L": "Mercury",
+        "meaning": "灵魂渴望的伴侣类型指向Gemini领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            10
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "6L(Mars)在H8 → Vipareeta",
+        "8L(Saturn)在H12 → Vipareeta"
+      ],
+      "Death_Sign": {
+        "12L": "Venus",
+        "12L_house": 12,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Justine Wilson",
+        "date": "2000-01-01",
+        "dasha": {
+          "maha": "Moon",
+          "antar": "Saturn",
+          "pratyantar": "Saturn"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Moon PAC D9_7L(Moon)",
+              "Saturn PAC 7L(Aspect(7))"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Antar(Saturn)在DK 1-7轴"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H11 aspects Vivah Saham H8"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: Lagna,LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ],
+            "saturn_targets": [
+              "LL",
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Jupiter) PAC natal LL(Mercury): Aspect(3)"
+            ]
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": true,
+            "details": [
+              "Lagna聚集: Sun,Mercury(2)"
+            ]
+          },
+          "P8": {
+            "hit": true,
+            "details": [
+              "Transit LL(Mercury)在7H"
+            ]
+          },
+          "summary": {
+            "hit_count": 7,
+            "total": 8,
+            "percentage": 87.5,
+            "prediction": "极强婚姻信号(6+)"
+          }
+        },
+        "divorce": {
+          "date": "2008-01-01",
+          "dasha": {
+            "maha": "Mars",
+            "antar": "Jupiter",
+            "pratyantar": "Rahu"
+          }
+        }
+      },
+      {
+        "spouse": "Talulah Riley",
+        "date": "2010-09-25",
+        "dasha": {
+          "maha": "Mars",
+          "antar": "Venus",
+          "pratyantar": "Venus"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Mars PAC D9_7L(Moon)",
+              "Venus PAC 7L(Aspect(7))"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Antar(Venus)在DK 1-7轴"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: 7L"
+            ],
+            "jupiter_targets": [
+              "7H",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL",
+              "Lagna",
+              "7L"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(3))"
+            ]
+          },
+          "P7": {
+            "hit": true,
+            "details": [
+              "Lagna聚集: Sun,Mercury(2)"
+            ]
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        },
+        "divorce": {
+          "date": "2016-01-01",
+          "dasha": {
+            "maha": "Rahu",
+            "antar": "Jupiter",
+            "pratyantar": "Saturn"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Oprah Winfrey",
+    "asc": "Sagittarius",
+    "asc_match": true,
+    "expected_asc": "Sagittarius",
+    "d9_asc": "Gemini",
+    "dk7": "Mars",
+    "dk8": "Mars",
+    "dk_sign": "Scorpio",
+    "dk_house": 12,
+    "seven_lord": "Mercury",
+    "seven_lord_house": 2,
+    "multidim": {
+      "UL": {
+        "sign": "Scorpio",
+        "lord": "Mars",
+        "ul_2nd_sign": "Sagittarius",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "UL=DK sign"
+      },
+      "DP": {
+        "sign": "Leo",
+        "lord": "Sun"
+      },
+      "Argala_7H": {
+        "support": [
+          "Sun(H2)",
+          "Mercury(H2)",
+          "Venus(H2)",
+          "Saturn(H11)",
+          "Rahu(H2)"
+        ],
+        "block": [
+          "Moon(H12)",
+          "Mars(H12)"
+        ],
+        "net": 3,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Gemini",
+        "dk": "Taurus",
+        "7_sign": "Sagittarius"
+      },
+      "D60": {
+        "asc": "Cancer",
+        "dk": "Sagittarius",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Scorpio",
+        "7th_from_km": "Taurus",
+        "7L": "Venus",
+        "meaning": "灵魂渴望的伴侣类型指向Taurus领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mercury",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            10
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            3
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "8L(Moon)在H12 → Vipareeta"
+      ],
+      "Death_Sign": {
+        "12L": "Mars",
+        "12L_house": 12,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Stedman Graham",
+        "date": "1986-01-01",
+        "dasha": {
+          "maha": "Venus",
+          "antar": "Venus",
+          "pratyantar": "Rahu"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Venus PAC 7L(Position)",
+              "Venus PAC 7L(Position)"
+            ]
+          },
+          "P2": {
+            "hit": false,
+            "details": []
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H2 aspects Vivah Saham H4"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: LL,7L"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL",
+              "7L"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit LL(Jupiter) PAC natal 7L(Mercury): Position,Conjunction",
+              "Transit 7L(Mercury) PAC natal LL(Jupiter): Aspect(7)"
+            ]
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Prince Harry",
+    "asc": "Sagittarius",
+    "asc_match": true,
+    "expected_asc": "Sagittarius",
+    "d9_asc": "Pisces",
+    "dk7": "Jupiter",
+    "dk8": "Jupiter",
+    "dk_sign": "Sagittarius",
+    "dk_house": 1,
+    "seven_lord": "Mercury",
+    "seven_lord_house": 9,
+    "multidim": {
+      "UL": {
+        "sign": "Scorpio",
+        "lord": "Mars",
+        "ul_2nd_sign": "Sagittarius",
+        "benefics_in_ul2": [
+          "Jupiter"
+        ],
+        "malefics_in_ul2": [],
+        "marriage_stability": "strong",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Pisces",
+        "lord": "Jupiter"
+      },
+      "Argala_7H": {
+        "support": [
+          "Saturn(H11)"
+        ],
+        "block": [
+          "Mars(H12)",
+          "Venus(H10)",
+          "Ketu(H12)"
+        ],
+        "net": -2,
+        "verdict": "block"
+      },
+      "D7": {
+        "asc": "Aries",
+        "dk": "Aquarius",
+        "7_sign": "Libra"
+      },
+      "D60": {
+        "asc": "Scorpio",
+        "dk": "Cancer",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Virgo",
+        "7th_from_km": "Pisces",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Pisces领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mercury",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            10
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            3
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Mars",
+        "12L_house": 12,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Meghan Markle",
+        "date": "2018-05-19",
+        "dasha": {
+          "maha": "Rahu",
+          "antar": "Ketu",
+          "pratyantar": "Jupiter"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": false,
+            "details": []
+          },
+          "P2": {
+            "hit": false,
+            "details": []
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H11 aspects Vivah Saham H5"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: 7H,Lagna,LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ],
+            "saturn_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 2,
+            "total": 8,
+            "percentage": 25.0,
+            "prediction": "弱信号(<4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Jeff Bezos",
+    "asc": "Scorpio",
+    "asc_match": true,
+    "expected_asc": "Scorpio",
+    "d9_asc": "Cancer",
+    "dk7": "Moon",
+    "dk8": "Moon",
+    "dk_sign": "Sagittarius",
+    "dk_house": 2,
+    "seven_lord": "Venus",
+    "seven_lord_house": 4,
+    "multidim": {
+      "UL": {
+        "sign": "Aquarius",
+        "lord": "Saturn",
+        "ul_2nd_sign": "Pisces",
+        "benefics_in_ul2": [
+          "Jupiter"
+        ],
+        "malefics_in_ul2": [],
+        "marriage_stability": "strong",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Virgo",
+        "lord": "Mercury"
+      },
+      "Argala_7H": {
+        "support": [
+          "Sun(H2)",
+          "Moon(H2)",
+          "Mercury(H2)",
+          "Venus(H4)",
+          "Ketu(H2)"
+        ],
+        "block": [
+          "Mars(H3)",
+          "Saturn(H3)"
+        ],
+        "net": 3,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Libra",
+        "dk": "Sagittarius",
+        "7_sign": "Aries"
+      },
+      "D60": {
+        "asc": "Cancer",
+        "dk": "Sagittarius",
+        "dk_vs_d1": "same",
+        "karmic_note": "业力一致"
+      },
+      "Karakamsha": {
+        "sign": "Sagittarius",
+        "7th_from_km": "Gemini",
+        "7L": "Mercury",
+        "meaning": "灵魂渴望的伴侣类型指向Gemini领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Venus",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            12
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            5
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Venus",
+        "12L_house": 4,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "MacKenzie Scott",
+        "date": "1993-01-01",
+        "dasha": {
+          "maha": "Sun",
+          "antar": "Jupiter",
+          "pratyantar": "Jupiter"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Sun PAC LL(Conjunction)",
+              "Sun PAC 7L(Aspect(3))",
+              "Jupiter PAC Lagna(Aspect(9))",
+              "Jupiter PAC 7H(Aspect(3))"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Jupiter) Jaimini-aspects Aquarius"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H11 aspects Vivah Saham H1"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ],
+            "saturn_targets": [
+              "LL",
+              "7L"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        },
+        "divorce": {
+          "date": "2019-07-05",
+          "dasha": {
+            "maha": "Rahu",
+            "antar": "Saturn",
+            "pratyantar": "Mercury"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Priyanka Chopra",
+    "asc": "Scorpio",
+    "asc_match": true,
+    "expected_asc": "Scorpio",
+    "d9_asc": "Virgo",
+    "dk7": "Sun",
+    "dk8": "Sun",
+    "dk_sign": "Cancer",
+    "dk_house": 9,
+    "seven_lord": "Venus",
+    "seven_lord_house": 8,
+    "multidim": {
+      "UL": {
+        "sign": "Gemini",
+        "lord": "Mercury",
+        "ul_2nd_sign": "Cancer",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [
+          "Sun"
+        ],
+        "marriage_stability": "weak",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Capricorn",
+        "lord": "Saturn"
+      },
+      "Argala_7H": {
+        "support": [
+          "Mars(H11)",
+          "Saturn(H11)",
+          "Ketu(H2)"
+        ],
+        "block": [
+          "Jupiter(H12)"
+        ],
+        "net": 2,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Scorpio",
+        "dk": "Capricorn",
+        "7_sign": "Taurus"
+      },
+      "D60": {
+        "asc": "Gemini",
+        "dk": "Scorpio",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Virgo",
+        "7th_from_km": "Pisces",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Pisces领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Venus",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            7,
+            12
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            5
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Venus",
+        "12L_house": 8,
+        "warning": "12L在8宫: 死亡征象"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Nick Jonas",
+        "date": "2018-12-01",
+        "dasha": {
+          "maha": "Jupiter",
+          "antar": "Rahu",
+          "pratyantar": "Jupiter"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Jupiter PAC LL(Conjunction)",
+              "Jupiter PAC 7L(Aspect(9))",
+              "Jupiter PAC D9_7L(Jupiter)",
+              "Rahu PAC 7L(Position)",
+              "Rahu PAC D9_7L(Jupiter)"
+            ]
+          },
+          "P2": {
+            "hit": false,
+            "details": []
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "7H",
+              "Lagna"
+            ],
+            "saturn_targets": [
+              "LL",
+              "7L"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Venus) PAC natal LL(Mars): Conjunction"
+            ]
+          },
+          "P6": {
+            "hit": false,
+            "details": []
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 2,
+            "total": 8,
+            "percentage": 25.0,
+            "prediction": "弱信号(<4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Shah Rukh Khan",
+    "asc": "Leo",
+    "asc_match": true,
+    "expected_asc": "Leo",
+    "d9_asc": "Leo",
+    "dk7": "Venus",
+    "dk8": "Venus",
+    "dk_sign": "Sagittarius",
+    "dk_house": 5,
+    "seven_lord": "Saturn",
+    "seven_lord_house": 7,
+    "multidim": {
+      "UL": {
+        "sign": "Capricorn",
+        "lord": "Saturn",
+        "ul_2nd_sign": "Aquarius",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [
+          "Saturn"
+        ],
+        "marriage_stability": "weak",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Virgo",
+        "lord": "Mercury"
+      },
+      "Argala_7H": {
+        "support": [
+          "Mars(H4)",
+          "Mercury(H4)",
+          "Jupiter(H11)",
+          "Ketu(H4)"
+        ],
+        "block": [
+          "Sun(H3)",
+          "Rahu(H10)"
+        ],
+        "net": 2,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Capricorn",
+        "dk": "Sagittarius",
+        "7_sign": "Cancer"
+      },
+      "D60": {
+        "asc": "Libra",
+        "dk": "Aries",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Virgo",
+        "7th_from_km": "Pisces",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Pisces领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mars",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            4,
+            9
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Mercury",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            11
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            6,
+            7
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Moon",
+        "12L_house": 6,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Gauri Khan",
+        "date": "1991-10-25",
+        "dasha": {
+          "maha": "Rahu",
+          "antar": "Mars",
+          "pratyantar": "Venus"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Rahu PAC 7H(Aspect(10))",
+              "Rahu PAC 7L(Aspect(10))",
+              "Rahu PAC D9_7L(Saturn)",
+              "Mars PAC Lagna(Aspect(10))",
+              "Mars PAC 7H(Aspect(4))",
+              "Mars PAC 7L(Aspect(4))",
+              "Mars PAC D9_7L(Saturn)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Mars) Jaimini-aspects Libra",
+              "Chara Antar(Mars) Jaimini-aspects Capricorn"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Saturn) PAC natal LL(Sun): Aspect(10)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(5))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Britney Spears",
+    "asc": "Pisces",
+    "asc_match": true,
+    "expected_asc": "Pisces",
+    "d9_asc": "Aries",
+    "dk7": "Venus",
+    "dk8": "Venus",
+    "dk_sign": "Capricorn",
+    "dk_house": 11,
+    "seven_lord": "Mercury",
+    "seven_lord_house": 9,
+    "multidim": {
+      "UL": {
+        "sign": "Virgo",
+        "lord": "Mercury",
+        "ul_2nd_sign": "Libra",
+        "benefics_in_ul2": [
+          "Jupiter"
+        ],
+        "malefics_in_ul2": [],
+        "marriage_stability": "strong",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Gemini",
+        "lord": "Mercury"
+      },
+      "Argala_7H": {
+        "support": [
+          "Moon(H11)",
+          "Venus(H11)",
+          "Ketu(H11)"
+        ],
+        "block": [],
+        "net": 3,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Aquarius",
+        "dk": "Cancer",
+        "7_sign": "Leo"
+      },
+      "D60": {
+        "asc": "Capricorn",
+        "dk": "Taurus",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Virgo",
+        "7th_from_km": "Pisces",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Pisces领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mars",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            9
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Mercury",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            4,
+            7
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Saturn",
+        "12L_house": 7,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Jason Alexander",
+        "date": "2004-01-03",
+        "dasha": {
+          "maha": "Rahu",
+          "antar": "Moon",
+          "pratyantar": "Jupiter"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Rahu PAC Lagna(Aspect(9))",
+              "Rahu PAC 7H(Aspect(3))",
+              "Rahu PAC 7L(Aspect(5))",
+              "Rahu PAC D9_7L(Venus)",
+              "Moon PAC Lagna(Aspect(3))",
+              "Moon PAC LL(Aspect(10))",
+              "Moon PAC D9_7L(Venus)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Moon) Jaimini-aspects Gemini",
+              "Chara Antar(Moon) Jaimini-aspects Virgo",
+              "Antar(Moon)在DK 1-7轴"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H6 aspects Vivah Saham H3"
+            ]
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "LL"
+            ],
+            "saturn_targets": [
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Mars(Position,Conjunction)"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        },
+        "divorce": {
+          "date": "2004-01-05",
+          "dasha": {
+            "maha": "Rahu",
+            "antar": "Moon",
+            "pratyantar": "Jupiter"
+          }
+        }
+      },
+      {
+        "spouse": "Kevin Federline",
+        "date": "2004-10-06",
+        "dasha": {
+          "maha": "Rahu",
+          "antar": "Moon",
+          "pratyantar": "Venus"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Rahu PAC Lagna(Aspect(9))",
+              "Rahu PAC 7H(Aspect(3))",
+              "Rahu PAC 7L(Aspect(5))",
+              "Rahu PAC D9_7L(Venus)",
+              "Moon PAC Lagna(Aspect(3))",
+              "Moon PAC LL(Aspect(10))",
+              "Moon PAC D9_7L(Venus)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Moon) Jaimini-aspects Gemini",
+              "Chara Antar(Moon) Jaimini-aspects Virgo",
+              "Antar(Moon)在DK 1-7轴"
+            ]
+          },
+          "P3": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter H7 aspects Vivah Saham H3"
+            ]
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: 7H"
+            ],
+            "jupiter_targets": [
+              "7H",
+              "Lagna",
+              "7L"
+            ],
+            "saturn_targets": [
+              "7H"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit LL(Jupiter) PAC natal 7L(Mercury): Aspect(3)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Mars(Conjunction)"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": true,
+            "details": [
+              "Transit LL(Jupiter)在7H"
+            ]
+          },
+          "summary": {
+            "hit_count": 7,
+            "total": 8,
+            "percentage": 87.5,
+            "prediction": "极强婚姻信号(6+)"
+          }
+        },
+        "divorce": {
+          "date": "2007-07-30",
+          "dasha": {
+            "maha": "Jupiter",
+            "antar": "Jupiter",
+            "pratyantar": "Moon"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Mark Zuckerberg",
+    "asc": "Virgo",
+    "asc_match": true,
+    "expected_asc": "Virgo",
+    "d9_asc": "Sagittarius",
+    "dk7": "Sun",
+    "dk8": "Sun",
+    "dk_sign": "Taurus",
+    "dk_house": 9,
+    "seven_lord": "Jupiter",
+    "seven_lord_house": 4,
+    "multidim": {
+      "UL": {
+        "sign": "Taurus",
+        "lord": "Venus",
+        "ul_2nd_sign": "Gemini",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "UL=DK sign"
+      },
+      "DP": {
+        "sign": "Cancer",
+        "lord": "Moon"
+      },
+      "Argala_7H": {
+        "support": [
+          "Moon(H2)",
+          "Mars(H2)",
+          "Jupiter(H4)",
+          "Saturn(H2)"
+        ],
+        "block": [
+          "Ketu(H3)"
+        ],
+        "net": 3,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Taurus",
+        "dk": "Scorpio",
+        "7_sign": "Scorpio"
+      },
+      "D60": {
+        "asc": "Aries",
+        "dk": "Cancer",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Scorpio",
+        "7th_from_km": "Taurus",
+        "7L": "Venus",
+        "meaning": "灵魂渴望的伴侣类型指向Taurus领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Venus",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            9
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            4,
+            7
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Sun",
+        "12L_house": 9,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Priscilla Chan",
+        "date": "2012-05-19",
+        "dasha": {
+          "maha": "Saturn",
+          "antar": "Jupiter",
+          "pratyantar": "Rahu"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Saturn PAC LL(Aspect(7))",
+              "Saturn PAC 7L(Aspect(3))",
+              "Saturn PAC D9_7L(Mercury)",
+              "Jupiter PAC Lagna(Aspect(10))",
+              "Jupiter PAC LL(Aspect(5))",
+              "Jupiter PAC 7L(Position,Conjunction)",
+              "Jupiter PAC D9_7L(Mercury)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Jupiter) Jaimini-aspects Taurus",
+              "Chara Antar(Jupiter) Jaimini-aspects Taurus"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: Lagna"
+            ],
+            "jupiter_targets": [
+              "Lagna"
+            ],
+            "saturn_targets": [
+              "7H",
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": false,
+            "details": []
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Conjunction)"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Narendra Modi",
+    "asc": "Libra",
+    "asc_match": true,
+    "expected_asc": "Libra",
+    "d9_asc": "Libra",
+    "dk7": "Sun",
+    "dk8": "Sun",
+    "dk_sign": "Virgo",
+    "dk_house": 12,
+    "seven_lord": "Mars",
+    "seven_lord_house": 2,
+    "multidim": {
+      "UL": {
+        "sign": "Virgo",
+        "lord": "Mercury",
+        "ul_2nd_sign": "Libra",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "UL=DK sign"
+      },
+      "DP": {
+        "sign": "Gemini",
+        "lord": "Mercury"
+      },
+      "Argala_7H": {
+        "support": [
+          "Moon(H2)",
+          "Mars(H2)",
+          "Venus(H11)",
+          "Saturn(H11)"
+        ],
+        "block": [
+          "Sun(H12)",
+          "Mercury(H12)",
+          "Ketu(H12)"
+        ],
+        "net": 1,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Pisces",
+        "dk": "Pisces",
+        "7_sign": "Virgo"
+      },
+      "D60": {
+        "asc": "Taurus",
+        "dk": "Scorpio",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Virgo",
+        "7th_from_km": "Pisces",
+        "7L": "Jupiter",
+        "meaning": "灵魂渴望的伴侣类型指向Pisces领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Mars",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            7
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Saturn",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            4,
+            5
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Mercury",
+        "12L_house": 12,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Jashodaben Modi",
+        "date": "1968-01-01",
+        "dasha": {
+          "maha": "Mercury",
+          "antar": "Venus",
+          "pratyantar": "Saturn"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Mercury PAC 7L(Aspect(3))",
+              "Mercury PAC D9_7L(Mars)",
+              "Venus PAC Lagna(Aspect(3))",
+              "Venus PAC LL(Position,Conjunction)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Venus) Jaimini-aspects Libra"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": false,
+            "details": [],
+            "jupiter_targets": [
+              "LL",
+              "7H",
+              "Lagna"
+            ],
+            "saturn_targets": []
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit LL(Venus) PAC natal 7L(Mars): Position,Conjunction",
+              "Transit 7L(Mars) PAC natal LL(Venus): Aspect(7)"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Position,Conjunction)"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 4,
+            "total": 8,
+            "percentage": 50.0,
+            "prediction": "中等信号(4)"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Amitabh Bachchan",
+    "asc": "Aquarius",
+    "asc_match": true,
+    "expected_asc": "Aquarius",
+    "d9_asc": "Cancer",
+    "dk7": "Jupiter",
+    "dk8": "Jupiter",
+    "dk_sign": "Cancer",
+    "dk_house": 6,
+    "seven_lord": "Sun",
+    "seven_lord_house": 8,
+    "multidim": {
+      "UL": {
+        "sign": "Taurus",
+        "lord": "Venus",
+        "ul_2nd_sign": "Gemini",
+        "benefics_in_ul2": [],
+        "malefics_in_ul2": [],
+        "marriage_stability": "neutral",
+        "dk_ul_relation": "no direct link"
+      },
+      "DP": {
+        "sign": "Aries",
+        "lord": "Mars"
+      },
+      "Argala_7H": {
+        "support": [
+          "Saturn(H4)"
+        ],
+        "block": [],
+        "net": 1,
+        "verdict": "support"
+      },
+      "D7": {
+        "asc": "Cancer",
+        "dk": "Capricorn",
+        "7_sign": "Capricorn"
+      },
+      "D60": {
+        "asc": "Virgo",
+        "dk": "Virgo",
+        "dk_vs_d1": "different",
+        "karmic_note": "前世配偶能量不同"
+      },
+      "Karakamsha": {
+        "sign": "Taurus",
+        "7th_from_km": "Scorpio",
+        "7L": "Mars",
+        "meaning": "灵魂渴望的伴侣类型指向Scorpio领域"
+      },
+      "Yogakaraka_Maraka": [
+        {
+          "planet": "Venus",
+          "yogakaraka": true,
+          "maraka": false,
+          "houses": [
+            4,
+            9
+          ],
+          "dual_activation": false
+        },
+        {
+          "planet": "Jupiter",
+          "yogakaraka": false,
+          "maraka": true,
+          "houses": [
+            2,
+            11
+          ],
+          "dual_activation": false
+        }
+      ],
+      "Vipareeta": [
+        "none detected"
+      ],
+      "Death_Sign": {
+        "12L": "Saturn",
+        "12L_house": 4,
+        "warning": "none"
+      },
+      "Same_Star_Dasha": "需要Dasha数据才能检测"
+    },
+    "marriages": [
+      {
+        "spouse": "Jaya Bhaduri",
+        "date": "1973-06-03",
+        "dasha": {
+          "maha": "Saturn",
+          "antar": "Saturn",
+          "pratyantar": "Rahu"
+        },
+        "rao_8_params": {
+          "P1": {
+            "hit": true,
+            "details": [
+              "Saturn PAC Lagna(Aspect(10))",
+              "Saturn PAC LL(Position,Conjunction)",
+              "Saturn PAC D9_7L(Saturn)",
+              "Saturn PAC Lagna(Aspect(10))",
+              "Saturn PAC LL(Position,Conjunction)",
+              "Saturn PAC D9_7L(Saturn)"
+            ]
+          },
+          "P2": {
+            "hit": true,
+            "details": [
+              "Chara Antar(Saturn) Jaimini-aspects Cancer",
+              "Chara Antar(Saturn) Jaimini-aspects Aries",
+              "Chara Antar(Saturn) Jaimini-aspects Aries"
+            ]
+          },
+          "P3": {
+            "hit": false,
+            "details": []
+          },
+          "P4": {
+            "hit": true,
+            "details": [
+              "Jupiter+Saturn同时激活: LL"
+            ],
+            "jupiter_targets": [
+              "LL",
+              "7L"
+            ],
+            "saturn_targets": [
+              "LL",
+              "Lagna"
+            ]
+          },
+          "P5": {
+            "hit": true,
+            "details": [
+              "Transit 7L(Sun) PAC natal LL(Saturn): Position,Conjunction"
+            ]
+          },
+          "P6": {
+            "hit": true,
+            "details": [
+              "Transit Jupiter PAC Venus(Aspect(9))"
+            ]
+          },
+          "P7": {
+            "hit": false,
+            "details": []
+          },
+          "P8": {
+            "hit": false,
+            "details": []
+          },
+          "summary": {
+            "hit_count": 5,
+            "total": 8,
+            "percentage": 62.5,
+            "prediction": "强信号(5)"
+          }
+        }
+      }
+    ]
+  }
+]

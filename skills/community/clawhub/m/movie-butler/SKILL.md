@@ -1,35 +1,140 @@
----
-name: "🎬 观影小管家"
-description: "整合TMDB与Emby/Plex，提供电影查询、媒体库管理、观影记录和个性化推荐服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/movie-butler"
-sourceUrl: "https://clawhub.ai/skills/movie-butler"
----
+# 🎬 Movie Butler - 观影小管家
 
-# 🎬 观影小管家
+杜老师的专属观影助手，整合 TMDB + Emby/Plex，提供电影查询、媒体库管理、个性化推荐等服务。
 
-> 整合TMDB与Emby/Plex，提供电影查询、媒体库管理、观影记录和个性化推荐服务。
+## 📋 功能列表
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/movie-butler`
-- **Source URL:** [https://clawhub.ai/skills/movie-butler](https://clawhub.ai/skills/movie-butler)
+### 1. 🌐 电影查询（全网 + 服务器）
+- **TMDB 全网查询** - 简介、评分、演员、导演、类型、海报
+- **Emby 服务器查询** - 检查是否有该片、画质信息
+- **智能下载建议** - 服务器没有时，提供下载提示
+- **一键对比** - 同时显示全网信息和服务器状态
 
-## Overview
+### 2. 📺 Emby 媒体库管理
+- 查询服务器上的电影/剧集
+- 获取媒体库统计
+- 搜索特定影片
+- 查看最近添加/最近播放
 
+### 3. Plex 媒体库管理
+- 查询 Plex 服务器内容
+- 获取播放列表
+- 媒体库统计
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/movie-butler
+### 4. 观影记录与偏好
+- 记录看过的电影和感受
+- 记录评分
+- 分析观影偏好
+- 个性化推荐
+
+### 5. 🎯 每周一部电影
+- 自动生成每周推荐
+- 智能分析您的喜好
+- 结合 Emby 服务器内容
+- 给出详细推荐理由
+- 记录每周观影计划
+
+### 6. 背景感知推荐
+- 根据心情推荐（累→轻松，开心→刺激）
+- 根据工作状态推荐（忙→犒劳，闲→深度）
+- 根据最近关注推荐
+- 周末/工作日不同策略
+
+## 🔧 使用方法
+
+### 查询电影信息
+```
+查询《肖申克的救赎》
+《星际穿越》的详细信息
+```
+
+### 查询服务器内容
+```
+Emby 上有哪些科幻电影？
+我的服务器有多少部电影？
+Emby 有诺兰的电影吗？
+最近添加了什么电影？
+```
+
+### 搜索特定影片
+```
+服务器上有《盗梦空间》吗？
+Emby 搜索《阿凡达》
+```
+
+### 记录观影感受
+```
+刚看了《星际穿越》，很震撼，诺兰的叙事手法太厉害了，评分 9/10
+```
+
+### 🎯 每周一部电影
+```
+本周推荐什么电影？
+这周有什么好电影推荐
+周末了，推荐部电影
+最近工作很累，推荐部轻松的
+```
+
+### 背景记录（让推荐更精准）
+```
+今天心情很好
+最近工作很忙
+最近对科幻题材感兴趣
+```
+
+### 个性化推荐
+```
+推荐几部科幻电影
+推荐类似《星际穿越》的电影
+Emby 上有什么高分电影推荐？
+我还没看过的科幻片有哪些？
+```
+
+### 查看观影历史
+```
+我看过哪些电影？
+我的观影记录
+```
+
+## 📁 文件结构
+
+- `SKILL.md` - 本说明文档
+- `index.js` - 主程序
+- `movie-memory.md` - 观影记录和偏好（自动创建）
+
+## 🔑 API 配置
+
+在 `C:\Users\yz207\.openclaw\.env` 中配置：
+
+```
+# TMDB
+TMDB_API_KEY=bd1ba3aa647fbaa7b35e93db5164a53f
+TMDB_BEARER_TOKEN=xxx
+
+# Emby
+EMBY_URL=http://192.168.0.151:8096
+EMBY_USERNAME=喜悦影音
+EMBY_PASSWORD=
+EMBY_API_KEY=xxx (需要生成)
+
+# Plex (可选)
+PLEX_URL=http://xxx:32400
+PLEX_TOKEN=xxx
+```
+
+## 📝 观影记忆格式
+
+```markdown
+## 2026-03-03
+
+### 《肖申克的救赎》
+- **评分**: 10/10
+- **感受**: 经典中的经典，希望与绝望的对比太震撼了
+- **类型偏好**: +剧情，+励志
+
+### 累计偏好
+- 最爱类型：科幻、剧情、悬疑
+- 最爱导演：诺兰、斯皮尔伯格
+- 平均评分：8.5/10
+- 已观影：15 部
 ```

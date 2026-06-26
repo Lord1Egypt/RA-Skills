@@ -1,0 +1,16 @@
+# 日常运营 + 客服售后 + 合规风控三合一 Skill 依赖
+# Python 3.8+
+# 版本：1.0.0
+
+# HTTP 请求
+requests>=2.31.0
+
+# 数据处理
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# 环境变量加载
+python-dotenv>=1.0.0
+
+# 日志
+colorlog>=6.7.0

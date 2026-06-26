@@ -1,0 +1,422 @@
+/* ====================== 全局公共样式规范 ======================
+ * 所有页面统一引用此样式，禁止私自修改，如需调整公共样式请统一修改此文件
+ * 设计规范：全局内容区域采用Google Material Design 3 风格，优先使用纯色，避免不必要的渐变
+ * 注意：Header和Footer为原有固定样式，不受Material风格影响，保持原有展示效果
+ * 主色固定：#695ddf，不可修改
+ * ================================================================= */
+
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #FFFFFF;
+    color: #1D2129;
+    line-height: 1.8;
+    font-size: 16px; /* 正文字号16px，行距1.8 */
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul, ol {
+    list-style: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ====================== 颜色规范（Material Design 风格，主色固定#695ddf） ====================== */
+:root {
+    /* 主色系列（固定#695ddf） */
+    --zl-primary: #695ddf; /* 主色调品牌紫（固定） */
+    --zl-primary-light: #8b82eb; /* 主色浅版 */
+    --zl-primary-dark: #584bc0; /* 主色深版 */
+    --zl-primary-opacity: #695ddf1a; /* 主色透明版 */
+    
+    /* 功能色系列 */
+    --zl-danger: #F56C6C; /* 红色警示/上涨 */
+    --zl-success: #00B42A; /* 绿色成功/下跌 */
+    --zl-warning: #FF7A45; /* 橙色警告 */
+    
+    /* 中性色系列 */
+    --zl-text-primary: #1D2129; /* 正文文本色 */
+    --zl-text-secondary: #4E5969; /* 次要文本色 */
+    --zl-text-minor: #86909C; /* 极小辅助文本色 */
+    --zl-border: #F0F0F0; /* 边框色 */
+    --zl-bg: #FFFFFF; /* 页面背景色 */
+    --zl-bg-light: #F7F8FA; /* 浅灰背景色 */
+    
+    /* 圆角规范（Material Design 标准圆角，仅用于主体内容） */
+    --zl-radius-sm: 4px;
+    --zl-radius-md: 8px;
+    --zl-radius-lg: 12px;
+    --zl-radius-xl: 16px;
+    --zl-radius-full: 100px;
+    
+    /* 阴影规范（Material Design 标准elevation，仅用于主体内容） */
+    --zl-shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --zl-shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --zl-shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* ====================== 排版规范 ====================== */
+h1 { font-size: 32px; line-height: 1.2; font-weight: 800; color: var(--zl-text-primary); }
+h2 { font-size: 22px; line-height: 1.2; font-weight: 700; color: var(--zl-text-primary); }
+h3 { font-size: 18px; line-height: 1.3; font-weight: 700; color: var(--zl-text-primary); }
+p { font-size: 16px; line-height: 1.8; color: var(--zl-text-primary); margin-bottom: 24px; }
+.text-secondary { font-size: 14px; line-height: 1.6; color: var(--zl-text-secondary); }
+.text-minor { font-size: 12px; line-height: 1.5; color: var(--zl-text-minor); }
+
+/* ====================== 间距规范 ====================== */
+.container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+@media (max-width: 768px) {
+    .container { padding: 24px 20px; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 17px; }
+    p { font-size: 16px; }
+}
+
+/* ====================== 全局Header样式（原有固定样式，不受Material影响） ====================== */
+.global-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 0 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+    height: 64px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.global-header-left {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-decoration: none;
+}
+.logo-container:hover { opacity: 0.8; }
+.logo-avatar { 
+    border-radius: 8px; 
+    width: 36px;
+    height: 36px;
+}
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.global-header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+}
+.global-menu {
+    border-bottom: none !important;
+    background: transparent !important;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    list-style: none;
+    gap: 48px;
+}
+.global-menu .menu-item {
+    font-size: 15px;
+    font-weight: 500;
+    color: #999 !important;
+    padding: 0 0 3px 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+    position: relative;
+    text-decoration: none;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+.global-menu .menu-item:hover { color: #695ddf !important; }
+.global-menu .menu-item.active {
+    color: #695ddf !important;
+    font-weight: 600;
+}
+.global-menu .menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    border-bottom: 0 solid #695ddf;
+    transition: all 0.3s;
+}
+.global-menu .menu-item.active::after {
+    height: 3px;
+    border-bottom-width: 3px !important;
+    border-bottom-color: #695ddf !important;
+}
+.global-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+.upgrade-btn {
+    background: var(--zl-warning) !important;
+    border: none !important;
+    font-weight: 600;
+    color: #fff !important;
+    box-shadow: 0 4px 10px rgba(255, 122, 69, 0.3);
+    transition: all 0.3s ease;
+    height: 36px;
+    padding: 0 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.upgrade-btn:hover {
+    background: #fa541c !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(250, 84, 28, 0.4);
+}
+/* Header响应式 */
+@media (max-width: 900px) {
+    .global-menu { gap: 24px; }
+    .global-menu .menu-item { font-size: 14px; }
+    .logo-text { font-size: 17px; }
+}
+@media (max-width: 640px) {
+    .global-header { padding: 0 16px; }
+    .global-header-center { display: none; }
+    .logo-text { font-size: 16px; }
+    .upgrade-btn { display: none; }
+}
+
+/* ====================== 全局Footer样式（原有固定样式，不受Material影响） ====================== */
+.global-footer {
+    text-align: center;
+    padding: 32px 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+}
+.dix-ai-footer-right {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+.dix-ai-logo {
+    height: 24px;
+    object-fit: contain;
+    opacity: 0.8;
+    width: auto;
+}
+.footer-copyright {
+    font-size: 12px;
+    color: #86909C;
+    line-height: 1.6;
+}
+.footer-copyright a {
+    color: #695ddf;
+    text-decoration: none;
+}
+
+/* ====================== 通用组件样式（Material Design 风格，仅用于主体内容，无渐变，纯色优先） ====================== */
+/* 主按钮 */
+main .btn-primary {
+    background: var(--zl-primary); /* 纯色，无渐变 */
+    border: none;
+    border-radius: var(--zl-radius-full); /* Material 完全圆角 */
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--zl-shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1px;
+}
+main .btn-primary:hover {
+    background: var(--zl-primary-dark);
+    box-shadow: var(--zl-shadow-lg);
+    transform: translateY(-1px);
+}
+/* 次按钮 */
+main .btn-secondary {
+    background: var(--zl-bg);
+    border: 1px solid var(--zl-border);
+    border-radius: var(--zl-radius-full);
+    color: var(--zl-primary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1px;
+}
+main .btn-secondary:hover {
+    background: var(--zl-bg-light);
+    border-color: var(--zl-primary);
+}
+/* 卡片 */
+main .card {
+    background: var(--zl-bg);
+    border: 1px solid var(--zl-border);
+    border-radius: var(--zl-radius-xl);
+    padding: 24px;
+    transition: all 0.3s ease;
+    box-shadow: var(--zl-shadow-sm);
+}
+main .card:hover {
+    border-color: var(--zl-primary);
+    box-shadow: var(--zl-shadow-lg);
+    transform: translateY(-2px);
+}
+/* 标签 */
+main .tag {
+    display: inline-block;
+    background: var(--zl-primary-opacity); /* 纯色容器 */
+    color: var(--zl-primary);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: var(--zl-radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ====================== Idea介绍浮层（领导查看用，Material Design 风格，主色#695ddf） ====================== */
+.idea-float-panel {
+    position: fixed;
+    right: 24px;
+    bottom: 80px;
+    width: 360px;
+    max-height: 480px;
+    background: var(--zl-bg);
+    border: 1px solid var(--zl-border);
+    border-radius: var(--zl-radius-xl);
+    box-shadow: var(--zl-shadow-lg);
+    z-index: 999;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.idea-float-panel.collapsed {
+    width: 64px;
+    max-height: 64px;
+    right: 24px;
+    bottom: 80px;
+}
+.idea-float-header {
+    background: var(--zl-primary);
+    color: #fff;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.idea-float-header-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.idea-float-header-toggle {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    border-radius: var(--zl-radius-full);
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.idea-float-header-toggle:hover {
+    background: rgba(255,255,255,0.3);
+}
+.idea-float-content {
+    padding: 20px;
+    max-height: 380px;
+    overflow-y: auto;
+}
+.idea-float-content.collapsed {
+    display: none;
+}
+.idea-float-section {
+    margin-bottom: 20px;
+}
+.idea-float-section:last-child {
+    margin-bottom: 0;
+}
+.idea-float-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--zl-primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.idea-float-section-content {
+    font-size: 14px;
+    color: var(--zl-text-primary);
+    line-height: 1.6;
+}
+.idea-float-tag {
+    display: inline-block;
+    background: var(--zl-primary-opacity);
+    color: var(--zl-primary);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--zl-radius-sm);
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+/* 浮层响应式 */
+@media (max-width: 768px) {
+    .idea-float-panel {
+        width: 300px;
+        right: 16px;
+        bottom: 24px;
+    }
+    .idea-float-panel.collapsed {
+        width: 56px;
+        max-height: 56px;
+        right: 16px;
+        bottom: 24px;
+    }
+    .idea-float-header {
+        padding: 12px 16px;
+    }
+    .idea-float-content {
+        padding: 16px;
+        max-height: 320px;
+    }
+}

@@ -1,35 +1,55 @@
 ---
-name: "Polymarket 1.0.0"
-description: "Query Polymarket prediction markets - check odds, trending markets, search events, track prices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/polymarket-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/polymarket-1-0-0"
+name: polymarket
+description: Query Polymarket prediction markets - check odds, trending markets, search events, track prices.
+homepage: https://polymarket.com
+metadata: {"clawdbot":{"emoji":"📊"}}
 ---
 
-# Polymarket 1.0.0
+# Polymarket
 
-> Query Polymarket prediction markets - check odds, trending markets, search events, track prices.
+Query [Polymarket](https://polymarket.com) prediction markets. Check odds, find trending markets, search events.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/polymarket-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/polymarket-1-0-0](https://clawhub.ai/skills/polymarket-1-0-0)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/polymarket-1-0-0
+# Trending/active markets
+python3 {baseDir}/scripts/polymarket.py trending
+
+# Search markets
+python3 {baseDir}/scripts/polymarket.py search "trump"
+python3 {baseDir}/scripts/polymarket.py search "bitcoin"
+
+# Get specific market by slug
+python3 {baseDir}/scripts/polymarket.py event "fed-decision-in-october"
+
+# Get markets by category
+python3 {baseDir}/scripts/polymarket.py category politics
+python3 {baseDir}/scripts/polymarket.py category crypto
+python3 {baseDir}/scripts/polymarket.py category sports
 ```
+
+## Example Chat Usage
+
+- "What are the odds Trump wins 2028?"
+- "Trending on Polymarket?"
+- "Search Polymarket for Bitcoin"
+- "What's the spread on the Fed rate decision?"
+- "Any interesting crypto markets?"
+
+## Output
+
+Markets show:
+- Question/title
+- Current odds (Yes/No prices)
+- Volume
+- End date
+
+## API
+
+Uses the public Gamma API (no auth required for reading):
+- Base URL: `https://gamma-api.polymarket.com`
+- Docs: https://docs.polymarket.com
+
+## Note
+
+This is read-only. Trading requires wallet authentication (not implemented).

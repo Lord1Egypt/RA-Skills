@@ -1,35 +1,81 @@
 ---
-name: "auto-memory-uploader"
-description: "自动记忆上传技能。每2条对话自动将重要信息保存到记忆文件。 使用场景：(1) 用户要求自动保存对话记忆，(2) 需要持续追踪对话上下文， (3) 希望自动归档重要决策和信息。触发条件：每2条对话、用户说"保存记忆"、 对话结束时检测到重要信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-memory-uploader"
-sourceUrl: "https://clawhub.ai/skills/auto-memory-uploader"
+name: auto-memory-uploader
+description: >
+  自动记忆上传技能。每2条对话自动将重要信息保存到记忆文件。
+  使用场景：(1) 用户要求自动保存对话记忆，(2) 需要持续追踪对话上下文，
+  (3) 希望自动归档重要决策和信息。触发条件：每2条对话、用户说"保存记忆"、
+  对话结束时检测到重要信息。
 ---
 
-# auto-memory-uploader
+# 自动记忆上传技能
 
-> 自动记忆上传技能。每2条对话自动将重要信息保存到记忆文件。 使用场景：(1) 用户要求自动保存对话记忆，(2) 需要持续追踪对话上下文， (3) 希望自动归档重要决策和信息。触发条件：每2条对话、用户说"保存记忆"、 对话结束时检测到重要信息。
+每2条对话自动将重要信息保存到记忆文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-memory-uploader`
-- **Source URL:** [https://clawhub.ai/skills/auto-memory-uploader](https://clawhub.ai/skills/auto-memory-uploader)
+## 工作原理
 
-## Overview
+1. **每2条对话** - 自动检查并保存记忆
+2. **手动触发** - 用户说"保存记忆"立即保存
+3. **智能检测** - 检测到重要信息时自动保存
+4. 将信息写入 `memory/YYYY-MM-DD.md` 文件
+5. 定期整理到 `MEMORY.md` 长期记忆
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-memory-uploader
+### 自动保存（每2条对话）
+
+系统会自动检测对话轮数，每2条对话后自动保存记忆。
+
+### 手动触发记忆保存
+
+在对话中随时说：
+- "保存记忆"
+- "记住这个"
+- "记录下来"
+
+我会立即将当前对话保存到记忆文件。
+
+### 记忆保存规则
+
+自动保存以下内容：
+- ✅ 重要决策和约定
+- ✅ 用户偏好和设置
+- ✅ 待办任务和截止日期
+- ✅ 项目进展和状态
+- ✅ 学习到的用户信息
+- ❌ 闲聊和临时内容
+- ❌ 敏感信息（密码、密钥等）
+
+### 记忆文件位置
+
+- **每日记忆**: `memory/YYYY-MM-DD.md`
+- **长期记忆**: `MEMORY.md`
+
+## 记忆格式
+
+```markdown
+## 2026-03-14 15:30
+
+### 决策
+- 决定每天下午5点自动发布新闻到小红书
+
+### 任务
+- [ ] 设置定时任务（已完成）
+
+### 偏好
+- 用户喜欢内容丰富的格式
+- 每次输出要加龙虾图标 🦞
+
+### 备注
+- 小红书账号已登录
+- MCP服务器运行在端口18060
 ```
+
+## 发布说明
+
+- 建议以 **UTF-8** 编码保存本文件，避免在部分终端显示乱码。
+
+## 注意事项
+
+1. 记忆文件会持续增长，建议定期整理到 MEMORY.md
+2. 敏感信息不会自动保存，需要手动确认
+3. 每2条对话会自动保存，无需手动操作

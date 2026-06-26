@@ -1,0 +1,51 @@
+{
+  "name": "issue-report-generator",
+  "displayName": "医疗设备问题报告生成器",
+  "version": "1.0.0",
+  "description": "根据用户输入的缺陷描述自动生成符合医疗设备软件规范的问题报告，包含问题现象、复现步骤、环境信息、严重等级、影响分析等",
+  "author": "Leo",
+  "license": "MIT",
+  "keywords": [
+    "医疗设备",
+    "质量管理",
+    "问题报告",
+    "缺陷管理",
+    "自动化",
+    "测试工具",
+    "Jira",
+    "禅道"
+  ],
+  "categories": [
+    "质量管理",
+    "测试工具",
+    "文档生成"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace-skills",
+    "directory": "issue-report-generator"
+  },
+  "engines": {
+    "openclaw": ">=2026.1.0"
+  },
+  "activationEvents": [
+    "onKeyword:生成问题报告",
+    "onKeyword:问题报告",
+    "onKeyword:缺陷报告",
+    "onKeyword:bug 报告",
+    "onKeyword:issue report"
+  ],
+  "contributes": {
+    "skills": [
+      {
+        "id": "issue-report-generator",
+        "label": "医疗设备问题报告生成器",
+        "path": "./SKILL.md"
+      }
+    ]
+  },
+  "scripts": {
+    "validate": "python3 ~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/quick_validate.py .",
+    "package": "python3 ~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py . ../"
+  }
+}

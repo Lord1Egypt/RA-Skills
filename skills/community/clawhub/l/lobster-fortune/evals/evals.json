@@ -1,0 +1,23 @@
+{
+  "skill_name": "lobster-slacker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "今天运势怎么样",
+      "expected_output": "完整的龙虾运势面板，包含5个维度评分和今日宜忌",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "好无聊啊不想干活",
+      "expected_output": "轻松的龙虾语录或摸鱼建议，不需要完整运势面板",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "今天会加班吗？好慌",
+      "expected_output": "加班预警内容，包含加班概率、逃跑建议和心理安慰",
+      "files": []
+    }
+  ]
+}

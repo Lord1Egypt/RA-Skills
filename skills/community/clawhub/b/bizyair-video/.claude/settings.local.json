@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Volumes/AI/AIGC/aigc/Skills/bizyair-video/scripts/create_video_task.sh /Volumes/AI/AIGC/aigc/Skills/bizyair-video/scripts/get_video_task_outputs.sh)"
+    ]
+  }
+}

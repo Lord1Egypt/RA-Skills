@@ -1,0 +1,7 @@
+{
+  "name": "gateway-keepalive",
+  "version": "1.1.0",
+  "description": "OpenClaw Gateway 黄金包活机制，确保 7x24 小时稳定运行",
+  "author": "康妃 (config)",
+  "tags": ["gateway", "keepalive", "high-availability", "launchagent", "auto-recovery"]
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.5.0",
+  "description": "Fictional benchmark prompts for local Ollama model testing.",
+  "prompts": [
+    {
+      "id": "short_qa_001",
+      "title": "Short factual answer",
+      "category": "smoke",
+      "expected_format": "plain_text",
+      "prompt": "Answer in one short paragraph: What is the difference between a checklist and a test plan?"
+    },
+    {
+      "id": "summary_001",
+      "title": "Fictional project summary",
+      "category": "real_task",
+      "expected_format": "markdown_bullets",
+      "prompt": "Summarize the following fictional project note into 4 bullet points. Note: The Demo Archive team tested a local search prototype with 120 synthetic documents. The prototype found titles quickly but sometimes missed date filters. The team wants a small follow-up test before replacing the old tool. No customer data was used."
+    },
+    {
+      "id": "structured_json_001",
+      "title": "Structured JSON output",
+      "category": "automation",
+      "expected_format": "json",
+      "prompt": "Return valid JSON only. Extract fields from this fictional task: Project Alpha needs a local-only model test by Friday. Owner is Demo User. Risk is unstable JSON output. Required keys: project, owner, due, risk."
+    },
+    {
+      "id": "role_task_001",
+      "title": "Workflow recommendation",
+      "category": "real_task",
+      "expected_format": "markdown_sections",
+      "prompt": "You are helping evaluate a local model for a fictional note-cleanup workflow. Give a concise recommendation with sections: Decision, Reason, Risk, Next Step."
+    },
+    {
+      "id": "nothink_001",
+      "title": "No-think leakage check",
+      "category": "nothink",
+      "expected_format": "plain_text",
+      "prompt": "Answer with the final answer only, no reasoning trace: Should a model be promoted after one benchmark run?"
+    }
+  ]
+}
+

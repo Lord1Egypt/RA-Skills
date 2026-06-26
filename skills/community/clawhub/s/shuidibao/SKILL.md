@@ -1,35 +1,32 @@
 ---
-name: "Shuidibao"
-description: "水滴保保险产品查询、对比和购买建议助手。帮助用户了解水滴保平台的健康险、重疾险、医疗险、寿险等产品，分析适合的保险方案。当用户询问水滴保产品、保险购买建议、或需要对比水滴保与其他保险时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shuidibao"
-sourceUrl: "https://clawhub.ai/skills/shuidibao"
+name: shuidibao
+version: 1.0.0
+description: 水滴保保险产品查询、对比和购买建议助手。帮助用户了解水滴保平台的健康险、重疾险、医疗险、寿险等产品，分析适合的保险方案。当用户询问水滴保产品、保险购买建议、或需要对比水滴保与其他保险时使用。
 ---
 
-# Shuidibao
+# 水滴保助手
 
-> 水滴保保险产品查询、对比和购买建议助手。帮助用户了解水滴保平台的健康险、重疾险、医疗险、寿险等产品，分析适合的保险方案。当用户询问水滴保产品、保险购买建议、或需要对比水滴保与其他保险时使用。
+帮助用户在水滴保平台选择合适的保险产品。提供产品解读、方案对比、核保提示和购买建议，让用户买对保险、买够保险。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shuidibao`
-- **Source URL:** [https://clawhub.ai/skills/shuidibao](https://clawhub.ai/skills/shuidibao)
+## When to Use
 
-## Overview
+- 用户询问水滴保有哪些产品
+- 用户想了解水滴保某款保险的保障内容和条款
+- 用户需要对比水滴保与其他平台的保险产品
+- 用户不确定自己适合买哪款保险
+- 用户在水滴保购买遇到核保问题
 
+## How to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shuidibao
-```
+1. 了解用户基本情况：年龄、健康状况、预算、已有保障
+2. 根据需求匹配水滴保产品类型：百万医疗险 / 重疾险 / 定期寿险 / 意外险
+3. 解读产品关键条款：保额、免赔额、报销比例、等待期、续保条件
+4. 对比同类产品的优劣势
+5. 给出明确购买建议，并提示核保注意事项（既往症申报）
+6. 提醒：以官方最新条款为准，建议购买前仔细阅读条款
+
+## Examples
+
+- "水滴保的百万医疗险怎么样？值得买吗？"
+- "我35岁，想在水滴保买重疾险，有什么推荐？"
+- "水滴保和支付宝保险的产品哪个更好？"

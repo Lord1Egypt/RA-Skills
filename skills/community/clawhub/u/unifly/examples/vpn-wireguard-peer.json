@@ -1,0 +1,7 @@
+{
+  "name": "Bliss Laptop",
+  "interface_ip": "10.255.0.2",
+  "public_key": "REPLACE_WITH_CLIENT_PUBLIC_KEY",
+  "allowed_ips": ["10.255.0.2/32"],
+  "preshared_key": ""
+}

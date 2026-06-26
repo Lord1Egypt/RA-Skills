@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skills.local/open-apple-style-ppt-maker/slides-schema.json",
+  "title": "OpenAppleStyleSlidesPlan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project",
+    "global_style_tokens",
+    "slides",
+    "output"
+  ],
+  "properties": {
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "language",
+        "audience",
+        "objective"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "objective": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 260
+        }
+      }
+    },
+    "global_style_tokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aesthetic",
+        "palette",
+        "type_scale",
+        "spacing_scale",
+        "layout_system",
+        "motion_rule"
+      ],
+      "properties": {
+        "aesthetic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "palette": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "background",
+            "surface",
+            "text_primary",
+            "text_secondary",
+            "accent"
+          ],
+          "properties": {
+            "background": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "surface": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "text_primary": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "text_secondary": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "accent": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            }
+          }
+        },
+        "type_scale": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "h1",
+            "h2",
+            "body",
+            "caption"
+          ],
+          "properties": {
+            "h1": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "h2": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "body": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        },
+        "spacing_scale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "layout_system": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "motion_rule": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "icon_style": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "image_style": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slide_number",
+          "slide_type",
+          "objective",
+          "on_slide_text",
+          "visual_blueprint",
+          "consistency_checks"
+        ],
+        "properties": {
+          "slide_number": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "slide_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 260
+          },
+          "on_slide_text": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title"
+            ],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "subtitle": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 180
+              },
+              "body": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600
+              },
+              "bullets": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 8,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 140
+                }
+              },
+              "stats": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 8,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "callout": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "footer": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            }
+          },
+          "visual_blueprint": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "composition",
+              "key_elements",
+              "imagery_hint",
+              "avoid"
+            ],
+            "properties": {
+              "composition": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 220
+              },
+              "key_elements": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "imagery_hint": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 220
+              },
+              "chart_hint": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 180
+              },
+              "avoid": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              }
+            }
+          },
+          "consistency_checks": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "must_keep",
+              "must_avoid"
+            ],
+            "properties": {
+              "must_keep": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 140
+                }
+              },
+              "must_avoid": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 140
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aspect_ratio",
+        "resolution",
+        "format"
+      ],
+      "properties": {
+        "aspect_ratio": {
+          "type": "string",
+          "const": "16:9"
+        },
+        "resolution": {
+          "type": "string",
+          "enum": [
+            "2K",
+            "4K"
+          ]
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "webp",
+            "png",
+            "jpg",
+            "jpeg"
+          ]
+        },
+        "output_dir": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400
+        }
+      }
+    }
+  }
+}

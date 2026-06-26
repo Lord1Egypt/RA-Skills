@@ -1,35 +1,213 @@
 ---
-name: "investoday-hotspot-event-decoding"
-description: "面向市场热点、主题赛道与行业事件解码，聚焦近期核心事件、逻辑链条、机会风险与后续验证点。基于今日投资金融数据接口，自动提炼主题关键词并输出结构化热点事件解码报告。触发词：热点解码、主题事件、赛道催化、最近有什么重要事件、这波热点意味着什么。"
-category: "other"
-source: "ClawHub"
-tags: [hotspot-decoding, industry-events, logic-chain, market-themes, opportunity-risk, sector-catalysts, thematic-investing, theme-research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-hotspot-event-decoding"
-sourceUrl: "https://clawhub.ai/skills/investoday-hotspot-event-decoding"
+name: investoday-hotspot-event-decoding
+title: "热点事件解码"
+version: 1.3.0
+description: 面向市场热点、主题赛道与行业事件解码，聚焦近期核心事件、逻辑链条、机会风险与后续验证点。基于今日投资金融数据接口，自动提炼主题关键词并输出结构化热点事件解码报告。触发词：热点解码、主题事件、赛道催化、最近有什么重要事件、这波热点意味着什么。
+tags:
+  - hotspot-decoding
+  - market-themes
+  - sector-catalysts
+  - thematic-investing
+  - industry-events
+  - logic-chain
+  - opportunity-risk
+  - theme-research
+metadata:
+  clawdbot:
+    emoji: "🔥"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-hotspot-event-decoding
+# 🔥 热点事件解码
 
-> 面向市场热点、主题赛道与行业事件解码，聚焦近期核心事件、逻辑链条、机会风险与后续验证点。基于今日投资金融数据接口，自动提炼主题关键词并输出结构化热点事件解码报告。触发词：热点解码、主题事件、赛道催化、最近有什么重要事件、这波热点意味着什么。
+面向市场热点、主题赛道与行业事件解码，聚焦近期核心事件、逻辑链条、机会风险与后续验证点。基于今日投资金融数据接口，自动提炼主题关键词并输出结构化热点事件解码报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-hotspot-event-decoding`
-- **Source URL:** [https://clawhub.ai/skills/investoday-hotspot-event-decoding](https://clawhub.ai/skills/investoday-hotspot-event-decoding)
+## 触发场景
 
-## Overview
+- 用户询问某个主题、赛道、行业最近发生了什么重要事件
+- 用户希望理解“这波热点意味着什么”“对市场有什么影响”“下一步看什么”
+- 用户想让你对机器人、低空经济、AI 算力、创新药等主题做热点解码
+- 关键词：热点解码、主题事件、赛道催化、最近有什么重要事件、这波热点意味着什么、行业催化
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-hotspot-event-decoding
+**示例 1：主题解码**
 ```
+帮我解码一下商业航天这个热点。
+```
+
+**示例 2：赛道催化**
+```
+AI 算力最近有哪些关键事件，这波行情在交易什么？
+```
+
+**示例 3：行业影响**
+```
+人形机器人这波热点到底意味着什么，后面还要看什么？
+```
+
+> 💡 本 Skill 面向“主题/赛道/行业”的热点研究，不面向单只股票。若用户只想看某只股票的近期消息，优先使用 `股票消息解读`；若用户更关心卖方共识、机构主线和板块分歧，请优先使用 `板块研报解读`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 主题识别工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 新闻资讯 | `news` | GET | 通过主题关键词获取相关新闻 |
+| 研报舆情 | `research/sentiment` | POST | 获取与主题相关的研报观点和逻辑 |
+
+## 数据获取流程
+
+用户提供主题、赛道或行业关键词后，Agent 按以下流程获取数据：
+
+- **Step 1：新闻资讯（近1个月）**：工具ID `news`，参数 `title=<主题关键词> beginTime=<1个月前> endTime=<当前时间> pageNum=1 pageSize=10`
+- **Step 2：研报舆情（近2个月）**：工具ID `research/sentiment` (POST)，参数 `title=<主题关键词> beginTime=<2个月前> endTime=<当前时间> pageNum=1 pageSize=3`
+
+> **并行优化**：Step 1-2 可并行调用。正文只展示 2-3 条最核心事件，不要简单堆砌全量新闻或研报。
+
+## 分析框架（4步）
+
+Agent 获取数据后，按以下 4 步框架进行结构化分析：
+
+### Step 1：提炼核心事件主线
+
+**目标**：从新闻与研报中筛选出最关键的 2-3 条事件，建立主题主线。
+
+**数据来源**：`news` + `research/sentiment`
+
+分析要点：
+- 优先保留重要新闻、时间更近、逻辑更完整的事件
+- 研报用于补充“为什么重要”，而不是重复新闻摘要
+- 若同类事件高度重复，保留信息量更高的一条
+
+**输出**：核心事件表与主题主线。
+
+### Step 2：解释逻辑链条
+
+**目标**：把“发生了什么”转化为“为什么重要、通过什么路径影响市场”。
+
+**数据来源**：`news` + `research/sentiment`
+
+分析要点：
+- 主题事件通过政策、供需、产业进展、预期变化等哪条路径影响市场
+- 当前更偏短期情绪催化还是中期产业趋势信号
+- 若事件只是噪音，应明确弱化处理
+
+**输出**：逻辑链条与重要性判断。
+
+### Step 3：判断机会与风险方向
+
+**目标**：识别主题事件带来的受益方向、承压方向与关键风险。
+
+**数据来源**：`news` + `research/sentiment`
+
+分析要点：
+- 哪些行业、子方向或风格更可能受益
+- 哪些假设若无法兑现，会形成风险反转
+- 强调主题层面，不落到具体个股推荐
+
+**输出**：机会方向、风险方向与关注重点。
+
+### Step 4：形成后续观察框架
+
+**目标**：告诉用户接下来应该重点跟踪什么，而不是给具体交易建议。
+
+**数据来源**：前 3 步分析结果汇总
+
+分析要点：
+- 未来几天和未来几周各自应看哪些变量
+- 哪些信号代表事件影响强化，哪些信号代表逻辑减弱
+- 形成结构化跟踪框架
+
+**输出**：后续观察重点与关键验证点。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 高频新闻 + 研报同步强化 | 主题热度与逻辑共振 | ✅ 积极 |
+| 只有新闻热度、缺少研报验证 | 主题更偏情绪交易 | 🟡 关注 |
+| 新闻与研报都强调产业进展 | 中期逻辑较强 | ✅ 积极 |
+| 新闻时间较近但内容重复度高 | 热点可能进入噪音阶段 | 📊 中性 |
+| 研报观点分歧明显 | 主题认知尚未形成共识 | 🟡 关注 |
+| 热点事件偏宏观/政策层面 | 影响路径更偏预期驱动 | 📊 中性 |
+| 主题受益方向清晰、风险方向也明确 | 可形成结构化观察框架 | ✅ 积极 |
+| 缺乏增量事件且逻辑重复强化 | 需防止主题交易钝化 | ⚠️ 警惕 |
+
+## 输出格式
+
+```markdown
+# 🔥 [主题关键词] 热点事件解码报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、事件结论
+
+（用一段话概括这波热点是什么、偏利多还是中性、最值得关注的影响是什么）
+
+## 二、核心事件
+
+（列出最重要的 2-3 条事件：时间、类型、标题、核心事实、情绪）
+
+## 三、事件解码
+
+- 趋势信号：
+- 逻辑链条：
+- 重要性判断：
+- 时效判断：
+
+## 四、机会与风险
+
+### 机会方向
+- 
+
+### 风险方向
+- 
+
+## 五、后续观察
+
+- 短期观察：
+- 中期观察：
+- 关键验证点：
+
+## 六、综合结论
+
+- 3-5 条核心发现
+- 明确当前热点主线、机会方向与主要风险
+- 给出后续需要重点跟踪的验证点
+
+## 七、数据来源
+
+（仅列出正文实际引用过的新闻或研报标题）
+
+## ⚠️ 风险提示
+
+**以上内容基于近期公开新闻与研报信息整理，存在时效性与不确定性，仅供参考，不构成投资建议。**
+```
+
+## 执行示例
+
+用户说：“商业航天这波热点意味着什么？”
+
+1. 提炼主题关键词“商业航天”
+2. 并行调用 `news` 和 `research/sentiment`
+3. 提炼 2-3 条最关键事件，并解释逻辑链条、机会风险和后续验证点
+4. 输出 Markdown 格式热点事件解码报告
+5. 在结尾保留风险提示
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

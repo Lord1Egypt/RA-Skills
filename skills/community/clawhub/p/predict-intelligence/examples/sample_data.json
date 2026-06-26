@@ -1,0 +1,139 @@
+{
+  "title": "US–IRAN CEASEFIRE",
+  "date": "2026-03-12",
+  "classification": "ANYGEN PREDICT INTELLIGENCE ASSESSMENT",
+
+  "verdict_number": "34%",
+  "verdict_outcome": "Ceasefire before Apr 15",
+  "verdict_detail": "Most likely path: Omani-mediated direct deal between senior US and Iranian officials.",
+  "verdict_context": "Multiple diplomatic streams have shifted since UNSC Resolution 2891 (Mar 8) established a new inspection framework. Oman hosted the highest-level US-Iran direct contact in 18 months on Mar 5. However, IRGC hardliner opposition and compressed domestic political timelines in both Washington and Tehran create a narrow and fragile window — making the April deadline achievable but far from certain.",
+
+  "predictions": {
+    "outcomes": [
+      {"outcome": "Ceasefire before Apr 15", "probability": 0.34},
+      {"outcome": "Partial deal by June", "probability": 0.28},
+      {"outcome": "Regional intermediary deal", "probability": 0.22},
+      {"outcome": "No agreement in 2026", "probability": 0.13},
+      {"outcome": "Military escalation", "probability": 0.03}
+    ]
+  },
+
+  "key_drivers": [
+    {
+      "title": "Omani backchannel active",
+      "direction": "positive",
+      "detail": "Muscat-hosted shuttle diplomacy established a direct senior channel — reduces miscalculation risk and compresses negotiation timeline toward earlier resolution",
+      "url": "https://reuters.com/world/middle-east/oman-hosts-rare-us-iran-talks-sources-say-2026-03-06/"
+    },
+    {
+      "title": "Narrow political window",
+      "direction": "positive",
+      "detail": "Both US midterm campaign and Iran's presidential transition create urgency — leaders on both sides need a deliverable before domestic constraints harden",
+      "url": "https://www.brookings.edu/articles/us-iran-diplomacy-window-closing/"
+    },
+    {
+      "title": "Sanctions at threshold",
+      "direction": "positive",
+      "detail": "Iran reserves at $12B with 45% inflation and rial down 30% YoY — economic pain pushes Tehran's SNSC toward concessions to secure sanctions relief",
+      "url": "https://www.iiss.org/online-analysis/2026/03/iran-economic-pressure-diplomacy/"
+    },
+    {
+      "title": "IRGC hardliners blocking",
+      "direction": "negative",
+      "detail": "IRGC controls proxy networks and key economic assets threatened by any deal — their opposition to concessions is the single largest risk of negotiation collapse",
+      "url": "https://www.csis.org/analysis/irgc-veto-power-iran-diplomacy"
+    },
+    {
+      "title": "Regional normalization cover",
+      "direction": "positive",
+      "detail": "Saudi-Iran détente and Abraham Accords expansion give both sides political cover to frame bilateral talks as part of broader regional stabilization, lowering domestic backlash risk",
+      "url": "https://www.aljazeera.com/news/2026/2/21/saudi-iran-economic-commission-meets-for-first-time"
+    }
+  ],
+
+  "watch_list": [
+    {"date": "Apr 3", "trigger": "UNSC sanctions renewal vote", "impact": "high", "condition": "If renewed → maintains economic pressure on Tehran, ↑ ceasefire incentive by ~10%"},
+    {"date": "Late Mar", "trigger": "Muscat follow-up round", "impact": "high", "condition": "If senior officials attend → signals commitment, ↑ deal probability; if cancelled → ↓ sharply"},
+    {"date": "Apr 10", "trigger": "Iran presidential debate", "impact": "medium", "condition": "If reformist candidates lead polls → ↑ diplomatic flexibility; hardliner surge → ↓"},
+    {"date": "Apr 15", "trigger": "US sanctions waiver expiry", "impact": "medium", "condition": "If not extended → escalates pressure, could accelerate or collapse talks"},
+    {"date": "May 1", "trigger": "IAEA quarterly report", "impact": "low", "condition": "If enrichment data shows compliance → ↑ trust for deal; violations → ↓ and possible US escalation"}
+  ],
+
+  "polymarket": [
+    {
+      "question": "Iran enrichment below 20% by Q2 2026?",
+      "url": "https://polymarket.com/event/iran-enrichment-below-20-q2-2026",
+      "volume": "$1.8M",
+      "options": [
+        {"name": "Yes", "market_prob": 0.35, "our_prob": 0.42, "price": "$0.35"},
+        {"name": "No", "market_prob": 0.65, "our_prob": 0.58, "price": "$0.65"}
+      ]
+    },
+    {
+      "question": "US x Iran ceasefire by...?",
+      "url": "https://polymarket.com/event/us-x-iran-ceasefire-by",
+      "volume": "$20.9M",
+      "options": [
+        {"name": "April 30", "market_prob": 0.475, "our_prob": 0.53, "price": "$0.47"},
+        {"name": "March 31", "market_prob": 0.255, "our_prob": 0.30, "price": "$0.26"},
+        {"name": "June 30", "market_prob": 0.635, "our_prob": 0.68, "price": "$0.64"},
+        {"name": "March 15", "market_prob": 0.024, "our_prob": 0.02, "price": "$0.02"}
+      ]
+    },
+    {
+      "question": "Major Persian Gulf military confrontation in 2026?",
+      "url": "https://polymarket.com/event/gulf-confrontation-2026",
+      "volume": "$1.1M",
+      "options": [
+        {"name": "Yes", "market_prob": 0.18, "our_prob": 0.12, "price": "$0.18"},
+        {"name": "No", "market_prob": 0.82, "our_prob": 0.88, "price": "$0.82"}
+      ]
+    }
+  ],
+
+  "show_map": true,
+  "show_entity_graph": true,
+
+  "map_data": {
+    "center": [30, 50],
+    "markers": [
+      {"lat": 35.69, "lon": 51.39, "label": "Tehran", "type": "primary"},
+      {"lat": 33.31, "lon": 44.37, "label": "Baghdad", "type": "secondary"},
+      {"lat": 23.59, "lon": 58.38, "label": "Muscat", "type": "secondary"},
+      {"lat": 26.22, "lon": 50.59, "label": "Bahrain", "type": "secondary"},
+      {"lat": 26.85, "lon": 56.28, "label": "Strait of Hormuz", "type": "primary"}
+    ],
+    "connections": [
+      {"from": [23.59, 58.38], "to": [35.69, 51.39], "label": "Mediation channel", "type": "diplomatic"},
+      {"from": [35.69, 51.39], "to": [33.31, 44.37], "label": "Proxy influence", "type": "military"}
+    ],
+    "highlight_countries": ["IR", "IQ", "OM", "SA", "AE"]
+  },
+
+  "entities": {
+    "nodes": [
+      {"id": "us", "label": "United States", "type": "government"},
+      {"id": "iran", "label": "Iran", "type": "government"},
+      {"id": "khamenei", "label": "Khamenei", "type": "person"},
+      {"id": "irgc", "label": "IRGC", "type": "organization"},
+      {"id": "oman", "label": "Oman", "type": "government"},
+      {"id": "saudi", "label": "Saudi Arabia", "type": "government"}
+    ],
+    "edges": [
+      {"from": "us", "to": "iran", "label": "Negotiation", "type": "diplomatic"},
+      {"from": "oman", "to": "us", "label": "Channel", "type": "diplomatic"},
+      {"from": "oman", "to": "iran", "label": "Mediation", "type": "diplomatic"},
+      {"from": "khamenei", "to": "iran", "label": "Authority", "type": "authority"},
+      {"from": "irgc", "to": "iran", "label": "Military arm", "type": "military"},
+      {"from": "saudi", "to": "iran", "label": "Regional rival", "type": "military"},
+      {"from": "saudi", "to": "us", "label": "Alliance", "type": "diplomatic"}
+    ],
+    "legend": {
+      "node_types": {"government": "#3b82f6", "person": "#f59e0b", "organization": "#ef4444", "event": "#8b5cf6"},
+      "edge_types": {"diplomatic": "#3b82f6", "military": "#ef4444", "authority": "#f59e0b", "economic": "#10b981"}
+    }
+  },
+
+  "sources": ["Reuters", "Al Jazeera", "CSIS", "IISS", "Brookings", "UN News", "Polymarket"],
+  "disclaimer": "OSINT assessment. Not investment or policy advice. Subject to revision."
+}

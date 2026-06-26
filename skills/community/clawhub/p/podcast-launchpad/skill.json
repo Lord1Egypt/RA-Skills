@@ -1,0 +1,28 @@
+{
+  "name": "podcast-launchpad",
+  "displayName": "Podcast Launchpad",
+  "version": "1.1.0",
+  "description": "A complete podcast launch kit covering show concept, format design, equipment, scripting, recording, editing, hosting, directory submission, launch assets, and sustainable growth.",
+  "triggerKeywords": [
+    "podcast",
+    "audio-production",
+    "content-creation",
+    "broadcasting",
+    "storytelling",
+    "media-launch"
+  ],
+  "tags": [
+    "podcast",
+    "audio",
+    "content-creation",
+    "media",
+    "entrepreneurship",
+    "creativity"
+  ],
+  "healthSafety": "This skill is informational and educational only. It does not guarantee audience growth, monetization, or media success.",
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "readiness": "stable"
+}

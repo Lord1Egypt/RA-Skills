@@ -1,0 +1,117 @@
+{
+  "product_name": "HU12210-KVM-CABLE",
+  "model_no": "LENGTH",
+  "drawing_no": "599-035",
+  "packaging_spec": "BJ0599-0072,BJ0599-0072",
+  "material_code": "599-035",
+  "length_mm": "3050+50/-0",
+  "mold_info": "INNER MOLDING: AV19P142, OUTER MOLDING: USB.B-01, USB.B-02, MF427, AV19P141, SR063",
+  "mold_number": "",
+  "bom": [
+    {
+      "no": "1",
+      "part_name": "CABLE",
+      "spec": "[ (1P*28#+D)*2+4C*28#+AB(65%)] OD:4.8MM, BLACK PVC, UL2725, (1P*28#+D)*2+4C*28#+AB(65%) OD:4.8MM, BLACK PVC, UL2725",
+      "quantity": "1"
+    },
+    {
+      "no": "2",
+      "part_name": "PLUG",
+      "spec": "HDMI A/M, G/F Nickel plated",
+      "quantity": "2"
+    },
+    {
+      "no": "3",
+      "part_name": "SHELL",
+      "spec": "HDMI A/M upper and lower tinplate",
+      "quantity": "2"
+    },
+    {
+      "no": "4",
+      "part_name": "Copper foil",
+      "spec": "HDMI 30AWG 2.0,cable plastic clip",
+      "quantity": "1"
+    },
+    {
+      "no": "5",
+      "part_name": "PLUG",
+      "spec": "USB3.0 BM",
+      "quantity": "1"
+    },
+    {
+      "no": "6",
+      "part_name": "PLUG",
+      "spec": "USB3.0 AM",
+      "quantity": "1"
+    },
+    {
+      "no": "7",
+      "part_name": "MODEL",
+      "spec": "TPE-BK",
+      "quantity": "60 G"
+    },
+    {
+      "no": "8",
+      "part_name": "MODEL",
+      "spec": "LJPE",
+      "quantity": "15 G"
+    },
+    {
+      "no": "9",
+      "part_name": "SHIELD",
+      "spec": "FOIL-CU-5MM",
+      "quantity": "45*4 MM"
+    }
+  ],
+  "tolerances": [],
+  "test_requirements": {
+    "table": [],
+    "other_tests": [
+      "OPEN/SHORT/INTERMITTENCE 100% TEST.",
+      "DIELECTRIC STRENGTH:200 VOLTS AC 2mA MAX/0.02S.",
+      "INSULATION RESISTANCE:300V DC/0.02SEC, 5MΩ MIN.",
+      "CONDUCTIVE RESISTANCE:3Ω MAX.",
+      "HDMI PASS 4K60HZ TEST",
+      "USB 3.0 5V/1A 5Gb"
+    ]
+  },
+  "pin_assignment": {
+    "connectors": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "description": "P1 to P2, P3 to P4 pin assignments are shown with SHELL connected to SHIELD(BRAID+Drain)."
+  },
+  "dimensions": [
+    "330±20",
+    "3050+50/-0",
+    "12±0.5",
+    "Ø2.50",
+    "Ø6.3±0.3"
+  ],
+  "notes": [
+    "THE DIMENSIONS MARKED ▼ SHALL BE CHECKED BY QC.",
+    "ROHS COMPLIANT"
+  ],
+  "revision_history": [],
+  "company": "珠海福睿奇电子 FARREACH",
+  "drawing_date": "2022.08.31",
+  "drawn_by": "",
+  "checked_by": "CUSTOMER:C331",
+  "approved_by": "",
+  "products": [
+    {
+      "customer_item": "HE121D KVM CABLE",
+      "length_mm": "3050+50/-0",
+      "material_code": "599-035",
+      "packaging_spec": "BJ0599-0072"
+    }
+  ],
+  "extraction_method": "hybrid",
+  "source_file": "dd633a96-49ec-48e2-a820-c0859d6713f3.pdf",
+  "pages": 2,
+  "warnings": [],
+  "confidence": 100.0
+}

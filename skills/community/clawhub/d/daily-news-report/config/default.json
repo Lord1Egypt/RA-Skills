@@ -1,0 +1,78 @@
+{
+  "mode": "all",
+  "focus_topics": ["robot", "real_estate", "ai"],
+  "focus_keywords": {
+    "robot": [
+      "机器人",
+      "具身智能",
+      "人形机器人",
+      "服务机器人",
+      "工业机器人",
+      "四足机器人",
+      "灵巧手",
+      "关节模组",
+      "控制器",
+      "激光雷达"
+    ],
+    "real_estate": [
+      "地产",
+      "房地产",
+      "房企",
+      "土储",
+      "拿地",
+      "销售额",
+      "销售面积",
+      "物业",
+      "商业地产",
+      "城市更新"
+    ],
+    "ai": [
+      "AI",
+      "人工智能",
+      "大模型",
+      "多模态",
+      "智能体",
+      "Agent",
+      "算力",
+      "推理",
+      "训练",
+      "AI应用"
+    ]
+  },
+  "sources": {
+    "primary": ["cls", "ithome", "36kr"],
+    "backup": ["jiemian", "yicai", "zqrb", "xinhua", "ssnews", "mnjs", "gov"]
+  },
+  "schedule": ["08:00", "17:30", "22:30"],
+  "max_items": 15,
+  "include_links": true,
+  "timezone": "Asia/Shanghai",
+  "include_keywords": [],
+  "exclude_keywords": ["广告", "推广", "营销", "软文"],
+  "classification": {
+    "policy_keywords": [
+      "政府",
+      "政策",
+      "国务院",
+      "发改委",
+      "工信部",
+      "证监会",
+      "财政部",
+      "商务部",
+      "标准",
+      "规划",
+      "指导意见",
+      "通知",
+      "方案",
+      "办法",
+      "条例"
+    ],
+    "stock_code_patterns": [
+      "\\(603\\d{3}\\.SH\\)",
+      "\\(000\\d{3}\\.SZ\\)",
+      "\\(688\\d{3}\\.SH\\)",
+      "\\(\\d{4}\\.HK\\)"
+    ],
+    "source_priority": ["cls", "yicai", "zqrb", "ssnews"]
+  }
+}

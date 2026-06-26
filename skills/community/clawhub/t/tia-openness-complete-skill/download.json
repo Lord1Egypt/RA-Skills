@@ -1,0 +1,7 @@
+{
+  "action": "download",
+  "plc_name": "PLC_1",
+  "interface": "PN/IE",
+  "ip_address": "192.168.0.1",
+  "password": "PLC_Password"
+}

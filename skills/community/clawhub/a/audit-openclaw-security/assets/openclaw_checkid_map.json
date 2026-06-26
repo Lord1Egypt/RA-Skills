@@ -1,0 +1,226 @@
+{
+  "fs.state_dir.perms_world_writable": {
+    "severity": "critical",
+    "category": "filesystem",
+    "why": "Other users or processes can modify the full OpenClaw state directory.",
+    "primary_fix": "filesystem perms on ~/.openclaw",
+    "auto_fix": true
+  },
+  "fs.config.perms_writable": {
+    "severity": "critical",
+    "category": "filesystem",
+    "why": "Other users can change auth, tool policy, or routing config.",
+    "primary_fix": "filesystem perms on ~/.openclaw/openclaw.json",
+    "auto_fix": true
+  },
+  "fs.config.perms_world_readable": {
+    "severity": "critical",
+    "category": "filesystem",
+    "why": "The config may leak tokens or other sensitive settings.",
+    "primary_fix": "filesystem perms on the active config file",
+    "auto_fix": true
+  },
+  "gateway.bind_no_auth": {
+    "severity": "critical",
+    "category": "network",
+    "why": "The Gateway is remotely reachable without shared-secret auth.",
+    "primary_fix": "gateway.bind, gateway.auth.*",
+    "auto_fix": false
+  },
+  "gateway.loopback_no_auth": {
+    "severity": "critical",
+    "category": "network",
+    "why": "A reverse-proxied loopback listener may become effectively unauthenticated.",
+    "primary_fix": "gateway.auth.*, reverse-proxy setup",
+    "auto_fix": false
+  },
+  "gateway.http.no_auth": {
+    "severity": "warn/critical",
+    "category": "network",
+    "why": "HTTP API endpoints are reachable while `auth.mode=\"none\"`.",
+    "primary_fix": "gateway.auth.mode, gateway.http.endpoints.*",
+    "auto_fix": false
+  },
+  "gateway.tools_invoke_http.dangerous_allow": {
+    "severity": "warn/critical",
+    "category": "tools",
+    "why": "Dangerous tools are reachable through HTTP API paths.",
+    "primary_fix": "gateway.tools.allow",
+    "auto_fix": false
+  },
+  "gateway.nodes.allow_commands_dangerous": {
+    "severity": "warn/critical",
+    "category": "nodes",
+    "why": "High-impact node commands are reachable remotely.",
+    "primary_fix": "gateway.nodes.allowCommands",
+    "auto_fix": false
+  },
+  "gateway.tailscale_funnel": {
+    "severity": "critical",
+    "category": "network",
+    "why": "Tailscale Funnel makes the Gateway publicly reachable.",
+    "primary_fix": "gateway.tailscale.mode",
+    "auto_fix": false
+  },
+  "gateway.control_ui.allowed_origins_required": {
+    "severity": "critical",
+    "category": "control-ui",
+    "why": "A non-loopback Control UI is missing an explicit browser-origin allowlist.",
+    "primary_fix": "gateway.controlUi.allowedOrigins",
+    "auto_fix": false
+  },
+  "gateway.control_ui.host_header_origin_fallback": {
+    "severity": "warn/critical",
+    "category": "control-ui",
+    "why": "Host-header origin fallback weakens DNS rebinding protections.",
+    "primary_fix": "gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback",
+    "auto_fix": false
+  },
+  "gateway.control_ui.insecure_auth": {
+    "severity": "warn",
+    "category": "control-ui",
+    "why": "Control UI insecure-auth compatibility mode is enabled.",
+    "primary_fix": "gateway.controlUi.allowInsecureAuth",
+    "auto_fix": false
+  },
+  "gateway.control_ui.device_auth_disabled": {
+    "severity": "critical",
+    "category": "control-ui",
+    "why": "Device-identity checks are disabled entirely.",
+    "primary_fix": "gateway.controlUi.dangerouslyDisableDeviceAuth",
+    "auto_fix": false
+  },
+  "gateway.real_ip_fallback_enabled": {
+    "severity": "warn/critical",
+    "category": "reverse-proxy",
+    "why": "Trusting X-Real-IP can enable source-IP spoofing via proxy misconfiguration.",
+    "primary_fix": "gateway.allowRealIpFallback, gateway.trustedProxies",
+    "auto_fix": false
+  },
+  "discovery.mdns_full_mode": {
+    "severity": "warn/critical",
+    "category": "discovery",
+    "why": "mDNS full mode advertises extra metadata on the local network.",
+    "primary_fix": "discovery.mdns.mode, gateway.bind",
+    "auto_fix": false
+  },
+  "config.insecure_or_dangerous_flags": {
+    "severity": "warn",
+    "category": "config",
+    "why": "One or more insecure or dangerous flags are enabled.",
+    "primary_fix": "see finding detail",
+    "auto_fix": false
+  },
+  "hooks.token_too_short": {
+    "severity": "warn",
+    "category": "hooks",
+    "why": "The hook ingress token is easier to brute-force.",
+    "primary_fix": "hooks.token",
+    "auto_fix": false
+  },
+  "hooks.request_session_key_enabled": {
+    "severity": "warn/critical",
+    "category": "hooks",
+    "why": "External callers can choose session keys, creating persistence or collision risk.",
+    "primary_fix": "hooks.allowRequestSessionKey",
+    "auto_fix": false
+  },
+  "hooks.request_session_key_prefixes_missing": {
+    "severity": "warn/critical",
+    "category": "hooks",
+    "why": "There is no bound on externally supplied session-key shapes.",
+    "primary_fix": "hooks.allowedSessionKeyPrefixes",
+    "auto_fix": false
+  },
+  "logging.redact_off": {
+    "severity": "warn",
+    "category": "logging",
+    "why": "Sensitive values can leak into logs and status output.",
+    "primary_fix": "logging.redactSensitive",
+    "auto_fix": true
+  },
+  "sandbox.docker_config_mode_off": {
+    "severity": "warn",
+    "category": "sandbox",
+    "why": "Docker sandbox config is present but sandboxing is inactive.",
+    "primary_fix": "agents.*.sandbox.mode",
+    "auto_fix": false
+  },
+  "sandbox.dangerous_network_mode": {
+    "severity": "critical",
+    "category": "sandbox",
+    "why": "The Docker sandbox uses host or namespace-join networking.",
+    "primary_fix": "agents.*.sandbox.docker.network",
+    "auto_fix": false
+  },
+  "tools.exec.host_sandbox_no_sandbox_defaults": {
+    "severity": "warn",
+    "category": "tools",
+    "why": "Default `exec host=sandbox` resolves to host exec when sandboxing is off.",
+    "primary_fix": "tools.exec.host, agents.defaults.sandbox.mode",
+    "auto_fix": false
+  },
+  "tools.exec.host_sandbox_no_sandbox_agents": {
+    "severity": "warn",
+    "category": "tools",
+    "why": "Per-agent `exec host=sandbox` resolves to host exec when sandboxing is off.",
+    "primary_fix": "agents.list[].tools.exec.host, agents.list[].sandbox.mode",
+    "auto_fix": false
+  },
+  "tools.exec.safe_bins_interpreter_unprofiled": {
+    "severity": "warn",
+    "category": "tools",
+    "why": "Interpreter/runtime bins are allowed without explicit safe profiles.",
+    "primary_fix": "tools.exec.safeBins, tools.exec.safeBinProfiles, agents.list[].tools.exec.*",
+    "auto_fix": false
+  },
+  "skills.workspace.symlink_escape": {
+    "severity": "warn",
+    "category": "skills",
+    "why": "A skill path in the workspace resolves outside the workspace root.",
+    "primary_fix": "workspace skills/** filesystem state",
+    "auto_fix": false
+  },
+  "security.exposure.open_groups_with_elevated": {
+    "severity": "critical",
+    "category": "exposure",
+    "why": "Open groups plus elevated tools create a high-impact prompt-injection path.",
+    "primary_fix": "channels.*.groupPolicy, tools.elevated.*",
+    "auto_fix": false
+  },
+  "security.exposure.open_groups_with_runtime_or_fs": {
+    "severity": "critical/warn",
+    "category": "exposure",
+    "why": "Open groups can reach command or file tools without sandbox/workspace guards.",
+    "primary_fix": "channels.*.groupPolicy, tools.profile/deny, tools.fs.workspaceOnly, agents.*.sandbox.mode",
+    "auto_fix": false
+  },
+  "security.trust_model.multi_user_heuristic": {
+    "severity": "warn",
+    "category": "trust-model",
+    "why": "The config looks multi-user without matching isolation and tool hardening.",
+    "primary_fix": "sandbox.mode, tool deny, workspace scoping",
+    "auto_fix": false
+  },
+  "tools.profile_minimal_overridden": {
+    "severity": "warn",
+    "category": "tools",
+    "why": "Per-agent overrides bypass a minimal global profile.",
+    "primary_fix": "agents.list[].tools.profile",
+    "auto_fix": false
+  },
+  "plugins.tools_reachable_permissive_policy": {
+    "severity": "warn",
+    "category": "plugins",
+    "why": "Extension tools are reachable in permissive contexts.",
+    "primary_fix": "tools.profile plus tool allow/deny",
+    "auto_fix": false
+  },
+  "models.small_params": {
+    "severity": "critical/info",
+    "category": "model",
+    "why": "Small or weak models plus tool access increase prompt-injection risk.",
+    "primary_fix": "model choice plus sandbox/tool policy",
+    "auto_fix": false
+  }
+}

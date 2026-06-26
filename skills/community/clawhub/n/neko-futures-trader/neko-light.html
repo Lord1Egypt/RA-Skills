@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neko Trading</title>
+<style>
+:root{
+  --bg:#07080d;
+  --surface:#0d0f1a;
+  --surface2:#12142a;
+  --border:#1c1e38;
+  --red:#ff3b5c;
+  --blue:#3b8bff;
+  --yellow:#ffd23b;
+  --green:#2bffb8;
+  --text:#d0d4f0;
+  --muted:#4a4f7a;
+  --accent:var(--yellow);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font:12px/1.6 system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding:20px 16px 60px;
+  font-smooth:antialiased;
+}
+
+/* ── HEADER ── */
+.hdr{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:28px;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+}
+.logo-icon{
+  width:36px;height:36px;
+  background:linear-gradient(135deg,#ffd23b,#ff3b5c);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+  box-shadow:0 4px 16px rgba(255,59,92,.25);
+}
+.logo-text{font-size:16px;font-weight:900;letter-spacing:-0.5px}
+.logo-text span{color:var(--muted)}
+
+/* Toggle btn */
+.btn-eye{
+  width:40px;height:40px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  transition:all .2s;
+}
+.btn-eye:hover{border-color:var(--accent)}
+.btn-eye.active{background:rgba(255,210,59,.1);border-color:var(--yellow)}
+
+/* ── BALANCE ── */
+.balance-section{margin-bottom:28px}
+.bal-label{
+  font-size:9px;text-transform:uppercase;letter-spacing:2.5px;
+  color:var(--muted);margin-bottom:6px;font-weight:700;
+}
+.bal-value{
+  font-size:48px;font-weight:900;letter-spacing:-2px;
+  color:var(--text);line-height:1;
+}
+.bal-value.blur{filter:blur(12px);user-select:none;transition:filter .3s}
+.bal-pnl{
+  font-size:13px;font-weight:700;margin-top:6px;
+  color:var(--green);
+}
+
+/* ── TOP 3 ── */
+.section-label{
+  font-size:9px;text-transform:uppercase;letter-spacing:2.5px;
+  color:var(--muted);font-weight:700;margin-bottom:10px;
+}
+.top3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px}
+
+/* Top3 card */
+.t3{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:14px 16px;
+  transition:transform .2s,border-color .2s;
+  cursor:default;
+}
+.t3:hover{transform:translateY(-3px)}
+.t3 .rank{
+  font-size:20px;font-weight:900;margin-bottom:8px;
+}
+.t3 .rank.gold{color:var(--yellow)}
+.t3 .rank.silver{color:#aab0cc}
+.t3 .rank.bronze{color:#cd7b4a}
+.t3 .sym{font-size:14px;font-weight:800;margin-bottom:4px}
+.t3 .dir{
+  font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.t3 .dir.long{color:var(--blue)}
+.t3 .dir.short{color:var(--red)}
+.t3 .roi{font-size:22px;font-weight:900;line-height:1}
+.t3 .roi.long{color:var(--blue)}
+.t3 .roi.short{color:var(--red)}
+
+/* Number badge for rank */
+.t3 .num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:6px;
+  font-size:10px;font-weight:900;
+}
+
+/* ── TABLE ── */
+.tbl{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;margin-bottom:20px;
+}
+.th{
+  display:grid;
+  grid-template-columns:52px 46px 1fr 64px 64px 58px 58px 56px;
+  padding:0 14px;
+  border-bottom:1px solid var(--border);
+}
+.th span{
+  font-size:8px;color:var(--muted);text-transform:uppercase;
+  letter-spacing:1.5px;padding:10px 0;display:block;text-align:right;
+}
+.th span:first-child{text-align:left}
+
+.tr{
+  display:grid;
+  grid-template-columns:52px 46px 1fr 64px 64px 58px 58px 56px;
+  padding:0 14px;
+  border-bottom:1px solid #0e0f1e;
+  transition:background .15s;
+  cursor:default;
+}
+.tr:last-child{border-bottom:none}
+.tr:hover{background:#13142a}
+
+.td{
+  font-size:11px;padding:11px 0;text-align:right;
+  overflow:hidden;white-space:nowrap;display:flex;align-items:center;justify-content:flex-end;
+}
+.td.sym{text-align:left;font-size:13px;font-weight:800;justify-content:flex-start}
+
+/* Badge */
+.badge{
+  display:inline-flex;align-items:center;
+  font-size:8px;font-weight:800;letter-spacing:.5px;
+  padding:2px 7px;border-radius:5px;
+}
+.badge.long{background:rgba(59,139,255,.15);color:var(--blue)}
+.badge.short{background:rgba(255,59,92,.15);color:var(--red)}
+
+.price{font-size:10px;color:var(--muted)}
+.price.lg{color:var(--text);font-weight:600}
+.roi{font-size:12px;font-weight:800}
+.roi.g{color:var(--green)}
+.roi.r{color:var(--red)}
+
+/* SL/TP column colors */
+.sl{color:var(--red);font-size:10px}
+.tp{color:var(--green);font-size:10px}
+
+/* Long/short row accent */
+.tr.long-row{border-left:2px solid var(--blue)}
+.tr.short-row{border-left:2px solid var(--red)}
+.tr.long-row{border-left-color:var(--blue)}
+.tr.short-row{border-left-color:var(--red)}
+
+/* ── REFRESH BTN ── */
+.btn-refresh{
+  width:100%;padding:13px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:12px;cursor:pointer;
+  font-size:12px;font-weight:700;color:var(--muted);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .2s;letter-spacing:.5px;
+}
+.btn-refresh:hover{border-color:var(--accent);color:var(--accent)}
+.btn-refresh:active{transform:scale(.98)}
+
+/* ── STATUS BAR ── */
+.status{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  padding:10px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:9px;color:var(--muted);
+}
+.status span{color:var(--green)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.t3,.tr{animation:fadeUp .35s ease-out both}
+.t3:nth-child(1){animation-delay:.0s}
+.t3:nth-child(2){animation-delay:.08s}
+.t3:nth-child(3){animation-delay:.16s}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinning{animation:spin .8s linear infinite}
+
+/* ── RESPONSIVE ── */
+@media(max-width:500px){
+  .top3{grid-template-columns:repeat(3,1fr);gap:6px}
+  .bal-value{font-size:36px}
+  .th,.tr{
+    grid-template-columns:44px 42px 1fr 54px 54px 48px 48px 48px;
+    padding:0 10px;
+  }
+  .td,.th span{padding:9px 0;font-size:9px}
+  .t3 .roi{font-size:16px}
+  .t3 .sym{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="logo">
+    <div class="logo-icon">🐱</div>
+    <div class="logo-text">NEKO<span>.TRADING</span></div>
+  </div>
+  <button class="btn-eye" id="togBal" onclick="toggleBal()" title="Show/Hide Balance">👁</button>
+</div>
+
+<div class="balance-section">
+  <div class="bal-label">Total Balance</div>
+  <div class="bal-value blur" id="bal">$--</div>
+  <div class="bal-pnl" id="pnl">+-- USDT</div>
+</div>
+
+<div class="top3" id="top3"></div>
+
+<div class="section-label">Open Positions</div>
+<div class="tbl">
+  <div class="th">
+    <span>Symbol</span><span>Dir</span><span></span>
+    <span>Entry</span><span>Now</span>
+    <span>SL</span><span>TP</span><span>ROI</span>
+  </div>
+  <div id="list"></div>
+</div>
+
+<button class="btn-refresh" onclick="load()">
+  <span id="refreshIcon">🔄</span>
+  <span id="refreshLabel">Refresh</span>
+</button>
+
+<div class="status">
+  <div>🔍 Scanner <span>Active</span></div>
+  <div>⏱ Monitor <span>Active</span></div>
+  <div>built by <strong style="color:var(--yellow)">Neko Sentinel</strong> 🐱</div>
+</div>
+
+<script>
+let balHidden = true;
+
+function toggleBal() {
+  balHidden = !balHidden;
+  const el = document.getElementById('bal');
+  const btn = document.getElementById('togBal');
+  el.classList.toggle('blur', balHidden);
+  btn.classList.toggle('active', !balHidden);
+}
+
+function roi(p) {
+  const n = Math.abs(p.e * p.a);
+  return n > 0 ? (p.u / n) * 100 : 0;
+}
+
+function fmt(v, d=4) {
+  if (!v && v !== 0) return '--';
+  return '$' + v.toFixed(d);
+}
+
+function fmtROI(v) {
+  if (!v && v !== 0) return '--';
+  return (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
+}
+
+function sl(p) { return p.d === 'LONG' ? p.e * 0.95 : p.e * 1.05; }
+function tp(p) { return p.d === 'LONG' ? p.e * 1.10 : p.e * 0.90; }
+
+let loading = false;
+
+async function load() {
+  if (loading) return;
+  loading = true;
+  const icon = document.getElementById('refreshIcon');
+  const label = document.getElementById('refreshLabel');
+  icon.classList.add('spinning');
+  label.textContent = 'Loading...';
+
+  let data;
+  try {
+    const r = await fetch('/api', {signal:AbortSignal.timeout(12000)});
+    data = await r.json();
+    document.getElementById('refreshIcon').classList.remove('spinning');
+    icon.classList.remove('spinning');
+    label.textContent = 'Refresh';
+  } catch(e) {
+    label.textContent = 'Retry';
+    icon.classList.remove('spinning');
+    document.getElementById('list').innerHTML =
+      '<div style="padding:30px;text-align:center;color:var(--muted)">Connection failed</div>';
+    loading = false;
+    return;
+  }
+
+  if (!balHidden) document.getElementById('bal').classList.remove('blur');
+  document.getElementById('bal').textContent = '$' + (data.bal||0).toFixed(2);
+  const pnl = data.pnl||0;
+  const pnlEl = document.getElementById('pnl');
+  pnlEl.textContent = (pnl>=0?'+':'') + '$' + pnl.toFixed(2) + ' USDT';
+  pnlEl.style.color = pnl>=0 ? 'var(--green)' : 'var(--red)';
+
+  const pos = data.pos||[];
+  document.getElementById('cnt');
+
+  // Top 3 performers
+  const sorted = [...pos].sort((a,b) => roi(b) - roi(a)).slice(0,3);
+  const medals = ['gold','silver','bronze'];
+  const nums = ['①','②','③'];
+  document.getElementById('top3').innerHTML = sorted.length ? sorted.map((p,i) => {
+    const r = roi(p);
+    const isLong = p.d === 'LONG';
+    return `<div class="t3">
+      <div class="rank ${medals[i]}">${nums[i]}</div>
+      <div class="sym">${p.s}</div>
+      <div class="dir ${isLong?'long':'short'}">${p.d}</div>
+      <div class="roi ${isLong?'long':'short'}">${fmtROI(r)}</div>
+    </div>`;
+  }).join('') : '<div style="color:var(--muted);padding:10px 0">No positions</div>';
+
+  // Table
+  if (!pos.length) {
+    document.getElementById('list').innerHTML =
+      '<div style="padding:30px;text-align:center;color:var(--muted)">No open positions</div>';
+    loading = false;
+    return;
+  }
+
+  document.getElementById('list').innerHTML = pos.map(p => {
+    const r = roi(p);
+    const isLong = p.d === 'LONG';
+    const slv = sl(p), tpv = tp(p);
+    return `<div class="tr ${isLong?'long-row':'short-row'}">
+      <div class="td sym">${p.s}</div>
+      <div class="td" style="justify-content:flex-start">
+        <span class="badge ${isLong?'long':'short'}">${p.d}</span>
+      </div>
+      <div class="td"></div>
+      <div class="td price lg">${fmt(p.e)}</div>
+      <div class="td price lg">${fmt(p.m)}</div>
+      <div class="td sl">${fmt(slv)}</div>
+      <div class="td tp">${fmt(tpv)}</div>
+      <div class="td roi ${r>=0?'g':'r'}">${fmtROI(r)}</div>
+    </div>`;
+  }).join('');
+
+  loading = false;
+  label.textContent = 'Refresh';
+}
+
+load();
+setInterval(load, 30000);
+</script>
+</body>
+</html>

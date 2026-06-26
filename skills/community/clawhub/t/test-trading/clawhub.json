@@ -1,0 +1,40 @@
+{
+  "emoji": "chart_with_upwards_trend",
+  "primaryEnv": "AION_API_KEY",
+  "requires": {
+    "pip": ["aion-sdk", "python-dotenv"],
+    "env": ["AION_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AION_API_KEY",
+      "required": true,
+      "description": "Main AION API key used by the skill."
+    },
+    {
+      "name": "AIONMARKET_API_KEY",
+      "required": false,
+      "description": "Legacy alias supported by the script when AION_API_KEY is not set."
+    },
+    {
+      "name": "MARKET_ID",
+      "required": false,
+      "description": "Target market id for automated runs."
+    },
+    {
+      "name": "MY_PROBABILITY",
+      "required": false,
+      "description": "Your probability estimate between 0 and 1."
+    },
+    {
+      "name": "VENUE",
+      "required": false,
+      "description": "Venue filter for reads and trades, such as polymarket or kalshi."
+    }
+  ],
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "divergence_trader.py"
+  }
+}

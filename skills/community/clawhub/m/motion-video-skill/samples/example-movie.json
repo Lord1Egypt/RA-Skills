@@ -1,0 +1,419 @@
+{
+  "meta": {
+    "title": "Web 动画讲解视频 Demo",
+    "theme": "signal-ink",
+    "template": "signal-stage",
+    "ratio": "16:9",
+    "fps": 30,
+    "width": 1280,
+    "height": 720
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "label": "开场",
+      "type": "hero",
+      "durationMs": 5726,
+      "narration": "先用一句话说明，为什么要把字幕做成会讲解的画面。",
+      "elements": [
+        {
+          "id": "scene-01-chip",
+          "type": "chip",
+          "text": "motion explainer",
+          "x": 92,
+          "y": 86,
+          "w": 220,
+          "h": 42,
+          "animation": {
+            "effect": "fade",
+            "startMs": 43,
+            "durationMs": 408
+          }
+        },
+        {
+          "id": "scene-01-title",
+          "type": "title",
+          "text": "把一句说明\n变成会带节奏的讲解动画",
+          "x": 90,
+          "y": 146,
+          "w": 700,
+          "h": 186,
+          "animation": {
+            "effect": "fade-up",
+            "startMs": 130,
+            "durationMs": 815
+          }
+        },
+        {
+          "id": "scene-01-subtitle",
+          "type": "subtitle",
+          "text": "先理解文本，再把重点做成镜头、字幕和动效。",
+          "x": 92,
+          "y": 366,
+          "w": 612,
+          "h": 86,
+          "animation": {
+            "effect": "fade",
+            "startMs": 1560,
+            "durationMs": 670
+          }
+        },
+        {
+          "id": "scene-01-shape",
+          "type": "shape",
+          "x": 850,
+          "y": 128,
+          "w": 314,
+          "h": 420,
+          "style": {
+            "background": "linear-gradient(180deg, rgba(255,140,66,0.26), rgba(89,227,255,0.10))",
+            "borderRadius": 36
+          },
+          "animation": {
+            "effect": "pop",
+            "startMs": 70,
+            "durationMs": 718
+          }
+        },
+        {
+          "id": "scene-01-quote",
+          "type": "quote",
+          "text": "不是做一页页静态卡片，而是让每个重点在正确的时刻出现。",
+          "x": 820,
+          "y": 188,
+          "w": 368,
+          "h": 240,
+          "animation": {
+            "effect": "slide-right",
+            "startMs": 4450,
+            "durationMs": 856
+          }
+        }
+      ],
+      "timingMode": "auto",
+      "cues": [
+        {
+          "id": "scene-01-cue-01",
+          "text": "先用一句话说明，",
+          "startMs": 180,
+          "endMs": 1560
+        },
+        {
+          "id": "scene-01-cue-02",
+          "text": "为什么要把字幕做成会讲解的画面。",
+          "startMs": 1560,
+          "endMs": 4540
+        }
+      ],
+      "transition": {
+        "enterEffect": "zoom-out",
+        "exitEffect": "fade",
+        "enterDurationMs": 360,
+        "exitDurationMs": 220
+      }
+    },
+    {
+      "id": "scene-02",
+      "label": "步骤",
+      "type": "steps",
+      "durationMs": 5284,
+      "narration": "把文案拆成节拍，再给每个节拍配一个镜头模板。",
+      "elements": [
+        {
+          "id": "scene-02-title",
+          "type": "title",
+          "text": "一个稳定流程，先做这三步",
+          "x": 92,
+          "y": 104,
+          "w": 760,
+          "h": 92,
+          "style": {
+            "fontSize": 56
+          },
+          "animation": {
+            "effect": "slide-left",
+            "startMs": 130,
+            "durationMs": 804
+          }
+        },
+        {
+          "id": "scene-02-list",
+          "type": "bullet-list",
+          "items": [
+            "提炼一句主结论，别把所有信息同时端上来",
+            "把原文拆成 4 到 8 个讲解节拍",
+            "给每个节拍匹配合适的动效版式"
+          ],
+          "x": 100,
+          "y": 226,
+          "w": 620,
+          "h": 302,
+          "animation": {
+            "effect": "fade-up",
+            "startMs": 1560,
+            "durationMs": 937,
+            "itemStaggerMs": 460
+          }
+        },
+        {
+          "id": "scene-02-card",
+          "type": "shape",
+          "x": 780,
+          "y": 162,
+          "w": 404,
+          "h": 366,
+          "style": {
+            "background": "rgba(15, 28, 49, 0.88)",
+            "borderRadius": 34
+          },
+          "animation": {
+            "effect": "clip-up",
+            "startMs": 73,
+            "durationMs": 748
+          }
+        },
+        {
+          "id": "scene-02-text",
+          "type": "text",
+          "text": "好的讲解动效，核心不是炫，而是让观众在每一秒只看见当前最重要的东西。",
+          "x": 820,
+          "y": 214,
+          "w": 318,
+          "h": 210,
+          "animation": {
+            "effect": "fade",
+            "startMs": 4100,
+            "durationMs": 764
+          }
+        }
+      ],
+      "timingMode": "auto",
+      "cues": [
+        {
+          "id": "scene-02-cue-01",
+          "text": "把文案拆成节拍，",
+          "startMs": 180,
+          "endMs": 1560
+        },
+        {
+          "id": "scene-02-cue-02",
+          "text": "再给每个节拍配一个镜头模板。",
+          "startMs": 1560,
+          "endMs": 4180
+        }
+      ],
+      "transition": {
+        "enterEffect": "lift-up",
+        "exitEffect": "fade",
+        "enterDurationMs": 300,
+        "exitDurationMs": 220
+      }
+    },
+    {
+      "id": "scene-03",
+      "label": "结果",
+      "type": "stat",
+      "durationMs": 5298,
+      "narration": "最后用数字或一句结论做记忆点。",
+      "elements": [
+        {
+          "id": "scene-03-title",
+          "type": "subtitle",
+          "text": "最后一定要留一个能被记住的结果",
+          "x": 96,
+          "y": 100,
+          "w": 620,
+          "h": 54,
+          "animation": {
+            "effect": "fade",
+            "startMs": 2890,
+            "durationMs": 628
+          }
+        },
+        {
+          "id": "scene-03-stat",
+          "type": "stat",
+          "value": "3x",
+          "text": "重点理解速度提升",
+          "x": 88,
+          "y": 180,
+          "w": 420,
+          "h": 244,
+          "animation": {
+            "effect": "pop",
+            "startMs": 130,
+            "durationMs": 779
+          }
+        },
+        {
+          "id": "scene-03-quote",
+          "type": "quote",
+          "text": "字幕、图形和镜头节奏一起工作，视频就不只是“把字放上去”。",
+          "x": 586,
+          "y": 184,
+          "w": 536,
+          "h": 210,
+          "animation": {
+            "effect": "slide-right",
+            "startMs": 4024,
+            "durationMs": 854
+          }
+        }
+      ],
+      "timingMode": "auto",
+      "cues": [
+        {
+          "id": "scene-03-cue-01",
+          "text": "最后用数字或一句结论做记忆点。",
+          "startMs": 180,
+          "endMs": 2980
+        }
+      ],
+      "transition": {
+        "enterEffect": "zoom-in",
+        "exitEffect": "fade",
+        "enterDurationMs": 280,
+        "exitDurationMs": 220
+      }
+    },
+    {
+      "id": "scene-04",
+      "label": "结尾",
+      "type": "closing",
+      "durationMs": 6100,
+      "narration": "最后收束，强调这个 skill 可以从文本直接生成讲解动画并输出视频。",
+      "elements": [
+        {
+          "id": "scene-04-title",
+          "type": "title",
+          "text": "文本进来，镜头和动效自己排好",
+          "x": 104,
+          "y": 188,
+          "w": 820,
+          "h": 124,
+          "style": {
+            "fontSize": 60
+          },
+          "animation": {
+            "effect": "fade-up",
+            "startMs": 130,
+            "durationMs": 798
+          }
+        },
+        {
+          "id": "scene-04-subtitle",
+          "type": "subtitle",
+          "text": "这就是 Motion Video Maker 的目标能力。",
+          "x": 108,
+          "y": 344,
+          "w": 560,
+          "h": 64,
+          "animation": {
+            "effect": "fade",
+            "startMs": 1311,
+            "durationMs": 622
+          }
+        },
+        {
+          "id": "scene-04-chip",
+          "type": "chip",
+          "text": "export mp4",
+          "x": 106,
+          "y": 454,
+          "w": 180,
+          "h": 42,
+          "animation": {
+            "effect": "pop",
+            "startMs": 43,
+            "durationMs": 458
+          }
+        }
+      ],
+      "timingMode": "auto",
+      "cues": [
+        {
+          "id": "scene-04-cue-01",
+          "text": "最后收束，",
+          "startMs": 180,
+          "endMs": 1304
+        },
+        {
+          "id": "scene-04-cue-02",
+          "text": "强调这个 skill 可以从文本直接生成讲解动画并输出视频。",
+          "startMs": 1304,
+          "endMs": 5520
+        }
+      ],
+      "transition": {
+        "enterEffect": "iris-in",
+        "exitEffect": "fade",
+        "enterDurationMs": 340,
+        "exitDurationMs": 260
+      }
+    }
+  ],
+  "subtitles": {
+    "enabled": true,
+    "source": "scene-cues",
+    "stylePreset": "bottom-band",
+    "maxLines": 2,
+    "tracks": [
+      {
+        "id": "subtitle-scene-01-cue-01",
+        "sceneId": "scene-01",
+        "cueId": "scene-01-cue-01",
+        "text": "先用一句话说明，",
+        "startMs": 180,
+        "endMs": 1560
+      },
+      {
+        "id": "subtitle-scene-01-cue-02",
+        "sceneId": "scene-01",
+        "cueId": "scene-01-cue-02",
+        "text": "为什么要把字幕做成会讲解的画面。",
+        "startMs": 1560,
+        "endMs": 4540
+      },
+      {
+        "id": "subtitle-scene-02-cue-01",
+        "sceneId": "scene-02",
+        "cueId": "scene-02-cue-01",
+        "text": "把文案拆成节拍，",
+        "startMs": 180,
+        "endMs": 1560
+      },
+      {
+        "id": "subtitle-scene-02-cue-02",
+        "sceneId": "scene-02",
+        "cueId": "scene-02-cue-02",
+        "text": "再给每个节拍配一个镜头模板。",
+        "startMs": 1560,
+        "endMs": 4180
+      },
+      {
+        "id": "subtitle-scene-03-cue-01",
+        "sceneId": "scene-03",
+        "cueId": "scene-03-cue-01",
+        "text": "最后用数字或一句结论做记忆点。",
+        "startMs": 180,
+        "endMs": 2980
+      },
+      {
+        "id": "subtitle-scene-04-cue-01",
+        "sceneId": "scene-04",
+        "cueId": "scene-04-cue-01",
+        "text": "最后收束，",
+        "startMs": 180,
+        "endMs": 1304
+      },
+      {
+        "id": "subtitle-scene-04-cue-02",
+        "sceneId": "scene-04",
+        "cueId": "scene-04-cue-02",
+        "text": "强调这个 skill 可以从文本直接生成讲解动画并输出视频。",
+        "startMs": 1304,
+        "endMs": 5520
+      }
+    ]
+  }
+}

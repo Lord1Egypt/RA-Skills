@@ -1,35 +1,30 @@
 ---
-name: "Chrome Web Automation"
+name: "chrome_web_automation"
 description: "Use when the user wants browser automation in an existing Chrome session: click, fill, inspect tabs, capture screenshots, or debug web flows."
-category: "other"
-source: "ClawHub"
-tags: [claude-code, extracted]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-code-chrome-web-automation"
-sourceUrl: "https://clawhub.ai/skills/claude-code-chrome-web-automation"
 ---
 
 # Chrome Web Automation
 
-> Use when the user wants browser automation in an existing Chrome session: click, fill, inspect tabs, capture screenshots, or debug web flows.
+Use this skill before any browser interaction that depends on the user's live Chrome session.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-code-chrome-web-automation`
-- **Source URL:** [https://clawhub.ai/skills/claude-code-chrome-web-automation](https://clawhub.ai/skills/claude-code-chrome-web-automation)
+## Workflow
+1. Start by inspecting current tabs and browser context.
+2. Navigate or select the right tab.
+3. Snapshot the page before interacting.
+4. Click, type, submit, and screenshot using stable references.
+5. Re-snapshot after navigation or large DOM updates.
 
-## Overview
+## Best Fits
+- Web app debugging
+- Form filling
+- Screenshot capture
+- Console or tab inspection
+- Reproducing UI issues in a user browser session
 
+## Guardrails
+- Re-snapshot when element references go stale.
+- Do not assume current tab state without checking.
+- Prefer explicit browser actions over ambiguous natural-language leaps.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claude-code-chrome-web-automation
-```
+## Source Provenance
+Derived from `src/skills/bundled/claudeInChrome.ts`.

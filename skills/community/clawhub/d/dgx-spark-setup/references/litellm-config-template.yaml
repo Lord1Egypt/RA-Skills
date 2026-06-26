@@ -1,0 +1,31 @@
+# LiteLLM config template for DGX Spark + Nemotron Super 120B
+# Place at: ~/litellm-config.yaml on the DGX
+
+model_list:
+  - model_name: nemotron-super
+    litellm_params:
+      model: openai/nemotron-super
+      api_base: http://127.0.0.1:8000/v1
+      api_key: "none"
+
+general_settings:
+  master_key: sk-master-REPLACE-WITH-RANDOM-HEX   # generate: python3 -c "import secrets; print('sk-master-' + secrets.token_hex(16))"
+  disable_spend_logs: false
+
+litellm_settings:
+  drop_params: true
+  success_callback: []
+  failure_callback: []
+
+# Virtual keys — one per user
+# Generate keys: python3 -c "import secrets; print('sk-name-' + secrets.token_hex(16))"
+virtual_keys:
+  - key: sk-user1-REPLACE
+    key_alias: user1
+    rpm_limit: 20        # requests per minute
+    tpm_limit: 100000    # tokens per minute
+
+  - key: sk-user2-REPLACE
+    key_alias: user2
+    rpm_limit: 20
+    tpm_limit: 100000

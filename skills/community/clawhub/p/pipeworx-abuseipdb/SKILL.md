@@ -1,35 +1,25 @@
----
-name: "Pipeworx abuseipdb"
-description: "Check, report, and retrieve abuse confidence scores and details for IP addresses using the AbuseIPDB v2 API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-abuseipdb"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-abuseipdb"
----
+# Abuseipdb
 
-# Pipeworx abuseipdb
+AbuseIPDB MCP — wraps AbuseIPDB v2 API (api.abuseipdb.com/api/v2)
 
-> Check, report, and retrieve abuse confidence scores and details for IP addresses using the AbuseIPDB v2 API.
+## check_ip
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-abuseipdb`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-abuseipdb](https://clawhub.ai/skills/pipeworx-abuseipdb)
+Check an IP address against the AbuseIPDB database. Returns abuse confidence score (0-100), ISP, usa
 
-## Overview
+## report_ip
 
+Report an abusive IP address to AbuseIPDB. Requires category IDs (e.g., "18,22" for DDoS + SSH brute
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-abuseipdb
+## get_blacklist
+
+Get the AbuseIPDB blacklist of the most-reported IP addresses. Returns IPs with their abuse confiden
+
+```json
+{
+  "mcpServers": {
+    "abuseipdb": {
+      "url": "https://gateway.pipeworx.io/abuseipdb/mcp"
+    }
+  }
+}
 ```

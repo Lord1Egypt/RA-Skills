@@ -1,0 +1,22 @@
+{
+  "language": {
+    "preferred": "en",
+    "detected": "en",
+    "detected_at": null,
+    "confidence": 0.95
+  },
+  "onboarding": {
+    "completed": false,
+    "language_set": false,
+    "steps_completed": []
+  },
+  "conversation": {
+    "auto_detect": true,
+    "fallback_language": "en"
+  },
+  "metadata": {
+    "created_at": null,
+    "last_updated": null,
+    "version": "1.0.0"
+  }
+}

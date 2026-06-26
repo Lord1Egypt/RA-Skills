@@ -1,0 +1,1 @@
+[\n  {\"id\": 1, \"prompt\": \"stock-deep-dive on AMZN\", \"expected\": \"8-dim table + UZI panel + DCF + box summary + JSON save\"},\n  {\"id\": 2, \"prompt\": \"deep dive TSLA\", \"expected\": \"full raw data + conviction calc + gate pass + war-room deploy\"},\n  {\"id\": 3, \"prompt\": \"S stock analysis\", \"expected\": \"HOLD/BUY signal + risks + live URL\"}\n]

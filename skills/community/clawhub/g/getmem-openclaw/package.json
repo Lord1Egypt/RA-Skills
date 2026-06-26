@@ -1,0 +1,45 @@
+{
+  "name": "@getmem/openclaw-getmem",
+  "version": "1.0.0",
+  "description": "Persistent memory for OpenClaw agents via getmem.ai",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "openclaw": {
+    "extensions": [
+      "./src/index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.3.24-beta.2",
+      "pluginSdkVersion": "2026.3.24-beta.2"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "getmem-ai": "^0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "keywords": [
+    "openclaw",
+    "memory",
+    "getmem",
+    "ai",
+    "agent"
+  ],
+  "author": "getmem.ai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getmem-ai/openclaw-getmem"
+  },
+  "homepage": "https://getmem.ai"
+}

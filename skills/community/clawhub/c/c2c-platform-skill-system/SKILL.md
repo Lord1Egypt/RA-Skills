@@ -1,35 +1,94 @@
 ---
-name: "C2C Platform Skill System"
-description: "C2C本地生活服务平台十大功能集群技能体系。基于"任务为中心，AI Pipeline驱动"思想，覆盖市场情报、内容运营、用户增长、交易数据、知识管理、合规风控、供需运营、平台协同、资质准入、技术保障十大业务流。触发词：C2C、本地生活、服务平台、撮合平台、交易平台、裂变、虚拟币、钱包、信用分、履约、条目、意图、易..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/c2c-platform-skill-system"
-sourceUrl: "https://clawhub.ai/skills/c2c-platform-skill-system"
+name: c2c-platform-skill-system
+author: 王教成 Wang Jiaocheng (波动几何)
+description: C2C本地生活服务平台十大功能集群技能体系。基于"任务为中心，AI Pipeline驱动"思想，覆盖市场情报、内容运营、用户增长、交易数据、知识管理、合规风控、供需运营、平台协同、资质准入、技术保障十大业务流。触发词：C2C、本地生活、服务平台、撮合平台、交易平台、裂变、虚拟币、钱包、信用分、履约、条目、意图、易点、抽佣、分润、完成码、充值、提现、仲裁、供需匹配、平台运营、marketplace、platform、C2C platform、local service。
 ---
 
-# C2C Platform Skill System
+# C2C本地生活服务平台十大功能集群技能体系
 
-> C2C本地生活服务平台十大功能集群技能体系。基于"任务为中心，AI Pipeline驱动"思想，覆盖市场情报、内容运营、用户增长、交易数据、知识管理、合规风控、供需运营、平台协同、资质准入、技术保障十大业务流。触发词：C2C、本地生活、服务平台、撮合平台、交易平台、裂变、虚拟币、钱包、信用分、履约、条目、意图、易...
+C2C平台运营全链路AI能力体系——从市场洞察到交易闭环，从用户裂变到合规风控，从供需匹配到技术保障，覆盖平台运营每个环节。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/c2c-platform-skill-system`
-- **Source URL:** [https://clawhub.ai/skills/c2c-platform-skill-system](https://clawhub.ai/skills/c2c-platform-skill-system)
+## 核心理念
 
-## Overview
+**行业精准，原子组合。** 每个能力单元是一个原子任务——独立可执行、自由可组合。AI接收输入、执行任务，输出可被任何其他单元消费。十大集群覆盖C2C平台核心业务域，单元间通过依赖图和组合接口实现跨集群协作。
 
+## 能力单元Schema
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/c2c-platform-skill-system
-```
+| 字段 | 说明 |
+|------|------|
+| 输入 | 启动所需的数据/上下文，标注必填/选填 |
+| 输出 | 产出的格式和粒度 |
+| 依赖 | 前置单元ID；无依赖=入口单元 |
+| AI自治度 | ⬛全自动 / 🟨半自动(需人确认) / ⬜辅助(人主导) |
+| 组合接口 | 可消费本单元输出的下游单元(→单元ID列表) |
+
+## 执行规则
+
+1. **必读加载**：首次使用本技能时，必须用Read工具读取 `references/index-and-pipelines.md`，获取完整单元索引和Pipeline编排
+2. **行业校准先行**：首次使用时读取 `references/industry-calibration.md`，将平台特征注入执行上下文
+3. **按需加载**：根据集群路由定位后，Read对应集群参考文件
+4. **依赖检查**：执行前确认依赖单元输出已就绪
+5. **自由组合**：无依赖冲突的单元可并行执行；有依赖的按序执行
+6. **跨集群流动**：一个单元的输出可作为另一集群单元的输入
+7. **Pipeline复用**：预置Pipeline为参考模板，可根据实际场景增删替换单元
+
+## 集群路由
+
+| 关键词 | 集群 | 参考文件 |
+|--------|------|----------|
+| 竞品、监测、政策、舆情、情报、趋势、行业分析 | C1 市场情报与监测 | C1-intelligence.md |
+| 内容、条目、分类、标签、推荐、搜索、SEO | C2 内容运营与适配 | C2-content.md |
+| 裂变、拉新、促活、补贴、活动、增长、召回、地推 | C3 用户增长与活动运营 | C3-growth.md |
+| GMV、订单、用户画像、留存、转化、漏斗、风控数据、财务 | C4 交易数据分析 | C4-analytics.md |
+| SOP、培训、知识库、FAQ、标准、指南、手册 | C5 平台知识管理 | C5-knowledge.md |
+| 合规、审核、风控、仲裁、投诉、资质、反欺诈、数据安全 | C6 合规风控与安全 | C6-compliance.md |
+| 服务商、买家、信用、评价、分级、履约、供需、匹配 | C7 供需运营与信用 | C7-supply-demand.md |
+| 协同、产品迭代、运维、供应商、成本、绩效、流程 | C8 平台运营协同 | C8-operations.md |
+| ICP、EDI、备案、许可、证照、准入、牌照 | C9 资质证照与准入 | C9-qualification.md |
+| 架构、支付、IM、搜索、安全、灾备、性能、技术 | C10 技术架构与保障 | C10-infrastructure.md |
+
+## 单元索引概览
+
+| 集群 | 单元数 |
+|------|--------|
+| C1 市场情报与监测 | 25 |
+| C2 内容运营与适配 | 18 |
+| C3 用户增长与活动运营 | 28 |
+| C4 交易数据分析 | 58 |
+| C5 平台知识管理 | 30 |
+| C6 合规风控与安全 | 33 |
+| C7 供需运营与信用 | 26 |
+| C8 平台运营协同 | 48 |
+| C9 资质证照与准入 | 20 |
+| C10 技术架构与保障 | 24 |
+| **合计** | **310** |
+
+## 行业校准
+
+本技能专为C2C本地生活服务平台设计，校准维度详见 `references/industry-calibration.md`。
+
+适用平台特征：
+- 双边市场：个人服务商 + 个人消费者
+- 虚拟币体系：充值→消费→提现闭环
+- 裂变增长：多级推荐分润驱动获客
+- 信用体系：评价+完成率+履约质量量化信任
+- 履约差异化：实物物流 / 线下服务完成码 / 线上确认
+- 平台抽佣：交易佣金+分润池机制
+
+## Pipeline模板
+
+预置10组跨集群Pipeline，详见 `references/index-and-pipelines.md`：
+
+| Pipeline组 | 数量 |
+|-----------|------|
+| 一、平台从0到1搭建 | 7 |
+| 二、用户增长与裂变 | 7 |
+| 三、交易闭环与履约 | 7 |
+| 四、内容与供需匹配 | 6 |
+| 五、合规风控与安全 | 6 |
+| 六、数据驱动运营 | 6 |
+| 七、信用体系与生态治理 | 5 |
+| 八、平台商业化 | 6 |
+| 九、技术保障与架构演进 | 5 |
+| 十、战略规划与生态扩展 | 7 |
+| **合计** | **62** |

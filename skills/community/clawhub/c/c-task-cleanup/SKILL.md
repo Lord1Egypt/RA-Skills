@@ -1,35 +1,48 @@
----
-name: "C Task Cleanup"
-description: "Automatically scans and cleans completed C tasks weekly, compressing insights into MEMORY.md and generating cleanup reports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/c-task-cleanup"
-sourceUrl: "https://clawhub.ai/skills/c-task-cleanup"
+# C-Task-Cleanup · C 类任务清理工具
+
+**版本：** v1.0  
+**创建时间：** 2026-03-01 21:00  
+**用途：** 每周日 23:00 自动清理 C 类任务已完成记录
+
 ---
 
-# C Task Cleanup
+## 🎯 功能
 
-> Automatically scans and cleans completed C tasks weekly, compressing insights into MEMORY.md and generating cleanup reports.
+1. **扫描 C 类任务池** - 读取已完成任务
+2. **4D 压缩高价值内容** - 提取洞察存入 MEMORY.md
+3. **清理已完成表格** - 清空"已完成"部分
+4. **生成清理报告** - 记录清理内容
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/c-task-cleanup`
-- **Source URL:** [https://clawhub.ai/skills/c-task-cleanup](https://clawhub.ai/skills/c-task-cleanup)
+---
 
-## Overview
+## 📋 清理规则
 
+| 内容 | 处理方式 |
+|------|---------|
+| **待办任务** | 不清理（继续保留） |
+| **已完成任务（<7 天）** | 4D 压缩后清理 |
+| **已完成任务（>7 天）** | 直接清理 |
+| **高价值洞察** | 4D 压缩 → MEMORY.md |
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 🔧 使用方法
+
 ```bash
-hermes skills install clawhub/c-task-cleanup
+# 手动运行
+node /Users/abc/.openclaw/workspace/skills/c-task-cleanup/handler.js
+
+# 自动运行（每周日 23:00）
+# Cron: /Users/abc/.openclaw/cron/c-task-cleanup.json
 ```
+
+---
+
+## 📊 输出
+
+- **清理报告：** `~/Desktop/任务流/logs/c-task-cleanup-YYYY-MM-DD.md`
+- **MEMORY.md 更新：** 高价值洞察（4D 压缩）
+
+---
+
+*最后更新：2026-03-01 21:00*

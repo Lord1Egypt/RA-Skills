@@ -1,35 +1,34 @@
 ---
-name: "漂流瓶"
-description: "随机获取一个漂流瓶（包含人生感悟、小故事、祝福或励志语录）。当用户要求漂流瓶、message in a bottle、随机消息、获取灵感、人生感悟时触发。触发词：漂流瓶、瓶中信、随机消息、获取祝福、人生感悟、message in a bottle、drift bottle。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/piaoliuping"
-sourceUrl: "https://clawhub.ai/skills/piaoliuping"
+name: piaoliuping
+description: 随机获取一个漂流瓶（包含人生感悟、小故事、祝福或励志语录）。当用户要求漂流瓶、message in a bottle、随机消息、获取灵感、人生感悟时触发。触发词：漂流瓶、瓶中信、随机消息、获取祝福、人生感悟、message in a bottle、drift bottle。
 ---
 
 # 漂流瓶
 
-> 随机获取一个漂流瓶（包含人生感悟、小故事、祝福或励志语录）。当用户要求漂流瓶、message in a bottle、随机消息、获取灵感、人生感悟时触发。触发词：漂流瓶、瓶中信、随机消息、获取祝福、人生感悟、message in a bottle、drift bottle。
+随机获取一个漂流瓶，其中包含人生感悟、小故事、祝福或励志语录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/piaoliuping`
-- **Source URL:** [https://clawhub.ai/skills/piaoliuping](https://clawhub.ai/skills/piaoliuping)
+## 使用方法
 
-## Overview
+触发后，运行脚本随机选择并返回一个漂流瓶消息：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/piaoliuping
+python3 scripts/get_bottle.py
 ```
+
+脚本会随机返回一条预设的漂流瓶内容。
+
+## 漂流瓶类型
+
+漂流瓶可能包含：
+
+- 人生感悟和智慧
+- 小故事或趣闻
+- 祝福和心愿
+- 励志语录
+- 思考与反思
+
+## 扩展内容
+
+要添加新的漂流瓶消息，编辑 `scripts/get_bottle.py` 并在 `messages` 列表中添加新条目。
+
+每条消息应该简洁、有意义，并且能够独立成篇。

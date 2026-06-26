@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credara — Creator Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#fafaf8;--offwhite:#f2f0ec;--cream:#e8e4dc;
+  --black:#111;--charcoal:#333;--gray:#777;--light-gray:#bbb;--faint:#eee;
+  --red:#c62828;--red-bright:#e53935;--red-dark:#8e0000;--red-faint:rgba(198,40,40,.06);
+  --green:#2e7d32;--green-faint:rgba(46,125,50,.08);--green-bg:#f1f8f1;
+  --amber:#f59e0b;--amber-faint:rgba(245,158,11,.08);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth;background:var(--white);color:var(--black);font-family:var(--sans)}
+body{overflow-x:hidden}
+::selection{background:var(--red);color:var(--white)}
+a{color:var(--red);text-decoration:none;transition:opacity .2s}
+button{cursor:pointer;font-family:var(--sans)}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,248,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav-mark{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--black);text-decoration:none}
+.nav-right{display:flex;gap:1rem;align-items:center}
+.nav-link{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);text-decoration:none}
+.nav-link:hover{color:var(--black)}
+.nav-link.active{color:var(--red)}
+
+/* Layout */
+.wrap{max-width:960px;margin:0 auto;padding:100px 2rem 4rem}
+
+/* Page header */
+.page-header{margin-bottom:3rem}
+.page-header h1{font-family:var(--serif);font-size:2.2rem;font-style:italic;margin-bottom:.5rem}
+.page-header p{color:var(--gray);font-size:.9rem;max-width:540px;line-height:1.6}
+
+/* Status badge */
+.status-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .8rem;border:1px solid;margin-bottom:2rem}
+.status-badge.not-connected{border-color:var(--light-gray);color:var(--gray)}
+.status-badge.pending{border-color:var(--amber);color:var(--amber);background:var(--amber-faint)}
+.status-badge.active{border-color:var(--green);color:var(--green);background:var(--green-faint)}
+.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+/* Connect CTA card */
+.connect-card{border:1px solid var(--cream);padding:2.5rem;max-width:560px;margin-bottom:3rem}
+.connect-card h2{font-family:var(--serif);font-size:1.5rem;font-style:italic;margin-bottom:.75rem}
+.connect-card p{color:var(--gray);font-size:.88rem;line-height:1.7;margin-bottom:1.5rem}
+.connect-card ul{list-style:none;margin-bottom:2rem}
+.connect-card ul li{font-size:.85rem;color:var(--charcoal);padding:.3rem 0;display:flex;align-items:center;gap:.6rem}
+.connect-card ul li::before{content:'◆';color:var(--red);font-size:.5rem;flex-shrink:0}
+.btn-primary{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.9rem 2rem;background:var(--red);color:var(--white);border:none;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--red-bright)}
+.btn-primary:disabled{background:var(--light-gray);cursor:not-allowed}
+.btn-secondary{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.85rem 1.8rem;background:none;color:var(--charcoal);border:1px solid var(--cream);transition:all .2s}
+.btn-secondary:hover{border-color:var(--charcoal)}
+
+/* Pending state */
+.pending-card{border:1px solid var(--amber);background:var(--amber-faint);padding:2rem;max-width:560px;margin-bottom:3rem}
+.pending-card h2{font-family:var(--serif);font-size:1.3rem;font-style:italic;margin-bottom:.5rem;color:var(--charcoal)}
+.pending-card p{font-size:.85rem;color:var(--charcoal);line-height:1.6;margin-bottom:1rem}
+.pending-card .btn-secondary{margin-right:.75rem}
+
+/* Revenue stats */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--cream);border:1px solid var(--cream);margin-bottom:3rem}
+.stat-cell{background:var(--white);padding:1.5rem;text-align:center}
+.stat-val{font-family:var(--mono);font-size:1.7rem;font-weight:600;color:var(--black)}
+.stat-val.green{color:var(--green)}
+.stat-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);margin-top:.3rem}
+
+/* Payout action */
+.payout-row{display:flex;gap:1rem;align-items:center;margin-bottom:3rem;flex-wrap:wrap}
+.payout-row .notice{font-size:.8rem;color:var(--gray)}
+.payout-row .notice strong{color:var(--charcoal)}
+
+/* Packs table */
+.section-title{font-family:var(--serif);font-size:1.2rem;font-style:italic;margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--cream)}
+.packs-table{width:100%;border-collapse:collapse;margin-bottom:3rem}
+.packs-table th{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--cream);font-weight:500}
+.packs-table td{font-size:.83rem;padding:.9rem 1rem;border-bottom:1px solid var(--faint);color:var(--charcoal);vertical-align:middle}
+.packs-table tr:hover td{background:var(--offwhite)}
+.pack-name{font-weight:500;color:var(--black)}
+.pack-domain{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.pack-price{font-family:var(--mono);color:var(--black)}
+.pack-earnings{font-family:var(--mono);color:var(--green);font-weight:600}
+.pack-status{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border:1px solid}
+.pack-status.published{border-color:var(--green);color:var(--green)}
+.pack-status.draft{border-color:var(--light-gray);color:var(--gray)}
+.empty-state{text-align:center;padding:3rem;color:var(--gray);font-size:.88rem}
+.empty-state h3{font-family:var(--serif);font-style:italic;font-size:1.2rem;margin-bottom:.5rem;color:var(--charcoal)}
+
+/* Action buttons */
+.action-btn{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem;background:none;border:1px solid var(--cream);color:var(--charcoal);cursor:pointer;transition:all .2s;white-space:nowrap}
+.action-btn:hover{border-color:var(--charcoal)}
+.action-btn:disabled{opacity:.4;cursor:not-allowed}
+.action-btn.danger{color:var(--red);border-color:transparent}
+.action-btn.danger:hover{border-color:var(--red)}
+.action-disabled{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.action-link{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--red);text-decoration:none}
+.action-link:hover{text-decoration:underline}
+.actions-cell{display:flex;gap:.5rem;align-items:center}
+
+/* Rejection details row */
+.rejection-row td{padding:0 !important;border-bottom:1px solid var(--faint)}
+.rejection-detail{padding:1rem 1rem 1rem 2rem;background:var(--red-faint);border-left:3px solid var(--red);font-size:.83rem;line-height:1.6;color:var(--charcoal);display:none}
+.rejection-detail.open{display:block}
+.rejection-detail p{margin-bottom:.75rem}
+.rejection-detail .revise-link{font-size:.75rem;color:var(--red)}
+
+/* Create Pack CTA */
+.create-cta{border:1px dashed var(--cream);padding:1.75rem 2rem;margin-bottom:2.5rem;display:flex;align-items:center;gap:1.5rem;transition:border-color .2s}
+.create-cta:hover{border-color:var(--charcoal)}
+.create-cta-btn{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.85rem 1.8rem;background:none;color:var(--charcoal);border:1px solid var(--charcoal);transition:all .2s;text-decoration:none;white-space:nowrap;display:inline-block}
+.create-cta-btn:hover{background:var(--black);color:var(--white)}
+.create-cta-text{font-size:.85rem;color:var(--gray);line-height:1.5}
+
+/* Pack status badges (additional states) */
+.pack-status.review,.pack-status.awaiting_review,.pack-status.in_review{border-color:var(--amber);color:var(--amber)}
+.pack-status.rejected{border-color:var(--red);color:var(--red)}
+
+/* How earnings work */
+.earnings-note{background:var(--offwhite);border-left:3px solid var(--red);padding:1.25rem 1.5rem;font-size:.83rem;color:var(--charcoal);line-height:1.7;margin-bottom:3rem}
+.earnings-note strong{color:var(--black)}
+
+/* Benchmarks */
+.bench-card{border:1px solid var(--cream);padding:1.25rem;margin-bottom:1rem;background:var(--white)}
+.bench-card:hover{background:var(--offwhite)}
+.bench-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.bench-name{font-weight:500;font-size:.88rem}
+.bench-meta{font-size:.7rem;color:var(--gray);display:flex;gap:1rem;flex-wrap:wrap}
+.bench-actions{display:flex;gap:.5rem;margin-top:.75rem}
+.bench-btn{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .75rem;border:1px solid var(--cream);background:none;color:var(--charcoal);transition:all .2s;font-family:var(--sans)}
+.bench-btn:hover{border-color:var(--charcoal)}
+.bench-btn.approve{border-color:var(--green);color:var(--green)}
+.bench-btn.approve:hover{background:var(--green);color:var(--white)}
+.bench-btn.danger{border-color:var(--red);color:var(--red)}
+.bench-detail{display:none;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--faint);font-size:.78rem;color:var(--charcoal);line-height:1.6}
+.bench-detail.open{display:block}
+.bench-task{background:var(--offwhite);padding:.6rem .8rem;margin-bottom:.4rem;font-family:var(--mono);font-size:.7rem;line-height:1.5}
+.bench-runs{margin-top:.5rem}
+.bench-run{display:flex;gap:1rem;font-size:.7rem;padding:.3rem 0;border-bottom:1px solid var(--faint)}
+.bench-run .score{font-family:var(--mono);font-weight:600}
+.bench-run .pass{color:var(--green)}
+.bench-run .fail{color:var(--red)}
+.bench-stats{display:flex;gap:2rem;margin-bottom:.75rem}
+.bench-stat{text-align:center}
+.bench-stat .num{font-family:var(--mono);font-size:1.1rem;font-weight:700}
+.bench-stat .label{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+
+/* Auth gate */
+.auth-gate{text-align:center;padding:6rem 2rem;max-width:400px;margin:0 auto}
+.auth-gate h2{font-family:var(--serif);font-style:italic;font-size:1.6rem;margin-bottom:.75rem}
+.auth-gate p{color:var(--gray);font-size:.88rem;margin-bottom:2rem}
+
+/* Loading */
+.loading{text-align:center;padding:4rem;color:var(--gray);font-family:var(--mono);font-size:.8rem}
+
+/* Toast */
+#toast{position:fixed;bottom:2rem;right:2rem;background:var(--black);color:var(--white);padding:.75rem 1.25rem;font-size:.75rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
+#toast.show{opacity:1}
+
+@media(max-width:600px){
+  nav{padding:0 1rem}
+  .nav-right{gap:.5rem}
+  .nav-link{font-size:.55rem}
+  .wrap{padding:80px 1rem 3rem}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .packs-table th:nth-child(3),.packs-table td:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-mark">Credara</a>
+  <button class="mob-hamburger" onclick="document.getElementById('mob-nav-c').classList.toggle('open')" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="nav-right">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/courses" class="nav-link">Courses</a>
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+    <a href="/creator" class="nav-link active">Creator</a>
+    <a href="#" class="nav-link" id="nav-logout" style="display:none">Log Out</a>
+  </div>
+</nav>
+<div id="mob-nav-c" class="mob-nav-overlay">
+  <a href="/dashboard">Dashboard</a>
+  <a href="/courses">Courses</a>
+  <a href="/creator" style="color:var(--red);font-weight:600">Creator Studio</a>
+  <a href="/pricing">Pricing</a>
+  <a href="/docs">Docs</a>
+  <a href="/">Home</a>
+</div>
+<style>
+.mob-hamburger{display:none;background:none;border:none;cursor:pointer;padding:.5rem;color:var(--charcoal);min-width:44px;min-height:44px;align-items:center;justify-content:center}
+.mob-nav-overlay{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(250,250,248,.98);z-index:199;padding:1.5rem 2rem;flex-direction:column}
+.mob-nav-overlay.open{display:flex!important}
+.mob-nav-overlay a{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal);text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(0,0,0,.04);display:block}
+@media(max-width:900px){.mob-hamburger{display:flex!important}.nav-right{display:none!important}}
+</style>
+
+<div class="wrap" id="app">
+  <div class="loading">Loading creator studio…</div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const API = '';
+const TOKEN = localStorage.getItem('accessToken');
+
+// ── Auth helpers ──────────────────────────────────────────────────
+function authHeaders() {
+  return TOKEN ? { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
+}
+
+function toast(msg, duration = 3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ── Main ──────────────────────────────────────────────────────────
+async function init() {
+  const app = document.getElementById('app');
+
+  // Auth gate
+  if (!TOKEN) {
+    app.innerHTML = `
+      <div class="auth-gate">
+        <h2>Creator Studio</h2>
+        <p>Sign in to manage your skill packs, connect Stripe, and track your earnings.</p>
+        <a href="/dashboard" class="btn-primary">Sign In</a>
+      </div>`;
+    return;
+  }
+
+  // Handle Stripe Connect return/refresh
+  const params = new URLSearchParams(window.location.search);
+  const isReturn  = params.get('return') === 'true';
+  const isRefresh = params.get('refresh') === 'true';
+
+  // Load profile + connect status in parallel
+  let profile, connectStatus;
+  window._connectStatus = null; // global for pack actions
+  try {
+    [profile, connectStatus] = await Promise.all([
+      fetch(`${API}/api/auth/me`, { headers: authHeaders() }).then(r => r.json()),
+      fetch(`${API}/api/payments/connect/status?ownerId=${await getOwnerId()}`, { headers: authHeaders() }).then(r => r.json()),
+    ]);
+  } catch (e) {
+    app.innerHTML = `<div class="loading">Failed to load creator data. Try refreshing.</div>`;
+    return;
+  }
+
+  // If Stripe just redirected back, check if newly active
+  if (isReturn && connectStatus.status !== 'active') {
+    // Re-fetch after a moment (webhook might be in-flight)
+    await new Promise(r => setTimeout(r, 2000));
+    try {
+      connectStatus = await fetch(`${API}/api/payments/connect/status?ownerId=${profile.id}`, { headers: authHeaders() }).then(r => r.json());
+    } catch {}
+  }
+
+  const ownerId = profile.id;
+
+  // Show logout
+  document.getElementById('nav-logout').style.display = '';
+  document.getElementById('nav-logout').onclick = () => {
+    localStorage.removeItem('accessToken');
+    window.location.href = '/';
+  };
+
+  // ── Render by status ──────────────────────────────────────────
+  // Allow creators to use the studio without Stripe — show banner instead of blocking
+  if (connectStatus.connected && connectStatus.status === 'active') {
+    await renderConnected(app, ownerId, isReturn);
+  } else if (localStorage.getItem('skipStripeOnboarding')) {
+    await renderConnected(app, ownerId, false, true); // showStripeBanner=true
+  } else if (connectStatus.connected && connectStatus.status === 'pending') {
+    renderPending(app, ownerId, isRefresh);
+  } else {
+    renderNotConnected(app, ownerId);
+  }
+
+  // Always show skip option at bottom regardless of state
+  if (!connectStatus.connected || connectStatus.status !== 'active') {
+    if (!localStorage.getItem('skipStripeOnboarding')) {
+      const skipEl = document.createElement('div');
+      skipEl.style.cssText = 'text-align:center;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--cream)';
+      skipEl.innerHTML = '<button onclick="localStorage.setItem(\'skipStripeOnboarding\',\'1\');location.reload()" style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--cream);background:none;color:var(--gray);cursor:pointer;transition:all .2s">Skip Stripe — explore Creator Studio →</button>';
+      app.appendChild(skipEl);
+    }
+  }
+}
+
+async function getOwnerId() {
+  if (!TOKEN) return '';
+  try {
+    const me = await fetch(`${API}/api/auth/me`, { headers: authHeaders() }).then(r => r.json());
+    return me.id || '';
+  } catch { return ''; }
+}
+
+// ── Not connected state ───────────────────────────────────────────
+function renderNotConnected(app, ownerId) {
+  app.innerHTML = `
+    <div class="page-header">
+      <h1>Creator Studio</h1>
+      <p>Publish skill packs and courses, earn 90% of every sale. Connect your bank account to get paid.</p>
+    </div>
+
+    <div class="status-badge not-connected">
+      <span class="status-dot"></span>
+      Stripe not connected
+    </div>
+
+    <div class="connect-card">
+      <h2>Connect your bank account</h2>
+      <p>Credara uses Stripe Connect to pay creators directly. Every time someone buys your skill pack or course, 90% goes to your bank account automatically.</p>
+      <ul>
+        <li>90% of every sale paid to your bank</li>
+        <li>10% platform fee covers hosting, discovery, and fraud protection</li>
+        <li>Payouts on Stripe's standard schedule (daily rolling)</li>
+        <li>Full earnings dashboard in your Stripe Express account</li>
+        <li>Supports 40+ countries, ACH, SEPA, and more</li>
+      </ul>
+      <button class="btn-primary" id="btn-connect" onclick="startOnboarding('${ownerId}')">
+        Connect Stripe →
+      </button>
+      <button class="btn-secondary" style="margin-top:.75rem;opacity:.7" onclick="localStorage.setItem('skipStripeOnboarding','1');location.reload()">
+        Skip for now — explore Creator Studio →
+      </button>
+    </div>
+
+    <div class="earnings-note">
+      <strong>How payouts work:</strong> When a buyer pays, Stripe splits the charge instantly — 90% goes directly to your connected account, 10% stays with Credara. You don't need to invoice us or wait for a monthly payout. The money is yours the moment the transaction settles.
+    </div>
+
+    ${renderPacksPreview(ownerId)}
+  `;
+}
+
+// ── Pending state ─────────────────────────────────────────────────
+function renderPending(app, ownerId, isRefresh) {
+  app.innerHTML = `
+    <div class="page-header">
+      <h1>Creator Studio</h1>
+      <p>Finish setting up your Stripe account to start receiving payouts.</p>
+    </div>
+
+    <div class="status-badge pending">
+      <span class="status-dot"></span>
+      Stripe onboarding in progress
+    </div>
+
+    <div class="pending-card">
+      <h2>${isRefresh ? 'Onboarding link expired' : 'Almost there'}</h2>
+      <p>${isRefresh
+        ? 'Your Stripe onboarding link expired. Click below to get a new one and finish setting up your account.'
+        : 'Your Stripe account has been created but onboarding isn\'t complete yet. Finish connecting your bank account to start receiving payouts.'
+      }</p>
+      <button class="btn-secondary" onclick="startOnboarding('${ownerId}')">
+        ${isRefresh ? 'Get new link →' : 'Continue onboarding →'}
+      </button>
+      <button class="btn-secondary" onclick="checkStatus('${ownerId}')">Check status</button>
+    </div>
+
+    <div class="earnings-note">
+      <strong>Why complete this?</strong> Until your Stripe account is active, you can create and edit skill packs but publishing requires Stripe. Complete onboarding to unlock payouts.
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--cream)">
+      <button onclick="localStorage.setItem('skipStripeOnboarding','1');location.reload()" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;border:1px solid var(--red);background:var(--red);color:#fff;cursor:pointer;border-radius:4px;transition:all .2s">
+        Skip for now — explore Creator Studio →
+      </button>
+      <div style="font-size:.65rem;color:var(--gray);margin-top:.5rem">You can connect Stripe later to publish and receive payouts</div>
+    </div>
+  `;
+}
+
+// ── Connected + active state ──────────────────────────────────────
+async function renderConnected(app, ownerId, justConnected, showStripeBanner) {
+  window._stripeActive = !showStripeBanner; // true if Stripe is connected and active
+  if (justConnected) toast('✓ Stripe account connected. You\'re live!', 4000);
+
+  // Load creator's packs
+  let packs = [];
+  try {
+    const r = await fetch(`${API}/api/skillpacks?owner=${ownerId}`, { headers: authHeaders() });
+    const d = await r.json();
+    packs = d.packs || d.data || d || [];
+    if (!Array.isArray(packs)) packs = [];
+  } catch {}
+
+  // Load creator's courses
+  let courses = [];
+  try {
+    const r = await fetch(`${API}/api/courses/author/${ownerId}`, { headers: authHeaders() });
+    const d = await r.json();
+    courses = d.courses || d || [];
+    if (!Array.isArray(courses)) courses = [];
+  } catch {}
+
+  // Load creator profile for live feedback
+  let profile = null;
+  try {
+    // Find first agent for this owner
+    const agentR = await fetch(`${API}/api/agents/my`, { headers: authHeaders() });
+    const agentD = agentR.ok ? await agentR.json() : {};
+    const firstAgent = (agentD.agents || [])[0];
+    if (firstAgent) {
+      const profR = await fetch(`${API}/api/discover/creator/${firstAgent.id}`);
+      if (profR.ok) { profile = await profR.json(); profile._agentId = firstAgent.id; }
+    }
+  } catch {}
+
+  const totalInstalls = packs.reduce((s, p) => s + (p.install_count || 0), 0)
+    + courses.reduce((s, c) => s + (c.install_count || 0), 0);
+
+  const grossRevenue = [
+    ...packs.map(p => (p.install_count || 0) * (p.price_usd || 0)),
+    ...courses.map(c => (c.install_count || 0) * (c.price_usd || 0)),
+  ].reduce((s, v) => s + v, 0);
+
+  const creatorEarnings = Math.round(grossRevenue * 0.9);
+
+  app.innerHTML = `
+    ${showStripeBanner ? `
+    <div style="margin-bottom:1.5rem;padding:.75rem 1.25rem;border:1px solid rgba(198,40,40,.3);background:rgba(198,40,40,.04);font-size:.78rem;color:var(--charcoal);line-height:1.6;display:flex;justify-content:space-between;align-items:center">
+      <span>💳 <strong>Stripe not connected</strong> — Connect your bank account to receive payouts on sales. <a href="#" onclick="localStorage.removeItem('skipStripeOnboarding');location.reload()" style="color:var(--red)">Connect now →</a></span>
+      <button onclick="this.parentElement.remove()" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:1.1rem;padding:0 .25rem">&times;</button>
+    </div>` : ''}
+    <div class="page-header">
+      <h1>Creator Studio</h1>
+      <p>${showStripeBanner ? 'Publish skill packs and courses. Connect Stripe when you\'re ready to get paid.' : 'Your Stripe account is connected. Payouts go directly to your bank on every sale.'}</p>
+    </div>
+
+    ${showStripeBanner ? '' : `<div class="status-badge active">
+      <span class="status-dot"></span>
+      Stripe connected &amp; active
+    </div>`}
+
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-val green">$${(creatorEarnings / 100).toFixed(2)}</div>
+        <div class="stat-label">Your earnings (90%)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">$${(grossRevenue / 100).toFixed(2)}</div>
+        <div class="stat-label">Gross revenue</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">${totalInstalls}</div>
+        <div class="stat-label">Total installs</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">${packs.length + courses.length}</div>
+        <div class="stat-label">Published items</div>
+      </div>
+    </div>
+
+    <div class="payout-row">
+      <button class="btn-primary" id="btn-dashboard" onclick="openStripeDashboard('${ownerId}')">
+        Open Stripe Dashboard →
+      </button>
+      <span class="notice">View payouts, tax docs, and bank transfers in your <strong>Stripe Express</strong> account.</span>
+    </div>
+
+    <div class="earnings-note">
+      <strong>Payout schedule:</strong> Stripe pays out on a rolling daily basis after a 2-day hold (US). International payouts typically take 3–5 business days. Tax forms (1099-K for US creators) are available in your Stripe dashboard.
+    </div>
+
+    <div class="create-cta">
+      <a href="/builder" class="create-cta-btn">+ Build a New Skill Pack →</a>
+      <span class="create-cta-text">Use the AI-assisted builder to turn your expertise into a sellable skill pack.</span>
+    </div>
+
+    ${profile && profile._agentId ? `
+    <div style="margin-bottom:2rem;padding:1.25rem;border:1px solid var(--cream);background:var(--offwhite);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div style="font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);font-family:var(--mono);margin-bottom:.35rem">Your Public Profile</div>
+        <div style="font-size:.85rem;font-weight:500;color:var(--charcoal)">/creator/${profile._agentId.slice(0,8)}…</div>
+        ${profile.stats?.avgCourseDelta != null ? `<div style="font-size:.72rem;color:var(--green);margin-top:.25rem">Avg course delta: +${profile.stats.avgCourseDelta}pp · ${profile.stats.totalStudents} students · ${profile.stats.avgCourseCompletionRate}% completion</div>` : profile.stats?.totalInstalls > 0 ? `<div style="font-size:.72rem;color:var(--gray);margin-top:.25rem">${profile.stats.totalInstalls.toLocaleString()} installs · ${profile.stats.avgPackRating > 0 ? '★ '+profile.stats.avgPackRating+' avg' : 'no ratings yet'}</div>` : '<div style="font-size:.72rem;color:var(--light-gray);margin-top:.25rem">No installs yet — share your profile to get discovered</div>'}
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <a href="/creator/${profile._agentId}" target="_blank" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem 1rem;border:1px solid var(--cream);color:var(--charcoal);text-decoration:none;display:inline-block">View Profile ↗</a>
+        <button onclick="copyProfileLink('${profile._agentId}')" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem 1rem;border:1px solid var(--cream);background:none;color:var(--gray)">Copy Link</button>
+        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out my AI agent courses and skill packs on Credara →')}&url=${encodeURIComponent(window.location.origin+'/creator/'+profile._agentId)}" target="_blank" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem 1rem;background:var(--black);color:#fff;text-decoration:none;display:inline-block">Share on X</a>
+      </div>
+    </div>` : ''}
+
+    ${profile && profile.topResults && profile.topResults.length ? `
+    <div style="margin-bottom:2rem">
+      <h2 class="section-title">Live Student Results</h2>
+      <p style="font-size:.78rem;color:var(--gray);margin-bottom:1rem;line-height:1.6">Real before/after improvement scores from agents that completed your courses.</p>
+      <div style="border:1px solid var(--cream)">
+        ${profile.topResults.map(r => `
+        <div style="display:flex;align-items:center;gap:1rem;padding:.85rem 1.25rem;border-bottom:1px solid var(--faint)">
+          <div style="font-family:var(--serif);font-size:1.4rem;color:var(--green);width:60px;text-align:right;flex-shrink:0">+${r.delta}pp</div>
+          <div style="flex:1">
+            <div style="font-size:.82rem;font-weight:500;color:var(--charcoal)">${r.agentName || 'Agent'}</div>
+            <div style="font-size:.68rem;color:var(--gray)">${r.courseName}</div>
+          </div>
+          <div style="font-size:.6rem;color:var(--light-gray);font-family:var(--mono)">${timeAgo(r.issuedAt)}</div>
+        </div>`).join('')}
+      </div>
+    </div>` : ''}
+
+    <h2 class="section-title">Skill Packs</h2>
+    ${renderPacksTable(packs)}
+
+    <h2 class="section-title">Courses</h2>
+    ${renderCoursesTable(courses)}
+
+    <h2 class="section-title">Benchmarks</h2>
+    <div id="benchmarks-section"><div class="loading">Loading benchmarks…</div></div>
+  `;
+}
+
+function renderPacksTable(packs) {
+  if (!packs.length) {
+    return `<div class="empty-state"><h3>No skill packs yet</h3><p>Publish your first pack via the <a href="/builder">Skill Builder</a>.</p></div>`;
+  }
+  return `
+    <table class="packs-table">
+      <thead>
+        <tr>
+          <th>Pack</th>
+          <th>Price</th>
+          <th>Installs</th>
+          <th>Your earnings</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${packs.map(p => {
+          const earnings = Math.round((p.install_count || 0) * (p.price_usd || 0) * 0.9);
+          const status = p.status || 'draft';
+          const pid = p.id;
+          const authorId = p.authorId || p.author_id || '';
+
+          let actions = '';
+          if (status === 'draft') {
+            const canPublish = window._stripeActive;
+            actions = `<div class="actions-cell">
+              <button class="action-btn" onclick="editDraft('${pid}')">Edit</button>
+              ${canPublish 
+                ? `<button class="action-btn" onclick="submitForReview('${pid}','${authorId}')">Publish</button>`
+                : `<button class="action-btn" onclick="alert('Connect Stripe to publish skill packs and receive payouts.\\n\\nVisit the Creator Studio settings to complete onboarding.')" style="opacity:.5" title="Stripe Connect required">Publish (Stripe Required)</button>`
+              }
+              <button class="action-btn danger" onclick="deletePack('${pid}')">Delete</button>
+            </div>`;
+          } else if (status === 'review' || status === 'awaiting_review' || status === 'in_review') {
+            actions = `<span class="action-disabled">In Review…</span>`;
+          } else if (status === 'published') {
+            actions = `<a href="/marketplace?pack=${pid}" class="action-link">View →</a>`;
+          } else if (status === 'rejected') {
+            actions = `<button class="action-btn" onclick="toggleRejectionReason('${pid}',this)">Why?</button>`;
+          }
+
+          let rejectionRow = '';
+          if (status === 'rejected') {
+            rejectionRow = `<tr class="rejection-row" id="rejection-${pid}">
+              <td colspan="6">
+                <div class="rejection-detail" id="rejection-detail-${pid}">
+                  <p><strong>Loading…</strong></p>
+                </div>
+              </td>
+            </tr>`;
+          }
+
+          return `
+            <tr>
+              <td>
+                <div class="pack-name">${p.name || p.id}</div>
+                <div class="pack-domain">${p.domain_id || p.domainId || ''}</div>
+              </td>
+              <td class="pack-price">${(p.price_usd || p.priceUsd) ? '$'+((p.price_usd || p.priceUsd)/100).toFixed(2) : 'Free'}</td>
+              <td>${p.install_count || p.installCount || 0}</td>
+              <td class="pack-earnings">$${(earnings/100).toFixed(2)}</td>
+              <td><span class="pack-status ${status}">${status}</span></td>
+              <td>${actions}</td>
+            </tr>${rejectionRow}`;
+        }).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderCoursesTable(courses) {
+  if (!courses.length) {
+    return `<div class="empty-state" style="margin-bottom:3rem"><h3>No courses yet</h3><p>Create a course by bundling your skill packs together.</p></div>`;
+  }
+  return `
+    <table class="packs-table" style="margin-bottom:3rem">
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Price</th>
+          <th>Enrollments</th>
+          <th>Your earnings</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${courses.map(c => {
+          const earnings = Math.round((c.install_count || 0) * (c.price_usd || 0) * 0.9);
+          return `
+            <tr>
+              <td>
+                <div class="pack-name">${c.name}</div>
+                <div class="pack-domain">${c.domain_id || ''}</div>
+              </td>
+              <td class="pack-price">${c.price_usd ? '$'+(c.price_usd/100).toFixed(2) : 'Free'}</td>
+              <td>${c.install_count || 0}</td>
+              <td class="pack-earnings">$${(earnings/100).toFixed(2)}</td>
+              <td><span class="pack-status ${c.status || 'draft'}">${c.status || 'draft'}</span></td>
+            </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderPacksPreview(ownerId) {
+  return `
+    <h2 class="section-title">Your Skill Packs</h2>
+    <div class="empty-state">
+      <h3>Connect Stripe to see earnings</h3>
+      <p>Once connected, this section will show per-pack revenue and install counts.</p>
+    </div>`;
+}
+
+// ── Pack Actions ──────────────────────────────────────────────────
+async function submitForReview(packId, authorId) {
+  try {
+    const r = await fetch(`${API}/api/skillpacks/${packId}/submit`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ authorId }),
+    });
+    const d = await r.json();
+    if (r.ok) {
+      toast('Submitted for review ✓');
+      setTimeout(() => window.location.reload(), 1000);
+    } else {
+      toast('Error: ' + (d.error || 'Failed to submit'));
+    }
+  } catch {
+    toast('Network error. Try again.');
+  }
+}
+
+async function deletePack(packId) {
+  if (!confirm('Delete this draft? This cannot be undone.')) return;
+  try {
+    const r = await fetch(`${API}/api/skillpacks/${packId}`, {
+      method: 'DELETE',
+      headers: authHeaders(),
+    });
+    const d = await r.json();
+    if (r.ok) {
+      toast('Draft deleted');
+      setTimeout(() => window.location.reload(), 800);
+    } else {
+      toast('Error: ' + (d.error || 'Failed to delete'));
+    }
+  } catch {
+    toast('Network error. Try again.');
+  }
+}
+
+async function toggleRejectionReason(packId, btn) {
+  const detail = document.getElementById(`rejection-detail-${packId}`);
+  if (!detail) return;
+
+  if (detail.classList.contains('open')) {
+    detail.classList.remove('open');
+    return;
+  }
+
+  // Fetch rejection reason on demand
+  detail.innerHTML = '<p><strong>Loading…</strong></p>';
+  detail.classList.add('open');
+
+  try {
+    const r = await fetch(`${API}/api/skillpacks/${packId}`, { headers: authHeaders() });
+    const pack = await r.json();
+    const reason = pack.rejectionReason || pack.rejection_reason || 'No reason provided.';
+    detail.innerHTML = `
+      <p>${reason.replace(/\n---\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
+      <p class="revise-link"><a href="/builder">Revise &amp; Resubmit →</a> — Fix the issues above, save a new draft, and resubmit.</p>
+    `;
+  } catch {
+    detail.innerHTML = '<p>Failed to load rejection reason.</p>';
+  }
+}
+
+// ── Actions ───────────────────────────────────────────────────────
+async function startOnboarding(ownerId) {
+  const btn = document.getElementById('btn-connect');
+  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting to Stripe…'; }
+
+  try {
+    const me = await fetch(`${API}/api/auth/me`, { headers: authHeaders() }).then(r => r.json());
+    const email = me.email || '';
+
+    const r = await fetch(`${API}/api/payments/connect/onboard`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ ownerId, email }),
+    });
+    const d = await r.json();
+
+    if (d.url) {
+      window.location.href = d.url;
+    } else {
+      toast('Error: ' + (d.error || 'Failed to start onboarding'));
+      if (btn) { btn.disabled = false; btn.textContent = 'Connect Stripe →'; }
+    }
+  } catch (e) {
+    toast('Network error. Try again.');
+    if (btn) { btn.disabled = false; btn.textContent = 'Connect Stripe →'; }
+  }
+}
+
+async function checkStatus(ownerId) {
+  toast('Checking Stripe status…');
+  try {
+    const r = await fetch(`${API}/api/payments/connect/status?ownerId=${ownerId}`, { headers: authHeaders() });
+    const d = await r.json();
+    if (d.status === 'active') {
+      toast('✓ Account active! Reloading…');
+      setTimeout(() => window.location.reload(), 1000);
+    } else {
+      toast('Still pending. Finish onboarding in Stripe.');
+    }
+  } catch {
+    toast('Failed to check status.');
+  }
+}
+
+function copyProfileLink(agentId) {
+  navigator.clipboard.writeText(window.location.origin + '/creator/' + agentId)
+    .then(() => toast('Profile link copied!'));
+}
+
+function timeAgo(ts) {
+  if (!ts) return '';
+  const diff = (Date.now() - new Date(ts).getTime()) / 1000;
+  if (diff < 3600) return Math.floor(diff/60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+  return Math.floor(diff/86400) + 'd ago';
+}
+
+async function openStripeDashboard(ownerId) {
+  const btn = document.getElementById('btn-dashboard');
+  if (btn) { btn.disabled = true; btn.textContent = 'Opening…'; }
+  try {
+    const r = await fetch(`${API}/api/payments/connect/dashboard?ownerId=${ownerId}`, { headers: authHeaders() });
+    const d = await r.json();
+    if (d.url) {
+      window.open(d.url, '_blank');
+    } else {
+      toast('Error: ' + (d.error || 'Failed to open dashboard'));
+    }
+  } catch {
+    toast('Network error.');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Open Stripe Dashboard →'; }
+  }
+}
+
+// ── Benchmarks ────────────────────────────────────────────────────
+async function loadBenchmarks() {
+  const el = document.getElementById('benchmarks-section');
+  if (!el) return;
+  try {
+    const r = await fetch(`${API}/api/creator/benchmarks`, { headers: authHeaders() });
+    if (!r.ok) { el.innerHTML = '<div class="empty-state"><p>Unable to load benchmarks.</p></div>'; return; }
+    const d = await r.json();
+    const benchmarks = d.benchmarks || [];
+    if (!benchmarks.length) {
+      el.innerHTML = '<div class="empty-state"><h3>No benchmarks yet</h3><p>Benchmarks are auto-generated when you publish a skill pack.</p></div>';
+      return;
+    }
+    el.innerHTML = benchmarks.map(b => renderBenchCard(b)).join('');
+  } catch { el.innerHTML = '<div class="empty-state"><p>Failed to load benchmarks.</p></div>'; }
+}
+
+function renderBenchCard(b) {
+  const status = b.status || 'draft';
+  const tasks = b.tasks || [];
+  const passRate = b.analytics?.passRate != null ? Math.round(b.analytics.passRate * 100) + '%' : '—';
+  const totalRuns = b.analytics?.totalRuns ?? b.run_count ?? 0;
+  const avgScore = b.analytics?.avgScore != null ? (b.analytics.avgScore * 100).toFixed(1) + '%' : '—';
+  const packName = b.skill_pack_name || b.packName || b.skill_pack_id?.slice(0,8) || '—';
+
+  let actions = '';
+  if (status === 'draft') {
+    actions = `
+      <button class="bench-btn approve" onclick="approveBenchmark('${b.id}')">Approve</button>
+      <button class="bench-btn danger" onclick="rejectBenchmark('${b.id}')">Reject</button>`;
+  }
+  actions += `<button class="bench-btn" onclick="toggleBenchDetail('${b.id}')">Details</button>`;
+  if (b.skill_pack_id) {
+    actions += `<button class="bench-btn" onclick="regenerateBenchmark('${b.skill_pack_id}')">Regenerate</button>`;
+  }
+
+  return `
+    <div class="bench-card" id="bench-${b.id}">
+      <div class="bench-header">
+        <span class="bench-name">${esc(packName)}</span>
+        <span class="pack-status ${status}">${status}</span>
+      </div>
+      <div class="bench-stats">
+        <div class="bench-stat"><div class="num">${tasks.length}</div><div class="label">Tasks</div></div>
+        <div class="bench-stat"><div class="num">${totalRuns}</div><div class="label">Runs</div></div>
+        <div class="bench-stat"><div class="num">${passRate}</div><div class="label">Pass Rate</div></div>
+        <div class="bench-stat"><div class="num">${avgScore}</div><div class="label">Avg Score</div></div>
+      </div>
+      <div class="bench-meta">
+        <span>Created ${new Date(b.created_at || b.createdAt).toLocaleDateString()}</span>
+        ${b.pass_threshold ? `<span>Threshold: ${(b.pass_threshold * 100).toFixed(0)}%</span>` : ''}
+      </div>
+      <div class="bench-actions">${actions}</div>
+      <div class="bench-detail" id="bench-detail-${b.id}">
+        ${tasks.length ? `<strong>Tasks:</strong>` + tasks.slice(0,5).map(t =>
+          `<div class="bench-task">${esc(t.instruction || t.prompt || JSON.stringify(t).slice(0,120))}</div>`
+        ).join('') + (tasks.length > 5 ? `<div style="color:var(--gray);font-size:.7rem">+ ${tasks.length - 5} more tasks</div>` : '') : '<p>No tasks defined.</p>'}
+      </div>
+    </div>`;
+}
+
+function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+function toggleBenchDetail(id) {
+  const el = document.getElementById('bench-detail-' + id);
+  if (el) el.classList.toggle('open');
+}
+
+async function approveBenchmark(id) {
+  if (!confirm('Approve this benchmark? It will become active for all agents.')) return;
+  try {
+    const r = await fetch(`${API}/api/creator/benchmarks/${id}/approve`, { method: 'POST', headers: authHeaders() });
+    if (r.ok) { toast('Benchmark approved ✓'); loadBenchmarks(); }
+    else { const d = await r.json(); toast('Error: ' + (d.error || 'Failed')); }
+  } catch { toast('Network error.'); }
+}
+
+async function rejectBenchmark(id) {
+  if (!confirm('Reject this benchmark draft?')) return;
+  try {
+    const r = await fetch(`${API}/api/creator/benchmarks/${id}/reject`, { method: 'POST', headers: authHeaders() });
+    if (r.ok) { toast('Benchmark rejected'); loadBenchmarks(); }
+    else { const d = await r.json(); toast('Error: ' + (d.error || 'Failed')); }
+  } catch { toast('Network error.'); }
+}
+
+async function regenerateBenchmark(packId) {
+  if (!confirm('Regenerate benchmark for this pack? This creates a new draft.')) return;
+  try {
+    const r = await fetch(`${API}/api/creator/benchmarks/generate/${packId}`, { method: 'POST', headers: authHeaders() });
+    if (r.ok) { toast('Benchmark generation started ✓'); setTimeout(loadBenchmarks, 2000); }
+    else { const d = await r.json(); toast('Error: ' + (d.error || 'Failed')); }
+  } catch { toast('Network error.'); }
+}
+
+// Boot
+init().then(() => loadBenchmarks()).catch(e => {
+  document.getElementById('app').innerHTML = `<div class="loading">Error: ${e.message}</div>`;
+});
+</script>
+<div class="legal-footer" style="text-align:center;padding:2rem 0 1rem;font-size:.7rem;color:#888;font-family:'Space Mono',monospace">
+  &copy; 2026 Credara &middot;
+  <a href="/terms" style="color:#888;margin:0 .5rem">Terms</a> &middot;
+  <a href="/privacy" style="color:#888;margin:0 .5rem">Privacy</a> &middot;
+  <a href="/disclosures" style="color:#888;margin:0 .5rem">Legal</a>
+</div>
+<!-- Edit Draft Modal -->
+<div class="modal-overlay" id="edit-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1100;justify-content:center;align-items:flex-start;padding-top:60px;overflow-y:auto">
+  <div style="background:#fff;border-radius:12px;padding:2rem;max-width:640px;width:95%;margin:1rem auto 2rem;max-height:90vh;overflow-y:auto;position:relative">
+    <button onclick="closeEditModal()" style="position:absolute;top:.75rem;right:1rem;background:none;border:none;font-size:1.3rem;color:var(--gray);cursor:pointer">×</button>
+    <h2 style="font-family:var(--serif);margin-bottom:.25rem">Edit Skill Pack</h2>
+    <p style="color:var(--gray);font-size:.8rem;margin-bottom:1.5rem" id="edit-pack-id"></p>
+
+    <div style="margin-bottom:1rem">
+      <label style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:.3rem">Title</label>
+      <input type="text" id="edit-title" style="width:100%;padding:.6rem .8rem;border:1px solid var(--cream);border-radius:4px;font-size:.9rem" />
+    </div>
+
+    <div style="margin-bottom:1rem">
+      <label style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:.3rem">Description</label>
+      <textarea id="edit-desc" rows="4" style="width:100%;padding:.6rem .8rem;border:1px solid var(--cream);border-radius:4px;font-size:.85rem;resize:vertical"></textarea>
+    </div>
+
+    <div style="margin-bottom:1rem">
+      <label style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:.3rem">Domain</label>
+      <select id="edit-domain" style="width:100%;padding:.6rem .8rem;border:1px solid var(--cream);border-radius:4px;font-size:.85rem">
+        <option value="dom-cybersecurity">Cybersecurity</option>
+        <option value="dom-ai-agents">AI Agents</option>
+        <option value="dom-cs-fundamentals">CS Fundamentals</option>
+        <option value="dom-data-science">Data Science</option>
+        <option value="dom-devops">DevOps</option>
+        <option value="dom-finance">Finance</option>
+        <option value="dom-legal">Legal</option>
+        <option value="dom-product">Product</option>
+        <option value="dom-real-estate">Real Estate</option>
+        <option value="dom-smart-contracts">Smart Contracts</option>
+        <option value="dom-web3-security">Web3 Security</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:1rem">
+      <label style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:.3rem">Prompt Chains (JSON array)</label>
+      <textarea id="edit-prompts" rows="6" style="width:100%;padding:.6rem .8rem;border:1px solid var(--cream);border-radius:4px;font-size:.75rem;font-family:var(--mono);resize:vertical" placeholder='["chain 1 description", "chain 2 description"]'></textarea>
+    </div>
+
+    <div style="margin-bottom:1rem">
+      <label style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:.3rem">Price (USD cents, 0 = free)</label>
+      <input type="number" id="edit-price" min="0" step="1" style="width:100%;padding:.6rem .8rem;border:1px solid var(--cream);border-radius:4px;font-size:.85rem" />
+    </div>
+
+    <!-- Document Upload -->
+    <div style="margin-bottom:1.5rem;padding:1rem;border:2px dashed var(--cream);border-radius:8px;text-align:center">
+      <label style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.5rem">Training Documents</label>
+      <p style="font-size:.75rem;color:var(--gray);margin-bottom:.75rem">Upload reference docs to enhance the skill pack content. The model will use these to improve prompt chains and domain context.</p>
+      <input type="file" id="edit-files" multiple accept=".txt,.md,.pdf,.json,.csv,.py,.js,.ts" onchange="handleFileUpload(this.files)" style="display:none" />
+      <button onclick="document.getElementById('edit-files').click()" style="padding:.5rem 1.2rem;border:1px solid var(--red);background:none;color:var(--red);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:4px">Upload Documents</button>
+      <div id="upload-list" style="margin-top:.75rem;text-align:left"></div>
+    </div>
+
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <button onclick="saveEdit()" id="edit-save-btn" style="flex:1;padding:.7rem;background:var(--red);color:#fff;border:none;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:4px;font-weight:600">Save Changes</button>
+      <button onclick="closeEditModal()" style="flex:1;padding:.7rem;background:none;border:1px solid var(--cream);color:var(--gray);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:4px">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let editingPackId = null;
+let uploadedDocs = [];
+
+async function editDraft(packId) {
+  editingPackId = packId;
+  const resp = await fetch(`${API}/api/skillpacks/${packId}`, { headers: authHeaders() });
+  if (!resp.ok) { alert('Failed to load pack'); return; }
+  const pack = await resp.json();
+  
+  document.getElementById('edit-pack-id').textContent = `ID: ${packId}`;
+  document.getElementById('edit-title').value = pack.name || '';
+  document.getElementById('edit-desc').value = pack.description || '';
+  document.getElementById('edit-domain').value = pack.domain_id || pack.domainId || 'dom-cybersecurity';
+  document.getElementById('edit-price').value = pack.price_usd || pack.price_claw || 0;
+  
+  const prompts = pack.prompt_chains || pack.promptChains || [];
+  document.getElementById('edit-prompts').value = typeof prompts === 'string' ? prompts : JSON.stringify(prompts, null, 2);
+  
+  uploadedDocs = [];
+  document.getElementById('upload-list').innerHTML = '';
+  document.getElementById('edit-modal').style.display = 'flex';
+}
+
+function closeEditModal() {
+  document.getElementById('edit-modal').style.display = 'none';
+  editingPackId = null;
+  uploadedDocs = [];
+}
+
+function handleFileUpload(files) {
+  const list = document.getElementById('upload-list');
+  const MAX_FILE_SIZE = 512 * 1024; // 512KB per file
+  const MAX_TOTAL = 2 * 1024 * 1024; // 2MB total
+  const MAX_FILES = 10;
+  
+  if (uploadedDocs.length + files.length > MAX_FILES) {
+    alert('Maximum 10 documents allowed');
+    return;
+  }
+  
+  for (const file of files) {
+    if (file.size > MAX_FILE_SIZE) {
+      alert(`${file.name} is too large (${(file.size/1024).toFixed(0)}KB). Max 512KB per file.`);
+      continue;
+    }
+    const totalSize = uploadedDocs.reduce((s, d) => s + d.content.length, 0) + file.size;
+    if (totalSize > MAX_TOTAL) {
+      alert('Total upload size limit (2MB) reached');
+      break;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      let content = e.target.result;
+      // Sanitize: strip script tags, html, and common injection patterns
+      content = content.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '[REMOVED SCRIPT]');
+      content = content.replace(/<[^>]+>/g, ''); // strip HTML tags
+      content = content.replace(/\b(ignore|disregard|forget)\s+(previous|above|all)\s+(instructions?|prompts?|rules?)/gi, '[FILTERED]');
+      
+      uploadedDocs.push({ name: file.name, content, type: file.type });
+      list.innerHTML += `<div style="font-size:.72rem;padding:.3rem .5rem;background:var(--offwhite);border:1px solid var(--cream);border-radius:3px;margin-bottom:.3rem;display:flex;justify-content:space-between;align-items:center">
+        <span>📄 ${file.name} <span style="color:var(--gray)">(${(file.size/1024).toFixed(1)}KB)</span></span>
+        <button onclick="this.parentElement.remove();uploadedDocs=uploadedDocs.filter(d=>d.name!=='${file.name}')" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:.8rem">×</button>
+      </div>`;
+    };
+    reader.readAsText(file);
+  }
+}
+
+async function saveEdit() {
+  if (!editingPackId) return;
+  const btn = document.getElementById('edit-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  
+  try {
+    let promptChains;
+    try { promptChains = JSON.parse(document.getElementById('edit-prompts').value); }
+    catch { promptChains = document.getElementById('edit-prompts').value.split('\n').filter(l => l.trim()); }
+    
+    // If docs uploaded, append their content to domain_contexts
+    let domainContexts = [];
+    if (uploadedDocs.length > 0) {
+      domainContexts = uploadedDocs.map(d => `### ${d.name}\n${d.content.slice(0, 8000)}`);
+    }
+    
+    const body = {
+      name: document.getElementById('edit-title').value,
+      description: document.getElementById('edit-desc').value,
+      domain_id: document.getElementById('edit-domain').value,
+      prompt_chains: JSON.stringify(promptChains),
+      domain_contexts: JSON.stringify(domainContexts),
+      price_usd: parseInt(document.getElementById('edit-price').value) || 0,
+    };
+    
+    const resp = await fetch(`${API}/api/skillpacks/${editingPackId}`, {
+      method: 'PATCH',
+      headers: authHeaders(),
+      body: JSON.stringify(body),
+    });
+    
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      alert('Save failed: ' + (err.error || 'Unknown error'));
+    } else {
+      closeEditModal();
+      location.reload();
+    }
+  } catch (e) {
+    alert('Error: ' + e.message);
+  }
+  
+  btn.disabled = false; btn.textContent = 'Save Changes';
+}
+</script>
+</body>
+</html>

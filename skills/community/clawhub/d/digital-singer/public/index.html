@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎤 唱歌 Battle — 数字人对唱</title>
+<style>
+:root {
+  --bg: #0b0b0f; --bg2: #12121a; --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08); --border-l: rgba(255,255,255,0.12);
+  --text: #e8e8ed; --text2: #8888a0; --dim: #55556a;
+  --accent: #f43f5e; --accent-glow: rgba(244,63,94,0.3);
+  --accent2: #6366f1; --success: #34d399; --warning: #fbbf24; --danger: #f87171;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+
+/* Welcome */
+#welcome { position: fixed; inset: 0; z-index: 100; background: var(--bg); display: flex; align-items: center; justify-content: center; transition: opacity 0.5s; }
+#welcome.hidden { opacity: 0; pointer-events: none; }
+.welcome-box { text-align: center; max-width: 480px; padding: 20px; }
+.welcome-box .hero { font-size: 80px; margin-bottom: 16px; animation: bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.welcome-box h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #f43f5e, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.welcome-box .sub { font-size: 16px; color: var(--text2); margin-bottom: 32px; line-height: 1.6; }
+.welcome-btns { display: flex; flex-direction: column; gap: 12px; max-width: 300px; margin: 0 auto; }
+.btn-main { padding: 14px 24px; border: none; border-radius: 14px; background: var(--accent); color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 20px var(--accent-glow); }
+.btn-main:hover { transform: translateY(-2px); }
+.btn-sub { padding: 12px 24px; border: 1px solid var(--border-l); border-radius: 14px; background: transparent; color: var(--text2); font-size: 14px; cursor: pointer; transition: all 0.2s; }
+.btn-sub:hover { background: rgba(255,255,255,0.05); color: var(--text); border-color: var(--accent); }
+.welcome-foot { margin-top: 24px; font-size: 12px; color: var(--dim); }
+.welcome-foot a { color: var(--accent2); text-decoration: none; }
+
+/* Setup */
+#setup { position: fixed; inset: 0; z-index: 100; background: var(--bg); display: none; align-items: center; justify-content: center; }
+#setup.show { display: flex; }
+.setup-card { width: 420px; max-width: calc(100vw - 40px); background: var(--bg2); border: 1px solid var(--border-l); border-radius: 24px; padding: 36px; }
+.setup-card h2 { text-align: center; margin-bottom: 6px; }
+.setup-card .hint { text-align: center; color: var(--text2); font-size: 13px; margin-bottom: 24px; line-height: 1.5; }
+.setup-card .hint a { color: var(--accent2); text-decoration: none; }
+.fg { margin-bottom: 14px; }
+.fg label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.03em; }
+.fg input { width: 100%; background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 11px 12px; border-radius: 10px; font-size: 14px; outline: none; }
+.fg input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.setup-go { width: 100%; padding: 12px; border: none; border-radius: 10px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 500; cursor: pointer; margin-top: 8px; }
+.setup-go:disabled { opacity: 0.5; cursor: not-allowed; }
+.setup-err { color: var(--danger); font-size: 12px; text-align: center; margin-top: 8px; min-height: 16px; }
+.setup-back { display: block; margin-top: 14px; text-align: center; font-size: 13px; color: var(--dim); cursor: pointer; border: none; background: none; }
+
+/* Loading */
+#loading { position: fixed; inset: 0; z-index: 90; background: rgba(11,11,15,0.9); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+#loading.show { display: flex; }
+.spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading-text { color: var(--text2); font-size: 14px; }
+
+/* Main Layout */
+#app { display: none; flex: 1; overflow: hidden; }
+#app.show { display: flex; flex-direction: column; }
+.top-bar { height: 48px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border-bottom: 1px solid var(--border); }
+.top-bar .brand { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 14px; }
+.top-bar .indicators { display: flex; gap: 16px; }
+.ind { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text2); }
+.dot { width: 7px; height: 7px; border-radius: 50%; transition: all 0.3s; }
+.dot-off { background: var(--dim); }
+.dot-on { background: var(--success); box-shadow: 0 0 6px rgba(52,211,153,0.4); }
+.dot-wait { background: var(--warning); animation: pulse 1.5s ease-in-out infinite; }
+.dot-err { background: var(--danger); }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+.content { flex: 1; display: flex; overflow: hidden; }
+.video-side { flex: 0 0 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--bg); position: relative; overflow: hidden; }
+#avatar-video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+#audio-indicator { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); background: rgba(244,63,94,0.9); color: #fff; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 500; display: none; align-items: center; gap: 8px; }
+#audio-indicator.show { display: flex; }
+.eq-bars { display: flex; gap: 2px; align-items: flex-end; height: 16px; }
+.eq-bar { width: 3px; background: #fff; border-radius: 1px; animation: eq 0.6s ease-in-out infinite; }
+.eq-bar:nth-child(1) { height: 6px; } .eq-bar:nth-child(2) { height: 12px; animation-delay: 0.15s; } .eq-bar:nth-child(3) { height: 8px; animation-delay: 0.3s; } .eq-bar:nth-child(4) { height: 14px; animation-delay: 0.1s; } .eq-bar:nth-child(5) { height: 10px; animation-delay: 0.25s; }
+@keyframes eq { 0%,100%{transform:scaleY(1);} 50%{transform:scaleY(0.3);} }
+#subtitle { position: absolute; bottom: 56px; left: 16px; right: 16px; text-align: center; color: #fff; font-size: 15px; text-shadow: 0 2px 8px rgba(0,0,0,0.8); display: none; line-height: 1.5; }
+
+.chat-side { flex: 1; display: flex; flex-direction: column; background: var(--bg2); border-left: 1px solid var(--border); }
+#chat-log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.5; word-break: break-word; }
+.msg-user { align-self: flex-end; background: linear-gradient(135deg, var(--accent), #e11d48); color: #fff; }
+.msg-agent { align-self: flex-start; background: var(--card); border: 1px solid var(--border); color: var(--text); }
+.msg-system { align-self: center; color: var(--dim); font-size: 12px; background: none; padding: 4px 0; }
+.msg-action { align-self: center; background: rgba(244,63,94,0.1); border: 1px solid rgba(244,63,94,0.2); color: var(--accent); font-size: 13px; padding: 8px 16px; border-radius: 20px; }
+.msg-thinking { align-self: flex-start; background: var(--card); border: 1px solid var(--border); padding: 12px 16px; }
+.thinking-dots { display: flex; gap: 4px; }
+.thinking-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--text2); animation: tdot 1.4s ease-in-out infinite; }
+.thinking-dots span:nth-child(2) { animation-delay: 0.2s; } .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes tdot { 0%,80%,100%{transform:scale(0.6);opacity:0.3;} 40%{transform:scale(1);opacity:1;} }
+
+.input-bar { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; background: var(--bg2); }
+#text-input { flex: 1; background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 12px; font-size: 14px; outline: none; }
+#text-input:focus { border-color: var(--accent); }
+#text-input::placeholder { color: var(--dim); }
+.input-btn { width: 40px; height: 40px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+#send-btn { background: var(--accent); color: #fff; }
+#send-btn:hover { background: #e11d48; }
+#mic-btn { background: var(--card); color: var(--text2); border: 1px solid var(--border); }
+#mic-btn:hover { background: var(--border); color: var(--text); }
+#mic-btn.recording { background: var(--accent); color: #fff; animation: pulse 1.5s infinite; border-color: var(--accent); }
+::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+@media (max-width: 768px) { .content { flex-direction: column; } .video-side { flex: 0 0 40%; } }
+</style>
+</head>
+<body>
+
+<!-- Welcome -->
+<div id="welcome">
+  <div class="welcome-box">
+    <div class="hero">🎤</div>
+    <h1>唱歌 Battle</h1>
+    <p class="sub">让数字人陪你对唱！<br>选歌 → 选模式 → 开唱 → Battle 评分 → 抽盲盒</p>
+    <div class="welcome-btns">
+      <button class="btn-main" id="btn-start">🎤 开始对唱</button>
+    </div>
+    <p class="welcome-foot">数字人由 <a href="https://nuwaai.com" target="_blank">NuwaAI</a> 驱动</p>
+  </div>
+</div>
+
+<!-- Setup -->
+<div id="setup">
+  <div class="setup-card">
+    <h2>🎤 配置数字人</h2>
+    <p class="hint">在 <a href="https://nuwaai.com" target="_blank">nuwaai.com</a> 免费注册获取以下信息</p>
+    <div class="fg"><label>API Key</label><input id="cfg-apikey" type="password" placeholder="sk-..."></div>
+    <div class="fg"><label>数字人 ID (Avatar ID)</label><input id="cfg-avatarid" placeholder=""></div>
+    <div class="fg"><label>用户 ID (User ID)</label><input id="cfg-userid" placeholder=""></div>
+    <button class="setup-go" id="setup-go">🎤 连接数字人</button>
+    <div class="setup-err" id="setup-err"></div>
+    <button class="setup-back" id="setup-back">← 返回</button>
+  </div>
+</div>
+
+<!-- Loading -->
+<div id="loading"><div class="spinner"></div><div id="loading-text">连接中...</div></div>
+
+<!-- Main App -->
+<div id="app">
+  <div class="top-bar">
+    <div class="brand">🎤 唱歌 Battle</div>
+    <div class="indicators">
+      <div class="ind"><div class="dot dot-off" id="nuwa-dot"></div><span id="nuwa-status">未连接</span></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="video-side">
+      <video id="avatar-video" autoplay muted playsinline></video>
+      <div id="subtitle"></div>
+      <div id="audio-indicator">
+        <div class="eq-bars"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+        <span id="audio-label">🎵 播放中...</span>
+      </div>
+    </div>
+    <div class="chat-side">
+      <div id="chat-log"></div>
+      <div class="input-bar">
+        <button class="input-btn" id="mic-btn" title="语音输入">🎙️</button>
+        <input id="text-input" type="text" placeholder="输入消息或用语音对话...">
+        <button class="input-btn" id="send-btn" title="发送">➤</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio id="song-player" preload="auto"></audio>
+
+<script>
+// ══════ State ══════
+let config = {};
+let wsNuwa = null;
+let peerConnection = null;
+let peerStream = null;
+let sessionId = 'battle-' + Date.now();
+let isProcessing = false;
+
+// Audio capture
+let audioCtx = null, audioStream = null, audioWorklet = null, audioSource = null, silentGain = null;
+let isRecording = false;
+let accompPlaying = false;    // 伴奏播放中标记
+let pendingAsrText = null;    // 伴奏期间缓存的 ASR 文本
+let startAccompCallback = null; // 数字人开始唱时触发伴奏的回调
+let isSinging = false;         // 数字人唱歌中标记（唱歌时不允许打断）
+
+const chatLog = document.getElementById('chat-log');
+const textInput = document.getElementById('text-input');
+const avatarVideo = document.getElementById('avatar-video');
+const songPlayer = document.getElementById('song-player');
+const audioIndicator = document.getElementById('audio-indicator');
+const audioLabel = document.getElementById('audio-label');
+const subtitle = document.getElementById('subtitle');
+
+// ══════ UI Helpers ══════
+function addMsg(text, type = 'system') {
+  const div = document.createElement('div');
+  div.className = `msg msg-${type}`;
+  div.textContent = text;
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+function setNuwa(text, state) {
+  document.getElementById('nuwa-status').textContent = text;
+  document.getElementById('nuwa-dot').className = 'dot dot-' + state;
+}
+function showLoading(t) { document.getElementById('loading-text').textContent = t; document.getElementById('loading').classList.add('show'); }
+function hideLoading() { document.getElementById('loading').classList.remove('show'); document.getElementById('app').classList.add('show'); }
+function showSubtitle(t) { subtitle.textContent = t; subtitle.style.display = 'block'; }
+function hideSubtitle() { subtitle.style.display = 'none'; subtitle.textContent = ''; }
+
+// ══════ WebSocket 直连 (和 claw-body 一致) ══════
+function wsSendJson(obj) {
+  if (wsNuwa && wsNuwa.readyState === WebSocket.OPEN) {
+    wsNuwa.send(JSON.stringify(obj));
+  }
+}
+
+function wsSendPcm(buffer) {
+  if (wsNuwa && wsNuwa.readyState === WebSocket.OPEN) {
+    wsNuwa.send(buffer);
+  }
+}
+
+function handleNuwaMessage(text) {
+  let msg;
+  try { msg = JSON.parse(text); } catch { return; }
+  console.log('[NuwaAI]', msg.type, msg.code || '');
+
+  switch (msg.type) {
+    case 'avator-connect':
+      if (msg.code === 200) {
+        console.log('[NuwaAI] 鉴权成功, sessionId:', msg.data?.sessionid);
+        setNuwa('已连接', 'on');
+        showLoading('正在加载形象...');
+        startWebRTC();
+      } else {
+        console.error('[NuwaAI] 鉴权失败:', msg.msg);
+        setNuwa('鉴权失败', 'err');
+        addMsg('❌ 鉴权失败: ' + (msg.msg || ''), 'system');
+        hideLoading();
+      }
+      break;
+
+    case 'avator-play':
+      if (msg.code === 200 && msg.data?.sdp) {
+        console.log('[NuwaAI] 收到 SDP answer, 设置 RemoteDescription...');
+        peerConnection.setRemoteDescription(new RTCSessionDescription({ type: 'answer', sdp: msg.data.sdp }))
+          .then(() => {
+            console.log('[NuwaAI] WebRTC 协商成功！视频应该出现了');
+            hideLoading();
+            // 关键：先 muted autoplay，然后通过用户交互 unmute
+            // video 初始是 muted 的（HTML 属性），这里设置 onplay 来 unmute
+            avatarVideo.onplay = function() { avatarVideo.muted = false; };
+            avatarVideo.play().catch(e => console.warn('[Video] autoplay:', e));
+            addMsg('🎤 数字人已就绪！对着麦克风说话吧', 'system');
+            // Agent 打招呼
+            setTimeout(() => sendMessage('你好'), 1500);
+          })
+          .catch(e => {
+            console.error('[WebRTC] setRemoteDescription error:', e);
+            addMsg('❌ WebRTC: ' + e.message, 'system');
+          });
+      }
+      break;
+
+    case 'asr-text':
+      if (msg.data?.content) showSubtitle('🎤 ' + msg.data.content);
+      break;
+
+    case 'asr-commit':
+      if (msg.data?.content) {
+        console.log('[ASR] 提交:', msg.data.content);
+        hideSubtitle();
+        if (accompPlaying) {
+          // 伴奏还在播，缓存文本，等伴奏结束再发
+          console.log('[ASR] 伴奏播放中，缓存:', msg.data.content);
+          pendingAsrText = msg.data.content;
+        } else {
+          // 说话时打断数字人（唱歌时不打断）
+          if (!isSinging) interruptAvatar();
+          sendMessage(msg.data.content);
+        }
+      }
+      break;
+
+    case 'avator-text':
+      if (msg.data?.text) showSubtitle(msg.data.text);
+      // 数字人开始播放了，触发伴奏同步
+      if (startAccompCallback) {
+        const cb = startAccompCallback;
+        startAccompCallback = null;
+        cb();
+      }
+      break;
+
+    case 'avator-playstop':
+      console.log('[NuwaAI] 数字人播报结束');
+      hideSubtitle();
+      handleSingPlayStop(); // 通知唱歌流程播完了
+      break;
+  }
+}
+
+// ══════ WebRTC (参考 demo startMediaNegotiation) ══════
+function startWebRTC() {
+  console.log('[WebRTC] 创建 PeerConnection...');
+  peerConnection = new RTCPeerConnection(null);
+  peerStream = new MediaStream();
+  avatarVideo.srcObject = peerStream;
+
+  peerConnection.ontrack = (event) => {
+    console.log('[WebRTC] 收到 track:', event.track.kind);
+    peerStream.addTrack(event.track);
+  };
+
+  peerConnection.oniceconnectionstatechange = () => {
+    console.log('[WebRTC] ICE state:', peerConnection.iceConnectionState);
+  };
+
+  peerConnection.addTransceiver('audio', { direction: 'recvonly' });
+  peerConnection.addTransceiver('video', { direction: 'recvonly' });
+
+  peerConnection.createOffer()
+    .then(offer => {
+      console.log('[WebRTC] Offer 创建成功');
+      return peerConnection.setLocalDescription(offer);
+    })
+    .then(() => {
+      console.log('[WebRTC] 发送 playStream...');
+      wsSendJson({ type: 'playStream', data: { sdp: peerConnection.localDescription.sdp } });
+    })
+    .catch(err => {
+      console.error('[WebRTC] 错误:', err);
+      addMsg('❌ WebRTC: ' + err.message, 'system');
+    });
+}
+
+// ══════ 音频采集 (参考 demo startAudio) ══════
+async function startAudioCapture() {
+  if (isRecording) return;
+  try {
+    audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    console.log('[Mic] 获取麦克风成功');
+
+    // 注意：不指定 sampleRate，让浏览器用默认值，audio-processor 内部做重采样
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    console.log('[Mic] AudioContext sampleRate:', audioCtx.sampleRate);
+
+    await audioCtx.audioWorklet.addModule('/audio-processor.js');
+
+    audioSource = audioCtx.createMediaStreamSource(audioStream);
+    audioWorklet = new AudioWorkletNode(audioCtx, 'audio-processor');
+
+    audioWorklet.port.onmessage = (event) => {
+      if (event.data.type === 'audioData') {
+        wsSendPcm(event.data.data);
+      }
+    };
+
+    // 参考 demo: source → worklet → silentGain → destination
+    silentGain = audioCtx.createGain();
+    silentGain.gain.value = 0;
+    audioSource.connect(audioWorklet);
+    audioWorklet.connect(silentGain);
+    silentGain.connect(audioCtx.destination);
+
+    isRecording = true;
+    document.getElementById('mic-btn').classList.add('recording');
+    console.log('[Mic] 音频采集已开始');
+    addMsg('🎤 麦克风已开启', 'system');
+  } catch (err) {
+    console.error('[Mic] 错误:', err);
+    addMsg('⚠️ 麦克风: ' + err.message, 'system');
+  }
+}
+
+function stopAudioCapture() {
+  if (!isRecording) return;
+  if (audioWorklet) { audioWorklet.port.postMessage({ type: 'reset' }); audioWorklet.disconnect(); audioWorklet = null; }
+  if (silentGain) { silentGain.disconnect(); silentGain = null; }
+  if (audioSource) { audioSource.disconnect(); audioSource = null; }
+  if (audioCtx) { audioCtx.close().catch(() => {}); audioCtx = null; }
+  if (audioStream) { audioStream.getTracks().forEach(t => t.stop()); audioStream = null; }
+  isRecording = false;
+  document.getElementById('mic-btn').classList.remove('recording');
+  console.log('[Mic] 音频采集已停止');
+}
+
+// ══════ 连接 NuwaAI (humanctrl + asr, 主线程直连) ══════
+function connectNuwa(token, avatarId) {
+  const wsUrl = `wss://wsapi.nuwaai.com/websk/humanAgent/humanctrl/webrtc/${avatarId}/asr?access_token=${token}`;
+  console.log('[NuwaAI] 连接:', wsUrl.replace(token, 'TOKEN***'));
+  setNuwa('连接中...', 'wait');
+
+  wsNuwa = new WebSocket(wsUrl);
+
+  wsNuwa.onopen = () => {
+    console.log('[NuwaAI] WebSocket 已连接, 开启麦克风...');
+    startAudioCapture();
+  };
+
+  wsNuwa.onmessage = (event) => {
+    console.log('[NuwaAI] raw message type:', typeof event.data, 'instanceof Blob:', event.data instanceof Blob, 'instanceof ArrayBuffer:', event.data instanceof ArrayBuffer);
+    if (event.data instanceof Blob) {
+      console.log('[NuwaAI] Blob size:', event.data.size);
+      // 有些浏览器把文本消息也包成 Blob，尝试读取
+      event.data.text().then(t => {
+        console.log('[NuwaAI] Blob as text:', t.slice(0, 300));
+        if (t.startsWith('{')) handleNuwaMessage(t);
+      });
+      return;
+    }
+    if (event.data instanceof ArrayBuffer) {
+      console.log('[NuwaAI] ArrayBuffer size:', event.data.byteLength);
+      const decoded = new TextDecoder().decode(event.data);
+      console.log('[NuwaAI] ArrayBuffer as text:', decoded.slice(0, 300));
+      if (decoded.startsWith('{')) handleNuwaMessage(decoded);
+      return;
+    }
+    const text = String(event.data);
+    console.log('[NuwaAI] text message:', text.slice(0, 300));
+    handleNuwaMessage(text);
+  };
+
+  wsNuwa.onerror = (e) => {
+    console.error('[NuwaAI] WebSocket error:', e);
+    setNuwa('连接错误', 'err');
+  };
+
+  wsNuwa.onclose = (e) => {
+    console.log('[NuwaAI] WebSocket closed:', e.code, e.reason);
+    setNuwa('已断开', 'err');
+    stopAudioCapture();
+    isProcessing = false;
+  };
+
+  // 超时检测
+  setTimeout(() => {
+    const dot = document.getElementById('nuwa-dot');
+    if (dot.className.includes('dot-wait') || dot.className.includes('dot-off')) {
+      hideLoading();
+      addMsg('⚠️ 数字人响应超时，请检查配置后重试', 'system');
+      setNuwa('超时', 'err');
+    }
+  }, 15000);
+}
+
+// ══════ 发送给数字人播报 (avatar 消息) ══════
+function sendToAvatar(text) {
+  if (!text) return;
+  console.log('[Avatar] 发送播报:', text.slice(0, 50));
+  wsSendJson({ type: 'avatar', data: { content: text } });
+}
+
+function interruptAvatar() {
+  console.log('[Avatar] 打断');
+  wsSendJson({ type: 'interrupt_chat' });
+  hideSubtitle();
+}
+
+// ══════ 数字人唱歌（avatar 控制消息） ══════
+let singAbort = false; // 用于中断唱歌
+
+// 使用预加载的 PCM 数据驱动数字人唱歌（不再重新 fetch）
+async function singAvatarWithData(data, label) {
+  singAbort = false;
+  isSinging = true;
+  audioLabel.textContent = `🎵 ${label || '唱歌中'}`;
+  audioIndicator.classList.add('show');
+  addMsg(`🎵 ${label || '唱歌中'}`, 'action');
+
+  try {
+    console.log(`[Sing] ${data.totalChunks} chunks, ${data.durationMs}ms`);
+
+    for (let i = 0; i < data.chunks.length; i++) {
+      if (singAbort) {
+        console.log('[Sing] Aborted at chunk', i);
+        break;
+      }
+
+      const chunk = data.chunks[i];
+      wsSendJson({
+        type: 'avatar',
+        data: {
+          content: '',
+          audio: {
+            segment: chunk.segment,
+            speech: chunk.speech,
+            music: chunk.music,
+          },
+        },
+      });
+
+      if (i % 10 === 9) {
+        await new Promise(r => setTimeout(r, 10));
+      }
+    }
+
+    console.log('[Sing] All chunks sent, waiting for playstop...');
+
+    if (!singAbort) {
+      await new Promise((resolve) => {
+        const timeout = setTimeout(resolve, data.durationMs + 10000);
+        const origHandler = handleSingPlayStop;
+        handleSingPlayStop = () => {
+          clearTimeout(timeout);
+          handleSingPlayStop = origHandler;
+          resolve();
+        };
+      });
+    }
+  } catch (e) {
+    console.error('[Sing] Error:', e);
+    addMsg('❌ 唱歌出错: ' + e.message, 'system');
+  }
+
+  isSinging = false;
+  audioIndicator.classList.remove('show');
+}
+
+async function singAvatar(speechFile, musicFile, label) {
+  singAbort = false;
+  audioLabel.textContent = `🎵 ${label || '唱歌中'}`;
+  audioIndicator.classList.add('show');
+  addMsg(`🎵 ${label || '唱歌中'}`, 'action');
+
+  try {
+    // 1. 从服务端获取 PCM 分片
+    const resp = await fetch('/api/song/pcm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ speechFile, musicFile }),
+    });
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+
+    console.log(`[Sing] ${data.totalChunks} chunks, ${data.durationMs}ms`);
+
+    // 2. 快速批量发送所有分片（10ms 间隔防止 WebSocket 阻塞）
+    //    数字人会自行缓冲并连续播放
+    for (let i = 0; i < data.chunks.length; i++) {
+      if (singAbort) {
+        console.log('[Sing] Aborted at chunk', i);
+        break;
+      }
+
+      const chunk = data.chunks[i];
+      wsSendJson({
+        type: 'avatar',
+        data: {
+          content: '',
+          audio: {
+            segment: chunk.segment,
+            speech: chunk.speech,
+            music: chunk.music,
+          },
+        },
+      });
+
+      // 每 10 个分片让出一次事件循环，防止 UI 卡死
+      if (i % 10 === 9) {
+        await new Promise(r => setTimeout(r, 10));
+      }
+    }
+
+    console.log('[Sing] All chunks sent, waiting for playstop...');
+
+    // 3. 等数字人播完（avator-playstop 回调）
+    if (!singAbort) {
+      await new Promise((resolve) => {
+        // 超时 = 音频时长 + 10 秒余量
+        const timeout = setTimeout(resolve, data.durationMs + 10000);
+        const origHandler = handleSingPlayStop;
+        handleSingPlayStop = () => {
+          clearTimeout(timeout);
+          handleSingPlayStop = origHandler;
+          resolve();
+        };
+      });
+    }
+  } catch (e) {
+    console.error('[Sing] Error:', e);
+    addMsg('❌ 唱歌出错: ' + e.message, 'system');
+  }
+
+  audioIndicator.classList.remove('show');
+}
+
+// playstop 回调，默认空函数，唱歌时临时替换
+let handleSingPlayStop = () => {};
+
+// 兼容旧的 playAudio 接口（fallback，不应再被调用）
+function playAudio(fileName) {
+  return new Promise((resolve) => {
+    songPlayer.src = `/audio/${encodeURIComponent(fileName)}`;
+    audioLabel.textContent = `🎵 ${fileName.replace(/\.(mp3|MP3)$/i, '')}`;
+    audioIndicator.classList.add('show');
+    songPlayer.onended = () => { audioIndicator.classList.remove('show'); resolve(); };
+    songPlayer.onerror = () => { audioIndicator.classList.remove('show'); resolve(); };
+    songPlayer.play().catch(() => { audioIndicator.classList.remove('show'); resolve(); });
+  });
+}
+
+// ══════ 对话 (Qwen via server) ══════
+async function sendMessage(text) {
+  if (isProcessing || !text.trim()) return;
+  // 用户发消息时打断数字人说话（唱歌时不打断）
+  if (!isSinging) {
+    interruptAvatar();
+  }
+  isProcessing = true;
+  addMsg(text, 'user');
+
+  const thinking = document.createElement('div');
+  thinking.className = 'msg msg-thinking';
+  thinking.innerHTML = '<div class="thinking-dots"><span></span><span></span><span></span></div>';
+  chatLog.appendChild(thinking);
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+  try {
+    const resp = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, sessionId }),
+    });
+    const data = await resp.json();
+    thinking.remove();
+
+    if (data.error) { addMsg('❌ ' + data.error, 'system'); isProcessing = false; return; }
+
+    // 播放音频 / 驱动数字人唱歌
+    if (data.actions?.length) {
+      for (const action of data.actions) {
+        if (action.type === 'sing_avatar' && action.speechFile) {
+          // 先打断，确保数字人空闲
+          interruptAvatar();
+          await new Promise(r => setTimeout(r, 500));
+
+          // 1. 预加载：先拉 PCM 分片数据 + 预加载伴奏音频
+          let pcmData = null;
+          const pcmPromise = fetch('/api/song/pcm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ speechFile: action.speechFile, musicFile: action.musicFile }),
+          }).then(r => r.json()).then(d => { pcmData = d; });
+
+          if (action.accompUpper) {
+            songPlayer.src = `/audio/${encodeURIComponent(action.accompUpper)}`;
+            songPlayer.volume = 0.25;
+            songPlayer.load();
+          }
+
+          // 等 PCM 数据拉完
+          await pcmPromise;
+
+          if (pcmData?.error) {
+            addMsg('❌ ' + pcmData.error, 'system');
+            isProcessing = false;
+            return;
+          }
+
+          // 2. 设置回调：数字人收到第一个 avator-text 时再播伴奏
+          if (action.accompUpper) {
+            startAccompCallback = () => {
+              console.log('[Accomp] Upper triggered by avator-text, playing now!');
+              songPlayer.play().catch(e => console.warn('[Accomp] play error:', e));
+            };
+          }
+
+          // 3. 发 PCM 分片给数字人（发完后数字人会缓冲处理，然后开始唱 → 触发 avator-text → 触发伴奏）
+          await singAvatarWithData(pcmData, action.label);
+
+          // 停掉上半段伴奏
+          songPlayer.pause();
+          songPlayer.currentTime = 0;
+          songPlayer.oncanplay = null;
+
+          // 唱完，显示文字 + 数字人说"轮到你了"
+          if (data.reply) {
+            addMsg(data.reply, 'agent');
+            sendToAvatar(data.reply);
+          }
+
+          // 播放下半段伴奏（不阻塞，让 ASR 正常采集）
+          if (action.accompLower) {
+            // 等数字人说完"轮到你了" + 给用户反应时间
+            await new Promise(r => setTimeout(r, 4000));
+            addMsg('🎵 伴奏响起，轮到你了！', 'action');
+            audioLabel.textContent = '🎵 伴奏播放中 - 你来唱！';
+            audioIndicator.classList.add('show');
+            accompPlaying = true;
+            pendingAsrText = null;
+            songPlayer.src = `/audio/${encodeURIComponent(action.accompLower)}`;
+            songPlayer.volume = 0.2;
+            songPlayer.load();
+            songPlayer.oncanplay = () => {
+              console.log('[Accomp] Lower ready, playing');
+              songPlayer.play().catch(e => console.warn('[Accomp] Lower play error:', e));
+            };
+            songPlayer.onended = () => {
+              console.log('[Accomp] Lower ended');
+              audioIndicator.classList.remove('show');
+              accompPlaying = false;
+              // 伴奏结束后再等 3 秒让 ASR 提交最后的语音
+              setTimeout(() => {
+                if (pendingAsrText) {
+                  console.log('[ASR] 伴奏结束，提交缓存:', pendingAsrText);
+                  sendMessage(pendingAsrText);
+                  pendingAsrText = null;
+                } else {
+                  // 没有缓存文本，发一个"唱完了"让流程继续
+                  sendMessage('唱完了');
+                }
+              }, 3000);
+            };
+          }
+
+          // 关键：释放 isProcessing，让 ASR 提交的消息能正常发送
+          isProcessing = false;
+          return;
+        }
+        // 兼容旧 play_audio（fallback）
+        if (action.type === 'play_audio' && action.audioFile) {
+          if (data.reply) {
+            addMsg(data.reply, 'agent');
+            sendToAvatar(data.reply);
+            await new Promise(r => setTimeout(r, 2000));
+          }
+          await playAudio(action.audioFile);
+          isProcessing = false;
+          return;
+        }
+      }
+    }
+
+    // 普通文字回复 → 显示 + 数字人播报
+    if (data.reply) {
+      addMsg(data.reply, 'agent');
+      sendToAvatar(data.reply);
+    }
+  } catch (e) {
+    thinking.remove();
+    addMsg('❌ ' + e.message, 'system');
+  }
+  isProcessing = false;
+}
+
+// ══════ 文本输入 ══════
+document.getElementById('send-btn').addEventListener('click', () => {
+  const msg = textInput.value.trim();
+  if (!msg) return;
+  textInput.value = '';
+  interruptAvatar();
+  sendMessage(msg);
+});
+textInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); document.getElementById('send-btn').click(); }
+});
+
+// 麦克风手动切换
+document.getElementById('mic-btn').addEventListener('click', () => {
+  if (isRecording) stopAudioCapture();
+  else startAudioCapture();
+});
+
+// ══════ Flow ══════
+document.getElementById('btn-start').addEventListener('click', async () => {
+  const resp = await fetch('/api/config');
+  config = await resp.json();
+  document.getElementById('welcome').classList.add('hidden');
+  if (config.configured) {
+    // 已配置，预填表单
+    document.getElementById('cfg-avatarid').value = config.avatarId || '';
+    document.getElementById('cfg-userid').value = config.userId || '';
+  }
+  document.getElementById('setup').classList.add('show');
+});
+
+document.getElementById('setup-back').addEventListener('click', () => {
+  document.getElementById('setup').classList.remove('show');
+  document.getElementById('welcome').classList.remove('hidden');
+});
+
+document.getElementById('setup-go').addEventListener('click', async () => {
+  const apiKey = document.getElementById('cfg-apikey').value.trim();
+  const avatarId = document.getElementById('cfg-avatarid').value.trim();
+  const userId = document.getElementById('cfg-userid').value.trim();
+  const errEl = document.getElementById('setup-err');
+  if (!avatarId) { errEl.textContent = '请填写数字人 ID'; return; }
+  if (!apiKey && !config.hasApiKey) { errEl.textContent = '请填写 API Key'; return; }
+
+  const btn = document.getElementById('setup-go');
+  btn.disabled = true; errEl.textContent = '';
+
+  try {
+    // 保存配置
+    const body = { avatarId, userId };
+    if (apiKey) body.apiKey = apiKey;
+    await fetch('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+
+    // 获取 token
+    showLoading('正在鉴权...');
+    const tokenResp = await fetch('/api/token');
+    const tokenData = await tokenResp.json();
+    if (tokenData.code !== 0) throw new Error('API Key 无效: ' + (tokenData.msg || ''));
+
+    document.getElementById('setup').classList.remove('show');
+    showLoading('正在连接数字人...');
+    connectNuwa(tokenData.data, avatarId);
+  } catch (e) {
+    document.getElementById('loading').classList.remove('show');
+    errEl.textContent = e.message;
+  } finally { btn.disabled = false; }
+});
+
+// Init
+(async () => { const r = await fetch('/api/config'); config = await r.json(); })();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "clawpage",
+  "version": "0.1.0",
+  "description": "Turn long text into interactive Clawpage web apps and dashboards. Routes user intent to page/template create/update workflows and publishes a public URL.",
+  "author": {
+    "name": "Mengxiao Zhan",
+    "email": "zhanymx@gmail.com"
+  },
+  "homepage": "https://clawpage.ai",
+  "repository": "https://github.com/clawpage/clawpage-skill",
+  "license": "MIT-0",
+  "keywords": [
+    "clawpage",
+    "publish",
+    "dashboard",
+    "generative-ui",
+    "html"
+  ]
+}

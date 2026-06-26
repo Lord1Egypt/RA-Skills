@@ -1,35 +1,42 @@
 ---
-name: "Ai Prompt Library"
+version: "2.0.0"
+name: System Prompts And Models Of Ai Tools
 description: "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, L system prompts and models of ai tools, python, ai, bolt."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-prompt-library"
-sourceUrl: "https://clawhub.ai/skills/ai-prompt-library"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
-# Ai Prompt Library
+# System Prompts And Models Of Ai Tools
 
-> FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, L system prompts and models of ai tools, python, ai, bolt.
+FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models ## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-prompt-library`
-- **Source URL:** [https://clawhub.ai/skills/ai-prompt-library](https://clawhub.ai/skills/ai-prompt-library)
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Overview
+## Features
 
+- Core functionality from x1xhlol/ai-prompt-library
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Run any command: `ai-prompt-library <command> [args]`
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/ai-prompt-library
+# Show help
+ai-prompt-library help
+
+# Run
+ai-prompt-library run
 ```
+
+## Requirements
+- bash 4+
+- python3 (standard library only)

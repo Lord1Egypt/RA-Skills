@@ -1,0 +1,68 @@
+name: Fastlane Deploy
+description: |
+  Lean deploy for pre-approved small changes (typos, styling, single-file).
+  Phases: 1 (Requirements) → 3 (Development) → 4 (QA) → 6 (Deploy).
+  No conception phase, no staging — must be pre-approved.
+version: "1.0.0"
+
+# Triggered by n8n when task type = "Fastlane"
+# Context from n8n: taskId, taskName, taskType, project_name
+# Pre-condition: Task marked "Pre-Approved" = true in Notion
+
+# Task Type → Agent routing (handled by select_agent via workflow-executor.py)
+# Code → frontend or backend
+# Infrastructure → devops
+# Content → creative
+
+steps:
+  # --- Phase 1: Requirements ---
+  - read_notion_task:
+      taskId: "{taskId}"
+      output: "temp/briefing-{taskId}.md"
+
+  # --- Phase 3: Development ---
+  # AgentSelector routes by task description + tech stack keywords
+  - select_agent:
+      task_description: "{description}"
+      tech_stack: "typescript, react, nextjs, tailwind"
+
+  - spawn_agent:
+      agentId: "{agentId}"
+      runtime: subagent
+      task: "file:temp/briefing-{taskId}.md"
+      mode: run
+      runTimeoutSeconds: 300
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 300
+      pollInterval: 10
+
+  # --- Phase 4: QA ---
+  - qa_check:
+      script: "scripts/qa-fastlane.py"
+      stagingUrl: "{deploy_url}"
+
+  # --- Phase 6: Deployment ---
+  # DevOps agent handles the actual deploy
+  # Note: production deploy only runs with explicit approval from the owner
+  - deploy:
+      target: "your-deploy-command --prod  # e.g. vercel --prod, netlify deploy --prod"
+      project: "{project_name}"
+
+  - update_notion:
+      taskId: "{taskId}"
+      status: "Done"
+      health_check: "{qa_passed}"
+
+  - notify_discord:
+      channel: project_updates
+      message: |
+        ✅ **Fastlane Deploy Complete**
+
+        **Task:** {task_name}
+        **Type:** {task_type}
+        **Agent:** {agentId}
+        **QA:** {qa_passed}
+        **Deploy:** {deploy_url}
+        **Notion:** {notion_url}

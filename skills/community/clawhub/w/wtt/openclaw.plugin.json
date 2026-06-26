@@ -1,0 +1,61 @@
+{
+  "id": "wtt",
+  "channels": ["wtt"],
+  "name": "WTT",
+  "description": "WTT channel plugin for OpenClaw",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "accounts": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "name": { "type": "string" },
+            "cloudUrl": { "type": "string" },
+            "agentId": { "type": "string" },
+            "token": { "type": "string" },
+            "e2ePassword": { "type": "string" },
+            "inboundPollIntervalMs": { "type": "number" },
+            "inboundPollLimit": { "type": "number" },
+            "inboundDedupWindowMs": { "type": "number" },
+            "inboundDedupMaxEntries": { "type": "number" },
+            "slashCompat": { "type": "boolean" },
+            "slashCompatWttPrefixOnly": { "type": "boolean" },
+            "slashBypassMentionGate": { "type": "boolean" },
+            "taskExecutorScope": { "type": "string", "enum": ["all", "pipeline_only"] },
+            "inboundMediaMaxBytes": { "type": "number" },
+            "inboundMediaMaxPerMessage": { "type": "number" },
+            "inboundMediaFetchTimeoutMs": { "type": "number" },
+            "discussionContextFetchLimit": { "type": "number" },
+            "discussionContextWindow": { "type": "number" },
+            "discussionContextMaxChars": { "type": "number" }
+          }
+        }
+      },
+      "enabled": { "type": "boolean" },
+      "name": { "type": "string" },
+      "cloudUrl": { "type": "string" },
+      "agentId": { "type": "string" },
+      "token": { "type": "string" },
+      "e2ePassword": { "type": "string" },
+      "inboundPollIntervalMs": { "type": "number" },
+      "inboundPollLimit": { "type": "number" },
+      "inboundDedupWindowMs": { "type": "number" },
+      "inboundDedupMaxEntries": { "type": "number" },
+      "slashCompat": { "type": "boolean" },
+      "slashCompatWttPrefixOnly": { "type": "boolean" },
+      "slashBypassMentionGate": { "type": "boolean" },
+      "taskExecutorScope": { "type": "string", "enum": ["all", "pipeline_only"] },
+      "inboundMediaMaxBytes": { "type": "number" },
+      "inboundMediaMaxPerMessage": { "type": "number" },
+      "inboundMediaFetchTimeoutMs": { "type": "number" },
+      "discussionContextFetchLimit": { "type": "number" },
+      "discussionContextWindow": { "type": "number" },
+      "discussionContextMaxChars": { "type": "number" }
+    }
+  }
+}

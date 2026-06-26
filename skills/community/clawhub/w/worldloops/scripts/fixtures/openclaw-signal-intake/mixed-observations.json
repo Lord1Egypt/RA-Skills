@@ -1,0 +1,285 @@
+[
+  {
+    "id": "obs-001",
+    "source": "gmail",
+    "sourceId": "gmail-mcp-followup-001",
+    "observedBy": "openclaw",
+    "userQuery": "What did I miss?",
+    "observationIntent": "new_loop",
+    "title": "Follow up with David Kim on MCP proposal",
+    "text": "Hi, just wanted to follow up on the MCP proposal we discussed last week. Can you send me the updated specs by Friday?",
+    "timestamp": "2026-05-22T09:15:00Z",
+    "actor": "david.kim@example.com",
+    "dueAt": "2026-05-24T17:00:00Z",
+    "evidence": {
+      "subject": "Re: MCP Proposal — updated specs needed",
+      "from": "david.kim@example.com",
+      "snippet": "Can you send me the updated specs by Friday? I need them before the client call."
+    },
+    "confidence": 0.92,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-002",
+    "source": "slack",
+    "sourceId": "slack-msg-lgdeck-review-001",
+    "observedBy": "openclaw",
+    "userQuery": "Any follow-ups I'm missing?",
+    "observationIntent": "new_loop",
+    "title": "Review MCP deck for LG partnership by Friday",
+    "text": "Can you review the attached deck and send feedback before our call on Friday?",
+    "timestamp": "2026-05-22T08:30:00Z",
+    "actor": "sara.park",
+    "dueAt": "2026-05-24T17:00:00Z",
+    "evidence": {
+      "channel": "#lgpartnership",
+      "user": "sara.park",
+      "text": "Can you review the attached deck and send feedback before our call on Friday?"
+    },
+    "confidence": 0.88,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-003",
+    "source": "gmail",
+    "sourceId": "gmail-invoice-ext-001",
+    "observedBy": "openclaw",
+    "userQuery": "What should I do today?",
+    "observationIntent": "new_loop",
+    "title": "Confirm invoice extension request with Google Collections",
+    "text": "Please confirm whether you approve the 30-day payment extension on invoice INV-2026-044.",
+    "timestamp": "2026-05-22T07:00:00Z",
+    "actor": "collections@google.example.com",
+    "dueAt": "2026-05-23T17:00:00Z",
+    "evidence": {
+      "subject": "Invoice INV-2026-044 — Extension Request",
+      "from": "collections@google.example.com",
+      "snippet": "Please confirm whether you approve the 30-day payment extension on invoice INV-2026-044."
+    },
+    "confidence": 0.85,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-004",
+    "source": "gmail",
+    "sourceId": "gmail-q2-roadmap-fyi-001",
+    "observedBy": "openclaw",
+    "userQuery": "What did I miss?",
+    "observationIntent": "noise",
+    "title": "Q2 roadmap update — no action required",
+    "text": "No action required. The Q2 roadmap has been finalized and shared with all teams. FYI only.",
+    "timestamp": "2026-05-22T08:00:00Z",
+    "actor": "planning@example.com",
+    "evidence": {
+      "subject": "Q2 Roadmap Finalized — No Action Required",
+      "from": "planning@example.com",
+      "snippet": "No action required. The Q2 roadmap has been finalized. FYI only."
+    },
+    "confidence": 0.78,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-005",
+    "source": "gmail",
+    "sourceId": "gmail-miles-promo-001",
+    "observedBy": "openclaw",
+    "userQuery": "What did I miss?",
+    "observationIntent": "noise",
+    "title": "Earn double miles this weekend",
+    "text": "Earn double miles on all flights this weekend. Limited time offer. Book now and save up to 40%. Unsubscribe | Manage preferences.",
+    "timestamp": "2026-05-22T06:00:00Z",
+    "actor": "promotions@airline.example.com",
+    "evidence": {
+      "subject": "Earn double miles this weekend — Limited offer",
+      "from": "promotions@airline.example.com",
+      "snippet": "Earn double miles. Limited time offer. Unsubscribe to opt out."
+    },
+    "confidence": 0.55,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-006",
+    "source": "slack",
+    "sourceId": "slack-msg-lgdeck-review-001",
+    "observedBy": "openclaw",
+    "userQuery": "뭐 빠진 거 없어?",
+    "observationIntent": "new_loop",
+    "title": "Review MCP deck for LG (duplicate notification)",
+    "text": "Reminder: please review the LG deck before Friday.",
+    "timestamp": "2026-05-22T09:45:00Z",
+    "actor": "bot@slack.example.com",
+    "evidence": {
+      "channel": "#reminders",
+      "user": "reminder-bot",
+      "text": "Reminder: please review the LG deck before Friday."
+    },
+    "confidence": 0.82,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-007",
+    "source": "gmail",
+    "sourceId": "gmail-digest-001",
+    "observedBy": "openclaw",
+    "userQuery": "What did I miss?",
+    "observationIntent": "noise",
+    "title": "Your weekly digest — product updates",
+    "text": "Read your weekly newsletter. Manage subscription. View in browser. Opt out anytime.",
+    "timestamp": "2026-05-22T07:30:00Z",
+    "actor": "digest@product.example.com",
+    "evidence": {
+      "subject": "Weekly digest: product updates — May 22",
+      "from": "digest@product.example.com",
+      "snippet": "Your weekly digest is ready. Manage subscription | Unsubscribe."
+    },
+    "confidence": 0.50,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-008",
+    "source": "slack",
+    "sourceId": "slack-deploy-notif-001",
+    "observedBy": "openclaw",
+    "userQuery": "오늘 내가 할 일 뭐야?",
+    "observationIntent": "noise",
+    "title": "Production deploy completed — v2.4.1",
+    "text": "Deploy completed successfully. No reply needed. This is an automated notification.",
+    "timestamp": "2026-05-22T05:30:00Z",
+    "actor": "deploy-bot",
+    "evidence": {
+      "channel": "#deployments",
+      "user": "deploy-bot",
+      "text": "Deploy completed successfully. No reply needed."
+    },
+    "confidence": 0.70,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-009",
+    "source": "gmail",
+    "sourceId": "gmail-sync-info-001",
+    "observedBy": "openclaw",
+    "userQuery": "What did I miss?",
+    "observationIntent": "noise",
+    "title": "Team sync notes — May 22",
+    "text": "Informational only. Notes from this morning's team sync attached. No follow-up expected.",
+    "timestamp": "2026-05-22T09:00:00Z",
+    "actor": "notes@example.com",
+    "evidence": {
+      "subject": "Team sync notes — informational only",
+      "from": "notes@example.com",
+      "snippet": "Informational only. No follow-up expected."
+    },
+    "confidence": 0.72,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-010",
+    "source": "calendar",
+    "sourceId": "cal-flight-sfo-icn-001",
+    "observedBy": "openclaw",
+    "userQuery": "What should I do today?",
+    "observationIntent": "related_context",
+    "title": "Flight SFO → ICN — Korean Air KE021",
+    "text": "Departing from San Francisco International Airport Terminal 2 to Incheon. Boarding at 10:30 AM.",
+    "timestamp": "2026-05-22T10:00:00Z",
+    "actor": null,
+    "dueAt": "2026-05-23T12:00:00Z",
+    "evidence": {
+      "title": "Flight SFO → ICN — Korean Air KE021",
+      "start": "2026-05-23T18:00:00Z",
+      "location": "SFO Terminal 2",
+      "description": "Korean Air KE021 departure. Boarding 30 min before departure."
+    },
+    "confidence": 0.90,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-011",
+    "source": "gmail",
+    "sourceId": "gmail-lgdeal-context-001",
+    "observedBy": "openclaw",
+    "userQuery": "Any follow-ups I'm missing?",
+    "observationIntent": "related_context",
+    "title": "LG deal — background document forwarded by partner team",
+    "text": "Background supporting document shared by the LG partner team for the deck review. Forwarded by partner team.",
+    "timestamp": "2026-05-22T08:45:00Z",
+    "actor": "partner@lg.example.com",
+    "evidence": {
+      "subject": "LG deal context — supporting document",
+      "from": "partner@lg.example.com",
+      "snippet": "Background supporting document for the partnership deck review."
+    },
+    "confidence": 0.65,
+    "relatedContext": {
+      "observationId": "obs-002",
+      "type": "supporting_document",
+      "note": "Context document for the LG deck review request"
+    }
+  },
+  {
+    "id": "obs-012",
+    "source": "gmail",
+    "sourceId": "gmail-unclear-001",
+    "observedBy": "openclaw",
+    "userQuery": "What did I miss?",
+    "observationIntent": "new_loop",
+    "title": "Possible follow-up? — unclear context",
+    "text": "Something might require attention here but the context is missing or ambiguous.",
+    "timestamp": "2026-05-22T06:45:00Z",
+    "actor": "unknown@example.com",
+    "evidence": {
+      "subject": "Re: (no subject)",
+      "from": "unknown@example.com",
+      "snippet": "Something might require attention."
+    },
+    "confidence": 0.22,
+    "relatedContext": null
+  },
+  {
+    "id": "obs-013",
+    "source": "gmail",
+    "sourceId": "gmail-mcp-resolution-001",
+    "observedBy": "openclaw",
+    "userQuery": "What did I miss?",
+    "observationIntent": "state_transition",
+    "title": "David Kim confirmed specs received — MCP proposal resolved",
+    "text": "David Kim confirmed receipt of the updated specs. Loop resolved. No further follow-up needed.",
+    "timestamp": "2026-05-22T14:00:00Z",
+    "actor": "david.kim@example.com",
+    "evidence": {
+      "subject": "Re: MCP Proposal — specs confirmed received",
+      "from": "david.kim@example.com",
+      "snippet": "Confirmed receipt of the updated specs. Thank you."
+    },
+    "confidence": 0.91,
+    "relatedContext": {
+      "existingLoopKey": "openclaw-gmail-gmail-mcp-followup-001",
+      "proposedTransition": "done",
+      "note": "David Kim confirmed receipt of the updated specs"
+    }
+  },
+  {
+    "id": "obs-014",
+    "source": "gmail",
+    "sourceId": "gmail-invoice-escalation-001",
+    "observedBy": "openclaw",
+    "userQuery": "Any follow-ups I'm missing?",
+    "observationIntent": "state_transition",
+    "title": "Invoice INV-2026-044 is now overdue — escalate immediately",
+    "text": "Invoice INV-2026-044 is now overdue. Escalate to management immediately. Past due since yesterday.",
+    "timestamp": "2026-05-22T15:00:00Z",
+    "actor": "collections@google.example.com",
+    "evidence": {
+      "subject": "URGENT: Invoice INV-2026-044 overdue",
+      "from": "collections@google.example.com",
+      "snippet": "Invoice is overdue. Escalate to management immediately."
+    },
+    "confidence": 0.94,
+    "relatedContext": {
+      "existingLoopKey": "openclaw-gmail-gmail-invoice-ext-001",
+      "proposedTransition": "escalated",
+      "note": "Invoice is now past due"
+    }
+  }
+]

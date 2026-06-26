@@ -1,35 +1,144 @@
 ---
-name: "Gb Arch Cad Gen"
-description: "程序化生成符合中国建筑设计规范的 CAD 图纸（平面图）。 严格遵循 GB/T 50104-2010《建筑制图标准》、 GB/T 50001-2017《房屋建筑制图统一标准》、 GB 55038-2025《住宅项目规范》（强制性）等相关国标。 支持输出 SVG 和 PDF 格式，不依赖 AutoCAD。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gb-arch-cad-gen"
-sourceUrl: "https://clawhub.ai/skills/gb-arch-cad-gen"
+name: arch-cad-generator
+description: >
+  程序化生成符合中国建筑设计规范的 CAD 图纸（平面图）。
+  严格遵循 GB/T 50104-2010《建筑制图标准》、
+  GB/T 50001-2017《房屋建筑制图统一标准》、
+  GB 55038-2025《住宅项目规范》（强制性）等相关国标。
+  支持输出 SVG 和 PDF 格式，不依赖 AutoCAD。
+version: 1.0.0
+author: user
+tags:
+  - cad
+  - architecture
+  - drawing
+  - building-regulation
+  - china-standard
+triggers:
+  - "生成建筑图纸"
+  - "绘制平面图"
+  - "生成CAD图纸"
+  - "画建筑图"
+  - "CAD drawing"
+  - "floor plan"
 ---
 
-# Gb Arch Cad Gen
+# 中国规范 CAD 图纸生成器
 
-> 程序化生成符合中国建筑设计规范的 CAD 图纸（平面图）。 严格遵循 GB/T 50104-2010《建筑制图标准》、 GB/T 50001-2017《房屋建筑制图统一标准》、 GB 55038-2025《住宅项目规范》（强制性）等相关国标。 支持输出 SVG 和 PDF 格式，不依赖 AutoCAD。
+## 能力边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gb-arch-cad-gen`
-- **Source URL:** [https://clawhub.ai/skills/gb-arch-cad-gen](https://clawhub.ai/skills/gb-arch-cad-gen)
+本 Skill 用于**程序化生成符合中国建筑设计规范的 CAD 图纸**，适用于：
+- 住宅建筑方案平面图
+- 建筑构件详图
+- 标准图框与标题栏自动生成
+- 图纸尺寸标注与定位轴线标注
 
-## Overview
+不适用于：
+- 结构计算图纸（需结构工程师校核）
+- MEP（暖通/给排水/电气）专业系统图
+- 需要 PKPM/YJK 等专业软件计算的结构施工图
 
+## 执行工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gb-arch-cad-gen
-```
+1. **接收用户需求** → 解析建筑类型、面积、房间构成
+2. **规范校验** → 根据 GB 55038-2025 等强制规范校验设计参数
+3. **生成布局** → 程序化生成平面图布局数据结构
+4. **绘制图纸** → 调用 Maker.js/Photon 库绘制图形
+5. **尺寸标注** → 按 GB/T 50104 标准格式标注尺寸
+6. **叠加图框** → 添加符合 GB/T 50001 的图框和标题栏
+7. **输出文件** → 导出 SVG + PDF
+
+## 遵循的规范标准
+
+### 强制性规范（必须严格执行）
+- **GB 55038-2025**《住宅项目规范》：层高≥3.0m、卧室净高≥2.6m、≥4层设电梯
+- **GB 50016-2014**《建筑设计防火规范》：防火分区、疏散距离
+- **GB 50763-2012**《无障碍设计规范》：无障碍通道、坡道坡度
+
+### 制图标准
+- **GB/T 50104-2010**《建筑制图标准》：图线、比例、图例、尺寸标注
+- **GB/T 50001-2017**《房屋建筑制图统一标准》：图纸幅面、标题栏、图层
+
+### 参考规范
+- **GB 50096-2011**《住宅设计规范》：各功能空间面积下限
+- **GB 50103-2010**《总图制图标准》
+
+## 关键规范参数速查
+
+| 参数 | 规范要求 | 来源 |
+|------|---------|------|
+| 住宅层高 | ≥ 3.0m | GB 55038-2025 |
+| 卧室净高 | ≥ 2.6m | GB 55038-2025 |
+| 局部净高 | ≥ 2.2m | GB 55038-2025 |
+| 卧室使用面积（双人） | ≥ 9㎡ | GB 50096-2011 |
+| 起居室使用面积 | ≥ 10㎡ | GB 50096-2011 |
+| 厨房使用面积 | ≥ 4.0㎡ | GB 50096-2011 |
+| 卫生间使用面积 | ≥ 2.5㎡ | GB 50096-2011 |
+| 户门净宽 | ≥ 0.90m | GB 55038-2025 |
+| 卧室门净宽 | ≥ 0.80m | GB 50096-2011 |
+| 卫生间门净宽 | ≥ 0.70m | GB 55038-2025 |
+| 走廊净宽 | ≥ 1.20m | GB 50096-2011 |
+| 电梯设置门槛 | ≥ 4层 | GB 55038-2025 |
+| 阳台栏杆高度 | ≥ 1.10m | GB 55038-2025 |
+
+## 图纸幅面（GB/T 50001-2017）
+
+| 幅面代号 | 尺寸 (mm) | 适用场景 |
+|----------|----------|---------|
+| A0 | 841×1189 | 大型工程总图 |
+| A1 | 594×841 | 中型项目 |
+| A2 | 420×594 | 常规楼层平面 |
+| A3 | 297×420 | 详图/方案图 |
+| A4 | 210×297 | 节点详图 |
+
+## 线型规定（GB/T 50104-2010）
+
+- **粗实线（bold）** ：被剖切的主要建筑构造（墙体等）——线宽 b
+- **中实线（medium）** ：可见轮廓线——线宽 0.5b
+- **细实线（thin）** ：尺寸线、引出线、填充线——线宽 0.25b
+- **粗虚线（bold-dash）** ：地下/被遮挡的主要构造
+- **细点划线（thin-dot-dash）** ：定位轴线、中心线
+- **线宽组**：b = 2.0 / 1.4 / 1.0 / 0.7 / 0.5 mm
+
+## 图层命名（GB/T 50001-2017 协同设计）
+
+- **A-WALL** — 墙体
+- **A-DOOR** — 门窗
+- **A-DIMS** — 尺寸标注
+- **A-AXIS** — 定位轴线
+- **A-TEXT** — 文字说明
+- **A-TTLB** — 图框标题栏
+- **A-FURN** — 家具布置
+
+## 使用说明
+
+### 典型请求示例
+
+### 参数说明
+
+用户可指定以下参数（未指定则使用默认值）：
+
+- `building_type`：建筑类型（residential / office / school / commercial）
+- `total_area`：总面积（㎡）
+- `rooms`：房间列表（名称 + 面积）
+- `paper_size`：图纸幅面（A0~A4，默认 A3）
+- `scale`：比例（默认 1:100）
+- `output_format`：输出格式（svg / pdf / both，默认 both）
+
+## 所需工具
+
+- `file_write` — 写入 SVG/PDF 文件
+- `command_exec` — 执行 Node.js 脚本
+
+## 环境依赖
+
+- Node.js ≥ 18.x
+- npm 包：`makerjs`（程序化绘图）、`pdfkit`（PDF 生成）
+- 安装命令：`npm install makerjs pdfkit`
+
+## 注意事项
+
+1. 本 Skill 生成的图纸为**方案级**图纸，不可直接用于施工。
+2. 所有尺寸标注单位为毫米（mm），符合国标规定。
+3. 图纸输出路径默认为 `./output/` 目录。
+4. 图纸数据以 JSON 格式结构化存储，方便二次处理。

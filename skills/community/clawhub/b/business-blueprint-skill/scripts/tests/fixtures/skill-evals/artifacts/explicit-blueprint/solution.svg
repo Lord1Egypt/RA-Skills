@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <title>Retail Unified Returns Blueprint</title>
+  <rect width="960" height="540" fill="#f8fafc"/>
+  <text x="48" y="72" font-family="Arial" font-size="28" fill="#0f172a">Retail Unified Returns Blueprint</text>
+  <rect x="48" y="120" width="220" height="96" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="72" y="172" font-family="Arial" font-size="18" fill="#1e3a8a">POS + CRM</text>
+  <rect x="370" y="120" width="220" height="96" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="394" y="172" font-family="Arial" font-size="18" fill="#14532d">OMS Validation</text>
+  <rect x="692" y="120" width="220" height="96" rx="10" fill="#ffedd5" stroke="#f97316"/>
+  <text x="716" y="172" font-family="Arial" font-size="18" fill="#9a3412">WMS Restock</text>
+  <path d="M268 168 L370 168 M590 168 L692 168" stroke="#334155" stroke-width="3"/>
+</svg>

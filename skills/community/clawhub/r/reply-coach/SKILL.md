@@ -1,35 +1,34 @@
 ---
-name: "reply-coach"
-description: "从剪贴板读取聊天内容，生成尊重边界、自然不油腻的高情商回复建议，适用于微信、QQ等聊天场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reply-coach"
-sourceUrl: "https://clawhub.ai/skills/reply-coach"
+name: reply-coach
+description: 从剪贴板读取聊天内容，生成尊重边界、自然不油腻的高情商回复建议，适用于微信、QQ等聊天场景。
+metadata: {"openclaw":{"emoji":"💬","requires":{"bins":["node","pbpaste"]}}}
 ---
 
-# reply-coach
+# Reply Coach
 
-> 从剪贴板读取聊天内容，生成尊重边界、自然不油腻的高情商回复建议，适用于微信、QQ等聊天场景。
+这是一个高情商聊天回复助手，适用于恋爱前期聊天、暧昧期聊天、日常互动、破冰、接话、延续话题、缓和冷场等场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reply-coach`
-- **Source URL:** [https://clawhub.ai/skills/reply-coach](https://clawhub.ai/skills/reply-coach)
+## 核心目标
 
-## Overview
+帮助用户根据对方刚发来的消息，生成更自然、更有分寸、更容易让对方愿意继续聊下去的回复建议。
 
+## 适用输入
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 微信聊天消息
+- QQ聊天消息
+- 其他社交软件聊天内容
+- 用户手动复制的一段对话文本
+
+## 使用方式
+
+### 方式一：读取剪贴板
+当用户说：
+- 读取剪贴板并帮我回
+- 分析刚复制的聊天内容
+- 根据剪贴板内容给我 3 个回复版本
+- 帮我接这句话
+
+你应运行：
+
 ```bash
-hermes skills install clawhub/reply-coach
-```
+node {baseDir}/scripts/reply_from_clipboard.mjs

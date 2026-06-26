@@ -1,35 +1,14 @@
----
-name: "EDI MSP Toolkit"
-description: "Provides IT MSP tools for Azure/M365 audits, NPU monitoring, and firewall, SSH, and system health checks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/msp-toolkit"
-sourceUrl: "https://clawhub.ai/skills/msp-toolkit"
----
+# MSP Toolkit Skill
 
-# EDI MSP Toolkit
+description: Essential tools for IT MSP workflows – Azure/M365 audits, NPU monitoring, health checks.
 
-> Provides IT MSP tools for Azure/M365 audits, NPU monitoring, and firewall, SSH, and system health checks.
+metadata: {"clawdbot":{"emoji":"🔧","os":["linux"]}}
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/msp-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/msp-toolkit](https://clawhub.ai/skills/msp-toolkit)
+## Core Functions
+- msp-dashboard.py: Daily Azure/M365 status.
+- healthcheck: Firewall/SSH/update audits.
+- nuc-reset.sh: NPU reboot script.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/msp-toolkit
-```
+## Setup
+npm install clawhub
+clawhub publish /home/cc/.openclaw/workspace/skills/msp-toolkit

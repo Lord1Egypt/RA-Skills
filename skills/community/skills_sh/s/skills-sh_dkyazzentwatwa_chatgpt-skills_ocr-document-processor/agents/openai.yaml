@@ -1,0 +1,3 @@
+display_name: 'OCR Document Processor'
+short_description: 'Extract text and structure from scans, receipts, and cards.'
+default_prompt: 'Help me OCR this scanned document or image.'

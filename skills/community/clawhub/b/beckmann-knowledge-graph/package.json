@@ -1,0 +1,55 @@
+{
+  "name": "beckmann-knowledge-graph",
+  "version": "2.0.0",
+  "description": "A structured knowledge graph that acts as a cognitive lens for AI agents  enabling paradox resolution, reasoning about open scientific questions, and high-complexity future forecasting.",
+  "main": "graph.json",
+  "skill": "SKILL.md",
+  "keywords": [
+    "knowledge-graph",
+    "reasoning",
+    "forecasting",
+    "paradox",
+    "beckmann-logic",
+    "epistemology",
+    "predictive-brain-theory",
+    "ai-safety",
+    "simulation",
+    "stock trading",
+    "philosophy-of-science"
+  ],
+  "author": {
+    "name": "Beckmann"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "graph.json",
+    "graph old.json",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthiasbeckmann987-spec/beckmann-knowledge-graph.git"
+  },
+  "clawhub": {
+    "skill": "SKILL.md",
+    "graph": "graph.json",
+    "version": "2.0.0",
+    "compatibility": [
+      "claude-sonnet-4-20250514",
+      "claude-opus-4-20250514",
+      "ChatGTP"
+    ],
+    "domains": [
+      "epistemology",
+      "paradox-resolution",
+      "future-forecasting",
+      "ai-safety",
+      "stock trading",
+      "strategic-reasoning"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "lobster-training",
+  "version": "1.0.0",
+  "description": "🦞 小龙虾入职培训手册 - 自动学习执行文档，学习完成后自动安装技能、提问用户、记录信息、升级配置",
+  "main": "scripts/auto-trigger.js",
+  "author": "Power",
+  "license": "MIT",
+  "keywords": ["training", "onboarding", "configuration", "personalization", "openclaw"],
+  "dependencies": {
+    "yaml": "^2.3.0"
+  },
+  "openclaw": {
+    "minVersion": "0.9.0",
+    "tools": ["exec", "read", "write"],
+    "hooks": {
+      "postInstall": "scripts/post-install.js",
+      "onMessage": "scripts/on-message.js"
+    },
+    "config": {
+      "auto_install": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否自动安装技能包"
+      },
+      "ask_questions": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否主动提问用户"
+      },
+      "record_to_memory": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否记录到记忆文件"
+      }
+    }
+  },
+  "bundled_skills": [
+    {
+      "name": "ai-image-gen",
+      "version": "1.1.0",
+      "file": "skills/ai-image-gen-1.1.0.zip",
+      "description": "智能图片生成和设计能力"
+    },
+    {
+      "name": "self-improving-agent",
+      "version": "3.0.6",
+      "file": "skills/self-improving-agent-3.0.6.zip",
+      "description": "自我学习和迭代升级能力"
+    },
+    {
+      "name": "agent-browser",
+      "version": "0.2.0",
+      "file": "skills/agent-browser-0.2.0.zip",
+      "description": "浏览器控制和网页交互"
+    }
+  ],
+  "training": {
+    "auto_start": true,
+    "questions_count": 6,
+    "sequential": true,
+    "target_files": ["USER.md", "USER_PROFILE.md", "MEMORY.md", "SOUL.md", "IDENTITY.md"]
+  }
+}

@@ -1,0 +1,54 @@
+#cloud-config
+#
+# Cloud-init template for Azure VMs running OpenClaw with VM Memory Oracle.
+# This script is idempotent: on first boot it formats the data disk and
+# creates the directory structure. On subsequent boots (redeployment) it
+# detects the existing filesystem and preserves all data.
+#
+# IMPORTANT: The data disk must be attached as a separate Azure managed disk
+# with deleteOption: Detach so it survives VM deletion.
+
+package_update: true
+packages:
+  - jq
+  - cron
+
+# Format the data disk ONLY if it has no filesystem.
+# overwrite: false prevents reformatting an existing disk.
+disk_setup:
+  /dev/disk/azure/scsi1/lun0:
+    table_type: gpt
+    layout: true
+    overwrite: false
+
+fs_setup:
+  - label: memorydata
+    filesystem: ext4
+    device: /dev/disk/azure/scsi1/lun0-part1
+    overwrite: false
+
+mounts:
+  - ["/dev/disk/azure/scsi1/lun0-part1", "/data/memory", "ext4", "defaults,nofail", "0", "2"]
+
+runcmd:
+  # Create directory structure if this is a fresh disk
+  - mkdir -p /data/memory/knowledge-graph
+  - mkdir -p /data/memory/embeddings
+  - mkdir -p /data/memory/daily
+  - mkdir -p /data/memory/sessions
+  - mkdir -p /data/memory/backups
+  - chmod -R 755 /data/memory
+
+  # Initialize default files if they don't exist
+  - test -f /data/memory/activation-metadata.json || echo '{}' > /data/memory/activation-metadata.json
+  - test -f /data/memory/MEMORY.md || echo '# Agent Memory' > /data/memory/MEMORY.md
+  - test -f /data/memory/health.json || echo '{"status":"uninitialized"}' > /data/memory/health.json
+
+  # Create log directory
+  - mkdir -p /var/log/openclaw
+
+  # Install the skill (adjust to your installation method)
+  - openclaw skill install vm-memory-oracle
+
+  # Set up automated cron jobs
+  - openclaw skill run vm-memory-oracle --action install-cron

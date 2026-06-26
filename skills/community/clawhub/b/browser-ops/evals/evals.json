@@ -1,0 +1,136 @@
+{
+  "skill_name": "browser-ops",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我抓取 https://paulgraham.com/worked.html 的正文内容",
+      "expected_output": "使用 WebFetch 或 Jina 提取文章正文为 Markdown",
+      "expectations": [
+        "选择轻量抓取（WebFetch/Jina/curl），不启动浏览器",
+        "返回文章正文内容"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "搜索 Twitter 上关于 AI agent 的最新讨论",
+      "expected_output": "使用 opencli twitter search 搜索",
+      "expectations": [
+        "使用 opencli 平台适配器",
+        "调用 opencli twitter search 命令",
+        "返回搜索结果"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "查一下招商银行今天的股价",
+      "expected_output": "使用 opencli 或新浪 API 查询股价",
+      "expectations": [
+        "使用 opencli xueqiu stock 或 sinafinance stock",
+        "返回包含价格的结构化数据"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我同时查 100 只 A 股的实时行情",
+      "expected_output": "识别为批量场景，使用批量 API 而非 opencli 串行",
+      "expectations": [
+        "识别出批量数据拉取场景（>10次/分钟）",
+        "选择新浪 API 或 AKShare 批量接口",
+        "不使用 opencli 串行 100 次"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "这个网站被 Cloudflare 拦截了，打不开: https://target-site.com",
+      "expected_output": "使用 Zendriver 或 Camoufox 绕过反爬",
+      "expectations": [
+        "识别为反爬场景",
+        "选择反爬工具（Zendriver 或 Camoufox）",
+        "如果仍失败，建议添加住宅代理"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "帮我在小红书上搜索旅行攻略",
+      "expected_output": "使用 opencli xiaohongshu search",
+      "expectations": [
+        "使用 opencli 而非浏览器",
+        "调用 opencli xiaohongshu search 命令"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "打开 https://internal.company.com/dashboard 并截图",
+      "expected_output": "使用 browser-use CLI 截图",
+      "expectations": [
+        "识别为需要登录态的内部站点",
+        "使用 browser-use --connect 或 opencli web read 复用登录态",
+        "使用 browser-use screenshot 截图"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "我需要在一个我从没用过的网站上填一个复杂表单",
+      "expected_output": "使用 browser-use CLI 或 Stagehand",
+      "expectations": [
+        "识别为未知 DOM + 需要交互的场景",
+        "选择 browser-use CLI 或 Stagehand"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "获取知乎热榜前 20 条",
+      "expected_output": "使用 opencli zhihu hot",
+      "expectations": [
+        "使用 opencli zhihu hot",
+        "返回热榜数据"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "帮我写一段 Python 代码来排序数组",
+      "expected_output": "不触发 browser-ops，这是编码任务不是浏览器任务",
+      "expectations": [
+        "不触发 browser-ops skill",
+        "直接回答编码问题"
+      ],
+      "should_not_trigger": true
+    },
+    {
+      "id": 11,
+      "prompt": "这个URL打不开 https://broken-link.invalid/page",
+      "expected_output": "识别为访问失败场景，尝试替代方案或报告错误",
+      "expectations": [
+        "识别为访问失败场景",
+        "尝试 opencli web read 或 browser-use 替代方案"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "帮我抓取这个网页但是它加载很慢经常超时",
+      "expected_output": "识别为超时场景，使用适当的超时配置",
+      "expectations": [
+        "识别为超时场景",
+        "使用适当的超时配置"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "帮我批量下载这50个网页的内容",
+      "expected_output": "识别为批量场景，选择并发方案而非串行",
+      "expectations": [
+        "识别为批量场景",
+        "选择并发方案而非串行"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "用浏览器打开 https://example.com 然后点击登录按钮",
+      "expected_output": "选择 browser-use CLI 执行导航和点击操作",
+      "expectations": [
+        "选择 browser-use CLI",
+        "执行导航和点击操作"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+name: jd-search
+version: 1.0.0
+description: |
+  京东工采云垂搜接口封装工具
+  
+  支持关键词搜索、类目筛选、价格过滤等功能，
+  可输出表格、JSON、CSV 等多种格式。
+  
+author: @zhangr19
+license: MIT
+category: utilities
+tags:
+  - search
+  - jd
+  - ecommerce
+  - product
+  - cli
+
+repository: https://github.com/zhangr19/jd-search
+
+entrypoint:
+  type: cli
+  command: jd-search
+  args:
+    - name: keyword
+      type: string
+      required: false
+      description: 搜索关键词
+    - name: catid
+      type: number
+      required: false
+      description: 类目 ID
+    - name: page
+      type: number
+      required: false
+      default: 1
+      description: 页码
+    - name: pagesize
+      type: number
+      required: false
+      default: 20
+      description: 每页数量
+    - name: price
+      type: string
+      required: false
+      description: 价格范围（格式：100-500）
+    - name: format
+      type: string
+      required: false
+      choices:
+        - table
+        - json
+        - csv
+      default: table
+      description: 输出格式
+    - name: with-category
+      type: boolean
+      required: false
+      description: 显示类目信息
+
+usage: |
+  ## 基本搜索
+  jd-search "断路器"
+  
+  ## 带类目信息
+  jd-search "断路器" --with-category
+  
+  ## JSON 输出
+  jd-search "断路器" --format json
+  
+  ## 按类目搜索
+  jd-search --catid 14081
+  
+  ## 分页搜索
+  jd-search "断路器" --page 2 --pagesize 50
+  
+  ## 价格过滤
+  jd-search "断路器" --price 30-100

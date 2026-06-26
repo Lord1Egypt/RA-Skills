@@ -1,0 +1,6 @@
+{
+  "maxAgeDays": 7,
+  "minSessions": 5,
+  "whitelist": ["main", "heartbeat"],
+  "logFile": "~/.openclaw/session-manager/cleanup.log"
+}

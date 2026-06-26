@@ -1,0 +1,14 @@
+{
+  "name": "Secure Storage",
+  "description": "AES 加密存储，用于安全保存 API 密钥等敏感信息",
+  "version": "1.0.1",
+  "identifier": "secure-storage",
+  "category": "security",
+  "tags": [
+    "encryption",
+    "storage",
+    "security",
+    "aes"
+  ],
+  "author": "c32"
+}

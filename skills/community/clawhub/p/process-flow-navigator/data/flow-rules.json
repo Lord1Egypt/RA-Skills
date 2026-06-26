@@ -1,0 +1,172 @@
+{
+  "name": "业务流程图",
+  "version": "1.0.0",
+  "created": "2026-03-11",
+  "nodes": {
+    "A": {
+      "check": "PROC-A-CHECK-001",
+      "exec": "PROC-A-EXEC-001",
+      "next": "A-1"
+    },
+    "A-1": {
+      "exec": "PROC-A-1-EXEC",
+      "next": "最终判断"
+    },
+    "B": {
+      "check": "PROC-B-CHECK-002",
+      "exec": "PROC-B-EXEC-002",
+      "next": "判断 2"
+    },
+    "B-1": {
+      "exec": "PROC-B-1-EXEC",
+      "next": "B-2"
+    },
+    "B-2": {
+      "exec": "PROC-B-2-EXEC",
+      "next": "最终判断"
+    },
+    "C": {
+      "check": "PROC-C-CHECK-003",
+      "exec": "PROC-C-EXEC-003",
+      "next": "判断 3"
+    },
+    "C-1": {
+      "exec": "PROC-C-1-EXEC",
+      "next": "最终判断"
+    },
+    "C-2": {
+      "exec": "PROC-C-2-EXEC",
+      "next": "C-3"
+    },
+    "C-3": {
+      "exec": "PROC-C-3-EXEC",
+      "next": "C-4"
+    },
+    "C-4": {
+      "exec": "PROC-C-4-EXEC",
+      "next": "最终判断"
+    },
+    "C-5": {
+      "exec": "PROC-C-5-EXEC",
+      "next": "最终判断"
+    },
+    "D": {
+      "check": "PROC-D-CHECK-004",
+      "exec": "PROC-D-EXEC-004",
+      "next": "判断 6"
+    },
+    "D-1": {
+      "exec": "PROC-D-1-EXEC",
+      "next": "最终判断"
+    },
+    "E": {
+      "check": "PROC-E-CHECK-005",
+      "exec": "PROC-E-EXEC-005",
+      "next": "判断 7"
+    },
+    "F": {
+      "check": "PROC-F-CHECK-006",
+      "exec": "PROC-F-EXEC-006",
+      "next": "G"
+    },
+    "G": {
+      "check": "PROC-G-CHECK-007",
+      "exec": "PROC-G-EXEC-007",
+      "next": "判断 8"
+    },
+    "H": {
+      "check": "PROC-H-CHECK-008",
+      "exec": "PROC-H-EXEC-008",
+      "next": "I"
+    },
+    "I": {
+      "check": "PROC-I-CHECK-009",
+      "exec": "PROC-I-EXEC-009",
+      "next": "J"
+    },
+    "J": {
+      "check": "PROC-J-CHECK-010",
+      "exec": "PROC-J-EXEC-010",
+      "next": "K"
+    },
+    "K": {
+      "check": "PROC-K-CHECK-011",
+      "exec": "PROC-K-EXEC-011",
+      "next": "收尾"
+    }
+  },
+  "judgments": {
+    "最终判断": {
+      "是": "结束",
+      "否": "继续流转 (根据来源节点决定去向)"
+    },
+    "判断 2": {
+      "是": "流程 C",
+      "否": "流程 B-1"
+    },
+    "判断 3": {
+      "是": "流程 C-1",
+      "否": "流程 C-3"
+    },
+    "判断 4": {
+      "是": "流程 C-2",
+      "否": "流程 C-3"
+    },
+    "判断 5": {
+      "是": "流程 D",
+      "否": "流程 C-5"
+    },
+    "判断 6": {
+      "是": "流程 E",
+      "否": "流程 D-1"
+    },
+    "判断 7": {
+      "报错": "流程 F",
+      "乱码": "售后"
+    },
+    "判断 8": {
+      "是": "最终判断",
+      "否": "售后"
+    },
+    "判断 9": {
+      "是": "结束",
+      "否": "售后"
+    }
+  },
+  "terminals": {
+    "结束": ["最终判断 [是]", "判断 9 [是]"],
+    "售后": ["判断 7 [乱码]", "判断 8 [否]", "判断 9 [否]"]
+  },
+  "paths": {
+    "A-1": {
+      "next": "最终判断",
+      "onYes": "结束",
+      "onNo": "流程 B"
+    },
+    "B-2": {
+      "next": "最终判断",
+      "onYes": "结束",
+      "onNo": "流程 C"
+    },
+    "C-1": {
+      "next": "最终判断",
+      "onYes": "结束",
+      "onNo": "判断 4"
+    },
+    "C-4": {
+      "next": "最终判断",
+      "onYes": "结束",
+      "onNo": "判断 5"
+    },
+    "C-5": {
+      "next": "最终判断",
+      "onYes": "结束",
+      "onNo": "流程 D"
+    },
+    "D-1": {
+      "next": "最终判断",
+      "onYes": "结束",
+      "onNo": "流程 E"
+    }
+  }
+}

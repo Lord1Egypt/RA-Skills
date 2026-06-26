@@ -1,0 +1,124 @@
+{
+  "messages": [
+    {
+      "message_id": "mock-001",
+      "account_email": "demo@example.com",
+      "subject": "Your verification code is 123456",
+      "sender": "noreply@example.com",
+      "sender_name": "Example Service",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-21T09:30:00",
+      "is_read": false,
+      "body_text": "Your verification code is 123456.\n\nThis code will expire in 5 minutes.\n\nIf you didn't request this code, please ignore this email.",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-002",
+      "account_email": "demo@example.com",
+      "subject": "Security Alert: New login to your account",
+      "sender": "security@example.com",
+      "sender_name": "Security Team",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-21T08:15:00",
+      "is_read": false,
+      "body_text": "We detected a new login to your account from:\n\nDevice: Chrome on Windows\nLocation: Beijing, China\nTime: March 21, 2026 at 8:15 AM\n\nIf this was you, no action is needed.\nIf you didn't log in, please secure your account immediately.",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-003",
+      "account_email": "demo@example.com",
+      "subject": "Weekly Newsletter - March Edition",
+      "sender": "newsletter@techblog.com",
+      "sender_name": "Tech Blog Weekly",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-20T14:00:00",
+      "is_read": true,
+      "body_text": "Welcome to the March edition of our newsletter!\n\nTop stories this week:\n- AI advances continue to reshape industries\n- New Python 3.14 released with performance improvements\n- Cloud computing trends for 2026\n\nTo unsubscribe, click here.",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-004",
+      "account_email": "demo@example.com",
+      "subject": "Re: Project Update Meeting",
+      "sender": "colleague@company.com",
+      "sender_name": "Zhang Wei",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-20T11:30:00",
+      "is_read": true,
+      "body_text": "Hi,\n\nThanks for the update. The meeting notes look good.\nLet's schedule a follow-up for next week.\n\nBest regards,\nZhang Wei",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-005",
+      "account_email": "demo@example.com",
+      "subject": "CONGRATULATIONS! You've WON $1,000,000!!!",
+      "sender": "winner@lottery-scam.fake",
+      "sender_name": "International Lottery",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-19T22:45:00",
+      "is_read": false,
+      "body_text": "CONGRATULATIONS!!!\n\nYou have been selected as the WINNER of our international lottery!\nClick here NOW to claim your $1,000,000 prize!\n\nAct now - limited time offer!!!",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-006",
+      "account_email": "demo@example.com",
+      "subject": "您的QQ邮箱账户安全提醒",
+      "sender": "service@qq.com",
+      "sender_name": "QQ邮箱安全中心",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-19T16:20:00",
+      "is_read": true,
+      "body_text": "尊敬的用户：\n\n我们检测到您的账户在新设备上登录。\n\n登录时间：2026年3月19日 16:20\n登录地点：上海\n\n如果这不是您本人的操作，请立即修改密码。\n\nQQ邮箱安全中心",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-007",
+      "account_email": "demo@example.com",
+      "subject": "Netflix 订阅确认",
+      "sender": "info@netflix.com",
+      "sender_name": "Netflix",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-18T10:00:00",
+      "is_read": true,
+      "body_text": "您的 Netflix 订阅已成功续期。\n\n订阅类型：高级版\n下次扣款日期：2026年4月18日\n\n如需退订，请访问账户设置。",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-008",
+      "account_email": "demo@example.com",
+      "subject": "GitHub Security: New personal access token created",
+      "sender": "noreply@github.com",
+      "sender_name": "GitHub",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-17T15:45:00",
+      "is_read": false,
+      "body_text": "A new personal access token (classic) was recently created for your account.\n\nToken name: CI Token\nScopes: repo, workflow\n\nIf you did not make this change, please contact GitHub Support.",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-009",
+      "account_email": "demo@example.com",
+      "subject": "Invoice #INV-2026-0342 from Acme Corp",
+      "sender": "billing@acmecorp.com",
+      "sender_name": "Acme Corp Billing",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-15T09:00:00",
+      "is_read": true,
+      "body_text": "Dear Customer,\n\nPlease find attached Invoice #INV-2026-0342 for $299.00.\n\nPayment is due within 30 days.\n\nThank you for your business!\n\nAcme Corp",
+      "raw_data": {}
+    },
+    {
+      "message_id": "mock-010",
+      "account_email": "demo@example.com",
+      "subject": "Your order has shipped!",
+      "sender": "shipping@shop.example",
+      "sender_name": "Online Shop",
+      "recipients": ["demo@example.com"],
+      "received_at": "2026-03-14T13:20:00",
+      "is_read": true,
+      "body_text": "Great news! Your order #ORD-12345 has shipped.\n\nTracking number: 1Z999AA10123456784\nExpected delivery: March 17, 2026\n\nItems in this order:\n- Widget Pro x 1\n- Gadget Plus x 2\n\nThank you for shopping with us!",
+      "raw_data": {}
+    }
+  ]
+}

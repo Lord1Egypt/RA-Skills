@@ -1,0 +1,3 @@
+# No external python packages are strictly required for the core monitor script as it uses subprocess to call CLI tools.
+# But for the visual dashboard, we will need:
+flask

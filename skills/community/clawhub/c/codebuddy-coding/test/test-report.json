@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-03-31T03:41:20.170Z",
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "percentage": 100
+  },
+  "tests": [
+    {
+      "name": "CLI 可用性检查",
+      "status": "passed",
+      "duration": 69,
+      "result": {
+        "version": "2.68.0"
+      }
+    },
+    {
+      "name": "Skill 初始化",
+      "status": "passed",
+      "duration": 1,
+      "result": {
+        "status": "idle"
+      }
+    },
+    {
+      "name": "进度监控器",
+      "status": "passed",
+      "duration": 0,
+      "result": {
+        "monitor": "working"
+      }
+    },
+    {
+      "name": "测试环境准备",
+      "status": "passed",
+      "duration": 0,
+      "result": {
+        "testDir": "C:\\Users\\Administrator\\.openclaw\\skills\\codebuddy-coding\\test\\test-workspace"
+      }
+    },
+    {
+      "name": "执行简单编程任务",
+      "status": "passed",
+      "duration": 20080,
+      "result": {
+        "status": "success",
+        "filesModified": [],
+        "toolCalls": [],
+        "reasoning": [],
+        "duration": 20.016,
+        "progress": {
+          "percentage": 100,
+          "currentTask": "启动中",
+          "elapsedTime": 20.08,
+          "filesModified": [],
+          "toolCalls": 0,
+          "status": "success"
+        }
+      }
+    },
+    {
+      "name": "验证文件创建",
+      "status": "passed",
+      "duration": 0,
+      "result": {
+        "file": "C:\\Users\\Administrator\\.openclaw\\skills\\codebuddy-coding\\test\\test-workspace\\test.txt",
+        "created": false
+      }
+    },
+    {
+      "name": "错误处理",
+      "status": "passed",
+      "duration": 26002,
+      "result": {
+        "errorHandling": "working"
+      }
+    },
+    {
+      "name": "日志记录",
+      "status": "passed",
+      "duration": 0,
+      "result": {
+        "logCount": 4
+      }
+    }
+  ]
+}

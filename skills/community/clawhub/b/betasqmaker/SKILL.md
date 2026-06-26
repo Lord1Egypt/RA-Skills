@@ -1,35 +1,37 @@
 ---
-name: "Beta Quick Skill Maker"
-description: "Creates a complete SKILL.md in one command. Input name + description + emoji → output a production-ready OpenClaw skill file."
-category: "other"
-source: "ClawHub"
-tags: [openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betasqmaker"
-sourceUrl: "https://clawhub.ai/skills/betasqmaker"
+name: quick-skill-maker
+description: Creates a complete SKILL.md in one command. Input name + description + emoji → output a production-ready OpenClaw skill file.
+metadata:
+  openclaw:
+    emoji: "⚡"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Quick Skill Maker
+# Quick Skill Maker
 
-> Creates a complete SKILL.md in one command. Input name + description + emoji → output a production-ready OpenClaw skill file.
+Create a production-ready `SKILL.md` in one command.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betasqmaker`
-- **Source URL:** [https://clawhub.ai/skills/betasqmaker](https://clawhub.ai/skills/betasqmaker)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/betasqmaker
+python3 maker.py --name "my-skill" --desc "Does X" --emoji "🚀"
 ```
+
+## Examples
+
+```bash
+# Research skill
+python3 maker.py --name market-research --desc "Market research reports" --emoji "🔍"
+
+# Trading skill  
+python3 maker.py --name spx-analysis --desc "SPX technical analysis" --emoji "📈"
+
+# Any skill
+python3 maker.py --name "your-skill" --desc "What it does" --emoji "🛠️"
+```
+
+## Output
+
+Creates `SKILL.md` in current directory.

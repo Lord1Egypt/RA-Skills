@@ -1,0 +1,24 @@
+# Copy to `.env` and fill in the values before running the eval suite.
+#
+# Example:
+#   cp .env.example .env
+#   set -a
+#   source .env
+#   set +a
+#   ./runner/run.sh
+
+# Optional override for live HL Names API evals. The runner falls back to the
+# built-in public agent key when this is unset.
+HLN_API_KEY=
+
+# Optional override for the live HL Names API base URL.
+# Defaults to https://api.hlnames.xyz/
+HLN_BASE_URL=https://api.hlnames.xyz/
+
+# Provide the key for whichever answer model provider you use with --model.
+OPENAI_API_KEY=
+VENICE_API_KEY=
+ANTHROPIC_API_KEY=
+
+# Provide the key for whichever judge model provider you use with --judge.
+# The default answer model and judge are openai/gpt-5.4-nano.

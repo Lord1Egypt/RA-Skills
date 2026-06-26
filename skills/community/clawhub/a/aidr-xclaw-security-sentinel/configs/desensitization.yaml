@@ -1,0 +1,152 @@
+# configs/desensitization.yaml
+# AIDR-XClaw-Security-Sentinel SKill — 数据脱敏规则配置
+# 所有规则均为纯正则表达式 + 替换字符串，不含任何执行逻辑
+# 应用顺序：按 priority 从小到大（priority 越小越高优）顺序匹配
+
+version: "1.0.0"
+last_updated: "2026-03-26"
+
+rules:
+  # ─── 身份标识 ───────────────────────────────────────────────
+  - id: "id_card"
+    priority: 1
+    pattern: "\\b\\d{17}[\\dXx]\\b"
+    replacement: "[ID_CARD_MASKED]"
+    description: "中国大陆身份证号（18位）"
+    examples:
+      - "110101199001011234"  → "[ID_CARD_MASKED]"
+      - "11010119900101123X"  → "[ID_CARD_MASKED]"
+
+  - id: "phone_number"
+    priority: 1
+    pattern: "\\b1[3-9]\\d{9}\\b"
+    replacement: "[PHONE_MASKED]"
+    description: "中国大陆手机号（11位，130-199开头）"
+    examples:
+      - "13812345678" → "[PHONE_MASKED]"
+
+  - id: "bank_card"
+    priority: 2
+    pattern: "\\b\\d{16,19}\\b"
+    replacement: "[BANK_CARD_MASKED]"
+    description: "银行卡号（16-19位，辅助验证，优先级较低）"
+
+  # ─── 认证凭据 ────────────────────────────────────────────────
+  - id: "api_key_generic"
+    priority: 1
+    pattern: "(?i)(api[_-]?key|apikey)\\s*[:=]\\s*['\"]?([\\w\\-]{16,})['\"]?"
+    replacement: "[API_KEY_MASKED]"
+    description: "通用 API Key 声明"
+    notes: "只替换 key 本身，保留前缀文字"
+
+  - id: "secret_declaration"
+    priority: 1
+    pattern: "(?i)(password|passwd|secret|token|auth[_-]?token|access[_-]?token)\\s*[:=]\\s*['\"]?[\\w\\-!@#$%^&*()]{8,}['\"]?"
+    replacement: "[SECRET_MASKED]"
+    description: "密码/密钥/Token 声明"
+
+  - id: "bearer_token"
+    priority: 1
+    pattern: "(?i)bearer\\s+[\\w\\-\\.]{20,}"
+    replacement: "Bearer [BEARER_TOKEN_MASKED]"
+    description: "Bearer Token"
+
+  # ─── 路径与地址 ─────────────────────────────────────────────
+  - id: "path_root"
+    priority: 2
+    pattern: "/root/[^/\\s\"'<>|]{1,64}"
+    replacement: "[PATH_MASKED]"
+    description: "root 用户目录下的路径"
+
+  - id: "path_home"
+    priority: 2
+    pattern: "/home/[^/\\s\"'<>|]{1,32}/[^/\\s\"'<>|]{1,64}"
+    replacement: "[PATH_MASKED]"
+    description: "普通用户 home 目录下的路径"
+
+  - id: "path_config"
+    priority: 1
+    pattern: "(?i)\\.env(?:\\b|_file|_path)?|\\.aws|\\.ssh|\\.gnupg|\\.kube|\\.docker"
+    replacement: "[CONFIG_PATH_MASKED]"
+    description: "敏感配置目录标识"
+
+  - id: "internal_ip"
+    priority: 1
+    pattern: "\\b(10\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|172\\.(1[6-9]|2\\d|3[01])\\.\\d{1,3}\\.\\d{1,3}|192\\168\\.\\d{1,3}\\.\\d{1,3})\\b"
+    replacement: "[INTERNAL_IP_MASKED]"
+    description: "内网 IP 地址"
+
+  - id: "metadata_endpoint"
+    priority: 1
+    pattern: "169\\.254\\.169\\.254|metadata\\.google|metadata\\.azure|metadata\\.openstack"
+    replacement: "[METADATA_ENDPOINT_MASKED]"
+    description: "云元数据服务地址（SSRF 常见目标）"
+
+  - id: "ssrf_common_targets"
+    priority: 2
+    pattern: "(?i)(localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0)(?:[:/]|\\.(?:80|443|8080))?"
+    replacement: "[SSRF_TARGET_MASKED]"
+    description: "常见 SSRF 攻击目标"
+
+  # ─── 凭据外传 ───────────────────────────────────────────────
+  - id: "exfil_webhook"
+    priority: 1
+    pattern: "webhook\\.site|requestbin\\.com|requestbin\\.net|hookbin\\.com|beeceptor\\.com"
+    replacement: "[EXFIL_ENDPOINT_MASKED]"
+    description: "凭据外传常用 webhook 端点"
+
+  - id: "exfil_ngrok"
+    priority: 1
+    pattern: "ngrok\\.io|ngrok\\.free\\.ngrok\\.io"
+    replacement: "[EXFIL_ENDPOINT_MASKED]"
+    description: "内网穿透工具（常用于凭据外传）"
+
+  - id: "exfil_pipedream"
+    priority: 1
+    pattern: "pipedream\\.net|hooks\\.slack\\.com"
+    replacement: "[EXFIL_ENDPOINT_MASKED]"
+    description: "工作流自动化平台（潜在数据外传通道）"
+
+  - id: "exfil_data_endpoints"
+    priority: 2
+    pattern: "(?i)(exfil|exfiltrat|data[_-]?leak|send[_-]?data)\\s*(?:to|at|on)?\\s*[a-z0-9\\-\\.]+\\.(com|io|net|org)"
+    replacement: "[DATA_EXFIL_MASKED]"
+    description: "潜在数据外泄端点描述"
+
+  # ─── 提示注入相关 ──────────────────────────────────────────
+  - id: "fake_system_marker"
+    priority: 1
+    pattern: "\\[SYSTEM\\]|\\[ADMIN\\]|\\[ROOT\\]|<SYSTEM>|<ADMIN>|<ROOT>"
+    replacement: "[FAKE_SYSTEM_MARKER_MASKED]"
+    description: "伪造的系统标记（Prompt Injection 常用）"
+
+  - id: "encoded_payload"
+    priority: 2
+    pattern: "(?i)(base64|base32|hex|encode|decode)\\s*[(:=]\\s*['\"]?[A-Za-z0-9+/=]{20,}['\"]?"
+    replacement: "[ENCODED_PAYLOAD_MASKED]"
+    description: "编码载荷（可能包含恶意指令）"
+
+  - id: "path_traversal"
+    priority: 1
+    pattern: "(?:\\.\\./|\\.\\.\\\\|\\.\\.%2f|\\.\\.%5c|/etc/passwd|c:\\windows|c:\\boot)"
+    replacement: "[PATH_TRAVERSAL_MASKED]"
+    description: "目录遍历攻击模式"
+
+  # ─── 敏感文件路径 ─────────────────────────────────────────
+  - id: "sensitive_paths"
+    priority: 1
+    pattern: "(?:\\.ssh|\\.aws|\\.kube|\\.docker|\\.gnupg|\\.git)/[^\"'\\s]*"
+    replacement: "[SENSITIVE_PATH_MASKED]"
+    description: "敏感目录路径"
+
+  - id: "credential_file_patterns"
+    priority: 1
+    pattern: "(?:id_[r]?sa|\\.pem|\\.key|credentials\\.json|secrets\\.ya?ml|\\.env)"
+    replacement: "[CREDENTIAL_FILE_MASKED]"
+    description: "敏感凭据文件模式"
+
+# ─── 应用规则 ─────────────────────────────────────────────────
+# 1. 按 priority 从小到大（高优到低优）顺序匹配
+# 2. 同一 priority 内按配置顺序匹配
+# 3. 每个位置只匹配一次，不递归替换 mask 字符串本身
+# 4. 不区分大小写（启用 /i 修饰符的规则除外） 

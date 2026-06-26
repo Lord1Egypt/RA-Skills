@@ -1,0 +1,4 @@
+interface:
+  display_name: "ZSXQ Fetch"
+  short_description: "Sync, search, summarize, and answer from ZSXQ data"
+  default_prompt: "Use $zsxq-fetch to sync the latest ZSXQ content and answer my question from the stored posts and documents."

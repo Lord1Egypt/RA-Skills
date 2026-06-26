@@ -1,0 +1,5 @@
+# Core dependencies (required for basic window management and control operations)
+pywinauto>=0.6.8
+pywin32>=305
+comtypes>=1.2.0
+Pillow>=9.0.0

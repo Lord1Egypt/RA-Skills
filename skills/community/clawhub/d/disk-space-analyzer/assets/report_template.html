@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>磁盘空间分析报告</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d28;
+    --border: #2a2d3a;
+    --text: #e4e6ef;
+    --text-muted: #8b8fa3;
+    --danger: #ff4757;
+    --warning: #ffa502;
+    --success: #2ed573;
+    --info: #3742fa;
+    --accent: #5352ed;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #1a1d28 0%, #2d1f3d 100%);
+    border-radius: 16px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .meta { color: var(--text-muted); font-size: 14px; }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h2 .icon { font-size: 20px; }
+
+  /* Drive Overview Grid */
+  .drives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .drive-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .drive-card .drive-letter {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .drive-card .drive-info {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #2a2d3a;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.6s ease;
+  }
+  .progress-fill.danger { background: linear-gradient(90deg, #ff4757, #ff6b81); }
+  .progress-fill.warning { background: linear-gradient(90deg, #ffa502, #ffc048); }
+  .progress-fill.success { background: linear-gradient(90deg, #2ed573, #7bed9f); }
+  .drive-stat {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .drive-stat .value { font-weight: 600; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  th {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  tr:hover { background: rgba(255,255,255,0.02); }
+  .size-bar {
+    display: inline-block;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  /* Alert */
+  .alert {
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .alert.danger {
+    background: rgba(255,71,87,0.1);
+    border: 1px solid rgba(255,71,87,0.3);
+    color: #ff6b81;
+  }
+  .alert.warning {
+    background: rgba(255,165,2,0.1);
+    border: 1px solid rgba(255,165,2,0.3);
+    color: #ffc048;
+  }
+  .alert.success {
+    background: rgba(46,213,115,0.1);
+    border: 1px solid rgba(46,213,115,0.3);
+    color: #7bed9f;
+  }
+  .alert .alert-icon { font-size: 20px; flex-shrink: 0; }
+  .alert .alert-title { font-weight: 700; margin-bottom: 4px; }
+
+  /* Suggestions */
+  .suggestion {
+    padding: 14px 18px;
+    background: rgba(83,82,237,0.08);
+    border: 1px solid rgba(83,82,237,0.2);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .suggestion .sug-title {
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .suggestion .sug-desc { color: var(--text-muted); }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag.safe { background: rgba(46,213,115,0.15); color: #2ed573; }
+  .tag.caution { background: rgba(255,165,2,0.15); color: #ffa502; }
+  .tag.danger { background: rgba(255,71,87,0.15); color: #ff4757; }
+
+  /* Cleanable items */
+  .clean-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .clean-item:last-child { border-bottom: none; }
+  .clean-item .clean-name { color: var(--text); }
+  .clean-item .clean-path { color: var(--text-muted); font-size: 12px; }
+  .clean-item .clean-size { font-weight: 700; color: var(--success); }
+  .clean-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--success);
+    border-top: 2px solid var(--border);
+    margin-top: 6px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    body { padding: 12px; }
+    .drives-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📊 磁盘空间分析报告</h1>
+    <div class="meta" id="meta"></div>
+  </div>
+  <div id="content"></div>
+</div>
+
+<script>
+function fmtSize(gb) {
+  if (gb >= 1) return gb.toFixed(2) + " GB";
+  return (gb * 1024).toFixed(0) + " MB";
+}
+
+function fmtMB(mb) {
+  if (mb >= 1024) return (mb / 1024).toFixed(2) + " GB";
+  return mb.toFixed(1) + " MB";
+}
+
+function usageLevel(pct) {
+  if (pct >= 90) return "danger";
+  if (pct >= 70) return "warning";
+  return "success";
+}
+
+function usageTag(pct) {
+  if (pct >= 90) return `<span class="tag danger">严重不足</span>`;
+  if (pct >= 70) return `<span class="tag caution">偏紧</span>`;
+  return `<span class="tag safe">健康</span>`;
+}
+
+function renderReport(data) {
+  // Meta
+  document.getElementById("meta").textContent =
+    `${data.hostname}  |  扫描时间: ${data.scan_time}`;
+
+  let html = "";
+
+  // === Per-drive main directory breakdown (replaces simple overview) ===
+  for (const d of data.drives) {
+    const level = usageLevel(d.usage_percent);
+    const maxSize = d.top_directories[0] ? d.top_directories[0].size_bytes : 1;
+    html += `<div class="card">
+      <h2><span class="icon">💾</span> ${d.drive}: 盘主要目录占用
+        <span style="margin-left:auto;font-size:13px;font-weight:400;color:var(--text-muted)">
+          总计 ${d.total_gb} GB · 已用 ${d.used_gb} GB · 剩余 <span style="color:${d.usage_percent>=90?'var(--danger)':'var(--text)'};font-weight:600">${d.free_gb} GB</span>
+          ${usageTag(d.usage_percent)}
+        </span>
+      </h2>
+      <div class="progress-bar" style="margin-bottom:16px"><div class="progress-fill ${level}" style="width:${Math.min(d.usage_percent,100)}%"></div></div>
+      <table><thead><tr><th>目录</th><th>大小</th><th>占比</th></tr></thead><tbody>`;
+    for (const dir of d.top_directories) {
+      const barW = Math.round(dir.size_bytes / maxSize * 100);
+      const pct = (dir.size_bytes / (d.used_gb * 1024**3) * 100).toFixed(1);
+      const isBig = parseFloat(pct) > 20;
+      html += `<tr>
+        <td style="width:55%"><span class="size-bar" style="width:${barW}px;${isBig?'background:var(--danger)':''}"></span>${dir.name}${isBig?' <span class="tag danger" style="font-size:10px;vertical-align:middle">大户</span>':''}</td>
+        <td style="font-weight:600;${isBig?'color:var(--danger)':''}">${fmtSize(dir.size_gb)}</td>
+        <td style="color:var(--text-muted)">${pct}%</td>
+      </tr>`;
+    }
+    html += `</tbody></table></div>`;
+  }
+
+  // === Per-Drive Culprit Analysis ===
+  // softwareDB: maps directory name -> { app, reason, suggestion, icon }
+  const softwareDB = {
+    'NetEase': { app: '网易软件（MuMu模拟器/网易游戏）', reason: '网易旗下软件的安装与运行数据。其中MuMu安卓模拟器为每个实例创建完整的安卓虚拟磁盘镜像（.vmdk），即使不常用也会持续占用数十GB。', suggestion: '在MuMu模拟器设置中将虚拟机存储路径迁移到空间充裕的磁盘。', icon: '🎮' },
+    'MuMu': { app: 'MuMu安卓模拟器', reason: 'MuMu模拟器为每个实例创建完整的安卓虚拟机，包含系统镜像和用户数据。虚拟磁盘文件即使删除了应用也不会自动缩小，随时间累积可达数十GB。', suggestion: '进入MuMu模拟器 → 设置 → 引擎设置，将存储路径迁移到其他磁盘。', icon: '📱' },
+    'vms': { app: 'MuMu模拟器虚拟机实例', reason: 'MuMu模拟器的核心数据目录，每个子文件夹对应一个模拟器实例。每个实例包含完整安卓系统盘（通常20~40GB）和用户数据盘，基础系统镜像本身就会占大量空间。', suggestion: '在MuMu设置中迁移实例存储路径，或删除不常用的模拟器实例。', icon: '💿' },
+    'MuMuPlayer': { app: 'MuMu模拟器实例', reason: '单个MuMu模拟器实例，包含安卓系统盘和用户数据。', suggestion: '在MuMu设置中迁移或删除此实例。', icon: '💿' },
+    'SteamLibrary': { app: 'Steam游戏平台', reason: 'Steam游戏库存储了所有已安装游戏的本体、DLC和创意工坊内容。现代3A游戏动辄50~150GB，多款游戏累积后空间消耗巨大。', suggestion: '在Steam设置 → 存储中，将游戏安装目录迁移到空间更大的磁盘。卸载长期不玩的游戏。', icon: '🎮' },
+    'steamapps': { app: 'Steam游戏库', reason: 'Steam所有游戏、DLC、Mod的安装目录。每款游戏包含完整的模型、贴图、音频、视频等资源文件。', suggestion: '通过Steam客户端管理游戏库，卸载不常玩的游戏或将库迁移到其他磁盘。', icon: '🎮' },
+    'workshop': { app: 'Steam创意工坊Mod', reason: 'Steam创意工坊订阅的Mod/模组文件。大量订阅Mod的游戏（如《都市天际线》《群星》）创意工坊内容可达数十甚至上百GB。', suggestion: '在Steam创意工坊中取消订阅不需要的Mod，或在游戏启动器中清理旧Mod缓存。', icon: '🔧' },
+    'downloading': { app: 'Steam下载缓存', reason: 'Steam正在下载或下载中断未完成的临时文件。下载大体积游戏时此目录会暂时膨胀。', suggestion: '如下载已完成文件会自动清理；如有中断的下载，可在Steam中暂停并删除该下载任务。', icon: '⬇️' },
+    'common': { app: 'Steam已安装游戏', reason: 'Steam游戏本体文件目录，每个子文件夹对应一款已安装的游戏。', suggestion: '在Steam中卸载不常玩的游戏来释放空间。', icon: '🎮' },
+    'WindowsApps': { app: 'Windows应用商店应用', reason: '从Microsoft Store安装的UWP应用及运行时数据，包括系统预装应用和用户手动安装的应用。', suggestion: '在设置 → 应用中卸载不用的Microsoft Store应用。部分系统预装应用无法卸载。', icon: '🛍️' },
+    'Microsoft Visual Studio': { app: 'Visual Studio开发环境', reason: 'Visual Studio的安装包含IDE本体、.NET SDK、C++构建工具、模拟器镜像等。工作负载越多，占用越大，轻松超过10GB。', suggestion: '通过Visual Studio Installer修改安装组件，移除不需要的工作负载。', icon: '💻' },
+    'Autodesk': { app: 'Autodesk设计软件', reason: 'Autodesk系列软件（Maya、3ds Max、AutoCAD等）的安装程序、插件和缓存文件。每个软件通常占用5~10GB。', suggestion: '卸载不再使用的Autodesk产品，清理旧版本安装残留。', icon: '🎨' },
+    'Microsoft Office': { app: 'Microsoft Office办公套件', reason: 'Office套件（Word、Excel、PowerPoint等）的完整安装文件及组件。', suggestion: '如需节省空间，可考虑切换到Office网页版。', icon: '📄' },
+    'UE_5.5': { app: 'Unreal Engine 5.5引擎', reason: 'Unreal Engine完整安装包含引擎源码、编译后的二进制文件、模板项目、插件和缓存。每次引擎更新不会自动清理旧版本文件，导致空间持续增长。', suggestion: '通过Epic Games Launcher管理引擎版本，删除不使用的旧版本。清理项目缓存（Intermediate、Saved文件夹）。', icon: '🕹️' },
+    'GhostwireTokyo': { app: '《幽灵线：东京》游戏', reason: '该游戏的完整安装文件，包含高清贴图、音频、过场动画等资源。', suggestion: '如已完成游戏，可卸载释放空间。', icon: '🎮' },
+    'TheEvilWithin2': { app: '《恶灵附身2》游戏', reason: '该游戏的完整安装文件，包含3D模型、贴图、音效等资源。', suggestion: '如已完成游戏，可卸载释放空间。', icon: '🎮' },
+    'WorldWarZ': { app: '《世界大战Z》游戏', reason: '该游戏的完整安装文件，包含关卡资源、角色模型、音效等。', suggestion: '如不再游玩，可卸载释放空间。', icon: '🎮' },
+    'Star Rail': { app: '《崩坏：星穹铁道》游戏', reason: '该游戏的完整安装文件，持续更新的活动资源会不断增大安装包体积。', suggestion: '如不再游玩，可卸载释放空间。', icon: '🎮' },
+    'Wuthering Waves Game': { app: '《鸣潮》游戏', reason: '该游戏的完整安装文件，包含开放世界场景、角色模型、战斗特效等高清资源。', suggestion: '如不再游玩，可卸载释放空间。', icon: '🎮' },
+    'Netease': { app: '网易相关软件', reason: '网易旗下软件（如网易云音乐、网易游戏等）的安装和数据文件。', suggestion: '在对应应用的设置中清理缓存，或将安装路径迁移到其他磁盘。', icon: '🎵' },
+    '$RECYCLE.BIN': { app: '回收站', reason: '已删除但尚未永久清空的文件。删除文件时系统只是将其移入回收站并标记为待删除，磁盘空间不会立即释放。随着时间推移，大量已删除文件会在此累积。', suggestion: '右键桌面回收站图标 → 清空回收站，即可立即释放全部空间。这是最快速的磁盘空间回收方式。', icon: '🗑️' },
+    '$Recycle.Bin': { app: '回收站', reason: '已删除但尚未永久清空的文件。磁盘空间不会立即释放。', suggestion: '右键桌面回收站图标 → 清空回收站。', icon: '🗑️' },
+    'NVIDIA Corporation': { app: 'NVIDIA显卡驱动及软件', reason: 'NVIDIA显卡驱动、GeForce Experience、CUDA工具包等。驱动更新后旧版本残留不会被自动清理。', suggestion: '使用DDU清理旧驱动，或在NVIDIA安装目录中手动删除旧版本文件夹。', icon: '🖥️' },
+    'ProgramData': { app: '应用程序共享数据', reason: '所有应用程序共享的数据存储目录，包含应用配置、数据库、缓存等。多个软件的数据累积后可能占用大量空间。', suggestion: '不建议直接删除。可通过各应用自身设置清理缓存。', icon: '📁' },
+    'WinSxS': { app: 'Windows组件存储（WinSxS）', reason: 'Windows系统的核心组件存储目录，保存了所有系统组件、驱动程序和更新文件的历史版本。它支持系统回滚和组件修复，是Windows可靠性的基础。通常占用15~25GB，不建议手动清理。', suggestion: '以管理员身份运行Dism /Online /Cleanup-Image /StartComponentCleanup来安全清理旧版组件备份。不要手动删除WinSxS文件夹。', icon: '🪟' },
+    'Tencent': { app: '腾讯软件', reason: '腾讯旗下软件（QQ、微信、QQ音乐等）的应用数据、缓存和聊天记录。尤其是QQ音乐缓存、微信文件和QQ聊天记录，会随使用时间持续增长。', suggestion: '在QQ音乐设置中清理缓存文件；在微信设置中管理存储空间；将聊天文件备份到其他磁盘后清理。', icon: '💬' },
+    'QQMusic': { app: 'QQ音乐', reason: 'QQ音乐的播放缓存和下载歌曲数据。在线播放时会自动缓存歌曲文件，离线下载的歌曲也会占用大量空间。', suggestion: '在QQ音乐设置中清理缓存和下载文件，或更改下载存储路径到其他磁盘。', icon: '🎵' },
+    'QQMusicCache': { app: 'QQ音乐缓存', reason: 'QQ音乐自动缓存的播放数据。每次在线听歌都会下载缓存到本地，长期累积可达数十GB。', suggestion: '在QQ音乐设置 → 通用 → 清理缓存即可释放。这是最安全有效的清理方式。', icon: '🎵' },
+    'WeChat': { app: '微信', reason: '微信的聊天数据、图片、视频、文件和朋友圈缓存。长时间使用后，聊天记录中接收的图片和文件会占用大量空间。', suggestion: '在微信设置 → 通用 → 存储空间中管理，清理不需要的聊天数据，或迁移存储路径。', icon: '💬' },
+    'xwechat_files': { app: '微信文件', reason: '微信PC版的文件存储目录，包含聊天中接收/发送的文件、图片、视频等。', suggestion: '在微信设置中管理存储空间，定期清理旧文件。', icon: '💬' },
+    'kingsoft': { app: '金山软件（WPS）', reason: '金山WPS Office的云文档缓存、模板和配置文件。', suggestion: '在WPS设置中清理缓存，或卸载不用的金山组件。', icon: '📝' },
+    'baidu': { app: '百度软件', reason: '百度旗下软件（百度网盘、百度输入法等）的应用数据和缓存。', suggestion: '在对应软件设置中清理缓存数据。', icon: '🔍' },
+    'Desktop': { app: '桌面文件', reason: '用户桌面上的所有文件和文件夹。桌面文件实际存储在C盘用户目录下，大文件堆积会挤占系统盘空间。', suggestion: '将桌面上的大文件（如安装包、视频等）移动到其他磁盘的文件夹，或更改桌面存储路径。', icon: '🖥️' },
+    'Documents': { app: '文档目录', reason: '用户文档目录中的所有文件，包括办公文档、项目文件等。部分软件的配置和缓存也可能存在此处。', suggestion: '检查目录中的大文件，将不常用的文件归档到其他磁盘。', icon: '📂' },
+    'AppData': { app: '应用程序数据（AppData）', reason: '所有应用程序的用户级数据存储目录，包含配置、缓存、数据库等。大量软件的缓存会在此累积，是C盘空间被"悄悄吃掉"的主要原因。', suggestion: '不建议直接删除。可通过各应用自身设置清理缓存，或使用工具（如BleachBit）进行安全清理。', icon: '📁' },
+    'Roaming': { app: '漫游应用数据', reason: 'AppData\\Roaming 目录存储可跨设备漫游的应用数据（会跟随微软账号同步）。其中腾讯、金山、百度等国内软件经常在此存储大量缓存。', suggestion: '不建议直接删除。定位到具体的子目录，通过对应应用的设置清理缓存。', icon: '📁' },
+    'Local': { app: '本地应用数据', reason: 'AppData\\Local 目录存储应用本地数据（不会同步）。浏览器缓存、npm/pip缓存、游戏存档等都可能在此累积数十GB数据。', suggestion: '不建议直接删除。可通过各应用设置清理缓存，或安全清理 Temp 子目录。', icon: '📁' },
+    'Polygonflow': { app: 'Polygonflow（Riverdel工具）', reason: 'Polygonflow 相关的软件数据和缓存文件。', suggestion: '如不再使用，可通过控制面板卸载并清理残留文件。', icon: '🎨' },
+    '.nuget': { app: 'NuGet包缓存', reason: '.NET 开发的 NuGet 包缓存目录，包含所有项目依赖的程序包。长时间开发会累积大量旧版本包。', suggestion: '运行 dotnet nuget locals all --clear 清理所有 NuGet 缓存。', icon: '📦' },
+    'MinecraftPE_Netease': { app: '网易我的世界（手机版）', reason: '网易版我的世界的游戏数据和资源文件。', suggestion: '如不再游玩，可卸载并删除游戏数据。', icon: '🎮' },
+    'WorkBuddy': { app: 'WorkBuddy应用数据', reason: 'WorkBuddy AI助手的应用数据和配置。', suggestion: '正常使用无需清理。如需重置可在设置中操作。', icon: '🤖' },
+  };
+
+  // Match the best known software from the chain (prefer deeper/more specific matches)
+  function matchSoftware(chain) {
+    let best = null;
+    for (let i = chain.length - 1; i >= 0; i--) {
+      if (softwareDB[chain[i]]) {
+        best = { ...softwareDB[chain[i]], matchedName: chain[i], matchedIndex: i };
+        break;
+      }
+    }
+    return best;
+  }
+
+  for (const d of data.drives) {
+    const deepList = d.deep_consumers || [];
+    const dirs = d.top_directories || [];
+
+    // Pick the biggest culprit trace across all deep consumers
+    let bestCulprit = null;
+    for (const dc of deepList) {
+      if (dc.culprit_trace) {
+        const trace = dc.culprit_trace;
+        if (!bestCulprit || trace.leaf.size_gb > bestCulprit.leaf.size_gb) {
+          bestCulprit = { ...trace, parentDir: dc.name };
+        }
+      }
+    }
+    if (!bestCulprit && dirs.length > 0) {
+      bestCulprit = { chain: [dirs[0].name], leaf: dirs[0], breadcrumb: [], parentDir: null };
+    }
+
+    const chain = bestCulprit.chain;
+    const leafGB = bestCulprit.leaf.size_gb;
+    const pct = (leafGB / d.used_gb * 100).toFixed(1);
+    const sw = matchSoftware(chain);
+
+    // Build app name: use known software name, or fallback to chain leaf
+    const appName = sw ? sw.app : chain[chain.length - 1];
+    const icon = sw ? sw.icon : '📁';
+    const reason = sw ? sw.reason : '该目录包含大量文件，是本盘最大的空间消耗者。建议检查其中的内容，将可迁移的数据移动到其他磁盘。';
+    const suggestion = sw ? sw.suggestion : '检查此目录内容，将可迁移的数据移动到其他磁盘，或卸载不再需要的应用程序。';
+
+    // Severity
+    let severity, sevClass, sevIcon;
+    if (parseFloat(pct) >= 15) { severity = '严重'; sevClass = 'danger'; sevIcon = '🔴'; }
+    else if (parseFloat(pct) >= 8) { severity = '警告'; sevClass = 'warning'; sevIcon = '🟡'; }
+    else { severity = '关注'; sevClass = 'info'; sevIcon = '🔵'; }
+
+    html += `<div class="card">
+      <div class="alert ${sevClass}">
+        <span class="alert-icon">🎯</span>
+        <div style="flex:1">
+          <div class="alert-title">${d.drive}: 盘元凶锁定 ${sevIcon} ${severity}</div>
+          <div style="margin-top:10px">
+            <div style="font-size:20px;font-weight:700">${icon} ${appName}</div>
+            <div style="margin-top:6px;font-size:14px;color:var(--text-muted)">
+              路径：${chain.join(' <span style="color:var(--text-muted);opacity:0.5">→</span> ')}
+              &nbsp;·&nbsp; ${fmtSize(leafGB)}，占已用空间 ${pct}%
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <div style="display:flex;gap:8px;align-items:baseline;margin-bottom:8px">
+          <span style="font-weight:600;font-size:14px">🔎 占用原因</span>
+        </div>
+        <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:14px;line-height:1.7;color:var(--text-muted)">${reason}</div>
+      </div>
+      <div style="margin-top:12px">
+        <div style="display:flex;gap:8px;align-items:baseline;margin-bottom:8px">
+          <span style="font-weight:600;font-size:14px">💡 优化建议</span>
+        </div>
+        <div style="padding:12px 16px;background:rgba(46,213,115,0.06);border:1px solid rgba(46,213,115,0.15);border-radius:8px;font-size:14px;line-height:1.7;color:var(--text-muted)">${suggestion}</div>
+      </div>`;
+
+    // Show culprit trace breadcrumb (collapsed by default style, compact)
+    if (bestCulprit.breadcrumb && bestCulprit.breadcrumb.length > 1) {
+      html += `<div style="margin-top:12px;padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:6px;font-size:12px;color:var(--text-muted)">
+        <span style="opacity:0.6">追踪路径：</span>`;
+      for (let i = 0; i < bestCulprit.breadcrumb.length; i++) {
+        const bc = bestCulprit.breadcrumb[i];
+        const isLeaf = i === bestCulprit.breadcrumb.length - 1;
+        if (i > 0) html += ` <span style="opacity:0.3">→</span> `;
+        html += `<span style="${isLeaf ? 'color:var(--danger);font-weight:600' : ''}">${bc.name}</span>`;
+        html += `<span style="opacity:0.4">(${fmtSize(bc.size_gb)})</span>`;
+      }
+      html += `</div>`;
+    }
+
+    // Show top 3 directories breakdown with children
+    if (deepList.length > 0) {
+      html += `<h3 style="margin:16px 0 12px;font-size:15px;color:var(--text-muted)">📊 ${d.drive}: 盘前 3 大目录深度分析</h3>`;
+      for (const dc of deepList) {
+        const dcPct = (dc.size_gb / d.used_gb * 100).toFixed(1);
+        html += `<div style="margin-bottom:16px">
+          <div style="font-weight:600;margin-bottom:6px;font-size:14px">${dc.name}
+            <span style="color:var(--text-muted);font-weight:400;font-size:13px">${fmtSize(dc.size_gb)} · 占盘 ${dcPct}%</span>
+          </div>
+          <table style="font-size:13px"><thead><tr><th style="padding:5px 8px">子目录</th><th style="padding:5px 8px">大小</th><th style="padding:5px 8px">占盘比</th></tr></thead><tbody>`;
+        for (const c of dc.children) {
+          const cPct = (c.size_gb / d.used_gb * 100).toFixed(1);
+          const cBar = Math.round(c.size_gb / dc.children[0].size_gb * 80);
+          // Check if this child is the culprit trace target
+          const isCulpritTarget = dc.culprit_trace && dc.culprit_trace.chain.length > 1 && c.name === dc.culprit_trace.chain[1];
+          html += `<tr>
+            <td style="padding:5px 8px"><span class="size-bar" style="width:${cBar}px;${isCulpritTarget?'background:var(--danger)':''}"></span>${c.name}${isCulpritTarget?' <span class="tag danger" style="font-size:10px">已追踪</span>':''}</td>
+            <td style="padding:5px 8px;font-weight:600;${isCulpritTarget?'color:var(--danger)':''}">${fmtSize(c.size_gb)}</td>
+            <td style="padding:5px 8px;color:var(--text-muted)">${cPct}%</td>
+          </tr>`;
+        }
+        html += `</tbody></table></div>`;
+      }
+    }
+
+    html += `</div>`;
+  }
+
+  // === Windows Components ===
+  if (data.windows_components && data.windows_components.length > 0) {
+    html += `<div class="card"><h2><span class="icon">🪟</span> C:\\Windows 目录分析</h2>`;
+    html += `<table><thead><tr><th>目录</th><th>大小</th><th>说明</th></tr></thead><tbody>`;
+    const descriptions = {
+      "WinSxS": "组件存储（.NET、驱动等所有组件备份）",
+      "System32": "64位系统核心文件（不可动）",
+      "SysWOW64": "32位兼容层（不可动）",
+      "assembly": ".NET 程序集全局缓存",
+      "Temp": "系统临时文件 ✅ 可清理",
+      "SystemApps": "UWP 内置应用",
+      "Microsoft.NET": ".NET Framework 运行时",
+      "servicing": "系统更新备份残留",
+      "Logs": "系统日志 ✅ 可清理",
+      "Fonts": "系统字体",
+      "Installer": "安装程序缓存",
+      "SoftwareDistribution": "Windows 更新数据",
+    };
+    for (const c of data.windows_components) {
+      const desc = descriptions[c.name] || "";
+      html += `<tr><td>${c.name}</td><td style="font-weight:600">${fmtSize(c.size_gb)}</td><td style="color:var(--text-muted);font-size:13px">${desc}</td></tr>`;
+    }
+    html += `</tbody></table></div>`;
+  }
+
+  // === Special Locations (Cleanable) ===
+  if (data.special_locations && data.special_locations.length > 0) {
+    let totalCleanMB = data.special_locations.reduce((s, l) => s + l.size_mb, 0);
+    html += `
+      <div class="card">
+        <h2><span class="icon">🧹</span> 可清理缓存/临时文件</h2>
+        <div class="alert success">
+          <span class="alert-icon">✅</span>
+          <div>以下为安全的缓存和临时文件，删除后不会影响系统和应用程序的正常使用。</div>
+        </div>`;
+
+    for (const loc of data.special_locations) {
+      html += `
+        <div class="clean-item">
+          <div>
+            <div class="clean-name">${loc.name}</div>
+            <div class="clean-path">${loc.path}</div>
+          </div>
+          <div class="clean-size">${fmtMB(loc.size_mb)}</div>
+        </div>`;
+    }
+    html += `
+      <div class="clean-total">
+        <span>预计可释放空间</span>
+        <span>${fmtMB(totalCleanMB)}</span>
+      </div>
+    </div>`;
+  }
+
+  // === Suggestions ===
+  html += `<div class="card"><h2><span class="icon">💡</span> 优化建议</h2>`;
+
+  for (const d of data.drives) {
+    const deepList = d.deep_consumers || [];
+    const dirs = d.top_directories || [];
+
+    // Find recycle bin
+    const recycle = dirs.find(x => x.name === '$RECYCLE.BIN' || x.name === '$Recycle.BIN');
+
+    // Find large root files
+    const largeFiles = dirs.filter(x => x.name.includes('.zip') || x.name.includes('.exe') || x.name.includes('.msi'));
+
+    if (d.usage_percent >= 90) {
+      if (deepList.length > 0) {
+        const biggest = deepList[0];
+        const biggestChild = biggest.children && biggest.children[0];
+        const target = biggestChild ? `${biggest.name} → ${biggestChild.name}` : biggest.name;
+        html += `
+          <div class="suggestion">
+            <div class="sug-title">🔴 ${d.drive}: 盘空间严重不足（${d.usage_percent}%）</div>
+            <div class="sug-desc">最大消耗者 <strong>${target}</strong>（${fmtSize(biggestChild ? biggestChild.size_gb : biggest.size_gb)}）。建议迁移到其他磁盘，或在应用设置中更改存储路径。</div>
+          </div>`;
+      }
+    }
+
+    if (recycle) {
+      html += `
+        <div class="suggestion">
+          <div class="sug-title">🔴 清空 ${d.drive}: 盘回收站</div>
+          <div class="sug-desc">${d.drive}: 盘回收站占用 <strong>${fmtSize(recycle.size_gb)}</strong>，右键桌面回收站图标 → 清空回收站即可释放。</div>
+        </div>`;
+    }
+
+    if (largeFiles.length > 0) {
+      for (const f of largeFiles) {
+        html += `
+          <div class="suggestion">
+            <div class="sug-title">🟡 迁移根目录文件 ${f.name}</div>
+            <div class="sug-desc">${f.path} 占用 ${fmtSize(f.size_gb)}，建议移至 ${d.drive}: 盘子目录或其他磁盘。</div>
+          </div>`;
+      }
+    }
+
+    if (d.free_gb < 30 && d.usage_percent < 90) {
+      html += `
+        <div class="suggestion">
+          <div class="sug-title">🟡 运行磁盘清理工具</div>
+          <div class="sug-desc">以管理员身份运行 <code>cleanmgr</code> 清理系统文件，或运行 <code>Dism /Online /Cleanup-Image /StartComponentCleanup</code> 清理旧版组件。</div>
+        </div>`;
+    }
+  }
+
+  if (data.special_locations && data.special_locations.length > 0) {
+    html += `
+      <div class="suggestion">
+        <div class="sug-title">🟢 清理缓存和临时文件</div>
+        <div class="sug-desc">可安全释放约 ${fmtMB(data.special_locations.reduce((s,l)=>s+l.size_mb,0))} 的临时/缓存空间。浏览器缓存会在下次访问时自动重建。</div>
+      </div>`;
+  }
+
+  html += `
+      <div class="suggestion">
+        <div class="sug-title">📦 使用 WinDirStat / TreeSize Free</div>
+        <div class="sug-desc">如需更细粒度的文件级分析，推荐使用 WinDirStat 或 TreeSize Free 进行可视化磁盘占用扫描。</div>
+      </div>`;
+
+  html += `</div>`;
+
+  document.getElementById("content").innerHTML = html;
+}
+
+// Data is injected directly as a JS variable below
+const REPORT_DATA = __REPORT_DATA__;
+
+if (REPORT_DATA) {
+  renderReport(REPORT_DATA);
+} else {
+  document.getElementById("content").innerHTML =
+    '<div class="alert warning"><span class="alert-icon">⚠️</span><div><div class="alert-title">未找到报告数据</div><div>报告数据未正确注入。</div></div></div>';
+}
+</script>
+</body>
+</html>

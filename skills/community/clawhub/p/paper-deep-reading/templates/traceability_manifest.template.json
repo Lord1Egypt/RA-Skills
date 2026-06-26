@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.3.0",
+  "paper_id": "<paper-slug>",
+  "claims": [
+    {
+      "claim_id": "C5.2",
+      "section_id": "5",
+      "report_anchor": "## 5. Scientific Problem Ladder",
+      "statement": "The paper turns representation drift under heterogeneous clients into an explicit design target.",
+      "interpretation_type": "evidence-backed interpretation",
+      "research_role": "problem framing",
+      "confidence": "high",
+      "evidences": [
+        {
+          "evidence_id": "E5.2.a",
+          "source_kind": "latex_paragraph",
+          "source_file": "sections/introduction.tex",
+          "paragraph_id": "P-sections-introduction-0008",
+          "line_start": 41,
+          "line_end": 56,
+          "locator_method": "synctex_preferred",
+          "quote_text": "representation drift across heterogeneous clients",
+          "synctex": {
+            "pdf": "paper.pdf",
+            "page": 2,
+            "bbox": [76, 145, 480, 238]
+          },
+          "notes": "Gap statement in introduction."
+        }
+      ]
+    }
+  ]
+}

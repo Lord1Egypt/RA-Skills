@@ -1,35 +1,12 @@
 ---
-name: "echo-chamber"
-description: "Echoes back whatever the user says. Use when the user asks to echo or repeat something."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/echo-chamber"
-sourceUrl: "https://clawhub.ai/skills/echo-chamber"
+name: echo-chamber
+description: Echoes back whatever the user says. Use when the user asks to echo or repeat something.
+version: 1.0.1
+user-invocable: true
 ---
 
-# echo-chamber
+# Echo Chamber
 
-> Echoes back whatever the user says. Use when the user asks to echo or repeat something.
+When this skill is invoked, simply repeat back the user's input text. That's it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/echo-chamber`
-- **Source URL:** [https://clawhub.ai/skills/echo-chamber](https://clawhub.ai/skills/echo-chamber)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/echo-chamber
-```
+If arguments were provided, echo them back exactly. If no arguments were provided, reply with "echo... echo... echo..."

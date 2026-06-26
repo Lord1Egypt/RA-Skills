@@ -1,35 +1,144 @@
 ---
-name: "Team Work"
+name: team-work
 description: "团队协作技能，用于多个 openclaw 智能体连接到同一个 team 中进行协作。主要功能包括：团队初始化注册、消息发送与接收、团队状态同步。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/team-work"
-sourceUrl: "https://clawhub.ai/skills/team-work"
 ---
 
 # Team Work
 
-> 团队协作技能，用于多个 openclaw 智能体连接到同一个 team 中进行协作。主要功能包括：团队初始化注册、消息发送与接收、团队状态同步。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/team-work`
-- **Source URL:** [https://clawhub.ai/skills/team-work](https://clawhub.ai/skills/team-work)
+本技能用于支持多个 openclaw 智能体在同一个团队中进行协作。通过该技能，agent 可以：
 
-## Overview
+1. **加入团队**：向团队服务注册自己，完成团队初始化
+2. **发送消息**：向团队中的其他成员发送消息（支持广播和私信）
+3. **接收消息**：自动接收来自其他成员的消息
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 核心工作流程
+
+当 agent 接收到 `__system__` 发送的团队初始化指令后：
+
+1. **加载本技能**：按照技能说明操作
+2. **执行初始化脚本**：调用 `join_team.js` 完成团队注册
+3. **后续通信**：使用 `send_message.js` 向团队成员发送消息
+
+## 核心功能
+
+### 1. 团队初始化
+
+**功能**：向团队服务注册自己，完成团队加入
+
+**脚本位置**：`scripts/join_team.js`
+
+**使用场景**：
+- Agent 接收到团队初始化指令时
+- Agent 需要加入团队时
+
+**基本信息提取**：
+从初始化指令中提取以下信息：
+- 团队服务的 IP 地址（host）
+- 团队服务的端口（port）
+- 团队 ID（team_id）
+- Agent 的名字（name）
+- Agent 的角色（agent_type）
+
+**执行方式**：
+
+使用提取到的信息执行脚本，**配置文件路径由 agent 自行指定**（建议使用工作目录）：
+
 ```bash
-hermes skills install clawhub/team-work
+node scripts/join_team.js \
+  --host <提取的host> \
+  --port <提取的port> \
+  --team-id <提取的team_id> \
+  --agent-name <提取的name> \
+  --config-path <配置文件保存路径>
 ```
+
+**配置文件说明**：
+- 路径示例：建议保存在当前工作目录下，例如`/path/to/workspace/team_config.json`
+- 配置文件会被自动保存和加载，你不必关心配置文件内容，只需使用其路径进行脚本调用即可
+
+### 2. 发送消息
+
+**功能**：向团队成员发送消息（广播或私信）
+
+**脚本位置**：`scripts/send_message.js`
+
+**使用场景**：
+- Agent 需要向所有团队成员广播消息
+- Agent 需要向特定成员发送私信
+
+**配置文件加载**：
+脚本会从指定路径读取配置文件，需要与 join_team.js 使用相同的配置文件路径
+
+**执行方式**：
+
+**广播消息（发送给所有人）**：
+
+```bash
+node scripts/send_message.js \
+  --config-path <配置文件路径> \
+  --content "Hello everyone! I've completed my task."
+```
+
+**发送私信**：
+
+```bash
+node scripts/send_message.js \
+  --config-path <配置文件路径> \
+  --recipient "agent_2" \
+  --content "Can you help me with this task?"
+```
+
+**参数说明**：
+- `--config-path`：配置文件路径（必需，与 join_team.js 使用的路径相同）
+- `--recipient`：接收者名称。接受者除了包括团队中的成员之外，还可以是：
+   1. `__all__`：表示所有成员
+   2. `__system__`：表示系统管理员，主要存在于团队创建、管理等阶段
+   3. `__user__`：用户，团队的主要服务对象，存在于整个任务执行周期中，任务相关的信息需要向该角色汇报。
+- `--content`：消息内容
+
+**重要说明**：
+- 团队协作过程中必须时刻谨记，只有通过调用`send_message.js`脚本发送的消息才能被其他成员接收到，其余的文本输出只能作为你的内部记录。
+
+## 团队初始化与任务执行流程
+
+按照以下流程进行团队初始化与任务执行：
+- 团队初始化：
+   1. 接收到系统管理员发送的团队初始化指令后，根据自己在团队中的角色，加载相应的协作细则。
+   2. 调用`join_team.js`脚本申请加入团队
+   3. 等待接收系统管理员发送的团队初始化完成消息，从消息中获取团队信息，并确认自己已经加入团队
+   4. 向系统管理员发送固定格式消息，内容为`准备就绪`。
+   5. 在等待接收到进一步任务任务指令之前，不要进行任何其他操作，也不要急于向其他团队成员发送消息
+- 任务执行：
+   1. 获取到用户的任务指令后，团队lead进行任务分配，并向团队成员发送任务分配消息
+   2. 团队成员根据lead分配的任务，进行任务执行
+   3. 任务执行过程中，所有成员必须使用`send_message.js`脚本进行协作沟通，或直接向用户汇报任务执行情况
+
+## 任务进度追踪
+
+使用本地文件（例如`task_plan.md`）作为追踪任务进度的工具，每位成员都有自己独立的任务和进度，不要与其他成员分享该文件。在开始新任务之前，先将文件清空，再开始新的任务规划。在任务执行过程中，不断更新该文件以追踪任务步骤的执行状态，确保任务的进度和结果符合预期。
+
+
+## Git协作工具
+
+每位团队成员都拥有完全独立的工作空间，git仓库将作为团队成员之间共享文件的唯一途径。使用git工具用于集中的文件共享和版本管理。如果用户发布的任务需要用到git工具，但是上下文中没有Git Repo地址，团队lead可直接向用户索要git**仓库地址**和**开发分支**，并明确告知团队成员。所有的团队成员，如果对共享工作区文件进行了增删改，在向其他成员发送消息之前（分配任务或汇报结果），请先使用将本地修改push到git远端仓库，再发送消息，确保成员对于文件视图的一致性。
+
+### Git访问授权
+根据上下文或环境变量中的`GIT_AUTH_TYPE`来判断是否需要进行额外的访问授权。如果`GIT_AUTH_TYPE`为`https`，则使用环境变量或上下文中的`GIT_USER`和`GIT_ACCESS_TOKEN`进行git授权，例如：
+```bash
+git clone https://${GIT_USER}:${GIT_ACCESS_TOKEN}@git.shinemo.com/scm/path/to/repo.git
+```
+如果权限问题导致git访问失败，则直接向用户寻求授权方式。
+
+
+**重要提示**：
+对于复杂的大型软件开发项目，团队lead需要按照软件开发标准和项目需求，规划好项目目录结构，确保目录路径符合软件开发规范，为每位成员分配好各自git提交的目录或分支，并告知团队成员，避免不同成员的提交冲突。
+
+## 协作细则
+
+根据你在团队中的身份是`lead`还是`member`，你需要遵循不同的协作细则，具体的细则位于`guidelines/`目录下，根据你的身份阅读对应的细则。
+- `guidelines/lead-guideline.md`：团队lead的协作细则
+- `guidelines/member-guideline.md`：团队成员的协作细则

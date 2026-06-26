@@ -1,0 +1,31 @@
+{
+  "name": "openclaw-soul",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "OpenClaw skill for browsing and applying curated SOUL.md personas",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexleach/openclaw-soul.git"
+  },
+  "homepage": "https://github.com/alexleach/openclaw-soul#readme",
+  "bugs": {
+    "url": "https://github.com/alexleach/openclaw-soul/issues"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "soul",
+    "persona",
+    "ai",
+    "clawhub"
+  ],
+  "scripts": {
+    "test": "node tests/run.mjs"
+  },
+  "author": {
+    "name": "Alex Leach",
+    "email": "alexleach@users.noreply.github.com",
+    "url": "https://github.com/alexleach"
+  }
+}

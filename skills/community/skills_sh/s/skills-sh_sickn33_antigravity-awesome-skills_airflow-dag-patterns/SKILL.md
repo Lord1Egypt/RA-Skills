@@ -1,35 +1,49 @@
 ---
-name: "airflow-dag-patterns"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/airflow-dag-patterns"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/airflow-dag-patterns"
+name: airflow-dag-patterns
+description: "Build production Apache Airflow DAGs with best practices for operators, sensors, testing, and deployment. Use when creating data pipelines, orchestrating workflows, or scheduling batch jobs."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# airflow-dag-patterns
+# Apache Airflow DAG Patterns
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Production-ready patterns for Apache Airflow including DAG design, operators, sensors, testing, and deployment strategies.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/airflow-dag-patterns`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/airflow-dag-patterns](https://skills.sh/sickn33/antigravity-awesome-skills/airflow-dag-patterns)
+## Use this skill when
 
-## Overview
+- Creating data pipeline orchestration with Airflow
+- Designing DAG structures and dependencies
+- Implementing custom operators and sensors
+- Testing Airflow DAGs locally
+- Setting up Airflow in production
+- Debugging failed DAG runs
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/airflow-dag-patterns
-```
+- You only need a simple cron job or shell script
+- Airflow is not part of the tooling stack
+- The task is unrelated to workflow orchestration
+
+## Instructions
+
+1. Identify data sources, schedules, and dependencies.
+2. Design idempotent tasks with clear ownership and retries.
+3. Implement DAGs with observability and alerting hooks.
+4. Validate in staging and document operational runbooks.
+
+Refer to `resources/implementation-playbook.md` for detailed patterns, checklists, and templates.
+
+## Safety
+
+- Avoid changing production DAG schedules without approval.
+- Test backfills and retries carefully to prevent data duplication.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns, checklists, and templates.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

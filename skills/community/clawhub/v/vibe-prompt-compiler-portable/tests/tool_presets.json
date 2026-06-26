@@ -1,0 +1,73 @@
+[
+  {
+    "name": "codex_cli_wrapper",
+    "args": [
+      "--request",
+      "Build a lightweight CRM MVP",
+      "--target-tool",
+      "codex-cli",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "target_tool": "codex-cli",
+      "target_tool_label": "Codex CLI",
+      "tool_instruction_contains": [
+        "Work surgically",
+        "prefer minimal diffs",
+        "verify the current slice"
+      ],
+      "handoff_text_contains": [
+        "Target tool: Codex CLI",
+        "Tool wrapper for Codex CLI:"
+      ]
+    }
+  },
+  {
+    "name": "cursor_wrapper",
+    "args": [
+      "--request",
+      "Build an event registration admin panel MVP",
+      "--target-tool",
+      "cursor",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "target_tool": "cursor",
+      "target_tool_label": "Cursor",
+      "tool_instruction_contains": [
+        "Plan briefly first",
+        "implement only the first useful slice",
+        "Do not modify unrelated files"
+      ],
+      "handoff_text_contains": [
+        "Target tool: Cursor",
+        "Tool wrapper for Cursor:"
+      ]
+    }
+  },
+  {
+    "name": "gemini_cli_wrapper",
+    "args": [
+      "--request",
+      "Design a multi-tenant isolation approach for our React + FastAPI app",
+      "--target-tool",
+      "gemini-cli",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "target_tool": "gemini-cli",
+      "target_tool_label": "Gemini CLI",
+      "tool_instruction_contains": [
+        "Compare practical options",
+        "smallest robust path"
+      ],
+      "handoff_text_contains": [
+        "Target tool: Gemini CLI",
+        "Tool wrapper for Gemini CLI:"
+      ]
+    }
+  }
+]

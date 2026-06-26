@@ -1,35 +1,46 @@
 ---
-name: "A股实时盯盘"
-description: "中国A股实时盯盘技能 - 支持实时行情监控、异动提醒（价格/量比）、主力资金流向监测、消息面热点监测。交易时段自动高频刷新，支持多股并行、彩色提醒、企业微信推送。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-real-time-monitor"
-sourceUrl: "https://clawhub.ai/skills/a-stock-real-time-monitor"
+name: a-stock-real-time-monitor
+version: 1.0.0
+description: 中国A股实时盯盘技能 - 支持实时行情监控、异动提醒（价格/量比）、主力资金流向监测、消息面热点监测。交易时段自动高频刷新，支持多股并行、彩色提醒、企业微信推送。
+author: P4x1s
+tags: ["A股", "股票", "盯盘", "主力资金", "异动提醒", "实时行情", "东方财富"]
+emoji: "📈"
+triggers: ["启动A股盯盘", "监控股票", "异动提醒", "主力资金", "消息面监测"]
+python_version: ">=3.10"
+dependencies:
+  - requests
+  - pandas
+  - colorama
+  - akshare
 ---
 
-# A股实时盯盘
+# A股实时盯盘器
 
-> 中国A股实时盯盘技能 - 支持实时行情监控、异动提醒（价格/量比）、主力资金流向监测、消息面热点监测。交易时段自动高频刷新，支持多股并行、彩色提醒、企业微信推送。
+## 功能概述
+- **实时盯盘**：监控指定股票的最新价格、涨跌幅、成交量等。
+- **实时异动提醒**：价格大涨大跌（>5%）、量比异常时立即高亮提醒。
+- **主力资金实时监测**：拉取东方财富主力/大单资金净流入流出。
+- **消息面实时监测**：每5分钟检查东方财富热点新闻及个股相关消息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-real-time-monitor`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-real-time-monitor](https://clawhub.ai/skills/a-stock-real-time-monitor)
+## 使用方法
+对 OpenClaw 说以下指令即可触发：
+- “启动A股实时盯盘，监控 贵州茅台 sh600519、平安银行 sz000001”
+- “开启异动提醒，涨跌超过5%就通知我”
+- “查看当前主力资金流向”
+- “每5分钟监测一次消息面”
+- “停止盯盘”
 
-## Overview
+## 配置说明
+1. 编辑 `stock_monitor.py` 中的 `STOCKS` 列表，添加你想监控的股票代码（格式：sh600519 或 sz000001）。
+2. 如需企业微信推送，填入 `WECHAT_WEBHOOK`。
+3. 首次运行前执行：
+   ```bash
+   pip install -r requirements.txt
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-real-time-monitor
-```
+## 执行流程（Agent 使用指南）
+当用户要求启动盯盘时：
+1. 检查是否已安装依赖（requirements.txt）。
+2. 修改或确认 STOCKS 列表。
+3. 在后台运行：`python stock_monitor.py`（或使用 nohup / screen）。
+4. 实时将异动、资金、消息通过聊天或推送通知用户。
+5. 用户说“停止盯盘”时，结束进程。

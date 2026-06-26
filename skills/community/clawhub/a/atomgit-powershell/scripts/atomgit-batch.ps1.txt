@@ -1,0 +1,370 @@
+#!/usr/bin/env pwsh
+# AtomGit 批量 PR 处理工具 (并行优化版)
+# 使用方法：
+#   . ./atomgit-batch.ps1
+#   Invoke-BatchApprove -Owner "openeuler" -Repo "release-management" -PRs @(2557, 2558, 2560)
+# 安全增强：输入验证、错误处理、Token 保护
+
+param(
+    [Parameter(Mandatory=$false)]
+    [string]$Owner = "openeuler",
+    
+    [Parameter(Mandatory=$false)]
+    [string]$Repo = "release-management",
+    
+    [Parameter(Mandatory=$false)]
+    [int[]]$PRs = @(2557, 2558, 2560),
+    
+    [Parameter(Mandatory=$false)]
+    [switch]$Parallel,
+    
+    [Parameter(Mandatory=$false)]
+    [int]$MaxConcurrency = 3
+)
+
+# ============================================================================
+# 安全工具函数
+# ============================================================================
+
+function Test-SafeOwnerOrRepo {
+    param([string]$Value)
+    if ($Value -match '^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$') {
+        return $true
+    }
+    return $false
+}
+
+function Test-SafePRNumber {
+    param([int]$PR)
+    if ($PR -gt 0 -and $PR -lt 2147483647) {
+        return $true
+    }
+    return $false
+}
+
+function Protect-Token {
+    param([string]$Value)
+    if ($Value.Length -gt 8) {
+        return $Value.Substring(0, 4) + "****" + $Value.Substring($Value.Length - 4)
+    }
+    return "****"
+}
+
+function Handle-APIError {
+    param(
+        [System.Exception]$Error,
+        [string]$Operation
+    )
+    $errorMsg = $Error.Exception.Message
+    if ($errorMsg -match "Bearer|Token|Authorization|secret|key") {
+        Write-Host "[$Operation] Authentication error" -ForegroundColor Red
+    } else {
+        Write-Host "[$Operation] Error: $errorMsg" -ForegroundColor Red
+    }
+}
+
+# ============================================================================
+# 输入验证
+# ============================================================================
+
+# 设置输出编码
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# 验证 Owner 和 Repo
+if (-not (Test-SafeOwnerOrRepo -Value $Owner)) {
+    Write-Host "❌ 错误：Owner 格式无效 (只允许字母、数字、连字符、下划线、点)" -ForegroundColor Red
+    exit 1
+}
+
+if (-not (Test-SafeOwnerOrRepo -Value $Repo)) {
+    Write-Host "❌ 错误：Repo 格式无效 (只允许字母、数字、连字符、下划线、点)" -ForegroundColor Red
+    exit 1
+}
+
+# 验证 PR 列表
+if ($PRs.Count -eq 0) {
+    Write-Host "❌ 错误：PR 列表不能为空" -ForegroundColor Red
+    exit 1
+}
+
+foreach ($pr in $PRs) {
+    if (-not (Test-SafePRNumber -PR $pr)) {
+        Write-Host "❌ 错误：无效的 PR 编号：$pr" -ForegroundColor Red
+        exit 1
+    }
+}
+
+# 验证并发数
+if ($MaxConcurrency -lt 1 -or $MaxConcurrency -gt 10) {
+    Write-Host "❌ 错误：MaxConcurrency 必须在 1-10 之间" -ForegroundColor Red
+    exit 1
+}
+
+# 检查 Token
+$token = $env:ATOMGIT_TOKEN
+if (-not $token) {
+    $configFile = "$HOME/.openclaw/config/atomgit.json"
+    if (Test-Path $configFile) {
+        try {
+            $config = Get-Content $configFile -Raw | ConvertFrom-Json
+            $token = $config.token
+        } catch {
+            Write-Host "❌ 错误：读取配置文件失败" -ForegroundColor Red
+            exit 1
+        }
+    }
+}
+
+if (-not $token) {
+    Write-Host "❌ 错误：未找到 AtomGit Token" -ForegroundColor Red
+    Write-Host "   请设置环境变量：`$env:ATOMGIT_TOKEN=`"YOUR_TOKEN`"" -ForegroundColor Yellow
+    exit 1
+}
+
+$headers = @{ "Authorization" = "Bearer $token" }
+Write-Host "✅ Token loaded: $(Protect-Token -Value $token)" -ForegroundColor Green
+
+# ============================================================================
+# 并行处理函数
+# ============================================================================
+
+function Invoke-ParallelApprove {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        
+        [Parameter(Mandatory=$true)]
+        [string]$Repo,
+        
+        [Parameter(Mandatory=$true)]
+        [int]$PR,
+        
+        [Parameter(Mandatory=$false)]
+        [switch]$AddLgtm
+    )
+    
+    $result = [PSCustomObject]@{
+        PR = $PR
+        LgtmSuccess = $false
+        ApproveSuccess = $false
+        LgtmId = $null
+        ApproveId = $null
+        Error = $null
+    }
+    
+    # 输入验证（二次检查）
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) {
+        $result.Error = "Invalid Owner format"
+        return $result
+    }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) {
+        $result.Error = "Invalid Repo format"
+        return $result
+    }
+    if (-not (Test-SafePRNumber -PR $PR)) {
+        $result.Error = "Invalid PR number"
+        return $result
+    }
+    
+    try {
+        # 步骤 1: 添加/lgtm 评论
+        if ($AddLgtm) {
+            $lgtmBody = @{ body = "/lgtm" } | ConvertTo-Json
+            try {
+                $lgtmResponse = Invoke-RestMethod -Uri "https://api.atomgit.com/api/v5/repos/$Owner/$Repo/pulls/$PR/comments" `
+                    -Headers $headers -Method Post -Body $lgtmBody -ContentType "application/json" -UseBasicParsing -TimeoutSec 30
+                $result.LgtmSuccess = $true
+                $result.LgtmId = $lgtmResponse.id
+            } catch {
+                Handle-APIError -Error $_ -Operation "AddLgtm-PR$PR"
+                $result.Error = "LGTM failed: $($_.Exception.Message)"
+                return $result
+            }
+        }
+        
+        # 步骤 2: 添加/approve 评论
+        $approveBody = @{ body = "/approve" } | ConvertTo-Json
+        try {
+            $approveResponse = Invoke-RestMethod -Uri "https://api.atomgit.com/api/v5/repos/$Owner/$Repo/pulls/$PR/comments" `
+                -Headers $headers -Method Post -Body $approveBody -ContentType "application/json" -UseBasicParsing -TimeoutSec 30
+            $result.ApproveSuccess = $true
+            $result.ApproveId = $approveResponse.id
+        } catch {
+            Handle-APIError -Error $_ -Operation "AddApprove-PR$PR"
+            $result.Error = "Approve failed: $($_.Exception.Message)"
+            return $result
+        }
+        
+    } catch {
+        Handle-APIError -Error $_ -Operation "ParallelApprove-PR$PR"
+        $result.Error = $_.Exception.Message
+    }
+    
+    return $result
+}
+
+function Invoke-BatchApprove {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        
+        [Parameter(Mandatory=$true)]
+        [string]$Repo,
+        
+        [Parameter(Mandatory=$true)]
+        [int[]]$PRs,
+        
+        [Parameter(Mandatory=$false)]
+        [switch]$Parallel,
+        
+        [Parameter(Mandatory=$false)]
+        [int]$MaxConcurrency = 3
+    )
+    
+    Write-Host "`n🚀 AtomGit 批量 PR 处理工具 (并行优化版)" -ForegroundColor Cyan
+    Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n" -ForegroundColor Gray
+    Write-Host "📦 仓库：$Owner/$Repo" -ForegroundColor White
+    Write-Host "🔀 PR 列表：$($PRs -join ', ')" -ForegroundColor White
+    Write-Host "⚡ 模式：$(if ($Parallel) { '并行处理' } else { '串行处理' })" -ForegroundColor White
+    if ($Parallel) {
+        Write-Host "🔢 并发数：$MaxConcurrency" -ForegroundColor White
+    }
+    Write-Host ""
+    
+    $results = @()
+    $startTime = Get-Date
+    
+    if ($Parallel) {
+        # 并行处理模式
+        Write-Host "⏳ 开始并行处理..." -ForegroundColor Yellow
+        
+        $batchSize = [Math]::Ceiling($PRs.Count / $MaxConcurrency)
+        $batches = @()
+        
+        for ($i = 0; $i -lt $PRs.Count; $i += $MaxConcurrency) {
+            $end = [Math]::Min($i + $MaxConcurrency, $PRs.Count)
+            $batches += $PRs[$i..($end - 1)]
+        }
+        
+        foreach ($batch in $batches) {
+            $jobs = @()
+            foreach ($pr in $batch) {
+                $job = Start-Job -ScriptBlock {
+                    param($owner, $repo, $pr, $token)
+                    
+                    $headers = @{ "Authorization" = "Bearer $token" }
+                    $result = [PSCustomObject]@{
+                        PR = $pr
+                        LgtmSuccess = $false
+                        ApproveSuccess = $false
+                        LgtmId = $null
+                        ApproveId = $null
+                        Error = $null
+                    }
+                    
+                    try {
+                        # 添加/lgtm
+                        $lgtmBody = @{ body = "/lgtm" } | ConvertTo-Json
+                        $lgtmResponse = Invoke-RestMethod -Uri "https://api.atomgit.com/api/v5/repos/$owner/$repo/pulls/$pr/comments" `
+                            -Headers $headers -Method Post -Body $lgtmBody -ContentType "application/json" -UseBasicParsing -TimeoutSec 30
+                        $result.LgtmSuccess = $true
+                        $result.LgtmId = $lgtmResponse.id
+                        
+                        # 添加/approve
+                        $approveBody = @{ body = "/approve" } | ConvertTo-Json
+                        $approveResponse = Invoke-RestMethod -Uri "https://api.atomgit.com/api/v5/repos/$owner/$repo/pulls/$pr/comments" `
+                            -Headers $headers -Method Post -Body $approveBody -ContentType "application/json" -UseBasicParsing -TimeoutSec 30
+                        $result.ApproveSuccess = $true
+                        $result.ApproveId = $approveResponse.id
+                        
+                    } catch {
+                        $result.Error = $_.Exception.Message
+                    }
+                    
+                    return $result
+                } -ArgumentList $Owner, $Repo, $pr, $token
+                
+                $jobs += $job
+                Write-Host "   🔄 启动 PR #$pr 处理任务" -ForegroundColor Gray
+            }
+            
+            # 等待当前批次完成
+            $jobs | Wait-Job | ForEach-Object {
+                $results += Receive-Job -Job $_
+                Remove-Job -Job $_
+            }
+        }
+        
+    } else {
+        # 串行处理模式
+        Write-Host "⏳ 开始串行处理..." -ForegroundColor Yellow
+        
+        foreach ($pr in $PRs) {
+            Write-Host "`n🔀 处理 PR #$pr" -ForegroundColor Cyan
+            
+            $result = Invoke-ParallelApprove -Owner $Owner -Repo $Repo -PR $pr -AddLgtm
+            
+            if ($result.LgtmSuccess -and $result.ApproveSuccess) {
+                Write-Host "   ✅ PR #$pr 完成" -ForegroundColor Green
+                if ($result.LgtmId) {
+                    Write-Host "      /lgtm: $($result.LgtmId.Substring(0, 16))..." -ForegroundColor Gray
+                }
+                if ($result.ApproveId) {
+                    Write-Host "      /approve: $($result.ApproveId.Substring(0, 16))..." -ForegroundColor Gray
+                }
+            } else {
+                Write-Host "   ⚠️  PR #$pr 部分失败" -ForegroundColor Yellow
+                if ($result.Error) {
+                    Write-Host "      错误：$($result.Error)" -ForegroundColor Red
+                }
+            }
+            
+            $results += $result
+        }
+    }
+    
+    $endTime = Get-Date
+    $duration = New-TimeSpan -Start $startTime -End $endTime
+    
+    Write-Host "`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n" -ForegroundColor Gray
+    Write-Host "📊 处理结果总结:`n" -ForegroundColor Cyan
+    
+    $successCount = ($results | Where-Object { $_.LgtmSuccess -and $_.ApproveSuccess }).Count
+    $partialCount = ($results | Where-Object { $_.LgtmSuccess -xor $_.ApproveSuccess }).Count
+    $failCount = ($results | Where-Object { -not $_.LgtmSuccess -and -not $_.ApproveSuccess }).Count
+    
+    Write-Host "   ✅ 成功：$successCount 个" -ForegroundColor Green
+    Write-Host "   ⚠️  部分成功：$partialCount 个" -ForegroundColor Yellow
+    Write-Host "   ❌ 失败：$failCount 个" -ForegroundColor Red
+    Write-Host "`n⏱️  总耗时：$($duration.Minutes)分$($duration.Seconds)秒" -ForegroundColor Cyan
+    
+    if ($Parallel) {
+        $estimatedSerial = $PRs.Count * 10
+        $saved = $estimatedSerial - $duration.TotalSeconds
+        Write-Host "⚡ 并行加速：节省约 $([Math]::Round($saved / 60, 1)) 分钟" -ForegroundColor Green
+    }
+    
+    Write-Host "`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n" -ForegroundColor Gray
+}
+
+# ============================================================================
+# 主程序
+# ============================================================================
+
+Write-Host "`n💡 使用示例:" -ForegroundColor Cyan
+Write-Host "  # 并行处理 (推荐)" -ForegroundColor Gray
+Write-Host "  Invoke-BatchApprove -Owner `"openeuler`" -Repo `"release-management`" -PRs @(2557, 2558, 2560) -Parallel" -ForegroundColor White
+Write-Host ""
+Write-Host "  # 串行处理" -ForegroundColor Gray
+Write-Host "  Invoke-BatchApprove -Owner `"openeuler`" -Repo `"release-management`" -PRs @(2557, 2558, 2560)" -ForegroundColor White
+Write-Host ""
+Write-Host "  # 自定义并发数" -ForegroundColor Gray
+Write-Host "  Invoke-BatchApprove -Owner `"openeuler`" -Repo `"release-management`" -PRs @(2557, 2558, 2560, 2547) -Parallel -MaxConcurrency 5" -ForegroundColor White
+Write-Host ""
+
+# 如果直接运行脚本，执行默认操作
+if ($PRs.Count -gt 0) {
+    Invoke-BatchApprove -Owner $Owner -Repo $Repo -PRs $PRs -Parallel:$Parallel.IsPresent -MaxConcurrency $MaxConcurrency
+}
+
+Write-Host "`n✅ Script loaded successfully" -ForegroundColor Green

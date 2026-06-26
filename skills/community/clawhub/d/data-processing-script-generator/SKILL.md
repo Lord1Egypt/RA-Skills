@@ -1,35 +1,145 @@
 ---
-name: "数据处理脚本生成器"
-description: "自动化生成数据处理脚本。根据用户提供的 Excel 模板 + ERP 导出数据，生成 Python 脚本自动处理数据并生成报表。 当用户说"帮我生成数据处理脚本"、"做一个自动处理数据的脚本"、"根据模板生成脚本"时使用此 skill。 也适用于用户已有 Excel 底板和导出数据，想要自动化处理流程的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-processing-script-generator"
-sourceUrl: "https://clawhub.ai/skills/data-processing-script-generator"
+name: data-processing-script-generator
+description: |
+  自动化生成数据处理脚本。根据用户提供的 Excel 模板 + ERP 导出数据，生成 Python 脚本自动处理数据并生成报表。
+  当用户说"帮我生成数据处理脚本"、"做一个自动处理数据的脚本"、"根据模板生成脚本"时使用此 skill。
+  也适用于用户已有 Excel 底板和导出数据，想要自动化处理流程的场景。
 ---
 
-# 数据处理脚本生成器
+# 自动化数据处理脚本生成
 
-> 自动化生成数据处理脚本。根据用户提供的 Excel 模板 + ERP 导出数据，生成 Python 脚本自动处理数据并生成报表。 当用户说"帮我生成数据处理脚本"、"做一个自动处理数据的脚本"、"根据模板生成脚本"时使用此 skill。 也适用于用户已有 Excel 底板和导出数据，想要自动化处理流程的场景。
+## 目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-processing-script-generator`
-- **Source URL:** [https://clawhub.ai/skills/data-processing-script-generator](https://clawhub.ai/skills/data-processing-script-generator)
+根据用户提供的 Excel 模板 + ERP 导出数据，自动生成可运行的数据处理脚本。
 
-## Overview
+---
 
+## 核心流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-processing-script-generator
+### 第一步：获取素材（让用户提供）
+
+**必须向用户确认并获取：**
+
+1. **Excel 模板文件（底板）** — 包含格式、透视表、公式等
+2. **ERP 导出数据的样本** — CSV 或 Excel，需要知道是哪个 sheet
+
+> 先读取文件，分析结构（sheet、列名、数据格式），才能继续后续步骤
+
+---
+
+### 第二步：确认处理逻辑（反复确认）
+
+| 确认项 | 说明 |
+|--------|------|
+| **数据来源** | ERP 导出是什么格式？CSV 还是 Excel？是哪个 sheet？ |
+| **清洗规则** | 哪些行需要过滤？（如：空代码、零库存） |
+| **计算字段** | 需要计算什么派生字段？（如：周转天数、周转判断）|
+| **追加还是覆盖** | 每天生成新文件，还是追加到同一个文件？ |
+| **特殊逻辑** | 有没有其他特殊处理逻辑？ |
+
+---
+
+### 第三步：确认映射关系
+
+| 确认项 | 说明 |
+|--------|------|
+| **基准表** | 模板中哪个 sheet 是「基准」？包含什么映射？（产品代码 → 品类/供应商） |
+| **字段对应** | 导出数据的各列对应模板的哪些列？ |
+
+---
+
+### 第四步：确认文件路径（反复确认）
+
+| 确认项 | 说明 |
+|--------|------|
+| **导出文件夹路径** | ERP 导出文件放在哪里？ |
+| **模板文件路径** | 底板/基准表在哪里？ |
+| **输出文件夹路径** | 生成的报表输出到哪里？ |
+
+> ⚠️ 路径必须固定，如果后续调整，需要修改脚本中的路径变量
+
+---
+
+### 第五步：确认文件命名规范
+
+| 确认项 | 说明 |
+|--------|------|
+| **导出文件命名** | 每天导出的文件名前缀是什么？如 `商品库存导出-2026-04-02.csv` |
+| **模板文件命名** | 底板必须叫 `XXX-底板.xlsx`，累积文件叫 `XXX-汇总.xlsx` |
+| **输出文件命名** | 每天生成的文件名叫什么？如 `每日库存提醒-2026-04-02.xlsx` |
+
+---
+
+### 第六步：确认编码
+
+- CSV 文件是什么编码？（默认 gb18030）
+
+---
+
+### 第七步：提醒用户（必须告知）
+
+> ⚠️ **透视表**：必须在底板中设置「打开文件时自动刷新」
+> - 右键透视表 → 数据透视表选项 → 数据 → 勾选「打开文件时自动刷新」
+>
+> ⚠️ **VLOOKUP**：禁止使用，因为打开文件时不会自动刷新
+> - 必须在脚本里直接写入计算好的值，不能用 Excel 公式
+
+---
+
+### 第八步：生成脚本
+
+根据确认的信息生成 Python 脚本，脚本需要包含：
+
+1. **路径变量统一放在文件开头**，方便后续修改
+2. **自动查找当天导出的文件**（根据日期匹配）
+3. **多编码尝试**（gb18030 → gbk → utf-8）
+4. **加载基准映射表**
+5. **数据清洗逻辑**
+6. **计算派生字段**
+7. **通过 zip/XML 写入 Excel**，保留底板的格式、切片器、透视表
+
+---
+
+### 第九步：测试运行
+
+- 脚本生成后，先跑一遍验证是否正常
+- 如果报错，修复后再交付
+
+---
+
+### 第十步：交付说明
+
+告诉用户：
+
+1. 脚本放在哪里
+2. 怎么运行（`python3 xxx.py`）
+3. 如果路径变了改哪里（脚本开头的路径变量）
+4. 文件夹结构和命名规范
+
+---
+
+## 脚本规范参考
+
+```python
+# 路径统一放在文件开头，方便修改
+EXPORT_DIR = "/Users/Zhuanz/xxx/每日导出数据"
+TEMPLATE_PATH = "/Users/Zhuanz/xxx/每日报表/xxx-底板.xlsx"
+OUTPUT_DIR = "/Users/Zhuanz/xxx/每日报表"
+
+# 命名规范
+# - 底板: XXX-底板.xlsx
+# - 累积: XXX-汇总.xlsx
+# - 导出: 导出XXX-YYYY-MM-DD.csv
+# - 输出: XXX-YYYY-MM-DD.xlsx
 ```
+
+---
+
+## 关键原则
+
+1. **先获取素材，再确认逻辑**
+2. **先确认逻辑，再确认路径**
+3. **路径、命名必须反复确认**
+4. **透视表和 VLOOKUP 的问题必须告知用户**
+5. **生成的脚本路径要统一放在文件开头，方便后续修改**
+6. **生成后必须测试运行，验证无误再交付**

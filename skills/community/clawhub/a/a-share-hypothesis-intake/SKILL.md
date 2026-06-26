@@ -1,35 +1,97 @@
 ---
-name: "a-share-hypothesis-intake"
-description: "把长材料、宏观观点、录音转写和新闻流拆成事实、推断、数据缺口、验证条件与 A 股传导卡。适用于用户贴长文、视频字幕、宏观框架、新闻摘要，想落到板块与选股逻辑的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-hypothesis-intake"
-sourceUrl: "https://clawhub.ai/skills/a-share-hypothesis-intake"
+name: a-share-hypothesis-intake
+description: 把长材料、宏观观点、录音转写和新闻流拆成事实、推断、数据缺口、验证条件与 A 股传导卡。适用于用户贴长文、视频字幕、宏观框架、新闻摘要，想落到板块与选股逻辑的场景。
 ---
 
-# a-share-hypothesis-intake
-
-> 把长材料、宏观观点、录音转写和新闻流拆成事实、推断、数据缺口、验证条件与 A 股传导卡。适用于用户贴长文、视频字幕、宏观框架、新闻摘要，想落到板块与选股逻辑的场景。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-hypothesis-intake`
-- **Source URL:** [https://clawhub.ai/skills/a-share-hypothesis-intake](https://clawhub.ai/skills/a-share-hypothesis-intake)
+# A Share Hypothesis Intake
 
 ## Overview
 
+这个 skill 用来处理“大段观点输入”。目标不是复述，而是拆成可验证的假设，并把每条假设落到 A 股传导链、板块、风格和后续观察项上。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-hypothesis-intake
-```
+## Hard Rules
+
+1. 任何长材料都必须拆成“事实”“推断”“结论倾向”“数据缺口”。
+2. 时间敏感内容不能直接采信，能验证则验证，不能验证就标记未验证。
+3. 不能把讲话者的观点等同于事实。
+4. 每条宏观观点都必须回到 A 股：影响哪个板块、通过什么链条、在哪个条件下成立。
+5. 不直接给最终买卖指令，除非后续再接市场扫描和动作路由。
+
+## When To Use
+
+- 用户贴视频字幕、音频转写、长文评论
+- 用户给宏观框架，希望拆成交易语言
+- 用户拿一套世界观来问“怎么提炼”
+- 需要把事件逻辑变成观察清单和验证框架
+
+## Workflow
+
+### Step 1: 切分原始材料
+
+把材料切成独立主张，不要整段处理。每个主张尽量只表达一个核心判断，例如：
+
+- 战争会在某个时间窗口缓和
+- 某种商品会跑赢股指
+- 某类资产的下跌是流动性而非基本面驱动
+
+### Step 2: 四分法标注
+
+每条主张都标成以下之一：
+
+- `事实`
+- `推断`
+- `未验证判断`
+- `价值倾向/立场`
+
+### Step 3: 提炼传导链
+
+强制把观点改写成 A 股可用格式：
+
+- 触发事件
+- 中间变量
+- 受益板块
+- 受损板块
+- 领先观察量
+- 失效条件
+
+模板见 [hypothesis-card-template.md](references/hypothesis-card-template.md)。
+
+### Step 4: 验证关键不稳定项
+
+优先验证最容易改变结论的变量，例如：
+
+- 日期和政策时点
+- 战争或关税的最新进展
+- 原油、黄金、汇率、利率的当下水平
+- A 股相关板块今天是否已经交易了这条逻辑
+
+### Step 5: 输出可执行观察项
+
+最终不是给空泛总结，而是形成：
+
+- 哪几条主张值得继续跟
+- 哪几条主张已经被盘面证伪
+- 明天或下一个时间窗该看什么
+
+## Tool Rules
+
+- 原始材料拆解可先本地处理，再对时间敏感点做网页或数据验证
+- 地缘、政策、价格、收益率等不稳定项必须优先用最新来源确认
+- 如果无法确认，只能写“未验证”，不能补细节
+
+## Output Contract
+
+默认输出：
+
+- `核心主张拆分`
+- `事实与推断分离`
+- `A股传导卡`
+- `成立条件`
+- `失效条件`
+- `下一步验证项`
+
+## Practical Notes
+
+- 用户材料很长时，优先抽主线，不要逐句复述
+- 若同一材料内部自相矛盾，要直接指出，不做圆场
+- 若后续要把观点接到盘面，优先调用市场扫描；若要落到组合，优先调用动作路由

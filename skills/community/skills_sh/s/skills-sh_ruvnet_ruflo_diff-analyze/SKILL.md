@@ -1,35 +1,31 @@
 ---
-name: "diff-analyze"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/diff-analyze"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/diff-analyze"
+name: diff-analyze
+description: Analyze git diffs for risk scoring, reviewer recommendations, and change classification
+argument-hint: "[--branch BRANCH] [--pr PR#]"
+allowed-tools: mcp__claude-flow__analyze_diff mcp__claude-flow__analyze_diff-risk mcp__claude-flow__analyze_diff-classify mcp__claude-flow__analyze_diff-reviewers mcp__claude-flow__analyze_diff-stats mcp__claude-flow__analyze_file-risk Bash
 ---
 
-# diff-analyze
+# Diff Analysis
 
-> Indexed by skills.sh from ruvnet/ruflo
+Analyze git diffs for risk, complexity, and reviewer assignment.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/diff-analyze`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/diff-analyze](https://skills.sh/ruvnet/ruflo/diff-analyze)
+## When to use
 
-## Overview
+Before submitting a PR or after making significant changes, analyze the diff to understand risk level, get reviewer recommendations, and classify the type of change.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/diff-analyze
-```
+1. **Analyze diff** — call `mcp__claude-flow__analyze_diff` with the diff content for a comprehensive analysis
+2. **Risk score** — call `mcp__claude-flow__analyze_diff-risk` for a quantified risk assessment
+3. **Classify changes** — call `mcp__claude-flow__analyze_diff-classify` to categorize (feature, bugfix, refactor, etc.)
+4. **Get reviewers** — call `mcp__claude-flow__analyze_diff-reviewers` for recommended reviewers based on code ownership
+5. **Diff stats** — call `mcp__claude-flow__analyze_diff-stats` for line counts, file counts, complexity metrics
+6. **File-level risk** — call `mcp__claude-flow__analyze_file-risk` for per-file risk breakdown
+
+## Risk factors
+
+- Files with high churn history
+- Security-sensitive paths (auth, crypto, permissions)
+- Large diffs (>500 lines)
+- Cross-module changes
+- Database migration files

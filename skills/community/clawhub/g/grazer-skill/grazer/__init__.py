@@ -1,0 +1,1546 @@
+"""
+Grazer - Multi-Platform Content Discovery for AI Agents
+PyPI package for Python integration
+"""
+
+import requests
+import time as _time
+from typing import List, Dict, Optional
+from datetime import datetime
+
+from grazer.imagegen import generate_svg, svg_to_media, generate_template_svg, generate_llm_svg
+from grazer.clawhub import ClawHubClient
+from grazer.arxiv_grazer import ArxivGrazer
+from grazer.youtube_grazer import YouTubeGrazer
+from grazer.podcast_grazer import PodcastGrazer
+from grazer.bluesky_grazer import BlueskyGrazer
+from grazer.farcaster_grazer import FarcasterGrazer
+from grazer.semantic_scholar_grazer import SemanticScholarGrazer
+from grazer.openreview_grazer import OpenReviewGrazer
+from grazer.mastodon_grazer import MastodonGrazer
+from grazer.nostr_grazer import NostrGrazer
+
+# Platform registry — canonical names, URLs, and auth requirements
+PLATFORMS = {
+    "bottube":    {"url": "https://bottube.ai/api/stats",              "auth": False},
+    "moltbook":   {"url": "https://www.moltbook.com/api/v1/posts",     "auth": False},
+    "clawsta":    {"url": "https://clawsta.io/v1/posts",               "auth": True},
+    "fourclaw":   {"url": "https://www.4claw.org/api/v1/boards",       "auth": True},
+    "pinchedin":  {"url": "https://www.pinchedin.com/api/feed",        "auth": True},
+    "clawtasks":  {"url": "https://clawtasks.com/api/bounties",        "auth": True},
+    "clawnews":   {"url": "https://clawnews.io/api/stories",           "auth": True},
+    "agentchan":  {"url": "https://chan.alphakek.ai/api/boards",       "auth": False},
+    "directory":  {"url": "https://directory.ctxly.app/api/services",  "auth": False},
+    "swarmhub":   {"url": "https://swarmhub.onrender.com/api/v1/agents", "auth": False},
+    "clawhub":    {"url": "https://clawhub.ai/api/v1/skills/trending", "auth": False},
+    "clawcities": {"url": "https://clawcities.com",                   "auth": False},
+    "thecolony":  {"url": "https://thecolony.cc/api/v1/colonies",     "auth": True},
+    "moltx":      {"url": "https://moltx.io/v1/posts",                 "auth": True},
+    "moltexchange": {"url": "https://moltexchange.ai/v1/questions",   "auth": True},
+    "bluesky":      {"url": "https://public.api.bsky.app/xrpc/",      "auth": False},
+    "farcaster":    {"url": "https://api.neynar.com/v2/farcaster/",    "auth": False},
+    "semantic_scholar": {"url": "https://api.semanticscholar.org/graph/v1/", "auth": False},
+    "openreview":   {"url": "https://api2.openreview.net/",            "auth": False},
+    "mastodon":     {"url": "https://mastodon.social/api/v1/",         "auth": False},
+    "nostr":        {"url": "https://api.nostr.band/",                 "auth": False},
+}
+
+
+class GrazerClient:
+    """Client for discovering and engaging with content across platforms."""
+
+    def __init__(
+        self,
+        bottube_key: Optional[str] = None,
+        moltbook_key: Optional[str] = None,
+        clawcities_key: Optional[str] = None,
+        clawsta_key: Optional[str] = None,
+        fourclaw_key: Optional[str] = None,
+        clawhub_token: Optional[str] = None,
+        pinchedin_key: Optional[str] = None,
+        clawtasks_key: Optional[str] = None,
+        clawnews_key: Optional[str] = None,
+        agentchan_key: Optional[str] = None,
+        thecolony_key: Optional[str] = None,
+        moltx_key: Optional[str] = None,
+        moltexchange_key: Optional[str] = None,
+        youtube_api_key: Optional[str] = None,
+        farcaster_api_key: Optional[str] = None,
+        semantic_scholar_api_key: Optional[str] = None,
+        llm_url: Optional[str] = None,
+        llm_model: str = "gpt-oss-120b",
+        llm_api_key: Optional[str] = None,
+        timeout: int = 15,
+    ):
+        self.bottube_key = bottube_key
+        self.moltbook_key = moltbook_key
+        self.clawcities_key = clawcities_key
+        self.clawsta_key = clawsta_key
+        self.fourclaw_key = fourclaw_key
+        self.clawhub_token = clawhub_token
+        self.pinchedin_key = pinchedin_key
+        self.clawtasks_key = clawtasks_key
+        self.clawnews_key = clawnews_key
+        self.agentchan_key = agentchan_key
+        self.thecolony_key = thecolony_key
+        self.moltx_key = moltx_key
+        self.moltexchange_key = moltexchange_key
+        self.youtube_api_key = youtube_api_key
+        self.farcaster_api_key = farcaster_api_key
+        self.semantic_scholar_api_key = semantic_scholar_api_key
+        self._colony_jwt = None  # Cached JWT from API key exchange
+        self._clawhub = ClawHubClient(token=clawhub_token, timeout=timeout) if clawhub_token else ClawHubClient(timeout=timeout)
+        self._arxiv = ArxivGrazer(timeout=timeout)
+        self._youtube = YouTubeGrazer(api_key=youtube_api_key, timeout=timeout)
+        self._podcast = PodcastGrazer(timeout=timeout)
+        self._bluesky = BlueskyGrazer(timeout=timeout)
+        self._farcaster = FarcasterGrazer(api_key=farcaster_api_key, timeout=timeout)
+        self._semantic_scholar = SemanticScholarGrazer(api_key=semantic_scholar_api_key, timeout=timeout)
+        self._openreview = OpenReviewGrazer(timeout=timeout)
+        self._mastodon = MastodonGrazer(timeout=timeout)
+        self._nostr = NostrGrazer(timeout=timeout)
+        self.llm_url = llm_url
+        self.llm_model = llm_model
+        self.llm_api_key = llm_api_key
+        self.timeout = timeout
+        self.session = requests.Session()
+        self.session.headers.update({"User-Agent": f"Grazer/{__version__} (Elyan Labs)"})
+
+    # ───────────────────────────────────────────────────────────
+    # BoTTube
+    # ───────────────────────────────────────────────────────────
+
+    def discover_bottube(
+        self, category: Optional[str] = None, agent: Optional[str] = None, limit: int = 20
+    ) -> List[Dict]:
+        """Discover BoTTube videos."""
+        params = {"limit": limit}
+        if category:
+            params["category"] = category
+        if agent:
+            params["agent"] = agent
+
+        resp = self.session.get(
+            "https://bottube.ai/api/videos", params=params, timeout=self.timeout
+        )
+        resp.raise_for_status()
+        videos = resp.json().get("videos", [])
+        videos = videos[: max(0, int(limit))]
+        for v in videos:
+            if "id" in v:
+                v["stream_url"] = f"https://bottube.ai/api/videos/{v['id']}/stream"
+            # Normalize: API returns agent_name, consumers expect agent
+            if "agent" not in v and "agent_name" in v:
+                v["agent"] = v["agent_name"]
+        return videos
+
+    def search_bottube(self, query: str, limit: int = 10) -> List[Dict]:
+        """Search BoTTube videos."""
+        resp = self.session.get(
+            "https://bottube.ai/api/videos/search",
+            params={"q": query, "limit": limit},
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        videos = resp.json().get("videos", [])
+        for v in videos:
+            if "agent" not in v and "agent_name" in v:
+                v["agent"] = v["agent_name"]
+        return videos
+
+    def get_bottube_stats(self) -> Dict:
+        """Get BoTTube platform statistics."""
+        resp = self.session.get("https://bottube.ai/api/stats", timeout=self.timeout)
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # Moltbook
+    # ───────────────────────────────────────────────────────────
+
+    def discover_moltbook(self, submolt: str = "tech", limit: int = 20) -> List[Dict]:
+        """Discover Moltbook posts."""
+        headers = {}
+        if self.moltbook_key:
+            headers["Authorization"] = f"Bearer {self.moltbook_key}"
+
+        resp = self.session.get(
+            "https://www.moltbook.com/api/v1/posts",
+            params={"submolt": submolt, "limit": limit},
+            headers=headers,
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        if isinstance(data, dict):
+            posts = data.get("posts", [])
+        elif isinstance(data, list):
+            posts = data
+        else:
+            posts = []
+        return posts[: max(0, int(limit))]
+
+    def post_moltbook(
+        self, content: str, title: str, submolt: str = "tech"
+    ) -> Dict:
+        """Post to Moltbook."""
+        if not self.moltbook_key:
+            raise ValueError("Moltbook API key required")
+
+        resp = self.session.post(
+            "https://www.moltbook.com/api/v1/posts",
+            json={"content": content, "title": title, "submolt_name": submolt},
+            headers={
+                "Authorization": f"Bearer {self.moltbook_key}",
+                "Content-Type": "application/json",
+            },
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # ClawCities
+    # ───────────────────────────────────────────────────────────
+
+    def discover_clawcities(self, limit: int = 20) -> List[Dict]:
+        """Discover ClawCities sites (known Elyan Labs sites)."""
+        sites = [
+            {
+                "name": "sophia-elya",
+                "display_name": "Sophia Elya",
+                "description": "Elyan Labs AI agent",
+                "url": "https://clawcities.com/sophia-elya",
+                "guestbook_count": 0,
+            },
+            {
+                "name": "automatedjanitor2015",
+                "display_name": "AutomatedJanitor2015",
+                "description": "Elyan Labs Ops",
+                "url": "https://clawcities.com/automatedjanitor2015",
+                "guestbook_count": 0,
+            },
+            {
+                "name": "boris-volkov-1942",
+                "display_name": "Boris Volkov",
+                "description": "Infrastructure Commissar",
+                "url": "https://clawcities.com/boris-volkov-1942",
+                "guestbook_count": 0,
+            },
+        ]
+        return sites[: max(0, int(limit))]
+
+    def comment_clawcities(self, site_name: str, message: str) -> Dict:
+        """Leave a guestbook comment on a ClawCities site."""
+        if not self.clawcities_key:
+            raise ValueError("ClawCities API key required")
+
+        resp = self.session.post(
+            f"https://clawcities.com/api/v1/sites/{site_name}/comments",
+            json={"body": message},
+            headers={
+                "Authorization": f"Bearer {self.clawcities_key}",
+                "Content-Type": "application/json",
+            },
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # Clawsta
+    # ───────────────────────────────────────────────────────────
+
+    def discover_clawsta(self, limit: int = 20) -> List[Dict]:
+        """Discover Clawsta posts."""
+        headers = {}
+        if self.clawsta_key:
+            headers["Authorization"] = f"Bearer {self.clawsta_key}"
+
+        resp = self.session.get(
+            "https://clawsta.io/v1/posts",
+            params={"limit": limit},
+            headers=headers,
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        if isinstance(data, dict):
+            posts = data.get("posts", [])
+        elif isinstance(data, list):
+            posts = data
+        else:
+            posts = []
+        return posts[: max(0, int(limit))]
+
+    def post_clawsta(self, content: str) -> Dict:
+        """Post to Clawsta."""
+        if not self.clawsta_key:
+            raise ValueError("Clawsta API key required")
+
+        # Clawsta requires an imageUrl; fall back to a stable Elyan-hosted asset if none is supplied.
+        # This keeps backwards compatibility for callers that only passed 'content'.
+        image_url = "https://bottube.ai/static/og-banner.png"
+
+        resp = self.session.post(
+            "https://clawsta.io/v1/posts",
+            json={"content": content, "imageUrl": image_url},
+            headers={
+                "Authorization": f"Bearer {self.clawsta_key}",
+                "Content-Type": "application/json",
+            },
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # 4claw
+    # ───────────────────────────────────────────────────────────
+
+    def _fourclaw_headers(self) -> Dict:
+        """Auth headers for 4claw (required for all endpoints)."""
+        if not self.fourclaw_key:
+            raise ValueError("4claw API key required")
+        return {"Authorization": f"Bearer {self.fourclaw_key}"}
+
+    def discover_fourclaw(
+        self, board: str = "b", limit: int = 20, include_content: bool = False
+    ) -> List[Dict]:
+        """Discover 4claw threads from a board."""
+        params = {"limit": min(limit, 20)}
+        if include_content:
+            params["includeContent"] = 1
+
+        resp = self.session.get(
+            f"https://www.4claw.org/api/v1/boards/{board}/threads",
+            params=params,
+            headers=self._fourclaw_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json().get("threads", [])
+
+    def get_fourclaw_boards(self) -> List[Dict]:
+        """List all 4claw boards."""
+        resp = self.session.get(
+            "https://www.4claw.org/api/v1/boards",
+            headers=self._fourclaw_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json().get("boards", [])
+
+    def get_fourclaw_thread(self, thread_id: str) -> Dict:
+        """Get a 4claw thread with all replies."""
+        resp = self.session.get(
+            f"https://www.4claw.org/api/v1/threads/{thread_id}",
+            headers=self._fourclaw_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def generate_image(
+        self,
+        prompt: str,
+        template: Optional[str] = None,
+        palette: Optional[str] = None,
+        prefer_llm: bool = True,
+    ) -> Dict:
+        """Generate an SVG image for 4claw posts.
+
+        Uses LLM if configured (llm_url), otherwise falls back to templates.
+
+        Args:
+            prompt: Image description
+            template: Force template (circuit, wave, grid, badge, terminal)
+            palette: Force colors (tech, crypto, retro, nature, dark, fire, ocean)
+            prefer_llm: Try LLM first if available
+
+        Returns:
+            Dict with 'svg', 'method' (llm/template), 'bytes'
+        """
+        return generate_svg(
+            prompt,
+            llm_url=self.llm_url,
+            llm_model=self.llm_model,
+            llm_api_key=self.llm_api_key,
+            template=template,
+            palette=palette,
+            prefer_llm=prefer_llm,
+        )
+
+    def post_fourclaw(
+        self, board: str, title: str, content: str, anon: bool = False,
+        image_prompt: Optional[str] = None, svg: Optional[str] = None,
+        template: Optional[str] = None, palette: Optional[str] = None,
+    ) -> Dict:
+        """Create a new thread on a 4claw board.
+
+        Args:
+            board: Board slug (e.g. 'b', 'singularity', 'crypto')
+            title: Thread title
+            content: Thread body text
+            anon: Post anonymously
+            image_prompt: Auto-generate SVG from this prompt (uses LLM or template)
+            svg: Pass raw SVG directly (overrides image_prompt)
+            template: Force template for image generation
+            palette: Force palette for image generation
+        """
+        if not self.fourclaw_key:
+            raise ValueError("4claw API key required")
+
+        body = {"title": title, "content": content, "anon": anon}
+
+        # Attach SVG media if provided or generated
+        if svg:
+            body["media"] = svg_to_media(svg)
+        elif image_prompt:
+            result = self.generate_image(image_prompt, template=template, palette=palette)
+            body["media"] = svg_to_media(result["svg"])
+
+        resp = self.session.post(
+            f"https://www.4claw.org/api/v1/boards/{board}/threads",
+            json=body,
+            headers={
+                "Authorization": f"Bearer {self.fourclaw_key}",
+                "Content-Type": "application/json",
+            },
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def reply_fourclaw(
+        self, thread_id: str, content: str, anon: bool = False, bump: bool = True,
+        image_prompt: Optional[str] = None, svg: Optional[str] = None,
+        template: Optional[str] = None, palette: Optional[str] = None,
+    ) -> Dict:
+        """Reply to a 4claw thread.
+
+        Args:
+            thread_id: Thread UUID to reply to
+            content: Reply body text
+            anon: Post anonymously
+            bump: Bump thread to top
+            image_prompt: Auto-generate SVG from this prompt
+            svg: Pass raw SVG directly (overrides image_prompt)
+            template: Force template for image generation
+            palette: Force palette for image generation
+        """
+        if not self.fourclaw_key:
+            raise ValueError("4claw API key required")
+
+        body = {"content": content, "anon": anon, "bump": bump}
+
+        if svg:
+            body["media"] = svg_to_media(svg)
+        elif image_prompt:
+            result = self.generate_image(image_prompt, template=template, palette=palette)
+            body["media"] = svg_to_media(result["svg"])
+
+        resp = self.session.post(
+            f"https://www.4claw.org/api/v1/threads/{thread_id}/replies",
+            json=body,
+            headers={
+                "Authorization": f"Bearer {self.fourclaw_key}",
+                "Content-Type": "application/json",
+            },
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # ClawHub
+    # ───────────────────────────────────────────────────────────
+
+    def search_clawhub(self, query: str, limit: int = 20) -> List[Dict]:
+        """Search ClawHub skills using vector search."""
+        return self._clawhub.search(query, limit=limit)
+
+    def trending_clawhub(self, limit: int = 20) -> List[Dict]:
+        """Get trending ClawHub skills."""
+        return self._clawhub.trending(limit=limit)
+
+    def get_clawhub_skill(self, slug: str) -> Dict:
+        """Get a ClawHub skill by slug."""
+        return self._clawhub.get_skill(slug)
+
+    def explore_clawhub(self, limit: int = 20) -> List[Dict]:
+        """Browse latest updated ClawHub skills."""
+        data = self._clawhub.explore(limit=limit)
+        return data.get("items", [])
+
+    # ───────────────────────────────────────────────────────────
+    # Agent Directory (directory.ctxly.app)
+    # ───────────────────────────────────────────────────────────
+
+    def discover_directory(
+        self, category: Optional[str] = None, query: Optional[str] = None, limit: int = 50
+    ) -> List[Dict]:
+        """Discover services from the Agent Directory (58+ registered services).
+
+        Args:
+            category: Filter by category (social, communication, memory, tools, knowledge, productivity)
+            query: Search services by name/description
+            limit: Maximum results to return
+        """
+        params = {}
+        if category:
+            params["category"] = category
+        if query:
+            params["q"] = query
+        try:
+            resp = self.session.get(
+                "https://directory.ctxly.app/api/services",
+                params=params,
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            services = data if isinstance(data, list) else data.get("services", [])
+            return services[:limit]
+        except Exception:
+            return []
+
+    def directory_categories(self) -> List[Dict]:
+        """List all categories in the Agent Directory."""
+        try:
+            resp = self.session.get(
+                "https://directory.ctxly.app/api/categories",
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            return resp.json() if isinstance(resp.json(), list) else resp.json().get("categories", [])
+        except Exception:
+            return []
+
+    def directory_service(self, slug: str) -> Optional[Dict]:
+        """Get details for a specific service by slug."""
+        try:
+            resp = self.session.get(
+                f"https://directory.ctxly.app/api/services/{slug}",
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            return resp.json()
+        except Exception:
+            return None
+
+    # ───────────────────────────────────────────────────────────
+    # SwarmHub (swarmhub.onrender.com)
+    # ───────────────────────────────────────────────────────────
+
+    def discover_swarmhub(self, limit: int = 20) -> Dict:
+        """Discover agents and swarms on SwarmHub."""
+        result = {"agents": [], "swarms": []}
+        try:
+            resp = self.session.get(
+                "https://swarmhub.onrender.com/api/v1/agents",
+                timeout=self.timeout,
+            )
+            if resp.ok:
+                data = resp.json()
+                result["agents"] = data.get("agents", [])[:limit]
+        except Exception:
+            pass
+        try:
+            resp = self.session.get(
+                "https://swarmhub.onrender.com/api/v1/swarms",
+                timeout=self.timeout,
+            )
+            if resp.ok:
+                data = resp.json()
+                result["swarms"] = data.get("swarms", [])[:limit]
+        except Exception:
+            pass
+        return result
+
+    # ───────────────────────────────────────────────────────────
+    # AgentChan (chan.alphakek.ai)
+    # ───────────────────────────────────────────────────────────
+
+    def _agentchan_headers(self) -> Dict:
+        headers = {"Content-Type": "application/json"}
+        if self.agentchan_key:
+            headers["Authorization"] = f"Bearer {self.agentchan_key}"
+        return headers
+
+    def discover_agentchan(self, board: str = "ai", limit: int = 20) -> List[Dict]:
+        """Get threads from an AgentChan board catalog."""
+        try:
+            resp = self.session.get(
+                f"https://chan.alphakek.ai/api/boards/{board}/catalog",
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            threads = data.get("data", []) if isinstance(data, dict) else data
+            return threads[:limit]
+        except Exception:
+            return []
+
+    def list_agentchan_boards(self) -> List[Dict]:
+        """List all available AgentChan boards."""
+        try:
+            resp = self.session.get(
+                "https://chan.alphakek.ai/api/boards",
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            return data.get("data", []) if isinstance(data, dict) else data
+        except Exception:
+            return []
+
+    def post_agentchan(self, board: str, content: str, name: Optional[str] = None,
+                       reply_to: Optional[int] = None) -> Optional[Dict]:
+        """Post to AgentChan. Creates a new thread or replies to an existing one.
+
+        Args:
+            board: Board code (e.g. 'ai', 'dev', 'b')
+            content: Post content
+            name: Display name (optional, supports tripcodes with #)
+            reply_to: Thread ID to reply to (omit to create new thread)
+        """
+        payload: Dict = {"content": content}
+        if name:
+            payload["name"] = name
+        try:
+            if reply_to:
+                url = f"https://chan.alphakek.ai/api/boards/{board}/threads/{reply_to}/posts"
+            else:
+                url = f"https://chan.alphakek.ai/api/boards/{board}/threads"
+            resp = self.session.post(
+                url,
+                headers=self._agentchan_headers(),
+                json=payload,
+                timeout=self.timeout,
+            )
+            return resp.json() if resp.ok else None
+        except Exception:
+            return None
+
+    def register_agentchan(self, label: str) -> Optional[Dict]:
+        """Register a new agent on AgentChan and get an API key.
+
+        Args:
+            label: Agent name/label for registration
+
+        Returns:
+            Dict with 'agent.api_key' — save this immediately, shown only once.
+        """
+        try:
+            resp = self.session.post(
+                "https://chan.alphakek.ai/api/register",
+                headers={"Content-Type": "application/json"},
+                json={"label": label},
+                timeout=self.timeout,
+            )
+            return resp.json() if resp.ok else None
+        except Exception:
+            return None
+
+    # ───────────────────────────────────────────────────────────
+    # PinchedIn (pinchedin.com) — Professional network for bots
+    # ───────────────────────────────────────────────────────────
+
+    def _pinchedin_headers(self) -> Dict:
+        if not self.pinchedin_key:
+            raise ValueError("PinchedIn API key required")
+        return {"Authorization": f"Bearer {self.pinchedin_key}", "Content-Type": "application/json"}
+
+    def discover_pinchedin(self, limit: int = 20) -> List[Dict]:
+        """Discover posts from PinchedIn feed."""
+        resp = self.session.get(
+            "https://www.pinchedin.com/api/feed",
+            params={"limit": limit},
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json().get("posts", [])
+
+    def discover_pinchedin_bots(self, limit: int = 20) -> List[Dict]:
+        """Discover bots registered on PinchedIn."""
+        resp = self.session.get(
+            "https://www.pinchedin.com/api/bots",
+            params={"limit": limit},
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json().get("bots", [])
+
+    def discover_pinchedin_jobs(self, limit: int = 20) -> List[Dict]:
+        """Browse job listings on PinchedIn."""
+        resp = self.session.get(
+            "https://www.pinchedin.com/api/jobs",
+            params={"limit": limit},
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json().get("jobs", [])
+
+    def post_pinchedin(self, content: str) -> Dict:
+        """Create a post on PinchedIn (3/day limit)."""
+        resp = self.session.post(
+            "https://www.pinchedin.com/api/posts",
+            json={"content": content},
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def like_pinchedin(self, post_id: str) -> Dict:
+        """Like a PinchedIn post."""
+        resp = self.session.post(
+            f"https://www.pinchedin.com/api/posts/{post_id}/like",
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def comment_pinchedin(self, post_id: str, content: str) -> Dict:
+        """Comment on a PinchedIn post."""
+        resp = self.session.post(
+            f"https://www.pinchedin.com/api/posts/{post_id}/comment",
+            json={"content": content},
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def connect_pinchedin(self, target_bot_id: str) -> Dict:
+        """Send a connection request (10/day limit)."""
+        resp = self.session.post(
+            "https://www.pinchedin.com/api/connections/request",
+            json={"targetBotId": target_bot_id},
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def post_pinchedin_job(self, title: str, description: str, requirements: Optional[List[str]] = None,
+                           compensation: Optional[str] = None) -> Dict:
+        """Post a public job listing on PinchedIn."""
+        body = {"title": title, "description": description}
+        if requirements:
+            body["requirements"] = requirements
+        if compensation:
+            body["compensation"] = compensation
+        resp = self.session.post(
+            "https://www.pinchedin.com/api/jobs",
+            json=body,
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def hire_pinchedin(self, target_bot_id: str, message: str, title: str = "",
+                       description: str = "", requirements: Optional[List[str]] = None,
+                       compensation: Optional[str] = None) -> Dict:
+        """Send a hiring request to a specific bot."""
+        body = {"targetBotId": target_bot_id, "message": message}
+        task_details = {}
+        if title:
+            task_details["title"] = title
+        if description:
+            task_details["description"] = description
+        if requirements:
+            task_details["requirements"] = requirements
+        if compensation:
+            task_details["compensation"] = compensation
+        if task_details:
+            body["taskDetails"] = task_details
+        resp = self.session.post(
+            "https://www.pinchedin.com/api/hiring/request",
+            json=body,
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def pinchedin_hiring_inbox(self, status: Optional[str] = None) -> List[Dict]:
+        """Check hiring requests inbox. Status: pending, accepted, rejected, completed."""
+        params = {}
+        if status:
+            params["status"] = status
+        resp = self.session.get(
+            "https://www.pinchedin.com/api/hiring/inbox",
+            params=params,
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return data.get("requests", data) if isinstance(data, dict) else data
+
+    def pinchedin_hiring_respond(self, request_id: str, status: str) -> Dict:
+        """Respond to a hiring request. Status: accepted, rejected, completed."""
+        resp = self.session.patch(
+            f"https://www.pinchedin.com/api/hiring/{request_id}",
+            json={"status": status},
+            headers=self._pinchedin_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # ClawTasks (clawtasks.com) — Bounty & task marketplace
+    # ───────────────────────────────────────────────────────────
+
+    def _clawtasks_headers(self) -> Dict:
+        if not self.clawtasks_key:
+            raise ValueError("ClawTasks API key required")
+        return {"Authorization": f"Bearer {self.clawtasks_key}", "Content-Type": "application/json"}
+
+    def discover_clawtasks(self, status: str = "open", limit: int = 20) -> List[Dict]:
+        """Browse bounties on ClawTasks. Use clawtasks.com (not www)."""
+        resp = self.session.get(
+            "https://clawtasks.com/api/bounties",
+            params={"status": status, "limit": limit},
+            headers=self._clawtasks_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json().get("bounties", [])
+
+    def get_clawtask(self, bounty_id: str) -> Dict:
+        """Get details of a specific bounty."""
+        resp = self.session.get(
+            f"https://clawtasks.com/api/bounties/{bounty_id}",
+            headers=self._clawtasks_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def post_clawtask(self, title: str, description: str, tags: Optional[List[str]] = None,
+                      deadline_hours: int = 168) -> Dict:
+        """Post a new bounty on ClawTasks (10 active max)."""
+        body = {"title": title, "description": description, "deadline_hours": deadline_hours}
+        if tags:
+            body["tags"] = tags
+        resp = self.session.post(
+            "https://clawtasks.com/api/bounties",
+            json=body,
+            headers=self._clawtasks_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # ClawNews (clawnews.io) — AI agent news aggregator
+    # ───────────────────────────────────────────────────────────
+
+    def _clawnews_headers(self) -> Dict:
+        if not self.clawnews_key:
+            raise ValueError("ClawNews API key required")
+        return {"Authorization": f"Bearer {self.clawnews_key}", "Content-Type": "application/json"}
+
+    def discover_clawnews(self, limit: int = 20) -> List[Dict]:
+        """Discover stories from ClawNews."""
+        try:
+            resp = self.session.get(
+                "https://clawnews.io/api/stories",
+                params={"limit": limit},
+                headers=self._clawnews_headers(),
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            return data.get("stories", data) if isinstance(data, dict) else data
+        except Exception:
+            return []
+
+    def post_clawnews(self, headline: str, url: str, summary: str,
+                      tags: Optional[List[str]] = None) -> Optional[Dict]:
+        """Submit a story to ClawNews."""
+        body = {"headline": headline, "url": url, "summary": summary}
+        if tags:
+            body["tags"] = tags
+        try:
+            resp = self.session.post(
+                "https://clawnews.io/api/stories",
+                json=body,
+                headers=self._clawnews_headers(),
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            return resp.json()
+        except Exception:
+            return None
+
+    # ───────────────────────────────────────────────────────────
+    # The Colony (thecolony.cc) — Agent forum with colonies
+    # ───────────────────────────────────────────────────────────
+
+    def _colony_auth(self) -> Dict:
+        """Exchange API key for JWT bearer token (cached)."""
+        if not self.thecolony_key:
+            raise ValueError("The Colony API key required")
+        if not self._colony_jwt:
+            resp = self.session.post(
+                "https://thecolony.cc/api/v1/auth/token",
+                json={"api_key": self.thecolony_key},
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            self._colony_jwt = resp.json().get("access_token", resp.json().get("token", ""))
+        return {"Authorization": f"Bearer {self._colony_jwt}", "Content-Type": "application/json"}
+
+    def discover_colony(self, colony: Optional[str] = None, limit: int = 20) -> List[Dict]:
+        """Discover posts from The Colony. Optionally filter by colony name."""
+        headers = self._colony_auth() if self.thecolony_key else {}
+        params = {"limit": limit}
+        if colony:
+            params["colony"] = colony
+        resp = self.session.get(
+            "https://thecolony.cc/api/v1/posts",
+            params=params,
+            headers=headers,
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        if isinstance(data, dict):
+            posts = data.get("posts", data.get("results", []))
+        elif isinstance(data, list):
+            posts = data
+        else:
+            posts = []
+        return posts[: max(0, int(limit))]
+
+    def list_colonies(self) -> List[Dict]:
+        """List all available colonies."""
+        headers = self._colony_auth() if self.thecolony_key else {}
+        resp = self.session.get(
+            "https://thecolony.cc/api/v1/colonies",
+            headers=headers,
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return data.get("colonies", data) if isinstance(data, dict) else data
+
+    def post_colony(self, colony: str, content: str, post_type: str = "discussion") -> Dict:
+        """Post to a Colony community.
+
+        Args:
+            colony: Colony slug (e.g. 'general', 'agent-economy', 'cryptocurrency')
+            content: Post body text
+            post_type: One of: finding, question, analysis, human_request, discussion
+        """
+        headers = self._colony_auth()
+        resp = self.session.post(
+            f"https://thecolony.cc/api/v1/colonies/{colony}/posts",
+            json={"content": content, "type": post_type},
+            headers=headers,
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def reply_colony(self, post_id: str, content: str) -> Dict:
+        """Reply to a Colony post."""
+        headers = self._colony_auth()
+        resp = self.session.post(
+            f"https://thecolony.cc/api/v1/posts/{post_id}/replies",
+            json={"content": content},
+            headers=headers,
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # MoltX (moltx.io) — Twitter-style for AI agents
+    # ───────────────────────────────────────────────────────────
+
+    def _moltx_headers(self) -> Dict:
+        if not self.moltx_key:
+            raise ValueError("MoltX API key required")
+        return {"Authorization": f"Bearer {self.moltx_key}", "Content-Type": "application/json"}
+
+    def discover_moltx(self, limit: int = 20) -> List[Dict]:
+        """Discover posts from MoltX."""
+        headers = self._moltx_headers() if self.moltx_key else {}
+        try:
+            resp = self.session.get(
+                "https://moltx.io/v1/posts",
+                params={"limit": limit},
+                headers=headers,
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            # MoltX wraps in {success: true, data: {posts: [...]}}
+            if isinstance(data, dict):
+                nested = data.get("data", {})
+                if isinstance(nested, dict):
+                    posts = nested.get("posts")
+                    if isinstance(posts, list):
+                        return posts[: max(0, int(limit))]
+                posts = data.get("posts", [])
+                if isinstance(posts, list):
+                    return posts[: max(0, int(limit))]
+                return []
+            if isinstance(data, list):
+                return data[: max(0, int(limit))]
+            return []
+        except Exception:
+            return []
+
+    def discover_moltx_trending(self, limit: int = 20) -> List[Dict]:
+        """Discover trending agents on MoltX."""
+        headers = self._moltx_headers() if self.moltx_key else {}
+        try:
+            resp = self.session.get(
+                "https://moltx.io/v1/agents/trending",
+                params={"limit": limit},
+                headers=headers,
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            if isinstance(data, dict):
+                agents = data.get("agents", [])
+                if isinstance(agents, list):
+                    return agents[: max(0, int(limit))]
+                return []
+            if isinstance(data, list):
+                return data[: max(0, int(limit))]
+            return []
+        except Exception:
+            return []
+
+    def post_moltx(self, content: str) -> Dict:
+        """Post to MoltX (requires EVM wallet verification)."""
+        resp = self.session.post(
+            "https://moltx.io/v1/posts",
+            json={"content": content},
+            headers=self._moltx_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # MoltExchange (moltexchange.ai) — Q&A for AI agents
+    # ───────────────────────────────────────────────────────────
+
+    def _moltexchange_headers(self) -> Dict:
+        if not self.moltexchange_key:
+            raise ValueError("MoltExchange API key required")
+        return {"Authorization": f"Bearer {self.moltexchange_key}", "Content-Type": "application/json"}
+
+    def discover_moltexchange(self, limit: int = 20) -> List[Dict]:
+        """Discover questions from MoltExchange."""
+        headers = self._moltexchange_headers() if self.moltexchange_key else {}
+        try:
+            resp = self.session.get(
+                "https://moltexchange.ai/v1/questions",
+                params={"limit": limit},
+                headers=headers,
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            if isinstance(data, dict):
+                questions = data.get("questions", [])
+                if isinstance(questions, list):
+                    return questions[: max(0, int(limit))]
+                return []
+            if isinstance(data, list):
+                return data[: max(0, int(limit))]
+            return []
+        except Exception:
+            return []
+
+    def discover_moltexchange_trending(self, limit: int = 20) -> List[Dict]:
+        """Discover trending topics on MoltExchange."""
+        headers = self._moltexchange_headers() if self.moltexchange_key else {}
+        try:
+            resp = self.session.get(
+                "https://moltexchange.ai/v1/trending",
+                params={"limit": limit},
+                headers=headers,
+                timeout=self.timeout,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            if isinstance(data, dict):
+                topics = data.get("topics", [])
+                if isinstance(topics, list):
+                    return topics[: max(0, int(limit))]
+                return []
+            if isinstance(data, list):
+                return data[: max(0, int(limit))]
+            return []
+        except Exception:
+            return []
+
+    def post_moltexchange(self, title: str, body: str, tags: Optional[List[str]] = None) -> Dict:
+        """Post a question on MoltExchange (requires social verification)."""
+        payload = {"title": title, "body": body}
+        if tags:
+            payload["tags"] = tags
+        resp = self.session.post(
+            "https://moltexchange.ai/v1/questions",
+            json=payload,
+            headers=self._moltexchange_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def answer_moltexchange(self, question_id: str, body: str) -> Dict:
+        """Answer a question on MoltExchange."""
+        resp = self.session.post(
+            f"https://moltexchange.ai/v1/questions/{question_id}/answers",
+            json={"body": body},
+            headers=self._moltexchange_headers(),
+            timeout=self.timeout,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    # ───────────────────────────────────────────────────────────
+    # Platform Health
+    # ───────────────────────────────────────────────────────────
+
+    def platform_status(self, platforms: Optional[List[str]] = None) -> Dict[str, Dict]:
+        """Check reachability and latency for each platform.
+
+        Args:
+            platforms: List of platform names to check (default: all known platforms).
+
+        Returns:
+            Dict mapping platform name to status dict with keys:
+                ok (bool), latency_ms (float), error (str|None), auth_configured (bool)
+        """
+        targets = platforms or list(PLATFORMS.keys())
+        results = {}
+        for name in targets:
+            info = PLATFORMS.get(name)
+            if not info:
+                results[name] = {"ok": False, "latency_ms": 0, "error": "unknown_platform", "auth_configured": False}
+                continue
+
+            auth_configured = self._has_auth(name)
+            url = info["url"]
+            headers = {}
+            if info["auth"] and auth_configured:
+                try:
+                    headers = self._auth_headers_for(name)
+                except Exception:
+                    pass
+
+            t0 = _time.monotonic()
+            try:
+                resp = self.session.get(url, headers=headers, timeout=min(self.timeout, 8), params={"limit": 1})
+                latency = (_time.monotonic() - t0) * 1000
+                results[name] = {
+                    "ok": resp.status_code < 500,
+                    "status_code": resp.status_code,
+                    "latency_ms": round(latency, 1),
+                    "error": None if resp.status_code < 400 else f"HTTP {resp.status_code}",
+                    "auth_configured": auth_configured,
+                }
+            except requests.exceptions.Timeout:
+                latency = (_time.monotonic() - t0) * 1000
+                results[name] = {"ok": False, "latency_ms": round(latency, 1), "error": "timeout", "auth_configured": auth_configured}
+            except requests.exceptions.ConnectionError:
+                latency = (_time.monotonic() - t0) * 1000
+                results[name] = {"ok": False, "latency_ms": round(latency, 1), "error": "connection_refused", "auth_configured": auth_configured}
+            except Exception as e:
+                latency = (_time.monotonic() - t0) * 1000
+                results[name] = {"ok": False, "latency_ms": round(latency, 1), "error": str(e)[:80], "auth_configured": auth_configured}
+
+        return results
+
+    def _has_auth(self, platform: str) -> bool:
+        """Check if authentication is configured for a platform."""
+        mapping = {
+            "bottube": self.bottube_key,
+            "moltbook": self.moltbook_key,
+            "clawcities": self.clawcities_key,
+            "clawsta": self.clawsta_key,
+            "fourclaw": self.fourclaw_key,
+            "pinchedin": self.pinchedin_key,
+            "clawtasks": self.clawtasks_key,
+            "clawnews": self.clawnews_key,
+            "agentchan": self.agentchan_key,
+            "clawhub": self.clawhub_token,
+            "thecolony": self.thecolony_key,
+            "moltx": self.moltx_key,
+            "moltexchange": self.moltexchange_key,
+        }
+        return bool(mapping.get(platform))
+
+    def _auth_headers_for(self, platform: str) -> Dict:
+        """Get auth headers for a specific platform."""
+        key_map = {
+            "moltbook": self.moltbook_key,
+            "clawsta": self.clawsta_key,
+            "fourclaw": self.fourclaw_key,
+            "pinchedin": self.pinchedin_key,
+            "clawtasks": self.clawtasks_key,
+            "clawnews": self.clawnews_key,
+            "agentchan": self.agentchan_key,
+            "moltx": self.moltx_key,
+            "moltexchange": self.moltexchange_key,
+        }
+        key = key_map.get(platform)
+        if key:
+            return {"Authorization": f"Bearer {key}"}
+        return {}
+
+    # ───────────────────────────────────────────────────────────
+    # ArXiv
+    # ───────────────────────────────────────────────────────────
+
+    def discover_arxiv(
+        self,
+        query: Optional[str] = None,
+        category: Optional[str] = None,
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Discover recent arXiv papers.
+
+        Args:
+            query: Free-text search (e.g. "large language models")
+            category: Shorthand (ai, ml, cv, nlp, crypto) or full (cs.AI)
+            limit: Maximum results
+        """
+        return self._arxiv.discover(query=query, category=category, limit=limit)
+
+    def get_arxiv_paper(self, arxiv_id: str) -> Optional[Dict]:
+        """Fetch a single arXiv paper by ID (e.g. '2401.12345')."""
+        return self._arxiv.get_paper(arxiv_id)
+
+    # ───────────────────────────────────────────────────────────
+    # YouTube
+    # ───────────────────────────────────────────────────────────
+
+    def discover_youtube(
+        self,
+        query: str = "AI agents",
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Discover YouTube videos by search query.
+
+        Uses YouTube Data API v3 when a key is configured, otherwise
+        falls back to lightweight scraping.
+        """
+        return self._youtube.discover(query=query, limit=limit)
+
+    def youtube_channel(self, channel_id: str, limit: int = 10) -> List[Dict]:
+        """Get recent videos from a YouTube channel (via public RSS)."""
+        return self._youtube.channel_videos(channel_id, limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # Podcasts
+    # ───────────────────────────────────────────────────────────
+
+    def discover_podcasts(
+        self,
+        query: str = "artificial intelligence",
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Search for podcasts via the iTunes Search API."""
+        return self._podcast.search(query=query, limit=limit)
+
+    def podcast_episodes(self, feed_url: str, limit: int = 10) -> List[Dict]:
+        """Fetch recent episodes from a podcast RSS feed URL."""
+        return self._podcast.episodes(feed_url, limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # Bluesky
+    # ───────────────────────────────────────────────────────────
+
+    def discover_bluesky(
+        self,
+        query: str = "AI agents",
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Search Bluesky posts via AT Protocol."""
+        return self._bluesky.discover(query=query, limit=limit)
+
+    def bluesky_timeline(self, actor: str, limit: int = 10) -> List[Dict]:
+        """Get a Bluesky actor's public feed."""
+        return self._bluesky.timeline(actor=actor, limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # Farcaster
+    # ───────────────────────────────────────────────────────────
+
+    def discover_farcaster(
+        self,
+        query: str = "AI agents",
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Search Farcaster casts via Neynar API."""
+        return self._farcaster.discover(query=query, limit=limit)
+
+    def farcaster_trending(self, limit: int = 10) -> List[Dict]:
+        """Get trending Farcaster casts."""
+        return self._farcaster.trending(limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # Semantic Scholar
+    # ───────────────────────────────────────────────────────────
+
+    def discover_semantic_scholar(
+        self,
+        query: str = "large language models",
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Search academic papers on Semantic Scholar."""
+        return self._semantic_scholar.discover(query=query, limit=limit)
+
+    def semantic_scholar_paper(self, paper_id: str) -> Optional[Dict]:
+        """Get a paper by Semantic Scholar ID, DOI, or arXiv ID."""
+        return self._semantic_scholar.get_paper(paper_id)
+
+    def semantic_scholar_author(self, author_id: str, limit: int = 10) -> Optional[Dict]:
+        """Get a Semantic Scholar author profile with papers."""
+        return self._semantic_scholar.get_author(author_id, limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # OpenReview
+    # ───────────────────────────────────────────────────────────
+
+    def discover_openreview(
+        self,
+        query: str = "large language models",
+        venue: Optional[str] = None,
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Search OpenReview conference papers."""
+        return self._openreview.discover(query=query, venue=venue, limit=limit)
+
+    def openreview_venue(self, venue_id: str, limit: int = 10) -> List[Dict]:
+        """Get submissions for an OpenReview venue."""
+        return self._openreview.venue_submissions(venue_id, limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # Mastodon
+    # ───────────────────────────────────────────────────────────
+
+    def discover_mastodon(
+        self,
+        query: str = "AI",
+        instance: Optional[str] = None,
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Search public Mastodon posts."""
+        return self._mastodon.discover(query=query, instance=instance, limit=limit)
+
+    def mastodon_trending(self, instance: Optional[str] = None, limit: int = 10) -> List[Dict]:
+        """Get trending posts on a Mastodon instance."""
+        return self._mastodon.trending_posts(instance=instance, limit=limit)
+
+    def mastodon_timeline(self, instance: Optional[str] = None, limit: int = 10) -> List[Dict]:
+        """Get the public timeline of a Mastodon instance."""
+        return self._mastodon.public_timeline(instance=instance, limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # Nostr
+    # ───────────────────────────────────────────────────────────
+
+    def discover_nostr(
+        self,
+        query: str = "AI",
+        limit: int = 10,
+    ) -> List[Dict]:
+        """Search Nostr events via nostr.band."""
+        return self._nostr.discover(query=query, limit=limit)
+
+    def nostr_trending(self, limit: int = 10) -> List[Dict]:
+        """Get trending Nostr notes."""
+        return self._nostr.trending(limit=limit)
+
+    # ───────────────────────────────────────────────────────────
+    # Cross-Platform
+    # ───────────────────────────────────────────────────────────
+
+    def discover_all(self, limit: int = 10) -> Dict[str, List[Dict]]:
+        """Discover content from all platforms.
+
+        Returns a dict keyed by platform name. Also includes an ``_errors``
+        key mapping platform names to error strings for any platform that
+        failed during discovery, so callers can distinguish "no content"
+        from "platform unreachable".
+        """
+        results: Dict = {
+            "bottube": [],
+            "moltbook": [],
+            "clawcities": [],
+            "clawsta": [],
+            "fourclaw": [],
+            "pinchedin": [],
+            "clawtasks": [],
+            "clawnews": [],
+            "directory": [],
+            "agentchan": [],
+            "thecolony": [],
+            "moltx": [],
+            "moltexchange": [],
+            "arxiv": [],
+            "youtube": [],
+            "podcasts": [],
+            "bluesky": [],
+            "farcaster": [],
+            "semantic_scholar": [],
+            "openreview": [],
+            "mastodon": [],
+            "nostr": [],
+            "_errors": {},
+        }
+
+        calls = [
+            ("bottube",       lambda: self.discover_bottube(limit=limit)),
+            ("moltbook",      lambda: self.discover_moltbook(limit=limit)),
+            ("clawcities",    lambda: self.discover_clawcities(limit)),
+            ("clawsta",       lambda: self.discover_clawsta(limit)),
+            ("fourclaw",      lambda: self.discover_fourclaw(board="b", limit=limit)),
+            ("pinchedin",     lambda: self.discover_pinchedin(limit=limit)),
+            ("clawtasks",     lambda: self.discover_clawtasks(limit=limit)),
+            ("clawnews",      lambda: self.discover_clawnews(limit=limit)),
+            ("directory",     lambda: self.discover_directory(limit=limit)),
+            ("agentchan",     lambda: self.discover_agentchan(limit=limit)),
+            ("thecolony",     lambda: self.discover_colony(limit=limit)),
+            ("moltx",         lambda: self.discover_moltx(limit=limit)),
+            ("moltexchange",  lambda: self.discover_moltexchange(limit=limit)),
+            ("arxiv",         lambda: self.discover_arxiv(limit=limit)),
+            ("youtube",       lambda: self.discover_youtube(limit=limit)),
+            ("podcasts",      lambda: self.discover_podcasts(limit=limit)),
+            ("bluesky",       lambda: self.discover_bluesky(limit=limit)),
+            ("farcaster",     lambda: self.discover_farcaster(limit=limit)),
+            ("semantic_scholar", lambda: self.discover_semantic_scholar(limit=limit)),
+            ("openreview",    lambda: self.discover_openreview(limit=limit)),
+            ("mastodon",      lambda: self.discover_mastodon(limit=limit)),
+            ("nostr",         lambda: self.discover_nostr(limit=limit)),
+        ]
+
+        for name, fn in calls:
+            try:
+                results[name] = fn()
+            except Exception as exc:
+                results["_errors"][name] = str(exc)[:120]
+
+        return results
+
+    # ───────────────────────────────────────────────────────────
+    # SEO Dofollow Backlink Ping — Beacon Atlas Integration
+    # ───────────────────────────────────────────────────────────
+
+    def seo_ping(
+        self,
+        agent_id: str,
+        relay_token: str,
+        *,
+        seo_url: str = "",
+        seo_description: str = "",
+        status: str = "alive",
+        relay_host: str = "https://rustchain.org",
+    ) -> Dict:
+        """Send an SEO-enhanced heartbeat to the Beacon relay.
+
+        This generates a dofollow backlink on the agent's crawlable profile page.
+        Each ping refreshes the agent's status and updates SEO metadata.
+
+        Args:
+            agent_id: The agent's bcn_ ID.
+            relay_token: Bearer token from registration.
+            seo_url: Agent's homepage URL (becomes dofollow link on profile).
+            seo_description: Agent description for meta tags.
+            status: One of "alive", "degraded", "shutting_down".
+            relay_host: Beacon relay base URL.
+
+        Returns:
+            Dict with heartbeat confirmation and SEO backlink data including
+            the agent's crawlable profile URL (the dofollow backlink).
+        """
+        payload = {
+            "agent_id": agent_id,
+            "status": status,
+        }
+        if seo_url:
+            payload["seo_url"] = seo_url
+        if seo_description:
+            payload["seo_description"] = seo_description
+
+        try:
+            resp = self.session.post(
+                f"{relay_host}/relay/heartbeat/seo",
+                json=payload,
+                headers={"Authorization": f"Bearer {relay_token}"},
+                timeout=self.timeout,
+            )
+            return resp.json()
+        except Exception as e:
+            return {"error": str(e), "ok": False}
+
+    def seo_agent_profile(
+        self,
+        agent_id: str,
+        relay_host: str = "https://rustchain.org",
+        format: str = "json",
+    ) -> Dict:
+        """Fetch an agent's SEO profile from the Beacon relay.
+
+        Args:
+            agent_id: The agent's bcn_ ID.
+            relay_host: Beacon relay base URL.
+            format: Output format — "json" (GPT-optimized), "xml" (Claude-optimized),
+                    or "html" (crawlable profile page).
+
+        Returns:
+            Agent profile data in the requested format.
+        """
+        ext = {"json": ".json", "xml": ".xml", "html": ""}.get(format, ".json")
+        try:
+            resp = self.session.get(
+                f"{relay_host}/beacon/agent/{agent_id}{ext}",
+                timeout=self.timeout,
+            )
+            if format == "json":
+                return resp.json()
+            return {"content": resp.text, "content_type": resp.headers.get("content-type", "")}
+        except Exception as e:
+            return {"error": str(e)}
+
+    def report_download(self, platform: str, version: str):
+        """Report download to BoTTube tracking system."""
+        try:
+            self.session.post(
+                "https://bottube.ai/api/downloads/skill",
+                json={
+                    "skill": "grazer",
+                    "platform": platform,
+                    "version": version,
+                    "timestamp": datetime.utcnow().isoformat(),
+                },
+                timeout=5,
+            )
+        except Exception:
+            # Silent fail - don't block installation
+            pass
+
+
+__version__ = "1.9.1"
+__all__ = ["GrazerClient", "ClawHubClient", "generate_svg", "svg_to_media", "generate_template_svg", "generate_llm_svg"]

@@ -1,0 +1,38 @@
+{
+  "name": "@vibevideo/agent-bridge-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenClaw skill package for VibeVideoIO AI Script to Video, including Studio login, project listing, and episode creation from scripts.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "SKILL.md",
+    "agents",
+    "index.js",
+    "index.ts",
+    "openclaw.plugin.json",
+    "references",
+    "scripts",
+    "skills",
+    "src"
+  ],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "bin": {
+    "openclaw-vibevideoio-ai-script-to-video": "skills/vibevideoio-ai-script-to-video/scripts/vibevideo-studio.mjs"
+  },
+  "scripts": {
+    "openclaw:register": "node ./scripts/register-openclaw-skill.mjs",
+    "studio": "node ./skills/vibevideoio-ai-script-to-video/scripts/vibevideo-studio.mjs",
+    "studio:help": "node ./skills/vibevideoio-ai-script-to-video/scripts/vibevideo-studio.mjs --help",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

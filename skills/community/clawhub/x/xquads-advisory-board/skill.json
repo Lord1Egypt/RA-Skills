@@ -1,0 +1,31 @@
+{
+  "name": "xquads-advisory-board",
+  "version": "1.0.0",
+  "description": "Conselho de 12 pensadores lendários para decisões estratégicas",
+  "openclaw": {
+    "homepage": "https://github.com/synkra/xquads",
+    "emoji": "🧠"
+  },
+  "agents": [
+    "board-chair",
+    "ray-dalio",
+    "charlie-munger",
+    "naval-ravikant",
+    "peter-thiel",
+    "simon-sinek",
+    "reid-hoffman",
+    "derek-sivers",
+    "patrick-lencioni",
+    "brene-brown",
+    "yvon-chouinard"
+  ],
+  "tasks": [
+    "convene-board",
+    "get-founder-counsel",
+    "seek-investment-counsel",
+    "evaluate-scaling",
+    "resolve-culture-crisis",
+    "diagnose",
+    "review"
+  ]
+}

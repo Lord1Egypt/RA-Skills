@@ -1,0 +1,35 @@
+{
+    "asr": {
+        "model": "openai/whisper-large-v3",
+        "language": "zh",
+        "task": "transcribe",
+        "timestamps": "chunk",
+        "batch_size": "default",
+        "flash": "default",
+        "hf_token": "default",
+        "diarization_model": "default",
+        "num_speakers": "default",
+        "min_speakers": "default",
+        "max_speakers": "default",
+        "transcript_path": "default"
+    },
+    "tts": {
+        "model": "multilingual",
+        "language": "zh",
+        "format": "wav",
+        "repetition_penalty": "default",
+        "temperature": "default",
+        "top_p": "default",
+        "top_k": "default",
+        "norm_loudness": "default",
+        "exaggeration": "default",
+        "cfg_weight": "default",
+        "audio_prompt_path": "tmp/clone.wav"
+    },
+    "global": {
+        "voice_summary_limit": 100,
+        "default_clone_audio": "tmp/clone.wav",
+        "telegram_tts_format": "ogg_opus",
+        "asr_output": "json"
+    }
+}

@@ -1,35 +1,35 @@
 ---
-name: "OC SSH Tunnel Node Recovery"
-description: "Diagnose and recover OpenClaw node connectivity over SSH tunnel. Use for pairing-required errors, tunnel conflicts, wrong remote endpoint, and ssh target mis..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-ssh-tunnel-node-recovery"
-sourceUrl: "https://clawhub.ai/skills/oc-ssh-tunnel-node-recovery"
+name: oc-ssh-tunnel-node-recovery
+description: Diagnose and recover OpenClaw node connectivity over SSH tunnel. Use for pairing-required errors, tunnel conflicts, wrong remote endpoint, and ssh target mismatch.
 ---
 
 # OC SSH Tunnel Node Recovery
 
-> Diagnose and recover OpenClaw node connectivity over SSH tunnel. Use for pairing-required errors, tunnel conflicts, wrong remote endpoint, and ssh target mis...
+## When to use
+- `gateway closed (1008): pairing required`
+- `cannot listen to port` / `Address already in use`
+- remote endpoint unreachable after migration
+- node can connect intermittently but status is unstable
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-ssh-tunnel-node-recovery`
-- **Source URL:** [https://clawhub.ai/skills/oc-ssh-tunnel-node-recovery](https://clawhub.ai/skills/oc-ssh-tunnel-node-recovery)
+## Inputs expected
+- `<ssh-target>`
+- `<api-endpoint>`
+- `<gateway-credential>`
+- target node id/name
 
-## Overview
+## Procedure
+1. Validate tunnel process exists and local forward is bound.
+2. Verify endpoint is tunnel-local and not public plaintext.
+3. Verify ssh target maps to correct gateway host.
+4. Verify credential is present and matches gateway auth mode.
+5. Re-run probe then status check; record outcome.
 
+## Deliverable format
+- Root cause (single sentence)
+- Fixes applied (ordered list)
+- Verification evidence (probe/status snippets)
+- Residual risk and next action
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oc-ssh-tunnel-node-recovery
-```
+## Safety
+- Never expose real IP/domain/path/credential in external reports.
+- Use placeholders for all network and identity fields.

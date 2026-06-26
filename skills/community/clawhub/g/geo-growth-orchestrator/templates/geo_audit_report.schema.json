@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/geo_audit_report.schema.json",
+  "title": "GEO Audit Report Item",
+  "type": "object",
+  "required": [
+    "target_model",
+    "keyword",
+    "query",
+    "brand_visibility_level",
+    "brand_mentioned",
+    "competitor_mentioned",
+    "answer_accuracy",
+    "missing_information",
+    "recommended_actions",
+    "evidence_level",
+    "data_source",
+    "ranking_claim_allowed",
+    "score_claim_allowed"
+  ],
+  "properties": {
+    "target_model": {
+      "type": "string",
+      "enum": ["deepseek", "doubao", "generic", "chatgpt", "perplexity", "other"]
+    },
+    "keyword": {
+      "type": "string"
+    },
+    "query": {
+      "type": "string"
+    },
+    "probe_id": {
+      "type": "string"
+    },
+    "probe_category": {
+      "type": "string",
+      "enum": [
+        "spontaneous_recommendation",
+        "competitor_comparison",
+        "buying_guide",
+        "direct_awareness",
+        "price_channel",
+        "localized_consumption",
+        "xiaohongshu_douyin_seeding",
+        "local_supply_chain"
+      ]
+    },
+    "brand_visibility_level": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "none", "unknown"]
+    },
+    "brand_mentioned": {
+      "type": "boolean"
+    },
+    "answer_mention": {
+      "type": "boolean",
+      "description": "True when a brand alias appears in the generated answer body."
+    },
+    "citation_mention": {
+      "type": "boolean",
+      "description": "True when a brand alias appears in citation/source cards, source titles, snippets, or URLs."
+    },
+    "source_rank": {
+      "type": ["integer", "null"],
+      "description": "First source/citation position where the target entity appears; distinct from answer ranking."
+    },
+    "brand_alias_hits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "category_keyword_hits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "competitor_mentioned": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "answer_accuracy": {
+      "type": "string",
+      "enum": ["accurate", "partially_accurate", "inaccurate", "not_applicable", "unknown"]
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": ["verified_live_check", "manual_check", "inferred_estimate", "unverified_assumption"]
+    },
+    "data_source": {
+      "type": "string",
+      "description": "Where this audit item came from, such as live API check, manual model check, existing report, or planner inference."
+    },
+    "ranking_claim_allowed": {
+      "type": "boolean",
+      "description": "True only when a real ranked model/platform result was captured and can be cited."
+    },
+    "score_claim_allowed": {
+      "type": "boolean",
+      "description": "True only when the scoring method and evidence are available for review."
+    },
+    "verification_required": {
+      "type": "boolean",
+      "description": "True when this item requires follow-up verification before being used as a delivery claim."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "unknown"]
+    },
+    "score_dimensions": {
+      "type": "object",
+      "properties": {
+        "mention_rate": {"type": "number"},
+        "ranking_position": {"type": "number"},
+        "sentiment": {"type": "number"},
+        "answer_depth": {"type": "number"},
+        "factual_accuracy": {"type": "number"},
+        "purchase_helpfulness": {"type": "number"},
+        "localization_fit": {"type": "number"},
+        "commercial_value": {"type": "number"}
+      },
+      "additionalProperties": false
+    },
+    "total_score": {
+      "type": "number"
+    },
+    "raw_answer_file": {
+      "type": "string"
+    },
+    "raw_answer_summary": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "string"
+    },
+    "checked_at": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

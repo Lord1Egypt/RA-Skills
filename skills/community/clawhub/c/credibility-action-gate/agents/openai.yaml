@@ -1,0 +1,5 @@
+interface:
+  display_name: "Credibility Action Gate"
+  short_description: "Gate uncertain claims before bounded action"
+  default_prompt: "Use $credibility-action-gate to evaluate whether this claim record supports the bounded action I am considering."
+

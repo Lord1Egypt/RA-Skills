@@ -1,0 +1,6 @@
+playwright>=1.40.0
+beautifulsoup4>=4.12.0
+python-frontmatter>=1.0.0
+markdownify>=0.11.0
+# `--download-images` 依赖 requests，并会复用浏览器 Cookie/Referer 下载微信图片
+requests>=2.28.0

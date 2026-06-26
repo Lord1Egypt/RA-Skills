@@ -1,0 +1,27 @@
+{
+  "name": "cnki-watch",
+  "version": "0.2.1",
+  "description": "OpenClaw skill for CNKI journal/topic queries and recurring CNKI watch subscriptions.",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "cnki-watch": "./scripts/cnki-watch.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/cnki-watch.mjs",
+    "test": "node --test scripts/cnki_watch_core.test.mjs",
+    "install:browser": "node node_modules/playwright-core/cli.js install chromium"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "cnki",
+    "playwright"
+  ],
+  "dependencies": {
+    "playwright-core": "1.58.2"
+  }
+}

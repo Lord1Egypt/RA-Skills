@@ -1,0 +1,45 @@
+{
+  "name": "figma-design-analyzer",
+  "version": "1.0.0",
+  "description": "Figma设计分析工具 - 提取设计系统、导出截图、验证实现一致性",
+  "main": "scripts/figma-cli.js",
+  "scripts": {
+    "start": "node scripts/figma-cli.js",
+    "test": "node scripts/test-runner.js"
+  },
+  "bin": {
+    "figma-analyzer": "scripts/figma-cli.js"
+  },
+  "keywords": [
+    "figma",
+    "design",
+    "analyzer",
+    "design-system",
+    "screenshot",
+    "comparison"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.3.1",
+    "jsdom": "^22.1.0",
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts",
+    "evals",
+    "references",
+    ".env.example"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

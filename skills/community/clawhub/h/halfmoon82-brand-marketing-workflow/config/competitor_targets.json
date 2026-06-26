@@ -1,0 +1,23 @@
+{
+  "_comment": "竞品名称到 URL 的映射，新增竞品时在此配置",
+  "UNIQLOZH": {
+    "urls": ["https://www.uniqlo.com/cn/"],
+    "search_query": "优衣库 UNIQLO 品牌营销 小红书 内容策略"
+  },
+  "MINIMALAB": {
+    "urls": [],
+    "search_query": "MINIMALAB 极简风 品牌营销"
+  },
+  "Notion": {
+    "urls": ["https://www.notion.so/zh-cn"],
+    "search_query": "Notion 新功能 产品更新 2026"
+  },
+  "Linear": {
+    "urls": ["https://linear.app"],
+    "search_query": "Linear app 产品更新 新功能"
+  },
+  "HeyTea": {
+    "urls": ["https://www.heytea.com/"],
+    "search_query": "喜茶 品牌营销 新品 2026"
+  }
+}

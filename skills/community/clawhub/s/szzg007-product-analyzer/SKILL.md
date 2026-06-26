@@ -1,35 +1,188 @@
----
-name: "SZZG007 Product Analyzer"
-description: "深度解析产品特性与竞品，提炼功能、情感、经济卖点，生成差异化竞争优势与分层销售话术，服务跨境电商B2B批发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/szzg007-product-analyzer"
-sourceUrl: "https://clawhub.ai/skills/szzg007-product-analyzer"
+# szzg007-product-analyzer - 产品卖点分析专家
+
+**版本:** 1.0  
+**创建日期:** 2026-03-30  
+**作者:** MOSSRIVER 团队
+
 ---
 
-# SZZG007 Product Analyzer
+## 技能描述
 
-> 深度解析产品特性与竞品，提炼功能、情感、经济卖点，生成差异化竞争优势与分层销售话术，服务跨境电商B2B批发。
+深度分析产品特性，提取核心卖点，生成差异化竞争优势报告。专为跨境电商 B2B 批发场景设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/szzg007-product-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/szzg007-product-analyzer](https://clawhub.ai/skills/szzg007-product-analyzer)
+---
 
-## Overview
+## 核心功能
 
+### 1. 产品特性分析
+- 输入产品参数/图片/描述
+- 提取物理特性（材质、尺寸、重量、颜色）
+- 提取功能特性（用途、场景、优势）
+- 提取情感特性（设计感、价值观、故事）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/szzg007-product-analyzer
+### 2. 卖点提炼
+- **功能卖点** - 解决什么痛点
+- **情感卖点** - 满足什么渴望
+- **社会卖点** - 带来什么身份认同
+- **经济卖点** - 创造什么价值
+
+### 3. 竞品对比
+- 识别直接竞品
+- 对比核心参数
+- 找出差异化优势
+- 生成对比话术
+
+### 4. 目标客户匹配
+- B2B 批发商关注点
+- 零售商关注点
+- 终端消费者关注点
+- 生成分层话术
+
+---
+
+## 使用场景
+
+| 场景 | 输入 | 输出 |
+|------|------|------|
+| 新品上架 | 产品参数 + 图片 | 卖点清单 + 话术 |
+| 邮件营销 | 产品链接 | 营销文案 |
+| 客户询价 | 客户类型 + 产品 | 针对性报价话术 |
+| 竞品分析 | 竞品链接 | 对比报告 |
+
+---
+
+## 触发词
+
 ```
+"分析这个产品的卖点"
+"提取产品优势"
+"这个产品怎么推销"
+"竞品对比分析"
+"生成产品话术"
+"产品差异化在哪里"
+"szzg007 产品分析"
+```
+
+---
+
+## 使用方法
+
+### 基础用法
+```
+分析这个产品的卖点：[产品链接/描述]
+```
+
+### 高级用法
+```
+分析这个产品的卖点：[产品链接]
+- 目标客户：B2B 批发商
+- 对比竞品：[竞品链接]
+- 输出格式：邮件话术
+```
+
+---
+
+## 输出模板
+
+```markdown
+# 产品卖点分析报告
+
+## 产品基本信息
+- 产品名称：XXX
+- 价格区间：$XX-$XX
+- 目标市场：US/UK/AU/CA
+
+## 核心卖点 (按优先级)
+
+### 🎯 功能卖点
+1. [卖点 1] - 解决 [痛点]
+2. [卖点 2] - 带来 [价值]
+
+### 💝 情感卖点
+1. [卖点 1] - 满足 [渴望]
+
+### 💰 经济卖点
+1. [卖点 1] - 毛利 XX%
+
+## 竞品对比
+
+| 特性 | 本产品 | 竞品 A | 优势 |
+|------|--------|--------|------|
+| 价格 | $XX | $XX | ✅ 低 15% |
+| 材质 | PC | ABS | ✅ 更耐用 |
+
+## 推荐话术
+
+### B2B 批发商版本
+"这款产品的核心优势是..."
+
+### 零售商版本
+"您的顾客会喜欢..."
+
+### 终端消费者版本
+"想象一下..."
+```
+
+---
+
+## 配置说明
+
+### 环境变量 (可选)
+```bash
+# Tavily API (用于竞品搜索)
+TAVILY_API_KEY=your_key
+
+# 输出语言
+PRODUCT_ANALYZER_LANG=zh-CN
+```
+
+### 工作空间
+```
+~/.openclaw/workspace/skills/szzg007-product-analyzer/
+├── SKILL.md
+├── templates/          # 输出模板
+├── examples/           # 分析案例
+└── scripts/
+    └── analyze.py      # 分析脚本
+```
+
+---
+
+## 示例
+
+### 示例 1: 收纳盒分析
+**输入:**
+```
+分析这个产品的卖点：Clear PC Storage Box with Colorful Trays
+价格：$45.99
+材质：透明 PC
+特点：可堆叠、彩色托盘
+```
+
+**输出:**
+```markdown
+# QB2 收纳盒卖点分析
+
+## 核心卖点
+1. **彩色差异化** - 市场少见彩色收纳盒
+2. **可堆叠设计** - 节省 50% 空间
+3. **透明 PC 材质** - 耐用且美观
+4. **批发毛利 50%+** - B2B 客户高利润
+
+## B2B 话术
+"这款彩色收纳盒是我们的独家设计，市场上很少见。可堆叠设计帮助您的顾客节省空间，透明 PC 材质保证耐用性。批发价$45.99，建议零售价$89.99，毛利 50%+。"
+```
+
+---
+
+## 与其他技能协作
+
+| 技能 | 协作方式 |
+|------|---------|
+| szzg007-talktrack-library | 输出卖点 → 生成话术 |
+| szzg007-email-business-manager | 输出卖点 → 邮件模板 |
+| szzg007-web-deep-research | 输入竞品链接 → 对比分析 |
+
+---
+
+_此技能专为 MOSSRIVER 跨境电商设计，持续优化中。_

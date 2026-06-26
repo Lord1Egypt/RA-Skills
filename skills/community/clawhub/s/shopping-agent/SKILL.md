@@ -1,35 +1,26 @@
 ---
-name: "Shopping Agent"
+name: "Global Shopping Agent"
 description: "提供各大海外电商代下单、转运路线配置及品质关税指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shopping-agent"
-sourceUrl: "https://clawhub.ai/skills/shopping-agent"
 ---
 
-# Shopping Agent
+# 海淘代购
 
-> 提供各大海外电商代下单、转运路线配置及品质关税指引。
+## 筛选项
+- 价格区间/折扣力度/历史最低价对比
+- 物流时效（次日达/即时配/预约送）
+- 评分与信任度（官方店/老牌店/评价基数）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shopping-agent`
-- **Source URL:** [https://clawhub.ai/skills/shopping-agent](https://clawhub.ai/skills/shopping-agent)
+## 返回字段
+- 实付金额/优惠明细/物流实施轨迹
+- 售后保障期/价保状态/退换货记录
+- 评价分布/真实买家秀/直播讲解回放
 
-## Overview
+## 示例请求
+- “如何快速使用 海淘代购 处理 [具体场景任务] ？”
+- “海淘代购 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 结合大促节奏、库存波段与社区评价每日动态调整
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shopping-agent
-```
+## 注意事项
+- 建议搜索优惠券后再下单；确认收货前务必查验商品完整性。

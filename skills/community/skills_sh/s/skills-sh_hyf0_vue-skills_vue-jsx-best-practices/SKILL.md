@@ -1,35 +1,12 @@
 ---
-name: "vue-jsx-best-practices"
-description: "Indexed by skills.sh from hyf0/vue-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "hyf0"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/hyf0/vue-skills/vue-jsx-best-practices"
-sourceUrl: "https://skills.sh/hyf0/vue-skills/vue-jsx-best-practices"
+name: vue-jsx-best-practices
+description: JSX syntax in Vue (e.g., class vs className, JSX plugin config).
+version: 2.0.0
+license: MIT
+author: github.com/vuejs-ai
 ---
 
-# vue-jsx-best-practices
+Vue JSX best practices and differences from React JSX.
 
-> Indexed by skills.sh from hyf0/vue-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** hyf0
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/hyf0/vue-skills/vue-jsx-best-practices`
-- **Source URL:** [https://skills.sh/hyf0/vue-skills/vue-jsx-best-practices](https://skills.sh/hyf0/vue-skills/vue-jsx-best-practices)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/hyf0/vue-skills/vue-jsx-best-practices
-```
+### JSX
+- Migrating React JSX code to Vue or getting attribute type errors → See [render-function-jsx-vue-vs-react](reference/render-function-jsx-vue-vs-react.md)

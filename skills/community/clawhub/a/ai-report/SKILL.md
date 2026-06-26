@@ -1,35 +1,111 @@
 ---
-name: "ai-report"
-description: "自动生成AI助手工作日报/周报。整理当日任务完成情况、对话主题、关键决策、待办事项，生成结构化总结报告。用于用户说写日报、写周报、总结工作、整理汇报。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, openclaw, report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-report"
-sourceUrl: "https://clawhub.ai/skills/ai-report"
+name: ai-report
+description: 自动生成AI助手工作日报/周报。整理当日任务完成情况、对话主题、关键决策、待办事项，生成结构化总结报告。用于用户说写日报、写周报、总结工作、整理汇报。
 ---
 
-# ai-report
+# AI 日报周报生成系统
 
-> 自动生成AI助手工作日报/周报。整理当日任务完成情况、对话主题、关键决策、待办事项，生成结构化总结报告。用于用户说写日报、写周报、总结工作、整理汇报。
+每次会话结束自动整理，生成结构化的工作汇报。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-report`
-- **Source URL:** [https://clawhub.ai/skills/ai-report](https://clawhub.ai/skills/ai-report)
+## 输出格式
 
-## Overview
+### 日报模板
+```markdown
+# 工作日报 · 2026-05-03
 
+## 📋 今日完成
+- [ ] 任务1：描述
+- [ ] 任务2：描述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-report
+## 💡 关键讨论
+- 主题1：结论
+- 主题2：结论
+
+## ✅ 决策记录
+- 决策1
+- 决策2
+
+## ⏳ 待跟进
+- [ ] 待办事项1
+- [ ] 待办事项2（截止：明天下午）
+
+## 🎯 明日计划
+- 计划1
+- 计划2
 ```
+
+### 周报模板
+```markdown
+# 工作周报 · 第18周 (2026-05-01 ~ 2026-05-03)
+
+## 📊 本周完成
+共完成 N 项任务
+
+## 💡 关键进展
+- 进展1
+- 进展2
+
+## 📈 认知沉淀
+- 新增决策原则 N 条
+- 新增教训 N 条
+
+## 📅 下周计划
+- 计划1
+- 计划2
+```
+
+## 工作原理
+
+```
+会话结束
+├── 扫描当日日记 memory/YYYY-MM-DD.md
+├── 提取关键信息：
+│   ├── 完成的任务
+│   ├── 讨论的主题
+│   ├── 做的决策
+│   └── 待跟进事项
+├── 生成结构化报告
+└── 自动归档到 reports/YYYY-MM-DD.md
+```
+
+## 触发方式
+
+### 自动触发
+会话结束时自动生成日报（可配置开关）。
+
+### 手动触发
+```
+写今天的日报
+生成这周的周报
+写一下昨天的工作总结
+```
+
+### 生成范围
+```
+日报：指定日期（默认今天）
+周报：本周或指定周
+月报：本月
+```
+
+## 保存位置
+
+```
+~/.openclaw/reports/
+├── 日报/
+│   └── 2026-05-03.md
+├── 周报/
+│   └── 2026-W18.md
+└── 月报/
+    └── 2026-05.md
+```
+
+## 导出格式
+
+支持导出为：
+- Markdown（默认）
+- PDF（需要 pandoc）
+- HTML（需要 pandoc）
+
+## 安装
+
+本技能无需额外配置，直接启用即可。

@@ -1,0 +1,26 @@
+{
+  "name": "content-generator",
+  "version": "1.2.0",
+  "description": "Commerce content generator. Input a product brief, evidence, audience, and channel; output Xiaohongshu notes, Douyin scripts, ad/email/listing variants, and a claims checklist. Evidence-aware: does not invent unsupported claims and flags missing proof.",
+  "author": "Harry",
+  "license": "MIT",
+  "keywords": [
+    "content",
+    "copywriting",
+    "ecommerce",
+    "marketing",
+    "shopping",
+    "xiaohongshu",
+    "douyin",
+    "ads"
+  ],
+  "categories": [
+    "content",
+    "marketing",
+    "shopping"
+  ],
+  "homepage": "https://github.com/harrylabsj/content-generator",
+  "repository": "https://github.com/harrylabsj/content-generator",
+  "bugs": "https://github.com/harrylabsj/content-generator/issues",
+  "icon": "pen-tool"
+}

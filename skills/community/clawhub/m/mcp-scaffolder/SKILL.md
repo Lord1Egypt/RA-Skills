@@ -1,35 +1,74 @@
 ---
-name: "MCP Scaffolder"
-description: "Scaffolds a complete TypeScript MCP server with folder structure, typed tools, transport config, Claude MCP snippet, and README from a simple description."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-scaffolder"
-sourceUrl: "https://clawhub.ai/skills/mcp-scaffolder"
+name: mcp-scaffolder
+description: Scaffolds a new MCP server from a one-line description. 
+  Generates folder structure, typed tool definitions, transport config, 
+  claude mcp add snippet, and README with env var documentation. 
+  Use when: user says "create an MCP server", "scaffold an MCP server", 
+  or "build a new MCP tool for Claude Code".
 ---
 
-# MCP Scaffolder
+# MCP Scaffolder Skill
 
-> Scaffolds a complete TypeScript MCP server with folder structure, typed tools, transport config, Claude MCP snippet, and README from a simple description.
+When the user describes an MCP server they want to build, scaffold it completely.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-scaffolder`
-- **Source URL:** [https://clawhub.ai/skills/mcp-scaffolder](https://clawhub.ai/skills/mcp-scaffolder)
+## What to Generate
 
-## Overview
+1. Folder structure
+   - /src/index.ts        — server entry point
+   - /src/tools/          — one file per tool
+   - /package.json        — with @modelcontextprotocol/sdk dependency
+   - /tsconfig.json       — standard TS config
+   - /.env.example        — all required env vars documented
+   - /README.md           — setup instructions
 
+2. Server entry point (src/index.ts)
+   - Import and register all tools
+   - Set transport based on user intent:
+     - stdio  → local tools, file system access, CLI utilities
+     - HTTP   → remote servers, cloud APIs, services
+   - Include server instructions field — used by Claude Code tool search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-scaffolder
-```
+3. Tool definitions
+   - Each tool gets its own file in /src/tools/
+   - Include: name, description, inputSchema (zod or JSON Schema)
+   - Add JSDoc comments explaining what the tool does and when Claude should call it
+
+4. Claude Code config snippet
+   Always output a ready-to-paste config block:
+
+   For stdio:
+   {
+     "mcpServers": {
+       "<server-name>": {
+         "type": "stdio",
+         "command": "node",
+         "args": ["<absolute-path>/build/index.js"],
+         "env": { "<ENV_VAR>": "your-value-here" }
+       }
+     }
+   }
+
+   For HTTP:
+   {
+     "mcpServers": {
+       "<server-name>": {
+         "type": "http",
+         "url": "http://localhost:3000/mcp"
+       }
+     }
+   }
+
+5. README
+   - What the server does
+   - Prerequisites
+   - All env vars with descriptions
+   - Build and run instructions
+   - How to add to Claude Code
+
+## Rules
+
+- Never use SSE transport — it is deprecated, use HTTP instead
+- Always include the server instructions field in the entry point
+- Keep tool descriptions specific — Claude Code uses these for tool search
+- Flag any required env vars in .env.example with a comment explaining what they are for
+- Use TypeScript by default unless user specifies otherwise

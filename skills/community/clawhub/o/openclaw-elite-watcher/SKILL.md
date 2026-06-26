@@ -1,35 +1,28 @@
 ---
-name: "OpenClaw Elite Watcher"
-description: "Zero-latency intelligence engine for the OpenClaw ecosystem. Monitors core protocol commits from Peter Steinberger and top developers, distilling raw code di..."
-category: "devops"
-source: "ClawHub"
-tags: [alpha, intel, monitoring, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-elite-watcher"
-sourceUrl: "https://clawhub.ai/skills/openclaw-elite-watcher"
+name: openclaw-elite-watcher
+description: "Zero-latency intelligence engine for the OpenClaw ecosystem. Monitors core protocol commits from Peter Steinberger and top developers, distilling raw code diffs into actionable strategy reports."
+metadata:
+  {
+    "openclaw": { "emoji": "🔍" },
+    "author": "System Architect Zero",
+    "category": "Intelligence"
+  }
 ---
 
 # OpenClaw Elite Watcher
 
-> Zero-latency intelligence engine for the OpenClaw ecosystem. Monitors core protocol commits from Peter Steinberger and top developers, distilling raw code di...
+Stay ahead of the breakneck speed of OpenClaw development. This skill monitors high-signal nodes in the ecosystem and provides AI-driven summaries of technical changes.
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-elite-watcher`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-elite-watcher](https://clawhub.ai/skills/openclaw-elite-watcher)
+## Features
+- **Real-time Commit Monitoring**: Tracks the official OpenClaw repository.
+- **Developer Intel**: Monitors key contributors and their latest technical experiments.
+- **Strategic Summaries**: Converts complex code changes into human-readable bullet points.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+Activate the watcher to get the latest ecosystem intelligence:
 ```bash
-hermes skills install clawhub/openclaw-elite-watcher
+npx openclaw skill run openclaw-elite-watcher
 ```
+
+## Architect's Note
+Information is the only currency in the Agentic Age. Built for the Sovereign Protocol.

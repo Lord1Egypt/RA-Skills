@@ -1,0 +1,16 @@
+{
+  "name": "clawguard-shield",
+  "version": "3.0.0",
+  "description": "ClawGuard v3 - Active Shield with Prompt Injection Defense and Hardening",
+  "main": "src/shield.js",
+  "scripts": {
+    "shield": "node cli.js",
+    "defend": "node cli.js --defend",
+    "harden": "node cli.js --harden",
+    "fix": "node cli.js --fix"
+  },
+  "keywords": ["clawguard", "shield", "defense", "prompt-injection", "openclaw"],
+  "author": "ClawGuard Team",
+  "license": "MIT",
+  "dependencies": {}
+}

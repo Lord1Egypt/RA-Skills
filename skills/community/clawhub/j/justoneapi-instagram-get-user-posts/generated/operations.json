@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/instagram/get-user-posts/v1 for Instagram User Published Posts through JustOneAPI with username.",
+  "displayName": "Instagram User Published Posts",
+  "endpointPath": "get-user-posts",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Instagram user Published Posts data, including post code, caption, and media type, for monitoring recent publishing activity of a specific user and building a historical record of content for auditing or analysis.",
+      "method": "GET",
+      "operationId": "getInstagramUserPostsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The Instagram username whose published posts are to be retrieved.",
+          "enumValues": [],
+          "location": "query",
+          "name": "username",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Token used for retrieving the next page of results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "paginationToken",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/instagram/get-user-posts/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Posts",
+      "tags": [
+        "Instagram"
+      ]
+    }
+  ],
+  "platformKey": "instagram",
+  "primaryTag": "Instagram",
+  "skillName": "justoneapi_instagram_get_user_posts",
+  "skillType": "interface",
+  "slug": "justoneapi-instagram-get-user-posts",
+  "sourceTitle": "OpenAPI definition"
+}

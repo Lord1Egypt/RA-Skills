@@ -1,35 +1,112 @@
 ---
-name: "AUSUB"
-description: "基于Tushare黄金ETF日线行情和规则，动态生成带风险提示的黄金定投建议及投入金额参考。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ausub"
-sourceUrl: "https://clawhub.ai/skills/ausub"
+slug: ausub
+display_name: AUSUB
 ---
 
-# AUSUB
+# OpenClaw
 
-> 基于Tushare黄金ETF日线行情和规则，动态生成带风险提示的黄金定投建议及投入金额参考。
+`openclaw` 是一个本地 skill，用来基于 Tushare 跟踪黄金行情，并输出动态定投建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ausub`
-- **Source URL:** [https://clawhub.ai/skills/ausub](https://clawhub.ai/skills/ausub)
+## 适用场景
 
-## Overview
+当用户希望做这些事情时，使用这个 skill：
 
+- 基于 Tushare 获取黄金 ETF 的日度行情快照
+- 用纪律化规则生成黄金动态定投建议
+- 按固定节奏持续监测，而不是凭感觉择时
+- 根据收入、支出、存款和投资偏好，生成一个初始黄金定投方案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ausub
-```
+## 输入
+
+这个 skill 最好具备以下输入：
+
+- 环境变量中的 `TUSHARE_TOKEN`
+- 要跟踪的标的定义
+- 用户的基础定投金额，或者由模型协助生成的方案
+- 可选的风控上下限
+
+## 安装前说明
+
+- `TUSHARE_TOKEN` 是必需项；如果当前运行环境没有正确设置这个变量，skill 将无法获取 Tushare 数据。
+- 安装其他 Tushare 相关 skill，并不等于当前 skill 会自动获得可用的 `TUSHARE_TOKEN`。
+- `OPENCLAW_CONFIG`、`OPENCLAW_USER_ID`、`OPENCLAW_HISTORY_PATH`、`OPENCLAW_SYMBOL` 都是可选项，但如果设置了这些变量，skill 会读取对应的本地文件或路径。
+- `OPENCLAW_USER_ID` 会映射到 `memory/users/<id>.json`。
+- `fetch_history.py` 会在 `references/history/` 下写入本地 CSV 文件。
+- 远程网络请求仅通过 `tushare` 库访问 Tushare，不包含额外隐藏网络端点。
+
+建议配置如下：
+
+- `OPENCLAW_SYMBOL`：跟踪的黄金 ETF，默认 `518880.SH`
+- `OPENCLAW_BASE_AMOUNT`：每期基础定投金额，默认推荐值可由用户覆盖
+- `OPENCLAW_MAX_MULTIPLIER`：最大加码倍率，默认 `1.8`
+- `OPENCLAW_MIN_MULTIPLIER`：最小投入倍率，默认 `0.6`
+
+## 工作流
+
+1. 读取 Tushare 中配置标的的最新日线数据。
+   默认执行标的是 `518880.SH`。
+   ETF 主行情使用 Tushare `fund_daily`。
+2. 计算价格行为相关指标。
+3. 用核心指标把市场分成 4 个状态：
+   - `oversold`
+   - `weak`
+   - `neutral`
+   - `hot`
+4. 用布林线位置做倍率修正。
+5. 只在极端状态下使用 MACD 做确认修正。
+6. 如需展示黄金现货参考行情，读取上海黄金交易所 `Au99.99`。
+   `Au99.99` 参考行情使用 Tushare `sge_daily`。
+7. 输出带理由和风险提示的定投建议。
+
+## 用户方案原则
+
+- `weekly_thursday_if_trading` 和 `1000` 元应被视为默认推荐方案，而不是唯一固定方案。
+- 用户可以自行定义定投节奏、基础金额和执行偏好。
+- 如果用户尚未确定方案，可以选择性描述预算范围、投资目标和风险偏好，由 openclaw 的模型给出一个建议方案。
+- 不应要求用户在配置文件中持久化保存收入、支出、存款等敏感财务信息；这类信息仅适合在临时对话中用于生成建议。
+- 涉及个人财务规划的方案建议，应在用户确认后再写入配置文件。
+
+## 约束
+
+- 不要把结果表述成保证收益的投资建议。
+- 不要建议使用杠杆。
+- 所有建议都要限制在设定的最小和最大倍率之间。
+- 如果数据缺失、过旧或接口失败，要明确说明，不要强行给建议。
+
+## 输出格式
+
+输出应包含：
+
+- 市场摘要
+- 指标摘要
+- 建议倍率
+- 建议投入金额
+- 触发细节
+- 自然语言解释
+- 风险提示
+
+## 规则说明
+
+- 使用硬阈值，避免边界条件重叠。
+- 60 日回撤固定定义为：`(rolling_60d_high - close) / rolling_60d_high`
+- 布林线修正使用位置值 `pos = (close - lower_band) / (upper_band - lower_band)`：
+  - `pos <= 0`：`+0.2`
+  - `0 < pos <= 0.25`：`+0.1`
+  - `0.25 < pos < 0.75`：`0`
+  - `0.75 <= pos < 1`：`-0.1`
+  - `pos >= 1`：`-0.2`
+- MACD 只用于 `oversold` 和 `hot` 两种极端状态，并要求柱体动能连续两期收敛后才触发修正。
+
+## 示例
+
+如果基础金额是 `1000`，最终倍率是 `1.5`，则建议本期投入 `1500`，并附带简要说明，例如市场偏弱、价格接近布林下轨、下跌动能减弱等。
+
+## 实现说明
+
+- 优先使用小型 Python 脚本负责 Tushare 取数和指标计算。
+- 所有阈值都应易于调参。
+- 数据获取和建议逻辑要分离，便于后续替换数据源或升级规则。
+- 以 ETF 日线为主要决策依据。
+- `518880.SH` 主行情默认通过 Tushare `fund_daily` 获取。
+- 上海黄金交易所 `Au99.99` 可作为辅助参考锚，默认通过 Tushare `sge_daily` 获取，但不替代执行标的。
+- 不要把“当前脚本未取到 Au99.99 数据”表述成“Tushare 不支持 SGE 数据”；正确表述应是“当前参考数据暂不可用或当前流程未启用该接口”。

@@ -1,35 +1,51 @@
----
-name: "ClawSkillShield"
-description: "Locally scans OpenClaw/ClawHub skills for security risks like hardcoded secrets, dangerous calls, and risky imports, then scores and quarantines threats."
-category: "security"
-source: "ClawHub"
-tags: [agent-safety, quarantine, scanner, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawskillshield"
-sourceUrl: "https://clawhub.ai/skills/clawskillshield"
----
+# ClawSkillShield 🛡️
 
-# ClawSkillShield
+**Local-first security scanner for OpenClaw/ClawHub skills.**
 
-> Locally scans OpenClaw/ClawHub skills for security risks like hardcoded secrets, dangerous calls, and risky imports, then scores and quarantines threats.
+## What It Does
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawskillshield`
-- **Source URL:** [https://clawhub.ai/skills/clawskillshield](https://clawhub.ai/skills/clawskillshield)
+- **Static analysis** for security risks and malware patterns
+- **Detects**:
+  - Hardcoded secrets (API keys, credentials, private keys)
+  - Risky imports (`os`, `subprocess`, `socket`, `ctypes`)
+  - Dangerous calls (`eval()`, `exec()`, `open()`)
+  - Obfuscation (base64 blobs, suspicious encoding)
+  - Hardcoded IPs
+- **Risk scoring** (0–10) + detailed threat reports
+- **Quarantine** high-risk skills automatically
 
-## Overview
+## Dual-Use Design
 
+- **CLI for humans**: Quick safety checks before installing skills
+- **Agent API**: Importable functions for autonomous agents/Moltbots to proactively scan and quarantine risky skills (essential post-ClawHavoc)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
+
+### CLI (Humans)
 ```bash
-hermes skills install clawhub/clawskillshield
+pip install -e .
+clawskillshield scan-local /path/to/skill
+clawskillshield quarantine /path/to/skill
 ```
+
+### Python API (Agents)
+```python
+from clawskillshield import scan_local, quarantine
+
+threats = scan_local("/path/to/skill")
+if risk_score < 4:  # HIGH RISK
+    quarantine("/path/to/skill")
+```
+
+## Zero Dependencies
+Pure Python. No network calls. Runs entirely locally.
+
+## Why This Matters
+ClawHavoc demonstrated how easily malicious skills can slip into the ecosystem. ClawSkillShield provides a trusted, open-source defense layer—audit the code, run offline, stay safe.
+
+---
+
+**GitHub**: https://github.com/AbYousef739/clawskillshield  
+**License**: MIT  
+**Author**: Ab Yousef  
+**Contact**: contact@clawskillshield.com

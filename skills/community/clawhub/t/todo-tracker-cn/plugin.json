@@ -1,0 +1,80 @@
+{
+  "name": "todo-tracker",
+  "version": "1.0.0",
+  "description": "待办事项管理神器！专为 AI 助手设计的任务追踪系统，让复杂任务的执行过程可视化。支持智能生成待办列表、实时标记完成、进度展示、完成验证四大核心功能。每完成一步自动展示进度，让用户清晰看到 AI 的执行过程，不再只听到口头承诺。",
+  "author": "yangbowen",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "license": "MIT",
+  "keywords": [
+    "todo",
+    "task",
+    "productivity",
+    "tracker",
+    "management",
+    "chinese",
+    "openclaw"
+  ],
+  "skills": [
+    {
+      "action": "generate-todo-list",
+      "description": "根据任务描述生成结构化的待办列表。智能拆解任务为可执行的子步骤，为每个步骤分配唯一 ID，自动记录创建时间，并立即展示完整待办列表让用户看到执行计划。适用于配置系统、排查问题、开发技能等复杂任务。",
+      "parameters": [
+        {
+          "name": "taskDescription",
+          "type": "string",
+          "required": true,
+          "description": "需要拆解的任务描述，例如：'配置 Self-Improving 系统'、'排查小红书发布失败'"
+        }
+      ],
+      "permissions": ["file.write"],
+      "examples": [
+        "generate-todo-list '配置 Self-Improving 系统'",
+        "generate-todo-list '排查小红书中午自动发布失败'"
+      ]
+    },
+    {
+      "action": "mark-completed",
+      "description": "标记某个待办项为已完成。记录完成时间，自动计算进度百分比，立即展示更新后的进度，防止重复标记。每完成一个实质性操作后必须调用此动作。",
+      "parameters": [
+        {
+          "name": "todoId",
+          "type": "string",
+          "required": true,
+          "description": "待办项的唯一 ID，从 generate-todo-list 或 show-progress 的输出中获取"
+        }
+      ],
+      "permissions": ["file.read", "file.write"],
+      "examples": [
+        "mark-completed 'step1'",
+        "mark-completed 'feed1f00'"
+      ]
+    },
+    {
+      "action": "show-progress",
+      "description": "查看当前待办列表的完成进度。清晰展示已完成项（✅）和待完成项（⏳），显示进度统计（X/Y 已完成），支持随时查询。用于定期主动汇报进展或响应用户询问。",
+      "parameters": [],
+      "permissions": ["file.read"],
+      "examples": [
+        "show-progress"
+      ]
+    },
+    {
+      "action": "verify-completion",
+      "description": "任务结束前的最终验证。检查是否所有步骤都已完成，如果有未完成项列出清单，如果全部完成输出执行总结。防止口头说'完成'但实际未执行，确保任务真正完成。",
+      "parameters": [],
+      "permissions": ["file.read"],
+      "examples": [
+        "verify-completion"
+      ]
+    }
+  ],
+  "files": [
+    "SKILL.md",
+    "todo_tracker.py"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "skills/todo-tracker"
+  }
+}

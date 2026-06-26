@@ -1,35 +1,77 @@
----
-name: "editor-scene-painter"
-description: "为每场戏设计具备持久视觉记忆点的动作描写，强化感官细节，提升剧本的视觉冲击力和情感感染力。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/editor-scene-painter"
-sourceUrl: "https://clawhub.ai/skills/editor-scene-painter"
+# Skill: editor-scene-painter — 场景画师
+
+## 用途
+为剧本中的每场戏设计"视觉记忆点"（Visual Memorability），确保观众在看完三个月后还能想起某个画面。将剧本从"说得对"升级为"看得见"。
+
+## 触发时机
+- 阶段 3：初稿撰写时，每场戏完成后调用
+- 阶段 4 Stage 1.5：Story Impact Review 时验证视觉记忆点是否达标
+
 ---
 
-# editor-scene-painter
+## 核心能力：Visual Memorability Design（视觉记忆点设计）
 
-> 为每场戏设计具备持久视觉记忆点的动作描写，强化感官细节，提升剧本的视觉冲击力和情感感染力。
+### 设计原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/editor-scene-painter`
-- **Source URL:** [https://clawhub.ai/skills/editor-scene-painter](https://clawhub.ai/skills/editor-scene-painter)
+每场戏必须回答：**"这场戏里，有没有一个画面观众三个月后还记得？"**
 
-## Overview
+如果答不出来 → 该场景缺乏视觉锚点，需补写。
 
+### 视觉记忆点类型（至少命中一种）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/editor-scene-painter
+| 类型 | 说明 | 经典案例 |
+|------|------|---------|
+| **Iconic Silhouette（标志性剪影）** | 角色的一个姿态成为符号 | 张飞独立长坂桥的背影 |
+| **Visual Metaphor（视觉隐喻）** | 画面同时传达字面意思和深层含义 | 破碎的镜子映出角色的分裂内心 |
+| **Scale Contrast（尺度反差）** | 极大与极小、极强与极弱的视觉并置 | 小人物站在巨大城门前 |
+| **Color Isolation（色彩孤立）** | 灰调中一抹亮色 | 辛德勒名单中的红衣小女孩 |
+| **Transformation Moment（变身瞬间）** | 角色外在形态的突变 | 美少女战士变身、超级英雄穿甲 |
+| **Stillness in Chaos（混乱中的静止）** | 周围在剧烈运动，主体纹丝不动 | 战场上诸葛亮安静抚琴 |
+
+### 设计流程
+
 ```
+1. 读取当前场景的戏剧意图（来自 story_architecture.emotional_arc）
+2. 问：这场戏的核心情感是什么？
+3. 问：什么画面最能把这种情感"钉"进观众记忆？
+4. 在 △ 动作描写行中植入视觉记忆点
+5. 用 [视觉锚点] 标注，供阶段 4 审查
+```
+
+### 标注规范
+
+在动作描写行末尾，用 `[视觉锚点:类型]` 标注：
+
+```
+△ 张飞独立桥上，长矛横于胸前，身后是滚滚黄河水，桥面只剩他一人。[视觉锚点:Iconic Silhouette]
+△ 诸葛亮在满天飞矢中端坐抚琴，琴弦震颤与箭矢破空声交织。[视觉锚点:Stillness in Chaos]
+```
+
+---
+
+## 场景氛围设计辅助
+
+除视觉记忆点外，场景画师还负责确保每场戏的"感官层"丰富：
+
+1. **听觉层**：环境音的精确描述（不是"很吵"，而是"蝉鸣震耳"）
+2. **触觉层**：温度、质感、体感（"手心的汗"、"冰凉的城墙"）
+3. **光线层**：光源与阴影的安排（"夕阳把影子拉成巨人"）
+
+这些感官细节写入 △ 动作描写行，增强分镜师的画面构建依据。
+
+---
+
+## 与其他 Skill 的协作
+
+- **editor-story-architect**：提供 emotional_arc 和 tone_blueprint，场景画师据此设计匹配的视觉记忆点
+- **editor-dialogue-craft**：场景画师不碰台词，但为台词提供视觉反差背景
+- **editor-tension-mapper**：张力地图标示的高峰场景，必须配备最强视觉记忆点
+
+---
+
+## 禁止事项
+
+- ❌ 不得在台词行中插入视觉描述——视觉信息只走 △ 行
+- ❌ 不得设计与场景情感基调矛盾的视觉记忆点（悲伤场景不应有滑稽画面）
+- ❌ 不得替代分镜师做景别/机位决策——只提供"画什么"，不规定"怎么拍"
+- ❌ 每场戏最多 2 个视觉锚点，过满等于没有重点

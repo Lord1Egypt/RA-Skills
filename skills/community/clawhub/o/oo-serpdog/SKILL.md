@@ -1,35 +1,82 @@
 ---
-name: "Serpdog"
-description: "Serpdog (serpdog.io). Use this skill for ANY Serpdog request — searching and reading data. Whenever a task involves Serpdog, use this skill instead of callin..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-serpdog"
-sourceUrl: "https://clawhub.ai/skills/oo-serpdog"
+name: oo-serpdog
+description: "Serpdog (serpdog.io). Use this skill for ANY Serpdog request — searching and reading data. Whenever a task involves Serpdog, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Serpdog"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["serpdog"]
+  icon: "https://static.oomol.com/logo/third-party/serpdog.svg"
 ---
 
 # Serpdog
 
-> Serpdog (serpdog.io). Use this skill for ANY Serpdog request — searching and reading data. Whenever a task involves Serpdog, use this skill instead of callin...
+Operate **Serpdog** through your OOMOL-connected account. This skill calls the `serpdog` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-serpdog`
-- **Source URL:** [https://clawhub.ai/skills/oo-serpdog](https://clawhub.ai/skills/oo-serpdog)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected Serpdog. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-serpdog
+oo connector schema "serpdog" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "serpdog" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `get_account_info` — Retrieve account details and quota usage for the connected Serpdog API key.
+- `google_autocomplete` — Retrieve Google Autocomplete suggestions through Serpdog.
+- `google_news_search` — Run a Google News request through Serpdog.
+- `google_search` — Run a Google Search request through Serpdog using either the advanced or lite endpoint.
+- `google_videos_search` — Run a Google Videos request through Serpdog.
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Serpdog state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Serpdog is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=serpdog
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- Serpdog homepage: https://serpdog.io

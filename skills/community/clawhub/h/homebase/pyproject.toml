@@ -1,0 +1,58 @@
+[project]
+name = "homebase"
+version = "0.2.5"
+description = "Family household coordinator skill for OpenClaw — calendar, meals, school, shopping, health, briefing"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.12"
+authors = [
+    { name = "hchawla" },
+]
+keywords = ["openclaw", "family", "household", "calendar", "whatsapp", "meal-planner"]
+
+[project.urls]
+Homepage = "https://github.com/hchawla/homebase"
+Repository = "https://github.com/hchawla/homebase"
+Issues = "https://github.com/hchawla/homebase/issues"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Home Automation",
+]
+dependencies = [
+    # Google APIs
+    "google-api-python-client>=2.100.0,<3.0.0",
+    "google-auth>=2.23.0,<3.0.0",
+    "google-auth-httplib2>=0.1.0,<1.0.0",
+    "google-auth-oauthlib>=1.0.0,<2.0.0",
+    # Credential management
+    "python-dotenv>=1.0.0,<2.0.0",
+    "keyring>=24.0.0,<26.0.0",
+    # Networking
+    "requests>=2.28.0,<3.0.0",
+    # PDF text extraction (school flyer attachments)
+    "pypdf>=4.0.0,<6.0.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0,<9.0.0",
+    "pytest-mock>=3.10.0,<4.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["tools", "utils", "setup_check", "migrate_to_keychain"]
+
+[tool.setuptools.packages.find]
+include = ["core*", "features*"]
+exclude = ["tests*", "logs*", "household*", "calendar_data*"]

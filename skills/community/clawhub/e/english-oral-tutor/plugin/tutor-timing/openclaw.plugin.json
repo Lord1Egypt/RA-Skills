@@ -1,0 +1,16 @@
+{
+  "id": "tutor-timing",
+  "name": "Tutor Timing Injector",
+  "description": "Injects timing context into english-oral-teacher agent prompts for structured lesson phases.",
+  "activation": {
+    "onStartup": true
+  },
+  "contracts": {
+    "hooks": ["before_prompt_build", "session_end"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

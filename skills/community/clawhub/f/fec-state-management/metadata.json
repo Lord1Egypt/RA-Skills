@@ -1,0 +1,61 @@
+{
+  "id": "fec-state-management",
+  "name": "前端状态管理",
+  "category": "implementation-capability",
+  "tags": [
+    "state-management",
+    "react-state",
+    "vue-state",
+    "url-state",
+    "store"
+  ],
+  "summary": "Frontend state ownership, store selection, URL/server/form/local state boundaries, persistence handoff, and safe state refactoring.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "state-management",
+    "react-state",
+    "vue-state",
+    "url-state",
+    "store"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when choosing, implementing, reviewing, or refactoring frontend state ownership across React, Vue, Next.js, Nuxt, URL state, server state, form state, browser persistence, or global stores. Prefer narrower skills for TanStack Query cache details, browser storage persistence, or form validation internals; Chinese triggers include 状态管理, 状态归属, store 选型.",
+  "source": "skills/fec-state-management",
+  "references": [
+    "references/state-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-data-fetching",
+      "fec-form-handling",
+      "fec-browser-storage",
+      "fec-route-protection",
+      "fec-react-project-standard",
+      "fec-vue3-project-standard"
+    ],
+    "boundaryWorkflows": [
+      "Use a data-fetching workflow for query keys, cache lifetime, invalidation, optimistic updates, and server-state hooks.",
+      "Use a form workflow for field registration, validation, submit flows, and form-specific dirty/error state.",
+      "Use a browser storage workflow when state must persist across reloads, sessions, offline mode, or cookie boundaries."
+    ],
+    "capabilityTags": [
+      "state-management",
+      "store-selection",
+      "url-state",
+      "state-ownership"
+    ]
+  }
+}

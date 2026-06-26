@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>biaoshu-writer 安装使用教程 v5.0</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 15px;
+        }
+        .version {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .subtitle { color: #666; font-size: 16px; margin-bottom: 30px; }
+        
+        .progress-tracker {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+        .progress-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .progress-step {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .progress-step:last-child { border-bottom: none; }
+        .progress-step input { margin-right: 12px; transform: scale(1.3); }
+        .progress-step label { flex: 1; cursor: pointer; }
+        .progress-step.done { color: #28a745; }
+        .progress-step.done label { text-decoration: line-through; }
+        
+        h2 {
+            font-size: 20px;
+            color: #333;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #007bff;
+        }
+        .step-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .step-number {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+            font-size: 14px;
+            color: #e83e8c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        pre code { background: none; color: inherit; padding: 0; }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        .warning-title { color: #856404; font-weight: bold; margin-bottom: 5px; }
+        
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+        }
+        
+        .table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .table th, .table td { border: 1px solid #dee2e6; padding: 12px 15px; text-align: left; }
+        .table th { background: #f8f9fa; font-weight: 600; }
+        
+        .faq { background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 15px 0; }
+        .faq-q { font-weight: bold; color: #333; margin-bottom: 10px; }
+        .faq-a { color: #555; padding-left: 20px; }
+        
+        .font-test {
+            font-family: "SimSun", "宋体", serif;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .toc {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .toc ul { list-style: none; padding-left: 20px; }
+        .toc li { margin: 8px 0; }
+        .toc a { color: #007bff; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Font detection via JS */
+        .font-check-result {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .font-check-ok { background: #d4edda; color: #155724; }
+        .font-check-fail { background: #f8d7da; color: #721c24; }
+        .font-check-pending { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+
+<h1>📝 biaoshu-writer 安装使用教程 <span class="version">v5.0</span></h1>
+<p class="subtitle">标书撰写器 · 投标技术标文档自动生成工具</p>
+
+<!-- 进度跟踪器 -->
+<div class="progress-tracker">
+    <div class="progress-title">📊 安装进度</div>
+    <div class="progress-step">
+        <input type="checkbox" id="step1">
+        <label for="step1">第一步：安装 OpenClaw</label>
+    </div>
+    <div class="progress-step">
+        <input type="checkbox" id="step2">
+        <label for="step2">第二步：安装 Python 库</label>
+    </div>
+    <div class="progress-step">
+        <input type="checkbox" id="step3">
+        <label for="step3">第三步：安装 SimSun 字体</label>
+    </div>
+    <div class="progress-step">
+        <input type="checkbox" id="step4">
+        <label for="step4">第四步：安装本技能</label>
+    </div>
+    <div class="progress-step">
+        <input type="checkbox" id="step5">
+        <label for="step5">第五步：开始使用</label>
+    </div>
+</div>
+
+<div class="toc">
+    <strong>目录</strong>
+    <ul>
+        <li><a href="#overview">一、工具简介</a></li>
+        <li><a href="#env">二、环境要求</a></li>
+        <li><a href="#step1">三、第一步：安装 OpenClaw</a></li>
+        <li><a href="#step2">四、第二步：安装 Python 库</a></li>
+        <li><a href="#step3">五、第三步：安装 SimSun 字体</a></li>
+        <li><a href="#step4">六、第四步：安装技能</a></li>
+        <li><a href="#step5">七、第五步：开始使用</a></li>
+        <li><a href="#faq">八、常见问题</a></li>
+        <li><a href="#verify">九、验证清单</a></li>
+    </ul>
+</div>
+
+<h2 id="overview">一、工具简介</h2>
+<div class="step-card">
+<p><strong>biaoshu-writer</strong> 可以根据招标要求、评分标准自动生成技术标 Word 文档。</p>
+<table class="table">
+    <tr><th>功能</th><th>说明</th></tr>
+    <tr><td>📄 多格式解析</td><td>支持 txt、pdf、docx、xlsx 招标文件</td></tr>
+    <tr><td>📊 智能大纲</td><td>根据评分标准自动生成分章大纲</td></tr>
+    <tr><td>✍️ 内容扩充</td><td>5倍法则充实，每章配套表格</td></tr>
+    <tr><td>🤖 AI去痕</td><td>去除AI写作特征</td></tr>
+    <tr><td>📝 规范格式</td><td>SimSun宋体，WPS/Office兼容</td></tr>
+    <tr><td>🎨 格式自定义</td><td>支持自定义字体/字号/行距</td></tr>
+</table>
+</div>
+
+<h2 id="env">二、环境要求</h2>
+<div class="step-card">
+<table class="table">
+    <tr><th>依赖</th><th>说明</th><th>状态</th></tr>
+    <tr><td>OpenClaw</td><td>AI助手运行环境</td><td>需安装</td></tr>
+    <tr><td>Python 3.8+</td><td>运行脚本</td><td>通常已有</td></tr>
+    <tr><td>python-docx</td><td>Word文档生成</td><td>自动安装</td></tr>
+    <tr><td>SimSun.ttf</td><td>Word显示宋体</td><td>⚠️ 手动</td></tr>
+</table>
+</div>
+
+<h2 id="step1">三、第一步：安装 OpenClaw</h2>
+<div class="step-card">
+<p><span class="step-number">1</span>访问官网下载安装</p>
+<pre><code>https://openclaw.ai</code></pre>
+
+<p style="margin-top:15px;"><span class="step-number">2</span>验证安装</p>
+<pre><code>openclaw --version</code></pre>
+
+<div class="success-box">
+✅ 显示版本号 = 安装成功
+</div>
+</div>
+
+<h2 id="step2">四、第二步：安装 Python 库</h2>
+<div class="step-card">
+<p>打开<strong>终端（Terminal）</strong>，运行：</p>
+<pre><code>pip install python-docx pdfplumber openpyxl PyPDF2</code></pre>
+
+<p style="margin-top:15px;">如果提示没有pip：</p>
+<pre><code># macOS
+python3 -m pip install python-docx pdfplumber openpyxl PyPDF2
+
+# Windows
+py -m pip install python-docx pdfplumber openpyxl PyPDF2</code></pre>
+
+<div class="success-box">
+✅ 验证安装成功：
+<pre><code>python3 -c "import docx; print('python-docx OK')"</code></pre>
+</div>
+</div>
+
+<h2 id="step3">五、第三步：安装 SimSun 字体</h2>
+<div class="step-card">
+<div class="warning">
+    <div class="warning-title">⚠️ 重要：这一步必须做！</div>
+    没有安装这个字体，生成的Word文档会显示"MS明朝"等错误字体。
+</div>
+
+<!-- 字体检测 -->
+<div id="fontCheckResult" class="font-check-result font-check-pending">
+    🔄 正在检测字体...
+</div>
+
+<script>
+(function() {
+    // 检测 SimSun 字体是否可用
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.font = '20px SimSun, serif';
+    var detected = ctx.font !== '20px sans-serif';
+    
+    var resultDiv = document.getElementById('fontCheckResult');
+    if (detected) {
+        resultDiv.className = 'font-check-result font-check-ok';
+        resultDiv.innerHTML = '✅ 检测到 SimSun 字体已安装！';
+    } else {
+        resultDiv.className = 'font-check-result font-check-fail';
+        resultDiv.innerHTML = '❌ 未检测到 SimSun 字体，请按下方说明安装。';
+    }
+})();
+</script>
+
+<p><strong>安装方法：</strong></p>
+
+<p style="margin-top:15px;"><strong>方法1：从 Windows 复制（推荐）</strong></p>
+<ol style="margin:10px 0;padding-left:25px;">
+    <li>找一台 Windows 电脑</li>
+    <li>打开 <code>C:\Windows\Fonts</code></li>
+    <li>找到 <code>SimSun.ttf</code>（注意不是 SimSun.ttc）</li>
+    <li>复制到 Mac 的 <code>~/Library/Fonts/</code> 文件夹</li>
+</ol>
+
+<p style="margin-top:15px;"><strong>方法2：网上下载</strong></p>
+<ol style="margin:10px 0;padding-left:25px;">
+    <li>搜索 "SimSun.ttf下载"</li>
+    <li>下载得到 .ttf 文件</li>
+    <li>放入 <code>~/Library/Fonts/</code></li>
+</ol>
+
+<p style="margin-top:15px;"><strong>验证字体：</strong></p>
+<pre><code>ls -lh ~/Library/Fonts/SimSun.ttf</code></pre>
+
+<div class="font-test">
+    字体测试：这是宋体字体测试
+</div>
+</div>
+
+<h2 id="step4">六、第四步：安装技能</h2>
+<div class="step-card">
+<p><span class="step-number">1</span>下载 <code>biaoshu-writer.skill</code> 文件</p>
+
+<p style="margin-top:15px;"><span class="step-number">2</span>在终端运行：</p>
+<pre><code>openclaw skills install /path/to/biaoshu-writer.skill</code></pre>
+
+<p style="margin-top:15px;"><span class="step-number">3</span>验证安装：</p>
+<pre><code>openclaw skills list | grep biaoshu</code></pre>
+</div>
+
+<h2 id="step5">七、第五步：开始使用</h2>
+<div class="step-card">
+<ol style="padding-left:25px;">
+    <li>打开 OpenClaw</li>
+    <li>发送招标文件（txt/pdf/docx/xlsx）给AI</li>
+    <li>AI自动解析并生成技术标大纲</li>
+    <li><strong>确认大纲</strong>（说"开始执行"）</li>
+    <li>AI生成完整内容</li>
+    <li>获得符合投标规范的Word文档 ✅</li>
+</ol>
+
+<div style="margin-top:20px;padding:15px;background:#e7f3ff;border-radius:8px;">
+<strong>📌 执行流程：</strong>
+<pre style="margin-top:10px;background:#f0f7ff;">
+发送招标文件 → AI解析
+       ↓
+生成大纲 → 用户确认
+       ↓
+并发生成章节内容
+       ↓
+AI去痕处理
+       ↓
+转换Word文档 ✅</pre>
+</div>
+</div>
+
+<h2 id="faq">八、常见问题</h2>
+<div class="step-card">
+<div class="faq">
+    <div class="faq-q">Q: pip不是内部命令？</div>
+    <div class="faq-a">
+<pre><code># macOS
+python3 -m pip install python-docx
+
+# Windows
+py -m pip install python-docx</code></pre>
+    </div>
+</div>
+
+<div class="faq">
+    <div class="faq-q">Q: 生成的Word字体不对，显示MS明朝？</div>
+    <div class="faq-a">SimSun.ttf未正确安装。重新复制字体到 <code>~/Library/Fonts/</code> 并重启Word。</div>
+</div>
+
+<div class="faq">
+    <div class="faq-q">Q: PDF无法解析？</div>
+    <div class="faq-a">如果是扫描版PDF（没有文字层），需要先OCR识别。<br>
+    推荐：Adobe Acrobat / <a href="https://www.ilovepdf.com/ocr" target="_blank">在线OCR</a></div>
+</div>
+
+<div class="faq">
+    <div class="faq-q">Q: 如何自定义Word格式？</div>
+    <div class="faq-a">在Markdown顶部加入格式指令：
+<pre><code>&lt;!-- doc-format
+font: SimSun
+body-size: 32pt
+line-spacing: 26pt
+--&gt;</code></pre>
+    </div>
+</div>
+</div>
+
+<h2 id="verify">九、验证清单</h2>
+<div class="step-card">
+<p>运行以下命令，全部显示 OK 即安装成功：</p>
+<pre><code># 1. 验证Python库
+python3 -c "import docx; print('python-docx OK')"
+python3 -c "import pdfplumber; print('pdfplumber OK')"
+
+# 2. 验证OpenClaw
+openclaw --version
+
+# 3. 验证技能
+openclaw skills list | grep biaoshu
+
+# 4. 验证字体
+ls -lh ~/Library/Fonts/SimSun.ttf</code></pre>
+</div>
+
+<div class="footer">
+    biaoshu-writer v5.0 · 标书撰写器<br>
+    Powered by OpenClaw
+</div>
+
+</body>
+</html>

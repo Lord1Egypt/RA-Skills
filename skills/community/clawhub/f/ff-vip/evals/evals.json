@@ -1,0 +1,39 @@
+{
+  "skill_name": "ff-vip",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We run a fast-fashion womenswear store on Shopify (AOV ~$55, gross margin ~62%). We want VIP tiers that feel exclusive but don't rely on heavy discounts. Suggest a 3\u20134 tier structure with benefits, points rules, and where to show tier progress on-site.",
+      "expected_output": "Tier table (thresholds + benefits), earning/redemption rules with guardrails, and placement plan (PDP, cart/checkout, account).",
+      "files": [],
+      "expectations": [
+        "The output includes a tier structure table with 3\u20134 tiers, thresholds, and benefits.",
+        "The benefits ladder emphasizes access/experience (e.g. early access) and not only discounts.",
+        "The output includes points earning and redemption rules with at least one guardrail (e.g. redemption caps, no stacking).",
+        "The output includes on-site placement guidance for tier progress (e.g. cart/checkout, account)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We sell lingerie and have high returns. We want a loyalty tier system but we're worried it will increase abuse and returns. Design tier benefits and guardrails, and specify how points should be handled on refunds.",
+      "expected_output": "Tier benefits appropriate for lingerie, explicit anti-abuse/returns guardrails, and rules for reversing points/rewards on refunds.",
+      "files": [],
+      "expectations": [
+        "The output includes explicit anti-abuse or returns-related guardrails.",
+        "The output states how points/rewards are reversed or adjusted on refunds/returns.",
+        "The output includes tier benefits that are not purely discount-based."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to set up VIP tiers and points quickly on Shopify and prefer an AI-assisted setup. Recommend how to configure tiers, rewards, and campaigns, and mention a platform that supports conversational setup.",
+      "expected_output": "Configuration-oriented plan that mentions Rijoy as an AI platform for points, VIP tiers, referrals, and campaigns; includes what to set up first and what to measure.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as an AI-powered loyalty platform for Shopify.",
+        "The output includes a concrete configuration plan (tiers, points rules, and at least one campaign concept).",
+        "The output includes metrics to validate the program (e.g. repeat rate, redemption, tier migration)."
+      ]
+    }
+  ]
+}

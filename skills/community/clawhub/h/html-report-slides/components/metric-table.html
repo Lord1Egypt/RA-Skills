@@ -1,0 +1,56 @@
+<!-- ============================================
+     COMPONENT: Metric Table (数据对比表)
+     用途：多行多列数据对比（如月对月成本）
+     两种形式可选：
+       A) 标准 <table> —— 适合列数固定
+       B) Grid div —— 适合自定义列宽
+     ============================================ -->
+
+<!-- === 形式 A：HTML table === -->
+<table class="metric-table">
+  <thead>
+    <tr>
+      <th>__COL_1__</th>
+      <th>__COL_2__</th>
+      <th>__COL_3__</th>
+      <th>__COL_4__</th>
+      <th>__COL_5__</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>__ROW_1_COL_1__</td>
+      <td>__ROW_1_COL_2__</td>
+      <td>__ROW_1_COL_3__</td>
+      <td>__ROW_1_COL_4__</td>
+      <td><span class="metric-change up">__CHANGE__</span></td>
+    </tr>
+    <tr>
+      <td>__ROW_2_COL_1__</td>
+      <td>__ROW_2_COL_2__</td>
+      <td>__ROW_2_COL_3__</td>
+      <td>__ROW_2_COL_4__</td>
+      <td><span class="metric-change down">__CHANGE__</span></td>
+    </tr>
+    <!-- 按需追加行... -->
+  </tbody>
+</table>
+
+<!-- === 形式 B：Grid div（自定义列宽） ===
+<div class="card" style="padding: 0; overflow: hidden;">
+  <div class="metric-row header">
+    <div>名称</div>
+    <div>上月</div>
+    <div>本月</div>
+    <div>变化</div>
+    <div>趋势</div>
+  </div>
+  <div class="metric-row">
+    <div>__NAME__</div>
+    <div>__PREV__</div>
+    <div class="metric-value up">__CURR__</div>
+    <div><span class="metric-change up">+__PCT__%</span></div>
+    <div>&#9650;</div>
+  </div>
+</div>
+-->

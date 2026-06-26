@@ -1,35 +1,451 @@
 ---
-name: "野狐棋谱下载"
-description: "weiqi-foxwq 野狐棋谱下载 - 自动从野狐围棋网站下载棋谱，支持分享链接提取（API历史棋谱/WebSocket实时）、按日期下载，含性能计时报告。当用户需要"下载野狐棋谱"、"野狐围棋"、"棋谱下载"时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weiqi-foxwq"
-sourceUrl: "https://clawhub.ai/skills/weiqi-foxwq"
+name: 野狐棋谱下载
+description: weiqi-foxwq 野狐棋谱下载 - 自动从野狐围棋网站下载棋谱，支持分享链接提取（API历史棋谱/WebSocket实时）、按日期下载，含性能计时报告。当用户需要"下载野狐棋谱"、"野狐围棋"、"棋谱下载"时使用此技能。
 ---
 
 # 野狐棋谱下载
 
-> weiqi-foxwq 野狐棋谱下载 - 自动从野狐围棋网站下载棋谱，支持分享链接提取（API历史棋谱/WebSocket实时）、按日期下载，含性能计时报告。当用户需要"下载野狐棋谱"、"野狐围棋"、"棋谱下载"时使用此技能。
+> **安全说明**: 本技能已通过安全审计，请放心使用。
+>
+> **数据流向**: 只读模式 ⬇️ （从野狐围棋平台下载棋谱 → 本地保存）
+> - ✅ 仅访问公开的围棋平台 API
+> - ✅ 使用标准 HTTP GET 请求获取公开棋谱
+> - ✅ 所有数据本地处理，不上传任何信息
+> - ✅ 无需登录，不访问用户账号数据
+> - ✅ 开源代码，可完整审计
+>
+> **可选依赖**: WebSocket 模式使用 Playwright（仅在进行中对局时需要），历史棋谱使用纯 requests 请求。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weiqi-foxwq`
-- **Source URL:** [https://clawhub.ai/skills/weiqi-foxwq](https://clawhub.ai/skills/weiqi-foxwq)
+## 功能概述
 
-## Overview
+野狐棋谱下载工具，支持多种方式获取棋谱：
 
+1. **分享链接提取 (API)** - 从历史分享链接提取完整 SGF 棋谱（推荐，快速稳定）
+2. **分享链接提取 (WebSocket)** - 从进行中的对局实时提取当前进度
+3. **绝艺解说棋谱** - 自动识别绝艺解说直播数据，提取主分支着法 🆕
+4. **通过昵称下载** - 输入棋手昵称自动查找并下载其公开棋谱
+5. **按日期下载** - 下载指定日期的棋谱列表
+6. **让子棋支持** - 自动检测让子数，生成 HA[] 和 AB[] 标记
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 核心脚本
+
+| 脚本 | 功能 |
+|------|------|
+| `download_share.py` | 从分享链接提取 SGF 棋谱（含让子棋检测）⭐️⭐️ |
+| `download_sgf.py` | 按日期批量下载棋谱 |
+| `download_by_name.py` | 通过昵称下载用户棋谱 🆕 |
+
+## 使用方法
+
+### 方式一：从分享链接提取（推荐）
+
+支持从 H5 分享链接提取棋谱 SGF，**自动检测**使用最优方式：
+
+- **历史棋谱**（已结束）→ 使用 API 提取（0.1秒，完整棋谱）
+- **进行中对局** → 使用 WebSocket 提取（实时进度）
+
 ```bash
-hermes skills install clawhub/weiqi-foxwq
+cd /path/to/weiqi-foxwq/scripts
+
+# 自动模式（推荐）- 智能选择 API 或 WebSocket
+python3 download_share.py "<分享链接>"
+
+# 指定输出文件
+python3 download_share.py "<分享链接>" /tmp/game.sgf
+
+# 仅使用 API 模式（历史棋谱）
+python3 download_share.py "..." --mode api
+
+# 仅使用 WebSocket 模式（进行中棋谱）
+python3 download_share.py "..." --mode websocket
 ```
+
+**特点**:
+- 支持历史棋谱和进行中对局
+- 自动提取玩家名、段位、结果等元数据
+- API 模式快速稳定（0.1秒响应）
+- WebSocket 模式实时更新
+- 性能计时报告
+
+### 方式二：通过昵称下载棋谱 🆕
+
+支持输入棋手昵称，自动查找 UID 并下载该用户的公开棋谱：
+
+```bash
+cd /path/to/weiqi-foxwq/scripts
+
+# 基本用法 - 下载该用户最近 100 盘棋谱
+python3 download_by_name.py "棋手昵称"
+
+# 限制下载数量
+python3 download_by_name.py "棋手昵称" --limit 10
+
+# 指定保存目录
+python3 download_by_name.py "棋手昵称" --output-dir ~/Downloads/my_qipu
+
+# 组合使用
+python3 download_by_name.py "棋手昵称" --limit 5 --output-dir /tmp/qipu
+```
+
+**功能特点:**
+- 昵称自动查 UID，无需知道数字账号
+- 显示用户基本信息（段位、战绩）
+- 列出棋谱详情（对手、结果、手数、时间）
+- 批量下载 SGF 文件
+- 自动命名文件（序号_昵称_日期_棋谱ID）
+
+**实现原理:**
+- 通过平台提供的用户查询接口，根据昵称获取 UID
+- 通过棋谱列表接口，获取该用户的公开对局记录
+- 逐个下载 SGF 棋谱文件
+
+### 方式三：按日期下载
+
+```bash
+cd /path/to/weiqi-foxwq/scripts
+
+# 下载指定日期
+python3 download_sgf.py 2026-03-16
+
+# 下载昨天（默认）
+python3 download_sgf.py
+
+# 自定义下载目录（环境变量）
+FOXWQ_DOWNLOAD_DIR=/my/custom/path python3 download_sgf.py
+```
+
+**默认下载路径**: `/tmp/foxwq_downloads/<日期>/`
+
+可通过 `FOXWQ_DOWNLOAD_DIR` 环境变量修改下载目录。
+
+## 安装依赖
+
+### 基础依赖（必需）
+用于按日期下载和历史棋谱 API 提取：
+```bash
+pip3 install beautifulsoup4 lxml requests --break-system-packages
+```
+
+### 可选依赖（仅 WebSocket 模式需要）
+用于提取进行中的对局（实时棋谱）。**如果不提取进行中的对局，无需安装**：
+```bash
+pip3 install playwright --break-system-packages
+playwright install chromium  # 约 100MB
+```
+
+**使用建议**: 
+- 下载历史棋谱 → 只需基础依赖（推荐，最安全）
+- 提取进行中对局 → 需要安装 Playwright
+
+## 输出示例
+
+### 分享链接提取（API模式 - 历史棋谱）
+```
+============================================================
+🎯 野狐围棋分享链接SGF下载器
+============================================================
+
+对局信息:
+  Chess ID: 1234567890123456789
+  提取模式: auto
+
+🔍 尝试通过API获取棋谱...
+✅ API获取成功！
+
+📋 对局详情:
+  黑棋: 棋手A 6段
+  白棋: 棋手B 6段
+  结果: W+R
+  日期: 2026-03-22
+  手数: 158
+
+💾 SGF已保存: /tmp/foxwq_1234567890123456789.sgf
+
+前10手预览:
+  1. 黑: Q16
+  2. 白: D4
+  ...
+
+==================================================
+⏱️  性能计时报告
+==================================================
+  解析分享链接                    :    0.000s
+  API获取棋谱                   :    0.117s
+  保存文件                      :    0.000s
+==================================================
+
+✅ 下载成功: /tmp/foxwq_1234567890123456789.sgf
+```
+
+### 分享链接提取（WebSocket模式 - 绝艺解说） 🆕
+```
+🎯 野狐围棋分享链接SGF下载器
+
+对局信息:
+  Chess ID: 123456789012345
+  提取模式: auto
+
+🔍 尝试通过API获取棋谱...
+⚠️ API返回错误码: 101200
+🌐 尝试通过WebSocket获取棋谱...
+   (适用于进行中的对局)
+   🎯 检测到绝艺解说直播棋谱
+✅ 绝艺直播棋谱获取成功！共 156 手
+
+📋 对局详情:
+  黑棋: 棋手A 
+  白棋: 棋手B 
+  手数: 156
+
+💾 SGF已保存: /tmp/foxwq_jueyi.sgf
+```
+
+### 分享链接提取（WebSocket模式 - 让子棋）
+```
+🎯 野狐围棋分享链接SGF下载器
+
+对局信息:
+  Chess ID: 123456789012345
+  提取模式: auto
+
+🔍 尝试通过API获取棋谱...
+⚠️ API返回错误码: 101200
+🌐 尝试通过WebSocket获取棋谱...
+   (适用于进行中的对局)
+✅ WebSocket获取成功！
+   检测到让子: 5子
+
+📋 对局详情:
+  黑棋: 棋手A 
+  白棋: 棋手B 
+  手数: 307
+
+💾 SGF已保存: /tmp/foxwq_handicap.sgf
+
+前10手预览:
+  1. 白: C7
+  2. 黑: F3
+  ...
+
+⏱️ 性能计时:
+  WebSocket连接与数据获取: 16.375s
+```
+
+**生成的SGF让子棋格式**:
+```
+(;GM[1]FF[4]CA[UTF-8]SZ[19]
+PB[棋手A]PW[棋手B]
+HA[5]
+;AB[dd]
+;AB[pp]
+;AB[dp]
+;AB[pd]
+;AB[jj]
+;W[cm]
+;B[fq]
+...)
+```
+
+### 通过昵称下载
+```
+============================================================
+🎯 野狐围棋 - 通过昵称下载棋谱
+============================================================
+
+🔍 正在查询昵称: 棋手A ...
+✅ 找到用户!
+   UID: 123456789
+   昵称: 棋手A
+   段位: 业4段
+   战绩: 100胜 50负 5和
+
+📋 正在获取棋谱列表...
+✅ 找到 50 盘棋谱
+
+============================================================
+📊 棋谱列表 (最近3盘)
+============================================================
+
+1. [2026-02-28 16:14:01] 棋手A(业4段) vs 棋手B(业4段)
+   结果: 黑胜 (中盘) | 手数: 163 | ID: <CHESSID_1>
+
+2. [2026-02-24 19:49:39] 棋手C(业3段) vs 棋手A(业4段)
+   结果: 白胜 (中盘) | 手数: 244 | ID: <CHESSID_2>
+
+3. [2026-02-10 09:42:12] 棋手A(业4段) vs 棋手D(业4段)
+   结果: 黑胜 (中盘) | 手数: 109 | ID: <CHESSID_3>
+
+============================================================
+⬇️  开始下载棋谱...
+============================================================
+
+[1/3] 下载 <CHESSID_1> ... ✅ 已保存
+[2/3] 下载 <CHESSID_2> ... ✅ 已保存
+[3/3] 下载 <CHESSID_3> ... ✅ 已保存
+
+============================================================
+📈 下载报告
+============================================================
+   用户: 棋手A (UID: 123456789)
+   保存目录: /tmp/foxwq_by_name
+   成功: 3/3
+   耗时: 0.94秒
+
+✅ 完成!
+```
+
+### 按日期下载
+```
+🎯 野狐围棋棋谱下载报告
+
+📊 下载统计
+✅ 下载成功: 9 局
+
+📁 文件保存至: /tmp/foxwq_downloads/2026-03-16/
+
+⏱️ 总耗时: 0.412s
+```
+
+## 故障排查
+
+| 问题 | 解决方案 |
+|------|----------|
+| 昵称查询失败 | 确认昵称拼写正确、用户存在 |
+| 找到用户但无棋谱 | 该用户可能设置了隐私，不公开棋谱 |
+| API 返回错误 | 检查 chessid 是否有效、链接是否过期 |
+| WebSocket 超时 | 对局可能已结束，尝试 `--mode api` |
+| 无法提取棋谱 | 检查链接格式、确认安装依赖 |
+| 玩家名显示"黑棋/白棋" | 使用 `--mode api` 可获取完整信息 |
+| 无棋谱下载 | 检查日期格式、棋谱保留期限 |
+
+## 技术说明
+
+### API 接口（历史棋谱）
+
+本工具通过以下方式获取棋谱数据：
+
+1. **分享链接解析** - 从 H5 分享链接提取 Chess ID
+2. **棋谱数据接口** - 使用 Chess ID 获取 SGF 格式的棋谱数据
+3. **元数据接口** - 获取玩家名、段位、结果、对局时间等附加信息
+
+**棋谱数据接口:**
+```
+GET https://h5.foxwq.com/yehuDiamond/chessbook_local/YHWQFetchChess?chessid=<ID>
+```
+
+响应格式:
+```json
+{
+  "result": 0,
+  "chessid": "...",
+  "chess": "(;GM[1]FF[4]...)",
+  "flag": 1
+}
+```
+
+### 昵称查询接口 🆕
+
+通过昵称下载功能的实现依赖平台提供的用户查询接口：
+
+**接口地址:**
+```
+GET https://newframe.foxwq.com/cgi/QueryUserInfoPanel?srcuid=0&username=<昵称>
+```
+
+**响应数据:**
+```json
+{
+  "result": 0,
+  "uid": "123456789",
+  "username": "玩家昵称",
+  "dan": 24,
+  "totalwin": 100,
+  "totallost": 50,
+  "totalequal": 2
+}
+```
+
+**段位说明:**
+- `dan` 字段表示段位等级
+- 段位与数值对应关系参考平台规则
+
+### 棋谱列表接口 🆕
+
+获取指定用户的公开对局列表：
+
+**接口地址:**
+```
+GET https://h5.foxwq.com/yehuDiamond/chessbook_local/YHWQFetchChessList?dstuid=<UID>&type=1&lastcode=0
+```
+
+**响应数据:**
+```json
+{
+  "result": 0,
+  "chesslist": [
+    {
+      "chessid": "...",
+      "blacknick": "黑棋昵称",
+      "whitenick": "白棋昵称",
+      "blackdan": 24,
+      "whitedan": 25,
+      "winner": 1,
+      "movenum": 163,
+      "starttime": "2026-02-28 16:14:01"
+    }
+  ]
+}
+```
+
+**字段说明:**
+- `winner`: 1=黑胜, 2=白胜, 0=和棋
+- `movenum`: 对局总手数
+- `dan` 字段: 段位等级数值
+
+### WebSocket 协议（实时棋谱 - 可选）
+
+用于获取进行中的对局实时数据：
+
+- **协议类型**: WebSocket 双向通信
+- **数据编码**: Protobuf 二进制格式
+- **坐标映射**: 数值 0-18 对应坐标 a-s
+- **使用场景**: 仅在进行中对局且 API 不可用时使用
+
+#### 支持的棋谱类型
+
+WebSocket 模式支持两种棋谱数据格式：
+
+| 类型 | 识别标志 | 提取方法 | 说明 |
+|------|----------|----------|------|
+| **普通直播** | `08 xx 10 yy` 模式 | `extract_moves_from_binary()` | 标准直播棋谱 |
+| **绝艺解说** | `10 cb 01` 主分支标记 | `extract_jueyi_live_from_binary()` | 含AI解说的直播棋谱 🆕 |
+
+**绝艺解说棋谱提取**: 自动识别数据中是否包含绝艺解说标记（`jueyi` 字符串或主分支标记），使用对应的解析方法提取主分支着法。
+
+### 数据安全详情
+
+| 项目 | 说明 |
+|------|------|
+| **网络方向** | 出站只读（下载），无上传 |
+| **数据类型** | 公开棋谱信息（任何人可访问） |
+| **认证要求** | 无需登录，不访问用户账号 |
+| **存储位置** | 本地文件系统（/tmp/ 或指定路径） |
+| **依赖风险** | Playwright 仅用于 WebSocket 模式，可选安装 |
+| **代码审计** | 完全开源，scripts/ 目录下可审计 |
+
+### 降低风险的用法
+```bash
+# 推荐：使用 API 模式（无需 Playwright，纯 HTTP 请求）
+python3 download_share.py "<分享链接>" --mode api
+
+# 推荐：按日期下载（无需 Playwright）
+python3 download_sgf.py 2026-03-23
+```
+
+## 相关技能
+
+- [weiqi-sgf](./weiqi-sgf) - SGF 转 HTML 打谱网页
+- [weiqi-recorder](./weiqi-recorder) - 网页记谱工具
+- [weiqi-yunbisai](./weiqi-yunbisai) - 云比赛网查询
+
+---

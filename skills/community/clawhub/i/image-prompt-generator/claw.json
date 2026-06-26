@@ -1,0 +1,13 @@
+{
+  "name": "image-prompt-generator",
+  "version": "2.0.0",
+  "description": "基于五层拆解法的AI图片提示词生成器，支持 Midjourney / DALL-E / Stable Diffusion 多格式输出",
+  "author": "349840432m-dev",
+  "license": "MIT",
+  "permissions": ["network"],
+  "entry": "SKILL.md",
+  "tags": ["image", "prompt", "midjourney", "dall-e", "stable-diffusion", "ai-art", "creative"],
+  "models": ["*"],
+  "minOpenClawVersion": "0.8.0",
+  "acceptLicenseTerms": true
+}

@@ -1,0 +1,49 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — SYSTEM_DIAGNOSTICS
+============================================================
+Path: /media/ezekiel/Morgana/skills/SYSTEM_DIAGNOSTICS/SKILL.md
+Score: 55/100 🟠 NEEDS_WORK
+------------------------------------------------------------
+STRUCTURE       18/20 [92m██████████████████░░[0m 90%
+CLARITY         13/20 [93m█████████████░░░░░░░[0m 65%
+COMPLETENESS    12/20 [93m████████████░░░░░░░░[0m 60%
+CONSISTENCY      7/20 [91m███████░░░░░░░░░░░░░[0m 35%
+FUNCTIONALITY    5/20 [91m█████░░░░░░░░░░░░░░░[0m 25%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ✅ Header complet
+    ⚠️ Sections: 2/3
+    ✅ Formatting: 5/5
+    ✅ Meta: 5/5
+  CLARITY:
+    ⚠️ Description trop courte
+    ✅ Commandes/exemples: 23
+    ✅ Exemples présents
+    ❌ Contraintes non documentées
+  COMPLETENESS:
+    ✅ Outils documentés: 31
+    ⚠️ Prérequis partiels: 1
+    ⚠️ Erreurs partielles: 1
+    ❌ Cas limites non documentés
+  CONSISTENCY:
+    ✅ Cluster alignment: 3
+    ⚠️ Style: 2/5
+    ✅ Naming: 4/5
+    ⚠️ Integration non documentée
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 2/5
+    ❌ Résultats non documentés
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [CLARITY] Score bas (65%)
+  •   → ❌ Contraintes non documentées
+  • [COMPLETENESS] Score bas (60%)
+  •   → ❌ Cas limites non documentés
+  • [CONSISTENCY] Score bas (35%)
+  • [FUNCTIONALITY] Score bas (25%)
+  •   → ❌ Commandes problèmes: 2/5
+  •   → ❌ Résultats non documentés
+============================================================
+STATUS: ❌ NEEDS WORK (score < 50%)

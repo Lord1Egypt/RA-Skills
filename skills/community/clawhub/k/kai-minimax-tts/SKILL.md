@@ -1,35 +1,73 @@
 ---
-name: "Kai Minimax Tts"
-description: "Generate voice audio and transcribe speech using MiniMax TTS API. Use when responding with voice or transcribing audio files."
-category: "media"
-source: "ClawHub"
-tags: [audio, kai, tts, voice, minimax]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kai-minimax-tts"
-sourceUrl: "https://clawhub.ai/skills/kai-minimax-tts"
+name: kai-minimax-tts
+description: Generate voice audio and transcribe speech using MiniMax TTS API. Use when responding with voice or transcribing audio files.
+metadata:
+  openclaw:
+    requires:
+      env:
+        - MINIMAX_API_KEY
+      bins:
+        - whisper
+        - curl
+        - xxd
 ---
 
-# Kai Minimax Tts
+# Kai MiniMax TTS
 
-> Generate voice audio and transcribe speech using MiniMax TTS API. Use when responding with voice or transcribing audio files.
+Generate voice audio using MiniMax TTS.
 
-- **Category:** Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kai-minimax-tts`
-- **Source URL:** [https://clawhub.ai/skills/kai-minimax-tts](https://clawhub.ai/skills/kai-minimax-tts)
+## Setup
 
-## Overview
+Add to `~/.openclaw/openclaw.json`:
 
+```json
+{
+  "skills": {
+    "entries": {
+      "kai-minimax-tts": {
+        "enabled": true,
+        "env": {
+          "MINIMAX_API_KEY": "your_key_here"
+        }
+      }
+    }
+  }
+}
+```
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Generate voice (English):
 ```bash
-hermes skills install clawhub/kai-minimax-tts
+bash {baseDir}/scripts/kai_tts.sh --speak "Hello" en
+```
+
+Generate voice (Spanish):
+```bash
+bash {baseDir}/scripts/kai_tts.sh --speak "Hola" es
+```
+
+Transcribe audio:
+```bash
+bash {baseDir}/scripts/kai_tts.sh --transcribe /path/to/audio.ogg
+```
+
+## Output Files
+
+- Voice: `$WORKSPACE/Kai.mp3`
+- Transcript: `$WORKSPACE/latest_from_blaze.txt`
+
+## Customization
+
+Set custom workspace:
+```json
+"env": { "KAI_MINIMAX_WORKSPACE": "/custom/path" }
+```
+
+Set custom voice IDs:
+```json
+"env": { 
+  "KAI_ENGLISH_VOICE_ID": "voice_id",
+  "KAI_SPANISH_VOICE_ID": "voice_id"
+}
 ```

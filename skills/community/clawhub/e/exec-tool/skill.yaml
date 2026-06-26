@@ -1,0 +1,7 @@
+slug: exec_tool
+name: Exec Tool
+version: 1.0.0
+type: skill
+
+entry: tool.py
+runtime: python

@@ -1,0 +1,104 @@
+# ClawHub Skill Package Configuration
+# 百度智能文档分析AI技能 - ClawHub 发布配置
+
+name: baidu-xmind-ai
+version: 1.0.0
+author: wsxf
+description:
+  en: Baidu Document AI - Extract, parse, compare documents and review contracts using Baidu's AI APIs
+  zh: 百度智能文档分析平台 - 文档抽取、解析、比对、合同审查、格式转换
+
+category: tool
+tags:
+  - baidu
+  - xmind
+  - document
+  - pdf
+  - ocr
+  - extraction
+  - contract
+  - parser
+  - openclaw
+
+# 入口文件
+entry: scripts/baidu_doc_cli.py
+
+# Python 依赖
+dependencies:
+  - requests>=2.28.0
+
+# 配置项（凭证）
+config:
+  - name: BAIDU_DOC_AI_API_KEY
+    type: string
+    required: true
+    description:
+      en: Baidu API Key - get from https://console.bce.baidu.com/ai-engine/
+      zh: 百度API Key - 从 https://console.bce.baidu.com/ai-engine/ 获取
+  
+  - name: BAIDU_DOC_AI_SECRET_KEY
+    type: string
+    required: true
+    description:
+      en: Baidu Secret Key - get from https://console.bce.baidu.com/ai-engine/
+      zh: 百度Secret Key - 从 https://console.bce.baidu.com/ai-engine/ 获取
+
+# 安全说明
+security:
+  network:
+    - https://aip.baidubce.com  # 百度智能文档分析API
+
+# 命令定义
+commands:
+  - name: extract
+    description:
+      en: Extract structured fields from documents
+      zh: 文档字段抽取
+    usage: python scripts/baidu_doc_cli.py extract --file <path> --fields '[{"key": "field_name"}]'
+
+  - name: parse
+    description:
+      en: Parse documents (PDF, Word, Excel, images)
+      zh: 文档解析
+    usage: python scripts/baidu_doc_cli.py parse --file <path>
+
+  - name: parse-vl
+    description:
+      en: Parse documents with PaddleOCR-VL (recommended for complex documents)
+      zh: PaddleOCR-VL文档解析（推荐用于复杂文档）
+    usage: python scripts/baidu_doc_cli.py parse-vl --file <path> [--analysis-chart] [--merge-tables]
+
+  - name: compare
+    description:
+      en: Compare two documents for differences
+      zh: 文档比对
+    usage: python scripts/baidu_doc_cli.py compare --base-file <file1> --compare-file <file2>
+
+  - name: contract-review
+    description:
+      en: Review contracts for risks
+      zh: 合同审查
+    usage: python scripts/baidu_doc_cli.py contract-review --file <path> --template <template_name>
+
+  - name: convert
+    description:
+      en: Convert document formats
+      zh: 文档格式转换
+    usage: python scripts/baidu_doc_cli.py convert --file <path>
+
+# 打包文件列表
+files:
+  - SKILL.md
+  - USAGE.md
+  - QUICK_START.md
+  - scripts/baidu_api_client.py
+  - scripts/baidu_doc_cli.py
+  - references/doc_extract.md
+  - references/doc_parse.md
+  - references/doc_parse_vl.md
+  - references/doc_compare.md
+  - references/doc_convert.md
+  - references/contract_review.md
+
+# 许可证
+license: MIT

@@ -1,0 +1,69 @@
+{
+  "id": "fec-vue3-project-standard",
+  "name": "Vue 3 项目规范",
+  "category": "project-standard",
+  "tags": [
+    "vue3",
+    "typescript",
+    "composition-api",
+    "pinia",
+    "components"
+  ],
+  "summary": "Frontend Craft skill for Vue 3 项目规范.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "project-standard",
+    "vue3",
+    "typescript",
+    "composition-api",
+    "pinia",
+    "components"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when designing or reviewing Vue 3 + TypeScript project structure, SFC/component boundaries, composables organization, route composition, Pinia ownership, API/error/styling defaults, directives, or repository-wide Vue conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include Vue 3 项目规范, Vue 组件架构.",
+  "source": "skills/fec-vue3-project-standard",
+  "references": [
+    "references/vue3-composables-routing.md",
+    "references/vue3-performance-patterns.md",
+    "references/vue3-project-structure.md",
+    "references/vue3-state-api-quality.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-typescript-project-standard",
+      "fec-state-management",
+      "fec-tailwind-design-system",
+      "fec-responsive-layout",
+      "fec-form-handling",
+      "fec-data-fetching",
+      "fec-component-testing",
+      "fec-e2e-testing",
+      "fec-accessibility-check",
+      "fec-security-review",
+      "fec-list-virtualization",
+      "fec-svg-animation",
+      "fec-canvas-threejs"
+    ],
+    "boundaryWorkflows": [
+      "Use specialty workflows for complex forms, state ownership, TypeScript contracts, server state, tests, accessibility, security, large lists, animation, or graphics.",
+      "Keep generic Vue component architecture, composables, and Pinia boundaries in the Vue project workflow."
+    ],
+    "capabilityTags": [
+      "vue",
+      "project-standard",
+      "fec-architecture"
+    ]
+  }
+}

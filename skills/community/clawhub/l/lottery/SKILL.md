@@ -1,35 +1,57 @@
 ---
-name: "Lottery"
+name: "lottery"
+version: "3.0.0"
 description: "Generate lottery numbers and check results. Use when picking numbers for draws."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lottery"
-sourceUrl: "https://clawhub.ai/skills/lottery"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Lottery
+# lottery
 
-> Generate lottery numbers and check results. Use when picking numbers for draws.
+Generate lottery numbers and check results. Use when picking numbers for draws.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lottery`
-- **Source URL:** [https://clawhub.ai/skills/lottery](https://clawhub.ai/skills/lottery)
+## Commands
 
-## Overview
+### `pick`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/lottery
+scripts/script.sh pick <count max>
 ```
+
+### `powerball`
+
+```bash
+scripts/script.sh powerball
+```
+
+### `mega`
+
+```bash
+scripts/script.sh mega
+```
+
+### `check`
+
+```bash
+scripts/script.sh check <numbers winning>
+```
+
+### `history`
+
+```bash
+scripts/script.sh history
+```
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/lottery/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

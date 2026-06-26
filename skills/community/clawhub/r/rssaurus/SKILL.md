@@ -1,35 +1,109 @@
 ---
-name: "RSSaurus - Agent-Friendly RSS Feed Reader"
-description: "Use the RSSaurus command-line client (Go binary `rssaurus`) to interact with https://rssaurus.com from the terminal: authenticate (`rssaurus auth login/whoami`), list feeds/items, print item URLs for piping, open URLs, and perform triage actions (mark read/unread, bulk mark-re…"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rssaurus"
-sourceUrl: "https://clawhub.ai/skills/rssaurus"
+name: rssaurus-cli
+description: "Use the RSSaurus command-line client (Go binary `rssaurus`) to interact with https://rssaurus.com from the terminal: authenticate (`rssaurus auth login/whoami`), list feeds/items, print item URLs for piping, open URLs, and perform triage actions (mark read/unread, bulk mark-read, save/unsave). Use when asked to automate RSSaurus tasks from CLI, debug token/config issues, or demonstrate command usage."
 ---
 
-# RSSaurus - Agent-Friendly RSS Feed Reader
+# RSSaurus CLI
 
-> Use the RSSaurus command-line client (Go binary `rssaurus`) to interact with https://rssaurus.com from the terminal: authenticate (`rssaurus auth login/whoami`), list feeds/items, print item URLs for piping, open URLs, and perform triage actions (mark read/unread, bulk mark-re…
+Use the installed `rssaurus` binary on this machine to interact with RSSaurus.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rssaurus`
-- **Source URL:** [https://clawhub.ai/skills/rssaurus](https://clawhub.ai/skills/rssaurus)
+## Quick checks (when something fails)
 
-## Overview
+1) Confirm binary exists:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/rssaurus
+which rssaurus
+rssaurus --version || true
 ```
+
+2) Confirm auth works:
+
+```bash
+rssaurus auth whoami
+```
+
+### Privacy note
+
+- Do **not** print (e.g. `cat`) the RSSaurus CLI config file contents; it can contain API tokens.
+- If auth fails, prefer re-authenticating (`rssaurus auth login`) or asking the user to paste only non-sensitive details (error output, host, etc.).
+
+## Common tasks
+
+### List feeds
+
+```bash
+rssaurus feeds
+rssaurus feeds --json
+```
+
+### List items
+
+Unread by default:
+
+```bash
+rssaurus items --limit 20
+```
+
+Filter by feed:
+
+```bash
+rssaurus items --feed-id 3 --limit 20
+```
+
+Machine-friendly URL output (one per line):
+
+```bash
+rssaurus items --limit 20 --urls
+```
+
+Cursor paging:
+
+```bash
+rssaurus items --limit 50 --cursor <cursor>
+```
+
+### Open a URL
+
+```bash
+rssaurus open https://example.com
+```
+
+### Mark read/unread
+
+These require item IDs (get them via `--json`).
+
+```bash
+rssaurus items --limit 5 --json
+rssaurus read <item-id>
+rssaurus unread <item-id>
+```
+
+Bulk mark read:
+
+```bash
+rssaurus mark-read --all
+# or
+rssaurus mark-read --ids 1,2,3
+# optional
+rssaurus mark-read --all --feed-id 3
+```
+
+### Save / unsave
+
+```bash
+rssaurus save https://example.com --title "Optional title"
+
+# unsave requires an id (obtain via --json output from the API response or future saved-items listing)
+rssaurus unsave <saved-item-id>
+```
+
+## Output conventions (privacy)
+
+- Default human output avoids printing internal DB IDs.
+- Use `--json` output when IDs are required for scripting or write actions.
+
+## References
+
+- CLI repo: https://github.com/RSSaurus/rssaurus-cli
+- Homebrew tap: https://github.com/RSSaurus/tap
+- Token creation: https://rssaurus.com/api_tokens/new

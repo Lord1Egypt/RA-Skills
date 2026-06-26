@@ -1,35 +1,143 @@
 ---
-name: "Win Football Predictor"
-description: "胜负彩预测模型，基于Pi-Rating评分系统 + CatBoost/XGBoost/Dixon-Coles三模型融合，覆盖710期9940场历史数据，支持联赛专项微调"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/win-football-predictor"
-sourceUrl: "https://clawhub.ai/skills/win-football-predictor"
+name: Win-Football-Predictor
+version: 1.0.0
+description: 胜负彩预测模型，基于Pi-Rating评分系统 + CatBoost/XGBoost/Dixon-Coles三模型融合，覆盖710期9940场历史数据，支持联赛专项微调
+tags:
+  - 足球预测
+  - 胜负彩
+  - 体育分析
+  - 博彩
+author: yangjinfc
+license: MIT
 ---
 
-# Win Football Predictor
+# Win-Football-Predictor 技能文档
 
-> 胜负彩预测模型，基于Pi-Rating评分系统 + CatBoost/XGBoost/Dixon-Coles三模型融合，覆盖710期9940场历史数据，支持联赛专项微调
+**版本:** v4 (修正层)  
+**数据规模:** 710期 9940场（2022-2026年）  
+**基准准确率:** 42.6%（超出随机基准33.3%达+9.3%）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/win-football-predictor`
-- **Source URL:** [https://clawhub.ai/skills/win-football-predictor](https://clawhub.ai/skills/win-football-predictor)
+---
 
-## Overview
+## 功能
 
+1. **胜负彩预测** — 预测14场胜负彩比赛胜平负结果
+2. **赔率分析** — 分析市场赔率与模型概率差异
+3. **冷门检测** — 标记可能爆冷的场次（市场低赔方被高估）
+4. **置信度** — 高/中/低三档推荐强度
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 模型架构
+
+三种集成模型融合（权重可调）：
+- **CatBoost+XGBoost+Pi-Rating** (45%) — 赔率特征 + 球队实力
+- **梯度提升+Pi-Rating** (35%) — 特征工程 + 非线性
+- **Dixon-Coles** (20%) — 进球分布模型
+
+Pi-Rating球队实力评分：主场比赛用`主场优势参数`，支持联赛专项。
+
+---
+
+## 联赛参数（LEAGUE_CFG）
+
+| 联赛 | 主场加成 | 说明 |
+|------|---------|------|
+| 英超 | 1.25 | 主场优势最强 |
+| 德甲 | 1.22 | |
+| 意甲 | 1.20 | |
+| 西甲 | 1.15 | |
+| 法甲 | 1.12 | |
+| 欧冠 | 1.10 | 杯赛主客场差异大 |
+| 欧联 | 1.08 | |
+| 欧罗巴 | 1.08 | |
+| 欧协联 | 1.06 | |
+| 默认 | 1.15 | |
+
+---
+
+## v4修正层（基于710期9940场网格搜索最优参数）
+
+| 联赛 | 主胜调整 | 平局调整 | 客胜调整 | 效果 |
+|------|---------|---------|---------|------|
+| 欧冠 | **-3%** | **+5%** | -2% | ✅ +0.12% |
+| 德甲 | **-2%** | **+4%** | — | ✅ +0.10% |
+| 西甲 | **-3%** | **+2%** | — | ✅ +0.11% |
+| 友谊赛 | **-2%** | **+5%** | -1% | ✅ +0.04% |
+| 英超 | — | — | **-2%** | ✅ +0.02% |
+
+---
+
+## 历史数据统计（710期 9940场）
+
+### 实际胜平负分布
+- 主胜（胜）：**40.5%**
+- 平局：**32.0%**
+- 客胜（负）：**27.6%**
+
+### 各联赛准确率（v2基准）
+| 联赛 | 准确率 | 样本量 |
+|------|--------|--------|
+| 亚冠杯 | 70.0% | 80场 |
+| 英甲 | 61.9% | 21场 |
+| 德国杯 | 48.3% | 58场 |
+| 德乙 | 47.7% | 220场 |
+| 英超 | 43.4% | 1152场 |
+| 法甲 | 40.8% | 569场 |
+| 意甲 | 38.7% | 865场 |
+| 西甲 | 38.1% | 889场 |
+| 欧冠 | 37.7% | 660场 |
+| 欧罗巴 | 34.3% | 574场 |
+
+### 年度准确率走势
+| 年份 | 准确率 |
+|------|--------|
+| 2022年 | 36.7% |
+| 2023年 | 45.1% |
+| 2024年 | 44.6% |
+| 2025年 | 44.2% |
+| 2026年 | 39.1% |
+
+---
+
+## 核心发现
+
+1. **710期验证：模型有效**（42.6% vs 随机33.3%，+9.3%超额收益）
+2. **平局是最难预测的**：模型倾向预测主胜，实际平局率高达32%
+3. **欧冠/欧联预测最难**：强队联赛中频繁轮换，冷门概率高
+4. **英甲/德乙等小联赛反而更准**：球队实力差距大、结果更稳定
+5. **全局修正无效**：任何统一调整都会改变部分预测，净效果为负
+
+---
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/win-football-predictor
+python3 scripts/predict_engine.py predict 26049
+python3 scripts/predict_engine.py help
 ```
+
+### 输入数据格式
+```python
+{
+    'home_team': '曼城',
+    'away_team': '阿森纳',
+    'league': '英超',
+    'odds': {'win': 1.85, 'draw': 3.80, 'lose': 4.20},
+    'recent_form': {'home': [0.7, 0.5, 1.0, 0.5, 0.7], 'away': [0.5, 1.0, 0.7, 0.5, 0.5]},
+    'home_stats': {'win_rate': 0.72, 'goals_avg': 2.1, 'goals_conceded': 0.7},
+    'away_stats': {'win_rate': 0.60, 'goals_avg': 1.5, 'goals_conceded': 1.0},
+    'absentees': {'home': 1, 'away': 2},
+    'h2h': [{'winner': 'home', 'score': '2-1'}, ...],
+    'schedule': {'home_rest_days': 7, 'away_rest_days': 4},
+    'weather': {'temperature': 18, 'home_referee': 0.5},
+}
+```
+
+---
+
+## 限制与注意事项
+
+1. 本技能仅供娱乐参考，不构成投注建议
+2. 模型准确率约42-43%，请勿过度依赖
+3. 赔率数据来自公开市场，历史表现不代表未来结果

@@ -1,0 +1,12 @@
+{
+  "name": "acca-tracker",
+  "displayName": "Acca Tracker",
+  "version": "1.0.0",
+  "description": "Track football accumulator betting slips — parses slip photo or text, checks live scores every 15 minutes, and reports bet status for each leg with overall acca health.",
+  "keywords": ["betting", "football", "accumulator", "live-scores", "sports", "parlay"],
+  "license": "MIT",
+  "author": "Banozz",
+  "repository": "svenmedina07-ship-it/skills",
+  "openclawVersion": ">=2026.1.0",
+  "pluginSdkVersion": ">=2026.1.0"
+}

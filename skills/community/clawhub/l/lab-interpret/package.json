@@ -1,0 +1,12 @@
+{
+  "name": "lab-interpret",
+  "version": "0.1.0",
+  "description": "Interpret clinical laboratory test results (blood, urine, biochemistry, hematology, tumor markers, etc.)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openclaw", "skill", "medical", "laboratory", "clinical"],
+  "author": "Anightmare2",
+  "license": "MIT"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "context-guardian-pro",
+  "version": "1.0.0",
+  "description": "该技能用于自动化监控对话上下文压力。当检测到当前会话消息量或 Token 占用达到阈值时，自动触发“总结历史 -> 写入长期记忆 -> 发送 QQ 告警”的闭环流程，以防止 `Context limit exceeded` 错误。",
+  "author": "artwebs",
+  "license": "MIT"
+}

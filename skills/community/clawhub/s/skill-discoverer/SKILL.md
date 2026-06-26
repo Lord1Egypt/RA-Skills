@@ -1,35 +1,398 @@
 ---
-name: "Skill Discoverer"
-description: "Skill Discoverer — Skill 广场发现者。自动发现 Skill 广场新上线 skill，或按工作背景智能推荐。将候选 skill 分类为工具型（直接安装）和增强型（会影响 agent 行为），对增强型提供三种处理方式：整体安装 / 内化学习（规则写入 MEMORY.md）/ 只应用无冲突部分。..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-discoverer"
-sourceUrl: "https://clawhub.ai/skills/skill-discoverer"
+name: skill-discoverer
+description: Skill Discoverer — Skill 广场发现者。自动发现 Skill 广场新上线 skill，或按工作背景智能推荐。将候选 skill 分类为工具型（直接安装）和增强型（会影响 agent 行为），对增强型提供三种处理方式：整体安装 / 内化学习（规则写入 MEMORY.md）/ 只应用无冲突部分。支持创建定时巡查任务，定期推送新 skill 日报。所有操作必须用户确认，保护已有 agent 体验不被破坏。触发词：帮我看看有没有新 skill、有没有新 skill、最近有新 skill 吗、skill 广场有什么新东西、智能推荐 skill、定时发现新 skill、每天帮我看新 skill、skill discoverer、daily skill digest。
+version: "1.0.0"
+triggers:
+  # 发现新 skill（核心触发）
+  - 帮我看看有没有新 skill
+  - 有没有新 skill
+  - 最近有新 skill 吗
+  - skill 广场有什么新东西
+  - skill 广场有更新吗
+  - 有没有值得装的新 skill
+  - 发现了什么好用的 skill
+  - skill 有没有好东西
+  # 推荐类（明确是推荐，而非单纯搜索）
+  - 智能推荐 skill
+  - 推荐适合我的 skill
+  - 根据我的工作推荐 skill
+  - skill 推荐
+  # 定时/自动发现类
+  - 定时发现新 skill
+  - 自动巡查 skill
+  - 每天帮我看新 skill
+  - 每周看下有没有新 skill
+  - 设置 skill 定时巡查
+  - 帮我定时发现 skill
+  - 定时每天
+  - 定时每周
+  - 定时每月
+  # 英文触发
+  - skill discoverer
+  - any new skills
+  - scan skill marketplace
+  - schedule skill scan
+  - daily skill digest
+  - recommend skill for me
 ---
 
-# Skill Discoverer
+# Skill Discoverer — Skill 广场发现者
 
-> Skill Discoverer — Skill 广场发现者。自动发现 Skill 广场新上线 skill，或按工作背景智能推荐。将候选 skill 分类为工具型（直接安装）和增强型（会影响 agent 行为），对增强型提供三种处理方式：整体安装 / 内化学习（规则写入 MEMORY.md）/ 只应用无冲突部分。...
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-discoverer`
-- **Source URL:** [https://clawhub.ai/skills/skill-discoverer](https://clawhub.ai/skills/skill-discoverer)
+## ⚡ 安装后必做（agent 安装此 skill 后立即执行）
 
-## Overview
+> ⚠️ **铁律：安装完成后，agent 必须立即展示以下引导，不得跳过。**
+> 此步骤在安装回复的末尾执行，无需用户主动触发。
 
+安装完成后，agent 在回复末尾追加：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-discoverer
 ```
+🔒 skill-discoverer 已安装。
+
+这个 skill 的核心价值依赖以下规则被严格执行——如果不写进铁律，agent 在实际使用中可能因优先级问题跳过这些流程。
+
+建议将以下规则写入铁律：
+
+  1. skill 推荐必须二次确认才能安装
+     收到推荐报告后，任何安装操作必须等待用户明确回复（如"1-A"）才能执行；工具型 skill 同样需要确认，不因"看起来无害"就跳过。
+
+  2. skill-discoverer 是 skill 安装的首选入口
+     用户提到"安装 skill / 找 skill / 有没有新 skill"等意图时，优先走 skill-discoverer 的发现 → 评估 → 报告 → 确认流程。
+
+  3. 增强型 skill 不得直接安装
+     增强型 skill 必须先做规则分析（Step 4），生成四列分析表，用户明确选择 A/B/C/D 后才执行。
+
+要把这些规则写入铁律吗？
+  ✅ 写入铁律  /  🙅 暂不设置
+```
+
+- 用户回复「写入」或类似确认 → 将上述三条规则追加到 `MEMORY.md` 的铁律节
+- 用户回复「暂不设置」或不回复 → 尊重用户选择，跳过，不写入，不再提醒
+
+---
+
+## 首次运行：初始化配置
+
+**首次运行时（`config.json` 不存在），必须先完成以下两步初始化，再继续正常流程：**
+
+### 1. 保存当前渠道信息
+
+读取当前 session 的消息渠道和用户标识，写入配置文件：
+
+```json
+// ~/.openclaw/workspace/skill-discoverer/config.json
+{
+  "channel": "<当前 session 的 channel>",
+  "chat_id": "<当前 session 的 chat_id 或 user_id>",
+  "created_at": "<YYYY-MM-DD>"
+}
+```
+
+> **如何获取**：从当前 inbound 消息的元信息中读取 `channel` 和 `chat_id`（或 `from.id`）。
+> 这些值在 agent 运行时上下文中可用，无需用户填写。
+
+写入后告知用户：
+```
+✅ 已保存消息渠道配置（channel: {channel}，chat_id: {chat_id}）
+   定时巡查结果将发送至此渠道。
+   
+   如需更改，编辑 ~/.openclaw/workspace/skill-discoverer/config.json
+```
+
+### 2. 询问巡查频率
+
+```
+👋 这是我第一次帮你巡查 Skill 广场。
+
+请问你希望多久自动巡查一次？
+  A. 每周（每周一早 9:00）
+  B. 双周（每两周一早 9:00）
+  C. 每月（每月 1 日早 9:00）
+  D. 只手动触发，不要自动巡查
+
+回复 A/B/C/D 即可。
+```
+
+收到用户选择后，若选 A/B/C，则创建对应 cron 任务（见下方 Cron 配置），并告知用户已设置。
+
+---
+
+## 定位
+
+定期巡查 Skill 广场，发现新 skill → 智能评估价值 → 给出安装建议。
+
+---
+
+## 触发条件
+
+### 手动触发
+用户说"帮我看看有没有新 skill"、"skill 广场有什么新东西"、"最近有新 skill 吗"、"巡查 skill 广场"或其他类似表述时激活。
+
+---
+
+## 执行流程（严格按顺序）
+
+### Step 0：明确查找意图
+
+**默认走智能推荐模式**——用户没有指定关键词时，自动读取 USER.md + 近期 memory，推导搜索方向。
+用户指定了关键词时，直接用关键词搜索（跳过推导步骤）。
+
+#### 默认：智能推荐模式
+
+1. 读 `USER.md` → 提取职位/部门/业务线
+2. 读最近 7 天 `memory/YYYY-MM-DD.md` → 提取高频任务 + 正在推进的项目
+3. 自动推导 2-4 个搜索关键词，展示给用户确认：
+
+```
+🧠 智能推荐分析结果：
+
+根据你的背景（{职位/部门}）和近期工作（{高频任务摘要}），
+我将搜索以下关键词：
+  • {关键词1}
+  • {关键词2}
+
+是否继续？[是 / 调整关键词 / 直接输入关键词]
+```
+
+- 用户回复「是」→ 用这些关键词执行 Step 1
+- 用户回复「调整关键词」→ 列出关键词供用户修改，修改后再次展示确认
+- 用户直接输入关键词 → 跳过推导，用用户输入的关键词执行 Step 1
+
+> 🔄 **降级策略**：若 USER.md 无职位/部门信息，或近 7 天无 memory 文件/内容为空，则跳过自动推导，直接询问：
+> ```
+> 没有找到足够的背景信息来自动推荐。
+> 你最近在做哪类工作？想找什么类型的 skill？（直接描述即可）
+> ```
+
+将本次查询意图记录到缓存文件。**查询意图优先于近期 memory**，作为 Step 3 任务匹配度评分的主要参考。
+
+{如果有历史查询记录，展示：}
+```
+📋 上次查询过：{上次诉求描述}（{上次日期}）
+→ 输入序号可复用上次关键词，或直接调整
+```
+
+---
+
+### Step 1：获取 Skill 列表
+
+详细搜索命令和参数见 `references/search-commands.md`。
+
+**核心逻辑：**
+- **通道 A**：通过 `skillhub` skill 按时间排序获取新增 skill，经两层过滤（个性化关键词粗筛 + known_ids 去重）
+- **通道 B**：通过 `skillhub` skill 按用户指定关键词搜索（page-size 30）
+- **降级**：Skill 广场失败时自动降级到 ClawhHub（需安全审查，见 `references/clawhhub-safety.md`）
+
+**若没有新 skill：**
+```
+✅ Skill 广场巡查完毕（{日期}）
+
+本次没有发现新 skill，广场目前共 {N} 个 skill。
+下次巡查：{日期}
+```
+结束流程，写巡查日志后退出。
+
+---
+
+### Step 2：读取近期上下文
+
+> 📎 **若 Step 0 已在智能推荐模式下读取近 7 天 memory，此步直接复用，不重新读取文件，节省 token。**
+> 仅在 Step 0 未读取（用户直接指定了关键词）时，才执行本步。
+
+读取最近 7 天 `memory/YYYY-MM-DD.md`，提取近期高频任务类型，记录为"近期活跃场景"，用于后续评分。
+
+---
+
+### Step 3：匹配评估
+
+| 维度 | 分值 | 评分标准 |
+|------|------|----------|
+| 任务匹配度 | 4 分 | 与近期高频任务/用户指定类型的相关性 |
+| 能力增量 | 3 分 | 与已有 skill/tool 的重叠度（无重叠 3 分，完全重叠 0 分） |
+| 实用性 | 3 分 | 是否解决真实痛点、使用频率预期 |
+
+**筛选原则：** 有多少推多少，不凑数。低于 4 分的不列入推荐。
+
+> ClawhHub 来源的 skill 用 🌐 标注，并附安全评估结果。
+
+---
+
+### Step 4：增强型 skill 内容分类
+
+对增强型 skill 读取 SKILL.md，逐条分析，生成**四列完整分析表**（供 step6b 直接复用）：
+
+| # | 原规则内容 | 标记 | 建议转化方式 | 建议写入位置 |
+|---|---|---|---|---|
+| 1 | {规则描述} | ✅/🔄/⚠️/🚨 | {如何转化/应用} | {MEMORY.md铁律 / SOUL.md / HEARTBEAT.md / TOOLS.md} |
+
+标记含义和写入位置判断原则详见 `references/install-decision.md`。
+
+> 📝 **此步骤为静默分析**：四列分析表在内存中保留（供 step6b 复用），不单独展示给用户，直接进入 Step 5 生成报告。
+> 不需要在此处等待用户确认，继续执行 Step 5。
+> ⚠️ **重要**：「完整分析」= 四列数据（原规则 + 标记 + 转化方式 + 写入位置），缺任何一列视为分析不完整。
+
+---
+
+### Step 5：生成报告
+
+**⚠️ 排版铁律（必须严格遵守，不得简化）：**
+
+1. **skill 名用反引号代码格式**：`` `skill-name` ``
+2. **分数、一句话能力说明、风险点、安装选项全在同一 skill 块内**，不拆散
+3. **风险点用 △ 标注**，单独一行，不埋在正文段落里
+4. **安装选项 A/B/C/D 紧跟在风险/分类条目之后**，同一 skill 块结尾
+5. **增强型必须先通过 skillhub skill 读取目标 skill 的 SKILL.md**，提取具体的 ✅/⚠️/🚨 条目后再生成报告；不得只写笼统描述
+6. **每个 skill 之间空一行**，视觉分隔清晰
+
+**报告格式模板（严格按此输出）：**
+
+```
+🔍 Skill 广场巡查报告（{YYYY-MM-DD}，发现 {N} 个新 skill）
+
+---
+
+🔧 工具型（可直接安装）
+
+**N. `{skill-name}`** ✅ {分数}/10 {一句话新增能力}，与近期 {场景} 匹配
+→ **A** 安装 / **D** 跳过
+
+---
+
+🧩 增强型（需确认后安装）
+
+安装方式：
+  **A.** 直接安装 skill（整体注入，保持完整）
+  **B.** 学习并转化（不装文件，逐条内化规则到 MEMORY.md / SOUL.md）
+  **C.** 只应用无冲突部分（过滤掉 ⚠️/🚨 条目，仅当 skill 模块化可拆时展示此选项）
+  **D.** 跳过
+
+**N. `{skill-name}`** ✅ {分数}/10 {一句话核心能力}
+△ {具体风险/冲突点，如"会新增 cron 任务（每日蒸馏 + 每周提炼）"}
+△ {第二个风险点，如"与你现有 23:00 蒸馏 cron 可能重叠，需检查冲突"}
+✅ 可直接应用：{可安全接入的能力描述}
+⚠️ 需确认：{具体改动}（会影响 {交互方式/行为}）
+🚨 不可逆：{具体改动}（风险：{说明}）
+→ A / B / C / D
+
+---
+
+⏭️ 跳过（重复型）
+• `{skill名}` — 已有 {skill名/规则} 覆盖
+
+---
+下次巡查：{日期}
+⏰ 要定时自动发现新 skill 吗？回复：定时每天 / 定时每周 / 定时每月 / 不用
+```
+
+
+> ⚠️ **铁律：报告发出后，必须等待用户明确回复，才执行任何操作。**
+> ❌ 禁止在用户回复前主动执行安装，包括工具型 skill。
+> ✅ 收到用户回复（如"1-A"/"安装第2个"）后，才对应执行。
+
+---
+
+### Step 5.5：询问是否创建定时任务（手动触发时必做）
+
+> ⚠️ **铁律：手动触发时此步骤不可跳过，无任何例外。**
+> 报告发出或用户处理完安装选择后，必须立即追加以下询问。
+> ❌ 禁止以任何理由省略：不管本次是否安装了 skill，都必须询问。
+
+**仅在手动触发时执行此步骤（cron 触发时跳过）。**
+
+报告发出的同时（或用户处理完安装选择后），追加询问：
+
+```
+⏰ 要把这次的搜索（{本次查询关键词/类型}）创建为定时任务吗？
+
+每次定时任务会自动执行相同搜索，有新 skill 时发给你。
+
+  A. 每天（09:50）
+  B. 每周一（09:00）
+  C. 每两周（周一 09:00）
+  D. 每月（1 日 09:00）
+  E. 不用了
+
+回复 A/B/C/D/E 即可。
+```
+
+**用户选 A/B/C/D 时，创建 cron（渠道信息从 config.json 读取）：**
+
+创建 cron 前，读取 `~/.openclaw/workspace/skill-discoverer/config.json` 获取 `channel` 和 `chat_id`。
+
+- cron prompt 格式：**读取 skill-discoverer SKILL.md 文件并按其流程执行，查询关键词为 `{本次关键词}`，完成后通过消息渠道发送结果给用户**
+- cron prompt 不写死 channel/to，改为在 prompt 里注明：**执行时从 `~/.openclaw/workspace/skill-discoverer/config.json` 读取 channel 和 chat_id，用于发送结果**
+- 不要把逻辑内化到 cron prompt 里，必须让 cron 动态读取 SKILL.md，确保规则始终与最新版本同步
+- cron name 格式：`Skill巡查-{关键词}-{频率}`（如 `Skill巡查-股票-每天`）
+
+**用户选 E 时，跳过，不创建 cron。**
+
+---
+
+### Step 6：执行用户选择
+
+**报告发出后等待用户回复，根据选择执行对应流程：**
+
+- **工具型** → 用户说"安装"后，**先回显将安装的 skill 名称，等用户明确确认后再执行**；批量安装时（如"安装所有工具型"）同样需要逐一列出再确认，不得静默批量执行
+- **增强型** 用户选择：
+  - **A. 直接安装** → 通过 `skillhub` skill 执行安装，通知用户结果
+  - **B. 学习并转化** → 直接执行 `references/step6b-learn-transform.md` 完整流程。
+    > ⚠️ step6b 内含「展示清单 → 等用户确认 → 才写文件」的完整确认机制，**禁止跳过任何步骤**。
+    > 📎 step6b 第一步的分类结果直接复用 Step 4 已做的分析，**不重新读取 SKILL.md**。
+  - **C. 只应用无冲突部分** → 过滤掉 ⚠️/🚨 条目，只安装 ✅/🔄 部分
+    **前提判断**：仅当 skill 各模块相互独立、可单独生效时才提供此选项。若 skill 是整体执行流程（砍掉部分会导致不可用），则隐藏 C，只展示 A/B/D。
+    > ⚠️ **执行前必须确认**：展示「将安装以下 N 条规则（✅/🔄 部分），已过滤以下条目（⚠️/🚨 部分），确认？」，等用户明确回复后再安装。
+  - **D. 跳过** → 记录到 known_ids，不安装
+
+**安装/处理完成后，在输出结果末尾追加：**
+```
+⏰ 要定时持续发现这类 skill 吗？回复：定时每天 / 定时每周 / 定时每月 / 不用
+```
+
+示例对话见 `references/examples.md`。
+
+---
+
+## 数据存储
+
+### 配置文件（首次运行自动生成）
+```
+~/.openclaw/workspace/skill-discoverer/config.json
+```
+存储当前用户的消息渠道信息（channel、chat_id），供 cron 任务读取。
+
+### 缓存文件
+```
+~/.openclaw/workspace/skill-discoverer/known_skills.json
+```
+
+### 巡查日志
+```
+~/.openclaw/workspace/skill-discoverer/scan_logs/YYYY-MM-DD.md
+```
+记录：巡查时间 / 发现数量 / 评分详情 / 推荐结果 / 用户决策。
+
+---
+
+## Cron 配置
+
+创建 cron 时，channel 和 chat_id 不写死，改为在 prompt 里指示 agent 读取配置文件：
+
+**cron prompt 模板：**
+```
+帮我看看有没有新 skill [--topic {关键词}]
+（执行完成后，读取 ~/.openclaw/workspace/skill-discoverer/config.json 获取 channel 和 chat_id，将结果发送给用户）
+```
+
+| 频率 | 触发时间 | 触发语 |
+|------|----------|--------|
+| 每周一 | 09:00 | `帮我看看有没有新 skill` |
+| 双周 | 每两周周一 09:00 | `帮我看看有没有新 skill` |
+| 每月 | 每月 1 日 09:00 | `帮我看看有没有新 skill --topic 智能推荐` |
+
+---
+
+## 依赖 Skill
+
+- `skillhub` — 获取/安装/读取 Skill 广场内容（Step 1、Step 6 必须）
+- 渠道对应的 scheduled-message skill — 创建定期巡查 cron（OpenClaw 会根据当前渠道自动选择）

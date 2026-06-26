@@ -1,35 +1,44 @@
----
-name: "speech2text"
-description: "Automatically converts speech messages in ogg/wav/mp3/m4a formats to text using offline Faster-Whisper with ffmpeg format conversion."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/speech2text"
-sourceUrl: "https://clawhub.ai/skills/speech2text"
----
+# STT - 语音识别 (Speech-to-Text)
 
-# speech2text
+将语音消息识别为文字。支持 ogg/wav/mp3/m4a 格式。
 
-> Automatically converts speech messages in ogg/wav/mp3/m4a formats to text using offline Faster-Whisper with ffmpeg format conversion.
+## 触发方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/speech2text`
-- **Source URL:** [https://clawhub.ai/skills/speech2text](https://clawhub.ai/skills/speech2text)
+- 用户发送语音消息时自动触发
+- 或者手动调用 skill
 
-## Overview
+## 功能
 
+1. **自动识别语音** - 收到语音消息时自动转文字
+2. **离线识别** - 使用 Faster-Whisper，无需网络
+3. **格式转换** - 自动用 ffmpeg 转换音频格式
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 依赖
+
+- Python 包: `faster-whisper`, `pydub`
+- ffmpeg: `C:\ffmpeg\bin` (需要在系统 PATH 中)
+
+## 安装
+
 ```bash
-hermes skills install clawhub/speech2text
+pip install faster-whisper pydub
 ```
+
+## 使用示例
+
+```
+用户发送语音 → 自动识别为文字 → 根据文字内容回复
+```
+
+## 配置
+
+- 模型大小: tiny (可改为 base/small/medium/large，精度更高但更慢)
+- 默认语言: zh (中文)
+- ffmpeg 路径: C:\ffmpeg\bin
+
+## 原理
+
+1. 接收语音文件 (ogg)
+2. 用 ffmpeg 转换为 wav (16000Hz, mono)
+3. 用 Faster-Whisper 识别为文字
+4. 返回识别结果并继续对话

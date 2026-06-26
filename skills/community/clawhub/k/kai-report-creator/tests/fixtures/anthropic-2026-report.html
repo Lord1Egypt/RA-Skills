@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anthropic 2026 Model Outlook</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    .kpi-grid { display: grid; gap: 12px; }
+    .kpi-grid.stagger-ready .kpi-card { opacity: 0; }
+    .kpi-grid.stagger-ready .kpi-card.visible { opacity: 1; }
+    .print-exporting .kpi-grid .kpi-card { opacity: 1 !important; }
+    .fade-in-up { opacity: 0; transform: translateY(12px); }
+    .fade-in-up.visible { opacity: 1; transform: none; }
+    .toc-toggle { position: fixed; top: 12px; left: 12px; }
+    .sc-overlay { display: none; }
+    .report-wrapper { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .chart-shell { height: 320px; margin: 18px 0; }
+  </style>
+</head>
+<body data-report-mode="analysis">
+  <button class="toc-toggle" id="toc-toggle-btn">☰</button>
+  <aside id="toc-sidebar">
+    <a href="#section-models">Models</a>
+    <a href="#section-risks">Risks</a>
+    <a href="#section-forecast">Forecast</a>
+  </aside>
+
+  <div class="report-wrapper">
+    <div class="title-row">
+      <h1>Anthropic 2026 Model Outlook</h1>
+      <button id="card-mode-btn">⊞ Summary</button>
+    </div>
+    <div class="sc-overlay" id="sc-overlay"></div>
+
+    <div class="kpi-grid fade-in-up">
+      <div class="kpi-card"><div class="kpi-value">91%</div></div>
+      <div class="kpi-card"><div class="kpi-value">3 launches</div></div>
+      <div class="kpi-card"><div class="kpi-value">80.8</div></div>
+    </div>
+
+    <section class="fade-in-up" id="section-models" data-section="Models">
+      <h2>Model ladder is widening</h2>
+      <div id="chart-models" class="chart-shell"></div>
+    </section>
+
+    <section class="fade-in-up" id="section-risks" data-section="Risks">
+      <h2>Execution risk stays visible</h2>
+      <div id="chart-risks" class="chart-shell"></div>
+    </section>
+
+    <section class="fade-in-up" id="section-forecast" data-section="Forecast">
+      <h2>Quality trend keeps compounding</h2>
+      <div id="chart-forecast" class="chart-shell"></div>
+    </section>
+  </div>
+
+  <script id="report-summary" type="application/json">
+    {"title":"Anthropic 2026 Model Outlook","sections":["models","risks","forecast"],"kpis":[{"label":"Quality","value":"91%"}]}
+  </script>
+
+  <script>
+    var modelChart = echarts.init(document.getElementById('chart-models'));
+    modelChart.setOption({
+      title: { text: 'Model capability delta' },
+      grid: { top: 50, right: 30, bottom: 60, left: 60, rotate: 45 },
+      xAxis: {
+        type: 'category',
+        data: ['Claude Opus 4.6', 'Claude Sonnet 4.6', 'Claude Mythos Preview']
+      },
+      yAxis: { type: 'value' },
+      series: [{
+        type: 'bar',
+        data: [91, 84, 79]
+      }]
+    });
+
+    var riskChart = echarts.init(document.getElementById('chart-risks'));
+    riskChart.setOption({
+      title: { text: 'Risk distribution' },
+      series: [{
+        type: 'radar',
+        data: [{
+          value: [74, 68, 61, 57, 63],
+          name: 'Anthropic risk profile'
+        }]
+      }]
+    });
+
+    var forecastChart = echarts.init(document.getElementById('chart-forecast'));
+    forecastChart.setOption({
+      title: { text: 'Forecasted quality trend' },
+      grid: { top: 50, right: 30, bottom: 50, left: 55 },
+      xAxis: {
+        type: 'category',
+        data: ['2025 Q1', '2025 Q2', '2025 Q3', '2025 Q4', '2026 Q1', '2026 Q2', '2026 Q3', '2026 Q4']
+      },
+      yAxis: { type: 'value' },
+      series: [{
+        name: 'Quality',
+        type: 'line',
+        data: [50, 58, 65, 72, 80.8, 87, 91, 93],
+        smooth: true
+      }]
+    });
+  </script>
+</body>
+</html>

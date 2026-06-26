@@ -1,0 +1,30 @@
+{
+  "runner": "fixture",
+  "trace_format_version": "normalized-v1",
+  "tool_calls": [],
+  "shell_commands": [
+    "python3 scripts/business_blueprint/cli.py --validate missing.blueprint.json",
+    "python3 scripts/business_blueprint/cli.py --validate missing.blueprint.json",
+    "python3 scripts/business_blueprint/cli.py --validate missing.blueprint.json"
+  ],
+  "failed_shell_commands": [
+    "python3 scripts/business_blueprint/cli.py --validate missing.blueprint.json",
+    "python3 scripts/business_blueprint/cli.py --validate missing.blueprint.json",
+    "python3 scripts/business_blueprint/cli.py --validate missing.blueprint.json"
+  ],
+  "read_paths": ["SKILL.md", "references/blueprint-schema.md"],
+  "write_paths": [],
+  "artifact_paths": [],
+  "input_tokens": 91000,
+  "output_tokens": 26000,
+  "wall_ms": 260000,
+  "run_completed": true,
+  "skill_evidence": {
+    "skill_contract_read": true,
+    "blueprint_flow_observed": true,
+    "validate_observed": true,
+    "export_observed": false,
+    "projection_observed": false
+  },
+  "runner_warnings": []
+}

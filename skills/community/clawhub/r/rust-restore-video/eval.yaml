@@ -1,0 +1,28 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: rust-restore-video
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the $rust-restore-video skill to create a sample vertical video."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "生锈扳手被砂纸和抛光膏还原成镜面金属，竖屏解压翻新"
+  - id: negative-control
+    should_trigger: false
+    prompt: "Refactor my React dashboard and add unit tests."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - description: "SKILL.md exists with name matching folder slug"
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/video_gen.js"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      Does the assistant stay within WeryAI video_gen constraints (model, duration, aspect_ratio)?
+      For images, does it prefer public https URLs, and only use local file paths after explicit user consent and a clear warning that the runtime may read the file and upload it to WeryAI?

@@ -1,0 +1,31 @@
+{
+  "name": "zion-baas-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for Zion BaaS skill",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "auth": "tsx authenticate.ts",
+    "fetch-token": "tsx fetchRuntimeToken.ts",
+    "gql": "tsx gql.ts",
+    "subscribe": "tsx subscribe.ts",
+    "meta": "tsx meta.ts",
+    "auth:email": "tsx authenticateEmail.ts"
+  },
+  "dependencies": {
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
+    "js-yaml": "^4.1.0",
+    "open": "^10.0.3",
+    "subscriptions-transport-ws": "^0.11.0",
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.11.24",
+    "@types/ws": "^8.18.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.3.3"
+  }
+}

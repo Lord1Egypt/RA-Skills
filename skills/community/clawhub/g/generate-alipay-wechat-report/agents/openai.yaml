@@ -1,0 +1,4 @@
+interface:
+  display_name: "支付宝微信账单报表"
+  short_description: "把支付宝和微信原生账单生成本地交互式 HTML 消费报告"
+  default_prompt: "Use $generate-alipay-wechat-report to turn exported Alipay CSV bills and WeChat XLSX bills into a local interactive HTML spending report."

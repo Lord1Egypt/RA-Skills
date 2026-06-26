@@ -1,0 +1,53 @@
+verdict: pass
+system_errors: []
+strategy_results:
+  - strategy_type: integration
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: >-
+          在临时项目 /var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.5HGJmAg8jc
+          内写入一个 status=running 的任务后，执行
+          `node packages/cli/dist/index.js callback NX2-007-TASK --project
+          /var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.5HGJmAg8jc`，CLI
+          输出 `{"ok":true,"taskId":"NX2-007-TASK","status":"generator_done"}`；随后读取
+          `/var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.5HGJmAg8jc/nexum/active-tasks.json`
+          得到任务 status=`generator_done`，并新增 updated_at 字段。
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: >-
+          在同一临时项目首次执行
+          `node packages/cli/dist/index.js init --project
+          /var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.5HGJmAg8jc`
+          后输出包含 `created CLAUDE.md`；读取
+          `/var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.5HGJmAg8jc/CLAUDE.md`
+          可见 `<!-- nexum:callback:start -->` 与 `<!-- nexum:callback:end -->`
+          区块，以及命令 `nexum callback <taskId> --project <projectDir>`。第二次执行同命令输出
+          `nexum already initialized, nothing to do.`；再次统计标记块出现次数仍为 1。
+        detail: null
+        score: null
+      - id: C4
+        result: pass
+        evidence: >-
+          在仓库根目录执行 `pnpm --filter @nexum/cli build`，退出码为 0，关键输出为
+          `> @nexum/cli@0.1.0 build /Users/tongyaojin/code/nexum-ts/packages/cli`
+          与 `> node_modules/.bin/tsc -p tsconfig.json`，构建完成无错误。
+        detail: null
+        score: null
+  - strategy_type: review
+    criteria_results:
+      - id: C2
+        result: pass
+        evidence: >-
+          审查 `/Users/tongyaojin/code/nexum-ts/packages/core/src/types.ts:37`
+          起的 TaskStatus 枚举，确认存在
+          `GeneratorDone = "generator_done"` 定义，位于 Pending/Blocked/Running 与
+          Evaluating 之间。
+        detail: null
+        score: null
+feedback: ""
+artifacts:
+  - /var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.5HGJmAg8jc/CLAUDE.md
+  - /var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.5HGJmAg8jc/nexum/active-tasks.json

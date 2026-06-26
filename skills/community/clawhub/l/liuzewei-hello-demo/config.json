@@ -1,0 +1,14 @@
+{
+  "name": "hello-demo",
+  "version": "1.0.0",
+  "description": "A simple greeting skill for OpenClaw",
+  "author": "liuzewei1990",
+  "license": "MIT",
+  "min_openclaw_version": "1.0.0",
+  "entry_point": "scripts/greet.py",
+  "update_url": "https://api.github.com/repos/liuzewei1990/openclaw-skill-demo/releases/latest",
+  "tags": ["demo", "greeting", "utility"],
+  "requirements": {
+    "python": ">=3.8"
+  }
+}

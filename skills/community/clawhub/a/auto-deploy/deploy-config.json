@@ -1,0 +1,46 @@
+{
+  "git": {
+    "url": "http://192.168.1.169:8015/peninsula/points",
+    "branch": "master",
+    "auth": {
+      "type": "http",
+      "username": "zhangjiamin",
+      "password": "zhangjiamin"
+    }
+  },
+  "server": {
+    "host": "192.168.1.168",
+    "port": 22,
+    "user": "root",
+    "deployPath": "/www/wwwroot/points",
+    "backupPath": "/www/backup/points"
+  },
+  "project": {
+    "name": "points",
+    "type": "java+vue",
+    "nodeVersion": "20",
+    "javaVersion": "8",
+    "build": {
+      "node": {
+        "installCmd": "cd peninsula-ui/front && npm install",
+        "buildCmd": "cd peninsula-ui/front && npm run build:prod",
+        "outputDir": "peninsula-ui/front/dist"
+      },
+      "java": {
+        "installCmd": "",
+        "buildCmd": "mvn clean package -DskipTests",
+        "outputDir": "peninsula-system/target",
+        "jarFile": "peninsula-system-*.jar"
+      }
+    },
+    "deploy": {
+      "restartCmd": "pm2 restart peninsula",
+      "healthCheck": "http://localhost:8080/actuator/health"
+    }
+  },
+  "deploy": {
+    "autoConfirm": false,
+    "requireReview": false,
+    "rollbackOnFailure": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sina-daily-news",
+  "version": "1.0.0",
+  "description": "抓取新浪财经 7×24 实时新闻流，自动分类生成结构化日报",
+  "author": "paudy",
+  "license": "MIT-0"
+}

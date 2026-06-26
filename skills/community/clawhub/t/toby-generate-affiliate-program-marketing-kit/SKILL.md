@@ -1,35 +1,42 @@
 ---
-name: "generate-affiliate-program-marketing-kit"
+name: "Generate Affiliate Program Marketing Kit"
 description: "Generates a complete affiliate marketing kit with banners, swipe copy, social posts, and tracking guidelines. Use when launching or scaling affiliate programs."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-generate-affiliate-program-marketing-kit"
-sourceUrl: "https://clawhub.ai/skills/toby-generate-affiliate-program-marketing-kit"
+homepage: "https://www.skillboss.co/skills/generate-affiliate-program-marketing-kit"
+metadata: {"category":"marketing-automation","subcategory":"ad-content","source":"daily-skill-generator-2026-03-28_to_2026-04-03","skill_id":"generate-affiliate-program-marketing-kit","generated_day":"2026-03-28"}
 ---
 
-# generate-affiliate-program-marketing-kit
+# Generate Affiliate Program Marketing Kit
 
-> Generates a complete affiliate marketing kit with banners, swipe copy, social posts, and tracking guidelines. Use when launching or scaling affiliate programs.
+Generates a complete affiliate marketing kit with banners, swipe copy, social posts, and tracking guidelines. Use when launching or scaling affiliate programs.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-generate-affiliate-program-marketing-kit`
-- **Source URL:** [https://clawhub.ai/skills/toby-generate-affiliate-program-marketing-kit](https://clawhub.ai/skills/toby-generate-affiliate-program-marketing-kit)
+## Use When
 
-## Overview
+Use this skill for affiliate marketing work for marketers, agencies, growth teams.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-generate-affiliate-program-marketing-kit
-```
+1. Clarify the audience, goal, constraints, and required output format.
+2. Produce a strong first draft optimized for the business use case.
+3. Use the relevant SkillBoss capabilities to generate supporting assets or enrich the result.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+Create a marketing kit for our affiliate program: 3 banner sizes, 5 email templates, and 10 social posts
+
+## SEO Keywords
+
+- affiliate marketing kit generator
+- affiliate banner creator
+- partner marketing materials
+- affiliate program automation
+
+## Notes
+
+- Create banners, email templates, and social posts for affiliates
+- Review outputs before external publication or automated execution.

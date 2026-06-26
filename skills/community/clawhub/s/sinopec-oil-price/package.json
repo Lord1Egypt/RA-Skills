@@ -1,0 +1,16 @@
+{
+  "name": "sinopec-oil-price",
+  "version": "1.0.0",
+  "description": "中石化油价查询 Skill",
+  "main": "index.js",
+  "scripts": {
+    "test": "node query-guangxi.js",
+    "monitor": "node monitor-oil-price.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "keywords": ["openclaw", "skill", "oil-price", "sinopec"],
+  "author": "",
+  "license": "MIT"
+}

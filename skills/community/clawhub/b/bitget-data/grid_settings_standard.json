@@ -1,0 +1,58 @@
+{
+  "btc": {
+    "symbol": "BTCUSDT",
+    "enabled": false,
+    "gridNum": 50,
+    "priceMin": 69500,
+    "priceMax": 71500,
+    "amount": 5,
+    "maxPosition": 250,
+    "sellOrders": 25,
+    "buyOrders": 25,
+    "targetTradesPerDay": 25,
+    "notes": "BTC 已暂停 - 2026-03-16 17:45 取消网格策略"
+  },
+  "sol": {
+    "symbol": "SOLUSDT",
+    "gridNum": 40,
+    "priceMin": 85,
+    "priceMax": 89,
+    "amount": 2,
+    "maxPosition": 80,
+    "sellOrders": 20,
+    "buyOrders": 20,
+    "targetTradesPerDay": 25,
+    "notes": "SOL 标准配置 - 每格 2 USDT, 间距 0.23%"
+  },
+  "eth": {
+    "symbol": "ETHUSDT",
+    "gridNum": 30,
+    "priceMin": 2040,
+    "priceMax": 2100,
+    "amount": 2,
+    "maxPosition": 60,
+    "sellOrders": 15,
+    "buyOrders": 15,
+    "targetTradesPerDay": 15,
+    "notes": "ETH 标准配置 - 每格 2 USDT, 间距 0.15%"
+  },
+  "optimization": {
+    "date": "2026-03-12 19:35",
+    "goal": "标准配置 - 目标每天 60-80 笔",
+    "totalTargetTrades": 65,
+    "strategy": "标准网格 + 合理密度",
+    "changes": [
+      "BTC: 50 格，每格 5 USDT，区间 69.5k-71.5k",
+      "SOL: 40 格，每格 2 USDT，区间 85-89",
+      "ETH: 30 格，每格 2 USDT，区间 2040-2100",
+      "总资金需求：~390 USDT",
+      "预期成交：60-80 笔/天"
+    ],
+    "expectedDailyProfit": "0.8-1.5%",
+    "riskControl": [
+      "总仓位不超过 400 USDT",
+      "每 30 分钟监控",
+      "自动调整密度"
+    ]
+  }
+}

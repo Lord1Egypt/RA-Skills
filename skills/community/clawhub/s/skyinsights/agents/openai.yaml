@@ -1,0 +1,4 @@
+interface:
+  display_name: "SkyInsights"
+  short_description: "Check address and transaction risk with SkyInsights"
+  default_prompt: "Use $skyinsights to check whether an address or transaction hash has risk, look up labels, or run AML screening with the CertiK SkyInsights API."

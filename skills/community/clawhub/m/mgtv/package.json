@@ -1,0 +1,21 @@
+{
+  "name": "mgtv-skill",
+  "version": "1.0.2",
+  "description": "芒果 TV 视频搜索与播放 Skill",
+  "main": "scripts/search-mgtv.js",
+  "scripts": {
+    "search": "node scripts/search-mgtv.js",
+    "test": "node scripts/test.js"
+  },
+  "keywords": [
+    "mgtv",
+    "芒果 TV",
+    "video",
+    "search",
+    "player",
+    "openclaw",
+    "skill"
+  ],
+  "author": "kllb520",
+  "license": "MIT-0"
+}

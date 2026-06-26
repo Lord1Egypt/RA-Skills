@@ -1,0 +1,96 @@
+# Workswith Claw 场景配置示例
+
+scenes:
+  # ====================
+  # 氛围场景
+  # ====================
+  movie:
+    name: "观影模式"
+    keywords: ["看电影", "电影", "影院", "投影", "观影"]
+    tasks:
+      - entity: media_player.living_projector
+        service: media_player.turn_on
+      - entity: light.living_led
+        service: light.turn_on
+        data:
+          rgb_color: [255, 0, 255]
+          brightness: 20
+      - entity: light.living_ceiling
+        service: light.turn_off
+      - entity: cover.living_curtain
+        service: cover.close
+
+  cyberpunk:
+    name: "赛博朋克"
+    keywords: ["赛博朋克", "电竞", "游戏"]
+    tasks:
+      - entity: light.living_led
+        service: light.turn_on
+        data:
+          rgb_color: [0, 255, 255]
+          brightness: 40
+      - entity: light.living_ceiling
+        service: light.turn_off
+
+  # ====================
+  # 准备场景
+  # ====================
+  bath_prep:
+    name: "洗澡准备"
+    keywords: ["洗澡", "洗浴", "浴霸"]
+    # 决策树配置（后续实现）
+    decision_tree:
+      sensors:
+        outdoor: sensor.outdoor_temperature
+        indoor: sensor.living_room_temperature
+      rules:
+        - if: "outdoor < 10"
+          then:
+            - entity: climate.bathroom_heater
+              service: climate.set_temperature
+              data:
+                temperature: 45
+          message: "外面冷，给你开 45°C"
+        - if: "10 <= outdoor < 20"
+          then:
+            - entity: climate.bathroom_heater
+              service: climate.set_temperature
+              data:
+                temperature: 35
+          message: "温度正好，35°C"
+    tasks:
+      - entity: light.bathroom
+        service: light.turn_on
+
+  # ====================
+  # 来离家场景
+  # ====================
+  home:
+    name: "回家模式"
+    keywords: ["回来了", "回家", "开门"]
+    tasks:
+      - entity: light.living
+        service: light.turn_on
+        data:
+          brightness: 60
+
+  away:
+    name: "离家模式"
+    keywords: ["出门", "上班", "走了"]
+    tasks:
+      - entity: light.all
+        service: light.turn_off
+      - entity: climate.all
+        service: climate.turn_off
+
+  # ====================
+  # 清洁场景
+  # ====================
+  clean:
+    name: "打扫模式"
+    keywords: ["打扫", "扫地", "清洁"]
+    tasks:
+      - entity: light.living
+        service: light.turn_on
+        data:
+          brightness: 100

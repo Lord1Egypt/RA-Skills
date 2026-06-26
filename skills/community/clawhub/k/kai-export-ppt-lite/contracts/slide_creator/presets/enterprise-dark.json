@@ -1,0 +1,152 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/enterprise-dark",
+  "preset": "Enterprise Dark",
+  "family": "consulting-dark",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.15.0 <3.0.0",
+  "producer_version_tested": "2.15.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/enterprise-dark.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/enterprise-dark-zh.html",
+    "demos/enterprise-dark-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/enterprise-dark.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/enterprise-dark-zh.html",
+    "source_snapshot/demos/enterprise-dark-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [
+    {
+      "selector": "body::before",
+      "kind": "density-grid",
+      "export_strategy": "background-layer"
+    }
+  ],
+  "component_selectors": {
+    "split_layout": [
+      ".ent-split"
+    ],
+    "split_label": [
+      ".ent-split-label"
+    ],
+    "metric_grid": [
+      ".ent-kpi-grid"
+    ],
+    "metric_card": [
+      ".ent-kpi-card"
+    ],
+    "data_table": [
+      ".ent-table"
+    ],
+    "pill": [
+      ".ent-pill"
+    ],
+    "progress_track": [
+      ".ent-progress-track"
+    ],
+    "progress_fill": [
+      ".ent-progress-fill"
+    ],
+    "trend": [
+      ".ent-trend"
+    ],
+    "cta_pill": [
+      ".cta-pill"
+    ]
+  },
+  "component_slot_models": {
+    "split_layout": {
+      "layout": "grid_two_column",
+      "slots": [
+        "label_rail",
+        "content_rail"
+      ],
+      "track_template": "clamp(160px,22%,240px) 1fr"
+    },
+    "metric_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "title_or_label",
+        "body",
+        "progress_or_trend"
+      ],
+      "allow_inline_variant": true
+    },
+    "data_table": {
+      "layout": "open_table",
+      "slots": [
+        "header",
+        "body"
+      ]
+    },
+    "cta_pill": {
+      "layout": "cta_pill",
+      "slots": [
+        "command"
+      ]
+    }
+  },
+  "layout_variations": [
+    "hero-stats",
+    "consulting-split",
+    "kpi-dashboard",
+    "data-table",
+    "installation-cards",
+    "closing-cta"
+  ],
+  "text_expectations": {
+    "tabular_numbers": true
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Enterprise Dark",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "cta-group",
+    "cta-pill",
+    "ent-kpi-card",
+    "ent-kpi-grid",
+    "ent-kpi-label",
+    "ent-kpi-number",
+    "ent-label",
+    "ent-pill",
+    "ent-progress-fill",
+    "ent-progress-track",
+    "ent-sep",
+    "ent-split",
+    "ent-split-label",
+    "ent-table",
+    "ent-trend",
+    "pill",
+    "slide-num-label",
+    "stat",
+    "stat-label",
+    "stat-value"
+  ]
+}

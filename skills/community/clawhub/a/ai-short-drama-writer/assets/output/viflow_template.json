@@ -1,0 +1,171 @@
+{
+  "version": "1.0",
+  "exportTime": "2025-05-08T12:00:00Z",
+  "platform": "VisionFlow",
+  "meta": {
+    "title": "龙婿入世",
+    "genre": "男频",
+    "totalEpisodes": 100,
+    "estimatedDuration": "1分30秒/集",
+    "targetAudience": "18-45岁男性"
+  },
+  "outline": {
+    "premise": "战神林霄隐退都市，入赘苏家三年，受尽屈辱。三年期限已到，战神身份曝光，各方大佬跪地求见，神医传承、绝世武功、万亿资产逐一解封，前妻一家后悔莫及...",
+    "mainCharacter": {
+      "name": "林霄",
+      "identity": "苏家上门女婿（表面）",
+      "trueIdentity": "北境战神、龙神殿主",
+      "coreDesire": "守护妻子、复仇雪耻",
+      "characterArc": "隐忍三年 → 身份曝光 → 全球制霸"
+    },
+    "antagonist": {
+      "name": "周家豪",
+      "identity": "周氏集团少爷",
+      "threatLevel": 5
+    },
+    "arcStructure": {
+      "act1": { "episodes": "1-5", "summary": "钩子期：最低谷开场，战神身份即将曝光" },
+      "act2": { "episodes": "6-50", "summary": "发展期：身份逐步曝光，小boss接连被打脸" },
+      "act3": { "episodes": "51-90", "summary": "高潮期：周家豪背后势力登场，战神全面反击" },
+      "act4": { "episodes": "91-100", "summary": "收尾期：终极对决，正义伸张，情感归宿明确" }
+    }
+  },
+  "episodes": [
+    {
+      "episodeNumber": 1,
+      "type": "live-action",
+      "title": "第1集：最后的屈辱",
+      "duration": "约90秒",
+      "scene": "苏家客厅·白天",
+      "characters": ["林霄", "苏婉儿", "苏母", "周家豪"],
+      "storyboard": [
+        {
+          "shotNumber": 1,
+          "timeRange": "0-3秒",
+          "sceneDescription": "苏家客厅，豪华装修。周家豪西装革履，将一叠现金砸在林霄脸上，现金四散飞落。林霄跪在地上，神情平静。",
+          "dialogue": "周家豪：'就你这废物，也配娶苏婉儿？拿着钱滚！'",
+          "dynamicEffects": "慢镜头，现金飞舞，定格在林霄平静的眼神",
+          "hotspot": "身份反差爽：战神被羞辱",
+          "hookType": "conflict"
+        },
+        {
+          "shotNumber": 2,
+          "timeRange": "3-30秒",
+          "sceneDescription": "苏母推了林霄一把，指着鼻子骂。林霄依然沉默，眼神却微微变冷。",
+          "dialogue": "苏母：'三年了，你给我们苏家丢尽脸！今天必须离婚！'",
+          "dynamicEffects": "推镜头对准林霄手指微微握拳",
+          "hotspot": "情绪积累",
+          "hookType": "conflict"
+        },
+        {
+          "shotNumber": 3,
+          "timeRange": "30-60秒",
+          "sceneDescription": "苏婉儿出面阻止，周家豪不屑一顾，掏出合同。",
+          "dialogue": "周家豪：'苏氏公司注入我周家资产，这是条件，让这废物签字滚蛋！'",
+          "dynamicEffects": "特写合同上的印章",
+          "hotspot": "危机升级",
+          "hookType": "conflict"
+        },
+        {
+          "shotNumber": 4,
+          "timeRange": "60-85秒",
+          "sceneDescription": "林霄缓缓站起身，掏出手机。",
+          "dialogue": "林霄（冷笑）：'三年之约，今天到期了。'",
+          "dynamicEffects": "慢镜头，林霄起身，背景音乐骤变",
+          "hotspot": "战神即将亮明身份",
+          "hookType": "cliffhanger"
+        },
+        {
+          "shotNumber": 5,
+          "timeRange": "85-90秒",
+          "sceneDescription": "手机屏幕亮起，显示'北境统帅 来电'。所有人脸色大变。",
+          "dialogue": "林霄：'你们不是想知道我是什么人？'",
+          "dynamicEffects": "定格在林霄接电话的瞬间",
+          "endingHook": "下一集预告：战神身份即将震惊全场！",
+          "hookType": "cliffhanger"
+        }
+      ],
+      "punchline": "三年屈辱到期，战神即将亮明身份",
+      "endingHook": "神秘电话曝光，林霄真实身份震惊所有人！",
+      "aiGenerationNote": null
+    },
+    {
+      "episodeNumber": 2,
+      "type": "ai-manga",
+      "title": "第2集：身份曝光",
+      "duration": "约90秒",
+      "scene": "苏家客厅→门外·白天",
+      "characters": ["林霄", "苏婉儿", "苏母", "周家豪", "龙神殿护卫"],
+      "storyboard": [
+        {
+          "shotNumber": 1,
+          "timeRange": "0-5秒",
+          "sceneDescription": "林霄接起电话，平静开口。画面采用国漫风格，林霄形象为：30岁，黑色唐装，眉宇间有杀伐之气。",
+          "dialogue": "林霄：'命令解除，准备来接我。'",
+          "dynamicEffects": "特写林霄眼神，背景闪过战场回忆片段",
+          "hotspot": "战神气场全开",
+          "hookType": "punchline",
+          "aiGenerationNote": {
+            "style": "国漫写实",
+            "characterConsistency": "林霄：30岁，剑眉，黑色唐装，左眉有旧伤疤，气场冷酷"
+          }
+        },
+        {
+          "shotNumber": 2,
+          "timeRange": "5-30秒",
+          "sceneDescription": "周家豪嘲笑'北境统帅'是林霄找的群演。话音未落，门外传来整齐的脚步声。",
+          "dialogue": "周家豪：'就你还北境统帅？笑死我了！'",
+          "dynamicEffects": "镜头切到门外，20名黑衣护卫整齐列队",
+          "hotspot": "打脸爽点",
+          "hookType": "conflict"
+        },
+        {
+          "shotNumber": 3,
+          "timeRange": "30-60秒",
+          "sceneDescription": "护卫长单膝跪地，双手呈上龙神殿令牌。所有人才如梦初醒，脸色煞白。",
+          "dialogue": "护卫长：'殿主，三年期满，北境恭迎您回家！'",
+          "dynamicEffects": "慢镜头特写令牌特写，全场震惊脸谱化处理",
+          "hotspot": "最强打脸爽点",
+          "hookType": "punchline",
+          "aiGenerationNote": {
+            "style": "国漫写实",
+            "characterConsistency": "护卫：统一黑西装+蓝牙耳机+墨军人人俱佳"
+          }
+        },
+        {
+          "shotNumber": 4,
+          "timeRange": "60-85秒",
+          "sceneDescription": "周家豪和苏母当场瘫倒，苏婉儿泪光闪烁看着林霄。",
+          "dialogue": "林霄（温柔对苏婉儿）：'三年了，让你受苦了。'",
+          "dynamicEffects": "柔光特写苏婉儿表情",
+          "hotspot": "情感爽点",
+          "hookType": "conflict"
+        },
+        {
+          "shotNumber": 5,
+          "timeRange": "85-90秒",
+          "sceneDescription": "林霄转回头，眼神骤冷，看向周家豪。",
+          "dialogue": "林霄：'现在，我们来算算账。'",
+          "dynamicEffects": "定格在林霄冷峻眼神，背景变暗",
+          "endingHook": "周家豪当场吓傻，接下来等待他的是什么？",
+          "hookType": "cliffhanger"
+        }
+      ],
+      "punchline": "北境战神身份震惊全场，三年屈辱开始清算",
+      "endingHook": "周家豪当场跪地求饶，但更大的靠山即将出现！",
+      "aiGenerationNote": {
+        "style": "国漫写实",
+        "characterConsistency": "林霄：30岁，黑色唐装，剑眉，左眉伤疤，气场由冷转暖对苏婉儿"
+      }
+    }
+  ],
+  "hooks": {
+    "opening": "第1集开场：战神被当众羞辱，身份与处境极端反差，前3秒必须出现强冲突（现金砸脸+跪地屈辱）",
+    "everyEpisodeEnding": "每集结尾必须留钩子：身份悬念/危机降临/打脸预告三类轮换"
+  },
+  "branding": {
+    "coverTitle": "结婚三年，被骂废物离婚！结果震惊全场！",
+    "coverImagePrompt": "国漫风格，近景男主面部特写，眼神冷峻却温柔，左眉有伤疤，身后虚化千军万马身影，背景暗金色调，文字：'结婚三年，被骂废物，真实身份曝光...'",
+    "keywordTags": ["战神", "赘婿逆袭", "打脸", "都市", "爽剧", "龙神殿"]
+  }
+}

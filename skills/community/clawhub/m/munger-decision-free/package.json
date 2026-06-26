@@ -1,0 +1,27 @@
+{
+  "name": "munger-decision",
+  "version": "1.2.0",
+  "description": "芒格决策助手 - 将思维模型转化为决策工具",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "test": "jest"
+  },
+  "keywords": [
+    "munger",
+    "decision",
+    "thinking-models"
+  ],
+  "author": "edu-dev",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.0"
+  }
+}

@@ -1,35 +1,22 @@
 ---
-name: "wasm-gallery"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/wasm-gallery"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/wasm-gallery"
+name: wasm-gallery
+description: Browse, publish, and install WASM agents from the community gallery
+argument-hint: "[search-query]"
+allowed-tools: mcp__claude-flow__wasm_gallery_list mcp__claude-flow__wasm_gallery_search mcp__claude-flow__wasm_gallery_create mcp__claude-flow__wasm_agent_create mcp__claude-flow__wasm_agent_export Bash
 ---
 
-# wasm-gallery
+# WASM Gallery
 
-> Indexed by skills.sh from ruvnet/ruflo
+Browse and share WASM agents through the community gallery.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/wasm-gallery`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/wasm-gallery](https://skills.sh/ruvnet/ruflo/wasm-gallery)
+## When to use
 
-## Overview
+When looking for pre-built WASM agents or sharing your own agents with the community.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/wasm-gallery
-```
+1. **Browse gallery** — call `mcp__claude-flow__wasm_gallery_list` to see available agents
+2. **Search** — call `mcp__claude-flow__wasm_gallery_search` with keywords to find specific agents
+3. **Install** — call `mcp__claude-flow__wasm_agent_create` with a gallery agent's configuration
+4. **Publish** — call `mcp__claude-flow__wasm_gallery_create` to share your agent
+5. **Export first** — call `mcp__claude-flow__wasm_agent_export` to package before publishing

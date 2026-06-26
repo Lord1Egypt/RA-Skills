@@ -1,35 +1,59 @@
----
-name: "网页搜索整理到飞书多维表格知识库"
-description: "自动搜索关键词网页内容，提取标题、摘要等信息，批量整理存入飞书多维表格个人知识库并返回链接。"
-category: "other"
-source: "ClawHub"
-tags: [bitable, feishu, knowledge-base, web-search]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-search-to-feishu-bitable"
-sourceUrl: "https://clawhub.ai/skills/web-search-to-feishu-bitable"
----
+# web-search-to-feishu-bitable - 网页搜索自动整理到飞书多维表格个人知识库
 
-# 网页搜索整理到飞书多维表格知识库
+## Description
 
-> 自动搜索关键词网页内容，提取标题、摘要等信息，批量整理存入飞书多维表格个人知识库并返回链接。
+自动搜索网页关键词，提取信息整理后批量存入飞书多维表格，构建个人知识库。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-search-to-feishu-bitable`
-- **Source URL:** [https://clawhub.ai/skills/web-search-to-feishu-bitable](https://clawhub.ai/skills/web-search-to-feishu-bitable)
+**工作流程**：
+1. 接收用户提供的关键词列表
+2. 使用 `web_search` 搜索每个关键词，获取相关网页
+3. 使用 `web_fetch` 提取网页正文内容
+4. 整理信息为标准格式：标题、URL、摘要、标签、分类
+5. 如果飞书多维表格应用不存在，自动创建；已存在则直接追加记录
+6. 完成后返回飞书链接
 
-## Overview
+**适用场景**：
+- 个人知识库构建
+- 关键词资料收集整理
+- AI提示词收藏整理
+- 技术文章聚合存档
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-search-to-feishu-bitable
-```
+当用户说：
+> "帮我搜索这些关键词，整理成飞书多维表格"
+> "把这些提示词资料整理到我的飞书知识库"
+> "搜索XXX、XXX，存入飞书多维表格"
+
+就使用这个skill。
+
+## Parameters
+
+用户需要提供：
+- **关键词列表**：要搜索的关键词（多个用逗号分隔）
+- **分类方式**：按关键词分类（默认）
+- **字段**：默认 `标题(文本) + URL(超链接) + 摘要(文本) + 标签(多选) + 分类(单选)`，可调整
+
+## Examples
+
+### 用户输入
+> 关键词主要是：效果图，AI洗图，nano banana提示词，展位展厅提示词，按照标题，URL，摘要，标签，分类等开始整理
+
+### 执行结果
+创建多维表格 `AI提示词知识库`，数据表 `提示词收藏`，导入 14 条整理好的数据，返回飞书链接。
+
+## Tool Chain
+
+1. `web_search` - 搜索每个关键词
+2. `web_fetch` - 提取网页内容
+3. `feishu_bitable_app.create` - 创建多维表格（如果不存在）
+4. `feishu_bitable_app_table.create` - 创建数据表（如果不存在）
+5. `feishu_bitable_app_table_field.list` - 确认字段类型
+6. `feishu_bitable_app_table_record.batch_create` - 批量导入整理好的数据
+
+## Notes
+
+- 默认字段：标题(文本)、URL(超链接)、摘要(文本)、标签(多选)、分类(单选)
+- 需要用户已经授权飞书（openclaw-lark extension 已启用）
+- 单次搜索每个关键词返回 5 个结果，自动过滤无法提取的页面
+- 批量导入单次最多 500 条，超过自动分批

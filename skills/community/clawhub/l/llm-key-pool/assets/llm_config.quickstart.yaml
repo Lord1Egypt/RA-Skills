@@ -1,0 +1,102 @@
+# 快速配置模板 - 小龙虾、OpenCode、Qwen、ClaudeCode
+# 复制此文件为 llm_config.yaml 并填入你的API Key
+
+providers:
+  # ===== 主力层 =====
+
+  # 小龙虾（XiaoLongXia）
+  # 获取API Key: 访问小龙虾官网控制台
+  xiaolongxia:
+    tier: primary
+    model: "xiaolongxia-72b"  # 可选: xiaolongxia-34b, xiaolongxia-14b
+    api_keys:
+      - "xiaolongxia_sk_你的真实API-Key-1"
+      # - "xiaolongxia_sk_你的真实API-Key-2"  # 可选，添加更多Key实现负载均衡
+    base_url: "https://api.xiaolongxia.com/v1"
+
+  # ===== 兜底层 =====
+
+  # OpenCode
+  # 获取API Key: 访问OpenCode官网API管理页面
+  opencode:
+    tier: fallback
+    model: "opencode-72b"  # 可选: opencode-34b, opencode-14b
+    api_keys:
+      - "opencode_sk_你的真实API-Key"
+    base_url: "https://api.opencode.com/v1"
+
+  # Qwen独立API（通义千问）
+  # 获取API Key: 访问https://qwen.ai，创建AccessKey
+  qwen:
+    tier: fallback
+    model: "qwen-max"  # 可选: qwen-plus, qwen-turbo, qwen-long
+    api_keys:
+      - "sk-你的真实API-Key"
+    base_url: "https://api.qwen.ai/v1"
+
+  # ClaudeCode
+  # 获取API Key: 访问https://console.anthropic.com，创建API Key
+  claudecode:
+    tier: fallback
+    model: "claude-3-5-sonnet-20241022"  # 推荐使用最新版本
+    api_keys:
+      - "sk-ant-api03-你的真实API-Key"
+    base_url: "https://api.anthropic.com/v1"
+
+# ===== 全局配置 =====
+global:
+  max_retries: 3              # 最大重试次数
+  retry_delay: 1              # 重试延迟（秒）
+  error_threshold: 5          # 错误阈值，超过则暂时禁用Key
+  cooldown_seconds: 300       # 冷却时间（秒）
+  quota_check_enabled: true   # 是否启用配额检查
+  quota_min_remaining: 10000  # 剩余Token少于这个值自动切换
+
+# ===== 使用说明 =====
+#
+# 1. 配置步骤：
+#    a) 复制此文件为 llm_config.yaml
+#    b) 将上面的 "你的真实API-Key" 替换为实际的API Key
+#    c) 根据需要调整 tier（层级）和 model（模型）
+#
+# 2. 测试配置：
+#    python -m llm_key_pool.llm_client \
+#      --config ./llm_config.yaml \
+#      --test
+#
+# 3. 开始使用：
+#    python -m llm_key_pool.llm_client \
+#      --config ./llm_config.yaml \
+#      --prompt "你好"
+#
+# 4. 查看状态：
+#    python -m llm_key_pool.llm_client \
+#      --config ./llm_config.yaml \
+#      --status
+#
+# ===== 层级说明 =====
+# - primary（主力层）：优先使用，高额度平台
+# - daily（每日回血层）：主力层不可用时切换，额度每日刷新
+# - fallback（兜底层）：最后保障，开源/聚合平台
+#
+# ===== 模型选择建议 =====
+# 小龙虾：
+#   - xiaolongxia-72b: 复杂推理、长文本
+#   - xiaolongxia-34b: 平衡性能与速度
+#   - xiaolongxia-14b: 快速响应、简单任务
+#
+# OpenCode：
+#   - opencode-72b: 复杂架构设计、大型项目
+#   - opencode-34b: 模块开发、功能实现
+#   - opencode-14b: 快速补全、Bug修复
+#
+# Qwen：
+#   - qwen-max: 最强性能
+#   - qwen-plus: 性能平衡
+#   - qwen-turbo: 快速响应
+#   - qwen-long: 长文本处理
+#
+# ClaudeCode：
+#   - claude-3-5-sonnet-20241022: 最新最强（推荐）
+#   - claude-3-opus-20240229: 高质量但较慢
+#   - claude-3-sonnet-20240229: 平衡性能与速度

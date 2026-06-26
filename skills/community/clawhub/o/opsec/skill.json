@@ -1,0 +1,18 @@
+{
+  "name": "clawguard",
+  "version": "1.0.0",
+  "description": "Security review and risk auditing for OpenClaw skills. Inspect third-party skills, dangerous instructions, credential requests, privilege risks, and generate structured reports before installation.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/review_skill.py",
+    "scripts/show_report.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/output.py",
+    "scripts/lib/engine.py",
+    "rules/skill_review.json",
+    "references/philosophy.md"
+  ]
+}

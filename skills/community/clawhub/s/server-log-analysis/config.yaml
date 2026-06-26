@@ -1,0 +1,62 @@
+version: 1
+
+analysis:
+  local_temp_dir: temp/server-log-analysis
+  default_time_window: 2h
+  default_tail_lines: 3000
+  max_download_mb_per_file: 50
+  prefer_remote_filter: true
+  preserve_downloads: true
+
+connections:
+  default-server:
+    host: hostname
+    port: 22
+    username: root
+    password: password
+
+services:
+  example-service:
+    description: >
+      示例业务服务。请替换为清晰的业务说明，包括服务职责、主要上下游依赖，
+      以及哪些用户侧故障通常意味着需要优先检查该服务。
+    aliases:
+      - example
+      - demo-service
+    keywords:
+      - login
+      - timeout
+      - order
+    connection: default-server
+    workdir: /opt/example-service
+    startup_command: systemctl status example-service
+    investigation_hints:
+      - 优先检查启动失败类问题。
+      - 将超时报错与上游网关日志进行关联分析。
+      - 高峰期重点关注数据库连接耗尽问题。
+    log_files:
+      - name: a
+        path: /logs/ms_log/a/
+        format: plain
+        priority: high
+        purpose: 设备直接接入的微服务的日志
+download_profiles:
+  recent-tail:
+    description: 快速抓取最近日志
+    mode: tail
+    lines: 3000
+  recent-errors:
+    description: 面向快速诊断的关键词日志片段
+    mode: keyword
+    keywords:
+      - ERROR
+      - WARN
+      - Exception
+      - timeout
+      - refused
+      - failed
+  bounded-window:
+    description: 围绕问题时间点提取日志窗口
+    mode: time-range
+    before: 15m
+    after: 15m

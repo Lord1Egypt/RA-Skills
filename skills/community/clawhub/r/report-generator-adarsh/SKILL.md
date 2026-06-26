@@ -1,35 +1,61 @@
----
-name: "Report Generator Adarsh"
-description: "Generates a structured marketing audit report from aggregated data using a single GPT-4.1-mini API call with six predefined sections."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/report-generator-adarsh"
-sourceUrl: "https://clawhub.ai/skills/report-generator-adarsh"
----
+# Report Generator Skill
 
-# Report Generator Adarsh
+## Purpose
+Single GPT-4.1-mini call that transforms aggregated marketing data into a structured, professional audit report. This is the ONLY AI call in the entire audit pipeline.
 
-> Generates a structured marketing audit report from aggregated data using a single GPT-4.1-mini API call with six predefined sections.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/report-generator-adarsh`
-- **Source URL:** [https://clawhub.ai/skills/report-generator-adarsh](https://clawhub.ai/skills/report-generator-adarsh)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/report-generator-adarsh
+## Input Schema
+```typescript
+interface AuditData {
+ input: AuditInput;
+ instagram: InstagramData;
+ metaAds: MetaAdsData;
+ keywords: KeywordData;
+ competitors: CompetitorData;
+ websiteAudit: WebsiteAuditData;
+ collectedAt: string;
+}
 ```
+
+## Output Schema
+```typescript
+interface MarketingReport {
+ brand: string;
+ generatedAt: string;
+ sections: ReportSections;
+ rawData: AuditData;
+ reportMarkdown: string;
+}
+```
+
+## API Dependencies
+- **API:** OpenAI
+- **Model:** `gpt-4.1-mini`
+- **Auth:** `OPENAI_API_KEY`
+- **Cost:** ~$0.001-0.002 per call
+
+## Implementation Pattern
+- System prompt defines the analyst persona and exact 6-section format
+- User message is the full AuditData JSON
+- Single API call with `max_tokens: 1500`, `temperature: 0.4`
+- Response markdown is parsed into individual sections via `## ` header splitting
+- Token usage is logged for cost tracking
+- Fallback report is generated if OpenAI call fails
+
+## Token Budget
+- Input: ~1,500-2,000 tokens (JSON data)
+- Output: ~800-1,200 tokens (report)
+
+## Error Handling
+- Missing API key: returns fallback report with error message
+- API failure: returns fallback report with raw data preserved
+- All errors logged with context
+
+## Example Usage
+```typescript
+const report = await generateMarketingReport(auditData);
+console.log(report.reportMarkdown);
+```
+
+## Notes
+- This is the ONLY file that should make OpenAI calls (except competitor collector fallback)
+- Never add additional GPT calls to other modules

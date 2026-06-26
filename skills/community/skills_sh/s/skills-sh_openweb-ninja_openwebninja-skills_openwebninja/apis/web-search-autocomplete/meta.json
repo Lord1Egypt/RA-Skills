@@ -1,0 +1,11 @@
+{
+  "api_id": "web-search-autocomplete",
+  "portal_api_id": "web_search_autocomplete",
+  "rapidapi_host": "web-search-autocomplete.p.rapidapi.com",
+  "notes": "Returns suggestions in a single call. cursor_pointer is a character position, not a pagination token.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/web_search_autocomplete.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/web-search-autocomplete",
+  "openwebninja_url": "https://www.openwebninja.com/api/web-search-autocomplete"
+}

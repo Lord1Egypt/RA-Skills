@@ -1,35 +1,41 @@
 ---
-name: "Arya Model Router"
-description: "Router that selects between cheap, default, and pro GPT models to save tokens, using sub-agents and optional briefing for heavy tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/staratheris-arya-model-router"
-sourceUrl: "https://clawhub.ai/skills/staratheris-arya-model-router"
+name: arya-model-router
+description: Token-saver router: elige modelo (cheap/default/pro) y usa sub-agentes para tareas pesadas. Incluye compresión/briefing opcional.
+metadata:
+  openclaw:
+    emoji: "🧭"
+    requires:
+      bins: ["bash", "python3"]
 ---
 
-# Arya Model Router
+# Arya Model Router (Token Saver)
 
-> Router that selects between cheap, default, and pro GPT models to save tokens, using sub-agents and optional briefing for heavy tasks.
+Router de modelos para OpenClaw: decide cuándo usar un modelo barato vs uno más fuerte, reduciendo costo y tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/staratheris-arya-model-router`
-- **Source URL:** [https://clawhub.ai/skills/staratheris-arya-model-router](https://clawhub.ai/skills/staratheris-arya-model-router)
+## Objetivos
 
-## Overview
+- Mantener el chat diario barato.
+- Escalar a un modelo superior solo cuando la tarea lo amerite.
+- Evitar pasar contexto enorme al modelo caro: primero crear un **brief**.
 
+## Enfoque
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/staratheris-arya-model-router
-```
+- El agente principal (main) se mantiene en un modelo económico.
+- Para tareas pesadas, el router recomienda (o ejecuta) **sub-agentes** con un modelo superior.
+
+## Niveles (por defecto)
+
+- cheap: `openai/gpt-4o-mini`
+- default: `openai/gpt-4.1-mini`
+- pro: `openai/gpt-4.1`
+
+## Uso (conceptual)
+
+- "Router: responde esto en modo cheap" (forzado)
+- "Router: analiza esto" (auto)
+
+## Archivos
+
+- `router.py`: clasificador + reglas
+- `rules.json`: reglas editables
+- `README.md`: documentación completa

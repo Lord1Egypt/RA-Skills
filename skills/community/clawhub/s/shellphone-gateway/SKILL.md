@@ -1,35 +1,47 @@
----
-name: "Shellphone Gateway"
-description: "Private WebSocket gateway enabling direct, encrypted communication between iOS devices and self-hosted AI bots with no third-party servers involved."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shellphone-gateway"
-sourceUrl: "https://clawhub.ai/skills/shellphone-gateway"
----
+# shellphone-gateway
 
-# Shellphone Gateway
+Private WebSocket gateway for connecting iOS to your AI agents. No Telegram. No Discord. No middleman.
 
-> Private WebSocket gateway enabling direct, encrypted communication between iOS devices and self-hosted AI bots with no third-party servers involved.
+## What This Does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shellphone-gateway`
-- **Source URL:** [https://clawhub.ai/skills/shellphone-gateway](https://clawhub.ai/skills/shellphone-gateway)
+ShellPhone + OpenClaw Gateway creates a direct, encrypted line between your iPhone and your self-hosted AI bots.
 
-## Overview
+- **Privacy-first**: Messages never touch third-party servers
+- **Self-hosted**: Runs on your hardware
+- **Auto-detects ollama**: Zero config if you have local LLMs
+- **Free TTS/ASR**: Via ScrappyLabs (no account needed)
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Run the Gateway
+
 ```bash
-hermes skills install clawhub/shellphone-gateway
+# Docker (recommended)
+git clone https://github.com/loserbcc/openclaw-gateway.git
+cd openclaw-gateway
+docker compose up
+
+# Or Python
+pip install openclaw-gateway
+openclaw-gateway
 ```
+
+### 2. Get the iOS App
+
+Join the TestFlight beta: https://testflight.apple.com/join/BnjD4BEf
+
+### 3. Connect
+
+Scan the QR code from `http://localhost:8770/setup` or enter manually:
+- **URL**: `wss://your-server:8770/gateway`
+- **Token**: (printed on gateway startup)
+
+## Links
+
+- **TestFlight**: https://testflight.apple.com/join/BnjD4BEf
+- **Gateway GitHub**: https://github.com/loserbcc/openclaw-gateway
+- **ScrappyLabs**: https://scrappylabs.ai
+
+## License
+
+MIT — do whatever you want with it.

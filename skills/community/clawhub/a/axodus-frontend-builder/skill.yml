@@ -1,0 +1,8 @@
+---
+name: frontend-builder
+description: Build frontend apps with safe API integration and quality gates.
+version: 1.0.0
+display_name: "Frontend Builder"
+triggers:
+System.Object[]
+---

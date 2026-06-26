@@ -1,35 +1,27 @@
 ---
-name: "Recipe Label And Archive Emails"
+name: recipe-label-and-archive-emails
 description: "Apply Gmail labels to matching messages and archive them to keep your inbox clean."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-label-and-archive-emails"
-sourceUrl: "https://clawhub.ai/skills/recipe-label-and-archive-emails"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
 ---
 
-# Recipe Label And Archive Emails
+# Label and Archive Gmail Threads
 
-> Apply Gmail labels to matching messages and archive them to keep your inbox clean.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-label-and-archive-emails`
-- **Source URL:** [https://clawhub.ai/skills/recipe-label-and-archive-emails](https://clawhub.ai/skills/recipe-label-and-archive-emails)
+Apply Gmail labels to matching messages and archive them to keep your inbox clean.
 
-## Overview
+## Steps
 
+1. Search for matching emails: `gws gmail users messages list --params '{"userId": "me", "q": "from:notifications@service.com"}' --format table`
+2. Apply a label: `gws gmail users messages modify --params '{"userId": "me", "id": "MESSAGE_ID"}' --json '{"addLabelIds": ["LABEL_ID"]}'`
+3. Archive (remove from inbox): `gws gmail users messages modify --params '{"userId": "me", "id": "MESSAGE_ID"}' --json '{"removeLabelIds": ["INBOX"]}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-label-and-archive-emails
-```

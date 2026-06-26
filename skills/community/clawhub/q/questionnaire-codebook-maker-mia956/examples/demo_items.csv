@@ -1,0 +1,6 @@
+item_id,item_text,dimension,scale_min,scale_max,reverse
+D1,I felt depressed during the past week,depression,0,3,no
+D2,I felt that everything I did was an effort,depression,0,3,no
+D5,I felt hopeful about the future,depression,0,3,yes
+A1,I felt nervous or anxious,anxiety,0,3,no
+A2,I was unable to stop worrying,anxiety,0,3,no

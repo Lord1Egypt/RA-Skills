@@ -1,35 +1,14 @@
----
-name: "Mcp Skill"
-description: "Provides access to MCP tools for web search, advanced search, code context, deep research, crawling, company research, and LinkedIn search."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-skill"
-sourceUrl: "https://clawhub.ai/skills/mcp-skill"
----
+# MCP Skill
 
-# Mcp Skill
+This skill wraps the MCP at https://mcp.exa.ai/mcp for various tools such as web search, deep research, and more.
 
-> Provides access to MCP tools for web search, advanced search, code context, deep research, crawling, company research, and LinkedIn search.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-skill`
-- **Source URL:** [https://clawhub.ai/skills/mcp-skill](https://clawhub.ai/skills/mcp-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-skill
-```
+## Tools Included
+- web_search_exa
+- web_search_advanced_exa
+- get_code_context_exa
+- deep_search_exa
+- crawling_exa
+- company_research_exa
+- linkedin_search_exa
+- deep_researcher_start
+- deep_researcher_check

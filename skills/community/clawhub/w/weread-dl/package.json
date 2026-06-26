@@ -1,0 +1,17 @@
+{
+  "name": "weread-dl-skill",
+  "version": "1.1.0",
+  "author": "ColorlessBoy",
+  "license": "MIT",
+  "private": true,
+  "description": "微信读书 AI 阅读助手",
+  "scripts": {
+    "login": "node scripts/login.js",
+    "list": "node scripts/list-books.js",
+    "read": "node scripts/read-chapter.js",
+    "notes": "node scripts/get-notes.js"
+  },
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

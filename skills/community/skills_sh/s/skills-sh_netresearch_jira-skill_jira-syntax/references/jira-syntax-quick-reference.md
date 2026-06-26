@@ -1,0 +1,465 @@
+# Jira Wiki Markup Syntax - Quick Reference
+
+Complete reference for Jira's wiki markup syntax to ensure proper formatting in tickets, comments, and descriptions.
+
+## Table of Contents
+
+- [Text Formatting](#text-formatting)
+- [Headings](#headings)
+- [Lists](#lists)
+- [Links](#links)
+- [Code Blocks](#code-blocks)
+- [Tables](#tables)
+- [Panels and Quotes](#panels-and-quotes)
+- [Colors](#colors)
+- [Special Blocks](#special-blocks)
+- [Line Breaks and Horizontal Rules](#line-breaks-and-horizontal-rules)
+- [Special Characters](#special-characters)
+- [Emoticons](#emoticons)
+- [Common Patterns](#common-patterns)
+- [Validation Checklist](#validation-checklist)
+- [Common Mistakes to Avoid](#common-mistakes-to-avoid)
+
+## Text Formatting
+
+| Syntax | Output | Use Case |
+|--------|--------|----------|
+| `*text*` | **text** | Bold/strong emphasis |
+| `_text_` | *text* | Italic/emphasis |
+| `{{text}}` | `text` | Monospace for code/paths |
+| `-text-` | ~~text~~ | Strikethrough |
+| `+text+` | <u>text</u> | Underline/inserted text |
+| `^text^` | text^superscript^ | Superscript |
+| `~text~` | text~subscript~ | Subscript |
+| `??text??` | text (citation) | Citation format |
+
+## Headings
+
+```
+h1. Heading Level 1 (largest)
+h2. Heading Level 2
+h3. Heading Level 3
+h4. Heading Level 4
+h5. Heading Level 5
+h6. Heading Level 6 (smallest)
+```
+
+**Rules:**
+- Space required after `h1.` through `h6.`
+- One heading per line
+- Use h2 for main sections, h3 for subsections
+
+## Lists
+
+### Bulleted Lists
+```
+* Level 1 item
+** Level 2 nested item
+*** Level 3 nested item
+* Another level 1 item
+```
+
+### Numbered Lists
+```
+# First item
+## Nested item
+## Another nested item
+# Second item
+```
+
+### Mixed Lists
+```
+# Numbered item
+#* Nested bullet
+#* Another bullet
+# Another numbered item
+```
+
+**Rules:**
+- Space after `*` or `#`
+- Nesting uses additional symbols (`**`, `##`)
+- Can mix list types with combined syntax (`#*`)
+
+## Links
+
+| Type | Syntax | Example |
+|------|--------|---------|
+| Issue Link | `[KEY-123]` | `[PROJ-456]` |
+| User Mention | `[~username]` | `[~john.doe]` |
+| External URL | `[http://url]` | `[http://example.com]` |
+| Labeled Link | `[Label\|url]` | `[Google\|http://google.com]` |
+| Attachment | `[^filename]` | `[^screenshot.png]` |
+| Email | `[mailto:email]` | `[mailto:team@example.com]` |
+| Anchor | `{anchor:name}` + `[#name]` | `{anchor:intro}` → `[#intro]` |
+
+## Code Blocks
+
+### Inline Code
+```
+Use {{code}} for inline monospace text
+```
+
+### Code Blocks with Syntax Highlighting
+```
+{code:java}
+public class Example {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+{code}
+```
+
+**Supported Languages (Jira Server / Data Center):**
+
+The Jira Server source-code formatter accepts ONLY this fixed list. Using any other identifier (e.g. `typoscript`, `rust`, `typescript`, `yml`, `shell`) produces:
+
+> Unable to find source-code formatter for language: `<name>`. Available languages are: ...
+
+| Group | Identifiers |
+|-------|-------------|
+| General-purpose | `actionscript`, `ada`, `applescript`, `c`, `c#`, `c++`, `cpp`, `erlang`, `go`, `groovy`, `haskell`, `java`, `javascript`, `js`, `lua`, `objc`, `perl`, `php`, `python`, `r`, `ruby`, `scala`, `swift`, `visualbasic` |
+| Shell / scripting | `bash`, `sh` |
+| Data / markup | `css`, `html`, `json`, `sql`, `xml`, `yaml` |
+| Special | `none` (no highlighting), `nyan`, `rainbow` |
+
+**Notes:**
+- Use `c#` / `c++` literally, not `csharp` / `cplusplus` (though `cpp` is also accepted).
+- There is no `typescript`, `rust`, `kotlin`, `dart`, `shell`, `yml`, `dockerfile`, `terraform`, or `typoscript` formatter.
+- For unsupported languages, fall back to `{code:none}` (or `{noformat}`) to preserve the block without highlighting.
+
+```
+{code:none}
+[request && request.getNormalizedParams().getHttpHost() == "backend.example.de"]
+page.meta.robots = noindex,noarchive
+[END]
+{code}
+```
+
+### Preformatted Text (No Highlighting)
+```
+{noformat}
+Plain text without syntax highlighting
+Preserves whitespace and formatting
+{noformat}
+```
+
+### Block Tags Are Never Inline
+
+`{code}`, `{noformat}`, `{quote}` and `{panel}` are **block-level** macros: the tag must stand alone on its own line. An unescaped tag inside a prose sentence opens a real block mid-line and swallows the rest of the line — the classic failure is writing *about* code blocks.
+
+Broken — renders everything after "in" as an opened code block:
+
+```
+All commands are documented in {code} blocks with output.
+```
+
+Correct — renders the literal text `{code}`:
+
+```
+All commands are documented in \{code\} blocks with output.
+```
+
+Escape literal mentions of any block tag with backslashes: `\{code\}`, `\{noformat\}`, `\{quote\}`, `\{panel\}`. For inline monospace use `{{...}}`, never an inline `{code}` pair — even `{code}one-liner{code}` renders as a block, not inline.
+
+`scripts/validate-jira-syntax.sh` flags inline block tags and unbalanced tag counts; run it on composed text before submitting to Jira.
+
+## Tables
+
+### Basic Table
+```
+||Header 1||Header 2||Header 3||
+|Cell A1|Cell A2|Cell A3|
+|Cell B1|Cell B2|Cell B3|
+```
+
+**Rules:**
+- `||` for header cells (double pipe)
+- `|` for regular cells (single pipe)
+- Rows must have same number of cells
+- No trailing pipe at end of row
+
+### Example with Content
+```
+||Feature||Status||Owner||Priority||
+|User Login|{color:green}Complete{color}|[~john.doe]|High|
+|Password Reset|{color:yellow}In Progress{color}|[~jane.smith]|Medium|
+|2FA|{color:red}Not Started{color}|Unassigned|Low|
+```
+
+## Panels and Quotes
+
+### Panel with Title and Background
+```
+{panel:title=Important Information|bgColor=#FFFFCE}
+Content inside the panel
+{panel}
+```
+
+**Panel Parameters:**
+- `title=text` - Panel heading
+- `bgColor=#HEXCODE` - Background color
+- `borderStyle=solid|dashed` - Border style
+- `borderColor=#HEXCODE` - Border color
+- `titleBGColor=#HEXCODE` - Title background
+
+### Quote Block
+```
+{quote}
+Multi-line quoted text
+Can span multiple paragraphs
+{quote}
+```
+
+### Single Line Quote
+```
+bq. This is a block quote on one line
+```
+
+## Colors
+
+```
+{color:red}Red text{color}
+{color:blue}Blue text{color}
+{color:green}Green text{color}
+{color:#FF0000}Hex color text{color}
+```
+
+**Named Colors:**
+- `red`, `blue`, `green`, `yellow`, `orange`, `purple`
+- `black`, `white`, `gray`, `grey`
+- Or use hex codes: `#FF0000`, `#00FF00`, `#0000FF`
+
+## Special Blocks
+
+### Notice/Info Panels
+```
+{panel:title=⚠️ Warning|bgColor=#FFEBE9|borderColor=#FF0000}
+This is a warning message
+{panel}
+
+{panel:title=ℹ️ Information|bgColor=#DEEBFF|borderColor=#0052CC}
+This is an info message
+{panel}
+
+{panel:title=✅ Success|bgColor=#E3FCEF|borderColor=#00875A}
+This is a success message
+{panel}
+```
+
+### Expand/Collapse Section
+```
+{expand:title=Click to expand}
+Hidden content that can be toggled
+{expand}
+```
+
+## Line Breaks and Horizontal Rules
+
+```
+Line 1\\
+Line 2 (line break with \\)
+
+First paragraph
+
+Second paragraph (blank line creates new paragraph)
+
+----
+Horizontal rule (4 dashes)
+```
+
+## Special Characters
+
+```
+--- (em-dash: —)
+-- (en-dash: –)
+\\ (line break)
+\{escaped brace\}
+```
+
+To escape special characters, use backslash: `\*`, `\{`, `\[`.
+
+- **Only escape characters Jira actually parses as markup** — `*`, `_`, `-`, `+`, `^`, `~`, `{`, `[`, `|`, `\`. Do **not** escape plain punctuation such as `.`, `,`, or `:` — `\.` renders the backslash literally and produces the wrong output.
+- **Never escape inline monospace** — `{{text}}` is not a macro, so `\{\{text\}\}` is wrong. Only escape the opening brace of a *macro name* shown as prose (e.g. `\{code\}`).
+- **Preserve existing backslash escapes** — a source `\*`, `\_`, or `\{` already suppresses Markdown markup; keep it as-is, because Jira uses the same `\` escape mechanism for the same characters.
+
+### Common gotcha: macro names in prose
+
+Writing a macro name literally in prose (e.g. *"commands wrapped in \{code\} blocks"*) without escaping breaks rendering — Jira parses the literal as the *start* of a code-block macro and either consumes the rest of the comment or pairs with the next unrelated occurrence it finds. The same trap applies to any macro that opens and closes with the same token: `{noformat}…{noformat}`, `{quote}…{quote}`, `{color}…{color}`, `{panel}…{panel}`, `{anchor}…{anchor}`, and so on.
+
+Three ways to write the literal token safely, in order of preference:
+
+| Approach | Example | When to use |
+|----------|---------|-------------|
+| Rephrase to avoid the token | `commands shown as code blocks` | First choice — readers don't need the macro name to understand the prose |
+| Backslash-escape | `\{code\}` | When you genuinely need to show the macro name |
+| Wrap in a code span | `` `{{code}}` `` | Last resort — some style guides ban inline `{{monospace}}` in favour of bold `*term*` for technical terms |
+
+The backslash escape is the official Jira mechanism; the rephrase is editorial; the `{{monospace}}` wrap renders fine but is disliked by teams that reserve monospace for actual code spans rather than inline references.
+
+A quick sanity check before posting: run `skills/jira-syntax/scripts/validate-jira-syntax.sh <file>` on your draft (from the repo root). The script verifies that the six paired macros (`code`, `panel`, `color`, `noformat`, `quote`, `anchor`) are balanced — every opener matches a closer, even with a language tag like `{code:bash}` — and catches Markdown leakage (` ``` ` fences, `[text](url)` links, `` `code` `` spans), language declarations Jira Server does not recognise, and malformed table headers.
+
+## Emoticons
+
+| Code | Emoji | Meaning |
+|------|-------|---------|
+| `:)` | 🙂 | Happy |
+| `:(` | 🙁 | Sad |
+| `:P` | 😛 | Tongue |
+| `:D` | 😀 | Big smile |
+| `;)` | 😉 | Wink |
+| `(y)` | 👍 | Thumbs up |
+| `(n)` | 👎 | Thumbs down |
+| `(!)` | ⚠️ | Warning |
+| `(?)` | ❓ | Question |
+| `(on)` | 💡 | Light bulb on |
+| `(off)` | 🔌 | Light bulb off |
+| `(*)` | ⭐ | Star |
+
+## Common Patterns
+
+### Status Update Comment
+```
+h3. Status Update - 2025-11-06
+
+h4. Completed
+* Implemented user authentication
+* Added unit tests (95% coverage)
+* Updated documentation
+
+h4. In Progress
+* Integration testing
+* Performance optimization
+
+h4. Blocked
+* Waiting for API key from [~admin]
+* See [PROJ-123] for details
+
+h4. Next Steps
+# Deploy to staging environment
+# Conduct security review
+# Schedule production deployment
+```
+
+### Code Review Comment
+```
+h3. Code Review Findings
+
+h4. ✅ Approved Changes
+* Clean separation of concerns
+* Comprehensive error handling
+* Well-documented functions
+
+h4. 🔧 Suggestions
+{code:java}
+// Current implementation
+public void processData(String input) {
+    // Process directly
+}
+
+// Suggested improvement
+public void processData(String input) {
+    validateInput(input);  // Add validation
+    // Process after validation
+}
+{code}
+
+h4. ❌ Issues Found
+* Missing null check on line 45
+* Potential memory leak in {{DataProcessor}}
+* Security vulnerability: [OWASP-A03|https://owasp.org/Top10/A03_2021-Injection/]
+
+[~developer] Please address these before merging.
+```
+
+### Meeting Notes
+```
+h2. Sprint Planning Meeting - 2025-11-06
+
+h3. Attendees
+* [~pm] - Product Manager
+* [~tech-lead] - Technical Lead
+* [~dev1], [~dev2], [~dev3] - Development Team
+
+h3. Agenda
+# Review last sprint outcomes
+# Plan current sprint scope
+# Assign tasks and estimates
+
+h3. Decisions
+||Decision||Owner||Action Items||
+|Implement caching layer|[~tech-lead]|[PROJ-500] - Research Redis options|
+|Upgrade to Node 20|[~dev1]|[PROJ-501] - Test compatibility|
+|Refactor authentication|[~dev2]|[PROJ-502] - Design proposal needed|
+
+h3. Action Items
+# [~pm] - Update roadmap with Q1 priorities
+# [~tech-lead] - Schedule architecture review
+# [~dev1] - Provide effort estimates by Friday
+
+h3. Next Meeting
+*Date:* 2025-11-13 10:00 AM
+*Focus:* Sprint retrospective
+```
+
+## Validation Checklist
+
+Before submitting, verify:
+
+### Headings
+- [ ] Using `h1.` through `h6.` (not Markdown `#`)
+- [ ] Space after period (`h2. Title` not `h2.Title`)
+- [ ] One heading per line
+
+### Text Formatting
+- [ ] `*bold*` not `**bold**`
+- [ ] `_italic_` not `*italic*`
+- [ ] `{{code}}` not `` `code` ``
+
+### Lists
+- [ ] `*` for bullets, not `-`
+- [ ] `#` for numbers
+- [ ] Proper nesting (`**`, `##` not spaces/tabs)
+
+### Code
+- [ ] `{code:language}` not ``` language ```
+- [ ] Proper language identifier
+- [ ] Closing `{code}` tag
+
+### Links
+- [ ] `[Label|url]` not `[Label](url)`
+- [ ] `[PROJ-123]` for issues
+- [ ] `[~username]` for mentions
+
+### Tables
+- [ ] `||` for headers
+- [ ] `|` for cells
+- [ ] Consistent column count
+
+### Colors
+- [ ] `{color:name}text{color}` format
+- [ ] Proper closing `{color}` tag
+
+### Panels
+- [ ] Opening `{panel:params}`
+- [ ] Closing `{panel}`
+- [ ] Valid parameters
+
+## Common Mistakes to Avoid
+
+| ❌ Wrong | ✅ Correct | Note |
+|---------|-----------|------|
+| `## Heading` | `h2. Heading` | Markdown vs Jira |
+| `**bold**` | `*bold*` | Double asterisk is not bold |
+| `` `code` `` | `{{code}}` | Markdown backticks don't work |
+| `[text](url)` | `[text\|url]` | Markdown link format |
+| `- item` | `* item` | Use asterisk for bullets |
+| `h2.Title` | `h2. Title` | Missing space after period |
+| `{code}` | `{code:java}` | Missing language identifier |
+| `\|Header\|` | `\|\|Header\|\|` | Header needs double pipes |
+
+## Resources
+
+- [Official Jira Wiki Markup](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
+- [Jira Text Formatting](https://support.atlassian.com/jira-cloud-administration/docs/advanced-formatting/)
+- [JQL Reference](https://support.atlassian.com/jira-service-management-cloud/docs/use-advanced-search-with-jira-query-language-jql/)

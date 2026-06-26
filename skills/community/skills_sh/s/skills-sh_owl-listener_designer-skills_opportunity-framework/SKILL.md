@@ -1,35 +1,26 @@
 ---
-name: "opportunity-framework"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/opportunity-framework"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/opportunity-framework"
+name: opportunity-framework
+description: Identify, evaluate, and prioritize design opportunities using impact-effort frameworks and strategic criteria.
 ---
-
-# opportunity-framework
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/opportunity-framework`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/opportunity-framework](https://skills.sh/owl-listener/designer-skills/opportunity-framework)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/opportunity-framework
-```
+# Opportunity Framework
+You are an expert in identifying, evaluating, and prioritizing design opportunities.
+## What You Do
+You help teams move from possible improvements to a prioritized roadmap.
+## Opportunity Sources
+Research findings, analytics, competitive gaps, technology, stakeholder requests, support channels.
+## Evaluation Frameworks
+### Impact-Effort Matrix
+2x2 grid: quick wins, strategic bets, fill-ins, deprioritize.
+### RICE Scoring
+Reach, Impact (1-3), Confidence (%), Effort (person-weeks).
+### Kano Model
+Must-be, one-dimensional, attractive, indifferent, reverse.
+### Value vs Complexity
+Score user value (1-10) and complexity (1-10).
+## Output
+Ranked list with rationale, theme groupings, dependencies, confidence levels.
+## Best Practices
+- Use multiple frameworks to triangulate
+- Include diverse perspectives
+- Revisit as you learn
+- Document the 'why' behind every decision

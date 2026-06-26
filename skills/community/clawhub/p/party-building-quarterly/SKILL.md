@@ -1,35 +1,128 @@
+# 党建党政季度汇总分析 skill
+
+## 功能
+
+自动收集最近一个季度（三个月）习近平总书记重要讲话、重要文章、中央重要会议精神，汇总整理成清晰的分析报告，要求：
+1. **依赖：** 需要系统安装 `summarize` CLI 工具（skillhub: summarize-1.0.0），用于提取总结《求是》文章核心内容
+2. 使用 summarize 对《求是》杂志发表的总书记重要文章进行内容总结
+3. 所有重要讲话、文章、会议都必须标注**来源链接**，保证有依据
+4. 突出总书记原文引用和核心论述
+5. 最后给出核心风向分析
+6. 格式严格遵循以下模板：
+
 ---
-name: "Party Building Quarterly"
-description: "Automatically collects and summarizes the past quarter's key Xi Jinping speeches, articles, and central meeting spirits into a fixed-format party-building an..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/party-building-quarterly"
-sourceUrl: "https://clawhub.ai/skills/party-building-quarterly"
+
+## 输出格式模板（必须严格遵守）
+
+```markdown
+# 📝 YYYY年第X季度 党建党政重点汇总分析
+
+> 汇总时间：YYYY年MM月DD日  
+> 内容范围：YYYY年MM月-YYYY年MM月
+
 ---
 
-# Party Building Quarterly
+## 一、核心会议：**[会议完整名称]**，习近平总书记作重要讲话
 
-> Automatically collects and summarizes the past quarter's key Xi Jinping speeches, articles, and central meeting spirits into a fixed-format party-building an...
+### 会议核心信息
+- **时间：** YYYY年MM月DD日
+- **主要成果：** [一句话总结会议成果]
+- **定位：** [本次会议的历史定位]
+- **来源链接：** <完整URL>
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/party-building-quarterly`
-- **Source URL:** [https://clawhub.ai/skills/party-building-quarterly](https://clawhub.ai/skills/party-building-quarterly)
+### 习近平总书记重要论述
+[分段摘录核心讲话要点，保留原文引用]
 
-## Overview
+---
 
+## 二、**[会议完整名称]**，习近平总书记部署工作
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/party-building-quarterly
+### 会议核心信息
+- **时间：** YYYY年MM月DD日
+- **主题：** [会议主题]
+- **来源链接：** <完整URL>
+
+### 习近平总书记重要论述
+[分段摘录核心讲话要点，保留原文引用]
+
+---
+
+## 三、《求是》杂志当季发表习近平总书记重要文章汇总
+
+### 1. **[文章标题]** (YYYY-MM-DD)
+- **来源链接：** <完整URL>
+- **核心要点总结：**  
+  [分点总结文章核心要点，每条简明]
+
+### 2. **[文章标题]** (YYYY-MM-DD)
+- **来源链接：** <完整URL>
+- **核心要点总结：**  
+  [分点总结文章核心要点，每条简明]
+
+*(继续添加更多文章...)*
+
+---
+
+## 四、习近平总书记近期重要活动与重要讲话
+
+| 时间 | 活动 | 核心要点 | 来源链接 |
+|------|------|----------|------------|
+| YYYY-MM-DD | **[活动名称]** | [核心要点一句话] | <链接> |
+*(继续添加更多活动...)*
+
+---
+
+## 五、核心思想总结
+
+### 总书记最新强调
+| 关键词 | 核心要求 |
+|--------|---------|
+| [关键词] | [核心要求一句话] |
+*(继续总结...)*
+
+---
+
+## 🔮 核心风向总结
+
+### 1. [方向名称]
+- [分析内容]
+
+### 2. [方向名称]
+- [分析内容]
+
+*(继续分点总结风向)*
+
+---
+
+## 📌 核心关键词
+
+`关键词1` `关键词2` `关键词3` ...
+
 ```
+
+## 使用方式
+
+```
+帮我整理[YYYY年第X季度]党建党政重点汇总分析
+```
+
+自动搜索最新信息，整合输出完整报告，严格遵循上述格式。
+
+## 数据源
+
+- 共产党员网
+- 求是网
+- 人民网-中国共产党新闻网
+- 党建网
+- 新华网
+
+## 版本
+
+- 1.0.1 (2026-04-01): 完善格式，增加依赖说明，要求summarize总结《求是》文章，带来源链接
+  - 已完成：2025年第四季度汇总
+  - 已完成：2026年第一季度汇总
+- 1.0.0 (2026-04-01): 初始版本
+
+## 作者
+
+whiteTin

@@ -1,35 +1,50 @@
 ---
-name: "MiniMax MCP Call"
-description: "MiniMax MCP tools - Web search and image understanding via MiniMax Coding Plan. Use when user needs web search, current information, or image analysis. Requi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/minimax-mcp-call"
-sourceUrl: "https://clawhub.ai/skills/minimax-mcp-call"
+name: minimax-mcp-call
+description: MiniMax MCP tools - Web search and image understanding via MiniMax Coding Plan. Use when user needs web search, current information, or image analysis. Requires MiniMax Coding Plan API key.
 ---
 
-# MiniMax MCP Call
+# MiniMax MCP Tools
 
-> MiniMax MCP tools - Web search and image understanding via MiniMax Coding Plan. Use when user needs web search, current information, or image analysis. Requi...
+Web search and image understanding via MiniMax Coding Plan MCP.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/minimax-mcp-call`
-- **Source URL:** [https://clawhub.ai/skills/minimax-mcp-call](https://clawhub.ai/skills/minimax-mcp-call)
+## Capabilities
 
-## Overview
+| Tool | Description |
+|------|-------------|
+| `web_search` | Search the web for current information, news, weather |
+| `understand_image` | Analyze images, screenshots, diagrams |
 
+## Requirements
 
-## Installation
-To install this skill, run the following command in your terminal:
+- MiniMax Coding Plan API Key
+- Node.js 18+
+- uv (for MCP server)
+
+## Setup
+
+1. Install uv:
 ```bash
-hermes skills install clawhub/minimax-mcp-call
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Configure API key:
+```bash
+echo 'MINIMAX_API_KEY=your-coding-plan-key' >> ~/.openclaw/.env
+echo 'MINIMAX_API_HOST=https://api.minimaxi.com' >> ~/.openclaw/.env
+```
+
+## Usage
+
+```bash
+# Web search
+~/.openclaw/skills/minimax-mcp-call/scripts/mcp_search.sh web_search "search query"
+
+# Image understanding
+~/.openclaw/skills/minimax-mcp-call/scripts/mcp_search.sh understand_image "image_url" "question"
+```
+
+## Quick Test
+
+```bash
+~/.openclaw/skills/minimax-mcp-call/scripts/mcp_search.sh web_search "hello"
 ```

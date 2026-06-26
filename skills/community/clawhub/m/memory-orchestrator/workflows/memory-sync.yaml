@@ -1,0 +1,140 @@
+name: memory-sync
+description: 记忆系统跨设备同步工作流（含多模态支持）
+version: "2.0.0"
+
+# 触发器
+triggers:
+  - type: cron
+    schedule: "*/30 * * * *"  # 每 30 分钟
+    command: sync
+  - type: event
+    event: session.end
+    command: sync
+  - type: file-watch
+    paths:
+      - "memory/multimodal/images/**/*"
+      - "memory/multimodal/audio/**/*"
+    events:
+      - create
+    command: process-multimodal
+
+# 钩子
+hooks:
+  pre-session:
+    - command: git pull origin main
+      condition: git remote -v | grep -q origin
+      fallback: syncthing cli sync memory
+      description: "拉取最新记忆"
+    - command: memory_search --init-index
+      description: "重建语义索引"
+
+  post-session:
+    - command: /home/claw/.openclaw/workspace/scripts/auto-commit-memory.sh
+      description: "提交新记忆"
+    - command: memory_watchdog --distill
+      description: "蒸馏新记忆"
+    - command: python3 /home/claw/.openclaw/workspace/scripts/multimodal_processor.py build-index --modality all
+      description: "更新多模态索引"
+
+# 命令
+commands:
+  sync:
+    description: "手动触发同步"
+    steps:
+      - name: check-changes
+        command: git diff --quiet && exit 0 || echo "Changes detected"
+      - name: pull
+        command: git pull origin main
+        condition: git remote -v | grep -q origin
+      - name: commit
+        command: /home/claw/.openclaw/workspace/scripts/auto-commit-memory.sh
+      - name: push
+        command: git push origin main
+        condition: git remote -v | grep -q origin
+      - name: notify
+        command: echo "Memory sync completed at $(date)" >> memory/state/sync.log
+
+  # 多模态处理命令
+  process-multimodal:
+    description: "处理多模态文件（图像/音频）"
+    params:
+      - name: file_path
+        required: true
+        description: "文件路径"
+    steps:
+      - name: detect-type
+        command: |
+          FILE="${file_path}"
+          if [[ "$FILE" =~ \.(jpg|jpeg|png|gif|webp|bmp)$ ]]; then
+            echo "TYPE=image" >> $GITHUB_ENV
+          elif [[ "$FILE" =~ \.(mp3|wav|m4a|flac|ogg|webm)$ ]]; then
+            echo "TYPE=audio" >> $GITHUB_ENV
+          else
+            echo "TYPE=unknown" >> $GITHUB_ENV
+          fi
+      - name: process-image
+        condition: "${TYPE} == 'image'"
+        command: python3 /home/claw/.openclaw/workspace/scripts/multimodal_processor.py image "${file_path}"
+      - name: process-audio
+        condition: "${TYPE} == 'audio'"
+        command: python3 /home/claw/.openclaw/workspace/scripts/multimodal_processor.py audio "${file_path}" --language zh --model tiny
+      - name: update-index
+        command: python3 /home/claw/.openclaw/workspace/scripts/multimodal_processor.py build-index --modality ${TYPE}
+      - name: log
+        command: echo "[$(date)] Processed ${TYPE}: ${file_path}" >> memory/state/sync.log
+
+  encrypt:
+    description: "加密敏感文件"
+    steps:
+      - name: init-git-crypt
+        command: git crypt init
+        condition: ! git crypt status | grep -q "encrypted"
+      - name: add-attributes
+        command: |
+          echo "MEMORY.md filter=git-crypt diff=git-crypt" >> .gitattributes
+          echo "memory/state/*.json filter=git-crypt diff=git-crypt" >> .gitattributes
+          git add .gitattributes
+      - name: commit
+        command: git commit -m "Enable encryption for sensitive files"
+
+  status:
+    description: "查看同步状态"
+    steps:
+      - name: git-status
+        command: git status --short
+      - name: sync-log
+        command: tail -20 memory/state/sync.log
+      - name: watchdog-state
+        command: cat memory/state/watchdog-state.json
+
+# 配置
+config:
+  encryption:
+    method: git-crypt
+    key: gpg
+    files:
+      - MEMORY.md
+      - memory/state/*.json
+  sync:
+    method: syncthing
+    folder: memory
+    devices:
+      - id: "YRN75DT-U2CRN6T-JEDH6BF-CPTHLCA-QVTQOP4-T2ZBH5J-PKCQFSB-EOIAJQH"
+      - id: "DEVICE_ID_2"  # 待添加第二个设备
+    versioning:
+      type: simple
+      keep: 10
+  conflict:
+    strategy: last-write-wins
+    notify: true
+
+# 通知
+notifications:
+  on-success:
+    - type: log
+      file: memory/state/sync.log
+  on-failure:
+    - type: log
+      file: memory/state/sync.log
+    - type: alert
+      message: "记忆同步失败，请检查"

@@ -1,0 +1,48 @@
+{
+  "name": "soul-backup",
+  "version": "1.2.1",
+  "description": "One-click backup and restore for OpenClaw workspace SOUL files with openclaw.json sanitization",
+  "type": "module",
+  "main": "scripts/backup.mjs",
+  "bin": {
+    "soul-backup": "scripts/backup.mjs",
+    "soul-restore": "scripts/restore.mjs",
+    "soul-list": "scripts/list.mjs",
+    "soul-validate": "scripts/validate.mjs"
+  },
+  "scripts": {
+    "backup": "node scripts/backup.mjs",
+    "restore": "node scripts/restore.mjs",
+    "list": "node scripts/list.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "node scripts/validate.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "backup",
+    "restore",
+    "soul",
+    "agent",
+    "workspace",
+    "ai"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR-USERNAME/soul-backup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR-USERNAME/soul-backup/issues"
+  },
+  "homepage": "https://github.com/YOUR-USERNAME/soul-backup#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "scripts/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ]
+}

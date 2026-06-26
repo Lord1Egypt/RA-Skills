@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.leap-labs/discovery-engine",
+  "title": "Disco",
+  "description": "Find novel, statistically validated patterns in tabular data \u2013 hypothesis-free.",
+  "version": "0.2.138",
+  "websiteUrl": "https://www.leap-labs.com",
+  "repository": {
+    "url": "https://github.com/leap-laboratories/discovery-engine",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://disco.leap-labs.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer token with disco_ API key (format: Bearer disco_...)",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

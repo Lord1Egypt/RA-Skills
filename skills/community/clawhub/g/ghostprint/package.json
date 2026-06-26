@@ -1,0 +1,21 @@
+{
+  "name": "ghostprint",
+  "version": "3.0.0",
+  "description": "LLM fingerprint noise injector — depersonalize your usage profile and prevent behavioral fingerprinting",
+  "keywords": ["privacy", "llm", "fingerprint", "noise", "openclaw", "plugin", "anthropic", "openai"],
+  "homepage": "https://github.com/alarawms/ghostprint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alarawms/ghostprint.git"
+  },
+  "license": "MIT",
+  "author": "alarawms",
+  "openclaw": {
+    "extensions": ["./openclaw-plugin/index.ts"],
+    "plugin": {
+      "id": "ghostprint",
+      "name": "Ghostprint",
+      "description": "LLM fingerprint noise injector. Depersonalizes your usage profile with behaviorally realistic noise queries across multiple providers."
+    }
+  }
+}

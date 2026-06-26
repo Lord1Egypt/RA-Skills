@@ -1,0 +1,56 @@
+# CIE 9702 Physics Learning Framework - Config
+# ============================================
+# Source: cie.fraft.org (FRANK CIE) - search by subject/year/season
+
+scraper:
+  base_url: "https://cie.fraft.org"
+  subject_code: "9702"
+  subject_name: "physics"
+  output_dir: "data/raw"
+  request_delay_sec: 1.2
+  user_agent: "Mozilla/5.0 (compatible; Physics9702Scraper/1.0; +https://github.com/your-repo)"
+  max_retries: 5
+  years:
+    - 2001
+    - 2002
+    - 2003
+    - 2004
+    - 2005
+    - 2006
+    - 2007
+    - 2008
+    - 2009
+    - 2010
+    - 2011
+    - 2012
+    - 2013
+    - 2014
+    - 2015
+    - 2016
+    - 2017
+    - 2018
+    - 2019
+    - 2020
+    - 2021
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+    - 2026
+
+sft:
+  output_dir: "data/sft"
+  val_ratio: 0.1
+  max_question_length: 2500
+  max_framework_length: 512
+  teacher_model: "deepseek-chat"  # for build_sft.py --teacher-mode deepseek
+
+training:
+  model: "Qwen/Qwen3-4B-MLX-4bit"
+  adapter_path: "adapters"
+  batch_size: 1
+  iters: 1000
+  learning_rate: 1e-5
+  max_seq_length: 2048
+  num_layers: 16
+  save_every: 100

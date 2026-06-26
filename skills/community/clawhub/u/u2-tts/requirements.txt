@@ -1,0 +1,13 @@
+# U2-TTS Requirements
+
+# Core dependency
+websocket-client>=0.56.0
+
+# Optional: For async operations
+gevent>=1.4.0
+
+# Dependencies (auto-installed with gevent)
+greenlet>=0.4.15
+cffi>=1.12.3
+pycparser>=2.19
+six>=1.12.0

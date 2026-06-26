@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  ace-step:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ace-step-m2:latest
+    container_name: ace-step-server
+    
+    # 资源限制 (根据 Mac Mini M2 32GB 优化)
+    deploy:
+      resources:
+        limits:
+          memory: 24G
+        reservations:
+          memory: 8G
+    
+    # 挂载卷
+    volumes:
+      - ~/Music/ACE-Step:/app/output        # 输出目录
+      - ace-step-models:/app/models          # 模型缓存
+      - ./custom-config.yaml:/app/config.yaml:ro  # 自定义配置
+    
+    # 端口映射
+    ports:
+      - "7860:7860"    # Gradio UI
+      - "8000:8000"    # API 服务
+    
+    # 环境变量
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ACE_STEP_DEVICE=cpu
+      - ACE_STEP_PRECISION=float16
+      - HF_HOME=/app/models
+    
+    # 重启策略
+    restart: unless-stopped
+    
+    # 日志配置
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+  # 可选: API 服务模式
+  ace-step-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ace-step-m2:latest
+    container_name: ace-step-api
+    command: ["python", "start_api_server.py", "--host", "0.0.0.0", "--port", "8000"]
+    
+    deploy:
+      resources:
+        limits:
+          memory: 24G
+    
+    volumes:
+      - ~/Music/ACE-Step:/app/output
+      - ace-step-models:/app/models
+    
+    ports:
+      - "8000:8000"
+    
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ACE_STEP_API_MODE=1
+    
+    restart: unless-stopped
+    profiles: ["api"]  # 仅在指定 profile 时启动
+
+volumes:
+  ace-step-models:
+    driver: local

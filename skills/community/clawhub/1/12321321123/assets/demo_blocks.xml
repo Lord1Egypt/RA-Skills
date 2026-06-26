@@ -1,0 +1,45 @@
+<deck>
+  <slide type="cover" title="Company AI Infra Overview" subtitle="Template-first XML rendering demo"/>
+  <slide type="toc">
+    <title>目录</title>
+    <items>
+      <item>公司概览</item>
+      <item>核心能力矩阵</item>
+      <item>市场增长分析</item>
+      <item>收入结构（饼图）</item>
+      <item>行业增长（柱图）</item>
+      <item>季度趋势（折线）</item>
+      <item>关键指标表</item>
+      <item>总结</item>
+    </items>
+  </slide>
+  <slide type="section" title="公司概览" subtitle="云原生与 AI Infra 一体化能力" part="Part" part_no="01"/>
+  <slide type="matrix" title="核心能力矩阵（四大能力域）">
+    <headings>
+      <item>Platform Engineering</item>
+      <item>AI Runtime</item>
+      <item>Data Pipeline</item>
+      <item>MLOps Governance</item>
+    </headings>
+    <bodies>
+      <item>统一资源池和调度策略，提升交付效率与稳定性。</item>
+      <item>覆盖训练和推理场景，支持弹性扩缩容。</item>
+      <item>打通采集、特征、训练和上线链路。</item>
+      <item>可观测、审计与策略治理，保障企业级合规。</item>
+    </bodies>
+  </slide>
+  <slide type="market_section" title="AI Infra 市场增长分析" subtitle="收入结构、行业增长与季度趋势" part="Part" part_no="02"/>
+  <slide type="pie" title="收入结构（2025）" subtitle="AI Infra 业务收入占比持续提升" series="Revenue Share %" categories="AI Infra,Cloud Native,Services,Other" values="42,28,20,10"/>
+  <slide type="bar" title="行业增长贡献（YoY）" subtitle="制造与金融行业增速领先" series="YoY Growth %" categories="Manufacturing,Finance,Internet,Energy,Public Sector" values="68,61,43,36,32"/>
+  <slide type="line" title="季度增长趋势（2024Q1-2025Q2）" subtitle="AI Infra 收入连续增长" series="Revenue (M CNY)" categories="2024Q1,2024Q2,2024Q3,2024Q4,2025Q1,2025Q2" values="32,38,47,56,71,89"/>
+  <slide type="table" title="关键经营指标（AI Infra）" headers="指标,2024,2025H1,变化">
+    <rows>
+      <row><cell>新增客户数</cell><cell>86</cell><cell>61</cell><cell>+42%</cell></row>
+      <row><cell>续约率</cell><cell>78%</cell><cell>84%</cell><cell>+6pp</cell></row>
+      <row><cell>项目交付周期</cell><cell>14周</cell><cell>10周</cell><cell>-29%</cell></row>
+      <row><cell>AI Infra收入占比</cell><cell>31%</cell><cell>42%</cell><cell>+11pp</cell></row>
+    </rows>
+  </slide>
+  <slide type="slogan" title="Build AI Infra, Deliver Business Value" subtitle="Company Name"/>
+  <slide type="end" title="Thanks." subtitle="Company AI Infra Analysis"/>
+</deck>

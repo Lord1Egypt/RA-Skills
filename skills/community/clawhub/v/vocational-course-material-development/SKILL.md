@@ -1,35 +1,44 @@
 ---
-name: "职业教育课材一体化开发"
-description: "职业教育课材一体化开发专家 - 基于岗位能力图谱和AI赋能的课材一体化设计、开发与优化工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vocational-course-material-development"
-sourceUrl: "https://clawhub.ai/skills/vocational-course-material-development"
+name: 职业教育课材一体化开发
+description: 职业教育课材一体化开发专家 - 基于岗位能力图谱和AI赋能的课材一体化设计、开发与优化工具
+version: 1.0.1
+author: Erich1566
+tags: [职业教育, 课材一体化, 能力图谱, AI赋能, 课程设计, 教材开发]
+category: education
 ---
 
-# 职业教育课材一体化开发
+# 职业教育课材一体化开发技能
 
-> 职业教育课材一体化开发专家 - 基于岗位能力图谱和AI赋能的课材一体化设计、开发与优化工具
+基于岗位能力图谱和AI赋能，提供职业教育教学关键要素（专业、课程、教材、教师、实习实训）联动改革的系统化解决方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vocational-course-material-development`
-- **Source URL:** [https://clawhub.ai/skills/vocational-course-material-development](https://clawhub.ai/skills/vocational-course-material-development)
+## 核心内容
 
-## Overview
+### 课材一体化四步建设路径
 
+1. **岗位能力图谱建设** - 构建课程重构的顶层依据
+2. **课程内容模块化重构** - 基于典型工作过程设计
+3. **课程图谱体系化设计** - 知识能力素养三位一体
+4. **教学资源设计制作** - 遵循五项核心原则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vocational-course-material-development
-```
+### AI赋能四步流程
+
+精准拆解需求 → 批量出稿 → 人工审校 → 打磨成型
+
+**核心理念**: AI可替代效率，不可替代专业；工具可实现生成，无法实现设计。
+
+## 快速开始
+
+适用于职业院校教师、教学设计师、课程开发者，帮助系统化开发高质量的职教课程和教材。
+
+## 功能特点
+
+- 岗位能力图谱构建指南
+- 课程内容模块化设计方法
+- 工作过程六要素六步骤框架
+- 课程图谱层级对应关系
+- 教学资源制作五原则
+- 常见误区与规避方法
+
+## 语言支持
+
+自动检测用户语言环境，提供中英文双语支持。

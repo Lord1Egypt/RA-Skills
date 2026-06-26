@@ -1,0 +1,122 @@
+{
+  "name": "Intermediate Vocabulary List",
+  "level": "intermediate",
+  "total_words": 50,
+  "description": "中级英语词汇列表，适合有一定英语基础的学习者",
+  "words": [
+    {
+      "word": "abandon",
+      "phonetic": "/əˈbændən/",
+      "part_of_speech": "v.",
+      "chinese_meaning": "放弃，抛弃",
+      "example_sentence": "Don't abandon your dreams.",
+      "roots": [
+        {"part": "a-", "meaning": "to", "type": "prefix"},
+        {"part": "bandon", "meaning": "control", "type": "root"}
+      ]
+    },
+    {
+      "word": "achieve",
+      "phonetic": "/əˈtʃiːv/",
+      "part_of_speech": "v.",
+      "chinese_meaning": "实现，达到",
+      "example_sentence": "You can achieve your goals with hard work.",
+      "roots": [
+        {"part": "a-", "meaning": "to", "type": "prefix"},
+        {"part": "chieve", "meaning": "chief, head", "type": "root"}
+      ]
+    },
+    {
+      "word": "believe",
+      "phonetic": "/bɪˈliːv/",
+      "part_of_speech": "v.",
+      "chinese_meaning": "相信",
+      "example_sentence": "I believe in you.",
+      "roots": [
+        {"part": "be-", "meaning": "thoroughly", "type": "prefix"},
+        {"part": "lieve", "meaning": "love, desire", "type": "root"}
+      ]
+    },
+    {
+      "word": "creative",
+      "phonetic": "/kriˈeɪtɪv/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "有创造力的",
+      "example_sentence": "She is very creative in her work.",
+      "roots": [
+        {"part": "creat", "meaning": "create", "type": "root"},
+        {"part": "-ive", "meaning": "having quality of", "type": "suffix"}
+      ]
+    },
+    {
+      "word": "discover",
+      "phonetic": "/dɪsˈkʌvər/",
+      "part_of_speech": "v.",
+      "chinese_meaning": "发现",
+      "example_sentence": "Scientists discovered a new planet.",
+      "roots": [
+        {"part": "dis-", "meaning": "opposite of", "type": "prefix"},
+        {"part": "cover", "meaning": "to cover", "type": "root"}
+      ]
+    },
+    {
+      "word": "environment",
+      "phonetic": "/ɪnˈvaɪrənmənt/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "环境",
+      "example_sentence": "We should protect the environment.",
+      "roots": [
+        {"part": "en-", "meaning": "in", "type": "prefix"},
+        {"part": "viron", "meaning": "circle", "type": "root"},
+        {"part": "-ment", "meaning": "state", "type": "suffix"}
+      ]
+    },
+    {
+      "word": "impossible",
+      "phonetic": "/ɪmˈpɒsəbl/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "不可能的",
+      "example_sentence": "Nothing is impossible if you believe.",
+      "roots": [
+        {"part": "im-", "meaning": "not", "type": "prefix"},
+        {"part": "poss", "meaning": "can", "type": "root"},
+        {"part": "-ible", "meaning": "can be", "type": "suffix"}
+      ]
+    },
+    {
+      "word": "knowledge",
+      "phonetic": "/ˈnɒlɪdʒ/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "知识",
+      "example_sentence": "Knowledge is power.",
+      "roots": [
+        {"part": "know", "meaning": "to know", "type": "root"},
+        {"part": "-ledge", "meaning": "state", "type": "suffix"}
+      ]
+    },
+    {
+      "word": "opportunity",
+      "phonetic": "/ˌɒpəˈtjuːnəti/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "机会",
+      "example_sentence": "This is a great opportunity for you.",
+      "roots": [
+        {"part": "op-", "meaning": "toward", "type": "prefix"},
+        {"part": "port", "meaning": "harbor", "type": "root"},
+        {"part": "-unity", "meaning": "state", "type": "suffix"}
+      ]
+    },
+    {
+      "word": "successful",
+      "phonetic": "/səkˈsesfl/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "成功的",
+      "example_sentence": "She is a successful businesswoman.",
+      "roots": [
+        {"part": "suc-", "meaning": "from under", "type": "prefix"},
+        {"part": "cess", "meaning": "go", "type": "root"},
+        {"part": "-ful", "meaning": "full of", "type": "suffix"}
+      ]
+    }
+  ]
+}

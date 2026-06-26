@@ -1,0 +1,29 @@
+{
+  "llm_providers": {
+    "openai": {
+      "gpt-4": {"input": 0.03, "output": 0.06},
+      "gpt-4o": {"input": 0.005, "output": 0.015},
+      "gpt-3.5-turbo": {"input": 0.0015, "output": 0.002}
+    },
+    "anthropic": {
+      "claude-3-opus": {"input": 0.015, "output": 0.075},
+      "claude-3-sonnet": {"input": 0.003, "output": 0.015},
+      "claude-3-haiku": {"input": 0.00025, "output": 0.00125}
+    },
+    "skyapi": {
+      "claude-sonnet-4-6": {"input": 0.003, "output": 0.015}
+    }
+  },
+  "storage": {
+    "s3": 0.023,
+    "oss": 0.12,
+    "local_gb_month": 0
+  },
+  "compute": {
+    "cpu_hour": 0.05,
+    "memory_gb_hour": 0.01
+  },
+  "currency": "USD",
+  "usd_to_cny": 7.2,
+  "_note": "单价单位：LLM 为美元/千token，存储为美元/GB/月，计算为美元/小时。修改此文件以匹配你的实际服务商计费标准。"
+}

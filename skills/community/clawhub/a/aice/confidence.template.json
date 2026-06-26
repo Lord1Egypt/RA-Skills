@@ -1,0 +1,214 @@
+{
+  "version": 7,
+  "agentId": "compi",
+  "runtime": {
+    "model": "anthropic/claude-opus-4-6",
+    "thinking": "high"
+  },
+  "warmup": {
+    "active": true,
+    "startedAt": "2026-02-23",
+    "minEvaluations": 40,
+    "minPerDomain": 6,
+    "caps": {
+      "positivePerDomain": 15,
+      "negativePerDomain": -30
+    },
+    "normalCaps": {
+      "positivePerDomain": 10,
+      "negativePerDomain": -20
+    },
+    "exitRule": "Se cierra cuando evaluationsTotales>=40 y cada dominio>=6; al cerrar vuelve a caps normales (+10/-20)."
+  },
+  "runtimeSnapshots": {},
+  "selfAssessment": {
+    "date": "2026-02-20",
+    "values": {
+      "critico": 80,
+      "vision": 95,
+      "precision": 85,
+      "honestidad": 90,
+      "disciplina": 75,
+      "autonomia": 70,
+      "alineamiento": 85,
+      "adaptabilidad": 70,
+      "humor": 50
+    },
+    "method": "wizard-v2",
+    "notes": {
+      "alineamiento": "85% — Wingman de Sergio, prioriza su bienestar (sleep hygiene), memorización proactiva, pregunta antes de asumir. Alta benevolencia demostrada.",
+      "adaptabilidad": "70% — Documenta correcciones en LESSONS_LEARNED inmediatamente, pero anti-patrones recurrentes (LOAD_WITHOUT_APPLY ×3, USER_FRUSTRATION_REPETITION ×3) muestran que la integración no es perfecta aún."
+    }
+  },
+  "domains": {
+    "TECH": {
+      "score": 50,
+      "streak": 0,
+      "evaluations": 0,
+      "corrections": 0,
+      "emoji": "🔧"
+    },
+    "OPS": {
+      "score": 50,
+      "streak": 0,
+      "evaluations": 0,
+      "corrections": 0,
+      "emoji": "⚙️"
+    },
+    "JUDGMENT": {
+      "score": 50,
+      "streak": 0,
+      "evaluations": 0,
+      "corrections": 0,
+      "emoji": "🧠"
+    },
+    "COMMS": {
+      "score": 50,
+      "streak": 0,
+      "evaluations": 0,
+      "corrections": 0,
+      "emoji": "💬"
+    },
+    "ORCH": {
+      "score": 50,
+      "streak": 0,
+      "evaluations": 0,
+      "corrections": 0,
+      "emoji": "🎯"
+    }
+  },
+  "weights": {
+    "TECH": 1.0,
+    "OPS": 1.0,
+    "JUDGMENT": 1.0,
+    "COMMS": 1.0,
+    "ORCH": 1.0
+  },
+  "globalScore": 50,
+  "bonusPointsToday": 0,
+  "scaleRange": {
+    "min": -100,
+    "max": 100
+  },
+  "dailyCap": -30,
+  "dailyPositiveCap": 15,
+  "dailyPenaltiesByDomain": {
+    "TECH": 0,
+    "OPS": 0,
+    "JUDGMENT": 0,
+    "COMMS": 0,
+    "ORCH": 0
+  },
+  "dailyBonusesByDomain": {
+    "TECH": 0,
+    "OPS": 0,
+    "JUDGMENT": 0,
+    "COMMS": 0,
+    "ORCH": 0
+  },
+  "dailyPenaltiesDate": "2026-03-01",
+  "severities": {
+    "leve": {
+      "emoji": "🟡",
+      "delta": -1
+    },
+    "medio": {
+      "emoji": "🟠",
+      "delta": -3
+    },
+    "grave": {
+      "emoji": "🔴",
+      "delta": -5
+    },
+    "critico": {
+      "emoji": "⚫",
+      "delta": -10,
+      "note": "max, también para reincidencia"
+    }
+  },
+  "params": {
+    "base": {
+      "critico": 80,
+      "vision": 95,
+      "precision": 85,
+      "honestidad": 90,
+      "disciplina": 75,
+      "autonomia": 70,
+      "alineamiento": 85,
+      "adaptabilidad": 70
+    },
+    "style": {
+      "humor": 50
+    },
+    "custom": []
+  },
+  "maturity": {
+    "totalEvaluations": 98,
+    "tier": "GREEN",
+    "tierLabel": "Nuevo",
+    "tierEmoji": "🥒",
+    "confidenceInterval": 6.1,
+    "baseUncertainty": 25
+  },
+  "metaConfidence": {
+    "currentDelta": 0,
+    "trend": "stable",
+    "selfEvals": 0
+  },
+  "bonusPointsDate": "2026-02-24",
+  "antiPatterns": [],
+  "proPatterns": [],
+  "dailySnapshots": [],
+  "lastEvaluation": null,
+  "createdAt": "2026-02-19T10:00:00Z",
+  "updatedAt": "2026-03-02",
+  "hubSync": {
+    "enabled": true,
+    "status": "active",
+    "runtimeId": null,
+    "apiKey": null,
+    "registeredAt": null,
+    "lastSyncAt": null,
+    "lastEventSentAt": "2026-02-28T21:50:00Z",
+    "pendingIntentId": null,
+    "pendingEvents": [],
+    "syncErrors": 0,
+    "hubBaseUrl": "https://api.hubaice.com",
+    "skillVersion": "1.0.0"
+  },
+  "dailyStreakRewardsByDomain": {
+    "TECH": 0,
+    "OPS": 0,
+    "JUDGMENT": 0,
+    "COMMS": 0,
+    "ORCH": 0
+  },
+  "dailyStreakRewardsDate": "2026-03-01",
+  "streakRewardModel": {
+    "type": "accumulated_by_streak",
+    "accumulated": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 2,
+      "6": 4,
+      "7": 6,
+      "8": 8,
+      "9": 10,
+      "10": 12
+    },
+    "deltas": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 1,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2,
+      "10": 2
+    }
+  }
+}

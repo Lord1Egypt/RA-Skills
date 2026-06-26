@@ -1,0 +1,75 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/imdb/title-chart-rankings/v1 for IMDb Chart Rankings through JustOneAPI with rankingsChartType.",
+  "displayName": "IMDb Chart Rankings",
+  "endpointPath": "title-chart-rankings",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get IMDb title Chart Rankings data, including positions in lists such as Top 250 and related charts, for ranking monitoring and title benchmarking.",
+      "method": "GET",
+      "operationId": "titleChartRankings",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User's authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Type of rankings chart to retrieve.\n\nAvailable Values:\n- `TOP_250`: Top 250 Movies\n- `TOP_250_TV`: Top 250 TV Shows",
+          "enumValues": [
+            "TOP_250",
+            "TOP_250_TV"
+          ],
+          "location": "query",
+          "name": "rankingsChartType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "en_US",
+          "description": "Language and country preferences.\n\nAvailable Values:\n- `en_US`: English (US)\n- `fr_CA`: French (Canada)\n- `fr_FR`: French (France)\n- `de_DE`: German (Germany)\n- `hi_IN`: Hindi (India)\n- `it_IT`: Italian (Italy)\n- `pt_BR`: Portuguese (Brazil)\n- `es_ES`: Spanish (Spain)\n- `es_US`: Spanish (US)\n- `es_MX`: Spanish (Mexico)",
+          "enumValues": [
+            "en_US",
+            "fr_CA",
+            "fr_FR",
+            "de_DE",
+            "hi_IN",
+            "it_IT",
+            "pt_BR",
+            "es_ES",
+            "es_US",
+            "es_MX"
+          ],
+          "location": "query",
+          "name": "languageCountry",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/imdb/title-chart-rankings/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Chart Rankings",
+      "tags": [
+        "IMDb"
+      ]
+    }
+  ],
+  "platformKey": "imdb",
+  "primaryTag": "IMDb",
+  "skillName": "justoneapi_imdb_title_chart_rankings",
+  "skillType": "interface",
+  "slug": "justoneapi-imdb-title-chart-rankings",
+  "sourceTitle": "OpenAPI definition"
+}

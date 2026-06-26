@@ -1,0 +1,13 @@
+{
+  "emoji": "🔗",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "cron": "*/10 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "strategy.py",
+    "args": ["--live"]
+  }
+}

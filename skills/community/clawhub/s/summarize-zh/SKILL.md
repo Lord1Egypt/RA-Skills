@@ -1,35 +1,32 @@
+# 来源：Cocoloop 平台原生（hub.cocoloop.cn），基于描述重新创作
 ---
-name: "Summarize Zh"
-description: "生成结构化摘要，提炼文章、文档、会议记录等内容的核心观点和关键信息，支持中英文混合内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/summarize-zh"
-sourceUrl: "https://clawhub.ai/skills/summarize-zh"
+name: summarize-zh
+description: >
+  多模态智能内容摘要工具，对文章、文档、网页、视频字幕、会议记录等各类内容生成结构化摘要。
+  适用于快速阅读长文、整理会议要点、提炼报告核心、压缩信息密度等场景。解决"帮我总结这篇文章"、
+  "内容太长了提炼要点"、"会议纪要摘要"、"文档摘要 / 内容摘要"等需求。支持中英文混合内容。
+tags: [内容摘要, 文章总结, 要点提炼, summarize, 智能摘要, 会议摘要, 文档摘要]
 ---
 
-# Summarize Zh
+# 多模态内容摘要工具
 
-> 生成结构化摘要，提炼文章、文档、会议记录等内容的核心观点和关键信息，支持中英文混合内容。
+对各类内容生成结构化摘要，快速提炼核心信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/summarize-zh`
-- **Source URL:** [https://clawhub.ai/skills/summarize-zh](https://clawhub.ai/skills/summarize-zh)
+## Tools Required
+- read
 
-## Overview
+## Usage
 
+- "帮我总结这篇文章的核心观点，用3-5个要点列出来"
+- "这份会议记录太长了，帮我提炼出决议事项和待办"
+- "把这个研究报告压缩成一页摘要，保留数据和结论"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/summarize-zh
-```
+## Examples
+
+输入：`（粘贴一篇 3000 字的行业分析报告）帮我生成一份执行摘要`
+
+输出：
+- **核心结论**（2-3 句话）
+- **关键数据**：市场规模 / 增速 / 主要玩家
+- **机会与风险**：各 2-3 条
+- **行动建议**：3 条可执行建议

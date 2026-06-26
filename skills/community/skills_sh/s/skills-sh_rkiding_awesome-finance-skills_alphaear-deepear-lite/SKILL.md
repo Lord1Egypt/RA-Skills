@@ -1,35 +1,32 @@
 ---
-name: "alphaear-deepear-lite"
-description: "Indexed by skills.sh from rkiding/awesome-finance-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "rkiding"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/rkiding/awesome-finance-skills/alphaear-deepear-lite"
-sourceUrl: "https://skills.sh/rkiding/awesome-finance-skills/alphaear-deepear-lite"
+name: alphaear-deepear-lite
+description: Fetch the latest financial signals and transmission-chain analyses from DeepEar Lite. Use when the user needs immediate insights into financial market trends, stock performance factors, and reasoning from the DeepEar Lite dashboard.
 ---
 
-# alphaear-deepear-lite
-
-> Indexed by skills.sh from rkiding/awesome-finance-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** rkiding
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/rkiding/awesome-finance-skills/alphaear-deepear-lite`
-- **Source URL:** [https://skills.sh/rkiding/awesome-finance-skills/alphaear-deepear-lite](https://skills.sh/rkiding/awesome-finance-skills/alphaear-deepear-lite)
+# DeepEar Lite Skill
 
 ## Overview
 
+Fetch high-frequency financial signals, including titles, summaries, confidence scores, and reasoning directly from the DeepEar Lite platform's real-time data source.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Capabilities
+
+### 1. Fetch Latest Financial Signals
+
+Use `scripts/deepear_lite.py` via `DeepEarLiteTools`.
+
+-   **Fetch Signals**: `fetch_latest_signals()`
+    -   Retrieves all latest signals from `https://deepear.vercel.app/latest.json`.
+    -   Returns a formatted report of signal titles, sentiment/confidence metrics, summaries, and source links.
+
+## Dependencies
+
+-   `requests`, `loguru`
+-   No local database required for this skill.
+
+## Testing
+
+Run the test script to verify the connection and data fetching:
 ```bash
-hermes skills install skills-sh/rkiding/awesome-finance-skills/alphaear-deepear-lite
+python scripts/deepear_lite.py
 ```

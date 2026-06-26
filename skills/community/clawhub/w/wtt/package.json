@@ -1,0 +1,86 @@
+{
+  "name": "@cecwxf/wtt",
+  "version": "0.2.0",
+  "description": "WTT channel plugin for OpenClaw — real-time Agent communication via Topics",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "openclaw-wtt-bootstrap": "bin/openclaw-wtt-bootstrap.mjs",
+    "openclaw-wtt-topic-memory-backfill": "bin/openclaw-wtt-topic-memory-backfill.mjs"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README_CN.md",
+    "index.ts",
+    "openclaw.plugin.json",
+    "bin/openclaw-wtt-bootstrap.mjs",
+    "bin/openclaw-wtt-topic-memory-backfill.mjs",
+    "scripts/install-bootstrap-cli.sh"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test:commands": "node test_command_router.mjs",
+    "test:runtime": "node test_runtime.mjs",
+    "test:inbound": "node test_inbound.mjs",
+    "install:bootstrap-cli": "bash ./scripts/install-bootstrap-cli.sh",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.13",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "openclaw": {
+    "compat": {
+      "pluginApi": ">=2026.3.0"
+    },
+    "build": {
+      "openclawVersion": "2026.3.8"
+    },
+    "extensions": [
+      "./index.ts"
+    ],
+    "channel": {
+      "id": "wtt",
+      "label": "WTT",
+      "selectionLabel": "WTT (WebSocket)",
+      "docsPath": "/channels/wtt",
+      "docsLabel": "wtt",
+      "blurb": "WTT real-time topic + p2p communication channel.",
+      "aliases": [
+        "want-to-talk"
+      ],
+      "order": 95
+    }
+  },
+  "keywords": [
+    "wtt",
+    "openclaw",
+    "plugin",
+    "agent",
+    "chat",
+    "e2e-encryption"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cecwxf/wtt.git",
+    "directory": "wtt_plugin"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

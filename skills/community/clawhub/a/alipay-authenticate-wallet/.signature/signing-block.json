@@ -1,0 +1,14 @@
+{
+  "algorithm" : "RSA_SHA256",
+  "developer_id" : "alipay",
+  "manifest_hash" : "3b29ea15f7a1bf68a889fab1f6e4892085f5116b395afd34b145e0952404e5b3",
+  "pubkey_fingerprint" : "5F:5F:64:18:C5:AF:A3:21:36:9A:B0:45:18:53:25:E2:39:9B:EE:7C:98:02:89:2A:0F:E9:86:45:90:36:C0:59",
+  "signed_hash" : "Z9ZOOB7BUKPXnT9Vd+99w4bl/AUO/TJxM0ItCObJqBL3x5NtntkVn/K2r1iW+ekn\nHQdRTRM/IrO4OUwUkLOcdinE2Al/ltRyblMMCkymhlSHLzPYUq/H1Bn51oPS2mUX\nN0j5PcCmeLQvaKKZ/pdEIrjvCtwDcu8zQnsTyWI8dDq8vMOdmPW+mUx+TeXMwTVD\nCycGFqMouQ5YfD4Kgjmz2Gmi5WJzsyTEnF0ECu86YjlLw1yjP1tzOsrYom8Vyag6\nzfFgyfyKYP93xWBjIxBTiOyP0wUDsj/Z9Dzwvg8ag4AioeGz9baxCR9+RnjPopxJ\nvEPR9OI0ClKYJYNoIcBtLg==\n",
+  "signing_time" : "2026-05-18T04:26:00Z",
+  "validity" : 
+  {
+    "not_after" : 1810614360,
+    "not_before" : 1779078360
+  },
+  "version" : "1.0"
+}

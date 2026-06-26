@@ -1,0 +1,193 @@
+# Image Forge Use-Case Index
+# 每个用途条目关联：
+#   - references_file: 对应 references/ 下的 prompt 模板 JSON
+#   - recommended_signature: 推荐 Signature 风格（有独特视觉方案）
+#   - recommended_rendering: 推荐 Rendering 风格（通用技法）
+#   - default_backend: 该用途的默认后端
+#   - default_size: 推荐输出尺寸（GPT Image 2 尺寸规格）
+#   - default_aspect: Gemini 宽高比
+#
+# 调度决策优先级：
+#   1. 用户显式指定后端/风格 → 覆盖一切
+#   2. 用户指定 style → 按 style 的 preferred_backend
+#   3. 无 style 指定 → 按 use-case 的 default_backend
+
+use_cases:
+
+  - id: poster-flyer
+    label: "海报 / 传单"
+    aliases: [海报, 传单, 宣传单, poster, flyer, promotional poster]
+    references_file: "references/poster-flyer.json"
+    recommended_signature:
+      - constructivism      # 几何构成，强视觉冲击
+      - risograph-magazine  # 印刷质感
+      - high-contrast-industrial  # 高对比度，适合科技/活动
+      - tri-color           # 极简三色，适合文化类
+    recommended_rendering:
+      - cinematic-film-still  # 电影感大片
+      - retro-vintage         # 复古风宣传
+      - cyberpunk-sci-fi      # 科技/电竞活动
+    default_backend: gpt-image-2    # 文字渲染是 GPT Image 2 核心优势
+    default_size: "1024x1536"       # 竖版海报
+    default_aspect: "3:4"
+
+  - id: profile-avatar
+    label: "头像 / 肖像"
+    aliases: [头像, 肖像, 个人照, avatar, profile picture, portrait, pfp]
+    references_file: "references/profile-avatar.json"
+    recommended_signature:
+      - klein-blue-order    # 极简干净，适合职业头像
+      - mixed-media         # 线稿摄影融合，艺术感
+      - pop-ink-splash      # 波普活力，适合社交头像
+      - glitch-window-v1    # 数字感，适合科技圈
+    recommended_rendering:
+      - anime-manga         # 动漫头像
+      - illustration        # 插画风肖像
+      - photography         # 写真风
+      - chibi-q-style       # Q 版可爱
+      - oil-painting        # 油画人像
+    default_backend: nano-banana-2  # 人物风格迁移 Gemini 更灵活
+    default_size: "1024x1024"
+    default_aspect: "1:1"
+
+  - id: product-marketing
+    label: "产品营销图"
+    aliases: [产品图, 营销图, 产品海报, product marketing, product photo, 产品宣传]
+    references_file: "references/product-marketing.json"
+    recommended_signature:
+      - high-contrast-industrial  # 科技产品强视觉
+    recommended_rendering:
+      - photography         # 产品写真，最常用
+      - 3d-render           # 3D 产品渲染
+      - minimalism          # 极简留白，高级感
+      - cinematic-film-still  # 电影感产品大片
+    default_backend: gpt-image-2   # 写实感、构图精度、光影
+    default_size: "1536x1024"
+    default_aspect: "4:3"
+
+  - id: ecommerce-main-image
+    label: "电商主图"
+    aliases: [电商, 主图, 详情页, 淘宝, ecommerce, product main image, 白底图]
+    references_file: "references/ecommerce-main-image.json"
+    recommended_signature: []       # 电商主图通常不需要强风格
+    recommended_rendering:
+      - photography         # 白底产品摄影，标准电商风格
+      - 3d-render           # 3D 产品展示
+      - minimalism          # 干净背景
+    default_backend: gpt-image-2   # 细节还原、白底准确
+    default_size: "1024x1024"       # 电商标准正方形
+    default_aspect: "1:1"
+
+  - id: youtube-thumbnail
+    label: "YouTube / 视频封面"
+    aliases: [视频封面, YouTube封面, thumbnail, 封面图, video cover]
+    references_file: "references/youtube-thumbnail.json"
+    recommended_signature:
+      - high-contrast-industrial  # 高对比强吸引力
+      - tri-color                 # 极简高辨识度
+    recommended_rendering:
+      - cinematic-film-still  # 电影感，点击率高
+      - photography           # 真实感场景
+      - cyberpunk-sci-fi      # 科技/游戏频道
+    default_backend: gpt-image-2   # 文字叠加 + 视觉冲击力
+    default_size: "1536x1024"       # 16:9 横版
+    default_aspect: "16:9"
+
+  - id: social-media-post
+    label: "社交媒体配图"
+    aliases: [社交媒体, 小红书, ins, instagram, 朋友圈, social media, 配图]
+    references_file: "references/social-media-post.json"
+    recommended_signature:
+      - risograph-magazine  # 印刷质感，ins 风
+      - pop-ink-splash      # 波普活力
+      - tri-color           # 极简时尚
+      - klein-blue-order    # 清新夏日感
+    recommended_rendering:
+      - illustration        # 插画配图
+      - photography         # 生活写真
+      - watercolor          # 清新水彩
+      - anime-manga         # 二次元社区
+    default_backend: gpt-image-2
+    default_size: "1024x1024"
+    default_aspect: "1:1"
+
+  - id: app-web-design
+    label: "App / 网页设计素材"
+    aliases: [UI, app设计, 网页, 界面, app, web design, UI mockup, 设计稿]
+    references_file: "references/app-web-design.json"
+    recommended_signature: []
+    recommended_rendering:
+      - 3d-render           # 3D UI 元素
+      - minimalism          # 极简界面
+      - isometric           # 等距风格图
+    default_backend: gpt-image-2   # UI 构图精度 + 文字渲染
+    default_size: "1536x1024"
+    default_aspect: "16:9"
+
+  - id: comic-storyboard
+    label: "漫画 / 分镜"
+    aliases: [漫画, 分镜, 故事板, comic, storyboard, manga panels, 格漫]
+    references_file: "references/comic-storyboard.json"
+    recommended_signature:
+      - glitch-window-v1    # 赛博朋克漫画
+    recommended_rendering:
+      - anime-manga         # 日漫风格
+      - illustration        # 欧美漫画
+      - sketch-line-art     # 线稿分镜
+      - chibi-q-style       # Q 版漫画
+    default_backend: nano-banana-2  # Gemini 漫画风格更丰富
+    default_size: "1024x1536"
+    default_aspect: "3:4"
+
+  - id: game-asset
+    label: "游戏素材"
+    aliases: [游戏, 素材, 游戏资产, game asset, game art, 角色设计, character design]
+    references_file: "references/game-asset.json"
+    recommended_signature:
+      - high-contrast-industrial  # 科幻/赛博风游戏
+    recommended_rendering:
+      - 3d-render           # 3D 游戏资产
+      - pixel-art           # 像素游戏
+      - illustration        # 插画风角色
+      - isometric           # 等距游戏地图
+      - anime-manga         # 日系角色
+    default_backend: nano-banana-2  # 角色设计 / 多风格 Gemini 更灵活
+    default_size: "1024x1024"
+    default_aspect: "1:1"
+
+  - id: infographic-edu-visual
+    label: "信息图 / 教育可视化"
+    aliases: [信息图, 数据可视化, 教育图, infographic, data visualization, 图表, edu visual]
+    references_file: "references/infographic-edu-visual.json"
+    recommended_signature: []
+    recommended_rendering:
+      - illustration        # 插画风说明图
+      - isometric           # 等距信息图
+      - minimalism          # 极简清晰
+    default_backend: gpt-image-2   # 文字排版精准
+    default_size: "1024x1536"
+    default_aspect: "3:4"
+
+  - id: brand-logo-showcase
+    label: "Logo 展示图 / 品牌设计"
+    aliases: [logo, 图标, 品牌, brand, 徽标, icon, 标志, logo展示, 展示图, showcase, 品牌展示图]
+    references_file: "references/brand-logo-showcase.json"
+    recommended_signature: [high-contrast-industrial]
+    recommended_rendering: [minimalism, 3d-render]
+    logo_showcase_backgrounds:
+      dark: [logo-void, logo-frosted, logo-fluid-abyss, logo-spotlight, logo-analog-liquid, logo-led-matrix]
+      light: [logo-editorial-paper, logo-iridescent-frost, logo-morning-aura, logo-clinical, logo-ui-container, logo-swiss-flat]
+    default_backend: nano-banana-2    # 展示图默认用 Gemini
+    default_size: "1024x1024"
+    default_aspect: "1:1"
+    special_note: "SVG logo 代码生成请使用专属 logo-generator skill；本用途专注于 logo 展示图幕中的高端背景生成。待用户提供 PNG logo 后，读取 brand-logo-showcase.json 选择匹配的背景风格。"
+
+  - id: others
+    label: "其他 / 自由创作"
+    aliases: [其他, 自由, 随便, others, free, creative, 创意]
+    references_file: "references/others.json"
+    recommended_signature: []
+    recommended_rendering: []
+    default_backend: gpt-image-2
+    default_size: "1536x1024"
+    default_aspect: "16:9"

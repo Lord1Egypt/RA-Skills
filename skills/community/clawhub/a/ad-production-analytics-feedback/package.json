@@ -1,0 +1,23 @@
+{
+  "name": "ad-production-analytics-feedback",
+  "version": "1.0.0",
+  "description": "数据分析与反馈技能 - 投放效果数据采集、分析与模型迭代建议",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "analytics",
+    "feedback",
+    "data"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "redis": [
+    {
+      "env": "local",
+      "alias": "main",
+      "host": "127.0.0.1",
+      "port": 6379,
+      "username": "default",
+      "password": "CHANGE_ME",
+      "db": 0
+    }
+  ],
+  "mongo": [
+    {
+      "env": "dev",
+      "alias": "dev",
+      "host": "127.0.0.1",
+      "port": 27017,
+      "username": "root",
+      "password": "CHANGE_ME",
+      "database": "gin_microservice",
+      "authSource": "admin"
+    },
+    {
+      "env": "test",
+      "alias": "test",
+      "host": "127.0.0.1",
+      "port": 27017,
+      "username": "root",
+      "password": "CHANGE_ME",
+      "database": "truss_test",
+      "authSource": "admin"
+    }
+  ],
+  "mysql": [
+    {
+      "env": "local",
+      "alias": "main",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "username": "root",
+      "password": "CHANGE_ME",
+      "database": "app_db"
+    }
+  ]
+}

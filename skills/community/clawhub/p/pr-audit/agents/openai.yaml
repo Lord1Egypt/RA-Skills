@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pull Request Reviewer"
+  short_description: "Review a PR from its GitHub diff"
+  default_prompt: "Inspect this pull request diff and produce a concise but thorough review with risks and improvement suggestions."

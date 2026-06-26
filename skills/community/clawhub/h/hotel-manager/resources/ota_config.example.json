@@ -1,0 +1,20 @@
+{
+  "platforms": [
+    {
+      "name": "携程",
+      "api_endpoint": "https://api.ctrip.com/hotel/v1",
+      "api_key": "YOUR_API_KEY_HERE",
+      "secret": "YOUR_SECRET_HERE"
+    },
+    {
+      "name": "美团",
+      "api_endpoint": "https://api.meituan.com/hotel/v1",
+      "api_key": "YOUR_API_KEY_HERE",
+      "secret": "YOUR_SECRET_HERE"
+    }
+  ],
+  "internal_pms": {
+    "api_url": "YOUR_PMS_URL_HERE",
+    "token": "YOUR_TOKEN_HERE"
+  }
+}

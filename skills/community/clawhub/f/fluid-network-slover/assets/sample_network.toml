@@ -1,0 +1,96 @@
+[system]
+name = "Demo Cooling System"
+fluid_density = 998.2
+description = "Two-branch closed loop with scenario-based overrides."
+
+[[nodes]]
+id = "pump_1"
+type = "source"
+fixed_pressure = 500000.0
+
+[[nodes]]
+id = "supply_manifold"
+type = "junction"
+
+[[nodes]]
+id = "heat_exchanger_1"
+type = "load"
+min_pressure = 95000.0
+min_flow = 0.0022
+
+[[nodes]]
+id = "heat_exchanger_2"
+type = "load"
+min_pressure = 85000.0
+min_flow = 0.0019
+
+[[nodes]]
+id = "return_header"
+type = "sink"
+fixed_pressure = 0.0
+
+[[pipes]]
+id = "pump_to_manifold"
+source = "pump_1"
+target = "supply_manifold"
+resistance = 1.1e10
+diameter = 0.06
+valve_open = true
+
+[[pipes]]
+id = "branch_1_supply"
+source = "supply_manifold"
+target = "heat_exchanger_1"
+resistance = 1.7e10
+diameter = 0.04
+valve_open = true
+
+[[pipes]]
+id = "branch_2_supply"
+source = "supply_manifold"
+target = "heat_exchanger_2"
+resistance = 1.9e10
+diameter = 0.04
+valve_open = true
+
+[[pipes]]
+id = "branch_1_return"
+source = "heat_exchanger_1"
+target = "return_header"
+resistance = 1.5e10
+diameter = 0.035
+valve_open = true
+
+[[pipes]]
+id = "branch_2_return"
+source = "heat_exchanger_2"
+target = "return_header"
+resistance = 1.4e10
+diameter = 0.035
+valve_open = true
+
+[[scenarios]]
+name = "Normal_Operation"
+description = "All valves open and the pump operates at design pressure."
+[scenarios.overrides]
+
+[[scenarios]]
+name = "Pump_Degradation"
+description = "Pump pressure drops and the common supply pipe becomes fouled."
+[scenarios.overrides.nodes]
+pump_1 = { fixed_pressure = 340000.0 }
+[scenarios.overrides.pipes]
+pump_to_manifold = { resistance = 1.8e10 }
+
+[[scenarios]]
+name = "Branch_1_Fouling"
+description = "Branch 1 experiences extra resistance due to fouling."
+[scenarios.overrides.pipes]
+branch_1_supply = { resistance = 2.9e10 }
+branch_1_return = { resistance = 2.4e10 }
+
+[[scenarios]]
+name = "Valve_Closed_Fault"
+description = "The second branch supply valve is accidentally closed."
+[scenarios.overrides.pipes]
+branch_2_supply = { valve_open = false }

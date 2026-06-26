@@ -1,0 +1,25 @@
+#!/bin/bash
+echo "🧊 IceCube 系统健康检查"
+echo "========================"
+echo ""
+echo "📡 Gateway 状态:"
+openclaw gateway status 2>/dev/null || echo "  ❌ Gateway 未运行"
+echo ""
+echo "📦 技能状态:"
+SKILL_COUNT=$(ls ~/.openclaw/workspace/skills/ 2>/dev/null | wc -l | tr -d ' ')
+ICECUBE_COUNT=$(ls ~/.openclaw/workspace/skills/icecube-*/SKILL.md 2>/dev/null | wc -l | tr -d ' ')
+echo "  已安装技能: $SKILL_COUNT 个"
+echo "  IceCube 原创: $ICECUBE_COUNT 个"
+echo ""
+echo "📋 任务状态:"
+echo "  进行中: $(grep -c 'status: active' ~/.openclaw/workspace/state/tasks/unclosed_work.yaml 2>/dev/null || echo 0)"
+echo "  等待中: $(grep -c 'status: pending' ~/.openclaw/workspace/state/tasks/unclosed_work.yaml 2>/dev/null || echo 0)"
+echo "  已阻塞: $(grep -c 'status: blocked' ~/.openclaw/workspace/state/tasks/unclosed_work.yaml 2>/dev/null || echo 0)"
+echo ""
+echo "💾 记忆状态:"
+MEMORY_SIZE=$(du -sh ~/.openclaw/workspace/memory/ 2>/dev/null | cut -f1)
+echo "  记忆大小: $MEMORY_SIZE"
+echo ""
+echo "========================"
+echo "✅ 系统健康检查完成"
+echo "📅 $(date '+%Y-%m-%d %H:%M')"

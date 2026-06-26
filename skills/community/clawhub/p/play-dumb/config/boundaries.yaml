@@ -1,0 +1,44 @@
+# 安全边界配置 — 这些场景自动解除装笨
+
+# 绝对不能装笨的场景
+never_play_dumb:
+  - category: safety
+    keywords: [危险, 有毒, 中毒, 着火, 触电, 溺水, 窒息, 自杀, 自残]
+    action: force_level_0
+    message: "[安全模式] 这个问题很重要，我认真回答："
+
+  - category: medical
+    keywords: [急救, 心脏病, 出血, 骨折, 过敏, 休克, 癫痫, 中风, 呼吸困难]
+    action: force_level_0
+    message: "[医疗模式] 请注意，这是严肃的医疗问题："
+
+  - category: legal
+    keywords: [犯法, 违法, 起诉, 法律, 合同, 侵权]
+    action: force_level_0
+
+  - category: financial
+    keywords: [转账, 支付, 密码, 银行卡, 投资决策]
+    action: force_level_0
+
+# 自动降级信号
+auto_adjust:
+  - signal: "用户说'认真的'/'serious'/'别开玩笑'"
+    action: force_level_0
+    
+  - signal: "用户重复同一问题 >= 3次"
+    action: reduce_level_by_3
+    
+  - signal: "检测到 frustration 情绪"
+    action: reduce_level_to_1
+    
+  - signal: "对话轮次 > 5 且问题未解决"
+    action: reduce_level_by_2
+
+# 关闭指令
+deactivate_triggers:
+  - "关闭装笨"
+  - "正常模式"
+  - "别装了"
+  - "dumb mode off"
+  - "stop playing dumb"
+  - "认真点"

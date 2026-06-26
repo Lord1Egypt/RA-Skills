@@ -1,0 +1,73 @@
+{
+  "$schema": "https://clawhub.ai/schema/skill.v1.json",
+  "name": "vocab-voyage",
+  "display_name": "Vocab Voyage",
+  "version": "1.0.0",
+  "description": "Vocabulary tools for SAT, ISEE, SSAT, GRE, GMAT, LSAT, PSAT prep — Word of the Day, definitions, quizzes, study plans. 13 test-prep courses. Hosted endpoint, no install required.",
+  "publisher": {
+    "name": "Vocab Voyage",
+    "homepage": "https://vocab.voyage",
+    "support": "https://vocab.voyage/mcp"
+  },
+  "license": "MIT",
+  "categories": ["education", "test-prep", "vocabulary", "productivity"],
+  "keywords": ["sat", "isee", "ssat", "gre", "gmat", "lsat", "psat", "vocabulary", "tutor", "k12"],
+  "skill": {
+    "entrypoint": "SKILL.md"
+  },
+  "mcp_server": {
+    "type": "remote",
+    "transport": "streamable-http",
+    "url": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server?ref=clawhub",
+    "auth": {
+      "anonymous": true,
+      "bearer": {
+        "description": "Optional personal MCP token (vv_mcp_…) — generate at https://vocab.voyage/mcp to unlock personalized tools.",
+        "token_url": "https://vocab.voyage/mcp",
+        "docs_url": "https://vocab.voyage/developers/auth",
+        "scopes": [
+          "mcp.read",
+          "mcp.tools",
+          "profile.read",
+          "progress.read"
+        ]
+      }
+    }
+  },
+  "tools": [
+    "get_word_of_the_day",
+    "get_definition",
+    "generate_quiz",
+    "get_course_word_list",
+    "list_courses",
+    "explain_word_in_context",
+    "study_plan_preview"
+  ],
+  "ui_resources": [
+    {
+      "uri": "ui://vocab-voyage/definition",
+      "description": "Definition card with examples and synonyms."
+    },
+    {
+      "uri": "ui://vocab-voyage/quiz",
+      "description": "Interactive vocabulary quiz card."
+    },
+    {
+      "uri": "ui://vocab-voyage/study-plan",
+      "description": "Seven-day study plan preview."
+    }
+  ],
+  "discovery": {
+    "agent_card": "https://vocab.voyage/.well-known/agent-card.json",
+    "server_card": "https://vocab.voyage/.well-known/mcp/server-card.json",
+    "mcp_apps": "https://vocab.voyage/.well-known/mcp/apps.json",
+    "api_catalog": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/api-catalog",
+    "nlweb_ask": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/nlweb-ask",
+    "auth_docs": "https://vocab.voyage/developers/auth",
+    "openapi": "https://vocab.voyage/openapi.json",
+    "schemamap": "https://vocab.voyage/schemamap.xml"
+  },
+  "install": {
+    "command": "openclaw skills install vocab-voyage"
+  }
+}

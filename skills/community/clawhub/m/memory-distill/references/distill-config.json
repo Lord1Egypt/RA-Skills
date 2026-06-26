@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Memory Distill Configuration",
+  "description": "记忆蒸馏系统配置文件",
+  "type": "object",
+  "properties": {
+    "retentionDays": {
+      "type": "integer",
+      "default": 30,
+      "description": "每日记忆文件保留天数，超过后提示清理"
+    },
+    "autoClean": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否自动清理过期文件（谨慎开启）"
+    },
+    "autoReset": {
+      "type": "boolean",
+      "default": false,
+      "description": "蒸馏后是否自动提示 /reset"
+    },
+    "categories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": ["decision", "task", "knowledge", "temporary", "project", "preference"],
+      "description": "启用的信息分类类别"
+    },
+    "schedule": {
+      "type": "string",
+      "default": "0 22 * * *",
+      "description": "Cron 表达式，定时蒸馏时间"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Asia/Shanghai",
+      "description": "时区设置"
+    }
+  },
+  "required": []
+}

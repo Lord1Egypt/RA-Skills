@@ -1,35 +1,35 @@
----
-name: "Pipeworx universities"
-description: "Search worldwide universities by name or country and retrieve their names, locations, domains, and website URLs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-universities"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-universities"
----
+# Universities
 
-# Pipeworx universities
+Search universities worldwide by name or country. Returns institution names, countries, domains, and web pages.
 
-> Search worldwide universities by name or country and retrieve their names, locations, domains, and website URLs.
+This pack has a single tool: **search_universities**. Provide a name, a country, or both to filter results.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-universities`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-universities](https://clawhub.ai/skills/pipeworx-universities)
+## Examples
 
-## Overview
+Find universities named "Stanford":
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-universities
+curl -X POST https://gateway.pipeworx.io/universities/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_universities","arguments":{"name":"Stanford"}}}'
+```
+
+List universities in Japan:
+
+```bash
+curl -X POST https://gateway.pipeworx.io/universities/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_universities","arguments":{"country":"Japan"}}}'
+```
+
+Each result includes the university name, country, ISO country code, state/province (where available), domain names, and web page URLs.
+
+```json
+{
+  "mcpServers": {
+    "universities": {
+      "url": "https://gateway.pipeworx.io/universities/mcp"
+    }
+  }
+}
 ```

@@ -1,0 +1,51 @@
+{
+  "stats": {
+    "xBuilders": 3,
+    "totalTweets": 4,
+    "podcastEpisodes": 1,
+    "blogPosts": 1
+  },
+  "x": [
+    {
+      "name": "Swyx",
+      "tweets": [
+        {
+          "text": "Interesting discussion on AI safety naming and framing.",
+          "url": "https://x.com/example/status/1"
+        }
+      ]
+    },
+    {
+      "name": "Kevin Weil",
+      "tweets": [
+        {
+          "text": "We built a new AI-native product feature very quickly.",
+          "url": "https://x.com/example/status/2"
+        }
+      ]
+    },
+    {
+      "name": "Peter Yang",
+      "tweets": [
+        {
+          "text": "The big question is whether these model capabilities are really used internally.",
+          "url": "https://x.com/example/status/3"
+        }
+      ]
+    }
+  ],
+  "podcasts": [
+    {
+      "creator": "Example Podcast",
+      "title": "How AI teams really ship",
+      "url": "https://example.com/podcast"
+    }
+  ],
+  "blogs": [
+    {
+      "source": "Example Blog",
+      "title": "Shipping with AI workflows",
+      "url": "https://example.com/blog"
+    }
+  ]
+}

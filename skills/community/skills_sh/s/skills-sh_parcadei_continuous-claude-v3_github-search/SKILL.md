@@ -1,35 +1,47 @@
 ---
-name: "github-search"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/github-search"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/github-search"
+name: github-search
+description: Search GitHub code, repositories, issues, and PRs via MCP
+allowed-tools: [Bash, Read]
 ---
 
-# github-search
+# GitHub Search Skill
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+## When to Use
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/github-search`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/github-search](https://skills.sh/parcadei/continuous-claude-v3/github-search)
+- Search code across repositories
+- Find issues or PRs
+- Look up repository information
 
-## Overview
+## Instructions
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/github-search
+uv run python -m runtime.harness scripts/mcp/github_search.py \
+    --type "code" \
+    --query "your search query"
 ```
+
+### Parameters
+
+- `--type`: Search type - `code`, `repos`, `issues`, `prs`
+- `--query`: Search query (supports GitHub search syntax)
+- `--owner`: (optional) Filter by repo owner
+- `--repo`: (optional) Filter by repo name
+
+### Examples
+
+```bash
+# Search code
+uv run python -m runtime.harness scripts/mcp/github_search.py \
+    --type "code" \
+    --query "authentication language:python"
+
+# Search issues
+uv run python -m runtime.harness scripts/mcp/github_search.py \
+    --type "issues" \
+    --query "bug label:critical" \
+    --owner "anthropics"
+```
+
+## MCP Server Required
+
+Requires `github` server in mcp_config.json with GITHUB_PERSONAL_ACCESS_TOKEN.

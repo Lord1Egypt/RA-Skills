@@ -1,0 +1,26 @@
+{
+  "id": "proj_8f3a2b",
+  "name": "用户认证系统",
+  "description": "基于JWT的用户认证与授权系统",
+  "status": "in_development",
+  "created_at": "2026-05-09T10:00:00Z",
+  "updated_at": "2026-05-09T16:30:00Z",
+  "phases": {
+    "requirement": "completed",
+    "planning": "completed",
+    "execution": "in_progress",
+    "quality": "not_started",
+    "delivery": "not_started"
+  },
+  "tasks": {
+    "total": 12,
+    "done": 6,
+    "doing": 2,
+    "todo": 3,
+    "blocked": 1
+  },
+  "quality": {
+    "test_coverage": 87.5,
+    "code_review_score": 92
+  }
+}

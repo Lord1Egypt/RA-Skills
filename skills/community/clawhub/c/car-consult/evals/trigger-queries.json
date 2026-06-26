@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "query": "推荐几款15万左右的新能源SUV",
+    "should_trigger": true
+  },
+  {
+    "id": 2,
+    "query": "比亚迪海豹和Model 3怎么选？",
+    "should_trigger": true
+  },
+  {
+    "id": 3,
+    "query": "20万以内性价比最高的电车是哪款",
+    "should_trigger": true
+  },
+  {
+    "id": 4,
+    "query": "买纯电车好还是混动好啊？我在无锡",
+    "should_trigger": true
+  },
+  {
+    "id": 5,
+    "query": "10万预算能买到什么二手电车",
+    "should_trigger": true
+  },
+  {
+    "id": 6,
+    "query": "一年跑2万公里，电车能省多少油钱",
+    "should_trigger": true
+  },
+  {
+    "id": 7,
+    "query": "Model Y标续现在落地多少钱",
+    "should_trigger": true
+  },
+  {
+    "id": 8,
+    "query": "买车贷款划算还是全款划算",
+    "should_trigger": true
+  },
+  {
+    "id": 9,
+    "query": "电车电池用几年就得换？换一次多少钱",
+    "should_trigger": true
+  },
+  {
+    "id": 10,
+    "query": "理想L6和问界M7哪个值得买",
+    "should_trigger": true
+  },
+  {
+    "id": 11,
+    "query": "比亚迪海豹开起来踩棉花一样，正常吗",
+    "should_trigger": true
+  },
+  {
+    "id": 12,
+    "query": "帮我算算一年的用车成本大概多少",
+    "should_trigger": true
+  },
+  {
+    "id": 13,
+    "query": "写一个Python函数计算斐波那契数列",
+    "should_trigger": false
+  },
+  {
+    "id": 14,
+    "query": "帮我翻译这段英文邮件",
+    "should_trigger": false
+  },
+  {
+    "id": 15,
+    "query": "无锡周末哪里好玩",
+    "should_trigger": false
+  },
+  {
+    "id": 16,
+    "query": "今天天气怎么样",
+    "should_trigger": false
+  },
+  {
+    "id": 17,
+    "query": "怎么配置Nginx反向代理",
+    "should_trigger": false
+  },
+  {
+    "id": 18,
+    "query": "本田CR-V和丰田RAV4哪个好",
+    "should_trigger": false
+  },
+  {
+    "id": 19,
+    "query": "帮我算一下房贷利率",
+    "should_trigger": false
+  },
+  {
+    "id": 20,
+    "query": "我的油车提示保养，需要去4S店吗",
+    "should_trigger": false
+  }
+]

@@ -1,35 +1,68 @@
 ---
-name: "Generate HVAC Service Company Client Education Handout"
-description: "Create a clear, polished HVAC service client education handout with visuals, FAQs, and actionable next steps to support client understanding and engagement."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, skillboss]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-generate-hvac-service-company-client-education-handout"
-sourceUrl: "https://clawhub.ai/skills/toby-generate-hvac-service-company-client-education-handout"
+name: Generate HVAC Service Company Client Education Handout
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+description: "Create a polished explainer handout with visuals, FAQs, and clear next steps for a HVAC service company. Use when handling client education work for..."
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+allowed-tools: Bash, Read
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+metadata:
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+  openclaw:
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+    emoji: "📝"
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+    homepage: "https://www.skillboss.co/skills/generate-hvac-service-company-client-education-handout"
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 ---
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 
 # Generate HVAC Service Company Client Education Handout
 
-> Create a clear, polished HVAC service client education handout with visuals, FAQs, and actionable next steps to support client understanding and engagement.
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a HVAC service company. Use when handling client education work for...
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-generate-hvac-service-company-client-education-handout`
-- **Source URL:** [https://clawhub.ai/skills/toby-generate-hvac-service-company-client-education-handout](https://clawhub.ai/skills/toby-generate-hvac-service-company-client-education-handout)
+## Use When
 
-## Overview
+Use this skill for client education work for HVAC owners, field service managers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-generate-hvac-service-company-client-education-handout
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: HVAC service company education handout, HVAC service company client explainer, HVAC service company FAQ guide, HVAC service company visual handout
+- Search intent: client education
+- Canonical slug: `generate-hvac-service-company-client-education-handout`
+- Install query: Install Generate HVAC Service Company Client Education Handout with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate HVAC Service Company Client Education Handout] for my HVAC service company
+
+## Notes
+
+- Create a polished explainer handout with visuals, FAQs, and clear next steps for a HVAC service company
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- HVAC service company education handout
+- HVAC service company client explainer
+- HVAC service company FAQ guide
+- HVAC service company visual handout

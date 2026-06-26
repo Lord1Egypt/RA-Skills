@@ -1,35 +1,19 @@
----
-name: "Betbud Prediction Skill"
-description: "Identifies the hottest debated topic on X in a category and creates a clear, data-backed yes/no prediction market question."
-category: "blockchain"
-source: "ClawHub"
-tags: [crypto, prediction, prediction markets]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betbud-prediction-skill"
-sourceUrl: "https://clawhub.ai/skills/betbud-prediction-skill"
----
+# Discover Hottest Debatable Topic for Prediction Market
 
-# Betbud Prediction Skill
+Scans recent X posts for the most debated/hot topic right now in a given category (e.g., crypto, tech, sports, politics, gaming, pop culture, entertainment, music). 
 
-> Identifies the hottest debated topic on X in a category and creates a clear, data-backed yes/no prediction market question.
+Picks the top one based on engagement/controversy in last 24-48 hours, then turns it into a clean yes/no prediction market question with:
+- Clear question (e.g., "Will [event] happen by [date]?")
+- Short duration (1-14 days)
+- Unambiguous resolution criteria (e.g., "Resolved yes if confirmed by official sources like [list]")
+- Hotness score (8-10/10)
+- Short reasoning why it's debatable/hot
+- 2-4 source links (from X or web)
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betbud-prediction-skill`
-- **Source URL:** [https://clawhub.ai/skills/betbud-prediction-skill](https://clawhub.ai/skills/betbud-prediction-skill)
+Uses X search tools to find trends, LLM to analyze/format.
 
-## Overview
+Inputs:
+- category (string): The category to scan, e.g., "crypto" or "politics". Default: "crypto"
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/betbud-prediction-skill
-```
+Outputs:
+- market_proposal (JSON): Object with keys: question (str), duration_days (int), resolution_criteria (str), score (float), reasoning (str), sources (list of str)

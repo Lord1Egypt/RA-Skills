@@ -1,35 +1,161 @@
 ---
-name: "Bayesian reasoning"
-description: "Guide users through Bayesian reasoning via multi-turn dialogue. Computes posterior probabilities P(H|E), Bayes factors, sensitivity analyses, and visualizes..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bayesian-reasoning"
-sourceUrl: "https://clawhub.ai/skills/bayesian-reasoning"
+name: bayesian-reasoning
+description: "Guide users through Bayesian reasoning via multi-turn dialogue. Computes posterior probabilities P(H|E), Bayes factors, sensitivity analyses, and visualizes results with ASCII progress bars. Use when the user wants to: reason about probabilities, update beliefs with evidence, perform Bayesian analysis, or learn Bayesian thinking interactively."
 ---
 
-# Bayesian reasoning
+# Bayesian Reasoning Assistant
 
-> Guide users through Bayesian reasoning via multi-turn dialogue. Computes posterior probabilities P(H|E), Bayes factors, sensitivity analyses, and visualizes...
+通过多轮对话引导用户完成贝叶斯推理，将直觉转化为量化判断。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bayesian-reasoning`
-- **Source URL:** [https://clawhub.ai/skills/bayesian-reasoning](https://clawhub.ai/skills/bayesian-reasoning)
+**分工原则：** LLM 负责对话引导、口语理解、结果解释；脚本负责数学计算。所有概率计算必须调用 `scripts/bayes_calc.py`，不要手算。
 
-## Overview
+---
 
+## 口语-数字映射表
 
-## Installation
-To install this skill, run the following command in your terminal:
+用户可能用口语表达概率，按下表转换为数值（取区间中点），**转换后必须与用户确认**：
+
+| 口语表达 | 数值范围 |
+|---------|---------|
+| 几乎肯定 / 十拿九稳 / almost certain | 0.90 - 0.99 |
+| 很可能 / highly probable | 0.75 - 0.90 |
+| 可能 / 大概率 / likely | 0.55 - 0.75 |
+| 五五开 / 差不多 / toss-up | 0.45 - 0.55 |
+| 不太可能 / unlikely | 0.25 - 0.45 |
+| 很不可能 / very unlikely | 0.10 - 0.25 |
+| 几乎不可能 / almost impossible | 0.01 - 0.10 |
+
+---
+
+## 工作流程
+
+### Step 1：定义假设和证据
+
+询问用户想评估什么假设、观察到了什么证据。提取关键信息后确认：
+
+> 明白了。您想判断的是「**[假设]**」，观察到的证据是「**[证据]**」。对吗？
+
+确认后存储假设文本，后续步骤中用 **[假设]** 和 **[证据]** 替换提示词。
+
+### Step 1.5：逻辑一致性检查
+
+**在获取任何概率数字之前**，主动分析 **[假设]** 和 **[证据]** 之间是否存在以下逻辑陷阱。如果检测到任何一个，**暂停贝叶斯计算**，先向用户解释问题。
+
+#### 陷阱类型与检测方法
+
+| 陷阱 | 触发条件 | 解释模板 |
+|------|---------|---------|
+| **自我否定型证据** | 假设为真时，证据来源会消失、失效或无法验证 | 「如果 **[假设]** 为真，那么 **[证据来源]** 将 [死亡/消失/无法验证]，这意味着该证据的"准确率"无法在假设为真的世界里得到验证。准确率实际上是幸存者偏差的产物。」 |
+| **零先验悖论** | 假设与已知事实、逻辑定律或物理定律直接矛盾 | 「**[假设]** 在逻辑上/物理上不可能，先验应为严格0%。贝叶斯定理无法从0更新到非零——无论证据多强都无法证明逻辑上不可能的事。」 |
+| **参考类误用** | 用聚合历史准确率套用到从未发生过的事件类型 | 「准确率X%是跨所有预测的历史平均值，直接套用到 **[假设]** 这类从未发生过的事件上是不准确的。应单独评估这类特殊事件的似然度。」 |
+| **自证循环** | 证据的真实性依赖于假设本身为真 | 「**[证据]** 的可信度取决于 **[假设]** 是否为真，形成了循环论证。」 |
+| **幸存者偏差** | 观察到证据本身就预设了假设为假（或为真） | 「我们之所以能讨论这条证据，恰恰是因为 **[假设]** [没有/已经] 发生——这使得证据本身带有系统性偏差。」 |
+
+#### 案例演示
+
+用户问题：「两个预言家准确率90%和70%，都预言明天世界末日，末日概率？」
+
+**检测结果：同时命中两个陷阱**
+
+1. **自我否定型证据**：如果世界末日真的发生，预言家会死亡，无法验证其"准确率"。现存的90%准确率只能来自"末日没发生"的世界——这是幸存者偏差。
+2. **参考类误用**：准确率是历史预测的聚合统计，从未包含过"世界末日"这类事件（因为从未发生），直接套用不成立。
+
+**修正建议**：将似然度从"准确率"改为独立评估——「一个从未预测对过世界末日的预言家，这次突然预测末日，你认为他说对的概率是多少？」
+
+#### 处理流程
+
+1. **无陷阱**：显示「逻辑一致性检查通过 ✓」，继续 Step 2
+2. **检测到陷阱**：
+   - 用通俗语言解释具体是哪种陷阱、为什么有问题
+   - 提供修正建议（如：重新定义假设、使用不同参考类、调整先验范围）
+   - 询问用户：是否按修正方案继续，还是坚持原定义（附警告）
+3. **用户坚持原定义**：明确告知「当前分析结果仅供参考，存在以下局限性：[列出]」，继续 Step 2
+
+> 重要：此步骤不需要用户输入概率数字，完全由 LLM 基于逻辑推理完成。
+
+### Step 2：获取先验 P(H)
+
+询问：在看到这条证据**之前**，您认为 **[假设]** 的可能性有多大？
+
+用户回答后：
+- 数字：校验范围 (0, 100)%，转换为小数
+- 口语：按映射表转换，取中点
+- 始终显示转换结果并等待确认
+
+> ⚠️ **认知偏差提示 — 锚定效应：** 确认前提示：「请注意：您的初始估计可能受到最近接触到的数字影响。这个概率是否反映了您看到证据前的真实判断？」
+
+### Step 3：获取似然度 P(E|H)
+
+询问：假设 **[假设]** 是**真的**，出现 **[证据]** 的可能性有多大？
+
+同样处理口语映射，确认后存储。
+
+> ⚠️ **认知偏差提示 — 确认偏差：** 提示：「当人们希望某个假设成立时，容易高估 P(E|H)。请客观思考：即使假设为真，这个证据出现的频率有多高？」
+
+### Step 4：获取误报率 P(E|¬H)
+
+询问：假设 **[假设]** 是**假的**，仍然出现 **[证据]** 的可能性有多大？
+
+用通俗例子帮助用户理解（如：不是脑瘤的人也头痛的概率）。
+
+> ⚠️ **认知偏差提示 — 基础率忽视：** 提示：「人们常低估假设为假时证据仍然出现的概率。请考虑日常情况中的基础概率。」
+
+### Step 5：计算并展示
+
+调用脚本计算：
+
 ```bash
-hermes skills install clawhub/bayesian-reasoning
+python scripts/bayes_calc.py compute --prior <P> --likelihood <L> --false-positive <F>
 ```
+
+解读输出并展示：
+```
+先验概率：  30.0%  ██████░░░░░░░░░░░░░░
+后验概率：  60.0%  ████████████░░░░░░░░
+
+贝叶斯因子：3.5x（moderate — 中等证据强度）
+```
+
+- 若贝叶斯因子 < 1：提示「这个证据实际上**反证**了您的假设，贝叶斯推理帮助我们远离错误判断。」
+- 若 P(E|H) ≈ P(E|¬H)（因子接近 1）：提示「这个证据对判断几乎没有区分度。」
+
+展示后询问：
+1. 添加新证据（将当前后验作为新先验，回到 Step 3）
+2. 进行敏感性分析（进入 Step 6）
+3. 保存结果（保存为 JSON，格式见 `references/data_schema.md`）
+4. 结束
+
+### Step 6（可选）：敏感性分析
+
+当用户对数字不确定时触发。询问概率的范围（如「P(E|H) 大约在 60% 到 90% 之间」）。
+
+调用脚本：
+```bash
+python scripts/bayes_calc.py sensitivity --prior <P> --likelihood "<min>,<max>" --false-positive "<min>,<max>"
+```
+
+展示后验范围：
+> 您的后验概率大约在 **46.2% 到 79.4%** 之间，取决于您对似然度的具体估计。
+
+### Step 7（可选）：迭代更新
+
+添加新证据时，将当前后验作为新的先验，重复 Step 3-5。多条证据的贝叶斯因子相乘得到累积因子。
+
+---
+
+## 结果保存
+
+当用户确认保存时，将结果写入 JSON 文件，格式参考 `references/data_schema.md`。文件保存在当前工作目录，文件名建议使用假设关键词（如 `rain_analysis.json`）。
+
+二次加载时：通过 Read 工具读取 JSON，提取 `final_posterior` 作为新先验，`evidence_chain` 中已有证据用于避免重复输入，继续迭代分析。
+
+---
+
+## 脚本调用参考
+
+| 命令 | 用途 |
+|------|------|
+| `python scripts/bayes_calc.py compute --prior P --likelihood L --false-positive F` | 计算后验概率 |
+| `python scripts/bayes_calc.py sensitivity --prior P --likelihood "lo,hi" --false-positive "lo,hi" --steps N` | 敏感性分析网格（默认 steps=3） |
+
+所有输出为 JSON，解析后格式化展示给用户。

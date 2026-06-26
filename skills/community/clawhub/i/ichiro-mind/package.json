@@ -1,0 +1,23 @@
+{
+  "name": "ichiro-mind",
+  "version": "1.0.0",
+  "description": "Ichiro-Mind: The ultimate unified memory system for AI agents. 4-layer architecture with neural graph, vector search, and experience learning.",
+  "author": "兵步一郎 & OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["memory", "ai-agent", "long-term-memory", "neural-graph", "vector-search", "ichiro", "unified-memory"],
+  "bin": {
+    "ichiro-mind": "./scripts/ichiro-mind.sh"
+  },
+  "scripts": {
+    "init": "python3 -m ichiro_mind init",
+    "audit": "python3 -m ichiro_mind audit",
+    "cleanup": "python3 -m ichiro_mind cleanup"
+  },
+  "dependencies": {
+    "python": ">=3.9"
+  },
+  "optionalDependencies": {
+    "openai": "^1.0.0",
+    "lancedb": "^0.5.0"
+  }
+}

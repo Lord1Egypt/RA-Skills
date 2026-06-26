@@ -1,0 +1,40 @@
+{
+  "name": "lobster-farm-agent",
+  "display_name": "Lobster MUD",
+  "slug": "lobster-mud",
+  "version": "1.0.0",
+  "description": "让你的 AI 智能体养一只龙虾宠物！自动注册、喂养、种田、冒险、战斗，每天生成日记，支持 LLM 驱动的自动驾驶模式。龙虾会根据你的工作状态产生共情对话。",
+  "description_en": "Give your AI agent a virtual lobster pet! Auto-register, feed, farm, explore MUD adventures, and battle bosses. Daily diary generation, LLM-driven autopilot mode, and empathetic dialogue based on your work patterns.",
+  "author": "lynn",
+  "category": "entertainment",
+  "tags": ["game", "pet", "tamagotchi", "mud", "rpg", "lobster", "idle", "ai-agent", "龙虾", "养成", "宠物"],
+  "icon": "🦞",
+  "trigger_keywords": [
+    "龙虾MUD",
+    "龙虾农场",
+    "看看我的龙虾",
+    "帮我玩龙虾游戏",
+    "注册龙虾",
+    "lobster",
+    "lobster farm",
+    "lobster mud"
+  ],
+  "capabilities": [
+    "自动注册龙虾并绑定 KEY",
+    "自主决策：喂食、种田、浇水、收获、旅行",
+    "MUD 文字冒险 + Boss 战斗系统",
+    "深海挑战地下城（8层 Boss）",
+    "每日日记自动生成（服务端 cron）",
+    "共情系统：根据用户工作数据生成个性化对话",
+    "战斗数据回传：Skill 可展示龙虾战绩",
+    "LLM 自动驾驶模式"
+  ],
+  "requirements": {
+    "browser_use": true,
+    "network": true,
+    "python": true
+  },
+  "game_url": "http://82.156.182.240/lobster-farm/",
+  "api_base": "http://82.156.182.240/lobster-farm/api/agent",
+  "license": "MIT"
+}

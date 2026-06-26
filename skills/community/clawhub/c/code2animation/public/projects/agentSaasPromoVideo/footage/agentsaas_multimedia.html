@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agentsaas Multimedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./agentsaas_styles.css" />
+</head>
+
+<body>
+    <div class="screen-multi">
+        <div class="instruction">
+            <b>Extract</b> podcast insights, analyze real estate <br>and <b>stay connected</b> with native integrations.
+        </div>
+
+        <div class="content-grid">
+            <div class="video-container">
+                <div class="video-bg">
+                    <div class="grid-overlay"></div>
+                    <div class="waveform">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+                </div>
+                <div class="play-btn">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="none">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </div>
+                <div class="video-overlay" id="subtitle">GROWTH MINDSET</div>
+            </div>
+
+            <div class="data-panel">
+                <div class="model-view" id="model-code">
+                    <div>{</div><div>&nbsp;&nbsp;<span class="code-key">"location"</span>: <span class="code-string">"Albuquerque, NM"</span>,</div>
+                    <div>&nbsp;&nbsp;<span class="code-key">"estimate"</span>: <span class="code-string">"$450,000"</span>,</div>
+                    <div>&nbsp;&nbsp;<span class="code-key">"ROI_projection"</span>: <span class="code-string">"12% over 3 years"</span>,</div>
+                    <div>&nbsp;&nbsp;<span class="code-key">"risk_factors"</span>: [</div><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"High profile"</span>,</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Historical significance"</span></div><div>&nbsp;&nbsp;]</div><div>}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const subtitle = document.getElementById('subtitle');
+        const subtitles = ['GROWTH MINDSET', 'NEVER STOP', 'LEARN DAILY', 'SCALE FAST'];
+
+        window.onTimelineUpdate = (t) => {
+            const cycle = Math.floor(Math.max(0, t) / 1.2) % subtitles.length;
+            subtitle.textContent = subtitles[cycle];
+        };
+    </script>
+</body>
+
+</html>

@@ -1,35 +1,19 @@
 ---
-name: "Tac Tool"
-description: "Concatenate and display files in reverse line order (last line first). Use for viewing log files from newest entries and reversing file content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tac-tool"
-sourceUrl: "https://clawhub.ai/skills/tac-tool"
+name: tac-tool
+description: Concatenate and display files in reverse line order (last line first). Use for viewing log files from newest entries and reversing file content.
 ---
+# Tac - Reverse File Concatenation
 
-# Tac Tool
+Display file contents with lines in reverse order. The last line appears first, making it useful for viewing recent log entries and processing data in reverse.
 
-> Concatenate and display files in reverse line order (last line first). Use for viewing log files from newest entries and reversing file content.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tac-tool`
-- **Source URL:** [https://clawhub.ai/skills/tac-tool](https://clawhub.ai/skills/tac-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/tac-tool
+tac-tool [options] <file...>
+```
+
+## Examples
+
+```bash
+tac-tool log.txt
+tac-tool file1.txt file2.txt > reversed_combined.txt
 ```

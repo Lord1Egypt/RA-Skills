@@ -1,0 +1,262 @@
+{
+  "name": "初中语文作文",
+  "version": "1.1.0",
+  "updated_at": "2026-04-27",
+  "subject": "chinese_essay_junior",
+  "grade": "初中",
+  "full_score": 60,
+  "exam_type": "中考语文作文",
+  "description": "中考作文分为基础等级（40分）和发展等级（15分）两部分评分。程序：先整体评定基础等级，再评定发展等级。基准分定在42分。",
+
+  "basic_grade": {
+    "name": "基础等级",
+    "total": 40,
+    "description": "从内容、结构、表达三方面评定作文类别",
+    "dimensions": [
+      {
+        "id": "content",
+        "name": "内容",
+        "name_cn": "内容",
+        "max_score": 20,
+        "description": "以题意、内容为重点。审题准确，立意鲜明，内容充实，紧扣主题",
+        "grade_rules": [
+          { "range": [18, 20], "level": "一等", "description": "审题准确，立意深刻，内容充实，主题鲜明" },
+          { "range": [14, 17], "level": "二等", "description": "审题准确，立意明确，内容具体，主题清晰" },
+          { "range": [10, 13], "level": "三等", "description": "审题基本准确，立意尚可，内容尚充实" },
+          { "range": [5, 9],   "level": "四等", "description": "审题不够准确，立意模糊，内容空泛" },
+          { "range": [0, 4],   "level": "五等", "description": "文不对题，内容空洞" }
+        ]
+      },
+      {
+        "id": "structure",
+        "name": "结构",
+        "name_cn": "结构",
+        "max_score": 10,
+        "description": "结构完整，思路清晰，层次分明，过渡自然",
+        "grade_rules": [
+          { "range": [9, 10], "level": "一等", "description": "结构严谨，思路清晰，层次分明，过渡自然" },
+          { "range": [7, 8],  "level": "二等", "description": "结构完整，思路较清晰，层次较分明" },
+          { "range": [5, 6],  "level": "三等", "description": "结构基本完整，思路尚清楚" },
+          { "range": [3, 4],  "level": "四等", "description": "结构不够完整，思路不够清楚" },
+          { "range": [0, 2],  "level": "五等", "description": "结构混乱，思路不清" }
+        ]
+      },
+      {
+        "id": "expression",
+        "name": "表达",
+        "name_cn": "表达",
+        "max_score": 10,
+        "description": "语言流畅，用词准确，句式多变，修辞得当",
+        "grade_rules": [
+          { "range": [9, 10], "level": "一等", "description": "语言流畅，用词准确精当，句式多变，修辞运用得当" },
+          { "range": [7, 8],  "level": "二等", "description": "语言流畅，用词准确，句式有变化" },
+          { "range": [5, 6],  "level": "三等", "description": "语言通顺，用词基本准确" },
+          { "range": [3, 4],  "level": "四等", "description": "语言基本通顺，用词不够准确" },
+          { "range": [0, 2],  "level": "五等", "description": "语言不通顺，用词不当" }
+        ]
+      },
+      {
+        "id": "calligraphy",
+        "name": "书写",
+        "name_cn": "书写",
+        "max_score": 5,
+        "description": "字迹工整，卷面整洁，格式规范",
+        "grade_rules": [
+          { "range": [5, 5],  "level": "满分", "description": "字迹工整，卷面整洁，标点规范" },
+          { "range": [3, 4],  "level": "良好", "description": "字迹工整，卷面尚整洁" },
+          { "range": [1, 2],  "level": "较差", "description": "字迹潦草，卷面不整洁" },
+          { "range": [0, 0],  "level": "极差", "description": "字迹难以辨认，卷面脏乱" }
+        ]
+      }
+    ]
+  },
+
+  "development_grade": {
+    "name": "发展等级",
+    "total": 15,
+    "description": "只要具备下列四点之一，即可赋发展分",
+    "criteria": [
+      { "point": "有深度", "description": "透过现象看本质，揭示事物规律或原因" },
+      { "point": "有个性", "description": "有独特的思考角度或鲜明的语言风格" },
+      { "point": "有文采", "description": "用词贴切，句式灵活，善用修辞，文句有表现力" },
+      { "point": "有创新", "description": "立意新颖，材料新鲜，构思精巧，推理想象有独到之处" }
+    ],
+    "grade_rules": [
+      { "range": [13, 15], "level": "一等", "description": "四点全部体现或某一特征特别突出" },
+      { "range": [9, 12],  "level": "二等", "description": "四点中三点体现较好" },
+      { "range": [5, 8],   "level": "三等", "description": "四点中两点体现较好" },
+      { "range": [1, 4],   "level": "四等", "description": "四点中有一点体现" }
+    ]
+  },
+
+  "scoring_procedure": {
+    "name": "打分程序",
+    "description": "综合判断，分等参照",
+    "steps": [
+      "首先从总体上综合打分，看它属于哪一档的文章",
+      "以内容（立意）为主先打奠基分，内容决定分数的走向",
+      "然后在其相邻等级中再为表达和特征打分，不跨等级打分",
+      "先确定内容等级分，再给表达和特征定级"
+    ],
+    "category_ranges": [
+      { "level": "一档", "range": [55, 49], "description": "优秀" },
+      { "level": "二档", "range": [48, 42], "description": "良好（基准分42分所在档）" },
+      { "level": "三档", "range": [41, 30], "description": "中等" },
+      { "level": "四档", "range": [29, 15], "description": "较差" },
+      { "level": "五档", "range": [14, 0],  "description": "极差" }
+    ]
+  },
+
+  "scoring_key_points": {
+    "name": "评分重点",
+    "description": "以题意、内容、语言和文体为重点",
+    "priority": "内容和语言为重点",
+    "flexible_requirements": [
+      "除了审题，文体也可以适当降低要求",
+      "文体不是指议论文、记叙文和说明文，而是指更广泛的文体概念"
+    ]
+  },
+
+  "benchmark_score": {
+    "name": "基准分",
+    "score": 42,
+    "description": "达到了基本要求、基本符合题意、语言也过得去、比较平一些的文章，就可以打42分"
+  },
+
+  "deduction_rules": {
+    "name": "扣分禁忌",
+
+    "overall_requirements": [
+      {
+        "type": "错别字",
+        "rule": "每三个扣1分，重现的不计，最多扣2分"
+      },
+      {
+        "type": "标点符号错误",
+        "rule": "错误较严重者扣1分"
+      },
+      {
+        "type": "字数不足",
+        "rule": "每少50字扣1分，最多扣2分"
+      },
+      {
+        "type": "总分上限",
+        "rule": "作文总分不得超过55分"
+      }
+    ],
+
+    "topic_deviation": {
+      "name": "审题偏离",
+      "rules": [
+        { "condition": "完全离题", "limit": "给15分以下" },
+        { "condition": "文章前后有适当点题文字", "limit": "在25分上下酌情给分，但不能超过30分" }
+      ]
+    }
+  },
+
+  "problem_papers": {
+    "name": "问题作文",
+    "description": "以下四点具备之一，视为问题作文，提交组长或阅卷大组处理",
+    "conditions": [
+      "内容上有严重政治倾向性错误",
+      "作文雷同",
+      "前后笔迹不一致",
+      "文中有特殊记号"
+    ]
+  },
+
+  "grader_characteristics": {
+    "name": "阅卷教师特点",
+    "characteristics": [
+      {
+        "trait": "工作量大，易疲劳",
+        "implication": "主题不清、立意不明的，直接打入低类；看得费力、主题句没找到或不好找到的，打低分",
+        "advice": "电脑阅卷字迹模糊会失分，必须字迹清晰"
+      },
+      {
+        "trait": "主观性强",
+        "implication": "必须想办法使阅卷老师的主观能动性向着有利于你的方面发展",
+        "advice": "按照评分标准写作文是作文稳中求胜的关键"
+      },
+      {
+        "trait": "时间是90秒",
+        "implication": "必须主题鲜明，必须优点突出",
+        "advice": "让作文适应阅卷教师的改卷需求"
+      }
+    ],
+
+    "requirements": [
+      "必须体现积极的人生观，切忌低俗或偏激",
+      "不要写危险题材：校园恋情、社会黑暗、抨击高考制度",
+      "卷面要整洁美观：字迹不清、卷面模糊、勾画较多，会降分；字可以不漂亮，但必须好认"
+    ]
+  },
+
+  "writing_guidance": {
+    "name": "写作指导",
+    "topics": [
+      {
+        "topic": "深刻与含蓄",
+        "guidance": "言之成理，能落到一个具体的点上，或深入本质，或抓住规律，或揭示原因，透过现象看本质。含蓄并非朦胧，更不是晦涩，它是委婉表达的一种特殊形式，作文时应该明确地表达自己的观点"
+      },
+      {
+        "topic": "真挚与现实",
+        "guidance": "多角度地观察生活，发现生活的丰富多彩。写出真情实感，感情要真挚"
+      },
+      {
+        "topic": "创新与文体",
+        "guidance": "立意创新≠大唱反调；体式创新≠追求花样；选材出新≠写社会阴暗面；语言求新≠语言异化。文体最好采用记叙文、散文、议论文三种常见样式，少采用诗歌、戏剧、寓言等体裁"
+      },
+      {
+        "topic": "是什么为什么怎么办",
+        "guidance": "关注三问：是什么、为什么、怎么办——这是文章展开的基本逻辑框架"
+      }
+    ]
+  },
+
+  "common_mistakes": {
+    "name": "注意事项",
+    "cautions": [
+      { "point": "偏题跑题", "severity": "输定了" },
+      { "point": "没有题目或题目不合要求", "severity": "不只扣3分" },
+      { "point": "字数不够", "severity": "损失绝对惨重" },
+      { "point": "写错别字", "severity": "一定写过文章至少读上一遍" },
+      { "point": "没有结尾", "severity": "不得高分；结尾一定要扣题、照应开头" },
+      { "point": "材料作文抛开试题所给的材料", "severity": "直接划入四类卷" },
+      { "point": "机械套用考前作文或范文", "severity": "最高进入三类卷" },
+      { "point": "文体四不像", "severity": "影响得分" },
+      { "point": "少从课本里找素材", "severity": "应该多从课本里找素材" },
+      { "point": "写与考试无关的话", "severity": "请多给自己分、请多同情学生、手下留情之类的话不要写" },
+      { "point": "写作基础不牢不要盲目创新", "severity": "" },
+      { "point": "尖子生避免低级错误", "severity": "卷面草=低档；立意偏=低分；思想偏激另类文意深奥=低分" },
+      { "point": "作文基础好的学生", "requirement": "以题目贯穿始终；形象具体，感情真挚，主题鲜明" },
+      { "point": "作文有困难的学生", "requirement": "文通字顺，立意准；掌握技巧，制造亮点" }
+    ]
+  },
+
+  "category_descriptions": {
+    "name": "各档作文描述",
+    "descriptions": [
+      {
+        "level": "一类卷（55-49分）",
+        "features": "审题准确，立意深刻，内容充实，结构严谨，语言流畅有文采，主题鲜明"
+      },
+      {
+        "level": "二类卷（48-42分）",
+        "features": "审题准确，立意明确，内容具体，结构完整，语言通顺，主题清晰——达到基本要求"
+      },
+      {
+        "level": "三类卷（41-30分）",
+        "features": "审题基本准确，立意尚可，内容尚充实，但平淡，语言基本通顺"
+      },
+      {
+        "level": "四类卷（29-15分）",
+        "features": "审题不够准确，立意模糊，内容空泛，结构不完整，语言不通顺——不及格"
+      },
+      {
+        "level": "五类卷（14分以下）",
+        "features": "文不对题，内容空洞，杂乱无章"
+      }
+    ]
+  }
+}

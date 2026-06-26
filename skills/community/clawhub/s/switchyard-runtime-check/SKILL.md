@@ -1,35 +1,20 @@
 ---
-name: "Switchyard Runtime Check"
-description: "Verify the optional local Switchyard runtime path without changing Campus-owned response semantics."
-category: "other"
-source: "ClawHub"
-tags: [campus-copilot, read-only]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/switchyard-runtime-check"
-sourceUrl: "https://clawhub.ai/skills/switchyard-runtime-check"
+name: switchyard-runtime-check
+description: Verify the optional local Switchyard runtime path without changing Campus-owned response semantics.
 ---
 
 # Switchyard Runtime Check
 
-> Verify the optional local Switchyard runtime path without changing Campus-owned response semantics.
+Use this skill when you want to verify the Campus consumer seam while keeping runtime transport behind the optional local Switchyard boundary.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/switchyard-runtime-check`
-- **Source URL:** [https://clawhub.ai/skills/switchyard-runtime-check](https://clawhub.ai/skills/switchyard-runtime-check)
+## Steps
 
-## Overview
+1. Call `GET /api/providers/status`.
+2. Confirm whether `switchyard.ready` is `true`.
+3. If ready, use the Campus consumer seam or `/api/providers/switchyard/chat`.
+4. Preserve Campus response semantics: `answerText`, optional `structuredAnswer`, `nextActions`, `trustGaps`, and `citations`.
 
+## Hard boundary
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/switchyard-runtime-check
-```
+- Do not bypass Campus semantics by exposing raw upstream provider payloads.
+- Do not describe this as hosted autonomy or a write-capable agent runtime.

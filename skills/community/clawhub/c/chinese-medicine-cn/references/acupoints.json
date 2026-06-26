@@ -1,0 +1,403 @@
+{
+  "acupoints": [
+    {
+      "id": "LI4",
+      "name_en": "Union Valley",
+      "name_cn": "合谷",
+      "name_pinyin": "Hegu",
+      "meridian": "Large Intestine (Yang Ming)",
+      "location": "On the dorsum of the hand, between the first and second metacarpal bones, approximately at the midpoint of the second metacarpal bone",
+      "location_simple": "Pinch thumb and index finger together; point is at highest point of muscle bulge",
+      "categories": ["Yuan-Source Point", "Command Point of Head/Face"],
+      "functions": [
+        "Expels wind and releases the exterior",
+        "Relieves pain",
+        "Opens the channels",
+        "Induces labor"
+      ],
+      "indications": [
+        "Headache",
+        "Facial pain",
+        "Toothache",
+        "Common cold",
+        "Fever",
+        "Painful periods",
+        "Labor induction"
+      ],
+      "needling": "0.5-1.0 cun perpendicular insertion",
+      "moxibustion": "Contraindicated in pregnancy",
+      "contraindications": ["PREGNANCY - STRONG CONTRAINDICATION", "Do not use during pregnancy"],
+      "safety_tags": ["pregnancy_contraindicated", "labor_inducing"],
+      "common_combinations": [
+        {"point": "LV3", "purpose": "The Four Gates - moves Qi and Blood, relieves pain"},
+        {"point": "ST44", "purpose": "Clears heat, treats facial swelling"}
+      ],
+      "search_keywords": ["headache relief", "toothache acupressure", "labor induction point"]
+    },
+    {
+      "id": "LV3",
+      "name_en": "Great Surge",
+      "name_cn": "太冲",
+      "name_pinyin": "Taichong",
+      "meridian": "Liver (Jue Yin)",
+      "location": "On the dorsum of the foot, in the depression distal to the junction of the first and second metatarsal bones",
+      "location_simple": "Between big toe and second toe, about two finger-widths up from the web",
+      "categories": ["Shu-Stream Point", "Yuan-Source Point"],
+      "functions": [
+        "Spreads Liver Qi",
+        "Clears Liver heat",
+        "Calms the Shen",
+        "Benefits the eyes"
+      ],
+      "indications": [
+        "Stress and irritability",
+        "Headache",
+        "Dizziness",
+        "Menstrual disorders",
+        "Eye problems",
+        "High blood pressure"
+      ],
+      "needling": "0.5-0.8 cun perpendicular insertion",
+      "moxibustion": "Applicable",
+      "contraindications": [],
+      "safety_tags": ["generally_safe"],
+      "common_combinations": [
+        {"point": "LI4", "purpose": "Four Gates - moves Qi and Blood"},
+        {"point": "SP6", "purpose": "Regulates menstruation"}
+      ],
+      "search_keywords": ["stress relief acupressure", "liver qi stagnation", "menstrual pain"]
+    },
+    {
+      "id": "ST36",
+      "name_en": "Leg Three Miles",
+      "name_cn": "足三里",
+      "name_pinyin": "Zusanli",
+      "meridian": "Stomach (Yang Ming)",
+      "location": "3 cun below ST35 (Dubi), one finger-breadth lateral to the anterior crest of the tibia",
+      "location_simple": "Four finger-widths below kneecap, one finger-width outside shin bone",
+      "categories": ["He-Sea Point", "Sea of Nourishment Point", "Command Point of Abdomen"],
+      "functions": [
+        "Tonifies Qi and Blood",
+        "Strengthens Spleen and Stomach",
+        "Resolves dampness",
+        "Boosts immunity"
+      ],
+      "indications": [
+        "Fatigue",
+        "Digestive disorders",
+        "Weak immunity",
+        "Lower limb pain",
+        "Stomach ache",
+        "General weakness"
+      ],
+      "needling": "1.0-2.0 cun perpendicular insertion",
+      "moxibustion": "Highly recommended for tonification",
+      "contraindications": [],
+      "safety_tags": ["tonification_point", "generally_safe"],
+      "common_combinations": [
+        {"point": "SP6", "purpose": "Tonifies Spleen and Stomach"},
+        {"point": "ST25", "purpose": "Regulates intestines"}
+      ],
+      "search_keywords": ["boost immunity", "digestive health", "energy boost", "fatigue relief"]
+    },
+    {
+      "id": "SP6",
+      "name_en": "Three Yin Intersection",
+      "name_cn": "三阴交",
+      "name_pinyin": "Sanyinjiao",
+      "meridian": "Spleen (Tai Yin)",
+      "location": "3 cun directly above the tip of the medial malleolus, on the posterior border of the tibia",
+      "location_simple": "Four finger-widths above inner ankle bone, on back edge of shin bone",
+      "categories": ["Intersection of Three Yin Meridians"],
+      "functions": [
+        "Tonifies Spleen and Stomach",
+        "Nourishes Blood and Yin",
+        "Regulates menstruation",
+        "Calms the Shen"
+      ],
+      "indications": [
+        "Menstrual disorders",
+        "Digestive problems",
+        "Insomnia",
+        "Edema",
+        "Lower limb weakness",
+        "Reproductive disorders"
+      ],
+      "needling": "1.0-1.5 cun perpendicular insertion",
+      "moxibustion": "Applicable with caution in pregnancy",
+      "contraindications": ["Use with caution during pregnancy - can stimulate uterus"],
+      "safety_tags": ["pregnancy_caution", "menstrual_regulating"],
+      "common_combinations": [
+        {"point": "LV3", "purpose": "Regulates menstruation and emotions"},
+        {"point": "ST36", "purpose": "Tonifies digestion"}
+      ],
+      "search_keywords": ["menstrual regulation", "digestive tonic", "sleep improvement"]
+    },
+    {
+      "id": "PC6",
+      "name_en": "Inner Pass",
+      "name_cn": "内关",
+      "name_pinyin": "Neiguan",
+      "meridian": "Pericardium (Jue Yin)",
+      "location": "2 cun above the transverse crease of the wrist, between the tendons of palmaris longus and flexor carpi radialis",
+      "location_simple": "Three finger-widths above wrist crease, between two central tendons",
+      "categories": ["Luo-Connecting Point", "Confluent Point of Yin Wei Mai"],
+      "functions": [
+        "Opens the chest",
+        "Regulates the Heart",
+        "Calms the Shen",
+        "Relieves nausea"
+      ],
+      "indications": [
+        "Nausea and vomiting",
+        "Motion sickness",
+        "Anxiety",
+        "Palpitations",
+        "Chest tightness",
+        "Insomnia"
+      ],
+      "needling": "0.5-1.0 cun perpendicular insertion",
+      "moxibustion": "Applicable",
+      "contraindications": [],
+      "safety_tags": ["generally_safe", "anti_nausea"],
+      "common_combinations": [
+        {"point": "ST36", "purpose": "Relieves nausea and vomiting"},
+        {"point": "HT7", "purpose": "Calms anxiety and insomnia"}
+      ],
+      "search_keywords": ["nausea relief", "motion sickness", "anxiety acupressure", "morning sickness"]
+    },
+    {
+      "id": "HT7",
+      "name_en": "Spirit Gate",
+      "name_cn": "神门",
+      "name_pinyin": "Shenmen",
+      "meridian": "Heart (Shao Yin)",
+      "location": "At the ulnar end of the transverse crease of the wrist, in the depression on the radial side of the tendon of flexor carpi ulnaris",
+      "location_simple": "On wrist crease, on pinky side, in small depression",
+      "categories": ["Shu-Stream Point", "Yuan-Source Point"],
+      "functions": [
+        "Calms the Shen",
+        "Nourishes Heart Blood",
+        "Regulates Heart Qi"
+      ],
+      "indications": [
+        "Insomnia",
+        "Anxiety",
+        "Palpitations",
+        "Poor memory",
+        "Restlessness",
+        "Nightmares"
+      ],
+      "needling": "0.3-0.5 cun perpendicular insertion",
+      "moxibustion": "Applicable",
+      "contraindications": [],
+      "safety_tags": ["generally_safe", "shen_calming"],
+      "common_combinations": [
+        {"point": "PC6", "purpose": "Calms anxiety and insomnia"},
+        {"point": "Yintang", "purpose": "Deep relaxation and sleep"}
+      ],
+      "search_keywords": ["insomnia remedy", "anxiety relief", "calm mind", "sleep better"]
+    },
+    {
+      "id": "Yintang",
+      "name_en": "Hall of Impression",
+      "name_cn": "印堂",
+      "name_pinyin": "Yintang",
+      "meridian": "Extra Point",
+      "location": "Midway between the medial ends of the eyebrows",
+      "location_simple": "Between the eyebrows, in the center",
+      "categories": ["Extra Point"],
+      "functions": [
+        "Calms the Shen",
+        "Relieves headache",
+        "Benefits the nose and eyes"
+      ],
+      "indications": [
+        "Insomnia",
+        "Anxiety",
+        "Headache",
+        "Sinus problems",
+        "Eye strain",
+        "Stress relief"
+      ],
+      "needling": "0.3-0.5 cun subcutaneous insertion",
+      "moxibustion": "Generally not used",
+      "contraindications": [],
+      "safety_tags": ["generally_safe", "shen_calming"],
+      "common_combinations": [
+        {"point": "HT7", "purpose": "Deep calm and sleep"},
+        {"point": "LI20", "purpose": "Sinus relief"}
+      ],
+      "search_keywords": ["stress relief", "headache relief", "sinus pressure", "third eye"]
+    },
+    {
+      "id": "GV20",
+      "name_en": "Hundred Convergences",
+      "name_cn": "百会",
+      "name_pinyin": "Baihui",
+      "meridian": "Governing Vessel (Du Mai)",
+      "location": "On the midline of the head, 5 cun directly above the midpoint of the anterior hairline",
+      "location_simple": "On top of head, where line between ears meets center line",
+      "categories": ["Sea of Marrow Point", "Intersection with Bladder Meridian"],
+      "functions": [
+        "Raises Yang Qi",
+        "Calms the Shen",
+        "Benefits the brain",
+        "Clears the senses"
+      ],
+      "indications": [
+        "Headache",
+        "Dizziness",
+        "Prolapse conditions",
+        "Mental confusion",
+        "Insomnia",
+        "Low energy"
+      ],
+      "needling": "0.3-0.5 cun subcutaneous insertion",
+      "moxibustion": "Highly recommended for Yang deficiency",
+      "contraindications": [],
+      "safety_tags": ["generally_safe", "yang_raising"],
+      "common_combinations": [
+        {"point": "ST36", "purpose": "Raises Qi for prolapse"},
+        {"point": "KI1", "purpose": "Connects upper and lower"}
+      ],
+      "search_keywords": ["headache relief", "dizziness", "mental clarity", "energy boost"]
+    },
+    {
+      "id": "KI1",
+      "name_en": "Bubbling Spring",
+      "name_cn": "涌泉",
+      "name_pinyin": "Yongquan",
+      "meridian": "Kidney (Shao Yin)",
+      "location": "On the sole of the foot, in the depression when the foot is in plantar flexion, approximately at the anterior third and posterior two-thirds of the sole",
+      "location_simple": "Center of sole, in the depression when curling toes",
+      "categories": ["Jing-Well Point"],
+      "functions": [
+        "Nourishes Kidney Yin",
+        "Descends excess heat",
+        "Calms the Shen",
+        "Restores consciousness"
+      ],
+      "indications": [
+        "Insomnia",
+        "Hot flashes",
+        "Headache",
+        "Hypertension",
+        "Dry mouth",
+        "Anxiety"
+      ],
+      "needling": "0.5-1.0 cun perpendicular insertion",
+      "moxibustion": "Applicable",
+      "contraindications": [],
+      "safety_tags": ["generally_safe", "yin_nourishing"],
+      "common_combinations": [
+        {"point": "GV20", "purpose": "Connects upper and lower, descends Yang"},
+        {"point": "KI3", "purpose": "Nourishes Kidney Yin and Yang"}
+      ],
+      "search_keywords": ["hot flashes relief", "hypertension natural", "insomnia remedy", "calm mind"]
+    },
+    {
+      "id": "LU7",
+      "name_en": "Broken Sequence",
+      "name_cn": "列缺",
+      "name_pinyin": "Lieque",
+      "meridian": "Lung (Tai Yin)",
+      "location": "Above the styloid process of the radius, 1.5 cun above the transverse crease of the wrist",
+      "location_simple": "On thumb side of wrist, about two finger-widths up, in small depression",
+      "categories": ["Luo-Connecting Point", "Confluent Point of Ren Mai"],
+      "functions": [
+        "Releases the exterior",
+        "Benefits the lungs",
+        "Opens the Conception Vessel",
+        "Benefits the head and neck"
+      ],
+      "indications": [
+        "Common cold",
+        "Cough",
+        "Headache",
+        "Neck stiffness",
+        "Sore throat",
+        "Wheezing"
+      ],
+      "needling": "0.3-0.5 cun oblique insertion",
+      "moxibustion": "Applicable",
+      "contraindications": [],
+      "safety_tags": ["generally_safe", "immune_support"],
+      "common_combinations": [
+        {"point": "LI4", "purpose": "Releases exterior wind-cold"},
+        {"point": "LU5", "purpose": "Clears Lung heat"}
+      ],
+      "search_keywords": ["cold remedy", "cough relief", "sore throat", "neck stiffness"]
+    },
+    {
+      "id": "GB20",
+      "name_en": "Wind Pool",
+      "name_cn": "风池",
+      "name_pinyin": "Fengchi",
+      "meridian": "Gallbladder (Shao Yang)",
+      "location": "In the depression between the upper portion of sternocleidomastoid muscle and trapezius muscle, level with GV16",
+      "location_simple": "Base of skull, in the hollows on either side of neck muscles",
+      "categories": ["Window of Heaven Point", "Intersection with Yang Wei Mai and Yang Qiao Mai"],
+      "functions": [
+        "Expels wind",
+        "Clears the head",
+        "Benefits the eyes",
+        "Opens the channels"
+      ],
+      "indications": [
+        "Headache",
+        "Neck pain",
+        "Common cold",
+        "Eye problems",
+        "Dizziness",
+        "Hypertension"
+      ],
+      "needling": "0.5-0.8 cun toward opposite eye",
+      "moxibustion": "Applicable",
+      "contraindications": ["Deep insertion contraindicated - risk to brainstem"],
+      "safety_tags": ["caution_deep_insertion", "wind_expelling"],
+      "common_combinations": [
+        {"point": "GB21", "purpose": "Releases neck and shoulder tension"},
+        {"point": "LI4", "purpose": "Releases exterior wind"}
+      ],
+      "search_keywords": ["headache relief", "neck pain", "cold remedy", "eye strain"]
+    },
+    {
+      "id": "GB21",
+      "name_en": "Shoulder Well",
+      "name_cn": "肩井",
+      "name_pinyin": "Jianjing",
+      "meridian": "Gallbladder (Shao Yang)",
+      "location": "On the shoulder, directly above the nipple, at the midpoint of the line connecting GV14 and the acromion",
+      "location_simple": "Midpoint between neck base and shoulder tip",
+      "categories": ["Intersection with Yang Wei Mai"],
+      "functions": [
+        "Regulates Qi",
+        "Benefits the breasts",
+        "Relieves shoulder tension",
+        "Descends rebellious Qi"
+      ],
+      "indications": [
+        "Shoulder and neck pain",
+        "Breast disorders",
+        "Difficult labor",
+        "Headache",
+        "Stress tension"
+      ],
+      "needling": "0.3-0.5 cun perpendicular insertion",
+      "moxibustion": "Applicable",
+      "contraindications": ["PREGNANCY - STRONG CONTRAINDICATION", "Can induce labor"],
+      "safety_tags": ["pregnancy_contraindicated", "labor_inducing"],
+      "common_combinations": [
+        {"point": "GB20", "purpose": "Releases neck and shoulder tension"},
+        {"point": "LI4", "purpose": "Induces labor when appropriate"}
+      ],
+      "search_keywords": ["shoulder pain relief", "neck tension", "labor induction"]
+    }
+  ],
+  "safety_summary": {
+    "pregnancy_contraindicated": ["LI4", "GB21", "SP6_caution"],
+    "caution_required": ["GB20"],
+    "generally_safe": ["LV3", "ST36", "PC6", "HT7", "Yintang", "GV20", "KI1", "LU7"]
+  }
+}

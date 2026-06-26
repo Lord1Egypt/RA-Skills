@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tideo · 产品逻辑文档</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;background:#08080c;color:#e2e8f0;line-height:1.7}
+.page{max-width:780px;margin:0 auto;padding:40px 24px 80px}
+.back{display:inline-flex;align-items:center;gap:4px;font-size:.78rem;color:#64748b;text-decoration:none;margin-bottom:20px}
+.back:hover{color:#94a3b8}
+h1{font-size:1.5rem;font-weight:800;margin-bottom:4px}
+.meta{font-size:.75rem;color:#475569;margin-bottom:32px}
+h2{font-size:1.1rem;font-weight:700;margin:32px 0 12px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05)}
+h3{font-size:.92rem;font-weight:600;margin:18px 0 8px;color:#cbd5e1}
+p{font-size:.85rem;color:#94a3b8;margin-bottom:10px}
+ul,ol{font-size:.85rem;color:#94a3b8;margin:0 0 12px 20px}
+li{margin-bottom:4px}
+strong{color:#e2e8f0}
+code{background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:4px;font-size:.78rem;color:#e2e8f0}
+.callout{padding:14px 16px;border-radius:10px;margin:12px 0;font-size:.82rem}
+.callout-blue{background:rgba(129,140,248,0.08);border-left:3px solid #818cf8;color:#cbd5e1}
+.callout-green{background:rgba(16,185,129,0.08);border-left:3px solid #10b981;color:#cbd5e1}
+.callout-yellow{background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;color:#cbd5e1}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin:10px 0 16px}
+th{text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.1);color:#64748b;font-weight:500}
+td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.03);color:#94a3b8}
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0 16px}
+.flow-step{padding:6px 14px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);font-size:.78rem;color:#cbd5e1}
+.flow-step.active{background:rgba(129,140,248,0.1);border-color:rgba(129,140,248,0.25);color:#818cf8}
+.flow-arrow{color:#334155;font-size:.75rem}
+</style>
+</head>
+<body>
+<div class="page">
+
+<a class="back" href="hub.html">← 返回产品中心</a>
+
+<h1>Tideo 产品逻辑文档</h1>
+<p class="meta">最后更新：2026-04-15 · 版本：visual1（视觉稿还原版）</p>
+
+<!-- ===== 背景 ===== -->
+<h2>为什么做这个产品</h2>
+<div class="callout callout-blue">
+    腾讯云旗下有<strong>云点播、云直播、媒体处理（MPS）</strong>等多个音视频产品，它们之间存在大量公用功能（字幕擦除、翻译、配音、剪辑等）。如果分别嵌入各个产品内部，开发成本高、功能冗杂。<br><br>
+    因此决定做一个<strong>统一平台</strong>，把这些跨产品的能力集合在一起使用。
+</div>
+
+<p>立项有三个核心原因：</p>
+
+<h3>1. 能力整合</h3>
+<p>云点播、云直播、MPS 各自有视频处理能力，但分散在不同产品线。用户要用"视频译制"需要同时调 MPS 的擦除、翻译、配音三个接口，操作分散。Tideo 把它们整合成一键流程。</p>
+
+<h3>2. 开箱即用</h3>
+<p>中小企业和内容团队有直接使用这些能力的需求，但未必具备 API 对接的开发能力。Tideo 提供<strong>零代码、可视化</strong>的操作界面，上传视频就能用，不需要写一行代码。</p>
+
+<h3>3. 简化账号管理</h3>
+<p>腾讯云的账号体系需要多处授权（CAM 策略、服务角色、跨产品权限），流程繁琐。Tideo 用一套<strong>轻量账号体系</strong>统一管理，降低使用门槛。</p>
+
+<h2>产品是什么</h2>
+<div class="callout callout-blue">
+    <strong>Tideo</strong> 是腾讯云音视频能力的轻量化统一平台 — 整合云点播、云直播、MPS 的公用功能，提供开箱即用的可视化操作界面。<br>
+    首期聚焦三大核心功能：<strong>视频译制 · 视频生成 · 直播剪辑</strong>，后续持续扩充。
+</div>
+
+<h2>首期核心功能</h2>
+<table>
+    <tr><th>功能</th><th>能力来源</th><th>用户价值</th><th>状态</th></tr>
+    <tr><td><strong>视频译制</strong></td><td>MPS 字幕擦除 + 翻译 + AI 配音</td><td>上传视频，自动输出多语言版本</td><td>✅ 已跑通</td></tr>
+    <tr><td><strong>视频生成</strong></td><td>云点播 AI 生成能力</td><td>文字/图片生成视频内容</td><td>⏳ 待对接</td></tr>
+    <tr><td><strong>直播剪辑</strong></td><td>云直播 + MPS EditMedia</td><td>直播流实时剪辑、精彩片段提取</td><td>⏳ 待对接</td></tr>
+</table>
+
+<h2>用户是谁</h2>
+<ul>
+    <li><strong>中小企业</strong> — 没有技术团队，无法自己对接 API，需要开箱即用的音视频处理工具</li>
+    <li><strong>短剧出海团队</strong> — 中文短剧翻译成英语/日语/韩语发行海外，需要高效批量处理</li>
+    <li><strong>内容创作者</strong> — 把视频翻译成多语言版本，扩大海外受众</li>
+    <li><strong>企业市场部</strong> — 产品宣传片、培训视频的多语言本地化</li>
+    <li><strong>直播运营团队</strong> — 需要快速从直播流中剪辑精彩片段分发</li>
+</ul>
+
+<h2>视频译制 — 核心流程</h2>
+<p>首期已跑通的完整流程：</p>
+
+<div class="flow">
+    <span class="flow-step active">打开产品</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">上传视频</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">选择模式</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">等待处理</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">查看成片</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">精调（可选）</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">下载</span>
+</div>
+
+<h3>处理模式</h3>
+<table>
+    <tr><th>模式</th><th>包含能力</th><th>适用场景</th></tr>
+    <tr><td><strong>完整模式</strong>（full）</td><td>字幕擦除 + 字幕翻译 + AI 配音</td><td>完整的视频本地化</td></tr>
+    <tr><td>字幕擦除（erase）</td><td>仅擦除画面中的字幕和水印</td><td>清理画面</td></tr>
+    <tr><td>字幕翻译（subtitle）</td><td>识别语音 + 翻译 + 字幕压制</td><td>只要字幕，不改配音</td></tr>
+    <tr><td>配音（voice）</td><td>语音识别 + 翻译 + AI 克隆配音</td><td>只要换配音</td></tr>
+</table>
+
+<h3>详细步骤</h3>
+<table>
+    <tr><th>步骤</th><th>页面</th><th>用户做什么</th><th>系统做什么</th></tr>
+    <tr><td>1. 进入</td><td>create.html</td><td>打开产品首页</td><td>展示功能卡片和智能输入框</td></tr>
+    <tr><td>2. 选择功能</td><td>create.html</td><td>点「视频译制」或描述需求</td><td>识别意图，展示上传引导</td></tr>
+    <tr><td>3. 上传视频</td><td>create.html</td><td>选择本地视频文件</td><td>上传到腾讯云 COS（显示进度）</td></tr>
+    <tr><td>4. 提交任务</td><td>→ translate-v8</td><td>点发送，自动跳转</td><td>调用 MPS ProcessMedia API</td></tr>
+    <tr><td>5. 等待处理</td><td>translate-v8</td><td>观看四角色对话进度</td><td>每5秒轮询 MPS 状态，驱动进度</td></tr>
+    <tr><td>6. 查看成片</td><td>translate-v8</td><td>播放器自动切到成片</td><td>输出成片 URL + 下载按钮</td></tr>
+    <tr><td>7. 下载</td><td>translate-v8</td><td>点下载按钮</td><td>直接下载 COS 成片文件</td></tr>
+</table>
+
+<h2>体验设计 — 产品核心差异</h2>
+
+<div class="callout callout-blue">
+    <strong>传统媒体处理产品的等待体验：</strong>提交任务 → 进度条/空白页 → 完成通知。用户在等待期间无事可做，只能离开页面。<br><br>
+    <strong>Tideo 的做法：</strong>把原本无聊、不可视的媒体处理过程，变成一个<strong>可交互的游戏沙盘</strong>。用户在等待期间能看到"工作室里正在发生什么"，增加趣味性和参与感，降低感知等待时间。
+</div>
+
+<p>这是 Tideo 区别于所有同类产品的<strong>核心体验差异</strong>。</p>
+
+<h3>四人虚拟工作坊</h3>
+<p>处理过程被具象化为一间像素风工作室，四个 AI 角色各司其职：</p>
+
+<table>
+    <tr><th>角色</th><th>真名</th><th>职责</th><th>对应处理阶段</th></tr>
+    <tr><td>🎬 导演</td><td>林雨晨</td><td>统筹分工、输出结果</td><td>任务调度 + 最终合成</td></tr>
+    <tr><td>🎨 后期</td><td>陈默</td><td>画面处理</td><td>字幕/水印擦除</td></tr>
+    <tr><td>📝 翻译</td><td>李明远</td><td>字幕识别和翻译</td><td>OCR/ASR + 翻译</td></tr>
+    <tr><td>🎙️ 配音</td><td>苏雅</td><td>AI 克隆配音</td><td>配音合成</td></tr>
+</table>
+
+<h3>等待期间用户能看到什么</h3>
+<ul>
+    <li><strong>角色实时对话</strong> — 四个角色在聊天面板轮流汇报进度，有性格、有台词，不是机械的状态文字</li>
+    <li><strong>进度卡片</strong> — 每个角色下方有子任务卡片，逐条从「排队中」→「处理中」→「完成」</li>
+    <li><strong>像素工作室场景</strong> — 等距视角的工作室画面，角色在各自工位上忙碌</li>
+    <li><strong>节奏同步</strong> — 所有视觉反馈与真实 MPS 处理进度完全同步，不是假动画</li>
+</ul>
+
+<h3>设计目标</h3>
+<ul>
+    <li>降低用户在处理等待期间的流失率</li>
+    <li>让"等待"本身变成产品体验的一部分，而不是体验的断裂</li>
+    <li>建立用户对 AI 处理过程的信任感（看得见每一步在做什么）</li>
+</ul>
+
+<h2>技术架构</h2>
+
+<h3>前端</h3>
+<ul>
+    <li>纯 HTML/CSS/JS，无框架，轻量快速，托管在 GitHub Pages</li>
+    <li>COS JS SDK 前端直传（不经过服务器）</li>
+    <li><code>api-client.js</code> 封装所有 API 调用</li>
+    <li><code>tracker.js</code> 全自动埋点（用户测试用）</li>
+</ul>
+
+<h3>后端</h3>
+<ul>
+    <li><strong>腾讯云 SCF 云函数</strong>（tideo-api）— 唯一的后端，约 150 行</li>
+    <li>职责：API 签名代理（前端不暴露 SecretKey）</li>
+    <li>路由：<code>/translate</code> · <code>/erase</code> · <code>/clip</code> · <code>/task/:id</code> · <code>/upload-credential</code> · <code>/track</code> · <code>/track-data</code></li>
+</ul>
+
+<h3>云服务依赖</h3>
+<table>
+    <tr><th>服务</th><th>用途</th></tr>
+    <tr><td>腾讯云 MPS</td><td>视频处理引擎（擦除+翻译+配音）</td></tr>
+    <tr><td>腾讯云 COS</td><td>视频/成片/埋点数据存储</td></tr>
+    <tr><td>腾讯云 STS</td><td>生成临时上传凭证（前端安全直传）</td></tr>
+    <tr><td>GitHub Pages</td><td>前端静态托管</td></tr>
+</table>
+
+<h3>数据流</h3>
+<div class="callout callout-green">
+用户选视频 → <strong>COS 直传</strong>（前端 → COS）<br>
+→ 带 videoUrl 跳转到 translate-v8<br>
+→ <strong>SCF 云函数</strong>调用 MPS ProcessMedia<br>
+→ 前端每 5 秒轮询 <strong>DescribeTaskDetail</strong><br>
+→ MPS 完成后成片写入 COS<br>
+→ 前端拿到成片 URL，播放器 + 下载
+</div>
+
+<h2>当前状态</h2>
+
+<div class="callout callout-yellow">
+    <strong>2026-04-15 · visual1 版本 · 视觉稿还原阶段</strong>
+</div>
+
+<h3>已完成</h3>
+<ul>
+    <li>视频译制全流程真实可用（上传 → MPS 处理 → 成片下载）</li>
+    <li>沉浸式四角色工作坊体验（对话进度与 MPS 同步）</li>
+    <li>完整埋点系统（自动记录用户全操作路径）</li>
+    <li>测试中心（生成链接 → 数据看板）</li>
+    <li>产品中心/黄页</li>
+    <li>项目时间线管理</li>
+    <li>无 API 时自动降级为演示模式</li>
+    <li>视觉稿还原版（visual1）：精调页点阵背景+毛玻璃、创作页配置栏重设计</li>
+    <li>视频来源三路径弹窗（上传/导入任务/项目文件）</li>
+    <li>精调直接入口模式（从任务导入/项目文件进入，跳过对话流）</li>
+    <li>对话状态持久化（sessionStorage 多任务管理）</li>
+    <li>全局去 emoji，统一 SVG icon</li>
+    <li>字幕/配音精调面板重构（设置区+列表卡片式布局）</li>
+</ul>
+
+<h3>待做</h3>
+<ul>
+    <li>⏳ 直播剪辑对接 EditMedia API</li>
+    <li>⏳ AI 视频生成对接</li>
+    <li>⏳ 精调面板对接真实数据</li>
+    <li>⏳ 多语言支持（目前只支持中→英）</li>
+    <li>⏳ 轻量账号体系（替代腾讯云多处授权）</li>
+    <li>⏳ 更多音视频能力持续扩充</li>
+</ul>
+
+<h2>产品规划</h2>
+<table>
+    <tr><th>阶段</th><th>内容</th><th>时间</th></tr>
+    <tr><td><strong>首期 MVP</strong></td><td>视频译制跑通 + 体验设计 + 用户测试</td><td>2026.04</td></tr>
+    <tr><td>首期完整版</td><td>三大功能全部对接（译制+生成+剪辑）</td><td>2026.05</td></tr>
+    <tr><td>账号体系</td><td>轻量登录/注册，简化腾讯云授权流程</td><td>2026.05</td></tr>
+    <tr><td>能力扩充</td><td>持续从云点播/云直播/MPS 引入更多公用功能</td><td>持续</td></tr>
+</table>
+
+<h2>版本演进</h2>
+<table>
+    <tr><th>时间</th><th>版本</th><th>里程碑</th></tr>
+    <tr><td>2026-03</td><td>framex-app / av-saas</td><td>产品原型，基础页面结构</td></tr>
+    <tr><td>2026-03</td><td>framex-studio</td><td>translate-v7，像素工作室场景</td></tr>
+    <tr><td>2026-03-12</td><td>Tideo</td><td>品牌改名 FrameX → Tideo</td></tr>
+    <tr><td>2026-03-20</td><td>model</td><td>仓库迁移，v7 视频 Loading 版</td></tr>
+    <tr><td>2026-04</td><td>f1</td><td>translate-v8 沉浸式体验重设计</td></tr>
+    <tr><td>2026-04-10</td><td>real1</td><td>真实 API 对接，MPS 译制跑通，埋点+测试系统</td></tr>
+    <tr><td>2026-04-15</td><td><strong>visual1</strong></td><td>视觉稿还原版，精调页重设计，状态持久化，多路径来源弹窗</td></tr>
+</table>
+
+<h2>关键指标</h2>
+<p>用户测试时重点关注：</p>
+<table>
+    <tr><th>指标</th><th>定义</th><th>健康值</th></tr>
+    <tr><td>全流程完成率</td><td>从进入到拿到成片的用户比例</td><td>≥ 70%</td></tr>
+    <tr><td>犹豫时间</td><td>进入页面到首次交互的时长</td><td>≤ 10 秒</td></tr>
+    <tr><td>困惑操作</td><td>反复点同一个按钮 ≥3 次</td><td>0 次</td></tr>
+    <tr><td>上传成功率</td><td>上传成功 / 上传尝试</td><td>≥ 95%</td></tr>
+    <tr><td>处理中流失率</td><td>等待处理时离开的用户比例</td><td>≤ 20%</td></tr>
+</table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+# Modern Clean — Template Manifest
+
+meta:
+  name: "Modern Clean"
+  id: modern-clean
+  version: "1.0"
+  tags: [modern, clean, colorful, gradient, rounded, sans-serif, general]
+  best_for:
+    - SaaS 应用
+    - 开发者工具
+    - 通用工具类产品
+    - 数据仪表盘
+    - 初创公司产品
+  not_for:
+    - 需要强烈品牌个性的产品
+    - 游戏/娱乐类应用
+    - 奢侈品品牌
+  flexibility:
+    colors: moderate       # 保持现代感配色方向，具体色值可调整
+    typography: moderate   # 保持无衬线字体方向，字重可根据项目微调
+    spacing: loose         # 根据内容密度灵活调整
+    motion: moderate       # 保持平滑过渡风格
+    layout: loose          # 完全由项目信息架构决定
+  icon_preferences:
+    primary_source: lucide
+    fallback_sources: [phosphor, tabler]
+    style: outline
+    stroke_width: 2
+    size: 20
+
+# ====== Design Tokens ======
+tokens:
+  # --- Colors ---
+  colors:
+    primary:
+      base: "#6366F1"       # Indigo
+      light: "#818CF8"
+      dark: "#4F46E5"
+    secondary:
+      base: "#EC4899"       # Pink accent
+      light: "#F472B6"
+      dark: "#DB2777"
+    background:
+      page: "#F8FAFC"       # Slate 50 — near-white, not pure white
+      surface: "#FFFFFF"
+      elevated: "#FFFFFF"
+    text:
+      primary: "#0F172A"    # Slate 900
+      secondary: "#475569"  # Slate 600
+      muted: "#94A3B8"      # Slate 400
+    border:
+      default: "#E2E8F0"    # Slate 200
+      focus: "#6366F1"      # Primary
+    functional:
+      success: "#10B981"
+      warning: "#F59E0B"
+      error: "#EF4444"
+      info: "#3B82F6"
+
+  # --- Typography ---
+  typography:
+    heading_font: "'Inter', 'SF Pro Display', -apple-system, sans-serif"
+    body_font: "'Inter', 'SF Pro Text', -apple-system, sans-serif"
+    mono_font: "'JetBrains Mono', 'Fira Code', monospace"
+    scale:
+      xs:   "0.75rem"       # 12px
+      sm:   "0.875rem"      # 14px
+      base: "1rem"          # 16px
+      lg:   "1.125rem"      # 18px
+      xl:   "1.25rem"       # 20px
+      2xl:  "1.5rem"        # 24px
+      3xl:  "1.875rem"      # 30px
+      4xl:  "2.25rem"       # 36px
+    weight:
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  # --- Spacing ---
+  spacing:
+    unit: 4                  # 4px base unit
+    scale: [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80]
+
+  # --- Border Radius ---
+  border:
+    radius:
+      none:  "0"
+      sm:    "0.25rem"       # 4px  — inputs, badges
+      md:    "0.5rem"        # 8px  — cards, buttons
+      lg:    "0.75rem"       # 12px — modals, large cards
+      xl:    "1rem"          # 16px — main containers
+      full:  "9999px"        #      — pills, avatars
+
+  # --- Shadows ---
+  shadows:
+    none: "none"
+    sm:   "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
+    md:   "0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05)"
+    lg:   "0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)"
+    xl:   "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04)"
+
+  # --- Motion ---
+  motion:
+    duration:
+      instant: "0ms"
+      fast:    "150ms"
+      normal:  "200ms"
+      slow:    "300ms"
+      gradual: "500ms"
+    easing:
+      default:    "cubic-bezier(0.4, 0, 0.2, 1)"       # ease-in-out
+      in:         "cubic-bezier(0.4, 0, 1, 1)"          # ease-in
+      out:        "cubic-bezier(0, 0, 0.2, 1)"           # ease-out
+      spring:     "cubic-bezier(0.34, 1.56, 0.64, 1)"   # slight bounce
+
+  # --- Decorations ---
+  decorations:
+    gradient_primary: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%)"
+    gradient_subtle: "linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%)"
+    backdrop_blur: "8px"
+    pattern: none

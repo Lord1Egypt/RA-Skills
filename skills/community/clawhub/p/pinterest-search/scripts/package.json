@@ -1,0 +1,10 @@
+{
+  "name": "pinterest-search",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@t2p/image-cache": "file:./vendors/image-cache",
+    "socks-proxy-agent": "^10.0.0",
+    "undici": "^6.0.0"
+  }
+}

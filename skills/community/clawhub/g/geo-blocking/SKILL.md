@@ -1,35 +1,38 @@
----
-name: "Geo Blocking"
-description: "Implement geographic content restrictions with IP geolocation, VPN/Tor detection, and regional law compliance for tailored geo-blocking rules."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/geo-blocking"
-sourceUrl: "https://clawhub.ai/skills/geo-blocking"
----
+# Geo-Blocking Skills
 
-# Geo Blocking
+Skills for geographic restrictions and regional compliance.
 
-> Implement geographic content restrictions with IP geolocation, VPN/Tor detection, and regional law compliance for tailored geo-blocking rules.
+## Essential Skills
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/geo-blocking`
-- **Source URL:** [https://clawhub.ai/skills/geo-blocking](https://clawhub.ai/skills/geo-blocking)
+### 1. Geo Shield
+**Skill ID**: `geo-shield`
 
-## Overview
+**Purpose**: Country-based content filtering and compliance
 
+**Features**:
+- IP geolocation
+- VPN/proxy detection
+- Tor exit node detection
+- Regional law compliance (GDPR, local censorship)
+- Custom geo-rules
 
-## Installation
-To install this skill, run the following command in your terminal:
+**Installation**:
 ```bash
-hermes skills install clawhub/geo-blocking
+npm install @clawhub/geo-shield
 ```
+
+**Use Cases**:
+- GDPR compliance (EU)
+- Local content laws (Germany hate speech, etc.)
+- Regional restrictions
+- Government mandates
+
+**Examples**:
+- EU: Block sites without GDPR compliance
+- Germany: Stricter hate speech rules
+- China: Government-mandated blocks
+- Australia: Extreme violence filtering
+
+---
+
+*For parental controls, see [PARENTAL_CONTROLS.md](PARENTAL_CONTROLS.md).*

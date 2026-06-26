@@ -1,0 +1,17 @@
+{
+  "global":{
+    "bitable": {
+      "base": "",
+      "table": ""
+    }
+  },
+  "references-config": {
+    "ark-api": {
+      "key": "ARK_API_KEY",
+      "model": "doubao-seed-2-0-lite-260215"
+    },
+    "downloader-api": {
+      "base_url": "h"
+    }
+  }
+}

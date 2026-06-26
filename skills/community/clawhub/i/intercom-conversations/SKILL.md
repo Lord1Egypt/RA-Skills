@@ -1,35 +1,44 @@
----
-name: "intercom-conversations"
-description: "Read Intercom conversations by listing, finding, or searching them using the ConversationsClient with JSON input and output."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intercom-conversations"
-sourceUrl: "https://clawhub.ai/skills/intercom-conversations"
----
+# Clawhub Skill: Intercom Conversations (Read)
 
-# intercom-conversations
+Clawhub loads this Node module and calls `default(input)`.
 
-> Read Intercom conversations by listing, finding, or searching them using the ConversationsClient with JSON input and output.
+## Required env
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intercom-conversations`
-- **Source URL:** [https://clawhub.ai/skills/intercom-conversations](https://clawhub.ai/skills/intercom-conversations)
+- `INTERCOM_ACCESS_TOKEN` (required)
 
-## Overview
+## Install
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/intercom-conversations
+npm install
 ```
+
+## Inputs
+
+### List
+```json
+{ "action": "conversations.list", "per_page": 50, "starting_after": "cursor" }
+```
+
+### Find
+```json
+{ "action": "conversations.find", "conversation_id": "123", "display_as": "plaintext" }
+```
+
+### Search
+```json
+{ "action": "conversations.search", "query": { "operator": "AND", "value": [] }, "pagination": { "per_page": 50 } }
+```
+
+## Outputs
+
+All successful responses include `ok: true` and echo the `action`.
+
+- list/search: `{ ok, action, conversations, next_starting_after }`
+- find: `{ ok, action, conversation }`
+
+Errors: `{ ok: false, error, supported_actions? }`
+
+## Contracts / metadata
+
+- OpenAPI spec: `openapi.yaml`
+- Skill registry metadata: `clawhub.skill.json`

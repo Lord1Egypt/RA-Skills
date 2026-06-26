@@ -1,0 +1,55 @@
+{
+    "_comment": "Slide to Video Converter configuration - Default: Qwen TTS",
+
+    "tts": {
+        "engine": "qwen",
+        "voice_name": "serena",
+        "lang_code": "zh",
+        "speech_speed": 1.5,
+        "base_temperature": 0.3
+    },
+
+    "edge_tts": {
+        "voice": "zh-CN-YunyangNeural",
+        "rate": "+0%",
+        "volume": "+0%"
+    },
+
+    "validation": {
+        "threshold": 0.6,
+        "max_retries": 5,
+        "chars_per_sec": 4.0,
+        "duration_tolerance": 3.0
+    },
+
+    "video": {
+        "fps": 24,
+        "fps_fast": 8,
+        "video_codec": "libx264",
+        "audio_codec": "aac"
+    },
+
+    "image": {
+        "dpi": 300,
+        "dpi_fast": 150,
+        "width": 1920,
+        "height": 1080,
+        "width_fast": 1280,
+        "height_fast": 720
+    },
+
+    "subtitle": {
+        "font": "/System/Library/Fonts/PingFang.ttc",
+        "font_size": 32,
+        "color": "white",
+        "stroke_color": "black",
+        "stroke_width": 2,
+        "margin_bottom": 40,
+        "line_max_chars": 35,
+        "padding_h": 30
+    },
+
+    "stt": {
+        "model_id": "mlx-community/SenseVoiceSmall"
+    }
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Barney"
+  short_description: "Run live Hinge triage, drafting, and iOS automation help"
+  icon_small: "./assets/barney-small.svg"
+  icon_large: "./assets/barney-large.svg"
+  default_prompt: "Use $barney to observe manual Hinge behavior briefly, learn style/taste, then run autonomous triage in the selected mode."

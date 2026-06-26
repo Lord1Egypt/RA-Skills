@@ -1,0 +1,6 @@
+interface:
+  display_name: "Auto Login Assistant"
+  short_description: "Detect login walls and guide safe sign-in."
+  default_prompt: "Use $auto-login-assistant to help me sign in safely when a site blocks progress."
+policy:
+  allow_implicit_invocation: false

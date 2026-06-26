@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "lastModified": "2026-04-03T03:02:00.000Z",
+  "items": {
+    "template-killtime-tmpl": {
+      "id": "template-killtime-tmpl",
+      "title": "【示例】快速去除浴室水垢",
+      "layer": "L1",
+      "tags": ["生活技巧", "清洁"],
+      "priority": "high",
+      "summary": "浴室水垢用柠檬酸或白醋擦，轻松去除，比超市卖的清洁剂好用还便宜。",
+      "fullContent": "浴室水垢清除方法：1.把柠檬酸或白醋倒在湿布上 2.敷在水垢处静置10分钟 3.用刷子刷干净 4.清水冲洗即可。好处：便宜、无毒、效果好。",
+      "accessCount": 0,
+      "lastAccess": null,
+      "compressedAt": null,
+      "archivedAt": null,
+      "createdAt": "2026-04-03T03:02:00.000Z",
+      "updatedAt": "2026-04-03T03:02:00.000Z"
+    },
+    "template-xss-reflected-tmpl": {
+      "id": "template-xss-reflected-tmpl",
+      "title": "【示例】Excel批量处理技巧",
+      "layer": "L1",
+      "tags": ["工作技巧", "Excel"],
+      "priority": "high",
+      "summary": "Excel快速填充：选中多个单元格，输入内容后按Ctrl+回车，所有选中单元格同时填充。",
+      "fullContent": "Excel批量填充技巧：1.选中需要填充的多个单元格（可以是不连续的）2.输入内容 3.按 Ctrl+回车，所有选中单元格同时被填充。这个比复制粘贴快10倍。",
+      "accessCount": 0,
+      "lastAccess": null,
+      "compressedAt": null,
+      "archivedAt": null,
+      "createdAt": "2026-04-03T03:02:00.000Z",
+      "updatedAt": "2026-04-03T03:02:00.000Z"
+    },
+    "template-alert-fatigue-tmpl": {
+      "id": "template-alert-fatigue-tmpl",
+      "title": "【示例】写会议纪要的方法",
+      "layer": "L2",
+      "tags": ["工作技巧", "效率"],
+      "priority": "medium",
+      "summary": "会议纪要公式：结论+行动+负责人+截止时间。每个人说完就记这4点，散会就能发。",
+      "fullContent": "高效会议纪要公式：结论（决定了什么）+ 行动（要做什么）+ 负责人（谁来做）+ 截止时间（什么时候完成）。会中每发言一轮就按这个格式记，散会时整理5分钟就能发出正式纪要。",
+      "accessCount": 0,
+      "lastAccess": null,
+      "compressedAt": null,
+      "archivedAt": null,
+      "createdAt": "2026-04-03T03:02:00.000Z",
+      "updatedAt": "2026-04-03T03:02:00.000Z"
+    }
+  },
+  "stats": {
+    "totalItems": 3,
+    "byLayer": {
+      "L1": 2,
+      "L2": 1,
+      "L3": 0
+    },
+    "byPriority": {
+      "high": 2,
+      "medium": 1,
+      "low": 0
+    }
+  }
+}

@@ -1,0 +1,18 @@
+id: explanation_tone
+name: 解释腔
+description: 检查正文中的总结、归纳、解释连接词，避免文本过于像讲解和汇报。
+severity: warning
+scope: full
+type: keywords
+threshold: 2
+message: "检测到解释腔偏重，建议把意义和判断改写进动作、后果、停顿或关系反应。"
+keywords:
+  - 这是因为
+  - 也就是说
+  - 换句话说
+  - 总而言之
+  - 归根结底
+  - 说到底
+  - 原因在于
+  - 这意味着
+  - 换言之

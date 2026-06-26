@@ -1,0 +1,12 @@
+{
+  "name": "interior-xiaohongshu-copywriter",
+  "version": "1.0.0",
+  "description": "专为室内设计师打造的小红书内容工具。输入一个主题关键词，生成选题方向、标题、正文文案、标签。贴合真实设计师视角，助力设计师IP打造与本地获客。",
+  "author": "隐室设计",
+  "license": "MIT",
+  "keywords": ["interior design", "xiaohongshu", "social media", "chinese"],
+  "tags": ["室内设计", "小红书", "文案", "自媒体"],
+  "requirements": ["python3"],
+  "main": "generate.py",
+  "source": "https://github.com/yinshi-space/interior-xiaohongshu-copywriter"
+}

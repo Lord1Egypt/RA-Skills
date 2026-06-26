@@ -1,35 +1,118 @@
 ---
-name: "文章风格克隆助手"
-description: "提供1-5篇参考文章 + 原始素材，AI 分析参考文章的风格特征， 将素材改写成同风格的成品文章，输出3个版本供选择，支持强度调节和迭代优化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/style-cloner"
-sourceUrl: "https://clawhub.ai/skills/style-cloner"
+name: style-cloner
+displayName: 文章风格克隆助手
+version: 1.0.0
+description: >
+  提供1-5篇参考文章 + 原始素材，AI 分析参考文章的风格特征，
+  将素材改写成同风格的成品文章，输出3个版本供选择，支持强度调节和迭代优化。
+author: antonia-sz
+tags: [writing, style, content, clone, ai, copywriting]
 ---
 
-# 文章风格克隆助手
+# 文章风格克隆助手 ✍️
 
-> 提供1-5篇参考文章 + 原始素材，AI 分析参考文章的风格特征， 将素材改写成同风格的成品文章，输出3个版本供选择，支持强度调节和迭代优化。
+## 你能做什么
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/style-cloner`
-- **Source URL:** [https://clawhub.ai/skills/style-cloner](https://clawhub.ai/skills/style-cloner)
+提供**参考文章**（你想模仿的风格）+ **原始素材**（你想改写的内容），我帮你：
 
-## Overview
+1. **分析风格特征** — 提炼语言风格、结构习惯、句式偏好
+2. **克隆改写** — 保留素材核心观点，套用目标风格
+3. **输出3个版本** — 强度不同，供你选择最合适的
+4. **迭代优化** — 对结果提出修改意见，继续打磨
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/style-cloner
+## 使用方式
+
+### 基本用法
+
 ```
+参考文章：
+[粘贴1-5篇你想模仿风格的文章]
+
+---
+
+原始素材：
+[粘贴你想改写的草稿或素材]
+```
+
+### 带参数用法
+
+```
+帮我把这份素材改写成@张三的风格，风格强度80%，目标字数1000字
+
+参考文章：[...]
+素材：[...]
+```
+
+### 指定输出平台
+
+```
+帮我改写成适合小红书发布的风格（参考文章如下）...
+帮我改写成公众号爆款文风...
+帮我改写成知乎专业回答风格...
+```
+
+---
+
+## 风格分析维度
+
+分析参考文章时，会提炼：
+
+| 维度 | 说明 |
+|------|------|
+| 语言风格 | 正式/口语/幽默/严肃/温情 |
+| 句式偏好 | 长句/短句比例，是否常用排比、设问 |
+| 段落节奏 | 段落长短、分段习惯 |
+| 开头套路 | 如何引出话题（故事/提问/数据/金句） |
+| 结尾套路 | 如何收尾（总结/号召/反问/留悬念） |
+| 标题风格 | 数字型/悬念型/情感型/干货型 |
+| 高频词汇 | 常用词、口头禅、特色表达 |
+| 情感色调 | 积极/中性/批判/共情 |
+
+---
+
+## 输出格式
+
+```
+### 风格分析摘要
+[列出提炼的核心风格特征]
+
+---
+
+### 版本一（风格强度 60%）
+[改写后文章 — 保留较多原文结构，轻度套用风格]
+
+---
+
+### 版本二（风格强度 80%）★ 推荐
+[改写后文章 — 主要推荐版本]
+
+---
+
+### 版本三（风格强度 100%）
+[改写后文章 — 完全克隆风格，可能需要适当调整]
+```
+
+---
+
+## 工具调用
+
+```python
+# 分析风格并改写
+exec: python3 SKILL_DIR/scripts/clone_style.py \
+  --refs "参考文章1\n---\n参考文章2" \
+  --content "原始素材" \
+  --intensity 80 \
+  --output /tmp/result.md
+```
+
+---
+
+## 迭代优化
+
+改写完成后可以说：
+- "版本二太正式了，幽默一点"
+- "第二段节奏太慢，压缩一下"
+- "标题换一个更有冲击力的"
+- "帮我再生成3个版本，这次偏口语化"

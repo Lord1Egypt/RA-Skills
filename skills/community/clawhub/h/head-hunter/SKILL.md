@@ -1,35 +1,45 @@
 ---
-name: "Head Hunter"
-description: "AI-powered headhunter system for intelligent candidate-job matching. Provides professional recruitment assistance with multi-dimensional matching algorithms,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/head-hunter"
-sourceUrl: "https://clawhub.ai/skills/head-hunter"
+name: head-hunter
+description: AI-powered headhunter system for intelligent candidate-job matching. Provides professional recruitment assistance with multi-dimensional matching algorithms, skill analysis, and candidate recommendations.
+version: 1.0.0
+homepage: https://github.com/ZhenRobotics/openclaw-head-hunter
+metadata: {"clawdbot":{"emoji":"🎯","tags":["recruitment","hiring","candidate-matching","headhunter","hr","jobs","ai-hiring","talent-acquisition"],"requires":{"bins":["python3"],"env":[],"config":[]},"install":["pip install email-validator"],"os":["darwin","linux","win32"]}}
 ---
 
-# Head Hunter
+# Headhunter - AI Recruitment Assistant
 
-> AI-powered headhunter system for intelligent candidate-job matching. Provides professional recruitment assistance with multi-dimensional matching algorithms,...
+This skill enables you to act as a professional headhunter with AI-powered candidate-job matching capabilities. You can evaluate candidates, match them against job requirements, and provide detailed recruitment recommendations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/head-hunter`
-- **Source URL:** [https://clawhub.ai/skills/head-hunter](https://clawhub.ai/skills/head-hunter)
+## When to Activate This Skill
 
-## Overview
+Activate this skill when the user:
+- Needs to match candidates with job openings
+- Wants to evaluate a candidate's fit for a position
+- Seeks to rank multiple candidates for a job
+- Asks for recruitment advice or candidate analysis
+- Needs help with hiring decisions
+- Wants to understand candidate strengths and concerns
 
+## Core Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/head-hunter
+✅ **Intelligent Matching** - Multi-dimensional candidate-job matching
+✅ **Skill Analysis** - Automatic skill matching with synonym recognition
+✅ **Batch Ranking** - Compare and rank multiple candidates
+✅ **Detailed Insights** - Strengths, concerns, and interview questions
+
+## Quick Match Example
+
+```python
+import asyncio
+from headhunter import Headhunter, Candidate, Job
+
+async def main():
+    hr = Headhunter()
+    match = await hr.match_candidate(candidate, job)
+    print(f"Score: {match.overall_score}/100")
+    print(f"Recommendation: {match.recommendation}")
+
+asyncio.run(main())
 ```
+
+**Ready to find the perfect candidate? Let's start matching!** 🎯

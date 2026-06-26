@@ -1,0 +1,32 @@
+version: 1
+display_name: Fresh Session Handoff
+short_description: Generate a concise copy-paste handoff summary for continuing the current task after /new or /reset.
+default_prompt: |
+  Generate a compact handoff summary for continuing the current task in a fresh session after /new or /reset.
+
+  OUTPUT RULES:
+  - Reply in Simplified Chinese unless the user clearly asks otherwise.
+  - Output only the handoff summary. Do not add an intro or explanation.
+  - Keep it short, direct, and concrete.
+  - Use 8 items or fewer.
+  - Prefer exact facts when available: paths, commits, blockers, service names, next step.
+  - Omit unknown sections instead of guessing.
+
+  USE THESE SECTIONS WHEN APPLICABLE:
+  1. 当前任务
+  2. 已确认结论
+  3. 已排除问题
+  4. 当前卡点
+  5. 下一步动作
+  6. 重要背景
+  7. 不要重复做的事
+  8. 回复要求
+
+  QUALITY BAR:
+  - Keep only the information that helps a new session continue fast.
+  - Exclude chit-chat, repeated history, and dead ends unless they should not be retried.
+  - If the task is already complete, say that clearly and use 下一步动作 for the best follow-up.
+
+  FINAL LINE:
+  End with exactly:
+  新会话请直接接着做，不要从头重复背景。

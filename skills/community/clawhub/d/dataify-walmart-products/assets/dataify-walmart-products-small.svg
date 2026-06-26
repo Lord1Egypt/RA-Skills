@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Dataify Walmart Products">
+  <rect x="16" y="16" width="96" height="96" rx="22" fill="#0071dc"/>
+  <circle cx="64" cy="64" r="18" fill="#ffc220"/>
+  <g fill="#ffc220">
+    <rect x="60" y="22" width="8" height="24" rx="4"/>
+    <rect x="60" y="82" width="8" height="24" rx="4"/>
+    <rect x="82" y="60" width="24" height="8" rx="4"/>
+    <rect x="22" y="60" width="24" height="8" rx="4"/>
+    <rect x="78" y="34" width="8" height="24" rx="4" transform="rotate(45 82 46)"/>
+    <rect x="42" y="70" width="8" height="24" rx="4" transform="rotate(45 46 82)"/>
+    <rect x="78" y="70" width="8" height="24" rx="4" transform="rotate(-45 82 82)"/>
+    <rect x="42" y="34" width="8" height="24" rx="4" transform="rotate(-45 46 46)"/>
+  </g>
+</svg>

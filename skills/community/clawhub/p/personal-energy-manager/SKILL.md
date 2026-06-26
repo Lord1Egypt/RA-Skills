@@ -1,35 +1,60 @@
----
-name: "Personal Energy Manager"
-description: "帮助用户识别并优化个人精力波动，合理分配任务与恢复，提升日均有效产出，避免精力枯竭。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personal-energy-manager"
-sourceUrl: "https://clawhub.ai/skills/personal-energy-manager"
----
-
 # Personal Energy Manager
 
-> 帮助用户识别并优化个人精力波动，合理分配任务与恢复，提升日均有效产出，避免精力枯竭。
+> 个人精力管理器 — 超越时间管理，基于精力曲线优化每日任务分配和恢复策略。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personal-energy-manager`
-- **Source URL:** [https://clawhub.ai/skills/personal-energy-manager](https://clawhub.ai/skills/personal-energy-manager)
+## Description
 
-## Overview
+时间管理假设所有小时等价，但人的精力不是恒定的。本Skill将Jim Loehr的精力管理理论与生理节律科学结合，帮助用户识别个人精力模式，并据此分配任务。
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personal-energy-manager
+当用户需要：
+- 理解自己的精力波动模式
+- 优化任务与精力匹配
+- 设计恢复策略
+- 避免精力枯竭
+- 提升日均有效产出
+
+## Key Concepts
+
+### 1. 四层精力金字塔
+- **体能层**：睡眠、运动、营养 → 基础容量
+- **情绪层**：积极/消极状态 → 动力源泉
+- **心智层**：专注力、创造力 → 认知产出
+- **精神层**：意义感、目的 → 持久续航
+
+每层影响上层，底层不足时上层必然衰减。
+
+### 2. 超日节律(Ultradian Rhythm)
+- 90分钟高精力 + 20分钟恢复的自然周期
+- 强行突破 → 隐性疲劳积累 → 第二天崩溃
+- 最优策略：顺应周期而非对抗
+
+### 3. 精力审计方程
 ```
+日精力结余 = (睡眠质量 × 0.3 + 营养 × 0.2 + 运动 × 0.15 + 社交充电 × 0.15 + 意义感 × 0.2) - (认知消耗 + 情绪消耗 + 决策疲劳)
+```
+
+### 4. 恢复型任务分类
+- **微恢复**（5min）：深呼吸、远眺、伸展
+- **中恢复**（20min）：散步、冥想、小憩
+- **深恢复**（半天）：运动、自然、完全切换
+
+## Instructions
+
+1. 帮用户建立精力追踪基线（至少3天）
+2. 绘制个人精力曲线（早/午/晚模式）
+3. 将现有任务重新映射到精力曲线
+4. 设计恢复策略矩阵
+5. 每周回顾和调整
+
+## Examples
+
+**输入**: "我下午总是犯困，效率很低"
+**输出**: 午餐碳水量优化 + 13:00-13:20恢复块 + 低认知任务重分配 + 精力曲线标注
+
+## Boundaries
+
+- 不替代医学建议（慢性疲劳需就医）
+- 个体差异大，需用户自己验证
+- 精力≠意志力，不鼓励"硬撑"

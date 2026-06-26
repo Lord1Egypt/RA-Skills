@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "organization": {
+    "categories": [
+      "work",
+      "personal",
+      "ideas",
+      "meetings",
+      "research",
+      "health",
+      "finance",
+      "learning",
+      "projects",
+      "recipes",
+      "travel"
+    ],
+    "max_categories": 20,
+    "auto_tag": true,
+    "min_tags_per_note": 2,
+    "max_tags_per_note": 5,
+    "duplicate_detection": true,
+    "duplicate_similarity_threshold": 0.8
+  },
+  "templates": [
+    {
+      "name": "Meeting Notes",
+      "fields": ["Date", "Attendees", "Agenda", "Discussion Points", "Decisions Made", "Action Items", "Next Steps"]
+    },
+    {
+      "name": "Project Brief",
+      "fields": ["Project Name", "Objective", "Scope", "Timeline", "Team", "Risks", "Success Criteria"]
+    },
+    {
+      "name": "Daily Journal",
+      "fields": ["Date", "Highlights", "Challenges", "Learnings", "Tomorrow's Priorities"]
+    },
+    {
+      "name": "Brainstorm",
+      "fields": ["Topic", "Ideas", "Pros/Cons", "Next Steps"]
+    },
+    {
+      "name": "Book/Article Notes",
+      "fields": ["Title", "Author", "Key Takeaways", "Favorite Quotes", "How It Applies"]
+    },
+    {
+      "name": "Decision Log",
+      "fields": ["Decision", "Context", "Options Considered", "Rationale", "Date", "Revisit By"]
+    }
+  ],
+  "custom_templates": [],
+  "export": {
+    "formats": ["markdown", "json", "single-document"],
+    "default_format": "markdown",
+    "include_metadata": true,
+    "organize_by_category": true
+  },
+  "voice_processing": {
+    "filler_words": ["um", "uh", "like", "you know", "basically", "actually", "literally", "right", "so yeah"],
+    "split_multi_topic": true,
+    "extract_action_items": true
+  },
+  "search": {
+    "max_results": 5,
+    "show_preview": true,
+    "preview_length": 150
+  },
+  "priority_levels": ["low", "normal", "high"],
+  "default_priority": "normal",
+  "custom_tag_rules": []
+}

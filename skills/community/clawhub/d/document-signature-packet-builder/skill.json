@@ -1,0 +1,45 @@
+{
+  "slug": "document-signature-packet-builder",
+  "name": "Document Signature Packet Builder",
+  "version": "1.0.0",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Builds a practical sign-here and logistics checklist for a document packet, while avoiding legal interpretation and directing the user to confirm issuer rules.",
+  "category": "Personal Administration / Document Prep",
+  "tags": [
+    "signature packet",
+    "sign here checklist",
+    "document logistics",
+    "form preparation",
+    "notary prep",
+    "issuer rules"
+  ],
+  "trigger_keywords": [
+    "where do I sign",
+    "signature packet checklist",
+    "prepare documents for signing",
+    "document signing logistics",
+    "notary packet prep",
+    "forms to sign"
+  ],
+  "use_cases": [
+    "Prepare a checklist of signature, date, initial, witness, notary, and attachment locations.",
+    "Organize document packet logistics before an appointment or submission.",
+    "Create a final review list of issuer rules and missing items to confirm."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "hasExecutableCode": false,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Sign-here and logistics checklist only; no legal interpretation or advice.",
+    "Confirm signing rules, acceptable formats, notary requirements, witness rules, and submission instructions with the document issuer or qualified professional.",
+    "Do not tell the user whether signing is legally safe or what a clause means.",
+    "Do not invent document requirements or substitute for official instructions."
+  ]
+}

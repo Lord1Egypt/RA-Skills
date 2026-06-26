@@ -1,0 +1,64 @@
+{
+  "name": "express-production",
+  "version": "2.0.0",
+  "category": "toolchain",
+  "toolchain": "javascript",
+  "framework": "express",
+  "tags": [
+    "express",
+    "nodejs",
+    "production",
+    "middleware",
+    "security",
+    "testing",
+    "deployment",
+    "backend",
+    "rest-api",
+    "microservices",
+    "authentication",
+    "error-handling"
+  ],
+  "entry_point_tokens": 120,
+  "full_tokens": 27280,
+  "related_skills": [
+    "nodejs-backend",
+    "typescript-core",
+    "docker-containerization",
+    "systematic-debugging",
+    "fastify-production",
+    "testing-anti-patterns",
+    "verification-before-completion"
+  ],
+  "author": "Claude MPM Team",
+  "license": "MIT",
+  "requires": [],
+  "updated": "2025-12-03",
+  "source_path": "SKILL.md",
+  "source": "https://github.com/bobmatnyc/claude-mpm",
+  "created": "2025-11-21",
+  "modified": "2025-12-03",
+  "maintainer": "Claude MPM Team",
+  "attribution_required": true,
+  "repository": "https://github.com/bobmatnyc/claude-mpm-skills",
+  "progressive_disclosure": {
+    "enabled": true,
+    "references": [
+      "references/middleware-patterns.md",
+      "references/security-hardening.md",
+      "references/testing-strategies.md",
+      "references/production-deployment.md"
+    ]
+  },
+  "skill_level": "production",
+  "complexity": "comprehensive",
+  "coverage": [
+    "middleware-architecture",
+    "error-handling",
+    "security-hardening",
+    "testing-strategies",
+    "production-deployment",
+    "pm2-clustering",
+    "logging-monitoring",
+    "graceful-shutdown"
+  ]
+}

@@ -1,35 +1,188 @@
 ---
-name: "火车订票班次查询 - 聚合数据"
-description: "火车票时刻表查询。查询指定出发站到到达站的火车班次信息，包括车次号、出发/到达时间、历时、票价、余票等。使用场景：用户说"查一下北京到上海的高铁"、"帮我看看明天有哪些火车"、"从成都到重庆的动车几点出发"、"G25次列车几点到"、"下午有没有从广州到深圳的车"等。通过聚合数据（juhe.cn）API实时查询，支..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-train-tickets"
-sourceUrl: "https://clawhub.ai/skills/juhe-train-tickets"
+name: juhe-train-tickets
+description: 火车票时刻表查询。查询指定出发站到到达站的火车班次信息，包括车次号、出发/到达时间、历时、票价、余票等。使用场景：用户说"查一下北京到上海的高铁"、"帮我看看明天有哪些火车"、"从成都到重庆的动车几点出发"、"G25次列车几点到"、"下午有没有从广州到深圳的车"等。通过聚合数据（juhe.cn）API实时查询，支持按车次类型、出发时间段筛选，免注册每天10次调用。
+homepage: https://www.juhe.cn/docs/api/id/817
+metadata: {"openclaw":{"emoji":"🚄","requires":{"bins":["python3"],"env":["JUHE_TRAIN_KEY"]},"primaryEnv":"JUHE_TRAIN_KEY"}}
 ---
 
-# 火车订票班次查询 - 聚合数据
+# 火车票时刻表查询
 
-> 火车票时刻表查询。查询指定出发站到到达站的火车班次信息，包括车次号、出发/到达时间、历时、票价、余票等。使用场景：用户说"查一下北京到上海的高铁"、"帮我看看明天有哪些火车"、"从成都到重庆的动车几点出发"、"G25次列车几点到"、"下午有没有从广州到深圳的车"等。通过聚合数据（juhe.cn）API实时查询，支...
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-train-tickets`
-- **Source URL:** [https://clawhub.ai/skills/juhe-train-tickets](https://clawhub.ai/skills/juhe-train-tickets)
+查询指定出发站至到达站的火车时刻表：**车次号、出发/到达时间、历时、坐席票价、余票数量**。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [火车订票查询 API](https://www.juhe.cn/docs/api/id/817) 页面，点击「申请使用」
+3. 审核通过后在「我的API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-train-tickets
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_TRAIN_KEY=你的AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_TRAIN_KEY=你的AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/train_lookup.py --key 你的AppKey 北京 上海 2026-03-25
 ```
+
+> 免费额度：每天 300 次调用，覆盖日常使用完全够用。
+
+---
+
+## 使用方法
+
+### 基本查询
+
+```bash
+python scripts/train_lookup.py 北京 上海 2026-03-25
+```
+
+输出示例：
+
+```
+🚄 北京 → 上海  2026-03-25  共找到 12 个班次
+
++-------+--------+--------+--------+--------+----------------+
+| 车次  | 出发时间 | 到达时间 | 历时   | 可预订 | 备注           |
++-------+--------+--------+--------+--------+----------------+
+| G1    | 09:00  | 14:28  | 05:28  | ✓      | 复兴号 智能动车组 |
+| G3    | 10:00  | 15:32  | 05:32  | ✓      |                |
+| ...   | ...    | ...    | ...    | ...    |                |
++-------+--------+--------+--------+--------+----------------+
+```
+
+### 筛选高铁/动车
+
+```bash
+# 只看高铁和城际（G）
+python scripts/train_lookup.py 北京 上海 2026-03-25 --filter G
+
+# 只看动车（D）
+python scripts/train_lookup.py 北京 上海 2026-03-25 --filter D
+
+# 多种车型组合（高铁+动车）
+python scripts/train_lookup.py 北京 上海 2026-03-25 --filter GD
+```
+
+可用车次类型代码：
+
+| 代码 | 说明 |
+|------|------|
+| G    | 高铁/城际 |
+| D    | 动车 |
+| Z    | 直达特快 |
+| T    | 特快 |
+| K    | 快速 |
+| O    | 其他 |
+| F    | 复兴号 |
+| S    | 智能动车组 |
+
+### 按出发时间段筛选
+
+```bash
+# 只看上午出发（06:00-12:00）
+python scripts/train_lookup.py 北京 上海 2026-03-25 --time 上午
+
+# 只看下午出发（12:00-18:00）
+python scripts/train_lookup.py 北京 上海 2026-03-25 --time 下午
+
+# 只看晚上出发（18:00-24:00）
+python scripts/train_lookup.py 北京 上海 2026-03-25 --time 晚上
+
+# 只看凌晨出发（00:00-06:00）
+python scripts/train_lookup.py 北京 上海 2026-03-25 --time 凌晨
+```
+
+### 查看票价详情
+
+```bash
+# 显示各坐席票价
+python scripts/train_lookup.py 北京 上海 2026-03-25 --price
+```
+
+输出示例（含票价）：
+
+```
+🚄 G1  北京南 → 上海虹桥  09:00 → 14:28  历时: 05:28  [复兴号]
+   商务座: ¥1748  一等座: ¥933  二等座: ¥553
+```
+
+### 直接调用 API（无需脚本）
+
+```
+GET https://apis.juhe.cn/fapigw/train/query?key=YOUR_KEY&search_type=1&departure_station=北京&arrival_station=上海&date=2026-03-25
+```
+
+---
+
+## AI 使用指南
+
+当用户询问火车时刻表相关信息时，按以下步骤操作：
+
+1. **提取查询信息** — 从用户消息中识别出发站、到达站、日期（默认今天或明天）
+2. **确认日期** — 接口仅支持 15 天内的日期，超出范围告知用户
+3. **调用脚本** — 执行查询，根据用户需求决定是否加 `--filter`、`--time`、`--price` 参数
+4. **展示结果** — 用表格汇总班次信息；若用户关心票价，附上票价详情
+
+### 参数说明
+
+| 参数 | 必填 | 说明 | 示例 |
+|------|------|------|------|
+| 出发站 | 是 | 站点名称 | 北京、上海南 |
+| 到达站 | 是 | 站点名称 | 上海、广州东 |
+| 日期 | 是 | YYYY-MM-DD 格式，15天内 | 2026-03-25 |
+| `--filter` | 否 | 车次类型筛选，如 G、D、GD | G |
+| `--time` | 否 | 出发时段：凌晨/上午/下午/晚上 | 上午 |
+| `--price` | 否 | 显示票价详情（默认不显示） | — |
+| `--all` | 否 | 显示所有班次（含不可预订） | — |
+
+### 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| `train_no` | 车次号 | G25 |
+| `departure_station` | 出发站全称 | 北京南 |
+| `arrival_station` | 到达站全称 | 苏州北 |
+| `departure_time` | 出发时间 | 18:04 |
+| `arrival_time` | 到达时间 | 22:32 |
+| `duration` | 历时 | 04:28 |
+| `enable_booking` | 12306可预订 | Y / N |
+| `prices` | 坐席票价列表 | [{seat_name, price, num}] |
+| `train_flags` | 列车标签 | 复兴号、智能动车组 |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/817) 重新申请 |
+| `error_code` 10012 | 当日免费次数已用尽，建议升级套餐 |
+| `error_code` 281701 | 查询失败（站点名称可能有误，或该日期无班次） |
+| 日期超出 15 天 | 告知用户接口限制，建议查询 15 天内的日期 |
+| 无结果 | 告知用户该路线当日无符合条件的班次，建议调整筛选条件 |
+| 网络超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/train_lookup.py` — 封装了 API 调用、参数校验、表格/票价输出和错误处理。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **交通出行**：火车时刻查询、航班动态、快递追踪
+- **生活服务**：天气预报、万年历、节假日查询
+- **身份核验**：手机号归属地、身份证实名验证
+- **金融数据**：汇率、股票、黄金价格
+- **网络工具**：IP查询、DNS解析
+
+注册即可免费使用，适合个人开发者和企业接入。

@@ -1,0 +1,37 @@
+{
+  "name": "claw3d",
+  "description": "Unified 3D workflow: create models (AI), search (Thingiverse), slice, and print. Modular—enable only what you need.",
+  "version": "1.0.0",
+  "modules": {
+    "ai-forger": {
+      "file": "src/02-ai-forger.md",
+      "label": "AI model creation",
+      "description": "Create 3D models from images/text, edit existing GLBs (FAL.ai)",
+      "requires_env": ["FAL_API_KEY"],
+      "optional_env": ["REPLICATE_API_TOKEN"]
+    },
+    "directory": {
+      "file": "src/03-directory.md",
+      "label": "3D model search",
+      "description": "Search and download from Thingiverse",
+      "requires_env": ["THINGIVERSE_ACCESS_TOKEN"]
+    },
+    "slicing": {
+      "file": "src/04-slicing.md",
+      "label": "Slicing",
+      "description": "Slice models to G-code (CuraEngine)",
+      "requires_env": []
+    },
+    "printing": {
+      "file": "src/05-printing.md",
+      "label": "Printer control",
+      "description": "Print to Moonraker, PrusaLink; manage printers",
+      "requires_env": []
+    }
+  },
+  "extensibility": {
+    "backends": "backends/",
+    "providers": "providers/",
+    "directories": "directories/"
+  }
+}

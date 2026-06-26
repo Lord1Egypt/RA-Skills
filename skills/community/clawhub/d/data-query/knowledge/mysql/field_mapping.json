@@ -1,0 +1,248 @@
+{
+  "_comment": "LLM SQL生成 - 字段映射表（中文注释 + 枚举值）",
+  "_source": "从 wsd_base_dict 表 + 数据库实际值提取",
+  "_updated": "2026-03-26",
+  "字段→中文名": {
+    "wsd_plan_project.COMPLETE_PCT": "完成百分比",
+    "wsd_plan_project.ACT_SUM": "实际累计产值",
+    "wsd_plan_project.PLAN_SUM": "计划累计产值",
+    "wsd_plan_project.THIYEAR_ACT_SUM": "今年实际累计产值",
+    "wsd_plan_project.THIYEAR_PLAN_SUM": "今年计划累计产值",
+    "wsd_plan_project.TODAY_PLAN_SUM": "今日计划产值",
+    "wsd_plan_project.PLAN_RATE": "计划完成率",
+    "wsd_plan_project.ACT_RATE": "实际完成率",
+    "wsd_plan_project.PLAN_START_TIME": "计划开始时间",
+    "wsd_plan_project.PLAN_END_TIME": "计划结束时间",
+    "wsd_plan_project.ACT_START_TIME": "实际开始时间",
+    "wsd_plan_project.ACT_END_TIME": "实际结束时间",
+    "wsd_plan_project.STATUS": "项目状态",
+    "wsd_plan_project.BASE_LINE_TIME": "基线时间",
+    "wsd_plan_project.CHILD_NODE_OVERDUE": "子节点逾期配置",
+    "wsd_plan_project.ONLY_USER_AUTH": "仅用户权限配置",
+    "wsd_plan_task.TASK_CODE": "任务编码",
+    "wsd_plan_task.TASK_NAME": "任务名称",
+    "wsd_plan_task.TASK_TYPE": "任务类型",
+    "wsd_plan_task.STATUS": "任务工作流状态",
+    "wsd_plan_task.FEEDBACK_STATUS": "任务进展状态",
+    "wsd_plan_task.PLAN_START_TIME": "计划开始时间",
+    "wsd_plan_task.PLAN_END_TIME": "计划结束时间",
+    "wsd_plan_task.ACT_START_TIME": "实际开始时间",
+    "wsd_plan_task.ACT_END_TIME": "实际结束时间",
+    "wsd_plan_task.COMPLETE_PCT": "完成百分比",
+    "wsd_plan_task.PLAN_QTY": "计划工时",
+    "wsd_plan_task.ACT_QTY": "实际工时",
+    "wsd_plan_task.REMAIN_QTY": "剩余工时",
+    "wsd_plan_task.PLAN_DRTN": "计划工期",
+    "wsd_plan_task.ACT_DRTN": "实际工期",
+    "wsd_plan_task.REMAIN_DRTN": "剩余工期",
+    "wsd_plan_task.USER_ID": "责任人ID",
+    "wsd_plan_task.ORG_ID": "组织ID",
+    "wsd_plan_task.PROJECT_ID": "项目ID",
+    "wsd_plan_task.PARENT_ID": "父任务ID",
+    "wsd_plan_task.CRITICAL": "是否关键任务",
+    "wsd_plan_task.PLAN_LEVEL": "计划级别",
+    "wsd_plan_taskrsrc.PLAN_START_TIME": "资源计划开始",
+    "wsd_plan_taskrsrc.PLAN_END_TIME": "资源计划结束",
+    "wsd_plan_taskrsrc.PLAN_QTY": "资源计划工时",
+    "wsd_plan_taskrsrc.ACT_QTY": "资源实际工时",
+    "wsd_plan_taskrsrc.REMAIN_QTY": "资源剩余工时",
+    "wsd_plan_taskrsrc.RSRC_TYPE": "资源类型",
+    "wsd_plan_delvassign.DELV_TITLE": "交付物标题",
+    "wsd_plan_delvassign.DELV_CODE": "交付物编码",
+    "wsd_plan_delvassign.DELV_STATUS": "交付物状态",
+    "wsd_plan_delvassign.PLAN_START_TIME": "交付物计划开始",
+    "wsd_plan_delvassign.PLAN_END_TIME": "交付物计划结束",
+    "wsd_plan_delvassign.COMPLETE_TIME": "交付物完成时间",
+    "wsd_plan_delvassign.PLAN_LEVEL": "交付物级别",
+    "wsd_risk_register.RISK_CODE": "风险编码",
+    "wsd_risk_register.RISK_NAME": "风险名称",
+    "wsd_risk_register.RISK_TYPE": "风险类型",
+    "wsd_risk_register.RISK_STATUS": "风险状态",
+    "wsd_risk_register.PROBABILITY_LEVEL": "发生概率",
+    "wsd_risk_register.AFTERMATH_LEVEL": "影响程度",
+    "wsd_risk_register.RISK_LEVEL": "风险等级",
+    "wsd_risk_register.IS_CLOSE": "是否关闭",
+    "wsd_risk_register.DISCERN_DATA": "识别日期",
+    "wsd_risk_register.CLOSE_DATE": "关闭日期",
+    "wsd_risk_register.CLOSE_REASON": "关闭原因",
+    "wsd_risk_register.COPING_ADVICE": "应对措施",
+    "wsd_rsrc_user.RSRC_USER_NAME": "资源用户名",
+    "wsd_rsrc_user.RSRC_USER_TYPE": "资源用户类型",
+    "wsd_comu_meeting.TITLE": "会议标题",
+    "wsd_comu_meeting.MEETING_TYPE": "会议类型",
+    "wsd_comu_meeting.MEETING_TIME": "会议时间",
+    "wsd_comu_meeting.STATUS": "会议状态",
+    "wsd_comu_meeting.DUTY_ID": "负责人ID",
+    "wsd_comu_meetingaction.ACTION_NAME": "行动项名称",
+    "wsd_comu_meetingaction.PLAN_START_TIME": "行动项计划开始",
+    "wsd_comu_meetingaction.PLAN_END_TIME": "行动项计划结束",
+    "wsd_comu_meetingaction.COMPLETED": "是否完成",
+    "wsd_plan_project.CODE": "项目编码",
+    "wsd_plan_project.NAME": "项目名称"
+  },
+  "枚举值映射": {
+    "wsd_plan_project.STATUS": {
+      "_comment": "项目状态",
+      "active": "进行中",
+      "close": "已关闭",
+      "completed": "已完成",
+      "Suspended": "已挂起",
+      "PreSale": "售前"
+    },
+    "wsd_plan_task.TASK_TYPE": {
+      "_comment": "plan.project.tasktype；注意：0=普通任务不在字典中，是实际存在的任务类型",
+      "0": "普通任务",
+      "1": "作业任务",
+      "2": "开始里程碑",
+      "3": "完成里程碑",
+      "4": "资源任务"
+    },
+    "wsd_plan_task.STATUS": {
+      "_comment": "工作流状态，硬编码，非字典表值",
+      "EDIT": "编辑中",
+      "APPROVAL": "审批中",
+      "CONFIRM": "已确认",
+      "RELEASE": "已发布"
+    },
+    "wsd_plan_task.FEEDBACK_STATUS": {
+      "_comment": "进展状态，硬编码，非字典表值",
+      "0": "未开始",
+      "1": "进行中",
+      "2": "已完成"
+    },
+    "wsd_plan_task.PLAN_LEVEL": {
+      "_comment": "plan.task.planlevel",
+      "1": "一级",
+      "2": "二级",
+      "3": "三级"
+    },
+    "wsd_plan_task.PLAN_TYPE": {
+      "_comment": "plan.task.plantype",
+      "1": "事件",
+      "2": "标志",
+      "3": "准则",
+      "4": "任务包",
+      "5": "活动",
+      "6": "子活动",
+      "7": "步骤"
+    },
+    "wsd_plan_delvassign.DELV_STATUS": {
+      "NOACCEPTANCE": "未验收",
+      "ACCEPTANCE": "已验收"
+    },
+    "wsd_risk_register.RISK_STATUS": {
+      "_comment": "风险状态，数据库存的是字符串，非字典表数值",
+      "IDENTIFIED": "已识别",
+      "COPING": "应对中",
+      "CLOSED": "已关闭",
+      "UNIDENTIFY": "未识别"
+    },
+    "wsd_risk_register.RISK_LEVEL": {
+      "_comment": "risk.level",
+      "1": "低",
+      "2": "中",
+      "3": "高"
+    },
+    "wsd_risk_register.PROBABILITY_LEVEL": {
+      "_comment": "概率等级（1-5），实际数据中部分为空",
+      "1": "很低",
+      "2": "低",
+      "3": "中",
+      "4": "高",
+      "5": "很高"
+    },
+    "wsd_risk_register.AFTERMATH_LEVEL": {
+      "_comment": "影响程度（1-5），实际数据中部分为空",
+      "1": "轻微",
+      "2": "较小",
+      "3": "中等",
+      "4": "较大",
+      "5": "重大"
+    },
+    "wsd_risk_register.RISK_SOURCE": {
+      "_comment": "risk.source",
+      "01": "技术来源",
+      "01.1": "技术来源一类",
+      "01.2": "技术来源二类",
+      "02": "资源来源",
+      "02.1": "资源来源一类"
+    },
+    "wsd_risk_register.RISK_REPLY_WAY": {
+      "_comment": "risk.reply.way",
+      "1": "预防",
+      "2": "控制",
+      "3": "承担",
+      "4": "转移",
+      "5": "开拓",
+      "6": "分享",
+      "7": "接受",
+      "8": "提高"
+    },
+    "wsd_rsrc_user.RSRC_USER_TYPE": {
+      "_comment": "rsrc.role.type",
+      "cailiao": "材料资源",
+      "renli": "人力资源",
+      "shebei": "设备资源"
+    },
+    "wsd_comu_meeting.MEETING_TYPE": {
+      "_comment": "comu.meeting.type",
+      "1": "需求会议",
+      "2": "项目晨会",
+      "3": "产品会议",
+      "4": "项目周会"
+    },
+    "wsd_comu_meeting.STATUS": {
+      "_comment": "会议工作流状态，硬编码",
+      "EDIT": "编辑中",
+      "APPROVAL": "审批中",
+      "RELEASE": "已发布"
+    },
+    "wsd_plan_delvassign.PLAN_LEVEL": {
+      "_comment": "plan.delv.level",
+      "1": "1级"
+    },
+    "wsd_plan_delvassign.DELV_TYPE": {
+      "_comment": "plan.delv.type",
+      "1": "文件",
+      "2": "数据模型",
+      "3": "实体"
+    },
+    "wsd_comu_meetingaction.COMPLETED": {
+      "_comment": "行动项完成状态，0=未完成，1=已完成",
+      "0": "未完成",
+      "1": "已完成"
+    },
+    "comm.secutylevel": {
+      "6": "非密",
+      "7": "秘密",
+      "8": "机密"
+    }
+  },
+  "字典表TYPE_CODE完整列表": {
+    "_comment": "以下是从 wsd_base_dict 提取的可用 TYPE_CODE，供LLM参考",
+    "plan.project.status": "项目状态",
+    "plan.project.tasktype": "任务类型",
+    "plan.task.planlevel": "任务计划级别",
+    "plan.task.plantype": "任务计划类型",
+    "plan.delv.level": "交付物级别",
+    "plan.delv.type": "交付物类型",
+    "plan.constraint.type": "工期约束类型",
+    "plan.define.baselinetype": "基线类型",
+    "plan.define.taskfinishtype": "任务完成类型",
+    "plan.project.cpmtype": "CPM类型",
+    "plan.project.drtnunit": "工期单位",
+    "plan.project.taskdrtntype": "任务工期类型",
+    "plan.project.timeunit": "时间单位",
+    "risk.level": "风险等级",
+    "risk.status": "风险状态",
+    "risk.reply.way": "风险应对方式",
+    "risk.source": "风险来源",
+    "rsrc.role.type": "资源角色类型",
+    "rsrc.rsrc.status": "资源状态",
+    "comu.meeting.type": "会议类型",
+    "comu.question.type": "问题类型",
+    "comu.question.priority": "问题优先级",
+    "plan.question.type": "计划问题类型",
+    "comm.secutylevel": "安全级别"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "mongodb-admin",
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "tags": ["mongodb", "database", "admin", "backup", "restore", "performance", "indexes", "replica-set", "mongosh"]
+}

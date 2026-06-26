@@ -1,35 +1,103 @@
----
-name: "toutiao draft"
-description: "Batch upload content or markdown-formatted drafts to the Toutiao micro-headline draft box, including optional images and automatic saving."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toutiaodraft"
-sourceUrl: "https://clawhub.ai/skills/toutiaodraft"
----
+# 今日头条草稿箱上传技能
 
-# toutiao draft
+将内容批量上传到今日头条微头条草稿箱。
 
-> Batch upload content or markdown-formatted drafts to the Toutiao micro-headline draft box, including optional images and automatic saving.
+## 触发词
+- 上传头条草稿箱
+- 今日头条草稿
+- toutiao draft
+- 微头条草稿
+- 批量上传头条
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toutiaodraft`
-- **Source URL:** [https://clawhub.ai/skills/toutiaodraft](https://clawhub.ai/skills/toutiaodraft)
+## 使用方法
 
-## Overview
+### 方式一：直接提供内容
+用户直接发送内容，AI自动上传到草稿箱。
 
+### 方式二：提供MD文档
+用户提供MD格式的文档，AI解析后上传。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toutiaodraft
+## MD文档格式
+
+```markdown
+## 第1条
+**配图链接：** 小红书图片URL（可选）
+
+**内容：**
 ```
+标题行（以...结尾）
+
+正文内容，每句话单独一行。
+
+互动式结尾？
+```
+
+---
+
+## 第2条
+...
+```
+
+## 配图说明
+- 配图链接支持小红书图片URL
+- 格式：`https://sns-webpic-qc.xhscdn.com/...`
+- 如无配图，可省略或留空
+
+## 执行流程
+
+1. **解析内容**：读取用户提供的MD文档或直接内容
+2. **下载图片**（如有）：从配图链接下载图片到本地
+3. **打开发布页**：访问 `https://mp.toutiao.com/profile_v4/weitoutiao/publish`
+4. **上传图片**（如有）：点击图片按钮，上传配图
+5. **输入内容**：将内容填入编辑器
+6. **保存草稿**：点击"存草稿"按钮
+7. **关闭页面**：关闭标签页，确保草稿保存
+8. **循环处理**：重复以上步骤处理所有内容
+
+## 技术细节
+
+### 浏览器操作
+- 使用 `browser` 工具控制Chrome
+- 每条内容使用新的targetId
+- 每次操作后关闭标签页，避免缓存问题
+
+### 编辑器操作
+- 编辑器选择器：`.ProseMirror`
+- 内容格式：`<p>每行内容</p>`
+- 标题行加粗：`<p><strong>标题</strong></p>`
+
+### 按钮操作
+- 图片按钮：包含"图片"文字的button
+- 确定按钮：文字为"确定"的button
+- 存草稿按钮：包含"存草稿"文字的button
+
+### 图片上传
+- 图片需保存到 `/tmp/openclaw/uploads/` 目录
+- 使用 `browser upload` 工具上传
+- input选择器：`input[type="file"]`
+
+## 注意事项
+
+1. **登录状态**：需要先登录今日头条创作者平台
+2. **图片格式**：支持jpg、png等常见格式
+3. **内容长度**：微头条建议500字以内
+4. **草稿数量**：每次关闭标签页确保草稿保存成功
+5. **网络稳定**：确保网络连接稳定
+
+## 示例
+
+用户发送：
+```
+帮我上传这3条到头条草稿箱：
+
+## 第1条
+女同事加班到凌晨，说不敢一个人打车...
+那天加班到一点，办公室就剩我俩。
+...
+
+## 第2条
+健身房更衣室，女教练突然推门进来...
+...
+```
+
+AI自动执行上传流程。

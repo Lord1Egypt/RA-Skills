@@ -1,0 +1,14 @@
+{
+  "name": "wecom-calendar",
+  "version": "1.0.0",
+  "description": "企业微信日历管理工具",
+  "type": "module",
+  "main": "calendar.mjs",
+  "scripts": {
+    "start": "node calendar.mjs"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.0"
+  }
+}

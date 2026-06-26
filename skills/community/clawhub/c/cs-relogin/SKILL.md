@@ -1,35 +1,66 @@
 ---
-name: "CS Relogin"
-description: "Fast OpenAI Codex account switch for OpenClaw via the local cs command. Use when user sends `cs relogin`, asks to re-login or switch ChatGPT Codex account, o..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cs-relogin"
-sourceUrl: "https://clawhub.ai/skills/cs-relogin"
+name: cs-relogin
+description: Fast OpenAI Codex account switch for OpenClaw via the local cs command. Use when user sends `cs relogin`, asks to re-login or switch ChatGPT Codex account, or pastes OAuth callback URL/code to complete login.
+allowed-tools: ["Bash(cs:*)"]
+metadata: {"clawdbot":{"emoji":"🔐"}}
 ---
 
-# CS Relogin
+# CS Relogin Skill
 
-> Fast OpenAI Codex account switch for OpenClaw via the local cs command. Use when user sends `cs relogin`, asks to re-login or switch ChatGPT Codex account, o...
+Use this skill to perform OpenAI Codex account switching without `openclaw onboard`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cs-relogin`
-- **Source URL:** [https://clawhub.ai/skills/cs-relogin](https://clawhub.ai/skills/cs-relogin)
+## Hard rules
 
-## Overview
+- Always execute `cs` directly, never call `openclaw onboard` for this task.
+- Keep flow non-interactive.
+- If user provided a callback URL/code, do completion step immediately.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cs-relogin
-```
+1. If user input is exactly `cs relogin`:
+   - Run:
+     ```bash
+     cs relogin
+     ```
+   - Return the login URL from command output.
+   - Ask user to finish browser auth and paste callback URL.
+
+2. If user input contains callback URL/code:
+   - Run:
+     ```bash
+     cs relogin "<callback-url-or-code>"
+     ```
+   - Return key result lines:
+     - relogin completed status
+     - gateway restart status
+     - active profile/account summary
+
+3. If user asks status/debug:
+   - Run:
+     ```bash
+     cs relogin status
+     cs status
+     ```
+   - Summarize pending state and active account.
+
+## Output format
+
+- Keep response concise and actionable.
+- Include exact next command when another step is needed.
+- Never expose full tokens/secrets.
+- On command failure, include raw cs stderr first (do not guess the reason).
+
+## Acknowledgement rule (MUST)
+
+- Every successful action must have an explicit acknowledgement (回执) to the user.
+- Minimum acknowledgement content:
+  - what was executed (e.g. `cs relogin`, `cs relogin <callback>`, `cs status`)
+  - whether it succeeded
+  - current state summary (pending relogin / active account)
+- If command output is missing or tool callback is flaky, immediately run:
+  ```bash
+  cs relogin status
+  cs status
+  ```
+  then send acknowledgement based on those results.
+- Never end silently after command execution.

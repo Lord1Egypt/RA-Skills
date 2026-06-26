@@ -1,0 +1,4 @@
+interface:
+  display_name: "预告片导演"
+  short_description: "电影级生图Prompt：2.35:1画幅·85mm T1.8·ARRI镜头·胶片质感"
+  default_prompt: "请描述你想要的画面风格和场景内容。"

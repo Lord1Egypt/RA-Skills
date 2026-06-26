@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Ai Video Generation"
-description: "AI video generation workflow on Volcengine. Use when users need text-to-video, image-to-video, generation parameter tuning, or async task troubleshooting for video jobs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-ai-video-generation"
-sourceUrl: "https://clawhub.ai/skills/volcengine-ai-video-generation"
+name: volcengine-ai-video-generation
+description: AI video generation workflow on Volcengine. Use when users need text-to-video, image-to-video, generation parameter tuning, or async task troubleshooting for video jobs.
 ---
 
-# Volcengine Ai Video Generation
+# volcengine-ai-video-generation
 
-> AI video generation workflow on Volcengine. Use when users need text-to-video, image-to-video, generation parameter tuning, or async task troubleshooting for video jobs.
+Run video generation jobs with deterministic task submission and status polling.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-ai-video-generation`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-ai-video-generation](https://clawhub.ai/skills/volcengine-ai-video-generation)
+## Execution Checklist
 
-## Overview
+1. Confirm input mode (text-to-video or image-to-video).
+2. Set duration, resolution, fps, and style constraints.
+3. Submit task and poll status until completion.
+4. Return final video URL/path and task metadata.
 
+## Reliability Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-ai-video-generation
-```
+- Always log task ID for retries.
+- Use bounded polling intervals.
+- Surface failure reason and rerun suggestions.
+
+## References
+
+- `references/sources.md`

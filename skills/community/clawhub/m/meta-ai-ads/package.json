@@ -1,0 +1,12 @@
+{
+  "name": "plai-meta-ads",
+  "version": "1.0.0",
+  "description": "Plai Meta Ads CLI — create and manage Facebook/Instagram ad campaigns",
+  "type": "module",
+  "scripts": {
+    "postinstall": "cd scripts && npm install"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

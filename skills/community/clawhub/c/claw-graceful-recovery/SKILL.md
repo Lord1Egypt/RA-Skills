@@ -1,35 +1,93 @@
 ---
-name: "claw-graceful-recovery"
-description: "Claw 微信指令权限错误恢复。当 AI 通过微信接收用户指令后，执行操作遭遇 权限拒绝、系统限制或访问被拒，导致任务卡住、循环重试或无法继续接受新指令时触发。 触发词：权限不足、没有权限、Permission denied、EACCES、Operation not permitted、 拒绝访问、卡住了、无响应..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-graceful-recovery"
-sourceUrl: "https://clawhub.ai/skills/claw-graceful-recovery"
+name: claw-graceful-recovery
+description: |
+  Claw 微信指令权限错误恢复。当 AI 通过微信接收用户指令后，执行操作遭遇
+  权限拒绝、系统限制或访问被拒，导致任务卡住、循环重试或无法继续接受新指令时触发。
+  触发词：权限不足、没有权限、Permission denied、EACCES、Operation not permitted、
+  拒绝访问、卡住了、无响应、Claw卡死、指令卡住、微信指令卡住、执行失败权限、
+  恢复就绪状态、跳过权限错误、清除当前任务、强制恢复、恢复待命。
+version: 1.1.0
 ---
 
-# claw-graceful-recovery
+# Claw Graceful Recovery
 
-> Claw 微信指令权限错误恢复。当 AI 通过微信接收用户指令后，执行操作遭遇 权限拒绝、系统限制或访问被拒，导致任务卡住、循环重试或无法继续接受新指令时触发。 触发词：权限不足、没有权限、Permission denied、EACCES、Operation not permitted、 拒绝访问、卡住了、无响应...
+当 Claw 通过微信执行用户指令时，若遭遇权限错误导致卡死或无法接受新指令，按以下流程处理。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-graceful-recovery`
-- **Source URL:** [https://clawhub.ai/skills/claw-graceful-recovery](https://clawhub.ai/skills/claw-graceful-recovery)
+---
 
-## Overview
+## 第一步：识别错误信号
 
+以下任意情况出现，立即进入恢复流程：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claw-graceful-recovery
-```
+**系统级信号**：`Permission denied`、`EACCES`、`Operation not permitted`、`EPERM`、`Access is denied`、涉及 `sudo` 的操作无法执行。
+
+**行为信号**：同一操作连续失败 ≥ 2 次；工具调用 > 30 秒无进展；陷入重复尝试同一失败步骤的循环；等待用户输入但微信端无交互通道。
+
+详细信号列表见 `references/error-signals.md`。
+
+---
+
+## 第二步：执行恢复流程（四步，必须按顺序执行）
+
+### 1. 立即终止
+
+- 停止当前操作，不重试
+- 不尝试用不同参数再次执行
+- 不尝试绕过权限检查
+- 清空当前任务的执行上下文
+
+### 2. 记录错误（内部，不发给用户）
+
+记录三项内容：失败的操作描述（一句话）、错误类型、用户的原始指令。
+
+### 3. 向用户发送简短反馈
+
+通过微信通道发送简短消息，模板见 `references/feedback-templates.md`。
+
+核心原则：不暴露原始错误堆栈，不暴露完整系统路径，用中文简洁描述。
+
+### 4. 恢复待命
+
+- 清除当前任务的所有中间状态
+- 不保留失败任务的上下文
+- 准备接受微信下一条指令
+
+---
+
+## 第三步：特殊场景处理
+
+### 批量任务中单个文件失败
+
+- 跳过该文件，继续处理其余文件
+- 最终汇总时列出被跳过的文件及原因
+- 不因单个文件权限错误中止整个批量任务
+
+### 连续 3 条及以上指令均因权限失败
+
+- 主动向用户说明当前环境可能缺少必要权限
+- 建议用户检查 Claw 的运行权限设置
+- 暂停执行，等待用户确认后再继续
+
+### 微信通道本身不可用（极端情况）
+
+- 静默写入本地日志：`echo "[$(date)] <操作> | <错误类型>" >> ~/claw_recovery.log`
+- 停止所有操作，等待下次微信连接恢复
+
+---
+
+## 绝对禁止事项
+
+1. 权限错误后不告知用户就继续尝试
+2. 对同一操作超过 2 次重试
+3. 尝试修改文件权限（`chmod`）或提升进程权限来绕过错误
+4. 因等待权限授权而无限阻塞，不接受新指令
+5. 把原始错误堆栈、系统路径等技术细节直接暴露给微信用户
+
+---
+
+## 预防策略（执行前预检）
+
+- 文件操作前用 `test -r <file>` / `test -w <dir>` 预检权限
+- 涉及 `sudo`、`chown`、`chmod` 等特权命令，先告知用户需要手动授权，不自动执行
+- 涉及系统目录（`/System/`、`/usr/`、`/etc/`、`/var/`）的操作，默认跳过
+- 涉及其他用户 home 目录的，不尝试访问

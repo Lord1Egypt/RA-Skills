@@ -1,35 +1,42 @@
 ---
-name: "Odds Movement Monitor 赔率异动监控"
-description: "专业级体育赛事赔率异动监控系统 - 实时追踪亚盘、欧赔、大小球变化。 智能识别机构操盘意图，捕捉变盘信号，辅助投注决策。 已接入 SkillPay 付费系统。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shenmeng-odds-movement-monitor"
-sourceUrl: "https://clawhub.ai/skills/shenmeng-odds-movement-monitor"
+name: odds-movement-monitor-v2026
+description: |
+  专业级体育赛事赔率异动监控系统 - 实时追踪亚盘、欧赔、大小球变化。
+  智能识别机构操盘意图，捕捉变盘信号，辅助投注决策。
+  已接入 SkillPay 付费系统。
+author: shenmeng
+tags:
+  - sports
+  - betting
+  - odds
+  - monitoring
+  - alert
+  - analysis
 ---
 
-# Odds Movement Monitor 赔率异动监控
+# 📊 Odds Movement Monitor v2026
 
-> 专业级体育赛事赔率异动监控系统 - 实时追踪亚盘、欧赔、大小球变化。 智能识别机构操盘意图，捕捉变盘信号，辅助投注决策。 已接入 SkillPay 付费系统。
+> 🏆 **Batch 3 Release** | 2026年4月更新版
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shenmeng-odds-movement-monitor`
-- **Source URL:** [https://clawhub.ai/skills/shenmeng-odds-movement-monitor](https://clawhub.ai/skills/shenmeng-odds-movement-monitor)
+专业级体育赛事赔率异动监控系统
 
-## Overview
+## 核心能力
 
+### 1. 多维度赔率监控
+- **亚盘追踪** - 实时监控让球盘变化，捕捉变盘信号
+- **欧赔分析** - 追踪胜平负赔率变动，识别机构态度
+- **大小球监控** - 监测大小球盘口和水位变化
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shenmeng-odds-movement-monitor
-```
+### 2. 智能异动识别
+- **盘口变盘** - 盘口升降超过0.25球的显著变动
+- **水位异动** - 赔率水位突然大幅调整
+- **逆向操作** - 与市场预期相反的赔率调整
+
+### 3. 全面赛事覆盖
+- **五大联赛** - 英超、西甲、德甲、意甲、法甲
+- **国际赛事** - 欧冠、欧联、世界杯、欧洲杯
+- **亚洲赛事** - 中超、J联赛、K联赛、亚冠
+
+## 定价
+
+已接入 SkillPay，每次调用 **0.01 USDT**

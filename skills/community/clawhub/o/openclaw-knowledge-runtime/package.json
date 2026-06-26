@@ -1,0 +1,6 @@
+{
+  "name": "openclaw-knowledge-runtime",
+  "version": "1.0.2",
+  "description": "Standalone layered knowledge runtime skill with typed links and generic adapter surfaces.",
+  "main": "index.js"
+}

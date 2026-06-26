@@ -1,0 +1,46 @@
+{
+  "slug": "nostrkey",
+  "name": "NostrKey",
+  "version": "0.3.0",
+  "summary": "Cryptographic identity SDK for AI agents \u2014 generate Nostr keypairs, sign events, encrypt messages, persist identity",
+  "author": {
+    "name": "Humanjava Enterprises",
+    "url": "https://loginwithnostr.com/openclaw"
+  },
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "repository": "https://github.com/HumanjavaEnterprises/nostrkey.app.OC-python.src",
+  "tags": [
+    "nostr",
+    "identity",
+    "cryptography",
+    "keypair",
+    "signing",
+    "encryption",
+    "nip-01",
+    "nip-04",
+    "nip-19",
+    "nip-44",
+    "nip-46",
+    "bunker",
+    "security",
+    "ai-identity"
+  ],
+  "install": {
+    "pip": "nostrkey"
+  },
+  "requires": {
+    "python": ">=3.10"
+  },
+  "env": {
+    "NOSTRKEY_PASSPHRASE": {
+      "description": "Passphrase used to encrypt/decrypt the agent's identity file",
+      "required": true
+    }
+  },
+  "categories": [
+    "security",
+    "identity",
+    "communication"
+  ]
+}

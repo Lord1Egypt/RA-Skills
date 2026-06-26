@@ -1,0 +1,25 @@
+{
+  "name": "nasdaq100-futures",
+  "version": "1.0.0",
+  "description": "纳斯达克100期货查询技能（Node.js版）",
+  "runtime": "nodejs",
+  "handler": "scripts/main.handler",
+  "skill": {
+    "functions": [
+      {
+        "name": "get_nasdaq100_futures",
+        "description": "获取纳斯达克100期货指数的最新价格、涨跌额和涨跌幅",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "期货代码，默认为NQ=F（纳斯达克100期货）",
+              "default": "NQ=F"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

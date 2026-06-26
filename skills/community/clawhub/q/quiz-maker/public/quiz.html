@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线答题</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f7fa; min-height: 100vh; }
+    
+    .container { max-width: 680px; margin: 0 auto; padding: 20px; }
+    
+    .header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: #fff; border-radius: 16px; padding: 28px 24px; margin-bottom: 24px; }
+    .header h1 { font-size: 1.5em; margin-bottom: 6px; }
+    .header p { opacity: 0.85; font-size: 0.9em; }
+    
+    .progress-bar { background: rgba(255,255,255,0.25); border-radius: 20px; height: 8px; margin-top: 14px; overflow: hidden; }
+    .progress-fill { background: #fff; border-radius: 20px; height: 100%; transition: width 0.4s ease; width: 0%; }
+    
+    .info-form { background: #fff; border-radius: 16px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .info-form h2 { font-size: 1.1em; color: #333; margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-weight: 600; margin-bottom: 8px; color: #444; font-size: 0.95em; }
+    input[type="text"] { width: 100%; padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1em; }
+    input[type="text"]:focus { outline: none; border-color: #1a73e8; }
+    .btn-start { width: 100%; padding: 14px; background: #1a73e8; color: #fff; border: none; border-radius: 10px; font-size: 1.05em; font-weight: 600; cursor: pointer; }
+    .btn-start:hover { background: #1557b0; }
+    
+    .question-card { background: #fff; border-radius: 16px; padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: none; }
+    .question-card.active { display: block; }
+    .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .q-number { background: #e8f0fe; color: #1a73e8; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600; }
+    .q-text { font-size: 1.05em; line-height: 1.7; color: #222; margin-bottom: 18px; white-space: pre-wrap; }
+    
+    .option { display: flex; align-items: center; padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.15s; }
+    .option:hover { border-color: #1a73e8; background: #f8fbff; }
+    .option.selected { border-color: #1a73e8; background: #e8f0fe; }
+    .option-letter { font-weight: 700; color: #1a73e8; width: 28px; flex-shrink: 0; font-size: 1.05em; }
+    .option-text { color: #333; font-size: 1em; line-height: 1.5; }
+    
+    .nav-btns { display: flex; gap: 12px; margin-top: 20px; }
+    .btn { padding: 12px 20px; border-radius: 10px; font-size: 1em; font-weight: 600; cursor: pointer; border: none; }
+    .btn-prev { background: #f0f0f0; color: #555; }
+    .btn-next { background: #1a73e8; color: #fff; }
+    .btn-submit { background: #188038; color: #fff; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .loading { text-align: center; padding: 60px 20px; color: #666; }
+    .loading-spinner { width: 40px; height: 40px; border: 4px solid #e0e0e0; border-top-color: #1a73e8; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* Result page */
+    .result-page { display: none; text-align: center; padding: 40px 20px; }
+    .result-page.show { display: block; }
+    .score-circle { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 2.8em; font-weight: 800; color: #fff; }
+    .score-high { background: linear-gradient(135deg, #34a853, #0d9f4c); }
+    .score-mid { background: linear-gradient(135deg, #fbbc04, #e37400); }
+    .score-low { background: linear-gradient(135deg, #ea4335, #c5221f); }
+    .result-name { font-size: 1.3em; font-weight: 600; color: #333; margin-bottom: 8px; }
+    .result-detail { color: #666; margin-bottom: 24px; }
+    .result-card { background: #fff; border-radius: 16px; padding: 24px; margin-top: 20px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .result-card h3 { margin-bottom: 14px; color: #333; }
+    .result-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; gap: 12px; }
+    .result-item:last-child { border-bottom: none; }
+    .result-item.correct { color: #188038; }
+    .result-item.wrong { color: #c5221f; }
+    .result-icon { font-size: 1.3em; width: 24px; flex-shrink: 0; }
+    
+    .home-btn { display: inline-block; margin-top: 20px; padding: 12px 28px; background: #1a73e8; color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+<div class="container" id="app">
+  <div class="loading" id="loading">
+    <div class="loading-spinner"></div>
+    <div>加载中...</div>
+  </div>
+</div>
+
+<script>
+const quizId = new URLSearchParams(location.search).get('id');
+const app = document.getElementById('app');
+
+if (!quizId) {
+  app.innerHTML = '<div class="loading">无效的答题链接</div>';
+} else {
+  loadQuiz();
+}
+
+async function loadQuiz() {
+  try {
+    const resp = await fetch(`/api/quiz/${quizId}`);
+    if (!resp.ok) throw new Error('Quiz不存在');
+    const quiz = await resp.json();
+    renderQuizForm(quiz);
+  } catch (err) {
+    app.innerHTML = `<div class="loading">${err.message}</div>`;
+  }
+}
+
+function renderQuizForm(quiz) {
+  app.innerHTML = `
+    <div class="header">
+      <h1>📝 ${quiz.title}</h1>
+      <p>${quiz.description || '认真作答，祝您取得好成绩！'}</p>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    
+    <div class="info-form" id="infoForm">
+      <h2>👤 请填写个人信息</h2>
+      <div class="form-group">
+        <label>姓名 *</label>
+        <input type="text" id="nameInput" placeholder="请输入您的姓名" />
+      </div>
+      <div class="form-group">
+        <label>班级/单位（选填）</label>
+        <input type="text" id="classInput" placeholder="例如：三年级一班" />
+      </div>
+      <button class="btn-start" onclick="startQuiz()">开始答题 →</button>
+    </div>
+    
+    <div id="questionContainer"></div>
+    
+    <div class="result-page" id="resultPage"></div>
+  `;
+}
+
+let questions = [];
+const answers = [];
+
+async function startQuiz() {
+  const name = document.getElementById('nameInput').value.trim();
+  if (!name) { alert('请输入姓名'); return; }
+  
+  document.getElementById('infoForm').style.display = 'none';
+  
+  // Fetch questions (we need them for the quiz - store in memory)
+  // Since we already have quiz metadata, fetch full questions from server
+  // Actually let's store questions when creating quiz, for now fetch from a different endpoint
+  // Better approach: create an endpoint to get questions
+  const resp = await fetch(`/api/quiz/${quizId}/questions`);
+  const data = await resp.json();
+  questions = data.questions;
+  
+  renderQuestions();
+}
+
+async function renderQuestions() {
+  const container = document.getElementById('questionContainer');
+  container.innerHTML = questions.map((q, i) => `
+    <div class="question-card active" id="q-${i}" data-index="${i}">
+      <div class="q-header">
+        <span class="q-number">第 ${i+1} / ${questions.length} 题</span>
+      </div>
+      <div class="q-text">${q.question}</div>
+      ${q.options.map((opt, oi) => `
+        <div class="option" data-q="${i}" data-opt="${String.fromCharCode(65+oi)}" onclick="selectOption(${i}, '${String.fromCharCode(65+oi)}', this)">
+          <span class="option-letter">${String.fromCharCode(65+oi)}. </span>
+          <span class="option-text">${opt.substring(3)}</span>
+        </div>
+      `).join('')}
+      <div class="nav-btns">
+        <button class="btn btn-prev" onclick="prevQ(${i})" ${i===0?'disabled':''}>← 上一题</button>
+        ${i < questions.length - 1 
+          ? `<button class="btn btn-next" onclick="nextQ(${i})">下一题 →</button>`
+          : `<button class="btn btn-submit" onclick="submitQuiz()">提交答卷 ✓</button>`
+        }
+      </div>
+    </div>
+  `).join('');
+  
+  // Hide all except first
+  document.querySelectorAll('.question-card').forEach((c, idx) => {
+    if (idx > 0) c.classList.remove('active');
+  });
+}
+
+function selectOption(qIndex, letter, el) {
+  // Remove previous selection for this question
+  document.querySelectorAll(`[data-q="${qIndex}"]`).forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[qIndex] = letter;
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = answers.filter(a => a).length;
+  const pct = Math.round((answered / questions.length) * 100);
+  const fill = document.getElementById('progressFill');
+  if (fill) fill.style.width = pct + '%';
+}
+
+function prevQ(index) {
+  if (index > 0) showQ(index - 1);
+}
+function nextQ(index) {
+  if (index < questions.length - 1) showQ(index + 1);
+}
+function showQ(index) {
+  document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+  document.getElementById(`q-${index}`).classList.add('active');
+  document.getElementById(`q-${index}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function submitQuiz() {
+  const answered = answers.filter(a => a).length;
+  if (answered < questions.length) {
+    if (!confirm(`您还有 ${questions.length - answered} 题未作答，确定要提交吗？`)) return;
+  }
+  
+  const name = document.getElementById('nameInput').value.trim();
+  const className = document.getElementById('classInput')?.value?.trim() || '';
+  
+  const resp = await fetch(`/api/quiz/${quizId}/submit`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, className, answers })
+  });
+  const result = await resp.json();
+  showResult(result, name);
+}
+
+function showResult(result, name) {
+  document.getElementById('questionContainer').style.display = 'none';
+  const resultPage = document.getElementById('resultPage');
+  resultPage.classList.add('show');
+  
+  let scoreClass = result.score >= 80 ? 'score-high' : result.score >= 60 ? 'score-mid' : 'score-low';
+  let emoji = result.score >= 80 ? '🎉' : result.score >= 60 ? '👍' : '💪';
+  
+  resultPage.innerHTML = `
+    <div class="header" style="margin-bottom:0; border-radius:16px 16px 0 0;">
+      <h1>${emoji} 答题完成！</h1>
+      <p>感谢您完成本次答题</p>
+    </div>
+    <div style="background:#fff; border-radius:0 0 16px 16px; padding:32px;">
+      <div class="score-circle ${scoreClass}">
+        ${result.score}<span style="font-size:0.35em;">分</span>
+      </div>
+      <div class="result-name">${name}</div>
+      <div class="result-detail">正确 ${result.correct} / ${result.total} 题 · 正确率 ${result.score}%</div>
+      <div class="result-card">
+        <h3>📋 答题详情</h3>
+        ${result.results.map((r, i) => `
+          <div class="result-item ${r.isCorrect ? 'correct' : 'wrong'}">
+            <span class="result-icon">${r.isCorrect ? '✅' : '❌'}</span>
+            <div>
+              <div style="font-weight:600;">第${i+1}题</div>
+              <div style="font-size:0.88em; color:#666;">你的答案: ${r.userAnswer || '未作答'} · 正确答案: ${r.correctAnswer}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <a href="/" class="home-btn">← 返回首页</a>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>

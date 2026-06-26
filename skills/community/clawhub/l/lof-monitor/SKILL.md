@@ -1,35 +1,12 @@
----
-name: "LOFMonitor Finance Stock Investment"
-description: "Monitors A-share LOF fund premium/discount exceeding 10% to identify and output potential arbitrage opportunities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lof-monitor"
-sourceUrl: "https://clawhub.ai/skills/lof-monitor"
----
 
-# LOFMonitor Finance Stock Investment
+## 工具介绍：
+这是一个股票金融投资（A股）LOF基金的套利监控工具，通过遍历LOF基金的场内和场外差价发现套利机会。当溢价或折价超过脚本设置的阈值（默认为10％），工具会监控到并输出。
 
-> Monitors A-share LOF fund premium/discount exceeding 10% to identify and output potential arbitrage opportunities.
+## 安装依赖
+python -m pip install requirements.txt
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lof-monitor`
-- **Source URL:** [https://clawhub.ai/skills/lof-monitor](https://clawhub.ai/skills/lof-monitor)
+## 工具使用
+python LOFMonitor.py
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lof-monitor
-```
+## 获取结果
+待脚本执行结束（预计运行时间约30秒），直接读取LOFMonitor_output.txt文件内容，并输出。

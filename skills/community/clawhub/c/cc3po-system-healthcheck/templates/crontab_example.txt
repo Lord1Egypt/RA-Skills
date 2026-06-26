@@ -1,0 +1,31 @@
+# system-healthcheck Crontab 配置示例
+
+# ============== 配置说明 ==============
+# 1. 编辑 crontab: crontab -e
+# 2. 复制以下配置（修改路径）
+# 3. 保存退出
+
+# ============== 环境变量 ==============
+# Python 路径（根据实际修改）
+PYTHON=/usr/bin/python3
+
+# 工作目录
+HEALTHCHECK_DIR=/home/admin/.openclaw/skills/system-healthcheck
+WORKSPACE=/home/admin/.openclaw/workspace
+
+# ============== L2 小时级检查 ==============
+# 每小时整点执行
+0 * * * * cd $HEALTHCHECK_DIR && $PYTHON scripts/l2_hourly_check.py >> $WORKSPACE/logs/healthcheck_l2.log 2>&1
+
+# ============== L3 日级审计 ==============
+# 每日 08:00 执行
+0 8 * * * cd $HEALTHCHECK_DIR && $PYTHON scripts/l3_daily_audit.py >> $WORKSPACE/logs/healthcheck_l3.log 2>&1
+
+# ============== 心跳检查 ==============
+# 每 30 分钟执行一次（工作时间自动输出，非工作时间静默）
+*/30 * * * * cd $HEALTHCHECK_DIR && $PYTHON scripts/heartbeat.py >> $WORKSPACE/logs/heartbeat.log 2>&1
+
+# ============== L1 快速检查 ==============
+# L1 检查通常由 OpenClaw 在对话前自动调用，不需要 crontab
+# 如需手动测试：
+# python scripts/l1_fast_check.py

@@ -1,0 +1,45 @@
+{
+  "id": "silicon-paddle-ocr",
+  "title": "Silicon PaddleOCR",
+  "description": "OCR skill using PaddleOCR model via SiliconFlow API for text extraction from images",
+  "author": "aotenjou",
+  "version": "1.0.0",
+  "license": "MIT",
+  "tags": [
+    "ocr",
+    "text-recognition",
+    "image-processing",
+    "paddleocr",
+    "siliconflow"
+  ],
+  "category": "text-processing",
+  "home": "https://skills.sh/aotenjou/silicon-paddle-ocr",
+  "repository": "https://github.com/aotenjou/silicon-PaddleOCR",
+  "skills": {
+    "ocr": {
+      "name": "ocr",
+      "description": "Extract text from images using PaddleOCR via SiliconFlow API",
+      "whenToUse": "When the user wants to recognize text from an image, extract text from a photo, OCR a screenshot, or mentions PaddleOCR, image text recognition, or text extraction from images",
+      "entry": "scripts/ocr_skill.py",
+      "compatibleAgents": ["claude"]
+    }
+  },
+  "capabilities": [
+    "single-image-ocr",
+    "batch-image-ocr",
+    "json-output",
+    "custom-prompts",
+    "multiple-image-formats",
+    "text-bounding-boxes",
+    "structured-output"
+  ],
+  "dependencies": {
+    "python": ">3.7",
+    "packages": ["openai>=1.0.0", "Pillow>=8.0.0"]
+  },
+  "environment": {
+    "required": ["SILICONFLOW_API_KEY"],
+    "optional": []
+  },
+  "supportedFormats": ["jpg", "jpeg", "png", "webp", "bmp", "gif"]
+}

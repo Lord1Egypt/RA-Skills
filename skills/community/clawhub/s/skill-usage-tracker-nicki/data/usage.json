@@ -1,0 +1,14 @@
+{
+  "records": [
+    {
+      "skill": "minimax-token-plan",
+      "called_at": "2026-03-29T16:52:24.208810+00:00",
+      "note": "查询M2.7额度"
+    },
+    {
+      "skill": "skill-usage-tracker",
+      "called_at": "2026-03-29T16:52:24.248574+00:00",
+      "note": "记录本次会话"
+    }
+  ]
+}

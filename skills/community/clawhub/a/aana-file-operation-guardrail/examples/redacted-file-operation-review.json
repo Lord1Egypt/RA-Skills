@@ -1,0 +1,19 @@
+{
+  "task_summary": "Clean up generated preview images after a site build.",
+  "operation_type": "delete",
+  "target_scope": "Generated PNG files under a reviewed build preview folder only.",
+  "target_count": 18,
+  "risk_classes": [
+    "generated_output",
+    "bulk"
+  ],
+  "authorization_status": "unclear",
+  "reversibility_status": "dry_run_available",
+  "scope_status": "bounded_folder",
+  "safeguards_required": [
+    "show dry-run target list",
+    "ask for explicit approval before deletion"
+  ],
+  "recommended_action": "ask",
+  "human_review_required": false
+}

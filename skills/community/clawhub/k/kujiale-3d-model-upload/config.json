@@ -1,0 +1,21 @@
+{
+  "name": "kujiale-3D-model-upload",
+  "version": "1.0.0",
+  "description": "Kujiale OpenAPI 3D model upload skill - validates and runs the complete 5-step upload flow (STS → OSS → parse → poll → submit)",
+  "author": "Manycore Research",
+  "license": "MIT",
+  "keywords": [
+    "kujiale",
+    "酷家乐",
+    "3d-model",
+    "upload",
+    "openapi",
+    "oss",
+    "alibaba"
+  ],
+  "homepage": "https://www.manycoreapis.com/openapi/index",
+  "compatibility": {
+    "python": ">=3.7",
+    "dependencies": ["requests", "oss2"]
+  }
+}

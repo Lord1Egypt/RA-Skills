@@ -1,0 +1,17 @@
+# Python dependencies for Everything Search Skill
+# Install with: pip install -r requirements.txt
+
+# No external dependencies required
+# This project uses only Python standard library modules:
+# - urllib.request
+# - urllib.parse
+# - json
+# - socket
+# - os
+# - sys
+# - datetime
+# - typing
+
+# Optional dependencies for enhanced features:
+# requests>=2.28.0  # Alternative HTTP client
+# pytest>=7.0.0     # Testing framework

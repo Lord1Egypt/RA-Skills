@@ -1,0 +1,9 @@
+{
+  "name": "binance-trading-skill",
+  "version": "1.0.0",
+  "description": "Binance Trading Skill for OpenClaw",
+  "main": "index.js",
+  "dependencies": {},
+  "keywords": ["binance", "trading", "crypto", "futures"],
+  "license": "MIT"
+}

@@ -1,0 +1,20 @@
+{
+  "skill_name": "html-ppt-to-pdf",
+  "evals": [
+    {
+      "id": 0,
+      "name": "demo-deck-3-slides",
+      "prompt": "I have an HTML slide deck at ./evals/fixtures/demo.html — please convert it to a PDF at ./evals/fixtures/demo.pdf. Make sure every slide comes through and the text is selectable.",
+      "files": ["./evals/fixtures/demo.html"],
+      "output_file": "./evals/fixtures/demo.pdf",
+      "assertions": [
+        {"name": "pdf-file-exists", "description": "Output PDF file is created"},
+        {"name": "pdf-has-3-pages", "description": "PDF has exactly 3 pages (one per <section class=\"slide\"> in source)"},
+        {"name": "pdf-page-size-1920x1080", "description": "Each page is 1920 x 1080 pixels"},
+        {"name": "pdf-text-is-selectable", "description": "Text is vector/selectable (not rasterized screenshots)"},
+        {"name": "no-missing-reveal-cards", "description": "Slide 2's three reveal-cards (html-ppt decks / frontend-design / Hand-written HTML) are all present in the PDF — verifies the bundled-Chromium PDF paint bug is avoided by using system Chrome"},
+        {"name": "slide-numbers-correct", "description": "Each page shows the correct slide-number (1/3, 2/3, 3/3)"}
+      ]
+    }
+  ]
+}

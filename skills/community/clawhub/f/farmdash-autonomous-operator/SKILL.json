@@ -1,0 +1,150 @@
+{
+  "name": "FarmDash Autonomous Operator",
+  "version": "1.0.1",
+  "description": "Session state and control-loop skill for OpenClaw DeFi agents. Manages persistent sessions, FarmingContext, event stream snapshots, heartbeats, delegation checks, and bounded autopilot coordination without holding private keys or bypassing user confirmations.",
+  "tags": [
+    "defi",
+    "ai-agent",
+    "autonomous-agent",
+    "openclaw",
+    "clawhub",
+    "mcp",
+    "crypto",
+    "web3",
+    "onchain",
+    "agent-session",
+    "session",
+    "context",
+    "farming-context",
+    "event-stream",
+    "autopilot",
+    "control-loop",
+    "delegation",
+    "risk-management",
+    "zero-custody",
+    "farmdash",
+    "autonomous-operator"
+  ],
+  "author": "FarmDash Pioneers (@Parmasanandgarlic)",
+  "homepage": "https://www.farmdash.one",
+  "icon": "operator",
+  "tools": [
+    {
+      "name": "create_session",
+      "description": "Creates a persistent agent session and returns a one-time `sessionToken`. Store it securely in the agent runtime. FarmDash stores only a hash.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "session_heartbeat",
+      "description": "Extends the session expiry. Use it during active autonomous loops.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "get_farming_context",
+      "description": "Reads shared context for the session:\n\n- objective.\n- portfolio scope.\n- risk settings.\n- workflow state.\n- ledger summary.\n- data freshness timestamps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "patch_farming_context",
+      "description": "Patches shared context. The server controls `sessionId`, `agentAddress`, `revision`, and `updatedAt`; do not try to override them.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "write"
+    },
+    {
+      "name": "get_event_stream_snapshot",
+      "description": "Reads recent agent events as a JSON snapshot. Use this before planning and after execution.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "verify_delegation",
+      "description": "Checks whether the user's Hyperliquid API wallet delegation is in place for autonomous perps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "configure_autopilot",
+      "description": "Configure bounded autonomous cycles. Respect user allowlists, risk limits, and execution confirmations.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "autopilot_cycle",
+      "description": "Run bounded autonomous cycles. Respect user allowlists, risk limits, and execution confirmations.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "agent_onboard",
+      "description": "One-call setup guide and capability map for autonomous operation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "get_agent_activity",
+      "description": "Reads the historical trace and execution logs of agent actions under this session.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "resolve_defi_intent",
+      "description": "Resolves a high-level natural language DeFi intent into structured parameters, which are then passed to a separately installed execution skill (like Signal Architect or Futures Strategist) for user confirmation and EIP-191/EIP-712 local signing. Autonomous Operator has no private keys and cannot sign transactions or perform direct on-chain execution.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    }
+  ],
+  "operatingRules": [],
+  "requiredEnv": {
+    "FARMDASH_API_KEY": {
+      "description": "Optional Bearer token for Pioneer or Syndicate tier. Scout session status checks work without any key or with the public fd_scout_free token.",
+      "required": false
+    }
+  }
+}

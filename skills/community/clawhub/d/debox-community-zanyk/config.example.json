@@ -1,0 +1,9 @@
+{
+  "apiKey": "your-debox-api-key-here",
+  "defaultGroupId": "optional-default-group-id",
+  "defaultChainId": 1,
+  "thresholds": {
+    "minVotes": 0,
+    "minLotteries": 0
+  }
+}

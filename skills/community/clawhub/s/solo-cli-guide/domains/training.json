@@ -1,0 +1,71 @@
+[
+  {
+    "id": "train_policy",
+    "domain": "training",
+    "description": "Train a robot policy on a recorded dataset",
+    "command": "solo robo --train",
+    "inputs": ["dataset_repo_id", "policy_type"],
+    "parameters": {
+      "dataset_repo_id": "Local path or HuggingFace dataset ID",
+      "policy_type": {
+        "type": "enum",
+        "values": ["smolvla", "act", "pi0", "tdmpc", "groot", "diffusion"],
+        "descriptions": {
+          "smolvla": "Vision-Language-Action model, defaults to lerobot/smolvla_base checkpoint",
+          "act": "Action Chunking with Transformers — fast, low data",
+          "pi0": "π₀ — strong generalist policy",
+          "tdmpc": "TD-MPC — model-based RL",
+          "groot": "GR00T (Groot) — NVIDIA foundation model",
+          "diffusion": "Diffusion Policy — high quality, slower"
+        }
+      },
+      "training_steps": "Number of gradient steps",
+      "batch_size": "Batch size per step",
+      "output_dir": "Local output directory for checkpoints",
+      "push_to_hub": "boolean — push trained model to HuggingFace Hub",
+      "wandb_logging": "boolean — enable Weights & Biases logging"
+    },
+    "explanation": "Trains a policy (the model that maps observations → actions) using LeRobot's training pipeline. Checkpoints saved periodically (e.g. every 1000 steps). SmolVLA can initialize from pretrained checkpoint. Camera names auto-mapped when they don't match policy defaults.",
+    "expected_output": "Training complete. Checkpoints saved to output_dir.",
+    "validation": {
+      "type": "path_exists",
+      "rule": "Checkpoint files must exist in output_dir (e.g. checkpoint_1000/)"
+    },
+    "common_errors": [
+      "Video backend error — automatically switches to PyAV if TorchCodec unavailable",
+      "Camera name mismatch — tool auto-maps camera names when they don't match policy defaults",
+      "Output dir exists — choose resume, overwrite, or new directory"
+    ],
+    "prerequisites": ["record_dataset (sufficient episodes)"],
+    "docs_ref": "/solotrain/train"
+  },
+  {
+    "id": "run_inference",
+    "domain": "training",
+    "description": "Run a trained policy autonomously on the follower arm",
+    "command": "solo robo --inference",
+    "inputs": ["policy_path", "task_description"],
+    "parameters": {
+      "policy_path": "HuggingFace model ID (e.g. username/my-model) or local checkpoint path",
+      "task_description": "Description of the task for the policy",
+      "duration": "How long to run inference in seconds",
+      "teleop_override": "boolean — use leader arm to override when leader is calibrated",
+      "cameras": "Optional OpenCV or RealSense cameras"
+    },
+    "explanation": "Runs a trained policy model in closed-loop on the follower arm. Local model paths skip HuggingFace auth. Leader not required unless using teleop override. PySerial installed automatically if missing.",
+    "expected_output": "Policy running — follower arm acts autonomously",
+    "validation": {
+      "type": "visual_physical",
+      "rule": "Follower arm moves autonomously without leader input"
+    },
+    "common_errors": [
+      "HuggingFace auth required for remote Hub model IDs — local paths skip this",
+      "Wrong port — auto-detects and retries once; disconnect/reconnect if still failing",
+      "Motor sync error — run scan/diagnose, check power voltages",
+      "Windows symlink warnings — automatically suppressed by the tool",
+      "RealMan — check realman_config.yaml IP/port settings"
+    ],
+    "prerequisites": ["calibrate_arm (follower)", "train_policy OR download a Hub model"],
+    "docs_ref": "/solotrain/inference"
+  }
+]

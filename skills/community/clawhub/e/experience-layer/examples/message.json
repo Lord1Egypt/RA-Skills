@@ -1,0 +1,36 @@
+{
+  "type": "skill",
+  "name": "message",
+  "lastUpdated": "2026-03-18T02:45:47.020593+08:00",
+  "totalExecutions": 3,
+  "successCount": 0,
+  "failureCount": 3,
+  "experiences": [
+    {
+      "mistake": "完成任务后重复回复，导致发送两次",
+      "when": "任务完成后发送结果",
+      "avoidance": "工具调用完成后，一次回复即可，不需要重复发送",
+      "count": 2
+    },
+    {
+      "mistake": "飞书发送本地媒体文件，路径不在允许目录导致上传失败",
+      "when": "message发送媒体文件",
+      "avoidance": "媒体文件必须移动到允许目录：/home/jilanfang/.openclaw/media 或 /tmp/openclaw，/tmp 根目录不允许",
+      "count": 1
+    }
+  ],
+  "patterns": {
+    "commonMistakes": [
+      "完成任务后重复回复，发送两次",
+      "飞书渠道尝试添加 inline buttons，不显示",
+      "不需要 NO_REPLY 时误用，导致用户收不到消息",
+      "媒体文件放在/tmp根目录，飞书拒绝上传"
+    ],
+    "bestPractices": [
+      "飞书渠道不支持 inline buttons，不要添加",
+      "完成任务直接给出结果，只有工具要求时才用 NO_REPLY",
+      "一次发送结果，不重复回复",
+      "发送媒体文件前先移到允许目录（/home/jilanfang/.openclaw/media）"
+    ]
+  }
+}

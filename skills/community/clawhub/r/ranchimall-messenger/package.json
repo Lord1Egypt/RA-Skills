@@ -1,0 +1,20 @@
+{
+  "name": "messenger-send-node",
+  "version": "1.0.2",
+  "description": "Node.js based FLO messenger skill for OpenClaw",
+  "main": "send_node.js",
+  "type": "commonjs",
+  "author": "RanchiMall",
+  "homepage": "https://github.com/ranchimall/messenger",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ranchimall/messenger.git"
+  },
+  "scripts": {
+    "start": "node send_node.js",
+    "receive": "node receive_node.js"
+  },
+  "dependencies": {
+    "ws": "^8.21.0"
+  }
+}

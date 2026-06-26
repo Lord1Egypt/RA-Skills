@@ -1,0 +1,16 @@
+# Web Search Skill Requirements
+
+# 包管理器（推荐用于快速安装）
+uv>=0.1.0
+
+# HTTP请求
+requests>=2.28.0
+
+# 百度搜索库（无需API Key）
+baidusearch>=1.0.3
+
+# 网页抓取库（深度搜索）
+crawl4ai>=0.8.0
+
+# Playwright 浏览器自动化
+playwright>=1.40.0

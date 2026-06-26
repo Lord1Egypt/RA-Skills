@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "enforce": true,
+  "entries": [
+    {
+      "path": "./dist/openclaw-plugin.mjs",
+      "issuer": "guard-scanner-release-gate",
+      "source": "local-build"
+    }
+  ]
+}

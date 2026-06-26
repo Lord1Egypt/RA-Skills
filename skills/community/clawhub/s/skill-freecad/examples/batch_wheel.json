@@ -1,0 +1,54 @@
+{
+  "operation": "batch",
+  "parameters": {
+    "steps": [
+      {
+        "operation": "create_primitive",
+        "parameters": {
+          "type": "torus",
+          "radius1": 30,
+          "radius2": 8,
+          "name": "Tire"
+        }
+      },
+      {
+        "operation": "create_primitive",
+        "parameters": {
+          "type": "cylinder",
+          "radius": 26,
+          "height": 6,
+          "name": "Hub",
+          "position": [0, 0, -3]
+        }
+      },
+      {
+        "operation": "create_primitive",
+        "parameters": {
+          "type": "cylinder",
+          "radius": 4,
+          "height": 20,
+          "name": "AxleHole",
+          "position": [0, 0, -10]
+        }
+      },
+      {
+        "operation": "boolean",
+        "parameters": {
+          "type": "fuse",
+          "base": "Tire",
+          "tool": "Hub",
+          "name": "SolidWheel"
+        }
+      },
+      {
+        "operation": "boolean",
+        "parameters": {
+          "type": "cut",
+          "base": "SolidWheel",
+          "tool": "AxleHole",
+          "name": "Wheel"
+        }
+      }
+    ]
+  }
+}

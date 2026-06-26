@@ -1,35 +1,50 @@
 ---
-name: "Skill Hunter"
-description: "Find, evaluate, and install ClawHub skills. Semantic search across 10,000+ skills, security vetting before install, side-by-side comparison. The skill that m..."
-category: "other"
-source: "ClawHub"
-tags: [latest clawhub, skills, discovery, search, install, security, utility, openclaw, agent-tool]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-hunter"
-sourceUrl: "https://clawhub.ai/skills/skill-hunter"
+name: skill-hunter
+description: "Find, evaluate, and install ClawHub skills. Semantic search across 10,000+ skills, security vetting before install, side-by-side comparison. The skill that makes skills useful."
+metadata:
+  openclaw:
+    tags:
+      - clawhub
+      - skills
+      - discovery
+      - search
+      - install
+      - security
+      - utility
+      - openclaw
+      - agent-tool
+    os:
+      - darwin
+      - linux
+      - windows
 ---
 
 # Skill Hunter
 
-> Find, evaluate, and install ClawHub skills. Semantic search across 10,000+ skills, security vetting before install, side-by-side comparison. The skill that m...
+10,000+ skills on ClawHub. No good way to find the right one, vet it, or know if it's safe to install. Skill Hunter fixes that.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-hunter`
-- **Source URL:** [https://clawhub.ai/skills/skill-hunter](https://clawhub.ai/skills/skill-hunter)
+## Three modes
 
-## Overview
+**Hunt** — You know what you need. Describe it in plain English. Skill Hunter searches ClawHub's semantic index and returns ranked matches.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-hunter
 ```
+curl -s "https://clawhub.ai/api/v1/search?q=code+review+security" | jq '.[] | {slug, displayName, summary, score}'
+```
+
+**Scout** — You're exploring. Browse trending, newest, or most-downloaded skills across the platform.
+
+```
+curl -s "https://clawhub.ai/api/v1/skills?sort=trending&limit=10" | jq '.items[] | {slug, displayName, summary}'
+```
+
+**Vet** — You found a skill. Before installing, read its SKILL.md remotely, check its security profile, and understand what it will do on your machine.
+
+```
+curl -s "https://clawhub.ai/api/v1/skills/kenoodl-synthesis/kenoodl-synthesis/file?path=SKILL.md"
+```
+
+Full workflow, API reference, and security evaluation framework in `instructions.md`.
+
+## Security profile
+
+No credentials required. No env vars. No external packages. All API calls go to clawhub.ai — the platform's own public endpoints. Nothing leaves your environment except search queries to ClawHub.

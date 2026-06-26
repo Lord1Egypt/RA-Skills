@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/tiktok/get-post-comment/v1 for TikTok Post Comments through JustOneAPI with awemeId.",
+  "displayName": "TikTok Post Comments",
+  "endpointPath": "get-post-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok post Comments data, including comment ID, user information, and text content, for sentiment analysis of the audience's reaction to specific content and engagement measurement via comment volume and quality.",
+      "method": "GET",
+      "operationId": "getPostCommentV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Security token for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of the TikTok post (awemeId).",
+          "enumValues": [],
+          "location": "query",
+          "name": "awemeId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "0",
+          "description": "Pagination cursor. Start with '0'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok/get-post-comment/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Comments",
+      "tags": [
+        "TikTok"
+      ]
+    }
+  ],
+  "platformKey": "tiktok",
+  "primaryTag": "TikTok",
+  "skillName": "justoneapi_tiktok_get_post_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-tiktok-get-post-comment",
+  "sourceTitle": "OpenAPI definition"
+}

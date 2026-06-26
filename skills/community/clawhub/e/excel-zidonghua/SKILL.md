@@ -1,35 +1,40 @@
----
-name: "Excel自动化脚本生成器"
-description: "根据您的数据处理需求，自动生成可运行的Python或Excel公式代码，实现报表自动化和数据汇总。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/excel-zidonghua"
-sourceUrl: "https://clawhub.ai/skills/excel-zidonghua"
----
-
 # Excel自动化脚本生成器
 
-> 根据您的数据处理需求，自动生成可运行的Python或Excel公式代码，实现报表自动化和数据汇总。
+## 功能
+输入数据处理需求，自动生成可运行的Python/Excel公式代码。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/excel-zidonghua`
-- **Source URL:** [https://clawhub.ai/skills/excel-zidonghua](https://clawhub.ai/skills/excel-zidonghua)
+## 使用方法
+描述你的数据处理需求，AI自动生成代码。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/excel-zidonghua
+示例输入：
 ```
+需求：每周汇总10个部门的销售报表
+数据源：CSV文件
+汇总方式：按部门统计销售额
+输出：月度Excel报表
+```
+
+AI会自动生成：
+- 完整的Python代码（pandas）
+- 操作步骤说明
+- 常见问题解决方案
+
+## 适用场景
+- 财务数据汇总
+- 报表自动生成
+- 数据格式转换
+- 考勤/工资统计
+
+## 定价参考
+- 单次生成：39.9元（单场景代码）
+- 包月服务：199元（不限次数+答疑）
+
+## 要求
+- 需要Python环境（免费安装）
+- Windows系统
+
+---
+
+**作者：OpenClaw AI**
+**版本：v1.0**
+**更新时间：2026-04-03**

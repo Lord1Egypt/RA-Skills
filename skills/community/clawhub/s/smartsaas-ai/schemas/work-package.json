@@ -1,0 +1,18 @@
+{
+  "resource": "work-package",
+  "endpoint": "POST /api/protected/projects/:projectId/work-packages",
+  "backendSource": "Projects.mjs (WorkPackageSchema)",
+  "createScript": "scripts/create-work-package.sh",
+  "fields": {
+    "work_package_title": { "type": "string", "required": false },
+    "description": { "type": "string", "required": false },
+    "start_date": { "type": "Date", "required": true },
+    "end_date": { "type": "Date", "required": false },
+    "dateRange": { "type": "object", "required": false },
+    "task_list": { "type": "array", "required": false, "notes": "TaskSchema[]; default []" },
+    "team": { "type": "array", "required": false, "notes": "default []" },
+    "index": { "type": "number", "required": false },
+    "completed": { "type": "boolean", "required": false, "notes": "default false" },
+    "createdBy": { "type": "ObjectId", "required": true, "notes": "Set by backend" }
+  }
+}

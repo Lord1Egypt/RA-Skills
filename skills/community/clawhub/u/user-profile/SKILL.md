@@ -1,35 +1,182 @@
 ---
-name: "User Profile"
-description: "用户画像与偏好学习。自动收集用户偏好、抽象人格特征，构建个性化用户画像。触发场景：(1) 新会话启动时自动总结上次会话偏好 (2) 心跳中定期抽象人格特征 (3) 用户要求查看/更新画像时。存储位置：workspace/PROFILE.md。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/user-profile"
-sourceUrl: "https://clawhub.ai/skills/user-profile"
+name: user-profile
+description: 用户画像与偏好学习。自动收集用户偏好、抽象人格特征，构建个性化用户画像。触发场景：(1) 新会话启动时自动总结上次会话偏好 (2) 心跳中定期抽象人格特征 (3) 用户要求查看/更新画像时。存储位置：workspace/PROFILE.md。
 ---
 
 # User Profile
 
-> 用户画像与偏好学习。自动收集用户偏好、抽象人格特征，构建个性化用户画像。触发场景：(1) 新会话启动时自动总结上次会话偏好 (2) 心跳中定期抽象人格特征 (3) 用户要求查看/更新画像时。存储位置：workspace/PROFILE.md。
+自动构建用户画像：收集偏好 → 抽象人格特征。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/user-profile`
-- **Source URL:** [https://clawhub.ai/skills/user-profile](https://clawhub.ai/skills/user-profile)
+## 存储结构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/user-profile
 ```
+workspace/
+├── PROFILE.md           # 用户画像（偏好 + 人格特征）
+├── memory/
+│   ├── YYYY-MM-DD.md    # 每日记忆（偏好标记存于此）
+│   └── profile-state.json # 状态追踪
+```
+
+**PROFILE.md 结构：**
+```markdown
+# 用户画像
+
+## 偏好记录
+
+### 沟通风格
+- 偏好详细的解释和背景信息
+- 喜欢结构化的表达方式
+
+### 工作习惯
+- 上午精力充沛（9:00-12:00）
+- 喜欢提前规划，按步骤执行
+
+### 技术偏好
+- 前端优先，React为主
+- 喜欢探索新技术
+
+### 生活方式
+- 居住地：北京
+- 家庭：配偶 + 两个孩子
+
+## 人格特征
+
+### 决策风格
+- 谨慎分析，偏好充分调研
+- 重视长期规划而非即时响应
+
+### 沟通倾向
+- 喜欢全面讨论，重视过程记录
+- 偏好书面沟通胜过口头
+
+### 价值观
+- 质量 > 效率
+- 稳定 > 创新
+
+## 统计
+
+- 偏好记录数：X 条
+- 最后更新：YYYY-MM-DD
+```
+
+## 工作流程
+
+### 1. 会话中：发现偏好
+
+当用户表达偏好、习惯、特征时，立即记录到当日 memory 文件：
+
+**格式：**
+```markdown
+📝 偏好: [类别] [具体内容]
+```
+
+**示例：**
+```markdown
+📝 偏好: 沟通风格 不喜欢AI式设问（"你是否经历过"）
+📝 偏好: 技术 偏好Python脚本处理重复任务
+📝 偏好: 工作 习惯晚间编码，白天开会
+📝 偏好: 生活 喜欢喝美式咖啡，不加糖
+```
+
+**偏好类别（不限于此，按需扩展）：**
+- 沟通风格：表达方式、信息密度、反馈偏好
+- 工作习惯：作息、专注时段、协作方式
+- 技术偏好：语言、框架、工具、架构风格
+- 生活方式：饮食、运动、娱乐、消费
+- 情感表达：压力反应、开心表现、挫折应对
+- 决策模式：风险态度、选择风格、优先级排序
+
+### 2. 新会话启动时：总结偏好
+
+**触发条件：** Session Startup 时检查 profile-state.json
+
+**检查逻辑：**
+```json
+{
+  "last_summary_date": "2026-04-11",
+  "last_abstraction_date": "2026-04-01"
+}
+```
+
+如果 `last_summary_date` < 昨天日期：
+1. 读取昨天及之前未处理的 memory 文件
+2. 提取所有 `📝 偏好:` 标记
+3. 归类并更新 PROFILE.md 的偏好记录
+4. 更新 profile-state.json 的 last_summary_date
+
+**处理步骤：**
+1. 读取 `memory/profile-state.json`
+2. 扫描 `memory/` 目录，找出日期 > last_summary_date 的文件
+3. 从这些文件中提取 `📝 偏好:` 行
+4. 按类别归类到 PROFILE.md
+5. 去重：相同偏好不重复记录
+6. 更新统计信息
+
+### 3. 心跳中：抽象人格特征
+
+**触发条件：** 心跳时检查，距上次抽象 ≥ 7 天
+
+**抽象逻辑：**
+1. 读取 PROFILE.md 中的偏好记录
+2. 分析重复出现的模式
+3. 归纳为人格特征（维度不限，按实际发现归纳）
+
+**抽象维度（示例，按实际发现扩展）：**
+
+| 维度 | 从偏好推断 |
+|------|----------|
+| 决策风格 | 快速/谨慎、理性/感性、风险偏好 |
+| 沟通倾向 | 直接/委婉、简洁/详细、主动/被动 |
+| 价值观 | 效率/质量、创新/稳定、实用/完美 |
+| 情绪模式 | 乐观/悲观、冷静/热情、内敛/外放 |
+| 学习风格 | 实践/理论、视觉/文本、系统/碎片 |
+
+**抽象规则：**
+- 至少3次相似偏好 → 可抽象为特征
+- 矛盾偏好 → 记录为"情境依赖"
+- 新维度 → 直接添加，不预设框架
+
+**更新 PROFILE.md：**
+```markdown
+## 人格特征
+
+### 决策风格
+务实导向，注重效率。偏好快速迭代而非完美规划。
+
+### 沟通倾向
+直接表达，不喜欢绕弯。重视结果胜过过程。
+```
+
+## 状态文件
+
+`memory/profile-state.json`:
+```json
+{
+  "last_summary_date": "2026-04-12",
+  "last_abstraction_date": "2026-04-05",
+  "preference_count": 42,
+  "trait_count": 8
+}
+```
+
+## 使用方式
+
+### 自动触发
+
+无需用户指令，在 Session Startup 和心跳中自动执行。
+
+### 手动触发
+
+用户可随时要求：
+- "看看我的画像" → 展示 PROFILE.md
+- "更新画像" → 立即执行偏好总结 + 人格抽象
+- "我有什么偏好" → 展示偏好记录
+- "我是什么性格" → 展示人格特征
+
+## 注意事项
+
+1. **隐私边界**：偏好记录在本地，不上传
+2. **去重**：相同偏好只记录一次，但可更新
+3. **矛盾处理**：记录矛盾偏好，标注情境（如"工作时光速决策，购物时纠结"）
+4. **渐进式**：画像随时间积累，不预设完整框架
+5. **可修正**：用户可随时删除或修改偏好记录

@@ -1,0 +1,174 @@
+{
+  "target": "/Users/natemacdaddy/.hermes/workspace/atlas-security-skills/atlas-vuln-scanner/demo/contracts",
+  "scanned_at": "2026-05-02 10:22",
+  "files_scanned": 1,
+  "findings": [
+    {
+      "file": "VulnerableVault.sol",
+      "line": 25,
+      "match": "(bool ok,) = msg.sender.call{value: amount}(\"\");",
+      "regex": "\\.call\\s*\\{\\s*value\\s*:",
+      "context": "        require(balances[msg.sender] >= amount, \"low balance\");\n        (bool ok,) = msg.sender.call{value: amount}(\"\");\n        require(ok, \"send failed\");",
+      "id": "T1.1",
+      "title": "Reentrancy / external call review",
+      "severity": "High",
+      "confidence": "Medium",
+      "description": "External value/token calls that may require checks-effects-interactions or reentrancy protection.",
+      "regexes": [
+        "\\.call\\s*\\{\\s*value\\s*:",
+        "\\.call\\s*\\(",
+        "\\.send\\s*\\(",
+        "\\.transfer\\s*\\("
+      ],
+      "advice": "Ensure state updates happen before external calls and affected functions use nonReentrant where needed."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 31,
+      "match": "token.call(abi.encodeWithSignature(\"transfer(address,uint256)\", to, amount));",
+      "regex": "\\.call\\s*\\(",
+      "context": "    function emergencyWithdraw(address token, address to, uint256 amount) external {\n        token.call(abi.encodeWithSignature(\"transfer(address,uint256)\", to, amount));\n    }",
+      "id": "T1.1",
+      "title": "Reentrancy / external call review",
+      "severity": "High",
+      "confidence": "Medium",
+      "description": "External value/token calls that may require checks-effects-interactions or reentrancy protection.",
+      "regexes": [
+        "\\.call\\s*\\{\\s*value\\s*:",
+        "\\.call\\s*\\(",
+        "\\.send\\s*\\(",
+        "\\.transfer\\s*\\("
+      ],
+      "advice": "Ensure state updates happen before external calls and affected functions use nonReentrant where needed."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 14,
+      "match": "function setFee(uint256 newFee) external {",
+      "regex": "function\\s+(set|update|configure|pause|unpause|mint|burn|sweep|upgrade|setFee|setOracle|setAdmin)\\w*\\s*\\([^)]*\\)\\s*(public|external)(?![^\\{;]*(onlyOwner|onlyRole|auth|requiresAuth|adminOnly|governance|manager))",
+      "context": "\n    function setFee(uint256 newFee) external {\n        // intentionally missing access control for demo",
+      "id": "T1.2",
+      "title": "Access control review",
+      "severity": "High",
+      "confidence": "Medium",
+      "description": "Public/external admin-like functions or role logic that may need authorization review.",
+      "regexes": [
+        "function\\s+(set|update|configure|pause|unpause|mint|burn|sweep|upgrade|setFee|setOracle|setAdmin)\\w*\\s*\\([^)]*\\)\\s*(public|external)(?![^\\{;]*(onlyOwner|onlyRole|auth|requiresAuth|adminOnly|governance|manager))",
+        "require\\s*\\([^;]*(msg\\.sender|owner\\(\\))\\s*!="
+      ],
+      "advice": "Confirm privileged operations have correct access control and no inverse/threshold logic bug."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 35,
+      "match": "(uint112 r0, uint112 r1,) = IUniswapV2Pair(pair).getReserves();",
+      "regex": "(?<!function )getReserves\\s*\\(",
+      "context": "    function getPrice(address pair) external view returns (uint256) {\n        (uint112 r0, uint112 r1,) = IUniswapV2Pair(pair).getReserves();\n        return uint256(r1) * 1e18 / uint256(r0);",
+      "id": "T1.3",
+      "title": "Oracle manipulation / spot-price risk",
+      "severity": "Critical",
+      "confidence": "Medium",
+      "description": "Potential use of spot AMM reserves/slot0 or missing staleness/TWAP protections.",
+      "regexes": [
+        "(?<!function )getReserves\\s*\\(",
+        "\\.slot0\\s*\\(",
+        "latestRoundData\\s*\\(",
+        "answer\\s*=|price\\s*="
+      ],
+      "advice": "Confirm TWAP/staleness/liquidity bounds; spot prices are unsafe for lending/liquidation decisions."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 31,
+      "match": "token.call(abi.encodeWithSignature(\"transfer(address,uint256)\", to, amount));",
+      "regex": "\\.call\\s*\\(",
+      "context": "    function emergencyWithdraw(address token, address to, uint256 amount) external {\n        token.call(abi.encodeWithSignature(\"transfer(address,uint256)\", to, amount));\n    }",
+      "id": "T1.4",
+      "title": "Unchecked low-level or token call",
+      "severity": "High",
+      "confidence": "Medium",
+      "description": "Low-level/token transfer calls may ignore success or non-standard ERC20 returns.",
+      "regexes": [
+        "\\.call\\s*\\(",
+        "\\.delegatecall\\s*\\(",
+        "\\.staticcall\\s*\\(",
+        "\\.transferFrom\\s*\\(",
+        "\\.transfer\\s*\\("
+      ],
+      "advice": "Check return values or use SafeERC20 / explicit require(success)."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 8,
+      "match": "uint256 public totalShares;",
+      "regex": "share|shares|exchangeRate|index|accumulator|totalAssets|totalSupply",
+      "context": "    bool public paused;\n    uint256 public totalShares;\n",
+      "id": "T1.5",
+      "title": "Accounting/share math review",
+      "severity": "High",
+      "confidence": "Low",
+      "description": "Share, index, exchange-rate, or rounding math that may cause accounting drift.",
+      "regexes": [
+        "share|shares|exchangeRate|index|accumulator|totalAssets|totalSupply",
+        "\\*\\s*1e(18|27)|/\\s*1e(18|27)",
+        "Math\\.mulDiv|mulDiv"
+      ],
+      "advice": "Manually validate rounding direction, empty-market edge cases, and share-price manipulation."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 20,
+      "match": "totalShares += msg.value * 1e18 / address(this).balance;",
+      "regex": "share|shares|exchangeRate|index|accumulator|totalAssets|totalSupply",
+      "context": "        balances[msg.sender] += msg.value;\n        totalShares += msg.value * 1e18 / address(this).balance;\n    }",
+      "id": "T1.5",
+      "title": "Accounting/share math review",
+      "severity": "High",
+      "confidence": "Low",
+      "description": "Share, index, exchange-rate, or rounding math that may cause accounting drift.",
+      "regexes": [
+        "share|shares|exchangeRate|index|accumulator|totalAssets|totalSupply",
+        "\\*\\s*1e(18|27)|/\\s*1e(18|27)",
+        "Math\\.mulDiv|mulDiv"
+      ],
+      "advice": "Manually validate rounding direction, empty-market edge cases, and share-price manipulation."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 36,
+      "match": "return uint256(r1) * 1e18 / uint256(r0);",
+      "regex": "\\*\\s*1e(18|27)|/\\s*1e(18|27)",
+      "context": "        (uint112 r0, uint112 r1,) = IUniswapV2Pair(pair).getReserves();\n        return uint256(r1) * 1e18 / uint256(r0);\n    }",
+      "id": "T1.5",
+      "title": "Accounting/share math review",
+      "severity": "High",
+      "confidence": "Low",
+      "description": "Share, index, exchange-rate, or rounding math that may cause accounting drift.",
+      "regexes": [
+        "share|shares|exchangeRate|index|accumulator|totalAssets|totalSupply",
+        "\\*\\s*1e(18|27)|/\\s*1e(18|27)",
+        "Math\\.mulDiv|mulDiv"
+      ],
+      "advice": "Manually validate rounding direction, empty-market edge cases, and share-price manipulation."
+    },
+    {
+      "file": "VulnerableVault.sol",
+      "line": 10,
+      "match": "function initialize(address _owner) external {",
+      "regex": "initialize\\s*\\(",
+      "context": "\n    function initialize(address _owner) external {\n        owner = _owner;",
+      "id": "T2.4",
+      "title": "Initialization / upgradeability review",
+      "severity": "High",
+      "confidence": "Medium",
+      "description": "Upgradeable contracts need initialization guards and safe upgrade authorization.",
+      "regexes": [
+        "initialize\\s*\\(",
+        "reinitializer\\s*\\(",
+        "_disableInitializers\\s*\\(",
+        "UUPSUpgradeable|TransparentUpgradeableProxy"
+      ],
+      "advice": "Confirm initializer cannot be replayed and implementation is locked."
+    }
+  ]
+}

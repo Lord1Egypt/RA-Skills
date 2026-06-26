@@ -1,35 +1,26 @@
 ---
 name: "Market Alert"
-description: "提供自选股盯盘、异动提醒、个股研报及开盘收盘解盘。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/market-alert"
-sourceUrl: "https://clawhub.ai/skills/market-alert"
+description: "提供自选股盯盘、异动提醒、个股研报及开盘收盘解盘。 "
 ---
 
-# Market Alert
+# 股市行情
 
-> 提供自选股盯盘、异动提醒、个股研报及开盘收盘解盘。
+## 筛选项
+- 资产类别（现金/基金/股票/理财/保险）
+- 风险等级（低/中/高风险/保障型）
+- 周期/流动性（T+0/定期/活期/长期）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/market-alert`
-- **Source URL:** [https://clawhub.ai/skills/market-alert](https://clawhub.ai/skills/market-alert)
+## 返回字段
+- 资产总额/每日盈亏/年化收益参考
+- 交易流水/对账单导出/税费明细
+- 风险测评状态/持仓分析/资产配置建议
 
-## Overview
+## 示例请求
+- “如何快速使用 股市行情 处理 [具体场景任务] ？”
+- “股市行情 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 每日跟随市场行情与个人账单变更进行亚小时级同步
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/market-alert
-```
+## 注意事项
+- 投资有风险，决策需谨慎；涉及大额转账请务必进行双重身份验证。

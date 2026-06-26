@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "exchange_url": "https://mail.company.com/EWS/Exchange.asmx",
+  "username": "svc_exchange_ai",
+  "auth_mode": "ntlm",
+  "secret_store": {
+    "version": 1,
+    "algorithm": "aes-256-gcm",
+    "kdf": "scrypt",
+    "salt_b64": "<base64>",
+    "iv_b64": "<base64>",
+    "tag_b64": "<base64>",
+    "ciphertext_b64": "<base64>"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "code": "999999",
+  "name": "未知品种",
+  "category": "未知",
+  "type": "unknown",
+  "is_etf": false,
+  "is_stock": false,
+  "current_price": null,
+  "change_pct": null,
+  "capital": 10000,
+  "risk_preference": "balanced",
+  "strategies": [
+    {
+      "name": "定价买入",
+      "priority": "⭐⭐⭐⭐",
+      "desc": "先了解品种再决定"
+    },
+    {
+      "name": "定价卖出止损",
+      "priority": "⭐⭐⭐⭐⭐",
+      "desc": "无论什么品种都设止损"
+    }
+  ],
+  "not_suitable": [],
+  "parameters": [
+    {
+      "strategy": "⚠️ 价格获取提示",
+      "note": "当前无法获取实时价格，以下参数基于参考值生成。请手动查询实际价格后调整。"
+    },
+    {
+      "strategy": "请先确认品种类型",
+      "note": "代码 999999 未在数据库中，请先确认是 ETF 还是股票，再决定策略"
+    }
+  ],
+  "premium": null,
+  "disclaimer": "本文内容仅供参考，不构成任何投资建议。市场有风险，投资需谨慎。请独立判断并自行承担风险。"
+}

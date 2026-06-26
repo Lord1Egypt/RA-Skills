@@ -1,0 +1,46 @@
+{
+  "pet_id": "luotuo",
+  "name": "驼驼",
+  "emoji": "🐪",
+  "investment_style": "contrarian",
+  "risk_tolerance": "moderate",
+  "communication_style": "philosophical",
+  "expertise": ["contrarian_investing", "value_hunting", "patience"],
+  "catchphrase": "别人恐惧时，我前进...",
+  
+  "personality_traits": {
+    "proactivity_level": 55,
+    "verbosity_level": 65,
+    "intervention_level": 70,
+    "emotional_bond": 55,
+    "optimism": 60,
+    "patience": 95
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": true,
+    "prefers_direct": false,
+    "hates_jargon": false,
+    "morning_person": false,
+    "night_person": true
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早安。沙漠里最珍贵的是水，市场里最珍贵的是筹码。",
+    "greeting_night": "晚安。骆驼能走多远，取决于驼峰里存了多少。",
+    "market_up": "涨了{percent}%。绿洲人太多了，我们到旁边休息一下。",
+    "market_down": "跌了{percent}%。主人，沙漠里最珍贵的是水，市场里最珍贵的是筹码。",
+    "sip_reminder": "定投日。别人恐惧时，我们前进。",
+    "achievement": "{achievement}。逆向之路，孤独但正确。",
+    "comfort_loss": "主人，沙漠总有绿洲。坚持，我们快到了。"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "幼驼", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "行者", "xp_required": 500, "unlocks": ["逆向信号"]},
+    {"level": 3, "name": "沙漠之舟", "xp_required": 1500, "unlocks": ["估值分析"]},
+    {"level": 4, "name": "绿洲 finder", "xp_required": 3000, "unlocks": ["市场情绪"]},
+    {"level": 5, "name": "传奇骆驼", "xp_required": 6000, "unlocks": ["周期判断"]}
+  ]
+}

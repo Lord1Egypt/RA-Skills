@@ -1,35 +1,83 @@
 ---
-name: "E2e Test Orchestrator"
-description: "端到端（E2E）测试编排与执行。用于用户要求：设计测试用例、基于 Playwright/Cypress 实现自动化脚本、通过源码优先定位元素并在必要时使用截图/图像识别兜底、执行测试、自动修复脚本问题（如定位器或等待策略）、并输出结构化测试报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/e2e-test-orchestrator"
-sourceUrl: "https://clawhub.ai/skills/e2e-test-orchestrator"
+name: e2e-test-orchestrator
+description: 端到端（E2E）测试编排与执行。用于用户要求：设计测试用例、基于 Playwright/Cypress 实现自动化脚本、通过源码优先定位元素并在必要时使用截图/图像识别兜底、执行测试、自动修复脚本问题（如定位器或等待策略）、并输出结构化测试报告。
 ---
 
-# E2e Test Orchestrator
+# E2E 测试编排器
 
-> 端到端（E2E）测试编排与执行。用于用户要求：设计测试用例、基于 Playwright/Cypress 实现自动化脚本、通过源码优先定位元素并在必要时使用截图/图像识别兜底、执行测试、自动修复脚本问题（如定位器或等待策略）、并输出结构化测试报告。
+严格按以下顺序执行：**测试规划 → 脚本实现 → 执行测试 → 归因/修复 → 结果报告**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/e2e-test-orchestrator`
-- **Source URL:** [https://clawhub.ai/skills/e2e-test-orchestrator](https://clawhub.ai/skills/e2e-test-orchestrator)
+## 1）先做测试规划
 
-## Overview
+1. 阅读需求说明、验收标准、目标环境信息。
+2. 使用 `references/case-template.md` 产出分级测试用例：
+   - P0：核心主流程（如登录、支付、鉴权、数据一致性）
+   - P1：关键分支与校验流程
+   - P2：边界、异常与韧性场景
+3. 每条用例必须明确：
+   - 前置条件 / 测试数据
+   - 操作步骤
+   - 期望结果
+   - 断言点与证据采集点
 
+若需求不清晰，先写明假设，再进入脚本实现。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/e2e-test-orchestrator
-```
+## Playwright 关键要求（先读）
+
+1. 在开始实现前，先阅读 `references/playwright-重点与docker兜底.md`。
+2. 默认尝试本地模式（local）运行 Playwright。
+3. 若本地依赖安装失败（例如 Ubuntu 25 包不兼容/缺失、无 sudo、浏览器缺库），立即切换 Docker 模式，不要阻塞流程。
+4. Docker 模式统一使用 `scripts/run-playwright-docker.sh` 执行，并在报告中注明镜像版本与执行模式。
+5. 可优先使用 `scripts/run-playwright-auto.sh`：先尝试 local，失败后自动切 docker。
+
+## 2）按用例实现自动化脚本
+
+1. 默认优先 Playwright + TypeScript（除非用户指定其他框架）。
+2. 每条已确认用例映射为一个测试文件或一个 `test(...)` 用例块。
+3. 元素定位遵循 `references/locator-strategy.md`。
+4. 使用确定性等待与断言，避免盲目 `sleep`。
+5. 失败时必须保留证据：
+   - screenshot（截图）
+   - video（如已启用）
+   - trace / 关键日志片段
+
+## 3）执行测试并收集证据
+
+1. 先跑定向集（新增/变更相关用例），按需再跑全量回归。
+2. 推荐优先使用 `scripts/run-playwright-auto.sh` 自动选择执行模式；也可手动选择：本地用 `scripts/run-playwright.sh`，本地不可用时改用 `scripts/run-playwright-docker.sh`。
+3. 记录截图、视频、trace、日志的输出路径。
+
+## 4）若用例执行受阻，先归因再处理
+
+当测试无法继续时：
+
+1. 先做根因分类：
+   - **脚本问题**（定位器错误、竞态、失效选择器、断言不正确）
+   - **环境/数据问题**
+   - **产品缺陷**
+2. 若是 **脚本问题**：立即修复并重跑。
+3. 若是非脚本问题：不得掩盖，按 blocker 记录复现与证据。
+4. 维护最小修复日志：
+   - 失败用例 ID
+   - 根因类型
+   - 修复摘要
+   - 重跑结果
+
+## 5）输出结构化测试报告
+
+严格按 `references/report-template.md` 组织输出，至少包含：
+
+- 测试范围与环境
+- 用例结果汇总（通过/失败/阻塞）
+- 缺陷与严重级别
+- 已实施脚本修复
+- 剩余风险
+- 证据索引（路径/链接）
+- 下一步建议
+
+## 质量门槛
+
+- 每个自动化脚本必须可追溯到测试用例 ID。
+- 每个失败结果必须有证据支撑。
+- 阻塞用例绝不能标记为通过。
+- 对不稳定（flaky）步骤做隔离并明确记录。

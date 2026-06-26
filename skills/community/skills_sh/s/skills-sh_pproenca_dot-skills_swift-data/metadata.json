@@ -1,0 +1,31 @@
+{
+  "version": "1.0.12",
+  "organization": "Apple Developer + Airbnb/OLX Modular MVVM-C",
+  "technology": "SwiftData (iOS 26 / Swift 6.2)",
+  "date": "February 2026",
+  "abstract": "Comprehensive data modeling, persistence, state management, sync architecture, and error handling guide for Swift and SwiftUI applications using SwiftData, aligned with modular MVVM-C repository architecture (see swift-ui-architect). Contains 60 rules across 9 categories, prioritized by impact from critical (data modeling, persistence setup) to production architecture (sync, error recovery, state management). SwiftData types (@Model, ModelContext, @Query) stay in Data-layer implementations behind Domain repository protocols. Views read Domain data from @Observable ViewModels; business logic lives in domain value types and repository-backed flows. Aligned with the iOS 26 / Swift 6.2 clinic modular MVVM-C architecture.",
+  "references": [
+    "https://developer.apple.com/tutorials/develop-in-swift/welcome-to-data-modeling",
+    "https://developer.apple.com/tutorials/develop-in-swift/model-data-with-custom-types",
+    "https://developer.apple.com/tutorials/develop-in-swift/model-data-with-custom-types-conclusion",
+    "https://developer.apple.com/tutorials/develop-in-swift/save-data",
+    "https://developer.apple.com/tutorials/develop-in-swift/models-and-persistence-conclusion",
+    "https://developer.apple.com/tutorials/develop-in-swift/navigate-sample-data",
+    "https://developer.apple.com/tutorials/develop-in-swift/navigate-sample-data-conclusion",
+    "https://developer.apple.com/tutorials/develop-in-swift/create-update-and-delete-data",
+    "https://developer.apple.com/tutorials/develop-in-swift/create-update-and-delete-data-conclusion",
+    "https://developer.apple.com/tutorials/develop-in-swift/work-with-relationships",
+    "https://developer.apple.com/tutorials/develop-in-swift/navigation-editing-and-relationships-conclusion",
+    "https://developer.apple.com/documentation/swiftdata/preserving-your-apps-model-data-across-launches",
+    "https://developer.apple.com/videos/play/wwdc2023/10195/",
+    "https://developer.apple.com/videos/play/wwdc2023/10196/",
+    "https://developer.apple.com/videos/play/wwdc2024/10137/",
+    "https://developer.apple.com/documentation/swiftdata/fetchdescriptor/fetchoffset",
+    "https://developer.apple.com/forums/thread/761118",
+    "https://azamsharp.com/2025/03/28/swiftdata-architecture-patterns-and-practices.html",
+    "https://www.hackingwithswift.com/quick-start/swiftdata/common-swiftdata-errors-and-their-solutions",
+    "https://fatbobman.com/en/posts/key-considerations-before-using-swiftdata/",
+    "https://matteomanferdini.com/swiftdata-mvvm/",
+    "https://www.hackingwithswift.com/quick-start/swiftdata/how-to-use-mvvm-to-separate-swiftdata-from-your-views"
+  ]
+}

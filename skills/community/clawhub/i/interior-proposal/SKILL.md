@@ -1,35 +1,117 @@
 ---
-name: "Interior Proposal Generator"
-description: "室内设计方案提案自动化。根据项目类型（商业/住宅）自动切换内容架构：商业空间侧重投资回报与消费者心理，家装空间侧重家庭场景与生活美学。触发词：生成提案PPT、方案汇报、PPT生成、设计说明、自动生成提案。"
-category: "other"
-source: "ClawHub"
-tags: [commercial, interior-design, ppt, proposal, residential]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interior-proposal"
-sourceUrl: "https://clawhub.ai/skills/interior-proposal"
+name: interior-proposal
+description: 室内设计方案提案自动化。根据项目类型（商业/住宅）自动切换内容架构：商业空间侧重投资回报与消费者心理，家装空间侧重家庭场景与生活美学。触发词：生成提案PPT、方案汇报、PPT生成、设计说明、自动生成提案。
 ---
 
-# Interior Proposal Generator
+# interior-proposal 室内设计方案提案自动化 v4.0
 
-> 室内设计方案提案自动化。根据项目类型（商业/住宅）自动切换内容架构：商业空间侧重投资回报与消费者心理，家装空间侧重家庭场景与生活美学。触发词：生成提案PPT、方案汇报、PPT生成、设计说明、自动生成提案。
+## 核心升级（v4.0）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interior-proposal`
-- **Source URL:** [https://clawhub.ai/skills/interior-proposal](https://clawhub.ai/skills/interior-proposal)
+**按项目类型分流内容架构**，不再是统一模板：
 
-## Overview
+| 类型 | 核心逻辑 | 特色页面 |
+|------|---------|---------|
+| `--type commercial` | 投资回报 + 消费者心理 + 品牌定位 | 坪效测算、消费者旅程、触点设计 |
+| `--type residential` | 家庭成员场景 + 生活美学 + 情感设计 | 家庭成员生活地图、收纳系统、情感场景 |
 
+## 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
+满足以下任一场景时使用：
+1. 需要为客户制作设计方案提案
+2. 方案汇报前的PPT制作
+3. 招投标文件准备
+4. 用户说"生成提案PPT"、"方案汇报"、"PPT生成"
+
+## 必填参数
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| `--type` | 项目类型（**新增**） | `commercial` 或 `residential` |
+| `--project` | 项目名称 | `"瑞安江境叠墅"` |
+| `--area` | 建筑面积（㎡） | `"210"` |
+| `--style` | 风格定位 | `"现代轻奢"` |
+| `--output` | 输出文件路径 | `"./提案.pptx"` |
+
+## 可选参数
+
+| 参数 | 说明 |
+|------|------|
+| `--images` | 效果图文件夹路径（有图自动插入效果展示页） |
+| `--budget` | 预算区间（如 `"50-80万"`） |
+| `--spaces` | 重点空间，逗号分隔（如 `"客厅,餐厅,主卧"`） |
+| `--company` | 公司名称（默认：温州隐室空间设计） |
+| `--designer` | 设计师姓名（默认：老冷） |
+
+## 使用示例
+
 ```bash
-hermes skills install clawhub/interior-proposal
+# 商业空间提案
+python3 generate_proposal_ppt.py \
+  --type commercial \
+  --project "飞翔机械办公室" \
+  --area "800" \
+  --style "工业风" \
+  --output "./飞翔机械提案.pptx" \
+  --budget "200-300万" \
+  --images "./效果图/" \
+  --company "温州隐室空间设计" \
+  --designer "老冷"
+
+# 住宅空间提案
+python3 generate_proposal_ppt.py \
+  --type residential \
+  --project "瑞安江境叠墅" \
+  --area "210" \
+  --style "现代轻奢" \
+  --output "./江境叠墅提案.pptx" \
+  --images "./效果图/" \
+  --family "三代同堂" \
+  --spaces "客厅,餐厅,主卧,老人房"
+```
+
+## 商业空间提案结构（13页）
+
+| 页码 | 内容 | 说明 |
+|------|------|------|
+| 1 | 封面 | 深色全屏+品牌金+项目信息 |
+| 2 | 目录 | 商业版目录（大号编号+投资分析标签） |
+| 3 | 项目定位 | 目标客群 + 差异化竞争点 |
+| 4 | 投资分析 | 坪效/客单价/回本周期 三大KPI |
+| 5 | 消费者心理 | 决策旅程 + 触点设计 + 痛点规避 |
+| 6-8 | 空间设计 | 功能布局 + 坪效优化 + 打卡点 |
+| 9 | 效果展示 | 沉浸式全图效果页 |
+| 10 | 材质说明 | 商业级主材色块网格 |
+| 11 | 投资预算 | 三档报价+收益预测 |
+| 12 | 设计流程 | 品牌定位→方案→施工图→施工 |
+| 13 | 封底 | 感谢聆听 |
+
+## 住宅空间提案结构（14页）
+
+| 页码 | 内容 | 说明 |
+|------|------|------|
+| 1 | 封面 | 深色全屏+暖金+项目信息 |
+| 2 | 目录 | 住宅版目录（家庭场景标签） |
+| 3 | 项目定位 | 家庭结构 + 设计愿景 |
+| 4 | 家庭场景 | 长辈/孩子/主人/全家 四大场景卡片 |
+| 5 | 生活美学 | 材质美学 + 光影设计 + 情感场景 |
+| 6-8 | 空间设计 | 功能分区 + 动线优化 + 场景化设计 |
+| 9 | 效果展示 | 沉浸式全图效果页 |
+| 10 | 材质美学 | 触感材质色块网格（温暖色调） |
+| 11 | 收纳系统 | 6大空间收纳规划（专属页） |
+| 12 | 预算方案 | 三档报价参考 |
+| 13 | 设计流程 | 需求沟通→方案→施工图→施工→软装摆场 |
+| 14 | 封底 | 感谢聆听 |
+
+## 设计语言
+
+- **配色**：深色体系（墨色#1c232d）+ 品牌金（暖金#dcb478）+ 辅助色
+- **商业特供**：薄荷绿(#50B4A0) 代表增长/收益
+- **住宅特供**：焦糖色(#B48C64) 代表温暖/品质生活
+- **字体**：中文PingFang SC / 英文Avenir Next
+- **视觉**：大号装饰编号 + 金色线条点缀 + 深浅色块交替
+
+## 依赖
+
+```bash
+pip3 install python-pptx Pillow
 ```

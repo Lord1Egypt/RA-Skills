@@ -1,0 +1,37 @@
+{
+  "name": "openclaw-memory-max",
+  "version": "3.0.3",
+  "description": "SOTA Memory Suite for OpenClaw. Adds Utility-Weighted Retrieval, Active Context Compression, a Causal Knowledge Graph, Cross-Encoder Reranking, and Nightly Sleep-Cycle consolidation.",
+  "main": "dist/index.js",
+  "keywords": [
+    "openclaw",
+    "memory",
+    "ai",
+    "rag",
+    "knowledge-graph",
+    "context-compression"
+  ],
+  "author": "Stanislav Stolberg",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "audit": "node -e \"const path = require('path'); const fs = require('fs'); const baseDir = process.env.OPENCLAW_HOME || path.join(process.env.HOME || '/root', '.openclaw'); const memDir = path.join(baseDir, 'memory'); const dbPath = path.join(memDir, 'main.sqlite'); const scoresPath = path.join(memDir, 'utility_scores.json'); const graphPath = path.join(memDir, 'causal_graph.json'); console.log('main.sqlite present:', fs.existsSync(dbPath)); console.log('utility_scores.json present:', fs.existsSync(scoresPath)); console.log('causal_graph.json present:', fs.existsSync(graphPath));\"",
+    "test": "tsc --noEmit && node -e \"require('./dist/index.js'); console.log('[test] Entry point loaded successfully');\""
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.0",
+    "sql.js": "^1.14.0",
+    "yaml": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "typescript": "^5.3.0"
+  },
+  "openclaw": {
+    "type": "extension",
+    "extensions": [
+      "./dist/index.js"
+    ]
+  }
+}

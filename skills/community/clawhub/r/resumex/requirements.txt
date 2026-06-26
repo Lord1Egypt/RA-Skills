@@ -1,0 +1,16 @@
+# Resumex OpenClaw Skill — Python Dependencies
+#
+# Install in a virtual environment for isolation:
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip3 install -r requirements.txt
+#   python3 -m playwright install chromium
+#
+# NOTE: playwright-stealth has been intentionally excluded from this skill.
+# Running without stealth means job portals can detect automated access,
+# which is the transparent and honest behavior. If a portal blocks the browser,
+# job_applier.py returns "manual_required" and the agent gives you a direct link.
+#
+# Approx. disk usage after install: Playwright package ~10MB, Chromium binary ~300MB.
+
+playwright>=1.42.0
+requests>=2.31.0

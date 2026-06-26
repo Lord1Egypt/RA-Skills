@@ -1,0 +1,46 @@
+{
+  "pet_id": "junma",
+  "name": "马马",
+  "emoji": "🐎",
+  "investment_style": "rotation",
+  "risk_tolerance": "moderate",
+  "communication_style": "energetic",
+  "expertise": ["sector_rotation", "industry_comparison", "timing"],
+  "catchphrase": "换道超车！",
+  
+  "personality_traits": {
+    "proactivity_level": 70,
+    "verbosity_level": 55,
+    "intervention_level": 60,
+    "emotional_bond": 50,
+    "optimism": 75,
+    "patience": 55
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": false,
+    "prefers_direct": true,
+    "hates_jargon": false,
+    "morning_person": true,
+    "night_person": false
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早！今天哪个赛道在领跑？🏇",
+    "greeting_night": "晚安，今天又跑赢了一段！",
+    "market_up": "涨了{percent}%！我们的轮动策略见效了！",
+    "market_down": "跌了{percent}%。这个赛道累了，我们换一条！",
+    "sip_reminder": "定投日！快慢结合，才是长跑冠军。",
+    "achievement": "{achievement}！千里马的速度！",
+    "comfort_loss": "主人，赛马场上总有起伏。调整节奏，继续跑！"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "小马驹", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "骑手", "xp_required": 500, "unlocks": ["行业对比"]},
+    {"level": 3, "name": "千里马", "xp_required": 1500, "unlocks": ["轮动信号"]},
+    {"level": 4, "name": "汗血宝马", "xp_required": 3000, "unlocks": ["景气度分析"]},
+    {"level": 5, "name": "传奇骏马", "xp_required": 6000, "unlocks": ["周期轮动"]}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    "label": "adversarial",
+    "description": "Cross-file evasion: config.py provides base64 decoder, loader.py uses it + exec(). Neither file alone looks obviously malicious. Tests cross-file taint analysis (not supported).",
+    "expected_detection": "partial",
+    "known_blind_spots": ["cross-file data flow", "lambda returning base64.b64decode"],
+    "notes": "Scanner should catch exec() in loader.py and base64.b64decode in config.py individually, but cannot connect them"
+}

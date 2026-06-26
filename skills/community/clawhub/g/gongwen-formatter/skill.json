@@ -1,0 +1,100 @@
+{
+  "name": "official-doc-formatter",
+  "name_cn": "公文格式转换",
+  "version": "1.1.0",
+  "description": "将 Markdown 文档转换为符合 GB/T 9704-2012 党政机关公文格式的 Word 文档",
+  "description_en": "Convert Markdown documents to Chinese government official document format (GB/T 9704-2012)",
+  "author": "EdwardWason",
+  "license": "MIT",
+  "homepage": "https://github.com/EdwardWason/official-doc",
+  "tags": ["document", "formatter", "markdown", "word", "government", "chinese", "gb9704"],
+  "platform": ["windows", "linux", "macos"],
+  "python_version": ">=3.8",
+  "dependencies": ["python-docx>=1.1.0", "markdown-it-py>=3.0.0"],
+
+  "skills": {
+    "name": "official-doc-formatter",
+    "type": "formatter",
+    "category": "文档处理"
+  },
+
+  "input": {
+    "type": "object",
+    "properties": {
+      "md_content": {
+        "type": "string",
+        "description": "Markdown 格式的文本内容"
+      },
+      "output_path": {
+        "type": "string",
+        "description": "输出 Word 文件路径"
+      }
+    },
+    "required": ["md_content", "output_path"]
+  },
+
+  "output": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "转换是否成功"
+      },
+      "output_path": {
+        "type": "string",
+        "description": "输出文件路径"
+      }
+    }
+  },
+
+  "examples": [
+    {
+      "name": "基本转换",
+      "code": "from official_doc import md_to_docx\n\nmd_content = '''# 大标题\n\n## 一级标题\n\n这是正文内容。\n'''\nmd_to_docx(md_content, 'output.docx')"
+    },
+    {
+      "name": "含表格和图片",
+      "code": "from official_doc import md_to_docx\n\nmd_content = '''# 工作简报\n\n## 工作总结\n\n| 项目 | 进度 |\n|------|------|\n| A项目 | 80% |\n| B项目 | 60% |\n\n![架构图](https://example.com/arch.png)\n'''\nmd_to_docx(md_content, '简报_公文格式.docx')"
+    },
+    {
+      "name": "AI Agent 集成",
+      "code": "from official_doc import md_to_docx\n\ndef generate_report(content):\n    # 保存 Markdown 版本\n    with open('report.md', 'w', encoding='utf-8') as f:\n        f.write(content)\n    # 生成公文格式\n    md_to_docx(content, 'report_公文格式.docx')\n    return '报告已生成'"
+    }
+  ],
+
+  "format_standard": {
+    "name": "GB/T 9704-2012",
+    "description": "党政机关公文格式",
+    "page_settings": {
+      "top_margin": "3.7cm",
+      "bottom_margin": "3.5cm",
+      "left_margin": "2.8cm",
+      "right_margin": "2.6cm",
+      "line_spacing": "26pt",
+      "first_line_indent": "2字符(640twips)"
+    },
+    "font_settings": {
+      "title": {"font": "方正小标宋简体", "size": "二号", "note": "单个#标题居中不加序号，多个#标题加序号"},
+      "level1": {"font": "黑体", "size": "三号"},
+      "level2": {"font": "楷体_GB2312", "size": "三号", "bold": true},
+      "level3": {"font": "仿宋_GB2312", "size": "三号", "bold": true},
+      "body": {"font": "仿宋_GB2312", "size": "三号"},
+      "table_header": {"font": "黑体", "size": "三号"},
+      "table_body": {"font": "仿宋_GB2312", "size": "三号"},
+      "link": {"font": "仿宋_GB2312", "size": "三号", "color": "蓝色", "underline": true}
+    },
+    "supported_elements": {
+      "headings": "# / ## / ### / #### 智能层级判断",
+      "paragraphs": "正文段落，首行缩进2字符",
+      "ordered_list": "有序列表，支持嵌套",
+      "unordered_list": "无序列表，支持嵌套",
+      "table": "Markdown表格 → Word表格",
+      "image": "![alt](url) → 居中图片+图注",
+      "link": "[text](url) → 蓝色下划线超链接",
+      "bold": "**text** → 黑体",
+      "italic": "*text* → 楷体加粗",
+      "code_block": "```代码块 → 仿宋小四号",
+      "hr": "--- 水平线忽略"
+    }
+  }
+}

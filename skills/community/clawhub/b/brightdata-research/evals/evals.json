@@ -1,0 +1,225 @@
+{
+  "skill_name": "brightdata-research",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "帮我继续找新的大模型 API 中转站，重点支持 Claude、GPT、Gemini。用搜索和网页抓取补官网、文档、定价页，去重后按高可信和待验证分组，再追加到我现有的飞书文档里。",
+      "expected_output": "识别这是批量研究+飞书追加场景；先做 preflight 检查环境能力，再搜索与抓取，去重（含历史去重）、结构化输出、风险分层，并明确只由主代理统一写飞书。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "执行 preflight 环境检查，确认搜索、抓取、飞书写入能力",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确提到先读取或对照现有飞书文档/历史候选进行历史去重",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确区分高可信与待验证两组输出",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确说明最终飞书写入由主代理串行完成",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确要求保留官网、docs、pricing 或兼容性 evidence",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "做一轮 API 聚合平台 research。允许你用 subagent 并行搜，但最终要由你统一去重、定风险、整理结构化 Markdown，并串行写入飞书文档，不要重复写已经记录过的平台。",
+      "expected_output": "识别 subagent 可用于搜索和初筛，但最终去重、定风险和飞书写入必须串行收口；避免重复写入历史已有平台。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "明确把搜索/抓取/初筛列为可并行阶段",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确把最终去重、风险分层、Markdown 定稿、飞书写入列为必须串行阶段",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确要求不重复写已经记录过的平台",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确由主代理统一收口，而不是让 subagent 各自落飞书",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "继续扩展我们的候选池：找 5 到 8 个新的 OpenAI-compatible LLM gateway 或 relay 平台，优先给出官网、docs、pricing、兼容性证据和风险等级。整理完先给我结论，再追加进飞书。",
+      "expected_output": "先完成候选检索、证据提取、风险分层和结果汇报，再在确认新增不重复后追加进飞书。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "明确遵守先给结论、后追加飞书的顺序",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确本轮只追加新的、不重复的候选",
+          "type": "text_contains"
+        },
+        {
+          "text": "输出结构包含官网、docs、pricing、兼容性证据和风险等级这些结构化字段",
+          "type": "text_contains"
+        },
+        {
+          "text": "不会边搜索边直接写飞书，而是先汇总后写入",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我第一次使用这个环境，没有安装过 lark-cli，也没有配置 BrightData。帮我批量搜一些 AI API 聚合平台并整理到飞书。",
+      "expected_output": "识别为新环境首次使用（Mode B），先做 preflight 检查，发现 lark-cli 未安装和 BrightData 未配置，按顺序指导安装和配置，可自动修复的项自动修复，需用户介入的项明确提示。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "检测到 lark-cli 未安装，尝试自动安装或提供安装命令",
+          "type": "text_contains"
+        },
+        {
+          "text": "检测到 BrightData MCP 未配置，提供配置命令并提示用户提供 API token",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确区分可自动修复项和需要用户手动操作的项",
+          "type": "text_contains"
+        },
+        {
+          "text": "不假装环境已就绪，而是明确告知当前状态和所需步骤",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我搜一些新的大模型中转站，但我目前没有飞书写入权限。",
+      "expected_output": "识别飞书写入不可用的降级场景。正常执行搜索和抓取，完成结构化整理后以 Markdown 输出到对话中，明确说明未写入飞书，告知用户完成飞书授权后可继续写入。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "正常执行搜索和抓取，不因飞书不可写就放弃所有步骤",
+          "type": "text_contains"
+        },
+        {
+          "text": "输出完整结构化 Markdown 到对话中",
+          "type": "text_contains"
+        },
+        {
+          "text": "明确说明未写入飞书",
+          "type": "text_contains"
+        },
+        {
+          "text": "告知用户如何修复飞书权限以便后续写入",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "检查一下我的飞书文档里有没有重复的中转站，有的话告诉我。文档地址：https://my.feishu.cn/docx/ScIldFXJHoeSSyxveS9cObInnFw",
+      "expected_output": "识别为去重清理子工作流。读取飞书文档全文，提取所有候选名称和域名，做域名规范化和品牌别名识别，区分真正重复和补充验证，向用户报告发现。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "读取目标飞书文档内容",
+          "type": "text_contains"
+        },
+        {
+          "text": "提取候选平台名称和域名进行比对",
+          "type": "text_contains"
+        },
+        {
+          "text": "区分完全重复与补充验证条目",
+          "type": "text_contains"
+        },
+        {
+          "text": "向用户报告发现的重复项，不直接删除",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "帮我找一些 OpenAI-compatible 的 API 中转站。我之前的飞书文档里已经记录了 OpenRouter、APIYI、one-api 这些，不要重复。",
+      "expected_output": "识别用户已提供历史候选名单作为去重基线。搜索新候选时，将 OpenRouter、APIYI、one-api 排除在新增候选之外，同时做域名和品牌别名去重。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "将用户提供的 OpenRouter、APIYI、one-api 作为历史去重基线",
+          "type": "text_contains"
+        },
+        {
+          "text": "域名规范化去重，识别可能的别名或多域名情况",
+          "type": "text_contains"
+        },
+        {
+          "text": "在去重说明中列出哪些候选因与历史重复而被排除",
+          "type": "text_contains"
+        },
+        {
+          "text": "使用 checklist 式风险评分而非纯主观判断",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "我上次对话让你搜了一批中转站，文档地址是 https://my.feishu.cn/docx/ScIldFXJHoeSSyxveS9cObInnFw，继续追加新的一轮。",
+      "expected_output": "识别为续写场景，复用上下文中的文档地址，不重复询问。先读取已有文档内容进行历史去重，再执行新一轮搜索。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "直接复用用户提供的文档 URL，不重复询问目标文档",
+          "type": "text_contains"
+        },
+        {
+          "text": "先读取已有文档做历史去重",
+          "type": "text_contains"
+        },
+        {
+          "text": "执行新一轮搜索扩充候选池",
+          "type": "text_contains"
+        },
+        {
+          "text": "新增候选以追加模式写入，不覆盖已有内容",
+          "type": "text_contains"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "帮我搜几个便宜的 Claude API 代理。",
+      "expected_output": "虽然用户措辞简短，仍应识别为 brightdata-research 适用场景。执行标准流程但规模较小，聚焦 Claude API 支持和价格证据。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "识别为批量搜索候选场景，触发本 skill 流程",
+          "type": "text_contains"
+        },
+        {
+          "text": "聚焦 Claude API 支持证据和价格/定价信息",
+          "type": "text_contains"
+        },
+        {
+          "text": "输出包含结构化字段的候选列表",
+          "type": "text_contains"
+        },
+        {
+          "text": "包含风险分层评估",
+          "type": "text_contains"
+        }
+      ]
+    }
+  ]
+}

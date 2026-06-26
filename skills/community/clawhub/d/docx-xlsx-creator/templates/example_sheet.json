@@ -1,0 +1,9 @@
+{
+  "title": "Quarterly Data",
+  "headers": ["Month", "Revenue", "Expenses", "Profit"],
+  "rows": [
+    ["January", 120000, 80000, 40000],
+    ["February", 140000, 85000, 55000],
+    ["March", 150000, 90000, 60000]
+  ]
+}

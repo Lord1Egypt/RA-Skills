@@ -1,0 +1,20 @@
+{
+  "name": "cron",
+  "version": "1.0.0",
+  "description": "Local-first recurring schedule engine for reminders, repeated tasks, and time-based execution plans.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/add_job.py",
+    "scripts/list_jobs.py",
+    "scripts/show_job.py",
+    "scripts/pause_job.py",
+    "scripts/resume_job.py",
+    "scripts/next_run.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/schedule.py",
+    "references/philosophy.md"
+  ]
+}

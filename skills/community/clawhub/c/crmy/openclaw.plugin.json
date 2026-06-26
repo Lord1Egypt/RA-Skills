@@ -1,0 +1,27 @@
+{
+  "id": "crmy",
+  "name": "CRMy — Agent-first CRM",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "serverUrl": {
+        "type": "string",
+        "description": "CRMy server URL. Defaults to the value in ~/.crmy/config.json, then http://localhost:3000."
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "CRMy API key (starts with crmy_). Defaults to the value in ~/.crmy/config.json."
+      }
+    }
+  },
+  "uiHints": {
+    "serverUrl": {
+      "label": "Server URL",
+      "placeholder": "http://localhost:3000"
+    },
+    "apiKey": {
+      "label": "API Key",
+      "placeholder": "crmy_..."
+    }
+  }
+}

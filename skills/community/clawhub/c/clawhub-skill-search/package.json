@@ -1,0 +1,15 @@
+{
+  "name": "clawhub-skill-search",
+  "version": "1.0.0",
+  "description": "Skill search and discovery guide for OpenClaw",
+  "author": {
+    "name": "Ke Luoma",
+    "email": "klm21@mails.tsinghua.edu.cn"
+  },
+  "license": "Apache-2.0",
+  "category": "Developer Tools",
+  "tags": ["skill-search", "discovery", "guide", "openclaw", "clawhub"],
+  "homepage": "https://clawhub.ai/skills/clawhub-skill-search",
+  "files": ["SKILL.md", "README.md", "quickref.md", "example.md", "LICENSE"],
+  "entry": "SKILL.md"
+}

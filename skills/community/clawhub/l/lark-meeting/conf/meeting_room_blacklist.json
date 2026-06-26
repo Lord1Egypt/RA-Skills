@@ -1,0 +1,5 @@
+{
+  "name_substrings": ["面试间"],
+  "exclude_if_capacity_gt": 30,
+  "room_ids": []
+}

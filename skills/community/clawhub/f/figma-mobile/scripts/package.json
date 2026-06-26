@@ -1,0 +1,13 @@
+{
+  "name": "figma-mobile-scripts",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "figma-fetch": "node src/figma-fetch.js",
+    "project-scan": "node src/project-scan.js",
+    "feedback-analyze": "node src/feedback-analyze.js"
+  }
+}

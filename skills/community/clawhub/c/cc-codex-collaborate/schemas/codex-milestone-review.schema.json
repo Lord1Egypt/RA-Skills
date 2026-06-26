@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Codex Milestone Review",
+  "type": "object",
+  "required": [
+    "status",
+    "summary",
+    "findings",
+    "fix_plan",
+    "needs_human",
+    "sensitive_operation_detected",
+    "human_questions",
+    "next_milestone",
+    "language",
+    "requires_translation"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail_fixable",
+        "fail_unclear",
+        "needs_human",
+        "unsafe"
+      ]
+    },
+    "summary": { "type": "string" },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "title", "evidence", "recommendation"],
+        "properties": {
+          "severity": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+          "title": { "type": "string" },
+          "evidence": { "type": "string" },
+          "recommendation": { "type": "string" },
+          "files": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "fix_plan": { "type": "array", "items": { "type": "string" } },
+    "needs_human": { "type": "boolean" },
+    "sensitive_operation_detected": { "type": "boolean" },
+    "human_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "reason", "options"],
+        "properties": {
+          "question": { "type": "string" },
+          "reason": { "type": "string" },
+          "recommended_option": { "type": "string" },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "consequence"],
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string" },
+                "consequence": { "type": "string" }
+              }
+            }
+          },
+          "allow_freeform": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "next_milestone": {
+      "type": ["object", "null"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "goal": { "type": "string" },
+        "acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+        "estimated_risk": { "type": "string", "enum": ["low", "medium", "high"] }
+      }
+    },
+    "language": { "type": "string" },
+    "requires_translation": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

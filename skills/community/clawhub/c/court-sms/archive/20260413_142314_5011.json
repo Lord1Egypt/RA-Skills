@@ -1,0 +1,49 @@
+{
+  "id": "20260413_142314_5011",
+  "timestamp": "2026-04-13T14:23:14+08:00",
+  "sms_raw": "【苏州市相城区人民法院】【苏州市相城区人民法院】杨卫薪 ，苏州市相城区人民法院向您发送了（2026）苏0507民初5011号案件相关文书。。点击链接查阅：https://zxfw.court.gov.cn/zxfw/#/pagesAjkj/app/wssd/index?qdbh=4c3b45c836594fdc9e7795e500dcf2db&sdbh=948f6b2661a6464ea5dcfba6f87bea25&sdsin=ebffbf8090c7e285d0630ae28cfeb358",
+  "parsed": {
+    "type": "document_delivery",
+    "case_number": "（2026）苏0507民初5011号",
+    "parties": ["张敏娟"],
+    "court": "苏州市相城区人民法院",
+    "sent_at": "2026-04-13T06:01:47.000+00:00"
+  },
+  "download": {
+    "source_url": "https://zxfw.court.gov.cn/zxfw/#/pagesAjkj/app/wssd/index?qdbh=4c3b45c836594fdc9e7795e500dcf2db&sdbh=948f6b2661a6464ea5dcfba6f87bea25&sdsin=ebffbf8090c7e285d0630ae28cfeb358",
+    "params": {
+      "qdbh": "4c3b45c836594fdc9e7795e500dcf2db",
+      "sdbh": "948f6b2661a6464ea5dcfba6f87bea25",
+      "sdsin": "ebffbf8090c7e285d0630ae28cfeb358"
+    },
+    "method": "curl",
+    "status": "success",
+    "api_response": {
+      "c_fymc": "苏州市相城区人民法院",
+      "c_fybh": "1208",
+      "dt_cjsj": "2026-04-13T06:01:47.000+00:00",
+      "documents": [
+        {"c_wsmc": "受理案件通知书（张敏娟）", "c_wsbh": "473cdbeddc5c4a5ebd9c4761375dfa1f", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "诉讼退费办理程序告知书", "c_wsbh": "a58423de4299475985208882214f26a5", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "民事举证通知书（修正）(立案庭)", "c_wsbh": "6d1fdce32ab34bacbb618517e2f5200d", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "财产保全告知书", "c_wsbh": "4e739e27956c48c6a10bbfa4d378cc1e", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "廉政监督卡", "c_wsbh": "80ddf7a614e54c55a794dbf04c7b9947", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "\"E法桥\"平台使用告知书（含使用流程）", "c_wsbh": "485c71eb0726407e87755d607930feff", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "人民法院民事诉讼风险提示书", "c_wsbh": "a4106e470efb457d93efc01118a2b514", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "扫黑除恶专项斗争线索举报告知书（张敏娟）", "c_wsbh": "b5e3b300e43d49d4b9349148c359d796", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "网上送达诉讼文书确认书", "c_wsbh": "c901305d4c244e0f833e2d07c8d98974", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "\"五个严禁\"的公示", "c_wsbh": "04d9a3e559b24f3f93725091225a58ae", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"},
+        {"c_wsmc": "\"五个严禁\"规定的处理办法", "c_wsbh": "b6dcdaa81c424bfa8e5ab3894e23ea68", "dt_cjsj": "2026-04-13T06:01:47.000+00:00"}
+      ]
+    }
+  },
+  "document": {
+    "type": "受理案件通知书",
+    "sent_at": "2026-04-13T14:01:47+08:00"
+  },
+  "archive": {
+    "matched_case": "251112 张敏娟 亿驰能源 房屋租赁合同纠纷",
+    "target_path": "251112 张敏娟 亿驰能源 房屋租赁合同纠纷/08 - 🏛️ 法院送达/",
+    "summary": "案号（2026）苏0507民初5011号，房屋租赁合同纠纷，立案日期2026年4月13日"
+  }
+}

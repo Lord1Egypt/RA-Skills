@@ -1,35 +1,158 @@
 ---
-name: "手机号码归属地查询 - 聚合数据"
-description: "手机号码归属地查询。输入手机号码或手机号前7位，查询归属地省份/城市、区号、邮编、运营商（移动/联通/电信）、卡类型等信息。使用场景：用户说"查一下13812345678是哪里的号码"、"这个手机号是哪个运营商的"、"帮我查下这个号的归属地"、"138开头的号码是移动还是联通"等。通过聚合数据（juhe.cn）A..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-mobile-locate"
-sourceUrl: "https://clawhub.ai/skills/juhe-mobile-locate"
+name: juhe-mobile-locate
+description: 手机号码归属地查询。输入手机号码或手机号前7位，查询归属地省份/城市、区号、邮编、运营商（移动/联通/电信）、卡类型等信息。使用场景：用户说"查一下13812345678是哪里的号码"、"这个手机号是哪个运营商的"、"帮我查下这个号的归属地"、"138开头的号码是移动还是联通"等。通过聚合数据（juhe.cn）API实时查询，免注册每天10次调用。
+homepage: https://www.juhe.cn/docs/api/id/11
+metadata: {"openclaw":{"emoji":"📱","requires":{"bins":["python3"],"env":["JUHE_MOBILE_KEY"]},"primaryEnv":"JUHE_MOBILE_KEY"}}
 ---
 
-# 手机号码归属地查询 - 聚合数据
+# 手机号码归属地查询
 
-> 手机号码归属地查询。输入手机号码或手机号前7位，查询归属地省份/城市、区号、邮编、运营商（移动/联通/电信）、卡类型等信息。使用场景：用户说"查一下13812345678是哪里的号码"、"这个手机号是哪个运营商的"、"帮我查下这个号的归属地"、"138开头的号码是移动还是联通"等。通过聚合数据（juhe.cn）A...
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-mobile-locate`
-- **Source URL:** [https://clawhub.ai/skills/juhe-mobile-locate](https://clawhub.ai/skills/juhe-mobile-locate)
+输入手机号码，查询：**归属地省份/城市、区号、邮编、运营商（移动/联通/电信）、手机卡类型**。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [手机号码归属地查询 API](https://www.juhe.cn/docs/api/id/11) 页面，点击「申请使用」
+3. 审核通过后在「我的API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-mobile-locate
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_MOBILE_KEY=你的AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_MOBILE_KEY=你的AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/mobile_lookup.py --key 你的AppKey 13812345678
 ```
+
+> 免费额度：每天免费调用，覆盖日常使用完全够用。
+
+---
+
+## 使用方法
+
+### 基本查询
+
+```bash
+python scripts/mobile_lookup.py 13812345678
+```
+
+输出示例：
+
+```
+📱 手机号码归属地查询结果
+
+  号码:   138****5678
+  省份:   浙江
+  城市:   杭州
+  区号:   0571
+  邮编:   310000
+  运营商: 移动
+  卡类型: 手机卡
+```
+
+### 批量查询多个号码
+
+```bash
+python scripts/mobile_lookup.py 13812345678 13912345678 15912345678
+```
+
+输出示例：
+
+```
+📱 手机号码归属地批量查询  共 3 条
+
++-------------+------+------+------+--------+--------+--------+
+| 号码        | 省份 | 城市 | 区号 | 邮编   | 运营商 | 卡类型 |
++-------------+------+------+------+--------+--------+--------+
+| 138****5678 | 浙江 | 杭州 | 0571 | 310000 | 移动   | 手机卡 |
+| 139****5678 | 广东 | 广州 | 020  | 510000 | 联通   | 手机卡 |
+| 159****5678 | 北京 |      | 010  | 100000 | 电信   | 手机卡 |
++-------------+------+------+------+--------+--------+--------+
+```
+
+### 查询手机号前7位号段
+
+```bash
+python scripts/mobile_lookup.py 1381234
+```
+
+### 显示完整号码（不脱敏）
+
+```bash
+python scripts/mobile_lookup.py 13812345678 --no-mask
+```
+
+### 直接调用 API（无需脚本）
+
+```
+GET http://apis.juhe.cn/mobile/get?phone=13812345678&key=YOUR_KEY
+```
+
+---
+
+## AI 使用指南
+
+当用户询问手机号码归属地相关信息时，按以下步骤操作：
+
+1. **提取号码** — 从用户消息中识别手机号码（11位）或号段前缀（7位）
+2. **校验格式** — 手机号需为 1 开头的 11 位数字，或 7 位号段前缀
+3. **调用脚本** — 执行查询，多个号码可一次传入
+4. **展示结果** — 用表格或卡片形式展示归属地信息
+
+### 参数说明
+
+| 参数 | 必填 | 说明 | 示例 |
+|------|------|------|------|
+| 号码 | 是 | 手机号码（11位）或号段前缀（7位），支持多个 | 13812345678 |
+| `--no-mask` | 否 | 显示完整号码，默认对中间4位脱敏 | — |
+| `--key` | 否 | 直接传入 API Key | abc123 |
+
+### 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| `province` | 省份 | 浙江 |
+| `city` | 城市（部分记录可能为空） | 杭州 |
+| `areacode` | 区号（部分记录可能为空） | 0571 |
+| `zip` | 邮编（部分记录可能为空） | 310000 |
+| `company` | 运营商 | 移动 / 联通 / 电信 |
+| `card` | 卡类型 | 手机卡 / 虚拟运营商 |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/11) 重新申请 |
+| `error_code` 10012 | 当日免费次数已用尽，建议升级套餐 |
+| `error_code` 201101 | 手机号码不能为空 |
+| `error_code` 201102 | 错误的手机号码格式 |
+| `error_code` 201103 | 查询无结果（号段可能不存在） |
+| 格式不合法 | 提示用户输入 1 开头的 11 位手机号或 7 位号段 |
+| 网络超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/mobile_lookup.py` — 封装了 API 调用、参数校验、号码脱敏、表格输出和错误处理。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **交通出行**：火车时刻查询、航班动态、快递追踪
+- **生活服务**：天气预报、万年历、节假日查询
+- **身份核验**：手机号归属地、身份证实名验证
+- **金融数据**：汇率、股票、黄金价格
+- **网络工具**：IP查询、DNS解析
+
+注册即可免费使用，适合个人开发者和企业接入。

@@ -1,0 +1,12 @@
+{
+  "name": "Frontend Performance (前端性能优化)",
+  "tagline": "分析并优化 LCP、FCP、CLS、打包体积与运行时效率，给出可落地方案与优先级",
+  "description": "前端性能优化技能：加载性能（LCP/FCP/TTI）、体验稳定性（CLS、卡顿）、资源与打包（JS 体积、图片、请求）；现状量化、找瓶颈、列方案并标性价比、给出落地顺序与验证方式。适用于性能优化、首屏慢、卡顿、打包体积、Core Web Vitals 等场景。",
+  "category": "development",
+  "tags": ["performance", "lcp", "fcp", "cls", "bundle", "core-web-vitals", "性能优化"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

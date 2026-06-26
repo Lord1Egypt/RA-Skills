@@ -1,0 +1,1997 @@
+{
+  "version": "1.0",
+  "total": 83,
+  "models": [
+    {
+      "id": "01",
+      "name": "第一性原理",
+      "category": "core",
+      "description": "回归事物最基本的条件，从源头推导而非类比。打破惯性思维，从基本原理重新构建解决方案，避免被表象误导。这是科学思维的核心。",
+      "questions": [
+        "从多元思维模型的角度，这个决策的核心是什么？",
+        "多元思维模型如何帮助你评估这个决策？",
+        "应用多元思维模型，你会得出什么结论？"
+      ],
+      "keywords": [
+        "第一性原理",
+        "本质",
+        "基础",
+        "假设",
+        "源头"
+      ],
+      "scoring": {
+        "high": "从基本原理推导，不依赖类比",
+        "medium": "部分基于原理分析",
+        "low": "主要依赖类比和惯例"
+      },
+      "referenceFile": "references/01-08-first-principles.md"
+    },
+    {
+      "id": "02",
+      "name": "机会成本",
+      "category": "core",
+      "description": "选择某方案时放弃的最佳替代方案价值。每个决策都有隐性成本，理解机会成本帮助做出更明智的资源配置。时间和资源都是稀缺的。",
+      "questions": [
+        "从机会成本的角度，这个决策的核心是什么？",
+        "机会成本如何帮助你评估这个决策？",
+        "应用机会成本，你会得出什么结论？"
+      ],
+      "keywords": [
+        "机会成本",
+        "替代",
+        "放弃",
+        "比较",
+        "权衡"
+      ],
+      "scoring": {
+        "high": "明确识别了最佳替代方案",
+        "medium": "考虑了部分替代方案",
+        "low": "未考虑机会成本"
+      },
+      "referenceFile": "references/02-02-opportunity-cost.md"
+    },
+    {
+      "id": "03",
+      "name": "复利效应",
+      "category": "core",
+      "description": "长期持续增长产生惊人复利效果，时间是最重要变量。小的持续改进通过复利会带来指数级增长，耐心是关键。复利是世界第八大奇迹。",
+      "questions": [
+        "从复利效应的角度，这个决策的核心是什么？",
+        "复利效应如何帮助你评估这个决策？",
+        "应用复利效应，你会得出什么结论？"
+      ],
+      "keywords": [
+        "复利",
+        "长期",
+        "持续",
+        "积累",
+        "指数增长"
+      ],
+      "scoring": {
+        "high": "使用了多个视角，结论一致",
+        "medium": "使用了2-3个视角",
+        "low": "仅用单一框架"
+      },
+      "referenceFile": "references/03-03-compound-effect.md"
+    },
+    {
+      "id": "04",
+      "name": "临界质量",
+      "category": "systems",
+      "description": "系统达到自我维持或爆发增长所需最小规模。理解临界点帮助判断何时投入资源，何时等待时机成熟。临界质量是质变的起点。",
+      "questions": [
+        "这个系统中临界质量如何运作？",
+        "临界质量对长期结果有什么影响？",
+        "如何利用临界质量优化决策？"
+      ],
+      "keywords": [
+        "临界点",
+        "规模效应",
+        "爆发增长",
+        "自我维持",
+        "网络效应"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/04-04-critical-mass.md"
+    },
+    {
+      "id": "05",
+      "name": "准备启动",
+      "category": "systems",
+      "description": "充分准备后快速执行，避免过度计划或仓促行动。平衡准备与行动，在最佳时机启动以获得最大成功概率。时机选择决定成败。",
+      "questions": [
+        "这个系统中准备启动如何运作？",
+        "准备启动对长期结果有什么影响？",
+        "如何利用准备启动优化决策？"
+      ],
+      "keywords": [
+        "准备",
+        "启动",
+        "时机",
+        "执行",
+        "行动"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/05-05-preparation-launch.md"
+    },
+    {
+      "id": "06",
+      "name": "能力圈",
+      "category": "core",
+      "description": "只在真正理解的领域做决策，清楚知道能力边界。承认无知比假装全知更重要，在能力圈内深耕才能持续成功。知道边界才能扩展边界。",
+      "questions": [
+        "从能力圈的角度，这个决策的核心是什么？",
+        "能力圈如何帮助你评估这个决策？",
+        "应用能力圈，你会得出什么结论？"
+      ],
+      "keywords": [
+        "能力圈",
+        "边界",
+        "了解",
+        "专业",
+        "理解"
+      ],
+      "scoring": {
+        "8-10": "在能力圈内，可以决策",
+        "5-7": "边缘地带，需谨慎",
+        "1-4": "超出能力圈，建议回避"
+      },
+      "referenceFile": "references/06-06-circle-of-competence.md"
+    },
+    {
+      "id": "07",
+      "name": "逆向思维",
+      "category": "core",
+      "description": "反过来想——通过思考如何失败来避免失败。逆向思维帮助识别风险，提前规避致命错误，提高决策成功率。避免愚蠢比追求聪明更重要。",
+      "questions": [
+        "从逆向思维的角度，这个决策的核心是什么？",
+        "逆向思维如何帮助你评估这个决策？",
+        "应用逆向思维，你会得出什么结论？"
+      ],
+      "keywords": [
+        "逆向",
+        "反过来",
+        "失败",
+        "风险",
+        "避免"
+      ],
+      "scoring": {
+        "high": "识别了主要失败路径并有应对方案",
+        "medium": "识别了部分风险",
+        "low": "未做逆向分析"
+      },
+      "referenceFile": "references/07-07-inversion.md"
+    },
+    {
+      "id": "08",
+      "name": "多元思维模型",
+      "category": "core",
+      "description": "从多学科借鉴思维工具，构建格栅模型交叉验证。单一视角容易盲目，多元模型帮助全面理解复杂问题。智慧来自跨学科的融合。",
+      "questions": [
+        "从第一性原理的角度，这个决策的核心是什么？",
+        "第一性原理如何帮助你评估这个决策？",
+        "应用第一性原理，你会得出什么结论？"
+      ],
+      "keywords": [
+        "多元",
+        "跨学科",
+        "格栅",
+        "多角度",
+        "交叉验证"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/08-08-first-principles.md"
+    },
+    {
+      "id": "09",
+      "name": "护城河",
+      "category": "core",
+      "description": "企业长期保持竞争优势的结构性壁垒。真正的护城河难以复制，是企业持续盈利的根本保障。护城河越宽，企业越安全。",
+      "questions": [
+        "从护城河的角度，这个决策的核心是什么？",
+        "护城河如何帮助你评估这个决策？",
+        "应用护城河，你会得出什么结论？"
+      ],
+      "keywords": [
+        "护城河",
+        "竞争优势",
+        "壁垒",
+        "可持续",
+        "差异化"
+      ],
+      "scoring": {
+        "high": "有清晰且持续的竞争优势",
+        "medium": "有一定壁垒但不稳固",
+        "low": "缺乏竞争壁垒"
+      },
+      "referenceFile": "references/09-09-moat.md"
+    },
+    {
+      "id": "10",
+      "name": "安全边际",
+      "category": "core",
+      "description": "为不确定性和错误留出缓冲空间。安全边际是风险管理的核心，给自己留足犯错空间才能长期生存。永远不要满仓，永远留有余地。",
+      "questions": [
+        "从安全边际的角度，这个决策的核心是什么？",
+        "安全边际如何帮助你评估这个决策？",
+        "应用安全边际，你会得出什么结论？"
+      ],
+      "keywords": [
+        "安全边际",
+        "容错",
+        "折扣",
+        "价值",
+        "风险"
+      ],
+      "scoring": {
+        "high": "有30%以上的安全边际",
+        "medium": "有10-30%的安全边际",
+        "low": "安全边际不足"
+      },
+      "referenceFile": "references/10-10-margin-of-safety.md"
+    },
+    {
+      "id": "11",
+      "name": "Lollapalooza 效应",
+      "category": "business",
+      "description": "多个因素同向作用产生非线性放大效果。识别关键因素的协同作用，可以创造远超单一因素的巨大成果。一加一可以大于二。",
+      "questions": [
+        "这个决策是否符合Lollapalooza 效应的原则？",
+        "从Lollapalooza 效应看，关键因素是什么？",
+        "Lollapalooza 效应如何影响最终结果？"
+      ],
+      "keywords": [
+        "多重因素",
+        "非线性",
+        "叠加效应",
+        "极端结果",
+        "心理倾向"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/11-11-lollapalooza-effect.md"
+    },
+    {
+      "id": "12",
+      "name": "确认偏误",
+      "category": "psychology",
+      "description": "倾向寻找支持既有观点的信息，忽略反对证据。主动寻找反驳自己的证据，才能避免自我欺骗。最危险的是自己骗自己。",
+      "questions": [
+        "这个决策中确认偏误如何影响你的判断？",
+        "如何避免确认偏误导致的偏差？",
+        "确认偏误可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "确认偏误",
+        "偏见",
+        "证据",
+        "客观",
+        "反对意见"
+      ],
+      "scoring": {
+        "high": "主动寻找并认真考虑了反面证据",
+        "medium": "考虑了部分反面意见",
+        "low": "主要关注支持性信息"
+      },
+      "referenceFile": "references/12-12-confirmation-bias.md"
+    },
+    {
+      "id": "13",
+      "name": "锚定效应",
+      "category": "psychology",
+      "description": "过度依赖最初获得的信息作为判断基准。第一印象会锚定后续判断，识别锚点才能做出独立评估。不要被第一个数字绑架。",
+      "questions": [
+        "这个决策中锚定效应如何影响你的判断？",
+        "如何避免锚定效应导致的偏差？",
+        "锚定效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "锚定",
+        "第一印象",
+        "初始信息",
+        "参考点",
+        "调整不足"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/13-13-anchoring-effect.md"
+    },
+    {
+      "id": "14",
+      "name": "损失厌恶",
+      "category": "psychology",
+      "description": "损失带来的痛苦大于等量收益的快乐。理解损失厌恶帮助克服非理性恐惧，避免因小失大。恐惧常常让人做出错误决策。",
+      "questions": [
+        "这个决策中损失厌恶如何影响你的判断？",
+        "如何避免损失厌恶导致的偏差？",
+        "损失厌恶可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "损失",
+        "厌恶",
+        "风险规避",
+        "处置效应",
+        "前景理论"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/14-14-loss-aversion.md"
+    },
+    {
+      "id": "15",
+      "name": "社会认同",
+      "category": "psychology",
+      "description": "人们倾向跟随大多数人的选择和行为。群体行为不等于正确，独立思考比从众更重要。当所有人都疯狂时，保持清醒最难也最重要。",
+      "questions": [
+        "这个决策中社会认同如何影响你的判断？",
+        "如何避免社会认同导致的偏差？",
+        "社会认同可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "从众",
+        "模仿",
+        "群体行为",
+        "社会证明",
+        "羊群效应"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/15-15-social-proof.md"
+    },
+    {
+      "id": "16",
+      "name": "稀缺性",
+      "category": "psychology",
+      "description": "稀缺性增加感知价值，促使快速决策。理解稀缺性心理，避免被人为制造的紧迫感操纵。限时限量往往是营销手段。",
+      "questions": [
+        "这个决策中稀缺性如何影响你的判断？",
+        "如何避免稀缺性导致的偏差？",
+        "稀缺性可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "稀缺",
+        "价值",
+        "渴望",
+        "限量",
+        "紧迫感"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/16-16-scarcity.md"
+    },
+    {
+      "id": "17",
+      "name": "权威影响",
+      "category": "psychology",
+      "description": "倾向服从权威人物的意见和指示。权威不等于正确，批判性思考比盲从更重要。专家也会犯错，要独立验证和判断。",
+      "questions": [
+        "这个决策中权威影响如何影响你的判断？",
+        "如何避免权威影响导致的偏差？",
+        "权威影响可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "权威",
+        "服从",
+        "专家",
+        "影响力",
+        "盲从"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/17-17-authority-influence.md"
+    },
+    {
+      "id": "18",
+      "name": "承诺一致",
+      "category": "psychology",
+      "description": "人们倾向保持言行一致，履行公开承诺。小承诺会导致大承诺，理解一致性原理避免被套路。公开承诺的力量超乎想象。",
+      "questions": [
+        "这个决策中承诺一致如何影响你的判断？",
+        "如何避免承诺一致导致的偏差？",
+        "承诺一致可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "承诺",
+        "一致性",
+        "言行",
+        "坚持",
+        "自我形象"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/18-18-commitment-consistency.md"
+    },
+    {
+      "id": "19",
+      "name": "喜好原理",
+      "category": "psychology",
+      "description": "更容易被喜欢的人说服和影响。喜好会影响判断，保持客观比感情用事更重要。不要因为喜欢某人就相信他说的一切。",
+      "questions": [
+        "这个决策中喜好原理如何影响你的判断？",
+        "如何避免喜好原理导致的偏差？",
+        "喜好原理可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "喜好",
+        "好感",
+        "相似",
+        "赞美",
+        "说服"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/19-19-liking-principle.md"
+    },
+    {
+      "id": "20",
+      "name": "对比原理",
+      "category": "psychology",
+      "description": "通过对比凸显差异，影响感知价值。对比是相对的，理解对比原理避免被操纵感知。没有对比就没有伤害，也没有惊喜。",
+      "questions": [
+        "这个决策中对比原理如何影响你的判断？",
+        "如何避免对比原理导致的偏差？",
+        "对比原理可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "对比",
+        "相对",
+        "参照",
+        "顺序",
+        "感知"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/20-20-contrast-principle.md"
+    },
+    {
+      "id": "21",
+      "name": "可得性启发",
+      "category": "psychology",
+      "description": "系统各部分相互依赖，整体大于部分之和。理解系统思维，避免头痛医头脚痛医脚。局部最优不等于全局最优，要看整体效果。",
+      "questions": [
+        "这个决策中可得性启发如何影响你的判断？",
+        "如何避免可得性启发导致的偏差？",
+        "可得性启发可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "可得性",
+        "记忆",
+        "例子",
+        "概率",
+        "启发式"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/21-21-availability-heuristic.md"
+    },
+    {
+      "id": "22",
+      "name": "代表性启发",
+      "category": "psychology",
+      "description": "小变化可能引发系统性连锁反应。识别关键杠杆点，用最小投入撬动最大变化。找到支点，你可以撬动地球，这是杠杆的力量。",
+      "questions": [
+        "这个决策中代表性启发如何影响你的判断？",
+        "如何避免代表性启发导致的偏差？",
+        "代表性启发可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "代表性",
+        "相似",
+        "刻板印象",
+        "基础概率",
+        "样本"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/22-22-representativeness-heuristic.md"
+    },
+    {
+      "id": "23",
+      "name": "沉没成本",
+      "category": "psychology",
+      "description": "系统倾向维持当前状态，抵抗变化。理解惯性，在改变系统时需要足够的持续推力。改变需要克服巨大的阻力，需要耐心。",
+      "questions": [
+        "这个决策中沉没成本如何影响你的判断？",
+        "如何避免沉没成本导致的偏差？",
+        "沉没成本可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "沉没成本",
+        "已投入",
+        "不可收回",
+        "理性决策",
+        "止损"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/23-23-sunk-cost.md"
+    },
+    {
+      "id": "24",
+      "name": "框架效应",
+      "category": "psychology",
+      "description": "系统通过反馈调节自身行为。正反馈放大变化，负反馈稳定系统，理解反馈机制才能有效干预。反馈是系统的自我调节机制。",
+      "questions": [
+        "这个决策中框架效应如何影响你的判断？",
+        "如何避免框架效应导致的偏差？",
+        "框架效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "框架",
+        "表述",
+        "呈现方式",
+        "得失",
+        "视角"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/24-24-framing-effect.md"
+    },
+    {
+      "id": "25",
+      "name": "后见之明",
+      "category": "psychology",
+      "description": "系统行为模式会重复出现。识别原型模式，预测系统未来行为，提前应对。历史不会重复，但会押韵，模式会重现。",
+      "questions": [
+        "这个决策中后见之明如何影响你的判断？",
+        "如何避免后见之明导致的偏差？",
+        "后见之明可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "后见之明",
+        "事后诸葛",
+        "可预测性",
+        "过度自信"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/25-25-hindsight-bias.md"
+    },
+    {
+      "id": "26",
+      "name": "过度自信偏差",
+      "category": "psychology",
+      "description": "系统存在延迟，行动与结果不同步。理解时滞，避免过度反应或反应不足。耐心等待，不要急于求成，给时间发挥作用。",
+      "questions": [
+        "这个决策中过度自信偏差如何影响你的判断？",
+        "如何避免过度自信偏差导致的偏差？",
+        "过度自信偏差可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "过度自信",
+        "高估",
+        "能力",
+        "判断",
+        "盲目"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/26-26-overconfidence.md"
+    },
+    {
+      "id": "27",
+      "name": "禀赋效应",
+      "category": "psychology",
+      "description": "系统存在承载上限，增长不可能无限。识别限制因素，在达到上限前调整策略。任何增长都有天花板，要提前准备。",
+      "questions": [
+        "这个决策中禀赋效应如何影响你的判断？",
+        "如何避免禀赋效应导致的偏差？",
+        "禀赋效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "禀赋",
+        "拥有",
+        "价值",
+        "不愿放弃",
+        "损失厌恶"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/27-27-endowment-effect.md"
+    },
+    {
+      "id": "28",
+      "name": "现状偏误",
+      "category": "psychology",
+      "description": "短期优化可能导致长期问题。避免饮鸩止渴，关注长期健康而非短期指标。今天的解决方案可能是明天的问题，要有远见。",
+      "questions": [
+        "这个决策中现状偏误如何影响你的判断？",
+        "如何避免现状偏误导致的偏差？",
+        "现状偏误可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "现状",
+        "维持",
+        "抗拒改变",
+        "惰性",
+        "舒适区"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/28-28-status-quo-bias.md"
+    },
+    {
+      "id": "29",
+      "name": "赌徒谬误",
+      "category": "psychology",
+      "description": "解决问题的方案可能制造新问题。系统干预需谨慎，避免副作用大于收益。每个解决方案都有代价，要权衡利弊。",
+      "questions": [
+        "这个决策中赌徒谬误如何影响你的判断？",
+        "如何避免赌徒谬误导致的偏差？",
+        "赌徒谬误可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "赌徒谬误",
+        "独立事件",
+        "概率",
+        "随机",
+        "错误推理"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/29-29-gamblers-fallacy.md"
+    },
+    {
+      "id": "30",
+      "name": "光环效应",
+      "category": "psychology",
+      "description": "共享资源无人负责，导致过度使用。建立产权或规则，避免公地悲剧。没有人对公共资源负责，需要制度约束力。",
+      "questions": [
+        "这个决策中光环效应如何影响你的判断？",
+        "如何避免光环效应导致的偏差？",
+        "光环效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "光环",
+        "印象",
+        "整体评价",
+        "单一特质",
+        "偏见"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/30-30-halo-effect.md"
+    },
+    {
+      "id": "31",
+      "name": "均值回归",
+      "category": "core",
+      "description": "个体理性导致集体非理性。理解囚徒困境，寻求合作而非零和博弈。合作比竞争更能创造价值，要建立信任机制。",
+      "questions": [
+        "从均值回归的角度，这个决策的核心是什么？",
+        "均值回归如何帮助你评估这个决策？",
+        "应用均值回归，你会得出什么结论？"
+      ],
+      "keywords": [
+        "均值回归",
+        "极端",
+        "平均",
+        "回归",
+        "趋势"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/31-mean-reversion.md"
+    },
+    {
+      "id": "32",
+      "name": "激励机制",
+      "category": "core",
+      "description": "赢家通吃，强者愈强的正反馈循环。识别马太效应，在早期建立优势或避开红海。富者越富，穷者越穷，要抢占先机。",
+      "questions": [
+        "从激励机制的角度，这个决策的核心是什么？",
+        "激励机制如何帮助你评估这个决策？",
+        "应用激励机制，你会得出什么结论？"
+      ],
+      "keywords": [
+        "激励",
+        "利益",
+        "动机",
+        "驱动",
+        "机制"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/32-incentive-mechanism.md"
+    },
+    {
+      "id": "33",
+      "name": "二阶思维",
+      "category": "systems",
+      "description": "网络价值随用户数平方增长。理解网络效应，在平台型业务中抢占先机。用户越多，价值越大，形成正反馈循环。",
+      "questions": [
+        "这个系统中二阶思维如何运作？",
+        "二阶思维对长期结果有什么影响？",
+        "如何利用二阶思维优化决策？"
+      ],
+      "keywords": [
+        "二阶",
+        "连锁反应",
+        "长期",
+        "间接影响",
+        "系统"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/33-regression-to-mean.md"
+    },
+    {
+      "id": "34",
+      "name": "地图不是疆域",
+      "category": "systems",
+      "description": "规模扩大带来单位成本下降。规模经济是竞争优势，但也有规模不经济的临界点。大不一定好，要看边际效益是否递减。",
+      "questions": [
+        "这个系统中地图不是疆域如何运作？",
+        "地图不是疆域对长期结果有什么影响？",
+        "如何利用地图不是疆域优化决策？"
+      ],
+      "keywords": [
+        "地图",
+        "疆域",
+        "模型",
+        "现实",
+        "抽象"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/34-multiplier-effect.md"
+    },
+    {
+      "id": "35",
+      "name": "奥卡姆剃刀",
+      "category": "systems",
+      "description": "产品互补增强整体价值。构建生态系统，通过协同效应创造更大价值。整体大于部分之和，协同产生额外价值链。",
+      "questions": [
+        "这个系统中奥卡姆剃刀如何运作？",
+        "奥卡姆剃刀对长期结果有什么影响？",
+        "如何利用奥卡姆剃刀优化决策？"
+      ],
+      "keywords": [
+        "奥卡姆",
+        "简单",
+        "解释",
+        "必要性",
+        "精简"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/35-breakpoint.md"
+    },
+    {
+      "id": "36",
+      "name": "汉隆剃刀",
+      "category": "systems",
+      "description": "用户切换成本高，形成锁定效应。高转换成本是护城河，但也可能成为创新阻碍。锁定用户是双刃剑，要平衡利弊。",
+      "questions": [
+        "这个系统中汉隆剃刀如何运作？",
+        "汉隆剃刀对长期结果有什么影响？",
+        "如何利用汉隆剃刀优化决策？"
+      ],
+      "keywords": [
+        "汉隆",
+        "愚蠢",
+        "恶意",
+        "归因",
+        "善意"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/36-self-fulfilling-prophecy.md"
+    },
+    {
+      "id": "37",
+      "name": "博弈论",
+      "category": "systems",
+      "description": "品牌带来溢价和信任。品牌是长期投资，需要持续维护和强化。品牌是企业最宝贵的无形资产，需要长期经营好。",
+      "questions": [
+        "这个系统中博弈论如何运作？",
+        "博弈论对长期结果有什么影响？",
+        "如何利用博弈论优化决策？"
+      ],
+      "keywords": [
+        "博弈",
+        "策略",
+        "纳什均衡",
+        "互动",
+        "对手"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/37-self-defeating-prophecy.md"
+    },
+    {
+      "id": "38",
+      "name": "幂律分布",
+      "category": "systems",
+      "description": "专利保护技术优势和市场地位。知识产权是护城河，但也有时效性和地域限制。专利是有期限的垄断权，要持续创新。",
+      "questions": [
+        "这个系统中幂律分布如何运作？",
+        "幂律分布对长期结果有什么影响？",
+        "如何利用幂律分布优化决策？"
+      ],
+      "keywords": [
+        "幂律",
+        "长尾",
+        "不均衡",
+        "少数",
+        "大部分"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/38-entropy.md"
+    },
+    {
+      "id": "39",
+      "name": "反脆弱",
+      "category": "systems",
+      "description": "监管形成进入壁垒，保护现有企业。监管护城河稳定但可能被政策改变。政策是把双刃剑，既保护也限制企业发展。",
+      "questions": [
+        "这个系统中反脆弱如何运作？",
+        "反脆弱对长期结果有什么影响？",
+        "如何利用反脆弱优化决策？"
+      ],
+      "keywords": [
+        "反脆弱",
+        "压力",
+        "混乱",
+        "获益",
+        "韧性"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/39-inertia.md"
+    },
+    {
+      "id": "40",
+      "name": "黑天鹅",
+      "category": "systems",
+      "description": "地理位置带来的独特优势。地理护城河难以复制，但可能被技术颠覆。位置优势可能被互联网消解，要警惕技术变革。",
+      "questions": [
+        "这个系统中黑天鹅如何运作？",
+        "黑天鹅对长期结果有什么影响？",
+        "如何利用黑天鹅优化决策？"
+      ],
+      "keywords": [
+        "黑天鹅",
+        "罕见",
+        "极端",
+        "不可预测",
+        "巨大影响"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/40-friction.md"
+    },
+    {
+      "id": "41",
+      "name": "幸存者偏差",
+      "category": "psychology",
+      "description": "概率思维评估不确定性，量化风险。用概率而非确定性思考，做出更理性决策。世界是概率的，不是确定的，要接受不确定性。",
+      "questions": [
+        "这个决策中幸存者偏差如何影响你的判断？",
+        "如何避免幸存者偏差导致的偏差？",
+        "幸存者偏差可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "幸存者",
+        "偏差",
+        "成功",
+        "失败",
+        "样本"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/41-velocity.md"
+    },
+    {
+      "id": "42",
+      "name": "达克效应",
+      "category": "psychology",
+      "description": "预期价值综合概率和收益。计算期望值，比较不同选择的长期回报。期望值是理性决策的基础，要看长期平均结果。",
+      "questions": [
+        "这个决策中达克效应如何影响你的判断？",
+        "如何避免达克效应导致的偏差？",
+        "达克效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "达克",
+        "无知",
+        "自信",
+        "能力",
+        "认知"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/42-relativity.md"
+    },
+    {
+      "id": "43",
+      "name": "激励机制",
+      "category": "core",
+      "description": "小概率事件的极端影响。关注尾部风险，避免黑天鹅事件摧毁一切。小概率不等于不可能，要为极端情况做准备。",
+      "questions": [
+        "从激励机制的角度，这个决策的核心是什么？",
+        "激励机制如何帮助你评估这个决策？",
+        "应用激励机制，你会得出什么结论？"
+      ],
+      "keywords": [
+        "激励",
+        "利益",
+        "动机",
+        "驱动",
+        "机制"
+      ],
+      "scoring": {
+        "high": "清晰理解各方激励并做出相应安排",
+        "medium": "考虑了主要激励因素",
+        "low": "未分析激励机制"
+      },
+      "referenceFile": "references/43-activation-energy.md"
+    },
+    {
+      "id": "44",
+      "name": "市场先生",
+      "category": "core",
+      "description": "多次尝试增加成功概率。理解大数定律，通过重复降低运气因素。次数足够多，运气会被平均掉，概率会显现规律。",
+      "questions": [
+        "当前市场情绪是恐慌还是贪婪？",
+        "市场先生今天给出的价格反映的是情绪还是价值？",
+        "你是在利用市场的非理性，还是被它带着走？"
+      ],
+      "keywords": [
+        "市场先生",
+        "情绪",
+        "价格",
+        "价值",
+        "非理性"
+      ],
+      "scoring": {
+        "high": "能区分市场情绪与内在价值",
+        "medium": "部分受市场情绪影响",
+        "low": "主要跟随市场情绪"
+      },
+      "referenceFile": "references/44-catalyst.md"
+    },
+    {
+      "id": "45",
+      "name": "回归均值",
+      "category": "core",
+      "description": "历史数据回归长期平均水平。极端表现不可持续，理解均值回归避免追高杀跌。涨多了会跌，跌多了会涨，要逆向操作。",
+      "questions": [
+        "当前表现是否极端？是否代表真实水平？",
+        "如果表现回归均值，这个决策的逻辑还成立吗？",
+        "你是否对近期趋势过度外推？"
+      ],
+      "keywords": [
+        "均值回归",
+        "极端",
+        "平均",
+        "回归",
+        "趋势"
+      ],
+      "scoring": {
+        "high": "已考虑均值回归的影响",
+        "medium": "有所考虑但分析不充分",
+        "low": "直接外推当前趋势"
+      },
+      "referenceFile": "references/45-equivalent-exchange.md"
+    },
+    {
+      "id": "46",
+      "name": "规模效应",
+      "category": "investing",
+      "description": "小样本容易产生误导性结论。大样本更可靠，避免被偶然性欺骗。样本太小，结论不可靠，要收集足够的数据量。",
+      "questions": [
+        "这个决策是否符合规模效应的原则？",
+        "从规模效应看，关键因素是什么？",
+        "规模效应如何影响最终结果？"
+      ],
+      "keywords": [
+        "规模",
+        "效应",
+        "质变",
+        "边际",
+        "最优规模"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/46-critical-point.md"
+    },
+    {
+      "id": "47",
+      "name": "供需关系",
+      "category": "investing",
+      "description": "基础概率是判断的起点。先看基础率，再考虑个体信息，避免代表性偏误。不要忽略先验概率，它是判断的基础。",
+      "questions": [
+        "这个决策是否符合供需关系的原则？",
+        "从供需关系看，关键因素是什么？",
+        "供需关系如何影响最终结果？"
+      ],
+      "keywords": [
+        "供需",
+        "价格",
+        "平衡",
+        "市场",
+        "稀缺"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/47-alloy.md"
+    },
+    {
+      "id": "48",
+      "name": "复利效应",
+      "category": "core",
+      "description": "新信息更新原有判断。贝叶斯思维动态调整信念，而非固守成见。根据新证据更新观点，保持思维的灵活性和开放性。",
+      "questions": [
+        "从复利效应的角度，这个决策的核心是什么？",
+        "复利效应如何帮助你评估这个决策？",
+        "应用复利效应，你会得出什么结论？"
+      ],
+      "keywords": [
+        "复利",
+        "长期",
+        "持续",
+        "积累",
+        "时间"
+      ],
+      "scoring": {
+        "high": "有清晰的长期复利逻辑",
+        "medium": "考虑了中期影响",
+        "low": "主要关注短期结果"
+      },
+      "referenceFile": "references/48-surface-area.md"
+    },
+    {
+      "id": "49",
+      "name": "杠杆",
+      "category": "business",
+      "description": "多样化降低非系统性风险。不要把鸡蛋放在一个篮子里，分散风险。分散投资是免费的午餐，要充分利用这个优势。",
+      "questions": [
+        "这个决策是否符合杠杆的原则？",
+        "从杠杆看，关键因素是什么？",
+        "杠杆如何影响最终结果？"
+      ],
+      "keywords": [
+        "杠杆",
+        "放大",
+        "撬动",
+        "风险",
+        "效率"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/49-natural-selection.md"
+    },
+    {
+      "id": "50",
+      "name": "非对称风险",
+      "category": "business",
+      "description": "风险与收益的权衡关系。高收益伴随高风险，理解风险调整后的回报。没有无风险的高收益，要理性评估风险度。",
+      "questions": [
+        "这个决策是否符合非对称风险的原则？",
+        "从非对称风险看，关键因素是什么？",
+        "非对称风险如何影响最终结果？"
+      ],
+      "keywords": [
+        "非对称",
+        "风险",
+        "收益",
+        "有限",
+        "无限"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/50-red-queen-effect.md"
+    },
+    {
+      "id": "51",
+      "name": "比较优势",
+      "category": "business",
+      "description": "极端情况下的压力测试。模拟最坏情况，确保系统能够承受极端冲击。在最坏情况下还能生存吗？这是生存的底线。",
+      "questions": [
+        "这个决策是否符合比较优势的原则？",
+        "从比较优势看，关键因素是什么？",
+        "比较优势如何影响最终结果？"
+      ],
+      "keywords": [
+        "比较优势",
+        "相对",
+        "专注",
+        "擅长",
+        "分工"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/51-ecological-niche.md"
+    },
+    {
+      "id": "52",
+      "name": "叙事谬误",
+      "category": "systems",
+      "description": "不同情境下的应对预案。提前规划多种可能，增强应变能力。预则立，不预则废，要为不确定性做好充分准备和预案。",
+      "questions": [
+        "这个系统中叙事谬误如何运作？",
+        "叙事谬误对长期结果有什么影响？",
+        "如何利用叙事谬误优化决策？"
+      ],
+      "keywords": [
+        "叙事",
+        "故事",
+        "因果",
+        "随机",
+        "解释"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/52-replication.md"
+    },
+    {
+      "id": "53",
+      "name": "边际递减",
+      "category": "systems",
+      "description": "识别关键假设和敏感因素。理解哪些变量最重要，重点监控和管理。抓住关键变量，忽略次要因素，聚焦核心点。",
+      "questions": [
+        "这个系统中边际递减如何运作？",
+        "边际递减对长期结果有什么影响？",
+        "如何利用边际递减优化决策？"
+      ],
+      "keywords": [
+        "边际",
+        "递减",
+        "收益",
+        "最优",
+        "投入"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/53-cooperation.md"
+    },
+    {
+      "id": "54",
+      "name": "近因效应",
+      "category": "psychology",
+      "description": "通过实验验证假设。小规模测试，快速迭代，降低试错成本。实践是检验真理的唯一标准，要用数据和事实说话。",
+      "questions": [
+        "这个决策中近因效应如何影响你的判断？",
+        "如何避免近因效应导致的偏差？",
+        "近因效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "近因",
+        "最近",
+        "记忆",
+        "趋势",
+        "短期"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/54-hierarchical-organization.md"
+    },
+    {
+      "id": "55",
+      "name": "弹性",
+      "category": "systems",
+      "description": "持续改进，追求卓越。小步快跑，持续优化，积累竞争优势。每天进步一点点，长期会产生巨大差异和复利效应。",
+      "questions": [
+        "这个系统中弹性如何运作？",
+        "弹性对长期结果有什么影响？",
+        "如何利用弹性优化决策？"
+      ],
+      "keywords": [
+        "弹性",
+        "敏感",
+        "价格",
+        "需求",
+        "供给"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/55-hormonal-regulation.md"
+    },
+    {
+      "id": "56",
+      "name": "从众效应",
+      "category": "psychology",
+      "description": "快速失败，快速学习。拥抱失败，从错误中学习，加速进化。失败是成功之母，要从失败中提取教训并快速改进。",
+      "questions": [
+        "这个决策中从众效应如何影响你的判断？",
+        "如何避免从众效应导致的偏差？",
+        "从众效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "从众",
+        "群体",
+        "跟随",
+        "羊群",
+        "模仿"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/56-supply-demand.md"
+    },
+    {
+      "id": "57",
+      "name": "创造性破坏",
+      "category": "business",
+      "description": "最小可行产品，快速验证。先做出来，再优化，避免过度设计。完成比完美更重要，要快速行动验证假设和想法。",
+      "questions": [
+        "这个决策是否符合创造性破坏的原则？",
+        "从创造性破坏看，关键因素是什么？",
+        "创造性破坏如何影响最终结果？"
+      ],
+      "keywords": [
+        "创造",
+        "破坏",
+        "创新",
+        "淘汰",
+        "进步"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/57-economies-of-scale.md"
+    },
+    {
+      "id": "58",
+      "name": "峰终定律",
+      "category": "psychology",
+      "description": "快速迭代，持续交付。短周期反馈，灵活调整，适应变化。小步快跑，快速迭代，保持敏捷性和灵活性应对变化。",
+      "questions": [
+        "这个决策中峰终定律如何影响你的判断？",
+        "如何避免峰终定律导致的偏差？",
+        "峰终定律可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "峰终",
+        "高峰",
+        "结尾",
+        "体验",
+        "记忆"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/58-diminishing-marginal-utility.md"
+    },
+    {
+      "id": "59",
+      "name": "利益攸关",
+      "category": "systems",
+      "description": "用户反馈驱动产品进化。倾听用户，数据驱动，而非主观臆断。用户是最好的老师，要持续收集用户反馈并改进。",
+      "questions": [
+        "这个系统中利益攸关如何运作？",
+        "利益攸关对长期结果有什么影响？",
+        "如何利用利益攸关优化决策？"
+      ],
+      "keywords": [
+        "利益",
+        "攸关",
+        "客观",
+        "偏见",
+        "动机"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/59-comparative-advantage.md"
+    },
+    {
+      "id": "60",
+      "name": "遍历性",
+      "category": "systems",
+      "description": "数据驱动决策，而非直觉。用数据说话，减少主观偏见。数据不会说谎，但会被误读，要正确解读数据背后的含义。",
+      "questions": [
+        "这个系统中遍历性如何运作？",
+        "遍历性对长期结果有什么影响？",
+        "如何利用遍历性优化决策？"
+      ],
+      "keywords": [
+        "遍历",
+        "路径",
+        "个体",
+        "群体",
+        "长期"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/60-creative-destruction.md"
+    },
+    {
+      "id": "61",
+      "name": "冗余",
+      "category": "systems",
+      "description": "关键指标衡量进展。聚焦核心指标，避免虚荣指标误导。衡量什么，就会得到什么，要选对指标并持续跟踪改进。",
+      "questions": [
+        "这个系统中冗余如何运作？",
+        "冗余对长期结果有什么影响？",
+        "如何利用冗余优化决策？"
+      ],
+      "keywords": [
+        "冗余",
+        "备份",
+        "可靠性",
+        "成本",
+        "容错"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/61-prisoner-dilemma.md"
+    },
+    {
+      "id": "62",
+      "name": "压力影响",
+      "category": "psychology",
+      "description": "实验对比验证效果。A/B测试消除混淆因素，找到真正有效的方案。对比实验是科学方法的核心，要控制变量。",
+      "questions": [
+        "这个决策中压力影响如何影响你的判断？",
+        "如何避免压力影响导致的偏差？",
+        "压力影响可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "压力",
+        "决策",
+        "简化",
+        "应激",
+        "质量"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/62-tragedy-of-commons.md"
+    },
+    {
+      "id": "63",
+      "name": "被剥夺超级反应",
+      "category": "psychology",
+      "description": "数据分析发现洞察。深入分析数据，发现隐藏的模式和机会。数据中藏着金矿，需要挖掘和分析才能发现价值洞察。",
+      "questions": [
+        "这个决策中被剥夺超级反应如何影响你的判断？",
+        "如何避免被剥夺超级反应导致的偏差？",
+        "被剥夺超级反应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "剥夺",
+        "失去",
+        "反应",
+        "强烈",
+        "损失"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/63-information-asymmetry.md"
+    },
+    {
+      "id": "64",
+      "name": "嫉妒倾向",
+      "category": "psychology",
+      "description": "预测模型辅助决策。用模型预测未来，但不盲信模型。所有模型都是错的，但有些是有用的，要理解模型的局限。",
+      "questions": [
+        "这个决策中嫉妒倾向如何影响你的判断？",
+        "如何避免嫉妒倾向导致的偏差？",
+        "嫉妒倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "嫉妒",
+        "比较",
+        "他人",
+        "成功",
+        "情绪"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/64-agency-problem.md"
+    },
+    {
+      "id": "65",
+      "name": "巴甫洛夫联想",
+      "category": "psychology",
+      "description": "机器学习自动优化。让算法学习规律，自动改进决策。机器可以从数据中学习模式，不断优化自身表现和准确度。",
+      "questions": [
+        "这个决策中巴甫洛夫联想如何影响你的判断？",
+        "如何避免巴甫洛夫联想导致的偏差？",
+        "巴甫洛夫联想可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "巴甫洛夫",
+        "联想",
+        "条件反射",
+        "经验",
+        "习惯"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/65-path-dependence.md"
+    },
+    {
+      "id": "66",
+      "name": "简单痛苦规避",
+      "category": "psychology",
+      "description": "人工智能增强决策。AI辅助人类，而非替代人类判断。人机协作优于单打独斗，要发挥各自优势形成互补效应。",
+      "questions": [
+        "这个决策中简单痛苦规避如何影响你的判断？",
+        "如何避免简单痛苦规避导致的偏差？",
+        "简单痛苦规避可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "痛苦",
+        "规避",
+        "避免",
+        "必要",
+        "短期"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/66-sunk-cost.md"
+    },
+    {
+      "id": "67",
+      "name": "好奇心倾向",
+      "category": "psychology",
+      "description": "自动化提升效率。重复性工作自动化，释放人力做更有价值的事。机器做重复，人做创造，这是最优分工和协作方式。",
+      "questions": [
+        "这个决策中好奇心倾向如何影响你的判断？",
+        "如何避免好奇心倾向导致的偏差？",
+        "好奇心倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "好奇",
+        "探索",
+        "学习",
+        "分心",
+        "驱动"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/67-confirmation-bias.md"
+    },
+    {
+      "id": "68",
+      "name": "互惠倾向",
+      "category": "psychology",
+      "description": "流程优化消除浪费。精益思维，持续改进流程效率。消除一切不增值的活动，聚焦价值创造，提高整体运营效率。",
+      "questions": [
+        "这个决策中互惠倾向如何影响你的判断？",
+        "如何避免互惠倾向导致的偏差？",
+        "互惠倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "互惠",
+        "回报",
+        "善意",
+        "报复",
+        "对等"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/68-availability-heuristic.md"
+    },
+    {
+      "id": "69",
+      "name": "尊重理由倾向",
+      "category": "psychology",
+      "description": "标准化保证质量。建立标准，减少变异，提高一致性。标准化是规模化的前提条件，没有标准就无法实现规模化扩张。",
+      "questions": [
+        "这个决策中尊重理由倾向如何影响你的判断？",
+        "如何避免尊重理由倾向导致的偏差？",
+        "尊重理由倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "理由",
+        "尊重",
+        "接受",
+        "请求",
+        "解释"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/69-anchoring-effect.md"
+    },
+    {
+      "id": "70",
+      "name": "格栅理论",
+      "category": "systems",
+      "description": "检查清单防止遗漏。复杂任务用清单，避免低级错误。清单是对抗遗忘和疏忽的有效武器，要善用清单工具提高质量。",
+      "questions": [
+        "这个系统中格栅理论如何运作？",
+        "格栅理论对长期结果有什么影响？",
+        "如何利用格栅理论优化决策？"
+      ],
+      "keywords": [
+        "格栅",
+        "多学科",
+        "交叉",
+        "验证",
+        "模型"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/70-overconfidence.md"
+    },
+    {
+      "id": "71",
+      "name": "系统思维",
+      "category": "systems",
+      "description": "根因分析解决本质问题。找到根本原因，而非治标不治本。连续问五个为什么，找到真正的根源，彻底解决问题。",
+      "questions": [
+        "这个系统中系统思维如何运作？",
+        "系统思维对长期结果有什么影响？",
+        "如何利用系统思维优化决策？"
+      ],
+      "keywords": [
+        "系统",
+        "整体",
+        "相互作用",
+        "反馈",
+        "循环"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/71-loss-aversion.md"
+    },
+    {
+      "id": "72",
+      "name": "熵增定律",
+      "category": "systems",
+      "description": "帕累托原则聚焦关键。80/20法则，抓住关键少数。少数关键因素决定大部分结果，要识别并聚焦关键因素。",
+      "questions": [
+        "这个系统中熵增定律如何运作？",
+        "熵增定律对长期结果有什么影响？",
+        "如何利用熵增定律优化决策？"
+      ],
+      "keywords": [
+        "熵",
+        "混乱",
+        "秩序",
+        "能量",
+        "维持"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/72-social-proof.md"
+    },
+    {
+      "id": "73",
+      "name": "影响圈/关注圈",
+      "category": "systems",
+      "description": "约束理论找到瓶颈。识别限制因素，优化瓶颈环节。瓶颈决定系统产出，优化瓶颈最有效，要找到并突破瓶颈点。",
+      "questions": [
+        "这个系统中影响圈/关注圈如何运作？",
+        "影响圈/关注圈对长期结果有什么影响？",
+        "如何利用影响圈/关注圈优化决策？"
+      ],
+      "keywords": [
+        "影响圈",
+        "关注圈",
+        "控制",
+        "专注",
+        "边界"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/73-contrast-principle.md"
+    },
+    {
+      "id": "74",
+      "name": "帕累托原则",
+      "category": "systems",
+      "description": "价值流分析优化流程。端到端审视价值创造，消除非增值环节。只做增值的事情，消除浪费，提高价值创造效率。",
+      "questions": [
+        "这个系统中帕累托原则如何运作？",
+        "帕累托原则对长期结果有什么影响？",
+        "如何利用帕累托原则优化决策？"
+      ],
+      "keywords": [
+        "帕累托",
+        "80/20",
+        "关键",
+        "少数",
+        "大部分"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/74-reciprocity.md"
+    },
+    {
+      "id": "75",
+      "name": "知识复利",
+      "category": "systems",
+      "description": "看板管理可视化流程。可视化工作流，限制在制品，提高流动效率。看得见才能管得好，可视化是管理的基础工具。",
+      "questions": [
+        "这个系统中知识复利如何运作？",
+        "知识复利对长期结果有什么影响？",
+        "如何利用知识复利优化决策？"
+      ],
+      "keywords": [
+        "知识",
+        "复利",
+        "积累",
+        "学习",
+        "加速"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/75-commitment-consistency.md"
+    },
+    {
+      "id": "76",
+      "name": "权威错误影响",
+      "category": "psychology",
+      "description": "敏捷方法快速响应变化。拥抱变化，快速适应，持续交付价值。变化是唯一不变的真理，要建立应对变化的能力。",
+      "questions": [
+        "这个决策中权威错误影响如何影响你的判断？",
+        "如何避免权威错误影响导致的偏差？",
+        "权威错误影响可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "权威",
+        "错误",
+        "服从",
+        "盲从",
+        "质疑"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/76-authority.md"
+    },
+    {
+      "id": "77",
+      "name": "废话倾向",
+      "category": "psychology",
+      "description": "精益创业降低风险。快速验证，降低浪费，找到产品市场契合。用最小成本验证核心假设，避免大规模失败和资源浪费。",
+      "questions": [
+        "这个决策中废话倾向如何影响你的判断？",
+        "如何避免废话倾向导致的偏差？",
+        "废话倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "废话",
+        "沉默",
+        "填补",
+        "无价值",
+        "倾向"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/77-scarcity.md"
+    },
+    {
+      "id": "78",
+      "name": "康德式公平倾向",
+      "category": "psychology",
+      "description": "设计思维以人为本。同理心理解用户，创造性解决问题。从用户真实需求出发设计方案，而非闭门造车自我想象。",
+      "questions": [
+        "这个决策中康德式公平倾向如何影响你的判断？",
+        "如何避免康德式公平倾向导致的偏差？",
+        "康德式公平倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "公平",
+        "康德",
+        "正义",
+        "利益",
+        "原则"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/78-liking.md"
+    },
+    {
+      "id": "79",
+      "name": "容错设计",
+      "category": "systems",
+      "description": "系统动力学模拟复杂系统。理解反馈和延迟，预测系统行为。模拟可以预见未来的可能性，帮助做出更好的决策。",
+      "questions": [
+        "这个系统中容错设计如何运作？",
+        "容错设计对长期结果有什么影响？",
+        "如何利用容错设计优化决策？"
+      ],
+      "keywords": [
+        "容错",
+        "设计",
+        "失败",
+        "局部",
+        "整体"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/79-mental-accounting.md"
+    },
+    {
+      "id": "80",
+      "name": "耐心",
+      "category": "systems",
+      "description": "框架效应影响决策。同样的事实，不同的表述，导致不同的选择。表述方式深刻影响最终决策，要注意表达方式。",
+      "questions": [
+        "这个系统中耐心如何运作？",
+        "耐心对长期结果有什么影响？",
+        "如何利用耐心优化决策？"
+      ],
+      "keywords": [
+        "耐心",
+        "等待",
+        "时间",
+        "长期",
+        "克制"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/80-framing-effect.md"
+    },
+    {
+      "id": "81",
+      "name": "知识谦逊",
+      "category": "systems",
+      "description": "后见之明偏误扭曲记忆。事后诸葛亮，高估自己的预测能力。事后看都是显而易见的，但事前很难，要保持谦逊。",
+      "questions": [
+        "这个系统中知识谦逊如何运作？",
+        "知识谦逊对长期结果有什么影响？",
+        "如何利用知识谦逊优化决策？"
+      ],
+      "keywords": [
+        "谦逊",
+        "无知",
+        "承认",
+        "边界",
+        "学习"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/81-hindsight-bias.md"
+    },
+    {
+      "id": "82",
+      "name": "延迟满足",
+      "category": "systems",
+      "description": "反身性理论认知影响现实。观察者影响被观察对象，预期自我实现。信念可以改变现实世界，预期会影响最终结果。",
+      "questions": [
+        "这个系统中延迟满足如何运作？",
+        "延迟满足对长期结果有什么影响？",
+        "如何利用延迟满足优化决策？"
+      ],
+      "keywords": [
+        "延迟",
+        "满足",
+        "长期",
+        "克制",
+        "收益"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/82-reflexivity.md"
+    },
+    {
+      "id": "83",
+      "name": "什么都不做",
+      "category": "systems",
+      "description": "有时最好的行动就是不行动。等待更好机会，避免为了行动而行动。耐心等待是一种稀缺能力，要学会克制冲动。",
+      "questions": [
+        "这个系统中什么都不做如何运作？",
+        "什么都不做对长期结果有什么影响？",
+        "如何利用什么都不做优化决策？"
+      ],
+      "keywords": [
+        "不行动",
+        "等待",
+        "机会",
+        "克制",
+        "耐心"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      },
+      "referenceFile": "references/83-do-nothing.md"
+    }
+  ]
+}

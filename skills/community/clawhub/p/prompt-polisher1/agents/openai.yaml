@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prompt Polisher"
+  short_description: "Polish rough requests into clear prompts"
+  default_prompt: "Use $prompt-polisher to turn my rough goal into a clean, actionable prompt."

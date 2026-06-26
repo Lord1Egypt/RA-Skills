@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Dataify Facebook comment by URL">
+  <rect width="64" height="64" rx="12" fill="#ffffff"/>
+  <rect x="10" y="13" width="44" height="33" rx="10" fill="#1877f2"/>
+  <path d="M22 46h11l-13 8z" fill="#1877f2"/>
+  <circle cx="24" cy="30" r="3" fill="#ffffff"/>
+  <circle cx="32" cy="30" r="3" fill="#ffffff"/>
+  <circle cx="40" cy="30" r="3" fill="#ffffff"/>
+</svg>

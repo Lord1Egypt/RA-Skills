@@ -1,0 +1,91 @@
+{
+  "name": "due-diligence-analyst",
+  "version": "0.1.0",
+  "description": "AI-Powered Due Diligence Analysis for OpenClaw - Automated DD for investors, M&A advisors, and corporate development teams",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "data/templates",
+    "data/reference",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist",
+    "setup": "bash scripts/setup-due-diligence.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "due-diligence",
+    "dd",
+    "investment",
+    "m&a",
+    "financial-analysis",
+    "legal-compliance",
+    "risk-assessment",
+    "business-analysis",
+    "尽职调查",
+    "尽调",
+    "投资",
+    "并购",
+    "财务分析",
+    "风险评估"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/openclaw-due-diligence-analyst.git"
+  },
+  "homepage": "https://github.com/yourusername/openclaw-due-diligence-analyst#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/openclaw-due-diligence-analyst/issues"
+  },
+  "openclaw": {
+    "skill": {
+      "id": "due-diligence-analyst",
+      "displayName": "Due Diligence Analyst",
+      "description": "AI-powered due diligence analysis across financial, legal, business, and team dimensions",
+      "category": "business",
+      "tags": [
+        "due-diligence",
+        "investment",
+        "analysis",
+        "finance",
+        "legal",
+        "risk"
+      ]
+    }
+  },
+  "dependencies": {
+    "zod": "^3.22.4",
+    "date-fns": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "prettier": "^3.2.4"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.0.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

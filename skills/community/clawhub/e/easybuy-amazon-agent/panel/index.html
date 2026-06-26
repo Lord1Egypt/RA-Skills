@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EasyBuy Agent Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 16px;
+        background: #f6f7fb;
+        color: #1b1b1f;
+      }
+      #actions {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      button {
+        padding: 8px 12px;
+        border: none;
+        background: #1d4ed8;
+        color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button.secondary {
+        background: #6b7280;
+      }
+      #confirmBar {
+        display: none;
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      #trace {
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 12px;
+        border-radius: 8px;
+        height: 60vh;
+        overflow: auto;
+        font-size: 12px;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="actions">
+      <button id="runDemo">Run Demo</button>
+    </div>
+    <div id="configSection" style="background: #ffffff; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+      <div style="margin-bottom: 6px;"><strong>AI Config</strong></div>
+      <div style="display: grid; gap: 6px; font-size: 12px;">
+        <label>Endpoint</label>
+        <input id="cfgEndpoint" type="text" placeholder="https://api.openai.com/v1/chat/completions" style="padding: 6px;" />
+        <label>Model</label>
+        <input id="cfgModel" type="text" placeholder="gpt-4o-mini" style="padding: 6px;" />
+        <label>API Key</label>
+        <input id="cfgApiKey" type="password" placeholder="sk-..." style="padding: 6px;" />
+        <button id="saveConfig" class="secondary">Save Config</button>
+      </div>
+    </div>
+    <div id="promptSection" style="background: #ffffff; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+      <div style="margin-bottom: 6px;"><strong>Prompt</strong></div>
+      <textarea id="promptInput" rows="3" style="width: 100%; padding: 6px;" placeholder="e.g. Find the main product title and take a screenshot"></textarea>
+      <div style="margin-top: 6px;">
+        <button id="runAi">Run AI</button>
+      </div>
+    </div>
+    <div id="confirmBar">
+      <div><strong>Confirm Tool Call</strong></div>
+      <pre id="confirmText"></pre>
+      <div id="confirmActions">
+        <button id="approve">Approve</button>
+        <button id="reject" class="secondary">Reject</button>
+      </div>
+    </div>
+    <div id="previewSection" style="display: none; margin-bottom: 12px; background: #ffffff; border-radius: 8px; padding: 12px;">
+      <div style="margin-bottom: 6px;"><strong>Screenshot Preview</strong></div>
+      <div id="previewMeta" style="font-size: 12px; color: #6b7280;"></div>
+      <img id="previewImg" style="max-width: 100%; border-radius: 6px; margin-top: 8px;" />
+    </div>
+    <div id="extractSection" style="display: none; margin-bottom: 12px; background: #ffffff; border-radius: 8px; padding: 12px;">
+      <div style="margin-bottom: 6px;"><strong>Extract Result</strong></div>
+      <pre id="extractText" style="white-space: pre-wrap; font-size: 12px; color: #111827;"></pre>
+    </div>
+    <div id="trace"></div>
+    <script src="panel.js"></script>
+  </body>
+</html>

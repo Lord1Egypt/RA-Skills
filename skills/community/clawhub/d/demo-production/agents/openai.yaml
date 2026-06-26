@@ -1,0 +1,4 @@
+interface:
+  display_name: "Demo Production"
+  short_description: "Build interactive demos from rough ideas"
+  default_prompt: "Use $demo-production to turn this rough idea into an interactive demo with a review gate."

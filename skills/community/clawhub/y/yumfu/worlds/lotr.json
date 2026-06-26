@@ -1,0 +1,1322 @@
+{
+  "id": "lotr",
+  "name_zh": "指环王",
+  "name_en": "Lord of the Rings",
+  "language": "en",
+  "genre": "epic-fantasy",
+  "era": "Third Age of Middle-earth (3018-3019 T.A.)",
+  "age_rating": "Teen (13+)",
+  "themes": [
+    "fellowship",
+    "sacrifice",
+    "corruption-vs-purity",
+    "epic-journey",
+    "good-vs-evil"
+  ],
+  "description_zh": "中土世界，至尊魔戒的远征。从夏尔的宁静到末日火山的决战，九人护戒队的史诗征程。黑暗魔君索伦的阴影笼罩大地，唯有摧毁魔戒方能拯救中土。",
+  "description_en": "Middle-earth under the shadow of Sauron. Join the Fellowship of the Ring on an epic quest from the peaceful Shire to the fires of Mount Doom. Nine companions, one Ring to destroy, and the fate of all free peoples hanging in the balance.",
+  "gameplay_pacing": {
+    "quest_structure": "Linear main story with exploration branches",
+    "total_chapters": 9,
+    "chapter_duration": "3-5 hours gameplay each",
+    "cannot_skip_chapters": true,
+    "chapter_milestones": [
+      "Chapter 1: The Shire - Receive the One Ring, flee Black Riders",
+      "Chapter 2: Rivendell - Council of Elrond, Fellowship forms",
+      "Chapter 3: Moria - Dark mines, Balrog encounter",
+      "Chapter 4: Lothlórien - Galadriel's gifts, rest and preparation",
+      "Chapter 5: Amon Hen - Fellowship breaks, Boromir's fall",
+      "Chapter 6: Rohan - Helm's Deep, Théoden's redemption",
+      "Chapter 7: Isengard - Ents march, Saruman's defeat",
+      "Chapter 8: Gondor - Minas Tirith siege, Pelennor Fields",
+      "Chapter 9: Mount Doom - Final confrontation, Ring's destruction"
+    ],
+    "corruption_system": {
+      "ring_burden": "Carrying the Ring slowly corrupts you",
+      "corruption_meter": "0-100 (100 = become like Gollum)",
+      "effects_by_level": [
+        {
+          "range": "0-20",
+          "effect": "No visible change"
+        },
+        {
+          "range": "21-40",
+          "effect": "Temptation whispers, -5% willpower"
+        },
+        {
+          "range": "41-60",
+          "effect": "Paranoia, friends seem like threats"
+        },
+        {
+          "range": "61-80",
+          "effect": "Physical decay, -20% max HP"
+        },
+        {
+          "range": "81-99",
+          "effect": "Near-total corruption, violent urges"
+        },
+        {
+          "range": "100",
+          "effect": "GAME OVER: Become servant of Sauron"
+        }
+      ],
+      "resistance_methods": [
+        "Sam's loyalty (+10 resistance per day)",
+        "Lembas bread (-5 corruption)",
+        "Remembering the Shire (-10 corruption)",
+        "Gandalf's wisdom (-15 corruption, limited)"
+      ]
+    }
+  },
+  "races": [
+    {
+      "id": "hobbit",
+      "name": "Hobbit",
+      "name_zh": "霍比特人",
+      "homeland": "The Shire",
+      "traits": [
+        "Small stature",
+        "Stealthy",
+        "Resistant to corruption",
+        "Love of comfort"
+      ],
+      "stat_bonuses": {
+        "stealth": 20,
+        "corruption_resistance": 30,
+        "strength": -10,
+        "courage": 10
+      },
+      "special_abilities": [
+        "Sneaking past enemies (higher success rate)",
+        "Ring corruption builds 30% slower",
+        "Hobbit-sense (find food/pipeweed anywhere)"
+      ],
+      "starting_equipment": [
+        "Sting (elven dagger)",
+        "Mithril vest",
+        "Lembas bread x5"
+      ],
+      "typical_roles": [
+        "Ring-bearer",
+        "Scout",
+        "Companion"
+      ],
+      "famous_members": [
+        "Frodo Baggins",
+        "Samwise Gamgee",
+        "Merry",
+        "Pippin",
+        "Bilbo"
+      ]
+    },
+    {
+      "id": "human",
+      "name": "Man (Human)",
+      "name_zh": "人类",
+      "homeland": "Gondor / Rohan",
+      "traits": [
+        "Versatile",
+        "Leadership",
+        "Mortal and corruptible",
+        "Brave"
+      ],
+      "stat_bonuses": {
+        "strength": 10,
+        "leadership": 15,
+        "corruption_resistance": 0,
+        "versatility": 10
+      },
+      "special_abilities": [
+        "Rally allies (inspire +20% team damage for 3 turns)",
+        "Numenorean bloodline (if Gondor, +HP)",
+        "Kingly authority (certain NPCs obey)"
+      ],
+      "starting_equipment": [
+        "Ranger sword",
+        "Gondorian armor",
+        "Horn of Gondor"
+      ],
+      "typical_roles": [
+        "Warrior",
+        "Leader",
+        "Ranger"
+      ],
+      "famous_members": [
+        "Aragorn",
+        "Boromir",
+        "Faramir",
+        "Éomer",
+        "Théoden"
+      ],
+      "corruption_warning": "Most vulnerable to the Ring's influence"
+    },
+    {
+      "id": "elf",
+      "name": "Elf",
+      "name_zh": "精灵",
+      "homeland": "Rivendell / Lothlórien / Mirkwood",
+      "traits": [
+        "Immortal",
+        "Graceful",
+        "Master archers",
+        "Wise"
+      ],
+      "stat_bonuses": {
+        "agility": 20,
+        "archery": 25,
+        "magic_resistance": 15,
+        "perception": 20
+      },
+      "special_abilities": [
+        "Never miss with bow (auto-crit on aimed shots)",
+        "See in darkness (no stealth penalties at night)",
+        "Elven-song (heal allies, +morale)"
+      ],
+      "starting_equipment": [
+        "Elven bow",
+        "Lórien cloak",
+        "Waybread"
+      ],
+      "typical_roles": [
+        "Archer",
+        "Scout",
+        "Healer"
+      ],
+      "famous_members": [
+        "Legolas",
+        "Arwen",
+        "Elrond",
+        "Galadriel"
+      ],
+      "unique_mechanic": "Can choose to sail West (leave Middle-earth, endgame choice)"
+    },
+    {
+      "id": "dwarf",
+      "name": "Dwarf",
+      "name_zh": "矮人",
+      "homeland": "Lonely Mountain / Iron Hills",
+      "traits": [
+        "Stout",
+        "Stubborn",
+        "Master craftsmen",
+        "Greedy for treasure"
+      ],
+      "stat_bonuses": {
+        "strength": 15,
+        "defense": 20,
+        "greed": 10,
+        "mining": 30
+      },
+      "special_abilities": [
+        "Axe mastery (+30% melee damage)",
+        "Stone-sense (find hidden doors/treasures)",
+        "Dwarven resilience (immune to poison, +fire resist)"
+      ],
+      "starting_equipment": [
+        "Battle axe",
+        "Mithril chainmail",
+        "Dwarven ale"
+      ],
+      "typical_roles": [
+        "Tank",
+        "Miner",
+        "Warrior"
+      ],
+      "famous_members": [
+        "Gimli",
+        "Thorin Oakenshield",
+        "Balin"
+      ],
+      "rivalry": "Tension with elves (can be overcome)"
+    },
+    {
+      "id": "wizard",
+      "name": "Wizard (Istari)",
+      "name_zh": "巫师",
+      "homeland": "Valinor (sent to Middle-earth)",
+      "traits": [
+        "Ancient",
+        "Powerful magic",
+        "Guides not rulers",
+        "Limited direct intervention"
+      ],
+      "stat_bonuses": {
+        "magic_power": 50,
+        "wisdom": 40,
+        "physical_strength": 5,
+        "authority": 30
+      },
+      "special_abilities": [
+        "Staff of Power (devastating magic attacks)",
+        "Inspire courage (allies immune to fear)",
+        "Ancient knowledge (solve riddles instantly)"
+      ],
+      "starting_equipment": [
+        "Wizard staff",
+        "Pipe-weed",
+        "Glamdring (optional)"
+      ],
+      "typical_roles": [
+        "Support caster",
+        "Quest-giver",
+        "Mentor"
+      ],
+      "famous_members": [
+        "Gandalf",
+        "Saruman",
+        "Radagast"
+      ],
+      "limitation": "Cannot use full power (restricted by Valar)",
+      "playable_warning": "Wizard starts are overpowered but plot-restricted"
+    }
+  ],
+  "fellowship_system": {
+    "max_party_size": 9,
+    "core_members": [
+      {
+        "name": "Frodo Baggins",
+        "race": "Hobbit",
+        "role": "Ring-bearer",
+        "level": 35,
+        "personality": "Brave but burdened, compassionate, incorruptible (almost)",
+        "special": "Can wear the Ring without instant corruption (still risky)",
+        "loyalty": "Unbreakable (unless corruption ≥95)",
+        "quest": "Destroy the One Ring"
+      },
+      {
+        "name": "Samwise Gamgee",
+        "race": "Hobbit",
+        "role": "Loyal companion",
+        "level": 30,
+        "personality": "Loyal, kind, humble, brave when needed",
+        "special": "Immunity to Ring corruption (pure heart), cooking buff",
+        "loyalty": "Absolute (will never betray you)",
+        "quest": "Protect Frodo at all costs"
+      },
+      {
+        "name": "Gandalf the Grey",
+        "race": "Wizard",
+        "role": "Guide & protector",
+        "level": 95,
+        "personality": "Wise, kind, mysterious, patient",
+        "special": "Returns as Gandalf the White (Level 99) after Moria",
+        "loyalty": "Unwavering",
+        "quest": "Defeat Saruman, guide Fellowship",
+        "temporary_leave": "Moria (falls), returns in Fangorn"
+      },
+      {
+        "name": "Aragorn",
+        "race": "Human (Dúnedain)",
+        "role": "Ranger, future king",
+        "level": 75,
+        "personality": "Noble, humble, skilled warrior, reluctant leader",
+        "special": "Andúril (Flame of the West), Ranger tracking",
+        "loyalty": "Strong (unless dark path chosen)",
+        "quest": "Reclaim throne of Gondor",
+        "romance": "Arwen Undómiel"
+      },
+      {
+        "name": "Legolas",
+        "race": "Elf",
+        "role": "Archer & scout",
+        "level": 70,
+        "personality": "Graceful, loyal, friendly rivalry with Gimli",
+        "special": "Never misses bow shots, Elven-sight",
+        "loyalty": "High",
+        "quest": "Represent elves, friendship with Gimli",
+        "unique_count": "Orc-kill competition with Gimli"
+      },
+      {
+        "name": "Gimli",
+        "race": "Dwarf",
+        "role": "Warrior & tank",
+        "level": 70,
+        "personality": "Proud, brave, gruff but warm-hearted",
+        "special": "Axe mastery, Dwarf-toughness",
+        "loyalty": "High (after Galadriel encounter)",
+        "quest": "Represent dwarves, friendship with Legolas",
+        "unique_mechanic": "Asks for Galadriel's hair (legendary gift)"
+      },
+      {
+        "name": "Boromir",
+        "race": "Human (Gondor)",
+        "role": "Warrior & tragic hero",
+        "level": 65,
+        "personality": "Brave, proud, tempted by power, redeems himself",
+        "special": "Horn of Gondor, strong melee fighter",
+        "loyalty": "Unstable (corrupted by Ring temptation)",
+        "quest": "Protect Gondor",
+        "fate": "Dies at Amon Hen (canonical), redemption arc"
+      },
+      {
+        "name": "Merry (Meriadoc Brandybuck)",
+        "race": "Hobbit",
+        "role": "Scout & squire",
+        "level": 28,
+        "personality": "Curious, brave, loyal",
+        "special": "Squire of Rohan, stabbed Witch-king",
+        "loyalty": "High",
+        "quest": "Serve Théoden, fight at Pelennor"
+      },
+      {
+        "name": "Pippin (Peregrin Took)",
+        "race": "Hobbit",
+        "role": "Scout & squire",
+        "level": 26,
+        "personality": "Foolish but brave, matures over journey",
+        "special": "Guard of Gondor, lit beacons",
+        "loyalty": "High",
+        "quest": "Serve Denethor, save Faramir"
+      }
+    ],
+    "fellowship_bonuses": {
+      "full_fellowship": "+25% all stats when all 9 together",
+      "elf_dwarf_combo": "Legolas + Gimli = +Friendship Attack",
+      "hobbit_pack": "All hobbits together = +Stealth",
+      "aragorn_leadership": "Aragorn present = +Morale"
+    },
+    "breaking_fellowship": {
+      "event": "Amon Hen (Chapter 5)",
+      "reason": "Boromir's corruption, Frodo's choice",
+      "split_paths": [
+        "Path A: Frodo + Sam to Mordor",
+        "Path B: Aragorn + Legolas + Gimli to Rohan",
+        "Path C: Merry + Pippin captured by Uruk-hai"
+      ],
+      "reunion": "Possible after Ring destruction"
+    }
+  },
+  "combat_system": {
+    "combat_style": "Turn-based tactical, emphasis on positioning & morale",
+    "stats": {
+      "HP": "Health Points",
+      "Stamina": "Energy for special moves",
+      "Courage": "Resist fear effects",
+      "Morale": "Shared party stat, affects damage"
+    },
+    "weapon_types": [
+      {
+        "type": "Swords",
+        "users": [
+          "Aragorn",
+          "Boromir"
+        ],
+        "bonus": "Versatile"
+      },
+      {
+        "type": "Bows",
+        "users": [
+          "Legolas"
+        ],
+        "bonus": "Long range"
+      },
+      {
+        "type": "Axes",
+        "users": [
+          "Gimli"
+        ],
+        "bonus": "High damage"
+      },
+      {
+        "type": "Daggers",
+        "users": [
+          "Hobbits"
+        ],
+        "bonus": "Stealth attacks"
+      },
+      {
+        "type": "Magic",
+        "users": [
+          "Gandalf"
+        ],
+        "bonus": "AOE, debuffs"
+      }
+    ],
+    "special_mechanics": {
+      "fear_aura": "Nazgûl, Balrog cause Fear (reduce Courage)",
+      "last_stand": "Below 20% HP = +50% damage (desperate)",
+      "morale_break": "If morale ≤0, party flees combat"
+    },
+    "boss_encounters": [
+      {
+        "name": "Cave Troll",
+        "location": "Moria",
+        "level": 40
+      },
+      {
+        "name": "Balrog",
+        "location": "Bridge of Khazad-dûm",
+        "level": 90,
+        "mechanics": "Gandalf solo fight"
+      },
+      {
+        "name": "Uruk-hai Champion",
+        "location": "Amon Hen",
+        "level": 50
+      },
+      {
+        "name": "Warg Riders",
+        "location": "Rohan plains",
+        "level": 45
+      },
+      {
+        "name": "Shelob",
+        "location": "Cirith Ungol",
+        "level": 70,
+        "poison_attacks": true
+      },
+      {
+        "name": "Witch-king of Angmar",
+        "location": "Pelennor Fields",
+        "level": 85,
+        "weakness": "Women & hobbits"
+      },
+      {
+        "name": "Sauron (Eye)",
+        "location": "Barad-dûr",
+        "level": 99,
+        "final_boss": true
+      }
+    ]
+  },
+  "magic_system": {
+    "istari_magic": {
+      "users": [
+        "Gandalf",
+        "Saruman"
+      ],
+      "spells": [
+        {
+          "name": "Flame of Anor",
+          "effect": "Light burst, fear demons",
+          "cost": "High"
+        },
+        {
+          "name": "Staff Strike",
+          "effect": "Melee + knockback",
+          "cost": "Low"
+        },
+        {
+          "name": "Shield of the Istari",
+          "effect": "Block all attacks 1 turn",
+          "cost": "Medium"
+        },
+        {
+          "name": "Word of Command",
+          "effect": "Stun enemy",
+          "cost": "Medium"
+        }
+      ],
+      "limitation": "Can't spam magic (Valar restriction)"
+    },
+    "elven_magic": {
+      "users": [
+        "Galadriel",
+        "Elrond",
+        "Arwen"
+      ],
+      "spells": [
+        {
+          "name": "Light of Eärendil",
+          "effect": "Repel darkness",
+          "item": "Phial of Galadriel"
+        },
+        {
+          "name": "Healing Song",
+          "effect": "Restore HP",
+          "cost": "Stamina"
+        },
+        {
+          "name": "Elven-cloak",
+          "effect": "+Stealth",
+          "passive": true
+        }
+      ]
+    },
+    "ring_power": {
+      "one_ring": {
+        "effect": "Invisibility, +power, but corruption",
+        "risk": "+10 corruption per use",
+        "detection": "Sauron can sense Ring usage",
+        "nazgul_attraction": "Nazgûl drawn to Ring-wearer"
+      },
+      "vilya_narya_nenya": {
+        "owners": [
+          "Elrond",
+          "Gandalf",
+          "Galadriel"
+        ],
+        "effect": "Preserve elven realms, inspire hope",
+        "player_inaccessible": true
+      }
+    }
+  },
+  "legendary_items": {
+    "weapons": [
+      {
+        "name": "Andúril (Flame of the West)",
+        "type": "Sword",
+        "owner": "Aragorn",
+        "power": 95,
+        "effect": "Reforged from Narsil, +50% vs orcs & Nazgûl",
+        "lore": "Blade that cut the One Ring from Sauron's hand"
+      },
+      {
+        "name": "Sting",
+        "type": "Dagger",
+        "owner": "Frodo (then Sam)",
+        "power": 40,
+        "effect": "Glows blue near orcs, +stealth",
+        "lore": "Bilbo's blade from The Hobbit"
+      },
+      {
+        "name": "Glamdring",
+        "type": "Sword",
+        "owner": "Gandalf",
+        "power": 90,
+        "effect": "Glows blue near orcs, +magic damage",
+        "lore": "Foe-hammer, ancient elven blade"
+      },
+      {
+        "name": "Orcrist",
+        "type": "Sword",
+        "owner": "Thorin (The Hobbit, can be found)",
+        "power": 85,
+        "effect": "Biter, sister-blade to Glamdring"
+      }
+    ],
+    "armor": [
+      {
+        "name": "Mithril Vest",
+        "type": "Chainmail",
+        "owner": "Frodo (from Bilbo)",
+        "defense": 80,
+        "effect": "Blocks lethal blow once, lightweight",
+        "lore": "Worth more than the Shire"
+      }
+    ],
+    "artifacts": [
+      {
+        "name": "One Ring",
+        "type": "Artifact",
+        "power": "Absolute (corrupting)",
+        "effect": "Invisibility, domination, corruption",
+        "goal": "Destroy in Mount Doom",
+        "warning": "Using it = instant Nazgûl alert"
+      },
+      {
+        "name": "Phial of Galadriel",
+        "type": "Light",
+        "owner": "Frodo",
+        "effect": "Repels darkness & Shelob",
+        "lore": "Light of Eärendil's star"
+      },
+      {
+        "name": "Lembas Bread",
+        "type": "Food",
+        "effect": "Full heal + stamina, -5 corruption",
+        "quantity": "Limited (elven gift)"
+      },
+      {
+        "name": "Lórien Cloaks",
+        "type": "Cloak",
+        "effect": "+50% stealth, camouflage",
+        "given_to": "All Fellowship members"
+      },
+      {
+        "name": "Evenstar",
+        "type": "Pendant",
+        "owner": "Aragorn (from Arwen)",
+        "effect": "+Hope, symbolic (no combat bonus)"
+      }
+    ]
+  },
+  "locations": [
+    {
+      "id": "the-shire",
+      "name": "The Shire",
+      "name_zh": "夏尔",
+      "description": "Peaceful hobbit homeland, rolling green hills, Bag End",
+      "npcs": [
+        "Bilbo Baggins",
+        "Farmer Maggot",
+        "Gaffer Gamgee"
+      ],
+      "activities": [
+        "Smoking pipe-weed",
+        "Gardening",
+        "Second breakfast"
+      ],
+      "danger_level": "Safe (until Black Riders arrive)",
+      "significance": "Starting location, symbol of innocence"
+    },
+    {
+      "id": "rivendell",
+      "name": "Rivendell (Imladris)",
+      "name_zh": "瑞文戴尔",
+      "description": "Elven sanctuary, waterfalls, ancient architecture, Hall of Fire",
+      "npcs": [
+        "Elrond",
+        "Arwen",
+        "Glorfindel"
+      ],
+      "services": [
+        "Healing",
+        "Lore",
+        "Reforging Andúril"
+      ],
+      "events": [
+        "Council of Elrond",
+        "Fellowship formation"
+      ],
+      "danger_level": "Safe",
+      "significance": "Last Homely House, strategic planning"
+    },
+    {
+      "id": "moria",
+      "name": "Mines of Moria (Khazad-dûm)",
+      "name_zh": "摩瑞亚矿坑",
+      "description": "Ancient dwarf kingdom, now dark and full of orcs & Balrog",
+      "npcs": [
+        "Balin's tomb (dead)",
+        "Balrog (boss)"
+      ],
+      "enemies": [
+        "Cave trolls",
+        "Orcs",
+        "Goblins"
+      ],
+      "danger_level": "Extreme",
+      "events": [
+        "Gandalf vs Balrog",
+        "You shall not pass!"
+      ],
+      "loot": [
+        "Mithril",
+        "Ancient dwarf artifacts"
+      ]
+    },
+    {
+      "id": "lothlorien",
+      "name": "Lothlórien",
+      "name_zh": "洛汗林地",
+      "description": "Golden forest of the Galadhrim, Mallorn trees, timeless beauty",
+      "npcs": [
+        "Galadriel",
+        "Celeborn",
+        "Haldir"
+      ],
+      "services": [
+        "Rest",
+        "Gifts",
+        "Galadriel's Mirror"
+      ],
+      "events": [
+        "Mirror of Galadriel",
+        "Elven cloaks & lembas"
+      ],
+      "danger_level": "Safe",
+      "significance": "Spiritual renewal before trials"
+    },
+    {
+      "id": "helms-deep",
+      "name": "Helm's Deep",
+      "name_zh": "圣盔谷",
+      "description": "Fortress in the White Mountains, site of legendary siege",
+      "npcs": [
+        "Théoden",
+        "Éomer",
+        "Gimli",
+        "Legolas"
+      ],
+      "events": [
+        "Battle of Helm's Deep",
+        "10,000 Uruk-hai siege"
+      ],
+      "combat_encounter": "Defend the walls (epic battle)",
+      "danger_level": "Very High",
+      "significance": "Last stand of Rohan"
+    },
+    {
+      "id": "isengard",
+      "name": "Isengard (Orthanc)",
+      "name_zh": "艾辛格",
+      "description": "Saruman's tower fortress, industrialized by orcs",
+      "npcs": [
+        "Saruman",
+        "Gríma Wormtongue",
+        "Treebeard"
+      ],
+      "events": [
+        "Ents destroy Isengard",
+        "Palantír found"
+      ],
+      "danger_level": "High",
+      "boss": "Saruman (defeated by Ents)"
+    },
+    {
+      "id": "minas-tirith",
+      "name": "Minas Tirith",
+      "name_zh": "米那斯提力斯",
+      "description": "White City of Gondor, seven-tiered fortress, Tower of Ecthelion",
+      "npcs": [
+        "Denethor",
+        "Faramir",
+        "Beregond"
+      ],
+      "events": [
+        "Siege of Minas Tirith",
+        "Lighting the beacons",
+        "Aragorn's coronation"
+      ],
+      "combat_encounter": "Defend city gates, Pelennor Fields battle",
+      "danger_level": "Extreme",
+      "significance": "Capital of Men, last bastion"
+    },
+    {
+      "id": "mordor",
+      "name": "Mordor",
+      "name_zh": "魔多",
+      "description": "Dark land of Sauron, ash and lava, Black Gate, Barad-dûr",
+      "npcs": [
+        "Gollum",
+        "Mouth of Sauron"
+      ],
+      "enemies": [
+        "Orcs",
+        "Trolls",
+        "Nazgûl",
+        "Eye of Sauron"
+      ],
+      "locations_inside": [
+        "Black Gate",
+        "Cirith Ungol",
+        "Mount Doom"
+      ],
+      "danger_level": "Maximum",
+      "stealth_required": "Cannot fight your way through"
+    },
+    {
+      "id": "mount-doom",
+      "name": "Mount Doom (Orodruin)",
+      "name_zh": "末日火山",
+      "description": "Volcano where the One Ring was forged, Sammath Naur",
+      "npcs": [
+        "Gollum (final confrontation)"
+      ],
+      "events": [
+        "Ring destruction",
+        "Frodo's temptation"
+      ],
+      "danger_level": "Absolute",
+      "significance": "The only place to destroy the Ring",
+      "final_choice": "Destroy Ring or claim it (BAD END)"
+    }
+  ],
+  "npcs": [
+    {
+      "name": "Gollum / Sméagol",
+      "race": "Hobbit (corrupted)",
+      "level": 45,
+      "personality": "Split personality, cunning, tragic, obsessed with Ring",
+      "role": "Guide (treacherous)",
+      "relationship_stages": [
+        {
+          "stage": 1,
+          "affection": "0-30",
+          "status": "Hostile, tries to steal Ring"
+        },
+        {
+          "stage": 2,
+          "affection": "31-60",
+          "status": "Sméagol emerges, helps reluctantly"
+        },
+        {
+          "stage": 3,
+          "affection": "61-80",
+          "status": "Conflicted, can be saved (rare)"
+        },
+        {
+          "stage": 4,
+          "affection": "81-100",
+          "status": "Redemption arc (very rare, requires kindness)"
+        }
+      ],
+      "betrayal": "Leads Frodo to Shelob (canonical)",
+      "final_role": "Bites off Ring from Frodo, falls into lava",
+      "moral_lesson": "What the Ring does to its bearers"
+    },
+    {
+      "name": "Saruman the White",
+      "race": "Wizard",
+      "level": 92,
+      "personality": "Corrupted by power, prideful, once wise",
+      "role": "Antagonist (fallen wizard)",
+      "betrayal": "Joins Sauron, breeds Uruk-hai",
+      "defeat": "Ents destroy Isengard, staff broken by Gandalf",
+      "final_fate": "Killed by Wormtongue (extended edition)"
+    },
+    {
+      "name": "Arwen Undómiel",
+      "race": "Elf",
+      "level": 60,
+      "personality": "Graceful, loving, sacrifices immortality for Aragorn",
+      "role": "Love interest (Aragorn)",
+      "quest": "Choose mortality for love",
+      "significance": "Symbol of hope & sacrifice"
+    },
+    {
+      "name": "Éowyn",
+      "race": "Human (Rohan)",
+      "level": 55,
+      "personality": "Brave, defiant, disguises as man to fight",
+      "role": "Shieldmaiden of Rohan",
+      "quest": "Defeat Witch-king",
+      "famous_line": "I am no man!",
+      "romance_option": "Faramir (after war)"
+    },
+    {
+      "name": "Faramir",
+      "race": "Human (Gondor)",
+      "level": 60,
+      "personality": "Noble, wise, resists Ring temptation (unlike Boromir)",
+      "role": "Steward of Gondor",
+      "quest": "Defend Osgiliath, survive Denethor's madness",
+      "significance": "Better man than his brother"
+    },
+    {
+      "name": "Treebeard (Fangorn)",
+      "race": "Ent",
+      "level": 80,
+      "personality": "Ancient, slow, wise, angry when roused",
+      "role": "Shepherd of the Trees",
+      "quest": "Entmoot, march on Isengard",
+      "famous_line": "Don't be hasty!"
+    },
+    {
+      "name": "Sauron (The Dark Lord)",
+      "race": "Maia (fallen)",
+      "level": 99,
+      "personality": "Embodiment of tyranny, domination, deception",
+      "form": "Eye of Sauron (lost physical form)",
+      "weakness": "One Ring's destruction",
+      "final_battle": "Tower collapses, Eye extinguished",
+      "lore": "Once beautiful, corrupted by Morgoth"
+    }
+  ],
+  "main_questline": {
+    "act_1": "The Shire to Rivendell - Escape Black Riders",
+    "act_2": "Rivendell to Lothlórien - Form Fellowship, survive Moria",
+    "act_3": "Breaking of Fellowship - Boromir's fall, paths diverge",
+    "act_4": "Rohan & Isengard - Helm's Deep, Ents march",
+    "act_5": "Gondor & Pelennor - Minas Tirith siege, Witch-king falls",
+    "act_6": "Mordor & Mount Doom - Sneak into Mordor, destroy Ring"
+  },
+  "key_figures": [
+    {
+      "name": "Frodo Baggins",
+      "role": "Ring-bearer",
+      "drive": "destroy the One Ring before it destroys him",
+      "ties": [
+        "Sam",
+        "Gandalf",
+        "Aragorn"
+      ]
+    },
+    {
+      "name": "Aragorn",
+      "role": "Heir of Isildur",
+      "drive": "reclaim Gondor and unite the Free Peoples",
+      "ties": [
+        "Arwen",
+        "Gandalf",
+        "Boromir"
+      ]
+    },
+    {
+      "name": "Gandalf",
+      "role": "Guide of the West",
+      "drive": "oppose Sauron without seizing power",
+      "ties": [
+        "Fellowship",
+        "Théoden",
+        "Denethor"
+      ]
+    },
+    {
+      "name": "Sauron",
+      "role": "Dark Lord",
+      "drive": "recover the Ring and enslave Middle-earth",
+      "ties": [
+        "Nazgûl",
+        "Saruman",
+        "Mordor"
+      ]
+    },
+    {
+      "name": "Gollum",
+      "role": "Broken guide and threat",
+      "drive": "recover “his precious” at any cost",
+      "ties": [
+        "Frodo",
+        "Sam",
+        "Shelob path"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "The Shire",
+      "type": "homeland",
+      "importance": "origin, innocence, memory of what must be protected"
+    },
+    {
+      "name": "Rivendell",
+      "type": "elven refuge",
+      "importance": "council, lore, alliance building, healing"
+    },
+    {
+      "name": "Moria",
+      "type": "fallen dwarven kingdom",
+      "importance": "depths, loss, Balrog, greed and memory"
+    },
+    {
+      "name": "Minas Tirith",
+      "type": "capital fortress",
+      "importance": "seat of Gondor, siege center, late-war pivot"
+    },
+    {
+      "name": "Mordor / Mount Doom",
+      "type": "enemy heartland",
+      "importance": "final destination, corruption pressure, endgame"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "Frodo / Sam / Gollum",
+      "tension": "mercy, distrust, dependency, corruption"
+    },
+    {
+      "thread": "Aragorn / Boromir / Gondor",
+      "tension": "rightful kingship versus desperate stewardship"
+    },
+    {
+      "thread": "Gandalf / Saruman",
+      "tension": "wisdom versus domination, two answers to power"
+    },
+    {
+      "thread": "Rohan / Gondor / Isengard",
+      "tension": "alliance, delayed aid, strategic survival"
+    },
+    {
+      "thread": "Elves / Dwarves / Men",
+      "tension": "old grievances slowly yielding to shared necessity"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "The One Ring",
+      "kind": "supreme artifact",
+      "story_use": "temptation, stealth, doom, corruption engine"
+    },
+    {
+      "name": "Andúril",
+      "kind": "royal blade",
+      "story_use": "Aragorn legitimacy, morale, kingship claims"
+    },
+    {
+      "name": "Palantír",
+      "kind": "seeing-stone",
+      "story_use": "knowledge, deception, strategic foresight, psychic risk"
+    },
+    {
+      "name": "Mithril",
+      "kind": "legendary armor material",
+      "story_use": "survival, dwarven legacy, prestige"
+    },
+    {
+      "name": "Lembas",
+      "kind": "elven waybread",
+      "story_use": "journey endurance, memory of grace, anti-despair symbol"
+    }
+  ],
+  "mainline_stages": [
+    "Leave safety behind and survive the first hunt",
+    "Bind the Fellowship and choose who bears the burden",
+    "Endure fracture, loss, and separation without losing purpose",
+    "Turn regional wars into a united struggle against Sauron",
+    "Carry the Ring into the heart of the enemy and resolve its final temptation"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "The Fellowship",
+      "core_members": [
+        "Frodo",
+        "Sam",
+        "Aragorn",
+        "Gandalf",
+        "Legolas",
+        "Gimli"
+      ],
+      "internal_tension": "duty, burden-sharing, broken trust after Boromir, differing priorities"
+    },
+    {
+      "name": "Gondor war command",
+      "core_members": [
+        "Denethor",
+        "Faramir",
+        "Aragorn claimants",
+        "Gandalf influence"
+      ],
+      "internal_tension": "stewardship versus kingship, despair versus hope"
+    },
+    {
+      "name": "Rohan court and riders",
+      "core_members": [
+        "Théoden",
+        "Éomer",
+        "Éowyn",
+        "Gríma shadow"
+      ],
+      "internal_tension": "renewal after paralysis, honor, cavalry commitment"
+    },
+    {
+      "name": "Mordor command chain",
+      "core_members": [
+        "Sauron",
+        "Nazgûl",
+        "Mouth of Sauron",
+        "orc captains"
+      ],
+      "internal_tension": "fear hierarchy, competition, disposable armies"
+    },
+    {
+      "name": "White Council / elder powers",
+      "core_members": [
+        "Gandalf",
+        "Elrond",
+        "Galadriel",
+        "Saruman (fallen)"
+      ],
+      "internal_tension": "wisdom, restraint, secrecy, delayed intervention"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "Rivendell councils",
+      "function": "alliance decisions, lore exposition, route commitment, lineage reveals"
+    },
+    {
+      "name": "Paths through Moria and Anduin",
+      "function": "travel attrition, ambushes, trust tests, ancient memory"
+    },
+    {
+      "name": "Edoras / Helm’s Deep chain",
+      "function": "military regroup, loyalty oaths, cavalry defense, siege pressure"
+    },
+    {
+      "name": "Osgiliath / Minas Tirith front",
+      "function": "late-war urban defense, beacon calls, command conflict"
+    },
+    {
+      "name": "Cirith Ungol / Mount Doom corridor",
+      "function": "endgame infiltration, corruption climax, betrayal and exhaustion"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "Minas Tirith",
+      "subzones": [
+        "First Circle streets",
+        "Citadel",
+        "Houses of Healing",
+        "Great Gate",
+        "Beacon command lines"
+      ]
+    },
+    {
+      "hub": "Rivendell",
+      "subzones": [
+        "Council Hall",
+        "Guest chambers",
+        "Forge spaces",
+        "Archives",
+        "River approach"
+      ]
+    },
+    {
+      "hub": "Mordor",
+      "subzones": [
+        "Black Gate approaches",
+        "Gorgoroth plain",
+        "Cirith Ungol tower",
+        "orchestrating camps",
+        "Sammath Naur slopes"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "Ring corruption",
+      "pressure": "temptation, secrecy, paranoia, bodily decline"
+    },
+    {
+      "name": "Alliance cohesion",
+      "pressure": "whether free peoples can coordinate before defeat"
+    },
+    {
+      "name": "Stewardship versus kingship",
+      "pressure": "who has the moral right to command the West"
+    },
+    {
+      "name": "Time against Sauron",
+      "pressure": "the enemy gathers faster than the heroes heal or regroup"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "The One Ring",
+      "thread": "moves from stealth tool to spiritual catastrophe to final moral test"
+    },
+    {
+      "item": "Palantír",
+      "thread": "tempts players with knowledge but constantly risks enemy manipulation"
+    },
+    {
+      "item": "Andúril and banners of the king",
+      "thread": "transform hidden heirship into open legitimacy and morale"
+    }
+  ],
+  "moral_system": {
+    "corruption_meter": true,
+    "range": [
+      0,
+      100
+    ],
+    "ring_influence": "Increases corruption over time",
+    "good_actions": {
+      "Spare Gollum": "-10 corruption",
+      "Share lembas bread": "-5 corruption",
+      "Encourage Sam": "-5 corruption",
+      "Refuse Ring": "-20 corruption"
+    },
+    "bad_actions": {
+      "Use One Ring": "10 corruption",
+      "Betray allies": "30 corruption",
+      "Claim Ring at Mount Doom": "100 corruption (instant corruption)"
+    },
+    "endings": [
+      "Hero of Middle-earth (Corruption ≤20, Ring destroyed)",
+      "Frail Victory (Corruption 21-60, Ring destroyed but scarred)",
+      "Fallen Ring-bearer (Corruption 61-99, Gollum must save you)",
+      "Dark Lord Reborn (Corruption 100, claim Ring, BAD END)"
+    ]
+  },
+  "art_style": "Epic fantasy oil painting, Alan Lee and John Howe inspired, misty mountains and ancient forests, dramatic lighting with golden sunrises and ominous shadows, medieval armor and elven elegance, sense of vast scale and timeless grandeur",
+  "starting_location": "Bag End, The Shire (Frodo's home)",
+  "copyright_notice": "Inspired by J.R.R. Tolkien's Middle-earth legendarium. Names and settings retained for immersion. Non-commercial fan work. Plot can diverge from canon.",
+  "stat_names": {
+    "hp": "Health Points",
+    "stamina": "Stamina",
+    "courage": "Courage",
+    "corruption": "Ring Corruption",
+    "morale": "Morale",
+    "strength": "Strength",
+    "agility": "Agility",
+    "wisdom": "Wisdom"
+  },
+  "victory_condition": "Destroy the One Ring in Mount Doom",
+  "failure_conditions": [
+    "Frodo's corruption reaches 100",
+    "All Fellowship members die",
+    "Sauron reclaims the Ring",
+    "Claim Ring at Mount Doom (tragic ending)"
+  ],
+  "replayability": {
+    "race_choice": "Play as Hobbit, Human, Elf, Dwarf",
+    "fellowship_variations": "Different party compositions",
+    "moral_paths": "Light vs Corrupted endings",
+    "romance_routes": "Aragorn/Arwen, Éowyn/Faramir"
+  },
+  "world_id": "lotr",
+  "status": "playable",
+  "default_language": "en",
+  "supported_languages": [
+    "en",
+    "zh"
+  ],
+  "art_style_key": "epic_fantasy_oil_painting",
+  "art_direction": {
+    "visual_style": "Peter Jackson film aesthetic meets Tolkien illustration",
+    "color_palette": "Shire green/gold, Mordor grey/red, Rivendell silver/white",
+    "character_portraits": "Epic fantasy oil painting, detailed medieval armour",
+    "battle_scenes": "Pelennor Fields scale - thousands of troops, dragons, Nazgûl",
+    "reference": [
+      "Peter Jackson LOTR trilogy",
+      "Alan Lee LOTR illustrations",
+      "John Howe artwork"
+    ]
+  },
+  "playable_canon_characters": [
+    {
+      "id": "frodo",
+      "name": "Frodo Baggins",
+      "race": "hobbit",
+      "role": "Ring-bearer",
+      "unique": "Highest corruption resistance, must carry the Ring"
+    },
+    {
+      "id": "aragorn",
+      "name": "Aragorn",
+      "race": "human",
+      "role": "Ranger / King",
+      "unique": "Heir of Isildur, Andúril, leadership aura"
+    },
+    {
+      "id": "legolas",
+      "name": "Legolas",
+      "race": "elf",
+      "role": "Archer",
+      "unique": "Never misses, walks on snow, infinite arrows"
+    },
+    {
+      "id": "gimli",
+      "name": "Gimli",
+      "race": "dwarf",
+      "role": "Warrior",
+      "unique": "Axe mastery, stone-sense in Moria, competitive with Legolas"
+    },
+    {
+      "id": "gandalf",
+      "name": "Gandalf",
+      "race": "wizard",
+      "role": "Guide / Mage",
+      "unique": "You shall not pass, fireworks, Shadowfax"
+    }
+  ],
+  "start_options": {
+    "option_a": "Play as Frodo - carry the Ring, resist corruption (hardest, most emotional)",
+    "option_b": "Play as Aragorn - lead armies, claim your birthright (epic military campaign)",
+    "option_c": "Play as Legolas/Gimli - elite warrior, shape the battles",
+    "option_d": "Play as Gandalf - guide the Fellowship with wisdom and power",
+    "option_e": "Create your own character - choose race and join the Fellowship"
+  },
+  "language_switching": {
+    "trigger_en_to_zh": [
+      "切换中文",
+      "switch to Chinese",
+      "中文模式"
+    ],
+    "trigger_zh_to_en": [
+      "switch to English",
+      "英语模式"
+    ]
+  },
+  "unique_mechanics": {
+    "one_ring_corruption": "Carrying the Ring builds corruption 0-100. Reach 100 = Game Over",
+    "fellowship_bonds": "Keep Fellowship together for bonuses; splits cause penalties",
+    "ancient_languages": "Speak Elvish/Dwarvish to unlock hidden dialogue options",
+    "palantir_visions": "Use seeing-stones to glimpse future events (risky - Sauron may see you)",
+    "eagles_rescue": "Earn enough goodwill with Eagles for emergency rescue (limited uses)"
+  }
+}

@@ -1,0 +1,39 @@
+[defaults]
+platforms = "github,xiaping,openclaw,clawhub"
+artifact_dir = ".skillup-artifacts"
+result_file = ".skillup-artifacts/publish-result.json"
+redact_mode = "strict"
+
+[github]
+token = ""
+target_repo_path = ""
+repo = "cjke84/SkillUp"
+visibility = "public"
+auto_create_repo = "true"
+target_subdir = "published-skills"
+branch = "main"
+commit_message = "chore: sync skills via SkillUp"
+create_release = "false"
+release_latest = "true"
+release_title_template = "{slug} v{version}"
+release_notes_template = "Automated release for {slug} version {version}."
+
+[xiaping]
+api_key = ""
+base_url = "https://xiaping.coze.site"
+upload_path = "/api/skills"
+
+[openclaw]
+token = ""
+base_url = ""
+upload_path = ""
+cli_bin = "claw"
+publish_args = ""
+
+[clawhub]
+token = ""
+base_url = "https://clawhub.ai"
+upload_path = "/api/v1/skills"
+cli_bin = "clawhub"
+site_url = "https://clawhub.ai"
+registry_url = "https://clawhub.ai"

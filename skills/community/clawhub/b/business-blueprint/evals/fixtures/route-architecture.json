@@ -1,0 +1,14 @@
+{
+  "meta": {"title": "Architecture Route"},
+  "library": {
+    "capabilities": [],
+    "actors": [],
+    "flowSteps": [],
+    "systems": [
+      {"id": "sys-web", "name": "Web", "category": "frontend"},
+      {"id": "sys-api", "name": "API", "category": "backend"},
+      {"id": "sys-db", "name": "DB", "category": "database"}
+    ]
+  },
+  "relations": []
+}

@@ -1,0 +1,61 @@
+# Vector-Mind Map-Fusion 日志配置
+
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  standard:
+    format: "[%(asctime)s] %(levelname)-8s %(name)-15s %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  detailed:
+    format: "[%(asctime)s] %(levelname)-8s %(name)-15s [%(filename)s:%(lineno)d] %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: standard
+    stream: ext://sys.stdout
+
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/vector-mind-map-fusion.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/vector-mind-map-fusion-error.log
+    maxBytes: 10485760
+    backupCount: 3
+
+loggers:
+  l1:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  l2:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  l3:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  recall:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+root:
+  level: INFO
+  handlers: [console, file, error_file]

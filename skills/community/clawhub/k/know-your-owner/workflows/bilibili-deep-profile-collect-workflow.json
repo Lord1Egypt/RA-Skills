@@ -1,0 +1,112 @@
+{
+  "name": "bilibili-deep-profile-collect",
+  "description": "采集B站当前登录用户的全量个人信息，包括基础资料（nav API）、投稿视频（DOM提取）、收藏夹内容（fav API分页）、关注列表（DOM翻页）。",
+  "original_query": "采集B站个人主页的全量信息，包括基础资料、投稿视频、收藏夹、关注列表",
+  "original_res": "成功采集基础资料、投稿视频20个、收藏夹7个共630条、关注581/581人。",
+  "parameters": [],
+  "platform": "B站",
+  "created_from": "bilibili-deep-profile-collect-log.json",
+  "created_at": "2026-03-19T18:00:00.000+08:00",
+  "steps": [
+    {
+      "step": 1,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://www.bilibili.com"
+      },
+      "description": "导航到B站首页，用于通过nav API获取登录用户信息",
+      "is_final_result": false
+    },
+    {
+      "step": 2,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 10000,
+        "jsScript": "async () => { try { const resp = await fetch('https://api.bilibili.com/x/web-interface/nav', {credentials: 'include'}); const data = await resp.json(); if (data.code === 0 && data.data) { const d = data.data; return JSON.stringify({mid: d.mid, uname: d.uname, face: d.face, level: d.level_info?.current_level, coins: d.money, moral: d.moral, vipType: d.vipType, vipStatus: d.vipStatus, isLogin: d.isLogin}); } return JSON.stringify({error: 'not logged in', code: data.code}); } catch(e) { return JSON.stringify({error: e.message}); } }"
+      },
+      "output": {
+        "mid": "用户mid，后续步骤使用{step_2.mid}构建URL",
+        "uname": "用户昵称",
+        "level": "等级",
+        "face": "头像URL"
+      },
+      "description": "通过 /x/web-interface/nav API 获取当前登录用户基础信息（mid/昵称/等级/硬币/VIP状态等）",
+      "is_final_result": false
+    },
+    {
+      "step": 3,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://space.bilibili.com/{step_2.mid}/video"
+      },
+      "description": "导航到个人空间投稿页面",
+      "is_final_result": false
+    },
+    {
+      "step": 4,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 15000,
+        "jsScript": "() => { const videos = []; const seen = new Set(); document.querySelectorAll('.bili-video-card').forEach(card => { const titleLink = card.querySelector('.bili-video-card__title a, a[href*=\"BV\"]'); if (!titleLink) return; const title = titleLink.textContent.trim(); const href = titleLink.getAttribute('href') || ''; const bvMatch = href.match(/BV\\w+/); const bvid = bvMatch ? bvMatch[0] : ''; if (title && bvid && !seen.has(bvid)) { seen.add(bvid); videos.push({title, bvid, href}); } }); return JSON.stringify({total: videos.length, videos: videos}); }"
+      },
+      "description": "从DOM提取投稿视频列表。选择器.bili-video-card匹配视频卡片，.bili-video-card__title a获取标题和BV号。注意：投稿API（/x/space/wbi/arc/search）需要wbi签名（返回-403），故使用DOM提取。",
+      "is_final_result": false
+    },
+    {
+      "step": 5,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 15000,
+        "jsScript": "async () => { const mid = '{step_2.mid}'; try { const resp = await fetch('https://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=' + mid, {credentials: 'include'}); const data = await resp.json(); if (data.code !== 0 || !data.data || !data.data.list) return JSON.stringify({error: data.message}); const folders = data.data.list.map(f => ({id: f.id, title: f.title, mediaCount: f.media_count})); return JSON.stringify({count: folders.length, folders: folders}); } catch(e) { return JSON.stringify({error: e.message}); } }"
+      },
+      "output": {
+        "folders": "收藏夹列表（id/title/mediaCount）"
+      },
+      "description": "通过 /x/v3/fav/folder/created/list-all API 获取收藏夹列表",
+      "is_final_result": false
+    },
+    {
+      "step": 6,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 180000,
+        "jsScript": "async () => { const foldersData = {step_5.folders}; const allFavs = {}; for (const folder of foldersData) { const fid = folder.id; const items = []; let pn = 1; while (true) { try { const resp = await fetch('https://api.bilibili.com/x/v3/fav/resource/list?media_id=' + fid + '&pn=' + pn + '&ps=20&order=mtime&platform=web', {credentials: 'include'}); const data = await resp.json(); if (data.code !== 0 || !data.data || !data.data.medias) break; data.data.medias.forEach(m => { items.push({title: m.title, bvid: m.bvid || m.bv_id, upper: m.upper ? m.upper.name : '', fav_time: m.fav_time}); }); if (!data.data.has_more) break; pn++; await new Promise(r => setTimeout(r, 800)); } catch(e) { break; } } allFavs[fid] = {title: folder.title, total: items.length, items: items}; } return JSON.stringify(allFavs); }"
+      },
+      "description": "遍历每个收藏夹，通过 /x/v3/fav/resource/list API 分页采集内容（ps=20，has_more=false终止）。提取title/bvid/upper/fav_time。",
+      "is_final_result": false
+    },
+    {
+      "step": 7,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://space.bilibili.com/{step_2.mid}/fans/follow"
+      },
+      "description": "导航到关注页面",
+      "is_final_result": false
+    },
+    {
+      "step": 8,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 300000,
+        "jsScript": "async () => { await new Promise(r => setTimeout(r, 3000)); const allUsers = []; const seen = new Set(); const selfMid = '{step_2.mid}'; let pageNum = 0; while (pageNum < 100) { document.querySelectorAll('a.relation-card-info__uname').forEach(a => { const href = a.getAttribute('href') || ''; const m = href.match(/(\\d+)/); if (!m) return; const userMid = m[1]; if (userMid === selfMid || seen.has(userMid)) return; const name = a.textContent.trim(); if (name.length > 0 && name.length < 30) { seen.add(userMid); allUsers.push({name, mid: userMid}); } }); const nextBtn = document.querySelector('.vui_pagenation--btn-side:last-child'); if (!nextBtn || nextBtn.classList.contains('vui_button--disabled')) break; nextBtn.click(); await new Promise(r => setTimeout(r, 2000)); pageNum++; } return JSON.stringify({count: allUsers.length, pages: pageNum + 1, users: allUsers}); }"
+      },
+      "description": "通过DOM翻页采集关注列表全量数据。用户昵称选择器a.relation-card-info__uname，翻页按钮.vui_pagenation--btn-side:last-child，禁用状态.vui_button--disabled。B站关注API通过fetch返回-101，只能用DOM翻页。",
+      "is_final_result": false
+    },
+    {
+      "step": 9,
+      "tool_name": "mcp__chrome-server__chrome_close_tabs",
+      "tool_params": {
+        "tabIds": "all"
+      },
+      "description": "清理所有标签页",
+      "is_final_result": true
+    }
+  ]
+}

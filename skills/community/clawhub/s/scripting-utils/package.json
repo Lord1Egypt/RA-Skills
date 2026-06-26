@@ -1,0 +1,17 @@
+{
+  "name": "scripting-utils",
+  "version": "1.0.0",
+  "description": "Universal scripting utilities for 8+ languages with WebSearch",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "python3 scripts/language_validator.py --help"
+  },
+  "dependencies": [
+    "../json-utils"
+  ],
+  "keywords": ["scripting", "multilang", "irc", "bots", "websearch"],
+  "openclaw": {
+    "skill": true,
+    "category": "development"
+  }
+}

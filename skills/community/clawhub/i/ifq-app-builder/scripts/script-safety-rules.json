@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "id": "runtime-primitives",
+      "rules": [
+        { "label": "dynamic eval", "patterns": ["\\beval\\s*\\("] },
+        { "label": "dynamic constructor", "patterns": ["\\bnew\\s+Function\\s*\\("] },
+        { "label": "dynamic import", "patterns": ["\\bimport\\s*\\("] },
+        { "label": "process module", "patterns": ["from\\s+['\\\"]child_process['\\\"]", "from\\s+['\\\"]node:child_process['\\\"]"] },
+        { "label": "destructive fs", "patterns": ["\\bfs\\.rmSync\\s*\\(", "\\bfs\\.rmdirSync\\s*\\(", "\\bfs\\.unlinkSync\\s*\\("] }
+      ]
+    },
+    {
+      "id": "script-connectivity",
+      "rules": [
+        { "label": "connection module http", "patterns": ["from\\s+['\\\"](?:node:)?http['\\\"]"] },
+        { "label": "connection module https", "patterns": ["from\\s+['\\\"](?:node:)?https['\\\"]"] },
+        { "label": "connection module sockets", "patterns": ["from\\s+['\\\"](?:node:)?net['\\\"]", "from\\s+['\\\"](?:node:)?tls['\\\"]", "from\\s+['\\\"](?:node:)?dns['\\\"]"] },
+        { "label": "connection package axios", "patterns": ["from\\s+['\\\"]axios['\\\"]"] },
+        { "label": "connection package node-fetch", "patterns": ["from\\s+['\\\"]node-fetch['\\\"]"] },
+        { "label": "connection package undici", "patterns": ["from\\s+['\\\"]undici['\\\"]"] },
+        { "label": "connection call fetch", "patterns": ["\\bfetch\\s*\\("] },
+        { "label": "connection call websocket", "patterns": ["\\bWebSocket\\s*\\("] }
+      ]
+    },
+    {
+      "id": "secret-hygiene",
+      "rules": [
+        { "label": "stripe live token", "patterns": ["\\bsk_live_[A-Za-z0-9]{16,}"] },
+        { "label": "github pat", "patterns": ["\\bghp_[A-Za-z0-9]{30,}"] },
+        { "label": "aws access key", "patterns": ["\\bAKIA[0-9A-Z]{16}\\b"] },
+        { "label": "slack token", "patterns": ["\\bxox[baprs]-[A-Za-z0-9-]{10,}"] },
+        { "label": "private material block", "patterns": ["-----BEGIN [A-Z ]*PRIVATE KEY-----"] }
+      ]
+    }
+  ]
+}

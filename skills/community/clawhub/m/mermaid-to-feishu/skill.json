@@ -1,0 +1,15 @@
+{
+  "name": "Mermaid 转飞书图片 Canvas 渲染版",
+  "version": "2.0.0",
+  "description": "使用 Browser/Canvas 渲染 Mermaid 图表并发送到飞书（飞书不支持直接渲染 Mermaid）",
+  "author": "阿香 🦞",
+  "license": "MIT",
+  "requirements": {
+    "bins": [],
+    "python": []
+  },
+  "tags": ["latest", "feishu", "mermaid", "canvas", "browser"],
+  "clawdis": {
+    "emoji": "📊"
+  }
+}

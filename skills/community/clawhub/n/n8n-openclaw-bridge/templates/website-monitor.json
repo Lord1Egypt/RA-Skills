@@ -1,0 +1,92 @@
+{
+  "name": "Agent: Website Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "minutes", "minutesInterval": 30 }]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300],
+      "id": "schedule-check",
+      "name": "Every 30 Minutes"
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.MONITOR_URL || 'https://example.com' }}",
+        "method": "GET",
+        "options": {
+          "timeout": 10000,
+          "fullResponse": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300],
+      "id": "fetch-page",
+      "name": "Fetch Page"
+    },
+    {
+      "parameters": {
+        "functionCode": "const response = $input.all()[0].json;\nconst statusCode = response.statusCode || 200;\nconst bodyLength = (response.body || '').length;\n\n// Simple change detection: compare body length\n// For production, use a hash comparison\nconst previousLength = $env.LAST_BODY_LENGTH ? parseInt($env.LAST_BODY_LENGTH) : 0;\nconst changed = Math.abs(bodyLength - previousLength) > 100;\n\nreturn [{\n  json: {\n    url: response.url || $env.MONITOR_URL,\n    status: statusCode,\n    body_length: bodyLength,\n    previous_length: previousLength,\n    changed,\n    is_error: statusCode >= 400,\n    checked_at: new Date().toISOString()\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "id": "detect-change",
+      "name": "Detect Changes"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.changed }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "id": "changed-check",
+      "name": "Changed?"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "🔔 Website Change Detected!\n\nURL: {{ $json.url }}\nStatus: {{ $json.status }}\nBody size: {{ $json.previous_length }} → {{ $json.body_length }}\nChecked: {{ $json.checked_at }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [1050, 200],
+      "id": "alert-change",
+      "name": "Alert: Change Detected"
+    }
+  ],
+  "connections": {
+    "Every 30 Minutes": {
+      "main": [[{ "node": "Fetch Page", "type": "main", "index": 0 }]]
+    },
+    "Fetch Page": {
+      "main": [[{ "node": "Detect Changes", "type": "main", "index": 0 }]]
+    },
+    "Detect Changes": {
+      "main": [[{ "node": "Changed?", "type": "main", "index": 0 }]]
+    },
+    "Changed?": {
+      "main": [
+        [{ "node": "Alert: Change Detected", "type": "main", "index": 0 }],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

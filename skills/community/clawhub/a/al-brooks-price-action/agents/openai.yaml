@@ -1,0 +1,7 @@
+interface:
+  display_name: "Al Brooks Price Action"
+  short_description: "Analyze charts and setups with a Brooks-style price action lens"
+  default_prompt: "Use $al-brooks-price-action to classify the chart context, identify the active Brooks-style setup near the hard right edge, and decide whether it is actionable, watch, or no trade."
+
+policy:
+  allow_implicit_invocation: true

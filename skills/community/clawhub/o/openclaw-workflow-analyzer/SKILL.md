@@ -1,35 +1,181 @@
 ---
-name: "Openclaw Workflow Analyzer"
-description: "分析用户的工作流程，判断哪些环节可以用 OpenClaw（个人 AI Agent）自动化实现。 将工作流拆解为子流程，按 ⭐1-10 星难度阶梯评估可行性，对第三方数据依赖主动确认可用性， 给出先易后难的落地建议和学习路径。 触发词：分析工作流程、workflow analysis、哪些可以自动化、OpenCla..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-workflow-analyzer"
-sourceUrl: "https://clawhub.ai/skills/openclaw-workflow-analyzer"
+name: openclaw-workflow-analyzer
+clawhub-slug: openclaw-workflow-analyzer
+clawhub-owner: fangshan101-coder
+homepage: https://github.com/fangshan101-coder/openclaw-workflow-analyzer
+description: |-
+  分析用户的工作流程，判断哪些环节可以用 OpenClaw（个人 AI Agent）自动化实现。
+  将工作流拆解为子流程，按 ⭐1-10 星难度阶梯评估可行性，对第三方数据依赖主动确认可用性，
+  给出先易后难的落地建议和学习路径。
+  触发词：分析工作流程、workflow analysis、哪些可以自动化、OpenClaw 能帮我做什么、
+  工作流拆解、自动化评估、automate my workflow。
+  不适用于：直接执行自动化任务（本 Skill 只做分析和建议）、非 OpenClaw 平台的自动化评估、
+  具体 Skill 编写（请使用 skill-creator）。
+license: MIT
+compatibility:
+  platforms:
+    - claude-code
+    - claude-ai
+    - api
+metadata:
+  author: fangshan101-coder
+  version: "1.0.0"
+  tags: ["openclaw", "workflow", "automation", "工作流", "自动化", "分析"]
 ---
 
-# Openclaw Workflow Analyzer
+# OpenClaw 工作流分析器
 
-> 分析用户的工作流程，判断哪些环节可以用 OpenClaw（个人 AI Agent）自动化实现。 将工作流拆解为子流程，按 ⭐1-10 星难度阶梯评估可行性，对第三方数据依赖主动确认可用性， 给出先易后难的落地建议和学习路径。 触发词：分析工作流程、workflow analysis、哪些可以自动化、OpenCla...
+将用户的工作流程拆解为可自动化的子流程，评估 OpenClaw 实现可行性、落地难度和学习路径。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-workflow-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-workflow-analyzer](https://clawhub.ai/skills/openclaw-workflow-analyzer)
+## 快速开始
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-workflow-analyzer
 ```
+"分析一下我的日常工作流程，看看哪些能自动化"
+"我每天要做 X、Y、Z，OpenClaw 能帮我做哪些"
+"帮我分析这个流程的自动化可行性"
+```
+
+## 能力参考
+
+判断子流程可行性时，**必须先读取** [references/openclaw-capabilities.md](references/openclaw-capabilities.md) 获取 OpenClaw 完整能力矩阵。
+
+## 输入模式
+
+根据用户行为自动适配：
+
+### 模式 A：引导式（用户未提供完整流程）
+
+用苏格拉底式提问逐步挖掘工作流程：
+
+1. "你日常工作中，有哪些**重复性最高**的任务？"
+2. 针对用户提到的任务，追问具体步骤："这个任务你一般怎么做？从头到尾走一遍？"
+3. 对每个步骤追问数据来源："这一步的数据/信息从哪里来？"
+4. 确认频率和痛点："这个流程多久做一次？最烦的是哪一步？"
+
+每轮不超过 2-3 个问题，避免信息过载。收集足够信息后进入分析。
+
+### 模式 B：直接分析（用户已提供完整流程描述）
+
+直接进入拆解和分析阶段。如有模糊环节，针对性追问。
+
+## 分析流程
+
+### 第一步：流程拆解
+
+将用户描述的工作流程拆解为**树状结构**：
+
+```
+大流程：[工作流名称]
+├── 子流程 1：[步骤名称]
+│   ├── 子步骤 1.1
+│   └── 子步骤 1.2
+├── 子流程 2：[步骤名称]
+└── 子流程 3：[步骤名称]
+```
+
+拆解粒度：每个子流程应是一个**可独立判断是否能自动化的最小有意义单元**。
+
+### 第二步：第三方数据确认
+
+对每个涉及外部数据的子流程，**必须主动向用户确认**，不能假设：
+
+- "这一步需要从 [X 系统] 获取数据，你们有 API 接口吗？还是只能网页登录操作？"
+- "[X 服务] 的数据你有权限导出吗？有现成的 API Key 吗？"
+- "这个数据是在公网还是企业内网？运行 OpenClaw 的机器能访问到吗？"
+
+**确认清单**：
+- [ ] 数据源是否有 API？（REST/GraphQL/Webhook）
+- [ ] 是否需要认证？（API Key / OAuth / 账号密码）
+- [ ] 用户是否已有认证凭证？
+- [ ] 网络可达性？（公网 / VPN / 内网）
+- [ ] 是否有频率限制或费用？
+- [ ] 没有 API 时，是否可以用浏览器自动化替代？
+
+### 第三步：可行性判断 + 难度评级
+
+#### 难度阶梯（⭐1-10 星，面向小白视角）
+
+| 难度 | 你需要做什么 | 打个比方 | 例子 |
+|------|-------------|---------|------|
+| ⭐ | 直接用，打字就行 | 像跟朋友聊天 | "帮我翻译这段话" |
+| ⭐⭐ | 注册个账号，填个密钥 | 像注册 App 填手机号 | 接上 Telegram、配 AI 模型 Key |
+| ⭐⭐⭐ | 写一份"说明书" | 像写工作交接文档 | 写 Skill 教它"怎么写周报" |
+| ⭐⭐⭐⭐ | 让它去别的系统拿数据 | 像教人查公司内部系统 | 从飞书/Jira 拉数据加工输出 |
+| ⭐⭐⭐⭐⭐ | 写程序处理复杂数据 | 像写复杂 Excel 公式 | 多源数据合并、批量处理 |
+| ⭐×6 | 从网页上扒数据 | 像手动复制网页内容 | 对方没接口，只能从网页抓 |
+| ⭐×7 | 模拟人操作网页（含登录） | 像远程控制电脑点网页 | 需登录才能操作的网站 |
+| ⭐×8 | 控制手机做事 | 像远程操控手机按按钮 | 手机拍照、截图、读 App 数据 |
+| ⭐×9 | 给 OpenClaw 开发新能力 | 像给手机开发新 App | 支持新平台 |
+| ⭐×10 | 对接硬件设备 | 像写智能家居控制程序 | 控制打印机、传感器 |
+
+**⚫ 不适合**：OpenClaw 做不了，或者数据根本拿不到。
+
+#### 数据获取路径决策树
+
+```
+需要从别的地方拿数据吗？
+├── 不需要 → 看其他因素定难度
+└── 需要 → 有 API 接口吗？
+    ├── 有 → 数据处理复杂度？
+    │   ├── 简单（查一下贴过来）→ ⭐×4
+    │   └── 复杂（多源合并计算）→ ⭐×5
+    ├── 没有，但有网页 → 要登录吗？
+    │   ├── 不用 → ⭐×6
+    │   └── 要 → ⭐×7
+    ├── 数据只在手机 App → ⭐×8
+    └── 完全无获取途径 → ⚫ 不适合
+```
+
+**关键原则**：数据获取路径不明确时，**必须停下来问用户**。
+
+### 第四步：输出报告
+
+#### 输出格式
+
+```
+📋 工作流分析：[工作流名称]
+
+| 子流程 | 实现路径 | 难度 | 需要学习的 | 第三方依赖 |
+|--------|---------|------|-----------|-----------|
+| 1.1 提取数据 | Skill+API | ⭐×4 | REST API、认证配置 | XX API (有) |
+| 1.2 数据清洗 | Skill+脚本 | ⭐×5 | Python 基础 | 无 |
+| 1.3 生成报告 | 开箱即用 | ⭐×1 | 无 | 无 |
+| 2.1 抓取价格 | Skill+爬取 | ⭐×6 | HTML 选择器 | XX 网站 (无 API) |
+| 3.1 读取 App 数据 | ⚫ 不适合 | - | - | 仅 App 内 |
+
+📊 难度分布：
+- ⭐×1~2（零门槛）：X 个 → 立刻可以用
+- ⭐×3~5（需要学习）：X 个 → 投入 [时间] 可落地
+- ⭐×6~8（需要编程）：X 个 → 需要技术支持
+- ⚫ 不适合：X 个 → 建议用其他方式
+
+💡 落地建议（先易后难）：
+1. 先搞定 [零门槛子流程] → 立刻体验价值
+2. 再攻克 [低星子流程] → 学习 [X]
+3. [高星子流程] → 评估 ROI
+
+📚 需要学习的内容（去重合并）：
+1. [技能名称] — 用于子流程 [X, Y]
+2. [技能名称] — 用于子流程 [Z]
+```
+
+## 分析原则
+
+1. **不假设数据可用性**：涉及第三方数据时必须主动问用户
+2. **先易后难**：建议按落地难度从低到高排序
+3. **诚实评估**：不适合的场景明确说出来，不硬凑
+4. **给出替代方案**：不适合 OpenClaw 时，如果有其他方式简要提及
+5. **学习路径精简**：只说"需要学什么"，不需要给教程链接
+
+## 错误处理
+
+| 场景 | 处理 |
+|------|------|
+| 用户描述过于模糊 | 切换到引导式模式，逐步提问 |
+| 用户说的系统/服务不认识 | 直接问："这个系统有对外的 API 接口吗？" |
+| 用户期望不切实际 | 诚实说明限制，给出最接近的可行方案 |
+| 用户问具体怎么实现 | 说明本 Skill 只做分析，建议使用 skill-creator 编写具体 Skill |
+
+## 原子化设计
+
+本 Skill 仅负责「工作流分析和可行性评估」这一个原子化能力。不包含 Skill 编写、自动化实施、OpenClaw 配置等功能。分析完成后的落地实施，请根据建议使用对应工具。

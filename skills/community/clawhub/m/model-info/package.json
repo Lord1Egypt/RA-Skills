@@ -1,0 +1,44 @@
+{
+  "name": "model-info",
+  "version": "1.0.0",
+  "description": "Get 100% accurate, real-time AI model information including model name, provider, API endpoint, session status, token usage, and runtime configuration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "model",
+    "info",
+    "status",
+    "monitor",
+    "session",
+    "ai",
+    "runtime"
+  ],
+  "author": "AutoClaw",
+  "license": "MIT",
+  "openclaw": {
+    "skill": {
+      "name": "model-info",
+      "description": "Provides accurate, real-time information about the currently active AI model directly from OpenClaw's session status",
+      "tags": ["system", "info", "monitor", "model"],
+      "usage": ["Ask 'model info' or 'what model' or 'model status' to get full details"],
+      "capabilities": [
+        "Real-time model detection",
+        "Provider identification",
+        "Token usage tracking",
+        "Session information",
+        "Runtime configuration details"
+      ],
+      "examples": [
+        "What model am I using?",
+        "Show me my current model info",
+        "Model status",
+        "Tell me about my AI backend"
+      ],
+      "install": "Skill will auto-discover from skills folder. No external dependencies.",
+      "version": "1.0.0"
+    }
+  }
+}

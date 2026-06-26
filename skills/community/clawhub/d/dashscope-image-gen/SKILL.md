@@ -1,35 +1,35 @@
 ---
-name: "Dashscope Image Gen"
-description: "Generate images via Alibaba DashScope OpenAI-compatible endpoint (compatible-mode) using qwen-image-max. Use when the user asks for 文生图/图片生成/image generation..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dashscope-image-gen"
-sourceUrl: "https://clawhub.ai/skills/dashscope-image-gen"
+name: dashscope-image-gen
+description: Generate images via Alibaba DashScope OpenAI-compatible endpoint (compatible-mode) using qwen-image-max. Use when the user asks for 文生图/图片生成/image generation, wants to call /images/generations, or needs a scriptable CLI tool to create images from prompts.
 ---
 
-# Dashscope Image Gen
+# DashScope Image Generation (qwen-image-max)
 
-> Generate images via Alibaba DashScope OpenAI-compatible endpoint (compatible-mode) using qwen-image-max. Use when the user asks for 文生图/图片生成/image generation...
+Use this skill to generate an image from a text prompt through DashScope **compatible-mode**.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dashscope-image-gen`
-- **Source URL:** [https://clawhub.ai/skills/dashscope-image-gen](https://clawhub.ai/skills/dashscope-image-gen)
+## Quick start
 
-## Overview
+Preferred (no secrets in shell history):
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dashscope-image-gen
+export DASHSCOPE_API_KEY="..."
+./scripts/dashscope_image_gen.py --prompt "a cute robot, watercolor" --out robot.png
 ```
+
+Optional params (best-effort; support depends on DashScope):
+
+```bash
+./scripts/dashscope_image_gen.py --prompt "industrial factory at night" --size 1024x1024 --n 1 --out factory.png
+```
+
+## What to do when it fails
+
+1. Re-run with the same command and copy the **HTTP error body**.
+2. If the error indicates a different route/payload than OpenAI Images API:
+   - Update `scripts/dashscope_image_gen.py` accordingly.
+   - Update `references/dashscope-openai-compatible.md` with the correct details.
+
+## Files
+
+- `scripts/dashscope_image_gen.py`: main CLI (calls `POST {baseUrl}/images/generations`)
+- `references/dashscope-openai-compatible.md`: endpoint/auth notes

@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/pdf/merge",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": {
+      "urls": ["https://pdfapihub.com/sample.pdf", "https://pdfapihub.com/sample1.pdf", "https://pdfapihub.com/sample-pdfapi-intro.pdf"],
+      "output": "url",
+      "output_filename": "combined_invoices.pdf",
+      "metadata": { "title": "Combined Invoices", "author": "Acme Corp" }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": { "success": true, "merged_pdf_url": "https://cdn.pdfapihub.com/pdf/merged-abc123.pdf", "num_inputs": 3, "total_pages": 12 }
+  }
+}

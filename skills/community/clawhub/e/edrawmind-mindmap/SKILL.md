@@ -1,35 +1,179 @@
 ---
-name: "AI skills for GitHub Copilot, Claude Code, and OpenClaw to generate professional mind maps via the EdrawMind API."
-description: "Generate professional mind maps from natural language topics or structured Markdown using EdrawMind API with customizable layouts, themes, backgrounds, and h..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/edrawmind-mindmap"
-sourceUrl: "https://clawhub.ai/skills/edrawmind-mindmap"
+name: edrawmind-mindmap
+description: "凡是涉及思维导图的任务均使用此技能，包括：创建、生成、或将内容转换为思维导图。具体场景包括：从 Markdown 文档、代码架构、需求文档或任意结构化文本生成思维导图；根据用户描述的主题或大纲创建思维导图；生成 .emmx 文件和缩略图预览。当用户提到"思维导图"、"脑图"、"mindmap"、"mind map"、"导图"，或希望将层级/结构化信息可视化为树状图时，即触发此技能。"
+argument-hint: "描述您想创建的思维导图主题，或提供 Markdown 内容"
 ---
 
-# AI skills for GitHub Copilot, Claude Code, and OpenClaw to generate professional mind maps via the EdrawMind API.
+# EdrawMind（万兴脑图）思维导图生成技能
 
-> Generate professional mind maps from natural language topics or structured Markdown using EdrawMind API with customizable layouts, themes, backgrounds, and h...
+通过 `edrawmind_cli.py` 脚本调用 EdrawMind HTTP API，将自然语言主题或已有 Markdown 文档转化为专业思维导图。支持自定义布局、主题风格、画布背景和手绘效果。生成后返回在线编辑链接和缩略图预览。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/edrawmind-mindmap`
-- **Source URL:** [https://clawhub.ai/skills/edrawmind-mindmap](https://clawhub.ai/skills/edrawmind-mindmap)
+## 快速参考
 
-## Overview
+| 任务场景 | 处理方式 |
+|---------|---------|
+| 从已有 Markdown 文件生成 | 读取文件 → 提取并清理标题 → 确定布局/主题/背景 → 执行脚本 |
+| 根据用户描述的主题生成 | 起草 Markdown 大纲 → 根据内容类型确定参数 → 执行脚本 |
+| 从代码/项目结构生成 | 探索代码库 → 整理为 Markdown 层级 → 执行脚本 |
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/edrawmind-mindmap
+## Step 1 — 准备 Markdown 内容
+
+输入必须是**结构良好的 Markdown**，使用标题层级表示树状结构。
+
+**核心规则：**
+- `#` → 根节点（中心主题），建议仅一个
+- `##` → 一级分支、`###` → 二级分支，以此类推
+- `-`/`*`/`+`/`1.` 列表项 → 子节点，缩进列表项 → 更深层子节点
+- 必须包含至少一个标题和至少一个列表项
+- 节点文字简洁（中文 3-10 字，英文 3-5 词），去除编号前缀
+- 建议最大深度 5 层，最大节点数约 150 个
+
+> 详细格式规范、层级映射及示例参见 [Markdown 格式规范](./references/markdown-format.md)。
+
+---
+
+## Step 2 — 选择布局类型（`layout_type`）
+
+根据内容特点选择最合适的布局（1–12），默认 `1`（MindMap 双向导图）。
+
+**智能推断：**
+- 含"原因/影响/根因/6M" → `8`（鱼骨图）
+- 含"时间/进度/计划/里程碑/路线图" → `7`（时间轴）
+- 含"组织/部门/团队/人员架构" → `5`（向下组织结构图）
+- 含"分类/体系/全景/层级" → `4`（向下对称树状图）
+- 含"对比/矩阵/SWOT/多维" → `12`（矩阵图）
+- 含"对比表/需求/功能清单" → `11`（树型表格）
+- 含"清单/目录/大纲/列举" → `10`（括号图）
+- 含"演示/发散/放射/展示" → `9`（扇形放射图）
+- 其他/未指定 → `1`（MindMap）
+
+> 各布局的结构特点及视觉效果参见 [风格参数指南](./references/style-guide.md)。
+
+---
+
+## Step 3 — 选择主题风格（`theme_style`）
+
+传入 `1`–`10`，默认不传则保持导入时原始主题。
+
+**智能推断：**
+- "学习/笔记/知识/教育" → `2`
+- "创意/活力/时尚/产品/年轻" → `3`
+- "商务/汇报/正式/简洁/职场" → `4`
+- "头脑风暴/彩虹/活泼/儿童/趣味" → `5`
+- "文档/报告/打印/大纲/素雅" → `6`
+- "生活/旅游/健康/自然/计划" → `7`
+- "暗色/夜间/深色/护眼" → `8`
+- "科技/霓虹/赛博/发布会/炫酷" → `9`
+- "科幻/IT/架构/安全/暗黑" → `10`
+- 未指定 → `1`
+
+> 各主题的配色、连线形状等详细说明参见 [风格参数指南](./references/style-guide.md)。
+
+---
+
+## Step 4 — 选择画布背景（`background`）
+
+传入预设编号 `1`–`15` 或自定义 `"#RRGGBB"`。默认不传（无背景）。自定义颜色优先级高于纹理预设。
+
+**快速推断：**
+- "极简/打印/正式" → `2` · "温馨/商务" → `3`
+- "科技/分析" → `4` 或 `11` · "自然/清新" → `5`
+- "文艺/创意" → `6` · "暗色主题" → `7`/`8`/`14`/`15`
+- "复古/手绘感" → `9` · 品牌色 → 直接传 `"#RRGGBB"`
+
+> 各背景的色值及纹理效果参见 [风格参数指南](./references/style-guide.md)。
+
+---
+
+## Step 5 — 选择手绘风格（可选）
+
+两个独立参数，可单独或组合使用：
+
+**`line_hand_drawn`** — 连线手绘（`true`/`false`，默认 `false`）：所有连线变为手绘弯曲风格。
+
+**`fill_hand_drawn`** — 节点填充手绘：`none`（默认）/ `pencil` / `watercolor` / `charcoal` / `paint` / `graffiti`。
+
+**注意：手绘风格影响渲染性能，建议节点数 ≤ 50；超过时优先使用非手绘风格。**
+
+**组合推荐：**
+- "手绘/素描" → `line_hand_drawn=true` + `fill=pencil` + `background=9`（棉纸纹）
+- "水彩插画" → `line_hand_drawn=true` + `fill=watercolor` + 浅色背景
+- "炭笔艺术" → `line_hand_drawn=true` + `fill=charcoal` + `background=10`（浅灰纹）
+- "涂鸦个性" → `line_hand_drawn=true` + `fill=graffiti` + 深色背景
+
+> 手绘风格的完整组合效果参见 [风格参数指南](./references/style-guide.md)。
+
+---
+
+## Step 6 — 执行脚本生成思维导图
+
+将准备好的 Markdown 内容通过 `--text` 参数直接传给脚本，根据前几步确定的参数拼接命令行，在终端执行：
+
 ```
+python ./scripts/edrawmind_cli.py --text "<MARKDOWN内容>" [OPTIONS]
+```
+
+**`--text` 中的换行用 `\n` 表示。** 无需创建临时文件。常用选项：`--layout N`（布局 1–12）、`--theme N`（主题 1–10）、`--background BG`（背景 1–15 或 `#RRGGBB`）、`--line-hand-drawn`、`--fill STYLE`。
+
+**调用示例：**
+```bash
+python ./scripts/edrawmind_cli.py --text "# AI技术\n## 机器学习\n- 监督学习\n- 无监督学习\n## 深度学习\n- CNN\n- Transformer" --layout 1 --theme 2
+```
+
+**判断结果：** 成功时输出包含 `✓` 和 `Edit URL`；失败时输出 `✗` 或 `Connection failed`。已在终端输出中找到成功标志时，**不得重复执行脚本**。
+
+> 完整 CLI 参数说明参见 [CLI 工具参考](./references/tool-reference.md)。
+
+---
+
+## Step 7 — 展示结果
+
+1. **必须展示 `file_url`**：提供在线编辑链接，确保用户能访问和编辑思维导图
+2. **展示缩略图**：如果当前环境支持图片渲染，使用 `thumbnail_url` 展示预览缩略图
+
+---
+
+## 应用场景
+
+### 从已有 Markdown 文档生成
+
+1. 读取源 Markdown 文件
+2. 提取标题结构，清理编号前缀、精简冗长标题
+3. 分析内容类型，选择合适的布局和主题
+4. 执行 `edrawmind_cli.py`
+5. 展示 `file_url` 和缩略图
+
+### 根据用户描述的主题生成
+
+1. 获取用户主题（或从对话中推断）
+2. 起草 2-4 层深度的 Markdown 大纲
+3. 根据主题类型智能推断布局、主题、背景
+4. 执行 `edrawmind_cli.py`
+5. 展示 `file_url` 和缩略图
+
+### 从代码库/项目结构生成
+
+1. 探索代码库，理解架构
+2. 整理为 Markdown 层级结构
+3. 推荐使用 RightTree（`--layout 3`）或 RightMap（`--layout 2`）
+4. 执行 `edrawmind_cli.py`
+5. 展示 `file_url` 和缩略图
+
+---
+
+## 注意事项
+
+- 纯文本段落无法生成思维导图，必须使用标题和列表
+- 建议每次只使用一个 `#` 一级标题作为根节点
+- 对于大型文档（100+ 个标题），按章节拆分为多个思维导图
+- **必须向用户展示返回的 `file_url`**
+- 用户明确指定布局/主题/背景时严格遵从；未指定时根据内容智能推断
+- `background` 传入自定义颜色（`"#RRGGBB"`）时优先级高于纹理预设
+- 手绘风格（`line_hand_drawn` + `fill_hand_drawn`）可单独或组合使用
+- 脚本需要 Python 3 运行环境
+
+---
+
+© 2026 Wondershare EdrawMind（万兴脑图）. All rights reserved.

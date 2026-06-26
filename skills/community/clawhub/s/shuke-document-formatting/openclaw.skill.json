@@ -1,0 +1,124 @@
+{
+  "id": "shuke-document-formatting",
+  "name": "数科文印格式自动化",
+  "description": "按照数科公司文印格式要求自动化格式化Word文档并生成PDF",
+  "version": "1.1.0",
+  "author": "xiaoqiang",
+  "license": "MIT-0",
+  
+  "trigger": {
+    "keywords": [
+      "数科文印",
+      "文印格式",
+      "格式化文档",
+      "生成PDF",
+      "shuke",
+      "文档格式化"
+    ],
+    "files": [".docx", ".doc"],
+    "mode": "keyword"
+  },
+
+  "workflow": {
+    "stages": [
+      {
+        "name": "字体安装",
+        "tasks": [
+          "检查字体是否安装",
+          "安装缺失字体",
+          "验证字体安装结果"
+        ]
+      },
+      {
+        "name": "文档格式化",
+        "tasks": [
+          "分析文档结构",
+          "识别标题层次",
+          "应用正确格式",
+          "保存格式化文档"
+        ]
+      },
+      {
+        "name": "PDF生成",
+        "tasks": [
+          "加载格式化文档",
+          "应用页面设置",
+          "使用精确字体生成PDF",
+          "验证PDF字体"
+        ]
+      }
+    ]
+  },
+
+  "tools": [
+    {
+      "name": "smart_format_v3.py",
+      "description": "智能文档格式化工具",
+      "usage": "python smart_format_v3.py input.docx output.docx"
+    },
+    {
+      "name": "convert_to_pdf_shuke_final.py",
+      "description": "PDF生成工具",
+      "usage": "python convert_to_pdf_shuke_final.py input.docx output.pdf"
+    },
+    {
+      "name": "install_shuke_fonts.py",
+      "description": "字体安装工具",
+      "usage": "python install_shuke_fonts.py"
+    },
+    {
+      "name": "verify_shuke_fonts.py",
+      "description": "字体验证工具",
+      "usage": "python verify_shuke_fonts.py"
+    },
+    {
+      "name": "batch_convert_shuke_pdf.py",
+      "description": "批量转换工具",
+      "usage": "python batch_convert_shuke_pdf.py input_folder output_folder"
+    }
+  ],
+
+  "requirements": {
+    "python": ">=3.8",
+    "packages": [
+      "python-docx",
+      "reportlab"
+    ],
+    "fonts": [
+      "方正小标宋简体",
+      "仿宋GB2312",
+      "楷体GB2312",
+      "黑体"
+    ]
+  },
+
+  "examples": [
+    {
+      "input": "格式化文档 input.docx 并生成PDF",
+      "commands": [
+        "python smart_format_v3.py input.docx formatted.docx",
+        "python convert_to_pdf_shuke_final.py formatted.docx output.pdf"
+      ]
+    },
+    {
+      "input": "批量处理文件夹中的所有文档",
+      "commands": [
+        "python batch_convert_shuke_pdf.py ./documents ./pdfs"
+      ]
+    }
+  ],
+
+  "config": {
+    "default_fonts_path": "/usr/share/fonts/truetype/sim/",
+    "page_margins": {
+      "top": "3.5cm",
+      "bottom": "3.5cm",
+      "left": "2.8cm",
+      "right": "2.8cm"
+    },
+    "grid": {
+      "chars_per_line": 28,
+      "lines_per_page": 22
+    }
+  }
+}

@@ -1,35 +1,71 @@
 ---
-name: "desearch-web-search"
-description: "Indexed by skills.sh from desearch-ai/desearch-openclaw-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "desearch-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/desearch-ai/desearch-openclaw-skills/desearch-web-search"
-sourceUrl: "https://skills.sh/desearch-ai/desearch-openclaw-skills/desearch-web-search"
+name: desearch-web-search
+description: Search the web and get real-time SERP-style results with titles, URLs, and snippets. Use this for general web queries when you need current links and information from across the internet.
+metadata: {"clawdbot":{"emoji":"🌐","homepage":"https://desearch.ai","requires":{"env":["DESEARCH_API_KEY"]}}}
 ---
 
-# desearch-web-search
+# Web Search By Desearch
 
-> Indexed by skills.sh from desearch-ai/desearch-openclaw-skills
+Real-time web search returning structured SERP-style results with titles, links, and snippets.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** desearch-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/desearch-ai/desearch-openclaw-skills/desearch-web-search`
-- **Source URL:** [https://skills.sh/desearch-ai/desearch-openclaw-skills/desearch-web-search](https://skills.sh/desearch-ai/desearch-openclaw-skills/desearch-web-search)
+## Quick Start
 
-## Overview
+1. Get an API key from https://console.desearch.ai
+2. Set environment variable: `export DESEARCH_API_KEY='your-key-here'`
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/desearch-ai/desearch-openclaw-skills/desearch-web-search
+# Basic web search
+desearch.py web "quantum computing"
+
+# Paginated results
+desearch.py web "quantum computing" --start 10
 ```
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `--start` | Pagination offset (default: 0). Use to get the next page of results. |
+
+## Response
+
+### Example
+```bash
+desearch.py web "best sights in Georgia"
+```
+
+```json
+{
+  "data": [
+    {
+      "title": "Cool places and fun things to do in Georgia ? : r/solotravel",
+      "snippet": "I was in Georgia earlier this month. My favorite place was Mtirala National Park in Adjara. The mountains and forest were absolutely beautiful ...",
+      "link": "https://www.reddit.com/r/solotravel/comments/py4wls/cool_places_and_fun_things_to_do_in_georgia/",
+    },
+  ]
+}
+```
+
+### Notes
+- Returns up to 10 results per page. Use `--start` to paginate.
+
+### Errors
+Status 401, Unauthorized (e.g., missing/invalid API key)
+```json
+{
+  "detail": "Invalid or missing API key"
+}
+```
+
+Status 402, Payment Required (e.g., balance depleted)
+```json
+{
+  "detail": "Insufficient balance, please add funds to your account to continue using the service."
+}
+```
+
+## Resources
+- [API Reference](https://desearch.ai/docs/api-reference/get-web)
+- [Desearch Console](https://console.desearch.ai)

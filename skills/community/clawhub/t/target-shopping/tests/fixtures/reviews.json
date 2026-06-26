@@ -1,0 +1,82 @@
+{
+  "data": {
+    "product": {
+      "__typename": "Product",
+      "tcin": "89827259",
+      "category": {
+        "breadcrumbs": [
+          {
+            "name": "target",
+            "category_id": "root"
+          },
+          {
+            "name": "Electronics",
+            "category_id": "5xtg6"
+          },
+          {
+            "name": "Headphones",
+            "category_id": "5xteg"
+          },
+          {
+            "name": "Earbuds",
+            "category_id": "fxg7i"
+          },
+          {
+            "name": "Wired Earbuds",
+            "category_id": "rybm0"
+          }
+        ]
+      },
+      "item": {
+        "relationship_type_code": "SA",
+        "product_description": {
+          "title": "Apple EarPods (USB-C)",
+          "downstream_description": "Unlike traditional, circular earbuds, the design of the EarPods is defined by the geometry of the ear. Which makes them more comfortable for more people than any other earbud-style headphones.<br />The speakers inside the EarPods have been engineered to maximize sound output, which means you get high-quality audio.<br />The EarPods (USB-C) also include a built-in remote that lets you adjust the volume, control the playback of music and video, and answer or end calls with a press of the remote.<br /><br />What’s in the Box<br />EarPods with USB-C Connector<br />System Requirements<br />• Mac models with USB-C running macOS Monterey 12.6 or later<br />• iPad models with USB-C running iPadOS 16.4 or later<br />• iPhone models with USB-C running iOS 17 or later<br />Compatibility<br />iPhone Models<br />• iPhone 17 Pro Max<br />• iPhone 17 Pro<br />• iPhone Air<br />• iPhone 17<br />• iPhone 17e<br />• iPhone 16 Pro Max<br />• iPhone 16 Pro<br />• iPhone 16 Plus<br />• iPhone 16<br />• iPhone 16e<br />• iPhone 15 Pro Max<br />• iPhone 15 Pro<br />• iPhone 15<br />• iPhone 15 Plus<br />iPad Models<br />• iPad Pro 13-inch (M5)<br />• iPad Pro 11-inch (M5)<br />• iPad Pro 13-inch (M4)<br />• iPad Pro 12.9-inch (3rd, 4th, 5th, and 6th generation)<br />• iPad Pro 11-inch (M4)<br />• iPad Pro 11-inch (1st, 2nd, 3rd, and 4th generation)<br />• iPad Air 13-inch (M4) <br />• iPad Air 11-inch (M4)<br />• iPad Air 13-inch (M3) <br />• iPad Air 11-inch (M3)<br />• iPad Air 13-inch (M2)<br />• iPad Air 11-inch (M2)<br />• iPad Air (4th and 5th generation)<br />• iPad (A16)<br />• iPad (10th generation) <br />• iPad mini (A17 Pro)<br />• iPad mini (6th generation)<br />Mac Models<br />• MacBook Neo (2026)<br />• MacBook Air (2018 and later)<br />• MacBook Pro (2019 and later)<br />• iMac (2019 and later)<br />• iMac Pro (2017)<br />• Mac mini (2018 and later)<br />• Mac Studio (2022 and later)<br />• Mac Pro (2019 and later)",
+          "bullet_descriptions": [
+            "<B>Weight:</B> .2 Pounds",
+            "<B>Water Resistance:</B> No Water Resistance Rating",
+            "<B>Ear Cushion Material:</B> ABS (Acrylonitrile Butadiene Styrene)",
+            "<B>Electronics Condition:</B> New",
+            "<B>Connection Type:</B> USB-C",
+            "<B>Package Quantity:</B> 1",
+            "<B>Noise Canceling:</B> No Active Noise Canceling",
+            "<B>Microphone:</B> No Built-In Microphone",
+            "<B>Wireless Type:</B> Wired",
+            "<B>Battery:</B> No Battery Used",
+            "<B>Warranty:</B> 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869"
+          ],
+          "soft_bullet_description": "&bull;Designed by Apple<br>&bull;Deep, rich bass tones<br>&bull;Protection from sweat and water<br>&bull;Control music and video playback<br>&bull;Answer and end calls"
+        },
+        "product_classification": {
+          "item_type": {
+            "name": "Headphones",
+            "type": "59911919"
+          }
+        },
+        "enrichment": {
+          "image_info": {
+            "primary_image": {
+              "url": "https://target.scene7.com/is/image/Target/GUEST_eedac426-a8ac-449e-9afe-113c7732241f"
+            }
+          },
+          "buy_url": "https://www.target.com/p/apple-earpods-usb-c/-/A-89827259"
+        }
+      },
+      "ratings_and_reviews": {
+        "secondary_config": [
+          {
+            "id": "quality",
+            "label": "quality"
+          },
+          {
+            "id": "value",
+            "label": "value"
+          }
+        ],
+        "statistics": {
+          "review_count": 148
+        }
+      }
+    }
+  }
+}

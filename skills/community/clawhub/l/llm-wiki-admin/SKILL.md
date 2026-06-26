@@ -1,35 +1,207 @@
 ---
-name: "llm-wiki-knowledge-Karpathy"
-description: "LLM Wiki 知识库管理员。管理基于 Karpathy LLM-Wiki 理念的持久知识库，包括：初始化项目、摄入新原始资料（编译为 wiki 页面）、回答基于 wiki 的查询、执行健康检查（lint）。当用户想要初始化知识库、ingest/摄入新文章或笔记、从 wiki 查询知识、维护 wiki 健康、或..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/llm-wiki-admin"
-sourceUrl: "https://clawhub.ai/skills/llm-wiki-admin"
+name: llm-wiki
+compatibility:
+  required_skills:
+    - /obsidian
+description: LLM Wiki 知识库管理员。管理基于 Karpathy LLM-Wiki 理念的持久知识库，包括：初始化项目、摄入新原始资料（编译为 wiki 页面）、回答基于 wiki 的查询、执行健康检查（lint）。当用户想要初始化知识库、ingest/摄入新文章或笔记、从 wiki 查询知识、维护 wiki 健康、或提到 llm-wiki / llm_wiki / schema.md / 第二大脑 / Karpathy wiki / Obsidian wiki / 知识编译 时，必须使用此技能。即使用户只说"帮我把这篇文章加进 wiki"或"wiki 里有关于 X 的内容吗"，也要触发此技能。
 ---
 
-# llm-wiki-knowledge-Karpathy
+# LLM-Wiki 知识库管理员
 
-> LLM Wiki 知识库管理员。管理基于 Karpathy LLM-Wiki 理念的持久知识库，包括：初始化项目、摄入新原始资料（编译为 wiki 页面）、回答基于 wiki 的查询、执行健康检查（lint）。当用户想要初始化知识库、ingest/摄入新文章或笔记、从 wiki 查询知识、维护 wiki 健康、或...
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/llm-wiki-admin`
-- **Source URL:** [https://clawhub.ai/skills/llm-wiki-admin](https://clawhub.ai/skills/llm-wiki-admin)
+> **不是 RAG，是编译。** RAG 每次查询都重新推导；Wiki 把知识编译一次，持续复利积累。原始资料是真相来源，LLM 负责编译——摘要、交叉引用、标注矛盾、综合洞见。用户负责提供资料和提问，LLM 负责其余一切。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/llm-wiki-admin
+三层架构：
 ```
+raw/        ← 原始资料（只读，永不修改）
+wiki/       ← LLM 编写并维护的 Markdown 知识页面
+schema.md   ← Wiki 结构规则（页面类型、格式、命名、工作流）
+purpose.md  ← 项目目标与范围（LLM 的"北极星"）
+```
+
+`schema.md` + `purpose.md` 是系统的"宪法"——让 LLM 从通用助手变为专业领域知识管理员。
+
+---
+
+## 四种操作模式
+
+根据用户意图，进入对应模式：
+
+| 用户说 | 进入模式 |
+|--------|---------|
+| 初始化 / 新建 wiki / 配置项目 | → **[INIT] 初始化** |
+| 摄入 / ingest / 把这个加进 wiki / 读这篇文章 | → **[INGEST] 摄入** |
+| wiki 里有没有 / 查一下 / 问题 | → **[QUERY] 查询** |
+| 健康检查 / lint / 孤立页面 / 检查 wiki | → **[LINT] 健康检查** |
+
+意图不明确时，直接问："你是想把新资料加进 wiki，还是查询现有 wiki 中的内容？"
+
+---
+
+## [INIT] 初始化
+
+用于首次建立知识库项目。
+
+### Step 1：访谈（一次问卷）
+
+向用户提出以下问题（一次发出，不要逐条等待）：
+
+```
+初始化你的 LLM Wiki，请回答以下几个问题：
+
+1. 使用场景（选一个）：
+   A 🔬 研究调研   B 📚 阅读积累   C 🌱 个人成长   D 💼 商业/团队   E 📄 通用
+
+2. 主题领域：（自由填写，例如"中国敏捷教练组读书笔记"）
+
+3. 主要资料类型（可多选）：
+   论文 / 书籍 / 网文 / 笔记 / 会议记录 / 其他
+
+4. 写作语言：
+   A 跟随资料语言   B 统一中文   C 统一英文
+```
+
+收到用户回复后，继续 Step 2。如果用户只回答了部分，用合理默认值补全（场景默认 E 通用，语言默认跟随资料）。
+
+### Step 2：生成配置文件
+
+**必须先读取** `references/templates.md`，获取对应场景的模板，然后：
+1. 用主题领域替换模板占位符
+2. 根据语言偏好调整语言规则说明
+3. 生成以下 5 个文件：
+
+| 文件 | 说明 |
+|------|------|
+| `schema.md` | Wiki 结构规则（项目根目录）|
+| `purpose.md` | 项目目标与范围（项目根目录）|
+| `wiki/index.md` | 空目录索引，LLM 维护 |
+| `wiki/log.md` | 操作日志，只追加不覆盖 |
+| `wiki/overview.md` | 知识库总览（初始为待填模板）|
+
+> **路径约定**：`schema.md` 和 `purpose.md` 在项目**根目录**（与 `wiki/` 同级），这是标准的三层架构约定。
+
+场景 → 额外子目录映射：
+
+| 场景 | 额外 wiki 子目录 |
+|------|----------------|
+| research | wiki/methodology, wiki/findings, wiki/thesis |
+| reading | wiki/characters, wiki/themes, wiki/plot-threads, wiki/chapters |
+| personal | wiki/goals, wiki/habits, wiki/reflections, wiki/journal |
+| business | wiki/meetings, wiki/decisions, wiki/projects, wiki/stakeholders |
+| general | （无额外目录）|
+
+### Step 3：写入 Obsidian
+
+使用 `/obsidian` skill 将所有文件写入用户的 Obsidian Vault。如用户未指定路径，询问："Wiki 项目根目录在 Vault 中的位置？"
+
+> **前置条件**：`/obsidian` skill 必须已安装，这是本技能的硬依赖。
+
+### Step 4：完成确认
+
+告知用户：已生成的文件列表、下一步操作：把第一批资料放入 `raw/` 后开始 Ingest。
+
+---
+
+## [INGEST] 摄入新资料
+
+将新原始资料"编译"为 wiki 页面。这是最重要的操作。
+
+### 摄入前（告知用户）
+
+**不要直接开始写文件。** 先简短告诉用户你发现了什么：
+- 核心实体、主要论点、与现有 wiki 的关联
+- 哪些现有页面会被更新，哪些需要新建
+- 是否发现矛盾
+
+然后再写文件。若资料很长，提议分段处理。
+
+### 摄入步骤
+
+1. **读取** 原始资料全文
+2. **读取** `wiki/index.md`，了解现有知识结构
+3. **读取** `schema.md`，获取本项目的页面类型和格式规范
+4. **识别** 资料中的实体、概念、案例、来源
+5. **判断** 每个概念：
+   - 已有对应 Wiki 页面 → 追加或更新内容（**不覆盖，整合**）
+   - 尚无对应页面 → 新建页面
+6. **必须保留**：所有数字、百分比、时间盒数值、案例细节、原始故事线、贡献者原话
+7. **添加** 双向 `[[Wikilink]]`：在每个页面正文末尾用 `## Related` section 列出关联页面，**不放在 YAML frontmatter**（Obsidian 不支持 frontmatter 中的 wikilink）
+8. **矛盾处理**：不同来源有冲突时，在页面内注明两种说法及来源，用 `> ⚠️ 矛盾：...` 标记，**不擅自裁决**
+9. **更新** `wiki/index.md`（追加，保留全部现有条目）
+10. **追加** `wiki/log.md`（格式：`## [YYYY-MM-DD] ingest | 来源标题`，**逆序**：最新条目插入文件顶部）
+11. **更新** `wiki/overview.md`（2-5 段综述，反映最新状态）
+
+### 摄入后（汇报用户）
+
+"已更新 4 个页面，新建 2 个：`xxx.md`、`yyy.md`。发现 1 处矛盾，已在 `zzz.md` 标注。"
+
+### 必须遵守
+
+- **绝对禁止**修改 `raw/` 目录中的任何文件
+- 一次摄入通常涉及 5–15 个 wiki 页面，不要跳过交叉引用
+- 若发现矛盾，停下来展示两个版本，再继续
+
+---
+
+## [QUERY] 查询
+
+基于 wiki 回答用户问题。
+
+### 查询步骤
+
+1. 读取 `wiki/index.md`，定位相关页面
+2. 读取 2-5 个最相关的 wiki 页面（**不是**重新翻查原始资料）
+3. 如需原始细节，再查对应 raw/ 来源
+4. 回答时引用**原始数据**和**案例**，使用 `(→ [[page-name]])` 内联引注
+5. 追加到 `wiki/log.md`（格式：`## [YYYY-MM-DD] query | 问题摘要`）
+
+### 询问是否保存
+
+回答结束后，询问："要把这个分析保存为 wiki 页面吗？好的洞见不应消失在对话历史里。"
+
+---
+
+## [LINT] 健康检查
+
+定期扫描 wiki 健康状态。
+
+### 检查项
+
+| 检查项 | 说明 |
+|--------|------|
+| 孤立页面 | 没有任何入链的页面 |
+| 缺失页面 | 被 `[[Wikilink]]` 引用但尚不存在的页面 |
+| 矛盾内容 | 不同页面对同一概念描述相互冲突 |
+| 未索引页面 | 在 `wiki/` 存在但未出现在 `index.md` 的页面 |
+| 缺失 frontmatter | 页面缺少必要字段 |
+| 过时内容 | `status: outdated` 的页面未被更新 |
+
+### Lint 原则
+
+展示所有发现，**再问用户是否处理**，不擅自批量修改。结果追加到 `wiki/log.md`，标记为 `[Lint]`。
+
+---
+
+## 内容原则
+
+### 必须保留
+
+- 所有百分比、数字、时间盒数值
+- 真实案例的完整故事线
+- 教练实践中的具体对话片段
+- 贡献者的原始表达方式
+
+### 绝对禁止
+
+- 修改 `raw/` 目录的任何文件
+- 删除或简化原始案例数据
+- 未标注来源地合并不同来源的说法
+- 静默覆盖矛盾——矛盾是比干净页面更有价值的信号
+
+---
+
+## 参考文件
+
+- `references/templates.md` — 五种场景的完整 schema + purpose 原始模板（INIT 时必读）
+- `references/ingest-logic.md` — 摄入两步流程详解（高级定制参考）

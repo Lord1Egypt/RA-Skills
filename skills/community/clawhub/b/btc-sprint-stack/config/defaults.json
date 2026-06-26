@@ -1,0 +1,24 @@
+{
+  "skill_slug": "btc-sprint-stack",
+  "asset": "BTC",
+  "windows": [
+    "5m",
+    "15m"
+  ],
+  "signal_source": "binance_btcusdt_1m",
+  "bankroll_usd": 60,
+  "max_trade_usd": 4,
+  "max_daily_loss_usd": 10,
+  "max_open_positions": 2,
+  "max_single_market_exposure_usd": 8,
+  "max_trades_per_day": 6,
+  "min_edge": 0.07,
+  "min_confidence": 0.65,
+  "max_slippage_pct": 0.1,
+  "stop_loss_pct": 0.1,
+  "take_profit_pct": 0.12,
+  "cooldown_after_loss_minutes": 60,
+  "cycle_interval_minutes": 15,
+  "trading_venue": "polymarket",
+  "validate_real_path": true
+}

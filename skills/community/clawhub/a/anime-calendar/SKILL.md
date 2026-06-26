@@ -1,35 +1,99 @@
 ---
-name: "anime-calendar"
-description: "国内动漫每周更新日历。用于查询动漫更新时间、本周新番列表、追番日历。当用户询问动漫更新时间表、本周更新、追番日历、新番列表时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anime-calendar"
-sourceUrl: "https://clawhub.ai/skills/anime-calendar"
+name: anime-calendar
+description: 国内动漫每周更新日历。用于查询动漫更新时间、本周新番列表、追番日历。当用户询问动漫更新时间表、本周更新、追番日历、新番列表时触发此技能。
 ---
 
-# anime-calendar
+# 动漫每周更新日历
 
-> 国内动漫每周更新日历。用于查询动漫更新时间、本周新番列表、追番日历。当用户询问动漫更新时间表、本周更新、追番日历、新番列表时触发此技能。
+## 数据来源
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anime-calendar`
-- **Source URL:** [https://clawhub.ai/skills/anime-calendar](https://clawhub.ai/skills/anime-calendar)
+使用 `extract_content_from_websites` 或 `batch_web_search` 工具从以下网站获取动漫更新信息：
 
-## Overview
+- **哔哩哔哩** (bilibili.com) - 中国最大的动漫观看平台
+- **Bangumi** (bgm.tv) - 动漫评分和追番网站
+- **动漫之家** (dmzj.com) - 动漫资讯网站
 
+## 功能范围
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anime-calendar
+1. **本周更新列表**：获取本周更新的动漫
+2. **每日更新**：按日期查询当天更新的动漫
+3. **追番提醒**：特定动漫的更新时间
+4. **新番资讯**：最新动漫资讯和播出时间
+
+## 使用方式
+
+### 查询本周更新
+
+使用 `batch_web_search` 搜索动漫更新时间表：
+
+```python
+# 搜索本周动漫更新
+batch_web_search([{
+    "query": "本周动漫更新时间表 2026"
+}])
 ```
+
+### 查询特定日期更新
+
+```python
+# 搜索周一/周二/周三等更新的动漫
+batch_web_search([{
+    "query": "周一更新动漫 2026 冬季"
+}])
+```
+
+### 抓取网站获取详细列表
+
+使用 `extract_content_from_websites` 提取具体更新信息：
+
+```python
+# 从B站获取追番日历
+extract_content_from_websites([{
+    "url": "https://www.bilibili.com",
+    "prompt": "提取动漫更新时间表或新番列表信息"
+}])
+```
+
+## 动漫更新规律（参考）
+
+日本动漫通常按星期更新：
+
+| 星期 | 更新数量 | 常见类型 |
+|------|----------|----------|
+| 周一 | 较少 | 日常系、治愈系 |
+| 周二 | 中等 | 热血系、冒险系 |
+| 周三 | 较少 | 偶像系、运动系 |
+| 周四 | 中等 | 科幻系、战斗系 |
+| 周五 | 较多 | 校园系、恋爱系 |
+| 周六 | 最多 | 各类热门番剧 |
+| 周日 | 较多 | 各类热门番剧 |
+
+## 四季新番时间
+
+- **冬季番 (1月)**：1月-3月
+- **春季番 (4月)**：4月-6月
+- **夏季番 (7月)**：7月-9月
+- **秋季番 (10月)**：10月-12月
+
+## 输出格式
+
+整理后按以下格式输出：
+
+```
+📅 本周动漫更新（2026年3月）
+
+🗓️ 周一（3月9日）
+- 《动漫名称1》- 第X集
+- 《动漫名称2》 - 第X集
+
+🗓️ 周二（3月10日）
+- 《动漫名称3》- 第X集
+...
+```
+
+## 注意事项
+
+- 数据来源于公开网站，可能不包含所有动漫
+- 实际播出时间可能因平台而异
+- 建议结合 B 站等平台确认具体更新时间
+- 版权番剧可能需要在特定平台观看

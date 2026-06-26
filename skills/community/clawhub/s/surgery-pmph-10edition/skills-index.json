@@ -1,0 +1,348 @@
+{
+  "version": "1.0.0",
+  "totalSkills": 240,
+  "categories": {
+    "emergency-and-resuscitation": {
+      "name": "急诊与复苏",
+      "count": 15,
+      "skills": [
+        "cpr-contraindicated-drugs-and-indications",
+        "real-time-cpr-quality-monitoring",
+        "defibrillation-operation-protocol",
+        "hemorrhagic-shock-transfusion-guidelines",
+        "shock-volume-resuscitation-plasma-substitute",
+        "bp-cvp-guided-fluid-resuscitation",
+        "shock-microcirculation-staging-analysis",
+        "damage-control-resuscitation",
+        "tetanus-comprehensive-treatment",
+        "hyperkalemia-emergency-management",
+        "hypocalcemia-emergency-management",
+        "metabolic-acidosis-bicarbonate-therapy",
+        "thyroid-storm-recognition-and-multimodal-treatment",
+        "thyroid-postop-airway-emergency-management",
+        "ample-history-taking-in-secondary-trauma-assessment"
+      ]
+    },
+    "trauma-and-fracture": {
+      "name": "创伤与骨折",
+      "count": 28,
+      "skills": [
+        "crash-plan-systematic-physical-examination",
+        "abdominal-trauma-classification",
+        "open-fracture-debridement",
+        "colles-fracture-reduction-and-immobilization",
+        "patellar-fracture-management-principles",
+        "pelvic-fracture-classification-and-clinical-features",
+        "neer-classification-for-proximal-humeral-fractures",
+        "femoral-neck-fracture-classification-and-prognosis",
+        "tibial-shaft-fracture-healing-risk-assessment",
+        "femoral-shaft-fracture-neurovascular-risk",
+        "cervical-spine-fracture-classification",
+        "lumbar-disc-herniation-typing-and-treatment",
+        "compartment-syndrome-diagnosis-emergency",
+        "supracondylar-fracture-compartment-syndrome",
+        "ponseti-method-for-clubfoot",
+        "adolescent-idiopathic-scoliosis-bracing-protocol",
+        "congenital-muscular-torticollis-nonsurgical-management",
+        "ddh-radiographic-diagnosis",
+        "young-burgess-pelvic-fracture-classification",
+        "tlics-score-based-thoracolumbar-fracture-management",
+        "seddon-peripheral-nerve-injury-classification",
+        "common-peroneal-nerve-injury-management",
+        "peripheral-nerve-compression-syndrome-diagnosis",
+        "peripheral-nerve-block-techniques-and-complication-management",
+        "cervical-spine-anatomy-and-mobility-analysis",
+        "spinal-cord-injury-classification-and-prognosis",
+        "fracture-specific-signs-diagnosis",
+        "knee-ligament-injury-diagnosis"
+      ]
+    },
+    "general-surgery-and-abdominal-emergency": {
+      "name": "普通外科与腹部急症",
+      "count": 25,
+      "skills": [
+        "acute-appendicitis-in-special-populations",
+        "acute-appendicitis-pathological-classification-and-prognosis",
+        "appendix-anatomical-variants",
+        "appendectomy-stump-management",
+        "strangulated-bowel-obstruction-emergency",
+        "adhesive-small-bowel-obstruction-prevention-and-surgical-management",
+        "intussusception-enema-reduction",
+        "volvulus-three-factor-risk-assessment",
+        "external-hernia-classification-emergency",
+        "femoral-hernia-emergency-surgery",
+        "incarcerated-inguinal-hernia-manual-reduction",
+        "inguinal-hernia-differential-diagnosis",
+        "external-hernia-etiology-risk",
+        "postoperative-wound-dehiscence-emergency",
+        "postoperative-fever-differential-diagnosis",
+        "secondary-peritonitis-etiology-and-pathogens",
+        "primary-peritonitis-risk-assessment",
+        "interintestinal-abscess-diagnosis",
+        "intra-abdominal-abscess-drainage",
+        "abdominal-compartment-syndrome-diagnosis-and-management",
+        "diagnostic-peritoneal-lavage-and-paracentesis",
+        "short-bowel-syndrome-staged-management",
+        "crohns-disease-surgical-management",
+        "breast-abscess-incision-and-drainage",
+        "solid-vs-hollow-organ-injury-differentiation"
+      ]
+    },
+    "hepatobiliary-pancreatic-and-splenic-surgery": {
+      "name": "肝胆胰脾外科",
+      "count": 25,
+      "skills": [
+        "extrahepatic-bile-duct-stone-diagnosis-strategy",
+        "common-bile-duct-exploration-t-drainage",
+        "gallbladder-cancer-risk-assessment",
+        "gallbladder-cancer-staging-guided-surgery",
+        "cholesterol-gallstone-formation-mechanism",
+        "iatrogenic-bile-duct-injury-prevention",
+        "hepatic-echinococcosis-imaging-classification",
+        "pulmonary-echinococcosis-diagnosis-and-surgery",
+        "hepatic-echinococcosis-etiology-and-pathology",
+        "liver-trauma-nonoperative-interventional",
+        "hepatic-trauma-surgical-hemostasis-and-exploration",
+        "hepatic-trauma-debridement-and-suturing",
+        "hepatic-echinococcosis-surgical-treatment-and-procedure-selection",
+        "aosc-emergency-management",
+        "acute-pancreatitis-diagnosis-triad",
+        "acute-pancreatitis-severity-classification",
+        "mods-in-acute-pancreatitis-clinical-correlation",
+        "pancreatic-pseudocyst-management",
+        "whipple-triad-diagnosis-for-insulinoma",
+        "insulinoma-localization-diagnosis",
+        "roux-en-y-biliary-enteric-anastomosis",
+        "congenital-bile-duct-dilation-classification",
+        "biliary-atresia-diagnosis-and-differential",
+        "psc-pharmacotherapy-guideline",
+        "non-surgical-treatment-of-ascariasis-cholangiopathy"
+      ]
+    },
+    "gastrointestinal-surgery": {
+      "name": "胃肠外科",
+      "count": 10,
+      "skills": [
+        "early-gastric-cancer-endoscopic-treatment-indications",
+        "gastric-cancer-tnm-staging-8th-edition",
+        "gastric-cancer-lymph-node-metastasis-pathway-and-grouping",
+        "colorectal-cancer-tnm-staging-prognosis",
+        "gerd-diagnostic-criteria",
+        "gerd-surgical-indications-assessment",
+        "heller-surgery-for-achalasia",
+        "duodenal-stasis-imaging-diagnosis",
+        "outlet-obstruction-constipation-surgical-management",
+        "digital-rectal-examination-standard-procedure"
+      ]
+    },
+    "urology": {
+      "name": "泌尿外科",
+      "count": 26,
+      "skills": [
+        "renal-cell-carcinoma-surgical-selection-criteria",
+        "renal-aml-diagnosis-and-treatment-threshold",
+        "renal-cortical-abscess-diagnosis-and-treatment",
+        "renal-injury-imaging-indications",
+        "cystourethroscopy-indications-contraindications",
+        "urinary-stone-composition-and-imaging-characteristics",
+        "upper-urinary-tract-stone-diagnosis-workflow",
+        "urinary-stone-individualized-treatment",
+        "acute-bacterial-cystitis-management",
+        "urinary-tract-infection-bacterial-culture-diagnosis",
+        "gonococcal-vs-nongonococcal-urethritis-differentiation",
+        "luts-classification-and-clinical-interpretation",
+        "urinary-pain-classification-and-localization",
+        "anal-abscess-etiology-and-pathogenesis",
+        "perianal-abscess-classification-and-surgical-planning",
+        "perianal-abscess-surgical-management",
+        "anal-lesion-clock-positioning",
+        "rectal-prolapse-classification-and-pathogenesis",
+        "rectal-prolapse-surgical-strategy",
+        "penile-cancer-clinical-classification-and-metastasis-patterns",
+        "bladder-cancer-recurrence-and-metastasis-patterns",
+        "prostate-cancer-gleason-grading-and-risk-stratification",
+        "anterior-urethral-injury-diagnosis",
+        "anterior-urethral-injury-classification-and-prognosis",
+        "non-invasive-diagnosis-of-urothelial-tumors",
+        "upper-urinary-tract-obstruction-safety-valve-mechanism"
+      ]
+    },
+    "vascular-surgery": {
+      "name": "血管外科",
+      "count": 7,
+      "skills": [
+        "deep-vein-thrombosis-clinical-classification",
+        "deep-vein-thrombosis-treatment-strategy",
+        "virchow-triad-dvt-risk-assessment",
+        "primary-lower-limb-varicose-vein-etiology",
+        "lower-limb-venous-return-mechanism",
+        "peripheral-vascular-injury-repair",
+        "ankle-brachial-index-diagnosis-for-arteriosclerosis-obliterans"
+      ]
+    },
+    "burn-and-plastic-surgery": {
+      "name": "烧伤与整形",
+      "count": 8,
+      "skills": [
+        "burn-area-estimation",
+        "burn-wound-depth-classification",
+        "adult-burn-shock-fluid-resuscitation",
+        "burn-induced-acute-kidney-injury-prevention",
+        "burn-stress-ulcer-identification-and-management",
+        "deep-burn-wound-skin-grafting-strategy",
+        "assess-skin-viability-in-hand-trauma",
+        "determine-debridement-and-repair-timing-for-hand-trauma"
+      ]
+    },
+    "surgical-oncology": {
+      "name": "肿瘤外科与综合治疗",
+      "count": 16,
+      "skills": [
+        "malignant-bone-tumor-limb-salvage-surgery-criteria",
+        "radiotherapy-sensitivity-assessment-for-malignant-bone-tumors",
+        "neoadjuvant-chemotherapy-response-evaluation-for-bone-tumors",
+        "tumor-surgical-principles",
+        "malignant-tumor-surgical-resection-with-adjuvant-radiotherapy",
+        "limb-salvage-tumor-resection-margins",
+        "cancer-three-tier-prevention-system",
+        "breast-cancer-pathological-classification",
+        "breast-cancer-molecular-subtyping-and-treatment-strategy",
+        "breast-cancer-tnm-staging",
+        "lung-cancer-surgical-indications-and-contraindications",
+        "lung-cancer-tnm-staging-8th-edition",
+        "pulmonary-metastasis-surgery-indications-and-prognosis",
+        "ipfi-surgical-indications-and-perioperative-management",
+        "radiotherapy-surgery-comprehensive-treatment",
+        "radiotherapy-indication-classification"
+      ]
+    },
+    "perioperative-management": {
+      "name": "围手术期管理",
+      "count": 20,
+      "skills": [
+        "preoperative-pathophysiological-optimization",
+        "perioperative-prophylactic-antibiotics",
+        "antibiotic-regimen-design-principles",
+        "antibiotic-dosing-in-special-populations",
+        "perioperative-blood-glucose-management-for-diabetic-patients",
+        "surgical-wound-infection-management",
+        "surgical-stress-energy-requirement-calculation",
+        "parenteral-nutrition-macronutrient-ratio",
+        "nitrogen-balance-calculation-and-clinical-interpretation",
+        "laparoscopic-surgery-basic-procedures",
+        "high-pressure-steam-sterilization-procedure",
+        "autologous-blood-transfusion-selection",
+        "plasma-protein-indicator-selection",
+        "blood-transfusion-adverse-reaction-management",
+        "hyperacute-rejection-prevention",
+        "organ-cold-preservation-time-limit",
+        "acute-rejection-diagnosis-rescue",
+        "cervical-lymph-node-tuberculosis-local-treatment",
+        "postoperative-urinary-retention",
+        "postoperative-intra-abdominal-infection-management"
+      ]
+    },
+    "anesthesia-and-pain": {
+      "name": "麻醉与疼痛",
+      "count": 11,
+      "skills": [
+        "laryngeal-mask-airway-indications-and-contraindications",
+        "endotracheal-intubation-indications",
+        "subarachnoid-anesthesia-level-adjustment",
+        "subarachnoid-anesthesia-local-anesthetic-dosing",
+        "topical-anesthesia-application",
+        "local-infiltration-and-regional-block-anesthesia",
+        "inhaled-anesthetic-selection-and-application",
+        "anesthesia-reflux-aspiration-prevention-and-management",
+        "allis-reduction-for-posterior-hip-dislocation",
+        "rib-fracture-pain-management",
+        "pre-anesthesia-gastrointestinal-preparation"
+      ]
+    },
+    "endocrine-and-metabolism": {
+      "name": "内分泌与代谢",
+      "count": 6,
+      "skills": [
+        "secondary-hyperparathyroidism-surgical-indication",
+        "laryngeal-nerve-injury-classification-and-prognosis",
+        "hypercalcemia-calcium-lowering-therapy",
+        "hypotonic-dehydration-classification",
+        "hypotonic-dehydration-sodium-replacement",
+        "hyperosmolar-dehydration-fluid-resuscitation"
+      ]
+    },
+    "infection-and-immunity": {
+      "name": "感染与免疫",
+      "count": 7,
+      "skills": [
+        "tuberculosis-infection-screening-interpretation",
+        "bone-and-joint-tuberculosis-diagnosis",
+        "bone-joint-tuberculosis-staging",
+        "bone-joint-tuberculosis-drug-treatment",
+        "facial-danger-triangle-infection-cavernous-sinus-thrombosis-risk-assessment",
+        "sepsis-and-septic-shock-diagnosis",
+        "pdp-h-headache-prevention-and-treatment"
+      ]
+    },
+    "imaging-and-intervention": {
+      "name": "影像与介入",
+      "count": 9,
+      "skills": [
+        "x-ray-contrast-imaging-classification-and-application",
+        "interventional-radiology-core-techniques-and-clinical-applications",
+        "digestive-endoscopy-techniques-selection-and-application",
+        "open-pneumothorax-emergency-management",
+        "progressive-hemothorax-diagnosis",
+        "pulmonary-resection-indications-contraindications-for-tb",
+        "portal-hypertension-collateral-circulation-assessment",
+        "portal-hypertension-diagnosis-thresholds",
+        "portal-hypertension-surgery-tips"
+      ]
+    },
+    "rehabilitation-and-functional-assessment": {
+      "name": "康复与功能评估",
+      "count": 12,
+      "skills": [
+        "fracture-rehabilitation-three-phases",
+        "fracture-healing-stages-and-clinical-union-criteria",
+        "hand-resting-position-and-functional-position-assessment",
+        "stenosing-tenosynovitis-diagnosis",
+        "plaster-cast-immobilization-indications-and-precautions",
+        "lower-limb-nerve-composition-and-distribution",
+        "meniscus-tear-treatment-by-vascular-zone",
+        "zhang-yingze-hou-zhiyong-tibiofibular-fracture-pattern",
+        "tibiofibular-shaft-fracture-classification-and-treatment",
+        "forearm-dual-fracture-reduction-priority",
+        "stress-fracture-recognition",
+        "flexible-flatfoot-nonsurgical-management"
+      ]
+    },
+    "rheumatic-and-spinal-diseases": {
+      "name": "风湿与脊柱疾病",
+      "count": 5,
+      "skills": [
+        "ankylosing-spondylitis-diagnostic-criteria",
+        "ankylosing-spondylitis-imaging-staging",
+        "ankylosing-spondylitis-vs-rheumatoid-arthritis-differentiation",
+        "cervical-myelopathy-surgical-indications",
+        "lumbar-spinal-stenosis-diagnosis-and-typing"
+      ]
+    },
+    "other-specialty-skills": {
+      "name": "其他专科技能",
+      "count": 10,
+      "skills": [
+        "cardiotonic-drug-indications",
+        "carbuncle-incision-and-drainage",
+        "felon-incision-and-drainage",
+        "tissue-perfusion-and-oxygenation-monitoring",
+        "adult-basic-cpr",
+        "ards-diagnosis-berlin-definition",
+        "oliguric-phase-fluid-management-in-aki",
+        "aki-diagnosis-and-urine-differentiation",
+        "hematuria-and-cloudy-urine-differential-diagnosis",
+        "tnm-tumor-staging"
+      ]
+    }
+  }
+}

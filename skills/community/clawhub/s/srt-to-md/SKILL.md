@@ -1,35 +1,77 @@
 ---
-name: "srt2md"
-description: "将 SRT 字幕文件转换为结构化 Markdown 文档的完整工作流。无需配置任何额外 API key，完全依赖当前 session 内置能力完成全部处理。 适用场景：用户上传或提供 .srt 字幕文件，想要将视频内容转化为可读文档；整理 Bilibili / YouTube 视频字幕；将字幕内容分析后生成知识文..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/srt-to-md"
-sourceUrl: "https://clawhub.ai/skills/srt-to-md"
+name: srt-to-doc
+description: |-
+  将 SRT 字幕文件转换为结构化 Markdown 文档的完整工作流。无需配置任何额外 API key，完全依赖当前 session 内置能力完成全部处理。
+
+  适用场景：用户上传或提供 .srt 字幕文件，想要将视频内容转化为可读文档；整理 Bilibili / YouTube 视频字幕；将字幕内容分析后生成知识文章；对视频内容做补充研究后输出报告。
+
+  触发关键词：.srt 文件、字幕文件、srt转文章、srt转文档、字幕整理、视频转文档、字幕分析。当用户提到 SRT、字幕、想要把视频内容变成文章或笔记时，务必使用此技能。
 ---
 
-# srt2md
+# SRT to Doc
 
-> 将 SRT 字幕文件转换为结构化 Markdown 文档的完整工作流。无需配置任何额外 API key，完全依赖当前 session 内置能力完成全部处理。 适用场景：用户上传或提供 .srt 字幕文件，想要将视频内容转化为可读文档；整理 Bilibili / YouTube 视频字幕；将字幕内容分析后生成知识文...
+## 输入 / 输出
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/srt-to-md`
-- **Source URL:** [https://clawhub.ai/skills/srt-to-md](https://clawhub.ai/skills/srt-to-md)
+- **输入**：`.srt` 字幕文件（支持 UTF-8 / GBK / Big5 等编码）
+- **输出**：
+  - `{标题}.md` — 结构化分析文档（主交付物）
+  - `{标题}_subtitles.txt` — 带时间轴的字幕原文（辅助交付物）
+- **命名约定**：取视频标题，中文保留，空格→下划线，特殊字符删除
+  - 例：`大明王朝1566_第一集.md` + `大明王朝1566_第一集_subtitles.txt`
 
-## Overview
+---
 
+## 四阶段流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 阶段一：SRT → TXT
+
 ```bash
-hermes skills install clawhub/srt-to-md
+python scripts/srt_to_txt.py input.srt {标题}_subtitles.txt
 ```
+
+脚本自动检测编码，输出带时间轴的干净 TXT，并打印条数与时长。
+TXT 为独立交付物，**不进入最终 Markdown**。
+
+---
+
+### 阶段二：内容分析
+
+读取 TXT 后在当前 session 内完成，**不调用任何外部 API**：
+
+- 识别主题与核心议题，划分内容段落
+- 提取 3-7 个核心观点（附时间戳）
+- 列出关键概念、人物、专有名词
+- **判断内容类型**（影响阶段三的搜索方向）：
+  - 知识/技术类 → 四个搜索方向全用
+  - 人文/叙事类（历史剧、访谈、纪录片）→ 跳过"工具/产品"方向，"最新动态"改搜史料/研究/评论
+
+---
+
+### 阶段三：搜索补充
+
+详细搜索策略见 `references/search_strategy.md`。
+
+简要规则：
+- 基于阶段二提炼的概念、人物、工具名提炼搜索词
+- 优先调用 **multi-search-engine** skill（若可用）；不可用时用内置 `web_search`
+- 每个关键词取最相关 2-3 条，记录来源 URL
+
+---
+
+### 阶段四：输出 Markdown
+
+读取 `assets/doc_template.md`，按模板结构填写内容。
+
+**必填章节**：内容概要、内容结构、核心观点
+**条件章节**（有内容则写，无则省略）：关键概念、主要人物、相关动态/延伸阅读
+
+---
+
+## 下游联动
+
+文档生成后可直接交给以下 skill 继续处理：
+
+| 目标 | 调用 skill |
+|------|-----------|
+| 发布为微信公众号文章 | **wechat-mp-writer**（建议用"历史"或"技术/AI"模板） |
+| 搜索同类公众号参考文章 | **wechat-article-search** |

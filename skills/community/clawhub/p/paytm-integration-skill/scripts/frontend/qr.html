@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paytm Dynamic QR</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
+      input { padding: 0.5rem; font-size: 1rem; }
+      button { padding: 0.65rem 1.25rem; font-size: 1rem; cursor: pointer; }
+      #qrBox { margin-top: 1.5rem; text-align: center; }
+      #qrImg { max-width: 280px; border: 1px solid #ddd; border-radius: 0.5rem; padding: 0.5rem; background: #fff; }
+      #status { margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 0.4rem; display: none; }
+      #status.success { background: #e7f6e7; color: #1b5e20; display: block; }
+      #status.failure { background: #fdecea; color: #a40000; display: block; }
+      #status.pending { background: #fff8e1; color: #6d4c00; display: block; }
+    </style>
+  </head>
+  <body>
+    <h1>Paytm Dynamic QR</h1>
+    <p>
+      Server calls <code>/paytm/create-qr</code> → renders the QR image →
+      polls <code>/paytm/order-status</code> until paid.
+    </p>
+
+    <label>Amount (INR):
+      <input id="amount" type="number" step="0.01" min="1" value="100.00" />
+    </label>
+    <button type="button" id="generateBtn">Generate QR</button>
+
+    <div id="qrBox" hidden>
+      <img id="qrImg" alt="Scan to pay" />
+      <div id="orderInfo" style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;"></div>
+    </div>
+    <div id="status" role="status" aria-live="polite"></div>
+
+    <script>
+      var qrBox = document.getElementById("qrBox");
+      var qrImg = document.getElementById("qrImg");
+      var orderInfo = document.getElementById("orderInfo");
+      var statusEl = document.getElementById("status");
+      var pollHandle = null;
+      var startedAt = 0;
+      var POLL_INTERVAL_MS = 3000;
+      var POLL_TIMEOUT_MS = 5 * 60 * 1000;  // 5 min
+
+      function showStatus(kind, message) {
+        statusEl.className = kind;
+        statusEl.textContent = message;
+      }
+
+      document.getElementById("generateBtn").addEventListener("click", function () {
+        if (pollHandle) { clearTimeout(pollHandle); pollHandle = null; }
+        qrBox.hidden = true;
+        showStatus("pending", "Generating QR…");
+
+        var amount = document.getElementById("amount").value;
+
+        fetch(new URL("paytm/create-qr", document.baseURI).toString(), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: amount, posId: "POS001" }),
+        })
+          .then(function (r) {
+            if (!r.ok) return r.text().then(function (t) { throw new Error("HTTP " + r.status + " - " + t); });
+            return r.json();
+          })
+          .then(function (data) {
+            console.log("[paytm] qr created", data);
+            // Backend already prefixes the base64 image with `data:image/png;base64,` -
+            // just drop it straight into <img src>.
+            qrImg.src = data.image;
+            orderInfo.textContent = "orderId: " + data.orderId;
+            qrBox.hidden = false;
+            showStatus("pending", "Waiting for payment… open any UPI app and scan.");
+            startedAt = Date.now();
+            pollOnce(data.orderId);
+          })
+          .catch(function (e) {
+            console.error("[paytm] qr error", e);
+            showStatus("failure", "Could not generate QR: " + (e.message || e));
+          });
+      });
+
+      function pollOnce(orderId) {
+        if (Date.now() - startedAt > POLL_TIMEOUT_MS) {
+          showStatus("failure", "QR expired without payment. Generate a new one.");
+          return;
+        }
+        fetch(new URL("paytm/order-status", document.baseURI).toString(), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ orderId: orderId }),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            // /v3/order/status response - body.resultInfo.resultStatus
+            var status = data && data.body && data.body.resultInfo && data.body.resultInfo.resultStatus;
+            if (status === "TXN_SUCCESS") {
+              showStatus("success", "Payment received. Thank you!");
+              return;
+            }
+            if (status === "TXN_FAILURE") {
+              showStatus("failure", "Payment failed. Please scan again.");
+              return;
+            }
+            // Still pending - keep polling.
+            pollHandle = setTimeout(function () { pollOnce(orderId); }, POLL_INTERVAL_MS);
+          })
+          .catch(function (e) {
+            console.warn("[paytm] poll error, will retry", e);
+            pollHandle = setTimeout(function () { pollOnce(orderId); }, POLL_INTERVAL_MS);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 水彩艺术风格 ===== */
+/* 封面样式 */
+.card-cover-watercolor {
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(173, 216, 230, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 水彩边缘效果 */
+.card-cover-watercolor:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 30% 40%,
+    rgba(221, 160, 221, 0.1) 0%,
+    rgba(173, 216, 230, 0.1) 40%,
+    transparent 70%
+  );
+  z-index: 1;
+}
+
+.card-cover-watercolor .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(173, 216, 230, 0.3)
+  );
+  z-index: 2;
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-watercolor .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+  z-index: 10;
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-watercolor .cover-content {
+  background: white;
+  border-top: 1px solid rgba(173, 216, 230, 0.3);
+  padding: calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 10;
+}
+
+.card-cover-watercolor .cover-title {
+  color: #5e72e4;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 2.5);
+  text-align: center;
+}
+
+.card-cover-watercolor .cover-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 20);
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(to right, #9370db, #87cefa);
+  opacity: 0.7;
+}
+
+.card-cover-watercolor .cover-description {
+  color: #666;
+  text-align: center;
+  font-style: italic;
+}
+
+.card-cover-watercolor .cover-tag {
+  background: rgba(173, 216, 230, 0.2);
+  color: #5e72e4;
+  border: 1px solid rgba(173, 216, 230, 0.4);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.card-cover-watercolor .cover-tag:hover {
+  background: rgba(173, 216, 230, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(173, 216, 230, 0.3);
+}
+
+.card-cover-watercolor .cover-date {
+  color: #888;
+  font-style: italic;
+}
+.card-watercolor {
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(173, 216, 230, 0.6),
+    rgba(221, 160, 221, 0.6),
+    rgba(255, 182, 193, 0.6),
+    rgba(173, 216, 230, 0.6)
+  );
+  padding: calc(var(--spacing) * 7.5) calc(var(--spacing) * 6.25);
+  position: relative;
+  --highlight-color: rgba(221, 160, 221, 0.5);
+  --highlight-bg-color: rgba(173, 216, 230, 0.2);
+}
+
+/* 水彩笔触装饰 */
+.card-watercolor:after {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -2.5);
+  right: calc(var(--spacing) * -2.5);
+  width: calc(var(--spacing) * 25);
+  height: calc(var(--spacing) * 25);
+  background: radial-gradient(
+    circle,
+    rgba(255, 182, 193, 0.3) 10%,
+    rgba(221, 160, 221, 0.2) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.card-watercolor .card-content-inner {
+  position: relative;
+  z-index: 3;
+}
+
+.card-watercolor .card-content {
+  position: relative;
+  background: #fff;
+  padding: calc(var(--spacing) * 5);
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* 主标题样式 - 水彩晕染效果 */
+.card-watercolor h1 {
+  font-size: calc(var(--spacing) * 8);
+  position: relative;
+  color: #333;
+  margin-bottom: calc(var(--spacing) * 5);
+  font-weight: 500;
+  text-align: center;
+  padding: calc(var(--spacing) * 2.5) 0;
+}
+
+/* 标题水彩晕染效果 */
+.card-watercolor h1:before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(173, 216, 230, 0.4),
+    rgba(221, 160, 221, 0.4),
+    rgba(255, 182, 193, 0.4)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  z-index: -1;
+  filter: blur(3px);
+}
+
+/* 标题下方水彩线条 */
+.card-watercolor h1:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 30);
+  height: calc(var(--spacing) * 0.75);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(173, 216, 230, 0.7),
+    rgba(221, 160, 221, 0.7),
+    rgba(255, 182, 193, 0.7),
+    transparent
+  );
+}
+
+/* 副标题样式 */
+.card-watercolor h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #555;
+  margin-bottom: calc(var(--spacing) * 6);
+  font-weight: 400;
+  text-align: center;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 3.75);
+}
+
+.card-watercolor h2:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 15);
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(
+    to right,
+    rgba(173, 216, 230, 0.5),
+    rgba(221, 160, 221, 0.5)
+  );
+}
+
+/* 段落样式 */
+.card-watercolor p {
+  color: #444;
+  font-size: inherit;
+  line-height: 1.8;
+}
+.card-watercolor li {
+  position: relative;
+  color: #444;
+  font-size: inherit;
+  line-height: 1.8;
+  margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-watercolor strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.card-watercolor em {
+  color: #9370db;
+  font-style: italic;
+}
+
+.card-watercolor p a {
+  color: #9370db;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(147, 112, 219, 0.5);
+  transition: all 0.3s ease;
+}
+
+.card-watercolor p a:hover {
+  color: #7b68ee;
+  border-bottom: 1px solid rgba(147, 112, 219, 0.8);
+}
+
+/* 有序列表样式 */
+.card-watercolor ol > li {
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 5);
+  color: #444;
+  font-size: inherit;
+}
+
+/* 序号水彩效果 */
+.card-watercolor li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -7.5);
+  top: 0;
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(173, 216, 230, 0.4),
+    rgba(221, 160, 221, 0.4)
+  );
+  color: #444;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6);
+  font-size: calc(var(--spacing) * 3.5);
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(173, 216, 230, 0.3);
+}
+
+/* 小标题样式 */
+.card-watercolor h3 {
+  display: block;
+  color: #333;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4.25);
+  font-weight: 600;
+}
+
+/* 表格样式 */
+.card-watercolor table {
+  box-shadow: 0 4px 15px rgba(173, 216, 230, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  border-collapse: collapse;
+  margin: calc(var(--spacing) * 5) 0;
+}
+
+.card-watercolor th {
+  background-color: rgba(173, 216, 230, 0.2);
+  color: #333;
+  border-bottom: 2px solid rgba(173, 216, 230, 0.4);
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3.75);
+  text-align: left;
+}
+
+.card-watercolor td {
+  color: #444;
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3.75);
+  border-bottom: 1px solid rgba(173, 216, 230, 0.2);
+}
+
+.card-watercolor tr:nth-child(even) {
+  background-color: rgba(248, 248, 255, 0.5);
+}
+
+/* 代码块样式 */
+.card-watercolor pre {
+  border: 1px solid rgba(173, 216, 230, 0.4);
+  box-shadow: 0 4px 15px rgba(173, 216, 230, 0.1);
+  background-color: rgba(248, 248, 255, 0.7);
+  border-radius: 8px;
+  padding: calc(var(--spacing) * 3.75);
+  overflow-x: auto;
+}
+
+.card-watercolor code:not(pre code) {
+  background-color: rgba(173, 216, 230, 0.2);
+  color: #9370db;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.25);
+  border-radius: 4px;
+}
+
+/* 引用块样式 */
+.card-watercolor blockquote {
+  background-color: rgba(248, 248, 255, 0.7);
+  border-left: 4px solid rgba(221, 160, 221, 0.6);
+  color: #666;
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 5) 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+}
+
+.card-content ol,
+.card-content ul {
+  padding-left: calc(var(--spacing) * 7.5);
+}
+.card-watercolor ul > li {
+  position: relative;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 4);
+}
+
+.card-watercolor ul > li:before {
+  content: "❀";
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  line-height: calc(var(--spacing) * 6);
+  color: rgba(221, 160, 221, 0.8);
+  font-size: calc(var(--spacing) * 4);
+}
+
+/* 水平线样式 */
+.card-watercolor hr {
+  height: calc(var(--spacing) * 0.5);
+  border: none;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(173, 216, 230, 0.5),
+    rgba(221, 160, 221, 0.5),
+    rgba(255, 182, 193, 0.5),
+    transparent
+  );
+  margin: calc(var(--spacing) * 6.25) 0;
+}
+
+/* 图片样式 */
+.card-watercolor img {
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 5px 15px rgba(173, 216, 230, 0.3);
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.card-watercolor .card-footer {
+  position: relative;
+}
+
+.card-watercolor .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  color: #6a737d;
+  position: absolute;
+  right: calc(var(--spacing) * 2.5);
+  bottom: calc(var(--spacing) * 2.5);
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-watercolor">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

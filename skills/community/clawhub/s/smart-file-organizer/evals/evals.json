@@ -1,0 +1,23 @@
+{
+  "skill_name": "file-organizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把我的 Downloads 文件夹整理到 Documents/Archives，里面有各种文档、图片和代码文件",
+      "expected_output": "成功扫描源目录，AI 分析文件名并生成 Johnny Decimal 分类，显示分类计划并等待用户确认，然后执行移动操作，最后检查重复文件并输出报告",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我的下载文件夹太乱了，帮我按类别整理一下，要保留文件名中的日期信息",
+      "expected_output": "询问源目录和目标目录，扫描文件后动态生成分类（如 01-01_文档资料, 02-01_图片媒体 等），显示分类计划并等待确认，执行移动和重复文件检查",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "整理这些文件：~/Downloads → ~/Documents/Organized",
+      "expected_output": "直接使用指定的源目录和目标目录，扫描文件并生成分类，显示计划、等待确认、执行移动、检查重复文件、输出最终报告",
+      "files": []
+    }
+  ]
+}

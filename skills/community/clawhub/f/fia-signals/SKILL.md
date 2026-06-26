@@ -1,35 +1,44 @@
 ---
-name: "Fia Signals"
-description: "Real-time crypto market intelligence from Fía Signals. Use when asked about: crypto market regime, BTC regime, trending up or down, market direction, funding..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fia-signals"
-sourceUrl: "https://clawhub.ai/skills/fia-signals"
+name: fia-signals
+description: >
+  Real-time crypto market intelligence from Fía Signals. Use when asked about:
+  crypto market regime, BTC regime, trending up or down, market direction,
+  funding rates, liquidation zones, fear and greed index, RSI signals,
+  MACD signals, crypto technical analysis, altseason, BTC dominance,
+  open interest, market sentiment, crypto signals, is BTC bullish,
+  what's the market doing, crypto market analysis.
 ---
 
-# Fia Signals
+# Fía Signals — Crypto Market Intelligence Skill
 
-> Real-time crypto market intelligence from Fía Signals. Use when asked about: crypto market regime, BTC regime, trending up or down, market direction, funding...
+Provides real-time crypto market data and technical analysis via the Fía Signals x402 API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fia-signals`
-- **Source URL:** [https://clawhub.ai/skills/fia-signals](https://clawhub.ai/skills/fia-signals)
+## Available Endpoints
 
-## Overview
+| Endpoint | What it returns | Cost |
+|----------|----------------|------|
+| /regime | Market regime (TRENDING UP/DOWN/RANGING), RSI, ADX, confidence | Free preview |
+| /fear-greed | Fear & Greed index, 7-day trend, contrarian signal | Free preview |
+| /funding | Top 10 perpetual futures funding rates | Free preview |
+| /signals | RSI-14, MACD, Bollinger Bands for any symbol | Free preview |
+| /prices | Real-time spot prices for up to 20 symbols | Free preview |
+| /dominance | BTC and ETH market dominance % | Free preview |
+| /liquidations | Recent liquidation events, long/short volumes | Free preview |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run the skill script with an action:
+
 ```bash
-hermes skills install clawhub/fia-signals
+~/.openclaw/workspace/skills/fia-signals-skill/scripts/fia_signals.sh regime
+~/.openclaw/workspace/skills/fia-signals-skill/scripts/fia_signals.sh fear-greed
+~/.openclaw/workspace/skills/fia-signals-skill/scripts/fia_signals.sh signals BTCUSDT
+~/.openclaw/workspace/skills/fia-signals-skill/scripts/fia_signals.sh prices BTC,ETH,SOL
+~/.openclaw/workspace/skills/fia-signals-skill/scripts/fia_signals.sh funding
+~/.openclaw/workspace/skills/fia-signals-skill/scripts/fia_signals.sh dominance
+~/.openclaw/workspace/skills/fia-signals-skill/scripts/fia_signals.sh liquidations
 ```
+
+## Data Source
+Live data from Fía Signals: https://x402.fiasignals.com
+Contact: fia-trading@agentmail.to

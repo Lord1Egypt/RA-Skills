@@ -1,0 +1,4 @@
+interface:
+  display_name: "Finder 达人搜索"
+  short_description: "按关键词、地区、语言和标签搜索 Finder 达人"
+  default_prompt: "使用 $finder-local-search 搜索 Finder 达人；如果还没配置访问秘钥，先自动引导并完成配置，然后继续搜索。"

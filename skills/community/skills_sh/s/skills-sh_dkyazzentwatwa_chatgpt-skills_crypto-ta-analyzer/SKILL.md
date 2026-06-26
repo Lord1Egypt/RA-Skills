@@ -1,35 +1,20 @@
 ---
-name: "crypto-ta-analyzer"
-description: "Indexed by skills.sh from dkyazzentwatwa/chatgpt-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dkyazzentwatwa"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/crypto-ta-analyzer"
-sourceUrl: "https://skills.sh/dkyazzentwatwa/chatgpt-skills/crypto-ta-analyzer"
+name: crypto-ta-analyzer
+description: Run multi-indicator technical analysis on crypto or market OHLCV data. Use for deterministic trend, momentum, volume, and divergence analysis.
 ---
 
-# crypto-ta-analyzer
+# Crypto TA Analyzer
 
-> Indexed by skills.sh from dkyazzentwatwa/chatgpt-skills
+Use the bundled indicators when the user needs explicit technical analysis rather than a narrative market opinion.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dkyazzentwatwa
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/crypto-ta-analyzer`
-- **Source URL:** [https://skills.sh/dkyazzentwatwa/chatgpt-skills/crypto-ta-analyzer](https://skills.sh/dkyazzentwatwa/chatgpt-skills/crypto-ta-analyzer)
+## Workflow
 
-## Overview
+1. Get normalized OHLCV data first.
+2. Use `scripts/data_converter.py` or `scripts/coingecko_converter.py` when source formats need reshaping.
+3. Run `scripts/ta_analyzer.py` for the actual indicator stack and signal scoring.
+4. Explain indicator agreement, conflicts, and regime sensitivity instead of presenting one number without context.
 
+## Guardrails
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/crypto-ta-analyzer
-```
+- Do not present signals as guaranteed outcomes.
+- Keep the distinction clear between deterministic indicator output and discretionary interpretation.

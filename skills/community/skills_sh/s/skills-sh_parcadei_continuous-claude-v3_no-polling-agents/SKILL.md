@@ -1,35 +1,51 @@
 ---
-name: "no-polling-agents"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/no-polling-agents"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/no-polling-agents"
+name: no-polling-agents
+description: No Polling for Background Agents
+user-invocable: false
 ---
 
-# no-polling-agents
+# No Polling for Background Agents
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When launching parallel background agents, do NOT poll with sleep loops.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/no-polling-agents`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/no-polling-agents](https://skills.sh/parcadei/continuous-claude-v3/no-polling-agents)
+## Pattern
 
-## Overview
+Background agents write to status files when complete. Wait for them naturally.
 
+## DO
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/no-polling-agents
+- Launch agents with `run_in_background: true`
+- Continue with other work while agents run
+- Check status file only when user asks or when you need results to proceed
+- Trust the agent completion system
+
+## DON'T
+
+- Run `sleep 10 && cat status.txt` in loops
+- Continuously poll for completion
+- Waste tokens checking status repeatedly
+- Block on agents unless absolutely necessary
+
+## When to Check Status
+
+1. User explicitly asks "are they done?"
+2. You need agent output to proceed with next task
+3. Significant time has passed and user is waiting
+
+## Example
+
+```typescript
+// Launch agents
+Task({ ..., run_in_background: true })
+Task({ ..., run_in_background: true })
+
+// Continue with other work or conversation
+// Agents will write to status file when done
+
+// Only check when needed
+cat .claude/cache/status.txt
 ```
+
+## Source
+
+User feedback: "You can just wait until everyone pings you"

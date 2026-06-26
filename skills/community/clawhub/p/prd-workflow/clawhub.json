@@ -1,0 +1,84 @@
+{
+  "name": "prd-workflow",
+  "version": "5.1.0",
+  "description": "一站式 PRD 生成工作流 v5.1.0（Wiki 增强 + AI 驱动原型 + 分段确认）",
+  "author": "gotomanutd",
+  "license": "MIT-0",
+  "homepage": "https://github.com/openclaw/workspace/skills/prd-workflow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace.git",
+    "directory": "skills/prd-workflow"
+  },
+  "keywords": [
+    "PRD",
+    "产品文档",
+    "需求分析",
+    "工作流",
+    "Wiki",
+    "原型",
+    "AI驱动",
+    "金融",
+    "评审",
+    "流程图",
+    "Word",
+    "openclaw-skill"
+  ],
+  "engines": {
+    "openclaw": ">=2026.2.26"
+  },
+  "dependencies": {
+    "requirement-reviewer": ">=3.0.0",
+    "mermaid-flow": ">=1.0.0",
+    "htmlPrototype": ">=1.0.0",
+    "prd-export": ">=1.0.0"
+  },
+  "optionalDependencies": {
+    "prd-to-issues": ">=1.0.0",
+    "yh-minimax-docx": ">=1.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "INSTALL.md",
+    "install.json",
+    "clawhub.json",
+    "workflows/",
+    "templates/",
+    "examples/",
+    "skills/",
+    "scripts/",
+    "docs/"
+  ],
+  ".gitignore": [
+    ".git/",
+    ".gitignore",
+    ".DS_Store",
+    ".claude/",
+    ".clawhub/",
+    "node_modules/",
+    "output/",
+    "temp/",
+    "tmp/",
+    "*.bak*",
+    "*.log"
+  ],
+  "scripts": {
+    "test": "node tests/test.js",
+    "verify": "test -f SKILL.md && echo '✅ 技能文件验证通过'",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://clawhub.com"
+  },
+  "meta": {
+    "createdAt": "2026-03-24",
+    "updatedAt": 1776694901140,
+    "downloads": 0,
+    "stars": 0,
+    "category": "productivity",
+    "releaseNotes": "v5.1.0",
+    "version": "5.1.0"
+  }
+}

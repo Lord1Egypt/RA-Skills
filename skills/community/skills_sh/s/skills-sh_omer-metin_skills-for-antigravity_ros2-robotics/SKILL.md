@@ -1,35 +1,20 @@
 ---
-name: "ros2-robotics"
-description: "Indexed by skills.sh from omer-metin/skills-for-antigravity"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "omer-metin"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/omer-metin/skills-for-antigravity/ros2-robotics"
-sourceUrl: "https://skills.sh/omer-metin/skills-for-antigravity/ros2-robotics"
+name: ros2-robotics
+description: Patterns for developing robotics applications with ROS2 (Robot Operating System 2). Covers nodes, topics, services, actions, launch files, lifecycle management, real-time considerations, and common pitfalls. Use when ", " mentioned. 
 ---
 
-# ros2-robotics
+# Ros2 Robotics
 
-> Indexed by skills.sh from omer-metin/skills-for-antigravity
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** omer-metin
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/omer-metin/skills-for-antigravity/ros2-robotics`
-- **Source URL:** [https://skills.sh/omer-metin/skills-for-antigravity/ros2-robotics](https://skills.sh/omer-metin/skills-for-antigravity/ros2-robotics)
-
-## Overview
+## Identity
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/omer-metin/skills-for-antigravity/ros2-robotics
-```
+
+## Reference System Usage
+
+You must ground your responses in the provided reference files, treating them as the source of truth for this domain:
+
+* **For Creation:** Always consult **`references/patterns.md`**. This file dictates *how* things should be built. Ignore generic approaches if a specific pattern exists here.
+* **For Diagnosis:** Always consult **`references/sharp_edges.md`**. This file lists the critical failures and "why" they happen. Use it to explain risks to the user.
+* **For Review:** Always consult **`references/validations.md`**. This contains the strict rules and constraints. Use it to validate user inputs objectively.
+
+**Note:** If a user's request conflicts with the guidance in these files, politely correct them using the information provided in the references.

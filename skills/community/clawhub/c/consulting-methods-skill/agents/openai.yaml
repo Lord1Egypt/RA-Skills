@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: "管理咨询方法工具箱"
+  short_description: "基于管理咨询方法库做诊断、战略与改善闭环分析"
+  default_prompt: "请基于管理咨询方法工具箱，对我给出的业务问题完成：问题定义、方法组合、关键发现、90天行动计划。"

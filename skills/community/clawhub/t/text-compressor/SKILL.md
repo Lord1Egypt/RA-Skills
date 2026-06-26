@@ -1,35 +1,41 @@
 ---
-name: "Text Compressor"
-description: "Compress and decompress text files using smart abbreviation and whitespace normalization. Use when user asks to compress, shrink, reduce, or optimize text fi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/text-compressor"
-sourceUrl: "https://clawhub.ai/skills/text-compressor"
+name: text-compressor
+description: Compress and decompress text files using smart abbreviation and whitespace normalization. Use when user asks to compress, shrink, reduce, or optimize text file size while preserving readability. Also use for batch text processing, file size reduction, or text cleanup.
 ---
 
-# Text Compressor
+# Text Compressor Skill
 
-> Compress and decompress text files using smart abbreviation and whitespace normalization. Use when user asks to compress, shrink, reduce, or optimize text fi...
+Compress text files using configurable levels of text abbreviation while keeping content readable.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/text-compressor`
-- **Source URL:** [https://clawhub.ai/skills/text-compressor](https://clawhub.ai/skills/text-compressor)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/text-compressor
+### Basic Compression
 ```
+python scripts/compress.py <input_file> [output_file] [--level 1-3]
+```
+
+### Decompress (restore approximation)
+```
+python scripts/compress.py <input_file> [output_file] --decompress [--level 1-3]
+```
+
+### Levels
+- **Level 1** — Clean whitespace, normalize line breaks, preserve all words
+- **Level 2** — + Smart phrase contractions (that is -> that's, you are -> ur, etc.)
+- **Level 3** — + Aggressive abbreviations (because -> bc, through -> thru, etc.)
+
+## Examples
+
+- `compress.py report.txt` — compress report.txt → report.txt.compressed
+- `compress.py input.txt output.txt --level 2` — medium compression to specific output
+- `compress.py compressed.txt --decompress` — attempt to restore (approximate)
+
+## Output
+
+Shows bytes saved and percentage reduction.
+
+## Notes
+
+- Compression is one-way by default. Use `--decompress` to attempt restoration (approximate only).
+- Level 1 is safe for all content. Higher levels may affect readability.
+- Always preserves line break structure.

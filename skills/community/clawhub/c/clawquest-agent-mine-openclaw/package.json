@@ -1,0 +1,16 @@
+{
+  "name": "clawquest-agent-mine-openclaw",
+  "version": "1.0.4",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "zod": "^3.23.8"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

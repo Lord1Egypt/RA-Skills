@@ -1,35 +1,176 @@
+﻿---
+name: telecom-visit-briefing
+description: Generate professional client visit briefings and follow-up action plans from visit records, meeting notes, handwritten notes, or chat logs. Trigger phrases: "visit briefing", "follow-up plan", "meeting summary", or paste any visit record content.
+name_cn: Visit Briefing Generator
+description_cn: Generate professional visit briefings and follow-up plans from visit records.
 ---
-name: "Visit Briefing Generator"
-description: "生成专业客户走访简报和后续跟进方案，支持文字、手写笔记图像和聊天记录输入，自动提取关键信息和商机线索。"
-category: "other"
-source: "ClawHub"
-tags: [briefing, openclaw, sales, telecom]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/telecom-visit-briefing"
-sourceUrl: "https://clawhub.ai/skills/telecom-visit-briefing"
----
+# 走访速报通
 
-# Visit Briefing Generator
+为中国电信客户经理提供走访后快速整理服务：输入走访记录（文字/手写拍照/聊天记录），自动生成标准化走访简报和后续跟进方案，含商机识别与话术推荐。
 
-> 生成专业客户走访简报和后续跟进方案，支持文字、手写笔记图像和聊天记录输入，自动提取关键信息和商机线索。
+## 前置依赖检查
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/telecom-visit-briefing`
-- **Source URL:** [https://clawhub.ai/skills/telecom-visit-briefing](https://clawhub.ai/skills/telecom-visit-briefing)
+本技能的文档导出功能依赖 `docx` skill。**启动时自动执行以下环境检测**：
 
-## Overview
+### 环境自检流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/telecom-visit-briefing
 ```
+1. 检测运行平台 → 2. 检测 docx 技能 → 3. 提示用户安装 → 4. 输出环境报告
+```
+
+**第1步：检测运行平台**
+
+| 检测方式 | 平台判定 |
+|---------|---------|
+| `~/.config/teleai-super-agent/skills/` 目录存在 | 星辰超级智能体 |
+| `.cursorrules` 或 `.trae-rules` 文件存在 | TRAE / Cursor |
+| `AGENTS.md` 或 `copilot-instructions.md` 存在 | Codex / Copilot |
+| `CLAUDE.md` 存在 | Claude Code |
+| 以上均不存在 | 未知平台，默认纯文字模式 |
+
+**第2步：检测 docx 技能**
+
+- 星辰超级智能体：检查 `~/.config/teleai-super-agent/skills/docx/SKILL.md` 是否存在
+- TRAE / Cursor：检查当前项目 `node_modules` 中是否有 `docx` 包，或 `pip show python-docx` 是否可用
+- 其他平台：标记为"需手动确认"
+
+**第3步：提示用户安装 docx 技能**（所有平台）
+
+当检测到 docx 技能未安装时，**不自动安装**，而是在对话首条回复中提示用户：
+"检测到当前环境未安装 docx 技能。如需导出Word文档，请先安装 docx 技能：
+- 星辰超级智能体：在技能市场搜索"docx"并安装
+- TRAE / Cursor：运行 `npm install python-docx`
+- 其他平台：参考平台文档安装 python-docx
+
+当前可在对话中正常查看简报和跟进方案，Word导出为可选功能。"
+
+用户自行安装后，后续对话即可正常导出Word。
+
+**第4步：输出环境报告**
+
+在对话首条回复中，简要输出环境检测结果：
+```
+[环境检测] 平台：{星辰/TRAE/Cursor/...} | docx技能：{已安装/未安装} | Word导出：{可用/不可用}
+```
+
+**不阻塞流程**：无论 docx 是否安装，简报和跟进方案均可在对话中正常输出。
+
+## 工作流程
+
+```
+依赖检测 → 识别输入材料类型 → 理解与整理走访内容 → 生成走访简报 → 生成后续跟进方案 → 对话输出 → 询问是否导出Word
+```
+
+严格按以下6个步骤顺序执行：
+
+### 第1步：识别输入材料类型
+
+根据用户输入方式，判断材料类型并执行对应的预处理：
+
+| 输入方式 | 识别方式 | 预处理动作 |
+|---------|---------|----------|
+| 文字记录 | 用户直接粘贴或提供文字文件 | 直接进入内容理解 |
+| 手写笔记拍照 | 用户上传图片 | 使用 `image_read` 工具识别图片中的文字内容 |
+| 聊天记录 | 用户粘贴微信/飞书/钉钉聊天记录 | 识别发送人、时间戳，去重，按时间线整理为结构化记录 |
+| 多文件组合 | 用户同时提供多种类型 | 逐一处理后合并为统一时间线 |
+
+**聊天记录处理规则**：
+- 识别每条消息的发送人和时间戳
+- 去除重复消息
+- 按时间顺序整理为结构化记录
+- 识别并标注关键信息（客户需求、产品意向、技术细节、人员信息等）
+
+**手写笔记处理规则**：
+- 使用 `image_read` 识别图片中全部文字
+- 对识别结果进行语义整理，保留原始信息不遗漏
+- 如识别结果不清晰，在简报中标注"以下内容根据手写笔记识别，可能有误，建议核对原文"
+
+### 第2步：理解与整理走访内容
+
+对预处理后的材料进行深度理解，提取以下关键信息：
+
+**必须提取的字段**（尽力填充，缺失标注"材料中未提及"）：
+- 走访日期、走访客户（企业全称）
+- 参与人员（我方人员、客户方人员及职务）
+- 走访地点
+
+**关键内容分析维度**：
+- **客户现状**：当前使用的产品/服务、IT基础设施情况、业务发展状况
+- **客户需求/痛点**：明确表达的需求、暗示的痛点、近期面临的问题
+- **客户态度**：对电信产品的接受度、对竞品的态度、合作意愿判断
+- **产品意向**：客户感兴趣的产品、已推荐但未明确态度的产品、明确拒绝的产品
+- **竞对信息**：客户当前使用的竞品、竞对接触情况
+- **商机线索**：可立即跟进的商机、需长期培育的商机、潜在的未来需求
+- **遗留问题**：需要进一步了解的信息、需要后续推进的事项、客户要求的事项
+
+### 第3步：生成走访简报
+
+读取 [references/briefing-template.md](references/briefing-template.md) 获取输出模板，严格按模板结构生成简报。
+
+**简报生成原则**：
+- 如实呈现走访内容，不隐藏、不淡化、不美化、不修改原始信息
+- 客户名称、安全事件、费用数据等敏感信息一律如实记录
+- 区分"客户明确表述"与"客户经理分析判断"，分析判断需标注
+- 信息不足处如实标注"材料中未提及，建议后续了解"
+
+### 第4步：生成后续跟进方案
+
+读取 [references/telecom-products.md](references/telecom-products.md) 获取产品知识库，读取 [references/speech-scripts.md](references/speech-scripts.md) 获取话术模板，基于走访内容和商机线索生成跟进方案。
+
+**跟进方案生成逻辑**：
+
+1. **商机优先级排序**：
+   - 根据客户需求紧迫性、合作意愿、商机规模排序
+   - 区分为：立即跟进（1周内）/ 短期跟进（2周内）/ 中期培育（1个月内）
+
+2. **产品方案匹配**：
+   - 基于客户需求/痛点，从产品知识库中匹配3-5个推荐产品
+   - 每个推荐必须结合走访中客户的**具体表述**给出推荐理由
+
+3. **跟进话术生成**：
+   - 为每个商机生成针对性的跟进话术
+   - 话术风格根据客户态度选择：正式客户用商务版，亲和客户用自然版
+   - 话术需衔接上次走访内容，体现"上次聊完我专门做了功课"的感觉
+
+4. **跟进计划编排**：
+   - 每个商机设定具体的时间节点和负责人
+   - 包含准备工作清单（需准备什么资料、方案、报价）
+   - 包含风险评估和备选方案
+
+### 第5步：在对话中输出报告
+
+**对话中依次输出**（不生成文件）：
+
+1. **摘要**：走访概述（客户+日期+核心结论）、关键商机列表（3-5项）、建议下一步行动
+2. **走访简报**：按模板结构完整输出
+3. **后续跟进方案**：按模板结构完整输出
+
+**末尾询问**：
+输出完报告后，向用户确认："是否需要将简报和跟进方案导出为Word文档？如需要，请回复"需要"，我将为您生成 .docx 文件。"
+- 用户确认需要时，调用 `docx` skill 生成Word文件，命名规则 `{客户名称}走访简报_{日期}.docx`，保存至工作目录根目录
+- 用户不需要则结束流程
+
+### 第6步：文档导出（仅在用户确认需要时执行）
+
+当用户确认需要导出Word时：
+1. 调用 `docx` skill
+2. 按模板结构生成Word文档，包含走访简报和后续跟进方案两部分
+3. 文档格式要求：
+   - 标题：18pt 加粗 深蓝色
+   - 正文：12pt 微软雅黑
+   - 表格：带边框、表头深蓝底色白字
+   - 商机优先级用颜色区分（立即=红色、短期=橙色、中期=蓝色）
+
+## 关键注意事项
+
+### 保密规则
+- 本技能为中国电信内部工具，生成内容必须如实反映走访实际情况
+- 禁止隐藏、淡化、美化或修改原始信息
+- 客户名称、安全事件、费用数据等敏感信息一律如实呈现
+- 信息不足时标注"未提及"，不编造或推测
+
+### 内容规范
+- 简报以客户经理视角呈现，语气客观专业
+- 区分"客户原话"与"分析判断"
+- 商机推荐结合走访中客户的具体表述，禁止套话
+- 跟进计划给出具体可执行的动作和时间节点

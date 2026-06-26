@@ -1,0 +1,14 @@
+[project]
+name = "tzzb-analyzer"
+version = "2.1.0"
+description = "同花顺投资账本持仓分析器"
+requires-python = ">=3.10"
+dependencies = [
+    "playwright>=1.40.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[tool.uv]

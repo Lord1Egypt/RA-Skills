@@ -1,35 +1,49 @@
 ---
-name: "Wechat"
-description: "提供微信视频号公开页面的视频数据检索与表现摘要，包括话题合集、账号主页及榜单统计分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-video"
-sourceUrl: "https://clawhub.ai/skills/wechat-video"
+name: wechat-video-channel-hot-trend
+description: 注册“微信视频号”技能；用于公开视频号页信息整理与表现摘要。
+homepage: `https://channels.weixin.qq.com/`
+metadata: {"clawdbot":{"emoji":"🎬"}}
 ---
 
-# Wechat
+# 微信视频号
 
-> 提供微信视频号公开页面的视频数据检索与表现摘要，包括话题合集、账号主页及榜单统计分析。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-video`
-- **Source URL:** [https://clawhub.ai/skills/wechat-video](https://clawhub.ai/skills/wechat-video)
+- 面向公开视频号与话题页的检索与表现数据摘要
+- 不提供登录自动化、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://channels.weixin.qq.com/
+- 话题/榜单：站点入口
+- 分享页：公开链接
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-video
-```
+常见任务
+
+- 指定话题的公开视频集合摘要（点赞/评论/收藏）
+- 账号主页近期视频表现对比
+- 榜单条目分布与题材统计
+
+数据字段
+
+- 视频标题、账号名称、发布时间、点赞/评论/收藏、链接
+- 主页链接、近期视频交互指标摘要
+- 榜单名称、采集时间、来源链接
+
+自动化要点
+
+- 内容动态加载与人机校验，需等待渲染完成后解析
+- 无账号鉴权能力，仅处理公开分享
+- 频率控制，避免重复访问
+
+示例流程
+
+- 话题摘要：访问话题 → 抽取条目 → 输出表现摘要
+- 主页对比：进入账号主页 → 抽取近期视频 → 统计交互指标
+- 榜单统计：访问榜单 → 抽取条目 → 题材分布统计
+
+合规提示
+
+- 遵守平台与信息安全规定，不处理非公开内容
+- 输出仅用于内部分析与提醒

@@ -1,0 +1,31 @@
+{
+  "name": "@openclaw/skill-feishu-emoji-reaction",
+  "version": "1.0.0",
+  "description": "让 AI Agent 学会用表情回复 | Make your AI Agent fluent in emoji reactions",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "feishu",
+    "lark",
+    "reaction",
+    "emoji",
+    "messaging",
+    "emotion",
+    "interaction"
+  ],
+  "author": "Charlie <charlie@openclaw.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "feishu-reaction"
+  },
+  "openclaw": {
+    "skillType": "messaging",
+    "requiredVersion": ">=2026.3.28",
+    "channels": ["feishu"],
+    "permissions": [
+      "im:message.reactions:write_only"
+    ]
+  }
+}

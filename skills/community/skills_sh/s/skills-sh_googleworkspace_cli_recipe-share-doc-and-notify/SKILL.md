@@ -1,35 +1,29 @@
 ---
-name: "recipe-share-doc-and-notify"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-share-doc-and-notify"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-share-doc-and-notify"
+name: recipe-share-doc-and-notify
+description: "Share a Google Docs document with edit access and email collaborators the link."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
+        - gws-docs
+        - gws-gmail
 ---
 
-# recipe-share-doc-and-notify
+# Share a Google Doc and Notify Collaborators
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`, `gws-docs`, `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-share-doc-and-notify`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-share-doc-and-notify](https://skills.sh/googleworkspace/cli/recipe-share-doc-and-notify)
+Share a Google Docs document with edit access and email collaborators the link.
 
-## Overview
+## Steps
 
+1. Find the doc: `gws drive files list --params '{"q": "name contains '\''Project Brief'\'' and mimeType = '\''application/vnd.google-apps.document'\''"}'`
+2. Share with editor access: `gws drive permissions create --params '{"fileId": "DOC_ID"}' --json '{"role": "writer", "type": "user", "emailAddress": "reviewer@company.com"}'`
+3. Email the link: `gws gmail +send --to reviewer@company.com --subject 'Please review: Project Brief' --body 'I have shared the project brief with you: https://docs.google.com/document/d/DOC_ID'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-share-doc-and-notify
-```

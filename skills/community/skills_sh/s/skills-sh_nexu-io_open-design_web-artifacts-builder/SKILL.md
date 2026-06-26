@@ -1,35 +1,42 @@
 ---
-name: "web-artifacts-builder"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/web-artifacts-builder"
-sourceUrl: "https://skills.sh/nexu-io/open-design/web-artifacts-builder"
+name: web-artifacts-builder
+description: |
+  Build complex claude.ai HTML artifacts with React and Tailwind. Anthropic's reference workflow for shipping rich, embeddable artifacts.
+triggers:
+  - "web artifacts"
+  - "tailwind artifact"
+  - "react artifact"
+  - "anthropic artifact"
+od:
+  mode: prototype
+  category: web-artifacts
+  upstream: "https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder"
 ---
 
 # web-artifacts-builder
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Anthropic's official skills repository.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/web-artifacts-builder`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/web-artifacts-builder](https://skills.sh/nexu-io/open-design/web-artifacts-builder)
+## What it does
 
-## Overview
+Build complex claude.ai HTML artifacts with React and Tailwind. Anthropic's reference workflow for shipping rich, embeddable artifacts.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder
+- Category: `web-artifacts`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/web-artifacts-builder
+# Inspect the upstream README for exact paths
+open https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder
 ```
+
+Then ask the agent to invoke this skill by name (`web-artifacts-builder`) or with
+one of the trigger phrases listed in this skill's frontmatter.

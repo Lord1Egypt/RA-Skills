@@ -1,0 +1,4 @@
+interface:
+  display_name: "SQL to BI Builder"
+  short_description: "Generate BI dashboard UI specs from SQL markdown."
+  default_prompt: "Build a BI interface from sql.md by parsing SQL, inferring semantics, and generating dashboard configs."

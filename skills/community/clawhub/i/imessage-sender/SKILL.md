@@ -1,35 +1,40 @@
 ---
-name: "Imessage Sender"
-description: "Send images from Mac to phone via iMessage"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/imessage-sender"
-sourceUrl: "https://clawhub.ai/skills/imessage-sender"
+name: send-image-skill
+description: Send images from Mac to phone via iMessage
 ---
 
-# Imessage Sender
+# Send Image via iMessage
 
-> Send images from Mac to phone via iMessage
+## Function
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/imessage-sender`
-- **Source URL:** [https://clawhub.ai/skills/imessage-sender](https://clawhub.ai/skills/imessage-sender)
+Send images from Mac to phone number via iMessage/Messages app.
 
-## Overview
+## Usage
 
+### Send Image
 
-## Installation
-To install this skill, run the following command in your terminal:
+When user requests to send an image, automatically send via iMessage to the phone.
+
+### Manual Commands
+
 ```bash
-hermes skills install clawhub/imessage-sender
+# Send image to phone number
+python3 ~/.openclaw/workspace/skills/imessage-sender/scripts/send.py send "phone_number" "/path/to/image.png"
 ```
+
+## First Time Setup
+
+Set the recipient phone number:
+
+```bash
+python3 ~/.openclaw/workspace/skills/imessage-sender/scripts/send.py config set "your_phone_number"
+```
+
+## Image Storage
+
+All images will be automatically copied to:
+```
+~/Pictures/openclaw-send/
+```
+
+The script automatically copies images to this directory before sending to avoid path issues.

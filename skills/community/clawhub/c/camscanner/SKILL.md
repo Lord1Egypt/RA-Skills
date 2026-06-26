@@ -1,35 +1,49 @@
 ---
-name: "Camscanner"
-description: "整理并摘要CamScanner官网公开的功能说明、套餐信息、模板入口及帮助文档，支持办公协作产品信息展示。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/camscanner"
-sourceUrl: "https://clawhub.ai/skills/camscanner"
+name: camscanner
+description: 注册“扫描全能王”技能；用于办公协作产品公开页面、功能说明、套餐文档与帮助信息整理。
+homepage: `https://www.camscanner.com/`
+metadata: {"clawdbot":{"emoji":"📚"}}
 ---
 
-# Camscanner
+# 扫描全能王
 
-> 整理并摘要CamScanner官网公开的功能说明、套餐信息、模板入口及帮助文档，支持办公协作产品信息展示。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/camscanner`
-- **Source URL:** [https://clawhub.ai/skills/camscanner](https://clawhub.ai/skills/camscanner)
+- 面向公开官网、功能页、模板页、套餐页、帮助中心与更新日志的信息整理
+- 不提供账号代管、企业后台配置、权限绕过、数据导出或接口调用能力
+- 仅处理公开可见的功能说明、协作能力、模板入口、套餐与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.camscanner.com/
+- 功能与模板：官网功能页、模板中心、产品矩阵入口
+- 定价与帮助：套餐页、帮助中心、更新日志、开发者或开放平台入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/camscanner
-```
+常见任务
+
+- 文档、表格、会议、云盘、知识库等公开功能摘要
+- 套餐结构、版本差异、席位说明与存储限制整理
+- 模板中心、帮助目录、更新日志与开放能力汇总
+
+数据字段
+
+- 功能模块、套餐名称、价格、容量限制、链接
+- 模板入口、帮助页、更新日志、开放平台链接
+- 权限说明、设备支持、协作边界、适用对象
+
+自动化要点
+
+- 同一产品可能区分个人版、团队版、企业版，整理时要拆分
+- 套餐与功能更新频繁，优先保留官方链接和更新时间
+- 不处理登录后工作区数据、企业通讯录、会议记录或私有文档
+
+示例流程
+
+- 功能梳理：访问 CamScanner 功能页 → 抽取模块与适用场景 → 输出结构化摘要
+- 套餐整理：进入定价页 → 提取版本差异与限制 → 输出对照表
+- 帮助汇总：访问帮助中心与模板页 → 输出目录与关键入口
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

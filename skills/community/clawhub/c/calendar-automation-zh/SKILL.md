@@ -1,35 +1,119 @@
 ---
-name: "Calendar Automation Zh"
-description: "日历自动化 / 智能日程管理 / 会议日程助手 / calendar automation。自动同步 Google Calendar、Outlook 跨平台日程，智能安排会议时间、生成日程播报、设置会前提醒。适配行政助理的会议室预订冲突排查、项目经理的多项目时间块管理、团队负责人的团队日程协调需求。减少重复手动操..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/calendar-automation-zh"
-sourceUrl: "https://clawhub.ai/skills/calendar-automation-zh"
+name: calendar-automation-zh
+description: >
+  日历自动化 / 智能日程管理 / 会议日程助手 / calendar automation。自动同步 Google Calendar、Outlook 跨平台日程，智能安排会议时间、生成日程播报、设置会前提醒。适配行政助理的会议室预订冲突排查、项目经理的多项目时间块管理、团队负责人的团队日程协调需求。减少重复手动操作，提升团队协作效率。常用搜索：日程自动化、会议智能安排、日历同步工具、时间管理助手、自动提醒系统、团队日程协调。
+tags:
+  - 日历自动化
+  - 日程管理
+  - 会议安排
+  - calendar-automation
+  - scheduling
+  - 时间管理
+  - 行政助理
+  - 项目经理
+  - 效率工具
+  - productivity-tool
 ---
 
-# Calendar Automation Zh
+# 日历自动化助手
 
-> 日历自动化 / 智能日程管理 / 会议日程助手 / calendar automation。自动同步 Google Calendar、Outlook 跨平台日程，智能安排会议时间、生成日程播报、设置会前提醒。适配行政助理的会议室预订冲突排查、项目经理的多项目时间块管理、团队负责人的团队日程协调需求。减少重复手动操...
+自动化管理 Google Calendar / Outlook 日程，实现会议调度、时间块规划、每日日程播报与跨平台同步，减少重复性日程操作，提升团队协作效率。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/calendar-automation-zh`
-- **Source URL:** [https://clawhub.ai/skills/calendar-automation-zh](https://clawhub.ai/skills/calendar-automation-zh)
+## Tools Required
 
-## Overview
+- `calendar_create_event` — 创建日程/会议
+- `calendar_list_events` — 查询日程列表
+- `calendar_update` — 更新日程信息
+- `slack_notify` — 推送通知（可替换为企业微信/飞书 webhook）
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/calendar-automation-zh
+- "帮我整理今天的日程，生成一份早间简报发到群里"
+- "下午3点到5点给我设置一个深度工作时间块，拒绝这段时间内的会议邀请"
+- "我本周有几个背靠背会议？帮我分析一下时间碎片化情况"
+
+## Examples
+
+**示例一：每日日程播报**
+
+输入：
+```
+今天是2025年7月15日，帮我汇总今天的日程并生成一份早报摘要。
+```
+
+输出：
+```
+☀️ 早上好！以下是您今天的日程概览：
+
+📅 2025年7月15日（周二）
+
+📊 日程总览：
+• 共 4 场会议，合计 3.5 小时
+• 空闲时间约 4.5 小时
+• 存在 2 段背靠背会议，建议提前做好切换准备
+
+🗓️ 今日日程详情：
+09:00–09:30  产品周会（参会人：6人）
+10:00–11:00  与小王的 1对1 沟通
+14:00–15:00  需求评审会（参会人：8人）
+16:00–16:30  季度复盘准备碰头
+
+⚠️ 提醒：
+• 09:00 产品周会请提前准备本周进展汇报
+• 14:00 需求评审请携带产品原型文档
+```
+
+---
+
+**示例二：时间块设置**
+
+输入：
+```
+每天上午10点到12点帮我设置"深度工作时间"，持续本周，期间不接受会议邀请。
+```
+
+输出：
+```
+✅ 已为您创建本周深度工作时间块：
+
+📌 时间块详情：
+• 名称：🔒 深度工作时间（请勿打扰）
+• 时间：每天 10:00–12:00
+• 日期范围：7月15日（周二）至 7月18日（周五）
+• 状态：已设为"忙碌"，会议邀请将自动显示冲突提示
+
+💡 建议：
+- 可在该时间段关闭消息通知
+- 建议提前告知团队成员，紧急事项可通过电话联系
+```
+
+---
+
+**示例三：本周日程碎片化分析**
+
+输入：
+```
+分析我本周的日程，看看有多少背靠背会议，哪些时间段可以用来做深度工作？
+```
+
+输出：
+```
+📊 本周日程分析报告（7月14日–7月18日）
+
+⏱️ 会议统计：
+• 共 12 场会议，合计 14 小时
+• 背靠背会议（间隔 < 15 分钟）：3 组
+  - 周一 14:00–16:30（连续 3 场）
+  - 周三 09:00–11:00（连续 2 场）
+  - 周五 15:00–17:00（连续 2 场）
+
+🟢 可用深度工作时间段：
+• 周二 10:00–12:00（2小时，无会议）
+• 周三 14:00–16:00（2小时，无会议）
+• 周四 全天较空闲，推荐 09:00–12:00（3小时）
+
+💡 优化建议：
+1. 周一下午会议过于密集，建议将16:00的会议移至周二
+2. 每天预留至少2小时深度工作时间，可提升专注输出质量
+3. 考虑在日历中设置固定"免打扰时间块"，减少临时插入会议
 ```

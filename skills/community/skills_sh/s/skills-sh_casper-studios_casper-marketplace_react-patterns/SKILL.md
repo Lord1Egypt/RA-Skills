@@ -1,35 +1,46 @@
 ---
-name: "react-patterns"
-description: "Indexed by skills.sh from casper-studios/casper-marketplace"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "casper-studios"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/casper-studios/casper-marketplace/react-patterns"
-sourceUrl: "https://skills.sh/casper-studios/casper-marketplace/react-patterns"
+name: react-patterns
+description: Write React components with minimal state, proper memoization, and type-safe patterns. Use when creating components, managing state, or optimizing renders.
+user-invocable: false
+metadata:
+  author: BastiDood <basti@casperstudios.xyz>
 ---
 
-# react-patterns
+# React Patterns
 
-> Indexed by skills.sh from casper-studios/casper-marketplace
+Core React patterns for component design, state management, and optimization.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** casper-studios
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/casper-studios/casper-marketplace/react-patterns`
-- **Source URL:** [https://skills.sh/casper-studios/casper-marketplace/react-patterns](https://skills.sh/casper-studios/casper-marketplace/react-patterns)
+## State Philosophy
 
-## Overview
+Avoid state variables. Prefer derived values and props. Scope state to the smallest subtree that needs it. Use discriminated unions for complex state.
 
+See [state-management.md](references/state-management.md) for:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/casper-studios/casper-marketplace/react-patterns
-```
+- Derived values over state
+- Component boundaries for state scoping
+- Context API patterns
+- Zustand for complex state
+- State machines over multiple useState
+
+## Memoization
+
+Required for any O(n) operation. Memoize atomically to minimize dependency arrays. Use Loader/Inner pattern to narrow types before useMemo.
+
+See [memoization.md](references/memoization.md) for:
+
+- When to useMemo
+- Atomic memoization
+- useCallback for handlers
+- Loader/Inner pattern for type narrowing
+
+## Conditional Logic
+
+Use affirmative logic, explicit conditionals, and ternaries over `&&`. Early returns for guard clauses.
+
+See [conditional-logic.md](references/conditional-logic.md) for:
+
+- Affirmative logic
+- Explicit conditionals
+- Conditional rendering
+- Type narrowing with conditionals
+- Early returns

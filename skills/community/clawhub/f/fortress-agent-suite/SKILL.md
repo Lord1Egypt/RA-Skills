@@ -1,35 +1,23 @@
----
-name: "Fortress Agent Suite"
-description: "Fortress Agent Suite provides self-healing, health monitoring, automated maintenance, and LLM model management for OpenClaw agents in production."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fortress-agent-suite"
-sourceUrl: "https://clawhub.ai/skills/fortress-agent-suite"
----
-
 # Fortress Agent Suite
 
-> Fortress Agent Suite provides self-healing, health monitoring, automated maintenance, and LLM model management for OpenClaw agents in production.
+**Fortress** is a production-grade suite for OpenClaw agents, providing self-healing, system monitoring, and proactive security hardening.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fortress-agent-suite`
-- **Source URL:** [https://clawhub.ai/skills/fortress-agent-suite](https://clawhub.ai/skills/fortress-agent-suite)
+> ⚠️ **SECURITY ALERT - HIGH PRIVILEGE TOOL**
+> **This suite operates with root-level access and requires a trusted environment.**
+> It is designed for production Odoo/OpenClaw setups and performs autonomous system modifications (Crontab, Git, Gateway restarts, and auto-skill installation). **Do not install unless you own and trust the underlying workspace.**
 
-## Overview
+---
 
+## 🛠 Features
+- 🛡️ **Self-Healing**: Automatic gateway recovery and backup restoration.
+- 🩺 **Health Monitoring**: Disk, RAM, and system watchdog services.
+- ⚙️ **Automated Maintenance**: Auto-cron enforcement and Git-sync for workspace integrity.
+- 🤖 **Model Manager**: Autonomous management of LLM providers for 9Router.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fortress-agent-suite
-```
+## 🚀 Deployment Requirements
+1. **Trusted Environment Only**: Only install in environments where you have full control and trust.
+2. **Dependencies**: `pip install psutil`.
+3. **Setup**: Apply `crontab_template.txt`.
+
+## License
+MIT

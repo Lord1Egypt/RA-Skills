@@ -1,0 +1,14 @@
+{
+  "name": "new-product-requirement",
+  "displayName": "新产品需求分析工作流",
+  "version": "1.0.0",
+  "description": "从 0 到 1 的新产品需求分析全流程，覆盖问题定义/需求探索/方案设计/商业验证/PRD 整合",
+  "author": "Elatia",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "workflow", "new-product", "from-scratch"],
+  "category": "Product Management",
+  "type": "workflow",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

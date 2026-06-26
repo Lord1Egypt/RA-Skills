@@ -1,0 +1,54 @@
+commands:
+  troubleshoot:
+    description: "Run text-based troubleshooting"
+    workflow: "troubleshoot"
+    args:
+      user_issue:
+        type: string
+        required: true
+
+  maintenance:
+    description: "Run a maintenance guide"
+    workflow: "maintenance"
+    args:
+      task:
+        type: string
+        required: true
+
+  vision_analysis:
+    description: "Run premium image-based failure analysis"
+    workflow: "vision_analysis"
+    args:
+      image_path:
+        type: string
+        required: true
+
+  generate_gcode:
+    description: "Generate calibration G-Code"
+    workflow: "generate_gcode"
+    args:
+      calibration_type:
+        type: string
+        required: true
+      printer_model:
+        type: string
+        required: true
+
+  manage_profiles:
+    description: "Save or load tuning profiles"
+    workflow: "manage_profiles"
+    args:
+      action_type:
+        type: string
+        required: true
+      profile_name:
+        type: string
+        required: true
+      settings:
+        type: dict
+        required: false
+
+  export_logs:
+    description: "Export maintenance logs to CSV"
+    workflow: "export_logs"
+    args: {}

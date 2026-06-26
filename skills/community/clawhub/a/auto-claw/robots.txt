@@ -1,0 +1,19 @@
+# Auto-Claw robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: http://linghangyuan1234.dpdns.org/wp-sitemap.xml
+
+# Disallow
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-cron.php
+Disallow: /wp-content/plugins/
+Disallow: /wp-includes/
+Disallow: /track/
+Disallow: /?s=*
+Disallow: /search/
+
+# Crawl delay
+Crawl-delay: 1

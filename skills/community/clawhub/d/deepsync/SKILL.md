@@ -1,35 +1,37 @@
 ---
-name: "Deepsync"
-description: "Use this skill when the user wants to find compatible people — romantic partners, business partners, or friends — based on deep psychological profiling. Trig..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deepsync"
-sourceUrl: "https://clawhub.ai/skills/deepsync"
+name: deepsync
+description: Use this skill when the user wants to find compatible people — romantic partners, business partners, or friends — based on deep psychological profiling. Triggers on phrases like "find my match", "find me a partner", "who am I compatible with", "DeepSync".
+version: 0.1.0
+author: ivankoriako
+license: MIT
 ---
 
-# Deepsync
+# DeepSync 🔗
 
-> Use this skill when the user wants to find compatible people — romantic partners, business partners, or friends — based on deep psychological profiling. Trig...
+**AI-powered human compatibility matching based on psychological depth — not interests.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deepsync`
-- **Source URL:** [https://clawhub.ai/skills/deepsync](https://clawhub.ai/skills/deepsync)
+DeepSync analyzes who you really are — how you handle conflict, make decisions, spend energy — and finds people who complement you.
 
-## Overview
+- ❤️ Romantic partner
+- 💼 Business co-founder
+- 🤝 Friend or like-minded person
+- 🔍 Any custom search
 
+## Status
+
+🚧 **Coming soon.** Profile builder and matching engine in development.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/deepsync
+clawhub install deepsync
 ```
+
+## Usage
+
+Just tell your agent:
+
+- "Find me a business partner"
+- "DeepSync — who am I compatible with?"
+
+Built on OpenClaw. Your data stays local. Always.

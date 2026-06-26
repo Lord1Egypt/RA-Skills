@@ -1,0 +1,65 @@
+{
+  "name": "free-model-router",
+  "version": "1.5.3",
+  "description": "Local AI model router with dual deployment modes (Skill + Standalone) — test trigger",
+  "main": "core/server.js",
+  "bin": {
+    "free-model-router": "scripts/router.js",
+    "free-model-cli": "scripts/free-model-cli.js"
+  },
+  "scripts": {
+    "start": "node scripts/router.js",
+    "start:standalone": "node core/server.js",
+    "dev": "node scripts/router.js",
+    "cli": "node scripts/free-model-cli.js",
+    "test": "node test/test.js",
+    "deploy:skill": "node deploy/deploy-skill.js",
+    "build:skill": "node deploy/deploy-skill.js",
+    "build:standalone": "bash deploy/deploy.sh",
+    "build:standalone:win": "powershell -ExecutionPolicy Bypass -File deploy\\deploy.ps1",
+    "build:pkg:win": "node deploy/build-pkg.js",
+    "build:pkg:win:test": "set MODEL_SERVER_URL=http://localhost:3002 && node deploy/build-pkg.js",
+    "build:pkg:win:setup": "node deploy/build-iss.js",
+    "build:pkg:win:setup:test": "set MODEL_SERVER_URL=http://localhost:3002 && node deploy/build-iss.js"
+  },
+  "pkg": {
+    "scripts": [
+      "core/**/*.js",
+      "standalone/**/*.js",
+      "scripts/**/*.js"
+    ],
+    "assets": [
+      "core/admin/public/**/*",
+      "package.json"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "release/pkg"
+  },
+  "keywords": [
+    "ai",
+    "router",
+    "proxy",
+    "openai",
+    "model-switching"
+  ],
+  "author": "",
+  "license": "BSL-1.1",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "@foxt/js-srp": "^0.0.3-patch2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0",
+    "pkg": "^5.8.1",
+    "postject": "^1.0.0-alpha.6",
+    "terser": "^5.30.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/free-model-router"
+  }
+}

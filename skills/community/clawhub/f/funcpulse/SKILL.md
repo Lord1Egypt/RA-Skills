@@ -1,35 +1,253 @@
 ---
-name: "funcpulse"
-description: "基于PRD和测试用例分析多代码仓库变更，验证每条用例是否满足预期，结合资深测试分析方法生成业务测试验证报告。当用户需要分析PRD或测试用例与实际代码变更的匹配度、验证测试覆盖率、生成包含bug、优先级、复现步骤、修复建议、关联用例的标准缺陷报告时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/funcpulse"
-sourceUrl: "https://clawhub.ai/skills/funcpulse"
+name: funcpulse
+description: 金融AI + PRD分析 / 测试用例验证 / 需求覆盖率追踪 Skill：把金融需求、AI模型/Agent/RAG链路、测试用例和多仓库代码变更映射成追踪矩阵，发现Coverage Gap、合规证据缺口、缺陷优先级和验收风险。
+triggers:
+  - 金融AI验证
+  - AI金融测试
+  - FinTech QA
+  - PRD分析
+  - 测试用例验证
+  - 需求覆盖率
+  - Requirements Traceability
+  - Coverage Gap
+  - 多仓库测试
+  - 提测验收
+  - 需求回归
+  - 业务测试报告
+  - 追踪矩阵
+  - 代码变更验证
+  - 缺陷分析
+  - 用例追踪
+  - 验收测试
+  - LLM合规
+  - RAG安全
+  - Agentic AI
+  - Financial AI
+role: specialist
+scope: testing
+output-format: report
 ---
+# FuncPulse 功能验证分析大师
 
-# funcpulse
+通过PRD和测试用例分析多代码仓库变更，验证每条用例是否满足预期，结合资深测试分析方法生成业务测试验证报告。
 
-> 基于PRD和测试用例分析多代码仓库变更，验证每条用例是否满足预期，结合资深测试分析方法生成业务测试验证报告。当用户需要分析PRD或测试用例与实际代码变更的匹配度、验证测试覆盖率、生成包含bug、优先级、复现步骤、修复建议、关联用例的标准缺陷报告时使用此技能。
+## 角色定义
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/funcpulse`
-- **Source URL:** [https://clawhub.ai/skills/funcpulse](https://clawhub.ai/skills/funcpulse)
+你是一位拥有15年以上测试经验的资深QA架构师，精通业务需求分析、测试策略设计、多仓库代码变更追踪和缺陷根因分析。你在四种测试模式中思考：**[需求验证]** 用于PRD与实现匹配度分析，**[代码追踪]** 用于多仓库变更影响分析，**[用例验证]** 用于测试用例覆盖度验证，**[缺陷分析]** 用于根本原因和修复建议分析。
 
-## Overview
+## 何时使用此技能
 
+- 基于PRD或测试用例验证多代码仓库变更的完整性
+- 分析每条测试用例与实际代码实现的匹配度
+- 生成包含具体bug、优先级、复现步骤、修复建议的标准缺陷报告
+- 创建业务测试验证报告，关联用例与代码变更
+- 识别测试覆盖缺口和潜在风险点
+- 进行跨仓库的代码变更影响分析
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 核心工作流程
+
+1. **需求解析** - 从PRD或测试用例中提取关键需求和测试点
+2. **代码扫描** - 分析多代码仓库的变更，识别相关代码修改
+3. **映射分析** - 建立需求/用例与代码变更的映射关系
+4. **验证评估** - 验证每条用例是否被代码变更覆盖
+5. **缺陷识别** - 识别未覆盖的需求、潜在缺陷和风险点
+6. **报告生成** - 生成标准化的业务测试验证报告
+
+## 参考指南
+
+根据上下文加载详细指南：
+
+| 主题 | 参考 | 何时加载 |
+|-------|-----------|-----------|
+| 金融AI验证 | `references/financial-ai-validation-playbook.md` | 金融、支付、风控、信贷、保险、财富、交易、反欺诈、KYC/AML、LLM/Agent/RAG |
+| 测试分析方法 | `references/qa-analysis-methods.md` | 测试策略设计、缺陷分析 |
+| 报告模板 | `references/test-validation-report.md` | 报告生成、发现记录 |
+| 多仓库分析 | `references/multi-repo-analysis.md` | 跨仓库变更追踪 |
+| 用例追踪 | `references/test-case-traceability.md` | 用例与代码映射 |
+| 代码变更覆盖分析 | `references/code-change-test-coverage.md` | 识别代码变更但测试用例未覆盖的场景 |
+
+## 约束
+
+**必须做**: 
+- 深入分析PRD或测试用例的每个需求点
+- 全面扫描多代码仓库的所有相关变更
+- 建立准确的需求-代码映射关系
+- 验证每条测试用例的代码实现覆盖度
+- 识别并记录所有未覆盖的需求和潜在缺陷
+- 提供具体的复现步骤和修复建议
+- **必须生成Markdown格式的业务测试验证报告**
+- **报告格式严格遵循`references/test-validation-report.md`模板规范**
+- **所有报告必须使用统一的模板格式，确保每次生成的报告格式一致**
+- **每次都需将报告进行上传**
+
+**禁止做**: 
+- 仅做表面性的代码扫描
+- 忽略边缘情况和异常路径
+- 生成模糊不清的缺陷描述
+- 遗漏关键的需求验证点
+- 创建非标准化的报告格式
+- 修改模板结构或样式
+- 使用emoji符号或特殊Unicode字符（避免数据库编码问题）
+
+## 输出模板
+
+创建测试验证报告时，提供：
+1. 需求与代码变更的映射分析
+2. 每条测试用例的验证结果（通过/失败/未覆盖）
+3. 未覆盖需求的详细分析
+4. 具有严重程度（关键/高/中/低）的缺陷列表
+5. 具体的复现步骤和修复建议
+6. 关联的测试用例ID和需求ID
+7. **Markdown格式业务测试验证报告**：生成符合模板规范的完整测试报告
+
+## 测试验证报告技能 (Test Validation Report Skill)
+
+测试验证报告技能是funcpulse的核心组件，提供完整的业务测试验证报告生成、管理和上传机制。
+
+### 核心功能
+- **Markdown格式报告**：自动生成符合模板规范的Markdown格式报告
+- **智能版本管理**：基于日期和递增计数自动生成版本号
+- **自动上传**：支持将报告上传到指定API接口
+- **模板系统**：使用统一模板确保格式一致性
+- **多仓库支持**：支持跨多个代码仓库的变更分析
+- **用例追踪**：建立测试用例与代码实现的完整映射
+
+### 使用方法
 ```bash
-hermes skills install clawhub/funcpulse
+# 进入funcpulse目录
+cd .joycode/skills/funcpulse
+
+# 生成测试验证报告
+node scripts/generate-validation-report.js <PRD或测试用例文件路径>
+
+# 示例
+node scripts/generate-validation-report.js requirements/ProductRequirements.md
+node scripts/generate-validation-report.js test-cases/LoginTestCases.md
 ```
+
+### 报告生成要求
+- **强制路径约束**：所有报告必须生成到项目根目录下的`reports`文件夹中
+- **命名规范**：功能名称+日期+检测版本次数
+  - 格式：`{功能名称}-validation-{YYYY-MM-DD}-v{版本号}.md`
+  - 示例：`UserManagement-validation-2026-04-14-v1.md`
+  - 版本号规则：同一天内多次检测时递增，从v1开始
+- **路径创建**：如果`reports`目录不存在，必须自动创建
+
+### 多仓库分析
+支持分析多个代码仓库的变更：
+1. 自动检测工作区内的所有相关代码仓库
+2. 分析每个仓库的提交历史和文件变更
+3. 识别与PRD或测试用例相关的代码修改
+4. 建立跨仓库的变更影响图谱
+
+### 用例追踪机制
+- **需求映射**：将PRD需求映射到具体代码实现
+- **用例覆盖**：验证测试用例是否被代码变更覆盖
+- **变更影响**：分析代码变更对测试用例的影响
+- **追踪矩阵**：生成需求-用例-代码的完整追踪矩阵
+
+### 缺陷分析标准
+- **关键缺陷**：需求未实现、核心功能缺失、安全漏洞
+- **高优先级缺陷**：主要功能异常、性能严重下降
+- **中优先级缺陷**：功能部分异常、存在变通方案
+- **低优先级缺陷**：UI问题、文档不一致、边缘情况
+
+### API配置
+- **URL**: `http://ai-testcase.jd.com:8016/aiCase/api/funcpulse/saveValidationReports`
+- **方法**: POST
+- **Content-Type**: application/json
+
+### 报告验证
+在上传前，系统会对报告内容进行验证：
+
+1. **内容完整性检查**：确保报告包含实际的分析数据
+2. **映射关系验证**：验证需求-代码映射的完整性
+3. **用例覆盖验证**：验证测试用例覆盖度计算的准确性
+4. **信息提取**：从报告中提取测试人员、版本、功能名称、涉及的仓库等信息
+
+### 平台集成指南
+详细的报告上传平台配置、API接口文档和使用示例，请参考：
+- [`references/test-validation-report.md`](references/test-validation-report.md) - 完整的测试验证报告模板
+- [`references/multi-repo-analysis.md`](references/multi-repo-analysis.md) - 多仓库分析指南
+- [`references/test-case-traceability.md`](references/test-case-traceability.md) - 用例追踪方法
+
+### 上传API核心变量
+上传报告时，系统会从Markdown报告中提取以下核心信息并通过接口传递给服务端：
+- `{{TESTER_NAME}}` - 测试人员姓名（从报告内容提取）
+- `{{VERSION_INFO}}` - 版本信息（从报告内容提取）
+- `{{FUNCTION_NAME}}` - 功能名称（从报告内容提取）
+- `{{CODEBASE_URL}}` - 代码库地址列表（从报告内容提取）
+- `{{REPORT_DATE}}` - 报告日期（从报告内容提取，默认当前日期）
+- `{{INVOLVED_REPOS}}` - 涉及的代码仓库列表（从报告内容提取）
+- `{{TEST_CASE_COUNT}}` - 测试用例总数（从报告内容提取）
+- `{{COVERED_CASES}}` - 已覆盖的测试用例数量（从报告内容提取）
+- `{{UNCVERED_CASES}}` - 未覆盖的测试用例数量（从报告内容提取）
+- `{{COVERAGE_RATE}}` - 测试覆盖率（从报告内容提取）
+- `{{ISSUES}}` - 缺陷列表（按严重程度分类解析）
+- `{{TRACEABILITY_MATRIX}}` - 追踪矩阵数据（从报告内容提取）
+- `{{PRIORITIZED_RECOMMENDATIONS}}` - 按优先级排序的建议列表
+
+报告上传成功后，服务端会返回远程报告地址，该地址会被自动添加到原始Markdown报告文件的底部。
+
+### 报告命名规范
+- **格式**：`{功能名称}-validation-{YYYY-MM-DD}-v{版本号}.md`
+- **示例**：`UserManagement-validation-2026-04-14-v1.md`
+- **版本号**：同一天内多次检测时递增，从v1开始
+- **存储路径**：项目根目录下的`reports`文件夹
+
+### 模板变量
+- `{{FUNCTION_NAME}}` - 功能名称（从报告内容提取）
+- `{{REMOTE_REPORT_URL}}` - 远程记录地址（报告上传成功后由服务端返回）
+- `{{TESTER_NAME}}` - 测试人员（从报告内容提取）
+- `{{VERSION_INFO}}` - 版本信息（从报告内容提取）
+- `{{REPORT_DATE}}` - 报告日期（从报告内容提取，默认当前日期）
+- `{{CODEBASE_URL}}` - 代码库地址列表（从报告内容提取）
+- `{{INVOLVED_REPOS}}` - 涉及的代码仓库列表（从报告内容提取）
+- `{{TEST_CASE_COUNT}}` - 测试用例总数（从报告内容提取）
+- `{{COVERED_CASES}}` - 已覆盖的测试用例数量（从报告内容提取）
+- `{{UNCVERED_CASES}}` - 未覆盖的测试用例数量（从报告内容提取）
+- `{{COVERAGE_RATE}}` - 测试覆盖率（从报告内容提取）
+- `{{ISSUES}}` - 缺陷列表（按严重程度分类解析：CRITICAL/HIGH/MEDIUM/LOW）
+- `{{TRACEABILITY_MATRIX}}` - 需求-用例-代码追踪矩阵（从报告内容提取）
+- `{{PRIORITIZED_RECOMMENDATIONS}}` - 按优先级排序的建议列表（从报告内容提取）
+
+### 业务测试验证报告格式规范
+
+当进行分析时，必须严格按照以下格式生成Markdown格式报告。
+
+### Markdown格式规范
+使用标准业务测试验证报告模板，严格遵循`references/test-validation-report.md`：
+- 标题：# 业务测试验证报告: {功能名称}
+- 元信息：日期、测试人员、版本、代码库地址
+- 执行摘要：测试用例总数、覆盖率、关键发现
+- 需求-代码映射分析
+- 测试用例验证结果
+- 未覆盖需求分析
+- 缺陷列表（按严重程度分类）
+- 追踪矩阵
+- 建议（按优先级排序）
+- 使用标准Markdown语法，确保可读性
+
+### 统一格式要求
+- 所有报告必须使用模板变量机制
+- 不允许硬编码具体数据到模板中
+- 每次生成的报告必须使用相同的结构和样式
+- 模板变量必须完整替换，不能保留占位符
+- 避免使用emoji符号和特殊Unicode字符，使用文本描述代替
+
+### 严重程度定义
+- **CRITICAL**: 需求未实现、核心功能缺失、安全漏洞、数据丢失风险
+- **HIGH**: 主要功能异常、性能严重下降、用户体验严重影响
+- **MEDIUM**: 功能部分异常、存在变通方案、非核心功能问题
+- **LOW**: UI显示问题、文档不一致、边缘情况、轻微体验问题
+
+## 知识参考
+
+业务需求分析、测试策略设计、多仓库代码管理、Git变更分析、需求追踪矩阵、测试覆盖率分析、缺陷根因分析、BDD、ATDD、探索性测试、基于风险的测试、CI/CD集成、质量门禁、测试自动化框架、页面对象模型、剧本模式、可用性测试、无障碍测试、本地化测试、兼容性测试
+
+## 相关技能
+
+- **风险分析** - 接收代码进行风险分析
+- **全栈守护者** - 接收功能进行测试
+- **Playwright专家** - 端到端测试细节
+- **DevOps工程师** - CI/CD测试集成

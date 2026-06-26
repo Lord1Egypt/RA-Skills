@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_app_list",
+    "description": "Get the list of team applications。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        
+      }
+    }
+  }
+}

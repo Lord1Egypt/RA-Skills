@@ -1,0 +1,13 @@
+# 🔒 私有配置 — 不会上传到 GitHub
+# 复制此文件为 config.json 并填入你的真实密钥
+# cp config.example.json config.json
+
+{
+    "video_api_url": "https://api.onlypixai.com/v1",
+    "video_api_key": "YOUR_VIDEO_API_KEY_HERE",
+    "text_api_url": "https://api.onlypixai.com/v1",
+    "text_api_key": "YOUR_TEXT_API_KEY_HERE",
+    "text_model": "pa/grok-4-1-fast-non-reasoning",
+    "default_video_model": "video/wan2.6-t2v",
+    "default_save_path": "./outputs"
+}

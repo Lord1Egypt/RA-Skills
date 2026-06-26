@@ -1,0 +1,192 @@
+# Proxy Health Monitor
+
+## 概述
+
+监控 OpenClaw 消息队列积压，自动切换 VPN 节点以恢复网络连通性。
+
+## 文件位置
+
+| 文件 | 路径 |
+|------|------|
+| 脚本 | `~/.openclaw/scripts/proxy-health.sh` |
+| LaunchAgent | `~/Library/LaunchAgents/ai.openclaw.proxy-health.plist` |
+| 日志 | `~/.openclaw/logs/proxy-health.log` |
+
+## 运行频率
+
+每 **1 分钟** 执行一次
+
+## 核心逻辑
+
+```
+┌─────────────────────────────────────────┐
+│  检查 delivery-queue 积压 (>3条)          │
+└─────────────────────────────────────────┘
+                    │
+          ┌────────┴────────┐
+          │                 │
+       无积压             有积压
+          │                 │
+       不处理              │
+                           ▼
+                ┌─────────────────────┐
+                │  测试【当前节点】延迟   │
+                └─────────────────────┘
+                           │
+                  ┌────────┴────────┐
+                  │                 │
+              延迟正常            延迟异常
+                  │                 │
+                  ▼                 ▼
+        ┌─────────────────┐   ┌─────────────────────┐
+        │ 判定: OpenClaw   │   │ 批量检测节点         │
+        │ 问题，通知 Boss  │   │ TWN → JPN → HKG     │
+        └─────────────────┘   └─────────────────────┘
+                                        │
+                               ┌────────┴────────┐
+                               │                 │
+                           找到健康节点       全部不通
+                               │                 │
+                          切换节点         判定: 本地网络问题
+                          通知 Boss           只记录日志
+```
+
+## 判定逻辑
+
+| 积压 | 当前节点延迟 | 判定 | 动作 |
+|------|--------------|------|------|
+| ≤3 条 | - | 正常 | 无操作 |
+| >3 条 | 正常 (<3s) | OpenClaw 问题 | 通知 Boss 排查 |
+| >3 条 | 异常 (>3s 或超时) | 节点问题 | 切换节点 |
+| >3 条 | 异常 + 所有节点不通 | 本地网络问题 | 只记录日志 |
+
+## 节点切换优先级
+
+1. **台湾 (TWN)** — 延迟低，优先使用
+2. **日本 (JPN)** — 次选
+3. **香港 (HKG)** — 兜底
+
+## 配置参数
+
+```bash
+# 在脚本头部修改
+
+QUEUE_THRESHOLD=3           # 积压阈值（超过多少条触发检测）
+DELAY_TIMEOUT=5000          # 延迟测试超时 (ms)
+DELAY_THRESHOLD=3000        # 延迟超过此值视为异常 (ms)
+```
+
+## Clash API
+
+脚本通过 Clash RESTful API 控制节点：
+
+```bash
+# API 地址
+CLASH_API="http://127.0.0.1:9097"
+CLASH_SECRET="set-your-secret"
+
+# 获取当前节点
+curl -H "Authorization: Bearer $CLASH_SECRET" "$CLASH_API/proxies/GLOBAL"
+
+# 测试节点延迟
+curl -H "Authorization: Bearer $CLASH_SECRET" \
+  "$CLASH_API/proxies/节点名称/delay?timeout=5000&url=https://api.telegram.org"
+
+# 切换节点
+curl -X PUT -H "Authorization: Bearer $CLASH_SECRET" \
+  -H "Content-Type: application/json" \
+  "$CLASH_API/proxies/GLOBAL" \
+  -d '{"name":"🇨🇳 TWN 01"}'
+```
+
+## 服务管理
+
+```bash
+# 查看状态
+launchctl list | grep proxy-health
+
+# 停止服务
+launchctl unload ~/Library/LaunchAgents/ai.openclaw.proxy-health.plist
+
+# 启动服务
+launchctl load ~/Library/LaunchAgents/ai.openclaw.proxy-health.plist
+
+# 手动执行（测试）
+~/.openclaw/scripts/proxy-health.sh
+
+# 查看日志
+tail -f ~/.openclaw/logs/proxy-health.log
+```
+
+## 与其他监控的关系
+
+| 服务 | 职责 | 触发动作 |
+|------|------|----------|
+| **proxy-health** | 监控网络/VPN 节点 | 切换节点 |
+| **gateway-watchdog** | 监控 Gateway 进程 | 重启 Gateway |
+
+两者互补：
+- `proxy-health` 解决"网络不通"问题
+- `gateway-watchdog` 解决"Gateway 崩溃"问题
+
+## 通知
+
+> 通过环境变量设置通知目标：
+> ```bash
+> export OPENCLAW_NOTIFY_TARGET=123456789
+> ```
+
+切换节点或检测到 OpenClaw 问题时，通过 Telegram 通知 Boss：
+
+```bash
+NOTIFY_CHANNEL="telegram"
+NOTIFY_TARGET="1311453837"      # Boss 的 Telegram ID
+NOTIFY_ACCOUNT="engineer"       # 使用工程师 Bot 发送
+```
+
+## 日志示例
+
+```
+[2026-02-25 10:00:01] [WARN] 检测到积压: 5 条消息
+[2026-02-25 10:00:01] [INFO] 当前节点: 🇨🇳 TWN 02
+[2026-02-25 10:00:02] [INFO] 当前节点延迟: -1ms
+[2026-02-25 10:00:02] [WARN] 当前节点异常，开始查找健康节点...
+[2026-02-25 10:00:02] [INFO] 检测 TWN 地区节点...
+[2026-02-25 10:00:05] [INFO] 找到健康节点: 🇨🇳 TWN 03
+[2026-02-25 10:00:05] [OK] 已切换节点: 🇨🇳 TWN 02 → 🇨🇳 TWN 03
+```
+
+## 故障排查
+
+### 脚本不执行
+```bash
+# 检查 LaunchAgent 状态
+launchctl list | grep proxy-health
+
+# 检查错误日志
+cat ~/.openclaw/logs/proxy-health-stderr.log
+```
+
+### Clash API 不通
+```bash
+# 确认 Clash 运行
+ps aux | grep verge-mihomo
+
+# 测试 API
+curl -H "Authorization: Bearer set-your-secret" http://127.0.0.1:9097/proxies
+```
+
+### 节点切换失败
+```bash
+# 手动测试切换
+curl -X PUT -H "Authorization: Bearer set-your-secret" \
+  -H "Content-Type: application/json" \
+  http://127.0.0.1:9097/proxies/GLOBAL \
+  -d '{"name":"🇨🇳 TWN 01"}'
+```
+
+## 修改历史
+
+| 日期 | 版本 | 变更 |
+|------|------|------|
+| 2026-02-25 | v1.0 | 初始版本，替代 telegram-health-check.sh |

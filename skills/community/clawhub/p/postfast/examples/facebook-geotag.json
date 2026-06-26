@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "content": "Pop by our launch event at the National Palace of Culture this weekend!",
+      "mediaItems": [
+        {
+          "key": "image/YOUR_UPLOAD_KEY.jpg",
+          "type": "IMAGE",
+          "sortOrder": 0
+        }
+      ],
+      "scheduledAt": "2026-06-20T09:00:00.000Z",
+      "socialMediaId": "YOUR_FACEBOOK_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "facebookContentType": "POST",
+    "facebookPlaceId": "1559011447688271",
+    "facebookPlaceName": "Национален дворец на културата - НДК",
+    "facebookTargetCountries": ["BG", "DE", "AT"]
+  }
+}

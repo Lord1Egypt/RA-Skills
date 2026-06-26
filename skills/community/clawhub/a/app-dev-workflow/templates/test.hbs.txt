@@ -1,0 +1,33 @@
+// test/{{serviceName}}.test.ts
+// {{description}}
+
+import { describe, it, expect, beforeEach } from '@ohos/hypium';
+import { {{serviceName}} } from '../../main/ets/services/{{serviceName}}';
+
+describe('{{serviceName}}', () => {
+  let service: {{serviceName}};
+
+  beforeEach(() => {
+    service = {{serviceName}}.getInstance();
+  });
+
+  {{#each testCases}}
+  /**
+   * {{description}}
+   */
+  it('{{name}}', async () => {
+    // Arrange
+    const input = {{input}};
+
+    // Act
+    const result = await service.{{methodName}}(input);
+
+    // Assert
+    expect(result.success).assertTrue();
+    {{#each assertions}}
+    {{this}}
+    {{/each}}
+  });
+
+  {{/each}}
+});

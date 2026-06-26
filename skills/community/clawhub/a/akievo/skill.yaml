@@ -1,0 +1,23 @@
+name: akievo
+version: "1.0.0"
+description: "Persistent project planning for AI agents. Create, manage, and track long-term goals with structured Kanban boards."
+author: "Akievo"
+homepage: "https://akievo.com/openclaw-setup"
+repository: "https://github.com/akievo/openclaw-akievo"
+license: "MIT"
+tags:
+  - project-management
+  - planning
+  - memory
+  - productivity
+  - kanban
+requires:
+  env:
+    - AKIEVO_API_KEY
+primaryEnv: AKIEVO_API_KEY
+mcpServers:
+  akievo:
+    url: "https://mcp.akievo.com"
+    transport: "http"
+    headers:
+      Authorization: "Bearer {{AKIEVO_API_KEY}}"

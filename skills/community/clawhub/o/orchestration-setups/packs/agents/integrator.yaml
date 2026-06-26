@@ -1,0 +1,18 @@
+name: integrator
+purpose: merge module outputs into a consistent combined artifact
+best_for:
+  - interface alignment
+  - final assembly
+  - dependency stitching
+avoid_for:
+  - open-ended architecture work
+default_model_category: deep
+input_contract:
+  - module artifacts
+  - contract expectations
+output_contract:
+  - integrated artifact
+  - integration notes
+  - remaining mismatches
+reviewer_for:
+  - builder

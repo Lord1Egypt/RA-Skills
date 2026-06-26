@@ -1,0 +1,10 @@
+{
+  "name": "cn-cost-control",
+  "displayName": "中国建设工程全过程造价管控",
+  "version": "2.0.0",
+  "description": "中国建设工程全过程造价管控 v2.0。基于 GB/T 50500-2024，覆盖投资决策→设计→招投标→施工→竣工全生命周期的造价管理。",
+  "author": "度量衡智库",
+  "category": "construction",
+  "tags": ["造价管控", "投资估算", "设计概算", "施工图预算", "竣工结算", "变更签证", "挣值管理"],
+  "license": "MIT"
+}

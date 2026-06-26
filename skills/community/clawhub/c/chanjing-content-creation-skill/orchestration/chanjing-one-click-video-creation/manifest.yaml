@@ -1,0 +1,128 @@
+# 合规：根目录 skill开发规范.md §1–§2
+name: chanjing-one-click-video-creation
+version: 0.2.0
+vendor: chanjing
+runtime:
+  interpreter: python3
+  dependencies:
+    - ffmpeg
+    - ffprobe
+    - chan-skill
+env:
+  required: []
+  optional:
+    - CHANJING_API_BASE
+    - CHANJING_APP_ID
+    - CHANJING_SECRET_KEY
+    - CHANJING_ACCESS_TOKEN
+    - CHANJING_TOKEN_EXPIRE_IN
+    - CHAN_SKILLS_DIR
+    - AI_VIDEO_PROMPT_MAX_CHARS
+    - AI_VIDEO_MODEL
+    - FIRST_DIGITAL_HUMAN_MAX_CHARS
+permissions:
+  network_mode: allowlist
+  allowed_hosts:
+    - open-api.chanjing.cc
+    - www.chanjing.cc
+  filesystem:
+    read_roots:
+      - "${WORKSPACE_ROOT}"
+      - "${SKILL_DIR}"
+    write_roots:
+      - "${WORKSPACE_ROOT}"
+  allowed_commands:
+    - python3
+    - ffmpeg
+    - ffprobe
+    - chan-skill
+
+schemaVersion: 1
+skill:
+  id: chanjing-one-click-video-creation
+  author: chan-skills
+  category: 媒体处理
+  tags:
+    - 视频渲染
+    - ffmpeg
+    - ChanjingAPI
+    - 蝉镜
+    - Chanjing
+    - 一键成片
+  summary: >-
+    选题/workflow 驱动一键短视频成片：编排 TTS、数字人合成、文生视频与本地 ffmpeg 封装。
+  skillDoc: SKILL.md
+  supportCommands:
+    - run_render
+  siblingSkills:
+    - chanjing-tts
+    - chanjing-video-compose
+    - chanjing-ai-creation
+
+environment:
+  variables:
+    - name: CHANJING_API_BASE
+      required: false
+      description: Open API 基址，默认 https://open-api.chanjing.cc
+    - name: CHANJING_APP_ID
+      required: false
+      description: 鉴权应用标识（从项目 .env 读取）
+    - name: CHANJING_SECRET_KEY
+      required: false
+      description: 鉴权密钥（从项目 .env 读取）
+    - name: CHAN_SKILLS_DIR
+      required: false
+      description: 一键成片脚本仓库根路径
+    - name: AI_VIDEO_PROMPT_MAX_CHARS
+      required: false
+      description: ref_prompt 总长上限，默认 8000
+    - name: AI_VIDEO_MODEL
+      required: false
+      description: 文生视频 model_code 缺省覆盖
+    - name: FIRST_DIGITAL_HUMAN_MAX_CHARS
+      required: false
+      description: 首个数字人分镜字数上限，默认 20
+
+credentials:
+  model: environment
+  persistAccessTokenOnDisk: false
+  primaryEnvIntentionallyOmitted: false
+  sensitiveFields: []
+
+clientPermissions:
+  network:
+    httpsOutbound: true
+    documentedHosts:
+      - open-api.chanjing.cc
+  filesystem:
+    read:
+      - "${CHAN_SKILLS_DIR or repo_root}/skills/"
+      - user_workflow_and_output_paths
+    write:
+      - user_output_directory
+  browser:
+    mayOpenForAuth: false
+  subprocess:
+    allowedPatterns:
+      - python3
+      - ffmpeg
+      - ffprobe
+      - chan-skill
+    mayInvokeSiblingSkillScripts: true
+  userContent:
+    mayDownloadFromApiResponseUrls: true
+
+metadata:
+  openclaw:
+    homepage: https://doc.chanjing.cc
+    requires:
+      bins:
+        - ffmpeg
+        - ffprobe
+      env:
+        - CHANJING_APP_ID
+        - CHANJING_SECRET_KEY
+
+agentPolicy:
+  alwaysSkill: false
+  modifiesOtherSkillsOrGlobalAgent: false

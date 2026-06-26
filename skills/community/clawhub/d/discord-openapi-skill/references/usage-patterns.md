@@ -1,0 +1,75 @@
+# Discord API Skill - Usage Patterns
+
+## Link Setup
+
+```bash
+command -v discord-openapi-cli
+uxc link discord-openapi-cli https://discord.com/api/v10 \
+  --schema-url https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi.json
+discord-openapi-cli -h
+```
+
+## Auth Setup (Bot Token)
+
+```bash
+uxc auth credential set discord-bot \
+  --auth-type api_key \
+  --header "Authorization=Bot {{secret}}" \
+  --secret-env DISCORD_BOT_TOKEN
+
+uxc auth binding add \
+  --id discord-bot \
+  --host discord.com \
+  --path-prefix /api/v10 \
+  --scheme https \
+  --credential discord-bot \
+  --priority 100
+```
+
+## Read Examples
+
+```bash
+# Connectivity check (public endpoint)
+discord-openapi-cli get:/gateway
+
+# Get current bot/application user
+discord-openapi-cli get:/users/@me
+
+# List channels in a guild
+discord-openapi-cli get:/guilds/{guild_id}/channels guild_id=YOUR_GUILD_ID
+```
+
+## Write Example (Confirm Intent First)
+
+```bash
+# Create a channel message
+discord-openapi-cli post:/channels/{channel_id}/messages '{"channel_id":"YOUR_CHANNEL_ID","content":"Hello from UXC"}'
+```
+
+## Discord Gateway Subscribe
+
+Use the bot token with `uxc subscribe` directly. The linked REST command is not the subscribe entrypoint.
+
+```bash
+uxc subscribe start https://discord.com/api/v10 \
+  '{"intents":4609,"device":"uxc-discord"}' \
+  --transport discord-gateway \
+  --auth discord-bot \
+  --sink file:$HOME/.uxc/subscriptions/discord-gateway.ndjson
+```
+
+Intent notes:
+
+- `4609` = `GUILDS | GUILD_MESSAGES | DIRECT_MESSAGES`
+- add `32768` (`MESSAGE_CONTENT`) only if the bot has that privileged intent enabled
+
+Live validation has confirmed:
+
+- `GET /gateway/bot` bootstrap succeeded
+- Gateway `READY` / `GUILD_CREATE` events arrived
+- a real `MESSAGE_CREATE` event was captured after posting a channel message
+
+## Fallback Equivalence
+
+- `discord-openapi-cli <operation> ...` is equivalent to
+  `uxc https://discord.com/api/v10 --schema-url <discord_openapi_spec> <operation> ...`.

@@ -1,0 +1,4 @@
+985de9c181d0eee4579d3e95ca15e95d6242f953371e28f8f8e9438fafa5303a  google-workspace_0.5.2_darwin_amd64.tar.gz
+eed45ba4d674a283c9f7a57fd90002b47f7d762252d8cd9623ab99a08711df54  google-workspace_0.5.2_darwin_arm64.tar.gz
+18c5acd4708b1fbdb33faef25d6e0b9434ac5b2a3720d1d5550466c0a578eb76  google-workspace_0.5.2_linux_amd64.tar.gz
+c1d430a17457f9ce0d1f9c38eac5d816652ac9bd1150a4ee4c21c2b642e245ac  google-workspace_0.5.2_linux_arm64.tar.gz

@@ -1,0 +1,139 @@
+{
+  "treasure_types": {
+    "none": {
+      "name": "无宝藏",
+      "coins": 0,
+      "gems": 0,
+      "items": []
+    },
+    "U": {
+      "name": "普通战利品",
+      "coins": {
+        "min": 5,
+        "max": 20,
+        "type": "sc"
+      },
+      "gems": 0,
+      "items": []
+    },
+    "P": {
+      "name": "贫乏宝藏",
+      "coins": {
+        "min": 10,
+        "max": 30,
+        "type": "gc"
+      },
+      "gems": {
+        "min": 0,
+        "max": 1,
+        "value": "low"
+      },
+      "items": []
+    },
+    "R": {
+      "name": "普通宝藏",
+      "coins": {
+        "min": 30,
+        "max": 100,
+        "type": "gc"
+      },
+      "gems": {
+        "min": 1,
+        "max": 3,
+        "value": "medium"
+      },
+      "items": {
+        "min": 1,
+        "max": 2,
+        "pool": ["health_potion", "antidote", "dagger", "leather_armor"]
+      }
+    },
+    "E": {
+      "name": "丰富宝藏",
+      "coins": {
+        "min": 100,
+        "max": 300,
+        "type": "gc"
+      },
+      "gems": {
+        "min": 3,
+        "max": 6,
+        "value": "high"
+      },
+      "items": {
+        "min": 2,
+        "max": 4,
+        "pool": ["greater_health_potion", "longsword", "chain_shirt", "battleaxe", "gem_ruby", "gem_emerald"]
+      }
+    },
+    "L": {
+      "name": "传奇宝藏",
+      "coins": {
+        "min": 500,
+        "max": 1000,
+        "type": "gc"
+      },
+      "gems": {
+        "min": 5,
+        "max": 10,
+        "value": "legendary"
+      },
+      "items": {
+        "min": 3,
+        "max": 6,
+        "pool": ["plate_armor", "holy_symbol", "spellbook", "gem_ruby", "gem_emerald", "gem_diamond"]
+      }
+    }
+  },
+  "gem_values": {
+    "low": [
+      {"name": "quartz", "value": 10},
+      {"name": "turquoise", "value": 10},
+      {"name": "amber", "value": 15}
+    ],
+    "medium": [
+      {"name": "onyx", "value": 50},
+      {"name": "garnet", "value": 75},
+      {"name": "topaz", "value": 100}
+    ],
+    "high": [
+      {"name": "opal", "value": 200},
+      {"name": "ruby", "value": 300},
+      {"name": "diamond", "value": 500}
+    ],
+    "legendary": [
+      {"name": "diamond", "value": 500},
+      {"name": "ruby", "value": 300},
+      {"name": "emerald", "value": 400}
+    ]
+  },
+  "coin_values": {
+    "cc": {"name": "铜币", "value": 1},
+    "sc": {"name": "银币", "value": 10},
+    "ec": {"name": " Electrum币", "value": 50},
+    "gc": {"name": "金币", "value": 100},
+    "pc": {"name": "铂金币", "value": 500}
+  },
+  "special_items": {
+    "giant_bee_special": {
+      "name": "蜂王浆",
+      "description": "神奇的蜂蜜，可治疗一切疾病",
+      "value": 100,
+      "effect": "cure_all_diseases"
+    },
+    "spider_silk": {
+      "name": "蛛丝",
+      "description": "坚韧的蛛丝，可用于制作绳索",
+      "value": 20,
+      "effect": "crafting_material"
+    },
+    "holy_sword": {
+      "name": "圣剑",
+      "description": "由神圣力量祝福的剑",
+      "value": 1000,
+      "damage": "1d10",
+      "damage_type": "slashing",
+      "effect": "extra_damage_against_undead"
+    }
+  }
+}

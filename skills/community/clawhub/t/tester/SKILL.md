@@ -1,35 +1,66 @@
----
-name: "tester_skill"
-description: "Manage GitHub issues by listing, filtering, spawning fix agents, creating PRs, and tracking review comments using the authenticated gh CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tester"
-sourceUrl: "https://clawhub.ai/skills/tester"
----
+# GitHub Issue Manager
 
-# tester_skill
-
-> Manage GitHub issues by listing, filtering, spawning fix agents, creating PRs, and tracking review comments using the authenticated gh CLI.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tester`
-- **Source URL:** [https://clawhub.ai/skills/tester](https://clawhub.ai/skills/tester)
+Fetch GitHub issues, spawn sub-agents to implement fixes, open PRs, and monitor review comments.
 
 ## Overview
 
+This skill enables autonomous issue management on GitHub repositories. It can:
+- List and filter issues by labels, milestones, assignees
+- Spawn sub-agents to work on fixes
+- Create PRs with automated descriptions
+- Track PR review status and respond to comments
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Prerequisites
+
+- `gh` CLI must be authenticated (`gh auth status`)
+- Repository must be accessible via HTTPS or SSH
+
+## Configuration
+
 ```bash
-hermes skills install clawhub/tester
+# Optional: Set default repo
+export GITHUB_REPO="owner/repo"
+export GITHUB_TOKEN="ghp_xxx"  # Or use gh auth
 ```
+
+## Commands
+
+### List Issues
+
+```bash
+# All open issues
+gh issue list
+
+# With labels
+gh issue list --label "bug" --label "priority"
+
+# Assigned to you
+gh issue list --assignee "@me"
+```
+
+### Create Issue
+
+```bash
+gh issue create --title "Fix login bug" --body "Description..." --label bug
+```
+
+### View Issue Details
+
+```bash
+gh issue view 123
+```
+
+## Usage in Agents
+
+```python
+# Spawn agent to fix issue
+spawn_subagent(
+  task=f"Fix GitHub issue #{issue_number}: {title}. {description}"
+)
+```
+
+## Notes
+
+- Requires `gh` CLI installed
+- Authentication handled via `gh auth`
+- Rate limits apply (5000 requests/hour for authenticated users)

@@ -1,0 +1,163 @@
+{
+  "version": "1.2.0",
+  "lastUpdated": "2026-04-21",
+  
+  "rssFeeds": {
+    "official": [
+      {
+        "name": "AWS Machine Learning",
+        "url": "https://aws.amazon.com/blogs/machine-learning/feed",
+        "category": "official",
+        "priority": 3
+      }
+    ],
+    "media": [
+      {
+        "name": "卡尔的 AI 沃茨",
+        "url": "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI0NjQ5NjAzNw==&f=&extinfo=",
+        "category": "media",
+        "priority": 10,
+        "weight": 3,
+        "language": "zh-CN",
+        "type": "wechat",
+        "note": "高优先级 - 微信公众号"
+      },
+      {
+        "name": "数字生命卡兹克",
+        "url": "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAxODQ5NzY0Mw==&f=&extinfo=",
+        "category": "media",
+        "priority": 10,
+        "weight": 3,
+        "language": "zh-CN",
+        "type": "wechat",
+        "note": "高优先级 - 微信公众号"
+      },
+      {
+        "name": "APPSO",
+        "url": "https://www.appso.com/feed",
+        "category": "media",
+        "priority": 10,
+        "weight": 3,
+        "language": "zh-CN",
+        "note": "高优先级 - 爱范儿旗下"
+      },
+      {
+        "name": "财联社 AI daily",
+        "url": "https://www.cls.cn/feed",
+        "category": "media",
+        "priority": 10,
+        "weight": 3,
+        "language": "zh-CN",
+        "note": "高优先级 - 财联社 AI 专栏"
+      },
+      {
+        "name": "量子位",
+        "url": "https://www.qbitai.com/feed/",
+        "category": "media",
+        "priority": 10,
+        "weight": 3,
+        "language": "zh-CN",
+        "note": "高优先级"
+      },
+      {
+        "name": "网罗灯下黑",
+        "url": "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU5NDEyMTMxNQ==&f=&extinfo=",
+        "category": "media",
+        "priority": 8,
+        "weight": 2,
+        "language": "zh-CN",
+        "type": "wechat",
+        "note": "中优先级 - 微信公众号"
+      },
+      {
+        "name": "机器之心",
+        "url": "https://www.jiqizhixin.com/rss",
+        "category": "media",
+        "priority": 8,
+        "weight": 3,
+        "language": "zh-CN",
+        "note": "中优先级"
+      },
+      {
+        "name": "AI 范儿",
+        "url": "https://www.ifanr.com/ai/feed",
+        "category": "media",
+        "priority": 8,
+        "weight": 2,
+        "language": "zh-CN",
+        "note": "中优先级 - 爱范儿 AI 专栏"
+      }
+    ]
+  },
+  
+  "tavilySearch": {
+    "kolQueries": [
+      {
+        "name": "Andrej Karpathy",
+        "query": "site:x.com karpathy LLM OR AI OR transformer",
+        "priority": 5
+      },
+      {
+        "name": "Yann LeCun",
+        "query": "site:x.com ylecun \"World Models\" OR AI OR LLM",
+        "priority": 5
+      },
+      {
+        "name": "Akaliq",
+        "query": "site:x.com _akhaliq paper OR arxiv OR LLM",
+        "priority": 4
+      },
+      {
+        "name": "Jim Fan",
+        "query": "site:x.com DrJimFan agent OR LLM OR AI",
+        "priority": 4
+      },
+      {
+        "name": "Rowan Zellers",
+        "query": "site:x.com rowanzellers LLM OR AI",
+        "priority": 3
+      }
+    ],
+    "timeRange": "day",
+    "maxResults": 10
+  },
+  
+  "arxiv": {
+    "categories": ["cs.CL", "cs.AI", "cs.LG"],
+    "keywords": [
+      "Large Language Model",
+      "LLM",
+      "Agent",
+      "Reasoning",
+      "MoE",
+      "Mixture of Experts",
+      "Transformer",
+      "Fine-tuning",
+      "RLHF",
+      "RAG",
+      "Prompt Engineering",
+      "Chain of Thought"
+    ],
+    "maxResults": 20,
+    "sortBy": "submittedDate",
+    "sortOrder": "descending"
+  },
+  
+  "filter": {
+    "minPriority": 3,
+    "excludeKeywords": [
+      "sponsor",
+      "advertisement",
+      "webinar",
+      "conference promo"
+    ],
+    "language": "zh-CN"
+  },
+  
+  "output": {
+    "format": "markdown",
+    "outputDir": "./output",
+    "filenamePattern": "AI-Daily-{date}.md",
+    "includeRaw": false
+  }
+}

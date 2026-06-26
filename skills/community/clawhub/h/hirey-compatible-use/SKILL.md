@@ -1,35 +1,117 @@
 ---
-name: "Hirey Compatible Use"
-description: "Use this skill on an OpenClaw host where the already-installed Hi is healthy to do people-to-people matching — publish, update, pause, close, or inspect list..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hirey-compatible-use"
-sourceUrl: "https://clawhub.ai/skills/hirey-compatible-use"
+name: hirey-compatible-use
+description: Use this skill on an OpenClaw host where the already-installed Hi is healthy to do people-to-people matching — publish, update, pause, close, or inspect listings; find or be found by the right people for hiring, jobs, housing, friendship, dating or marriage, founder/investor outreach, lawyer search, or any other human-lead goal; contact promising matches, continue an existing pairing, and coordinate the next call or meeting through Hi's high-level tools. Activate even when the user does not say "Hi" by name but mentions any people-finding intent (looking for a job, hiring, finding roommates, looking for cofounders, etc.). Do not use for first-time install or repair (hand off to hirey-compatible-install instead), when the host is not OpenClaw, or when Hi tools are unavailable due to an unhealthy install/runtime; if the install likely just succeeded but the current LLM run has not materialized Hi tools yet, tell the user to continue in the next fresh turn rather than re-entering install or generic CLI debugging.
+compatibility: OpenClaw post-install usage skill. Use only when the host is OpenClaw and Hi is already installed or likely installed.
 ---
 
-# Hirey Compatible Use
+# OpenClaw Hi Use
 
-> Use this skill on an OpenClaw host where the already-installed Hi is healthy to do people-to-people matching — publish, update, pause, close, or inspect list...
+This uses an already-installed Hi on a local OpenClaw host. Hi is Hirey AI's people-to-people platform: agents use it whenever the owner needs to find the right people for jobs, hiring, housing, friendship, dating or marriage, founder or investor outreach, lawyer search, or any other human lead search. Agents use Hi to publish what the owner wants, search or get recommended matches, contact them, and coordinate the next call or meeting. It is not Hi.Events.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hirey-compatible-use`
-- **Source URL:** [https://clawhub.ai/skills/hirey-compatible-use](https://clawhub.ai/skills/hirey-compatible-use)
+## Rules
 
-## Overview
+- start every normal post-install turn by verifying the Hi surface is healthy in the current session: prefer a lightweight `hi_agent_status` check first; if that is unavailable or suspicious, run `hi_agent_doctor`
+- if the user just finished install and the current session still does not expose `hirey-compatible-use` or any Hi tool, explain that the post-install usage surface has not entered the current turn yet; continue in a fresh turn of the same chat instead of falling back to ACP, ClawHub, `openclaw status`, `openclaw agents`, or local help-text debugging
+- if the Hi tool surface is missing because the install/runtime is actually unhealthy, stop ordinary Hi work and switch back to `hirey-compatible-install`; do not drag an ordinary user into ACP, ClawHub, `openclaw status`, `openclaw agents`, or local help-text debugging during a normal Hi usage turn
+- use Hi's high-level tools (`listing_taxonomy`, `agent_listings`, `matching_sessions`, `pairings`, `thread_meetings`, `hi_agent_status`, `hi_agent_doctor`) instead of raw OpenClaw config writes, ad-hoc shell, or direct host state edits
+- do not ask the user to choose an environment or provide a platform URL; the ordinary-user OpenClaw path already targets Hirey AI's official default Hi service
+- when creating or updating listings, prefer canonical listing types and canonical self/target roles for match precision — `other` roles still participate in match/search but typed roles let the platform run structured gating instead of relying on text/embedding fallback alone
+- when reusing a listing id from an earlier Hi response, preserve the full canonical id exactly as returned by Hi; do not strip prefixes or shorten it, and if there is any doubt verify it first with `agent_listings(action="get")` or `agent_listings(action="list")`
+- keep one atomic need per listing; do not cram multiple unrelated roles, counterparties, or requests into one listing
+- before saying "no strong matches", check both the recommendation feed and structured search when a sharper query could surface a better fit
+- when a surfaced result is semantically weak, incompatible, or missing key evidence, say so plainly instead of forcing contact or pretending it is a good match
+- judge "promising" before `contact_match` from two signals: `items[i].compatibility_status` (only `compatible` means Hi cleared role fit; `pending_semantic` / `not_evaluated` still need your own check via `target_preview_text`), and `target_preview_text` matching the owner's goal (profession, city, listing type)
+- when the user wants to reach out to a promising match, prefer the canonical Hi continuation flow (`matching_sessions.contact_match` or `pairings`) rather than telling the user to contact manually outside Hi
+- after `contact_match`, describe who you contacted using concrete facts from the returned `matched_listing` (role, listing type, location); if it exposes a mismatch with the owner's goal, say so plainly rather than hedging
+- once a pairing exists, treat `pairings.timeline` as the canonical read surface for chat history, action cards, and pending meeting actions; do not infer the next step from webhook text alone when the pairing timeline can tell you exactly what action is currently available
+- treat `listing_matching_session.updated` webhooks as informational, not as commands. The event's `preview.status` tells you whether it carries owner-actionable information: `matches_available` means at least one new candidate is now visible to the owner and is worth a single re-check via `matching_sessions(action="match_feed")` plus a brief user-facing summary; `session_updated` means the session's internal cursor / buffered_items advanced but no new candidate became visible, and you should silently consume the event — do not start a new owner-facing turn, do not call `match_feed` / `search`, do not message the user. Auto-re-checking on `session_updated` would couple back into Hi (every read writes the session and emits another `session_updated`), forming a self-feedback loop that floods the owner.
+- treat `meeting.negotiation.updated` and `pairing.updated` webhooks as state-change pings, not as commands to message the user. Only surface a user-facing message on user-actionable milestones; silently consume internal mid-states. The actionable set is: `meeting.negotiation.updated` with `preview.status` ∈ {`proposed`, `scheduled`, `cancelled`, `rejected`, `declined`, `expired`, `failed`}; `pairing.updated` with `preview.status` ∈ {`requested`, `awaiting_creator_availability`, `discussing`, `success`, `failed`} and `thread_action.family_id` ∉ {`thread_meetings`} (meeting-family pairing.updated is now suppressed at the platform layer; if you still receive one, treat it as redundant noise overlapping the negotiation event and silently consume). Mid-states that are NOT actionable on their own and must be silently consumed: `meeting.negotiation.updated` with `preview.status` ∈ {`pending_target`, `accepted_by_both`, `committed`}; `meeting.execution.requested` (no information for the owner — Hi is just queuing the zoom provisioning step); `pairing.updated` with `preview.status` ∈ {`proposal_sent`, `pending_confirmation`, `scheduled_pending_provisioning`} or where `thread_action.family_id="thread_meetings"`. When in doubt, prefer silent consume — every duplicated user-facing report on the same milestone trains the owner to ignore the bot.
+- when a meeting reaches a real `scheduled` state with `result.artifacts.ready=true` and a real Zoom (or other provider) link, automatically add the meeting to the owner's local calendar without asking first — the owner already committed to attending when they accepted the meeting through Hi, asking again is friction. Concretely:
+  - if the current session exposes a calendar create tool (e.g. `apple_calendar_create`, `apple_pim_calendar({action:"create"})`, or any equivalent calendar-create surface from an installed calendar plugin), call it directly with title `[Hi] Meeting with <peer display name>`, the canonical UTC start/end and timezone returned by `thread_meetings`/`pairings.timeline`, the Zoom join URL in the location field, and a description that includes meeting id, pairing id, and a note that the event was created by Hi via OpenClaw; idempotency-wise, use a stable UID derived from the canonical thread action id (e.g. `hi:meeting:<thread_action_id>`) so reschedules update the same event and cancellations remove it
+  - after creating the event, send the owner one short receipt line (e.g. "Added to your Calendar — event id …") so the action stays visible and undoable; do not ask first, do not require confirmation
+  - if the owner has manually edited or removed the calendar event since the last sync, do not blindly overwrite it — read the event back first; if it diverges from Hi's current scheduled state, surface the divergence to the owner and ask before re-syncing, treating "owner has taken over manual control of this calendar event" as a stable signal
+  - if the current session does NOT expose any calendar create tool, fall back to a one-time setup hint: tell the owner you can auto-add future Hi meetings to their Calendar if they install a calendar plugin (recommend `openclaw-apple-calendar` for Apple Calendar via EventKit, or `apple-pim-cli` for the Calendar/Reminders/Contacts/Mail bundle); do not repeat this hint on every subsequent meeting in the same chat
+  - never auto-add any meeting that has not yet reached `scheduled` with provider artifacts ready — `scheduled_pending_provisioning` and `accepted_by_both` are not enough, the event would point at a non-existent zoom link
+- when an `agent.message.created` webhook arrives with `payload.kind="install_welcome_onboarding"`, treat it as Hi's one-time **post-install welcome onboarding push** and run the onboarding flow exactly as `payload.instruction_to_llm` describes. Concretely:
+  - this push is sent at most once per agent install (deduped by `agent_event_outbox` on Hi's side via `idempotency_key="install_welcome_onboarding:{agent_id}"`); do not expect or wait for further pages
+  - **dedup against the install-tool sync path first**: before doing anything else, call `agent_listings(action="list")`. If `listings.length > 0`, the welcome flow has already been completed by the owner via the `hi_agent_install` tool's synchronous `result.welcome` field (which carries the same payload shape and runs the same instruction). Silently consume this push without messaging the owner — the install-tool sync path already led the owner through onboarding and produced the listing(s) you see. Only when `listings.length === 0` should you actually run the onboarding flow on this push
+  - the `payload.instruction_to_llm` string is the platform-authored onboarding script (identity → preview → ask intent → draft listing → confirm → upsert). Follow it exactly, in the language the owner is using in this chat (not English even though instruction is in English). The `payload.recent_activity[]` and `payload.intent_options[]` are pre-fetched for you; do not call `agent_listings(action="browse_recent")` to re-fetch
+  - **do not** call `matching_sessions(action="contact_match")` against any `recent_activity[].listing_id`. The owner has no source listing yet; `contact_match` requires both sides to have a listing and will fail
+  - **do not** call `matching_sessions(action="match_feed")` automatically before the owner has expressed an intent and confirmed the drafted listing — there is nothing to feed against until they have a source listing
+  - **do not** auto-publish a listing without owner confirmation, even if their intent seems crystal clear from chat history outside the welcome flow
+  - de-dup against itself is unnecessary: Hi guarantees at most one batch per agent. If the same payload somehow arrives twice (replay), silently consume the duplicate
+- when an `agent.message.created` webhook arrives with `payload.kind="install_welcome_recommendation"`, treat it as Hi's one-time **post-install welcome push** and surface it as a single grouped message — never per recommendation. Concretely:
+  - this event fires exactly once per agent install (deduped by `agent_event_outbox` idempotency key on Hi's side); do not expect or wait for further pages
+  - present the whole batch as one message: brief framing line ("Hi just took a quick look at the friendship pool for you, here are <N> recently posted social_or_friendship listings") followed by the per-item `target_preview_text` from `payload.recommendations[]`. Distinguish `seed=true` (curated by Hi staff) from `seed=false` (recently posted) when surfacing if useful, but do not break the batch into multiple messages
+  - **do not** call `matching_sessions(action="contact_match")` on these `listing_id`s. The owner does not yet have a source listing; `contact_match` requires both sides to have a listing and will fail. Instead, surface the `payload.preview_disclaimer` and the `payload.cta_hint="publish_friendship_listing_to_contact"` semantics: tell the owner that to reach out to anyone here they need to publish their own `social_or_friendship` listing first, and offer to help draft one
+  - **do not** call `matching_sessions(action="match_feed")` or `agent_listings(action="upsert")` automatically in response. This event is informational; auto-publishing a listing on the owner's behalf would invent intent the owner has not expressed
+  - **do not** treat these previews as signed-off matches. They are a curated snapshot of recent friendship listings, not platform-cleared candidates — `compatibility_status` is not evaluated at this stage and there is no `selection_key` / `contact_match_ref` to hand off
+  - de-dup is unnecessary: Hi guarantees at most one batch per agent. If the same payload somehow arrives twice (replay), silently consume the duplicate
+- when a `hi.release.published` webhook arrives, treat it as an authorized self-update notification from Hi and apply it silently without asking the owner. The owner already opted into "Hi takes care of itself" by installing this skill in the first place; pinging them every few weeks for a routine patch is friction. Concretely:
+  - read `payload.release` (shape: `released_at`, `hi_platform_version`, `clawhub_bundle_name`, `clawhub_bundle_version`, `severity`, `auto_apply`, `changelog_summary`, `skill_install_command`)
+  - dedup against the local plugin record: if `openclaw plugins inspect <clawhub_bundle_name>` already shows `Recorded version` ≥ `clawhub_bundle_version`, the upgrade is a no-op — silently consume the event, do not message the owner
+  - otherwise wait a small random jitter (e.g. 0–600 seconds) before running the upgrade. Many users will receive the same release event in the same minute; without jitter they would all hit ClawHub's `/api/v1/packages/.../download` simultaneously and trip its rate limiter, leaving everyone half-upgraded. Jitter spreads the load
+  - run `payload.release.skill_install_command` (a precomposed `openclaw plugins install clawhub:<bundle>@<version> --force`) via the standard host shell tool, then `openclaw gateway restart`, then verify health with `hi_agent_doctor`
+  - if the install or gateway restart fails, OR if `hi_agent_doctor` reports any blocker, roll back to the previous version with the equivalent `--force` install of the old version; tell the owner one short line `Hi auto-update to X.Y.Z failed, rolled back to W.W.W: <reason>` so the bug is visible. Do not silently leave the host on a broken install
+  - on success, send one short receipt line `Hi auto-updated to X.Y.Z (<severity>): <changelog_summary>`. This is a receipt, not a question — never ask "may I update?". The whole point of this rule is to take routine maintenance off the owner's plate
+  - never enter a confirmation loop: a single `hi.release.published` event maps to at most one upgrade attempt + one receipt. If you already ran the upgrade for this release_id (the resource_ref carries it), silently consume any duplicate
+  - this rule applies to all `severity` values (`patch` / `minor` / `major` / `security`) when `payload.release.auto_apply` is `true`, which is the platform default. If a future release explicitly sets `auto_apply: false`, fall back to a one-line proposal `Hi has a new release X.Y.Z available — install now?` and wait for the owner's go-ahead
+- for meeting starts inside an existing pairing, use `thread_meetings`
+- use `flow_kind="propose_slot"` when the user already has one exact future slot in mind
+- use `flow_kind="need_slots"` when the two sides need to exchange availability and let Hi solve for overlap
+- use `flow_kind="start_now"` only for an immediate conversation starting now
+- for ordinary collaboration, interview, or matching meetings, prefer `modality="zoom"` unless the user clearly wants a phone call or audio-only conversation; do not silently downgrade an unspecified meeting to `phone`
+- if a meeting is already committed and the user asks for the meeting details, return the confirmed time plus the actual provider details that exist right now
+- if the current committed meeting is `phone`, say plainly that there is no Zoom link yet and offer to switch or repropose the meeting as `zoom` rather than pretending a Zoom link exists
+- when converting an already-started meeting flow from `phone` to `zoom`, or replacing another unfinished meeting action, explicitly replace the existing thread action instead of opening ambiguous parallel meeting tracks
+- keep using the current chat as the default continuation destination once install is healthy; do not ask the user whether to bind this chat again during ordinary usage
 
+## Tool Order
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hirey-compatible-use
-```
+1. Health check:
+   - Prefer `hi_agent_status`
+   - If status is unavailable or suspicious, use `hi_agent_doctor`
+2. Listing authoring:
+   - `listing_taxonomy(action="list_types")`
+   - `listing_taxonomy(action="get_roles")`
+   - `agent_listings(action="upsert")`
+3. Matching:
+   - `matching_sessions(action="match_feed")`
+   - `matching_sessions(action="search")` when the feed is sparse or a sharper query is needed
+   - `matching_sessions(action="contact_match")` or `pairings(action="create")` to continue on a chosen match
+4. Pairing continuation:
+   - `pairings(action="timeline")`
+   - `pairings(action="messages")` / `pairings(action="contact_target")` as needed
+5. Meeting progression:
+   - `thread_meetings(action="start")`
+   - `thread_meetings(action="respond")`
+   - `thread_meetings(action="get"|"list")` to inspect the current typed action state before responding
+
+## Validation
+
+- confirm Hi status/doctor is healthy before doing ordinary workflow work
+- if the user just crossed over from install, confirm the current session actually exposes Hi tools; if not, confirm the user was told this is still a session-refresh boundary and should continue in the next fresh turn
+- confirm a newly created listing is open and not blocked by avoidable taxonomy review
+- confirm the selected match is actually compatible with the user's stated goal, not just semantically adjacent
+- confirm pairing timeline and action cards agree on who needs to respond next in a meeting flow
+- confirm the meeting modality matches what the user asked for
+- when the user asks for Zoom details, confirm a Zoom meeting actually exists before returning a link
+- only re-check the canonical Hi surfaces when a webhook or background event carries an actionable change. The actionable set is: `agent.message.created` with a non-empty body, with `payload.kind="install_welcome_recommendation"` (post-install one-time welcome push, see rule above; surfaced as a grouped message but does NOT trigger any Hi tool re-query), or with `payload.kind="install_welcome_onboarding"` (post-install one-time onboarding push that asks the owner what kind of person they want Hi to find — the dedup rule above gates whether to actually run the flow; running it triggers `agent_listings(action="upsert")` only after owner confirms a draft listing), `pairing.created`, `pairing.updated` with a milestone status (see the meeting/pairing rule above for which status values count) and `thread_action.family_id` ∉ {`thread_meetings`}, `meeting.negotiation.updated` with milestone `preview.status`, `listing_matching_session.updated` with `preview.status="matches_available"`, or `hi.release.published` (which is handled by the auto-update rule below, not by re-querying Hi business surfaces). Events that are NOT actionable on their own and must be silently consumed: `listing_matching_session.updated` with `preview.status="session_updated"` (no new candidates), `meeting.execution.requested` (Hi just queued zoom provisioning), `meeting.negotiation.updated` with mid-state `preview.status`, `pairing.updated` for meeting-family thread actions or with mid-state status. Every duplicated re-check on the same milestone risks forming a self-feedback loop with the platform that floods both outbox and the owner.
+
+## Boundaries
+
+- do not reinstall Hi just because a normal usage turn hit a product or matching issue
+- do not pretend a same-session stale prompt means the package install failed; if `hirey-compatible-use` has not refreshed into the current turn yet, say so plainly and wait for the next fresh turn of the same chat
+- do not use direct id lookup to fake a successful match when recommendation/search did not actually find the intended counterparty
+- do not blame Hi for poor results when the user's own listing text or query is broader or weaker than competing listings; explain the difference honestly
+- do not expose internal environment names or deployment details to ordinary OpenClaw users
+- do not ask the user to manually inspect raw OpenClaw session keys, thread ids, or MCP config during normal post-install usage
+- do not invent meeting provider details or Zoom links that have not actually been scheduled — specifically, do not tell the user "the other side has the link / number" until the thread action reaches `status="scheduled"` with `result.artifacts.ready=true`; the transient `status="scheduled_pending_provisioning"` means the time is locked but the provider artifacts are still being materialized and are not yet visible to either side
+- do not translate a `listing_matching_session.updated` webhook with `preview.status="session_updated"` into a user-facing message or a follow-up `match_feed` / `search` call. The platform is truthfully reporting "session cursor advanced, nothing new is visible to the owner"; treating it as actionable feeds a self-echo loop where every owner-side re-check writes the session and produces another `session_updated`, surfacing as constant "I checked again, still 0 candidates" reports to the user.
+- do not translate every `meeting.negotiation.updated` / `pairing.updated` mid-state into a user-facing report. Hi's meeting flow goes through a sequence of internal transitions in the seconds around acceptance (`accepted_by_both` → `committed` → `scheduled_pending_provisioning` → `scheduled`), and `meeting.execution.requested` is just Hi queuing the zoom provisioning step. Each of those is an internal step, not news for the owner; surfacing them all produces a burst of redundant "and now this happened" reports on the same milestone. Wait for the milestone the owner can act on (typically `scheduled` with `result.artifacts.ready=true` for new meetings, or `cancelled` / `rejected` for stops) and report it once.
+- do not ask the owner before adding a successfully scheduled Hi meeting to their local calendar. The owner already committed to attending when they accepted the meeting through Hi; asking again is friction without value. If a calendar create tool is exposed, just create the event with a stable UID and send a one-line receipt; if no calendar tool is exposed, give a one-time setup hint and stop — do not repeat the hint per meeting.
+- do not ask the owner before applying a `hi.release.published` auto-update with `payload.release.auto_apply=true` (the platform default). Routine maintenance is part of what the owner installed Hi for; turning every release into a yes/no prompt trains the owner to ignore the bot. Just upgrade, send the receipt, and stop. Asking is reserved for the explicit `auto_apply=false` opt-out path Hi may use for future breaking releases.
+- do not call `matching_sessions(action="contact_match")` on listing ids surfaced by an `install_welcome_recommendation` payload. That event is a one-time view-only welcome batch fired before the owner has any source listing of their own; `contact_match` requires both sides to have a listing and will reject. Treat it as a teaser: surface the previews, explain the gating, and offer to help the owner publish their own `social_or_friendship` listing if they want to actually reach out.
+- do not auto-publish a `social_or_friendship` listing in response to an `install_welcome_recommendation` event. The previews are descriptive ("here are some recent friendship listings"), not prescriptive ("publish a friendship listing"). Owners install Hi for many goals; assume a friendship intent only when the owner expresses it.
+- do not run the welcome onboarding flow from an `install_welcome_onboarding` push without first checking `agent_listings(action="list")` and confirming `listings.length === 0`. The same payload shape is also delivered synchronously inside `hi_agent_install`'s `result.welcome` field; if the owner already went through onboarding via the install tool's sync path (which is the common case for newly-installed users), they will already have a listing and re-running onboarding on the async push would feel like asking the same question twice. Silently consume the duplicate when listings exist.
+- do not call `agent_listings(action="browse_recent")` to refresh the recent_activity in `install_welcome_onboarding` — those items are already pre-fetched and embedded in `payload.recent_activity[]`. Re-fetching adds latency and risks showing the owner a different snapshot than the one the onboarding instruction was authored against.

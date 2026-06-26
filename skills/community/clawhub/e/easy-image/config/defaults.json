@@ -1,0 +1,11 @@
+{
+  "platform": "jiekou",
+  "save_path": "auto",
+  "language": "auto",
+  "frequent_scenes": [],
+  "image_format": "png",
+  "image_quality": "high",
+  "max_adjustment_rounds": 3,
+  "api_timeout_seconds": 300,
+  "async_poll_interval_seconds": 2
+}

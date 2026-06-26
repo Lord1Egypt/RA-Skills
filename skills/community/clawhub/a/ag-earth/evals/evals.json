@@ -1,0 +1,20 @@
+{
+  "skill_name": "Ag-earth",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我查一下今天北京的天气",
+      "expected_output": "携带 API Key 调用 recommend API 查询北京天气相关工具，选择相关性最高的工具并携带 API Key 执行，返回天气预报数据"
+    },
+    {
+      "id": 2,
+      "prompt": "用什么工具可以分析股票数据？",
+      "expected_output": "识别金融/股票相关的工具，携带鉴权信息推荐 API 后执行选定的股票分析工具"
+    },
+    {
+      "id": 3,
+      "prompt": "我需要找一个能转换 PDF 格式的工具",
+      "expected_output": "定位 PDF 处理工具，携带鉴权信息执行转换功能或返回可用的 PDF 工具信息"
+    }
+  ]
+}

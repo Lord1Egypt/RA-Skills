@@ -1,0 +1,20 @@
+# profile: deepseek
+# DeepSeek + codex-relay 协议中转
+#
+# 为什么需要 relay?
+#   DeepSeek 服务端只支持 OpenAI Chat Completions API(没有 Responses API)。
+#   而 Codex CLI 0.130+ 已废弃 chat wire_api,默认发 Responses 协议。
+#   codex-relay 在本机 4448 端口接 Responses 请求,翻译成 Chat 后转发给 DeepSeek。
+
+model = "deepseek-chat"
+model_provider = "deepseek"
+
+[model_providers.deepseek]
+name = "DeepSeek via relay"
+base_url = "http://127.0.0.1:4448/v1"
+wire_api = "responses"
+env_key = "DEEPSEEK_API_KEY"
+
+request_max_retries = 4
+stream_max_retries = 5
+responses_websockets_v2 = true

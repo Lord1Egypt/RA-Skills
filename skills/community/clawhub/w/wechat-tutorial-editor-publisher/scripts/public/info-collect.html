@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收集个人信息</title>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background-color: #f5f5f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem; color: #333; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; color: #555; }
+        input[type="text"], textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        textarea { height: 100px; resize: none; }
+        input[type="file"] { margin-top: 0.5rem; }
+        button { width: 100%; padding: 0.75rem; background-color: #07c160; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        button:hover { background-color: #06ae56; }
+        .preview { margin-top: 1rem; text-align: center; }
+        .preview img { max-width: 150px; border-radius: 4px; display: none; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>填写个人信息</h1>
+        <form id="infoForm">
+            <div class="form-group">
+                <label for="nickname">昵称</label>
+                <input type="text" id="nickname" name="nickname" placeholder="请输入您的昵称" required>
+            </div>
+            <div class="form-group">
+                <label for="intro">个人文字介绍</label>
+                <textarea id="intro" name="intro" placeholder="请输入您的个人介绍" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="qrCode">个人微信二维码 / 图片介绍</label>
+                <input type="file" id="qrCode" name="qrCode" accept="image/*" required>
+            </div>
+            <div class="preview">
+                <img id="imgPreview" alt="预览">
+            </div>
+            <button type="submit">提交并继续</button>
+        </form>
+    </div>
+
+    <script>
+        const qrCodeInput = document.getElementById('qrCode');
+        const imgPreview = document.getElementById('imgPreview');
+
+        qrCodeInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    imgPreview.src = event.target.result;
+                    imgPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('infoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            try {
+                const response = await fetch('/api/personal-info', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('保存成功！即将前往步骤收集页面。');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('保存失败：' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('提交出错，请重试');
+            }
+        });
+    </script>
+</body>
+</html>

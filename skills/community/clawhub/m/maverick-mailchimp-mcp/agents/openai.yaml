@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mailchimp"
+  short_description: "Work with Mailchimp audiences, campaigns, reports, and automations"
+  default_prompt: "Use the available Mailchimp runtime tools to help the user inspect audiences, manage campaigns, review reports, and work with marketing automations."

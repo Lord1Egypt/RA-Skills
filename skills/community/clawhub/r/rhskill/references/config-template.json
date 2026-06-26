@@ -1,0 +1,64 @@
+{
+  "runninghub_cn": {
+    "api_key": "YOUR_API_KEY_HERE",
+    "apps": {
+      "qwen-text2image": {
+        "webapp_id": "2037760725296357377",
+        "description": "Qwen 文生图 - AIRix AIGC",
+        "node_map": {
+          "prompt": {
+            "node_id": "16",
+            "field_name": "text",
+            "description": "Prompt"
+          },
+          "width": {
+            "node_id": "19",
+            "field_name": "value",
+            "description": "Width"
+          },
+          "height": {
+            "node_id": "20",
+            "field_name": "value",
+            "description": "High"
+          }
+        }
+      },
+      "zimage-text2image": {
+        "webapp_id": "PLACEHOLDER",
+        "description": "ZImage 文生图",
+        "node_map": {
+          "prompt": {
+            "node_id": "PLACEHOLDER",
+            "field_name": "text"
+          },
+          "width": {
+            "node_id": "PLACEHOLDER",
+            "field_name": "value"
+          },
+          "height": {
+            "node_id": "PLACEHOLDER",
+            "field_name": "value"
+          }
+        }
+      },
+      "flux-text2image": {
+        "webapp_id": "PLACEHOLDER",
+        "description": "FLUX2 文生图",
+        "node_map": {
+          "prompt": {
+            "node_id": "PLACEHOLDER",
+            "field_name": "text"
+          },
+          "width": {
+            "node_id": "PLACEHOLDER",
+            "field_name": "value"
+          },
+          "height": {
+            "node_id": "PLACEHOLDER",
+            "field_name": "value"
+          }
+        }
+      }
+    }
+  }
+}

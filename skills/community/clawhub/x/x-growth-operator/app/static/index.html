@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>X Growth Operator Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">Review Dashboard</p>
+          <h1>X Growth Operator</h1>
+          <p class="hero-copy" data-i18n="hero_copy">
+            Inspect the current mission, ranked actions, memory, and recent executions without digging through raw JSON.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <div class="top-buttons">
+            <button id="languageToggle" class="secondary-button">中文</button>
+            <button id="refreshButton" class="refresh-button" data-i18n="refresh">Refresh State</button>
+          </div>
+          <div id="statusBanner" class="status-banner" data-i18n="ready">Ready.</div>
+        </div>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="panel mission-panel">
+          <div class="panel-head">
+            <h2 data-i18n="mission">Mission</h2>
+            <span id="missionName" class="chip" data-i18n="no_mission">No mission loaded</span>
+          </div>
+          <div id="missionMeta" class="meta-grid"></div>
+        </section>
+
+        <section class="panel plan-panel">
+          <div class="panel-head">
+            <h2 data-i18n="action_plan">Action Plan</h2>
+            <span id="planCount" class="chip">0 actions</span>
+          </div>
+          <div id="planList" class="list-block empty-state" data-i18n="no_action_plan">No action plan found.</div>
+        </section>
+
+        <section class="panel action-panel">
+          <div class="panel-head">
+            <h2 data-i18n="current_action">Current Action</h2>
+            <span id="actionType" class="chip">None</span>
+          </div>
+          <div class="action-toolbar">
+            <button id="preflightButton" class="secondary-button" data-i18n="preflight">Preflight</button>
+            <button id="dryRunButton" class="secondary-button" data-i18n="dry_run">Dry Run</button>
+            <button id="executeButton" class="primary-button" data-i18n="execute_live">Execute Live</button>
+          </div>
+          <div id="currentAction" class="action-card empty-state" data-i18n="no_action">No proposed action found.</div>
+        </section>
+
+        <section class="panel memory-panel">
+          <div class="panel-head">
+            <h2 data-i18n="memory">Memory</h2>
+            <span class="chip" data-i18n="learning_loop">Learning Loop</span>
+          </div>
+          <div id="memoryBlock" class="memory-grid empty-state" data-i18n="no_memory">No memory file found.</div>
+        </section>
+
+        <section class="panel opportunity-panel">
+          <div class="panel-head">
+            <h2 data-i18n="top_opportunities">Top Opportunities</h2>
+            <span id="opportunityCount" class="chip">0 items</span>
+          </div>
+          <div id="opportunityList" class="list-block empty-state" data-i18n="no_opportunities">No scored opportunities found.</div>
+        </section>
+
+        <section class="panel execution-panel">
+          <div class="panel-head">
+            <h2 data-i18n="recent_executions">Recent Executions</h2>
+            <span id="executionCount" class="chip">0 events</span>
+          </div>
+          <div id="executionList" class="list-block empty-state" data-i18n="no_executions">No executions recorded.</div>
+        </section>
+
+        <section class="panel files-panel">
+          <div class="panel-head">
+            <h2 data-i18n="generated_files">Generated Files</h2>
+            <span class="chip">data/</span>
+          </div>
+          <div id="fileList" class="file-list empty-state" data-i18n="no_files">No generated files found.</div>
+        </section>
+      </main>
+    </div>
+    <script src="/app.js" defer></script>
+  </body>
+  </html>

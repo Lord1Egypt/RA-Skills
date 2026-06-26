@@ -1,35 +1,27 @@
 ---
-name: "Blucli"
-description: "BluOS CLI (blu) for discovery, playback, grouping, and volume."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/blucli"
-sourceUrl: "https://clawhub.ai/skills/blucli"
+name: blucli
+description: BluOS CLI (blu) for discovery, playback, grouping, and volume.
+homepage: https://blucli.sh
+metadata: {"clawdbot":{"emoji":"🫐","requires":{"bins":["blu"]},"install":[{"id":"go","kind":"go","module":"github.com/steipete/blucli/cmd/blu@latest","bins":["blu"],"label":"Install blucli (go)"}]}}
 ---
 
-# Blucli
+# blucli (blu)
 
-> BluOS CLI (blu) for discovery, playback, grouping, and volume.
+Use `blu` to control Bluesound/NAD players.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/blucli`
-- **Source URL:** [https://clawhub.ai/skills/blucli](https://clawhub.ai/skills/blucli)
+Quick start
+- `blu devices` (pick target)
+- `blu --device <id> status`
+- `blu play|pause|stop`
+- `blu volume set 15`
 
-## Overview
+Target selection (in priority order)
+- `--device <id|name|alias>`
+- `BLU_DEVICE`
+- config default (if set)
 
+Common tasks
+- Grouping: `blu group status|add|remove`
+- TuneIn search/play: `blu tunein search "query"`, `blu tunein play "query"`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/blucli
-```
+Prefer `--json` for scripts. Confirm the target device before changing playback.

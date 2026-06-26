@@ -1,0 +1,39 @@
+{
+  "runner": "fixture",
+  "trace_format_version": "normalized-v1",
+  "tool_calls": [],
+  "shell_commands": [
+    "python3 scripts/business_blueprint/cli.py --validate scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json",
+    "python3 scripts/business_blueprint/cli.py --export scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json"
+  ],
+  "failed_shell_commands": [],
+  "read_paths": [
+    "SKILL.md",
+    "references/domain-knowledge-extraction.md",
+    "references/knowledge-entities-schema.md",
+    "references/blueprint-schema.md",
+    "references/route-eligibility.md"
+  ],
+  "write_paths": [
+    "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json",
+    "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.svg",
+    "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.viewer.html"
+  ],
+  "artifact_paths": [
+    "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json",
+    "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.svg",
+    "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.viewer.html"
+  ],
+  "input_tokens": 17600,
+  "output_tokens": 4200,
+  "wall_ms": 53000,
+  "run_completed": true,
+  "skill_evidence": {
+    "skill_contract_read": true,
+    "blueprint_flow_observed": true,
+    "validate_observed": true,
+    "export_observed": true,
+    "projection_observed": false
+  },
+  "runner_warnings": []
+}

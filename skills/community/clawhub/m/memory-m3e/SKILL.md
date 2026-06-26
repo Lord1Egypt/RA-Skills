@@ -1,35 +1,67 @@
----
-name: "memory-m3e - Semantic Memory Plugin"
-description: "Semantic memory plugin using m3e-large embeddings with SQLite storage, supporting storage, retrieval, and deletion via cosine similarity search in pure JS."
-category: "other"
-source: "ClawHub"
-tags: [embedding, m3e, memory, semantic-search, sqlite]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-m3e"
-sourceUrl: "https://clawhub.ai/skills/memory-m3e"
----
+# memory-m3e
 
-# memory-m3e - Semantic Memory Plugin
+语义记忆插件，使用 m3e-large embedding API + SQLite 存储。
 
-> Semantic memory plugin using m3e-large embeddings with SQLite storage, supporting storage, retrieval, and deletion via cosine similarity search in pure JS.
+## 特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-m3e`
-- **Source URL:** [https://clawhub.ai/skills/memory-m3e](https://clawhub.ai/skills/memory-m3e)
+- ✅ 使用外部 m3e-large embedding API（1536维）
+- ✅ SQLite 持久化存储
+- ✅ 纯 JS 余弦相似度搜索（无原生依赖问题）
+- ✅ 定时索引刷新（默认10分钟）
+- ✅ 三个工具：memory_store, memory_recall, memory_forget
 
-## Overview
+## 配置
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-m3e
+```json
+{
+  "plugins": {
+    "slots": {
+      "memory": "memory-m3e"
+    },
+    "entries": {
+      "memory-m3e": {
+        "enabled": true,
+        "config": {
+          "embedding": {
+            "apiKey": "your-api-key",
+            "baseUrl": "http://your-embedding-server",
+            "model": "m3e-large"
+          },
+          "dbPath": "~/.openclaw/data/memory-m3e.db",
+          "indexInterval": 600000
+        }
+      }
+    }
+  }
+}
 ```
+
+## 使用
+
+```javascript
+// 存储
+memory_store({
+  text: "Frappe API 开发经验",
+  category: "fact",
+  importance: 0.8
+})
+
+// 搜索
+memory_recall({
+  query: "Frappe 项目",
+  limit: 5
+})
+
+// 删除
+memory_forget({ memoryId: "uuid" })
+memory_forget({ query: "要删除的内容" })
+```
+
+## 性能（实测，47条记忆）
+
+- memory_store: avg **200ms**（embedding ~198ms + sqlite ~2ms）
+- memory_recall: avg **91ms**（embedding ~83ms + 全表搜索 ~8ms）
+- 索引刷新：每10分钟自动执行
+
+---
+作者：小女子 🥰

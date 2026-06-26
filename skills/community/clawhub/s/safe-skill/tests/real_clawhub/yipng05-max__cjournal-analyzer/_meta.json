@@ -1,0 +1,11 @@
+{
+  "owner": "yipng05-max",
+  "slug": "cjournal-analyzer",
+  "displayName": "c刊期刊分析",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773211093535,
+    "commit": "https://github.com/openclaw/skills/commit/4ff15aae9be292239dc9ee35f70640cb3b785859"
+  },
+  "history": []
+}

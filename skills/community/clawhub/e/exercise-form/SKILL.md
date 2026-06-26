@@ -1,35 +1,57 @@
 ---
-name: "Exercise Form"
+name: "exercise-form"
+version: "3.0.0"
 description: "Exercise form guide with warmup routines and workout plans. Use when planning workouts."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/exercise-form"
-sourceUrl: "https://clawhub.ai/skills/exercise-form"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Exercise Form
+# exercise-form
 
-> Exercise form guide with warmup routines and workout plans. Use when planning workouts.
+Exercise form guide with warmup routines and workout plans. Use when planning workouts.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/exercise-form`
-- **Source URL:** [https://clawhub.ai/skills/exercise-form](https://clawhub.ai/skills/exercise-form)
+## Commands
 
-## Overview
+### `guide`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/exercise-form
+scripts/script.sh guide <exercise>
 ```
+
+### `search`
+
+```bash
+scripts/script.sh search <muscle>
+```
+
+### `warmup`
+
+```bash
+scripts/script.sh warmup <type>
+```
+
+### `routine`
+
+```bash
+scripts/script.sh routine <goal minutes>
+```
+
+### `list`
+
+```bash
+scripts/script.sh list <category>
+```
+
+### `tips`
+
+```bash
+scripts/script.sh tips <exercise>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/exercise-form/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

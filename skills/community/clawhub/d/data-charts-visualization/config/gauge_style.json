@@ -1,0 +1,69 @@
+{
+  "chartType": "gauge",
+  "common": {
+    "title": {
+      "main": {
+        "show": true,
+        "align": "center",
+        "fontSize": 24,
+        "color": "#1f2937",
+        "bold": true
+      },
+      "subtitle": {
+        "show": true,
+        "fontSize": 14,
+        "color": "#6b7280"
+      }
+    },
+    "canvas": {
+      "backgroundColor": "#ffffff",
+      "palette": [
+        "#2563eb",
+        "#14b8a6",
+        "#f59e0b",
+        "#ef4444",
+        "#8b5cf6"
+      ],
+      "plotArea": {
+        "left": "15%",
+        "right": "15%",
+        "top": "15%",
+        "bottom": "15%"
+      }
+    }
+  },
+  "specific": {
+    "startAngle": 225,
+    "endAngle": -45,
+    "progressShow": true,
+    "progressWidth": 11,
+    "progressColor": "#5470c6",
+    "axisWidth": 11,
+    "bandStops": "#22c55e, #84cc16, #facc15, #f97316, #ef4444",
+    "titleShow": true,
+    "titleFontSize": 14,
+    "titleColor": "#6e7079",
+    "detailShow": true,
+    "detailFormatter": "{value}%",
+    "detailFontSize": 24,
+    "detailColor": "#464646",
+    "axisLabelShow": true,
+    "axisLabelDistance": 14,
+    "axisLabelFontSize": 12,
+    "axisLabelColor": "#6e7079",
+    "splitLineShow": true,
+    "splitLineLength": 7,
+    "splitLineWidth": 1.1,
+    "splitLineColor": "#6e7079",
+    "axisTickShow": true,
+    "axisTickLength": 3,
+    "axisTickWidth": 0.6,
+    "axisTickColor": "#999999",
+    "pointerShow": true,
+    "pointerWidth": "2",
+    "pointerColor": "#2f4554",
+    "anchorShow": true,
+    "anchorSize": "12",
+    "anchorColor": "#2f4554"
+  }
+}

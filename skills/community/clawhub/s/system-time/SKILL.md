@@ -1,35 +1,104 @@
----
-name: "system-time"
-description: "Provides current system time, detailed time info, time differences, supports multiple formats and global timezones."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/system-time"
-sourceUrl: "https://clawhub.ai/skills/system-time"
----
+# System Time
 
-# system-time
+获取系统当前时间的 MCP Skill，支持多种格式和时区。
 
-> Provides current system time, detailed time info, time differences, supports multiple formats and global timezones.
+## 描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/system-time`
-- **Source URL:** [https://clawhub.ai/skills/system-time](https://clawhub.ai/skills/system-time)
+这是一个功能强大的时间工具 Skill，可以准确获取系统时间、提供详细的时间信息，以及计算时间差。
 
-## Overview
+## 功能特性
 
+### 🕐 多种时间格式
+- ISO 8601 标准格式
+- 日期格式 (YYYY-MM-DD)
+- 时间格式 (HH:MM:SS)
+- 完整中文格式 (2026年02月13日 星期五 08:06:54)
+- Unix 时间戳
+- 详细格式（包含毫秒）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/system-time
+### 🌍 时区支持
+支持全球各地时区转换，如：
+- Asia/Shanghai (中国)
+- America/New_York (美国东部)
+- Europe/London (英国)
+- 等等...
+
+### ⏱️ 时间计算
+计算两个时间点之间的差值，支持：
+- 天、小时、分钟、秒
+- 自动转换多种单位
+- 支持 ISO 格式和时间戳输入
+
+## 工具列表
+
+### get_current_time
+获取当前系统时间
+
+**参数：**
+- `format` (可选): 时间格式
+  - `iso` - ISO 8601 格式
+  - `date` - 仅日期
+  - `time` - 仅时间
+  - `datetime` - 日期时间
+  - `full` - 完整中文
+  - `timestamp` - Unix 时间戳
+  - `detailed` - 详细中文
+- `timezone` (可选): 时区，如 "Asia/Shanghai"
+
+**示例：**
 ```
+获取当前时间（完整中文格式）
+获取东京时间
+```
+
+### get_time_info
+获取详细的时间信息
+
+**返回：**
+- 年、月、日
+- 星期几
+- 时、分、秒、毫秒
+- 时间戳
+- ISO 格式
+- 本地时间和 UTC 时间
+
+**示例：**
+```
+显示详细时间信息
+```
+
+### calculate_time_diff
+计算时间差
+
+**参数：**
+- `start_time` (必需): 开始时间（ISO 格式或时间戳）
+- `end_time` (可选): 结束时间，默认为当前时间
+
+**示例：**
+```
+计算从 2026-01-01 到现在过了多久
+计算两个时间的差值
+```
+
+## 使用场景
+
+- 📅 获取当前日期和时间
+- ⏰ 设置提醒和定时任务
+- 🌏 跨时区时间转换
+- ⏱️ 计算时间间隔
+- 📊 时间数据分析
+- 🔔 时间戳转换
+
+## 技术栈
+
+- Node.js
+- TypeScript
+- @modelcontextprotocol/sdk
+
+## 作者
+
+Qzy05231
+
+## 许可证
+
+MIT

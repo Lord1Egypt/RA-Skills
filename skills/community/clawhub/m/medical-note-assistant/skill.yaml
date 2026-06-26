@@ -1,0 +1,10 @@
+name: 醫療病歷結構化助手
+description: 門診/住院病歷自動結構化，輸出診斷同治療建議
+version: 1.0.0
+author: isaacloi1995-dot
+tags:
+  - 醫療
+  - 病歷
+  - AI助手
+  - 醫生
+  - 門診

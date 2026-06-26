@@ -1,35 +1,122 @@
 ---
-name: "Stock Fundamental Analysis"
-description: "对上市公司进行深度基本面分析，包括财务健康度评估、估值分析、成长性分析、行业对标、财报解读，输出结构化投研报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-fundamental-analysis"
-sourceUrl: "https://clawhub.ai/skills/stock-fundamental-analysis"
+name: stock_fundamental_analysis
+description: 对上市公司进行深度基本面分析，包括财务健康度评估、估值分析、成长性分析、行业对标、财报解读，输出结构化投研报告
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🏢",
+      "version": "1.0.0",
+      "requires": {
+        "bins": ["python3"],
+        "env": ["STOCK_DATA_API_KEY"]
+      },
+      "primaryEnv": "STOCK_DATA_API_KEY"
+    }
+  }
 ---
 
-# Stock Fundamental Analysis
+# 股票基本面分析技能
 
-> 对上市公司进行深度基本面分析，包括财务健康度评估、估值分析、成长性分析、行业对标、财报解读，输出结构化投研报告
+## 触发条件
+- "XX公司基本面怎么样"
+- "帮我分析一下XX的财报"
+- "XX估值高不高"
+- "XX和YY哪个更值得投资"
+- "这家公司财务健康吗"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-fundamental-analysis`
-- **Source URL:** [https://clawhub.ai/skills/stock-fundamental-analysis](https://clawhub.ai/skills/stock-fundamental-analysis)
+## 分析维度与工具调用
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 维度一：财务健康度评估
 ```bash
-hermes skills install clawhub/stock-fundamental-analysis
+python3 {baseDir}/tools/health_checker.py --symbol <代码> --years 5
 ```
+检查项:
+| 检查项 | 健康标准 | 权重 |
+|--------|---------|------|
+| 资产负债率 | <60% (非金融) | 15% |
+| 流动比率 | >1.5 | 10% |
+| 速动比率 | >1.0 | 10% |
+| 经营性现金流/净利润 | >0.8 | 15% |
+| 有息负债率 | <40% | 10% |
+| 应收账款周转天数 | 行业中位数以下 | 10% |
+| 商誉/净资产 | <20% | 10% |
+| 连续3年净利润为正 | 是 | 10% |
+| 审计意见 | 标准无保留 | 10% |
+
+输出: 0-100 财务健康评分 + 各项明细 + 风险提示
+
+### 维度二：估值分析
+```bash
+python3 {baseDir}/tools/valuation_engine.py --symbol <代码> --method all
+```
+估值方法:
+1. **PE 估值法**: 当前PE vs 历史PE分位数 vs 行业平均PE
+2. **PB 估值法**: 当前PB vs 历史PB分位数 vs 行业平均PB
+3. **PEG 估值法**: PE/净利润增速，<1低估，1-1.5合理，>2高估
+4. **DCF 折现模型**: 自由现金流折现 → 内在价值 → 安全边际
+5. **PS 估值法**: 适用于高增长未盈利公司
+
+输出: 综合估值判断（低估/合理/高估）+ 合理价格区间
+
+### 维度三：成长性分析
+```bash
+python3 {baseDir}/tools/growth_analyzer.py --symbol <代码> --years 5
+```
+分析:
+- 营收增速（近1/3/5年 CAGR）
+- 净利润增速
+- ROE 趋势（杜邦分解：净利率×周转率×杠杆）
+- 毛利率/净利率变化趋势
+- 研发投入占比趋势
+- 市场份额变化
+
+### 维度四：行业对标
+```bash
+python3 {baseDir}/tools/industry_comparator.py --symbol <代码> --peers auto
+```
+对标维度:
+- PE/PB/PS 对比
+- ROE/毛利率/净利率对比
+- 营收/净利润增速对比
+- 市值/市占率对比
+输出: 雷达图数据 + 行业排名
+
+### 维度五：财报解读
+```bash
+python3 {baseDir}/tools/report_parser.py --symbol <代码> --quarter latest
+```
+解读重点:
+- 营收/净利润 同比/环比变化 → 超预期/低于预期
+- 毛利率变化 → 产品竞争力
+- 费用率变化 → 管理效率
+- 现金流变化 → 经营质量
+- 关键风险：大额减值、关联交易、非经常性损益占比
+
+### 维度六：股东/机构分析
+```bash
+python3 {baseDir}/tools/shareholder_tracker.py --symbol <代码>
+```
+追踪:
+- 十大股东变化（增/减持）
+- 北向资金持仓变化
+- 公募基金重仓变化
+- 高管增减持记录
+- 股权质押比例
+
+## 综合评分体系
+
+| 维度 | 权重 | 评分范围 |
+|------|------|---------|
+| 财务健康度 | 25% | 0-100 |
+| 估值合理性 | 25% | 0-100 |
+| 成长性 | 25% | 0-100 |
+| 行业竞争力 | 15% | 0-100 |
+| 机构认可度 | 10% | 0-100 |
+
+综合评分 = Σ(维度评分 × 权重)
+
+## 输出规范
+- Markdown 结构化报告，包含数据表格
+- 明确标注数据来源和截止日期
+- 必须包含⚠️免责声明：基本面分析仅供参考，不构成投资建议
+- 对不确定的结论标注置信度（高/中/低）

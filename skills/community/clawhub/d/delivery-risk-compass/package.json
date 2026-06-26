@@ -1,0 +1,13 @@
+{
+  "name": "delivery-risk-compass",
+  "version": "1.0.0",
+  "description": "项目交付罗盘：行业洞察与经验打法风险引擎",
+  "main": "src/index.js",
+  "bin": {
+    "delivery-risk-compass": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/test.js"
+  }
+}

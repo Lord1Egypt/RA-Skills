@@ -1,0 +1,84 @@
+{
+  "report_version": "2.0",
+  "check_time": "2026-03-07T20:19:00Z",
+  "hour": 20,
+  "plan_id": "plan_20260307_20",
+  "step": "自我检查",
+  "goal_achievement": {
+    "target": "修正yan-learning-engine设计，添加完整进化循环",
+    "achieved": false,
+    "percentage": 25,
+    "status": "in_progress"
+  },
+  "action_results": [
+    {
+      "id": 1,
+      "action": "更新SKILL.md执行流程为完整进化循环",
+      "status": "completed",
+      "quality": "high",
+      "time_spent_minutes": 5,
+      "notes": "成功添加4步进化循环：制定→执行→检查→再计划"
+    },
+    {
+      "id": 2,
+      "action": "创建next-hour-plan.json模板",
+      "status": "in_progress",
+      "quality": null,
+      "time_spent_minutes": 0,
+      "notes": "正在创建"
+    },
+    {
+      "id": 3,
+      "action": "创建self-check-report.json模板",
+      "status": "pending",
+      "quality": null,
+      "time_spent_minutes": 0,
+      "notes": "等待执行"
+    },
+    {
+      "id": 4,
+      "action": "发布yan-learning-engine v2.0到ClawHub",
+      "status": "pending",
+      "quality": null,
+      "time_spent_minutes": 0,
+      "notes": "等待执行"
+    }
+  ],
+  "quality_assessment": {
+    "overall": "pending",
+    "code_quality": null,
+    "documentation": "high",
+    "innovation": "high",
+    "value_created": "high"
+  },
+  "lessons_learned": {
+    "successes": [
+      "理解了星之君'完整进化循环'的要求",
+      "快速修正了设计方案"
+    ],
+    "failures": [],
+    "insights": [
+      "固定循环不如智能进化",
+      "自我检查是进化的关键",
+      "计划必须基于结果动态调整"
+    ]
+  },
+  "exp_gained": {
+    "planning": 5,
+    "execution": 5,
+    "self_check": 5,
+    "iteration": 5,
+    "total": 20
+  },
+  "next_hour_adjustments": {
+    "theme_change": false,
+    "difficulty_adjustment": "increase",
+    "focus_area": "execution_speed",
+    "notes": "当前执行速度良好，保持并提升"
+  },
+  "evolution_cycle": {
+    "cycle_number": 1,
+    "completed": false,
+    "next_cycle_ready": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "name":  "amazon_price_checker",
+    "version":  "1.0.0",
+    "description":  "Checks live price for a given ASIN.",
+    "allowedTools":  [
+                         "browser.get_dom",
+                         "browser.query"
+                     ],
+    "input_schema":  {
+                         "type":  "object",
+                         "properties":  {
+                                            "asin":  {
+                                                         "type":  "string"
+                                                     },
+                                            "origin":  {
+                                                           "type":  "string"
+                                                       }
+                                        },
+                         "required":  [
+                                          "asin"
+                                      ]
+                     },
+    "output_schema":  {
+                          "type":  "object",
+                          "properties":  {
+                                             "price":  {
+                                                           "type":  "string"
+                                                       }
+                                         }
+                      },
+    "notes":  "Playwright runtime checks price on Amazon product pages in the active browser session. No Service Worker is installed by this skill package.",
+    "id":  "amazon_price_checker"
+}

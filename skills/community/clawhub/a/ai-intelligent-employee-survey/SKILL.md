@@ -1,35 +1,51 @@
 ---
-name: "Ai Intelligent Employee Survey"
-description: "员工调研，问卷 + 分析 + 报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-intelligent-employee-survey"
-sourceUrl: "https://clawhub.ai/skills/ai-intelligent-employee-survey"
+name: ai-intelligent-employee-survey
+version: 1.0.0
+description: 员工调研，问卷 + 分析 + 报告。
+metadata:
+  openclaw:
+    emoji: "🤖"
+    requires:
+      bins: []
 ---
 
-# Ai Intelligent Employee Survey
+# AI 智能员工调研系统
 
-> 员工调研，问卷 + 分析 + 报告。
+## 描述
+员工调研，问卷 + 分析 + 报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-intelligent-employee-survey`
-- **Source URL:** [https://clawhub.ai/skills/ai-intelligent-employee-survey](https://clawhub.ai/skills/ai-intelligent-employee-survey)
+## 功能
+- 问卷设计（可视化设计）
+- 匿名调研（隐私保护）
+- 数据分析（自动分析）
+- 报告生成（自动生成）
+- 改进跟踪（问题跟踪）
 
-## Overview
+## 定价
+- 基础版：¥49/月（5 调研/月）
+- 专业版：¥199/月（50 调研/月）
+- 企业版：¥799/月（无限调研）
 
+## 适用场景
+- 员工满意度
+- 组织诊断
+- 意见收集
+- 改进跟踪
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 技术栈
+- Python + FastAPI
+- 问卷系统
+- 数据分析
+- 报告生成
+
+## 安装
 ```bash
-hermes skills install clawhub/ai-intelligent-employee-survey
+git clone https://github.com/openclaw-skills/ai-intelligent-employee-survey
+cd ai-intelligent-employee-survey
+pip install -r requirements.txt
+python app.py
 ```
+
+---
+创建：2026-03-13
+作者：OpenClaw Skills Team

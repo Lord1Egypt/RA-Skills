@@ -1,0 +1,15 @@
+{
+  "name": "log-collector",
+  "version": "1.0.0",
+  "description": "Permanent log collection agent for all nodes via SSH/VPN with 30-day retention",
+  "main": "SKILL.md",
+  "scripts": {
+    "collect": "python3 scripts/log_collector.py",
+    "cleanup": "python3 scripts/retention_cleanup.py"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "monitoring",
+    "daemon": true
+  }
+}

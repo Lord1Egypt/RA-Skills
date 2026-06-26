@@ -1,0 +1,3 @@
+# 快速开始
+
+快速开始前置准备复制页面在开始使用 MiniMax API 之前，需要完成账户注册和 API Key 获取。复制页面1账户注册/登录API 调用前，需在 MiniMax 开放平台进行账户注册，企业团队注册请参考页面底部说明.2获取 API Key 按量付费：通过 接口密钥 > 创建新的 API Key，获取 API Key 按量付费支持使用所有模态模型，包括文本、视频、语音、图像等 Token Plan：通过 接口密钥 > 创建 Token Plan Key，获取 API Key Token Plan 支持使用 MiniMax 全模态模型，详情见 Token Plan 概要 生成 API Key 后，建议将其存储为环境变量或保存到 .env 文件中# 推荐使用 Anthropic API 兼容 export ANTHROPIC_BASE_URL=https://api.minimaxi.com/anthropic export ANTHROPIC_API_KEY=${YOUR_API_KEY} 3账户充值通过 账户管理 > 余额，按需充值 企业团队注册说明建议采用主账号+子账号的形式创建和管理。 在 MiniMax 开放平台 注册一个账号（此账号即为主账号，注册时填写的姓名与手机号会成为本企业账号的管理员信息） 登录该主账号，在 账户管理 > 子账号，创建您所需要数量的子账户（子账号的创建数量暂时没有限制） 为您企业的人员，分配不同的子账户，进行登录使用 子账户权限说明： 子账号和主账号享用相同的使用权益与速率限制，子账号和主账号的 API 消耗共享，统一结算 子账号无查看和管理”支付”权限

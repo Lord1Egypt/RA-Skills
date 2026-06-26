@@ -1,35 +1,47 @@
 ---
-name: "Basal Ganglia Memory 0.1.1"
+name: basal-ganglia-memory
 description: "Habit formation and procedural learning for AI agents. Develop preferences and shortcuts through repetition. Part of the AI Brain series."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/basal-ganglia-memory-0-1-1"
-sourceUrl: "https://clawhub.ai/skills/basal-ganglia-memory-0-1-1"
+metadata:
+  openclaw:
+    emoji: "🎯"
+    version: "0.1.1"
+    author: "ImpKind"
+    requires:
+      os: ["darwin", "linux"]
+    tags: ["memory", "habits", "ai-brain"]
 ---
 
-# Basal Ganglia Memory 0.1.1
+# Basal Ganglia Memory 🎯
 
-> Habit formation and procedural learning for AI agents. Develop preferences and shortcuts through repetition. Part of the AI Brain series.
+**Habit formation for AI agents.** Part of the AI Brain series.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/basal-ganglia-memory-0-1-1`
-- **Source URL:** [https://clawhub.ai/skills/basal-ganglia-memory-0-1-1](https://clawhub.ai/skills/basal-ganglia-memory-0-1-1)
+## Status: 🚧 Under Development
 
-## Overview
+This skill is being developed. Star/watch for updates!
 
+## Concept
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/basal-ganglia-memory-0-1-1
-```
+The basal ganglia is responsible for habit formation and procedural learning. This skill will give AI agents:
+
+- **Habit tracking** — actions repeated become automatic preferences
+- **Procedural memory** — "muscle memory" for common workflows
+- **Reward-based learning** — reinforce patterns that work
+- **Preference development** — "I always do X this way because it works"
+
+## AI Brain Series
+
+| Part | Function | Status |
+|------|----------|--------|
+| [hippocampus](https://www.clawhub.ai/skills/hippocampus) | Memory formation, decay, reinforcement | ✅ Live |
+| [amygdala-memory](https://www.clawhub.ai/skills/amygdala-memory) | Emotional processing | ✅ Live |
+| **basal-ganglia-memory** | Habit formation | 🚧 Development |
+| [anterior-cingulate-memory](https://www.clawhub.ai/skills/anterior-cingulate-memory) | Conflict detection | 🚧 Development |
+| [insula-memory](https://www.clawhub.ai/skills/insula-memory) | Internal state awareness | 🚧 Development |
+
+## Coming Soon
+
+Based on neuroscience research on the basal ganglia's role in procedural learning and habit formation.
+
+---
+
+*Built with ❤️ by the OpenClaw community*

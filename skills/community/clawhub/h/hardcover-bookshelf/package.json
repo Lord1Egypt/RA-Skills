@@ -1,0 +1,17 @@
+{
+  "name": "hardcover-bookshelf-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "list": "npx tsx src/cli.ts list",
+    "start": "npx tsx src/cli.ts start",
+    "finish": "npx tsx src/cli.ts finish",
+    "count-last-year": "npx tsx src/cli.ts count-last-year",
+    "test": "vitest run --exclude 'src/**/*.integration.test.ts'",
+    "test:integration": "vitest run src/client.integration.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4",
+    "vitest": "^3"
+  }
+}

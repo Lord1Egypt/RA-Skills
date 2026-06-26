@@ -1,35 +1,77 @@
----
-name: "Hledger"
-description: "Execute hledger CLI commands to query balances, registers, reports, and journals, returning structured output from local ledger files."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hledger"
-sourceUrl: "https://clawhub.ai/skills/hledger"
+# hledger Skill for OpenClaw
+
+The **hledger skill** allows OpenClaw agents to execute `hledger` CLI commands
+on the host system and return structured output to the user.
+
+This skill acts as a thin wrapper around the installed `hledger` binary.
+
 ---
 
-# Hledger
+## What This Skill Does
 
-> Execute hledger CLI commands to query balances, registers, reports, and journals, returning structured output from local ledger files.
+- Executes arbitrary `hledger` subcommands
+- Returns stdout and stderr output
+- Allows querying balances, registers, reports, and journal data
+- Enables automation of personal finance workflows inside OpenClaw
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hledger`
-- **Source URL:** [https://clawhub.ai/skills/hledger](https://clawhub.ai/skills/hledger)
+---
 
-## Overview
+## Example Usage
 
+Input to the skill:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hledger
-```
+balance
+
+Result:
+
+Displays account balances from the default journal file.
+
+Input:
+
+register Assets
+
+Result:
+
+Displays register entries for the Assets account.
+
+Input:
+
+balance -f myledger.journal
+
+Result:
+
+Runs hledger against a specific ledger file.
+
+---
+
+## Requirements
+
+- `hledger` must be installed and available in PATH
+- The user must have read access to their ledger files
+
+Test installation with:
+
+hledger --version
+
+---
+
+## Security Notes
+
+This skill executes shell commands using the local `hledger` binary.
+It does not allow arbitrary shell execution — only `hledger` commands
+are prefixed and executed.
+
+---
+
+## Intended Use
+
+- Personal finance automation
+- Ledger querying via chat
+- Integration with Telegram or WhatsApp bots powered by OpenClaw
+- Financial reporting pipelines
+
+---
+
+## Version
+
+1.0.0

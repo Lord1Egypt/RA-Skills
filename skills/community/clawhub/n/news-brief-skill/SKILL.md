@@ -1,35 +1,100 @@
 ---
-name: "News Brief Skill"
-description: "根据用户设定的兴趣方向，每天定时获取对应领域的新闻内容，生成摘要简报并推送至用户指定渠道，支持用户反馈与Skill优化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/news-brief-skill"
-sourceUrl: "https://clawhub.ai/skills/news-brief-skill"
+name: news-brief-skill
+description: 根据用户设定的兴趣方向，每天定时获取对应领域的新闻内容，生成摘要简报并推送至用户指定渠道，支持用户反馈与Skill优化。
 ---
 
 # News Brief Skill
 
-> 根据用户设定的兴趣方向，每天定时获取对应领域的新闻内容，生成摘要简报并推送至用户指定渠道，支持用户反馈与Skill优化。
+> 智能新闻简报助手：基于用户兴趣定制，每日自动推送领域新闻摘要，支持多渠道推送和持续优化。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/news-brief-skill`
-- **Source URL:** [https://clawhub.ai/skills/news-brief-skill](https://clawhub.ai/skills/news-brief-skill)
+## 🎯 核心功能
 
-## Overview
+### 1. 智能新闻获取
+- **多源聚合**: 集成API接口、网页爬虫、RSS订阅三种获取方式
+- **领域分类**: 预设科技、财经、时政等权威新闻渠道库
+- **自动更新**: 渠道IP/域名自动检测和切换，确保获取稳定性
+- **智能去重**: 相似度≥80%的新闻自动去重
 
+### 2. 个性化简报生成
+- **兴趣定制**: 支持用户设置具体兴趣关键词
+- **摘要规范**: 每条新闻包含标题→关键摘要(50-80字)→来源→可信度
+- **排版灵活**: 支持紧凑/标准/宽松等多种排版样式
+- **可信度标注**: 权威/可信/普通三级可信度评估
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 多渠道智能推送
+- **渠道支持**: 微信、邮件、钉钉等多渠道推送
+- **时间定制**: 支持自定义推送时间和频率
+- **失败切换**: 主渠道失败自动切换备用渠道
+- **状态反馈**: 推送成功/失败状态实时反馈
+
+### 4. 持续优化机制
+- **主动反馈**: 每次推送后主动询问用户优化需求
+- **智能学习**: 自动记录用户偏好，减少重复优化
+- **预览确认**: 优化后推送预览版，用户确认后正式应用
+- **版本回溯**: 支持恢复到历史配置版本
+
+## ⚙️ 触发条件
+
+当用户说出以下关键词时激活此skill：
+- "新闻简报"
+- "每日新闻"  
+- "领域新闻"
+- "定制新闻"
+- "新闻推送"
+
+## 📋 使用流程
+
+### 首次使用
+1. 用户触发技能
+2. 引导设置兴趣领域和关键词
+3. 配置推送渠道和时间
+4. 选择简报格式偏好
+5. 开始每日自动推送
+
+### 日常使用
+1. 每日按设定时间自动推送简报
+2. 推送后主动询问优化需求
+3. 用户可随时发送"反馈"或"优化"触发调整
+4. 系统根据反馈持续优化推送质量
+
+## 🔧 技术架构
+
+### 核心模块
+- **交互模块**: 处理用户反馈和优化请求
+- **优化模块**: 执行内容、格式、渠道优化
+- **推送模块**: 多渠道智能推送管理
+- **工具模块**: API/爬虫/RSS工具管理
+- **新闻获取模块**: 渠道管理和新闻抓取
+- **总结模块**: 简报生成和格式化
+
+### 数据安全
+- **加密存储**: 用户凭证AES-256加密
+- **独立存储**: 每个用户独立配置目录
+- **隐私保护**: 不存储用户身份信息
+- **定期备份**: 自动备份配置和日志
+
+## 📊 配置要求
+
+### 依赖包
 ```bash
-hermes skills install clawhub/news-brief-skill
+pip install requests beautifulsoup4 cryptography feedparser python-dateutil
 ```
+
+### 可选API密钥
+- NewsAPI (可选)
+- 邮件SMTP配置 (可选)
+- 钉钉机器人Webhook (可选)
+
+## 🔄 维护计划
+
+- **每日**: 渠道可用性检测、新闻获取、简报推送
+- **每周**: 工具可用性检测、性能优化
+- **每月**: 渠道库更新、功能迭代
+- **每季度**: 安全审计、用户反馈分析
+
+## 📚 参考资源
+
+- `config/` - 配置文件目录
+- `scripts/` - 核心脚本目录  
+- `data/users/` - 用户数据目录
+- `references/documentation.md` - 详细使用文档

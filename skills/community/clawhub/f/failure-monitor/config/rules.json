@@ -1,0 +1,37 @@
+{
+  "autoFixRules": [
+    {
+      "errorPattern": "job execution timed out",
+      "action": "increaseTimeout",
+      "params": {
+        "from": 120,
+        "to": 300
+      },
+      "description": "增加超时时间"
+    },
+    {
+      "errorPattern": "Channel is required",
+      "action": "updateDeliveryChannel",
+      "params": {
+        "channel": "discord"
+      },
+      "description": "更新推送频道配置"
+    },
+    {
+      "errorPattern": "Permission denied",
+      "action": "fixPermissions",
+      "description": "修复文件权限"
+    }
+  ],
+  "notifyRules": {
+    "autoFixSuccess": true,
+    "autoFixFailed": true,
+    "needConfirmation": true,
+    "cooldownMinutes": 60
+  },
+  "monitorSettings": {
+    "checkInterval": 30,
+    "maxConsecutiveErrors": 3,
+    "logRetention": 7
+  }
+}

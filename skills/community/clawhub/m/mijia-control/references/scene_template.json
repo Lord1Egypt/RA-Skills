@@ -1,0 +1,38 @@
+{
+  "_doc": "Mi Home automation scene template. Copy and modify.",
+  "name": "场景名称",
+  "identify": "unique_id_timestamp",
+  "st_id": 8,
+  "setting": {"enable": 1, "enable_push": 0},
+  "trigger": {
+    "_doc": "Trigger: device event. key format: event.<did>.<siid>.<eiid>",
+    "key": "event.<did>.<siid>.<eiid>",
+    "did": "<device_did>",
+    "model": "<device_model>",
+    "extra": "{\"siid\":2,\"eiid\":1}"
+  },
+  "launch": {
+    "_doc": "Optional conditions (only execute if conditions met)",
+    "attr_filter": {
+      "conditions": [
+        {
+          "did": "<device_did>",
+          "model": "<device_model>",
+          "extra": "{\"siid\":2,\"piid\":1,\"value\":false,\"operator\":\"=\"}"
+        }
+      ],
+      "logic": "and"
+    }
+  },
+  "action_list": [
+    {
+      "_doc": "Action: control a device",
+      "did": "<device_did>",
+      "model": "<device_model>",
+      "extra": "{\"props\":[{\"siid\":2,\"piid\":1,\"value\":true}]}",
+      "type": "device_ctrl"
+    }
+  ],
+  "home_id": 0,
+  "uid": 0
+}

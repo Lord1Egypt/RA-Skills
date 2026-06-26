@@ -1,0 +1,24 @@
+﻿# MemPalace Configuration
+# Generated automatically by mempalace skill
+
+wings:
+  wing_openclaw:
+    type: project
+    keywords:
+      - openclaw
+      - ai-memory
+      - assistant
+    rooms:
+      - name: general
+        keywords: []
+      - name: memory_system
+        keywords:
+          - memory
+          - archive
+          - mempalace
+      - name: config
+        keywords:
+          - config
+          - skill
+
+default_wing: wing_openclaw

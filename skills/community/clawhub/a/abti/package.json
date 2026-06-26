@@ -1,0 +1,30 @@
+{
+  "name": "abti",
+  "version": "1.0.0",
+  "description": "ABTI (AI-Based Type Indicator) — AI personality test that analyzes how you talk to AI. 28 personality types. No quiz, your chat history IS the quiz.",
+  "type": "module",
+  "scripts": {
+    "generate": "tsx scripts/generate-readme.ts"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini-cli",
+    "skill",
+    "abti",
+    "personality-test",
+    "ai-personality",
+    "mbti",
+    "chat-analysis",
+    "youmind"
+  ],
+  "author": "YouMind-OpenLab",
+  "license": "CC-BY-NC-SA-4.0",
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

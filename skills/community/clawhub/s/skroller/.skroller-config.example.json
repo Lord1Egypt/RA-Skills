@@ -1,0 +1,37 @@
+{
+  "defaultLimit": 50,
+  "scrollDelayMs": 1500,
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+  "platforms": {
+    "twitter": {
+      "loginRequired": false,
+      "rateLimit": "100 requests/hour"
+    },
+    "instagram": {
+      "loginRequired": true,
+      "rateLimit": "50 requests/hour"
+    },
+    "reddit": {
+      "preferAPI": true,
+      "rateLimit": "60 requests/minute"
+    }
+  },
+  "export": {
+    "defaultApp": "obsidian",
+    "vault": "~/Documents/Obsidian",
+    "folder": "Skroller",
+    "notionDatabaseId": "",
+    "bearTags": ["skroller", "research"],
+    "includeImages": true,
+    "includeMetrics": true,
+    "topPostsLimit": 10
+  },
+  "dedupe": {
+    "enabled": true,
+    "seenFile": ".skroller-seen.json"
+  },
+  "auth": {
+    "notionApiKey": "",
+    "msGraphToken": ""
+  }
+}

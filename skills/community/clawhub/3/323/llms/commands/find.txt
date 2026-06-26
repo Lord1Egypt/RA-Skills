@@ -1,0 +1,101 @@
+--------------------------------------------------------------------------------
+title: "find"
+description: "Search for AI skills across multiple platforms."
+source: "/llms/commands/find.txt"
+--------------------------------------------------------------------------------
+
+# find — Search Skills
+
+Search for AI skills across the internal registry and external platforms.
+
+## Syntax
+
+```bash
+ai-skills find [query] [options]
+```
+
+**Aliases**: `search`, `s`
+
+## Arguments
+
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `query` | No | Search keyword |
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `--source <platform>` | Filter by source: `local`, `github`, `gitlab`, `codebase`, `wellknown` |
+| `--tag <tags...>` | Filter by tags (space or comma separated, auto-deduplicated) |
+| `--top <n>` | Show top N results |
+| `--min-downloads <n>` | Minimum download count |
+| `-p, --page <n>` | Page number |
+| `--filter <mode>` | Filter mode: `all`, `internal`, `community` |
+| `--cli` | Interactive mode with real-time search UI (default) |
+| `--pure` | Plain text output mode |
+
+## Filter Logic
+
+The `--filter` option controls which skills are shown:
+
+| Value | Description |
+|-------|-------------|
+| `all` | Show all skills (default) |
+| `internal` | Show only internal registry skills |
+| `community` | Show only external/community skills |
+
+If `--filter` is omitted or invalid, falls back to config `search.defaultFilter` (default: `all`).
+
+## Tag Parsing
+
+Tags support multiple formats:
+- Space-separated: `--tag "react next vue"`
+- Comma-separated: `--tag "react,next,vue"`
+- Multiple flags: `--tag react --tag next`
+- Mixed: `--tag "react next" --tag "vue,react"` → deduplicates to `["react", "next", "vue"]`
+
+## Behavior
+
+### CLI Mode
+
+Opens an interactive Ink-based search UI with:
+- Real-time search with debounce
+- ↑↓ navigation
+- Tab to switch filter mode
+- Enter to select and install
+
+### Pure Mode
+
+Outputs paginated text results with install commands.
+
+## Examples
+
+```bash
+# Search for React skills
+ai-skills find react --pure
+
+# Search community skills only
+ai-skills find react --filter community --pure
+
+# Search with tags
+ai-skills find --tag typescript --tag react --pure
+
+# Get page 2
+ai-skills find react --pure --page 2
+
+# Search GitHub skills only
+ai-skills find react --source github --pure
+```
+
+## Pure Mode Output
+
+```
+Search: "react" | Filter: all | Page 1/5 (10 per page)
+1. [内部] react-best-practices
+   React开发最佳实践
+   → ai-skills add react-best-practices --source local --pure
+2. [GitHub] owner/repo/react-patterns
+   Common React patterns
+   → ai-skills add owner/repo --source github --skill react-patterns --pure
+```

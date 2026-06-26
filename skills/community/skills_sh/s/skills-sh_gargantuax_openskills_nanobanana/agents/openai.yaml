@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nano Banana"
+  short_description: "Gemini-native Nano Banana skill for generation, editing, batching, and custom endpoints."
+  default_prompt: "Use $nanobanana to generate or edit images with Nano Banana, Nano Banana 2, or Nano Banana Pro through a Gemini-compatible API."

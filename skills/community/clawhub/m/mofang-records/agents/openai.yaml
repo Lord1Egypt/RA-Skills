@@ -1,0 +1,3 @@
+display_name: Mofang Records
+short_description: Query and manage Magicflu/Mofang records and BPM tasks through the bundled CLI.
+default_prompt: Use this skill when working with Magicflu/Mofang spaces, forms, records, field definitions, CRUD operations, imports, or BPM workflow tasks. Prefer read-only inspection first, pass spaceHint when available, and use the CLI instead of hand-written HTTP requests.

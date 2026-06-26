@@ -1,0 +1,18 @@
+{
+  "id": 123,
+  "reference": "REF-2024-001",
+  "name": {
+    "fr": "Nom produit",
+    "en": "Product name"
+  },
+  "price_ht": 19.99,
+  "price_ttc": 23.99,
+  "stock_quantity": 150,
+  "seo": {
+    "meta_title": "Titre SEO",
+    "meta_description": "Description SEO",
+    "url_rewrite": "nom-produit"
+  },
+  "active": true,
+  "updated_at": "2026-03-21T07:00:00Z"
+}

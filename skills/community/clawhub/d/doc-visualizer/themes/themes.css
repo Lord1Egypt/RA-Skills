@@ -1,0 +1,144 @@
+/* ================================================
+   主题1：科技蓝（默认，顾家原版）
+   ================================================ */
+.THEME_BLUE {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0f1829;
+  --bg-card: #141e38;
+  --border: #1e2d4a;
+  --border-light: #1a2640;
+  --accent: #4a9eff;
+  --accent-dim: rgba(74,158,255,0.08);
+  --accent-border: rgba(74,158,255,0.3);
+  --red: #ff4757;
+  --red-dim: rgba(255,71,87,0.08);
+  --red-border: rgba(255,71,87,0.3);
+  --green: #2ed573;
+  --green-dim: rgba(46,213,115,0.08);
+  --green-border: rgba(46,213,115,0.3);
+  --yellow: #ffd700;
+  --orange: #ffa502;
+  --orange-dim: rgba(255,165,2,0.08);
+  --orange-border: rgba(255,165,2,0.3);
+  --cyan: #00d2d3;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e6f0;
+  --text-muted: #6b7fa3;
+  --text-body: #c8d4e8;
+}
+
+/* ================================================
+   主题2：商务红
+   ================================================ */
+.THEME_RED {
+  --bg-primary: #1a0a0a;
+  --bg-secondary: #1a0f0f;
+  --bg-card: #251414;
+  --border: #3a1a1a;
+  --border-light: #2a1515;
+  --accent: #ff4757;
+  --accent-dim: rgba(255,71,87,0.08);
+  --accent-border: rgba(255,71,87,0.3);
+  --red: #ff6b7a;
+  --red-dim: rgba(255,71,87,0.1);
+  --red-border: rgba(255,71,87,0.4);
+  --green: #5dde8f;
+  --green-dim: rgba(46,213,115,0.08);
+  --green-border: rgba(46,213,115,0.3);
+  --yellow: #ffd700;
+  --orange: #ff7c4d;
+  --orange-dim: rgba(255,124,77,0.08);
+  --orange-border: rgba(255,124,77,0.3);
+  --cyan: #ff4757;
+  --text-primary: #fff5f5;
+  --text-secondary: #f0d0d0;
+  --text-muted: #a08080;
+  --text-body: #ddc8c8;
+}
+
+/* ================================================
+   主题3：自然绿
+   ================================================ */
+.THEME_GREEN {
+  --bg-primary: #0a1a0e;
+  --bg-secondary: #0f1a12;
+  --bg-card: #142018;
+  --border: #1a2d1e;
+  --border-light: #152518;
+  --accent: #2ed573;
+  --accent-dim: rgba(46,213,115,0.08);
+  --accent-border: rgba(46,213,115,0.3);
+  --red: #ff6b6b;
+  --red-dim: rgba(255,71,87,0.08);
+  --red-border: rgba(255,71,87,0.3);
+  --green: #5dff9e;
+  --green-dim: rgba(46,213,115,0.1);
+  --green-border: rgba(46,213,115,0.4);
+  --yellow: #ffd700;
+  --orange: #ffa502;
+  --orange-dim: rgba(255,165,2,0.08);
+  --orange-border: rgba(255,165,2,0.3);
+  --cyan: #00d2d3;
+  --text-primary: #f0fff4;
+  --text-secondary: #d0f0d8;
+  --text-muted: #70a080;
+  --text-body: #c0dcc0;
+}
+
+/* ================================================
+   主题4：皇家紫
+   ================================================ */
+.THEME_PURPLE {
+  --bg-primary: #0f0a1a;
+  --bg-secondary: #150f1a;
+  --bg-card: #1a1425;
+  --border: #251a35;
+  --border-light: #1e1428;
+  --accent: #a55eea;
+  --accent-dim: rgba(165,94,234,0.08);
+  --accent-border: rgba(165,94,234,0.3);
+  --red: #ff6b9d;
+  --red-dim: rgba(255,71,87,0.08);
+  --red-border: rgba(255,71,87,0.3);
+  --green: #7bed9f;
+  --green-dim: rgba(46,213,115,0.08);
+  --green-border: rgba(46,213,115,0.3);
+  --yellow: #ffd700;
+  --orange: #ffa502;
+  --orange-dim: rgba(255,165,2,0.08);
+  --orange-border: rgba(255,165,2,0.3);
+  --cyan: #a55eea;
+  --text-primary: #f8f0ff;
+  --text-secondary: #e0d0f0;
+  --text-muted: #9080a8;
+  --text-body: #d8c8e8;
+}
+
+/* ================================================
+   主题5：活力橙
+   ================================================ */
+.THEME_ORANGE {
+  --bg-primary: #1a120a;
+  --bg-secondary: #1f150f;
+  --bg-card: #28201a;
+  --border: #352a1a;
+  --border-light: #2a2015;
+  --accent: #ffa502;
+  --accent-dim: rgba(255,165,2,0.08);
+  --accent-border: rgba(255,165,2,0.3);
+  --red: #ff6b6b;
+  --red-dim: rgba(255,71,87,0.08);
+  --red-border: rgba(255,71,87,0.3);
+  --green: #5dde8f;
+  --green-dim: rgba(46,213,115,0.08);
+  --green-border: rgba(46,213,115,0.3);
+  --yellow: #ffd700;
+  --orange: #ff9f43;
+  --orange-dim: rgba(255,159,67,0.1);
+  --orange-border: rgba(255,159,67,0.4);
+  --cyan: #ffa502;
+  --text-primary: #fff8f0;
+  --text-secondary: #f0e0c8;
+  --text-muted: #a09070;
+  --text-body: #ddd0b8;
+}

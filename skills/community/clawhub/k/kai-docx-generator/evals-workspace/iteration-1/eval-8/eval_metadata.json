@@ -1,0 +1,8 @@
+{
+  "eval_id": 8,
+  "eval_name": "strict-mode-unfilled",
+  "prompt": "Fill template with incomplete data using --strict mode",
+  "assertions": [
+    {"name": "strict_mode_exits_nonzero", "description": "--strict mode returns non-zero exit code with unfilled placeholders"}
+  ]
+}

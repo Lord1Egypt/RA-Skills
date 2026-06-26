@@ -1,0 +1,43 @@
+# SySelf Autopilot bare metal host template.
+# Duplicate or trim these objects to match your actual inventory.
+# Replace:
+# - metadata.name
+# - labels
+# - spec.description
+# - spec.serverID
+# - spec.rootDeviceHints.wwn
+#
+# If WWN is unknown, remove rootDeviceHints first, apply, inspect the host status,
+# then add the correct WWN and re-apply.
+
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: HetznerBareMetalHost
+metadata:
+  name: baremetal-1
+  namespace: default
+  labels:
+    cluster: mycluster
+    role: worker
+    environment: production
+spec:
+  description: Bare metal worker 1
+  serverID: 1234567
+  rootDeviceHints:
+    wwn: eui.726163646f6d2d2d
+  maintenanceMode: false
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: HetznerBareMetalHost
+metadata:
+  name: baremetal-2
+  namespace: default
+  labels:
+    cluster: mycluster
+    role: worker
+    environment: production
+spec:
+  description: Bare metal worker 2
+  serverID: 7654321
+  rootDeviceHints:
+    wwn: eui.737472696e677349cd
+  maintenanceMode: false

@@ -1,0 +1,16 @@
+name: daikin-aircon
+version: 1.0.0
+author: 
+description: Control Daikin air conditioners over WiFi. Supports multiple devices, discovery, and full control including power, mode, temperature, fan, swing, powerful, econo, streamer, and holiday modes.
+permissions:
+  - network
+  - fs
+config:
+  devicesFile:
+    type: string
+    required: false
+    default: "./data/devices.json"
+    description: "Path to devices configuration file"
+entryPoint:
+  type: typescript
+  path: ./dist/index.js

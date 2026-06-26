@@ -1,35 +1,14 @@
 ---
-name: "codebase-analysis"
-description: "Indexed by skills.sh from solatis/claude-config"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "solatis"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/solatis/claude-config/codebase-analysis"
-sourceUrl: "https://skills.sh/solatis/claude-config/codebase-analysis"
+name: codebase-analysis
+description: Invoke IMMEDIATELY via python script when user requests codebase understanding, architecture comprehension, or repository orientation. Do NOT explore first - the script orchestrates exploration.
 ---
 
-# codebase-analysis
+# Codebase Analysis
 
-> Indexed by skills.sh from solatis/claude-config
+Understanding-focused skill that builds foundational comprehension of codebase structure, patterns, flows, decisions, and context. Serves as foundation for downstream analysis skills (problem-analysis, refactor, etc.).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** solatis
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/solatis/claude-config/codebase-analysis`
-- **Source URL:** [https://skills.sh/solatis/claude-config/codebase-analysis](https://skills.sh/solatis/claude-config/codebase-analysis)
+When this skill activates, IMMEDIATELY invoke the script. The script IS the workflow.
 
-## Overview
+Invoke:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/solatis/claude-config/codebase-analysis
-```
+<invoke working-dir=".claude/skills/scripts" cmd="python3 -m skills.codebase_analysis.analyze --step 1" />

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Skills Portability Auditor"
+  short_description: "Decide whether an upstream skill should be ported, rewritten, or rejected"
+  default_prompt: "Use $agent-skills-portability-auditor to audit this upstream agent skill or workflow for ClawHub, Codex, Claude Code, and active-project safety before any install or publish."

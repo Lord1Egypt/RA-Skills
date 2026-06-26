@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "title": "广州+佛山 4天3晚亲子清明之旅",
+    "subtitle": "2026/04/04 — 2026/04/07｜从上海出发，广州文化+佛山武术+长隆动物世界",
+    "description": "清明假期从上海飞广州，以北京路/公园前为住宿锚点，串联广州经典景点与佛山一日侧游，适合有小朋友的家庭。"
+  },
+  "hero": {
+    "title": "广州+佛山 4天3晚亲子清明之旅",
+    "subtitle": "广州文化、岭南美食、佛山武术、长隆动物世界",
+    "dateRange": "2026/04/04 - 2026/04/07",
+    "tags": [
+      "亲子家庭",
+      "清明假期",
+      "广州+佛山",
+      "中等预算"
+    ],
+    "summary": "以广州为大本营，4天3晚覆盖广州核心城区文化景点、长隆野生动物世界和佛山祖庙侧游，适合带娃家庭的轻松节奏。",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Canton_Tower_20241027.jpg/1280px-Canton_Tower_20241027.jpg"
+  },
+  "stats": [
+    { "label": "出发", "value": "上海 → 广州（飞机）" },
+    { "label": "返程", "value": "4/7 下午" },
+    { "label": "时长", "value": "4天3晚" },
+    { "label": "住宿区域", "value": "北京路/公园前" },
+    { "label": "侧游", "value": "佛山（Day 3）" },
+    { "label": "预算参考", "value": "约 ¥6000-8000/家庭" }
+  ],
+  "transport": {
+    "departure": "上海虹桥/浦东 → 广州白云机场，约2.5h，清明票价 ¥600-900",
+    "return": "广州白云 → 上海，4/7 下午航班",
+    "notes": [
+      "白云机场到北京路约45min（地铁3号线→1号线公园前站）",
+      "广州南站到佛山祖庙约30min（广佛线直达）",
+      "长隆有专线大巴，也可地铁3号线到汉溪长隆站"
+    ]
+  },
+  "hotels": [
+    {
+      "phase": "全程3晚",
+      "name": "北京路/公园前片区酒店",
+      "dateRange": "4/4 - 4/7",
+      "station": "公园前站（1号线/2号线换乘）",
+      "status": "推荐区域",
+      "price": "约 ¥400-600/晚",
+      "distanceToMetro": "步行5分钟内",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/20250222_Street_scene_of_Beijing_Road_02.jpg",
+      "highlights": [
+        "1号线+2号线换乘站，去哪都方便",
+        "北京路步行街吃喝不愁",
+        "带娃不用换酒店，省心",
+        "到长隆/佛山都有直达地铁"
+      ]
+    }
+  ],
+  "metroCoverage": {
+    "goal": "不追求线路覆盖，以实用通勤为主",
+    "lines": [
+      { "name": "1号线", "day": "Day 1-4", "status": "核心通勤线" },
+      { "name": "2号线", "day": "Day 2", "status": "广州塔方向" },
+      { "name": "3号线", "day": "Day 1/Day 4", "status": "机场线+长隆" },
+      { "name": "广佛线", "day": "Day 3", "status": "佛山侧游" }
+    ]
+  },
+  "days": [
+    {
+      "day": "Day 1",
+      "date": "4/4",
+      "theme": "抵达广州 + 老城区轻量游",
+      "city": "广州",
+      "hotel": "北京路/公园前片区",
+      "metroLines": ["3号线", "1号线"],
+      "segments": {
+        "morning": [
+          "上海飞广州，预计中午前抵达白云机场",
+          "地铁3号线→1号线到公园前站",
+          "入住酒店，放行李休整"
+        ],
+        "afternoon": [
+          "步行逛北京路步行街，有千年古道遗址适合小朋友看",
+          "沿路吃广式小吃：肠粉、双皮奶、钵仔糕"
+        ],
+        "evening": [
+          "沙面岛散步（1号线黄沙站），欧式建筑群适合拍照",
+          "晚餐推荐荔湾区老字号：陶陶居或泮溪酒家",
+          "回酒店休息"
+        ]
+      },
+      "note": "抵达日不排太满，北京路+沙面两个点足够。沙面岛傍晚光线好，适合带娃慢逛。",
+      "attractions": [
+        {
+          "name": "北京路步行街",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/20250222_Street_scene_of_Beijing_Road_03.jpg/1280px-20250222_Street_scene_of_Beijing_Road_03.jpg",
+          "description": "广州最老的商业街，地面有千年古道遗址玻璃展窗，小朋友会觉得新奇。",
+          "reason": "离酒店最近，抵达日零成本热身。"
+        },
+        {
+          "name": "沙面岛",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/2/20/ShamianIsland.JPG",
+          "description": "安静的欧式建筑群小岛，适合傍晚散步拍照，有草坪可以让小朋友跑。",
+          "reason": "节奏轻松，不用排队，傍晚去光线最好。"
+        }
+      ]
+    },
+    {
+      "day": "Day 2",
+      "date": "4/5",
+      "theme": "广州经典文化日",
+      "city": "广州",
+      "hotel": "北京路/公园前片区",
+      "metroLines": ["1号线", "2号线"],
+      "segments": {
+        "morning": [
+          "陈家祠（1号线陈家祠站），岭南建筑精华",
+          "小朋友可以找屋顶上的各种动物石雕，当寻宝游戏"
+        ],
+        "afternoon": [
+          "午饭后坐2号线到广州塔（海珠广场换乘APM线或步行）",
+          "广州塔观景平台，珠江两岸全景",
+          "花城广场散步，带娃在草坪休息"
+        ],
+        "evening": [
+          "珠江夜游（天字码头或大沙头码头上船，约1小时）",
+          "夜游结束后回北京路，宵夜推荐：达扬炖品或惠食佳"
+        ]
+      },
+      "note": "陈家祠上午人少，建议9点到。广州塔下午去可以等到日落。珠江夜游清明期间建议提前买票。",
+      "attractions": [
+        {
+          "name": "陈家祠",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Chen_Clan_Ancestral_Hall_2025.06_03.jpg/1280px-Chen_Clan_Ancestral_Hall_2025.06_03.jpg",
+          "description": "岭南建筑艺术巅峰，三雕两塑一铸铁，屋顶的陶塑脊饰是全国之最。",
+          "reason": "广州最值得看的历史建筑，没有之一。小朋友可以当寻宝玩。"
+        },
+        {
+          "name": "广州塔",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Canton_Tower_20241027.jpg/1280px-Canton_Tower_20241027.jpg",
+          "description": "600米高的城市地标，观景平台可以俯瞰珠江新城全景。",
+          "reason": "下午去可以一次看到白天和日落两种景色。"
+        },
+        {
+          "name": "珠江夜游",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/%E7%8F%A0%E6%B1%9F%E5%A4%9C%E6%B8%B8_-_Pearl_River_Night_Cruise_-_2015.12_-_panoramio.jpg/1280px-%E7%8F%A0%E6%B1%9F%E5%A4%9C%E6%B8%B8_-_Pearl_River_Night_Cruise_-_2015.12_-_panoramio.jpg",
+          "description": "从水面看广州塔和珠江两岸灯光，小朋友坐船本身就开心。",
+          "reason": "白天看完塔，晚上从水面再看一次，体验完全不同。"
+        }
+      ]
+    },
+    {
+      "day": "Day 3",
+      "date": "4/6",
+      "theme": "佛山一日侧游",
+      "city": "佛山",
+      "hotel": "北京路/公园前片区",
+      "metroLines": ["1号线", "广佛线"],
+      "segments": {
+        "morning": [
+          "公园前坐1号线到西朗，换广佛线到祖庙站",
+          "佛山祖庙：看醒狮表演（上午场10:30），小朋友最爱",
+          "黄飞鸿纪念馆就在祖庙里面"
+        ],
+        "afternoon": [
+          "午餐：岭南天地片区，步行可达，有很多适合家庭的餐厅",
+          "岭南天地逛一圈，中西合璧的历史街区",
+          "如果小朋友还有精力，可以去南风古灶（中国现存最古老的龙窑）"
+        ],
+        "evening": [
+          "广佛线返回广州",
+          "回北京路附近休整",
+          "晚餐轻量解决，推荐粥粉面"
+        ]
+      },
+      "note": "佛山祖庙→岭南天地步行5分钟，不用额外交通。醒狮表演时间固定，别错过上午场。广佛线单程约40分钟。",
+      "attractions": [
+        {
+          "name": "佛山祖庙",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/%E4%BD%9B%E5%B1%B1%E7%A5%96%E5%BA%99.JPG",
+          "description": "岭南建筑典范，内有黄飞鸿纪念馆和醒狮表演，小朋友看了会兴奋。",
+          "reason": "佛山最有代表性的景点，醒狮表演是全程最适合小朋友的节目。"
+        },
+        {
+          "name": "岭南天地",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/%E4%BD%9B%E5%B1%B1%E7%A5%96%E5%BA%99%E7%9A%84%E9%86%92%E7%8B%AE%E8%A1%A8%E6%BC%94_%28Lion_Dance_at_Foshan_Ancestral_Temple%29.jpg/1280px-%E4%BD%9B%E5%B1%B1%E7%A5%96%E5%BA%99%E7%9A%84%E9%86%92%E7%8B%AE%E8%A1%A8%E6%BC%94_%28Lion_Dance_at_Foshan_Ancestral_Temple%29.jpg",
+          "description": "祖庙旁的历史文化街区，餐饮和拍照都不错，带娃午餐的好选择。",
+          "reason": "和祖庙步行衔接，不增加交通成本。"
+        }
+      ]
+    },
+    {
+      "day": "Day 4",
+      "date": "4/7",
+      "theme": "长隆半日 + 返程",
+      "city": "广州",
+      "hotel": null,
+      "metroLines": ["3号线"],
+      "segments": {
+        "morning": [
+          "早起退房，行李寄存酒店或车站",
+          "地铁3号线到汉溪长隆站",
+          "长隆野生动物世界开园即入（建议9:30前到）",
+          "重点：小火车（必坐）、考拉馆、熊猫中心"
+        ],
+        "afternoon": [
+          "12:30-13:00 离开长隆",
+          "地铁回程取行李",
+          "3号线直达白云机场",
+          "下午航班返回上海"
+        ],
+        "evening": []
+      },
+      "note": "长隆半日够玩核心区域。开园就进、抓重点、午后撤退。如果航班在17:00后，时间充裕。清明期间长隆人多，务必早到。",
+      "attractions": [
+        {
+          "name": "长隆野生动物世界",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Chimelong_Safari_Park_%28Safari_on_wheels_01%29.JPG/1280px-Chimelong_Safari_Park_%28Safari_on_wheels_01%29.JPG",
+          "description": "华南最大的野生动物园，小火车穿越放养区是全国独家体验，小朋友的终极快乐。",
+          "reason": "放在最后一天上午，作为全程高潮收尾，小朋友会带着最好的记忆回家。"
+        }
+      ]
+    }
+  ],
+  "sideTrips": [
+    {
+      "name": "佛山",
+      "date": "Day 3",
+      "role": "广佛线直达，文化侧游",
+      "description": "广佛同城，地铁40分钟直达。祖庙+岭南天地半天足够，适合亲子节奏。",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/%E4%BD%9B%E5%B1%B1%E7%A5%96%E5%BA%99.JPG"
+    }
+  ],
+  "attractions": [
+    {
+      "name": "陈家祠",
+      "city": "广州",
+      "type": "历史建筑",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Chen_Clan_Ancestral_Hall_2025.06_03.jpg/1280px-Chen_Clan_Ancestral_Hall_2025.06_03.jpg",
+      "description": "岭南建筑艺术集大成者，三雕两塑一铸铁，屋顶陶塑脊饰为全国之最。",
+      "bestFor": ["建筑爱好", "亲子寻宝", "摄影"]
+    },
+    {
+      "name": "广州塔",
+      "city": "广州",
+      "type": "城市地标",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Canton_Tower_20241027.jpg/1280px-Canton_Tower_20241027.jpg",
+      "description": "600米地标建筑，观景平台可俯瞰珠江新城全景。",
+      "bestFor": ["城市风光", "日落观赏", "打卡"]
+    },
+    {
+      "name": "沙面岛",
+      "city": "广州",
+      "type": "历史街区",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/20/ShamianIsland.JPG",
+      "description": "安静的欧式建筑群小岛，有草坪和林荫道，适合带娃慢逛。",
+      "bestFor": ["散步", "拍照", "亲子"]
+    },
+    {
+      "name": "佛山祖庙",
+      "city": "佛山",
+      "type": "历史建筑",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/%E4%BD%9B%E5%B1%B1%E7%A5%96%E5%BA%99.JPG",
+      "description": "岭南建筑典范，内有黄飞鸿纪念馆，每天有醒狮表演。",
+      "bestFor": ["文化体验", "醒狮表演", "亲子"]
+    },
+    {
+      "name": "长隆野生动物世界",
+      "city": "广州",
+      "type": "主题乐园",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Chimelong_Safari_Park_%28Safari_on_wheels_01%29.JPG/1280px-Chimelong_Safari_Park_%28Safari_on_wheels_01%29.JPG",
+      "description": "华南最大野生动物园，小火车穿越放养区是全国独家体验。",
+      "bestFor": ["亲子必去", "动物互动", "半日游"]
+    },
+    {
+      "name": "珠江夜游",
+      "city": "广州",
+      "type": "游船体验",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/%E7%8F%A0%E6%B1%9F%E5%A4%9C%E6%B8%B8_-_Pearl_River_Night_Cruise_-_2015.12_-_panoramio.jpg/1280px-%E7%8F%A0%E6%B1%9F%E5%A4%9C%E6%B8%B8_-_Pearl_River_Night_Cruise_-_2015.12_-_panoramio.jpg",
+      "description": "从水面看广州塔和珠江两岸夜景，约1小时船程。",
+      "bestFor": ["夜景", "亲子", "轻松"]
+    }
+  ],
+  "tips": [
+    "清明期间广州气温约 22-28°C，湿度大，带薄外套和雨伞。",
+    "长隆清明人多，建议9:30前到门口，开园冲小火车。",
+    "珠江夜游提前在飞猪/美团买票，现场排队可能很长。",
+    "陈家祠上午9点去人最少，拍照体验最好。",
+    "佛山祖庙醒狮表演时间固定（通常10:30/14:30），提前确认当日场次。",
+    "广佛线早晚高峰会挤，避开8-9点和17-19点。",
+    "带娃建议每天下午留1小时回酒店休息，不要连轴转。",
+    "北京路片区早茶推荐：广州酒家（北京路店）或点都德。"
+  ]
+}

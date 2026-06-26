@@ -1,0 +1,35 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+
+# Legacy JetBrains paths kept for compatibility
+/shelf/
+/workspace.xml
+/httpRequests/
+/queries/
+/dataSources/
+/dataSources.local.xml
+
+# Codex local workspace temp dirs
+.codex_tmp/
+.codex_manual_tmp/
+.codex_test_tmp/
+.tmp_workspaces/
+tests/.tmp_workspaces/
+AGENTS.md
+
+# Runtime data (user-instance specific, not code)
+memory/
+
+# Python / test / runtime artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+pytest-cache-files-*/
+.memory-guardian/
+
+# Docs
+docs/rfc/
+docs/superpowers/

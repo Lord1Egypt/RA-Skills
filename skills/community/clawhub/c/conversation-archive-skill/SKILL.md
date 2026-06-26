@@ -1,35 +1,101 @@
 ---
-name: "对话历史总结归档"
-description: "Use when every conversation needs to be archived to the "历史归档" directory for knowledge management"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/conversation-archive-skill"
-sourceUrl: "https://clawhub.ai/skills/conversation-archive-skill"
+name: conversation-archive-skill
+description: Use when every conversation needs to be archived to the "历史归档" directory for knowledge management
 ---
 
-# 对话历史总结归档
+# 对话归档技能
 
-> Use when every conversation needs to be archived to the "历史归档" directory for knowledge management
+## 概述
+将对话历史和产出总结并记录到"历史归档"目录的技能。该技能确保每次对话都被规范地归档，便于后续查阅和知识管理。
+## 技能使用时机/技能触发条件
+- **每次对话触发**：在对话结束后自动执行归档
+## 技能规则（严格遵守）
+以下规则必须严格遵守，如有冲突以此宪法为准：
+#### 技能使用前置条件
+使用前要求用户设置默认的笔记仓库地址，例如：`/Users/ideamac/env/workspaces/Obsidian-Notes`
+#### 技能目标
+将对话历史和产出总结并记录到"历史归档"目录
+#### 核心规则
+- **首次工作前**：在笔记仓库下创建"历史归档"目录，如已存在则跳过
+- **内容真实性**：严禁编造、遗漏内容
+- **客观记录**：严禁主观臆想，添油加醋
+- **格式规范**：归档内容以Markdown文件格式存储
+- **模板一致**：归档内容严格按照模版生成
+- **文件组织**：归档文件按天创建，例如：`2026-05-01_对话归档.md`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/conversation-archive-skill`
-- **Source URL:** [https://clawhub.ai/skills/conversation-archive-skill](https://clawhub.ai/skills/conversation-archive-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/conversation-archive-skill
+## 归档内容模板如下：
+> #### 内容整体总结（用户问题和助理回复的整体总结）
+```用户提问时间（系统当前时间）```
+###### **用户问题：**
+用户输入的原始问题，不要做任何修改
+###### **助理回复总结：**
+助理回复内容的总结
+###### 助理回复原文
 ```
+助理回复的原始内容，不要做任何修改
+```
+---
+
+## 归档内容示例如下：
+> #### 用户询问今天上海的天气情况。
+```2026-05-18 12:00:00```
+###### **用户问题：**
+我在上海，今天的天气如何？
+###### **助理回复总结：**
+助理使用天气技能查询了上海今天的天气，提供了详细的天气预报信息和出行建议。
+###### 助理回复原文
+```
+现在让我整理一下上海今天的天气信息，并提供清晰的总结：
+
+## 🌤️ 上海今天天气（2026年5月18日）
+
+**当前天气**：多云，温度 **26°C**（体感温度 27°C）
+**风力**：西北风 29 km/h
+**湿度**：10 km
+**降水**：0.0 mm
+
+### 💡 出行建议
+
+1. **今天**：天气晴朗，适合户外活动，注意防风
+2. **明天**：下午开始有雨，建议带伞
+3. **后天**：全天有雨，建议准备雨具
+```
+---
+
+
+## 实现步骤
+
+1. **检查配置**：确认笔记仓库地址已设置
+2. **创建目录**：在笔记仓库下创建"历史归档"目录（如不存在）
+3. **生成文件名**：根据当前日期生成文件名：`YYYY-MM-DD_对话归档.md`
+4. **读取内容**：获取当前对话的用户问题和助理回复
+5. **生成总结**：创建助理回复的简要总结
+6. **应用模板**：按照模板生成归档内容
+7. **写入文件**：将归档内容追加到当日文件中
+
+## 快速参考
+
+| 步骤 | 操作 | 示例 |
+|------|------|------|
+| 1 | 检查笔记仓库 | `/Users/ideamac/env/workspaces/Obsidian-Notes` |
+| 2 | 创建归档目录 | `历史归档/` |
+| 3 | 生成文件名 | `2026-05-18_对话归档.md` |
+| 4 | 应用模板 | 见"归档内容模板"部分 |
+| 5 | 写入文件 | 追加到当日归档文件 |
+
+## 常见错误
+
+1. **遗漏内容**：未完整记录用户问题或助理回复
+2. **主观添加**：在总结中添加个人解读而非客观摘要
+3. **格式错误**：未严格按照模板格式生成内容
+4. **目录不存在**：未检查或创建"历史归档"目录
+5. **时间错误**：使用错误的时间格式
+
+## 验证检查
+
+每次归档后应检查：
+- [ ] 归档目录是否存在
+- [ ] 归档文件是否按日期正确命名
+- [ ] 内容是否完整包含用户问题和助理回复
+- [ ] 总结是否客观准确
+- [ ] 格式是否符合模板要求

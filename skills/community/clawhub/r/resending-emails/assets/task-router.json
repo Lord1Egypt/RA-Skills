@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "skill": "resend-cli",
+    "version": "3.0.0",
+    "last_reviewed": "2026-03-14"
+  },
+  "routes": [
+    {
+      "id": "doctor",
+      "match_any": [
+        "doctor",
+        "debug",
+        "not working",
+        "ci",
+        "api key",
+        "auth",
+        "profile",
+        "which account",
+        "why is resend",
+        "broken"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q doctor"
+      ],
+      "notes": [
+        "Start with environment diagnosis before mutation."
+      ]
+    },
+    {
+      "id": "single-transactional-send",
+      "match_any": [
+        "send email",
+        "transactional",
+        "password reset",
+        "receipt",
+        "notification",
+        "welcome email",
+        "reply in thread"
+      ],
+      "match_none": [
+        "100",
+        "250",
+        "70",
+        "batch",
+        "broadcast",
+        "bulk",
+        "campaign",
+        "different",
+        "many",
+        "newsletter"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q emails send --from ... --to ... --subject ... --text ..."
+      ],
+      "notes": [
+        "Use emails send for one logical email.",
+        "Use --idempotency-key if retries are possible."
+      ]
+    },
+    {
+      "id": "scheduled-transactional-send",
+      "match_any": [
+        "schedule email",
+        "scheduled email",
+        "tomorrow",
+        "later today",
+        "reschedule email",
+        "cancel scheduled"
+      ],
+      "match_none": [
+        "broadcast",
+        "campaign"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q emails send --from ... --to ... --subject ... --text ... --scheduled-at 2026-03-15T08:00:00Z",
+        "resend --json -q emails update <email-id> --scheduled-at 2026-03-15T09:00:00Z",
+        "resend --json -q emails cancel <email-id>"
+      ],
+      "notes": [
+        "Prefer ISO 8601 for transactional scheduling."
+      ]
+    },
+    {
+      "id": "batch-send",
+      "match_any": [
+        "100",
+        "100 emails",
+        "200",
+        "250",
+        "70",
+        "70 emails",
+        "batch",
+        "bulk transactional",
+        "different",
+        "distinct notifications",
+        "many",
+        "many different emails",
+        "shipment notifications"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "python3 scripts/resend_cli.py lint-batch ./batch-emails.json",
+        "resend --json -q emails batch --file ./batch-emails.json --idempotency-key batch-001"
+      ],
+      "notes": [
+        "Use when there are many distinct transactional emails.",
+        "Hard cap is 100 emails per request."
+      ]
+    },
+    {
+      "id": "domains",
+      "match_any": [
+        "verify domain",
+        "dns",
+        "spf",
+        "dkim",
+        "sending domain",
+        "receiving domain",
+        "open tracking",
+        "click tracking",
+        "tls enforced"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q domains create --name example.com --region eu-west-1 --receiving",
+        "resend --json -q domains verify <domain-id>",
+        "resend --json -q domains get <domain-id>"
+      ],
+      "notes": [
+        "CLI returns DNS records but cannot edit DNS on your provider."
+      ]
+    },
+    {
+      "id": "webhooks",
+      "match_any": [
+        "webhook",
+        "svix",
+        "signature",
+        "event delivery",
+        "listen locally",
+        "ngrok"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q webhooks create --endpoint https://app.example.com/hooks/resend --events all",
+        "resend --json webhooks listen --url https://example.ngrok-free.app --forward-to localhost:3000/webhooks/resend"
+      ],
+      "notes": [
+        "Verify raw body in the app.",
+        "webhooks listen is a long-running dev command."
+      ]
+    },
+    {
+      "id": "inbound",
+      "match_any": [
+        "inbound",
+        "received email",
+        "receiving",
+        "support mailbox",
+        "email.received",
+        "forward inbound",
+        "attachment download"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q emails receiving list --limit 10",
+        "resend --json -q emails receiving get <received-email-id>",
+        "resend --json emails receiving listen --interval 5"
+      ],
+      "notes": [
+        "Treat webhook events as triggers, then fetch the full message."
+      ]
+    },
+    {
+      "id": "audience-model",
+      "match_any": [
+        "topics",
+        "segments",
+        "contacts",
+        "newsletter subscriptions",
+        "broadcast",
+        "audience",
+        "opt in",
+        "opt out",
+        "subscription management"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q topics create --name \"Product Updates\" --default-subscription opt_in",
+        "resend --json -q segments create --name \"Beta Users\"",
+        "resend --json -q contacts create --email jane@example.com --segment-id <segment-id>",
+        "resend --json -q broadcasts create --from hello@example.com --subject \"Weekly Update\" --segment-id <segment-id> --html-file ./broadcast.html"
+      ],
+      "notes": [
+        "Prefer segments + topics over deprecated audiences."
+      ]
+    },
+    {
+      "id": "templates",
+      "match_any": [
+        "template",
+        "hosted template",
+        "publish template",
+        "template variables",
+        "duplicate template"
+      ],
+      "preferred_surface": "cli_with_possible_fallback",
+      "recommended_sequence": [
+        "resend --json -q templates create --name \"Welcome\" --html-file ./template.html --subject \"Welcome\" --var NAME:string",
+        "resend --json -q templates publish <template-id>"
+      ],
+      "notes": [
+        "CLI clearly covers template lifecycle.",
+        "Direct hosted-template sending may require fallback; inspect gap notes."
+      ]
+    },
+    {
+      "id": "api-keys",
+      "match_any": [
+        "api key",
+        "sending_access",
+        "domain-scoped key",
+        "ci token",
+        "scoped token"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend --json -q api-keys create --name \"ci-token\" --permission sending_access --domain-id <domain-id>"
+      ],
+      "notes": [
+        "Token is shown once only."
+      ]
+    },
+    {
+      "id": "multi-account",
+      "match_any": [
+        "multiple accounts",
+        "multiple teams",
+        "switch profile",
+        "staging and production",
+        "profile"
+      ],
+      "preferred_surface": "cli",
+      "recommended_sequence": [
+        "resend auth switch",
+        "resend --profile staging --json -q doctor",
+        "resend --profile production --json -q domains list"
+      ],
+      "notes": [
+        "Prefer explicit --profile on live mutations."
+      ]
+    }
+  ]
+}

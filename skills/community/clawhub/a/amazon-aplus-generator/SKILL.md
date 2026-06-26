@@ -1,35 +1,143 @@
----
-name: "Amazon Aplus Generator"
-description: "快速生成符合亚马逊规范的专业A+内容方案，支持多类目多语言及模块智能匹配与合规自检。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amazon-aplus-generator"
-sourceUrl: "https://clawhub.ai/skills/amazon-aplus-generator"
----
+# 亚马逊A+内容生成技能 (Amazon A+ Content Generator)
 
-# Amazon Aplus Generator
+## 技能概述
 
-> 快速生成符合亚马逊规范的专业A+内容方案，支持多类目多语言及模块智能匹配与合规自检。
+本技能专注于帮助亚马逊卖家快速生成专业级的A+内容。只需输入产品类目、核心卖点关键词和目标语言，即可获得完整的A+模块方案、场景化文案和多语言版本。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amazon-aplus-generator`
-- **Source URL:** [https://clawhub.ai/skills/amazon-aplus-generator](https://clawhub.ai/skills/amazon-aplus-generator)
+## 极简输入
 
-## Overview
+| 输入项 | 示例 |
+|--------|------|
+| 产品类目 | 保温杯、服装、电子产品、家居、美妆、宠物、食品等 |
+| 核心卖点关键词 | 保温持久、食品级、轻便、多场景（3-5个） |
+| 目标市场语言 | 德语、日语、法语、西语、意语、英语 |
 
+## A+模块智能匹配
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amazon-aplus-generator
+技能根据产品类目自动推荐最优模块组合：
+
+| 类目 | 推荐模块组合 |
+|------|-------------|
+| 服装类 | 多图轮播 + 尺寸指南 + 穿搭场景 |
+| 电子类 | 对比图表 + 功能拆解 + 视频位 |
+| 家居类 | 场景展示 + 对比图表 + 安装指南 |
+| 美妆类 | 成分展示 + 使用步骤 + Before/After |
+| 宠物类 | 场景展示 + 对比图表 + 用户评价 |
+| 食品类 | 成分表 + 食用场景 + 认证展示 |
+
+## 场景化文案生成框架
+
+每个模块的文案遵循以下结构：
+
 ```
+痛点 → 场景描述 → 解决方案 → 行动号召
+```
+
+示例（保温杯 - 清晨通勤场景）：
+- **痛点**：早起赶通勤，咖啡凉了
+- **场景**：清晨的地铁上，你握着保温杯
+- **方案**：双层真空技术，12小时保温
+- **号召**：让温暖陪你上路
+
+## 多语言本地化方法论
+
+不只是翻译，而是文化适配：
+
+| 语言 | 文案风格 | 侧重点 |
+|------|---------|--------|
+| 德语 | 严谨、技术细节丰富 | 认证和品质（LFGB认证） |
+| 日语 | 细节至上、礼貌得体 | 用户体验和细节 |
+| 法语 | 优雅、感性、浪漫 | 生活方式和美感 |
+| 西语 | 热情、实用、活力 | 性价比和实用性 |
+| 意语 | 设计感、品质感 | 美感和独特设计 |
+
+## Premium A+专属模块
+
+- **可交互轮播**：Shoppable Carousel，提升用户参与度
+- **视频嵌入位**：品牌故事视频、产品演示
+- **对比图表**：与普通产品对比，突出优势
+- **问答摘要**：整合用户常见问题
+
+## 合规自检清单
+
+生成内容后自动进行合规检查：
+
+1. **图片规格**：300dpi，最小1000x1000像素
+2. **文字规范**：无违规词汇、无未授权Logo
+3. **模块规范**：符合Premium A+模块标准
+4. **描述准确性**：无误导性陈述
+5. **对比数据**：已标注来源
+
+## 输出示例
+
+**输入**：保温杯 + 保温持久/食品级/轻便/多场景 + 德语
+
+**输出结构**：
+```
+=== A+模块方案 ===
+
+模块1：场景轮播（4张）
+- 场景A：清晨通勤 — "Der perfekte Begleiter für den Morgenweg"
+- 场景B：户外徒步 — "Auch auf dem Gipfel bleibt Ihr Tee heiß"
+- 场景C：办公桌 — "Diskret und stilvoll im Büro"
+- 场景D：健身补水 — "Hydration, die zu Ihnen passt"
+
+模块2：对比图表
+| 特性 | 我们 | 普通保温杯 |
+| 保温时长 | 12小时 | 4-6小时 |
+| 材质 | 316食品级不锈钢 | 304不锈钢 |
+| 重量 | 280g | 350g+ |
+
+模块3：技术拆解
+双层真空 | 防漏密封盖 | 防滑底座 | 一键开盖
+
+模块4：认证展示
+✓ FDA食品级认证 ✓ BPA-Free ✓ LFGB认证
+
+=== 德语本地化要点 ===
+- 强调"Lebensmittelecht"（食品级）和"Made in Quality"
+- 德国人关注认证（LFGB > FDA in EU market）
+- 用"Dichtheit"（密封性）而非"防漏"，更专业
+
+=== 合规自检 ===
+✓ 场景图建议使用实拍或AI生成（无侵权风险）
+✓ 对比数据需标注来源
+⚠ 避免在图片中叠加文字（亚马逊EU政策）
+```
+
+## 技术说明
+
+本技能基于亚马逊A+内容的行业最佳实践和模块模板库生成内容。用户手动输入产品信息，技能辅助生成符合亚马逊规范的A+内容方案。
+
+---
+
+## 交付标准
+
+优秀的输出应该让你一眼看到：
+
+- 模块选择基于品类特点和核心卖点分析
+- 每个模块有内容框架和视觉呈现建议
+- 含适配Rufus场景的内容优化建议
+- 多语言版本有文化适配说明
+- 标注每个模块的情感基调（专业/温馨/活力等）
+
+如果输出缺少以上任何一项，建议补充后再交付。
+
+## 不适用场景
+
+本技能专注于亚马逊A+内容方案生成，以下场景请使用其他技能：
+
+- 基础Listing文案优化（请用amazon-listing-doctor）
+- Rufus对话场景优化（请用amazon-rufus-optimizer）
+- 需要实际设计稿或图片（请用miaoji-scene-studio或miaoji-model-shot）
+- 非亚马逊平台的图文内容（各平台内容规范差异较大）
+- A+合规性检查（请用miaoji-compliance-copy）
+
+---
+
+## 相关技能推荐
+
+- **amazon-listing-doctor**：A+是五点描述的视觉延伸，先用listing-doctor优化好基础文案
+- **amazon-rufus-optimizer**：A+模块设计融入场景化内容，能同时提升Rufus可见度
+- **miaoji-scene-studio**：A+需要高质量场景图，scene-studio提供场景创意参考
+- **miaoji-model-shot**：A+人物场景图能大幅提升转化，model-shot提供模特图创意

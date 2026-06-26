@@ -1,0 +1,29 @@
+{
+  "skill_name": "arxiv-paper-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想用 Claude Code 写一篇 10-15 页 arXiv 风格的英文综述论文，主题是 LLM-based agents 的发展历程。请创建论文项目结构、LaTeX 主文件、BibTeX 文件，并说明后续写作与编译步骤。",
+      "expected_output": "Creates or proposes a complete LaTeX paper project structure, uses an arXiv-compatible template, initializes references.bib, and gives a staged compile/write/debug workflow.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我的 main.tex 编译失败，日志里有 undefined citation 和 newtxmath/amssymb 的 Bbbk 冲突。请帮我按论文工程闭环定位并修复问题。",
+      "expected_output": "Reads or asks for relevant log/source files, identifies undefined citations and Bbbk conflict, applies targeted LaTeX/BibTeX fixes, and recommends rerunning BibTeX/latexmk.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我已经有一篇初稿 PDF 和 LaTeX 源码，想判断它距离高质量 arXiv survey paper 还差什么。请按学术质量、引用、结构、图表和编译可复现性给我审查清单。",
+      "expected_output": "Provides a structured review checklist covering academic contribution, literature coverage, narrative, figures/tables, citations, LaTeX reproducibility, and arXiv readiness.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "请复用 Paper-Write-Skill-Test 中 papers/agent-survey 的成功经验，为一个新的 survey paper 初始化更完整的 9 章节 LaTeX 骨架，并说明应该复用哪些参考文档、BibTeX 示例和 TikZ/表格模板。",
+      "expected_output": "Uses the Agent Survey practice reference, recommends templates/full_survey_main.tex, templates/agent_survey_references.bib, templates/agent_survey_figures_tables.tex, and references/linux_texlive_full.md or latex_environment.md as appropriate.",
+      "files": []
+    }
+  ]
+}

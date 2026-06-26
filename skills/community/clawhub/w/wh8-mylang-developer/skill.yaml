@@ -1,0 +1,65 @@
+# WT8Skill 元数据配置
+name: WT8麦语言量化交易助手
+version: "1.0.0"
+description: 文华财经WT8麦语言量化交易软件AI助手，支持行情查询、历史数据、回测分析、下单交易、模拟运行等功能
+author: SKILL Team
+tags:
+  - 量化交易
+  - WT8
+  - 麦语言
+  - 文华财经
+  - 期货
+  - 回测
+
+# 依赖项
+dependencies: []
+
+# 权限要求
+permissions:
+  - read_files
+  - write_files
+
+# 配置
+config:
+  # 默认回测参数
+  default:
+    initial_capital: 100000
+    commission_rate: 0.0002
+    slippage: 2
+    
+  # 支持的合约类型
+  contract_types:
+    - 期货
+    - 股票
+    - 期权
+    
+  # 支持的K线周期
+  periods:
+    - 分钟
+    - 5分钟
+    - 15分钟
+    - 30分钟
+    - 小时
+    - 日线
+    - 周线
+
+# 文件索引（用于按需加载）
+file_index:
+  classification: CLASSIFICATION.md
+  functions:
+    index: FUNCTIONS/INDEX.md
+    signals: FUNCTIONS/signals.md
+    indicators: FUNCTIONS/indicators.md
+    position: FUNCTIONS/position.md
+    backtest: FUNCTIONS/backtest.md
+    optimization: FUNCTIONS/optimization.md
+    cross: FUNCTIONS/cross.md
+    execution: FUNCTIONS/execution.md
+  examples:
+    basic: EXAMPLES/basic_model.md
+    stop_loss: EXAMPLES/stop_loss.md
+    position: EXAMPLES/position_management.md
+    batch: EXAMPLES/batch_entry.md
+    cross: EXAMPLES/cross_cycle.md
+  edge_cases: EDGE_CASES/common_mistakes.md
+  templates: TEMPLATES/model_template.md

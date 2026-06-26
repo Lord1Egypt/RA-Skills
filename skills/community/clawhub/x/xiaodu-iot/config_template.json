@@ -1,0 +1,63 @@
+{
+  "xiaodu_control_config": {
+    "description": "小度设备控制技能配置模板",
+    "version": "1.0.0",
+    
+    "mcp_servers": {
+      "xiaodu": {
+        "url": "https://xiaodu.baidu.com/dueros_mcp_server/mcp/",
+        "headers": {
+          "ACCESS_TOKEN": "YOUR_ACCESS_TOKEN_HERE"
+        }
+      },
+      "xiaodu-iot": {
+        "command": "npx",
+        "args": ["-y", "dueros-iot-mcp"],
+        "env": {
+          "ACCESS_TOKEN": "YOUR_ACCESS_TOKEN_HERE"
+        }
+      }
+    },
+    
+    "device_config": {
+      "default_device": {
+        "cuid": "YOUR_DEVICE_CUID",
+        "client_id": "YOUR_CLIENT_ID",
+        "name": "客厅设备",
+        "room": "客厅"
+      },
+      
+      "predefined_devices": {
+        "living-room": {
+          "cuid": "YOUR_DEVICE_CUID",
+          "client_id": "YOUR_CLIENT_ID",
+          "name": "客厅设备",
+          "room": "客厅"
+        },
+        "master-bedroom": {
+          "cuid": "YOUR_DEVICE_CUID_2",
+          "client_id": "YOUR_CLIENT_ID_2",
+          "name": "主卧设备",
+          "room": "主卧"
+        }
+      }
+    },
+    
+    "script_config": {
+      "update_interval": 86400,
+      "log_directory": "~/openclaw/workspace/logs",
+      "device_files": {
+        "xiaodu_devices": "~/openclaw/workspace/xiaodu_devices.md",
+        "iot_devices": "~/openclaw/workspace/xiaodu_iot_devices.md"
+      }
+    },
+    
+    "usage_instructions": {
+      "1": "复制此文件为 config.json",
+      "2": "替换所有 YOUR_* 占位符为实际值",
+      "3": "运行 update_devices.sh 获取设备信息",
+      "4": "根据实际设备更新 predefined_devices",
+      "5": "使用 speak_message.sh 和 batch_control.sh 控制设备"
+    }
+  }
+}

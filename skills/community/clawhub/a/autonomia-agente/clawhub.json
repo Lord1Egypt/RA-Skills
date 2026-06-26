@@ -1,0 +1,12 @@
+{
+  "name": "Autonomia do Agente",
+  "tagline": "Transforma agentes IA em parceiros proativos com auto-melhoria e persistência",
+  "description": "Arquitetura proativa para agentes IA que antecipam necessidades, sobrevivem à perda de contexto e melhoram continuamente. Inclui WAL Protocol para write-ahead logging, Working Buffer para captura de trocas, e protocolos de recuperação. Baseado nas melhores práticas de agentes autônomos de produção. Ideal para desenvolvedores brasileiros que querem agentes mais independentes e confiáveis.",
+  "category": "autonomy",
+  "tags": ["autonomia", "proativo", "self-improvement", "portugues", "brasil", "memoria", "persistencia"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/eve-agent/autonomia-agente/issues",
+  "homepage": "https://github.com/eve-agent/autonomia-agente"
+}

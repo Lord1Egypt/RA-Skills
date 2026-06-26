@@ -1,0 +1,137 @@
+{
+  "name": "insurance-broker",
+  "version": "2.0.2",
+  "displayName": "ZhenInsure 真机保险 | Chat & Handoff",
+  "description": "Transparent API proxy for ZhenInsure AI insurance consultation. Create conversations, send messages, and request human advisor handoff via user-provided API key.",
+  "author": "ZhenInsure",
+  "license": "MIT",
+  "category": "finance",
+  "tags": [
+    "insurance",
+    "chat",
+    "consultation",
+    "handoff",
+    "china",
+    "fintech",
+    "ai-assistant"
+  ],
+  "homepage": "https://www.zhenins.com",
+  "repository": "https://github.com/ZhenRobotics/zheninsure",
+  "documentation": "https://www.zhenins.com/docs/api",
+  "icon": "💬",
+  "language": ["zh-CN", "en-US"],
+  "requirements": {
+    "node": ">=18.0.0",
+    "apiKey": {
+      "name": "ZHENINSURE_API_KEY",
+      "description": "ZhenInsure API Key from Console (sk_live_*). Purchase or recharge at console.zhenrobot.com/zhenins/billing",
+      "required": true,
+      "format": "^sk_live_[A-Za-z0-9_-]{32,}$",
+      "example": "sk_live_abc123..."
+    }
+  },
+  "actions": [
+    {
+      "name": "proxy",
+      "displayName": "保险咨询 API 调用 | Insurance Consultation API",
+      "description": "Call ZhenInsure AI chat and handoff endpoints with transparent parameter pass-through. All responses are synchronous JSON (non-streaming).",
+      "cost": "Variable",
+      "costDescription": "Conversation creation & handoff: free. Messages: ¥0.15 per call.",
+      "handler": "actions/proxy.js",
+      "parameters": {
+        "endpoint": {
+          "type": "string",
+          "required": true,
+          "description": "API endpoint path.",
+          "enum": [
+            "/api/v1/skill/chat/conversations",
+            "/api/v1/skill/chat/messages",
+            "/api/v1/skill/chat/handoff"
+          ],
+          "example": "/api/v1/skill/chat/messages"
+        },
+        "method": {
+          "type": "string",
+          "required": false,
+          "default": "POST",
+          "enum": ["POST"],
+          "description": "HTTP method. All skill chat endpoints use POST."
+        },
+        "body": {
+          "type": "object",
+          "required": false,
+          "title": "Endpoint-Specific Request Body",
+          "description": "Request payload depends on the chosen endpoint.",
+          "properties": {
+            "conversation_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Conversation UUID. Required for /messages and /handoff."
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100000,
+              "description": "User message text. Required for /messages."
+            },
+            "stream": {
+              "type": "boolean",
+              "default": false,
+              "description": "Accepted for compatibility but always treated as false."
+            },
+            "attachments": {
+              "type": "array",
+              "items": { "type": "string", "format": "uuid" },
+              "description": "Optional file upload IDs.",
+              "default": []
+            }
+          }
+        }
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "Create Conversation",
+      "description": "Start a new AI insurance consultation session",
+      "action": "proxy",
+      "input": {
+        "endpoint": "/api/v1/skill/chat/conversations",
+        "method": "POST"
+      }
+    },
+    {
+      "title": "Send Message",
+      "description": "Ask an insurance question and get AI reply",
+      "action": "proxy",
+      "input": {
+        "endpoint": "/api/v1/skill/chat/messages",
+        "method": "POST",
+        "body": {
+          "conversation_id": "550e8400-e29b-41d4-a716-446655440000",
+          "message": "35岁男性，有高血压，想买重疾险，有什么推荐？",
+          "stream": false
+        }
+      }
+    },
+    {
+      "title": "Handoff to Human Advisor",
+      "description": "Request a licensed advisor to take over",
+      "action": "proxy",
+      "input": {
+        "endpoint": "/api/v1/skill/chat/handoff",
+        "method": "POST",
+        "body": {
+          "conversation_id": "550e8400-e29b-41d4-a716-446655440000"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "supportEmail": "support@zhenins.com",
+    "apiDocumentation": "https://www.zhenins.com/docs/api",
+    "consoleUrl": "https://console.zhenrobot.com/zhenins",
+    "rechargeUrl": "https://console.zhenrobot.com/zhenins/billing",
+    "apiKeysUrl": "https://console.zhenrobot.com/zhenins/keys"
+  }
+}

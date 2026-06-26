@@ -1,35 +1,49 @@
 ---
-name: "Dongchedi"
-description: "提供懂车帝官网公开车型、导购、活动与服务入口信息的整理与汇总服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dongchedi"
-sourceUrl: "https://clawhub.ai/skills/dongchedi"
+name: dongchedi
+description: 注册“懂车帝”技能；用于汽车平台公开页面、车型信息、导购内容与服务入口整理。
+homepage: `https://www.dongchedi.com/`
+metadata: {"clawdbot":{"emoji":"🚗"}}
 ---
 
-# Dongchedi
+# 懂车帝
 
-> 提供懂车帝官网公开车型、导购、活动与服务入口信息的整理与汇总服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dongchedi`
-- **Source URL:** [https://clawhub.ai/skills/dongchedi](https://clawhub.ai/skills/dongchedi)
+- 面向公开官网、车型页、导购页、活动页与帮助中心的信息整理
+- 不提供虚假报价、代订车、后台抓取越权或用户数据操作能力
+- 仅处理公开可见的车型介绍、导购信息、活动入口与帮助内容
 
-## Overview
+关键入口
 
+- 主页：https://www.dongchedi.com/
+- 车型与导购：车型库、导购内容、评测、配置、经销商入口
+- 活动与帮助：活动页、购车服务、帮助中心、社区入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dongchedi
-```
+常见任务
+
+- 车型分类、配置入口、导购内容与公开服务整理
+- 活动专题、经销商服务、线索入口与帮助信息汇总
+- 评测、对比、社区讨论与公开工具提取
+
+数据字段
+
+- 车型入口、导购内容、配置页、链接
+- 活动页、服务入口、帮助页、经销商入口链接
+- 城市站点、工具页、对比页、FAQ
+
+自动化要点
+
+- 车型价格和优惠具有强地域、时点差异，输出时要避免绝对化报价
+- 优先保留官方车型页和导购页链接，少做主观结论
+- 不处理线索后台、用户购车资料或经销商私有数据
+
+示例流程
+
+- 车型整理：访问 Dongchedi 车型库 → 输出车型与配置入口清单
+- 导购汇总：进入导购与评测页 → 提取专题与工具入口 → 输出摘要
+- 服务说明：访问活动页与帮助中心 → 输出线索与服务流程说明
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

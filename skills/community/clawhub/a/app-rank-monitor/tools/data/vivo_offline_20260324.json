@@ -1,0 +1,80 @@
+{
+  "channel": "vivo",
+  "type": "offline",
+  "date": "2026-03-24",
+  "count": 8,
+  "apps": [
+    {
+      "rank": 1,
+      "name": "App Store榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    },
+    {
+      "rank": 2,
+      "name": "Google Play榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    },
+    {
+      "rank": 3,
+      "name": "国内安卓榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    },
+    {
+      "rank": 4,
+      "name": "TapTap榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    },
+    {
+      "rank": 5,
+      "name": "Steam榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    },
+    {
+      "rank": 6,
+      "name": "PlayStation榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    },
+    {
+      "rank": 7,
+      "name": "Switch榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    },
+    {
+      "rank": 8,
+      "name": "微信小游戏榜单",
+      "package": "Unknown",
+      "developer": "Unknown",
+      "channel": "vivo",
+      "type": "offline",
+      "date": "2026-03-24"
+    }
+  ]
+}

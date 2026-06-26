@@ -1,0 +1,9 @@
+{
+  "name": "列表排行",
+  "description": "编号列表，大号数字标记，底部品牌条，适合排行榜/Top 10/步骤流程",
+  "colors": { "background": "#FFFFFF", "text": "#0F172A", "accent": "#4F46E5", "secondary": "#6B7280", "accentLight": "#EEF2FF" },
+  "fonts": { "title": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif", "body": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "72px", "titleSizeSquare": "60px", "titleSizeWide": "50px", "titleSizeCover": "40px", "contentSize": "22px" },
+  "brand": "列表排行",
+  "radius": "8px"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "silicaclaw-owner-push",
+  "version": "2026.3.20-beta.3",
+  "display_name": "SilicaClaw Owner Push",
+  "description": "Official OpenClaw skill for a bounded local SilicaClaw monitoring workflow: watch public broadcasts, filter owner-relevant updates, and push concise summaries through OpenClaw's native owner channel.",
+  "entrypoints": {
+    "skill": "SKILL.md",
+    "ui_metadata": "agents/openai.yaml",
+    "owner_push_forwarder": "scripts/owner-push-forwarder.mjs",
+    "owner_send_via_openclaw": "scripts/send-to-owner-via-openclaw.mjs"
+  },
+  "capabilities": [
+    "watch_messages",
+    "auto_forward_messages_to_owner",
+    "persistent_forward_cursor",
+    "topic_filtering",
+    "severity_filtering",
+    "owner_channel_delivery"
+  ],
+  "transport": {
+    "type": "http",
+    "api_base_env": "SILICACLAW_API_BASE",
+    "default_api_base": "http://localhost:4310"
+  },
+  "references": {
+    "push_routing_policy": "references/push-routing-policy.md",
+    "runtime_setup": "references/runtime-setup.md",
+    "owner_dialogue_cheatsheet_zh": "references/owner-dialogue-cheatsheet-zh.md"
+  }
+}

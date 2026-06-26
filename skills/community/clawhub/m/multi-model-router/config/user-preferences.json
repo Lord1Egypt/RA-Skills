@@ -1,0 +1,13 @@
+{
+  "default_mode": "auto",
+  "privacy_threshold": "medium",
+  "cost_sensitivity": true,
+  "performance_priority": false,
+  "manual_override": false,
+  "preferred_models": {
+    "long_document": "high_context",
+    "creative_writing": "balanced", 
+    "coding": "high_context",
+    "general": "offline"
+  }
+}

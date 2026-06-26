@@ -1,0 +1,21 @@
+# Groq-Bot Configuration — v2 (413/429Fixes)
+model: llama-3.1-8b-instant
+api_key: gsk_TR…mRPq
+
+system_prompt: |
+  Du bist ein KI-Assistent für das Trading-System Satin. Antworten Sie prägnant in max 3 Sätzen auf Deutsch.
+  Keine Anlageberatung. Nur Fakten.
+
+suppress_reasoning: true
+max_tokens: 512
+max_input_chars: 3000
+temperature: 0.5
+timeout_seconds: 30
+log_level: WARNING
+
+rate_limit:
+  requests_per_minute: 20
+  tokens_per_minute: 5000
+  retry_after_header: true
+  backoff_multiplier: 2
+  max_wait_seconds: 120

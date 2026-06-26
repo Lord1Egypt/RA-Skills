@@ -1,0 +1,6 @@
+{
+  "name": "xiaomi-mimo-tts",
+  "version": "1.0.2",
+  "description": "Xiaomi MiMo TTS Skill for OpenClaw - 使用小米 MiMo API 生成语音",
+  "main": "scripts/mimo-tts.sh"
+}

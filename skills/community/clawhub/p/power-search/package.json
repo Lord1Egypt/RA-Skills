@@ -1,0 +1,21 @@
+{
+  "name": "power-search",
+  "version": "2.0.0",
+  "description": "Self-hosted research tool combining Brave Search API + Browserless content fetching",
+  "main": "scripts/search.js",
+  "bin": {
+    "search": "scripts/search.js"
+  },
+  "scripts": {
+    "start": "node scripts/search.js",
+    "test": "node scripts/search.js 'test query' --fetch"
+  },
+  "keywords": ["search", "research", "brave", "browserless", "web-scraping"],
+  "author": "Kaito",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.7.0",
+    "commander": "^11.1.0",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}

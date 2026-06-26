@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected - gog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-void: #050508;
+            --bg-base: #0a0a0f;
+            --bg-surface: #111116;
+            --bg-elevated: #18181d;
+            --bg-hover: #1f1f26;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-subtle: rgba(255, 255, 255, 0.04);
+            --border-active: rgba(255, 255, 255, 0.12);
+            --text: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --text-dim: #52525b;
+
+            --g-blue: #4285F4;
+            --g-blue-dim: rgba(66, 133, 244, 0.12);
+            --g-red: #EA4335;
+            --g-red-dim: rgba(234, 67, 53, 0.12);
+            --g-yellow: #FBBC05;
+            --g-yellow-dim: rgba(251, 188, 5, 0.12);
+            --g-green: #34A853;
+            --g-green-dim: rgba(52, 168, 83, 0.12);
+
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Sora', -apple-system, sans-serif;
+            background: var(--bg-void);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle grid pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 64px 64px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animated Google-colored gradient orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            pointer-events: none;
+            animation: orbDrift 25s ease-in-out infinite;
+        }
+
+        .orb-blue {
+            width: 600px;
+            height: 600px;
+            background: var(--g-blue);
+            top: -20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-red {
+            width: 500px;
+            height: 500px;
+            background: var(--g-red);
+            top: 60%;
+            right: -15%;
+            animation-delay: -6s;
+        }
+
+        .orb-yellow {
+            width: 400px;
+            height: 400px;
+            background: var(--g-yellow);
+            bottom: -10%;
+            left: 30%;
+            animation-delay: -12s;
+        }
+
+        .orb-green {
+            width: 450px;
+            height: 450px;
+            background: var(--g-green);
+            top: 20%;
+            right: 20%;
+            animation-delay: -18s;
+        }
+
+        @keyframes orbDrift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -20px) scale(1.05); }
+            50% { transform: translate(-20px, 30px) scale(0.95); }
+            75% { transform: translate(-30px, -10px) scale(1.02); }
+        }
+
+        .container {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Success Header */
+        .success-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            position: relative;
+        }
+
+        .success-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 8px 32px rgba(66, 133, 244, 0.3));
+        }
+
+        .success-badge {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 28px;
+            height: 28px;
+            background: var(--g-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 4px var(--bg-void), 0 4px 12px rgba(52, 168, 83, 0.4);
+        }
+
+        .success-badge svg {
+            width: 16px;
+            height: 16px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .account-email {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .account-email strong {
+            color: var(--g-blue);
+            font-weight: 600;
+        }
+
+        .services-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        /* SYNC: Service tag styles are shared between accounts.html and success.html
+         * If modifying service icons/colors, update both files */
+        .service-tag {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            padding: 4px 10px 4px 24px;
+            border-radius: 99px;
+            border: 1px solid;
+            background-repeat: no-repeat;
+            background-position: 6px center;
+            background-size: 14px 14px;
+        }
+
+        .service-tag.calendar {
+            color: var(--g-blue);
+            background-color: var(--g-blue-dim);
+            border-color: rgba(66, 133, 244, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%234285F4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.gmail {
+            color: var(--g-red);
+            background-color: var(--g-red-dim);
+            border-color: rgba(234, 67, 53, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23EA4335' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.chat {
+            color: var(--g-green);
+            background-color: var(--g-green-dim);
+            border-color: rgba(52, 168, 83, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%2334A853' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.drive {
+            color: var(--g-yellow);
+            background-color: var(--g-yellow-dim);
+            border-color: rgba(251, 188, 5, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23FBBC05' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.contacts {
+            color: var(--g-blue);
+            background-color: var(--g-blue-dim);
+            border-color: rgba(66, 133, 244, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%234285F4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0H4v2h16V0zM4 24h16v-2H4v2zM20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2.75c1.24 0 2.25 1.01 2.25 2.25s-1.01 2.25-2.25 2.25S9.75 10.24 9.75 9 10.76 6.75 12 6.75zM17 17H7v-1.5c0-1.67 3.33-2.5 5-2.5s5 .83 5 2.5V17z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.sheets {
+            color: var(--g-green);
+            background-color: var(--g-green-dim);
+            border-color: rgba(52, 168, 83, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%2334A853' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.people {
+            color: var(--g-blue);
+            background-color: var(--g-blue-dim);
+            border-color: rgba(66, 133, 244, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%234285F4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.tasks {
+            color: var(--g-blue);
+            background-color: var(--g-blue-dim);
+            border-color: rgba(66, 133, 244, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%234285F4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 5.18L10.59 16.6l-4.24-4.24 1.41-1.41 2.83 2.83 10-10L22 5.18zm-2.21 5.04c.13.57.21 1.17.21 1.78 0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8c1.58 0 3.04.46 4.28 1.25l1.44-1.44A9.9 9.9 0 0012 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10c0-1.19-.22-2.33-.6-3.39l-1.61 1.61z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.classroom {
+            color: var(--g-green);
+            background-color: var(--g-green-dim);
+            border-color: rgba(52, 168, 83, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%2334A853' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.groups {
+            color: var(--g-blue);
+            background-color: var(--g-blue-dim);
+            border-color: rgba(66, 133, 244, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%234285F4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58A2.01 2.01 0 0 0 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85A6.95 6.95 0 0 0 20 14c-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.docs {
+            color: var(--g-blue);
+            background-color: var(--g-blue-dim);
+            border-color: rgba(66, 133, 244, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%234285F4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.727 0v6h6l-6-6zm1.364 10.636H7.91v1.91h8.181v-1.91zm0 3.273H7.91v1.91h8.181v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zM16.091 7.727H7.91v1.91h8.181v-1.91z'/%3E%3C/svg%3E");
+        }
+
+        .service-tag.keep {
+            color: var(--g-yellow);
+            background-color: var(--g-yellow-dim);
+            border-color: rgba(251, 188, 5, 0.2);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23FBBC05' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 15H10v-1h4v1zm0-2H10v-1h4v1zm-1.5-4.59V13h-1v-2.59L9.67 8.59 10.41 7.85 12 9.44l1.59-1.59.74.74-1.83 1.82z'/%3E%3C/svg%3E");
+        }
+
+        /* Missing/greyed-out service state */
+        .service-tag.missing {
+            opacity: 0.4;
+            filter: grayscale(100%);
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Terminal Card */
+        .terminal-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .terminal-bar {
+            background: var(--bg-elevated);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.close { background: #ff5f57; }
+        .terminal-dot.minimize { background: #febc2e; }
+        .terminal-dot.maximize { background: #28c840; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-right: 48px;
+        }
+
+        .terminal-body {
+            padding: 20px;
+        }
+
+        .terminal-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .terminal-line:last-child {
+            margin-bottom: 0;
+        }
+
+        .terminal-prompt {
+            color: var(--g-blue);
+            user-select: none;
+            font-weight: 500;
+        }
+
+        .terminal-cmd {
+            color: var(--text);
+        }
+
+        .terminal-flag {
+            color: var(--g-yellow);
+        }
+
+        .terminal-arg {
+            color: var(--g-green);
+        }
+
+        .terminal-output {
+            color: var(--text-dim);
+            padding-left: 18px;
+            margin-top: -6px;
+            margin-bottom: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+        }
+
+        .terminal-output.success {
+            color: var(--g-green);
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: var(--g-blue);
+            animation: cursorBlink 1.2s step-end infinite;
+            border-radius: 1px;
+        }
+
+        @keyframes cursorBlink {
+            0%, 50% { opacity: 1; }
+            50.01%, 100% { opacity: 0; }
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--bg-surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary:hover {
+            background: var(--bg-elevated);
+            border-color: var(--border-active);
+        }
+
+        .btn-secondary {
+            background: var(--g-blue);
+            color: white;
+            box-shadow: 0 4px 16px rgba(66, 133, 244, 0.25);
+        }
+
+        .btn-secondary:hover {
+            background: #5a9cff;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(66, 133, 244, 0.35);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Info Card */
+        .info-card {
+            padding: 16px 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--g-blue-dim);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-icon svg {
+            width: 18px;
+            height: 18px;
+            color: var(--g-blue);
+        }
+
+        .info-content h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .info-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .info-content code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            background: var(--bg-elevated);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--g-blue);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .footer p {
+            display: inline-block;
+            padding: 10px 14px;
+            background: rgba(17, 17, 22, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+        }
+
+        /* GitHub icon - defined as CSS mask for reuse
+         * SYNC: If modifying the icon, also update accounts.html */
+        .icon-github {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            margin-right: 4px;
+            background-color: currentColor;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E");
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+        }
+
+        .github-link {
+            margin-top: 12px;
+        }
+
+        .github-link a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+
+        .github-link a:hover {
+            color: var(--g-blue);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 16px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .terminal-body {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated gradient orbs -->
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-red"></div>
+    <div class="orb orb-yellow"></div>
+    <div class="orb orb-green"></div>
+
+    <div class="container">
+        <header class="success-header">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                <div class="success-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+            </div>
+
+            <h1>You're connected</h1>
+            {{if .Email}}
+            <p class="account-email">Authorized as <strong>{{.Email}}</strong></p>
+            {{else}}
+            <p class="account-email">gog is now authorized to access <strong>Google Workspace</strong></p>
+            {{end}}
+
+            <div class="services-row" id="servicesRow">
+                <!-- Services will be rendered by JavaScript to show connected vs missing -->
+            </div>
+        </header>
+
+        <div class="terminal-card">
+            <div class="terminal-bar">
+                <div class="terminal-dots">
+                    <span class="terminal-dot close"></span>
+                    <span class="terminal-dot minimize"></span>
+                    <span class="terminal-dot maximize"></span>
+                </div>
+                <span class="terminal-title">Terminal</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-cmd">gog</span>
+                    <span class="terminal-arg">calendar</span>
+                    <span class="terminal-arg">list</span>
+                </div>
+                <div class="terminal-output success">Fetching calendars...</div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-cmd">gog</span>
+                    <span class="terminal-arg">gmail</span>
+                    <span class="terminal-arg">search</span>
+                    <span class="terminal-cmd">"is:unread"</span>
+                </div>
+                <div class="terminal-output success">Found 12 messages</div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-cursor"></span>
+                </div>
+            </div>
+        </div>
+
+        {{if .Email}}
+        <div class="actions">
+            <a href="/" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                Manage Accounts
+            </a>
+            <a href="/auth/start" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                Add Another Account
+            </a>
+        </div>
+        {{end}}
+
+        <div class="info-card">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 17 10 11 4 5"></polyline>
+                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+            </div>
+            <div class="info-content">
+                <h4>Return to your terminal</h4>
+                <p>You can close this window. Run <code>gog --help</code> to see available commands.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Closing in <span id="countdown">{{.CountdownSeconds}}</span> seconds...</p>
+            <p class="github-link">
+                <a href="https://github.com/steipete/gogcli" target="_blank" rel="noopener noreferrer">
+                    <span class="icon-github"></span>
+                    View on GitHub
+                </a>
+            </p>
+        </footer>
+    </div>
+    <script>
+        // Render services with connected ones colored and missing ones greyed out
+        const connectedServices = [{{range $i, $s := .Services}}{{if $i}},{{end}}"{{$s}}"{{end}}];
+        const allServices = [{{range $i, $s := .AllServices}}{{if $i}},{{end}}"{{$s}}"{{end}}];
+        const servicesRow = document.getElementById('servicesRow');
+
+        if (allServices.length > 0) {
+            servicesRow.innerHTML = allServices.map(svc => {
+                const isConnected = connectedServices.includes(svc);
+                const classes = isConnected ? `service-tag ${svc}` : `service-tag ${svc} missing`;
+                return `<span class="${classes}">${svc}</span>`;
+            }).join('');
+        }
+
+        // Countdown timer
+        let seconds = {{.CountdownSeconds}};
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            seconds--;
+            if (seconds > 0) {
+                countdownEl.textContent = seconds;
+            } else {
+                clearInterval(interval);
+                countdownEl.parentElement.textContent = 'You can close this window.';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

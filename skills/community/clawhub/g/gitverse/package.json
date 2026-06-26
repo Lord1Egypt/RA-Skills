@@ -1,0 +1,33 @@
+{
+  "name": "openclaw-skill-gitverse",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for GitVerse API - repos, issues, pulls",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "gitverse": "./bin/gitverse.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "gitverse",
+    "git",
+    "issues",
+    "pulls"
+  ],
+  "author": "AI Center",
+  "license": "MIT",
+  "dependencies": {
+    "@onreza/gitverse-sdk": "^1.0.4",
+    "commander": "^12.1.0",
+    "dotenv": "^16.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.37",
+    "typescript": "^5.9.3"
+  }
+}

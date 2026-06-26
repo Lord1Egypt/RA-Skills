@@ -1,0 +1,43 @@
+{
+  "accounts": [
+    {
+      "email": "your@qq.com",
+      "provider": "qq",
+      "name": "QQ Mail",
+      "config": {
+        "password": "YOUR_QQ_MAIL_AUTH_CODE"
+      },
+      "_comment": "QQ邮箱授权码获取: https://service.mail.qq.com/detail/0/75"
+    },
+    {
+      "email": "your@163.com",
+      "provider": "netease",
+      "name": "163 Mail",
+      "config": {
+        "password": "YOUR_163_AUTH_CODE"
+      },
+      "_comment": "163邮箱授权码: 设置 → POP3/SMTP/IMAP → 开启服务"
+    },
+    {
+      "email": "your@gmail.com",
+      "provider": "gmail",
+      "name": "Gmail",
+      "_comment": "Gmail需要OAuth配置，请参考README.md中的Gmail配置指南"
+    }
+  ],
+  "daemon": {
+    "poll_interval": 300,
+    "notify_openclaw": true,
+    "notification": {
+      "include_body": false,
+      "body_max_length": 500,
+      "include_verification_codes": true,
+      "include_links": false
+    }
+  },
+  "_help": {
+    "qq_auth_code": "QQ邮箱: 设置 → 账户 → POP3/IMAP/SMTP服务 → 生成授权码",
+    "netease_auth_code": "163/126邮箱: 设置 → POP3/SMTP/IMAP → 开启服务 → 获取授权码",
+    "gmail_oauth": "Gmail需要Google Cloud项目配置OAuth，详见README.md"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "name": "prompt-expert",
+  "version": "1.0.0",
+  "description": "Prompt engineering expert: custom instructions, optimization, CoT/few-shot/XML, evaluation, anti-patterns; see docs/ and examples/"
+}

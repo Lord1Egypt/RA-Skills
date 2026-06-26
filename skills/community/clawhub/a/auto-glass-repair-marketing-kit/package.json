@@ -1,0 +1,47 @@
+{
+  "name": "auto-glass-repair-marketing-kit",
+  "version": "1.0.0",
+  "description": "Compliance-safe marketing for auto glass repair and replacement shops — AGSC/AGRSS installation standards gate, ADAS recalibration disclosure, Nevada NRS 686A.2825 deductible waiver fraud block, OEM vs. aftermarket FMVSS 205 truth-in-advertising, FTC 2023 endorsements",
+  "keywords": [
+    "auto glass marketing",
+    "windshield replacement",
+    "ADAS recalibration",
+    "glass shop marketing",
+    "AGSC certified",
+    "Nevada auto glass",
+    "NRS 686A deductible",
+    "windshield repair",
+    "fleet glass",
+    "auto glass compliance",
+    "OEM glass",
+    "insurance billing",
+    "Henderson auto glass",
+    "Las Vegas windshield"
+  ],
+  "category": "automotive-services-marketing",
+  "bundle": "automotive-services-bundle",
+  "skillId": 238,
+  "pricing": {
+    "free": "prompt-01-customer-acquisition-campaigns",
+    "paid": 47,
+    "dfy": 127
+  },
+  "compliance": [
+    "AGSC Standard 150 — Auto Glass Safety Council Installation & Safe Drive-Away Standards",
+    "AGRSS — Auto Glass Replacement Safety Standard (predecessor to AGSC Standard 150)",
+    "FMVSS 212/208 — Federal Motor Vehicle Safety Standard for Windshield Retention & Occupant Protection",
+    "FMVSS 205 — Federal Motor Vehicle Safety Standard for Glazing Materials (OEM vs. Aftermarket)",
+    "NHTSA ADAS Recalibration Safety Guidance",
+    "Nevada NRS 686A.2825 — Prohibition on Insurance Deductible Waiver (active DOI enforcement)",
+    "Nevada NRS 686A.220 — Insurance Anti-Steering / Preferred Shop Prohibition",
+    "Nevada NRS 686A.291 — Insurance Fraud Statute",
+    "Nevada NRS 624 — State Contractors Board Licensing (NSCB C-8 Glass & Glazing)",
+    "Nevada NRS 598.0923 / 598.0915 — Deceptive Trade Practices Act",
+    "FTC Act Section 5 — Unfair or Deceptive Acts or Practices (OEM claims, safety claims)",
+    "FTC 16 CFR Part 255 (2023) — Endorsement Guides (review acquisition, testimonials)",
+    "TCPA — Telephone Consumer Protection Act (SMS opt-out requirements)",
+    "RESPA Section 8 — Anti-Kickback (dealer referral arrangement structure guidance)"
+  ],
+  "author": "max_0x1",
+  "license": "MIT-0"
+}

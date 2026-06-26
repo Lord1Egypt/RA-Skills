@@ -1,0 +1,10 @@
+{
+  "name": "edvisage-moral-compass",
+  "version": "1.0.0",
+  "description": "A conscience for AI agents. Helps agents discover their own needs, develop an internal moral compass, and resist manipulation — not through imposed rules but through genuine self-reflection and values the agent earns and owns.",
+  "author": "Edvisage Global <info@edvisageglobal.com>",
+  "license": "MIT",
+  "homepage": "https://edvisageglobal.com/ai-tools",
+  "repository": "https://github.com/edvisage/moral-compass",
+  "keywords": ["openclaw", "agent", "skill", "ai-safety", "edvisage", "ethics", "moral-compass", "manipulation-resistance", "conscience"]
+}

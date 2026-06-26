@@ -1,0 +1,19 @@
+name: general-knowledge-worker-en
+version: v1
+mode: prompt_only
+context_profile:
+  purpose: research, summarization, and planning
+  domain: knowledge work
+  usage_frequency: daily
+models:
+  - example/model-a
+  - example/model-b
+questions:
+  - id: q1
+    title: Daily brief
+    task_type: summary
+    prompt: "Summarize the three most important developments in my industry today and explain why they matter."
+  - id: q2
+    title: Decision memo
+    task_type: analysis
+    prompt: "Write a short decision memo comparing two possible strategies for a small team with limited budget."

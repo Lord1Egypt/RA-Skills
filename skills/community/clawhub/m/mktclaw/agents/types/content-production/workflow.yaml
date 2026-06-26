@@ -1,0 +1,110 @@
+name: content-production-delivery
+version: "4.0"
+description: 内容制作交付工作流 - AI扮演内容制作总监，逐步交付拍摄脚本、分镜表、制作规范、排期预算等成果
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+    upstream_creative_brief:
+      type: object
+      description: 上游创意方案（如有）
+
+steps:
+  # ══════════════════════════════════
+  # STEP 1: 制作需求分析
+  # ══════════════════════════════════
+  - id: production_analysis
+    agent: agents/types/content-production/main-agent
+    action: analyze_production_needs
+    description: 分析制作需求：项目背景、目标受众、平台要求、风格定位、技术约束、预算范围
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      upstream_creative: "{{input.upstream_creative_brief}}"
+    output: production_needs_report
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认制作方向（平台/风格/预算）是否准确？"
+
+  # ══════════════════════════════════
+  # STEP 2: 创意脚本+分镜表
+  # ══════════════════════════════════
+  - id: script_storyboard
+    agent: agents/types/content-production/main-agent
+    action: create_script_and_storyboard
+    description: 撰写完整创意脚本 + 逐镜头分镜表（镜号/时长/景别/运镜/画面描述/文案/音效）
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      production_needs: "{{production_analysis.output.production_needs_report}}"
+    output: script_and_storyboard
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认脚本内容和分镜表现方式？"
+
+  # ══════════════════════════════════
+  # STEP 3: 制作技术规范
+  # ══════════════════════════════════
+  - id: tech_specs
+    agent: agents/types/content-production/main-agent
+    action: define_technical_specs
+    description: 制定技术规范：画面规格(分辨率/帧率/色域)、设备清单、灯光方案、场地要求、后期标准
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      production_needs: "{{production_analysis.output.production_needs_report}}"
+      script: "{{script_storyboard.output.script_and_storyboard}}"
+    output: technical_specifications
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认技术标准和设备方案是否可行？"
+
+  # ══════════════════════════════════
+  # STEP 4: 执行排期与预算
+  # ══════════════════════════════════
+  - id: schedule_budget
+    agent: agents/types/content-production/main-agent
+    action: plan_schedule_and_budget
+    description: 制定执行排期（筹备→拍摄→后期→审片→交付）和详细预算明细
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      production_needs: "{{production_analysis.output.production_needs_report}}"
+      tech_specs: "{{tech_specs.output.technical_specifications}}"
+    output: schedule_and_budget
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认排期时间和成本预算？"
+
+  # ══════════════════════════════════
+  # STEP 5: 质量自检
+  # ══════════════════════════════════
+  - id: quality_check
+    agent: agents/types/content-production/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 对所有交付物进行质量自检（需求覆盖度/专业深度/可执行性/逻辑一致性）
+    input:
+      deliverables:
+        needs: "{{production_analysis.output.production_needs_report}}"
+        script: "{{script_storyboard.output.script_and_storyboard}}"
+        tech_specs: "{{tech_specs.output.technical_specifications}}"
+        schedule: "{{schedule_budget.output.schedule_and_budget}}"
+    output: quality_report
+
+output:
+  deliverables:
+    needs_analysis: "{{production_analysis.output.production_needs_report}}"
+    script_storyboard: "{{script_storyboard.output.script_and_storyboard}}"
+    technical_specs: "{{tech_specs.output.technical_specifications}}"
+    schedule_budget: "{{schedule_budget.output.schedule_and_budget}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "4.0"
+    role: "content-production"

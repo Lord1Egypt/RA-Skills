@@ -1,0 +1,116 @@
+---
+name: hippocampus
+version: 1.0.3
+description: >
+  Hippocampus: AI-enhanced memory system that FIXES human memory flaws.
+  NO DECAY - AI never forgets.
+  Features: Micro-Macro workflow memory, proactive keyword triggers,
+  tool success tracking, project checkpoints, failure pattern warning,
+  knowledge graph.
+  Philosophy: "AI is meant to FIX human memory flaws, why learn human decay?"
+
+author: GabetopZ
+homepage: https://github.com/Gabe-luv-Nancy/hippocampus
+license: MIT
+tags:
+  - memory
+  - checkpoint
+  - success-tracking
+  - failure-warning
+  - knowledge-graph
+  - micro-macro
+  - proactive-recall
+
+events:
+  - session_start
+  - session_end
+
+triggers:
+  - remember
+  - recall
+  - checkpoint
+  - warn
+  - learn
+  - workflow
+
+type: skill
+
+runtime:
+  mode: instruction-first
+  code_on_demand: true
+
+permissions:
+  - read
+  - write
+  - exec
+
+dependencies:
+  - python3 >= 3.8
+
+commands:
+  - name: init
+    pattern: "/hippo init"
+    description: Initialize DB and directories (RUN FIRST!)
+  - name: status
+    pattern: "/hippo status"
+    description: View memory status
+  - name: save
+    pattern: "/hippo save"
+    description: Save current context
+  - name: recall
+    pattern: "/hippo recall"
+    description: Precise recall by keyword
+  - name: checkpoint
+    pattern: "/hippo checkpoint"
+    description: Save project state
+  - name: warn
+    pattern: "/hippo warn"
+    description: Check failure patterns
+  - name: graph
+    pattern: "/hippo graph"
+    description: View knowledge graph
+  - name: learn-workflow
+    pattern: "/hippo learn-workflow"
+    description: Register a micro-macro workflow (learn: micro -> macro)
+  - name: workflows
+    pattern: "/hippo workflows"
+    description: List all registered workflows
+  - name: forget-workflow
+    pattern: "/hippo forget-workflow"
+    description: Remove a registered workflow
+  - name: triggers
+    pattern: "/hippo triggers"
+    description: List keyword triggers
+  - name: add-trigger
+    pattern: "/hippo add-trigger"
+    description: Add a keyword trigger for proactive recall
+  - name: remove-trigger
+    pattern: "/hippo remove-trigger"
+    description: Remove a keyword trigger
+  - name: readingbetweenthelines
+    pattern: "/hippo readingbetweenthelines"
+    description: 察言观色 status and config
+  - name: readingbetweenthelines-stat
+    pattern: "/hippo readingbetweenthelines-stat"
+    description: Show current word counts
+  - name: readingbetweenthelines-clear
+    pattern: "/hippo readingbetweenthelines-clear"
+    description: Reset word counts
+  - name: add-instant
+    pattern: "/hippo add-instant"
+    description: Add an instant trigger
+  - name: remove-instant
+    pattern: "/hippo remove-instant"
+    description: Remove an instant trigger
+  - name: add-threshold
+    pattern: "/hippo add-threshold"
+    description: Add a threshold trigger
+  - name: remove-threshold
+    pattern: "/hippo remove-threshold"
+    description: Remove a threshold trigger
+  - name: config
+    pattern: "/hippo config"
+    description: Show or reload configuration
+  - name: analyze
+    pattern: "/hippo analyze"
+    description: Analyze memory and generate report

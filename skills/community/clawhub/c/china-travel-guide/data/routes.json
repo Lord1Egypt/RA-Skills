@@ -1,0 +1,310 @@
+{
+  "version": "1.0.0",
+  "routes": [
+    {
+      "id": "history-buff-track",
+      "name": "History Buff Track",
+      "tagline": "5,000 Years of Chinese Civilization",
+      "duration": {"min": 12, "max": 15, "recommended": 13},
+      "cities": ["Anyang", "Luoyang", "Xi'an", "Datong", "Beijing"],
+      "theme": "history",
+      "best_season": ["spring", "autumn"],
+      "budget": {"budget": 8000, "comfort": 15000, "luxury": 30000},
+      
+      "itinerary": [
+        {
+          "city": "Anyang",
+          "days": 2,
+          "highlights": [
+            {"name": "Yin Ruins", "description": "UNESCO World Heritage, birthplace of Oracle Bone Script"},
+            {"name": "National Museum of Chinese Writing", "description": "Evolution of Chinese characters"},
+            {"name": "Red Flag Canal", "description": "20th century engineering marvel"}
+          ]
+        },
+        {
+          "city": "Luoyang",
+          "days": 3,
+          "highlights": [
+            {"name": "Longmen Grottoes", "description": "UNESCO World Heritage, 100,000+ Buddha statues"},
+            {"name": "White Horse Temple", "description": "First Buddhist temple in China"},
+            {"name": "Luoyang Museum", "description": "Tang Sancai and bronze artifacts"}
+          ]
+        },
+        {
+          "city": "Xi'an",
+          "days": 4,
+          "highlights": [
+            {"name": "Terracotta Warriors", "description": "8th Wonder of the World"},
+            {"name": "Ancient City Wall", "description": "Best-preserved city wall in China"},
+            {"name": "Giant Wild Goose Pagoda", "description": "Tang Dynasty Buddhist architecture"},
+            {"name": "Shaanxi History Museum", "description": "Treasury of Chinese civilization"}
+          ]
+        },
+        {
+          "city": "Datong",
+          "days": 2,
+          "highlights": [
+            {"name": "Yungang Grottoes", "description": "UNESCO World Heritage, 51,000+ statues"},
+            {"name": "Hanging Temple", "description": "Temple built into cliff face"},
+            {"name": "Huayan Temple", "description": "Liao and Jin Dynasty architecture"}
+          ]
+        },
+        {
+          "city": "Beijing",
+          "days": 4,
+          "highlights": [
+            {"name": "Forbidden City", "description": "World's largest palace complex"},
+            {"name": "Great Wall (Mutianyu)", "description": "UNESCO World Heritage"},
+            {"name": "Temple of Heaven", "description": "Ming and Qing imperial worship site"},
+            {"name": "Summer Palace", "description": "Imperial garden masterpiece"}
+          ]
+        }
+      ],
+      
+      "achievement": {
+        "title": "Guardian of Chinese Civilization",
+        "sites_count": 8,
+        "unesco_count": 5,
+        "history_span": "3000 years"
+      }
+    },
+
+    {
+      "id": "food-anthropology-track",
+      "name": "Food Anthropology Track",
+      "tagline": "A Culinary Journey Through China's Gastronomic Heartlands",
+      "duration": {"min": 10, "max": 12, "recommended": 11},
+      "cities": ["Chengdu", "Shunde", "Chaoshan"],
+      "theme": "food",
+      "best_season": ["all"],
+      "budget": {"budget": 10000, "comfort": 20000, "luxury": 40000},
+      
+      "itinerary": [
+        {
+          "city": "Chengdu",
+          "days": 4,
+          "highlights": [
+            {"name": "Sichuan Cuisine Museum", "description": "3,000 years of Sichuan culinary history"},
+            {"name": "Hot Pot Experience", "description": "Chengdu's signature dining"},
+            {"name": "Jinli Ancient Street", "description": "Street food paradise"},
+            {"name": "Tea House Culture", "description": "Heming Tea House experience"}
+          ],
+          "must_try": ["Hot Pot", "Mapo Tofu", "Kung Pao Chicken", "Dan Dan Noodles"]
+        },
+        {
+          "city": "Shunde",
+          "days": 3,
+          "highlights": [
+            {"name": "Private Kitchen Dining", "description": "Cantonese cuisine at its finest"},
+            {"name": "Qinghui Garden", "description": "Lingnan garden architecture"},
+            {"name": "Fengjian Water Town", "description": "Double-skin milk and ginger milk"}
+          ],
+          "must_try": ["Shunde Double-skin Milk", "Ginger Milk", "Chencun Rice Noodles"]
+        },
+        {
+          "city": "Chaoshan",
+          "days": 4,
+          "highlights": [
+            {"name": "Beef Hot Pot", "description": "Famous Chaoshan beef culture"},
+            {"name": "Gongfu Tea Ceremony", "description": "21-step tea ritual"},
+            {"name": "Chaozhou Ancient City", "description": "Food and culture combined"}
+          ],
+          "must_try": ["Beef Hot Pot", "Oyster Omelette", "Chaoshan Congee", "Gongfu Tea"]
+        }
+      ],
+      
+      "achievement": {
+        "title": "Cultural Food Anthropologist",
+        "dishes_count": 100,
+        "cuisines": ["Sichuan", "Cantonese", "Chaoshan"]
+      }
+    },
+
+    {
+      "id": "cyberpunk-track",
+      "name": "Cyberpunk Track",
+      "tagline": "Future Cities, Neon Dreams",
+      "duration": {"min": 8, "max": 10, "recommended": 9},
+      "cities": ["Chongqing", "Shanghai", "Shenzhen"],
+      "theme": "photography",
+      "best_season": ["all"],
+      "budget": {"budget": 8000, "comfort": 16000, "luxury": 35000},
+      
+      "itinerary": [
+        {
+          "city": "Chongqing",
+          "days": 3,
+          "highlights": [
+            {"name": "Hongyadong", "description": "Spirited Away real-world location"},
+            {"name": "Liziba Station", "description": "Train passing through building"},
+            {"name": "Crown Escalator", "description": "Asia's longest escalator"},
+            {"name": "Nanshan Viewing Platform", "description": "Best night view of Chongqing"}
+          ],
+          "photo_spots": ["Hongyadong at night", "Qiansimen Bridge", "Baixiangju residential complex"]
+        },
+        {
+          "city": "Shanghai",
+          "days": 4,
+          "highlights": [
+            {"name": "The Bund", "description": "Colonial architecture meets modern skyline"},
+            {"name": "Lujiazui Skyline", "description": "Shanghai Tower, Jin Mao, World Financial Center"},
+            {"name": "1933 Old Millfun", "description": "Industrial architecture masterpiece"},
+            {"name": "Tianzifang", "description": "Shikumen lanes and art studios"}
+          ],
+          "photo_spots": ["The Bund at blue hour", "Lujiazui ring overpass", "East Nanjing Road"]
+        },
+        {
+          "city": "Shenzhen",
+          "days": 2,
+          "highlights": [
+            {"name": "Shenzhen Bay Park", "description": "Skyline and sea views"},
+            {"name": "Ping An Finance Centre", "description": "Shenzhen's tallest building"},
+            {"name": "Huaqiangbei", "description": "Electronics market, cyberpunk vibes"},
+            {"name": "OCT Loft", "description": "Creative industries park"}
+          ],
+          "photo_spots": ["Shenzhen Bay at sunset", "Civic Center light show", "Huaqiangbei at night"]
+        }
+      ],
+      
+      "achievement": {
+        "title": "Cyberpunk Photographer",
+        "photos_count": 500,
+        "cities": 3
+      }
+    },
+
+    {
+      "id": "landscape-therapy-track",
+      "name": "Landscape Therapy Track",
+      "tagline": "Healing Through China's Natural Masterpieces",
+      "duration": {"min": 10, "max": 12, "recommended": 11},
+      "cities": ["Guilin", "Qiandongnan", "Western Sichuan"],
+      "theme": "nature",
+      "best_season": ["spring", "autumn"],
+      "budget": {"budget": 8000, "comfort": 16000, "luxury": 35000},
+      
+      "itinerary": [
+        {
+          "city": "Guilin",
+          "days": 3,
+          "highlights": [
+            {"name": "Li River Cruise", "description": "World's most beautiful river scenery"},
+            {"name": "Yangshuo", "description": "Karst mountains and countryside"},
+            {"name": "Longji Rice Terraces", "description": "Dragon's Backbone terraces"}
+          ]
+        },
+        {
+          "city": "Qiandongnan",
+          "days": 4,
+          "highlights": [
+            {"name": "Xijiang Miao Village", "description": "World's largest Miao village"},
+            {"name": "Zhaoxing Dong Village", "description": "Dong culture and drum towers"},
+            {"name": "Tangan Rice Terraces", "description": "Hiking from Zhaoxing to Tangan"}
+          ]
+        },
+        {
+          "city": "Western Sichuan",
+          "days": 4,
+          "highlights": [
+            {"name": "Mount Siguniang", "description": "Oriental Alps"},
+            {"name": "Danba Tibetan Villages", "description": "China's most beautiful villages"},
+            {"name": "Tagong Grassland", "description": "Grassland, snow mountain, monastery"},
+            {"name": "Xinduqiao", "description": "Photographer's paradise"}
+          ]
+        }
+      ],
+      
+      "achievement": {
+        "title": "Landscape Therapist",
+        "photos_count": 1000,
+        "ethnic_groups": ["Miao", "Dong", "Tibetan"]
+      }
+    },
+
+    {
+      "id": "bleisure-track-yangtze",
+      "name": "Bleisure Track - Yangtze Delta",
+      "tagline": "Business Meets Leisure in China's Economic Heart",
+      "duration": {"min": 3, "max": 5, "recommended": 4},
+      "cities": ["Shanghai", "Suzhou", "Hangzhou"],
+      "theme": "business",
+      "best_season": ["spring", "autumn"],
+      "budget": {"budget": 5000, "comfort": 10000, "luxury": 20000},
+      
+      "itinerary": [
+        {
+          "city": "Shanghai",
+          "days": 2,
+          "business": ["Lujiazui CBD", "Jing'an Business District"],
+          "leisure": ["The Bund", "French Concession", "Tianzifang"]
+        },
+        {
+          "city": "Suzhou",
+          "days": 1,
+          "leisure": ["Humble Administrator's Garden", "Pingjiang Road", "Zhouzhuang Water Town"]
+        },
+        {
+          "city": "Hangzhou",
+          "days": 2,
+          "leisure": ["West Lake", "Lingyin Temple", "Longjing Tea Village"]
+        }
+      ],
+      
+      "achievement": {
+        "title": "Business Traveler",
+        "balance": "Work-Life Balance Achieved"
+      }
+    },
+
+    {
+      "id": "edutainment-track",
+      "name": "Edutainment Track",
+      "tagline": "Learning Through Adventure for the Whole Family",
+      "duration": {"min": 7, "max": 10, "recommended": 8},
+      "cities": ["Zigong", "Xi'an", "Shanghai"],
+      "theme": "family",
+      "best_season": ["spring", "autumn", "winter_break"],
+      "budget": {"budget": 12000, "comfort": 25000, "luxury": 45000},
+      "age_range": "5-15 years old",
+      
+      "itinerary": [
+        {
+          "city": "Zigong",
+          "days": 2,
+          "highlights": [
+            {"name": "Zigong Dinosaur Museum", "description": "One of world's top 3 dinosaur sites"},
+            {"name": "Fangte Dinosaur Kingdom", "description": "Dinosaur-themed amusement park"},
+            {"name": "Salt History Museum", "description": "2,000 years of salt production"}
+          ],
+          "learning": ["Paleontology", "Geology", "Industrial history"]
+        },
+        {
+          "city": "Xi'an",
+          "days": 3,
+          "highlights": [
+            {"name": "Terracotta Warriors", "description": "Qin Dynasty history comes alive"},
+            {"name": "Ancient City Wall", "description": "Bike riding on 600-year-old wall"},
+            {"name": "Tang Dynasty Furong Garden", "description": "Immersive history experience"}
+          ],
+          "learning": ["Ancient Chinese history", "Archaeology", "Architecture"]
+        },
+        {
+          "city": "Shanghai",
+          "days": 4,
+          "highlights": [
+            {"name": "Shanghai Science and Technology Museum", "description": "STEM learning paradise"},
+            {"name": "Shanghai Disney Resort", "description": "Magic and fun"},
+            {"name": "Shanghai Natural History Museum", "description": "Asia's largest natural history museum"},
+            {"name": "Shanghai Astronomy Museum", "description": "World's largest astronomy museum"}
+          ],
+          "learning": ["Science", "Technology", "Astronomy", "Natural history"]
+        }
+      ],
+      
+      "achievement": {
+        "title": "Young Explorer",
+        "learning_areas": ["History", "Science", "Nature"]
+      }
+    }
+  ]
+}

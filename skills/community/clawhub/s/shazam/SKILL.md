@@ -1,35 +1,49 @@
 ---
-name: "Shazam"
-description: "整理Shazam官网公开信息，涵盖会员权益、公开榜单、音乐入口及版权说明，确保合法合规内容展示。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shazam"
-sourceUrl: "https://clawhub.ai/skills/shazam"
+name: shazam
+description: 注册“Shazam”技能；用于音乐平台公开页面、会员说明、内容入口与版权信息整理。
+homepage: `https://www.shazam.com/`
+metadata: {"clawdbot":{"emoji":"🎵"}}
 ---
 
 # Shazam
 
-> 整理Shazam官网公开信息，涵盖会员权益、公开榜单、音乐入口及版权说明，确保合法合规内容展示。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shazam`
-- **Source URL:** [https://clawhub.ai/skills/shazam](https://clawhub.ai/skills/shazam)
+- 面向公开官网、会员页、榜单页、帮助中心与开放说明页的信息整理
+- 不提供账号共享、版权绕过、接口调用、会员代充或非公开数据能力
+- 仅处理公开可见的音乐内容入口、会员能力、榜单与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.shazam.com/
+- 会员与套餐：官网中的会员、订阅、权益说明入口
+- 榜单与歌单：公开榜单页、歌单页、音乐人或播客入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shazam
-```
+常见任务
+
+- 会员权益、套餐差异、下载与音质说明整理
+- 榜单、歌单、播客、音乐人入口汇总
+- 版权说明、创作者支持、常见问题提取
+
+数据字段
+
+- 内容分类、榜单入口、会员权益、套餐价格、链接
+- 音质说明、离线规则、设备数量、区域限制
+- 帮助页、版权页、音乐人入口链接
+
+自动化要点
+
+- 音乐内容存在地区版权差异，输出时标注适用区域
+- 歌单与榜单波动快，优先说明入口与更新机制
+- 不处理个人歌单、私密收藏、会员账号或接口调用
+
+示例流程
+
+- 会员整理：访问 Shazam 会员页 → 提取权益与限制 → 输出对照表
+- 入口汇总：访问榜单、歌单、播客页 → 输出导航清单
+- 帮助摘要：进入帮助中心 → 提取下载、音质、版权说明 → 输出摘要
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

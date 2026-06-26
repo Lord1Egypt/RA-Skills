@@ -1,0 +1,51 @@
+{
+  "ecommerce": [
+    {"title": "Глюкометр Сателлит ЭЛТА SMD", "price": "899", "rating": "4.7", "reviews": "4210", "platform": "Яндекс.Маркет"},
+    {"title": "Омелон В1 ТелеАлекс", "price": "1290", "rating": "4.5", "reviews": "2100", "platform": "Яндекс.Маркет"},
+    {"title": "Accu-Chek Performa", "price": "2490", "rating": "4.8", "reviews": "1850", "platform": "Ozon"},
+    {"title": "OneTouch Select Plus", "price": "1890", "rating": "4.6", "reviews": "3200", "platform": "Wildberries"},
+    {"title": "Contour Plus One", "price": "2290", "rating": "4.7", "reviews": "1540", "platform": "Ozon"},
+    {"title": "CareSens N", "price": "1190", "rating": "4.4", "reviews": "980", "platform": "Wildberries"},
+    {"title": "Diacont OK Biotech", "price": "990", "rating": "4.3", "reviews": "720", "platform": "Яндекс.Маркет"}
+  ],
+  "market": {
+    "TAM": {"value_usd": 113600000000, "note": "全球血糖检测市场（2024）"},
+    "SAM": {"value_usd": 250000000, "note": "俄罗斯医疗器械市场 × 血糖品类占比"},
+    "SOM": {"value_usd": 3800000, "note": "综合可达市场（含竞争成功率）"}
+  },
+  "vk": [
+    {"author": "Diabet Help RU", "text": "Обзор глюкометров 2026: Сателлит vs Омелон. Личный опыт но...", "source_url": "https://vk.com/wall-12345678"},
+    {"author": "МамаДиабет", "text": "Как выбрать глюкометр ребёнку? OneTouch или FreeStyle Libre...", "source_url": "https://vk.com/wall-87654321"}
+  ],
+  "telegram": "{\"google_site_results\": [{\"title\": \"Telegram Канал: Диабет и жизнь\",\"snippet\": \"Глюкометры и тест-полоски — обзор лучших моделей на 2026 год. Цены, отзывы, где купить.\",\"url\": \"https://t.me/diabetlife\"}]}",
+  "news": [
+    {"title": "IMEDA: российский рынок медизделий вырос на 12% в 2025 году", "snippet": "Объём рынка глюкометров в РФ составил около 8,5 млрд руб. в 2024 году.", "url": "https://vademecum.ru"},
+    {"title": "РАЭ обновила рекомендации по СМБГ для пациентов с СД2", "snippet": "Новая редакция клинических рекомендаций увеличила частоту самоконтроля глюкозы.", "url": "https://endocrincentr.ru"}
+  ],
+  "competitor": [
+    {"brand": "Accu-Chek", "company": "Roche", "country": "Switzerland", "position": "High-end", "market_share": "~12%"},
+    {"brand": "OneTouch", "company": "Johnson & Johnson", "country": "USA", "position": "Mid-high", "market_share": "~10%"},
+    {"brand": "Contour", "company": "Ascensia (Bayer)", "country": "Germany", "position": "Mid-high", "market_share": "~8%"},
+    {"brand": "Сателлит", "company": "Элта", "country": "Russia", "position": "Budget", "market_share": "~25%"},
+    {"brand": "Омелон", "company": "ТелеАлекс", "country": "Russia", "position": "Budget", "market_share": "~15%"}
+  ],
+  "pricing": [
+    {"type": "入门级血糖仪", "range_rub": "600-1000", "range_cny": "48-80", "dominant_brand": "Сателлит, Омелон"},
+    {"type": "中端血糖仪", "range_rub": "1000-1800", "range_cny": "80-145", "dominant_brand": "CareSens, Diacont"},
+    {"type": "高端血糖仪", "range_rub": "1800+", "range_cny": "145+", "dominant_brand": "Accu-Chek, OneTouch, Contour"},
+    {"type": "试纸50片装", "range_rub": "349-699", "range_cny": "28-57", "note": "月均耗材成本"}
+  ],
+  "insurance": [
+    {"policy": "ЖНВЛП最高限价", "year": "2023", "impact": "部分试纸型号价格受管控"},
+    {"policy": "国产血糖仪ОМС报销试点扩大", "year": "2026-Q1", "impact": "利好Элта、ТелеАлекс"}
+  ],
+  "tender": [
+    {"brand": "Элта Сателлит", "est_bids_2024": "~120", "avg_price_range": "800-1200₽"},
+    {"brand": "Омелон", "est_bids_2024": "~60", "avg_price_range": "1000-1500₽"},
+    {"brand": "Accu-Chek", "est_bids_2024": "~40", "avg_price_range": "1500-2500₽"}
+  ],
+  "registration": [
+    {"brand": "Элта Сателлит", "reg_number": "РЗН 2015/xxxxx", "validity": "2025-2028"},
+    {"brand": "Accu-Chek Performa", "reg_number": "РЗН 2017/xxxxx", "validity": "2024-2027"}
+  ]
+}

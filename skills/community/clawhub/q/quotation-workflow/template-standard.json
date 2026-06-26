@@ -1,0 +1,51 @@
+{
+  "_comment": "报价单标准数据模板 - 用于生成客户专属报价单",
+  "_usage": "复制此模板，填入真实客户信息，然后用 generate-all.sh 生成报价单",
+  
+  "customer": {
+    "company_name": "客户公司全称（必填）",
+    "contact": "联系人姓名",
+    "email": "客户邮箱",
+    "phone": "客户电话",
+    "address": "客户地址",
+    "country": "客户国家"
+  },
+  
+  "quotation": {
+    "quotation_no": "QT-YYYYMMDD-XXX（建议格式）",
+    "date": "2026-03-27",
+    "valid_until": "2026-04-26"
+  },
+  
+  "products": [
+    {
+      "description": "产品名称（必填）",
+      "specification": "规格参数，逗号分隔",
+      "quantity": 500,
+      "unit_price": 8.50
+    }
+  ],
+  
+  "trade_terms": {
+    "incoterms": "FOB Shenzhen / CIF / DDP 等",
+    "currency": "USD / EUR / CNY",
+    "delivery": "15-20 days after deposit"
+  },
+  
+  "freight": 0,
+  "tax": 0,
+  
+  "bank_info": {
+    "beneficiary": "Farreach Electronic Co., Ltd.",
+    "bank_name": "Standard Chartered Bank",
+    "account_no": "1234 5678 9012",
+    "swift_code": "SCBLHKHH"
+  },
+  
+  "terms": {
+    "moq": "500 pcs (negotiable)",
+    "delivery": "7-15 days for standard products",
+    "payment": "T/T 30% deposit, 70% before shipment",
+    "packaging": "Gift box, kraft box, PE bag, or customized"
+  }
+}

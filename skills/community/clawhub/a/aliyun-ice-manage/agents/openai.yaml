@@ -1,0 +1,4 @@
+interface:
+  display_name: "Alibaba Cloud Media ICE"
+  short_description: "Manage ICE APIs and media processing workflows"
+  default_prompt: "Use $alicloud-media-ice to complete this Alibaba Cloud ICE media task."

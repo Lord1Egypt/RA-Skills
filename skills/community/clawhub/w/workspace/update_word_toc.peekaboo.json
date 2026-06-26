@@ -1,0 +1,115 @@
+{
+  "name": "Update Word Table of Contents",
+  "steps": [
+    {
+      "stepId": "open_document",
+      "action": {
+        "type": "app",
+        "params": {
+          "generic": {
+            "_0": {
+              "appName": "Microsoft Word",
+              "operation": "launch",
+              "open": "BSc-project-report-COMPLETE-FORMATTED.docx"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stepId": "wait_for_load",
+      "action": {
+        "type": "sleep",
+        "params": {
+          "duration": 5000
+        }
+      }
+    },
+    {
+      "stepId": "go_to_beginning",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "up"]
+        }
+      }
+    },
+    {
+      "stepId": "find_toc",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "f"]
+        }
+      }
+    },
+    {
+      "stepId": "type_toc",
+      "action": {
+        "type": "type",
+        "params": {
+          "text": "فهرست مطالب"
+        }
+      }
+    },
+    {
+      "stepId": "press_escape",
+      "action": {
+        "type": "press",
+        "params": {
+          "key": "escape"
+        }
+      }
+    },
+    {
+      "stepId": "select_toc",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "a"]
+        }
+      }
+    },
+    {
+      "stepId": "update_toc",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "option", "u"]
+        }
+      }
+    },
+    {
+      "stepId": "wait_update",
+      "action": {
+        "type": "sleep",
+        "params": {
+          "duration": 2000
+        }
+      }
+    },
+    {
+      "stepId": "save_document",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "s"]
+        }
+      }
+    },
+    {
+      "stepId": "close_word",
+      "action": {
+        "type": "app",
+        "params": {
+          "generic": {
+            "_0": {
+              "appName": "Microsoft Word",
+              "operation": "quit"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

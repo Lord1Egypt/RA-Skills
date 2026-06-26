@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meeting QA To Audio"
+  short_description: "Remember one meeting, answer follow-up questions, and generate mp3 answers"
+  default_prompt: "Use $meeting-minutes-qa-tts to read a meeting-notes path or URL, ask where the summary mp3 should be saved, summarize and save the meeting into local memory, generate the summary audio, answer follow-up questions about that same meeting in text first, then ask where the answer mp3 should be saved, generate it, and report where the audio file was saved."

@@ -1,0 +1,184 @@
+{
+    "_comment": "Sample Health-Mate configuration. Copy this file to user_config.json and replace the demo values with your own settings. Multiple conditions, custom scoring modules, and medication tracking are supported. For ClawHub manual upload, review the top-level env block below. The setup wizard can create a commented project-local config/.env file from these keys when the file does not already exist.",
+    "_version": "1.5.2",
+    "config_version": "1.5.2",
+    "language": "zh-CN",
+    "env": {
+        "_comment": "Upload-safe env reference. ClawHub manual upload may not include config/.env.example, so please use this block as the reference. The setup wizard will create a commented project-local config/.env template if the file is missing. Runtime scripts still read config/.env.",
+        "NVM_DIR": "/root/.nvm",
+        "CRON_PATH": "/root/.nvm/versions/node/v22.22.0/bin:/root/.local/bin:/root/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/bin:/usr/bin:/bin:/root/.npm-global/bin",
+        "OPENCLAW_BIN": "/root/.nvm/versions/node/v22.22.0/bin/openclaw",
+        "MEMORY_DIR": "/root/.openclaw/workspace/memory",
+        "DINGTALK_WEBHOOK": "https://oapi.dingtalk.com/robot/send?access_token=YOUR_TOKEN",
+        "FEISHU_WEBHOOK": "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_HOOK",
+        "TELEGRAM_BOT_TOKEN": "YOUR_BOT_TOKEN",
+        "TELEGRAM_CHAT_ID": "YOUR_CHAT_ID",
+        "TAVILY_API_KEY": "YOUR_TAVILY_API_KEY",
+        "REPORT_WEB_DIR": "/var/www/html/reports",
+        "REPORT_BASE_URL": "https://example.com/reports",
+        "ALLOW_RUNTIME_FONT_DOWNLOAD": "false",
+        "LOG_FILE": "/root/.openclaw/logs/health_report_pro.log"
+    },
+    "user_profile": {
+        "name": "Alex",
+        "gender": "male",
+        "age": 34,
+        "height_cm": 172,
+        "current_weight_kg": 65.2,
+        "target_weight_kg": 64.0,
+        "condition": "diabetes",
+        "primary_condition": "diabetes",
+        "conditions": [
+            "diabetes",
+            "hypertension"
+        ],
+        "activity_level": 1.2,
+        "water_target_ml": 2000,
+        "step_target": 8000,
+        "residence": {
+            "country": "China",
+            "province": "Shanghai",
+            "city": "Shanghai",
+            "district": "Pudong",
+            "display_name": "Shanghai Pudong"
+        },
+        "dietary_preferences": {
+            "dislike": [
+                "food-to-avoid-1",
+                "food-to-avoid-2"
+            ],
+            "allergies": [
+                "allergy-1",
+                "allergy-2"
+            ],
+            "favorite_fruits": [
+                "apple",
+                "banana"
+            ]
+        }
+    },
+    "condition_standards": {
+        "gallstones": {
+            "fat_min_g": 40,
+            "fat_max_g": 50,
+            "fiber_min_g": 25,
+            "water_min_ml": 2000
+        },
+        "diabetes": {
+            "fat_min_g": 40,
+            "fat_max_g": 55,
+            "fiber_min_g": 30,
+            "water_min_ml": 2000
+        },
+        "hypertension": {
+            "fat_min_g": 40,
+            "fat_max_g": 55,
+            "fiber_min_g": 25,
+            "water_min_ml": 2000,
+            "sodium_max_mg": 2000
+        },
+        "fat_loss": {
+            "fat_min_g": 40,
+            "fat_max_g": 60,
+            "fiber_min_g": 25,
+            "water_min_ml": 2500
+        },
+        "balanced": {
+            "fat_min_g": 40,
+            "fat_max_g": 60,
+            "fiber_min_g": 25,
+            "water_min_ml": 2000
+        }
+    },
+    "scoring": {
+        "modules": [
+            {
+                "id": "diet",
+                "type": "builtin",
+                "title": "饮食合规性",
+                "enabled": true,
+                "weight": 20
+            },
+            {
+                "id": "water",
+                "type": "builtin",
+                "title": "饮水完成度",
+                "enabled": true,
+                "weight": 15
+            },
+            {
+                "id": "weight",
+                "type": "builtin",
+                "title": "体重管理",
+                "enabled": true,
+                "weight": 15
+            },
+            {
+                "id": "symptom",
+                "type": "builtin",
+                "title": "症状管理",
+                "enabled": true,
+                "weight": 15
+            },
+            {
+                "id": "exercise",
+                "type": "builtin",
+                "title": "运动管理",
+                "enabled": true,
+                "weight": 20
+            },
+            {
+                "id": "adherence",
+                "type": "builtin",
+                "title": "健康依从性",
+                "enabled": true,
+                "weight": 15
+            },
+            {
+                "id": "medication",
+                "type": "section_presence",
+                "title": "用药情况",
+                "section_title": "用药情况",
+                "enabled": false,
+                "weight": 0,
+                "score_when_present": 100,
+                "score_when_missing": 0
+            },
+            {
+                "id": "biochemistry",
+                "type": "section_presence",
+                "title": "生化情况",
+                "section_title": "生化情况",
+                "enabled": false,
+                "weight": 0,
+                "score_when_present": 100,
+                "score_when_missing": 0
+            }
+        ]
+    },
+    "exercise_standards": {
+        "weekly_target_minutes": 150
+    },
+    "ai_generation": {
+        "expert_commentary": {
+            "mode": "hybrid",
+            "max_attempts": 3,
+            "timeout_seconds": 90
+        },
+        "next_day_plan": {
+            "mode": "hybrid",
+            "max_attempts": 3,
+            "timeout_seconds": 90
+        },
+    "risk_alerts": {
+      "mode": "local"
+    }
+  },
+  "integrations": {
+    "tavily_api_key": "YOUR_TAVILY_API_KEY"
+  },
+    "report_preferences": {
+      "append_custom_sections": true,
+      "population_branch": "lifestyle"
+    }
+  }

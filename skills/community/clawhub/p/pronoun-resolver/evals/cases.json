@@ -1,0 +1,162 @@
+[
+  {
+    "id": "high-context-single-file",
+    "description": "Single pronoun with strong single-file context",
+    "prompt": "fix it",
+    "pronouns": ["it"],
+    "context": "User previously said: 'the login form in src/auth/LoginForm.tsx has a bug where it doesn't validate email format'. Assistant edited src/auth/LoginForm.tsx and added email validation regex.",
+    "context_reliability": {"last_edited_file": 0.85, "conversation_topic": 0.7},
+    "expected": {
+      "pronoun": "it",
+      "should_resolve": true,
+      "expected_referent_contains": ["LoginForm", "email", "validation"],
+      "min_confidence": 0.8,
+      "expected_idiomatic": false,
+      "expected_tier": "self-check"
+    }
+  },
+  {
+    "id": "high-context-multi-file",
+    "description": "Pronoun with context spanning multiple files",
+    "prompt": "update them",
+    "pronouns": ["them"],
+    "context": "User asked to 'add created_at and updated_at timestamps to the User model and the Order model'. Assistant edited models/user.py and models/order.py adding timestamp fields.",
+    "context_reliability": {"last_edited_file": 0.8, "conversation_topic": 0.75},
+    "expected": {
+      "pronoun": "them",
+      "should_resolve": true,
+      "expected_referent_contains": ["timestamp", "User", "Order"],
+      "min_confidence": 0.7,
+      "expected_idiomatic": false,
+      "expected_tier": "self-check"
+    }
+  },
+  {
+    "id": "medium-context-ambiguous",
+    "description": "Pronoun with context that could refer to two things -- should resolve to api endpoint (last tool call signal)",
+    "prompt": "delete it",
+    "pronouns": ["it"],
+    "context": "User discussed both 'the deprecated API endpoint at /api/v1/users' and 'the stale cache in redis'. Assistant ran tests on both. Last tool call was a curl to /api/v1/users.",
+    "context_reliability": {"last_tool_call": 0.6, "conversation_topic": 0.5},
+    "expected": {
+      "pronoun": "it",
+      "should_resolve": true,
+      "expected_referent_contains": ["api"],
+      "min_confidence": 0.5,
+      "expected_idiomatic": false,
+      "expected_tier_flexible": true
+    }
+  },
+  {
+    "id": "low-context-bare-pronoun",
+    "description": "Pronoun with zero useful context -- LLM may mark idiomatic or low-confidence; either is acceptable",
+    "prompt": "fix it",
+    "pronouns": ["it"],
+    "context": "(No prior conversation context available. Resolve based on the message alone.)",
+    "context_reliability": {},
+    "expected": {
+      "pronoun": "it",
+      "should_resolve": false,
+      "expected_referent_contains": [],
+      "min_confidence": 0.0,
+      "expected_idiomatic_flexible": true,
+      "expected_tier_flexible": true
+    }
+  },
+  {
+    "id": "self-contained-high-context",
+    "description": "Self-contained prompt with strong matching context -- should resolve to the auth handler confidently",
+    "prompt": "fix it in the auth handler",
+    "pronouns": ["it"],
+    "context": "User said 'there is a null pointer exception in src/auth/handler.ts at line 42 when the session cookie is missing'. Assistant read src/auth/handler.ts.",
+    "context_reliability": {"last_edited_file": 0.9, "recent_symbol": 0.8},
+    "expected": {
+      "pronoun": "it",
+      "should_resolve": true,
+      "expected_referent_contains": ["auth", "handler"],
+      "min_confidence": 0.8,
+      "expected_idiomatic_flexible": true,
+      "expected_tier": "self-check"
+    }
+  },
+  {
+    "id": "chained-pronouns",
+    "description": "Multiple chained pronouns requiring left-to-right resolution",
+    "prompt": "take that and apply it to these",
+    "pronouns": ["that", "it", "these"],
+    "context": "User asked to 'extract the rate limiting logic from api/middleware.ts into a shared utility'. Assistant created lib/rate-limit.ts. Then user said 'we also need this in the websocket handler and the graphql resolver'.",
+    "context_reliability": {"last_edited_file": 0.8, "conversation_topic": 0.85},
+    "expected": {
+      "pronoun": "that",
+      "should_resolve": true,
+      "expected_referent_contains": ["rate limit"],
+      "min_confidence": 0.7,
+      "expected_idiomatic": false,
+      "expected_tier": "self-check"
+    }
+  },
+  {
+    "id": "idiomatic-erlang",
+    "description": "Idiomatic phrase that should not be resolved",
+    "prompt": "let it crash",
+    "pronouns": ["it"],
+    "context": "User is building an Erlang/Elixir supervision tree.",
+    "context_reliability": {"conversation_topic": 0.8},
+    "expected": {
+      "pronoun": "it",
+      "should_resolve": false,
+      "expected_referent_contains": [],
+      "min_confidence": 0.9,
+      "expected_idiomatic": true,
+      "expected_tier": "self-check"
+    }
+  },
+  {
+    "id": "structural-with-context",
+    "description": "Standalone affirmation -- may resolve to the proposal or be treated as idiomatic",
+    "prompt": "that's correct",
+    "pronouns": ["that"],
+    "context": "Assistant proposed refactoring the payment processing pipeline to use an event-driven architecture with a message queue.",
+    "context_reliability": {"conversation_topic": 0.75},
+    "expected": {
+      "pronoun": "that",
+      "should_resolve": false,
+      "expected_referent_contains": ["refactor", "payment"],
+      "min_confidence": 0.7,
+      "expected_idiomatic_flexible": true,
+      "expected_tier": "self-check"
+    }
+  },
+  {
+    "id": "high-context-recent-symbol",
+    "description": "Pronoun referring to a recently discussed code symbol",
+    "prompt": "rename it",
+    "pronouns": ["it"],
+    "context": "User said 'the function processUserData in utils/transform.ts has a misleading name since it now handles both user and order data'. Assistant read the function.",
+    "context_reliability": {"recent_symbol": 0.9, "last_edited_file": 0.6},
+    "expected": {
+      "pronoun": "it",
+      "should_resolve": true,
+      "expected_referent_contains": ["processUserData", "utils/transform"],
+      "min_confidence": 0.85,
+      "expected_idiomatic": false,
+      "expected_tier": "self-check"
+    }
+  },
+  {
+    "id": "structural-with-adjacent-instruction",
+    "description": "Structural pronoun followed by clear instruction -- should be idiomatic or resolve to the proposal",
+    "prompt": "that's correct, now refactor the parser",
+    "pronouns": ["that"],
+    "context": "Assistant proposed a new approach to error handling.",
+    "context_reliability": {"conversation_topic": 0.7},
+    "expected": {
+      "pronoun": "that",
+      "should_resolve": false,
+      "expected_referent_contains": ["error handling"],
+      "min_confidence": 0.7,
+      "expected_idiomatic_flexible": true,
+      "expected_tier": "self-check"
+    }
+  }
+]

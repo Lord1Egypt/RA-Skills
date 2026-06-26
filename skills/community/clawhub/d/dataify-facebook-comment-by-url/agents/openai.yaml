@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Facebook Comment By URL"
+  short_description: "Submit Dataify Facebook post comment tasks by URL"
+  icon_small: "./assets/dataify-facebook-comment-by-url-small.svg"
+  icon_large: "./assets/dataify-facebook-comment-by-url-large.svg"
+  default_prompt: "Use $dataify-facebook-comment-by-url to submit Facebook post comment Builder tasks by URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

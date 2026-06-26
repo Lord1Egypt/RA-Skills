@@ -1,0 +1,24 @@
+{
+  "name": "openclaw-skill-cleanshot",
+  "version": "0.2.0",
+  "description": "Optional OpenClaw skill that teaches agents how to use the CleanShot Tool plugin for screenshots, OCR, screen recording, scrolling capture, annotation, pinned references, and CleanShot history access.",
+  "license": "MIT",
+  "author": "Lyzmin41",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "cleanshot",
+    "screenshot",
+    "screen-recording",
+    "ocr",
+    "workflow",
+    "macos"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "examples.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ]
+}

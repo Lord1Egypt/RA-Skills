@@ -1,0 +1,12 @@
+{
+  "emoji": "📈",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "cron": "*/2 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trade.py"
+  }
+}

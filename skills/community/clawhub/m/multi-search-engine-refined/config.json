@@ -1,0 +1,9 @@
+{
+  "name": "multi-search-engine",
+  "engines": [
+    {"name": "Google", "url": "https://www.google.com/search?q={keyword}", "region": "global"},
+    {"name": "DuckDuckGo", "url": "https://duckduckgo.com/html/?q={keyword}", "region": "global"},
+    {"name": "Brave", "url": "https://search.brave.com/search?q={keyword}", "region": "global"},
+    {"name": "WolframAlpha", "url": "https://www.wolframalpha.com/input?i={keyword}", "region": "global"}
+  ]
+}

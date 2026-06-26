@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/hypertension-tracker.json",
+  "title": "HypertensionTracker",
+  "description": "Data structure definition for hypertension management",
+  "type": "object",
+  "properties": {
+    "bp_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "time": {"type": "string", "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"},
+          "systolic": {"type": "integer", "minimum": 70, "maximum": 250},
+          "diastolic": {"type": "integer", "minimum": 40, "maximum": 150},
+          "pulse": {"type": "integer", "minimum": 40, "maximum": 200},
+          "position": {
+            "type": "string",
+            "enum": ["sitting", "standing", "lying"]
+          },
+          "measurement_device": {"type": "string"},
+          "arm": {
+            "type": "string",
+            "enum": ["left", "right"]
+          },
+          "classification": {
+            "type": "string",
+            "enum": ["Normal BP", "High-Normal", "Grade 1 Hypertension", "Grade 2 Hypertension", "Grade 3 Hypertension"]
+          },
+          "in_target": {"type": "boolean"},
+          "created_at": {"type": "string", "format": "date-time"}
+        },
+        "required": ["id", "date", "systolic", "diastolic"]
+      }
+    },
+    "target_organ_damage": {
+      "type": "object",
+      "properties": {
+        "left_ventricular_hypertrophy": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["none", "present", "unknown"]
+            },
+            "last_assessment": {"type": "string", "format": "date"},
+            "method": {
+              "type": "string",
+              "enum": ["echocardiogram", "ecg"]
+            }
+          }
+        },
+        "microalbuminuria": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["negative", "positive", "unknown"]
+            },
+            "uacr": {"type": "number", "minimum": 0},
+            "reference": {"type": "string"},
+            "date": {"type": "string", "format": "date"}
+          }
+        },
+        "retinopathy": {
+          "type": "object",
+          "properties": {
+            "grade": {
+              "type": "string",
+              "enum": ["grade_0", "grade_1", "grade_2", "grade_3", "grade_4"]
+            },
+            "last_exam": {"type": "string", "format": "date"}
+          }
+        },
+        "arterial_stiffness": {
+          "type": "object",
+          "properties": {
+            "pwv": {"type": "number", "minimum": 0},
+            "reference": {"type": "string"},
+            "date": {"type": "string", "format": "date"}
+          }
+        }
+      }
+    },
+    "cardiovascular_risk": {
+      "type": "object",
+      "properties": {
+        "assessment_date": {"type": "string", "format": "date"},
+        "ascvd_risk_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "risk_level": {
+          "type": "string",
+          "enum": ["Low Risk", "Moderate Risk", "High Risk", "Very High Risk"]
+        },
+        "risk_factors": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "bp_targets": {
+      "type": "object",
+      "properties": {
+        "systolic_target": {"type": "integer"},
+        "diastolic_target": {"type": "integer"},
+        "target_basis": {"type": "string"},
+        "patient_category": {
+          "type": "string",
+          "enum": ["general", "elderly", "diabetes_ckd"]
+        }
+      }
+    },
+    "medications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "medication_id": {"type": "string"},
+          "name": {"type": "string"},
+          "dosage": {"type": "string"},
+          "frequency": {"type": "string"},
+          "indication": {"type": "string"},
+          "added_from": {"type": "string"},
+          "added_date": {"type": "string", "format": "date"}
+        },
+        "required": ["medication_id", "name"]
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "avg_systolic_7days": {"type": "number"},
+        "avg_diastolic_7days": {"type": "number"},
+        "avg_systolic_30days": {"type": "number"},
+        "avg_diastolic_30days": {"type": "number"},
+        "target_rate_7days": {"type": "number"},
+        "target_rate_30days": {"type": "number"},
+        "morning_avg_sys": {"type": "number"},
+        "morning_avg_dia": {"type": "number"},
+        "evening_avg_sys": {"type": "number"},
+        "evening_avg_dia": {"type": "number"},
+        "dipping_pattern": {
+          "type": "string",
+          "enum": ["Dipper", "Non-Dipper", "Reverse Dipper", "unknown"]
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

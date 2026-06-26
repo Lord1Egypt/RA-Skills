@@ -1,0 +1,193 @@
+{
+  "id": "research-paper-writer",
+  "name": "Research Paper Writer",
+  "description": "完整论文生成技能，支持 IEEE/ACM/Nature 等格式，提供论文结构生成、摘要写作、引言写作、方法部分写作、结果呈现、讨论写作、参考文献管理等功能。",
+  "version": "1.0.0",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "论文生成",
+      "写论文",
+      "research paper",
+      "generate paper",
+      "thesis writing"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "default_template": "scientific_data",
+    "supported_templates": [
+      "scientific_data",
+      "nature_communications",
+      "ieee_conference",
+      "acm_journal",
+      "pnas",
+      "psychological_science"
+    ],
+    "citation_style": "APA",
+    "word_limit": {
+      "abstract": 250,
+      "introduction": 1000,
+      "methods": 1500,
+      "results": 1500,
+      "discussion": 2000,
+      "conclusion": 500
+    }
+  },
+
+  "templates": {
+    "scientific_data": {
+      "journal": "Scientific Data (Nature)",
+      "structure": [
+        "Abstract",
+        "Background & Summary",
+        "Methods",
+        "Data Records",
+        "Technical Validation",
+        "Usage Notes",
+        "Code Availability",
+        "References"
+      ],
+      "word_limit": 3000,
+      "figures": "5+",
+      "tables": "2+"
+    },
+    "nature_communications": {
+      "journal": "Nature Communications",
+      "structure": [
+        "Abstract",
+        "Introduction",
+        "Results",
+        "Discussion",
+        "Methods",
+        "Data Availability",
+        "Code Availability",
+        "References"
+      ],
+      "word_limit": 5000,
+      "figures": "6+",
+      "tables": "2+"
+    },
+    "ieee_conference": {
+      "journal": "IEEE Conference",
+      "structure": [
+        "Abstract",
+        "Introduction",
+        "Related Work",
+        "Methods",
+        "Experiments",
+        "Results & Discussion",
+        "Conclusion",
+        "References"
+      ],
+      "word_limit": 4000,
+      "pages": "6-8",
+      "figures": "4+"
+    },
+    "pnas": {
+      "journal": "PNAS",
+      "structure": [
+        "Abstract",
+        "Significance Statement",
+        "Introduction",
+        "Results",
+        "Discussion",
+        "Materials & Methods",
+        "Acknowledgments",
+        "References"
+      ],
+      "word_limit": 5000,
+      "figures": "5+"
+    }
+  },
+
+  "capabilities": [
+    {
+      "name": "论文结构生成",
+      "description": "根据期刊模板生成论文结构",
+      "features": [
+        "模板选择",
+        "结构生成",
+        "字数分配",
+        "图表规划"
+      ]
+    },
+    {
+      "name": "摘要写作",
+      "description": "生成论文摘要",
+      "features": [
+        "结构化摘要",
+        "非结构化摘要",
+        "关键词生成",
+        "字数控制"
+      ]
+    },
+    {
+      "name": "引言写作",
+      "description": "生成引言部分",
+      "features": [
+        "研究背景",
+        "文献综述",
+        "研究问题",
+        "研究贡献"
+      ]
+    },
+    {
+      "name": "方法写作",
+      "description": "生成方法部分",
+      "features": [
+        "研究设计",
+        "参与者",
+        "材料",
+        "程序",
+        "数据分析"
+      ]
+    },
+    {
+      "name": "结果呈现",
+      "description": "生成结果部分",
+      "features": [
+        "描述统计",
+        "推断统计",
+        "图表引用",
+        "效应量报告"
+      ]
+    },
+    {
+      "name": "讨论写作",
+      "description": "生成讨论部分",
+      "features": [
+        "主要发现",
+        "与现有研究对比",
+        "理论贡献",
+        "实践意义",
+        "局限性",
+        "未来方向"
+      ]
+    },
+    {
+      "name": "参考文献管理",
+      "description": "管理参考文献",
+      "features": [
+        "引用格式化",
+        "参考文献列表生成",
+        "完整性检查",
+        "DOI 验证"
+      ]
+    }
+  ],
+
+  "output": {
+    "format": "markdown",
+    "include": [
+      "完整论文草稿",
+      "参考文献列表",
+      "图表清单",
+      "格式检查报告",
+      "字数统计"
+    ]
+  }
+}

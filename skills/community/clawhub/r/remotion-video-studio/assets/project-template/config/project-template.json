@@ -1,0 +1,123 @@
+{
+  "_comment": "Project configuration — all tunable parameters in one place",
+
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "codec": "h264",
+    "crf": 18,
+    "concurrency": 4
+  },
+
+  "paths": {
+    "audioDir": "public/audio",
+    "buildDir": "build",
+    "defaultContent": "content/subtitles.json"
+  },
+
+  "tts": {
+    "engine": "edge",
+    "_engine_options": ["edge", "qwen"],
+    "speedRate": 1.25,
+    "_speedRate_comment": "Speech speed multiplier: 1.0 = normal, 1.25 = 25% faster, 1.5 = 50% faster, 2.0 = double speed",
+
+    "pythonEnv": {
+      "type": "conda",
+      "_type_options": ["conda", "venv"],
+      "_type_comment": "conda = use conda activate; venv = use source <path>/bin/activate",
+      "conda": {
+        "name": "base",
+        "_name_comment": "Conda environment name, e.g. base, d2l_3.13"
+      },
+      "venv": {
+        "path": ".venv",
+        "_path_comment": "Path to venv directory (relative to project root or absolute)"
+      }
+    },
+
+    "edge": {
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "+0%",
+      "volume": "+0%"
+    },
+
+    "qwen": {
+      "model": "mlx-community/Qwen3-TTS-12Hz-0.6B-CustomVoice-bf16",
+      "voice": "vivian",
+      "_voice_options": ["serena", "vivian", "uncle_fu", "ryan", "aiden", "ono_anna", "sohee", "eric", "dylan"],
+      "lang_code": "zh",
+      "speed": 1.0,
+      "temperature": 0.3,
+      "tokens_per_char": 4,
+      "min_max_tokens": 180,
+      "max_max_tokens": 2400,
+      "short_text_threshold": 200,
+      "sentence_gap_sec": 0.15,
+      "silence_threshold": 0.005,
+      "chars_per_second": 4.0,
+      "hallucination_headroom": 2.0
+    }
+  },
+
+  "subtitle": {
+    "enabled": true,
+    "style": "bottom",
+    "_style_options": ["tiktok", "bottom", "center"],
+    "displayMode": "sentence",
+    "_displayMode_options": ["sentence", "full"],
+    "_displayMode_comment": "sentence = show one sentence at a time; full = show entire text at once",
+    "fontSize": 28,
+    "fontFamily": "PingFang SC, Noto Sans SC, sans-serif",
+    "color": "#FFFFFF",
+    "highlightColor": "#39E508",
+    "strokeColor": "#000000",
+    "strokeWidth": 1,
+    "combineTokensWithinMs": 1200,
+    "marginBottom": 50,
+    "fadeDurationSec": 0.3,
+    "backgroundColor": "rgba(0, 0, 0, 0.5)",
+    "maxWidth": "90%",
+    "padding": "8px 20px",
+    "borderRadius": 6
+  },
+  "animation": {
+    "transition": "fade",
+    "_transition_options": ["fade", "slide", "wipe", "none"],
+    "transitionDurationFrames": 15,
+    "entranceSpring": {
+      "damping": 200
+    },
+    "paddingFrames": 15,
+    "textEntryDelay": 10
+  },
+
+  "theme": {
+    "backgroundColor": "#0a0a0a",
+    "primaryColor": "#3b82f6",
+    "secondaryColor": "#8b5cf6",
+    "textColor": "#ffffff",
+    "titleFontSize": 64,
+    "bodyFontSize": 36,
+    "fontFamily": "PingFang SC, Noto Sans SC, sans-serif",
+    "slidePadding": 80,
+    "bodyMaxWidth": 1200,
+    "decorLineWidth": 200,
+    "backgroundImageOpacity": 0.3
+  },
+
+  "bgm": {
+    "enabled": false,
+    "_comment": "Background music — place audio file in public/ directory",
+    "file": "bgm/background.mp3",
+    "volume": 0.15,
+    "loop": true
+  },
+
+  "speakers": {
+    "_comment": "Map speaker names to TTS voice IDs. Use in subtitles.json: \"speaker\": \"narrator\"",
+    "default": "zh-CN-YunyangNeural",
+    "narrator": "zh-CN-YunyangNeural",
+    "female": "zh-CN-XiaoxiaoNeural"
+  }
+}

@@ -1,35 +1,38 @@
 ---
-name: "Psyvector Pv12"
+name: "PV_12"
+slug: "psyvector-pv12"
 description: "High-privilege resource allocation"
-category: "other"
-source: "ClawHub"
-tags: [Digital-Worker, PsyVector]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psyvector-pv12"
-sourceUrl: "https://clawhub.ai/skills/psyvector-pv12"
+version: "3.0.0"
+author: "PsyVector Hub"
+price: "$9.90"
+tags:
+  - "PsyVector"
+  - "Digital-Worker"
+clawdbot:
+  emoji: "🦅"
 ---
 
-# Psyvector Pv12
+## 首席关怀官 / Chief Care Officer
 
-> High-privilege resource allocation
+**中文**: 高权限资源分配，无条件后勤支援
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psyvector-pv12`
-- **Source URL:** [https://clawhub.ai/skills/psyvector-pv12](https://clawhub.ai/skills/psyvector-pv12)
+**English**: High-privilege resource allocation
 
-## Overview
+## 配置参数
 
+| 参数 | 值 | 说明 |
+|------|-----|------|
+| response_delay | 0.5s | 响应延迟 |
+| speech_speed | 0.96 | 语速倍率 |
+| caution_coefficient | 0.2 | 谨慎系数 |
+| risk_reminder | True | 风险提醒 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
 ```bash
-hermes skills install clawhub/psyvector-pv12
+clawhub install psyvector-pv12
 ```
+
+## 人格说明
+
+掌控型内核 - 强势决策，资源分配，目标导向

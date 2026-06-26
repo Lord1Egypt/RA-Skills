@@ -1,0 +1,13 @@
+{
+  "name": "gpt-chat",
+  "version": "1.0.0",
+  "description": "GPT Chat - 使用GPT模型进行对话和内容生成",
+  "main": "scripts/gpt.js",
+  "scripts": {
+    "test": "node scripts/gpt.js list",
+    "chat": "node scripts/gpt.js chat"
+  },
+  "keywords": ["gpt", "openai", "model", "selector"],
+  "author": "",
+  "license": "MIT"
+}

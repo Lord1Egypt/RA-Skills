@@ -1,0 +1,9 @@
+{
+  "name": "video-transcript",
+  "version": "2.2.0",
+  "description": "视频/音频转录 → 优化润色 → 多平台发布稿的完整工作流。支持知乎、微信、小红书等多平台输出。",
+  "author": "openclaw",
+  "license": "MIT",
+  "keywords": ["video", "transcript", "whisper", "content", "article", "zhihu", "wechat", "xiaohongshu"],
+  "main": "SKILL.md"
+}

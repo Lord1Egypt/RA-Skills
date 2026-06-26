@@ -1,35 +1,36 @@
 ---
-name: "Beta Sentiment Analyzer"
-description: "Analyzes sentiment from social media, news headlines, and financial text. Outputs positive/negative/neutral scores with confidence levels and key phrase extr..."
-category: "domain"
-source: "ClawHub"
-tags: [finance, nlp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betasentiment"
-sourceUrl: "https://clawhub.ai/skills/betasentiment"
+name: sentiment-analyzer
+description: Analyzes sentiment from social media, news headlines, and financial text. Outputs positive/negative/neutral scores with confidence levels and key phrase extraction.
+metadata:
+  openclaw:
+    emoji: "💬"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Sentiment Analyzer
+# Sentiment Analyzer
 
-> Analyzes sentiment from social media, news headlines, and financial text. Outputs positive/negative/neutral scores with confidence levels and key phrase extr...
+AI-powered sentiment analysis for financial text, social media, and news.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betasentiment`
-- **Source URL:** [https://clawhub.ai/skills/betasentiment](https://clawhub.ai/skills/betasentiment)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/betasentiment
+python3 analyze.py --text "Bitcoin to the moon! Best investment ever!"
+python3 analyze.py --file headlines.csv
+```
+
+## Output Example
+
+```
+🔍 SENTIMENT ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━
+Text: "Bitcoin to the moon!"
+Score: 0.82 / 1.0
+Verdict: BULLISH 🐂
+Confidence: 91%
+
+Key phrases:
+- "to the moon" → extremely bullish signal
+- "best investment" → high conviction positive
 ```

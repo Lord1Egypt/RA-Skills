@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愿望清单</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 600px; margin: 0 auto; }
+
+        /* 人生进度 */
+        .life-progress-section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .life-progress-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #888;
+        }
+        .life-progress-toggle input { width: 16px; height: 16px; }
+        .life-progress-content { display: none; margin-top: 16px; }
+        .life-progress-content.show { display: block; }
+        .life-progress-inputs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .life-progress-inputs input {
+            flex: 1;
+            min-width: 80px;
+            padding: 8px 12px;
+            border: 1px solid #2a2a4a;
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: #eee;
+            font-size: 14px;
+        }
+        .life-progress-inputs input:focus { outline: none; border-color: #f39c12; }
+        .life-progress-inputs button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #f39c12;
+            color: #1a1a2e;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .life-progress-display { text-align: center; }
+        .life-percent {
+            font-size: 48px;
+            font-weight: bold;
+            color: #e94560;
+            text-shadow: 0 0 20px rgba(233,69,96,0.3);
+        }
+        .life-label { font-size: 14px; color: #888; margin-bottom: 12px; }
+        .life-bar {
+            height: 6px;
+            background: #2a2a4a;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .life-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, #e94560, #f39c12);
+            border-radius: 3px;
+            transition: width 0.5s;
+        }
+        .life-stats {
+            display: flex;
+            justify-content: space-around;
+            font-size: 13px;
+            color: #666;
+        }
+        .life-stats span { color: #f39c12; font-weight: 600; }
+
+        /* 统计 */
+        .stats {
+            text-align: center;
+            margin-bottom: 16px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* 区块 */
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .section-title { font-size: 16px; font-weight: 600; }
+        .section-title.pending { color: #f39c12; }
+        .section-title.completed { color: #27ae60; }
+        .section-title.cancelled { color: #e74c3c; }
+
+        /* 愿望项 */
+        .wish-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .wish-item:last-child { border-bottom: none; }
+        .wish-content { flex: 1; }
+        .wish-content .text {
+            font-size: 15px;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+        .wish-content .text:hover { color: #f39c12; }
+        .wish-content .text.completed { text-decoration: line-through; color: #888; }
+        .wish-content .meta {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .wish-content .note {
+            font-size: 13px;
+            color: #888;
+            font-style: italic;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #1a1a2e;
+            border-radius: 6px;
+        }
+        .wish-content .expand-hint {
+            font-size: 11px;
+            color: #f39c12;
+            margin-top: 4px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .wish-content .expand-hint:hover { text-decoration: underline; }
+
+        /* 时间线 */
+        .timeline {
+            display: none;
+            margin-top: 12px;
+            padding: 14px;
+            background: #0f0f1a;
+            border-radius: 8px;
+            border-left: 3px solid #f39c12;
+        }
+        .timeline.show { display: block; }
+        .timeline-entry {
+            margin-bottom: 14px;
+            padding-left: 12px;
+            border-left: 2px solid #2a2a4a;
+        }
+        .timeline-entry:last-child { margin-bottom: 0; }
+        .timeline-entry .entry-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .timeline-entry .entry-icon { font-size: 14px; }
+        .timeline-entry .entry-event { font-size: 13px; font-weight: 600; color: #f39c12; }
+        .timeline-entry .entry-date { font-size: 11px; color: #666; }
+        .timeline-entry .entry-note { font-size: 13px; color: #aaa; line-height: 1.5; margin-top: 4px; }
+
+        /* 操作按钮 */
+        .actions { display: flex; gap: 8px; margin-left: 8px; }
+        .actions button {
+            padding: 4px 10px;
+            font-size: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .actions button:hover { opacity: 0.8; }
+        .actions .complete-btn { background: #27ae60; color: white; }
+        .actions .cancel-btn { background: #e74c3c; color: white; }
+        .actions .undo-btn { background: #444; color: #aaa; }
+
+        /* 添加表单 */
+        .add-form { display: flex; gap: 8px; margin-top: 12px; }
+        .add-form input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #2a2a4a;
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: #eee;
+            font-size: 14px;
+        }
+        .add-form input:focus { outline: none; border-color: #f39c12; }
+        .add-form button {
+            padding: 10px 20px;
+            background: #f39c12;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .add-form button:hover { background: #e67e22; }
+
+        /* 空状态 */
+        .empty { text-align: center; padding: 30px; color: #666; }
+        .empty-icon { font-size: 48px; margin-bottom: 12px; }
+
+        /* 文件同步按钮 */
+        .file-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .file-actions button {
+            padding: 8px 12px;
+            font-size: 12px;
+            border: 1px solid #2a2a4a;
+            border-radius: 6px;
+            background: #16213e;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .file-actions button:hover { border-color: #f39c12; color: #f39c12; }
+        .file-actions button.linked { border-color: #27ae60; color: #27ae60; }
+
+        footer {
+            text-align: center;
+            margin-top: 24px;
+            padding: 16px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 人生进度（可选显示） -->
+        <div class="life-progress-section">
+            <label class="life-progress-toggle">
+                <input type="checkbox" id="showLifeProgress" onchange="toggleLifeProgress()">
+                <span>显示人生进度</span>
+            </label>
+            <div class="life-progress-content" id="lifeProgressContent">
+                <div class="life-progress-inputs">
+                    <input type="number" id="birthYear" placeholder="出生年份" min="1900" max="2026">
+                    <input type="number" id="lifeExpectancy" placeholder="预期寿命" min="50" max="120" value="80">
+                    <button onclick="updateLifeProgress()">计算</button>
+                </div>
+                <div class="life-progress-display" id="lifeProgressDisplay" style="display:none">
+                    <div class="life-label">你的人生进度</div>
+                    <div class="life-percent" id="lifePercent">--%</div>
+                    <div class="life-bar"><div class="life-bar-inner" id="lifeBar" style="width:0%"></div></div>
+                    <div class="life-stats">
+                        <div>已度过 <span id="daysLived">--</span> 天</div>
+                        <div>预期寿命 <span id="expectancy">--</span> 岁</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计 -->
+        <div class="stats">我们一起完成了 <span id="completedCount">0</span> 个愿望</div>
+
+        <!-- 文件同步按钮 -->
+        <div class="file-actions">
+            <button id="linkBtn" onclick="linkFile()">🔗 链接文件</button>
+            <button id="unlinkBtn" onclick="unlinkFile()" style="display:none">🔗 取消链接</button>
+            <button onclick="exportFile()">📤 导出</button>
+            <button onclick="document.getElementById('importInput').click()">📥 导入</button>
+            <input type="file" id="importInput" accept=".json" style="display:none" onchange="importFile(event)">
+        </div>
+
+        <!-- 待完成 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title pending">⏳ 正在实现（<span id="pendingCount">0</span>）</span>
+            </div>
+            <div id="pendingList"></div>
+            <form class="add-form" onsubmit="addWish(event)">
+                <input type="text" id="newWishInput" placeholder="添加新愿望..." autocomplete="off">
+                <button type="submit">+ 添加</button>
+            </form>
+        </div>
+
+        <!-- 已完成 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title completed">✅ 已完成（<span id="completedListCount">0</span>）</span>
+            </div>
+            <div id="completedList"></div>
+        </div>
+
+        <!-- 已取消 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title cancelled">❌ 已取消（<span id="cancelledCount">0</span>）</span>
+            </div>
+            <div id="cancelledList"></div>
+        </div>
+
+        <footer>
+            愿望清单 · 本地优先
+        </footer>
+    </div>
+
+    <script>
+        // ========== 数据存储 ==========
+        const DATA_FILE = 'data/bucket-list.json';
+        const DB_NAME = 'BucketListDB';
+        const STORE_NAME = 'fileHandles';
+        let db = null;
+        let fileHandle = null;
+        let wishData = { version: '1.0', wishes: [], createdAt: new Date().toISOString().split('T')[0] };
+
+        // IndexedDB 初始化
+        function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, 1);
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => { db = request.result; resolve(db); };
+                request.onupgradeneeded = (e) => {
+                    const database = e.target.result;
+                    if (!database.objectStoreNames.contains(STORE_NAME)) {
+                        database.createObjectStore(STORE_NAME);
+                    }
+                };
+            });
+        }
+
+        // 从 IndexedDB 恢复 file handle
+        async function restoreFileHandle() {
+            if (!db) await initDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readonly');
+                const store = tx.objectStore(STORE_NAME);
+                const request = store.get('default');
+                request.onsuccess = () => {
+                    fileHandle = request.result || null;
+                    if (fileHandle) {
+                        document.getElementById('linkBtn').style.display = 'none';
+                        document.getElementById('unlinkBtn').style.display = 'inline-block';
+                        document.getElementById('linkBtn').classList.add('linked');
+                    }
+                    resolve(fileHandle);
+                };
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        // 保存 file handle 到 IndexedDB
+        async function saveFileHandle(handle) {
+            if (!db) await initDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                const store = tx.objectStore(STORE_NAME);
+                const request = store.put(handle, 'default');
+                request.onsuccess = () => resolve();
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        // 链接文件
+        async function linkFile() {
+            try {
+                [fileHandle] = await window.showSaveFilePicker({
+                    suggestedName: 'bucket-list.json',
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+                });
+                await saveFileHandle(fileHandle);
+                document.getElementById('linkBtn').style.display = 'none';
+                document.getElementById('unlinkBtn').style.display = 'inline-block';
+                document.getElementById('linkBtn').classList.add('linked');
+                await syncToFile();
+            } catch (e) {
+                if (e.name !== 'AbortError') console.error('链接失败:', e);
+            }
+        }
+
+        // 取消链接
+        async function unlinkFile() {
+            if (!db) await initDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                const store = tx.objectStore(STORE_NAME);
+                const request = store.delete('default');
+                request.onsuccess = () => {
+                    fileHandle = null;
+                    document.getElementById('linkBtn').style.display = 'inline-block';
+                    document.getElementById('unlinkBtn').style.display = 'none';
+                    document.getElementById('linkBtn').classList.remove('linked');
+                    resolve();
+                };
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        // 同步到文件
+        async function syncToFile() {
+            if (!fileHandle) return;
+            try {
+                const writable = await fileHandle.createWritable();
+                await writable.write(JSON.stringify(wishData, null, 2));
+                await writable.close();
+            } catch (e) {
+                console.error('写入失败:', e);
+            }
+        }
+
+        // 导出文件
+        async function exportFile() {
+            const blob = new Blob([JSON.stringify(wishData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'bucket-list.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 导入文件
+        async function importFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            try {
+                const text = await file.text();
+                const data = JSON.parse(text);
+                wishData = normalizeData(data);
+                saveData();
+                render();
+            } catch (e) {
+                alert('导入失败: ' + e.message);
+            }
+            event.target.value = '';
+        }
+
+        // ========== 愿望逻辑 ==========
+        function loadData() {
+            try {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', DATA_FILE, false);
+                xhr.send();
+                if (xhr.status === 200) {
+                    wishData = normalizeData(JSON.parse(xhr.responseText));
+                }
+            } catch (e) {
+                console.log('初始化新数据');
+            }
+            render();
+        }
+
+        function saveData() {
+            try {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', DATA_FILE, false);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(wishData, null, 2));
+                if (xhr.status < 200 || xhr.status >= 300) {
+                    throw new Error(xhr.responseText || 'HTTP ' + xhr.status);
+                }
+            } catch (e) {
+                console.error('保存失败:', e);
+                alert('保存失败：' + e.message);
+            }
+            syncToFile();
+        }
+
+        function normalizeData(data) {
+            if (!data || !Array.isArray(data.wishes)) {
+                throw new Error('数据必须包含 wishes 数组');
+            }
+            return {
+                version: data.version || '1.4',
+                createdAt: data.createdAt || new Date().toISOString().split('T')[0],
+                wishes: data.wishes
+                    .filter(w => w && typeof w.content === 'string' && w.content.trim())
+                    .map(w => ({
+                        id: String(w.id || generateId()),
+                        content: String(w.content || '').trim(),
+                        category: String(w.category || '其他'),
+                        status: ['pending', 'completed', 'cancelled'].includes(w.status) ? w.status : 'pending',
+                        createdAt: String(w.createdAt || new Date().toISOString().split('T')[0]).slice(0, 10),
+                        endedAt: w.endedAt ? String(w.endedAt).slice(0, 10) : null,
+                        endedBy: w.endedBy || null,
+                        completionNote: String(w.completionNote || ''),
+                        cancelReason: String(w.cancelReason || ''),
+                        timeline: Array.isArray(w.timeline) ? w.timeline : []
+                    }))
+            };
+        }
+
+        function render() {
+            const pending = wishData.wishes.filter(w => w.status === 'pending');
+            const completed = wishData.wishes.filter(w => w.status === 'completed');
+            const cancelled = wishData.wishes.filter(w => w.status === 'cancelled');
+
+            document.getElementById('pendingCount').textContent = pending.length;
+            document.getElementById('completedListCount').textContent = completed.length;
+            document.getElementById('cancelledCount').textContent = cancelled.length;
+            document.getElementById('completedCount').textContent = completed.length;
+
+            renderList('pendingList', pending, false, false);
+            renderList('completedList', completed, true, false);
+            renderList('cancelledList', cancelled, false, true);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function renderTimeline(timeline) {
+            if (!timeline || timeline.length === 0) return '';
+            return timeline.map(e => `
+                <div class="timeline-entry">
+                    <div class="entry-header">
+                        <span class="entry-icon">${e.event === '完成' ? '✅' : e.event === '取消' ? '❌' : '📝'}</span>
+                        <span class="entry-event">${escapeHtml(e.event || '更新')}</span>
+                        <span class="entry-date">${escapeHtml(e.date || '')}</span>
+                    </div>
+                    ${e.note ? `<div class="entry-note">${escapeHtml(e.note)}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function renderList(containerId, wishes, showNote = false, isCancelled = false) {
+            const container = document.getElementById(containerId);
+            if (wishes.length === 0) {
+                container.innerHTML = '<div class="empty">暂无</div>';
+                return;
+            }
+            container.innerHTML = wishes.map(w => {
+                const idArg = JSON.stringify(String(w.id));
+                const endedText = w.endedAt ? ` · ${w.status === 'completed' ? '完成于' : '取消于'} ${escapeHtml(w.endedAt)}` : '';
+                const note = w.completionNote || w.cancelReason || '';
+                return `
+                    <div class="wish-item">
+                        <div class="wish-content ${w.status === 'completed' ? 'completed' : ''}">
+                            <div class="text ${w.status === 'completed' ? 'completed' : ''}" onclick="toggleTimeline(this.parentElement)">${escapeHtml(w.content)}</div>
+                            <div class="meta">添加于 ${escapeHtml(w.createdAt || '未知')}${endedText}</div>
+                            ${note ? `<div class="note">${escapeHtml(note)}</div>` : ''}
+                            <div class="expand-hint" onclick="toggleTimeline(this.parentElement)">查看详情 ▾</div>
+                            <div class="timeline">${renderTimeline(w.timeline || [])}</div>
+                        </div>
+                        <div class="actions">
+                            ${w.status === 'pending' ? `
+                                <button class="complete-btn" onclick='completeWish(${idArg})'>完成</button>
+                                <button class="cancel-btn" onclick='cancelWish(${idArg})'>取消</button>
+                            ` : ''}
+                            ${w.status === 'completed' ? `<button class="undo-btn" onclick='undoComplete(${idArg})'>撤销</button>` : ''}
+                            ${w.status === 'cancelled' ? `<button class="undo-btn" onclick='undoCancel(${idArg})'>撤销</button>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleTimeline(element) {
+            const textEl = element.querySelector('.text');
+            const tlEl = element.querySelector('.timeline');
+            const hintEl = element.querySelector('.expand-hint');
+            if (tlEl.classList.contains('show')) {
+                tlEl.classList.remove('show');
+                hintEl.textContent = '查看详情 ▾';
+            } else {
+                tlEl.classList.add('show');
+                hintEl.textContent = '收起 ▴';
+            }
+        }
+
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+        }
+
+        function addWish(e) {
+            e.preventDefault();
+            const input = document.getElementById('newWishInput');
+            const content = input.value.trim();
+            if (!content) return;
+
+            const now = new Date().toISOString().split('T')[0];
+            const wish = {
+                id: generateId(),
+                content: content,
+                status: 'pending',
+                createdAt: now,
+                endedAt: null,
+                endedBy: null,
+                completionNote: '',
+                timeline: [{ date: now, event: '添加愿望', note: content }]
+            };
+
+            wishData.wishes.push(wish);
+            saveData();
+            input.value = '';
+            render();
+        }
+
+        function completeWish(id) {
+            const wish = wishData.wishes.find(w => w.id === id);
+            if (!wish) return;
+
+            const note = wish.completionNote || prompt('添加完成备注（可选）：', '');
+            if (note === null) return;
+
+            const now = new Date().toISOString().split('T')[0];
+            wish.status = 'completed';
+            wish.endedAt = now;
+            wish.endedBy = 'complete';
+            wish.completionNote = note;
+            wish.timeline = wish.timeline || [];
+            wish.timeline.push({ date: now, event: '完成', note: note || '完成愿望' });
+
+            saveData();
+            render();
+        }
+
+        function undoComplete(id) {
+            const wish = wishData.wishes.find(w => w.id === id);
+            if (!wish) return;
+
+            wish.status = 'pending';
+            wish.endedAt = null;
+            wish.endedBy = null;
+            wish.completionNote = '';
+            if (wish.timeline) {
+                wish.timeline = wish.timeline.filter(e => e.event !== '完成');
+            }
+
+            saveData();
+            render();
+        }
+
+        function cancelWish(id) {
+            const wish = wishData.wishes.find(w => w.id === id);
+            if (!wish) return;
+
+            const reason = prompt('取消原因（可选）：', '');
+            if (reason === null) return;
+
+            const now = new Date().toISOString().split('T')[0];
+            wish.status = 'cancelled';
+            wish.endedAt = now;
+            wish.endedBy = 'cancelled';
+            wish.timeline = wish.timeline || [];
+            wish.timeline.push({ date: now, event: '取消', note: reason || '取消愿望' });
+
+            saveData();
+            render();
+        }
+
+        function undoCancel(id) {
+            const wish = wishData.wishes.find(w => w.id === id);
+            if (!wish) return;
+
+            wish.status = 'pending';
+            wish.endedAt = null;
+            wish.endedBy = null;
+            if (wish.timeline) {
+                wish.timeline = wish.timeline.filter(e => e.event !== '取消');
+            }
+
+            saveData();
+            render();
+        }
+
+        // ========== 人生进度 ==========
+        let birthYear = parseInt(localStorage.getItem('birthYear')) || null;
+        let lifeExpectancy = parseInt(localStorage.getItem('lifeExpectancy')) || 80;
+        let showLifeProgress = localStorage.getItem('showLifeProgress') === 'true';
+
+        function initLifeProgress() {
+            document.getElementById('showLifeProgress').checked = showLifeProgress;
+            if (birthYear) document.getElementById('birthYear').value = birthYear;
+            document.getElementById('lifeExpectancy').value = lifeExpectancy;
+            if (showLifeProgress) {
+                document.getElementById('lifeProgressContent').classList.add('show');
+                if (birthYear) updateLifeProgress();
+            }
+        }
+
+        function toggleLifeProgress() {
+            showLifeProgress = document.getElementById('showLifeProgress').checked;
+            localStorage.setItem('showLifeProgress', showLifeProgress);
+            document.getElementById('lifeProgressContent').classList.toggle('show', showLifeProgress);
+            if (showLifeProgress && birthYear) updateLifeProgress();
+        }
+
+        function updateLifeProgress() {
+            const birth = parseInt(document.getElementById('birthYear').value);
+            const life = parseInt(document.getElementById('lifeExpectancy').value) || 80;
+
+            if (!birth || birth < 1900 || birth > 2026) {
+                alert('请输入有效的出生年份');
+                return;
+            }
+
+            birthYear = birth;
+            lifeExpectancy = life;
+            localStorage.setItem('birthYear', birthYear);
+            localStorage.setItem('lifeExpectancy', lifeExpectancy);
+
+            const now = new Date();
+            const birthDate = new Date(birth, 0, 1);
+            const endDate = new Date(birth + life, 0, 1);
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+            const totalDays = Math.floor((endDate - birthDate) / (1000 * 60 * 60 * 24));
+            const daysLived = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
+            const percent = Math.min(100, (daysLived / totalDays) * 100);
+
+            document.getElementById('lifePercent').textContent = percent.toFixed(1) + '%';
+            document.getElementById('lifeBar').style.width = percent + '%';
+            document.getElementById('daysLived').textContent = daysLived.toLocaleString();
+            document.getElementById('expectancy').textContent = life;
+            document.getElementById('lifeProgressDisplay').style.display = 'block';
+        }
+
+        // ========== 初始化 ==========
+        async function init() {
+            try {
+                await initDB();
+                await restoreFileHandle();
+            } catch (e) {
+                console.log('File System Access API 不可用，使用 localStorage');
+            }
+            loadData();
+            initLifeProgress();
+        }
+
+        init();
+    </script>
+</body>
+</html>

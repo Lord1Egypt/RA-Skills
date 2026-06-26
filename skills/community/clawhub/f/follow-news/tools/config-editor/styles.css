@@ -1,0 +1,217 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f6f7fb;
+  color: #1f2937;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.header p {
+  margin: 4px 0 0;
+  color: #4b5563;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+  margin: 12px 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.actions,
+.toolbar,
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+button,
+input,
+select,
+textarea {
+  border-radius: 7px;
+  border: 1px solid #d1d5db;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+  background: #111827;
+  color: white;
+}
+
+.secondary {
+  background: #fff;
+  color: #111827;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+input,
+select,
+textarea {
+  background: #fff;
+}
+
+.toolbar {
+  margin-bottom: 10px;
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 220px;
+}
+
+.table-wrap {
+  max-height: 450px;
+  overflow: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 13px;
+}
+
+th {
+  background: #f9fafb;
+  position: sticky;
+  top: 0;
+}
+
+.action-col {
+  text-align: center;
+  width: 1%;
+  white-space: nowrap;
+}
+
+td.action-col-cell {
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.icon-btn {
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border-radius: 999px;
+}
+
+.source-type-filter {
+  min-width: 130px;
+}
+
+td input,
+td select {
+  width: 100%;
+  min-width: 80px;
+}
+
+td.action-col-cell {
+  padding: 4px 6px;
+  text-align: center;
+}
+
+td small {
+  color: #6b7280;
+}
+
+.pager {
+  margin-top: 8px;
+}
+
+.raw-editor textarea {
+  width: 100%;
+  height: 520px;
+  font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.status {
+  margin: 6px 0 0;
+  min-height: 18px;
+}
+
+.status.ok {
+  color: #166534;
+}
+
+.status.err {
+  color: #b91c1c;
+}
+
+.hint {
+  color: #6b7280;
+  font-size: 12px;
+  margin: 6px 0 0;
+}
+
+.footer {
+  padding: 8px 16px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #6b7280;
+}
+
+@media (max-width: 900px) {
+  .header,
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

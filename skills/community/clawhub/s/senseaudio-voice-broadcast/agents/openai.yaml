@@ -1,0 +1,4 @@
+interface:
+  display_name: "Character Voice Broadcast"
+  short_description: "Character-style TTS for narration and comfort."
+  default_prompt: "Use $character-voice-broadcast to rewrite this text into a persona-driven TTS script with voice style notes."

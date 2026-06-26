@@ -1,0 +1,144 @@
+{
+  "version": "1.0.0",
+  
+  "visa": {
+    "visa_free_15_days": {
+      "name": "15-Day Visa-Free",
+      "countries_count": 54,
+      "major_countries": ["France", "Germany", "Italy", "Spain", "Malaysia", "Singapore", "Thailand", "Japan", "South Korea", "Australia", "New Zealand"],
+      "max_stay": "15 days"
+    },
+    "transit_144h": {
+      "name": "144-Hour Transit Visa-Free",
+      "major_ports": ["Beijing", "Shanghai", "Guangzhou", "Chengdu", "Xi'an", "Hangzhou"],
+      "requirement": "Onward ticket to third country"
+    },
+    "visa_required": {
+      "processing_time": "4-7 business days",
+      "apply_at": "Chinese embassy/consulate"
+    }
+  },
+
+  "emergency": {
+    "numbers": [
+      {"number": "120", "service": "Ambulance"},
+      {"number": "110", "service": "Police"},
+      {"number": "119", "service": "Fire"},
+      {"number": "+86-10-12308", "service": "Consular Protection"}
+    ],
+    "hospitals": {
+      "beijing": [{"name": "United Family Hospital", "phone": "010-5927-7000"}],
+      "shanghai": [{"name": "United Family Hospital", "phone": "021-2216-3900"}],
+      "guangzhou": [{"name": "United Family Hospital", "phone": "020-3610-2333"}],
+      "shenzhen": [{"name": "United Family Hospital", "phone": "0755-3305-1000"}]
+    }
+  },
+
+  "routes": {
+    "beijing_express": {
+      "name": "Beijing Express",
+      "duration": 3,
+      "days": [
+        {"day": 1, "activities": ["Forbidden City", "Jingshan Park", "Wangfujing"]},
+        {"day": 2, "activities": ["Great Wall (Mutianyu)", "Bird's Nest"]},
+        {"day": 3, "activities": ["Temple of Heaven", "Qianmen", "Hutongs"]}
+      ],
+      "must_book": ["Forbidden City"],
+      "budget_per_day": {"budget": 600, "comfort": 1200}
+    },
+    "shanghai_suzhou": {
+      "name": "Shanghai + Suzhou",
+      "duration": 3,
+      "days": [
+        {"day": 1, "activities": ["The Bund", "Nanjing Road", "Lujiazui"]},
+        {"day": 2, "activities": ["Yu Garden", "French Concession", "Tianzifang"]},
+        {"day": 3, "activities": ["Suzhou Humble Administrator's Garden", "Pingjiang Road"]}
+      ],
+      "transport": "Shanghai→Suzhou 30min by train",
+      "budget_per_day": {"budget": 700, "comfort": 1500}
+    },
+    "xian_express": {
+      "name": "Xi'an Express",
+      "duration": 3,
+      "days": [
+        {"day": 1, "activities": ["Terracotta Warriors", "Huaqing Palace"]},
+        {"day": 2, "activities": ["City Wall", "Bell Tower", "Muslim Quarter"]},
+        {"day": 3, "activities": ["Shaanxi History Museum", "Big Wild Goose Pagoda"]}
+      ],
+      "must_book": ["Shaanxi History Museum"],
+      "budget_per_day": {"budget": 400, "comfort": 800}
+    },
+    "chengdu_express": {
+      "name": "Chengdu Express",
+      "duration": 3,
+      "days": [
+        {"day": 1, "activities": ["Panda Base (8am)", "Wuhou Shrine", "Jinli"]},
+        {"day": 2, "activities": ["Wide & Narrow Alleys", "People's Park", "Hot Pot"]},
+        {"day": 3, "activities": ["Dujiangyan", "Qingcheng Mountain"]}
+      ],
+      "tips": ["Pandas most active 8-10am"],
+      "budget_per_day": {"budget": 500, "comfort": 1000}
+    }
+  },
+
+  "cities": {
+    "beijing": {"days": "3-4", "top3": ["Forbidden City", "Great Wall", "Temple of Heaven"], "budget": "¥600-1200/day"},
+    "shanghai": {"days": "2-3", "top3": ["The Bund", "Yu Garden", "Disney"], "budget": "¥700-1500/day"},
+    "xian": {"days": "2-3", "top3": ["Terracotta Warriors", "City Wall", "Muslim Quarter"], "budget": "¥400-800/day"},
+    "chengdu": {"days": "2-3", "top3": ["Panda Base", "Hot Pot", "Giant Buddha"], "budget": "¥500-1000/day"},
+    "guilin": {"days": "2-3", "top3": ["Li River", "Yangshuo", "Rice Terraces"], "budget": "¥400-800/day"},
+    "hangzhou": {"days": "1-2", "top3": ["West Lake", "Lingyin Temple", "Tea Village"], "budget": "¥500-1000/day"}
+  },
+
+  "payment": {
+    "methods": [
+      {"name": "Alipay Tour Pass", "best_for": "Tourists", "limit": "¥2000/tx, ¥5000/day"},
+      {"name": "WeChat + Foreign Card", "best_for": "Convenience", "limit": "¥5000/tx, ¥10000/day"},
+      {"name": "Cash", "best_for": "Backup", "recommend": "Carry ¥500-1000"}
+    ],
+    "quick_fixes": {
+      "payment_rejected": "Switch app (Alipay ↔ WeChat) or use cash",
+      "cannot_bind": "Call bank to enable overseas payments",
+      "cannot_scan": "Use 'Pay Code' (let merchant scan you)"
+    }
+  },
+
+  "phrases": {
+    "restaurant": [
+      {"cn": "不要辣。", "py": "Bù yào là.", "en": "No spicy."},
+      {"cn": "买单。", "py": "Mǎidān.", "en": "Check, please."},
+      {"cn": "可以刷卡吗？", "py": "Kěyǐ shuākǎ ma?", "en": "Can I pay by card?"}
+    ],
+    "transport": [
+      {"cn": "去这里。", "py": "Qù zhèlǐ.", "en": "Go here."},
+      {"cn": "多少钱？", "py": "Duōshao qián?", "en": "How much?"},
+      {"cn": "请打表。", "py": "Qǐng dǎbiǎo.", "en": "Use the meter."}
+    ],
+    "emergency": [
+      {"cn": "救命！", "py": "Jiùmìng!", "en": "Help!"},
+      {"cn": "我迷路了。", "py": "Wǒ mílù le.", "en": "I'm lost."},
+      {"cn": "我需要医生。", "py": "Wǒ xūyào yīshēng.", "en": "I need a doctor."}
+    ],
+    "general": [
+      {"cn": "你好。", "py": "Nǐ hǎo.", "en": "Hello."},
+      {"cn": "谢谢。", "py": "Xièxie.", "en": "Thank you."},
+      {"cn": "我不会说中文。", "py": "Wǒ bù huì shuō Zhōngwén.", "en": "I don't speak Chinese."}
+    ]
+  },
+
+  "apps": [
+    {"name": "Amap", "use": "Navigation", "platforms": ["iOS", "Android"]},
+    {"name": "Alipay", "use": "Payment + Metro", "platforms": ["iOS", "Android"]},
+    {"name": "WeChat", "use": "Payment + Chat", "platforms": ["iOS", "Android"]},
+    {"name": "Baidu Translate", "use": "Camera translate", "platforms": ["iOS", "Android"]},
+    {"name": "Dianping", "use": "Restaurant reviews", "platforms": ["iOS", "Android"]}
+  ],
+
+  "culture": {
+    "tipping": "No tipping tradition in China",
+    "gifts_to_avoid": ["Clocks", "Umbrellas", "Shoes", "Pears"],
+    "lucky_numbers": [6, 8, 9],
+    "unlucky_number": 4,
+    "chopsticks": "Never stick upright in rice"
+  }
+}

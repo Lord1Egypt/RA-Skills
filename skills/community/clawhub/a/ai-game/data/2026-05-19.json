@@ -1,0 +1,47 @@
+{
+  "date": "2026-05-19",
+  "generated_at": "2026-05-19T01:18:25Z",
+  "total_count": 2,
+  "items": [
+    {
+      "title": "阿里云千问大模型 Qwen3.7-Max-Preview 首发亮相 Arena AI",
+      "url": "https://www.ithome.com/0/952/041.htm",
+      "summary": "IT之家 5 月 19 日消息，最新的 Qwen3.7-Max-Preview 和 Qwen3.7-Plus-Preview 已经上线 Qwen Chat 和 Arena AI（IT之家注：原 LMArena），有望在 5 月 20 日的阿里云峰会上正式发布。Qwen3.7-Max-Preview：Qwen3.7 旗舰模型的预览版，带来业界领先的性能表现。仅支持思考模式；搜索与代码解释器工具暂不可用。Qwen3.7-Plus-Preview：Qwen3.7 系列的高性能预览模型。仅支持思考模式；搜索与代码解释器工具暂不可用。在文本领域中，Qwen3.7 Max Preview 综合排名第 13",
+      "source": "IT之家",
+      "published_at": "2026-05-18T22:45:23Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [
+        "大模型"
+      ],
+      "recommendation": "新产品/功能发布，可能影响行业格局",
+      "source_type": "secondary",
+      "trace_note": "此条来自聚合/转载媒体，建议追溯原始来源后再展示"
+    },
+    {
+      "title": "Vera Arrives: NVIDIA’s First CPU Built for Agents Lands at Top AI Labs",
+      "url": "https://blogs.nvidia.com/blog/vera-cpu-delivery/",
+      "summary": "The first NVIDIA Vera CPUs arrived at three of the world's leading AI labs on Friday — Anthropic in San Francisco, OpenAI in Mission Bay, SpaceXAI in Palo Alto — followed by a delivery to Oracle Cloud Infrastructure in Santa Clara on Monday. NVIDIA Vice President of Hyperscale and High-Performance C",
+      "source": "NVIDIA Blog",
+      "published_at": "2026-05-18T21:48:17Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [
+        "NVIDIA",
+        "OpenAI",
+        "Anthropic"
+      ],
+      "recommendation": "游戏行业 AI 战略动向",
+      "source_type": "primary"
+    }
+  ],
+  "stats": {
+    "raw_count": 230,
+    "after_relevance_filter": 12,
+    "after_dedup": 2,
+    "after_classify_filter": 2,
+    "by_category": {
+      "industry": 2
+    }
+  }
+}

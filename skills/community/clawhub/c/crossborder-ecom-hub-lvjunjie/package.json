@@ -1,0 +1,45 @@
+{
+  "name": "crossborder-ecom-hub",
+  "version": "1.0.0",
+  "description": "跨境电商多平台管理技能 - TikTok+Amazon+Shopee+Lazada 统一管理平台",
+  "main": "src/index.js",
+  "bin": {
+    "crossborder-ecom": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "dev": "nodemon bin/cli.js",
+    "test": "jest",
+    "build": "tsc"
+  },
+  "keywords": [
+    "crossborder",
+    "ecommerce",
+    "tiktok",
+    "amazon",
+    "shopee",
+    "lazada",
+    "feishu",
+    "bitable"
+  ],
+  "author": "OpenClaw Skills",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

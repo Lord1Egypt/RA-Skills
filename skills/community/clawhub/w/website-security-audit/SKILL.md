@@ -1,35 +1,231 @@
 ---
-name: "Website Security Audit"
-description: "网站安全鉴定技能。对任意 URL 进行安全风险评估，综合域名信息、SSL证书、网站内容、技术特征、备案信息等多维度分析，判断网站是否可信、安全、有风险。当用户询问"查看某个网站是否有风险"、"帮我鉴定这个网站"、"检查这个链接安全吗"、"网站安全评估"时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/website-security-audit"
-sourceUrl: "https://clawhub.ai/skills/website-security-audit"
+name: website-security-audit
+description: 网站安全鉴定技能。对任意 URL 进行安全风险评估，综合域名信息、SSL证书、网站内容、技术特征、备案信息等多维度分析，判断网站是否可信、安全、有风险。当用户询问"查看某个网站是否有风险"、"帮我鉴定这个网站"、"检查这个链接安全吗"、"网站安全评估"时使用此技能。
 ---
 
 # Website Security Audit
 
-> 网站安全鉴定技能。对任意 URL 进行安全风险评估，综合域名信息、SSL证书、网站内容、技术特征、备案信息等多维度分析，判断网站是否可信、安全、有风险。当用户询问"查看某个网站是否有风险"、"帮我鉴定这个网站"、"检查这个链接安全吗"、"网站安全评估"时使用此技能。
+对任意 URL 进行系统性安全鉴定，输出结构化风险报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/website-security-audit`
-- **Source URL:** [https://clawhub.ai/skills/website-security-audit](https://clawhub.ai/skills/website-security-audit)
+## 工作流程（5步）
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/website-security-audit
 ```
+第1步  提取 URL → 第2步  浏览器访问 → 第3步  域名分析 → 第4步  综合研判 → 第5步  输出报告
+```
+
+---
+
+## 第1步：提取 URL
+
+从用户输入中解析出标准 URL（去掉追踪参数）：
+
+```
+用户: "https://example.com/abc?ref=xxx&utm_source=yyy"
+→ 基准URL: https://example.com/
+```
+
+**注意**：部分平台无需登录即可访问（如有备案的正规网站），部分会强制登录。均属正常，不代表有风险。
+
+---
+
+## 第2步：浏览器访问（必做）
+
+使用 OpenClaw 内置浏览器抓取页面内容：
+
+```
+1. browser action=start profile=openclaw
+2. browser action=tabs → 获取 targetId
+3. browser action=navigate targetId=<id> targetUrl=<基准URL>
+4. browser action=snapshot targetId=<id> maxChars=10000 loadState=networkidle
+```
+
+**关注信息：**
+- 页面标题（是否含品牌名称、是否泛化如 "Login"）
+- 页脚信息（备案号、运营主体、联系方式）
+- 导航菜单（是否有多级栏目，内容是否丰富）
+- 是否跳转到登录页（记录跳转路径）
+- SSL锁图标（浏览器地址栏）
+- 页面内容质量（正规平台通常内容充实）
+
+---
+
+## 第3步：域名分析（信息越多越好）
+
+### 3A. SSL/TLS 检查（必做）
+
+浏览器访问 URL，检查：
+
+- 是否启用 HTTPS（无 HTTPS = 高风险）
+- 证书是否由可信 CA 签发（Let's Encrypt / DigiCert / GlobalSign = 正常）
+- 证书是否过期
+- 证书域名与访问域名是否匹配
+
+### 3B. ICP备案检查（针对中国网站）
+
+访问：http://beian.miit.gov.cn/publish/query/indexFirst.action
+或从页面页脚提取备案号，手动在工信部查询。
+
+常见备案前缀含义：
+
+| 前缀 | 省份 |
+|------|------|
+| 桂ICP备 | 广西 |
+| 京ICP备 | 北京 |
+| 沪ICP备 | 上海 |
+| 粤ICP备 | 广东 |
+| 浙ICP备 | 浙江 |
+| 苏ICP备 | 江苏 |
+| 鄂ICP备 | 湖北 |
+| 津ICP备 | 天津 |
+
+- 无备案号 + 国内服务器 = 极高风险
+- 有备案号 = 合规第一步（不代表无风险）
+
+### 3C. 公安网备案检查
+
+```
+桂公网安备 xxxxxxxx号 → 公安网备案（必须有）
+格式：xxxxxxxx号（8位或12位）
+全国互联网安全管理服务平台：http://www.beian.gov.cn
+```
+
+### 3D. 域名年龄（辅助判断）
+
+- 新注册域名（<6个月）+ 无备案 + 无品牌信息 = 高风险
+- 老域名（>2年）+ 有备案 + 有品牌 = 低风险
+
+---
+
+## 第4步：平台背景研判（按类型判断）
+
+### 🟢 正规平台特征
+- 高校/政府/知名企业主办
+- 有完整的"关于我们"、"联系我们"
+- 有ICP备案 + 公安网备案
+- 运营多年，有大量内容积累
+- 有 HTTPS + 可信 CA
+- 主流媒体报道/引用
+
+### 🔴 高风险平台特征
+- 无 HTTPS 或自签名证书
+- 无 ICP 备案（国内站点）
+- 页面内容极少（仅登录框）
+- 强制要求提供敏感信息
+- 域名极新（如 2024/2025 年注册）
+- 页面风格粗糙、语言错误
+- 模仿知名品牌（钓鱼）
+- 无法从搜索引擎找到官方信息
+
+### ⚠️ 灰色地带（按需标注）
+- CTF/黑客训练平台（本身合法，但附件可能有恶意代码）→ 标注使用注意
+- 成人内容平台 → 单独说明
+- 数字货币/博彩平台 → 高风险标注
+- 境外无备案站点 → 说明监管差异
+
+---
+
+## 第5步：输出结构化报告
+
+按以下格式输出鉴定结果：
+
+```markdown
+## 🔍 网站安全鉴定报告
+
+**URL**: https://xxx.com
+**鉴定时间**: YYYY-MM-DD HH:mm
+**风险等级**: 🟢低风险 / 🟡中风险 / 🔴高风险 / ⚫极高风险
+
+---
+
+### 基本信息
+| 项目 | 信息 |
+|------|------|
+| 域名 | xxx.com |
+| 页面标题 | xxx |
+| SSL/HTTPS | ✅ 已启用 / ❌ 未启用 |
+| 证书 | 可信CA / 自签名 / 过期 |
+| 跳转情况 | 直接访问 / 跳转至登录页 |
+
+### 备案信息
+| 项目 | 状态 |
+|------|------|
+| ICP备案 | ✅ 有（桂ICP备xxxxxx号）/ ❌ 无 / ⚠️ 无法确认 |
+| 公安网备案 | ✅ 有（桂公网安备xxxxxx号）/ ❌ 无 / ⚠️ 无法确认 |
+| 备案主体 | xxx |
+
+### 平台背景
+- 主办方/运营方：xxx
+- 平台类型：CTF训练 / 教育 / 电商 / 政府 / 企业 / 未知
+- 可信度：高校背书 / 企业背书 / 行业认可 / 无背书
+
+### 风险分析
+- [ ] HTTPS 未启用
+- [ ] 无 ICP 备案
+- [ ] 无公安网备案
+- [ ] 域名新注册
+- [ ] 内容极少
+- [ ] 疑似钓鱼模仿
+
+### ⚠️ 使用注意（如有）
+（如有附件/文件需在虚拟机运行等注意事项）
+
+---
+
+### 📌 总结
+（1-2句话综合评价）
+```
+
+---
+
+## 信息维度检查清单（确保不遗漏）
+
+```
+□ HTTPS 启用状态
+□ SSL 证书有效性
+□ ICP 备案号（有则查真伪）
+□ 公安网备案号（有则查真伪）
+□ 备案主体信息
+□ 主办/运营单位
+□ 页面内容充实度
+□ 联系方式是否完整
+□ 域名年龄
+□ 是否有可信机构背书
+□ 是否跳转到登录页（记录跳转URL）
+□ 页面是否有恶意内容
+□ 平台类型判断
+□ 与已知平台库比对（见 references/known-platforms.md）
+```
+
+---
+
+## 辅助工具
+
+### ProSearch 联网搜索（可选）
+用于查询网站是否有安全事件报道、被黑记录：
+
+```bash
+node "D:\Program Files\QClaw\resources\openclaw\config\skills\online-search\scripts\prosearch.cjs" "{\"keyword\":\"网站名 安全事件\"}"
+```
+
+### WHOIS 查询
+- 国际域名：whois.domaintools.com 或 who.is
+- 国内域名：通过万网/新网查询
+
+---
+
+## 已知平台参考
+
+遇到常见平台可直接引用，无需重复分析。详见 `references/known-platforms.md`。
+
+## 常见平台分类
+
+| 类型 | 风险 | 说明 |
+|------|------|------|
+| 高校/政府官网 | 🟢极低 | 通常最可信 |
+| 知名企业官网 | 🟢低 | 有品牌背书 |
+| 教育/公益平台 | 🟢低 | 有机构背书 |
+| CTF训练平台 | 🟡低 | 本身合法，注意附件 |
+| 社交媒体 | 🟡中 | 陌生链接需警惕 |
+| 数字货币/博彩 | 🔴高 | 监管灰色地带 |
+| 境外无备案站点 | ⚠️差异 | 需单独判断 |
+| 仿冒钓鱼站点 | ⚫极高 | 立即警告 |

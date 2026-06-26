@@ -1,0 +1,7 @@
+interface:
+  display_name: "Echo Memory"
+  short_description: "Guide EchoMemory plugin setup and recovery."
+  default_prompt: "Use $echo-memory to install, configure, or troubleshoot the EchoMemory OpenClaw plugin."
+
+policy:
+  allow_implicit_invocation: true

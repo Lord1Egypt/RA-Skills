@@ -1,0 +1,32 @@
+{
+  "name": "colmena-manager",
+  "version": "1.0.0",
+  "description": "Skill para gestionar y coordinar agentes de OpenClaw como una colmena",
+  "main": "src/index.js",
+  "keywords": [
+    "openclaw",
+    "agents",
+    "hive",
+    "manager",
+    "colmena"
+  ],
+  "author": "Anubis",
+  "license": "MIT",
+  "homepage": "https://clawhub.com/colmena-manager",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@clawhub.com:colmena-manager.git"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "scripts": {
+    "prepare": "npm run build"
+  },
+  "openclaw": {
+    "compatible": true,
+    "minVersion": "1.0.0",
+    "category": "management",
+    "icon": "🐺"
+  }
+}

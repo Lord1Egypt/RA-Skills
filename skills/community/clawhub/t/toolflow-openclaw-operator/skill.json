@@ -1,0 +1,5 @@
+{
+  "name": "toolflow-openclaw-operator",
+  "version": "0.3.0",
+  "description": "Bundled OpenClaw operator skill and local plugin installer for ToolFlow workflows with durable state, approvals, recovery, and progress updates."
+}

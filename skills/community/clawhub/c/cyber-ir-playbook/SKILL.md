@@ -1,35 +1,27 @@
 ---
-name: "Cyber Ir Playbook"
-description: "Build incident response timelines and report packs from event logs. Use for detection-to-recovery reporting, phase tracking, and stakeholder-ready incident s..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cyber-ir-playbook"
-sourceUrl: "https://clawhub.ai/skills/cyber-ir-playbook"
+name: cyber-ir-playbook
+description: Build incident response timelines and report packs from event logs. Use for detection-to-recovery reporting, phase tracking, and stakeholder-ready incident summaries.
 ---
 
-# Cyber Ir Playbook
-
-> Build incident response timelines and report packs from event logs. Use for detection-to-recovery reporting, phase tracking, and stakeholder-ready incident s...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cyber-ir-playbook`
-- **Source URL:** [https://clawhub.ai/skills/cyber-ir-playbook](https://clawhub.ai/skills/cyber-ir-playbook)
+# Cyber IR Playbook
 
 ## Overview
 
+Convert incident events into a standardized response timeline and phase-based report.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cyber-ir-playbook
-```
+## Workflow
+
+1. Ingest incident events with timestamps.
+2. Classify events into detection, containment, eradication, recovery, or post-incident phases.
+3. Build ordered timeline and summarize current phase completion.
+4. Produce a report artifact for internal and executive audiences.
+
+## Use Bundled Resources
+
+- Run `scripts/ir_timeline_report.py` to generate a deterministic timeline report.
+- Read `references/ir-phase-guide.md` for phase mapping guidance.
+
+## Guardrails
+
+- Focus on defensive incident handling and post-incident learning.
+- Do not provide offensive exploitation instructions.

@@ -1,35 +1,46 @@
 ---
-name: "Ddg Free"
+name: free-search
 description: "完全免费的网页搜索，使用 Bing 搜索结果。无需 API key，完全免费使用。当用户需要搜索网页、查找信息时使用此命令。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ddg-free"
-sourceUrl: "https://clawhub.ai/skills/ddg-free"
+metadata: { "openclaw": { "emoji": "🔍", "requires": { "bins": ["python3"] } } }
 ---
 
-# Ddg Free
+# Free Search
 
-> 完全免费的网页搜索，使用 Bing 搜索结果。无需 API key，完全免费使用。当用户需要搜索网页、查找信息时使用此命令。
+完全免费的网页搜索，使用 Bing 搜索结果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ddg-free`
-- **Source URL:** [https://clawhub.ai/skills/ddg-free](https://clawhub.ai/skills/ddg-free)
+## 何时使用
 
-## Overview
+✅ **使用此命令当：**
+- 用户需要搜索网页
+- 查找最新信息
+- 查找资料或文档
+- 需要网络搜索结果
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ddg-free
+python3 /Users/liruozhen/openclaw/skills/ddg-free/scripts/search.py --query "搜索关键词" --max-results 5
 ```
+
+## 输出格式
+
+返回 JSON 格式，包含：
+- `query`: 搜索词
+- `results`: 结果数组，每个包含：
+  - `title`: 标题
+  - `url`: 链接
+  - `snippet`: 摘要
+
+## 示例
+
+```bash
+python3 /Users/liruozhen/openclaw/skills/ddg-free/scripts/search.py --query "人工智能最新发展" --max-results 3
+```
+
+## 特点
+
+- ✅ 完全免费，无需注册
+- ✅ 无需 API key
+- ✅ 无使用限制
+- ✅ 支持中英文搜索
+- ✅ 使用 Bing 搜索结果

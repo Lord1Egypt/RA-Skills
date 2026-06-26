@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文儿童画本"
+  short_description: "把任意中文儿童故事改编成分龄画本分镜和配图提示词。"
+  default_prompt: "把这个故事改编成适合目标年龄阅读的中文儿童画本，生成分镜文字、角色设定和连贯图画提示词。"

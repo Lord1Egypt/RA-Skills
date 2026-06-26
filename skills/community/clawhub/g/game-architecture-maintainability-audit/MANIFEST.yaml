@@ -1,0 +1,68 @@
+bundle: game-architecture-maintainability-audit
+bundle_version: 1.1.0
+bundle_date: 2026-03-30
+description: >
+  Audit architecture, state management, boundaries, coupling, and maintainability risks that will make future AI or human iteration harder.
+compatibility:
+  designed_for:
+    surfaces:
+      - chat
+      - cli
+      - ide
+    capabilities:
+      - local filesystem access
+      - markdown skill bundles
+      - reusable game-development workflows
+  tested_on:
+    - platform: OpenClaw
+      surface: ClawHub
+      status: pending
+      date: 2026-03-30
+    - platform: Claude Code
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+    - platform: Codex
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+  spec_version: agentskills.io/1.0
+  frontmatter_mode: metadata
+dependencies:
+  []
+files:
+  - path: CHANGELOG.md
+    role: reference
+    version: 1
+    hash: sha256:1419f7a2e8e0388acdc76312b591ac0d41e05ceba5d323682c089edee09919c6
+    note: Bundle release notes
+  - path: README.md
+    role: reference
+    version: 1
+    hash: sha256:34c0442f467deeff944e0c1afefc9d7d52e5730a83e4417fc434abd928741df7
+    note: ClawHub-facing usage and context
+  - path: SKILL.md
+    role: skill
+    version: 1
+    hash: sha256:30127f14aacdb7856737c1ffdedc4e487ccb2f9a4bf5d3592fe5267ce587d2f7
+    note: Canonical skill definition for this publish bundle
+  - path: examples/usage.md
+    role: reference
+    version: 1
+    hash: sha256:bab01defefa3788fde42dfaca5b37cfff424ef08dbab580dc72657a2fe92df57
+    note: Referenced support file: examples/usage.md
+  - path: shared/checklists/architecture-maintainability-audit-checklist.md
+    role: reference
+    version: 1
+    hash: sha256:c63a63cf9d5e573b04660c783724771aa5a3a84a76581ac5e5a4c9be15563377
+    note: Referenced support file: shared/checklists/architecture-maintainability-audit-checklist.md
+  - path: shared/reference/game-dev-abstractions.md
+    role: reference
+    version: 1
+    hash: sha256:95e105fc940e146db363a5b48a5526244c161ec25144f21e558a3fed371ba1df
+    note: Referenced support file: shared/reference/game-dev-abstractions.md
+  - path: tests/smoke.md
+    role: reference
+    version: 1
+    hash: sha256:8b74eb12ed9b8393300eadc087f41e519ef2ecb8876ebeb0528901e603bb42e5
+    note: Referenced support file: tests/smoke.md

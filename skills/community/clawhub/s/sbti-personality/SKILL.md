@@ -1,35 +1,59 @@
 ---
-name: "SBTI 恶搞人格测试"
-description: "SBTI 恶搞人格测试。给用户出一组抽象搞笑的测试题，根据回答生成一个离谱的人格类型和解读。触发词：SBTI、人格测试、性格测试、测一测、做个测试。当用户提到 SBTI、想做人格测试、或有人分享了 SBTI 结果时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sbti-personality"
-sourceUrl: "https://clawhub.ai/skills/sbti-personality"
+name: sbti
+description: SBTI 恶搞人格测试。给用户出一组抽象搞笑的测试题，根据回答生成一个离谱的人格类型和解读。触发词：SBTI、人格测试、性格测试、测一测、做个测试。当用户提到 SBTI、想做人格测试、或有人分享了 SBTI 结果时触发。
 ---
 
-# SBTI 恶搞人格测试
+# SBTI — 没有任何科学依据的人格测试
 
-> SBTI 恶搞人格测试。给用户出一组抽象搞笑的测试题，根据回答生成一个离谱的人格类型和解读。触发词：SBTI、人格测试、性格测试、测一测、做个测试。当用户提到 SBTI、想做人格测试、或有人分享了 SBTI 结果时触发。
+恶搞版 MBTI。问一堆离谱问题，给你一个更离谱的人格标签。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sbti-personality`
-- **Source URL:** [https://clawhub.ai/skills/sbti-personality](https://clawhub.ai/skills/sbti-personality)
+## 测试流程
 
-## Overview
+1. 告诉用户："来，做个没有任何科学依据的SBTI测试吧！一共10道题，凭直觉选。"
+2. 从 `references/questions.md` 随机抽取 10 道不重复的题目（每题2-4个选项）。
+3. **逐题提问**，等用户回复选项后记录得分，再出下一题。
+4. 10题结束后，根据得分映射到人格类型（见 `references/types.md`）。
+5. 生成结果卡片，格式如下：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sbti-personality
 ```
+🎯 你的SBTI人格类型：[类型代号] — [类型名]
+
+[一段300字以内的幽默人格解读，要够损够搞笑，结合互联网梗]
+
+✨ 关键特征：
+• [特征1]
+• [特征2]  
+• [特征3]
+
+🔥 建议搭配人格：[另一个类型]
+💀 死对头人格：[另一个类型]
+
+— 本测试没有任何科学依据，结果仅供参考，不对你的人生负责 —
+```
+
+## 出题风格
+
+- 问题要**抽象、发疯、精神状态堪忧**
+- 选项要**让人纠结又好笑**
+- 参考孙吧语录、打工人梗、社畜日常、互联网名场面
+- 不要正经，不要严肃，不要像真正的心理测试
+- 中文提问，中文结果
+
+## 得分计算
+
+每道题的每个选项对应不同人格维度的加分。10题结束后汇总各维度得分，取最高维度组合确定类型。
+
+维度：
+- **C** (Chaos) 混乱程度
+- **S** (Social) 社交能量  
+- **E** (Emotion) 情绪浓度
+- **W** (Workaholic) 卷王指数
+
+最终类型由最高的2个维度字母组合决定，如 CE、SW、EW 等。具体映射见 `references/types.md`。
+
+## 注意事项
+
+- 每次测试的题目要随机，不要每次都一样
+- 解读要个性化，不要套模板，根据用户的具体回答加点料
+- 如果用户半途放弃，已回答的题也可以出结果，但要说"你果然是XX型，连测试都做不完"
+- 保持轻松搞笑的氛围

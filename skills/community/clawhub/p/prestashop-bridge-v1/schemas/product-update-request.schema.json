@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProductUpdateRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product_id",
+    "updates",
+    "options"
+  ],
+  "properties": {
+    "product_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "updates": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "price_ht": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stock_delta": {
+          "type": "integer"
+        },
+        "seo": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "meta_title": {
+              "type": "string"
+            },
+            "meta_description": {
+              "type": "string"
+            },
+            "url_rewrite": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "minProperties": 1
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skip_reindex"
+      ],
+      "properties": {
+        "skip_reindex": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

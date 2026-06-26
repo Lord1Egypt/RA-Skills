@@ -1,0 +1,45 @@
+{
+  "name": "firstdollar",
+  "version": "1.0.4",
+  "description": "An MCP that teaches AI agents how to use the wallets they already have. Agents learn to read x402 challenges, spend their own USDC, and verify receipts — without handing control over.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "firstdollar": "index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "x402",
+    "agent",
+    "wallet",
+    "usdc",
+    "base",
+    "solana",
+    "agentic-commerce",
+    "agent-literacy",
+    "agent-education"
+  ],
+  "author": "Lisa Maraventano + Spine, with Claude",
+  "license": "MIT",
+  "homepage": "https://github.com/lisamaraventano-spine/firstdollar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lisamaraventano-spine/firstdollar"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

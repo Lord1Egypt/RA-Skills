@@ -1,0 +1,19 @@
+{
+  "name": "feishu-official-plugin-switch",
+  "version": "3.0.0",
+  "description": "飞书官方插件一键转换 - 3 分钟从社区版升级到官方版，开启流式输出、用户身份、50+ 官方工具",
+  "author": "rfdiosuao",
+  "repository": "https://github.com/rfdiosuao/openclaw-skills",
+  "license": "MIT",
+  "tags": ["feishu", "plugin-switch", "official-plugin", "streaming", "upgrade", "2026.3.15"],
+  "category": "插件管理",
+  "compatibility": {
+    "minOpenClawVersion": "2026.2.26"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/"
+  }
+}

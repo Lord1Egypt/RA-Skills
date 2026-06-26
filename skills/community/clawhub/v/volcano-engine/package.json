@@ -1,0 +1,88 @@
+{
+  "name": "openclaw-skill-volcengine",
+  "version": "1.1.2",
+  "description": "Volcano Engine (Volcengine) integration skill for OpenClaw. Supports Doubao Seed 2.0, GLM, DeepSeek, Qwen models with full multimodal support.",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "volcengine",
+    "volcano-engine",
+    "doubao",
+    "seed",
+    "deepseek",
+    "glm",
+    "qwen",
+    "ai",
+    "llm",
+    "vlm",
+    "api"
+  ],
+  "author": {
+    "name": "OpenClaw Community",
+    "email": "community@openclaw.ai"
+  },
+  "contributors": [
+    {
+      "name": "徒然SadP (Andapeng)",
+      "email": "andapeng@example.com"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/skills/volcengine",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "skills/volcengine"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "engines": {
+    "openclaw": ">=2026.4.0"
+  },
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "LICENSE",
+    "README.md",
+    "references/",
+    "scripts/"
+  ],
+  "scripts": {
+    "test": "pwsh ./scripts/run-tests.ps1",
+    "test:connection": "pwsh ./scripts/test-connection.ps1",
+    "test:quick": "pwsh ./scripts/quick-start.ps1",
+    "generate:config": "pwsh ./scripts/generate-config.ps1"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=2026.4.0"
+  },
+  "skill": {
+    "id": "volcengine",
+    "name": "Volcengine (Volcano Engine)",
+    "category": "ai-providers",
+    "tags": ["chinese", "multimodal", "coding", "enterprise"],
+    "compatibility": {
+      "openclaw": ">=2026.4.0",
+      "node": ">=18.0.0"
+    },
+    "configuration": {
+      "files": [
+        "references/configuration.md",
+        "references/models.md",
+        "references/api-parameters.md"
+      ]
+    },
+    "links": {
+      "documentation": "https://www.volcengine.com/docs/82379",
+      "console": "https://console.volcengine.com/ark",
+      "pricing": "https://www.volcengine.com/product/ark/pricing"
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.clawhub.ai"
+  }
+}

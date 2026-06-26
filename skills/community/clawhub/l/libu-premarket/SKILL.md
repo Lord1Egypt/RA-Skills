@@ -1,35 +1,143 @@
 ---
-name: "Libu Premarket"
-description: "礼部侍郎 - A 股盘前作战地图。基于资金共振与严苛财务筛选的实战级选股工具。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/libu-premarket"
-sourceUrl: "https://clawhub.ai/skills/libu-premarket"
+name: libu-premarket
+version: 14.0.4
+description: 礼部侍郎 - A 股盘前作战地图。基于资金共振与严苛财务筛选的实战级选股工具。
+author: ygbeyond
+license: MIT
 ---
 
-# Libu Premarket
+# 📈 礼部侍郎 - 盘前作战地图 (v14.0.4 每周数据焕新版)
 
-> 礼部侍郎 - A 股盘前作战地图。基于资金共振与严苛财务筛选的实战级选股工具。
+> **一句话介绍**：每天早上开盘前，为你提供基于"主力资金流向"与"机构财务排雷"的 A 股核心作战地图。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/libu-premarket`
-- **Source URL:** [https://clawhub.ai/skills/libu-premarket](https://clawhub.ai/skills/libu-premarket)
+## 💡 核心功能
+告别无脑看涨停，我们要看的是"真金白银"的流向！
+1.  **🌍 全维外围风向**：自动聚合 A50、美股、港股、黄金、原油隔夜表现，精准预判开盘情绪。
+2.  **🔥 资金主线研判**：基于昨日收盘数据，深度分析**主力净流入 Top 5 板块**，识别"量价齐升"的真热点与"诱多"的假突破。
+3.  **🎯 核心标的精选**：从全市场 4500+ 只股票中，通过**财务增速 + 资金共振 + 技术面**三重过滤，输出 Top 10 潜力标的。
+4.  **📦 开箱即用**：内置近期核心数据缓存 + **免费本地技术指标计算**。首次运行即可体验基础功能，无需 Tushare 积分！配置 Tushare Token 可获取实时技术面指标 (MACD/RSI)。
 
-## Overview
+## 💰 付费方案
+本 Skill 采用京东 ClawTip 微支付架构，支持双 SKU 自由选择：
+| 方案 | 价格 | 说明 |
+| :--- | :--- | :--- |
+| **单次体验** | ¥0.8/次 | 适合偶尔查看的投资者，按需付费 |
+| **月度订阅** | ¥9.9/月 | **主推**，适合高频交易者，每天开盘前自动刷新 |
 
+## 🚀 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第一步：安装 Skill
 ```bash
-hermes skills install clawhub/libu-premarket
+# 通过 ClawHub 安装
+npx clawhub@latest install libu-premarket
 ```
+
+### 第二步：配置参数 (可选)
+Skill 安装后，会在你的技能目录生成 `config.json`。你可以根据自己的风险偏好调整选股标准：
+```json
+{
+  "filter_financial": {
+    "min_netprofit_yoy": 0.30,
+    "min_roe": 8
+  },
+  "cache": {
+    "root_dir": "./cache_data"
+  }
+}
+```
+> 注意：财务同比增速使用**小数格式**，`0.30` 表示 30%，`0.20` 表示 20%。ROE 使用百分比数值，`8` 表示 8%。
+
+### 第三步：安装支付依赖
+首次运行前，请确保已安装 `gmssl` 库（用于支付凭证验证）：
+```bash
+pip3 install gmssl
+```
+如果安装失败，可以尝试：`pip3 install --no-cache-dir gmssl`
+
+### 第四步：配置支付环境变量（付费用户）
+完成支付后，需要配置 SM4 密钥环境变量以验证支付凭证：
+```bash
+export CLAWTIP_SM4_KEY="京东邮件提供的Base64密钥"
+```
+或者在 ClawTip 环境变量配置中添加 `CLAWTIP_SM4_KEY`。未配置此变量时，脚本将提示并拒绝运行。
+
+### 第五步：配置 Tushare Token (可选，推荐)
+**Skill 内置数据包可保证基础运行**，但要获取**实时财务数据**，建议配置 Tushare Token：
+1.  前往 [Tushare Pro](https://tushare.pro) 注册并获取 Token。
+2.  在终端执行：
+    ```bash
+    export TUSHARE_TOKEN="***"
+    ```
+    *或者在 ClawTip 环境变量配置中添加 `TUSHARE_TOKEN`。*
+
+### 第六步：运行
+```bash
+python3 pre_market.py
+```
+运行后，脚本将生成 `pre_market_data.json` 供你的 AI Agent 读取，并输出精美的 Markdown 报告。
+
+## 📊 报告结构
+AI Agent 将基于生成的数据为你撰写如下结构的报告：
+*   **🌍 外围风向**：宏观市场情绪暗示。
+*   **🔥 今日主线研判**：资金净流入 Top 5 板块深度解析。
+*   **🎯 重点关注 (Top 5)**：结合板块热度的核心个股逻辑（严禁虚高评分，只讲真逻辑）。
+*   **⚔️ 操盘建议**：基于资金博弈的实战建议。
+
+## 🔄 数据更新说明
+*   **首次运行**：自动解压内置的 `initial_data.zip`（包含近期财务/收盘/股票列表数据），实现快速启动。
+*   **数据更新**：开发者会定期（每周/月）发布新版 Skill 以刷新内置数据。你只需重新 `install` 即可获取最新数据包。
+*   **本地缓存**：运行过程中产生的新数据会保存到 `./cache_data/`，下次运行优先读取，秒级出报告。
+
+## 💳 支付说明
+
+首次运行脚本时，会自动创建支付订单。请按以下步骤完成支付：
+
+1. **创建订单**：运行 `python3 pre_market.py`，脚本会输出订单号和 indicator
+2. **完成支付**：让你的 AI Agent 调用 ClawTip 技能：
+   ```
+   clawtip order_no=<订单号> indicator=400faf113c6f265b64c639c67fc91b12
+   ```
+3. **首次授权**（仅需一次）：如果是首次使用 ClawTip 支付，系统会返回一个授权链接。请在浏览器中打开该链接，用京东 App 扫码完成钱包授权。授权后重新发起支付即可。
+4. **验证通过**：支付成功后，ClawTip 会自动将支付凭证写入订单文件。下次运行脚本时自动解锁全部功能。
+
+> 💡 **提示**：月度订阅（¥9.9）比单次体验（¥0.8）更划算，适合每天使用。
+
+## ⚠️ 注意事项
+*   本工具仅供数据参考，不构成任何投资建议。股市有风险，入市需谨慎。
+*   请确保你的运行环境已安装 `pandas`, `requests`, `numpy` (脚本会自动检查)。
+
+## 🆘 售后与支持
+我们提供全天候技术支持，使用中遇到任何问题，随时联系我们：
+*   **微信反馈**：添加开发者微信 `ygbeyond`，拉您进专属交流群。
+*   **数据更新**：关注朋友圈或群公告，我们会定期推送最新数据包的 Skill 版本。
+*   **Bug 修复**：承诺 24 小时内响应并修复，确保您的交易决策不受影响。
+
+---
+
+## 📋 更新日志
+
+### v14.0.6 (2026-06-20) — 每周数据焕新版
+- 更新 basic 数据至 2026-06-18（latest trading day）
+- 更新 finance 数据保持最新
+- 同步最新 pre_market.py 代码与 config.json
+
+### v14.0.3 (2026-05-30) — 每周数据焕新版
+- 更新 basic 数据至 2026-05-29（latest trading day）
+- 更新 finance 数据保持最新
+- 同步最新 pre_market.py 代码与 config.json
+
+### v14.0.2 (2026-05-23) — 每周数据焕新版
+- 更新 basic 数据至 2026-05-22（latest trading day）
+- 更新 finance 数据至 2026Q1 + 2025年报
+- 更新 closing 数据至 2026-05-22
+- 同步最新 pre_market.py 代码与 config.json
+
+### v14.0.4 (2026-06-06) — 每周数据焕新版
+- 更新 basic 数据至 2026-06-05（latest trading day）
+- 更新 closing 数据至 2026-06-05
+- 同步最新 pre_market.py 代码与 config.json
+
+### v14.0.1 (2026-05-16) — 每周数据焕新版
+- 更新 basic 数据至 2026-05-14（latest trading day）
+- 更新 finance / closing 数据同步
+- 同步最新 pre_market.py 代码与 config.json

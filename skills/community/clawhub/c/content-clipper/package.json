@@ -1,0 +1,12 @@
+{
+  "name": "content-clipper",
+  "version": "1.0.0",
+  "description": "Extract, summarize, and clip web content to flomo or local markdown. Supports web articles, 小红书, Twitter/X, and 微信公众号.",
+  "keywords": ["openclaw", "skill", "flomo", "clip", "summarize", "xiaohongshu", "twitter", "content"],
+  "author": "Ma-tiezhu",
+  "license": "MIT",
+  "main": "scripts/clip.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

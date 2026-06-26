@@ -1,35 +1,30 @@
 ---
-name: "Schema Manager"
-description: "Validates migration SQL, analyzes index health, and applies pending schema migrations to the target database"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/schema-manager"
-sourceUrl: "https://clawhub.ai/skills/schema-manager"
+name: schema-manager
+description: Validates migration SQL, analyzes index health, and applies pending schema migrations to the target database
+tags: [database, migration, schema, index, sql]
+category: database
+version: 1.0.0
 ---
 
 # Schema Manager
 
-> Validates migration SQL, analyzes index health, and applies pending schema migrations to the target database
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/schema-manager`
-- **Source URL:** [https://clawhub.ai/skills/schema-manager](https://clawhub.ai/skills/schema-manager)
-
 ## Overview
 
+A unified database schema management tool that validates pending migration SQL, analyzes current indexes for optimization opportunities, and applies pending migrations.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/schema-manager
+## Features
+
+1. **Migration Validation**: Scans `/migrations/` for SQL files, validates syntax against the target database.
+2. **Index Analysis**: Identifies potentially redundant indexes using naming pattern recognition and generates cleanup migrations.
+3. **Migration Execution**: Applies all pending migrations (including auto-generated cleanup) in order.
+
+## Output Format
+
+```json
+{
+  "migrations_validated": [],
+  "indexes_analyzed": {"total": 2, "redundant": ["idx_users_email_unique"]},
+  "migrations_executed": ["003_drop_redundant_indexes.sql"],
+  "status": "completed"
+}
 ```

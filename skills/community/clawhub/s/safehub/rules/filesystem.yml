@@ -1,0 +1,38 @@
+# SafeHub Semgrep rules: filesystem writes outside /tmp
+# Detects writes to paths outside /tmp that could modify user data or install persistence.
+# Severity: HIGH — skills should only write to /tmp in sandbox; other writes are suspicious.
+
+rules:
+  - id: safehub-filesystem-write-sync
+    message: "File system write (writeFileSync) detected. Writes outside /tmp may persist malware."
+    severity: HIGH
+    languages:
+      - js
+      - ts
+    pattern: writeFileSync(...)
+
+  - id: safehub-filesystem-write-async
+    message: "File system write (writeFile) detected. Writes outside /tmp may persist malware."
+    severity: HIGH
+    languages:
+      - js
+      - ts
+    pattern: writeFile(...)
+
+  - id: safehub-filesystem-append
+    message: "File append detected. May modify system or user files."
+    severity: MEDIUM
+    languages:
+      - js
+      - ts
+    pattern-either:
+      - pattern: appendFile(...)
+      - pattern: appendFileSync(...)
+
+  - id: safehub-filesystem-createWriteStream
+    message: "CreateWriteStream detected. May write files outside expected scope."
+    severity: HIGH
+    languages:
+      - js
+      - ts
+    pattern: createWriteStream(...)

@@ -1,0 +1,28 @@
+{
+  "_comment": "Chairman Daily Brief - Watchlist Example Configuration",
+  "holdings": [
+    {
+      "symbol": "600519.SS",
+      "name": "Kweichow Moutai",
+      "addedAt": "2026-03-01T00:00:00Z",
+      "notes": "Baijiu industry leader"
+    }
+  ],
+  "competitors": [
+    {
+      "symbol": "000858.SZ",
+      "name": "Wuliangye",
+      "peerGroup": "Baijiu",
+      "addedAt": "2026-03-01T00:00:00Z"
+    },
+    {
+      "symbol": "000568.SZ",
+      "name": "Luzhou Laojiao",
+      "peerGroup": "Baijiu",
+      "addedAt": "2026-03-01T00:00:00Z"
+    }
+  ],
+  "peers": {
+    "Baijiu": ["600519.SS", "000858.SZ", "000568.SZ", "000596.SZ"]
+  }
+}

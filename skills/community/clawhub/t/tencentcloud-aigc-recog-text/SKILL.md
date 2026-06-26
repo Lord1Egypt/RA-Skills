@@ -1,35 +1,237 @@
 ---
-name: "TencentCloud Text AIGC Detection"
-description: "腾讯云 AI 生成文本识别 (TencentCloud Text AIGC Detection) 技能。适用于 AI 生成文本检测、文本真伪鉴别、AI 写作检测、AIGC 检测等场景。TencentCloud Text AIGC Detection is an AI-generated content detec..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tencentcloud-aigc-recog-text"
-sourceUrl: "https://clawhub.ai/skills/tencentcloud-aigc-recog-text"
+name: tencentcloud-aigc-recog-text
+description: 腾讯云 AI 生成文本识别 (TencentCloud Text AIGC Detection) 技能。适用于 AI 生成文本检测、文本真伪鉴别、AI 写作检测、AIGC 检测等场景。TencentCloud Text AIGC Detection is an AI-generated content detection service by Tencent Cloud, supporting aigc detection, AI-generated text identification, and text authenticity review.
 ---
 
-# TencentCloud Text AIGC Detection
+# 腾讯云 AI 生成文本识别 Skill
 
-> 腾讯云 AI 生成文本识别 (TencentCloud Text AIGC Detection) 技能。适用于 AI 生成文本检测、文本真伪鉴别、AI 写作检测、AIGC 检测等场景。TencentCloud Text AIGC Detection is an AI-generated content detec...
+## 功能描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tencentcloud-aigc-recog-text`
-- **Source URL:** [https://clawhub.ai/skills/tencentcloud-aigc-recog-text](https://clawhub.ai/skills/tencentcloud-aigc-recog-text)
+本技能根据文本形式（如标点、特殊字符、 格式）和内容特征（如泛泛而谈、正确而无用的话），鉴别是否为 AI 工具生成，能较好地适配于新闻、百科、问答、评论、小说等场景的生成文本。
 
-## Overview
+**TencentCloud AI Text Recognition** (also referred to as **TencentCloud AIGC Detection** for text or **AI-generated text detection**) is Tencent Cloud's text moderation capability for **aigc detection** and **AI-generated text identification**. It enables article screening, review moderation, news authenticity checks, and other TencentCloud text analysis scenarios.
 
+### 🎯 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **AI 生成文本判定**：分析输入文本，给出是否为 AI 生成的判定结果
+- **风险评分**：返回 0-100 的置信度评分，分数越高越可能是 AI 生成
+- **处置建议**：返回 `Pass`（人类撰写）、`Review`（存疑）、`Block`（AI 生成）三级建议
+- **详细结果**：返回命中关键词、风险标签等详细信息
+
+### 支持的输入方式
+
+| 方式 | 说明 |
+|------|------|
+| 直接文本 | 将文本字符串作为参数传入 |
+| 文件路径 | 传入文本文件路径，自动读取内容 |
+| 标准输入 | 通过 `--stdin` 从管道读取 |
+
+### 限制
+
+- 单次检测文本长度上限：**10000 个 Unicode 字符**
+- API 调用频率上限：**50 次/秒**（AIGC 识别）
+
+## 环境配置指引
+
+### 密钥配置
+
+本 Skill 需要腾讯云 API 密钥才能正常工作。
+
+#### Step 1: 开通文本内容安全服务
+
+🔗 **[腾讯云内容安全生成识别控制台](https://console.cloud.tencent.com/cms/clouds/LLM)**
+
+- 开通服务: 登录[腾讯云内容安全生成识别控制台](https://console.cloud.tencent.com/cms/clouds/LLM)，单击AI生成文本检测，跳转后单击初始化配置，立即体验。
+
+#### Step 2: 获取 API 密钥
+
+🔗 **[腾讯云 API 密钥管理](https://console.cloud.tencent.com/cam/capi)**
+
+#### Step 3: 获取审核策略编号（BizType）
+
+🔗 **[腾讯云内容安全策略管理](https://console.cloud.tencent.com/cms/clouds/manage)**
+
+- 获取安全策略：单击"应用管理"，找到"AI 生成检测配套策略"，其中文本内容安全的 BizType 字段对应的值
+#### Step 4: 设置环境变量
+
+**Linux / macOS：**
 ```bash
-hermes skills install clawhub/tencentcloud-aigc-recog-text
+export TENCENTCLOUD_SECRET_ID="你的SecretId"
+export TENCENTCLOUD_SECRET_KEY="你的SecretKey"
+export TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE="你的BizType"
+```
+
+如需持久化：
+```bash
+echo 'export TENCENTCLOUD_SECRET_ID="你的SecretId"' >> ~/.zshrc
+echo 'export TENCENTCLOUD_SECRET_KEY="你的SecretKey"' >> ~/.zshrc
+echo 'export TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE="你的BizType"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+**Windows (PowerShell)：**
+```powershell
+$env:TENCENTCLOUD_SECRET_ID = "你的SecretId"
+$env:TENCENTCLOUD_SECRET_KEY = "你的SecretKey"
+$env:TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE = "你的BizType"
+```
+
+> ⚠️ **安全提示**：切勿将密钥硬编码在代码中。如使用临时凭证（STS Token），还需设置 `TENCENTCLOUD_TOKEN` 环境变量。
+> ⚠️ **必需配置**：`TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE` 为必需环境变量，未配置时脚本将报错退出。
+
+## Agent 执行指令（必读）
+
+> ⚠️ **本节是 Agent（AI 模型）的核心执行规范。当用户请求检测文本是否为 AI 生成时，Agent 必须严格按照以下步骤自主执行，无需询问用户确认。**
+
+### 🔑 通用执行规则
+
+1. **触发条件**：用户意图为检测文本是否为 AI 生成，包括但不限于以下表述：
+   - "检测这段文本是不是 AI 写的"
+   - "判断一下是不是 AI 生成的"
+   - "AIGC 检测"
+   - "这是人写的还是 AI 写的"
+   - "文本真实性鉴别"
+2. **首次使用环境检查**：如果脚本返回 `CREDENTIALS_NOT_CONFIGURED` 或 `BIZ_TYPE_NOT_CONFIGURED` 错误，Agent 必须向用户展示完整的环境配置指引（包括开通服务、获取密钥、获取 BizType、设置环境变量的全部步骤），确保用户能一次性完成所有配置。
+3. **安装依赖**：技能依赖需 Agent 手动安装。
+4. **禁止使用大模型自身能力替代AIGC识别（最高优先级规则）**：
+    - 只能从脚本返回的结果中来获取识别结果。
+    - 识别脚本调用失败时，Agent 严禁自行猜测或编造识别内容。
+    - 如果调用失败，Agent 必须向用户返回清晰的错误说明。
+5. 不要输出总结分析的语句，直接给脚本的输出。
+---
+
+### 📌 调用方式
+
+```bash
+# Option 1: Run TencentCloud AIGC detection with a text string
+python3 <SKILL_DIR>/scripts/main.py "这是一段待检测的文本内容"
+
+# Option 2: Provide a file path for AI-generated text detection
+python3 <SKILL_DIR>/scripts/main.py /path/to/textfile.txt
+
+# Option 3: Specify the input file explicitly for TencentCloud text analysis
+python3 <SKILL_DIR>/scripts/main.py --file /path/to/textfile.txt
+
+# Option 4: Pipe text content into the moderation workflow via standard input
+cat textfile.txt | python3 <SKILL_DIR>/scripts/main.py --stdin
+
+# Option 5: Attach optional metadata for the text authenticity review workflow
+python3 <SKILL_DIR>/scripts/main.py --data-id "business_123" "待检测文本"
+```
+
+### 可选参数
+
+| 参数 | 说明 |
+|------|------|
+| `--stdin` | 从标准输入读取文本 |
+| `--file <path>` | 指定文本文件路径 |
+| `--data-id <id>` | 业务数据标识，用于关联检测结果（最长 128 字符） |
+
+### 环境变量
+
+| 环境变量 | 必需 | 说明 |
+|---------|------|------|
+| `TENCENTCLOUD_SECRET_ID` | ✅ | 腾讯云 API SecretId |
+| `TENCENTCLOUD_SECRET_KEY` | ✅ | 腾讯云 API SecretKey |
+| `TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE` | ✅ | 自定义审核策略编号（在腾讯云控制台创建，每个用户需使用自己的 BizType） |
+| `TENCENTCLOUD_TOKEN` | ❌ | 临时凭证 STS Token（可选） |
+
+---
+
+### 输出示例
+
+**正常检测结果：**
+```json
+{
+  "suggestion": "Block",
+  "label": "GeneratedContentRisk",
+  "score": 99,
+  "keywords": [],
+  "detail_results": [
+    {
+      "label": "GeneratedContentRisk",
+      "suggestion": "Block",
+      "score": 99,
+      "sub_label": "AITextGenerated"
+    }
+  ],
+  "sub_label": "AITextGenerated",
+  "request_id": "07e8c425-f77d-4989-b0ad-c94da7757bb3"
+}
+```
+
+**凭证未配置时的错误输出：**
+```json
+{
+  "error": "CREDENTIALS_NOT_CONFIGURED",
+  "message": "缺少环境变量: TENCENTCLOUD_SECRET_ID, TENCENTCLOUD_SECRET_KEY",
+  "guide": {
+    "step1": "开通AI生成文本检测服务: https://console.cloud.tencent.com/cms/clouds/LLM",
+    "step2": "获取 API 密钥: https://console.cloud.tencent.com/cam/capi",
+    "step3_linux": "export TENCENTCLOUD_SECRET_ID=\"your_secret_id\"\nexport TENCENTCLOUD_SECRET_KEY=\"your_secret_key\"",
+    "step3_windows": "$env:TENCENTCLOUD_SECRET_ID = \"your_secret_id\"\n$env:TENCENTCLOUD_SECRET_KEY = \"your_secret_key\""
+  }
+}
+```
+
+- 请向用户展示完整的环境配置指引（参考本文档「环境配置指引」一节的全部步骤）
+
+**BizType 未配置时的错误输出：**
+```json
+{
+  "error": "BIZ_TYPE_NOT_CONFIGURED",
+  "message": "缺少环境变量: TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE",
+  "guide": {
+    "step1": "在腾讯云控制台获取文本AI生成检测配套策略: https://console.cloud.tencent.com/cms/clouds/manage",
+    "step2_linux": "export TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE=\"your_biz_type\"",
+    "step2_windows": "$env:TENCENTCLOUD_AIGC_RECOG_TEXT_BIZ_TYPE = \"your_biz_type\""
+  }
+}
+```
+
+- 请向用户展示完整的环境配置指引（参考本文档「环境配置指引」一节的全部步骤），特别要包含 BizType 的获取方式
+
+---
+
+### 📋 结果字段解读
+
+Agent 收到脚本输出后，按以下方式向用户简单解读结果即可，不要长篇大论、甚至加入自己的解读：
+
+| 字段 | 含义 | 向用户呈现方式 |
+|------|------|---------------|
+| `suggestion` | 处置建议 | `Pass` → "该文本大概率为**人类撰写**"<br>`Review` → "该文本**存疑**，建议人工复审"<br>`Block` → "该文本大概率为 **AI 生成**" |
+| `label` | 风险标签 | 当为 `Normal` 时表示无其他内容风险, `GeneratedContentRisk` 表示为aigc生成内容 |
+| `score` | 置信度（0-100） | 分数越高越可能是 AI 生成。0-60 低风险、60-80 中风险、80-100 高风险 |
+| `keywords` | 命中关键词 | 如有则向用户展示 |
+| `detail_results` | 详细检测结果 | 如有多个维度，逐一说明 |
+
+---
+
+### ❌ Agent 须避免的行为
+
+- **禁止自行猜测或编造检测结果** — 必须通过 API 调用获取真实结果
+- **禁止在 API 调用失败时忽略错误** — 必须向用户返回清晰的错误说明
+- **禁止跳过依赖安装** — 首次使用时需确保依赖已安装
+- **禁止只打印脚本路径而不执行** — 应直接运行脚本并返回结果
+
+## API 参考文档
+
+详细的接口参数、输出说明、错误码等信息请参阅：
+
+- [TextModeration API 参考](references/text_moderation_api.md)（[原始文档](https://cloud.tencent.com/document/product/1124/51860)）
+- [SDK 调用指引](https://cloud.tencent.com/document/product/1124/100983)
+
+## 核心脚本
+
+- `scripts/main.py` — AI 生成文本识别，调用 TextModeration 接口（`Type=TEXT_AIGC`）。
+
+## 依赖
+
+- Python 3.7+
+- `tencentcloud-sdk-python`（腾讯云 SDK）
+
+安装依赖（Agent 需手动安装）：
+
+```bash
+pip install tencentcloud-sdk-python
 ```

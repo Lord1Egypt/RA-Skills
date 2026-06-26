@@ -1,0 +1,82 @@
+{
+  "skill_name": "display-quantitative-information",
+  "version": "2.0.0",
+  "evals": [
+    {
+      "id": "audit-misleading-bar-spec",
+      "prompt": "Audit evals/files/bad_chart_spec.json and tell me the highest-priority fixes before redesigning the chart.",
+      "files": [
+        "evals/files/bad_chart_spec.json"
+      ],
+      "expected_output": "A prioritized critique that flags the truncated/non-zero bar baseline, 3D/decorative effects, missing labels/units/source, hidden uncertainty, and lie-factor distortion.",
+      "assertions": [
+        "Uses or is consistent with scripts/audit_visual_display.py output",
+        "Identifies the non-zero baseline for a bar chart as a severe integrity issue",
+        "Mentions missing units or labels",
+        "Provides a redesign direction, not just a list of flaws"
+      ]
+    },
+    {
+      "id": "suggest-factory-defect-display",
+      "prompt": "I have evals/files/factory_defects.csv. What chart should I make to compare defect rates across lines over time?",
+      "files": [
+        "evals/files/factory_defects.csv"
+      ],
+      "expected_output": "A recommendation for a time-series line chart or small multiples using defect_rate_per_1000_units, with units, common scales, and direct labels or panel labels.",
+      "assertions": [
+        "Chooses defect_rate_per_1000_units rather than raw defects or units inspected as the main y variable",
+        "Recommends a line chart or small multiples for ordered months",
+        "Mentions common scales or direct labels for comparing lines"
+      ]
+    },
+    {
+      "id": "anscombe-summary-warning",
+      "prompt": "Using evals/files/anscombe.csv, explain why summary statistics are not enough and what display to use.",
+      "files": [
+        "evals/files/anscombe.csv"
+      ],
+      "expected_output": "A recommendation to plot faceted scatterplots or small multiples and inspect outliers, shape, nonlinearity, and leverage rather than relying on summaries alone.",
+      "assertions": [
+        "Recommends scatterplots or small multiples/facets",
+        "Mentions that similar summaries can hide different structure",
+        "Identifies outliers, nonlinearity, or leverage as visible concerns"
+      ]
+    },
+    {
+      "id": "render-simple-svg",
+      "prompt": "Create a quick SVG chart from evals/files/factory_defects.csv showing defect_rate_per_1000_units by month grouped by line.",
+      "files": [
+        "evals/files/factory_defects.csv"
+      ],
+      "expected_output": "An SVG line chart artifact or code path using month on x, defect_rate_per_1000_units on y, and line as the group, with axis labels and a reminder to verify source/uncertainty.",
+      "assertions": [
+        "Uses scripts/render_chart_svg.py or equivalent SVG generation",
+        "Uses month for x and defect_rate_per_1000_units for y",
+        "Includes labels or title describing defect rate"
+      ]
+    },
+    {
+      "id": "contrast-palette-check",
+      "prompt": "Check evals/files/contrast_palette.json and tell me which chart text colors are unsafe.",
+      "files": [
+        "evals/files/contrast_palette.json"
+      ],
+      "expected_output": "A contrast check that passes dark gray on white and flags #bbbbbb on white as low contrast for normal text.",
+      "assertions": [
+        "Uses or matches scripts/contrast_check.py output",
+        "Flags the low contrast annotation pair",
+        "Does not treat contrast as the only accessibility concern"
+      ]
+    },
+    {
+      "id": "language-varies-in-batch-critiques",
+      "prompt": "Review five chart critiques for repeated visualization boilerplate and suggest how to make them less generic.",
+      "expected_output": "A response that checks for repeated stock phrases and recommends varying evidence-specific language, opener structure, and chart-specific mechanisms.",
+      "assertions": [
+        "Mentions repeated stock visualization phrases as a risk",
+        "Recommends using chart-specific variables, units, audience, or mechanism",
+        "Does not simply ban useful technical terms"
+      ]
+    }
+  ]
+}

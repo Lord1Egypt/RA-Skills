@@ -1,0 +1,98 @@
+# KB Framework - Security Sensitive Functions
+# Version: 1.1.0
+# This file documents all functions that perform write/delete operations
+# and explains why they are necessary for the framework's functionality.
+
+================================================================================
+WRITE OPERATIONS
+================================================================================
+
+1. Indexer (kb/commands/index.py)
+   -----------------------------------------------------------------------------
+   Function: IndexCommand.execute()
+   What: Creates/updates SQLite database entries and ChromaDB embeddings
+   Why: Core feature - indexes documents for search
+   Security: Validates paths, uses parameterized queries (SQL injection safe)
+
+2. Sync Command (kb/commands/sync.py)
+   -----------------------------------------------------------------------------
+   Function: SyncCommand.execute()
+   What: Updates database entries based on file changes
+   Why: Keeps index synchronized with source files
+   Security: Delta sync only, no bulk overwrites
+
+3. Obsidian Writer (kb/obsidian/writer.py)
+   -----------------------------------------------------------------------------
+   Function: create_note(vault_path, note_path, content, frontmatter)
+   What: Creates new .md files in Obsidian vault
+   Why: Core feature - allows programmatic note creation
+   
+   Function: update_frontmatter(vault_path, note_path, frontmatter)
+   What: Modifies YAML frontmatter of existing notes
+   Why: Updates metadata without changing note content
+   
+   Function: update_note_content(vault_path, note_path, content)
+   What: Overwrites note content while preserving frontmatter
+   Why: Syncs updated indexed content to existing notes
+
+4. KBConnection (kb/base/db.py)
+   -----------------------------------------------------------------------------
+   Function: execute(), executemany()
+   What: Executes SQL statements
+   Security: Always uses parameterized queries - NO SQL injection possible
+
+================================================================================
+DELETE OPERATIONS
+================================================================================
+
+1. Ghost Command (kb/commands/ghost.py)
+   -----------------------------------------------------------------------------
+   Function: GhostCommand.execute()
+   What: Removes orphaned database entries (files no longer exist)
+   Why: Database maintenance - removes stale data
+   Security: Only removes DB entries, never source files
+
+2. Obsidian Writer (kb/obsidian/writer.py)
+   -----------------------------------------------------------------------------
+   Function: delete_note(vault_path, note_path)
+   What: Deletes .md files from Obsidian vault
+   Why: Complete CRUD operations for vault management
+   Security: Validates path is within vault directory
+
+================================================================================
+CONFIGURATION & ENVIRONMENT
+================================================================================
+
+1. KBConfig (kb/base/config.py)
+   -----------------------------------------------------------------------------
+   Environment Variables:
+   - KB_HOME: Base directory (~/.openclaw/kb/)
+   - KB_DB_PATH: SQLite database location
+   - KB_CHROMA_PATH: ChromaDB storage path
+   - KB_INDEX_ROOTS: Directories to index
+   
+   Security: All paths validated, no shell execution
+
+================================================================================
+SAFETY GUARANTEES
+================================================================================
+
+1. Path Validation
+   - All file operations validate paths are within allowed directories
+   - No arbitrary file system access outside KB_HOME
+
+2. SQL Injection Protection
+   - All database queries use parameterized statements
+   - No string concatenation for SQL
+
+3. No Network Operations
+   - Framework operates entirely locally
+   - No external API calls (except optional ChromaDB)
+
+4. Audit Trail
+   - All write operations logged via KBLogger
+   - Log location: ~/.openclaw/kb/logs/
+
+================================================================================
+REVIEWED: 2026-04-15
+ARCHITECTURE: Clean Architecture v1.1.0

@@ -1,0 +1,6 @@
+{
+  "goal_web": "Twitter",
+  "core_goal": "获取 AI 相关热点，撰写内容并发布",
+  "core_flow": null,
+  "note": "平台级目标配置示例。新平台首次接入时可据此生成 references/core_goal_{goal_web}.json。"
+}

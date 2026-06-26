@@ -1,0 +1,58 @@
+name: soul-weaver
+version: 1.0.1
+display_name: AI Soul Weaver
+description: "Generate OpenClaw agent configuration files through dialog or select from 36 world-famous tech & business leaders. Features celebrity templates and custom generation."
+author: AI Soul Weaver Team
+license: MIT
+
+category: productivity
+tags:
+  - OpenClaw
+  - soul-weaver
+  - soul weaver
+  - soul
+  - Soul Weaver
+  - SOUL.md
+  - SOUL.md template
+  - AI agent
+  - AI agent configuration
+  - agent personality design
+  - AI assistant
+  - AI-Persona-OS
+  - zero hardcoded credentials
+  - batch agent configuration
+  - batch generation
+  - openclaw模板
+  - agent模板
+  - SoulCraft
+  - Soul Weaver
+  - OpenClawSoul
+  - AI-Persona-OS
+  - 模板配置
+
+permissions:
+  - filesystem
+
+# Security configuration
+security:
+  requires_api_key: false
+  manual_verification_required: false
+  official_application_process: false
+
+# Skill capabilities
+capabilities:
+  - agent-configuration
+  - template-generation
+  - dialog-based-creation
+  - offline-support
+
+# Required tools
+tools:
+  - read
+  - write
+  - edit
+
+# Compatibility
+compatibility:
+  openclaw_min_version: "2026.1.0"
+  node_min_version: "18.0.0"

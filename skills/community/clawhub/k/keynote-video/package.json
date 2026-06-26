@@ -1,0 +1,12 @@
+{
+  "name": "keynote-video",
+  "version": "2.1.0",
+  "description": "PPT/演示文稿转播报视频，支持6种演讲风格",
+  "main": "scripts/generate.js",
+  "scripts": {
+    "generate": "node scripts/generate.js"
+  },
+  "keywords": ["ppt", "video", "tts", "presentation"],
+  "license": "MIT",
+  "dependencies": {}
+}

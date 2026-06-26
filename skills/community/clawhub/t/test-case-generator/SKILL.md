@@ -1,35 +1,43 @@
----
-name: "Test Case Generator"
-description: "Automatically generate complete unit test code including imports, test cases, mocks, and assertions for Jest, Mocha, or Pytest from given code."
-category: "software-development"
-source: "ClawHub"
-tags: [testing, unit-test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-case-generator"
-sourceUrl: "https://clawhub.ai/skills/test-case-generator"
----
-
 # Test Case Generator
 
-> Automatically generate complete unit test code including imports, test cases, mocks, and assertions for Jest, Mocha, or Pytest from given code.
+根据代码自动生成单元测试用例。
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-case-generator`
-- **Source URL:** [https://clawhub.ai/skills/test-case-generator](https://clawhub.ai/skills/test-case-generator)
+## 功能
 
-## Overview
+- 从代码提取函数签名
+- 自动生成测试框架代码
+- 支持 Jest、Mocha、Pytest
+- 智能生成测试参数
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-case-generator
+- "生成测试"
+- "测试用例"
+- "unit test"
+- "generate test"
+
+## 支持框架
+
+```javascript
+// Jest
+test('functionName should work', () => {
+  expect(result).toBe(expected);
+});
+
+// Mocha
+it('functionName', () => {
+  assert(result === expected);
+});
+
+// Python Pytest
+def test_function_name():
+    assert result is not None
 ```
+
+## 输出
+
+返回完整的测试文件代码，包含：
+- 导入语句
+- 测试用例
+- Mock 数据
+- 断言

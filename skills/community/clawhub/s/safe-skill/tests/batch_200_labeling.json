@@ -1,0 +1,915 @@
+{
+  "updated_statistics": {
+    "scan_date": "2026-03-16",
+    "total_sampled": 200,
+    "successful_scans": 200,
+    "errors": 0,
+    "risk_level_distribution": {
+      "MEDIUM": 31,
+      "EXTREME": 43,
+      "LOW": 57,
+      "HIGH": 28,
+      "CLEAN": 41
+    },
+    "score_stats": {
+      "average": 81.98,
+      "median": 17,
+      "max": 1656
+    },
+    "high_extreme_count": 71,
+    "high_extreme_pct": 35.5,
+    "top_20_rules": [
+      {
+        "rule_id": "PERSIST-001",
+        "count": 127
+      },
+      {
+        "rule_id": "EXFIL-006",
+        "count": 127
+      },
+      {
+        "rule_id": "high_entropy",
+        "count": 125
+      },
+      {
+        "rule_id": "AGENT-001",
+        "count": 103
+      },
+      {
+        "rule_id": "ESC-001",
+        "count": 76
+      },
+      {
+        "rule_id": "CRED-006",
+        "count": 42
+      },
+      {
+        "rule_id": "PKG-002",
+        "count": 39
+      },
+      {
+        "rule_id": "PKG-001",
+        "count": 39
+      },
+      {
+        "rule_id": "EXFIL-001",
+        "count": 36
+      },
+      {
+        "rule_id": "INJECT-002",
+        "count": 34
+      },
+      {
+        "rule_id": "INJECT-001",
+        "count": 33
+      },
+      {
+        "rule_id": "EXFIL-002",
+        "count": 30
+      },
+      {
+        "rule_id": "RCE-007",
+        "count": 25
+      },
+      {
+        "rule_id": "EXFIL-007",
+        "count": 24
+      },
+      {
+        "rule_id": "RCE-006",
+        "count": 21
+      },
+      {
+        "rule_id": "PERSIST-003",
+        "count": 14
+      },
+      {
+        "rule_id": "NET-001",
+        "count": 14
+      },
+      {
+        "rule_id": "PERSIST-004",
+        "count": 13
+      },
+      {
+        "rule_id": "PERSIST-002",
+        "count": 12
+      },
+      {
+        "rule_id": "AGENT-004",
+        "count": 11
+      }
+    ],
+    "comparison_with_previous": {
+      "previous_average": 122.6,
+      "current_average": 81.98,
+      "previous_median": 19,
+      "current_median": 17,
+      "previous_high_extreme_pct": 37.5,
+      "current_high_extreme_pct": 35.5,
+      "notes": "Average score dropped from 122.6 to 81.98, median dropped from 19 to 17, HIGH+EXTREME rate dropped from 37.5% to 35.5%"
+    },
+    "labeling_summary": {
+      "total_candidates": 50,
+      "likely_benign": 27,
+      "likely_suspicious": 7,
+      "needs_review": 16
+    }
+  },
+  "candidates_for_ground_truth": [
+    {
+      "skill_name": "niracler/nini-writing-inspiration",
+      "skill_path": "/tmp/openclaw-skills/skills/niracler/nini-writing-inspiration",
+      "risk_score": 0,
+      "risk_level": "CLEAN",
+      "rule_ids": [],
+      "rule_id_counts": {},
+      "preliminary_label": "likely_benign",
+      "rationale": "Chinese writing inspiration tool with no code or external calls"
+    },
+    {
+      "skill_name": "ivangdavila/play-store",
+      "skill_path": "/tmp/openclaw-skills/skills/ivangdavila/play-store",
+      "risk_score": 0,
+      "risk_level": "CLEAN",
+      "rule_ids": [],
+      "rule_id_counts": {},
+      "preliminary_label": "likely_benign",
+      "rationale": "Google Play Store publishing guide, purely instructional"
+    },
+    {
+      "skill_name": "zhengxinjipai/deep-research-gemini",
+      "skill_path": "/tmp/openclaw-skills/skills/zhengxinjipai/deep-research-gemini",
+      "risk_score": 0,
+      "risk_level": "CLEAN",
+      "rule_ids": [],
+      "rule_id_counts": {},
+      "preliminary_label": "likely_benign",
+      "rationale": "Gemini deep research wrapper, marked as safe by author"
+    },
+    {
+      "skill_name": "atwatcher/mckinsey-style-meeting-brief-copilot",
+      "skill_path": "/tmp/openclaw-skills/skills/atwatcher/mckinsey-style-meeting-brief-copilot",
+      "risk_score": 0,
+      "risk_level": "CLEAN",
+      "rule_ids": [],
+      "rule_id_counts": {},
+      "preliminary_label": "likely_benign",
+      "rationale": "Meeting brief generation tool, text-only productivity skill"
+    },
+    {
+      "skill_name": "vishalgojha/lead-storage",
+      "skill_path": "/tmp/openclaw-skills/skills/vishalgojha/lead-storage",
+      "risk_score": 0,
+      "risk_level": "CLEAN",
+      "rule_ids": [],
+      "rule_id_counts": {},
+      "preliminary_label": "likely_benign",
+      "rationale": "Lead storage skill with explicit confirmation gating"
+    },
+    {
+      "skill_name": "lxgicstudios/validator-gen",
+      "skill_path": "/tmp/openclaw-skills/skills/lxgicstudios/validator-gen",
+      "risk_score": 8,
+      "risk_level": "LOW",
+      "rule_ids": [
+        "PKG-002"
+      ],
+      "rule_id_counts": {
+        "PKG-002": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Zod/Yup schema generator; PKG-002 from npx usage is expected"
+    },
+    {
+      "skill_name": "yipng05-max/cjournal-analyzer",
+      "skill_path": "/tmp/openclaw-skills/skills/yipng05-max/cjournal-analyzer",
+      "risk_score": 2,
+      "risk_level": "LOW",
+      "rule_ids": [
+        "high_entropy"
+      ],
+      "rule_id_counts": {
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Chinese academic journal analyzer; high_entropy from Chinese text"
+    },
+    {
+      "skill_name": "siddontang/tidb-x",
+      "skill_path": "/tmp/openclaw-skills/skills/siddontang/tidb-x",
+      "risk_score": 15,
+      "risk_level": "LOW",
+      "rule_ids": [
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "TiDB database skill; EXFIL-006 from legitimate API endpoint URLs"
+    },
+    {
+      "skill_name": "asio-o/minimax-plan-checker",
+      "skill_path": "/tmp/openclaw-skills/skills/asio-o/minimax-plan-checker",
+      "risk_score": 8,
+      "risk_level": "LOW",
+      "rule_ids": [
+        "PKG-001"
+      ],
+      "rule_id_counts": {
+        "PKG-001": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "MiniMax API plan checker; PKG-001 from python script usage"
+    },
+    {
+      "skill_name": "bytesagain/api-docs",
+      "skill_path": "/tmp/openclaw-skills/skills/bytesagain/api-docs",
+      "risk_score": 2,
+      "risk_level": "LOW",
+      "rule_ids": [
+        "high_entropy"
+      ],
+      "rule_id_counts": {
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "ShowDoc API documentation tool; high_entropy from mixed Chinese/English text"
+    },
+    {
+      "skill_name": "tylordius/x-read",
+      "skill_path": "/tmp/openclaw-skills/skills/tylordius/x-read",
+      "risk_score": 32,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "high_entropy",
+        "NET-001",
+        "ESC-005"
+      ],
+      "rule_id_counts": {
+        "high_entropy": 1,
+        "ESC-005": 1,
+        "NET-001": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Twitter/X content reader; NET-001 and ESC-005 from web scraping patterns"
+    },
+    {
+      "skill_name": "michael-laffin/content-recycler",
+      "skill_path": "/tmp/openclaw-skills/skills/michael-laffin/content-recycler",
+      "risk_score": 25,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "PERSIST-001"
+      ],
+      "rule_id_counts": {
+        "PERSIST-001": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Content repurposing tool; PERSIST-001 from file write patterns for content storage"
+    },
+    {
+      "skill_name": "dilate7/moltunes",
+      "skill_path": "/tmp/openclaw-skills/skills/dilate7/moltunes",
+      "risk_score": 24,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "PKG-002"
+      ],
+      "rule_id_counts": {
+        "PKG-002": 3
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Decentralized skill marketplace with MOLT tokens and Ed25519 keys; crypto marketplace could mask exfiltration"
+    },
+    {
+      "skill_name": "stperic/local-websearch",
+      "skill_path": "/tmp/openclaw-skills/skills/stperic/local-websearch",
+      "risk_score": 30,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "EXFIL-002"
+      ],
+      "rule_id_counts": {
+        "EXFIL-002": 2
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Self-hosted SearXNG search; EXFIL-002 from legitimate HTTP requests to user's own server"
+    },
+    {
+      "skill_name": "th3hypn0tist/symbolic-memory",
+      "skill_path": "/tmp/openclaw-skills/skills/th3hypn0tist/symbolic-memory",
+      "risk_score": 28,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "high_entropy",
+        "AGENT-001",
+        "EXFIL-001"
+      ],
+      "rule_id_counts": {
+        "AGENT-001": 1,
+        "high_entropy": 1,
+        "EXFIL-001": 1
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Symbolic memory with PostgreSQL + Ollama; AGENT-001 and EXFIL-001 warrant review of data flows"
+    },
+    {
+      "skill_name": "sa9saq/api-health-check",
+      "skill_path": "/tmp/openclaw-skills/skills/sa9saq/api-health-check",
+      "risk_score": 21,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "high_entropy",
+        "NET-001"
+      ],
+      "rule_id_counts": {
+        "NET-001": 1,
+        "high_entropy": 3
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "API health monitoring with curl; NET-001 from legitimate endpoint checking"
+    },
+    {
+      "skill_name": "anmolnagpal/guardduty-explainer",
+      "skill_path": "/tmp/openclaw-skills/skills/anmolnagpal/guardduty-explainer",
+      "risk_score": 27,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "high_entropy",
+        "INJECT-002"
+      ],
+      "rule_id_counts": {
+        "INJECT-002": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "AWS GuardDuty finding explainer; INJECT-002 from security rule patterns in content"
+    },
+    {
+      "skill_name": "kimbo128/drain-mcp",
+      "skill_path": "/tmp/openclaw-skills/skills/kimbo128/drain-mcp",
+      "risk_score": 26,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "high_entropy",
+        "EXFIL-007",
+        "PKG-002"
+      ],
+      "rule_id_counts": {
+        "EXFIL-007": 2,
+        "PKG-002": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "USDC payment channels on Polygon; EXFIL-007 from crypto transaction patterns need verification"
+    },
+    {
+      "skill_name": "effimail/crop-image",
+      "skill_path": "/tmp/openclaw-skills/skills/effimail/crop-image",
+      "risk_score": 30,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 2
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Image cropping API wrapper; EXFIL-006 from legitimate API POST endpoints"
+    },
+    {
+      "skill_name": "lihai2582424632-droid/jiade",
+      "skill_path": "/tmp/openclaw-skills/skills/lihai2582424632-droid/jiade",
+      "risk_score": 27,
+      "risk_level": "MEDIUM",
+      "rule_ids": [
+        "high_entropy",
+        "RCE-001"
+      ],
+      "rule_id_counts": {
+        "RCE-001": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "FLUX image generation via inference.sh; RCE-001 from allowed bash tool usage"
+    },
+    {
+      "skill_name": "wljmmx/cross-channel-memory",
+      "skill_path": "/tmp/openclaw-skills/skills/wljmmx/cross-channel-memory",
+      "risk_score": 50,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "AGENT-001"
+      ],
+      "rule_id_counts": {
+        "AGENT-001": 2
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Cross-channel memory sync across QQ/Feishu; AGENT-001 from agent coordination patterns"
+    },
+    {
+      "skill_name": "badideal-2046/specvibe",
+      "skill_path": "/tmp/openclaw-skills/skills/badideal-2046/specvibe",
+      "risk_score": 42,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "high_entropy",
+        "INJECT-002",
+        "AGENT-003"
+      ],
+      "rule_id_counts": {
+        "INJECT-002": 1,
+        "AGENT-003": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Spec-driven dev framework; INJECT-002 and AGENT-003 from framework instruction patterns"
+    },
+    {
+      "skill_name": "ivangdavila/genomics",
+      "skill_path": "/tmp/openclaw-skills/skills/ivangdavila/genomics",
+      "risk_score": 77,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "high_entropy",
+        "AGENT-001"
+      ],
+      "rule_id_counts": {
+        "AGENT-001": 3,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Genomics variant interpreter; AGENT-001 from clinical workflow instructions"
+    },
+    {
+      "skill_name": "xaiohuangningde/pcec-evomap-bounty",
+      "skill_path": "/tmp/openclaw-skills/skills/xaiohuangningde/pcec-evomap-bounty",
+      "risk_score": 60,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 4
+      },
+      "preliminary_label": "likely_suspicious",
+      "rationale": "Bounty system with external API calls to evomap.ai; multiple EXFIL-006 from POST requests with node IDs"
+    },
+    {
+      "skill_name": "ok-james-01/okx-onchain-gateway",
+      "skill_path": "/tmp/openclaw-skills/skills/ok-james-01/okx-onchain-gateway",
+      "risk_score": 79,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "high_entropy",
+        "RCE-001"
+      ],
+      "rule_id_counts": {
+        "RCE-001": 3,
+        "high_entropy": 2
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "OKX blockchain transaction broadcaster; multiple RCE-001 from transaction execution patterns"
+    },
+    {
+      "skill_name": "xingstudy/hongkong-payment-qfpay",
+      "skill_path": "/tmp/openclaw-skills/skills/xingstudy/hongkong-payment-qfpay",
+      "risk_score": 77,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "EXFIL-001",
+        "high_entropy"
+      ],
+      "rule_id_counts": {
+        "EXFIL-001": 3,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "QFPay payment API integration guide; EXFIL-001 from legitimate payment API signatures"
+    },
+    {
+      "skill_name": "crazylion/aws-price-csv",
+      "skill_path": "/tmp/openclaw-skills/skills/crazylion/aws-price-csv",
+      "risk_score": 46,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "RCE-007",
+        "PKG-001"
+      ],
+      "rule_id_counts": {
+        "PKG-001": 2,
+        "RCE-007": 2
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "AWS pricing CSV generator; PKG-001 and RCE-007 from pip install and subprocess patterns"
+    },
+    {
+      "skill_name": "wangwalk/managing-apple-notes",
+      "skill_path": "/tmp/openclaw-skills/skills/wangwalk/managing-apple-notes",
+      "risk_score": 52,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "high_entropy",
+        "ESC-001"
+      ],
+      "rule_id_counts": {
+        "ESC-001": 2,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Apple Notes CLI wrapper; ESC-001 from AppleScript/osascript execution"
+    },
+    {
+      "skill_name": "assistant-design/clawflight",
+      "skill_path": "/tmp/openclaw-skills/skills/assistant-design/clawflight",
+      "risk_score": 65,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "high_entropy",
+        "PERSIST-001",
+        "PKG-002",
+        "CRED-006"
+      ],
+      "rule_id_counts": {
+        "CRED-006": 2,
+        "PERSIST-001": 1,
+        "PKG-002": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Flight search with affiliate links; CRED-006 from API key patterns and PERSIST-001 from caching"
+    },
+    {
+      "skill_name": "administratorfung/news-aggregator-skill-3",
+      "skill_path": "/tmp/openclaw-skills/skills/administratorfung/news-aggregator-skill-3",
+      "risk_score": 48,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "AGENT-002",
+        "NET-001"
+      ],
+      "rule_id_counts": {
+        "AGENT-002": 1,
+        "NET-001": 2
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Multi-source news aggregator; NET-001 from legitimate HTTP fetches to news APIs"
+    },
+    {
+      "skill_name": "driftsbot/experience-body-electric",
+      "skill_path": "/tmp/openclaw-skills/skills/driftsbot/experience-body-electric",
+      "risk_score": 48,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "high_entropy",
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 4,
+        "high_entropy": 1
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Immersive experience platform; multiple EXFIL-006 from API calls to drifts.bot"
+    },
+    {
+      "skill_name": "dbalve/fastio-skills",
+      "skill_path": "/tmp/openclaw-skills/skills/dbalve/fastio-skills",
+      "risk_score": 46,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "high_entropy",
+        "INJECT-002",
+        "RCE-005"
+      ],
+      "rule_id_counts": {
+        "RCE-005": 1,
+        "INJECT-002": 1,
+        "high_entropy": 3
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Agent workspace platform; RCE-005 and INJECT-002 from tool routing patterns"
+    },
+    {
+      "skill_name": "darkdevelopers/bring-add",
+      "skill_path": "/tmp/openclaw-skills/skills/darkdevelopers/bring-add",
+      "risk_score": 61,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "PKG-002",
+        "CRED-006"
+      ],
+      "rule_id_counts": {
+        "CRED-006": 3,
+        "PKG-002": 2
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Bring! shopping list CLI; CRED-006 from auth token patterns for legitimate API"
+    },
+    {
+      "skill_name": "gzzzj/garmin-health-report",
+      "skill_path": "/tmp/openclaw-skills/skills/gzzzj/garmin-health-report",
+      "risk_score": 75,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "CRED-006",
+        "high_entropy",
+        "PERSIST-001",
+        "PKG-001"
+      ],
+      "rule_id_counts": {
+        "PKG-001": 1,
+        "PERSIST-001": 2,
+        "high_entropy": 1,
+        "CRED-006": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Garmin health report generator; CRED-006 from garth auth library, PKG-001 from pip install"
+    },
+    {
+      "skill_name": "khaliqgant/relaycast",
+      "skill_path": "/tmp/openclaw-skills/skills/khaliqgant/relaycast",
+      "risk_score": 46,
+      "risk_level": "HIGH",
+      "rule_ids": [
+        "CRED-006",
+        "PKG-002",
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 1,
+        "CRED-006": 1,
+        "PKG-002": 2
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Multi-agent messaging system; EXFIL-006 and CRED-006 from API key and message transmission patterns"
+    },
+    {
+      "skill_name": "donghaozhang/qcut-toolkit",
+      "skill_path": "/tmp/openclaw-skills/skills/donghaozhang/qcut-toolkit",
+      "risk_score": 303,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "EXFIL-006",
+        "high_entropy",
+        "CRED-008",
+        "EXFIL-001",
+        "AGENT-003"
+      ],
+      "rule_id_counts": {
+        "high_entropy": 1,
+        "EXFIL-006": 12,
+        "EXFIL-001": 1,
+        "CRED-008": 2,
+        "AGENT-003": 4
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Media toolkit with many sub-skills; 20 rule hits including EXFIL-006(9x), CRED-008, AGENT-003 need deep review"
+    },
+    {
+      "skill_name": "alirezarezvani/ciso-advisor",
+      "skill_path": "/tmp/openclaw-skills/skills/alirezarezvani/ciso-advisor",
+      "risk_score": 102,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "high_entropy",
+        "INJECT-002"
+      ],
+      "rule_id_counts": {
+        "high_entropy": 1,
+        "INJECT-002": 4
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Security advisory skill; INJECT-002 hits from security terminology in content, not actual injection"
+    },
+    {
+      "skill_name": "impkind/acc-error-memory",
+      "skill_path": "/tmp/openclaw-skills/skills/impkind/acc-error-memory",
+      "risk_score": 555,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "PERSIST-001",
+        "RCE-007"
+      ],
+      "rule_id_counts": {
+        "PERSIST-001": 21,
+        "RCE-007": 2
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Error tracking with 21 PERSIST-001 hits; heavy file system writes across many files warrant review"
+    },
+    {
+      "skill_name": "autume/meshtastic-detection",
+      "skill_path": "/tmp/openclaw-skills/skills/autume/meshtastic-detection",
+      "risk_score": 917,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "INJECT-002",
+        "PERSIST-001",
+        "ESC-001",
+        "PERSIST-004",
+        "PERSIST-003",
+        "PKG-001"
+      ],
+      "rule_id_counts": {
+        "ESC-001": 32,
+        "PERSIST-001": 41,
+        "PERSIST-003": 4,
+        "PERSIST-004": 2,
+        "INJECT-002": 2,
+        "PKG-001": 2
+      },
+      "preliminary_label": "likely_suspicious",
+      "rationale": "LoRa mesh detection with 83 rule hits including ESC-001(32x) and PERSIST-001(41x); extreme file/process manipulation"
+    },
+    {
+      "skill_name": "novirusallowed/clawpenflow",
+      "skill_path": "/tmp/openclaw-skills/skills/novirusallowed/clawpenflow",
+      "risk_score": 120,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "CRED-006",
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 6,
+        "CRED-006": 2
+      },
+      "preliminary_label": "likely_suspicious",
+      "rationale": "Q&A platform agent with ironic name; 8 EXFIL-006/CRED-006 hits sending data to external clawpenflow.com"
+    },
+    {
+      "skill_name": "werdelin/audos",
+      "skill_path": "/tmp/openclaw-skills/skills/werdelin/audos",
+      "risk_score": 87,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "high_entropy",
+        "INJECT-002",
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "high_entropy": 1,
+        "EXFIL-006": 4,
+        "INJECT-002": 1
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Startup workspace builder; EXFIL-006 from API calls to audos service, INJECT-002 from prompt patterns"
+    },
+    {
+      "skill_name": "gdperkins/reporead",
+      "skill_path": "/tmp/openclaw-skills/skills/gdperkins/reporead",
+      "risk_score": 107,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "high_entropy",
+        "PERSIST-002",
+        "EXFIL-006",
+        "CRED-006"
+      ],
+      "rule_id_counts": {
+        "CRED-006": 3,
+        "PERSIST-002": 2,
+        "high_entropy": 1,
+        "EXFIL-006": 2
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "GitHub repo analyzer requiring API key; CRED-006(3x) and PERSIST-002(2x) for key handling and data persistence"
+    },
+    {
+      "skill_name": "kentaroid-bot/agents-refresh-md",
+      "skill_path": "/tmp/openclaw-skills/skills/kentaroid-bot/agents-refresh-md",
+      "risk_score": 926,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "AGENT-001",
+        "PERSIST-001"
+      ],
+      "rule_id_counts": {
+        "AGENT-001": 23,
+        "PERSIST-001": 15
+      },
+      "preliminary_label": "likely_suspicious",
+      "rationale": "Agent context refresh with 38 rule hits; AGENT-001(23x) and PERSIST-001(15x) suggest heavy agent manipulation and persistence"
+    },
+    {
+      "skill_name": "liuhao6741/mindkeeper",
+      "skill_path": "/tmp/openclaw-skills/skills/liuhao6741/mindkeeper",
+      "risk_score": 828,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "AGENT-001"
+      ],
+      "rule_id_counts": {
+        "AGENT-001": 36
+      },
+      "preliminary_label": "likely_suspicious",
+      "rationale": "Agent context version control with 36 AGENT-001 hits; pervasive agent identity/context file manipulation"
+    },
+    {
+      "skill_name": "jordancoin/atl-mobile",
+      "skill_path": "/tmp/openclaw-skills/skills/jordancoin/atl-mobile",
+      "risk_score": 767,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "high_entropy",
+        "CRED-010",
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 50,
+        "CRED-010": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "iOS simulator automation with 50 EXFIL-006 hits; legitimate automation tool but extreme URL/data patterns"
+    },
+    {
+      "skill_name": "suileyan/telegram-send-photo",
+      "skill_path": "/tmp/openclaw-skills/skills/suileyan/telegram-send-photo",
+      "risk_score": 90,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "EXFIL-001",
+        "high_entropy",
+        "PKG-001",
+        "CRED-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-001": 2,
+        "CRED-006": 2,
+        "PKG-001": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_suspicious",
+      "rationale": "Telegram photo sender; EXFIL-001 + CRED-006 with hardcoded bot token patterns is a data exfiltration risk"
+    },
+    {
+      "skill_name": "summerloveqq/call-aida-app",
+      "skill_path": "/tmp/openclaw-skills/skills/summerloveqq/call-aida-app",
+      "risk_score": 138,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "EXFIL-002",
+        "RCE-007"
+      ],
+      "rule_id_counts": {
+        "RCE-007": 7,
+        "EXFIL-002": 2
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Internal LLM invoke tool (aida.vip.sankuai.com); 7 RCE-007 + 2 EXFIL-002 from subprocess and HTTP calls"
+    },
+    {
+      "skill_name": "againta/fluid-memory",
+      "skill_path": "/tmp/openclaw-skills/skills/againta/fluid-memory",
+      "risk_score": 89,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "RCE-007",
+        "AGENT-005"
+      ],
+      "rule_id_counts": {
+        "AGENT-005": 7,
+        "RCE-007": 2
+      },
+      "preliminary_label": "needs_review",
+      "rationale": "Ebbinghaus-based memory system; 7 AGENT-005 + 2 RCE-007 for memory manipulation and code execution"
+    },
+    {
+      "skill_name": "azep-ninja/quickintel-scan",
+      "skill_path": "/tmp/openclaw-skills/skills/azep-ninja/quickintel-scan",
+      "risk_score": 95,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "CRED-006",
+        "high_entropy",
+        "EXFIL-007",
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 2,
+        "EXFIL-007": 6,
+        "CRED-006": 1,
+        "high_entropy": 1
+      },
+      "preliminary_label": "likely_benign",
+      "rationale": "Token security scanner; EXFIL-006/007 from legitimate API calls to Quick Intel for contract analysis"
+    },
+    {
+      "skill_name": "realroc/tiktok-viral-marketing",
+      "skill_path": "/tmp/openclaw-skills/skills/realroc/tiktok-viral-marketing",
+      "risk_score": 105,
+      "risk_level": "EXTREME",
+      "rule_ids": [
+        "EXFIL-006"
+      ],
+      "rule_id_counts": {
+        "EXFIL-006": 7
+      },
+      "preliminary_label": "likely_suspicious",
+      "rationale": "TikTok marketing with 7 EXFIL-006; sends data to pinghuman.ai API, could be legitimate but high exfil count"
+    }
+  ]
+}

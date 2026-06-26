@@ -1,0 +1,19 @@
+{
+  "name": "mocklab-tests",
+  "version": "1.0.0",
+  "description": "MockLab E2E 测试套件",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "install-browsers": "playwright install"
+  },
+  "keywords": ["mocklab", "test", "e2e"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.47.0"
+  }
+}

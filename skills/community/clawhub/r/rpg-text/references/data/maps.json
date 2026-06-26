@@ -1,0 +1,123 @@
+{
+  "tavern": {
+    "name": "酒馆",
+    "description": "温暖的火光从木制门窗透出，空气中弥漫着啤酒和烤肉的香气。",
+    "npc": ["bartender", "old_man"],
+    "exits": {
+      "north": "village_square",
+      "up": "upstairs"
+    },
+    "items": [],
+    "events": ["rumor"]
+  },
+  "village_square": {
+    "name": "村庄广场",
+    "description": "村庄的中心广场，中央有一口古井。周围是简陋的木屋。",
+    "npc": ["guard"],
+    "exits": {
+      "south": "tavern",
+      "east": "shop",
+      "west": "blacksmith",
+      "north": "forest_entrance"
+    },
+    "items": [],
+    "events": []
+  },
+  "shop": {
+    "name": "杂货铺",
+    "description": "货架上摆满了各种日常用品，店主正在柜台后面整理货物。",
+    "npc": ["shopkeeper"],
+    "exits": {
+      "west": "village_square"
+    },
+    "items": ["health_potion", "antidote", "torch", "rations"],
+    "events": []
+  },
+  "blacksmith": {
+    "name": "铁匠铺",
+    "description": "炉火正旺，铁锤敲击金属的声音不断。一个赤裸上身的铁匠正在忙碌。",
+    "npc": ["blacksmith"],
+    "exits": {
+      "east": "village_square"
+    },
+    "items": ["dagger", "longsword", "leather_armor"],
+    "events": []
+  },
+  "forest_entrance": {
+    "name": "森林入口",
+    "description": "一片茂密的森林出现在眼前，阳光被浓密的树冠遮挡。隐约可见一条小路向深处延伸。",
+    "npc": [],
+    "exits": {
+      "south": "village_square",
+      "north": "deep_forest"
+    },
+    "items": [],
+    "events": []
+  },
+  "deep_forest": {
+    "name": "幽深森林",
+    "description": "树木高大参天，地面覆盖着厚厚的落叶。偶尔传来不明生物的叫声。",
+    "npc": [],
+    "exits": {
+      "south": "forest_entrance",
+      "east": "cave_entrance",
+      "north": "ancient_ruins"
+    },
+    "items": [],
+    "events": ["random_encounter"]
+  },
+  "cave_entrance": {
+    "name": "洞穴入口",
+    "description": "山壁上有一个黑暗的洞口，阵阵阴风从中吹出。",
+    "npc": [],
+    "exits": {
+      "west": "deep_forest",
+      "in": "dark_cave"
+    },
+    "items": [],
+    "events": []
+  },
+  "dark_cave": {
+    "name": "黑暗洞穴",
+    "description": "伸手不见五指的洞穴，滴水声在深处回响。",
+    "npc": [],
+    "exits": {
+      "out": "cave_entrance",
+      "deeper": "underground_lake"
+    },
+    "items": [],
+    "events": ["random_encounter"]
+  },
+  "ancient_ruins": {
+    "name": "远古遗迹",
+    "description": "古老的石制建筑遗迹，藤蔓覆盖着残垣断壁。",
+    "npc": [],
+    "exits": {
+      "south": "deep_forest",
+      "in": "treasury"
+    },
+    "items": [],
+    "events": []
+  },
+  "treasury": {
+    "name": "宝库",
+    "description": "遗迹深处的一个密封房间，地上散落着一些金币和宝石。",
+    "npc": [],
+    "exits": {
+      "out": "ancient_ruins"
+    },
+    "items": ["gold", "gem_ruby"],
+    "events": ["guardian"],
+    "boss": "skeleton_knight"
+  },
+  "upstairs": {
+    "name": "酒馆二楼",
+    "description": "几间简陋的客房，床铺还算干净。",
+    "npc": [],
+    "exits": {
+      "down": "tavern"
+    },
+    "items": [],
+    "events": []
+  }
+}

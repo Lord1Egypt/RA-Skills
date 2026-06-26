@@ -1,35 +1,45 @@
 ---
-name: "Generate Facebook Ad Creative Variations"
+name: Generate Facebook Ad Creative Variations
 description: "Creates multiple ad copy and image variations optimized for different audiences and placements. Use when setting up ad campaigns."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-facebook-ad-creative-variations"
-sourceUrl: "https://clawhub.ai/skills/generate-facebook-ad-creative-variations"
+allowed-tools: Bash, Read
+metadata:
+  openclaw:
+    emoji: "📝"
+    homepage: "https://www.skillboss.co/skills/generate-facebook-ad-creative-variations"
 ---
 
 # Generate Facebook Ad Creative Variations
 
-> Creates multiple ad copy and image variations optimized for different audiences and placements. Use when setting up ad campaigns.
+Creates multiple ad copy and image variations optimized for different audiences and placements. Use when setting up ad campaigns.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-facebook-ad-creative-variations`
-- **Source URL:** [https://clawhub.ai/skills/generate-facebook-ad-creative-variations](https://clawhub.ai/skills/generate-facebook-ad-creative-variations)
+## Use When
 
-## Overview
+Use this skill for paid advertising work for marketers, agencies, growth teams.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-facebook-ad-creative-variations
-```
+1. Clarify the audience, goal, constraints, and required output format.
+2. Produce a strong first draft optimized for the business use case.
+3. Use the relevant SkillBoss capabilities to generate supporting assets or enrich the result.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+Generate 5 ad variations for our fitness app — different headlines, copy, and images
+
+## SEO Keywords
+
+- AI ad creative generator
+- Facebook ad copy writer
+- ad variation maker
+- A/B test ad creator
+
+## Notes
+
+- Create multiple ad copy and image variations for A/B testing
+- Review outputs before external publication or automated execution.

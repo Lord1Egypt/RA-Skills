@@ -1,0 +1,49 @@
+brand_name: ""
+company_name: ""
+industry: ""
+one_line_definition: ""
+product_category: ""
+business_model: ""
+company_intro: ""
+mission: ""
+vision: ""
+stage: ""
+locations: []
+products: []
+services: []
+delivery_models: []
+pricing_models: []
+onboarding_process: []
+core_audience: []
+secondary_audience: []
+decision_makers: []
+end_users: []
+anti_audience: []
+core_selling_points: []
+proof_points: []
+vs_traditional: ""
+vs_competitors: ""
+use_cases: []
+customer_cases: []
+faq_seeds: []
+official_website: ""
+website_links:
+  - label: ""
+    url: ""
+    type: ""
+    notes: ""
+sales_email: ""
+support_email: ""
+phone: ""
+wechat: ""
+address: ""
+business_hours: ""
+direct_competitors: []
+indirect_competitors: []
+tone_keywords: []
+preferred_phrases: []
+must_say: []
+banned_words: []
+banned_claims: []
+safe_alternatives: []
+raw_material_notes: []

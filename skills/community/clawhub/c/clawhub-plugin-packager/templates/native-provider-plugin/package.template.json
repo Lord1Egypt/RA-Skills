@@ -1,0 +1,21 @@
+{
+  "name": "{{PACKAGE_NAME}}",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "main": "index.ts",
+  "openclaw": {
+    "compat": {
+      "pluginApi": "{{PLUGIN_API_VERSION}}"
+    },
+    "build": {
+      "openclawVersion": "{{OPENCLAW_VERSION}}"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "_comment": "PUT signals 全量同步；空数组会清空对应类型",
+  "account": "6326027735",
+  "assetGroupId": "98765432101",
+  "audienceResourceNames": ["customers/6326027735/audiences/348219404"],
+  "searchThemes": ["industrial equipment supplier"]
+}

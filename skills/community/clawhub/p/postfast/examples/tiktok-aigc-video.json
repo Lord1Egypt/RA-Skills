@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "content": "Made this entirely with AI tools. What do you think?\n\n#aigc #aigenerated #socialmedia #postfast",
+      "mediaItems": [
+        {
+          "key": "video/YOUR_UPLOAD_KEY.mp4",
+          "type": "VIDEO",
+          "sortOrder": 0,
+          "coverTimestamp": "2"
+        }
+      ],
+      "scheduledAt": "2026-06-15T18:00:00.000Z",
+      "socialMediaId": "YOUR_TIKTOK_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "tiktokPrivacy": "FOLLOWER_OF_CREATOR",
+    "tiktokIsAigc": true,
+    "tiktokAllowComments": true,
+    "tiktokAllowDuet": true,
+    "tiktokAllowStitch": true
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Queenshow Detail Page"
+  short_description: "Generate and query Queenshow detail pages through OpenAPI."
+  default_prompt: "Generate a Queenshow product detail page from product images, product copy, SKU prices, and style requirements, then poll until the final document is ready."

@@ -1,0 +1,8 @@
+pandas
+openpyxl
+requests
+matplotlib
+numpy
+pillow
+pdfplumber
+filelock

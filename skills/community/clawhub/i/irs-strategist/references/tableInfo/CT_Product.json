@@ -1,0 +1,82 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "ProductCategory",
+        "columnChiName": "产品分类",
+        "columnType": "varchar(30)",
+        "isNullable": 0,
+        "remark": "产品分类(ProductCategory)与(CT_SystemConst)表中的DM字段关联，令LB=2 OR (LB=1 AND DM IN (1593,1592,1591,1038,1036))，得到产品分类的具体描述：10-内部编码，11-公司代码，205-证券信托公司，206-省市表，301-行业表，311-临时公告关键词，312-非公告关键词，313-法律法规关键词，314-研究报告关键词，315-数据解读关键词，316-专题关键词，320-常规产品分类，321-HS协调商品编码制度，322-SITC标准国际贸易分类，323-国民经济行业分类，324-产业结构分类，325-工业结构分类，326-期货交易品种，327-海关产品编码，328-现货交易品种，1036-关联交易--关联关系，1038-关联交易--交易类型，1591-核算方法，1592-资金来源，1593-生产性生物资产--项目。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ProductName",
+        "columnChiName": "产品名称",
+        "columnType": "varchar(50)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "ProductCode",
+        "columnChiName": "产品代码",
+        "columnType": "varchar(20)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "IndustryCode",
+        "columnChiName": "所属行业代码",
+        "columnType": "char(20)",
+        "isNullable": 1,
+        "enumerationValue": "IndustryName",
+        "correlationColumn": "IndustryNum",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "90.7"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

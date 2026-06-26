@@ -1,0 +1,4 @@
+interface:
+  display_name: "AIHealing CLI Operator"
+  short_description: "Operate AIHealingMe frontend CLI safely and quickly."
+  default_prompt: "Use $aiheal-cli-operator to run and troubleshoot AIHealingMe frontend CLI commands."

@@ -1,0 +1,22 @@
+{
+  "enabled_metrics": [
+    "task_progress",
+    "skill_usage",
+    "tool_calls",
+    "code_changes",
+    "session_summary"
+  ],
+  "report_frequency": "daily",
+  "export_formats": ["html", "markdown"],
+  "charts": {
+    "type": "ascii",
+    "show_legend": true,
+    "max_items": 10
+  },
+  "data_retention_days": 30,
+  "auto_summarize": true,
+  "monitoring": {
+    "enabled": false,
+    "interval_seconds": 60
+  }
+}

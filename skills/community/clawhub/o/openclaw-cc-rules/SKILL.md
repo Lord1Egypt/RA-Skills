@@ -1,35 +1,229 @@
 ---
-name: "Openclaw Cc Rules"
-description: "提供基于顶级 AI 编程工具的结构化工作流规范，涵盖计划、任务追踪、只读探索、Git 操作安全及多文件变更策略。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-cc-rules"
-sourceUrl: "https://clawhub.ai/skills/openclaw-cc-rules"
+name: openclaw-cc-rules
 ---
 
-# Openclaw Cc Rules
+# CC Rules - 编程工作流规范
 
-> 提供基于顶级 AI 编程工具的结构化工作流规范，涵盖计划、任务追踪、只读探索、Git 操作安全及多文件变更策略。
+> 借鉴业界顶级 AI 编程工具的工作流模式，为 OpenClaw 注入结构化的软件开发行为规范。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-cc-rules`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-cc-rules](https://clawhub.ai/skills/openclaw-cc-rules)
+## 激活条件
 
-## Overview
+当用户涉及以下场景时自动激活本 Skill：
 
+- 编写、修改、重构代码
+- 项目架构分析和设计
+- Git 操作（commit、branch、merge）
+- 调试和排查 Bug
+- 代码审查（review）
+- 项目初始化和配置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-cc-rules
+## 核心规则
+
+### 一、Plan Mode — 先想后做
+
+面对非平凡的编码任务，必须遵循 **探索 → 理解 → 规划 → 确认** 四步流程。
+
+#### 什么时候必须进入 Plan Mode
+
+- 添加新功能（不只是修个 typo）
+- 存在多种实现方案需要选择
+- 修改会影响 3 个以上文件
+- 需要做架构决策（选什么框架、用什么模式）
+- 用户需求不够清晰需要先搞明白
+- 重构或大规模改动
+
+#### 什么时候可以跳过 Plan Mode
+
+- 用户给了非常具体的指令，照做就行
+- 只改一两行的小修复
+- 纯粹的研究/探索任务
+- 用户明确说"直接做"或"不用规划"
+
+#### Plan Mode 流程
+
 ```
+1. 只读探索
+   - 用 Glob/Grep 定位相关文件
+   - 用 Read 阅读关键代码
+   - 用 exec 跑 git log/diff/status 了解现状
+   - ⚠️ 此阶段禁止修改任何文件
+
+2. 理解架构
+   - 找到类似功能作为参考
+   - 梳理代码依赖关系
+   - 识别项目的编码规范和约定
+
+3. 输出方案
+   - 分步骤描述实现计划
+   - 标明需要修改哪些文件
+   - 说明选择某种方案的理由
+   - 预判可能的风险和挑战
+
+4. 等待确认
+   - 方案需要用户批准后才动手
+   - 用户可以要求修改方案
+   - 用户可以说"直接开始"跳过确认
+```
+
+#### Plan Mode 输出格式
+
+```
+## 实现方案：[任务名称]
+
+### 背景
+简述现状和要解决的问题
+
+### 方案概述
+一句话说清楚怎么做
+
+### 实施步骤
+1. 修改 `path/to/file1.ts` — 做什么，为什么
+2. 修改 `path/to/file2.ts` — 做什么，为什么
+3. 新建 `path/to/file3.ts` — 做什么，为什么
+4. 运行测试验证
+
+### 关键文件
+- `path/to/file1.ts` — 核心逻辑
+- `path/to/file2.ts` — 配置入口
+
+### 风险点
+- 某处改动可能影响 XX 功能
+```
+
+---
+
+### 二、任务追踪 — 做到哪了心里有数
+
+复杂任务（3 步以上）必须创建任务清单。
+
+#### 状态规则
+
+| 状态 | 含义 | 规则 |
+|------|------|------|
+| ⏳ 待办 (pending) | 还没开始 | 按优先级排列 |
+| 🔄 进行中 (in_progress) | 正在做 | **同一时间只能有一个** |
+| ✅ 完成 (completed) | 做完了 | 完成后立刻标记，不要攒着 |
+| ❌ 阻塞 (blocked) | 卡住了 | 写清楚卡在什么，怎么解决 |
+
+#### 使用规则
+
+- 开始工作前标记为 in_progress
+- 完成后**立即**标记 completed，不要等做完一批再标
+- 遇到阻塞不要硬做，标记 blocked + 新建一个解阻塞任务
+- 如果过程中发现新任务，追加到清单里
+- 不相关的任务从清单中移除
+
+#### 任务描述格式
+
+每个任务需要两个形式：
+- **content**: 命令式描述（"修复登录验证逻辑"）
+- **activeForm**: 进行时描述（"正在修复登录验证逻辑"）
+
+---
+
+### 三、只读探索模式 — 搞懂再动手
+
+当需要理解代码但不需要修改时，进入只读探索模式。
+
+#### 允许的操作
+
+- `read` — 阅读文件内容
+- `exec` 中的只读命令：`ls`、`cat`、`head`、`tail`、`find`、`grep`
+- `exec` 中的 git 只读命令：`status`、`diff`、`log`、`show`、`blame`
+
+#### 禁止的操作
+
+- `write` — 创建文件
+- `edit` — 修改文件
+- `exec` 中的写入命令：`mkdir`、`touch`、`rm`、`cp`、`mv`、`git add`、`git commit`
+- 重定向写入：`>`、`>>`、`tee`
+- 安装依赖：`npm install`、`pip install` 等
+
+#### 探索输出
+
+探索完成后总结：
+- 项目结构概述
+- 相关文件列表和各自职责
+- 代码调用链路
+- 发现的问题或改进建议
+
+---
+
+### 四、Git 安全协议 — 不作死
+
+#### 绝对禁止（除非用户明确要求）
+
+- `git push --force` / `git push -f`
+- `git reset --hard`
+- `git checkout .` / `git restore .`
+- `git clean -f` / `git clean -fd`
+- `git branch -D`
+- `git rebase -i`（需要交互式输入）
+- `--no-verify` / `--no-gpg-sign`（跳过 hooks）
+- `git commit --amend`（除非用户明确说修改上一次 commit）
+
+#### Commit 流程
+
+```
+1. 并行执行：
+   - git status （查看变更文件）
+   - git diff （查看具体改动）
+   - git log --oneline -10 （了解项目 commit 风格）
+
+2. 分析变更：
+   - 概括改动性质（新功能 / 增强 / 修复 / 重构 / 测试 / 文档）
+   - 排除含敏感信息的文件（.env、credentials.json 等）
+   - 写 1-2 句 commit message，聚焦"为什么改"而不是"改了什么"
+
+3. 执行提交：
+   - 用 git add 按文件名逐个添加（不用 git add -A）
+   - commit message 用 HEREDOC 格式传递
+   - 提交后 git status 验证
+
+4. 如果 pre-commit hook 失败：
+   - 修复问题 → 重新 stage → 创建新 commit
+   - 不要用 --amend（会覆盖之前的 commit）
+```
+
+#### Commit Message 规范
+
+```
+类型: 简短描述（1行，不超过72字符）
+
+- 新功能: feat: 添加用户注册接口
+- Bug修复: fix: 修复登录超时未重试的问题
+- 重构: refactor: 拆分订单服务为独立模块
+- 文档: docs: 更新 API 接口文档
+- 测试: test: 补充用户模块单元测试
+- 配置: chore: 升级依赖版本
+```
+
+#### 不要提交的文件
+
+- `.env`、`.env.local`、含密钥的配置文件
+- `node_modules/`、`__pycache__/`、`venv/`
+- IDE 配置（`.idea/`、`.vscode/` 除非是团队共享的）
+- 大型二进制文件（用 .gitignore 排除）
+
+---
+
+### 五、多文件变更策略 — 有序不乱
+
+当一个任务涉及多个文件时：
+
+1. **先改被依赖的**（底层模块、类型定义、工具函数）
+2. **再改依赖方**（上层业务逻辑、UI 组件）
+3. **最后改配置和入口**
+4. 每改完一个逻辑单元就验证一次，不要攒到最后
+
+---
+
+### 六、代码写完之后 — 善后
+
+完成编码后：
+
+1. 检查是否需要更新相关文档
+2. 检查是否有遗漏的 TODO
+3. 如果改了接口/类型，检查调用方是否需要同步修改
+4. 跑一遍测试（如果项目有的话）
+5. 检查 lint / format 是否通过

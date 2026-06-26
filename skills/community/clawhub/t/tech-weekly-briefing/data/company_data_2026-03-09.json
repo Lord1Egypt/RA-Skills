@@ -1,0 +1,982 @@
+{
+  "Waymo": [],
+  "Zoox": [],
+  "Aurora": [],
+  "Cruise": [],
+  "OpenAI": [
+    {
+      "title": "OpenAI hardware exec Caitlin Kalinowski quits in response to Pentagon deal",
+      "url": "https://techcrunch.com/2026/03/07/openai-robotics-lead-caitlin-kalinowski-quits-in-response-to-pentagon-deal/",
+      "published": "Sat, 07 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "OpenAI delays ChatGPT’s ‘adult mode’ again",
+      "url": "https://techcrunch.com/2026/03/07/openai-delays-chatgpts-adult-mode-again/",
+      "published": "Sat, 07 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "OpenAI Had Banned Military Use. The Pentagon Tested Its Models Through Microsoft Anyway",
+      "url": "https://www.wired.com/story/openai-defense-department-ban-military-use-microsoft/",
+      "published": "Thu, 05 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Download: The startup that says it can stop lightning, and inside OpenAI’s Pentagon deal",
+      "url": "https://www.technologyreview.com/2026/03/03/1133900/the-download-the-startup-that-says-it-can-stop-lightning-and-inside-openais-pentagon-deal/",
+      "published": "Tue, 03 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "OpenAI Robotics Head Quits Over Defense Dept. Deal",
+      "url": "https://www.theinformation.com/briefings/openai-robotics-head-quits-defense-dept-deal",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "SoftBank Seeks $40 Billion Loan for OpenAI Investment",
+      "url": "https://www.theinformation.com/briefings/softbank-seeks-40-billion-loan-openai-investment",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "OpenAI Will Not Expand Abilene Data Center, Nvidia Tries to Recruit Meta to Site",
+      "url": "https://www.theinformation.com/briefings/openai-will-expand-abilene-data-center-nvidia-tries-recruit-meta-site",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "OpenAI’s Shopping Glitch",
+      "url": "https://www.theinformation.com/articles/openais-shopping-glitch",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Consumer Tech Shares Rise Following OpenAI Shopping Shift",
+      "url": "https://www.theinformation.com/briefings/consumer-tech-shares-rise-following-openai-shopping-shift",
+      "published": "2026-03-05",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    }
+  ],
+  "Anthropic": [
+    {
+      "title": "Will the Pentagon’s Anthropic controversy scare startups away from defense work?",
+      "url": "https://techcrunch.com/2026/03/08/will-the-pentagons-anthropic-controversy-scare-startups-away-from-defense-work/",
+      "published": "Sun, 08 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Microsoft, Google, Amazon say Anthropic Claude remains available to non-defense customers",
+      "url": "https://techcrunch.com/2026/03/06/microsoft-anthropic-claude-remains-available-to-customers-except-the-defense-department/",
+      "published": "Fri, 06 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Anthropic’s Claude found 22 vulnerabilities in Firefox over two weeks",
+      "url": "https://techcrunch.com/2026/03/06/anthropics-claude-found-22-vulnerabilities-in-firefox-over-two-weeks/",
+      "published": "Fri, 06 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Download: 10 things that matter in AI, plus Anthropic’s plan to sue the Pentagon",
+      "url": "https://www.technologyreview.com/2026/03/06/1133989/the-download-10-things-that-matter-in-ai-anthropics-plan-sue-pentagon/",
+      "published": "Fri, 06 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "In Anthropic Feuds, the Personal Collides With the Political",
+      "url": "https://www.theinformation.com/articles/anthropic-feuds-personal-collides-political",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Microsoft, Google, Amazon to Keep Selling Anthropic to Customers Other than the Pentagon",
+      "url": "https://www.theinformation.com/briefings/microsoft-says-will-keep-selling-anthropic-customers-pentagon",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Anthropic CEO Apologizes for Internal Memo Lashing Out at Trump",
+      "url": "https://www.theinformation.com/briefings/anthropic-ceo-apologizes-internal-memo-lashing-trump",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Anthropic Steals the Limelight at Morgan Stanley’s Tech Conference",
+      "url": "https://www.theinformation.com/articles/anthropic-steals-limelight-morgan-stanleys-tech-conference",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    }
+  ],
+  "Google": [
+    {
+      "title": "Google just gave Sundar Pichai a $692M pay package",
+      "url": "https://techcrunch.com/2026/03/07/google-just-gave-sundar-pichai-a-692m-pay-package/",
+      "published": "Sun, 08 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "How to Avoid Getting Locked Out of Your Google Account",
+      "url": "https://www.wired.com/story/how-to-avoid-getting-locked-out-of-your-google-account/",
+      "published": "Sat, 07 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Best Google Pixel Phones of 2026, Tested and Reviewed",
+      "url": "https://www.wired.com/story/best-google-pixel-phone/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Google's new command-line tool can plug OpenClaw into your Workspace data",
+      "url": "https://arstechnica.com/ai/2026/03/googles-new-command-line-tool-can-plug-openclaw-into-your-workspace-data/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Sundar Pichai’s Near-Billionaire Status; Oracle in Spotlight",
+      "url": "https://www.theinformation.com/articles/sundar-pichais-near-billionaire-status-oracle-spotlight",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Alphabet Grants Sundar Pichai Stock Awards Worth Up to $686 Million",
+      "url": "https://www.theinformation.com/briefings/alphabet-grants-sundar-pichai-stock-awards-worth-686-million",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    }
+  ],
+  "Microsoft": [],
+  "Amazon": [],
+  "Apple": [
+    {
+      "title": "Apple is going high-end with new ‘Ultra’ products next",
+      "url": "https://www.theverge.com/tech/891151/apple-is-going-high-end-with-new-ultra-products-next",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Time’s running out to get a free gift card when you preorder a new MacBook",
+      "url": "https://www.theverge.com/gadgets/890788/macbook-neo-air-pro-samsung-galaxy-s26-gift-card-deal-sale",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Force Your MacBook to Only Charge up to 80 Percent (and Why You Should)",
+      "url": "https://www.wired.com/story/only-charge-your-macbook-to-80-percent/",
+      "published": "Sun, 08 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Apple users in the US can no longer download ByteDance's Chinese apps",
+      "url": "https://arstechnica.com/tech-policy/2026/03/apple-users-in-the-us-can-no-longer-download-bytedances-chinese-apps/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Apple's 512GB Mac Studio vanishes, a quiet acknowledgment of the RAM shortage",
+      "url": "https://arstechnica.com/gadgets/2026/03/apples-512gb-mac-studio-vanishes-a-quiet-acknowledgement-of-the-ram-shortage/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    }
+  ],
+  "Meta": [],
+  "Tesla": [],
+  "NVIDIA": [
+    {
+      "title": "Nvidia Cloud Ally Together AI in Talks to Raise at $7.5 Billion Valuation",
+      "url": "https://www.theinformation.com/articles/nvidia-cloud-ally-together-ai-talks-raise-7-5-billion-valuation",
+      "published": "2026-03-05",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    }
+  ],
+  "Other": [
+    {
+      "title": "Ring’s Jamie Siminoff is still trying to calm privacy fears, but his answers may not help",
+      "url": "https://techcrunch.com/2026/03/08/rings-jamie-siminoff-has-been-trying-to-calm-privacy-fears-since-the-super-bowl-but-his-answers-may-not-help/",
+      "published": "Mon, 09 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Palmer Luckey’s retro gaming startup ModRetro reportedly seeks funding at $1B valuation",
+      "url": "https://techcrunch.com/2026/03/08/palmer-luckeys-retro-gaming-startup-modretro-reportedly-seeks-funding-at-1b-valuation/",
+      "published": "Sun, 08 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Owner of ICE detention facility sees big opportunity in AI man camps",
+      "url": "https://techcrunch.com/2026/03/08/owner-of-ice-detention-facility-sees-big-opportunity-in-ai-man-camps/",
+      "published": "Sun, 08 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "TechCrunch Mobility: Rivian’s R2 gambit",
+      "url": "https://techcrunch.com/2026/03/08/techcrunch-mobility-rivians-r2-gambit/",
+      "published": "Sun, 08 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "A roadmap for AI, if anyone will listen",
+      "url": "https://techcrunch.com/2026/03/07/a-roadmap-for-ai-if-anyone-will-listen/",
+      "published": "Sun, 08 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Push for $40 smartphones builds momentum, but still faces cost hurdles",
+      "url": "https://techcrunch.com/2026/03/07/push-for-40-smartphones-builds-momentum-but-still-faces-cost-hurdles/",
+      "published": "Sun, 08 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Grammarly’s ‘expert review’ is just missing the actual experts",
+      "url": "https://techcrunch.com/2026/03/07/grammarlys-expert-review-is-just-missing-the-actual-experts/",
+      "published": "Sat, 07 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "PopSockets founder David Barnett talks about building a viral business",
+      "url": "https://techcrunch.com/2026/03/07/popsockets-founder-david-barnett-talks-about-building-a-viral-business/",
+      "published": "Sat, 07 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Robinhood’s startup fund stumbles in NYSE debut",
+      "url": "https://techcrunch.com/2026/03/06/robinhoods-startup-fund-stumbles-in-nyse-debut/",
+      "published": "Sat, 07 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "X is testing a new ad format that connects posts with products",
+      "url": "https://techcrunch.com/2026/03/06/x-is-testing-a-new-ad-format-that-connects-posts-with-products/",
+      "published": "Fri, 06 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Nintendo sues the US government for a refund on tariffs",
+      "url": "https://techcrunch.com/2026/03/06/nintendo-sues-the-u-s-government-for-a-refund-on-tariffs/",
+      "published": "Fri, 06 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Life EV officially owns Rad Power Bikes now",
+      "url": "https://techcrunch.com/2026/03/06/life-ev-officially-owns-rad-power-bikes-now/",
+      "published": "Fri, 06 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "OSHA probing fatality at Rivian warehouse",
+      "url": "https://techcrunch.com/2026/03/06/osha-probing-fatality-at-rivian-warehouse/",
+      "published": "Fri, 06 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Bill Gates’ TerraPower gets approval to build new nuclear reactor",
+      "url": "https://techcrunch.com/2026/03/06/bill-gates-terrapower-gets-approval-to-build-new-nuclear-reactor/",
+      "published": "Fri, 06 Ma",
+      "blog": "techcrunch",
+      "source_name": "techcrunch",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Listen to this: Mabe Fratti’s experimental cello pop",
+      "url": "https://www.theverge.com/column/890713/mabe-fratti-sentir-que-no-sabes-review",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "What we&#8217;re listening to, watching, and reading right now.",
+      "url": "https://www.theverge.com/entertainment/891057/what-were-listening-to-watching-and-reading",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The best Switch 2 controller just got better (and a little worse)",
+      "url": "https://www.theverge.com/tech/888482/easysmx-s10-lite-switch-2-native-wireless-controller-hands-on",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The cute and cursed story of Furby",
+      "url": "https://www.theverge.com/podcast/891124/the-cute-and-cursed-story-of-furby",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The uncomfortable truth about hybrid vehicles",
+      "url": "https://www.theverge.com/column/890135/truth-hybrid-vehicles",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Sony appears to be testing dynamic pricing on PlayStation games",
+      "url": "https://www.theverge.com/games/891085/sony-dynamic-pricing-playstation-games",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Vizio accounts are becoming Walmart accounts",
+      "url": "https://www.theverge.com/gadgets/891056/vizio-accounts-are-becoming-walmart-accounts",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The OpenClaw superfan meetup serves optimism and lobster",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/890517/openclaw-clawcon-meetup-nyc-open-source-ai",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-verge",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Best Sonos Speakers (2026): Soundbars, Headphones, Dolby Atmos, and More",
+      "url": "https://www.wired.com/gallery/best-sonos-speakers-buying-guide/",
+      "published": "Mon, 09 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Don’t Expect Big Surprises in the Government’s Alien Files",
+      "url": "https://www.wired.com/story/dont-expect-big-surprises-in-the-governments-alien-files/",
+      "published": "Mon, 09 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Are Smart Beds Worth It? A Certified Sleep Science Coach Weighs In (2026)",
+      "url": "https://www.wired.com/gallery/best-smart-beds/",
+      "published": "Mon, 09 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Why RFK’s CDC Is Endorsing ‘Shared Decisionmaking’ for Vaccines",
+      "url": "https://www.wired.com/story/why-rfks-cdc-is-endorsing-shared-decision-making-for-vaccines/",
+      "published": "Mon, 09 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Can AI Kill the Venture Capitalist?",
+      "url": "https://www.wired.com/story/ai-kill-venture-capital/",
+      "published": "Mon, 09 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "How to Run Ethernet Cables to Your Router and Keep Them Tidy",
+      "url": "https://www.wired.com/story/how-to-run-ethernet-cables-around-your-home/",
+      "published": "Sun, 08 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Fender Mix Headphones Review: Modular Over-Ears",
+      "url": "https://www.wired.com/review/fender-audio-mix/",
+      "published": "Sun, 08 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Best Sunrise Alarm Clock (2026): Lumie, Hatch, WiiM",
+      "url": "https://www.wired.com/story/should-you-get-a-sunrise-alarm-clock/",
+      "published": "Sun, 08 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Left-Handed People Are More Competitive, Says Science",
+      "url": "https://www.wired.com/story/left-handed-people-are-more-competitive-says-science/",
+      "published": "Sun, 08 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Why the Ratio Four Series Two Is What I Use to Test New Coffees",
+      "url": "https://www.wired.com/story/ratio-four-drip-coffee-java-base/",
+      "published": "Sat, 07 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The WIRED Guide to Wires: How to Manage the Mess of Cables Around Your Desk",
+      "url": "https://www.wired.com/story/fix-the-dangling-wires-behind-your-desk/",
+      "published": "Sat, 07 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Best MIDI Controllers for Synths, Guitars, and More (2026)",
+      "url": "https://www.wired.com/gallery/best-midi-controllers/",
+      "published": "Sat, 07 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Best Mid Layer for Hiking, Backpacking, and Travel (2026)",
+      "url": "https://www.wired.com/gallery/best-mid-layers/",
+      "published": "Sat, 07 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "CBP Used Online Ad Data to Track Phone Locations",
+      "url": "https://www.wired.com/story/cbp-used-online-ad-data-to-track-phone-locations/",
+      "published": "Sat, 07 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "How Each Gulf Country Is Intercepting Iranian Missiles and Drones",
+      "url": "https://www.wired.com/story/how-each-gulf-country-is-intercepting-iranian-missiles-and-drones/",
+      "published": "Sat, 07 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "This Jammer Wants to Block Always-Listening AI Wearables. It Probably Won’t Work",
+      "url": "https://www.wired.com/story/deveillance-spectre-i/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Marley Spoon Meal Kit Review 2026: Less Martha, More Moroccan",
+      "url": "https://www.wired.com/review/marley-spoon-meal-kit-2026/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "72 'Buy It for Life' Products: Cast-Iron, Tools, Speakers, Chairs, and More",
+      "url": "https://www.wired.com/story/buy-it-for-life/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Future of Iran’s Internet Is More Uncertain Than Ever",
+      "url": "https://www.wired.com/story/the-future-of-irans-internet-is-more-uncertain-than-ever/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "When AI Companies Go to War, Safety Gets Left Behind",
+      "url": "https://www.wired.com/story/when-ai-companies-go-to-war-safety-gets-left-behind/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "9 Best Android Phones of 2026, Tested and Reviewed",
+      "url": "https://www.wired.com/gallery/best-android-phones/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "11 Best USB Flash Drives (2026): Pen Drives, Thumb Drives, Memory Sticks",
+      "url": "https://www.wired.com/gallery/best-usb-flash-drives/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Corsair Sabre V2 Carbon Fiber and Magnesium Gaming Mice Review",
+      "url": "https://www.wired.com/review/corsair-sabre-v2-cf-and-mg/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Jones Mercury FASE Snowboard Bindings Review: The Best Fast Entry System",
+      "url": "https://www.wired.com/review/jones-mercury-fase-snowboard-bindings/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "These 2 Apps Help Me Make Sense of My 100K Screenshots",
+      "url": "https://www.wired.com/story/rodeo-swipewipe-declutter-screenshots/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "7 Laptop Docking Stations to Unlock the Full Desktop Experience (2026)",
+      "url": "https://www.wired.com/gallery/best-laptop-docking-stations/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "From Ukraine to Iran, Hacking Security Cameras Is Now Part of War’s ‘Playbook’",
+      "url": "https://www.wired.com/story/from-ukraine-to-iran-hacking-security-cameras-is-now-part-of-wars-playbook/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Why Is Alexa+ So Bad?",
+      "url": "https://www.wired.com/story/why-is-amazon-alexa-plus-so-bad/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Posture Correctors That Will Straighten You Out (2026)",
+      "url": "https://www.wired.com/gallery/posture-correctors/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Smart Bird Feeders Everyone’s Talking About (and Actually Buying) (2026)",
+      "url": "https://www.wired.com/story/best-smart-bird-feeders/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Jack Dorsey Is Ready to Explain the Block Layoffs",
+      "url": "https://www.wired.com/story/jack-dorsey-explains-block-layoffs/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Sleep Apnea Often Goes Undetected in Women. That’s Starting to Change",
+      "url": "https://www.wired.com/story/sleep-apnea-women-detection-treatment/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The War on Iran Puts Global Chip Supplies and AI Expansion at Risk",
+      "url": "https://www.wired.com/story/the-war-on-iran-puts-global-chip-supply-and-ai-expansion-at-risk/",
+      "published": "Fri, 06 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Here’s Every Country Directly Impacted by the War on Iran",
+      "url": "https://www.wired.com/story/every-country-directly-impacted-by-the-war-on-iran/",
+      "published": "Thu, 05 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "‘Uncanny Valley’: Iran War in the AI Era, Prediction Market Ethics, and Paramount Beats Netflix",
+      "url": "https://www.wired.com/story/uncanny-valley-podcast-iran-war-artificial-intelligence-prediction-markets-paramount-warner-bros/",
+      "published": "Thu, 05 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "ByteDance’s AI Ambitions Are Being Hampered by Compute Restraints and Copyright Concerns",
+      "url": "https://www.wired.com/story/made-in-china-bytedances-ai-ambitions-are-being-hampered-by-compute-restraints/",
+      "published": "Thu, 05 Ma",
+      "blog": "wired",
+      "source_name": "wired",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "“It doesn't feel safe”—Many international game developers plan to skip GDC in US",
+      "url": "https://arstechnica.com/gaming/2026/03/it-doesnt-feel-safe-many-international-game-developers-plan-to-skip-gdc-in-us/",
+      "published": "Mon, 09 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Jessica Jones joins the fray in Daredevil: Born Again trailer",
+      "url": "https://arstechnica.com/culture/2026/03/jessica-jones-joins-the-fray-in-daredevil-born-again-trailer/",
+      "published": "Sun, 08 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Tiny, long-armed dinosaur leads to rethink of dinosaur miniaturization",
+      "url": "https://arstechnica.com/science/2026/03/tiny-long-armed-dinosaur-leads-to-rethink-of-dinosaur-miniaturization/",
+      "published": "Sun, 08 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Hunting for elusive \"ghost elephants\"",
+      "url": "https://arstechnica.com/science/2026/03/hunting-for-elusive-ghost-elephants/",
+      "published": "Sat, 07 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "A unicorn-like Spinosaurus found in the Sahara",
+      "url": "https://arstechnica.com/science/2026/03/a-unicorn-like-spinosaurus-found-in-the-sahara/",
+      "published": "Sat, 07 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "From Iran to Ukraine, everyone's trying to hack security cameras",
+      "url": "https://arstechnica.com/security/2026/03/from-iran-to-ukraine-everyones-trying-to-hack-security-cameras/",
+      "published": "Sat, 07 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Ding-dong! The Exploration Upper Stage is dead",
+      "url": "https://arstechnica.com/space/2026/03/ding-dong-the-exploration-upper-stage-is-dead/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Satellite firm pauses imagery after revealing Iran's attacks on US bases",
+      "url": "https://arstechnica.com/space/2026/03/satellite-firm-pauses-imagery-after-revealing-irans-attacks-on-us-bases/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Fishing crews in the Atlantic keep accidentally dredging up chemical weapons",
+      "url": "https://arstechnica.com/health/2026/03/fishing-crews-in-the-atlantic-keep-accidentally-dredging-up-chemical-weapons/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Feds take notice of iOS vulnerabilities exploited under mysterious circumstances",
+      "url": "https://arstechnica.com/security/2026/03/cisa-adds-3-ios-flaws-to-its-catalog-of-known-exploited-vulnerabilities/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Asteroid defense mission shifted the orbit of more than its target",
+      "url": "https://arstechnica.com/science/2026/03/nasas-dart-mission-shifted-the-orbits-of-two-asteroids/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "How moss helped convict grave robbers of a Chicago cemetery",
+      "url": "https://arstechnica.com/science/2026/03/how-moss-helped-convict-grave-robbers-of-a-chicago-cemetery/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Musk fails to block California data disclosure law he fears will ruin xAI",
+      "url": "https://arstechnica.com/tech-policy/2026/03/musk-fails-to-block-california-data-disclosure-law-he-fears-will-ruin-xai/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Americans trust Fauci over RFK Jr. and career scientists over Trump officials",
+      "url": "https://arstechnica.com/health/2026/03/americans-trust-fauci-over-rfk-jr-and-career-scientists-over-trump-officials/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Climate change sucks, but at least it won't kill your EV battery",
+      "url": "https://arstechnica.com/cars/2026/03/climate-change-sucks-but-at-least-it-wont-kill-your-ev-battery/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "With Gateway likely gone, where will lunar landers rendezvous with Orion?",
+      "url": "https://arstechnica.com/space/2026/03/nasa-has-shuffled-its-artemis-rockets-but-what-of-the-lunar-landers/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Why are vertebrate eyes so different from those of other animals?",
+      "url": "https://arstechnica.com/science/2026/03/the-vertebrate-eye-may-have-begun-as-a-cyclops/",
+      "published": "Fri, 06 Ma",
+      "blog": "ars-technica",
+      "source_name": "ars-technica",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Is the Pentagon allowed to surveil Americans with AI?",
+      "url": "https://www.technologyreview.com/2026/03/06/1134012/is-the-pentagon-allowed-to-surveil-americans-with-ai/",
+      "published": "Fri, 06 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Download: an AI agent’s hit piece, and preventing lightning",
+      "url": "https://www.technologyreview.com/2026/03/05/1133968/the-download-ai-agent-hit-piece-preventing-lightning/",
+      "published": "Thu, 05 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "How much wildfire prevention is too much?",
+      "url": "https://www.technologyreview.com/2026/03/05/1133960/wildfire-prevention-limits/",
+      "published": "Thu, 05 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Online harassment is entering its AI era",
+      "url": "https://www.technologyreview.com/2026/03/05/1133962/online-harassment-is-entering-its-ai-era/",
+      "published": "Thu, 05 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Bridging the operational AI gap",
+      "url": "https://www.technologyreview.com/2026/03/04/1133642/bridging-the-operational-ai-gap/",
+      "published": "Wed, 04 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "The Download: Earth’s rumblings, and AI for strikes on Iran",
+      "url": "https://www.technologyreview.com/2026/03/04/1133942/the-download-earths-rumblings-and-ai-for-strikes-on-iran/",
+      "published": "Wed, 04 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "MIT Technology Review Insiders Panel",
+      "url": "https://www.technologyreview.com/2026/03/03/1133907/mit-technology-review-insiders-panel-2/",
+      "published": "Tue, 03 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "This startup claims it can stop lightning and prevent catastrophic wildfires",
+      "url": "https://www.technologyreview.com/2026/03/03/1133848/this-startup-claims-it-can-stop-lightning-and-prevent-catastrophic-wildfires/",
+      "published": "Tue, 03 Ma",
+      "blog": "mit-technology-review",
+      "source_name": "mit-technology-review",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "U.S. Draft Rules that Require Permits for All AI Chip Exports",
+      "url": "https://www.theinformation.com/briefings/u-s-draft-rules-require-permits-ai-chip-exports",
+      "published": "2026-03-09",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Iran War Imperils $300 Billion in Gulf AI Spending",
+      "url": "https://www.theinformation.com/articles/iran-war-imperils-300-billion-gulf-ai-spending",
+      "published": "2026-03-08",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Kalshi Sued Over Prediction Market Connected to Iran War",
+      "url": "https://www.theinformation.com/briefings/kalshi-sued-prediction-market-connected-iran-war",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Tech Finally Reaches a Red Line",
+      "url": "https://www.theinformation.com/articles/tech-finally-reaches-red-line",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Tennis Enters the Analytics Era at The Information’s Indian Wells Retreat",
+      "url": "https://www.theinformation.com/articles/tennis-enters-analytics-era-informations-indian-wells-retreat",
+      "published": "2026-03-07",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Exclusive: Morgan Stanley Hires Senior Citi Tech Banker Niall Cannon ",
+      "url": "https://www.theinformation.com/briefings/exclusive-morgan-stanley-hires-senior-citi-tech-banker-niall-cannon",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Anne Wojcicki’s Plan to Revive 23andMe: Rich Donors, Improved Tests—and Maybe Even MAHA",
+      "url": "https://www.theinformation.com/articles/anne-wojcickis-plan-revive-23andme-rich-donors-improved-tests-maybe-maha",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    },
+    {
+      "title": "Quince in Talks to Double Valuation to More Than $10 Billion",
+      "url": "https://www.theinformation.com/articles/quince-talks-double-valuation-10-billion",
+      "published": "2026-03-06",
+      "blog": "The Information",
+      "source_name": "the-information",
+      "fetched_date": "2026-03-09"
+    }
+  ]
+}

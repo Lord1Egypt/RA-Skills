@@ -1,0 +1,47 @@
+{
+  "name": "@mike007jd/openclaw-skill-starter",
+  "version": "1.0.0",
+  "description": "OpenClaw skill scaffolding tool",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-openclaw-skill": "./bin/create-openclaw-skill.js"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    }
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "scaffold",
+    "generator",
+    "cli",
+    "boilerplate"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike007jd/openclaw-skills.git",
+    "directory": "skill-starter"
+  },
+  "homepage": "https://github.com/mike007jd/openclaw-skills/tree/main/skill-starter",
+  "bugs": {
+    "url": "https://github.com/mike007jd/openclaw-skills/issues"
+  },
+  "author": "mike007jd",
+  "engines": {
+    "node": ">=18"
+  }
+}

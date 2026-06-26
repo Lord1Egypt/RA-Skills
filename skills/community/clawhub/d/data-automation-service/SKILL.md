@@ -1,35 +1,32 @@
----
-name: "Data Automation Service"
-description: "提供數據清理、自動化流程設計及報告生成，並整合多種數據源API的數據自動化服務。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-automation-service"
-sourceUrl: "https://clawhub.ai/skills/data-automation-service"
----
-
 # Data Automation Service
 
-> 提供數據清理、自動化流程設計及報告生成，並整合多種數據源API的數據自動化服務。
+數據處理同自動化Workflow服務
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-automation-service`
-- **Source URL:** [https://clawhub.ai/skills/data-automation-service](https://clawhub.ai/skills/data-automation-service)
+## 功能
+1. **Data Cleaning** - 清理同整理數據
+2. **Automation Workflow** - 整自動化的data pipeline
+3. **Reporting** - 自動生成report同dashboard
+4. **API Integration** - 對接各種數據源
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安裝
 ```bash
-hermes skills install clawhub/data-automation-service
+npx clawhub@latest install data-automation-service
 ```
+
+## 使用
+當用戶話「整數據自動化」既時候：
+1. 了解佢既數據來源同需求
+2. 設計自動化流程
+3. 提供報價同implementation plan
+
+## 範例
+```
+User: 想自動化我既excel report
+AI: 你既數據來源係邊？每星期要report定每日？
+```
+
+## 收費
+- 簡單automation: $100-300
+- 中等複雜: $300-800
+- 企業級: $1000-3000
+- 月費維護: $100-300/月

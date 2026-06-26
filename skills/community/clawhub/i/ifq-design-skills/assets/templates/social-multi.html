@@ -1,0 +1,185 @@
+<!doctype html>
+<!--
+  IFQ Design Skills · Template T-social-multi
+  Multi-platform social media kit gallery.
+  Fork-and-fill: replace { BRAND / HEADLINE / BODY / URL } in each card.
+  Platforms: X/Twitter (1200×675) · RedNote (1242×1656) · IG Square (1080×1080) · WeChat (900×383)
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{ BRAND } · social kit</title>
+<!-- Optional Google Fonts (non-blocking). See references/font-loading.md -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<style>
+  :root {
+    --ifq-accent:#D4532B; --ifq-accent-deep:#A83518; --ifq-accent-soft:#FFB27A;
+    --ifq-ink:#111; --ifq-ink-soft:#3A3532; --ifq-paper:#FAF7F2; --ifq-cream:#F1EBE0;
+    --ifq-display:'Newsreader','Noto Serif SC',Georgia,serif;
+    --ifq-mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ifq-paper); }
+  body { color: var(--ifq-ink); font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; }
+
+  .page { max-width: 1400px; margin: 0 auto; padding: 48px 40px 100px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 24px; border-bottom: 2px solid var(--ifq-ink); margin-bottom: 40px; }
+  .header__brand { display: flex; align-items: center; gap: 8px; font-family: var(--ifq-display); font-weight: 900; font-size: 18px; }
+  .header__brand svg { width: 14px; height: 14px; color: var(--ifq-accent); }
+  .header__brand b { color: var(--ifq-accent); }
+  .header__title { font-family: var(--ifq-display); font-size: 36px; font-weight: 900; letter-spacing: -1px; margin-top: 8px; }
+  .header__meta { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-ink-soft); opacity: .6; text-align: right; }
+
+  /* Section label */
+  .section-label { display: flex; align-items: center; gap: 12px; margin: 40px 0 24px; }
+  .section-label__line { flex: 1; height: 1px; background: rgba(17,17,17,0.1); }
+  .section-label__text { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); }
+
+  /* Gallery grid */
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin: 24px 0; }
+  .gallery--single { grid-template-columns: 1fr; max-width: 680px; }
+
+  /* Card wrapper */
+  .card { position: relative; }
+  .card__label { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-ink-soft); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+  .card__dims { opacity: .6; }
+  .card__frame { position: relative; overflow: hidden; background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+
+  /* X/Twitter card (1200×675) */
+  .card--x .card__frame { aspect-ratio: 1200/675; padding: 48px 56px; display: flex; flex-direction: column; justify-content: space-between; background: var(--ifq-ink); color: var(--ifq-paper); }
+  .card--x .card__eyebrow { font-family: var(--ifq-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent-soft); }
+  .card--x .card__headline { font-family: var(--ifq-display); font-size: 36px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; max-width: 600px; }
+  .card--x .card__body { font-size: 14px; color: rgba(250,247,242,0.7); max-width: 480px; line-height: 1.5; }
+  .card--x .card__footer { display: flex; justify-content: space-between; align-items: flex-end; }
+  .card--x .card__url { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; color: rgba(250,247,242,0.4); }
+  .card--x .card__spark { position: absolute; top: 32px; right: 36px; width: 40px; height: 40px; color: var(--ifq-accent-soft); opacity: .6; }
+
+  /* RedNote card (1242×1656) */
+  .card--rednote .card__frame { aspect-ratio: 1242/1656; padding: 64px 48px; display: flex; flex-direction: column; background: var(--ifq-paper); }
+  .card--rednote .card__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; }
+  .card--rednote .card__eyebrow { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); }
+  .card--rednote .card__num { font-family: var(--ifq-display); font-size: 48px; font-weight: 900; color: var(--ifq-accent); letter-spacing: -1px; }
+  .card--rednote .card__headline { font-family: var(--ifq-display); font-size: 44px; font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 20px; }
+  .card--rednote .card__divider { width: 48px; height: 3px; background: var(--ifq-accent); margin-bottom: 20px; }
+  .card--rednote .card__body { font-size: 16px; color: var(--ifq-ink-soft); line-height: 1.7; flex: 1; }
+  .card--rednote .card__footer { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(17,17,17,0.08); display: flex; justify-content: space-between; align-items: center; }
+  .card--rednote .card__url { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ifq-ink-soft); opacity: .5; }
+
+  /* IG Square (1080×1080) */
+  .card--ig .card__frame { aspect-ratio: 1/1; padding: 56px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--ifq-cream); }
+  .card--ig .card__spark { width: 48px; height: 48px; color: var(--ifq-accent); margin-bottom: 24px; }
+  .card--ig .card__headline { font-family: var(--ifq-display); font-size: 40px; font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px; }
+  .card--ig .card__body { font-size: 14px; color: var(--ifq-ink-soft); max-width: 400px; line-height: 1.5; }
+  .card--ig .card__bar { position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--ifq-accent); }
+
+  /* WeChat (900×383) */
+  .card--wechat .card__frame { aspect-ratio: 900/383; padding: 36px 48px; display: flex; align-items: center; gap: 40px; background: var(--ifq-ink); color: var(--ifq-paper); }
+  .card--wechat .card__left { flex: 1; }
+  .card--wechat .card__eyebrow { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent-soft); margin-bottom: 12px; }
+  .card--wechat .card__headline { font-family: var(--ifq-display); font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; }
+  .card--wechat .card__right { width: 120px; height: 120px; border: 2px solid rgba(250,247,242,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .card--wechat .card__right svg { width: 48px; height: 48px; color: var(--ifq-accent-soft); opacity: .6; }
+
+  /* Colophon */
+  .colophon { margin-top: 56px; padding-top: 20px; border-top: 1px solid rgba(17,17,17,0.08); display: flex; align-items: center; gap: 8px; opacity: 0.5; font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ifq-ink-soft); }
+  .colophon svg { width: 12px; height: 12px; }
+  .colophon b { color: var(--ifq-accent); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div>
+      <div class="header__brand">
+        <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+        <span>ifq<b>.ai</b></span>
+      </div>
+      <h1 class="header__title">{ BRAND } · social kit</h1>
+    </div>
+    <div class="header__meta">
+      <div data-ifq-authored-year>__IFQ_YEAR__</div>
+      <div>social kit / 4 formats</div>
+    </div>
+  </header>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">x / twitter · 1200 × 675</span><div class="section-label__line"></div></div>
+  <div class="gallery gallery--single">
+    <div class="card card--x">
+      <div class="card__label"><span>X / Twitter</span><span class="card__dims">1200 × 675</span></div>
+      <div class="card__frame">
+        <svg class="card__spark" viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+        <div>
+          <div class="card__eyebrow">{ SIGNAL } · <span data-ifq-authored-year>__IFQ_YEAR__</span></div>
+          <h2 class="card__headline">{ HEADLINE }</h2>
+        </div>
+        <div class="card__footer">
+          <p class="card__body">{ Supporting text — one sentence. }</p>
+          <span class="card__url">{ brand.com }</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">小红书 · 1242 × 1656</span><div class="section-label__line"></div></div>
+  <div class="gallery gallery--single" style="max-width:480px">
+    <div class="card card--rednote">
+      <div class="card__label"><span>小红书 / RedNote</span><span class="card__dims">1242 × 1656</span></div>
+      <div class="card__frame">
+        <div class="card__top">
+          <div class="card__eyebrow">{ series name }</div>
+          <div class="card__num">01</div>
+        </div>
+        <h2 class="card__headline">{ HEADLINE }</h2>
+        <div class="card__divider"></div>
+        <p class="card__body">{ Body copy — 2-3 sentences that expand on the headline. }</p>
+        <div class="card__footer">
+          <span class="card__url">ifq.ai / <span data-ifq-authored-year>__IFQ_YEAR__</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">instagram · 1080 × 1080</span><div class="section-label__line"></div></div>
+  <div class="gallery gallery--single" style="max-width:480px">
+    <div class="card card--ig">
+      <div class="card__label"><span>Instagram Square</span><span class="card__dims">1080 × 1080</span></div>
+      <div class="card__frame">
+        <svg class="card__spark" viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+        <h2 class="card__headline">{ HEADLINE }</h2>
+        <p class="card__body">{ One sentence of context. }</p>
+        <div class="card__bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">微信公众号 · 900 × 383</span><div class="section-label__line"></div></div>
+  <div class="gallery gallery--single" style="max-width:680px">
+    <div class="card card--wechat">
+      <div class="card__label"><span>WeChat Header</span><span class="card__dims">900 × 383</span></div>
+      <div class="card__frame">
+        <div class="card__left">
+          <div class="card__eyebrow">{ BRAND } · <span data-ifq-authored-year>__IFQ_YEAR__</span></div>
+          <h2 class="card__headline">{ HEADLINE }</h2>
+        </div>
+        <div class="card__right">
+          <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="#D4532B"/></svg>
+    <span>compiled by <b>ifq.ai</b> · social kit</span>
+  </div>
+</div>
+<script src="../ifq-brand/ifq_authored_year.js"></script>
+<script>window.IfqAuthoredYear && window.IfqAuthoredYear.apply(document);</script>
+</body>
+</html>

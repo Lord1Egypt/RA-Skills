@@ -1,0 +1,40 @@
+{
+  "name": "github-issue-auto-triage",
+  "version": "2.0.0",
+  "description": "自动分类 GitHub Issue，AI 智能打标签、分配负责人、检测重复、回复 FAQ",
+  "author": "于金泽",
+  "license": "MIT",
+  "category": "developer-tools",
+  "tags": ["github", "automation", "issue", "triage", "ai"],
+  "repository": "https://github.com/openclaw/skills",
+  "homepage": "https://github.com/openclaw/skills/tree/main/github-issue-auto-triage",
+  "bugs": "https://github.com/openclaw/skills/issues",
+  "main": "scripts/triage.py",
+  "scripts": {
+    "start": "python3 scripts/triage.py",
+    "test": "python3 -m pytest tests/test_triage.py -v",
+    "lint": "pylint scripts/"
+  },
+  "dependencies": {
+    "requests": ">=2.28.0",
+    "tqdm": ">=4.65.0"
+  },
+  "devDependencies": {
+    "pytest": ">=7.0.0",
+    "pytest-cov": ">=4.0.0"
+  },
+  "engines": {
+    "python": ">=3.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "scripts/",
+    "tests/",
+    "README.md",
+    "SKILL.md",
+    "CHANGELOG.md",
+    "config.example.json"
+  ]
+}

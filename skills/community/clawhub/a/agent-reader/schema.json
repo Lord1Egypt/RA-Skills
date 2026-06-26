@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "agent-reader-openclaw-skill-schema",
+  "type": "object",
+  "tools": {
+    "render_markdown": {
+      "description": "Render markdown text into styled HTML",
+      "input": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Markdown source content"
+          },
+          "source_path": {
+            "type": "string",
+            "description": "Source markdown path for relative images; relative resources must stay under source directory."
+          },
+          "theme": {
+            "type": "string",
+            "description": "Theme name"
+          },
+          "auto_open": {
+            "type": "boolean",
+            "description": "Open output automatically (ignored in MCP)"
+          },
+          "pre_export": {
+            "type": "array",
+            "description": "Pre-generate export files alongside HTML. Defaults to [\"pdf\"] at runtime when return_content is not set.",
+            "items": {
+              "type": "string",
+              "enum": [
+                "pdf",
+                "docx"
+              ]
+            }
+          },
+          "return_content": {
+            "type": "boolean",
+            "description": "Return inline HTML content directly"
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "html_path": {
+            "type": "string"
+          },
+          "content_data": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "html"
+            ]
+          },
+          "size": {
+            "type": "number"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "format",
+          "size",
+          "warnings"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "export_document": {
+      "description": "Export markdown text into PDF or DOCX",
+      "input": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Markdown source content"
+          },
+          "source_path": {
+            "type": "string",
+            "description": "Source markdown path for relative images; relative resources must stay under source directory."
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "pdf",
+              "docx"
+            ],
+            "description": "Export format"
+          },
+          "return_content": {
+            "type": "boolean",
+            "description": "Return file bytes as base64"
+          }
+        },
+        "required": [
+          "content",
+          "format"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string"
+          },
+          "content_data": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "pdf",
+              "docx"
+            ]
+          },
+          "size": {
+            "type": "number"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "format",
+          "size",
+          "warnings"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "create_slideshow": {
+      "description": "Create slideshow HTML from an image directory",
+      "input": {
+        "type": "object",
+        "properties": {
+          "image_dir": {
+            "type": "string",
+            "description": "Absolute or relative image directory path"
+          },
+          "auto_play": {
+            "type": "number",
+            "description": "Autoplay interval in seconds"
+          },
+          "auto_open": {
+            "type": "boolean",
+            "description": "Open output automatically (ignored in MCP)"
+          },
+          "return_content": {
+            "type": "boolean",
+            "description": "Return inline HTML content directly"
+          }
+        },
+        "required": [
+          "image_dir"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "html_path": {
+            "type": "string"
+          },
+          "content_data": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "html"
+            ]
+          },
+          "size": {
+            "type": "number"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "format",
+          "size",
+          "warnings"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "export_slideshow": {
+      "description": "Export slideshow from an image directory into HTML or PDF",
+      "input": {
+        "type": "object",
+        "properties": {
+          "image_dir": {
+            "type": "string",
+            "description": "Absolute or relative image directory path"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "html",
+              "pdf"
+            ],
+            "description": "Export format, default pdf"
+          },
+          "auto_play": {
+            "type": "number",
+            "description": "Autoplay interval in seconds"
+          },
+          "return_content": {
+            "type": "boolean",
+            "description": "Return file content directly"
+          }
+        },
+        "required": [
+          "image_dir"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string"
+          },
+          "content_data": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "html",
+              "pdf"
+            ]
+          },
+          "size": {
+            "type": "number"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "image_count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "format",
+          "size",
+          "warnings"
+        ],
+        "additionalProperties": true
+      }
+    }
+  }
+}

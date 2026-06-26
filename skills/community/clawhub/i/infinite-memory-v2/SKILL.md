@@ -1,35 +1,33 @@
 ---
-name: "infinite memory locall rag system for"
-description: "High-precision memory with 100% recall accuracy for long contexts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/infinite-memory-v2"
-sourceUrl: "https://clawhub.ai/skills/infinite-memory-v2"
+name: infinite-memory
+version: 1.0.0
+description: High-precision memory with 100% recall accuracy for long contexts.
+emoji: 🦞
+metadata:
+  clawdbot:
+    requires:
+      bins: 
+        - python
+        - curl
+    files:
+      - scripts/recall.py
+      - scripts/ingest.py
+      - engine/memory_engine_parallel_lms.py
+      - references/AUTO_INTEGRATION.md
+      - memory_service.py
+      - requirements.txt
 ---
 
-# infinite memory locall rag system for
+# Infinite Memory 🦞
 
-> High-precision memory with 100% recall accuracy for long contexts.
+High-precision RAG engine for deep context retrieval (Phase 16 Architecture).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/infinite-memory-v2`
-- **Source URL:** [https://clawhub.ai/skills/infinite-memory-v2](https://clawhub.ai/skills/infinite-memory-v2)
+## Tools
 
-## Overview
+### recall_facts
+- **Cmd:** `python scripts/recall.py "{{query}}"`
+- **Goal:** Search for facts in the historical database.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/infinite-memory-v2
-```
+### memorize_data
+- **Cmd:** `python scripts/ingest.py "{{filename}}" "{{text}}"`
+- **Goal:** Store new data into the long-term memory.

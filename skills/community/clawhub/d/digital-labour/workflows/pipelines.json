@@ -1,0 +1,44 @@
+[
+  {
+    "name": "lead_to_close",
+    "description": "Full pipeline: find leads → research market → personalized outreach → proposal ready",
+    "steps": [
+      {"agent": "lead_gen", "inputs": {"industry": "$INDUSTRY", "region": "$REGION"}},
+      {"agent": "market_research", "inputs": {"topic": "$INDUSTRY pain points", "depth": "detailed"}},
+      {"agent": "sales_outreach", "inputs": {"company": "$FROM_STEP_1.leads[0].company", "role": "$ROLE"}},
+      {"agent": "proposal_writer", "inputs": {"project": "$PROJECT_DESC", "client_name": "$FROM_STEP_1.leads[0].company"}}
+    ]
+  },
+  {
+    "name": "content_engine",
+    "description": "Research → blog → repurpose → social → ads",
+    "steps": [
+      {"agent": "market_research", "inputs": {"topic": "$TOPIC", "depth": "overview"}},
+      {"agent": "seo_content", "inputs": {"keyword": "$KEYWORD", "content_type": "blog"}},
+      {"agent": "content_repurpose", "inputs": {"content": "$FROM_STEP_2.result"}},
+      {"agent": "social_media", "inputs": {"topic": "$TOPIC", "platform": "linkedin", "cta_goal": "$CTA"}},
+      {"agent": "ad_copy", "inputs": {"product": "$PRODUCT", "platform": "google"}}
+    ]
+  },
+  {
+    "name": "client_onboarding",
+    "description": "Extract docs → structure data → set up books → CRM entry",
+    "steps": [
+      {"agent": "doc_extract", "inputs": {"document_text": "$DOC_TEXT", "doc_type": "auto"}},
+      {"agent": "data_entry", "inputs": {"source_data": "$FROM_STEP_1.result", "output_format": "structured JSON"}},
+      {"agent": "bookkeeping", "inputs": {"transactions": "$FROM_STEP_2.result", "period": "monthly"}},
+      {"agent": "crm_ops", "inputs": {"contact_data": "$FROM_STEP_1.result", "action": "update"}}
+    ]
+  },
+  {
+    "name": "launch_blitz",
+    "description": "Full product launch: business plan → press release → ad copy → social → email",
+    "steps": [
+      {"agent": "business_plan", "inputs": {"business_idea": "$IDEA", "market": "$MARKET"}},
+      {"agent": "press_release", "inputs": {"announcement": "$ANNOUNCEMENT", "company": "$COMPANY"}},
+      {"agent": "ad_copy", "inputs": {"product": "$PRODUCT", "platform": "facebook"}},
+      {"agent": "social_media", "inputs": {"topic": "$ANNOUNCEMENT", "platform": "linkedin", "cta_goal": "drive signups"}},
+      {"agent": "email_marketing", "inputs": {"product": "$PRODUCT", "audience": "$AUDIENCE"}}
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "id": "config-tracker",
+  "name": "Config Tracker",
+  "version": "1.0.0",
+  "description": "自动追踪并提交 OpenClaw 配置文件和关键 markdown 文件的变更",
+  "main": "./config-tracker.js",
+  "hooks": [
+    "before_prompt_build"
+  ],
+  "enabled": true
+}

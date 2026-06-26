@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "title": "地区调整系数表",
+  "description": "基于广东省建设工程计价依据及汕尾市政府投资项目估算造价指标",
+  "data": {
+    "city_coefficients": {
+      "title": "广东城市系数",
+      "province": "广东省",
+      "base_city": "韶关",
+      "categories": [
+        {"city": "广州", "building": 1.10, "installation": 1.12, "region": "珠三角", "note": "省会城市"},
+        {"city": "深圳", "building": 1.12, "installation": 1.15, "region": "珠三角", "note": "经济特区"},
+        {"city": "珠海", "building": 1.08, "installation": 1.10, "region": "珠三角", "note": ""},
+        {"city": "东莞", "building": 1.08, "installation": 1.10, "region": "珠三角", "note": ""},
+        {"city": "佛山", "building": 1.07, "installation": 1.09, "region": "珠三角", "note": ""},
+        {"city": "中山", "building": 1.06, "installation": 1.08, "region": "珠三角", "note": ""},
+        {"city": "惠州", "building": 1.05, "installation": 1.07, "region": "珠三角", "note": ""},
+        {"city": "江门", "building": 1.05, "installation": 1.07, "region": "珠三角", "note": ""},
+        {"city": "肇庆", "building": 1.04, "installation": 1.06, "region": "珠三角", "note": ""},
+        {"city": "汕头", "building": 1.05, "installation": 1.07, "region": "粤东", "note": ""},
+        {"city": "潮州", "building": 1.04, "installation": 1.06, "region": "粤东", "note": ""},
+        {"city": "揭阳", "building": 1.03, "installation": 1.05, "region": "粤东", "note": ""},
+        {"city": "汕尾", "building": 1.03, "installation": 1.05, "region": "粤东", "note": "参照执行"},
+        {"city": "湛江", "building": 1.04, "installation": 1.06, "region": "粤西", "note": ""},
+        {"city": "茂名", "building": 1.02, "installation": 1.04, "region": "粤西", "note": ""},
+        {"city": "阳江", "building": 1.02, "installation": 1.04, "region": "粤西", "note": ""},
+        {"city": "云浮", "building": 1.00, "installation": 1.02, "region": "粤西", "note": ""},
+        {"city": "韶关", "building": 1.00, "installation": 1.02, "region": "粤北", "note": "基准"},
+        {"city": "清远", "building": 1.00, "installation": 1.02, "region": "粤北", "note": ""},
+        {"city": "河源", "building": 1.00, "installation": 1.02, "region": "粤北", "note": ""},
+        {"city": "梅州", "building": 1.00, "installation": 1.02, "region": "粤东山区", "note": ""}
+      ]
+    },
+    "time_coefficients": {
+      "title": "时间调整系数",
+      "base_year": 2022,
+      "categories": [
+        {"year": 2019, "coefficient": 0.92, "note": "基准下浮"},
+        {"year": 2020, "coefficient": 0.94, "note": "轻微上涨"},
+        {"year": 2021, "coefficient": 0.97, "note": "小幅上涨"},
+        {"year": 2022, "coefficient": 1.00, "note": "基准年"},
+        {"year": 2023, "coefficient": 1.03, "note": "适度上涨"},
+        {"year": 2024, "coefficient": 1.06, "note": "持续上涨"},
+        {"year": 2025, "coefficient": 1.10, "note": "参考值"},
+        {"year": 2026, "coefficient": 1.14, "note": "当前参考"}
+      ]
+    },
+    "decoration_standards": {
+      "title": "装修标准调整系数",
+      "categories": [
+        {"standard": "毛坯", "coefficient": 0.85, "note": "仅基础工程"},
+        {"standard": "简装", "coefficient": 0.95, "note": "基础装修"},
+        {"standard": "精装", "coefficient": 1.00, "note": "基准"},
+        {"standard": "豪装", "coefficient": 1.20, "note": "高档装修"},
+        {"standard": "超豪装", "coefficient": 1.50, "note": "顶级装修"}
+      ]
+    },
+    "structure_types": {
+      "title": "结构类型调整系数",
+      "categories": [
+        {"type": "砖混结构", "coefficient": 0.85, "note": "低层建筑"},
+        {"type": "框架结构", "coefficient": 1.00, "note": "基准"},
+        {"type": "框架-剪力墙", "coefficient": 1.05, "note": "高层建筑"},
+        {"type": "剪力墙结构", "coefficient": 1.08, "note": "高层住宅"},
+        {"type": "框架-核心筒", "coefficient": 1.15, "note": "超高层"},
+        {"type": "钢结构", "coefficient": 1.20, "note": "大跨度/工业"}
+      ]
+    },
+    "prefabrication": {
+      "title": "装配式建筑增加费",
+      "note": "在基准指标基础上增加",
+      "categories": [
+        {"rate": "30%-50%", "addition_low": 150, "addition_high": 250, "unit": "元/㎡"},
+        {"rate": "50%-70%", "addition_low": 250, "addition_high": 400, "unit": "元/㎡"},
+        {"rate": ">70%", "addition_low": 400, "addition_high": 600, "unit": "元/㎡"}
+      ]
+    },
+    "basement_adjustment": {
+      "title": "地下室调整系数",
+      "note": "地下每增加一层",
+      "coefficient": 1.10,
+      "categories": [
+        {"type": "地下一层", "coefficient": 1.00, "note": "基准"},
+        {"type": "地下二层", "coefficient": 1.10, "note": "增加10%"},
+        {"type": "地下三层", "coefficient": 1.21, "note": "增加21%"},
+        {"type": "地下四层", "coefficient": 1.33, "note": "增加33%"}
+      ]
+    }
+  }
+}

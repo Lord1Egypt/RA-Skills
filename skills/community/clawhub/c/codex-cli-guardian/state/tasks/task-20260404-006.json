@@ -1,0 +1,8 @@
+{
+  "task_id": "20260404-006",
+  "description": "用 Python 写一个 Todo 命令行程序，支持添加、查看、完成、删除任务，数据保存到 JSON 文件，保存为 todo.py",
+  "status": "done",
+  "summary": "已完成，程序保存在 [todo.py](/Users/qztcm09/.openclaw/workspace/tmp/codex/todo.py)。  支持的命令： - `python3 todo.py add \"任务内容\"` - `python3 todo.py list` - `python3 todo.py done 任务ID` - `python3 todo.py delete 任务ID`  数据会保存到同目录的 `todo.json`。我",
+  "started_at": "2026-04-04T15:31:44+08:00",
+  "finished_at": "2026-04-04T15:32:36+08:00"
+}

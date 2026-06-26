@@ -1,35 +1,40 @@
----
-name: "周报生成"
-description: "根据输入的工作任务清单，自动生成包含重点工作和工作明细的Markdown格式周报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weekly-report-gen"
-sourceUrl: "https://clawhub.ai/skills/weekly-report-gen"
----
+# Skill: 自动生成周报 (Weekly Report Generator)
 
-# 周报生成
+## 描述
+根据提供的工作日志/任务清单，自动生成 Markdown 格式周报。  
+支持按模块拆分任务，生成“重点工作”和“工作明细”两部分。
 
-> 根据输入的工作任务清单，自动生成包含重点工作和工作明细的Markdown格式周报。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weekly-report-gen`
-- **Source URL:** [https://clawhub.ai/skills/weekly-report-gen](https://clawhub.ai/skills/weekly-report-gen)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weekly-report-gen
+## 输入
+- 文本格式的工作任务清单，要求每行包含模块名称和任务内容，例如：
 ```
+大模型：hs商品分类检索详情，对比文档并补充缺失字段
+大模型：hs商品分类检索详情，解决hscode编码类型处理错误问题
+大模型：链路追踪可视化，分析开源或成熟框架
+大模型：报关任务调度配合调测
+```
+
+## 输出
+Markdown 格式周报，结构如下：
+
+```
+------------------ 重点工作 ------------------
+
+- 模块名：
+  - 进度：默认50%
+  - 描述：完成部分模块任务。
+
+------------------ 工作明细 ------------------
+
+- 模块名：
+  - 功能开发：
+    - 任务1
+    - 任务2
+  - 优化调整：
+    - （可根据实际优化任务添加）
+```
+
+## 配置说明
+- `默认进度`：默认进度百分比，可按模块调整
+- 优化调整部分可以根据实际任务补充
+- 支持任意模块数量和任务条目
+- 输出为 Markdown，可直接复制到周报或导出 PDF

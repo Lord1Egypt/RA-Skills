@@ -1,0 +1,24 @@
+{
+  "taskId": "task-005",
+  "snapshotType": "phase_收集信息",
+  "timestamp": "2026-03-17T20:57:07.104Z",
+  "metadata": {
+    "phase": "收集信息"
+  },
+  "snapshot": {
+    "task_id": "task-005",
+    "task_title": "访问限流的数据源",
+    "task_type": "research",
+    "overall_status": "blocked",
+    "current_phase": "收集信息",
+    "progress_percent": 55,
+    "current_action": "正在进行：收集信息",
+    "why_not_done": "网页读取失败（已持续0秒）",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.104Z",
+    "updated_at": "2026-03-17T20:57:07.104Z"
+  }
+}

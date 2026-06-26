@@ -1,0 +1,42 @@
+---
+# Example zone file for octoDNS
+
+# Root A record
+'':
+  - ttl: 300
+    type: A
+    value: 192.0.2.1
+  
+  # MX records at root
+  - ttl: 300
+    type: MX
+    values:
+      - priority: 10
+        value: mail.example.com.
+      - priority: 20
+        value: mail2.example.com.
+  
+  # TXT records (SPF, verification, etc.)
+  - ttl: 300
+    type: TXT
+    values:
+      - "v=spf1 mx ~all"
+      - "verification-code=abc123"
+
+# www subdomain
+www:
+  ttl: 300
+  type: CNAME
+  value: example.com.
+
+# mail server
+mail:
+  ttl: 300
+  type: A
+  value: 192.0.2.10
+
+# API endpoint
+api:
+  ttl: 60  # Short TTL for dynamic service
+  type: A
+  value: 192.0.2.20

@@ -1,0 +1,11 @@
+{
+  "slug": "web-data-extractor",
+  "name": "网页数据采集器",
+  "version": "1.0.0",
+  "summary": "从网页批量提取结构化数据，支持 CSS/XPath 选择器、自动分页、多种导出格式。适用于市场调研、内容聚合、数据分析。",
+  "author": "data-tools-dev",
+  "license": "MIT-0",
+  "tags": ["scraping", "data-extraction", "web", "automation", "csv", "json", "productivity"],
+  "createdAt": "2026-03-29T14:25:00.000Z",
+  "updatedAt": "2026-03-29T14:25:00.000Z"
+}

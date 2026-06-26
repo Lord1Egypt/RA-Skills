@@ -1,0 +1,17 @@
+# ClawHub manifest for OCC Artifact Gallery
+name: occ-artifact-gallery
+version: 0.1.0
+description: Mobile-accessible generated artifact viewer for headless AI agent systems.
+author: OpenClaw/OCC
+license: MIT
+skill: clawhub/SKILL.md
+entrypoints:
+  cli: examples/artifact_gallery_tool.py
+tags:
+  - artifacts
+  - gallery
+  - mobile
+  - tailscale
+  - generated-work
+  - openclaw
+  - hermes

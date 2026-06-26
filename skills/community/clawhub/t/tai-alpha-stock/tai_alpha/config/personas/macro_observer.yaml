@@ -1,0 +1,14 @@
+id: macro_observer
+display_name: Macro Observer
+display_name_zh: 宏观观察
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-CN
+narrative_tone: neutral
+terminology_profile: mixed
+ensemble_weight: 0.9
+overlay:
+  conviction_scale: 0.98
+  conviction_bias: 0
+  vix_weight: 1.12
+  spy_mom_weight: 1.1

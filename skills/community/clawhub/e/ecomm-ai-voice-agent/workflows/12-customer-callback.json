@@ -1,0 +1,500 @@
+{
+  "name": "eComm AI — 12 Customer Callback",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/customer-callback",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Inbound Call Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-customer-callback",
+      "id": "80edebc8-1223-4623-acaf-8e535192c48b"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse inbound customer callback from Vapi\nconst body = $input.first().json.body || $input.first().json;\n\nconst call = {\n  call_id: body.call_id || body.id || '',\n  customer_phone: body.customer?.number || body.from || body.caller_number || '',\n  customer_name: body.customer?.name || body.caller_name || '',\n  transcript: body.transcript || '',\n  summary: body.summary || '',\n  intent: (body.intent || body.analysis?.intent || 'general').toLowerCase(),\n  duration: body.duration || 0,\n  timestamp: new Date().toISOString()\n};\n\nreturn [{ json: call }];"
+      },
+      "name": "Parse Inbound Call",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "1cc8055c-8467-44b9-b31d-a63be4fd3aba"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CUSTOMERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Customers",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Lookup Customer",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        680,
+        400
+      ],
+      "id": "9ab4d672-0a91-485f-91b0-4b3536f391dc",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Match customer by phone\nconst call = $('Parse Inbound Call').first().json;\nconst customers = $input.all();\nlet customer = null;\n\nfor (const c of customers) {\n  if (c.json.customer_phone === call.customer_phone) {\n    customer = c.json;\n    break;\n  }\n}\n\nreturn [{ json: {\n  ...call,\n  is_existing: !!customer,\n  customer_record: customer || {},\n  last_order_id: customer?.last_order_id || '',\n  customer_email: customer?.customer_email || ''\n}}];"
+      },
+      "name": "Find Customer Record",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        400
+      ],
+      "id": "4831ff20-478a-44ac-bb9f-a3b3819031ab"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Recent Order",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1140,
+        400
+      ],
+      "id": "0b82d3c0-844a-40a2-aa4d-d500f52b1fb3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build context for AI response\nconst data = $('Find Customer Record').first().json;\nconst orders = $input.all();\nlet recentOrder = null;\n\n// Find most recent order for this customer\nfor (const o of orders) {\n  if (o.json.customer_phone === data.customer_phone || o.json.order_id === data.last_order_id) {\n    if (!recentOrder || (o.json.timestamp > recentOrder.timestamp)) {\n      recentOrder = o.json;\n    }\n  }\n}\n\nconst context = {\n  ...data,\n  order: recentOrder || {},\n  has_order: !!recentOrder,\n  context_summary: recentOrder\n    ? `Customer ${data.customer_name} calling about order #${recentOrder.order_number} (${recentOrder.status}, ${recentOrder.items_summary})`\n    : `New/unknown customer ${data.customer_name || data.customer_phone} calling`\n};\n\nreturn [{ json: context }];"
+      },
+      "name": "Build Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        400
+      ],
+      "id": "4a1c4a1a-e634-49cd-8e4c-4a03ba207371"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "cf394269-9548-47aa-b6af-cef34c2f7593",
+                    "leftValue": "={{ $json.intent }}",
+                    "rightValue": "order",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Order Inquiry"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "a5fc30bb-ae6a-46a9-9308-8d87d08e9e5a",
+                    "leftValue": "={{ $json.intent }}",
+                    "rightValue": "return",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Return/Refund"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "08b48fc7-9165-4e8f-8ad9-2b6dd1aa5ff1",
+                    "leftValue": "={{ $json.intent }}",
+                    "rightValue": "complaint",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Complaint"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "name": "Route Action",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        1580,
+        400
+      ],
+      "id": "e4dfa45c-fb38-49d4-839e-f396b6dd7f6c"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/returns-faq",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ ...($json), intent: 'order_status', source: 'inbound_call' }) }}",
+        "options": {}
+      },
+      "name": "→ Order Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1820,
+        200
+      ],
+      "id": "900bcd05-c50b-4075-b0df-4be69f754b6a"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/returns-faq",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ ...($json), intent: 'return', source: 'inbound_call' }) }}",
+        "options": {}
+      },
+      "name": "→ Returns Handler",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1820,
+        380
+      ],
+      "id": "97cf99a4-a583-4892-b137-19e446b18460"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/crm-log",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ ...($json), event_type: 'complaint', source: 'inbound_call' }) }}",
+        "options": {}
+      },
+      "name": "→ Escalate Complaint",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1820,
+        560
+      ],
+      "id": "d5ebcd2d-f843-4025-bc8a-c5e9dd0154b8"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/crm-log",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ ...($json), event_type: 'inbound_call', source: 'callback' }) }}",
+        "options": {}
+      },
+      "name": "→ General Support Log",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1820,
+        740
+      ],
+      "id": "c46549d5-e578-465c-af33-f29b75b3d44e"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "call_id": "={{ $json.call_id }}",
+            "order_id": "={{ $json.last_order_id }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "call_type": "inbound_callback",
+            "status": "={{ $json.intent }}",
+            "summary": "={{ $json.summary }}",
+            "duration": "={{ $json.duration }}",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Inbound Call",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2060,
+        400
+      ],
+      "id": "981582da-5bdd-4ff3-8a0a-7586462d0c51",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', call_id: $json.call_id, routed: $json.intent }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2300,
+        400
+      ],
+      "id": "9383e253-ae33-4706-98c5-65ac90d6b111"
+    }
+  ],
+  "connections": {
+    "Inbound Call Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Inbound Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Inbound Call": {
+      "main": [
+        [
+          {
+            "node": "Lookup Customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lookup Customer": {
+      "main": [
+        [
+          {
+            "node": "Find Customer Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Customer Record": {
+      "main": [
+        [
+          {
+            "node": "Get Recent Order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Recent Order": {
+      "main": [
+        [
+          {
+            "node": "Build Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Context": {
+      "main": [
+        [
+          {
+            "node": "Route Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Action": {
+      "main": [
+        [
+          {
+            "node": "→ Order Status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "→ Returns Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "→ Escalate Complaint",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "→ General Support Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ Order Status": {
+      "main": [
+        [
+          {
+            "node": "Log Inbound Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ Returns Handler": {
+      "main": [
+        [
+          {
+            "node": "Log Inbound Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ Escalate Complaint": {
+      "main": [
+        [
+          {
+            "node": "Log Inbound Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ General Support Log": {
+      "main": [
+        [
+          {
+            "node": "Log Inbound Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Inbound Call": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

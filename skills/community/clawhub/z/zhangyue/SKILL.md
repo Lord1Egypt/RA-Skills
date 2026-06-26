@@ -1,35 +1,49 @@
 ---
-name: "Zhangyue"
-description: "整理掌阅官网公开的书库入口、会员权益、帮助信息和活动页内容，提供合法合规的信息摘要服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhangyue"
-sourceUrl: "https://clawhub.ai/skills/zhangyue"
+name: zhangyue
+description: 注册“掌阅”技能；用于阅读产品公开页面、书库入口、会员说明与帮助信息整理。
+homepage: `https://www.ireader.com/`
+metadata: {"clawdbot":{"emoji":"📖"}}
 ---
 
-# Zhangyue
+# 掌阅
 
-> 整理掌阅官网公开的书库入口、会员权益、帮助信息和活动页内容，提供合法合规的信息摘要服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhangyue`
-- **Source URL:** [https://clawhub.ai/skills/zhangyue](https://clawhub.ai/skills/zhangyue)
+- 面向公开官网、书城页、会员页、帮助中心与活动页的信息整理
+- 不提供盗版资源、版权绕过、会员代充、账号共享或接口调用能力
+- 仅处理公开可见的书库入口、会员说明、阅读功能与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.ireader.com/
+- 书库与内容：书城、分类、榜单、专题、作者或出版方入口
+- 会员与帮助：会员页、订阅说明、帮助中心、活动页入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhangyue
-```
+常见任务
+
+- 书库分类、榜单、书单与内容入口整理
+- 会员权益、订阅规则、下载说明与设备支持汇总
+- 帮助中心、常见问题、活动页与版权说明提取
+
+数据字段
+
+- 内容分类、榜单入口、会员权益、链接
+- 设备支持、离线规则、帮助页、活动页链接
+- 版权说明、FAQ、下载限制、公告入口
+
+自动化要点
+
+- 内容授权和会员权益存在地区与时间差异，输出时注明上下文
+- 不输出盗版下载、会员共享、抓包或接口绕过建议
+- 不处理个人书架、阅读记录、购买记录或私有账户数据
+
+示例流程
+
+- 书库整理：访问 Zhangyue 书城与分类页 → 输出内容入口清单
+- 权益整理：进入会员页 → 提取权益与限制 → 输出表格
+- 帮助汇总：访问帮助中心 → 提取下载、设备、FAQ → 输出摘要
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

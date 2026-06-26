@@ -1,35 +1,25 @@
 ---
-name: "GH Monitor"
-description: "Monitor GitHub repos for issues, PRs, and CI activity with label filters and scheduled notifications via cron or messages."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gh-monitor"
-sourceUrl: "https://clawhub.ai/skills/gh-monitor"
+name: gh-monitor
+description: GitHub repo monitoring: Track issues/PRs/CI runs, new activity, label filters, notifications via cron/message. Extends gh CLI + gh-issues skill. Triggers: "watch repo", "gh alerts", "PR status [repo]", "issues monitor".</description>
 ---
 
 # GH Monitor
 
-> Monitor GitHub repos for issues, PRs, and CI activity with label filters and scheduled notifications via cron or messages.
+## Examples
+- \"Watch open bugs in myrepo\": gh issue list --label bug --state open --limit 20
+- \"PR status\": gh pr list --state open --limit 10
+- Daily cron: cron add schedule.cron expr=\"0 9 * * *\" payload.systemEvent \"Check GH: new issues/PRs\"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gh-monitor`
-- **Source URL:** [https://clawhub.ai/skills/gh-monitor](https://clawhub.ai/skills/gh-monitor)
+## Workflow
+1. Setup: gh auth status; gh repo view owner/repo
+2. Query: gh search issues \"is:open label:bug\" --json
+3. Alert: message urgent PRs/unmerged.
+4. Advanced: gh run list --status failure; browser for comments.
 
-## Overview
+Read refs/gh-commands.md + gh-issues/SKILL.md.
 
+## Scripts
+scripts/check-repo.py: Poll + notify.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gh-monitor
-```
+assets/alert-template.md: Slack/Discord format.
+

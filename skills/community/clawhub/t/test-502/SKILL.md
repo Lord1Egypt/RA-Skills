@@ -1,35 +1,47 @@
 ---
-name: "Test"
-description: "AList file management API for OpenClaw. Supports upload, download, list, mkdir, rm, mv, search, and offline download. Trigger: User asks about file managemen..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-502"
-sourceUrl: "https://clawhub.ai/skills/test-502"
+name: alist-cli
+displayName: "AList-CLI (Cloud Storage CLI for AList, with OpenClaw Skill)"
+version: 1.0.2
+description: |
+  AList file management API for OpenClaw. Supports upload, download, list, mkdir, rm, mv, search, and offline download.
+  Trigger: User asks about file management, AList operations, upload/download files, or cloud storage tasks.
 ---
 
-# Test
+# AList CLI
 
-> AList file management API for OpenClaw. Supports upload, download, list, mkdir, rm, mv, search, and offline download. Trigger: User asks about file managemen...
+- **Author**: [LeeShunEE](https://github.com/LeeShunEE)
+- **Organization**: [KinemaClawWorkspace](https://github.com/KinemaClawWorkspace)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-502`
-- **Source URL:** [https://clawhub.ai/skills/test-502](https://clawhub.ai/skills/test-502)
+File management tool for AList API.
 
-## Overview
+## Environment Variables
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/test-502
+ALIST_URL="https://your_alist_server"
+ALIST_USERNAME="your_username"
+ALIST_PASSWORD="your_password"
 ```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `alist login` | Authenticate |
+| `alist ls [path]` | List files |
+| `alist get <path>` | Get file info |
+| `alist mkdir <path>` | Create folder |
+| `alist upload <local> <remote>` | Upload file |
+| `alist rm <path>` | Delete file |
+| `alist mv <src> <dst>` | Move file |
+| `alist search <keyword> [path]` | Search files |
+| `alist whoami` | Current user |
+
+## Script
+
+```bash
+python scripts/alist_cli.py <command> [args]
+```
+
+## References
+
+- `references/openapi.json` - AList API specification

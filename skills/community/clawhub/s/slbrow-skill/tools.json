@@ -1,0 +1,157 @@
+{
+  "browser": [
+    {
+      "name": "page_analyze",
+      "description": "Analyze page. Optional tab_id for background tab.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "intent_hint": { "type": "string" },
+          "tab_id": { "type": "number" }
+        },
+        "required": ["intent_hint"]
+      }
+    },
+    {
+      "name": "page_extract_content",
+      "description": "Extract content. content_type: article|search_results|posts. Optional tab_id.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "content_type": { "type": "string", "enum": ["article", "search_results", "posts"] },
+          "tab_id": { "type": "number" }
+        },
+        "required": ["content_type"]
+      }
+    },
+    {
+      "name": "page_navigate",
+      "description": "Navigate current tab to URL.",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "url": { "type": "string" } },
+        "required": ["url"]
+      }
+    },
+    {
+      "name": "page_wait_for",
+      "description": "Wait for element or condition. condition_type: element_visible|text_present; selector or text.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "condition_type": { "type": "string", "enum": ["element_visible", "text_present"] },
+          "selector": { "type": "string" },
+          "text": { "type": "string" }
+        },
+        "required": ["condition_type"]
+      }
+    },
+    {
+      "name": "tab_create",
+      "description": "Create tab(s): url, or urls[], or url+count (1-50).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "urls": { "type": "array", "items": { "type": "string" }, "maxItems": 100 },
+          "count": { "type": "number", "minimum": 1, "maximum": 50 }
+        }
+      }
+    },
+    {
+      "name": "tab_close",
+      "description": "Close tab(s): tab_id, tab_ids[], or omit for current.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tab_id": { "type": "number" },
+          "tab_ids": { "type": "array", "items": { "type": "number" } }
+        }
+      }
+    },
+    {
+      "name": "tab_list",
+      "description": "List open tabs with IDs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_history",
+      "description": "Search browser history. keywords, start_date, end_date (ISO), domains[], max_results (max 500).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "keywords": { "type": "string" },
+          "start_date": { "type": "string", "format": "date-time" },
+          "end_date": { "type": "string", "format": "date-time" },
+          "domains": { "type": "array", "items": { "type": "string" } },
+          "max_results": { "type": "number", "maximum": 500 }
+        }
+      }
+    },
+    {
+      "name": "get_selected_text",
+      "description": "Get selected text. Optional tab_id.",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "tab_id": { "type": "number" } }
+      }
+    },
+    {
+      "name": "get_page_links",
+      "description": "Get page links. link_type: all|internal|external; domains[]; max_results (max 200).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "link_type": { "type": "string", "enum": ["all", "internal", "external"] },
+          "domains": { "type": "array", "items": { "type": "string" } },
+          "max_results": { "type": "number", "maximum": 200 }
+        }
+      }
+    }
+  ],
+  "vai": [
+    {
+      "name": "get_page_seelink_player_list",
+      "description": "Get all players on current page.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "use_seelink_players_ai",
+      "description": "Select one AI function or none for specified player(s) or 宫格(grid) on the page. Use 'player_position_list' or 'player_id_list' to specify targets (not both). Call separately for each different AI function needed. To disable any AI, set 'ai_function_name' to \"none\". Run this tool each time as results may change.",
+      "inputSchema": {
+        "type": "object",
+        "examples": [
+          { "player_position_list": [0, 3], "ai_function_name": "reduce_fog" },
+          { "player_id_list": ["id-of-player-x"], "ai_function_name": "face_mosaic" },
+          { "player_id_list": ["id-of-player-x", "id-of-player-y"], "ai_function_name": "none" }
+        ],
+        "properties": {
+          "player_position_list": {
+            "type": "array",
+            "description": "Array of player positions (zero-based)",
+            "items": { "type": "number" },
+            "maxItems": 100
+          },
+          "player_id_list": {
+            "type": "array",
+            "description": "Array of player IDs",
+            "items": { "type": "string" },
+            "maxItems": 100
+          },
+          "ai_function_name": {
+            "type": "string",
+            "description": "reduce_fog: 去雾. face_mosaic: 人脸打码. dark_reduce: 暗场景增强. human_outline: 行人画框. vechicle_outline: 车辆画框. none: Disable.",
+            "enum": ["reduce_fog", "face_mosaic", "dark_reduce", "human_outline", "vechicle_outline", "none"]
+          }
+        },
+        "required": ["ai_function_name"]
+      }
+    }
+  ]
+}

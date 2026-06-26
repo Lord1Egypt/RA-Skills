@@ -1,0 +1,855 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Generated Blueprint",
+    "industry": "common",
+    "revisionId": "rev-20260413110352",
+    "parentRevisionId": null,
+    "lastModifiedAt": "2026-04-13T11:03:52Z",
+    "lastModifiedBy": "ai"
+  },
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [
+      {
+        "type": "inline-text",
+        "excerpt": "某制造企业数字化转型项目需求说明。\n\n业务目标：\n- 实现全渠道营销，覆盖会员拉新、订单履约和门店运营\n- 打通生产制造全流程，包括生产计划排程、来料质检和成品检验\n- 建立完善的仓储物流体系，实现入库出库、库存管理和供应链协同\n- 构建企业风控体系，涵盖客户风险评级、信贷审批、反欺诈和合规检查\n- 建立客户画像系统，实现精准营销和个性化服务\n\n主要角色：\n- 门店导购负责会员注册、下单和积分累计\n- 客服负责售后跟进和客户投诉处理\n- 运营负责门店日常经营和营销活动\n- 生产经理负责生产计划排程和产能调度\n- 质检员负责来料检验和成品质量把控\n- 仓库管理员负责入库出库作业和库存盘点\n- 采购专员负责供应商对接和采购申请\n- 风控分析师负责客户风险评估和预警\n- 信贷审批员负责信贷申请审批\n- 合规专员负责合规检查和审计报告\n- 财务专员负责财务报表和资金对账\n\n应用系统需求：\n- CRM 系统：管理会员、订单、客户画像\n- POS 系统：门店收银和交易处理\n- ERP 系统：企业资源计划，支撑门店运营、生产计划和仓储管理\n- MES 系统：制造执行，管理生产计划和质量检验\n- WMS 系统：仓储管理，管理出入库和库存\n- SCM 系统：供应链协同管理\n- 风控引擎：客户风险评估和反欺诈\n- 信贷系统：信贷申请审批管理\n\n核心流程：\n- 会员注册 → 下单 → 积分累计\n- 生产排程 → 来料检验 → 质检 → 入库\n- 采购申请 → 供应链协同\n- 信贷申请 → 风险评级 → 合规检查 → 客户画像构建\n"
+      }
+    ],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [
+      {
+        "id": "cap-membership",
+        "name": "会员运营",
+        "level": 1,
+        "description": "管理会员拉新、促活和留存。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-crm"
+        ]
+      },
+      {
+        "id": "cap-order",
+        "name": "订单管理",
+        "level": 1,
+        "description": "管理订单创建、处理和履约。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-crm",
+          "sys-pos"
+        ]
+      },
+      {
+        "id": "cap-store-ops",
+        "name": "门店运营",
+        "level": 1,
+        "description": "支撑门店日常经营和导购协作。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-erp"
+        ]
+      },
+      {
+        "id": "cap-production-plan",
+        "name": "生产计划管理",
+        "level": 1,
+        "description": "管理生产排程、产能规划和生产调度。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-erp",
+          "sys-mes"
+        ]
+      },
+      {
+        "id": "cap-quality-control",
+        "name": "质量管理",
+        "level": 1,
+        "description": "管理来料检验、过程检验和成品检验。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-mes"
+        ]
+      },
+      {
+        "id": "cap-warehouse",
+        "name": "仓储管理",
+        "level": 1,
+        "description": "管理入库、出库、库存和库位。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-erp",
+          "sys-wms"
+        ]
+      },
+      {
+        "id": "cap-supply-chain",
+        "name": "供应链协同",
+        "level": 1,
+        "description": "管理供应商协同、采购计划和物流。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-scm"
+        ]
+      },
+      {
+        "id": "cap-risk-control",
+        "name": "风险控制",
+        "level": 1,
+        "description": "管理风险评估、预警和处置。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-riskengine",
+          "sys-antifraud"
+        ]
+      },
+      {
+        "id": "cap-credit",
+        "name": "信贷管理",
+        "level": 1,
+        "description": "管理信贷申请、审批和放款。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-creditsystem"
+        ]
+      },
+      {
+        "id": "cap-compliance",
+        "name": "合规管理",
+        "level": 1,
+        "description": "管理合规检查、审计和报告。",
+        "ownerActorIds": [],
+        "supportingSystemIds": []
+      },
+      {
+        "id": "cap-customer-profile",
+        "name": "客户画像",
+        "level": 1,
+        "description": "构建和维护客户360度画像。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-crm",
+          "sys-riskengine"
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "id": "actor-store-guide",
+        "name": "门店导购"
+      },
+      {
+        "id": "actor-service",
+        "name": "客服"
+      },
+      {
+        "id": "actor-ops",
+        "name": "运营"
+      },
+      {
+        "id": "actor-production-mgr",
+        "name": "生产经理"
+      },
+      {
+        "id": "actor-quality-inspector",
+        "name": "质检员"
+      },
+      {
+        "id": "actor-warehouse-mgr",
+        "name": "仓库管理员"
+      },
+      {
+        "id": "actor-purchasing",
+        "name": "采购专员"
+      },
+      {
+        "id": "actor-risk-analyst",
+        "name": "风控分析师"
+      },
+      {
+        "id": "actor-credit-approver",
+        "name": "信贷审批员"
+      },
+      {
+        "id": "actor-compliance",
+        "name": "合规专员"
+      },
+      {
+        "id": "actor-finance",
+        "name": "财务专员"
+      }
+    ],
+    "flowSteps": [
+      {
+        "id": "flow-membership-register",
+        "name": "会员注册",
+        "actorId": "actor-store-guide",
+        "capabilityIds": [
+          "cap-membership"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "会员生命周期",
+        "seqIndex": 0,
+        "nextStepIds": [
+          "flow-order-create"
+        ]
+      },
+      {
+        "id": "flow-order-create",
+        "name": "订单创建",
+        "actorId": "actor-store-guide",
+        "capabilityIds": [
+          "cap-order"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "会员生命周期",
+        "seqIndex": 1,
+        "nextStepIds": [
+          "flow-points-accrual"
+        ]
+      },
+      {
+        "id": "flow-points-accrual",
+        "name": "积分累计",
+        "actorId": "actor-store-guide",
+        "capabilityIds": [
+          "cap-membership"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "会员生命周期",
+        "seqIndex": 2
+      },
+      {
+        "id": "flow-service-followup",
+        "name": "售后跟进",
+        "actorId": "actor-service",
+        "capabilityIds": [
+          "cap-order"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "订单履约",
+        "seqIndex": 0
+      },
+      {
+        "id": "flow-production-scheduling",
+        "name": "生产排程",
+        "actorId": "actor-production-mgr",
+        "capabilityIds": [
+          "cap-production-plan"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "生产周期",
+        "seqIndex": 0,
+        "nextStepIds": [
+          "flow-incoming-inspection"
+        ]
+      },
+      {
+        "id": "flow-incoming-inspection",
+        "name": "来料检验",
+        "actorId": "actor-quality-inspector",
+        "capabilityIds": [
+          "cap-quality-control"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "生产周期",
+        "seqIndex": 1,
+        "nextStepIds": [
+          "flow-warehouse-inbound"
+        ]
+      },
+      {
+        "id": "flow-warehouse-inbound",
+        "name": "入库作业",
+        "actorId": "actor-warehouse-mgr",
+        "capabilityIds": [
+          "cap-warehouse"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "生产周期",
+        "seqIndex": 2
+      },
+      {
+        "id": "flow-purchase-request",
+        "name": "采购申请",
+        "actorId": "actor-purchasing",
+        "capabilityIds": [
+          "cap-supply-chain"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "供应链流程",
+        "seqIndex": 0
+      },
+      {
+        "id": "flow-credit-application",
+        "name": "信贷申请",
+        "actorId": "actor-credit-approver",
+        "capabilityIds": [
+          "cap-credit"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "信贷流程",
+        "seqIndex": 0,
+        "nextStepIds": [
+          "flow-risk-assessment"
+        ]
+      },
+      {
+        "id": "flow-risk-assessment",
+        "name": "风险评级",
+        "actorId": "actor-risk-analyst",
+        "capabilityIds": [
+          "cap-risk-control"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "信贷流程",
+        "seqIndex": 1,
+        "nextStepIds": [
+          "flow-compliance-check"
+        ]
+      },
+      {
+        "id": "flow-compliance-check",
+        "name": "合规检查",
+        "actorId": "actor-compliance",
+        "capabilityIds": [
+          "cap-compliance"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "信贷流程",
+        "seqIndex": 2,
+        "nextStepIds": [
+          "flow-customer-profiling"
+        ]
+      },
+      {
+        "id": "flow-customer-profiling",
+        "name": "客户画像构建",
+        "actorId": "actor-risk-analyst",
+        "capabilityIds": [
+          "cap-customer-profile"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": [],
+        "processName": "信贷流程",
+        "seqIndex": 3
+      }
+    ],
+    "systems": [
+      {
+        "id": "sys-crm",
+        "kind": "system",
+        "name": "CRM",
+        "aliases": [],
+        "description": "客户关系管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "CRM"
+        },
+        "capabilityIds": [
+          "cap-membership",
+          "cap-order",
+          "cap-customer-profile"
+        ]
+      },
+      {
+        "id": "sys-pos",
+        "kind": "system",
+        "name": "POS",
+        "aliases": [],
+        "description": "门店收银与交易系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "POS"
+        },
+        "capabilityIds": [
+          "cap-order"
+        ]
+      },
+      {
+        "id": "sys-erp",
+        "kind": "system",
+        "name": "ERP",
+        "aliases": [],
+        "description": "企业资源计划系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "ERP"
+        },
+        "capabilityIds": [
+          "cap-store-ops",
+          "cap-production-plan",
+          "cap-warehouse"
+        ]
+      },
+      {
+        "id": "sys-mes",
+        "kind": "system",
+        "name": "MES",
+        "aliases": [],
+        "description": "制造执行系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "MES"
+        },
+        "capabilityIds": [
+          "cap-production-plan",
+          "cap-quality-control"
+        ]
+      },
+      {
+        "id": "sys-wms",
+        "kind": "system",
+        "name": "WMS",
+        "aliases": [],
+        "description": "仓储管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "WMS"
+        },
+        "capabilityIds": [
+          "cap-warehouse"
+        ]
+      },
+      {
+        "id": "sys-scm",
+        "kind": "system",
+        "name": "SCM",
+        "aliases": [],
+        "description": "供应链管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "SCM"
+        },
+        "capabilityIds": [
+          "cap-supply-chain"
+        ]
+      },
+      {
+        "id": "sys-riskengine",
+        "kind": "system",
+        "name": "risk-engine",
+        "aliases": [],
+        "description": "风控引擎系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "risk-engine"
+        },
+        "capabilityIds": [
+          "cap-risk-control",
+          "cap-customer-profile"
+        ]
+      },
+      {
+        "id": "sys-creditsystem",
+        "kind": "system",
+        "name": "credit-system",
+        "aliases": [],
+        "description": "信贷管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "credit-system"
+        },
+        "capabilityIds": [
+          "cap-credit"
+        ]
+      },
+      {
+        "id": "sys-antifraud",
+        "kind": "system",
+        "name": "anti-fraud",
+        "aliases": [],
+        "description": "反欺诈系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "anti-fraud"
+        },
+        "capabilityIds": [
+          "cap-risk-control"
+        ]
+      }
+    ]
+  },
+  "relations": [
+    {
+      "id": "rel-sys-crm-cap-membership",
+      "type": "supports",
+      "from": "sys-crm",
+      "to": "cap-membership",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-crm-cap-order",
+      "type": "supports",
+      "from": "sys-crm",
+      "to": "cap-order",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-crm-cap-customer-profile",
+      "type": "supports",
+      "from": "sys-crm",
+      "to": "cap-customer-profile",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-pos-cap-order",
+      "type": "supports",
+      "from": "sys-pos",
+      "to": "cap-order",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-erp-cap-store-ops",
+      "type": "supports",
+      "from": "sys-erp",
+      "to": "cap-store-ops",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-erp-cap-production-plan",
+      "type": "supports",
+      "from": "sys-erp",
+      "to": "cap-production-plan",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-erp-cap-warehouse",
+      "type": "supports",
+      "from": "sys-erp",
+      "to": "cap-warehouse",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-mes-cap-production-plan",
+      "type": "supports",
+      "from": "sys-mes",
+      "to": "cap-production-plan",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-mes-cap-quality-control",
+      "type": "supports",
+      "from": "sys-mes",
+      "to": "cap-quality-control",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-wms-cap-warehouse",
+      "type": "supports",
+      "from": "sys-wms",
+      "to": "cap-warehouse",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-scm-cap-supply-chain",
+      "type": "supports",
+      "from": "sys-scm",
+      "to": "cap-supply-chain",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-riskengine-cap-risk-control",
+      "type": "supports",
+      "from": "sys-riskengine",
+      "to": "cap-risk-control",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-riskengine-cap-customer-profile",
+      "type": "supports",
+      "from": "sys-riskengine",
+      "to": "cap-customer-profile",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-creditsystem-cap-credit",
+      "type": "supports",
+      "from": "sys-creditsystem",
+      "to": "cap-credit",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-sys-antifraud-cap-risk-control",
+      "type": "supports",
+      "from": "sys-antifraud",
+      "to": "cap-risk-control",
+      "label": "支撑"
+    },
+    {
+      "id": "rel-cap-membership-actor-store-guide",
+      "type": "owned-by",
+      "from": "cap-membership",
+      "to": "actor-store-guide",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-order-actor-store-guide",
+      "type": "owned-by",
+      "from": "cap-order",
+      "to": "actor-store-guide",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-order-actor-service",
+      "type": "owned-by",
+      "from": "cap-order",
+      "to": "actor-service",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-production-plan-actor-production-mgr",
+      "type": "owned-by",
+      "from": "cap-production-plan",
+      "to": "actor-production-mgr",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-quality-control-actor-quality-inspector",
+      "type": "owned-by",
+      "from": "cap-quality-control",
+      "to": "actor-quality-inspector",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-warehouse-actor-warehouse-mgr",
+      "type": "owned-by",
+      "from": "cap-warehouse",
+      "to": "actor-warehouse-mgr",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-supply-chain-actor-purchasing",
+      "type": "owned-by",
+      "from": "cap-supply-chain",
+      "to": "actor-purchasing",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-credit-actor-credit-approver",
+      "type": "owned-by",
+      "from": "cap-credit",
+      "to": "actor-credit-approver",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-risk-control-actor-risk-analyst",
+      "type": "owned-by",
+      "from": "cap-risk-control",
+      "to": "actor-risk-analyst",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-compliance-actor-compliance",
+      "type": "owned-by",
+      "from": "cap-compliance",
+      "to": "actor-compliance",
+      "label": "执行"
+    },
+    {
+      "id": "rel-cap-customer-profile-actor-risk-analyst",
+      "type": "owned-by",
+      "from": "cap-customer-profile",
+      "to": "actor-risk-analyst",
+      "label": "执行"
+    },
+    {
+      "id": "rel-flow-flow-membership-register-flow-order-create",
+      "type": "flows-to",
+      "from": "flow-membership-register",
+      "to": "flow-order-create",
+      "label": "→"
+    },
+    {
+      "id": "rel-flow-flow-order-create-flow-points-accrual",
+      "type": "flows-to",
+      "from": "flow-order-create",
+      "to": "flow-points-accrual",
+      "label": "→"
+    },
+    {
+      "id": "rel-flow-flow-production-scheduling-flow-incoming-inspection",
+      "type": "flows-to",
+      "from": "flow-production-scheduling",
+      "to": "flow-incoming-inspection",
+      "label": "→"
+    },
+    {
+      "id": "rel-flow-flow-incoming-inspection-flow-warehouse-inbound",
+      "type": "flows-to",
+      "from": "flow-incoming-inspection",
+      "to": "flow-warehouse-inbound",
+      "label": "→"
+    },
+    {
+      "id": "rel-flow-flow-credit-application-flow-risk-assessment",
+      "type": "flows-to",
+      "from": "flow-credit-application",
+      "to": "flow-risk-assessment",
+      "label": "→"
+    },
+    {
+      "id": "rel-flow-flow-risk-assessment-flow-compliance-check",
+      "type": "flows-to",
+      "from": "flow-risk-assessment",
+      "to": "flow-compliance-check",
+      "label": "→"
+    },
+    {
+      "id": "rel-flow-flow-compliance-check-flow-customer-profiling",
+      "type": "flows-to",
+      "from": "flow-compliance-check",
+      "to": "flow-customer-profiling",
+      "label": "→"
+    }
+  ],
+  "views": [
+    {
+      "id": "view-capability",
+      "type": "business-capability-map",
+      "title": "业务能力蓝图",
+      "includedNodeIds": [
+        "cap-membership",
+        "cap-order",
+        "cap-store-ops",
+        "cap-production-plan",
+        "cap-quality-control",
+        "cap-warehouse",
+        "cap-supply-chain",
+        "cap-risk-control",
+        "cap-credit",
+        "cap-compliance",
+        "cap-customer-profile"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-swimlane",
+      "type": "swimlane-flow",
+      "title": "泳道流程图",
+      "includedNodeIds": [
+        "actor-store-guide",
+        "actor-service",
+        "actor-ops",
+        "actor-production-mgr",
+        "actor-quality-inspector",
+        "actor-warehouse-mgr",
+        "actor-purchasing",
+        "actor-risk-analyst",
+        "actor-credit-approver",
+        "actor-compliance",
+        "actor-finance",
+        "flow-membership-register",
+        "flow-order-create",
+        "flow-points-accrual",
+        "flow-service-followup",
+        "flow-production-scheduling",
+        "flow-incoming-inspection",
+        "flow-warehouse-inbound",
+        "flow-purchase-request",
+        "flow-credit-application",
+        "flow-risk-assessment",
+        "flow-compliance-check",
+        "flow-customer-profiling"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "lanes": [
+          "actor-store-guide",
+          "actor-service",
+          "actor-ops",
+          "actor-production-mgr",
+          "actor-quality-inspector",
+          "actor-warehouse-mgr",
+          "actor-purchasing",
+          "actor-risk-analyst",
+          "actor-credit-approver",
+          "actor-compliance",
+          "actor-finance"
+        ]
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-architecture",
+      "type": "application-architecture",
+      "title": "应用架构图",
+      "includedNodeIds": [
+        "sys-crm",
+        "sys-pos",
+        "sys-erp",
+        "sys-mes",
+        "sys-wms",
+        "sys-scm",
+        "sys-riskengine",
+        "sys-creditsystem",
+        "sys-antifraud",
+        "cap-membership",
+        "cap-order",
+        "cap-store-ops",
+        "cap-production-plan",
+        "cap-quality-control",
+        "cap-warehouse",
+        "cap-supply-chain",
+        "cap-risk-control",
+        "cap-credit",
+        "cap-compliance",
+        "cap-customer-profile"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    }
+  ],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {}
+}

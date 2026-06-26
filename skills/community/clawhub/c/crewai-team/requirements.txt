@@ -1,0 +1,5 @@
+crewai>=0.1.0
+crewai-tools>=0.0.1
+langchain-community>=0.0.1
+langchain-openai>=0.0.1
+duckduckgo-search>=4.0.0

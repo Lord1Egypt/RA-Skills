@@ -1,0 +1,1 @@
+2026-03-12 13:20:27.213 <string>[1] <module> -> Find Control Timeout(10s): {ClassName: 'WeChatMainWndForPC', ControlType: WindowControl}

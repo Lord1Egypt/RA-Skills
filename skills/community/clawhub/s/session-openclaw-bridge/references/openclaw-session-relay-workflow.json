@@ -1,0 +1,222 @@
+{
+  "name": "OpenClaw ↔ Session Relay (Rebuilt v2)",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 10,
+              "unit": "seconds"
+            }
+          ]
+        }
+      },
+      "id": "cron-poll",
+      "name": "Cron (poll)",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [220, 280]
+    },
+    {
+      "parameters": {
+        "url": "http://REPLACE_SESSION_BOT_HOST:3030/poll?since={{$env.SESSION_POLL_SINCE || 0}}&limit=50",
+        "method": "GET",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "REPLACE_SESSION_BOT_API_KEY"
+            }
+          ]
+        },
+        "responseFormat": "json"
+      },
+      "id": "poll-session",
+      "name": "Poll Session Bot (/poll)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [460, 280]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "next",
+              "value": "={{$json.next || 0}}"
+            }
+          ]
+        }
+      },
+      "id": "extract-next",
+      "name": "Extract next cursor",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [700, 130]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "SESSION_POLL_SINCE",
+              "value": "={{$json.next}}"
+            }
+          ]
+        }
+      },
+      "id": "cursor-note",
+      "name": "Cursor note (replace me)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [940, 130]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages"
+      },
+      "id": "split-msgs",
+      "name": "Split messages",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [700, 280]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.from}}",
+              "operation": "equals",
+              "value2": "={{$env.ALLOW_FROM || 'REPLACE_ALLOWED_SESSION_ID'}}"
+            }
+          ]
+        }
+      },
+      "id": "if-allow",
+      "name": "IF sender allowed",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [940, 280]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "REPLACE_OPENCALW_ENDPOINT",
+        "responseFormat": "json",
+        "jsonParameters": true,
+        "bodyParametersJson": "={\"input\": $json.text, \"from\": $json.from}"
+      },
+      "id": "openclaw-reply",
+      "name": "OpenClaw (generate reply)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1180, 170]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://REPLACE_SESSION_BOT_HOST:3030/send",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "REPLACE_SESSION_BOT_API_KEY"
+            }
+          ]
+        },
+        "responseFormat": "json",
+        "jsonParameters": true,
+        "bodyParametersJson": "={\"to\": $json.from, \"text\": ($node[\"OpenClaw (generate reply)\"].json.output || $node[\"OpenClaw (generate reply)\"].json.text || JSON.stringify($node[\"OpenClaw (generate reply)\"].json))}"
+      },
+      "id": "reply-send",
+      "name": "Reply via Session Bot (/send)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1420, 170]
+    }
+  ],
+  "connections": {
+    "Cron (poll)": {
+      "main": [
+        [
+          {
+            "node": "Poll Session Bot (/poll)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Session Bot (/poll)": {
+      "main": [
+        [
+          {
+            "node": "Extract next cursor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract next cursor": {
+      "main": [
+        [
+          {
+            "node": "Cursor note (replace me)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split messages": {
+      "main": [
+        [
+          {
+            "node": "IF sender allowed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF sender allowed": {
+      "main": [
+        [
+          {
+            "node": "OpenClaw (generate reply)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "OpenClaw (generate reply)": {
+      "main": [
+        [
+          {
+            "node": "Reply via Session Bot (/send)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

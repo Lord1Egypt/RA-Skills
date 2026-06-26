@@ -1,0 +1,3 @@
+mcp[cli]
+beautifulsoup4
+requests

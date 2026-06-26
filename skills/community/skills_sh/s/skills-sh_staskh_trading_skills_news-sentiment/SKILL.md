@@ -1,35 +1,39 @@
 ---
-name: "news-sentiment"
-description: "Indexed by skills.sh from staskh/trading_skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "staskh"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/staskh/trading_skills/news-sentiment"
-sourceUrl: "https://skills.sh/staskh/trading_skills/news-sentiment"
+name: news-sentiment
+description: Get recent news and sentiment for a stock. Use when user asks about news, headlines, sentiment, what's happening with a stock, or recent developments.
+dependencies: ["trading-skills"]
 ---
 
-# news-sentiment
+# News Sentiment
 
-> Indexed by skills.sh from staskh/trading_skills
+Fetch recent news from Yahoo Finance.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** staskh
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/staskh/trading_skills/news-sentiment`
-- **Source URL:** [https://skills.sh/staskh/trading_skills/news-sentiment](https://skills.sh/staskh/trading_skills/news-sentiment)
+## Instructions
 
-## Overview
+> **Note:** If `uv` is not installed or `pyproject.toml` is not found, replace `uv run python` with `python` in all commands below.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/staskh/trading_skills/news-sentiment
+uv run python scripts/news.py SYMBOL [--limit LIMIT]
 ```
+
+## Arguments
+
+- `SYMBOL` - Ticker symbol
+- `--limit` - Number of articles (default: 10)
+
+## Output
+
+Returns JSON with:
+- `articles` - Array of recent news with title, publisher, date, link
+- `summary` - Brief summary of overall sentiment
+
+Present key headlines and note any significant news that could impact the stock.
+
+## Dependencies
+
+- `yfinance`
+
+
+## Timezone
+
+All timestamps and time-based calculations must use the `America/New_York` timezone. All JSON output must include `generated_at` (NY time string) and `data_delay` fields.

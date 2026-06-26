@@ -1,0 +1,58 @@
+{
+  "name": "ai-model-steward",
+  "displayName": "AI 模型智能管家 (AI Model Steward)",
+  "version": "0.1.0",
+  "description": "全自动 AI 模型监控、情报搜集与智能部署建议系统",
+  "author": "老徐",
+  "repository": "https://github.com/HHBB2221/model-steward",
+  "license": "MIT",
+  "commands": [
+    "daily",
+    "weekly",
+    "history",
+    "approve",
+    "reject",
+    "deploy"
+  ],
+  "binaries": {
+    "ai-model-steward": "cli:main"
+  },
+  "dependencies": {
+    "requests": ">=2.31.0"
+  },
+  "config": {
+    "OPENROUTER_API_KEY": {
+      "description": "OpenRouter API Key，用于查询模型信息",
+      "required": true,
+      "env": true
+    }
+  },
+  "openclaw": {
+    "compatible": true,
+    "minVersion": "2026.3.2",
+    "configPath": "~/.openclaw/openclaw.json",
+    "configKeys": [
+      "agents.defaults.model"
+    ],
+    "cron": [
+      {
+        "id": "ai-steward-daily-intelligence",
+        "name": "AI 模型管家 - 每日情报",
+        "schedule": "0 9 * * *"
+      },
+      {
+        "id": "ai-steward-weekly-report",
+        "name": "AI 模型管家 - 周报",
+        "schedule": "0 10 * * 1"
+      }
+    ]
+  },
+  "monetization": {
+    "type": "open-source",
+    "support": {
+      "github_sponsor": "https://github.com/sponsors/HHBB2221",
+      "wechat": "assets/wechat-pay.png",
+      "alipay": "assets/alipay.png"
+    }
+  }
+}

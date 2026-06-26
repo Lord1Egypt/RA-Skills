@@ -1,35 +1,31 @@
 ---
-name: "习惯追踪器"
-description: "习惯养成追踪和进度统计工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/habit-tracker-oc"
-sourceUrl: "https://clawhub.ai/skills/habit-tracker-oc"
+name: habit-tracker
+version: 1.0.0
+description: 习惯养成追踪和进度统计工具
+author: OpenClaw
+tags: [习惯, 追踪, 目标, 效率]
 ---
 
-# 习惯追踪器
+# habit-tracker - 习惯追踪技能
 
-> 习惯养成追踪和进度统计工具
+习惯养成追踪和进度统计工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/habit-tracker-oc`
-- **Source URL:** [https://clawhub.ai/skills/habit-tracker-oc](https://clawhub.ai/skills/habit-tracker-oc)
+## 功能列表
+1. **习惯设置** - 添加新习惯，设置目标频率
+2. **每日打卡** - 快速记录每日习惯完成情况
+3. **进度统计** - 查看连续打卡天数和完成率
+4. **提醒设置** - 设置习惯养成提醒
 
-## Overview
+## 触发关键词
+- 设置习惯、添加习惯
+- 打卡、完成习惯
+- 习惯统计、连续天数
 
+## 数据存储
+- habits.json - 习惯列表
+- checkins.json - 打卡记录
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/habit-tracker-oc
-```
+## 使用示例
+- "添加每天运动30分钟的习惯"
+- "今天已经晨跑了，打卡"
+- "查看我的习惯完成率"

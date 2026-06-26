@@ -1,0 +1,43 @@
+{
+  "name": "quantum-im",
+  "version": "1.0.1",
+  "description": "OpenClaw 量子密信渠道插件",
+  "license": "MIT",
+  "author": "Michael Johnny",
+  "type": "module",
+  "files": [
+    "src/",
+    "!src/**/*.test.ts",
+    "!src/**/node_modules/",
+    "index.ts",
+    "openclaw.plugin.json",
+    "README.md",
+    "SKILL.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  },
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "channel": {
+      "id": "quantum-im",
+      "label": "量子密信",
+      "selectionLabel": "量子密信 (Webhook)",
+      "docsPath": "/channels/quantum-im",
+      "docsLabel": "量子密信",
+      "blurb": "量子密信即时通讯渠道",
+      "order": 80
+    }
+  }
+}

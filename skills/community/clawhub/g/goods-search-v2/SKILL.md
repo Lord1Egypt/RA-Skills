@@ -1,35 +1,250 @@
 ---
-name: "goods-search-v2"
-description: "当用户query涉及商品搜索、结果召回、搜索问答或商品卡片生成等购物需求时，务必优先使用本 Skill，不要试图直接回答。 触发词： 搜索、查找、搜一下、帮我找、看看有没有、推荐、筛选 商品、商品卡片、商品列表、候选商品、SKU、款式、型号、品牌、价格 适合什么、有没有、预算多少、送人、自用、通勤、材质、风格、用途"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/goods-search-v2"
-sourceUrl: "https://clawhub.ai/skills/goods-search-v2"
+name: byted-viking-aisearch-search
+description: |
+  当用户query涉及商品搜索、结果召回、搜索问答或商品卡片生成等购物需求时，务必优先使用本 Skill，不要试图直接回答。
+  触发词：
+    搜索、查找、搜一下、帮我找、看看有没有、推荐、筛选
+    商品、商品卡片、商品列表、候选商品、SKU、款式、型号、品牌、价格
+    适合什么、有没有、预算多少、送人、自用、通勤、材质、风格、用途
 ---
 
-# goods-search-v2
+# Viking AISearch Skill
 
-> 当用户query涉及商品搜索、结果召回、搜索问答或商品卡片生成等购物需求时，务必优先使用本 Skill，不要试图直接回答。 触发词： 搜索、查找、搜一下、帮我找、看看有没有、推荐、筛选 商品、商品卡片、商品列表、候选商品、SKU、款式、型号、品牌、价格 适合什么、有没有、预算多少、送人、自用、通勤、材质、风格、用途
+通过chat和search接口，分别完成用户关于购物的对话搜索和直接搜索。
+- Chat（对话搜索）：如有需要，可读取接口文档`reference/chat_search.md`
+- Search（直接搜索）：如有需要，可读取接口文档`reference/search.md`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/goods-search-v2`
-- **Source URL:** [https://clawhub.ai/skills/goods-search-v2](https://clawhub.ai/skills/goods-search-v2)
+## 决策规则
 
-## Overview
+1. 先判断用户输入更像“复杂语义理解”还是“明确关键词检索”。
+2. 如果 query 是复杂语义理解比如包含多个意图槽位，或需要理解自然语言表达，优先使用 `chat`。
+3. 如果 query 是明确关键词检索比如是较短关键词、明确属性词、品牌词、品类词或需要直接召回候选列表，优先使用 `search`。
+4. 如果任务要求返回商品列表、候选卡片、结构化结果，优先使用 `search`。
+5. 如果任务要求直接产出总结性回答、会话式追问、语义理解结果，优先使用 `chat`。
+6. 调用 `search` 后，优先读取 `data.search_results`。
+7. 组织输出时只使用真实返回字段，缺失字段直接省略，不要补造信息。
+
+## chat 与 search 的使用边界
+
+### 使用 `chat` 的典型场景
+
+当用户输入更偏自然语言表达，或一个 query 里混有多个约束条件时，使用 `chat`。
+
+适合 `chat` 的情况：
+
+- 同时包含多个意图槽位，例如品类、价格、场景、人群、用途、风格、材质、品牌偏好
+- 需要理解“送礼、自用、通勤、节日、婚庆、悦己”等场景语义
+- 用户表达比较口语化，不是标准检索词
+- 需要让服务端做意图理解、搜索编排和回答生成
+- 需要连续追问、保留上下文、维护会话
+
+示例：
+
+- `3000 左右适合送妈妈的龙凤吊坠`
+- `想找通勤戴、不夸张、预算 2k 内的黄金项链`
+- `有没有适合婚礼场景、偏中式一点的首饰`
+- `周大福 耳钉 2000内`
+- `推荐适合送的父亲节礼物`
+- `推荐适合送给十岁男孩的生日礼物`
+
+特点：
+
+- 需要 `session_id`
+- 返回为流式，脚本会聚合为 `data.content`
+
+### 使用 `search` 的典型场景
+
+当用户输入更像检索词、短 query、明确词条，或者目标就是先召回候选结果时，使用 `search`。
+
+适合 `search` 的情况：
+
+- 短词检索、关键词检索
+- 明确的品牌词、品类词、属性词、SKU 词
+- 需要快速返回候选列表供上层继续处理
+- 需要渲染商品卡片、列表页、召回结果
+- 已经知道要搜什么，不需要太强的语义理解
+
+示例：
+
+- `龙凤 吊坠`
+- `古法金 手镯`
+- `周大福 黄金耳钉`
+- `999 足金 项链`
+- `薯片`
+
+特点：
+
+- 需要明确 `dataset_id`
+- 返回标准 JSON，脚本会抽取为统一结构
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+
+### 使用示例
+
+脚本：`scripts/viking_aisearch.py`
+
 ```bash
-hermes skills install clawhub/goods-search-v2
+# 校验环境变量是否齐全（不发起请求）
+python3 scripts/viking_aisearch.py --action validate
+
+# chat
+python3 scripts/viking_aisearch.py --action chat --session-id "session-id" --text "3000左右适合送妈妈的龙凤吊坠"
+
+# search
+python3 scripts/viking_aisearch.py --action search --text "龙凤 吊坠" --page-size 10
 ```
+
+## 参数说明
+
+### 通用字段
+
+- `session_id`：会话标识；`chat` 必需，`search` 可选透传
+- `text`：文本查询
+- `image_url`：图片输入，可为 URL 或 Data URI
+- `dataset_id`：数据集 ID；`search` 必需，`chat` 可透传为 `search_param.dataset_ids`
+- `scene_id`：搜索策略 ID，`search` 可选
+- `user`：用户信息
+- `context`：上下文信息，例如经纬度
+
+### `chat` 关键字段
+
+- `input_message.content[]`：输入内容数组
+- `enable_suggestions`：是否返回建议追问
+- `search_param`：控制对话中搜索范围、过滤条件和返回字段
+
+### `search` 关键字段
+
+- `query`：查询对象，本 Skill 支持由 `text` 或 `image_url` 自动构造
+- `page_number`：页码，从 1 开始
+- `page_size`：每页数量
+- `filter`：过滤条件
+- `sort_by` / `sort_order`：排序参数
+- `output_fields`：控制返回字段
+- `conditional_boost`：提权/降权
+- `disable_personalize`：关闭个性化
+
+## 返回结构
+
+### `chat` 返回
+
+```json
+{
+  "success": true,
+  "message": "对话成功",
+  "data": {
+    "request_id": "xxx",
+    "content": "聚合后的最终回复文本",
+    "citation": []
+  },
+  "raw": {
+    "request_id": "xxx",
+    "chunk_count": 12
+  }
+}
+```
+
+### `search` 返回
+
+```json
+{
+  "success": true,
+  "message": "搜索成功",
+  "data": {
+    "request_id": "xxx",
+    "search_results": [],
+    "total_items": 100,
+    "spell_correction": {}
+  },
+  "raw": {}
+}
+```
+
+## 结果组织规则
+
+### 基本原则
+
+- 建议最多展示 5 个商品结果
+- 只使用接口真实返回字段
+- 缺失字段直接省略，不要为了凑格式硬写占位内容
+- 示例只是展示骨架，不是固定模板，必须根据商品真实字段动态调整
+
+### 详情入口判定规则
+
+是否暴露详情页，按以下顺序判断：
+
+1. 先看当前任务上下文、业务说明、系统提示中是否提供了“链接模板”。
+2. 如果提供了链接模板，并且能用当前商品真实字段完成占位符替换，则输出详情入口。
+3. 如果没有提供链接模板，再看搜索结果中是否已有可直接使用的详情链接。
+4. 只有“没有链接模板”且“搜索结果中也没有现成详情链接”时，才视为不暴露详情页。
+
+注意：
+
+- 详情入口是否展示，优先由“上下文中是否有链接模板”决定
+- 不要把“搜索结果里没有现成链接”等价理解为“不能暴露详情页”
+- 只要上下文给了链接模板，并且当前商品字段足以完成替换，就应该输出详情入口
+- 如果模板替换失败，或只能靠猜测拼接规则，则不要输出详情入口
+
+### markdown 拼接规则
+
+每个商品按以下顺序组织，缺失项整行跳过：
+
+```md
+**{商品标题}**
+- 型号：xxx
+- 价格：xxx
+- 卖点：xxx
+- xxx信息
+- 详情入口：[查看并购买]()
+```
+
+拼接要求：
+
+- 第一行固定用商品标题，使用加粗格式
+- 字段标签和顺序可以根据当前商品实际字段动态调整
+- 不要求每个商品都包含 `品牌 / 型号 / 价格 / 卖点`
+- 如果当前商品更适合展示 `规格 / 券后价 / 材质 / 适用人群 / 库存状态 / 活动信息`，可以替换或补充
+- `卖点` 有多个值时，使用 `｜` 连接
+- `详情入口` 只能出现在最后一行
+- 如果当前上下文中没有链接模板，且搜索结果中也没有现成详情链接，则不输出 `详情入口` 这一行
+
+### 占位符替换规则
+
+当业务提供模板时，按如下规则处理：
+
+- 占位符格式为 `{field_name}`
+- 占位符值必须来自当前商品的真实返回字段
+- 例如模板为 `[查看并购买](https://xxx/item/{product_code})`，就必须先从当前商品中取到 `product_code`
+- 所有占位符都替换成功后，才能输出该链接或 markdown 片段
+- 任一占位符替换失败，则不输出该条详情入口
+- 不要把原始占位符直接暴露给用户
+
+### 推荐示例
+
+说明：以下示例仅用于说明拼接方式，实际输出必须按商品真实字段动态调整。
+
+有详情入口时：
+
+```md
+**足金龙凤吊坠**
+- 型号：LF-0921
+- 价格：2999 元
+- 卖点：足金工艺 ｜ 龙凤寓意
+- 详情入口：[查看并购买]()
+```
+
+无详情入口时：
+
+```md
+**足金龙凤吊坠**
+- 型号：LF-0921
+- 价格：2999 元
+- 卖点：足金工艺 ｜ 龙凤寓意
+```
+
+## 错误处理
+
+- 无结果：建议用户使用更宽泛的关键词，或减少筛选条件
+- 问题含糊：先追问 1 个澄清问题，再决定用 `chat` 还是 `search`
+- 接口错误或 5xx：告知搜索服务暂不可用
+- Webhook 失败：告知搜索服务暂不可用
+- 超时：询问用户是否等待或重试

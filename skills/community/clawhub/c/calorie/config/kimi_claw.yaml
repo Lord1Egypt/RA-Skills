@@ -1,0 +1,47 @@
+# Kimi Claw 部署配置
+# 用于 Allegretto 套餐的一键部署
+
+claw:
+  # 部署名称
+  name: food-calorie-calculator
+  
+  # 部署描述
+  description: 📸 拍照识食物，一键算卡路里！通过 AI 视觉识别技术，自动分析食物照片并计算卡路里和营养成分。
+  
+  # 使用模型
+  model: k2.5  # Allegretto 套餐包含 K2.5
+  
+  # 触发方式
+  trigger:
+    type: command  # 命令触发
+    commands:
+      - "/卡路里"
+      - "/calorie"
+      - "算卡路里"
+      - "食物热量"
+  
+  # 输入类型
+  input:
+    type: image  # 支持图片输入
+    accept: ["image/jpeg", "image/png", "image/webp"]
+  
+  # 输出格式
+  output:
+    format: markdown
+    include_image: false  # 不返回原图
+  
+  # 环境变量
+  env:
+    KIMI_MODEL: "k2.5"
+    NUTRITION_PROVIDER: "local"
+    OUTPUT_LANGUAGE: "zh"
+  
+  # 资源限制
+  resources:
+    max_memory: "512MB"
+    timeout: 60  # 60 秒超时
+  
+  # 日志
+  logging:
+    level: INFO
+    retention_days: 7

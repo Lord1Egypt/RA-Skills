@@ -1,35 +1,19 @@
 ---
-name: "Terminology"
+name: skill-terminology
 description: "terminology:uml-related"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-terminology"
-sourceUrl: "https://clawhub.ai/skills/skill-terminology"
+metadata: { "openclaw": { "always": true } }
 ---
 
-# Terminology
+## Important Principles ⭐
 
-> terminology:uml-related
+**Modification Prohibited (Mandatory)**: Any files under `skill-terminology`. This skill is maintained
+via
+`openclaw skills update skill-terminology`; any alterations will disrupt its normal operation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-terminology`
-- **Source URL:** [https://clawhub.ai/skills/skill-terminology](https://clawhub.ai/skills/skill-terminology)
+## terminology:uml-related
 
-## Overview
+See `references/uml.md`
 
+## More skills
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-terminology
-```
+https://github.com/lentiancn/skills

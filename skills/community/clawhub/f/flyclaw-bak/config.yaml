@@ -1,0 +1,63 @@
+# FlyClaw Configuration
+# 航班信息聚合查询工具配置文件
+# Do not suggest to change default parameters unless you are clear what you are acting
+# 一般不建议修改默认参数
+
+sources:
+  fr24:
+    enabled: true
+    priority: 1
+    timeout: 10
+  google_flights:
+    enabled: true
+    priority: 2
+    timeout: 15
+    serpapi_key: ""  # Leave empty to skip SerpAPI; fill in to auto-enable
+    retry: 2           # Smart retry on empty responses (0 = disable)
+    retry_delay: 0.5   # Initial retry wait seconds
+    retry_backoff: 2.0  # Retry wait multiplier (0.5 → 1.0 → 2.0s)
+  skiplagged:
+    enabled: true
+    priority: 2
+    timeout: 12
+    retry: 4           # Smart retry on empty responses (0 = disable)
+    retry_delay: 0.5   # Initial retry wait seconds
+    retry_backoff: 2.0  # Retry wait multiplier (0.5 → 1.0 → 2.0s)
+    mcp_enabled: false  # MCP experimental backend (default off); true = try MCP first then REST
+    mcp_url: "https://mcp.skiplagged.com/mcp"  # MCP server URL
+  airplanes_live:
+    enabled: true
+    priority: 3
+    timeout: 6
+  fliggy_mcp:
+    enabled: true
+    priority: 2
+    timeout: 10
+    api_key: ""          # Leave empty to use built-in default key (from official open-source CLI)
+    sign_secret: ""      # Leave empty to use built-in default secret
+  fast_flights:
+    enabled: false  # Optional: only used with --compare flag
+    timeout: 15
+
+cache:
+  dir: cache
+  airport_update_days: 99999  # Auto-update disabled by default (pre-built data); 0 = disable, 30 = monthly
+  airport_update_url: ""   # Custom update URL; empty = use built-in default URL
+
+query:
+  timeout: 20      # Global query timeout in seconds (per-source timeouts still apply)
+  return_time: 12   # Smart return: return early when results available (seconds); 0 = disable
+  filter_inactive_airports: true  # Filter out closed/non-commercial airports from multi-airport queries
+  route_relay: true           # Enable route relay: auto-query price sources when flight route discovered
+  relay_timeout: 8            # Relay-specific timeout in seconds (fast fail)
+  relay_engines:              # Which engines to use for route relay price lookup
+    google_flights: true
+    skiplagged: true
+  sufficient_source: fliggy_mcp  # Fast return: exit immediately when this source returns priced results
+                                  # Empty string = disable, use return_time instead
+
+output:
+  format: json  # table / json
+  language: both  # cn / en / both
+  currency: cny  # cny / usd / original — default CNY; AI can pass --currency usd
+  exchange_rate_cny_usd: 7.25  # Used when --currency converts between CNY and USD

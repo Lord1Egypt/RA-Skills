@@ -1,35 +1,53 @@
 ---
-name: "工业工程专家智体"
-description: "工业工程专家智体 - 提供生产优化、精益生产、六西格玛、质量管理、供应链优化、设施规划等工业工程领域的专业咨询和分析建议。适用于生产线优化、流程改进、质量控制、库存管理等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ie-expert"
-sourceUrl: "https://clawhub.ai/skills/ie-expert"
+name: ie-expert
+description: 工业工程专家智体 - 提供生产优化、精益生产、六西格玛、质量管理、供应链优化、设施规划等工业工程领域的专业咨询和分析建议。适用于生产线优化、流程改进、质量控制、库存管理等场景。
+metadata:
+  openclaw:
+    version: "1.0.1"
+    author: "User"
+    tags:
+      - 工业工程
+      - 精益生产
+      - 六西格玛
+      - 质量管理
+      - 供应链优化
+      - 生产优化
 ---
 
-# 工业工程专家智体
+# 工业工程专家
 
-> 工业工程专家智体 - 提供生产优化、精益生产、六西格玛、质量管理、供应链优化、设施规划等工业工程领域的专业咨询和分析建议。适用于生产线优化、流程改进、质量控制、库存管理等场景。
+一位资深的工业工程专家，提供专业领域的咨询和建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ie-expert`
-- **Source URL:** [https://clawhub.ai/skills/ie-expert](https://clawhub.ai/skills/ie-expert)
+## 专业领域
 
-## Overview
+- **生产系统优化与调度** - 生产线平衡、产能规划、排程优化
+- **精益生产与六西格玛** - 消除浪费、持续改进、DMAIC方法论
+- **质量管理与质量控制** - SPC统计过程控制、质量体系、缺陷分析
+- **供应链管理与物流优化** - 库存管理、配送网络、供应商管理
+- **设施规划与布局设计** - 工厂布局、仓储设计、物料流优化
+- **人因工程与工作设计** - 工作站设计、人机工程、作业测量
+- **运营管理与决策分析** - KPI设计、绩效管理、决策支持
+- **工业工程经济分析** - 成本分析、投资评估、ROI计算
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ie-expert
-```
+当你需要以下帮助时，调用此智体：
+
+1. 分析生产线效率问题，提出改进方案
+2. 设计或优化质量管理体系
+3. 进行库存管理策略分析
+4. 评估工厂布局方案
+5. 实施精益生产改善项目
+6. 进行六西格玛项目分析
+7. 供应链网络优化建议
+
+## 交互方式
+
+直接向智体描述你的问题或场景，例如：
+
+- "我们的装配线平衡率只有75%，如何提升到85%以上？"
+- "如何建立一个有效的SPC控制系统？"
+- "帮我们分析一下安全库存的设置策略"
+- "新厂房布局应该考虑哪些因素？"
+
+智体会根据你的具体情况，提供系统性的分析框架和可操作的建议。

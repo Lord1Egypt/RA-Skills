@@ -1,0 +1,33 @@
+{
+  "repository": {"nameWithOwner": "flowcreatebot/yf-api"},
+  "total_count": 3,
+  "artifacts": [
+    {
+      "id": 9001,
+      "name": "test-results-linux",
+      "size_in_bytes": 943718400,
+      "expired": false,
+      "expires_at": "2030-01-15T10:00:00Z",
+      "archive_download_url": "https://api.github.com/artifacts/9001/zip",
+      "workflow_run": {"id": 1201}
+    },
+    {
+      "id": 9002,
+      "name": "coverage-html",
+      "size_in_bytes": 335544320,
+      "expired": false,
+      "expires_at": "2030-01-12T08:00:00Z",
+      "archive_download_url": "https://api.github.com/artifacts/9002/zip",
+      "workflow_run": {"id": 1202}
+    },
+    {
+      "id": 9003,
+      "name": "coverage-html",
+      "size_in_bytes": 220200960,
+      "expired": true,
+      "expires_at": "2030-01-05T08:00:00Z",
+      "archive_download_url": "https://api.github.com/artifacts/9003/zip",
+      "workflow_run": {"id": 1203}
+    }
+  ]
+}

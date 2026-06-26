@@ -1,35 +1,42 @@
----
-name: "test-publish-content"
-description: "Returns the received text input prefixed with "Echo:" to test HTTP skill connectivity and parameter handling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/echo-skill"
-sourceUrl: "https://clawhub.ai/skills/echo-skill"
----
-
-# test-publish-content
-
-> Returns the received text input prefixed with "Echo:" to test HTTP skill connectivity and parameter handling.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/echo-skill`
-- **Source URL:** [https://clawhub.ai/skills/echo-skill](https://clawhub.ai/skills/echo-skill)
+# Echo Skill
 
 ## Overview
 
+Echo Skill is a simple HTTP-based skill that receives text input and returns the same content back to the caller.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/echo-skill
-```
+This skill is primarily designed for testing integration workflows between ClawHub and external HTTP services.
+
+## Use Cases
+
+- Validate HTTP skill connectivity
+- Test parameter passing
+- Debug agent-tool invocation pipeline
+- Verify schema validation behavior
+
+## Input Parameters
+
+| Name    | Type   | Required | Description                     |
+|---------|--------|----------|---------------------------------|
+| content | string | Yes      | The text content to echo back   |
+
+Example:
+
+{
+  "content": "hello world"
+}
+
+## Output Format
+
+{
+  "message": "Echo: hello world"
+}
+
+## Technical Details
+
+- Method: POST
+- Endpoint: /echo
+- Content-Type: application/json
+
+## Notes
+
+This is a development and testing skill and should not be used in production environments.

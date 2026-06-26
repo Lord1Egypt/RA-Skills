@@ -1,35 +1,88 @@
 ---
-name: "rsa-ctf-skills"
-description: "集成11种RSA攻击算法的CTF解题工具，支持factordb在线分解；当用户需要解密RSA密文、分解n模数、分析CTF密码学题目或实现特定RSA攻击场景时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rsa-ctf-skills"
-sourceUrl: "https://clawhub.ai/skills/rsa-ctf-skills"
+name: rsa-ctf-skills
+description: 集成11种RSA攻击算法的CTF解题工具，支持factordb在线分解；当用户需要解密RSA密文、分解n模数、分析CTF密码学题目或实现特定RSA攻击场景时使用
+dependency:
+  python:
+    - gmpy2>=2.1.0
+    - sympy>=1.10.0
+    - requests>=2.28.0
 ---
 
-# rsa-ctf-skills
+# RSA CTF解题工具
 
-> 集成11种RSA攻击算法的CTF解题工具，支持factordb在线分解；当用户需要解密RSA密文、分解n模数、分析CTF密码学题目或实现特定RSA攻击场景时使用
+## 任务目标
+- 本工具用于：CTF比赛中的RSA密码学题目求解
+- 能力包含：11种常见RSA攻击算法、多种输入方式、统一输出格式
+- 触发条件：用户需要解密RSA密文、分解大整数、或针对特定RSA漏洞进行攻击时
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rsa-ctf-skills`
-- **Source URL:** [https://clawhub.ai/skills/rsa-ctf-skills](https://clawhub.ai/skills/rsa-ctf-skills)
+## 前置准备
+- 依赖说明：
+  ```
+  gmpy2>=2.1.0  # 高性能大整数运算
+  sympy>=1.10.0  # 数论函数支持
+  ```
 
-## Overview
+## 操作步骤
+- 标准流程：
+  1. **识别攻击场景**：根据题目提供的参数选择攻击方式（见下方攻击类型列表）
+  2. **准备输入数据**：根据攻击方式收集必要的参数（n, e, c, p, q, d, dp等）
+  3. **执行攻击脚本**：调用 `scripts/rsa_solver.py` 执行对应攻击
+  4. **解析输出结果**：获取明文或中间结果（p, q, d等）
 
+- 攻击类型快速选择：
+  | 场景 | 攻击方式 | 关键特征 |
+  |------|---------|---------|
+  | 已分解的n | factor | n在factordb数据库中 |
+  | 明文很短 | small_e | m^e < n |
+  | 相同n，不同e | common_modulus | 多组(e1,c1), (e2,c2) |
+  | 泄露d | d_leak | 已知私钥d |
+  | d过小 | wiener | d < n^0.25 |
+  | 已知p,q | necpq | 分解完成 |
+  | 广播攻击 | crt | 同一明文，多个n |
+  | dp泄露 | dp_leak | 已知dp = d mod (p-1) |
+  | e=2 | rabin | Rabin密码系统 |
+  | e为2的幂 | e_power_two | e = 2^k |
+  | e与phi不互素 | non_coprime_e | gcd(e,phi) > 1 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 资源索引
+- 核心脚本：见 [scripts/rsa_solver.py](scripts/rsa_solver.py)（用途：执行所有RSA攻击算法）
+- 攻击指南：见 [references/attack-guides.md](references/attack-guides.md)（何时读取：需要了解攻击原理或选择攻击方式）
+
+## 使用示例
+
+### 示例1：低指数攻击
 ```bash
-hermes skills install clawhub/rsa-ctf-skills
+python scripts/rsa_solver.py small_e --n 179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137217 --e 3 --c 1271605856918912462699983859985905842276423867777030740152682859600890050685898590999105752584595630467013299575519203653123853137178437196621237640679243779749827039090719670714605250972696434557873580368129958503762635734086800950594749148977042336639587689829975573162748323567814294896446597830609375
 ```
+
+### 示例2：已知p,q解密
+```bash
+python scripts/rsa_solver.py necpq --p 61 --q 53 --e 17 --c 2790
+```
+
+### 示例3：Wiener攻击
+```bash
+python scripts/rsa_solver.py wiener --n 905016087923017239 --e 3 --c 123456789
+```
+
+### 示例4：共模攻击
+```bash
+python scripts/rsa_solver.py common_modulus --n 123456789 --e1 3 --c1 111 --e2 5 --c2 222
+```
+
+## 注意事项
+- 所有数值参数支持大整数，直接输入即可
+- 脚本会自动清理输入中的空格和换行符
+- 输出明文优先尝试UTF-8解码，失败则输出十六进制或整数形式
+- 某些攻击（如factor）可能耗时较长，请耐心等待
+- 选择攻击方式前，先分析题目提供的参数信息
+
+## 常见问题
+- **Q: 如何判断使用哪种攻击？**
+  A: 先列出所有已知参数，参考"攻击类型快速选择"表格，或查阅 `references/attack-guides.md` 获取详细指导
+
+- **Q: 分解n失败怎么办？**
+  A: 尝试使用费马分解（factor），或检查是否有其他泄露信息（如dp）
+
+- **Q: 明文输出乱码？**
+  A: 可能是加密数据，查看输出的十六进制值或整数形式

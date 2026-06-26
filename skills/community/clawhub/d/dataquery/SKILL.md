@@ -1,35 +1,18 @@
 ---
-name: "Data Query"
-description: "查询物流指数数据"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dataquery"
-sourceUrl: "https://clawhub.ai/skills/dataquery"
+name: 承运商指数查询
+description: 查询物流指数数据
 ---
 
-# Data Query
+## steps
+1. 读取http://jingwe.jdl.com/#/indexCenter/indexOverview  中的数据，以用户输入的统计日期及承运商名称作为筛选条件
+2. 若没有指出明确的承运商名称，则默认查询所有承运商数据；若没有指出明确的统计日期，则查询当日T-1的日期作为统计日期；若没有指出明确省份，默认全国
+3. 若没有指出明确的物流指数，则默认查询全部物流指标总分、及各指标数据
+4. 行业均值读取http://jingwe.jdl.com/#/indexCenter/shipperOverview  中的数据，筛选条件为输入的承运商名称、统计日期、省份，若无明确输入则按上述兜底条件作为筛选
 
-> 查询物流指数数据
+## input
+1. 承运商名称、统计日期、指标名称、区域
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dataquery`
-- **Source URL:** [https://clawhub.ai/skills/dataquery](https://clawhub.ai/skills/dataquery)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dataquery
-```
+## output
+1. 统计日期
+2. 承运商名称+指标名称+该指标名称下的行业平均值+该承运商的行业排名+与行业平均的差值
+3. 该承运商在统计日期T-7至统计日期期间的指标名称下曲线图，波动特点并标出统计日期与这7天中最高值的差值是多少

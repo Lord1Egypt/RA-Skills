@@ -1,0 +1,24 @@
+{
+  "name": "hypii-hyperliquid-trader",
+  "version": "1.0.0",
+  "description": "Hypii AI Trading Agent for Hyperliquid - Automated trading strategies with SkillPay integration",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "hyperliquid": "^1.0.0",
+    "axios": "^1.6.0",
+    "viem": "^2.0.0"
+  },
+  "author": "hypii",
+  "license": "MIT",
+  "keywords": [
+    "hyperliquid",
+    "trading",
+    "ai",
+    "agent",
+    "crypto",
+    "perpetual",
+    "futures",
+    "skillpay"
+  ]
+}

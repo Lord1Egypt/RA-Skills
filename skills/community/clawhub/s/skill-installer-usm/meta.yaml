@@ -1,0 +1,5 @@
+name: "skill-installer"
+version: "1.0"
+scope: "universal"
+registry_slug: "skill-installer-usm"
+description: "Install, search, and update skills from registries like ClawHub and SkillHub."

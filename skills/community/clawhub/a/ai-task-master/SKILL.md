@@ -1,35 +1,56 @@
 ---
-name: "Task Planner"
-description: "Intelligent task planner using Plan-and-Solve pattern for breaking down goals into actionable steps with timeline and priorities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-task-master"
-sourceUrl: "https://clawhub.ai/skills/ai-task-master"
+name: task-planner
+description: Intelligent task planner using Plan-and-Solve pattern for breaking down goals into actionable steps with timeline and priorities.
 ---
 
 # Task Planner
 
-> Intelligent task planner using Plan-and-Solve pattern for breaking down goals into actionable steps with timeline and priorities.
+AI-powered task planning assistant that breaks down complex goals into manageable action items.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-task-master`
-- **Source URL:** [https://clawhub.ai/skills/ai-task-master](https://clawhub.ai/skills/ai-task-master)
+---
 
-## Overview
+## Features
 
+- **Goal Breakdown**: Split big goals into small tasks
+- **Timeline Planning**: Realistic scheduling
+- **Priority Assignment**: Eisenhower matrix
+- **Progress Tracking**: Monitor completion
+
+---
+
+## Usage
+
+```javascript
+const planner = new TaskPlanner();
+const plan = await planner.createPlan({
+  goal: '完成网站重构',
+  deadline: '2026-05-01',
+  teamSize: 3
+});
+```
+
+---
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/ai-task-master
+clawhub install task-planner
 ```
+
+---
+
+## License
+
+MIT
+
+---
+
+## Version
+
+1.0.0
+
+---
+
+## Created
+
+2026-04-02

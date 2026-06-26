@@ -1,0 +1,133 @@
+# Avenir-Web <img src="img/icon.png" align="right" width="140">
+
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE.txt) [![arXiv](https://img.shields.io/badge/arXiv-2602.02468-b31b1b.svg)](https://arxiv.org/abs/2602.02468) [![PDF](https://img.shields.io/badge/PDF-Avenir--Web-red.svg)](https://arxiv.org/pdf/2602.02468.pdf) [![Demo Video](https://img.shields.io/badge/Demo%20Video-YouTube-red.svg)](https://www.youtube.com/watch?v=X38CH0xc_sg&t=16s)
+
+Princeton AI for Accelerating Invention Lab  
+Authors: [Aiden Yiliu Li](https://yiliu.li), [Xinyue Hao](https://www.edinburgh-robotics.org/students/maggie-xinyue-hao), [Shilong Liu](https://lsl.zone), [Mengdi Wang](https://ece.princeton.edu/people/mengdi-wang)
+
+## Abstract
+
+Avenir-Web is an autonomous web agent framework designed for reliable execution of long-horizon tasks on complex, dynamic web interfaces. Addressing challenges in element grounding and long-term task tracking, it introduces a modular architecture combining Mixture of Grounding Experts (MoGE), Experience-Imitation Planning (EIP), and Adaptive Memory with Task-Tracking Checklists. This approach establishes a new open-source state-of-the-art on the Online-Mind2Web benchmark, bridging the performance gap with proprietary models in real-world deployments.
+
+## News
+
+- **2026-03-05**: Added repository-level `SKILL.md` to define the Avenir-Web agent skill workflow (mode selection, instruction design, single/batch execution, API requirements, and reporting contract).
+
+## Installation
+
+Requirements:
+
+- Python `3.11` (recommended; `>=3.9` supported)
+- Playwright browsers (Chromium recommended)
+- A model provider API key (OpenRouter preferred)
+
+From the repository root:
+
+```bash
+conda create -n avenir-web python=3.11
+conda activate avenir-web
+pip install -e src
+python -m playwright install chromium
+```
+
+## API Keys
+
+Recommended (environment variable):
+
+```bash
+export OPENROUTER_API_KEY="your-key"
+```
+
+Or set it in `src/config/batch_experiment.toml` under `[api_keys]` (`openrouter_api_key = "..."`). Environment variables take precedence.
+
+## Quickstart
+
+### Reproduce the Example Batch Run
+
+The example configuration runs a batch from `data/example.json` and writes artifacts to the directory configured by `basic.save_file_dir` in `src/config/batch_experiment.toml`.
+
+```bash
+cd src
+python run_agent.py -c config/batch_experiment.toml
+```
+
+### Single-Task Convenience Script
+
+From the repository root:
+
+```bash
+python example.py --task "Find the official API docs for X" --website "https://example.com/"
+```
+
+## Agent Skill (SKILL.md)
+
+This repository now includes a dedicated skill specification at [`SKILL.md`](SKILL.md).
+
+The skill defines how an agent should:
+- choose run mode (`headless`, `headed`, `demo`)
+- write high-quality task instructions
+- run single-task and batch workflows consistently
+- handle API key requirements (`OPENROUTER_API_KEY` first, TOML fallback)
+- report outcomes with evidence and next-step recommendations
+
+If you are using an agentic coding assistant that supports skills, point it to this file as the canonical operating guide for Avenir-Web runs.
+
+
+## Demo Mode
+
+Avenir-Web features a specialized **Demo Mode** designed for high-quality screen recordings and live presentations. When enabled, the agent provides:
+
+- **Cursor Visuals**: A GPU-accelerated, dynamic cursor overlay with tech-minimalist light effects and clear click/keypress feedback.
+- **Real-time Dashboard**: A native GUI window synchronized with the browser, displaying the agent's current strategy, task progress, and live status.
+- **Visual Feedback**: Reaction-based animations (e.g., impact ripples, shockwaves) that make the agent's decision-making process transparent and engaging.
+
+Watch Avenir-Web in action: [YouTube Demo](https://www.youtube.com/watch?v=X38CH0xc_sg&t=16s)
+
+To enable Demo Mode, ensure `browser.mode = "demo"` is set in your configuration.
+
+## Outputs and Artifacts
+
+For each task, outputs are written under `basic.save_file_dir/<task_id>/` (configured in TOML):
+
+- `agent.log`: per-task execution log
+- `result.json`: final summary
+- `config.toml`: resolved config snapshot
+- `llm_records.json`: recorded LLM I/O
+- `screenshots/`: `screen_<step>.png`
+
+Runner-level logs are written under `src/logs/`.
+
+## Configuration (TOML)
+
+The primary configuration entry point is `src/config/batch_experiment.toml`:
+
+- `[basic]`: output directory (`save_file_dir`)
+- `[model]`: model name, temperature, and (optional) specialist models (e.g., checklist/strategist)
+- `[api_keys]`: API keys (environment variables still take precedence)
+- `[experiment]`: task file path, overwrite policy, max operations
+- `[playwright]`: headless/headful, viewport, geolocation
+
+## Troubleshooting
+
+- Missing API key: set `OPENROUTER_API_KEY` (preferred) or configure `[api_keys]`
+- Playwright browser not found: run `python -m playwright install chromium`
+- Config paths look wrong: run from `src/` or pass an absolute path to `-c`
+
+## Acknowledgment
+
+This project was developed with support from Princeton AI for Accelerating Invention Lab.
+
+## Disclaimer
+
+This repository is provided for research use. Model outputs may be incorrect, incomplete, or unsafe; you are responsible for reviewing actions and complying with applicable laws and website terms of service when running web automation.
+
+## Contact
+
+- Aiden Yiliu Li: yiliu.li@outlook.com
+- Shilong Liu: slongliu86@gmail.com
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE.txt](file:///Users/aidenli/Desktop/ResearchProjects/SeeReAct/LICENSE.txt) file for details.
+
+Copyright © 2026 Princeton AI for Accelerating Invention Lab. All rights reserved.

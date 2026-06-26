@@ -1,0 +1,22 @@
+{
+  "protocol": "morpho",
+  "chain": {
+    "name": "arbitrum",
+    "chainId": 42161
+  },
+  "collateralAssets": [
+    {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
+    }
+  ],
+  "borrowAssets": [
+    {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+    }
+  ],
+  "riskPreset": "core",
+  "executionMode": "planning-only",
+  "marketShapeIntent": "single-market"
+}

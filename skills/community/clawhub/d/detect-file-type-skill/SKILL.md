@@ -1,35 +1,18 @@
 ---
-name: "Detect File Type Skill"
-description: "DEPRECATED — remove this legacy listing; superseded by detect-file-type-local"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/detect-file-type-skill"
-sourceUrl: "https://clawhub.ai/skills/detect-file-type-skill"
+name: detect-file-type-skill
+version: 1.0.1
+description: DEPRECATED — remove this legacy listing; superseded by detect-file-type-local
+homepage: https://github.com/pgeraghty/openclaw-detect-file-type-local
 ---
 
-# Detect File Type Skill
+# DEPRECATED — Remove This Skill
 
-> DEPRECATED — remove this legacy listing; superseded by detect-file-type-local
+This legacy listing was an early failed addition and is no longer maintained.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/detect-file-type-skill`
-- **Source URL:** [https://clawhub.ai/skills/detect-file-type-skill](https://clawhub.ai/skills/detect-file-type-skill)
+Reason: initial publication suffered from API/registry lag during rollout.
 
-## Overview
+Please uninstall/remove this skill and use:
 
+- `detect-file-type-local`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/detect-file-type-skill
-```
+This placeholder exists only to mark deprecation and direct users to the replacement.

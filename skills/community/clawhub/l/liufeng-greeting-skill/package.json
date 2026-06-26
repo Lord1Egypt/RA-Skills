@@ -1,0 +1,40 @@
+------WebKitFormBoundarym0078st6rk
+Content-Disposition: form-data; name="file"; filename="package.json"
+Content-Type: application/json
+
+{
+  "name": "liufeng-greeting-skill",
+  "version": "1.0.1",
+  "description": "柳峰专属问候技能 - 当用户说问候语时回复个性化问候并显示当前时间",
+  "main": "greeting.js",
+  "scripts": {
+    "test": "node greeting.js",
+    "start": "node greeting.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "greeting",
+    "liufeng",
+    "personalized"
+  ],
+  "author": "大白 (柳峰的AI助手)",
+  "license": "MIT",
+  "dependencies": {},
+  "openclaw": {
+    "skillType": "response",
+    "triggerPatterns": [
+      "你好",
+      "hello",
+      "嗨",
+      "在吗",
+      "hi",
+      "早上好",
+      "下午好",
+      "晚上好"
+    ],
+    "priority": 50,
+    "enabled": true
+  }
+}
+------WebKitFormBoundarym0078st6rk--

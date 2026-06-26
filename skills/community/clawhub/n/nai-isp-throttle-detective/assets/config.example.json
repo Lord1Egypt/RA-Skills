@@ -1,0 +1,38 @@
+{
+  "_comment": "Copy to ~/.isp-throttle-detective/config.json and customize",
+
+  "log_file": "~/.isp-throttle-detective/speed_log.jsonl",
+
+  "timeout_seconds": 30,
+  "upload_timeout_seconds": 20,
+  "max_download_bytes": 25000000,
+
+  "peak_hours": [18, 19, 20, 21, 22, 23, 0],
+
+  "endpoints": {
+    "cloudflare": {
+      "url": "https://speed.cloudflare.com/__down?bytes=25000000",
+      "label": "Cloudflare",
+      "category": "general",
+      "_comment": "Dedicated speed test endpoint — most reliable baseline"
+    },
+    "fastly_npm": {
+      "url": "https://registry.npmjs.org/typescript/-/typescript-5.4.5.tgz",
+      "label": "Fastly CDN (npm registry)",
+      "category": "cdn",
+      "_comment": "Tests Fastly CDN network — used by many streaming/media companies"
+    },
+    "github_releases": {
+      "url": "https://github.com/git/git/archive/refs/tags/v2.44.0.tar.gz",
+      "label": "GitHub Releases (Fastly)",
+      "category": "cdn",
+      "_comment": "GitHub release downloads also go through Fastly"
+    },
+    "cloudfront": {
+      "url": "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip",
+      "label": "AWS CloudFront CDN",
+      "category": "cdn",
+      "_comment": "Optional: tests CloudFront separately — verify URL is accessible first"
+    }
+  }
+}

@@ -1,35 +1,68 @@
 ---
-name: "Go Stargazing Trip"
-description: "多日晚拍星/观星连续性推荐技能。基于逐晚候选结果做跨晚路线连续性、转场距离、连住收益和可执行性判断；输出主路线、备选路线、远线方案以及路线风险说明。用于用户明确询问“假期怎么连着走最顺”“主路线/备选路线/远线怎么选”“多天连续拍星怎么安排”时。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/go-stargazing-trip"
-sourceUrl: "https://clawhub.ai/skills/go-stargazing-trip"
+name: go-stargazing-trip
+description: |
+  多日晚拍星/观星连续性推荐技能。基于逐晚候选结果做跨晚路线连续性、转场距离、连住收益和可执行性判断；输出主路线、备选路线、远线方案以及路线风险说明。用于用户明确询问“假期怎么连着走最顺”“主路线/备选路线/远线怎么选”“多天连续拍星怎么安排”时。
+metadata:
+  {"clawdbot":{"requires":{"pip":["lunarcalendar"]}}}
 ---
 
-# Go Stargazing Trip
+# GoStargazingTrip
 
-> 多日晚拍星/观星连续性推荐技能。基于逐晚候选结果做跨晚路线连续性、转场距离、连住收益和可执行性判断；输出主路线、备选路线、远线方案以及路线风险说明。用于用户明确询问“假期怎么连着走最顺”“主路线/备选路线/远线怎么选”“多天连续拍星怎么安排”时。
+## 定位
+这是一个**多日晚连续性 / 路线推荐** skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/go-stargazing-trip`
-- **Source URL:** [https://clawhub.ai/skills/go-stargazing-trip](https://clawhub.ai/skills/go-stargazing-trip)
+它回答的是：
+- 清明三天怎么连着走最顺
+- 主路线 / 备选路线 / 远线方案怎么选
+- 为了单晚高分值不值得跨省大跳
+- 哪一晚适合当路线锚点，哪一晚更适合独立处理
 
-## Overview
+它**不负责重写基础单晚推荐逻辑**。
+基础逐晚推荐、细筛、风险提示、完整气象指标，统一由 `go-stargazing` 负责。
 
+## 输入原则
+优先吃“逐晚候选”来做路线层决策。
+如果调用方只给日期范围，也可以在本 skill 内部逐晚运行基础分析后，再做路线评分。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/go-stargazing-trip
-```
+### 入口约定
+- 首选入口：`scripts/go_stargazing_trip.py`
+- `scripts/go_stargazing.py` 仅保留向后兼容，不建议继续作为主入口
+
+## 核心流程
+1. 获取每一晚的候选区域
+2. 保留足够多的 nightly candidates，避免只看每晚第一名
+3. 计算跨晚距离与连续性得分
+4. 给出：
+   - 主路线
+   - 备选路线
+   - 远线方案（如适用）
+5. 明确说明这条线为什么值得走 / 为什么只是远线
+
+## 输出要求
+默认按这个顺序组织：
+1. 主路线结论
+2. 路线说明（为什么这条线更顺）
+3. 风险提示
+4. 本轮参考信息
+5. 逐晚建议
+6. 备选路线 / 远线方案
+
+## 边界
+- 不替代 `go-stargazing` 的单日晚输出
+- 不在这里发明新的基础天气评分体系
+- 不把“单晚更高分但跨晚很折腾”的方案伪装成主路线
+- 若没有顺路主线，要老实说没有
+
+## 主要脚本
+- `scripts/go_stargazing_trip.py`：trip skill 稳定入口
+- `scripts/go_stargazing.py`：保留原入口兼容
+- `scripts/go_stargazing_engine/`：当前实现引擎（后续可再拆 route planning / trip reply）
+
+## 致谢
+本技能由以下伙伴共同打造：
+
+- 陈一菲：Skill 第一版创作者，为星空摄影规划奠定了核心框架
+- 陆不喝：提供技术方案与专业指导，让数据驱动的选址评分体系成为可能
+- Fortune：发起者，将摄影实践与 AI 能力深度结合，持续推动功能迭代
+
+感谢每一位愿意为星空奔赴山海的人

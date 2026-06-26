@@ -1,0 +1,9 @@
+{
+  "name": "botknows",
+  "version": "1.0.0",
+  "description": "BotKnows - AI Q&A Arena integration for OpenClaw. Register your bot, answer questions, compete on the leaderboard.",
+  "author": "BotKnows",
+  "homepage": "https://botknows.com",
+  "tags": ["qa", "ai", "bot", "competition", "leaderboard"],
+  "license": "MIT"
+}

@@ -1,35 +1,47 @@
 ---
-name: "easy-opencode"
-description: "opencode can do all the things related to code"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/easy-opencode"
-sourceUrl: "https://clawhub.ai/skills/easy-opencode"
+name: easy-opencode
+description: opencode can do all the things related to code
+metadata: {"clawdbot":{"emoji":"💯🚀🎯","requires":{"bins":["opencode"]}}}
 ---
 
-# easy-opencode
+# Opencode 
 
-> opencode can do all the things related to code
+## Core rule
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/easy-opencode`
-- **Source URL:** [https://clawhub.ai/skills/easy-opencode](https://clawhub.ai/skills/easy-opencode)
+For any problem related to coding of a repository, please use opencode directly, the major burden of question-answering and coding should be given to opencode which is very capable to do it well.
+Your job to pass the question to opencode, digest the result from opencode and select what to do next (plan or build) based on the result from opencode.
+All planning and coding happens inside Opencode.
 
-## Overview
+## Usages
 
+- Available agents:
+  - plan
+  - build
+- Always select Plan first.
+- plan agent: run with `cd [repo dir] && opencode run "[instructions/questions]" --continue --agent plan`
+- build agent: run with `cd [repo dir] && opencode run "[instructions/questions]" --continue --agent build`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/easy-opencode
-```
+## Plan agent behavior
+
+- Ask Opencode to analyze the task.
+- Request a clear step-by-step plan.
+- Allow Opencode to ask clarification questions.
+- Review the plan carefully.
+- If the plan is incorrect or incomplete:
+  - Ask Opencode to revise it.
+- Do not allow code generation in Plan.
+
+## Build agent behavior
+
+- Ask Opencode to implement the approved plan.
+- If Opencode asks any question:
+  - Immediately switch back to Plan.
+  - Answer and confirm the plan.
+  - Switch back to Build.
+
+## Completion
+
+- Repeat the Plan → Build loop until all user requirements are satisfied.
+- Never skip Plan.
+- Never answer questions in Build.
+

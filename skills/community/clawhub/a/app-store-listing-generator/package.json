@@ -1,0 +1,18 @@
+{
+  "name": "app-store-listing-generator",
+  "version": "1.0.0",
+  "description": "ClawHub skill: app-store-listing-generator",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "author": "max_0x1",
+  "clawhub": {
+    "skill": true,
+    "category": "ecommerce",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "prompts": 4,
+    "freePrompts": 1,
+    "freePrompt": "prompts/01-ios-app-store-listing.md"
+  }
+}

@@ -1,0 +1,26 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_table_record_batch_update",
+		"description": "Batch update specified data table records. Must update the corresponding table data according to the prompt, and must not update table data unrelated to the prompt. Args: tableId: Data table ID, must be filled in, data comes from the id field obtained by calling _query_all_table_list, do not fabricate it yourself; recordList: Record list, the key of the record is the data table field ID. Returns: The number of batch updated data tables",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"tableId": {
+					"description": "Data table ID",
+					"type": "string"
+				},
+				"recordList": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"description": "Record field key-value pairs, where the key is the field ID and the value is the new data. When the field type is Cascader, if it is a single selection, the stored structure is an array, such as [\"Guangdong Province\",\"Shenzhen City\",\"Nanshan District\"], if it is a multiple selection, it is a two-dimensional array."
+					}
+				}
+			},
+			"required": [
+					"tableId","recordList"
+				]
+			}
+		}
+	}

@@ -1,0 +1,13 @@
+{# ── 评论区 ── #}
+{% if top_comments %}
+<div class="section">
+    <h3 class="section-title">💬 精选评论 / Top Comments</h3>
+    {% for comment in top_comments %}
+    <div class="comment-card">
+        <span class="comment-user">{{ comment.user }}</span>
+        <span class="comment-likes">{{ comment.likes }} 赞</span>
+        <div class="comment-text">{{ comment.content_cn }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

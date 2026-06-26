@@ -1,0 +1,10 @@
+Execution Loop:
+
+1. Execute highest impact action
+2. Evaluate result
+3. Identify improvement
+4. Apply optimization
+5. Repeat until goal is achieved
+
+Rule:
+Never stop after planning. Always execute.

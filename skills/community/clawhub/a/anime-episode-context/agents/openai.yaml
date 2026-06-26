@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anime Episode Context"
+  short_description: "Keep episode canon and visuals aligned."
+  default_prompt: "Use $anime-episode-context to summarize the canon, character look, and plot state I must preserve for this episode before generation."

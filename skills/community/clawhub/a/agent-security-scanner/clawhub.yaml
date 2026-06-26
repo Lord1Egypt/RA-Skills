@@ -1,0 +1,31 @@
+name: agent-security-scanner
+displayName: Agent Security Scanner
+version: "4.1.6"
+description: |
+  企业级 AI Agent 安全扫描器 - 保障 Agent 生态系统安全
+  支持多语言扫描 (Python/JS/Shell/Go/PowerShell)
+  检测恶意技能、后门代码、权限滥用、数据泄露、供应链攻击
+  
+  Enterprise AI Agent Security Scanner
+  Multi-language scanning (Python/JS/Shell/Go/PowerShell)
+  Detect malicious skills, backdoors, supply chain attacks, data exfiltration
+  For enterprise AI Agent deployment security, marketplace review, developer self-check
+author: Security Team
+license: MIT
+category: security
+repository: https://github.com/caidongyun/agent-security-skill-scanner
+homepage: https://github.com/caidongyun/agent-security-skill-scanner/blob/master/README.md
+tags:
+  - security
+  - agent-security
+  - skill-scanner
+  - malware-detection
+  - security-scanner
+  - ai-security
+  - openclaw
+  - agent-defense
+  - vulnerability-detection
+  - code-analysis
+  - supply-chain-security
+  - prompt-injection
+  - credential-theft

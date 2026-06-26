@@ -1,0 +1,21 @@
+{
+  "name": "PDF to CSV",
+  "description": "Extract tables and text from a PDF into CSV format via the PDFAPIHub cloud API. PDFs are uploaded to pdfapihub.com for processing.",
+  "method": "POST",
+  "endpoint": "/v1/convert/pdf/csv",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "Public URL to a PDF" },
+        { "name": "file", "type": "string", "required": false, "description": "Base64-encoded PDF" },
+        { "name": "pages", "type": "string", "required": false, "description": "Page selection (e.g. '1')" },
+        { "name": "output", "type": "string", "required": false, "default": "url", "enum": ["url", "base64", "both", "file"], "description": "Output mode" },
+        { "name": "output_filename", "type": "string", "required": false, "description": "Custom output filename" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field"
+    }
+  }
+}

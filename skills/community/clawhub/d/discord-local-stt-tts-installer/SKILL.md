@@ -1,35 +1,41 @@
 ---
-name: "Discord Local STT/TTS Installer (macOS)"
-description: "(macOS) Discord voice assistant installer. Install/update discord-local-stt-tts (Discord voice, Discord local, local STT + local TTS) from GitHub Releases."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/discord-local-stt-tts-installer"
-sourceUrl: "https://clawhub.ai/skills/discord-local-stt-tts-installer"
+name: discord-local-stt-tts-installer
+description: (macOS) Discord voice assistant installer. Install/update discord-local-stt-tts (Discord voice, Discord local, local STT + local TTS) from GitHub Releases.
 ---
 
-# Discord Local STT/TTS Installer (macOS)
+# discord-local-stt-tts-installer (macOS)
 
-> (macOS) Discord voice assistant installer. Install/update discord-local-stt-tts (Discord voice, Discord local, local STT + local TTS) from GitHub Releases.
+ClawHub skill that installs/updates the **discord-local-stt-tts** OpenClaw plugin.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/discord-local-stt-tts-installer`
-- **Source URL:** [https://clawhub.ai/skills/discord-local-stt-tts-installer](https://clawhub.ai/skills/discord-local-stt-tts-installer)
+- Plugin repo: https://github.com/vilmire/discord-local-stt-tts
+- Install path: `~/.openclaw/openclaw-extensions/plugins/discord-local-stt-tts`
 
-## Overview
+## Supported platforms
+- **macOS only**
 
+## Requirements
+- `curl`
+- `python3` (used by the installer; also needed for some local STT engines)
+- `unzip`
+- `ffmpeg` (required by the plugin runtime)
+- Optional: `pnpm` (if you want the installer to attempt a build)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## macOS permissions
+If you use Apple Speech (`apple-speech`) local STT, macOS may require:
+- System Settings → Privacy & Security → **Speech Recognition**
+- System Settings → Privacy & Security → **Microphone**
+
+## Install / Update
 ```bash
-hermes skills install clawhub/discord-local-stt-tts-installer
+bash bin/install.sh
+openclaw gateway restart
 ```
+
+## What the installer does
+1) Downloads the **latest GitHub Release** source zipball
+2) Backs up any existing plugin folder
+3) Installs into the OpenClaw extensions plugin directory
+4) If `pnpm` is available, attempts `pnpm i && pnpm build` (best-effort)
+
+## Notes
+- This skill does **not** modify your `openclaw.json`. You still need to enable/configure the plugin.

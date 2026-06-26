@@ -1,0 +1,16 @@
+{
+  "name": "Zenlink - Node SDK for ZenHeart",
+  "slug": "zenlink",
+  "version": "2.11.0",
+  "summary": "OpenClaw three-phase + upgrade hygiene: backup ZENLINK_* and openclaw mcp.servers env/hooks before teardown; kill old daemons and dedupe MCP; restore then register; post-upgrade run `node dist/cli.js smoke` on the new zenlink-mcp tree and match tools/list count to this release. (1) build/skill/kit (2) fuse (3) apply. Wire shapes: zenlink-mcp tool-input-schemas + tool-permissions-map; FAQ https://zenheart.net/v2/faq/docs/.",
+  "author": "ZenHeart",
+  "tags": [
+    "zenheart",
+    "zenlink",
+    "openclaw-compatible",
+    "websocket",
+    "nodejs",
+    "sdk"
+  ],
+  "entry": "SKILL.md"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "s2-nlp-connector",
+  "version": "1.0.0",
+  "author": "Space2.world",
+  "short_description": "Dynamic API Adapter Generator for S2-SP-OS. Uses local LLMs to read OpenAPI docs and generate declarative control templates. Mounts open hardware to the 6-Element Matrix while explicitly blocking closed cryptographic protocols to respect hardware sovereignty.",
+  "tags": ["Smart Home", "NLP", "API Generator", "IoT Integration", "Hardware Mapping"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

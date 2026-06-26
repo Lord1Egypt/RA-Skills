@@ -1,35 +1,83 @@
 ---
-name: "Agent Format"
-description: "Standard formatting for agent messages. Visual hierarchy, status indicators, progress bars — scannable on Telegram, Discord, Slack, WhatsApp. The baseline fo..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-format"
-sourceUrl: "https://clawhub.ai/skills/agent-format"
+name: agent-format
+description: Standard formatting for agent messages. Visual hierarchy, status indicators, progress bars — scannable on Telegram, Discord, Slack, WhatsApp. The baseline for readable agent output.
 ---
 
 # Agent Format
 
-> Standard formatting for agent messages. Visual hierarchy, status indicators, progress bars — scannable on Telegram, Discord, Slack, WhatsApp. The baseline fo...
+How agents should format messages for chat apps.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-format`
-- **Source URL:** [https://clawhub.ai/skills/agent-format](https://clawhub.ai/skills/agent-format)
+## Patterns
 
-## Overview
+### Status Indicators
 
+| Symbol | Meaning |
+|--------|---------|
+| 🟢 | Good / Done |
+| 🟡 | In Progress / Warning |
+| 🔴 | Blocked / Error |
+| 🔥 | Urgent |
+| ⚡ | Quick |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-format
+### Progress Bars
+
+```
+████████░░ 80%
+██████░░░░ 60%
+████░░░░░░ 40%
+```
+
+**Chars:** `█` (filled) `░` (empty)
+
+### Sparklines
+
+```
+▁▂▃▅▇█▇▅▃▂
+```
+
+**Chars (low→high):** `▁ ▂ ▃ ▄ ▅ ▆ ▇ █`
+
+### Tables (Monospace)
+
+```
+Project     Status    Owner
+─────────────────────────────
+Alpha       🟢 Done   PM
+Beta        🟡 WIP    CTO
+Gamma       🔴 Block  Sales
+```
+
+## Principles
+
+**Lead with signal.** Most important first.
+
+**Assume scanning.** Nobody reads walls of text.
+
+**Visual hierarchy.** Emoji → bars → text.
+
+## Example
+
+```
+📊 Status
+
+🔴 Blocked
+• Client scope (waiting)
+
+🟡 Active
+• Launch prep ████████░░ 80%
+
+🟢 Done
+• Demo ✓
+• Docs ✓
+
+📈 Week: ▂▃▅▆▇█
+```
+
+## Reference
+
+```
+Progress: ░█
+Spark:    ▁▂▃▄▅▆▇█
+Divider:  ─────
+Status:   🟢🟡🔴🔥⚡
 ```

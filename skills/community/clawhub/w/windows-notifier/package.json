@@ -1,0 +1,10 @@
+{
+  "name": "windows-notifier-skill",
+  "private": true,
+  "version": "1.0.3",
+  "description": "Windows notifier wrapper for OpenClaw workspace skill",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  }
+}

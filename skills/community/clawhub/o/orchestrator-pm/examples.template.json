@@ -1,0 +1,18 @@
+{
+  "skill": "orchestrator",
+  "examples": [
+    {
+      "id": "orch-001",
+      "title": "Session start routing",
+      "user_prompt": "I don't know what to do next; here are my notes and tasks.",
+      "when_to_use": ["No clear next ticket", "Multiple competing tasks"],
+      "inputs": ["workspace/CONTEXT.md", "workspace/TASKS.md"],
+      "expected_outputs": ["workspace/NEXT_AGENT.md", "workspace/NEXT_TICKET.md", "workspace/worklog.md"],
+      "success_criteria": [
+        "NEXT_AGENT.md names exactly one next skill",
+        "NEXT_TICKET.md exists if it was missing"
+      ],
+      "blockers": ["Missing critical files: CONTEXT.md or TASKS.md"]
+    }
+  ]
+}

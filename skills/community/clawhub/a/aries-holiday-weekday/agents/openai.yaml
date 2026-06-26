@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aries Holiday Weekday"
+  short_description: "Use gov.cn holiday notices to mark workdays, holidays, and make-up shifts"
+  default_prompt: "Use $aries-holiday-weekday to check a date or month. If the year's data is not ready, fetch it from gov.cn holiday notices and answer with only the final result."

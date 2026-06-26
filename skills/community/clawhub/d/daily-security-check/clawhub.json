@@ -1,0 +1,12 @@
+{
+  "name": "每日安全巡检",
+  "tagline": "按固定清单检查 OpenClaw 网关、凭证、SOUL 规则与官方审计，输出 0–10 安全评分报告",
+  "description": "本技能为 OpenClaw 提供「每日安全巡检」能力：按检查清单逐项验证网关是否绑定 loopback、防火墙提醒、API 密钥是否在 .env、各 agent 的 SOUL.md 安全监控规则、身份与访问控制与工具沙箱策略，并执行 openclaw security audit 与 openclaw doctor，汇总为 300–600 字的结构化报告与 0–10 安全评分。仅做只读检查与报告，不修改配置。适合由 cron 定时触发或手动执行，报告可保存到 workspace/docs/security-audit/ 或投递到 Telegram 等。",
+  "category": "utility",
+  "tags": ["security", "audit", "openclaw", "daily-check", "safety"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/YOUR_USERNAME/daily-security-check/issues",
+  "homepage": "https://github.com/YOUR_USERNAME/daily-security-check"
+}

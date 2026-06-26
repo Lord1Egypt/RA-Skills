@@ -1,0 +1,37 @@
+# 智能数据采集器 - 生产依赖
+# Python 3.12+ 要求
+
+# 核心HTTP和网络
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# 数据处理和分析
+pandas>=2.0.0
+openpyxl>=3.1.0
+numpy>=1.24.0
+python-dateutil>=2.8.0
+
+# 任务调度
+APScheduler>=3.10.0
+pytz>=2023.0
+tzlocal>=5.0.0
+
+# 配置和验证
+pydantic>=2.0.0
+pyyaml>=6.0
+
+# 数据库支持
+SQLAlchemy>=2.0.0
+cryptography>=42.0.0
+
+# 可选：Web自动化（高级功能）
+# selenium>=4.15.0
+# playwright>=1.40.0
+
+# 可选：API客户端（高级功能）
+# httpx>=0.25.0
+
+# 可选：数据可视化（高级功能）
+# matplotlib>=3.7.0
+# seaborn>=0.12.0

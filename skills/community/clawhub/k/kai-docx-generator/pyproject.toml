@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kai-docx-generator"
+version = "0.1.1"
+description = "沙箱环境 Word 文档生成器"
+requires-python = ">=3.10"
+dependencies = [
+    "python-docx>=1.1.0",
+    "markdown-it-py>=3.0.0",
+    "lxml>=4.9.0",
+    "Pillow>=10.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+kai-docx-generate = "kai_docx_generator.scripts.generate:main"
+kai-docx-fill = "kai_docx_generator.scripts.fill_template:main"
+kai-docx-validate = "kai_docx_generator.scripts.validate:main"
+
+[tool.setuptools.packages.find]
+include = ["kai_docx_generator*"]

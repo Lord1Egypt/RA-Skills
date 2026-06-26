@@ -1,0 +1,88 @@
+{
+  "time_system": {
+    "turn_duration_minutes": 10,
+    "hour_duration_minutes": 60,
+    "day_duration_hours": 24,
+    "week_duration_days": 7,
+    "month_duration_days": 30,
+    "year_duration_months": 12
+  },
+  "calendar": {
+    "seasons": {
+      "spring": {
+        "name": "春季",
+        "months": ["萌芽月", "花开月", "清明月"],
+        "weather": ["晴朗", "多云", "小雨"]
+      },
+      "summer": {
+        "name": "夏季",
+        "months": ["炎热月", "干旱月", "雷雨月"],
+        "weather": ["晴朗", "炎热", "雷暴"]
+      },
+      "autumn": {
+        "name": "秋季",
+        "months": ["收获月", "金黄月", "落叶月"],
+        "weather": ["晴朗", "多云", "大风"]
+      },
+      "winter": {
+        "name": "冬季",
+        "months": ["寒霜月", "冰雪月", "新年月"],
+        "weather": ["寒冷", "小雪", "暴风雪"]
+      }
+    },
+    "weekdays": ["第一天", "第二天", "第三天", "第四天", "第五天", "第六天", "休息日"]
+  },
+  "events": {
+    "night": {
+      "time": "night",
+      "description": "夜晚降临，怪物更加凶猛",
+      "combat_modifier": {
+        "enemy_damage": 1.2,
+        "enemy_hp": 1.1
+      }
+    },
+    "full_moon": {
+      "time": "full_moon",
+      "description": "月圆之夜，狼人出没",
+      "special_encounters": ["werewolf", "wolf_pack"]
+    },
+    "festival": {
+      "name": "节日",
+      "description": "城镇举办庆典，商店打折",
+      "shop_discount": 0.8
+    },
+    "market_day": {
+      "name": "集市日",
+      "description": "每周一次的集市",
+      "special_merchants": ["rare_goods_merchant"]
+    },
+    "monster_raid": {
+      "name": "怪物袭扰",
+      "description": "怪物群袭击附近区域",
+      "combat_encounter": "increased"
+    },
+    "storm": {
+      "name": "暴风雨",
+      "description": "恶劣天气影响视野和行动",
+      "range_attack_disadvantage": true,
+      "outdoor_exploration_difficulty": 1.5
+    }
+  },
+  "rest_mechanics": {
+    "short_rest": {
+      "duration_minutes": 60,
+      "effects": [
+        "恢复一半等级的生命骰",
+        "可使用 Hit Dice 恢复生命值"
+      ]
+    },
+    "long_rest": {
+      "duration_hours": 8,
+      "effects": [
+        "恢复全部生命值",
+        "恢复全部生命骰",
+        "恢复一半最大法术位"
+      ]
+    }
+  }
+}

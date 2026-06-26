@@ -1,0 +1,8 @@
+name: multi-thread-dialogue
+description: "多线程对话架构：主代理前台响应，子代理后台处理任务，支持状态处理、两阶段审查、任务监控"
+version: "1.1.0"
+author: "Professor Li"
+type: skill
+tags: [multi-thread, subagent, task-management, dialogue, workflow]
+homepage: https://github.com/openclaw/multi-thread-dialogue
+license: MIT

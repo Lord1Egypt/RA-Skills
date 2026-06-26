@@ -1,0 +1,57 @@
+{
+  "operation": "batch",
+  "parameters": {
+    "steps": [
+      {
+        "operation": "create_primitive",
+        "parameters": {
+          "type": "box",
+          "length": 100,
+          "width": 100,
+          "height": 5,
+          "name": "TableTop",
+          "position": [0, 0, 50]
+        }
+      },
+      {
+        "operation": "create_primitive",
+        "parameters": {
+          "type": "cylinder",
+          "radius": 2,
+          "height": 50,
+          "name": "Leg",
+          "position": [5, 5, 0]
+        }
+      },
+      {
+        "operation": "array",
+        "parameters": {
+          "type": "linear",
+          "target": "Leg",
+          "count": 2,
+          "step": [90, 0, 0],
+          "name": "LegsX"
+        }
+      },
+      {
+        "operation": "array",
+        "parameters": {
+          "type": "linear",
+          "target": "LegsX",
+          "count": 2,
+          "step": [0, 90, 0],
+          "name": "AllLegs"
+        }
+      },
+      {
+        "operation": "boolean",
+        "parameters": {
+          "type": "fuse",
+          "base": "TableTop",
+          "tool": "AllLegs",
+          "name": "Table_Final"
+        }
+      }
+    ]
+  }
+}

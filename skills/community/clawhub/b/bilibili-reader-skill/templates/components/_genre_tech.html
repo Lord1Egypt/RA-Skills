@@ -1,0 +1,16 @@
+{# ── 工具清单（技术教程专用）── #}
+{% if tool_stack %}
+<div class="section">
+    <h3 class="section-title">🧰 工具与资源清单</h3>
+    <div class="content-block">
+        {% for tool in tool_stack %}
+        <div class="tool-card">
+            <strong>{{ tool.name }}</strong>：{{ tool.purpose }}
+            {% if tool.barrier %}
+            <br><span style="color: #dc3545; font-size: 9pt;">⚠ {{ tool.barrier }}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

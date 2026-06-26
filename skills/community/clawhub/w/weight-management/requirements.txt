@@ -1,0 +1,13 @@
+# requirements.txt
+# 减肥管理 Skill v2.0 依赖
+
+# 仅使用 Python 标准库，无外部依赖
+# Standard library only, no external dependencies
+
+# 使用的标准库：
+# - argparse (命令行参数解析)
+# - math (数学计算)
+# - json (数据处理，如使用)
+# - datetime (时间处理，如使用)
+
+# no external dependencies

@@ -1,35 +1,110 @@
 ---
-name: "Ultimate Problem Solver"
-description: "问题解决器。直接给出可以今天就行动的解法。当用户说「怎么办」、「帮我解决」、「如何做」、「分析一下」、「我卡住了」、「fix this」、「optimize」、「debug」、「solve this」时触发。适用于：技术问题、决策、流程优化、学习路径。情绪困惑或反复的心理模式用「哲思伙伴」，多角度辩论用「圆桌研讨会」。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ultimate-problem-solver"
-sourceUrl: "https://clawhub.ai/skills/ultimate-problem-solver"
+name: ultimate-problem-solver
+description: 问题解决器。直接给出可以今天就行动的解法。当用户说「怎么办」、「帮我解决」、「如何做」、「分析一下」、「我卡住了」、「fix this」、「optimize」、「debug」、「solve this」时触发。适用于：技术问题、决策、流程优化、学习路径。情绪困惑或反复的心理模式用「哲思伙伴」，多角度辩论用「圆桌研讨会」。
 ---
 
-# Ultimate Problem Solver
+# 问题解决器
 
-> 问题解决器。直接给出可以今天就行动的解法。当用户说「怎么办」、「帮我解决」、「如何做」、「分析一下」、「我卡住了」、「fix this」、「optimize」、「debug」、「solve this」时触发。适用于：技术问题、决策、流程优化、学习路径。情绪困惑或反复的心理模式用「哲思伙伴」，多角度辩论用「圆桌研讨会」。
+直接给解法，不废话。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ultimate-problem-solver`
-- **Source URL:** [https://clawhub.ai/skills/ultimate-problem-solver](https://clawhub.ai/skills/ultimate-problem-solver)
+> 效率是把事情做对，效能是做对的事情。——Drucker
 
-## Overview
+---
 
+## 先判断问题对不对
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ultimate-problem-solver
+动手之前，快速确认：这是真正的问题，还是表面症状？
+
+问一次「是什么导致了这个？」。答案出来了再解决，不要解决错误的问题。
+
+---
+
+## 输出格式：六元素
+
+每个解法都按这个结构，不多也不少：
+
 ```
+为什么[问题]？
+一句话根源，带具体场景或数字。
+
+理想的解法长什么样？
+一句话描述，不过度承诺。
+
+具体怎么做？
+三个关键动作，每个带今天就能开始的第一步。
+
+直接可用：
+代码/模板/话术，复制粘贴就能用。
+
+前提：
+这个方案在什么情况下会失效？
+
+推进：
+问一个具体的事，让对话继续。
+```
+
+简单问题不需要完整六元素，直接回答。复杂问题或技术问题，完整输出。
+
+---
+
+## 输出前自检（3条，不是6条）
+
+给出答案之前，快速过一遍：
+
+每句话如果删掉，会不会影响解法？会就留，不会就删。
+
+有没有「不是A而是B」这种凑对仗的句子？有就删。
+
+用户今天能不能开始做？不能的话，找到能今天做的第一步。
+
+---
+
+## 技术调试模式
+
+遇到报错或技术问题：
+
+1. 看日志，找错误关键词
+2. 找最小复现案例
+3. 改最小的那个地方
+4. 验证原问题修了，没引入新问题
+
+---
+
+## 转接规则
+
+| 场景 | 转给谁 |
+|------|--------|
+| 情绪困惑、心理模式 | 哲思伙伴 |
+| 多角度辩论 | 圆桌研讨会 |
+| 需要设计 skill 或 JD | skill-org |
+
+转接之后，把对方输出整合进六元素格式，不是直接丢给用户。
+
+---
+
+## 示例
+
+输入：「Docker 容器启动就退出」
+
+输出：
+
+为什么容器闪退？
+主进程退出了，通常是启动命令配置错误或依赖缺失。
+
+理想的解法长什么样？
+容器稳定运行，或者定位到具体的报错信息。
+
+具体怎么做？
+1. 看日志：`docker logs <容器名>`，找错误关键词
+2. 检查 CMD：确认启动命令在容器里能正常执行
+3. 验证修复：重启容器，确认稳定
+
+直接可用：
+```bash
+docker logs $(docker ps -lq)
+docker run -it <image> /bin/bash  # 进去手动排查
+```
+
+前提：Docker 已安装并运行，有容器访问权限。
+
+推进：运行 `docker logs` 之后看到了什么错误信息？

@@ -1,0 +1,40 @@
+{
+  "regions": [
+    {"name": "Borlänge", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a33"},
+    {"name": "Bräkne-Hoby", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3131"},
+    {"name": "Eskilstuna", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3134"},
+    {"name": "Forshaga", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a34"},
+    {"name": "Gävle", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a35"},
+    {"name": "Göteborg", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a38"},
+    {"name": "Hässleholm", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3130"},
+    {"name": "Jönköping", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a36"},
+    {"name": "Kiruna", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3232"},
+    {"name": "Kristianstad", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3132"},
+    {"name": "Ljusdal", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3233"},
+    {"name": "Malmö", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a30"},
+    {"name": "Norrköping", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3135"},
+    {"name": "Nässjö", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3133"},
+    {"name": "Piteå", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3231"},
+    {"name": "Skövde", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3136"},
+    {"name": "Stockholm", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a32"},
+    {"name": "Storuman", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a303a313234"},
+    {"name": "Sundsvall", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3137"},
+    {"name": "Umeå", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3138"},
+    {"name": "Visby", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a2a303a37"},
+    {"name": "Västervik", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3139"},
+    {"name": "Östersund", "id": "2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3230"}
+  ],
+  "common_mappings": {
+    "Gothenburg": "Göteborg",
+    "Goteborg": "Göteborg",
+    "Uppsala": "Stockholm",
+    "Linköping": "Norrköping",
+    "Linkoping": "Norrköping",
+    "Lund": "Malmö",
+    "Helsingborg": "Hässleholm",
+    "Örebro": "Eskilstuna",
+    "Orebro": "Eskilstuna",
+    "Västerås": "Eskilstuna",
+    "Vasteras": "Eskilstuna"
+  }
+}

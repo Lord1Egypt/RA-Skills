@@ -1,0 +1,70 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/get-video-caption/v2 for Bilibili Video Captions through JustOneAPI with aid, bvid, and cid.",
+  "displayName": "Bilibili Video Captions",
+  "endpointPath": "get-video-caption",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili video Captions data, including caption data, for transcript extraction and multilingual content analysis.",
+      "method": "GET",
+      "operationId": "getVideoCaptionV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili Video ID (BVID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "bvid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili AID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "aid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili CID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/get-video-caption/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Captions",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_get_video_caption",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-get-video-caption",
+  "sourceTitle": "OpenAPI definition"
+}

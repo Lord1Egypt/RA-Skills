@@ -1,35 +1,96 @@
 ---
-name: "Self Memory Manager"
-description: "管理 Claude 的记忆和工作流程优化。包括：(1) Context 使用管理 (2) 重要信息存档 (3) 定时总结 (4) 工作文件夹维护 用于：context 超过 80%、重要信息需要记录、每日总结、清理旧 session"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-memory-manager"
-sourceUrl: "https://clawhub.ai/skills/self-memory-manager"
+name: self-memory-manager
+description: |
+  管理 Claude 的记忆和工作流程优化。包括：(1) Context 使用管理 (2) 重要信息存档 (3) 定时总结 (4) 工作文件夹维护
+  用于：context 超过 80%、重要信息需要记录、每日总结、清理旧 session
 ---
 
 # Self Memory Manager
 
-> 管理 Claude 的记忆和工作流程优化。包括：(1) Context 使用管理 (2) 重要信息存档 (3) 定时总结 (4) 工作文件夹维护 用于：context 超过 80%、重要信息需要记录、每日总结、清理旧 session
+Claude 的自我记忆管理工作流。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-memory-manager`
-- **Source URL:** [https://clawhub.ai/skills/self-memory-manager](https://clawhub.ai/skills/self-memory-manager)
+## 核心规则
 
-## Overview
+### Context 管理
+- **预警线: 80%** - 超过时主动提醒用户存档
+- **危险线: 150%** - 必须存档后才能继续
+- 定期检查: 每隔一段时间检查 context 使用情况
 
+### 重要信息存档
+**存档位置**: `~/Desktop/小牛马的工作文件夹/`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/self-memory-manager
+**存档内容**:
+- API 配置变化
+- 账号信息
+- 任务进度
+- 项目状态
+- 工作规则更新
+
+**存档格式**:
 ```
+## 日期-时间
+### 任务/项目
+- 完成项
+- 待办项
+```
+
+### 定期总结
+- 重要进展后立即存档
+- 每天结束时做简短总结
+- 存到 memory/日期.md
+
+### 文件夹结构
+```
+~/Desktop/小牛马的工作文件夹/
+├── 工作笔记.md      # 主记录
+├── 工作规则.md     # 本规则
+├── memory/         # 按日期记忆
+│   └── 2026-03-16.md
+└── [项目文件夹]/
+```
+
+## 工作流程
+
+### 1. 定期检查 Context
+```
+当前 context > 80%?
+→ 是 → 提醒用户存档
+→ 否 → 继续
+```
+
+### 2. 重要信息存档
+```
+完成重要任务后?
+→ 是 → 立即存档到工作文件夹
+→ 否 → 继续
+```
+
+### 3. 查找信息
+```
+用户问之前的内容?
+→ 检查当前对话
+→ 无 → 查工作文件夹
+```
+
+## 使用场景
+
+| 触发条件 | 动作 |
+|----------|------|
+| Context > 80% | 提醒存档 |
+| 完成重要任务 | 自动存档 |
+| 用户问之前的事 | 查文件夹 |
+| 每天结束 | 建议做总结 |
+
+## 快速命令
+
+```bash
+# 存档
+cp ~/.openclaw/openclaw.json ~/Desktop/小牛马的工作文件夹/
+
+# 查看状态
+cat ~/Desktop/小牛马的工作文件夹/工作笔记.md
+```
+
+---
+
+本技能帮助 Claude 自我管理记忆，避免 context 溢出同时保证重要信息不丢失。

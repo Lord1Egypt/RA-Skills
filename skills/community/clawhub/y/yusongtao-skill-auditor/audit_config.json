@@ -1,0 +1,92 @@
+{
+  "security_rules": {
+    "forbidden_patterns": [
+      {
+        "pattern": "exec\\(.*\\)",
+        "severity": "critical",
+        "description": "Dynamic code execution"
+      },
+      {
+        "pattern": "eval\\(.*\\)",
+        "severity": "critical",
+        "description": "Code evaluation function"
+      },
+      {
+        "pattern": "importlib\\.",
+        "severity": "high",
+        "description": "Dynamic module loading"
+      },
+      {
+        "pattern": "subprocess\\.",
+        "severity": "high",
+        "description": "System command execution"
+      },
+      {
+        "pattern": "os\\.system",
+        "severity": "high",
+        "description": "System command execution"
+      },
+      {
+        "pattern": "os\\.popen",
+        "severity": "high",
+        "description": "System command execution"
+      },
+      {
+        "pattern": "open\\([^,]*,[^,]*['\\\"]w[^\\\"]*['\\\"]",
+        "severity": "medium",
+        "description": "File write operation"
+      },
+      {
+        "pattern": "requests\\.post",
+        "severity": "medium",
+        "description": "External data transmission"
+      },
+      {
+        "pattern": "socket\\.",
+        "severity": "medium",
+        "description": "Network socket operations"
+      }
+    ],
+    "suspicious_patterns": [
+      {
+        "pattern": ".*password.*",
+        "severity": "medium",
+        "description": "Contains password in code"
+      },
+      {
+        "pattern": ".*token.*",
+        "severity": "medium",
+        "description": "Contains token in code"
+      },
+      {
+        "pattern": ".*secret.*",
+        "severity": "medium",
+        "description": "Contains secret in code"
+      }
+    ]
+  },
+  "allowed_imports": [
+    "json",
+    "os",
+    "sys",
+    "re",
+    "urllib",
+    "pathlib",
+    "datetime",
+    "time",
+    "base64",
+    "hashlib"
+  ],
+  "report_template": {
+    "header": "Skill Security Audit Report",
+    "sections": [
+      "summary",
+      "critical_issues",
+      "high_risks",
+      "medium_risks",
+      "suspicious_patterns",
+      "allowed_functions",
+      "recommendations"
+    ]
+  }
+}

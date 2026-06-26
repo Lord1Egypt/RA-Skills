@@ -1,0 +1,17 @@
+{
+  "name": "claude-skill-ai-video-remix",
+  "version": "1.0.1",
+  "description": "Claude skill: AI video remix generator using ShotAI MCP + Remotion rendering",
+  "keywords": ["claude", "claude-skill", "claude-code", "shotai", "remotion", "video", "mcp", "ai-video"],
+  "homepage": "https://github.com/abu-ShotAI/ai-video-remix",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abu-ShotAI/ai-video-remix.git"
+  },
+  "license": "MIT",
+  "files": [
+    "README.md",
+    "SKILL.md",
+    "references/"
+  ]
+}

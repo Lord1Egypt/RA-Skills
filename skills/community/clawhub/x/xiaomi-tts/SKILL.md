@@ -1,35 +1,50 @@
 ---
-name: "小米tts文字转语音"
-description: "把文字转成语音。可以发语音、念给我听、唱歌、用方言或夹子音说话，支持各种情绪和风格。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaomi-tts"
-sourceUrl: "https://clawhub.ai/skills/xiaomi-tts"
+name: xiaomi-tts
+description: 把文字转成语音。可以发语音、念给我听、唱歌、用方言或夹子音说话，支持各种情绪和风格。
 ---
 
-# 小米tts文字转语音
+# MiMo TTS 语音合成
 
-> 把文字转成语音。可以发语音、念给我听、唱歌、用方言或夹子音说话，支持各种情绪和风格。
+## 快速使用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaomi-tts`
-- **Source URL:** [https://clawhub.ai/skills/xiaomi-tts](https://clawhub.ai/skills/xiaomi-tts)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/xiaomi-tts
+node scripts/xiaomi-tts.js "你好世界" --voice default_zh --style "夹子音" --output output.wav
 ```
+
+需要设置 `MIMO_API_KEY` 环境变量，或通过 `--api-key` 参数传入。
+
+## 可用音色
+
+| 音色 | voice 参数 |
+|------|-----------|
+| MiMo 默认 | `mimo_default` |
+| 中文女声（默认） | `default_zh` |
+| 英文女声 | `default_eh` |
+
+## 风格控制
+
+在文本开头用 `<style>` 标签指定风格，支持叠加：
+
+- 语速：变快 / 变慢
+- 情绪：开心 / 悲伤 / 生气
+- 角色：孙悟空 / 林黛玉
+- 风格：悄悄话 / 夹子音 / 台湾腔
+- 方言：东北话 / 四川话 / 河南话 / 粤语
+- 唱歌：`<style>唱歌</style>歌词内容`
+
+## 音频标签（细粒度控制）
+
+在文本中用中文括号标注情绪、动作等：
+
+```
+（紧张，深呼吸）呼……冷静，冷静
+（语速加快，碎碎念）怎么办怎么办
+（小声）哎呀，领带歪没歪？
+（提高音量喊话）大姐！这鱼新鲜着呢！
+```
+
+## 注意事项
+
+- 合成文本放在 `assistant` 角色消息中
+- `<style>` 标签必须在文本最前面
+- 返回 base64 编码的 WAV 音频

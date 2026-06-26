@@ -1,35 +1,242 @@
 ---
-name: "investoday-stock-anomaly-analysis"
-description: "面向A股个股异动归因分析，聚焦上涨下跌原因、大盘影响、板块共振、公司事件与机构验证。基于今日投资金融数据接口，自动识别股票代码并输出结构化异动解读报告。触发词：异动分析、为什么涨、为什么跌、拉升、跳水、盘中异动。"
-category: "other"
-source: "ClawHub"
-tags: [anomaly-analysis, company-catalyst, event-driven, intraday-move, market-impact, price-drop, price-surge, sector-resonance]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-stock-anomaly-analysis"
-sourceUrl: "https://clawhub.ai/skills/investoday-stock-anomaly-analysis"
+name: investoday-stock-anomaly-analysis
+title: "个股异动分析"
+version: 1.4.0
+description: 面向A股个股异动归因分析，聚焦上涨下跌原因、大盘影响、板块共振、公司事件与机构验证。基于今日投资金融数据接口，自动识别股票代码并输出结构化异动解读报告。触发词：异动分析、为什么涨、为什么跌、拉升、跳水、盘中异动。
+tags:
+  - anomaly-analysis
+  - price-surge
+  - price-drop
+  - intraday-move
+  - market-impact
+  - sector-resonance
+  - company-catalyst
+  - event-driven
+metadata:
+  clawdbot:
+    emoji: "⚡"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-stock-anomaly-analysis
+# ⚡ 个股异动分析
 
-> 面向A股个股异动归因分析，聚焦上涨下跌原因、大盘影响、板块共振、公司事件与机构验证。基于今日投资金融数据接口，自动识别股票代码并输出结构化异动解读报告。触发词：异动分析、为什么涨、为什么跌、拉升、跳水、盘中异动。
+面向 A 股个股异动归因分析，聚焦上涨下跌原因、大盘影响、板块共振、公司事件与机构验证。基于今日投资金融数据接口，自动识别股票代码并输出结构化异动解读报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-stock-anomaly-analysis`
-- **Source URL:** [https://clawhub.ai/skills/investoday-stock-anomaly-analysis](https://clawhub.ai/skills/investoday-stock-anomaly-analysis)
+## 触发场景
 
-## Overview
+- 用户询问某只股票今天为什么涨、为什么跌、为什么突然拉升或跳水
+- 用户希望区分本次异动更偏大盘带动、板块共振还是公司自身催化
+- 用户想知道“这次异动有没有消息面支持”“是不是只是情绪扰动”
+- 关键词：异动分析、为什么涨、为什么跌、拉升、跳水、盘中异动、大盘带动、板块共振、事件驱动
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-stock-anomaly-analysis
+**示例 1：上涨原因**
 ```
+浪潮信息今天为什么涨？
+```
+
+**示例 2：下跌原因**
+```
+宁德时代这波下跌是市场原因还是公司自己的问题？
+```
+
+**示例 3：盘中异动**
+```
+帮我看一下中际旭创刚才那波拉升靠什么驱动。
+```
+
+> 💡 支持输入股票名称或 6 位股票代码。若用户只提供名称，先通过 `search` 识别标的，再进入异动归因流程。若用户想系统梳理近阶段消息面或解读相关新闻，优先使用 `股票消息解读`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 基础工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 综合标的搜索 | `search` | GET | 通过关键字搜索股票代码 |
+| 股票基本信息 | `stock/basic-info` | GET | 获取股票名称、行业、主营业务等基础信息 |
+
+### 行情与市场工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 沪深京实时行情 | `stock-quote/realtime-merge` | GET | 获取个股最新行情及所属行业、概念表现 |
+| 指数实时行情 | `index-quote/realtime` | POST | 获取主要宽基指数最新涨跌幅，用于判断市场环境 |
+
+### 事件与验证工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 实体相关新闻 | `news/entity-related` | GET | 获取公司或行业相关新闻 |
+| 研报舆情 | `research/sentiment` | POST | 获取近期机构观点与情绪验证 |
+| 上市公司公告 | `announcements` | GET | 获取公司公告与正式事件披露 |
+
+## 数据获取流程
+
+用户提供股票名称或代码后，Agent 按以下流程获取数据：
+
+- **Step 0：标的识别（如用户输入名称而非代码）**：工具ID `search`，参数 `key=<股票名称> type=11`
+- **Step 1：股票基本信息**：工具ID `stock/basic-info`，参数 `stockCode=<code>`
+- **Step 2：个股实时行情**：工具ID `stock-quote/realtime-merge`，参数 `stockCode=<code>`
+- **Step 3：指数实时行情**：工具ID `index-quote/realtime` (POST)，参数 `indexCodes=000300 indexCodes=<动态指数>`
+- **Step 4：公司维度新闻（近30天）**：工具ID `news/entity-related`，参数 `stockCode=<code> beginTime=<30天前> endTime=<当前时间> newsType=3 pageNum=1 pageSize=3`
+- **Step 5：行业维度新闻（近30天）**：工具ID `news/entity-related`，参数 `stockCode=<code> beginTime=<30天前> endTime=<当前时间> newsType=2 pageNum=1 pageSize=3`
+- **Step 6：研报舆情（近60天）**：工具ID `research/sentiment` (POST)，参数 `stockCode=<code> beginTime=<60天前> endTime=<当前时间> pageNum=1 pageSize=5`
+- **Step 7：上市公司公告（近30天）**：工具ID `announcements`，参数 `stockCode=<code> beginDate=<30天前> endDate=<今天> pageNum=1 pageSize=10`
+
+> **动态指数规则**：沪市主板优先配 `000001`，深市主板优先配 `399001`，创业板优先配 `399006`，科创板优先配 `000688`，北交所优先配 `899050`。完成 Step 0 后，Step 1-7 可并行调用。
+
+## 分析框架（5步）
+
+Agent 获取数据后，按以下 5 步框架进行结构化分析：
+
+### Step 1：确认异动方向与强弱
+
+**目标**：先判断本次异动是上涨、下跌还是高波动震荡，并确认异动强度。
+
+**数据来源**：`stock-quote/realtime-merge`
+
+分析要点：
+- 当前涨跌幅、成交额、日内高低点、量价状态
+- 个股相对自身近阶段表现是否属于异常波动
+- 若仅为窄幅震荡，不应硬写成强异动
+
+**输出**：异动方向、强弱与初步判断。
+
+### Step 2：判断大盘环境影响
+
+**目标**：判断本次异动是否主要受市场整体风险偏好驱动。
+
+**数据来源**：`index-quote/realtime` + `stock-quote/realtime-merge`
+
+分析要点：
+- 主要指数是否与个股同向波动
+- 个股涨跌幅与宽基指数差值是否明显
+- 若个股与指数同向且强弱接近，优先考虑大盘带动
+
+**输出**：大盘影响强弱与市场环境结论。
+
+### Step 3：判断板块共振程度
+
+**目标**：判断个股异动是否来自行业或概念板块联动。
+
+**数据来源**：`stock-quote/realtime-merge` + `news/entity-related`
+
+分析要点：
+- 所属行业、概念板块是否同步走强或走弱
+- 行业新闻是否提供清晰催化
+- 若行业与个股方向一致且幅度接近，优先归因为板块共振
+
+**输出**：板块共振强弱与主要板块催化。
+
+### Step 4：判断公司自身因素
+
+**目标**：识别是否存在公司层面的新闻、公告或机构验证。
+
+**数据来源**：`news/entity-related` + `announcements` + `research/sentiment`
+
+分析要点：
+- 近 30 天是否有公告、重大合同、业绩预告、监管事项等正式事件
+- 公司新闻是否与异动时间和方向一致
+- 近期研报是否强化或弱化本次异动逻辑
+
+**输出**：公司自身催化/利空、机构验证与证据强度。
+
+### Step 5：形成主导归因结论
+
+**目标**：综合大盘、板块、公司三个层级，给出主导驱动因素排序。
+
+**数据来源**：前 4 步分析结果汇总
+
+分析要点：
+- 主因属于大盘带动、板块共振、公司事件还是多因素共振
+- 当前判断属于“明确”“初步”还是“待验证”
+- 后续应重点跟踪公告、新闻发酵、板块持续性还是市场情绪
+
+**输出**：异动主导因素、判断置信度与跟踪重点。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 个股与主要指数同向，且涨跌幅差值 ≤ 1 个百分点 | 市场环境驱动较强 | 📊 中性 |
+| 个股与所属行业同向，且涨跌幅差值 ≤ 1.5 个百分点 | 板块共振特征明显 | 🟡 关注 |
+| 个股相对所属行业强/弱 ≥ 2 个百分点 | 公司自身因素权重提升 | ✅ 积极 |
+| 近 3 个交易日内存在正式公告且方向一致 | 公司事件驱动增强 | ✅ 积极 |
+| 公司新闻与公告均缺失，仅指数和行业同向 | 更偏大盘或板块驱动 | 📊 中性 |
+| 指数偏弱但个股逆势上涨 ≥ 2 个百分点 | 逆势异动，需重点找公司催化 | 🟡 关注 |
+| 指数偏强但个股逆势下跌 ≥ 2 个百分点 | 个股承压更强，警惕负面事件 | ⚠️ 警惕 |
+| 负面公告/新闻时间距离当前 ≤ 3 个交易日 | 异动更可能是事件冲击 | 🔴 高风险 |
+| 研报舆情与异动方向一致 | 机构验证较强 | ✅ 积极 |
+| 研报舆情与异动方向相反或明显分歧 | 当前逻辑仍待验证 | ⚠️ 警惕 |
+
+## 输出格式
+
+```markdown
+# ⚡ [股票名称] 异动分析报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、异动结论
+
+（先写本次异动是上涨/下跌/震荡放大，以及主导因素判断）
+
+## 二、异动概览
+
+（最新涨跌幅、成交额、行业表现、概念表现等）
+
+## 三、大盘环境影响
+
+（指数是否同向、市场环境是否明显带动）
+
+## 四、板块与行业共振
+
+（行业/概念是否同步，是否存在板块催化）
+
+## 五、公司自身因素
+
+（公告、新闻、研报验证与主要事件）
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确主导因素与判断置信度
+- 给出后续需跟踪的验证点
+```
+
+## 证据约束（必须遵守）
+
+1. 每个异动归因结论至少给出 2 个证据来源，优先使用行情 + 事件/公告组合
+2. 不允许只写“受消息刺激上涨/下跌”，必须说明是哪类消息、时间窗口和方向一致性
+3. 时间口径必须写清楚，如“近30天新闻”“近60天研报”“今日盘中行情”
+4. 不展示内部打分、排序分值或未公开的中间推理
+5. 若某类数据为空，只能写“暂无相关数据”或“暂不足以支持判断”，不得补充臆测
+6. 不给买卖建议、目标价、止损价、仓位建议或交易时点
+7. 若多种因素同时存在，必须明确主次，不得笼统写成“多重利好/利空”而不给排序
+
+## 执行示例
+
+用户说：“中际旭创今天为什么跌？”
+
+1. 通过 `search` 获取股票代码
+2. 并行调用 `stock/basic-info`、`stock-quote/realtime-merge`、`index-quote/realtime`、公司/行业新闻、`research/sentiment` 与 `announcements`
+3. 先判断异动方向，再拆解大盘、板块和公司层面的驱动因素
+4. 输出 Markdown 格式异动分析报告
+5. 在结尾给出主导归因与后续验证点
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block content %}
+{% if report %}
+<div class="report-flow">
+<section class="grid">
+  {% for item in report.summary_cards %}
+  <div class="card">
+    <div class="muted">{{ item.label }}</div>
+    <div class="metric">{{ item.value }}</div>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <div>
+      <h2>项目背景</h2>
+      <p>说明模型目标、数据来源和评估口径</p>
+    </div>
+    <span class="pill">生成于 {{ report.generated_at }}</span>
+  </div>
+  <div class="story">{{ report.project_background }}</div>
+</section>
+
+<section class="grid">
+  {% for item in report.dataset_cards %}
+  <div class="card">
+    <div class="muted">{{ item.label }}</div>
+    <div class="metric"{% if item.label == "时间范围" %} style="font-size:18px;"{% endif %}>{{ item.value }}</div>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="card stack">
+  <div class="section-title">
+    <div>
+      <h2>数据探索性分析</h2>
+      <p>从样本覆盖、标签分布和全部特征统计三个角度理解训练数据</p>
+    </div>
+  </div>
+  <div>
+    <div class="muted">标签分布</div>
+    <div class="mix-bar">
+      <div class="up" style="width: {{ report.label_mix.up_width }}%"></div>
+      <div class="down" style="width: {{ report.label_mix.down_width }}%"></div>
+    </div>
+    <div class="legend">
+      <span>上涨样本: {{ report.label_mix.up_count }}</span>
+      <span>下跌样本: {{ report.label_mix.down_count }}</span>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>特征名称</th>
+          <th>分类</th>
+          <th>均值</th>
+          <th>标准差</th>
+          <th>最小值</th>
+          <th>最大值</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in report.feature_catalog %}
+        <tr>
+          <td>
+            <strong>{{ item.chinese_name }}</strong>
+            <span class="small">{{ item.english_name }}</span>
+          </td>
+          <td>{{ item.category }}</td>
+          <td>{% if item.mean is not none %}{{ "%.6f"|format(item.mean) }}{% else %}-{% endif %}</td>
+          <td>{% if item.std is not none %}{{ "%.6f"|format(item.std) }}{% else %}-{% endif %}</td>
+          <td>{% if item.min is not none %}{{ "%.6f"|format(item.min) }}{% else %}-{% endif %}</td>
+          <td>{% if item.max is not none %}{{ "%.6f"|format(item.max) }}{% else %}-{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="grid">
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2>特征维度</h2>
+        <p>候选特征与最终入模特征的压缩结果</p>
+      </div>
+    </div>
+    <div class="score-list">
+      <div class="score-row">
+        <div>候选特征</div>
+        <div class="score-track"><span class="score-fill" style="width: 100%"></span></div>
+        <div>{{ report.feature_dimensions.total_candidate_features }}</div>
+      </div>
+      <div class="score-row">
+        <div>入模特征</div>
+        <div class="score-track"><span class="score-fill" style="width: {{ report.selection_ratio }}%"></span></div>
+        <div>{{ report.feature_dimensions.selected_features }}</div>
+      </div>
+    </div>
+    <p class="muted">特征筛选保留率 {{ "%.2f%%"|format(report.selection_ratio) }}</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2>重要特征</h2>
+        <p>按 XGBoost 重要性排序展示前 10 个特征，并补充中文名和加工逻辑</p>
+      </div>
+    </div>
+    {% for item in report.feature_bars %}
+    <div class="feature-bar">
+      <div>
+        <strong>{{ item.chinese_name }}</strong>
+        <div class="small">{{ item.name }}</div>
+      </div>
+      <div class="track"><span class="fill" style="width: {{ item.width }}%"></span></div>
+      <div>{{ "%.4f"|format(item.value) }}</div>
+    </div>
+    <div class="small" style="margin: -4px 0 8px 0;">{{ item.logic }}</div>
+    {% endfor %}
+  </section>
+</section>
+
+<section class="card stack">
+  <div class="section-title">
+    <div>
+      <h2>特征维度</h2>
+      <p>给出全部特征的中文名、英文名、加工逻辑、重要性和是否入模</p>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>分类</th>
+          <th>加工逻辑</th>
+          <th>重要性</th>
+          <th>是否入模</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in report.feature_catalog %}
+        <tr>
+          <td>{{ item.chinese_name }}</td>
+          <td>{{ item.english_name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.logic }}</td>
+          <td>{{ "%.6f"|format(item.importance) }}</td>
+          <td>{% if item.selected %}<span class="tag">已入模</span>{% else %}-{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card stack">
+  <div class="section-title">
+    <div>
+      <h2>模型效果</h2>
+      <p>展示十折交叉验证的均值表现和各折稳定性</p>
+    </div>
+  </div>
+  <div class="score-list">
+    {% for metric in report.metrics %}
+    <div class="score-row">
+      <div>{{ metric.label }}</div>
+      <div class="score-track"><span class="score-fill" style="width: {{ metric.value * 100 }}%"></span></div>
+      <div>{{ "%.4f"|format(metric.value) }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="fold-grid">
+    {% for fold in report.fold_metrics %}
+    <div class="fold-card">
+      <div class="fold-no">Fold {{ fold.fold }}</div>
+      <div class="fold-score">{{ "%.2f%%"|format(fold.accuracy * 100) }}</div>
+      <div class="muted">AUC {{ "%.4f"|format(fold.auc) }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <div>
+      <h2>使用说明</h2>
+      <p>按流程执行训练、预测、评估和网页查看</p>
+    </div>
+  </div>
+  <ol class="steps">
+    {% for step in report.usage_steps %}
+    <li>
+      <div class="step-index">{{ loop.index }}</div>
+      <div>{{ step }}</div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+</div>
+{% else %}
+<section class="card">
+  <h2>训练报告</h2>
+  <p class="muted">尚未生成训练报告。</p>
+</section>
+{% endif %}
+{% endblock %}

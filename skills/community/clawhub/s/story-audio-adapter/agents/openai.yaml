@@ -1,0 +1,7 @@
+interface:
+  display_name: "Story Audio Adapter"
+  short_description: "将带角色标记的故事文本生成多角色有声作品"
+  default_prompt: "Use $story-audio-adapter to turn tagged novel text into a voiced audio story."
+
+policy:
+  allow_implicit_invocation: true

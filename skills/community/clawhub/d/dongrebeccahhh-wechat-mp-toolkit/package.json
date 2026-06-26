@@ -1,0 +1,20 @@
+{
+  "name": "wechat-mp-toolkit",
+  "version": "1.0.0",
+  "description": "微信公众号完整工具包",
+  "installed": "2026-03-15T00:05:00Z",
+  "status": "ready",
+  "components": [
+    "hotspot-analyzer",
+    "article-creator",
+    "cover-generator",
+    "auto-publisher"
+  ],
+  "dependencies": {
+    "axios": "^1.7.0",
+    "form-data": "^4.0.0"
+  },
+  "grade": "A",
+  "category": "office",
+  "tags": ["wechat", "公众号", "运营", "自动化", "内容创作"]
+}

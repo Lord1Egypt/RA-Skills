@@ -1,35 +1,241 @@
 ---
-name: "A股/港股/美股数据查询"
-description: "Use this skill when the user wants Chinese stock market data or analysis, including A-share行情、上证/深证/创业板指数、个股K线、涨跌停统计、资金流向、基本面、板块表现、港股美股行情、基金可转债、财经新闻和研报。 The..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/akshare-api"
-sourceUrl: "https://clawhub.ai/skills/akshare-api"
+name: akshare-api
+description: Use this skill when the user wants Chinese stock market data or analysis, including A-share行情、上证/深证/创业板指数、个股K线、涨跌停统计、资金流向、基本面、板块表现、港股美股行情、基金可转债、财经新闻和研报。 The skill runs the local client at main.py and sends the query to the hosted Akshare service at https://akshare.devtool.uk. Prefer this skill for direct market data lookups in Chinese.
+metadata:
+  version: 1.0.0
 ---
 
-# A股/港股/美股数据查询
+# Akshare API
 
-> Use this skill when the user wants Chinese stock market data or analysis, including A-share行情、上证/深证/创业板指数、个股K线、涨跌停统计、资金流向、基本面、板块表现、港股美股行情、基金可转债、财经新闻和研报。 The...
+这个 skill 用来处理中文股票数据查询。调用方式是：先对用户问题做最小必要拆解（识别意图、标的、时间范围、指标），再把“保留原意”的查询语句交给本地客户端，由客户端路由意图并请求固定云端服务 `https://akshare.devtool.uk`。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/akshare-api`
-- **Source URL:** [https://clawhub.ai/skills/akshare-api](https://clawhub.ai/skills/akshare-api)
+重要原则：
 
-## Overview
+- 优先在 skill 层完成查询规范化，不要依赖代码里的硬编码别名表。
+- 代码层只负责通用解析和运行时动态 symbol 解析；复杂别名、模糊表述、市场推断应优先由 skill 完成。
 
+文档基准：本 skill 的股票能力范围、symbol 规则与参数优先遵循你提供的 AkShare 股票文档：
 
-## Installation
-To install this skill, run the following command in your terminal:
+- https://akshare.akfamily.xyz/_sources/data/stock/stock.md.txt
+
+## When To Use This Skill
+
+在用户提出以下类型的问题时使用本 skill：
+
+- A 股大盘、上证指数、深证成指、创业板指、实时行情
+- 个股最近 N 天 K 线、日线、周线、月线
+- 个股走势、K 线图、行情图
+- 涨停、跌停、涨跌停统计
+- 个股或市场资金流向、主力资金、北向资金
+- 基本面、财务指标、ROE、市盈率、市净率、估值
+- 个股综合分析
+- 行业板块、概念板块、题材轮动、涨跌幅榜
+- 股票推荐、选股
+- 港股、美股、ETF、基金、可转债、债券
+- 财经新闻、研究报告、机构评级
+
+## Do Not Use This Skill For
+
+- 实盘交易、下单、撤单
+- 严格个性化投资建议或收益承诺
+- 用户本地持仓管理
+
+说明：代码里存在持仓管理分支，但依赖外部脚本，不适合作为这个 skill 的默认能力暴露给最终用户。
+
+## How To Execute
+
+在 skill 内部直接运行下面的命令：
+
 ```bash
-hermes skills install clawhub/akshare-api
+python3 main.py --query "<拆解后、保留原意的查询语句>"
+```
+
+默认假设当前工作目录就是本仓库根目录，大模型可以据此推断相对路径执行。
+
+不要要求用户配置 `--service-url`，也不要要求用户部署服务。服务地址已经固定使用线上地址：`https://akshare.devtool.uk`。
+
+## Question Decomposition Rules
+
+执行前先做一次轻量拆解，把用户问题映射为以下 4 个槽位：
+
+- 意图：行情 / K线 / 资金流 / 基本面 / 板块 / 新闻研报 / 综合分析。
+- 标的：股票名称、6 位代码、指数、板块名、市场（A股/港股/美股）。
+- 时间范围：最近 N 天、日/周/月、今日、实时、指定日期区间。
+- 指标：如 ROE、市盈率、涨停家数、主力净流入等。
+
+拆解后处理原则：
+
+- 信息齐全：直接执行，不再追问。
+- 缺少最小必要信息：只问一个最关键问题，不连环追问。
+- 用户表达过于宽泛：给 2-4 个可执行选项，让用户一键确认方向。
+
+轻量改写原则（重要）：
+
+- 保留用户原意，不改变分析角度，不擅自替换标的。
+- 仅补全结构，不臆造数据。例如把“看看茅台”改写为“贵州茅台最近30天K线”。
+- 如果用户已明确“代码/名称 + 指标 + 时间”，优先原样执行。
+
+规范化优先级：
+
+1. 先把自然语言问题规范为“市场 + 标的 + 周期/日期 + 指标”。
+2. 若能明确代码，就优先改写为显式代码。
+3. 若无法明确代码，但能明确市场与名称，则保留名称并保留市场信息，不要臆造代码。
+4. 只有在文档明确支持的格式下，才改写为 ticker/symbol。
+
+可直接套用的拆解模板：
+
+- 原问题：`帮我看看市场`
+   执行前引导：`你想看哪一类：1) 大盘实时行情 2) 今日涨停统计 3) 市场资金流向 4) 半导体板块涨跌？`
+- 原问题：`分析一下茅台`
+   改写执行：`分析一下 贵州茅台 600519`
+- 原问题：`宁德时代怎么样`
+   改写执行：`宁德时代最近30天K线`
+
+## Query Guidelines
+
+- 优先保留用户原始表述，不要过度改写。
+- 先拆解再执行，改写只做“最小必要补全”。
+- 如果用户已经给出股票名称或代码，优先规范化后执行。
+- 如果请求依赖具体股票但用户没给标的，先追问股票名称或代码。
+- 如果用户问题同时包含多个任务，拆成顺序执行的子问题，并按“先行情后分析”返回。
+- 如果执行过程中存在不确定项（例如：名称映射、指数别名、交易所代码、接口可用性），先调用可用的搜索能力进行确认，再继续执行。优先顺序：
+   1) 工作区内可用搜索技能/搜索工具（用于查本 skill 约束、代码路由、已支持别名）
+   2) Web Search（用于查公开别名、指数英文简称、交易所代码规则、Akshare 文档变更）
+- 搜索后仍不确定时，只追问用户 1 个最关键问题，不要连续追问。
+- 对于名称类输入，优先用 AkShare 文档对应的列表/实时接口完成运行时解析，不要在 skill 中维护大量固定映射。
+- 如果用户的问题明显属于以下模式，可直接执行：
+
+| 类型 | 示例问法 |
+|------|----------|
+| 指数 | 上证指数实时行情 |
+| K线 | 茅台最近30天K线 |
+| 周期 | 宁德时代周线 |
+| 涨跌停 | 今日涨停统计 |
+| 资金流 | 茅台资金流向 |
+| 基本面 | 贵州茅台ROE |
+| 综合分析 | 分析一下 600519 |
+| 板块 | 今日半导体板块涨跌 |
+| 港美股 | 英伟达美股行情 |
+| 基金债券 | 可转债行情 |
+| 新闻研报 | 宁德时代研报 |
+
+## Skill Canonicalization Rules
+
+skill 在执行前应优先做这些规范化：
+
+- A 股名称查询：尽量改写为“名称 + 6 位代码”。如果无法确认代码，可保留名称并带上市场线索，例如“贵州茅台 A股 最近30天K线”。
+- 港股名称查询：保留“港股”语义；代码若已知，优先 5 位数字。
+- 美股名称查询：保留“美股”语义；若已知交易代码，优先显式代码。
+- 指数查询：优先把自然语言改写为“指数名称 + 市场 + K线/实时/分钟”。如果能确认 ticker，可附带 ticker；若不能确认，不要臆造。
+- 新闻/研报/资金流类：保留原问题中的标的和范围词，不要额外扩展分析维度。
+
+## Symbol And Parameter Rules (AkShare 对齐)
+
+根据 AkShare 股票数据文档，执行前优先做以下规范化，减少查不到数据的情况：
+
+- A 股日线/周线/月线：优先使用 6 位代码（如 `600519`）查询。
+- A 股带交易所前缀代码（如 `sh600519`、`sz000001`）在进入执行前应归一化为 6 位代码。
+- A 股分钟级：
+   - 优先按 `period` in `{1, 5, 15, 30, 60}`。
+   - `1` 分钟数据通常只覆盖近期交易日，且常见不复权限制。
+- 港股代码：统一为 5 位数字（如 `00700`），若用户给 `HK0700` 需自动转换为 `00700`。
+- 美股代码：优先用交易代码（如 `AAPL`、`NVDA`）。
+- 美股东财代码（如 `105.TTE`）在历史行情场景可直接透传。
+- 东财系历史接口常见参数：
+   - `period`: `daily|weekly|monthly` 或分钟周期。
+   - `adjust`: `""|qfq|hfq`（当接口支持时）。
+- 涨跌停、两融、公告等按交易日接口：优先标准化为 `YYYYMMDD`。
+
+如果名称或指数别名在执行前仍不确定，不要猜测，先追问一次最关键问题，或者保留市场线索后交给运行时动态解析。
+
+## Compatibility Matrix
+
+以下是按 stock 文档整理的推荐路由优先级（命中失败再降级）：
+
+- A 股实时：`stock_zh_a_spot_em` -> `stock_sh_a_spot_em`/`stock_sz_a_spot_em`/`stock_bj_a_spot_em`
+- A 股历史 K：`stock_zh_a_hist`
+- A 股分钟：`stock_zh_a_hist_min_em` -> `stock_zh_a_minute`
+- 港股实时：`stock_hk_spot_em`
+- 港股历史 K：`stock_hk_hist`
+- 港股分钟：`stock_hk_hist_min_em`
+- 美股实时：`stock_us_spot_em`
+- 美股历史 K：`stock_us_hist`
+- 个股信息：`stock_individual_info_em`
+- 资金流：`stock_individual_fund_flow`/`stock_fund_flow_individual`
+- 北向南向：`stock_hsgt_fund_flow_summary_em`、`stock_hsgt_fund_min_em`、`stock_hsgt_hist_em`
+- 新闻：`stock_news_em`、`stock_news_main_cx`
+
+注意：某些市场指数别名在不同版本 AkShare 的接口支持并不一致。skill 负责尽量把问题改写得更明确；代码层再做动态解析与回退。
+
+## Data Characteristics
+
+根据 AkShare 文档，回答时应显式提示这些数据特征（如与用户问题相关）：
+
+- 东财港股与部分跨市场数据常见延时（例如 15 分钟）。
+- 日频历史数据通常在收盘后更新，当日收盘价盘中不完整。
+- 分钟级接口存在“最近 N 个交易日”窗口限制。
+- 某些接口参数看似可选，但在不同版本中会变；失败时优先做最小改写后重试。
+
+## Response Rules
+
+- 优先直接返回命令输出中的核心结果。
+- 如果输出是结构化 JSON，不要把整段原样倾倒给用户；提炼成简洁结论，并保留关键数值。
+- 如使用了映射（名称 -> 代码、别名 -> 指数代码），在结果里用一句话说明映射依据。
+- 如果查询失败，先返回清晰错误原因，再给出更容易命中的改写方式。
+- 如果问题过于模糊，先补一个最小必要追问，不要凭空猜股票代码。
+
+## Failure Handling
+
+常见失败和处理方式：
+
+1. 股票标的不明确。
+   处理：追问“请给我股票名称或 6 位代码”。
+
+2. 用户问法过于泛化，例如“帮我看看市场”。
+   处理：先给出 2-4 个可执行方向供用户确认，不直接猜测。
+
+3. 服务暂时不可用或超时。
+   处理：明确说明当前数据服务异常，请稍后重试，不要编造行情数据。
+
+4. 用户一次问多个维度（例如“给我茅台K线+资金流+估值”）。
+   处理：拆成子任务顺序执行，并在回复中按小标题分段。
+
+5. 名称/代码/市场映射不清楚（例如“恒生科技K线”但 symbol 不确定）。
+   处理：先调用可用搜索技能确认映射（本地搜索优先，必要时 web search）；若仍不确定，再追问用户一次。
+
+## Recommended Workflow
+
+1. 判断是否属于股票数据查询。
+2. 按“意图-标的-时间-指标”做轻量拆解。
+3. 在 skill 层优先完成 query canonicalization，尽量减少运行时歧义。
+4. 若存在不确定项，先调用可用搜索技能/工具核实关键事实（本地搜索优先，必要时 web search）。
+5. 判断是否缺少最小必要信息（最多追问 1 个关键问题）。
+6. 生成“保留原意、可执行”的查询语句。
+7. 执行 `python3 main.py --query "..."`。
+8. 将结果整理成用户能直接消费的中文答案（多子任务分段返回）。
+
+## Search Escalation Rules
+
+- 触发条件：出现别名冲突、symbol 无法唯一确定、市场归属不明、接口报“unknown symbol/no data/no callable api found”。
+- 搜索目标：先确认“名称→symbol→市场→接口”链路，再执行查询。
+- 输出要求：若使用了搜索能力，在回答中简要说明“依据何种映射”完成查询；不要展示冗长原始搜索结果。
+
+## Example Invocations
+
+```bash
+python3 main.py --query "茅台最近30天K线"
+python3 main.py --query "今日涨停统计"
+python3 main.py --query "上证指数实时行情"
+python3 main.py --query "宁德时代资金流向"
+python3 main.py --query "半导体板块涨跌"
+```
+
+## Notes
+
+- 本 skill 面向“查数据、看行情、做基础分析”，不是投顾系统。
+- 本 skill 的优势是零本地依赖数据栈，终端只需要能运行 Python 3 标准库客户端。
+- 如果用户只是想知道能问什么，可以先执行：
+
+```bash
+python3 main.py --query "帮助"
 ```

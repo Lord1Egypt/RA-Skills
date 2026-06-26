@@ -1,35 +1,43 @@
----
-name: "Error Message Decoder"
-description: "解析常见错误代码，提供错误原因及对应解决方案，支持多语言显示。"
-category: "other"
-source: "ClawHub"
-tags: [debug, error]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/error-message-decoder"
-sourceUrl: "https://clawhub.ai/skills/error-message-decoder"
----
-
 # Error Message Decoder
 
-> 解析常见错误代码，提供错误原因及对应解决方案，支持多语言显示。
+解析错误信息，提供可能的原因和解决方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/error-message-decoder`
-- **Source URL:** [https://clawhub.ai/skills/error-message-decoder](https://clawhub.ai/skills/error-message-decoder)
+## 功能
 
-## Overview
+- 错误代码解析
+- 原因分析
+- 解决方案建议
+- 多语言支持
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/error-message-decoder
+- "错误解析"
+- "错误解码"
+- "error decode"
+- "错误原因"
+
+## 支持的错误
+
+```javascript
+const knownErrors = {
+  'ENOENT': { zh: '文件不存在', fix: '检查文件路径是否正确' },
+  'ECONNREFUSED': { zh: '连接被拒绝', fix: '检查服务是否启动' },
+  'EADDRINUSE': { zh: '端口已被占用', fix: '杀死占用进程或更换端口' },
+  'undefined is not a function': { zh: '调用了未定义的函数', fix: '检查函数名拼写和导入' },
+  'null reference': { zh: '空指针错误', fix: '添加空值检查' },
+  'CORS error': { zh: '跨域错误', fix: '配置CORS headers' },
+  '404': { zh: '资源不存在', fix: '检查URL是否正确' },
+  '500': { zh: '服务器内部错误', fix: '检查服务器日志' }
+};
+```
+
+## 输出示例
+
+```json
+{
+  "error": "ENOENT: no such file or directory",
+  "cause": "文件不存在",
+  "fix": "检查文件路径是否正确",
+  "suggestion": "确保文件路径存在且拼写正确"
+}
 ```

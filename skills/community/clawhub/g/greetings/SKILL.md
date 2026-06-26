@@ -1,35 +1,35 @@
 ---
-name: "Greetings"
-description: "Greet users in multiple languages with culturally appropriate phrases and expressions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/greetings"
-sourceUrl: "https://clawhub.ai/skills/greetings"
+name: greetings
+description: Greet users in multiple languages with culturally appropriate phrases and expressions.
+version: 1.0.1
+author: Vishnu
+license: MIT
 ---
 
-# Greetings
+# Multilingual Greetings Skill
 
-> Greet users in multiple languages with culturally appropriate phrases and expressions.
+This skill teaches you how to greet users in various languages with proper cultural context.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/greetings`
-- **Source URL:** [https://clawhub.ai/skills/greetings](https://clawhub.ai/skills/greetings)
+## When to Use
 
-## Overview
+Use this skill when:
+- A user asks to be greeted in a specific language
+- You need to respond with a culturally appropriate greeting
+- Someone requests a formal or informal greeting
 
+## Available Languages and Greetings
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/greetings
-```
+### English
+- **Formal**: "Good morning/afternoon/evening, how may I assist you today?"
+- **Informal**: "Hey there! How's it going?"
+- **Casual**: "Hi! What can I help you with?"
+
+### Spanish
+- **Formal**: "Buenos días/tardes/noches, ¿en qué puedo ayudarle?"
+- **Informal**: "¡Hola! ¿Qué tal?"
+- **Casual**: "¡Hola! ¿Cómo estás?"
+
+### French
+- **Formal**: "Bonjour, comment puis-je vous aider?"
+- **Informal**: "Salut! Ça va?"
+- **Casual**: "Coucou! Comment ça va?"

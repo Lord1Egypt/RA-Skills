@@ -1,35 +1,97 @@
 ---
-name: "MLOps Automation"
-description: "Task automation, containerization, CI/CD, and experiment tracking"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, mlops]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mlops-automation-cn"
-sourceUrl: "https://clawhub.ai/skills/mlops-automation-cn"
+name: mlops-automation-cn
+version: 1.0.0
+description: Task automation, containerization, CI/CD, and experiment tracking
+license: MIT
 ---
 
-# MLOps Automation
+# MLOps Automation 🤖
 
-> Task automation, containerization, CI/CD, and experiment tracking
+Automate tasks, containers, CI/CD, and ML experiments.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mlops-automation-cn`
-- **Source URL:** [https://clawhub.ai/skills/mlops-automation-cn](https://clawhub.ai/skills/mlops-automation-cn)
+## Features
 
-## Overview
+### 1. Task Runner (just) ⚡
 
+Copy justfile:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mlops-automation-cn
+cp references/justfile ../your-project/
 ```
+
+Tasks:
+- `just check` - Run all checks
+- `just test` - Run tests
+- `just build` - Build package
+- `just clean` - Remove artifacts
+- `just train` - Run training
+
+### 2. Docker 🐳
+
+Multi-stage build:
+
+```bash
+cp references/Dockerfile ../your-project/
+docker build -t my-model .
+docker run my-model
+```
+
+Optimizations:
+- Layer caching (uv sync before copy src/)
+- Minimal runtime image
+- Non-root user
+
+### 3. CI/CD (GitHub Actions) 🔄
+
+Automated pipeline:
+
+```bash
+cp references/ci-workflow.yml ../your-project/.github/workflows/ci.yml
+```
+
+Runs on push/PR:
+- Lint (Ruff + MyPy)
+- Test (pytest + coverage)
+- Build (package + Docker)
+
+## Quick Start
+
+```bash
+# Setup task runner
+cp references/justfile ./
+
+# Setup CI
+mkdir -p .github/workflows
+cp references/ci-workflow.yml .github/workflows/ci.yml
+
+# Setup Docker
+cp references/Dockerfile ./
+
+# Test locally
+just check
+docker build -t test .
+```
+
+## MLflow Tracking
+
+```python
+import mlflow
+
+mlflow.autolog()
+with mlflow.start_run():
+    mlflow.log_param("lr", 0.001)
+    model.fit(X, y)
+    mlflow.log_metric("accuracy", acc)
+```
+
+## Author
+
+Converted from [MLOps Coding Course](https://github.com/MLOps-Courses/mlops-coding-skills)
+
+## Changelog
+
+### v1.0.0 (2026-02-18)
+- Initial OpenClaw conversion
+- Added justfile template
+- Added Dockerfile
+- Added CI workflow

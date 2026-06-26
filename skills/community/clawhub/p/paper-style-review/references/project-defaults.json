@@ -1,0 +1,55 @@
+{
+  "projectId": "paper-style-review",
+  "description": "paper-style-review 项目默认配置。仓库不内置任何用户论文；用户可在运行配置中直接传入自己的 refs。",
+  "defaultTarget": {
+    "title": "target paper",
+    "description": "待审校的目标论文",
+    "pathPlaceholder": "./target.docx"
+  },
+  "stageProfiles": {
+    "stage1": {
+      "description": "默认 stage1 refs 为空；若用户在运行配置中传入 refs 且未显式指定 stage，则自动视为 stage1。",
+      "refs": []
+    },
+    "stage2": {
+      "description": "默认 stage2 refs 为空；用户如需区分 style learning / review 参照，可在 refs 中自行设置 stage=2。",
+      "refs": []
+    }
+  },
+  "extraction": {
+    "includeFullChapter1": true,
+    "includeChapterIntroductions": true,
+    "includeChapterConclusions": true,
+    "includeFirstIntroParagraphOfLevel2": true,
+    "includeFirstIntroParagraphOfLevel3": true,
+    "dropFrontMatter": true,
+    "dropBackMatter": true,
+    "description": "段落抽取规则，仅抽取具有引言/章节导入/章节总结功能的段落"
+  },
+  "formatCheck": {
+    "enabled": true,
+    "checkFontSize": true,
+    "checkFontName": true,
+    "checkLineSpacing": true,
+    "checkParagraphSpacing": true,
+    "checkIndentation": true,
+    "checkAlignment": true,
+    "description": "格式检查配置，支持字号、字体、行距、段落间距等检查"
+  },
+  "termValidation": {
+    "enabled": true,
+    "useCnki": false,
+    "localTerminologyPath": "./glossary.json",
+    "autoSearch": false,
+    "description": "专用名词验证配置，支持本地术语库和知网搜索"
+  },
+  "enabledChecks": {
+    "format": true,
+    "terminology": true,
+    "style": true,
+    "logic": true
+  },
+  "version": "2.0",
+  "updatedAt": "2026-03-21",
+  "note": "默认配置不内置任何示例论文。用户可在运行配置中直接传入 refs；enabled=true 的 refs 会自动进入对应 stage，styleProfileEnabled=true 的 refs 会自动进入风格学习集合。"
+}

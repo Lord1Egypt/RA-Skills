@@ -1,0 +1,63 @@
+# Sleep Rabbit Skill Dependencies
+## Smart Dependency Management
+This skill uses smart dependency management to provide the best functionality based on user environment.
+## Dependency Levels
+- **Python 3.8+ standard library**
+- No additional dependencies needed
+- Provides basic functionality: file validation, basic assessment, meditation guidance
+Install the following libraries for full EDF analysis functionality:
+```bash
+pip install mne numpy scipy
+```
+**Included libraries**:
+- `mne>=1.11.0` - EDF sleep data analysis
+- `numpy>=2.0.0` - Numerical computation
+- `scipy>=1.10.0` - Scientific computation
+Complete AISleepGen project environment includes:
+- All advanced plugins
+- Personalized algorithms
+- Professional-level analysis tools
+## Installation Guide
+### Basic Users (No installation needed)
+```bash
+# No installation required, ready to use
+```
+### Advanced Users (Recommended installation)
+```bash
+# Install scientific computing libraries
+pip install mne numpy scipy
+# Use mirror for faster installation in China
+pip install mne numpy scipy -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+### Professional Users (Complete environment)
+```bash
+# Clone AISleepGen project
+git clone https://github.com/aisleepgen/aisleepgen.git
+# Install all dependencies
+cd aisleepgen
+pip install -r requirements.txt
+```
+## Installation Verification
+### Check current environment
+```bash
+# Run skill environment check
+python skill.py --version
+```
+### Check if MNE is installed
+```bash
+python -c "import mne; print(f'MNE version: {mne.__version__}')"
+```
+## Important Notes
+1. **No forced installation** - Skill is fully usable in basic mode
+2. **Progressive enhancement** - Install dependencies anytime for more features
+3. **Smart detection** - Skill automatically detects environment and provides best functionality
+4. **Detailed guidance** - Provides detailed installation instructions when dependencies are missing
+## Technical Support
+If you have installation issues, use these commands for help:
+```bash
+# Check environment status
+/env-status
+# Get installation guidance
+/install-deps
+```
+

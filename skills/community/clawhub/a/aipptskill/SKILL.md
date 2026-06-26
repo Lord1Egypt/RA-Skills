@@ -1,35 +1,392 @@
----
-name: "AiPPT-skill"
-description: "通过 AiPPT.cn 开放平台 API 智能生成专业 PPT 演示文稿，支持标题生成、联网智能生成、文件导入、URL导入、模板选择、导出大纲、回收站管理、自动导出下载"
-category: "other"
-source: "ClawHub"
-tags: [aippt, ppt]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aipptskill"
-sourceUrl: "https://clawhub.ai/skills/aipptskill"
----
+# AiPPT Skill
 
-# AiPPT-skill
+> 通过 AiPPT.cn 开放平台 API，在对话中协作式生成 PPT。v4.0.1 强调安全鉴权、场景分流、过程感知、大纲修改、模板选择，不做黑盒一键到底。
 
-> 通过 AiPPT.cn 开放平台 API 智能生成专业 PPT 演示文稿，支持标题生成、联网智能生成、文件导入、URL导入、模板选择、导出大纲、回收站管理、自动导出下载
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aipptskill`
-- **Source URL:** [https://clawhub.ai/skills/aipptskill](https://clawhub.ai/skills/aipptskill)
+当用户提出以下任一需求时使用本 Skill：
 
-## Overview
+- 做 PPT、生成 PPT、创建演示文稿、制作幻灯片。
+- 根据主题、文档、PPT、链接生成 PPT。
+- 生成单页 PPT 或某一页幻灯片。
+- 修改生成前的大纲、选择模板、控制 PPT 页数/受众/语气/语言/模型。
 
+## 前置条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aipptskill
+环境依赖：`curl`、`python3`、`openssl`。
+
+凭证通过 clawhub.ai / OpenClaw 的技能设置或安全凭证入口配置，不要让用户在聊天里粘贴 AK / SK。
+
+| 变量名 | 必填 | 说明 |
+|---|---:|---|
+| `AIPPT_APP_KEY` | 是 | AiPPT 开放平台 App Key |
+| `AIPPT_SECRET_KEY` | 是 | AiPPT 开放平台 Secret Key |
+| `AIPPT_UID` | 否 | 用户标识，多用户隔离用，默认 `openclaw_default` |
+
+安全要求：
+
+- 不要要求用户在聊天中输入 AK / SK。
+- 如果用户把 AK / SK 发到聊天里，立刻提醒按泄露处理，并建议去 AiPPT 控制台重置 Secret Key。
+- 不要把真实 AK / SK 写入输出、日志说明、README、截图说明或生成文件。
+- Skill 只使用环境变量或平台安全凭证读取密钥。
+
+## 每次执行前先判断场景
+
+用户发来 PPT 需求后，先按输入判断 5 类场景：
+
+```text
+有明确“单页/一页/生成某一页”诉求
+  → AI 单页生成
+有 PPT / PPTX 附件
+  → 导入 PPT 生成
+有 Word / PDF / TXT / Markdown / WPS 等文档附件
+  → 文档上传 / Word 导入
+有 URL 链接
+  → 链接生成 PPT
+只有主题 / 标题 / 需求描述
+  → 智能生成
 ```
+
+如果用户同时上传文件又给主题，先问清楚文件用途：
+
+```text
+您希望怎么使用这份文件？
+1. 直接按文件内容生成 PPT
+2. 把文件作为参考资料，围绕您给的主题重新生成 PPT
+```
+
+## 首次配置
+
+首次使用或用户要求调整默认设置时，先收集配置：
+
+- 是否需要编辑大纲：默认是。
+- 是否逐节点确认大纲：默认否。
+- 每次返回模板数量：默认 6，可选 3 / 6 / 9 / 12。
+- 是否使用企业模板：如接口返回企业模板，优先询问用户。
+
+## 高阶配置硬规则
+
+不要凭常识、用户画像或主题自行编造高阶配置选项。高阶配置必须先调用接口拉取真实枚举，再基于返回的 `id / name / is_default` 询问用户。
+
+先执行：
+
+```bash
+bash scripts/aippt.sh senior_options_pretty
+```
+
+或需要原始 JSON 时执行：
+
+```bash
+bash scripts/aippt.sh senior_options
+```
+
+执行规则：
+
+- 只展示接口返回的真实配置组和枚举项。
+- 传参给任务创建接口时，必须按配置组 `key` 组装 JSON 对象字符串，不是数组。
+- 正确结构：`{"page":3,"group":6,"scene":18,"tone":40,"language":47}`。
+- 其中 `page / group / scene / tone / language` 来自 `senior_options` 返回的父级 `key`，值来自用户选择的子项 `id`。
+- 推荐传参写法：`--options '{"page":3,"group":6,"scene":18,"tone":40,"language":47}'`，可以放在标题后，也可以放在位置参数后。
+- 不要把“LOL 玩家”“大众泛用户”等自行推断的受众写成选项；除非它们真实出现在 `senior_options` 返回中。
+- 不知道枚举 ID 时，先拉接口，不要追问用户自由输入。
+- 如果接口返回失败，使用默认配置或询问是否跳过高阶配置，不要伪造枚举。
+
+只有以下场景展示高阶配置，且配置项以接口返回为准：
+
+| 场景 | 高阶配置 |
+|---|---|
+| 智能生成 | 页数、受众、场景、语气、语言、切换模型、是否打开联网搜索、内容是否是参考文档 |
+| 文档上传 / Word 导入 | 保持原文、适当扩写、润色美化、切换模型；其中可由 AiPPT `senior_options` 支撑的项必须使用真实枚举 |
+
+以下场景没有高阶配置，不要展示不存在的配置项：
+
+- 导入 PPT 生成
+- 链接生成 PPT
+- AI 单页生成
+
+## 统一执行原则
+
+v4.0.1 不允许黑盒到底。所有场景都要让用户看到关键阶段：
+
+```text
+鉴权检查中
+任务创建中
+解析输入中
+生成大纲中
+等待大纲确认
+保存大纲修改中
+生成内容中
+获取属性结构中
+加载模板中
+合成 PPT 中
+生成完成
+生成失败 / 可重试
+```
+
+大纲或结构确认要求：
+
+| 场景 | 确认方式 |
+|---|---|
+| 智能生成 | 先生成大纲，再获取 PPT 树形结构，用户修改 / 确认后选择模板，最后用修改后的大纲生成内容并合成作品 |
+| 文档上传 / Word 导入 | 接口返回大纲+内容，随后获取 PPT 树形结构，用户修改 / 确认大纲和内容后选择模板并生成作品 |
+| 导入 PPT 生成 | 修改大纲，再选择模板 |
+| 链接生成 PPT | 修改大纲，再选择模板 |
+| AI 单页生成 | 确认 / 修改单页结构，不按完整多页大纲处理 |
+
+获取 PPT 属性结构是大纲编辑的关键步骤：它用于把生成结果转为可编辑树形结构，保留页面顺序、父子关系、正文内容和页面类型，并为编辑大纲接口提供完整回写数据。不要只改标题文本后直接合成。
+
+## 禁止自动降级
+
+当某个场景接口返回未开通、无权限或 40008 时，必须停止当前流程并告知用户需要开通对应能力。
+
+禁止在未获得用户明确确认时自动切换场景，例如：
+
+- Word / 文档导入未开通时，不要自动改成智能生成。
+- 导入 PPT 生成失败时，不要自动改成文档上传。
+- 链接生成失败时，不要自动复制网页文本改成智能生成。
+
+正确做法：
+
+```text
+当前失败阶段：文档导入
+原因：该凭证未开通 Word / 文档导入能力
+下一步：请联系管理员开通；或者由用户明确确认后，改用“提取文档文本 + 智能生成”的 fallback
+```
+
+## 场景一：智能生成
+
+触发条件：用户只提供主题、标题或 PPT 需求描述。
+
+流程：
+
+```text
+1. 调用 senior_options_pretty 拉取真实高阶配置枚举
+2. 基于真实枚举收集智能生成高阶配置
+3. 将高阶配置组装成 senior_options JSON 对象，并在任务创建时传入
+4. 创建任务
+5. 生成大纲
+6. 获取 PPT 树形结构 /api/generate/data
+7. 展示完整大纲给用户
+8. 用户修改 / 确认大纲
+9. 加载模板，按用户配置返回指定数量
+10. 用户选择模板
+11. 提交编辑后大纲 /api/ai/chat/v2/outline/save
+12. 用大纲生成内容 /api/ai/chat/v2/content
+13. 等待内容完成
+14. 合成作品 /api/design/v2/save
+15. 导出并返回文件路径
+```
+
+高阶配置：
+
+- 页数
+- 受众
+- 场景
+- 语气
+- 语言
+- 切换模型
+- 是否打开联网搜索
+- 内容是否是参考文档
+
+常用命令：
+
+```bash
+bash scripts/aippt.sh senior_options_pretty
+bash scripts/aippt.sh generate "标题" --outline-only
+bash scripts/aippt.sh generate "标题" --options '{"page":3,"group":6,"scene":18,"tone":40,"language":47}'
+bash scripts/aippt.sh generate "标题" --model "deepSeek-v3" --web-search --options '{"page":3,"group":6,"scene":18,"tone":40,"language":47}'
+bash scripts/aippt.sh generate_continue "<task_id>" "<title>"
+```
+
+执行规则：
+
+- v4.0.1 默认必须先用 `generate ... --outline-only` 生成大纲，不要默认使用一键完整 `generate`。
+- 只有用户明确说“不需要修改大纲 / 直接生成成品”时，才允许使用不带 `--outline-only` 的一键完整 `generate`。
+- 大纲生成后必须先展示给用户。
+- 如果用户开启“逐节点确认”，按章节逐个确认。
+- 用户未确认前，不进入内容生成和 PPT 合成。
+- 智能生成的模板选择必须发生在请求内容前；`/api/ai/chat/v2/content` 会带模板并基于确认后的大纲生成内容。
+- 不要在用户修改大纲前调用 `/api/ai/chat/v2/content`，否则会导致“改大纲”失效。
+
+## 场景二：文档上传 / Word 导入
+
+触发条件：用户上传 Word、PDF、TXT、Markdown、WPS 等文档，并希望基于文档生成 PPT。
+
+流程：
+
+```text
+1. 调用 senior_options_pretty 拉取真实高阶配置枚举
+2. 基于真实枚举收集文档上传可支持的高阶配置
+3. 将可支持的配置组装成 senior_options JSON 对象，并在任务创建时传入
+4. 上传 / 解析文档
+5. 获取大纲 + 内容 /api/ai/chat/v2/word
+6. 获取 PPT 树形结构 /api/generate/data
+7. 展示大纲和内容给用户
+8. 用户修改 / 确认大纲和内容
+9. 加载模板，按用户配置返回指定数量
+10. 用户选择模板
+11. 提交编辑后大纲和内容 /api/ai/chat/v2/outline/save
+12. 合成作品 /api/design/v2/save
+13. 导出并返回文件路径
+```
+
+高阶配置：
+
+- 保持原文
+- 适当扩写
+- 润色美化
+- 切换模型
+
+常用命令：
+
+```bash
+bash scripts/aippt.sh senior_options_pretty
+bash scripts/aippt.sh generate_from_file "文件绝对路径" --outline-only
+bash scripts/aippt.sh generate_from_file "文件绝对路径" --options '{"page":3,"group":6,"scene":18,"tone":40,"language":47}'
+bash scripts/aippt.sh generate_save "<task_id>" "<title>"
+```
+
+执行规则：
+
+- 文档上传接口返回大纲+内容后，必须进入 `/api/generate/data` 获取树形结构。
+- 用户确认或修改大纲和内容前，不直接合成 PPT。
+- 如果返回“功能未开通 / 40008”，停止并提示开通文档导入能力；不要自动切换到智能生成模式。
+
+## 场景三：导入 PPT 生成
+
+触发条件：用户上传 PPT / PPTX，并希望基于已有 PPT 再生成。
+
+流程：
+
+```text
+1. 上传 / 解析 PPT
+2. 生成大纲或页面结构
+3. 展示大纲给用户
+4. 用户修改 / 确认大纲
+5. 获取 PPT 属性结构
+6. 加载模板，按用户配置返回指定数量
+7. 用户选择模板
+8. 合成 PPT
+9. 导出并返回文件路径
+```
+
+执行规则：
+
+- 无高阶配置，不要展示高阶配置项。
+- 必须支持修改大纲和选择模板。
+
+## 场景四：链接生成 PPT
+
+触发条件：用户提供 URL，并要求根据链接内容生成 PPT。
+
+流程：
+
+```text
+1. 创建 URL 任务
+2. 解析链接内容
+3. 生成大纲
+4. 展示大纲给用户
+5. 用户修改 / 确认大纲
+6. 获取 PPT 属性结构
+7. 加载模板，按用户配置返回指定数量
+8. 用户选择模板
+9. 合成 PPT
+10. 导出并返回文件路径
+```
+
+常用命令：
+
+```bash
+bash scripts/aippt.sh create_from_url "https://..."
+bash scripts/aippt.sh link "<task_id>"
+bash scripts/aippt.sh generate_save "<task_id>" "<title>"
+```
+
+执行规则：
+
+- 无高阶配置。
+- 不展示联网搜索开关。
+- 链接解析本身就是输入处理能力，不等同于智能生成的联网搜索。
+
+## 场景五：AI 单页生成
+
+触发条件：用户明确要求生成一页、单页、封面页、目录页、总结页或某个指定页面。
+
+流程：
+
+```text
+1. 理解单页需求
+2. 生成单页结构
+3. 展示单页结构给用户
+4. 用户确认 / 修改单页结构
+5. 生成单页 PPT
+6. 导出并返回文件路径
+```
+
+执行规则：
+
+- 无高阶配置。
+- 不按完整多页大纲处理。
+- 展示“单页结构确认”，例如：页面标题、核心信息、布局方向、视觉风格、关键元素。
+
+## 企业模板
+
+生成前可检查企业模板：
+
+```bash
+bash scripts/aippt.sh enterprise_templates
+```
+
+处理规则：
+
+| 返回结果 | 处理方式 |
+|---|---|
+| 无企业模板 | 使用普通模板列表 |
+| 有企业模板 | 优先询问用户是否使用企业模板 |
+
+模板列表展示数量必须受首次配置控制，默认返回 6 个。
+
+## 输出格式
+
+生成完成后，返回：
+
+- PPTX 文件路径。
+- 如有导出 PDF / Word / PNG，也返回对应文件路径。
+- 简短说明使用的场景、模板、是否修改过大纲。
+
+不要返回真实 AK / SK、token、签名、内部请求 header。
+
+## 失败处理
+
+任一阶段失败时，必须说明失败阶段和下一步动作：
+
+```text
+当前失败阶段：生成大纲
+可能原因：内容审核未通过 / 模型生成失败 / 任务不存在 / 鉴权失败
+建议动作：修改主题后重试 / 检查凭证 / 重新创建任务
+```
+
+常见错误处理：
+
+| 问题 | 处理 |
+|---|---|
+| 鉴权失败 | 检查技能设置中的 AK / SK，不要让用户在聊天里贴密钥 |
+| 余额不足 | 提示充值后重试 |
+| 内容审核失败 | 请用户修改主题或内容 |
+| 模板不可用 | 换模板或使用普通模板 |
+| 任务过期 | 重新创建任务 |
+
+## v4.0.1 验收标准
+
+- 五个场景都能被正确识别并进入对应流程。
+- 智能生成、文档上传展示高阶配置。
+- 导入 PPT、链接生成 PPT、AI 单页生成不展示高阶配置。
+- 智能生成先生成大纲，获取 PPT 树形结构，用户确认 / 修改大纲并选择模板后，再调用内容生成。
+- 文档上传 / Word 导入获取大纲+内容后，必须进入树形结构编辑和 `outline/save`，再生成作品。
+- 导入 PPT 生成支持修改大纲和选择模板。
+- 链接生成 PPT 支持修改大纲和选择模板，不展示联网搜索开关。
+- AI 单页生成展示单页结构确认。
+- 模板返回数量受配置控制。
+- AK / SK 不进入聊天上下文。
+- 用户修改大纲后，必须回写后再继续合成。
+- 失败时展示失败阶段和可重试动作。

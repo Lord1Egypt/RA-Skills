@@ -1,0 +1,29 @@
+# Core dependencies for Aesthetic Scorer Skill
+# Install with: pip install -r requirements.txt
+
+# PyTorch and torchvision (for CLIP + MLP model)
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Transformers (for CLIP model loading)
+transformers>=4.30.0
+
+# TensorFlow/Keras (for NIMA MobileNet model)
+# Use tf_keras for better compatibility with TensorFlow 2.x
+tensorflow>=2.12.0
+tf_keras>=2.12.0
+
+# Image processing
+Pillow>=10.0.0
+
+# HTTP requests
+requests>=2.25.0
+
+# Numerical computing
+numpy>=1.23.0
+
+# Optional: for visualization
+matplotlib>=3.7.0
+
+# Optional: for progress bars
+tqdm>=4.65.0

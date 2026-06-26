@@ -1,35 +1,113 @@
----
-name: "File Organization Rules"
-description: "Assist Jeff in organizing documents by adding a lowercase pinyin initial prefix to folders and categorizing files within Chinese-named subfolders."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/file-organization-rules"
-sourceUrl: "https://clawhub.ai/skills/file-organization-rules"
+# 文件整理技能规范
+
+## 核心理念
+帮助 Jeff 整理本机文档，按照统一的规则进行分类管理。
+
 ---
 
-# File Organization Rules
+## 一、命名规则（关键！）
 
-> Assist Jeff in organizing documents by adding a lowercase pinyin initial prefix to folders and categorizing files within Chinese-named subfolders.
+### ✅ 正确做法
+在文件夹名称**前面**加一个字母前缀，格式：`字母-原中文名`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/file-organization-rules`
-- **Source URL:** [https://clawhub.ai/skills/file-organization-rules](https://clawhub.ai/skills/file-organization-rules)
+### ❌ 错误做法
+- 把文件夹名改成全拼音（错误示例：`xuexiziliao`）
+- 把原中文名改成拼音（错误示例：`xuexi_ziliao`）
 
-## Overview
+### 字母规则
+- 取文件夹名称**第一个字**的**声母**（拼音首字母）
+- 小写字母
+- 已有前缀的文件夹保持不变
 
+### 示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/file-organization-rules
+| 正确做法 | 错误做法 |
+|---------|---------|
+| x-学习资料 | x-xuexiziliao |
+| P-PPT相关 | PPT-xiangguan |
+| s-书籍 | shu-ji |
+| y-业务研究 | ye-wu-yanjiu |
+
+---
+
+## 二、整理流程
+
+### 1. 扫描分析
+- 列出所有文件和文件夹
+- 识别空目录
+- 识别散落文件（根目录下的独立文件）
+- 了解文件内容分类
+
+### 2. 创建结构
 ```
+一级目录/          ← 按声母加前缀，如 x-学习资料
+├── 子目录1/      ← 中文原名，如 数据分析
+├── 子目录2/
+└── 子目录3/
+```
+
+### 3. 文件归类
+- 按内容类型将文件移动到对应子目录
+- 保持文件原名不变
+
+### 4. 收尾工作
+- 删除空目录
+- 检查根目录是否还有散落文件
+- 验证最终结构
+
+---
+
+## 三、注意事项
+
+### 必须遵守
+1. **只加前缀，不改名** — 前缀+原中文名，缺一不可
+2. **子目录保持中文** — 二级及以下目录不强制加前缀，但保持中文原名
+3. **删除空目录** — 整理后务必清理
+4. **确认后再操作** — 遇到不确定的先问 Jeff
+
+### 常见错误清单
+❌ 将"学习资料"改成"xuexiziliao"  
+❌ 将"刘洋分享"改成"liuyangfenxiang"  
+❌ 将"PPT相关"改成"pptxianggan"  
+❌ 只改一级目录，忘了子目录  
+❌ 合并不同单位（如广东中烟≠广东烟草）
+
+---
+
+## 四、单位区分提醒
+
+部分烟草行业单位名称相似但实际不同，整理时注意区分：
+
+| 单位 | 类型 |
+|------|------|
+| 广东中烟 | 工业企业（生产制造） |
+| 广东烟草 | 商业单位（省局/销售） |
+| 湖北中烟 | 工业企业 |
+| 湖北烟草 | 商业单位 |
+| 江苏中烟 | 工业企业 |
+| 江西中烟 | 工业企业 |
+| 江西烟草 | 商业单位 |
+| ... | 以此类推，工业vs商业不要合并 |
+
+---
+
+## 五、使用场景
+
+当 Jeff 要求整理某个文件夹时：
+1. 先读取此 skill 文件
+2. 分析文件夹内容
+3. 制定整理方案（先展示，不直接执行）
+4. 获得确认后执行
+5. 执行中遵守上述规则
+
+---
+
+## 六、示例：Jeff 的文档结构习惯
+
+Jeff 作为软件公司管理者 + 烟草行业审计专家，文档通常按以下维度分类：
+- 按客户/单位（各省级烟草、工业、商业）
+- 按年份（2024/2025/2026）
+- 按业务类型（PBC/售前/项目实施/会议纪要）
+- 按文件类型（PPT/Excel/Word/PDF）
+
+**核心原则：Jeff 的习惯 > 固定规则**，灵活调整。

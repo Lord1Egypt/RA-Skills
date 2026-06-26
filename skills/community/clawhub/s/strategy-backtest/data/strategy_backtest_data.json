@@ -1,0 +1,12 @@
+{
+  "records": [
+    {
+      "timestamp": "2026-03-25T16:10:16.456636",
+      "command": "backtest",
+      "input": "",
+      "status": "completed"
+    }
+  ],
+  "created": "2026-03-25T16:10:16.456623",
+  "tool": "strategy-backtest"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "04",
+  "name": "超高清视频显示",
+  "category": "战略性新兴产业",
+  "keywords": [
+    "超高清视频",
+    "8K",
+    "4K",
+    "显示技术",
+    "OLED",
+    "Mini LED",
+    "Micro LED"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "📺",
+    "maxDescriptionLength": 200
+  }
+}

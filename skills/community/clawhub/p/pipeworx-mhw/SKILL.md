@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx mhw"
-description: "MHW MCP — Monster Hunter World data (mhw-db.com, free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-mhw"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-mhw"
+name: pipeworx-mhw
+description: MHW MCP — Monster Hunter World data (mhw-db.com, free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/mhw
 ---
 
-# Pipeworx mhw
+# pipeworx-mhw
 
-> MHW MCP — Monster Hunter World data (mhw-db.com, free, no auth)
+MHW MCP — Monster Hunter World data (mhw-db.com, free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-mhw`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-mhw](https://clawhub.ai/skills/pipeworx-mhw)
+## Tools
 
-## Overview
+- `get_monsters`
+- `get_weapons`
+- `get_armor`
+- `get_skills`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-mhw
+```json
+{
+  "mcpServers": {
+    "pipeworx-mhw": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/mhw/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/mhw](https://pipeworx.io/packs/mhw)

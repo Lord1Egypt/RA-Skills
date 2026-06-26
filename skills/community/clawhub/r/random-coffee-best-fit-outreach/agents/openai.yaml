@@ -1,0 +1,4 @@
+interface:
+  display_name: "Random Coffee Outreach"
+  short_description: "Match opt-in coffee chats and draft outreach"
+  default_prompt: "Use $random-coffee-best-fit-outreach to rank opt-in random coffee matches and prepare offline double opt-in intro packets from consented participant data."

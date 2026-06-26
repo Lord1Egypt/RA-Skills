@@ -1,35 +1,95 @@
 ---
-name: "大圆虾-日程助手"
-description: "云计算客户经理日程管理与提醒系统。帮助管理客户拜访、合同到期、续费提醒等日程安排。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/schedule-assistant"
-sourceUrl: "https://clawhub.ai/skills/schedule-assistant"
+name: dayuangxia-schedule-assistant
+description: 云计算客户经理日程管理与提醒系统。帮助管理客户拜访、合同到期、续费提醒等日程安排。
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": {},
+        "install": []
+      },
+  }
 ---
 
 # 大圆虾-日程助手
 
-> 云计算客户经理日程管理与提醒系统。帮助管理客户拜访、合同到期、续费提醒等日程安排。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/schedule-assistant`
-- **Source URL:** [https://clawhub.ai/skills/schedule-assistant](https://clawhub.ai/skills/schedule-assistant)
+为云计算客户经理提供日程管理、提醒设置、到期预警等功能。
 
-## Overview
+## 使用场景
 
+- **客户拜访安排**：管理客户拜访日程
+- **合同到期提醒**：合同续签、到期预警
+- **续费提醒**：云服务续费时间管理
+- **会议安排**：客户会议、内部会议管理
+- **周期性任务**：月度报表、季度总结等
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/schedule-assistant
+## 工具使用
+
+### 日程管理
+
+- `cron`：设置周期性提醒
+- `message`：发送提醒通知
+- `feishu_doc`：在飞书中创建日程文档
+
+### 文件操作
+
+- `read`：读取日程文件
+- `write`：创建/更新日程记录
+
+## 示例任务
+
+### 1. 设置客户拜访提醒
+
 ```
+设置提醒：明天上午10点拜访ABC科技张经理
+提醒内容：带好云服务器方案书
+```
+
+### 2. 合同到期预警
+
+```
+查询所有即将到期的合同（30天内）
+生成续费提醒列表
+```
+
+### 3. 续费管理
+
+```
+云服务器续费提醒：
+- 客户A：2026-04-15 到期
+- 客户B：2026-04-20 到期
+- 客户C：2026-04-25 到期
+```
+
+### 4. 周工作计划
+
+```
+生成本周工作计划模板
+包含：客户拜访、会议、交付物
+```
+
+## 配置文件
+
+建议在 `TOOLS.md` 中添加日程管理配置：
+
+```markdown
+### 日程助手
+
+- 提前提醒：1天、3天、7天
+- 工作时间：9:00-18:00
+- 提醒方式：消息推送
+```
+
+## 注意事项
+
+1. 合理设置提醒时间，避免打扰
+2. 及时更新日程状态
+3. 重要日期建议多重提醒
+
+---
+
+**版本：1.0.0**
+**作者：大圆虾**
+**发布日期：2026-04-07**

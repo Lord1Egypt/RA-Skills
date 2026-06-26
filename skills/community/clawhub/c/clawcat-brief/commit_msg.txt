@@ -1,0 +1,8 @@
+feat: v7 — pytest 测试套件 + NumericGrounder 评分修复 + README 重写
+
+- 新增 conftest / test_e2e / test_nodes / test_faithfulness（50 用例）
+- 修复 NumericGrounder 评分公式（* 0.5 钳位导致永远通过）
+- Write 阶段接入 instructor llm_validator + 小模型数值校验
+- Summarize 提取 key_facts 作为 Fact Ledger
+- README 去 AI 味，改为开发者笔记风格
+- 删除 REPAIR_LOG.md

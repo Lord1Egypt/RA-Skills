@@ -1,35 +1,92 @@
 ---
-name: "aigc-reducer"
-description: "降低论文AIGC检测率的专业化处理流水线。当用户需要降低AI生成文本检测率、降低AIGC百分比、去除AI写作特征、规避Turnitin检测、论文去AI化、让论文更像人类写作时使用。本skill包含5个专业化模块：词汇清洗、句法节奏打乱、机械连词隐蔽、学术克制注入、困惑度重构。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aigc-reducer"
-sourceUrl: "https://clawhub.ai/skills/aigc-reducer"
+name: aigc-reducer
+description: 降低论文AIGC检测率的专业化处理流水线。当用户需要降低AI生成文本检测率、降低AIGC百分比、去除AI写作特征、规避Turnitin检测、论文去AI化、让论文更像人类写作时使用。本skill包含5个专业化模块：词汇清洗、句法节奏打乱、机械连词隐蔽、学术克制注入、困惑度重构。
 ---
 
-# aigc-reducer
+# AIGC检测率降低流水线
 
-> 降低论文AIGC检测率的专业化处理流水线。当用户需要降低AI生成文本检测率、降低AIGC百分比、去除AI写作特征、规避Turnitin检测、论文去AI化、让论文更像人类写作时使用。本skill包含5个专业化模块：词汇清洗、句法节奏打乱、机械连词隐蔽、学术克制注入、困惑度重构。
+本skill提供5个专业化处理模块，系统性消除AI生成文本的机械化特征，注入人类写作特有的微妙语境和句法突发性。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aigc-reducer`
-- **Source URL:** [https://clawhub.ai/skills/aigc-reducer](https://clawhub.ai/skills/aigc-reducer)
+## 流水线顺序
 
-## Overview
+处理顺序：**词汇清洗 → 句法节奏打乱 → 逻辑衔接专家 → 学术克制注入 → 困惑度重构**
 
+每次处理约500字的段落。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aigc-reducer
-```
+---
+
+## 模块1：词汇精炼器 (AI黑话清洗)
+
+清洗"AI专属黑话"，替换为精准的学术术语。
+
+**触发词清单**：详见 [references/jargon-list.md](references/jargon-list.md)
+
+### 处理流程
+1. 识别AI常见触发词（深入探讨、多层面的画卷、促进、关键的、强调、阐明等）
+2. 用精准、符合语境的学术术语替换
+3. 保持核心论点和经验数据不变
+4. 如有必要，直接重写整个分句
+
+---
+
+## 模块2：节奏变频师 (句法节奏打乱)
+
+最大化文本的"突发性(Burstiness)"，打破AI单调的句式。
+
+### 处理流程
+1. 在冗长复杂的从句之间，穿插极短的爆发性短句（5-8词）
+2. 将被动迂回的长句转化为主动直接陈述
+3. 保持学术专业基调
+4. 确保底层逻辑流完好
+
+---
+
+## 模块3：逻辑衔接专家 (机械连词隐蔽)
+
+消灭机械过渡词，利用概念自然重叠创建隐形连接。
+
+**禁用连词**：此外、而且、另外、因此、从而、Furthermore、Moreover、Additionally、Therefore、Thus
+
+### 处理流程
+1. 移除段落开头和机械位置的连接词
+2. 通过"语义链"创造过渡：上一句句尾概念回荡在下一句主语中
+3. 确保过渡逻辑顺理成章
+
+---
+
+## 模块4：语义精细化工具 (学术克制注入)
+
+软化AI傲慢的绝对确定性，注入学术模糊限制语。
+
+**绝对化动词替换**：
+- 证明了 → 暗示了
+- 确保了 → 表明了
+- 保证了 → 可能有助于
+
+### 处理流程
+1. 将绝对化陈述替换为克制替代
+2. 在宽泛主张中注入方法论警示语和边界条件
+3. 保持学术自信但不傲慢
+
+---
+
+## 模块5：困惑度重构员 (困惑度与语境重构)
+
+最大化文本"困惑度"，用罕见但精准的学术表达替换陈词滥调。
+
+**常见陈词滥调**：快速发展、取得平衡、深入研究、显著提高
+
+### 处理流程
+1. 识别高预测性词汇搭配
+2. 替换为罕见且精准的学术表达
+3. 保持完美连贯性和学术严谨性
+4. 确保词汇符合顶刊阅读习惯
+
+---
+
+## 使用建议
+
+- 每次处理约500字段落
+- 按顺序依次通过5个模块
+- 保持原始论点和数据完整性
+- 最终输出应呈现人类学者特有的审慎与自然节奏

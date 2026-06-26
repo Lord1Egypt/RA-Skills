@@ -1,0 +1,25 @@
+{
+  "name": "book-review",
+  "displayName": "Book Review",
+  "version": "1.1.1",
+  "description": "Expand user-provided reading notes into structured book reviews using local templates only",
+  "author": "姜海东",
+  "license": "MIT",
+  "keywords": ["book", "review", "reading", "notes", "local"],
+  "homepage": "https://github.com/harrylabs0913/openclaw-skill-book-review",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabs0913/openclaw-skill-book-review.git"
+  },
+  "categories": ["productivity", "reading", "writing"],
+  "compatibility": {
+    "openclaw": ">=2026.3.8"
+  },
+  "triggers": [
+    "书评",
+    "book review",
+    "阅读笔记",
+    "reading notes",
+    "读书笔记"
+  ]
+}

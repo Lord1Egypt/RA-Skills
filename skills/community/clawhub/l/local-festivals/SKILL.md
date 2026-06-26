@@ -1,35 +1,26 @@
 ---
 name: "Local Festivals"
-description: "提供非遗活动列表、庙会灯会指南及传统节日文化科普。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-festivals"
-sourceUrl: "https://clawhub.ai/skills/local-festivals"
+description: "提供非遗活动列表、庙会灯会指南及传统节日文化科普。 "
 ---
 
-# Local Festivals
+# 民俗节庆
 
-> 提供非遗活动列表、庙会灯会指南及传统节日文化科普。
+## 筛选项
+- 地理距离（步行/骑行/驾车范围）
+- 社交热度（人气榜/点评分/新开业）
+- 消费档次（实惠/中端/轻奢/体验型）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-festivals`
-- **Source URL:** [https://clawhub.ai/skills/local-festivals](https://clawhub.ai/skills/local-festivals)
+## 返回字段
+- 实时排队情况/预约通道/电子票号
+- 营业时间变动/停车信息/导航精准路径
+- 社区真实图库/探店笔记/避坑清单汇总
 
-## Overview
+## 示例请求
+- “如何快速使用 民俗节庆 处理 [具体场景任务] ？”
+- “民俗节庆 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 结合地理信息变动 with 点评社区新热度进行灵活调整
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/local-festivals
-```
+## 注意事项
+- 节假日建议提前查询排队状态；到店体验请尊重商家劳动与规则。

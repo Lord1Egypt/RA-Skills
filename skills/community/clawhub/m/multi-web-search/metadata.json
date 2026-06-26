@@ -1,0 +1,31 @@
+{
+  "name": "multi-web-search",
+  "display_name": "Multi-Web-Search | 多引擎网页搜索",
+  "version": "3.4.0",
+  "description": "Free multi-engine web search skill. No API key required, supports 20 search engines (11 international + 7 domestic + 2 professional) with parallel search, time filters, and site filters. | 免费多引擎网页搜索技能。无需 API Key，支持 20 个搜索引擎并行搜索、时间过滤、站点过滤。",
+  "description_short": "Free 20-engine web search | 免费 20 引擎网页搜索",
+  "engines": 20,
+  "requires_api_key": false,
+  "features": [
+    "multi-engine",
+    "image-search",
+    "news-search",
+    "video-search",
+    "book-search",
+    "dht-acceleration",
+    "proxy-support",
+    "privacy-engines",
+    "time-filter",
+    "site-filter",
+    "fallback-fetch"
+  ],
+  "dependencies": {
+    "python3": "required",
+    "ddgs": "suggested",
+    "requests": "auto-install",
+    "beautifulsoup4": "auto-install"
+  },
+  "regions": ["cn", "global"],
+  "privacy_friendly": true,
+  "free": true
+}

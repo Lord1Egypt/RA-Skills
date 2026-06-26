@@ -1,35 +1,38 @@
 ---
-name: "Vestaboard"
-description: "Read and write messages on a Vestaboard using the Vestaboard Cloud API (cloud.vestaboard.com) and optional legacy RW endpoint. Use when asked to display text on a Vestaboard, update a sign/board, show a short status message, render simple pixel-art using color/filled character…"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vestaboard"
-sourceUrl: "https://clawhub.ai/skills/vestaboard"
+name: vestaboard
+description: Read and write messages on a Vestaboard using the Vestaboard Cloud API (cloud.vestaboard.com) and optional legacy RW endpoint. Use when asked to display text on a Vestaboard, update a sign/board, show a short status message, render simple pixel-art using color/filled character codes, or retrieve the current board message.
 ---
 
 # Vestaboard
 
-> Read and write messages on a Vestaboard using the Vestaboard Cloud API (cloud.vestaboard.com) and optional legacy RW endpoint. Use when asked to display text on a Vestaboard, update a sign/board, show a short status message, render simple pixel-art using color/filled character…
+## Security
+- Require a token via environment variables (never inline keys in prompts, logs, or commits).
+  - Preferred: `VESTABOARD_TOKEN`
+  - Optional legacy fallback: `VESTABOARD_RW_KEY`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vestaboard`
-- **Source URL:** [https://clawhub.ai/skills/vestaboard](https://clawhub.ai/skills/vestaboard)
+## Constraints
+- Flagship Vestaboard layout is **6 rows x 22 cols**.
+- Text input is formatted to 6x22 by default (uppercase + word wrap; truncates overflow).
 
-## Overview
+## Quick usage (local CLI)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/vestaboard
+# from repo root
+npm install
+
+# Preview formatting only
+node scripts/vb.js preview "Hello from Quarterbridge Farm"
+
+# Read current message (JSON)
+node scripts/vb.js read
+
+# Write text
+node scripts/vb.js write "EGGS READY"
+
+# Write a numeric layout (6x22 array of character codes)
+node scripts/vb.js write-layout content/layouts/forest-depth.json
 ```
+
+## Sample content
+- Numeric layouts live in `content/layouts/*.json`
+- Human review previews live in `content/previews/*.md`

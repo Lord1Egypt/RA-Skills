@@ -1,0 +1,199 @@
+{
+	"norms": {
+		"middle_age": {
+			"factors": {
+				"additional": {
+					"mean": 1.33,
+					"sd": 0.48
+				},
+				"anxiety": {
+					"mean": 1.38,
+					"sd": 0.42
+				},
+				"depression": {
+					"mean": 1.48,
+					"sd": 0.57
+				},
+				"hostility": {
+					"mean": 1.45,
+					"sd": 0.54
+				},
+				"interpersonal_sensitivity": {
+					"mean": 1.6,
+					"sd": 0.58
+				},
+				"obsessive_compulsive": {
+					"mean": 1.58,
+					"sd": 0.55
+				},
+				"paranoid_ideation": {
+					"mean": 1.4,
+					"sd": 0.55
+				},
+				"phobic_anxiety": {
+					"mean": 1.25,
+					"sd": 0.43
+				},
+				"psychoticism": {
+					"mean": 1.27,
+					"sd": 0.4
+				},
+				"somatization": {
+					"mean": 1.42,
+					"sd": 0.52
+				}
+			},
+			"name": "中年常模 (30-49岁)",
+			"sample_size": 452
+		},
+		"national": {
+			"factors": {
+				"additional": {
+					"mean": 1.35,
+					"sd": 0.5
+				},
+				"anxiety": {
+					"mean": 1.39,
+					"sd": 0.43
+				},
+				"depression": {
+					"mean": 1.5,
+					"sd": 0.59
+				},
+				"hostility": {
+					"mean": 1.48,
+					"sd": 0.5600000000000001
+				},
+				"interpersonal_sensitivity": {
+					"mean": 1.65,
+					"sd": 0.61
+				},
+				"obsessive_compulsive": {
+					"mean": 1.62,
+					"sd": 0.58
+				},
+				"paranoid_ideation": {
+					"mean": 1.43,
+					"sd": 0.57
+				},
+				"phobic_anxiety": {
+					"mean": 1.23,
+					"sd": 0.41
+				},
+				"psychoticism": {
+					"mean": 1.29,
+					"sd": 0.42
+				},
+				"somatization": {
+					"mean": 1.37,
+					"sd": 0.48
+				}
+			},
+			"name": "全国常模",
+			"positive_items": {
+				"cutoff": 43,
+				"mean": 24.92,
+				"sd": 18.41
+			},
+			"sample_size": 1388,
+			"source": "中国心理卫生杂志",
+			"total": {
+				"cutoff": 160,
+				"mean": 129.96,
+				"sd": 38.76
+			}
+		},
+		"senior": {
+			"factors": {
+				"additional": {
+					"mean": 1.3,
+					"sd": 0.45
+				},
+				"anxiety": {
+					"mean": 1.36,
+					"sd": 0.4
+				},
+				"depression": {
+					"mean": 1.45,
+					"sd": 0.54
+				},
+				"hostility": {
+					"mean": 1.42,
+					"sd": 0.52
+				},
+				"interpersonal_sensitivity": {
+					"mean": 1.58,
+					"sd": 0.55
+				},
+				"obsessive_compulsive": {
+					"mean": 1.55,
+					"sd": 0.52
+				},
+				"paranoid_ideation": {
+					"mean": 1.38,
+					"sd": 0.52
+				},
+				"phobic_anxiety": {
+					"mean": 1.28,
+					"sd": 0.45
+				},
+				"psychoticism": {
+					"mean": 1.25,
+					"sd": 0.38
+				},
+				"somatization": {
+					"mean": 1.5,
+					"sd": 0.58
+				}
+			},
+			"name": "老年常模 (50岁以上)",
+			"sample_size": 155
+		},
+		"youth": {
+			"factors": {
+				"additional": {
+					"mean": 1.36,
+					"sd": 0.51
+				},
+				"anxiety": {
+					"mean": 1.4,
+					"sd": 0.44
+				},
+				"depression": {
+					"mean": 1.52,
+					"sd": 0.6
+				},
+				"hostility": {
+					"mean": 1.5,
+					"sd": 0.58
+				},
+				"interpersonal_sensitivity": {
+					"mean": 1.69,
+					"sd": 0.63
+				},
+				"obsessive_compulsive": {
+					"mean": 1.65,
+					"sd": 0.61
+				},
+				"paranoid_ideation": {
+					"mean": 1.45,
+					"sd": 0.59
+				},
+				"phobic_anxiety": {
+					"mean": 1.22,
+					"sd": 0.4
+				},
+				"psychoticism": {
+					"mean": 1.3,
+					"sd": 0.43
+				},
+				"somatization": {
+					"mean": 1.34,
+					"sd": 0.45
+				}
+			},
+			"name": "青年常模 (18-29岁)",
+			"sample_size": 781
+		}
+	}
+}

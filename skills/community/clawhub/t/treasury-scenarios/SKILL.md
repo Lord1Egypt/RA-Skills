@@ -1,35 +1,119 @@
----
-name: "Treasury Scenarios"
-description: "提供邮储银行司库系统核心业务场景查询，返回业务流程、接口组合及对应ASCII流程图支持模糊关键词匹配。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/treasury-scenarios"
-sourceUrl: "https://clawhub.ai/skills/treasury-scenarios"
----
+# Treasury Scenarios Skill - 司库系统业务场景技能
 
-# Treasury Scenarios
+## 描述
 
-> 提供邮储银行司库系统核心业务场景查询，返回业务流程、接口组合及对应ASCII流程图支持模糊关键词匹配。
+本技能提供邮储银行司库系统接口业务场景查询能力。当用户询问业务场景名称时，返回对应的业务流程、接口组合及可视化流程图。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/treasury-scenarios`
-- **Source URL:** [https://clawhub.ai/skills/treasury-scenarios](https://clawhub.ai/skills/treasury-scenarios)
+## 能力
 
-## Overview
+- 根据场景名称/关键词匹配对应业务场景
+- 返回详细的业务流程步骤
+- 提供接口组合及调用顺序
+- 生成 ASCII 流程图/时序图
+- 支持场景列表查询
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/treasury-scenarios
+### 触发方式
+
+用户询问包含以下关键词时触发：
+- 业务场景
+- 接口组合
+- 如何实现 XXX
+- XXX 流程
+- 司库系统场景
+
+### 示例查询
+
 ```
+用户：工资代发怎么做？
+助手：【工资发放场景】
+流程：1.批量工资代发 (601114) → 2.结果查询 (601115)
+[流程图]
+```
+
+```
+用户：资金归集有哪些接口？
+助手：【资金归集场景】
+流程：1.查询归集明细 (601303) → 2.手工下拨 (601304) → 3.结果查询 (601732)
+[流程图]
+```
+
+## 支持的业务场景
+
+| 场景 ID | 场景名称 | 关键词 |
+|--------|---------|--------|
+| SC001 | 企业日常资金管理 | 账户管理、余额查询、明细查询、资金监控 |
+| SC002 | 员工工资发放 | 工资代发、批量代发、薪资发放 |
+| SC003 | 供应商付款管理 | 供应商付款、单笔支付、申请单 |
+| SC004 | 资金归集与下拨 | 资金归集、下拨、资金池、内部调拨 |
+| SC005 | 资金计划管理 | 资金计划、预算填报、预算追加、预算查询 |
+| SC006 | 融资还款管理 | 融资还款、贷款还款、付款单 |
+| SC007 | 免密登录集成 | 免密登录、单点登录、令牌 |
+| SC008 | 交易回单管理 | 回单、电子回单、凭证 |
+| SC009 | 账户历史余额查询 | 历史余额、余额查询 |
+| SC010 | 月度资金运营闭环 | 资金运营、月度闭环、完整流程 |
+
+## 场景数据结构
+
+每个场景包含以下字段：
+
+```json
+{
+  "id": "SC001",
+  "name": "企业日常资金管理",
+  "keywords": ["账户管理", "余额查询", "明细查询", "资金监控"],
+  "description": "实现企业银行账户的统一监控、资金头寸管理和交易流水查询",
+  "interfaces": [
+    {
+      "code": "601113",
+      "name": "查询租户下直连账户列表",
+      "order": 1,
+      "required": true
+    },
+    {
+      "code": "601118",
+      "name": "账户余额实时查询",
+      "order": 2,
+      "required": true
+    },
+    {
+      "code": "601119",
+      "name": "查询明细",
+      "order": 3,
+      "required": true
+    },
+    {
+      "code": "601203",
+      "name": "明细关联回单信息查询",
+      "order": 4,
+      "required": false
+    }
+  ],
+  "flowDiagram": "ASCII 流程图",
+  "value": "应用价值说明"
+}
+```
+
+## 文件结构
+
+```
+treasury-scenarios/
+├── SKILL.md              # 本文件
+├── scenarios.json        # 场景数据
+├── interfaces.json       # 接口详细信息
+├── handler.py           # 处理逻辑
+└── assets/              # 图片资源
+    └── flowcharts/      # 流程图
+```
+
+## 注意事项
+
+1. 接口代码必须与文档一致
+2. 流程图使用 ASCII 或 mermaid 格式
+3. 支持模糊匹配场景关键词
+4. 无匹配时返回场景列表供用户选择
+
+## 版本
+
+- v1.0.0 - 初始版本，包含 10 个核心业务场景

@@ -1,0 +1,19 @@
+{
+  "id": "memory-crystal",
+  "name": "Memory Crystal",
+  "description": "Sovereign memory system — search, remember, forget across all agent conversations and files.",
+  "skills": ["./skills"],
+  "binFiles": [
+    {
+      "name": "crystal-capture.sh",
+      "source": "dist/crystal-capture.sh",
+      "executable": true,
+      "purpose": "cron capture target; runs every minute, ingests JSONL transcripts into Crystal"
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

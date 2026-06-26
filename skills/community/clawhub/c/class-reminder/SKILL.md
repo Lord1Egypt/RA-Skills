@@ -1,35 +1,75 @@
 ---
-name: "Class Reminder"
-description: "课程提醒助手。解析 Excel 课程表（支持教师课表格式），按日期梳理课程安排，支持查询今天/明天/指定日期的课程，生成上课提醒。触发场景：(1) 用户上传课程表后询问"明天有什么课"、"今天上什么课"、"XX号有什么课"；(2) 设置定时提醒，每天/每周自动推送次日课程；(3) 解析、导入、更新课程表；(4)..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/class-reminder"
-sourceUrl: "https://clawhub.ai/skills/class-reminder"
+name: class-reminder
+description: 课程提醒助手。解析 Excel 课程表（支持教师课表格式），按日期梳理课程安排，支持查询今天/明天/指定日期的课程，生成上课提醒。触发场景：(1) 用户上传课程表后询问"明天有什么课"、"今天上什么课"、"XX号有什么课"；(2) 设置定时提醒，每天/每周自动推送次日课程；(3) 解析、导入、更新课程表；(4) 需要生成课程提醒文本。
 ---
 
-# Class Reminder
+# 课程提醒 Skill
 
-> 课程提醒助手。解析 Excel 课程表（支持教师课表格式），按日期梳理课程安排，支持查询今天/明天/指定日期的课程，生成上课提醒。触发场景：(1) 用户上传课程表后询问"明天有什么课"、"今天上什么课"、"XX号有什么课"；(2) 设置定时提醒，每天/每周自动推送次日课程；(3) 解析、导入、更新课程表；(4)...
+## 核心流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/class-reminder`
-- **Source URL:** [https://clawhub.ai/skills/class-reminder](https://clawhub.ai/skills/class-reminder)
+### 1. 解析课程表
 
-## Overview
+用户提供 Excel 课程表文件后，用脚本解析：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/class-reminder
+python3 scripts/class_reminder.py parse <excel文件> [--semester-start YYYY-MM-DD]
 ```
+
+支持两种格式：
+- **标准格式**：每行一节课程，包含课程名称、星期、时间、地点等列
+- **教师课表格式**：行列式表格，行=时间段，列=星期，单元格=课程信息
+
+解析后保存课程数据到 `data/schedule.json`（在工作区创建）。
+
+### 2. 查询课程
+
+```bash
+# 明天的课程
+python3 scripts/class_reminder.py tomorrow data/schedule.json
+
+# 今天的课程  
+# 指定日期
+python3 scripts/class_reminder.py date data/schedule.json --date 2026-04-25
+```
+
+### 3. 生成提醒文本
+
+脚本返回的 `formatted` 字段即为可直接发送的提醒文案。
+
+## 教师课表格式支持
+
+**表格结构：**
+- 行：时间段（第1-2节、第3-4节...）
+- 列：星期一到星期日
+- 单元格：课程信息，如 `【实验】网络与系统安全 [1-4节][6-6周] [T2604-T2606]`
+
+**课程信息解析：**
+- 课程类型：【实验】、【理论】等
+- 课程名称：网络与系统安全
+- 节次范围：[1-4节]
+- 周次范围：[6-6周] 或 [11-12,14-14周]
+- 教室：[T2604-T2606]
+
+**特殊处理：**
+- 一个单元格可包含多门课程（换行分隔）
+- 自动展开节次范围和周次范围
+- 支持复杂的周次格式（如 "11-12,14-14周"）
+
+## 定时提醒
+
+设置每天提醒明日课程：
+
+1. 首次需要用户提供课程表文件并解析
+2. 使用 cron 或 heartbeat 定时检查  
+3. 每次触发时运行 `tomorrow` 命令，发送 `formatted` 文本
+
+## 数据存储
+
+解析后的课程数据保存到 `data/schedule.json`，后续查询直接读取，无需重复解析。
+
+## 注意事项
+
+- 学期开始日期影响周次计算，默认为当前学期估算（9月秋季/2月春季）
+- 用户可显式指定 `--semester-start` 覆盖默认值
+- 调休、节假日需要手动更新课程表或添加备注
+- 依赖 openpyxl，首次使用需 `pip install openpyxl`

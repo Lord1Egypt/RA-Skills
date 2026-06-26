@@ -1,0 +1,4 @@
+interface:
+  display_name: "Batch Migration Orchestrator"
+  short_description: "Plan and parallelize broad codebase migrations"
+  default_prompt: "Break this large migration into isolated work units, define verification, and run the units in parallel."

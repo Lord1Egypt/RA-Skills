@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pastoral Prayer"
+  short_description: "Write a full pastoral prayer for a given scenario"
+  default_prompt: "Use $pastoral-prayer to write a pastoral prayer for [scenario]."

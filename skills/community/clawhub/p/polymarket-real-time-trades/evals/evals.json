@@ -1,0 +1,29 @@
+{
+  "skill_name": "polymarket-prediction-trades",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Stream Polymarket prediction trades in real time. I want to see a live feed of trades on Polygon with buyer, seller, and USD amounts.",
+      "expected_output": "Subscribes to the Bitquery WebSocket (stream_polymarket.py or inline gql subscription), uses EVM(network: matic) PredictionTrades with TransactionStatus Success: true, and streams formatted OutcomeTrade (Buyer, Seller, CollateralAmountInUSD), Question (Title), Outcome (Label), and Transaction (Hash) for each trade.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need a real-time Polymarket feed with market question, outcome label, and price in USD for each trade.",
+      "expected_output": "Runs the streaming script or subscription that returns PredictionTrades on matic; presents Trade.Prediction.Question (Title, MarketId, ResolutionSource), Trade.Prediction.Outcome (Label), and Trade.OutcomeTrade (PriceInUSD, CollateralAmountInUSD, IsOutcomeBuy) for each event.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Subscribe to live Polymarket data on Polygon and show me the prediction market trades as they come in.",
+      "expected_output": "Connects via WebSocket to Bitquery, subscribes to EVM.PredictionTrades on network matic with TransactionStatus Success true, and prints each formatted trade (question, outcome, USD amounts, tx hash) as it is streamed until the user stops or timeout.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Give me a live prediction market trade feed — specifically for Polymarket on Polygon.",
+      "expected_output": "Uses the Polymarket prediction-trade subscription (EVM network matic, PredictionTrades where Success true) to stream real-time trade data including OutcomeTrade (Buyer, Seller, Amount, CollateralAmountInUSD, PriceInUSD), Prediction (Question, Outcome, Marketplace), Block.Time, and Transaction.Hash.",
+      "files": []
+    }
+  ]
+}

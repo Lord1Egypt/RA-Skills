@@ -1,35 +1,34 @@
 ---
-name: "Noir Photo Generator"
-description: "Generate dramatic film noir style portraits and scenes with AI. Perfect for creating 1940s detective aesthetic photos, black and white cinematic portraits, v..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/noir-photo-generator"
-sourceUrl: "https://clawhub.ai/skills/noir-photo-generator"
+name: noir-photo-generator
+description: Generate dramatic film noir style portraits and scenes with AI. Perfect for creating 1940s detective aesthetic photos, black and white cinematic portraits, vintage crime fiction artwork, moody atmospheric shots with venetian blind shadows, rain-soaked streets, and classic Hollywood noir vibes for social media, book covers, posters, and creative projects via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Noir Photo Generator
+# Film Noir Photo Generator
 
-> Generate dramatic film noir style portraits and scenes with AI. Perfect for creating 1940s detective aesthetic photos, black and white cinematic portraits, v...
+Generate dramatic film noir style portraits and scenes with AI. Perfect for creating 1940s detective aesthetic photos, black and white cinematic portraits, vintage crime fiction artwork, moody atmospheric shots with venetian blind shadows, rain-soaked streets, and classic Hollywood noir vibes for social media, book covers, posters, and creative projects.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/noir-photo-generator`
-- **Source URL:** [https://clawhub.ai/skills/noir-photo-generator](https://clawhub.ai/skills/noir-photo-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/noir-photo-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create film noir photo generator images.
+
+## Quick start
+```bash
+node noirphotogenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/noir-photo-generator
 ```

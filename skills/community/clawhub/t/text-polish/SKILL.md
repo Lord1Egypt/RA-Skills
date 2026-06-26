@@ -1,35 +1,56 @@
 ---
-name: "Text Polish"
-description: "对文本进行润色和语义纠错。移除错别字、改善表达、修正语义不一致、保持风格一致。用于用户说检查文字、校对、润色、修正表达、改一改。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, memory, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/text-polish"
-sourceUrl: "https://clawhub.ai/skills/text-polish"
+name: text-polish
+description: 对文本进行润色和语义纠错。移除错别字、改善表达、修正语义不一致、保持风格一致。用于用户说检查文字、校对、润色、修正表达、改一改。
 ---
 
-# Text Polish
+# 文本润色系统
 
-> 对文本进行润色和语义纠错。移除错别字、改善表达、修正语义不一致、保持风格一致。用于用户说检查文字、校对、润色、修正表达、改一改。
+对中文文本进行质量提升：纠错、润色、语义修正、风格统一。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/text-polish`
-- **Source URL:** [https://clawhub.ai/skills/text-polish](https://clawhub.ai/skills/text-polish)
+## 功能范围
 
-## Overview
+### 1. 错别字纠正
+- 形近字错误（已/以、在/再、的/地/得）
+- 语序错误
+- 标点符号错误
 
+### 2. 表达润色
+- 啰嗦表达 → 简洁
+- 口语化 → 专业化（视场景调整）
+- 中英混杂 → 全中文或全英文统一
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/text-polish
+### 3. 语义一致性
+- 同一概念前后名称不统一 → 统一
+- 前后矛盾的观点 → 标注冲突
+- 逻辑不通顺 → 修正逻辑链
+
+### 4. 风格统一
+- 段落长度均衡
+- 标题层级清晰
+- 格式一致
+
+## 不做的事
+
+- **不改变原意**：润色不是改写，核心意思必须保留
+- **不添加内容**：只改善表达，不增加新信息
+- **不删除实质性内容**：删减只针对冗余
+
+## 输出格式
+
+润色后返回：
 ```
+【润色后文本】
+[润色完成的版本]
+
+【修改说明】（如有必要）
+- 第2段：删除了重复表达
+- 第3段：统一了"他/她"的性别指代
+```
+
+## 调用方式
+
+用户直接发送需要润色的文本，或说"润色"、"校对"、"改一改"、"检查文字"。
+
+## 安装
+
+本技能无需额外配置，直接启用即可。

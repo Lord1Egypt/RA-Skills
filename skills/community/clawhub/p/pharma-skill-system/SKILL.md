@@ -1,35 +1,79 @@
 ---
-name: "Pharma Skill System"
-description: "医药行业十大功能集群技能体系。基于"任务为中心，AI pipeline驱动"思想，覆盖情报采集、内容生产、活动运营、数据分析、知识管理、合规审核、KOL运营、流程协同、注册法规、供应链生产十大业务流。触发词：医药、制药、药企、医学事务、市场部、推广部、合规、PV、药物警戒、KOL、学术会议、竞品分析、医保、招标、..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pharma-skill-system"
-sourceUrl: "https://clawhub.ai/skills/pharma-skill-system"
+name: pharma-skill-system
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 医药行业十大功能集群技能体系。基于"任务为中心，AI pipeline驱动"思想，覆盖情报采集、内容生产、活动运营、数据分析、知识管理、合规审核、KOL运营、流程协同、注册法规、供应链生产十大业务流。触发词：医药、制药、药企、医学事务、市场部、推广部、合规、PV、药物警戒、KOL、学术会议、竞品分析、医保、招标、DRG、临床研究、DA、核心信息屋、Message House、ABP、品牌计划、准入、讲者、卫星会、CSR、ICSR、RMP、PSUR、医学写作、NDA、IND、CTA、BLA、ANDA、注册、法规、NMPA、FDA、GMP、QA、QC、供应链、生产、冷链、RWS、RWD、RWE、HTA、药物经济学、定价、谈判、pharma、pharmaceutical。
 ---
 
-# Pharma Skill System
+# 医药行业十大功能集群技能体系
 
-> 医药行业十大功能集群技能体系。基于"任务为中心，AI pipeline驱动"思想，覆盖情报采集、内容生产、活动运营、数据分析、知识管理、合规审核、KOL运营、流程协同、注册法规、供应链生产十大业务流。触发词：医药、制药、药企、医学事务、市场部、推广部、合规、PV、药物警戒、KOL、学术会议、竞品分析、医保、招标、...
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pharma-skill-system`
-- **Source URL:** [https://clawhub.ai/skills/pharma-skill-system](https://clawhub.ai/skills/pharma-skill-system)
+每个能力单元是一个**可独立执行、可自由组合**的原子任务。AI拿到输入就能执行，输出可被任意其他单元消费。
 
-## Overview
+## 能力单元Schema
 
+每个单元包含5个字段：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pharma-skill-system
-```
+| 字段 | 说明 |
+|------|------|
+| **输入** | 启动所需的数据/上下文，标注必选/可选 |
+| **输出** | 产物格式与颗粒度 |
+| **依赖** | 前置必须完成的单元ID，无依赖=入口单元 |
+| **AI自治度** | ⬛全自动 / 🟨半自动(需人工确认) / ⬜辅助(人工主导) |
+| **组合接口** | 输出可被哪些单元消费（→单元ID列表） |
+
+## 执行规则
+
+1. **必读加载**：首次使用本技能时，必须用Read工具读取 `references/index-and-pipelines.md` 获取完整单元索引和Pipeline编排，这是执行所有后续操作的前提
+2. **按需加载**：识别集群后，用Read工具读取对应参考文件获取完整单元规格
+3. **依赖检查**：执行前确认依赖单元的输出已就绪，缺失则先执行依赖
+4. **自由组合**：无依赖冲突的单元可并行；有依赖的按序执行
+5. **跨集群流转**：一个单元的输出可作为另一集群单元的输入，按组合接口串联
+
+## 集群路由
+
+| 用户意图关键词 | 集群 | 参考文件 |
+|---------------|------|---------|
+| 竞品、监测、政策、舆情、情报、趋势 | C1 情报采集 | references/C1-intelligence.md |
+| DA、PPT、内容、核心信息屋、一源多端、医学写作 | C2 内容生产 | references/C2-content.md |
+| 会议、巡讲、活动策划、执行、费用核销 | C3 活动运营 | references/C3-activity.md |
+| 数据分析、ABP、ROI、预算、战略、SWOT | C4 数据分析 | references/C4-analytics.md |
+| 知识库、培训、医学问答、SOP、胜任力 | C5 知识管理 | references/C5-knowledge.md |
+| 合规、PV、药物警戒、不良反应、风险管理 | C6 合规审核 | references/C6-compliance.md |
+| KOL、科学拜访、客户分级、专家关系 | C7 KOL运营 | references/C7-kol.md |
+| 流程协同、跨部门、供应商、项目、危机 | C8 流程协同 | references/C8-workflow.md |
+| 注册、法规、IND、NDA、BLA、ANDA、审评、CTD、CTA | C9 注册法规 | references/C9-regulatory.md |
+| 供应链、生产、GMP、质量、QA、QC、冷链、物流、偏差、CAPA | C10 供应链生产 | references/C10-supply-chain.md |
+
+## 单元索引概览
+
+| 集群 | 单元数 |
+|------|--------|
+| C1 情报采集与监测 | 21 |
+| C2 内容生产与适配 | 14 |
+| C3 活动运营与执行 | 23 |
+| C4 数据分析与呈现 | 72 |
+| C5 知识管理与培训 | 37 |
+| C6 合规审核与安全 | 31 |
+| C7 客户与KOL运营 | 23 |
+| C8 流程自动化与协同 | 62 |
+| C9 注册与法规事务 | 26 |
+| C10 供应链与生产 | 25 |
+
+**合计：334个能力单元**
+
+完整单元索引（含ID、名称、自治度、依赖关系）见 `references/index-and-pipelines.md`。
+
+## Pipeline模板
+
+读取 `references/index-and-pipelines.md` 获取完整Pipeline列表，包括：
+- 研发与注册（新品注册、仿制药、全球注册、审评答辩等8条）
+- 上市与商业化（新品上市、品牌0→1、列名攻坚、医保谈判等7条）
+- 证据与医学策略（上市后证据、医学战略、RWS全流程等7条）
+- 市场与竞争（竞品应对、准入防御、危机公关等7条）
+- 活动与推广（活动全生命周期、线上会议、区域突破等5条）
+- 合规与安全（PV事件、材料合规、合规体系等6条）
+- 供应链与生产（供应商、GMP、生产运营等7条）
+- 客户与KOL（KOL运营、专家网络、科学拜访等6条）
+- 知识与能力（培训体系、知识沉淀、人才梯队等6条）
+- 战略与运营（年度规划、三年战略、预算管控等14条）

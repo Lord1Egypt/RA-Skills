@@ -1,0 +1,103 @@
+[ {
+  "timestamp": "2026-03-24 00:46:19",
+  "cpu": {"value": 46.5, "status": "normal"},
+  "mem": {"value": 43, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 4 hours, 1 minute",
+  "load_avg": "3.04, 2.75, 3.17",
+  "processes": 170
+} ,
+  {
+  "timestamp": "2026-03-24 00:46:32",
+  "cpu": {"value": 54.8, "status": "normal"},
+  "mem": {"value": 40, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 4 hours, 1 minute",
+  "load_avg": "3.34, 2.82, 3.19",
+  "processes": 169
+}
+,
+  {
+  "timestamp": "2026-03-24 00:46:41",
+  "cpu": {"value": 64.3, "status": "normal"},
+  "mem": {"value": 45, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 4 hours, 1 minute",
+  "load_avg": "3.61, 2.89, 3.21",
+  "processes": 164
+}
+,
+  {
+  "timestamp": "2026-03-24 00:47:42",
+  "cpu": {"value": 31.0, "status": "normal"},
+  "mem": {"value": 40, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 4 hours, 2 minutes",
+  "load_avg": "4.18, 3.17, 3.28",
+  "processes": 167
+}
+,
+  {
+  "timestamp": "2026-03-24 01:59:41",
+  "cpu": {"value": 35.7, "status": "normal"},
+  "mem": {"value": 36, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 5 hours, 14 minutes",
+  "load_avg": "3.73, 3.89, 4.25",
+  "processes": 170
+}
+,
+  {
+  "timestamp": "2026-03-24 02:01:06",
+  "cpu": {"value": 46.3, "status": "normal"},
+  "mem": {"value": 43, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 5 hours, 16 minutes",
+  "load_avg": "3.57, 3.79, 4.18",
+  "processes": 165
+}
+,
+  {
+  "timestamp": "2026-03-24 14:31:29",
+  "cpu": {"value": 45.5, "status": "normal"},
+  "mem": {"value": 41, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 17 hours, 46 minutes",
+  "load_avg": "2.22, 2.02, 2.19",
+  "processes": 167
+}
+,
+  {
+  "timestamp": "2026-03-24 14:31:39",
+  "cpu": {"value": 63.6, "status": "normal"},
+  "mem": {"value": 43, "status": "normal"},
+  "disk": {"value": 74, "status": "normal"},
+  "data_disk": {"value": 3, "status": "normal"},
+  "gateway": "up",
+  "pid": 3338082,
+  "uptime": "up 2 days, 17 hours, 46 minutes",
+  "load_avg": "2.65, 2.12, 2.22",
+  "processes": 165
+}
+]

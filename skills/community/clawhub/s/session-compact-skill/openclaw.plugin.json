@@ -1,0 +1,26 @@
+{
+  "id": "openclaw-session-compact",
+  "cli": ["compact", "compact-status", "compact-config", "sessions", "session-info"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "max_tokens": {
+        "type": "number",
+        "description": "触发压缩的 token 阈值"
+      },
+      "preserve_recent": {
+        "type": "number",
+        "description": "保留的最近消息数量"
+      },
+      "auto_compact": {
+        "type": "boolean",
+        "description": "是否自动压缩"
+      },
+      "model": {
+        "type": "string",
+        "description": "用于压缩的模型 ID"
+      }
+    }
+  }
+}

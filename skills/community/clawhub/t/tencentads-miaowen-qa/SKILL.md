@@ -1,35 +1,184 @@
 ---
-name: "TencentAds-miaowen-qa"
-description: "通过腾讯广告官方「妙问」AI问答API，解答腾讯广告（含微信广告、朋友圈广告、视频号广告、微信小店）的营销业务问题。覆盖开户充值、资质认证、广告创建与投放、定向出价、审核规则、素材规范、数据报表、违规处理等全链路场景。当用户咨询腾讯广告业务指导、平台规则、账户操作、投放设置或审核合规问题时触发；即使未明确提及"腾..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tencentads-miaowen-qa"
-sourceUrl: "https://clawhub.ai/skills/tencentads-miaowen-qa"
+name: tencent-ads-assistant
+description: "通过腾讯广告官方「妙问」AI问答API，解答腾讯广告（含微信广告、朋友圈广告、视频号广告、微信小店）的营销业务问题。覆盖开户充值、资质认证、广告创建与投放、定向出价、审核规则、素材规范、数据报表、违规处理等全链路场景。当用户咨询腾讯广告业务指导、平台规则、账户操作、投放设置或审核合规问题时触发；即使未明确提及\"腾讯广告\"，只要语境指向腾讯广告产品（如 e.qq.com、微信广告、视频号广告等）也应触发。不适用于其他广告平台（Google Ads、巨量引擎等）的独立问题、本地代码/文件分析、或不涉及腾讯广告平台知识的泛泛营销讨论。触发词：妙问、miaowen、腾讯广告、微信广告、朋友圈广告、视频号广告、微信小店、e.qq.com、广告投放咨询、开户咨询、审核规则等。"
 ---
 
-# TencentAds-miaowen-qa
+# 妙问 AI 营销助手问答
 
-> 通过腾讯广告官方「妙问」AI问答API，解答腾讯广告（含微信广告、朋友圈广告、视频号广告、微信小店）的营销业务问题。覆盖开户充值、资质认证、广告创建与投放、定向出价、审核规则、素材规范、数据报表、违规处理等全链路场景。当用户咨询腾讯广告业务指导、平台规则、账户操作、投放设置或审核合规问题时触发；即使未明确提及"腾...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tencentads-miaowen-qa`
-- **Source URL:** [https://clawhub.ai/skills/tencentads-miaowen-qa](https://clawhub.ai/skills/tencentads-miaowen-qa)
+本技能用于通过腾讯广告"妙问"平台的开放 API 进行 AI 问答服务，帮助用户咨询腾讯广告营销相关问题。妙问是腾讯广告平台的 AI 营销助手，支持开户咨询、投放策略、广告优化、审核政策等广告营销全链路问题的智能解答。
 
-## Overview
+**妙问官网**：https://miaowen.qq.com/
 
+## 运行环境要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 必需依赖
+
+| 工具 | 用途 | 说明 |
+|------|------|------|
+| **bash** | 脚本执行 | macOS/Linux 自带；Windows 需通过 Git Bash、WSL 或 MSYS2 提供 |
+| **curl** | HTTP 请求 | macOS 自带；大部分 Linux 发行版自带，精简版可能需要安装；Windows Git Bash 自带 |
+
+### 可选依赖
+
+| 工具 | 用途 | 说明 |
+|------|------|------|
+| **python3** | JSON 特殊字符转义 | 不可用时自动回退到 sed 基本转义，正常问题不受影响 |
+
+### 跨操作系统兼容性
+
+脚本已针对以下操作系统做了兼容处理：
+
+- **macOS**：完全支持，所有依赖默认已安装
+- **Linux**（Ubuntu/Debian/CentOS/Fedora/Alpine/Arch 等）：完全支持，个别精简系统可能需要安装 curl
+- **Windows Git Bash**：支持，curl 随 Git for Windows 自带。`chmod` 设置文件权限可能不生效，但不影响功能
+- **Windows WSL**：完全支持，与 Linux 行为一致
+- **Windows MSYS2/Cygwin**：基本支持
+
+> 当依赖工具缺失时，脚本会自动检测当前操作系统并给出对应的安装命令指引。
+
+## Token 存储方式
+
+Token 存储在用户 home 目录下的 `~/.MIAOWEN_ACCESS_TOKEN` 文件中，对非开发用户更加友好。
+
+- **Token 文件路径**：`~/.MIAOWEN_ACCESS_TOKEN`
+- **文件权限**：`600`（仅当前用户可读写）
+- **文件内容**：纯文本，仅包含 Token 值（如 `sk-mw-xxxxx`），无换行无空格
+
+## 调用前准备
+
+在执行脚本调用之前，需要完成以下判断和处理：
+
+### 判断问题是否足够明确
+
+如果用户问题过于含糊（如"这个怎么开户？""为什么不行？""怎么投效果好？"），**不要直接调用 API**，应先追问补齐关键上下文，再发起调用。需要优先确认的信息：
+
+- **具体产品**：腾讯广告 / 微信广告 / 朋友圈广告 / 视频号广告
+- **具体环节**：开户、资质、审核、充值、投放、报表、转化等
+- **具体对象**：账户、广告、素材、行业、落地页、链路等
+- **具体报错或审核原因**（如有）
+
+### 构造 query 参数
+
+`query` 应**直接使用用户原始问题**，不要改写。仅在以下情况做轻量补全：
+
+- 用户前轮已补充了明确上下文，需合并成一个完整问题
+- 指代词过多（如"这个""它""上面那个审核"），不补全会影响理解
+- 用户连续追问同一主题，需将必要上下文拼入当前问题
+
+补全时必须**忠于用户意图**，不得擅自加入未经确认的假设。
+
+## 工作流程
+
+当用户触发本技能时，**直接执行 `scripts/chat.sh` 脚本**，无需提前检查任何内容：
+
 ```bash
-hermes skills install clawhub/tencentads-miaowen-qa
+bash scripts/chat.sh "<用户的问题>"
 ```
+
+脚本内部会自动处理：Token 文件检查、Token 读取、API 请求、错误处理。
+
+**根据脚本退出码（`$?`）决定后续动作：**
+
+### 退出码 0 — 请求成功
+
+解析脚本输出的 JSON 结果，将答案以清晰易读的 Markdown 格式展示给用户。
+
+### 退出码 2 — Token 文件不存在（首次使用）
+
+脚本输出中以 `[TOKEN_NOT_FOUND]` 开头。用户尚未配置过 Token，需要引导用户首次获取。向用户展示 Token 获取指引（见下方「Token 获取指引」章节），用户提供 Token 后执行：
+
+```bash
+bash scripts/setup_token.sh "<TOKEN_VALUE>"
+```
+
+然后重新执行 `chat.sh` 发起问答。
+
+### 退出码 3 — Token 文件为空
+
+脚本输出中以 `[TOKEN_EMPTY]` 开头。Token 文件存在但内容为空，引导用户重新获取 Token 并执行 `setup_token.sh` 保存。
+
+### 退出码 4 — API 返回错误
+
+脚本输出中以 `[API_ERROR]` 开头，包含 HTTP 状态码和 API 返回的原始响应内容。**请根据响应内容自行判断具体错误原因**，常见情况包括：
+
+- **Token 无效或已过期**：引导用户前往妙问官网刷新 Token，操作路径见「Token 获取指引」，用户提供新 Token 后执行 `setup_token.sh` 更新，然后重试
+- **权限不足/访问被拒绝**：提示用户检查账号权限
+- **请求频率过高**：建议用户稍后重试
+- **服务端错误（5xx）**：提示妙问服务暂时不可用，稍后重试
+- **其他错误**：将原始错误信息展示给用户，协助排查
+
+### 退出码 5 — 网络请求失败
+
+脚本输出中以 `[NETWORK_ERROR]` 开头。脚本已输出了具体的网络错误原因（DNS 解析失败、连接超时等），将错误信息展示给用户并建议：
+- 检查网络连接
+- 稍后重试
+- 如果有代理需求，确认代理配置
+
+### 退出码 6 — 运行环境不满足要求
+
+脚本输出中以 `[ENV_ERROR]` 开头。通常是缺少必需的依赖工具（如 curl 未安装或 HOME 目录未设置）。脚本已根据用户操作系统检测并给出了具体的安装命令，将提示信息展示给用户并协助安装。
+
+## Token 获取指引
+
+当用户需要获取 Token 时（首次使用、Token 为空或已过期），向用户展示以下指引：
+
+> 🔑 您需要先获取妙问 API KEY（Access Token）才能使用 AI 问答服务。
+>
+> **获取步骤**：
+> 1. 打开 [妙问官网](https://miaowen.qq.com/) 并登录
+> 2. 在左侧导航栏点击【Skill 社区】，弹出「skill」操作页
+> 3. 在弹出的页面中可以看到「你的 API KEY」，格式为 `sk-mw-xxxxx`
+> 4. 点击 API KEY 右侧的「刷新」按钮可以刷新获取新的 Token，点击「复制」按钮复制 Token
+> 5. 将复制的 Token 粘贴给我
+>
+> **操作示意图**：
+>
+> ![妙问 Token 获取指南](assets/miaowen_token_guide.png)
+>
+> **截图说明**：
+> - 左侧导航栏可以看到【Skill 社区】入口
+> - 点击后弹出 Skill 操作页，页面顶部显示「你的 API KEY」
+> - API KEY 格式为 `sk-mw-xxxxx`，右侧有「刷新」和「复制」两个按钮
+>
+> 获取 Token 后请粘贴给我，我会帮您自动保存到配置文件中。
+
+## Token 保存配置
+
+当用户提供 Token 后，使用 `scripts/setup_token.sh` 脚本将 Token 保存到文件中：
+
+```bash
+bash scripts/setup_token.sh "<TOKEN_VALUE>"
+```
+
+脚本会自动完成以下操作：
+1. 将 Token 写入 `~/.MIAOWEN_ACCESS_TOKEN` 文件（覆盖旧内容）
+2. 设置文件权限为 `600`（仅当前用户可读写，保护 Token 安全）
+
+保存完成后即可立即使用，**无需重启终端、无需配置环境变量**。
+
+## API 参考
+
+### 请求
+
+| 参数 | 值 |
+|------|-----|
+| 方法 | POST |
+| URL | `https://ad.qq.com/ai/gw/ai_customer_service/v1/open_api/chat` |
+| Header - Authorization | `Bearer <MIAOWEN_ACCESS_TOKEN>` |
+| Header - Content-Type | `application/json` |
+| Body | `{"query": "<用户问题>"}` |
+
+### 响应
+
+返回 JSON 格式的 AI 回答结果。请求失败时会返回包含错误原因的响应，请根据实际响应内容判断错误类型。
+
+## 关键注意事项
+
+1. **一步到位**：每次用户咨询时，**直接执行 `bash scripts/chat.sh "<问题>"`**，不要提前检查 Token、不要手动拼 curl，所有检查和错误处理都已内置在脚本中
+2. **根据退出码行动**：脚本用不同退出码标识不同错误场景，根据退出码决定下一步动作（引导获取 Token、重试等）
+3. **API 错误自行判断**：当退出码为 4 时，脚本会输出 HTTP 状态码和 API 原始响应内容，请根据响应内容自行判断具体错误原因（Token 失效、权限不足、频率限制等）并给出相应提示
+4. **Token 安全**：Token 属于用户的个人凭证，不要在日志或输出中明文展示完整 Token
+5. **结果展示**：将 API 返回的 AI 回答提取出来，以 Markdown 格式清晰展示给用户
+6. **用户友好**：整个流程无需用户了解环境变量、shell 配置等技术概念，只需粘贴 Token 即可

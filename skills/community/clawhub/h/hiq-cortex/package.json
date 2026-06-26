@@ -1,0 +1,10 @@
+{
+  "name": "hiq-cortex",
+  "version": "1.1.2",
+  "type": "module",
+  "description": "Search 1M+ LCA datasets for carbon footprint and emission factors via HiQ Cortex",
+  "author": "HiQ <info@hiqlcd.com> (https://www.hiqlcd.com)",
+  "homepage": "https://www.hiqlcd.com",
+  "license": "MIT-0",
+  "keywords": ["lca", "carbon-footprint", "emission-factors", "ecoinvent", "gwp", "sustainability"]
+}

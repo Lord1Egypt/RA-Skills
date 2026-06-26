@@ -1,0 +1,17 @@
+[
+  {
+    "from": "models",
+    "to": ".models",
+    "mode": "replace"
+  },
+  {
+    "from": "base_url",
+    "to": ".baseUrl",
+    "mode": "replace"
+  },
+  {
+    "from": "extra_headers",
+    "to": ".headers",
+    "mode": "replace"
+  }
+]

@@ -1,0 +1,4 @@
+name: luci-upload
+version: 1.0.4
+entrypoint: scripts/run.py
+description: Upload videos or Images to Memories.ai, used as visual memory.

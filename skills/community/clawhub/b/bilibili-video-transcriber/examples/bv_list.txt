@@ -1,0 +1,13 @@
+# B站视频BV号列表
+# 每行一个BV号或视频URL
+# 以#开头的行会被忽略
+
+# 示例视频（HermesAgent WebUI）
+BV1txQGByERW
+
+# 可以添加更多视频
+# https://www.bilibili.com/video/BV1xxxxxxx
+# BV1xxxxxxx
+
+# 批量处理时使用：
+# bilibili-transcribe --batch examples/bv_list.txt

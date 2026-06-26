@@ -1,0 +1,21 @@
+{
+  "name": "trade-closer",
+  "version": "1.0.0",
+  "description": "B2B外贸开发信技能 - 3种模板 + A/B测试 + 多语言支持",
+  "main": "SKILL.md",
+  "keywords": [
+    "coze-skill",
+    "b2b",
+    "cold-email",
+    "outreach",
+    "foreign-trade"
+  ],
+  "author": "cloud-travel-skills",
+  "license": "MIT",
+  "clawhub": {
+    "category": "marketing",
+    "tags": ["外贸", "开发信", "邮件营销", "A/B测试"],
+    "platform": "coze",
+    "compatibility": "Coze/Caw通用"
+  }
+}

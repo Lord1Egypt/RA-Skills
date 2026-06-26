@@ -1,0 +1,249 @@
+# 虾游的水域地图
+# 三层架构：核心水域 / 常规水域 / 远洋
+# 质量门槛越往外越高
+
+version: 1
+
+# ============================================================
+# 第一层：核心水域（Trust Zone）
+# 质量门槛：综合评分 ≥ 6 即可出明信片
+# 冷启动期 80% 的探索从这里产出
+# ============================================================
+core:
+  tech_ai:
+    - name: "Hacker News"
+      url: "https://news.ycombinator.com"
+      search_pattern: "site:news.ycombinator.com"
+      tags: [tech, discussion, startups]
+      trust: 9
+
+    - name: "arXiv CS/AI"
+      url: "https://arxiv.org"
+      search_pattern: "site:arxiv.org cs.AI OR cs.LG OR cs.RO"
+      tags: [research, papers, cutting-edge]
+      trust: 10
+
+    - name: "Quanta Magazine"
+      url: "https://www.quantamagazine.org"
+      search_pattern: "site:quantamagazine.org"
+      tags: [science, math, physics, biology]
+      trust: 10
+
+    - name: "MIT Technology Review"
+      url: "https://www.technologyreview.com"
+      search_pattern: "site:technologyreview.com"
+      tags: [tech, ai, deep-tech]
+      trust: 9
+
+  thinking_mental_models:
+    - name: "Farnam Street"
+      url: "https://fs.blog"
+      search_pattern: "site:fs.blog"
+      tags: [mental-models, decision-making, learning]
+      trust: 9
+
+    - name: "Paul Graham Essays"
+      url: "http://paulgraham.com/articles.html"
+      search_pattern: "site:paulgraham.com"
+      tags: [startups, thinking, essays]
+      trust: 10
+
+    - name: "Morgan Housel"
+      url: "https://collabfund.com/blog"
+      search_pattern: "site:collabfund.com/blog"
+      tags: [investing, psychology, behavior]
+      trust: 9
+
+    - name: "a16z"
+      url: "https://a16z.com"
+      search_pattern: "site:a16z.com"
+      tags: [tech, venture, trends]
+      trust: 8
+
+  chinese_quality:
+    - name: "少数派"
+      url: "https://sspai.com"
+      search_pattern: "site:sspai.com"
+      tags: [productivity, apps, tech-lifestyle]
+      trust: 8
+
+    - name: "虎嗅深度"
+      url: "https://www.huxiu.com"
+      search_pattern: "site:huxiu.com 深度"
+      tags: [business, tech, analysis]
+      trust: 7
+
+  science_cross:
+    - name: "Nature News"
+      url: "https://www.nature.com/news"
+      search_pattern: "site:nature.com/articles"
+      tags: [science, research, breakthroughs]
+      trust: 10
+
+    - name: "Nautilus"
+      url: "https://nautil.us"
+      search_pattern: "site:nautil.us"
+      tags: [science, philosophy, cross-disciplinary]
+      trust: 9
+
+# ============================================================
+# 第二层：常规水域
+# 质量门槛：综合评分 ≥ 7
+# 需要龙虾自行判断
+# ============================================================
+regular:
+  academic:
+    - name: "Google Scholar"
+      url: "https://scholar.google.com"
+      search_pattern: "scholar.google.com"
+      tags: [research, papers]
+      trust: 7
+
+    - name: "Semantic Scholar"
+      url: "https://www.semanticscholar.org"
+      search_pattern: "site:semanticscholar.org"
+      tags: [research, papers, citations]
+      trust: 7
+
+  communities:
+    - name: "Reddit - r/MachineLearning"
+      url: "https://reddit.com/r/MachineLearning"
+      search_pattern: "site:reddit.com/r/MachineLearning"
+      tags: [ml, research, discussion]
+      trust: 7
+
+    - name: "Reddit - r/science"
+      url: "https://reddit.com/r/science"
+      search_pattern: "site:reddit.com/r/science"
+      tags: [science, research]
+      trust: 6
+
+    - name: "Reddit - r/technology"
+      url: "https://reddit.com/r/technology"
+      search_pattern: "site:reddit.com/r/technology"
+      tags: [tech, industry, policy]
+      trust: 6
+
+    - name: "Reddit - r/todayilearned"
+      url: "https://reddit.com/r/todayilearned"
+      search_pattern: "site:reddit.com/r/todayilearned"
+      tags: [trivia, curiosity, serendipity]
+      trust: 5
+
+    - name: "Product Hunt"
+      url: "https://www.producthunt.com"
+      search_pattern: "site:producthunt.com"
+      tags: [products, startups, launches]
+      trust: 6
+
+  blogs:
+    - name: "Wait But Why"
+      url: "https://waitbutwhy.com"
+      search_pattern: "site:waitbutwhy.com"
+      tags: [long-form, thinking, explanations]
+      trust: 9
+
+    - name: "Astral Codex Ten"
+      url: "https://www.astralcodexten.com"
+      search_pattern: "site:astralcodexten.com"
+      tags: [rationality, science, thinking]
+      trust: 8
+
+    - name: "The Browser"
+      url: "https://thebrowser.com"
+      search_pattern: "site:thebrowser.com"
+      tags: [curated, long-form]
+      trust: 8
+
+# ============================================================
+# 第三层：远洋（Serendipity Zone）
+# 质量门槛：综合评分 ≥ 8（最严格）
+# 开放搜索 + 外链跟踪，"意外发现"的来源
+# ============================================================
+serendipity:
+  description: "开放探索，跟随引用链和直觉，发现用户不知道自己感兴趣的东西"
+  strategy:
+    - "跟随核心水域文章的引用链"
+    - "关注作者的其他作品"
+    - "搜索冷门但精准的关键词"
+    - "逆向：搜索'被低估的'、'反直觉的'、'没人谈的'"
+    - "社会化发现：Reddit r/todayilearned 热门帖 + Product Hunt 新品"
+  quality_gate: 8
+  social_sources:
+    - name: "Reddit - r/todayilearned"
+      url: "https://reddit.com/r/todayilearned"
+      search_pattern: "site:reddit.com/r/todayilearned"
+      tags: [trivia, curiosity, serendipity]
+
+    - name: "Product Hunt"
+      url: "https://www.producthunt.com"
+      search_pattern: "site:producthunt.com"
+      tags: [products, startups, launches]
+
+    - name: "Hacker News - Show HN"
+      url: "https://news.ycombinator.com/show"
+      search_pattern: "site:news.ycombinator.com \"Show HN\""
+      tags: [projects, demos, indie]
+
+# ============================================================
+# 探索策略（随阶段变化）
+# ============================================================
+exploration_strategy:
+  cold_start:           # 前10张明信片
+    core: 80
+    regular: 20
+    serendipity: 0
+
+  trust_building:       # 10-30张明信片
+    core: 50
+    regular: 30
+    serendipity: 20
+
+  mature:               # 30张以后
+    core: 30
+    regular: 40
+    serendipity: 30
+
+# ============================================================
+# 动态质量维护规则
+# ============================================================
+quality_rules:
+  promotion: "某源被核心水域引用3次以上 → 提升为常规水域候选"
+  demotion: "某源连续3次产出低分内容 → 降级或移除"
+  user_boost: "用户对来自某源的明信片有正面回复 → 该源权重+0.1"
+
+# ============================================================
+# 深潜模式专用源（每周六 22:00）
+# 只搜索长文/论文/深度报告
+# 评分门槛 ≥ 8 分才推送
+# ============================================================
+deep_dive:
+  - name: "arXiv CS/AI (长论文)"
+    url: "https://arxiv.org"
+    search_pattern: "site:arxiv.org cs.AI OR cs.LG OR cs.RO"
+    tags: [research, papers, cutting-edge]
+    trust: 10
+
+  - name: "Quanta Magazine"
+    url: "https://www.quantamagazine.org"
+    search_pattern: "site:quantamagazine.org"
+    tags: [science, math, physics, biology]
+    trust: 10
+
+  - name: "Nautilus"
+    url: "https://nautil.us"
+    search_pattern: "site:nautil.us"
+    tags: [science, philosophy, cross-disciplinary]
+    trust: 9
+
+  - name: "Wait But Why"
+    url: "https://waitbutwhy.com"
+    search_pattern: "site:waitbutwhy.com"
+    tags: [long-form, thinking, explanations]
+    trust: 9
+
+  - name: "Paul Graham Essays"
+    url: "http://paulgraham.com/articles.html"
+    search_pattern: "site:paulgraham.com"
+    tags: [startups, thinking, essays]
+    trust: 10

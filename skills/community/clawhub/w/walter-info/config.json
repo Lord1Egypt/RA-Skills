@@ -1,0 +1,42 @@
+{
+  "news": {
+    "ennews_max_pages": 4,
+    "final_top_n": 18
+  },
+  "cities": {
+    "亚洲": [
+      ["上海", "Shanghai"],
+      ["东京", "Tokyo"],
+      ["迪拜", "Dubai"],
+      ["新加坡", "Singapore"],
+      ["孟买", "Mumbai"]
+    ],
+    "欧洲": [
+      ["伦敦", "London"],
+      ["巴黎", "Paris"],
+      ["柏林", "Berlin"],
+      ["莫斯科", "Moscow"]
+    ],
+    "北美洲": [
+      ["纽约", "New+York"],
+      ["洛杉矶", "Los+Angeles"],
+      ["多伦多", "Toronto"],
+      ["墨西哥城", "Mexico+City"]
+    ],
+    "南美洲": [
+      ["圣保罗", "Sao+Paulo"],
+      ["布宜诺斯艾利斯", "Buenos+Aires"],
+      ["里约热内卢", "Rio+de+Janeiro"]
+    ],
+    "大洋洲": [
+      ["悉尼", "Sydney"],
+      ["墨尔本", "Melbourne"],
+      ["奥克兰", "Auckland"]
+    ],
+    "非洲": [
+      ["开罗", "Cairo"],
+      ["约翰内斯堡", "Johannesburg"],
+      ["拉各斯", "Lagos"]
+    ]
+  }
+}

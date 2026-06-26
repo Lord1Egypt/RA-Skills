@@ -1,0 +1,278 @@
+[
+  {
+    "code": "ths_amt_y_bbond",
+    "name": "年成交额",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_y_bbond",
+    "name": "年涨跌幅",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_y_bbond",
+    "name": "年涨跌",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_interest_y_bbond",
+    "name": "年收盘利率",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_interest_y_bbond",
+    "name": "年最高利率",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_interest_y_bbond",
+    "name": "年最低利率",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_y_bbond",
+    "name": "年开盘利率",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_interest_y_bbond",
+    "name": "年前收盘利率",
+    "description": "/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_wgt_avg_interest_y_bbond",
+    "name": "年前加权平均利率",
+    "description": "回购行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_avg_interest_y_bbond",
+    "name": "年加权平均利率",
+    "description": "回购行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_int_bbond",
+    "name": "区间成交额",
+    "description": "/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_int_bbond",
+    "name": "区间涨跌",
+    "description": "/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_interest_int_bbond",
+    "name": "区间收盘利率",
+    "description": "/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_interest_int_bbond",
+    "name": "区间最高利率",
+    "description": "/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_int_chg_ratio_bbond",
+    "name": "区间涨跌幅",
+    "description": "/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_interest_int_bbond",
+    "name": "区间最低利率",
+    "description": "/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_int_bbond",
+    "name": "区间开盘利率",
+    "description": "/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_interest_int_bbond",
+    "name": "区间前收盘利率",
+    "description": "回购行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_wgt_avg_interest_int_bbond",
+    "name": "区间前加权平均利率",
+    "description": "回购行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_avg_interest_int_bbond",
+    "name": "区间加权平均利率",
+    "description": "回购行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_bbond",
+    "name": "成交额",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_bbond",
+    "name": "涨跌",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_bbond",
+    "name": "涨跌幅",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_fixed_interest_bbond",
+    "name": "收盘利率",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_interest_bbond",
+    "name": "最高利率",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_interest_bbond",
+    "name": "最低利率",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_bbond",
+    "name": "开盘利率",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_wgt_avg_interest_bbond",
+    "name": "前加权平均利率",
+    "description": "回购行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pro_close_interest_bbond",
+    "name": "前收盘利率",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_avg_interest_bbond",
+    "name": "加权平均利率",
+    "description": "/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_m_bbond",
+    "name": "月成交额",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_m_bbond",
+    "name": "月涨跌幅",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chgm_bbond",
+    "name": "月涨跌",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_interest_m_bbond",
+    "name": "月收盘利率",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_interest_m_bbond",
+    "name": "月最高利率",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_interest_m_bbond",
+    "name": "月最低利率",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_m_bbond",
+    "name": "月开盘利率",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_interest_m_bbond",
+    "name": "月前收盘利率",
+    "description": "/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_wgt_avg_interest_m_bbond",
+    "name": "月前加权平均利率",
+    "description": "回购行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_avg_interest_m_bbond",
+    "name": "月加权平均利率",
+    "description": "回购行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_w_bbond",
+    "name": "周成交额",
+    "description": "/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_w_bbond",
+    "name": "周涨跌幅",
+    "description": "/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_w_bbond",
+    "name": "周涨跌",
+    "description": "/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_interest_w_bbond",
+    "name": "周收盘利率",
+    "description": "/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_interest_w_bbond",
+    "name": "周最高利率",
+    "description": "/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_interest_w_bbond",
+    "name": "周最低利率",
+    "description": "/周行情",
+    "params": ""
+  }
+]

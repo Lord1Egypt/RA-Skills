@@ -1,0 +1,88 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "enable_forward": true,
+    "width_mode": "fill"
+  },
+  "header": {
+    "template": "blue",
+    "title": {
+      "tag": "plain_text",
+      "content": "__TITLE__"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "__SUBTITLE__"
+    }
+  },
+  "body": {
+    "direction": "vertical",
+    "vertical_spacing": "medium",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**__SUMMARY_BOLD__**\n\n__SUMMARY_DETAIL__"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "fields": [
+          {
+            "is_short": true,
+            "text": {
+              "tag": "lark_md",
+              "content": "**__FIELD_1_LABEL__**\n__FIELD_1_VALUE__"
+            }
+          },
+          {
+            "is_short": true,
+            "text": {
+              "tag": "lark_md",
+              "content": "**__FIELD_2_LABEL__**\n__FIELD_2_VALUE__"
+            }
+          },
+          {
+            "is_short": true,
+            "text": {
+              "tag": "lark_md",
+              "content": "**__FIELD_3_LABEL__**\n__FIELD_3_VALUE__"
+            }
+          },
+          {
+            "is_short": true,
+            "text": {
+              "tag": "lark_md",
+              "content": "**__FIELD_4_LABEL__**\n<font color='green'>__FIELD_4_VALUE__</font>"
+            }
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "__ACTION_LABEL__"
+        },
+        "type": "primary",
+        "width": "default",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "__ACTION_URL__"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "text_size": "notation",
+        "content": "<font color='grey'>📡 __FOOTER_NOTE__</font>"
+      }
+    ]
+  }
+}

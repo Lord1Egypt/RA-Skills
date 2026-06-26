@@ -1,0 +1,16 @@
+{
+  "enabled_ecosystems": ["skills_cli", "clawhub", "github"],
+  "max_results_per_ecosystem": 3,
+  "total_max_results": 5,
+  "timeout_seconds": 10,
+  "skills_cli_timeout": 5,
+  "api_timeout": 8,
+  "github_rate_limit_delay": 1,
+  "fallback_to_keywords": true,
+  "show_security_status": true,
+  "default_install_commands": {
+    "skills_cli": "npx skills add {package}",
+    "clawhub": "clawhub install {author}/{skill}",
+    "github": "git clone {repo_url} ~/.openclaw/skills/{skill_name}"
+  }
+}

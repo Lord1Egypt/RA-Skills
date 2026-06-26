@@ -1,0 +1,230 @@
+# AI前沿哨兵 - 信息源配置
+# 配置需要采集的信息源
+
+# GitHub Trending配置
+github:
+  enabled: true
+  language: python
+  date_range: daily  # daily / weekly / monthly
+  limit: 20
+  # 可添加关键词过滤
+  keywords:
+    - AI
+    - machine-learning
+    - deep-learning
+    - LLM
+    - GPT
+
+# arXiv论文配置
+arxiv:
+  enabled: true
+  # 论文类别，常见AI类别:
+  # cs.AI - Artificial Intelligence
+  # cs.LG - Machine Learning
+  # cs.CL - Computation and Language
+  # cs.CV - Computer Vision
+  # cs.NE - Neural and Evolutionary Computing
+  categories:
+    - cs.AI
+    - cs.LG
+    - cs.CL
+  max_results: 20
+  # 自定义搜索词 (可选)
+  search_query: "GPT OR transformer OR diffusion"
+
+# HackerNews配置
+hackernews:
+  enabled: true
+  # 获取类型: top / new / best / ask / show
+  item_type: top
+  limit: 20
+  # 关键词过滤，用于筛选AI相关内容
+  keywords:
+    - AI
+    - ML
+    - machine learning
+    - neural
+    - LLM
+    - GPT
+    - Claude
+    - deep learning
+    - language model
+    - open source AI
+
+# RSSHub实例配置
+# 自部署的RSSHub服务，支持多种信息源
+rsshub:
+  instance_url: https://brain.zeabur.app
+  enabled: true
+  
+  # Twitter/X配置 (注意: Twitter反爬严格，可能需要配置代理)
+  twitter:
+    enabled: false  # 当前Twitter路由受限，暂不启用
+    # 关注的AI领袖账号
+    accounts:
+      - name: Yann LeCun
+        handle: ylecun
+        category: Research
+      - name: Sam Altman
+        handle: sama
+        category: Industry Leader
+      - name: Andrew Ng
+        handle: AndrewYNg
+        category: Education
+      - name: Dario Amodei
+        handle: DarioAmodei
+        category: AI Company
+      - name: Jensen Huang
+        handle: nvidia
+        category: Hardware
+      - name: Andrej Karpathy
+        handle: karpathy
+        category: Research
+      - name: Lilian Weng
+        handle: lilianweng
+        category: Research
+      - name: Jason Wei
+        handle: _jasonwei
+        category: Research
+      - name: Ilya Sutskever
+        handle: IlyaSutskever
+        category: Research
+      - name: Fei-Fei Li
+        handle: drfeifei
+        category: Research
+    # 搜索关键词
+    search_queries:
+      - "AI breakthrough"
+      - "LLM news"
+      - "machine learning"
+    limit: 20
+
+# 原始Twitter配置 (需要API Key)
+twitter:
+  enabled: false
+  accounts:
+    - ylecun
+    - sama
+    - AndrewYNg
+    - binduredy
+  keywords:
+    - AI
+    - machine learning
+    - LLM
+    - GPT-4
+    - Claude
+  limit: 20
+
+# RSS博客订阅配置
+blogs:
+  enabled: true
+  limit_per_feed: 5
+  feeds:
+    # Anthropic (社区维护源)
+    - name: Anthropic Engineering
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml
+      category: AI Company
+      
+    - name: Anthropic News
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml
+      category: AI Company
+      
+    - name: Claude Blog
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_claude.xml
+      category: AI Company
+      
+    # OpenAI
+    - name: OpenAI Blog
+      url: https://openai.com/blog/rss.xml
+      category: AI Company
+      
+    - name: OpenAI Research
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_research.xml
+      category: AI Company
+      
+    # Google/DeepMind
+    - name: Google AI Blog
+      url: https://research.google/blog/rss
+      category: AI Company
+      
+    - name: DeepMind Blog
+      url: https://deepmind.google/blog/rss.xml
+      category: AI Company
+      
+    - name: Hugging Face Blog
+      url: https://huggingface.co/blog/feed.xml
+      category: AI Company
+      
+    # xAI
+    - name: xAI News
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml
+      category: AI Company
+      
+    # Cursor
+    - name: Cursor Blog
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cursor.xml
+      category: AI Tool
+      
+    # DeepLearning.AI
+    - name: The Batch
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_the_batch.xml
+      category: AI Education
+      
+    # 学术博客
+    - name: BAIR Blog
+      url: https://bair.berkeley.edu/blog/feed.xml
+      category: Research
+      
+    # 科技媒体
+    - name: TechCrunch AI
+      url: https://techcrunch.com/category/artificial-intelligence/feed/
+      category: Tech Media
+      
+    - name: VentureBeat AI
+      url: https://venturebeat.com/category/ai/feed/
+      category: Tech Media
+
+# 中国AI公司官网新闻监控 (无RSS，使用网页解析)
+# 注意: 这些源需要使用topic_tracking技能或自定义解析器
+chinese_ai_companies:
+  - name: 智谱AI新品发布
+    enabled: true
+    url: https://docs.bigmodel.cn/cn/update/new-releases
+    company: ZhipuAI (智谱)
+    category: AI Company
+    parser: web_news  # 使用网页新闻解析器
+    update_frequency: daily  # 每日检查更新
+    
+  - name: MiniMax新闻动态
+    enabled: true
+    url: https://www.minimaxi.com/news
+    company: MiniMax
+    category: AI Company
+    parser: web_news
+    update_frequency: daily
+    
+  - name: 扣子Coze文档更新
+    enabled: true
+    url: https://docs.coze.cn
+    company: Coze (扣子)
+    category: AI Tool
+    parser: web_news
+    update_frequency: daily
+
+# 自定义RSS源 (可添加更多)
+custom_feeds:
+  - name: MMChat AI资讯
+    url: https://mmchat.zeabur.app/feeds/all.atom
+    category: AI News Aggregator
+    enabled: true
+    
+  # InfoQ技术媒体
+  - name: InfoQ全球
+    url: https://feed.infoq.com
+    category: Tech Media
+    enabled: true
+    
+  - name: InfoQ中文
+    url: https://www.infoq.cn/rss/
+    category: Tech Media (Chinese)
+    enabled: true

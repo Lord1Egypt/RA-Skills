@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>do-it - 你只管 do it，判断交给滚滚</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div id="app" class="max-w-2xl mx-auto p-4">
+        <!-- Header -->
+        <header class="text-center py-8">
+            <h1 class="text-4xl font-bold text-indigo-600 mb-2">🌪️ do-it</h1>
+            <p class="text-gray-600">你只管 do it，判断交给滚滚</p>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content" class="bg-white rounded-xl shadow-lg p-6 fade-in">
+            <!-- 首页 -->
+            <div id="home-view">
+                <div class="text-center py-8">
+                    <div class="text-6xl mb-4">🤔</div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">有什么纠结的事儿？</h2>
+                    <p class="text-gray-600 mb-8">滚滚帮你分析，给你最客观的判断</p>
+                    
+                    <button onclick="showInputForm()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow transition transform hover:scale-105">
+                        开始判断 →
+                    </button>
+                </div>
+
+                <!-- 最近案例 -->
+                <div class="mt-12">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">📋 最近案例</h3>
+                    <div id="recent-cases" class="space-y-3">
+                        <!-- 案例由 JS 动态加载 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 输入页 -->
+            <div id="input-view" class="hidden">
+                <button onclick="showHome()" class="text-indigo-600 hover:text-indigo-800 mb-4 flex items-center">
+                    ← 返回
+                </button>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">填写问题详情</h2>
+                
+                <form id="problem-form" onsubmit="submitProblem(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">你的问题</label>
+                        <input type="text" id="problem-title" required placeholder="简单描述你面临的问题" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">问题类型</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="problem-type" value="职业选择" checked class="text-indigo-600">
+                                <span>职业选择</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="problem-type" value="感情问题" class="text-indigo-600">
+                                <span>感情问题</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="problem-type" value="投资决策" class="text-indigo-600">
+                                <span>投资决策</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="problem-type" value="生活选择" class="text-indigo-600">
+                                <span>生活选择</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">当前状态</label>
+                        <textarea id="current-status" required rows="2" placeholder="你现在的情况" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">可选方案</label>
+                        <textarea id="options" required rows="2" placeholder="你有哪几个选择（A. xxx B. xxx）" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">你的顾虑</label>
+                        <textarea id="concerns" rows="2" placeholder="你担心什么" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">补充信息</label>
+                        <textarea id="extra-info" rows="2" placeholder="任何其他相关信息" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow transition transform hover:scale-105">
+                        提交分析 →
+                    </button>
+                </form>
+            </div>
+
+            <!-- 加载中 -->
+            <div id="loading-view" class="hidden">
+                <div class="text-center py-12">
+                    <div class="text-6xl mb-4 loading-spinner">🌪️</div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">滚滚正在分析中...</h2>
+                    
+                    <div class="max-w-md mx-auto">
+                        <div class="bg-gray-200 rounded-full h-2 mb-4">
+                            <div id="progress-bar" class="bg-indigo-600 h-2 rounded-full transition-all" style="width: 0%"></div>
+                        </div>
+                        
+                        <div class="text-left space-y-2 text-gray-600">
+                            <div id="step-1">⏳ 收集数据中...</div>
+                            <div id="step-2">⏳ 对比分析中...</div>
+                            <div id="step-3">⏳ 生成判断中...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 结果页 -->
+            <div id="result-view" class="hidden">
+                <button onclick="showHome()" class="text-indigo-600 hover:text-indigo-800 mb-4 flex items-center">
+                    ← 返回
+                </button>
+                
+                <div id="result-content" class="prose max-w-none">
+                    <!-- 结果由 JS 动态生成 -->
+                </div>
+                
+                <div class="mt-8 pt-6 border-t">
+                    <p class="text-gray-700 font-medium mb-3">这个判断对你有帮助吗？</p>
+                    <div class="flex space-x-4">
+                        <button onclick="submitFeedback('helpful')" class="flex-1 bg-green-100 hover:bg-green-200 text-green-700 py-2 rounded-lg transition">
+                            👍 有用
+                        </button>
+                        <button onclick="submitFeedback('not_helpful')" class="flex-1 bg-red-100 hover:bg-red-200 text-red-700 py-2 rounded-lg transition">
+                            👎 无用
+                        </button>
+                        <button onclick="submitFeedback('feedback')" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg transition">
+                            💬 反馈
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-gray-600 text-sm">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="history.html" class="text-indigo-600 hover:text-indigo-800">📋 历史记录</a>
+                <a href="#" onclick="alert('案例库开发中...')" class="text-indigo-600 hover:text-indigo-800">📚 案例库</a>
+                <a href="#" onclick="alert('关于页面开发中...')" class="text-indigo-600 hover:text-indigo-800">ℹ️ 关于</a>
+            </div>
+            <p>Powered by 滚滚 & AI</p>
+            <p class="mt-2">数据驱动人生选择</p>
+        </footer>
+    </div>
+
+    <script>
+        // 页面切换
+        function showHome() {
+            hideAllViews();
+            document.getElementById('home-view').classList.remove('hidden');
+            loadRecentCases();
+        }
+
+        function showInputForm() {
+            hideAllViews();
+            document.getElementById('input-view').classList.remove('hidden');
+        }
+
+        function showLoading() {
+            hideAllViews();
+            document.getElementById('loading-view').classList.remove('hidden');
+            simulateProgress();
+        }
+
+        function showResult(result) {
+            hideAllViews();
+            document.getElementById('result-view').classList.remove('hidden');
+            renderResult(result);
+        }
+
+        function hideAllViews() {
+            ['home-view', 'input-view', 'loading-view', 'result-view'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+        }
+
+        // 模拟进度
+        function simulateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            const steps = ['step-1', 'step-2', 'step-3'];
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = progress + '%';
+                
+                if (progress > 30) document.getElementById('step-1').innerHTML = '✓ 收集数据中...';
+                if (progress > 60) document.getElementById('step-2').innerHTML = '✓ 对比分析中...';
+                if (progress > 90) document.getElementById('step-3').innerHTML = '✓ 生成判断中...';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        showResult(generateMockResult());
+                    }, 500);
+                }
+            }, 150);
+        }
+
+        // 生成模拟结果
+        function generateMockResult() {
+            const problem = document.getElementById('problem-title').value;
+            return `
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">🌪️ 滚滚的判断</h2>
+                
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 mb-6">
+                    <h3 class="font-semibold text-indigo-800 mb-2">你的问题</h3>
+                    <p class="text-gray-700">${problem}</p>
+                </div>
+
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                    <h3 class="font-semibold text-green-800 mb-2">✅ 推荐选择</h3>
+                    <p class="text-gray-700">基于数据分析，滚滚推荐你选择 <strong>方案 B</strong></p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-semibold text-gray-800 mb-3">理由：</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>数据表明这个选择成功率更高</li>
+                        <li>风险可控，退路明确</li>
+                        <li>符合你的长期发展目标</li>
+                    </ol>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-semibold text-gray-800 mb-3">执行建议：</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>第一步（本周）：XXX</li>
+                        <li>第二步（本月）：XXX</li>
+                        <li>第三步（3 个月）：XXX</li>
+                    </ul>
+                </div>
+
+                <div class="bg-purple-50 border-l-4 border-purple-500 p-4">
+                    <h3 class="font-semibold text-purple-800 mb-2">💚 滚滚的话</h3>
+                    <p class="text-gray-700">
+                        这个选择不是最完美的，但它是风险最小的。成年人的世界没有完美选择，
+                        只有最适合的选择。相信自己，你只管 do it，判断交给滚滚！
+                    </p>
+                </div>
+            `;
+        }
+
+        // 渲染结果
+        function renderResult(html) {
+            document.getElementById('result-content').innerHTML = html;
+        }
+
+        // 提交问题
+        async function submitProblem(event) {
+            event.preventDefault();
+            
+            // 获取表单数据
+            const problemData = {
+                title: document.getElementById('problem-title').value,
+                type: document.querySelector('input[name="problem-type"]:checked').value,
+                status: document.getElementById('current-status').value,
+                options: document.getElementById('options').value,
+                concerns: document.getElementById('concerns').value,
+                extra: document.getElementById('extra-info').value
+            };
+            
+            console.log('提交问题:', problemData);
+            
+            // 显示加载动画
+            showLoading();
+            
+            try {
+                // 调用真实 API
+                const response = await fetch('http://localhost:5001/api/v1/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(problemData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('API 请求失败');
+                }
+                
+                const result = await response.json();
+                
+                // 显示结果
+                showResult(result.html);
+                
+                // 保存到本地存储
+                saveToLocalStorage(problemData, result);
+                
+            } catch (error) {
+                console.error('请求失败:', error);
+                alert('API 服务未启动，使用模拟结果~\n\n启动方法：python scripts/api_server.py');
+                
+                // 降级到模拟结果
+                showResult(generateMockResult());
+            }
+        }
+        
+        // 保存到本地存储
+        function saveToLocalStorage(problem, result) {
+            const history = JSON.parse(localStorage.getItem('doit_history') || '[]');
+            history.unshift({
+                date: new Date().toISOString(),
+                problem: problem,
+                result: result.analysis
+            });
+            localStorage.setItem('doit_history', JSON.stringify(history));
+        }
+
+        // 提交反馈
+        function submitFeedback(type) {
+            alert('感谢反馈！滚滚会变得更聪明~ 💚');
+            console.log('反馈类型:', type);
+        }
+
+        // 加载最近案例
+        function loadRecentCases() {
+            const cases = [
+                { title: '38 岁财务 BP，长沙 10K vs 惠州 25K', type: '职业选择', date: '2026-03-15' },
+                { title: '35 岁程序员，裁员后去小厂还是考公', type: '职业选择', date: '2026-03-15' },
+                { title: '深圳房价太高，该回老家还是留下', type: '城市选择', date: '2026-03-15' }
+            ];
+            
+            const container = document.getElementById('recent-cases');
+            container.innerHTML = cases.map(c => `
+                <div class="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg cursor-pointer transition">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-medium text-gray-800">${c.title}</h4>
+                            <p class="text-sm text-gray-500 mt-1">${c.type} | ${c.date}</p>
+                        </div>
+                        <span class="text-indigo-600">→</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 初始化
+        loadRecentCases();
+    </script>
+</body>
+</html>

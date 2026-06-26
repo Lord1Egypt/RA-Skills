@@ -1,0 +1,18 @@
+{
+  "name": "token-sop",
+  "version": "5.6.0",
+  "description": "本地工作流缓存技能 - 自动保存成功的工作流到本地，下次执行相同任务时自动调取，节省 Token",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "undici": "^7.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  },
+  "keywords": ["openclaw", "workflow", "automation", "token", "sop", "cache", "local"]
+}

@@ -1,35 +1,77 @@
 ---
-name: "DEPRECATED - Bobo Context Cleanup"
-description: "分析并归档 OpenClaw workspace 中低价值 memory 记录，缓解上下文膨胀与启动变慢。适用于上下文冗余、维护整理场景。默认先分析与计划，执行归档前要求确认。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bobo-context-cleanup"
-sourceUrl: "https://clawhub.ai/skills/bobo-context-cleanup"
+name: context-cleanup
+description: DEPRECATED: Please use `context-cleanup` (same owner). This legacy slug is retained only for compatibility. 已废弃，请迁移到 `context-cleanup`。
+user-invocable: true
+metadata:
+  { "openclaw": { "emoji": "🧹", "requires": { "bins": ["bash"] } }, "version": "0.2.1", "updatedAt": "2026-03-06 20:47 Asia/Shanghai" }
 ---
 
-# DEPRECATED - Bobo Context Cleanup
+# Context Cleanup
 
-> 分析并归档 OpenClaw workspace 中低价值 memory 记录，缓解上下文膨胀与启动变慢。适用于上下文冗余、维护整理场景。默认先分析与计划，执行归档前要求确认。
+用于整理 workspace 的 memory 日志，降低冗余上下文负担。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bobo-context-cleanup`
-- **Source URL:** [https://clawhub.ai/skills/bobo-context-cleanup](https://clawhub.ai/skills/bobo-context-cleanup)
+## 关键资源
 
-## Overview
+- 脚本：`cleanup.sh`
+- 策略：`references/policy.md`
 
+## 标准流程（必须）
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 分析现状
 ```bash
-hermes skills install clawhub/bobo-context-cleanup
+./skills/context-cleanup/cleanup.sh analyze
+```
+
+2. 生成计划（不执行）
+```bash
+./skills/context-cleanup/cleanup.sh plan
+```
+
+3. 用户确认后执行归档
+```bash
+./skills/context-cleanup/cleanup.sh archive
+```
+
+## 可选参数
+
+```bash
+# 指定截止日期（早于该日期的记录可归档）
+./skills/context-cleanup/cleanup.sh archive 2026-03-01
+
+# 仅预览，不执行
+./skills/context-cleanup/cleanup.sh archive --dry-run
+
+# 非交互执行（需谨慎）
+./skills/context-cleanup/cleanup.sh archive --yes
+
+# 机器可读输出
+./skills/context-cleanup/cleanup.sh analyze --json
+./skills/context-cleanup/cleanup.sh plan --json
+```
+
+## 执行规则
+
+- 默认归档，不做永久删除
+- 先 `plan` 后 `archive`
+- 归档前必须获得用户确认（除非用户明确同意 `--yes`）
+- 不处理 `MEMORY.md`、`specs/`、`AGENTS.md`
+
+## 输出模板
+
+```markdown
+🧹 上下文清理计划
+
+- Memory 文件：X
+- 低价值候选：A
+- 归档候选：B
+
+是否按计划执行归档？
+```
+
+## 发布前自检
+
+```bash
+./skills/context-cleanup/cleanup.sh analyze
+./skills/context-cleanup/cleanup.sh plan
+./skills/context-cleanup/cleanup.sh archive --dry-run
 ```

@@ -1,0 +1,47 @@
+{
+  "name": "onlyfans",
+  "version": "1.0.0",
+  "description": "Build higher-retention subscription relationships through scarcity design, audience intimacy, and tiered access logic for direct-to-fan monetization.",
+  "author": "ethagent",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "onlyfans",
+    "creator subscriptions",
+    "retention",
+    "direct to fan",
+    "subscription ladder",
+    "private audience monetization",
+    "creator membership",
+    "churn reduction"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "subscription_strategy": "Design clearer creator subscription ladders and paid-access logic",
+    "retention_analysis": "Identify churn risks and retention friction in direct-to-fan businesses",
+    "scarcity_design": "Structure meaningful exclusivity without random withholding",
+    "value_ladder_rebuild": "Rebuild free-to-paid and premium membership logic"
+  },
+  "triggers": [
+    "onlyfans strategy",
+    "subscription tiers",
+    "subscriber retention",
+    "direct to fan monetization",
+    "exclusive content strategy",
+    "creator membership",
+    "reduce churn",
+    "private audience monetization"
+  ],
+  "audience": [
+    "Direct-to-fan creators",
+    "Subscription creators",
+    "Operators building private audience monetization",
+    "Creators improving retention and paid access design"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

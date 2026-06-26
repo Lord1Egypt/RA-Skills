@@ -1,0 +1,13 @@
+{
+  "template": "traditional_lady",
+  "image": "/path/to/product.jpg",
+  "lines": [
+    {"text": "姐妹们，今天给大家推一款好东西", "action": "举起产品给镜头"},
+    {"text": "古法配方，纯手工制作", "action": "微笑展示产品细节"},
+    {"text": "用过的姐妹都说好，赶紧拍", "action": "点头肯定"}
+  ],
+  "bgm": "warm",
+  "bgm_volume": 0.18,
+  "subtitle": true,
+  "output": "/tmp/huo15/traditional.mp4"
+}

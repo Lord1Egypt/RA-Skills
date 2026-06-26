@@ -1,0 +1,8 @@
+{
+  "BASE_URL": "https://nocodb.*****.com/api/v2",
+  "TOKEN": "YOUR_NCODB_TOKEN_HERE",
+  "TABLE_ID_NEWS": "m2w****33m",
+  "TABLE_ID_MARKET": "mhmt****ibzo",
+  "TABLE_ID_PLATES": "mcit****je27",
+  "TABLE_ID_LIMIT_UP": "mq8****ct7"
+}

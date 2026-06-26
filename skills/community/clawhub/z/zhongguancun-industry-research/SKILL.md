@@ -1,35 +1,71 @@
 ---
-name: "Zhongguancun Industry Research"
-description: "产学研合作调研。当用户要求对某家企业（如百度、阿里、华为、科大讯飞等）做合作调研、产业调研、合作可行性分析、研究方向匹配、对接准备时触发。输出包括：企业画像、研究方向交叉匹配、合作切入点、参会人员建议，以及可选的会议议程。也适用于用户说"帮我看看XX公司能不能合作""调研一下XX"等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhongguancun-industry-research"
-sourceUrl: "https://clawhub.ai/skills/zhongguancun-industry-research"
+name: industry-research
+description: 产学研合作调研。当用户要求对某家企业（如百度、阿里、华为、科大讯飞等）做合作调研、产业调研、合作可行性分析、研究方向匹配、对接准备时触发。输出包括：企业画像、研究方向交叉匹配、合作切入点、参会人员建议，以及可选的会议议程。也适用于用户说"帮我看看XX公司能不能合作""调研一下XX"等场景。
 ---
 
-# Zhongguancun Industry Research
+# 产学研合作调研
 
-> 产学研合作调研。当用户要求对某家企业（如百度、阿里、华为、科大讯飞等）做合作调研、产业调研、合作可行性分析、研究方向匹配、对接准备时触发。输出包括：企业画像、研究方向交叉匹配、合作切入点、参会人员建议，以及可选的会议议程。也适用于用户说"帮我看看XX公司能不能合作""调研一下XX"等场景。
+为中关村两院（北京中关村学院 × 中关村人工智能研究院）与外部企业的合作对接提供结构化调研支持。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhongguancun-industry-research`
-- **Source URL:** [https://clawhub.ai/skills/zhongguancun-industry-research](https://clawhub.ai/skills/zhongguancun-industry-research)
+## 核心产出
 
-## Overview
+调研报告（必需）→ 会议议程（可选，基于调研结果）
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhongguancun-industry-research
-```
+### 第一步：企业画像调研
+
+使用搜索工具，按以下维度收集信息：
+
+**基本信息**
+- 核心业务板块与营收结构
+- 研究院/AI实验室组织架构
+- 近期战略重点（财报、新闻、发布会）
+
+**关键人物**
+- 分管AI/研究的副总裁级
+- 研究院院长/实验室主任
+- 与我方研究方向对口的团队负责人
+- 格式：姓名 | 职务 | 研究方向/分管领域
+
+**技术布局**
+- 核心AI产品与技术栈
+- 开源项目与学术发表方向
+- 近期重点投入的技术领域
+
+### 第二步：研究方向交叉匹配
+
+对照我方三个方向（详见 [references/our-research.md](references/our-research.md)），逐一分析匹配度：
+
+| 我方方向 | 对方对应领域 | 匹配度 | 合作切入点 |
+|----------|-------------|--------|-----------|
+| AI核心 | 基础模型/优化/算力 | 高/中/低 | 具体说明 |
+| AI4S | AI+Science/认知智能 | 高/中/低 | 具体说明 |
+| AI+社会科学 | 教育/语言/社会计算 | 高/中/低 | 具体说明 |
+
+匹配度为"高"的方向 → 优先推进，安排议程主讲
+匹配度为"中"的方向 → 可选推进，视对方兴趣调整
+匹配度为"低"的方向 → 暂不安排，备注后续可能性
+
+### 第三步：合作模式预判
+
+基于匹配结果，给出建议的合作模式（可多选）：
+- 联合课题/联合实验室
+- 数据/场景共建
+- 人才培养/联合培养
+- 技术转化/产品化
+- 开源共建
+- 其他
+
+每种模式附简要可行性与推进建议。
+
+### 第四步（可选）：生成会议议程
+
+如用户需要，基于调研结果按模板生成议程（详见 [references/agenda-template.md](references/agenda-template.md)）：
+- 议程一的主题和主讲人由第二步匹配结果决定
+- 对方参会人员由第一步关键人物推导
+- 议程三的合作探讨方向由第三步合作模式决定
+
+## 输出格式
+
+默认输出结构化调研报告（Markdown），包含以上四个部分。如用户要求特定格式（Word、PPT），使用相应工具生成。

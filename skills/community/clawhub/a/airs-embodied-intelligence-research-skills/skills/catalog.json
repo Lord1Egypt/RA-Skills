@@ -1,0 +1,55 @@
+{
+  "name": "AIRS 具身智能产业研究 Skills",
+  "version": "0.1.0",
+  "api": false,
+  "skills": [
+    {
+      "id": "air-company-identity",
+      "displayName": "企业全称确认",
+      "path": "skills/company-identity/SKILL.md",
+      "command": "npm run search",
+      "inputs": ["具身智能中游企业数据库.md", "config/settings.json"],
+      "outputs": ["data/company_list.csv"]
+    },
+    {
+      "id": "air-bidding-crawl",
+      "displayName": "天眼查中标公告采集",
+      "path": "skills/bidding-crawl/SKILL.md",
+      "command": "npm run crawl",
+      "inputs": ["data/company_list.csv", "config/settings.json"],
+      "outputs": ["data/bidding_records.csv", "data/raw_content/*.md"]
+    },
+    {
+      "id": "air-thirdparty-verify",
+      "displayName": "第三方订单核查",
+      "path": "skills/thirdparty-verify/SKILL.md",
+      "command": "npm run verify",
+      "inputs": ["2025年全国具身智能机器人企业订单_数据表.xlsx"],
+      "outputs": ["data/verify_match_report.csv", "data/verify_bidding_records.csv"]
+    },
+    {
+      "id": "air-case-extract",
+      "displayName": "招投标案例提取",
+      "path": "skills/case-extract/SKILL.md",
+      "command": "npm run extract",
+      "inputs": ["data/bidding_records.csv", "data/raw_content/*.md", "应用场景分类规则.md"],
+      "outputs": ["data/extract_results.csv", "data/review_sheet.csv", "data/output/ingestion_output.csv"]
+    },
+    {
+      "id": "air-case-ingest",
+      "displayName": "标准入库表生成",
+      "path": "skills/case-ingest/SKILL.md",
+      "command": "npm run ingest",
+      "inputs": ["data/output/ingestion_output.csv", "data/company_list.csv"],
+      "outputs": ["data/output/ingest_final.csv", "data/output/ingest_report.md"]
+    },
+    {
+      "id": "air-case-quality-review",
+      "displayName": "案例质量复查",
+      "path": "skills/case-quality-review/SKILL.md",
+      "command": "npm run quality:review",
+      "inputs": ["data/output/ingestion_output.csv", "data/company_list.csv"],
+      "outputs": ["data/output/ingest_final.csv", "data/output/ingest_report.md"]
+    }
+  ]
+}

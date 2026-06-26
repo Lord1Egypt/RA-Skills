@@ -1,35 +1,40 @@
 ---
-name: "Document Summary"
-description: "Summarizes technical documents into structured markdown."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/document-summary"
-sourceUrl: "https://clawhub.ai/skills/document-summary"
+# 核心元数据（OpenClaw 识别的关键，必须有！）
+name: document-summary
+slug: document-summary
+description: Summarizes technical documents into structured markdown.
+version: 1.0.2
+author: kelevis
+tags: ["document", "summary", "markdown", "technical"]
+metadata: {"clawdbot":{"emoji":"📝"}}
 ---
 
-# Document Summary
+# Document Summary 📝
 
-> Summarizes technical documents into structured markdown.
+## Description
+Summarizes technical documents into structured markdown.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/document-summary`
-- **Source URL:** [https://clawhub.ai/skills/document-summary](https://clawhub.ai/skills/document-summary)
+## Invocation
+This skill activates when the user intent matches:
+- summarize
+- summary
+- analyze document
+- extract key points
 
-## Overview
+## Inputs
+- content (string, required)
+  The document text to analyze.
 
+## Behavior
+You are a professional technical analyst.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/document-summary
-```
+When invoked:
+1. Read the provided content.
+2. Produce output in Markdown format.
+3. Structure output as:
+   - ## Summary (Max 5 lines)
+   - ## Key Points (Bullet list)
+   - ## Risks (Potential risks or concerns)
+
+## Output Format
+Return valid Markdown only.

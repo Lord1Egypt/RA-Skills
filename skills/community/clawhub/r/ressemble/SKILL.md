@@ -1,35 +1,46 @@
 ---
-name: "Ressemble TTS e STT"
-description: "Text-to-Speech and Speech-to-Text integration using Resemble AI HTTP API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ressemble"
-sourceUrl: "https://clawhub.ai/skills/ressemble"
+name: ressemble
+displayName: Ressemble - Adriano
+version: 1.0.0
+description: Text-to-Speech and Speech-to-Text integration using Resemble AI HTTP API.
+author: Adriano Vargas
+tags: [tts, stt, audio, ai, voice]
 ---
 
-# Ressemble TTS e STT
+# Ressemble – Text & Voice AI Integration
 
-> Text-to-Speech and Speech-to-Text integration using Resemble AI HTTP API.
+This skill integrates OpenClaw with the Resemble AI HTTP API, enabling:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ressemble`
-- **Source URL:** [https://clawhub.ai/skills/ressemble](https://clawhub.ai/skills/ressemble)
+- 🎙 Speech-to-Text (audio transcription)
+- 🔊 Text-to-Speech (voice synthesis)
 
-## Overview
+It uses direct HTTP calls to Resemble's production endpoints and supports asynchronous transcription polling.
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Features
+
+### resemble-tts
+Generate high-quality speech audio from text input.
+
+Supports:
+- Custom `voice_uuid`
+- MP3 output format
+- Base64 audio return
+
+### resemble-stt
+Transcribe audio files to text using Resemble AI.
+
+Supports:
+- Multipart audio upload
+- Automatic polling until transcription is complete
+- Returns clean transcript text
+
+---
+
+## Requirements
+
+You must define the environment variable:
+
 ```bash
-hermes skills install clawhub/ressemble
-```
+export RESEMBLE_API_KEY="your_api_key_here"

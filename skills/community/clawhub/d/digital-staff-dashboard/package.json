@@ -1,0 +1,32 @@
+{
+  "name": "agent-dashboard-v2",
+  "version": "2.0.0",
+  "description": "A modern web-based dashboard for managing OpenClaw agents with real-time monitoring and multi-language support",
+  "main": "dashboard_server.py",
+  "scripts": {
+    "start": "python3 dashboard_server.py",
+    "install": "./install.sh",
+    "uninstall": "./uninstall.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "agent",
+    "dashboard",
+    "monitoring",
+    "skills",
+    "management"
+  ],
+  "author": "mikezhuyan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikezhuyan/agent-dashboard.git"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "flask": "^2.0.0",
+    "flask-cors": "^3.0.0"
+  }
+}

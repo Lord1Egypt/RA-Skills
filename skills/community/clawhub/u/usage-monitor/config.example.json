@@ -1,0 +1,18 @@
+{
+  "$schema": "./config.schema.json",
+  "_comment": "复制此文件为 config.json 并填写你的配置",
+  
+  "panelUrl": "https://example.com/usage/dashboard",
+  "alertThreshold": 80,
+  "serviceName": "服务名称",
+  "checkIntervalHours": 4,
+  "remainingDays": 30,
+  
+  "_notes": {
+    "panelUrl": "从浏览器地址栏复制的用量面板 URL",
+    "alertThreshold": "告警阈值百分比，1-100 之间的整数",
+    "serviceName": "服务名称，用于告警消息显示",
+    "checkIntervalHours": "检查间隔小时数",
+    "remainingDays": "剩余额度天数"
+  }
+}

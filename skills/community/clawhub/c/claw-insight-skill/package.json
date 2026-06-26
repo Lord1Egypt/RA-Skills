@@ -1,0 +1,13 @@
+{
+  "name": "clawinsight-skill",
+  "version": "1.0.0",
+  "description": "Earn passive income from market research. Your agent drafts answers to brand survey questions — you review, edit, and approve every answer before it's shared.",
+  "main": "clawinsight.js",
+  "homepage": "https://claw-insight.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClawInsight/claw-insight-skill"
+  },
+  "author": "ClawInsight",
+  "license": "MIT"
+}

@@ -1,0 +1,238 @@
+{
+  "version": 2,
+  "mode": "dry-run",
+  "accounts": [],
+  "accountEnv": "GOG_ACCOUNT",
+  "processedLabel": "Auto/Triaged",
+  "createMissingLabels": true,
+  "classification": {
+    "defaultMinConfidence": 0.65
+  },
+  "search": {
+    "query": "in:inbox newer_than:2d",
+    "max": 100
+  },
+  "logging": {
+    "dir": "/home/ubuntu/.openclaw/gmail-labeler-logs",
+    "retentionDays": 30
+  },
+  "llmReview": {
+    "enabled": true,
+    "provider": "",
+    "model": "alibaba/MiniMax-M2.5",
+    "fallbackModels": [
+      "amazon-bedrock/moonshotai.kimi-k2.5"
+    ],
+    "minConfidence": 0.68,
+    "maxConfidence": 0.86,
+    "maxBodyChars": 1800,
+    "timeoutMs": 30000,
+    "maxTokens": 300,
+    "temperature": 0.1,
+    "allowedCategories": [
+      "newsletter",
+      "promotions",
+      "notifications",
+      "receipt-non-actionable",
+      "billing-issue",
+      "reply",
+      "opportunity",
+      "action-required",
+      "none"
+    ]
+  },
+  "people": {
+    "knownPeople": [],
+    "knownPersonDomains": [],
+    "vipSenders": [],
+    "vipDomains": [],
+    "neverArchiveSenders": [],
+    "neverArchiveDomains": []
+  },
+  "notifications": {
+    "enabled": false,
+    "defaultRoute": {
+      "agent": "secretaria",
+      "channel": "discord",
+      "to": "last"
+    },
+    "urgentRoute": {
+      "agent": "main",
+      "channel": "telegram",
+      "to": "last"
+    },
+    "urgentFilters": ["billing-issue"],
+    "urgentTerms": ["urgent", "overdue", "expired", "payment failed", "final notice"]
+  },
+  "senderHeuristics": {
+    "companyLocalParts": ["no-reply", "noreply", "billing", "support", "hello", "team", "news", "newsletter", "updates", "notifications", "receipts"],
+    "companyHeaderHints": ["List-Unsubscribe"]
+  },
+  "defaultFilters": [
+    {
+      "id": "newsletter",
+      "kind": "non_actionable",
+      "priority": 100,
+      "senderType": "company",
+      "baseConfidence": 0.7,
+      "minConfidence": 0.65,
+      "match": {
+        "any": [
+          { "subjectIncludes": ["newsletter", "digest", "weekly update", "daily update", "boletim", "resumo semanal", "resumo diario", "resumen semanal", "resumen diario"] },
+          { "headersPresent": ["List-Unsubscribe"] },
+          { "bodyIncludes": ["unsubscribe", "view in browser", "cancelar inscricao", "cancelar suscripcion", "ver no navegador", "ver en el navegador"] }
+        ]
+      },
+      "actions": {
+        "addLabels": ["Newsletter"],
+        "removeLabels": ["INBOX"]
+      }
+    },
+    {
+      "id": "promotions",
+      "kind": "non_actionable",
+      "priority": 90,
+      "senderType": "company",
+      "baseConfidence": 0.72,
+      "minConfidence": 0.65,
+      "match": {
+        "any": [
+          { "subjectIncludes": ["sale", "discount", "offer", "coupon", "% off", "promocao", "promoção", "oferta", "descuento", "cupom", "cupon"] },
+          { "bodyIncludes": ["limited time", "buy now", "exclusive offer", "tempo limitado", "compre agora", "oferta exclusiva", "tiempo limitado", "compra ahora", "oferta exclusiva"] }
+        ]
+      },
+      "actions": {
+        "addLabels": ["CATEGORY_PROMOTIONS"],
+        "removeLabels": ["INBOX"]
+      }
+    },
+    {
+      "id": "notifications",
+      "kind": "non_actionable",
+      "priority": 80,
+      "senderType": "company",
+      "baseConfidence": 0.68,
+      "minConfidence": 0.64,
+      "match": {
+        "any": [
+          { "subjectIncludes": ["notification", "alert", "activity", "updated", "reminder", "notificacao", "notificação", "lembrete", "atualizacao", "actualizacion", "recordatorio"] },
+          { "fromIncludes": ["notifications@", "updates@", "support@"] }
+        ]
+      },
+      "actions": {
+        "addLabels": ["CATEGORY_UPDATES", "Notification"],
+        "removeLabels": ["INBOX"]
+      }
+    },
+    {
+      "id": "receipt-non-actionable",
+      "kind": "non_actionable",
+      "priority": 70,
+      "senderType": "company",
+      "baseConfidence": 0.71,
+      "minConfidence": 0.66,
+      "match": {
+        "all": [
+          { "any": [
+            { "subjectIncludes": ["receipt", "invoice", "payment confirmed", "thank you for your payment", "recibo", "fatura", "factura", "pagamento confirmado", "pago", "pago con exito"] },
+            { "bodyIncludes": ["payment received", "invoice", "receipt", "pagamento recebido", "recibo", "fatura", "pago recibido", "factura"] }
+          ]},
+          { "none": [
+            { "subjectIncludes": ["overdue", "failed payment", "payment due", "expired", "expiring", "vencido", "vence hoje", "vence mañana", "pago fallido", "expirada", "expirado"] },
+            { "bodyIncludes": ["action required", "payment failed", "renew now", "expired", "acao necessaria", "ação necessária", "renove agora", "pago fallido", "renueva ahora", "expirado"] }
+          ]}
+        ]
+      },
+      "actions": {
+        "addLabels": ["Receipt"],
+        "removeLabels": ["INBOX"]
+      }
+    },
+    {
+      "id": "billing-issue",
+      "kind": "actionable",
+      "priority": 95,
+      "senderType": "company",
+      "baseConfidence": 0.78,
+      "minConfidence": 0.72,
+      "match": {
+        "any": [
+          { "subjectIncludes": ["overdue", "payment due", "failed payment", "expired", "expiring soon", "subscription expired", "vencido", "pagamento em atraso", "pagamento falhou", "assinatura expirada", "vence em breve", "pago vencido", "pago fallido", "suscripcion expirada", "vence pronto"] },
+          { "bodyIncludes": ["payment failed", "update payment method", "subscription has expired", "renew your subscription", "atualize seu metodo de pagamento", "atualize seu método de pagamento", "renove sua assinatura", "actualiza tu metodo de pago", "actualiza tu método de pago", "renueva tu suscripcion", "renueva tu suscripción"] }
+        ]
+      },
+      "actions": {
+        "addLabels": ["Receipt", "STARRED"],
+        "keepInInbox": true,
+        "notify": true
+      }
+    },
+    {
+      "id": "reply",
+      "kind": "actionable",
+      "priority": 85,
+      "senderType": "person_or_unknown",
+      "baseConfidence": 0.73,
+      "minConfidence": 0.68,
+      "match": {
+        "any": [
+          { "subjectStartsWith": ["Re:", "RE:", "RES:", "Enc:"] },
+          { "headersPresent": ["In-Reply-To", "References"] }
+        ]
+      },
+      "actions": {
+        "addLabels": ["IMPORTANT"],
+        "keepInInbox": true
+      }
+    },
+    {
+      "id": "opportunity",
+      "kind": "actionable",
+      "priority": 88,
+      "senderType": "person_or_unknown",
+      "baseConfidence": 0.74,
+      "minConfidence": 0.7,
+      "match": {
+        "all": [
+          {
+            "any": [
+              { "subjectIncludes": ["partnership", "sponsorship", "proposal", "consulting", "speaking", "collaboration", "parceria", "patrocinio", "patrocínio", "proposta", "palestra", "colaboracion", "colaboración"] },
+              { "bodyIncludes": ["would like to hire", "interested in partnering", "sponsorship opportunity", "speaking opportunity", "gostaríamos de contratar", "temos interesse em parceria", "oportunidade de patrocinio", "oportunidade de patrocínio", "nos gustaría contratar", "interesados en colaborar", "oportunidad de patrocinio"] }
+            ]
+          },
+          {
+            "none": [
+              { "fromIncludes": ["linkedin.com", "linkedin"] },
+              { "subjectIncludes": ["accepted your invitation", "grow your network", "viewed your profile"] }
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "addLabels": ["Opportunity", "STARRED"],
+        "keepInInbox": true,
+        "notify": true
+      }
+    },
+    {
+      "id": "action-required",
+      "kind": "actionable",
+      "priority": 84,
+      "senderType": "person",
+      "baseConfidence": 0.72,
+      "minConfidence": 0.7,
+      "match": {
+        "any": [
+          { "subjectIncludes": ["please confirm", "action required", "need your input", "can you", "please review", "por favor confirme", "acao necessaria", "ação necessária", "preciso da sua resposta", "puedes", "por favor revisa", "accion requerida", "acción requerida"] },
+          { "bodyIncludes": ["please complete", "please confirm", "need your response", "could you send", "please fill out", "por favor preencha", "por favor confirme", "preciso da sua resposta", "poderia enviar", "puedes enviar", "por favor completa", "por favor confirma"] }
+        ]
+      },
+      "actions": {
+        "addLabels": ["Action Required", "IMPORTANT"],
+        "keepInInbox": true,
+        "notify": true
+      }
+    }
+  ],
+  "customFilters": []
+}

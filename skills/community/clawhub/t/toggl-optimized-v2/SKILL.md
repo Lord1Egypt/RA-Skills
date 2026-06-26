@@ -1,35 +1,35 @@
----
-name: "Toggl-Optimized-V2"
-description: "Optimize Toggl Track usage with token-efficient API calls and fast reporting via a shell script for JSON and PDF summaries."
-category: "other"
-source: "ClawHub"
-tags: [reporting]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toggl-optimized-v2"
-sourceUrl: "https://clawhub.ai/skills/toggl-optimized-v2"
----
+# Toggl-Optimized
 
-# Toggl-Optimized-V2
-
-> Optimize Toggl Track usage with token-efficient API calls and fast reporting via a shell script for JSON and PDF summaries.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toggl-optimized-v2`
-- **Source URL:** [https://clawhub.ai/skills/toggl-optimized-v2](https://clawhub.ai/skills/toggl-optimized-v2)
+A high-performance Toggl Track agent skill optimized for token efficiency and reporting.
 
 ## Overview
 
+This skill provides a streamlined way to interact with Toggl Track, focusing on minimizing context usage and providing fast reporting capabilities via direct API v3 calls.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Features
+
+- **Token Efficient:** Uses optimized API calls to reduce LLM context consumption.
+- **Fast Reporting:** Includes a shell script for quick JSON and PDF reports.
+- **Direct API Access:** Examples for direct `curl` interaction with Toggl v3 Reports.
+
+## Setup
+
+1. Get your API Token from [Toggl Profile Settings](https://track.toggl.com/profile).
+2. Set the environment variable:
+   ```bash
+   export TOGGL_API_TOKEN="your-api-token"
+   ```
+3. (Optional) Set your Workspace ID:
+   ```bash
+   export TOGGL_WORKSPACE_ID="your-workspace-id"
+   ```
+
+## Usage
+
+### Optimized Reporting Script
+
+Use the provided script for fast summaries:
 ```bash
-hermes skills install clawhub/toggl-optimized-v2
+# Usage: bash scripts/toggl_report.sh <client_name> <start_date> <end_date> <format: json|pdf>
+bash scripts/toggl_report.sh myclient 2026-02-01 2026-02-28 json
 ```

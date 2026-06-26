@@ -1,0 +1,51 @@
+{
+  "name": "funnel",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for building and optimizing marketing and sales funnels. Covers funnel design, measurement, conversion optimization, onboarding, email sequences, experimentation, and retention for SaaS and digital businesses.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "funnel", "conversion", "marketing funnel", "sales funnel", "SaaS",
+    "growth", "onboarding", "activation", "trial conversion", "landing page",
+    "CAC", "LTV", "churn", "retention", "product-led growth", "PLG"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "funnel_diagnosis": "Identifies the highest-leverage drop-off point from conversion data",
+    "measurement_framework": "Builds instrumentation and tracking for every funnel stage",
+    "copy_writing": "Writes high-converting copy for landing pages, emails, and CTAs at every stage",
+    "onboarding_design": "Designs activation sequences that get users to value faster",
+    "experimentation": "Designs and analyzes A/B tests that produce reliable learning",
+    "retention_connection": "Links retention metrics back to funnel decisions and acquisition promises"
+  },
+  "triggers": [
+    "funnel", "conversion rate", "landing page", "trial conversion",
+    "onboarding", "activation", "CAC", "churn", "retention",
+    "marketing funnel", "sales funnel", "product led growth", "PLG",
+    "signup conversion", "free trial", "freemium", "demo conversion",
+    "email sequence", "nurture", "drip campaign", "funnel optimization"
+  ],
+  "heartbeat": {
+    "daily": "Core conversion metrics pulse and anomaly detection",
+    "weekly": "Full funnel health review by stage",
+    "monthly": "Deep funnel analysis with cohort and unit economics review",
+    "quarterly": "Strategy review and highest-leverage optimization prioritization",
+    "per_experiment": "Design and analysis framework for every test"
+  },
+  "audience": [
+    "SaaS founders optimizing self-serve growth funnels",
+    "Growth marketers responsible for conversion rate improvement",
+    "Product managers owning activation and onboarding metrics",
+    "Marketing teams running paid acquisition who need funnel visibility",
+    "Early-stage companies building their first measurement framework"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

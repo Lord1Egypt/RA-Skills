@@ -1,0 +1,36 @@
+{
+  "name": "discord-automation",
+  "version": "1.0.0",
+  "description": "Discord自动化管理Skill - 提供Discord服务器的自动化管理、消息管理、用户管理、数据分析等功能",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "discord",
+    "automation",
+    "community-management",
+    "bot"
+  ],
+  "author": "hk001",
+  "license": "MIT",
+  "dependencies": {},
+  "clawhub": {
+    "category": "community-management",
+    "tags": ["discord", "automation", "community", "bot", "moderation", "deepseek-v4", "惠迈智能体", "国际社区"],
+    "compatibility": {
+      "openclaw": ">=2026.4.0",
+      "deepseek": ">=v4.0.0",
+      "huimai-agents": "三层架构"
+    },
+    "features": [
+      "DeepSeek v4社区智能",
+      "惠迈国际社区模式",
+      "智能体效率革命",
+      "多语言全球支持"
+    ]
+  }
+}

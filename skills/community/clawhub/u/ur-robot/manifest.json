@@ -1,0 +1,87 @@
+{
+  "name": "ur-robot",
+  "version": "1.0.0",
+  "description": "Universal Robots 机器人控制技能 - URSim 仿真 + URScript 命令 + RTDE 数据读取",
+  "author": "小橙 (Little Orange) 🍊",
+  "created": "2026-04-02",
+  "updated": "2026-04-02",
+  "tags": ["robot", "ur", "universal-robots", "ursim", "rtde", "urscript", "automation"],
+  "category": "robotics",
+  "difficulty": "intermediate",
+  "testing_status": {
+    "ursim_simulation": true,
+    "real_robot": false,
+    "warning": "本技能包仅在 URSim 仿真器中测试通过，未在真实机器人上验证！真机使用必须重新测试并采取安全措施。"
+  },
+  "platform_notes": {
+    "clawhub_compliance": "已移除 .ps1 和 .bat 文件以符合 ClawHub 要求",
+    "removed_scripts": [
+      "fix-and-test.ps1 - 替代：test_*.py Python 测试脚本",
+      "setup-docker-d-drive.ps1 - 替代：见 WINDOWS_SCRIPTS_NOTE.md"
+    ],
+    "core_functions": "所有核心功能保留，无影响"
+  },
+  "requirements": {
+    "docker": true,
+    "python": "3.8+",
+    "external_apis": false,
+    "hardware": "Universal Robots (可选真机)"
+  },
+  "dependencies": {
+    "python_packages": ["rtde (UR 官方库)"],
+    "docker_images": ["universalrobots/ursim_e-series"],
+    "ports": [6080, 5900, 30001, 30002, 30003, 30004]
+  },
+  "features": [
+    "关节空间运动 (movej)",
+    "笛卡尔空间直线运动 (movel)",
+    "圆弧运动 (movec)",
+    "速度控制 (speedj, speedl)",
+    "数字 IO 控制",
+    "RTDE 状态读取",
+    "力控模式 (force_mode)"
+  ],
+  "files": {
+    "skill_doc": "SKILL.md",
+    "quick_start": "README.md",
+    "feature_list": "URSCRIPT_FEATURES.md",
+    "python_lib": "ur_robot.py",
+    "test_scripts": [
+      "test_motion_simple.py",
+      "test_rtde_official.py",
+      "test_continuous_motion.py"
+    ],
+    "examples": [
+      "examples/basic_move.py",
+      "examples/io_control.py"
+    ]
+  },
+  "commands": {
+    "start_ursim": "docker run -d --name ursim -p 6080:6080 -p 30001-30004:30001-30004 universalrobots/ursim_e-series",
+    "test_motion": "python skills/ur-robot/test_motion_simple.py",
+    "test_rtde": "python skills/ur-robot/test_rtde_official.py"
+  },
+  "related_skills": [
+    "dobot-robot",
+    "jaka-robot",
+    "ros2-control"
+  ],
+  "resources": {
+    "ur_official": "https://www.universal-robots.com/",
+    "urscript_docs": "https://www.universal-robots.com/articles/ur/programming/",
+    "rtde_github": "https://github.com/UniversalRobots/RTDE_Python_Client_Library",
+    "ursim_download": "https://www.universal-robots.com/download/"
+  },
+  "status": "stable",
+  "tested": true,
+  "test_date": "2026-04-02",
+  "test_results": {
+    "movej": "pass",
+    "movel": "pass",
+    "movec": "pass",
+    "speedj": "pass",
+    "digital_io": "pass",
+    "rtde_read": "pass",
+    "force_mode": "pass"
+  }
+}

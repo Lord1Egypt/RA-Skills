@@ -1,0 +1,8 @@
+{
+  "name": "catmcp-data-analysis",
+  "version": "1.0.0",
+  "description": "CatLab 智能数据助手 - 专业的catmcp数据分析技能",
+  "keywords": ["catmcp", "data-analysis", "mongodb", "catlab"],
+  "author": "OpenClaw User",
+  "license": "MIT"
+}

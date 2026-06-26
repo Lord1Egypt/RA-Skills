@@ -1,35 +1,15 @@
 ---
-name: "reset-context-contamination"
-description: "Discard the accumulated drafts and framings from this thread and re-derive the task from a clean problem statement."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reset-context-contamination"
-sourceUrl: "https://clawhub.ai/skills/reset-context-contamination"
+name: reset-context-contamination
+description: Discard the accumulated drafts and framings from this thread and re-derive the task from a clean problem statement.
+metadata:
+  version: "0.1.0"
 ---
 
-# reset-context-contamination
+This thread's history has become the problem - prior drafts and framings are anchoring every new attempt. Reset.
 
-> Discard the accumulated drafts and framings from this thread and re-derive the task from a clean problem statement.
+First, extract what's worth keeping, in plain factual terms: who is involved, the outcome I want, the hard constraints, the known facts, and - critically - what's already been tried and ruled out, so a fresh derivation doesn't walk back into a dead end.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reset-context-contamination`
-- **Source URL:** [https://clawhub.ai/skills/reset-context-contamination](https://clawhub.ai/skills/reset-context-contamination)
+Then pick the path by severity:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reset-context-contamination
-```
+- Deep contamination, or anything high-stakes: do not try to reset yourself - the contaminated model cannot be trusted to author its own reset. Hand the extracted brief to a fresh subagent, or recommend I start a new session. A genuinely clean context window is the only reliable reset.
+- Mild drift only: re-derive in-thread from the extracted brief, as if seeing the task for the first time. Void the earlier drafts entirely - no referencing, quoting, or patching them. If you are unsure the brief itself is right, show it to me before drafting; otherwise just proceed.

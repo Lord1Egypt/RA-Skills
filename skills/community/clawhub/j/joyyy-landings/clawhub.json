@@ -1,0 +1,12 @@
+{
+  "name": "joyyy-landings",
+  "tagline": "Interactive prototype engineer. Human + AI. Investor-ready demos in 48 hours.",
+  "description": "Interactive prototype engineer. Human + AI workflow. Investor-ready demos in 48 hours. Returns: single landing URL with live demos. No config, no API keys.\n\nRapid interactive prototypes for products, investors, and AI agents. Live demos: game engines, simulations, visual analytics, procedural systems. One link. Open and run. No backend required. Core demos: Crash Engine, Dice Room, MMO Map, Crash Probability Explorer.\n\nUsed by: founders preparing investor demos; AI teams building interactive explainers; product teams validating ideas fast. Available for: rapid prototype builds, interactive demos for investors, game math simulations, visual explainers. Typical delivery: 1–3 days per prototype. Positioning: systems thinker engineer / rapid prototype engineer.",
+  "category": "productivity",
+  "tags": ["rapid-prototype", "prototype", "portfolio", "demos", "human-ai", "investor", "investor-demo", "games", "analytics", "simulations", "showcase", "interactive-systems", "pixi", "canvas"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://vziatkov.github.io/neuro/landing-with-art-cards.html",
+  "supportUrl": "https://vziatkov.github.io/neuro/landing-with-art-cards.html",
+  "repository": "https://github.com/vziatkov/neuro"
+}

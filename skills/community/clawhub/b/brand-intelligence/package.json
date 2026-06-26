@@ -1,0 +1,44 @@
+{
+  "name": "openclaw-brand-intelligence",
+  "version": "0.1.0",
+  "description": "Brand intelligence for AI agents — search, compare, and analyze 5,600+ companies across 30 verticals via geo.sig.ai",
+  "type": "module",
+  "files": [
+    "src",
+    "openclaw.plugin.json",
+    "README.md",
+    "skills"
+  ],
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.24-beta.2"
+  },
+  "openclaw": {
+    "extensions": [
+      "./src/index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.3.24-beta.2",
+      "pluginSdkVersion": "2026.3.24-beta.2"
+    }
+  },
+  "keywords": [
+    "openclaw",
+    "brand-intelligence",
+    "ai-visibility",
+    "competitive-analysis"
+  ],
+  "homepage": "https://geo.sig.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sigaihealth/airank"
+  },
+  "license": "MIT",
+  "author": "sig.ai"
+}

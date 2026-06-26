@@ -1,0 +1,25 @@
+{
+  "name": "web3-yield-automator",
+  "version": "1.0.0",
+  "description": "Premium DeFi yield farming automation across multiple chains",
+  "main": "index.js",
+  "bin": {
+    "yield-automator": "./index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Tests coming soon\""
+  },
+  "keywords": ["web3", "defi", "yield-farming", "automation", "aave", "compound"],
+  "author": "NEXUS GSI (Contact: @Thedarksideofthemood45)",
+  "license": "PROPRIETARY",
+  "private": false,
+  "dependencies": {
+    "ethers": "^6.0.0",
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

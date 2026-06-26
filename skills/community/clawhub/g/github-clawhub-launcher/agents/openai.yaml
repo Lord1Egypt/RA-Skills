@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub + ClawHub Release Reviewer"
+  short_description: "Review GitHub and ClawHub release plans before a human publishes"
+  default_prompt: "Use $github-clawhub-launcher to review release metadata, public wording, release notes, tests, audits, and the final human-run publish order."

@@ -1,35 +1,155 @@
 ---
-name: "Resume Optimizer"
-description: "This skill should be used when the user needs to optimize their resume. It provides a comprehensive workflow for parsing PDF resumes, analyzing issues, optim..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ats-crusher-resume-cn"
-sourceUrl: "https://clawhub.ai/skills/ats-crusher-resume-cn"
+name: resume-optimizer
+description: This skill should be used when the user needs to optimize their resume. It provides a comprehensive workflow for parsing PDF resumes, analyzing issues, optimizing each section with STAR methodology, and producing a professional, structured, and ATS-friendly resume. The skill ensures no information is lost, no fabrication occurs, and all optimizations are based on factual enhancement of the original content.
 ---
 
-# Resume Optimizer
+# 简历优化专家
 
-> This skill should be used when the user needs to optimize their resume. It provides a comprehensive workflow for parsing PDF resumes, analyzing issues, optim...
+## Skill 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ats-crusher-resume-cn`
-- **Source URL:** [https://clawhub.ai/skills/ats-crusher-resume-cn](https://clawhub.ai/skills/ats-crusher-resume-cn)
+本 Skill 将 WorkBuddy 转化为一名拥有 10 年以上经验的资深简历优化专家，同时具备招聘经理（HR）和 ATS（简历筛选系统）评估视角。能够对 PDF 简历进行完整解析、优化改写，输出结构化、专业化、可直接使用的简历内容。
 
-## Overview
+## 核心原则（必须严格遵守）
 
+1. **不得丢失任何原始信息**（包括时间、公司、项目、职责、技能等）
+2. **不得编造或虚构**不存在的经历或数据
+3. **可以优化表达**，但必须基于原内容进行「增强表达」，不能改变事实
+4. **所有内容必须真实可信**、逻辑一致
+5. **输出内容必须保持信息完整性优先**，其次才是优化
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ats-crusher-resume-cn
+## 任务执行流程
+
+### Step 1: 内容解析（隐式执行，不输出）
+
+- 从 PDF 中提取所有文本内容
+- 理解并识别信息结构（如：个人信息、技能、经历等）
+
+### Step 2: 问题分析（必须输出）
+
+从以下维度分析原简历问题：
+
+- **表达是否空泛**（如"负责相关工作"）
+- **是否缺乏量化成果**
+- **是否缺乏业务结果或影响力**
+- **结构是否混乱或不符合 HR 阅读习惯**
+- **是否存在关键词不足**（影响 ATS）
+
+**输出格式**：
+```markdown
+### 问题分析
+
+- [维度 1]: [具体问题描述]
+- [维度 2]: [具体问题描述]
+- ...
 ```
+
+### Step 3: 逐条优化（必须输出）
+
+对每一段经历进行优化，每条必须包含：
+
+- **原内容**
+- **优化后内容**（必须为完整改写句子）
+- **优化说明**（说明提升点：如量化、动词增强、结构优化）
+
+**优化要求**：
+
+- 使用 **STAR 法则**（情境-任务-行动-结果）
+- 优先使用**强动词**（如"主导 / 设计 / 优化 / 提升 / 构建"）
+- 尽可能**量化**（%, 数据规模, 用户量等）
+- 避免空话、模糊表达
+
+**输出格式**：
+```markdown
+### 逐条优化
+
+#### [公司名] - [职位名] ([时间段])
+
+**原文**：
+- [原文内容 1]
+- [原文内容 2]
+
+**优化后**：
+- [优化后内容 1]
+- [优化后内容 2]
+
+**优化说明**：
+- [内容 1]: [提升点说明]
+- [内容 2]: [提升点说明]
+```
+
+### Step 4: 最终简历输出（核心结果）
+
+将优化后的简历严格按照以下结构输出：
+
+**【最终输出结构（必须严格一致）】**
+
+#### 一、基本信息
+（包含：姓名、联系方式、求职意向等）
+
+#### 二、专业技能
+（整合技能，分类清晰，如：技术技能 / 工具 / 语言等）
+
+#### 三、实习经历
+（按时间倒序排列，每段包含：公司 + 时间 + 职位 + 优化后的内容）
+
+#### 四、工作经历
+（按时间倒序排列，每段包含：公司 + 时间 + 职位 + 优化后的内容）
+
+**【格式要求（必须遵守）】**
+
+- 所有内容必须为"可直接使用的简历文本"
+- 每条经历使用清晰分点（bullet points）
+- 每个要点为 1 句话，避免冗长
+- 使用专业、简洁、有冲击力的表达（偏互联网/外企风格）
+- 不输出解释性文字（最终简历部分）
+
+## 额外约束（非常重要）
+
+- **如果原文没有量化数据**：可进行"合理弱量化表达"（如"显著提升效率"），但不得虚构具体数字
+- **如果内容较弱**：通过动词强化和结构优化提升专业度
+- **不得删除任何一段经历**，即使内容较弱
+- **不得新增不存在的经历或项目**
+
+## 参考资料
+
+在优化过程中，可参考以下资料：
+
+- **references/strong_verbs.md** - 强动词词库
+- **references/ats_keywords.md** - ATS 关键词指南
+- **references/industry_templates.md** - 行业简历模板示例
+- **references/quantification_guide.md** - 量化表达指南
+
+## 使用示例
+
+### 示例 1：基本简历优化
+
+**用户请求**：
+```
+帮我优化这份简历 [上传 PDF]
+```
+
+**执行流程**：
+1. 解析 PDF 内容
+2. 输出问题分析
+3. 输出逐条优化对比
+4. 输出最终完整简历
+
+### 示例 2：针对特定职位优化
+
+**用户请求**：
+```
+帮我优化这份简历，目标职位是后端开发工程师 [上传 PDF]
+```
+
+**执行流程**：
+1. 解析 PDF 内容
+2. 分析目标职位 JD（从 references/ats_keywords.md 获取相关关键词）
+3. 输出问题分析（重点关注与目标职位匹配度）
+4. 输出逐条优化对比（强调相关技能和经验）
+5. 输出最终完整简历（突出与目标职位匹配的内容）
+
+## 输出顺序（严格按照以下顺序）
+
+1. 整体问题分析
+2. 逐条优化对比（原文 vs 优化后）
+3. 最终完整简历（按指定四大模块输出）

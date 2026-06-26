@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Monitor — 全局总览</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+/* ────── 基础 & 主题（与 dashboard 一致） ────── */
+:root {
+  --bg-primary: #0f1117;
+  --bg-card: #1a1d2e;
+  --bg-card-hover: #222640;
+  --border: #2a2e42;
+  --text-primary: #e4e6f0;
+  --text-secondary: #8b8fa3;
+  --text-muted: #5a5e72;
+  --accent-blue: #667eea;
+  --accent-purple: #764ba2;
+  --accent-green: #4ade80;
+  --accent-yellow: #fbbf24;
+  --accent-red: #f87171;
+  --accent-orange: #fb923c;
+  --accent-cyan: #22d3ee;
+  --accent-pink: #f472b6;
+  --gradient-main: linear-gradient(135deg, #667eea, #764ba2);
+  --gradient-green: linear-gradient(135deg, #4ade80, #22d3ee);
+  --gradient-orange: linear-gradient(135deg, #fb923c, #f87171);
+  --gradient-pink: linear-gradient(135deg, #f472b6, #764ba2);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.dashboard { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+/* ────── Header ────── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
+}
+.header-left { display: flex; align-items: center; gap: 16px; }
+.header-logo {
+  width: 52px; height: 52px;
+  background: var(--gradient-pink);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 4px 16px rgba(244,114,182,0.3);
+}
+.header h1 { font-size: 22px; font-weight: 700; }
+.header .subtitle { color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
+.header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg-card);
+  color: var(--text-primary); font-size: 13px; cursor: pointer;
+  transition: all 0.2s; text-decoration: none;
+}
+.btn:hover { background: var(--bg-card-hover); border-color: var(--accent-blue); }
+.btn-primary { background: var(--gradient-main); border: none; color: #fff; }
+.btn-primary:hover { opacity: 0.9; }
+.btn-sm { padding: 5px 12px; font-size: 12px; border-radius: 8px; }
+.btn.active { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+
+.agent-count-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  background: rgba(102,126,234,0.12); color: var(--accent-blue);
+}
+
+/* ────── Grid ────── */
+.grid { display: grid; gap: 20px; }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-2-1 { grid-template-columns: 2fr 1fr; }
+.grid-1-2 { grid-template-columns: 1fr 2fr; }
+
+@media (max-width: 1200px) {
+  .grid-5 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .dashboard { padding: 16px; }
+  .grid-5, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .header { flex-direction: column; align-items: flex-start; }
+}
+
+/* ────── Card ────── */
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow-card); transition: border-color 0.3s;
+}
+.card:hover { border-color: rgba(102,126,234,0.3); }
+
+.card-title {
+  font-size: 14px; font-weight: 600; color: var(--text-secondary);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-title .icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+
+/* ────── KPI 卡片 ────── */
+.kpi-card { position: relative; overflow: hidden; }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.kpi-card:nth-child(1)::before { background: var(--gradient-main); }
+.kpi-card:nth-child(2)::before { background: var(--gradient-green); }
+.kpi-card:nth-child(3)::before { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
+.kpi-card:nth-child(4)::before { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); }
+.kpi-card:nth-child(5)::before { background: var(--gradient-pink); }
+
+.kpi-value {
+  font-size: 36px; font-weight: 800; line-height: 1.1; margin: 8px 0 4px;
+}
+.kpi-value.gradient-1 { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-value.gradient-2 { background: var(--gradient-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-value.gradient-3 { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-value.gradient-4 { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-value.gradient-5 { background: var(--gradient-pink); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.kpi-label { font-size: 13px; color: var(--text-secondary); }
+.kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+
+/* ────── Agent 列表区域 ────── */
+.agent-toolbar {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.search-box {
+  flex: 1; min-width: 200px; max-width: 360px; position: relative;
+}
+.search-box input {
+  width: 100%; padding: 9px 14px 9px 36px;
+  background: rgba(0,0,0,0.25); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text-primary); font-size: 13px;
+  outline: none; transition: border-color 0.2s;
+}
+.search-box input:focus { border-color: var(--accent-blue); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-box .search-icon {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; color: var(--text-muted);
+}
+
+.filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-pill {
+  padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+  border: 1px solid var(--border); background: transparent; color: var(--text-secondary);
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.filter-pill:hover { border-color: var(--accent-blue); color: var(--text-primary); }
+.filter-pill.active { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+.filter-pill .pill-count { 
+  display: inline-block; min-width: 16px; text-align: center;
+  padding: 0 5px; margin-left: 4px; border-radius: 10px;
+  font-size: 10px; font-weight: 700;
+  background: rgba(255,255,255,0.15);
+}
+.filter-pill.active .pill-count { background: rgba(255,255,255,0.25); }
+
+.view-toggle { display: flex; gap: 2px; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 3px; margin-left: auto; }
+.view-btn {
+  padding: 5px 10px; border: none; background: none; color: var(--text-muted);
+  font-size: 14px; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+}
+.view-btn.active { background: var(--bg-card-hover); color: var(--text-primary); }
+
+.agent-list-info {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px; font-size: 12px; color: var(--text-muted);
+}
+.sort-selector {
+  display: flex; align-items: center; gap: 6px;
+}
+.sort-selector select {
+  background: rgba(0,0,0,0.25); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text-secondary); font-size: 12px;
+  padding: 4px 8px; outline: none; cursor: pointer;
+}
+
+/* ────── Agent 卡片（展开模式） ────── */
+.agent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 1200px) { .agent-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .agent-grid { grid-template-columns: 1fr; } }
+
+.agent-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; transition: all 0.3s; cursor: pointer; text-decoration: none; color: inherit;
+  display: block; position: relative; overflow: hidden;
+}
+.agent-card:hover { border-color: var(--accent-blue); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+.agent-card.hidden { display: none; }
+
+.agent-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.agent-card-name { font-size: 15px; font-weight: 700; }
+.agent-card-id { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-family: monospace; }
+
+.status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.status-dot.healthy { background: var(--accent-green); box-shadow: 0 0 8px rgba(74,222,128,0.4); }
+.status-dot.warning { background: var(--accent-yellow); box-shadow: 0 0 8px rgba(251,191,36,0.4); }
+.status-dot.idle { background: var(--text-muted); }
+.status-dot.offline { background: var(--accent-red); }
+
+.agent-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.agent-metric { padding: 8px; background: rgba(255,255,255,0.02); border-radius: 8px; }
+.agent-metric-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
+.agent-metric-value { font-size: 16px; font-weight: 700; margin-top: 2px; }
+.agent-metric-value.health-good { color: var(--accent-green); }
+.agent-metric-value.health-ok { color: var(--accent-blue); }
+.agent-metric-value.health-warn { color: var(--accent-yellow); }
+.agent-metric-value.health-bad { color: var(--accent-red); }
+
+.agent-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(42,46,66,0.5); }
+.agent-card-footer span { font-size: 11px; color: var(--text-muted); }
+.agent-card-footer .os-badge { padding: 2px 8px; background: rgba(102,126,234,0.1); border-radius: 6px; color: var(--accent-blue); font-size: 10px; }
+
+/* ────── Agent 列表（紧凑模式） ────── */
+.agent-table-wrapper { overflow-x: auto; }
+.agent-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.agent-table th {
+  text-align: left; padding: 10px 14px; color: var(--text-secondary);
+  font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+  cursor: pointer; user-select: none; position: sticky; top: 0;
+  background: var(--bg-card); z-index: 1;
+}
+.agent-table th:hover { color: var(--text-primary); }
+.agent-table th .sort-arrow { font-size: 10px; margin-left: 4px; opacity: 0.3; }
+.agent-table th.sorted .sort-arrow { opacity: 1; color: var(--accent-blue); }
+.agent-table td { padding: 10px 14px; border-bottom: 1px solid rgba(42,46,66,0.3); white-space: nowrap; }
+.agent-table tr { cursor: pointer; transition: background 0.15s; }
+.agent-table tr:hover td { background: rgba(102,126,234,0.05); }
+.agent-table tr.hidden { display: none; }
+
+.agent-name-cell { display: flex; align-items: center; gap: 10px; }
+.agent-name-cell .agent-avatar {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.agent-name-cell .agent-info { min-width: 0; }
+.agent-name-cell .name { font-weight: 600; font-size: 13px; }
+.agent-name-cell .id { font-size: 10px; color: var(--text-muted); font-family: monospace; }
+
+.health-bar { display: flex; align-items: center; gap: 8px; }
+.health-bar-track { width: 60px; height: 5px; background: #2a2e42; border-radius: 3px; overflow: hidden; }
+.health-bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+
+.status-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;
+}
+.status-badge.healthy { background: rgba(74,222,128,0.12); color: var(--accent-green); }
+.status-badge.warning { background: rgba(251,191,36,0.12); color: var(--accent-yellow); }
+.status-badge.idle { background: rgba(90,94,114,0.12); color: var(--text-muted); }
+.status-badge.offline { background: rgba(248,113,113,0.12); color: var(--accent-red); }
+
+/* ────── 分页器 ────── */
+.pagination {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(42,46,66,0.5);
+}
+.page-btn {
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--text-secondary); font-size: 12px;
+  cursor: pointer; transition: all 0.2s;
+}
+.page-btn:hover { border-color: var(--accent-blue); color: var(--text-primary); }
+.page-btn.active { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+.page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.page-info { font-size: 12px; color: var(--text-muted); padding: 0 8px; }
+
+/* ────── 表格 ────── */
+.table-wrapper { overflow-x: auto; }
+table.skill-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.skill-table th { text-align: left; padding: 12px 14px; color: var(--text-secondary); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+table.skill-table td { padding: 12px 14px; border-bottom: 1px solid rgba(42,46,66,0.3); }
+table.skill-table tr:hover td { background: rgba(102,126,234,0.03); }
+
+.grade-badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+.grade-s, .grade-a { background: rgba(74,222,128,0.15); color: var(--accent-green); }
+.grade-b { background: rgba(102,126,234,0.15); color: var(--accent-blue); }
+.grade-c { background: rgba(251,191,36,0.15); color: var(--accent-yellow); }
+.grade-d, .grade-f { background: rgba(248,113,113,0.15); color: var(--accent-red); }
+
+.progress-bar { width: 100%; height: 6px; background: #2a2e42; border-radius: 3px; overflow: hidden; }
+.progress-bar-fill { height: 100%; border-radius: 3px; background: var(--gradient-main); transition: width 1s ease; }
+
+/* ────── Chart ────── */
+.chart-container { position: relative; height: 280px; width: 100%; }
+.chart-container canvas { max-height: 100%; }
+.chart-container.chart-sm { height: 200px; }
+.chart-container.chart-dynamic { height: auto; min-height: 200px; }
+
+/* ────── Tab ────── */
+.tab-nav { display: flex; gap: 4px; margin-bottom: 16px; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 4px; flex-wrap: wrap; }
+.tab-btn { padding: 8px 16px; border: none; background: none; color: var(--text-muted); font-size: 13px; font-weight: 500; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.tab-btn.active { background: var(--bg-card-hover); color: var(--text-primary); }
+.tab-btn:hover:not(.active) { color: var(--text-secondary); }
+
+/* ────── Alert ────── */
+.alert-list { display: flex; flex-direction: column; gap: 8px; max-height: 400px; overflow-y: auto; }
+.alert-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 3px solid; }
+.alert-item.error { border-left-color: var(--accent-red); }
+.alert-item.warning { border-left-color: var(--accent-yellow); }
+.alert-item.info { border-left-color: var(--accent-blue); }
+.alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.alert-content { flex: 1; }
+.alert-agent { font-size: 12px; font-weight: 700; color: var(--text-primary); }
+.alert-msg { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+.alert-summary-pills { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.alert-summary-pill {
+  padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600;
+}
+.alert-summary-pill.error { background: rgba(248,113,113,0.12); color: var(--accent-red); }
+.alert-summary-pill.warning { background: rgba(251,191,36,0.12); color: var(--accent-yellow); }
+.alert-summary-pill.info { background: rgba(102,126,234,0.12); color: var(--accent-blue); }
+
+/* ────── 分布饼图 ────── */
+.dist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+.dist-item { text-align: center; padding: 16px 8px; background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border: 1px solid rgba(42,46,66,0.5); }
+.dist-count { font-size: 28px; font-weight: 800; line-height: 1.2; }
+.dist-label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+.dist-excellent .dist-count { color: var(--accent-green); }
+.dist-good .dist-count { color: var(--accent-blue); }
+.dist-average .dist-count { color: var(--accent-yellow); }
+.dist-poor .dist-count { color: var(--accent-red); }
+
+/* ────── 环形统计 ────── */
+.donut-stats { display: flex; align-items: center; gap: 20px; }
+.donut-legend { flex: 1; }
+.legend-item { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 13px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.legend-value { margin-left: auto; font-weight: 700; }
+
+/* ────── Section & Footer ────── */
+.section { margin-bottom: 20px; }
+.footer { text-align: center; padding: 32px 0 16px; color: var(--text-muted); font-size: 12px; }
+
+/* ────── Empty ────── */
+.empty-state { text-align: center; padding: 48px 24px; color: var(--text-muted); }
+.empty-state .empty-icon { font-size: 48px; margin-bottom: 16px; }
+.empty-state h3 { font-size: 18px; color: var(--text-secondary); margin-bottom: 8px; }
+.empty-state p { font-size: 13px; max-width: 400px; margin: 0 auto; }
+
+/* ────── Scrollbar ────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3e52; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4a4e62; }
+
+/* ────── 动画 ────── */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.3s ease forwards; }
+
+/* ────── 加载效果 ────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+  <!-- ════════ Header ════════ -->
+  <header class="header">
+    <div class="header-left">
+      <div class="header-logo">🌐</div>
+      <div>
+        <h1>Skills Monitor 全局总览</h1>
+        <p class="subtitle">所有 Agent 汇总分析 · 数据截至 {{ data.generated_at[:10] }}</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="agent-count-badge">
+        🤖 {{ data.total_agents }} 个 Agent
+      </div>
+      <a class="btn btn-primary" href="/api/overview/data" target="_blank">📥 JSON 数据</a>
+    </div>
+  </header>
+
+  {% if data.total_agents == 0 %}
+  <!-- ════════ 空状态 ════════ -->
+  <div class="card">
+    <div class="empty-state">
+      <div class="empty-icon">🤖</div>
+      <h3>暂无 Agent 注册</h3>
+      <p>还没有任何 Agent 注册到服务器。请在本地安装并运行 Skills Monitor 客户端。</p>
+    </div>
+  </div>
+
+  {% else %}
+  <!-- ════════ KPI 舰队概览 ════════ -->
+  <div class="section grid grid-5">
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(102,126,234,0.15)">🤖</span> Agent 数量</div>
+      <div class="kpi-value gradient-1">{{ data.fleet_overview.total_agents }}</div>
+      <div class="kpi-label">已注册智能体</div>
+      <div class="kpi-sub">活跃 {{ data.fleet_overview.active_agents }} · 不活跃 {{ data.fleet_overview.inactive_agents }}</div>
+    </div>
+
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(74,222,128,0.15)">🏥</span> 平均健康度</div>
+      <div class="kpi-value gradient-2">{{ '%.0f' % data.fleet_overview.avg_health_score }}</div>
+      <div class="kpi-label">全局平均分</div>
+      <div class="kpi-sub">累计 {{ data.fleet_overview.total_reports }} 份报告</div>
+    </div>
+
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(251,191,36,0.15)">📈</span> 总运行次数</div>
+      <div class="kpi-value gradient-3">{{ data.fleet_overview.global_total_runs }}</div>
+      <div class="kpi-label">所有 Agent 合计</div>
+      <div class="kpi-sub">活跃 Skills {{ data.fleet_overview.global_active_skills }} 个</div>
+    </div>
+
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(34,211,238,0.15)">🎯</span> 平均成功率</div>
+      <div class="kpi-value gradient-4">{{ '%.1f' % data.fleet_overview.global_avg_success_rate }}%</div>
+      <div class="kpi-label">全局运行成功率</div>
+      <div class="kpi-sub">可运行率 {{ '%.1f' % data.fleet_overview.global_runnable_rate }}%</div>
+    </div>
+
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(244,114,182,0.15)">📦</span> Skills 总量</div>
+      <div class="kpi-value gradient-5">{{ data.fleet_overview.total_skills_installed }}</div>
+      <div class="kpi-label">所有 Agent 合计安装</div>
+      <div class="kpi-sub">可运行 {{ data.fleet_overview.total_skills_runnable }} 个</div>
+    </div>
+  </div>
+
+  <!-- ════════ Agent 列表（支持搜索、筛选、分页、双视图） ════════ -->
+  <div class="section">
+    <div class="card" style="padding:20px">
+      <div class="card-title"><span class="icon" style="background:rgba(102,126,234,0.15)">🤖</span> Agent 状态一览</div>
+      
+      <!-- 工具栏：搜索 + 筛选 + 视图切换 -->
+      <div class="agent-toolbar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="agentSearch" placeholder="搜索 Agent 名称或 ID..." oninput="filterAgents()">
+        </div>
+        <div class="filter-pills" id="filterPills">
+          <button class="filter-pill active" data-filter="all" onclick="setFilter('all')">
+            全部 <span class="pill-count" id="count-all">{{ data.total_agents }}</span>
+          </button>
+          <button class="filter-pill" data-filter="healthy" onclick="setFilter('healthy')">
+            🟢 正常 <span class="pill-count" id="count-healthy">0</span>
+          </button>
+          <button class="filter-pill" data-filter="warning" onclick="setFilter('warning')">
+            🟡 关注 <span class="pill-count" id="count-warning">0</span>
+          </button>
+          <button class="filter-pill" data-filter="idle" onclick="setFilter('idle')">
+            ⚫ 不活跃 <span class="pill-count" id="count-idle">0</span>
+          </button>
+          <button class="filter-pill" data-filter="offline" onclick="setFilter('offline')">
+            🔴 离线 <span class="pill-count" id="count-offline">0</span>
+          </button>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" id="viewGrid" onclick="setView('grid')" title="卡片视图">🏷️</button>
+          <button class="view-btn" id="viewTable" onclick="setView('table')" title="列表视图">📋</button>
+        </div>
+      </div>
+
+      <!-- 信息栏：结果数 + 排序 -->
+      <div class="agent-list-info">
+        <span id="agentResultInfo">显示 {{ data.total_agents }} 个 Agent</span>
+        <div class="sort-selector">
+          <span>排序:</span>
+          <select id="agentSort" onchange="sortAgents()">
+            <option value="health_desc">健康度 ↓</option>
+            <option value="health_asc">健康度 ↑</option>
+            <option value="name_asc">名称 A→Z</option>
+            <option value="name_desc">名称 Z→A</option>
+            <option value="runs_desc">运行次数 ↓</option>
+            <option value="rate_desc">成功率 ↓</option>
+            <option value="last_report">最近上报</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 视图 1: 卡片网格 -->
+      <div id="agentGridView" class="agent-grid">
+        <!-- JS 动态渲染 -->
+      </div>
+
+      <!-- 视图 2: 紧凑表格 -->
+      <div id="agentTableView" style="display:none">
+        <div class="agent-table-wrapper" style="max-height:600px;overflow-y:auto">
+          <table class="agent-table">
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>状态</th>
+                <th>健康度</th>
+                <th>运行次数</th>
+                <th>成功率</th>
+                <th>Skills</th>
+                <th>最后上报</th>
+                <th>系统</th>
+              </tr>
+            </thead>
+            <tbody id="agentTableBody">
+              <!-- JS 动态渲染 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 分页 -->
+      <div class="pagination" id="agentPagination"></div>
+    </div>
+  </div>
+
+  <!-- ════════ 全局趋势 + 告警 ════════ -->
+  <div class="section grid grid-2-1">
+    <!-- 全局趋势 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(34,211,238,0.15)">📈</span> 全局趋势（近 {{ data.period_days }} 天）</div>
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTrend('health')">平均健康度</button>
+        <button class="tab-btn" onclick="switchTrend('runs')">总运行次数</button>
+        <button class="tab-btn" onclick="switchTrend('rate')">平均成功率</button>
+        <button class="tab-btn" onclick="switchTrend('agents')">上报 Agent 数</button>
+      </div>
+      {% if data.trend %}
+      <div class="chart-container">
+        <canvas id="trendChart"></canvas>
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">📉</div>
+        <h3>暂无趋势数据</h3>
+        <p>至少需要 2 天的上报数据才能展示趋势。</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- 告警摘要 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(248,113,113,0.15)">🚨</span> 告警 & 关注事项</div>
+      {% if data.alert_summary %}
+      <div class="alert-summary-pills">
+        <span class="alert-summary-pill error" id="alertErrorCount"></span>
+        <span class="alert-summary-pill warning" id="alertWarnCount"></span>
+        <span class="alert-summary-pill info" id="alertInfoCount"></span>
+      </div>
+      <div class="alert-list" id="alertList">
+        {% for alert in data.alert_summary %}
+        <div class="alert-item {{ alert.level }}">
+          <span class="alert-icon">
+            {% if alert.level == 'error' %}🔴{% elif alert.level == 'warning' %}🟡{% else %}🔵{% endif %}
+          </span>
+          <div class="alert-content">
+            <div class="alert-agent">{{ alert.agent }}</div>
+            <div class="alert-msg">{{ alert.message }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% if data.alert_summary|length > 10 %}
+      <div style="text-align:center;margin-top:8px">
+        <button class="btn btn-sm" onclick="toggleAlertExpand(this)">展开全部 ({{ data.alert_summary|length }})</button>
+      </div>
+      {% endif %}
+      {% else %}
+      <div class="empty-state" style="padding:32px">
+        <div class="empty-icon">✅</div>
+        <h3>一切正常</h3>
+        <p>没有发现需要关注的问题。</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ════════ Agent 对比柱状图 + 分布统计 ════════ -->
+  <div class="section grid grid-2">
+    <!-- Agent 健康度对比 -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(102,126,234,0.15)">📊</span> Agent 健康度对比
+        {% if data.agent_comparison|length > 20 %}
+        <span style="margin-left:auto;font-size:11px;color:var(--text-muted);text-transform:none;letter-spacing:0">
+          显示 Top 30
+        </span>
+        {% endif %}
+      </div>
+      {% if data.agent_comparison %}
+      <div class="chart-container" id="compareChartContainer" style="height:250px">
+        <canvas id="compareChart"></canvas>
+      </div>
+      {% if data.agent_comparison|length > 30 %}
+      <div style="text-align:center;margin-top:8px">
+        <button class="btn btn-sm" id="compareShowMore" onclick="toggleCompareExpand()">显示全部 {{ data.agent_comparison|length }} 个</button>
+      </div>
+      {% endif %}
+      {% else %}
+      <div class="empty-state"><div class="empty-icon">📊</div><h3>暂无数据</h3></div>
+      {% endif %}
+    </div>
+
+    <!-- OS & 版本分布 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(244,114,182,0.15)">🖥️</span> 环境分布</div>
+      <div class="grid grid-2" style="gap:16px">
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase">操作系统</div>
+          <div class="chart-container chart-sm">
+            <canvas id="osChart"></canvas>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase">Monitor 版本</div>
+          <div class="chart-container chart-sm">
+            <canvas id="versionChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ 全局 Skill 排行 + 评分分布 ════════ -->
+  <div class="section grid grid-2-1">
+    <!-- Skill 全局排行 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(74,222,128,0.15)">🏆</span> Skill 全局评分排行</div>
+      {% if data.skill_global_rankings %}
+      <div class="table-wrapper" style="max-height:500px;overflow-y:auto">
+        <table class="skill-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Skill</th>
+              <th>平均分</th>
+              <th>等级</th>
+              <th>最高分</th>
+              <th>最低分</th>
+              <th>使用 Agent 数</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in data.skill_global_rankings %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td style="font-weight:600">{{ s.skill_id }}</td>
+              <td>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span style="font-weight:700">{{ s.avg_score }}</span>
+                  <div class="progress-bar" style="width:80px">
+                    <div class="progress-bar-fill" style="width:{{ s.avg_score }}%"></div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="grade-badge grade-{{ s.grade[:1]|lower }}">{{ s.grade }}</span></td>
+              <td style="color:var(--accent-green)">{{ s.max_score }}</td>
+              <td style="color:{{ 'var(--accent-red)' if s.min_score < 60 else 'var(--text-secondary)' }}">{{ s.min_score }}</td>
+              <td>
+                <span style="font-weight:600">{{ s.agent_count }}</span>
+                <span style="font-size:11px;color:var(--text-muted)"> 个</span>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty-state"><div class="empty-icon">🏅</div><h3>暂无排行数据</h3></div>
+      {% endif %}
+    </div>
+
+    <!-- 全局评分分布 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(251,191,36,0.15)">📊</span> 全局评分分布</div>
+      {% if data.skill_global_rankings %}
+      <div class="chart-container" style="height:180px">
+        <canvas id="distChart"></canvas>
+      </div>
+      <div class="dist-grid">
+        <div class="dist-item dist-excellent">
+          <div class="dist-count">{{ data.score_distribution.excellent }}</div>
+          <div class="dist-label">优秀 (≥90)</div>
+        </div>
+        <div class="dist-item dist-good">
+          <div class="dist-count">{{ data.score_distribution.good }}</div>
+          <div class="dist-label">良好 (75-89)</div>
+        </div>
+        <div class="dist-item dist-average">
+          <div class="dist-count">{{ data.score_distribution.average }}</div>
+          <div class="dist-label">一般 (60-74)</div>
+        </div>
+        <div class="dist-item dist-poor">
+          <div class="dist-count">{{ data.score_distribution.poor }}</div>
+          <div class="dist-label">待改善 (<60)</div>
+        </div>
+      </div>
+      {% else %}
+      <div class="empty-state"><div class="empty-icon">📭</div><h3>暂无评分数据</h3></div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endif %}
+
+  <!-- ════════ Footer ════════ -->
+  <footer class="footer">
+    <p>Skills Monitor Global Overview v0.7.0 · Powered by CodeBuddy · {{ data.generated_at[:19] }}</p>
+    <p style="margin-top:4px"><a href="/benchmark" style="color:var(--accent-blue);text-decoration:none">🧪 TOP1000 基准评测 →</a></p>
+  </footer>
+</div>
+
+<!-- ════════ JavaScript ════════ -->
+<script>
+const DATA = {{ data|tojson }};
+
+// ─── Chart.js 全局设置 ───
+Chart.defaults.color = '#5a5e72';
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+
+// ─── 颜色调色板 ───
+const COLORS = ['#667eea','#4ade80','#fbbf24','#f87171','#22d3ee','#f472b6','#fb923c','#a78bfa','#34d399','#f9a8d4','#818cf8','#2dd4bf','#e879f9','#38bdf8','#fb7185','#a3e635','#facc15','#c084fc','#f97316','#6366f1'];
+
+// ═══════════════════════════════════════════════
+//  Agent 列表管理器（搜索 + 筛选 + 分页 + 排序）
+// ═══════════════════════════════════════════════
+
+const AGENTS = DATA.agents || [];
+const PAGE_SIZE = 12;  // 每页显示数
+let currentFilter = 'all';
+let currentView = 'grid';
+let currentPage = 1;
+let filteredAgents = [...AGENTS];
+
+// 初始化筛选计数
+function initFilterCounts() {
+  const counts = { all: AGENTS.length, healthy: 0, warning: 0, idle: 0, offline: 0 };
+  AGENTS.forEach(a => { if (counts[a.status] !== undefined) counts[a.status]++; });
+  Object.keys(counts).forEach(k => {
+    const el = document.getElementById('count-' + k);
+    if (el) el.textContent = counts[k];
+  });
+  // 隐藏 0 计数的 pill
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    const f = pill.dataset.filter;
+    if (f !== 'all' && counts[f] === 0) pill.style.display = 'none';
+  });
+}
+
+// 筛选 Agent
+function setFilter(filter) {
+  currentFilter = filter;
+  currentPage = 1;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.filter === filter));
+  applyFilters();
+}
+
+// 搜索 + 筛选
+function filterAgents() {
+  currentPage = 1;
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = (document.getElementById('agentSearch').value || '').toLowerCase().trim();
+  filteredAgents = AGENTS.filter(a => {
+    // 状态筛选
+    if (currentFilter !== 'all' && a.status !== currentFilter) return false;
+    // 搜索
+    if (q && !a.name.toLowerCase().includes(q) && !a.agent_id.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  sortAgents(false); // 排序但不重置页码
+  renderAgentList();
+}
+
+// 排序
+function sortAgents(doRender = true) {
+  const sortKey = document.getElementById('agentSort').value;
+  filteredAgents.sort((a, b) => {
+    switch (sortKey) {
+      case 'health_desc': return (b.health_score || 0) - (a.health_score || 0);
+      case 'health_asc': return (a.health_score || 0) - (b.health_score || 0);
+      case 'name_asc': return a.name.localeCompare(b.name);
+      case 'name_desc': return b.name.localeCompare(a.name);
+      case 'runs_desc': return (b.total_runs || 0) - (a.total_runs || 0);
+      case 'rate_desc': return (b.success_rate || 0) - (a.success_rate || 0);
+      case 'last_report': return (b.last_report_at || '').localeCompare(a.last_report_at || '');
+      default: return 0;
+    }
+  });
+  if (doRender) renderAgentList();
+}
+
+// 视图切换
+function setView(view) {
+  currentView = view;
+  document.getElementById('viewGrid').classList.toggle('active', view === 'grid');
+  document.getElementById('viewTable').classList.toggle('active', view === 'table');
+  document.getElementById('agentGridView').style.display = view === 'grid' ? 'grid' : 'none';
+  document.getElementById('agentTableView').style.display = view === 'table' ? 'block' : 'none';
+  renderAgentList();
+}
+
+// 健康度颜色辅助
+function healthClass(score) {
+  if (score === null || score === undefined) return '';
+  if (score >= 80) return 'health-good';
+  if (score >= 60) return 'health-ok';
+  if (score >= 40) return 'health-warn';
+  return 'health-bad';
+}
+function healthColor(score) {
+  if (score === null || score === undefined) return '#5a5e72';
+  if (score >= 80) return '#4ade80';
+  if (score >= 60) return '#667eea';
+  if (score >= 40) return '#fbbf24';
+  return '#f87171';
+}
+// Agent 头像颜色
+function avatarBg(index) {
+  const colors = ['#667eea','#4ade80','#fbbf24','#f87171','#22d3ee','#f472b6','#fb923c','#a78bfa'];
+  return colors[index % colors.length];
+}
+
+// 渲染 Agent 列表
+function renderAgentList() {
+  const totalPages = Math.ceil(filteredAgents.length / PAGE_SIZE) || 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+  
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+  const pageAgents = filteredAgents.slice(start, end);
+
+  // 更新信息
+  document.getElementById('agentResultInfo').textContent = 
+    `显示 ${filteredAgents.length} 个 Agent` + 
+    (filteredAgents.length !== AGENTS.length ? ` (共 ${AGENTS.length} 个)` : '') +
+    (totalPages > 1 ? ` · 第 ${currentPage}/${totalPages} 页` : '');
+
+  // 渲染卡片视图
+  if (currentView === 'grid') {
+    const grid = document.getElementById('agentGridView');
+    grid.innerHTML = pageAgents.map(a => `
+      <a class="agent-card fade-in" href="/dashboard/${a.agent_id}">
+        <div class="agent-card-header">
+          <div>
+            <div class="agent-card-name">${escHtml(a.name)}</div>
+            <div class="agent-card-id">${a.agent_id.slice(0, 12)}...</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;color:var(--text-muted)">${a.status_label}</span>
+            <span class="status-dot ${a.status}"></span>
+          </div>
+        </div>
+        <div class="agent-metrics">
+          <div class="agent-metric">
+            <div class="agent-metric-label">健康度</div>
+            <div class="agent-metric-value ${healthClass(a.health_score)}">
+              ${a.health_score !== null ? Math.round(a.health_score) : '-'}
+            </div>
+          </div>
+          <div class="agent-metric">
+            <div class="agent-metric-label">运行次数</div>
+            <div class="agent-metric-value">${a.total_runs || 0}</div>
+          </div>
+          <div class="agent-metric">
+            <div class="agent-metric-label">成功率</div>
+            <div class="agent-metric-value">${a.success_rate ? Math.round(a.success_rate) + '%' : '-'}</div>
+          </div>
+          <div class="agent-metric">
+            <div class="agent-metric-label">Skills</div>
+            <div class="agent-metric-value">${a.active_skills || 0}</div>
+          </div>
+        </div>
+        <div class="agent-card-footer">
+          <span>最后上报: ${a.last_report_at}</span>
+          <span class="os-badge">${a.os_info && a.os_info !== '未知' ? a.os_info.split(' ')[0] : '—'}</span>
+        </div>
+      </a>
+    `).join('');
+
+    if (pageAgents.length === 0) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted)">🔍 没有匹配的 Agent</div>';
+    }
+  }
+
+  // 渲染表格视图
+  if (currentView === 'table') {
+    const tbody = document.getElementById('agentTableBody');
+    tbody.innerHTML = pageAgents.map((a, i) => `
+      <tr class="fade-in" onclick="window.location='/dashboard/${a.agent_id}'" style="animation-delay:${i * 20}ms">
+        <td>
+          <div class="agent-name-cell">
+            <div class="agent-avatar" style="background:${avatarBg(start + i)}22;color:${avatarBg(start + i)}">
+              ${a.name.charAt(0).toUpperCase()}
+            </div>
+            <div class="agent-info">
+              <div class="name">${escHtml(a.name)}</div>
+              <div class="id">${a.agent_id.slice(0, 12)}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="status-badge ${a.status}">
+            <span class="status-dot ${a.status}" style="width:7px;height:7px"></span>
+            ${a.status_label}
+          </span>
+        </td>
+        <td>
+          <div class="health-bar">
+            <span style="font-weight:700;color:${healthColor(a.health_score)}">${a.health_score !== null ? Math.round(a.health_score) : '-'}</span>
+            <div class="health-bar-track">
+              <div class="health-bar-fill" style="width:${a.health_score || 0}%;background:${healthColor(a.health_score)}"></div>
+            </div>
+          </div>
+        </td>
+        <td style="font-weight:600">${a.total_runs || 0}</td>
+        <td>${a.success_rate ? Math.round(a.success_rate) + '%' : '-'}</td>
+        <td>${a.active_skills || 0} / ${a.total_skills || 0}</td>
+        <td style="font-size:11px;color:var(--text-muted)">${a.last_report_at}</td>
+        <td><span class="os-badge">${a.os_info && a.os_info !== '未知' ? a.os_info.split(' ')[0] : '—'}</span></td>
+      </tr>
+    `).join('');
+
+    if (pageAgents.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-muted)">🔍 没有匹配的 Agent</td></tr>';
+    }
+  }
+
+  // 渲染分页
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+  const pag = document.getElementById('agentPagination');
+  if (totalPages <= 1) { pag.innerHTML = ''; return; }
+
+  let html = `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>‹</button>`;
+
+  // 智能分页：显示首页 ... 当前附近 ... 尾页
+  const pages = [];
+  const maxShow = 7;
+  if (totalPages <= maxShow) {
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
+  } else {
+    pages.push(1);
+    let start = Math.max(2, currentPage - 2);
+    let end = Math.min(totalPages - 1, currentPage + 2);
+    if (start > 2) pages.push(-1); // dots
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (end < totalPages - 1) pages.push(-1);
+    pages.push(totalPages);
+  }
+
+  pages.forEach(p => {
+    if (p === -1) {
+      html += '<span class="page-info">…</span>';
+    } else {
+      html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goPage(${p})">${p}</button>`;
+    }
+  });
+
+  html += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>›</button>`;
+  pag.innerHTML = html;
+}
+
+function goPage(p) {
+  const totalPages = Math.ceil(filteredAgents.length / PAGE_SIZE) || 1;
+  if (p < 1 || p > totalPages) return;
+  currentPage = p;
+  renderAgentList();
+  // 滚回列表顶部
+  document.getElementById('agentGridView').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function escHtml(s) { 
+  const d = document.createElement('div'); 
+  d.textContent = s; 
+  return d.innerHTML; 
+}
+
+// ═══════════════════════════════════════════════
+//  告警管理
+// ═══════════════════════════════════════════════
+function initAlertSummary() {
+  const alerts = DATA.alert_summary || [];
+  const counts = { error: 0, warning: 0, info: 0 };
+  alerts.forEach(a => { if (counts[a.level] !== undefined) counts[a.level]++; });
+  
+  const el_e = document.getElementById('alertErrorCount');
+  const el_w = document.getElementById('alertWarnCount');
+  const el_i = document.getElementById('alertInfoCount');
+  if (el_e) el_e.textContent = `🔴 严重 ${counts.error}`;
+  if (el_w) el_w.textContent = `🟡 警告 ${counts.warning}`;
+  if (el_i) el_i.textContent = `🔵 信息 ${counts.info}`;
+  
+  // 隐藏 0 计数的
+  if (el_e && counts.error === 0) el_e.style.display = 'none';
+  if (el_w && counts.warning === 0) el_w.style.display = 'none';
+  if (el_i && counts.info === 0) el_i.style.display = 'none';
+  
+  // 如果告警超过 10 条，默认折叠
+  const list = document.getElementById('alertList');
+  if (list && alerts.length > 10) {
+    list.style.maxHeight = '280px';
+  }
+}
+
+function toggleAlertExpand(btn) {
+  const list = document.getElementById('alertList');
+  if (!list) return;
+  if (list.style.maxHeight === 'none') {
+    list.style.maxHeight = '280px';
+    btn.textContent = `展开全部 (${(DATA.alert_summary || []).length})`;
+  } else {
+    list.style.maxHeight = 'none';
+    btn.textContent = '收起';
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  全局趋势图
+// ═══════════════════════════════════════════════
+let trendChart = null;
+const trendConfigs = {
+  health: { label: '平均健康度', key: 'avg_health_score', color: '#667eea', bg: 'rgba(102,126,234,0.1)', min: 0, max: 100 },
+  runs: { label: '总运行次数', key: 'total_runs', color: '#4ade80', bg: 'rgba(74,222,128,0.1)', min: 0, max: null },
+  rate: { label: '平均成功率', key: 'avg_success_rate', color: '#fbbf24', bg: 'rgba(251,191,36,0.1)', min: 0, max: 100 },
+  agents: { label: '上报 Agent 数', key: 'reporting_agents', color: '#22d3ee', bg: 'rgba(34,211,238,0.1)', min: 0, max: null },
+};
+
+function initTrendChart(type) {
+  const canvas = document.getElementById('trendChart');
+  if (!canvas || !DATA.trend || DATA.trend.length === 0) return;
+
+  const cfg = trendConfigs[type];
+  const labels = DATA.trend.map(t => t.date.slice(5));
+  const values = DATA.trend.map(t => t[cfg.key]);
+
+  if (trendChart) trendChart.destroy();
+  trendChart = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: cfg.label, data: values,
+        borderColor: cfg.color, backgroundColor: cfg.bg, fill: true,
+        tension: 0.4, borderWidth: 2.5,
+        pointRadius: values.length > 15 ? 0 : 4, pointHoverRadius: 6,
+        pointBackgroundColor: cfg.color,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor: '#1a1d2e', borderColor: '#2a2e42', borderWidth: 1, titleColor: '#e4e6f0', bodyColor: '#8b8fa3', padding: 12, cornerRadius: 10 },
+      },
+      scales: {
+        y: { min: cfg.min, max: cfg.max, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 11 } } },
+        x: { grid: { display: false }, ticks: { font: { size: 11 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 15 } },
+      },
+    },
+  });
+}
+
+function switchTrend(type) {
+  const map = { health: '平均健康度', runs: '总运行次数', rate: '平均成功率', agents: '上报' };
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    const match = Object.entries(map).find(([k, v]) => btn.textContent.includes(v));
+    btn.classList.toggle('active', match && match[0] === type);
+  });
+  initTrendChart(type);
+}
+
+// ═══════════════════════════════════════════════
+//  Agent 健康度对比柱状图（大量 Agent 自适应）
+// ═══════════════════════════════════════════════
+let compareChart = null;
+let compareShowAll = false;
+
+function initCompareChart(showAll) {
+  const canvas = document.getElementById('compareChart');
+  if (!canvas || !DATA.agent_comparison || DATA.agent_comparison.length === 0) return;
+
+  let agents = [...DATA.agent_comparison].sort((a, b) => b.health - a.health);
+  const total = agents.length;
+  
+  // 大量 Agent 时默认只显示 Top 30
+  if (!showAll && total > 30) {
+    agents = agents.slice(0, 30);
+  }
+
+  // 动态调整图表高度
+  const container = document.getElementById('compareChartContainer');
+  const isHorizontal = agents.length > 8;
+  if (isHorizontal) {
+    container.style.height = Math.max(250, agents.length * 28 + 60) + 'px';
+  } else {
+    container.style.height = '250px';
+  }
+
+  if (compareChart) compareChart.destroy();
+  compareChart = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: agents.map(a => a.name.length > 16 ? a.name.slice(0, 16) + '…' : a.name),
+      datasets: [{
+        label: '健康度',
+        data: agents.map(a => a.health),
+        backgroundColor: agents.map(a => {
+          if (a.health >= 80) return 'rgba(74,222,128,0.7)';
+          if (a.health >= 60) return 'rgba(102,126,234,0.7)';
+          if (a.health >= 40) return 'rgba(251,191,36,0.7)';
+          return 'rgba(248,113,113,0.7)';
+        }),
+        borderRadius: 4, borderSkipped: false, barPercentage: 0.65,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      indexAxis: isHorizontal ? 'y' : 'x',
+      plugins: { 
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => `健康度: ${ctx.raw}`,
+            afterLabel: ctx => {
+              const agent = agents[ctx.dataIndex];
+              return `运行: ${agent.runs} · 成功率: ${agent.rate}%`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, max: 100, ticks: { font: { size: 11 } } },
+        y: { grid: { display: false }, ticks: { font: { size: agents.length > 20 ? 10 : 11 }, autoSkip: false } },
+      },
+    },
+  });
+}
+
+function toggleCompareExpand() {
+  compareShowAll = !compareShowAll;
+  const btn = document.getElementById('compareShowMore');
+  if (btn) btn.textContent = compareShowAll ? '只显示 Top 30' : `显示全部 ${DATA.agent_comparison.length} 个`;
+  initCompareChart(compareShowAll);
+}
+
+// ═══════════════════════════════════════════════
+//  OS 分布饼图
+// ═══════════════════════════════════════════════
+function initOsChart() {
+  const canvas = document.getElementById('osChart');
+  if (!canvas || !DATA.os_distribution) return;
+
+  const labels = Object.keys(DATA.os_distribution);
+  const values = Object.values(DATA.os_distribution);
+  if (labels.length === 0) return;
+
+  new Chart(canvas.getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels, datasets: [{
+        data: values,
+        backgroundColor: COLORS.slice(0, labels.length),
+        borderColor: '#1a1d2e', borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8, usePointStyle: true } } },
+    },
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  版本分布饼图
+// ═══════════════════════════════════════════════
+function initVersionChart() {
+  const canvas = document.getElementById('versionChart');
+  if (!canvas || !DATA.version_distribution) return;
+
+  const labels = Object.keys(DATA.version_distribution);
+  const values = Object.values(DATA.version_distribution);
+  if (labels.length === 0) return;
+
+  new Chart(canvas.getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: labels.map(v => 'v' + v), datasets: [{
+        data: values,
+        backgroundColor: COLORS.slice(2, 2 + labels.length),
+        borderColor: '#1a1d2e', borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8, usePointStyle: true } } },
+    },
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  评分分布饼图
+// ═══════════════════════════════════════════════
+function initDistChart() {
+  const canvas = document.getElementById('distChart');
+  if (!canvas || !DATA.score_distribution) return;
+
+  const d = DATA.score_distribution;
+  new Chart(canvas.getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: ['优秀 (≥90)', '良好 (75-89)', '一般 (60-74)', '待改善 (<60)'],
+      datasets: [{
+        data: [d.excellent, d.good, d.average, d.poor],
+        backgroundColor: ['rgba(74,222,128,0.8)', 'rgba(102,126,234,0.8)', 'rgba(251,191,36,0.8)', 'rgba(248,113,113,0.8)'],
+        borderColor: '#1a1d2e', borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '65%',
+      plugins: { legend: { position: 'right', labels: { color: '#8b8fa3', font: { size: 11 }, padding: 12, usePointStyle: true } } },
+    },
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  初始化
+// ═══════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  if (DATA.total_agents > 0) {
+    initFilterCounts();
+    initAlertSummary();
+    
+    // 大量 Agent 时默认用表格视图
+    if (AGENTS.length > 20) {
+      setView('table');
+    } else {
+      renderAgentList();
+    }
+    
+    initTrendChart('health');
+    initCompareChart(false);
+    initOsChart();
+    initVersionChart();
+    initDistChart();
+  }
+});
+
+// 键盘快捷键
+document.addEventListener('keydown', e => {
+  // Ctrl/Cmd+F 聚焦搜索框
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    const searchInput = document.getElementById('agentSearch');
+    if (searchInput) { e.preventDefault(); searchInput.focus(); }
+  }
+});
+</script>
+
+</body>
+</html>

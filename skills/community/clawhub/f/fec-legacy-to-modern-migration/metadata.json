@@ -1,0 +1,61 @@
+{
+  "id": "fec-legacy-to-modern-migration",
+  "name": "遗留系统迁移",
+  "category": "legacy-migration",
+  "tags": [
+    "migration",
+    "jquery",
+    "mpa",
+    "react",
+    "vue",
+    "modernization"
+  ],
+  "summary": "Frontend Craft skill for 遗留系统迁移.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "legacy-migration",
+    "migration",
+    "jquery",
+    "mpa",
+    "react",
+    "vue",
+    "modernization"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when planning or implementing an intentional migration from JavaScript, jQuery, HTML/CSS, server-rendered templates, MPA legacy frontend code, or older framework code toward a modern frontend stack while preserving behavior. Do not use for routine legacy bug fixes that stay in the old stack; Chinese triggers include 遗留项目, 技术栈升级, jQuery 迁移.",
+  "source": "skills/fec-legacy-to-modern-migration",
+  "references": [
+    "references/migration-execution-checklist.md",
+    "references/migration-report-template.md",
+    "references/migration-strategy-and-mapping.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-legacy-web-standard",
+      "fec-react-project-standard",
+      "fec-vue3-project-standard"
+    ],
+    "boundaryWorkflows": [
+      "Use a legacy workflow to understand the source jQuery or MPA code model before migration.",
+      "Use the target framework project workflow for React or Vue directory and component structure.",
+      "Use architecture planning for large migrations with high boundary and rollout risk."
+    ],
+    "capabilityTags": [
+      "legacy",
+      "migration",
+      "modernization"
+    ]
+  }
+}

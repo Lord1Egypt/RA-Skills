@@ -1,0 +1,10 @@
+{
+  "model_name": "axis",
+  "config_path": "data/config/axis.config",
+  "accuracy": 0.95,
+  "precision": 0.93,
+  "recall": 0.97,
+  "f1_score": 0.95,
+  "inference_time": 0.10013842582702637,
+  "memory_usage": 10.5
+}

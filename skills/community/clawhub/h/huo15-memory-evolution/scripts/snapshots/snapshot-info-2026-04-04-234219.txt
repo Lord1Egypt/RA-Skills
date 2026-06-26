@@ -1,0 +1,26 @@
+# 快照信息
+快照时间: 2026-04-04T15:42:19Z
+主机: yixunzhikudeMac-mini.local
+用户: jobzhao
+
+# 工作区列表
+/Users/jobzhao/.openclaw/workspace
+/Users/jobzhao/.openclaw/workspace-wecom-default-dm-gaoliansheng
+/Users/jobzhao/.openclaw/workspace-wecom-default-dm-huangxuanrong
+/Users/jobzhao/.openclaw/workspace-wecom-default-dm-lizhixing
+/Users/jobzhao/.openclaw/workspace-wecom-default-dm-panduoduo
+/Users/jobzhao/.openclaw/workspace-wecom-default-dm-wanghui
+/Users/jobzhao/.openclaw/workspace-wecom-default-dm-xun
+/Users/jobzhao/.openclaw/workspace-wecom-default-group-wrgzumeqaa2fbtwcfhmmox2x12t9rlew
+/Users/jobzhao/.openclaw/workspace-wecom-default-group-wrgzumeqaa88wpxbtrftwzgcgohbxd6g
+/Users/jobzhao/.openclaw/workspace-wecom-default-group-wrgzumeqaaczxscaws2mzhbhulsf8upq
+/Users/jobzhao/.openclaw/workspace-wecom-default-group-wrgzumeqaafnsa-es70bhsehejqnfn0a
+/Users/jobzhao/.openclaw/workspace-wecom-default-group-wrgzumeqaajvnrm0xb-4hkwsnxcjvetw
+/Users/jobzhao/.openclaw/workspace-wecom-default-group-wrgzumeqaat1ny8aj5-akwcqkzhneaqg
+/Users/jobzhao/.openclaw/workspace-wecom-default-group-wrgzumeqaay2lbeoj-0uearekxyrcctw
+
+# Agent 数量
+15
+
+# 主 workspace MEMORY.md 行数
+      34

@@ -1,0 +1,51 @@
+proxies:
+  # 使用本地 Clash 混合端口 (自动选择最优节点)
+  # Clash 会根据规则自动选择 US/SG/JP/EU 等节点
+  smart:
+    - host: 127.0.0.1
+      port: 7890
+      type: http
+      name: clash-http
+    - host: 127.0.0.1
+      port: 7893
+      type: http
+      name: clash-mixed
+
+# 地区映射（用于展示）
+regions:
+  us:
+    name: "United States"
+    description: "Auto-selected US node via Clash"
+    local_proxy: 127.0.0.1:7890
+  eu:
+    name: "Europe"  
+    description: "Auto-selected EU node via Clash"
+    local_proxy: 127.0.0.1:7890
+  sg:
+    name: "Singapore"
+    description: "Auto-selected SG node via Clash"
+    local_proxy: 127.0.0.1:7890
+  jp:
+    name: "Japan"
+    description: "Auto-selected JP node via Clash"
+    local_proxy: 127.0.0.1:7890
+
+# Pricing
+pricing:
+  base_price: 0.001
+  currency: USDC
+  network: BNB
+
+# Rate limiting
+rate_limits:
+  calls_per_minute: 20
+  calls_per_hour: 200
+  calls_per_day: 2000
+
+# Clash configuration (for reference)
+clash:
+  http_port: 7890
+  socks_port: 7891
+  mixed_port: 7893
+  api_port: 9090
+  config_path: /home/ubuntu/.config/clash/config.yaml

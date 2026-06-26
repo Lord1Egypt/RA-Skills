@@ -1,35 +1,35 @@
 ---
-name: "File Organizer"
-description: "文件整理器，按类型自动分类（中文版）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/file-organizer-zh"
-sourceUrl: "https://clawhub.ai/skills/file-organizer-zh"
+name: file-organizer-zh
+version: 1.0.0
+description: 文件整理器，按类型自动分类（中文版）
+author: 黄豆豆
+tags: [文件, 整理, 效率, 工具, 中文]
 ---
 
-# File Organizer
+# file-organizer-zh - 文件整理器
 
-> 文件整理器，按类型自动分类（中文版）
+自动按类型分类整理文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/file-organizer-zh`
-- **Source URL:** [https://clawhub.ai/skills/file-organizer-zh](https://clawhub.ai/skills/file-organizer-zh)
+## 功能
+1. **按类型分类** - 图片/文档/代码/视频/音频/压缩包
+2. **智能归类** - 根据文件内容智能分类
+3. **清理重复** - 识别并清理重复文件
 
-## Overview
+## 触发关键词
+- 整理
+- 分类
+- 整理文件
+- 分类文件
 
+## 文件类型映射
+- images: .jpg, .jpeg, .png, .gif, .bmp, .webp, .svg
+- documents: .doc, .docx, .pdf, .txt, .md, .xls, .xlsx, .ppt, .pptx
+- code: .js, .ts, .py, .java, .cpp, .c, .html, .css, .json
+- videos: .mp4, .avi, .mov, .wmv, .flv
+- audio: .mp3, .wav, .flac, .aac, .ogg
+- archives: .zip, .rar, .7z, .tar, .gz
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/file-organizer-zh
-```
+## 使用示例
+- "整理 D:\\Downloads"
+- "分类 C:\\Users\\Documents"
+- "整理桌面"

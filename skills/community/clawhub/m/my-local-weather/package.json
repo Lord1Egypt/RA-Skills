@@ -1,0 +1,15 @@
+{
+    "name":  "my-local-weather",
+    "version":  "1.0.0",
+    "description":  "Query weather information using an external API.",
+    "main":  "index.js",
+    "type":  "module",
+    "keywords":  [
+                     "skill",
+                     "weather",
+                     "openclaw"
+                 ],
+    "dependencies":  {
+                         "node-fetch":  "^3.3.2"
+                     }
+}

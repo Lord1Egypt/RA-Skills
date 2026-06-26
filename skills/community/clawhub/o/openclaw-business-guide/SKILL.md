@@ -1,35 +1,204 @@
 ---
-name: "Openclaw Business Guide"
-description: "OpenClaw 商业变现指南 - 教你用 OpenClaw 赚钱。适合：自由职业者、创业者、副业者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-business-guide"
-sourceUrl: "https://clawhub.ai/skills/openclaw-business-guide"
+name: openclaw-business-guide
+version: 1.0.24
+description: OpenClaw 商业变现指南 - 教你用 OpenClaw 赚钱。适合：自由职业者、创业者、副业者。
+metadata:
+  openclaw:
+    emoji: "💰"
+    requires:
+      bins: []
 ---
 
-# Openclaw Business Guide
+# OpenClaw 商业变现指南
 
-> OpenClaw 商业变现指南 - 教你用 OpenClaw 赚钱。适合：自由职业者、创业者、副业者。
+用 OpenClaw 赚钱的完整路径。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-business-guide`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-business-guide](https://clawhub.ai/skills/openclaw-business-guide)
+## 变现方式
 
-## Overview
+### 1. 安装服务
 
+**价格**：¥99-999
+**难度**：⭐
+**收益**：稳定
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-business-guide
+**怎么做**：
+1. 掌握 OpenClaw 安装配置
+2. 在掘金/知乎/小红书引流
+3. 提供远程安装服务
+
+**成功案例**：
+- setupclaw：$38k/30d
+- AI MONEY GROUP：$12.6k MRR
+
+### 2. Skills 开发
+
+**价格**：¥9-999
+**难度**：⭐⭐
+**收益**：被动收入
+
+**怎么做**：
+1. 开发有用的 Skills
+2. 上架 ClawHub
+3. 设置定价
+
+**成功案例**：
+- Claw Mart：$81k/30d
+
+### 3. 技术咨询
+
+**价格**：¥299-1999
+**难度**：⭐⭐⭐
+**收益**：高单价
+
+**怎么做**：
+1. 积累 OpenClaw 经验
+2. 在社区回答问题
+3. 提供付费咨询
+
+### 4. 企业部署
+
+**价格**：¥999-9999
+**难度**：⭐⭐⭐⭐
+**收益**：高利润
+
+**怎么做**：
+1. 掌握企业级部署
+2. 提供完整解决方案
+3. 长期维护服务
+
+## 定价策略
+
+| 服务 | 价格 | 时间 | 利润率 |
+|------|------|------|--------|
+| 基础安装 | ¥99 | 30分钟 | 95% |
+| 高级配置 | ¥299 | 1小时 | 90% |
+| Skills 开发 | ¥99-999 | 2-8小时 | 80% |
+| 企业部署 | ¥999-9999 | 1-7天 | 70% |
+
+## 获客渠道
+
+### 1. 掘金
+
+**效果**：⭐⭐⭐⭐
+**适合**：技术文章
+
 ```
+写教程 → 引流 → 私信转化
+```
+
+### 2. 知乎
+
+**效果**：⭐⭐⭐
+**适合**：问答
+
+```
+回答问题 → 引流 → 付费咨询
+```
+
+### 3. 小红书
+
+**效果**：⭐⭐⭐
+**适合**：图文
+
+```
+发教程笔记 → 引流 → 微信转化
+```
+
+### 4. Discord/Telegram
+
+**效果**：⭐⭐⭐⭐
+**适合**：社区
+
+```
+加入 OpenClaw 社区 → 回答问题 → 引流
+```
+
+### 5. ClawHub
+
+**效果**：⭐⭐⭐⭐⭐
+**适合**：Skills
+
+```
+发布 Skills → 自动引流 → 被动收入
+```
+
+## 转化漏斗
+
+```
+曝光 1000 人
+  ↓ 文章/帖子
+点击 100 人
+  ↓ 落地页
+咨询 10 人
+  ↓ 沟通
+成交 1-3 人
+```
+
+**转化率**：1-3%
+**客单价**：¥99-999
+**收入**：¥99-2997/1000 曝光
+
+## 自动化
+
+### 1. 内容自动发布
+
+```bash
+openclaw cron add publish_content "0 9 * * *"
+```
+
+### 2. 客户自动回复
+
+```yaml
+auto_reply:
+  - trigger: "安装"
+    reply: "安装服务 ¥99 起，微信：yang1002378395"
+```
+
+### 3. 订单自动处理
+
+```yaml
+automation:
+  order:
+    notify: telegram
+    template: "新订单：{product} - {price}"
+```
+
+## 收入预估
+
+### 第一个月
+
+| 来源 | 收入 |
+|------|------|
+| 安装服务 | ¥99-299 |
+| Skills 销售 | ¥0-99 |
+| **总计** | ¥99-398 |
+
+### 第三个月
+
+| 来源 | 收入 |
+|------|------|
+| 安装服务 | ¥99-999 |
+| Skills 销售 | ¥99-299 |
+| 咨询 | ¥299-999 |
+| **总计** | ¥497-2297 |
+
+### 第六个月
+
+| 来源 | 收入 |
+|------|------|
+| 安装服务 | ¥999-2999 |
+| Skills 销售 | ¥299-999 |
+| 咨询 | ¥999-2999 |
+| 企业部署 | ¥999-9999 |
+| **总计** | ¥3296-16996 |
+
+## 需要帮助？
+
+- 变现咨询：¥99
+- 1对1 指导：¥299
+- 企业合作：¥999
+
+联系：微信 yang1002378395 或 Telegram @yangster151
+
+---
+创建：2026-03-14

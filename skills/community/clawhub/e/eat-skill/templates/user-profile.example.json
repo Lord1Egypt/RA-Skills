@@ -1,0 +1,17 @@
+{
+  "location": "望京SOHO",
+  "taste": {
+    "love": ["川菜", "火锅", "面食"],
+    "hate": ["香菜", "内脏"],
+    "spicy": "能吃辣"
+  },
+  "budget": {
+    "daily": 40,
+    "max": 100
+  },
+  "diet": null,
+  "history": [
+    { "date": "2026-04-07", "food": "火锅", "restaurant": "海底捞" },
+    { "date": "2026-04-06", "food": "面食", "restaurant": null }
+  ]
+}

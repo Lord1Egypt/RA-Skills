@@ -1,35 +1,509 @@
 ---
-name: "Display Name: ChatMerge - 智能多渠道聊天纪要助手"
-description: "一键读取 20+ 平台聊天，生成智能纪要（摘要、决策、行动项、风险、多维分析、AI 建议）。Auto-read 20+ platforms, generate smart minutes with summaries, decisions, actions, risks, multi-dimensional an..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chatmerge"
-sourceUrl: "https://clawhub.ai/skills/chatmerge"
+name: chatmerge
+description: "一键读取 20+ 平台聊天，生成智能纪要（摘要、决策、行动项、风险、多维分析、AI 建议）。Auto-read 20+ platforms, generate smart minutes with summaries, decisions, actions, risks, multi-dimensional analysis, and AI suggestions."
+metadata:
+  openclaw:
+    emoji: "💬📊"
+    version: "2.0.0"
+    requires:
+      tools: ["message", "bash", "read", "write"]
+    features:
+      - "智能频道发现"
+      - "定时纪要"
+      - "实时监控"
+      - "跨平台去重"
+      - "多维度分析"
+      - "行动项跟踪"
+      - "AI 智能建议"
+      - "摘要分级"
+allowed-tools: ["message", "bash", "read", "write", "sessions_send"]
 ---
 
-# Display Name: ChatMerge - 智能多渠道聊天纪要助手
-
-> 一键读取 20+ 平台聊天，生成智能纪要（摘要、决策、行动项、风险、多维分析、AI 建议）。Auto-read 20+ platforms, generate smart minutes with summaries, decisions, actions, risks, multi-dimensional an...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chatmerge`
-- **Source URL:** [https://clawhub.ai/skills/chatmerge](https://clawhub.ai/skills/chatmerge)
+# ChatMerge - 智能多渠道聊天纪要助手
 
 ## Overview
 
+把多渠道聊天记录整理成可执行、可追溯、智能化的纪要。支持直接读取 20+ 平台、智能分析、自动跟踪、AI 建议。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chatmerge
+**核心能力：**
+- 🚀 直接读取 20+ 聊天平台（Discord, Slack, Telegram, 企微, 钉钉等）
+- 🧠 智能频道发现和推荐
+- 📊 多维度分析（人员、情绪、效率）
+- 🔄 跨平台去重和关联
+- 📋 行动项自动跟踪（集成 Jira/Notion/GitHub）
+- 🤖 AI 智能建议（效率、风险、流程）
+- ⏰ 定时纪要和实时监控
+- 👥 智能摘要分级（CEO/PM/Dev 视角）
+
+## Use This Skill When
+
+- 用户要汇总多平台聊天内容
+- 用户要生成日报、周报、站会纪要、项目纪要、客户反馈摘要或高管简报
+- 用户提到具体频道（如"Discord #project-alpha"）或说"总结我的讨论"
+- 用户要设置定时纪要或实时监控
+- 用户要跟踪行动项进度
+
+## Input Modes
+
+### 🚀 优先级 1：直接读取（最便捷）
+
+使用 OpenClaw 的 `message` tool 直接读取已配置频道的消息。
+
+**支持平台：** Discord, Slack, Telegram, 企业微信/Feishu, 钉钉, WhatsApp, Signal, iMessage, Google Chat, Microsoft Teams, Matrix, LINE, Mattermost, IRC 等 20+ 平台
+
+**触发条件：**
+- 用户提到具体平台和频道（如"Discord #project-alpha"）
+- 用户说"总结我的讨论"但没有指定频道（触发智能频道发现）
+- 用户要求读取"最近 N 条消息"或"过去 24 小时的消息"
+
+**实现方式：**
+```json
+{
+  "action": "read",
+  "channel": "discord",
+  "to": "channel:123456",
+  "limit": 100
+}
 ```
+
+### 📁 优先级 2：文件导入（最灵活）
+
+用户提供导出的聊天记录文件。
+
+**支持格式：** JSON, CSV, TXT, HTML
+
+### 📋 优先级 3：手动粘贴（最简单）
+
+用户直接粘贴聊天内容（降级方案）。
+
+---
+
+## Workflow
+
+### 0. 智能频道发现 ⭐ 新增
+
+**当用户没有指定具体频道时：**
+
+1. **自动列出可用频道**
+   - 使用 `message` tool 列出用户有权限访问的所有频道
+   - 按活跃度排序（最近有消息的排前面）
+   - 显示每个频道的基本信息（平台、名称、最近消息数）
+
+2. **智能推荐**
+   - 根据时间范围推荐（如"昨天"则推荐昨天有活动的频道）
+   - 根据关键词推荐（如"项目"则推荐包含 project 的频道）
+   - 根据用户历史使用习惯推荐
+
+3. **用户确认**
+   - 让用户选择要总结的频道
+   - 支持"全部"、"序号选择"、"名称选择"
+
+**示例对话：**
+```
+用户："使用 $chatmerge，总结我昨天的讨论"
+
+ChatMerge：
+"我发现你昨天在以下频道有活动：
+1. Discord #project-alpha (156 条消息)
+2. Slack #team-chat (89 条消息)
+3. Telegram 产品讨论群 (234 条消息)
+
+要总结哪些频道？（可以说'全部'、'1,2'或频道名称）"
+
+用户："1 和 2"
+
+ChatMerge："好的，正在总结..."
+```
+
+### 1. 获取消息
+
+**根据输入模式获取消息：**
+
+**模式 1：直接读取**
+- 使用 `message` tool 的 `read` action
+- 支持指定时间范围（last_24h, last_7d 等）
+- 支持指定消息数量（limit）
+- 错误处理：频道未配置、无权限、网络错误
+
+**模式 2：文件导入**
+- 使用 `read` tool 读取文件
+- 自动识别格式（JSON, CSV, TXT, HTML）
+- 解析并归一化为统一格式
+
+**模式 3：手动粘贴**
+- 直接处理用户提供的文本
+
+### 2. 智能分析
+
+#### 2.1 跨平台去重和关联 ⭐ 新增
+- 识别跨平台的同一讨论（基于内容相似度、时间邻近度、关键词）
+- 合并重复讨论，标注首次提及和后续讨论
+- 计算讨论热度（参与人数、消息数、跨平台数）
+
+**示例输出：**
+```
+## 跨平台讨论追踪
+
+### iOS 支付 bug
+- 首次提及：Discord #project-alpha (张三, 10:23)
+- 后续讨论：Slack #team-chat (李四, 10:25)
+- 相关讨论：Telegram 产品群 (王五, 10:30)
+- 参与人数：5 人
+- 讨论热度：🔥🔥🔥 高
+```
+
+#### 2.2 主题聚类
+- 基于回复关系、线程、提及、时间邻近度进行主题聚类
+- 识别主题演变
+- 标注主题优先级
+
+#### 2.3 实体提取
+- 提取决策、行动项、风险、阻塞、指标、客户反馈
+- 行动项格式：`任务 / 负责人 / 截止时间 / 状态 / 来源`
+- **保守原则：** 没有证据时，不擅自补全
+
+#### 2.4 多维度分析 ⭐ 新增
+
+**人员分析：**
+- 发言统计（谁说得最多、最少）
+- 活跃时段分析
+- 沉默成员识别（超过 N 天未发言）
+
+**情绪分析：**
+- 整体情绪倾向（正面/中性/负面）
+- 焦虑话题识别
+- 积极话题识别
+
+**效率分析：**
+- 决策效率（从讨论到决策的时间）
+- 行动项完成率
+- 待跟进问题数量和时长
+
+**风险预警：**
+- 🔴 高风险：影响大、紧急、未解决
+- 🟡 中风险：有影响、不紧急、有方案
+- 🟢 低风险：影响小、已有预案
+
+### 3. 智能提问和澄清 ⭐ 新增
+
+**当发现信息不完整时：**
+- 识别缺失的关键信息（负责人、截止时间、具体方案）
+- 生成澄清问题列表
+- 询问用户是否需要在频道里补充提问
+
+**示例：**
+```
+"在分析过程中，我发现以下信息不完整：
+
+1. iOS 支付 bug 修复
+   - ❓ 缺少负责人
+   - ❓ 缺少截止时间
+   - 建议问题：'@团队 iOS 支付 bug 谁负责修？什么时候能修好？'
+
+要我在频道里帮你问吗？"
+```
+
+### 4. 生成纪要
+
+#### 4.1 智能摘要分级 ⭐ 新增
+
+**根据用户角色或明确要求，生成不同粒度的摘要：**
+
+**CEO 视角（极简）：**
+```markdown
+# 本周关键信息
+
+✅ v2.3 已上线，用户反馈积极
+⚠️ iOS bug 已修复，影响 2 小时
+💰 Q2 预算 50 万已批准
+📈 下周重点：v3.0 需求评审
+```
+
+**项目经理视角（详细）：**
+```markdown
+# 本周项目进展
+
+## 产品发布
+- v2.3 上线：周五 18:00 顺利上线，无回滚
+- 用户反馈：整体积极，搜索性能提升明显
+
+## Bug 修复
+- 3 个 P0 bug 已全部修复
+- iOS 支付崩溃：根因已定位，已修复
+
+## 进度风险
+- v3.0 排期较紧，需加人
+- 建议：尽快确定技术方案
+
+## 资源需求
+- 需招聘 2 名后端工程师
+
+## 下周计划
+- 需求评审、技术方案确定
+```
+
+**开发者视角（技术细节）：**
+```markdown
+# 本周技术工作
+
+## Bug 修复
+- iOS 支付崩溃 (根因：nil pointer in payment handler)
+- 数据导出报错 (根因：CSV encoding issue)
+
+## 性能优化
+- 优化数据库索引 (性能提升 40%)
+- 搜索算法优化 (响应时间从 800ms → 300ms)
+
+## 技术债务
+- 升级依赖库 (修复 CVE-2024-1234)
+- 重构支付模块 (减少代码重复 30%)
+
+## 代码审查
+- 15 个 PR 已合并
+- 3 个 PR 待审查
+
+## 待办事项
+- TODO: 添加单元测试覆盖
+- TODO: 优化日志输出
+- TODO: 更新 API 文档
+```
+
+#### 4.2 标准输出结构
+
+- 核心摘要（3-5 条）
+- 跨平台讨论追踪 ⭐ 新增
+- 关键讨论（按主题分组）
+- 决策记录
+- 行动项（含跟踪信息）
+- 风险与阻塞（分级）
+- 待跟进问题
+- **多维度分析**（人员、情绪、效率）⭐ 新增
+- **AI 智能建议**（效率、风险、流程）⭐ 新增
+
+### 5. 行动项跟踪 ⭐ 新增
+
+**自动创建任务并跟踪：**
+
+1. **集成外部工具**
+   - Jira: 自动创建 ticket
+   - Notion: 自动创建任务
+   - GitHub: 自动创建 issue
+   - 日历: 自动添加提醒
+
+2. **进度跟踪**
+   - 定期检查行动项状态
+   - 识别延期任务
+   - 自动提醒负责人
+
+3. **状态更新**
+   - 从后续聊天中识别任务完成
+   - 自动更新任务状态
+   - 生成进度报告
+
+**示例：**
+```
+"我发现 3 个行动项，要帮你创建任务吗？
+
+1. 修复 iOS 支付 bug (李四, 今天 18:00)
+   → 创建 Jira ticket: PROJ-1234 ✓
+   → 添加日历提醒: 今天 17:00 ✓
+
+2. 准备 v2.3 上线方案 (张三, 周四 17:00)
+   → 创建 Notion 任务 ✓
+   → 添加日历提醒: 周四 16:00 ✓
+
+已创建完成！我会持续跟踪进度。"
+
+[第二天]
+"行动项进度更新：
+✅ 修复 iOS 支付 bug - 已完成 (李四)
+⏳ 准备 v2.3 上线方案 - 进行中 (张三)
+❌ 排查客户 A 性能问题 - 已延期 (老张)
+
+要我在群里提醒老张吗？"
+```
+
+### 6. AI 智能建议 ⭐ 新增
+
+**基于分析结果，主动提供改进建议：**
+
+**效率建议：**
+```
+📊 效率建议：
+- 发现 3 个讨论超过 2 小时才有结论，建议：
+  1. 提前准备议题和方案
+  2. 设置讨论时间上限
+  3. 指定决策人避免拖延
+```
+
+**风险建议：**
+```
+⚠️ 风险建议：
+- 王五已经 3 天未发言，可能：
+  1. 工作遇到阻塞
+  2. 对项目失去兴趣
+  3. 建议私下沟通
+```
+
+**流程建议：**
+```
+🎯 流程建议：
+- 发现 5 个行动项没有明确负责人，建议：
+  1. 每次讨论结束前明确 owner
+  2. 使用 @mention 指定负责人
+  3. 设置明确的截止时间
+```
+
+### 7. 实时监控（可选）⭐ 新增
+
+**当用户启用监控模式时：**
+
+```
+用户："使用 $chatmerge，监控 Discord #project-alpha，有紧急情况通知我"
+
+ChatMerge：
+"已开始监控 Discord #project-alpha
+- 发现紧急关键词时会立即通知你
+- 发现重要决策时会记录并提醒
+- 每小时生成一次简要摘要"
+
+[10 分钟后]
+"⚠️ 紧急提醒：
+李四 在 Discord #project-alpha 提到：
+'发现 P0 级 bug，iOS 支付崩溃，影响所有用户'
+建议立即处理！"
+```
+
+**监控触发条件：**
+- 紧急关键词（P0, critical, urgent, 紧急）
+- 重要决策（决定、批准、确定）
+- 风险信号（延期、阻塞、无法完成）
+- @老板 或 @all
+
+### 8. 定时纪要（可选）⭐ 新增
+
+**支持设置定时任务：**
+
+```
+用户："使用 $chatmerge，设置每天早上 9 点自动生成站会纪要"
+
+ChatMerge：
+"好的，我会在每个工作日早上 9 点自动：
+1. 读取 Discord #project-alpha 和 Slack #team-chat 昨天的消息
+2. 生成站会纪要
+3. 发送到 Slack #standup-notes
+
+配置已保存！"
+```
+
+**配置示例：**
+```yaml
+schedule:
+  - name: "每日站会纪要"
+    cron: "0 9 * * 1-5"  # 工作日早上 9 点
+    channels:
+      - "discord:#project-alpha"
+      - "slack:#team-chat"
+    time_range: "last_24h"
+    output_to: "slack:#standup-notes"
+
+  - name: "周报"
+    cron: "0 18 * * 5"  # 每周五下午 6 点
+    channels:
+      - "discord:#project-alpha"
+      - "telegram:产品讨论群"
+    time_range: "last_7d"
+    summary_level: "exec_brief"
+    output_to: "email:boss@company.com"
+```
+
+---
+
+## Output Rules
+
+**结构要求：**
+- 核心摘要：3-5 条关键结论
+- 跨平台讨论追踪：识别跨平台的同一讨论
+- 关键讨论：按主题组织（非按平台机械分段）
+- 决策记录：只收录明确结论
+- 行动项：可执行优先，缺失字段写 `待确认`
+- 风险与阻塞：分级（高/中/低）
+- 多维度分析：人员、情绪、效率
+- AI 智能建议：效率、风险、流程
+
+**引用原则：**
+- 优先引用高信号句，避免大段复述
+- 保留来源（平台、频道、时间）方便追溯
+- 不泄露敏感信息
+- 未经要求不输出整段原始聊天记录
+
+---
+
+## Advanced Features
+
+### 语音/视频会议集成 ⭐ 新增
+
+**支持平台：** Zoom, Google Meet, Microsoft Teams, 腾讯会议
+
+**功能：**
+- 自动转录会议内容
+- 识别发言人
+- 提取关键决策和行动项
+- 生成会议纪要
+
+**示例：**
+```
+"检测到你刚结束了一个 Zoom 会议（1 小时 23 分钟）
+要我生成会议纪要吗？
+
+会议信息：
+- 参与者：5 人
+- 主要议题：v3.0 需求评审
+- 发言最多：张三 (23 分钟)
+- 关键决策：3 个
+- 行动项：7 个"
+```
+
+---
+
+## Error Handling
+
+**常见错误和处理：**
+
+1. **频道未配置**
+   - 提示用户配置频道
+   - 降级到文件导入或手动粘贴模式
+
+2. **无权限访问**
+   - 提示用户检查权限
+   - 建议联系管理员
+
+3. **消息过少（< 10 条）**
+   - 提示"消息量较少，可能无法生成完整纪要"
+   - 仍然尝试生成简要摘要
+
+4. **时间戳缺失**
+   - 标注"时间不确定"
+   - 按消息顺序排列
+
+5. **负责人不明确**
+   - 标记为"待确认"
+   - 在智能提问环节建议补充
+
+---
+
+## Privacy & Security
+
+- 仅处理用户主动提供或授权访问的内容
+- 不存储聊天记录
+- 自动过滤敏感信息（token、密码、内部链接）
+- 拒绝处理无权访问的渠道内容
+- 行动项跟踪需要用户明确授权
+
+---
+
+**按需参考文档：**
+- 处理复杂格式 → [input-contract.md](references/input-contract.md)
+- 配置定时纪要 → [config-schema.md](references/config-schema.md)
+- 输出格式示例 → [output-examples.md](references/output-examples.md)
+- 高级功能配置 → [ADVANCED_FEATURES.md](ADVANCED_FEATURES.md)

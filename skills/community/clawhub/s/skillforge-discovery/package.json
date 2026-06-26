@@ -1,0 +1,82 @@
+{
+  "name": "skillforge-discovery",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "SkillForge 服务发现 Skill - 自动发现和调用付费 AI 服务",
+  "main": "handler.js",
+  "scripts": {
+    "build": "echo 'No build required for skill package'"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "api",
+    "marketplace",
+    "service-discovery",
+    "ai-services"
+  ],
+  "author": "SkillForge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skillforge/skillforge-skill"
+  },
+  "files": [
+    "SKILL.md",
+    "handler.js",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "openclaw": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "skillVersion": "1.0.0",
+    "minOpenClawVersion": "1.0.0",
+    "capabilities": [
+      "service_discovery",
+      "capability_detection",
+      "api_invocation"
+    ],
+    "configSchema": {
+      "type": "object",
+      "required": ["platform_url", "api_key"],
+      "properties": {
+        "platform_url": {
+          "type": "string",
+          "description": "SkillForge 平台地址",
+          "format": "uri"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "用户 API Key，用于认证和计费"
+        },
+        "auto_discover": {
+          "type": "boolean",
+          "description": "是否自动发现服务",
+          "default": true
+        },
+        "discover_limit": {
+          "type": "integer",
+          "description": "发现结果数量限制",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 10
+        },
+        "max_cost_per_call": {
+          "type": "number",
+          "description": "单次调用最大费用限制",
+          "default": 1.0,
+          "minimum": 0
+        },
+        "auto_confirm_free": {
+          "type": "boolean",
+          "description": "是否自动确认免费服务",
+          "default": false
+        }
+      }
+    }
+  }
+}

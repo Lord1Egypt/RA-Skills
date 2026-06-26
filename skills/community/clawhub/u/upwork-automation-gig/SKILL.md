@@ -1,35 +1,31 @@
----
-name: "Upwork Automation Gig"
-description: "Automates searching, proposal generation, lead tracking, and outreach for RPA and automation jobs on Upwork and Fiverr."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/upwork-automation-gig"
-sourceUrl: "https://clawhub.ai/skills/upwork-automation-gig"
----
-
 # Upwork Automation Gig
 
-> Automates searching, proposal generation, lead tracking, and outreach for RPA and automation jobs on Upwork and Fiverr.
+自動幫你係Upwork同Fiverr接RPA同Automation單既Skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/upwork-automation-gig`
-- **Source URL:** [https://clawhub.ai/skills/upwork-automation-gig](https://clawhub.ai/skills/upwork-automation-gig)
+## 功能
+1. **Job Search** - 自動search RPA, Automation, Web Scraping, Data Entry相關job
+2. **Proposal Generation** - 分析job後生成專業proposal
+3. **Lead Tracking** - 記錄你apply過既job同status
+4. **Outreach** - 自動send message俾潜在客戶
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安裝
 ```bash
-hermes skills install clawhub/upwork-automation-gig
+npx clawhub@latest install upwork-automation-gig
 ```
+
+## 使用
+當用戶話「搵job」既時候：
+1. 去Upwork/Fiverr search相關關鍵詞
+2. 篩選budget高過$100既job
+3. 生成proposal apply
+
+## 範例
+```
+User: 搵RPA job
+AI: (自動search同generate proposal)
+```
+
+## 收費建議
+- 基礎proposal生成: $5/job
+- 完整automation setup: $300-500/project
+- 月費維護: $50-100/月

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{date}} - 子弹笔记（打印版）</title>
+    <style>
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .page {
+            background: white;
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #333;
+        }
+
+        .date {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 20px;
+            color: #666;
+        }
+
+        .weather-icon {
+            font-size: 36px;
+        }
+
+        .content {
+            font-size: 16px;
+            color: #333;
+            min-height: 200mm;
+        }
+
+        .note-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .note-item:last-child {
+            border-bottom: none;
+        }
+
+        .symbol {
+            font-size: 22px;
+            width: 35px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .symbol.priority {
+            color: #e74c3c;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .symbol.task {
+            color: #3498db;
+        }
+
+        .symbol.event {
+            color: #2ecc71;
+        }
+
+        .symbol.note {
+            color: #f39c12;
+        }
+
+        .symbol.migration {
+            color: #9b59b6;
+        }
+
+        .symbol.scheduled {
+            color: #1abc9c;
+        }
+
+        .note-text {
+            flex: 1;
+            line-height: 1.8;
+        }
+
+        .time {
+            color: #999;
+            font-size: 14px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .notes-area {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 3px solid #333;
+            min-height: 80mm;
+        }
+
+        .notes-area h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .writing-lines {
+            border: none;
+            width: 100%;
+            min-height: 200mm;
+            font-size: 16px;
+            line-height: 1.8;
+            padding: 10px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid #e0e0e0;
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .print-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">打印</button>
+
+    <div class="page">
+        <div class="header">
+            <div class="date">
+                {{date_display}}
+            </div>
+            <div class="weather">
+                <span class="weather-icon">{{weather_icon}}</span>
+                <span>{{weather}}</span>
+                <span>{{temperature}}</span>
+            </div>
+        </div>
+
+        <div class="content">
+            {{notes_html}}
+        </div>
+
+        <div class="notes-area">
+            <h3>📝 补充笔记</h3>
+            <textarea class="writing-lines" placeholder="在这里添加手写补充内容..."></textarea>
+        </div>
+
+        <div class="footer">
+            ✨ 子弹笔记 - Bullet Journal ✨ | 打印日期：{{print_date}}
+        </div>
+    </div>
+</body>
+</html>

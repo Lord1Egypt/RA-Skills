@@ -1,0 +1,47 @@
+{
+  "name": "随机提问系统",
+  "version": "1.0.0",
+  "author": "咕咕嘎嘎",
+  "description": "定时随机提问，促进自我觉察",
+  "heartbeat": {
+    "enabled": true,
+    "interval_minutes": 30,
+    "script_path": "HEARTBEAT.md",
+    "active_hours": {
+      "start": "08:00",
+      "end": "23:00"
+    },
+    "weekdays_only": true
+  },
+  "skills": {
+    "random-question": {
+      "enabled": true,
+      "path": "skills/random-question/SKILL.md",
+      "auto_load": true,
+      "config": {
+        "trigger_probability": 30,
+        "min_interval_minutes": 30,
+        "use_personal_context": true
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": false,
+      "token": "${TELEGRAM_BOT_TOKEN}",
+      "chat_id": "${TELEGRAM_CHAT_ID}"
+    }
+  },
+  "settings": {
+    "log_level": "info",
+    "auto_announce": true,
+    "data_retention_days": 90,
+    "backup_enabled": true,
+    "backup_interval_hours": 24
+  },
+  "notifications": {
+    "on_success": true,
+    "on_error": true,
+    "on_startup": true
+  }
+}

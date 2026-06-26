@@ -1,0 +1,42 @@
+{
+  "storage": "local",
+  "local": {
+    "data_dir": "./data"
+  },
+  "bitable": {
+    "app_token": "",
+    "table_id": ""
+  },
+  "data_sources": {
+    "mysteel": {
+      "enabled": true,
+      "base_url": "https://www.mysteel.com",
+      "rate_limit": 60
+    },
+    "lange": {
+      "enabled": true,
+      "base_url": "https://www.lgmi.com",
+      "rate_limit": 60
+    }
+  },
+  "defaults": {
+    "region": "唐山",
+    "steel_types": ["螺纹钢", "热轧板卷", "冷轧板卷", "中厚板"]
+  },
+  "push": {
+    "enabled": true,
+    "time": "09:00",
+    "days": 7,
+    "targets": [
+      {
+        "channel": "wechat",
+        "to": "o9cq809Mayvegwnn8cjyZch_jG0s@im.wechat"
+      }
+    ],
+    "queries": [
+      {"source": "mysteel", "type": "螺纹钢", "region": "唐山"},
+      {"source": "mysteel", "type": "热轧板卷", "region": "唐山"},
+      {"source": "mysteel", "type": "冷轧板卷", "region": "唐山"}
+    ]
+  }
+}

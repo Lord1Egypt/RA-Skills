@@ -1,35 +1,18 @@
----
-name: "Cn Shuffle Lines"
-description: "Randomly shuffles the order of lines in a given text or file using a Python standard library script."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-shuffle-lines"
-sourceUrl: "https://clawhub.ai/skills/cn-shuffle-lines"
----
+# cn-shuffle-lines
 
-# Cn Shuffle Lines
+文本行随机排序工具。将文本行随机打乱顺序。
 
-> Randomly shuffles the order of lines in a given text or file using a Python standard library script.
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-shuffle-lines`
-- **Source URL:** [https://clawhub.ai/skills/cn-shuffle-lines](https://clawhub.ai/skills/cn-shuffle-lines)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-shuffle-lines
+python3 scripts/shuffle.py --text "第一行\n第二行\n第三行"
+python3 scripts/shuffle.py --file input.txt
 ```
+
+纯Python标准库。
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Security Review Workflow"
+  short_description: "Run a high-signal security review on diffs"
+  default_prompt: "Review this branch diff strictly for concrete security vulnerabilities and filter out low-confidence noise."

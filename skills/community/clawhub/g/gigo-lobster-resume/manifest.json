@@ -1,0 +1,10 @@
+{
+  "name": "gigo-lobster-resume",
+  "version": "2.1.2",
+  "channel": "stable",
+  "build": "2026-04-28T08:28:10Z",
+  "min_openclaw_version": "1.0.0",
+  "min_gateway_version": "1.0.0",
+  "task_bundle_compat": "2.x",
+  "api_compat": "2.x"
+}

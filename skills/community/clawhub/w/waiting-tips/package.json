@@ -1,0 +1,25 @@
+{
+  "name": "@openclaw/waiting-tips",
+  "version": "1.0.0",
+  "description": "Show bilingual learning tips while OpenClaw thinks. 75 tips on AI interaction, prompting, and productivity.",
+  "type": "module",
+  "main": "index.js",
+  "openclaw": {
+    "extensions": ["./index.js"]
+  },
+  "scripts": {
+    "build": "bash build.sh",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "tips",
+    "waiting",
+    "telegram",
+    "feishu",
+    "whatsapp",
+    "bilingual"
+  ],
+  "license": "MIT"
+}

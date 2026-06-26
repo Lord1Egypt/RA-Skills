@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  :root {
+    --r-background-color: #0a0e1a;
+    --r-main-color: #e6edf3;
+    --r-heading-color: #58a6ff;
+    --r-link-color: #58a6ff;
+  }
+  .reveal { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif; }
+  .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; text-transform: none; }
+  .reveal h1 { font-size: 2.4em; }
+  .reveal h2 { font-size: 1.7em; }
+  .reveal h3 { font-size: 1.15em; color: #8b949e; }
+  .reveal ul { text-align: left; }
+  .reveal li { margin-bottom: 0.5em; font-size: 0.82em; line-height: 1.5; }
+  .reveal p { line-height: 1.6; }
+  .small { font-size: 0.65em; color: #8b949e; }
+
+  /* Card */
+  .card { background: linear-gradient(135deg, #161b22, #1c2333); border: 1px solid #30363d; border-radius: 16px; padding: 28px 32px; margin: 12px 0; text-align: left; }
+  .card-glow { box-shadow: 0 0 30px rgba(88,166,255,0.08); }
+
+  /* Layouts */
+  .two-col { display: flex; gap: 36px; align-items: flex-start; }
+  .two-col > div { flex: 1; text-align: left; }
+  .three-col { display: flex; gap: 24px; }
+  .three-col > div { flex: 1; text-align: left; }
+
+  /* Colors */
+  .accent { color: #f0883e; font-weight: 600; }
+  .green { color: #3fb950; }
+  .red { color: #f85149; }
+  .blue { color: #58a6ff; }
+  .purple { color: #bc8cff; }
+  .yellow { color: #d29922; }
+  .pink { color: #f778ba; }
+
+  /* Tags */
+  .tag { display: inline-block; border-radius: 20px; padding: 3px 14px; font-size: 0.72em; margin: 3px; font-weight: 500; }
+  .tag-blue { background: #1f6feb33; color: #58a6ff; }
+  .tag-green { background: #238636aa; color: #3fb950; }
+  .tag-red { background: #da363633; color: #f85149; }
+  .tag-orange { background: #9e6a0333; color: #f0883e; }
+  .tag-purple { background: #8957e533; color: #bc8cff; }
+
+  /* Images */
+  .slide-img { max-height: 420px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); border: 1px solid #30363d; cursor: zoom-in; transition: transform 0.2s, box-shadow 0.2s; }
+  .slide-img:hover { transform: scale(1.03); box-shadow: 0 0 24px rgba(88,166,255,0.2); }
+  .slide-img-large { max-height: 520px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); cursor: zoom-in; }
+  .slide-img-full { max-height: 580px; border-radius: 8px; cursor: zoom-in; }
+  .photo-row { display: flex; gap: 12px; justify-content: center; align-items: center; }
+  .photo-row img { border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.3); cursor: zoom-in; }
+
+  /* Tables */
+  .reveal table { border-collapse: collapse; font-size: 0.7em; width: 100%; }
+  .reveal table th { background: #1f6feb44; color: #58a6ff; padding: 10px 14px; border: 1px solid #30363d; font-weight: 600; }
+  .reveal table td { padding: 8px 14px; border: 1px solid #30363d; vertical-align: top; }
+  .reveal table tr:nth-child(even) { background: #161b2288; }
+  .vs-winner { background: #238636aa; border-radius: 4px; padding: 1px 6px; }
+
+  /* Code */
+  .code-block { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px 20px; text-align: left; font-family: "SF Mono", "Fira Code", monospace; font-size: 0.72em; line-height: 1.6; color: #e6edf3; }
+  .code-block .comment { color: #8b949e; }
+  .code-block .cmd { color: #3fb950; }
+  .code-block .flag { color: #f0883e; }
+
+  /* Warning */
+  .warning-box { background: linear-gradient(135deg, #3d1a1a, #2d1515); border: 1px solid #f8514966; border-left: 4px solid #f85149; border-radius: 10px; padding: 16px 20px; text-align: left; font-size: 0.82em; }
+
+  /* Checklist */
+  .checklist { text-align: left; font-size: 0.78em; }
+  .checklist li { list-style: none; margin-bottom: 8px; }
+  .checklist li::before { content: '☐ '; color: #f0883e; font-weight: bold; }
+  .checklist li.critical::before { content: '🔴 '; }
+
+  /* Flow */
+  .flow-box { display: inline-block; padding: 8px 18px; border-radius: 10px; font-size: 0.75em; font-weight: 600; margin: 4px; }
+  .flow-arrow { display: inline-block; font-size: 1.2em; margin: 0 6px; color: #8b949e; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 40px; text-align: left; }
+  .timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #f0883e, #58a6ff, #3fb950, #bc8cff, #f85149); border-radius: 3px; }
+  .timeline-item { position: relative; margin-bottom: 16px; font-size: 0.78em; }
+  .timeline-item::before { content: ''; position: absolute; left: -34px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #58a6ff; border: 2px solid #0a0e1a; }
+
+  /* Section divider */
+  .section-num { display: inline-block; background: #1f6feb; color: white; width: 36px; height: 36px; line-height: 36px; border-radius: 50%; text-align: center; font-weight: 700; font-size: 0.9em; margin-right: 8px; }
+  .gradient-text { background: linear-gradient(90deg, #f0883e, #f85149, #bc8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* Lightbox */
+  .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.92); z-index: 9999; justify-content: center; align-items: center; cursor: zoom-out; }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img { max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 60px rgba(88,166,255,0.15); cursor: default; }
+  .lightbox-counter { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); color: #8b949e; font-size: 14px; z-index: 10000; background: rgba(0,0,0,0.6); padding: 4px 16px; border-radius: 12px; }
+  .lightbox-btn { position: fixed; top: 50%; transform: translateY(-50%); z-index: 10000; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 2.2em; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .lightbox-btn:hover { background: rgba(255,255,255,0.25); }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+  .lightbox-close { position: fixed; top: 16px; right: 20px; z-index: 10000; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 1.6em; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .lightbox-close:hover { background: rgba(248,81,73,0.4); }
+  .key-hint { position: fixed; bottom: 12px; left: 12px; font-size: 11px; color: #484f5866; z-index: 100; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ====== SLIDES GO HERE ====== -->
+
+<!-- Section Divider Example -->
+<section data-background-gradient="linear-gradient(135deg, #0d1117 0%, #161b22 100%)">
+  <div class="section-num">1</div>
+  <h2>Section Title</h2>
+  <p style="color:#8b949e;">Subtitle keywords</p>
+</section>
+
+<!-- Content Slide Example -->
+<section>
+  <h2>📊 Slide Title</h2>
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <p>Content goes here</p>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <img src="images/slide-name.jpg" class="slide-img">
+    </div>
+  </div>
+  <aside class="notes">
+Full speaker script goes here. Write 150-300 words in conversational tone.
+This is what the presenter reads aloud during the talk.
+  </aside>
+</section>
+
+<!-- ====== END SLIDES ====== -->
+
+</div>
+</div>
+
+<div class="key-hint">← → 翻页 · S 演讲者视图 · F 全屏 · O 总览 · 点击图片放大</div>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lb-close">✕</button>
+  <button class="lightbox-btn lightbox-prev" id="lb-prev">‹</button>
+  <button class="lightbox-btn lightbox-next" id="lb-next">›</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lightbox-counter" id="lb-counter"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  showSlideNumber: 'all',
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  width: 1280,
+  height: 720,
+  margin: 0.06,
+  center: true,
+  plugins: [RevealHighlight, RevealNotes]
+});
+
+// Lightbox
+(function() {
+  const overlay = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+  let allImages = [], currentIdx = 0;
+
+  function collectImages() {
+    allImages = Array.from(document.querySelectorAll(
+      '.reveal img.slide-img, .reveal img.slide-img-large, .reveal img.slide-img-full, .photo-row img'
+    )).filter(img => img.src && !img.src.includes('data:'));
+  }
+  function showImage(idx) {
+    if (idx < 0) idx = allImages.length - 1;
+    if (idx >= allImages.length) idx = 0;
+    currentIdx = idx;
+    lbImg.src = allImages[idx].src;
+    lbCounter.textContent = (idx + 1) + ' / ' + allImages.length;
+  }
+  function openLightbox(img) {
+    collectImages();
+    currentIdx = allImages.indexOf(img);
+    if (currentIdx === -1) currentIdx = 0;
+    showImage(currentIdx);
+    overlay.classList.add('active');
+    Reveal.configure({ keyboard: false });
+  }
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    Reveal.configure({ keyboard: true });
+  }
+
+  document.addEventListener('click', function(e) {
+    const img = e.target.closest('img.slide-img, img.slide-img-large, img.slide-img-full, .photo-row img');
+    if (img && !overlay.classList.contains('active')) { e.preventDefault(); e.stopPropagation(); openLightbox(img); }
+  });
+  document.getElementById('lb-close').addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLightbox(); });
+  document.getElementById('lb-prev').addEventListener('click', function(e) { e.stopPropagation(); showImage(currentIdx - 1); });
+  document.getElementById('lb-next').addEventListener('click', function(e) { e.stopPropagation(); showImage(currentIdx + 1); });
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
+    if (e.key === 'ArrowRight') showImage(currentIdx + 1);
+  });
+})();
+</script>
+</body>
+</html>

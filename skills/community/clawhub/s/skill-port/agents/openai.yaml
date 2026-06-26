@@ -1,0 +1,8 @@
+interface:
+  display_name: "Skill Port"
+  short_description: "Audit and port agent skills safely"
+  brand_color: "#111827"
+  default_prompt: "Use $skill-port to audit this agent skill/plugin and stage a Codex port if it is safe."
+
+policy:
+  allow_implicit_invocation: true

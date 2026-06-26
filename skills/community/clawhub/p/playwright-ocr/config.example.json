@@ -1,0 +1,13 @@
+{
+  "target_url": "https://openrouter.ai/apps?url=https%3A%2F%2Fopenclaw.ai%2F",
+  "output_dir": "/root/.openclaw/workspace/skills/playwright_ocr/output",
+  "hover_positions": [0.02, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98],
+  "wait_time_ms": 1500,
+  "ocr_language": "eng",
+  "export_format": "csv",
+  "feishu_upload": {
+    "enabled": true,
+    "app_token": "HFxIbsl53acXK1sTGNCcu44xnsg",
+    "table_id": "tbl8hPSZRRcVg4kc"
+  }
+}

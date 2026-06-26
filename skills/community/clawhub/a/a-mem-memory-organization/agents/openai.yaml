@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-MEM Memory Organization"
+  short_description: "Organize durable notes with links and evolution."
+  default_prompt: "Use $a-mem-memory-organization to structure this project's memory into durable notes with links and conservative evolution."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,42 @@
 ---
-name: "Mindmap Generator Pro"
-description: "Mindmap Generator - Auto-activating skill for Visual Content. Triggers on: mindmap generator, mindmap generator Part of the Visual Content skill category."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mindmap-generator-pro"
-sourceUrl: "https://clawhub.ai/skills/mindmap-generator-pro"
+name: mindmap-generator
+description: |
+  Mindmap Generator - Auto-activating skill for Visual Content.
+  Triggers on: mindmap generator, mindmap generator
+  Part of the Visual Content skill category.
+allowed-tools: Read, Write, Edit, Bash, Grep
+version: 1.0.0
+license: MIT
+author: Jeremy Longshore <jeremy@intentsolutions.io>
 ---
 
-# Mindmap Generator Pro
+# Mindmap Generator
 
-> Mindmap Generator - Auto-activating skill for Visual Content. Triggers on: mindmap generator, mindmap generator Part of the Visual Content skill category.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mindmap-generator-pro`
-- **Source URL:** [https://clawhub.ai/skills/mindmap-generator-pro](https://clawhub.ai/skills/mindmap-generator-pro)
+This skill provides automated assistance for mindmap generator tasks within the Visual Content domain.
 
-## Overview
+## When to Use
 
+This skill activates automatically when you:
+- Mention "mindmap generator" in your request
+- Ask about mindmap generator patterns or best practices
+- Need help with visual content skills covering diagrams, charts, presentations, and visual documentation tools.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mindmap-generator-pro
-```
+## Capabilities
+
+- Provides step-by-step guidance for mindmap generator
+- Follows industry best practices and patterns
+- Generates production-ready code and configurations
+- Validates outputs against common standards
+
+## Example Triggers
+
+- "Help me with mindmap generator"
+- "Set up mindmap generator"
+- "How do I implement mindmap generator?"
+
+## Related Skills
+
+Part of the **Visual Content** skill category.
+Tags: diagrams, mermaid, charts, visualization, presentations

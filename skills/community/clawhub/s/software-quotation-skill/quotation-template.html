@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数字人视频生成 App - 项目报价单</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  /* Icon sprites */
+  .ico { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px; }
+  .ico svg { width: 100%; height: 100%; fill: currentColor; }
+  .ico-lg { width: 32px; height: 32px; margin: 0 auto 10px; display: block; }
+  .ico-lg svg { width: 100%; height: 100%; fill: #1a3a5c; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; }
+  #pdfContent { width: 210mm; min-height: 297mm; background: #fff; margin: 0 auto; padding: 0; }
+
+  /* ====== 封面 ====== */
+  .cover { background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 60%, #2d5a87 100%); color: #fff; padding: 60px 55px; min-height: 280mm; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+  .cover::after { content: ''; position: absolute; bottom: 40px; left: 40px; width: 150px; height: 150px; background: rgba(255,255,255,0.03); border-radius: 50%; }
+  .cover .cover-badge { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 6px 18px; border-radius: 30px; font-size: 12px; letter-spacing: 3px; margin-bottom: 40px; }
+  .cover h1 { font-size: 44px; font-weight: 700; line-height: 1.25; margin-bottom: 18px; letter-spacing: -0.5px; }
+  .cover h1 span { color: #5dd9c1; }
+  .cover .subtitle { font-size: 17px; opacity: 0.7; margin-bottom: 60px; line-height: 1.6; }
+  .cover .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 50px; font-size: 13.5px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px 32px; }
+  .cover .meta-item { display: flex; gap: 12px; align-items: baseline; }
+  .cover .meta-label { opacity: 0.5; min-width: 70px; }
+  .cover .meta-value { font-weight: 500; color: #fff; }
+  .cover .meta-value.highlight { color: #5dd9c1; }
+
+  /* ====== 内容区 ====== */
+  .content { padding: 50px 55px; }
+
+  /* 警示 */
+  .alert-bar { background: linear-gradient(135deg, #fff8e6 0%, #fff3cc 100%); border-left: 4px solid #f5a623; border-radius: 8px; padding: 16px 22px; margin-bottom: 35px; font-size: 13.5px; color: #7a5c00; line-height: 1.6; }
+  .alert-bar strong { color: #c77800; }
+
+  .section { margin-bottom: 38px; }
+  .section-title { font-size: 19px; font-weight: 600; color: #0d1b2a; padding-bottom: 12px; border-bottom: 3px solid #1a3a5c; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+  .section-title::before { content: ''; display: inline-block; width: 4px; height: 22px; background: #1a3a5c; border-radius: 2px; }
+
+  /* 概述卡片 */
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .overview-card { background: #f8fafc; border-radius: 12px; padding: 22px 24px; border-top: 3px solid #2d5a87; }
+  .overview-card h3 { font-size: 14px; color: #1a3a5c; margin-bottom: 12px; font-weight: 600; }
+  .overview-card p { font-size: 13px; line-height: 1.75; color: #555; }
+
+  /* 交付物 */
+  .deliverables { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .deliverable { background: #f8fafc; border-radius: 10px; padding: 22px 18px; text-align: center; border-bottom: 3px solid #e0e7ef; }
+  .deliverable .icon-wrap { width: 32px; height: 32px; margin: 0 auto 10px; }
+  .deliverable .icon-wrap svg { width: 100%; height: 100%; fill: #1a3a5c; }
+  .deliverable .name { font-size: 14px; font-weight: 600; color: #0d1b2a; margin-bottom: 4px; }
+  .deliverable .desc { font-size: 11.5px; color: #888; line-height: 1.5; }
+
+  /* 范围 */
+  .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .scope-box { border-radius: 10px; padding: 22px; }
+  .scope-box.in { background: #f0faf7; border: 1px solid #c3e6dc; }
+  .scope-box.out { background: #fff5f5; border: 1px solid #f5c6c6; }
+  .scope-box h4 { font-size: 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .scope-box.in h4 { color: #1a7a5e; }
+  .scope-box.out h4 { color: #c0392b; }
+  .scope-box ul { list-style: none; font-size: 13px; line-height: 2; color: #555; }
+  .scope-box.in ul li::before { content: '\2713 '; color: #1a7a5e; font-weight: bold; }
+  .scope-box.out ul li::before { content: '\2717 '; color: #c0392b; font-weight: bold; }
+
+  /* 假设 */
+  .assumptions { background: #f5f7fa; border-radius: 10px; padding: 20px 24px; border: 1px solid #e0e7ef; }
+  .assumptions h4 { font-size: 13px; color: #1a3a5c; margin-bottom: 12px; font-weight: 600; }
+  .assumptions ul { list-style: none; font-size: 12.5px; line-height: 2; color: #666; }
+  .assumptions ul li::before { content: '\2022 '; color: #2d5a87; font-weight: bold; }
+
+  /* 表格 */
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #e0e7ef; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { background: #1a3a5c; color: #fff; padding: 13px 11px; text-align: center; font-weight: 500; white-space: nowrap; }
+  th.alt { background: #2d5a87; }
+  td { padding: 11px 11px; text-align: center; border-bottom: 1px solid #e8e8e8; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) { background: #f8fafc; }
+  tr.alt-row { background: #eef3f8 !important; }
+  .module-name { text-align: left; font-weight: 600; color: #0d1b2a; white-space: nowrap; display: flex; align-items: center; }
+  .module-name .td-ico { width: 16px; height: 16px; margin-right: 7px; flex-shrink: 0; }
+  .module-name .td-ico svg { width: 100%; height: 100%; fill: #1a3a5c; }
+  .sub-item { text-align: left; color: #666; font-size: 11.5px; padding-left: 20px !important; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10.5px; font-weight: 500; }
+  .tag-core { background: #ffe4e4; color: #c0392b; }
+  .tag-std { background: #e4f0ff; color: #1a5aba; }
+  .tag-cust { background: #f3e4ff; color: #7c3aed; }
+  .tag-est { background: #e4f7f0; color: #1a7a5e; font-weight: 600; }
+  .total-row { background: #0d1b2a !important; color: #fff; font-weight: 600; font-size: 13px; }
+  .total-row td { border-bottom: none !important; padding: 14px 11px; }
+  .total-label { text-align: left !important; padding-left: 16px !important; }
+
+  /* 报价汇总 */
+  .summary { background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 100%); border-radius: 16px; padding: 35px 40px; color: #fff; }
+  .summary h3 { font-size: 16px; margin-bottom: 22px; opacity: 0.8; letter-spacing: 1px; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 50px; }
+  .summary-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 13.5px; }
+  .summary-item .label { opacity: 0.65; }
+  .summary-item .value { font-weight: 600; }
+  .summary-item .value.accent { color: #5dd9c1; }
+  .summary-total { grid-column: 1 / -1; text-align: center; padding-top: 28px; border-top: 2px solid rgba(255,255,255,0.25); margin-top: 10px; }
+  .summary-total .label { font-size: 14px; opacity: 0.7; letter-spacing: 2px; }
+  .summary-total .amount { font-size: 46px; font-weight: 800; margin-top: 8px; color: #5dd9c1; letter-spacing: -1px; }
+  .summary-total .amount small { font-size: 18px; opacity: 0.6; }
+  .summary-note { grid-column: 1 / -1; text-align: center; font-size: 11.5px; opacity: 0.45; padding-top: 14px; }
+
+  /* 里程碑 */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #1a3a5c, #2d5a87, #5dd9c1); border-radius: 2px; }
+  .milestone { position: relative; margin-bottom: 28px; }
+  .milestone::before { content: ''; position: absolute; left: -26px; top: 6px; width: 12px; height: 12px; background: #1a3a5c; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 3px #1a3a5c; }
+  .milestone.phase::before { background: #5dd9c1; box-shadow: 0 0 0 3px #5dd9c1; }
+  .milestone-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .milestone-name { font-size: 14px; font-weight: 600; color: #0d1b2a; }
+  .milestone-time { font-size: 12px; color: #888; background: #f0f2f5; padding: 2px 10px; border-radius: 10px; }
+  .milestone-tasks { font-size: 12px; color: #666; line-height: 1.8; padding-left: 2px; }
+  .milestone-tasks span { color: #2d5a87; font-weight: 500; }
+
+  /* 付款条款 */
+  .payment-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .payment-step { background: #f8fafc; border-radius: 12px; padding: 24px 20px; text-align: center; border: 2px solid transparent; position: relative; }
+  .payment-step.active { border-color: #1a3a5c; background: #f0f5fc; }
+  .payment-step .step-num { display: inline-block; width: 28px; height: 28px; background: #1a3a5c; color: #fff; border-radius: 50%; line-height: 28px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .payment-step .step-name { font-size: 14px; font-weight: 600; color: #0d1b2a; margin-bottom: 6px; }
+  .payment-step .step-cond { font-size: 12px; color: #888; margin-bottom: 10px; }
+  .payment-step .step-amt { font-size: 20px; font-weight: 700; color: #1a3a5c; }
+  .payment-step .step-amt small { font-size: 12px; opacity: 0.7; }
+
+  /* 备注 */
+  .notes { background: #f8fafc; border-radius: 10px; padding: 20px 24px; border: 1px solid #e0e7ef; }
+  .notes h4 { font-size: 13px; color: #1a3a5c; margin-bottom: 12px; font-weight: 600; }
+  .notes ul { list-style: none; font-size: 12.5px; line-height: 2; color: #666; }
+  .notes ul li { padding-left: 14px; position: relative; }
+  .notes ul li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; background: #2d5a87; transform: rotate(45deg); }
+
+  /* 页脚 */
+  .page-footer { text-align: center; padding: 24px 55px; border-top: 1px solid #e0e7ef; font-size: 11px; color: #aaa; }
+  .page-footer .company { color: #888; font-weight: 500; }
+
+  /* 按钮 */
+  .export-btn { position: fixed; right: 24px; bottom: 24px; background: linear-gradient(135deg, #1a3a5c, #2d5a87); color: #fff; border: none; padding: 14px 28px; border-radius: 30px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 20px rgba(26,58,92,0.35); letter-spacing: 1px; transition: all 0.2s; }
+  .export-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(26,58,92,0.45); }
+</style>
+</head>
+<body>
+<div id="pdfContent">
+
+  <!-- 封面 -->
+  <div class="cover">
+    <div class="cover-badge">项目报价单</div>
+    <h1>数字人视频生成<br><span>App</span> 开发报价</h1>
+    <p class="subtitle">基于 Infinite Talk 对口型 + MiniMax 声音克隆<br>iOS + Android 跨平台应用解决方案</p>
+    <div class="meta">
+      <div class="meta-item"><span class="meta-label">报价编号</span><span class="meta-value">QT-20260513-001</span></div>
+      <div class="meta-item"><span class="meta-label">报价日期</span><span class="meta-value">2025-05-13</span></div>
+      <div class="meta-item"><span class="meta-label">报价方</span><span class="meta-value">BaoAI 工作室</span></div>
+      <div class="meta-item"><span class="meta-label">有效期</span><span class="meta-value highlight">30 天</span></div>
+      <div class="meta-item"><span class="meta-label">项目周期</span><span class="meta-value highlight">5–6 周</span></div>
+      <div class="meta-item"><span class="meta-label">技术选型</span><span class="meta-value">Flutter / Infinite Talk API / MiniMax TTS</span></div>
+    </div>
+  </div>
+
+  <!-- 内容 -->
+  <div class="content">
+
+    <!-- 警示 -->
+    <div class="alert-bar">
+      <strong>! 商务提示：</strong>本报价基于客户需求（iOS + Android 双端、Infinite Talk 对口型、MiniMax 声音克隆、720P/1080P 短视频，约1分钟）评估。第三方 AI API 费用（MiniMax / Infinite Talk）按实际用量收取，不含在开发报价内，估算约 <strong>¥500–1,500/月</strong>（初期）。
+    </div>
+
+    <!-- 1. 项目概述 -->
+    <div class="section">
+      <div class="section-title">项目概述</div>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <h3>项目背景</h3>
+          <p>客户希望打造一款数字人视频生成工具，用户上传一张照片和一段脚本文字，系统自动合成对口型的数字人视频，支持 MiniMax TTS 和自定义声音克隆，输出 720P/1080P 短视频（约1分钟）。</p>
+        </div>
+        <div class="overview-card">
+          <h3>核心价值</h3>
+          <p>让中小商家、个人 IP、主播能低成本、快速生成数字人短视频内容，无需专业设备和拍摄，降低内容生产门槛，快速赋能短视频营销场景。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 交付物 -->
+    <div class="section">
+      <div class="section-title">交付物清单</div>
+      <div class="deliverables">
+        <div class="deliverable">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M12 17.5c1.38 0 2.5-1.12 2.5-2.5h-5c0 1.38 1.12 2.5 2.5 2.5z"/></svg>
+          </div>
+          <div class="name">iOS App</div>
+          <div class="desc">IPA 安装包 / TestFlight 内测分发</div>
+        </div>
+        <div class="deliverable">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M9 8h6v2H9zm0 3h6v2H9zm0 3h4v2H9z"/></svg>
+          </div>
+          <div class="name">Android App</div>
+          <div class="desc">APK 安装包 / 直装分发</div>
+        </div>
+        <div class="deliverable">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <div class="name">AI 推理服务</div>
+          <div class="desc">Infinite Talk + MiniMax TTS 接口服务</div>
+        </div>
+        <div class="deliverable">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V5h16v14zM6 7h5v5H6zm7 0h5v2h-5zm0 3h5v2h-5zm0 3h5v2h-5zm-7 0h5v2H6zm0 3h3v2H6z"/></svg>
+          </div>
+          <div class="name">API 后端</div>
+          <div class="desc">任务队列、视频状态管理、文件存储</div>
+        </div>
+        <div class="deliverable">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.5 6 2s-2.13 2-6 2-6-1.5-6-2 2.13-2 6-2zm6 14c0 .5-2.13 2-6 2s-6-1.5-6-2v-3.17c1.31.92 3.31 1.17 6 1.17s4.69-.25 6-1.17V19z"/></svg>
+          </div>
+          <div class="name">数据库设计</div>
+          <div class="desc">用户、作品、任务记录完整数据方案</div>
+        </div>
+        <div class="deliverable">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <div class="name">部署配置</div>
+          <div class="desc">服务器部署文档 + 运维手册</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 范围 -->
+    <div class="section">
+      <div class="section-title">需求范围</div>
+      <div class="scope-grid">
+        <div class="scope-box in">
+          <h4>+ 包含在内（In Scope）</h4>
+          <ul>
+            <li>Flutter 跨平台 App（iOS + Android）</li>
+            <li>图片上传（相册选择）</li>
+            <li>脚本输入（文字编辑）</li>
+            <li>Infinite Talk 对口型 API 对接</li>
+            <li>MiniMax TTS 文字转语音集成</li>
+            <li>MiniMax 声音克隆接口对接</li>
+            <li>视频异步生成 + 进度推送</li>
+            <li>视频预览 + 本地下载保存</li>
+            <li>用户注册 / 登录（手机号或一键）</li>
+            <li>历史作品列表</li>
+            <li>服务器端 API + 数据库</li>
+            <li>GPU 推理服务部署配置</li>
+          </ul>
+        </div>
+        <div class="scope-box out">
+          <h4>- 不包含（Out of Scope）</h4>
+          <ul>
+            <li>微信/抖音等第三方平台分享 SDK</li>
+            <li>视频剪辑（剪切/字幕/配乐/转场）</li>
+            <li>数字人模板市场（预设形象库）</li>
+            <li>视频编辑预览器（加字幕/配乐）</li>
+            <li>多语言翻译功能</li>
+            <li>私有化声音克隆模型训练</li>
+            <li>App Store / 应用宝上架代提交</li>
+            <li>管理后台完整版（可用数据库直查代替）</li>
+            <li>CDN 加速配置（可选后续添加）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 假设 -->
+    <div class="assumptions" style="margin-bottom: 38px;">
+      <h4>关键假设</h4>
+      <ul>
+        <li>Infinite Talk 和 MiniMax 均采用官方 API，不私有化部署模型（节省大量成本）</li>
+        <li>声音克隆由 MiniMax 云端 API 实现，无需定制训练声音模型</li>
+        <li>服务器选用 GPU 云服务器（如阿里云 GN6v 或 AWS G4），按月付费</li>
+        <li>App UI 采用现有 Flutter 组件库，无需从零设计品牌视觉</li>
+        <li>客户自行准备 Apple Developer 账号（$99/年）用于 iOS 内测分发</li>
+      </ul>
+    </div>
+
+    <!-- 4. 工时明细 -->
+    <div class="section">
+      <div class="section-title">工作量明细</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:22%">模块</th>
+              <th style="width:30%">功能点</th>
+              <th>PM</th>
+              <th>UI</th>
+              <th>AI/后端</th>
+              <th>Flutter</th>
+              <th>QA</th>
+              <th>小计</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- AI 推理服务 -->
+            <tr class="alt-row">
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1.5c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2zM7.5 14a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0-8a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm9 7a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></span>
+                AI 推理服务
+              </td>
+              <td class="sub-item">Infinite Talk API 对接（图片+音频 对口型视频）</td>
+              <td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1.5c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2zM7.5 14a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0-8a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm9 7a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></span>
+                AI 推理服务
+              </td>
+              <td class="sub-item">MiniMax TTS API 集成（文字 语音）</td>
+              <td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td class="tag-est">1天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1.5c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2zM7.5 14a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0-8a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm9 7a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></span>
+                AI 推理服务
+              </td>
+              <td class="sub-item">MiniMax 声音克隆 API 集成</td>
+              <td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+
+            <!-- 后端服务 -->
+            <tr class="alt-row">
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V5h16v14zM4 0h16v2H4zm0 22h16v2H4zm8-10a2.5 2.5 0 0 0-2.5 2.5c0 .93.51 1.74 1.26 2.19L9 15.5A2.5 2.5 0 0 0 11.5 13V5.5z"/></svg></span>
+                后端服务
+              </td>
+              <td class="sub-item">API 框架搭建（FastAPI/Flask）+ 数据库设计</td>
+              <td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V5h16v14zM4 0h16v2H4zm0 22h16v2H4zm8-10a2.5 2.5 0 0 0-2.5 2.5c0 .93.51 1.74 1.26 2.19L9 15.5A2.5 2.5 0 0 0 11.5 13V5.5z"/></svg></span>
+                后端服务
+              </td>
+              <td class="sub-item">任务队列 + 异步视频处理流程</td>
+              <td>-</td><td>-</td><td>3</td><td>-</td><td>-</td><td class="tag-est">3天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V5h16v14zM4 0h16v2H4zm0 22h16v2H4zm8-10a2.5 2.5 0 0 0-2.5 2.5c0 .93.51 1.74 1.26 2.19L9 15.5A2.5 2.5 0 0 0 11.5 13V5.5z"/></svg></span>
+                后端服务
+              </td>
+              <td class="sub-item">文件存储（OSS/S3）+ 视频输出</td>
+              <td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V5h16v14zM4 0h16v2H4zm0 22h16v2H4zm8-10a2.5 2.5 0 0 0-2.5 2.5c0 .93.51 1.74 1.26 2.19L9 15.5A2.5 2.5 0 0 0 11.5 13V5.5z"/></svg></span>
+                后端服务
+              </td>
+              <td class="sub-item">WebSocket / 消息推送（进度通知）</td>
+              <td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td class="tag-est">1天</td>
+            </tr>
+
+            <!-- Flutter App -->
+            <tr class="alt-row">
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M9 8h6v2H9zm0 3h6v2H9zm0 3h4v2H9z"/></svg></span>
+                Flutter App
+              </td>
+              <td class="sub-item">项目初始化 + 架构设计（Clean Architecture）</td>
+              <td>0.5</td><td>-</td><td>-</td><td>1.5</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M9 8h6v2H9zm0 3h6v2H9zm0 3h4v2H9z"/></svg></span>
+                Flutter App
+              </td>
+              <td class="sub-item">登录注册（手机号 / 一键 Google 登录）</td>
+              <td>-</td><td>1</td><td>-</td><td>1.5</td><td>-</td><td class="tag-est">2.5天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M9 8h6v2H9zm0 3h6v2H9zm0 3h4v2H9z"/></svg></span>
+                Flutter App
+              </td>
+              <td class="sub-item">图片选择器（相册）+ 脚本编辑器</td>
+              <td>-</td><td>1</td><td>-</td><td>2</td><td>-</td><td class="tag-est">3天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M9 8h6v2H9zm0 3h6v2H9zm0 3h4v2H9z"/></svg></span>
+                Flutter App
+              </td>
+              <td class="sub-item">视频生成任务提交 + 进度条展示</td>
+              <td>-</td><td>1</td><td>-</td><td>2</td><td>-</td><td class="tag-est">3天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M9 8h6v2H9zm0 3h6v2H9zm0 3h4v2H9z"/></svg></span>
+                Flutter App
+              </td>
+              <td class="sub-item">视频预览播放器 + 下载保存到相册</td>
+              <td>-</td><td>1</td><td>-</td><td>2</td><td>-</td><td class="tag-est">3天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/><path d="M9 8h6v2H9zm0 3h6v2H9zm0 3h4v2H9z"/></svg></span>
+                Flutter App
+              </td>
+              <td class="sub-item">历史作品列表 + 删除管理</td>
+              <td>-</td><td>1</td><td>-</td><td>1.5</td><td>-</td><td class="tag-est">2.5天</td>
+            </tr>
+
+            <!-- PM -->
+            <tr class="alt-row">
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></span>
+                产品 / 管理
+              </td>
+              <td class="sub-item">需求文档、流程图、验收标准</td>
+              <td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></span>
+                产品 / 管理
+              </td>
+              <td class="sub-item">项目协调、需求答疑、上线保障</td>
+              <td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+
+            <!-- UI -->
+            <tr class="alt-row">
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></span>
+                UI 设计
+              </td>
+              <td class="sub-item">App 整体 UI 设计（6-8个核心页面）</td>
+              <td>-</td><td>2</td><td>-</td><td>-</td><td>-</td><td class="tag-est">2天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></span>
+                UI 设计
+              </td>
+              <td class="sub-item">UI 标注、切图输出、设计走查</td>
+              <td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td class="tag-est">1天</td>
+            </tr>
+
+            <!-- QA -->
+            <tr class="alt-row">
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></span>
+                测试
+              </td>
+              <td class="sub-item">功能测试用例 + 回归测试</td>
+              <td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td class="tag-est">2天</td>
+            </tr>
+            <tr>
+              <td class="module-name">
+                <span class="td-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></span>
+                测试
+              </td>
+              <td class="sub-item">双端（iOS + Android）兼容性验证</td>
+              <td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td class="tag-est">2天</td>
+            </tr>
+
+            <!-- 合计 -->
+            <tr class="total-row">
+              <td class="total-label" colspan="2">合计人天</td>
+              <td>4.5天</td>
+              <td>7天</td>
+              <td>13天</td>
+              <td>10.5天</td>
+              <td>4天</td>
+              <td>39天</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:11.5px;color:#999;margin-top:10px;">注：各角色并行工作，总日历周期 5-6 周（团队 4 人：PM 0.5人 + AI后端 1人 + Flutter 1人 + UI 0.5人 + QA 0.5人，实际按人员配比拉齐）。</p>
+    </div>
+
+    <!-- 5. 报价汇总 -->
+    <div class="section">
+      <div class="section-title">报价汇总</div>
+      <div class="summary">
+        <h3>费用构成</h3>
+        <div class="summary-grid">
+          <div class="summary-item"><span class="label">PM（4.5天 x ¥2,500）</span><span class="value">¥11,250</span></div>
+          <div class="summary-item"><span class="label">UI 设计（7天 x ¥2,500）</span><span class="value">¥17,500</span></div>
+          <div class="summary-item"><span class="label">AI/后端开发（13天 x ¥3,000）</span><span class="value">¥39,000</span></div>
+          <div class="summary-item"><span class="label">Flutter 开发（10.5天 x ¥3,000）</span><span class="value">¥31,500</span></div>
+          <div class="summary-item"><span class="label">测试 QA（4天 x ¥2,000）</span><span class="value">¥8,000</span></div>
+          <div class="summary-item"><span class="label accent">第三方 AI API（估算 2 个月）</span><span class="value accent">¥3,000</span></div>
+          <div class="summary-total">
+            <div class="label">项目总价（含税）</div>
+            <div class="amount">¥110,250</div>
+          </div>
+          <div class="summary-note">报价有效期 30 天；如纯开发交付（不含第三方 API 费用），为 ¥107,250</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 里程碑 -->
+    <div class="section">
+      <div class="section-title">项目里程碑</div>
+      <div class="timeline">
+        <div class="milestone">
+          <div class="milestone-header">
+            <span class="milestone-name">Phase 1 / 需求 &amp; 设计</span>
+            <span class="milestone-time">第 1-2 周</span>
+          </div>
+          <div class="milestone-tasks">需求确认 / <span>UI 设计稿交付</span> / API 接口定义 / 数据库设计</div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-header">
+            <span class="milestone-name">Phase 2 / AI + 后端开发</span>
+            <span class="milestone-time">第 2-4 周</span>
+          </div>
+          <div class="milestone-tasks">Infinite Talk / MiniMax API 集成 / <span>推理服务上线</span> / 后端 API 开发 / 任务队列部署</div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-header">
+            <span class="milestone-name">Phase 3 / Flutter App 开发</span>
+            <span class="milestone-time">第 3-5 周</span>
+          </div>
+          <div class="milestone-tasks">核心功能开发（图片上传、脚本输入、视频生成） / <span>进度推送</span> / 视频预览 / 历史作品列表</div>
+        </div>
+        <div class="milestone phase">
+          <div class="milestone-header">
+            <span class="milestone-name">Phase 4 / 测试 &amp; 上线</span>
+            <span class="milestone-time">第 5-6 周</span>
+          </div>
+          <div class="milestone-tasks">双端功能测试 / <span>兼容性验证</span> / 修复 / 交付 TestFlight / APK 安装包</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 付款条款 -->
+    <div class="section">
+      <div class="section-title">付款方式</div>
+      <div class="payment-steps">
+        <div class="payment-step active">
+          <div class="step-num">1</div>
+          <div class="step-name">合同签订</div>
+          <div class="step-cond">合同签署后 5 个工作日</div>
+          <div class="step-amt">40% <small>（¥44,100）</small></div>
+        </div>
+        <div class="payment-step">
+          <div class="step-num">2</div>
+          <div class="step-name">开发完成</div>
+          <div class="step-cond">App 开发完成 + 后端部署</div>
+          <div class="step-amt">40% <small>（¥44,100）</small></div>
+        </div>
+        <div class="payment-step">
+          <div class="step-num">3</div>
+          <div class="step-name">验收交付</div>
+          <div class="step-cond">双端安装包验收通过</div>
+          <div class="step-amt">20% <small>（¥22,050）</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 备注 -->
+    <div class="section">
+      <div class="section-title">附加说明</div>
+      <div class="notes">
+        <h4>报价说明与免责条款</h4>
+        <ul>
+          <li>本报价基于现有需求文档，需求变更（增减功能、调整范围）需重新评估工时和费用；</li>
+          <li>第三方 AI API 费用（Infinite Talk / MiniMax）按实际用量收取，不在此报价范围内，预计 ¥500-1,500/月（初期）；</li>
+          <li>服务器费用（GPU 云服务器约 ¥2,000-4,000/月）由客户另行承担，不含在本报价内；</li>
+          <li>App Store 上架需客户自行注册 Apple Developer 账号（$99/年），我方可提供技术指导；</li>
+          <li>本报价含 6% 增值税专用发票；</li>
+          <li>如客户要求保密协议（NDA），可在合同中另行约定。</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 页脚 -->
+  <div class="page-footer">
+    <span class="company">BaoAI 工作室</span> / 报价单 / QT-20260513-001 / 保密文件
+  </div>
+
+</div>
+
+<button class="export-btn" onclick="exportPDF()">导出 PDF</button>
+
+<script>
+async function exportPDF() {
+  const btn = document.querySelector('.export-btn');
+  btn.style.display = 'none';
+
+  const { jsPDF } = window.jspdf;
+  const el = document.getElementById('pdfContent');
+
+  const canvas = await html2canvas(el, {
+    scale: 2,
+    useCORS: true,
+    allowTaint: true,
+    logging: false,
+    backgroundColor: '#ffffff',
+    scrollX: 0,
+    scrollY: -window.scrollY
+  });
+
+  const imgData = canvas.toDataURL('image/jpeg', 0.97);
+  const pxToMm = 25.4 / 96;
+  const mmW = (canvas.width / 2) * pxToMm;
+  const mmH = (canvas.height / 2) * pxToMm;
+
+  const pdf = new jsPDF({ unit: 'mm', format: [mmW, mmH] });
+  pdf.addImage(imgData, 'JPEG', 0, 0, mmW, mmH, '', 'FAST');
+  pdf.save('数字人视频App_项目报价单_QT-20260513-001.pdf');
+
+  btn.style.display = '';
+}
+</script>
+</body>
+</html>

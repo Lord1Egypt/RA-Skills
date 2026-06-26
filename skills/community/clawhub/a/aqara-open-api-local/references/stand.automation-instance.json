@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "name": "Smart Lighting Control",
+    "description": "Automatically turn on two lights when the switch turns on",
+    "scope": [
+      {
+        "name": "switchState",
+        "type": "device.property",
+        "deviceId": "switch001",
+        "endpointId": 1,
+        "functionCode": "OnOff",
+        "traitCode": "OnOff"
+      },
+      {
+        "name": "tempSensor",
+        "type": "device.property",
+        "deviceId": "sensor001",
+        "endpointId": 1,
+        "functionCode": "TemperatureMeasurement",
+        "traitCode": "MeasuredValue"
+      }
+    ]
+  },
+  "automations": [
+    {
+      "name": "Switch-Linked Lighting",
+      "starters": [
+        {
+          "type": "property.event",
+          "source": {
+            "type": "data.ref",
+            "from": "/metadata/scope",
+            "select": {
+              "by": "name",
+              "value": "switchState"
+            }
+          },
+          "is": true,
+          "for": "5sec",
+          "suppressFor": "10sec"
+        }
+      ],
+      "condition": {
+        "type": "and",
+        "conditions": [
+          {
+            "type": "property.state",
+            "source": {
+              "type": "data.ref",
+              "from": "/metadata/scope",
+              "select": {
+                "by": "name",
+                "value": "tempSensor"
+              }
+            },
+            "greaterThan": 20
+          },
+          {
+            "type": "time.between",
+            "after": "08:00",
+            "before": "22:00"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "device.trait.write",
+          "functionCode": "Switch",
+          "traitCode": "OnOff",
+          "targets": [
+            {
+              "deviceId": "light001",
+              "endpointIds": [1]
+            }
+          ],
+          "value": true
+        },
+        {
+          "type": "delay",
+          "for": "2sec"
+        },
+        {
+          "type": "device.trait.write",
+          "functionCode": "LevelControl",
+          "traitCode": "CurrentLevel",
+          "targets": [
+            {
+              "deviceId": "light001",
+              "endpointIds": [1]
+            }
+          ],
+          "value": 100
+        }
+      ]
+    }
+  ]
+}

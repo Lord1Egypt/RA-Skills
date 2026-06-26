@@ -1,0 +1,34 @@
+{
+  "name": "literature-search-pro",
+  "version": "1.0.0",
+  "description": "Professional multi-source academic literature search (OpenAlex + Semantic Scholar + arXiv)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "search": "node index.js"
+  },
+  "keywords": [
+    "literature",
+    "search",
+    "academic",
+    "paper",
+    "openalex",
+    "semantic-scholar",
+    "arxiv"
+  ],
+  "author": "AutoResearchClaw Team (integrated by SuperMike)",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "python": ">=3.9",
+    "requests": "*"
+  },
+  "engines": {
+    "node": ">=18",
+    "python": ">=3.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aiming-lab/AutoResearchClaw"
+  }
+}

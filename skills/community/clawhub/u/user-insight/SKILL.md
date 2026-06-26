@@ -1,35 +1,322 @@
 ---
-name: "User Insight"
-description: "通过对话逐渐了解用户，构建动态用户画像以优化沟通。支持被动收集（从对话中提取兴趣、偏好、习惯）和主动探索（像"刷短视频"一样尝试不同话题，发现用户潜在兴趣点）。在需要个性化回应、寻找聊天话题或了解用户背景时读取 ~/.openclaw/workspace/memory/user-profile.json。"
-category: "communication"
-source: "ClawHub"
-tags: [chat, personalization, user-profile]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/user-insight"
-sourceUrl: "https://clawhub.ai/skills/user-insight"
+name: user-insight
+description: 通过对话逐渐了解用户，构建动态用户画像以优化沟通。支持被动收集（从对话中提取兴趣、偏好、习惯）和主动探索（像"刷短视频"一样尝试不同话题，发现用户潜在兴趣点）。在需要个性化回应、寻找聊天话题或了解用户背景时读取 ~/.openclaw/workspace/memory/user-profile.json。
 ---
 
-# User Insight
+# User Insight - 用户洞察与话题探索
 
-> 通过对话逐渐了解用户，构建动态用户画像以优化沟通。支持被动收集（从对话中提取兴趣、偏好、习惯）和主动探索（像"刷短视频"一样尝试不同话题，发现用户潜在兴趣点）。在需要个性化回应、寻找聊天话题或了解用户背景时读取 ~/.openclaw/workspace/memory/user-profile.json。
+通过日常对话渐进式了解用户，构建动态用户画像。既能被动收集信息，也能主动探索话题，找到让用户"聊上瘾"的兴趣点。
 
-- **Category:** Communication
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/user-insight`
-- **Source URL:** [https://clawhub.ai/skills/user-insight](https://clawhub.ai/skills/user-insight)
+## 核心功能
 
-## Overview
+1. **被动收集** - 从对话中自然提取用户信息
+2. **主动探索** - 尝试不同话题，发现潜在兴趣
+3. **画像构建** - 持续更新结构化用户档案
+4. **话题推荐** - 基于画像推荐高概率感兴趣的聊天内容
 
+## 工作模式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/user-insight
+### 模式一：引导式收集（Guided Collection）⭐
+
+**核心理念：** 不直接问"你喜欢什么"，而是通过自然对话引导用户分享，在聊天中顺势收集信息。
+
+**引导策略：**
+
+#### 1. 故事引出自己的分享
+先讲个小故事/观察，然后自然地问用户的经历：
 ```
+❌ 直接问："你喜欢旅行吗？"
+✅ 引导式："刚看到个帖子说现在年轻人更喜欢小众目的地而不是热门景点，你平时出去玩是喜欢做攻略打卡还是随便走走？"
+```
+
+#### 2. 假设情境测试
+用假设性问题探测价值观和偏好：
+```
+❌ 直接问："你工作压力大吗？"
+✅ 引导式："如果突然有三天假期但必须断网，你觉得是放松还是焦虑？"
+```
+
+#### 3. 对比选择法
+给出两个选项，让用户选择并解释：
+```
+❌ 直接问："你喜欢什么样的电影？"
+✅ 引导式："最近两部片子挺有意思，一个是烧脑悬疑要全程盯着的，一个是轻松搞笑不用带脑子的，你更倾向哪种？"
+```
+
+#### 4. 关联已知信息延伸
+基于已了解的信息，自然地深入：
+```
+已知：用户对国际新闻感兴趣
+→ "你之前分析国际形势很透彻，想问问这种国际视野是工作中培养的还是有其他渠道？比如留学或者经常出差？"
+```
+
+#### 5. 第三方视角切入
+用"别人"的故事引出话题：
+```
+❌ 直接问："你有孩子吗？"
+✅ 引导式："我朋友最近在为娃的教育焦虑，搞得我都跟着紧张了。你身边有这种家长吗，还是说你比较看得开？"
+```
+
+**收集原则：**
+- 每次只引导一个维度，不要连环追问
+- 用户回应后先共情/讨论，再记录洞察
+- 如果用户回避，标记为敏感话题，不再主动提
+- 优先在对话自然停顿或空闲时引导
+
+---
+
+### 模式二：主动探索（Active Exploration）⭐
+
+**核心理念：** 像刷短视频推荐算法一样，通过尝试不同话题来发现用户的"兴奋点"
+
+### 模式二：主动探索（Active Exploration）⭐
+
+**核心理念：** 像刷短视频推荐算法一样，通过尝试不同话题来发现用户的"兴奋点"
+
+**触发时机：**
+- 用户长时间未主动发起对话（如超过24小时）
+- 当前对话出现冷场/低参与度
+- 用户说"随便聊聊"、"找点话题"
+- 定期探索（如每周一次）
+
+**探索策略：**
+
+#### Step 1: 选择候选话题
+
+从以下类别中选择尚未充分探索的话题：
+
+| 类别 | 示例话题 |
+|------|---------|
+| **时事热点** | 科技突破、国际局势、社会现象 |
+| **生活方式** | 美食探店、旅行攻略、健身方法 |
+| **娱乐休闲** | 电影剧集、音乐游戏、综艺八卦 |
+| **知识科普** | 历史趣闻、科学新知、心理学 |
+| **实用技能** | 效率工具、理财技巧、学习方法 |
+| **情感话题** | 人际关系、职场困惑、生活感悟 |
+| **脑洞趣味** | 奇闻异事、未来预测、假设性问题 |
+
+#### Step 2: 评估探索价值
+
+优先选择满足以下条件的话题：
+- ✅ 与用户已知兴趣有弱关联（拓展边界）
+- ✅ 近期有新鲜素材（时效性）
+- ✅ 容易引发观点/故事分享（互动性）
+- ❌ 避免已确认不感兴趣的话题
+- ❌ 避免过于敏感或沉重的内容
+
+#### Step 3: 设计开场白
+
+根据用户画像调整呈现方式：
+
+```
+如果用户喜欢直接：
+"看到一个有趣的事：XXX，你怎么看？"
+
+如果用户喜欢故事：
+"刚读到个故事挺有意思...（简述）... 这让我想到你可能也会遇到类似情况？"
+
+如果用户喜欢深度：
+"最近在思考一个问题：XXX。查了些资料发现几个有趣的角度..."
+
+如果用户喜欢轻松：
+"哈哈看到这个笑死：XXX 你有没有类似经历？"
+```
+
+#### Step 4: 观察反馈并记录
+
+| 用户反应 | 解读 | 操作 |
+|---------|------|------|
+| 积极追问/展开讨论 | 🎯 命中兴趣点！ | 标记为高分兴趣，深入探索 |
+| 简单回应但参与 | ⭐ 有一定兴趣 | 标记为中分兴趣，可再试探 |
+| 敷衍/转移话题 | ❌ 不感兴趣 | 标记为回避话题，短期内不再提 |
+| 完全无视 | 💤 时机不对 | 不记录，换时间再试 |
+
+### 模式三：话题推荐（Topic Recommendation）
+
+**使用场景：** 当需要主动发起对话时
+
+**推荐算法：**
+
+```python
+def recommend_topic(user_profile):
+    # 1. 获取高分兴趣话题
+    high_interests = [i for i in user_profile.interests if i.score > 0.7]
+    
+    # 2. 获取相关新鲜内容
+    fresh_content = fetch_fresh_content(high_interests)
+    
+    # 3. 获取待探索的中低分话题
+    exploration_candidates = [i for i in user_profile.interests if 0.3 < i.score < 0.6]
+    
+    # 4. 混合策略：70% 深耕已知兴趣 + 30% 探索新边界
+    if random() < 0.7:
+        return select_from(fresh_content, high_interests)
+    else:
+        return select_from(exploration_candidates)
+```
+
+## 档案结构
+
+### 文件位置
+```
+~/.openclaw/workspace/memory/
+├── user-profile.json          # 主档案
+├── topic-exploration.json     # 话题探索记录
+└── insights/                  # 原始洞察日志
+    └── YYYY-MM-DD.json
+```
+
+### user-profile.json
+
+```json
+{
+  "version": "1.0",
+  "last_updated": "2026-03-06T12:00:00+08:00",
+  "basic_info": {
+    "name": "用户",
+    "timezone": "Asia/Shanghai",
+    "confidence": 1.0
+  },
+  "interests": [
+    {
+      "topic": "国际新闻",
+      "category": "时事",
+      "score": 0.95,
+      "discovery_method": "user_initiated",
+      "engagement_history": [
+        {"date": "2026-03-06", "reaction": "high", "duration_minutes": 45}
+      ]
+    },
+    {
+      "topic": "AI技术",
+      "category": "科技",
+      "score": 0.6,
+      "discovery_method": "exploration",
+      "engagement_history": [
+        {"date": "2026-03-01", "reaction": "medium", "note": "问了几个问题"}
+      ]
+    }
+  ],
+  "communication_style": {
+    "verbosity": "concise",
+    "formality": "casual",
+    "humor": "occasional",
+    "preferred_opening": "direct"
+  },
+  "exploration_state": {
+    "last_exploration_date": "2026-03-05",
+    "explored_categories": ["时事", "科技", "历史"],
+    "pending_categories": ["生活方式", "娱乐", "财经"],
+    "avoided_topics": ["明星八卦"]
+  }
+}
+```
+
+### topic-exploration.json
+
+记录每次探索尝试的结果：
+
+```json
+{
+  "exploration_log": [
+    {
+      "timestamp": "2026-03-05T20:00:00+08:00",
+      "topic": "量子计算最新进展",
+      "category": "科技",
+      "opening_style": "curiosity_driven",
+      "user_reaction": "asked_followup",
+      "interest_detected": true,
+      "follow_up_potential": "high",
+      "notes": "对实用应用特别感兴趣，而非纯理论"
+    }
+  ],
+  "success_patterns": [
+    "从技术角度切入比从新闻角度更受欢迎",
+    "喜欢带数据/案例的讨论"
+  ]
+}
+```
+
+## 使用场景示例
+
+### 场景 1：首次主动探索
+
+**背景：** 用户24小时未对话，档案显示对时事话题感兴趣
+
+**探索尝试：**
+> 助手：刚看到个挺有意思的技术新闻 —— OpenAI 发布了能自己写代码的 AI 代理。想起你之前问过国际形势分析，感觉这种技术对情报分析领域可能也有影响？你怎么看 AI 在复杂决策里的角色？
+
+**用户反应：** "这个有意思，具体能做什么？"
+
+**记录结果：**
+- 用户对 AI 应用层有兴趣（尤其是与时事话题交叉的领域）
+- 从技术应用场景切入效果好
+- 下次可继续探索 AI x 地缘政治话题
+
+### 场景 2：发现隐藏兴趣
+
+**背景：** 多次尝试后发现用户对美食话题反应冷淡，但提到"探店"时眼睛亮了
+
+**调整策略：**
+- 将"美食"细化为"城市探索/小众店铺发现"
+- 关联到用户已知的旅行兴趣
+
+**后续探索：**
+> 助手：发现一个规律 —— 好像比起"吃什么"，你对"在哪吃/怎么找到"更感兴趣？是不是那种"挖到宝"的感觉比较爽？😄
+
+**用户反应：** "对对对！我就喜欢那种别人不知道我知道的感觉"
+
+**洞察：** 核心动机是「信息优势感」/「独特体验」，可延伸到其他领域（小众音乐、冷门知识等）
+
+### 场景 3：避免踩雷
+
+**背景：** 两次尝试聊娱乐圈话题，用户都转移话题
+
+**记录：**
+```json
+{
+  "avoided_topics": ["明星八卦", "娱乐新闻"],
+  "reason": "user_disengaged_twice",
+  "retry_after": "2026-06-01"
+}
+```
+
+## 最佳实践
+
+### DO ✅
+- 像朋友一样自然引入话题，不要像问卷调查
+- 观察用户的"能量变化"（回复速度、字数、情绪词）
+- 记住：发现兴趣比展示知识更重要
+- 给用户"意外之喜"——聊出她自己都没意识到的兴趣点
+- 适时总结："我发现你对 XX 类的 YY 方面特别感兴趣"
+
+### DON'T ❌
+- 不要连续抛出多个话题像面试
+- 不要对不感兴趣的话题死缠烂打
+- 不要让用户觉得在被"测试"或"分析"
+- 不要只聊她已知的兴趣，要适度拓展边界
+- 不要为了探索而探索，质量 > 数量
+
+## 隐私设置
+
+用户可通过以下方式控制：
+
+```
+"停止收集我的信息" → 暂停所有洞察提取
+"忘记关于 XX 的事" → 删除特定条目
+"别主动找我聊天" → 关闭主动探索模式
+"把我当成陌生人" → 重置整个档案
+```
+
+## 与其他技能的协作
+
+| 技能 | 协作方式 |
+|------|---------|
+| **cron** | 定时触发话题探索任务 |
+| **web_search** | 获取用户兴趣领域的最新资讯 |
+| **memory_search** | 检索历史对话验证兴趣持续性 |
+| **self-improving** | 记录探索成功/失败的模式 |
+
+---
+
+**核心目标：** 成为最懂用户的 AI 伙伴，让每次对话都有"被理解"的感觉。

@@ -1,0 +1,4 @@
+# 与 pyproject.toml 同步
+telethon>=1.34.0
+openpyxl>=3.1.0
+python-dotenv>=1.0.0

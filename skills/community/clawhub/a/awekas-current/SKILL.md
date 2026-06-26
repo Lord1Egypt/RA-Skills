@@ -1,35 +1,102 @@
+# AWEKAS Current Weather Skill
+
+## Name
+awekas-current
+
+## Version
+2.0.0
+
+## Stability
+production
+
 ---
-name: "AWEKAS Wetter API"
-description: "Fetches and normalizes current weather data from the AWEKAS API with caching, retries, and structured error handling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/awekas-current"
-sourceUrl: "https://clawhub.ai/skills/awekas-current"
+
+## Description
+Fetches and normalizes current weather data from the AWEKAS API.
+
 ---
 
-# AWEKAS Wetter API
+## Entry
+awekasCurrent.js
 
-> Fetches and normalizes current weather data from the AWEKAS API with caching, retries, and structured error handling.
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/awekas-current`
-- **Source URL:** [https://clawhub.ai/skills/awekas-current](https://clawhub.ai/skills/awekas-current)
+## Features
 
-## Overview
+- retry + exponential backoff
+- 60s in-memory caching
+- timeout protection (8s)
+- normalized weather schema
+- safe JSON parsing fallback
+- structured error output
+
+---
+
+## Parameters
+
+### key (required)
+AWEKAS API key
+
+### station (optional)
+Station ID
+
+---
+
+## Permissions
+- network
+
+---
+
+## Output
+
+```json id="out"
+{
+  "source": "AWEKAS",
+  "cached": false,
+  "station": "string",
+  "data": {
+    "temperature": null,
+    "humidity": null,
+    "pressure": null,
+    "wind": {
+      "speed": null,
+      "direction": null
+    },
+    "rain": null,
+    "raw": {}
+  }
+}
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+
+---
+
+## Usage
+
 ```bash
-hermes skills install clawhub/awekas-current
-```
+openclaw awekas-current --key YOUR_KEY --station 12345
+
+
+---
+
+# 📦 `package.json`
+
+```json id="pkgfinal"
+{
+  "name": "openclaw-awekas-current",
+  "version": "2.0.0",
+  "type": "module",
+  "main": "awekasCurrent.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "weather",
+    "awekas"
+  ],
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

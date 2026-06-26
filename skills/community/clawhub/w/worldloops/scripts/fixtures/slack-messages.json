@@ -1,0 +1,18 @@
+{
+  "channel": "#general",
+  "channel_id": "C01ABC123",
+  "messages": [
+    {
+      "user": "alice",
+      "text": "Hey, can you review the Q2 metrics dashboard before the planning meeting tomorrow? The numbers look off and we need a decision by EOD.",
+      "ts": "1716114600.000000",
+      "permalink": "https://example.slack.com/archives/C01ABC123/p1716114600000000"
+    },
+    {
+      "user": "bob",
+      "text": "Just a heads up about the offsite schedule.",
+      "ts": "1716100000.000000"
+    }
+  ],
+  "count": 2
+}

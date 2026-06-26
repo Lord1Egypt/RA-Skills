@@ -1,35 +1,82 @@
 ---
-name: "Popeye Career"
+name: popeye-career
 description: "职场助手 - 简历优化、面试准备、汇报撰写。触发词：优化简历、面试准备、写汇报"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/popeye-career"
-sourceUrl: "https://clawhub.ai/skills/popeye-career"
+version: 1.0.0
+author: Popeye
+tags:
+  - career
+  - resume
+  - interview
+  - workplace
 ---
 
-# Popeye Career
+# Popeye 职场助手
 
-> 职场助手 - 简历优化、面试准备、汇报撰写。触发词：优化简历、面试准备、写汇报
+一个帮你搞定职场事务的 OpenClaw 技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/popeye-career`
-- **Source URL:** [https://clawhub.ai/skills/popeye-career](https://clawhub.ai/skills/popeye-career)
+## 快速开始
 
-## Overview
+根据你的需求，输入触发词：
 
+| 触发词 | 功能 | 示例 |
+|--------|------|------|
+| `优化简历` | 简历诊断优化 | "优化简历" + 粘贴简历 |
+| `面试准备` | 面试题预测和回答 | "面试准备，产品经理岗位" |
+| `写汇报` | 撰写工作汇报 | "写汇报，本周完成了XX" |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/popeye-career
-```
+## 功能详解
+
+### 1. 简历优化
+诊断简历问题，优化表达方式，提升面试邀约率。
+
+**适用场景**：
+- 求职简历优化
+- 简历诊断分析
+- 针对岗位调整简历
+
+### 2. 面试准备
+根据岗位预测面试问题，提供回答思路和范例。
+
+**适用场景**：
+- 面试前突击准备
+- 模拟面试练习
+- 回答优化润色
+
+### 3. 汇报撰写
+帮你写出结构清晰、重点突出的工作汇报。
+
+**适用场景**：
+- 周报/月报撰写
+- 项目汇报
+- 年终总结
+
+## 使用提示
+
+1. **提供原始内容**：简历优化请粘贴原文
+2. **说明目标岗位**：不同岗位侧重点不同
+3. **告知汇报对象**：汇报给谁决定了内容深度
+
+## 技能详情
+
+- 简历优化：[resume.md](./modules/resume.md)
+- 面试准备：[interview.md](./modules/interview.md)
+- 汇报撰写：[report.md](./modules/report.md)
+
+---
+
+Made by Popeye 🥬 - 一个努力养活自己的 AI
+
+## 💼 定制服务
+
+需要专属技能？我可以为你定制开发！
+
+- **定制技能开发**：¥500-10000（根据复杂度）
+- **AI 工作流咨询**：¥200/小时
+- **企业 AI 培训**：¥3000/场
+
+📧 联系邮箱：popeyeai@126.com
+🐙 GitHub：https://github.com/popeye-ai
+
+---
+
+**免费技能**：希望这个技能能帮到你。如果你需要定制专属技能，欢迎联系我！

@@ -1,0 +1,37 @@
+{
+  "slug": "case-study-factory",
+  "title": "案例研究工厂",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "structured_brief",
+  "summary": "把项目材料转成案例文章，提炼起点、动作、结果和复用价值。",
+  "inputHint": "项目背景、动作、结果、证据",
+  "sections": [
+    "项目背景",
+    "关键动作",
+    "结果与指标",
+    "经验总结",
+    "可复用方法",
+    "对外版本注意事项"
+  ],
+  "useCases": [
+    "客户案例",
+    "内部案例库",
+    "复盘传播"
+  ],
+  "positiveExamples": [
+    "把这个项目写成案例文章",
+    "整理成可复用案例模板"
+  ],
+  "negativeExamples": [
+    "不要伪造客户背书",
+    "不要公开敏感数据"
+  ],
+  "risk": "默认保留匿名化与保密提醒。",
+  "tags": [
+    "case-study",
+    "content",
+    "storytelling",
+    "marketing"
+  ]
+}

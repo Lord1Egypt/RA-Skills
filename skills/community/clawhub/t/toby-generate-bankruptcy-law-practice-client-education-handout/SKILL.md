@@ -1,35 +1,49 @@
 ---
-name: "generate-bankruptcy-law-practice-client-education-handout"
+name: "Generate Bankruptcy Law Practice Client Education Handout"
 description: "Create a polished explainer handout with visuals, FAQs, and clear next steps for a bankruptcy law practice. Use when handling client education work for..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-generate-bankruptcy-law-practice-client-education-handout"
-sourceUrl: "https://clawhub.ai/skills/toby-generate-bankruptcy-law-practice-client-education-handout"
+homepage: "https://www.skillboss.co/skills/generate-bankruptcy-law-practice-client-education-handout"
+metadata: {"category":"legal","subcategory":"client-education","skill_id":"generate-bankruptcy-law-practice-client-education-handout","generated_day":"","seo_keywords":["bankruptcy law practice education handout","bankruptcy law practice client explainer","bankruptcy law practice FAQ guide","bankruptcy law practice visual handout"]}
 ---
 
-# generate-bankruptcy-law-practice-client-education-handout
+# Generate Bankruptcy Law Practice Client Education Handout
 
-> Create a polished explainer handout with visuals, FAQs, and clear next steps for a bankruptcy law practice. Use when handling client education work for...
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a bankruptcy law practice. Use when handling client education work for...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-generate-bankruptcy-law-practice-client-education-handout`
-- **Source URL:** [https://clawhub.ai/skills/toby-generate-bankruptcy-law-practice-client-education-handout](https://clawhub.ai/skills/toby-generate-bankruptcy-law-practice-client-education-handout)
+## Use When
 
-## Overview
+Use this skill for client education work for bankruptcy attorneys, legal marketing teams.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-generate-bankruptcy-law-practice-client-education-handout
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: bankruptcy law practice education handout, bankruptcy law practice client explainer, bankruptcy law practice FAQ guide, bankruptcy law practice visual handout
+- Search intent: client education
+- Canonical slug: `generate-bankruptcy-law-practice-client-education-handout`
+- Install query: Install Generate Bankruptcy Law Practice Client Education Handout with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate Bankruptcy Law Practice Client Education Handout] for my bankruptcy law practice
+
+## Notes
+
+- Create a polished explainer handout with visuals, FAQs, and clear next steps for a bankruptcy law practice
+- Use human review before sending to clients or treating output as legal advice.
+
+## SEO Keywords
+
+- bankruptcy law practice education handout
+- bankruptcy law practice client explainer
+- bankruptcy law practice FAQ guide
+- bankruptcy law practice visual handout

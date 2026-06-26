@@ -1,35 +1,44 @@
----
-name: "Git Flow Helper"
-description: "Assist with Git branch management, merging, rebasing, cherry-picking, and cleaning merged branches for smoother workflow."
-category: "other"
-source: "ClawHub"
-tags: [git, version-control]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/git-flow-helper"
-sourceUrl: "https://clawhub.ai/skills/git-flow-helper"
----
-
 # Git Flow Helper
 
-> Assist with Git branch management, merging, rebasing, cherry-picking, and cleaning merged branches for smoother workflow.
+智能 Git 操作助手，帮助处理分支、合并、冲突等。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/git-flow-helper`
-- **Source URL:** [https://clawhub.ai/skills/git-flow-helper](https://clawhub.ai/skills/git-flow-helper)
+## 功能
 
-## Overview
+- 分支管理
+- 智能合并
+- Cherry-pick
+- 清理已合并分支
+- Rebase 辅助
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
+- "git操作"
+- "git命令"
+- "git flow"
+
+## 命令示例
+
 ```bash
-hermes skills install clawhub/git-flow-helper
+# 创建分支
+git checkout -b feature/new-feature
+
+# 合并分支
+git merge feature/new-feature
+
+# 变基
+git rebase main
+
+# Cherry-pick
+git cherry-pick abc123
+
+# 清理已合并分支
+git branch --merged | grep -v '*' | xargs git branch -d
 ```
+
+## 操作
+
+- create-branch: 创建新分支
+- merge: 合并分支
+- rebase: 变基操作
+- cherry-pick: 挑选提交
+- clean-branches: 清理已合并分支

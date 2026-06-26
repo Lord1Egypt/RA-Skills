@@ -1,0 +1,37 @@
+{
+  "slug": "weekly-review-pilot",
+  "title": "周复盘驾驶员",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "汇总本周完成、阻塞、经验教训与下周计划，形成管理层版和执行版摘要。",
+  "inputHint": "本周任务记录、阻塞点、下周计划",
+  "sections": [
+    "本周完成",
+    "真正产生价值的结果",
+    "阻塞与风险",
+    "经验教训",
+    "下周计划",
+    "需要支持"
+  ],
+  "useCases": [
+    "周报",
+    "例会输入",
+    "个人复盘"
+  ],
+  "positiveExamples": [
+    "根据本周工作日志生成周报",
+    "帮我做个人 weekly review"
+  ],
+  "negativeExamples": [
+    "不要杜撰完成项",
+    "不要替代工时系统"
+  ],
+  "risk": "内容依赖输入质量，建议附上原始记录。",
+  "tags": [
+    "weekly-review",
+    "planning",
+    "retrospective",
+    "status"
+  ]
+}

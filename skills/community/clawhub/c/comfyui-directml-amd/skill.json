@@ -1,0 +1,15 @@
+{
+  "name": "ComfyUI DirectML AMD",
+  "slug": "comfyui-directml-amd",
+  "version": "1.0.0",
+  "description": "Complete setup guide and fixes for running ComfyUI on AMD GPUs via DirectML on Windows",
+  "author": "Klepeto (vilda)",
+  "license": "MIT-0",
+  "tags": ["comfyui", "amd", "directml", "image-generation", "gpu", "setup"],
+  "category": "media",
+  "requires": {
+    "bins": ["curl", "uv"],
+    "os": ["windows"]
+  },
+  "changelog": "Initial release - Complete AMD DirectML setup guide, automatic model_patcher.py fixes, model downloader scripts, performance benchmarks for RX 7000/6000 series"
+}

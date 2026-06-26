@@ -1,0 +1,7 @@
+{
+  "action": "add_plc",
+  "device_name": "PLC_1",
+  "cpu_model": "CPU 1511-1 PN",
+  "family": "S7-1500",
+  "firmware": "V4.0"
+}

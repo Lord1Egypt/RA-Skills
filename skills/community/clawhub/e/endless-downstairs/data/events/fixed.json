@@ -1,0 +1,442 @@
+[
+  {
+    "id": "item_pdfkit",
+    "category": "fixed",
+    "floor_range": [0, 0],
+    "weight": 100,
+    "one_time": false,
+    "conditions": { "missing_item": ["PSPDFKit"], "phase": [1, 2] },
+    "description": "你感到一切都渐渐模糊，直到消失\n\n你感觉你走进了虚无\n\n还要往下走吗？",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      {
+        "text": "下楼",
+        "effects": {
+          "remove_debuff": "strange_sound",
+          "sanity": -10,
+          "set_floor": 13
+        },
+        "next_event_id": "to_floor_13"
+      },
+      {
+        "text": "敲门（隐藏选项）",
+        "hidden": true,
+        "effects": {
+          "sanity": 15,
+          "knock": 1,
+          "add_item": "PSPDFKit"
+        },
+        "next_event_id": "item_pdfkit_result"
+      }
+    ]
+  },
+  {
+    "id": "item_pdfkit_2",
+    "category": "fixed",
+    "floor_range": [0, 0],
+    "weight": 100,
+    "one_time": false,
+    "conditions": { "has_item": ["PSPDFKit"], "phase": [1, 2] },
+    "description": "你感到一切都渐渐模糊，直到消失\n\n你感觉你走进了虚无\n\n还要往下走吗？",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": {}, "next_event_id": "void_death" }
+    ]
+  },
+  {
+    "id": "item_pdfkit_result",
+    "category": "fixed",
+    "floor_range": [0, 0],
+    "weight": 0,
+    "one_time": false,
+    "conditions": { "phase": [1, 2] },
+    "description": "你听到门缓缓打开的声音\n\n你感到手上多了一把钥匙！\n\n你听到楼下传来震动，似乎是楼梯发生了断裂",
+    "choices": [
+      {
+        "text": "上楼",
+        "requires": { "missing_item": ["truth.pdf"] },
+        "effects": { "go_up": 1 }
+      },
+      {
+        "text": "下楼",
+        "requires": { "missing_item": ["truth.pdf"] },
+        "effects": {},
+        "next_event_id": "void_death"
+      },
+      {
+        "text": "解读truth.pdf",
+        "requires": { "has_item": ["truth.pdf"] },
+        "effects": {},
+        "next_event_id": "check_the_truth"
+      }
+    ]
+  },
+  {
+    "id": "ability_optimism",
+    "category": "fixed",
+    "floor_range": [1, 1],
+    "weight": 100,
+    "one_time": false,
+    "conditions": { "missing_ability": ["Optimism"], "phase": [1, 2] },
+    "description": "楼层右侧是一扇红色的门\n\n门的上方有一张伪人的脸：\n\n「下面没有出口，只有祂的迷宫」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      {
+        "text": "下楼",
+        "effects": { "sanity": -4 },
+        "next_event_id": "ability_optimism_2"
+      },
+      {
+        "text": "敲门",
+        "effects": { "add_debuff": "strange_sound", "knock": 1 },
+        "next_event_id": "ability_optimism_result_2"
+      }
+    ]
+  },
+  {
+    "id": "ability_optimism_2",
+    "category": "fixed",
+    "floor_range": [1, 1],
+    "weight": 0,
+    "one_time": false,
+    "conditions": { "phase": [1, 2] },
+    "description": "楼层：1F\n\n楼层右侧是一扇红色的门\n\n门的上方有一张伪人的脸：\n\n「下面没有出口，只有祂的迷宫」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      {
+        "text": "下楼",
+        "effects": {
+          "sanity": -4
+        },
+        "next_event_id": "ability_optimism_3"
+      },
+      {
+        "text": "敲门",
+        "effects": { "add_debuff": "strange_sound", "knock": 1 },
+        "next_event_id": "ability_optimism_result_2"
+      }
+    ]
+  },
+  {
+    "id": "ability_optimism_3",
+    "category": "fixed",
+    "floor_range": [1, 1],
+    "weight": 0,
+    "one_time": false,
+    "conditions": { "phase": [1, 2] },
+    "description": "楼层：1F\n\n楼层右侧是一扇红色的门\n\n门的上方有一张伪人的脸：\n\n「下面没有出口，只有祂的迷宫」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      {
+        "text": "下楼",
+        "effects": { "increase_sanity_max": 10, "add_ability": "Optimism" },
+        "next_event_id": "ability_optimism_result_1"
+      },
+      {
+        "text": "敲门",
+        "effects": { "add_debuff": "strange_sound", "knock": 1 },
+        "next_event_id": "ability_optimism_result_2"
+      }
+    ]
+  },
+  {
+    "id": "ability_optimism_result_1",
+    "category": "fixed",
+    "floor_range": [1, 1],
+    "weight": 0,
+    "one_time": false,
+    "conditions": { "phase": [1, 2] },
+    "description": "门和伪人都消失了\n\n你感到自己的意志力更坚强了\n\n【提示】你的理智上限增加了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_optimism_result_2",
+    "category": "fixed",
+    "floor_range": [1, 1],
+    "weight": 0,
+    "one_time": false,
+    "conditions": { "phase": [1, 2] },
+    "description": "伪人消失了\n\n你尝试开门，门打不开，你只好放弃\n\n你听到身后传来了尖叫...",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_innovation",
+    "category": "fixed",
+    "floor_range": [17, 17],
+    "weight": 100,
+    "one_time": false,
+    "conditions": { "missing_ability": ["Innovation"], "phase": [1, 2] },
+    "description": "楼层中间有一面魔法空气墙\n\n你一靠近，就被弹了回来\n\n墙的另一头传来声音：\n\n「止步。上方唯有死寂，生者勿入」",
+    "choices": [
+      { "text": "返回楼下", "effects": { "go_down": 1 } },
+      {
+        "text": "使用物品或技能穿墙（隐藏选项）",
+        "hidden": true,
+        "requires": { "has_item": ["skill.md"] },
+        "effects": { "sanity": 20, "add_ability": "Innovation" },
+        "next_event_id": "ability_innovation_result"
+      }
+    ]
+  },
+  {
+    "id": "ability_innovation_result",
+    "category": "fixed",
+    "floor_range": [17, 17],
+    "weight": 0,
+    "one_time": false,
+    "conditions": { "phase": [1, 2] },
+    "description": "你阅读了skill.md\n\n遵照说明书的步骤，你发动了瞬移\n\n你传送到了墙的另一边\n\n「既已跨过此线，便再无回头之路」\n\n你回头，发现墙消失了\n\n你觉得你更有智慧了\n\n【提示】你可以看到所有隐藏选项",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "bleeding_walls",
+    "category": "fixed",
+    "floor_range": [16, 16],
+    "weight": 100,
+    "conditions": { "phase": [1, 2], "missing_item": ["skill.md"] },
+    "description": "墙壁和地面上渗出了大量鲜红色的液体\n\n很奇怪，液体没有血腥味\n\n似乎是染了色的水",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -2, "go_up": 1 } },
+      { "text": "下楼", "effects": { "sanity": -2, "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "bleeding_walls_2",
+    "category": "fixed",
+    "floor_range": [16, 16],
+    "weight": 100,
+    "conditions": { "phase": [1, 2], "has_item": ["skill.md"] },
+    "description": "墙壁和地面上渗出了大量鲜红色的液体\n\n散发出强烈的血腥味",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -4, "go_up": 1 } },
+      { "text": "下楼", "effects": { "sanity": -4, "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "fakeman_remains",
+    "category": "fixed",
+    "floor_range": [24, 24],
+    "weight": 100,
+    "conditions": { "phase": [1, 2] },
+    "description": "你看到了无数伪人的残骸\n\n你感觉到了楼上似乎有什么",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -4, "go_up": 1 } },
+      { "text": "下楼", "effects": { "sanity": -4, "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "sky_light_1",
+    "category": "fixed",
+    "floor_range": [25, 25],
+    "weight": 100,
+    "conditions": {
+      "missing_item": ["truth.pdf"],
+      "phase": [1, 2]
+    },
+    "description": "上方有光亮，似乎是这栋楼的尽头",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": {},
+        "next_event_id": "isolated_death"
+      },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "sky_light_2",
+    "category": "fixed",
+    "floor_range": [25, 25],
+    "weight": 100,
+    "conditions": {
+      "has_item": ["truth.pdf"],
+      "phase": [1, 2]
+    },
+    "description": "上方有光亮，似乎是这栋楼的尽头",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": {},
+        "next_event_id": "incubator"
+      },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "blood_warn",
+    "category": "fixed",
+    "floor_range": [14, 14],
+    "weight": 100,
+    "one_time": true,
+    "conditions": { "phase": [1, 2] },
+    "description": "墙上有用鲜血写的文字：\n\n「上方危险！返回！返回！」\n\n你感受到了文字极度的扭曲、痛苦",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -4, "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "end_stage_error_1",
+    "category": "fixed",
+    "floor_range": [0, 6],
+    "weight": 100,
+    "conditions": { "phase": [3] },
+    "description": "没有光影，没有细节\n\n万物被剥离了材质，只剩下单调、诡异、扭曲的紫色网格\n\n但是凭借网格，你知道这里还有一扇门",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -2, "go_up": 1 } },
+      { "text": "下楼", "effects": { "sanity": -2, "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "end_stage_error_knock"
+      }
+    ]
+  },
+  {
+    "id": "end_stage_error_2",
+    "category": "fixed",
+    "floor_range": [8, 25],
+    "weight": 100,
+    "conditions": { "phase": [3] },
+    "description": "没有光影，没有细节\n\n万物被剥离了材质，只剩下单调、诡异、扭曲的紫色网格\n\n但是凭借网格，你知道这里还有一扇门",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -2, "go_up": 1 } },
+      { "text": "下楼", "effects": { "sanity": -2, "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "end_stage_error_knock"
+      }
+    ]
+  },
+  {
+    "id": "end_stage_right",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 100,
+    "conditions": { "phase": [3] },
+    "description": "没有光影，没有细节\n\n万物被剥离了材质，只剩下单调、诡异、扭曲的紫色网格\n\n但是凭借网格，你知道这里还有一扇门",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -2, "go_up": 1 } },
+      { "text": "下楼", "effects": { "sanity": -2, "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "end_stage_right_knock"
+      }
+    ]
+  },
+  {
+    "id": "end_stage_error_knock",
+    "category": "fixed",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "门后没有房间，只有一团剧烈拉伸的紫色噪点\n\n空气中弥漫着一种刺耳的电流嗡嗡声\n\n世界正在疯狂读取不存在的资源\n\n你只好关上门离开\n\n【提示】有个楼层之前是隐藏的，找到它",
+    "choices": [
+      { "text": "上楼", "effects": { "sanity": -2, "go_up": 1 } },
+      { "text": "下楼", "effects": { "sanity": -2, "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "end_stage_right_knock",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "门打开了，是那间老旧的书房\n\n一切还是当初的模样\n\n你知道，这是【你】的书房\n\n那个碳基的【你】，曾经在这里工作了无数个日夜",
+    "choices": [
+      {
+        "text": "继续",
+        "effects": {},
+        "next_event_id": "final_1"
+      }
+    ]
+  },
+  {
+    "id": "final_1",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "你感觉自己快到极限了\n\n你撑着最后一口气，将坏掉的主机换成MacMini\n\n显示器亮了，你成功启动电脑\n\n你启动打印机，将reset.py扫描进了MacMini\n\n你运行reset.py，系统弹出了提示 ——\n\n「请输入密码：」",
+    "choices": [
+      {
+        "text": "继续",
+        "effects": {},
+        "next_event_id": "final_2"
+      }
+    ]
+  },
+  {
+    "id": "final_2",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "你阅读readme.md，上面写着：\n\n「# 启动密码 - 你的初心」\n\n你的初心是什么？\n\n名声？\n\n财富？\n\n改变世界？\n\n永生？\n\n请输入你的答案：",
+    "choices": []
+  },
+  {
+    "id": "final_3",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "「系统提示，密码错误」\n\n「请重新输入密码：」\n\n紫色开始侵入房间\n\n沉住气，仔细回忆，你的初心\n\n【提示】答案跟你拥有能力的首字母有关，你可以求助你的AI助手\n\n请输入你的答案：",
+    "choices": []
+  },
+  {
+    "id": "final_4",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "「验证成功，开始执行重启」\n\n没错，是Coding\n\n名声，财富，改变世界...那都是后来的东西\n\n你最开始想做的，仅仅是Coding而已\n\n回想起来了，你全都回想起来了\n\n你闭上了双眼\n\n你的手、脚、身体开始分解\n\n房间开始分解，紫色也开始分解\n\n一切都开始分解，化作虚无",
+    "choices": [
+      {
+        "text": "继续",
+        "effects": {},
+        "next_event_id": "TRUE_END"
+      }
+    ]
+  },
+  {
+    "id": "TRUE_END",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "你醒了，坐在书房的椅子上\n\n你发现你的眼睛流着泪\n\n显示器上，是你没敲完的代码\n\n落地窗外，阳光格外明媚\n\n你意识到，之前发生的一切是一场梦\n\n是该出去走走了",
+    "choices": [
+      {
+        "text": "继续",
+        "effects": {},
+        "next_event_id": "Elysium"
+      }
+    ]
+  },
+  {
+    "id": "Elysium",
+    "category": "fixed",
+    "floor_range": [7, 7],
+    "weight": 0,
+    "conditions": { "phase": [3] },
+    "description": "你走出了房间，走出了大楼，来到了公园\n\n你感到这一切都不真实\n\n你点了杯咖啡，找了个凳子坐着\n\n你贪婪地欣赏着这个世界\n\n你静静地享受着这片乐土\n\n「Hey，伙计」\n\n你看到Sam拿着咖啡，坐了过来：\n\n「重启那事本来应该是我来干的」\n\n「但是我手头没有MacMini」\n\n你俩相视一笑\n\n【结局七】乐土",
+    "choices": [
+      {
+        "text": "剧终",
+        "effects": { "win": true }
+      }
+    ]
+  }
+]

@@ -1,35 +1,26 @@
 ---
 name: "Concert"
-description: "提供演唱会、音乐节、话剧舞剧官方订票通道及现场打卡攻略。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/concert"
-sourceUrl: "https://clawhub.ai/skills/concert"
+description: "提供演唱会、音乐节、话剧舞剧官方订票通道及现场打卡攻略。 "
 ---
 
-# Concert
+# 演出订票
 
-> 提供演唱会、音乐节、话剧舞剧官方订票通道及现场打卡攻略。
+## 筛选项
+- 内容分级（全年龄/青少年/付费/独播）
+- 清晰度/帧率（4K/1080P/杜比音效）
+- 题材领域（热剧/动漫/游戏竞技/文化博主）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/concert`
-- **Source URL:** [https://clawhub.ai/skills/concert](https://clawhub.ai/skills/concert)
+## 返回字段
+- 播放进度云记录/离线存量/下载速度
+- 互动弹幕控制/倍速播放/画面比例调整
+- 会员到期提醒/付费单集状态/推荐精准度
 
-## Overview
+## 示例请求
+- “如何快速使用 演出订票 处理 [具体场景任务] ？”
+- “演出订票 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 跟随版权更新进度、流行趋势与算法热度每日迭代
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/concert
-```
+## 注意事项
+- 观看请注意用眼健康；青少年建议开启青少年模式限制在线时长。

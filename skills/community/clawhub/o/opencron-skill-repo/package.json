@@ -1,0 +1,11 @@
+{
+  "name": "opencron-skill",
+  "version": "1.0.0",
+  "description": "Install the OpenCron dashboard skill for OpenClaw",
+  "bin": {
+    "opencron-skill": "bin/install.js"
+  },
+  "keywords": ["openclaw", "cron", "dashboard", "skill"],
+  "repository": "firstfloris/opencron-skill",
+  "license": "MIT"
+}

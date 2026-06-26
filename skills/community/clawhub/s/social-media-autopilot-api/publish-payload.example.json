@@ -1,0 +1,23 @@
+{
+  "account_id": 163751,
+  "type": "post",
+  "status": 0,
+  "scheduled_at": "",
+  "comment": [],
+  "content": "示例内容",
+  "extra": {
+    "title": "示例标题",
+    "category_id": "",
+    "link": "",
+    "draft": false,
+    "flair": {
+      "uuid": "replace-with-reddit-flair-uuid",
+      "title": "replace-with-reddit-flair-title"
+    }
+  },
+  "attachments": [
+    {
+      "url": "https://example.com/uploaded-file.jpg"
+    }
+  ]
+}

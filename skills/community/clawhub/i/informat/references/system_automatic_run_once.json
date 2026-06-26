@@ -1,0 +1,16 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_automatic_run_once",
+		"description": "[High-risk operation] Run the specified automation process immediately. ⚠️ Before calling this tool, you must explicitly ask the user `Are you sure you want to execute it?`.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Automation ID (system unique)."
+				}
+			}
+		}
+	}
+}

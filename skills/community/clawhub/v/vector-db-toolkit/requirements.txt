@@ -1,0 +1,5 @@
+qdrant-client>=1.7.0
+chromadb>=0.4.18
+numpy>=1.24.0
+requests>=2.31.0
+sentence-transformers>=2.2.2

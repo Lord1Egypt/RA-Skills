@@ -1,35 +1,61 @@
 ---
-name: "Clawd Presence"
-description: "Physical presence display for AI agents. Shows a customizable monogram (A-Z), status state, and current activity on a dedicated terminal/screen. Provides faster feedback than chat - glance at the display to see what the agent is doing. Use when setting up always-on agent visib…"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawd-presence"
-sourceUrl: "https://clawhub.ai/skills/clawd-presence"
+name: clawd-presence
+description: Physical presence display for AI agents. Shows a customizable monogram (A-Z), status state, and current activity on a dedicated terminal/screen. Provides faster feedback than chat - glance at the display to see what the agent is doing. Use when setting up always-on agent visibility.
 ---
 
 # Clawd Presence
 
-> Physical presence display for AI agents. Shows a customizable monogram (A-Z), status state, and current activity on a dedicated terminal/screen. Provides faster feedback than chat - glance at the display to see what the agent is doing. Use when setting up always-on agent visib…
+Terminal-based presence display for AI agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawd-presence`
-- **Source URL:** [https://clawhub.ai/skills/clawd-presence](https://clawhub.ai/skills/clawd-presence)
+## Why
 
-## Overview
+Chat has latency. A presence display inverts this - the agent broadcasts state continuously, you glance at it like a clock.
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawd-presence
+# Configure (auto-detect from clawdbot or manual)
+python3 scripts/configure.py --auto
+# or
+python3 scripts/configure.py --letter A --name "AGENT"
+
+# Run display in dedicated terminal
+python3 scripts/display.py
 ```
+
+## Update Status
+
+Call from your agent whenever starting a task:
+
+```bash
+python3 scripts/status.py work "Building feature"
+python3 scripts/status.py think "Analyzing data"
+python3 scripts/status.py idle "Ready"
+python3 scripts/status.py alert "Need attention"
+python3 scripts/status.py sleep
+```
+
+## States
+
+| State | Color | Use |
+|-------|-------|-----|
+| `idle` | Cyan | Waiting |
+| `work` | Green | Executing |
+| `think` | Yellow | Processing |
+| `alert` | Red | Needs human |
+| `sleep` | Blue | Low power |
+
+## Auto-Idle
+
+Returns to idle after 5 minutes of no updates. Prevents stale states.
+
+```bash
+python3 scripts/configure.py --timeout 300  # seconds, 0 to disable
+```
+
+## Files
+
+- `scripts/display.py` - Main display
+- `scripts/status.py` - Update status
+- `scripts/configure.py` - Settings
+- `assets/monograms/` - Letter designs A-Z

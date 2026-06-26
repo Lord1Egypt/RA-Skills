@@ -1,0 +1,26 @@
+{
+  "name": "react-orchestrator",
+  "version": "0.1.0",
+  "description": "ReAct reasoning framework for OpenClaw - dual-system AI agent orchestration (System 1 fast + System 2 deep reasoning with Reflexion)",
+  "main": "src/orchestrator.js",
+  "scripts": {
+    "test": "node test/orchestrator.test.js"
+  },
+  "keywords": [
+    "react",
+    "ai-agent",
+    "reasoning",
+    "orchestration",
+    "openclaw-skill",
+    "reflexion",
+    "dual-system"
+  ],
+  "author": "余永浩",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.24.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

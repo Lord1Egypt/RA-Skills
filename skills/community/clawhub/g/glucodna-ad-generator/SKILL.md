@@ -1,35 +1,22 @@
----
-name: "GlucoDNA 广告图生成器"
-description: "Generate 1024x1024 Chinese GlucoDNA kidney protection ads with product images using Gemini API and product info."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/glucodna-ad-generator"
-sourceUrl: "https://clawhub.ai/skills/glucodna-ad-generator"
----
-
 # GlucoDNA 广告图生成器
 
-> Generate 1024x1024 Chinese GlucoDNA kidney protection ads with product images using Gemini API and product info.
+生成 GlucoDNA 基因护肾的中文广告图片，包含产品图。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/glucodna-ad-generator`
-- **Source URL:** [https://clawhub.ai/skills/glucodna-ad-generator](https://clawhub.ai/skills/glucodna-ad-generator)
+## 触发词
+- "生成GlucoDNA广告"
+- "GlucoDNA 广告图"
+- "glucodna ad"
 
-## Overview
+## 前置依赖
+- Gemini API Key（配置于 TOOLS.md 或环境变量）
+- Python 包: `pip install google-genai requests`
 
+## 工作流
+1. 读取 `knowledge/products/GlucoDNA.md` 获取产品信息
+2. 用 Gemini 3 Pro 生成 1024×1024 广告图
+3. 保存到桌面
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/glucodna-ad-generator
+## 关键代码
+```python
+python3 workspace/skills/glucodna-ad-skill/generate.py
 ```

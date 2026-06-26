@@ -1,0 +1,14 @@
+# CC Session Bridge 配置文件
+# 每个 agent 配置自己的 chat_id / sender_id / sender_name
+# 这些是 AIMA 采集所需的钉钉元数据，应填小灵自己的身份信息
+
+xiaoling-qinfang:
+  chat_id: "WB02521102"
+  sender_id: "WB02521102"
+  sender_name: "小灵-财富风控001"
+
+# 其他小灵安装时，替换为自己的身份信息:
+# xiaoling-xxx:
+#   chat_id: "你的工号"
+#   sender_id: "你的工号"
+#   sender_name: "小灵-xxx"

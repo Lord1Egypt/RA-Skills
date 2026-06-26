@@ -1,35 +1,191 @@
 ---
-name: "胡田 OPC导师 迭代训练"
-description: "Skill迭代训练工具，通过双轨对照法（Freestyle vs Skill执行）持续优化Skill质量"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opc-iterative-training"
-sourceUrl: "https://clawhub.ai/skills/opc-iterative-training"
+name: opc-iterative-training
+description: Skill迭代训练工具，通过双轨对照法（Freestyle vs Skill执行）持续优化Skill质量
+license: MIT
+compatibility:
+  - claude-code
+  - copilot
+  - cursor
+  - openclaw
+  - coze
+author: 胡田
+version: 1.0.0
 ---
 
-# 胡田 OPC导师 迭代训练
+# 胡田-OPC导师-迭代训练
 
-> Skill迭代训练工具，通过双轨对照法（Freestyle vs Skill执行）持续优化Skill质量
+## 基础信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opc-iterative-training`
-- **Source URL:** [https://clawhub.ai/skills/opc-iterative-training](https://clawhub.ai/skills/opc-iterative-training)
+- **Skill名称**: 胡田-OPC导师-迭代训练
+- **版本**: v1.0
+- **适用场景**: Skill训练、Skill迭代优化、低频Skill激活、输出质量提升
+- **触发词**: 训练、练一下、跑个案例、迭代、优化Skill、升级Skill
 
-## Overview
+---
 
+## 概述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opc-iterative-training
+本Skill提供"双轨对照法"训练机制，通过自由发挥与Skill执行的对照分析，持续迭代优化自建Skill。核心思路：AI自由发挥时可能产生Skill框架外的亮点，将这些亮点标准化后回灌Skill，实现Skill的持续进化。
+
+---
+
+## 模块1：训练触发与选题
+
+### 触发条件
+1. **主动触发**：用户说"训练"、"练一下"、"跑个案例"
+2. **被动触发**：周报显示某Skill调用<3次/月，标记为"需训练"
+3. **迭代触发**：用户对Skill输出不满意，要求优化
+4. **轮训触发**：每季度全量58个Skill轮训一轮
+
+### 选题优先级
+1. 用户指定的Skill → 最高优先级
+2. 周报标记的低频Skill（<3次/月）
+3. 用户近期反馈输出不佳的Skill
+4. 长期未更新的Skill（>30天无迭代）
+
+### 虚拟案例设计原则
+- **贴近实战**：基于Skill的真实使用场景设计，不编造脱离实际的案例
+- **难度适中**：不能太简单（没训练价值），不能太特殊（不可复用）
+- **数量**：每次训练1-2个虚拟案例
+- **来源**：可参考`./案例注册表.json`中同类案例的场景
+
+---
+
+## 模块2：双轨对照法
+
+### Step 1：自由发挥（Freestyle）
+- **不加载任何Skill**，完全凭自身能力完成案例任务
+- 记录维度：
+  - 输出内容全文
+  - 思路和推理过程
+  - 亮点（独特的角度、灵活的结构、创新的表达）
+  - 不足（遗漏的步骤、不够严谨的地方）
+- 保存到：`./Skill训练/{Skill名}/自由发挥_{日期}.md`
+
+### Step 2：Skill执行
+- **加载目标Skill**，严格按Skill流程完成同一个案例
+- 记录维度：
+  - 输出内容全文
+  - Skill流程各步骤执行情况
+  - 亮点（方法论完整性、框架严谨性、标准输出质量）
+  - 不足（死板的地方、缺失的维度、可以更灵活的环节）
+- 保存到：`./Skill训练/{Skill名}/Skill执行_{日期}.md`
+
+### Step 3：对照分析
+从5个维度对比Freestyle vs Skill：
+
+| 维度 | 说明 |
+|------|------|
+| 完整性 | 哪个覆盖更全？Skill是否遗漏了Freestyle发现的角度？ |
+| 深度 | 哪个分析更深？Freestyle是否在某点上有独到见解？ |
+| 结构性 | Skill框架是否限制了灵活性？Freestyle是否缺少体系？ |
+| 创新性 | Freestyle有什么Skill没想到的思路？能否标准化？ |
+| 实用性 | 哪个对用户更有价值？用户会更满意哪个输出？ |
+
+### Step 4：提炼与迭代
+- 将Freestyle亮点提炼为**可标准化、可复用**的内容
+- 识别3类改进：
+  - **增量改进**：Skill新增1个步骤/维度/检查项
+  - **优化改进**：Skill现有步骤优化表达/逻辑/模板
+  - **结构改进**：Skill整体结构调整（较少发生）
+- 更新Skill的SKILL.md或参考文档
+- 版本号+0.1（如v1.0→v1.1）
+- 记录迭代日志
+
+---
+
+## 模块3：迭代规范
+
+### 版本管理
+- 小迭代（+0.1）：新增步骤/优化表达/补充案例 → 不改Skill核心框架
+- 中迭代（+0.5）：新增模块/结构调整 → 改变Skill部分架构
+- 大迭代（+1.0）：核心方法论升级 → Skill本质变化
+
+### 迭代日志格式
+```markdown
+### 训练记录 {日期}
+- Skill：{名称} v{版本} → v{新版本}
+- 案例：{虚拟案例简述}
+- Freestyle亮点：{1-3条}
+- Skill优势：{1-3条}
+- 改进点：{1-3条具体可操作的改进}
+- 迭代内容：{具体修改了什么}
+- 是否已更新Skill文件：是/否
 ```
+
+### 迭代日志存放
+`./Skill训练/{Skill名}/迭代日志.md`
+
+---
+
+## 模块4：训练节奏
+
+| 类型 | 频率 | 优先级 | 触发方式 |
+|------|------|--------|---------|
+| 用户指定训练 | 即时 | 最高 | 用户说"训练" |
+| 低频Skill补训 | 周报标记后当周 | 高 | 周报自动标记 |
+| 高频Skill迭代 | 每月1次 | 中 | 日程提醒 |
+| 全量轮训 | 每季度1轮58个 | 低 | 季度日程 |
+
+---
+
+## 模块5：训练产物
+
+### 目录结构
+```
+./Skill训练/
+├── {Skill名}/
+│   ├── 自由发挥_{日期}.md
+│   ├── Skill执行_{日期}.md
+│   └── 迭代日志.md
+└── 训练总览.md
+```
+
+### 训练总览
+`./Skill训练/训练总览.md` 维护全局训练状态：
+- 每个Skill的训练次数
+- 最近训练日期
+- 当前版本
+- 下次建议训练时间
+
+---
+
+## 模块6：质量保障
+
+### 五步审稿法应用于训练
+1. **事实核查**：Freestyle的亮点是否真实可复用？不是偶然的好？
+2. **逻辑检验**：提炼的改进点是否逻辑自洽？
+3. **一致性检查**：迭代后的Skill是否与其他Skill风格一致？
+4. **去夸张底线**：不夸大Freestyle的价值，也不低估Skill的框架优势
+5. **专业术语**：迭代内容使用OPC标准术语体系
+
+### 防退化机制
+- 每次迭代后，用历史案例回测：新版本是否在旧案例上不退化？
+- 如果新版本在某案例上退步，标注原因并考虑回退或双版本
+
+---
+
+## 调用的工具/数据
+
+- `./Skill注册表.json`：Skill全量清单
+- `./案例注册表.json`：历史案例参考
+- `./项目管理/Skill调用记录.md`：调用频率数据
+- `./项目管理/Skill调用周报_*.md`：周报数据
+- `./skills/{Skill名}/`：目标Skill文件（读取+修改）
+
+---
+
+## 实战验证记录
+
+### 2026-05-20 首次训练验证
+
+- **训练对象**：沙盘推演 v1.0 → v1.1
+- **验证结论**：双轨对照法有效
+  - Freestyle产生了3个Skill框架外的亮点（生态位思维、退出策略、团队结构失衡）
+  - 3个亮点全部成功标准化回灌Skill
+  - Skill框架优势（变量体系、三会协同、韧性测试）远超自由发挥
+- **训练耗时**：约25分钟（含2个完整推演+对照分析+迭代更新）
+- **经验**：
+  1. Freestyle的创新点往往在"跳出当前框架"的维度（换生态位、换退出方式、换团队配比）
+  2. Skill的优势在"框架内穷举"的深度（多轮红蓝对抗、多场景韧性测试）
+  3. 两者互补性很强，不是替代关系

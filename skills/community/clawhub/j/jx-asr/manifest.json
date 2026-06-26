@@ -1,0 +1,32 @@
+{
+  "author": "SkillBoss API Hub (https://heybossai.com)",
+  "categories": [
+    "ai",
+    "media",
+    "utility"
+  ],
+  "commands": {
+    "asr": "scripts/asr.sh"
+  },
+  "description": "ASR skill for transcribing audio via SkillBoss API Hub",
+  "env": [
+    "SKILLBOSS_API_KEY"
+  ],
+  "homepage": "https://heybossai.com",
+  "keywords": [
+    "asr",
+    "audio",
+    "automatic-speech-recognition",
+    "canary",
+    "parakeet",
+    "speech-to-text",
+    "stt",
+    "transcribe",
+    "transcription",
+    "whisper"
+  ],
+  "license": "MIT",
+  "name": "asr",
+  "repository": "https://github.com/speechischeap/clawhub-asr",
+  "version": "1.2.0"
+}

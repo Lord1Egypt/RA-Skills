@@ -1,0 +1,87 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/author/get_author_show_items_v2/v1 for Douyin Creator Marketplace (Xingtu) Showcase Items through JustOneAPI with oAuthorId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Showcase Items",
+  "endpointPath": "gw/api/author/get_author_show_items_v2",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) showcase Items data, including products and videos associated with the account, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "gwApiAuthorGetAuthorShowItemsV2V1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Author's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oAuthorId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "SHORT_VIDEO",
+          "description": "Platform type.\n\nAvailable Values:\n- `SHORT_VIDEO`: Short video\n- `LIVE_STREAMING`: Live streaming\n- `PICTURE_TEXT`: Picture and text\n- `SHORT_DRAMA`: Short drama",
+          "enumValues": [
+            "SHORT_VIDEO",
+            "LIVE_STREAMING",
+            "PICTURE_TEXT",
+            "SHORT_DRAMA"
+          ],
+          "location": "query",
+          "name": "platform",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Whether to only include assigned items.",
+          "enumValues": [],
+          "location": "query",
+          "name": "onlyAssign",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": "EXCLUDE",
+          "description": "Flow type filter.\n\nAvailable Values:\n- `EXCLUDE`: Exclude\n- `INCLUDE`: Include",
+          "enumValues": [
+            "EXCLUDE",
+            "INCLUDE"
+          ],
+          "location": "query",
+          "name": "flowType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/author/get_author_show_items_v2/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Showcase Items",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_author_get_author_show_items_v2",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-author-get-author-show-items-v2",
+  "sourceTitle": "OpenAPI definition"
+}

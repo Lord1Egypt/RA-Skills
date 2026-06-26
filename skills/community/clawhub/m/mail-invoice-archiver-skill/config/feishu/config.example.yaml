@@ -1,0 +1,7 @@
+feishu:
+  app_id: "cli_xxxxxxxxxxxxxxxxx"
+  app_secret: "your_app_secret_here"
+  receive_id_type: "open_id"
+# Real secrets must live outside the published skill directory.
+# Recommended local path:
+# ~/.config/openclaw/mail_invoice_archiver/feishu.config.yaml

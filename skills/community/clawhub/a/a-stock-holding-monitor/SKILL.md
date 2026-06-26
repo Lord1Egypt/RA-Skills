@@ -1,35 +1,103 @@
 ---
-name: "A Stock Holding Monitor"
-description: "A股持仓监控脚本。监控持仓股票的止损/支撑破位/目标价/异常波动，触发条件时提醒。适合配合cron定时运行。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-holding-monitor"
-sourceUrl: "https://clawhub.ai/skills/a-stock-holding-monitor"
+name: a-stock-holding-monitor
+version: 1.0.0
+description: A股持仓监控脚本。监控持仓股票的止损/支撑破位/目标价/异常波动，触发条件时提醒。适合配合cron定时运行。
+author: 林林
+tags:
+  - stock
+  - a股
+  - holding
+  - monitor
+  - 持仓监控
 ---
 
-# A Stock Holding Monitor
+# A股持仓监控脚本
 
-> A股持仓监控脚本。监控持仓股票的止损/支撑破位/目标价/异常波动，触发条件时提醒。适合配合cron定时运行。
+监控A股持仓的止损、支撑、目标价和异常波动。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-holding-monitor`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-holding-monitor](https://clawhub.ai/skills/a-stock-holding-monitor)
+## 功能
 
-## Overview
+- 实时获取持仓股票现价
+- 检测是否触及止损/支撑/目标位
+- 计算浮盈/浮亏
+- 乖离率超5%警告
+- 当日跌幅超5%异动告警
 
+## 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-holding-monitor
+| 条件 | 标记 | 操作建议 |
+|------|------|---------|
+| 触及止损价 | 🔴 | 建议止损 |
+| 跌破支撑位 | 🟠 | 关注是否企稳 |
+| 当日跌幅>5% | 🔴 | 异动告警 |
+| 乖离率>+5% | ⚠️ | 短线过热 |
+
+## 文件
+
+- `holding_monitor.py` - 主程序
+
+## 安装
+
+1. 下载脚本
+2. 修改脚本顶部的 `HOLDINGS` 列表，填入你的持仓
+3. 设置执行权限：`chmod +x holding_monitor.py`
+
+## 配置
+
+编辑 `HOLDINGS` 列表：
+
+```python
+HOLDINGS = [
+    {
+        "name": "贵州茅台",
+        "code": "sh600519",  # sh=上证 sz=深证
+        "cost": 1800.0,
+        "qty": 10,
+        "stop_loss": 1700.0,
+        "support": 1750.0,
+        "target": "2000-2100",
+        "optimistic": 2200,
+    },
+]
 ```
+
+## 运行方式
+
+**手动运行：**
+```bash
+python3 holding_monitor.py
+```
+
+**定时检查（每天9:30-15:00每30分钟一次）：**
+```bash
+# 添加到crontab
+crontab -e
+
+# 写入：
+*/30 9-15 * * 1-5 /path/to/holding_monitor.py >> /path/to/holding_monitor.log 2>&1
+```
+
+## 输出示例
+
+```
+[2026-04-17 14:00:00] 持仓检查...
+贵州茅台: 现价1850.0 +2.78% 浮盈+500元(+2.78%)
+洛阳钼业: 现价20.16 -0.64% 浮盈+3元(+0.07%)
+  → 持有
+
+📊 A股持仓监控
+---
+【贵州茅台 sh600519】
+现价: 1850.000  +2.78%
+成本: 1800.000  浮盈: +500元(+2.78%)
+MA5: 1820.00  乖离率: +1.65%
+支撑: 1750.0  止损: 1700.0  目标: 2000-2100
+→ 操作建议: 持有
+```
+
+## 注意事项
+
+- 需要网络连接获取实时行情
+- 数据源：新浪财经API
+- 止损和支撑位需要根据个人风险承受能力设置
+- 建议配合飞书/微信机器人实现推送通知

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>beautsgo-booking 市场上架报告</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif; max-width: 1100px; margin: 24px auto; padding: 0 16px; color: #222; line-height: 1.5; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 28px 0 8px; border-left: 4px solid #4a90e2; padding-left: 8px; }
+  h3 { font-size: 15px; margin: 16px 0 6px; color: #555; }
+  .meta { color: #888; font-size: 13px; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 12px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: #f5f5f5; font-weight: 600; }
+  tr:nth-child(even) { background: #fafafa; }
+  .ok { color: #2ca02c; font-weight: 600; }
+  .pending { color: #ff9800; font-weight: 600; }
+  .passive { color: #1976d2; font-weight: 600; }
+  .blocked { color: #999; }
+  .summary { background: #f0f7ff; border: 1px solid #cfe2ff; border-radius: 6px; padding: 12px 16px; margin: 16px 0; }
+  .summary table { margin: 0; }
+  .summary th, .summary td { border-color: #cfe2ff; }
+  .summary th { background: #e7f1ff; }
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; margin-left: 4px; }
+  .b-ok { background: #e0f3e0; color: #2ca02c; }
+  .b-pending { background: #fff4e0; color: #ff9800; }
+  .b-passive { background: #e3f1ff; color: #1976d2; }
+  .b-blocked { background: #eee; color: #888; }
+  code { background: #f5f5f5; padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+  a { color: #4a90e2; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .reason-col { color: #777; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<h1>beautsgo-booking 市场上架报告</h1>
+<div class="meta">统计时间:2026-05-21 · 当前版本 v1.0.7</div>
+
+<!-- 汇总 -->
+<div class="summary">
+<h3 style="margin-top:0;color:#222">总览</h3>
+<table>
+  <tr><th>类别</th><th>数量</th><th>占比</th></tr>
+  <tr><td><span class="ok">已上线 / 可见</span></td><td><b>6</b></td><td>26%</td></tr>
+  <tr><td><span class="pending">审核中</span></td><td><b>5</b></td><td>22%</td></tr>
+  <tr><td><span class="passive">被动 / 间接渠道</span></td><td><b>4</b></td><td>17%</td></tr>
+  <tr><td><span>粘 URL 一键装</span></td><td><b>2</b></td><td>9%</td></tr>
+  <tr><td><span class="blocked">确认不可上架</span></td><td><b>15</b></td><td>—</td></tr>
+  <tr style="background:#f0f7ff"><td><b>已覆盖有效渠道(不含 blocked)</b></td><td><b>17</b></td><td>—</td></tr>
+</table>
+<div style="margin-top:8px;color:#555;font-size:13px">本周(5/18 → 5/21)有效渠道:<b>4 → 17</b>,净增 <b>+13</b>。</div>
+</div>
+
+<!-- 已上线 -->
+<h2>一、已上线 / 可见 <span class="badge b-ok">6</span></h2>
+<table>
+  <tr><th>平台</th><th>链接</th><th>状态</th><th>备注</th></tr>
+  <tr><td>ClawHub</td><td><a href="https://clawhub.ai/beautsgo/beautsgo-booking" target="_blank">clawhub.ai/beautsgo/beautsgo-booking</a></td><td class="ok">v1.0.7,Downloads 343</td><td>国内主流 OpenClaw 市场</td></tr>
+  <tr><td>ClawdHub(后台已生效)</td><td><a href="https://clawd.org.cn" target="_blank">clawd.org.cn</a></td><td class="ok">CLI publish 已成功</td><td>登录后台可见;前端 marketplace 待管理员审核通过</td></tr>
+  <tr><td>ModelScope</td><td><a href="https://www.modelscope.cn/skills/spidericer/beautsgo-booking" target="_blank">modelscope.cn/skills/spidericer/beautsgo-booking</a></td><td class="ok">立即在线</td><td>阿里魔搭 Skills 中心,无审核期</td></tr>
+  <tr><td>Smithery</td><td><a href="https://smithery.ai/skills/beautsgo7/beautsgo-booking" target="_blank">smithery.ai/skills/beautsgo7/beautsgo-booking</a></td><td class="ok">在线,6 stars</td><td>国际市场</td></tr>
+  <tr><td>SkillHub.cn(腾讯系)</td><td><a href="https://skillhub.cn" target="_blank">skillhub.cn</a></td><td class="ok">V1.0.0 在线,48 下载</td><td>V1.0.1 更新审核中(会自动覆盖)</td></tr>
+  <tr><td>SkillsMP / GitHub 镜像</td><td><a href="https://skillsmp.com/search?q=beautsgo" target="_blank">skillsmp.com 搜 beautsgo</a></td><td class="ok">被动收录,排首</td><td>BeautsGO/beautsgo-booking ★6 + 4 个第三方 fork</td></tr>
+</table>
+
+<!-- 审核中 -->
+<h2>二、审核中 / 等结果 <span class="badge b-pending">5</span></h2>
+<table>
+  <tr><th>平台</th><th>提交时间</th><th>预期</th><th>备注</th></tr>
+  <tr><td>Anthropic Marketplace</td><td>5/15</td><td class="pending">1–2 周窗口</td><td>等 <code>noreply@anthropic.com</code> 邮件</td></tr>
+  <tr><td>Cursor Marketplace</td><td>5/15</td><td class="pending">等邮件</td><td>一周无回复发邮件 <code>kniparko@anysphere.com</code> 催</td></tr>
+  <tr><td>LobeHub Skills</td><td>5/19</td><td class="pending">等批量爬虫</td><td>用户手动 Submit 过的 CAPTCHA</td></tr>
+  <tr><td>ClawdHub 前端可见</td><td>5/19</td><td class="pending">24h–几天</td><td>管理员人工通过后在 clawd.org.cn/market/ 显示</td></tr>
+  <tr><td>SkillHub.cn V1.0.1</td><td>5/19</td><td class="pending">24h–几天</td><td>会覆盖 V1.0.0 旧描述</td></tr>
+</table>
+
+<!-- 被动 -->
+<h2>三、被动 / 间接渠道 <span class="badge b-passive">4</span></h2>
+<table>
+  <tr><th>平台</th><th>状态</th><th>备注</th></tr>
+  <tr><td>claudemarketplaces.com</td><td class="passive">feedback 已发,等回复</td><td>被动 0 收录(6 stars 未达爬虫阈值)</td></tr>
+  <tr><td>Skills.sh(Vercel)</td><td class="passive">telemetry 已上报</td><td>24–48h leaderboard 出现</td></tr>
+  <tr><td>ClaudePluginHub</td><td class="passive">已加 manifest 等爬虫</td><td>项目根 <code>.claude-plugin/marketplace.json</code> 已 push</td></tr>
+  <tr><td>4 个 ClawHub 镜像站</td><td class="passive">部分已同步</td><td>SkillHub.cn / WorkBuddy / QClaw / ChatClaw,后两个需装客户端验证</td></tr>
+</table>
+
+<!-- 粘 URL 一键装 -->
+<h2>四、粘 GitHub URL 一键装(README 已写入)<span class="badge b-passive">2</span></h2>
+<table>
+  <tr><th>平台</th><th>用户操作</th></tr>
+  <tr><td>Kimi(月之暗面)</td><td>Agent 集群 → +添加 Claw → 粘 <code>https://github.com/BeautsGO/beautsgo-booking</code></td></tr>
+  <tr><td>有道 LobsterAI(网易)</td><td>客户端 设置 → Skills → 远程导入 → 粘同一 URL</td></tr>
+</table>
+
+<!-- 不可上架 -->
+<h2>五、确认不可上架 <span class="badge b-blocked">15</span></h2>
+
+<h3>5.1 封闭生态,无法跨平台分发(5 个)</h3>
+<p style="color:#666;font-size:13px;margin:6px 0 8px">这几家是国内大厂自建的 AI 智能体平台,**不支持业界开源的 SKILL.md 标准**,且业务上不允许我们上架——主要因为如下三点平台约束:</p>
+<table>
+  <tr><th>平台</th><th class="reason-col">具体约束</th></tr>
+  <tr><td>Coze 扣子(字节)</td><td class="reason-col">智能体必须跑在字节服务器,**不允许调用外部商业 API**(我们核心数据 1300+ 医院依赖 BeautsGO 自家 API,无法保留)。即便强行重做,也只能在 Coze 站内被用户找到,**跨平台分发能力为零**</td></tr>
+  <tr><td>Dify</td><td class="reason-col">面向企业自部署的 LLM 应用平台,用户得先自建 Dify 实例才能装我们 skill,**没有公开消费者市场**;且 Dify Workflow 协议封闭,**与 ClawHub / ModelScope / Smithery 等公网 skill 市场互不通用</td></tr>
+  <tr><td>腾讯元宝 / 元器</td><td class="reason-col">元器智能体**只能在元宝 App 内**被用户搜到,**不能"装"到 Claude Code、Cursor、Codex 等第三方客户端**;且元器审核**禁止调用外部商业 API**——这两条同时违背 BeautsGO 项目"一处发布、多端可用"的核心定位</td></tr>
+  <tr><td>智谱 BigModel(GLM)</td><td class="reason-col">GLM agent 市场为**闭源协议**,智能体只能在智谱自家客户端运行,**无法跨平台**;且 marketplace 页面实测白屏,看不出公开提交流程</td></tr>
+  <tr><td>字节 AutoGLM</td><td class="reason-col">本身不是 skill marketplace,而是字节自家的视频总结 / AI PPT 类 chat 工具,**没有第三方 skill 上架概念**</td></tr>
+</table>
+<p style="color:#888;font-size:12px;margin:4px 0 12px">补充:上述 5 家虽然单家用户量大,但因为<b>封闭生态 + 不能用我们自家 API</b>,即便投入工程师 30-60 分钟逐家"重建一个空壳智能体",上架后只能在该平台站内搜到,**得不到跨平台分发收益**。建议等这些平台兼容 SKILL.md 标准(行业正在推动)再考虑。</p>
+
+<h3>5.2 第三方仓库不收纳外部 skill(2 个)</h3>
+<table>
+  <tr><th>平台</th><th class="reason-col">原因</th></tr>
+  <tr><td>daymade/claude-code-skills(1.1k ⭐)</td><td class="reason-col">作者**个人作品集**(skills 全是 daymade-* 前缀),只放自己的 skill,从未接受第三方 PR</td></tr>
+  <tr><td>netresearch/claude-code-marketplace</td><td class="reason-col">Netresearch 公司**自建的内部 skill 仓**,只放 agent-harness / automated-assessment 等自家 4 个 skill,不接受外部上架</td></tr>
+</table>
+
+<h3>5.3 商业化付费销售平台(3 个,与开源 MIT-0 不符)</h3>
+<p style="color:#666;font-size:13px;margin:6px 0 8px">这三家是面向卖家的"skill 电商",卖一份收一份钱(类似 Gumroad / Shopify)。我们 skill 是 **MIT-0 完全开源免费**,上架到付费平台:(1) 价格策略冲突 (2) 用户体验割裂 (3) 客户最终还是要回 BeautsGO 平台预约,中间多一层付费墙降低转化。**业务上明确不投**。</p>
+<table>
+  <tr><th>平台</th><th class="reason-col">商业模式</th></tr>
+  <tr><td>Agensi</td><td class="reason-col">$15–$29 bundle 商业销售;且实测各分类 0 skills,平台冷启动期</td></tr>
+  <tr><td>KissMySkills</td><td class="reason-col">Shopify 风格付费销售(JPY 币种,50+ 商品化 skill)</td></tr>
+  <tr><td>MCPMarket</td><td class="reason-col">顶部"出售技能"商业化,目录里 SaaS skill 多数收费</td></tr>
+</table>
+
+<h3>5.4 平台硬性门槛过不去(2 个)</h3>
+<p style="color:#666;font-size:13px;margin:6px 0 8px">两家国际 awesome-list 都要求项目有<b>大量 GitHub stars 沉淀</b>才接受收录。我们当前 6 stars,**短期无法靠工程动作越过门槛**——需要先在已上线渠道做用户增长。</p>
+<table>
+  <tr><th>平台</th><th class="reason-col">门槛 / 备注</th></tr>
+  <tr><td>travisvn/awesome-claude-skills(12.7k ⭐)</td><td class="reason-col">明文要求 ≥10 GitHub stars,且拒绝 SaaS wrapper 类、拒绝 AI 代提 PR。三条都触线,提了会被自动关闭</td></tr>
+  <tr><td>SkillsLLM(skillsllm.com)</td><td class="reason-col">明文要求 ≥100 GitHub stars 才能提交</td></tr>
+</table>
+
+<h3>5.5 平台已下线 / 入口失效(3 个)</h3>
+<p style="color:#666;font-size:13px;margin:6px 0 8px">这几家是平台自身的工程问题导致无法提交,跟我们的 skill 质量无关。</p>
+<table>
+  <tr><th>平台</th><th class="reason-col">实测情况</th></tr>
+  <tr><td>claudeskills.info</td><td class="reason-col">submit 接口连续 2 次返回 "Submission Failed",后端不可用;且站点充斥全屏 Google Ads,流量质量低</td></tr>
+  <tr><td>BigBanana-Agent</td><td class="reason-col">实为桌面客户端,从未对外开放第三方 skill 上架入口</td></tr>
+  <tr><td>Manus.im / LinSkills / 字节 Find Skill / CocoLoop / 陌讯</td><td class="reason-col">入口 404 或仅展示无 submit;字节 Find Skill 整站白屏(疑似下线)</td></tr>
+</table>
+
+<!-- 用户可见入口清单 -->
+<h2>六、对外可宣传的"哪里能装"清单</h2>
+<div style="background:#f9f9f9;border:1px solid #eee;border-radius:6px;padding:12px 16px;font-size:13px">
+  <ul style="margin:0 0 0 16px;padding:0">
+    <li><b>ClawHub</b>(国内 OpenClaw 主市场)</li>
+    <li><b>ModelScope</b>(阿里魔搭社区)</li>
+    <li><b>Smithery</b>(国际 npm 风格)</li>
+    <li><b>SkillHub.cn</b>(腾讯系镜像)</li>
+    <li><b>SkillsMP</b>(国际镜像目录)</li>
+    <li><b>GitHub 源仓库</b>(BeautsGO/beautsgo-booking)</li>
+    <li><b>Kimi Claw</b>(粘 GitHub URL)</li>
+    <li><b>有道 LobsterAI</b>(粘 GitHub URL)</li>
+  </ul>
+  <div style="margin-top:8px;color:#666">8 个用户可见入口,够公众号 / 客服话术 / 落地页用了。</div>
+</div>
+
+<div style="text-align:center;color:#aaa;font-size:11px;margin:24px 0 12px">报告版本 2026-05-21</div>
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+# B站视频转录专家配置文件
+
+# Cookie配置
+cookie:
+  # Cookie文件路径
+  file: "~/.bilibili_cookie.txt"
+  
+  # 是否自动刷新Cookie
+  auto_refresh: false
+  
+  # Cookie刷新间隔（秒）
+  refresh_interval: 86400  # 24小时
+  
+  # Cookie检查间隔（秒）
+  check_interval: 3600  # 1小时
+
+# 模型配置
+model:
+  # 模型名称：base/small/medium
+  name: "base"
+  
+  # 运行设备：cpu/cuda
+  device: "cpu"
+  
+  # 计算类型：int8/float16/float32
+  compute_type: "int8"
+  
+  # 语言代码
+  language: "zh"
+  
+  # 是否使用国内镜像
+  use_china_mirror: true
+  
+  # 国内镜像地址
+  china_mirror: "https://hf-mirror.com"
+  
+  # 模型下载目录
+  download_dir: "~/.cache/whisper_models"
+
+# 网络配置
+network:
+  # 请求超时时间（秒）
+  timeout: 30
+  
+  # 重试次数
+  retry_times: 3
+  
+  # 重试间隔（秒）
+  retry_interval: 5
+  
+  # 代理设置
+  proxy: null  # 例如: "http://127.0.0.1:7890"
+  
+  # 用户代理
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+# 输出配置
+output:
+  # 默认输出目录
+  default_dir: "./bilibili_transcripts"
+  
+  # 是否保留音频文件
+  save_audio: true
+  
+  # 是否保留原始字幕
+  save_subtitles: true
+  
+  # 输出格式：txt/json/markdown
+  format: "txt"
+  
+  # 是否添加时间戳
+  add_timestamps: true
+  
+  # 是否生成摘要
+  generate_summary: true
+  
+  # 是否生成关键词
+  generate_keywords: true
+
+# 验证配置
+validation:
+  # 关键词匹配阈值（0-1）
+  keyword_match_threshold: 0.3
+  
+  # 最小转录长度（字符）
+  min_transcript_length: 50
+  
+  # 是否检查时长匹配
+  check_duration_match: true
+  
+  # 时长容差（秒）
+  duration_tolerance: 10
+  
+  # 是否验证内容相关性
+  check_content_relevance: true
+
+# 性能配置
+performance:
+  # 并行处理数量
+  parallel_workers: 1
+  
+  # 批处理大小
+  batch_size: 10
+  
+  # 是否启用缓存
+  enable_cache: true
+  
+  # 缓存目录
+  cache_dir: "~/.cache/bilibili_transcriber"
+  
+  # 缓存有效期（秒）
+  cache_ttl: 3600  # 1小时
+  
+  # 内存限制（MB）
+  memory_limit: 2048  # 2GB
+
+# 日志配置
+logging:
+  # 日志级别：DEBUG/INFO/WARNING/ERROR
+  level: "INFO"
+  
+  # 日志文件路径
+  file: "bilibili_transcriber.log"
+  
+  # 是否输出到控制台
+  console: true
+  
+  # 日志格式
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 是否记录详细请求信息
+  log_requests: false
+
+# 批量处理配置
+batch:
+  # 输入文件编码
+  input_encoding: "utf-8"
+  
+  # 输出文件编码
+  output_encoding: "utf-8"
+  
+  # 是否跳过已处理文件
+  skip_processed: true
+  
+  # 处理间隔（秒，避免请求过快）
+  process_interval: 1
+  
+  # 失败重试次数
+  max_retries: 3
+
+# 高级配置
+advanced:
+  # 音频质量选择（0-5，0为最高质量）
+  audio_quality: 0
+  
+  # 是否启用字幕预处理
+  enable_subtitle_preprocess: true
+  
+  # 是否启用音频预处理
+  enable_audio_preprocess: true
+  
+  # 音频采样率（Hz）
+  audio_sample_rate: 16000
+  
+  # 音频声道数
+  audio_channels: 1
+  
+  # 是否启用VAD（语音活动检测）
+  enable_vad: false
+  
+  # VAD阈值
+  vad_threshold: 0.5
+
+# 通知配置
+notification:
+  # 是否启用通知
+  enabled: false
+  
+  # 通知方式：console/email/webhook
+  method: "console"
+  
+  # 成功时通知
+  on_success: true
+  
+  # 失败时通知
+  on_failure: true
+  
+  # 完成时通知
+  on_completion: true
+
+# 邮件通知配置（method为email时生效）
+email:
+  smtp_server: "smtp.example.com"
+  smtp_port: 587
+  username: "user@example.com"
+  password: "password"
+  from_address: "user@example.com"
+  to_addresses: ["recipient@example.com"]
+
+# Webhook通知配置（method为webhook时生效）
+webhook:
+  url: "https://example.com/webhook"
+  method: "POST"
+  headers:
+    Content-Type: "application/json"
+  timeout: 10
+
+# 插件配置
+plugins:
+  # 启用插件列表
+  enabled: []
+  
+  # 插件目录
+  directory: "./plugins"
+
+# 自定义关键词（用于内容验证）
+custom_keywords:
+  # 技术类关键词
+  technology: ["AI", "人工智能", "机器学习", "深度学习", "编程", "代码", "算法"]
+  
+  # 教程类关键词
+  tutorial: ["教程", "教学", "入门", "基础", "实战", "案例", "示例"]
+  
+  # 评测类关键词
+  review: ["评测", "测试", "对比", "体验", "使用", "感受", "评价"]
+
+# 黑名单配置
+blacklist:
+  # 黑名单BV号
+  bvids: []
+  
+  # 黑名单UP主
+  up_mids: []
+  
+  # 黑名单关键词
+  keywords: []
+
+# 白名单配置（优先级高于黑名单）
+whitelist:
+  # 白名单BV号
+  bvids: []
+  
+  # 白名单UP主
+  up_mids: []
+  
+  # 白名单关键词
+  keywords: []

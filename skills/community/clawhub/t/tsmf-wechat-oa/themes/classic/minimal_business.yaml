@@ -1,0 +1,76 @@
+name: 极简商务
+description: 干净专业，适合商业、职场、管理类文章
+keywords:
+  - 商业
+  - 职场
+  - 管理
+  - 战略
+  - 分析
+  - 数据
+  - 行业
+  - 市场
+  - 企业
+  - 创业
+  - 投资
+  - 金融
+colors:
+  primary: "#1a1a2e"
+  accent: "#0984e3"
+  text: "#333333"
+  text_light: "#555555"
+  background: "#ffffff"
+  code_bg: "#f8f8f8"
+  blockquote_bg: "#f5f5f5"
+  border: "#e8e8e8"
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.75"
+    letter_spacing: "0.5px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "20px"
+    font_weight: "bold"
+    margin: "24px 0 16px 0"
+    padding: "0 16px 8px 16px"
+    border_bottom: "2px solid #1a1a2e"
+    letter_spacing: "0.5px"
+  h2:
+    font_size: "17px"
+    font_weight: "bold"
+    margin: "20px 0 12px 0"
+    padding: "0 16px 0 10px 16px"
+    border_left: "3px solid #0984e3"
+  h3:
+    font_size: "16px"
+    font_weight: "bold"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "15px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_left: "3px solid #0984e3"
+    line_height: "1.7"
+  code_inline:
+    font_size: "14px"
+    padding: "1px 4px"
+    border_radius: "3px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "6px"
+    border: "1px solid #e8e8e8"
+    line_height: "1.6"
+  list:
+    font_size: "16px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.75"
+  separator:
+    border_top: "1px solid #e0e0e0"
+    margin: "24px 15%"
+  image:
+    border_radius: "6px"

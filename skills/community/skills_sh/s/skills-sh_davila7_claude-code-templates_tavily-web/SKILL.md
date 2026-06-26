@@ -1,35 +1,36 @@
 ---
-name: "tavily-web"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/tavily-web"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/tavily-web"
+name: tavily-web
+description: Web search, content extraction, crawling, and research capabilities using Tavily API
 ---
 
 # tavily-web
 
-> Indexed by skills.sh from davila7/claude-code-templates
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/tavily-web`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/tavily-web](https://skills.sh/davila7/claude-code-templates/tavily-web)
-
 ## Overview
+Web search, content extraction, crawling, and research capabilities using Tavily API
 
+## When to Use
+- When you need to search the web for current information
+- When extracting content from URLs
+- When crawling websites
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/davila7/claude-code-templates/tavily-web
+npx skills add -g BenedictKing/tavily-web
 ```
+
+## Step-by-Step Guide
+1. Install the skill using the command above
+2. Configure Tavily API key
+3. Use naturally in Claude Code conversations
+
+## Examples
+See [GitHub Repository](https://github.com/BenedictKing/tavily-web) for examples.
+
+## Best Practices
+- Configure API keys via environment variables
+
+## Troubleshooting
+See the GitHub repository for troubleshooting guides.
+
+## Related Skills
+- context7-auto-research, exa-search, firecrawl-scraper, codex-review

@@ -1,0 +1,7 @@
+display_name: UniProfit Trade Search
+short_description: Search UniProfit trade datasets with a trade_search API key.
+default_prompt: Search UniProfit trade data, summarize the best leads first, and avoid dumping raw payloads unless requested.
+required_environment_variables:
+  - UNIPROFIT_API_BASE_URL
+  - UNIPROFIT_TRADE_SEARCH_KEY
+primary_credential: UNIPROFIT_TRADE_SEARCH_KEY

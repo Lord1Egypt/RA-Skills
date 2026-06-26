@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "base_date_mode": "today",
+    "calendar_year": 2026,
+    "source": {
+      "title": "国务院办公厅关于2026年部分节假日安排的通知",
+      "document_number": "国办发明电〔2025〕7号",
+      "published_date": "2025-11-04",
+      "url": "https://www.gov.cn/gongbao/2025/issue_12406/202511/content_7048922.html"
+    },
+    "generated_at": "2026-03-11T09:56:16"
+  },
+  "holiday_schedule": [
+    {
+      "name": "元旦",
+      "start_date": "2026-01-01",
+      "end_date": "2026-01-03",
+      "days_off": 3,
+      "makeup_workdays": [
+        "2026-01-04"
+      ]
+    },
+    {
+      "name": "春节",
+      "start_date": "2026-02-15",
+      "end_date": "2026-02-23",
+      "days_off": 9,
+      "makeup_workdays": [
+        "2026-02-14",
+        "2026-02-28"
+      ]
+    },
+    {
+      "name": "清明节",
+      "start_date": "2026-04-04",
+      "end_date": "2026-04-06",
+      "days_off": 3,
+      "makeup_workdays": []
+    },
+    {
+      "name": "劳动节",
+      "start_date": "2026-05-01",
+      "end_date": "2026-05-05",
+      "days_off": 5,
+      "makeup_workdays": [
+        "2026-05-09"
+      ]
+    },
+    {
+      "name": "端午节",
+      "start_date": "2026-06-19",
+      "end_date": "2026-06-21",
+      "days_off": 3,
+      "makeup_workdays": []
+    },
+    {
+      "name": "中秋节",
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "days_off": 3,
+      "makeup_workdays": []
+    },
+    {
+      "name": "国庆节",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-07",
+      "days_off": 7,
+      "makeup_workdays": [
+        "2026-09-20",
+        "2026-10-10"
+      ]
+    }
+  ],
+  "countdown": {
+    "title": "假期倒计时",
+    "auto_update": true,
+    "base_date": "today",
+    "limit": 4
+  },
+  "preview": {
+    "base_date": "2026-03-11",
+    "items": [
+      {
+        "label": "距离周末",
+        "value": "3天",
+        "holiday": "周末",
+        "start_date": "2026-03-14",
+        "end_date": "2026-03-15",
+        "days_left": 3,
+        "status": "upcoming"
+      },
+      {
+        "label": "距离清明节",
+        "value": "24天",
+        "holiday": "清明节",
+        "start_date": "2026-04-04",
+        "end_date": "2026-04-06",
+        "days_left": 24,
+        "status": "upcoming"
+      },
+      {
+        "label": "距离劳动节",
+        "value": "51天",
+        "holiday": "劳动节",
+        "start_date": "2026-05-01",
+        "end_date": "2026-05-05",
+        "days_left": 51,
+        "status": "upcoming"
+      },
+      {
+        "label": "距离端午节",
+        "value": "100天",
+        "holiday": "端午节",
+        "start_date": "2026-06-19",
+        "end_date": "2026-06-21",
+        "days_left": 100,
+        "status": "upcoming"
+      }
+    ]
+  }
+}

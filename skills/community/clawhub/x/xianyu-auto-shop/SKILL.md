@@ -1,35 +1,35 @@
 ---
-name: "Xianyu Auto Shop"
-description: "自动擦亮宝贝、定时优化标题、私信自动回复、真人随机延迟、防风控防限流"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xianyu-auto-shop"
-sourceUrl: "https://clawhub.ai/skills/xianyu-auto-shop"
+name: xianyu-auto-shop
+displayName: 闲鱼全自动店铺托管
+description: 自动擦亮宝贝、定时优化标题、私信自动回复、真人随机延迟、防风控防限流
+version: 1.0.0
+author: Claw运营助手
+tags: [闲鱼,自动化,店铺托管,自动擦亮,自动回复]
+user-invocable: true
+metadata:
+  openclaw:
+    permissions: [accessibility, notification, auto-task]
 ---
 
-# Xianyu Auto Shop
+# 闲鱼全自动店铺托管
+## 功能介绍
+1. 每日早晚高峰自动批量擦亮宝贝
+2. 模拟真人操作 1.2–3.5秒随机延迟
+3. 自带防风控规则，不连点、不高频操作
+4. 私信智能自动回复接单话术
+5. 每周自动优化商品标题提升搜索曝光
 
-> 自动擦亮宝贝、定时优化标题、私信自动回复、真人随机延迟、防风控防限流
+## 使用命令
+批量擦亮
+xianyu-auto-shop polish --max 40 --delay 2
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xianyu-auto-shop`
-- **Source URL:** [https://clawhub.ai/skills/xianyu-auto-shop](https://clawhub.ai/skills/xianyu-auto-shop)
+自动回复挂机
+xianyu-auto-shop reply start
 
-## Overview
+标题优化
+xianyu-auto-shop seo
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xianyu-auto-shop
-```
+## 推荐定时
+每天 08:30、20:00 自动擦亮
+每周一 09:00 自动优化标题
+常驻监听私信自动回复

@@ -1,0 +1,24 @@
+{
+  "name": "Curiosity Cultivator",
+  "slug": "curiosity-cultivator",
+  "version": "1.0.0",
+  "description": "Develops and sustains curiosity as a skill through structured questioning frameworks and exploratory habits.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "curiosity",
+    "learning",
+    "self-development",
+    "growth"
+  ],
+  "trigger_keywords": [
+    "how to stay curious",
+    "curiosity practice",
+    "cultivate curiosity daily",
+    "curious mindset",
+    "curiosity exercises"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

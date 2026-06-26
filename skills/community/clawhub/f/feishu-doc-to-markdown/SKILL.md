@@ -1,35 +1,76 @@
 ---
-name: "飞书文档智能转换Markdown"
+name: feishu-doc-to-markdown
 description: "智能转换飞书文档为高可用Markdown格式，自动处理私有资源、无效占位符、冗余引用，生成多版本满足不同场景需求"
-category: "other"
-source: "ClawHub"
-tags: [document-processing, feishu, knowledge-base, markdown]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-doc-to-markdown"
-sourceUrl: "https://clawhub.ai/skills/feishu-doc-to-markdown"
+metadata:
+  openclaw:
+    emoji: 📄
+    requires:
+      config: ["feishu.enabled"]
 ---
+# Skill: 飞书文档智能转换Markdown
+## 技能描述
+自动将飞书文档转换为高可用、高信息密度的Markdown文档，智能处理飞书私有资源、无效占位符、冗余引用，生成不同纯净度的版本满足不同场景需求。
 
-# 飞书文档智能转换Markdown
+## 适用场景
+- 飞书文档归档存储
+- 飞书内容导入知识库
+- 提取飞书文档核心信息
+- 批量转换飞书文档为通用格式
+- 飞书内容知识蒸馏
 
-> 智能转换飞书文档为高可用Markdown格式，自动处理私有资源、无效占位符、冗余引用，生成多版本满足不同场景需求
+## 核心能力
+✅ **多版本输出**：支持3种不同处理等级的版本，满足不同需求
+✅ **智能内容提取**：自动识别图片、图表、白板、表格等非文本内容的核心信息，转换为结构化文本
+✅ **冗余自动清理**：自动移除无效占位符、无法访问的内部引用、重复内容、无意义标签
+✅ **自动分类归档**：转换后的文档自动按「日期/项目」分类保存到原始资源库
+✅ **知识自动关联**：自动提取核心要点，关联到对应项目/领域标签，纳入知识库
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-doc-to-markdown`
-- **Source URL:** [https://clawhub.ai/skills/feishu-doc-to-markdown](https://clawhub.ai/skills/feishu-doc-to-markdown)
+## 处理流程
+1. **内容获取**：通过飞书API获取完整的文档原始内容和元信息
+2. **元信息识别**：自动识别文档所属项目、领域、类型，生成分类标签
+3. **多版本处理**：按照3种等级分别处理生成对应版本
+4. **自动归档**：所有版本自动保存到`raw_sources/YYYY-MM-DD/[项目名称]/`目录下
+5. **知识入库**：在`LEARNINGS.md`中记录文档摘要、核心要点、关联文件路径，纳入知识体系
 
-## Overview
+## 版本处理规则
+### 版本1：原始备份版
+- **处理规则**：不做任何修改，完整保留所有原始内容和格式
+- **保留内容**：所有文本、飞书私有标签（<image>、<whiteboard>、<mention-doc>等）、格式标记
+- **用途**：作为原始凭证永久留存，确保可追溯，不对外提供
 
+### 版本2：纯文本增强版
+- **处理规则**：
+  1. 移除所有无效资源占位标签（图片、白板、文件、视频等嵌入标签）
+  2. 提取非文本内容的上下文信息、标题、说明文字、数据，转换为结构化文本（要点列表、markdown表格、文字描述等）补充到对应位置
+  3. 保留可访问的外部链接，移除无法访问的内部引用链接
+- **保留内容**：所有有效文本信息、可访问链接、提取的非文本核心信息
+- **用途**：完整保留所有有效信息，适合需要完整上下文的场景、需要二次编辑的场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-doc-to-markdown
+### 版本3：最终优化版（默认输出）
+- **处理规则**：在纯文本增强版基础上进一步精炼
+  1. 移除所有无法访问的内部引用、无效链接、冗余说明文字
+  2. 精简重复内容，优化文档结构，合并相似要点
+  3. 移除无意义的符号、占位符、格式标记
+- **保留内容**：仅保留最核心的有效信息，信息密度最高
+- **用途**：适合直接阅读、快速掌握核心要点、知识提炼入库
+
+## 调用方式
 ```
+# 基础调用，默认生成最终优化版
+feishu_doc_convert <飞书文档链接>
+
+# 指定输出版本
+feishu_doc_convert <飞书文档链接> --version raw|enhanced|optimized
+
+# 指定保存目录
+feishu_doc_convert <飞书文档链接> --output <目录路径>
+
+# 自动入库到知识库
+feishu_doc_convert <飞书文档链接> --sync-to-knowledgebase
+```
+
+## 最佳实践
+- 默认对外提供「最终优化版」，同时静默保存另外两个版本归档
+- 特殊需求可根据用户要求调整处理规则（如保留图片、保留所有引用等）
+- 所有转换后的文档必须关联到对应的`Project`和`Domain`标签，方便后续检索
+- 核心价值高的文档自动提炼关键经验到知识库的结构化知识层

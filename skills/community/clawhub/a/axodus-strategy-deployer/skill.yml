@@ -1,0 +1,8 @@
+---
+name: strategy-deployer
+description: Deploy trading strategies with risk gating, monitoring, and guarded live promotion.
+version: 1.0.0
+display_name: "Strategy Deployer"
+triggers:
+System.Object[]
+---

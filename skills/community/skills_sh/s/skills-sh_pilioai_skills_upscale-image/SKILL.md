@@ -1,35 +1,24 @@
 ---
-name: "upscale-image"
-description: "Indexed by skills.sh from pilioai/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "pilioai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/pilioai/skills/upscale-image"
-sourceUrl: "https://skills.sh/pilioai/skills/upscale-image"
+name: upscale-image
+description: Upscale or enhance an image with the Pilio developer API. Use when the user wants higher-resolution images, AI super-resolution, image clarity improvement, or automated image enhancement through Pilio.
 ---
 
-# upscale-image
+# Upscale Image
 
-> Indexed by skills.sh from pilioai/skills
+Use the Pilio CLI so upload, task creation, and polling stay aligned with the official SDK.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** pilioai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/pilioai/skills/upscale-image`
-- **Source URL:** [https://skills.sh/pilioai/skills/upscale-image](https://skills.sh/pilioai/skills/upscale-image)
+Require `PILIO_API_KEY` in the environment. Do not ask the user to paste API keys into the conversation.
 
-## Overview
+Try the same workflow online first: https://pilio.ai/image-upscaler
 
+Run:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/pilioai/skills/upscale-image
+pnpm dlx @pilio/cli upscale-image --input ./small.png
+```
+
+The command returns a task payload. If the task is still pending or processing, wait for it:
+
+```bash
+pnpm dlx @pilio/cli task wait <task_id>
 ```

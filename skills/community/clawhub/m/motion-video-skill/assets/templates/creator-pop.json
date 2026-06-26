@@ -1,0 +1,14 @@
+{
+  "id": "creator-pop",
+  "label": "Creator Pop",
+  "description": "短视频封面感更强，适合社媒讲解、亮点卡片、强节奏字幕。",
+  "theme": "creator-flare",
+  "stageClass": "template-creator-pop",
+  "panelBg": "rgba(25, 14, 46, 0.76)",
+  "panelOutline": "rgba(255, 255, 255, 0.16)",
+  "stageBorder": "rgba(255, 255, 255, 0.08)",
+  "stageRadius": 34,
+  "cardRadius": 30,
+  "chipRadius": 14,
+  "quoteFontStyle": "normal"
+}

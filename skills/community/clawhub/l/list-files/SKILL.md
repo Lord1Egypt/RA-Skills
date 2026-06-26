@@ -1,35 +1,37 @@
 ---
-name: "List Files"
+name: list-files
 description: "List all files uploaded by this API key. Returns URL and creation timestamp, ordered newest first."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/list-files"
-sourceUrl: "https://clawhub.ai/skills/list-files"
 ---
 
 # List Files
 
-> List all files uploaded by this API key. Returns URL and creation timestamp, ordered newest first.
+## What It Does
+Lists all files uploaded by the authenticated API key. Returns URL and creation timestamp for each file, ordered newest first.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/list-files`
-- **Source URL:** [https://clawhub.ai/skills/list-files](https://clawhub.ai/skills/list-files)
+## When to Use
+- View all files you've uploaded
+- Find a specific file URL for further processing
+- Check upload history
 
-## Overview
+## Required Inputs
+None (uses API key to identify owner).
 
+## Optional Inputs
+- `limit` — max number of files (1–500, default 100)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Authentication
+Send your API key in the `CLIENT-API-KEY` header.
+
+Get your **free API key** at [https://pdfapihub.com](https://pdfapihub.com). Full API documentation is available at [https://pdfapihub.com/docs](https://pdfapihub.com/docs).
+
+## Use Cases
+- **File Management Dashboard** — Display all uploaded files in a management UI
+- **Audit Trail** — Review recently uploaded files for auditing purposes
+- **Pipeline Monitoring** — Check which files have been processed in an automated workflow
+- **Cleanup Planning** — Review uploaded files before batch deletion
+
+## Example Usage
 ```bash
-hermes skills install clawhub/list-files
+curl -X GET "https://pdfapihub.com/api/v1/file/list?limit=10" \
+  -H "CLIENT-API-KEY: your_api_key"
 ```

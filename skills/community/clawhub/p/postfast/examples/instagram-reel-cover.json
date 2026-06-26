@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "content": "The secret to consistent posting? Batch everything in one session.\n\nHere's my exact workflow 👇\n\n#contentcreation #reels #socialmediatips",
+      "mediaItems": [
+        {
+          "key": "video/YOUR_UPLOAD_KEY.mp4",
+          "type": "VIDEO",
+          "sortOrder": 0,
+          "coverImageKey": "image/YOUR_COVER_KEY.jpg",
+          "coverTimestamp": "5000"
+        }
+      ],
+      "scheduledAt": "2026-06-15T15:00:00.000Z",
+      "socialMediaId": "YOUR_INSTAGRAM_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "instagramPublishType": "REEL",
+    "instagramPostToGrid": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "flightLists": [
+    {
+      "flightNo": "MU5100",
+      "airCompanyCode": "MU",
+      "airCompanyName": "东方航空",
+      "arrivalOnlyTime": "09:15",
+      "arrivalTime": "2026-03-20 09:15",
+      "arriveAirportCode": "PVG",
+      "arriveAirportShortName": "上海浦东国际机场",
+      "equipmentName": "空客320(中)",
+      "flyOffOnlyTime": "07:00",
+      "flyOffTime": "2026-03-20 07:00",
+      "originAirportCode": "PEK",
+      "originAirportShortName": "北京首都国际机场",
+      "productPrices": {
+        "0": 700
+      },
+      "spantime": "2小时15分钟",
+      "stopNum": 0,
+      "flightPrice": 700
+    },
+    {
+      "flightNo": "CA1835",
+      "airCompanyCode": "CA",
+      "airCompanyName": "中国国际航空",
+      "arrivalOnlyTime": "10:15",
+      "arrivalTime": "2026-03-20 10:15",
+      "arriveAirportCode": "SHA",
+      "arriveAirportShortName": "上海虹桥国际机场",
+      "equipmentName": "空客330-300(大)",
+      "flyOffOnlyTime": "08:00",
+      "flyOffTime": "2026-03-20 08:00",
+      "originAirportCode": "PEK",
+      "originAirportShortName": "北京首都国际机场",
+      "productPrices": {
+        "0": 760
+      },
+      "spantime": "2小时15分钟",
+      "stopNum": 0,
+      "flightPrice": 760
+    }
+  ],
+  "cid": "sample-public-state"
+}

@@ -1,0 +1,31 @@
+{
+  "repos": [
+    {
+      "match": [
+        "my-backend-service",
+        "company/project/my-backend-service"
+      ],
+      "displayName": "my-backend-service",
+      "summary": "Backend utama untuk API, integrasi data, reporting, atau fitur bisnis inti.",
+      "internshipRelevant": true
+    },
+    {
+      "match": [
+        "shared-ai-library",
+        "company/core/shared-ai-library"
+      ],
+      "displayName": "shared-ai-library",
+      "summary": "Library bersama untuk orkestrasi AI, integrasi provider, atau utilitas backend lintas proyek.",
+      "internshipRelevant": true
+    },
+    {
+      "match": [
+        "personal-project",
+        "username/personal-project"
+      ],
+      "displayName": "personal-project",
+      "summary": "Contoh project pribadi yang biasanya dikecualikan dari laporan magang.",
+      "internshipRelevant": false
+    }
+  ]
+}

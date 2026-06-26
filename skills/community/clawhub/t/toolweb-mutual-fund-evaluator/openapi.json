@@ -1,0 +1,208 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mutual Fund Evaluator",
+    "description": "AI-powered mutual fund evaluation for Indian retail investors",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "API welcome page",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/evaluate": {
+      "post": {
+        "summary": "Evaluate Fund",
+        "description": "Evaluate mutual fund based on investor profile using AI with web search",
+        "operationId": "evaluate_fund_evaluate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MutualFundEvaluationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Health check endpoint",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "MutualFundEvaluationRequest": {
+        "properties": {
+          "fund_name": {
+            "type": "string",
+            "title": "Fund Name",
+            "description": "Full name of the mutual fund including Direct/Regular plan"
+          },
+          "investor_age": {
+            "type": "integer",
+            "title": "Investor Age",
+            "description": "Investor's age"
+          },
+          "investment_goal": {
+            "type": "string",
+            "title": "Investment Goal",
+            "description": "Investment goal"
+          },
+          "investment_horizon": {
+            "type": "string",
+            "title": "Investment Horizon",
+            "description": "Investment horizon in years"
+          },
+          "investment_mode": {
+            "type": "string",
+            "title": "Investment Mode",
+            "description": "Lump sum / SIP / Both"
+          },
+          "existing_portfolio": {
+            "type": "string",
+            "title": "Existing Portfolio",
+            "description": "Current portfolio status"
+          },
+          "risk_tolerance": {
+            "type": "string",
+            "title": "Risk Tolerance",
+            "description": "Low / Medium / High"
+          },
+          "volatility_preference": {
+            "type": "string",
+            "title": "Volatility Preference",
+            "description": "Low / Medium / High"
+          },
+          "tax_sensitivity": {
+            "type": "string",
+            "title": "Tax Sensitivity",
+            "description": "Tax bracket sensitivity"
+          },
+          "entry_context": {
+            "type": "string",
+            "title": "Entry Context",
+            "description": "First-time / Adding more / Deciding to hold or exit / Comparing"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fund_name",
+          "investor_age",
+          "investment_goal",
+          "investment_horizon",
+          "investment_mode",
+          "existing_portfolio",
+          "risk_tolerance",
+          "volatility_preference",
+          "tax_sensitivity",
+          "entry_context"
+        ],
+        "title": "MutualFundEvaluationRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

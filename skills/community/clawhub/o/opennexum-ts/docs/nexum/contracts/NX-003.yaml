@@ -1,0 +1,56 @@
+id: NX-003
+name: "@nexum/prompts — Prompt 模板渲染"
+type: coding
+created_at: "2026-03-29T04:00:00Z"
+
+scope:
+  files:
+    - packages/prompts/package.json
+    - packages/prompts/tsconfig.json
+    - packages/prompts/src/types.ts
+    - packages/prompts/src/renderer.ts
+    - packages/prompts/src/templates/generator-coding.md
+    - packages/prompts/src/templates/generator-writing.md
+    - packages/prompts/src/templates/evaluator.md
+    - packages/prompts/src/index.ts
+    - packages/prompts/src/__tests__/renderer.test.ts
+  boundaries:
+    - packages/core/
+    - packages/spawn/
+    - packages/notify/
+    - packages/cli/
+  conflicts_with: []
+
+deliverables:
+  - "packages/prompts/src/types.ts：PromptContext 类型，包含 contract、task、gitCommitCmd、evalResultPath、lessons（string[]）字段"
+  - "packages/prompts/src/renderer.ts：renderGeneratorPrompt(context: PromptContext): string，根据 contract.type（coding/task/creative）选择对应模板，替换所有变量（任务名、scope files、deliverables、criteria、git commit 命令、lessons）"
+  - "packages/prompts/src/renderer.ts：renderEvaluatorPrompt(context: PromptContext): string，使用 evaluator 模板，填入 criteria 和 eval_result_path"
+  - "packages/prompts/src/renderer.ts：renderRetryPrompt(context: PromptContext, verdict: string, feedback: string, failedCriteria: string[]): string，在 generator prompt 基础上追加 retry context block（verdict/feedback/失败criteria列表）"
+  - "模板变量替换：{{TASK_NAME}} {{SCOPE_FILES}} {{DELIVERABLES}} {{CRITERIA_PREVIEW}} {{GIT_COMMIT_CMD}} {{EVAL_RESULT_PATH}} {{RELEVANT_LESSONS}}，与现有 bash 版 render_prompt 行为兼容"
+  - "renderer.test.ts：测试 renderGeneratorPrompt 正确替换所有变量；测试 renderRetryPrompt 包含 feedback 和失败 criteria；测试 coding/writing 模板切换"
+  - "pnpm build 和 pnpm test 均通过"
+
+eval_strategy:
+  type: unit
+  criteria:
+    - id: C1
+      desc: "renderGeneratorPrompt 输出包含所有变量替换结果，无残留 {{...}} 占位符"
+      method: "unit: 构造 PromptContext，渲染后检查无 {{ 字符"
+      threshold: pass
+    - id: C2
+      desc: "contract.type=creative 时切换到 generator-writing 模板"
+      method: "unit: 测试不同 type 的模板选择"
+      threshold: pass
+    - id: C3
+      desc: "renderRetryPrompt 输出包含 verdict、feedback、failedCriteria"
+      method: "unit: 验证 retry block 内容"
+      threshold: pass
+    - id: C4
+      desc: "pnpm build 无报错，pnpm test 全部通过"
+      method: "unit: 运行 pnpm build && pnpm test"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: []

@@ -1,35 +1,14 @@
 ---
-name: "iot-anomalies"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/iot-anomalies"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/iot-anomalies"
+name: iot-anomalies
+description: Detect and classify telemetry anomalies on Cognitum Seed devices
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_store Read
+argument-hint: "<device-id>"
 ---
+Run Z-score anomaly detection on a device's recent telemetry.
 
-# iot-anomalies
-
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/iot-anomalies`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/iot-anomalies](https://skills.sh/ruvnet/ruflo/iot-anomalies)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/iot-anomalies
-```
+Steps:
+1. `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot anomalies DEVICE_ID`
+2. Review detected anomaly types (spike, flatline, drift, oscillation, pattern-break, cluster-outlier)
+3. If score > 0.9, recommend quarantine
+4. Store anomaly pattern for learning:
+   `mcp__claude-flow__memory_store({ key: "iot-anomaly-DEVICEID", value: "TYPE at SCORE", namespace: "iot-anomalies" })`

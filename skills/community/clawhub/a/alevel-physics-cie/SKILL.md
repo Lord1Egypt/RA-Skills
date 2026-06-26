@@ -1,35 +1,98 @@
 ---
-name: "A-Level Physics CIE 9702"
-description: "Generate structured answer templates for CIE A-Level Physics (9702) exam questions. Fine-tuned Qwen3-4B LoRA model: question type, given/required, formulae,..."
-category: "research"
-source: "ClawHub"
-tags: [education, exam-prep, fine-tuning, mlx, physics]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alevel-physics-cie"
-sourceUrl: "https://clawhub.ai/skills/alevel-physics-cie"
+name: alevel-physics-cie
+description: "Generate structured answer templates for CIE A-Level Physics (9702) exam questions. Fine-tuned Qwen3-4B LoRA model: question type, given/required, formulae, answer frame, checks. Primary use: local MLX inference (skill/scripts/inference.py) — loads HF base weights and local adapters; no API key and no web scraping in that path. Optional maintainer-only: scraper (cie.fraft.org) and DeepSeek API for rebuilding training data; see SECURITY.md. MANDATORY orchestrator: plain-text math only (no LaTeX dollar delimiters)."
 ---
 
-# A-Level Physics CIE 9702
+# A-Level Physics CIE (9702) Answer Template Generator
 
-> Generate structured answer templates for CIE A-Level Physics (9702) exam questions. Fine-tuned Qwen3-4B LoRA model: question type, given/required, formulae,...
+Generate structured answer templates for Cambridge International A-Level Physics (9702) questions using a fine-tuned Qwen3-4B model with LoRA adapters trained on 1652 real past papers.
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alevel-physics-cie`
-- **Source URL:** [https://clawhub.ai/skills/alevel-physics-cie](https://clawhub.ai/skills/alevel-physics-cie)
+## Skill contract (runtime vs optional tooling)
 
-## Overview
+This section clarifies **what runs for normal skill use** vs **what exists only for dataset rebuild / retraining**, so automated reviewers (e.g. OpenClaw) and humans can align expectations with the code.
 
+| | **Primary path — inference** | **Optional — training / data pipeline** |
+|---|------------------------------|----------------------------------------|
+| **Entrypoints** | `skill/scripts/inference.py`, `generate_template` / `generate_template_verified` in that module | `scraper/*`, `scripts/build_sft.py`, `scripts/run_full_pipeline.py`, `scripts/train.sh`, etc. |
+| **Remote APIs** | None for generation | **DeepSeek API** when `--teacher deepseek` or full pipeline teacher mode (`DEEPSEEK_API_KEY`) |
+| **Web / HTTP** | Hugging Face (typical) to **download** base model `Qwen/Qwen3-4B-MLX-4bit` on first run; no user question leaves your machine as HTTP payload | **cie.fraft.org** when running the scraper; HF again for training stack as configured |
+| **Secrets** | **No** `DEEPSEEK_API_KEY` required by inference | `DEEPSEEK_API_KEY` only if you regenerate SFT via DeepSeek |
 
-## Installation
-To install this skill, run the following command in your terminal:
+Inference does **not** scrape past papers, does **not** call DeepSeek, and does **not** exfiltrate prompts to a third-party LLM API. Maintainer scripts may; they are separate.
+
+Full detail: [`SECURITY.md`](SECURITY.md) in the repository root.
+
+## Mandatory rule for the orchestrator (plain-text math)
+
+When you produce **any** final answer, template, or paraphrase for the user—whether you ran `skill/scripts/inference.py` or answered from general knowledge—you **must**:
+
+1. Write formulae in **plain text** (e.g. `v² = u² + 2as`, `E = hf`, `λ = h/p`, `P = IV`).
+2. **Never** wrap math in `$...$`, `$$...$$`, `\(...\)`, `\[...\]`, or similar TeX delimiters. Raw `$$` is unreadable for users in Clawhub/OpenClaw-style clients.
+3. If tool output still contains stray `$` signs, **strip or rewrite** those segments into plain text before showing them to the user.
+
+Local inference already applies the same rule via its system prompt and post-processing; the orchestrator must follow it **even when not calling the script**.
+
+## Quick Start
+
+Run inference on a physics question:
+
 ```bash
-hermes skills install clawhub/alevel-physics-cie
+python skill/scripts/inference.py "Define specific heat capacity."
 ```
+
+Or in Python:
+
+```python
+from skill.scripts.inference import generate_template
+result = generate_template("Calculate the maximum height reached by a ball thrown upward at 20 m/s.")
+print(result)
+```
+
+## Output Format
+
+The model produces structured answer templates:
+
+- **Question type** — calculation / definition / explain / describe / derive / analyse / practical
+- **Given** — quantities and conditions from the question
+- **Required** — what the student must find or state
+- **Formulae / principles** — relevant equations and physics laws
+- **Answer frame** — numbered step-by-step approach
+- **Check** — unit/sign/direction/significant-figure verification
+
+**Display note (Clawhub / chat clients — applies to orchestrator and model):** Present equations in **plain text** (ASCII and Unicode, e.g. `v²`, `λ`, `×`, fractions with `/`). Do not use LaTeX delimiters (`$`, `$$`, `\(…\)`, `\[…\]`) in final user-facing output — many clients do not render math, so those tokens look garbled. The inference script enforces this with a system prompt and post-processing when you run it; **if you answer without the script, you must still follow this rule.**
+
+## Model Details
+
+- **Base model**: `Qwen/Qwen3-4B-MLX-4bit`
+- **Adapter**: LoRA rank 8, 16 layers, trained 1000 iterations
+- **Training data**: 414 question–template pairs from 9702 Papers 2/4/5 (2001–2025), templates generated by DeepSeek with mark-scheme context
+- **Peak memory**: 4 GB (runs on any 8GB+ Apple Silicon Mac)
+
+## Retraining
+
+To retrain or extend with more data:
+
+```bash
+python scripts/run_full_pipeline.py --teacher deepseek
+```
+
+See `skill/references/training.md` for the full pipeline details.
+
+## Adversarial Robustness Evaluation
+
+Test the model's robustness using three physics-adapted attack strategies from Xie et al. (2024):
+
+```bash
+python skill/scripts/adversarial_eval.py
+python skill/scripts/adversarial_eval.py --strategies numeric --variants 5 --max-questions 10
+```
+
+Reports OA (Original Accuracy), AA (Adversarial Accuracy), and ASR (Attack Success Rate) per strategy.
+
+## References
+
+- `skill/references/training.md` — Full scraping, extraction, SFT, and training pipeline
+- `skill/references/answer_template_format.md` — Detailed output format specification
+- `skill/scripts/inference.py` — Standalone inference script
+- `skill/scripts/adversarial_eval.py` — Adversarial robustness evaluation (numeric perturbation, context swap, question-type adversarial)
+- `SECURITY.md` — Network, secrets, and trust boundaries

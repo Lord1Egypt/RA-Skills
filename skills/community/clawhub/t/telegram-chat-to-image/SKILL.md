@@ -1,35 +1,93 @@
 ---
-name: "Telegram Chat To Image"
-description: "Convert Telegram chat exports into a long screenshot-style image. Supports Telegram Desktop JSON exports with bubble-style message rendering, avatars, timest..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/telegram-chat-to-image"
-sourceUrl: "https://clawhub.ai/skills/telegram-chat-to-image"
+name: telegram-chat-to-image
+description: "Convert Telegram chat exports into a long screenshot-style image. Supports Telegram Desktop JSON exports with bubble-style message rendering, avatars, timestamps, and proper text wrapping. Use when user wants to generate a visual image of Telegram conversations, create chat screenshots, or share conversation history as a single long image."
 ---
 
-# Telegram Chat To Image
+# Telegram Chat to Image
 
-> Convert Telegram chat exports into a long screenshot-style image. Supports Telegram Desktop JSON exports with bubble-style message rendering, avatars, timest...
+Converts Telegram chat exports into a long screenshot-style image with iOS-style bubble interface.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/telegram-chat-to-image`
-- **Source URL:** [https://clawhub.ai/skills/telegram-chat-to-image](https://clawhub.ai/skills/telegram-chat-to-image)
+## Changelog
 
-## Overview
+### v1.2.0 (2026-03-07)
+- **建议**: 长图发送优化 — 对于较长对话，建议打包为 ZIP 文件发送，避免 Telegram 图片压缩导致模糊
 
+### v1.1.0 (2026-03-01)
+- **修复**: 中文长文本换行问题 — 现在逐字符检查宽度，正确换行
+- **修复**: 发件人显示问题 — 正确区分"我"(蓝色气泡)和其他人(灰色气泡+头像)
+- **新增**: 显示每条消息的发件人名称
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/telegram-chat-to-image
-```
+### v1.0.0
+- 初始版本
+
+## Prerequisites
+
+\`\`\`bash
+pip install Pillow
+\`\`\`
+
+## Usage
+
+### CLI
+
+\`\`\`bash
+# Basic usage
+python3 scripts/chat_to_image.py --input result.json --output chat.png
+
+# Limit messages
+python3 scripts/chat_to_image.py --input result.json --limit 50 --output chat.png
+
+# Custom font (for Chinese support)
+python3 scripts/chat_to_image.py --input result.json --font /System/Library/Fonts/PingFang.ttc
+\`\`\`
+
+### Getting Telegram Export
+
+1. Open Telegram Desktop
+2. Go to the chat you want to export
+3. Click menu and Export chat history
+4. Select JSON format
+5. Choose messages and export
+
+### Input Format
+
+Expects Telegram Desktop JSON export format with messages array containing id, type, date, from, from_id, and text fields.
+
+## Output
+
+Generates a PNG image with:
+- 800px width
+- iOS-style bubble chat interface
+- Gray bubbles for others, blue for user messages
+- Circular avatars with initials
+- Timestamps (HH:MM format)
+- Proper text wrapping for long messages
+
+## Limitations
+
+- Images, stickers, and media are not rendered
+- Reply threads are not visually indicated
+- Only plain text messages are fully supported
+- Large exports may create very tall images
+
+## Best Practices
+
+### Handling Long Conversations
+
+For long conversations that result in tall images (>2000px), consider:
+
+1. **ZIP Packaging**: Pack the PNG into a ZIP file before sending to avoid Telegram's image compression
+   ```bash
+   zip chat.zip chat.png
+   ```
+   Then send the ZIP file as a document instead of an image.
+
+2. **Message Limits**: Use `--limit` to generate partial exports if the full conversation is too long
+
+## Customization
+
+Edit scripts/chat_to_image.py to adjust:
+- WIDTH: Image width (default 800)
+- MY_BUBBLE_COLOR: Your message color
+- OTHER_BUBBLE_COLOR: Others message color
+- FONT_SIZE, BUBBLE_PADDING: Layout spacing

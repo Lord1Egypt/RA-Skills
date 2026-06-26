@@ -1,0 +1,11 @@
+{
+  "owner": "anmolnagpal",
+  "slug": "guardduty-explainer",
+  "displayName": "Guardduty Explainer",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772419921963,
+    "commit": "https://github.com/openclaw/skills/commit/084c5dade793b6b999003d7f707ea153d9094ce2"
+  },
+  "history": []
+}

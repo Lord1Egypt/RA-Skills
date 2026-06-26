@@ -1,0 +1,64 @@
+{
+  "type": "procurement_bid",
+  "bid_id": "BID-20260330-004",
+  "req_id": "REQ-20260330-ca9348",
+  "supplier": {
+    "name": "欧洲酒庄直邮",
+    "agent_id": "agent-eurowine",
+    "endpoint": "http://eurowine:8787",
+    "contact": "Email: order@eurowine.eu"
+  },
+  "price": {
+    "amount": 3500,
+    "currency": "CNY",
+    "includes_shipping": true,
+    "shipping_cost": 200
+  },
+  "auth_docs": [
+    {
+      "type": "business_license",
+      "name": "欧盟商业注册证书",
+      "url": "https://example.com/euro_license.jpg"
+    },
+    {
+      "type": "agency_cert",
+      "name": "幽灵庄园官方代理证书",
+      "url": "https://example.com/euro_agency.jpg"
+    },
+    {
+      "type": "auth_letter",
+      "name": "庄园主亲笔签名授权",
+      "url": "https://example.com/euro_auth.jpg"
+    },
+    {
+      "type": "quality_report",
+      "name": "原产地认证证书",
+      "url": "https://example.com/euro_origin.jpg"
+    },
+    {
+      "type": "import_doc",
+      "name": "海关进口完税证明",
+      "url": "https://example.com/euro_customs.jpg"
+    }
+  ],
+  "delivery": {
+    "time_days": 14,
+    "method": "国际快递 + 国内顺丰",
+    "tracking_available": true,
+    "insurance": true
+  },
+  "reputation": {
+    "total_transactions": 100,
+    "success_rate": 0.98,
+    "disputes": 0,
+    "complaints": 0,
+    "platform_verified": true,
+    "rating": 4.9
+  },
+  "warranty": {
+    "return_policy": "30天无理由退货",
+    "refund_policy": "假一赔百 + 全额退款"
+  },
+  "signature": "模拟签名_欧洲酒庄",
+  "timestamp": "2026-03-30T07:00:00Z"
+}

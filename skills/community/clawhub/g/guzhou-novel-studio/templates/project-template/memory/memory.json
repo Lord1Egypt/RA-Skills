@@ -1,0 +1,43 @@
+{
+  "project_id": "",
+  "project_name": "",
+  "current_chapter": 1,
+  "last_updated": "",
+  
+  "current_arc": {
+    "name": "",
+    "chapters": "1-10",
+    "progress": "0%"
+  },
+  
+  "active_characters": [
+    {
+      "character_id": "",
+      "name": "",
+      "location": "",
+      "emotional_state": "",
+      "recent_development": ""
+    }
+  ],
+  
+  "unresolved_foreshadowing": [
+    {
+      "id": "FS-001",
+      "description": "",
+      "planted_at_chapter": 1,
+      "expected_resolution": "第10章"
+    }
+  ],
+  
+  "recent_events": [
+    {
+      "chapter": 1,
+      "summary": "",
+      "key_takeaways": []
+    }
+  ],
+  
+  "style_notes": "",
+  
+  "author_notes": ""
+}

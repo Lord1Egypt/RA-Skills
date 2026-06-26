@@ -1,35 +1,66 @@
 ---
-name: "Book Spa"
-description: "Book spa services through Lokuli MCP. Use when user needs to find and book spa. Triggers on requests like "book a spa", "find spa near me", or any spa service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-spa"
-sourceUrl: "https://clawhub.ai/skills/book-spa"
+name: book-spa
+description: Book spa services through Lokuli MCP. Use when user needs to find and book spa. Triggers on requests like "book a spa", "find spa near me", or any spa service request.
 ---
 
-# Book Spa
+# uook spa
 
-> Book spa services through Lokuli MCP. Use when user needs to find and book spa. Triggers on requests like "book a spa", "find spa near me", or any spa service request.
+Book spa services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-spa`
-- **Source URL:** [https://clawhub.ai/skills/book-spa](https://clawhub.ai/skills/book-spa)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-spa
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "spa",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

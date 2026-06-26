@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📧 Email Assistant</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #242836;
+  --border: #2e3345; --text: #e4e6ef; --text2: #9499b3;
+  --primary: #6c8aff; --primary-hover: #8aa3ff;
+  --success: #4ade80; --danger: #f87171; --warn: #fbbf24;
+  --radius: 12px;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+.header { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+.header h1 { font-size: 24px; font-weight: 600; }
+.header h1 span { font-size: 28px; margin-right: 8px; }
+
+/* Login */
+.login-box { max-width: 400px; margin: 100px auto; text-align: center; }
+.login-box h2 { margin-bottom: 20px; }
+.login-box input { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); font-size: 15px; margin-bottom: 12px; }
+.login-box input:focus { outline: none; border-color: var(--primary); }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--surface); border-radius: var(--radius); padding: 4px; }
+.tab { flex: 1; padding: 10px; text-align: center; border-radius: 8px; cursor: pointer; font-size: 14px; color: var(--text2); transition: all .2s; border: none; background: none; }
+.tab:hover { color: var(--text); }
+.tab.active { background: var(--primary); color: #fff; }
+
+/* Cards */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+.card h3 { font-size: 16px; margin-bottom: 12px; color: var(--text); }
+.card-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.card-row:last-child { border-bottom: none; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; transition: all .2s; font-weight: 500; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
+.btn-danger:hover { background: var(--danger); color: #fff; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Inputs */
+input, select { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); color: var(--text); font-size: 14px; width: 100%; }
+input:focus, select:focus { outline: none; border-color: var(--primary); }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+.form-row { display: flex; gap: 10px; align-items: flex-end; }
+.form-row .form-group { flex: 1; margin-bottom: 0; }
+
+/* Email list */
+.email-item { padding: 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .2s; }
+.email-item:hover { background: var(--surface2); }
+.email-item:last-child { border-bottom: none; }
+.email-from { font-weight: 500; font-size: 14px; }
+.email-subject { font-size: 15px; margin: 4px 0; }
+.email-meta { font-size: 12px; color: var(--text2); display: flex; gap: 12px; }
+.email-preview { font-size: 13px; color: var(--text2); margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.email-summary { background: var(--surface2); border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+
+/* Badge */
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.badge-green { background: rgba(74,222,128,.15); color: var(--success); }
+.badge-blue { background: rgba(108,138,255,.15); color: var(--primary); }
+
+/* Modal */
+.modal-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 100; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; width: 90%; max-width: 500px; max-height: 80vh; overflow-y: auto; }
+.modal h3 { margin-bottom: 16px; }
+
+/* Loading */
+.spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .6s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { display: flex; align-items: center; gap: 10px; color: var(--text2); padding: 20px; justify-content: center; }
+
+/* Digest */
+.digest-content { line-height: 1.8; white-space: pre-wrap; font-size: 14px; }
+
+/* Toast */
+.toast { position: fixed; top: 20px; right: 20px; padding: 12px 20px; border-radius: 8px; color: #fff; font-size: 14px; z-index: 200; animation: slideIn .3s; }
+.toast-success { background: #16a34a; }
+.toast-error { background: #dc2626; }
+@keyframes slideIn { from { transform: translateX(100px); opacity: 0; } }
+
+/* Empty */
+.empty { text-align: center; padding: 40px 20px; color: var(--text2); }
+.empty p { margin-bottom: 16px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-row { flex-direction: column; }
+  .tabs { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+  <!-- Login -->
+  <div id="login-view" class="login-box" style="display:none">
+    <h2>📧 Email Assistant</h2>
+    <p style="color:var(--text2);margin-bottom:20px">输入访问令牌登录</p>
+    <input type="password" id="login-token" placeholder="Access Token" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-primary" style="width:100%" onclick="doLogin()">登录</button>
+  </div>
+
+  <!-- Main -->
+  <div id="main-view" style="display:none">
+    <div class="header">
+      <h1><span>📧</span>Email Assistant</h1>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="emails" onclick="switchTab('emails')">📬 邮件</button>
+      <button class="tab" data-tab="accounts" onclick="switchTab('accounts')">👤 账户</button>
+      <button class="tab" data-tab="config" onclick="switchTab('config')">⚙️ 配置</button>
+    </div>
+
+    <!-- Emails Tab -->
+    <div id="tab-emails">
+      <div class="card" style="padding:14px 20px">
+        <div class="form-row">
+          <div class="form-group">
+            <select id="check-account">
+              <option value="">所有账户</option>
+            </select>
+          </div>
+          <div class="form-group" style="max-width:120px">
+            <select id="check-since">
+              <option value="60">最近1小时</option>
+              <option value="240">最近4小时</option>
+              <option value="720">最近12小时</option>
+              <option value="1440" selected>最近24小时</option>
+              <option value="4320">最近3天</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="checkEmails(false)" id="btn-check">查看邮件</button>
+          <button class="btn btn-primary" onclick="checkEmails(true)" id="btn-check-ai" style="background:#8b5cf6">AI 摘要</button>
+          <button class="btn btn-primary" onclick="getDigest()" id="btn-digest" style="background:#0ea5e9">日报</button>
+        </div>
+      </div>
+
+      <div id="email-list"></div>
+      <div id="digest-box" style="display:none"></div>
+    </div>
+
+    <!-- Accounts Tab -->
+    <div id="tab-accounts" style="display:none">
+      <div class="card">
+        <h3>已配置的邮箱</h3>
+        <div id="account-list"></div>
+      </div>
+
+      <div class="card">
+        <h3>添加邮箱</h3>
+        <div class="form-group">
+          <label>邮箱地址</label>
+          <input type="email" id="add-email" placeholder="user@example.com">
+        </div>
+        <div class="form-group">
+          <label>认证方式</label>
+          <select id="add-auth" onchange="togglePasswordField()">
+            <option value="password">App Password</option>
+            <option value="oauth">OAuth2 (Outlook/M365)</option>
+          </select>
+        </div>
+        <div class="form-group" id="password-group">
+          <label>App Password</label>
+          <input type="password" id="add-password" placeholder="应用专用密码">
+        </div>
+        <button class="btn btn-primary" onclick="addAccount()" id="btn-add">添加</button>
+      </div>
+    </div>
+
+    <!-- Config Tab -->
+    <div id="tab-config" style="display:none">
+      <div class="card">
+        <h3>AI 配置</h3>
+        <div class="form-group">
+          <label>API Key（DeepSeek / OpenAI）</label>
+          <input type="password" id="cfg-ai-key" placeholder="sk-...">
+        </div>
+        <div class="form-group">
+          <label>API Base URL</label>
+          <input id="cfg-ai-base" placeholder="https://api.deepseek.com">
+        </div>
+        <div class="form-group">
+          <label>Model</label>
+          <input id="cfg-ai-model" placeholder="deepseek-chat">
+        </div>
+        <button class="btn btn-primary" onclick="saveAiConfig()">保存 AI 配置</button>
+      </div>
+
+      <div class="card">
+        <h3>Microsoft OAuth2（Outlook/M365 用户需要）</h3>
+        <div class="form-group">
+          <label>Client ID</label>
+          <input id="cfg-ms-client" placeholder="Azure AD Application Client ID">
+        </div>
+        <div class="form-group">
+          <label>Tenant ID</label>
+          <input id="cfg-ms-tenant" placeholder="common">
+        </div>
+        <button class="btn btn-primary" onclick="saveMsConfig()">保存 OAuth 配置</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Detail Modal -->
+  <div id="email-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <div id="modal-content"></div>
+      <div style="text-align:right;margin-top:16px">
+        <button class="btn btn-primary btn-sm" onclick="closeModal()">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '';
+
+// ─── Auth ─────────────────────────────────────────────
+
+function getToken() {
+  const params = new URLSearchParams(location.search);
+  return localStorage.getItem('email_token') || params.get('token') || '';
+}
+
+async function api(path, data) {
+  const opts = { headers: {} };
+  if (data !== undefined) {
+    opts.method = 'POST';
+    opts.headers['Content-Type'] = 'application/json';
+    opts.body = JSON.stringify(data);
+  }
+  const res = await fetch(API + path, opts);
+  const json = await res.json();
+  if (json.error && res.status === 401) {
+    showLogin();
+    throw new Error('Unauthorized');
+  }
+  if (json.error) throw new Error(json.error);
+  return json;
+}
+
+function showLogin() {
+  document.getElementById('login-view').style.display = '';
+  document.getElementById('main-view').style.display = 'none';
+}
+
+async function doLogin() {
+  const token = document.getElementById('login-token').value.trim();
+  if (!token) return;
+  try {
+    await api('/api/login', { token });
+    localStorage.setItem('email_token', token);
+    init();
+  } catch (e) {
+    toast('令牌无效', 'error');
+  }
+}
+
+async function init() {
+  // Try auto-login via URL token
+  const params = new URLSearchParams(location.search);
+  const urlToken = params.get('token');
+  if (urlToken) {
+    try {
+      await api('/api/login', { token: urlToken });
+      localStorage.setItem('email_token', urlToken);
+      // Clean URL
+      history.replaceState(null, '', location.pathname);
+    } catch {}
+  }
+
+  try {
+    await api('/api/config');
+    document.getElementById('login-view').style.display = 'none';
+    document.getElementById('main-view').style.display = '';
+    loadAccounts();
+    loadConfig();
+  } catch {
+    showLogin();
+  }
+}
+
+// ─── Tabs ─────────────────────────────────────────────
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === name);
+  });
+  ['emails','accounts','config'].forEach(n => {
+    document.getElementById('tab-' + n).style.display = n === name ? '' : 'none';
+  });
+  if (name === 'accounts') loadAccounts();
+  if (name === 'config') loadConfig();
+}
+
+// ─── Accounts ─────────────────────────────────────────
+
+async function loadAccounts() {
+  try {
+    const data = await api('/api/accounts');
+    const list = document.getElementById('account-list');
+    const select = document.getElementById('check-account');
+
+    if (!data.accounts.length) {
+      list.innerHTML = '<div class="empty"><p>还没有配置邮箱</p></div>';
+      select.innerHTML = '<option value="">所有账户</option>';
+      return;
+    }
+
+    list.innerHTML = data.accounts.map(a => `
+      <div class="card-row">
+        <div>
+          <strong>${esc(a.email)}</strong>
+          <span class="badge badge-blue" style="margin-left:8px">${esc(a.type)}</span>
+          <span class="badge badge-green" style="margin-left:4px">${a.auth === 'oauth' ? 'OAuth2' : 'Password'}</span>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="removeAccount('${esc(a.email)}')">删除</button>
+      </div>
+    `).join('');
+
+    select.innerHTML = '<option value="">所有账户</option>' +
+      data.accounts.map(a => `<option value="${esc(a.email)}">${esc(a.email)}</option>`).join('');
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+function togglePasswordField() {
+  const auth = document.getElementById('add-auth').value;
+  document.getElementById('password-group').style.display = auth === 'oauth' ? 'none' : '';
+}
+
+async function addAccount() {
+  const email = document.getElementById('add-email').value.trim();
+  const auth = document.getElementById('add-auth').value;
+  const password = document.getElementById('add-password').value.trim();
+
+  if (!email) return toast('请输入邮箱', 'error');
+  if (auth !== 'oauth' && !password) return toast('请输入密码', 'error');
+
+  const btn = document.getElementById('btn-add');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> 连接中...';
+
+  try {
+    const result = await api('/api/accounts/add', { email, password, auth });
+
+    if (result.action === 'oauth_pending') {
+      btn.innerHTML = '添加';
+      btn.disabled = false;
+      showOAuthModal(result);
+      return;
+    }
+
+    toast(`添加成功！${result.unread} 封未读`, 'success');
+    document.getElementById('add-email').value = '';
+    document.getElementById('add-password').value = '';
+    loadAccounts();
+  } catch (e) {
+    toast(e.message, 'error');
+  } finally {
+    btn.innerHTML = '添加';
+    btn.disabled = false;
+  }
+}
+
+function showOAuthModal(data) {
+  const modal = document.getElementById('email-modal');
+  document.getElementById('modal-content').innerHTML = `
+    <h3>🔐 Microsoft OAuth2 授权</h3>
+    <p style="margin:12px 0">请在浏览器中打开以下链接：</p>
+    <p><a href="${data.verification_uri}" target="_blank" style="color:var(--primary);font-size:16px">${data.verification_uri}</a></p>
+    <p style="margin:12px 0">输入验证码：</p>
+    <p style="font-size:28px;font-weight:700;letter-spacing:4px;color:var(--primary);text-align:center;margin:16px 0">${data.user_code}</p>
+    <div class="loading-text" id="oauth-status"><span class="spinner"></span> 等待授权...</div>
+  `;
+  modal.style.display = '';
+
+  // Poll for completion
+  pollOAuth(data.email, data.device_code, data.interval);
+}
+
+async function pollOAuth(email, device_code, interval) {
+  try {
+    const result = await api('/api/accounts/oauth-poll', { email, device_code, interval });
+    document.getElementById('oauth-status').innerHTML = '✅ 授权成功！';
+    toast(`添加成功！${result.unread} 封未读`, 'success');
+    loadAccounts();
+    setTimeout(closeModal, 2000);
+  } catch (e) {
+    document.getElementById('oauth-status').innerHTML = '❌ ' + e.message;
+  }
+}
+
+async function removeAccount(email) {
+  if (!confirm(`确定删除 ${email}？`)) return;
+  try {
+    await api('/api/accounts/remove', { email });
+    toast('已删除', 'success');
+    loadAccounts();
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+// ─── Emails ───────────────────────────────────────────
+
+async function checkEmails(summarize) {
+  const account = document.getElementById('check-account').value;
+  const since = parseInt(document.getElementById('check-since').value);
+  const btnId = summarize ? 'btn-check-ai' : 'btn-check';
+  const btn = document.getElementById(btnId);
+  const list = document.getElementById('email-list');
+
+  document.getElementById('digest-box').style.display = 'none';
+  btn.disabled = true;
+  list.innerHTML = '<div class="loading-text"><span class="spinner"></span> ' +
+    (summarize ? '正在获取邮件并生成 AI 摘要...' : '正在获取邮件...') + '</div>';
+
+  try {
+    const data = await api('/api/check', { account, since, max: 30, summarize });
+
+    if (!data.emails.length) {
+      list.innerHTML = '<div class="empty"><p>没有新邮件</p></div>';
+      return;
+    }
+
+    list.innerHTML = data.emails.map((e, i) => {
+      if (e.error) return `<div class="email-item" style="color:var(--danger)">${esc(e.account)}: ${esc(e.error)}</div>`;
+      return `
+        <div class="email-item" onclick="readEmail('${esc(e.uid)}', '${esc(e.account)}')">
+          <div class="email-meta">
+            <span>${esc(e.account)}</span>
+            <span>${formatDate(e.date)}</span>
+          </div>
+          <div class="email-from">${esc(e.from)}</div>
+          <div class="email-subject">${esc(e.subject)}</div>
+          ${e.bodyPreview ? `<div class="email-preview">${esc(e.bodyPreview)}</div>` : ''}
+          ${e.summary ? `<div class="email-summary">${esc(e.summary)}</div>` : ''}
+        </div>`;
+    }).join('');
+  } catch (e) {
+    list.innerHTML = `<div class="empty" style="color:var(--danger)">${esc(e.message)}</div>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function readEmail(uid, account) {
+  const modal = document.getElementById('email-modal');
+  document.getElementById('modal-content').innerHTML = '<div class="loading-text"><span class="spinner"></span> 读取中...</div>';
+  modal.style.display = '';
+
+  try {
+    const e = await api('/api/read', { uid, account });
+    document.getElementById('modal-content').innerHTML = `
+      <div class="email-meta" style="margin-bottom:8px"><span>${esc(e.account)}</span><span>${formatDate(e.date)}</span></div>
+      <div class="email-from" style="font-size:16px">${esc(e.from)}</div>
+      <h3 style="margin:8px 0">${esc(e.subject)}</h3>
+      ${e.summary ? `<div class="email-summary" style="margin-bottom:12px">🤖 <strong>AI 解读</strong>\n${esc(e.summary)}</div>` : ''}
+      <div style="white-space:pre-wrap;font-size:13px;color:var(--text2);max-height:400px;overflow-y:auto">${esc(e.body || '(无内容)')}</div>
+    `;
+  } catch (e) {
+    document.getElementById('modal-content').innerHTML = `<p style="color:var(--danger)">${esc(e.message)}</p>`;
+  }
+}
+
+async function getDigest() {
+  const account = document.getElementById('check-account').value;
+  const since = parseInt(document.getElementById('check-since').value);
+  const btn = document.getElementById('btn-digest');
+  const box = document.getElementById('digest-box');
+  const list = document.getElementById('email-list');
+
+  list.innerHTML = '';
+  btn.disabled = true;
+  box.style.display = '';
+  box.innerHTML = '<div class="card"><div class="loading-text"><span class="spinner"></span> 正在生成 AI 日报...</div></div>';
+
+  try {
+    const data = await api('/api/digest', { account, since });
+    box.innerHTML = `
+      <div class="card">
+        <h3>📊 邮件日报 (${data.total} 封)</h3>
+        <div class="digest-content" style="margin-top:12px">${esc(data.digest)}</div>
+      </div>`;
+  } catch (e) {
+    box.innerHTML = `<div class="card"><p style="color:var(--danger)">${esc(e.message)}</p></div>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// ─── Config ───────────────────────────────────────────
+
+async function loadConfig() {
+  try {
+    const data = await api('/api/config');
+    const c = data.config;
+    if (c.ai_api_key) document.getElementById('cfg-ai-key').placeholder = c.ai_api_key;
+    if (c.ai_api_base) document.getElementById('cfg-ai-base').value = c.ai_api_base;
+    if (c.ai_model) document.getElementById('cfg-ai-model').value = c.ai_model;
+    if (c.ms_client_id) document.getElementById('cfg-ms-client').value = c.ms_client_id;
+    if (c.ms_tenant_id) document.getElementById('cfg-ms-tenant').value = c.ms_tenant_id;
+  } catch {}
+}
+
+async function saveAiConfig() {
+  try {
+    const key = document.getElementById('cfg-ai-key').value.trim();
+    const base = document.getElementById('cfg-ai-base').value.trim();
+    const model = document.getElementById('cfg-ai-model').value.trim();
+    if (key) await api('/api/config', { key: 'ai_api_key', value: key });
+    if (base) await api('/api/config', { key: 'ai_api_base', value: base });
+    if (model) await api('/api/config', { key: 'ai_model', value: model });
+    toast('AI 配置已保存', 'success');
+    loadConfig();
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+async function saveMsConfig() {
+  try {
+    const client = document.getElementById('cfg-ms-client').value.trim();
+    const tenant = document.getElementById('cfg-ms-tenant').value.trim();
+    if (client) await api('/api/config', { key: 'ms_client_id', value: client });
+    if (tenant) await api('/api/config', { key: 'ms_tenant_id', value: tenant });
+    toast('OAuth 配置已保存', 'success');
+    loadConfig();
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+// ─── Helpers ──────────────────────────────────────────
+
+function closeModal() { document.getElementById('email-modal').style.display = 'none'; }
+
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = String(s);
+  return d.innerHTML;
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  try {
+    const dt = new Date(d);
+    return dt.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+  } catch { return d; }
+}
+
+function toast(msg, type = 'success') {
+  const el = document.createElement('div');
+  el.className = `toast toast-${type}`;
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+// ─── Init ─────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

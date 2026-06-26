@@ -1,0 +1,136 @@
+{
+  "deps": [
+    {
+      "body": "End_L",
+      "ref": "origin"
+    },
+    {
+      "body": "End_R",
+      "ref": "End_L"
+    },
+    {
+      "body": "Front",
+      "ref": "End_L"
+    },
+    {
+      "body": "Back",
+      "ref": "End_L"
+    },
+    {
+      "body": "Support_F",
+      "ref": "Front"
+    },
+    {
+      "body": "Support_B",
+      "ref": "Back"
+    },
+    {
+      "body": "Bottom",
+      "ref": "Front"
+    },
+    {
+      "body": "Lid_Rail_F",
+      "ref": "Front"
+    },
+    {
+      "body": "Lid_Rail_B",
+      "ref": "Back"
+    },
+    {
+      "body": "Lid_Stile_L",
+      "ref": "Lid_Rail_F"
+    },
+    {
+      "body": "Lid_Stile_R",
+      "ref": "Lid_Rail_F"
+    },
+    {
+      "body": "Lid_Div",
+      "ref": "Lid_Rail_F"
+    },
+    {
+      "body": "Lid_Panel_L",
+      "ref": "Lid_Stile_L"
+    },
+    {
+      "body": "Lid_Panel_R",
+      "ref": "Lid_Stile_R"
+    },
+    {
+      "body": "Pull",
+      "ref": "Lid_Rail_F"
+    },
+    {
+      "body": "UT_Front",
+      "ref": "Front"
+    },
+    {
+      "body": "UT_Back",
+      "ref": "UT_Front"
+    },
+    {
+      "body": "UT_End_L",
+      "ref": "UT_Front"
+    },
+    {
+      "body": "UT_End_R",
+      "ref": "UT_Front"
+    },
+    {
+      "body": "UT_Bottom",
+      "ref": "UT_Front"
+    },
+    {
+      "body": "UT_Div",
+      "ref": "UT_Bottom"
+    },
+    {
+      "body": "LTL_Front",
+      "ref": "Bottom"
+    },
+    {
+      "body": "LTL_Back",
+      "ref": "LTL_Front"
+    },
+    {
+      "body": "LTL_End_L",
+      "ref": "LTL_Front"
+    },
+    {
+      "body": "LTL_End_R",
+      "ref": "LTL_Front"
+    },
+    {
+      "body": "LTL_Bottom",
+      "ref": "LTL_Front"
+    },
+    {
+      "body": "LTL_Div",
+      "ref": "LTL_Bottom"
+    },
+    {
+      "body": "LTR_Front",
+      "ref": "Bottom"
+    },
+    {
+      "body": "LTR_Back",
+      "ref": "LTR_Front"
+    },
+    {
+      "body": "LTR_End_L",
+      "ref": "LTR_Front"
+    },
+    {
+      "body": "LTR_End_R",
+      "ref": "LTR_Front"
+    },
+    {
+      "body": "LTR_Bottom",
+      "ref": "LTR_Front"
+    },
+    {
+      "body": "LTR_Div",
+      "ref": "LTR_Bottom"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+/* themes/list-ranking.css — extracted from 12-list-ranking */
+
+[data-theme="list-ranking"] {
+  --bg: #FFFFFF;
+  --text: #0F172A;
+  --accent: #4F46E5;
+  --secondary: #6B7280;
+  --bg-alt: #EEF2FF;
+  /* Surface hierarchy (required by yuanfang-design tokens) */
+  --surface: #FFFFFF;
+  --surface-2: var(--bg-alt);
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.18);
+  --text-1: var(--text);
+  --text-2: var(--secondary);
+  --text-3: rgba(0,0,0,.5);
+
+  --font-title: system-ui, -apple-system, "PingFang SC", "Inter", sans-serif;
+  --font-body:  system-ui, -apple-system, "PingFang SC", "Inter", sans-serif;
+
+  --title-size-v: 72px;
+  --title-size-s: 60px;
+  --title-size-w: 50px;
+  --title-size-c: 40px;
+  --content-size: 22px;
+  --qr-size: 64px;
+
+  --decor-tl: none;
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  --accent-line: block;
+  --accent-block: none;
+  --terminal-bar: none;
+  --grid-bg: none;
+  --seal: "";
+}

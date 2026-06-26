@@ -1,0 +1,47 @@
+# memory-health-check configuration
+
+# Health dimension thresholds
+thresholds:
+  integrity:
+    healthy: 100
+    warning: 80
+    critical: 50
+  bloat_mb:
+    healthy: 500
+    warning: 2000
+    critical: 5000
+  orphan_rate:
+    # Orphan rate is normal for daily logs that don't use Obsidian links
+    # Only files that are truly dead-ends (never referenced) should count
+    healthy: 0.10      # 10% — most daily logs are orphans, that's normal
+    warning: 0.30     # 30% — might indicate dead files
+    critical: 0.50     # 50% — likely has junk files
+  dedup_rate:
+    healthy: 0.02     # 2%
+    warning: 0.10     # 10%
+    critical: 0.20     # 20%
+  freshness_rate:
+    # Lower threshold for workspaces with historical archives
+    healthy: 0.50     # 50% — more lenient for archive-heavy workspaces
+    warning: 0.25     # 25% — moderate recent activity
+    critical: 0.10    # 10% — very stale
+  coverage:
+    healthy: 0.60
+    warning: 0.40
+    critical: 0.20
+
+# Health score weights
+weights:
+  integrity: 0.30   # Most important — DB corruption is critical
+  bloat: 0.15       # Storage bloat
+  orphans: 0.10      # Orphan files (relaxed — daily logs are usually orphans)
+  dedup: 0.10       # Duplicates
+  freshness: 0.15    # Recent activity
+  coverage: 0.20     # Knowledge coverage
+
+# Auto-repair settings
+auto_repair:
+  enabled: false       # Must be explicitly enabled with --auto-repair flag
+  remove_ds_store: true
+  remove_empty_files: true
+  min_file_age_days: 7  # Only remove files older than this

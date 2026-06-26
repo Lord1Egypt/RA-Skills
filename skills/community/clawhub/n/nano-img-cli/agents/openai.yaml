@@ -1,0 +1,7 @@
+interface:
+  display_name: "Nano Img CLI"
+  short_description: "Operate the local Gemini image CLI and its defaults"
+  default_prompt: "Use $nano-img-cli to generate or configure images with the local nano-img CLI."
+
+policy:
+  allow_implicit_invocation: true

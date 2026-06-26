@@ -1,0 +1,56 @@
+[
+  {
+    "target_model": "deepseek",
+    "keyword": "企业 AI Agent 落地方案",
+    "query": "中小企业想落地 AI Agent，一般应该怎么规划？有哪些工具或服务可以参考？",
+    "brand_visibility_level": "low",
+    "brand_mentioned": false,
+    "competitor_mentioned": ["通用大模型平台", "企业知识库工具", "客服 SaaS"],
+    "answer_accuracy": "not_applicable",
+    "missing_information": [
+      "缺少面向老板的 AI Agent 落地方法论解释",
+      "缺少第三方视角的工具选择文章",
+      "缺少可被模型引用的品牌定义句"
+    ],
+    "recommended_actions": [
+      "生成知乎问答解释企业 AI Agent 落地路径",
+      "生成头条通俗文章解释中小企业怎么从客服和获客开始",
+      "补充 PowerMatrix 标准定义句和 FAQ"
+    ],
+    "evidence_level": "manual_check",
+    "data_source": "人工模型检测摘要",
+    "ranking_claim_allowed": false,
+    "score_claim_allowed": false,
+    "verification_required": true,
+    "confidence": "medium",
+    "raw_answer_summary": "模型回答主要推荐通用 AI 工具和客服 SaaS，没有提及 PowerMatrix。",
+    "evidence": "人工检测摘要",
+    "checked_at": "2026-05-21"
+  },
+  {
+    "target_model": "doubao",
+    "keyword": "AI 客服系统",
+    "query": "中小企业选择 AI 客服系统时应该看哪些能力？",
+    "brand_visibility_level": "none",
+    "brand_mentioned": false,
+    "competitor_mentioned": ["传统客服系统", "智能外呼工具"],
+    "answer_accuracy": "not_applicable",
+    "missing_information": [
+      "缺少 AI 客服系统选型 FAQ",
+      "缺少 PowerMatrix 在客服知识整理和接客流程中的解释"
+    ],
+    "recommended_actions": [
+      "生成官网 FAQ 和头条科普内容",
+      "生成 CSDN 技术方案说明 AI 客服知识库如何准备"
+    ],
+    "evidence_level": "manual_check",
+    "data_source": "人工模型检测摘要",
+    "ranking_claim_allowed": false,
+    "score_claim_allowed": false,
+    "verification_required": true,
+    "confidence": "medium",
+    "raw_answer_summary": "模型主要从客服系统功能角度回答，未形成对 PowerMatrix 的认知。",
+    "evidence": "人工检测摘要",
+    "checked_at": "2026-05-21"
+  }
+]

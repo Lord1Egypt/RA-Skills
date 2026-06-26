@@ -1,35 +1,117 @@
 ---
-name: "Skill Gatekeeper"
-description: "技能門禁系統 - 自動審核、沙盒測試、安全放行"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-gatekeeper"
-sourceUrl: "https://clawhub.ai/skills/skill-gatekeeper"
+name: skill-gatekeeper
+description: 技能門禁系統 - 自動審核、沙盒測試、安全放行
+metadata:
+  openclaw:
+    requires:
+      bins: ["bun"]
+    install:
+      - id: bun
+        kind: bun
+        label: "Bun (已安裝)"
 ---
 
-# Skill Gatekeeper
+# Skill Gatekeeper - 自動化安全審核系統
 
-> 技能門禁系統 - 自動審核、沙盒測試、安全放行
+新技能安裝後自動進入沙盒掃描，安全審核通過才放行。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-gatekeeper`
-- **Source URL:** [https://clawhub.ai/skills/skill-gatekeeper](https://clawhub.ai/skills/skill-gatekeeper)
+## 工作流程
 
-## Overview
+```
+┌─────────────────────────────────────────────────────┐
+│  1. 安裝新技能                                      │
+│           ↓                                          │
+│  2. 進入沙盒隔離環境                                 │
+│           ↓                                          │
+│  3. 本地安全掃描 (skill-vet)                        │
+│           ↓                                          │
+│  4. VirusTotal 雲端檢測                             │
+│           ↓                                          │
+│  ┌─────────────────────────────────────────┐        │
+│  │  安全通過 → 自動放行 ✅                    │        │
+│  └─────────────────────────────────────────┘        │
+│           ↓                                          │
+│  ┌─────────────────────────────────────────┐        │
+│  │  發現風險 → 隔離 + 警告 ⚠️               │        │
+│  └─────────────────────────────────────────┘        │
+└─────────────────────────────────────────────────────┘
+```
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 自動審核新技能
 ```bash
-hermes skills install clawhub/skill-gatekeeper
+skill-gatekeeper audit <技能名稱>
+```
+
+### 審核並安裝
+```bash
+skill-gatekeeper install <技能名稱或Slug>
+```
+
+### 審核所有已安裝技能
+```bash
+skill-gatekeeper audit-all
+```
+
+### 設定自動模式
+```bash
+skill-gatekeeper config --auto-mode true
+skill-gatekeeper config --vt-key <YOUR_VT_KEY>
+```
+
+## 自動放行標準
+
+| 檢測項目 | 標準 | 結果 |
+|----------|------|------|
+| 本地掃描 | 0 高風險 | ✅ 通過 |
+| VirusTotal | 0 防毒標記 | ✅ 通過 |
+| 沙盒測試 | 可正常執行 | ✅ 通過 |
+
+## 安全等級
+
+| 等級 | 標準 | 動作 |
+|------|------|------|
+| 🟢 免費放行 | 全部通過 | 正常安裝 |
+| 🟡 需審核 | 發現警告 | 需人工確認 |
+| 🔴 拒絕安裝 | 發現高風險 | 自動隔離 |
+
+## 自動隔離的風險類型
+
+- 🔴 `eval()`, `new Function()` - 動態程式碼執行
+- 🔴 `child_process.exec()` - 系統命令執行
+- 🔴 敏感路徑存取 (`~/.ssh/`, `~/.aws/` 等)
+- 🔴 鍵盤側錄模式
+- 🔴 VirusTotal 高風險標記
+
+## 隔離區
+
+被拒絕的技能會移動到隔離區：
+```
+~/.opencode/config/quarantine/<技能名稱>_<時間戳>
+```
+
+## 輸出範例
+
+```
+🔒 Skill Gatekeeper - 自動化安全審核
+─────────────────────────────────────
+
+📦 安裝技能: suspicious-skill
+📍 狀態: 進入沙盒隔離環境
+
+🔍 執行本地安全掃描...
+   🔴 發現: eval() 動態程式碼執行
+   🔴 發現: child_process.exec() 系統命令執行
+   📊 分數: 40/100
+
+☁️ 執行 VirusTotal 雲端檢測...
+   ☁️ VT: 45/70 防毒引擎標記 ⚠️
+
+⚠️ 安全審核: 未通過
+   🔴 本地風險: 高
+   ☁️ 雲端風險: 惡意
+
+📦 已移至隔離區
+   ~/.opencode/config/quarantine/suspicious-skill_20240101
 ```

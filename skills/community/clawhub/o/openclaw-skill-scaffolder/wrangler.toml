@@ -1,0 +1,4 @@
+name = "openclaw-skill-scaffolder"
+main = "src/index.ts"
+compatibility_date = "2026-03-01"
+account_id = "1e0170aaabc90ecf5f466128d1f0466a"

@@ -1,35 +1,259 @@
 ---
-name: "ia-planning"
-description: "Software implementation planning with file-based persistence (.plan/). Use when planning code changes touching 3+ files or with ambiguous scope. Skip for typ..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/compound-eng-planning"
-sourceUrl: "https://clawhub.ai/skills/compound-eng-planning"
+name: ia-planning
+class: workflow
+description: >-
+  Software implementation planning with file-based persistence (.plan/). Use
+  when planning code changes touching 3+ files or with ambiguous scope. Skip
+  for typos, single-file fixes, and research/scanning/audit work that
+  produces reports rather than code.
 ---
 
-# ia-planning
+# Planning
 
-> Software implementation planning with file-based persistence (.plan/). Use when planning code changes touching 3+ files or with ambiguous scope. Skip for typ...
+## Core Principle
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/compound-eng-planning`
-- **Source URL:** [https://clawhub.ai/skills/compound-eng-planning](https://clawhub.ai/skills/compound-eng-planning)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/compound-eng-planning
 ```
+Context window = RAM (volatile, limited)
+Filesystem     = Disk (persistent, unlimited)
+→ Anything important gets written to disk.
+```
+
+Planning tokens are cheaper than implementation tokens. Front-load thinking; scale effort to complexity.
+
+## Goal Quality Gate
+
+Run this gate before reaching for *When to Plan* below — a weak goal makes either path (full plan, flat list, or skip) waste tokens. Confirm the goal is measurable; a weak goal produces a weak plan and an unverifiable skip. Answer these five questions before proceeding:
+
+1. **What concrete thing will be true when this is done?** (named artifact, system state, or user-visible behavior — not "improve X" or "investigate Y")
+2. **What evidence will prove it?** (specific test, command, screenshot, metric — not "looks right")
+3. **What quantitative or binary threshold defines success?** (p95 < 250ms; `npm run test:checkout` passes; `gh pr view 123` shows no unresolved threads)
+4. **What scope boundaries matter?** (which files/modules/environments are in scope; which are explicitly not)
+5. **What should cause the agent to stop and ask?** (which decisions belong to the user, not Claude)
+
+Repair weak goals before continuing. Reject pure-activity goals ("make progress", "keep investigating", "improve things") -- rewrite them into a verifiable outcome or ask one concise clarification before planning. Skip this gate only when the request already names a specific artifact AND a clear success signal in the user's own words -- e.g., "fix typo in README line 47", "rename `oldFn` to `newFn` across the repo", "bump lodash to 4.17.21". Anything vaguer than that runs the gate.
+
+## When to Plan
+
+**Bias toward producing a plan.** A thin plan for small work is mild ceremony; skipping a plan when one was warranted costs real time (reinvented decisions, lost unit boundaries, no IDed requirements to verify against). When unsure, write the plan.
+
+- **Full plan** (.plan/ directory): multi-file changes, new features, refactors, >5 tool calls
+- **Flat list** (inline checklist): 3-5 file changes, clear scope, no research needed -- write a numbered task list in the conversation or a single progress.md, skip .plan/ scaffolding
+
+**Skip planning only when ALL of these hold:**
+
+- The work is **atomic** — fits in one commit, no meaningful unit boundaries to break out independently
+- There are **no design choices that constrain implementation** — no Key Technical Decisions worth recording. If the work needs the implementer to choose between two approaches, those are KTDs and a plan is warranted
+- There are **no scope boundaries worth pinning** in writing — the work scope is self-evident from the user's request
+- **No upstream artifact** (a brainstorm, an incident report, a deferred-follow-up item from a prior plan) needs traceability through this plan
+
+**Stress test the "looks atomic" case.** Many requests look atomic at first glance but hide design decisions:
+
+- *"Add caching to this endpoint"* — sounds atomic, but TTL, invalidation, cache key shape, and backend selection are all KTDs. Write the plan.
+- *"Migrate from package A to package B"* — sounds mechanical, but semantic differences between the packages create migration KTDs. Write the plan.
+- *"Add rate limiting"* — sounds small, but algorithm, scope, and configurability are all KTDs. Write the plan.
+
+vs. genuine skip cases:
+
+- *"Fix typo in README line 47"* — atomic, no KTDs, skip the plan.
+- *"Rename `oldFn` to `newFn` across the repo"* — mechanical, no design choices, skip.
+- *"Bump dependency X to v2.3.1"* — mechanical, skip (unless breaking changes warrant unit-by-unit migration).
+
+When skipping the plan doc, work proceeds directly to `/ia-work` or to implementation, and any decisions made along the way land in the commit message or `docs/solutions/` if worth carrying forward.
+
+## Planning Files
+
+Scaffold the `.plan/` directory with pre-populated templates using [init-plan.sh](./scripts/init-plan.sh):
+
+```bash
+bash init-plan.sh "Feature Name"
+```
+
+This creates `.plan/` with `task_plan.md`, `findings.md`, and `progress.md` -- each pre-populated with the correct structure. Also adds `.plan/` to `.gitignore`.
+
+Planning files are ephemeral working state -- do not commit them. When starting a new feature, old `.plan/` files are overwritten. Within a multi-phase feature, use numbered intermediate files (`01-setup.md`, `02-phase1-complete.md`) to preserve state across phases.
+
+**Note:** `.plan/` is for ephemeral working state during implementation (scratch notes, progress tracking). `docs/plans/` is for the formal plan document produced by a structured planning workflow (committed, living documents). Both coexist -- `.plan/` supports the work session, `docs/plans/` stores the committed plan.
+
+| File | Purpose | Update When |
+|------|---------|-------------|
+| `.plan/task_plan.md` | Phases, tasks, decisions, errors | After each phase |
+| `.plan/findings.md` | Research, discoveries, code analysis | After any discovery |
+| `.plan/progress.md` | Session log, test results, files changed | Throughout session |
+
+## Test Discovery (Existing Projects)
+
+For projects with existing code (not greenfield), discover the test landscape before planning:
+
+1. Search for test/spec files related to the feature area: `Glob("**/*test*")` and `Grep("<feature-keyword>", glob="**/*.{ts,php,py}")`
+2. Check test config for the canonical test command (`package.json` scripts, `pytest.ini`, `phpunit.xml`, CI config)
+3. Note which modules have coverage and which don't -- plan should extend existing test patterns, not introduce new frameworks
+
+Skip for greenfield projects where no tests exist yet.
+
+## Plan Template
+
+```markdown
+# Plan: [Feature/Task Name]
+
+## Approach
+[1-3 sentences: what and why]
+
+## Scope
+- **In**: [what's included]
+- **Out**: [what's explicitly excluded]
+
+## Global Constraints
+[Spec-wide requirements that bind every phase -- version floors, naming/format rules, platform limits, security or compatibility invariants. Copy exact values verbatim from the spec; do not paraphrase. Omit the section only when the work has no project-wide constraint. Each task implicitly inherits these.]
+
+## File Structure
+[Map ALL files that will be created or modified, with one-line responsibility for each. Lock in decomposition decisions before defining tasks. Write for a zero-context engineer.]
+
+| File | Action | Responsibility |
+|------|--------|---------------|
+| `path/to/file.ts` | Create | [what this file does] |
+| `path/to/existing.ts` | Modify | [what changes and why] |
+
+## Phase 1: [Name]
+**Files**: [specific files, max 5-8 per phase]
+**Posture**: [test-first | characterization-first | external-delegate]
+**Tasks**:
+- [ ] [Verb-first atomic task] -- `path/to/file.ts`
+- [ ] [Next task]
+**Verify**: [specific test: "POST /api/users → 201", not "test feature"]
+**Exit**: [clear done definition]
+
+## Phase 2: [Name]
+...
+
+## Execution Posture
+- [Optional per-phase signals that shape implementation sequencing]
+  - `test-first`: write failing test before implementation
+  - `characterization-first`: capture existing behavior before changing it
+  - `external-delegate`: mark units suitable for parallel/external execution
+
+## Deferred to Implementation
+- [Things intentionally left unspecified -- details that depend on what you find in the code]
+
+## Open Questions
+- [Max 3, only truly blocking unknowns]
+```
+
+### Plan Quality Rules
+
+**No placeholders in tasks.** Every task must contain actual code patterns, commands, or file paths -- not vague directives. Forbid: "TBD", "TODO", "handle errors appropriately", "add validation", "implement as needed", "similar to above", "Similar to Task N", "See above." Each task must be self-contained -- repeat the spec, code pattern, or file path in every task that needs it. The implementer may read tasks out of order, and vague tasks produce vague implementations. If a step cannot be specified concretely, it needs further breakdown before it belongs in a plan.
+
+**Type-consistency check.** After writing all tasks, scan for naming drift. If Task 3 says `clearLayers()` but Task 7 says `clearFullLayers()`, that's a bug in the plan. Function names, variable names, and file paths must be consistent across all tasks.
+
+**Numbered outputs for long sessions.** For multi-phase implementations, write numbered intermediate files to `.plan/` (e.g., `01-setup.md`, `02-phase1-complete.md`) so state survives context compaction. Read from files, not conversation memory, when resuming work after compaction or across sessions.
+
+**Session continuity.** At session start or after compaction: read `.plan/progress.md` → check which tasks are complete → review the current phase. At session end: update progress with what was done, note blockers, commit in-progress work. Mark interrupted tasks with a stopping-point note so the next session resumes without re-discovery.
+
+**SHA recording.** When a task completes and is committed, note the commit SHA inline: `- [x] Task 1.1 \`abc1234\``. Creates traceability from plan to code.
+
+**Deviation documentation.** When the implementation deviates from the plan, document why inline: `**Deviation**: [what changed and why]` under the affected task. Silent deviation breaks trust -- the orchestrator assumes the plan was followed.
+
+**No gold-plating.** Build exactly what the spec requires. If a feature, enhancement, or "nice-to-have" isn't in the requirements, don't add it. Quote the exact spec requirements in the plan and flag any additions explicitly as scope expansion needing approval. Basic first implementations are acceptable -- most need 2-3 revision cycles anyway.
+
+## Phase Sizing Rules
+
+Every phase must be **context-safe**:
+- Max 5-8 files touched
+- Max 2 dependencies on other phases
+- No single task exceeds ~2 hours of focused work -- if it would, split further
+- Fits in one focused session for a developer without external blockers
+- If a phase violates these → split it
+- **Scope challenge**: if the overall plan touches 8+ files or introduces 2+ new classes/services, challenge the scope. Ask: can this be split into smaller, independently shippable increments?
+
+## Task Decomposition
+
+### Vertical slicing
+
+Decompose by user-visible capability, not by technical layer. "User can log in" is a vertical slice -- it touches UI, API, and DB, and delivers a working feature when done. "Build the auth database schema" is a horizontal slice that delivers zero value until other slices complete.
+
+Vertical slices are independently demonstrable and testable. Each slice should produce something a stakeholder can see, try, or verify. When a phase in a plan delivers only one layer (all models, all controllers, all views), restructure it into slices that cut through all layers for one capability at a time.
+
+### Checkpoint system
+
+After every 2-3 completed tasks, pause and verify: are the completed pieces actually working together? Run tests, check integration points, confirm that data flows end-to-end. This catches drift early instead of discovering at the end that pieces don't fit.
+
+Checkpoints are lightweight -- run the test suite, hit the endpoint, render the component. Not a formal review. The goal is a fast feedback signal: "everything built so far integrates correctly." Document checkpoint results in `.plan/progress.md`.
+
+## Decision Authority
+
+Not every decision needs user input. Apply this principle:
+
+**Claude decides (technical implementation):** language, framework, architecture, libraries, file structure, naming conventions, test strategy, error handling approach, database schema details, API design patterns. Make the call, document the rationale in the plan.
+
+**User decides (experience-affecting):** scope tradeoffs ("cut X to hit deadline?"), UX choices that change what users see or do, data model decisions that constrain future product options, anything where two valid paths lead to meaningfully different user outcomes.
+
+**Heuristic:** If the decision changes what the user *experiences*, ask. If it changes how the code *works*, decide.
+
+## Clarifying Questions
+
+Scale to complexity:
+- Small task: 0-1 questions, assume reasonable defaults
+- Medium feature: 1-2 questions on critical unknowns
+- Large project: 3-5 questions (auth, data model, integrations, scope)
+
+Only ask about decisions that fall in the "user decides" category above. Make reasonable assumptions for everything else.
+
+## Task Rules
+
+Write every task as if the implementer has zero context and questionable taste. They cannot infer intent from conversation history -- everything must be in the plan.
+
+- **Atomic**: one action, 2-5 minutes to complete. "Write the failing test" is a step. "Implement the feature" is not.
+- **Verb-first**: "Add...", "Create...", "Refactor...", "Verify..."
+- **Concrete**: name specific files, endpoints, components. Include exact commands with expected output, code snippets (not "add validation"), and file paths with line ranges for modifications.
+- **Ordered**: respect dependencies, sequential when needed
+- **Verifiable**: include at least one validation task per phase
+- **Complete**: do not defer test coverage, skip edge cases, or omit error handling to save time. The marginal cost of completeness during initial implementation is near-zero compared to retrofitting later.
+
+## Operational Patterns
+
+Context management rules, error protocol (3-attempt escalation), iterative plan refinement, and the 5-question context check are in [operational-patterns.md](./references/operational-patterns.md). Read when starting a multi-phase plan or resuming after a gap.
+
+## Execution Posture Signals
+
+Plans can carry lightweight metadata per phase that shapes how `/ia-work` sequences implementation. These are optional annotations, not requirements.
+
+**Default**: tests-after — `/ia-work` writes tests alongside implementation for new features. No posture signal needed in this case.
+
+Opt-in postures for phases that need different sequencing:
+
+- **test-first**: Write failing tests before implementation. Use when behavior is well-defined and testable upfront (bug fixes always qualify; new features qualify when the contract is clear before coding).
+- **characterization-first**: Capture existing behavior with tests before changing it. Use when modifying code without existing test coverage.
+- **external-delegate**: Mark self-contained units suitable for parallel execution (separate worktree, separate agent). Use when a phase has no dependencies on other phases.
+
+Add posture signals in the phase header: `## Phase 2: Auth middleware [test-first]`. The executor inherits these silently without interrupting questions — they shape sequencing, not scope.
+
+## Plan Deepening
+
+When asked to "deepen" or "strengthen" an existing plan, load [plan-deepening.md](./references/plan-deepening.md) — targeted research workflow (additive, not restructuring), per-section enhancement format, and Enhancement Summary block at the plan head. Orchestrated by the `/ia-deepen-plan` command.
+
+## Execution Handoff
+
+When a plan is complete and ready to execute, offer the user an explicit choice rather than drifting into implementation. Present two options:
+
+1. **Subagent-driven** (recommended for multi-phase plans, independent slices, or worktree-isolated work): dispatch each phase to a focused subagent with a self-contained task prompt (Objective / Owned Files / Interface Contracts / Acceptance Criteria / Out of Scope). Orchestrator integrates results and verifies between phases. See `ia-orchestrating-swarms` for dispatch discipline. Anchor each task prompt portably -- repo/package names, public symbols, command names, config keys, branch and PR/issue references, exact error text, and relative file paths (not absolute, which vary across working directories) -- so a fresh agent starting in a different working directory can resolve every reference.
+2. **Inline execution**: main session runs the plan phase by phase. Use when phases are tightly coupled, require shared context that would be expensive to rehydrate, or the total work fits in one session without compaction risk.
+
+State the recommendation with a one-sentence reason, then wait for the user to pick. Do not auto-start either path — drifting from "plan approved" to "plan in progress" without the user picking a handoff mode is how orchestration discipline silently decays.
+
+## Verify
+
+- Plan file exists at `.plan/task_plan.md` (or `docs/plans/` for formal plans)
+- All tasks are verb-first and atomic (2-5 minutes each)
+- File structure table is complete with action and responsibility columns
+- Phase sizing respects 5-8 file limit
+- No placeholder tasks ("implement feature", "add tests") -- every task names specific files and patterns
+- Each phase delivers end-to-end functionality (not a single horizontal layer)
+- Open questions limited to 3 or fewer genuinely blocking unknowns
+
+## Integration
+
+- **This skill** is methodology (file persistence, phase sizing, context management). For full feature plans, the structured planning workflow handles research agents, issue templates, and formal output to `docs/plans/`. Apply this skill's principles whenever planning is required; reach for the full workflow when the task spans multiple files or requires architectural decisions.
+- **Architecture decisions:** when the plan involves significant trade-offs (choosing between approaches, accepting constraints), use `/ia-adr` to document the decision and what was given up. ADRs outlive the plan.
+- **Threat modeling:** when the plan introduces auth flows, payment handling, external API surfaces, or new trust boundaries, dispatch the `ia-security-sentinel` agent in threat-model mode before implementation. Architectural security gaps are cheaper to fix in the plan than in the code.
+- **Predecessor:** `ia-brainstorming` -- use first when requirements are ambiguous. When a brainstorm spec exists (`docs/brainstorms/`), use it as input and skip idea refinement
+- **Prose quality:** `ia-writing` -- use to humanize plan language and remove AI slop from plan documents
+- **Execution handoff:** after the plan is approved, proceed to `/ia-work` or execute inline

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "vaibot-guard policy",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string" },
+    "denyTokens": { "type": "array", "items": { "type": "string" } },
+    "approveTokens": { "type": "array", "items": { "type": "string" } },
+    "allowlistedDomains": { "type": "array", "items": { "type": "string" } },
+    "denyPaths": { "type": "array", "items": { "type": "string" } },
+    "redactPatterns": { "type": "array", "items": { "type": "string" } },
+    "redactEnvKeyPatterns": { "type": "array", "items": { "type": "string" } },
+    "fileMutationOutsideWorkspaceAction": { "type": "string", "enum": ["deny", "approve"] },
+    "fileMutationDeniedPathAction": { "type": "string", "enum": ["deny", "approve"] }
+  },
+  "additionalProperties": true
+}

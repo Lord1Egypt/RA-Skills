@@ -1,0 +1,60 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "keep prompt session-start -t 'session=${.session_id}' 2>/dev/null || true",
+            "statusMessage": "Reflecting..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "keep now 'User prompt: ${.prompt:500}' -t 'session=${.session_id}' 2>/dev/null || true",
+            "statusMessage": "Reflecting..."
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "keep prompt subagent-start -t 'session=${.session_id}' 2>/dev/null || true",
+            "statusMessage": "Loading context..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "keep now 'Assistant response: ${.last_assistant_message:1000}' -t 'session=${.session_id}' 2>/dev/null || true",
+            "statusMessage": "Reflecting..."
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "keep now 'Subagent response: ${.last_assistant_message:500}' -t 'session=${.session_id}' 2>/dev/null || true",
+            "statusMessage": "Reflecting..."
+          }
+        ]
+      }
+    ],
+    "SessionEnd": []
+  }
+}

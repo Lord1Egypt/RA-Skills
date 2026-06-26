@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "total": 6,
+    "passed": 4,
+    "failed": 2,
+    "skipped": 0,
+    "passRate": "66.7",
+    "duration": 27,
+    "timestamp": "2026-03-12T16:26:49.527Z"
+  },
+  "results": [
+    {
+      "id": "IT-001",
+      "name": "质量验证器集成测试",
+      "passed": true,
+      "duration": 4,
+      "timestamp": "2026-03-12T16:26:49.510Z"
+    },
+    {
+      "id": "IT-002",
+      "name": "创造性评分集成测试",
+      "passed": true,
+      "duration": 4,
+      "timestamp": "2026-03-12T16:26:49.514Z"
+    },
+    {
+      "id": "IT-003",
+      "name": "Token 控制器集成测试",
+      "passed": false,
+      "reason": "Cannot find module '../../token-manager/token-controller.js'\nRequire stack:\n- /home/ubutu/.openclaw/workspace/skills/agile-workflow/core/integration-test.js",
+      "duration": 3,
+      "timestamp": "2026-03-12T16:26:49.517Z",
+      "stack": "Error: Cannot find module '../../token-manager/token-controller.js'\nRequire stack:\n- /home/ubutu/.openclaw/workspace/skills/agile-workflow/core/integration-test.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)\n    at Function._load (node:internal/modules/cjs/loader:1192:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)\n    at Module.require (node:internal/modules/cjs/loader:1463:12)\n    at require (node:internal/modules/helpers:147:16)\n    at Object.run (/home/ubutu/.openclaw/workspace/skills/agile-workflow/core/integration-test.js:374:37)\n    at IntegrationTestRunner.runTest (/home/ubutu/.openclaw/workspace/skills/agile-workflow/core/integration-test.js:165:38)"
+    },
+    {
+      "id": "IT-004",
+      "name": "Agent 管理器集成测试",
+      "passed": true,
+      "duration": 3,
+      "timestamp": "2026-03-12T16:26:49.521Z"
+    },
+    {
+      "id": "IT-005",
+      "name": "熔断恢复器集成测试",
+      "passed": true,
+      "duration": 1,
+      "timestamp": "2026-03-12T16:26:49.523Z"
+    },
+    {
+      "id": "E2E-001",
+      "name": "端到端完整流程测试",
+      "passed": false,
+      "reason": "Cannot find module '../../token-manager/token-controller.js'\nRequire stack:\n- /home/ubutu/.openclaw/workspace/skills/agile-workflow/core/integration-test.js",
+      "duration": 3,
+      "timestamp": "2026-03-12T16:26:49.526Z"
+    }
+  ]
+}

@@ -1,0 +1,643 @@
+﻿[CmdletBinding()]
+param(
+    [switch]$Watch,
+    [int]$IntervalSec = 30,
+    [string]$Provider = "",
+    [switch]$Json,
+    [switch]$NoClear,
+    [switch]$IncludeLocalTokens,
+    [ValidateSet("english", "chinese")]
+    [string]$Language = "english",
+    [switch]$UseCache,
+    [int]$CacheMaxAgeSec = 300,
+    [switch]$AllowStaleCache,
+    [string]$CacheFile = ""
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+try {
+    $utf8 = New-Object System.Text.UTF8Encoding($false)
+    [Console]::InputEncoding = $utf8
+    [Console]::OutputEncoding = $utf8
+    $OutputEncoding = $utf8
+} catch {
+    # Best effort only; continue even if host blocks encoding changes.
+}
+
+if ([string]::IsNullOrWhiteSpace($CacheFile)) {
+    $defaultStateDir = Join-Path $env:USERPROFILE ".clawusage\.openclaw-state"
+    $stateDirInput = if (-not [string]::IsNullOrWhiteSpace($env:CLAWUSAGE_STATE_DIR)) { $env:CLAWUSAGE_STATE_DIR } else { $defaultStateDir }
+    $CacheFile = [System.IO.Path]::GetFullPath((Join-Path $stateDirInput "clawusage-last-snapshot.json"))
+}
+
+function Is-ChineseMode {
+    return ($Language -eq "chinese")
+}
+
+function T {
+    param([Parameter(Mandatory = $true)][string]$Key)
+    $zh = Is-ChineseMode
+    switch ($Key) {
+        "title" { if ($zh) { return "📊 OpenClaw 用量监控" } else { return "OpenClaw Usage Monitor" } }
+        "updated" { if ($zh) { return "更新时间" } else { return "Updated" } }
+        "languageMode" { if ($zh) { return "语言模式" } else { return "Language mode" } }
+        "source" { if ($zh) { return "数据来源" } else { return "Source" } }
+        "sourceLive" { if ($zh) { return "实时" } else { return "live" } }
+        "sourceCache" { if ($zh) { return "缓存" } else { return "cache" } }
+        "sourceStale" { if ($zh) { return "过期" } else { return "stale" } }
+        "quota" { if ($zh) { return "📉 配额" } else { return "Quota" } }
+        "noQuotaRows" { if ($zh) { return "没有可展示的配额数据。" } else { return "No usage rows matched filter." } }
+        "used" { if ($zh) { return "已用" } else { return "used" } }
+        "left" { if ($zh) { return "剩余" } else { return "left" } }
+        "resetAt" { if ($zh) { return "重置" } else { return "reset" } }
+        "timeLeft" { if ($zh) { return "剩余时间" } else { return "left" } }
+        "providerWindowNote" {
+            if ($zh) { return "Day 标签由服务端定义，重置时间以 resetAt 为准。" } else { return "Day label is provider-defined; trust resetAt." }
+        }
+        "session" { if ($zh) { return "🧠 当前会话" } else { return "Current session" } }
+        "model" { if ($zh) { return "🤖 模型" } else { return "Model" } }
+        "tokens" { if ($zh) { return "🔢 Token" } else { return "Tokens" } }
+        "context" { if ($zh) { return "🧩 上下文" } else { return "Context" } }
+        "compactions" { if ($zh) { return "🗜️ 压缩次数" } else { return "Compactions" } }
+        "time" { if ($zh) { return "🕒 时间" } else { return "Time" } }
+        "sessionKey" { if ($zh) { return "🧷 会话" } else { return "Session key" } }
+        "reasoning" { if ($zh) { return "🧠 推理" } else { return "Reasoning" } }
+        "na" { if ($zh) { return "无" } else { return "n/a" } }
+        "localTokens" { if ($zh) { return "🧾 本地 Token 汇总（来自本机日志）" } else { return "Local token summary (from local logs)" } }
+        "today" { if ($zh) { return "📅 今日" } else { return "Today" } }
+        "last7d" { if ($zh) { return "🗓️ 近7天" } else { return "Last 7d" } }
+        "last30d" { if ($zh) { return "🗓️ 近30天" } else { return "Last 30d" } }
+        "messages" { if ($zh) { return "💬 消息数" } else { return "Messages" } }
+        "refreshIn" { if ($zh) { return "将在 {0}s 后刷新，Ctrl+C 结束。" } else { return "Refresh in {0}s. Press Ctrl+C to stop." } }
+        "resetting" { if ($zh) { return "重置中" } else { return "resetting" } }
+        default { return $Key }
+    }
+}
+
+function Format-Count {
+    param([nullable[int64]]$Value)
+    if ($null -eq $Value) { return (T "na") }
+    return ([int64]$Value).ToString("N0")
+}
+
+function Format-TimeLeft {
+    param([timespan]$Span)
+    if ($Span.TotalSeconds -le 0) { return (T "resetting") }
+    if ($Span.TotalDays -ge 1) {
+        return ("{0}d {1}h {2}m" -f [int]$Span.TotalDays, $Span.Hours, $Span.Minutes)
+    }
+    if ($Span.TotalHours -ge 1) {
+        return ("{0}h {1}m {2}s" -f [int]$Span.TotalHours, $Span.Minutes, $Span.Seconds)
+    }
+    if ($Span.TotalMinutes -ge 1) {
+        return ("{0}m {1}s" -f [int]$Span.TotalMinutes, $Span.Seconds)
+    }
+    return ("{0}s" -f [int]$Span.TotalSeconds)
+}
+
+function Clamp-Percent {
+    param([double]$Value)
+    if ($Value -lt 0) { return 0 }
+    if ($Value -gt 100) { return 100 }
+    return [int][Math]::Round($Value)
+}
+
+function Resolve-CodexSecondaryWindowLabel {
+    param(
+        [int]$WindowHours,
+        [nullable[double]]$PrimaryResetAtSec,
+        [nullable[double]]$SecondaryResetAtSec
+    )
+    $weeklyGapSeconds = 4320 * 60
+    if ($WindowHours -ge 168) { return "Week" }
+    if ($WindowHours -lt 24) { return ("{0}h" -f $WindowHours) }
+    if ($PrimaryResetAtSec -ne $null -and $SecondaryResetAtSec -ne $null) {
+        if (([double]$SecondaryResetAtSec - [double]$PrimaryResetAtSec) -ge $weeklyGapSeconds) {
+            return "Week"
+        }
+    }
+    return "Day"
+}
+
+function Get-CodexAuthToken {
+    $authPath = Join-Path $env:USERPROFILE ".openclaw\agents\main\agent\auth-profiles.json"
+    if (-not (Test-Path -LiteralPath $authPath)) { return $null }
+
+    try {
+        $auth = Get-Content -LiteralPath $authPath -Raw | ConvertFrom-Json
+    } catch {
+        return $null
+    }
+    if ($null -eq $auth -or $null -eq $auth.profiles) { return $null }
+
+    $profileId = $null
+    if ($auth.PSObject.Properties.Name -contains "lastGood" -and $null -ne $auth.lastGood) {
+        if ($auth.lastGood.PSObject.Properties.Name -contains "openai-codex") {
+            $profileId = [string]$auth.lastGood.'openai-codex'
+        }
+    }
+
+    $profile = $null
+    if (-not [string]::IsNullOrWhiteSpace($profileId) -and ($auth.profiles.PSObject.Properties.Name -contains $profileId)) {
+        $profile = $auth.profiles.$profileId
+    } else {
+        foreach ($p in $auth.profiles.PSObject.Properties) {
+            if ($null -eq $p.Value) { continue }
+            if ($p.Value.PSObject.Properties.Name -contains "provider" -and [string]$p.Value.provider -eq "openai-codex") {
+                $profile = $p.Value
+                break
+            }
+        }
+    }
+
+    if ($null -eq $profile) { return $null }
+    $token = if ($profile.PSObject.Properties.Name -contains "access") { [string]$profile.access } else { "" }
+    if ([string]::IsNullOrWhiteSpace($token)) { return $null }
+    $accountId = if ($profile.PSObject.Properties.Name -contains "accountId") { [string]$profile.accountId } else { "" }
+    return [pscustomobject]@{
+        Token = $token
+        AccountId = $accountId
+    }
+}
+
+function Get-CodexUsageSnapshotDirect {
+    param([string]$ProviderFilter = "")
+
+    if (-not [string]::IsNullOrWhiteSpace($ProviderFilter) -and $ProviderFilter -ne "openai-codex") {
+        return $null
+    }
+
+    $auth = Get-CodexAuthToken
+    if ($null -eq $auth) { return $null }
+
+    $headers = @{
+        Authorization = ("Bearer {0}" -f $auth.Token)
+        "User-Agent" = "CodexBar"
+        Accept = "application/json"
+    }
+    if (-not [string]::IsNullOrWhiteSpace($auth.AccountId)) {
+        $headers["ChatGPT-Account-Id"] = $auth.AccountId
+    }
+
+    try {
+        $resp = Invoke-RestMethod -Uri "https://chatgpt.com/backend-api/wham/usage" -Headers $headers -Method GET -TimeoutSec 6
+    } catch {
+        return $null
+    }
+    if ($null -eq $resp -or $null -eq $resp.rate_limit) { return $null }
+
+    $rows = @()
+    $plan = if ($resp.PSObject.Properties.Name -contains "plan_type") { [string]$resp.plan_type } else { "" }
+    $primaryResetAtSec = $null
+
+    $primary = $resp.rate_limit.primary_window
+    if ($null -ne $primary) {
+        $limitSec = if ($primary.PSObject.Properties.Name -contains "limit_window_seconds" -and $primary.limit_window_seconds -ne $null) {
+            [int]$primary.limit_window_seconds
+        } else { 10800 }
+        $hours = [int][Math]::Round($limitSec / 3600)
+        if ($hours -lt 1) { $hours = 1 }
+
+        $used = Clamp-Percent -Value $(if ($primary.PSObject.Properties.Name -contains "used_percent" -and $primary.used_percent -ne $null) { [double]$primary.used_percent } else { 0 })
+        $remain = [Math]::Max(0, 100 - $used)
+        $resetSec = if ($primary.PSObject.Properties.Name -contains "reset_at" -and $primary.reset_at -ne $null) { [double]$primary.reset_at } else { $null }
+        $primaryResetAtSec = $resetSec
+        $reset = if ($resetSec -ne $null) { [datetimeoffset]::FromUnixTimeSeconds([int64]$resetSec).ToLocalTime() } else { $null }
+        $left = if ($reset -ne $null) { $reset - [datetimeoffset]::Now } else { [timespan]::Zero }
+
+        $rows += [pscustomobject]@{
+            Provider = "openai-codex"
+            Plan = $plan
+            Window = ("{0}h" -f $hours)
+            UsedPercent = $used
+            RemainingPercent = $remain
+            ResetAt = $(if ($reset -ne $null) { $reset.ToString("yyyy-MM-dd HH:mm:ss zzz") } else { "n/a" })
+            TimeLeft = $(if ($reset -ne $null) { Format-TimeLeft -Span $left } else { "n/a" })
+            ResetAtUnix = $(if ($reset -ne $null) { [int64]$reset.ToUnixTimeSeconds() } else { [int64]0 })
+        }
+    }
+
+    $secondary = $resp.rate_limit.secondary_window
+    if ($null -ne $secondary) {
+        $limitSec = if ($secondary.PSObject.Properties.Name -contains "limit_window_seconds" -and $secondary.limit_window_seconds -ne $null) {
+            [int]$secondary.limit_window_seconds
+        } else { 86400 }
+        $hours = [int][Math]::Round($limitSec / 3600)
+        if ($hours -lt 1) { $hours = 1 }
+
+        $used = Clamp-Percent -Value $(if ($secondary.PSObject.Properties.Name -contains "used_percent" -and $secondary.used_percent -ne $null) { [double]$secondary.used_percent } else { 0 })
+        $remain = [Math]::Max(0, 100 - $used)
+        $resetSec = if ($secondary.PSObject.Properties.Name -contains "reset_at" -and $secondary.reset_at -ne $null) { [double]$secondary.reset_at } else { $null }
+        $label = Resolve-CodexSecondaryWindowLabel -WindowHours $hours -PrimaryResetAtSec $primaryResetAtSec -SecondaryResetAtSec $resetSec
+        $reset = if ($resetSec -ne $null) { [datetimeoffset]::FromUnixTimeSeconds([int64]$resetSec).ToLocalTime() } else { $null }
+        $left = if ($reset -ne $null) { $reset - [datetimeoffset]::Now } else { [timespan]::Zero }
+
+        $rows += [pscustomobject]@{
+            Provider = "openai-codex"
+            Plan = $plan
+            Window = $label
+            UsedPercent = $used
+            RemainingPercent = $remain
+            ResetAt = $(if ($reset -ne $null) { $reset.ToString("yyyy-MM-dd HH:mm:ss zzz") } else { "n/a" })
+            TimeLeft = $(if ($reset -ne $null) { Format-TimeLeft -Span $left } else { "n/a" })
+            ResetAtUnix = $(if ($reset -ne $null) { [int64]$reset.ToUnixTimeSeconds() } else { [int64]0 })
+        }
+    }
+
+    if (($rows | Measure-Object).Count -eq 0) { return $null }
+    return [pscustomobject]@{
+        UpdatedAt = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss zzz")
+        Rows = $rows
+        Session = (Get-SessionSummary)
+    }
+}
+
+function Get-CachedSnapshot {
+    if (-not $UseCache) { return $null }
+    if (-not (Test-Path -LiteralPath $CacheFile)) { return $null }
+    if ($CacheMaxAgeSec -lt 1) { return $null }
+
+    try {
+        $obj = Get-Content -LiteralPath $CacheFile -Raw | ConvertFrom-Json
+        if ($null -eq $obj) { return $null }
+        if (-not ($obj.PSObject.Properties.Name -contains "cachedAt")) { return $null }
+        if (-not ($obj.PSObject.Properties.Name -contains "snapshot")) { return $null }
+        $cachedAt = [datetimeoffset]::Parse([string]$obj.cachedAt)
+        $ageSec = [int]([datetimeoffset]::Now - $cachedAt).TotalSeconds
+        if ($ageSec -lt 0) { $ageSec = 0 }
+        $stale = $ageSec -gt $CacheMaxAgeSec
+        if ($stale -and -not $AllowStaleCache) { return $null }
+
+        $snap = $obj.snapshot
+        if ($null -eq $snap) { return $null }
+        $snap | Add-Member -NotePropertyName FromCache -NotePropertyValue $true -Force
+        $snap | Add-Member -NotePropertyName CacheAgeSec -NotePropertyValue $ageSec -Force
+        $snap | Add-Member -NotePropertyName CacheStale -NotePropertyValue $stale -Force
+        return $snap
+    } catch {
+        return $null
+    }
+}
+
+function Save-SnapshotCache {
+    param([Parameter(Mandatory = $true)]$Snapshot)
+
+    try {
+        $cacheDir = Split-Path -Parent $CacheFile
+        if (-not [string]::IsNullOrWhiteSpace($cacheDir) -and -not (Test-Path -LiteralPath $cacheDir)) {
+            New-Item -ItemType Directory -Path $cacheDir -Force | Out-Null
+        }
+
+        [pscustomobject]@{
+            cachedAt = [datetimeoffset]::Now.ToString("o")
+            snapshot = $Snapshot
+        } | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $CacheFile -Encoding UTF8
+    } catch {
+        # Cache is best-effort only.
+    }
+}
+
+function Get-LocalTokenSummary {
+    $sessionDir = Join-Path $env:USERPROFILE ".openclaw\agents\main\sessions"
+    if (-not (Test-Path -LiteralPath $sessionDir)) {
+        return [pscustomobject]@{
+            SessionDir = $sessionDir
+            Exists = $false
+            TodayTokens = 0
+            Last7DaysTokens = 0
+            Last30DaysTokens = 0
+            MessageCount = 0
+        }
+    }
+
+    $todayStart = (Get-Date).Date
+    $d7 = $todayStart.AddDays(-6)
+    $d30 = $todayStart.AddDays(-29)
+
+    $today = [int64]0
+    $last7 = [int64]0
+    $last30 = [int64]0
+    $count = [int64]0
+
+    $files = Get-ChildItem -LiteralPath $sessionDir -File | Where-Object { $_.Name -like "*.jsonl*" }
+    foreach ($file in $files) {
+        Get-Content -LiteralPath $file.FullName | ForEach-Object {
+            if ([string]::IsNullOrWhiteSpace($_)) { return }
+            try { $obj = $_ | ConvertFrom-Json -ErrorAction Stop } catch { return }
+            if ($obj.type -ne "message") { return }
+            if ($null -eq $obj.message) { return }
+            if (-not ($obj.message.PSObject.Properties.Name -contains "provider")) { return }
+            if ([string]$obj.message.provider -ne "openai-codex") { return }
+            $ts = $null
+            try { $ts = [datetimeoffset]::Parse([string]$obj.timestamp).LocalDateTime } catch { return }
+            $u = $obj.message.usage
+            if ($null -eq $u) { return }
+
+            $tokens = [int64]0
+            if ($u.PSObject.Properties.Name -contains "totalTokens" -and $u.totalTokens -ne $null) {
+                $tokens = [int64]$u.totalTokens
+            } elseif ($u.PSObject.Properties.Name -contains "total" -and $u.total -ne $null) {
+                $tokens = [int64]$u.total
+            } else {
+                $in = if ($u.PSObject.Properties.Name -contains "input" -and $u.input -ne $null) { [int64]$u.input } else { 0 }
+                $out = if ($u.PSObject.Properties.Name -contains "output" -and $u.output -ne $null) { [int64]$u.output } else { 0 }
+                $cr = if ($u.PSObject.Properties.Name -contains "cacheRead" -and $u.cacheRead -ne $null) { [int64]$u.cacheRead } else { 0 }
+                $cw = if ($u.PSObject.Properties.Name -contains "cacheWrite" -and $u.cacheWrite -ne $null) { [int64]$u.cacheWrite } else { 0 }
+                $tokens = $in + $out + $cr + $cw
+            }
+            if ($tokens -le 0) { return }
+
+            $count++
+            if ($ts -ge $d30) { $last30 += $tokens }
+            if ($ts -ge $d7) { $last7 += $tokens }
+            if ($ts -ge $todayStart) { $today += $tokens }
+        }
+    }
+
+    return [pscustomobject]@{
+        SessionDir = $sessionDir
+        Exists = $true
+        TodayTokens = $today
+        Last7DaysTokens = $last7
+        Last30DaysTokens = $last30
+        MessageCount = $count
+    }
+}
+
+function Get-SessionSummary {
+    $sessionsPath = Join-Path $env:USERPROFILE ".openclaw\agents\main\sessions\sessions.json"
+    if (-not (Test-Path -LiteralPath $sessionsPath)) { return $null }
+
+    $all = $null
+    try {
+        $all = Get-Content -LiteralPath $sessionsPath -Raw | ConvertFrom-Json
+    } catch {
+        return $null
+    }
+    if ($null -eq $all) { return $null }
+
+    $bestKey = ""
+    $bestValue = $null
+    $bestUpdatedMs = [int64]0
+    foreach ($p in $all.PSObject.Properties) {
+        $v = $p.Value
+        if ($null -eq $v) { continue }
+        if (-not ($v.PSObject.Properties.Name -contains "updatedAt")) { continue }
+
+        $updatedMs = [int64]$v.updatedAt
+        if ($updatedMs -gt $bestUpdatedMs) {
+            $bestUpdatedMs = $updatedMs
+            $bestKey = [string]$p.Name
+            $bestValue = $v
+        }
+    }
+    if ($null -eq $bestValue) { return $null }
+
+    $model = if ($bestValue.PSObject.Properties.Name -contains "model") { [string]$bestValue.model } else { "" }
+    $provider = if ($bestValue.PSObject.Properties.Name -contains "modelProvider") { [string]$bestValue.modelProvider } else { "" }
+    $inputTokens = if ($bestValue.PSObject.Properties.Name -contains "inputTokens" -and $bestValue.inputTokens -ne $null) { [int64]$bestValue.inputTokens } else { $null }
+    $outputTokens = if ($bestValue.PSObject.Properties.Name -contains "outputTokens" -and $bestValue.outputTokens -ne $null) { [int64]$bestValue.outputTokens } else { $null }
+    $totalTokens = if ($bestValue.PSObject.Properties.Name -contains "totalTokens" -and $bestValue.totalTokens -ne $null) { [int64]$bestValue.totalTokens } else { $null }
+    $contextMax = if ($bestValue.PSObject.Properties.Name -contains "contextTokens" -and $bestValue.contextTokens -ne $null) { [int64]$bestValue.contextTokens } else { $null }
+    $compactions = if ($bestValue.PSObject.Properties.Name -contains "compactionCount" -and $bestValue.compactionCount -ne $null) { [int]$bestValue.compactionCount } else { 0 }
+    $reasoning = if ($bestValue.PSObject.Properties.Name -contains "reasoning" -and $bestValue.reasoning -ne $null -and -not [string]::IsNullOrWhiteSpace([string]$bestValue.reasoning)) { [string]$bestValue.reasoning } else { "off" }
+
+    $contextUsed = $totalTokens
+    if ($null -eq $contextUsed -and $inputTokens -ne $null -and $outputTokens -ne $null) {
+        $contextUsed = [int64]$inputTokens + [int64]$outputTokens
+    }
+    $contextPct = $null
+    if ($contextUsed -ne $null -and $contextMax -ne $null -and [int64]$contextMax -gt 0) {
+        $contextPct = [int][Math]::Round(([double]$contextUsed * 100.0) / [double]$contextMax)
+    }
+
+    $updatedAtLocal = [datetimeoffset]::FromUnixTimeMilliseconds($bestUpdatedMs).ToLocalTime()
+    return [pscustomobject]@{
+        SessionKey = $bestKey
+        UpdatedAt = $updatedAtLocal.ToString("yyyy-MM-dd HH:mm:ss zzz")
+        Model = $model
+        Provider = $provider
+        InputTokens = $inputTokens
+        OutputTokens = $outputTokens
+        TotalTokens = $totalTokens
+        ContextUsed = $contextUsed
+        ContextMax = $contextMax
+        ContextPercent = $contextPct
+        Compactions = $compactions
+        Reasoning = $reasoning
+    }
+}
+
+function Get-UsageSnapshot {
+    $direct = Get-CodexUsageSnapshotDirect -ProviderFilter $Provider
+    if ($null -ne $direct) {
+        if ($IncludeLocalTokens) {
+            $direct | Add-Member -NotePropertyName LocalTokens -NotePropertyValue (Get-LocalTokenSummary) -Force
+        }
+        return $direct
+    }
+
+    $usageObj = $null
+    $rawUsage = (& cmd /c "openclaw gateway call usage.status --json --timeout 5000 2>nul" | Out-String).Trim()
+    if (-not [string]::IsNullOrWhiteSpace($rawUsage)) {
+        try {
+            $parsedUsage = $rawUsage | ConvertFrom-Json
+            if ($null -ne $parsedUsage -and ($parsedUsage.PSObject.Properties.Name -contains "providers")) {
+                $usageObj = $parsedUsage
+            }
+        } catch {
+            $usageObj = $null
+        }
+    }
+
+    if ($null -eq $usageObj) {
+        $raw = (& cmd /c "openclaw channels list --json 2>nul" | Out-String).Trim()
+        if ([string]::IsNullOrWhiteSpace($raw)) {
+            throw "No JSON from usage.status or channels list."
+        }
+        $obj = $raw | ConvertFrom-Json
+        if ($null -eq $obj.usage -or $null -eq $obj.usage.providers) {
+            throw "Usage data not found in OpenClaw output."
+        }
+        $usageObj = $obj.usage
+    }
+
+    $updatedAtMs = [int64]0
+    if ($usageObj.PSObject.Properties.Name -contains "updatedAt" -and $usageObj.updatedAt -ne $null) {
+        $updatedAtMs = [int64]$usageObj.updatedAt
+    }
+    $updated = if ($updatedAtMs -gt 0) {
+        [datetimeoffset]::FromUnixTimeMilliseconds($updatedAtMs).ToLocalTime()
+    } else {
+        [datetimeoffset]::Now
+    }
+
+    $rows = @()
+    foreach ($p in $usageObj.providers) {
+        if (-not [string]::IsNullOrWhiteSpace($Provider) -and $p.provider -ne $Provider) { continue }
+        foreach ($w in $p.windows) {
+            $used = [int]$w.usedPercent
+            $remain = [Math]::Max(0, 100 - $used)
+            $reset = [datetimeoffset]::FromUnixTimeMilliseconds([int64]$w.resetAt).ToLocalTime()
+            $left = $reset - [datetimeoffset]::Now
+            $rows += [pscustomobject]@{
+                Provider = [string]$p.provider
+                Plan = [string]$p.plan
+                Window = [string]$w.label
+                UsedPercent = $used
+                RemainingPercent = $remain
+                ResetAt = $reset.ToString("yyyy-MM-dd HH:mm:ss zzz")
+                TimeLeft = (Format-TimeLeft -Span $left)
+                ResetAtUnix = [int64]$reset.ToUnixTimeSeconds()
+            }
+        }
+    }
+
+    $result = [pscustomobject]@{
+        UpdatedAt = $updated.ToString("yyyy-MM-dd HH:mm:ss zzz")
+        Rows = $rows
+        Session = (Get-SessionSummary)
+    }
+    if ($IncludeLocalTokens) {
+        $result | Add-Member -NotePropertyName LocalTokens -NotePropertyValue (Get-LocalTokenSummary)
+    }
+    return $result
+}
+
+function Show-Snapshot {
+    param([Parameter(Mandatory = $true)]$Snapshot)
+    Write-Host ("{0} | {1}: {2}" -f (T "title"), (T "updated"), $Snapshot.UpdatedAt)
+    Write-Host ("{0}: {1}" -f (T "languageMode"), $Language)
+
+    if ($Snapshot.PSObject.Properties.Name -contains "FromCache" -and [bool]$Snapshot.FromCache) {
+        if ($Snapshot.PSObject.Properties.Name -contains "CacheStale" -and [bool]$Snapshot.CacheStale) {
+            Write-Host ("{0}: {1} ({2}s, {3})" -f (T "source"), (T "sourceCache"), [int]$Snapshot.CacheAgeSec, (T "sourceStale"))
+        } else {
+            Write-Host ("{0}: {1} ({2}s)" -f (T "source"), (T "sourceCache"), [int]$Snapshot.CacheAgeSec)
+        }
+    } else {
+        Write-Host ("{0}: {1}" -f (T "source"), (T "sourceLive"))
+    }
+
+    if ($Snapshot.PSObject.Properties.Name -contains "Session" -and $null -ne $Snapshot.Session) {
+        $s = $Snapshot.Session
+        $na = (T "na")
+        Write-Host ""
+        Write-Host ((T "session") + ":")
+
+        $modelLine = $na
+        if (-not [string]::IsNullOrWhiteSpace([string]$s.Provider) -and -not [string]::IsNullOrWhiteSpace([string]$s.Model)) {
+            $modelLine = ("{0}/{1}" -f [string]$s.Provider, [string]$s.Model)
+        } elseif (-not [string]::IsNullOrWhiteSpace([string]$s.Model)) {
+            $modelLine = [string]$s.Model
+        } elseif (-not [string]::IsNullOrWhiteSpace([string]$s.Provider)) {
+            $modelLine = [string]$s.Provider
+        }
+        Write-Host ("- {0}: {1}" -f (T "model"), $modelLine)
+
+        $inPart = if ($null -ne $s.InputTokens) { Format-Count -Value ([int64]$s.InputTokens) } else { $na }
+        $outPart = if ($null -ne $s.OutputTokens) { Format-Count -Value ([int64]$s.OutputTokens) } else { $na }
+        if (Is-ChineseMode) {
+            $tokenLine = ("输入 {0} / 输出 {1}" -f $inPart, $outPart)
+        } else {
+            $tokenLine = ("in {0} / out {1}" -f $inPart, $outPart)
+        }
+        if ($null -ne $s.TotalTokens) {
+            if (Is-ChineseMode) {
+                $tokenLine += (" / 总计 {0}" -f (Format-Count -Value ([int64]$s.TotalTokens)))
+            } else {
+                $tokenLine += (" / total {0}" -f (Format-Count -Value ([int64]$s.TotalTokens)))
+            }
+        }
+        Write-Host ("- {0}: {1}" -f (T "tokens"), $tokenLine)
+
+        $ctxUsed = if ($null -ne $s.ContextUsed) { Format-Count -Value ([int64]$s.ContextUsed) } else { $na }
+        $ctxMax = if ($null -ne $s.ContextMax) { Format-Count -Value ([int64]$s.ContextMax) } else { $na }
+        $ctxPct = if ($null -ne $s.ContextPercent) { ("{0}%" -f [int]$s.ContextPercent) } else { $na }
+        Write-Host ("- {0}: {1} / {2} ({3})" -f (T "context"), $ctxUsed, $ctxMax, $ctxPct)
+
+        $compactions = if ($null -ne $s.Compactions) { [string]$s.Compactions } else { $na }
+        Write-Host ("- {0}: {1}" -f (T "compactions"), $compactions)
+        Write-Host ("- {0}: {1}" -f (T "reasoning"), $(if (-not [string]::IsNullOrWhiteSpace([string]$s.Reasoning)) { [string]$s.Reasoning } else { $na }))
+        Write-Host ("- {0}: {1}" -f (T "sessionKey"), $(if (-not [string]::IsNullOrWhiteSpace([string]$s.SessionKey)) { [string]$s.SessionKey } else { $na }))
+        Write-Host ("- {0}: {1}" -f (T "time"), $(if (-not [string]::IsNullOrWhiteSpace([string]$s.UpdatedAt)) { [string]$s.UpdatedAt } else { $na }))
+    }
+
+    if (($Snapshot.Rows | Measure-Object).Count -eq 0) {
+        Write-Host ""
+        Write-Host (T "noQuotaRows")
+        return
+    }
+
+    Write-Host ""
+    Write-Host ((T "quota") + ":")
+    foreach ($r in $Snapshot.Rows) {
+        $providerPlan = [string]$r.Provider
+        if (-not [string]::IsNullOrWhiteSpace([string]$r.Plan)) {
+            $providerPlan = ("{0}/{1}" -f $providerPlan, [string]$r.Plan)
+        }
+
+        if (Is-ChineseMode) {
+            Write-Host ("- {0} {1}: 🔥 {2} {3}% | ✅ {4} {5}% | ⏰ {6} {7} | ⌛ {8} {9}" -f $providerPlan, [string]$r.Window, (T "used"), [int]$r.UsedPercent, (T "left"), [int]$r.RemainingPercent, (T "resetAt"), [string]$r.ResetAt, (T "timeLeft"), [string]$r.TimeLeft)
+        } else {
+            Write-Host ("- {0} {1}: {2}% {3} | {4}% {5} | {6} {7} | {8} {9}" -f $providerPlan, [string]$r.Window, [int]$r.UsedPercent, (T "used"), [int]$r.RemainingPercent, (T "left"), (T "resetAt"), [string]$r.ResetAt, (T "timeLeft"), [string]$r.TimeLeft)
+        }
+
+        if ([string]$r.Window -ieq "Day" -and $r.PSObject.Properties.Name -contains "ResetAtUnix" -and [int64]$r.ResetAtUnix -gt 0) {
+            $reset = [datetimeoffset]::FromUnixTimeSeconds([int64]$r.ResetAtUnix).ToLocalTime()
+            $hoursUntilReset = ($reset - [datetimeoffset]::Now).TotalHours
+            if ($hoursUntilReset -gt 36) {
+                Write-Host ("  - {0}" -f (T "providerWindowNote"))
+            }
+        }
+    }
+
+    if ($IncludeLocalTokens -and $null -ne $Snapshot.LocalTokens) {
+        Write-Host ""
+        Write-Host ((T "localTokens") + ":")
+        Write-Host ("- {0}: {1}" -f (T "today"), (Format-Count -Value ([int64]$Snapshot.LocalTokens.TodayTokens)))
+        Write-Host ("- {0}: {1}" -f (T "last7d"), (Format-Count -Value ([int64]$Snapshot.LocalTokens.Last7DaysTokens)))
+        Write-Host ("- {0}: {1}" -f (T "last30d"), (Format-Count -Value ([int64]$Snapshot.LocalTokens.Last30DaysTokens)))
+        Write-Host ("- {0}: {1}" -f (T "messages"), (Format-Count -Value ([int64]$Snapshot.LocalTokens.MessageCount)))
+    }
+}
+
+if ($IntervalSec -lt 2) {
+    throw "IntervalSec must be >= 2."
+}
+
+if ($Watch) {
+    while ($true) {
+        if (-not $NoClear) { Clear-Host }
+        try {
+            $snap = Get-UsageSnapshot
+            if ($UseCache) {
+                Save-SnapshotCache -Snapshot $snap
+            }
+            if ($Json) {
+                $snap | ConvertTo-Json -Depth 8
+            } else {
+                Show-Snapshot -Snapshot $snap
+                Write-Host ((T "refreshIn") -f $IntervalSec)
+            }
+        } catch {
+            Write-Host ("[error] " + $_.Exception.Message) -ForegroundColor Red
+        }
+        Start-Sleep -Seconds $IntervalSec
+    }
+}
+
+$single = Get-CachedSnapshot
+if ($null -eq $single) {
+    $single = Get-UsageSnapshot
+    if ($UseCache) {
+        Save-SnapshotCache -Snapshot $single
+    }
+}
+if ($Json) {
+    $single | ConvertTo-Json -Depth 8
+} else {
+    Show-Snapshot -Snapshot $single
+}

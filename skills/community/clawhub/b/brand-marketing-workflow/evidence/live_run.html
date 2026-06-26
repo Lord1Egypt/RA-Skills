@@ -1,0 +1,55 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Brand Workflow — Live Run Results</title>
+<style>
+body{font-family:ui-monospace,Menlo,monospace;padding:20px;background:#0d1117;color:#c9d1d9}
+h1{color:#58a6ff}h2{color:#79c0ff;margin-top:28px}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:bold}
+.allow{background:#1a4a1a;color:#56d364}.pause{background:#4a3000;color:#e3b341}.degrade{background:#4a1414;color:#f85149}
+pre{background:#161b22;color:#e6edf3;padding:14px;white-space:pre-wrap;border-radius:8px;font-size:13px;max-height:400px;overflow-y:auto}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px}
+.label{color:#8b949e;font-size:11px}
+.val{color:#e6edf3;font-size:14px;font-weight:bold;margin-top:4px}
+</style></head><body>
+<h1>🎯 Brand Marketing Workflow — Real Run Results</h1>
+<p style="color:#8b949e">Three brands, one unified workflow. All executed via <code>run.py --demo</code>.</p>
+
+<div class="grid" id="cards"></div>
+
+<h2>Fashion Brand — Aurora Lane</h2><pre id="fashion"></pre>
+<h2>Tech Brand — ByteNest</h2><pre id="tech"></pre>
+<h2>Local Brand — River Tea</h2><pre id="local"></pre>
+
+<script>
+async function load(id, file) {
+  const t = await fetch(file).then(r => r.json());
+  document.getElementById(id).textContent = JSON.stringify(t, null, 2);
+  return t;
+}
+
+function decisionBadge(d) {
+  const cls = d === 'allow' ? 'allow' : d === 'pause' ? 'pause' : 'degrade';
+  return `<span class="badge ${cls}">${d}</span>`;
+}
+
+function card(brand, tone, channels, decision, status) {
+  return `<div class="card">
+    <div class="label">Brand</div><div class="val">${brand}</div>
+    <div class="label" style="margin-top:10px">Tone</div><div class="val" style="font-size:12px">${tone}</div>
+    <div class="label" style="margin-top:10px">Channels</div><div class="val" style="font-size:12px">${channels}</div>
+    <div class="label" style="margin-top:10px">Auth Decision</div><div style="margin-top:4px">${decisionBadge(decision)}</div>
+    <div class="label" style="margin-top:10px">Status</div><div class="val" style="font-size:12px;color:#56d364">${status}</div>
+  </div>`;
+}
+
+Promise.all([
+  load('fashion', 'run_fashion.json'),
+  load('tech', 'run_tech.json'),
+  load('local', 'run_local.json'),
+]).then(([f, t, l]) => {
+  document.getElementById('cards').innerHTML = [
+    card(f.brand_name, f.brand_brief.brand_summary.tone, f.brand_brief.channels.join(', '), f.authorization.decision, f.status),
+    card(t.brand_name, t.brand_brief.brand_summary.tone, t.brand_brief.channels.join(', '), t.authorization.decision, t.status),
+    card(l.brand_name, l.brand_brief.brand_summary.tone, l.brand_brief.channels.join(', '), l.authorization.decision, l.status),
+  ].join('');
+});
+</script></body></html>

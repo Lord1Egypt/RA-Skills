@@ -1,0 +1,40 @@
+{
+  "version": "1.0.2",
+  "file_search": {
+    "rules": [
+      { "keywords": ["in file", "in the file", "find file", "找文件", "哪个文件", "文件里", "文件中"], "weight": 3 },
+      { "keywords": [".vue", ".ts", ".js", ".py", ".go", ".rs", ".json", ".yaml", ".yml"], "weight": 2 },
+      { "keywords": ["path", "directory", "folder", "目录", "路径"], "weight": 1 }
+    ]
+  },
+  "code_search": {
+    "rules": [
+      { "keywords": ["function", "class", "interface", "type", "component", "hook", "composable", "组件", "函数", "方法", "接口"], "weight": 3 },
+      { "keywords": ["how to implement", "怎么实现", "如何实现", "用法", "示例", "example", "usage"], "weight": 2 },
+      { "keywords": ["vue", "react", "typescript", "javascript", "python", "node", "api", "provide", "inject", "ref", "computed", "watch"], "weight": 2 },
+      { "keywords": ["import", "export", "module", "require"], "weight": 1 }
+    ]
+  },
+  "doc_search": {
+    "rules": [
+      { "keywords": ["documentation", "docs", "spec", "specification", "reference", "文档", "规范", "参考"], "weight": 3 },
+      { "keywords": ["what is", "什么是", "定义", "概念", "definition"], "weight": 2 },
+      { "keywords": ["mdn", "rfc", "w3c", "ecmascript", "proposal"], "weight": 2 }
+    ]
+  },
+  "web_search": {
+    "rules": [
+      { "keywords": ["latest", "current", "today", "now", "最新", "现在", "今天", "近期"], "weight": 3 },
+      { "keywords": ["price", "pricing", "cost", "费用", "价格"], "weight": 3 },
+      { "keywords": ["news", "update", "release", "版本", "更新", "发布"], "weight": 2 },
+      { "keywords": ["why", "compare", "vs", "versus", "对比", "为什么"], "weight": 1 }
+    ]
+  },
+  "api_search": {
+    "rules": [
+      { "keywords": ["endpoint", "rest", "graphql", "openapi", "swagger", "接口", "api文档"], "weight": 3 },
+      { "keywords": ["request", "response", "http", "get", "post", "put", "delete", "patch"], "weight": 2 },
+      { "keywords": ["header", "body", "query param", "authorization", "auth", "token"], "weight": 2 }
+    ]
+  }
+}

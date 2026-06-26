@@ -1,0 +1,120 @@
+{
+  "name": "FarmDash Futures Strategist",
+  "version": "2.3.1",
+  "description": "Adaptive Hyperliquid perps execution engine for OpenClaw. Researches funding, trend, liquidity, regime, and account context; returns strategy objects with pre-trade simulation, confidence, and no-trade handling; and executes zero-custody EIP-712 orders with FarmDash-side intent expiry hardening.",
+  "tags": [
+    "defi",
+    "ai-agent",
+    "autonomous-agent",
+    "openclaw",
+    "clawhub",
+    "mcp",
+    "crypto",
+    "web3",
+    "onchain",
+    "hyperliquid",
+    "perps",
+    "futures",
+    "trading",
+    "funding-rates",
+    "funding-arb",
+    "market-making",
+    "risk-management",
+    "liquidation",
+    "zero-custody",
+    "eip-712",
+    "trail-heat",
+    "farmdash"
+  ],
+  "author": "FarmDash Pioneers (@Parmasanandgarlic)",
+  "homepage": "https://www.farmdash.one/agents",
+  "tools": [
+    {
+      "name": "scan_funding_rates",
+      "description": "Scan cross-venue funding opportunities.\n\n2.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "scan_market_conditions",
+      "description": "Read EMA, RSI, MACD, ADX, ATR, Bollinger Bands, volume ratio, and Z-score for one perp asset.\n\n3.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "get_futures_account",
+      "description": "Inspect equity, open positions, available margin, drawdown state, and guardrail pressure.\n\n4.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "analyze_futures_strategy",
+      "description": "Primary research tool. Returns the strategy recommendation, confidence score, market regime, strategy object, adaptive risk profile, pre-trade simulation, portfolio context, and an explicit",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "calculate_position_size",
+      "description": "Inspect sizing math separately when the user wants to validate risk and margin.\n\n6.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "execute_perp_order",
+      "description": "Execute only after research and explicit user confirmation.\n\n7.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "execution"
+    },
+    {
+      "name": "cancel_perp_order",
+      "description": "Cancel stale or superseded open orders.\n\n8.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "get_agent_performance",
+      "description": "Use as the feedback loop for strategy review, drawdown response, and campaign-level confidence adjustments.\n\nTreat older names in legacy docs as aliases only, not separate tools.\nThere is no standalone",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    }
+  ],
+  "operatingRules": [],
+  "requiredEnv": {
+    "FARMDASH_API_KEY": {
+      "description": "Optional Bearer token for Pioneer or Syndicate tier. Scout mode works with no key or with the public fd_scout_free token. Never share private keys, seed phrases, or mnemonics with this skill — perps execution uses EIP-712 local signing only via the user's Hyperliquid API wallet.",
+      "required": false
+    }
+  }
+}

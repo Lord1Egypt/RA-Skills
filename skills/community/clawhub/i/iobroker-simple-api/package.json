@@ -1,0 +1,14 @@
+{
+  "name": "iobroker-simple-api",
+  "version": "1.3.0",
+  "description": "ioBroker Simple-API Skill for OpenClaw - Read-only config, full ioBroker REST access",
+  "main": "index.js",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.14.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "slug": "md-img-r2",
+  "title": "Markdown 图片直传 R2",
+  "category": "tooling",
+  "summary": "扫描 Markdown 中的本地图片，直接上传到 Cloudflare R2，并回写可公开访问的 URL。",
+  "keywords": ["Markdown", "Cloudflare R2", "S3", "图床替换"],
+  "user_needs": ["批量上传 Markdown 本地图片到 R2", "不依赖 PicList 替换图片链接", "处理文章多图发布流程"],
+  "source_dir": "md-img-r2",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

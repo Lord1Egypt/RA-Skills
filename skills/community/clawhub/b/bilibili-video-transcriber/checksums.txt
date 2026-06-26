@@ -1,0 +1,13 @@
+B站视频转录专家 v1.0.0 文件校验和
+生成时间: 2026-05-17 13:18:12
+============================================================
+
+bilibili-transcriber-pro-20260517.zip
+SHA256: 7179e12cb71f5e68cce1a47fe0ca06a3a2727156e49d01ed7b46214fb6b2c9ac
+
+bilibili-transcriber-pro-20260517.tar.gz
+SHA256: ce1698d1e26e360012f14dffd28b2b3d7c63848894e51638cd9a0a80282b95c5
+
+bilibili-transcriber-pro-clawhub-20260517.zip
+SHA256: 42098fd228de07160c7be086298758cdd152eae42bcae6d9a088459f2a768cb3
+

@@ -1,0 +1,28 @@
+{
+  "name": "@zhencap/mcp-skill",
+  "version": "2.0.1",
+  "description": "ZhenCap MCP Skill for OpenClaw - AI-powered investment analysis",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "zhencap",
+    "mcp",
+    "openclaw",
+    "investment",
+    "analysis"
+  ],
+  "author": "ZhenCap Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "mcp": {
+    "manifest": "./manifest.json",
+    "entry": "./index.js"
+  }
+}

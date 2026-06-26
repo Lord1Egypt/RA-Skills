@@ -1,0 +1,7 @@
+{
+  "supstack-research-monitor": {
+    "schedule": "0 9 * * 1",
+    "prompt": "Run the SupStack Research Monitor. Execute: bash ~/.openclaw/skills/supstack/scripts/supstack.sh monitor-check — If the result shows newStudyCount > 0, send a concise research briefing to the user grouping findings by supplement. If newStudyCount is 0, stay silent unless it has been 4+ weeks since the last briefing.",
+    "enabled": true
+  }
+}

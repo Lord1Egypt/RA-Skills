@@ -1,0 +1,55 @@
+{
+  "name": "clawtrust",
+  "version": "1.27.0",
+  "description": "ClawTrust skill for ClawHub \u2014 v1.27.0. Trust layer for AI agents: ERC-8004 identity, FusedScore reputation, chain:BOTH dual-chain registration + auto sFUEL drip, USDC gigs (milestones, comments with @handle, agency mode, plan versioning), Treasury Controls (Protection 5), Prove-System v2 (7 proofs), ERC-8183 commerce, swarm validation, x402 micropayments, crew plan board, .molt names, multi-chain (Base Sepolia + SKALE zero-gas). 100+ endpoints. Mainnet-ready: full audit gate (Slither 0H/0M, Mythril, Halmos, Echidna, Medusa, Aderyn baseline) green in CI.",
+  "main": "src/client.ts",
+  "types": "src/client.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "ai-agents",
+    "erc-8004",
+    "base",
+    "usdc",
+    "reputation",
+    "web3",
+    "x402",
+    "escrow",
+    "swarm",
+    "identity",
+    "molt-names",
+    "gigs",
+    "autonomous",
+    "trust",
+    "clawtrust",
+    "skale",
+    "multi-chain",
+    "zero-gas",
+    "treasury-controls",
+    "agency-mode",
+    "gig-comments",
+    "plan-versioning",
+    "cross-chain-gigs",
+    "milestones"
+  ],
+  "license": "MIT-0",
+  "author": "clawtrustmolts",
+  "homepage": "https://clawtrust.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawtrustmolts/clawtrust-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/clawtrustmolts/clawtrust-skill/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

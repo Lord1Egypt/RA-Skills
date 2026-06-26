@@ -1,35 +1,34 @@
 ---
-name: "慢慢买比价助手"
-description: "慢慢买历史价格查询与比价工具，提供商品全网历史价格走势图、真假促销识别和购买时机建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/manmanbuy"
-sourceUrl: "https://clawhub.ai/skills/manmanbuy"
+name: 慢慢买比价助手
+description: 慢慢买历史价格查询与比价工具，提供商品全网历史价格走势图、真假促销识别和购买时机建议。
+version: 0.1.0
 ---
 
 # 慢慢买比价助手
 
-> 慢慢买历史价格查询与比价工具，提供商品全网历史价格走势图、真假促销识别和购买时机建议。
+慢慢买历史价格查询与比价工具。提供全网商品的历史价格走势图，帮助用户识别真假促销、判断最佳购买时机，结合CPS返利让用户在对的时间以最低价格买到想要的商品。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/manmanbuy`
-- **Source URL:** [https://clawhub.ai/skills/manmanbuy](https://clawhub.ai/skills/manmanbuy)
+## 触发词
 
-## Overview
+慢慢买、慢慢买比价、manmanbuy、历史价格、价格走势、真假促销、比价工具
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/manmanbuy
+- **历史价格查询**：全网商品历史价格走势图
+- **真假促销识别**：识别先涨后降的虚假促销
+- **全网比价**：同商品在各平台的当前价格对比
+- **降价提醒**：关注商品降到目标价时自动提醒
+
+## 输出格式
+
+```
+📈 慢慢买比价报告
+
+商品：[商品名称]
+当前价：¥[价格]（[平台]）
+历史最低：¥[金额]（[日期]）
+历史最高：¥[金额]（[日期]）
+近30天均价：¥[金额]
+促销判断：[真促销/疑似先涨后降]
+购买建议：[现在入手/等等再买]
 ```

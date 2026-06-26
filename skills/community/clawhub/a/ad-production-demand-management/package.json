@@ -1,0 +1,26 @@
+{
+  "name": "ad-production-demand-management",
+  "version": "1.0.0",
+  "description": "广告创意需求管理技能 - 处理需求发起、评审、拆解全流程",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "demand",
+    "workflow",
+    "ad-production",
+    "ai"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

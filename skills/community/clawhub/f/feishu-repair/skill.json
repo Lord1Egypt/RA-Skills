@@ -1,0 +1,20 @@
+{
+  "name": "Feishu Repair",
+  "description": "自动修复飞书-自动修复飞书群聊+自动修复会话 - 诊断 Gateway 连接、权限配置、消息投递问题",
+  "version": "2.0.0",
+  "identifier": "feishu-repair",
+  "author": "c32",
+  "category": "monitoring",
+  "tags": [
+    "feishu",
+    "repair",
+    "group-chat",
+    "session",
+    "diagnose"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "systemd": true
+  },
+  "scripts": {}
+}

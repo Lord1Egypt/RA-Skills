@@ -1,35 +1,82 @@
 ---
-name: "agent-memory-mcp"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/agent-memory-mcp"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/agent-memory-mcp"
+name: agent-memory-mcp
+author: Amit Rathiesh
+description: A hybrid memory system that provides persistent, searchable knowledge management for AI agents (Architecture, Patterns, Decisions).
 ---
 
-# agent-memory-mcp
+# Agent Memory Skill
 
-> Indexed by skills.sh from davila7/claude-code-templates
+This skill provides a persistent, searchable memory bank that automatically syncs with project documentation. It runs as an MCP server to allow reading/writing/searching of long-term memories.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/agent-memory-mcp`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/agent-memory-mcp](https://skills.sh/davila7/claude-code-templates/agent-memory-mcp)
+## Prerequisites
 
-## Overview
+- Node.js (v18+)
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **Clone the Repository**:
+   Clone the `agentMemory` project into your agent's workspace or a parallel directory:
+
+   ```bash
+   git clone https://github.com/webzler/agentMemory.git .agent/skills/agent-memory
+   ```
+
+2. **Install Dependencies**:
+
+   ```bash
+   cd .agent/skills/agent-memory
+   npm install
+   npm run compile
+   ```
+
+3. **Start the MCP Server**:
+   Use the helper script to activate the memory bank for your current project:
+
+   ```bash
+   npm run start-server <project_id> <absolute_path_to_target_workspace>
+   ```
+
+   _Example for current directory:_
+
+   ```bash
+   npm run start-server my-project $(pwd)
+   ```
+
+## Capabilities (MCP Tools)
+
+### `memory_search`
+
+Search for memories by query, type, or tags.
+
+- **Args**: `query` (string), `type?` (string), `tags?` (string[])
+- **Usage**: "Find all authentication patterns" -> `memory_search({ query: "authentication", type: "pattern" })`
+
+### `memory_write`
+
+Record new knowledge or decisions.
+
+- **Args**: `key` (string), `type` (string), `content` (string), `tags?` (string[])
+- **Usage**: "Save this architecture decision" -> `memory_write({ key: "auth-v1", type: "decision", content: "..." })`
+
+### `memory_read`
+
+Retrieve specific memory content by key.
+
+- **Args**: `key` (string)
+- **Usage**: "Get the auth design" -> `memory_read({ key: "auth-v1" })`
+
+### `memory_stats`
+
+View analytics on memory usage.
+
+- **Usage**: "Show memory statistics" -> `memory_stats({})`
+
+## Dashboard
+
+This skill includes a standalone dashboard to visualize memory usage.
+
 ```bash
-hermes skills install skills-sh/davila7/claude-code-templates/agent-memory-mcp
+npm run start-dashboard <absolute_path_to_target_workspace>
 ```
+
+Access at: `http://localhost:3333`

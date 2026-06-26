@@ -1,0 +1,81 @@
+#!/bin/bash
+# Amazon Price Tracker - Einfache ASIN-Verwaltung
+# Usage: ama <product-name-or-asin>
+#        ama --list
+#        ama --alerts
+
+SCRIPT_DIR="/home/openclaw/workspace/skills/amazon-research/scripts"
+DB_PATH="/home/openclaw/workspace/Projects/Amazon-Research/amazon_prices.db"
+
+# Show help if no arguments
+if [ $# -eq 0 ]; then
+    echo "🛒 Amazon Price Tracker"
+    echo ""
+    echo "Usage: ama <product-name-or-asin>"
+    echo "       ama --list"
+    echo "       ama --alerts"
+    echo ""
+    echo "Examples:"
+    echo "  ama \"PlayStation 5\"         # Add to tracker"
+    echo "  ama B0BQXKDZGK               # Add ASIN to tracker"
+    echo "  ama --list                   # Show tracked products"
+    echo "  ama --alerts                 # Check price alerts"
+    echo ""
+    echo "Note: Manual price updates via ama --update <ASIN> <price>"
+    exit 0
+fi
+
+# Handle options
+case "$1" in
+    --list|-l)
+        python3 "$SCRIPT_DIR/amazon_tracker.py" list
+        exit 0
+        ;;
+    --alerts|-a)
+        python3 "$SCRIPT_DIR/amazon_tracker.py" check-alerts
+        exit 0
+        ;;
+    --update|-u)
+        if [ -z "$3" ]; then
+            echo "Usage: ama --update <ASIN> <price>"
+            exit 1
+        fi
+        python3 "$SCRIPT_DIR/amazon_tracker.py" update "$2" "$3"
+        exit 0
+        ;;
+    --help|-h)
+        echo "🛒 Amazon Price Tracker"
+        echo ""
+        echo "Tracks Amazon product prices and alerts on deals."
+        echo ""
+        echo "Preise müssen manuell aktualisiert werden:"
+        echo "  ama --update <ASIN> <price>"
+        exit 0
+        ;;
+esac
+
+# Check if input looks like an ASIN (starts with B and is 10 chars)
+INPUT="$1"
+if [[ "$INPUT" =~ ^B[0-9A-Z]{9,}$ ]]; then
+    # It's an ASIN - add to tracker
+    echo "📝 Adding ASIN to tracker: $INPUT"
+    python3 "$SCRIPT_DIR/amazon_tracker.py" add "$INPUT" "Product $INPUT" --category "Tracked"
+    echo ""
+    echo "💡 Preis manuell aktualisieren:"
+    echo "  ama --update $INPUT <preis>"
+    
+else
+    # It's a product name - add to tracker
+    echo "📝 Adding product to tracker: $INPUT"
+    
+    # Create safe ASIN (simulated)
+    ASIN="B$(date +%s | tail -c 9)"
+    
+    python3 "$SCRIPT_DIR/amazon_tracker.py" add "$ASIN" "$INPUT" --category "Tracked"
+    
+    echo ""
+    echo "💡 ASIN auf Amazon finden und hinzufügen:"
+    echo "  ama <ASIN>"
+fi
+
+exit 0

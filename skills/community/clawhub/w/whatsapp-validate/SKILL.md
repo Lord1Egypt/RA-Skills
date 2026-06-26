@@ -1,35 +1,35 @@
 ---
-name: "WhatsApp Validate"
-description: "Check if phone numbers exist in the local Baileys session cache"
-category: "other"
-source: "ClawHub"
-tags: [baileys, offline, phone, validate, verification, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-validate"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-validate"
+name: whatsapp-validate
+description: Check if phone numbers exist in the local Baileys session cache
 ---
 
-# WhatsApp Validate
+# WhatsApp Validate Skill
 
-> Check if phone numbers exist in the local Baileys session cache
+Validate whether phone numbers have been seen by the connected WhatsApp account.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-validate`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-validate](https://clawhub.ai/skills/whatsapp-validate)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-validate
 ```
+exec({ cmd: "node <skill_dir>/scripts/validate.js COMMAND [ARGS]" })
+```
+
+## Commands
+
+### Check Single Number
+```
+exec({ cmd: "node <skill_dir>/scripts/validate.js check \"5511999999999\"" })
+```
+
+### Batch Check
+```
+exec({ cmd: "node <skill_dir>/scripts/validate.js batch \"5511999999999,5511888888888\"" })
+```
+
+### List Known Numbers
+```
+exec({ cmd: "node <skill_dir>/scripts/validate.js list 50" })
+```
+
+## Note
+
+This skill checks the local cache only. A number not found may still have WhatsApp — it simply hasn't interacted with the bot yet.

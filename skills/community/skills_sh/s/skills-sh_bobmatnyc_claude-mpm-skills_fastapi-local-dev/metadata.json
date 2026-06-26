@@ -1,0 +1,33 @@
+{
+  "name": "fastapi-local-dev",
+  "version": "1.1.0",
+  "category": "toolchain",
+  "toolchain": "python",
+  "framework": "fastapi",
+  "tags": [
+    "api",
+    "python",
+    "fastapi",
+    "uvicorn",
+    "gunicorn",
+    "reload",
+    "docker",
+    "systemd",
+    "pm2",
+    "wsl",
+    "troubleshooting"
+  ],
+  "entry_point_tokens": 173,
+  "full_tokens": 1845,
+  "author": "bobmatnyc",
+  "license": "MIT",
+  "requires": [],
+  "updated": "2025-12-17",
+  "source_path": "toolchains/python/frameworks/fastapi-local-dev/SKILL.md",
+  "source": "https://github.com/bobmatnyc/claude-mpm",
+  "created": "2025-11-21",
+  "modified": "2025-12-17",
+  "maintainer": "Claude MPM Team",
+  "attribution_required": true,
+  "repository": "https://github.com/bobmatnyc/claude-mpm-skills"
+}

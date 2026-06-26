@@ -1,35 +1,197 @@
 ---
-name: "日用品保质期管理"
-description: "日用品保质期管理。基于飞书多维表格，支持快速录入、查询、删除商品保质期信息。 首次使用自动初始化多维表格和定时过期提醒。 触发词：保质期、过期、临期、查保质期、还有多久过期。 也匹配："加个xxx"、"录入xxx"、"删除xxx"等简短指令。 注意：当用户仅提到"保质期"一词时也应触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shelflife"
-sourceUrl: "https://clawhub.ai/skills/shelflife"
+name: shelflife
+description: >
+  日用品保质期管理。基于飞书多维表格，支持快速录入、查询、删除商品保质期信息。
+  首次使用自动初始化多维表格和定时过期提醒。
+  触发词：保质期、过期、临期、查保质期、还有多久过期。
+  也匹配："加个xxx"、"录入xxx"、"删除xxx"等简短指令。
+  注意：当用户仅提到"保质期"一词时也应触发此技能。
 ---
 
 # 日用品保质期管理
 
-> 日用品保质期管理。基于飞书多维表格，支持快速录入、查询、删除商品保质期信息。 首次使用自动初始化多维表格和定时过期提醒。 触发词：保质期、过期、临期、查保质期、还有多久过期。 也匹配："加个xxx"、"录入xxx"、"删除xxx"等简短指令。 注意：当用户仅提到"保质期"一词时也应触发此技能。
+## 配置
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shelflife`
-- **Source URL:** [https://clawhub.ai/skills/shelflife](https://clawhub.ai/skills/shelflife)
+配置文件路径：`~/.openclaw/workspace/skills/shelflife/config.json`
 
-## Overview
+首次使用时读取此文件，如果 `initialized` 为 false 或 app_token 为空，则执行**自动初始化流程**。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shelflife
+```json
+{
+  "bitable": {
+    "app_token": "",
+    "table_id": "",
+    "initialized": false
+  },
+  "cron": {
+    "reminder_job_id": ""
+  }
+}
 ```
+
+## 首次使用 - 自动初始化
+
+当 `config.json` 中 `initialized` 为 false 或 app_token 为空时，**在用户首次触发保质期相关操作前自动执行**：
+
+### 步骤 1：创建多维表格
+
+调用 `feishu_bitable_app` create，创建名为 **"日用品保质期管理"** 的多维表格。
+
+### 步骤 2：创建数据表及字段
+
+调用 `feishu_bitable_app_table` create，创建表 **"商品列表"**，一次性定义所有字段：
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| 商品名称 | 文本(1) | 主键，必填 |
+| 生产日期 | 日期(5) | 可选 |
+| 保质期截止 | 日期(5) | 录入时必填 |
+| 有效期时长 | 文本(1) | 如"12个月"，可选 |
+| 剩余天数 | 数字(2) | 公式自动计算 |
+| 状态 | 单选(3) | 公式自动计算：正常/即将过期/已过期 |
+| 已用完 | 复选框(7) | 默认 false |
+| 标签 | 单选(3) | 食品/罐装/日用品/洗护用品 |
+
+**字段定义（create 时传入的 fields 数组）：**
+
+```
+商品名称: type=1 (文本)
+生产日期: type=5 (日期)
+保质期截止: type=5 (日期)
+有效期时长: type=1 (文本)
+已用完: type=7 (复选框)
+标签: type=3 (单选), property.options=["食品","罐装","日用品","洗护用品"]
+```
+
+**注意：** 剩余天数和状态两个字段依赖公式，多维表格 API 不支持直接创建公式字段，需在表格创建后通过 `feishu_bitable_app_table_field` create 补充：
+
+- **剩余天数**：数字类型，公式为 `DATETIME_DIFF(保质期截止, TODAY(), "day")`
+- **状态**：单选类型，公式逻辑：
+  - 剩余天数 ≤ 0 → "已过期"
+  - 剩余天数 ≤ 30 → "即将过期"
+  - 其他 → "正常"
+  - 选项：`["正常", "即将过期", "已过期"]`
+
+> **实际操作：** 由于多维表格字段 API 对公式字段的支持有限，如果无法通过 API 创建公式字段，则退化为**由 agent 在每次操作时手动计算**剩余天数和状态字段。此时字段类型仍为数字和单选，但不设置公式，而是在录入/查询时由 agent 计算。
+>
+> **推荐方案：** 先尝试创建公式字段，如果 API 不支持则手动计算。在 SKILL 使用中统一按"agent 计算"方式处理，保持兼容。
+
+### 步骤 3：创建视图
+
+调用 `feishu_bitable_app_table_view` create：
+- 默认视图（表格已有）：按剩余天数升序排列
+- 新增视图 **"临期提醒"**：grid 类型，筛选状态为"即将过期"或"已过期"且已用完为 false 的记录
+
+### 步骤 4：更新配置文件
+
+将 app_token 和 table_id 写入 config.json，设置 initialized=true。使用 edit 工具更新文件。
+
+### 步骤 5：创建定时过期提醒
+
+调用 `cron` add，创建每日定时检查任务：
+
+```json
+{
+  "name": "保质期过期提醒",
+  "schedule": { "kind": "cron", "expr": "0 9 * * *", "tz": "Asia/Shanghai" },
+  "payload": {
+    "kind": "agentTurn",
+    "message": "执行保质期过期提醒检查：读取 config.json 获取多维表格信息，查询所有「状态」为「即将过期」或「已过期」且「已用完」为 false 的商品记录。如果有，整理成简洁列表通过飞书发送给当前用户（从消息上下文获取 SenderId）；如果没有，静默结束不发消息。config.json 路径：~/.openclaw/workspace/skills/shelflife/config.json"
+  },
+  "sessionTarget": "isolated",
+  "delivery": { "mode": "none" }
+}
+```
+
+将返回的 jobId 写入 config.json 的 cron.reminder_job_id。
+
+### 步骤 6：转移所有权
+
+多维表格创建后，将所有权转移给当前用户（从消息上下文获取 SenderId）。
+
+### 初始化完成提示
+
+告知用户："✅ 保质期管理已初始化完成！已创建多维表格并设置每日 9:00 自动过期提醒。"
+
+## 字段结构
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| 商品名称 | 文本(1) | 主键，必填 |
+| 生产日期 | 日期(5) | 可选 |
+| 保质期截止 | 日期(5) | 录入时必填 |
+| 有效期时长 | 文本(1) | 如"12个月"，可选 |
+| 剩余天数 | 数字(2) | 由 agent 计算填入 |
+| 状态 | 单选(3) | 由 agent 计算填入：正常/即将过期/已过期 |
+| 已用完 | 复选框(7) | 默认 false |
+| 标签 | 单选(3) | 食品/罐装/日用品/洗护用品，可选 |
+
+## 操作流程
+
+### 前置检查
+
+每次执行操作前：
+1. 读取 `config.json`
+2. 如果 `initialized` 为 false 或 app_token 为空 → 执行自动初始化流程
+3. 从 config.json 获取 app_token 和 table_id
+
+### Agent 计算规则
+
+在录入、查询时，agent 需要计算并填入**剩余天数**和**状态**字段：
+
+- **剩余天数** = `保质期截止日期 - 今天`（天数）
+- **状态**：
+  - 剩余天数 ≤ 0 → "已过期"
+  - 剩余天数 ≤ 30 → "即将过期"
+  - 其他 → "正常"
+
+### 录入商品
+
+用户说"添加xxx"、"录入xxx"、"加个xxx"时：
+
+1. 从用户输入提取：商品名称、保质期截止日期、标签（可选）、生产日期（可选）、有效期时长（可选）
+2. 如果用户只给了商品名和保质期时长（如"12个月"），自动计算截止日期
+3. 调用 `feishu_bitable_app_table_record` 的 `create`，写入字段：
+   - 商品名称、保质期截止、标签、生产日期、有效期时长
+   - **剩余天数**：计算今天到截止日的天数差
+   - **状态**：根据剩余天数判断
+4. 日期格式传毫秒时间戳（number 类型）
+5. 录入成功后简要确认
+
+### 查询
+
+**查所有：** 用户说"看一下"、"列表"、"都有什么"
+→ `list` action，sort 按剩余天数升序排列
+
+**查临期/过期：** 用户说"快过期的"、"临期"、"已过期"
+→ `list` + filter，状态 is "即将过期" 或 "已过期"，且已用完 is false
+
+**查具体商品：** 用户说"xxx还有多久"
+→ `list` + filter 商品名称 contains 关键词
+
+### 标记用完
+
+当收到飞书卡片按钮回调（action: `shelflife_used`）或用户说"用完xxx"、"吃完xxx"时：
+1. 获取 record_id（从回调 value 中）或通过商品名称查询
+2. 用 `update` action 将「已用完」设为 true
+3. 简要确认："已标记 xxx 为已用完"
+
+### 删除
+
+用户说"删除xxx"、"去掉xxx"时：
+1. 先查询确认是哪条记录
+2. 用 `delete` action 删除
+3. 简要确认
+
+### 手动触发过期检查
+
+用户说"检查过期"、"过期提醒"时：
+- 直接查询多维表格中状态为"即将过期"或"已过期"且已用完为 false 的记录
+- 整理列表展示给用户
+
+## 注意事项
+
+- 日期写入时使用毫秒时间戳（number），不要用字符串
+- 剩余天数和状态由 agent 在录入时计算填入，不是表格公式
+- 如果用户输入信息不全，主动询问缺失的必填项（商品名称 + 保质期截止日期/时长）
+- 每日 9:00 定时检查由 cron 任务自动执行，agent 在 isolated session 中运行

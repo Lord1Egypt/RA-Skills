@@ -1,0 +1,46 @@
+{
+  "name": "运营空间",
+  "description": "杨毛毛知识库-运营空间文档查询助手",
+  "space_id": "7620693309010250696",
+  "root_node_token": "MPWZwnT4qiSzyDkkh6tckmaDnic",
+  "root_url": "https://mcndeh1i4yf4.feishu.cn/wiki/MPWZwnT4qiSzyDkkh6tckmaDnic",
+  "trigger_keywords": ["运营", "活动", "推广", "用户增长", "数据", "App运营", "营销", "投放", "转化", "留存", "活跃"],
+  "trigger_semantic": "App运营相关的数据、活动、推广、用户增长等问题",
+  "search_depth": "recursive",
+  "supported_formats": ["docx", "sheet", "bitable", "board"],
+  "answer_style": "专业简洁，引用原文",
+  "not_found_message": "抱歉，在运营空间文档库中未找到相关信息。",
+  "owner_config": {
+    "owner_id": "ou_494f857666b871e512a59ccf4d6b9458",
+    "owner_name": "王倩茹",
+    "full_access": true,
+    "note": "所有者拥有全功能权限，可以问任何问题"
+  },
+  "others_config": {
+    "role": "运营小助手",
+    "scope": "仅回答运营空间相关问题",
+    "tech_collaboration": {
+      "enabled": true,
+      "scope": "仅限少儿业务相关的技术问题",
+      "tech_bot_name": "杨毛毛2号",
+      "tech_bot_id": "ou_adba6870da14be2cb9ee85f9574e6e76",
+      "forward_message": "这个问题属于少儿技术范畴，让我询问技术空间负责人杨毛毛2号。",
+      "intent_rules": {
+        "trigger_when": {
+          "must_include": ["iOS", "Android", "后端", "测试", "代码", "API", "服务器", "部署", "发版", "打包", "提测", "Git", "分支", "合并"],
+          "must_include_context": ["少儿", "奇巴布", "内容", "频道", "审核", "上线", "VIP", "分账"],
+          "context_patterns": [
+            "少儿.*(iOS|Android|技术)",
+            "奇巴布.*(开发|配置|部署)",
+            "内容.*(打包|发版|提测|上线)",
+            "(.*)的流程是什么"
+          ]
+        },
+        "exclude_when": {
+          "keywords": ["机器人", "死机", "挂了", "重启", "OpenClaw", "配置错误", "OpenClaw配置"],
+          "context": "系统/机器人/OpenClaw自身问题"
+        }
+      }
+    }
+  }
+}

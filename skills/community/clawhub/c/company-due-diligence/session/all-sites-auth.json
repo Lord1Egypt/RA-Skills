@@ -1,0 +1,198 @@
+{
+  "cookies": [
+    {
+      "name": "searchSessionId",
+      "value": "1773886670.92858228",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1776478672.856292,
+      "size": 34,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "HWWAFSESTIME",
+      "value": "1773886601289",
+      "domain": "www.tianyancha.com",
+      "path": "/",
+      "expires": -1.0,
+      "size": 25,
+      "httpOnly": false,
+      "secure": false,
+      "session": true
+    },
+    {
+      "name": "auth_token",
+      "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNjYyMTM3MzkxNSIsImlhdCI6MTc3Mzg4NjY2OSwiZXhwIjoxNzc2NDc4NjY5fQ.QIR8txPBPtgF4BIFT9L_cgBiLe0QXYk2HHBHOzXCEXnj8u0l9ASuxjKKR32OL2hZ9UyMVvnTucOYeITvXmc9mA",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1776478669.771026,
+      "size": 192,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "sensorsdata2015jssdkcross",
+      "value": "%7B%22distinct_id%22%3A%22345269858%22%2C%22first_id%22%3A%2219d03e17c82c83-0833213865b29a8-19525631-1405320-19d03e17c8323cd%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTlkMDNlMTdjODJjODMtMDgzMzIxMzg2NWIyOWE4LTE5NTI1NjMxLTE0MDUzMjAtMTlkMDNlMTdjODMyM2NkIiwiJGlkZW50aXR5X2xvZ2luX2lkIjoiMzQ1MjY5ODU4In0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22345269858%22%7D%2C%22%24device_id%22%3A%2219d03e17c82c83-0833213865b29a8-19525631-1405320-19d03e17c8323cd%22%7D",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1808446672.864676,
+      "size": 801,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "HMACCOUNT",
+      "value": "BC8EA808619F4A99",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": -1.0,
+      "size": 25,
+      "httpOnly": false,
+      "secure": false,
+      "session": true
+    },
+    {
+      "name": "HWWAFSESID",
+      "value": "61fec7f8a5414e4ee8",
+      "domain": "www.tianyancha.com",
+      "path": "/",
+      "expires": -1.0,
+      "size": 28,
+      "httpOnly": false,
+      "secure": false,
+      "session": true
+    },
+    {
+      "name": "Hm_lpvt_e92c8d65d92d534b0fc290df538b4758",
+      "value": "1773886673",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": -1.0,
+      "size": 50,
+      "httpOnly": false,
+      "secure": false,
+      "session": true
+    },
+    {
+      "name": "csrfToken",
+      "value": "JdlZIUOB9_QAB4wZRZ2v0LGS",
+      "domain": "www.tianyancha.com",
+      "path": "/",
+      "expires": -1.0,
+      "size": 33,
+      "httpOnly": false,
+      "secure": false,
+      "session": true
+    },
+    {
+      "name": "tyc-user-info-save-time",
+      "value": "1773886669766",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1776478669.766729,
+      "size": 36,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "TYCID",
+      "value": "ab092f90233911f1a75001ca9d93fbb8",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1808446601.470589,
+      "size": 37,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "Hm_lvt_e92c8d65d92d534b0fc290df538b4758",
+      "value": "1773886603",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1805422673.0,
+      "size": 49,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "CUID",
+      "value": "5fdb3cdc6e6d2eafe6a90f6b356634ae",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1808446601.470551,
+      "size": 36,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "tyc-user-info",
+      "value": "%7B%22state%22%3A%220%22%2C%22vipManager%22%3A%220%22%2C%22mobile%22%3A%2216621373915%22%2C%22userId%22%3A%22345269858%22%7D",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1776478669.757619,
+      "size": 137,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "sajssdk_2015_cross_new_user",
+      "value": "1",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1773935999.0,
+      "size": 28,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    },
+    {
+      "name": "bannerFlag",
+      "value": "true",
+      "domain": ".tianyancha.com",
+      "path": "/",
+      "expires": 1773973002.0,
+      "size": 14,
+      "httpOnly": false,
+      "secure": false,
+      "session": false
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.tianyancha.com",
+      "localStorage": [
+        {
+          "name": "tyc-user-info",
+          "value": "{\"anonymityLogo\":\"https://static.tianyancha.com/design/anonymity/anonymity1.png\",\"explainPoint\":\"0\",\"onum\":\"0\",\"messageBubbleCount\":\"0\",\"companyName\":\"\",\"monitorUnreadCount\":\"0\",\"signUp\":\"0\",\"score\":\"0\",\"integrity\":\"15%\",\"myQuestionCount\":\"0\",\"pleaseAnswerCount\":\"0\",\"headPicUrl\":\"https://cdn.tianyancha.com/design/avatar/v3/man5.png\",\"claimPoint\":\"0\",\"weChatNumber\":\"\",\"announcementPoint\":\"0\",\"claimEditPoint\":\"0\",\"privateMessagePointWeb\":\"0\",\"messageShowRedPoint\":\"0\",\"riskManagement\":{},\"originalScore\":\"0\",\"redPoint\":\"0\",\"myAnswerCount\":\"0\",\"companyAuthStatus\":\"2\",\"bossStatus\":\"2\",\"schoolAuthStatus\":\"2\",\"phoneNumber\":\"\",\"isClaim\":\"0\",\"isSvip\":false,\"vipToMonth\":\"false\",\"discussCommendCount\":\"0\",\"claimCompanyStatus\":\"\",\"personalClaimType\":\"none\",\"isValidEnterpriseVip\":\"0\",\"gender\":\"保密\",\"yellowDiamondEndTime\":\"0\",\"isShowClaimCompany\":\"0\",\"scoreUnit\":\"\",\"nickname\":\"166****3915\",\"realBossStatus\":\"2\",\"introduce\":\"\",\"privateMessagePoint\":\"0\",\"vnum\":\"0\",\"token\":\"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNjYyMTM3MzkxNSIsImlhdCI6MTc3Mzg4NjY2OSwiZXhwIjoxNzc2NDc4NjY5fQ.QIR8txPBPtgF4BIFT9L_cgBiLe0QXYk2HHBHOzXCEXnj8u0l9ASuxjKKR32OL2hZ9UyMVvnTucOYeITvXmc9mA\",\"showPost\":\"\",\"showAnonymityName\":\"匿名用户14946662\",\"companyGid\":\"\",\"yellowDiamondStatus\":\"0\",\"bizCardUnread\":\"0\"}"
+        },
+        {
+          "name": "Hm_lvt_e92c8d65d92d534b0fc290df538b4758",
+          "value": "1805422673019|1773886603"
+        },
+        {
+          "name": "sawebjssdkpageleave-994562864",
+          "value": "{\"identities\":{\"$identity_cookie_id\":\"19d03e17c82c83-0833213865b29a8-19525631-1405320-19d03e17c8323cd\",\"$identity_login_id\":\"345269858\"},\"distinct_id\":\"345269858\",\"lib\":{\"$lib\":\"js\",\"$lib_method\":\"code\",\"$lib_version\":\"1.24.7\"},\"properties\":{\"$timezone_offset\":-480,\"$screen_height\":956,\"$screen_width\":1470,\"$viewport_height\":792,\"$viewport_width\":1200,\"$lib\":\"js\",\"$lib_version\":\"1.24.7\",\"$latest_traffic_source_type\":\"直接流量\",\"$latest_search_keyword\":\"未取到值_直接打开\",\"$latest_referrer\":\"\",\"current_url\":\"https://www.tianyancha.com/nsearch?key=%E4%B8%AD%E5%9B%BD%E9%93%B6%E8%81%94%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8\",\"referrer\":\"https://www.tianyancha.com/login?from=%2Fsearch%3Fkey%3D%25E4%25B8%25AD%25E5%259B%25BD%25E9%2593%25B6%25E8%2581%2594%25E8%2582%25A1%25E4%25BB%25BD%25E6%259C%2589%25E9%2599%2590%25E5%2585%25AC%25E5%258F%25B8\",\"tycid\":\"ab092f90233911f1a75001ca9d93fbb8\",\"device_uuid\":\"ab092f90233911f1a75001ca9d93fbb8\",\"plat_type\":\"Web\",\"user_uid\":\"345269858\",\"da_version\":1005,\"ab_test\":\"{\\\"ab_info\\\":{},\\\"api_ab_info\\\":{},\\\"local_ab_info\\\":{}}\",\"page_id\":\"SearchResult\",\"page_name\":\"主搜搜索结果页\",\"user_is_vip\":\"非VIP\",\"user_is_login\":\"1\",\"$title\":\"中国银联股份有限公司_相关搜索结果-天眼查\",\"$url\":\"https://www.tianyancha.com/nsearch?key=中国银联股份有限公司\",\"$url_path\":\"/nsearch\",\"$referrer_host\":\"www.tianyancha.com\",\"$referrer\":\"https://www.tianyancha.com/login?from=%2Fsearch%3Fkey%3D%E4%B8%AD%E5%9B%BD%E9%93%B6%E8%81%94%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8\",\"$viewport_position\":0,\"event_duration\":4.604,\"$is_first_day\":true},\"login_id\":\"345269858\",\"anonymous_id\":\"19d03e17c82c83-0833213865b29a8-19525631-1405320-19d03e17c8323cd\",\"type\":\"track\",\"event\":\"$WebPageLeave\",\"time\":1773886677872,\"heartbeat_interval_time\":5000}"
+        }
+      ],
+      "sessionStorage": [
+        {
+          "name": "Hm_lpvt_e92c8d65d92d534b0fc290df538b4758",
+          "value": "1773886673"
+        },
+        {
+          "name": "HMACCOUNT",
+          "value": "BC8EA808619F4A99"
+        }
+      ]
+    }
+  ]
+}

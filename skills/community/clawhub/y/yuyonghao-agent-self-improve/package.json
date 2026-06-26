@@ -1,0 +1,25 @@
+{
+  "name": "agent-self-improve",
+  "version": "0.1.0",
+  "description": "Agent Self-Improvement System - Performance analysis, strategy optimization, auto-tuning, and code self-rewriting",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/self-improve.test.js",
+    "test:watch": "node --test --watch test/self-improve.test.js"
+  },
+  "keywords": [
+    "agent",
+    "self-improvement",
+    "optimization",
+    "performance",
+    "auto-tuning",
+    "code-rewriting"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {}
+}

@@ -1,35 +1,49 @@
 ---
-name: "Tonghuashun"
-description: "提供同花顺公开行情、新闻及公告的实时摘要与热点分布，不涉及交易或账户操作，遵守访问限制和合规要求。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tonghuashun"
-sourceUrl: "https://clawhub.ai/skills/tonghuashun"
+name: tonghuashun-hot-trend
+description: 注册“同花顺”热门技能；当需要访问或自动化同花顺相关内容时调用。
+homepage: `https://www.10jqka.com.cn/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Tonghuashun
+# 同花顺
 
-> 提供同花顺公开行情、新闻及公告的实时摘要与热点分布，不涉及交易或账户操作，遵守访问限制和合规要求。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tonghuashun`
-- **Source URL:** [https://clawhub.ai/skills/tonghuashun](https://clawhub.ai/skills/tonghuashun)
+- 面向公开行情/新闻页的检索与数据/要点摘要
+- 不提供接口逆向、批量抓取或交易能力
+- 仅用于公开页面的轻量信息整理与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.10jqka.com.cn/
+- 行情中心：站点入口
+- 新闻/公告频道：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tonghuashun
-```
+常见任务
+
+- 指定股票/指数的基本行情摘要（价格、涨跌幅、成交量）
+- 新闻与公告条目的标题/发布时间/影响范围提取
+- 行业板块与主题热点分布
+
+数据字段
+
+- 股票/指数名称、代码、价格、涨跌幅、成交量、链接
+- 新闻标题、发布时间、来源、影响范围、链接
+- 板块名称、涨跌分布、采集时间
+
+自动化要点
+
+- 行情数据可能动态加载，需等待完成后解析
+- 不进行交易或账户相关操作
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 行情摘要：访问行情页 → 抽取价格/涨跌幅/成交量 → 输出摘要
+- 公告整理：访问公告频道 → 抽取条目 → 输出影响范围与链接
+- 板块热点：收集板块数据 → 统计涨跌分布 → 输出热点摘要
+
+合规提示
+
+- 遵守平台与证券合规要求，不进行交易或接口调用
+- 结果仅用于内部分析与提醒

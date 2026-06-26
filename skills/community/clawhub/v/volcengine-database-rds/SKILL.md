@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Database Rds"
-description: "Operate Volcengine RDS instances and database workflows. Use when users need provisioning guidance, connectivity checks, performance troubleshooting, or backup/restore procedures."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-database-rds"
-sourceUrl: "https://clawhub.ai/skills/volcengine-database-rds"
+name: volcengine-database-rds
+description: Operate Volcengine RDS instances and database workflows. Use when users need provisioning guidance, connectivity checks, performance troubleshooting, or backup/restore procedures.
 ---
 
-# Volcengine Database Rds
+# volcengine-database-rds
 
-> Operate Volcengine RDS instances and database workflows. Use when users need provisioning guidance, connectivity checks, performance troubleshooting, or backup/restore procedures.
+Handle RDS tasks with safe operational order: inspect, validate, change, verify.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-database-rds`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-database-rds](https://clawhub.ai/skills/volcengine-database-rds)
+## Execution Checklist
 
-## Overview
+1. Confirm engine type, region, and instance identifier.
+2. Check connectivity, security rules, and parameter group.
+3. Execute target operation (query, tune, backup, restore).
+4. Return status, metrics, and next recommended action.
 
+## Safety Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-database-rds
-```
+- Prefer snapshots before high-risk changes.
+- Surface parameter drift before applying updates.
+- Separate read-only diagnostics from write operations.
+
+## References
+
+- `references/sources.md`

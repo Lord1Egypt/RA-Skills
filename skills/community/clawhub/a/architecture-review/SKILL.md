@@ -1,35 +1,187 @@
 ---
-name: "Architecture Review"
-description: "架构评审助手。用于评审技术架构、评估架构方案、制定改进建议。当需要进行架构评审、设计评审时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/architecture-review"
-sourceUrl: "https://clawhub.ai/skills/architecture-review"
+name: architecture-review
+description: 架构评审助手。用于评审技术架构、评估架构方案、制定改进建议。当需要进行架构评审、设计评审时触发。
 ---
 
-# Architecture Review
+# 架构评审助手
 
-> 架构评审助手。用于评审技术架构、评估架构方案、制定改进建议。当需要进行架构评审、设计评审时触发。
+## 评审维度
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/architecture-review`
-- **Source URL:** [https://clawhub.ai/skills/architecture-review](https://clawhub.ai/skills/architecture-review)
+| 维度 | 说明 |
+|------|------|
+| 功能性 | 是否满足业务需求 |
+| 性能 | QPS、延迟、吞吐 |
+| 可用性 | SLA、故障恢复 |
+| 扩展性 | 水平/垂直扩展 |
+| 安全性 | 认证、授权、数据安全 |
+| 可维护性 | 代码质量、文档 |
+| 成本 | 建设成本、运维成本 |
 
-## Overview
+## 评审检查清单
 
+```markdown
+## 架构评审检查清单
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/architecture-review
+### 1. 功能性
+- [ ] 核心业务流程覆盖
+- [ ] 功能边界清晰
+- [ ] 扩展点预留
+
+### 2. 性能
+- [ ] QPS评估
+- [ ] 响应时间目标
+- [ ] 数据存储容量
+
+### 3. 可用性
+- [ ] 冗余设计
+- [ ] 故障隔离
+- [ ] 降级熔断
+
+### 4. 扩展性
+- [ ] 水平扩展能力
+- [ ] 模块解耦
+- [ ] 插件机制
+
+### 5. 安全性
+- [ ] 认证授权
+- [ ] 数据加密
+- [ ] 审计日志
+
+### 6. 可维护性
+- [ ] 代码规范
+- [ ] 文档完整
+- [ ] 监控告警
+
+### 7. 成本
+- [ ] 建设成本
+- [ ] 运维成本
+- [ ] 扩展成本
 ```
+
+## 架构评审报告模板
+
+```markdown
+# 架构评审报告
+
+项目名称：XXX系统
+评审日期：YYYY-MM-DD
+评审委员会：@xxx, @xxx, @xxx
+
+---
+
+## 1. 方案概述
+
+### 1.1 背景
+xxx
+
+### 1.2 目标
+- 目标1
+- 目标2
+
+### 1.3 方案架构
+[架构图]
+
+---
+
+## 2. 架构设计
+
+### 2.1 技术架构
+| 层级 | 技术选型 | 说明 |
+|------|----------|------|
+| 接入层 | Nginx | 负载均衡 |
+| 应用层 | Spring Boot | 业务逻辑 |
+| 数据层 | MySQL | 关系数据 |
+| 缓存层 | Redis | 缓存 |
+| 消息层 | Kafka | 异步解耦 |
+
+### 2.2 部署架构
+[部署图]
+
+### 2.3 数据架构
+[数据流图]
+
+---
+
+## 3. 评审意见
+
+### 3.1 优势
+1. xxx
+2. xxx
+
+### 3.2 关注点
+| 问题 | 严重程度 | 建议 |
+|------|----------|------|
+| xxx | 高 | xxx |
+| xxx | 中 | xxx |
+
+### 3.3 风险评估
+| 风险 | 影响 | 概率 | 应对 |
+|------|------|------|------|
+| xxx | 高 | 中 | xxx |
+
+---
+
+## 4. 评审结论
+
+| 结论 | 说明 |
+|------|------|
+| □ 通过 | 可进入详细设计 |
+| □ 有条件通过 | 需完成以下修改 |
+| □ 拒绝 | 需重新设计 |
+
+### 修改要求
+1. xxx
+2. xxx
+
+---
+
+## 5. 评审签名
+
+| 角色 | 姓名 | 日期 | 结论 |
+|------|------|------|------|
+| 评审组长 | xxx | YYYY-MM-DD | 同意 |
+| 技术专家 | xxx | YYYY-MM-DD | 同意 |
+| 业务专家 | xxx | YYYY-MM-DD | 同意 |
+```
+
+## 架构设计原则
+
+```markdown
+## 设计原则
+
+### 1. 高可用
+- 无单点故障
+- 故障自动恢复
+- 多级降级策略
+
+### 2. 可扩展
+- 服务无状态
+- 水平扩展优先
+- 模块解耦
+
+### 3. 简单性
+- KISS原则
+- 避免过度设计
+- 渐进式演进
+
+### 4. 安全性
+- 零信任架构
+- 纵深防御
+- 安全默认值
+
+### 5. 可观测性
+- 日志、指标、链路
+- 统一监控
+- 告警及时
+```
+
+## 常见架构模式
+
+| 模式 | 适用场景 |
+|------|----------|
+| 分层架构 | 传统Web应用 |
+| 微服务 | 大型复杂系统 |
+| 事件驱动 | 异步处理 |
+| CQRS | 读写分离 |
+| DDD | 复杂业务领域 |
+| 六边形架构 | 业务与技术解耦 |

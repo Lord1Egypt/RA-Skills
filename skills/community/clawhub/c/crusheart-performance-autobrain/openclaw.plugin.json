@@ -1,0 +1,36 @@
+{
+  "id": "crusheart-autobrain-turbo",
+  "name": "灵枢AutoBrain",
+  "description": "Plugin+skill hybrid pack: memory, anti-hallucination, self-evolution, workflow orchestration, daily maintenance, memory/skill auto-scan, version check. Exclusive slot + compat layer.",
+  "version": "6.3.1",
+  "hooks": [
+    "agent:bootstrap",
+    "message:received",
+    "message:preprocessed",
+    "message:sent"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "EMBEDDING_API_URL": {
+        "type": "string",
+        "description": "Remote embedding service URL (optional, falls back to local TF-IDF)",
+        "default": ""
+      },
+      "EMBEDDING_API_KEY": {
+        "type": "string",
+        "description": "Bearer token for embedding API (optional)",
+        "default": ""
+      },
+      "CRUSHEART_PYTHON": {
+        "type": "string",
+        "description": "Python interpreter path (default: python3)",
+        "default": "python3"
+      }
+    }
+  },
+  "requires": {
+    "openclaw": ">=2026.5.0"
+  }
+}

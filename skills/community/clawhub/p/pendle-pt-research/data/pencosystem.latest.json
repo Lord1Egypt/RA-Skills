@@ -1,0 +1,322 @@
+{
+  "generatedAt": "2026-04-02T03:14:38.069595+00:00",
+  "sourceUrl": "https://pendle.finance/pencosystem",
+  "partnerCount": 35,
+  "partners": [
+    {
+      "name": "Aave",
+      "category": "money market",
+      "url": "https://app.aave.com/",
+      "description": "Aave is a decentralised non-custodial liquidity protocol where users can participate as suppliers or borrowers",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/e7e3e7f2-9a44-4787-9981-eb759117aa9e.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "AFI",
+      "category": "yield strategy",
+      "url": "https://www.afiprotocol.ai/",
+      "description": "AFI is a decentralized, non-custodial protocol that coordinates a network of algorithmic agents designed to execute risk-aware DeFi strategies across chains, 24/7.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/47fa28bc-738a-4187-b250-dfcbcd7dd6ec.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Binance",
+      "category": "cex / web3 wallet",
+      "url": "https://www.binance.com/en/binancewallet",
+      "description": "Binance is the largest cryptocurrency exchange by trading volume, serving 185M+ usrs across 180+ countries.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/aeefa914-464f-4b09-8715-66b174577db5.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Bitget",
+      "category": "cex / web3 wallet",
+      "url": "https://web3.bitget.com/en",
+      "description": "Bitget is a Seychelles-based cryptocurrency exchange that  empowers over 20 million users across 100 countries with a focus on copy trading and various smart trading tools.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/91cbc7e1-6715-4f28-a4cf-b9d9fc8236ca.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Bybit",
+      "category": "cex / web3 wallet",
+      "url": "https://www.bybit.com/en/web3/staking",
+      "description": "Bybit is the world\u2019s 2nd largest cryptocurrency exchange by trading volume.  Established in March 2018, Bybit currently serves more than 40 million users and institutions.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/8f14fb5a-c26d-4e29-8d4a-5b0e211dedb5.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "ceres",
+      "category": "yield strategy",
+      "url": "https://app.ceresfarm.fi/en/",
+      "description": "Ceres Farm is a leveraged yield farming protocol built on Pendle PT markets.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/8592758c-36a8-4a19-952c-d4c459c776aa.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Coinbase",
+      "category": "cex / web3 wallet",
+      "url": "https://www.coinbase.com/en-gb",
+      "description": "Coinbase is the most trusted platform for buying, selling and trading crypto",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/38f91088-7310-438c-8f8a-6e122f838625.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Contango",
+      "category": "yield strategy",
+      "url": "https://app.contango.xyz/",
+      "description": "Contango builds positions by automating looping strategies through flash loans. When a trader opens a position, the protocol borrows on money markets.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/497510bf-9363-4fa9-a8c2-fa069d21b7bd.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "DeFi Saver",
+      "category": "yield strategy",
+      "url": "https://app.defisaver.com/",
+      "description": "DeFi Saver is an all-in-one management tool for DeFi protocols such as Aave, Compound, Fluid, Morpho, Sky and more.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/27e2752c-d41d-47bc-a666-9b9d879c9c79.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Dolomite",
+      "category": "money market",
+      "url": "https://app.dolomite.io/balances",
+      "description": "Dolomite is a next-generation decentralized money market protocol and  DEX that offers broad token support and capital efficiency with its virtual liquidity system.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/354bec44-c84f-493e-86a5-da5fdd5807bf.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Equilibria",
+      "category": "liquid locker",
+      "url": "https://equilibria.fi/stake",
+      "description": "Equilibria boost and maximise your rewards on Pendle",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/772b6b58-fbcd-48e2-9dfe-e9ef7bcea0d2.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Euler",
+      "category": "money market",
+      "url": "https://app.euler.finance/borrow?network=ethereum",
+      "description": "Euler is a modular lending platform that enables users to lend, borrow and build without limits.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/0191faca-dbd0-4a76-97b4-550c2a016a45.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "FiRM",
+      "category": "money market",
+      "url": "https://inverse.finance/firm",
+      "description": "FiRM is a lending protocol offering users the ability to borrow at a fixed rate and one-click leverage up to 11.7x for Pendle PT-sUSDe collaterals.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/522feb77-ec52-4e00-8a70-fcf0485112d6.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Gate.io",
+      "category": "cex / web3 wallet",
+      "url": "https://www.gate.io/web3/earn",
+      "description": "Established in 2013, Gate.io has consistently ranked among the top 10 exchanges.  It is a full-service digital asset exchange platform covering million of users around the world",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/b7afedc9-5e0d-4d7c-acac-dc05fab90cb8.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Gearbox",
+      "category": "money market",
+      "url": "https://app.gearbox.fi/strategies/list",
+      "description": "Gearbox brings composable leverage, allowing users to margin trade, leverage farm and leverage restake through its permissionless credit layer.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/b925d5af-605f-46ef-9091-5490957dfc6d.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "HyperLend",
+      "category": "money market",
+      "url": "https://app.hyperlend.finance",
+      "description": "HyperLend is a high-performance lending protocol on Hyperliquid EVM, built for capital efficiency",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/d151e9bd-9c1b-48d5-b01f-362de51cbf55.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "infiniFi",
+      "category": "yield strategy",
+      "url": "https://infinifi.xyz",
+      "description": "infiniFi automates borrow-short, lend-long asset management to achieve superior returns on Pendle PTs without the hassle of manual rollovers.  Higher Yield.  No leverage.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/1cbcf234-fc53-4774-8003-beed0dc95524.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "INFINIT",
+      "category": "yield strategy",
+      "url": "https://app.infinit.tech/",
+      "description": "Navigate DeFi with INFINIT - Discover, evaluate, and execute DeFi with AI agents.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/bef5e1e7-fda2-48fb-8627-9a76b5a68f8c.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "InsurACE",
+      "category": "insurance",
+      "url": "https://app.insurace.io/coverage/buycovers",
+      "description": "The InsurAce Protocol is a leading decentralized multi-chain protocol that provides reliable,  robust and secure risk protection services to DeFi users, allowing them to protect their investment funds against various risks.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/707342b5-594a-4465-84d0-40bb95d8ee86.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Lagoon",
+      "category": "yield strategy",
+      "url": "https://app.lagoon.finance",
+      "description": "LAGOON provides open, general-purpose, secure vault infrastructure to build and scale on-chain yield products.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/2b1a362e-4d10-4015-8045-b8dd474cfe47.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Lista Lending",
+      "category": "money market",
+      "url": "https://lista.org/lending",
+      "description": "Redefining BNB with Liquid Staking, Lista Lending and CDP Solutions",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/5f1d0c76-a73a-4edb-a79b-8ab1a8084537.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Morpho",
+      "category": "money market",
+      "url": "https://app.morpho.org/ethereum/borrow",
+      "description": "A permissionless and non-custodial lending protocol where users can earn interest on over-collaterized lending and borrow digital assets using immutable infrastructure.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/f2b5eb7e-539f-4aea-b73f-d7f4e37a35c7.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "OKX",
+      "category": "cex / web3 wallet",
+      "url": "https://web3.okx.com/defi",
+      "description": "OKX is a global company offering exchange and Web3 services with  offices in Hong Kong, Singapore, the UAW, Silicon Valley and the Bahamas.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/c9327259-a594-4597-8376-95b28f4f48e8.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Penpie",
+      "category": "liquid locker",
+      "url": "https://www.pendle.magpiexyz.io/stake",
+      "description": "Penpie is a next-generation DeFi platform designed to provide Pendle Finance users with yield and veTokenomics boosting services.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/7d6ddfaa-5ccb-49a0-8f0d-481fe877a694.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Pulse",
+      "category": "yield strategy",
+      "url": "https://www.usepulse.xyz/",
+      "description": "Pulse does it all. Scanning PT markets, reallocating capital, compounding returns, rolling maturities, and maximizing yield across Pendle.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/1a7df477-67b8-4004-af05-54b7359f1f31.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Rezerve Money",
+      "category": "yield strategy",
+      "url": "https://rezerve.money/",
+      "description": "Rezerve Money is a yield strategy protocol that combines dynamic rebasing, staking, bonding, and liquid staking mechanisms.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/8cd21c53-a515-43bd-ab88-a5633e2d94f9.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Silo",
+      "category": "money market",
+      "url": "https://app.silo.finance/",
+      "description": "Silo is a high-yield, risk-isolated money markets for lending and borrowing any crypto assets",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/8cc75104-8f40-4419-8d48-43b8978b6bd8.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Spark",
+      "category": "money market",
+      "url": "https://spark.fi/",
+      "description": "Spark is on a mission to empower the DAI ecosystem by building DeFi infrastructure such as SparkLend, SparkConduits and supporting DAI.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/3aad599e-118d-4870-a3cf-8d48a4f808b8.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "StakeDAO",
+      "category": "liquid locker",
+      "url": "https://www.stakedao.org/lockers/pendle",
+      "description": "Stake DAO is a non-custodial liquid staking platform focused on governance tokens.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/f4493dc2-4722-4f76-a9f8-a30dde970010.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Term",
+      "category": "money market",
+      "url": "https://www.app.term.finance/auctions",
+      "description": "",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/d7d8e410-5331-4fa0-9b18-f9a3ebe552e0.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "TermMax",
+      "category": "money market",
+      "url": "https://app.termmax.ts.finance/borrow?chain=eth",
+      "description": "TermMax is a DeFi AMM protocol that allows users to lend, borrow and one-click leverage at fixed-rates and with maturity dates.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/59d353f2-f701-43b3-9296-4117faca5a73.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Upbit",
+      "category": "cex / web3 wallet",
+      "url": "https://upbit.com/exchange",
+      "description": "Upbit is the trusted Digital Asset Exchange for fast and convenient trading experience for professional investors",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/5cf4906f-90df-4918-bd69-1860a763d4c9.png",
+      "isOnLandingPage": false,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "Venus Protocol",
+      "category": "money market",
+      "url": "https://app.venus.io/#/isolated-pools?chainId=56",
+      "description": "Venus Protocol is a decentralized money market protocol on BNB chain, enabling users to lend and borrow digital assets.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/4c192122-2435-4f4b-bea4-90e174c3cbd9.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "yearn",
+      "category": "yield strategy",
+      "url": "https://pendle.yearn.space/",
+      "description": "Yearn is a decentralized suite of products helping individuals, DAOs, and other protocols earn yield on their digital assets.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/dfe9328f-1644-4b76-aff6-4360590f1bfe.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    },
+    {
+      "name": "YieldFi",
+      "category": "yield strategy",
+      "url": "https://yield.fi/",
+      "description": "YieldFi helps you earn higher returns on your cryptocurrency investments through yield farming, staking, and liquidity provision.",
+      "iconUrl": "https://storage.googleapis.com/external-integration-prod/037e5c12-d9d4-4b01-b7fb-4e63d757d11f.png",
+      "isOnLandingPage": true,
+      "sourceType": "live-nuxt-json"
+    }
+  ]
+}

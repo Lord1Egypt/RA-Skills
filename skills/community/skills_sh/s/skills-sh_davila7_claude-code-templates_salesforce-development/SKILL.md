@@ -1,35 +1,51 @@
 ---
-name: "salesforce-development"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/salesforce-development"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/salesforce-development"
+name: salesforce-development
+description: "Expert patterns for Salesforce platform development including Lightning Web Components (LWC), Apex triggers and classes, REST/Bulk APIs, Connected Apps, and Salesforce DX with scratch orgs and 2nd generation packages (2GP). Use when: salesforce, sfdc, apex, lwc, lightning web components."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# salesforce-development
+# Salesforce Development
 
-> Indexed by skills.sh from davila7/claude-code-templates
+## Patterns
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/salesforce-development`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/salesforce-development](https://skills.sh/davila7/claude-code-templates/salesforce-development)
+### Lightning Web Component with Wire Service
 
-## Overview
+Use @wire decorator for reactive data binding with Lightning Data Service
+or Apex methods. @wire fits LWC's reactive architecture and enables
+Salesforce performance optimizations.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/salesforce-development
-```
+### Bulkified Apex Trigger with Handler Pattern
+
+Apex triggers must be bulkified to handle 200+ records per transaction.
+Use handler pattern for separation of concerns, testability, and
+recursion prevention.
+
+
+### Queueable Apex for Async Processing
+
+Use Queueable Apex for async processing with support for non-primitive
+types, monitoring via AsyncApexJob, and job chaining. Limit: 50 jobs
+per transaction, 1 child job when chaining.
+
+
+## Anti-Patterns
+
+### ❌ SOQL Inside Loops
+
+### ❌ DML Inside Loops
+
+### ❌ Hardcoding IDs
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Issue | critical | See docs |
+| Issue | high | See docs |
+| Issue | medium | See docs |
+| Issue | high | See docs |
+| Issue | critical | See docs |
+| Issue | high | See docs |
+| Issue | high | See docs |
+| Issue | critical | See docs |

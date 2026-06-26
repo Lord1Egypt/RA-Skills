@@ -1,35 +1,107 @@
 ---
-name: "Resume Create"
-description: "创建、优化、修改专业简历。数据驱动生成极简简历 HTML 并导出 PDF。当用户需要创建简历、修改简历、优化简历、生成 PDF 简历时使用。支持从零开始引导收集信息，也支持读取已有简历进行优化改写。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-create"
-sourceUrl: "https://clawhub.ai/skills/resume-create"
+name: resume-create
+description: 创建、优化、修改专业简历。数据驱动生成极简简历 HTML 并导出 PDF。当用户需要创建简历、修改简历、优化简历、生成 PDF 简历时使用。支持从零开始引导收集信息，也支持读取已有简历进行优化改写。
 ---
 
-# Resume Create
+# 简历制作技能
 
-> 创建、优化、修改专业简历。数据驱动生成极简简历 HTML 并导出 PDF。当用户需要创建简历、修改简历、优化简历、生成 PDF 简历时使用。支持从零开始引导收集信息，也支持读取已有简历进行优化改写。
+数据驱动生成极简专业简历，输出为 PDF。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-create`
-- **Source URL:** [https://clawhub.ai/skills/resume-create](https://clawhub.ai/skills/resume-create)
+## 数据结构
 
-## Overview
+简历的所有内容存储在一个 JS 对象中，填入 HTML 模板即可渲染。结构如下：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-create
+```javascript
+{
+  header: {
+    name: '姓名',
+    tagline: '职位 · X年经验 · 年龄',
+    info: ['城市', '手机', '邮箱', '学历 · 专业 · 学校']
+  },
+  summary: '一段话的个人简介/职业摘要',
+  workExperience: [
+    {
+      company: '公司名',
+      date: '20XX.XX — 20XX.XX',
+      role: '职位',
+      items: ['工作成果1（用数据量化）', '工作成果2', ...]
+    }
+  ],
+  projects: [
+    {
+      name: '项目名',
+      alias: '项目别名/类型标签（可选）',
+      date: '20XX.XX — 20XX.XX',
+      link: '项目链接（可选，留空字符串）',
+      desc: '项目一句话描述',
+      items: ['成果1', '成果2', ...],
+      tech: ['技能标签1', '技能标签2', ...]
+    }
+  ],
+  education: [
+    {
+      school: '学校名',
+      date: '20XX.XX — 20XX.XX',
+      major: '学位 · 专业',
+      items: ['亮点1', '亮点2', ...]
+    }
+  ]
+}
 ```
+
+## 工作流程
+
+### 流程 A：从零创建简历
+
+1. **信息收集** — 像简历顾问一样，分步引导用户提供信息（不要一次问太多）：
+   - 第一步：姓名、目标职位、所在城市、手机、邮箱（选填项，不强制要求）
+   - 第二步：工作经历（如有）
+   - 第三步：项目经验（如有）
+   - 第四步：教育背景
+   - 每步收集完确认后进入下一步，用户随时可以补充
+   - **注意**：info 字段根据用户实际提供的内容动态生成，不要补全用户未提供的字段
+
+2. **行业调研优化** — 使用 web_search 搜索目标岗位的最新招聘要求：
+   - 搜索 `"{职位} 招聘 要求"` 和 `"{职位} 简历 模板 通过率"`
+   - 提取高频关键词和核心能力要求
+   - 将这些关键词融入简历摘要、工作成果描述中
+   - 确保每条工作成果用数据量化（具体数字、百分比、金额）
+
+3. **生成 HTML** — 读取 `assets/template.html`，将 `__RESUME_DATA__` 替换为实际数据 JSON，保存为 `{名字}-{职位}.html`
+
+4. **生成 PDF** — 使用 browser 工具：
+   - 打开 HTML 文件
+   - 执行打印/导出 PDF 操作
+   - 保存为 `{名字}-{职位}.pdf`
+
+5. **发送审核** — 将 PDF 发送给用户审核
+
+6. **修改循环** — 用户提出修改 → 更新数据 → 重新生成 HTML → PDF → 发送
+
+### 流程 B：优化已有简历
+
+1. **读取简历** — 读取用户提供的简历文件（支持 .html/.pdf/.txt/.md/.docx）
+2. **提取结构化数据** — 将内容映射到上述数据结构
+3. **跳转到流程 A 的步骤 2** — 行业调研优化 → 生成 → 审核
+
+## 简历优化原则
+
+- **STAR 法则**：每条工作成果按 Situation-Task-Action-Result 组织
+- **数据量化**：优先使用具体数字（增长X%、节省X万、管理X人团队）
+- **关键词匹配**：根据目标职位 JD 融入高频关键词
+- **一页原则**：控制内容量，确保简历在 A4 一页内完整呈现
+- **反向时间序**：工作和教育经历按时间倒序排列
+
+## 文件命名与存放
+
+- HTML：`{名字}-{职位}.html`
+- PDF：`{名字}-{职位}.pdf`
+- 文件存放于工作区（默认 `/root/.openclaw/workspace/`）
+- 发送文件给用户时，同时说明文件存放路径
+
+## 输出规范
+
+- 生成 HTML 后，使用 browser 工具打开 HTML 文件并导出 PDF
+- PDF 发送给用户审核，同时说明存放路径（如：文件已保存至 `/root/.openclaw/workspace/姓名-职位.pdf`）
+- 如用户提出修改，修改数据后重新走 HTML → PDF 流程
+- 最终确认后，保留 HTML 和 PDF 两个文件

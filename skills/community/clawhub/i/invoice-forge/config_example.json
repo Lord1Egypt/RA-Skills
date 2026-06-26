@@ -1,0 +1,34 @@
+{
+  "BUSINESS_NAME": "Your Business Name",
+  "BUSINESS_ADDRESS": "123 Main Street\nSuite 456\nCity, State 12345",
+  "BUSINESS_EMAIL": "billing@yourbusiness.com",
+  "BUSINESS_PHONE": "+1 (555) 123-4567",
+  "BUSINESS_WEBSITE": "https://yourbusiness.com",
+  "BUSINESS_LOGO": null,
+  "INVOICE_PREFIX": "INV-",
+  "INVOICE_START": 1,
+  "INVOICE_PADDING": 4,
+  "DEFAULT_PAYMENT_TERMS": 30,
+  "CURRENCY_SYMBOL": "$",
+  "CURRENCY_CODE": "USD",
+  "TAX_RATES": {
+    "sales_tax": 0.08,
+    "vat": 0.0,
+    "gst": 0.0
+  },
+  "DEFAULT_TAX_TYPE": "sales_tax",
+  "TAX_LABELS": {
+    "sales_tax": "Sales Tax",
+    "vat": "VAT",
+    "gst": "GST"
+  },
+  "DEFAULT_NOTES": "Thank you for your business!",
+  "CLIENTS_FILE": "data/clients.jsonl",
+  "INVOICES_FILE": "data/invoices.jsonl",
+  "TEMPLATES_DIR": "data/templates",
+  "OUTPUT_DIR": "output",
+  "AUTO_CREATE_DIRS": true,
+  "BACKUP_ON_OVERWRITE": true,
+  "DATE_FORMAT": "%Y-%m-%d",
+  "RECURRING_TEMPLATES": {}
+}

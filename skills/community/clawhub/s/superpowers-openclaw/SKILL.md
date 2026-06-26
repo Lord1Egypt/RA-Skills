@@ -1,35 +1,58 @@
 ---
-name: "Superpowers-Openclaw"
-description: "Complete Superpowers methodology for OpenClaw. A 12-skill collection that enforces design-before-code, TDD, systematic debugging, verification, and structure..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/superpowers-openclaw"
-sourceUrl: "https://clawhub.ai/skills/superpowers-openclaw"
+name: superpowers-open
+description: >
+  Complete Superpowers methodology for OpenClaw. A 12-skill collection that enforces design-before-code, TDD, systematic debugging, verification, and structured code review. Use when you want rigorous AI-assisted development workflow.
+metadata:
+  openclaw:
+    emoji: "⚡"
+    homepage: https://github.com/superpowers-open/superpowers-open
 ---
 
-# Superpowers-Openclaw
+# SuperpowersOpen
 
-> Complete Superpowers methodology for OpenClaw. A 12-skill collection that enforces design-before-code, TDD, systematic debugging, verification, and structure...
+Superpowers 方法论在 OpenClaw 平台上的完整技能集合。12 个技能协同工作，形成端到端的严格开发工作流。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/superpowers-openclaw`
-- **Source URL:** [https://clawhub.ai/skills/superpowers-openclaw](https://clawhub.ai/skills/superpowers-openclaw)
+## How This Collection Works
 
-## Overview
+This is a **skill collection**. The root SKILL.md acts as the manifest. Individual skills live in subdirectories and are auto-discovered by OpenClaw via their `description` fields.
 
+## Skills
+
+### Entry Point
+- **using-superpowers-open** — Tool mapping, trigger coordination, instruction priority (always active)
+
+### Workflow Chain
+- **brainstorming** — Design-first: no code before design approval
+- **writing-plans** — Decompose designs into bite-sized implementation tasks
+- **executing-plans** — Load plan, execute tasks inline, verify completion
+- **finishing-a-development-branch** — Structured merge/PR/keep/discard workflow
+
+### Practice Disciplines
+- **test-driven-development** — RED-GREEN-REFACTOR: test first, watch it fail, minimal code
+- **systematic-debugging** — 4-phase debugging: root cause → pattern → hypothesis → fix
+- **verification-before-completion** — Evidence before claims, always
+- **receiving-code-review** — Verify before implementing, no performative agreement
+- **requesting-code-review** — 5-dimension self-review checklist
+- **writing-skills** — TDD methodology applied to skill documentation
+- **using-git-worktrees** — Isolated git worktree workspaces
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/superpowers-openclaw
+cp -r superpowers-open ~/.openclaw/skills/
 ```
+
+Restart OpenClaw Gateway. All 12 skills are auto-discovered.
+
+## Requirements
+
+- OpenClaw (any version supporting SKILL.md format)
+- No additional dependencies
+
+## License
+
+MIT-0
+
+## Credits
+
+Adapted from [obra/superpowers](https://github.com/obra/superpowers) methodology.

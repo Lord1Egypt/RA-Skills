@@ -1,0 +1,64 @@
+{
+  "name": "huo15-odoo-v2",
+  "aliases": ["火一五欧度技能"],
+  "version": "1.7.1",
+  "description": "火一五欧度技能。辉火云企业套件（Odoo 19）接口访问完整指南，包括项目、任务、工时、销售、库存等模型的查询和操作。包含知识库（Knowledge）API 操作和 Docker 本地开发部署指南。",
+  "init": {
+    "type": "form",
+    "title": "配置 Odoo 连接信息",
+    "description": "请填写辉火云 Odoo 系统的连接信息",
+    "fields": [
+      {
+        "name": "url",
+        "label": "系统地址",
+        "type": "text",
+        "required": true,
+        "placeholder": "https://www.huo15.com",
+        "hint": "Odoo 服务器 URL，不需要加 /xmlrpc/2"
+      },
+      {
+        "name": "db",
+        "label": "数据库名",
+        "type": "text",
+        "required": true,
+        "placeholder": "huo15",
+        "hint": "登录 Odoo 时使用的数据库名称"
+      },
+      {
+        "name": "user",
+        "label": "用户名（邮箱）",
+        "type": "text",
+        "required": true,
+        "placeholder": "postmaster@huo15.com",
+        "hint": "API 访问账号，通常是管理员邮箱"
+      },
+      {
+        "name": "password",
+        "label": "密码",
+        "type": "password",
+        "required": true,
+        "placeholder": "请输入密码",
+        "hint": "该账号的登录密码"
+      }
+    ]
+  },
+  "trigger": {
+    "patterns": [
+      "odoo",
+      "辉火云",
+      "欧度",
+      "项目",
+      "任务",
+      "工时",
+      "库存",
+      "销售",
+      "project",
+      "task",
+      "知识库",
+      "knowledge",
+      "docker",
+      "部署"
+    ],
+    "type": "fuzzy"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "web-to-obsidian",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我抓取这篇文章保存到 Obsidian: https://docs.python.org/3/tutorial/index.html",
+      "expected_output": "创建 Obsidian 笔记，包含标题、标签（如 python, tutorial, documentation）、摘要、原文链接，且内容应已翻译为中文",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "抓取 https://www.ruanyifeng.com/blog/2024/03/weekly-issue-293.html 到 Obsidian 的 articles/tech 文件夹",
+      "expected_output": "创建中文内容的 Obsidian 笔记，正确识别为中文无需翻译，保存到指定文件夹，包含适当的标签（如 news, technology）",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "把这篇博客 https://blog.langchain.dev/langchain-v0-1-0/ 存到我的 Obsidian vault 里",
+      "expected_output": "抓取英文博客，翻译为中文，生成元数据（title, tags: [langchain, llm, ai, news], summary），以 Obsidian Markdown 格式保存",
+      "files": []
+    }
+  ]
+}

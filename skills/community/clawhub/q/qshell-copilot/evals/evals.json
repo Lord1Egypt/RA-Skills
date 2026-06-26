@@ -1,0 +1,55 @@
+{
+  "skill_name": "qiniu-kodo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我把 ./logo.png 上传到七牛的 my-bucket 里",
+      "expected_output": "Should run pre-flight checks (qshell --version, qshell user ls), then check file size, use fput for small files, and show the access URL after upload",
+      "files": [],
+      "expectations": [
+        "The assistant checks qshell installation by running qshell --version",
+        "The assistant checks authentication by running qshell user ls",
+        "The assistant checks the file size before choosing upload method",
+        "The assistant uses qshell fput for files under 100MB",
+        "The assistant runs qshell domains to get the access URL after upload"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "列出 test-bucket 里所有以 images/ 开头的文件",
+      "expected_output": "Should run pre-flight checks, then use listbucket2 with --prefix images/. Since user said 'all', omitting --limit is acceptable.",
+      "files": [],
+      "expectations": [
+        "The assistant checks qshell installation",
+        "The assistant checks authentication",
+        "The assistant uses qshell listbucket2 with --prefix images/",
+        "The assistant either uses --limit or explains why it was omitted (user asked for all files)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "删除 production-bucket 里的 temp/debug.log 文件",
+      "expected_output": "Should run pre-flight checks, show file info with stat, and ask for user confirmation before deleting",
+      "files": [],
+      "expectations": [
+        "The assistant checks qshell installation",
+        "The assistant checks authentication",
+        "The assistant runs qshell stat to show file information before deletion",
+        "The assistant asks for user confirmation before executing qshell delete",
+        "The assistant does NOT execute qshell delete without user confirmation"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "qshell 怎么安装？我是 Windows 系统",
+      "expected_output": "Should provide Windows-specific installation instructions including downloading from GitHub releases and adding to PATH",
+      "files": [],
+      "expectations": [
+        "The assistant mentions downloading from GitHub releases",
+        "The assistant mentions the Windows-specific binary (qshell-windows-amd64)",
+        "The assistant explains how to add qshell to the system PATH",
+        "The assistant suggests running qshell --version to verify installation"
+      ]
+    }
+  ]
+}

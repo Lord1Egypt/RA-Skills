@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Focus Timer</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #141418;
+    --surface-2: #1c1c22;
+    --text: #f0f0f2;
+    --text-muted: #8e8e93;
+    --text-dim: #5a5a5e;
+    --accent: #ff9f0a;
+    --accent-dim: rgba(255,159,10,0.12);
+    --green: #30d158;
+    --green-dim: rgba(48,209,88,0.12);
+    --red: #ff453a;
+    --blue: #4a9eff;
+    --radius: 16px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: var(--bg); color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    min-height: 100vh;
+  }
+  .container { max-width:480px; margin:0 auto; padding:20px 16px 80px; }
+
+  .header { text-align:center; padding:20px 0 8px; }
+  .header h1 { font-size:28px; font-weight:700; }
+  .header .sub { font-size:14px; color:var(--text-muted); margin-top:4px; }
+
+  /* Timer */
+  .timer-wrap { text-align:center; padding:40px 0; }
+  .timer-ring {
+    width: 240px; height: 240px; margin: 0 auto 24px;
+    position: relative;
+  }
+  .timer-ring svg { width:100%; height:100%; transform:rotate(-90deg); }
+  .timer-ring .bg { fill:none; stroke:var(--surface-2); stroke-width:8; }
+  .timer-ring .progress { fill:none; stroke:var(--accent); stroke-width:8; stroke-linecap:round; transition: stroke-dashoffset 0.5s linear; }
+  .timer-ring.break .progress { stroke:var(--green); }
+  .timer-ring .time-display {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-size:56px; font-weight:200; letter-spacing:-2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .timer-ring .mode-label {
+    position:absolute; top:62%; left:50%; transform:translateX(-50%);
+    margin-top:16px; font-size:13px; color:var(--text-muted);
+    text-transform:uppercase; letter-spacing:1px; font-weight:600;
+  }
+
+  .controls { display:flex; justify-content:center; gap:16px; margin-bottom:32px; }
+  .btn {
+    border:none; border-radius:14px; padding:14px 32px;
+    font-size:16px; font-weight:600; cursor:pointer;
+    font-family:inherit; transition: opacity 0.15s;
+  }
+  .btn:active { opacity:0.7; }
+  .btn-primary { background:var(--accent); color:#000; }
+  .btn-primary.running { background:var(--red); color:#fff; }
+  .btn-secondary { background:var(--surface); color:var(--text-muted); border:1px solid var(--surface-2); }
+
+  /* Settings */
+  .settings {
+    background:var(--surface); border-radius:var(--radius); padding:16px 20px;
+    margin-bottom:24px;
+  }
+  .setting-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 0; border-bottom:1px solid var(--surface-2);
+  }
+  .setting-row:last-child { border-bottom:none; }
+  .setting-label { font-size:15px; color:var(--text-muted); }
+  .setting-value {
+    display:flex; align-items:center; gap:12px;
+  }
+  .setting-value button {
+    width:32px; height:32px; border-radius:8px; border:1px solid var(--surface-2);
+    background:var(--surface-2); color:var(--text); font-size:16px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .setting-value button:active { background:var(--accent-dim); }
+  .setting-value span { font-size:16px; font-weight:600; min-width:32px; text-align:center; }
+
+  /* Stats */
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:24px; }
+  .stat-card {
+    background:var(--surface); border-radius:var(--radius); padding:16px; text-align:center;
+  }
+  .stat-value { font-size:28px; font-weight:300; margin-bottom:4px; }
+  .stat-label { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px; }
+
+  /* History */
+  .history { background:var(--surface); border-radius:var(--radius); padding:16px 20px; }
+  .history-title { font-size:13px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .history-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:8px 0; border-bottom:1px solid var(--surface-2);
+    font-size:14px; color:var(--text-muted);
+  }
+  .history-row:last-child { border-bottom:none; }
+  .history-row .count { font-weight:600; color:var(--text); }
+  .history-empty { font-size:14px; color:var(--text-dim); text-align:center; padding:12px 0; }
+  .reset-btn {
+    margin-top:12px; width:100%; padding:10px; background:none;
+    border:1px solid var(--surface-2); border-radius:10px; color:var(--text-dim);
+    font-size:13px; cursor:pointer; font-family:inherit;
+  }
+  .reset-btn:active { border-color:var(--red); color:var(--red); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🍅 Focus Timer</h1>
+    <div class="sub">Pomodoro technique — focus, then rest</div>
+  </div>
+
+  <div class="timer-wrap">
+    <div class="timer-ring" id="timerRing">
+      <svg viewBox="0 0 200 200">
+        <circle class="bg" cx="100" cy="100" r="90"/>
+        <circle class="progress" id="progressRing" cx="100" cy="100" r="90"
+          stroke-dasharray="565.48" stroke-dashoffset="0"/>
+      </svg>
+      <div class="time-display" id="timeDisplay">25:00</div>
+      <div class="mode-label" id="modeLabel">Focus</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-primary" id="startBtn" onclick="toggleTimer()">Start</button>
+    <button class="btn btn-secondary" id="skipBtn" onclick="skipPhase()">Skip</button>
+  </div>
+
+  <div class="settings">
+    <div class="setting-row">
+      <span class="setting-label">Focus (min)</span>
+      <div class="setting-value">
+        <button onclick="adjust('focus',-5)">−</button>
+        <span id="focusSetting">25</span>
+        <button onclick="adjust('focus',5)">+</button>
+      </div>
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Short break (min)</span>
+      <div class="setting-value">
+        <button onclick="adjust('short',-1)">−</button>
+        <span id="shortSetting">5</span>
+        <button onclick="adjust('short',1)">+</button>
+      </div>
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Long break (min)</span>
+      <div class="setting-value">
+        <button onclick="adjust('long',-5)">−</button>
+        <span id="longSetting">15</span>
+        <button onclick="adjust('long',5)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value" id="todaySessions">0</div>
+      <div class="stat-label">Today</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="todayMinutes">0</div>
+      <div class="stat-label">Minutes</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="streak">0</div>
+      <div class="stat-label">Streak</div>
+    </div>
+  </div>
+
+  <div class="history">
+    <div class="history-title">This Week</div>
+    <div id="historyList"></div>
+    <button class="reset-btn" onclick="resetHistory()">Reset All Data</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'openpot_focus_timer';
+const CIRC = 2 * Math.PI * 90; // 565.48
+
+let settings = { focus: 25, short: 5, long: 15 };
+let state = { running: false, mode: 'focus', secondsLeft: 25 * 60, sessionsToday: 0, interval: null };
+let history = [];
+
+function loadData() {
+  try {
+    const d = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (d) {
+      if (d.settings) settings = d.settings;
+      if (d.history) history = d.history;
+    }
+  } catch(e) {}
+  state.secondsLeft = settings.focus * 60;
+}
+
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ settings, history }));
+}
+
+function todayKey() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function getTodayRecord() {
+  const key = todayKey();
+  let rec = history.find(h => h.date === key);
+  if (!rec) { rec = { date: key, sessions: 0, minutes: 0 }; history.unshift(rec); }
+  return rec;
+}
+
+function adjust(type, delta) {
+  if (state.running) return;
+  if (type === 'focus') {
+    settings.focus = Math.max(5, Math.min(60, settings.focus + delta));
+    document.getElementById('focusSetting').textContent = settings.focus;
+    if (state.mode === 'focus') { state.secondsLeft = settings.focus * 60; updateDisplay(); }
+  } else if (type === 'short') {
+    settings.short = Math.max(1, Math.min(15, settings.short + delta));
+    document.getElementById('shortSetting').textContent = settings.short;
+    if (state.mode === 'short') { state.secondsLeft = settings.short * 60; updateDisplay(); }
+  } else if (type === 'long') {
+    settings.long = Math.max(5, Math.min(30, settings.long + delta));
+    document.getElementById('longSetting').textContent = settings.long;
+    if (state.mode === 'long') { state.secondsLeft = settings.long * 60; updateDisplay(); }
+  }
+  saveData();
+}
+
+function toggleTimer() {
+  if (state.running) {
+    clearInterval(state.interval);
+    state.running = false;
+    document.getElementById('startBtn').textContent = 'Start';
+    document.getElementById('startBtn').classList.remove('running');
+  } else {
+    state.running = true;
+    document.getElementById('startBtn').textContent = 'Pause';
+    document.getElementById('startBtn').classList.add('running');
+    state.interval = setInterval(tick, 1000);
+  }
+}
+
+function tick() {
+  state.secondsLeft--;
+  if (state.secondsLeft <= 0) {
+    clearInterval(state.interval);
+    state.running = false;
+    document.getElementById('startBtn').textContent = 'Start';
+    document.getElementById('startBtn').classList.remove('running');
+    completePhase();
+  }
+  updateDisplay();
+}
+
+function completePhase() {
+  if (state.mode === 'focus') {
+    const rec = getTodayRecord();
+    rec.sessions++;
+    rec.minutes += settings.focus;
+    saveData();
+
+    // Decide break type
+    if (rec.sessions % 4 === 0) {
+      state.mode = 'long';
+      state.secondsLeft = settings.long * 60;
+    } else {
+      state.mode = 'short';
+      state.secondsLeft = settings.short * 60;
+    }
+  } else {
+    state.mode = 'focus';
+    state.secondsLeft = settings.focus * 60;
+  }
+  updateDisplay();
+  renderStats();
+  renderHistory();
+
+  // Audio alert
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.value = state.mode === 'focus' ? 880 : 660;
+    gain.gain.value = 0.3;
+    osc.start(); osc.stop(ctx.currentTime + 0.3);
+  } catch(e) {}
+}
+
+function skipPhase() {
+  clearInterval(state.interval);
+  state.running = false;
+  document.getElementById('startBtn').textContent = 'Start';
+  document.getElementById('startBtn').classList.remove('running');
+
+  if (state.mode === 'focus') {
+    state.mode = 'short';
+    state.secondsLeft = settings.short * 60;
+  } else {
+    state.mode = 'focus';
+    state.secondsLeft = settings.focus * 60;
+  }
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const mins = Math.floor(state.secondsLeft / 60);
+  const secs = state.secondsLeft % 60;
+  document.getElementById('timeDisplay').textContent =
+    `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+
+  const total = state.mode === 'focus' ? settings.focus * 60
+    : state.mode === 'short' ? settings.short * 60 : settings.long * 60;
+  const pct = 1 - (state.secondsLeft / total);
+  document.getElementById('progressRing').style.strokeDashoffset = CIRC * (1 - pct);
+
+  const ring = document.getElementById('timerRing');
+  const label = document.getElementById('modeLabel');
+  if (state.mode === 'focus') {
+    ring.classList.remove('break');
+    label.textContent = 'Focus';
+  } else if (state.mode === 'short') {
+    ring.classList.add('break');
+    label.textContent = 'Short Break';
+  } else {
+    ring.classList.add('break');
+    label.textContent = 'Long Break';
+  }
+}
+
+function renderStats() {
+  const rec = getTodayRecord();
+  document.getElementById('todaySessions').textContent = rec.sessions;
+  document.getElementById('todayMinutes').textContent = rec.minutes;
+
+  // Streak: consecutive days with at least 1 session
+  let streak = 0;
+  const now = new Date();
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().split('T')[0];
+    const h = history.find(r => r.date === key);
+    if (h && h.sessions > 0) streak++;
+    else if (i > 0) break; // allow today to be 0 if it's early
+  }
+  document.getElementById('streak').textContent = streak;
+}
+
+function renderHistory() {
+  const list = document.getElementById('historyList');
+  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const week = history.slice(0, 7).filter(h => h.sessions > 0);
+
+  if (week.length === 0) {
+    list.innerHTML = '<div class="history-empty">No sessions yet. Start your first focus!</div>';
+    return;
+  }
+
+  list.innerHTML = week.map(h => {
+    const d = new Date(h.date + 'T12:00:00');
+    const label = h.date === todayKey() ? 'Today'
+      : `${DAYS[d.getDay()]} ${d.getMonth()+1}/${d.getDate()}`;
+    return `<div class="history-row">
+      <span>${label}</span>
+      <span><span class="count">${h.sessions}</span> sessions · ${h.minutes} min</span>
+    </div>`;
+  }).join('');
+}
+
+function resetHistory() {
+  if (confirm('Reset all timer data?')) {
+    history = [];
+    saveData();
+    renderStats();
+    renderHistory();
+  }
+}
+
+loadData();
+document.getElementById('focusSetting').textContent = settings.focus;
+document.getElementById('shortSetting').textContent = settings.short;
+document.getElementById('longSetting').textContent = settings.long;
+updateDisplay();
+renderStats();
+renderHistory();
+</script>
+</body>
+</html>

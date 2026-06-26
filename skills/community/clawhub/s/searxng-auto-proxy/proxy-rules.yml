@@ -1,0 +1,144 @@
+# SearXNG 自适应代理规则配置 v1.0
+# 三层架构：固定规则 + 动态检测 + 定时优化
+
+# ========== 引擎代理策略 ==========
+engines:
+  # --- 必须代理（国际服务，中国大陆无法访问）---
+  google:
+    proxy_mode: required
+    reason: "中国大陆无法访问"
+    fallback: bing
+    test_url: "https://www.google.com"
+    category: global
+    
+  brave:
+    proxy_mode: required
+    reason: "中国大陆无法访问"
+    fallback: bing
+    test_url: "https://search.brave.com"
+    category: global
+    
+  startpage:
+    proxy_mode: required
+    fallback: bing
+    test_url: "https://www.startpage.com"
+    category: global
+    
+  qwant:
+    proxy_mode: required
+    fallback: bing
+    test_url: "https://www.qwant.com"
+    category: global
+    
+  ecosia:
+    proxy_mode: required
+    fallback: bing
+    test_url: "https://www.ecosia.org"
+    category: global
+    
+  duckduckgo:
+    proxy_mode: dynamic  # 有时能直连，有时需要代理
+    test_url: "https://duckduckgo.com"
+    threshold_ms: 3000
+    fallback: bing
+    category: dynamic
+    
+  # --- 必须直连（国内服务，代理反而慢）---
+  baidu:
+    proxy_mode: forbidden
+    reason: "国内服务，直连最快"
+    category: cn
+    
+  sogou:
+    proxy_mode: forbidden
+    reason: "国内服务"
+    category: cn
+    
+  # --- 动态选择（根据网络状况智能切换）---
+  wikipedia:
+    proxy_mode: dynamic
+    test_url: "https://zh.wikipedia.org"
+    threshold_ms: 2000
+    fallback: baidu
+    category: dynamic
+    
+  github:
+    proxy_mode: dynamic
+    test_url: "https://github.com"
+    threshold_ms: 3000
+    fallback: gitee
+    category: dynamic
+    
+  arxiv:
+    proxy_mode: dynamic
+    test_url: "https://arxiv.org"
+    threshold_ms: 4000
+    category: dynamic
+    
+  stackoverflow:
+    proxy_mode: dynamic
+    test_url: "https://stackoverflow.com"
+    threshold_ms: 3000
+    category: dynamic
+    
+  docker hub:
+    proxy_mode: dynamic
+    test_url: "https://hub.docker.com"
+    threshold_ms: 3000
+    category: dynamic
+
+# ========== 探测配置 ==========
+probe:
+  # 动态引擎探测间隔（秒）
+  interval: 30
+  
+  # 超时阈值（毫秒）
+  timeout_ms: 5000
+  
+  # 连续失败次数阈值
+  failure_threshold: 3
+  
+  # 禁用时长（秒）
+  disable_duration: 300
+  
+  # 并发探测数
+  concurrency: 5
+
+# ========== 代理优化配置 ==========
+optimizer:
+  # 优化间隔（秒）
+  interval: 1800  # 30 分钟
+  
+  # Clash API 地址
+  clash_api: "http://clash:9090"
+  
+  # 测速 URL 列表
+  speed_test_urls:
+    - "https://www.google.com"
+    - "https://www.wikipedia.org"
+    - "https://www.github.com"
+  
+  # 延迟阈值（超过则切换）
+  latency_threshold_ms: 500
+
+# ========== 缓存配置 ==========
+cache:
+  # 引擎状态缓存 TTL（秒）
+  engine_status_ttl: 30
+  
+  # 代理延迟缓存 TTL（秒）
+  proxy_latency_ttl: 1800
+  
+  # 节点速度缓存 TTL（秒）
+  node_speed_ttl: 1800
+
+# ========== 日志配置 ==========
+logging:
+  level: INFO
+  file: "/var/log/searxng-proxy-adapter.log"
+  
+  # 记录详细性能数据
+  record_performance: true
+  
+  # 性能数据保留天数
+  retention_days: 7

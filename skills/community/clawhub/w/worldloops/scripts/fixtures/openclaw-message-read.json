@@ -1,0 +1,18 @@
+{
+  "messages": [
+    {
+      "text": "Can you review PR #847 today?",
+      "sender": "Sarah",
+      "createdAt": "2026-05-16T10:00:00.000Z",
+      "url": "https://slack.example/messages/1"
+    },
+    {
+      "text": "Following up on the proposal from last week.",
+      "sender": "David",
+      "createdAt": "2026-05-16T11:00:00.000Z"
+    }
+  ],
+  "count": 2,
+  "channel": "slack",
+  "target": "channel:C123"
+}

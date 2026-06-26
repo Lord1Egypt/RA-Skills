@@ -1,0 +1,20 @@
+[
+  {
+    "name": "openclaw/openclaw",
+    "html_url": "https://github.com/openclaw/openclaw",
+    "stars": 311178,
+    "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 "
+  },
+  {
+    "name": "Significant-Gravitas/AutoGPT",
+    "html_url": "https://github.com/Significant-Gravitas/AutoGPT",
+    "stars": 182441,
+    "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters."
+  },
+  {
+    "name": "n8n-io/n8n",
+    "html_url": "https://github.com/n8n-io/n8n",
+    "stars": 179027,
+    "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations."
+  }
+]

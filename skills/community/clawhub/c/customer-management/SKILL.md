@@ -1,35 +1,98 @@
 ---
-name: "大圆虾-客户管理"
-description: "云计算客户经理客户资料管理与跟进系统。自动整理客户信息、记录跟进历史、生成客户档案。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/customer-management"
-sourceUrl: "https://clawhub.ai/skills/customer-management"
+name: dayuangxia-customer-management
+description: 云计算客户经理客户资料管理与跟进系统。自动整理客户信息、记录跟进历史、生成客户档案。
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": {},
+        "install": []
+      },
+  }
 ---
 
 # 大圆虾-客户管理
 
-> 云计算客户经理客户资料管理与跟进系统。自动整理客户信息、记录跟进历史、生成客户档案。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/customer-management`
-- **Source URL:** [https://clawhub.ai/skills/customer-management](https://clawhub.ai/skills/customer-management)
+为云计算客户经理提供客户资料管理、跟进记录、客户档案生成等功能。
 
-## Overview
+## 使用场景
 
+- **客户信息整理**：从邮件、会议记录中提取客户信息
+- **跟进记录**：记录拜访、沟通历史
+- **客户档案生成**：生成完整的客户档案文档
+- **客户分类**：按行业、规模、需求等级分类
+- **提醒设置**：设置客户回访提醒
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/customer-management
+## 工具使用
+
+### 文件操作
+
+- `read`：读取客户档案文件
+- `write`：创建/更新客户档案
+- `edit`：修改客户信息
+
+### 数据处理
+
+- `exec`：运行数据处理脚本
+- `process`：管理客户数据处理流程
+
+### 文档生成
+
+- `feishu_doc`：在飞书文档中创建客户档案
+- `feishu_bitable`：使用多维表格管理客户数据
+
+## 示例任务
+
+### 1. 创建客户档案
+
 ```
+客户：ABC科技有限公司
+行业：金融科技
+规模：中型企业（100-500人）
+需求：云服务器、数据库服务
+联系人：张经理
+联系方式：138xxxxxxx
+```
+
+### 2. 更新跟进记录
+
+```
+2026-04-07 拜访：讨论云服务器需求
+2026-04-10 电话：确认报价方案
+2026-04-15 邮件：发送合同草案
+```
+
+### 3. 生成统计报告
+
+```
+客户总数：50
+活跃客户：30
+潜在客户：20
+本月拜访次数：15
+```
+
+## 配置文件
+
+建议在 `TOOLS.md` 中添加客户管理相关配置：
+
+```markdown
+### 客户管理
+
+- 客户档案目录：clients/
+- 跟进记录格式：YYYY-MM-DD.md
+- 客户分类标签：金融、制造、零售、教育
+```
+
+## 注意事项
+
+1. 客户信息属于敏感数据，注意隐私保护
+2. 定期备份客户档案
+3. 客户分类标准可根据业务调整
+
+---
+
+**版本：1.0.0**
+**作者：大圆虾**
+**发布日期：2026-04-07**

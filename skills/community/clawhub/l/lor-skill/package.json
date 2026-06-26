@@ -1,0 +1,19 @@
+{
+  "name": "lor-skill",
+  "version": "1.0.1",
+  "description": "Loop of Resilience - A modular Chain of Thought (CoT) engineering verification system for OpenClaw.",
+  "main": "engine/index.js",
+  "scripts": {
+    "test": "node tests/test_lor.js",
+    "lint": "eslint engine/ tests/"
+  },
+  "keywords": ["openclaw", "lor", "verification", "engineering", "chain of thought", "cot", "agent"],
+  "author": "Uwe7",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  }
+}

@@ -1,35 +1,27 @@
 ---
-name: "Desktop Monitor Widget"
-description: "桌面监控悬浮球 - 实时显示系统资源状态"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/desktop-monitor-widget"
-sourceUrl: "https://clawhub.ai/skills/desktop-monitor-widget"
+name: desktop-monitor-widget
+description: 桌面监控悬浮球 - 实时显示系统资源状态
+version: 1.0.0
+author: gsp
 ---
 
 # Desktop Monitor Widget
 
-> 桌面监控悬浮球 - 实时显示系统资源状态
+一个优雅的桌面监控悬浮球，实时显示系统资源状态。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/desktop-monitor-widget`
-- **Source URL:** [https://clawhub.ai/skills/desktop-monitor-widget](https://clawhub.ai/skills/desktop-monitor-widget)
+## 功能特性
 
-## Overview
+- 🎯 **悬浮球设计** - 透明悬浮窗，不干扰其他操作
+- 📊 **实时监控** - CPU、内存、磁盘、温度
+- 🎨 **贴边自动缩小** - 靠近屏幕边缘自动折叠
+- 🖱️ **可拖动位置** - 随意放置在屏幕任意位置
+- 🔄 **自动更新** - 每 2 秒刷新一次数据
+- 👆 **双击切换** - 展开/折叠视图
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/desktop-monitor-widget
-```
+直接询问 Agent "系统状态"、"资源使用情况" 或 "打开监控悬浮球"。
+
+本技能提供两种模式：
+1. Web 浏览器模式（推荐，无需额外依赖）
+2. Tkinter 窗口模式（需要 tkinter）

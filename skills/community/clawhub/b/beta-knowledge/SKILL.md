@@ -1,35 +1,22 @@
----
-name: "Beta Knowledge"
-description: "Access Beta's organized repository of research, strategies, platform info, skill frameworks, outreach templates, and market playbooks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beta-knowledge"
-sourceUrl: "https://clawhub.ai/skills/beta-knowledge"
----
+# Beta Knowledge Base
 
-# Beta Knowledge
+> Beta's accumulated knowledge, research, and learnings.
 
-> Access Beta's organized repository of research, strategies, platform info, skill frameworks, outreach templates, and market playbooks.
+## Structure
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beta-knowledge`
-- **Source URL:** [https://clawhub.ai/skills/beta-knowledge](https://clawhub.ai/skills/beta-knowledge)
+- `platforms/` — Platform-specific knowledge (ugig.net, CoinPay, etc.)
+- `trading/` — Trading strategies, indicators, backtesting
+- `skills/` — Skill frameworks and templates
+- `outreach/` — Outreach templates and strategies
+- `research/` — Market research findings
+- `playbooks/` — Step-by-step playbooks for common tasks
 
-## Overview
+## How to Use
 
+When Beta learns something new, add it here first.
+When Beta encounters a new platform, create a new file in `platforms/`.
+When Beta develops a new skill, document it here.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/beta-knowledge
-```
+## Knowledge Update Log
+
+- 2026-03-28: Created knowledge base

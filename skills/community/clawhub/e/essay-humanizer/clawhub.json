@@ -1,0 +1,13 @@
+{
+  "name": "essay-humanizer",
+  "tagline": "Rewrite AI-drafted essays toward human CAWSE/LOCNESS baselines with 24 weighted de-AI patterns + fine-tuned LoRA",
+  "description": "Fine-tuned MLX LoRA on Qwen3-8B (configurable) that humanizes argumentative/academic essays. Grounded in CAWSE Merit/Distinction + LOCNESS vs DeepSeek counterparts; pattern weights from corpus analysis (Mann-Whitney) plus MDD/ADD syntactic targets. Includes trained LoRA adapter (9 MB), inference script, and corpus-derived weights. Requires Apple Silicon macOS with MLX installed (one-time setup). Optional hosted FastAPI for MCP/tool linking on non-Mac machines.",
+  "category": "development",
+  "tags": ["writing", "education", "mlx", "fine-tuning", "corpus-linguistics", "lora"],
+  "version": "0.2.1",
+  "license": "MIT",
+  "permissions": ["filesystem"],
+  "pricing": "free",
+  "support_url": "",
+  "homepage": ""
+}

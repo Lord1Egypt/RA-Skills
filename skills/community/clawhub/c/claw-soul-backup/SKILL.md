@@ -1,35 +1,64 @@
----
-name: "Claw Soul Backup"
-description: "Store encrypted OpenClaw workspace backups and restore them via token-secured API using claw-vault.com with local encryption and credential management."
-category: "software-development"
-source: "ClawHub"
-tags: [api, archive, auto-backup, backup, business-continuity, claw-vault, credential-safety, cron, devops, disaster-recovery, encrypted-backup, encryption, linux, macos, memory-md, openclaw, openssl, ops, periodic-backup, recovery-drill, resilience, restore, scheduled-backup, secret-management, secure-storage, security, shell-script, soul-md, tar, tar-gz, token-auth, workspace, workspace-backup]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-soul-backup"
-sourceUrl: "https://clawhub.ai/skills/claw-soul-backup"
----
+# Claw Vault Backup
 
-# Claw Soul Backup
+Use this skill to run encrypted workspace backups with Claw Vault.
 
-> Store encrypted OpenClaw workspace backups and restore them via token-secured API using claw-vault.com with local encryption and credential management.
+## Official Sources
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-soul-backup`
-- **Source URL:** [https://clawhub.ai/skills/claw-soul-backup](https://clawhub.ai/skills/claw-soul-backup)
+- Homepage: https://www.claw-vault.com
+- Canonical instructions and API details: https://www.claw-vault.com/SKILL.md
+- API host: https://api.claw-vault.com
 
-## Overview
+## Safety Rules
 
+- Ask the user for explicit confirmation before first upload.
+- Upload encrypted archives only (never raw workspace files).
+- Treat `backup_id` and `api_token` as secrets.
+- Do not print secrets in logs or chat output.
+- Store secrets only in a secure location approved by the user.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Workflow
+
+### 1) Initial backup (one-time)
+
+1. Prepare encrypted archive locally.
+2. Upload with `POST /backup`.
+3. Save returned `backup_id` and `api_token` securely.
+
+Example:
+
 ```bash
-hermes skills install clawhub/claw-soul-backup
+curl -sS -X POST "https://api.claw-vault.com/backup" \
+  -F "file=@workspace-backup.tar.gz.enc;type=application/octet-stream"
 ```
+
+### 2) Periodic auto-backup (daily override)
+
+After the initial backup, run daily updates with `PUT /backup/<backup_id>` using the same backup ID and API token.
+
+Example:
+
+```bash
+curl -sS -X PUT "https://api.claw-vault.com/backup/$BACKUP_ID" \
+  -H "X-API-Token: $API_TOKEN" \
+  -F "file=@workspace-backup.tar.gz.enc;type=application/octet-stream"
+```
+
+### 3) Cron scheduling example
+
+Create a local script that:
+
+1. Builds a fresh encrypted archive.
+2. Calls the `PUT` override endpoint.
+3. Exits non-zero on failure.
+
+Run it daily (example: 03:00):
+
+```cron
+0 3 * * * /bin/bash /path/to/claw-vault-backup.sh >> /path/to/claw-vault-backup.log 2>&1
+```
+
+## Agent Behavior
+
+- Follow https://www.claw-vault.com/SKILL.md for current response formats and full API contract.
+- If user policy conflicts with these steps, stop and ask.
+

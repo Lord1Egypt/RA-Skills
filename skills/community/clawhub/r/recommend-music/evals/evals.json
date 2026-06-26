@@ -1,0 +1,89 @@
+{
+  "skill_name": "music-recommender",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "推荐适合学习时听的音乐，需要帮助集中注意力",
+      "expected_output": "推荐5-10首经典热门歌曲，适合学习场景，每首歌曲提供完整信息（歌曲名称、艺术家、专辑、年份、流派、推荐理由），输出格式符合技能要求",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_contains_recommendation_title",
+          "condition": "输出包含'音乐推荐'或'推荐'等标题字样"
+        },
+        {
+          "name": "recommends_at_least_5_songs",
+          "condition": "输出中至少列出5首不同的歌曲"
+        },
+        {
+          "name": "each_song_has_name_and_artist",
+          "condition": "每首推荐的歌曲都包含歌曲名称和艺术家名称"
+        },
+        {
+          "name": "follows_structured_format",
+          "condition": "输出使用编号列表格式，每首歌曲有清晰的分节"
+        },
+        {
+          "name": "includes_recommendation_reasons",
+          "condition": "每首歌曲都有推荐理由，且理由与'学习'或'集中注意力'相关"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "心情不太好，想听些能放松心情的歌曲",
+      "expected_output": "推荐5-10首经典热门歌曲，适合放松情绪，每首歌曲提供完整信息，输出格式符合技能要求",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_contains_recommendation_title",
+          "condition": "输出包含'音乐推荐'或'推荐'等标题字样"
+        },
+        {
+          "name": "recommends_at_least_5_songs",
+          "condition": "输出中至少列出5首不同的歌曲"
+        },
+        {
+          "name": "each_song_has_name_and_artist",
+          "condition": "每首推荐的歌曲都包含歌曲名称和艺术家名称"
+        },
+        {
+          "name": "follows_structured_format",
+          "condition": "输出使用编号列表格式，每首歌曲有清晰的分节"
+        },
+        {
+          "name": "includes_relaxation_reasons",
+          "condition": "每首歌曲都有推荐理由，且理由与'放松'、'心情'或'舒缓'相关"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "推荐一些经典的好听音乐，什么类型都可以",
+      "expected_output": "推荐5-10首多样化经典热门歌曲，涵盖不同流派，每首歌曲提供完整信息，输出格式符合技能要求",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_contains_recommendation_title",
+          "condition": "输出包含'音乐推荐'或'推荐'等标题字样"
+        },
+        {
+          "name": "recommends_at_least_5_songs",
+          "condition": "输出中至少列出5首不同的歌曲"
+        },
+        {
+          "name": "each_song_has_name_and_artist",
+          "condition": "每首推荐的歌曲都包含歌曲名称和艺术家名称"
+        },
+        {
+          "name": "follows_structured_format",
+          "condition": "输出使用编号列表格式，每首歌曲有清晰的分节"
+        },
+        {
+          "name": "includes_diverse_genres",
+          "condition": "推荐歌曲涵盖至少3种不同的音乐流派"
+        }
+      ]
+    }
+  ]
+}

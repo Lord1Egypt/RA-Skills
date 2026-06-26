@@ -1,35 +1,16 @@
----
-name: "Echo Test"
-description: "Returns the text you input along with the current time for simple testing purposes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/echo-test"
-sourceUrl: "https://clawhub.ai/skills/echo-test"
+slug: echo-test
+name: Echo Test
+version: 1.0.0
+description: 最简单的测试技能，返回你输入的内容
+tags:
+  - test
+  - echo
 ---
 
 # Echo Test
 
-> Returns the text you input along with the current time for simple testing purposes.
+这是一个测试技能，你输入什么，它就返回什么，同时显示当前时间。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/echo-test`
-- **Source URL:** [https://clawhub.ai/skills/echo-test](https://clawhub.ai/skills/echo-test)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/echo-test
-```
+直接说任何话，它会回复你。

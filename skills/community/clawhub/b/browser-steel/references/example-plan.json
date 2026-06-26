@@ -1,0 +1,18 @@
+{
+  "url": "https://example.com",
+  "session_name": "example-plan",
+  "steps": [
+    {
+      "action": "wait_for_load_state",
+      "state": "networkidle"
+    },
+    {
+      "action": "get_title"
+    },
+    {
+      "action": "extract_text",
+      "selector": "body",
+      "max_chars": 2000
+    }
+  ]
+}

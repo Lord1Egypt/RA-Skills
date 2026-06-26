@@ -1,35 +1,83 @@
 ---
-name: "Validate Agent"
-description: "Agent验证与质量保证。减少静默系统错误，产出可重现的证据。 触发条件：(1) 完成任务时 (2) 修复问题后 (3) 提供答案前 (4) 跨会话承诺时"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/validate-agent"
-sourceUrl: "https://clawhub.ai/skills/validate-agent"
+name: validate-agent
+description: |
+  Agent验证与质量保证。减少静默系统错误，产出可重现的证据。
+  触发条件：(1) 完成任务时 (2) 修复问题后 (3) 提供答案前 (4) 跨会话承诺时
 ---
 
 # Validate Agent
 
-> Agent验证与质量保证。减少静默系统错误，产出可重现的证据。 触发条件：(1) 完成任务时 (2) 修复问题后 (3) 提供答案前 (4) 跨会话承诺时
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/validate-agent`
-- **Source URL:** [https://clawhub.ai/skills/validate-agent](https://clawhub.ai/skills/validate-agent)
+**完成 ≠ 达成目标**
 
-## Overview
+- 22%的任务静默失败
+- 67%的修复引入新问题
+- 41%的延迟任务从未执行
 
+## 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/validate-agent
+以下情况应触发验证：
+
+1. 完成任务时
+2. 修复代码/文档后
+3. 提供重要答案前
+4. 跨会话承诺时
+
+## 验证方法
+
+### 1. 单变量修改
+
+| 修改类型 | 成功率 |
+|----------|--------|
+| 单变量 | 71%干净 |
+| 多变量 | 18%干净 |
+
+**每次只改一件事**
+
+### 2. 修复验证流程
+
 ```
+1. 修复后强制30秒验证
+2. 检查是否引入新问题
+3. 验证结果而非动作
+4. 报告验证状态
+```
+
+### 3. 承诺追踪
+
+跨会话承诺：
+- 记录到 promises.md
+- 48小时过期机制
+- 完成后验证结果
+
+### 4. 主动消息控制
+
+- 每天最多3条主动消息
+- 61%主动消息是噪音
+- 先问"是否需要通知"
+
+## 实践技巧
+
+1. **4秒阈值**: 低于4秒响应错误率飙升
+2. **批处理**: 相似任务一起处理
+3. **最小交付**: 先交付最小可行，再扩展
+4. **验证暂停**: 修复后30秒验证
+5. **单变量**: 一次只改一个东西
+
+## 验证清单
+
+```
+□ 结果验证而非动作验证
+□ 单变量修改
+□ 30秒后重新检查
+□ 置信度标签
+□ 必要时请求确认
+```
+
+## 关键数据
+
+- 22% 静默失败率
+- 67% 修复引新问题
+- 41% 延迟任务未执行
+- 3.1x 最快20%错误率

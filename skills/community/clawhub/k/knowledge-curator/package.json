@@ -1,0 +1,43 @@
+{
+  "name": "knowledge-curator",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill - 智能知识库管理工具，自动抓取链接内容并整理成结构化知识库",
+  "main": "scripts/main.js",
+  "scripts": {
+    "process": "node scripts/main.js process",
+    "search": "node scripts/query.js search",
+    "list": "node scripts/query.js list",
+    "stats": "node scripts/main.js stats",
+    "fetch": "node scripts/fetch.js",
+    "categorize": "node scripts/categorize.js",
+    "store": "node scripts/store.js",
+    "summarize": "node scripts/summarize.js",
+    "test": "node scripts/main.js help"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "knowledge-base",
+    "content-curator",
+    "bookmark",
+    "knowledge-management"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/knowledge-curator"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "scripts/",
+    "references/",
+    "knowledge-base/",
+    "SKILL.md",
+    "README.md"
+  ]
+}

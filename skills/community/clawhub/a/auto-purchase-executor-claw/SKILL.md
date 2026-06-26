@@ -1,35 +1,99 @@
 ---
-name: "自动下单执行虾"
-description: "自动下单执行虾 — 规则驱动的采购自动化执行引擎。达到触发条件后自动执行支付采购，完成从发现到付钱的闭环。 当以下情况时使用此 Skill： (1) 需要根据库存水位自动触发补货采购 (2) 需要监控价格并在跌破目标价时自动下单 (3) 需要配置定期自动续订（办公用品、SaaS 订阅等） (4) 需要生产线缺料时..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-purchase-executor-claw"
-sourceUrl: "https://clawhub.ai/skills/auto-purchase-executor-claw"
+name: auto-purchase-executor-claw
+description: |
+  自动下单执行虾 — 规则驱动的采购自动化执行引擎。达到触发条件后自动执行支付采购，完成从发现到付钱的闭环。
+
+  当以下情况时使用此 Skill：
+  (1) 需要根据库存水位自动触发补货采购
+  (2) 需要监控价格并在跌破目标价时自动下单
+  (3) 需要配置定期自动续订（办公用品、SaaS 订阅等）
+  (4) 需要生产线缺料时快速响应自动采购
+  (5) 需要在供应商促销窗口自动抢购锁定优惠价
+  (6) 用户提到"自动下单"、"自动采购"、"自动补货"、"触发采购"、"执行采购"、"自动支付"、"库存预警"、"价格触发"、"自动续订"、"紧急采购"
+  (7) 需要设计或实现采购规则引擎、条件判断逻辑、订单生成与支付执行流程
 ---
 
 # 自动下单执行虾
 
-> 自动下单执行虾 — 规则驱动的采购自动化执行引擎。达到触发条件后自动执行支付采购，完成从发现到付钱的闭环。 当以下情况时使用此 Skill： (1) 需要根据库存水位自动触发补货采购 (2) 需要监控价格并在跌破目标价时自动下单 (3) 需要配置定期自动续订（办公用品、SaaS 订阅等） (4) 需要生产线缺料时...
+规则驱动的采购自动化执行引擎，让采购决策从"人工审批"变成"规则驱动"。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-purchase-executor-claw`
-- **Source URL:** [https://clawhub.ai/skills/auto-purchase-executor-claw](https://clawhub.ai/skills/auto-purchase-executor-claw)
+## 核心工作流
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-purchase-executor-claw
 ```
+[监控数据源] → [条件判断] → [规则匹配] → [预算校验] → [生成订单] → [执行支付] → [通知归档]
+                   ↓                              ↓
+             [未触发：继续监控]              [记录日志]
+```
+
+## 执行步骤
+
+**Step 1 — 理解采购规则**
+- 收集用户的触发条件（库存阈值 / 价格目标 / 时间周期）
+- 确认商品编码、供应商 ID、采购数量、预算上限
+- 如有配置表（Excel/CSV），解析字段：`商品编码`、`触发条件`、`采购数量`、`供应商ID`、`预算上限`
+
+**Step 2 — 条件判断引擎**
+- 数值比较：库存 < 安全库存阈值 / 价格 < 目标价
+- 时间条件：定时触发 / 周期触发
+- 逻辑组合：AND / OR / NOT，支持多维度联合判断
+- 多规则冲突时按优先级排序（紧急 > 常规，主供应商 > 备选）
+- 详细规则配置语法见 `references/purchase-rules.md`
+
+**Step 3 — 预算校验**
+- 单笔金额不超过预设上限
+- 检查月度预算余额
+- 超限时暂停自动采购并通知财务
+
+**Step 4 — 生成采购订单**
+生成包含完整信息的订单：商品明细、供应商信息、价格条款、交货要求。
+供应商 API 对接规范见 `references/supplier-api.md`。
+
+**Step 5 — 执行支付**
+支持：企业网银、支付宝/微信企业付款、账期支付、加密货币（跨境）。
+安全规范与权限矩阵见 `references/payment-security.md`。
+
+**Step 6 — 通知与归档**
+- 通过飞书/邮件/短信通知采购负责人、财务、仓库
+- 订单详情、支付凭证、触发日志存档
+- 异常处理：支付失败自动重试，供应商无响应切换备选
+
+## 核心脚本
+
+`scripts/monitor-and-execute.sh` — 监控与执行主脚本
+
+```bash
+# 启动后台监控
+./scripts/monitor-and-execute.sh monitor --daemon
+
+# 手动执行单笔采购（测试/紧急）
+./scripts/monitor-and-execute.sh execute --rule-id <RULE_ID>
+
+# 查看监控状态
+./scripts/monitor-and-execute.sh status
+```
+
+依赖：`bash` + `curl` + `jq` + `python3` + `mysql-client`
+首次运行需配置数据库连接和 API 密钥。
+
+## 安全原则
+
+- 每笔订单设置预算上限和人工复核阈值
+- 完整记录触发原因、决策依据、执行结果（可审计）
+- 支付失败自动重试，供应商无响应切换备选
+- 增加订单去重机制，防止短时间内重复下单
+
+## 与其他虾的协作
+
+| 上下游 | 虾名 | 数据流向 |
+|--------|------|---------|
+| 上游 | 库存预警虾 (inventory-alert) | 提供库存数据 → 触发补货 |
+| 上游 | 价格监控虾 (price-monitor) | 提供价格数据 → 触发低价采购 |
+| 上游 | 供应商评估虾 (supplier-evaluator) | 提供供应商优先级 |
+| 下游 | 财务对账虾 (finance-reconciliation) | 接收支付记录自动对账 |
+
+## 局限说明
+
+- 依赖供应商 API 稳定性
+- 不支持需要复杂谈判的采购
+- 支付金额受企业网银单笔限额约束
+- 无法处理需要人工判断的特殊情况（质量纠纷、价格异常波动）

@@ -1,35 +1,41 @@
----
-name: "ai-code-optimizer"
-description: "Automatically analyze and improve code for performance, readability, security, and best practices in JavaScript, Python, Go, Rust, and Java."
-category: "other"
-source: "ClawHub"
-tags: [Automatically optimize code for performance, and best practices, readability]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-code-optimizer"
-sourceUrl: "https://clawhub.ai/skills/ai-code-optimizer"
----
+# AI Code Optimizer
 
-# ai-code-optimizer
+Automatically optimize your code for performance, readability, and best practices using AI analysis.
 
-> Automatically analyze and improve code for performance, readability, security, and best practices in JavaScript, Python, Go, Rust, and Java.
+## What it does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-code-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/ai-code-optimizer](https://clawhub.ai/skills/ai-code-optimizer)
+- Analyzes code files for performance bottlenecks
+- Suggests optimizations and refactoring
+- Checks for security vulnerabilities
+- Improves code readability
+- Applies best practices automatically
 
-## Overview
+## Usage
 
+Just ask: "Optimize the code in src/app.js"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-code-optimizer
+The skill will:
+1. Read and analyze the file
+2. Identify optimization opportunities
+3. Apply improvements
+4. Show before/after comparison
+
+## Supported Languages
+
+- JavaScript/TypeScript
+- Python
+- Go
+- Rust
+- Java
+
+## Examples
+
 ```
+"Optimize my Python script for speed"
+"Check security issues in auth.js"
+"Refactor this code for better readability"
+```
+
+## Value
+
+Saves hours of manual code review and optimization work.

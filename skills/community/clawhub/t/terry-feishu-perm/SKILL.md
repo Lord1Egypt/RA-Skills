@@ -1,35 +1,59 @@
 ---
-name: "Feishu Perm"
-description: "Guidance-only playbook for planning and reviewing Feishu document and folder permission management."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/terry-feishu-perm"
-sourceUrl: "https://clawhub.ai/skills/terry-feishu-perm"
+id: feishu-perm
+name: Feishu Perm
+description: Guidance-only playbook for planning and reviewing Feishu document and folder permission management.
+category: Business
+requires: []
+feishu_acl:
+  sensitivity: restricted
+  access:
+    owner: full_access
+    security_team: edit
+    team_members: view
+    external: none
+  review_cadence: 30d
+examples:
+  - "Help me design Feishu sharing permissions for our team docs."
+  - "Use feishu-perm to review access levels before sharing."
 ---
 
-# Feishu Perm
+# Feishu Permission Management
 
-> Guidance-only playbook for planning and reviewing Feishu document and folder permission management.
+Use this guidance-only skill to design safe, least-privilege sharing for Feishu documents, folders, and collaborative workspaces.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/terry-feishu-perm`
-- **Source URL:** [https://clawhub.ai/skills/terry-feishu-perm](https://clawhub.ai/skills/terry-feishu-perm)
+## When to use
 
-## Overview
+- You need a permission model before sharing internal docs.
+- You want to audit existing collaborator access.
+- You need a repeatable access review checklist for teams.
 
+## Core principles
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/terry-feishu-perm
-```
+- Apply least privilege (`view` by default; elevate only when needed).
+- Prefer group/role-based sharing over many individual grants.
+- Time-box elevated access for external collaborators.
+- Require explicit owner approval for `full_access` grants.
+
+## Permission planning workflow
+
+1. Classify document sensitivity (public/internal/restricted).
+2. Identify user groups (owners, editors, reviewers, viewers).
+3. Assign minimum required permission per group.
+4. Define expiration/review cadence for non-owner access.
+5. Document audit trail: who got access, why, and when.
+
+## Access review checklist
+
+- Is every collaborator still active and relevant?
+- Do any users have `full_access` without business justification?
+- Are external shares still required?
+- Are inherited folder permissions too broad?
+- Is there a scheduled review date?
+
+## Output format
+
+When asked for help, provide:
+
+- A recommended permission matrix by role.
+- High-risk findings in current access design.
+- A short remediation plan (immediate fixes + periodic review cadence).

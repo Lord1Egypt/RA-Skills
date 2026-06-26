@@ -1,0 +1,83 @@
+{
+  "name": "english-learner",
+  "displayName": "英语学习助手",
+  "version": "1.0.0",
+  "description": "专为英语学习者设计的综合技能，支持词汇记忆、语法学习、听说读写训练、翻译助手、错题管理和学习进度追踪。当用户提到英语学习、背单词、学英语、练习口语、翻译、英语语法、英语阅读等话题时使用此技能。",
+  "author": "User",
+  "license": "MIT",
+  "tags": [
+    "英语学习",
+    "词汇",
+    "语法",
+    "听力",
+    "口语",
+    "阅读",
+    "写作",
+    "翻译",
+    "education",
+    "learning"
+  ],
+  "category": "教育",
+  "language": "zh-CN",
+  "minWorkBuddyVersion": "2.0",
+  "features": [
+    {
+      "name": "词汇学习",
+      "description": "智能记忆曲线、词源解析、单词测试、词汇管理"
+    },
+    {
+      "name": "语法学习",
+      "description": "语法点讲解、语法练习、语法诊断"
+    },
+    {
+      "name": "阅读训练",
+      "description": "分级阅读材料、阅读理解、精读训练"
+    },
+    {
+      "name": "听说训练",
+      "description": "听力练习、口语练习、发音指导"
+    },
+    {
+      "name": "写作训练",
+      "description": "写作批改、写作模板、表达优化"
+    },
+    {
+      "name": "翻译助手",
+      "description": "中英互译、翻译质量评估"
+    },
+    {
+      "name": "学习管理",
+      "description": "学习计划、进度追踪、错题本"
+    }
+  ],
+  "targetAudience": [
+    "英语初学者",
+    "英语进阶者",
+    "英语高级者",
+    "备考学生",
+    "职场人士",
+    "英语爱好者"
+  ],
+  "cefrLevels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "C1",
+    "C2"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README-SkillHub.md",
+    "study_plan_learner.md",
+    "references/grammar_reference.md",
+    "references/cefr_levels.md",
+    "references/vocabulary_by_topic.md",
+    "references/common_mistakes.md"
+  ],
+  "documentation": "README-SkillHub.md",
+  "homepage": "",
+  "repository": "",
+  "support": ""
+}

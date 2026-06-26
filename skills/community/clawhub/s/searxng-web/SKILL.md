@@ -1,35 +1,17 @@
----
-name: "Searxng Web"
-description: "Proxies search queries to a local searxng instance and returns json-formatted search results with titles, URLs, snippets, and sources."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/searxng-web"
-sourceUrl: "https://clawhub.ai/skills/searxng-web"
----
+# searxng-web
 
-# Searxng Web
+searxng-web exposes a single, minimal tool that proxies queries to a locally hosted searxng instance running at `http://host.docker.internal:8081/search?format=json&q=...` and returns normalized results.
 
-> Proxies search queries to a local searxng instance and returns json-formatted search results with titles, URLs, snippets, and sources.
+## what it provides
+- tool: `searxng_search(query, count=5)`
+- runner: node script `searxng_search.js`
+- output: json `{ query, count, results: [{ title, url, snippet, source }] }`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/searxng-web`
-- **Source URL:** [https://clawhub.ai/skills/searxng-web](https://clawhub.ai/skills/searxng-web)
+## usage examples
 
-## Overview
+### simple call
+input:
+```json
+{ "query": "zillow rentals", "count": 3 }
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/searxng-web
-```
+docker exec -it openclaw sh -lc 

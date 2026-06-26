@@ -1,0 +1,27 @@
+# nmap-mcp server configuration
+
+# Scope enforcement — only these CIDRs are valid scan targets.
+# Targets outside this list are hard-rejected before nmap runs.
+# Set to [] to disable enforcement (NOT recommended for shared environments).
+allowed_cidrs:
+  - "127.0.0.0/8"       # loopback — always useful for testing
+  - "192.168.0.0/16"    # RFC1918 — trim to your actual range in production
+  - "10.0.0.0/8"        # RFC1918 — trim to your actual range in production
+  - "172.16.0.0/12"     # RFC1918 — trim to your actual range in production
+
+# Audit log — records every tool invocation with target, args, success/fail
+# Defaults to ./audit.log relative to server.py if omitted
+audit_log: "./audit.log"
+
+# Scan results directory — each scan saved as {scan_id}.json
+# Defaults to ./scans/ relative to server.py if omitted
+scan_dir: "./scans"
+
+# Default scan timeouts (seconds)
+timeouts:
+  quick: 120
+  standard: 300
+  deep: 600
+
+# nmap binary path
+nmap_bin: "/usr/bin/nmap"

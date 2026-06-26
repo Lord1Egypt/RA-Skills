@@ -1,0 +1,1248 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import {
+  listAgentIds,
+  resolveAgentDir,
+  resolveAgentWorkspaceDir,
+} from "../../agents/agent-scope.js";
+import { ensureAuthProfileStore, resolveApiKeyForProvider } from "../../agents/model-auth.js";
+import {
+  DEFAULT_AGENTS_FILENAME,
+  DEFAULT_BOOTSTRAP_FILENAME,
+  DEFAULT_HEARTBEAT_FILENAME,
+  DEFAULT_IDENTITY_FILENAME,
+  DEFAULT_MEMORY_ALT_FILENAME,
+  DEFAULT_MEMORY_FILENAME,
+  DEFAULT_SOUL_FILENAME,
+  DEFAULT_TOOLS_FILENAME,
+  DEFAULT_USER_FILENAME,
+  ensureAgentWorkspace,
+  isWorkspaceSetupCompleted,
+} from "../../agents/workspace.js";
+import { movePathToTrash } from "../../browser/trash.js";
+import {
+  applyAgentConfig,
+  findAgentEntryIndex,
+  listAgentEntries,
+  pruneAgentConfig,
+} from "../../commands/agents.config.js";
+import { loadConfig, writeConfigFile } from "../../config/config.js";
+import { resolveSessionTranscriptsDirForAgent } from "../../config/sessions/paths.js";
+import { sameFileIdentity } from "../../infra/file-identity.js";
+import { SafeOpenError, readLocalFileSafely, writeFileWithinRoot } from "../../infra/fs-safe.js";
+import { assertNoPathAliasEscape } from "../../infra/path-alias-guards.js";
+import { isNotFoundPathError } from "../../infra/path-guards.js";
+import { createSubsystemLogger } from "../../logging/subsystem.js";
+import { DEFAULT_AGENT_ID, normalizeAgentId } from "../../routing/session-key.js";
+import { resolveUserPath } from "../../utils.js";
+import {
+  ErrorCodes,
+  errorShape,
+  formatValidationErrors,
+  validateAgentsAvatarGenerateParams,
+  validateAgentsAvatarRemoveParams,
+  validateAgentsAvatarUploadParams,
+  validateAgentsCreateParams,
+  validateAgentsDeleteParams,
+  validateAgentsFilesGetParams,
+  validateAgentsFilesListParams,
+  validateAgentsFilesSetParams,
+  validateAgentsListParams,
+  validateAgentsUpdateParams,
+} from "../protocol/index.js";
+import { listAgentsForGateway } from "../session-utils.js";
+import { removeAgentFromAllTeams } from "../team-registry.js";
+import type { GatewayRequestHandlers, RespondFn } from "./types.js";
+
+const BOOTSTRAP_FILE_NAMES = [
+  DEFAULT_AGENTS_FILENAME,
+  DEFAULT_SOUL_FILENAME,
+  DEFAULT_TOOLS_FILENAME,
+  DEFAULT_IDENTITY_FILENAME,
+  DEFAULT_USER_FILENAME,
+  DEFAULT_HEARTBEAT_FILENAME,
+  DEFAULT_BOOTSTRAP_FILENAME,
+] as const;
+const BOOTSTRAP_FILE_NAMES_POST_ONBOARDING = BOOTSTRAP_FILE_NAMES.filter(
+  (name) => name !== DEFAULT_BOOTSTRAP_FILENAME,
+);
+
+const MEMORY_FILE_NAMES = [DEFAULT_MEMORY_FILENAME, DEFAULT_MEMORY_ALT_FILENAME] as const;
+
+const ALLOWED_FILE_NAMES = new Set<string>([...BOOTSTRAP_FILE_NAMES, ...MEMORY_FILE_NAMES]);
+
+function resolveAgentWorkspaceFileOrRespondError(
+  params: Record<string, unknown>,
+  respond: RespondFn,
+): {
+  cfg: ReturnType<typeof loadConfig>;
+  agentId: string;
+  workspaceDir: string;
+  name: string;
+} | null {
+  const cfg = loadConfig();
+  const rawAgentId = params.agentId;
+  const agentId = resolveAgentIdOrError(
+    typeof rawAgentId === "string" || typeof rawAgentId === "number" ? String(rawAgentId) : "",
+    cfg,
+  );
+  if (!agentId) {
+    respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "unknown agent id"));
+    return null;
+  }
+  const rawName = params.name;
+  const name = (
+    typeof rawName === "string" || typeof rawName === "number" ? String(rawName) : ""
+  ).trim();
+  if (!ALLOWED_FILE_NAMES.has(name)) {
+    respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, `unsupported file "${name}"`));
+    return null;
+  }
+  const workspaceDir = resolveAgentWorkspaceDir(cfg, agentId);
+  return { cfg, agentId, workspaceDir, name };
+}
+
+type FileMeta = {
+  size: number;
+  updatedAtMs: number;
+};
+
+type ResolvedAgentWorkspaceFilePath =
+  | {
+      kind: "ready";
+      requestPath: string;
+      ioPath: string;
+      workspaceReal: string;
+    }
+  | {
+      kind: "missing";
+      requestPath: string;
+      ioPath: string;
+      workspaceReal: string;
+    }
+  | {
+      kind: "invalid";
+      requestPath: string;
+      reason: string;
+    };
+
+type ResolvedWorkspaceFilePath = Exclude<ResolvedAgentWorkspaceFilePath, { kind: "invalid" }>;
+
+function resolveNotFoundWorkspaceFilePathResult(params: {
+  error: unknown;
+  allowMissing: boolean;
+  requestPath: string;
+  ioPath: string;
+  workspaceReal: string;
+}): Extract<ResolvedAgentWorkspaceFilePath, { kind: "missing" | "invalid" }> | undefined {
+  if (!isNotFoundPathError(params.error)) {
+    return undefined;
+  }
+  if (params.allowMissing) {
+    return {
+      kind: "missing",
+      requestPath: params.requestPath,
+      ioPath: params.ioPath,
+      workspaceReal: params.workspaceReal,
+    };
+  }
+  return { kind: "invalid", requestPath: params.requestPath, reason: "file not found" };
+}
+
+function resolveWorkspaceFilePathResultOrThrow(params: {
+  error: unknown;
+  allowMissing: boolean;
+  requestPath: string;
+  ioPath: string;
+  workspaceReal: string;
+}): Extract<ResolvedAgentWorkspaceFilePath, { kind: "missing" | "invalid" }> {
+  const notFoundResult = resolveNotFoundWorkspaceFilePathResult(params);
+  if (notFoundResult) {
+    return notFoundResult;
+  }
+  throw params.error;
+}
+
+async function resolveWorkspaceRealPath(workspaceDir: string): Promise<string> {
+  try {
+    return await fs.realpath(workspaceDir);
+  } catch {
+    return path.resolve(workspaceDir);
+  }
+}
+
+async function resolveAgentWorkspaceFilePath(params: {
+  workspaceDir: string;
+  name: string;
+  allowMissing: boolean;
+}): Promise<ResolvedAgentWorkspaceFilePath> {
+  const requestPath = path.join(params.workspaceDir, params.name);
+  const workspaceReal = await resolveWorkspaceRealPath(params.workspaceDir);
+  const candidatePath = path.resolve(workspaceReal, params.name);
+
+  try {
+    await assertNoPathAliasEscape({
+      absolutePath: candidatePath,
+      rootPath: workspaceReal,
+      boundaryLabel: "workspace root",
+    });
+  } catch (error) {
+    return {
+      kind: "invalid",
+      requestPath,
+      reason: error instanceof Error ? error.message : "path escapes workspace root",
+    };
+  }
+
+  const notFoundContext = {
+    allowMissing: params.allowMissing,
+    requestPath,
+    workspaceReal,
+  } as const;
+
+  let candidateLstat: Awaited<ReturnType<typeof fs.lstat>>;
+  try {
+    candidateLstat = await fs.lstat(candidatePath);
+  } catch (err) {
+    return resolveWorkspaceFilePathResultOrThrow({
+      error: err,
+      ...notFoundContext,
+      ioPath: candidatePath,
+    });
+  }
+
+  if (candidateLstat.isSymbolicLink()) {
+    let targetReal: string;
+    try {
+      targetReal = await fs.realpath(candidatePath);
+    } catch (err) {
+      return resolveWorkspaceFilePathResultOrThrow({
+        error: err,
+        ...notFoundContext,
+        ioPath: candidatePath,
+      });
+    }
+    let targetStat: Awaited<ReturnType<typeof fs.stat>>;
+    try {
+      targetStat = await fs.stat(targetReal);
+    } catch (err) {
+      return resolveWorkspaceFilePathResultOrThrow({
+        error: err,
+        ...notFoundContext,
+        ioPath: targetReal,
+      });
+    }
+    if (!targetStat.isFile()) {
+      return { kind: "invalid", requestPath, reason: "path is not a regular file" };
+    }
+    if (targetStat.nlink > 1) {
+      return { kind: "invalid", requestPath, reason: "hardlinked file path not allowed" };
+    }
+    return { kind: "ready", requestPath, ioPath: targetReal, workspaceReal };
+  }
+
+  if (!candidateLstat.isFile()) {
+    return { kind: "invalid", requestPath, reason: "path is not a regular file" };
+  }
+  if (candidateLstat.nlink > 1) {
+    return { kind: "invalid", requestPath, reason: "hardlinked file path not allowed" };
+  }
+
+  const targetReal = await fs.realpath(candidatePath).catch(() => candidatePath);
+  return { kind: "ready", requestPath, ioPath: targetReal, workspaceReal };
+}
+
+async function statFileSafely(filePath: string): Promise<FileMeta | null> {
+  try {
+    const [stat, lstat] = await Promise.all([fs.stat(filePath), fs.lstat(filePath)]);
+    if (lstat.isSymbolicLink() || !stat.isFile()) {
+      return null;
+    }
+    if (stat.nlink > 1) {
+      return null;
+    }
+    if (!sameFileIdentity(stat, lstat)) {
+      return null;
+    }
+    return {
+      size: stat.size,
+      updatedAtMs: Math.floor(stat.mtimeMs),
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function listAgentFiles(workspaceDir: string, options?: { hideBootstrap?: boolean }) {
+  const files: Array<{
+    name: string;
+    path: string;
+    missing: boolean;
+    size?: number;
+    updatedAtMs?: number;
+  }> = [];
+
+  const bootstrapFileNames = options?.hideBootstrap
+    ? BOOTSTRAP_FILE_NAMES_POST_ONBOARDING
+    : BOOTSTRAP_FILE_NAMES;
+  for (const name of bootstrapFileNames) {
+    const resolved = await resolveAgentWorkspaceFilePath({
+      workspaceDir,
+      name,
+      allowMissing: true,
+    });
+    const filePath = resolved.requestPath;
+    const meta =
+      resolved.kind === "ready"
+        ? await statFileSafely(resolved.ioPath)
+        : resolved.kind === "missing"
+          ? null
+          : null;
+    if (meta) {
+      files.push({
+        name,
+        path: filePath,
+        missing: false,
+        size: meta.size,
+        updatedAtMs: meta.updatedAtMs,
+      });
+    } else {
+      files.push({ name, path: filePath, missing: true });
+    }
+  }
+
+  const primaryResolved = await resolveAgentWorkspaceFilePath({
+    workspaceDir,
+    name: DEFAULT_MEMORY_FILENAME,
+    allowMissing: true,
+  });
+  const primaryMeta =
+    primaryResolved.kind === "ready" ? await statFileSafely(primaryResolved.ioPath) : null;
+  if (primaryMeta) {
+    files.push({
+      name: DEFAULT_MEMORY_FILENAME,
+      path: primaryResolved.requestPath,
+      missing: false,
+      size: primaryMeta.size,
+      updatedAtMs: primaryMeta.updatedAtMs,
+    });
+  } else {
+    const altMemoryResolved = await resolveAgentWorkspaceFilePath({
+      workspaceDir,
+      name: DEFAULT_MEMORY_ALT_FILENAME,
+      allowMissing: true,
+    });
+    const altMeta =
+      altMemoryResolved.kind === "ready" ? await statFileSafely(altMemoryResolved.ioPath) : null;
+    if (altMeta) {
+      files.push({
+        name: DEFAULT_MEMORY_ALT_FILENAME,
+        path: altMemoryResolved.requestPath,
+        missing: false,
+        size: altMeta.size,
+        updatedAtMs: altMeta.updatedAtMs,
+      });
+    } else {
+      files.push({
+        name: DEFAULT_MEMORY_FILENAME,
+        path: primaryResolved.requestPath,
+        missing: true,
+      });
+    }
+  }
+
+  return files;
+}
+
+function resolveAgentIdOrError(agentIdRaw: string, cfg: ReturnType<typeof loadConfig>) {
+  const agentId = normalizeAgentId(agentIdRaw);
+  const allowed = new Set(listAgentIds(cfg));
+  if (!allowed.has(agentId)) {
+    return null;
+  }
+  return agentId;
+}
+
+function sanitizeIdentityLine(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function resolveOptionalStringParam(value: unknown): string | undefined {
+  return typeof value === "string" && value.trim() ? value.trim() : undefined;
+}
+
+const AGENT_AVATAR_THEMES = {
+  professional: {
+    label: "Professional",
+    prompt:
+      "Create a polished, distinctive square profile portrait for an AI agent. Clean composition, centered subject, crisp silhouette, readable at small sizes, tasteful lighting, no text, no watermark, no busy background.",
+  },
+  scifi: {
+    label: "Sci-Fi",
+    prompt:
+      "Create a square profile portrait for an AI agent in a sleek sci-fi style. Futuristic materials, cinematic lighting, clean backdrop, strong face/icon readability, no text, no watermark.",
+  },
+  cyberpunk: {
+    label: "Cyberpunk",
+    prompt:
+      "Create a square profile portrait for an AI agent in a neon cyberpunk style. High contrast, glowing accents, sharp subject separation, readable at avatar size, no text, no watermark.",
+  },
+  fantasy: {
+    label: "Fantasy",
+    prompt:
+      "Create a square profile portrait for an AI agent in a fantasy style. Magical atmosphere, heroic framing, elegant details, simple background, no text, no watermark.",
+  },
+  "space-opera": {
+    label: "Space Opera",
+    prompt:
+      "Create a square profile portrait for an AI agent inspired by grand space-opera adventure. Iconic silhouette, cinematic glow, epic but uncluttered, readable at small sizes, no text, no watermark.",
+  },
+  "creature-collector": {
+    label: "Creature Collector",
+    prompt:
+      "Create a square profile portrait for an AI agent inspired by colorful creature-collector art. Charming, expressive, high-contrast, friendly design, simple background, no text, no watermark.",
+  },
+  mascot: {
+    label: "Mascot",
+    prompt:
+      "Create a square mascot-style profile image for an AI agent. Bold shapes, friendly expression, simple high-contrast colors, excellent readability at small sizes, no text, no watermark.",
+  },
+  noir: {
+    label: "Noir",
+    prompt:
+      "Create a square noir-inspired profile portrait for an AI agent. Moody lighting, restrained palette, dramatic contrast, clean composition, no text, no watermark.",
+  },
+} as const;
+
+type AgentAvatarThemeId = keyof typeof AGENT_AVATAR_THEMES;
+
+function normalizeAgentAvatarThemeId(value: string | undefined): AgentAvatarThemeId {
+  const key = (value ?? "").trim().toLowerCase() as AgentAvatarThemeId;
+  return key in AGENT_AVATAR_THEMES ? key : "professional";
+}
+
+function decodeAvatarUploadData(value: string): { bytes: Buffer; contentType: string | null } | null {
+  const trimmed = value.trim();
+  const dataUrlMatch = /^data:([^;,]+)?(?:;base64)?,([A-Za-z0-9+/=\s]+)$/i.exec(trimmed);
+  if (dataUrlMatch) {
+    const mime = dataUrlMatch[1]?.trim() || null;
+    try {
+      return { bytes: Buffer.from(dataUrlMatch[2]!.replace(/\s+/g, ""), "base64"), contentType: mime };
+    } catch {
+      return null;
+    }
+  }
+  try {
+    return { bytes: Buffer.from(trimmed.replace(/\s+/g, ""), "base64"), contentType: null };
+  } catch {
+    return null;
+  }
+}
+
+function avatarExtensionForUpload(filename: string, contentType?: string | null): string | null {
+  const lower = filename.toLowerCase();
+  if (lower.endsWith(".png") || contentType === "image/png") return ".png";
+  if (lower.endsWith(".jpg") || lower.endsWith(".jpeg") || contentType === "image/jpeg") {
+    return ".jpg";
+  }
+  if (lower.endsWith(".webp") || contentType === "image/webp") return ".webp";
+  if (lower.endsWith(".gif") || contentType === "image/gif") return ".gif";
+  return null;
+}
+
+async function writeAgentAvatarFile(params: {
+  cfg: ReturnType<typeof loadConfig>;
+  agentId: string;
+  bytes: Buffer;
+  extension: string;
+}): Promise<{ avatar: string; avatarUrl: string }> {
+  const workspace = resolveAgentWorkspaceDir(params.cfg, params.agentId);
+  const avatarDir = path.join(workspace, "avatars");
+  await fs.mkdir(avatarDir, { recursive: true });
+  const filename = `profile${params.extension}`;
+  const absolutePath = path.join(avatarDir, filename);
+  await fs.writeFile(absolutePath, params.bytes);
+  const identityPath = path.join(workspace, DEFAULT_IDENTITY_FILENAME);
+  await fs.appendFile(identityPath, `\n- Avatar: avatars/${filename}\n`, "utf-8");
+  return {
+    avatar: `avatars/${filename}`,
+    avatarUrl: `/avatar/${params.agentId}`,
+  };
+}
+
+async function removeAgentAvatar(params: {
+  cfg: ReturnType<typeof loadConfig>;
+  agentId: string;
+}): Promise<void> {
+  const workspace = resolveAgentWorkspaceDir(params.cfg, params.agentId);
+  const avatarDir = path.join(workspace, "avatars");
+  await moveToTrashBestEffort(avatarDir);
+  const identityPath = path.join(workspace, DEFAULT_IDENTITY_FILENAME);
+  await fs.appendFile(identityPath, `\n- Avatar: removed\n`, "utf-8");
+}
+
+async function generateAgentAvatarViaOpenAi(params: {
+  cfg: ReturnType<typeof loadConfig>;
+  agentId: string;
+  themeId: AgentAvatarThemeId;
+  instructions?: string;
+}): Promise<{ bytes: Buffer; prompt: string; provider: string; extension: string }> {
+  const apiKeyResult = await resolveApiKeyForProvider({ cfg: params.cfg, provider: "openai" });
+  const apiKey = apiKeyResult.apiKey?.trim();
+  if (!apiKey) {
+    throw new Error("OpenAI image generation is not configured for this gateway.");
+  }
+  const theme = AGENT_AVATAR_THEMES[params.themeId];
+  const identity = listAgentsForGateway(params.cfg).agents.find((agent) => agent.id === params.agentId);
+  const agentName = identity?.identity?.name?.trim() || identity?.name?.trim() || params.agentId;
+  const agentEmoji = identity?.identity?.emoji?.trim();
+  const agentTheme = identity?.identity?.theme?.trim();
+  const prompt = [
+    `Create a square 1:1 profile image for an AI agent named ${agentName}.`,
+    agentEmoji ? `The agent's current emoji is ${agentEmoji}.` : "",
+    agentTheme ? `Agent vibe/theme: ${agentTheme}.` : "",
+    theme.prompt,
+    params.instructions?.trim() ? `Additional direction: ${params.instructions.trim()}` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const response = await fetch("https://api.openai.com/v1/images/generations", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "gpt-image-1",
+      size: "1024x1024",
+      prompt,
+    }),
+  });
+  if (!response.ok) {
+    const body = await response.text().catch(() => "");
+    throw new Error(`OpenAI image generation failed (${response.status}): ${body || response.statusText}`);
+  }
+  const payload = (await response.json()) as {
+    data?: Array<{ b64_json?: string }>;
+  };
+  const b64 = payload.data?.[0]?.b64_json?.trim();
+  if (!b64) {
+    throw new Error("OpenAI image generation returned no image data.");
+  }
+  return {
+    bytes: Buffer.from(b64, "base64"),
+    prompt,
+    provider: "openai:gpt-image-1",
+    extension: ".png",
+  };
+}
+
+function respondInvalidMethodParams(
+  respond: RespondFn,
+  method: string,
+  errors: Parameters<typeof formatValidationErrors>[0],
+): void {
+  respond(
+    false,
+    undefined,
+    errorShape(
+      ErrorCodes.INVALID_REQUEST,
+      `invalid ${method} params: ${formatValidationErrors(errors)}`,
+    ),
+  );
+}
+
+function isConfiguredAgent(cfg: ReturnType<typeof loadConfig>, agentId: string): boolean {
+  return findAgentEntryIndex(listAgentEntries(cfg), agentId) >= 0;
+}
+
+function respondAgentNotFound(respond: RespondFn, agentId: string): void {
+  respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, `agent "${agentId}" not found`));
+}
+
+async function moveToTrashBestEffort(pathname: string): Promise<void> {
+  if (!pathname) {
+    return;
+  }
+  try {
+    await fs.access(pathname);
+  } catch {
+    return;
+  }
+  try {
+    await movePathToTrash(pathname);
+  } catch {
+    // Best-effort: path may already be gone or trash unavailable.
+  }
+}
+
+function respondWorkspaceFileInvalid(respond: RespondFn, name: string, reason: string): void {
+  respond(
+    false,
+    undefined,
+    errorShape(ErrorCodes.INVALID_REQUEST, `unsafe workspace file "${name}" (${reason})`),
+  );
+}
+
+async function resolveWorkspaceFilePathOrRespond(params: {
+  respond: RespondFn;
+  workspaceDir: string;
+  name: string;
+}): Promise<ResolvedWorkspaceFilePath | undefined> {
+  const resolvedPath = await resolveAgentWorkspaceFilePath({
+    workspaceDir: params.workspaceDir,
+    name: params.name,
+    allowMissing: true,
+  });
+  if (resolvedPath.kind === "invalid") {
+    respondWorkspaceFileInvalid(params.respond, params.name, resolvedPath.reason);
+    return undefined;
+  }
+  return resolvedPath;
+}
+
+function respondWorkspaceFileUnsafe(respond: RespondFn, name: string): void {
+  respond(
+    false,
+    undefined,
+    errorShape(ErrorCodes.INVALID_REQUEST, `unsafe workspace file "${name}"`),
+  );
+}
+
+function respondWorkspaceFileMissing(params: {
+  respond: RespondFn;
+  agentId: string;
+  workspaceDir: string;
+  name: string;
+  filePath: string;
+}): void {
+  params.respond(
+    true,
+    {
+      agentId: params.agentId,
+      workspace: params.workspaceDir,
+      file: { name: params.name, path: params.filePath, missing: true },
+    },
+    undefined,
+  );
+}
+
+export const agentsHandlers: GatewayRequestHandlers = {
+  "agents.list": ({ params, respond }) => {
+    if (!validateAgentsListParams(params)) {
+      respond(
+        false,
+        undefined,
+        errorShape(
+          ErrorCodes.INVALID_REQUEST,
+          `invalid agents.list params: ${formatValidationErrors(validateAgentsListParams.errors)}`,
+        ),
+      );
+      return;
+    }
+
+    const cfg = loadConfig();
+    const result = listAgentsForGateway(cfg);
+    respond(true, result, undefined);
+  },
+  "agents.avatar.upload": async ({ params, respond }) => {
+    if (!validateAgentsAvatarUploadParams(params)) {
+      respondInvalidMethodParams(respond, "agents.avatar.upload", validateAgentsAvatarUploadParams.errors);
+      return;
+    }
+    const cfg = loadConfig();
+    const agentId = resolveAgentIdOrError(String(params.agentId ?? ""), cfg);
+    if (!agentId) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "unknown agent id"));
+      return;
+    }
+    const decoded = decodeAvatarUploadData(String(params.data ?? ""));
+    if (!decoded || decoded.bytes.length === 0) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "invalid avatar image data"));
+      return;
+    }
+    if (decoded.bytes.length > 2 * 1024 * 1024) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "avatar image exceeds 2MB limit"));
+      return;
+    }
+    const extension = avatarExtensionForUpload(String(params.filename ?? ""), decoded.contentType ?? String(params.contentType ?? "").trim().toLowerCase());
+    if (!extension) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "unsupported avatar image type"));
+      return;
+    }
+    const result = await writeAgentAvatarFile({ cfg, agentId, bytes: decoded.bytes, extension });
+    respond(true, { ok: true, agentId, avatar: result.avatar, avatarUrl: result.avatarUrl }, undefined);
+  },
+  "agents.avatar.generate": async ({ params, respond }) => {
+    if (!validateAgentsAvatarGenerateParams(params)) {
+      respondInvalidMethodParams(
+        respond,
+        "agents.avatar.generate",
+        validateAgentsAvatarGenerateParams.errors,
+      );
+      return;
+    }
+    const cfg = loadConfig();
+    const agentId = resolveAgentIdOrError(String(params.agentId ?? ""), cfg);
+    if (!agentId) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "unknown agent id"));
+      return;
+    }
+    try {
+      const themeId = normalizeAgentAvatarThemeId(resolveOptionalStringParam(params.themeId));
+      const generated = await generateAgentAvatarViaOpenAi({
+        cfg,
+        agentId,
+        themeId,
+        instructions: resolveOptionalStringParam(params.instructions),
+      });
+      const previewDataUrl = `data:image/png;base64,${generated.bytes.toString("base64")}`;
+      respond(
+        true,
+        {
+          ok: true,
+          agentId,
+          avatar: previewDataUrl,
+          avatarUrl: previewDataUrl,
+          themeId,
+          prompt: generated.prompt,
+          provider: generated.provider,
+        },
+        undefined,
+      );
+    } catch (error) {
+      respond(false, undefined, errorShape(ErrorCodes.INTERNAL_ERROR, String(error)));
+    }
+  },
+  "agents.avatar.remove": async ({ params, respond }) => {
+    if (!validateAgentsAvatarRemoveParams(params)) {
+      respondInvalidMethodParams(respond, "agents.avatar.remove", validateAgentsAvatarRemoveParams.errors);
+      return;
+    }
+    const cfg = loadConfig();
+    const agentId = resolveAgentIdOrError(String(params.agentId ?? ""), cfg);
+    if (!agentId) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "unknown agent id"));
+      return;
+    }
+    await removeAgentAvatar({ cfg, agentId });
+    respond(true, { ok: true, agentId }, undefined);
+  },
+  "agents.create": async ({ params, respond }) => {
+    if (!validateAgentsCreateParams(params)) {
+      respond(
+        false,
+        undefined,
+        errorShape(
+          ErrorCodes.INVALID_REQUEST,
+          `invalid agents.create params: ${formatValidationErrors(
+            validateAgentsCreateParams.errors,
+          )}`,
+        ),
+      );
+      return;
+    }
+
+    const cfg = loadConfig();
+    const rawName = String(params.name ?? "").trim();
+    const agentId = normalizeAgentId(rawName);
+    if (agentId === DEFAULT_AGENT_ID) {
+      respond(
+        false,
+        undefined,
+        errorShape(ErrorCodes.INVALID_REQUEST, `"${DEFAULT_AGENT_ID}" is reserved`),
+      );
+      return;
+    }
+
+    if (findAgentEntryIndex(listAgentEntries(cfg), agentId) >= 0) {
+      respond(
+        false,
+        undefined,
+        errorShape(ErrorCodes.INVALID_REQUEST, `agent "${agentId}" already exists`),
+      );
+      return;
+    }
+
+    const workspaceDir = resolveUserPath(String(params.workspace ?? "").trim());
+
+    // Resolve agentDir against the config we're about to persist (vs the pre-write config),
+    // so subsequent resolutions can't disagree about the agent's directory.
+    let nextConfig = applyAgentConfig(cfg, {
+      agentId,
+      name: rawName,
+      workspace: workspaceDir,
+    });
+    const agentDir = resolveAgentDir(nextConfig, agentId);
+    nextConfig = applyAgentConfig(nextConfig, { agentId, agentDir });
+
+    // Ensure workspace & transcripts exist BEFORE writing config so a failure
+    // here does not leave a broken config entry behind.
+    const skipBootstrap = Boolean(nextConfig.agents?.defaults?.skipBootstrap);
+    await ensureAgentWorkspace({ dir: workspaceDir, ensureBootstrapFiles: !skipBootstrap });
+    await fs.mkdir(resolveSessionTranscriptsDirForAgent(agentId), { recursive: true });
+
+    await writeConfigFile(nextConfig);
+
+    // Always write Name to IDENTITY.md; optionally include emoji/avatar.
+    const safeName = sanitizeIdentityLine(rawName);
+    const emoji = resolveOptionalStringParam(params.emoji);
+    const avatar = resolveOptionalStringParam(params.avatar);
+    const identityPath = path.join(workspaceDir, DEFAULT_IDENTITY_FILENAME);
+    const lines = [
+      "",
+      `- Name: ${safeName}`,
+      ...(emoji ? [`- Emoji: ${sanitizeIdentityLine(emoji)}`] : []),
+      ...(avatar ? [`- Avatar: ${sanitizeIdentityLine(avatar)}`] : []),
+      "",
+    ];
+    await fs.appendFile(identityPath, lines.join("\n"), "utf-8");
+
+    respond(true, { ok: true, agentId, name: rawName, workspace: workspaceDir }, undefined);
+  },
+  "agents.update": async ({ params, respond }) => {
+    if (!validateAgentsUpdateParams(params)) {
+      respondInvalidMethodParams(respond, "agents.update", validateAgentsUpdateParams.errors);
+      return;
+    }
+
+    const cfg = loadConfig();
+    const agentId = normalizeAgentId(String(params.agentId ?? ""));
+    if (!isConfiguredAgent(cfg, agentId)) {
+      respondAgentNotFound(respond, agentId);
+      return;
+    }
+
+    const workspaceDir =
+      typeof params.workspace === "string" && params.workspace.trim()
+        ? resolveUserPath(params.workspace.trim())
+        : undefined;
+
+    const model = resolveOptionalStringParam(params.model);
+    const avatar = resolveOptionalStringParam(params.avatar);
+    const emoji = resolveOptionalStringParam(params.emoji);
+
+    const nextConfig = applyAgentConfig(cfg, {
+      agentId,
+      ...(typeof params.name === "string" && params.name.trim()
+        ? { name: params.name.trim() }
+        : {}),
+      ...(workspaceDir ? { workspace: workspaceDir } : {}),
+      ...(model ? { model } : {}),
+    });
+
+    await writeConfigFile(nextConfig);
+
+    if (workspaceDir) {
+      const skipBootstrap = Boolean(nextConfig.agents?.defaults?.skipBootstrap);
+      await ensureAgentWorkspace({ dir: workspaceDir, ensureBootstrapFiles: !skipBootstrap });
+    }
+
+    // Write name, emoji, and/or avatar to IDENTITY.md so the loaded identity reflects the change.
+    // Parsing uses last-wins, so appending overrides existing values cleanly.
+    // IMPORTANT: emoji must be written as "- Emoji:" (not "- Avatar:") so it overrides the
+    // original "- Emoji:" line set at creation time. agentIdentity.emoji takes higher priority
+    // than agentIdentity.avatar in resolveAgentEmoji(), so using Avatar would never override.
+    const identityName =
+      typeof params.name === "string" && params.name.trim() ? params.name.trim() : null;
+    if (identityName || emoji || avatar) {
+      const workspace = workspaceDir ?? resolveAgentWorkspaceDir(nextConfig, agentId);
+      await fs.mkdir(workspace, { recursive: true });
+      const identityPath = path.join(workspace, DEFAULT_IDENTITY_FILENAME);
+      const lines: string[] = [];
+      if (identityName) {
+        lines.push(`- Name: ${sanitizeIdentityLine(identityName)}`);
+      }
+      if (emoji) {
+        lines.push(`- Emoji: ${sanitizeIdentityLine(emoji)}`);
+      }
+      if (avatar) {
+        lines.push(`- Avatar: ${sanitizeIdentityLine(avatar)}`);
+      }
+      await fs.appendFile(identityPath, `\n${lines.join("\n")}\n`, "utf-8");
+    }
+
+    respond(true, { ok: true, agentId }, undefined);
+  },
+  "agents.delete": async ({ params, respond }) => {
+    if (!validateAgentsDeleteParams(params)) {
+      respondInvalidMethodParams(respond, "agents.delete", validateAgentsDeleteParams.errors);
+      return;
+    }
+
+    const cfg = loadConfig();
+    const agentId = normalizeAgentId(String(params.agentId ?? ""));
+    if (agentId === DEFAULT_AGENT_ID) {
+      respond(
+        false,
+        undefined,
+        errorShape(ErrorCodes.INVALID_REQUEST, `"${DEFAULT_AGENT_ID}" cannot be deleted`),
+      );
+      return;
+    }
+    if (!isConfiguredAgent(cfg, agentId)) {
+      respondAgentNotFound(respond, agentId);
+      return;
+    }
+
+    const deleteFiles = typeof params.deleteFiles === "boolean" ? params.deleteFiles : true;
+    const workspaceDir = resolveAgentWorkspaceDir(cfg, agentId);
+    const agentDir = resolveAgentDir(cfg, agentId);
+    const sessionsDir = resolveSessionTranscriptsDirForAgent(agentId);
+
+    const result = pruneAgentConfig(cfg, agentId);
+    await writeConfigFile(result.config);
+    await removeAgentFromAllTeams(agentId);
+
+    if (deleteFiles) {
+      await Promise.all([
+        moveToTrashBestEffort(workspaceDir),
+        moveToTrashBestEffort(agentDir),
+        moveToTrashBestEffort(sessionsDir),
+      ]);
+    }
+
+    respond(true, { ok: true, agentId, removedBindings: result.removedBindings }, undefined);
+  },
+  "agents.files.list": async ({ params, respond }) => {
+    if (!validateAgentsFilesListParams(params)) {
+      respond(
+        false,
+        undefined,
+        errorShape(
+          ErrorCodes.INVALID_REQUEST,
+          `invalid agents.files.list params: ${formatValidationErrors(
+            validateAgentsFilesListParams.errors,
+          )}`,
+        ),
+      );
+      return;
+    }
+    const cfg = loadConfig();
+    const agentId = resolveAgentIdOrError(String(params.agentId ?? ""), cfg);
+    if (!agentId) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "unknown agent id"));
+      return;
+    }
+    const workspaceDir = resolveAgentWorkspaceDir(cfg, agentId);
+    let hideBootstrap = false;
+    try {
+      hideBootstrap = await isWorkspaceSetupCompleted(workspaceDir);
+    } catch {
+      // Fall back to showing BOOTSTRAP if workspace state cannot be read.
+    }
+    const files = await listAgentFiles(workspaceDir, { hideBootstrap });
+    respond(true, { agentId, workspace: workspaceDir, files }, undefined);
+  },
+  "agents.files.get": async ({ params, respond }) => {
+    if (!validateAgentsFilesGetParams(params)) {
+      respondInvalidMethodParams(respond, "agents.files.get", validateAgentsFilesGetParams.errors);
+      return;
+    }
+    const resolved = resolveAgentWorkspaceFileOrRespondError(params, respond);
+    if (!resolved) {
+      return;
+    }
+    const { agentId, workspaceDir, name } = resolved;
+    const filePath = path.join(workspaceDir, name);
+    const resolvedPath = await resolveWorkspaceFilePathOrRespond({
+      respond,
+      workspaceDir,
+      name,
+    });
+    if (!resolvedPath) {
+      return;
+    }
+    if (resolvedPath.kind === "missing") {
+      respondWorkspaceFileMissing({ respond, agentId, workspaceDir, name, filePath });
+      return;
+    }
+    let safeRead: Awaited<ReturnType<typeof readLocalFileSafely>>;
+    try {
+      safeRead = await readLocalFileSafely({ filePath: resolvedPath.ioPath });
+    } catch (err) {
+      if (err instanceof SafeOpenError && err.code === "not-found") {
+        respondWorkspaceFileMissing({ respond, agentId, workspaceDir, name, filePath });
+        return;
+      }
+      respondWorkspaceFileUnsafe(respond, name);
+      return;
+    }
+    respond(
+      true,
+      {
+        agentId,
+        workspace: workspaceDir,
+        file: {
+          name,
+          path: filePath,
+          missing: false,
+          size: safeRead.stat.size,
+          updatedAtMs: Math.floor(safeRead.stat.mtimeMs),
+          content: safeRead.buffer.toString("utf-8"),
+        },
+      },
+      undefined,
+    );
+  },
+  "agents.files.set": async ({ params, respond }) => {
+    if (!validateAgentsFilesSetParams(params)) {
+      respondInvalidMethodParams(respond, "agents.files.set", validateAgentsFilesSetParams.errors);
+      return;
+    }
+    const resolved = resolveAgentWorkspaceFileOrRespondError(params, respond);
+    if (!resolved) {
+      return;
+    }
+    const { agentId, workspaceDir, name } = resolved;
+    await fs.mkdir(workspaceDir, { recursive: true });
+    const filePath = path.join(workspaceDir, name);
+    const resolvedPath = await resolveWorkspaceFilePathOrRespond({
+      respond,
+      workspaceDir,
+      name,
+    });
+    if (!resolvedPath) {
+      return;
+    }
+    const content = String(params.content ?? "");
+    const relativeWritePath = path.relative(resolvedPath.workspaceReal, resolvedPath.ioPath);
+    if (
+      !relativeWritePath ||
+      relativeWritePath.startsWith("..") ||
+      path.isAbsolute(relativeWritePath)
+    ) {
+      respondWorkspaceFileUnsafe(respond, name);
+      return;
+    }
+    try {
+      await writeFileWithinRoot({
+        rootDir: resolvedPath.workspaceReal,
+        relativePath: relativeWritePath,
+        data: content,
+        encoding: "utf8",
+      });
+    } catch {
+      respondWorkspaceFileUnsafe(respond, name);
+      return;
+    }
+    const meta = await statFileSafely(resolvedPath.ioPath);
+    respond(
+      true,
+      {
+        ok: true,
+        agentId,
+        workspace: workspaceDir,
+        file: {
+          name,
+          path: filePath,
+          missing: false,
+          size: meta?.size,
+          updatedAtMs: meta?.updatedAtMs,
+          content,
+        },
+      },
+      undefined,
+    );
+  },
+
+  /**
+   * AI Wizard: generate agent config from a natural language description.
+   * Uses the configured default model to produce name, emoji, and SOUL.md.
+   */
+  "agents.wizard": async ({ params, respond }) => {
+    const wizLog = createSubsystemLogger("agents-wizard");
+    const description = String((params as { description?: string }).description ?? "").trim();
+    if (!description) {
+      respond(false, undefined, errorShape(ErrorCodes.INVALID_REQUEST, "description is required"));
+      return;
+    }
+
+    try {
+      const cfg = loadConfig();
+
+      // Resolve model and API key from config
+      const defaultModel = cfg.agents?.defaults?.model;
+      const modelStr =
+        typeof defaultModel === "string"
+          ? defaultModel
+          : ((defaultModel as { primary?: string })?.primary ?? "anthropic/claude-sonnet-4-6");
+      const [provider] = modelStr.split("/");
+      const resolvedProvider = provider || "anthropic";
+
+      // Resolve API key — raw HTTP calls need an api_key type token (not OAuth/bearer).
+      // If the default auth resolves to OAuth, fall back to an explicit api_key profile,
+      // then fall back to the ANTHROPIC_API_KEY env var directly.
+      let auth = await resolveApiKeyForProvider({ provider: resolvedProvider, cfg });
+      if (auth.mode !== "api-key") {
+        wizLog.debug("Default auth is OAuth/token, looking for api_key profile", {
+          defaultMode: auth.mode,
+          defaultSource: auth.source,
+        });
+        const store = ensureAuthProfileStore();
+        const apiKeyProfile = Object.entries(store.profiles).find(
+          ([, cred]) => cred.provider === resolvedProvider && cred.type === "api_key",
+        );
+        if (apiKeyProfile) {
+          const [profileId] = apiKeyProfile;
+          auth = await resolveApiKeyForProvider({ provider: resolvedProvider, cfg, profileId });
+          wizLog.debug("Using api_key profile for wizard", { profileId, source: auth.source });
+        } else {
+          // Last resort: grab directly from env
+          const envKey =
+            resolvedProvider === "anthropic"
+              ? (process.env.ANTHROPIC_API_KEY ?? "")
+              : (process.env.OPENAI_API_KEY ?? "");
+          if (envKey) {
+            auth = { apiKey: envKey, source: "env", mode: "api-key" };
+            wizLog.debug("Using env API key for wizard", { provider: resolvedProvider });
+          }
+        }
+      }
+
+      const systemPrompt = `You are an AI agent design assistant. Given a description of what someone wants their AI agent to be, generate:
+
+1. A creative, memorable agent name (2-3 words max)
+2. A fitting emoji for the agent
+3. A SOUL.md file that defines the agent's personality, purpose, and behavior guidelines
+
+Respond in this exact JSON format (no markdown, no code fences):
+{"name":"Agent Name","emoji":"🤖","soul":"# SOUL.md content here\\n\\nFull soul file with personality, purpose, boundaries, etc."}
+
+The SOUL.md should be thoughtful and specific to the agent's purpose. Include sections for Identity, Purpose, Personality/Tone, Boundaries, and any domain-specific guidelines. Use newlines (\\n) in the soul string.`;
+
+      const userPrompt = `Create an AI agent based on this description:\n\n${description}`;
+
+      let body: Record<string, unknown>;
+      let url: string;
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+
+      if (provider === "anthropic") {
+        url = "https://api.anthropic.com/v1/messages";
+        headers["x-api-key"] = auth.apiKey;
+        headers["anthropic-version"] = "2023-06-01";
+        body = {
+          model: modelStr.replace("anthropic/", ""),
+          max_tokens: 2048,
+          system: systemPrompt,
+          messages: [{ role: "user", content: userPrompt }],
+        };
+      } else {
+        // OpenAI-compatible
+        url = "https://api.openai.com/v1/chat/completions";
+        headers["Authorization"] = `Bearer ${auth.apiKey}`;
+        body = {
+          model: modelStr.replace(`${provider}/`, ""),
+          max_tokens: 2048,
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+        };
+      }
+
+      wizLog.info("Calling model for agent wizard", { model: modelStr });
+      const res = await fetch(url, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        const errText = await res.text().catch(() => "");
+        wizLog.error("Model API error", { status: res.status, body: errText.slice(0, 200) });
+        respond(
+          false,
+          undefined,
+          errorShape(ErrorCodes.INTERNAL_ERROR, `Model API error: ${res.status}`),
+        );
+        return;
+      }
+
+      const data = (await res.json()) as Record<string, unknown>;
+
+      // Extract text from response
+      let text: string;
+      if (provider === "anthropic") {
+        const content = (data.content as Array<{ type: string; text?: string }>) ?? [];
+        text = content.find((c) => c.type === "text")?.text ?? "";
+      } else {
+        const choices = (data.choices as Array<{ message?: { content?: string } }>) ?? [];
+        text = choices[0]?.message?.content ?? "";
+      }
+
+      // Parse and validate JSON from response (strip any markdown fences first)
+      const cleaned = text
+        .replace(/```json?\s*/g, "")
+        .replace(/```\s*/g, "")
+        .trim();
+      if (!cleaned) {
+        respond(
+          false,
+          undefined,
+          errorShape(ErrorCodes.INTERNAL_ERROR, "Model returned empty response"),
+        );
+        return;
+      }
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(cleaned);
+      } catch {
+        wizLog.error("Failed to parse model JSON", { raw: cleaned.slice(0, 200) });
+        respond(
+          false,
+          undefined,
+          errorShape(ErrorCodes.INTERNAL_ERROR, "Model returned non-JSON output"),
+        );
+        return;
+      }
+      // Structural validation — reject if required fields are missing or wrong type
+      if (
+        typeof parsed !== "object" ||
+        parsed === null ||
+        typeof (parsed as Record<string, unknown>).name !== "string" ||
+        typeof (parsed as Record<string, unknown>).emoji !== "string" ||
+        typeof (parsed as Record<string, unknown>).soul !== "string"
+      ) {
+        wizLog.error("Model JSON missing required fields", { parsed });
+        respond(
+          false,
+          undefined,
+          errorShape(
+            ErrorCodes.INTERNAL_ERROR,
+            "Model output missing required fields (name, emoji, soul)",
+          ),
+        );
+        return;
+      }
+      const result = parsed as { name: string; emoji: string; soul: string };
+      // Sanity-check field lengths to catch truncated or empty output
+      if (!result.name.trim() || !result.emoji.trim() || result.soul.length < 20) {
+        respond(
+          false,
+          undefined,
+          errorShape(ErrorCodes.INTERNAL_ERROR, "Model output fields appear empty or truncated"),
+        );
+        return;
+      }
+
+      respond(
+        true,
+        {
+          name: result.name.trim().slice(0, 100),
+          emoji: result.emoji.trim().slice(0, 10),
+          soul: result.soul,
+        },
+        undefined,
+      );
+    } catch (err) {
+      wizLog.error("Wizard failed", { error: String(err) });
+      respond(
+        false,
+        undefined,
+        errorShape(ErrorCodes.INTERNAL_ERROR, err instanceof Error ? err.message : String(err)),
+      );
+    }
+  },
+};

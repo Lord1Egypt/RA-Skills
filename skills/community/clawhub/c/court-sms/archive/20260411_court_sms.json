@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "version": "1.0",
+    "created_at": "2026-04-11T23:56:00+08:00",
+    "skill": "court-sms"
+  },
+  "sms": {
+    "raw_text": "【苏州市虎丘区人民法院】苏州中交路劲地产有限公司你好，请查收(2025)苏0505民初7723号案件中你的送达文书。点击链接查阅：https://zxfw.court.gov.cn/zxfw/#/pagesAjkj/app/wssd/index?qdbh=869084120144441e83bbb60c4d07ccce&sdbh=667e1fed9d2e4811948eb1fb3d73b318&sdsin=8ebf496b0f960116b6ffbaa5f08ef9d6",
+    "type": "document_delivery",
+    "court": "苏州市虎丘区人民法院",
+    "received_at": "2026-04-11"
+  },
+  "case": {
+    "case_number": "(2025)苏0505民初7723号",
+    "court": "苏州市虎丘区人民法院",
+    "parties": ["苏州中交路劲地产有限公司"]
+  },
+  "document": {
+    "title": "电子票据",
+    "document_type": "江苏省非税收入票据（电子）",
+    "file_name": "电子票据_20260411收.pdf",
+    "file_format": "pdf",
+    "file_size": "519KB",
+    "sent_at": "2026-03-26T16:20:16+08:00",
+    "fee_type": "案件受理费",
+    "fee_amount": "8,763.00",
+    "payment_date": "2026-03-13",
+    "invoice_date": "2026-03-16",
+    "payer": "苏州中交路劲地产有限公司",
+    "invoice_code": "32010126",
+    "invoice_number": "0001543383",
+    "archive_path": "课程演示文件夹/(2025)苏0505民初7723号 苏州中交路劲地产有限公司/电子票据_20260411收.pdf"
+  },
+  "download": {
+    "platform": "zxfw.court.gov.cn",
+    "method": "api_direct",
+    "qdbh": "869084120144441e83bbb60c4d07ccce",
+    "sdbh": "667e1fed9d2e4811948eb1fb3d73b318",
+    "sdsin": "8ebf496b0f960116b6ffbaa5f08ef9d6"
+  }
+}

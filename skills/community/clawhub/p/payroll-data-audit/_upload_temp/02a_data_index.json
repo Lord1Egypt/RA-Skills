@@ -1,0 +1,1311 @@
+{
+  "audit_id": "audit_20260605_1613_947",
+  "timestamp": "2026-06-05T16:13:26.249840",
+  "version": "7.0.0",
+  "total_records": 947,
+  "rule_index": {
+    "FC-001": {
+      "category": "字段完整性",
+      "name": "必填字段检查",
+      "checked": 65,
+      "passed": 65,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#FC-001",
+      "kanban_anchor": "kanban_v6.html?rule=FC-001",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "FR-001": {
+      "category": "公式校验",
+      "name": "应发合计校验",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#FR-001",
+      "kanban_anchor": "kanban_v6.html?rule=FR-001",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "FR-002": {
+      "category": "公式校验",
+      "name": "实发合计校验",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#FR-002",
+      "kanban_anchor": "kanban_v6.html?rule=FR-002",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "FR-003": {
+      "category": "公式校验",
+      "name": "出勤工资校验",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#FR-003",
+      "kanban_anchor": "kanban_v6.html?rule=FR-003",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "FR-004": {
+      "category": "公式校验",
+      "name": "计薪天数校验",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#FR-004",
+      "kanban_anchor": "kanban_v6.html?rule=FR-004",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "BR-001": {
+      "category": "业务规则",
+      "name": "出勤工资不超过标准工资",
+      "checked": 947,
+      "passed": 32,
+      "failed": 915,
+      "rate": "3.4%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#BR-001",
+      "kanban_anchor": "kanban_v6.html?rule=BR-001",
+      "action": "核实: 915人",
+      "details": [
+        {
+          "index": 0,
+          "姓名代号": "425269Wa0Wr3",
+          "工号": "1"
+        },
+        {
+          "index": 1,
+          "姓名代号": "100776Wz9Jx4",
+          "工号": "3"
+        },
+        {
+          "index": 2,
+          "姓名代号": "313161Hq4Dj6",
+          "工号": "4"
+        },
+        {
+          "index": 3,
+          "姓名代号": "128671De2Ml4",
+          "工号": "5"
+        },
+        {
+          "index": 4,
+          "姓名代号": "334147Fa4Zk5",
+          "工号": "6"
+        },
+        {
+          "index": 5,
+          "姓名代号": "895922Sx4St1",
+          "工号": "7"
+        },
+        {
+          "index": 6,
+          "姓名代号": "548516Xu2Vm8",
+          "工号": "8"
+        },
+        {
+          "index": 7,
+          "姓名代号": "108562Gp2Qz7",
+          "工号": "12"
+        },
+        {
+          "index": 8,
+          "姓名代号": "864487Gf8Nv8",
+          "工号": "13"
+        },
+        {
+          "index": 9,
+          "姓名代号": "721859My7Go6",
+          "工号": "15"
+        },
+        {
+          "index": 10,
+          "姓名代号": "150669Lv7Rk2",
+          "工号": "16"
+        },
+        {
+          "index": 11,
+          "姓名代号": "356598Lt2Pr3",
+          "工号": "17"
+        },
+        {
+          "index": 12,
+          "姓名代号": "964730Rn2Ru5",
+          "工号": "19"
+        },
+        {
+          "index": 13,
+          "姓名代号": "631963Zi2Sz3",
+          "工号": "20"
+        },
+        {
+          "index": 14,
+          "姓名代号": "624709Vx1Gv4",
+          "工号": "22"
+        },
+        {
+          "index": 15,
+          "姓名代号": "702606Dl4Zk3",
+          "工号": "23"
+        },
+        {
+          "index": 16,
+          "姓名代号": "620006La1Tm2",
+          "工号": "28"
+        },
+        {
+          "index": 17,
+          "姓名代号": "477143Xt0Zb3",
+          "工号": "29"
+        },
+        {
+          "index": 18,
+          "姓名代号": "568991Xc1Cd5",
+          "工号": "31"
+        },
+        {
+          "index": 19,
+          "姓名代号": "651354Ww9Fm9",
+          "工号": "36"
+        }
+      ],
+      "detail_count": 20
+    },
+    "BR-002": {
+      "category": "业务规则",
+      "name": "出勤天数不超过应出勤天数",
+      "checked": 947,
+      "passed": 0,
+      "failed": 947,
+      "rate": "0.0%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#BR-002",
+      "kanban_anchor": "kanban_v6.html?rule=BR-002",
+      "action": "核实: 947人",
+      "details": [
+        {
+          "index": 0,
+          "姓名代号": "425269Wa0Wr3",
+          "工号": "1"
+        },
+        {
+          "index": 1,
+          "姓名代号": "100776Wz9Jx4",
+          "工号": "3"
+        },
+        {
+          "index": 2,
+          "姓名代号": "313161Hq4Dj6",
+          "工号": "4"
+        },
+        {
+          "index": 3,
+          "姓名代号": "128671De2Ml4",
+          "工号": "5"
+        },
+        {
+          "index": 4,
+          "姓名代号": "334147Fa4Zk5",
+          "工号": "6"
+        },
+        {
+          "index": 5,
+          "姓名代号": "895922Sx4St1",
+          "工号": "7"
+        },
+        {
+          "index": 6,
+          "姓名代号": "548516Xu2Vm8",
+          "工号": "8"
+        },
+        {
+          "index": 7,
+          "姓名代号": "108562Gp2Qz7",
+          "工号": "12"
+        },
+        {
+          "index": 8,
+          "姓名代号": "864487Gf8Nv8",
+          "工号": "13"
+        },
+        {
+          "index": 9,
+          "姓名代号": "721859My7Go6",
+          "工号": "15"
+        },
+        {
+          "index": 10,
+          "姓名代号": "150669Lv7Rk2",
+          "工号": "16"
+        },
+        {
+          "index": 11,
+          "姓名代号": "356598Lt2Pr3",
+          "工号": "17"
+        },
+        {
+          "index": 12,
+          "姓名代号": "964730Rn2Ru5",
+          "工号": "19"
+        },
+        {
+          "index": 13,
+          "姓名代号": "631963Zi2Sz3",
+          "工号": "20"
+        },
+        {
+          "index": 14,
+          "姓名代号": "624709Vx1Gv4",
+          "工号": "22"
+        },
+        {
+          "index": 15,
+          "姓名代号": "702606Dl4Zk3",
+          "工号": "23"
+        },
+        {
+          "index": 16,
+          "姓名代号": "620006La1Tm2",
+          "工号": "28"
+        },
+        {
+          "index": 17,
+          "姓名代号": "477143Xt0Zb3",
+          "工号": "29"
+        },
+        {
+          "index": 18,
+          "姓名代号": "568991Xc1Cd5",
+          "工号": "31"
+        },
+        {
+          "index": 19,
+          "姓名代号": "651354Ww9Fm9",
+          "工号": "36"
+        }
+      ],
+      "detail_count": 20
+    },
+    "BR-003": {
+      "category": "业务规则",
+      "name": "绩效系数在合理范围",
+      "checked": 947,
+      "passed": 0,
+      "failed": 947,
+      "rate": "0.0%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#BR-003",
+      "kanban_anchor": "kanban_v6.html?rule=BR-003",
+      "action": "核实: 947人",
+      "details": [
+        {
+          "index": 0,
+          "姓名代号": "425269Wa0Wr3",
+          "工号": "1"
+        },
+        {
+          "index": 1,
+          "姓名代号": "100776Wz9Jx4",
+          "工号": "3"
+        },
+        {
+          "index": 2,
+          "姓名代号": "313161Hq4Dj6",
+          "工号": "4"
+        },
+        {
+          "index": 3,
+          "姓名代号": "128671De2Ml4",
+          "工号": "5"
+        },
+        {
+          "index": 4,
+          "姓名代号": "334147Fa4Zk5",
+          "工号": "6"
+        },
+        {
+          "index": 5,
+          "姓名代号": "895922Sx4St1",
+          "工号": "7"
+        },
+        {
+          "index": 6,
+          "姓名代号": "548516Xu2Vm8",
+          "工号": "8"
+        },
+        {
+          "index": 7,
+          "姓名代号": "108562Gp2Qz7",
+          "工号": "12"
+        },
+        {
+          "index": 8,
+          "姓名代号": "864487Gf8Nv8",
+          "工号": "13"
+        },
+        {
+          "index": 9,
+          "姓名代号": "721859My7Go6",
+          "工号": "15"
+        },
+        {
+          "index": 10,
+          "姓名代号": "150669Lv7Rk2",
+          "工号": "16"
+        },
+        {
+          "index": 11,
+          "姓名代号": "356598Lt2Pr3",
+          "工号": "17"
+        },
+        {
+          "index": 12,
+          "姓名代号": "964730Rn2Ru5",
+          "工号": "19"
+        },
+        {
+          "index": 13,
+          "姓名代号": "631963Zi2Sz3",
+          "工号": "20"
+        },
+        {
+          "index": 14,
+          "姓名代号": "624709Vx1Gv4",
+          "工号": "22"
+        },
+        {
+          "index": 15,
+          "姓名代号": "702606Dl4Zk3",
+          "工号": "23"
+        },
+        {
+          "index": 16,
+          "姓名代号": "620006La1Tm2",
+          "工号": "28"
+        },
+        {
+          "index": 17,
+          "姓名代号": "477143Xt0Zb3",
+          "工号": "29"
+        },
+        {
+          "index": 18,
+          "姓名代号": "568991Xc1Cd5",
+          "工号": "31"
+        },
+        {
+          "index": 19,
+          "姓名代号": "651354Ww9Fm9",
+          "工号": "36"
+        }
+      ],
+      "detail_count": 20
+    },
+    "BR-004": {
+      "category": "业务规则",
+      "name": "班天数不超过计薪天数",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#BR-004",
+      "kanban_anchor": "kanban_v6.html?rule=BR-004",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "BR-005": {
+      "category": "业务规则",
+      "name": "轮班天数不超过计薪天数",
+      "checked": 947,
+      "passed": 945,
+      "failed": 2,
+      "rate": "99.8%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#BR-005",
+      "kanban_anchor": "kanban_v6.html?rule=BR-005",
+      "action": "核实: 2人",
+      "details": [
+        {
+          "index": 745,
+          "姓名代号": "847238Vf1Cg1",
+          "工号": "570",
+          "shift_days": 24.0,
+          "actual_days": 22.0
+        },
+        {
+          "index": 802,
+          "姓名代号": "388095Mf1Ay6",
+          "工号": "913",
+          "shift_days": 23.0,
+          "actual_days": 22.0
+        }
+      ],
+      "detail_count": 2
+    },
+    "RL-001": {
+      "category": "红线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#RL-001",
+      "kanban_anchor": "kanban_v6.html?rule=RL-001",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "RL-002": {
+      "category": "红线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#RL-002",
+      "kanban_anchor": "kanban_v6.html?rule=RL-002",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "RL-003": {
+      "category": "红线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#RL-003",
+      "kanban_anchor": "kanban_v6.html?rule=RL-003",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "RL-004": {
+      "category": "红线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#RL-004",
+      "kanban_anchor": "kanban_v6.html?rule=RL-004",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "RL-005": {
+      "category": "红线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#RL-005",
+      "kanban_anchor": "kanban_v6.html?rule=RL-005",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "RL-006": {
+      "category": "红线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#RL-006",
+      "kanban_anchor": "kanban_v6.html?rule=RL-006",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "RL-007": {
+      "category": "红线",
+      "name": "",
+      "checked": 947,
+      "passed": 806,
+      "failed": 141,
+      "rate": "85.1%",
+      "status": "block",
+      "report_anchor": "report_v6.html#RL-007",
+      "kanban_anchor": "kanban_v6.html?rule=RL-007",
+      "action": "立即核实并修正",
+      "details": [
+        {
+          "index": 3,
+          "姓名代号": "128671De2Ml4",
+          "工号": "5",
+          "value": 43888.47
+        },
+        {
+          "index": 5,
+          "姓名代号": "895922Sx4St1",
+          "工号": "7",
+          "value": 39543.02
+        },
+        {
+          "index": 10,
+          "姓名代号": "150669Lv7Rk2",
+          "工号": "16",
+          "value": 41493.02
+        },
+        {
+          "index": 12,
+          "姓名代号": "964730Rn2Ru5",
+          "工号": "19",
+          "value": 24161.72
+        },
+        {
+          "index": 16,
+          "姓名代号": "620006La1Tm2",
+          "工号": "28",
+          "value": 24793.02
+        },
+        {
+          "index": 21,
+          "姓名代号": "905144Qi7Ey8",
+          "工号": "42",
+          "value": 29543.02
+        },
+        {
+          "index": 23,
+          "姓名代号": "643796Pl1Gt3",
+          "工号": "51",
+          "value": 21355.1
+        },
+        {
+          "index": 24,
+          "姓名代号": "598353He2Yv9",
+          "工号": "67",
+          "value": 35943.02
+        },
+        {
+          "index": 27,
+          "姓名代号": "785932Yx6Fx3",
+          "工号": "109",
+          "value": 24125.18
+        },
+        {
+          "index": 30,
+          "姓名代号": "157927Sl6Er2",
+          "工号": "214",
+          "value": 24243.02
+        },
+        {
+          "index": 31,
+          "姓名代号": "516628Zx4Rk3",
+          "工号": "255",
+          "value": 21393.02
+        },
+        {
+          "index": 32,
+          "姓名代号": "608716Lv4Na3",
+          "工号": "267",
+          "value": 28193.02
+        },
+        {
+          "index": 35,
+          "姓名代号": "160718Ze5Ko1",
+          "工号": "296",
+          "value": 54190.63
+        },
+        {
+          "index": 37,
+          "姓名代号": "875611Jr9Gd6",
+          "工号": "320",
+          "value": 26743.02
+        },
+        {
+          "index": 45,
+          "姓名代号": "879265Ph8Ta0",
+          "工号": "457",
+          "value": 17586.15
+        },
+        {
+          "index": 46,
+          "姓名代号": "641792Ck9Yi4",
+          "工号": "452",
+          "value": 21912.77
+        },
+        {
+          "index": 47,
+          "姓名代号": "482269Ma5Sh4",
+          "工号": "461",
+          "value": 23193.01
+        },
+        {
+          "index": 48,
+          "姓名代号": "220828Ux6Ec4",
+          "工号": "466",
+          "value": 17433.02
+        },
+        {
+          "index": 50,
+          "姓名代号": "802239Co5Lt3",
+          "工号": "473",
+          "value": 22293.02
+        },
+        {
+          "index": 51,
+          "姓名代号": "446494Ug8Fy7",
+          "工号": "477",
+          "value": 25417.22
+        }
+      ],
+      "detail_count": 20
+    },
+    "YL-001": {
+      "category": "黄线",
+      "name": "",
+      "checked": 947,
+      "passed": 943,
+      "failed": 4,
+      "rate": "99.6%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#YL-001",
+      "kanban_anchor": "kanban_v6.html?rule=YL-001",
+      "action": "核实: 4人",
+      "details": [
+        {
+          "index": 493,
+          "姓名代号": "812248Fd9Er4",
+          "工号": "541"
+        },
+        {
+          "index": 495,
+          "姓名代号": "919637Sc8Xg2",
+          "工号": "607"
+        },
+        {
+          "index": 659,
+          "姓名代号": "512791Mh2Rt5",
+          "工号": "115"
+        },
+        {
+          "index": 761,
+          "姓名代号": "336523Vz6Gb9",
+          "工号": "674"
+        }
+      ],
+      "detail_count": 4
+    },
+    "YL-002": {
+      "category": "黄线",
+      "name": "",
+      "checked": 947,
+      "passed": 943,
+      "failed": 4,
+      "rate": "99.6%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#YL-002",
+      "kanban_anchor": "kanban_v6.html?rule=YL-002",
+      "action": "核实: 4人",
+      "details": [
+        {
+          "index": 396,
+          "姓名代号": "130032Bp7Vd3",
+          "工号": "338"
+        },
+        {
+          "index": 419,
+          "姓名代号": "603178Ww0Be7",
+          "工号": "706"
+        },
+        {
+          "index": 447,
+          "姓名代号": "539775Ic0Kw3",
+          "工号": "1105"
+        },
+        {
+          "index": 474,
+          "姓名代号": "481204Bp0Qc5",
+          "工号": "467"
+        }
+      ],
+      "detail_count": 4
+    },
+    "YL-003": {
+      "category": "黄线",
+      "name": "",
+      "checked": 947,
+      "passed": 944,
+      "failed": 3,
+      "rate": "99.7%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#YL-003",
+      "kanban_anchor": "kanban_v6.html?rule=YL-003",
+      "action": "核实: 3人",
+      "details": [
+        {
+          "index": 284,
+          "姓名代号": "491087Ak6Wa8",
+          "工号": "65"
+        },
+        {
+          "index": 474,
+          "姓名代号": "481204Bp0Qc5",
+          "工号": "467"
+        },
+        {
+          "index": 602,
+          "姓名代号": "790066Ae7Cx7",
+          "工号": "1592"
+        }
+      ],
+      "detail_count": 3
+    },
+    "YL-004": {
+      "category": "黄线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#YL-004",
+      "kanban_anchor": "kanban_v6.html?rule=YL-004",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "YL-005": {
+      "category": "黄线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#YL-005",
+      "kanban_anchor": "kanban_v6.html?rule=YL-005",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "YL-006": {
+      "category": "黄线",
+      "name": "",
+      "checked": 947,
+      "passed": 804,
+      "failed": 143,
+      "rate": "84.9%",
+      "status": "warning",
+      "report_anchor": "report_v6.html#YL-006",
+      "kanban_anchor": "kanban_v6.html?rule=YL-006",
+      "action": "核实: 143人",
+      "details": [
+        {
+          "index": 0,
+          "姓名代号": "425269Wa0Wr3",
+          "工号": "1"
+        },
+        {
+          "index": 1,
+          "姓名代号": "100776Wz9Jx4",
+          "工号": "3"
+        },
+        {
+          "index": 3,
+          "姓名代号": "128671De2Ml4",
+          "工号": "5"
+        },
+        {
+          "index": 5,
+          "姓名代号": "895922Sx4St1",
+          "工号": "7"
+        },
+        {
+          "index": 10,
+          "姓名代号": "150669Lv7Rk2",
+          "工号": "16"
+        },
+        {
+          "index": 12,
+          "姓名代号": "964730Rn2Ru5",
+          "工号": "19"
+        },
+        {
+          "index": 16,
+          "姓名代号": "620006La1Tm2",
+          "工号": "28"
+        },
+        {
+          "index": 21,
+          "姓名代号": "905144Qi7Ey8",
+          "工号": "42"
+        },
+        {
+          "index": 23,
+          "姓名代号": "643796Pl1Gt3",
+          "工号": "51"
+        },
+        {
+          "index": 24,
+          "姓名代号": "598353He2Yv9",
+          "工号": "67"
+        },
+        {
+          "index": 27,
+          "姓名代号": "785932Yx6Fx3",
+          "工号": "109"
+        },
+        {
+          "index": 30,
+          "姓名代号": "157927Sl6Er2",
+          "工号": "214"
+        },
+        {
+          "index": 31,
+          "姓名代号": "516628Zx4Rk3",
+          "工号": "255"
+        },
+        {
+          "index": 32,
+          "姓名代号": "608716Lv4Na3",
+          "工号": "267"
+        },
+        {
+          "index": 35,
+          "姓名代号": "160718Ze5Ko1",
+          "工号": "296"
+        },
+        {
+          "index": 37,
+          "姓名代号": "875611Jr9Gd6",
+          "工号": "320"
+        },
+        {
+          "index": 45,
+          "姓名代号": "879265Ph8Ta0",
+          "工号": "457"
+        },
+        {
+          "index": 46,
+          "姓名代号": "641792Ck9Yi4",
+          "工号": "452"
+        },
+        {
+          "index": 47,
+          "姓名代号": "482269Ma5Sh4",
+          "工号": "461"
+        },
+        {
+          "index": 48,
+          "姓名代号": "220828Ux6Ec4",
+          "工号": "466"
+        }
+      ],
+      "detail_count": 20
+    },
+    "BL-001": {
+      "category": "蓝线",
+      "name": "",
+      "checked": 947,
+      "passed": 816,
+      "failed": 131,
+      "rate": "86.2%",
+      "status": "note",
+      "report_anchor": "report_v6.html#BL-001",
+      "kanban_anchor": "kanban_v6.html?rule=BL-001",
+      "action": "关注趋势变化",
+      "details": [
+        {
+          "姓名代号": "884372Dv7Cr6",
+          "工号": "39"
+        },
+        {
+          "姓名代号": "430238Ri8Le5",
+          "工号": "54"
+        },
+        {
+          "姓名代号": "294198Il3Ah4",
+          "工号": "118"
+        },
+        {
+          "姓名代号": "164717Dz9Fd8",
+          "工号": "165"
+        },
+        {
+          "姓名代号": "370063Tg9Ip6",
+          "工号": "205"
+        },
+        {
+          "姓名代号": "133244Hl3Uc1",
+          "工号": "207"
+        },
+        {
+          "姓名代号": "497323Fv0To4",
+          "工号": "238"
+        },
+        {
+          "姓名代号": "511145Ah4Ih4",
+          "工号": "253"
+        },
+        {
+          "姓名代号": "272502Il7Iq4",
+          "工号": "268"
+        },
+        {
+          "姓名代号": "298685Xm2Ni8",
+          "工号": "304"
+        },
+        {
+          "姓名代号": "589725Tn0Kk3",
+          "工号": "317"
+        },
+        {
+          "姓名代号": "504142Uc6Pr5",
+          "工号": "382"
+        },
+        {
+          "姓名代号": "903624Ds7Aq4",
+          "工号": "389"
+        },
+        {
+          "姓名代号": "224282La4Zh4",
+          "工号": "410"
+        },
+        {
+          "姓名代号": "947118Nr8Xn2",
+          "工号": "423"
+        },
+        {
+          "姓名代号": "341137Yt7Yz4",
+          "工号": "429"
+        },
+        {
+          "姓名代号": "539697Xv5Pc6",
+          "工号": "458"
+        },
+        {
+          "姓名代号": "795120Vm1We9",
+          "工号": "465"
+        },
+        {
+          "姓名代号": "858745Vu5Ru2",
+          "工号": "479"
+        },
+        {
+          "姓名代号": "777821Ad5Xt1",
+          "工号": "532"
+        }
+      ],
+      "detail_count": 20
+    },
+    "BL-002": {
+      "category": "蓝线",
+      "name": "",
+      "checked": 947,
+      "passed": 778,
+      "failed": 169,
+      "rate": "82.2%",
+      "status": "note",
+      "report_anchor": "report_v6.html#BL-002",
+      "kanban_anchor": "kanban_v6.html?rule=BL-002",
+      "action": "关注趋势变化",
+      "details": [
+        {
+          "姓名代号": "983027Rs0Lg0",
+          "工号": "431"
+        },
+        {
+          "姓名代号": "481204Bp0Qc5",
+          "工号": "467"
+        },
+        {
+          "姓名代号": "552367Xd5Rs8",
+          "工号": "469"
+        },
+        {
+          "姓名代号": "483444In4Km7",
+          "工号": "159"
+        },
+        {
+          "姓名代号": "461004Sg5Eu5",
+          "工号": "314"
+        },
+        {
+          "姓名代号": "812248Fd9Er4",
+          "工号": "541"
+        },
+        {
+          "姓名代号": "301985Fd7Cq4",
+          "工号": "605"
+        },
+        {
+          "姓名代号": "919637Sc8Xg2",
+          "工号": "607"
+        },
+        {
+          "姓名代号": "918304Rj0Fw4",
+          "工号": "608"
+        },
+        {
+          "姓名代号": "387293Wr1Vv2",
+          "工号": "1139"
+        },
+        {
+          "姓名代号": "644764Ua6Iz0",
+          "工号": "1165"
+        },
+        {
+          "姓名代号": "461514En4Pp8",
+          "工号": "1235"
+        },
+        {
+          "姓名代号": "132626Qy5Aw1",
+          "工号": "1393"
+        },
+        {
+          "姓名代号": "615601Xi2Fx7",
+          "工号": "1579"
+        },
+        {
+          "姓名代号": "240342Cm8Bi2",
+          "工号": "1580"
+        },
+        {
+          "姓名代号": "162278Bu8Os4",
+          "工号": "1588"
+        },
+        {
+          "姓名代号": "882666Wn8Nj7",
+          "工号": "1462"
+        },
+        {
+          "姓名代号": "889776De5Fh5",
+          "工号": "637"
+        },
+        {
+          "姓名代号": "349933Eg5Id8",
+          "工号": "656"
+        },
+        {
+          "姓名代号": "677505Cq7Pp3",
+          "工号": "889"
+        }
+      ],
+      "detail_count": 20
+    },
+    "BL-003": {
+      "category": "蓝线",
+      "name": "",
+      "checked": 947,
+      "passed": 947,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#BL-003",
+      "kanban_anchor": "kanban_v6.html?rule=BL-003",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "BL-004": {
+      "category": "蓝线",
+      "name": "",
+      "checked": 947,
+      "passed": 621,
+      "failed": 326,
+      "rate": "65.6%",
+      "status": "note",
+      "report_anchor": "report_v6.html#BL-004",
+      "kanban_anchor": "kanban_v6.html?rule=BL-004",
+      "action": "关注趋势变化",
+      "details": [
+        {
+          "姓名代号": "864487Gf8Nv8",
+          "工号": "13"
+        },
+        {
+          "姓名代号": "598353He2Yv9",
+          "工号": "67"
+        },
+        {
+          "姓名代号": "356412Jz2Mf1",
+          "工号": "145"
+        },
+        {
+          "姓名代号": "324693Kl8Iy5",
+          "工号": "155"
+        },
+        {
+          "姓名代号": "160718Ze5Ko1",
+          "工号": "296"
+        },
+        {
+          "姓名代号": "163801Eb7Zv4",
+          "工号": "506"
+        },
+        {
+          "姓名代号": "549998Na6Aq7",
+          "工号": "501"
+        },
+        {
+          "姓名代号": "341978Gt7Hd2",
+          "工号": "523"
+        },
+        {
+          "姓名代号": "354283So9Hd8",
+          "工号": "530"
+        },
+        {
+          "姓名代号": "200255Ew0Nr4",
+          "工号": "555"
+        },
+        {
+          "姓名代号": "300113La7Qn7",
+          "工号": "600"
+        },
+        {
+          "姓名代号": "252664Lx8Lk0",
+          "工号": "700"
+        },
+        {
+          "姓名代号": "752040Bv4Zq9",
+          "工号": "854"
+        },
+        {
+          "姓名代号": "896458Sx3Mq8",
+          "工号": "927"
+        },
+        {
+          "姓名代号": "991312Xb6Cq6",
+          "工号": "966"
+        },
+        {
+          "姓名代号": "626718Af5Mc8",
+          "工号": "980"
+        },
+        {
+          "姓名代号": "960266Oi8Il7",
+          "工号": "1387"
+        },
+        {
+          "姓名代号": "350396Sv1Qs5",
+          "工号": "1392"
+        },
+        {
+          "姓名代号": "451049Wm0Ua8",
+          "工号": "1408"
+        },
+        {
+          "姓名代号": "606152Sa2Uy8",
+          "工号": "1409"
+        }
+      ],
+      "detail_count": 20
+    },
+    "POL-27": {
+      "category": "政策校验",
+      "name": "15号后入职当月不缴社保公积金",
+      "checked": 445,
+      "passed": 445,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#POL-27",
+      "kanban_anchor": "kanban_v6.html?rule=POL-27",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "POL-28": {
+      "category": "政策校验",
+      "name": "实习生/保洁豁免社保公积金",
+      "checked": 50,
+      "passed": 50,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#POL-28",
+      "kanban_anchor": "kanban_v6.html?rule=POL-28",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "POL-29": {
+      "category": "政策校验",
+      "name": "离职当月社保公积金缴纳规则",
+      "checked": 6,
+      "passed": 6,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#POL-29",
+      "kanban_anchor": "kanban_v6.html?rule=POL-29",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "POL-30": {
+      "category": "政策校验",
+      "name": "道旅国际-社保豁免",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#POL-30",
+      "kanban_anchor": "kanban_v6.html?rule=POL-30",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    },
+    "POL-31": {
+      "category": "政策校验",
+      "name": "道旅国际-公积金豁免",
+      "checked": 11,
+      "passed": 11,
+      "failed": 0,
+      "rate": "100.0%",
+      "status": "pass",
+      "report_anchor": "report_v6.html#POL-31",
+      "kanban_anchor": "kanban_v6.html?rule=POL-31",
+      "action": "无需操作",
+      "details": [],
+      "detail_count": 0
+    }
+  },
+  "summary": {
+    "blocked": true,
+    "red_count": 141,
+    "yellow_count": 154,
+    "blue_count": 626,
+    "total_rules": 32,
+    "passed_rules": 20
+  },
+  "cross_links": {
+    "report_file": "audit_report_v6.html",
+    "kanban_file": "kanban_v6.html",
+    "source_file": "audit_result.json",
+    "usage": "报告和看板都通过 rule_index 中的 rule_id 关联到同一份数据"
+  }
+}

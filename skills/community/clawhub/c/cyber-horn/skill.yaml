@@ -1,0 +1,17 @@
+# OpenClaw Skill: CyberHorn (赛博小喇叭)
+# 通过 ElevenLabs 克隆声音，以飞书原生语音条发送
+
+name: cyber_horn
+display_name: 赛博小喇叭
+description: 将文本转为克隆语音并发送到飞书群/会话（TTS → Opus → 飞书）
+
+# 运行方式：环境变量 + 命令行参数（与 main.py 一致）
+# 环境变量: ELEVEN_API_KEY, VOICE_ID, FEISHU_APP_ID, FEISHU_APP_SECRET
+# 参数: 第1个为语音文本，第2个为 receive_id (chat_id)，第3个可选 receive_id_type，默认 chat_id
+
+entry: main.py
+type: script
+
+# 模拟 OpenClaw 调用示例:
+#   env: ELEVEN_API_KEY=... VOICE_ID=... FEISHU_APP_ID=... FEISHU_APP_SECRET=...
+#   args: ["要说的内容", "oc_xxxx_chat_id"]

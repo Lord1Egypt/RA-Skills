@@ -1,0 +1,41 @@
+{
+  "name": "Parametric Table",
+  "description": "Parametric dining/work table with customizable dimensions, leg style, and stretchers",
+  "version": "1.0",
+  "author": "RhinoClaw",
+  "tags": ["furniture", "table", "dining", "desk"],
+  "file_path": "C:\\temp\\gh_definitions\\ParametricTable.gh",
+  "components": [
+    {"type": "slider", "name": "TableW", "default": 1400, "min": 600, "max": 3000, "decimals": 0, "position": [50, 40]},
+    {"type": "slider", "name": "TableD", "default": 800, "min": 400, "max": 1500, "decimals": 0, "position": [50, 100]},
+    {"type": "slider", "name": "TableH", "default": 750, "min": 600, "max": 1100, "decimals": 0, "position": [50, 160]},
+    {"type": "slider", "name": "TopT", "default": 30, "min": 18, "max": 60, "decimals": 0, "position": [50, 220]},
+    {"type": "slider", "name": "LegW", "default": 60, "min": 30, "max": 120, "decimals": 0, "position": [50, 280]},
+    {"type": "slider", "name": "LegD", "default": 60, "min": 30, "max": 120, "decimals": 0, "position": [50, 340]},
+    {"type": "slider", "name": "LegInset", "default": 50, "min": 0, "max": 200, "decimals": 0, "position": [50, 400]},
+    {"type": "slider", "name": "LegTaper", "default": 0.6, "min": 0.3, "max": 1.0, "decimals": 2, "position": [50, 460]},
+    {"type": "slider", "name": "ApronH", "default": 80, "min": 0, "max": 150, "decimals": 0, "position": [50, 520]},
+    {"type": "slider", "name": "ApronT", "default": 22, "min": 10, "max": 40, "decimals": 0, "position": [50, 580]},
+    {"type": "slider", "name": "TopOverhang", "default": 25, "min": 0, "max": 80, "decimals": 0, "position": [50, 640]},
+    {
+      "type": "python3_script",
+      "name": "Table",
+      "inputs": ["TableW", "TableD", "TableH", "TopT", "LegW", "LegD", "LegInset", "LegTaper", "ApronH", "ApronT", "TopOverhang"],
+      "position": [500, 340],
+      "code": "#! python3\nimport Rhino.Geometry as rg\nimport math\n\ntw = float(TableW)\ntd = float(TableD)\nth = float(TableH)\ntop_t = float(TopT)\nleg_w = float(LegW)\nleg_d = float(LegD)\nleg_inset = float(LegInset)\nleg_taper = float(LegTaper)\napron_h = float(ApronH)\napron_t = float(ApronT)\noverhang = float(TopOverhang)\n\nhw = tw / 2.0\nhd = td / 2.0\nbreps = []\n\n# ========== TABLE TOP ==========\n# Rounded rectangle top\ntop_z = th\ntop_box = rg.Box(\n    rg.Plane.WorldXY,\n    rg.Interval(-hw, hw),\n    rg.Interval(-hd, hd),\n    rg.Interval(top_z - top_t, top_z)\n)\ntb = top_box.ToBrep()\nif tb:\n    breps.append(tb)\n\n# ========== LEGS ==========\n# Leg positions (inset from top edges)\nframe_hw = hw - overhang\nframe_hd = hd - overhang\n\nleg_positions = [\n    (-frame_hw + leg_inset + leg_w/2, -frame_hd + leg_inset + leg_d/2),\n    ( frame_hw - leg_inset - leg_w/2, -frame_hd + leg_inset + leg_d/2),\n    (-frame_hw + leg_inset + leg_w/2,  frame_hd - leg_inset - leg_d/2),\n    ( frame_hw - leg_inset - leg_w/2,  frame_hd - leg_inset - leg_d/2),\n]\n\napron_bottom = top_z - top_t - apron_h\nleg_top_z = top_z - top_t\n\nfor lx, ly in leg_positions:\n    # Tapered leg: wider at top, narrower at bottom\n    top_hw = leg_w / 2.0\n    top_hd = leg_d / 2.0\n    bot_hw = top_hw * leg_taper\n    bot_hd = top_hd * leg_taper\n    \n    # Top profile\n    top_pts = [\n        rg.Point3d(lx - top_hw, ly - top_hd, leg_top_z),\n        rg.Point3d(lx + top_hw, ly - top_hd, leg_top_z),\n        rg.Point3d(lx + top_hw, ly + top_hd, leg_top_z),\n        rg.Point3d(lx - top_hw, ly + top_hd, leg_top_z),\n        rg.Point3d(lx - top_hw, ly - top_hd, leg_top_z),\n    ]\n    # Bottom profile\n    bot_pts = [\n        rg.Point3d(lx - bot_hw, ly - bot_hd, 0),\n        rg.Point3d(lx + bot_hw, ly - bot_hd, 0),\n        rg.Point3d(lx + bot_hw, ly + bot_hd, 0),\n        rg.Point3d(lx - bot_hw, ly + bot_hd, 0),\n        rg.Point3d(lx - bot_hw, ly - bot_hd, 0),\n    ]\n    \n    top_crv = rg.Polyline(top_pts).ToNurbsCurve()\n    bot_crv = rg.Polyline(bot_pts).ToNurbsCurve()\n    \n    loft = rg.Brep.CreateFromLoft([bot_crv, top_crv], rg.Point3d.Unset, rg.Point3d.Unset, rg.LoftType.Straight, False)\n    if loft:\n        parts = list(loft)\n        # Cap top and bottom\n        top_cap = rg.Brep.CreatePlanarBreps(top_crv, 0.01)\n        bot_cap = rg.Brep.CreatePlanarBreps(bot_crv, 0.01)\n        if top_cap:\n            parts.extend(list(top_cap))\n        if bot_cap:\n            parts.extend(list(bot_cap))\n        joined = rg.Brep.JoinBreps(parts, 0.1)\n        if joined:\n            breps.extend(list(joined))\n        else:\n            breps.extend(parts)\n\n# ========== APRONS (Zargen) ==========\nif apron_h > 0:\n    az_top = leg_top_z\n    az_bot = az_top - apron_h\n    \n    # Front apron\n    lx0 = leg_positions[0][0] + leg_w/2\n    lx1 = leg_positions[1][0] - leg_w/2\n    y_f = -frame_hd + leg_inset + leg_d/2 - leg_d/2\n    apron_f = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(lx0, lx1),\n        rg.Interval(y_f, y_f + apron_t),\n        rg.Interval(az_bot, az_top))\n    af = apron_f.ToBrep()\n    if af: breps.append(af)\n    \n    # Back apron\n    y_b = frame_hd - leg_inset - leg_d/2 + leg_d/2 - apron_t\n    apron_b = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(lx0, lx1),\n        rg.Interval(y_b, y_b + apron_t),\n        rg.Interval(az_bot, az_top))\n    ab = apron_b.ToBrep()\n    if ab: breps.append(ab)\n    \n    # Left apron\n    ly0 = leg_positions[0][1] + leg_d/2\n    ly1 = leg_positions[2][1] - leg_d/2\n    x_l = -frame_hw + leg_inset + leg_w/2 - leg_w/2\n    apron_l = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(x_l, x_l + apron_t),\n        rg.Interval(ly0, ly1),\n        rg.Interval(az_bot, az_top))\n    al = apron_l.ToBrep()\n    if al: breps.append(al)\n    \n    # Right apron\n    x_r = frame_hw - leg_inset - leg_w/2 + leg_w/2 - apron_t\n    apron_r = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(x_r, x_r + apron_t),\n        rg.Interval(ly0, ly1),\n        rg.Interval(az_bot, az_top))\n    ar = apron_r.ToBrep()\n    if ar: breps.append(ar)\n\na = breps\n"
+    }
+  ],
+  "wires": [
+    {"from": "TableW", "to": "Table", "to_input": "TableW"},
+    {"from": "TableD", "to": "Table", "to_input": "TableD"},
+    {"from": "TableH", "to": "Table", "to_input": "TableH"},
+    {"from": "TopT", "to": "Table", "to_input": "TopT"},
+    {"from": "LegW", "to": "Table", "to_input": "LegW"},
+    {"from": "LegD", "to": "Table", "to_input": "LegD"},
+    {"from": "LegInset", "to": "Table", "to_input": "LegInset"},
+    {"from": "LegTaper", "to": "Table", "to_input": "LegTaper"},
+    {"from": "ApronH", "to": "Table", "to_input": "ApronH"},
+    {"from": "ApronT", "to": "Table", "to_input": "ApronT"},
+    {"from": "TopOverhang", "to": "Table", "to_input": "TopOverhang"}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "nexpix",
+  "version": "1.0.0",
+  "description": "NexPix — Cloudflare Image Generation. Free tier (FLUX) + premium fallback (EvoLink).",
+  "main": "nexpix.js",
+  "bin": {
+    "nexpix": "./bin/nexpix"
+  },
+  "keywords": [
+    "image",
+    "cloudflare",
+    "flux",
+    "workers",
+    "ai",
+    "image-generation",
+    "nexpix",
+    "openclaw",
+    "agent-skill"
+  ],
+  "author": "LuckyMr <finndottllc@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finndottllc-ui/nexpix"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

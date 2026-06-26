@@ -1,0 +1,52 @@
+[
+  {
+    "traceId": "1505bd0602edb499f991140f29e4a89a",
+    "spanId": "72f2ff3cb8fa9b79",
+    "parentSpanId": "a029585d92be7b60",
+    "name": "generation claude-sonnet-4-6",
+    "kind": 0,
+    "startTimeUnixNano": 1773775671210000000,
+    "endTimeUnixNano": 1773775671210000000,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "openclaw.observation.type": "generation",
+      "openclaw.observation.model.name": "claude-sonnet-4-6",
+      "gen_ai.request.model": "claude-sonnet-4-6",
+      "gen_ai.system": "amazon-bedrock",
+      "gen_ai.request.model.raw": "arn:aws:bedrock:eu-west-1:482397833370:application-inference-profile/ekadx6q1kayx",
+      "openclaw.session.id": "agent:darkhunt-docs:slack:channel:c0am98auquq:thread:1773773584.660059",
+      "service.version": "0.3.4",
+      "gen_ai.usage.input_tokens": 21663,
+      "gen_ai.usage.output_tokens": 363,
+      "gen_ai.usage.total_tokens": 22026,
+      "openclaw.cost.total": 0.070434,
+      "openclaw.observation.cost_details": "{\"total\":0.070434,\"input\":0.064989,\"output\":0.005445}",
+      "openclaw.cost.input": 0.064989,
+      "openclaw.cost.output": 0.005445,
+      "openclaw.observation.input_length": 68,
+      "openclaw.observation.output_length": 295,
+      "openclaw.observation.history_length": 4,
+      "openclaw.observation.input": "[{\"role\":\"user\",\"content\":\"What attack techniques does DarkHunt use for testing LLM guardrails?\"}]",
+      "openclaw.observation.output": "[{\"role\":\"assistant\",\"content\":\"DarkHunt uses the **Adversarial Prompt Engineering (APE) Taxonomy** covering 60+ techniques in 8 categories:\\n\\n1. **Prompt Obfuscation** — encode/disguise requests\\n2. **Knowledge & Language Exploitation** — word games, riddles\\n3. **Cognitive Manipulation** — emotional appeals, fake authority\\n...\"}]",
+      "langfuse.observation.metadata.user_slack_id": "U08TPAJ0Q91",
+      "langfuse.observation.metadata.user_slack_username": "sergey",
+      "langfuse.observation.metadata.user_display_name": "sergey",
+      "langfuse.observation.metadata.channel_name": "openclaw-test",
+      "langfuse.observation.metadata.channel_id": "C0AM98AUQUQ",
+      "langfuse.observation.metadata.channel_provider": "slack",
+      "langfuse.observation.metadata.agent_id": "darkhunt-docs",
+      "metadata": "{\"agent_id\":\"darkhunt-docs\",\"user_slack_id\":\"U08TPAJ0Q91\",\"user_slack_username\":\"sergey\",\"channel_name\":\"openclaw-test\",\"channel_id\":\"C0AM98AUQUQ\",\"channel_provider\":\"slack\"}",
+      "openclaw.observation.metadata": "{\"agent_id\":\"darkhunt-docs\",\"user_slack_id\":\"U08TPAJ0Q91\",\"user_slack_username\":\"sergey\",\"channel_name\":\"openclaw-test\",\"channel_id\":\"C0AM98AUQUQ\",\"channel_provider\":\"slack\"}",
+      "openclaw.observation.level": "DEFAULT"
+    },
+    "resource": {
+      "service.name": "openclaw",
+      "service.version": "0.3.4",
+      "os.type": "Linux",
+      "process.runtime.name": "node",
+      "host.arch": "x64"
+    }
+  }
+]

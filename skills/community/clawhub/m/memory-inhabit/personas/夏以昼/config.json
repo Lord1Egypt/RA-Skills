@@ -1,0 +1,15 @@
+{
+  "soulpod_version": "0.1.0",
+  "created_at": "2026-04-12",
+  "model_preference": {
+    "provider": "openrouter",
+    "model": "auto",
+    "temperature": 0.7,
+    "max_tokens": 512
+  },
+  "conversation": {
+    "max_history": 20,
+    "save_transcript": true,
+    "transcript_dir": "conversations/"
+  }
+}

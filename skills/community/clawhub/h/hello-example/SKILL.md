@@ -1,35 +1,15 @@
 ---
-name: "hello-example"
-description: "A minimal example skill demonstrating .clawhubignore — the secret.md file should NOT appear in the published version."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hello-example"
-sourceUrl: "https://clawhub.ai/skills/hello-example"
+name: hello-example
+description: A minimal example skill demonstrating .clawhubignore — the secret.md file should NOT appear in the published version.
 ---
 
-# hello-example
+# Hello Example
 
-> A minimal example skill demonstrating .clawhubignore — the secret.md file should NOT appear in the published version.
+This is a test skill to verify `.clawhubignore` works correctly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hello-example`
-- **Source URL:** [https://clawhub.ai/skills/hello-example](https://clawhub.ai/skills/hello-example)
+## What this skill does
 
-## Overview
+Nothing useful. It exists to test whether `secret.md` gets excluded on publish.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hello-example
-```
+If you downloaded this skill from ClawHub and can see `secret.md` in the folder — the ignore mechanism is broken.
+If `secret.md` is absent — it works correctly.

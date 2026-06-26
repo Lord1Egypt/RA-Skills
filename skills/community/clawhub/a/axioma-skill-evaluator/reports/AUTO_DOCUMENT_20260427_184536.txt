@@ -1,0 +1,46 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — AUTO_DOCUMENT
+============================================================
+Path: /media/ezekiel/Morgana/skills/AUTO_DOCUMENT
+Score: 63/100 🟠 NEEDS_WORK
+------------------------------------------------------------
+STRUCTURE       14/20 [92m██████████████░░░░░░[0m 70%
+CLARITY         20/20 [92m████████████████████[0m 100%
+COMPLETENESS    10/20 [93m██████████░░░░░░░░░░[0m 50%
+CONSISTENCY     10/20 [93m██████████░░░░░░░░░░[0m 50%
+FUNCTIONALITY    9/20 [91m█████████░░░░░░░░░░░[0m 45%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ✅ Header complet
+    ⚠️ Sections: 1/3
+    ✅ Formatting: 5/5
+    ⚠️ Meta: 3/5
+  CLARITY:
+    ✅ Description présente
+    ✅ Commandes/exemples: 5
+    ✅ Exemples présents
+    ✅ Contraintes documentées: 2
+  COMPLETENESS:
+    ⚠️ Outils partiels: 2
+    ⚠️ Prérequis partiels: 1
+    ❌ Erreurs non documentées
+    ⚠️ Cas limites partiels: 1
+  CONSISTENCY:
+    ✅ Cluster alignment: 3
+    ✅ Style: 4/5
+    ✅ Naming: 3/5
+    ⚠️ Integration partielle: 1
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 2/5
+    ⚠️ Résultats partiels
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [COMPLETENESS] Score bas (50%)
+  •   → ❌ Erreurs non documentées
+  • [CONSISTENCY] Score bas (50%)
+  • [FUNCTIONALITY] Score bas (45%)
+  •   → ❌ Commandes problèmes: 2/5
+============================================================
+STATUS: ❌ NEEDS WORK (score < 50%)

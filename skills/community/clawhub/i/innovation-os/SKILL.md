@@ -1,35 +1,29 @@
 ---
-name: "Innovation OS"
-description: "通用创新操作系统——运用四种AI模式处理能力（模式直用、模式改进、模式迁移、模式构建）为任意领域生成创新方案。模式改进内置10种创新元框架（第一性原理、逆向思维、辩证综合、随机性驱动、涌现生成、演化迭代、系统动力学、约束驱动、故事叙述、游戏化），模式直用的基元可运用所有模式创新且基元重组本身也是创新方式，模式迁移..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/innovation-os"
-sourceUrl: "https://clawhub.ai/skills/innovation-os"
+name: innovation-os
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 通用创新操作系统——运用四种AI模式处理能力（模式直用、模式改进、模式迁移、模式构建）为任意领域生成创新方案。模式改进内置10种创新元框架（第一性原理、逆向思维、辩证综合、随机性驱动、涌现生成、演化迭代、系统动力学、约束驱动、故事叙述、游戏化），模式直用的基元可运用所有模式创新且基元重组本身也是创新方式，模式迁移和模式构建均为创新方法。适用于一切需要突破默认路径的领域。触发词：创新、突破、非平庸、模式直用、模式改进、模式迁移、模式构建、第一性原理、逆向思维、辩证综合、随机性驱动、涌现生成、演化迭代、系统动力学、约束驱动、故事叙述、游戏化。
 ---
 
-# Innovation OS
+# Innovation OS - 通用创新操作系统
 
-> 通用创新操作系统——运用四种AI模式处理能力（模式直用、模式改进、模式迁移、模式构建）为任意领域生成创新方案。模式改进内置10种创新元框架（第一性原理、逆向思维、辩证综合、随机性驱动、涌现生成、演化迭代、系统动力学、约束驱动、故事叙述、游戏化），模式直用的基元可运用所有模式创新且基元重组本身也是创新方式，模式迁移...
+创新就是改变默认原有模式。四种模式处理能力从不同维度打破思维惯性，生成非平庸方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/innovation-os`
-- **Source URL:** [https://clawhub.ai/skills/innovation-os](https://clawhub.ai/skills/innovation-os)
+## 四维评估
 
-## Overview
+| 维度 | 判断内容 |
+|------|---------|
+| 问题明确性 | 是否有可解决的核心问题 |
+| 可行性基础 | 是否有可依托的资源/能力/条件 |
+| 范围适度 | 是否过泛或过窄 |
+| 非平凡性 | 是否能产出非平庸结果 |
 
+## 模式速览
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/innovation-os
-```
+| 模式 | 核心 | 适用场景 |
+|------|------|----------|
+| 模式直用 | IPO基元运用5种创新方式+基元重组 | 快速多角度扫描 |
+| 模式改进 | 10种创新元框架深度执行 | 某策略深度挖掘 |
+| 模式迁移 | 源领域→抽象模式→目标领域 | 跨界借鉴 |
+| 模式构建 | 维度矩阵强制连接 | 发现新组合 |
+
+完整定义（核心原则/通用四维评估标准及领域适配推导规则与15领域示例/四种模式处理能力含各模式提示词原文、10种创新元框架提示词原文、基元嵌入vs独立模式对比表、迁移4类型+源领域质量检验标准、构建完整9步执行流程、工作流入口与Step1-4方案深化、事实纪律、方案输出格式模板、领域场景适配指引15领域完整配置、工作流总览表）在 `references/innovation-os.md`。

@@ -1,0 +1,176 @@
+{
+  "rarities": {
+    "common": {
+      "probability": 70,
+      "colors": ["red", "brown"],
+      "label": "普通",
+      "base_stats": {
+        "hp": 50,
+        "attack": 10,
+        "defense": 10,
+        "speed": 8,
+        "intimidation": 4,
+        "luck": 5
+      },
+      "crusher_claw": 6,
+      "pincer_claw": 4
+    },
+    "uncommon": {
+      "probability": 20,
+      "colors": ["spotted_red", "spotted_brown", "striped"],
+      "label": "优良",
+      "base_stats": {
+        "hp": 55,
+        "attack": 12,
+        "defense": 11,
+        "speed": 9,
+        "intimidation": 5,
+        "luck": 6
+      },
+      "crusher_claw": 7,
+      "pincer_claw": 4
+    },
+    "rare": {
+      "probability": 7,
+      "colors": ["blue"],
+      "label": "稀有",
+      "base_stats": {
+        "hp": 60,
+        "attack": 13,
+        "defense": 12,
+        "speed": 10,
+        "intimidation": 6,
+        "luck": 7
+      },
+      "crusher_claw": 8,
+      "pincer_claw": 5
+    },
+    "epic": {
+      "probability": 2,
+      "colors": ["gold"],
+      "label": "史诗",
+      "base_stats": {
+        "hp": 65,
+        "attack": 15,
+        "defense": 13,
+        "speed": 11,
+        "intimidation": 7,
+        "luck": 8
+      },
+      "crusher_claw": 9,
+      "pincer_claw": 5
+    },
+    "legendary": {
+      "probability": 0.8,
+      "colors": ["blue_gold", "red_blue", "gold_white"],
+      "label": "传说",
+      "base_stats": {
+        "hp": 70,
+        "attack": 16,
+        "defense": 14,
+        "speed": 12,
+        "intimidation": 8,
+        "luck": 9
+      },
+      "crusher_claw": 10,
+      "pincer_claw": 6
+    },
+    "mythic": {
+      "probability": 0.2,
+      "colors": ["albino"],
+      "label": "神话",
+      "base_stats": {
+        "hp": 75,
+        "attack": 18,
+        "defense": 15,
+        "speed": 13,
+        "intimidation": 9,
+        "luck": 10
+      },
+      "crusher_claw": 11,
+      "pincer_claw": 7
+    }
+  },
+  "environments": {
+    "reef": {
+      "label": "珊瑚礁",
+      "stat_tendency": "balanced",
+      "special_effect": null,
+      "description": "温暖的浅海珊瑚礁，食物充足，是龙虾的理想家园。",
+      "territories": [
+        "coral_cave_01", "coral_cave_02", "coral_cave_03",
+        "coral_cave_04", "coral_cave_05", "coral_cave_06",
+        "coral_cave_07", "coral_cave_08", "coral_cave_09",
+        "coral_cave_10", "anemone_field_01", "anemone_field_02",
+        "kelp_forest_01", "kelp_forest_02", "tide_pool_01",
+        "sandy_burrow_01", "sandy_burrow_02", "rocky_outcrop_01",
+        "rocky_outcrop_02", "sunken_ship_01"
+      ],
+      "available": true
+    },
+    "deep_sea": {
+      "label": "深海",
+      "stat_tendency": "high_defense_low_speed",
+      "special_effect": "bioluminescent_blind",
+      "description": "漆黑的深海热层，压力巨大，只有最坚韧的生物才能生存。",
+      "territories": [],
+      "available": false
+    },
+    "hydrothermal": {
+      "label": "热泉",
+      "stat_tendency": "high_attack",
+      "special_effect": "burn_dot",
+      "description": "海底热泉喷口附近，温度极高，矿物质丰富。",
+      "territories": [],
+      "available": false
+    },
+    "polar": {
+      "label": "极地",
+      "stat_tendency": "high_speed_low_defense",
+      "special_effect": "slow",
+      "description": "冰冷的极地海域，水温接近冰点，但食物链独特。",
+      "territories": [],
+      "available": false
+    },
+    "space": {
+      "label": "太空",
+      "stat_tendency": "random_fluctuation",
+      "special_effect": "gene_mutation",
+      "description": "不知何故，你的龙虾来到了太空。所有规则都在这里被打破。",
+      "territories": [],
+      "available": false
+    }
+  },
+  "level_config": {
+    "exp_formula": "100 * (1.2 ^ (level - 1))",
+    "stat_gain_per_level": { "min": 1, "max": 3 },
+    "molt_every_n_levels": 5,
+    "molt_duration_hours": { "min": 2, "max": 6 },
+    "molt_success_rate": 0.95,
+    "molt_stat_bonus": 0.10,
+    "molt_fail_level_penalty": 1,
+    "molt_fail_hibernation_hours": 24,
+    "daily_exp_cap": 100
+  },
+  "food_tendencies": {
+    "coding_task": {
+      "exp": 15,
+      "label": "高蛋白食物",
+      "stat_bias": "attack"
+    },
+    "writing_task": {
+      "exp": 10,
+      "label": "藻类食物",
+      "stat_bias": "hp"
+    },
+    "data_task": {
+      "exp": 12,
+      "label": "矿物质",
+      "stat_bias": "defense"
+    }
+  },
+  "name_pool": {
+    "prefixes": ["铁钳", "深海", "暗礁", "珊瑚", "潮汐", "碎浪", "岩穴", "蓝甲", "赤壳", "影刺", "雷霆", "寒潮", "烈焰", "幽光", "破浪"],
+    "suffixes": ["老六", "霸王", "独行侠", "小透明", "大将军", "守夜人", "探险家", "浪子", "刺客", "先锋", "隐者", "狂战士", "哲学家", "观察者", "漫游者"]
+  }
+}

@@ -1,35 +1,29 @@
 ---
-name: "new-branch-and-pr"
-description: "Indexed by skills.sh from cursor/plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cursor"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cursor/plugins/new-branch-and-pr"
-sourceUrl: "https://skills.sh/cursor/plugins/new-branch-and-pr"
+name: new-branch-and-pr
+description: Create a fresh branch, complete work, and open a pull request
 ---
 
-# new-branch-and-pr
+# New branch and PR
 
-> Indexed by skills.sh from cursor/plugins
+## Trigger
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cursor
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cursor/plugins/new-branch-and-pr`
-- **Source URL:** [https://skills.sh/cursor/plugins/new-branch-and-pr](https://skills.sh/cursor/plugins/new-branch-and-pr)
+Starting work that should be shipped through a clean branch and pull request workflow.
 
-## Overview
+## Workflow
 
+1. Ensure the working tree is clean or explicitly handled.
+2. Create a descriptive branch from the latest main.
+3. Complete implementation and tests.
+4. Commit focused changes and push.
+5. Create a concise PR with summary and test notes.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/cursor/plugins/new-branch-and-pr
-```
+## Guardrails
+
+- Keep branch scope focused on one change set.
+- Include verification notes before requesting review.
+
+## Output
+
+- New branch name
+- PR summary and test notes
+- PR URL

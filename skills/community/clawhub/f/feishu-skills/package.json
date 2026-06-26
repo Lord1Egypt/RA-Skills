@@ -1,0 +1,55 @@
+{
+  "name": "@enclaws/feishu-skills",
+  "version": "1.0.0",
+  "description": "Feishu (Lark) integration skills for OpenClaw and EnClaws — one-click bot setup, docs, calendar, tasks, bitable, and more.",
+  "keywords": [
+    "feishu",
+    "lark",
+    "飞书",
+    "openclaw",
+    "enclaws",
+    "ai-agent",
+    "skills",
+    "bot",
+    "飞书插件",
+    "一键配置"
+  ],
+  "homepage": "https://github.com/hashSTACS-Global/feishu-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hashSTACS-Global/feishu-skills.git"
+  },
+  "license": "Apache-2.0",
+  "author": "HashSTACS",
+  "bin": {
+    "feishu-skills": "./bin/cli.mjs"
+  },
+  "files": [
+    "bin/",
+    "feishu-auth/",
+    "feishu-ask-user/",
+    "feishu-bitable/",
+    "feishu-calendar/",
+    "feishu-chat/",
+    "feishu-create-doc/",
+    "feishu-doc-comment/",
+    "feishu-docx-download/",
+    "feishu-drive/",
+    "feishu-fetch-doc/",
+    "feishu-im-read/",
+    "feishu-image-ocr/",
+    "feishu-quick-setup/",
+    "feishu-search-doc/",
+    "feishu-search-user/",
+    "feishu-sheet/",
+    "feishu-task/",
+    "feishu-update-doc/",
+    "feishu-wiki/",
+    "install.js",
+    "install.mjs",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

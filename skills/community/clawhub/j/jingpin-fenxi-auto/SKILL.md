@@ -1,35 +1,111 @@
 ---
-name: "竞品分析自动化"
+name: competitor-analyzer
+version: 1.0.0
 description: "竞品分析自动化工具。输入竞品关键词或网站，自动抓取竞品公开信息（产品特点、价格、评价），生成结构化竞品分析报告，支持导出 JSON/Markdown 格式结果。SEO/运营/产品经理必备。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jingpin-fenxi-auto"
-sourceUrl: "https://clawhub.ai/skills/jingpin-fenxi-auto"
+author: 肥肥🐶
+category: 商业分析
+tags: ["竞品分析", "市场调研", "SEO", "竞争对手", "数据分析", "产品分析"]
+trigger: ["竞品分析", "竞争对手分析", "竞品调研", "competitor analysis", "市场分析", "竞品对比", "分析报告"]
+pricing: "¥200-500/月（个人版）| ¥999-2999/月（团队版）| ¥9999/次（企业定制）"
+install_hint: "安装后直接使用，无需配置。依赖 web_search 和 web_crawl 工具。"
 ---
 
-# 竞品分析自动化
+# 🔍 竞品分析自动化 Skill
 
-> 竞品分析自动化工具。输入竞品关键词或网站，自动抓取竞品公开信息（产品特点、价格、评价），生成结构化竞品分析报告，支持导出 JSON/Markdown 格式结果。SEO/运营/产品经理必备。
+> 输入竞品关键词或网站 → 自动抓取 → 生成结构化分析报告 → 支持导出
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jingpin-fenxi-auto`
-- **Source URL:** [https://clawhub.ai/skills/jingpin-fenxi-auto](https://clawhub.ai/skills/jingpin-fenxi-auto)
+**适用人群**：SEO 从业者、运营人员、产品经理、市场分析师
 
-## Overview
+---
 
+## 功能特性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jingpin-fenxi-auto
+### 1. 竞品信息抓取
+- 输入关键词或竞品网站 URL，自动识别竞品
+- 抓取维度：产品介绍、功能特点、定价、用户评价、SEO 数据
+- 支持多竞品同时分析（最多 5 个）
+- 自动去重和清洗数据
+
+### 2. 竞品对比分析
+- 表格形式对比核心指标
+- 生成对比摘要和差异洞察
+- 识别竞品的优势/劣势/差异化点
+
+### 3. 分析报告生成
+- 结构化 Markdown 报告
+- 自动生成关键发现（Key Findings）
+- 标注数据来源
+- 支持添加自定义分析维度
+
+### 4. 导出功能
+- JSON 格式（便于程序处理）
+- Markdown 格式（便于阅读分享）
+- 飞书文档格式（直接粘贴使用）
+
+---
+
+## 使用方式
+
+### 方式一：关键词分析
 ```
+分析 竞品关键词：智能手表
+重点关注：价格、功能、用户评价
+对比维度：小米、华为、Apple Watch
+```
+
+### 方式二：指定网站分析
+```
+分析 https://www.example.com
+输出格式：完整报告
+包含：产品特点、定价、SEO数据、用户评价
+```
+
+### 方式三：批量竞品对比
+```
+竞品对比：淘宝/京东/拼多多
+分析维度：价格策略、用户规模、商品种类、物流服务
+```
+
+---
+
+## 输出示例
+
+### 竞品对比表
+
+| 维度 | 竞品A | 竞品B | 竞品C |
+|------|-------|-------|-------|
+| 定价 | ¥99-299 | ¥199-599 | ¥299-999 |
+| 主打功能 | 基础监测 | 健康管理 | 全场景生态 |
+| 用户评价 | ⭐4.2 | ⭐4.5 | ⭐4.7 |
+| 月活用户 | 100万 | 500万 | 2000万 |
+
+### 关键发现（Key Findings）
+
+1. **价格区间**：三大竞品覆盖 ¥99-999 全价格段，新进入者需差异化定位
+2. **功能差异**：竞品B主打健康管理，与竞品A基础功能形成区隔
+3. **用户评价**：竞品C评分最高，生态协同效应明显
+4. **市场机会**：¥99以下低价位段尚有空间，可考虑切入
+
+---
+
+## 定价说明
+
+| 版本 | 价格 | 适用场景 |
+|------|------|----------|
+| 个人版 | ¥200/月 | 个人SEO/运营，竞品数量≤3 |
+| 团队版 | ¥999/月 | 小团队，竞品数量≤10，支持多用户 |
+| 企业定制 | ¥9999/次 | 深度定制分析维度，定期报告推送 |
+
+---
+
+## 注意事项
+
+1. **数据来源**：抓取均为竞品公开信息，请遵守目标网站 robots.txt
+2. **数据时效**：分析结果为实时抓取，建议定期更新
+3. **商业机密**：本工具不获取也不存储任何竞品敏感信息
+4. **使用限制**：免费用户每分钟最多分析 3 个竞品
+
+---
+
+*本 Skill 可作为 OpenClaw 技能安装使用*
+*创建者：肥肥🐶 | 反馈/定制需求请联系作者*

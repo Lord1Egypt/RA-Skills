@@ -1,0 +1,56 @@
+{
+  "name": "generate_podcast_clips",
+  "description": "Generate short-form clips from a long-form spoken video. Favors viral and high-retention spoken moments, adds captions, and returns rendered clip URLs with titles and scores.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "video_url": {
+        "type": "string",
+        "description": "Public podcast, interview, webinar, or talking-head video URL. Supports YouTube, direct MP4, and public Google Drive links."
+      },
+      "max_clips": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20,
+        "default": 5,
+        "description": "Number of clips to generate. Short videos (≤3 min) are automatically limited to 2 clips."
+      },
+      "clip_style": {
+        "type": "string",
+        "enum": ["viral", "beast", "leon", "hormozi", "clean", "minimal"],
+        "default": "viral",
+        "description": "Caption style. 'viral'/'beast' = bold animated-word captions. 'leon'/'hormozi' = single highlighted word. 'clean'/'minimal' = plain white subtitles."
+      },
+      "format": {
+        "type": "string",
+        "enum": ["dynamic", "hook_frame"],
+        "default": "dynamic",
+        "description": "Render format. 'dynamic' = auto-reframes to 9:16, detects split-screen vs solo. 'hook_frame' = preserves original frame with title card at top and captions at bottom."
+      },
+      "captions": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to burn captions into the rendered clip."
+      },
+      "clip_duration": {
+        "type": "object",
+        "description": "Controls the length window for extracted clips.",
+        "properties": {
+          "min": {
+            "type": "integer",
+            "minimum": 10,
+            "default": 20,
+            "description": "Minimum clip length in seconds. Floor is 10s."
+          },
+          "max": {
+            "type": "integer",
+            "maximum": 60,
+            "default": 60,
+            "description": "Maximum clip length in seconds. Ceiling is 60s. Must be ≥ min."
+          }
+        }
+      }
+    },
+    "required": ["video_url"]
+  }
+}

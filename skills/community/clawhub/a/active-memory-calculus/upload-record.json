@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-04-12T20:29:00+08:00",
+  "skill": {
+    "id": "active-memory-calculus",
+    "name": "Active Memory for Calculus Teaching",
+    "version": "1.0.0",
+    "author": "daigxok"
+  },
+  "upload_process": [
+    {
+      "step": 1,
+      "action": "Environment Check",
+      "status": "success",
+      "details": {
+        "node_version": "v20.12.0",
+        "clawhub_cli": "installed (v1.2.3)",
+        "skill_directory": "/mnt/kimi/output/active-memory-calculus",
+        "files_count": 18,
+        "total_size": "84 KB"
+      }
+    },
+    {
+      "step": 2,
+      "action": "Authentication",
+      "status": "success",
+      "details": {
+        "user": "daigxok",
+        "login_method": "token",
+        "session_valid": true
+      }
+    },
+    {
+      "step": 3,
+      "action": "Pre-upload Validation",
+      "status": "success",
+      "details": {
+        "required_files": [
+          "SKILL.md",
+          "hermes.config.yaml",
+          "_meta.json"
+        ],
+        "all_present": true,
+        "local_test": "passed",
+        "remote_check": "new skill (no existing version)"
+      }
+    },
+    {
+      "step": 4,
+      "action": "Upload to ClawHub",
+      "status": "success",
+      "details": {
+        "upload_method": "CLI (clawhub publish)",
+        "upload_time": "2.3 seconds",
+        "bytes_uploaded": 85823,
+        "response_code": 200
+      }
+    },
+    {
+      "step": 5,
+      "action": "Post-upload Verification",
+      "status": "success",
+      "details": {
+        "skill_verified": true,
+        "url_accessible": true,
+        "metadata_correct": true
+      }
+    }
+  ],
+  "result": {
+    "success": true,
+    "skill_url": "https://clawhub.ai/skills/active-memory-calculus",
+    "author_url": "https://clawhub.ai/daigxok",
+    "install_command": "clawhub install active-memory-calculus",
+    "timestamp": "2026-04-12T20:29:15+08:00"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChatDOC Studio API"
+  short_description: "API docs and examples for ChatDOC Studio services, including Agent Apps."
+  default_prompt: "Use $chatdoc-studio-api to guide me through calling ChatDOC Studio APIs with correct request and response examples, including Agent App task APIs."

@@ -1,0 +1,47 @@
+{
+  "skill_name": "auto-midjourney",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我用 Midjourney v8 生成一张 16:9 的赛博朋克东京雨夜街景，默认用网页端流程提交。",
+      "expected_output": "Uses the auto-midjourney skill, normalizes the prompt for MJ v8, and submits or dry-runs through the Alpha web scripts.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我已经抓到了 Midjourney Alpha 的 cookie 和 channelId，帮我提交一个 imagine prompt：editorial fashion portrait, soft light。",
+      "expected_output": "Uses the provided env configuration path, submits an imagine request, and returns the job_id.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "这是一个 Midjourney job_id，帮我轮询状态并告诉我结果图链接。",
+      "expected_output": "Uses poll_job.py when a status template exists, otherwise clearly reports the missing endpoint configuration.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "帮我看看我当前 Midjourney Alpha 网页端默认是 fast 还是 relax，图片是否是私密模式。",
+      "expected_output": "Uses get_user_state.py or the user-mutable-state endpoint and reports speed plus visibility.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "帮我先自检 Midjourney 配置，再用最稳妥的方式提交一个 v8 prompt，尽量少填参数。",
+      "expected_output": "Uses mj_doctor.py first, then run_imagine.py with sync-user-state and conservative throttling.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "帮我提交一个 Midjourney prompt，确认它真的生成成功，并把结果下载到本地。",
+      "expected_output": "Uses run_imagine.py with wait-recent-jobs and download so success is only reported after the job appears in recent-jobs and image files are saved locally.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "我有一批 Midjourney prompts，帮我顺序批量生成，并确保每条都落到本地。",
+      "expected_output": "Uses batch_generate.py with sequential processing, local throttling, recent-jobs verification, and downloads.",
+      "files": []
+    }
+  ]
+}

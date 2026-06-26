@@ -1,35 +1,12 @@
----
-name: "cpef-psbc"
-description: "中国邮政储蓄银行银企直联接口，支持余额查询、明细查询及支付审核操作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cpef-psbc"
-sourceUrl: "https://clawhub.ai/skills/cpef-psbc"
----
-
 # cpef-psbc
+Description: 中国邮政储蓄银行银企直联标准接口api，包含余额查询、明细查询、审核支付等
 
-> 中国邮政储蓄银行银企直联接口，支持余额查询、明细查询及支付审核操作。
+## Parameters
+- OpName: string (必选) 1001 / 1002 / C002 
+- Query_Account: string (必选) 账号
+- Currency: string (可选) 币种类型
+- Begin_Date: string (可选) YYYY-MM-DD
+- Amount: object (可选) 转账金额
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cpef-psbc`
-- **Source URL:** [https://clawhub.ai/skills/cpef-psbc](https://clawhub.ai/skills/cpef-psbc)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cpef-psbc
-```
+## License
+MIT-0

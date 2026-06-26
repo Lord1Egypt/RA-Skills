@@ -1,0 +1,15 @@
+{
+  "name": "openclaw-web-search-mcp",
+  "version": "1.0.0",
+  "description": "Full AI browsing MCP for agents",
+  "main": "index.js",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0",
+    "natural": "^6.5.0",
+    "p-limit": "^4.0.0",
+    "pdf-parse": "^1.1.1",
+    "youtube-transcript": "^1.2.1"
+  }
+}

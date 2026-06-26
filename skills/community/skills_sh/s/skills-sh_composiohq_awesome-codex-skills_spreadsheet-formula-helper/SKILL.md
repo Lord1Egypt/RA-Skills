@@ -1,35 +1,25 @@
 ---
-name: "spreadsheet-formula-helper"
-description: "Indexed by skills.sh from composiohq/awesome-codex-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "composiohq"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/composiohq/awesome-codex-skills/spreadsheet-formula-helper"
-sourceUrl: "https://skills.sh/composiohq/awesome-codex-skills/spreadsheet-formula-helper"
+name: spreadsheet-formula-helper
+description: Write and debug spreadsheet formulas (Excel/Google Sheets), pivot tables, and array formulas; translate between dialects; use when users need working formulas with examples and edge-case checks.
+metadata:
+  short-description: Build/debug Excel or Sheets formulas
 ---
 
-# spreadsheet-formula-helper
+# Spreadsheet Formula Helper
 
-> Indexed by skills.sh from composiohq/awesome-codex-skills
+Produce reliable spreadsheet formulas with explanations.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** composiohq
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/composiohq/awesome-codex-skills/spreadsheet-formula-helper`
-- **Source URL:** [https://skills.sh/composiohq/awesome-codex-skills/spreadsheet-formula-helper](https://skills.sh/composiohq/awesome-codex-skills/spreadsheet-formula-helper)
+## Inputs to gather
+- Platform (Excel/Sheets), locale (comma vs. semicolon separators), sample data layout (headers, ranges), expected outputs, and constraints (volatile functions allowed?).
+- Provide small example rows and the desired result for them.
 
-## Overview
+## Workflow
+1) Restate the problem with explicit ranges and sheet names; propose a minimal sample to verify.
+2) Draft formula(s); when dynamic arrays are available, prefer them over copy-down formulas.
+3) Explain how it works and where to place it; include named ranges if helpful.
+4) Edge cases: blank rows, mixed types, timezone/date quirks, duplicates; offer guardrails (e.g., `IFERROR`, `LET`, `LAMBDA`).
+5) Variants: if porting between Excel and Sheets, provide both versions.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/composiohq/awesome-codex-skills/spreadsheet-formula-helper
-```
+## Output
+- Primary formula, short explanation, and a 2–3 row worked example showing inputs → outputs.
+- Optional: quick troubleshooting checklist for common errors.

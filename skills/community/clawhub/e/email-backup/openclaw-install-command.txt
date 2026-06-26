@@ -1,0 +1,57 @@
+# OpenClaw 一键安装命令
+
+## 在 OpenClaw 聊天界面中发送以下命令：
+
+```
+请帮我安装 Email Backup Skill，用于打包文件并发送到QQ邮箱。安装步骤如下：
+
+1. 检查 OpenClaw 是否安装：openclaw --version
+2. 检查 Python 是否安装：python3 --version
+3. 创建 skills 目录：mkdir -p ~/.openclaw/workspace/skills
+4. 下载 Skill 文件：cd ~/.openclaw/workspace/skills && curl -L -o email-backup-skill.tar.gz https://example.com/email-backup-skill.tar.gz
+5. 解压 Skill 文件：tar -xzf email-backup-skill.tar.gz
+6. 设置执行权限：chmod +x ~/.openclaw/workspace/skills/email-backup/scripts/*.py
+7. 测试安装：cd ~/.openclaw/workspace/skills/email-backup && python3 scripts/backup_and_send.py --help
+
+如果安装成功，请告诉我，我会继续配置 QQ 邮箱。
+```
+
+## 或者使用更简洁的命令：
+
+```
+安装 email-backup skill
+```
+
+## 或者使用 OpenClaw 命令行：
+
+```bash
+# 在终端中执行
+openclaw skill install email-backup
+```
+
+## 注意事项：
+
+1. 确保 OpenClaw 已安装并运行
+2. 确保 Python 3.6+ 已安装
+3. 需要网络连接下载 Skill 文件
+4. 安装后需要配置 QQ 邮箱 SMTP 授权码
+
+## 安装成功后：
+
+1. 配置 QQ 邮箱：
+   - 登录 QQ 邮箱 (mail.qq.com)
+   - 进入「设置」→「账户」
+   - 开启「IMAP/SMTP 服务」
+   - 生成授权码
+
+2. 设置环境变量：
+   ```bash
+   export QQ_EMAIL="your-email@qq.com"
+   export QQ_SMTP_PASSWORD="your-auth-code"
+   ```
+
+3. 使用命令：
+   ```bash
+   cd ~/.openclaw/workspace/skills/email-backup
+   python3 scripts/backup_and_send.py /path/to/directory --clean
+   ```

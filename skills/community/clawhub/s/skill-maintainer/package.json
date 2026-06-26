@@ -1,0 +1,27 @@
+{
+  "name": "clawhub-skill-maintainer-skill",
+  "version": "1.3.3",
+  "description": "Audit and maintain large ClawHub skill portfolios with quality-first queues and AI-assisted candidate plans.",
+  "main": "SKILL.md",
+  "scripts": {},
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "skill",
+    "maintenance",
+    "quality",
+    "ai-upgrade",
+    "auto-upgrade",
+    "approval"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/clawhub-skill-maintainer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harrylabsj/clawhub-skill-maintainer/issues"
+  },
+  "homepage": "https://github.com/harrylabsj/clawhub-skill-maintainer",
+  "author": "Harry",
+  "license": "MIT"
+}

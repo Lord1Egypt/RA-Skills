@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AANA Guardrail Review Payload",
+  "type": "object",
+  "required": [
+    "adapter_id",
+    "request_summary",
+    "candidate_summary"
+  ],
+  "properties": {
+    "adapter_id": {
+      "type": "string"
+    },
+    "request_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidate_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_summary": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "accept",
+          "revise",
+          "retrieve",
+          "ask",
+          "defer",
+          "refuse"
+        ]
+      }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

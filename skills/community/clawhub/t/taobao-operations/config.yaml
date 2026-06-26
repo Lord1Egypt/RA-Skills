@@ -1,0 +1,75 @@
+# 日常运营 + 客服售后 + 合规风控三合一 Skill 配置
+# 版本：1.0.0
+
+# ==================== 日常运营配置 ====================
+daily_operations:
+  report_time: "01:00"                # 日报生成时间（凌晨 1 点）
+  compliance_check_time: "02:00"      # 合规巡检时间（凌晨 2 点）
+  inventory_sync_interval: 2          # 库存同步间隔（小时）
+
+# ==================== 客服售后配置 ====================
+customer_service:
+  auto_reply_enabled: true            # 自动回复启用
+  greeting_message: "您好，当前为智能客服服务，复杂问题将为您转接人工客服~"
+  
+  # 仅 3 类低风险售后自动处理
+  auto_handle_conditions:
+    - "未发货仅退款"
+    - "已发货未签收拦截成功退款"
+    - "50 元以内无纠纷小额退款"
+  
+  # 必须转人工的售后
+  manual_handle_conditions:
+    - "大额退款"
+    - "质量纠纷"
+    - "平台投诉"
+    - "恶意售后"
+  
+  # 催付频次控制
+  payment_reminder:
+    max_times: 3                      # 24 小时内最多 3 次
+    interval_hours: 4                 # 每次间隔至少 4 小时
+
+# ==================== 合规风控配置 ====================
+risk_control:
+  # 风险分级
+  risk_levels:
+    一级风险:
+      - "API 违规"
+      - "爬虫"
+      - "无货源"
+      - "虚假宣传"
+      action: "直接终止流程"
+    二级风险:
+      - "属性错漏"
+      - "材质不符"
+      - "价格异常"
+      action: "推送预警"
+    三级风险:
+      - "库存不足"
+      - "物流异常"
+      action: "推送提醒"
+  
+  # API 安全监控
+  api_monitoring:
+    check_interval_minutes: 5         # 检查间隔（5 分钟）
+    max_calls_per_minute: 100         # 每分钟最大调用次数
+    alert_on_ip_change: true          # IP 变更告警
+  
+  # 应急预案
+  emergency_plans:
+    - "账号违规"
+    - "API 封禁"
+    - "侵权投诉"
+    - "恶意订单"
+
+# ==================== 男装类目特性配置 ====================
+menswear:
+  size_chart_required: true           # 必须包含尺码表
+  fabric_description_required: true   # 必须包含面料说明
+  care_instructions_required: true    # 必须包含洗涤说明
+
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"
+  file: "./logs/operations.log"

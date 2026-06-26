@@ -1,0 +1,6 @@
+{
+  "name": "apikey",
+  "version": "2.2.2",
+  "description": "新氧青春诊所 API Key 管理（setup）：配置/查看/替换/删除 Key、绑定主人、保存与查看主人位置。 | Soyoung clinic apikey & owner bind OpenClaw setup for Soyoung (soyoung) clinic: API key lifecycle, owner binding, workspace-scoped state. Keywords: Soyoung, soyoung, clinic, apikey, credential, owner, medical aesthetic.",
+  "license": "MIT"
+}

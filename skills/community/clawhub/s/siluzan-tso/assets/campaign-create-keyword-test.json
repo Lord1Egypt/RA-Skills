@@ -1,0 +1,146 @@
+{
+  "_meta": {
+    "schema": "campaign-create/v2",
+    "purpose": "测试 campaign-validate 关键词自动修复与自动拆块",
+    "howToTest": [
+      "1. 将 account / customerName 替换为 list-accounts 中的真实 Google 账户",
+      "2. cd tso-cli && npm run build",
+      "3. node dist/index.js ad campaign-validate --config-file assets/siluzan-ads/assets/campaign-create-keyword-test.json --write-normalized ./campaign-create-keyword-test.fixed.json",
+      "4. 查看 warnings：应出现「自动拆分」「自动修复」；fixed.json 中 KeywordsForBatchJob 应为多块且词面带 []/\"\""
+    ],
+    "casesInThisFile": {
+      "mixedBlock": "AdGroups[0].Keywords[0]：一块内混 BROAD 裸词 + 词组引号 + 完全方括号 → 应拆成 3 块",
+      "broadWithExactSymbol": "Keywords[1]：MatchTypeV2=BROAD 但含 [exact kw] → 应拆成 BROAD + EXACT 两块",
+      "exactBareOnly": "Keywords[2]：MatchTypeV2=EXACT 全裸词 → 不拆，词面改为 [kw]",
+      "phraseBareOnly": "Keywords[3]：MatchTypeV2=PHRASE 裸词 → 不拆，词面改为 \"kw\""
+    }
+  },
+
+  "account": "4256317784",
+  "customerName": "REPLACE_请改为_list_accounts_返回的_mediaAccountName",
+  "name": "CLI_KeywordFixSplit_Test_2026",
+  "url": "https://www.example.com",
+  "locations": ["United States"],
+  "productWords": ["test", "keyword"],
+  "googleDataRecordId": null,
+  "draft": false,
+
+  "campaign": {
+    "Name": "CLI_KeywordFixSplit_Test_2026",
+    "StatusV2": "Enabled",
+    "ChannelTypeV2": "SEARCH",
+    "BiddingStrategyTypeV2": "TARGET_SPEND",
+    "Budget": 50,
+    "BudgetShared": false,
+    "BudgetId": 0,
+    "BudgetBudgetDeliveryMethodV2": "STANDARD",
+    "TargetSpend_BidCeilingAmount": 2,
+    "ManualCpc_EnhancedCpcEnabled": false,
+    "TargetGoogleSearch": true,
+    "TargetSearchNetwork": false,
+    "TargetContentNetwork": false,
+    "TargetPartnerSearchNetwork": false,
+    "PositiveGeoTargetType": 0,
+    "NegativeGeoTargetType": 0,
+    "DSADomainName": "",
+    "DSALanguageCode": "en",
+    "StartTime": "2026-05-25",
+    "EndTime": "2037-12-30",
+    "targetedLocations": [{ "id": "2840", "bidModifier": 0, "bidModifierSpecified": false }],
+    "excludedLocations": [],
+    "excludedIpAddresses": [],
+    "targetedLanguages": [{ "id": 1000 }],
+    "targetedPlatforms": [
+      { "id": 30001, "bidModifier": 0 },
+      { "id": 30002, "bidModifier": 0 },
+      { "id": 30000, "bidModifier": 0 }
+    ],
+
+    "adSchedules": [
+      { "DayOfWeekV2": 2, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 3, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 4, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 5, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 6, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 7, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 8, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 }
+    ],
+
+    "NegativeKeywordsForBatchJob": [
+      { "KeywordText": ["free sample", "cheap"], "MatchTypeV2": "BROAD", "FinalURL": "" }
+    ],
+
+    "ExtensionsForBatchJob": [],
+
+    "AdGroupsForBatchJob": [
+      {
+        "Name": "AG_Keyword_Normalize_Test",
+        "StatusV2": "Enabled",
+        "TypeV2": "SEARCH_STANDARD",
+        "RotationModeV2": "Unspecified",
+        "MaxCPCAmount": 2,
+
+        "KeywordsForBatchJob": [
+          {
+            "_comment": "用例 A：未写 MatchTypeV2，三种词面混在一块 → 应自动拆成 3 块",
+            "KeywordText": [
+              "broad match keyword",
+              "\"phrase match keyword\"",
+              "[exact match keyword]"
+            ],
+            "FinalURL": "https://www.example.com/test-a"
+          },
+          {
+            "_comment": "用例 B：块级 BROAD，但含完全匹配方括号词 → 应拆成 2 块",
+            "MatchTypeV2": "BROAD",
+            "KeywordText": ["running shoes broad", "[steel pipe exact]"],
+            "FinalURL": "https://www.example.com/test-b"
+          },
+          {
+            "_comment": "用例 C：块级 EXACT，全裸词 → 不拆，词面应变为 [kw]",
+            "MatchTypeV2": "EXACT",
+            "KeywordText": ["exact keyword one", "exact keyword two"],
+            "FinalURL": "https://www.example.com/test-c"
+          },
+          {
+            "_comment": "用例 D：块级 PHRASE，裸词 → 不拆，词面应变为 \"kw\"",
+            "MatchTypeV2": "PHRASE",
+            "KeywordText": ["phrase keyword only"],
+            "FinalURL": "https://www.example.com/test-d"
+          }
+        ],
+
+        "AdsForBatchJob": [
+          {
+            "TypeV2": "RESPONSIVE_SEARCH_AD",
+            "DestinationUrl": "https://www.example.com/test",
+            "Finalurl": "https://www.example.com/test",
+            "AdTitle": null,
+            "Path1": "test",
+            "Path2": "kw",
+            "headlinePart1": "Keyword Normalize Test H1",
+            "headlinePart2": "Validate Auto Fix Split",
+            "headlinePart3": "Do Not Run Create Yet",
+            "AddtionalHeadlines": [
+              "Headline Four For RSA",
+              "Headline Five For RSA",
+              "Headline Six For RSA",
+              "Headline Seven For RSA",
+              "Headline Eight For RSA",
+              "Headline Nine For RSA",
+              "Headline Ten For RSA",
+              "Headline Eleven RSA",
+              "Headline Twelve RSA"
+            ],
+            "adDescription": "Test ad for keyword validate only. Replace account before create.",
+            "adDescription2": "Second description line for RSA minimum fields.",
+            "AddtionalAdDescriptions": [
+              "Additional description one for responsive search ad.",
+              "Additional description two for responsive search ad."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

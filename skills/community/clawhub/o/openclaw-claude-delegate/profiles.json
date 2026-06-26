@@ -1,0 +1,14 @@
+{
+  "scratch": {
+    "workdir": "/tmp",
+    "add_dirs": [],
+    "notes": "Safe default scratch profile for smoke tests and one-off tasks."
+  },
+  "workspace": {
+    "workdir": "${HOME}",
+    "add_dirs": [
+      "${HOME}"
+    ],
+    "notes": "Generic home-workspace profile. Edit this for your real project roots or point CLAUDE_DELEGATE_PROFILES at a host-local file."
+  }
+}

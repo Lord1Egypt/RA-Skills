@@ -1,0 +1,16 @@
+{
+  "name": "linkdrop-agent-cli-skill",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClawHub skill bundle for the Linkdrop strict JSON CLI",
+  "main": "linkdrop-agent.js",
+  "scripts": {
+    "agent": "node linkdrop-agent.js",
+    "check": "node --check agentdrop-core.js && node --check linkdrop-agent.js",
+    "smoke:help": "node linkdrop-agent.js --help"
+  },
+  "dependencies": {
+    "linkdrop-sdk": "3.15.2-beta",
+    "viem": "2.46.2"
+  }
+}

@@ -1,35 +1,33 @@
 ---
-name: "支出追踪器"
-description: "简单易用的个人支出追踪和预算管理工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expense-tracker-oc"
-sourceUrl: "https://clawhub.ai/skills/expense-tracker-oc"
+name: expense-tracker
+version: 1.0.0
+description: 简单易用的个人支出追踪和预算管理工具
+author: OpenClaw
+tags: [财务, 支出, 预算, 管理]
 ---
 
-# 支出追踪器
+# expense-tracker - 支出追踪技能
 
-> 简单易用的个人支出追踪和预算管理工具
+个人支出追踪和预算管理工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expense-tracker-oc`
-- **Source URL:** [https://clawhub.ai/skills/expense-tracker-oc](https://clawhub.ai/skills/expense-tracker-oc)
+## 功能列表
+1. **记录支出** - 快速记录每笔支出，分类管理
+2. **支出统计** - 按日期、类别查看支出汇总
+3. **预算设置** - 设置月度预算，监控支出进度
+4. **报表生成** - 生成月度支出报表
 
-## Overview
+## 触发关键词
+- 记录支出、添加支出
+- 支出统计、支出明细
+- 设置预算、预算多少
+- 本月支出
 
+## 数据存储
+- expenses.json - 支出记录
+- budget.json - 预算设置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/expense-tracker-oc
-```
+## 使用示例
+- "记录今天午餐花了30元"
+- "查看本月支出统计"
+- "设置每月预算5000元"
+- "这个月花了多少钱"

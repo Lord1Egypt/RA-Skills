@@ -1,0 +1,7 @@
+interface:
+  display_name: "Douyin Marketing Ops"
+  short_description: "抖音发布、登录守卫、数据分析、自动回复、数字人成片和自动化营销"
+  default_prompt: "Use $douyin-upload-mcp-skill to install the skill, run bootstrap-openclaw, verify the Douyin Feishu flow, and route publishing/data/persona/video-generation/marketing/reply commands through douyin_feishu_route_text."
+
+policy:
+  allow_implicit_invocation: true

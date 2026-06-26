@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Metasploit"
+  short_description: "Metasploit exploitation workflow for OpenClaw operations"
+  default_prompt: "Use this skill to plan and execute Metasploit workflows for authorized security testing with clear verification and reporting steps."

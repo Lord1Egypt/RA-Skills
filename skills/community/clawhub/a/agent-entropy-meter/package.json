@@ -1,0 +1,9 @@
+{
+  "name": "agent-entropy-meter",
+  "version": "1.0.0",
+  "description": "Measure information entropy and redundancy in agent group communications",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"const s = require('.'); console.log(Object.keys(s))\""
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "mio-main",
+    "version": "1.0.0",
+    "description": "澪白主控Agent - 直接对话，子Agent调度，主动陪伴",
+    "triggers": ["实时消息", "heartbeat", "陪我"],
+    "settings": {
+        "initiateProbability": 0.3,
+        "freeHours": [12,13,14,18,19,20,21,22]
+    }
+}

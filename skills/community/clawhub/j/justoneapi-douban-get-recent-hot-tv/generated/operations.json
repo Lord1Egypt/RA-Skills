@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douban/get-recent-hot-tv/v1 for Douban Movie Recent Hot Tv through JustOneAPI.",
+  "displayName": "Douban Movie Recent Hot Tv",
+  "endpointPath": "get-recent-hot-tv",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douban recent Hot Tv data, including ratings, posters, and subject metadata, for series discovery and trend monitoring.",
+      "method": "GET",
+      "operationId": "getRecentHotTvV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douban/get-recent-hot-tv/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Recent Hot Tv",
+      "tags": [
+        "Douban Movie"
+      ]
+    }
+  ],
+  "platformKey": "douban",
+  "primaryTag": "Douban Movie",
+  "skillName": "justoneapi_douban_get_recent_hot_tv",
+  "skillType": "interface",
+  "slug": "justoneapi-douban-get-recent-hot-tv",
+  "sourceTitle": "OpenAPI definition"
+}

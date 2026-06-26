@@ -1,0 +1,80 @@
+{
+  "name": "claude-code-framework",
+  "version": "1.0.0",
+  "description": "Claude Code Framework - 从 Claude Code 源码提取的核心执行框架",
+  "author": "智多星",
+  "created": "2026-04-03",
+  
+  "framework": {
+    "enabled": true,
+    "defaultMode": "DEFAULT",
+    
+    "execution": {
+      "autoCompactAt": 0.80,
+      "criticalAt": 0.90,
+      "blockAt": 0.98
+    }
+  },
+  
+  "permissions": {
+    "autoAllow": [
+      "ls", "dir", "pwd", "cat", "type",
+      "Get-ChildItem", "Get-Content",
+      "git status", "git log", "git diff",
+      "search", "read", "memory_search", "memory_get",
+      "web_search", "web_fetch",
+      "session_status", "agents_list", "sessions_list",
+      "tts", "image", "image_generate"
+    ],
+    
+    "requireApproval": [
+      "exec", "write", "edit", "delete", "move", "copy",
+      "rm", "del", "rmdir",
+      "curl", "wget", "Invoke-WebRequest",
+      "git push", "git commit", "git merge",
+      "npm install", "pip install",
+      "message", "browser", "canvas"
+    ],
+    
+    "block": [
+      "format", "diskpart",
+      "net user", "net localgroup",
+      "reg delete", "reg add",
+      "shutdown", "restart"
+    ]
+  },
+  
+  "hooks": {
+    "pre_task": { "enabled": true, "priority": 100 },
+    "post_task": { "enabled": true, "priority": 100 },
+    "pre_tool_call": { "enabled": true, "priority": 50 },
+    "post_tool_call": { "enabled": true, "priority": 50 },
+    "on_error": { "enabled": true, "priority": 1000 }
+  },
+  
+  "context": {
+    "defaultLimit": 200000,
+    "systemPrompt": 8000,
+    "userContext": 4000,
+    "outputReserve": 20000
+  },
+  
+  "commands": {
+    "/framework check": "检查当前上下文预算和执行状态",
+    "/framework status": "显示框架状态",
+    "/framework mode": "切换执行模式 (default/read-only/auto/bypass)",
+    "/framework rules": "查看当前权限规则",
+    "/framework compact": "手动触发上下文压缩"
+  },
+  
+  "builtinRules": {
+    "description": "内置命令分类规则",
+    "categories": {
+      "read": ["ls", "dir", "cat", "read", "Get-Content"],
+      "write": ["write", "edit", "exec"],
+      "delete": ["rm", "del", "delete"],
+      "network": ["curl", "wget", "Invoke-WebRequest"],
+      "git": ["git status", "git log", "git diff", "git push", "git commit"]
+    }
+  }
+}

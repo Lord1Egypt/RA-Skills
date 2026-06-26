@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Enterprise AI Knowledge Governance Map",
+    "industry": "common",
+    "blueprintType": "domain-knowledge"
+  },
+  "library": {
+    "knowledge": {
+      "painPoints": [
+        {"id": "pain-stale-docs", "name": "Stale Knowledge Documents"},
+        {"id": "pain-unclear-permissions", "name": "Unclear Permission Boundary"},
+        {"id": "pain-weak-evidence", "name": "Weak Answer Evidence Chain"}
+      ],
+      "strategies": [
+        {"id": "strategy-owner", "name": "Knowledge Asset Ownership"},
+        {"id": "strategy-glossary", "name": "Shared Business Glossary"},
+        {"id": "strategy-citations", "name": "Answer Citation Tracking"}
+      ],
+      "rules": [
+        {"id": "rule-privacy", "name": "No Customer Privacy Fields in Public Knowledge"},
+        {"id": "rule-policy-latest", "name": "Policy Answers Cite Latest Version"}
+      ],
+      "metrics": [
+        {"id": "metric-traceable", "name": "Traceable Answer Ratio"},
+        {"id": "metric-stale", "name": "Expired Document Ratio"},
+        {"id": "metric-correction", "name": "Human Correction Rate"}
+      ],
+      "practices": [
+        {"id": "practice-pack", "name": "Scenario-based Knowledge Packs"},
+        {"id": "practice-reviewer", "name": "Named Reviewer and Expiry"}
+      ],
+      "pitfalls": [
+        {"id": "pitfall-vector-only", "name": "Vector Store Without Governance"},
+        {"id": "pitfall-hit-rate", "name": "Hit Rate Without Evidence Quality"}
+      ]
+    }
+  },
+  "relations": [
+    {"from": "strategy-owner", "to": "pain-stale-docs", "type": "solves"},
+    {"from": "strategy-glossary", "to": "pain-unclear-permissions", "type": "solves"},
+    {"from": "strategy-citations", "to": "pain-weak-evidence", "type": "solves"},
+    {"from": "metric-traceable", "to": "strategy-citations", "type": "measures"},
+    {"from": "rule-privacy", "to": "strategy-owner", "type": "enforces"},
+    {"from": "practice-pack", "to": "strategy-glossary", "type": "requires"}
+  ]
+}

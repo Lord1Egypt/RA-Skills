@@ -1,0 +1,24 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0E1430"/>
+      <stop offset="100%" stop-color="#26144D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="120" y="220" fill="#FFFFFF" font-size="88" font-family="Arial, sans-serif" font-weight="700">Hopola</text>
+  <text x="120" y="300" fill="#C7D3FF" font-size="36" font-family="Arial, sans-serif">Search · Image · Video · 3D · Upload · Report</text>
+  <rect x="120" y="360" width="1360" height="2" fill="#4B5B9B"/>
+  <rect x="120" y="440" width="180" height="72" rx="20" fill="#5B8CFF"/>
+  <text x="162" y="487" fill="#FFFFFF" font-size="28" font-family="Arial, sans-serif">Search</text>
+  <rect x="340" y="440" width="180" height="72" rx="20" fill="#7E5BFF"/>
+  <text x="382" y="487" fill="#FFFFFF" font-size="28" font-family="Arial, sans-serif">Image</text>
+  <rect x="560" y="440" width="180" height="72" rx="20" fill="#5B8CFF"/>
+  <text x="606" y="487" fill="#FFFFFF" font-size="28" font-family="Arial, sans-serif">Video</text>
+  <rect x="780" y="440" width="180" height="72" rx="20" fill="#7E5BFF"/>
+  <text x="842" y="487" fill="#FFFFFF" font-size="28" font-family="Arial, sans-serif">3D</text>
+  <rect x="1000" y="440" width="180" height="72" rx="20" fill="#5B8CFF"/>
+  <text x="1048" y="487" fill="#FFFFFF" font-size="28" font-family="Arial, sans-serif">Upload</text>
+  <rect x="1220" y="440" width="180" height="72" rx="20" fill="#7E5BFF"/>
+  <text x="1268" y="487" fill="#FFFFFF" font-size="28" font-family="Arial, sans-serif">Report</text>
+</svg>

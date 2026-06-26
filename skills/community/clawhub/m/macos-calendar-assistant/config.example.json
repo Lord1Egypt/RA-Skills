@@ -1,0 +1,15 @@
+{
+  "timezone": "Asia/Shanghai",
+  "check_time": "22:20",
+  "lookback_days": 1,
+  "lookahead_days": 0,
+  "output_dir": "~/calendar-assistant/logs",
+  "notification": {
+    "enabled": true,
+    "title": "Calendar Assistant Reminder"
+  },
+  "dedup": {
+    "prefer_calendars": [],
+    "deprioritize_calendars": []
+  }
+}

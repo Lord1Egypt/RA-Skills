@@ -1,0 +1,4 @@
+interface:
+  display_name: "填写招聘报名信息"
+  short_description: "将简历整理为结构化资料后填写到招聘报名表、登记表或招聘系统中"
+  default_prompt: "Use $fill-job-application-info to fill this hiring form, application, or registration sheet from my resume."

@@ -1,0 +1,152 @@
+{
+  "topic": "牛顿发现苹果",
+  "scenes": [
+    {
+      "id": 0,
+      "type": "开场",
+      "timeStart": 0,
+      "timeEnd": 2,
+      "duration": 2,
+      "title": "牛顿发现苹果",
+      "script": "牛顿发现苹果",
+      "visual": {
+        "layout": "center-explosion",
+        "elements": [
+          {
+            "type": "背景",
+            "desc": "科技背景",
+            "prompt": "抽象科技背景，深蓝色调，发光线条和网格，数据流效果，科幻数字艺术风格",
+            "aspect": "9:16",
+            "anim": "fadeIn",
+            "delay": 0,
+            "duration": 30,
+            "filename": "s00_科技背景.png"
+          },
+          {
+            "type": "emoji",
+            "value": "🤖",
+            "anim": "popIn",
+            "delay": 15,
+            "duration": 15
+          },
+          {
+            "type": "文字",
+            "value": "牛顿发现苹果",
+            "anim": "fadeSlideUp",
+            "delay": 30,
+            "duration": 40,
+            "style": {
+              "fontSize": 72,
+              "color": "#FFD700",
+              "fontWeight": "900"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "type": "核心观点",
+      "timeStart": 2,
+      "timeEnd": 5,
+      "duration": 3,
+      "title": "发现苹果",
+      "script": "牛顿坐在苹果树下思考",
+      "visual": {
+        "layout": "left-text-right-image",
+        "elements": [
+          {
+            "type": "素材",
+            "desc": "牛顿",
+            "prompt": "牛顿画像，严肃的科学家，深色背景，古典风格",
+            "aspect": "1:1",
+            "anim": "fadeIn",
+            "delay": 20,
+            "duration": 45,
+            "filename": "s01_牛顿.png"
+          },
+          {
+            "type": "素材",
+            "desc": "苹果",
+            "prompt": "一个红苹果，干净背景，简洁风格",
+            "aspect": "1:1",
+            "anim": "fadeIn",
+            "delay": 20,
+            "duration": 45,
+            "filename": "s01_苹果.png"
+          },
+          {
+            "type": "emoji",
+            "value": "🍎",
+            "anim": "popIn",
+            "delay": 10,
+            "duration": 15
+          },
+          {
+            "type": "文字",
+            "value": "发现苹果",
+            "anim": "fadeSlideUp",
+            "delay": 25,
+            "duration": 40,
+            "style": {
+              "fontSize": 56,
+              "color": "white",
+              "fontWeight": "900"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "type": "结尾",
+      "timeStart": 5,
+      "timeEnd": 8,
+      "duration": 3,
+      "title": "原理发现",
+      "script": "牛顿由此发现万有引力定律",
+      "visual": {
+        "layout": "center-focus",
+        "elements": [
+          {
+            "type": "emoji",
+            "value": "🔧",
+            "anim": "popIn",
+            "delay": 10,
+            "duration": 15
+          },
+          {
+            "type": "文字",
+            "value": "牛顿由此发现万有引力定律",
+            "anim": "fadeSlideUp",
+            "delay": 25,
+            "duration": 40,
+            "style": {
+              "fontSize": 64,
+              "color": "#FFD700",
+              "fontWeight": "900"
+            }
+          },
+          {
+            "type": "描述",
+            "value": "解锁你的第一个AI技能",
+            "anim": "fadeSlideUp",
+            "delay": 45,
+            "duration": 40,
+            "style": {
+              "fontSize": 36,
+              "color": "#9ca3af"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "totalDuration": 8,
+  "config": {
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "charsPerSecond": 4.5
+  }
+}

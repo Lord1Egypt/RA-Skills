@@ -1,35 +1,50 @@
 ---
-name: "Insurance Advisor"
+version: "2.0.0"
+name: insurance-advisor
 description: "保险方案顾问。险种推荐、产品对比、保费计算、理赔指南、定期寿险、健康险方案。Insurance advisor with recommendation, comparison, premium calculation, claim guide, term life."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/insurance-advisor"
-sourceUrl: "https://clawhub.ai/skills/insurance-advisor"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
+# insurance-advisor
 
-# Insurance Advisor
+保险方案顾问。险种推荐、产品对比、保费计算、理赔指南、定期寿险、健康险方案。Insurance advisor with recommendation, comparison, premium calculation, claim guide, term life, health insurance.
 
-> 保险方案顾问。险种推荐、产品对比、保费计算、理赔指南、定期寿险、健康险方案。Insurance advisor with recommendation, comparison, premium calculation, claim guide, term life.
+## 核心特点
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/insurance-advisor`
-- **Source URL:** [https://clawhub.ai/skills/insurance-advisor](https://clawhub.ai/skills/insurance-advisor)
+🎯 **精准** — 针对具体场景定制化输出
+📋 **全面** — 多个命令覆盖完整工作流
+🇨🇳 **本土化** — 完全适配中文用户习惯
 
-## Overview
+## 命令速查
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/insurance-advisor
 ```
+  single          single
+  married         married
+  married-with-kids married with kids
+  medical         medical
+  critical        critical
+  life            life
+  accident        accident
+  medical         medical
+```
+
+## 专业建议
+
+- 医保** — 国家医保是基础，优先参保
+- 百万医疗险** — 几百元/年，覆盖大病住院
+- 重疾险** — 确诊即赔，弥补收入损失
+- 意外险** — 便宜且实用，人人需要
+- 定期寿险** — 家庭经济支柱必备
+
+---
+*insurance-advisor by BytesAgain*
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Commands
+
+Run `insurance-advisor help` to see all available commands.
+
+- Run `insurance-advisor help` for all commands

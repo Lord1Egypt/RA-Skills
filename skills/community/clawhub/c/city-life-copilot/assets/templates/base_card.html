@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            min-height: 100vh;
+        }
+        
+        .card {
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #d1d5db, #e5e7eb);
+        }
+        
+        .gradient-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-a {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-b {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        
+        .accent-border {
+            border-left: 4px solid #667eea;
+        }
+        
+        .accent-border-a {
+            border-left: 4px solid #667eea;
+        }
+        
+        .accent-border-b {
+            border-left: 4px solid #11998e;
+        }
+        
+        .tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .tag-blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .tag-green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .tag-gray {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        .tag-purple {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-5xl mx-auto">
+        <!-- 顶部信息区 -->
+        <div class="card overflow-hidden mb-6">
+            <div class="gradient-header px-10 py-12 text-white">
+                <h1 class="text-3xl font-bold mb-3">{{title}}</h1>
+                <p class="text-lg opacity-90 font-light">{{subtitle}}</p>
+            </div>
+        </div>
+        
+        <!-- 方案 A 区域 -->
+        <div class="card px-10 py-8 mb-6">
+            <div class="gradient-a text-white px-6 py-4 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold">{{plan_a_title}}</h2>
+                <p class="text-sm opacity-90 mt-2">{{plan_a_subtitle}}</p>
+            </div>
+            
+            <div id="content-a" class="mb-6">
+                {{plan_a_content}}
+            </div>
+            
+            <!-- 方案 A 地图 -->
+            <div id="map-a" class="mt-6 rounded-xl overflow-hidden bg-gray-50">
+                {{map_iframe_a}}
+            </div>
+        </div>
+        
+        <!-- 方案 B 区域 -->
+        <div class="card px-10 py-8 mb-6">
+            <div class="gradient-b text-white px-6 py-4 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold">{{plan_b_title}}</h2>
+                <p class="text-sm opacity-90 mt-2">{{plan_b_subtitle}}</p>
+            </div>
+            
+            <div id="content-b" class="mb-6">
+                {{plan_b_content}}
+            </div>
+            
+            <!-- 方案 B 地图 -->
+            <div id="map-b" class="mt-6 rounded-xl overflow-hidden bg-gray-50">
+                {{map_iframe_b}}
+            </div>
+        </div>
+        
+        <!-- 底部信息区 -->
+        <div class="text-center text-gray-400 text-sm py-6">
+            <p>City Life Copilot · Generated on {{date}}</p>
+        </div>
+    </div>
+</body>
+</html>

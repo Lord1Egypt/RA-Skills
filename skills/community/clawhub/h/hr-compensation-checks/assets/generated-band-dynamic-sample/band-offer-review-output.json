@@ -1,0 +1,99 @@
+{
+  "normalized_data": {
+    "meta": {
+      "workflow": "review_compensation_band_and_offer",
+      "prepared_by": "HRBP",
+      "date": "2026-05-19",
+      "legal_entity": "上海某科技有限公司",
+      "decision_mode": "formal_pricing_review"
+    },
+    "position": {
+      "job_title": "高级用户增长产品经理",
+      "job_family": "产品",
+      "level": "P7",
+      "city": "上海"
+    },
+    "policy_context": {
+      "city": "上海",
+      "policy_year": "2026",
+      "notes": "用于提供城市与合规背景，不直接作为岗位定薪分位点。"
+    },
+    "public_market_signal": {
+      "enabled": true,
+      "source_summary": "公开招聘平台近30天同城增长产品岗位薪资区间观察",
+      "range_min": 35000,
+      "range_max": 48000,
+      "confidence": "low",
+      "notes": "仅作为公开招聘市场信号，不作为正式定薪依据。"
+    },
+    "paid_survey_data": {
+      "source_name": "企业采购薪酬调研",
+      "sample_scope": "上海 互联网 / 产品增长 / P7",
+      "p25": 34000,
+      "p50": 39000,
+      "p75": 46000,
+      "effective_date": "2026-04-30",
+      "confidence": "high",
+      "notes": "近12个月互联网增长产品岗位样本。"
+    },
+    "internal_company_data": {
+      "band": {
+        "currency": "CNY",
+        "monthly_base_min": 32000,
+        "monthly_base_mid": 38000,
+        "monthly_base_max": 45000
+      },
+      "budget_range": {
+        "min": 36000,
+        "max": 43000
+      },
+      "same_level_employees": [
+        {
+          "employee_name": "A",
+          "monthly_base": 36500,
+          "note": "P7，增长产品，司龄2年"
+        },
+        {
+          "employee_name": "B",
+          "monthly_base": 38800,
+          "note": "P7，用户增长，司龄1年"
+        },
+        {
+          "employee_name": "C",
+          "monthly_base": 41000,
+          "note": "P7，核心增长岗，历史调薪后"
+        }
+      ]
+    },
+    "candidate_compensation_context": {
+      "candidate_name": "周子涵",
+      "current_title": "增长产品负责人",
+      "current_company": "某内容平台",
+      "current_monthly_base": 36000,
+      "expected_monthly_base": 42000,
+      "target_role_reason": "有会员增长、增长实验和跨团队主导经验，业务方反馈较强，属于重点候选人。"
+    }
+  },
+  "missing_information": [],
+  "risk_summary": "候选人期望明显高于内部同级平均水平",
+  "priority_issues": [
+    "候选人期望明显高于内部同级平均水平"
+  ],
+  "next_action": "按 42000 左右准备定薪审批材料，并同步说明 band、市场和内部公平依据。",
+  "message_draft": "周子涵 的期望薪资与岗位 band、市场分位及内部参考已完成比对，本次属于“正式建议”，建议 建议按 band 中高位定薪。",
+  "record_update": {
+    "candidate_name": "周子涵",
+    "target_role": "高级用户增长产品经理",
+    "suggested_base": 42000,
+    "recommendation_strength": "正式建议"
+  },
+  "data_sources_used": {
+    "has_band": true,
+    "has_paid_survey_data": true,
+    "has_internal_reference": true,
+    "has_budget": true,
+    "has_current_pay": true,
+    "has_public_market_signal": true
+  },
+  "compliance_warning_if_any": []
+}

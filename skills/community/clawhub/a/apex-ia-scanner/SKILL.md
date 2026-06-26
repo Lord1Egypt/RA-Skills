@@ -1,35 +1,71 @@
 ---
-name: "APEX IA Scanner"
-description: "APEX IA - Scanner profissional multi-timeframe para Binance Futures. Detecta cruzamentos SMA 8x21 com confirmação de Pivot SuperTrend, RSI, volume e confluência"
-category: "blockchain"
-source: "ClawHub"
-tags: [binance, free, futures, scanner, trading, crypto, sma]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apex-ia-scanner"
-sourceUrl: "https://clawhub.ai/skills/apex-ia-scanner"
+name: apex-ia-scanner
+description: Professional scanner for Binance Futures. SMA 8/21 crossovers. 🇺🇸 | Scanner profissional para Binance Futures. Cruzamentos SMA 8/21. 🇧🇷
+version: 2.4.0
+version: 2.4.0
+author: marcusfranca12
+tags:
+  - trading
+  - trading
+  - binance
+  - futures
+  - scanner
+  - sma
+  - free
 ---
 
-# APEX IA Scanner
+# 🦞 APEX IA Scanner
 
-> APEX IA - Scanner profissional multi-timeframe para Binance Futures. Detecta cruzamentos SMA 8x21 com confirmação de Pivot SuperTrend, RSI, volume e confluência
+## English 🇺🇸
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apex-ia-scanner`
-- **Source URL:** [https://clawhub.ai/skills/apex-ia-scanner](https://clawhub.ai/skills/apex-ia-scanner)
+### Professional Scanner for Binance Futures
 
-## Overview
+**Features:** SMA 8/21 Crossover, Score 0-100%
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Installation
 ```bash
-hermes skills install clawhub/apex-ia-scanner
+clawhub install apex-ia-scanner
 ```
+```
+
+## 🚀 Upgrade to PRO
+
+**Price:** $29/month or $99/year
+
+**Contact:** f5solutionsusa@gmail.com
+
+## 💝 Support
+
+**USDT (BEP20):** 0xe011b57a2d3082849d04c685925827cfc9d93edf
+
+
+**SOLANA:** 79LQfMttkfKSBYGge3TsE3UoTxKMkkMn6vwSpKtpGpjb
+
+---
+
+## Português 🇧🇷
+
+### Scanner Profissional para Binance Futures
+
+**Funcionalidades:** Cruzamento SMA 8/21, Score 0-100%
+
+### Instalação
+```bash
+```bash
+clawhub install apex-ia-scanner
+```
+
+## 🚀 Upgrade para PRO
+
+**Preço:** $29/mês ou $99/ano
+
+
+**Contato:** f5solutionsusa@gmail.com
+
+## 💝 Apoie
+
+**USDT (BEP20):** 0xe011b57a2d3082849d04c685925827cfc9d93edf
+
+**SOLANA:** 79LQfMttkfKSBYGge3TsE3UoTxKMkkMn6vwSpKtpGpjb
+
+*Developed by @marcusfranca12*

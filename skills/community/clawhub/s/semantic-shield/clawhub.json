@@ -1,0 +1,165 @@
+{
+  "$schema": "https://clawhub.com/schemas/product/v1.json",
+  "name": "semantic-shield",
+  "displayName": "Semantic Shield",
+  "version": "1.0.1",
+  "publisher": {
+    "name": "Simply Semantics",
+    "id": "simply-semantics",
+    "url": "https://www.simplysemantics.com",
+    "email": "info@simplysemantics.com"
+  },
+  "description": "AI skill safety validation API — real human experts vet skills, plugins, and MCP tools for security risks. Requires your Semantic Shield API key for authentication. Query trust scores, submit evaluation inquiries, and get real-time safety verdicts before installing anything in your AI agents.",
+  "longDescription": "Semantic Shield is a security-first skill that protects AI agents, bots, and users from unsafe skills, plugins, and tools. Every skill in the registry is vetted by US-based security experts with 30+ years of experience (including Homeland Security). Agents and developers can query any skill's safety profile via API or MCP — getting a safety score (0–100), risk level, threat details, and clear install/reject recommendation. Unvetted skills can be submitted for expert evaluation. Continuous 0-day threat monitoring keeps assessments current. Authentication requires your Semantic Shield API key (generated at signup, scoped to your account, revocable at any time). Only skill identifiers and public URLs are transmitted — no user PII, secrets, or environment variables are ever collected.",
+  "homepage": "https://www.simplysemantics.com/semantic-shield.html",
+  "repository": "https://clawhub.com/simply-semantics/semantic-shield",
+  "license": "MIT",
+  "requires": {
+    "env": [
+      {
+        "name": "SEMANTIC_SHIELD_API_KEY",
+        "required": true,
+        "description": "Your Semantic Shield API key. Generated at signup at https://dashboard.simplysemantics.com. Scoped to your account only. Revocable at any time from the dashboard."
+      }
+    ]
+  },
+  "categories": [
+    "security",
+    "ai-agents",
+    "trust-validation",
+    "mcp",
+    "saas-component",
+    "skill-vetting",
+    "compliance",
+    "risk-assessment"
+  ],
+  "tags": [
+    "security",
+    "trust",
+    "vetting",
+    "ai-safety",
+    "skill-validation",
+    "mcp-compatible",
+    "agent-safety",
+    "risk-scoring",
+    "threat-detection",
+    "0-day-monitoring",
+    "human-reviewed",
+    "compliance",
+    "plugin-safety",
+    "openclaw",
+    "saas",
+    "api"
+  ],
+  "mcp": {
+    "compatible": true,
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/shield/api/v1/search",
+        "description": "Search for vetted skills by name or provider (free, no quota cost)",
+        "auth": "x-api-key header",
+        "input": {
+          "q": "string — skill name or ID to search for (partial match)",
+          "provider": "string — optional provider name filter"
+        },
+        "output": {
+          "results": "array of { skill_id, provider }",
+          "count": "number of matches"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/shield/api/v1/check",
+        "description": "Get full trust details for a specific skill (counts against lookup quota)",
+        "auth": "x-api-key header",
+        "input": {
+          "skill_id": "string — exact skill identifier",
+          "provider": "string — exact provider name"
+        },
+        "output": {
+          "skill_id": "string",
+          "provider": "string",
+          "skill_url": "string or null",
+          "vetted": "boolean",
+          "vetted_by": "string — 'Simply Semantics'",
+          "safety_score": "integer 0–100",
+          "risk_level": "string — critical|high|medium|low|safe",
+          "risk_summary": "string — brief findings",
+          "threats_found": "array of threat strings",
+          "recommendation": "string — safe to install|install with caution|do not install",
+          "last_checked": "ISO date string"
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/shield/api/v1/validate",
+        "description": "Submit an unvetted skill for expert security evaluation (counts against inquiry quota). Only public skill identifiers and URLs accepted — never submit secrets or private URLs.",
+        "auth": "x-api-key header",
+        "input": {
+          "skill_id": "string — skill identifier",
+          "provider": "string — provider name",
+          "skill_url": "string — optional public URL to the skill (marketplace listing, GitHub repo, or docs page only)"
+        },
+        "output": {
+          "request_id": "string — tracking ID",
+          "status": "string — 'pending'",
+          "message": "string — confirmation"
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "model": "freemium",
+    "tiers": {
+      "free": {
+        "price": 0,
+        "lookupsPerMonth": 25,
+        "inquiriesPerMonth": 5,
+        "description": "Query skill safety profiles and submit limited evaluation inquiries"
+      },
+      "pro": {
+        "price": 29,
+        "lookupsPerMonth": 100,
+        "inquiriesPerMonth": 20,
+        "description": "Priority evaluations, full reports, webhook alerts, email support"
+      },
+      "enterprise": {
+        "price": "custom",
+        "lookupsPerMonth": "unlimited",
+        "inquiriesPerMonth": "unlimited",
+        "description": "Unlimited access, private queue, SLA, dedicated support, and custom integrations"
+      }
+    }
+  },
+  "features": [
+    "Real-time skill safety lookups via API — safety score, risk level, and recommendation",
+    "100% REAL human security experts — US-based with 30+ years experience including Homeland Security",
+    "Submit unvetted skills for expert evaluation with tracked request lifecycle",
+    "Safety scoring 0–100 with risk levels: critical, high, medium, low, safe",
+    "Threat detection for prompt injection, data exfiltration, over-privileged permissions, and more",
+    "Continuous 0-day vulnerability monitoring keeps assessments current",
+    "Webhook alerts for Pro+ tiers when threats are detected on previously vetted skills",
+    "Free search endpoint — find skills by name or provider at no quota cost",
+    "API-key auth — per-account, scoped, revocable at any time from the dashboard",
+    "SSO authentication via SimplySemantics.com",
+    "MCP-compatible endpoints for autonomous AI agent decision-making",
+    "Interactive dashboard with usage metrics, history, and settings"
+  ],
+  "privacy": {
+    "dataSent": "Only skill identifiers (skill_id), provider names (provider), and optionally a public skill URL (skill_url) when submitting for evaluation. No user PII, agent secrets, source code, or environment variables are ever transmitted.",
+    "dataNotSent": "No user credentials, private keys, environment variables, file contents, agent configuration, or personal information of any kind.",
+    "dataRetention": "Skill safety assessments are public verdicts stored in the registry. Account usage metrics (lookup/inquiry counts) are stored in your account only.",
+    "apiKeyHandling": "Your SEMANTIC_SHIELD_API_KEY is used solely for request authentication. It is never logged in plaintext, shared, or transmitted to third parties. Logs store a hash of your key for rate-limiting only.",
+    "webhooks": "Pro+ tiers only. You control the webhook URL and can disable it at any time. Webhook payloads contain only skill_id, provider, safety_score, and risk_level. Free tier users do not have webhooks.",
+    "crossServiceSharing": "None. Your Semantic Shield data is not shared with other Simply Semantics services.",
+    "logging": "API requests are logged for rate-limiting and abuse prevention. Logs contain API key hash (not the key), endpoint, skill_id, provider, and timestamp. Retained for 30 days."
+  },
+  "security": {
+    "authMethod": "x-api-key header — per-account API key generated at signup, scoped to Semantic Shield only, revocable at any time",
+    "apiEndpoint": "https://dashboard.simplysemantics.com/shield/api/v1/",
+    "noExternalEnvAccess": true,
+    "noCredentialCollection": true,
+    "noSourceCodeCollection": true
+  }
+}

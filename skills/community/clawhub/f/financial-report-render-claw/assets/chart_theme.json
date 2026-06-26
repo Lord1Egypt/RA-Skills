@@ -1,0 +1,43 @@
+{
+  "colors": {
+    "primary": "#1B4F72",
+    "secondary": "#2E86C1",
+    "accent": "#27AE60",
+    "warning": "#F39C12",
+    "danger": "#E74C3C",
+    "neutral": "#95A5A6",
+    "background": "#FAFBFC",
+    "text": "#2C3E50",
+    "text_light": "#7F8C8D"
+  },
+  "palette": [
+    "#1B4F72",
+    "#2E86C1",
+    "#27AE60",
+    "#F39C12",
+    "#E74C3C",
+    "#8E44AD",
+    "#16A085",
+    "#D35400"
+  ],
+  "chart": {
+    "line_width": 2.5,
+    "bar_width": 0.6,
+    "marker_size": 6,
+    "grid_alpha": 0.15,
+    "font_size": 12,
+    "title_size": 14,
+    "label_size": 11
+  },
+  "font": {
+    "family_cn": "Heiti TC, PingFang SC, Songti SC, Microsoft YaHei, Noto Sans CJK SC, SimHei, sans-serif",
+    "family_en": "Helvetica Neue, Arial, sans-serif"
+  },
+  "export": {
+    "width": 10,
+    "height": 6,
+    "dpi": 300,
+    "format": "png",
+    "bbox_inches": "tight"
+  }
+}

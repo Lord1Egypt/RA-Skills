@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "source_file": "products.xlsx",
+    "platforms": [
+      "Amazon",
+      "Shopify"
+    ],
+    "languages": [
+      "en_US",
+      "ja_JP"
+    ],
+    "note": "这个文件由 OpenClaw 对话中的 LLM 先生成结构化翻译结果，再交给 build_output.py 落盘为 Excel。"
+  },
+  "sheets": [
+    {
+      "name": "Amazon_en_US",
+      "headers": [
+        "product_id",
+        "brand",
+        "title",
+        "bullet_point_1",
+        "bullet_point_2",
+        "bullet_point_3",
+        "bullet_point_4",
+        "bullet_point_5",
+        "description",
+        "backend_keywords",
+        "custom_attributes",
+        "source_product_name"
+      ],
+      "rows": [
+        [
+          "SP-001",
+          "SoundPulse",
+          "SoundPulse Noise Cancelling Wireless Earbuds with LDAC, 40-Hour Playtime, IPX5 Water Resistance for Workouts and Travel",
+          "【NOISE CANCELLATION】Hybrid active noise cancellation helps reduce office chatter, transit noise, and other daily distractions while maintaining a secure and comfortable in-ear fit.",
+          "【HI-RES AUDIO】A 13 mm dynamic driver with LDAC support delivers fuller detail, cleaner vocals, and energetic bass for music, streaming, and hands-free calling throughout the day.",
+          "【LONG BATTERY LIFE】Enjoy up to 40 hours of combined playback with the charging case, plus USB-C fast charging for quick top-ups before commuting, meetings, or exercise.",
+          "【READY FOR ACTIVE DAYS】IPX5 water resistance helps protect against sweat and light rain, making these earbuds a practical choice for workouts, walks, and everyday carry.",
+          "【IN THE BOX】Includes earbuds, charging case, USB-C cable, three sizes of ear tips, and user manual so you can set up quickly and find the right fit right away.",
+          "Built for listeners who want strong everyday performance in a compact form, these wireless earbuds combine hybrid noise cancellation, stable Bluetooth 5.3 connectivity, and detailed LDAC audio in an easy-to-carry design. The lightweight fit stays comfortable through long listening sessions, while the 13 mm driver brings clarity and punch to playlists, podcasts, and calls. Whether you are heading to work, traveling, or fitting in a workout, they offer dependable battery life, quick charging, and practical durability for daily use.",
+          "wireless earbuds bluetooth earbuds noise cancelling earbuds sports earbuds ldac earbuds workout earbuds commuting earbuds",
+          "color:black | connectivity:bluetooth 5.3 | driver_size:13 mm",
+          "SP-Pro 主动降噪真无线蓝牙耳机"
+        ]
+      ]
+    },
+    {
+      "name": "Shopify_en_US",
+      "headers": [
+        "product_id",
+        "brand",
+        "title",
+        "description_html",
+        "seo_title",
+        "seo_description",
+        "tags",
+        "product_type",
+        "custom_attributes",
+        "source_product_name"
+      ],
+      "rows": [
+        [
+          "SP-001",
+          "SoundPulse",
+          "SoundPulse Wireless Earbuds with Hybrid ANC",
+          "<h3>Compact wireless earbuds with immersive sound for everyday use</h3><ul><li>Hybrid active noise cancellation helps reduce daily distractions</li><li>13 mm driver with LDAC support for more detailed audio</li><li>Up to 40 hours of total battery life with charging case</li><li>IPX5 water resistance for workouts and commuting</li><li>USB-C fast charging for quick power before you go</li></ul><p>SoundPulse combines practical comfort, stable Bluetooth performance, and richer wireless audio in a lightweight design that fits easily into busy daily routines. These earbuds are made for listening at work, on the move, or during exercise without the bulk of larger headphones.</p><p>In the box: earbuds, charging case, USB-C cable, ear tips in three sizes, and user manual.</p><table><tr><td>Connectivity</td><td>Bluetooth 5.3</td></tr><tr><td>Driver</td><td>13 mm dynamic driver</td></tr><tr><td>Water Resistance</td><td>IPX5</td></tr></table>",
+          "Wireless Earbuds SoundPulse Hybrid ANC",
+          "Shop SoundPulse wireless earbuds with hybrid ANC, LDAC audio, 40-hour battery life, and IPX5 protection for commuting, work, and workouts.",
+          "wireless earbuds,noise cancelling earbuds,bluetooth earbuds,ldac earbuds,sports earbuds,commuter earbuds,ipx5 earbuds,long battery earbuds",
+          "Electronics > Headphones > Wireless Headphones",
+          "color:black | connectivity:bluetooth 5.3 | driver_size:13 mm",
+          "SP-Pro 主动降噪真无线蓝牙耳机"
+        ]
+      ]
+    },
+    {
+      "name": "Amazon_ja_JP",
+      "headers": [
+        "product_id",
+        "brand",
+        "title",
+        "bullet_point_1",
+        "bullet_point_2",
+        "bullet_point_3",
+        "bullet_point_4",
+        "bullet_point_5",
+        "description",
+        "backend_keywords",
+        "custom_attributes",
+        "source_product_name"
+      ],
+      "rows": [
+        [
+          "SP-001",
+          "SoundPulse",
+          "SoundPulse ワイヤレスイヤホン ノイズキャンセリング LDAC対応 最大40時間再生 IPX5防水 通勤 通学 運動向け",
+          "【ノイズキャンセリング】ハイブリッドANCにより、電車内やオフィスの雑音を抑え、日常のリスニングをより快適にサポートします。",
+          "【高音質サウンド】13mmダイナミックドライバーとLDAC対応により、ボーカルの明瞭さと低音の厚みを両立した臨場感ある音を楽しめます。",
+          "【ロングバッテリー】ケース併用で最大40時間再生に対応し、USB-C急速充電で外出前の短時間充電にも便利です。",
+          "【運動にも対応】IPX5防水性能により、汗や小雨が気になるシーンでも使いやすく、通勤やワークアウトに適しています。",
+          "【付属品】イヤホン本体、充電ケース、USB-Cケーブル、3サイズのイヤーピース、取扱説明書が付属し、すぐに使い始められます。",
+          "毎日の使いやすさと高音質の両立を目指したワイヤレスイヤホンです。ハイブリッドノイズキャンセリング、Bluetooth 5.3の安定接続、LDAC対応の13mmドライバーをコンパクトな筐体にまとめ、通勤や通学、仕事、運動まで幅広いシーンで活躍します。軽量で耳になじみやすく、長時間でも快適に装着しやすい設計です。バッテリー持続時間や防水性能も実用的で、日常使いに取り入れやすいモデルです。",
+          "ワイヤレスイヤホン　ノイズキャンセリング　ブルートゥースイヤホン　スポーツイヤホン　通勤イヤホン　ldac対応",
+          "color:ブラック | connectivity:bluetooth 5.3 | driver_size:13 mm",
+          "SP-Pro 主动降噪真无线蓝牙耳机"
+        ]
+      ]
+    },
+    {
+      "name": "Shopify_ja_JP",
+      "headers": [
+        "product_id",
+        "brand",
+        "title",
+        "description_html",
+        "seo_title",
+        "seo_description",
+        "tags",
+        "product_type",
+        "custom_attributes",
+        "source_product_name"
+      ],
+      "rows": [
+        [
+          "SP-001",
+          "SoundPulse",
+          "SoundPulse ハイブリッドANC搭載ワイヤレスイヤホン",
+          "<h3>毎日使いやすい高音質ワイヤレスイヤホン</h3><ul><li>ハイブリッドANCで通勤や作業中の雑音を軽減</li><li>13mmドライバーとLDAC対応で豊かなサウンド</li><li>ケース併用で最大40時間再生</li><li>IPX5防水で運動や外出にも対応</li><li>USB-C急速充電で短時間でも使いやすい</li></ul><p>SoundPulseは、毎日の移動や仕事、運動に取り入れやすい快適さと音質のバランスを追求したワイヤレスイヤホンです。軽量設計で持ち運びやすく、安定した接続と実用的なバッテリー性能を備えています。</p><p>同梱品: イヤホン本体、充電ケース、USB-Cケーブル、イヤーピース、取扱説明書。</p><table><tr><td>接続方式</td><td>Bluetooth 5.3</td></tr><tr><td>ドライバー</td><td>13 mm</td></tr><tr><td>防水性能</td><td>IPX5</td></tr></table>",
+          "ワイヤレスイヤホン SoundPulse ANC",
+          "SoundPulseのワイヤレスイヤホン。ハイブリッドANC、LDAC対応、最大40時間再生、IPX5防水で通勤や運動に使いやすいモデルです。",
+          "ワイヤレスイヤホン,ノイズキャンセリング,bluetoothイヤホン,ldac,スポーツイヤホン,通勤イヤホン,防水イヤホン,長時間再生",
+          "Electronics > Headphones > Wireless Headphones",
+          "color:ブラック | connectivity:bluetooth 5.3 | driver_size:13 mm",
+          "SP-Pro 主动降噪真无线蓝牙耳机"
+        ]
+      ]
+    },
+    {
+      "name": "Source_CN",
+      "headers": [
+        "product_id",
+        "brand",
+        "product_name",
+        "category",
+        "specs",
+        "selling_points",
+        "keywords_cn",
+        "package_includes",
+        "custom_attributes",
+        "images_note"
+      ],
+      "rows": [
+        [
+          "SP-001",
+          "SoundPulse",
+          "SP-Pro 主动降噪真无线蓝牙耳机",
+          "电子产品 > 耳机",
+          "蓝牙5.3; 续航40小时; 13mm动圈; IPX5防水; USB-C快充; 支持LDAC; 重量58g",
+          "混合主动降噪深度达35dB; 13mm大动圈+LDAC还原Hi-Res音质; 单次充电续航40小时; IPX5防水运动无忧; 6麦通话降噪; 10分钟快充听3小时",
+          "降噪耳机, 蓝牙耳机, 无线耳机, 运动耳机, 长续航耳机",
+          "耳机x1, 充电仓x1, USB-C线x1, 硅胶耳塞(S/M/L)x3, 说明书x1",
+          "color:黑色 | connectivity:蓝牙5.3 | driver_size:13mm",
+          "黑色外观，哑光质感"
+        ]
+      ]
+    }
+  ]
+}

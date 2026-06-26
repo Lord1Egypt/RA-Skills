@@ -1,0 +1,16 @@
+{
+  "channel": null,
+  "thresholds": {
+    "transits_recovery": 10,
+    "transits_percent": 0.20,
+    "throughput_percent": 0.20,
+    "non_iranian_vessels": 10
+  },
+  "data_file": "~/.openclaw/workspace/memory/hormuz-transit-data.csv",
+  "description": {
+    "transits_recovery": "Alert when Transits (24h) >= 10 vessels",
+    "transits_percent": "Alert when Transits >= 20% of day normal",
+    "throughput_percent": "Alert when Daily Throughput >= 20% of average",
+    "non_iranian_vessels": "Alert when Non-Iranian vessels exiting >= 10 in 12h"
+  }
+}

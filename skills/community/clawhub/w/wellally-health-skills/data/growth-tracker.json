@@ -1,0 +1,95 @@
+{
+  "created_at": null,
+  "last_updated": null,
+
+  "child_profile": {
+    "child_id": null,
+    "name": null,
+    "birth_date": null,
+    "gender": null,
+    "gestational_age": null,
+    "birth_weight": null,
+    "birth_length": null,
+    "birth_head_circumference": null
+  },
+
+  "growth_tracking": {
+    "measurements": [],
+
+    "growth_assessment": {
+      "overall": null,
+      "height_status": null,
+      "weight_status": null,
+      "bmi_status": null,
+      "growth_velocity": null,
+      "proportionality": null
+    },
+
+    "alerts": []
+  },
+
+  "puberty_tracking": {
+    "female_development": {
+      "breast_stage": null,
+      "breast_development": {
+        "stage": null,
+        "onset_age": null,
+        "comments": ""
+      },
+      "pubic_hair_stage": null,
+      "pubic_hair_development": {
+        "stage": null,
+        "onset_age": null,
+        "comments": ""
+      },
+      "menarche": {
+        "occurred": null,
+        "age_at_menarche": null,
+        "cycle_regularity": null
+      }
+    },
+
+    "male_development": {
+      "testicular_volume": {
+        "left": null,
+        "right": null,
+        "unit": "ml",
+        "stage": null
+      },
+      "penis_development": {
+        "length": null,
+        "stage": null
+      },
+      "pubic_hair_stage": null,
+      "voice_break": null,
+      "facial_hair": null
+    },
+
+    "bone_age": {
+      "chronological_age": null,
+      "bone_age": null,
+      "difference": null,
+      "interpretation": null
+    },
+
+    "growth_velocity": {
+      "height_velocity": null,
+      "peak_height_velocity": null
+    },
+
+    "assessment": null,
+    "alerts": []
+  },
+
+  "statistics": {
+    "total_measurements": 0,
+    "tracking_duration_months": 0,
+    "last_measurement_date": null,
+    "growth_velocity_status": null
+  },
+
+  "settings": {
+    "who_standards": true,
+    "reminder_frequency": "monthly"
+  }
+}

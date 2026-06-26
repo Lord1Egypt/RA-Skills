@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旅行计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html { scroll-behavior: smooth; }
+      .paper-grid {
+        background-image:
+          linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+      .modal-open { overflow: hidden; }
+    </style>
+  </head>
+  <body class="bg-paper text-ink antialiased paper-grid">
+
+    <!-- ═══ HERO ═══ -->
+    <header class="relative overflow-hidden border-b border-stone-200 bg-gradient-to-br from-orange-50 via-white to-sky-50">
+      <div id="hero-bg" class="absolute inset-0 opacity-15 bg-cover bg-center"></div>
+      <div class="absolute inset-0 bg-white/70"></div>
+      <div class="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-20">
+        <div class="grid gap-10 lg:grid-cols-[1.35fr_0.85fr] lg:items-end">
+          <div>
+            <div id="hero-tags" class="mb-5 flex flex-wrap gap-3"></div>
+            <h1 id="hero-title" class="max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"></h1>
+            <p id="hero-subtitle" class="mt-5 max-w-3xl text-lg text-slate-600 sm:text-xl"></p>
+            <div class="mt-6 flex flex-wrap gap-4 text-sm text-slate-600">
+              <span id="hero-date" class="rounded-full border border-orange-200 bg-white px-4 py-2 shadow-soft"></span>
+              <span class="rounded-full border border-sky-200 bg-white px-4 py-2 shadow-soft">travel-page-framework</span>
+            </div>
+          </div>
+          <div class="rounded-[28px] border border-white bg-white/90 p-6 shadow-card backdrop-blur">
+            <div class="text-sm uppercase tracking-[0.2em] text-tealsoft">行程摘要</div>
+            <p id="hero-summary" class="mt-4 text-sm leading-7 text-slate-600"></p>
+            <div id="hero-quick" class="mt-6 grid grid-cols-2 gap-3 text-sm"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ NAV ═══ -->
+    <div class="sticky top-0 z-30 border-b border-stone-200 bg-white/90 backdrop-blur">
+      <nav class="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-6 py-3 lg:px-8">
+        <a href="#overview" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">总览</a>
+        <a href="#hotels" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">酒店</a>
+        <a href="#metro" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">地铁</a>
+        <a href="#days" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">每日行程</a>
+        <a href="#side-trips" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">周边侧游</a>
+        <a href="#attractions" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">景点</a>
+      </nav>
+    </div>
+
+    <!-- ═══ MAIN ═══ -->
+    <main class="mx-auto max-w-7xl space-y-16 px-6 py-10 lg:px-8 lg:py-14">
+
+      <!-- Overview -->
+      <section id="overview">
+        <div class="mb-6">
+          <p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Overview</p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900">整体概览</h2>
+        </div>
+        <div id="stats-grid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-6"></div>
+      </section>
+
+      <!-- Hotels + Metro -->
+      <section id="hotels" class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <div class="mb-6">
+            <p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Hotels</p>
+            <h2 class="mt-2 text-2xl font-bold text-slate-900">酒店安排</h2>
+          </div>
+          <div id="hotel-grid" class="grid gap-5 xl:grid-cols-2"></div>
+        </div>
+        <div id="metro">
+          <div class="mb-6">
+            <p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Metro Coverage</p>
+            <h2 class="mt-2 text-2xl font-bold text-slate-900">地铁覆盖目标</h2>
+          </div>
+          <div class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-card">
+            <p id="metro-goal" class="text-sm leading-7 text-slate-600"></p>
+            <div id="metro-lines" class="mt-6 flex flex-wrap gap-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Days -->
+      <section id="days">
+        <div class="mb-6">
+          <p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Timeline</p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900">每日行程</h2>
+          <p class="mt-3 text-sm text-slate-500">点击卡片可查看当日景点详情。</p>
+        </div>
+        <div id="day-list" class="grid gap-5 lg:grid-cols-2"></div>
+      </section>
+
+      <!-- Side Trips + Tips -->
+      <section id="side-trips" class="grid gap-8 lg:grid-cols-2">
+        <div>
+          <div class="mb-6">
+            <p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Side Trips</p>
+            <h2 class="mt-2 text-2xl font-bold text-slate-900">周边城市侧游</h2>
+          </div>
+          <div id="side-trips-list" class="grid gap-5"></div>
+        </div>
+        <div>
+          <div class="mb-6">
+            <p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Tips</p>
+            <h2 class="mt-2 text-2xl font-bold text-slate-900">实用提醒</h2>
+          </div>
+          <div id="tips-panel" class="space-y-4"></div>
+        </div>
+      </section>
+
+      <!-- Attractions -->
+      <section id="attractions">
+        <div class="mb-6">
+          <p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Attractions</p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900">景点灵感</h2>
+        </div>
+        <div id="attraction-grid" class="grid gap-5 md:grid-cols-2 xl:grid-cols-3"></div>
+      </section>
+    </main>
+
+    <!-- ═══ DAY MODAL ═══ -->
+    <div id="day-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/45 p-4">
+      <div class="relative max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-[32px] bg-white shadow-2xl">
+        <button id="modal-close" class="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-3 py-2 text-sm text-slate-700 shadow-soft">关闭</button>
+        <div class="grid max-h-[90vh] overflow-y-auto lg:grid-cols-[0.95fr_1.05fr]">
+          <div id="modal-gallery" class="grid gap-3 bg-stone-100 p-4"></div>
+          <div class="p-6 lg:p-8">
+            <div id="modal-meta" class="text-sm uppercase tracking-[0.2em] text-tealsoft"></div>
+            <h3 id="modal-title" class="mt-3 text-3xl font-black text-slate-900"></h3>
+            <p id="modal-note" class="mt-4 rounded-2xl bg-orange-50 px-4 py-3 text-sm leading-7 text-slate-600"></p>
+            <div class="mt-6 grid gap-4 md:grid-cols-3">
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="text-sm font-semibold text-slate-900">上午</div>
+                <ul id="modal-morning" class="mt-3 space-y-2 text-sm text-slate-600"></ul>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="text-sm font-semibold text-slate-900">下午</div>
+                <ul id="modal-afternoon" class="mt-3 space-y-2 text-sm text-slate-600"></ul>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="text-sm font-semibold text-slate-900">晚上</div>
+                <ul id="modal-evening" class="mt-3 space-y-2 text-sm text-slate-600"></ul>
+              </div>
+            </div>
+            <div class="mt-8">
+              <h4 class="text-lg font-bold text-slate-900">当日景点</h4>
+              <div id="modal-attractions" class="mt-4 space-y-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="border-t border-stone-200 bg-white py-8">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-6 text-sm text-slate-500 lg:px-8">
+        <div>Powered by travel-page-framework</div>
+      </div>
+    </footer>
+
+    <!-- ═══ SCRIPTS ═══ -->
+    
+    <script src="./trip-renderer.js"></script>
+    <script>
+      TripRenderer.init({
+        dataUrl: './data/trip-data.json',
+        theme: 'light'
+      });
+    </script>
+  
+<script>
+/**
+ * Light theme for travel-page-framework.
+ * Provides Tailwind config colors + component class mappings.
+ */
+window.TripThemes = window.TripThemes || {};
+window.TripThemes.light = {
+  name: 'light',
+  tailwind: {
+    paper: '#f8f6f1',
+    ink: '#2b2b2b',
+    sand: '#efe7d8',
+    skysoft: '#dbeafe',
+    mintsoft: '#dcfce7',
+    peachsoft: '#ffedd5',
+    goldsoft: '#fef3c7',
+    coral: '#f97316',
+    tealsoft: '#0f766e'
+  },
+  shadows: {
+    card: '0 10px 30px rgba(15, 23, 42, 0.08)',
+    soft: '0 8px 20px rgba(15, 23, 42, 0.06)'
+  },
+  css: {
+    body: 'bg-paper text-ink antialiased',
+    header: 'border-b border-stone-200 bg-gradient-to-br from-orange-50 via-white to-sky-50',
+    nav: 'border-b border-stone-200 bg-white/90 backdrop-blur',
+    navLink: 'rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft',
+    sectionLabel: 'text-sm uppercase tracking-[0.2em] text-tealsoft',
+    sectionTitle: 'mt-2 text-2xl font-bold text-slate-900',
+    card: 'rounded-[28px] border border-stone-200 bg-white shadow-card',
+    statCard: 'rounded-2xl border border-stone-200 bg-white p-5 shadow-soft',
+    tipCard: 'rounded-2xl border border-amber-200 bg-goldsoft p-4 text-sm leading-7 text-slate-700',
+    noteCard: 'rounded-2xl bg-orange-50 px-4 py-3 text-sm leading-7 text-slate-600',
+    tag: 'rounded-full bg-sky-50 px-3 py-1 text-xs text-sky-700',
+    heroTag: 'rounded-full border border-white bg-white px-4 py-2 text-sm text-slate-700 shadow-soft',
+    footer: 'border-t border-stone-200 bg-white py-8'
+  },
+  badge: {
+    '已预订': 'bg-mintsoft text-emerald-700 border-emerald-200',
+    '推荐': 'bg-skysoft text-sky-700 border-sky-200',
+    _default: 'bg-peachsoft text-orange-700 border-orange-200'
+  },
+  metro: {
+    _default: 'bg-stone-50 text-stone-700 border-stone-200'
+    // Line-specific colors are auto-generated from a palette
+  },
+  metroPalette: [
+    { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+    { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
+    { bg: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-200' },
+    { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+    { bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' },
+    { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
+    { bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
+    { bg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-200' },
+    { bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200' },
+    { bg: 'bg-lime-50', text: 'text-lime-700', border: 'border-lime-200' }
+  ]
+};
+
+</script>
+<script>
+/**
+ * trip-renderer.js - Universal renderer for travel-page-framework.
+ *
+ * Usage:
+ *   <script src="path/to/trip-renderer.js"></script>
+ *   <script>
+ *     TripRenderer.init({ dataUrl: './data/trip-data.json', theme: 'light' });
+ *   </script>
+ *
+ * Reads trip-data.json and populates all DOM sections defined in the HTML skeleton.
+ * Theme colors come from TripThemes[themeName] (loaded via themes/light.js etc).
+ */
+;(function (global) {
+  'use strict';
+
+  /* ── helpers ─────────────────────────────────────────── */
+
+  let _theme = null;
+  let _metroColorMap = {};
+
+  function theme() {
+    return _theme || (global.TripThemes && global.TripThemes.light) || {};
+  }
+
+  function badgeClass(status) {
+    const t = theme();
+    if (t.badge && t.badge[status]) return t.badge[status];
+    return (t.badge && t.badge._default) || '';
+  }
+
+  /** Build metro color map on first use from metroCoverage data. */
+  function buildMetroColors(lines) {
+    const palette = (theme().metroPalette) || [];
+    lines.forEach(function (line, i) {
+      if (!_metroColorMap[line.name] && palette[i % palette.length]) {
+        var p = palette[i % palette.length];
+        _metroColorMap[line.name] = p.bg + ' ' + p.text + ' ' + p.border;
+      }
+    });
+  }
+
+  function metroClass(line) {
+    return _metroColorMap[line] || (theme().metro && theme().metro._default) || '';
+  }
+
+  function listItems(items) {
+    return items.map(function (item) {
+      return '<li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 rounded-full bg-orange-400"></span><span>' + esc(item) + '</span></li>';
+    }).join('');
+  }
+
+  function esc(s) {
+    if (typeof s !== 'string') return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── modal ──────────────────────────────────────────── */
+
+  function openDayModal(day) {
+    var modal = document.getElementById('day-modal');
+    if (!modal) return;
+    document.body.classList.add('modal-open');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    setText('modal-meta', day.day + ' · ' + day.date + ' · ' + day.city);
+    setText('modal-title', day.theme);
+    setText('modal-note', '备注：' + day.note);
+    setHTML('modal-morning', listItems(day.segments.morning));
+    setHTML('modal-afternoon', listItems(day.segments.afternoon));
+    setHTML('modal-evening', listItems(day.segments.evening && day.segments.evening.length ? day.segments.evening : ['自由安排 / 休整']));
+
+    var attractions = day.attractions || [];
+    setHTML('modal-gallery', attractions.length
+      ? attractions.map(function (a) {
+          return '<img src="' + esc(a.image) + '" alt="' + esc(a.name) + '" class="h-48 w-full rounded-2xl object-cover lg:h-[220px]" />';
+        }).join('')
+      : '<div class="rounded-2xl bg-white p-6 text-sm text-slate-500">暂无景点图。</div>');
+
+    setHTML('modal-attractions', attractions.length
+      ? attractions.map(function (a) {
+          return '<article class="rounded-2xl border border-stone-200 bg-white p-4 shadow-soft">' +
+            '<div class="text-lg font-bold text-slate-900">' + esc(a.name) + '</div>' +
+            '<p class="mt-2 text-sm leading-7 text-slate-600">' + esc(a.description) + '</p>' +
+            (a.reason ? '<div class="mt-3 rounded-xl bg-sky-50 px-3 py-2 text-sm text-slate-600">安排理由：' + esc(a.reason) + '</div>' : '') +
+            '</article>';
+        }).join('')
+      : '<div class="rounded-2xl bg-slate-50 p-4 text-sm text-slate-500">这一天没有单独展开的景点说明。</div>');
+  }
+
+  function closeDayModal() {
+    var modal = document.getElementById('day-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.classList.remove('modal-open');
+  }
+
+  function bindModalEvents() {
+    var close = document.getElementById('modal-close');
+    var modal = document.getElementById('day-modal');
+    if (close) close.addEventListener('click', closeDayModal);
+    if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeDayModal(); });
+  }
+
+  /* ── tiny DOM helpers ───────────────────────────────── */
+
+  function setText(id, val) { var el = document.getElementById(id); if (el) el.textContent = val || ''; }
+  function setHTML(id, val) { var el = document.getElementById(id); if (el) el.innerHTML = val || ''; }
+
+  /* ── main render ────────────────────────────────────── */
+
+  function render(data) {
+    // Build metro palette from data
+    if (data.metroCoverage && data.metroCoverage.lines) {
+      buildMetroColors(data.metroCoverage.lines);
+    }
+
+    // Title
+    document.title = data.meta.title;
+
+    // Hero
+    setText('hero-title', data.hero.title);
+    setText('hero-subtitle', data.hero.subtitle);
+    setText('hero-date', data.hero.dateRange);
+    setText('hero-summary', data.hero.summary);
+    var heroBg = document.getElementById('hero-bg');
+    if (heroBg && data.hero.heroImage) {
+      heroBg.style.backgroundImage = "url('" + data.hero.heroImage + "')";
+    }
+
+    setHTML('hero-tags', (data.hero.tags || []).map(function (tag) {
+      return '<span class="' + (theme().css && theme().css.heroTag || '') + '">' + esc(tag) + '</span>';
+    }).join(''));
+
+    setHTML('hero-quick', data.stats.slice(0, 4).map(function (s) {
+      return '<div class="rounded-2xl border border-stone-200 bg-stone-50 p-4">' +
+        '<div class="text-xs uppercase tracking-[0.2em] text-slate-400">' + esc(s.label) + '</div>' +
+        '<div class="mt-2 text-sm font-semibold text-slate-900">' + esc(s.value) + '</div></div>';
+    }).join(''));
+
+    // Stats
+    setHTML('stats-grid', data.stats.map(function (s) {
+      return '<div class="' + (theme().css && theme().css.statCard || '') + '">' +
+        '<div class="text-xs uppercase tracking-[0.2em] text-slate-400">' + esc(s.label) + '</div>' +
+        '<div class="mt-3 text-lg font-bold text-slate-900">' + esc(s.value) + '</div></div>';
+    }).join(''));
+
+    // Hotels
+    setHTML('hotel-grid', data.hotels.map(function (h) {
+      return '<article class="overflow-hidden ' + (theme().css && theme().css.card || '') + '">' +
+        '<img src="' + esc(h.image) + '" alt="' + esc(h.name) + '" class="h-52 w-full object-cover" />' +
+        '<div class="p-5"><div class="flex items-start justify-between gap-3"><div>' +
+        '<div class="text-xs uppercase tracking-[0.2em] text-slate-400">' + esc(h.phase) + '</div>' +
+        '<h3 class="mt-2 text-lg font-bold text-slate-900">' + esc(h.name) + '</h3></div>' +
+        '<span class="rounded-full border px-3 py-1 text-xs ' + badgeClass(h.status) + '">' + esc(h.status) + '</span></div>' +
+        '<div class="mt-4 grid gap-2 text-sm text-slate-600">' +
+        '<div>日期：' + esc(h.dateRange) + '</div><div>区域：' + esc(h.station) + '</div>' +
+        '<div>价格：' + esc(h.price) + '</div><div>地铁：' + esc(h.distanceToMetro) + '</div></div>' +
+        '<ul class="mt-4 space-y-2 text-sm text-slate-700">' + listItems(h.highlights) + '</ul></div></article>';
+    }).join(''));
+
+    // Metro
+    setText('metro-goal', data.metroCoverage.goal);
+    setHTML('metro-lines', data.metroCoverage.lines.map(function (l) {
+      return '<div class="rounded-2xl border px-4 py-3 ' + metroClass(l.name) + '">' +
+        '<div class="font-semibold">' + esc(l.name) + '</div>' +
+        '<div class="mt-1 text-xs opacity-80">' + esc(l.day) + '</div></div>';
+    }).join(''));
+
+    // Days
+    setHTML('day-list', data.days.map(function (day, idx) {
+      var metroTags = day.metroLines.length
+        ? day.metroLines.map(function (l) { return '<span class="rounded-full border px-3 py-1 text-xs ' + metroClass(l) + '">' + esc(l) + '</span>'; }).join('')
+        : '<span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs text-stone-500">当日无主补线任务</span>';
+      var attrTags = (day.attractions || []).map(function (a) {
+        return '<span class="' + (theme().css && theme().css.tag || '') + '">' + esc(a.name) + '</span>';
+      }).join('');
+
+      return '<article data-day-index="' + idx + '" class="day-card cursor-pointer ' + (theme().css && theme().css.card || '') + ' p-6 transition hover:-translate-y-1">' +
+        '<div class="flex items-start justify-between gap-4"><div>' +
+        '<div class="' + (theme().css && theme().css.sectionLabel || '') + '">' + esc(day.day) + ' · ' + esc(day.date) + '</div>' +
+        '<h3 class="mt-2 text-2xl font-bold text-slate-900">' + esc(day.theme) + '</h3>' +
+        '<div class="mt-3 text-sm text-slate-500">城市：' + esc(day.city) + ' · 酒店：' + esc(day.hotel || '无') + '</div></div>' +
+        '<div class="rounded-full bg-orange-50 px-4 py-2 text-sm text-orange-700">查看详情</div></div>' +
+        '<div class="mt-5 flex flex-wrap gap-2">' + metroTags + '</div>' +
+        '<div class="mt-5 grid gap-4 md:grid-cols-3">' +
+        '<div class="rounded-2xl bg-stone-50 p-4"><div class="text-sm font-semibold text-slate-900">上午</div><ul class="mt-3 space-y-2 text-sm text-slate-600">' + listItems(day.segments.morning) + '</ul></div>' +
+        '<div class="rounded-2xl bg-stone-50 p-4"><div class="text-sm font-semibold text-slate-900">下午</div><ul class="mt-3 space-y-2 text-sm text-slate-600">' + listItems(day.segments.afternoon) + '</ul></div>' +
+        '<div class="rounded-2xl bg-stone-50 p-4"><div class="text-sm font-semibold text-slate-900">晚上</div><ul class="mt-3 space-y-2 text-sm text-slate-600">' + listItems(day.segments.evening && day.segments.evening.length ? day.segments.evening : ['自由安排 / 休整']) + '</ul></div></div>' +
+        (attrTags ? '<div class="mt-5 flex flex-wrap gap-2">' + attrTags + '</div>' : '') +
+        '</article>';
+    }).join(''));
+
+    // Bind day card clicks
+    document.querySelectorAll('.day-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        openDayModal(data.days[Number(card.dataset.dayIndex)]);
+      });
+    });
+
+    // Side trips
+    setHTML('side-trips-list', data.sideTrips.map(function (s) {
+      return '<article class="overflow-hidden ' + (theme().css && theme().css.card || '') + '">' +
+        '<img src="' + esc(s.image) + '" alt="' + esc(s.name) + '" class="h-48 w-full object-cover" />' +
+        '<div class="p-5"><div class="text-xs uppercase tracking-[0.2em] text-slate-400">' + esc(s.date) + '</div>' +
+        '<h3 class="mt-2 text-xl font-bold text-slate-900">' + esc(s.name) + '</h3>' +
+        '<div class="mt-2 text-sm text-tealsoft">' + esc(s.role) + '</div>' +
+        '<p class="mt-3 text-sm leading-7 text-slate-600">' + esc(s.description) + '</p></div></article>';
+    }).join(''));
+
+    // Tips
+    setHTML('tips-panel', data.tips.map(function (tip) {
+      return '<div class="' + (theme().css && theme().css.tipCard || '') + '">' + esc(tip) + '</div>';
+    }).join(''));
+
+    // Attractions
+    setHTML('attraction-grid', data.attractions.map(function (a) {
+      return '<article class="overflow-hidden ' + (theme().css && theme().css.card || '') + '">' +
+        '<img src="' + esc(a.image) + '" alt="' + esc(a.name) + '" class="h-56 w-full object-cover" />' +
+        '<div class="p-5"><div class="text-xs uppercase tracking-[0.2em] text-slate-400">' + esc(a.city) + ' · ' + esc(a.type) + '</div>' +
+        '<h3 class="mt-2 text-xl font-bold text-slate-900">' + esc(a.name) + '</h3>' +
+        '<p class="mt-3 text-sm leading-7 text-slate-600">' + esc(a.description) + '</p>' +
+        '<div class="mt-4 flex flex-wrap gap-2">' +
+        a.bestFor.map(function (b) { return '<span class="' + (theme().css && theme().css.tag || '') + '">' + esc(b) + '</span>'; }).join('') +
+        '</div></div></article>';
+    }).join(''));
+  }
+
+  /* ── public API ─────────────────────────────────────── */
+
+  global.TripRenderer = {
+    /**
+     * @param {Object} opts
+     * @param {string} opts.dataUrl  - path to trip-data.json (default: './data/trip-data.json')
+     * @param {string} opts.theme    - theme name (default: 'light')
+     * @param {Object} opts.data     - pass data directly instead of fetching
+     */
+    init: function (opts) {
+      opts = opts || {};
+      var themeName = opts.theme || 'light';
+      _theme = (global.TripThemes && global.TripThemes[themeName]) || null;
+
+      // Apply tailwind config if theme provides it
+      if (_theme && _theme.tailwind && global.tailwind) {
+        global.tailwind.config = {
+          theme: {
+            extend: {
+              colors: _theme.tailwind,
+              boxShadow: _theme.shadows || {}
+            }
+          }
+        };
+      }
+
+      bindModalEvents();
+
+      if (opts.data) {
+        render(opts.data);
+      } else {
+        var url = opts.dataUrl || './data/trip-data.json';
+        fetch(url)
+          .then(function (r) { return r.json(); })
+          .then(render)
+          .catch(function (e) { console.error('[TripRenderer] Failed to load data:', e); });
+      }
+    },
+
+    /** Expose for external use */
+    render: render,
+    metroClass: metroClass,
+    badgeClass: badgeClass
+  };
+
+})(window);
+
+</script>
+<script>
+TripRenderer.init({ dataUrl: './trip-data.json', theme: 'light' });
+</script>
+
+</body>
+</html>

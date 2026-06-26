@@ -1,0 +1,35 @@
+{
+  "defaults": {
+    "file": "/home/node/.openclaw/.env",
+    "backupKeep": 20,
+    "backupTtlDays": 7,
+    "lockTimeoutMs": 5000,
+    "lockStaleMs": 300000,
+    "dedupe": "keep-last",
+    "requireStdin": true,
+    "allowArgv": false,
+    "auditLog": "/home/node/.openclaw/envsafe-audit.log",
+    "strict": false,
+    "keyNamePattern": "^[A-Z][A-Z0-9_]*$",
+    "commentPattern": ".*used-by:.*updated:.*",
+    "requireCommentForNew": true,
+    "requireCommentInLint": false,
+    "defaultProfile": "openclaw-core"
+  },
+  "protectedKeys": [
+    "OPENAI_API_KEY",
+    "GITHUB_TOKEN",
+    "GATEWAY_AUTH_TOKEN"
+  ],
+  "requiredProfiles": {
+    "openclaw-core": [
+      "OPENAI_API_KEY",
+      "OPENAI_BASE_URL",
+      "GATEWAY_AUTH_TOKEN"
+    ],
+    "acp-routing": [
+      "OPENAI_API_KEY",
+      "OPENAI_BASE_URL"
+    ]
+  }
+}

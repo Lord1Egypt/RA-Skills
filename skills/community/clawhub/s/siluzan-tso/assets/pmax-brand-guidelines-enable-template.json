@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "schema": "pmax-brand-guidelines-enable/v1",
+    "doc": "pmax-brand-guidelines-enable-template.md",
+    "note": "POST .../campaign/pmax/{campaignId}/brand-guidelines/enable；启用后不可关闭",
+    "agentPitfalls": [
+      "仅当 pmax-get 显示 _brandGuidelinesActive=false 时使用",
+      "autoPopulateBrandAssets=true 时可省略 businessName/Logo（Google 自动选）",
+      "Travel Goals PMax 不支持 BG",
+      "启用成功后改品牌走 ad pmax-brand-assets-edit"
+    ]
+  },
+  "account": "REPLACE_mediaCustomerId",
+  "campaignId": "REPLACE_campaignId",
+  "autoPopulateBrandAssets": false,
+  "businessName": "Example Brand Co",
+  "imagePaths": {
+    "logo": "./REPLACE_logo_1200x1200.png"
+  },
+  "brandGuidelines": {
+    "mainColor": "#112233",
+    "accentColor": "#445566"
+  }
+}

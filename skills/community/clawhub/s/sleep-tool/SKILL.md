@@ -1,35 +1,23 @@
 ---
-name: "Sleep Tool"
-description: "Delay execution for a specified amount of time. Use for timing in scripts, waiting between operations, and scheduling delays."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sleep-tool"
-sourceUrl: "https://clawhub.ai/skills/sleep-tool"
+name: sleep-tool
+description: Delay execution for a specified amount of time. Use for timing in scripts, waiting between operations, and scheduling delays.
 ---
+# Sleep - Execution Delay Utility
 
-# Sleep Tool
+Pause script execution for a specified duration. Supports seconds, minutes, hours, and days for flexible timing control in automation scripts.
 
-> Delay execution for a specified amount of time. Use for timing in scripts, waiting between operations, and scheduling delays.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sleep-tool`
-- **Source URL:** [https://clawhub.ai/skills/sleep-tool](https://clawhub.ai/skills/sleep-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/sleep-tool
+sleep-tool <duration>
+```
+
+Duration can be specified with suffixes: `s` (seconds), `m` (minutes), `h` (hours), `d` (days). Default is seconds if no suffix given.
+
+## Examples
+
+```bash
+sleep-tool 5
+sleep-tool 30s
+sleep-tool 2m
+sleep-tool 1h
 ```

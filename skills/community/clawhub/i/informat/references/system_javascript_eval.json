@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_javascript_eval",
+    "description": "Execute JavaScript code represented as a string. And return the result value after execution is complete.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "String representing JavaScript expressions, statements, or sequence of statements"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    }
+  }
+}

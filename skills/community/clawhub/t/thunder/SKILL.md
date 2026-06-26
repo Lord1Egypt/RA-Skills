@@ -1,35 +1,23 @@
 ---
-name: "Thunder"
+name: "迅雷"
+version: "1.0.0"
 description: "迅雷（重定向到 xunlei 技能）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/thunder"
-sourceUrl: "https://clawhub.ai/skills/thunder"
+tags: ["download", "redirect"]
+author: "ClawSkills Team"
+category: "tools"
+redirect_to: "xunlei"
 ---
 
-# Thunder
+# 迅雷 → xunlei
 
-> 迅雷（重定向到 xunlei 技能）
+此技能已合并到 `xunlei` 技能中。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/thunder`
-- **Source URL:** [https://clawhub.ai/skills/thunder](https://clawhub.ai/skills/thunder)
+请使用 `xunlei` 获取完整功能。
 
-## Overview
+## 为什么重定向？
 
+`thunder` 和 `xunlei` 指向同一个产品，为避免重复维护，统一使用 `xunlei` 作为主技能。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/thunder
-```
+---
+
+**最后更新**: 2026-03-16

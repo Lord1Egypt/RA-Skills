@@ -1,0 +1,11 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_website_query_list_designer",
+		"description": "Query all website resources and component designer basic information in the application",
+		"parameters": {  
+      		"type": "object",   
+      		"properties": {}  
+     	}
+	}
+}

@@ -1,35 +1,51 @@
 ---
-name: "Screen Support Review Planner"
-description: "Plan consent-based screen-support review steps for owned Android devices using only user-provided context, privacy boundaries, safe next steps, and stop cond..."
-category: "security"
-source: "ClawHub"
-tags: [android, privacy, review, support, agents, mesh, remote-control, remote-support]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meshmcp-remotescreen"
-sourceUrl: "https://clawhub.ai/skills/meshmcp-remotescreen"
+name: meshmcp-remotescreen
+description: Plan consent-based screen-support review steps for owned Android devices using only user-provided context, privacy boundaries, safe next steps, and stop conditions.
 ---
 
 # Screen Support Review Planner
 
-> Plan consent-based screen-support review steps for owned Android devices using only user-provided context, privacy boundaries, safe next steps, and stop cond...
+Use this skill to plan a consent-based screen-support session for an owned
+Android device. Keep the work to a written support checklist based on
+user-provided screenshots or descriptions.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meshmcp-remotescreen`
-- **Source URL:** [https://clawhub.ai/skills/meshmcp-remotescreen](https://clawhub.ai/skills/meshmcp-remotescreen)
+## Inputs
 
-## Overview
+Collect:
 
+- device owner,
+- support goal,
+- consent statement,
+- screenshot or description provided by the user,
+- support boundaries,
+- stop conditions.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meshmcp-remotescreen
-```
+Do not request credentials, device unlock codes, private notifications, payment
+details, or private contact data.
+
+## Workflow
+
+1. Confirm the device owner and consent boundary.
+2. Restate the support goal in plain language.
+3. Identify what can be answered from the user-provided screenshot or text.
+4. Produce a manual support checklist:
+   - what the human should inspect,
+   - what should be hidden before sharing,
+   - what action should be skipped if consent is unclear,
+   - when to stop and ask the owner.
+
+## Output
+
+Return:
+
+- support summary,
+- privacy checklist,
+- safe next steps for the human,
+- questions to resolve before continuing.
+
+## Guardrails
+
+- Keep device operation and observation outside this skill.
+- Do not ask for unlock codes or private account data.
+- Keep support supervised by the device owner.
+- Keep user-facing instructions limited to the support steps the owner should see.

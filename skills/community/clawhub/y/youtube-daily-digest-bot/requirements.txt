@@ -1,0 +1,8 @@
+google-genai
+python-telegram-bot
+youtube-transcript-api
+yt-dlp
+feedparser
+schedule
+requests
+pytz

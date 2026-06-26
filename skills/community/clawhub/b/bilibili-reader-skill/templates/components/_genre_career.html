@@ -1,0 +1,18 @@
+{# ── 职场话术专用 ── #}
+{% if scripts_templates %}
+<div class="section">
+    <h3 class="section-title">🗣️ 话术模板</h3>
+    <div class="content-block">
+        {% for item in scripts_templates %}
+        <div style="margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #00a1d6;">
+            {% if item.scenario %}
+            <strong>场景：{{ item.scenario }}</strong>
+            {% endif %}
+            {% if item.script %}
+            <div style="margin-top: 4px;">{{ item.script }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,61 @@
+{
+  "id": "sevo-pipeline",
+  "name": "SEVO Pipeline",
+  "version": "1.7.0",
+  "main": "index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "workspaceRoot": {
+        "type": "string",
+        "description": "OpenClaw workspace root. Used to resolve default logs/ and projects/sevo/."
+      },
+      "eventsPath": {
+        "type": "string",
+        "description": "Path to the plugin event log file. Relative paths resolve from workspaceRoot."
+      },
+      "sevoRoot": {
+        "type": "string",
+        "description": "SEVO project root. Relative paths resolve from workspaceRoot."
+      },
+      "sevoDistPath": {
+        "type": "string",
+        "description": "Compiled SEVO dist directory. Relative paths resolve from sevoRoot."
+      },
+      "sevoDataPath": {
+        "type": "string",
+        "description": "SEVO data directory. Relative paths resolve from sevoRoot."
+      },
+      "cacheTtlMs": {
+        "type": "number",
+        "description": "TTL for bridge availability/module cache and failure backoff."
+      },
+      "stageAgentMap": {
+        "type": "object",
+        "description": "Optional stage → { tier, agentId, timeout } overrides.",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "tier": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "agentId": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "timeout": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    },
+    "additionalProperties": true
+  }
+}

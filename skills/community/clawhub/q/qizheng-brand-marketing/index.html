@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>七政·品牌营销标准化套餐 | 中小企业品牌服务</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#F5F0E8;color:#2D5016;padding:0;margin:0}
+.hero{background:linear-gradient(135deg,#2D5016,#4a7c2a);color:#fff;padding:48px 24px;text-align:center}
+.hero h1{font-size:28px;margin-bottom:8px}
+.hero p{font-size:14px;opacity:.9;max-width:600px;margin:0 auto;line-height:1.7}
+.badge{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);padding:4px 16px;border-radius:20px;font-size:12px;margin-bottom:16px}
+.container{max-width:1000px;margin:0 auto;padding:32px 24px}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px}
+.tier{background:#fff;border-radius:16px;padding:24px;border:2px solid transparent;transition:all .25s;position:relative}
+.tier:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(45,80,22,.15)}
+.tier.featured{border-color:#c9a227;transform:scale(1.03)}
+.tier.featured:hover{transform:scale(1.03) translateY(-4px)}
+.popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#c9a227;color:#fff;font-size:11px;padding:3px 14px;border-radius:20px;font-weight:700;white-space:nowrap}
+.tname{font-size:16px;font-weight:700;margin-bottom:4px}
+.price{font-size:32px;font-weight:800;color:#2D5016;margin-bottom:4px}
+.price span{font-size:14px;font-weight:400;color:#888}
+.cycle{font-size:12px;color:#888;margin-bottom:16px}
+.desc{font-size:13px;color:#555;margin-bottom:16px;line-height:1.6;min-height:48px}
+.feat{list-style:none;margin:0 0 20px;padding:0}
+.feat li{font-size:13px;color:#444;padding:6px 0;border-bottom:1px solid #f0ebe0;display:flex;align-items:center;gap:8px}
+.feat li::before{content:'✓';color:#2D5016;font-weight:700;flex-shrink:0}
+.cta{display:block;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;border:none;cursor:pointer;width:100%}
+.cta1{background:#2D5016;color:#fff}
+.cta2{background:#c9a227;color:#fff}
+.cta3{border:2px solid #2D5016;color:#2D5016;background:none}
+.section{margin-bottom:40px}
+.st{font-size:20px;font-weight:700;color:#2D5016;margin-bottom:8px}
+.ss{font-size:13px;color:#666;margin-bottom:24px;line-height:1.6}
+.tw{overflow-x:auto;margin:16px 0}
+.tw table{width:100%;border-collapse:collapse;font-size:13px}
+.tw th{background:#2D5016;color:#fff;padding:10px 14px;text-align:left}
+.tw td{padding:8px 14px;border-bottom:1px solid #e0d8c8;background:#fff}
+.tw tr:last-child td{border-bottom:none}
+.tw td:first-child{font-weight:600;color:#2D5016}
+.ok{color:#00b050;font-weight:700}
+.no{color:#ccc}
+.ptag{background:#c9a227;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.tag{background:#fff;border:1px solid #e0d8c8;border-radius:8px;padding:10px 16px;font-size:12px}
+.tag .em{font-size:16px;margin-bottom:4px;display:block}
+.tag .na{font-weight:600;color:#2D5016}
+.tag .su{font-size:10px;color:#888;margin-top:4px}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.faq-item{background:#fff;border-radius:10px;padding:16px}
+.faq-item .q{font-weight:600;color:#2D5016;font-size:13px;margin-bottom:6px}
+.faq-item .a{font-size:12px;color:#666;line-height:1.7}
+.flow{background:#fff;border-radius:12px;padding:24px;display:flex;flex-wrap:wrap}
+.fs{flex:1;min-width:120px;text-align:center;position:relative;padding:0 8px}
+.fs::after{content:'→';position:absolute;right:-4px;top:50%;transform:translateY(-50%);color:#ccc;font-size:16px}
+.fs:last-child::after{display:none}
+.fs .nm{width:32px;height:32px;background:#2D5016;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin:0 auto 8px}
+.fs .lb{font-size:12px;font-weight:600;color:#2D5016;margin-bottom:2px}
+.fs .sb{font-size:10px;color:#888}
+.footer{text-align:center;padding:32px 24px;border-top:1px solid #e0d8c8;font-size:12px;color:#888}
+.footer strong{color:#c9a227}
+.footer a{color:#c9a227}
+@media(max-width:768px){
+.tier-grid{grid-template-columns:1fr}
+.tier.featured{transform:none}
+.tier.featured:hover{transform:translateY(-4px)}
+.compare-table{font-size:11px}
+.faq{grid-template-columns:1fr}
+.flow-step{flex:0 0 100%;padding:12px 0}
+.flow-step::after{display:none}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">★ 七政·玉衡出品</div>
+  <h1>品牌营销标准化套餐</h1>
+  <p>为中小企业打造的专业品牌营销服务<br>基于奥美/BBDO/盛世长城/扬罗必凯四大家方法论<br>集成OASIS推演系统，效果可量化，执行可落地</p>
+</div>
+
+<div class="container">
+  <!-- TIERS -->
+  <div class="section">
+    <div class="st">三档套餐，为不同阶段的企业设计</div>
+    <div class="ss">所有套餐均包含品牌诊断+核心叙事，区别在于执行深度和陪跑时长</div>
+    <div class="tier-grid">
+      <!-- TIER 1 -->
+      <div class="tier">
+        <div class="tname">基础版</div>
+        <div class="price">9,800<span>元</span></div>
+        <div class="cycle">3个工作日交付</div>
+        <div class="desc">帮企业搞清楚"我是谁，差异化在哪"，建立品牌基础</div>
+        <ul class="feat">
+          <li>SWOT品牌定位诊断</li>
+          <li>竞品格局扫描（3个核心竞品）</li>
+          <li>品牌故事（长版+短版）</li>
+          <li>Slogan体系（5层级）</li>
+          <li>产品线话术（≤3条）</li>
+          <li>品牌数字资产清单</li>
+          <li>交付：PDF+永久链接</li>
+        </ul>
+        <button class="cta cta3" onclick="notify('基础版9,800元，3天交付，欢迎咨询')">咨询购买</button>
+      </div>
+
+      <!-- TIER 2 -->
+      <div class="tier featured">
+        <div class="popular">主力推荐</div>
+        <div class="tname">成长版</div>
+        <div class="price">29,800<span>元</span></div>
+        <div class="cycle">7个工作日交付</div>
+        <div class="desc">从0到1把品牌打出来，14天地推执行落地</div>
+        <ul class="feat">
+          <li>基础版全部内容</li>
+          <li>OASIS推广推演验证</li>
+          <li>14天地推执行手册</li>
+          <li>KOC人设卡×10</li>
+          <li>社群运营话术库</li>
+          <li>促销节奏方案</li>
+          <li>品牌执行培训（1小时）</li>
+          <li>交付：4份网页版</li>
+        </ul>
+        <button class="cta cta2" onclick="notify('成长版29,800元，7天交付，立即开始规划')">立即开始 →</button>
+      </div>
+
+      <!-- TIER 3 -->
+      <div class="tier">
+        <div class="tname">至尊版</div>
+        <div class="price">69,800<span>元</span></div>
+        <div class="cycle">14个工作日+6个月顾问</div>
+        <div class="desc">完整品牌体系建立，全年陪跑，危机兜底</div>
+        <ul class="feat">
+          <li>成长版全部内容</li>
+          <li>全年品牌营销主计划</li>
+          <li>KOC人设卡×20</li>
+          <li>危机预案（5大场景）</li>
+          <li>OASIS推演（12次/年）</li>
+          <li>品牌顾问服务（6个月）</li>
+          <li>创始人IP打造（含脚本）</li>
+          <li>交付：6份+12次推演报告</li>
+        </ul>
+        <button class="cta cta1" onclick="notify('至尊版69,800元，含6个月顾问，请预约咨询')">预约顾问</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div class="section">
+    <div class="st">套餐对比表</div>
+    <div class="tw">
+      <table>
+        <tr><th>服务项目</th><th>基础版</th><th>成长版</th><th>至尊版</th></tr>
+        <tr><td>价格</td><td>9,800元</td><td>29,800元</td><td>69,800元</td></tr>
+        <tr><td>交付周期</td><td>3天</td><td>7天</td><td>14天+6个月</td></tr>
+        <tr><td>品牌定位诊断</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+        <tr><td>品牌叙事包</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+        <tr><td>14天地推手册</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+        <tr><td>OASIS推演</td><td class="no">—</td><td>1次</td><td>12次/年</td></tr>
+        <tr><td>KOC人设卡</td><td class="no">—</td><td>10类</td><td>20类</td></tr>
+        <tr><td>危机预案</td><td class="no">—</td><td class="no">—</td><td class="ok">5场景</td></tr>
+        <tr><td>全年营销计划</td><td class="no">—</td><td class="no">—</td><td class="ok">✓</td></tr>
+        <tr><td>品牌顾问</td><td class="no">—</td><td class="no">—</td><td>6个月</td></tr>
+        <tr><td>创始人IP</td><td class="no">—</td><td>可选附加</td><td class="ok">含脚本</td></tr>
+        <tr><td>交付物份数</td><td>2份</td><td>4份</td><td>6份+12次推演</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADD-ONS -->
+  <div class="section">
+    <div class="st">增值服务（单选或叠加）</div>
+    <div class="tw">
+      <table>
+        <tr><th>增值服务</th><th>内容</th><th>价格</th></tr>
+        <tr><td>KOC内容代发</td><td>10位真实用户种草内容（文字+配图）</td><td><span class="ptag">+6,800元</span></td></tr>
+        <tr><td>舆情危机紧急响应</td><td>危机发生后72小时全程陪跑</td><td><span class="ptag">+9,800元</span></td></tr>
+        <tr><td>创始人IP视频脚本</td><td>3条短视频脚本（含拍摄指导）</td><td><span class="ptag">+3,800元</span></td></tr>
+        <tr><td>追加推演场景</td><td>每增加1个场景</td><td><span class="ptag">+2,000元/场景</span></td></tr>
+        <tr><td>月度顾问续费</td><td>每月顾问服务（不含推演）</td><td><span class="ptag">+3,000元/月</span></td></tr>
+        <tr><td>追加产品线话术</td><td>每条产品线</td><td><span class="ptag">+1,500元/条</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- INDUSTRY TEMPLATES -->
+  <div class="section">
+    <div class="st">行业适配模板</div>
+    <div class="ss">不同行业的品牌策略不同，我们已有对应的方法论模板</div>
+    <div class="tags">
+      <div class="tag"><span class="em">🍎</span><span class="na">餐饮/食品</span><div class="su">主打：食品安全溯源故事</div></div>
+      <div class="tag"><span class="em">🏪</span><span class="na">零售/生鲜</span><div class="su">主打：社区信任感</div></div>
+      <div class="tag"><span class="em">📚</span><span class="na">教育/培训</span><div class="su">主打：效果可见，学员见证</div></div>
+      <div class="tag"><span class="em">💄</span><span class="na">美业/医美</span><div class="su">主打：专业+变美before/after</div></div>
+      <div class="tag"><span class="em">🏭</span><span class="na">制造业</span><div class="su">主打：技术实力+供应链透明</div></div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="q">Q：有没有做过我们行业的案例？</div>
+        <div class="a">A：成山农场是生鲜零售，其他行业需要做诊断，但方法论是通用的。餐饮、食品、教育、美业均有适配模板。</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Q：效果怎么保证？</div>
+        <div class="a">A：OASIS推演系统能量化预测效果，且提供执行手册，客户自己可以评估ROI。我们不承诺流量，只承诺交付质量。</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Q：能不能先看案例？</div>
+        <div class="a">A：可以。成山农场案例完整版：<a href="https://846o436d9esq.space.minimaxi.com" target="_blank" style="color:#c9a227">点击查看</a></div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Q：至尊版6个月后怎么办？</div>
+        <div class="a">A：可按月续费（3,000元/月），或升级为年度战略顾问。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXECUTION FLOW -->
+  <div class="section">
+    <div class="st">执行流程</div>
+    <div class="flow">
+      <div class="fs">
+        <div class="nm">1</div><div class="lb">需求诊断</div><div class="sb">30分钟线上沟通</div>
+      </div>
+      <div class="fs">
+        <div class="nm">2</div><div class="lb">推荐套餐</div><div class="sb">确认方案签合同</div>
+      </div>
+      <div class="fs">
+        <div class="nm">3</div><div class="lb">收集资料</div><div class="sb">Brand诊断+叙事</div>
+      </div>
+      <div class="fs">
+        <div class="nm">4</div><div class="lb">OASIS推演</div><div class="sb">效果预测验证</div>
+      </div>
+      <div class="fs">
+        <div class="nm">5</div><div class="lb">交付执行</div><div class="sb">网页链接可分享</div>
+      </div>
+      <div class="fs">
+        <div class="nm">6</div><div class="lb">结案/顾问</div><div class="sb">确认尾款/陪跑</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>七政·玉衡</strong> · 品牌营销标准化套餐 v1.0 · 2026-04-22<br>
+  方法论：奥美/BBDO/盛世长城/扬罗必凯四大家 · 推演系统：OASIS双模型<br>
+  案例参考：<a href="https://846o436d9esq.space.minimaxi.com" target="_blank">成山农场完整执行包</a>
+</div>
+
+<div id="notif" style="display:none;position:fixed;bottom:20px;right:20px;background:#fff;border:2px solid #2D5016;border-radius:10px;padding:12px 18px;font-size:13px;color:#2D5016;box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:200;font-weight:600"></div>
+
+<script>
+function notify(msg) {
+  var n = document.getElementById('notif');
+  n.textContent = '✓ ' + msg;
+  n.style.display = 'block';
+  setTimeout(function() { n.style.display = 'none'; }, 3500);
+}
+</script>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.inland-security-footer {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tooltip-container {
+  position: relative;
+}
+
+.trigger-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.minimax-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 300;
+  color: #adadad;
+  text-decoration: none;
+}
+
+.minimax-link:visited {
+  color: #adadad;
+}
+
+.minimax-link:hover {
+  color: #666666;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  padding-bottom: 16px; /* 8px 内容间距 + 8px 用于鼠标移动的透明区域 */
+  font-size: 12px;
+  line-height: 17px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: #171717;
+}
+
+/* 创建透明的连接区域，让鼠标可以平滑移动到 tooltip */
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+.tooltip-container:hover .tooltip-content {
+  display: flex;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.beian-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #171717;
+}
+
+.beian-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 2px;
+}
+
+.underline-text {
+  color: #171717;
+  text-decoration: underline;
+}
+
+.underline-text:hover {
+  color: #000000;
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .trigger-content {
+    background-color: transparent;
+  }
+
+  .minimax-link,
+  .minimax-link:visited {
+    color: #666666;
+  }
+
+  .minimax-link:hover {
+    color: #adadad;
+  }
+
+  .tooltip-content {
+    background-color: #262626;
+    color: #ededed;
+  }
+
+  .beian-link,
+  .underline-text {
+    color: #ededed;
+  }
+
+  .underline-text:hover {
+    color: #ffffff;
+  }
+}
+
+</style>
+<div class="inland-security-footer">
+  <div class="tooltip-container">
+    <div class="trigger-content">
+      <a href="https://www.minimaxi.com/" target="_blank" rel="noreferrer" class="minimax-link">
+        <span>© 2026 MiniMax</span>
+      </a>
+    </div>
+    <div class="tooltip-content">
+      <section class="info-section">
+        <span>上海稀宇科技有限公司</span>
+      </section>
+
+      <section class="info-section">
+        <a class="beian-link" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402010179" target="_blank" rel="noreferrer">
+          <img alt="hailuo-beian-icon" src="https://cdn.hailuoai.com/hailuo-video-web/public_assets/223037d3-79fd-4db0-a456-749f38a6a14b.png" class="beian-icon">
+          <span class="underline-text">沪公网安备31010402010179号</span>
+        </a>
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="underline-text">
+          沪ICP备2023003282号-38
+        </a>
+      </section>
+
+      <section class="info-section">
+        <span>模型名称：MiniMax</span>
+        <span>备案号：Shanghai-MiniMax-202505230046</span>
+      </section>
+
+      <section class="info-section">
+        <a href="https://agent.minimaxi.com/doc/zh/terms-of-service.html" target="_blank" rel="noreferrer" class="underline-text">
+          用户协议
+        </a>
+        <a href="https://agent.minimaxi.com/doc/zh/privacy-policy.html" target="_blank" rel="noreferrer" class="underline-text">
+          隐私政策
+        </a>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/**
+ * Iframe 元素高亮注入脚本
+ * 需要在目标网站中引入此脚本来支持跨域 iframe 高亮功能
+ *
+ * 使用方法：
+ * 1. 将此脚本添加到目标网站的 HTML 中
+ * 2. 或通过浏览器扩展、用户脚本等方式注入
+ */
+
+(function () {
+  "use strict";
+
+  // 检查是否在 iframe 中
+  if (window.self === window.top) {
+    return; // 不在 iframe 中，不执行
+  }
+
+  // 检查是否已经初始化过
+  if (window.__iframeHighlightInitialized) {
+    return;
+  }
+  window.__iframeHighlightInitialized = true;
+  console.log("Iframe 高亮脚本已加载");
+
+  // 创建高亮覆盖层
+  var overlay = document.createElement("div");
+  overlay.id = "iframe-highlight-overlay";
+  overlay.style.cssText = "\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    pointer-events: none;\n    z-index: 999999;\n    overflow: hidden;\n  ";
+
+  // 创建悬停高亮框（虚线边框）
+  var highlightBox = document.createElement("div");
+  highlightBox.id = "iframe-highlight-box";
+  highlightBox.style.cssText = "\n    position: absolute;\n    border: 2px dashed #007AFF;\n    background: rgba(0, 122, 255, 0.08);\n    pointer-events: none;\n    display: none;\n    transition: all 0.1s ease;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);\n    border-radius: 2px;\n  ";
+
+  // 创建选中节点的常驻高亮框（实线边框）
+  var selectedBox = document.createElement("div");
+  selectedBox.id = "iframe-selected-box";
+  selectedBox.style.cssText = "\n    position: absolute;\n    border: 2px solid #007AFF;\n    pointer-events: none;\n    display: none;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 107, 53, 0.4);\n    border-radius: 2px;\n    z-index: 1000000;\n  ";
+
+  // 创建悬停标签显示
+  var tagLabel = document.createElement("div");
+  tagLabel.id = "iframe-tag-label";
+  tagLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 2px 6px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 2px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000001;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n    font-weight: 500;\n  ";
+
+  // 创建选中节点标签
+  var selectedLabel = document.createElement("div");
+  selectedLabel.id = "iframe-selected-label";
+  selectedLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 3px 8px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 3px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000002;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);\n    font-weight: 600;\n  ";
+  overlay.appendChild(highlightBox);
+  overlay.appendChild(selectedBox);
+  overlay.appendChild(tagLabel);
+  overlay.appendChild(selectedLabel);
+  document.body.appendChild(overlay);
+
+  // 存储当前选中的元素
+  var selectedElement = null;
+  var highlightEnabled = false;
+
+  // 更新选中元素的高亮显示
+  function updateSelectedHighlight(element) {
+    console.log("updateSelectedHighlight called with:", element);
+    if (!element) {
+      selectedBox.style.display = "none";
+      selectedLabel.style.display = "none";
+      selectedElement = null;
+      console.log("Cleared selected highlight");
+      return;
+    }
+    selectedElement = element;
+    var rect = element.getBoundingClientRect();
+    console.log("Selected element rect:", rect);
+
+    // 更新选中高亮框位置
+    selectedBox.style.display = "block";
+    selectedBox.style.left = "".concat(rect.left - 2, "px");
+    selectedBox.style.top = "".concat(rect.top - 2, "px");
+    selectedBox.style.width = "".concat(rect.width + 4, "px");
+    selectedBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新选中标签位置和内容
+    selectedLabel.style.display = "block";
+    selectedLabel.textContent = "\u2713 <".concat(element.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 28;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 5) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    var labelWidth = selectedLabel.offsetWidth || 100; // 预估宽度
+    if (labelLeft + labelWidth > window.innerWidth - 10) {
+      labelLeft = window.innerWidth - labelWidth - 10;
+    }
+    selectedLabel.style.left = "".concat(Math.max(5, labelLeft), "px");
+    selectedLabel.style.top = "".concat(labelTop, "px");
+    console.log("Selected highlight positioned at:", {
+      left: selectedBox.style.left,
+      top: selectedBox.style.top,
+      width: selectedBox.style.width,
+      height: selectedBox.style.height
+    });
+  }
+  function getElementSelector(element) {
+    if (!(element instanceof Element)) throw new Error('Argument must be a DOM element');
+    var segments = [];
+    var current = element;
+    while (current !== document.documentElement) {
+      var selector = '';
+      // 优先检查唯一ID
+      if (current.id && document.querySelectorAll("#".concat(current.id)).length === 1) {
+        segments.unshift("#".concat(current.id));
+        break; // ID唯一，无需继续向上
+      }
+
+      // 生成类名选择器（取第一个有效类名）
+      var classes = Array.from(current.classList).filter(function (c) {
+        return !c.startsWith('js-');
+      });
+      var className = classes.length > 0 ? ".".concat(classes[0]) : '';
+
+      // 生成位置索引（nth-child）
+      var tag = current.tagName.toLowerCase();
+      if (!className) {
+        var siblings = Array.from(current.parentNode.children);
+        var index = siblings.findIndex(function (el) {
+          return el === current;
+        }) + 1;
+        selector = "".concat(tag, ":nth-child(").concat(index, ")");
+      } else {
+        selector = className;
+      }
+      segments.unshift(selector);
+      current = current.parentElement;
+    }
+
+    // 处理根元素
+    if (current === document.documentElement) {
+      segments.unshift('html');
+    }
+    return segments.join(' > ');
+  }
+
+  // 获取元素文本内容
+  function getElementText(element) {
+    var _element$textContent;
+    if (element.tagName === "INPUT") {
+      return element.value || element.placeholder || "";
+    }
+    if (element.tagName === "TEXTAREA") {
+      return element.value || element.placeholder || "";
+    }
+    var text = ((_element$textContent = element.textContent) === null || _element$textContent === void 0 ? void 0 : _element$textContent.trim()) || "";
+    return text.length > 50 ? text.substring(0, 50) + "..." : text;
+  }
+
+  // 获取元素属性信息
+  function getElementAttributes(element) {
+    var attrs = {};
+    for (var i = 0; i < element.attributes.length; i++) {
+      var attr = element.attributes[i];
+      attrs[attr.name] = attr.value;
+    }
+    return attrs;
+  }
+
+  // 鼠标悬停事件处理
+  function handleMouseOver(e) {
+    if (!highlightEnabled) return;
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免高亮 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 如果是已选中的元素，不显示悬停高亮
+    if (target === selectedElement) {
+      highlightBox.style.display = "none";
+      tagLabel.style.display = "none";
+      return;
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+
+    // 更新悬停高亮框位置
+    highlightBox.style.display = "block";
+    highlightBox.style.left = "".concat(rect.left - 2, "px");
+    highlightBox.style.top = "".concat(rect.top - 2, "px");
+    highlightBox.style.width = "".concat(rect.width + 4, "px");
+    highlightBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新标签位置和内容
+    tagLabel.style.display = "block";
+    tagLabel.textContent = "<".concat(target.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 22;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 0) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    if (labelLeft + tagLabel.offsetWidth > window.innerWidth) {
+      labelLeft = window.innerWidth - tagLabel.offsetWidth - 5;
+    }
+    tagLabel.style.left = "".concat(Math.max(0, labelLeft), "px");
+    tagLabel.style.top = "".concat(labelTop, "px");
+
+    // 发送消息到父窗口
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 鼠标离开事件处理
+  function handleMouseOut(e) {
+    if (!highlightEnabled) return;
+    var relatedTarget = e.relatedTarget;
+
+    // 如果鼠标移动到高亮相关元素上，不隐藏高亮
+    if (relatedTarget && (relatedTarget === highlightBox || relatedTarget === tagLabel || relatedTarget === overlay || relatedTarget === selectedBox || relatedTarget === selectedLabel)) {
+      return;
+    }
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: null,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 点击事件处理
+  function handleClick(e) {
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免处理 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 检查是否是交互元素，这些元素需要保留默认行为
+    var isInteractiveElement = ['input', 'textarea', 'select', 'button', 'a'].includes(target.tagName.toLowerCase());
+
+    // 如果高亮功能启用，对于非交互元素阻止默认行为和事件传播
+    if (highlightEnabled) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+    console.log("Element clicked:", {
+      tagName: target.tagName,
+      selector: selector,
+      rect: rect
+    });
+
+    // 立即更新选中高亮
+    updateSelectedHighlight(target);
+
+    // 隐藏悬停高亮，因为现在是选中状态
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-click",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 监听来自父窗口的消息
+  function handleParentMessage(event) {
+    console.log("Received message from parent:", event.data);
+    if (event.data.type === "iframe-highlight-toggle") {
+      var enabled = event.data.enabled;
+      console.log("Highlight toggle:", enabled);
+      if (enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "enable-iframe-highlight") {
+      console.log("Enable iframe highlight");
+      enableHighlight();
+    } else if (event.data.type === "disable-iframe-highlight") {
+      console.log("Disable iframe highlight");
+      disableHighlight();
+    } else if (event.data.type === "toggle-iframe-highlight") {
+      var _enabled = event.data.enabled !== undefined ? event.data.enabled : !highlightEnabled;
+      console.log("Toggle iframe highlight to:", _enabled);
+      if (_enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "update-selected-element") {
+      var selector = event.data.selector;
+      console.log("Update selected element with selector:", selector);
+      if (selector) {
+        try {
+          var element = document.querySelector(selector);
+          console.log("Found element by selector:", element);
+          updateSelectedHighlight(element);
+        } catch (error) {
+          console.warn("Failed to select element:", error);
+          updateSelectedHighlight(null);
+        }
+      } else {
+        updateSelectedHighlight(null);
+      }
+    } else if (event.data.type === "clear-selected-element") {
+      console.log("Clear selected element");
+      updateSelectedHighlight(null);
+    }
+  }
+
+  // 启用高亮功能
+  function enableHighlight() {
+    console.log("Enabling highlight");
+    document.addEventListener("mouseover", handleMouseOver, true);
+    document.addEventListener("mouseout", handleMouseOut, true);
+    document.addEventListener("click", handleClick, true);
+    highlightEnabled = true;
+    overlay.style.display = "block";
+  }
+
+  // 禁用高亮功能
+  function disableHighlight() {
+    console.log("Disabling highlight");
+    highlightEnabled = false;
+    // 保持事件监听器，但通过 highlightEnabled 变量控制行为
+    // 这样可以保留选中状态的显示
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    // 不隐藏 selectedBox 和 selectedLabel，保留选中状态
+  }
+
+  // 完全禁用高亮功能（移除所有监听器）
+  function fullyDisableHighlight() {
+    console.log("Fully disabling highlight");
+    highlightEnabled = false;
+    document.removeEventListener("mouseover", handleMouseOver, true);
+    document.removeEventListener("mouseout", handleMouseOut, true);
+    document.removeEventListener("click", handleClick, true);
+    overlay.style.display = "none";
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    selectedBox.style.display = "none";
+    selectedLabel.style.display = "none";
+  }
+
+  // 添加事件监听
+  enableHighlight();
+  window.addEventListener("message", handleParentMessage);
+
+  // 暴露全局函数供外部调用
+  window.__iframeHighlightControl = {
+    enable: enableHighlight,
+    disable: disableHighlight,
+    fullyDisable: fullyDisableHighlight,
+    isEnabled: function isEnabled() {
+      return highlightEnabled;
+    },
+    getSelectedElement: function getSelectedElement() {
+      return selectedElement;
+    },
+    updateSelected: updateSelectedHighlight,
+    // 通过消息发送开关控制
+    sendToggleMessage: function sendToggleMessage(enabled) {
+      window.parent.postMessage({
+        type: 'iframe-highlight-status',
+        enabled: enabled || highlightEnabled,
+        source: 'iframe-highlight-injector'
+      }, '*');
+    }
+  };
+
+  // 通知父窗口脚本已加载
+  try {
+    window.parent.postMessage({
+      type: "iframe-highlight-ready",
+      data: {
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: Date.now()
+      },
+      source: "iframe-highlight-injector"
+    }, "*");
+  } catch (error) {
+    console.warn("无法发送就绪消息到父窗口:", error);
+  }
+
+  // 清理函数
+  window.__iframeHighlightCleanup = function () {
+    fullyDisableHighlight();
+    window.removeEventListener("message", handleParentMessage);
+    if (overlay.parentElement) {
+      overlay.parentElement.removeChild(overlay);
+    }
+    delete window.__iframeHighlightInitialized;
+    delete window.__iframeHighlightCleanup;
+  };
+})();
+
+</script>
+</body>
+</html>

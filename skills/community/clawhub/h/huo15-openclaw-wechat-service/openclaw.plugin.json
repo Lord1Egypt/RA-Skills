@@ -1,0 +1,634 @@
+{
+  "id": "wechat-service",
+  "channels": [
+    "wechat-service"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+      "channels": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "wechat-service": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "dynamicAgents": {
+                "type": "object",
+                "description": "动态 agent 派生（每个 openid 一个 agent，实现一粉一会话隔离）。与 @huo15/wecom 的 dynamicAgents 同构。v2.3.0 起默认 enabled=true。",
+                "additionalProperties": true,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "v2.3.0 起默认开启 —— 每位粉丝一个独立 agent / 会话 / 记忆"
+                  },
+                  "dmCreateAgent": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "私聊（即 1:1 客服消息场景）每个 openid 派生 agent"
+                  },
+                  "groupEnabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "公众号无群聊场景，保留是为了与 wecom schema 对齐"
+                  },
+                  "adminUsers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "管理员 openid 列表，绕过动态路由走 main agent + 在 permissionMode=admin-only 下可执行写操作。role-based 模式下自动映射为 superadmin 角色。"
+                  },
+                  "permissionMode": {
+                    "type": "string",
+                    "enum": [
+                      "open",
+                      "admin-only",
+                      "role-based"
+                    ],
+                    "default": "open",
+                    "description": "v2.1.0+：open=所有 agent 全权限；admin-only=写操作仅 main agent / adminUsers，读操作放行；role-based=按 roles/rolePermissions 细粒度控制"
+                  },
+                  "roles": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "description": "v2.2.0+：角色 → openid 列表映射。仅在 permissionMode=role-based 时生效。内置角色：superadmin/admin/editor/operator/customer。"
+                  },
+                  "rolePermissions": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "tools": {
+                          "type": "object",
+                          "additionalProperties": true,
+                          "description": "toolName → [\"action1\",\"action2\"] | \"*\""
+                        }
+                      }
+                    },
+                    "description": "v2.2.0+：角色 → tool/action 权限白名单。不配则使用内置默认权限。仅在 permissionMode=role-based 时生效。"
+                  },
+                  "defaultRole": {
+                    "type": "string",
+                    "default": "customer",
+                    "description": "v2.2.0+：未在 roles 中匹配到的 openid 的兜底角色。默认 customer。"
+                  },
+                  "defaultInstructionsPreset": {
+                    "type": "string",
+                    "default": "it-support",
+                    "description": "v2.3.0+：动态 agent 默认 system instructions preset。可选 'it-support'（默认，通用 OpenClaw IT 学习客服）/ 'huo15-customer'（v2.3.2+，火一五·逸寻智库公众号专属客服，含 6 产品 4 服务转化路径，配合 ~/.openclaw/kb/shared/wiki/huo15-*.md 共享 KB）/ 'none' / 'off'（不注入）。仅在 permissionMode != 'role-based' 时生效。"
+                  }
+                }
+              },
+              "autoReply": {
+                "type": "object",
+                "description": "v2.2.0+：自动回复配置（关键词匹配、业务时间、欢迎语模板）。",
+                "additionalProperties": true,
+                "properties": {
+                  "welcomeText": {
+                    "type": "string",
+                    "description": "关注后欢迎语模板，支持 {{nickname}} 变量。"
+                  },
+                  "keywords": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "关键词 → 回复文本映射。命中关键词时直接回复，不经过 agent（节省 token）。"
+                  },
+                  "businessHours": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "timezone": {
+                        "type": "string",
+                        "description": "时区，如 Asia/Shanghai"
+                      },
+                      "offHoursMessage": {
+                        "type": "string",
+                        "description": "非工作时间自动回复文本"
+                      },
+                      "schedule": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "days": {
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              },
+                              "description": "星期几（0=周日，1=周一...）"
+                            },
+                            "start": {
+                              "type": "string",
+                              "description": "开始时间，格式 HH:mm"
+                            },
+                            "end": {
+                              "type": "string",
+                              "description": "结束时间，格式 HH:mm"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "channelEnvVars": {
+    "wechat-service": [
+      "WECHAT_SERVICE_APP_ID",
+      "WECHAT_SERVICE_APP_SECRET",
+      "WECHAT_SERVICE_ENCODING_AES_KEY",
+      "WECHAT_SERVICE_ORIGINAL_ID"
+    ]
+  },
+  "channelConfigs": {
+    "wechat-service": {
+      "label": "微信服务号（公众号）",
+      "description": "接入微信服务号/公众号：消息收发、菜单管理、模板/订阅消息、客服消息、素材草稿与图文发布、二维码/标签/JS-SDK，支持多账号多 Agent 隔离与知识库双写。",
+      "schema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用微信服务号 channel"
+          },
+          "defaultAccount": {
+            "type": "string",
+            "description": "多账户场景下默认使用的 account key（accounts 下的某个 key）"
+          },
+          "accounts": {
+            "type": "object",
+            "description": "多账户配置（key=自定义账户名，value=AccountConfig）",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "name": {
+                  "type": "string"
+                },
+                "appId": {
+                  "type": "string",
+                  "description": "公众号 AppID"
+                },
+                "appSecret": {
+                  "type": "string",
+                  "description": "公众号 AppSecret"
+                },
+                "token": {
+                  "type": "string",
+                  "description": "服务器配置 Token"
+                },
+                "encodingAESKey": {
+                  "type": "string",
+                  "description": "消息加解密密钥"
+                },
+                "encryptMode": {
+                  "type": "string",
+                  "enum": [
+                    "plain",
+                    "compatible",
+                    "safe"
+                  ],
+                  "default": "safe",
+                  "description": "消息加密模式：plain=明文 / compatible=兼容 / safe=安全"
+                },
+                "originalId": {
+                  "type": "string",
+                  "description": "公众号原始 ID"
+                },
+                "welcomeText": {
+                  "type": "string",
+                  "description": "关注后自动回复文案"
+                },
+                "replyMode": {
+                  "type": "string",
+                  "enum": [
+                    "async",
+                    "passive"
+                  ],
+                  "default": "async",
+                  "description": "回复模式：async=客服消息异步回复 / passive=被动回复"
+                },
+                "replyPlaceholderText": {
+                  "type": "string",
+                  "description": "处理中占位文案"
+                },
+                "dm": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "policy": {
+                      "type": "string",
+                      "enum": [
+                        "open",
+                        "pairing",
+                        "allowlist",
+                        "disabled"
+                      ],
+                      "description": "私聊策略"
+                    },
+                    "allowFrom": {
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "string",
+                          "number"
+                        ]
+                      },
+                      "description": "allowlist 模式下的白名单 openid"
+                    }
+                  }
+                },
+                "routing": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "defaultAgent": {
+                      "type": "string",
+                      "description": "默认路由 agent"
+                    },
+                    "events": {
+                      "type": "object",
+                      "additionalProperties": true,
+                      "description": "按事件类型路由到不同 agent",
+                      "properties": {
+                        "subscribe": {
+                          "type": "string"
+                        },
+                        "unsubscribe": {
+                          "type": "string"
+                        },
+                        "scan": {
+                          "type": "string"
+                        },
+                        "click": {
+                          "type": "string"
+                        },
+                        "view": {
+                          "type": "string"
+                        },
+                        "location": {
+                          "type": "string"
+                        },
+                        "scancodePush": {
+                          "type": "string"
+                        },
+                        "scancodeWaitmsg": {
+                          "type": "string"
+                        },
+                        "picSysphoto": {
+                          "type": "string"
+                        },
+                        "picPhotoOrAlbum": {
+                          "type": "string"
+                        },
+                        "picWeixin": {
+                          "type": "string"
+                        },
+                        "locationSelect": {
+                          "type": "string"
+                        },
+                        "templateSendJobFinish": {
+                          "type": "string"
+                        },
+                        "massSendJobFinish": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "failClosedOnDefaultRoute": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  }
+                },
+                "network": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "egressProxyUrl": {
+                      "type": "string"
+                    },
+                    "timeoutMs": {
+                      "type": "number"
+                    },
+                    "mediaDownloadTimeoutMs": {
+                      "type": "number"
+                    },
+                    "apiBaseUrl": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "appId",
+                "appSecret",
+                "token"
+              ]
+            }
+          },
+          "media": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "tempDir": {
+                "type": "string"
+              },
+              "retentionHours": {
+                "type": "number"
+              },
+              "cleanupOnStart": {
+                "type": "boolean"
+              },
+              "maxBytes": {
+                "type": "number"
+              },
+              "downloadTimeoutMs": {
+                "type": "number"
+              },
+              "localRoots": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "network": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "egressProxyUrl": {
+                "type": "string"
+              },
+              "timeoutMs": {
+                "type": "number"
+              },
+              "mediaDownloadTimeoutMs": {
+                "type": "number"
+              },
+              "apiBaseUrl": {
+                "type": "string"
+              }
+            }
+          },
+          "routing": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "defaultAgent": {
+                "type": "string"
+              },
+              "events": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "subscribe": {
+                    "type": "string"
+                  },
+                  "unsubscribe": {
+                    "type": "string"
+                  },
+                  "scan": {
+                    "type": "string"
+                  },
+                  "click": {
+                    "type": "string"
+                  },
+                  "view": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "scancodePush": {
+                    "type": "string"
+                  },
+                  "scancodeWaitmsg": {
+                    "type": "string"
+                  },
+                  "picSysphoto": {
+                    "type": "string"
+                  },
+                  "picPhotoOrAlbum": {
+                    "type": "string"
+                  },
+                  "picWeixin": {
+                    "type": "string"
+                  },
+                  "locationSelect": {
+                    "type": "string"
+                  },
+                  "templateSendJobFinish": {
+                    "type": "string"
+                  },
+                  "massSendJobFinish": {
+                    "type": "string"
+                  }
+                }
+              },
+              "failClosedOnDefaultRoute": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          },
+          "knowledgeSync": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "localPath": {
+                "type": "string"
+              },
+              "odoo": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "db": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "articleParentId": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "dynamicAgents": {
+            "type": "object",
+            "description": "动态 agent 派生（每个 openid 一个 agent，实现一粉一会话隔离）。与 @huo15/wecom 的 dynamicAgents 同构。",
+            "additionalProperties": true,
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": false
+              },
+              "dmCreateAgent": {
+                "type": "boolean",
+                "default": true,
+                "description": "私聊（即 1:1 客服消息场景）每个 openid 派生 agent"
+              },
+              "groupEnabled": {
+                "type": "boolean",
+                "default": false,
+                "description": "公众号无群聊场景，保留是为了与 wecom schema 对齐"
+              },
+              "adminUsers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "管理员 openid 列表，绕过动态路由走 main agent + 在 permissionMode=admin-only 下可执行写操作。role-based 模式下自动映射为 superadmin 角色。"
+              },
+              "permissionMode": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "admin-only",
+                  "role-based"
+                ],
+                "default": "open",
+                "description": "v2.1.0+：open=所有 agent 全权限；admin-only=写操作仅 main agent / adminUsers，读操作放行；role-based=按 roles/rolePermissions 细粒度控制"
+              },
+              "roles": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "description": "v2.2.0+：角色 → openid 列表映射。仅在 permissionMode=role-based 时生效。内置角色：superadmin/admin/editor/operator/customer。"
+              },
+              "rolePermissions": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "tools": {
+                      "type": "object",
+                      "additionalProperties": true,
+                      "description": "toolName → [\"action1\",\"action2\"] | \"*\""
+                    }
+                  }
+                },
+                "description": "v2.2.0+：角色 → tool/action 权限白名单。不配则使用内置默认权限。仅在 permissionMode=role-based 时生效。"
+              },
+              "defaultRole": {
+                "type": "string",
+                "default": "customer",
+                "description": "v2.2.0+：未在 roles 中匹配到的 openid 的兜底角色。默认 customer。"
+              }
+            }
+          },
+          "autoReply": {
+            "type": "object",
+            "description": "v2.2.0+：自动回复配置（关键词匹配、业务时间、欢迎语模板）。",
+            "additionalProperties": true,
+            "properties": {
+              "welcomeText": {
+                "type": "string",
+                "description": "关注后欢迎语模板，支持 {{nickname}} 变量。"
+              },
+              "keywords": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "关键词 → 回复文本映射。命中关键词时直接回复，不经过 agent（节省 token）。"
+              },
+              "businessHours": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "timezone": {
+                    "type": "string",
+                    "description": "时区，如 Asia/Shanghai"
+                  },
+                  "offHoursMessage": {
+                    "type": "string",
+                    "description": "非工作时间自动回复文本"
+                  },
+                  "schedule": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "days": {
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          },
+                          "description": "星期几（0=周日，1=周一...）"
+                        },
+                        "start": {
+                          "type": "string",
+                          "description": "开始时间，格式 HH:mm"
+                        },
+                        "end": {
+                          "type": "string",
+                          "description": "结束时间，格式 HH:mm"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "contracts": {
+    "tools": [
+      "wechat_service_analytics",
+      "wechat_service_article",
+      "wechat_service_card",
+      "wechat_service_intelligent",
+      "wechat_service_jssdk",
+      "wechat_service_mass_send",
+      "wechat_service_material",
+      "wechat_service_menu",
+      "wechat_service_message",
+      "wechat_service_oauth",
+      "wechat_service_qrcode",
+      "wechat_service_user"
+    ]
+  }
+}

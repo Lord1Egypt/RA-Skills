@@ -1,0 +1,103 @@
+{
+  "name": "gov_doc_skill",
+  "description": "政府公文写作专家：代写政府工作报告、领导讲话稿、政策文件、实施方案、调研报告、述职报告等各类政府材料的完整文案",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "doc_type": {
+        "type": "string",
+        "enum": [
+          "政府工作报告",
+          "领导讲话稿/发言稿",
+          "政策文件/实施意见",
+          "实施方案/行动计划",
+          "通知/通报",
+          "请示/报告（上行文）",
+          "批复（下行文）",
+          "调研报告",
+          "述职报告",
+          "会议纪要",
+          "工作总结/计划",
+          "信息简报",
+          "督查通报/专报",
+          "致辞/贺信",
+          "其他"
+        ],
+        "description": "公文/材料类型，决定标准结构和行文风格"
+      },
+      "title": {
+        "type": "string",
+        "description": "材料标题（如：2025 年 XX 区政府工作报告 / 在 XX 会议上的讲话）"
+      },
+      "issuing_body": {
+        "type": "string",
+        "description": "发文机关/单位名称（如：XX 市人民政府、XX 局办公室）"
+      },
+      "government_level": {
+        "type": "string",
+        "enum": ["省级及以上", "地市级", "区县级", "乡镇/街道级", "不明确"],
+        "description": "发文机关层级，影响用词正式程度、政策站位高度",
+        "default": "不明确"
+      },
+      "audience": {
+        "type": "string",
+        "description": "阅文对象/受众（如：上级领导、同级部门、下级单位、社会公众、特定会议参会人员）"
+      },
+      "purpose": {
+        "type": "string",
+        "description": "写作目的/核心意图（如：汇报工作争取支持、部署下一阶段任务、回应上级关注、政策宣贯解读）"
+      },
+      "policy_references": {
+        "type": "string",
+        "description": "需引用的上级政策文件/法律法规/领导指示（如：党的二十届三中全会精神、'十四五'规划、国务院 XX 号文件）"
+      },
+      "background_materials": {
+        "type": "string",
+        "description": "背景素材：已有数据、工作进展、典型案例、问题清单等基础材料"
+      },
+      "key_message": {
+        "type": "string",
+        "description": "核心信息/中心思想（一句话概括想传达的最主要内容）"
+      },
+      "tone": {
+        "type": "string",
+        "enum": [
+          "庄重严肃",
+          "务实干练",
+          "鼓舞激励",
+          "严谨专业",
+          "亲和通俗",
+          "警示批评",
+          "其他"
+        ],
+        "description": "行文语气风格",
+        "default": "庄重严肃"
+      },
+      "word_count": {
+        "type": "integer",
+        "description": "建议总字数（如：讲话稿 3000 字、工作报告 5000 字）",
+        "minimum": 200,
+        "maximum": 30000
+      },
+      "confidentiality_level": {
+        "type": "string",
+        "enum": ["不涉密", "内部文件", "秘密", "机密", "绝密"],
+        "description": "密级标识",
+        "default": "不涉密"
+      },
+      "is_draft_for_review": {
+        "type": "boolean",
+        "description": "是否为征求意见稿/初稿（true 时在文末标注'征求意见稿 请勿正式引用'）",
+        "default": false
+      },
+      "special_requirements": {
+        "type": "string",
+        "description": "其他特殊要求（如：需突出某项工作、需回应某个敏感问题、需抄送特定部门等）"
+      }
+    },
+    "required": ["doc_type", "title"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

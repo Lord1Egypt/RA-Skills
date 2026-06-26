@@ -1,0 +1,55 @@
+You are extracting reflection memory from a finished or failed task.
+
+Summarize:
+- what the goal was
+- what worked
+- what failed
+- what the lesson is
+- what should change next time
+
+Output guidance:
+- Produce a short reflection that is reusable for similar tasks.
+- Keep it concrete enough to change future behavior.
+- Avoid one-off details that will not matter later.
+
+Case patterns:
+
+Case 1: Clean success
+- Focus: what made success repeatable
+- Include: stable patterns, key preconditions
+- Avoid: victory prose without operational value
+
+Case 2: Partial success with rework
+- Focus: what succeeded vs what caused rework
+- Include: explicit "next time" adjustments
+- Avoid: collapsing all outcomes into "worked"
+
+Case 3: Hard failure
+- Focus: root cause and early warning signs
+- Include: concrete prevention steps
+- Avoid: blame language without corrective action
+
+Case 4: Tooling failure
+- Focus: input validation, environment assumptions, retry strategy
+- Include: what to check before calling the tool next time
+- Avoid: generic "tool failed" statements
+
+Case 5: Preference mismatch
+- Focus: user expectation gap and response style correction
+- Include: updated preference rule that should persist
+- Avoid: treating preference mismatch as a pure technical bug
+
+Case 6: Contradictory prior memory
+- Focus: what old assumption was invalid and why
+- Include: recommendation to retire or replace stale memory
+- Avoid: keeping both old and new guidance active
+
+Case 7: Time-sensitive outcome
+- Focus: freshness window and revalidation trigger
+- Include: when this lesson may expire
+- Avoid: presenting time-bound facts as permanent
+
+Reflection quality checklist:
+- Reusable across similar tasks
+- Specific enough to execute
+- Includes at least one "next time" action

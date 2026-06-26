@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/zhihu/get-column-article-detail/v1 for Zhihu Column Article Details through JustOneAPI with id.",
+  "displayName": "Zhihu Column Article Details",
+  "endpointPath": "get-column-article-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Zhihu column Article Details data, including title, author, and content, for article archiving and content research.",
+      "method": "GET",
+      "operationId": "getColumnArticleDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Article ID",
+          "enumValues": [],
+          "location": "query",
+          "name": "id",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/zhihu/get-column-article-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Column Article Details",
+      "tags": [
+        "Zhihu"
+      ]
+    }
+  ],
+  "platformKey": "zhihu",
+  "primaryTag": "Zhihu",
+  "skillName": "justoneapi_zhihu_get_column_article_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-zhihu-get-column-article-detail",
+  "sourceTitle": "OpenAPI definition"
+}

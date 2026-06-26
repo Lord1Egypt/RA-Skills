@@ -1,0 +1,10 @@
+{
+  "name": "Qiniu Upload",
+  "tagline": "Upload local files to Qiniu Cloud CDN and get shareable URLs instantly",
+  "description": "Upload images, HTML pages, or any local files to Qiniu Cloud storage via this skill. The AI will call the upload script and return a public CDN URL. Perfect for sharing AI-generated images, HTML demos, or documents—just say \"upload to Qiniu\" or \"put this file online\". Requires Qiniu Access Key, Secret Key, bucket name, and domain configured in TsClaw.",
+  "category": "utility",
+  "tags": ["qiniu", "upload", "cdn", "七牛"],
+  "version": "1.0.2",
+  "license": "MIT",
+  "pricing": "free"
+}

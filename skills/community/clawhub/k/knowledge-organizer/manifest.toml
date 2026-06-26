@@ -1,0 +1,31 @@
+name = "knowledge-organizer"
+slug = "knowledge-organizer"
+version = "0.1.2"
+description = "Import articles and notes into Obsidian, Feishu, and Tencent IMA with duplicate checks, tags, summaries, and sync orchestration."
+category = "开发辅助"
+visibility = "public"
+
+[metadata.openclaw]
+primary_env = "OPENCLAW_KB_ROOT"
+homepage = "https://github.com/cjke84/knowledge-organizer"
+
+[metadata.openclaw.requires]
+env = [
+  "OPENCLAW_KB_ROOT",
+  "IMA_OPENAPI_CLIENTID",
+  "IMA_OPENAPI_APIKEY",
+]
+optional_env = [
+  "FEISHU_WIKI_SPACE",
+  "FEISHU_FOLDER_TOKEN",
+  "FEISHU_WIKI_NODE",
+  "FEISHU_KB_ID",
+  "FEISHU_FOLDER_ID",
+  "FEISHU_IMPORT_ENDPOINT",
+]
+bins = ["python3"]
+any_bins = ["openclaw"]
+integrations = ["openclaw-lark", "xiaohongshu-mcp"]
+
+[clawhub]
+enabled = true

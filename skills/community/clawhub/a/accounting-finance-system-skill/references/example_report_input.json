@@ -1,0 +1,76 @@
+{
+  "title": "NetSuite AP Workflow Guidance",
+  "prepared_for": "Finance Operations",
+  "prepared_by": "Codex",
+  "date": "2026-03-07",
+  "question": "How do we create and approve a recurring vendor bill in NetSuite?",
+  "system_context": {
+    "system": "NetSuite",
+    "version": "2025.2",
+    "module": "Accounts Payable",
+    "environment": "Production",
+    "role": "AP Specialist"
+  },
+  "clarifications": [
+    {
+      "question": "Do you use approval routing?",
+      "answer": "Yes, manager approval is required above $5,000."
+    },
+    {
+      "question": "Is recurring billing enabled?",
+      "answer": "Yes, memorized transactions are enabled."
+    }
+  ],
+  "analysis_summary": "Use memorized transactions for recurring bills and apply approval routing rules before posting.",
+  "assumptions": [
+    "Role has permission to create memorized vendor bills.",
+    "Approval workflow is active for AP transactions."
+  ],
+  "recommended_steps": [
+    {
+      "step": "Navigate to Transactions > Payables > Enter Bills and create a baseline vendor bill template.",
+      "rationale": "A complete template ensures recurring entries inherit coding and approvals.",
+      "source_refs": [1]
+    },
+    {
+      "step": "Save the bill as a memorized transaction with schedule settings.",
+      "rationale": "Schedule drives automatic recurring bill creation.",
+      "source_refs": [1, 2]
+    },
+    {
+      "step": "Submit generated bills through approval routing before posting.",
+      "rationale": "Posting control prevents unauthorized expense recognition.",
+      "source_refs": [2]
+    }
+  ],
+  "validation_checks": [
+    "Confirm recurring bill appears on scheduled date.",
+    "Confirm approval status moves to Approved before posting.",
+    "Confirm GL impact matches the template account mapping."
+  ],
+  "risks_open_items": [
+    "Permission gaps can block memorized transaction setup.",
+    "Workflow thresholds may reroute approvals unexpectedly."
+  ],
+  "sources": [
+    {
+      "title": "Creating Vendor Bills",
+      "publisher": "Oracle NetSuite Help Center",
+      "url": "https://docs.oracle.com/en/cloud/saas/netsuite",
+      "published_or_updated": "2025-10-01",
+      "accessed": "2026-03-07",
+      "type": "official-doc"
+    },
+    {
+      "title": "Accounts Payable Workflow Configuration",
+      "publisher": "Oracle NetSuite Help Center",
+      "url": "https://docs.oracle.com/en/cloud/saas/netsuite",
+      "published_or_updated": "2025-09-15",
+      "accessed": "2026-03-07",
+      "type": "official-doc"
+    }
+  ],
+  "open_questions": [
+    "Should bills under $5,000 bypass manager approval?"
+  ]
+}

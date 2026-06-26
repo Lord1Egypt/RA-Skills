@@ -1,0 +1,19 @@
+{
+  "name": "figma-agent",
+  "displayName": "Figma Agent",
+  "version": "0.3.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rasimme/figma-agent.git"
+  },
+  "type": "module",
+  "description": "Unified OpenClaw Figma skill with direct inspect/read flows and a heavier write path when needed",
+  "dependencies": {},
+  "keywords": [
+    "openclaw",
+    "figma",
+    "mcp",
+    "design",
+    "agent-skill"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn Linux"
+  short_description: "LabEx Linux courses and hands-on labs (MCP catalog)"
+  default_prompt: "Use $learn-linux to find LabEx Linux courses and hands-on labs."

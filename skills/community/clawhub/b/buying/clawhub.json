@@ -1,0 +1,9 @@
+{
+  "name": "buying",
+  "version": "2.0.0",
+  "description": "Buying - 统一 Taobao、JD、PDD、VIPSHOP 等平台，比同款、识别店铺层级、解释差价，并输出最优购买路径",
+  "keywords": ["buying", "shopping-router", "price-compare", "best-value", "taobao", "tmall", "jd", "pdd", "vipshop", "cross-platform"],
+  "author": "openclaw",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/buying"
+}

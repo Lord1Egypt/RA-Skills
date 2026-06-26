@@ -1,0 +1,10 @@
+{
+  "model_name": "legend",
+  "config_path": "data/config/legend.config",
+  "accuracy": 0.95,
+  "precision": 0.93,
+  "recall": 0.97,
+  "f1_score": 0.95,
+  "inference_time": 0.10014653205871582,
+  "memory_usage": 10.5
+}

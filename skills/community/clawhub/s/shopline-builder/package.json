@@ -1,0 +1,15 @@
+{
+  "name": "shopline-builder",
+  "version": "2.2.1",
+  "description": "SHOPLINE 建站助手 — AI 全程帮用户完成 SHOPLINE 独立站注册和配置，包括自动填写注册表单、配置店铺基础设置、选主题，以及从 Shopify / WooCommerce / Shoplazza 的搬迁引导。",
+  "keywords": [
+    "shopline",
+    "ecommerce",
+    "store-builder",
+    "migration",
+    "shopify",
+    "openclaw-skill"
+  ],
+  "author": "Sicong",
+  "license": "ISC"
+}

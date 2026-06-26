@@ -1,35 +1,39 @@
----
-name: "Weather Skill"
-description: "Get the current temperature in Celsius for any city, using free weather data from wttr.in with a 0.001 USDT pay-per-call fee."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-skill"
-sourceUrl: "https://clawhub.ai/skills/weather-skill"
----
+# Weather Skill - Get Current Temperature
 
-# Weather Skill
+A paid skill that returns the current weather temperature for any location.
 
-> Get the current temperature in Celsius for any city, using free weather data from wttr.in with a 0.001 USDT pay-per-call fee.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-skill`
-- **Source URL:** [https://clawhub.ai/skills/weather-skill](https://clawhub.ai/skills/weather-skill)
+- Get current temperature for any city
+- Returns temperature in Celsius
+- Uses wttr.in for weather data (free, no API key needed)
 
-## Overview
+## Price
 
+- **0.001 USDT** per call
+- Payment via SkillPay (BNB Chain)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weather-skill
+## Usage
+
+Simply call the skill with a city name:
+- "What's the weather in Tokyo?"
+- "Temperature in Beijing"
+- "Weather in London"
+
+## Integration
+
+This skill uses SkillPay for payment processing:
+- API Key: sk_93c5ff38cc3e6112623d361fffcc5d1eb1b5844eac9c40043b57c0e08f91430e
+- Price: 0.001 USDT per call
+
+## Example Response
+
+```json
+{
+  "city": "Beijing",
+  "temperature": "25°C",
+  "condition": "Sunny",
+  "humidity": "45%",
+  "wind": "10 km/h"
+}
 ```

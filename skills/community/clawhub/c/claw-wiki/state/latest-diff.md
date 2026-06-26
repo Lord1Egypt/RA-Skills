@@ -1,0 +1,247 @@
+# OpenClaw Docs Diff
+
+- Generated at: `2026-03-08T18:50:11.225975+00:00`
+- Added: `339`
+- Removed: `4`
+- Changed: `325`
+
+## Category Totals
+
+- `.i18n`: 1
+- `_root`: 13
+- `automation`: 8
+- `channels`: 30
+- `cli`: 46
+- `concepts`: 28
+- `debug`: 1
+- `design`: 1
+- `diagnostics`: 1
+- `experiments`: 14
+- `gateway`: 33
+- `help`: 7
+- `install`: 20
+- `ja-JP`: 3
+- `nodes`: 9
+- `platforms`: 27
+- `plugins`: 5
+- `providers`: 29
+- `refactor`: 5
+- `reference`: 26
+- `security`: 4
+- `start`: 14
+- `tools`: 28
+- `web`: 5
+- `zh-CN`: 310
+
+## Added
+
+- `auth-credential-semantics.md`
+- `channels/synology-chat.md`
+- `cli/clawbot.md`
+- `cli/completion.md`
+- `cli/daemon.md`
+- `cli/qr.md`
+- `cli/secrets.md`
+- `design/kilo-gateway-integration.md`
+- `experiments/plans/acp-persistent-bindings-discord-channels-telegram-topics.md`
+- `experiments/plans/acp-thread-bound-agents.md`
+- `experiments/plans/acp-unified-streaming-refactor.md`
+- `experiments/plans/discord-async-inbound-worker.md`
+- `experiments/plans/pty-process-supervision.md`
+- `experiments/plans/session-binding-channel-agnostic.md`
+- `experiments/proposals/acp-bound-command-auth.md`
+- `gateway/secrets-plan-contract.md`
+- `gateway/secrets.md`
+- `ja-JP/index.md`
+- `ja-JP/start/getting-started.md`
+- `ja-JP/start/wizard.md`
+- `plugins/community.md`
+- `providers/kilocode.md`
+- `providers/mistral.md`
+- `reference/prompt-caching.md`
+- `reference/secretref-credential-surface.md`
+- `tools/acp-agents.md`
+- `tools/diffs.md`
+- `tools/loop-detection.md`
+- `tools/pdf.md`
+- `zh-CN/AGENTS.md`
+- `zh-CN/automation/auth-monitoring.md`
+- `zh-CN/automation/cron-jobs.md`
+- `zh-CN/automation/cron-vs-heartbeat.md`
+- `zh-CN/automation/gmail-pubsub.md`
+- `zh-CN/automation/hooks.md`
+- `zh-CN/automation/poll.md`
+- `zh-CN/automation/troubleshooting.md`
+- `zh-CN/automation/webhook.md`
+- `zh-CN/brave-search.md`
+- `zh-CN/channels/bluebubbles.md`
+- `zh-CN/channels/broadcast-groups.md`
+- `zh-CN/channels/channel-routing.md`
+- `zh-CN/channels/discord.md`
+- `zh-CN/channels/feishu.md`
+- `zh-CN/channels/googlechat.md`
+- `zh-CN/channels/grammy.md`
+- `zh-CN/channels/group-messages.md`
+- `zh-CN/channels/groups.md`
+- `zh-CN/channels/imessage.md`
+- `zh-CN/channels/index.md`
+- `zh-CN/channels/line.md`
+- `zh-CN/channels/location.md`
+- `zh-CN/channels/matrix.md`
+- `zh-CN/channels/mattermost.md`
+- `zh-CN/channels/msteams.md`
+- `zh-CN/channels/nextcloud-talk.md`
+- `zh-CN/channels/nostr.md`
+- `zh-CN/channels/pairing.md`
+- `zh-CN/channels/signal.md`
+- `zh-CN/channels/slack.md`
+- `zh-CN/channels/telegram.md`
+- `zh-CN/channels/tlon.md`
+- `zh-CN/channels/troubleshooting.md`
+- `zh-CN/channels/twitch.md`
+- `zh-CN/channels/whatsapp.md`
+- `zh-CN/channels/zalo.md`
+- `zh-CN/channels/zalouser.md`
+- `zh-CN/cli/acp.md`
+- `zh-CN/cli/agent.md`
+- `zh-CN/cli/agents.md`
+- `zh-CN/cli/approvals.md`
+- `zh-CN/cli/browser.md`
+- `zh-CN/cli/channels.md`
+- `zh-CN/cli/config.md`
+- `zh-CN/cli/configure.md`
+- `zh-CN/cli/cron.md`
+- `zh-CN/cli/dashboard.md`
+- `zh-CN/cli/devices.md`
+- `zh-CN/cli/directory.md`
+- `zh-CN/cli/dns.md`
+- `zh-CN/cli/docs.md`
+- `zh-CN/cli/doctor.md`
+- `zh-CN/cli/gateway.md`
+- `zh-CN/cli/health.md`
+- `zh-CN/cli/hooks.md`
+- `zh-CN/cli/index.md`
+- `zh-CN/cli/logs.md`
+- `zh-CN/cli/memory.md`
+- `zh-CN/cli/message.md`
+- `zh-CN/cli/models.md`
+- `zh-CN/cli/node.md`
+- `zh-CN/cli/nodes.md`
+- `zh-CN/cli/onboard.md`
+- `zh-CN/cli/pairing.md`
+- `zh-CN/cli/plugins.md`
+- `zh-CN/cli/reset.md`
+- `zh-CN/cli/sandbox.md`
+- `zh-CN/cli/security.md`
+- `zh-CN/cli/sessions.md`
+- `zh-CN/cli/setup.md`
+
+## Removed
+
+- `channels/grammy.md`
+- `concepts/sessions.md`
+- `experiments/plans/cron-add-hardening.md`
+- `experiments/plans/group-policy-hardening.md`
+
+## Changed
+
+- `.i18n/README.md`
+- `automation/auth-monitoring.md`
+- `automation/cron-jobs.md`
+- `automation/cron-vs-heartbeat.md`
+- `automation/gmail-pubsub.md`
+- `automation/hooks.md`
+- `automation/poll.md`
+- `automation/troubleshooting.md`
+- `automation/webhook.md`
+- `brave-search.md`
+- `channels/bluebubbles.md`
+- `channels/broadcast-groups.md`
+- `channels/channel-routing.md`
+- `channels/discord.md`
+- `channels/feishu.md`
+- `channels/googlechat.md`
+- `channels/group-messages.md`
+- `channels/groups.md`
+- `channels/imessage.md`
+- `channels/index.md`
+- `channels/irc.md`
+- `channels/line.md`
+- `channels/location.md`
+- `channels/matrix.md`
+- `channels/mattermost.md`
+- `channels/msteams.md`
+- `channels/nextcloud-talk.md`
+- `channels/nostr.md`
+- `channels/pairing.md`
+- `channels/signal.md`
+- `channels/slack.md`
+- `channels/telegram.md`
+- `channels/tlon.md`
+- `channels/troubleshooting.md`
+- `channels/twitch.md`
+- `channels/whatsapp.md`
+- `channels/zalo.md`
+- `channels/zalouser.md`
+- `ci.md`
+- `cli/acp.md`
+- `cli/agent.md`
+- `cli/agents.md`
+- `cli/approvals.md`
+- `cli/browser.md`
+- `cli/channels.md`
+- `cli/config.md`
+- `cli/configure.md`
+- `cli/cron.md`
+- `cli/dashboard.md`
+- `cli/devices.md`
+- `cli/directory.md`
+- `cli/dns.md`
+- `cli/docs.md`
+- `cli/doctor.md`
+- `cli/gateway.md`
+- `cli/health.md`
+- `cli/hooks.md`
+- `cli/index.md`
+- `cli/logs.md`
+- `cli/memory.md`
+- `cli/message.md`
+- `cli/models.md`
+- `cli/node.md`
+- `cli/nodes.md`
+- `cli/onboard.md`
+- `cli/pairing.md`
+- `cli/plugins.md`
+- `cli/reset.md`
+- `cli/sandbox.md`
+- `cli/security.md`
+- `cli/sessions.md`
+- `cli/setup.md`
+- `cli/skills.md`
+- `cli/status.md`
+- `cli/system.md`
+- `cli/tui.md`
+- `cli/uninstall.md`
+- `cli/update.md`
+- `cli/voicecall.md`
+- `cli/webhooks.md`
+- `concepts/agent-loop.md`
+- `concepts/agent-workspace.md`
+- `concepts/agent.md`
+- `concepts/architecture.md`
+- `concepts/compaction.md`
+- `concepts/context.md`
+- `concepts/features.md`
+- `concepts/markdown-formatting.md`
+- `concepts/memory.md`
+- `concepts/messages.md`
+- `concepts/model-failover.md`
+- `concepts/model-providers.md`
+- `concepts/models.md`
+- `concepts/multi-agent.md`
+- `concepts/oauth.md`
+- `concepts/presence.md`
+- `concepts/queue.md`
+- `concepts/retry.md`
+- `concepts/session-pruning.md`
+- `concepts/session-tool.md`

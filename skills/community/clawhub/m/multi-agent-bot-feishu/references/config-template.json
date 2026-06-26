@@ -1,0 +1,68 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "name": "主助手",
+        "default": true,
+        "workspace": "~/.openclaw/workspace-main",
+        "model": {
+          "primary": "ark/doubao"
+        }
+      },
+      {
+        "id": "NEW_AGENT_ID",
+        "name": "新助手",
+        "workspace": "~/.openclaw/workspace-new",
+        "model": {
+          "primary": "ark/doubao"
+        }
+      }
+    ]
+  },
+  "session": {
+    "dmScope": "per-account-channel-peer"
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "threadSession": true,
+      "replyMode": "auto",
+      "appId": "cli_default",
+      "appSecret": "default_secret",
+      "accounts": {
+        "default": {},
+        "new_bot": {
+          "appId": "cli_NEW_BOT_APPID",
+          "appSecret": "NEW_BOT_SECRET",
+          "botName": "新机器人",
+          "dmPolicy": "allowlist",
+          "allowFrom": ["ou_user_id_1", "ou_user_id_2"]
+        }
+      },
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "groupPolicy": "allowlist",
+      "groupAllowFrom": ["ou_user1", "ou_user2"]
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "feishu",
+        "accountId": "default"
+      }
+    },
+    {
+      "agentId": "NEW_AGENT_ID",
+      "match": {
+        "channel": "feishu",
+        "accountId": "new_bot"
+      }
+    }
+  ]
+}

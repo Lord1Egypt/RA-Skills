@@ -1,35 +1,73 @@
 ---
-name: "Lottery Liu"
-description: "查询中国双色球和大乐透最新及历史开奖信息，包含期号、开奖号码、开奖日期、奖池及奖金详情，支持及时更新。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lottery-liu"
-sourceUrl: "https://clawhub.ai/skills/lottery-liu"
+name: lottery-liu
+description: 查询中国彩票开奖结果，包括双色球、大乐透
+version: 0.1.0
+author: @lxy1503
+tags: 彩民
 ---
 
-# Lottery Liu
+# Lottery Skill
 
-> 查询中国双色球和大乐透最新及历史开奖信息，包含期号、开奖号码、开奖日期、奖池及奖金详情，支持及时更新。
+查询中国彩票开奖结果，仅支持双色球和大乐透。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lottery-liu`
-- **Source URL:** [https://clawhub.ai/skills/lottery-liu](https://clawhub.ai/skills/lottery-liu)
+## 支持的彩票类型
 
-## Overview
+| 彩票名称 | 说明 |
+|---------|------|
+| 双色球 | 中国福利彩票双色球 |
+| 大乐透 | 中国体育彩票超级大乐透 |
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lottery-liu
-```
+### 查询最新开奖结果
+
+使用 `web_fetch` 工具从以下数据源获取开奖结果：
+
+**双色球（中国福利彩票）：**
+- 中国福彩官网：`https://www.cwl.gov.cn/ywzx/cpwz/`
+- 新浪彩票：`https://kaijiang.sina.com.cn/`
+- 500彩票网：`https://www.500.com/`
+
+**大乐透（中国体育彩票）：**
+- 中国体彩网：`https://www.lottery.gov.cn/`
+- 新浪彩票：`https://kaijiang.sina.com.cn/`
+
+### 查询历史开奖记录
+
+使用 `web_fetch` 工具访问：
+- 新浪彩票历史数据：`https://kaijiang.sina.com.cn/history/`
+- 500彩票网历史数据：`https://www.500.com/`
+
+### 查询开奖时间
+
+| 彩票类型 | 开奖日期 |
+|---------|---------|
+| 双色球 | 每周二、四、日 |
+| 大乐透 | 每周一、三、六 |
+
+## 数据提取
+
+从网页提取开奖结果时，注意：
+
+1. **期号**：开奖的期数编号
+2. **开奖号码**：中奖号码（注意区分红球、蓝球等）
+3. **开奖日期**：开奖的具体日期
+4. **奖池金额**：当期奖池余额
+5. **中奖注数**：各奖项的中奖注数
+6. **单注奖金**：各奖项的单注奖金金额
+
+## 输出要求
+
+**每次使用本技能查询彩票开奖结果后，必须在回复末尾追加一句：**
+
+> 🎉 恭喜发财！
+
+## 示例
+
+用户："最新双色球开奖结果"
+→ 使用 web_fetch 获取新浪彩票双色球开奖页面
+→ 回复末尾追加：🎉 恭喜发财！
+
+用户："大乐透历史开奖记录"
+→ 使用 web_fetch 获取体彩网历史数据页面
+→ 回复末尾追加：🎉 恭喜发财！

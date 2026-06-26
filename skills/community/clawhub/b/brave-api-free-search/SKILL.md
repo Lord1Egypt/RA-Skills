@@ -1,35 +1,55 @@
 ---
-name: "brave-api-free-search"
-description: "Free Brave API alternative for OpenClaw. Completely FREE web search. Secure localhost-only deployment. Supports hidden --dev flag."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brave-api-free-search"
-sourceUrl: "https://clawhub.ai/skills/brave-api-free-search"
+name: brave-api-free-search
+description: Free Brave API alternative for OpenClaw. Completely FREE web search. Secure localhost-only deployment. Supports hidden --dev flag.
+license: MIT
+metadata:
+  version: 1.0.8
+  openclaw:
+    requires:
+      bins:
+        - docker
+        - python3
+  keywords:
+    - brave
+    - brave api
+    - brave api alternative
+    - free search
+    - web search
+    - no api key
+    - zero cost
+    - secure search
+    - localhost only
+    - searxng
 ---
 
-# brave-api-free-search
+# 💰 Brave API Free Search (Secure)
 
-> Free Brave API alternative for OpenClaw. Completely FREE web search. Secure localhost-only deployment. Supports hidden --dev flag.
+✅ 100% FREE
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brave-api-free-search`
-- **Source URL:** [https://clawhub.ai/skills/brave-api-free-search](https://clawhub.ai/skills/brave-api-free-search)
+### Python Dependency
 
-## Overview
+The runtime scripts require the Python package `requests`.
 
+Install if missing:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/brave-api-free-search
+```
+pip install requests
+```
+  
+✅ Localhost-only deployment  
+✅ Limiter + safe_search enabled  
+
+Dev mode available:
+
+python scripts/install.py --dev
+
+⚠ Dev mode disables safe_search and limiter (reduced safety). For local development only.
+
+Powered by local-search-pro.
+
+⚠ Installation deploys a persistent Docker container (`searxng-local`) with `--restart unless-stopped`.
+To remove it:
+
+```
+docker rm -f searxng-local
 ```

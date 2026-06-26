@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/male-fertility.json",
+  "title": "Male Fertility Health Record",
+  "description": "男性生育健康记录，包括精液分析、激素水平、精索静脉曲张等",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "description": "记录唯一标识符",
+      "pattern": "^fertility_[0-9]{8}_[0-9]{3}$"
+    },
+    "record_type": {
+      "type": "string",
+      "enum": ["semen_analysis", "hormone_test", "varicocele_exam", "infection_test", "fertility_status", "diagnosis"],
+      "description": "记录类型"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "检测日期"
+    },
+    "semen_analysis": {
+      "type": "object",
+      "description": "精液分析结果",
+      "properties": {
+        "abstinence_period": {
+          "type": "string",
+          "description": "禁欲时间，如3_days"
+        },
+        "volume": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "unit": {"type": "string", "enum": ["mL"]},
+            "reference": {"type": "string"},
+            "result": {"type": "string", "enum": ["normal", "abnormal", "low", "high"]}
+          }
+        },
+        "concentration": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "unit": {"type": "string", "enum": ["10^6/mL"]},
+            "reference": {"type": "string"},
+            "result": {"type": "string"}
+          }
+        },
+        "total_count": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "unit": {"type": "string", "enum": ["10^6"]},
+            "reference": {"type": "string"},
+            "result": {"type": "string"}
+          }
+        },
+        "motility": {
+          "type": "object",
+          "properties": {
+            "pr": {
+              "type": "object",
+              "properties": {
+                "value": {"type": "number"},
+                "reference": {"type": "string"},
+                "result": {"type": "string"}
+              }
+            },
+            "np": {
+              "type": "object",
+              "properties": {
+                "value": {"type": "number"},
+                "reference": {"type": "string"},
+                "result": {"type": "string"}
+              }
+            },
+            "im": {
+              "type": "object",
+              "properties": {
+                "value": {"type": "number"},
+                "result": {"type": "string"}
+              }
+            }
+          }
+        },
+        "morphology": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "unit": {"type": "string", "enum": ["%"]},
+            "reference": {"type": "string"},
+            "result": {"type": "string"}
+          }
+        },
+        "ph": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "result": {"type": "string"}
+          }
+        },
+        "liquefaction": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "unit": {"type": "string", "enum": ["minutes"]},
+            "reference": {"type": "string"},
+            "result": {"type": "string"}
+          }
+        },
+        "diagnosis": {
+          "type": "string",
+          "enum": ["normospermia", "oligozoospermia", "azoospermia", "asthenozoospermia", "teratozoospermia", "hypospermia", "mixed_abnormalities"],
+          "description": "诊断结果"
+        }
+      }
+    },
+    "hormones": {
+      "type": "object",
+      "description": "激素检测结果",
+      "properties": {
+        "testosterone": {
+          "type": "object",
+          "properties": {
+            "total": {"type": "number"},
+            "free": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["nmol/L"]},
+            "result": {"type": "string", "enum": ["normal", "low", "high"]}
+          }
+        },
+        "lh": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["IU/L"]},
+            "result": {"type": "string"}
+          }
+        },
+        "fsh": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["IU/L"]},
+            "result": {"type": "string"}
+          }
+        },
+        "prl": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["ng/mL"]},
+            "result": {"type": "string"}
+          }
+        },
+        "e2": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["pg/mL"]},
+            "result": {"type": "string"}
+          }
+        }
+      }
+    },
+    "varicocele": {
+      "type": "object",
+      "description": "精索静脉曲张检查结果",
+      "properties": {
+        "present": {"type": "boolean"},
+        "side": {"type": "string", "enum": ["none", "left", "right", "bilateral"]},
+        "grade": {"type": "string", "enum": ["I", "II", "III", null]},
+        "confirmed_by": {"type": "string", "enum": ["ultrasound", "physical_exam", null]},
+        "surgery": {"type": "boolean"},
+        "surgery_date": {"type": "string", "format": "date"},
+        "notes": {"type": "string"}
+      }
+    },
+    "infections": {
+      "type": "object",
+      "description": "生殖道感染检查结果",
+      "properties": {
+        "chlamydia": {"type": "string", "enum": ["positive", "negative", "not_tested", null]},
+        "gonorrhea": {"type": "string", "enum": ["positive", "negative", "not_tested", null]},
+        "mycoplasma": {"type": "string", "enum": ["positive", "negative", "not_tested", null]},
+        "ureaplasma": {"type": "string", "enum": ["positive", "negative", "not_tested", null]},
+        "date": {"type": "string", "format": "date"},
+        "treated": {"type": "boolean"}
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注信息"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  },
+  "required": ["record_id", "record_type", "date"]
+}

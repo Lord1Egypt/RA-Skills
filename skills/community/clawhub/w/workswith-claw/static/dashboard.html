@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workswith Claw</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-tertiary: #e5e5e7;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --border: #d2d2d7;
+            --accent: #0071e3;
+            --success: #34c759;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #000000;
+                --bg-secondary: #1d1d1f;
+                --bg-tertiary: #2d2d2f;
+                --text: #f5f5f7;
+                --text-secondary: #86868b;
+                --border: rgba(255,255,255,0.1);
+                --accent: #2997ff;
+            }
+        }
+        
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: var(--bg-secondary); border-bottom: none; position: sticky; top: 0; z-index: 100; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; }
+        .nav-right { display: flex; align-items: center; gap: 6px; }
+        .logo-icon { width: 24px; height: 24px; background: var(--bg-tertiary); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        
+        .nav-tab:hover { background: rgba(255,255,255,0.7) !important; }
+        .nav-tab.active { background: white !important; color: #1c1c1e !important; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+        .nav-tab { padding: 6px 14px; font-size: 13px; font-weight: 500; transition: all 0.2s ease; cursor: pointer; border: none; outline: none; background: transparent; color: #8e8e93; border-radius: 7px; } .nav-right .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); }
+        .nav-tab { padding: 6px 14px; font-size: 13px; font-weight: 500; transition: all 0.2s ease; cursor: pointer; border: none; outline: none; background: transparent; color: #8e8e93; border-radius: 7px; } .nav-right .status-dot.offline { background: #ff3b30; }
+        
+        .page { display: none; padding-bottom: 40px; }
+        .page.active { display: block; }
+        
+        .greeting { text-align: center; padding: 30px 20px 20px; }
+        .greeting h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+        .greeting p { font-size: 13px; color: var(--text-secondary); }
+        
+        .section { padding: 0 20px 16px; max-width: 600px; margin: 0 auto; }
+        .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 10px; }
+        
+        .card { background: var(--bg-secondary); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+        
+        .insight-card { display: flex; gap: 12px; padding: 14px 0; border-bottom: none; position: relative; }
+        .insight-card:last-child { border-bottom: none; }
+        .insight-icon { width: 36px; height: 36px; background: var(--bg-tertiary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .insight-content { flex: 1; }
+        .insight-title { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+        .insight-desc { font-size: 11px; color: var(--text-secondary); }
+        .insight-meta { font-size: 10px; color: var(--accent); margin-top: 4px; }
+        
+        .insight-action { display: none; position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
+        .insight-card:hover .insight-action { display: flex; }
+        .insight-card:hover .insight-content { padding-right: 60px; }
+        
+        .apply-btn { padding: 6px 12px; font-size: 11px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+        
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 12px; overflow: hidden; }
+        .stat { background: var(--bg-secondary); padding: 12px; text-align: center; cursor: pointer; transition: transform 0.2s; }
+        .stat:hover { transform: scale(1.02); }
+        .stat-value { font-size: 20px; font-weight: 600; }
+        .stat-label { font-size: 10px; color: var(--text-secondary); }
+        
+        .sensor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+        .sensor-card { background: var(--bg-secondary); border-radius: 10px; padding: 14px; }
+        .sensor-card .label { font-size: 11px; color: var(--text-secondary); }
+        .sensor-card .value { font-size: 20px; font-weight: 600; margin: 4px 0; }
+        .sensor-card .unit { font-size: 12px; color: var(--text-secondary); }
+        .sensor-card .name { font-size: 10px; color: var(--text-secondary); }
+        
+        .device-type { margin-bottom: 16px; }
+        .device-type-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .device-type-name { font-size: 13px; font-weight: 600; }
+        .device-type-count { font-size: 11px; color: var(--text-secondary); }
+        
+        .device-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: var(--bg-secondary); border-radius: 6px; font-size: 12px; margin-bottom: 2px; }
+        .device-item .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .device-item .state { padding: 2px 8px; border-radius: 4px; background: var(--bg-tertiary); font-size: 10px; }
+        .device-item .state.on { color: var(--success); }
+        
+        .setting-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: none; }
+        .setting-item:last-child { border-bottom: none; }
+        .setting-label { font-size: 13px; }
+        .setting-desc { font-size: 10px; color: var(--text-secondary); }
+        
+        .help-box { background: var(--bg-tertiary); border-radius: 8px; padding: 14px; margin-bottom: 12px; }
+        .help-box h4 { font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+        .help-box ol { font-size: 11px; color: var(--text-secondary); padding-left: 16px; }
+        .help-box li { margin-bottom: 4px; }
+        
+        .input { background: var(--bg-tertiary); border: none; border-radius: 6px; padding: 8px 10px; color: var(--text); font-size: 12px; width: 180px; }
+        .test-btn { background: var(--bg-tertiary); border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; color: var(--text-secondary); }
+        .test-btn.success { color: var(--success); }
+        
+        .log-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: none; font-size: 12px; }
+        .log-time { color: var(--text-secondary); width: 45px; }
+        .log-type { font-size: 10px; padding: 2px 6px; border-radius: 4px; }
+        .log-type.success { background: rgba(52,199,89,0.1); color: var(--success); }
+        .log-type.blocked { background: rgba(255,149,0,0.1); color: #ff9f0a; }
+        
+        footer { text-align: center; padding: 20px; color: var(--text-secondary); font-size: 10px; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 200; }
+        .modal.show { display: flex; }
+        .modal-content { background: var(--bg); border-radius: 24px; padding: 24px; max-width: 420px; width: 90%; }
+        
+        .modal-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .modal-avatar { width: 44px; height: 44px; background: var(--bg-tertiary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .modal-title { font-size: 16px; font-weight: 600; }
+        .modal-subtitle { font-size: 11px; color: var(--text-secondary); }
+        
+        .modal-human { background: var(--bg-secondary); border-radius: 12px; padding: 16px; margin-bottom: 16px; font-size: 14px; line-height: 1.6; }
+        .modal-human .highlight { color: var(--accent); font-weight: 500; }
+        
+        .modal-code { display: none; background: var(--bg-tertiary); border-radius: 10px; padding: 14px; font-size: 11px; font-family: monospace; white-space: pre-wrap; margin-bottom: 16px; }
+        .modal-code.show { display: block; }
+        
+        .modal-code-toggle { display: flex; justify-content: space-between; padding: 10px 0; cursor: pointer; border-bottom: none; margin-bottom: 12px; font-size: 12px; color: var(--text-secondary); }
+        
+        .tweak-panel { display: none; background: var(--bg-secondary); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+        .tweak-panel.show { display: block; }
+        .tweak-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 12px; }
+        .tweak-input { background: var(--bg-tertiary); border: none; border-radius: 6px; padding: 8px; width: 80px; text-align: center; }
+        
+        .modal-actions { display: flex; flex-direction: column; gap: 12px; }
+        .modal-btn { padding: 12px 20px; font-size: 13px; border-radius: 10px; border: none; cursor: pointer; }
+        .modal-btn-primary { background: #1d1d1f; color: #fff; font-weight: 500; border-radius: 8px; }
+        .modal-btn-secondary { background: var(--bg-tertiary); color: var(--text); border-radius: 8px; }
+        .modal-btn-tertiary { background: transparent; color: var(--text-secondary); font-size: 12px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="logo-icon"><span style="color:#007aff;font-size:20px;">🦊</span></div>
+            <span style="font-size: 15px; font-weight: 600;">Workswith Claw</span>
+        </div>
+        <div class="nav-center" style="display:flex;gap:2px;padding:3px;background:rgba(0,0,0,0.05);border-radius:10px;"><button class="nav-tab" onclick="showPage('discover')">发现</button>
+            <button class="nav-tab" onclick="showPage('devices')">设备</button>
+            <button class="nav-tab" onclick="showPage('logs')">洞察</button>
+            <button class="nav-tab" onclick="showPage('config')">配置</button>
+        </div>
+        <div class="nav-right">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text" style="font-size: 12px;">未连接</span>
+        </div>
+    </nav>
+    
+    <!-- 发现 -->
+    <div class="page active" id="page-discover">
+        <div class="greeting">
+            <h1>数据驱动的智能家</h1>
+            <p>32 个人体传感器 + 109 个设备 + 本地分析</p>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">发现</div>
+            <div class="card">
+                <div class="insight-card">
+                    <div class="insight-icon">🌅</div>
+                    <div class="insight-content">
+                        <div class="insight-title">你比工作日晚起 1 小时</div>
+                        <div class="insight-desc">周末卧室灯比工作日晚开 1 小时</div>
+                        <div class="insight-meta">卧室灯 · 已观察 7 天</div>
+                    </div>
+                    <div class="insight-action"><button class="apply-btn" onclick="showApplyModal('wake')">✨ 采纳</button></div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🚿</div>
+                    <div class="insight-content">
+                        <div class="insight-title">洗澡前 10 分钟开浴霸</div>
+                        <div class="insight-desc">你总是先开浴霸再去拿衣服</div>
+                        <div class="insight-meta">浴霸 · 已观察 3 天</div>
+                    </div>
+                    <div class="insight-action"><button class="apply-btn" onclick="showApplyModal('bath')">✨ 采纳</button></div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">💡</div>
+                    <div class="insight-content">
+                        <div class="insight-title">客厅到点自动关灯</div>
+                        <div class="insight-desc">每晚 23:00 客厅灯自动关闭</div>
+                        <div class="insight-meta">客厅灯 · 已观察 5 天</div>
+                    </div>
+                    <div class="insight-action"><button class="apply-btn" onclick="showApplyModal('light')">✨ 采纳</button></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">今日</div>
+            <div class="stats">
+                <div class="stat"><div class="stat-value" id="stat-intents" onclick="showStatDetail('intents')">-</div><div class="stat-label">意图执行</div></div>
+                <div class="stat"><div class="stat-value" id="stat-automations" onclick="showStatDetail('automations')">-</div><div class="stat-label">自动化</div></div>
+                <div class="stat"><div class="stat-value" id="stat-learns" onclick="showStatDetail('learns')">-</div><div class="stat-label">学习</div></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 设备 -->
+    <div class="page" id="page-devices">
+        <div class="greeting">
+            <h1>设备与传感器</h1>
+            <p>实时掌握家中状态</p>
+        </div>
+        
+        <div class="section">
+            <button class="semantic-btn" onclick="startSemanticScan()" id="semantic-btn">✨ 一键提取设备语义</button>
+        </div>
+        <div class="greeting">
+            <h1>设备与传感器</h1>
+            <p>实时掌握家中状态</p>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">传感器</div>
+            <div class="sensor-grid">
+                <div class="sensor-card"><div class="label">温度</div><div class="value" id="sensor-temp">-</div><div class="unit" id="sensor-temp-unit"></div><div class="name" id="sensor-temp-name"></div></div>
+                <div class="sensor-card"><div class="label">湿度</div><div class="value" id="sensor-humid">-</div><div class="unit" id="sensor-humid-unit"></div><div class="name" id="sensor-humid-name"></div></div>
+                <div class="sensor-card"><div class="label">光照</div><div class="value" id="sensor-light">-</div><div class="unit" id="sensor-light-unit"></div><div class="name" id="sensor-light-name"></div></div>
+                <div class="sensor-card"><div class="label">人体</div><div class="value" id="sensor-motion">-</div><div class="name" id="sensor-motion-name"></div></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">设备</div>
+            <div class="card" id="device-list"><div style="color: var(--text-secondary); text-align: center; padding: 20px;">加载中...</div></div>
+        </div>
+    </div>
+    
+    <!-- 数据洞察 -->
+    <div class="page" id="page-logs">
+        <div class="greeting">
+            <h1>数据洞察</h1>
+            <p>让你的家更懂你</p>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🏠 家中状态</div>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="font-size: 28px; font-weight: 600;" id="ins-people">-</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">人在家</div>
+                    </div>
+                    <div style="display: flex; gap: 12px;" id="ins-rooms">
+                        <span style="font-size: 20px;">🏠</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">📡 活动规律</div>
+            <div class="card">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+                        <div style="font-size: 11px; color: var(--text-secondary);">🕐 活动高峰</div>
+                        <div style="font-size: 13px; font-weight: 500;" id="ins-time-peak">-</div>
+                    </div>
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+                        <div style="font-size: 11px; color: var(--text-secondary);">💤 安静时段</div>
+                        <div style="font-size: 13px; font-weight: 500;" id="ins-quiet-time">-</div>
+                    </div>
+                    <div style="padding: 8px 0;">
+                        <div style="font-size: 11px; color: var(--text-secondary);">💡 灯使用高峰</div>
+                        <div style="font-size: 13px; font-weight: 500;" id="ins-light-peak">-</div>
+                    </div>
+                    <div style="padding: 8px 0;">
+                        <div style="font-size: 11px; color: var(--text-secondary);">📺 电视使用</div>
+                        <div style="font-size: 13px; font-weight: 500;" id="ins-tv-active">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">💡 智能洞察</div>
+            <div class="card" id="insights-list">
+                <div style="color: var(--text-secondary); text-align: center; padding: 20px;">加载中...</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">⚡ 今日执行</div>
+            <div class="stats">
+                <div class="stat"><div class="stat-value" id="stat-intents">-</div><div class="stat-label">意图执行</div></div>
+                <div class="stat"><div class="stat-value" id="stat-automations">-</div><div class="stat-label">自动化</div></div>
+                <div class="stat"><div class="stat-value" id="stat-blocks">-</div><div class="stat-label">智能拦截</div></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    async function loadInsights() {
+        try {
+            const resp = await fetch('/api/v1/insights/dashboard');
+            const data = await resp.json();
+            
+            const home = data.home_status || {};
+            document.getElementById('ins-people').textContent = home.text || '-';
+            
+            const rooms = home.rooms || {};
+            let roomsHtml = '';
+            for (const [room, active] of Object.entries(rooms)) {
+                roomsHtml += '<span style="font-size:12px; padding:4px 8px; background:' + (active ? 'var(--success)' : 'var(--bg-tertiary)') + '; border-radius:6px; color:' + (active ? '#fff' : 'var(--text-secondary)') + ';">' + room + '</span> ';
+            }
+            document.getElementById('ins-rooms').innerHTML = roomsHtml;
+            
+            const act = data.activity_patterns || {};
+            document.getElementById('ins-time-peak').textContent = act.time_peak || '-';
+            document.getElementById('ins-quiet-time').textContent = act.quiet_time || '-';
+            
+            const dev = data.device_patterns || {};
+            document.getElementById('ins-light-peak').textContent = dev.light_peak || '-';
+            document.getElementById('ins-tv-active').textContent = dev.tv_active || '-';
+            
+            const insights = data.insights || [];
+            let insightsHtml = '';
+            for (const ins of insights) {
+                insightsHtml += '<div style="padding: 12px 0; border-bottom: 1px solid var(--border);"><div style="font-size: 13px; font-weight: 500; margin-bottom: 4px;">' + ins.title + '</div><div style="font-size: 11px; color: var(--text-secondary);">' + ins.desc + '</div><div style="font-size: 11px; color: var(--accent); margin-top: 4px;">💡 ' + ins.suggestion + '</div></div>';
+            }
+            document.getElementById('insights-list').innerHTML = insightsHtml || '暂无洞察';
+            
+        } catch(e) { console.error('Load insights failed:', e); }
+    }
+    </script><!-- 配置 -->
+    <div class="page" id="page-config">
+        <div class="greeting"><h1>配置</h1><p>连接 Home Assistant</p></div>
+        
+        <div class="section">
+            <div class="section-title">连接指南</div>
+            <div class="help-box">
+                <h4>如何获取 HA Token？</h4>
+                <ol>
+                    <li>打开 Home Assistant 网页</li>
+                    <li>点击右上角头像 → Security</li>
+                    <li>找到 "Long-Lived Access Tokens"</li>
+                    <li>点击 "+ CREATE TOKEN"</li>
+                    <li>输入名称（如 "Workswith Claw"）</li>
+                    <li>复制生成的 Token</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">连接</div>
+            <div class="card">
+                <div class="setting-item">
+                    <div>
+                        <div class="setting-label">HA Token</div>
+                        <div class="setting-desc">Long-Lived Access Token</div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <input type="password" class="input" id="ha-token" placeholder="粘贴 Token" onchange="saveToken(this)">
+                        <button class="test-btn" onclick="testConnection()">测试</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">学习</div>
+            <div class="card">
+                <div class="setting-item"><div><div class="setting-label">数据学习</div><div class="setting-desc">关闭后停止学习习惯</div></div><button class="apply-btn" style="background: var(--success);">已开启</button></div>
+                <div class="setting-item"><div><div class="setting-label">每日报告</div><div class="setting-desc">每天 21:00 推送</div></div><button class="apply-btn" style="background: var(--success);">已开启</button></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">数据</div>
+            <div class="card">
+                <div class="setting-item"><div><div class="setting-label">清除所有数据</div><div class="setting-desc">不可恢复</div></div><button class="apply-btn" style="background: #ff3b30;">清除</button></div>
+            </div>
+        </div>
+    </div>
+    
+    <footer style="text-align: center; padding: 30px 20px; color: var(--text-secondary); font-size: 12px; margin-top: 40px;">
+        <div style="font-weight: 500; color: var(--text);">Workswith Claw</div>
+        <div style="margin-top: 4px;">为家，注入灵魂</div>
+    </footer>
+    
+    <!-- 弹窗 -->
+    <div class="modal" id="apply-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-avatar"><span style="color:#007aff;font-size:20px;">🦊</span></div>
+                <div><div class="modal-title">Workswith Claw</div><div class="modal-subtitle">为家，注入灵魂</div></div>
+            </div>
+            <div class="modal-human" id="modal-human-text"></div>
+            <div class="modal-code-toggle" onclick="document.getElementById('modal-code-text').classList.toggle('show')"><span>⚙️ 底层编排</span><span>▼</span></div>
+            <div class="modal-code" id="modal-code-text"></div>
+            <div class="tweak-panel" id="tweak-panel">
+                <div class="tweak-row"><span>提前时间（分钟）</span><input type="number" class="tweak-input" id="tweak-time" value="10"></div>
+                <div class="tweak-row"><span>温度（°C）</span><input type="number" class="tweak-input" id="tweak-temp" value="45"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary" onclick="confirmApply()">就这么办</button>
+                <button class="modal-btn modal-btn-secondary" onclick="document.getElementById('tweak-panel').classList.toggle('show')">微调参数</button>
+                <button class="modal-btn modal-btn-tertiary" onclick="closeModal()">再观察几天</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('page-' + page).classList.add('active');
+            event.target.classList.add('active');
+            if (page === 'devices') loadDevices();
+            if (page === 'logs') loadInsights();
+            if (page === 'discover') loadStats();
+        }
+        
+        async function loadStats() {
+            try {
+                const resp = await fetch('/api/v1/status/dashboard');
+                const data = await resp.json();
+                document.getElementById('stat-intents').textContent = data.today?.intents || '-';
+                document.getElementById('stat-automations').textContent = data.today?.automations || '-';
+                document.getElementById('stat-learns').textContent = data.today?.learns || '-';
+            } catch(e) {}
+        }
+        
+        async function loadDevices() {
+            try {
+                const resp = await fetch('/api/v1/areas');
+                const data = await resp.json();
+                
+                if (data.temperature?.length) { const t = data.temperature[0]; document.getElementById('sensor-temp').textContent = t.value; document.getElementById('sensor-temp-unit').textContent = t.unit; document.getElementById('sensor-temp-name').textContent = t.name; }
+                if (data.humidity?.length) { const h = data.humidity[0]; document.getElementById('sensor-humid').textContent = h.value; document.getElementById('sensor-humid-unit').textContent = h.unit; document.getElementById('sensor-humid-name').textContent = h.name; }
+                if (data.light?.length) { const l = data.light[0]; document.getElementById('sensor-light').textContent = Math.round(l.value); document.getElementById('sensor-light-unit').textContent = l.unit; document.getElementById('sensor-light-name').textContent = l.name; }
+                if (data.motion?.length) { const m = data.motion[0]; document.getElementById('sensor-motion').textContent = m.value === 'on' ? '有人' : '无人'; document.getElementById('sensor-motion-name').textContent = m.name; }
+                
+                document.getElementById('status-dot').classList.remove('offline');
+                document.getElementById('status-text').textContent = '已连接';
+            } catch(e) {
+                document.getElementById('status-dot').classList.add('offline');
+                document.getElementById('status-text').textContent = '未连接';
+            }
+            loadDeviceList();
+        }
+        
+        async function loadDeviceList() {
+            try {
+                const resp = await fetch('/api/v1/devices');
+                const data = await resp.json();
+                const groups = data.groups || {};
+                const order = ['light', 'climate', 'switch', 'sensor', 'binary_sensor'];
+                const names = {'light': '💡 灯光', 'climate': '🌡️ 空调', 'switch': '🔌 开关', 'sensor': '📡 传感器', 'binary_sensor': '🚶 人体感应'};
+                
+                let html = '';
+                for (const domain of order) {
+                    if (!groups[domain]) continue;
+                    const g = groups[domain];
+                    html += `<div class="device-type"><div class="device-type-header"><span class="device-type-name">${names[domain] || domain}</span><span class="device-type-count">${g.count} 个</span></div><div class="device-list">`;
+                    for (const d of g.devices.slice(0, 5)) {
+                        html += `<div class="device-item"><span class="name">${d.attributes.friendly_name || d.entity_id}</span><span class="state ${d.state === 'on' ? 'on' : ''}">${d.state}</span></div>`;
+                    }
+                    if (g.devices.length > 5) html += `<div class="device-item" style="color: var(--text-secondary);">还有 ${g.devices.length - 5} 个...</div>`;
+                    html += `</div></div>`;
+                }
+                document.getElementById('device-list').innerHTML = html || '暂无设备';
+            } catch(e) { document.getElementById('device-list').innerHTML = '加载失败'; }
+        }
+        
+        const savedToken = localStorage.getItem('ha_token');
+        if (savedToken) { document.getElementById('ha-token').value = savedToken; document.getElementById('ha-token').placeholder = '••••••••'; }
+        
+        function saveToken(input) { if (input.value) { localStorage.setItem('ha_token', input.value); input.placeholder = '••••••••'; } }
+        
+        function testConnection() {
+            const btn = document.querySelector('.test-btn');
+            btn.textContent = '测试中...';
+            loadDevices();
+            // 显示加载动画
+            document.querySelector(".scan-step").style.display = "none";
+            document.querySelector(".scan-loading").style.display = "block";
+            setTimeout(() => { btn.textContent = document.getElementById('status-text').textContent === '已连接' ? '✓ 已连接' : '✗ 失败'; }, 1500);
+        }
+        
+        const applyData = {
+            wake: { human: '过去 7 天观察到，您周末比工作日晚起床 1 小时。我已经为您准备好懒觉模式，周末上午 9 点自动开灯。', code: 'automation:\n  alias: "周末懒觉模式"\n  trigger:\n    - platform: time\n      at: "09:00:00"' },
+            bath: { human: '过去 3 天观察到，您习惯先开启浴霸，约 10 分钟后再进入卫生间。我已准备好预热逻辑，每晚 22:50 自动开启浴霸。', code: 'automation:\n  alias: "洗澡预热"\n  trigger:\n    - platform: time\n      at: "22:50:00"' },
+            light: { human: '过去 5 天观察到，您每晚 23:00 左右关闭客厅灯。已准备好睡前关灯自动化。', code: 'automation:\n  alias: "睡前关灯"\n  trigger:\n    - platform: time\n      at: "23:00:00"' }
+        };
+        
+        function showApplyModal(type) {
+            const data = applyData[type];
+            document.getElementById('modal-human-text').innerHTML = data.human.replace(/(\d+)/g, '<span class="highlight">$1</span>');
+            document.getElementById('modal-code-text').textContent = data.code;
+            document.getElementById('apply-modal').classList.add('show');
+            window.currentApply = type;
+        }
+        
+        function closeModal() { document.getElementById('apply-modal').classList.remove('show'); }
+        
+        function confirmApply() {
+            fetch('/api/v1/apply', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({insight_type: window.currentApply}) })
+            .then(res => res.json())
+            .then(data => { alert('✨ 已为您启用自动化！'); closeModal(); });
+        }
+        
+        document.getElementById('apply-modal').addEventListener('click', e => { if (e.target.id === 'apply-modal') closeModal(); });
+        
+        loadStats();
+    </script>
+</body>
+</html>
+
+    <!-- 统计详情弹窗 -->
+    <div class="modal" id="stat-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-avatar" id="stat-modal-icon">⚡</div>
+                <div><div class="modal-title" id="stat-modal-title">意图执行</div><div class="modal-subtitle" id="stat-modal-subtitle">今日详情</div></div>
+            </div>
+            <div class="card" id="stat-modal-list" style="max-height: 300px; overflow-y: auto;">
+                <!-- 动态内容 -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="document.getElementById('stat-modal').classList.remove('show')">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const statData = {
+            intents: {
+                icon: '⚡',
+                title: '意图执行',
+                items: [
+                    {time: '17:30', action: '"看电影"', result: '成功', detail: '调用客厅灯光组'},
+                    {time: '18:15', action: '"洗澡"', result: '成功', detail: '开启浴霸 45°C'},
+                    {time: '19:00', action: '"关灯"', result: '成功', detail: '关闭全屋灯光'},
+                    {time: '21:30', action: '"开空调"', result: '成功', detail: '客厅空调 24°C'},
+                ]
+            },
+            automations: {
+                icon: '📡',
+                title: '自动化',
+                items: [
+                    {time: '09:00', action: '周末懒觉模式', result: '已启用', detail: '周六日自动开灯'},
+                    {time: '22:50', action: '洗澡预热', result: '已启用', detail: '自动开启浴霸'},
+                    {time: '23:00', action: '睡前关灯', result: '已启用', detail: '自动关灯'},
+                ]
+            },
+            learns: {
+                icon: '📚',
+                title: '学习',
+                items: [
+                    {time: '全天', action: '卧室灯习惯', result: '92%', detail: '21:30开 → 08:00关'},
+                    {time: '全天', action: '浴霸温度', result: '45%', detail: '偏好 45°C'},
+                    {time: '全天', action: '离家模式', result: '78%', detail: '观察中'},
+                ]
+            }
+        };
+        
+        function showStatDetail(type) {
+            const data = statData[type];
+            document.getElementById('stat-modal-icon').textContent = data.icon;
+            document.getElementById('stat-modal-title').textContent = data.title;
+            
+            let html = '';
+            for (const item of data.items) {
+                html += '<div style="padding: 10px 0; border-bottom: 1px solid var(--border);"><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span style="font-size:12px;">' + item.time + '</span><span style="font-size:11px; color:var(--accent);">' + item.result + '</span></div><div style="font-size:13px;">' + item.action + '</div><div style="font-size:11px; color:var(--text-secondary);">' + item.detail + '</div></div>';
+            }
+            document.getElementById('stat-modal-list').innerHTML = html;
+            document.getElementById('stat-modal').classList.add('show');
+        }
+        
+        document.getElementById('stat-modal').addEventListener('click', function(e) {
+            if (e.target.id === 'stat-modal') this.classList.remove('show');
+        });
+    </script>
+
+    <!-- 语义化扫描弹窗 -->
+    <div class="modal" id="semantic-modal">
+        <div class="modal-content" style="text-align: center;">
+            <div class="modal-avatar" style="margin: 0 auto 20px;">✨</div>
+            <div class="modal-title" style="margin-bottom: 8px;">一键提取设备语义</div>
+            <div class="modal-subtitle" id="scan-status">正在连接设备...</div>
+            
+            <div class="scan-progress" id="scan-progress" style="margin: 20px 0;">
+                <div class="scan-step" id="scan-step-1" style="display:none;">
+                    <div class="scan-icon">🔍</div>
+                    <div class="scan-text">正在分析设备...</div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary" id="scan-result-btn" onclick="showSemanticResult()" style="display:none;">查看结果</button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeSemanticModal()">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 语义化结果弹窗 -->
+    <div class="modal" id="semantic-result-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-avatar" style="background: var(--accent);">✨</div>
+                <div><div class="modal-title">设备语义化完成！</div><div class="modal-subtitle" id="result-stats"></div></div>
+            </div>
+            
+            <div class="card" id="result-devices" style="max-height: 400px; overflow-y: auto;"></div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary" onclick="confirmSemantic()">✅ 确认注入灵魂</button>
+                <button class="modal-btn modal-btn-tertiary" onclick="closeSemanticResultModal()">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .semantic-btn { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px; font-size: 13px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s; } .semantic-btnOLD {
+            width: 100%;
+            padding: 14px 20px;
+            background: #1d1d1f;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .semantic-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        .semantic-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .scan-step {
+            padding: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .scan-step.done { color: var(--success); }
+        .scan-loading { display: none; text-align: center; padding: 20px; }
+        .scan-loading.show { display: block; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loader { width: 28px; height: 28px; border: 2px solid #eee; border-top-color: #333; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
+        .scan-step .scan-icon { font-size: 20px; margin-bottom: 8px; }
+    </style>
+    
+    <script>
+        let semanticData = null;
+        
+        function startSemanticScan() {
+            document.getElementById('semantic-modal').classList.add('show');
+            document.getElementById('scan-status').textContent = '正在连接 Home Assistant...';
+            document.getElementById('scan-result-btn').style.display = 'none';
+            
+            // 模拟扫描进度
+            // 显示加载动画
+            document.querySelector(".scan-step").style.display = "none";
+            document.querySelector(".scan-loading").style.display = "block";
+            setTimeout(() => {
+                document.getElementById('scan-status').textContent = '正在分析设备...';
+            }, 1000);
+            
+            // 显示加载动画
+            document.querySelector(".scan-step").style.display = "none";
+            document.querySelector(".scan-loading").style.display = "block";
+            setTimeout(() => {
+                document.getElementById('scan-status').textContent = '正在提取语义标签...';
+            }, 2000);
+            
+            // 调用 API
+            fetch('/api/v1/devices/analyze')
+                .then(res => res.json())
+                .then(data => {
+                    semanticData = data;
+                    document.getElementById('scan-status').textContent = '✅ 分析完成！';
+                    document.getElementById('scan-result-btn').style.display = 'block';
+                })
+                .catch(err => {
+                    document.getElementById('scan-status').textContent = '❌ 分析失败: ' + err.message;
+                });
+        }
+        
+        function showSemanticResult() {
+            if (!semanticData) return;
+            
+            document.getElementById('semantic-modal').classList.remove('show');
+            document.getElementById('semantic-result-modal').classList.add('show');
+            
+            // 显示统计
+            const stats = semanticData.stats || {};
+            document.getElementById('result-stats').textContent = 
+                `共 ${semanticData.valid} 个设备 · 已标空间 ${stats['已标空间']} 个 · 已标功能 ${stats['已标功能']} 个`;
+            
+            // 按空间分组显示
+            const spaces = semanticData.spaces || {};
+            let html = '';
+            
+            for (const [space, devices] of Object.entries(spaces)) {
+                html += `<div style="margin-bottom: 16px;">
+                    <div style="font-weight: 600; margin-bottom: 8px; color: var(--accent);">${space} (${devices.length})</div>`;
+                
+                for (const dev of devices.slice(0, 4)) {
+                    const tags = dev.tags || [];
+                    html += `<div style="display:flex; justify-content:space-between; align-items:center; padding: 8px 0; border-bottom: 1px solid var(--border);">
+                        <span style="font-size: 12px; flex: 1;">${dev.friendly_name}</span>
+                        <span style="font-size: 10px; color: var(--text-secondary);">
+                            ${tags.map(t => `<span style="background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px; margin-left: 4px;">${t}</span>`).join('')}
+                        </span>
+                    </div>`;
+                }
+                
+                if (devices.length > 4) {
+                    html += `<div style="font-size: 11px; color: var(--text-secondary); padding: 4px 0;">还有 ${devices.length - 4} 个...</div>`;
+                }
+                
+                html += '</div>';
+            }
+            
+            document.getElementById('result-devices').innerHTML = html || '暂无数据';
+        }
+        
+        function confirmSemantic() {
+            alert('✨ 已确认！设备语义已注入，以后可以用自然语言控制了～');
+            closeSemanticResultModal();
+        }
+        
+        function closeSemanticModal() {
+            document.getElementById('semantic-modal').classList.remove('show');
+        }
+        
+        function closeSemanticResultModal() {
+            document.getElementById('semantic-result-modal').classList.remove('show');
+        }
+        
+        document.getElementById('semantic-modal').addEventListener('click', function(e) {
+            if (e.target.id === 'semantic-modal') closeSemanticModal();
+        });
+    </script>
+
+<script>
+// 用户旅程引导
+function showWelcome() {
+    const modal = document.createElement('div');
+    modal.id = 'welcome-modal';
+    modal.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1000;';
+    modal.innerHTML = `
+        <div style="background:white;border-radius:24px;padding:32px;max-width:380px;width:90%;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.25);">
+            <div style="font-size:48px;margin-bottom:16px;">🏠</div>
+            <h2 style="margin:0 0 8px;font-size:26px;font-weight:700;">你好！我是 HomeAI</h2>
+            <p style="color:#8e8e93;font-size:15px;margin:0 0 24px;">为家，注入灵魂</p>
+            
+            <div style="background:linear-gradient(135deg,#f5f5f7 0%,#fff 100%);border-radius:16px;padding:20px;margin-bottom:24px;text-align:left;">
+                <div style="font-size:12px;color:#007aff;font-weight:600;margin-bottom:12px;">🔧 技术架构</div>
+                <div style="font-size:13px;color:#3a3a3c;line-height:1.6;">
+                    <b>Workswith Claw</b> — 具身智能家居中间件<br>
+                    • FastAPI 高性能后端<br>
+                    • Home Assistant 深度集成<br>
+                    • 本地 LLM 意图理解<br>
+                    • 习惯学习引擎
+                </div>
+            </div>
+            
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+                <div style="background:#f5f5f7;border-radius:12px;padding:16px;">
+                    <div style="font-size:24px;margin-bottom:4px;"><div style="font-size:24px;margin-bottom:4px;">🏠</div></div>
+                    <div style="font-size:12px;color:#8e8e93;">设备连接</div>
+                    <div style="font-size:16px;font-weight:600;">1100+</div>
+                </div>
+                <div style="background:#f5f5f7;border-radius:12px;padding:16px;">
+                    <div style="font-size:24px;margin-bottom:4px;">🏠</div>
+                    <div style="font-size:12px;color:#8e8e93;">意图理解</div>
+                    <div style="font-size:16px;font-weight:600;">自然语言</div>
+                </div>
+                <div style="background:#f5f5f7;border-radius:12px;padding:16px;">
+                    <div style="font-size:24px;margin-bottom:4px;">🏠</div>
+                    <div style="font-size:12px;color:#8e8e93;">数据洞察</div>
+                    <div style="font-size:16px;font-weight:600;">实时分析</div>
+                </div>
+                <div style="background:#f5f5f7;border-radius:12px;padding:16px;">
+                    <div style="font-size:24px;margin-bottom:4px;">🏠</div>
+                    <div style="font-size:12px;color:#8e8e93;">自动化</div>
+                    <div style="font-size:16px;font-weight:600;">智能预判</div>
+                </div>
+            </div>
+            
+            <button onclick="closeWelcome();showPage('config')" style="width:100%;padding:16px;background:#007aff;color:white;border:none;border-radius:14px;font-size:17px;font-weight:600;cursor:pointer;">开始配置 →</button>
+            <button onclick="closeWelcome();showPage('discover')" style="width:100%;margin-top:12px;padding:14px;background:#f5f5f7;color:#3a3a3c;border:none;border-radius:14px;font-size:15px;font-weight:500;cursor:pointer;">先看看</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function closeWelcome() {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) modal.remove();
+}
+
+// 首次打开显示欢迎
+if (!localStorage.getItem('homeai_welcomed')) {
+    setTimeout(showWelcome, 500);
+}
+</script>

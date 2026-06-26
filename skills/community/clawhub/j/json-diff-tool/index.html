@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Diff Tool - 在线JSON对比工具 | 程序员工具箱</title>
+<meta name="description" content="免费的在线JSON对比工具，支持语法高亮、差异高亮、结构对比、合并对比。数据不上传服务器，保护隐私。">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 1rem; }
+  header { text-align: center; padding: 1.5rem 0 1rem; border-bottom: 1px solid #1e293b; margin-bottom: 1rem; }
+  header h1 { font-size: 1.5rem; color: #38bdf8; margin-bottom: 0.25rem; }
+  header p { font-size: 0.85rem; color: #64748b; }
+  .toolbar { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 1rem; padding: 0.75rem; background: #1e293b; border-radius: 8px; }
+  .toolbar button { padding: 0.4rem 0.8rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+  .btn-primary { background: #3b82f6; color: white; }
+  .btn-primary:hover { background: #2563eb; }
+  .btn-secondary { background: #334155; color: #e2e8f0; }
+  .btn-secondary:hover { background: #475569; }
+  .btn-danger { background: #dc2626; color: white; }
+  .btn-danger:hover { background: #b91c1c; }
+  .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+  .editor-panel { background: #1e293b; border-radius: 8px; overflow: hidden; }
+  .editor-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; background: #334155; font-size: 0.8rem; }
+  .editor-header .label { color: #94a3b8; font-weight: 500; }
+  .editor-header .count { color: #64748b; font-size: 0.7rem; }
+  .editor-header .copy-btn { background: none; border: none; color: #64748b; cursor: pointer; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; }
+  .editor-header .copy-btn:hover { background: #475569; color: #e2e8f0; }
+  textarea { width: 100%; background: #0f172a; color: #e2e8f0; border: none; resize: vertical; font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.8rem; line-height: 1.6; padding: 0.75rem; outline: none; min-height: 300px; }
+  textarea::placeholder { color: #475569; }
+  textarea::-webkit-scrollbar { width: 6px; }
+  textarea::-webkit-scrollbar-track { background: #1e293b; }
+  textarea::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  .result-section { background: #1e293b; border-radius: 8px; overflow: hidden; }
+  .result-header { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem; background: #334155; font-size: 0.8rem; }
+  .result-header .label { color: #94a3b8; font-weight: 500; }
+  .result-content { padding: 0.75rem; font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.8rem; line-height: 1.6; max-height: 500px; overflow-y: auto; }
+  .diff-line { padding: 1px 4px; border-radius: 3px; display: block; white-space: pre-wrap; word-break: break-all; }
+  .diff-add { background: rgba(34, 197, 94, 0.15); color: #4ade80; border-left: 3px solid #22c55e; }
+  .diff-del { background: rgba(239, 68, 68, 0.15); color: #f87171; border-left: 3px solid #ef4444; }
+  .diff-unchanged { color: #64748b; border-left: 3px solid transparent; }
+  .stats-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; font-size: 0.8rem; }
+  .stat { display: flex; align-items: center; gap: 0.3rem; }
+  .stat.added { color: #4ade80; }
+  .stat.removed { color: #f87171; }
+  .stat.unchanged { color: #64748b; }
+  .stat-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .stat-dot.added { background: #22c55e; }
+  .stat-dot.removed { background: #ef4444; }
+  .stat-dot.unchanged { background: #475569; }
+  .error-msg { color: #f87171; padding: 0.5rem; font-size: 0.8rem; }
+  .sample-btns { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .sample-btns button { padding: 0.3rem 0.6rem; background: #334155; border: none; border-radius: 4px; color: #94a3b8; cursor: pointer; font-size: 0.7rem; }
+  .sample-btns button:hover { background: #475569; color: #e2e8f0; }
+  .ad-placeholder { background: #1e293b; border: 1px dashed #334155; border-radius: 8px; padding: 1rem; text-align: center; color: #475569; font-size: 0.75rem; margin-top: 1rem; }
+  footer { text-align: center; padding: 1rem; color: #475569; font-size: 0.7rem; }
+  @media (max-width: 768px) {
+    .editor-grid { grid-template-columns: 1fr; }
+    textarea { min-height: 200px; font-size: 0.75rem; }
+    header h1 { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🔍 JSON Diff Tool</h1>
+    <p>在线 JSON 对比工具 · 数据不上传服务器 · 完全免费</p>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn-primary" onclick="compare()">对比</button>
+    <button class="btn-secondary" onclick="clearAll()">清空</button>
+    <div class="sample-btns">
+      <button onclick="loadSample()">示例数据</button>
+      <button onclick="swapInputs()">交换两边</button>
+      <button onclick="copyResult()">复制结果</button>
+    </div>
+  </div>
+
+  <div class="editor-grid">
+    <div class="editor-panel">
+      <div class="editor-header">
+        <span class="label">JSON A <span class="count" id="countA">0 字符</span></span>
+        <button class="copy-btn" onclick="copyTextarea('jsonA')">复制</button>
+      </div>
+      <textarea id="jsonA" placeholder="粘贴第一个 JSON..." oninput="updateCount('A')"></textarea>
+    </div>
+    <div class="editor-panel">
+      <div class="editor-header">
+        <span class="label">JSON B <span class="count" id="countB">0 字符</span></span>
+        <button class="copy-btn" onclick="copyTextarea('jsonB')">复制</button>
+      </div>
+      <textarea id="jsonB" placeholder="粘贴第二个 JSON..." oninput="updateCount('B')"></textarea>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <div class="result-header">
+      <span class="label">差异结果</span>
+      <div class="stats-bar" id="stats"></div>
+    </div>
+    <div class="result-content" id="result">
+      <span class="diff-line" style="color:#475569; border-left: none; padding-left: 4px;">粘贴两个 JSON 后点击「对比」查看差异...</span>
+    </div>
+  </div>
+
+  <!-- 百度广告联盟 / Google AdSense 占位 -->
+  <div class="ad-placeholder">广告位 · 接入 Google AdSense 或百度广告联盟</div>
+
+  <footer>
+    <p>JSON Diff Tool · 程序员工具箱系列 · 无追踪 · 无日志</p>
+  </footer>
+</div>
+
+<script>
+// JSON Path comparison engine
+function tokenize(path) {
+  return path.split(/\.(?![^\[]*\])/);
+}
+
+function getValueAtPath(obj, path) {
+  const tokens = tokenize(path);
+  let current = obj;
+  for (const token of tokens) {
+    if (current === null || current === undefined) return undefined;
+    if (token === '$') continue;
+    if (Array.isArray(current)) {
+      if (/^\d+$/.test(token)) {
+        current = current[parseInt(token)];
+      } else {
+        return undefined;
+      }
+    } else if (typeof current === 'object') {
+      current = current[token];
+    } else {
+      return undefined;
+    }
+  }
+  return current;
+}
+
+function flattenObject(obj, prefix = '$') {
+  const result = {};
+  if (obj === null || obj === undefined) {
+    result[prefix] = { type: 'null', value: 'null' };
+    return result;
+  }
+  if (Array.isArray(obj)) {
+    result[prefix] = { type: 'array', value: JSON.stringify(obj) };
+    obj.forEach((item, i) => {
+      Object.assign(result, flattenObject(item, prefix + '[' + i + ']'));
+    });
+  } else if (typeof obj === 'object') {
+    result[prefix] = { type: 'object', value: '{...}' };
+    for (const key of Object.keys(obj)) {
+      Object.assign(result, flattenObject(obj[key], prefix + '.' + key));
+    }
+  } else {
+    result[prefix] = { type: typeof obj, value: String(obj) };
+  }
+  return result;
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function compare() {
+  const aEl = document.getElementById('jsonA');
+  const bEl = document.getElementById('jsonB');
+  const resultEl = document.getElementById('result');
+  const statsEl = document.getElementById('stats');
+  
+  const aText = aEl.value.trim();
+  const bText = bEl.value.trim();
+  
+  if (!aText || !bText) {
+    resultEl.innerHTML = '<span class="error-msg">请同时粘贴两个 JSON 进行对比</span>';
+    return;
+  }
+  
+  let aData, bData;
+  try {
+    aData = JSON.parse(aText);
+  } catch (e) {
+    resultEl.innerHTML = '<span class="error-msg">JSON A 格式错误: ' + escapeHtml(e.message) + '</span>';
+    return;
+  }
+  try {
+    bData = JSON.parse(bText);
+  } catch (e) {
+    resultEl.innerHTML = '<span class="error-msg">JSON B 格式错误: ' + escapeHtml(e.message) + '</span>';
+    return;
+  }
+  
+  const flatA = flattenObject(aData);
+  const flatB = flattenObject(bData);
+  const allKeys = new Set([...Object.keys(flatA), ...Object.keys(flatB)]);
+  
+  let added = 0, removed = 0, unchanged = 0;
+  const lines = [];
+  
+  for (const key of Array.from(allKeys).sort()) {
+    const inA = key in flatA;
+    const inB = key in flatB;
+    const valA = flatA[key];
+    const valB = flatB[key];
+    
+    if (inA && !inB) {
+      lines.push({ type: 'del', key, value: valA ? valA.value : '' });
+      removed++;
+    } else if (!inA && inB) {
+      lines.push({ type: 'add', key, value: valB ? valB.value : '' });
+      added++;
+    } else if (valA && valB && valA.value !== valB.value) {
+      lines.push({ type: 'del', key, value: valA.value });
+      lines.push({ type: 'add', key, value: valB.value });
+      added++;
+      removed++;
+    } else {
+      lines.push({ type: 'unchanged', key, value: valA ? valA.value : '' });
+      unchanged++;
+    }
+  }
+  
+  let html = '';
+  for (const line of lines) {
+    const displayValue = line.value.length > 200 ? line.value.substring(0, 200) + '...' : line.value;
+    const cls = line.type === 'add' ? 'diff-add' : line.type === 'del' ? 'diff-del' : 'diff-unchanged';
+    const prefix = line.type === 'add' ? '+' : line.type === 'del' ? '-' : ' ';
+    html += `<span class="diff-line ${cls}">${prefix} ${escapeHtml(line.key)}: ${escapeHtml(displayValue)}</span>`;
+  }
+  
+  resultEl.innerHTML = html || '<span class="diff-line diff-unchanged">两个 JSON 完全相同</span>';
+  
+  statsEl.innerHTML = `
+    <span class="stat added"><span class="stat-dot added"></span> 新增 ${added}</span>
+    <span class="stat removed"><span class="stat-dot removed"></span> 删除 ${removed}</span>
+    <span class="stat unchanged"><span class="stat-dot unchanged"></span> 未变 ${unchanged}</span>
+  `;
+}
+
+function updateCount(side) {
+  const el = document.getElementById('json' + side);
+  document.getElementById('count' + side).textContent = el.value.length + ' 字符';
+}
+
+function clearAll() {
+  document.getElementById('jsonA').value = '';
+  document.getElementById('jsonB').value = '';
+  document.getElementById('countA').textContent = '0 字符';
+  document.getElementById('countB').textContent = '0 字符';
+  document.getElementById('result').innerHTML = '<span class="diff-line" style="color:#475569; border-left: none; padding-left: 4px;">粘贴两个 JSON 后点击「对比」查看差异...</span>';
+  document.getElementById('stats').innerHTML = '';
+}
+
+function swapInputs() {
+  const a = document.getElementById('jsonA');
+  const b = document.getElementById('jsonB');
+  const tmp = a.value;
+  a.value = b.value;
+  b.value = tmp;
+  updateCount('A');
+  updateCount('B');
+}
+
+function copyTextarea(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  el.setSelectionRange(0, 0);
+}
+
+function copyResult() {
+  const result = document.getElementById('result');
+  const text = result.innerText;
+  navigator.clipboard.writeText(text).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+function loadSample() {
+  const sampleA = `{
+  "name": "张三",
+  "age": 28,
+  "city": "北京",
+  "skills": ["Python", "JavaScript"],
+  "active": true
+}`;
+  const sampleB = `{
+  "name": "张三",
+  "age": 29,
+  "city": "上海",
+  "skills": ["Python", "Go", "Docker"],
+  "role": "senior"
+}`;
+  document.getElementById('jsonA').value = sampleA;
+  document.getElementById('jsonB').value = sampleB;
+  updateCount('A');
+  updateCount('B');
+  compare();
+}
+
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    compare();
+  }
+});
+</script>
+</body>
+</html>

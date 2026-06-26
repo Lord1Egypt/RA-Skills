@@ -1,0 +1,53 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full Screen Background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF" />
+  <!-- Top Accent Bar (Consistent with Cover) -->
+  <rect x="0" y="0" width="1280" height="8" fill="#E60012" />
+  <rect x="0" y="10" width="1280" height="2" fill="#191919" fill-opacity="0.2" />
+  <!-- Left Side Vertical Decoration -->
+  <line x1="60" y1="120" x2="60" y2="600" stroke="#E60012" stroke-width="1" stroke-opacity="0.3" />
+  <line x1="64" y1="120" x2="64" y2="600" stroke="#191919" stroke-width="1" stroke-opacity="0.1" />
+  <text x="40" y="110" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="14" fill="#595959" transform="rotate(-90 40 360)">Index</text>
+  <!-- TOC Title -->
+  <rect x="100" y="120" width="4" height="30" fill="#E60012" />
+  <text x="115" y="145" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="28" font-weight="bold" fill="#191919">目录 / CONTENTS</text>
+  <!-- TOC Dual-Column List -->
+  <!-- Left Column -->
+  <g>
+    <!-- Item 01 -->
+    <text x="120" y="220" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="36" font-weight="bold" fill="#E60012" fill-opacity="0.8">01</text>
+    <text x="180" y="220" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="22" font-weight="bold" fill="#191919">{{TOC_ITEM_1_TITLE}}</text>
+    <line x1="180" y1="235" x2="580" y2="235" stroke="#595959" stroke-width="1" stroke-opacity="0.2" />
+    <text x="180" y="260" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="16" fill="#595959">{{TOC_ITEM_1_DESC}}</text>
+    <!-- Item 02 -->
+    <text x="120" y="330" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="36" font-weight="bold" fill="#E60012" fill-opacity="0.8">02</text>
+    <text x="180" y="330" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="22" font-weight="bold" fill="#191919">{{TOC_ITEM_2_TITLE}}</text>
+    <line x1="180" y1="345" x2="580" y2="345" stroke="#595959" stroke-width="1" stroke-opacity="0.2" />
+    <text x="180" y="370" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="16" fill="#595959">{{TOC_ITEM_2_DESC}}</text>
+    <!-- Item 03 -->
+    <text x="120" y="440" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="36" font-weight="bold" fill="#E60012" fill-opacity="0.8">03</text>
+    <text x="180" y="440" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="22" font-weight="bold" fill="#191919">{{TOC_ITEM_3_TITLE}}</text>
+    <line x1="180" y1="455" x2="580" y2="455" stroke="#595959" stroke-width="1" stroke-opacity="0.2" />
+    <text x="180" y="480" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="16" fill="#595959">{{TOC_ITEM_3_DESC}}</text>
+  </g>
+  <!-- Right Column -->
+  <g>
+    <!-- Item 04 -->
+    <text x="660" y="220" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="36" font-weight="bold" fill="#E60012" fill-opacity="0.8">04</text>
+    <text x="720" y="220" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="22" font-weight="bold" fill="#191919">{{TOC_ITEM_4_TITLE}}</text>
+    <line x1="720" y1="235" x2="1180" y2="235" stroke="#595959" stroke-width="1" stroke-opacity="0.2" />
+    <text x="720" y="260" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="16" fill="#595959">{{TOC_ITEM_4_DESC}}</text>
+    <!-- Item 05 -->
+    <text x="660" y="330" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="36" font-weight="bold" fill="#E60012" fill-opacity="0.8">05</text>
+    <text x="720" y="330" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="22" font-weight="bold" fill="#191919">{{TOC_ITEM_5_TITLE}}</text>
+    <line x1="720" y1="345" x2="1180" y2="345" stroke="#595959" stroke-width="1" stroke-opacity="0.2" />
+    <text x="720" y="370" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="16" fill="#595959">{{TOC_ITEM_5_DESC}}</text>
+    <!-- Item 06 -->
+    <text x="660" y="440" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="36" font-weight="bold" fill="#E60012" fill-opacity="0.8">06</text>
+    <text x="720" y="440" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="22" font-weight="bold" fill="#191919">{{TOC_ITEM_6_TITLE}}</text>
+    <line x1="720" y1="455" x2="1180" y2="455" stroke="#595959" stroke-width="1" stroke-opacity="0.2" />
+    <text x="720" y="480" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="16" fill="#595959">{{TOC_ITEM_6_DESC}}</text>
+  </g>
+  <!-- Footer -->
+  <text x="1240" y="685" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="12" fill="#888888" text-anchor="end">华为技术有限公司</text>
+</svg>

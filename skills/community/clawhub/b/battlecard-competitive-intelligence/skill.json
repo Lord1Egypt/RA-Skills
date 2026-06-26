@@ -1,0 +1,33 @@
+{
+  "name": "battlecard-competitive-intelligence",
+  "title": "Battlecard: Competitive Intelligence",
+  "version": "1.5.0",
+  "description": "Know your competitor's weaknesses before the call. Practice your pitch against an AI buyer. Capture intel after every deal. 11 tools for sales teams. Free tier, no signup needed.",
+  "author": "northr-ai",
+  "homepage": "https://battlecard.northr.ai",
+  "tags": [
+    "sales",
+    "competitive-intelligence",
+    "battle-cards",
+    "sales-enablement",
+    "b2b",
+    "mcp"
+  ],
+  "mcp": {
+    "url": "https://battlecard.northr.ai/mcp",
+    "transport": "sse"
+  },
+  "auth": {
+    "type": "header",
+    "header": "X-Battlecard-Key",
+    "signup_url": "https://battlecard.northr.ai/signup",
+    "free_tier": true,
+    "free_tier_description": "4 battle cards, 2 text simulations, 1 voice simulation. No signup. No API key."
+  },
+  "openclaw": {
+    "requires": {
+      "env": ["BATTLECARD_API_KEY"]
+    },
+    "primaryEnv": "BATTLECARD_API_KEY"
+  }
+}

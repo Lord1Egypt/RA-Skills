@@ -1,0 +1,19 @@
+{
+  "name": "feishu-agent-config-helper",
+  "version": "0.1.0",
+  "description": "辅助用户配置 OpenClaw 飞书机器人与 Agent 绑定",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "feishu",
+    "lark",
+    "agent",
+    "config",
+    "helper",
+    "bot"
+  ],
+  "author": "OpenClaw AI",
+  "license": "MIT"
+}

@@ -1,0 +1,30 @@
+OwnCloud Sync Report - Last 30 days
+Report generated on: 2026-02-25 23:18:44
+
+Total new files in Google Drive: 21
+
+Files missing or older on OwnCloud:
+NAME                                                                     TYPE    SIZE      MODIFIED - MISSING
+facture internat Q4 2025.pdf - MISSING
+Openclaw - MISSING
+large_files_list.txt - MISSING
+available_skills_list.txt - MISSING
+[Inetum Luxembourg SA] - Fiches de salaire- ETIENNE Denis - 2026-02.pdf - MISSING
+facture internat Q1 2026.pdf - MISSING
+caf aide logement attestation-non-paiement.pdf - MISSING
+20260223_085459.jpg - MISSING
+ocaml_struct.pdf - MISSING
+Arbres binaires-OCaml.pdf - MISSING
+2-option-informatique-devoir-en-tps-libre2.pdf - MISSING
+1-option-informatique-mpsi-ocaml.pdf - MISSING
+ocaml cpge                                                               folder  -         2026-02-15 16:12 - MISSING
+option-informatique-devoir-en-tps-libre.pdf - MISSING
+Renaud-dekode - MISSING
+Procedure PL/SQL Postgres - MISSING
+Facture n°244617.pdf - MISSING
+Bulletin de ETIENNE BONNET Arthur - Semestre 1, 2025-2026.pdf - MISSING
+certificat_de_scolarite_Arthur_ETIENNE BONNET_03-02-2026.pdf - MISSING
+20260208_165305.jpg - MISSING
+
+Report generation time: 1 seconds
+

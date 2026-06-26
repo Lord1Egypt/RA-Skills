@@ -1,0 +1,8 @@
+{
+  "_comment": "首次使用请填入以下配置",
+  "_comment2": "或使用环境变量: INTERVALS_API_KEY, INTERVALS_ATHLETE_ID, INTERVALS_THRESHOLD_PACE",
+  "API_KEY": "",
+  "ATHLETE_ID": "",
+  "THRESHOLD_PACE": 217,
+  "WEEKLY_TARGET_LOAD": 400
+}

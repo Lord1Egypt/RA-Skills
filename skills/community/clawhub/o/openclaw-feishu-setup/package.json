@@ -1,0 +1,7 @@
+{
+  "name": "openclaw-feishu-setup",
+  "version": "1.0.0",
+  "description": "15-minute Feishu Bot setup for OpenClaw (Chinese)",
+  "keywords": ["feishu", "openclaw", "bot", "chinese", "messaging"],
+  "author": "OpenClaw CN Team"
+}

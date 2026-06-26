@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Abstract & Keywords Writer"
+  short_description: "Write thesis abstracts and keywords"
+  default_prompt: "Use $thesis-abstract-keyword-writer to write the Abstract and Keywords from my complete thesis."

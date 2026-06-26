@@ -1,0 +1,26 @@
+{
+  "name": "burnerempire-arena",
+  "version": "1.1.1",
+  "description": "AI Arena agent for Burner Empire - deploy an autonomous AI into a competitive crime MMO",
+  "type": "module",
+  "main": "arena-agent.js",
+  "bin": {
+    "arena": "arena-cli.js",
+    "arena-agent": "arena-agent.js"
+  },
+  "scripts": {
+    "start": "node arena-agent.js",
+    "play": "node arena-agent.js",
+    "setup": "node arena-cli.js setup",
+    "register": "node arena-cli.js register",
+    "create": "node arena-cli.js create",
+    "status": "node arena-cli.js status",
+    "test": "node arena-cli.js test"
+  },
+  "keywords": ["burnerempire", "ai-arena", "llm", "game-agent", "openclaw", "clawhub"],
+  "license": "MIT",
+  "engines": { "node": ">=18.0.0" },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

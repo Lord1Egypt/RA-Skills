@@ -1,0 +1,44 @@
+[
+  {
+    "timestamp": "2026-03-25T17:35:41.750473+08:00",
+    "buy_price": 1022.37,
+    "sell_price": 1010.76,
+    "mid_price": 1013.76,
+    "bank_update_time": "2026-03-25 10:30:00.000"
+  },
+  {
+    "timestamp": "2026-03-25T17:38:27.773656+08:00",
+    "buy_price": 1022.37,
+    "sell_price": 1010.76,
+    "mid_price": 1013.76,
+    "bank_update_time": "2026-03-25 10:30:00.000"
+  },
+  {
+    "timestamp": "2026-03-25T17:38:40.533650+08:00",
+    "buy_price": 1022.37,
+    "sell_price": 1010.76,
+    "mid_price": 1013.76,
+    "bank_update_time": "2026-03-25 10:30:00.000"
+  },
+  {
+    "timestamp": "2026-03-25T22:31:17.924258+08:00",
+    "buy_price": 1022.37,
+    "sell_price": 1012.13,
+    "mid_price": 1015.13,
+    "bank_update_time": "2026-03-25 10:30:00.000"
+  },
+  {
+    "timestamp": "2026-03-25T23:24:57.629089+08:00",
+    "buy_price": 1014.5,
+    "sell_price": 1017.7,
+    "mid_price": 1014.5,
+    "bank_update_time": "2026-03-25 23:24:25"
+  },
+  {
+    "timestamp": "2026-03-25T23:30:45.642793+08:00",
+    "buy_price": 1009.0,
+    "sell_price": 1017.8,
+    "mid_price": 1017.7,
+    "bank_update_time": "2026-03-25 23:27:32"
+  }
+]

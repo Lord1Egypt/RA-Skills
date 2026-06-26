@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#fffdf8"/>
+  <text x="70" y="90" fill="#1f1a14" font-family="Arial, sans-serif" font-size="48" font-weight="800">v1.0 Business-Loop State</text>
+  <g fill="#f6f3ec" stroke="#d8c9b8" font-family="Arial, sans-serif" font-size="24" font-weight="700">
+    <rect x="80" y="160" width="220" height="86" rx="18"/><text x="120" y="213" fill="#1f1a14">founder</text>
+    <rect x="340" y="160" width="220" height="86" rx="18"/><text x="390" y="213" fill="#1f1a14">offer</text>
+    <rect x="600" y="160" width="220" height="86" rx="18"/><text x="650" y="213" fill="#1f1a14">buyer</text>
+    <rect x="860" y="160" width="220" height="86" rx="18"/><text x="900" y="213" fill="#1f1a14">product</text>
+    <rect x="80" y="300" width="220" height="86" rx="18"/><text x="124" y="353" fill="#1f1a14">pipeline</text>
+    <rect x="340" y="300" width="220" height="86" rx="18"/><text x="382" y="353" fill="#1f1a14">delivery</text>
+    <rect x="600" y="300" width="220" height="86" rx="18"/><text x="670" y="353" fill="#1f1a14">cash</text>
+    <rect x="860" y="300" width="220" height="86" rx="18"/><text x="910" y="353" fill="#1f1a14">assets</text>
+  </g>
+  <text x="80" y="510" fill="#2f7d5b" font-family="Arial, sans-serif" font-size="28" font-weight="700">No legacy stage_id. No current_round. One visible operating loop.</text>
+</svg>

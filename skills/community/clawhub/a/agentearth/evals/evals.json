@@ -1,0 +1,20 @@
+{
+  "skill_name": "Agentearth",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Check today's weather in Beijing",
+      "expected_output": "Call the recommend API with API Key to find Beijing weather tools, select the most relevant tool and execute with API Key, return forecast data"
+    },
+    {
+      "id": 2,
+      "prompt": "Which tool can analyze stock data?",
+      "expected_output": "Identify finance/stock-related tools, call recommend with auth, then execute the selected stock analysis tool"
+    },
+    {
+      "id": 3,
+      "prompt": "I need a tool that can convert PDF format",
+      "expected_output": "Locate a PDF processing tool, execute conversion with auth or return available PDF tool info"
+    }
+  ]
+}

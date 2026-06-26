@@ -1,0 +1,23 @@
+{
+  "name": "ad-production-review-quality",
+  "version": "1.0.0",
+  "description": "审核质检技能 - 自动化质量评估和人工审核工作流",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "review",
+    "quality",
+    "qc"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

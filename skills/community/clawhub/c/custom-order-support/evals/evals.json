@@ -1,0 +1,29 @@
+{
+	"evals": [
+		{
+			"eval_name": "status-check-impatient",
+			"expected_output": "Reassure the customer, explain the custom lead time, give current progress and a reasonable shipping window.",
+			"files": [
+			],
+			"id": 0,
+			"prompt": "I ordered an engraved ring two weeks ago and it still hasn’t shipped. Did you lose my order? This is so slow!"
+		},
+		{
+			"eval_name": "late-modification-request",
+			"expected_output": "Politely decline, explain the 24-hour change window has passed and the product is in production, and ask for understanding.",
+			"files": [
+			],
+			"id": 1,
+			"prompt": "Hi, I ordered custom couple mugs and want to change the date on them to a different day. Can you update that?"
+		},
+		{
+			"eval_name": "after-sales-quality-issue",
+			"expected_output": "Apologize immediately, ask for photo proof of damage, and offer replacement frame or appropriate compensation.",
+			"files": [
+			],
+			"id": 2,
+			"prompt": "I received the custom painting but the frame was damaged in one corner during shipping. What can we do?"
+		}
+	],
+	"skill_name": "custom-order-support"
+}

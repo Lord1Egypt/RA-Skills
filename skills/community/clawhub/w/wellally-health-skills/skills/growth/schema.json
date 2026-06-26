@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/growth-tracker.json",
+  "title": "Child Growth Tracker",
+  "description": "儿童生长追踪数据结构",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "child_profile": {
+      "type": "object",
+      "properties": {
+        "child_id": {"type": "string"},
+        "name": {"type": "string"},
+        "birth_date": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female"]}
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "growth_tracking": {
+      "type": "object",
+      "properties": {
+        "measurements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {"type": "string", "format": "date"},
+              "age_months": {"type": "integer"},
+              "height": {
+                "type": "object",
+                "properties": {
+                  "value": {"type": "number"},
+                  "percentile": {"type": "number"},
+                  "z_score": {"type": "number"},
+                  "velocity": {"type": "number"},
+                  "velocity_period": {"type": "string"},
+                  "velocity_percentile": {"type": "number"}
+                }
+              },
+              "weight": {
+                "type": "object",
+                "properties": {
+                  "value": {"type": "number"},
+                  "percentile": {"type": "number"},
+                  "z_score": {"type": "number"},
+                  "velocity": {"type": "number"},
+                  "velocity_percentile": {"type": "number"}
+                }
+              },
+              "bmi": {
+                "type": "object",
+                "properties": {
+                  "value": {"type": "number"},
+                  "percentile": {"type": "number"},
+                  "z_score": {"type": "number"}
+                }
+              },
+              "head_circumference": {
+                "type": "object",
+                "properties": {
+                  "value": {"type": "number"},
+                  "percentile": {"type": "number"},
+                  "z_score": {"type": "number"}
+                }
+              },
+              "comments": {"type": "string"}
+            }
+          }
+        },
+        "growth_assessment": {
+          "type": "object",
+          "properties": {
+            "overall": {
+              "type": "string",
+              "enum": ["normal", "stunting", "underweight", "overweight", "obesity"]
+            },
+            "height_status": {
+              "type": "string",
+              "enum": ["normal", "stunted", "tall"]
+            },
+            "weight_status": {
+              "type": "string",
+              "enum": ["normal", "underweight", "overweight"]
+            },
+            "bmi_status": {
+              "type": "string",
+              "enum": ["normal", "wasting", "overweight", "obese"]
+            }
+          }
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {"type": "string"},
+              "type": {"type": "string"},
+              "severity": {"type": "string"},
+              "message": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_measurements": {"type": "integer"},
+        "tracking_duration_months": {"type": "integer"},
+        "first_measurement_date": {"type": "string", "format": "date"},
+        "last_measurement_date": {"type": "string", "format": "date"},
+        "height_velocity_cm_per_year": {"type": "number"},
+        "weight_velocity_kg_per_year": {"type": "number"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"]
+}

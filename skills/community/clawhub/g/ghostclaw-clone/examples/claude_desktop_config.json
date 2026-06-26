@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "ghostclaw": {
+      "command": "ghostclaw-mcp",
+      "args": [],
+      "env": {
+        "GHOSTCLAW_REPO_PATH": "/path/to/your/repo",
+        "GHOSTCLAW_USE_QMD": "1"
+      }
+    }
+  }
+}

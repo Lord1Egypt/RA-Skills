@@ -1,0 +1,22 @@
+# Neuro-Agent 配置文件
+# 使用 OpenClaw 内置模型（MiniMax），无需额外 API Key
+
+llm:
+  default_provider: openai
+  enable_fallback: true
+  use_openclaw: true  # 使用 OpenClaw 当前模型（MiniMax）
+  
+  openai:
+    api_key: ""  # 不需要，use_openclaw=true 时忽略
+    default_model: gpt-4o-mini
+    fallback_model: gpt-4o
+  
+  claude:
+    api_key: ""  # 不需要，use_openclaw=true 时忽略
+    default_model: claude-3-haiku-20240307
+    fallback_model: claude-3-sonnet-20240229
+
+empathy:
+  temperature: 0.8
+  max_tokens: 150
+  use_llm: true

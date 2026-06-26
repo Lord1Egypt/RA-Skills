@@ -1,0 +1,19 @@
+{
+  "name": "kaomoji",
+  "title": "Kaomoji Skill for OpenClaw",
+  "description": "顏文字推薦助手 - 根據語氣自動推薦合適顏文字",
+  "version": "1.2.2",
+  "platform": "OpenClaw",
+  "license": "MIT",
+  "tags": [
+    "kaomoji",
+    "emoji",
+    "text",
+    "emotion"
+  ],
+  "compatibility": {
+    "openclaw": ">=1.0.0"
+  },
+  "entry": "SKILL.md",
+  "language": "zh-Hant"
+}

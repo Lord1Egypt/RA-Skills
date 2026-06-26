@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scrapling Web Extraction"
+  short_description: "Scrape sites with resilient extraction and anti-bot support"
+  default_prompt: "Use $scrapling to extract structured data from a website with robust selectors and optional pagination."

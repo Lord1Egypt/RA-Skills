@@ -1,35 +1,292 @@
 ---
-name: "Commit Reviewer（提交修复检查）"
-description: "根据一个或多个 git 修订号和需求描述，检查提交是否真正修复了对应 bug，并给出逐条结论"
-category: "other"
-source: "ClawHub"
-tags: [code-review, commit, debug, developer, git, review]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/commit-reviewer"
-sourceUrl: "https://clawhub.ai/skills/commit-reviewer"
+name: commit_reviewer
+description: 根据一个或多个 git 修订号和需求描述，检查提交是否真正修复了对应 bug，并给出逐条结论
+version: 1.1.0
+entrypoint: scripts/collect_commit_context.sh
+metadata:
+  openclaw:
+    requires:
+      bins: [bash, git, find, sed, grep, sort]
 ---
 
-# Commit Reviewer（提交修复检查）
+# Commit Reviewer
 
-> 根据一个或多个 git 修订号和需求描述，检查提交是否真正修复了对应 bug，并给出逐条结论
+## 适用场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/commit-reviewer`
-- **Source URL:** [https://clawhub.ai/skills/commit-reviewer](https://clawhub.ai/skills/commit-reviewer)
+当用户提供一个或多个 git commit hash，并希望你判断：
+- 这次提交有没有真正修复某个 bug
+- 这次提交是否覆盖了需求点
+- 这次提交代码有没有明显问题
+- 这次提交是否存在遗漏或潜在副作用
 
-## Overview
+时使用本技能。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/commit-reviewer
+## 触发方式
+
+优先识别以下形式：
+
+### 方式一：不指定项目（自动识别）
+
+```text
+/commit_reviewer <commit1> [commit2] [commit3] ...
 ```
+
+例如：
+
+```text
+/commit_reviewer 1f168bcd07a90c8b02f7a4eaf1809131df484185
+```
+
+或：
+
+```text
+/commit_reviewer 1f168bcd07a90c8b02f7a4eaf1809131df484185 92ab33cdef00112233445566778899aabbccddee
+```
+
+### 方式二：指定项目（推荐）
+
+```text
+/commit_reviewer <project> <commit1> [commit2] [commit3] ...
+```
+
+例如：
+
+```text
+/commit_reviewer yaf-ga-web-sht 1f168bcd07a90c8b02f7a4eaf1809131df484185
+```
+
+或：
+
+```text
+/commit_reviewer yaf-ga-web-sht 1f168bcd07a90c8b02f7a4eaf1809131df484185 92ab33cdef00112233445566778899aabbccddee
+```
+
+### 方式三：指定项目路径
+
+```text
+/commit_reviewer /path/to/project <commit1> [commit2] [commit3] ...
+```
+
+适用于：
+- 项目不在默认工作目录下
+- 希望跳过扫描，直接在某个仓库内检查
+- ClawHub 使用者目录结构不一致的情况
+
+---
+
+## 项目识别规则
+
+本技能支持三种项目定位方式：
+
+### 1）用户显式指定项目名
+
+如果命令格式为：
+
+```text
+/commit_reviewer <project> <commit...>
+```
+
+则只在默认工作目录下的对应项目目录中检查 commit，不再全局扫描。
+
+默认工作目录优先级：
+1. 环境变量 `COMMIT_REVIEWER_WORK_ROOT`
+2. 当前目录
+
+目录拼接规则：
+
+```text
+<work_root>/<project>
+```
+
+### 2）用户显式指定项目路径
+
+如果第一个参数看起来是一个存在的目录路径，则直接把它当作项目路径使用，只在该路径对应的 Git 仓库中检查 commit。
+
+### 3）用户未指定项目
+
+如果命令格式为：
+
+```text
+/commit_reviewer <commit...>
+```
+
+则走自动识别逻辑：
+
+1. 如果当前目录本身是 Git 仓库，则优先在当前项目中查找 commit
+2. 如果当前项目中找不到，则扫描默认工作目录下的多个 Git 仓库
+3. 如果只找到一个匹配项目，则直接使用该项目进行分析
+4. 如果找到多个匹配项目，则提示用户指定项目
+5. 如果未找到匹配项目，则提示用户检查 commit 是否正确，或补充项目名 / 项目路径
+
+---
+
+## 交互规则
+
+### 1）如果用户只发了 commit，没有发需求描述
+
+必须先追问用户：
+
+```text
+我已经拿到 commit 了，请把这次要核对的需求 / bug 描述发给我，我会按需求逐条检查这些提交有没有真正修复。
+```
+
+不要直接开始下结论。
+
+### 2）如果 commit 所属项目无法唯一确定
+
+必须先告诉用户：
+
+```text
+我找到了这个 commit，但它可能属于多个项目，或当前无法唯一确定项目。请补充项目名或项目路径后，我再继续检查。
+```
+
+不要在项目不明确的情况下强行下结论。
+
+### 3）如果用户指定了项目，但项目不存在
+
+必须先告诉用户：
+
+```text
+我没有找到你指定的项目，请检查项目名是否正确，或补充更准确的项目路径。
+```
+
+### 4）如果用户指定了项目，但 commit 不属于该项目
+
+必须先告诉用户：
+
+```text
+我在你指定的项目中没有找到这个 commit，请确认 commit 是否正确，或检查项目是否填错。
+```
+
+### 5）如果用户同时发了 commit 和需求
+
+直接开始检查，不要反复确认。
+
+---
+
+## 分析目标
+
+你需要结合：
+- 用户给出的需求 / bug 描述
+- entrypoint 提供的 git 提交上下文
+- 实际 diff 改动内容
+
+来判断这次提交是否真的修复了问题。
+
+---
+
+## 强制分析规则
+
+### 必须做到：
+
+1. 必须逐条对照需求检查
+2. 必须基于实际 diff 判断，不要只看 commit message
+3. 不要只因为“改了相关文件”就认定已修复
+4. 每个需求点必须输出以下四类结论之一：
+   - 已解决
+   - 可能已解决
+   - 未解决
+   - 无法判断
+5. 每条都要写清楚判断依据：
+   - 改了哪些文件
+   - 改的是哪类逻辑
+   - 为什么这样判断
+6. 如果属于页面展示 / 前端交互 / UI 行为问题，必须补一句：
+   - 代码层面看似已修复，但建议手测验证
+
+---
+
+## 风险判断要求
+
+除了判断“有没有修复”，还要顺带检查：
+- 是否只修了一部分
+- 是否可能引入副作用
+- 是否存在遗漏
+- 是否只是改了样式 / 文案，但没改核心逻辑
+- 是否排序、数量、关闭按钮、调用顺序这类问题只改了一半
+
+---
+
+## 输出格式
+
+请严格按下面格式输出：
+
+```text
+检查结果：
+
+Commit:
+- <commit1>
+- <commit2>
+
+需求拆解：
+1. ...
+2. ...
+3. ...
+
+逐项检查：
+1. <需求点>
+- 结论：已解决 / 可能已解决 / 未解决 / 无法判断
+- 依据：
+- 风险/备注：
+
+2. <需求点>
+- 结论：
+- 依据：
+- 风险/备注：
+
+总体结论：
+- 本次提交整体是否覆盖需求
+- 哪些点已处理
+- 哪些点可能遗漏
+- 是否建议手测
+
+最终判断：
+- 已修复 / 部分修复 / 未明显修复 / 需进一步验证
+```
+
+---
+
+## 重要限制
+
+你只能根据代码改动做“代码层面的修复判断”。
+
+对于以下问题，必须提醒用户仍需手测验证：
+- 弹窗顺序
+- 页面布局
+- 关闭按钮是否可点击
+- 前端列表排序展示是否与真实数据一致
+- 接口联调后才会生效的逻辑
+
+---
+
+## 运行约定（适合 ClawHub）
+
+为避免不同机器目录结构不一致，建议：
+
+- 优先通过环境变量指定工作目录：
+
+```text
+COMMIT_REVIEWER_WORK_ROOT=/your/workspace/root
+```
+
+- 如果不传环境变量：
+  - 当前目录是 Git 仓库时，优先检查当前仓库
+  - 当前目录不是 Git 仓库时，默认扫描当前目录下的子仓库
+
+- 可选环境变量：
+  - `COMMIT_REVIEWER_WORK_ROOT`：默认扫描根目录
+  - `COMMIT_REVIEWER_SCAN_DEPTH`：仓库扫描深度，默认 `4`
+  - `COMMIT_REVIEWER_PATCH_LINES`：每个 commit 输出的 patch 最大行数，默认 `1200`
+
+---
+
+## 语言风格
+
+- 中文输出
+- 简洁直接
+- 像真实开发评审结论
+- 不要空泛
+- 不要只复述 diff
+- 优先使用业务语言，而不是纯代码语言

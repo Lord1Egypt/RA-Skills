@@ -1,0 +1,9 @@
+{
+  "name": "email-skill",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "imapflow": "^1.2.10"
+  }
+}

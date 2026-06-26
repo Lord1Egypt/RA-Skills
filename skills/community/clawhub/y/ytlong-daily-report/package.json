@@ -1,0 +1,25 @@
+{
+  "name": "daily-report-generator",
+  "version": "1.0.0",
+  "description": "Automatically generate daily/weekly work reports from git commits",
+  "main": "index.js",
+  "bin": {
+    "daily-report": "./index.js"
+  },
+  "scripts": {
+    "test": "node index.js today"
+  },
+  "keywords": [
+    "report",
+    "daily",
+    "weekly",
+    "git",
+    "automation",
+    "productivity"
+  ],
+  "author": "@1989tianlong",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "ourgroceries",
+  "version": "1.0.2",
+  "description": "Skill for interacting with OurGroceries.com to manage shopping lists.",
+  "env": [
+    {
+      "name": "OURGROCERIES_EMAIL",
+      "description": "Your OurGroceries.com login email",
+      "required": true
+    },
+    {
+      "name": "OURGROCERIES_PASSWORD",
+      "description": "Your OurGroceries.com login password",
+      "required": true
+    }
+  ]
+}

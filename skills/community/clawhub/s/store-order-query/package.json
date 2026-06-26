@@ -1,0 +1,23 @@
+{
+  "name": "@bondli-skills/store-order-query",
+  "version": "1.0.2",
+  "description": "通过连接MySQL数据库查询店铺订单的 OpenClaw Skill",
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "config.example.json"
+  ],
+  "keywords": [
+    "order",
+    "query",
+    "mysql",
+    "analysis"
+  ],
+  "dependencies": {
+    "mysql2": "^3.6.0"
+  },
+  "license": "MIT"
+}

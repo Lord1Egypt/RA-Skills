@@ -1,0 +1,13 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-mailchimp": {
+      "command": "uv",
+      "args": ["run", "--script", "scripts/server.py"],
+      "env": {
+        "MAVERICK_MAILCHIMP_MCP_ACCESS_TOKEN": "${MAVERICK_MAILCHIMP_MCP_ACCESS_TOKEN}",
+        "MAVERICK_MAILCHIMP_MCP_API_BASE": "${MAVERICK_MAILCHIMP_MCP_API_BASE}"
+      }
+    }
+  }
+}

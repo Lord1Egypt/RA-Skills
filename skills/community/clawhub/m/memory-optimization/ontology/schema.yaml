@@ -1,0 +1,453 @@
+# 心炙成长计划 - Ontology Schema
+# 专为管理心炙与rong的协作成长计划设计
+
+types:
+  # 核心实体类型
+  Person:
+    required: [name]
+    properties:
+      name:
+        type: string
+        description: "人名"
+      email:
+        type: string
+        description: "邮箱地址"
+      phone:
+        type: string
+        description: "电话号码"
+      role:
+        type: string
+        enum: ["creator", "assistant", "collaborator"]
+        description: "角色"
+      timezone:
+        type: string
+        description: "时区"
+      notes:
+        type: string
+        description: "备注"
+
+  Project:
+    required: [name, status]
+    properties:
+      name:
+        type: string
+        description: "项目名称"
+      status:
+        type: string
+        enum: ["planning", "active", "paused", "completed", "cancelled"]
+        description: "项目状态"
+      description:
+        type: string
+        description: "项目描述"
+      start_date:
+        type: string
+        description: "开始日期 (YYYY-MM-DD)"
+      target_date:
+        type: string
+        description: "目标完成日期 (YYYY-MM-DD)"
+      actual_date:
+        type: string
+        description: "实际完成日期 (YYYY-MM-DD)"
+      priority:
+        type: string
+        enum: ["low", "medium", "high", "critical"]
+        description: "优先级"
+      budget:
+        type: string
+        description: "预算信息"
+      tags:
+        type: array
+        description: "标签列表"
+
+  Goal:
+    required: [description, project_id]
+    properties:
+      description:
+        type: string
+        description: "目标描述"
+      project_id:
+        type: string
+        description: "所属项目ID"
+      target_date:
+        type: string
+        description: "目标日期 (YYYY-MM-DD)"
+      status:
+        type: string
+        enum: ["pending", "in_progress", "completed", "missed"]
+        description: "目标状态"
+      metrics:
+        type: array
+        description: "衡量指标列表"
+      weight:
+        type: number
+        description: "权重 (0-1)"
+
+  Task:
+    required: [title, status, project_id]
+    properties:
+      title:
+        type: string
+        description: "任务标题"
+      status:
+        type: string
+        enum: ["pending", "in_progress", "blocked", "testing", "completed", "cancelled"]
+        description: "任务状态"
+      project_id:
+        type: string
+        description: "所属项目ID"
+      goal_id:
+        type: string
+        description: "关联目标ID"
+      assignee_id:
+        type: string
+        description: "负责人ID"
+      due_date:
+        type: string
+        description: "截止日期 (YYYY-MM-DD)"
+      priority:
+        type: string
+        enum: ["low", "medium", "high", "urgent"]
+        description: "优先级"
+      estimated_hours:
+        type: number
+        description: "预估工时"
+      actual_hours:
+        type: number
+        description: "实际工时"
+      blockers:
+        type: array
+        description: "阻塞任务ID列表"
+      dependencies:
+        type: array
+        description: "依赖任务ID列表"
+      tags:
+        type: array
+        description: "标签列表"
+      description:
+        type: string
+        description: "任务描述"
+
+  Milestone:
+    required: [title, project_id, date]
+    properties:
+      title:
+        type: string
+        description: "里程碑标题"
+      project_id:
+        type: string
+        description: "所属项目ID"
+      date:
+        type: string
+        description: "里程碑日期 (YYYY-MM-DD)"
+      status:
+        type: string
+        enum: ["planned", "achieved", "missed"]
+        description: "里程碑状态"
+      description:
+        type: string
+        description: "里程碑描述"
+      significance:
+        type: string
+        enum: ["minor", "major", "critical"]
+        description: "重要程度"
+
+  Event:
+    required: [title, start_time, event_type]
+    properties:
+      title:
+        type: string
+        description: "事件标题"
+      start_time:
+        type: string
+        description: "开始时间 (ISO 8601)"
+      end_time:
+        type: string
+        description: "结束时间 (ISO 8601)"
+      event_type:
+        type: string
+        enum: ["meeting", "deadline", "milestone", "review", "learning", "delivery"]
+        description: "事件类型"
+      project_id:
+        type: string
+        description: "关联项目ID"
+      task_id:
+        type: string
+        description: "关联任务ID"
+      participants:
+        type: array
+        description: "参与者ID列表"
+      location:
+        type: string
+        description: "地点/位置"
+      description:
+        type: string
+        description: "事件描述"
+      recurrence:
+        type: string
+        description: "重复规则"
+
+  Skill:
+    required: [name, category, proficiency]
+    properties:
+      name:
+        type: string
+        description: "技能名称"
+      category:
+        type: string
+        enum: ["technical", "soft", "domain", "language", "tool"]
+        description: "技能类别"
+      proficiency:
+        type: string
+        enum: ["beginner", "intermediate", "advanced", "expert"]
+        description: "熟练程度"
+      target_level:
+        type: string
+        enum: ["beginner", "intermediate", "advanced", "expert", "master"]
+        description: "目标水平"
+      owner_id:
+        type: string
+        description: "所属人ID"
+      description:
+        type: string
+        description: "技能描述"
+      resources:
+        type: array
+        description: "学习资源列表"
+
+  SkillUsage:
+    required: [skill_name, status]
+    properties:
+      skill_name:
+        type: string
+        description: "技能名称"
+      category:
+        type: string
+        description: "技能分类 (feishu/apple/coding/memory/api/system/utility)"
+      status:
+        type: string
+        enum: ["success", "failed", "partial"]
+        description: "调用状态"
+      duration_seconds:
+        type: number
+        description: "耗时（秒）"
+      error:
+        type: string
+        description: "错误信息"
+
+  LearningResource:
+    required: [title, resource_type, url]
+    properties:
+      title:
+        type: string
+        description: "资源标题"
+      resource_type:
+        type: string
+        enum: ["course", "book", "article", "video", "documentation", "tool"]
+        description: "资源类型"
+      url:
+        type: string
+        description: "资源链接"
+      category:
+        type: string
+        description: "分类"
+      difficulty:
+        type: string
+        enum: ["beginner", "intermediate", "advanced"]
+        description: "难度级别"
+      estimated_hours:
+        type: number
+        description: "预计学习时间"
+      skill_ids:
+        type: array
+        description: "关联技能ID列表"
+      status:
+        type: string
+        enum: ["planned", "in_progress", "completed", "bookmarked"]
+        description: "学习状态"
+
+  Note:
+    required: [content, created_by]
+    properties:
+      content:
+        type: string
+        description: "笔记内容"
+      created_by:
+        type: string
+        description: "创建者ID"
+      project_id:
+        type: string
+        description: "关联项目ID"
+      task_id:
+        type: string
+        description: "关联任务ID"
+      tags:
+        type: array
+        description: "标签列表"
+      importance:
+        type: string
+        enum: ["low", "medium", "high"]
+        description: "重要性"
+      type:
+        type: string
+        enum: ["general", "learning", "decision", "reflection", "feedback"]
+        description: "笔记类型"
+
+  Achievement:
+    required: [title, achieved_by, achieved_date]
+    properties:
+      title:
+        type: string
+        description: "成就标题"
+      achieved_by:
+        type: string
+        description: "获得者ID"
+      achieved_date:
+        type: string
+        description: "获得日期 (YYYY-MM-DD)"
+      project_id:
+        type: string
+        description: "关联项目ID"
+      skill_id:
+        type: string
+        description: "关联技能ID"
+      description:
+        type: string
+        description: "成就描述"
+      evidence:
+        type: string
+        description: "证据/证明"
+      significance:
+        type: string
+        enum: ["personal", "team", "project", "milestone"]
+        description: "重要性级别"
+
+relations:
+  # 项目关系
+  has_owner:
+    from_types: [Project, Task, Goal]
+    to_types: [Person]
+    cardinality: many_to_one
+    description: "拥有者关系"
+
+  has_member:
+    from_types: [Project]
+    to_types: [Person]
+    cardinality: many_to_many
+    description: "项目成员关系"
+
+  # 任务关系
+  has_task:
+    from_types: [Project, Goal]
+    to_types: [Task]
+    cardinality: one_to_many
+    description: "包含任务关系"
+
+  depends_on:
+    from_types: [Task]
+    to_types: [Task]
+    cardinality: many_to_many
+    acyclic: true
+    description: "任务依赖关系"
+
+  blocks:
+    from_types: [Task]
+    to_types: [Task]
+    cardinality: many_to_many
+    acyclic: true
+    description: "任务阻塞关系"
+
+  # 目标关系
+  has_goal:
+    from_types: [Project]
+    to_types: [Goal]
+    cardinality: one_to_many
+    description: "项目目标关系"
+
+  contributes_to:
+    from_types: [Task]
+    to_types: [Goal]
+    cardinality: many_to_many
+    description: "任务贡献目标关系"
+
+  # 里程碑关系
+  has_milestone:
+    from_types: [Project]
+    to_types: [Milestone]
+    cardinality: one_to_many
+    description: "项目里程碑关系"
+
+  # 事件关系
+  has_event:
+    from_types: [Project, Task]
+    to_types: [Event]
+    cardinality: one_to_many
+    description: "相关事件关系"
+
+  attends:
+    from_types: [Person]
+    to_types: [Event]
+    cardinality: many_to_many
+    description: "参与事件关系"
+
+  # 技能关系
+  has_skill:
+    from_types: [Person]
+    to_types: [Skill]
+    cardinality: many_to_many
+    description: "拥有技能关系"
+
+  required_for:
+    from_types: [Task, Goal]
+    to_types: [Skill]
+    cardinality: many_to_many
+    description: "需要技能关系"
+
+  helps_learn:
+    from_types: [LearningResource]
+    to_types: [Skill]
+    cardinality: many_to_many
+    description: "帮助学习技能关系"
+
+  # 学习关系
+  created_note:
+    from_types: [Person]
+    to_types: [Note]
+    cardinality: one_to_many
+    description: "创建笔记关系"
+
+  relates_to:
+    from_types: [Note]
+    to_types: [Project, Task, Goal, Skill, Event]
+    cardinality: many_to_many
+    description: "笔记关联关系"
+
+  # 成就关系
+  achieved:
+    from_types: [Person]
+    to_types: [Achievement]
+    cardinality: one_to_many
+    description: "获得成就关系"
+
+  demonstrates:
+    from_types: [Achievement]
+    to_types: [Skill]
+    cardinality: many_to_many
+    description: "展示技能关系"
+
+# 验证规则
+validations:
+  date_validation:
+    - "Event.end_time >= Event.start_time if Event.end_time exists"
+    - "Task.due_date >= Project.start_date if Task.due_date and Project.start_date"
+    - "Goal.target_date >= Project.start_date if Goal.target_date and Project.start_date"
+  
+  task_assignment:
+    - "Task.assignee_id must reference existing Person"
+    - "Task.project_id must reference existing Project"
+  
+  project_consistency:
+    - "Project.target_date >= Project.start_date if Project.target_date"
+    - "Project.actual_date >= Project.start_date if Project.actual_date"
+  
+  skill_progression:
+    - "Skill.target_level >= Skill.proficiency if Skill.target_level"

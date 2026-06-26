@@ -1,0 +1,94 @@
+{
+  "python": {
+    "naming_convention": {
+      "function": "^[a-z_][a-z0-9_]*$",
+      "class": "^[A-Z][a-zA-Z0-9]*$",
+      "variable": "^[a-z_][a-z0-9_]*$",
+      "constant": "^[A-Z_][A-Z0-9_]*$"
+    },
+    "code_structure": {
+      "max_line_length": 79,
+      "indentation": 4,
+      "blank_lines": {
+        "between_functions": 2,
+        "between_classes": 2,
+        "between_methods": 1
+      }
+    },
+    "best_practices": {
+      "docstrings": true,
+      "type_hints": true,
+      "error_handling": true,
+      "imports_order": true
+    }
+  },
+  "javascript": {
+    "naming_convention": {
+      "function": "^[a-z][a-zA-Z0-9]*$",
+      "class": "^[A-Z][a-zA-Z0-9]*$",
+      "variable": "^[a-z][a-zA-Z0-9]*$",
+      "constant": "^[A-Z_][A-Z0-9_]*$"
+    },
+    "code_structure": {
+      "max_line_length": 80,
+      "indentation": 2,
+      "blank_lines": {
+        "between_functions": 2,
+        "between_classes": 2,
+        "between_methods": 1
+      }
+    },
+    "best_practices": {
+      "comments": true,
+      "error_handling": true,
+      "const_let": true,
+      "arrow_functions": true
+    }
+  },
+  "go": {
+    "naming_convention": {
+      "function": "^[A-Z][a-zA-Z0-9]*$",
+      "struct": "^[A-Z][a-zA-Z0-9]*$",
+      "variable": "^[a-z][a-zA-Z0-9]*$",
+      "constant": "^[A-Z_][A-Z0-9_]*$"
+    },
+    "code_structure": {
+      "max_line_length": 80,
+      "indentation": 4,
+      "blank_lines": {
+        "between_functions": 1,
+        "between_structs": 1,
+        "between_methods": 1
+      }
+    },
+    "best_practices": {
+      "error_handling": true,
+      "doc_comments": true,
+      "imports_order": true,
+      "short_variable_names": true
+    }
+  },
+  "java": {
+    "naming_convention": {
+      "class": "^[A-Z][a-zA-Z0-9]*$",
+      "method": "^[a-z][a-zA-Z0-9]*$",
+      "variable": "^[a-z][a-zA-Z0-9]*$",
+      "constant": "^[A-Z_][A-Z0-9_]*$"
+    },
+    "code_structure": {
+      "max_line_length": 80,
+      "indentation": 4,
+      "blank_lines": {
+        "between_classes": 2,
+        "between_methods": 1,
+        "between_blocks": 1
+      }
+    },
+    "best_practices": {
+      "javadoc": true,
+      "error_handling": true,
+      "modifiers_order": true,
+      "imports_order": true
+    }
+  }
+}

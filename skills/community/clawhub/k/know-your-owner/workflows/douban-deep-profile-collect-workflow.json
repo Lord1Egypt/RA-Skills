@@ -1,0 +1,121 @@
+{
+  "name": "douban-deep-profile-collect",
+  "description": "采集豆瓣当前登录用户的全量个人信息，包括基础资料、看过的电影、想看的电影、读过的书、想读的书、广播动态。使用/mine/自动重定向获取用户ID，通过fetch+DOMParser在页面内分页采集全量数据。",
+  "original_query": "采集豆瓣个人主页的全量信息，包括基础资料、看过的电影、想看的电影、读过的书、广播",
+  "original_res": "成功采集基础资料、看过电影、想看、读过的书、想读的书、广播。",
+  "parameters": [],
+  "platform": "豆瓣",
+  "created_from": "douban-deep-profile-collect-log.json",
+  "created_at": "2026-03-19T17:30:00.000+08:00",
+  "steps": [
+    {
+      "step": 1,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://www.douban.com/mine/"
+      },
+      "description": "导航到/mine/，会自动重定向到/people/{doubanId}/，从重定向后的URL中提取用户ID",
+      "is_final_result": false
+    },
+    {
+      "step": 2,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 5000,
+        "jsScript": "() => { const url = window.location.href; const m = url.match(/\\/people\\/([^\\/\\?]+)/); const doubanId = m ? m[1] : ''; const info = {}; const nameEl = document.querySelector('.info h1'); info.nickname = nameEl ? nameEl.textContent.trim().split('\\n')[0] : ''; const intro = document.querySelector('#intro_display'); info.intro = intro ? intro.textContent.trim() : ''; const avatar = document.querySelector('.basic-info img'); info.avatar = avatar ? avatar.src : ''; info.doubanId = doubanId; info.profileUrl = url; const modules = {}; ['#movie', '#book', '#music', '#game', '#drama'].forEach(sel => { const el = document.querySelector(sel); if (el) modules[sel] = el.textContent.trim().substring(0, 200); }); info.modules = modules; return JSON.stringify(info); }"
+      },
+      "output": {
+        "doubanId": "用户ID，从URL提取",
+        "nickname": "用户昵称",
+        "intro": "个人简介",
+        "avatar": "头像URL",
+        "modules": "各模块统计概览"
+      },
+      "description": "提取基础资料（昵称/简介/头像/各模块统计）和用户ID（doubanId），后续步骤使用{step_2.doubanId}构建URL",
+      "is_final_result": false
+    },
+    {
+      "step": 3,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://movie.douban.com/people/{step_2.doubanId}/collect"
+      },
+      "description": "导航到看过的电影页面，作为fetch分页的起始页（需要cookie）",
+      "is_final_result": false
+    },
+    {
+      "step": 4,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 180000,
+        "jsScript": "async () => { const doubanId = '{step_2.doubanId}'; const allMovies = []; const seen = new Set(); let start = 0; while (true) { const url = 'https://movie.douban.com/people/' + doubanId + '/collect?start=' + start + '&sort=time&rating=all&filter=all&mode=list'; try { const resp = await fetch(url, {credentials: 'include'}); const html = await resp.text(); const doc = new DOMParser().parseFromString(html, 'text/html'); const items = doc.querySelectorAll('.list-view .item'); if (items.length === 0) break; items.forEach(item => { const titleEl = item.querySelector('.title a'); const dateEl = item.querySelector('.date'); const ratingEl = item.querySelector('[class*=\"rating\"]'); const title = titleEl ? titleEl.textContent.trim() : ''; const href = titleEl ? titleEl.getAttribute('href') : ''; const date = dateEl ? dateEl.textContent.trim() : ''; let rating = 0; if (ratingEl) { const m = ratingEl.className.match(/rating(\\d)/); if (m) rating = parseInt(m[1]); } const key = title + '|' + date; if (title && !seen.has(key)) { seen.add(key); allMovies.push({title, date, rating, href}); } }); if (items.length < 15) break; start += 15; await new Promise(r => setTimeout(r, 800)); } catch(e) { break; } } return JSON.stringify({total: allMovies.length, movies: allMovies}); }"
+      },
+      "description": "采集看过的电影全量数据。使用fetch+DOMParser在页面内分页（保持cookie），mode=list每页15条，按start递增。提取title/date/rating(CSS class rating1-5)/href。按title+date去重。智能终止：items=0或<15时停止。",
+      "is_final_result": false
+    },
+    {
+      "step": 5,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 60000,
+        "jsScript": "async () => { const doubanId = '{step_2.doubanId}'; const all = []; const seen = new Set(); let start = 0; while (true) { const url = 'https://movie.douban.com/people/' + doubanId + '/wish?start=' + start + '&sort=time&filter=all&mode=list'; try { const resp = await fetch(url, {credentials: 'include'}); const html = await resp.text(); const doc = new DOMParser().parseFromString(html, 'text/html'); const items = doc.querySelectorAll('.list-view .item'); if (items.length === 0) break; items.forEach(item => { const titleEl = item.querySelector('.title a'); const dateEl = item.querySelector('.date'); const title = titleEl ? titleEl.textContent.trim() : ''; const href = titleEl ? titleEl.getAttribute('href') : ''; const date = dateEl ? dateEl.textContent.trim() : ''; if (title && !seen.has(title)) { seen.add(title); all.push({title, date, href}); } }); if (items.length < 15) break; start += 15; await new Promise(r => setTimeout(r, 800)); } catch(e) { break; } } return JSON.stringify({total: all.length, movies: all}); }"
+      },
+      "description": "采集想看的电影全量数据，与步骤4相同的fetch分页方式，URL路径为/wish",
+      "is_final_result": false
+    },
+    {
+      "step": 6,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 60000,
+        "jsScript": "async () => { const doubanId = '{step_2.doubanId}'; const all = []; const seen = new Set(); let start = 0; while (true) { const url = 'https://book.douban.com/people/' + doubanId + '/collect?start=' + start + '&sort=time&rating=all&filter=all&mode=list'; try { const resp = await fetch(url, {credentials: 'include'}); const html = await resp.text(); const doc = new DOMParser().parseFromString(html, 'text/html'); const items = doc.querySelectorAll('.list-view .item, .subject-item'); if (items.length === 0) break; items.forEach(item => { const titleEl = item.querySelector('.title a, h2 a'); const dateEl = item.querySelector('.date, .short-note .date'); const ratingEl = item.querySelector('[class*=\"rating\"]'); const title = titleEl ? titleEl.textContent.trim() : ''; const href = titleEl ? titleEl.getAttribute('href') : ''; const date = dateEl ? dateEl.textContent.trim() : ''; let rating = 0; if (ratingEl) { const m = ratingEl.className.match(/rating(\\d)/); if (m) rating = parseInt(m[1]); } if (title && !seen.has(title)) { seen.add(title); all.push({title, date, rating, href}); } }); if (items.length < 15) break; start += 15; await new Promise(r => setTimeout(r, 800)); } catch(e) { break; } } return JSON.stringify({total: all.length, books: all}); }"
+      },
+      "description": "采集读过的书全量数据，使用book.douban.com域名，fetch分页方式同电影",
+      "is_final_result": false
+    },
+    {
+      "step": 7,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 60000,
+        "jsScript": "async () => { const doubanId = '{step_2.doubanId}'; const all = []; const seen = new Set(); let start = 0; while (true) { const url = 'https://book.douban.com/people/' + doubanId + '/wish?start=' + start + '&sort=time&filter=all&mode=list'; try { const resp = await fetch(url, {credentials: 'include'}); const html = await resp.text(); const doc = new DOMParser().parseFromString(html, 'text/html'); const items = doc.querySelectorAll('.list-view .item, .subject-item'); if (items.length === 0) break; items.forEach(item => { const titleEl = item.querySelector('.title a, h2 a'); const dateEl = item.querySelector('.date, .short-note .date'); const title = titleEl ? titleEl.textContent.trim() : ''; const href = titleEl ? titleEl.getAttribute('href') : ''; const date = dateEl ? dateEl.textContent.trim() : ''; if (title && !seen.has(title)) { seen.add(title); all.push({title, date, href}); } }); if (items.length < 15) break; start += 15; await new Promise(r => setTimeout(r, 800)); } catch(e) { break; } } return JSON.stringify({total: all.length, books: all}); }"
+      },
+      "description": "采集想读的书全量数据，URL路径为/wish",
+      "is_final_result": false
+    },
+    {
+      "step": 8,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://www.douban.com/people/{step_2.doubanId}/statuses"
+      },
+      "description": "导航到广播/动态页面",
+      "is_final_result": false
+    },
+    {
+      "step": 9,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 60000,
+        "jsScript": "async () => { await new Promise(r => setTimeout(r, 2000)); let prevH = 0, same = 0; for (let i = 0; i < 30; i++) { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); await new Promise(r => setTimeout(r, 1500)); if (document.body.scrollHeight === prevH) { same++; if (same > 5) break; } else { same = 0; } prevH = document.body.scrollHeight; } window.scrollTo({top: 0}); const statuses = []; document.querySelectorAll('.status-item, .new-status, [data-sid]').forEach(el => { const text = el.textContent.trim(); if (text.length > 10) { statuses.push(text.substring(0, 300)); } }); return JSON.stringify({count: statuses.length, statuses: statuses}); }"
+      },
+      "description": "采集广播/动态。滚动加载全部内容后提取status-item文本。智能停止：连续5轮无新内容则停止。",
+      "is_final_result": false
+    },
+    {
+      "step": 10,
+      "tool_name": "mcp__chrome-server__chrome_close_tabs",
+      "tool_params": {
+        "tabIds": "all"
+      },
+      "description": "清理所有标签页",
+      "is_final_result": true
+    }
+  ]
+}

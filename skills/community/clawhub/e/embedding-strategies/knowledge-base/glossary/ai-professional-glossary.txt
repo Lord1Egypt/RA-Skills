@@ -1,0 +1,133 @@
+===========================================
+AI 专业词汇库 V2.0（2026-03-08 00:15 更新）
+AI 基础知识科普术语补充
+===========================================
+
+【词汇总览】
+总数：26 个核心词汇（新增 6 个）
+分类：6 个领域
+状态：V2.0 更新版
+
+【新增术语（2026-03-08 00:15）】
+来源：AI 基础知识科普 - 专家点评
+
+1. Prompt（提示词）
+   - 英文全称：Prompt
+   - 中文名称：提示词
+   - 比喻：给管家的指令条
+   - 解释：给 AI 的指令/问题/任务描述
+   - 例子："请总结这篇文章的核心观点"
+   - 技巧：清晰、具体、给示例（Few-shot）
+
+2. Context（上下文）
+   - 英文全称：Context
+   - 中文名称：上下文
+   - 比喻：管家的短期记忆
+   - 解释：对话历史/背景信息/相关文档
+   - 例子：之前的对话记录、当前任务背景
+   - 限制：上下文窗口有限（如 128K tokens）
+
+3. Fine-tuning（微调）
+   - 英文全称：Fine-tuning
+   - 中文名称：微调
+   - 比喻：送管家去专业培训
+   - 解释：在通用模型基础上，用专业数据继续训练
+   - 例子：医疗模型、法律模型、客服模型
+   - 价值：提升特定领域表现
+
+4. Skills（AI 技能）
+   - 英文全称：AI Skills
+   - 中文名称：AI 技能
+   - 比喻：管家的工具箱
+   - 解释：Agent 可调用的功能模块
+   - 例子：搜索天气、发送邮件、读写文件、生成图片
+   - 特点：原子化、可复用、标准化接口
+
+5. 数据结构（Data Structure）
+   - 英文全称：Data Structure
+   - 中文名称：数据结构
+   - 比喻：整理好的书架/收纳柜
+   - 解释：数据的组织和存储方式
+   - 例子：数组（一排盒子）、树（家族族谱）、图（地铁线路）
+   - 价值：高效存储、快速查找、便于处理
+
+6. Agent（AI 智能体）- 补充信息
+   - 英文全称：AI Agent
+   - 中文名称：AI 智能体
+   - 比喻：你的私人管家
+   - 解释：能自主规划、调用工具、完成复杂任务的 AI 系统
+   - 例子：阿福（AI 助理）、AutoGPT、LangChain Agent
+   - 能力：任务分解、工具调用、流程控制、记忆管理
+
+【完整词汇表】
+
+基础概念（4 个）：
+- AI（Artificial Intelligence，人工智能）
+- AGI（Artificial General Intelligence，通用人工智能）
+- ML（Machine Learning，机器学习）
+- DL（Deep Learning，深度学习）
+
+大模型相关（4 个）：
+- LLM（Large Language Model，大语言模型）
+- NLP（Natural Language Processing，自然语言处理）
+- NLG（Natural Language Generation，自然语言生成）
+- NLU（Natural Language Understanding，自然语言理解）
+
+Agent 相关（7 个）：
+- Agent（AI Agent，AI 智能体）- 私人管家
+- Skills（AI Skills，AI 技能）- 管家的工具箱 🆕
+- Prompt（Prompt，提示词）- 给管家的指令条 🆕
+- Context（Context，上下文）- 管家的短期记忆 🆕
+- RAG（Retrieval-Augmented Generation，检索增强生成）
+- CoT（Chain of Thought，思维链）
+- ToT（Tree of Thought，思维树）
+
+技术协议（4 个）：
+- MCP（Model Context Protocol，模型上下文协议）
+- API（Application Programming Interface，应用程序接口）
+- JSON（JavaScript Object Notation，JSON 数据格式）
+- REST（Representational State Transfer，表述性状态转移）
+
+数据与算法（6 个）：
+- Token（Token，词汇单位/词元）- 积木块
+- Embedding（Embedding Vector，嵌入向量）- 语义地图坐标
+- Vector（Vector Database，向量数据库）
+- Transformer（Transformer Architecture，Transformer 架构）
+- Fine-tuning（Fine-tuning，微调）- 专业培训 🆕
+- 数据结构（Data Structure，数据结构）- 书架/收纳柜 🆕
+
+应用与工具（3 个）：
+- Tool（AI Tool，AI 工具）
+- Plugin（AI Plugin，AI 插件）
+- App（AI Application，AI 应用）
+
+【术语使用规范】
+
+文中首次出现格式：
+Prompt（Prompt，提示词）- 给 AI 的指令
+
+后续出现格式：
+Prompt
+
+【比喻记忆法】
+
+AI 系统 = 房子：
+- 大模型 = 超级大脑（住在房子里的智者）
+- Agent = 私人管家（帮你办事的人）
+- Skills = 工具箱（管家的工具）
+- MCP = 万能插座（连接家电的接口）
+- JSON = 标准纸张（写字的纸）
+- 数据结构 = 整理好的书架（放书的柜子）
+- Prompt = 指令条（给管家的指令）
+- Context = 短期记忆（管家的记忆）
+- Fine-tuning = 专业培训（送管家去学习）
+
+【文件位置】
+MD 模块：knowledge-base/glossary/ai-professional-glossary.md
+TXT 说明：knowledge-base/glossary/ai-professional-glossary.txt
+飞书文档：https://feishu.cn/docx/KVgQdxnlVoiPbexfKR3cnEIWnId
+
+===========================================
+V1.0：2026-03-07 14:36（初始版本，20 个词汇）
+V2.0：2026-03-08 00:15（AI 基础知识科普补充，26 个词汇）
+===========================================

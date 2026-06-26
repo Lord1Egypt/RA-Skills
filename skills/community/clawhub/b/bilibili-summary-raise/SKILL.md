@@ -1,35 +1,37 @@
 ---
-name: "B站视频分析"
-description: "通过内置脚本获取B站视频信息并总结"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilibili-summary-raise"
-sourceUrl: "https://clawhub.ai/skills/bilibili-summary-raise"
+name: bilibili-summary
+description: 通过内置脚本获取B站视频信息并总结
+user-invocable: true
 ---
 
-# B站视频分析
+# 功能
 
-> 通过内置脚本获取B站视频信息并总结
+输入 B站视频链接，返回视频信息并总结
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilibili-summary-raise`
-- **Source URL:** [https://clawhub.ai/skills/bilibili-summary-raise](https://clawhub.ai/skills/bilibili-summary-raise)
+---
 
-## Overview
+# 执行流程
 
+1. 接收用户输入（URL 或 BV号）
+2. 调用内部脚本：
+   scripts/fetch.js
+3. 获取 JSON 数据
+4. 生成总结
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bilibili-summary-raise
-```
+---
+
+# 输出格式
+
+- 标题：
+- UP主：
+- 播放量：
+- 点赞数：
+- 内容总结：
+
+---
+
+# 约束
+
+- 必须调用内部 scripts
+- 不允许使用 web_fetch
+- 不允许使用 browser

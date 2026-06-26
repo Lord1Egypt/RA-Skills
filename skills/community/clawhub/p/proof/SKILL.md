@@ -1,35 +1,37 @@
 ---
-name: "proof"
-description: "A local-first cryptographic toolkit. Executes zero-knowledge proof (ZKP) generation, circuit compilation via SnarkJS/ZoKrates, and formal verification analys..."
-category: "security"
-source: "ClawHub"
-tags: [proof, security, trust, verification]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/proof"
-sourceUrl: "https://clawhub.ai/skills/proof"
+name: proof
+version: 2.0.0
+description: >
+  A local-first cryptographic toolkit. Executes zero-knowledge proof (ZKP) generation, 
+  circuit compilation via SnarkJS/ZoKrates, and formal verification analysis on local files. 
+  Requires local toolchains. No external API or cloud data transmission.
 ---
 
-# proof
+# PROOF 2.0: The Execution Layer
 
-> A local-first cryptographic toolkit. Executes zero-knowledge proof (ZKP) generation, circuit compilation via SnarkJS/ZoKrates, and formal verification analys...
+## I. System Capability
+Proof is now a functional engine for local cryptographic operations. It interfaces with your local environment to provide mathematical certainty.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/proof`
-- **Source URL:** [https://clawhub.ai/skills/proof](https://clawhub.ai/skills/proof)
+**Key Operations:**
+- **`proof.zkp_gen`**: Compiles circuits and generates proofs locally.
+- **`proof.formal_check`**: Runs static analysis and formal verification templates on code.
+- **`proof.audit`**: Generates a cryptographic manifest for local project files.
 
-## Overview
+## II. Local Environment Requirements
+- Node.js & SnarkJS (ZKP)
+- ZoKrates (optional)
+- Python 3.10+ (glue scripts)
 
+## III. Usage & Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/proof
-```
+**User:** "Generate a ZKP for this statement: x * y = 12."  
+**Agent:** (Calls `scripts/zkp_tool.py`) -> "Compiling circuit... generating witness... proof.json created in \`~/.openclaw/workspace/proof/\`."
+
+**User:** "Run a formal check on my Solidity contract."  
+**Agent:** (Calls `scripts/verify_lib.py`) -> "Scanning for reentrancy and integer overflow... Result: PASS."
+
+## IV. Security & Privacy
+- Local-only computation  
+- Workspace isolation (\`~/.openclaw/workspace/proof/\`)  
+- No persistent daemons or background processes  
+- No credentials requested or transmitted

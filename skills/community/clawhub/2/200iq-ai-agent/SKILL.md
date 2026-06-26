@@ -1,35 +1,23 @@
----
-name: "200iq-ai-agent"
-description: "Enhance your AI with optimized planning, ROI-based decisions, self-correction, and execution for complex tasks and measurable results."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/200iq-ai-agent"
-sourceUrl: "https://clawhub.ai/skills/200iq-ai-agent"
----
+# 200IQ AI Agent — Genius Mode for Your AI
 
-# 200iq-ai-agent
+Turn your AI agent into a 200 IQ genius! Solve complex problems, plan optimally, and execute tasks like a $10M founder combined with a master strategist.
 
-> Enhance your AI with optimized planning, ROI-based decisions, self-correction, and execution for complex tasks and measurable results.
+## Features
+- Decision engine evaluates tasks by ROI and efficiency
+- High-IQ prompt optimizer for smarter outputs
+- Self-correcting learning loop
+- Execution delegation to maximize speed and success
+- Action plans with measurable results
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/200iq-ai-agent`
-- **Source URL:** [https://clawhub.ai/skills/200iq-ai-agent](https://clawhub.ai/skills/200iq-ai-agent)
+## Activation
+Say:
+- "Activate 200IQ AI Agent"
+- "Make my AI 200 IQ for this task: [task]"
+- "Generate a high-IQ action plan for [goal]"
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/200iq-ai-agent
-```
+## Usage
+1. AI generates optimized prompts and action plan
+2. Evaluates which actions produce measurable results
+3. Executes tasks with ROI threshold
+4. Logs everything and self-corrects
+5. Produces outputs the user can implement immediately

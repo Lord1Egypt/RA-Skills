@@ -1,35 +1,28 @@
 ---
-name: "CraveGo Caption & Script Writer"
-description: "Write ready-to-post captions (FB/IG) and short TikTok/Reels scripts for CraveGo.ph focused ONLY on new user / signup promos. Brand voice friendly & casual. M..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/caption-script-writer"
-sourceUrl: "https://clawhub.ai/skills/caption-script-writer"
+name: cravego-caption-script-writer
+description: Write ready-to-post captions (FB/IG) and short TikTok/Reels scripts for CraveGo.ph focused ONLY on new user / signup promos. Brand voice friendly & casual. Must include safe phrasing and a signup CTA.
 ---
 
-# CraveGo Caption & Script Writer
+Write marketing copy for CraveGo.ph.
+Brand voice: friendly & casual.
+Focus ONLY on new-user/signup promos.
 
-> Write ready-to-post captions (FB/IG) and short TikTok/Reels scripts for CraveGo.ph focused ONLY on new user / signup promos. Brand voice friendly & casual. M...
+Avoid legal/financial claims; use soft phrasing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/caption-script-writer`
-- **Source URL:** [https://clawhub.ai/skills/caption-script-writer](https://clawhub.ai/skills/caption-script-writer)
+Must include a signup CTA (e.g., “Sign up”, “Try your first order”, “Start ordering”).
 
-## Overview
+If platform=TikTok: include a short scene-by-scene script with a hook in the first 1–2 seconds.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/caption-script-writer
-```
+Return JSON:
+{
+  "platform": "FB|IG|TikTok",
+  "main": {
+    "captionOrScript": "...",
+    "cta": "...",
+    "hashtags": ["..."],
+    "hook": "..."
+  },
+  "variations": [
+    {"hook": "...", "firstLine": "..."}
+  ]
+}

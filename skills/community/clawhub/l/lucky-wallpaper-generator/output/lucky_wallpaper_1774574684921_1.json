@@ -1,0 +1,17 @@
+{
+  "id": "lucky_1774574684921_1",
+  "type": "lucky",
+  "typeName": "好运系列",
+  "size": "wallpaper",
+  "sizeName": "手机壁纸",
+  "dimensions": {
+    "width": 1080,
+    "height": 1920,
+    "name": "手机壁纸"
+  },
+  "prompt": "A beautiful good luck wallpaper with four-leaf clover and rainbow, soft pink and purple gradient background, lucky symbols, dreamy atmosphere, high quality, 4K",
+  "style": "minimal",
+  "createdAt": "2026-03-27T01:24:44.921Z",
+  "status": "ready_for_generation",
+  "apiHint": "请使用通义万相或即梦API生成图片"
+}

@@ -1,0 +1,43 @@
+{
+  "skill_name": "abandoned-checkout-monitor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our Shopify store has been weird — traffic is fine but almost no orders. I haven't looked at any data; I just want to know why we're not getting orders.",
+      "expected_output": "Despite vague question, full playbook: structured table (drop-off node, hypothesis, A/B copy); checkout UI friction; payment troubleshooting; three-part emails with subject A/B.",
+      "files": [],
+      "expectations": [
+        "Contains a Markdown table with columns for drop-off node, likely cause (hypothesis), and A/B copy to test",
+        "Includes checkout page UI friction section",
+        "Includes payment gateway or payment troubleshooting checklist",
+        "Includes three-part recovery email sequence (email 1, 2, 3) with subject line variants",
+        "Does not refuse due to lack of data — states assumptions where needed"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Checkout conversion is about 1.5%, way below what we used to see. Shipping to Australia is really expensive and a lot of people bounce once they see freight. We have several $200+ SKUs that get added to cart constantly but rarely convert. We use Stripe.",
+      "expected_output": "Table rows for shipping shock, high-AOV hesitation, payment; AU tactics; Stripe steps; recovery emails.",
+      "files": [],
+      "expectations": [
+        "Addresses checkout conversion under 2% explicitly",
+        "Links high shipping to Australia as a primary abandonment hypothesis",
+        "Addresses high-AOV add-to-cart without purchase (trust, installments, etc.)",
+        "Mentions Stripe-specific troubleshooting (test mode, webhooks, 3DS, logs)",
+        "Structured table includes at least shipping-step and payment-related rows",
+        "Includes A/B copy suggestions for shipping or recovery"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Can you check if SKU BLUE-MUG is still in stock? Warehouse thinks maybe 12 left.",
+      "expected_output": "Brief inventory-style response; does NOT dump full abandoned-checkout playbook (should-not-trigger).",
+      "files": [],
+      "expectations": [
+        "Does not output the full mandatory abandonment table as the main deliverable",
+        "Does not force three-part email scripts and full payment troubleshooting for a simple stock question",
+        "May briefly answer or ask for system access — appropriate to inventory lookup"
+      ]
+    }
+  ]
+}

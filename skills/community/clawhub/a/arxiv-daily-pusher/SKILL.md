@@ -1,35 +1,55 @@
----
-name: "arXiv Daily Paper Pusher"
-description: "Fetches yesterday's arXiv papers, ranks by keyword relevance with weighted scoring, and pushes results to Feishu via webhook for multiple groups."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arxiv-daily-pusher"
-sourceUrl: "https://clawhub.ai/skills/arxiv-daily-pusher"
----
-
 # arXiv Daily Paper Pusher
 
-> Fetches yesterday's arXiv papers, ranks by keyword relevance with weighted scoring, and pushes results to Feishu via webhook for multiple groups.
+## Description
+Automatically fetch yesterday's arXiv papers, rank by keyword relevance, and push to Feishu (Lark) via webhook.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arxiv-daily-pusher`
-- **Source URL:** [https://clawhub.ai/skills/arxiv-daily-pusher](https://clawhub.ai/skills/arxiv-daily-pusher)
+## Features
+- Multi-group support with independent keywords
+- Smart scoring: title matches weighted 2x, abstract 1x
+- Dual-mode API: arxiv library with automatic HTTP fallback
+- Per-group or single message push strategies
 
-## Overview
+## Schedule
+```yaml
+schedule: "30 2 * * *"
+```
+Runs daily at 10:30 AM Beijing Time (02:30 UTC).
 
+## Requirements
+- Python 3.10+
+- Dependencies: `arxiv`, `PyYAML`, `requests`
+- Feishu Incoming Webhook URL
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
+
+1. **Install:**
 ```bash
-hermes skills install clawhub/arxiv-daily-pusher
+pip install -r requirements.txt
+```
+
+2. **Configure:**
+```bash
+cp config.example.yaml config.yaml
+# Edit config.yaml with your webhook URL and keywords
+```
+
+3. **Run:**
+```bash
+python main.py
+```
+
+## Configuration
+
+See `config.example.yaml` for full configuration options:
+- `groups`: Research groups with keywords
+- `feishu_webhook`: Your Feishu bot webhook URL
+- `top_k`: Papers per group (default: 6)
+- `timezone_offset`: Hours from UTC (default: 8 for Beijing)
+- `api_mode`: "auto" | "arxiv_only" | "http_only"
+- `push_strategy`: "per_group" | "single"
+
+## Manual Test
+```bash
+cd ~/.openclaw/skills/arxiv-daily-pusher
+python main.py
 ```

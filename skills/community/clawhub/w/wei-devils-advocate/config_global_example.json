@@ -1,0 +1,106 @@
+{
+  "region": "global",
+  "judge_model": "glm-5-judge",
+  "max_models": 2,
+  "depth": "simple",
+  "max_tokens": 8192,
+  "max_tokens_judge": 16384,
+
+  "models": {
+    "glm-5": {
+      "provider": "openrouter",
+      "model_id": "z-ai/glm-5:online",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["general", "retrieval", "analysis"]
+    },
+    "minimax-m2.5": {
+      "provider": "openrouter",
+      "model_id": "minimax/minimax-m2.5:online",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["reasoning", "creative", "synthesis", "analysis"]
+    },
+    "kimi-k2.5": {
+      "provider": "openrouter",
+      "model_id": "moonshotai/kimi-k2.5:online",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["longcontext", "retrieval", "current_events", "research", "factual"]
+    },
+    "gpt-5.4": {
+      "provider": "openrouter",
+      "model_id": "openai/gpt-5.4:online",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["general", "retrieval", "balanced", "fallback"]
+    },
+    "grok-4.1": {
+      "provider": "openrouter",
+      "model_id": "x-ai/grok-4.1-fast:online",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["social", "retrieval", "sentiment", "trending"]
+    },
+    "qwen3.5": {
+      "provider": "openrouter",
+      "model_id": "qwen/qwen3.5-35b-a3b:online",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["structured", "retrieval", "coding", "technical", "math"]
+    },
+    "qwen3.5-judge": {
+      "provider": "openrouter",
+      "model_id": "qwen/qwen3.5-35b-a3b",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["judge"]
+    },
+    "glm-5-judge": {
+      "provider": "openrouter",
+      "model_id": "z-ai/glm-5",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "timeout": 60,
+      "roles": ["judge"]
+    }
+  },
+
+  "routing": {
+    "financial": {
+      "models": ["kimi-k2.5", "gpt-5.4", "qwen3.5"],
+      "judge_prompt": "judge_financial"
+    },
+
+    "technical": {
+      "models": ["qwen3.5", "gpt-5.4", "kimi-k2.5"]
+    },
+
+    "social": {
+      "models": ["grok-4.1", "kimi-k2.5", "minimax-m2.5"]
+    },
+
+    "current_events": {
+      "models": ["kimi-k2.5", "grok-4.1", "gpt-5.4"]
+    },
+
+    "scientific": {
+      "models": ["qwen3.5", "gpt-5.4", "kimi-k2.5"]
+    },
+
+    "creative": {
+      "models": ["minimax-m2.5", "kimi-k2.5", "gpt-5.4"]
+    },
+
+    "general": {
+      "models": ["kimi-k2.5", "gpt-5.4", "minimax-m2.5"]
+    }
+  }
+}

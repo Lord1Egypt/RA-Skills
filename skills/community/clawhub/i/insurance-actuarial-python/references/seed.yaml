@@ -1,0 +1,3083 @@
+meta:
+  id: finance-bp-064-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-064
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:20.990803+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  upgraded_from: finance-bp-064-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:12.931688+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-064--insurance_python/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-064--insurance_python/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-INSURANCE-001
+  title: Implicit numeric format assumptions without validation
+  description: Data formats like per-mille qx values or rate-to-price conversions are applied implicitly without validation.
+    In pyliferisk, qx values stored as per-mille (qx*1000) are used directly as probabilities yielding 1000x errors. In insurance_python,
+    rates are converted to prices using p=(1+r)^(-M) without verifying input format. This causes material miscalculations
+    in reserve and premium calculations.
+  project_source: finance-bp-065--pyliferisk, finance-bp-064--insurance_python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-002
+  title: Triangle axis construction with invalid temporal ordering
+  description: Development dates are created without verifying they are strictly greater than origin dates, or development
+    lags are calculated with incorrect formulas (e.g., using wrong divisor for monthly difference). This creates logically
+    impossible triangle cells where development <= origin, corrupting the fundamental data structure and producing wrong loss
+    development patterns.
+  project_source: finance-bp-063--chainladder-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-003
+  title: Cumulative/incremental triangle representation misuse
+  description: Link ratios are computed on incremental triangles instead of cumulative form, or cum_to_incr/incr_to_cum conversions
+    are not properly inverse-applied. This produces link ratios near 1.0 regardless of actual claims development, leading
+    to misleading development factors and incorrect IBNR estimates.
+  project_source: finance-bp-063--chainladder-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-004
+  title: Including incomplete latest diagonal in development analysis
+  description: Link ratio computation includes the latest diagonal which contains incomplete/in-progress development data.
+    Without excluding this diagonal via valuation_date filtering, development factor estimation uses partial data that biases
+    IBNR estimates. The latest diagonal must be excluded to capture true historical development patterns.
+  project_source: finance-bp-063--chainladder-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-005
+  title: EIOPA calibration workflow violations
+  description: 'Smith-Wilson calibration workflow is violated in multiple ways: calibration step is skipped before extrapolation,
+    different alpha values are used for calibration vs extrapolation, or convergence point T uses incorrect formula. These
+    violations produce mathematically inconsistent rate curves where observed points do not match market data and extrapolated
+    rates violate EIOPA specifications.'
+  project_source: finance-bp-064--insurance_python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-006
+  title: Missing iteration bounds causing infinite loops
+  description: Root-finding algorithms like bisection for alpha calibration lack maxIter parameters. When the algorithm fails
+    to converge (e.g., no sign change in Galfa at interval bounds), the application freezes indefinitely, causing service
+    disruption. This is especially critical in regulatory compliance workflows where calibration must complete.
+  project_source: finance-bp-064--insurance_python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-007
+  title: Invalid financial/mathematical constraints not validated
+  description: Correlation coefficients outside [-1,1], non-positive-semidefinite covariance matrices, negative durations,
+    or entry times >= duration are not validated before use. These cause Cholesky decomposition failures, imaginary values
+    in sqrt(1-rho²), or logically impossible scenarios, producing NaN prices or corrupted at-risk calculations.
+  project_source: finance-bp-064--insurance_python, finance-bp-126--lifelines
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-008
+  title: None values propagated to arithmetic operations
+  description: Critical parameters like interest rate i are passed as None to actuarial calculations. In pyliferisk, Actuarial.__init__
+    with i=None causes TypeError in (1/(1+i)) and commutation arrays remain empty. Bare except clauses catch these TypeErrors
+    and silently return 0, masking the fundamental issue and producing incorrect but seemingly valid results.
+  project_source: finance-bp-065--pyliferisk
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-009
+  title: Stub function implementations and duplicate definitions
+  description: Critical insurance functions like deferred temporary annuities are implemented as empty stubs (only 'pass'
+    statement) or have duplicate definitions where the second shadows the first. This causes functions to return None instead
+    of calculated values, breaking increasing annuity and premium calculations silently in production.
+  project_source: finance-bp-065--pyliferisk
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-010
+  title: Dispatcher routing to undefined functions
+  description: Complex function dispatchers (like annuity()) handle many parameter combinations but call functions that do
+    not exist (e.g., qtaaxn, qtaxn). This causes NameError at runtime when specific parameter combinations are requested,
+    preventing deferred temporary increasing annuity calculations entirely.
+  project_source: finance-bp-065--pyliferisk
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-011
+  title: Survival function monotonicity not enforced
+  description: Non-parametric survival curve estimators do not verify that S(t) is monotonically non-increasing across timeline
+    values. Violations produce mathematically invalid survival curves where probability of survival increases over time, or
+    S(0) is not initialized to 1.0, breaking interpretation as probability distribution.
+  project_source: finance-bp-126--lifelines
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-012
+  title: Input data corruption via inplace operations
+  description: User-provided DataFrames are modified inplace using .pop() operations without first creating a copy. This permanently
+    corrupts user data by removing columns, violating data isolation principles and potentially affecting downstream analysis
+    on the original data.
+  project_source: finance-bp-126--lifelines
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-013
+  title: Interval censoring bounds not validated
+  description: Lower and upper bounds for interval-censored data are not validated, allowing upper_bound < lower_bound. Invalid
+    interval bounds produce undefined survival probability calculations, potentially negative time intervals in the likelihood
+    function, and corrupt NPMLE estimation.
+  project_source: finance-bp-126--lifelines
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-014
+  title: Actuarial convention violations in life table construction
+  description: 'Life tables violate standard actuarial conventions: using incorrect radix (not 100000), failing to append
+    0 to lx array for complete extinction, or using wrong payment adjustment formula for fractional annuities. These violations
+    scale all derived quantities (dx, ex, reserves, premiums) incorrectly.'
+  project_source: finance-bp-065--pyliferisk
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+- id: AP-INSURANCE-015
+  title: Triangle grain transformation with incompatible parameters
+  description: Triangle grain() method is called without setting is_cumulative attribute, or origin grain is made finer than
+    development grain. These produce invalid triangular data structures with misaligned periods and undefined behavior, corrupting
+    actuarial reserving calculations.
+  project_source: finance-bp-063--chainladder-python
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - insurance-actuarial
+  _source_file: anti-patterns/insurance.yaml
+cross_project_wisdom:
+- wisdom_id: CW-INSURANCE-001
+  source_project: finance-bp-063--chainladder-python, finance-bp-126--lifelines
+  pattern_name: Validate input data format and type before computation
+  description: 'Both triangle construction and survival analysis require strict input validation: numeric types for triangle
+    columns, valid event indicators (0/1), no NaN/Inf values, and correct temporal ordering. This prevents downstream numerical
+    failures and ensures mathematical validity of actuarial computations.'
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-002
+  source_project: finance-bp-065--pyliferisk, finance-bp-126--lifelines
+  pattern_name: Initialize probability distributions to boundary values
+  description: Survival probability S(0) must equal 1.0 and life table lx must start at standard radix (100000) and end at
+    0. Properly initializing boundary values ensures actuarial quantities have correct scale and interpretation as probability
+    distributions.
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-003
+  source_project: finance-bp-064--insurance_python
+  pattern_name: Include iteration limits in numerical root-finding
+  description: Bisection and other root-finding algorithms must include maxIter parameters and verify interval contains valid
+    root (sign change). This prevents infinite loops when calibration fails, ensuring service availability in regulatory compliance
+    workflows.
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-004
+  source_project: finance-bp-065--pyliferisk
+  pattern_name: Avoid bare except clauses that mask TypeErrors
+  description: Bare except clauses that catch all exceptions including TypeError and return default values (0 or None) mask
+    fundamental parameter errors. Use specific exception handling and validate inputs upfront to fail fast with clear error
+    messages.
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-005
+  source_project: finance-bp-065--pyliferisk
+  pattern_name: Preserve standard radix and extinction conventions in life tables
+  description: 'Life insurance calculations rely on industry-standard conventions: radix of 100000 at age 0 and lx[-1]=0 for
+    complete extinction. Deviating from these conventions scales all derived quantities incorrectly and breaks interoperability
+    with other actuarial systems.'
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-006
+  source_project: finance-bp-063--chainladder-python, finance-bp-064--insurance_python
+  pattern_name: Ensure workflow step ordering and parameter consistency
+  description: 'Multi-step algorithms (triangle transformations, Smith-Wilson calibration) require strict step ordering: compute
+    calibration vector before extrapolation, use consistent alpha values throughout. Violating workflow order produces undefined
+    or mathematically inconsistent results.'
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-007
+  source_project: finance-bp-126--lifelines
+  pattern_name: Validate probability bounds for confidence intervals
+  description: Confidence interval bounds must be constrained to [0,1] for probability estimates. Use fillna and formula constraints
+    to ensure CI bounds remain valid probability ranges, preventing invalid statistical inference from actuarial models.
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-008
+  source_project: finance-bp-065--pyliferisk, finance-bp-064--insurance_python
+  pattern_name: Validate matrix properties before decomposition
+  description: Positive semi-definite matrices must be verified before Cholesky decomposition. Invalid matrices cause math
+    domain errors or invalid correlated samples. Similarly, correlation coefficients must be validated to [-1,1] bounds before
+    use in sqrt(1-rho²).
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-009
+  source_project: finance-bp-126--lifelines
+  pattern_name: Make defensive copies of input DataFrames
+  description: User-provided DataFrames should be copied before inplace modifications (.pop(), .drop()). This preserves user
+    data integrity and prevents side effects from leaking into caller code, maintaining data isolation principles.
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+- wisdom_id: CW-INSURANCE-010
+  source_project: finance-bp-063--chainladder-python
+  pattern_name: Exclude incomplete diagonals from historical analysis
+  description: The latest diagonal in claims triangles contains incomplete development data from the current period. Excluding
+    this diagonal via valuation_date filtering ensures development factors capture only completed, reliable historical patterns
+    for unbiased IBNR estimation.
+  applicable_to_activity: insurance-actuarial
+  _source_file: cross-project-wisdom/insurance.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: singular_spectrum_analysis/SSA_Example.ipynb
+  business_problem: Decomposes time series data into interpretable components (trend, seasonality, noise) using Singular Spectrum
+    Analysis to identify underlying patterns in financial data.
+  intent_keywords:
+  - SSA
+  - singular spectrum analysis
+  - time series decomposition
+  - scree plot
+  - trend extraction
+  stage: research_analysis
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-102
+  source_file: stationary_bootstrap/Stationary Bootstrap Italian Swap Example.ipynb
+  business_problem: Applies stationary bootstrap resampling method to Italian swap rate data for statistical inference, enabling
+    confidence interval estimation and hypothesis testing on interest rate derivatives.
+  intent_keywords:
+  - stationary bootstrap
+  - swap rates
+  - resampling
+  - confidence intervals
+  - interest rate derivatives
+  stage: research_analysis
+  data_domain: financial_data
+  type: research_analysis
+component_capability_map:
+  project: finance-bp-064--insurance_python
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 6
+    total_classes: 20
+    total_functions: 0
+    total_stages: 6
+  modules:
+    yield_curve_fitting:
+      class_count: 5
+      stage_id: yield_curve_fitting
+      stage_order: 1
+      responsibility: Interpolate and extrapolate interest rate curves from observed market data using regulatory-grade algorithms
+        (EIOPA-compliant). This stage provides the foundational zero-coupon rates needed by downstream pricing and simulation
+        stages.
+      classes:
+      - name: NSSMinimize.compute
+        file: yield_curve_fitting/nssminimize-compute.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: NSSGoodFit.objective
+        file: yield_curve_fitting/nssgoodfit-objective.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: SWCalibrate
+        file: yield_curve_fitting/swcalibrate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: SWExtrapolate
+        file: yield_curve_fitting/swextrapolate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: root_finding_method
+        file: yield_curve_fitting/root-finding-method.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 1
+    alpha_parameter_calibration:
+      class_count: 2
+      stage_id: alpha_calibration
+      stage_order: 2
+      responsibility: Find optimal convergence speed parameter alpha using bisection root-finding to satisfy EIOPA tolerance
+        constraints for Solvency II regulatory compliance.
+      classes:
+      - name: BisectionAlpha.find_alpha
+        file: alpha_parameter_calibration/bisectionalpha-find-alpha.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: convergence_point_formula
+        file: alpha_parameter_calibration/convergence-point-formula.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    interest_rate_simulation:
+      class_count: 4
+      stage_id: interest_rate_simulation
+      stage_order: 3
+      responsibility: Simulate stochastic paths for interest rates using mean-reverting processes (Vasicek, Hull-White, Dothan)
+        enabling Monte Carlo pricing and risk analysis.
+      classes:
+      - name: BrownianMotion.simulate
+        file: interest_rate_simulation/brownianmotion-simulate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ssaBasic.decompose
+        file: interest_rate_simulation/ssabasic-decompose.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: random_number_generator
+        file: interest_rate_simulation/random-number-generator.py
+        line: 0
+        kind: replaceable_point
+      - name: svd_implementation
+        file: interest_rate_simulation/svd-implementation.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    option_pricing:
+      class_count: 3
+      stage_id: option_pricing
+      stage_order: 4
+      responsibility: Price financial derivatives (swaptions, zero-coupon bonds) under stochastic interest rate models using
+        Monte Carlo simulation.
+      classes:
+      - name: Swaption.price
+        file: option_pricing/swaption-price.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ZeroCouponBond.price_Vasicek_Two_Factor
+        file: option_pricing/zerocouponbond-price-vasicek-two-factor.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: integration_method
+        file: option_pricing/integration-method.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    time_series_analysis_(ssa):
+      class_count: 4
+      stage_id: time_series_analysis
+      stage_order: 5
+      responsibility: Non-parametric decomposition and forecasting of time series using Singular Spectrum Analysis, enabling
+        signal extraction and uncertainty quantification.
+      classes:
+      - name: ssaBasic.fit
+        file: time_series_analysis_(ssa)/ssabasic-fit.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ssaBasic.forecast
+        file: time_series_analysis_(ssa)/ssabasic-forecast.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ssaBasic.reconstruct
+        file: time_series_analysis_(ssa)/ssabasic-reconstruct.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: forecast_method
+        file: time_series_analysis_(ssa)/forecast-method.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    stationary_bootstrap_resampling:
+      class_count: 2
+      stage_id: resampling_bootstrap
+      stage_order: 6
+      responsibility: Resample dependent time series while preserving stationarity using random block lengths, enabling statistical
+        inference for autocorrelated data.
+      classes:
+      - name: N/A
+        file: stationary_bootstrap_resampling/n-a.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: block_length_algorithm
+        file: stationary_bootstrap_resampling/block-length-algorithm.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 1
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.11578947368421053
+    evidence_invalid: 84
+    evidence_verified: 11
+    evidence_auto_fixed: 0
+    audit_coverage: 61/61 (100%)
+    audit_pass_rate: 0/61 (0%)
+    audit_fail_total: 40
+    audit_finance_universal:
+      pass: 0
+      warn: 7
+      fail: 13
+    audit_subdomain_totals:
+      pass: 0
+      warn: 14
+      fail: 27
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-064. Evidence verify ratio
+    = 11.6% and audit fail total = 40. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-064-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Singular Spectrum Analysis Time Series Decomposition
+    positive_terms:
+    - SSA
+    - singular spectrum analysis
+    - time series decomposition
+    - scree plot
+    - trend extraction
+    data_domain: financial_data
+    negative_terms:
+    - trading strategy
+    - MACD
+    - moving average crossover
+    - screening
+    - live trading
+    - stationary bootstrap
+    ambiguity_question: Are you looking to decompose time series data into components (trend, seasonality, noise) for pattern
+      recognition, or do you need a trading signal generation strategy?
+  - uc_id: UC-102
+    name: Stationary Bootstrap for Interest Rate Swap Inference
+    positive_terms:
+    - stationary bootstrap
+    - swap rates
+    - resampling
+    - confidence intervals
+    - interest rate derivatives
+    data_domain: financial_data
+    negative_terms:
+    - SSA
+    - singular spectrum
+    - trading strategy
+    - MACD
+    - screening
+    - live trading
+    ambiguity_question: Are you interested in bootstrap resampling methods for statistical inference on interest rate data,
+      or are you looking for time series decomposition techniques like SSA?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 107
+    fatal_constraints_count: 35
+    non_fatal_constraints_count: 125
+    use_cases_count: 2
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 48 source groups: alpha_calibration(11),
+        black_sholes(1), block_size_formula(1), cash_flow_matrix(1), contract_size(1), convergence_criteria(1), and 42 more.'
+      key_decisions: 107 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-004
+      type: BA
+      summary: Bisection root-finding over Newton-Raphson for alpha calibration
+    - id: BD-005
+      type: B/DK
+      summary: Convergence point T = max(U+40, 60) from EIOPA spec
+    - id: BD-019
+      type: B/BA
+      summary: Set Ultimate Forward Rate (UFR) to 4.2% as long-term convergence target
+    - id: BD-020
+      type: B/BA
+      summary: Set alpha convergence parameter to 0.142068 for EIOPA example data
+    - id: BD-022
+      type: B/BA
+      summary: Set convergence point T = max(U+40, 60) for alpha calibration
+    - id: BD-023
+      type: B/BA
+      summary: Use bisection root-finding to calibrate alpha to satisfy Tau tolerance
+    - id: BD-033
+      type: B/BA
+      summary: Use default mean reversion speed a=1.0 for Vasicek processes
+    - id: BD-040
+      type: B/BA
+      summary: Use SSA embedding dimension L0 = N/2 for time series decomposition
+    - id: BD-050
+      type: B
+      summary: Balance swap and rates calibration with relative error in objective function
+    - id: BD-054
+      type: B/BA
+      summary: Use MLE (maximum likelihood estimation) for Vasicek one-factor parameter validation
+    - id: BD-070
+      type: B/BA
+      summary: Use bisection root-finding algorithm to find optimal alpha for Smith-Wilson convergence
+    - id: BD-071
+      type: B
+      summary: 'Use exact discretization for Black-Scholes GBM: S[t+dt] = S[t]*exp((mu-0.5*sigma^2)*dt + sigma*sqrt(dt)*Z)'
+    - id: BD-038
+      type: B
+      summary: Calculate optimal block size B* = (2*G²/DSB)^(1/3) * n^(1/3) for bootstrap
+    - id: BD-056
+      type: B/RC
+      summary: Use identity matrix as cash flow matrix for ZCB bonds in SW calibration
+    - id: BD-048
+      type: B/BA
+      summary: Default 10% notional for swaption pricing example
+    - id: BD-024
+      type: B/BA
+      summary: Set Tau tolerance to 0.0001 (0.01%) for alpha calibration convergence
+    - id: BD-072
+      type: B
+      summary: Use custom Cholesky-Banachiewicz decomposition for variance-covariance matrix square root
+    - id: BD-030
+      type: B/BA
+      summary: Simulate Vasicek two-factor model with default correlation rho=0.5
+    - id: BD-045
+      type: B
+      summary: Use Cholesky decomposition for correlated Brownian motion generation
+    - id: BD-028
+      type: B/DK
+      summary: Use 5 data points (1,2,5,10,25yr) for NSS yield curve calibration
+    - id: BD-039
+      type: B/BA
+      summary: Require minimum 9 observations for stationary bootstrap calibration
+    - id: BD-084
+      type: B/BA
+      summary: EIOPA convergence point T defaults to max(U+40, 60) in bisection_alpha
+    - id: BD-085
+      type: B/BA
+      summary: BrownianMotion x0 defaults to 0 in Vasicek two-factor model
+    - id: BD-093
+      type: BA/M
+      summary: SSA OptimalLength minimum time series size is 9 elements
+    - id: BD-073
+      type: B/RC
+      summary: Use moment-matched lognormal approximation for Dothan model discretization
+    - id: BD-098
+      type: B/BA
+      summary: 'INTERACTION: BD-018 (EIOPA Smith-Wilson mandate) × BD-019 (UFR 4.2%) → Amplified regulatory compliance requiring
+        both exact algorithm and specific parameter'
+    - id: BD-099
+      type: BA/M
+      summary: 'INTERACTION: BD-005/BD-084 (Convergence point formula) × BD-022/BD-023/BD-024 (Alpha calibration) → Risk cascade
+        where T boundary affects bisection convergence reliability'
+    - id: BD-100
+      type: BA/M
+      summary: 'INTERACTION: BD-045 (Cholesky for correlated paths) × BD-030 (rho=0.5 default) → Hidden dependency where correlation
+        parameter silently requires matrix decomposition'
+    - id: BD-101
+      type: M
+      summary: 'INTERACTION: BD-090 (Stationary bootstrap code duplication) × BD-097 (Smith-Wilson code duplication) → Amplified
+        maintenance risk creating parallel defect propagation vectors'
+    - id: BD-102
+      type: B/BA
+      summary: 'INTERACTION: BD-032 (Initial rate 10%) × BD-033 (Mean reversion a=1.0) × BD-034 (Volatility sigma=0.2) → Hidden
+        dependency where stress-test initial conditions interact with parameter assumptions'
+    - id: BD-103
+      type: T
+      summary: 'INTERACTION: BD-094 (Undefined Calibrator attributes) × BD-062/BD-063 (Nelder-Mead with SSE calibration) →
+        Risk cascade creating calibration failure under each conditions'
+    - id: BD-104
+      type: BA/M
+      summary: 'INTERACTION: BD-035 (100 MC scenarios) × BD-042 (100 bootstrap samples) → Amplification of undersampling bias
+        across simulation and uncertainty quantification'
+    - id: BD-105
+      type: B/BA
+      summary: 'INTERACTION: BD-053 (Nominal = Real + Inflation decomposition) × BD-030/BD-066 (Correlated rate generation)
+        → Contradiction where decomposition assumption conflicts with correlation structure'
+    - id: BD-106
+      type: BA
+      summary: 'INTERACTION: BD-040 (L0=N/2 default) × BD-091 (L0<N/2 invariant) × BD-058 (Window length balancing) → Risk
+        cascade where default parameter sits exactly at boundary constraint'
+    - id: BD-107
+      type: B
+      summary: 'INTERACTION: BD-067 (Euler-Maruyama discretization) × BD-080 (Exact Vasicek discretization) → Contradiction
+        in discretization standards across Vasicek implementations'
+    - id: BD-074
+      type: B/BA
+      summary: Use analytical discretization for Hull-White one-factor model with time-dependent theta
+    - id: BD-094
+      type: T
+      summary: Calibrator class in vasicek_two_factor has undefined methods used as static
+    - id: BD-027
+      type: B/BA
+      summary: Initialize each 6 NSS parameters at 0.1 for Nelder-Mead starting point
+    - id: BD-032
+      type: B/BA
+      summary: Set default initial interest rates to 10% for both real and nominal processes
+    - id: BD-006
+      type: B/DK
+      summary: DataFrame output with Time as index
+    - id: BD-007
+      type: BA/M
+      summary: Cholesky decomposition for correlated Brownian motion generation
+    - id: BD-008
+      type: B
+      summary: Custom Cholesky implementation over numpy.linalg.cholesky
+    - id: BD-009
+      type: BA/M
+      summary: L0 embedding dimension defaults to N/2 when not provided
+    - id: BD-053
+      type: B
+      summary: Model nominal interest rate as real rate plus inflation rate
+    - id: BD-043
+      type: B/BA
+      summary: Calculate 95% confidence intervals using 2.5th and 97.5th percentiles
+    - id: BD-089
+      type: B/BA
+      summary: Every interest rate simulators return DataFrames with 'Time' as index
+    - id: BD-091
+      type: BA
+      summary: SSA L0 must be < N/2 by design (embedding dimension constraint)
+    - id: BD-092
+      type: BA
+      summary: SSA r0 must be < L+1 for recursive forecast to work correctly
+    - id: BD-036
+      type: B/BA
+      summary: Use trapezoidal kernel for stationary bootstrap spectral estimation
+    - id: BD-029
+      type: B
+      summary: Use sum of squared residuals as NSS goodness-of-fit objective function
+    - id: BD-018
+      type: B/DK
+      summary: Use EIOPA's Smith-Wilson algorithm for interest rate term structure interpolation/extrapolation
+    - id: BD-075
+      type: B/BA
+      summary: Use Nelder-Mead simplex algorithm for Nelson-Siegel-Svansson parameter fitting
+    - id: BD-076
+      type: B
+      summary: Use sum of squared errors (Euclidean distance) for NSS goodness-of-fit measure
+    - id: BD-055
+      type: B/DK
+      summary: Use trapz (trapezoidal) integration for bond pricing under stochastic rates
+    - id: BD-026
+      type: B/DK
+      summary: Use Nelder-Mead simplex algorithm for Nelson-Siegel-Svensson optimization
+    - id: BD-051
+      type: B/BA
+      summary: Set Nelder-Mead max iterations=1000, max function evaluations=5000 for calibration
+    - id: BD-010
+      type: BA/M
+      summary: Monte Carlo integration for two-factor bond pricing
+    - id: BD-011
+      type: B
+      summary: Swaption payer/receiver derived from boolean not payer
+    - id: BD-035
+      type: B
+      summary: Use Monte Carlo with 100 scenarios for zero-coupon bond pricing
+    - id: BD-083
+      type: B
+      summary: SWCalibrate() MUST be called before SWExtrapolate() in Smith-Wilson pipeline
+    - id: BD-087
+      type: B
+      summary: 'Vasicek two-factor pricing pipeline: BrownianMotion -> ZeroCouponBond.price_Vasicek_Two_Factor'
+    - id: BD-088
+      type: B/DK
+      summary: SSA pipeline requires embedding/SVD before reconstruction/forecast
+    - id: BD-095
+      type: B/BA
+      summary: BisectionAlpha requires xStart < xEnd and opposite-sign function values
+    - id: BD-086
+      type: BA/M
+      summary: Correlated Brownian motion uses Cholesky decomposition exclusively
+    - id: BD-096
+      type: BA
+      summary: Every yield curve fitting uses Nelder-Mead simplex optimization exclusively
+    - id: BD-052
+      type: B/BA
+      summary: Use 6-month (0.5yr) floating leg frequency for swap/swaption pricing
+    - id: BD-046
+      type: B
+      summary: Use vectorized operations for Black-Scholes simulation instead of loop
+    - id: BD-021
+      type: B/DK
+      summary: Extrapolate yield curve to 65 years maturity for pension liability calculations
+    - id: BD-016
+      type: BA
+      summary: Automatic block length selection via Politis-White 2004 method
+    - id: BD-017
+      type: BA/M
+      summary: Trapezoidal spectral window for block size estimation
+    - id: BD-077
+      type: B
+      summary: Use Politis-White automatic block length selection for stationary bootstrap
+    - id: BD-078
+      type: B/BA
+      summary: Use trapezoidal kernel function for spectral density estimation in bootstrap
+    - id: BD-079
+      type: B/BA
+      summary: 'Use Politis-White Bstar formula: Bstar = (2*Ghat^2/DSBhat)^(1/3) * n^(1/3)'
+    - id: BD-044
+      type: B/BA
+      summary: Use OLS regression of reconstructed signal on original for SSA bootstrap residuals
+    - id: BD-047
+      type: B/DK
+      summary: 'Use Geometric Brownian Motion formula: S(t+dt) = S(t) * exp((mu-0.5*sigma²)*dt + sigma*sqrt(dt)*Z)'
+    - id: BD-025
+      type: B/BA
+      summary: 'Set bisection search bounds for alpha: xStart=0.05, xEnd=0.5'
+    - id: BD-068
+      type: B/BA
+      summary: Use matrix inversion (numpy.linalg.inv) for Smith-Wilson calibration vector computation
+    - id: BD-069
+      type: B/DK
+      summary: Use Wilson kernel function (Heart of Wilson) with alpha convergence parameter
+    - id: BD-037
+      type: B/BA
+      summary: Set autocorrelation significance threshold c=2 for bootstrap block selection
+    - id: BD-049
+      type: B/BA
+      summary: Default 10% fixed rate for swaption contracts
+    - id: BD-090
+      type: DK
+      summary: stationary_bootstrap and stationary_bootstrap_calibration contain identical code
+    - id: BD-097
+      type: M/BA
+      summary: smith_wilson and bisection_alpha share nearly identical SWCalibrate/SWExtrapolate/SWHeart code
+    - id: BD-012
+      type: BA
+      summary: Embedding dimension L0 auto-adjusts to N/2 with warning when L0 > N/2
+    - id: BD-013
+      type: B
+      summary: Hankel matrix construction for time series embedding
+    - id: BD-014
+      type: BA/M
+      summary: Weighted correlation for SSA component separability assessment
+    - id: BD-015
+      type: BA/M
+      summary: Bootstrap sampling for SSA forecast uncertainty quantification
+    - id: BD-031
+      type: B
+      summary: Use 52 time periods with dt=0.1 (5.2 year horizon) for interest rate simulation
+    - id: BD-057
+      type: B/BA
+      summary: Use SVD (Singular Value Decomposition) for time series decomposition instead of PCA or Fourier transform
+    - id: BD-058
+      type: B/BA
+      summary: Use Hankel matrix embedding with window length L0 set to N/2 as default
+    - id: BD-059
+      type: B/BA
+      summary: Use percentile-based bootstrap confidence intervals (97.5th and 2.5th) for forecast uncertainty
+    - id: BD-060
+      type: B/BA
+      summary: Use OLS (Ordinary Least Squares via numpy.linalg.lstsq) for bootstrap residual calculation
+    - id: BD-061
+      type: B
+      summary: Use weighted correlation (w-correlation) for assessing component separability
+    - id: BD-042
+      type: B/BA
+      summary: Generate 100 bootstrap samples for SSA forecast confidence intervals
+    - id: BD-041
+      type: B
+      summary: Validate L0 < N/2 to prevent overfitting in SSA reconstruction
+    - id: BD-080
+      type: B/BA
+      summary: 'Use exact discretization for Vasicek one-factor model: r[t] = r[t-1]*exp(-a*dt) + lam*(1-exp(-a*dt)) + sigma*sqrt((1-exp(-2a*dt))/(2a))*Z'
+    - id: BD-081
+      type: B/BA
+      summary: Use two-step OLS for initial Vasicek parameter estimation before MLE refinement
+    - id: BD-082
+      type: B/BA
+      summary: 'Use closed-form MLE formulas for Vasicek parameters: MLmu, MLlam, MLsigma derived from sufficient statistics'
+    - id: BD-062
+      type: B/BA
+      summary: Use Nelder-Mead simplex algorithm for Vasicek calibration instead of Levenberg-Marquardt or BFGS
+    - id: BD-063
+      type: B
+      summary: Use sum of squared relative errors as calibration objective function
+    - id: BD-064
+      type: B/BA
+      summary: Use closed-form Vasicek zero-coupon bond pricing formula
+    - id: BD-065
+      type: B/BA
+      summary: Use Monte Carlo simulation with trapezoidal integration for zero-coupon bond pricing
+    - id: BD-066
+      type: B/BA
+      summary: 'Use correlated Brownian motion via conditional formula: Z3 = rho*Z1 + sqrt(1-rho^2)*Z2'
+    - id: BD-067
+      type: B/BA
+      summary: Use Euler-Maruyama discretization for two-factor Vasicek SDE
+    - id: BD-034
+      type: B/BA
+      summary: Use default volatility sigma=0.2 for interest rate simulations
+    - id: BD-001
+      type: B/DK
+      summary: Local imports of SWHeart inside SWCalibrate/SWExtrapolate
+    - id: BD-002
+      type: B/BA
+      summary: Matrix formulation using numpy for readability over loops
+    - id: BD-003
+      type: BA/DK
+      summary: Nelder-Mead simplex for NSS optimization over gradient methods
+resources:
+  packages:
+  - name: numpy
+    version_pin: latest
+  - name: scipy
+    version_pin: latest
+  - name: pandas
+    version_pin: latest
+  - name: matplotlib
+    version_pin: latest
+  - name: seaborn
+    version_pin: latest
+  - name: pytest
+    version_pin: latest
+  - name: IPython
+    version_pin: latest
+  - name: datetime
+    version_pin: latest
+  - name: warnings
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install numpy
+    - python3 -m pip install scipy
+    - python3 -m pip install pandas
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When implementing the Smith-Wilson calibration vector calculation
+    action: Compute calibration vector b using EIOPA paragraph 149 specification with matrix inverse of (Q' * H * Q)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect calibration vector causes interpolated/extrapolated rates to deviate from EIOPA-compliant values,
+      invalidating downstream insurance reserve calculations
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-002
+    when: When implementing the Wilson heart function for matrix operations
+    action: 'Calculate H matrix using formula: 0.5 * (α*(u+v) + exp(-α*(u+v)) - α*|u-v| - exp(-α*|u-v|)) per EIOPA paragraph
+      132'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect Wilson heart function causes wrong H matrix values, propagating errors through all calibration
+      and extrapolation calculations
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-003
+    when: When implementing rate to price conversion for zero-coupon bonds
+    action: Transform observed rates to ZCB prices using p = (1+r)^(-M) formula before calibration
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect rate-to-price conversion produces wrong bond prices, causing calibration vector b to be miscalculated
+      and invalidating all derived rates
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-004
+    when: When converting extrapolated bond prices back to interest rates
+    action: Convert derived prices to rates using r = p^(-1/M) - 1 formula per EIOPA paragraph 147
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect price-to-rate conversion produces wrong yield values, causing reported interest rates to be incorrect
+      for regulatory and pricing purposes
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-005
+    when: When implementing the root-finding algorithm for alpha calibration
+    action: Include a maxIter parameter to prevent infinite loops when bisection method fails to converge
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing iteration limit causes infinite loop, freezing the application when alpha cannot be calibrated from
+      given market data
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-011
+    when: When executing the Smith-Wilson workflow
+    action: Call SWCalibrate to compute vector b before calling SWExtrapolate
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing calibration step causes undefined or incorrect extrapolation results due to absent calibration vector
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-016
+    when: When implementing alpha calibration for Solvency II compliance
+    action: use the calibrated alpha value consistently in the subsequent SWExtrapolate call
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using different alpha values between calibration and extrapolation violates EIOPA specifications and produces
+      incorrect extrapolated rates that do not satisfy the convergence tolerance Tau, invalidating the Solvency II regulatory
+      submission
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-017
+    when: When implementing EIOPA convergence point calculation
+    action: compute convergence point T as max(U + 40, 60) where U is the maximum observed maturity
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using any formula other than max(U+40, 60) for convergence point T violates EIOPA paragraphs 120 and 157,
+      causing the calibrated alpha to be computed against an incorrect convergence target and invalidating regulatory compliance
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-018
+    when: When calibrating alpha using the bisection method
+    action: verify the bisection interval bounds (xStart, xEnd) contain a sign change in Galfa
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without sign changes in Galfa at the interval bounds, the bisection method fails to find a root, causing
+      infinite loop timeout or incorrect alpha values that do not satisfy the Tau tolerance
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-020
+    when: When calling Galfa with the calibrated alpha
+    action: verify that |Galfa(M_Obs, r_Obs, ufr, alpha_calibrated, Tau)| is within Precision tolerance
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: If Galfa(calibrated_alpha) exceeds the Precision tolerance, the alpha calibration has not actually satisfied
+      the Tau convergence constraint, meaning the EIOPA tolerance requirements are violated
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-022
+    when: When computing the calibration vector b in SWCalibrate
+    action: use the same alpha value that will be used in SWExtrapolate for the same dataset
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Computing calibration vector b with a different alpha than used in extrapolation produces mathematically
+      inconsistent rate curves where observed points do not match market prices
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-032
+    when: When passing dt (time step) parameter to simulation functions
+    action: express dt as a fraction of year where dt > 0 (e.g., 0.1 = ~36 days)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Negative or zero dt produces invalid number of time steps, causing index errors or infinite loops. dt=0 causes
+      division by zero in time discretization calculations.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-033
+    when: When providing variance-covariance matrix to correlated Brownian motion
+    action: verify the matrix is positive semi-definite before passing to Cholesky decomposition
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-positive-semidefinite matrix causes Cholesky to fail with math domain error or produce invalid correlated
+      samples, invalidating all downstream risk calculations.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-043
+    when: When implementing Monte Carlo pricing with two-factor Vasicek model
+    action: validate correlation coefficient rho is within [-1, 1] bounds
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid correlation values will cause undefined behavior in Brownian motion generation (sqrt(1-rho²) becomes
+      imaginary), producing NaN prices or silent numerical failures
+    stage_ids:
+    - option_pricing
+  - id: finance-C-044
+    when: When implementing Monte Carlo pricing with trapz integration
+    action: validate nScen (number of Monte Carlo scenarios) is a positive integer
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Zero or negative nScen causes division by zero in mean calculation; non-integer nScen causes silent data
+      corruption through broadcasting errors
+    stage_ids:
+    - option_pricing
+  - id: finance-C-048
+    when: When computing bond option prices under stochastic interest rate models
+    action: use numerical integration (trapz) because no closed-form solution exists for two-factor model
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Attempting to use closed-form pricing for two-factor model produces mathematically incorrect bond prices
+      that diverge from market values
+    stage_ids:
+    - option_pricing
+  - id: finance-C-058
+    when: When implementing SSA embedding dimension L0
+    action: Set L0 strictly less than N/2, with automatic warning adjustment if violated
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: If L0 >= N/2, the SSA algorithm crashes because the Hankel matrix becomes singular and cannot be properly
+      decomposed via SVD, producing invalid reconstruction results.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-059
+    when: When configuring recursive SSA forecast
+    action: Verify r0 < L+1 for the selected singular vectors to span the forecast subspace
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: If max(r0) >= L+1, the forecast recursion produces meaningless values because the right singular vectors
+      cannot span the required subspace for linear recursive forecasting.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-069
+    when: When implementing time-series resampling with stationary bootstrap
+    action: validate input data is a 1-dimensional numpy ndarray before processing
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-1D array input causes undefined behavior in index operations, leading to incorrect bootstrap samples
+      or silent data corruption
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-070
+    when: When computing autocorrelation for block length calibration
+    action: use at least 9 elements in the input time series for meaningful bootstrap results
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Time series shorter than 9 elements produce unreliable autocorrelation estimates, causing suboptimal block
+      length selection and invalid statistical inference
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-071
+    when: When calling stationary_bootstrap with calibration-computed block length
+    action: verify block length m is positive before passing to the resampling algorithm
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-positive block length causes division by zero in accept probability calculation, producing NaN values
+      in bootstrap output
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-078
+    when: When applying stationary bootstrap to non-stationary time series
+    action: apply stationary bootstrap directly without first transforming data to stationarity
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Stationary bootstrap assumes weak dependence and stationarity; applying it to trending or unit-root data
+      produces invalid resamples that mix temporal states
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-081
+    when: When passing observed rates and maturities from yield_curve_fitting to alpha_calibration
+    action: verify r_Obs and M_Obs are numpy arrays with matching dimensions (n x 1 column vectors)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Dimension mismatch causes Smith-Wilson calibration to produce invalid calibration vector b, leading to incorrect
+      yield curve extrapolation results
+  - id: finance-C-082
+    when: When alpha_calibration returns the optimal alpha to yield_curve_fitting for recalibration
+    action: return alpha as a positive floating-point value within the search bounds (xStart, xEnd)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Invalid alpha value causes matrix inversion failure in SWCalibrate or produces degenerate yield curve that
+      violates EIOPA regulations
+  - id: finance-C-084
+    when: When yield_curve_fitting passes zero-coupon prices and rates to option_pricing
+    action: verify rates are annual rates (not log returns or discount factors) and maturities are in years
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect rate format causes swaption prices to be miscalculated, leading to significant financial losses
+      in live trading scenarios
+  - id: finance-C-092
+    when: When implementing Smith-Wilson interest rate curve algorithms
+    action: Use annual decimal representation for rates (0.042 = 4.2%) and maturity vectors as n x 1 column vectors for EIOPA-compliant
+      matrix operations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Matrix operations will fail due to shape mismatch, producing incorrect interpolated/extrapolated interest
+      rates that violate EIOPA technical specifications
+  - id: finance-C-094
+    when: When using Smith-Wilson algorithm for interest rate curve fitting
+    action: Call SWCalibrate() before SWExtrapolate(), and verify the alpha parameter used in calibration matches the alpha
+      parameter passed to extrapolation
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Extrapolated rates will be mathematically incorrect because the calibration vector b is specific to the alpha
+      value used during calibration; mismatched alpha produces invalid curve fits
+  - id: finance-C-095
+    when: When using SSA (Singular Spectrum Analysis) for time series forecasting
+    action: Complete the __init__ embedding and SVD decomposition before calling forecast() or reconstruction() — the four-stage
+      pipeline (embedding → SVD → grouping → hankelization) must execute in sequence
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Forecast and reconstruction methods will raise AttributeError or produce meaningless results because required
+      matrices (U, S, V, H) are not initialized
+  - id: finance-C-096
+    when: When performing correlated Brownian motion simulations requiring Cholesky decomposition
+    action: Verify the variance-covariance matrix is positive semi-definite before passing to the Cholesky decomposition function
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Cholesky decomposition will fail with negative square root or produce invalid correlation structures, causing
+      Monte Carlo simulations to produce incorrect or undefined results
+  - id: finance-C-098
+    when: When specifying SSA reconstruction indices r0
+    action: Verify max(r0) is less than or equal to L+1, where L is the embedding dimension
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: SSA recursive forecast fails because the selected right singular vectors do not form a valid subspace for
+      the recursive projection algorithm
+  - id: finance-C-112
+    when: When implementing or selecting interest rate term structure interpolation and extrapolation methods
+    action: Use EIOPA-compliant Smith-Wilson algorithm for interest rate term structure interpolation and extrapolation —
+      do not use cubic splines, piecewise linear interpolation, or other non-EIOPA methods
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-EIOPA interpolation methods violate Solvency II SCR calculation requirements and produce yield curves
+      that do not converge to the Ultimate Forward Rate at long maturities as mandated by EIOPA technical specifications
+    derived_from_bd_id: BD-018
+  - id: finance-C-120
+    when: When implementing EIOPA-compliant term structure calculations
+    action: Modify BD-018 (Smith-Wilson algorithm) or BD-019 (UFR 4.2%) independently — both decisions must be changed together
+      to maintain regulatory compliance
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Changing only the Smith-Wilson algorithm without updating the UFR parameter leaves the convergence target
+      undefined, breaking EIOPA regulatory compliance for insurance liability calculations
+    derived_from_bd_id: BD-098
+  - id: finance-C-127
+    when: When implementing equity price simulation using Geometric Brownian Motion
+    action: 'Use the exact GBM formula: S(t+dt) = S(t) * exp((mu - 0.5*sigma^2)*dt + sigma*sqrt(dt)*Z); verify the drift correction
+      term (mu-0.5*sigma^2) is included, not just mu*dt'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Omitting the drift correction term causes simulated prices to follow a log-normal distribution with incorrect
+      mean, leading to systematically biased option pricing and incorrect Greeks calculations
+    derived_from_bd_id: BD-047
+  - id: finance-C-145
+    when: When implementing or refactoring the Smith-Wilson curve fitting pipeline
+    action: Execute SWCalibrate() to completion before calling SWExtrapolate(); SWHeart matrix must be fully computed and
+      available as input to the extrapolation function
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Calling SWExtrapolate before SWCalibrate causes runtime exceptions with SWHeart=None, producing undefined
+      behavior and preventing the Smith-Wilson algorithm from converging
+    derived_from_bd_id: BD-083
+  - id: finance-C-146
+    when: When implementing or refactoring the Vasicek two-factor pricing pipeline
+    action: Execute simulate_Vasicek_Two_Factor() to completion before calling price_Vasicek_Two_Factor(); each Brownian motion
+      paths must be generated and stored before pricing calculations begin
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Calling price_Vasicek_Two_Factor before simulation completes results in pricing with empty or undefined rate
+      paths, causing NaN values or zero present values
+    derived_from_bd_id: BD-087
+  regular:
+  - id: finance-C-006
+    when: When using numpy float64 for interest rate calculations
+    action: Accept numpy float64 precision limits for monetary calculations in insurance actuarial work
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Floating-point rounding errors in interest rate calculations compound over long maturities, causing material
+      discrepancies in insurance reserve valuations
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-007
+    when: When computing the matrix (Q' * H * Q) for inversion
+    action: Verify the matrix is numerically invertible with acceptable condition number
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Near-singular or ill-conditioned matrix causes numerical instability, producing unreliable calibration vectors
+      and incorrect yield curve estimates
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-008
+    when: When configuring alpha convergence parameter
+    action: Provide bounded search range (xStart, xEnd) for bisection root-finding algorithm
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Unbounded alpha search causes numerical overflow or failure to find valid convergence speed, preventing calibration
+      for certain yield curve shapes
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-009
+    when: When reusing calibration vector b for multiple extrapolation calls
+    action: Reuse the same calibration vector b with identical observed data (M_Obs, ufr, alpha) for different target maturities
+    severity: low
+    kind: operational_lesson
+    modality: must
+    consequence: Recalculating b for each target maturity wastes computation and may produce inconsistent rates if alpha drifts
+      between calls
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-010
+    when: When ensuring extrapolated rates converge to the ultimate forward rate
+    action: Set Tau (tolerance) parameter appropriately to control maximum deviation from ufr at convergence point
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Improper Tau causes extrapolated rates to diverge from ufr at long maturities, violating EIOPA convergence
+      requirements for insurance regulations
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-012
+    when: When importing the Wilson heart function in calibration and extrapolation modules
+    action: Import SWHeart locally inside each function to avoid circular dependencies while maintaining encapsulation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Improper import strategy causes circular import errors or breaks encapsulation of EIOPA paragraph references
+      across modules
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-013
+    when: When providing observed rates as inputs
+    action: Verify input rates are annual decimals (e.g., 0.042 = 4.2%) and not in percentage format
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: Percentage-formatted rates (e.g., 4.2 instead of 0.042) cause approximately 100x amplification in all calculated
+      prices and rates, producing invalid yield curves
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-014
+    when: When claiming regulatory compliance with EIOPA standards
+    action: Claim EIOPA compliance for the algorithm implementation only, not for the entire insurance pricing system
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Overclaiming EIOPA compliance exposes the insurer to regulatory scrutiny and potential penalties for system-level
+      gaps in actuarial controls
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-015
+    when: When presenting yield curve fitting results
+    action: Present interpolated/extrapolated rates as estimated values derived from observed data, not as actual market quotes
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresenting derived rates as market quotes misleads stakeholders about data reliability and violates
+      actuarial transparency requirements
+    stage_ids:
+    - yield_curve_fitting
+  - id: finance-C-019
+    when: When implementing BisectionAlpha for Solvency II regulatory calculations
+    action: set xStart bound to at least 0.05 per EIOPA recommendations
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Setting xStart below 0.05 may produce alpha values that converge too slowly, failing to meet regulatory requirements
+      for reasonable extrapolation behavior under Solvency II framework
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-021
+    when: When using the bisection_alpha module alongside the smith_wilson module
+    action: mix SWCalibrate/SWExtrapolate from different module directories
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Using SWCalibrate from bisection_alpha with SWExtrapolate from smith_wilson (or vice versa) may produce inconsistent
+      results due to duplicated implementations with potentially different numerical behaviors
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-023
+    when: When using the Smith-Wilson algorithm for EIOPA regulatory calculations
+    action: use Decimal or verify float precision is sufficient for monetary calculations
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Standard Python floats may introduce rounding errors in rate calculations that compound through matrix operations,
+      potentially causing small but systematic deviations in calibrated alpha that violate the tight Tau tolerance
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-024
+    when: When the bisection method reaches maxIter iterations
+    action: return an unvalidated alpha value without warning the user
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Returning a non-converged alpha value silently causes downstream yield curve calculations to use an unvalidated
+      parameter that does not satisfy EIOPA tolerance requirements
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-025
+    when: When validating alpha calibration results for regulatory submissions
+    action: present the backtest calibration results as equivalent to live regulatory calculations
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Alpha values calibrated offline on historical market data cannot guarantee the same convergence properties
+      when applied to current market conditions; regulatory submissions require real-time recalibration
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-026
+    when: When using the Smith-Wilson algorithm with EIOPA specifications
+    action: document the alpha value and Tau tolerance used in calibration documentation
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without documented alpha and Tau values, regulatory auditors cannot verify that the calibrated yield curve
+      meets EIOPA convergence requirements, potentially invalidating Solvency II submissions
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-027
+    when: When computing the convergence gap Galfa
+    action: use np.abs() around the denominator to handle sign changes correctly
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without absolute value, the denominator (1 - K*exp(alpha*T)) can become negative, causing the Galfa function
+      to return positive values even when convergence is not achieved
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-028
+    when: When implementing the Galfa function from EIOPA specifications
+    action: verify Tau parameter represents the allowed difference between ufr and actual curve
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Passing Tau with incorrect interpretation (e.g., as a multiplier instead of absolute tolerance) causes the
+      bisection to target an incorrect convergence goal, invalidating the calibration
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-030
+    when: When performing matrix inversion in SWCalibrate
+    action: check that Q.transpose() @ H @ Q is non-singular before inversion
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Singular matrix in calibration causes np.linalg.inv to raise LinAlgError, preventing alpha calibration from
+      completing; this can occur if input maturities are linearly dependent
+    stage_ids:
+    - alpha_calibration
+  - id: finance-C-031
+    when: When implementing interest rate simulation functions
+    action: set the DataFrame index to 'Time' using set_index('Time', inplace=True)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without 'Time' as index, downstream plotting and time-series analysis functions will fail or produce incorrect
+      results, breaking the consistent interface contract across simulation modules.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-034
+    when: When simulating mean-reverting interest rate paths with Vasicek or Hull-White models
+    action: maintain speed of reversion parameter a such that a > 0 to verify mean-reversion convergence
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: When a=0, the Vasicek model becomes a random walk without mean-reversion, and the variance formula contains
+      division by zero, producing infinite variance or NaN values.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-035
+    when: When initializing Brownian motion starting points
+    action: explicitly specify non-zero starting points since x0 defaults to 0
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Default x0=0 causes all paths to start at zero rather than the intended rate, producing incorrect simulation
+      paths and biased Monte Carlo pricing results.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-036
+    when: When presenting results from stochastic interest rate simulations
+    action: claim that single simulation paths represent expected outcomes or guaranteed returns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Each Monte Carlo path is one realization from random draws. Single-path results overstate precision, mislead
+      stakeholders, and violate financial modeling best practices requiring multiple scenario aggregation.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-037
+    when: When using the Vasicek model for interest rate simulation
+    action: document that negative interest rates are mathematically possible due to normally-distributed noise
+    severity: medium
+    kind: claim_boundary
+    modality: must
+    consequence: Vasicek model allows negative spreads due to Gaussian noise assumption. In credit markets where negative
+      spreads are economically meaningless, using Vasicek without acknowledging this limitation leads to invalid pricing and
+      risk mismeasurement.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-038
+    when: When selecting the number of Monte Carlo simulation paths
+    action: use sufficient paths to achieve statistical convergence of price/risk estimates
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Insufficient paths produce high-variance estimates, causing unstable pricing and unreliable risk metrics
+      that may mislead decision-making in actuarial applications.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-039
+    when: When implementing correlated Brownian motion generation
+    action: use Cholesky decomposition or equivalent method to transform independent normals into correlated samples
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect correlation structure produces biased multi-factor risk estimates, leading to under- or over-estimation
+      of portfolio risk and incorrect hedge ratios.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-040
+    when: When setting random seed for reproducible simulation results
+    action: document the seed value used and its purpose (model validation, testing, or audit trail)
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without documented seed, simulation results cannot be replicated for model validation, regulatory audit,
+      or debugging purposes, violating actuarial standards for model reproducibility.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-041
+    when: When using correlated Brownian motion generation
+    action: assume the custom Cholesky implementation is optimized for high-throughput production use
+    severity: low
+    kind: resource_boundary
+    modality: must_not
+    consequence: The explicit three-nested-loop Cholesky implementation at CorBM.py:48-56 is O(n^3) without vectorization.
+      For large variance-covariance matrices, numpy.linalg.cholesky provides significantly better performance.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-042
+    when: When running correlated Brownian motion generation
+    action: skip input validation assuming valid variance-covariance matrix structure
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Without input validation, non-symmetric matrices or non-numeric values cause cryptic runtime errors or silent
+      incorrect results. The code explicitly notes no input testing is implemented.
+    stage_ids:
+    - interest_rate_simulation
+  - id: finance-C-045
+    when: When implementing interest rate path integration for bond pricing
+    action: validate volatility sigma and rate parameters are non-negative
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Negative volatility produces invalid square root calculations; negative rates may indicate miscalibration
+      and lead to mathematically invalid bond prices
+    stage_ids:
+    - option_pricing
+  - id: finance-C-046
+    when: When pricing zero-coupon bonds using Monte Carlo simulation
+    action: receive interest rate simulation data from the interest_rate_simulation stage only
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using rate paths from other sources bypasses model assumptions, causing mispriced bonds and inconsistent
+      pricing across the system
+    stage_ids:
+    - option_pricing
+  - id: finance-C-047
+    when: When implementing Swaption payer/receiver direction logic
+    action: derive receiver from 'not payer' boolean for single source of truth
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Separate payer and receiver booleans can diverge, causing inconsistent swaption pricing based on wrong option
+      direction
+    stage_ids:
+    - option_pricing
+  - id: finance-C-049
+    when: When implementing Monte Carlo pricing for confidence interval estimation
+    action: calculate standard error or confidence intervals from simulation results
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting confidence intervals violates the stage output contract and prevents users from assessing pricing
+      uncertainty from Monte Carlo sampling error
+    stage_ids:
+    - option_pricing
+  - id: finance-C-050
+    when: When using trapezoidal integration for bond pricing
+    action: verify integration time step dt divides T evenly
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Non-integer N = T/dt causes truncation in rate path length, missing the final time step and underestimating
+      the discount integral
+    stage_ids:
+    - option_pricing
+  - id: finance-C-051
+    when: When deploying Monte Carlo pricing for live financial decisions
+    action: claim exact pricing accuracy for Monte Carlo point estimates
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Monte Carlo estimates have inherent sampling variance; presenting np.mean() as exact price overstates precision
+      and may lead to suboptimal trading decisions
+    stage_ids:
+    - option_pricing
+  - id: finance-C-052
+    when: When setting the number of Monte Carlo scenarios for pricing
+    action: increase nScen until confidence interval width falls below acceptable tolerance
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Insufficient scenarios produce wide confidence intervals making the price estimate unreliable for risk management
+      decisions
+    stage_ids:
+    - option_pricing
+  - id: finance-C-053
+    when: When implementing Monte Carlo simulation for financial derivatives pricing
+    action: set random seed for reproducible results when debugging or testing
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Unseeded random number generation causes non-deterministic prices, making unit tests flaky and debugging
+      impossible across different execution environments
+    stage_ids:
+    - option_pricing
+  - id: finance-C-054
+    when: When initializing zero-coupon bond pricing models
+    action: initialize with zero-coupon bond prices from yield_curve_fitting stage
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using ad-hoc or hardcoded initial prices bypasses market calibration, causing systematic mispricing relative
+      to observable market instruments
+    stage_ids:
+    - option_pricing
+  - id: finance-C-055
+    when: When configuring the Monte Carlo integration method for option pricing
+    action: replace only the integration_method parameter, preserving rate path generation and expectation calculation
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Changing integration method without preserving the overall Monte Carlo structure produces mathematically
+      incorrect pricing
+    stage_ids:
+    - option_pricing
+  - id: finance-C-056
+    when: When implementing swaption pricing
+    action: accept string values for payer/receiver direction in pricing calculations
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: String-based direction causes silent type coercion failures, potentially flipping swaption payer/receiver
+      and producing inverse payoff calculations
+    stage_ids:
+    - option_pricing
+  - id: finance-C-057
+    when: When presenting Monte Carlo pricing results to stakeholders
+    action: present Monte Carlo estimated prices as guaranteed market prices
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Monte Carlo estimates are stochastic approximations subject to sampling variance; presenting them as deterministic
+      market prices violates financial modeling best practices
+    stage_ids:
+    - option_pricing
+  - id: finance-C-060
+    when: When providing time series input to ssaBasic
+    action: Pass only 1D numpy arrays as row vectors; raise TypeError for multi-dimensional arrays
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Passing multi-dimensional arrays causes incorrect Hankel matrix construction, leading to silent data corruption
+      and meaningless decomposition results.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-061
+    when: When performing SSA with minimal time series data
+    action: Provide at least 9 elements in the time series for meaningful decomposition
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Time series shorter than 9 elements cannot produce meaningful SSA components, as the Hankel matrix dimensions
+      become too small for interpretable singular value decomposition.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-062
+    when: When using OOP-style SSA implementation
+    action: Use class-based interface for ssaBasic rather than functional style
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: ssaBasic implements SSA using OOP pattern (class ssaBasic with methods) unlike other functional-style modules
+      in the repository. Mixing patterns causes interface mismatches and integration failures.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-063
+    when: When configuring weighted correlation for separability assessment
+    action: Use Toeplitz weights in w-correlation calculation to correctly measure component separability
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Standard SSA requires Toeplitz weighting for w-correlation; incorrect weights produce misleading separability
+      measures, causing wrong component grouping decisions.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-064
+    when: When generating bootstrap forecast uncertainty
+    action: Use residual bootstrap to preserve autocorrelation structure in SSA residuals
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-residual bootstrap destroys autocorrelation structure in SSA residuals, producing confidence intervals
+      that do not reflect true forecast uncertainty.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-065
+    when: When constructing trajectory matrix for SSA
+    action: Build Hankel matrix preserving time ordering via anti-diagonal constant structure
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Hankel structure preserves time ordering in trajectory matrix; incorrect matrix construction destroys temporal
+      correlations and produces meaningless decomposition results.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-066
+    when: When validating grouping parameter G0 in ssaBasic
+    action: Verify G0 length equals embedding dimension L0+1 with no gaps in group indices
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid G0 causes index errors or incorrect component grouping, producing mathematically undefined behavior
+      in the SSA reconstruction pipeline.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-067
+    when: When selecting forecast method in SSA
+    action: Claim real-time or live trading capability based on SSA backtest results
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: 'SSA backtest results do not reflect live trading performance due to inherent limitations: bootstrap sampling
+      provides uncertainty estimates, not execution guarantees; market conditions change between backtest and live periods.'
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-068
+    when: When presenting SSA forecast results
+    action: Present bootstrap confidence intervals as precise probability bounds
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Bootstrap confidence intervals (97.5th/2.5th percentiles) are approximate uncertainty estimates based on
+      residual resampling, not exact probability coverage. Mispresenting them leads to incorrect risk assessment.
+    stage_ids:
+    - time_series_analysis
+  - id: finance-C-072
+    when: When performing bootstrap resampling on autocorrelated data
+    action: use Politis-White 2004 optimal block length algorithm to minimize MSE for dependent data
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Arbitrary block length selection leads to either excessive variance (too small blocks) or excessive bias
+      (too large blocks), degrading statistical inference quality
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-073
+    when: When integrating SSA residuals with bootstrap calibration
+    action: compute autocorrelation from SSA-reconstructed residuals before passing to OptimalLength
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using raw data instead of SSA residuals introduces trend components into autocorrelation, causing block length
+      to be inappropriately large for the noise component
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-074
+    when: When maintaining bootstrap calibration code across directories
+    action: consolidate duplicated OptimalLength, mlag, and lam implementations into a shared module
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Duplicated code leads to divergent implementations over time, causing inconsistent block length results when
+      switching between stationary_bootstrap/ and stationary_bootstrap_calibration/ directories
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-075
+    when: When generating reproducible bootstrap samples for testing
+    action: set numpy random seed before calling stationary_bootstrap for deterministic test results
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without seed control, bootstrap output is non-deterministic, causing flaky tests that pass/fail randomly
+      across test runs
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-076
+    when: When computing trapezoidal kernel weights for block length formula
+    action: verify lag-window input to lam() is within [-1, 1] range for proper spectral estimation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Values outside [-1, 1] produce zero kernel weights, corrupting the Ghat/DSBhat computation and yielding incorrect
+      Bstar block length
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-077
+    when: When claiming statistical validity of bootstrap confidence intervals
+    action: claim exact replication of population parameters from finite bootstrap samples
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Bootstrap provides asymptotic approximation to sampling distribution; finite samples and non-stationary data
+      produce confidence intervals with unknown coverage properties
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-079
+    when: When exporting bootstrap results as empirical evidence
+    action: present bootstrap-derived distributions as equivalent to analytically computed distributions
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Bootstrap distributions are model-free approximations with sampling error; presenting them as definitive
+      probabilities misleads stakeholders about uncertainty quantification
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-080
+    when: When handling lagged correlation matrix construction in mlag
+    action: delete rows containing zero-padding before computing autocorrelation to avoid correlation with zero artifacts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Zero-padding rows create artificial zero-correlation entries, biasing the threshold-based mhat selection
+      downward and producing suboptimal block length
+    stage_ids:
+    - resampling_bootstrap
+  - id: finance-C-083
+    when: When interest_rate_simulation passes rate paths to option_pricing for Monte Carlo pricing
+    action: verify the DataFrame has 'Time' as index and 'Interest Rate' (or equivalent rate column) as values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect column names cause Monte Carlo integration to fail or price zero-coupon bonds using wrong interest
+      rate series
+  - id: finance-C-085
+    when: When time_series_analysis passes SSA-reconstructed residuals to resampling_bootstrap
+    action: verify the residuals are provided as a 1-dimensional numpy array (not a DataFrame or 2D array)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-1D array causes autocorrelation calculation to fail in OptimalLength, producing invalid bootstrap block
+      length that corrupts all downstream resampled series
+  - id: finance-C-086
+    when: When time_series_analysis extracts autocorrelation structure for bootstrap block length selection
+    action: verify the input time series has at least 9 observations (minimum data requirement for Politis-White method)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Insufficient data points cause OptimalLength to produce unreliable block length estimates, invalidating the
+      entire bootstrap statistical inference
+  - id: finance-C-087
+    when: When alpha_calibration performs iterative convergence with yield_curve_fitting
+    action: allow infinite iteration loops without convergence check
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Bisection algorithm enters infinite loop when tolerance Tau is unreachable, causing CPU exhaustion and system
+      hang
+  - id: finance-C-088
+    when: When Vasicek/Hull-White/Dothan simulation passes rate paths to pricing models
+    action: verify time index is continuous with no gaps matching the dt increment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Gaps in time index cause trapezoidal integration to produce incorrect bond prices, leading to systematic
+      mispricing
+  - id: finance-C-089
+    when: When Smith-Wilson calibration vector b is passed between yield_curve_fitting iterations
+    action: preserve the calibration vector as an n x 1 numpy array without reshaping
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Vector reshaping causes Wilson function heart calculation to fail due to broadcasting mismatch, producing
+      NaN rates
+  - id: finance-C-090
+    when: When option_pricing receives zero-coupon rates from yield_curve_fitting
+    action: verify the ufr (ultimate forward rate) parameter matches the one used in calibration
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mismatched ufr causes Smith-Wilson extrapolation to produce inconsistent curve shapes, invalidating all derived
+      swaption prices
+  - id: finance-C-091
+    when: When implementing interest rate simulation functions (Vasicek, Hull-White, Dothan, Black-Scholes)
+    action: Return results as pandas DataFrame with Time as the index column
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Consumers expecting consistent DataFrame interface across modules will receive inconsistent output formats,
+      causing integration failures in downstream analysis pipelines
+  - id: finance-C-093
+    when: When implementing continuous-time interest rate models (Vasicek, Hull-White, Dothan)
+    action: Express time step dt as a fraction of year (dt=0.1 represents approximately 36 days) to enable proper model discretization
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Stochastic differential equations will produce incorrect temporal discretization, causing simulated interest
+      rates to diverge significantly from expected model outputs
+  - id: finance-C-097
+    when: When configuring SSA embedding dimension L0
+    action: Set L0 to a value less than or equal to N/2, where N is the length of the time series
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: SSA decomposition produces mathematically invalid trajectory matrices; reconstruction and forecast accuracy
+      degrades significantly with insufficient degrees of freedom
+  - id: finance-C-099
+    when: When using stationary bootstrap for time series resampling
+    action: Provide positive values for block length parameter m and sample_length
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Bootstrap algorithm raises ValueError and produces no valid resampled output; negative or zero parameters
+      are mathematically undefined for block resampling
+  - id: finance-C-100
+    when: When presenting or reporting this system's backtested or simulated returns to users
+    action: Claim that simulated returns equal expected live trading returns — simulations ignore market impact, financing
+      costs, execution delays, slippage, and liquidity constraints
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users make live capital allocation decisions based on inflated simulation returns, leading to severe underperformance
+      in actual trading and potential financial loss exceeding initial investment
+  - id: finance-C-101
+    when: When using this system as the basis for external capability claims
+    action: Claim real-time trading support, live market data integration capability, or production-grade risk management
+      system functionality — this is a collection of actuarial models for research and analytical purposes only
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users deploying these models in live trading systems without proper safeguards will experience unhandled
+      latency, data feeds failures, and regulatory compliance violations
+  - id: finance-C-102
+    when: When presenting this system's interest rate curve interpolations or extrapolations as financial advice
+    action: Present Smith-Wilson or Nelson-Siegel-Svensson curve outputs as guaranteed market predictions or risk-free rate
+      estimates without proper regulatory disclosure and model risk documentation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Regulatory violations occur when actuarial models are presented without model risk disclosure; users may
+      make sub-optimal capital allocation decisions based on uncalibrated curve fits
+  - id: finance-C-103
+    when: When validating financial model parameters in stochastic simulations
+    action: Verify volatility parameters (sigma) are non-negative and mean reversion parameters (a) are non-negative to maintain
+      mathematical validity of Ornstein-Uhlenbeck processes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Negative volatility produces undefined Gaussian increments; negative mean reversion speed causes divergence
+      rather than mean reversion, producing unbounded interest rate simulations
+  - id: finance-C-104
+    when: When performing Monte Carlo pricing using stochastic interest rate models
+    action: Set a random seed or use reproducible random number generation when repeatability is required for model validation
+      or regulatory documentation
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Monte Carlo results become non-reproducible, preventing model validation, audit trail requirements, and regulatory
+      compliance documentation
+  - id: finance-C-105
+    when: When performing SSA cross-validation
+    action: Verify qInSample is between 0 and 1 (exclusive of boundaries) to maintain valid train-test split for time series
+      cross-validation
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Cross-validation produces invalid train-test splits when qInSample equals 0 or 1, causing division by zero
+      or empty test sets with undefined RMSE calculations
+  - id: finance-C-106
+    when: When using this actuarial model library
+    action: Present these models as production-ready financial software with warranties — the README explicitly states 'This
+      software is provided on an as is basis, without warranties or conditions of any kind' (singular_spectrum_analysis/README.md:46)
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users relying on production SLAs or warranty claims will have no legal recourse when models produce unexpected
+      outputs; regulatory audits will fail due to unsupported software in critical systems
+  - id: finance-C-107
+    when: When fixing defects or updating algorithms in any duplicated code location
+    action: 'Apply identical fixes to each four duplicated locations: stationary_bootstrap_calibrate.py (2 locations), Smith-Wilson
+      SWCalibrate/SWExtrapolate/SWHeart (2 locations), and Cholesky decomposition (2+ locations from BD-045/BD-072) — use
+      grep to identify each identical code blocks before applying changes'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Fixing a bug in only one location of duplicated code leaves the defect active in all other copies, causing
+      inconsistent behavior across modules and potential silent failures in downstream calculations
+    derived_from_bd_id: BD-101
+  - id: finance-C-108
+    when: When implementing or refactoring the Nelson-Siegel-Svensson curve fitting implementation
+    action: Use sum of squared residuals as the objective function for NSS goodness-of-fit — do not replace with Huber loss,
+      absolute deviation, or other loss functions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing the objective function to Huber loss or absolute deviation alters the curve fitting behavior, producing
+      different yield curve shapes that affect actuarial discounting and regulatory valuations under Solvency II frameworks
+    derived_from_bd_id: BD-029
+  - id: finance-C-109
+    when: When configuring Monte Carlo simulation parameters for two-factor Vasicek interest rate model
+    action: Use exactly 52 time periods with dt=0.1 (5.2 year horizon) for swaption pricing — do not change to weekly steps
+      (dt=0.02) or other discretization schemes without revalidation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing dt or period count affects Monte Carlo convergence and pricing accuracy; weekly steps increase computation
+      5x without proportional accuracy gain for 5-year instruments
+    derived_from_bd_id: BD-031
+  - id: finance-C-110
+    when: When calibrating alpha parameter in Smith-Wilson alpha calibration
+    action: Set convergence point T = max(U+40, 60) where U is the last liquid maturity — do not use a fixed 60-year convergence
+      point as this violates the adaptive convergence distance requirement
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using a fixed 60-year convergence point instead of max(U+40, 60) causes incorrect curve fitting when the
+      last liquid maturity exceeds 20 years, as the convergence distance falls below the required 40-year minimum
+    derived_from_bd_id: BD-022
+  - id: finance-C-111
+    when: When implementing or modifying the alpha calibration algorithm in Smith-Wilson calibration
+    action: Use bisection root-finding method for alpha calibration to satisfy Tau tolerance — do not replace with Newton-Raphson
+      or other gradient-based methods
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Newton-Raphson methods are sensitive to initial guesses and may not converge for ill-conditioned Tau functions,
+      causing alpha calibration to fail or produce incorrect values that violate regulatory tolerance requirements
+    derived_from_bd_id: BD-023
+  - id: finance-C-113
+    when: When setting the projection horizon for pension liability calculations using Smith-Wilson term structure
+    action: Extrapolate yield curve to at least 65 years maturity for pension liability calculations — do not truncate at
+      40 or 50 years as this would miss annuity payments and deferred pension obligations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Truncating the yield curve at 40-50 years for a typical retirement age of 65 with life expectancy 85-90 causes
+      pension liability cash flows to be improperly discounted, significantly underestimating or overestimating long-term
+      obligations
+    derived_from_bd_id: BD-021
+  - id: finance-C-114
+    when: When configuring SSA embedding dimension parameter L0 for trajectory matrix construction
+    action: Verify L0 (embedding dimension) satisfies 1 <= L0 < N/2 where N is the series length — verify L0 < N/2 holds before
+      SSA decomposition
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Setting L0 >= N/2 destroys the Hankel matrix structure required for valid SVD decomposition, causing degenerate
+      singular vectors and corrupted SSA component extraction
+    derived_from_bd_id: BD-091
+  - id: finance-C-115
+    when: When configuring SSA forecast reconstruction with parameter r0 for singular value selection
+    action: Verify r0 (number of singular values for reconstruction) satisfies r0 < L+1 where L is the embedding window size
+      — validate r0 < L+1 before recursive forecast execution
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Setting r0 >= L+1 creates an underdetermined system in the recursive prediction algorithm, causing forecast
+      trajectories to become unstable or divergent
+    derived_from_bd_id: BD-092
+  - id: finance-C-116
+    when: When pricing bonds using the two-factor Vasicek interest rate model
+    action: Use Monte Carlo integration with trapezoidal approximation (integrate.trapz) for bond pricing — do not use analytical
+      approximations or higher-dimensional quadrature as they introduce systematic bias or become intractable
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Analytical approximations introduce systematic bias in two-factor Vasicek bond pricing; without Monte Carlo
+      integration, pricing errors propagate to option valuations and hedging strategies
+    derived_from_bd_id: BD-010
+  - id: finance-C-117
+    when: When assessing component separability in Singular Spectrum Analysis decomposition
+    action: Use weighted (Toeplitz) correlation for w-correlation calculation between SSA components — do not use unweighted
+      standard correlation as it biases separability assessment toward dominant components
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Unweighted correlation misrepresents minor signal contributions and biases separability assessment, leading
+      to incorrect component grouping decisions in SSA reconstruction
+    derived_from_bd_id: BD-014
+  - id: finance-C-118
+    when: When implementing or refactoring any interest rate simulator method (simulate_X)
+    action: Return DataFrame with 'Time' column as the DataFrame index — never use RangeIndex or custom index types
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Downstream portfolio aggregation, scenario analysis, and stress testing code assumes uniform Time-indexed
+      DataFrames; using a different index causes silent iteration failures or incorrect results across simulators
+    derived_from_bd_id: BD-089
+  - id: finance-C-119
+    when: When using BisectionAlpha to find roots
+    action: Verify initial bounds satisfy xStart < xEnd AND f(xStart) * f(xEnd) < 0 (opposite-sign function values) before
+      calling the algorithm
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Violating the bracketing interval requirements causes the bisection algorithm to either fail convergence
+      with infinite iterations or return incorrect root values, corrupting downstream financial calculations
+    derived_from_bd_id: BD-095
+  - id: finance-C-121
+    when: When implementing or modifying rate generation and decomposition logic
+    action: Use BD-053 (nominal = real + inflation additive decomposition) with BD-030/BD-066 (bivariate normal correlated
+      generation) simultaneously — these are mutually exclusive modeling assumptions
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Combining additive decomposition with bivariate normal generation creates a contradiction where implied inflation
+      becomes negatively correlated with real rates, violating monetary policy intuition and producing economically inconsistent
+      scenario paths
+    derived_from_bd_id: BD-105
+  - id: finance-C-122
+    when: When implementing correlated Brownian motion generation using Cholesky decomposition
+    action: Verify that the covariance matrix is positive-definite before applying Cholesky decomposition; if matrix is not
+      positive-definite, use eigenvalue decomposition as fallback or reject with error
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Cholesky decomposition fails with LinAlgError on non-positive-definite matrices, causing simulation to abort;
+      generated paths will have incorrect correlation structure if eigenvalue fallback is used without explicit handling
+    derived_from_bd_id: BD-086
+  - id: finance-C-123
+    when: When calibrating SSA OptimalLength for time series decomposition
+    action: Verify input time series has at least 9 elements before invoking SSA OptimalLength; if length < 9, reject calibration
+      with clear error message stating minimum requirement not met
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: SSA OptimalLength with fewer than 9 elements produces trajectory matrices too small for SVD extraction, yielding
+      statistically insignificant singular components and unreliable forecasting results
+    derived_from_bd_id: BD-093
+  - id: finance-C-124
+    when: When calibrating alpha parameters using bisection root-finding with Galfa convergence point formula T=max(U+40,60)
+    action: Monitor convergence behavior when U approaches liquid maturity limits; implement maximum iteration limits and
+      convergence tolerance checks; warn when U > 20 that bisection may exhibit slow convergence or false-positive convergence
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Large U values cause T to approach 100+ years, making Galfa error function extremely flat near zero; bisection
+      algorithm may converge prematurely to incorrect alpha values, producing unreliable calibration results
+    derived_from_bd_id: BD-099
+  - id: finance-C-125
+    when: When implementing SSA reconstruction validation logic
+    action: Enforce that embedding dimension L0 is strictly less than N/2 where N is the time series length; reject configurations
+      violating this constraint to maintain Toeplitz matrix full rank
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Setting L0 >= N/2 causes Toeplitz matrix rank deficiency, leading to numerical instability, eigenvalue clustering,
+      and overfitting to noise in component separation; actuarial forecasts become unreliable and non-reproducible
+    derived_from_bd_id: BD-041
+  - id: finance-C-126
+    when: When initializing the Nelder-Mead optimizer for Nelson-Siegel-Svensson yield curve calibration
+    action: Verify that initial parameter values are set to 0.1 for each 6 NSS parameters (theta0-theta5); if using a different
+      initialization strategy, document the rationale and assess convergence behavior
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using a suboptimal starting point can cause the Nelder-Mead optimizer to converge to local minima instead
+      of the global market-observed yield curve, leading to incorrect discount factors and bond pricing errors in live trading
+    derived_from_bd_id: BD-027
+  - id: finance-C-128
+    when: When implementing bond pricing integration under Vasicek short-rate models
+    action: Use trapezoidal integration (trapz) for bond pricing integrals; verify grid spacing is uniform and sufficient
+      for second-order accuracy; do not use Simpson's rule which requires odd grid points
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-trapezoidal integration methods may introduce numerical errors in bond pricing calculations, causing
+      inaccurate valuations that fail regulatory reporting requirements
+    derived_from_bd_id: BD-055
+  - id: finance-C-129
+    when: When implementing or modifying spectral density estimation for stationary bootstrap confidence intervals
+    action: Use trapezoidal kernel for spectral density estimation — do not replace with Parzen or Bartlett kernels which
+      produce wider intervals with higher bias at spectral boundaries
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Replacing trapezoidal kernel with Parzen or Bartlett increases spectral leakage and produces wider, more
+      conservative confidence intervals, potentially causing underconfidence in valid trading signals or rejection of profitable
+      strategies
+    derived_from_bd_id: BD-036
+  - id: finance-C-130
+    when: When calibrating block size parameters for stationary bootstrap procedures
+    action: Set autocorrelation significance threshold c=2 for block bootstrap parameter estimation — this corresponds to
+      approximately 5% significance level for identifying genuinely dependent observations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using a different threshold (e.g., c=1.96 or c=2.5) changes which autocorrelations are considered significant,
+      altering block size calculation and potentially invalidating confidence intervals or producing unreliable statistical
+      inference
+    derived_from_bd_id: BD-037
+  - id: finance-C-131
+    when: When processing time series data for stationary bootstrap calibration
+    action: Enforce minimum 9 observations requirement before running bootstrap calibration — reject or flag datasets with
+      fewer observations as insufficient for reliable spectral density estimation
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Running bootstrap calibration with fewer than 9 observations produces unreliable spectral estimates with
+      insufficient blocks for meaningful resampling, leading to invalid confidence intervals that misrepresent uncertainty
+      in backtest results
+    derived_from_bd_id: BD-039
+  - id: finance-C-132
+    when: When configuring SSA embedding dimension for time series decomposition
+    action: Set SSA embedding dimension L0 to N/2 (half the series length) for trend-noise separation — do not use L0=N/3
+      as it may miss medium-frequency cyclical components in liability cash flow patterns
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using an incorrect embedding dimension (N/3 or other values) causes either over-fragmentation or under-capture
+      of signal components, leading to poor trend-noise separation and inaccurate forecasts in actuarial or financial time
+      series analysis
+    derived_from_bd_id: BD-040
+  - id: finance-C-133
+    when: When generating bootstrap samples for SSA forecast confidence intervals
+    action: Use exactly 100 bootstrap replications for SSA forecast confidence interval estimation — verify that 100 samples
+      provides adequate percentile accuracy (approximately 1.25x critical value accuracy for 95% intervals) for actuarial
+      reporting
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using fewer than 100 bootstrap samples degrades percentile estimate precision for confidence intervals, potentially
+      producing misleading uncertainty bounds that fail to meet actuarial reporting accuracy requirements
+    derived_from_bd_id: BD-042
+  - id: finance-C-134
+    when: When implementing or modifying the Vasicek two-factor calibration objective function
+    action: Use sum of squared relative errors as the calibration objective function — this normalizes instrument contributions
+      by their price level, preventing large-maturity bonds from dominating the objective and ensuring calibration fits across
+      the entire yield curve simultaneously
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using absolute squared errors causes calibration to be dominated by long-maturity instruments with large
+      absolute prices, resulting in poor fit at short maturities and unreliable multi-curve yield estimation that propagates
+      into incorrect derivative pricing
+    derived_from_bd_id: BD-063
+  - id: finance-C-135
+    when: When implementing geometric Brownian motion simulation for Black-Scholes option pricing
+    action: Use exact discretization formula S[t+dt] = S[t]*exp((mu-0.5*sigma^2)*dt + sigma*sqrt(dt)*Z) — do not replace with
+      Euler-Maruyama, Milstein, or other approximate discretization methods
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Euler-Maruyama discretization introduces systematic drift underestimation for path-dependent options and
+      long-dated derivatives, causing option strategies to be mispriced by 5-15% on average and producing non-reproducible
+      backtest results
+    derived_from_bd_id: BD-071
+  - id: finance-C-136
+    when: When implementing correlated asset simulation using variance-covariance matrix decomposition
+    action: Use Cholesky-Banachiewicz row-wise decomposition for the variance-covariance matrix square root — maintain the
+      row-based approach that enables memory-efficient partial computation for leading correlations
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using Cholesky-Crout column-based decomposition without verifying row-wise equivalence produces incorrect
+      correlation structures in multi-asset simulation paths, invalidating diversification benefits and causing portfolio
+      risk misestimation by 10-30%
+    derived_from_bd_id: BD-072
+  - id: finance-C-137
+    when: When implementing Nelson-Siegel-Svensson yield curve calibration goodness-of-fit measurement
+    action: Use sum of squared errors (Euclidean distance) as the NSS goodness-of-fit objective — this provides uniform weighting
+      across maturity points and ensures convex, interpretable calibration results
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using weighted least squares without proper heteroscedasticity calibration distorts fit quality at short
+      maturities where economic signals are most informative, leading to incorrect yield curve shapes and flawed strategy
+      signals for interest rate derivatives
+    derived_from_bd_id: BD-076
+  - id: finance-C-138
+    when: When implementing stationary bootstrap resampling for yield curve time series analysis
+    action: Use Politis-White automatic block length selection for stationary bootstrap — this estimates optimal block size
+      from the data's dependence structure without manual tuning
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using fixed block lengths that don't adapt to the data's dependence structure causes invalid bootstrap inference,
+      producing unreliable confidence intervals and misleading strategy backtest results that don't generalize to live trading
+    derived_from_bd_id: BD-077
+  - id: finance-C-139
+    when: When implementing confidence interval calculation for SSA forecast distributions
+    action: Calculate 95% confidence intervals using 2.5th and 97.5th empirical percentiles of the bootstrap distribution
+      — do not substitute parametric methods assuming normality
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Parametric confidence intervals assume normal distribution, but financial returns exhibit fat tails and skewness;
+      using parametric CI systematically underestimates uncertainty for extreme outcomes, causing backtest intervals to exclude
+      real losses
+    derived_from_bd_id: BD-043
+  - id: finance-C-140
+    when: When implementing bootstrap residual estimation for SSA forecasting
+    action: Use OLS regression of SSA-reconstructed signal on original series to compute residuals — do not apply moving block
+      bootstrap on residuals
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: SSA OLS residuals are white noise by construction; applying moving block bootstrap introduces autocorrelation
+      structure that does not exist, distorting the bootstrap distribution and causing forecast intervals to misrepresent
+      true uncertainty
+    derived_from_bd_id: BD-044
+  - id: finance-C-141
+    when: When demonstrating swaption pricing calculations in educational examples
+    action: Use 10% notional (relative scale) for swaption pricing examples — do not change to absolute monetary values like
+      EUR 100m
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Large absolute notional values distract from pricing mechanics by forcing attention on number magnitude rather
+      than rate sensitivity and Greeks; learners miss the core valuation concepts buried in unwieldy numbers
+    derived_from_bd_id: BD-048
+  - id: finance-C-142
+    when: When demonstrating swaption premium sensitivity in educational examples
+    action: Use 10% fixed rate as out-of-the-money strike in swaption examples — avoid changing to ATM strike at current forward
+      rate
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: ATM strikes produce near-zero intrinsic value, obscuring the relationship between moneyness and premium;
+      learners cannot visualize option value changes when the starting point has no optionality
+    derived_from_bd_id: BD-049
+  - id: finance-C-143
+    when: When calibrating 4-parameter two-factor Vasicek model using Nelder-Mead optimizer
+    action: Set max iterations=1000 and max function evaluations=5000 for Nelder-Mead calibration stopping criteria — do not
+      reduce below these thresholds without validation
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Insufficient iterations or evaluations cause premature optimizer termination on complex 4-parameter calibration,
+      leading to suboptimal parameter estimates that produce systematically biased swaption prices
+    derived_from_bd_id: BD-051
+  - id: finance-C-144
+    when: When pricing interest rate swaps or swaptions using the framework's default payment frequency
+    action: Verify that the 6-month (0.5yr) floating leg frequency matches the actual instrument being priced; for non-EUR
+      instruments or custom structures, explicitly specify the correct payment frequency parameter
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using 6-month frequency for non-EUR swaps or instruments with quarterly/monthly conventions causes systematic
+      mispricing, producing discount factors that do not match quoted swap prices
+    derived_from_bd_id: BD-052
+  - id: finance-C-147
+    when: When pricing long-dated pension liabilities or instruments spanning 40+ years using both Vasicek one-factor and
+      two-factor models
+    action: Use inconsistent discretization methods across Vasicek model variants; one-factor model uses exact discretization
+      while two-factor model uses Euler-Maruyama, producing systematically different pricing for identical instruments
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Euler-Maruyama discretization has O(dt) path accuracy with systematic drift bias compared to exact discretization
+      with O(1) accuracy; for 40+ year liabilities, this discrepancy produces materially different pricing between models,
+      violating internal consistency requirements
+    derived_from_bd_id: BD-107
+  - id: finance-C-148
+    when: When using the closed-form Vasicek zero-coupon bond pricing formula for pricing or calibration
+    action: Use the closed-form formula for time-varying parameters (a, lambda, r0) — the analytical solution assumes constant
+      parameters within each evaluation interval; must switch to numerical methods for time-varying parameter scenarios
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Applying the closed-form Vasicek formula with time-varying parameters systematically misprices bonds, as
+      the formula derivation assumes constant drift and volatility over each interval; accumulated pricing errors can reach
+      10-50bp for rapidly changing rate environments
+    derived_from_bd_id: BD-064
+  - id: finance-C-149
+    when: When validating the Vasicek closed-form pricing implementation
+    action: Verify that parameters a, lambda, and r0 are held constant within each evaluation interval before using the analytical
+      formula
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without validating parameter constancy, the closed-form solution produces incorrect bond prices as the mathematical
+      derivation assumes continuous compounding with fixed coefficients over the evaluation period
+    derived_from_bd_id: BD-064
+  - id: finance-C-150
+    when: When configuring Monte Carlo simulation parameters for zero-coupon bond pricing
+    action: Configure at least 10,000 simulation paths to achieve pricing accuracy within 1 basis point (bp)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using fewer than 10,000 Monte Carlo paths introduces excessive sampling variance, causing bond price estimates
+      to diverge by more than 1bp from the true value; this error compounds in calibration loops where prices are evaluated
+      thousands of times
+    derived_from_bd_id: BD-065
+  - id: finance-C-151
+    when: When using trapezoidal integration for computing integrated quantities in bond pricing
+    action: Verify the integrand is sufficiently smooth before applying trapezoidal rule — the method assumes smooth behavior
+      and may underperform for discontinuous or highly oscillatory payoffs
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Trapezoidal integration on non-smooth integrands produces systematic integration errors that accumulate across
+      the pricing calculation, leading to biased bond valuations especially near cash flow discontinuities
+    derived_from_bd_id: BD-065
+  - id: finance-C-152
+    when: When generating correlated Brownian motion increments using the conditional formula Z3 = rho*Z1 + sqrt(1-rho^2)*Z2
+    action: Validate that |rho| < 1 before generating correlated samples — the formula requires a valid correlation coefficient;
+      when |rho| approaches 1, switch to Cholesky decomposition for numerical stability
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Setting |rho| >= 1 causes sqrt(1-rho^2) to become imaginary or zero, breaking the correlated Brownian motion
+      generation; even near-singular correlations (|rho| > 0.99) introduce numerical instability that distorts multi-factor
+      interest rate simulations
+    derived_from_bd_id: BD-066
+  - id: finance-C-153
+    when: When simulating two-factor Vasicek paths using Euler-Maruyama discretization
+    action: Use a time step dt <= 1 day (dt <= 1/252 years) to maintain pricing accuracy within 5 basis points in typical
+      rate environments
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using larger time steps with Euler-Maruyama accumulates discretization error at O(dt) in mean and O(1) in
+      second moment, causing bond prices to deviate by more than 5bp from the true value; the drift bias compounds over long
+      simulation horizons
+    derived_from_bd_id: BD-067
+  - id: finance-C-154
+    when: When implementing Smith-Wilson calibration using numpy.linalg.inv for matrix inversion
+    action: Apply numpy.linalg.inv directly for Wilson matrices with condition number > 1e10 — use Cholesky decomposition
+      or LU decomposition with pivoting for numerical stability in near-singular cases
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Direct matrix inversion of near-singular Wilson matrices (extremely long or short maturities) produces unreliable
+      calibration vectors with large numerical errors, causing bond prices to deviate significantly from market values
+    derived_from_bd_id: BD-068
+  - id: finance-C-155
+    when: When selecting the calibration method for Smith-Wilson algorithm
+    action: Consider Cholesky decomposition for positive-definite Wilson matrices as an alternative to direct inversion —
+      Cholesky is more numerically stable and has O(n^3) same complexity but with better constant factors for positive-definite
+      cases
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Direct matrix inversion may introduce numerical instabilities that degrade calibration accuracy, especially
+      when the Wilson matrix approaches singularity due to extreme maturity constraints
+    derived_from_bd_id: BD-068
+  - id: finance-C-156
+    when: When calibrating Smith-Wilson alpha using the bisection root-finding algorithm
+    action: Verify that a valid bracketing interval exists where the Wilson error function changes sign before running bisection,
+      and confirm monotonicity of the error function in alpha across the interval
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without verifying bracketing and monotonicity, bisection may fail to converge or converge to the wrong root,
+      causing incorrect alpha values that distort bond and swap pricing calculations throughout the system
+    derived_from_bd_id: BD-070
+  - id: finance-C-157
+    when: When fitting Nelson-Siegel-Svensson parameters using the Nelder-Mead simplex algorithm
+    action: Initialize parameters with economically meaningful starting values derived from level-slope-curvature interpretation,
+      and verify sufficient function evaluations (200-500) to avoid premature convergence to local minima in poorly conditioned
+      regions
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Poor starting values or premature convergence leads to suboptimal NSS parameters, distorting the yield curve
+      shape and compromising the accuracy of interpolated rates and forward rate calculations
+    derived_from_bd_id: BD-075
+  - id: finance-C-158
+    when: When estimating spectral density using the trapezoidal kernel for block length calibration
+    action: Verify that the spectral density is smooth without sharp peaks before applying the trapezoidal kernel, and avoid
+      using it for processes with strong cyclical components where Parzen or Bartlett kernels may perform better
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Applying trapezoidal kernel to non-smooth spectral density or cyclical processes produces inconsistent block
+      length estimates, leading to unreliable bootstrap confidence intervals and incorrect statistical inference
+    derived_from_bd_id: BD-078
+  - id: finance-C-159
+    when: When applying closed-form MLE formulas (MLmu, MLlam, MLsigma) to Vasicek parameter estimation
+    action: Verify that interest rate innovations follow a normal distribution by performing normality tests (e.g., Jarque-Bera);
+      if fat tails are detected, switch to robust MLE with t-distributed errors or quasi-MLE for misspecified distributions
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Closed-form MLE assumes normally distributed innovations; in practice, interest rate returns exhibit fat
+      tails and outliers that cause the estimator to underweight tail risk, leading to overconfident parameter estimates and
+      underpriced tail risk in hedging
+    derived_from_bd_id: BD-082
+  - id: finance-C-160
+    when: When calibrating EIOPA risk-free term structure curves using bisection_alpha
+    action: Verify that the convergence point T is set to max(U+40, 60) where U is the last observable maturity; for regulatory
+      reporting under EIOPA-BoS-14/065, verify T >= max(U+40, 60) with T=60 minimum floor for short-dated curves
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: EIOPA regulation requires terminal convergence point T to be at least 40 years beyond the last observable
+      maturity U with a 60-year floor; using incorrect T values fails regulatory compliance and may invalidate solvency calculations
+      for insurance companies
+    derived_from_bd_id: BD-084
+  - id: finance-C-161
+    when: When initializing the Vasicek two-factor model BrownianMotion component for path simulation
+    action: Verify that x0=0 (zero-mean starting point) matches the intended initial condition for the short-rate process;
+      explicitly set x0 to a different value if the process should start from non-equilibrium or historical initial state
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default x0=0 assumes the process starts from equilibrium; starting from a non-equilibrium initial condition
+      with x0=0 introduces systematic bias in early path simulations that affects option pricing and hedging ratios
+    derived_from_bd_id: BD-085
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-064 / Singular Spectrum Analysis Time Series Decomposition
+    version: v5.3
+    intent_keywords:
+    - SSA
+    - singular spectrum analysis
+    - time series decomposition
+    - scree plot
+    - trend extraction
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: no candidate field had 2-7 distinct values; all capabilities collapsed into single group
+      groups:
+      - group_id: all
+        name: All Capabilities
+        description: ''
+        emoji: 📦
+        uc_count: 2
+        ucs:
+        - uc_id: UC-101
+          name: Singular Spectrum Analysis Time Series Decomposition
+          short_description: Decomposes time series data into interpretable components (trend, seasonality, noise) using Singular
+            Spectrum Analysis to identify underlying patterns
+          sample_triggers:
+          - SSA
+          - singular spectrum analysis
+          - time series decomposition
+        - uc_id: UC-102
+          name: Stationary Bootstrap for Interest Rate Swap Inference
+          short_description: Applies stationary bootstrap resampling method to Italian swap rate data for statistical inference,
+            enabling confidence interval estimation and hypoth
+          sample_triggers:
+          - stationary bootstrap
+          - swap rates
+          - resampling
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try singular spectrum analysis time series decomposition
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try stationary bootstrap for interest rate swap inference
+      auto_selected: true
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 2 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Stationary Bootstrap for Interest Rate Swap Inference
+    - Singular Spectrum Analysis Time Series Decomposition
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

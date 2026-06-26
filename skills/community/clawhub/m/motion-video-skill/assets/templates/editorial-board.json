@@ -1,0 +1,14 @@
+{
+  "id": "editorial-board",
+  "label": "Editorial Board",
+  "description": "暖色编辑台风格，适合课程、案例、复盘讲解。",
+  "theme": "sunset-board",
+  "stageClass": "template-editorial-board",
+  "panelBg": "rgba(255, 249, 241, 0.88)",
+  "panelOutline": "rgba(122, 74, 52, 0.18)",
+  "stageBorder": "rgba(122, 74, 52, 0.14)",
+  "stageRadius": 24,
+  "cardRadius": 24,
+  "chipRadius": 16,
+  "quoteFontStyle": "italic"
+}

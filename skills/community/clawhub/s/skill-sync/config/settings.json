@@ -1,0 +1,43 @@
+{
+  "ownSkills": [
+    "deals-hunter",
+    "failure-monitor",
+    "skill-sync",
+    "podcast-production-pipeline",
+    "autonomous-pm",
+    "clawhub-skill-installer",
+    "log-analyzer",
+    "system-health-monitor",
+    "opik-reporter",
+    "clawpi-redpacket-monitor"
+  ],
+  "syncSettings": {
+    "autoCommitToGit": true,
+    "autoPublishToClawhub": true,
+    "checkInterval": 60,
+    "retryFailedSync": true,
+    "maxRetries": 3,
+    "onlySyncOwnSkills": true
+  },
+  "gitSettings": {
+    "autoPush": true,
+    "commitMessageTemplate": "Update skill: {name} v{version}",
+    "branch": "main"
+  },
+  "clawhubSettings": {
+    "autoLogin": false,
+    "tags": ["latest"],
+    "timeout": 60000
+  },
+  "excludeSkills": [
+    ".git",
+    "node_modules",
+    ".DS_Store"
+  ],
+  "notifySettings": {
+    "onSuccess": true,
+    "onFailure": true,
+    "channel": "discord",
+    "to": "channel:1478698808631361647"
+  }
+}

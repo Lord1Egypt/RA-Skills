@@ -1,35 +1,71 @@
 ---
-name: "Nm Archetypes Architecture Paradigm Functional Core"
-description: "Applies Functional Core, Imperative Shell to isolate logic from side effects"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-archetypes-architecture-paradigm-functional-core"
-sourceUrl: "https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-functional-core"
+name: architecture-paradigm-functional-core
+description: Applies Functional Core, Imperative Shell to isolate logic from side effects
+version: 1.9.8
+triggers:
+  - architecture
+  - functional-core
+  - imperative-shell
+  - testability
+  - business-logic
+  - side-effects
+  - business logic is entangled with I/O or unit tests are slow and brittle
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
+source: claude-night-market
+source_plugin: archetypes
 ---
 
-# Nm Archetypes Architecture Paradigm Functional Core
-
-> Applies Functional Core, Imperative Shell to isolate logic from side effects
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-archetypes-architecture-paradigm-functional-core`
-- **Source URL:** [https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-functional-core](https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-functional-core)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-archetypes-architecture-paradigm-functional-core
-```
+# The Functional Core, Imperative Shell Paradigm
+
+
+## When To Use
+
+- Separating pure business logic from side effects
+- Improving testability through immutable domain models
+
+## When NOT To Use
+
+- Performance-critical hot paths where immutability overhead matters
+- Purely imperative codebases with no plans to adopt functional patterns
+
+## When to Employ This Paradigm
+- When business logic is entangled with I/O operations (e.g., database calls, HTTP requests), making tests brittle and slow.
+- When significant development time is spent rewriting adapters or dealing with framework churn.
+- When you require a suite of fast, deterministic unit tests that operate on plain data, complemented by a thin integration testing layer.
+
+## Adoption Steps
+1. **Inventory Side Effects**: Create a map of all side effects in the system, such as database writes, external API calls, UI events, and filesystem access. Explicitly assign these responsibilities to the "shell."
+2. **Model the Core Logic**: Represent business rules and policies as pure functions. These functions should take domain data as input and return decisions or commands as output, avoiding shared mutable state.
+3. **Design the Command Schema**: Define a small, explicit set of command objects that the core can return and the shell can interpret (e.g., `PersistOrder`, `PublishEvent`, `NotifyUser`).
+4. **Refactor Incrementally**: Begin with high-churn or critical modules. Wrap legacy imperative code behind adapters while progressively extracting pure calculations into the functional core.
+5. **Enforce Boundaries**: Use code reviews and automated architecture tests to validate a strict separation. The shell should only handle orchestration, sequencing, and retries, while the core should never call directly into frameworks or I/O libraries.
+
+## Key Deliverables
+- An Architecture Decision Record (ADR) detailing why this pattern was chosen, which modules are affected, and the scope of the migration.
+- A suite of unit tests for the core with high (>90%) and deterministic code coverage. Where applicable, use property-based or fixture-based testing to cover a wide range of inputs.
+- A suite of contract and integration tests for the shell that verify correct command interpretation, retry logic, and telemetry.
+- A set of rollout metrics (e.g., deployment lead time, incident rate in the shell layer) to demonstrate the value of the architectural change.
+
+## Risks & Mitigations
+- **Logic Drifting Between Core and Shell**:
+  - **Mitigation**: It's common for business logic to accidentally be duplicated or placed in the shell. Enforce a "core owns all decisions" checklist during code reviews to prevent this.
+- **Mismatch with Frameworks**:
+  - **Mitigation**: The imperative shell may still need to interact with framework-specific lifecycle hooks. Before committing to a large rewrite, build small proof-of-concept adapters to validate the integration strategy.
+- **Team Unfamiliarity with the Pattern**:
+  - **Mitigation**: Introduce the pattern using pair programming and internal "brown-bag" learning sessions. Document common anti-patterns that are discovered during the pilot phase to guide future development.
+
+## Concrete Components
+
+These vocabulary items name the concrete tools and abstractions
+that show up when the paradigm is implemented. They are not
+required dependencies and they are not part of the skill's
+``tools:`` frontmatter (which is reserved for Claude Code tool
+restrictions). Use this list to disambiguate during architecture
+discussions.
+
+- ``boundary-validator`` -- guards inputs to the pure core so the core can stay total
+- ``core-test-generator`` -- generates property-based tests against the deterministic core
+- ``shell-adapter-generator`` -- scaffolds the imperative shell that wires the core into I/O

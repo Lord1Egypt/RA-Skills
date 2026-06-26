@@ -1,35 +1,52 @@
 ---
-name: "芬香返利助手"
-description: "芬香京东系社交电商返利工具，专注京东平台商品推广和佣金返利，支持京东优惠券查找和社群推广。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fenxiang-jd"
-sourceUrl: "https://clawhub.ai/skills/fenxiang-jd"
+name: 芬香返利助手
+description: 芬香京东系社交电商返利工具，专注京东平台商品推广和佣金返利，支持京东优惠券查找和社群推广。
+version: 0.1.0
 ---
 
 # 芬香返利助手
 
-> 芬香京东系社交电商返利工具，专注京东平台商品推广和佣金返利，支持京东优惠券查找和社群推广。
+芬香京东系社交电商返利工具。作为京东战略合作的社交电商平台，专注京东商品的优惠券查找、返利查询和社群推广，帮助用户在京东购物时获得额外返利收益。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fenxiang-jd`
-- **Source URL:** [https://clawhub.ai/skills/fenxiang-jd](https://clawhub.ai/skills/fenxiang-jd)
+## 触发词
 
-## Overview
+芬香、芬香返利、fenxiang jd、芬香京东、芬香佣金、芬香推广、京东芬香
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fenxiang-jd
+### 核心功能
+
+- **京东商品返利**：专注京东平台，查询商品佣金比例
+- **京东优惠券聚合**：汇总京东各类优惠券（PLUS券、品类券、店铺券）
+- **社群推广工具**：一键生成京东商品推广文案和海报
+- **京粉佣金管理**：追踪京东联盟佣金结算和提现
+
+### 芬香特色
+
+| 特色 | 说明 |
+|------|------|
+| 京东官方合作 | 与京东战略合作，佣金比例有保障 |
+| 京东自营优势 | 京东自营商品也有返利，品质有保障 |
+| 社群工具 | 内置社群运营工具，适合微信群推广 |
+| 小程序便捷 | 支持微信小程序直接使用 |
+
+### 使用场景
+
+1. **京东购物**：京东下单前查询返利和优惠券
+2. **3C数码推广**：京东3C数码是核心优势品类
+3. **社群带货**：在微信群推广京东商品赚佣金
+4. **京东PLUS会员**：PLUS价+返利双重优惠
+
+## 输出格式
+
+```
+🌿 芬香返利查询
+
+商品：[商品名称]
+平台：京东
+京东价：¥[价格]
+优惠券：[券描述]
+返利比例：[X]%
+预计返利：¥[金额]
+推广链接：[链接]
 ```

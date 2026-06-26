@@ -1,0 +1,4 @@
+interface:
+  display_name: "海康云眸设备能力"
+  short_description: "控制云眸设备布防、云台、抓图、OSD、校时和存储卡初始化操作流程。"
+  default_prompt: "Use $hik-cloud-device-control to operate Hik-Cloud devices for arm/disarm, PTZ, capture, OSD, time sync, or storage card initialization tasks."

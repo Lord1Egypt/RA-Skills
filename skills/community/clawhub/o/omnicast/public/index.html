@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OmniCast Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div style="padding: 20px; max-width: 800px; margin: auto; font-family: sans-serif;">
+        <h1>OmniCast Studio</h1>
+
+        <div style="background: #2c3e50; padding: 15px; border-radius: 8px; margin-bottom: 20px; color: white;">
+            <h3 style="margin-top: 0; display: flex; justify-content: space-between;">
+                <span>🗂️ Session Manager</span>
+                <span id="current-session-label" style="font-size: 0.8em; color: #f1c40f;">Active: New Session</span>
+            </h3>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <select id="session-select" style="flex: 1; min-width: 200px; padding: 10px; border-radius: 4px;">
+                    <option value="">-- Start a New Session --</option>
+                </select>
+                <button id="btn-load-session" style="padding: 10px 15px; background: #3498db; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">📂 Load</button>
+                <button id="btn-delete-session" style="padding: 10px 15px; background: #e67e22; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🗑️ Delete Current</button>
+                <button id="btn-clear-all-sessions" style="padding: 10px 15px; background: #c0392b; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">☢️ Clear All Folders</button>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px; background: #1a252f; padding: 15px; border-radius: 8px;">
+            <input type="text" id="sourceUrl" placeholder="Enter URL (Web/MP4/YouTube)" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <span style="color: #bdc3c7; font-weight: bold;">OR Upload File:</span>
+                <input type="file" id="sourceFile" accept=".mp4,.pdf,.txt" style="flex: 1; color: #fff;">
+            </div>
+            <button id="btn-ingest" style="width: 100%; padding: 10px;">Extract Text (Force English)</button>
+        </div>
+
+        <div id="terminal-log" style="background: #000; color: #0f0; padding: 10px; height: 100px; overflow-y: auto; font-family: monospace;"></div>
+        <div id="log-active-spinner" style="display: none; color: #0f0; margin-top: 10px; font-family: monospace;">
+            <span class="spinner"></span> <em>Working...</em>
+        </div>
+
+        <div id="original-text-section" style="display: none; margin-top: 20px; padding: 15px; background: #34495e; border-radius: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                <label style="color: white; font-weight: bold;">Original Ingested Text (Read-Only):</label>
+                <div style="display: flex; gap: 5px;">
+                    <select id="viewLanguage" style="padding: 5px;">
+                        <option value="English" selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Japanese">Japanese</option>
+                    </select>
+                    <button id="btn-translate-original" style="padding: 5px 10px; background: #3498db; color: white; border: none; cursor: pointer;">Translate View</button>
+                </div>
+            </div>
+            <textarea id="original-text-viewer" readonly style="width: 100%; height: 120px; padding: 10px; font-family: sans-serif; background: #eee; border: none;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <input type="text" id="host1" placeholder="Host 1 (Female) e.g. Alex" value="Alex" style="flex: 1; padding: 10px;">
+            <input type="text" id="host2" placeholder="Host 2 (Male) e.g. Sam" value="Sam" style="flex: 1; padding: 10px;">
+            <select id="targetLanguage" style="flex: 1; padding: 10px;">
+                <option value="English" selected>English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+            </select>
+        </div>
+
+        <button id="btn-draft" style="margin-top: 10px; width: 100%; padding: 10px;">Draft Script</button>
+
+        <div style="position: relative;">
+            <textarea id="script-editor" style="width: 100%; height: 200px; margin-top: 10px; padding: 10px; font-family: sans-serif;"></textarea>
+            <button id="btn-save-script" style="position: absolute; bottom: 10px; right: 10px; background: #2ecc71; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px; display: none;">💾 Save Script</button>
+        </div>
+
+        <div id="script-stats" style="text-align: right; font-size: 0.9em; color: #bdc3c7; margin-top: 5px; font-weight: bold;">
+            Words: <span id="word-count">0</span> | Est. Audio Length: <span id="est-time">0:00</span>
+            <span id="linkedin-warning" style="color: #e74c3c; display: none; margin-left: 10px;">⚠️ LinkedIn requires 3 - 14 mins (Aim for 450 - 2100 words)</span>
+        </div>
+
+        <button id="btn-generate-audio" style="margin-top: 10px; width: 100%; padding: 10px;">Generate Audio</button>
+
+        <div id="audio-container" style="display:none; margin-top: 20px;">
+            <audio id="podcast-audio" controls style="width: 100%;">
+                <track id="podcast-vtt" kind="captions" srclang="en" label="English" default>
+            </audio>
+            <div id="live-captions" style="margin-top: 10px; padding: 15px; background: #1e1e1e; color: #bdc3c7; height: 200px; overflow-y: auto; border-radius: 5px;"></div>
+        </div>
+
+        <div id="thumbnail-section" style="margin-top: 20px; padding: 15px; background: #2c3e50; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: white;">Podcast Cover Art</h3>
+            <button id="btn-draft-prompt" style="width: 100%; padding: 10px; background: #f39c12; border: none; color: white; cursor: pointer; font-weight: bold;">💡 Step 1: Draft Cover Art Concept</button>
+
+            <div id="prompt-editor-section" style="display: block; margin-top: 15px; position: relative;">
+                <label style="color: #bdc3c7; font-weight: bold;">Review & Edit Prompt:</label>
+                <textarea id="image-prompt-input" style="width: 100%; height: 80px; margin-top: 5px; padding: 10px; font-family: sans-serif;" placeholder="Describe your custom cover art here..."></textarea>
+                <button id="btn-save-prompt" style="position: absolute; bottom: 10px; right: 10px; background: #2ecc71; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px; display: none;">💾 Save Prompt</button>
+            </div>
+
+            <button id="btn-generate-thumbnail" style="width: 100%; padding: 10px; margin-top: 10px; background: #27ae60; color: white; border: none; font-weight: bold; cursor: pointer;">🎨 Step 2: Render Image</button>
+
+            <div id="thumbnail-display" style="display: none; margin-top: 15px; text-align: center;">
+                <img id="podcast-cover-image" src="" style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+            </div>
+        </div>
+
+        <div id="linkedin-section" style="margin-top: 20px; padding: 15px; background: #0077b5; border-radius: 8px; color: white;">
+            <button id="btn-generate-linkedin" style="width: 100%; padding: 10px; background: #005582; color: white; border: none; font-weight: bold; cursor: pointer;">💼 Generate LinkedIn Post & Video</button>
+            <div id="linkedin-display" style="display: none; margin-top: 15px;">
+                <label style="font-weight: bold;">Suggested Post:</label>
+                <div style="position: relative;">
+                    <textarea id="linkedin-post-text" style="width: 100%; height: 150px; margin-top: 5px; padding: 10px; color: black;"></textarea>
+                    <button id="btn-save-linkedin" style="position: absolute; bottom: 10px; right: 10px; background: #2ecc71; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;">💾 Save Post</button>
+                </div>
+                <div style="margin-top: 15px;">
+                    <label style="font-weight: bold; display: block; margin-bottom: 5px;">Ready-to-Upload Video:</label>
+                    <video id="linkedin-video-player" controls style="width: 100%; max-width: 500px; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"></video>
+                </div>
+            </div>
+        </div>
+
+        <div id="youtube-section" style="margin-top: 20px; padding: 15px; background: #c4302b; border-radius: 8px; color: white;">
+            <h3 style="margin-top: 0;">▶️ YouTube Export</h3>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                <button id="btn-youtube-login" style="padding: 10px 15px; background: white; color: #c4302b; border: none; font-weight: bold; border-radius: 4px; cursor: pointer;">Sign in with Google</button>
+                <span id="youtube-auth-status" style="font-weight: bold; color: #ffcccc;">Not Authenticated</span>
+            </div>
+            <div id="youtube-upload-controls" style="display: none; background: rgba(0,0,0,0.15); padding: 15px; border-radius: 5px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Video Title:</label>
+                <input type="text" id="youtube-title" style="width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box;" placeholder="Enter podcast title...">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Video Description:</label>
+                <textarea id="youtube-description" style="width: 100%; height: 80px; padding: 10px; margin-bottom: 10px; box-sizing: border-box;" placeholder="Enter description (hashtags, links, etc.)..."></textarea>
+                <button id="btn-upload-youtube" style="width: 100%; padding: 10px; background: #28a745; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 4px;">🚀 Upload to YouTube (Private Draft)</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./js/app.js"></script>
+</body>
+</html>

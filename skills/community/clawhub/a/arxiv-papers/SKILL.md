@@ -1,35 +1,42 @@
 ---
-name: "Arxiv Papers"
-description: "Find and summarize arXiv.org preprints—keyword/category search, abstracts, PDF links. Use for literature scans, paper IDs, or quick orientation (not peer-rev..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arxiv-papers"
-sourceUrl: "https://clawhub.ai/skills/arxiv-papers"
+name: arxiv-papers
+description: "Find and summarize arXiv.org preprints—keyword/category search, abstracts, PDF links. Use for literature scans, paper IDs, or quick orientation (not peer-review, not medical/legal advice)."
 ---
 
-# Arxiv Papers
+# ArXiv Papers
 
-> Find and summarize arXiv.org preprints—keyword/category search, abstracts, PDF links. Use for literature scans, paper IDs, or quick orientation (not peer-rev...
+Use the **arXiv API** (and optional PDF fetch) to **locate** papers and **summarize abstracts** for the user. Treat results as **preprints**—not necessarily peer-reviewed or final.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arxiv-papers`
-- **Source URL:** [https://clawhub.ai/skills/arxiv-papers](https://clawhub.ai/skills/arxiv-papers)
+## When to use
 
-## Overview
+- “What’s new on arXiv about …”, “Summarize arXiv:XXXX”, category browsing (e.g. `cs.AI`).
+- Quick **orientation** before deeper reading—not a substitute for reading the full paper in serious research.
 
+## Limits (say explicitly when relevant)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/arxiv-papers
-```
+- **Coverage**: arXiv only; many venues are not there.
+- **Quality**: preprint ≠ endorsed truth; contradictory claims exist.
+- **Rate / ToS**: respect arXiv’s API guidelines; don’t hammer endpoints.
+
+## Workflow
+
+1. Run `scripts/search_arxiv.sh "<query>"` and parse the returned XML (`<entry>`, `<title>`, `<summary>`, PDF `<link>`).
+2. Present **title, authors, id, abstract summary**, and link to abstract/PDF.
+3. If the user wants depth, **PDF** may be fetched selectively—large files and parsing limits apply.
+4. Optionally append notable papers to `memory/RESEARCH_LOG.md` (if your environment uses it):
+
+   ```markdown
+   ### [YYYY-MM-DD] TITLE
+   - **Authors**: …
+   - **Link**: …
+   - **Summary**: …
+   ```
+
+## Examples
+
+- Latest LLM reasoning papers on arXiv.
+- “What is paper `2512.08769` about?”
+
+## Resources
+
+- `scripts/search_arxiv.sh` — thin wrapper over the arXiv API.

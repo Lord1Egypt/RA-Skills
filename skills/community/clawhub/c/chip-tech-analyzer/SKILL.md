@@ -1,35 +1,256 @@
 ---
-name: "显卡cpu评测"
-description: "生成专业的芯片（CPU/显卡/GPU）技术分析文档，包含架构解析、性能评测、功耗分析、性价比评估等。适用于硬件评测、选购指南、技术研究报告等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chip-tech-analyzer"
-sourceUrl: "https://clawhub.ai/skills/chip-tech-analyzer"
+name: chip-tech-analyzer
+description: 生成专业的芯片（CPU/显卡/GPU）技术分析文档，包含架构解析、性能评测、功耗分析、性价比评估等。适用于硬件评测、选购指南、技术研究报告等场景。
+license: MIT
+compatibility: 需要网络访问以搜索芯片规格和评测数据，需要Python环境生成图表
+metadata:
+  author: AI Assistant
+  version: "1.0"
+  category: tech-analysis
+  language: zh-CN
 ---
 
-# 显卡cpu评测
+# 芯片技术分析器 Skill
 
-> 生成专业的芯片（CPU/显卡/GPU）技术分析文档，包含架构解析、性能评测、功耗分析、性价比评估等。适用于硬件评测、选购指南、技术研究报告等场景。
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chip-tech-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/chip-tech-analyzer](https://clawhub.ai/skills/chip-tech-analyzer)
+本 Skill 用于生成专业的芯片技术分析文档，帮助用户：
+- 深入了解CPU/显卡/GPU的技术规格和架构特点
+- 对比不同芯片的性能表现
+- 分析功耗、发热、性价比等关键指标
+- 获取专业评测数据和实际应用表现
+- 生成结构化的技术分析报告
 
-## Overview
+## 分析范围
 
+### CPU处理器
+- **Intel**：Core i系列、Xeon系列
+- **AMD**：Ryzen系列、EPYC系列
+- **Apple**：M系列芯片
+- **高通**：骁龙PC平台
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chip-tech-analyzer
+### 显卡/GPU
+- **NVIDIA**：GeForce RTX系列、专业卡
+- **AMD**：Radeon RX系列
+- **Intel**：Arc系列
+
+## 工作流程
+
+### 第一步：明确分析目标
+
+与用户确认以下信息：
+1. **芯片类型**：CPU / 显卡 / 两者
+2. **目标产品**：具体型号（如i9-14900K、RTX 4090）
+3. **分析目的**：选购对比 / 深度评测 / 技术报告
+4. **对比对象**：需要对比的竞品型号
+5. **关注重点**：游戏性能 / 生产力 / 功耗 / 性价比
+
+### 第二步：收集技术规格
+
+#### 2.1 CPU规格收集
+
+搜索关键词：
+- `{CPU型号} 规格参数`
+- `{CPU型号} 架构 制程`
+- `{CPU型号} 官方规格`
+
+收集内容：
+| 参数项 | 说明 |
+|--------|------|
+| 核心/线程 | 物理核心数、逻辑线程数 |
+| 基础/加速频率 | 基础频率、最大加速频率 |
+| 制程工艺 | 纳米制程（如5nm、7nm） |
+| TDP功耗 | 热设计功耗 |
+| 缓存 | L1/L2/L3缓存大小 |
+| 内存支持 | DDR4/DDR5、最大容量 |
+| PCIe版本 | PCIe 4.0/5.0通道数 |
+| 发布日期 | 上市时间 |
+| 建议售价 | 官方定价 |
+
+#### 2.2 显卡规格收集
+
+搜索关键词：
+- `{显卡型号} 规格参数`
+- `{显卡型号} CUDA核心 显存`
+- `{显卡型号} 官方规格`
+
+收集内容：
+| 参数项 | 说明 |
+|--------|------|
+| GPU架构 | Ada Lovelace、RDNA 3等 |
+| 制程工艺 | 纳米制程 |
+| CUDA核心/流处理器 | 核心数量 |
+| 显存容量 | GB |
+| 显存类型 | GDDR6/GDDR6X/HBM |
+| 显存位宽 | bit |
+| 核心频率 | 基础/加速频率 |
+| TDP功耗 | 热设计功耗 |
+| 电源接口 | 8pin/12VHPWR |
+| 发布日期 | 上市时间 |
+| 建议售价 | 官方定价 |
+
+### 第三步：收集评测数据
+
+#### 3.1 专业评测来源
+
+**CPU评测**：
+- PassMark CPU Benchmark
+- Cinebench R23/R24
+- Geekbench 6
+- 3DMark CPU Profile
+- PCMark 10
+
+**显卡评测**：
+- 3DMark (Time Spy, Fire Strike, Port Royal)
+- Unigine Superposition
+- 游戏帧数测试
+- Blender Benchmark
+- V-Ray Benchmark
+
+#### 3.2 实际应用测试
+
+**游戏性能**：
+- 1080p/2K/4K分辨率帧数
+- 光追性能
+- DLSS/FSR/XeSS性能
+
+**生产力性能**：
+- 视频渲染（Premiere、DaVinci）
+- 3D渲染（Blender、V-Ray）
+- 编译速度
+- 科学计算
+
+### 第四步：技术分析
+
+#### 4.1 CPU分析维度
+
+**架构分析**：
+- 微架构特点
+- 制程工艺优势
+- 缓存设计
+- 指令集支持
+
+**性能分析**：
+- 单核性能
+- 多核性能
+- 游戏性能
+- 生产力性能
+
+**功耗与散热**：
+- TDP与实际功耗
+- 温度表现
+- 散热器要求
+- 超频潜力
+
+**性价比分析**：
+- 性能/价格比
+- 平台成本（主板、内存）
+- 长期使用成本
+
+#### 4.2 显卡分析维度
+
+**架构分析**：
+- GPU架构特点
+- 制程工艺优势
+- 显存设计
+- 特色技术（DLSS、光追等）
+
+**性能分析**：
+- 传统光栅性能
+- 光追性能
+- AI/生产力性能
+- 能效比
+
+**功耗与散热**：
+- TDP与实际功耗
+- 温度表现
+- 散热器设计
+- 噪音水平
+
+**性价比分析**：
+- 性能/价格比
+- 不同分辨率性价比
+- 竞品对比
+
+### 第五步：生成分析报告
+
+#### 5.1 报告结构
+
+```markdown
+# {芯片型号} 技术分析报告
+
+## 一、产品概述
+- 产品定位
+- 发布背景
+- 主要卖点
+
+## 二、技术规格
+- 详细规格表
+- 架构解析
+- 与前代对比
+
+## 三、性能评测
+- 基准测试成绩
+- 游戏性能测试
+- 生产力性能测试
+- 功耗与温度测试
+
+## 四、竞品对比
+- 同价位对比
+- 同性能对比
+- 性价比分析
+
+## 五、购买建议
+- 适合人群
+- 搭配建议
+- 注意事项
+
+## 六、总结评分
+- 综合评分
+- 优缺点总结
 ```
+
+#### 5.2 评分标准
+
+| 评分 | 等级 | 说明 |
+|------|------|------|
+| 9-10 | 强烈推荐 | 同级别标杆产品 |
+| 8-8.9 | 推荐 | 优秀产品，值得购买 |
+| 7-7.9 | 值得考虑 | 中规中矩，有亮点 |
+| 6-6.9 | 谨慎考虑 | 有明显短板 |
+| <6 | 不推荐 | 不建议购买 |
+
+## 输出格式
+
+默认输出为 Markdown 格式，可根据需要转换为：
+- Word 文档（.docx）
+- PDF 文档
+- 网页（HTML）
+- Excel 对比表
+
+## 注意事项
+
+1. **数据来源**：优先采用官方规格和专业评测数据
+2. **时效性**：芯片价格和可用性会变化，建议标注分析日期
+3. **测试环境**：不同测试环境结果可能有差异
+4. **驱动版本**：显卡驱动版本会影响性能表现
+5. **个体差异**：芯片存在体质差异，超频结果因人而异
+
+## 示例
+
+### 示例请求
+> "帮我分析一下RTX 4080和RX 7900 XTX，主要是4K游戏性能对比"
+
+### 示例输出流程
+1. 搜索RTX 4080和RX 7900 XTX的规格参数
+2. 收集专业评测数据（3DMark、游戏帧数）
+3. 分析架构特点和性能表现
+4. 对比4K游戏性能
+5. 分析功耗、价格、性价比
+6. 生成对比报告
+
+## 参考资料
+
+- [芯片规格数据库](references/CHIP_DATABASE.md)
+- [评测标准说明](references/BENCHMARK_GUIDE.md)
+- [报告模板](assets/templates/analysis_template.md)

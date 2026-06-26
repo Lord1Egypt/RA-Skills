@@ -1,0 +1,4 @@
+interface:
+  display_name: "PPT Maker"
+  short_description: "One skill that internally orchestrates a PPT team from intake to export."
+  default_prompt: "Use $ppt-maker to run a PPT team behind one front door: clarify the brief, report the current stage, coordinate the internal workers, and move the deck to a reviewed export."

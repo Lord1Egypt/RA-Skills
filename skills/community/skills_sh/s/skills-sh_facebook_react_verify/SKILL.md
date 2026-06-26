@@ -1,35 +1,24 @@
 ---
-name: "verify"
-description: "Indexed by skills.sh from facebook/react"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "facebook"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/facebook/react/verify"
-sourceUrl: "https://skills.sh/facebook/react/verify"
+name: verify
+description: Use when you want to validate changes before committing, or when you need to check all React contribution requirements.
 ---
 
-# verify
+# Verification
 
-> Indexed by skills.sh from facebook/react
+Run all verification steps.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** facebook
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/facebook/react/verify`
-- **Source URL:** [https://skills.sh/facebook/react/verify](https://skills.sh/facebook/react/verify)
+Arguments:
+- $ARGUMENTS: Test pattern for the test step
 
-## Overview
+## Instructions
 
+Run these first in sequence:
+1. Run `yarn prettier` - format code (stop if fails)
+2. Run `yarn linc` - lint changed files (stop if fails)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/facebook/react/verify
-```
+Then run these with subagents in parallel:
+1. Use `/flow` to type check (stop if fails)
+2. Use `/test` to test changes in source (stop if fails)
+3. Use `/test www` to test changes in www (stop if fails)
+
+If all pass, show success summary. On failure, stop immediately and report the issue with suggested fixes.

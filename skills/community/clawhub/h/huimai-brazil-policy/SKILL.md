@@ -1,35 +1,64 @@
 ---
-name: "Policy Brazil"
-description: "做巴西生意外贸人刚需——查进口关税、ANVISA认证、INPI知识产权。一句话问，直接出数，不绕弯子。"
-category: "other"
-source: "ClawHub"
-tags: [brazil, huimai, policy]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-brazil-policy"
-sourceUrl: "https://clawhub.ai/skills/huimai-brazil-policy"
+name: 🇧🇷 巴西市场政策查询Skill
+description: 做巴西生意外贸人刚需——查进口关税、ANVISA认证、INPI知识产权。一句话问，直接出数，不绕弯子。
+metadata: {"openclaw":{"emoji":"🇧🇷"}}
 ---
 
-# Policy Brazil
+# 🇧🇷 巴西市场政策查询Skill
 
-> 做巴西生意外贸人刚需——查进口关税、ANVISA认证、INPI知识产权。一句话问，直接出数，不绕弯子。
+> 巴西外贸最头疼的是税制复杂、认证繁多。这个Skill就是冲这个来的。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-brazil-policy`
-- **Source URL:** [https://clawhub.ai/skills/huimai-brazil-policy](https://clawhub.ai/skills/huimai-brazil-policy)
+## 📜 更新日志
 
-## Overview
+### v2.0.0 (2026-05-03)
+- **大改版**：全面调整查询逻辑，响应更快
+- 新增：巴西ANVISA医疗器械注册查询
+- 新增：INPI知识产权状态跟踪
+- 优化：关税查询支持更多NCM编码
 
+### v1.0.0 (2026-04-24)
+- 初版发布，支持基础关税和政策查询
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 👤 为什么做这个
+
+跑巴西市场的外贸人都知道——巴西税制号称"全球最复杂"之一。NCM分类、IPI、ICMS、PIS/COFINS层层叠加，光靠查表能晕半天。这个Skill就是自己踩坑之后做的，把政策查询变成一句话的事。
+
+## 典型用法
+
+```
+你: "HS 8504.40 进口到巴西要什么认证"
+我: NCM编码归类 → 关税税率 → 许可证要求 → ANVISA/INMETRO认证判断
+
+你: "医疗器械巴西准入流程"
+我: 分类判定 → 认证路径(ANVISA/RDC) → 本地代表要求 → 时间预估
+```
+
+## 👔 适用人群
+- **外贸跟单**：快速确认税费，报价不翻车
+- **物流货代**：清关前预判卡点
+- **合规负责人**：追踪法规变动
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：先给结论再附数据，风险提示+应对策略
+- **专业模式（可选）**：直出数据，适合熟手
+
+## 💡 使用小贴士
+- 问的时候尽量带NCM编码（巴西自己的HS延伸码），准确率高很多
+- 查关税时顺带一句"含不含IPI"，能避开报价陷阱
+- ANVISA认证周期6-18个月不等，Skill给出的时间是参考值，建议预留缓冲
+
+## ⚠️ 免责与已知限制
+- 政策数据来源公开渠道，不构成法律建议
+- 巴西各州ICMS税率不同，结果取平均值
+- ANVISA审批进度为参考值，实际以ANVISA官网为准
+- 政策可能随时变化
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+- 意见、建议、Bug都欢迎，回得可能不快但每条都看
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-brazil-policy
+clawhub install policy-brazil
 ```

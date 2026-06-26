@@ -1,0 +1,8 @@
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxODYxNjk4OTM3NSIsImlhdCI6MTc3NDg4MzIxMiwiZXhwIjoxNzc0OTY5NjEyfQ.Vp-qQe5dvUILgeHHxG3SGDqEIEKDng1LuoL8joLPOqA",
+  "loginTime": "2026-03-30T15:05:12.000Z",
+  "loginMethod": "sms",
+  "userInfo": {
+    "phone": "18616989375"
+  }
+}

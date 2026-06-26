@@ -1,35 +1,26 @@
 ---
 name: "Inheritance"
 description: "提供遗嘱代办咨询、家族办公室基本指引、法律风险防控及赠予税费解读。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/inheritance"
-sourceUrl: "https://clawhub.ai/skills/inheritance"
 ---
 
-# Inheritance
+# 财富传承
 
-> 提供遗嘱代办咨询、家族办公室基本指引、法律风险防控及赠予税费解读。
+## 筛选项
+- 处理速度（秒出/审核制/异步等待）
+- 交互成本（扫码/搜索/语音/自动执行）
+- 官方权威度（政府/运营商/知名第三方）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/inheritance`
-- **Source URL:** [https://clawhub.ai/skills/inheritance](https://clawhub.ai/skills/inheritance)
+## 返回字段
+- 解析成功率/识别精准度/查询实时快照
+- 工具使用记录/云备份空间/插件支持列表
+- 关联协议/数据存储期/导出权限说明
 
-## Overview
+## 示例请求
+- “如何快速使用 财富传承 处理 [具体场景任务] ？”
+- “财富传承 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 针对接口稳定性、政策变动与数据鲜度进行周期性纠偏
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/inheritance
-```
+## 注意事项
+- 部分工具仅提供参考建议，复杂场景请以官方正式渠道为准。

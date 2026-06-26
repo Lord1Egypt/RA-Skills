@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "updated_at": 1773964931,
+  "entries": [
+    {
+      "complex_id": "1147",
+      "name": "리센츠",
+      "address": "서울특별시 송파구 잠실동",
+      "household_count": 5563,
+      "aliases": [
+        "리센츠",
+        "리센츠아파트",
+        "리센츠단지",
+        "잠실 리센츠",
+        "잠실리센츠",
+        "잠실리센츠아파트",
+        "잠실리센츠단지"
+      ],
+      "updated_at": 1773919558,
+      "source": "seed-file:candidate-seeds.json",
+      "learned_from": "seed-file:candidate-seeds.json",
+      "note": "verified warm-cache seed example"
+    }
+  ]
+}

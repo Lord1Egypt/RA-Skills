@@ -1,35 +1,34 @@
 ---
-name: "rsbuild-v2-upgrade"
-description: "Indexed by skills.sh from rstackjs/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "rstackjs"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/rstackjs/agent-skills/rsbuild-v2-upgrade"
-sourceUrl: "https://skills.sh/rstackjs/agent-skills/rsbuild-v2-upgrade"
+name: rsbuild-v2-upgrade
+description: Use when upgrading a Rsbuild 1.x project to v2, including dependency and configuration updates.
 ---
 
-# rsbuild-v2-upgrade
+# Rsbuild v1 to v2 Upgrade
 
-> Indexed by skills.sh from rstackjs/agent-skills
+## Workflow
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** rstackjs
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/rstackjs/agent-skills/rsbuild-v2-upgrade`
-- **Source URL:** [https://skills.sh/rstackjs/agent-skills/rsbuild-v2-upgrade](https://skills.sh/rstackjs/agent-skills/rsbuild-v2-upgrade)
+1. **Confirm current setup**
+   - Read `package.json` to identify Rsbuild and plugin packages in use.
+   - Locate the Rsbuild config file (commonly `rsbuild.config.(ts|js|mjs|cjs)`).
 
-## Overview
+2. **Open the official upgrade guide**
+   - Use the v1 → v2 guide as the source of truth:
+     - https://rsbuild.rs/guide/upgrade/v1-to-v2
 
+3. **Plan the upgrade path**
+   - Compare the current project config with the migration guide.
+   - List breaking changes that apply to the project’s current config and plugins.
+   - Note any removed or renamed options, defaults, or plugin APIs.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/rstackjs/agent-skills/rsbuild-v2-upgrade
-```
+4. **Update dependencies**
+   - Bump `@rsbuild/core` to v2
+   - Bump Rsbuild plugins to latest versions via `npx taze major --include /rsbuild/ -w -r`
+
+5. **Apply config and code changes**
+   - Update the Rsbuild config to match v2 options and defaults.
+   - Remove deprecated or unsupported settings.
+
+6. **Validate**
+   - Run the build and dev commands.
+   - Run project tests or type checks.
+   - Fix any warnings or errors surfaced by the new version.

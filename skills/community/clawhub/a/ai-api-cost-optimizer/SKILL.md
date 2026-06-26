@@ -1,35 +1,111 @@
 ---
-name: "AI API Cost Optimizer"
-description: "AI API 成本优化工具箱。帮你追踪、对比、优化 OpenAI/Claude/DeepSeek/Gemini 等 AI API 的使用成本，选择最划算的模型组合。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-api-cost-optimizer"
-sourceUrl: "https://clawhub.ai/skills/ai-api-cost-optimizer"
+name: api-cost-optimizer
+description: AI API 成本优化工具箱。帮你追踪、对比、优化 OpenAI/Claude/DeepSeek/Gemini 等 AI API 的使用成本，选择最划算的模型组合。
+version: 1.0.0
+author: CainGao
+tags: [cost, optimization, api, openai, claude, deepseek, gemini, pricing]
 ---
 
-# AI API Cost Optimizer
+# 💰 API Cost Optimizer — AI API 成本优化工具箱
 
-> AI API 成本优化工具箱。帮你追踪、对比、优化 OpenAI/Claude/DeepSeek/Gemini 等 AI API 的使用成本，选择最划算的模型组合。
+> 帮你省下每一分 AI API 开销。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-api-cost-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/ai-api-cost-optimizer](https://clawhub.ai/skills/ai-api-cost-optimizer)
+## 使用场景
 
-## Overview
+当用户提到以下需求时，激活本 Skill：
+- AI API 费用太高 / 成本优化 / 省钱
+- 模型选型 / 哪个模型便宜 / 模型对比
+- Token 用量分析 / Token 优化
+- API 预算规划 / 成本估算
+- 缓存策略 / 降低 API 调用频率
+- 多模型混合路由 / 智能路由
 
+## 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-api-cost-optimizer
+### 模式 1：成本审计 💡
+分析用户的 API 使用场景，找出成本浪费点。
+
+**流程：**
+1. 了解用户当前使用的模型和 API
+2. 估算月度成本
+3. 识别浪费来源（冗余调用、模型过配、无缓存）
+4. 给出具体省钱建议
+
+**输出格式：**
 ```
+📊 成本审计报告
+━━━━━━━━━━━━━━━━
+当前月成本估算: $XX.XX
+可优化空间: $XX.XX (XX%)
+浪费来源:
+  1. [具体问题] → 可省 $XX/月
+  2. [具体问题] → 可省 $XX/月
+优化后预估成本: $XX.XX
+```
+
+### 模式 2：模型选型 🎯
+根据任务需求，推荐最具性价比的模型组合。
+
+**流程：**
+1. 了解用户的任务类型（编码/写作/搜索/翻译/分析）
+2. 分析质量要求 vs 成本预算
+3. 推荐最优模型 + 备选方案
+4. 给出成本对比表
+
+**输出格式：**
+```
+🎯 模型选型建议
+━━━━━━━━━━━━━━━━
+任务类型: [分类]
+质量要求: [高/中/低]
+
+推荐方案:
+  主力模型: [模型名] — $X.XX/1M tokens
+  备选方案: [模型名] — $X.XX/1M tokens
+  预算方案: [模型名] — $X.XX/1M tokens
+
+成本对比:
+  | 模型 | 输入$ | 输出$ | 质量 | 推荐度 |
+  |------|-------|-------|------|--------|
+  | ...  | ...   | ...   | ...  | ...    |
+```
+
+### 模式 3：成本计算器 🧮
+根据使用量估算不同模型/API的月成本。
+
+**流程：**
+1. 了解日均调用量、平均 prompt/completion 长度
+2. 计算各模型月成本
+3. 对比成本差异
+4. 推荐最优方案
+
+### 模式 4：优化方案 🔧
+提供具体的成本优化实施方案。
+
+**优化维度：**
+- Token 优化（Prompt 精简、System Message 复用）
+- 缓存策略（语义缓存、响应缓存）
+- 模型路由（简单任务用小模型、复杂任务用大模型）
+- 批量处理（Batch API）
+- 降频策略（智能重试、去重）
+
+## 定价数据（2026年5月）
+
+使用 `pricing-data.md` 中的最新价格表进行计算。
+如果价格可能已更新，提醒用户去官网确认。
+
+## 优化策略库
+
+使用 `optimization-strategies.md` 中的策略进行推荐。
+
+## 混合路由方案
+
+使用 `routing-patterns.md` 中的路由模式设计方案。
+
+## 注意事项
+
+- 价格数据需要定期更新（建议每月）
+- 不同地区的计费可能不同
+- 免费额度/额度包需要单独计算
+- 企业用户可能有批量折扣
+- 推荐方案时考虑延迟和可用性，不只是价格

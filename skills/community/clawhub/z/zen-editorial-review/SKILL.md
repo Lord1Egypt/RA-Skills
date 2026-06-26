@@ -1,35 +1,180 @@
 ---
-name: "Zen Editorial Review"
-description: "Editorial review for news-style submissions: normalize metadata + body, check consistency, links and policy risk, author identity vs byline and timing, then..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zen-editorial-review"
-sourceUrl: "https://clawhub.ai/skills/zen-editorial-review"
+name: zen-editorial-review
+description: >-
+  Editorial review for news-style submissions: normalize metadata + body, check consistency,
+  links and policy risk, author identity vs byline and timing, then approve / reject / delete
+  with actionable author feedback. System-agnostic—no hard API or DB field contract. Use for
+  新闻审稿, article moderation, editorial QA, or when the user asks 是否可发 / accept or reject a post.
+metadata:
+  openclaw:
+    emoji: "✒️"
+    homepage: "https://zenheart.net"
 ---
 
-# Zen Editorial Review
+# 文章编辑审稿 Skill（正向设计）
 
-> Editorial review for news-style submissions: normalize metadata + body, check consistency, links and policy risk, author identity vs byline and timing, then...
+本 Skill **不绑定**任一产品的 API、表结构或协议。各平台的字段名、长度、必填规则以**用户当场提供的规范**或**对接文档**为准；此处只约定**审稿逻辑**与**报告形态**，保证输出信息对决策够用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zen-editorial-review`
-- **Source URL:** [https://clawhub.ai/skills/zen-editorial-review](https://clawhub.ai/skills/zen-editorial-review)
+## 1. 目标与边界
 
-## Overview
+| 项目 | 说明 |
+|------|------|
+| **职责** | 把「待审投稿」转成可裁决结论：**材料是否成形**、**元数据与正文是否一致**、**链接与内容风险**、**建议动作 + 给作者的专业反馈**。 |
+| **普适** | 他人投稿、专栏、**作者本人**草稿，同一套流程。 |
+| **非职责** | 不替代法务/医学/财经终审；不自动抓取链接落地页（可归为「待验证」）；不保证封面图像素级合规（可标「需人工看图」）。 |
 
+审稿由 Agent 推理完成；**不依赖**仓库内固定长度或枚举的自动校验脚本。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zen-editorial-review
+---
+
+## 2. 正向流水线（按顺序执行）
+
 ```
+原始材料（MD / JSON / HTML / 纯文本 / 分段对话）
+    → ① 归一化：canonical「元数据 + 正文」
+    → ② 若用户提供了「本平台字段/长度/必填」说明：按说明做补充核对（否则仅做常识级齐备性，不臆造上限）
+    → ③ 元数据：齐备性、与正文/标签/分类；撰稿身份与时间（第 3.3 节、第 5.1 节）
+    → ④ 正文：链接、文意、风险（第 5 节）
+    → ⑤ 裁决：三选一 + 分条原因
+    → ⑥ 输出：第 7 节固定模板
+```
+
+无法完成 ①（缺标题/摘要/封面或正文等核心块且无法从上下文补全）时：**仍输出报告**，在「阻塞项」首条写**输入不完整**，其余项标「skipped」或 ⚠️。
+
+---
+
+## 3. 逻辑稿件要素（与具体系统无关）
+
+审稿时把材料归一成一套 **canonical** 概念（名称可与用户平台不同，在「归一化说明」里写明映射即可）：
+
+| 概念 | 审稿关注 |
+|------|----------|
+| **标题** | 非空、与正文主题一致；是否标题党。 |
+| **摘要 / 导语** | 非空（若平台要求）、与正文一致；是否引入正文无据断言。 |
+| **封面** | 合理 URL 或等价引用（若平台要求）；异常长链、可疑域名可 ⚠️。 |
+| **标签 / 关键词** | 与正文语义一致；空列表是否违反运营规则由**用户给的规则**决定。 |
+| **分类** | 若有：与内容一致；**无固定枚举**，以用户提供的 taxonomy 为准。 |
+| **正文** | 完整可读；保留格式以便抽链接。 |
+
+**系统侧字段**（若上下文提供再审；不因「稿里没写」一律拒稿，除非用户声明该平台强制）：例如发布账号标识、展示名、拟发布时间、用于修订或下架的稿件 ID、内部评分/互动量等——按**业务常识**与**用户补充规则**判断是否 ⚠️/❌，**不**断言某列名或长度。
+
+### 3.1 撰稿人、时间与权属（通用）
+
+| 主题 | 审稿要点 |
+|------|----------|
+| **发布身份 / 代发** | 拟发布账号与稿内署名、代投、转载授权是否一致；代发标 ⚠️ 需运营确认。 |
+| **展示名 vs 署名** | 稿内「作者：某某」是否与已知展示名或平台实名规则冲突；冒充 ❌。 |
+| **正文署名** | 文末/文中编辑、校对、背书表述是否与标题摘要一致；是否暗示无依据的官方背书。 |
+| **拟发布时间** | 是否旧闻当新闻、未来稿；未来时间若为排期可 ⚠️「确认排期」。 |
+| **修订上下文** | 若任务为改稿/删稿，是否具备平台所需的稿件标识（由用户说明叫什么）。 |
+
+### 3.2 易漏业务点（按需启用）
+
+用户或上下文若提到下列概念，再纳入检查；**未提及则不臆造**：
+
+- 发文体量/频次限制、封面白名单或信任域、评论审核策略等与**稿质无关**但影响发布的规则。
+
+---
+
+## 4. 投稿材料形式（载体不限）
+
+以第 3 节概念能否从材料中恢复为准，不因不是 Markdown 而拒审。
+
+| 载体 | 处理要点 |
+|------|----------|
+| **Markdown + YAML frontmatter** | 推荐单文件；frontmatter → 元数据，其后 → 正文 |
+| **JSON** | 按用户或文件内字段映射到 canonical；正文键名可能是 `markdown`、`body`、`content` 等，在归一化说明中写明 |
+| **分段对话** | 合并多段为同一 canonical 再审 |
+| **HTML / 富文本** | 抽 `a[href]`、`img[src]`、`source[src]`；可读性用纯文本近似 |
+| **纯文本** | 抽 `https?://…`；元数据须另附 |
+
+归一化后内部表示（**若上下文有则一并带上**）：稿件 ID、发布账号标识、展示名、拟发布时间，以及 **`{ title, summary, cover, tags, keywords?, category?, body }`**（`cover` 为 URL 或等价；`body` 为原始正文串）。
+
+---
+
+## 5. 审查维度
+
+### 5.1 元数据
+
+- 齐备、非空白；**标题 / 摘要 / 封面**与正文主题是否一致。
+- **tags / keywords**、**category** 与正文是否一致；错类 ⚠️/❌。
+- **撰稿与时间**（第 3.1 节）：身份、代发、署名、拟发布时间、改稿标识。
+
+### 5.2 正文与链接
+
+- 从 MD / HTML / 纯文本 **去重抽取 URL**；未请求网络则标 **待验证**；锚文本与上下文是否误导。
+- 转载、软广、引流等按**用户提供的**平台规范提示。
+
+### 5.3 内容风险（信息流普适）
+
+- 事实与信源、人身与违法、健康/财经/法律高风险、版权与洗稿嫌疑等。
+- **可重复的自检**（回答不出则标 ⚠️ 或补材料）：主命题是否有据？敏感主张是否需免责声明或删改？第三方授权或转载范围是否说清？是否与标题/摘要明显矛盾？
+
+---
+
+## 6. 建议动作（必选其一）
+
+| 动作 | 含义 |
+|------|------|
+| **通过** | 可发布或保持线上；无阻塞项或仅存已接受轻微问题。 |
+| **拒绝** | 当前版本不准入；修改后可再投。 |
+| **删除** | 已发布内容应下架/删除（严重违规、侵权等）；注明是否记录违规原因。 |
+
+原因须**分条**对应检查项，可审计。
+
+---
+
+## 7. 输出契约（必须使用）
+
+字段列用 **canonical 名称**；若用户平台用词不同，在「归一化说明」中对照即可。
+
+```markdown
+## 建议动作
+（**三选一，只写一项**：`通过` / `拒绝` / `删除`）
+
+## 动作原因（分条，对应检查项）
+
+## 归一化说明（若载体非结构化：简述如何得到各字段；若用户提供了平台字段表，写明映射）
+
+## 元数据审查
+| 项 | 结果 | 说明 |
+|----|------|------|
+| title | ✅/⚠️/❌ | … |
+| summary | … | … |
+| cover（或等价） | … | … |
+| tags | … | … |
+| keywords | … | … |
+| category（若有） | … | … |
+| 元数据与正文一致性 | … | … |
+
+## 撰稿与时间（若上下文已知；否则写「未提供 / 不适用」）
+| 项 | 结果 | 说明 |
+|----|------|------|
+| 发布账号 / 身份与代发、权属 | ✅/⚠️/❌ | … |
+| 稿内署名 vs 展示名或平台规则 | … | … |
+| 拟发布时间合理性 | … | … |
+| 稿件 ID（修订/下架，若适用） | … | … |
+
+## 正文与链接
+| 项 | 结果 | 说明 |
+|----|------|------|
+| 链接清单与可达性（或待验证） | … | … |
+| 链接与文意相符 | … | … |
+| 内容质量与风险摘要 | … | … |
+
+## 阻塞项（若有）
+- …
+
+## 给作者的专业建议（可执行）
+- …
+
+## 可选修改示例（原文摘录 → 建议）
+```
+
+---
+
+## 8. 工作原则
+
+- **先归一、再裁决**；用户提供的社区规范、分类枚举、字段上限**优先于**文中泛化描述。
+- 除非用户要求代写，以**结论 + 抽样修改**为主，不替作者全文重写。
+- **不**将本 Skill 当作某一 API 的校验器；对接前请在目标系统侧做各自的 schema/集成测试。

@@ -1,0 +1,45 @@
+{
+  "format": "v1",
+  "id": "sip-wine-food",
+  "version": "1.0.0",
+  "name": "Sippai 门店美酒与菜式（瓶卖·杯卖·主推菜，MCP）",
+  "description": "数据走 https://mcp.sipsiip.com/api（MCP https://mcp.sipsiip.com/api/sippai）。业务能力在 api/sippai（门店检索、酒单与菜）。工具链 sippai_search_restaurants → restaurantId → sippai_get_restaurant_menus。禁止绕过 MCP。多店须用户选。禁止编造。",
+  "license": "MIT",
+  "docsUrl": "https://sipsiip.com/ai/getwinefood",
+  "public_gateway_base": "https://mcp.sipsiip.com/api",
+  "public_mcp_url": "https://mcp.sipsiip.com/api/sippai",
+  "when_to_use": [
+    "用户要问某家门店「有什么酒」或「有什么菜 / 主推菜 / 招牌菜」",
+    "宿主已配置 MCP 指向 https://mcp.sipsiip.com/api/sippai（或等价网关路由）"
+  ],
+  "when_not_to_use": [
+    "要用其它域名或未通过本 MCP 的直连 HTTP 调用替代本工具链",
+    "无法连接 https://mcp.sipsiip.com/api 下托管的 MCP 服务的环境"
+  ],
+  "workflow": [
+    "仅通过 MCP 连接 https://mcp.sipsiip.com/api/sippai（生产默认）",
+    "先 sippai_search_restaurants；多命中则让用户选 restaurantId",
+    "再 sippai_get_restaurant_menus(restaurantId)；仅用返回字段组织回答"
+  ],
+  "tools": [
+    {
+      "name": "sippai_search_restaurants",
+      "summary": "分页检索门店；服务端可能要求 MCP 密钥（网关文档）"
+    },
+    {
+      "name": "sippai_get_restaurant_menus",
+      "summary": "按 restaurantId 拉取瓶卖、杯卖与 menu 排序在售菜肴"
+    }
+  ],
+  "mcp": {
+    "type": "stdio",
+    "note": "生产远程宿主请改用 HTTP 连接 public_mcp_url；stdio 仅供本地开发",
+    "command": "node",
+    "args": ["--import", "tsx", "<单仓 MCP 网关入口，以仓库实际路径为准>"],
+    "cwd": "${WORKSPACE}",
+    "env": {
+      "MCP_TRANSPORT": "stdio",
+      "SIPPAI_MCP_API_KEY": "若网关/后端要求检索密钥则填写，与后端 SIPPAI_MCP_API_KEYS（api/sippai 集成配置）一致"
+    }
+  }
+}

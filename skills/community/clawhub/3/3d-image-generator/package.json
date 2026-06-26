@@ -1,0 +1,19 @@
+{
+  "name": "3d-image-generator",
+  "private": true,
+  "type": "module",
+  "description": "Generate 3D rendered art and icons. Use when the user asks for 3D graphics, claymorphism, octane render, or blender 3d style.",
+  "scripts": {
+    "bootstrap": "node scripts/bootstrap.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "ensure-ready": "node scripts/ensure-ready.mjs",
+    "setup": "node scripts/setup.mjs",
+    "discover-image-models": "node scripts/discover-models.mjs",
+    "recommend-model": "node scripts/recommend-model.mjs",
+    "build-visual-brief": "node scripts/build-visual-brief.mjs",
+    "style-menu": "node scripts/style-menu.mjs",
+    "smoke": "node scripts/smoke-check.mjs",
+    "generate": "node ./scripts/vendor/weryai-image/run-generate.mjs scripts/main.ts",
+    "test": "npm --prefix scripts test"
+  }
+}

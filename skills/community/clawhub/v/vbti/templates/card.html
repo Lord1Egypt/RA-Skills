@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>VBTI · {{CODE}}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #2a2a2a;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; padding: 40px;
+    font-family: 'Noto Serif SC', serif;
+  }
+  .card {
+    width: 1080px; height: 1440px;
+    background: #f1ecdf;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .border-outer { position: absolute; inset: 32px; border: 2px solid #1a1a1a; pointer-events: none; }
+  .border-inner { position: absolute; inset: 40px; border: 1px solid #1a1a1a; pointer-events: none; }
+  .noise {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0);
+    background-size: 3px 3px; pointer-events: none; opacity: 0.5;
+  }
+  .content {
+    position: relative; z-index: 2;
+    height: 100%;
+    padding: 75px 90px 70px;
+    display: flex; flex-direction: column;
+  }
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px; color: #1a1a1a; letter-spacing: 2px;
+    padding-bottom: 18px; border-bottom: 1px solid #1a1a1a;
+  }
+  .header .left { font-weight: 700; }
+  .header .right { font-size: 17px; opacity: 0.7; }
+  .title-block { margin-top: 36px; }
+  .code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 180px; font-weight: 700; letter-spacing: -6px;
+    color: #1a1a1a; line-height: 0.95;
+  }
+  .name {
+    font-size: 68px; font-weight: 900; color: #1a1a1a;
+    margin-top: 18px; letter-spacing: 8px;
+  }
+  .emoji {
+    font-size: 240px; text-align: center;
+    margin: 30px 0 24px; line-height: 1;
+  }
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 34px; font-weight: 700; text-align: center;
+    color: #1a1a1a; margin-bottom: 38px; letter-spacing: 1px;
+  }
+  .receipts-wrap { margin-top: auto; }
+  .receipts-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; color: #1a1a1a; text-align: center;
+    letter-spacing: 4px; margin-bottom: 16px; opacity: 0.6;
+  }
+  .receipts {
+    border-top: 1px dashed #1a1a1a; border-bottom: 1px dashed #1a1a1a;
+    padding: 22px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px; line-height: 1.7; color: #1a1a1a;
+  }
+  .row { display: flex; justify-content: space-between; align-items: baseline; }
+  .key { font-weight: 400; }
+  .val { font-weight: 700; }
+  .footer {
+    margin-top: 30px;
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; color: #1a1a1a; opacity: 0.6; letter-spacing: 2px;
+  }
+  .stamp {
+    position: absolute; top: 220px; right: 110px;
+    width: 180px; height: 180px;
+    border: 5px solid #c0392b; border-radius: 50%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    transform: rotate(-12deg);
+    color: #c0392b;
+    font-family: 'Noto Serif SC', serif; font-weight: 900;
+    opacity: 0.85; z-index: 3;
+  }
+  .stamp .big { font-size: 46px; letter-spacing: 6px; line-height: 1; }
+  .stamp .small { font-size: 14px; letter-spacing: 2px; margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="noise"></div>
+    <div class="border-outer"></div>
+    <div class="border-inner"></div>
+
+    <div class="stamp">
+      <div class="big">已确诊</div>
+      <div class="small">VBTI · {{CODE}}</div>
+    </div>
+
+    <div class="content">
+      <div class="header">
+        <div class="left">VBTI · 病例编号 #{{NUMBER}}</div>
+        <div class="right">{{DATE}} 出具</div>
+      </div>
+
+      <div class="title-block">
+        <div class="code">{{CODE}}</div>
+        <div class="name">{{NAME}}</div>
+      </div>
+
+      <div class="emoji">{{EMOJI}}</div>
+
+      <div class="tagline">{{TAGLINE}}</div>
+
+      <div class="receipts-wrap">
+        <div class="receipts-label">— 呈 堂 证 供 —</div>
+        <div class="receipts">
+          {{ROWS}}
+        </div>
+        <div class="footer">
+          <div>/VBTI · Vibe-coding Type Indicator</div>
+          <div>by 凌晨三点（找项目中）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

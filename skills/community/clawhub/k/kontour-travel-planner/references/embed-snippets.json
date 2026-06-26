@@ -1,0 +1,18 @@
+{
+  "description": "Embeddable content templates for SEO/travel writers. Static snippets only.",
+  "security_note": "No remote JavaScript, no iframe embeds, and no credentials required.",
+  "widgets": {
+    "plan_cta_button": {
+      "description": "CTA link to plan a trip with Kontour AI",
+      "markdown": "[✈️ Plan Your {DESTINATION} Trip with AI]({APPROVED_PUBLIC_URL})"
+    },
+    "destination_quick_facts": {
+      "description": "Compact destination facts card",
+      "markdown": "### 📍 {DESTINATION} Quick Facts\n- 🌡️ Best Season: {BEST_SEASON}\n- 💰 Daily Budget: {DAILY_BUDGET}\n- 💱 Currency: {CURRENCY}\n- 🛂 Visa: {VISA_INFO}\n- 🗣️ Language: {LANGUAGE}\n\n[Plan this trip →]({APPROVED_PUBLIC_URL})"
+    },
+    "cost_comparison_summary": {
+      "description": "Budget vs mid-range vs luxury daily summary",
+      "markdown": "### 💰 {DESTINATION} Daily Costs (per person)\n- 🎒 Budget: ${BUDGET_TOTAL}\n- 🏨 Mid-Range: ${MID_TOTAL}\n- ✨ Luxury: ${LUX_TOTAL}\n\n[Get a personalized budget →]({APPROVED_PUBLIC_URL})"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "inner_circle",
+      "label": "Inner Circle",
+      "description": "Partner, immediate family, best friends",
+      "check_in_days": 14,
+      "priority": 1
+    },
+    {
+      "id": "close_friends",
+      "label": "Close Friends",
+      "description": "Good friends you see regularly",
+      "check_in_days": 30,
+      "priority": 2
+    },
+    {
+      "id": "extended_family",
+      "label": "Extended Family",
+      "description": "Aunts, uncles, cousins, in-laws",
+      "check_in_days": 45,
+      "priority": 3
+    },
+    {
+      "id": "friends",
+      "label": "Friends",
+      "description": "Friends you like but don't see often",
+      "check_in_days": 60,
+      "priority": 4
+    },
+    {
+      "id": "acquaintances",
+      "label": "Acquaintances",
+      "description": "Colleagues, neighbors, casual connections",
+      "check_in_days": 90,
+      "priority": 5
+    },
+    {
+      "id": "professional",
+      "label": "Professional",
+      "description": "Mentors, business contacts, networking",
+      "check_in_days": 90,
+      "priority": 6
+    }
+  ],
+  "reminder_defaults": {
+    "birthday_days_before": 7,
+    "anniversary_days_before": 5,
+    "follow_up_days_after_event": 5,
+    "seasonal_holidays": ["mothers_day", "fathers_day", "valentines_day", "thanksgiving", "christmas", "new_years"]
+  },
+  "health_scoring": {
+    "thriving_threshold": 0.8,
+    "needs_attention_threshold": 0.5,
+    "at_risk_below": 0.5,
+    "lookback_days": 90,
+    "interaction_type_weights": {
+      "in_person": 1.0,
+      "video_call": 0.8,
+      "call": 0.7,
+      "text": 0.4,
+      "social_media": 0.3,
+      "email": 0.4,
+      "gift_sent": 0.6,
+      "gift_received": 0.3,
+      "other": 0.3
+    }
+  },
+  "gift_engine": {
+    "default_budget_range": [25, 75],
+    "avoid_repeat_months": 12,
+    "suggestion_count": 3
+  },
+  "interaction_types": [
+    "call",
+    "text",
+    "in_person",
+    "video_call",
+    "social_media",
+    "email",
+    "gift_sent",
+    "gift_received",
+    "other"
+  ],
+  "custom_categories": [],
+  "custom_holidays": [],
+  "excluded_contacts": []
+}

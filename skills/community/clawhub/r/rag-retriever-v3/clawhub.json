@@ -1,0 +1,8 @@
+{
+  "name": "rag-retriever-v3",
+  "version": "3.0.0",
+  "description": "RAG 3.0 - 高级检索增强生成系统，支持语义嵌入、混合检索、重排序和来源引用",
+  "author": "yuyonghao-123",
+  "license": "MIT",
+  "keywords": ["rag", "retrieval", "vector-search", "semantic-search", "hybrid-search", "rerank", "chinese", "openclaw"]
+}

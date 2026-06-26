@@ -1,0 +1,41 @@
+# 调度策略模板：中文搜索优化
+# 适用场景：中文内容搜索
+
+name: search-cn-optimized
+description: 针对中文内容搜索的最优调度策略
+
+# 适用条件
+applicable_when:
+  category: search
+  query_contains_chinese: true
+
+# 路由配置
+routing:
+  # 首选技能
+  primary:
+    - skill: multi-search-engine
+      engines: [baidu, sogou, wechat, toutiao]
+      timeout: 30
+  
+  # 降级技能
+  fallback:
+    - skill: exa-web-search-free
+      timeout: 20
+    - skill: tavily-search
+      timeout: 20
+
+# 超时配置
+timeout: 30
+
+# 降级配置
+max_fallback: 2
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl_seconds: 300  # 新闻时效性高，缓存 5 分钟
+
+# 优化建议
+# - 中文内容优先使用国内搜索引擎
+# - 微信/知乎等内容需要反爬支持
+# - 新闻类查询注意时效性

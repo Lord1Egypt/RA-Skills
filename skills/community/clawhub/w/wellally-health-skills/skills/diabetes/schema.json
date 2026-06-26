@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/diabetes-tracker.json",
+  "title": "DiabetesTracker",
+  "description": "Data structure definition for diabetes management",
+  "type": "object",
+  "properties": {
+    "glucose_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "time": {"type": "string", "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"},
+          "type": {
+            "type": "string",
+            "enum": ["fasting", "postprandial_2h", "bedtime", "random"]
+          },
+          "value": {"type": "number", "minimum": 1.0, "maximum": 30.0},
+          "unit": {"type": "string", "const": "mmol/L"},
+          "in_range": {"type": "boolean"},
+          "target_range": {"type": "string"},
+          "notes": {"type": "string"},
+          "created_at": {"type": "string", "format": "date-time"}
+        },
+        "required": ["id", "date", "type", "value"]
+      }
+    },
+    "hba1c_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "value": {"type": "number", "minimum": 4.0, "maximum": 15.0},
+          "unit": {"type": "string", "const": "%"},
+          "target": {"type": "string"},
+          "in_target": {"type": "boolean"},
+          "change_from_previous": {"type": "number"},
+          "created_at": {"type": "string", "format": "date-time"}
+        },
+        "required": ["date", "value"]
+      }
+    },
+    "hypoglycemia_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "time": {"type": "string", "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"},
+          "value": {"type": "number", "minimum": 1.0, "maximum": 3.9},
+          "severity": {
+            "type": "string",
+            "enum": ["level_1", "level_2", "level_3"]
+          },
+          "symptoms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["sweating", "palpitations", "tremor", "hunger", "confusion", "dizziness"]
+            }
+          },
+          "treatment": {"type": "string"},
+          "resolved": {"type": "boolean"},
+          "created_at": {"type": "string", "format": "date-time"}
+        },
+        "required": ["id", "date", "value"]
+      }
+    },
+    "complications_screening": {
+      "type": "object",
+      "properties": {
+        "retinopathy": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["none", "mild", "moderate", "severe", "proliferative"]
+            },
+            "last_exam": {"type": "string", "format": "date"},
+            "next_exam": {"type": "string", "format": "date"}
+          }
+        },
+        "nephropathy": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["normal", "microalbuminuria", "macroalbuminuria"]
+            },
+            "uacr": {"type": "number", "minimum": 0},
+            "egfr": {"type": "number", "minimum": 0},
+            "ckd_stage": {"type": "string"},
+            "last_assessment": {"type": "string", "format": "date"}
+          }
+        },
+        "neuropathy": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["none", "abnormal"]
+            },
+            "monofilament_test": {
+              "type": "string",
+              "enum": ["normal", "abnormal"]
+            },
+            "last_assessment": {"type": "string", "format": "date"}
+          }
+        },
+        "foot": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["normal", "low_risk", "high_risk"]
+            },
+            "pulses_present": {"type": "boolean"},
+            "ulcer": {"type": "boolean"},
+            "wagner_grade": {"type": "integer", "minimum": 0, "maximum": 5},
+            "last_assessment": {"type": "string", "format": "date"}
+          }
+        }
+      }
+    },
+    "tir_analysis": {
+      "type": "object",
+      "properties": {
+        "period_days": {"type": "integer"},
+        "tir_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+        "above_range_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+        "below_range_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+        "target_range": {
+          "type": "object",
+          "properties": {
+            "min": {"type": "number"},
+            "max": {"type": "number"}
+          }
+        }
+      }
+    },
+    "targets": {
+      "type": "object",
+      "properties": {
+        "fasting_glucose": {
+          "type": "object",
+          "properties": {
+            "min": {"type": "number"},
+            "max": {"type": "number"}
+          }
+        },
+        "postprandial_glucose": {
+          "type": "object",
+          "properties": {
+            "max": {"type": "number"}
+          }
+        },
+        "bedtime_glucose": {
+          "type": "object",
+          "properties": {
+            "min": {"type": "number"},
+            "max": {"type": "number"}
+          }
+        },
+        "hba1c": {"type": "object", "properties": {"max": {"type": "number"}}},
+        "tir": {"type": "object", "properties": {"min_percentage": {"type": "number"}}},
+        "patient_category": {
+          "type": "string",
+          "enum": ["general_adult", "elderly_frail", "pregnancy"]
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "avg_fasting_glucose": {"type": "number"},
+        "avg_postprandial_glucose": {"type": "number"},
+        "fasting_target_rate": {"type": "number"},
+        "postprandial_target_rate": {"type": "number"},
+        "hypoglycemia_count_7days": {"type": "integer"},
+        "hypoglycemia_count_30days": {"type": "integer"}
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

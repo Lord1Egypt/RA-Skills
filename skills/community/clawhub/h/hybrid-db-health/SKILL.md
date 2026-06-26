@@ -1,35 +1,66 @@
 ---
-name: "Hybrid DB Health"
-description: "Validate and troubleshoot the hybrid database system used by OpenClaw agents (Pulse task DB + RAG Pinecone stack). Use when asked to check setup, connection..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hybrid-db-health"
-sourceUrl: "https://clawhub.ai/skills/hybrid-db-health"
+name: hybrid-db-health
+description: Validate and troubleshoot the hybrid database system used by OpenClaw agents (Pulse task DB + RAG Pinecone stack). Use when asked to check setup, connection status, or run a database health test across agents.
 ---
 
 # Hybrid DB Health
 
-> Validate and troubleshoot the hybrid database system used by OpenClaw agents (Pulse task DB + RAG Pinecone stack). Use when asked to check setup, connection...
+Run a quick, reliable health check for the two database surfaces in this workspace:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hybrid-db-health`
-- **Source URL:** [https://clawhub.ai/skills/hybrid-db-health](https://clawhub.ai/skills/hybrid-db-health)
+When combined with `shared-pinecone-rag`, position the pair as a **Persistent Memory skill stack** (retrieval + health assurance).
 
-## Overview
+1. **Pulse operational DB/sync layer** in `agents/pulse`
+2. **RAG Pinecone layer** in `rag-pinecone-starter`
 
+## Runbook
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Run the bundled script:
+
 ```bash
-hermes skills install clawhub/hybrid-db-health
+bash scripts/check_hybrid_db.sh
 ```
+
+2. Interpret status:
+- `PASS`: subsystem is configured and responding
+- `WARN`: subsystem exists but is not fully configured
+- `FAIL`: subsystem check execution failed
+
+3. Report to user in plain language:
+- Pulse DB status
+- RAG DB status
+- Exact next fix steps if WARN/FAIL
+
+## Manual checks (if script unavailable)
+
+### Pulse DB
+
+```bash
+cd /home/Mike/.openclaw/workspace/agents/pulse
+python3 openclaw_sync.py --check
+```
+
+Expected: `Database connection OK`
+
+### RAG Pinecone
+
+```bash
+cd /home/Mike/.openclaw/workspace/rag-pinecone-starter
+[ -f .env ] && grep -E '^(OPENAI_API_KEY|PINECONE_API_KEY)=' .env
+```
+
+If either key is blank, report as **not connected yet**.
+
+Optional live connectivity test (requires keys + deps):
+
+```bash
+source .venv/bin/activate
+python query.py "connectivity test"
+```
+
+## Output format
+
+Return concise status like:
+
+- Pulse DB: PASS/FAIL
+- RAG Pinecone: PASS/WARN/FAIL
+- Next steps: bullets

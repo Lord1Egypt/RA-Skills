@@ -1,35 +1,17 @@
----
-name: "research-paper-pdf-translator"
-description: "自动将英文科研论文PDF翻译成中文，整理内容突出生物信息学细节，符合科研阅读习惯。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bioinfo-paper-translate-summary-chinese"
-sourceUrl: "https://clawhub.ai/skills/bioinfo-paper-translate-summary-chinese"
----
+# 科研论文PDF翻译整理
 
-# research-paper-pdf-translator
+## 描述
+自动将英文科研论文PDF翻译成中文，并按照科研阅读习惯进行整理，突出生物信息学细节。
 
-> 自动将英文科研论文PDF翻译成中文，整理内容突出生物信息学细节，符合科研阅读习惯。
+## 使用场景
+当您需要快速获取英文科研论文的中文核心内容，并希望内容符合生物信息学研究者的阅读习惯时。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bioinfo-paper-translate-summary-chinese`
-- **Source URL:** [https://clawhub.ai/skills/bioinfo-paper-translate-summary-chinese](https://clawhub.ai/skills/bioinfo-paper-translate-summary-chinese)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bioinfo-paper-translate-summary-chinese
+## 运行方式
 ```
+/usr/bin/python3 SKILL.py <pdf_path>
+```
+
+## 注意事项
+- 确保您的系统已安装 `poppler-utils` 包，其中包含 `pdftotext` 工具，这是PDF转换文本的必要组件。
+- PDF文件路径必须是绝对路径。
+- 对于内容复杂或扫描版的PDF，转换效果可能受限。

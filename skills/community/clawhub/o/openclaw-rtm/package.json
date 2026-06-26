@@ -1,0 +1,12 @@
+{
+  "name": "rtm-skill",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "An OpenClaw skill to manage your tasks on Remember The Milk",
+  "bin": {
+    "rtm": "./test.js"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}

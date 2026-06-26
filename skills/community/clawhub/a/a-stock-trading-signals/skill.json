@@ -1,0 +1,42 @@
+{
+  "name": "a-stock-trading-signals-api",
+  "version": "1.0.0",
+  "description": "A股/港股强势股捕捉器 API - x402付费版本",
+  "main": "api.py",
+  "url": "https://a-stock-signals.vercel.app",
+  "scripts": {
+    "start": "python api.py",
+    "dev": "uvicorn api:create_app --reload"
+  },
+  "dependencies": [
+    "fastapi",
+    "uvicorn",
+    "x402"
+  ],
+  "price": "0.01 USDC",
+  "payment": {
+    "currency": "USDC",
+    "chain": "Base (eip155:8453)",
+    "recipient": "0x1a9275EE18488A20C7898C666484081F74Ee10CA"
+  },
+  "endpoints": [
+    {
+      "path": "/s",
+      "method": "GET",
+      "description": "旱地拔葱信号",
+      "price": "0.01 USDC"
+    },
+    {
+      "path": "/v", 
+      "method": "GET",
+      "description": "VCP信号",
+      "price": "0.01 USDC"
+    },
+    {
+      "path": "/n",
+      "method": "GET",
+      "description": "N字型态信号",
+      "price": "0.01 USDC"
+    }
+  ]
+}

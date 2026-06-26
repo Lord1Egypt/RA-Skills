@@ -1,0 +1,136 @@
+# VetClaw 诊所配置模板
+# 复制此文件为 vet-config.yaml 并填入实际信息
+
+clinic:
+  name: "示例宠物医院"
+  address: "北京市朝阳区xxx路xxx号"
+  phone: "010-12345678"
+  wechat_qr: ""  # 微信公众号二维码URL（可选）
+  hours:
+    weekday: "09:00-21:00"
+    weekend: "10:00-18:00"
+    holiday: "10:00-16:00"  # 节假日
+  emergency: true  # 是否提供急诊
+  emergency_hours: "24h"  # 急诊时间
+
+  # 服务项目及价格
+  services:
+    - name: "基础诊疗"
+      price_min: 50
+      price_max: 200
+      description: "挂号+基础检查"
+    - name: "疫苗接种"
+      price_min: 80
+      price_max: 300
+      description: "进口联苗/狂犬疫苗"
+    - name: "绝育手术（公）"
+      price_min: 500
+      price_max: 1200
+      description: "含术前检查+麻醉+手术"
+    - name: "绝育手术（母）"
+      price_min: 800
+      price_max: 2000
+      description: "含术前检查+麻醉+手术"
+    - name: "洗牙"
+      price_min: 300
+      price_max: 800
+      description: "超声波洁牙"
+    - name: "皮肤病"
+      price_min: 100
+      price_max: 500
+      description: "检查+外用药"
+    - name: "急诊"
+      price_min: 200
+      price_max: 5000
+      description: "24小时急诊"
+
+  # 医生排班
+  doctors:
+    - name: "张医生"
+      specialty: ["内科", "皮肤科"]
+      schedule:
+        mon: "09:00-18:00"
+        tue: "09:00-18:00"
+        wed: "09:00-18:00"
+        thu: "09:00-18:00"
+        fri: "09:00-18:00"
+    - name: "李医生"
+      specialty: ["外科", "骨科"]
+      schedule:
+        mon: "10:00-21:00"
+        tue: "10:00-21:00"
+        wed: "休息"
+        thu: "10:00-21:00"
+        fri: "10:00-21:00"
+        sat: "10:00-18:00"
+        sun: "10:00-18:00"
+
+# LLM配置
+llm:
+  provider: "deepseek"  # deepseek / qwen / openai
+  api_key: "${DEEPSEEK_API_KEY}"
+  model: "deepseek-chat"
+  temperature: 0.3
+  max_tokens: 2000
+
+# 通知渠道
+notifications:
+  sms:
+    enabled: true
+    provider: "aliyun"
+    api_key: "${SMS_API_KEY}"
+    api_secret: "${SMS_API_SECRET}"
+    sign_name: "示例宠物医院"
+    templates:
+      appointment_confirm: "SMS_123456789"
+      appointment_remind: "SMS_987654321"
+      vaccine_remind: "SMS_111222333"
+  wechat:
+    enabled: false
+    app_id: "${WECHAT_APP_ID}"
+    app_secret: "${WECHAT_APP_SECRET}"
+
+# 数据存储
+storage:
+  type: "sqlite"  # sqlite / postgresql
+  sqlite_path: "./data/vetclaw.db"
+  # postgresql:
+  #   host: "localhost"
+  #   port: 5432
+  #   database: "vetclaw"
+  #   user: "postgres"
+  #   password: "${DB_PASSWORD}"
+
+# 技能开关（选择性启用）
+skills:
+  enabled:
+    - vet-intake
+    - vet-appointment
+    - vet-reminder
+    - vet-phone-ai
+    - vet-hours
+    - vet-directions
+    - vet-emergency
+    - vet-price-lookup
+    - vet-feedback
+    - vet-record-create
+    - vet-record-lookup
+    - vet-prescription
+    - vet-lab-interpret
+    - vet-vaccine-schedule
+    - vet-deworm-schedule
+    - vet-surgery-checklist
+    - vet-discharge
+    - vet-followup
+    - vet-invoice
+    - vet-daily-report
+    - vet-birthday
+    - vet-review-gen
+    - vet-social-post
+    - vet-pet-care-tips
+    - vet-churn-predict
+    - vet-inventory
+    - vet-expiry-alert
+    - vet-qa-kb
+    - vet-drug-interaction
+    - vet-breed-info

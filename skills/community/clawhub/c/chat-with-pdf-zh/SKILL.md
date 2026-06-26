@@ -1,35 +1,29 @@
 ---
-name: "Chat With Pdf Zh"
-description: "PDF问答 / 文档智能解读 / 合同审阅助手 / PDF-QA。快速提取合同条款、招标文件、研究报告、政策法规中的关键信息，支持提问检索、内容摘要、数据提取。适合法务经理审阅合同风险、采购专员解析招标要求、研究员提取数据、合规官员审查政策、管理层快速消化报告。一键总结PDF核心内容、精准定位具体条款、批量提取数..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chat-with-pdf-zh"
-sourceUrl: "https://clawhub.ai/skills/chat-with-pdf-zh"
+name: chat-with-pdf-zh
+description: >
+  PDF问答 / 文档智能解读 / 合同审阅助手 / PDF-QA。快速提取合同条款、招标文件、研究报告、政策法规中的关键信息，支持提问检索、内容摘要、数据提取。适合法务经理审阅合同风险、采购专员解析招标要求、研究员提取数据、合规官员审查政策、管理层快速消化报告。一键总结PDF核心内容、精准定位具体条款、批量提取数字日期。支持中英文混合，替代逐页翻阅，让职场人在秒内完成文件处理。
+tags: [PDF问答, PDF解析, 合同审阅, 文档摘要, 信息提取, 关键词检索, pdf-qa, 招标文件, 研究报告, document-ai]
 ---
 
-# Chat With Pdf Zh
+# 与PDF对话 / Chat with PDF
 
-> PDF问答 / 文档智能解读 / 合同审阅助手 / PDF-QA。快速提取合同条款、招标文件、研究报告、政策法规中的关键信息，支持提问检索、内容摘要、数据提取。适合法务经理审阅合同风险、采购专员解析招标要求、研究员提取数据、合规官员审查政策、管理层快速消化报告。一键总结PDF核心内容、精准定位具体条款、批量提取数...
+上传PDF文档，直接用中文提问——快速获取摘要、提取关键信息、解析合同条款，无需逐页翻阅。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chat-with-pdf-zh`
-- **Source URL:** [https://clawhub.ai/skills/chat-with-pdf-zh](https://clawhub.ai/skills/chat-with-pdf-zh)
+## Tools Required
+- extract_text_from_pdf
+- get_pdf_metadata
 
-## Overview
+## Usage
+- "帮我总结一下这份招标文件的核心要求和截止日期"
+- "这份合同里关于违约责任和付款条件的条款是怎么说的？"
+- "提取这份季度财报中所有的财务数据和同比增长数字"
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chat-with-pdf-zh
-```
+## Examples
+输入：上传一份40页的供应商合同PDF，提问："甲方的付款周期是多少天？有哪些违约条款？"
+输出：
+> **付款周期**：合同第8条规定，甲方应在验收合格后**30个自然日内**完成付款。
+>
+> **违约条款**（第12条）：
+> - 乙方逾期交付：每日按合同总额 **0.05%** 计收违约金
+> - 甲方逾期付款：每日按欠付金额 **0.03%** 计收利息
+> - 单方解约须提前 **30天** 书面通知，并赔偿对方 **合同额10%** 的损失

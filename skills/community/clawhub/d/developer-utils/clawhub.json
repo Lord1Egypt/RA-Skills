@@ -1,0 +1,10 @@
+{
+  "slug": "developer-utils",
+  "name": "Developer Utils",
+  "version": "1.2.0",
+  "summary": "一站式开发者工具箱 - 20个模块80+工具：文本处理、编码转换、格式化、时间工具、正则、加密解密、代码生成、数据转换、坐标转换、IBAN验证、ASCII艺术、Chmod计算、HMAC、AES加解密、配置转换等。A comprehensive developer toolkit with 20 modules and 80+ tools: text processing, encoding, formatting, time, regex, crypto, code generation, data conversion, coordinate converter, IBAN validator, ASCII art, chmod calculator, HMAC, AES encryption, config converter, and more.",
+  "category": "developer-tools",
+  "tags": ["developer", "tools", "encoding", "formatting", "crypto", "regex", "utility", "text-processing", "qr-code", "mock-data", "iban", "chmod", "aes", "hmac", "coordinate"],
+  "license": "MIT",
+  "author": "ning"
+}

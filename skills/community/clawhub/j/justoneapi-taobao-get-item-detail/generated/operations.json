@@ -1,0 +1,200 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call 5 get-item-detail versions for Taobao and Tmall Product Details through JustOneAPI with itemId.",
+  "displayName": "Taobao and Tmall Product Details",
+  "endpointPath": "get-item-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getTaobaoItemDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data through the task-backed v2 flow. If data is not ready within a short wait, the response returns a pending task status.",
+      "method": "GET",
+      "operationId": "getItemDetailV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getItemDetailV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getItemDetailV5",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v5",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getItemDetailV9",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v9",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    }
+  ],
+  "platformKey": "taobao",
+  "primaryTag": "Taobao and Tmall",
+  "skillName": "justoneapi_taobao_get_item_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-taobao-get-item-detail",
+  "sourceTitle": "OpenAPI definition"
+}

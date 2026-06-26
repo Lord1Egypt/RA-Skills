@@ -1,0 +1,4 @@
+Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Courtage;Valuta;ISIN;Resultat
+2023-01-10;1111111;Insättning;Direktinsättning från Testbank;-;-;1000;0;SEK;;-
+2023-01-11;1111111;Köp;Test Fund A;9,9990;100;-999,90;0;SEK;SE0000000001;-
+2023-06-01;1111111;Utbokning fraktioner;Test Fund A;0,0010;100;-0,10;0;SEK;SE0000000001;-

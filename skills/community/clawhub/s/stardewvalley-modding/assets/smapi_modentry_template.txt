@@ -1,0 +1,19 @@
+using StardewModdingAPI;
+using StardewValley;
+
+namespace {{Namespace}}
+{
+    public class ModEntry : Mod
+    {
+        public override void Entry(IModHelper helper)
+        {
+            helper.Events.GameLoop.DayStarted += OnDayStarted;
+            this.Monitor.Log("{{ModName}} 已加载!", LogLevel.Info);
+        }
+
+        private void OnDayStarted(object sender, DayStartedEventArgs e)
+        {
+            // 在这里编写 Mod 逻辑
+        }
+    }
+}

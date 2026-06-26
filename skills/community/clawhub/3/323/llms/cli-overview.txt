@@ -1,0 +1,169 @@
+--------------------------------------------------------------------------------
+title: "CLI Overview"
+description: "Complete overview of the @tiktok-fe/skills CLI for managing AI Agent skills."
+source: "/llms/cli-overview.txt"
+--------------------------------------------------------------------------------
+
+# AI Skills CLI Overview
+
+@tiktok-fe/skills is a command-line tool for discovering, installing, and managing AI Agent skills across 30+ supported platforms including Cursor, Claude Code, GitHub Copilot, Windsurf, Cline, Continue, Codex, Gemini CLI, and more.
+
+## Installation
+
+```bash
+# Using npm
+npm install -g @tiktok-fe/skills
+
+# Or run directly without installation
+npx @tiktok-fe/skills [command]
+```
+
+The binary name is `ai-skills`.
+
+## Quick Start
+
+```bash
+# Search for skills
+ai-skills find react --pure
+
+# Install a skill from the internal registry
+ai-skills add react-best-practices --source local --pure -y
+
+# Install a skill from a GitHub repository
+ai-skills add owner/repo --source github --skill skill-name --pure -y
+
+# Install all skills from a repository
+ai-skills add owner/repo --source github --pure -y
+
+# List installed skills
+ai-skills list --pure
+
+# Remove a skill
+ai-skills remove skill-name --pure -y
+
+# Update all skills
+ai-skills update --pure -y
+```
+
+## Output Modes
+
+All commands support two output modes controlled by `--cli` / `--pure` flags or the `ui.mode` config:
+
+| Mode | Flag | Description | Use Case |
+|------|------|-------------|----------|
+| CLI | `--cli` | Interactive with colors, spinners, real-time search | Human users (default) |
+| Pure | `--pure` | Plain text, no ANSI codes, no interaction, machine-readable | **AI Agents (required)** |
+
+Default mode is `--cli`. AI Agents must always use `--pure`.
+
+### Mode Comparison
+
+```bash
+# CLI mode — Interactive with animations
+ai-skills find react --cli
+# Output: Real-time search UI with ↑↓ selection, Tab filtering
+
+# Pure mode — Plain text for AI parsing
+ai-skills find react --pure
+# Output:
+# Search: "react" | Filter: all | Page 1/5 (10 per page)
+# 1. [内部] react-best-practices
+#    React开发最佳实践
+#    → ai-skills add react-best-practices --source local --pure
+```
+
+In Pure mode:
+- All output goes through `console.log` (no ANSI escape codes)
+- No interactive prompts — operations that need confirmation silently skip or fail
+- `shouldOverwrite` always returns `false` — use `--force` to overwrite existing skills
+- Error messages use `Error: <reason>` format
+
+## Source Platforms
+
+The `--source` parameter specifies where to find/install skills:
+
+| Value | Description |
+|-------|-------------|
+| `local` | Internal registry (ai-skills.bytedance.net) |
+| `codebase` | ByteDance internal Git (code.byted.org) |
+| `github` | GitHub community skills |
+| `gitlab` | GitLab community skills |
+| `wellknown` | skills.sh curated skills |
+
+Source resolution logic (from `resolveSource` tests):
+1. URLs (https://...) are parsed via `parseGitUrl` → `repo` or `repo-all`
+2. `--source local` → always `api` (internal registry lookup)
+3. `--source github/gitlab` + `owner/repo` → `repo-all` (no `--skill`) or `repo` (with `--skill`)
+4. `--source codebase` + `owner/repo` + `--skill` → `api` (with `repo` context)
+5. `owner/repo` without `--source` → auto-detect via `detectRepoPlatform`
+6. Plain name (no `/`) → `api` (internal registry lookup)
+
+## Installation Scopes
+
+Skills can be installed in different scopes:
+
+| Scope | Flag | Location | Description |
+|-------|------|----------|-------------|
+| Project | `-p, --project` | `.cursor/skills/`, `.claude/skills/`, etc. | Project-specific (default) |
+| Global | `-g, --global` | `~/.cursor/skills/`, `~/.claude/skills/`, etc. | Available across all projects |
+| Custom | `-t, --target <dir>` | Custom directory | User-specified base directory |
+| Direct | `--dir <dir>` | Exact directory | Files go directly to this dir, no agent subdirs |
+
+Priority (from `resolveBase` tests): `--dir` > `--target` > `--global` > `--project` > config `install.defaultScope`
+
+## Soft Mode (Symlinks)
+
+When soft mode is enabled (`--soft` or `config install.defaultSoft=true`), skills are stored in a shared folder (e.g. `.skills/`) and each agent directory gets a symlink. This saves disk space when installing the same skill to multiple agents.
+
+Soft mode behavior (from `isSoftMode` tests):
+- `--soft` → always true
+- `--no-soft` → always false
+- `--dir` + relative softFolder → forced false (hard copy)
+- `--dir` + absolute softFolder → follows config `install.defaultSoft`
+- Otherwise → follows config `install.defaultSoft`
+
+## Command Categories
+
+### Authentication
+- `login` — Browser SSO authentication (force re-login with `--force`)
+- `whoami` — Display current user (JSON output with `--json`)
+
+### Skill Discovery
+- `find [query]` — Search with filters (source, tags, page, min-downloads, filter)
+- `agents` — List supported AI agents and their install status
+
+### Skill Management
+- `add [source]` — Install skills to local agents (multi-source, multi-agent)
+- `list` — List installed skills (per-agent grouping)
+- `remove <skill>` — Remove skill (cross-layer symlink awareness)
+- `manage` — Interactive management UI (Ink-based)
+- `update` — Check and apply updates (filter, list mode)
+- `clean` — Remove all skills (with confirmation or `--force`)
+
+### Skill Publishing
+- `init` — Scaffold a new skill project (basic/advanced templates)
+- `publish` — Publish skill to registry (with version bump)
+
+### Configuration
+- `config [action] [key] [value]` — Get/set/reset config values (JSON output with `--json`)
+
+## AI Agent Integration
+
+For AI agents calling this CLI:
+
+1. **Always use `--pure` mode** — Ensures machine-readable output with no ANSI codes
+2. **Use `-y` or `--force` flag** — Skips confirmation prompts
+3. **Specify `--source`** — Ensures correct skill source
+4. **Specify scope** — Use `-p`/`-g`/`-t`/`--dir` to avoid interactive scope selection
+
+```bash
+# Recommended AI agent command patterns
+ai-skills find react --pure --page 1
+ai-skills add my-skill --source local --project --pure
+ai-skills add owner/repo --source github --skill name --project --pure
+ai-skills list --project --pure
+ai-skills remove old-skill --project --pure --force
+ai-skills update --project --pure -y
+ai-skills whoami --json
+ai-skills config get --json
+```

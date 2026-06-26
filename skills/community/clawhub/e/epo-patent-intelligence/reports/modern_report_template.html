@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patent Intelligence Report - Week 14, 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .priority-high { border-left: 4px solid #ef4444; }
+        .priority-medium { border-left: 4px solid #f59e0b; }
+        .priority-low { border-left: 4px solid #10b981; }
+        .threat-critical { background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%); }
+        .threat-high { background: linear-gradient(90deg, #ffedd5 0%, #fed7aa 100%); }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-shield-alt text-2xl"></i>
+                    <div>
+                        <h1 class="text-xl font-bold">Patent Intelligence</h1>
+                        <p class="text-xs opacity-80">DMG Mori Competitive Analysis</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <span class="text-sm"><i class="fas fa-calendar-alt mr-2"></i>Week 14, 2026</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                        <i class="fas fa-sync-alt mr-2 animate-spin"></i>Live Updates
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Executive Summary -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Executive Summary</h2>
+                    <p class="text-gray-600">Weekly competitive intelligence analysis</p>
+                </div>
+                <button onclick="window.print()" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
+                    <i class="fas fa-download mr-2"></i>Export PDF
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-blue-100 text-sm">Total Patents</p>
+                            <p class="text-3xl font-bold">47</p>
+                        </div>
+                        <i class="fas fa-file-alt text-4xl opacity-30"></i>
+                    </div>
+                    <p class="mt-2 text-sm"><i class="fas fa-arrow-up mr-1"></i>+12 from last week</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-red-100 text-sm">High Priority</p>
+                            <p class="text-3xl font-bold">8</p>
+                        </div>
+                        <i class="fas fa-exclamation-triangle text-4xl opacity-30"></i>
+                    </div>
+                    <p class="mt-2 text-sm">Critical threats detected</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-6 text-white">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-amber-100 text-sm">Competitors</p>
+                            <p class="text-3xl font-bold">5</p>
+                        </div>
+                        <i class="fas fa-building text-4xl opacity-30"></i>
+                    </div>
+                    <p class="mt-2 text-sm">Active monitoring</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-green-100 text-sm">Coverage</p>
+                            <p class="text-3xl font-bold">98%</p>
+                        </div>
+                        <i class="fas fa-chart-pie text-4xl opacity-30"></i>
+                    </div>
+                    <p class="mt-2 text-sm">Technology areas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white rounded-2xl shadow-xl p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                    <i class="fas fa-chart-bar mr-2 text-blue-500"></i>Patents by Competitor
+                </h3>
+                <canvas id="competitorChart" height="200"></canvas>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                    <i class="fas fa-microchip mr-2 text-purple-500"></i>Technology Categories
+                </h3>
+                <canvas id="techChart" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Priority Patents -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">
+                    <i class="fas fa-star mr-2 text-red-500"></i>High Priority Patents
+                </h3>
+                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">
+                    8 Critical Items
+                </span>
+            </div>
+            
+            <!-- Patent Cards -->
+            <div class="space-y-4">
+                <!-- Critical Patent -->
+                <div class="card-hover priority-high threat-critical rounded-xl p-6 cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">CRITICAL</span>
+                                <span class="bg-gray-800 text-white px-3 py-1 rounded-full text-xs">CNC Machining</span>
+                                <span class="text-gray-500 text-sm">EP2024037891A1</span>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                                Intelligent Spindle Control System with AI-Powered Predictive Maintenance
+                            </h4>
+                            <p class="text-gray-600 text-sm mb-3">
+                                <i class="fas fa-building mr-2"></i>
+                                <strong>YAMAZAKI MAZAK CORP</strong> • Filed March 15, 2024
+                            </p>
+                            <div class="bg-white/50 rounded-lg p-4 mb-3">
+                                <p class="text-gray-700 text-sm">
+                                    <strong>⚠️ Competitive Threat:</strong> Mazak is deploying AI-driven predictive maintenance 
+                                    for spindle systems, directly competing with DMG Mori's Industry 4.0 initiatives. This 
+                                    patent covers real-time vibration analysis and automated tool wear prediction.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-sm text-gray-600">
+                                    <i class="fas fa-exclamation-circle text-red-500 mr-1"></i>
+                                    Immediate Review Required
+                                </span>
+                                <a href="https://worldwide.espacenet.com/patent/search?q=pn%3DEP2024037891A1" 
+                                   target="_blank" 
+                                   class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                    <i class="fas fa-external-link-alt mr-1"></i>View Patent
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-center ml-4">
+                            <div class="text-3xl font-bold text-red-600">85</div>
+                            <div class="text-xs text-gray-500">Threat Score</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- High Priority Patent -->
+                <div class="card-hover priority-high threat-high rounded-xl p-6 cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">HIGH</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Additive Manufacturing</span>
+                                <span class="text-gray-500 text-sm">EP2024036542B1</span>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                                Hybrid Manufacturing System with Integrated Laser Metal Deposition
+                            </h4>
+                            <p class="text-gray-600 text-sm mb-3">
+                                <i class="fas fa-building mr-2"></i>
+                                <strong>TRUMPF GMBH</strong> • Filed March 8, 2024
+                            </p>
+                            <div class="bg-white/50 rounded-lg p-4 mb-3">
+                                <p class="text-gray-700 text-sm">
+                                    <strong>⚠️ Competitive Threat:</strong> Trumpf is strengthening their position in hybrid 
+                                    manufacturing, combining CNC machining with laser metal deposition. This threatens DMG's 
+                                    LASERTEC additive manufacturing line.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-sm text-gray-600">
+                                    <i class="fas fa-clock text-orange-500 mr-1"></i>
+                                    Weekly Review
+                                </span>
+                                <a href="https://worldwide.espacenet.com/patent/search?q=pn%3DEP2024036542B1" 
+                                   target="_blank" 
+                                   class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                    <i class="fas fa-external-link-alt mr-1"></i>View Patent
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-center ml-4">
+                            <div class="text-3xl font-bold text-orange-600">62</div>
+                            <div class="text-xs text-gray-500">Threat Score</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competitor Activity Timeline -->
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">
+                <i class="fas fa-stream mr-2 text-blue-500"></i>Competitor Activity Timeline
+            </h3>
+            
+            <div class="relative">
+                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-16 h-16 bg-red-100 rounded-full flex items-center justify-center border-4 border-white shadow z-10">
+                            <i class="fas fa-exclamation text-red-600"></i>
+                        </div>
+                        <div class="ml-6 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-semibold text-gray-900">Mazak Files AI Spindle Patent</h4>
+                                <span class="text-sm text-gray-500">Today, 09:45</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">Critical threat detected in CNC machining core technology</p>
+                            <span class="inline-block mt-2 bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Immediate Action</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center border-4 border-white shadow z-10">
+                            <i class="fas fa-fire text-orange-600"></i>
+                        </div>
+                        <div class="ml-6 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-semibold text-gray-900">Trumpf Hybrid Manufacturing Update</h4>
+                                <span class="text-sm text-gray-500">Yesterday, 14:30</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">New patent application in additive manufacturing space</p>
+                            <span class="inline-block mt-2 bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded">Monitor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h4 class="font-semibold">Patent Intelligence System</h4>
+                    <p class="text-gray-400 text-sm mt-1">Powered by EPO Open Patent Services</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-400">Report generated: April 4, 2026</p>
+                    <p class="text-sm text-gray-400">Next update: April 11, 2026</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Competitor Chart
+        const ctx1 = document.getElementById('competitorChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Mazak', 'Trumpf', 'Okuma', 'Haas', 'DMG Mori'],
+                datasets: [{
+                    label: 'Patents This Week',
+                    data: [12, 10, 8, 9, 15],
+                    backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#6366f1'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { display: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Technology Chart
+        const ctx2 = document.getElementById('techChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['CNC Machining', 'Additive Mfg', 'Automation', 'Digital Mfg', 'Laser Tech'],
+                datasets: [{
+                    data: [35, 20, 18, 15, 12],
+                    backgroundColor: ['#6366f1', '#8b5cf6', '#ec4899', '#14b8a6', '#f59e0b'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'right' }
+                },
+                cutout: '60%'
+            }
+        });
+    </script>
+</body>
+</html>

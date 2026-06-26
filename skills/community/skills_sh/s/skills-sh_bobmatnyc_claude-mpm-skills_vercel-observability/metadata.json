@@ -1,0 +1,25 @@
+{
+  "name": "vercel-observability",
+  "version": "1.0.0",
+  "category": "toolchain",
+  "toolchain": null,
+  "tags": [
+    "vercel",
+    "analytics",
+    "speed-insights",
+    "logs",
+    "tracing",
+    "alerts",
+    "observability"
+  ],
+  "entry_point_tokens": 100,
+  "full_tokens": 533,
+  "related_skills": [
+    "vercel-deployments-builds",
+    "vercel-functions-runtime",
+    "vercel-networking-domains"
+  ],
+  "author": "Claude MPM",
+  "license": "MIT",
+  "platform": "deployment"
+}

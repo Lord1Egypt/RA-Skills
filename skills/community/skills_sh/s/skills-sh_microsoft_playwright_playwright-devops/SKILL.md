@@ -1,35 +1,12 @@
 ---
-name: "playwright-devops"
-description: "Indexed by skills.sh from microsoft/playwright"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "microsoft"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/microsoft/playwright/playwright-devops"
-sourceUrl: "https://skills.sh/microsoft/playwright/playwright-devops"
+name: playwright-devops
+description: DevOps workflows for Playwright - CI failure analysis, workflow debugging, and release operations.
+user_invocable: true
 ---
 
-# playwright-devops
+# Playwright DevOps
 
-> Indexed by skills.sh from microsoft/playwright
+## Guides
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** microsoft
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/microsoft/playwright/playwright-devops`
-- **Source URL:** [https://skills.sh/microsoft/playwright/playwright-devops](https://skills.sh/microsoft/playwright/playwright-devops)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/microsoft/playwright/playwright-devops
-```
+- [CI Commit Failure Report](commit-failures.md) — analyze GitHub Actions failures for the last commit on main
+- [fetch-commit-logs.sh](fetch-commit-logs.sh) — script to download failed job logs into `~/tmp/commit-<sha>/`

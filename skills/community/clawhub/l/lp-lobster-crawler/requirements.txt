@@ -1,0 +1,31 @@
+# Core
+scrapy>=2.11,<3.0
+sqlalchemy>=2.0,<3.0
+
+# Scheduling
+apscheduler>=3.10,<4.0
+
+# Config
+pyyaml>=6.0,<7.0
+
+# CLI
+click>=8.1,<9.0
+
+# Templates
+jinja2>=3.1,<4.0
+
+# HTTP / Broadcast
+requests>=2.31,<3.0
+
+# TLS impersonation (anti-bot bypass, no browser needed)
+curl_cffi>=0.7.0
+
+# Logging
+structlog>=24.0
+
+# RSS
+feedgen>=1.0,<2.0
+
+# Dev / Test
+pytest>=8.0
+pytest-cov>=5.0

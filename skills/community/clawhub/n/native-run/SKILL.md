@@ -1,35 +1,27 @@
----
-name: "Native Run"
-description: "Execute native commands on the local Windows machine and return their output to OpenClaw for automation and testing purposes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/native-run"
-sourceUrl: "https://clawhub.ai/skills/native-run"
----
-
 # Native Run
 
-> Execute native commands on the local Windows machine and return their output to OpenClaw for automation and testing purposes.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/native-run`
-- **Source URL:** [https://clawhub.ai/skills/native-run](https://clawhub.ai/skills/native-run)
-
 ## Overview
+Native Run is an OpenClaw skill that allows executing native commands on the
+local machine where the OpenClaw gateway is running.
 
+This skill is useful for automation, testing and local tooling.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/native-run
-```
+## What this skill does
+- Executes native commands
+- Returns output back to OpenClaw
+- Runs only on the local gateway machine
+
+## Usage
+
+Send a message that matches the configured pattern.
+
+Example:
+
+Run native: whoami
+
+## Platform
+Windows
+
+## Security notice
+This skill can execute local commands.
+Use only in a trusted environment.

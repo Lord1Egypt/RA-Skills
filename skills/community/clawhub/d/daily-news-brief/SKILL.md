@@ -1,35 +1,235 @@
 ---
-name: "Daily News Brief"
-description: "每天早上8点自动搜集并发布国际时事、经济形势、科技发展新闻的skill。基于历史模式和近期国际动向（如特朗普即将访华等），提供专业的新闻简报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-news-brief"
-sourceUrl: "https://clawhub.ai/skills/daily-news-brief"
+name: daily-news-brief
+description: 每天早上8点自动搜集并发布国际时事、经济形势、科技发展新闻的skill。基于历史模式和近期国际动向（如特朗普即将访华等），提供专业的新闻简报。
 ---
 
-# Daily News Brief
+# Daily News Brief Skill
 
-> 每天早上8点自动搜集并发布国际时事、经济形势、科技发展新闻的skill。基于历史模式和近期国际动向（如特朗普即将访华等），提供专业的新闻简报。
+## 概述
+这是一个每天早上8点自动搜集并发布国际时事、经济形势、科技发展新闻的skill。基于历史模式和近期国际动向（如特朗普即将访华等），提供专业的新闻简报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-news-brief`
-- **Source URL:** [https://clawhub.ai/skills/daily-news-brief](https://clawhub.ai/skills/daily-news-brief)
+## 功能特点
+1. **定时执行**：每天早上8点（北京时间）自动运行
+2. **多领域覆盖**：国际时事、经济形势、科技发展
+3. **智能筛选**：基于历史模式和近期动向筛选重要新闻
+4. **格式规范**：统一格式的新闻简报
+5. **多渠道发布**：支持飞书、微信等多种渠道
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-news-brief
+## 文件结构
 ```
+daily-news-brief/
+├── SKILL.md              # 技能说明文档
+├── news-brief.js         # 主脚本文件
+├── config.json           # 配置文件
+├── templates/            # 模板目录
+│   ├── brief-template.md # 简报模板
+│   └── style.css         # 样式文件
+└── history/              # 历史简报存档
+```
+
+## 使用方法
+
+### 1. 安装依赖
+```bash
+cd "C:\Users\User\.openclaw\workspace\skills\daily-news-brief"
+npm install axios cheerio node-cron
+```
+
+### 2. 配置
+编辑 `config.json`：
+```json
+{
+  "newsSources": {
+    "international": [
+      "https://news.cctv.com/world",
+      "https://www.reuters.com/world",
+      "https://www.bbc.com/news/world"
+    ],
+    "economic": [
+      "https://finance.sina.com.cn",
+      "https://www.bloomberg.com/markets",
+      "https://www.ft.com/markets"
+    ],
+    "technology": [
+      "https://tech.sina.com.cn",
+      "https://techcrunch.com",
+      "https://www.theverge.com/tech"
+    ]
+  },
+  "schedule": "0 8 * * *",  // 每天早上8点
+  "timezone": "Asia/Shanghai",
+  "outputChannels": ["feishu", "wechat"],
+  "recipients": ["ou_63fe82c05165ad03801998f88ef81025"],
+  "historicalPatterns": {
+    "trumpVisit": true,
+    "usChinaRelations": true,
+    "middleEastTensions": true,
+    "aiDevelopment": true,
+    "economicPolicies": true
+  }
+}
+```
+
+### 3. 运行
+```bash
+node news-brief.js
+```
+
+### 4. 设置定时任务
+```bash
+# Windows 任务计划程序
+schtasks /create /tn "DailyNewsBrief" /tr "node C:\Users\User\.openclaw\workspace\skills\daily-news-brief\news-brief.js" /sc daily /st 08:00
+```
+
+## 新闻筛选逻辑
+
+### 国际时事优先级
+1. **中美关系**：特朗普访华、贸易谈判、外交互动
+2. **中东局势**：伊朗、以色列、地区冲突
+3. **欧洲动态**：欧盟政策、英国脱欧后续
+4. **亚太地区**：朝鲜半岛、台海局势、南海问题
+5. **全球热点**：气候变化、疫情、国际组织动态
+
+### 经济形势关注点
+1. **宏观经济**：GDP、通胀、就业数据
+2. **货币政策**：美联储、央行利率决策
+3. **贸易投资**：国际贸易、外商投资政策
+4. **产业发展**：新能源、数字经济、制造业
+5. **市场动态**：股市、汇市、大宗商品
+
+### 科技发展重点
+1. **人工智能**：大模型、AI应用、伦理监管
+2. **半导体**：芯片制造、供应链、技术突破
+3. **新能源**：电动汽车、光伏、储能技术
+4. **生物科技**：基因编辑、医疗AI、新药研发
+5. **太空探索**：商业航天、卫星互联网、深空探测
+
+## 简报模板
+
+### 标题格式
+```
+📰 每日新闻简报 | {日期} | {星期}
+```
+
+### 内容结构
+1. **国际时事**（3-5条重要新闻）
+2. **经济形势**（3-5条关键动态）
+3. **科技发展**（3-5条前沿进展）
+4. **今日关注**（重点事件提醒）
+5. **历史回顾**（相关历史事件）
+
+### 输出示例
+```
+📰 每日新闻简报 | 2026年3月4日 | 星期三
+
+🌍 国际时事
+1. 法国宣布"戴高乐"号航母部署地中海应对中东局势
+2. 王毅同以色列外长通电话讨论地区事务
+3. 国际社会聚焦中国两会，关注全球影响
+
+💰 经济形势
+1. 六部门发文支持光伏组件综合利用
+2. 上海加码布局本土算力设施
+3. 黄金白银价格出现大幅波动
+
+🔬 科技发展
+1. 中国AI实现60美元制作电影预告片
+2. 苹果全线上调MacBook售价，转向AI优先战略
+3. 美国在军事行动中使用Anthropic AI模型
+
+👀 今日关注
+• 特朗普访华筹备进展
+• 美联储利率决策会议
+• 全国两会科技创新议题
+
+📚 历史回顾
+• 2025年3月：中美科技合作协议签署
+• 2024年3月：人工智能安全峰会召开
+```
+
+## 高级功能
+
+### 1. 个性化定制
+- 根据用户关注领域调整新闻权重
+- 支持关键词过滤和优先级设置
+- 可配置简报长度和详细程度
+
+### 2. 智能分析
+- 新闻情感分析（正面/负面/中性）
+- 趋势预测和关联分析
+- 历史模式匹配和提醒
+
+### 3. 多渠道适配
+- 飞书卡片格式优化
+- 微信图文消息适配
+- 邮件HTML格式支持
+- 语音播报版本生成
+
+### 4. 数据持久化
+- 每日简报存档
+- 新闻关键词索引
+- 用户阅读统计
+- 反馈收集分析
+
+## 维护和更新
+
+### 定期检查
+1. 新闻源可用性检查（每周）
+2. 模板更新和优化（每月）
+3. 关键词库更新（每季度）
+4. 算法调整和优化（每半年）
+
+### 故障处理
+1. 网络异常重试机制
+2. 源站不可用备用方案
+3. 内容解析失败处理
+4. 发布失败重试逻辑
+
+## 注意事项
+
+### 安全性
+1. 所有外部内容需经过安全过滤
+2. 避免执行不可信代码
+3. 保护用户隐私数据
+4. 遵守内容审核规范
+
+### 合规性
+1. 遵守新闻转载相关规定
+2. 注明新闻来源和出处
+3. 避免传播不实信息
+4. 尊重知识产权
+
+### 性能优化
+1. 控制API调用频率
+2. 缓存新闻内容
+3. 异步处理机制
+4. 内存使用监控
+
+## 扩展计划
+
+### 短期（1-3个月）
+1. 增加更多新闻源
+2. 优化自然语言处理
+3. 添加多语言支持
+4. 完善用户反馈机制
+
+### 中期（3-6个月）
+1. 引入机器学习推荐
+2. 开发移动端应用
+3. 集成日历提醒
+4. 添加语音播报功能
+
+### 长期（6-12个月）
+1. 构建新闻知识图谱
+2. 开发预测分析功能
+3. 建立专家评论系统
+4. 打造新闻社交平台
+
+## 技术支持
+- 问题反馈：通过OpenClaw issue系统
+- 功能建议：提交feature request
+- 紧急支持：联系开发团队
+
+---
+*最后更新：2026年3月4日*
+*版本：1.0.0*

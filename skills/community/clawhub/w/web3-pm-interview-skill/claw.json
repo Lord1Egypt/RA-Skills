@@ -1,0 +1,27 @@
+{
+  "name": "web3-pm-interview-skill",
+  "version": "0.4.0",
+  "description": "Bilingual AI skill for Web3 PM interview preparation: wallet, DeFi, DEX, on-chain data, growth, AI Wallet, mock interviews, case prep, and 30/60/90 plans.",
+  "author": "alexwang",
+  "license": "MIT",
+  "permissions": [],
+  "entryPoint": "SKILL.md",
+  "tags": [
+    "web3",
+    "product-management",
+    "interview",
+    "wallet",
+    "defi",
+    "onchain-data",
+    "ai-wallet",
+    "career"
+  ],
+  "repository": "https://github.com/alexander10011/web3-pm-interview-skill",
+  "homepage": "https://github.com/alexander10011/web3-pm-interview-skill",
+  "privacy": {
+    "dataCollection": [],
+    "externalServices": [],
+    "localStorage": []
+  }
+}
+

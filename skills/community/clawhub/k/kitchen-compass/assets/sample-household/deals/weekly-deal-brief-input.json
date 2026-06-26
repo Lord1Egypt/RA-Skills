@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "week_of": null,
+  "store_id": null,
+  "source": {
+    "type": "circular-url",
+    "url": "",
+    "captured_at": null,
+    "notes": "Paste the exact flyer, circular, or app share link you actually used for this week's brief."
+  },
+  "curated_by": "manual",
+  "notes": "Manual or agent-assisted only. Keep only relevant weekly deals here: major proteins first, then useful supporting ingredients/sides.",
+  "items": []
+}

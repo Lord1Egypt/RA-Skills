@@ -1,0 +1,9 @@
+{
+  "results": [
+    {
+      "text": "--strict mode returns non-zero exit code with unfilled placeholders",
+      "passed": true,
+      "evidence": "Exit code: 1"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "agent-marketplace",
+  "version": "0.1.0",
+  "description": "Agent marketplace for skill discovery, rating, version management and trading",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/marketplace.test.js"
+  },
+  "keywords": [
+    "agent",
+    "marketplace",
+    "skills",
+    "registry",
+    "discovery"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

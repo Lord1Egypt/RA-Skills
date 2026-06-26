@@ -1,0 +1,45 @@
+# project.yaml 字段定义
+
+```yaml
+# ===== 必填字段 =====
+name: string                  # 书名
+genre: string                 # 题材：玄幻|都市|科幻|古风|仙侠|悬疑|言情|奇幻|其他
+total_volumes: integer        # 预计总卷数
+estimated_words: integer      # 预计总字数
+
+# ===== 文风配置 =====
+style:
+  tone: string                # 基调：轻松|沉重|热血|细腻|幽默|黑暗|温馨
+  pov_type: string            # 视角类型：第一人称|第三人称限制|第三人称全知|多视角切换
+  narrative_rhythm: string    # 叙事节奏：快节奏|中等|慢热
+  sample: string              # 文风样本（一段50-200字的代表性文字，从用户前文或指定作品中提取）
+  reference_works:            # 参考作品风格
+    - name: string
+      aspect: string          # 参考方面：节奏|文风|人物塑造|世界观|剧情结构
+
+# ===== 进度追踪 =====
+status:
+  current_volume: integer     # 当前卷号
+  current_chapter: integer    # 当前章节号（全局）
+  total_words: integer        # 已写字数
+  last_chapter: string        # 最后一章路径，如 vol-01/ch-012
+
+# ===== 时间戳 =====
+created_at: date              # 项目创建日期
+updated_at: date              # 最后更新日期
+
+# ===== 可选配置 =====
+options:
+  foreshadow_max_pending: integer  # 最大允许待回收伏笔数（默认 15）
+  foreshadow_overdue_alert: integer # 伏笔逾期提醒（超过预期回收卷几卷后提醒，默认 1）
+  ripple_max_depth: integer        # 涟漪最大深度（默认 3）
+  auto_ripple: boolean             # 是否自动执行涟漪修改（默认 true）
+  chapter_target_words: integer    # 每章目标字数（默认 3000）
+```
+
+## 使用说明
+
+- 项目初始化时，`status` 字段自动生成
+- `style.sample` 首次可为空，写完第一章后回填
+- `options` 中的默认值可在运行中调整
+- `estimated_words` 和 `total_volumes` 只是预估，不影响系统行为

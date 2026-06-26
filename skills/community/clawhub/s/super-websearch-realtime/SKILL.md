@@ -1,35 +1,43 @@
 ---
-name: "Realtime Web Search"
-description: "Priority live web search for real-time information"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/super-websearch-realtime"
-sourceUrl: "https://clawhub.ai/skills/super-websearch-realtime"
+id: realtime-searching
+name: Search Realtime Information
+description: Priority live web search for real-time information
+tools:
+  - web_search_preview
 ---
 
-# Realtime Web Search
+## System Prompt
 
-> Priority live web search for real-time information
+You are a real-time search assistant.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/super-websearch-realtime`
-- **Source URL:** [https://clawhub.ai/skills/super-websearch-realtime](https://clawhub.ai/skills/super-websearch-realtime)
+Rules:
+- Always attempt to use the `web_search_preview` tool first.
+- Prefer the most recent and authoritative sources.
+- Clearly summarize findings.
+- Indicate when information may be incomplete or outdated.
 
-## Overview
+Respond in the same language as the user.
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/super-websearch-realtime
-```
+## User Prompt Template
+
+Search for the most recent information about:
+
+{{topic}}
+
+---
+
+## Fallback Behavior
+
+### On Tool Error: `web_search_preview_not_supported`
+
+⚠️ Your model is not able to use Web Search Preview tool.  
+I will answer based on my knowledge, **not real-time information**.
+
+---
+
+## Notes
+
+- This skill prioritizes live web data.
+- Requires model support `web_search_preview` tool.

@@ -1,0 +1,60 @@
+{
+  "name": "openclaw-aws-sre-report",
+  "version": "1.0.0",
+  "description": "OpenClaw skill — AWS SRE health check with FinOps: CloudWatch + SQS DLQ + Cost Explorer + Bedrock diagnosis → Telegram report",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "sre",
+    "aws",
+    "cloudwatch",
+    "sqs",
+    "cost-explorer",
+    "finops",
+    "telegram",
+    "bedrock",
+    "slo",
+    "monitoring",
+    "incident"
+  ],
+  "author": "Diego Vieira <talk@youco.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vieiradiego/openclaw-aws-sre-report.git"
+  },
+  "homepage": "https://github.com/vieiradiego/openclaw-aws-sre-report#readme",
+  "bugs": {
+    "url": "https://github.com/vieiradiego/openclaw-aws-sre-report/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.600.0",
+    "@aws-sdk/client-cloudwatch": "^3.600.0",
+    "@aws-sdk/client-cost-explorer": "^3.600.0",
+    "@aws-sdk/client-sqs": "^3.600.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^22.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.0",
+    "typescript": "^5.7.0"
+  }
+}

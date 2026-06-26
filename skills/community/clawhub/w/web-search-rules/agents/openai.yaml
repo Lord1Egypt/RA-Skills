@@ -1,0 +1,3 @@
+display_name: Web Search Rules / 研究资料入库治理
+short_description: A bilingual research intake governance skill that turns web search results into controlled knowledge-base records using source trust levels, rules, staging, review queues, archive policies, cloud-upload safeguards, and audit logs.
+default_prompt: Use this skill to search the web, classify sources with trust levels and URL rules, stage useful content, route uncertain items to review, and archive confirmed results to the selected knowledge-base platform with safety confirmations and audit logs.

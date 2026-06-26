@@ -1,0 +1,111 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-03",
+  "rules": {
+    "stampCheck": {
+      "name": "盖章检查",
+      "description": "合格证和许可证必须包含公章",
+      "required": true,
+      "docTypes": [ "certificate", "permit" ]
+    },
+    "contractNoMatch": {
+      "name": "合同号匹配",
+      "description": "所有文档的合同号应一致",
+      "field1": "合同号",
+      "field2": "合同号",
+      "tolerance": 0
+    },
+    "exportCountryCheck": {
+      "name": "出口国检查",
+      "description": "所有文档的出口国信息应一致",
+      "required": true
+    },
+    "importerCheck": {
+      "name": "进口商检查",
+      "description": "验证进口商英文名称信息应一致",
+      "required": true
+    },
+    "customsPortCheck": {
+      "name": "报关口岸检查",
+      "description": "验证报关口岸信息必须为境内保税区",
+      "required": false,
+      "requireChinaPort": true
+    },
+    "businessDetailCheck": {
+      "name": "业务详情检查",
+      "description": "验证业务相关信息：同种货物的规格、数量、总价，申请数据要小于等于附件中的数据。同时列举出两个信息中的货品详情，需要详细原样输出，不可省略：申请信息中的规格名称，与附件信息中的相比，只要大致相同，视为一致；申请信息和附件信息中的总价 数字差额是否小于溢装条款，如果没有溢装条款，申请总价要小于等于附件总价；若币别名称描述不一致的情况，需要转换常用英文单位（如RMB,USD）再比对;没有币别默认USD；申请信息中的商品数量，若是重量描述，则与附件信息中的重量对比；若是个数描述，则与附件信息种的数量对比；允许数字差额小于溢装条款，如果没有溢装条款，申请数量要小于等于附件数量；同种维度存在单位名称不一致的情况，需要转换常用英文单位（如：KG,MT)再比对；没有单位默认KG；申请信息中的单价，是根据总价除以重量得到的；附件信息中的单价可能是根据总价除以重量，或是除以数量得到；需要根据申请信息中商品数量单位进行动态计算比对。申请信息中货物规格种类数量若是少于附件信息，先判断申请信息中的货物规格名称是否是对附件信息中货物的统称，若是，则只需判断附件信息中的商品数量和价格总计；若不是，则需判断申请信息中存在的货物信息。",
+      "required": false
+    },
+    "amountTolerance": {
+      "name": "金额检查",
+      "description": "金额容忍度检查：比较附件信息和申请信息中 价格总计 数字差额是否 小于溢装条款，如果没有溢装条款，申请价格总计要小于等于附件价格总计；若币别名称描述不一致的情况，需要转换常用英文单位（如RMB,USD）再比对，转换过程需要输出展示；同时列举出两个价格总计及币别；没有币别默认USD；无需参考货物详情；需要输出推理过程。",
+      "field": "总金额",
+      "tolerance": 0.05,
+      "currency": [ "RMB", "CNY", "USD", "EUR" ]
+    },
+    "quantityTolerance": {
+      "name": "数量检查",
+      "description": "数量容忍度检查：比较附件信息和申请信息中 货物总量数字差额 是否小于溢装条款，如果没有溢装条款，申请总量要小于等于附件总量；若单位不一致，需要转换成常用英文单位（如：KG,MT)再比对，转换过程需要输出展示；同时列举出两个货物总量和单位；没有单位默认KG；无需参考货物详情；需要输出推理过程。",
+      "field": "数量",
+      "tolerance": 0.05,
+      "unit": [ "PCS", "CTNS", "KG", "MT" ]
+    },
+    "weightCheck": {
+      "name": "重量检查",
+      "description": "验证重量信息应一致",
+      "required": false,
+      "unit": [ "KG", "MT", "g", "ton" ]
+    },
+    "certificateNoMatch": {
+      "name": "合格证编号检查",
+      "description": "验证合格证编号格式",
+      "required": true,
+      "pattern": "^[A-Z0-9]{8,}$"
+    },
+    "manufacturerCheck": {
+      "name": "生产商检查",
+      "description": "验证生产商信息应一致",
+      "required": true
+    }
+  },
+  "unitConversions": {
+    "currency": {
+      "RMB": "CNY",
+      "人民币": "CNY",
+      "元": "CNY",
+      "美元": "USD",
+      "$": "USD"
+    },
+    "weight": {
+      "kg": "KG",
+      "千克": "KG",
+      "g": "g",
+      "吨": "MT",
+      "ton": "MT",
+      "公吨": "MT"
+    },
+    "quantity": {
+      "件": "PCS",
+      "个": "PCS",
+      "箱": "CTNS",
+      "箱数": "CTNS"
+    }
+  },
+  "outputFormat": {
+    "filename": "audit-result-{folder}-{timestamp}.json",
+    "timestamp": "YYYYMMDDHHmmssSSS",
+    "structure": {
+      "totalFiles": "number",
+      "documents": "array",
+      "overallResult": "PASS|FAIL",
+      "summary": {
+        "contracts": "number",
+        "certificates": "number",
+        "permits": "number",
+        "withStamp": "number",
+        "passed": "number",
+        "failed": "number"
+      }
+    }
+  }
+}

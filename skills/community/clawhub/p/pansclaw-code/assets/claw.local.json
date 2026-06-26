@@ -1,0 +1,6 @@
+{
+  "provider": "ollama",
+  "model": "mistral-small:24b",
+  "permissionMode": "danger-full-access",
+  "dangerouslySkipPermissions": true
+}

@@ -1,0 +1,17 @@
+[project]
+name = "target-com-shopper"
+version = "0.1.0"
+description = "Unofficial skill: search and browse Target.com via its public-facing API."
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: hits live public-facing API; gated by TARGET_LIVE_TESTS=1",
+]

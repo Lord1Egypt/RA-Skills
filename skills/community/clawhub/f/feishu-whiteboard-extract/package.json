@@ -1,0 +1,9 @@
+{
+  "name": "feishu-board-skill",
+  "version": "1.0.0",
+  "description": "External skill to extract images from Feishu Whiteboards",
+  "main": "extract_images.js",
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.24.0"
+  }
+}

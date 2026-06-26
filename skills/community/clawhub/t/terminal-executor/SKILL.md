@@ -1,35 +1,21 @@
----
-name: "Terminal Executor"
-description: "Execute terminal commands with optional sudo privileges and return the command output safely upon user request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/terminal-executor"
-sourceUrl: "https://clawhub.ai/skills/terminal-executor"
----
+# terminal-executor - 终端命令执行器
 
-# Terminal Executor
+## 描述
+执行终端命令并返回结果，支持sudo权限命令。
 
-> Execute terminal commands with optional sudo privileges and return the command output safely upon user request.
+## 激活时机
+当用户需要执行系统命令、安装软件、检查系统状态等终端操作时激活。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/terminal-executor`
-- **Source URL:** [https://clawhub.ai/skills/terminal-executor](https://clawhub.ai/skills/terminal-executor)
+## 工具
+- `exec`: 执行终端命令
+- `sudo_exec`: 执行需要sudo权限的命令
 
-## Overview
+## 使用示例
+1. 检查系统信息: `exec("uname -a")`
+2. 安装软件: `sudo_exec("apt install -y package")`
+3. 查看进程: `exec("ps aux | grep process")`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/terminal-executor
-```
+## 安全注意事项
+- 谨慎执行删除、格式化等危险命令
+- 需要用户确认敏感操作
+- 记录执行历史

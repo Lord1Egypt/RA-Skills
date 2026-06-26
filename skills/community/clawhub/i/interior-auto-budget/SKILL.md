@@ -1,35 +1,47 @@
----
-name: "室内设计自动预算生成器"
-description: "自动从DXF提取户型信息，结合设计师历史报价生成符合原模板的家装或工装预算Excel，快速准确。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interior-auto-budget"
-sourceUrl: "https://clawhub.ai/skills/interior-auto-budget"
----
-
 # 室内设计自动预算生成器
 
-> 自动从DXF提取户型信息，结合设计师历史报价生成符合原模板的家装或工装预算Excel，快速准确。
+## 描述
+从DXF提取户型信息，基于设计师历史报价库自动生成完整家装/工装预算Excel，严格匹配原有模板格式，不漏项，价格贴合本地市场。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interior-auto-budget`
-- **Source URL:** [https://clawhub.ai/skills/interior-auto-budget](https://clawhub.ai/skills/interior-auto-budget)
+## 功能
+- 自动提取DXF户型文字信息，确认层数面积
+- 基于设计师历史报价自动构建标准项目库
+- 按楼层/空间自动分配项目，估算工程量
+- 生成和原有模板格式完全一致的Excel预算表
+- 支持家装/工装两种模式
 
-## Overview
+## 作者
+老冷 @ 温州隐室空间设计
 
+## 分类
+设计工具 / 预算自动化
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/interior-auto-budget
+## 触发词
+- 生成预算
+- 预算自动生成
+- 室内设计预算
+- 家装预算
+
+## 依赖
+- python3
+- openpyxl
+- ezdxf
+- python-pptx (可选，用于PPT生成)
+
+## 使用方法
+1. 设计师在CAD中将图纸导出为DXF格式
+2. 放入指定文件夹
+3. 运行 `generate_budget.py /path/to/your/file.dxf output.xlsx`
+4. 等待生成，直接拿到可编辑的预算表
+5. 微调工程量即可交付客户
+
+## 优势
+- 保留设计师原有报价体系，贴合本地市场价
+- 半小时出初稿，比手工快10倍
+- 不漏小项目（钢筋、纤维网这些不容易漏了）
+- 完全本地运行，数据不外出
+
+## 示例
+```
+python generate_budget.py ~/Desktop/项目/户型.dxf ~/Desktop/龙虾/项目预算.xlsx
 ```

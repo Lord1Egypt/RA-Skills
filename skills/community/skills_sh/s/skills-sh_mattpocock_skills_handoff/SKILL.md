@@ -1,35 +1,16 @@
 ---
-name: "handoff"
-description: "Indexed by skills.sh from mattpocock/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mattpocock"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mattpocock/skills/handoff"
-sourceUrl: "https://skills.sh/mattpocock/skills/handoff"
+name: handoff
+description: Compact the current conversation into a handoff document for another agent to pick up.
+argument-hint: "What will the next session be used for?"
+disable-model-invocation: true
 ---
 
-# handoff
+Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
 
-> Indexed by skills.sh from mattpocock/skills
+Include a "suggested skills" section in the document, which suggests skills that the agent should invoke.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mattpocock
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mattpocock/skills/handoff`
-- **Source URL:** [https://skills.sh/mattpocock/skills/handoff](https://skills.sh/mattpocock/skills/handoff)
+Do not duplicate content already captured in other artifacts (PRDs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.
 
-## Overview
+Redact any sensitive information, such as API keys, passwords, or personally identifiable information.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mattpocock/skills/handoff
-```
+If the user passed arguments, treat them as a description of what the next session will focus on and tailor the doc accordingly.

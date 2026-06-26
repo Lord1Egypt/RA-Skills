@@ -1,35 +1,115 @@
 ---
-name: "A 股市场日报"
-description: "获取 A 股市场日报，包括大盘指数、热门板块和龙头股。使用东方财富 API，无需 API Key。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-daily-report-cn"
-sourceUrl: "https://clawhub.ai/skills/a-stock-daily-report-cn"
+name: a-stock-daily-report
+description: 获取 A 股市场日报，包括大盘指数、热门板块和龙头股。使用东方财富 API，无需 API Key。
 ---
 
-# A 股市场日报
+# A 股市场日报 Skill
 
-> 获取 A 股市场日报，包括大盘指数、热门板块和龙头股。使用东方财富 API，无需 API Key。
+获取 A 股市场每日表现报告，包括大盘指数、热门板块排行及板块龙头股。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-daily-report-cn`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-daily-report-cn](https://clawhub.ai/skills/a-stock-daily-report-cn)
+## 何时使用
 
-## Overview
+✅ **使用场景：**
+- "今日 A 股表现如何？"
+- "查询今日热门板块"
+- "看看今天什么概念涨得好"
+- 每日市场复盘
+- 投资参考分析
 
+❌ **不使用场景：**
+- 个股详细分析（需要用专门股票分析工具）
+- 历史数据回测
+- 实时交易决策
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 数据来源
+
+- **东方财富网** (eastmoney.com)
+- 无需 API Key
+- 实时行情数据
+
+## 使用方法
+
+### 基础用法
+
 ```bash
-hermes skills install clawhub/a-stock-daily-report-cn
+python3 scripts/a_stock_daily_report.py
 ```
+
+### 在对话中
+
+直接请求：
+- "查询今日 A 股市场表现"
+- "今日热门板块有哪些"
+- "A 股日报"
+
+## 输出内容
+
+1. **大盘指数** - 上证指数、深证成指、创业板指
+2. **热门板块 Top 10** - 按涨幅排序
+3. **板块龙头股** - 前 3 大热门板块的领涨个股
+4. **市场简评** - 简要市场分析
+
+## 示例输出
+
+```
+📈 A 股市场日报
+📅 2026 年 03 月 10 日
+
+【大盘指数】
+上证指数：4098.59 点 (+1.00%)
+深证成指：14239.30 点 (-0.83%)
+创业板指：3281.94 点 (-0.81%)
+
+【🔥 今日最热板块 Top 10】
+1. CPO 概念：6518.76 (+6.66%)
+2. 光通信模块：3082.79 (+5.69%)
+3. F5G 概念：4316.67 (+4.86%)
+...
+```
+
+## 依赖
+
+- Python 3.7+
+- requests 库
+
+```bash
+pip install requests
+```
+
+## API 接口说明
+
+### 大盘指数
+```
+http://push2.eastmoney.com/api/qt/stock/get
+参数：secid=1.000001 (上证指数)
+```
+
+### 板块排行
+```
+http://push2.eastmoney.com/api/qt/clist/get
+参数：fs=m:90+t:3 (概念板块)
+```
+
+### 板块成分股
+```
+http://push2.eastmoney.com/api/qt/clist/get
+参数：fs=b:BK1128 (具体板块代码)
+```
+
+## 注意事项
+
+1. 数据仅在交易时段更新（工作日 9:30-15:00）
+2. 非交易时段显示最后收盘价
+3. 网络请求超时设置为 5 秒
+4. 仅供参考，不构成投资建议
+
+## 扩展建议
+
+- 可添加资金流向数据
+- 可添加涨跌停统计
+- 可添加北向资金数据
+- 可添加市场情绪指标
+
+## 版本
+
+v1.0.0 - 初始版本

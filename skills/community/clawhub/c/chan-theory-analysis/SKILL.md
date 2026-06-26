@@ -1,35 +1,69 @@
 ---
-name: "缠论技术分析"
-description: "缠论技术分析工具。基于缠中说禅理论，提供走势中枢分析、笔分段、背驰判断、买卖点识别。支持A股、港股、美股、加密货币。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chan-theory-analysis"
-sourceUrl: "https://clawhub.ai/skills/chan-theory-analysis"
+name: chan-theory-analysis
+description: 缠论技术分析工具。基于缠中说禅理论，提供走势中枢分析、笔分段、背驰判断、买卖点识别。支持A股、港股、美股、加密货币。
 ---
 
 # 缠论技术分析
 
-> 缠论技术分析工具。基于缠中说禅理论，提供走势中枢分析、笔分段、背驰判断、买卖点识别。支持A股、港股、美股、加密货币。
+基于缠中说禅理论的走势分析工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chan-theory-analysis`
-- **Source URL:** [https://clawhub.ai/skills/chan-theory-analysis](https://clawhub.ai/skills/chan-theory-analysis)
+## 快速开始
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/chan-theory-analysis
+pip3 install yfinance numpy --break-system-packages
+python3 scripts/analyze.py BTC-USD
+python3 scripts/analyze.py 0700.HK
+python3 scripts/analyze.py AAPL
 ```
+
+## 缠论核心
+
+### 走势类型
+| 类型 | 定义 |
+|------|------|
+| 盘整 | 只包含一个走势中枢 |
+| 趋势 | 包含两个以上同级别走势中枢 |
+
+### 三类买卖点
+| 买卖点 | 说明 |
+|--------|------|
+| 第1类 | 趋势背驰点（高风险） |
+| 第2类 | 第1类后次级别回抽（中等） |
+| 第3类 | 次级别离开后不回抽（低风险） |
+
+### 井论（解决非标准趋势）
+- **大井**: 5高于3和1 → 第一类买卖点
+- **小井**: 5高于1或3之一 → 第二类买卖点
+
+## 分析功能
+
+- 🔍 分型识别（顶分型/底分型）
+- 📈 笔分段
+- 🏛️ 中枢检测
+- 📊 MACD背驰判断
+- 🎯 关键位置分析
+
+## 支持市场
+
+- 港股: 0700.HK, 9988.HK
+- 美股: AAPL, TSLA, NVDA
+- 加密货币: BTC-USD, ETH-USD
+
+## 输出示例
+
+```
+📈 笔分析:
+   有效笔: 4笔
+   当前笔: 下跌笔
+   幅度: -33.58%
+   ⚠️ 背驰迹象: 力度减弱
+
+🎯 关键位置:
+   最高: 74051
+   最低: 60074
+   当前位置: 57% (中性区间)
+```
+
+## 风险提示
+
+⚠️ 缠论学习曲线较陡，仅供分析参考。

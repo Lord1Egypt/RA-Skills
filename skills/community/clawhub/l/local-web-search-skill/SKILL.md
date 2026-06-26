@@ -1,35 +1,42 @@
 ---
-name: "Local Web Search"
-description: "Free local web search via DuckDuckGo HTML scraping with no API key. Use when web_search tool is unavailable or missing API keys, and you need fast query resu..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-web-search-skill"
-sourceUrl: "https://clawhub.ai/skills/local-web-search-skill"
+name: local-web-search
+description: Free local web search via DuckDuckGo HTML scraping with no API key. Use when web_search tool is unavailable or missing API keys, and you need fast query results with source trust scoring, retry/backoff handling, and JSON output suitable for pipelines.
 ---
 
 # Local Web Search
 
-> Free local web search via DuckDuckGo HTML scraping with no API key. Use when web_search tool is unavailable or missing API keys, and you need fast query resu...
+Run local search without paid APIs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-web-search-skill`
-- **Source URL:** [https://clawhub.ai/skills/local-web-search-skill](https://clawhub.ai/skills/local-web-search-skill)
+## Command
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/local-web-search-skill
+./skills/local-web-search/scripts/local_search.py "<query>" --max 8
 ```
+
+## Output
+
+Returns JSON with:
+- query
+- count
+- disclaimer
+- security
+- results[] {title, url, snippet, trust{score,tier,reason}}
+
+## Trust Scoring
+
+- high: docs/papers/.gov/.edu/authoritative domains
+- medium: reputable publications/default domains
+- low: user-generated platforms (e.g., dev.to, medium, substack)
+
+Use trust score for ranking/filtering only; always verify key claims with primary sources.
+
+## Security
+
+- No environment/token exfiltration
+- No external writes
+- Outbound HTTPS GET only to search endpoint
+
+## Reliability
+
+- Handles transient errors with exponential backoff + jitter
+- Public scraping behavior can change; parser may need updates

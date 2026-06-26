@@ -1,0 +1,35 @@
+{
+  "name": "web3-daily",
+  "version": "2.1.1",
+  "description": "Web3 Daily Digest - Get daily crypto research with macro news, KOL sentiment, and real-time market data (BTC/ETH prices, Fear & Greed Index). No personal data required.",
+  "author": "Alex Wang",
+  "license": "MIT",
+  "permissions": [
+    "network"
+  ],
+  "entryPoint": "SKILL.md",
+  "tags": [
+    "web3",
+    "crypto",
+    "defi",
+    "research",
+    "digest",
+    "news",
+    "blockchain",
+    "market"
+  ],
+  "repository": "https://github.com/alexander10011/web3-daily",
+  "homepage": "https://github.com/alexander10011/web3-daily",
+  "privacy": {
+    "dataCollection": [],
+    "externalServices": [
+      {
+        "name": "J4Y Backend API",
+        "url": "https://j4y-production.up.railway.app",
+        "purpose": "Fetch public Web3 digest (news, KOL sentiment, market data)",
+        "dataShared": ["language_preference"]
+      }
+    ],
+    "localStorage": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "daily-news-cn",
+  "version": "2.3.0",
+  "description": "每日新闻自动采集与报告生成。双引擎交叉验证 + 官方媒体优先 + 900秒超时容错。8大类覆盖全球政经/AI/科技/家电。",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "news",
+    "daily",
+    "中国新闻",
+    "新闻日报",
+    "web_search",
+    "automation"
+  ],
+  "author": "Paudy",
+  "license": "MIT"
+}

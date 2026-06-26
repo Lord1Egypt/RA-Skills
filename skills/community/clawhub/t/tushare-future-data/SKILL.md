@@ -1,35 +1,192 @@
----
-name: "Tushare 期货数据"
-description: "提供明确支持的14个Tushare期货接口，涵盖期货合约信息、各类行情数据、仓单持仓及指数等全面期货数据查询服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tushare-future-data"
-sourceUrl: "https://clawhub.ai/skills/tushare-future-data"
----
+# Tushare 期货数据技能详细文档
 
-# Tushare 期货数据
+## 技能概述
+本技能是一个接口明确的 Tushare Pro 期货数据获取工具。与通用调用器不同，它有明确的边界，仅支持文档中描述的 **14 个核心接口**，涵盖行情、基础信息、仓单、结算、持仓排名、指数等全维度数据。这确保了技能能力的透明度和可预测性，用户无需猜测其功能范围。
 
-> 提供明确支持的14个Tushare期货接口，涵盖期货合约信息、各类行情数据、仓单持仓及指数等全面期货数据查询服务。
+## 核心特性：明确的接口支持
+本技能的核心价值在于明确性。您不需要猜测它能做什么，所有功能都已预先定义：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tushare-future-data`
-- **Source URL:** [https://clawhub.ai/skills/tushare-future-data](https://clawhub.ai/skills/tushare-future-data)
+### 完整接口支持表
+| 分类 | 接口数量 | 接口名称 (api_name) | 主要功能 |
+| :--- | :--- | :--- | :--- |
+| 基础信息 | 3 | `fut_basic`, `trade_cal`, `fut_mapping` | 合约列表、交易日历、内外盘映射 |
+| 行情数据 | 4 | `fut_daily`, `fut_weekly_monthly`, `ft_mins`, `rt_fut_min` | 日线、周月线、分钟线、实时分钟 |
+| 仓单、结算与持仓 | 3 | `fut_wsr`, `fut_settle`, `fut_holding` | 仓单、结算价、持仓排名 |
+| 指数数据 | 1 | `index_daily` | 指数日线行情 |
+| 统计与风险指标 | 2 | `fut_weekly_detail`, `ft_limit` | 周度明细、涨跌停价 |
 
-## Overview
+**总计：14个接口**
 
+## 调用前必读：核心参数说明
+大部分接口都依赖以下核心参数，请务必了解其格式：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tushare-future-data
-```
+| 参数名 | 含义 | 格式/示例 | 如何获取/注意事项 |
+| :--- | :--- | :--- | :--- |
+| **`api_name`** | 接口名称 | 必须是支持的14个接口之一，如 `"fut_daily"` | 详见上方“完整接口支持表” |
+| **`ts_code`** | 合约代码 | `品种+合约月份.交易所`<br>例如：`CU2501.SHF` (沪铜2501合约)<br>`RB2505.SHF` (螺纹钢2505合约)<br>`IF2504.CFFEX` (沪深300期货2504合约) | 使用 `fut_basic` 接口查询有效合约 |
+| **`trade_date`** | 单个交易日 | `YYYYMMDD`<br>例如：`20240115` | 查询单日数据时使用 |
+| **`start_date`** /<br>**`end_date`** | 开始/结束日期 | 日线：`YYYYMMDD`<br>分钟线：`YYYY-MM-DD HH:MM:SS`<br>示例：<br>日线范围：`20240101` 到 `20240131`<br>分钟线范围：`2024-01-15 09:00:00` 到 `2024-01-15 15:00:00` | 查询日期范围时使用 |
+| **`exchange`** | 交易所代码 | `CFFEX` (中金所)<br>`SHFE` (上期所)<br>`DCE` (大商所)<br>`CZCE` (郑商所)<br>`INE` (能源中心)<br>`GFEX` (广期所) | 可省略，省略时查询所有交易所 |
+| **`freq`** | 分钟线频率 | `1min`, `5min`, `15min`, `30min`, `60min` | 仅 `ft_mins` 接口需要 |
+| **`token`** | Tushare Token | 您的Tushare API Token字符串 | 可在每次调用时传入，或通过环境变量`TUSHARE_TOKEN`设置 |
+
+**重要提示**：
+1.  **日期格式**：日线接口使用`YYYYMMDD`（无短横线），分钟线接口使用`YYYY-MM-DD HH:MM:SS`（必须包含短横线和空格）
+2.  **合约有效性**：调用任何行情接口前，建议先用 `fut_basic` 确认合约代码的有效性及交易日期
+3.  **必填参数**：每个接口的必填参数不同，不传必填参数会报错
+4.  **返回数据**：如返回空数组，请检查：①参数是否正确 ②Token是否有权限 ③该日期是否为交易日
+
+## 接口详细说明（精选）
+
+### 1. 期货合约列表 (`fut_basic`)
+*   **描述**：获取各交易所所有期货合约的基本信息（代码、名称、上市/退市日、合约单位、最小变动价位等）
+*   **必填参数**：无（不传`exchange`则返回全市场）
+*   **常用参数**：`exchange`（交易所代码，如`DCE`）、`fields`（指定返回字段）
+*   **输出示例**：
+json
+{
+"api_name": "fut_basic",
+"exchange": "DCE"
+}
+*   **典型用途**：获取可交易合约列表，验证合约代码格式
+
+### 2. 期货日线行情 (`fut_daily`)
+*   **描述**：获取期货合约的日K线数据，包含开、高、低、收、结算价、成交量、持仓量
+*   **必填参数**：`ts_code` 或 `trade_date` 二选一
+*   **常用参数**：`ts_code`（单个合约）, `trade_date`（单个交易日）, `start_date` + `end_date`（日期范围）
+*   **输出示例**：
+json
+{
+"api_name": "fut_daily",
+"ts_code": "CU2501.SHF",
+"start_date": "20240101",
+"end_date": "20240131"
+}
+*   **注意**：若只传`ts_code`不传日期，默认返回最近一个交易日的数据
+
+### 3. 期货分钟行情（历史） (`ft_mins`)
+*   **描述**：获取历史分钟线数据，支持1、5、15、30、60分钟频率
+*   **必填参数**：`ts_code`, `freq`, `start_date`, `end_date`
+*   **重要参数**：`freq`（频率）, `start_date`（精确到秒）, `end_date`（精确到秒）
+*   **输出示例**：
+json
+{
+"api_name": "ft_mins",
+"ts_code": "RB2501.SHF",
+"freq": "5min",
+"start_date": "2024-01-15 09:00:00",
+"end_date": "2024-01-15 15:00:00"
+}
+*   **注意**：分钟线的起止时间格式必须包含秒，且为`YYYY-MM-DD HH:MM:SS`
+
+### 4. 期货持仓排名 (`fut_holding`)
+*   **描述**：获取期货合约的持仓排名数据（会员持仓明细）
+*   **必填参数**：`trade_date`, `symbol` 或 `ts_code`
+*   **常用参数**：`trade_date`（交易日）, `symbol`（品种代码，如`CU`）, `ts_code`（具体合约）
+*   **输出示例**：
+json
+{
+"api_name": "fut_holding",
+"trade_date": "20240115",
+"symbol": "CU"
+}
+*   **注意**：可接品种（`symbol`）查询，也可按具体合约（`ts_code`）查询
+
+## 快速开始示例
+### 示例1：获取大商所所有期货合约列表
+json
+{
+"api_name": "fut_basic",
+"exchange": "DCE"
+}
+### 示例2：获取螺纹钢主力合约近期日线
+json
+{
+"api_name": "fut_daily",
+"ts_code": "RB2505.SHF",
+"start_date": "20240101",
+"end_date": "20240131"
+}
+### 示例3：获取沪深300期货实时分钟线
+json
+{
+"api_name": "rt_fut_min",
+"ts_code": "IF2504.CFFEX"
+}
+### 示例4：获取沪铜仓单数据
+json
+{
+"api_name": "fut_wsr",
+"trade_date": "20240115",
+"symbol": "CU"
+}
+## 如何获取完整接口详情
+虽然本技能文档列出了所有接口的核心信息，但每个接口的完整参数列表、所有输出字段的详细说明、数据更新频率、以及所需的Tushare积分要求等，均需以 **[Tushare Pro 官方文档](https://tushare.pro/document/2)** 为准。调用前强烈建议查阅官方文档确认接口细节。
+
+## 返回数据格式
+本技能始终返回统一的JSON格式：
+
+**成功响应**：
+json
+{
+"success": true,
+"data": [...], // 数据数组
+"msg": "查询成功",
+"api": "fut_daily"
+}
+**失败响应**：
+json
+{
+"success": false,
+"error": "错误信息详情",
+"api": "fut_daily"
+}
+## 开发说明
+### 接口增删原则
+本技能的接口列表基于明确的需求文档固化。如需增加新接口，需要：
+1.  确认该接口在 Tushare 官方文档中存在且可用；
+2.  更新 `__init__.py` 中的 `SUPPORTED_APIS` 字典；
+3.  更新 `README.md` 和本文件 (`SKILL.md`) 中的接口列表；
+4.  更新 `metadata.json` 中的版本号描述。
+
+### 代码结构
+本技能作为一个**ClawHub纯Python技能**，由以下核心文件构成：
+- `__init__.py`：包含 `SUPPORTED_APIS` 字典和核心逻辑，是技能的入口。
+- `metadata.json`：**技能核心配置文件**，定义了技能名称、版本、依赖和平台运行要求。
+- `requirements.txt`：Python依赖包列表（`tushare`, `pandas`）。
+- `README.md`：面向用户的快速使用指南。
+- `SKILL.md`：本文件，即详细技术文档。
+
+## 常见问题
+**Q: 这个技能和通用 Tushare 调用器有什么区别？**
+**A**：通用调用器声称支持“所有”Tushare接口，但用户无法确知其具体支持哪些。本技能明确列出了支持的 **14 个期货专用接口**，让用户清楚知道能做什么，避免了猜测和试错。
+
+**Q: 我想用的接口不在列表中怎么办？**
+**A**：本技能仅支持文档中明确的 14 个接口。如果您需要其他接口，有两个选择：1) 根据“开发说明”自行修改代码添加；2) 使用功能更宽泛的通用调用器。
+
+**Q: 为什么我按示例调用了接口，却返回空数据或错误？**
+**A**：请按顺序检查：
+1.  **Token配置**：是否设置了有效的 `TUSHARE_TOKEN` 环境变量或在参数中传入
+2.  **合约代码**：`ts_code` 格式是否正确（如`CU2501.SHF`），可通过`fut_basic`验证
+3.  **日期格式**：日线是否为`YYYYMMDD`（无短横线），分钟线是否为`YYYY-MM-DD HH:MM:SS`
+4.  **合约状态**：该合约在查询日期是否已上市且未退市
+5.  **积分权限**：您的Tushare账户是否有权限访问该接口数据
+
+**Q: 期货数据有延迟吗？**
+**A**：这取决于您的Tushare账户权限。免费账号或基础积分账号获取的行情数据通常有15分钟的延迟。实时行情接口（`rt_fut_min`）需要更高的积分或单独的数据权限。
+
+**Q: 如何配置 Token？**
+**A**：推荐通过以下两种方式（按优先级）：
+1.  **环境变量**：设置系统环境变量 `TUSHARE_TOKEN` 为您的token
+2.  **调用参数**：在每次调用的JSON参数中传入 `"token": "您的token"`
+如果以上均未提供，技能将返回错误。
+
+**Q: 合约代码格式是怎样的？如何知道某个品种的代码？**
+**A**：期货合约代码格式为 `品种+合约月份.交易所`，例如：
+- `CU2501.SHF`：沪铜2501合约
+- `IF2504.CFFEX`：沪深300期货2504合约
+- `A2505.DCE`：豆一2505合约
+可通过 `fut_basic` 接口查询所有交易所的有效合约列表。
+
+**Q: 返回的数据量很大，如何限制？**
+**A**：Tushare接口本身支持`limit`参数限制返回条数，您可以在调用时添加`"limit": 100`这样的参数。另外，通过合理设置`start_date`和`end_date`也可以控制数据量。

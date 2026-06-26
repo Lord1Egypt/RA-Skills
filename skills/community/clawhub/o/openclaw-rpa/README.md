@@ -1,0 +1,412 @@
+# 🚀 OpenClaw-RPA 
+
+English | **[中文](README.zh-CN.md)**
+
+### **The "RPA Compiler" for AI Agents.**
+**Record once → Replay as deterministic Python. Stop the "LLM Tax" on repetitive tasks.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Playwright](https://img.shields.io/badge/powered%20by-Playwright-green)](https://playwright.dev/)
+
+---
+
+## 💡 Why OpenClaw-RPA?
+
+https://github.com/user-attachments/assets/e3ed5b34-1ddb-43a6-af42-2d1a907d3564
+
+Current AI Web、Computer、Workflow Agents are amazing but **fundamentally flawed** for production:
+* **The "LLM Tax":** Why pay for tokens every time your agent clicks a "Download" button it has clicked 100 times before?
+* **Latency:** Waiting for an LLM to "reason" through a fixed UI is painfully slow.
+* **Fragility:** High-temperature models can hallucinate and break stable workflows.
+
+**OpenClaw-RPA bridges the gap.** Use the intelligence of LLMs to **discover and record** a workflow *once*, then compile it into a **standalone, high-speed Playwright script** that runs with **ZERO token cost** forever.
+
+---
+
+## ✨ Key Features
+
+* **⚡ Zero-Token Replay:** Compile Agent reasoning into pure Python. Save 100% of inference costs on daily repetitive tasks.Like: Instantly replay your recorded sequence in a live browser window.
+* **🔑 Session Persistence (#rpa-login):** Manually solve 2FA, QR codes, or SMS once. The tool auto-injects cookies into all future headless runs. **Bypass login walls forever.**
+* **🌐 HTTP API Recording:** Mix REST `GET/POST` calls with browser steps in a single, replayable script.
+* **📄 Native Office Automation:** Build-in `excel_write` and `word_write`. **No Microsoft Office installation required.** Works on macOS, Linux, and Windows without Office; also fits Linux/Docker deployments.
+* **🔗 Seamless Integration:** Designed as a powerful skill for the OpenClaw ecosystem but generates standard Python/Playwright code.
+
+### Platforms (runtime)
+
+**macOS, Linux, and Windows** — Recording and replay use Python 3, Playwright, and pure-Python libraries (`httpx`, `openpyxl`, `python-docx`); all of them support Windows. Use `python` / `py -3` from PowerShell or Command Prompt the same way you would `python3` on Unix. Paths such as `~/Desktop` are resolved with `Path.expanduser()` / `os.path.expanduser()` (on Windows this maps under your user profile, e.g. Desktop). Automated CI has focused on macOS and Linux; if you hit a Windows-only edge case, open an issue on GitHub.
+
+---
+
+## 🎥 Show, Don't Tell
+
+| **Record Mode (LLM Thinking)** | **Replay Mode (Deterministic Script)** |
+| :--- | :--- |
+| *Agent analyzes the DOM and plans actions...* | *Executes at native code speed...* |
+| 💸 **Cost:** $$$ (Tokens) | 💰 **Cost:** $0.00 (Pure Python) |
+| 🐢 **Speed:** Slow (Reasoning) | 🚀 **Speed:** Instant (Execution) |
+
+<details>
+<summary><strong>Competitive Analysis: The RPA Evolution</strong></summary>
+
+| Feature | Legacy RPA (UIPath, etc.) | Pure LLM Agents (Browser-use) | **OpenClaw-RPA (The Compiler)** |
+| :--- | :--- | :--- | :--- |
+| **Development Cost** | High (Manual selectors/logic) | Low (Natural language) | **Low (Auto-record & Compile)** |
+| **Operational Cost** | High (Expensive licenses) | Very High (Token cost per run) | **Near Zero (Native Python scripts)** |
+| **Execution Speed** | Moderate | Slow (Inference latency) | **Instant (Native code execution)** |
+| **Stability** | Brittle (Breaks on UI changes) | Probabilistic (Prone to hallucinations) | **Deterministic (High reliability code)** |
+| **2FA Handling** | Extremely Complex | Costly (Requires live reasoning) | **Simple (One-time session capture)** |
+| **Environment** | Windows & MS Office | Flexible (But expensive) | **macOS / Linux / Windows — Python + Playwright; no MS Office; Docker-friendly** |
+| **Architecture** | Manual Flowcharts | Real-time Reasoning | **Reason Once → Compile → Replay** |
+
+</details>
+
+
+## What you can automate
+
+| Category | Examples |
+|----------|---------|
+| **Browser** | Login, navigate, click, fill forms, extract text, sort / filter tables |
+| **HTTP API** | Call any REST endpoint (`GET` / `POST`), save JSON, embed API keys directly in the script |
+| **Excel (`.xlsx`)** | Create / update workbooks, multiple sheets, headers, freeze panes, dynamic rows from JSON or another file |
+| **Word (`.docx`)** | Generate reports with paragraphs and tables — no Microsoft Office required |
+| **Auto-login** | Save cookies once with `#rpa-login`, inject them on every future recording and replay — skip OTP / CAPTCHA flows |
+| **Mixed flows** | Any combination of the above in a single recorded task 
+
+```
+You (plain language)
+      │
+      ▼
+  #RPA / #rpa-api          ← trigger
+      │
+      ▼
+ AI drives real Chrome     ← record-step (screenshot proof every step)
+      │
+      ▼
+ `#end`                     ← synthesize
+      │
+      ▼
+ rpa/<task>.py             ← standalone Playwright Python script
+      │
+      ▼
+ python3 rpa/<task>.py     ← replay — no model, no AI, runs anywhere
+```
+
+**Why not just let the AI click the browser every time (Computer Use)?**
+
+| Pain point | What goes wrong |
+|------------|----------------|
+| 🌀 **Hallucinations** | The model sometimes clicks the wrong button, targets the wrong element, or invents an action that doesn't exist — every "improvised" run carries risk |
+| 💸 **Cost** | Every repeat run calls the LLM — tokens + tool calls + long context add up fast; a single session can easily run several dollars |
+| 🐢 **Speed** | Waiting for model inference before each step is orders of magnitude slower than running a local script directly |
+
+**What openclaw-rpa does instead:** use AI to record and verify once, then replay with a local script — **no model call, no token burn, no hallucination risk, runs in seconds**.
+
+## Case videos
+
+### 1. E-Commerce Demo — browser recording
+
+**Sauce Demo** ([saucedemo.com](https://www.saucedemo.com)): **sign in → sort by price → add two most expensive → sign out**.  
+Shows the full flow from trigger through recording to a generated script.
+
+https://github.com/user-attachments/assets/965fbecc-a0fc-4795-9f63-a5ef126f97f8
+
+**Recording (`saucedemo-readme.mp4`) — steps in the video**
+
+1. Send **`#rpa`** / **`#RPA`** / **`#automation robot`** — see [**SKILL.md**](SKILL.md) and [**SKILL.en-US.md** — Trigger detection](SKILL.en-US.md#trigger-detection).
+2. Task name examples: match an existing script like **`onlineShoppingV1`** (see **`registry.json`**).
+
+**Task prompt (Sauce segment)**
+
+1. Open `www.saucedemo.com`, sign in **`standard_user`** / **`secret_sauce`**.  
+2. Sort **price high → low**.  
+3. Add the **two most expensive** items to the cart.  
+4. **Log out**.
+
+**Real-world variant — Amazon Best Sellers data extraction** ([`rpa/amazonbestseller.py`](rpa/amazonbestseller.py))
+
+Same flow on a live production site: scrape the first 40 products (title, price, rating, review count, URL) from Amazon search results and append a timestamped Word table to the Desktop. The `data_groups` DOM analysis layer auto-detects product card containers and field selectors from the real page — no hardcoded selectors, no guessing.
+
+📖 **[Full tutorial →](articles/scenario-amazon-bestsellers.en-US.md)**
+
+<a id="yahoo-finance-nvda-demo"></a>
+
+### 2. Yahoo Finance (NVDA news) — browser recording
+
+**Yahoo Finance** ([finance.yahoo.com](https://finance.yahoo.com)): **search a symbol → open the quote page → switch to the News tab → capture the top headlines to a text file on the Desktop**. This case shows the same end-to-end path as the Sauce demo—trigger, record, synthesize a Playwright script—for a finance/news workflow.
+
+https://github.com/user-attachments/assets/8da98e97-415c-4a60-b412-9a30ea87551a
+
+**Recording — steps in the video**
+
+1. Send **`#rpa`** / **`#RPA`** / **`#automation robot`** — see [**SKILL.md**](SKILL.md) and [**SKILL.en-US.md** — Trigger detection](SKILL.en-US.md#trigger-detection).
+2. Task name example: align with a registered script such as **`YahooNew`** (see **`registry.json`** → `yahoonew.py`).
+
+**Task prompt (Yahoo Finance segment)**
+
+1. Open `https://finance.yahoo.com/`, search for **NVDA**, and go to the quote page (e.g. `https://finance.yahoo.com/quote/NVDA/`).
+2. In the row of tabs under the stock price (same row as **Summary**), click **News** for this symbol—the tab next to **Summary**. Wait until the news list has loaded.
+3. Save the **top 5** news headlines (**title text only**) to **`YahooNews.txt`** on the **Desktop**.
+
+<a id="api-quotes-news-brief"></a>
+
+### 3. Quotes API + news page + local brief (browser + API + file)
+
+**Yahoo Finance (browser) + market data (HTTP API):** **save daily price data for a stock to the Desktop → open the symbol page → switch to News → save headline titles to a text file**. This flow adds a **data API** step on top of normal browsing. **How to wire URLs, keys, and `record-step` JSON** is in **[API notes](#api_call_notes)** below ([full `api_call` section](#api_call)).
+
+**Recording — steps in the video**
+
+1. Send **`#rpa-api`** — dedicated trigger for flows with HTTP API calls (see [**SKILL.en-US.md** — Trigger detection](SKILL.en-US.md#trigger-detection)).
+2. Task name example: align with **`registry.json`** or create a new name such as **`NVDABrief`**.
+
+**Task prompt (quotes + news + local brief)**
+
+```
+#rpa-api
+###
+Fetch NVDA daily OHLCV and save to the Desktop as nvda_time_series_daily.json
+API docs  https://www.alphavantage.co/documentation/#daily
+API key   UXZ3BOXOH817CQWS
+###
+Open Sina Finance https://finance.sina.com.cn/, search for NVDA, wait for the new page,
+click "Company News" in the left menu, wait for the new page, save the top 5 news headlines to nvda_news.txt on the Desktop.
+Merge nvda_time_series_daily.json and nvda_news.txt into a single brief file called nvda.txt.
+```
+
+Or paste the API doc parameter block directly:
+
+```
+#rpa-api
+###
+API Parameters
+❚ Required: function → TIME_SERIES_DAILY
+❚ Required: symbol   → NVDA
+❚ Required: apikey
+Example: https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo
+apikey  UXZ3BOXOH817CQWS
+###
+Open Sina Finance https://finance.sina.com.cn/, search for NVDA, click "Company News" on the left, save the top 5 headlines to nvda_news.txt on the Desktop.
+Merge nvda_time_series_daily.json and nvda_news.txt into nvda.txt.
+```
+
+### 4. Airbnb Competitor Price Tracker (Browser + Vision + Word) 🆕
+
+> [!TIP]
+> **Featured case — Real Computer-Use agent in production.**
+> Zero-code RPA robot: open browser → visual recognition → extract prices & ratings → append to a Word report.
+> Airbnb is a heavily dynamic **SPA**; traditional crawlers fail here. This case introduces **vision mode** — the AI reads the screen like a human, powered by **[Qwen3-VL](https://github.com/QwenLM/Qwen3-VL)** (Alibaba open-source, ultra-low token cost, local-deploy friendly).
+> Record **once** → auto-generate a Python script → all future runs execute the script directly: **zero Token cost, zero hallucinations, deterministic results.**
+>
+> 📖 **[Full step-by-step tutorial (EN) →](articles/scenario-airbnb-compare.en-US.md)** · **[中文 →](articles/scenario-airbnb-compare.md)**
+
+### 5. OpenClaw + Feishu/Lark: `#rpa-list`, `#rpa-run`, and scheduled run
+
+Screen recording of a typical chat with **OpenClaw-bot** on Feishu/Lark:
+
+- **`#rpa-list`** — list registered RPA tasks you can run;
+- **`#rpa-run:onlineShoppingV1`** — run a saved script from a new chat;
+- A line like **「One minute later run `#rpa-run:onlineShoppingV1`」** — schedule or remind to run later via OpenClaw + IM (exact behavior depends on your setup; execution still goes through **`rpa_manager.py run`**).
+
+
+https://github.com/user-attachments/assets/08ccbdc6-508b-457a-87d6-49ac77e9a89e
+
+### 6. Auto-login (Cookie reuse) — record post-login pages without re-entering credentials
+
+**Scenario:** Sites like e-commerce platforms that require SMS OTP, CAPTCHA sliders, or QR-code login. Log in once manually, save the session, and every subsequent recording or replay **injects the cookies automatically** — skipping the login flow entirely.
+
+**Case: Sauce Demo — sort products by price high → low**
+
+| Step | What happens |
+|------|-------------|
+| `#rpa-login https://www.saucedemo.com/` | Browser opens the login page; you log in normally |
+| `#rpa-login-done` | Cookies exported and saved to `~/.openclaw/rpa/sessions/saucedemo.com/cookies.json` |
+| Task prompt contains `#rpa-autologin saucedemo.com` | Recorder injects cookies before the first page load |
+| Record only: open `/inventory.html` → sort `hilo` | Browser is already logged in — no re-login step needed |
+| Generated `CONFIG` carries `cookies_path` | Replay works the same way, no manual intervention |
+
+**👉 Full tutorial:** [articles/autologin-tutorial.en-US.md](articles/autologin-tutorial.en-US.md)
+
+**Command quick reference:**
+
+```
+#rpa-login <login-page-URL>       Open browser; you log in manually (password / OTP / slider)
+#rpa-login-done                   Export cookies and close browser
+#rpa-autologin <domain-or-URL>    Inject saved cookies on record or replay
+#rpa-autologin-list               List all saved login sessions
+```
+
+---
+
+### 7. AP reconciliation — GET API + local Excel + Word tables
+
+**Finance / AP:** mock **GET** pulls open payables lines; **no ERP submit/close**; match against a local invoice workbook; save a **Word (`.docx`)** report with **tables**.
+
+- **Full write-up (EN):** **[articles/scenario-ap-reconciliation.en-US.md](articles/scenario-ap-reconciliation.en-US.md)**  
+- **Full write-up (中文):** **[articles/scenario-ap-reconciliation.md](articles/scenario-ap-reconciliation.md)**  
+- **Recording:** `#rpa-api` or `#RPA`; capability **F** (Excel + Word) or **G** if a browser is needed; `api_call` + `excel_write`; add `docx` **tables** in a small post-`record-end` patch if needed (see article).
+
+Full protocol: [**SKILL.en-US.md**](SKILL.en-US.md) (ONBOARDING, RECORDING). **See what recorded RPAs exist:** **`#rpa-list`**. **Run one:** `#rpa-run:{task}` (new chat) or `run:{task}` / `python3 rpa_manager.py run <name>` (same chat).
+
+---
+
+> With **AI assistance**, record **typical website** and **local file** workflows into a **repeatable Playwright Python** script. **Replay without the LLM on every run**—saves compute and keeps steps deterministic (vs. ad-hoc model calls).
+
+| | |
+|:---|:---|
+| **Needs** | Python **3.8+**, network for `pip` / Playwright browsers |
+| **Recommended LLM** | Minimax 2.7 · Google Gemini Pro 3.0 and above · Claude Sonnet 4.6 |
+| **License** | [Apache 2.0](LICENSE.md) |
+
+---
+
+## Quick install (OpenClaw)
+
+**Option 1 — OpenClaw CLI (recommended):**
+
+```bash
+openclaw skills install openclaw-rpa
+```
+
+**Option 2 — Manual (git clone):**
+
+Put the skill here: **`~/.openclaw/workspace/skills/openclaw-rpa`**
+
+```bash
+mkdir -p ~/.openclaw/workspace/skills
+git clone https://github.com/laziobird/openclaw-rpa.git ~/.openclaw/workspace/skills/openclaw-rpa
+cd ~/.openclaw/workspace/skills/openclaw-rpa
+
+chmod +x scripts/install.sh && ./scripts/install.sh
+python3 scripts/bootstrap_config.py
+python3 scripts/set_locale.py zh-CN    # or: en-US
+
+python3 rpa_manager.py env-check
+```
+
+If your flow uses **Excel / Word** (capability **B–G** in **SKILL.en-US.md** / **SKILL.zh-CN.md**), use the same `python3` for e.g. `python3 rpa_manager.py deps-check D`; the skill guides `deps-install` in chat when something is missing.
+
+**SSH clone:** `git@github.com:laziobird/openclaw-rpa.git`
+
+After install, **start a new OpenClaw chat** (or reload skills) so the agent reads **`SKILL.md`**.
+
+**Triggers — pick one to start:**
+
+```
+#RPA                   # browser-only flow
+#rpa-api               # flow that includes an HTTP API call
+#rpa-login <url>       # save a login session (cookies)
+#rpa-list              # list all recorded tasks
+#rpa-run:<task name>   # replay a recorded task
+```
+
+Full protocol and capability codes (A–G): **[SKILL.en-US.md](SKILL.en-US.md)**.
+
+<details>
+<summary><strong>What “full” <code>requirements.txt</code> means</strong></summary>
+
+**Full stack** = every Python package listed in `requirements.txt` **plus** Chromium from `playwright install chromium`, all in the **same** environment as `rpa_manager.py` (e.g. `.venv` from `./scripts/install.sh`).
+
+| Dependency | Role |
+|------------|------|
+| **playwright** | Headed Recorder + generated browser automation |
+| **httpx** | `api_call` in recording and replay |
+| **openpyxl** | `excel_write` for `.xlsx` (no Microsoft Excel required) |
+| **python-docx** | `word_write` for `.docx` (`import docx`; no Microsoft Word required) |
+| **Chromium** | Installed by `playwright install chromium`, not via `pip` |
+
+See comment block at the top of `requirements.txt` for the same breakdown.
+
+</details>
+
+---
+
+## Advanced
+
+Manual install, gateway Python, locale config, paths, and publishing:
+**[articles/advanced-setup.md](articles/advanced-setup.md)**
+
+---
+
+## CLI quick start
+
+```bash
+python3 rpa_manager.py env-check
+python3 rpa_manager.py list
+python3 rpa_manager.py run wikipedia
+```
+
+Recorder: `record-start` → `record-step` → `record-end` (see `rpa_manager.py` docstring).
+
+---
+
+## Sample scripts (`rpa/`)
+
+All scripts below are registered in **`registry.json`** and can be listed with **`#rpa-list`** or run with **`#rpa-run:<name>`** / `python3 rpa_manager.py run <name>`.
+
+<details>
+<summary>View all sample scripts</summary>
+
+| Script (`registry.json` name) | Notes |
+|-------------------------------|-------|
+| `wiki.py` (`wiki`) | Wikipedia search → extract article summary to Desktop |
+| `onlineshoppingv1.py` (`onlineShoppingV1`) | Sauce Demo — sign in → sort by price → add two most expensive to cart → log out (see [E-Commerce Demo](#1-e-commerce-demo--browser-recording)) |
+| `电商网站购物v10.py` (`电商网站购物V10`) | Sauce Demo — Chinese-language variant of the shopping flow |
+| `yahoonew.py` (`YahooNew`) | Yahoo Finance — search NVDA → News tab → save top 5 headlines to Desktop (see [Yahoo Finance demo](#yahoo-finance-nvda-demo)) |
+| `获取豆瓣电影数据.py` (`获取豆瓣电影数据`) | Douban Movie — search a film → open detail page → extract title, rating, synopsis → save to Desktop (see [Douban demo](#2-yahoo-finance-nvda-news--browser-recording)) |
+| `amazonbestseller.py` (`amazonbestseller`) | **Amazon Best Sellers** — scrape first 40 products (title, price, rating, reviews, URL) → append Word table to Desktop (see [tutorial](articles/scenario-amazon-bestsellers.en-US.md)) |
+| `airbnb民宿比价分析v11.py` (`airbnb民宿比价分析v11`) | **Airbnb price tracker** — open browser → vision recognition → extract competitor prices & ratings → append Word report (see [scenario](articles/scenario-airbnb-compare.en-US.md)) |
+| `携程酒店v3.py` (`携程酒店V3`) | **Ctrip hotel** — auto-login with saved cookies → open hotel detail page → extract name, rating, room types & prices → save to `hotel.docx` (see [auto-login tutorial](articles/autologin-tutorial.en-US.md)) |
+| `自动登录v3.py` (`自动登录V3`) | Auto-login demo — inject saved session cookies before recording; skip OTP / CAPTCHA on every subsequent run |
+| `apiv3.py` (`apiV3`) | **API only** — Alpha Vantage `TIME_SERIES_DAILY` for NVDA → saves `nvda_time_series_daily.json` to Desktop; no browser steps |
+| `api_demov3.py` (`api_demoV3`) | **API + browser** — Alpha Vantage market data + Sina Finance news → merge into a local brief file |
+| `hotelv2.py` (`hotelv2`) | Mock GET hotel data API → save response to `hotel.txt`; minimal browser-free API demo |
+| `reconciliationv2.py` (`reconciliationV2`) | **AP reconciliation (EN)** — Mock GET open payables → `ap_draft_thisweek.xlsx` (System / Invoices / Match Results, two-stage matching) → `ap_reconciliation_YYYYMMDD.docx` Word report (see [scenario](articles/scenario-ap-reconciliation.en-US.md)) |
+| `会计记账v2.py` (`会计记账V2`) | **AP reconciliation (CN)** — same flow in Chinese: Mock GET → `对账底稿_本周.xlsx` → `对账报告_YYYYMMDD.docx` Word report (see [scenario](articles/scenario-ap-reconciliation.md)) |
+
+</details>
+
+---
+
+<a id="api_call"></a>
+
+## API recording (`api_call`)
+
+The recorder supports **`api_call`** steps (GET/POST via httpx, response optionally saved to Desktop).
+
+Full guide — key embedding strategy, env field, examples:
+**[articles/api-call-guide.md](articles/api-call-guide.md)**
+
+---
+**Caveats**
+
+- **Compliance:** Follow each site's terms of service and policies. This repo does not endorse evading safeguards or scraping where it isn't allowed.
+- **High-friction sites (e.g. LinkedIn):** Even with auto sign-in or session reuse, you may still hit **2FA, device checks, CAPTCHAs, and risk blocks** that require **human steps**.
+
+---
+
+## Author Contact
+
+<details>
+<summary><strong>Enterprise &amp; industry-specific customization</strong></summary>
+
+This repo ships as an **open-source skill** with a **general recording protocol**—great for individuals and teams automating typical browser and local-file workflows. If your needs look more like the table below, reach out via the channels at the bottom with **industry context, system boundaries, compliance constraints, and how you want it delivered**. We can discuss **tailored builds** for complex commercial scenarios (scope, timeline, and pricing depend on the engagement—no obligation to quote).
+
+| Scenario | What we can shape together |
+|----------|----------------------------|
+| **Deep workflows** | Multi-branch logic, exception handling, human-in-the-loop steps, long reconciliation chains, or merging several data sources |
+| **Vertical / industry fit** | Finance, supply chain, e-commerce ops, general price-comparison systems, internal ERP/OA plus external sites—field definitions, audit trails, and report layouts aligned to your org |
+| **Integration & operations** | Hooks into your gateway, queues, secrets management, scheduling at scale, private or air-gapped-style deployments |
+| **Reliability at scale** | High-friction sites, vision + DOM hybrid flows, custom validation and document templates, stronger performance and observability |
+
+</details>
+
+**Contact (open-source questions or commercial inquiries):**
+
+- WeChat: `nizhanali`
+- Gmail: `greentim2049@gmail.com`
+
+---
+
+<p align="center">
+  <sub>Apache License 2.0 · Copyright © 2026 openclaw-rpa contributors</sub>
+</p>

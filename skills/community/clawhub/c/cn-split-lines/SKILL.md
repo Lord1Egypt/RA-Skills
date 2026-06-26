@@ -1,35 +1,18 @@
----
-name: "Cn Split Lines"
-description: "Split text into multiple lines using a specified delimiter via command-line or file input with no external dependencies."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-split-lines"
-sourceUrl: "https://clawhub.ai/skills/cn-split-lines"
----
+# cn-split-lines#
 
-# Cn Split Lines
+文本拆分工具。按照指定分隔符将文本拆分成多行。
 
-> Split text into multiple lines using a specified delimiter via command-line or file input with no external dependencies.
+## 使用方法#
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-split-lines`
-- **Source URL:** [https://clawhub.ai/skills/cn-split-lines](https://clawhub.ai/skills/cn-split-lines)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-split-lines
+python3 scripts/split_lines.py --text "a,b,c" --delimiter ","
+python3 scripts/split_lines.py --file input.txt --delimiter "|"
 ```
+
+纯Python标准库，无需外部依赖。
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

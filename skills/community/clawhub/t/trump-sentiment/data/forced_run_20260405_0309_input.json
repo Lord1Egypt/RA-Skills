@@ -1,0 +1,326 @@
+{
+  "run_id": "forced_run_20260405_0309",
+  "generated_at_cst": "2026-04-05 03:09 CST",
+  "source": "RSS feeds (web search unavailable)",
+  "timeline": [
+    {
+      "time_cst": "2026-04-05 03:09 CST (now)",
+      "time_utc": "2026-04-04 19:09 UTC",
+      "source": "System",
+      "type": "current",
+      "content": "Nasdaq波动触发 Trump舆情分析 v6 执行"
+    },
+    {
+      "time_cst": "2026-04-05 02:03 CST",
+      "time_utc": "2026-04-04 18:03 UTC",
+      "source": "CBC News",
+      "type": "news",
+      "title": "Trump gives Iran 48 hours to make a deal as search continues for missing U.S. pilot",
+      "content": "Trump给伊朗48小时达成协议，同时继续搜寻失踪美国飞行员"
+    },
+    {
+      "time_cst": "2026-04-05 02:37 CST",
+      "time_utc": "2026-04-04 18:37 UTC",
+      "source": "Middle East Eye",
+      "type": "news",
+      "title": "Iran says it rejects Trump offer of 48-hour ceasefire",
+      "content": "伊朗拒绝Trump 48小时停火提议，中东局势进一步升级"
+    },
+    {
+      "time_cst": "2026-04-05 02:00 CST",
+      "time_utc": "2026-04-04 18:00 UTC",
+      "source": "Le Monde",
+      "type": "analysis",
+      "title": "Iran's radicalized regime fuels threat of nuclear bomb",
+      "content": "伊朗激进政权加剧核弹威胁，分析称局势极度危险"
+    },
+    {
+      "time_cst": "2026-04-04 23:26 CST",
+      "time_utc": "2026-04-04 15:26 UTC",
+      "source": "Council on Foreign Relations",
+      "type": "analysis",
+      "title": "Trump Gambled by Easing Oil Sanctions on Iran and Russia. Will It Pay Off?",
+      "content": "CFR分析：Trump放松对伊朗和俄罗斯石油制裁是豪赌，能否成功存疑"
+    },
+    {
+      "time_cst": "2026-04-04 13:11 CST",
+      "time_utc": "2026-04-04 05:11 UTC",
+      "source": "Washington Post",
+      "type": "market",
+      "title": "As Trump doubles down on Iran war, markets shudder and oil prices climb",
+      "content": "Trump加码伊朗战争，市场恐慌，油价持续上涨"
+    },
+    {
+      "time_cst": "2026-04-04 11:47 CST",
+      "time_utc": "2026-04-04 03:47 UTC",
+      "source": "NYT",
+      "type": "live",
+      "title": "Iran War Live Updates: Trump Claims Military Success but Offers No Clear Timeline to End Fighting",
+      "content": "实时：Trump声称军事成功，但无明确结束战争时间表"
+    },
+    {
+      "time_cst": "2026-04-04 06:45 CST",
+      "time_utc": "2026-04-03 22:45 UTC",
+      "source": "PBS",
+      "type": "market",
+      "title": "Global leaders work to ease oil price surge as Trump signals more weeks of Iran war",
+      "content": "全球领袖试图稳定油价，Trump暗示伊朗战争持续数周"
+    },
+    {
+      "time_cst": "2026-04-04 06:25 CST",
+      "time_utc": "2026-04-03 22:25 UTC",
+      "source": "BBC",
+      "type": "market",
+      "title": "Oil prices jump and shares drop after Trump threatens more Iran strikes",
+      "content": "Trump威胁更多伊朗打击，油价飙升，股价下跌"
+    },
+    {
+      "time_cst": "2026-04-04 05:29 CST",
+      "time_utc": "2026-04-03 21:29 UTC",
+      "source": "FactCheck.org",
+      "type": "factcheck",
+      "title": "FactChecking Trump's Prime-Time Address on Iran",
+      "content": "事实核查Trump伊朗黄金时段讲话，多处存疑"
+    },
+    {
+      "time_cst": "2026-04-04 05:06 CST",
+      "time_utc": "2026-04-03 21:06 UTC",
+      "source": "NBC News",
+      "type": "market",
+      "title": "U.S. oil has its biggest one-day price increase in six years",
+      "content": "美国油价录得六年来最大单日涨幅，能源价格飙升"
+    },
+    {
+      "time_cst": "2026-04-04 04:17 CST",
+      "time_utc": "2026-04-03 20:17 UTC",
+      "source": "CSIS",
+      "type": "analysis",
+      "title": "Options for the United States to Resolve the Iran Nuclear Challenge",
+      "content": "CSIS发布美国解决伊朗核挑战的选项分析"
+    },
+    {
+      "time_cst": "2026-04-04 04:00 CST",
+      "time_utc": "2026-04-03 20:00 UTC",
+      "source": "U.S. News",
+      "type": "analysis",
+      "title": "What We Learned From Trump's Iran Address – And What We Didn't",
+      "content": "Trump伊朗讲话分析：亮点与疑点并存"
+    },
+    {
+      "time_cst": "2026-04-04 03:05 CST",
+      "time_utc": "2026-04-03 19:05 UTC",
+      "source": "Barron's",
+      "type": "market",
+      "title": "Why U.S. WTI Oil Prices Settled Higher Than Brent After Trump's Iran Speech",
+      "content": "WTI原油涨幅超Brent，Trump讲话后美国油价特殊走强"
+    },
+    {
+      "time_cst": "2026-04-04 02:00 CST",
+      "time_utc": "2026-04-03 18:00 UTC",
+      "source": "CBS News",
+      "type": "news",
+      "title": "As Iran war rages on and oil prices rise, Trump says U.S. 'hasn't even started destroying what's left'",
+      "content": "Trump：还没开始摧毁伊朗剩余目标，战争持续升级"
+    },
+    {
+      "time_cst": "2026-04-04 01:29 CST",
+      "time_utc": "2026-04-03 17:29 UTC",
+      "source": "Fox News",
+      "type": "news",
+      "title": "Trump unleashes on Obama's 'disaster' Iran nuclear deal, says he was 'honored' to rip it apart",
+      "content": "Trump猛批Obama伊朗核协议是'灾难'，称撕毁协议是'荣幸'"
+    },
+    {
+      "time_cst": "2026-04-04 01:00 CST",
+      "time_utc": "2026-04-03 17:00 UTC",
+      "source": "ms.now",
+      "type": "opinion",
+      "title": "Trump's oddly low-energy prime-time Iran war address failed at its main objective",
+      "content": "评论：Trump伊朗战争讲话'出奇平淡'，未能达成主要目标"
+    },
+    {
+      "time_cst": "2026-04-03 10:37 CST",
+      "time_utc": "2026-04-03 02:37 UTC",
+      "source": "NYT",
+      "type": "market",
+      "title": "Oil Stocks and Gas Prices Swing After Trump's Speech on Iran",
+      "content": "Trump讲话后石油股和汽油价格剧烈波动"
+    },
+    {
+      "time_cst": "2026-04-03 09:58 CST",
+      "time_utc": "2026-04-03 01:58 UTC",
+      "source": "Washington Post",
+      "type": "news",
+      "title": "Risky commando plan to seize Iran's uranium came at Trump's request",
+      "content": "WaPo：冒险突击队计划扣押伊朗铀是Trump要求"
+    },
+    {
+      "time_cst": "2026-04-03 09:17 CST",
+      "time_utc": "2026-04-03 01:17 UTC",
+      "source": "CNBC",
+      "type": "market",
+      "title": "U.S. oil prices soar 11% as Trump's Iran war speech stokes fears of further escalation",
+      "content": "CNBC：Trump伊朗战争讲话引发担忧，美国油价暴涨11%"
+    },
+    {
+      "time_cst": "2026-04-02 00:29 CST",
+      "time_utc": "2026-04-02 16:29 UTC",
+      "source": "Reuters",
+      "type": "news",
+      "title": "US to leave Iran 'pretty quickly' and return if needed, Trump tells Reuters",
+      "content": "Trump告诉路透：美军将'相当快'离开伊朗，如有需要再返回"
+    },
+    {
+      "time_cst": "2026-04-01 02:29 CST",
+      "time_utc": "2026-04-01 18:29 UTC",
+      "source": "NDTV",
+      "type": "diplomacy",
+      "title": "US, Iran Negotiating Ceasefire Deal In Exchange For Hormuz Reopening",
+      "content": "报道：美伊正在谈判停火协议，条件是重新开放霍尔木兹海峡"
+    },
+    {
+      "time_cst": "2026-04-01 00:29 CST",
+      "time_utc": "2026-04-01 16:29 UTC",
+      "source": "Reuters",
+      "type": "news",
+      "title": "Trump pauses attacks on Iran's energy plants, says talks 'going well'",
+      "content": "Trump暂停对伊朗能源设施攻击，称谈判'进展良好'"
+    },
+    {
+      "time_cst": "2026-03-31 02:22 CST",
+      "time_utc": "2026-03-31 18:22 UTC",
+      "source": "Axios",
+      "type": "diplomacy",
+      "title": "China and Pakistan present new Iran deal: Ceasefire for opening Hormuz",
+      "content": "中巴提出新伊朗协议：停火换取重新开放霍尔木兹海峡"
+    },
+    {
+      "time_cst": "2026-03-26 15:00 CST",
+      "time_utc": "2026-03-26 07:00 UTC",
+      "source": "The Hill",
+      "type": "news",
+      "title": "Here are Iran's 5 conditions for ending war after rejecting US ceasefire plan",
+      "content": "伊朗拒绝美国停火计划后提出5项结束战争条件"
+    },
+    {
+      "time_cst": "2026-03-26 08:00 CST",
+      "time_utc": "2026-03-26 00:00 UTC",
+      "source": "AP News",
+      "type": "news",
+      "title": "Iran rejects US ceasefire plan, issues its own demands as strikes land across the Mideast",
+      "content": "伊朗拒绝美国停火计划提出自己要求，中东多地遭打击"
+    },
+    {
+      "time_cst": "2026-03-25 15:00 CST",
+      "time_utc": "2026-03-25 07:00 UTC",
+      "source": "Al Jazeera",
+      "type": "diplomacy",
+      "title": "US-Iran mediation: What are each side's demands – and is a deal possible?",
+      "content": "美伊调解：各方诉求是什么？协议是否可能？"
+    },
+    {
+      "time_cst": "2026-03-25 14:00 CST",
+      "time_utc": "2026-03-25 06:00 UTC",
+      "source": "CNBC",
+      "type": "news",
+      "title": "Iran has no intention to hold talks with U.S.; foreign minister says Trump proposal being reviewed",
+      "content": "伊朗外长：伊朗无意与美国谈判，Trump提案正在审议"
+    },
+    {
+      "time_cst": "2026-03-24 15:00 CST",
+      "time_utc": "2026-03-24 07:00 UTC",
+      "source": "AP News",
+      "type": "news",
+      "title": "Trump administration offers 15-point ceasefire plan to Iran",
+      "content": "Trump政府向伊朗提出15点停火计划"
+    },
+    {
+      "time_cst": "2026-03-15 15:00 CST",
+      "time_utc": "2026-03-15 07:00 UTC",
+      "source": "The Guardian",
+      "type": "news",
+      "title": "US not ready to seek deal to end war with Iran, Donald Trump says",
+      "content": "Trump：美國還不準備尋求與伊朗達成協議結束戰爭"
+    },
+    {
+      "time_cst": "2026-02-13 16:00 CST",
+      "time_utc": "2026-02-13 08:00 UTC",
+      "source": "NYT",
+      "type": "news",
+      "title": "Trump Removes Sanctions on Russia to Help Oil Flow Amid Iran Conflict",
+      "content": "Trump在对伊冲突期间解除对俄制裁以促进石油流动"
+    },
+    {
+      "time_cst": "2026-02-07 16:00 CST",
+      "time_utc": "2026-02-07 08:00 UTC",
+      "source": "BBC",
+      "type": "policy",
+      "title": "Trump signs executive order threatening tariffs for countries trading with Iran",
+      "content": "Trump签署行政令，威胁对与伊朗贸易国家征收关税"
+    },
+    {
+      "time_cst": "2026-02-06 16:00 CST",
+      "time_utc": "2026-02-06 08:00 UTC",
+      "source": "Al Jazeera",
+      "type": "policy",
+      "title": "US imposes sanctions on 'shadow fleet' accused of transporting Iranian oil",
+      "content": "美国对涉嫌运输伊朗石油的'影子舰队'实施制裁"
+    },
+    {
+      "time_cst": "2026-01-13 16:00 CST",
+      "time_utc": "2026-01-13 08:00 UTC",
+      "source": "CBS News",
+      "type": "policy",
+      "title": "Trump slaps 25% tariffs on any countries that do business with Iran",
+      "content": "Trump对与伊朗做生意的国家征收25%关税"
+    },
+    {
+      "time_cst": "2026-01-12 16:00 CST",
+      "time_utc": "2026-01-12 08:00 UTC",
+      "source": "The Guardian",
+      "type": "diplomacy",
+      "title": "China threatens to retaliate over Trump's 25% tariff on countries trading with Iran",
+      "content": "中国威胁反击Trump对伊贸易25%关税政策"
+    }
+  ],
+  "key_findings": [
+    {
+      "theme": "最新动态",
+      "findings": [
+        "Trump给伊朗48小时达成协议（4月4日 18:03 UTC），伊朗拒绝48小时停火提议",
+        "Trump声称军事成功但无明确结束战争时间表",
+        "伊朗激进政权加剧核弹威胁"
+      ]
+    },
+    {
+      "theme": "市场反应",
+      "findings": [
+        "美国WTI原油价格暴涨11%，创六年来最大单日涨幅",
+        "全球领袖试图稳定油价，Trump暗示战争持续数周",
+        "油价飙升 + 股价下跌，市场极度恐慌"
+      ]
+    },
+    {
+      "theme": "外交谈判",
+      "findings": [
+        "中巴提出'停火换霍尔木兹海峡重开'新协议",
+        "美伊曾谈判停火，但伊朗外长称伊朗'无意与美国谈判'",
+        "Trump暂停攻击伊朗能源设施，称谈判'进展良好'（4月1日）"
+      ]
+    },
+    {
+      "theme": "制裁政策",
+      "findings": [
+        "Trump签署行政令：对伊贸易国家征25%关税",
+        "Trump在对伊冲突期间解除了对俄制裁以促进石油流动",
+        "美国对'影子舰队'（运输伊朗石油）实施制裁"
+      ]
+    }
+  ],
+  "sentiment_summary": {
+    "overall": "极度负面/紧张",
+    "market": "恐慌（油价暴涨，股市下跌）",
+    "diplomatic": "僵局（伊朗拒绝谈判）",
+    "military": "升级（Trump暗示更多打击）"
+  }
+}

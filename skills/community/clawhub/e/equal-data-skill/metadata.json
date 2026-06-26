@@ -1,0 +1,15 @@
+{
+  "name": "equal-data",
+  "version": "0.0.12",
+  "description": "EuqalData金融数据服务- 提供覆盖A股5000+家上市公司的行情、财报、基本面、重大事件追踪(高管增减持, 重大合同, 股东变动,大宗交易, 限售解决,定想增发,分红送转, 业绩预告)等多维度数据、股东分析、基金持仓与变动统计、知名机构动向追踪(包含 国家队,外资,私募基金,公募基金,信托,保险,证券等)、知名牛散持仓数据、资讯、公告、等多形态结构化专业金融数据",
+  "author": "EuqalData",
+  "tags": ["金融数据", "A股", "财务指标", "股票行情", "究竟特色", "龙虎榜", "打板专题数据", "上市公司股东", "金融资讯信息"],
+  "repository": "https://github.com/mocoap-wang/equal-data-skill",
+  "license": "Apache-2.0",
+  "config_paths": ["~/.openclaw/openclaw.json"],
+  "install_spec": {
+    "type": "pip",
+    "package": "equal-data==0.0.12"
+  },
+  "required_env_vars": ["EQUAL_DATA_API_KEY"]
+}

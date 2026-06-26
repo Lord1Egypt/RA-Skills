@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/unlockPdf",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://pdfapihub.com/sampleprotected.pdf", "password": "secret123", "output": "url" }
+  },
+  "response": {
+    "status": 200,
+    "body": { "success": true, "output": "url", "filename": "document.pdf", "url": "https://cdn.pdfapihub.com/unlocked/abc123.pdf", "original_size_bytes": 524288, "output_size_bytes": 512000 }
+  }
+}

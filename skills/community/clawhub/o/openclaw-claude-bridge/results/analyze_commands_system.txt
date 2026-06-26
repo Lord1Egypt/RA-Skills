@@ -1,0 +1,34 @@
+🚀 启动 Claude Code + DashScope 代理...
+✅ 代理服务器已在端口 3458 运行
+🎯 启动 Claude Code...
+   API: http://localhost:3458 -> https://coding.dashscope.aliyuncs.com/apps/anthropic
+
+## 技术分析
+
+### 1. Slash命令系统架构
+模块化设计，命令分层加载：
+- **内置命令**：`COMMANDS` 数组统一注册（/commands/ 目录）
+- **动态命令**：技能目录、插件、工作流、MCP 通过异步加载
+- **条件编译**：通过 `feature()` 实现构建时命令开关（如 `VOICE_MODE`、`KAIROS`）
+- **环境隔离**：`INTERNAL_ONLY_COMMANDS` 区分内部/外部构建
+
+### 2. 命令注册和解析机制
+- **注册**：`getCommands()` 聚合所有来源命令，支持 `aliases`、`availability`、`isEnabled` 过滤
+- **解析**：`findCommand()` 支持命令名、别名匹配
+- **缓存优化**：`lodash-es/memoize` 缓存加载结果，`clearCommandMemoizationCaches()` 手动失效
+- **动态技能**：`getDynamicSkills()` 实现运行时技能发现与优先级插入
+
+### 3. 与工具系统集成
+- **模型可调用技能**：`getSkillToolCommands()` 过滤 `type='prompt'` 命令供模型使用
+- **工具类型**：`local`（本地执行）、`prompt`（文本扩展）、`local-jsx`（UI渲染）
+- **远程安全**：`isBridgeSafeCommand()` 控制移动端/远程模式可执行命令
+
+### 4. 权限控制设计
+- **可用性检查**：`meetsAvailabilityRequirement()` 基于认证状态（`claude-ai`/`console`）过滤
+- **功能开关**：`isCommandEnabled()` 结合配置与 feature flags
+- **环境变量控制**：`USER_TYPE==='ant'` 启用内部命令
+- **执行模式隔离**：`REMOTE_SAFE_COMMANDS` / `BRIDGE_SAFE_COMMANDS` 限制远程操作范围
+
+**核心设计**：单一可信来源 + 多层过滤（构建时/加载时/执行时） + 显式安全边界。
+
+

@@ -1,0 +1,39 @@
+name: stock-monitor
+version: 3.1.0
+description: |
+  A股股票量化监控与每日推送系统。支持股票（MA/MACD/RSI/布林带）和基金（估算净值），
+  生成信号评分和操作建议，每日4次定时推送。支持持仓跟踪、板块轮动、美股隔夜。
+  下载后只需填写配置文件，即可每日自动推送到飞书/Telegram。
+short_description: A股量化监控 + 定时推送
+author: Owen
+homepage: https://clawhub.com
+tags:
+  - stock
+  - quant
+  - finance
+  - china
+keywords:
+  - stock monitor
+  - A股分析
+  - 量化交易
+  - 技术指标
+  - 基金监控
+requires:
+  bins:
+    - python3
+  python_packages:
+    - akshare
+    - pyyaml
+platforms:
+  - darwin
+  - linux
+license: MIT
+
+# ClawHub 发布时排除的文件
+.clawhub/
+config.local.yaml
+.installed
+.push_state
+.last_report
+logs/
+scripts/setup-sleep.sh

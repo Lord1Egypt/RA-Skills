@@ -1,0 +1,373 @@
+# 微信 Windows 版自动化发送服务（支持 4.0+ 版本）
+
+基于 Flask + uiautomation 的 HTTP API 服务，通过 UI 自动化控制微信客户端发送消息。
+支持文本、图片、批量发送和队列管理。非 HOOK、非协议，安全可靠。
+本代码和文档完全由AI生成，有些怪异错误自行脑补。
+
+## ✨ 项目特性
+
+- 🤖 **Agent Skill 支持** - 专为 OpenClaw 等大模型智能体设计的极简命令行即时调用入口。
+- 🌐 **HTTP API 接口** - RESTful API，提供独立运行的异步队列监听服务。
+- 🔐 **Token 身份验证** - 保证接口安全
+- 📋 **消息队列管理** - 按顺序可靠发送
+- 📨 **批量发送支持** - 一次请求发送给多个联系人
+- 💬 **支持文本消息** - 发送文本内容（支持换行）
+- 🖼️ **支持图片消息** - 通过 URL 下载图片后发送
+- ⏱️ **自动间隔控制** - 每条消息间隔 1 秒，可配置
+- 📝 **完善的日志系统** - 记录所有操作和错误
+- 🛡️ **错误容错机制** - 单条失败不影响后续消息
+- 🚨 **断线预警监控** - 独立的监控守护进程，断联时通过 WPush 自动推送到手机
+
+## 🚀 快速开始
+
+### 1. 环境要求
+
+- Windows 10/11
+- Python 3.7+
+- 微信 PC 客户端（已登录）
+
+### 2. 安装依赖
+
+```powershell
+pip install -r requirements.txt
+```
+
+### 3. 配置文件
+
+```powershell
+# 复制配置文件示例
+Copy-Item config.json.example config.json
+
+# 编辑配置文件，修改 token 等配置
+notepad config.json
+```
+
+### 4. 作为 Skill 执行（推荐给大模型 Agent）
+
+```bash
+# 发送文本
+python scripts/skill_cli.py --to "文件传输助手" --content "你好，这是一条来自智能体的打招呼"
+
+# 发送图片
+python scripts/skill_cli.py --to "文件传输助手" --content "https://example.com/logo.png" --action "sendpic"
+```
+
+### 5. 作为后台 HTTP 队列服务运行
+
+```cmd
+# 确保微信已启动并登录
+run.bat
+```
+
+看到以下输出表示启动成功：
+
+```
+========================================
+微信自动化服务已启动
+监听地址: http://127.0.0.1:8808
+API 端点: POST http://127.0.0.1:8808/
+========================================
+```
+
+### 5. 发送测试消息
+
+#### PowerShell 示例
+
+```powershell
+# 发送文本消息
+$body = @{
+    token = "123123"
+    action = "sendtext"
+    to = @("线报转发")
+    content = "你好，这是测试消息"
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://127.0.0.1:8808/" -Method Post -Body $body -ContentType "application/json"
+
+# 发送图片消息
+$body = @{
+    token = "123123"
+    action = "sendpic"
+    to = @("线报转发")
+    content = "https://example.com/image.jpg"
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://127.0.0.1:8808/" -Method Post -Body $body -ContentType "application/json"
+```
+
+#### Python 示例
+
+```python
+import requests
+
+url = "http://127.0.0.1:8808/"
+
+# 发送文本消息
+data = {
+    "token": "123123",
+    "action": "sendtext",
+    "to": ["线报转发", "LAVA"],  # 可以同时发给多人
+    "content": "你好，这是自动化测试消息"
+}
+response = requests.post(url, json=data)
+print(response.json())
+
+# 发送图片消息
+data = {
+    "token": "123123",
+    "action": "sendpic",
+    "to": ["线报转发"],
+    "content": "https://example.com/image.jpg"
+}
+response = requests.post(url, json=data)
+print(response.json())
+```
+
+#### 使用测试脚本
+
+```powershell
+python test/test_api.py
+```
+
+## 📖 API 文档
+
+### 发送消息
+
+**端点**: `POST http://127.0.0.1:8808/`
+
+#### 发送文本消息
+
+**请求体**:
+```json
+{
+    "token": "123123",
+    "action": "sendtext",
+    "to": ["联系人1", "联系人2"],
+    "content": "消息内容"
+}
+```
+
+#### 发送图片消息
+
+**请求体**:
+```json
+{
+    "token": "123123",
+    "action": "sendpic",
+    "to": ["联系人1", "联系人2"],
+    "content": "https://example.com/image.jpg"
+}
+```
+
+**成功响应** (200):
+```json
+{
+    "success": true,
+    "message": "消息已加入队列",
+    "queued_count": 2,
+    "queue_size": 2
+}
+```
+
+**失败响应** (401):
+```json
+{
+    "success": false,
+    "error": "无效的 token"
+}
+```
+
+### 查询状态
+
+**端点**: `GET http://127.0.0.1:8808/status`
+
+**响应**:
+```json
+{
+    "status": "running",
+    "queue_size": 5
+}
+```
+
+### 健康检查
+
+**端点**: `GET http://127.0.0.1:8808/health`
+
+## 📁 项目结构
+
+```text
+wechat-automation-api/
+├── scripts/                    # 核心代码目录
+│   ├── app.py                  # Flask 主服务
+│   ├── wechat_controller.py    # 微信控制器
+│   ├── message_queue.py        # 消息队列管理
+│   └── skill_cli.py            # Agent Skill 专用纯净命令行入口
+├── config.json.example         # 配置文件示例
+├── requirements.txt            # Python 依赖
+├── run.bat                     # HTTP 服务快捷启动脚本
+├── SKILL.md                    # Agent Skill 挂载说明规范
+├── test/                       # 测试文件目录
+│   ├── test_api.py            # API 测试脚本
+│   └── README.md              # 测试说明
+├── examples/                   # 示例代码目录
+│   ├── wx.py                  # uiautomation 最小示例
+│   └── README.md              # 示例说明
+├── docs/                       # 文档目录
+│   └── changelog.md           # 更新日志
+├── README.md                   # 本文件
+├── 使用说明.md                 # 详细使用说明
+├── 快速启动指南.md             # 快速入门
+├── .gitignore                  # Git 忽略文件
+├── .cursorrules                # Cursor 规则文件
+└── wechat_automation.log       # 日志文件（运行时生成）
+```
+
+## ⚙️ 配置说明
+
+首次使用需要复制 `config.json.example` 为 `config.json` 并编辑：
+
+```powershell
+Copy-Item config.json.example config.json
+```
+
+配置项说明：
+
+```json
+{
+    "token": "your_secret_token_here",  // API 访问令牌（请修改为自己的密钥）
+    "host": "127.0.0.1",                // 服务监听地址
+    "port": 8808,                       // 服务监听端口
+    "message_interval": 1,              // 消息发送间隔（秒）
+    "log_level": "INFO",                // 日志级别（DEBUG/INFO/WARNING/ERROR）
+    "log_file": "wechat_automation.log",// 日志文件路径
+    "monitor_interval": 60,             // 微信断线监控检测间隔（秒），填 0 即关闭监控
+    "monitor_max_retries": 3,           // 连续失败最大通知次数，防骚扰
+    "wpush": {                          // Wpush 免部署推送通道
+        "apikey": "你的apikey",
+        "title": "微信掉线预警",
+        "content": "检测到无法获取微信窗口，微信可能已掉线或自动退出，请及时检查服务器状态。"
+    }
+}
+```
+
+**注意**：`config.json` 已加入 `.gitignore`，不会被提交到 Git，可以安全地存储您的 token 等敏感信息。
+
+## 🔧 工作原理
+
+1. **接收请求** - HTTP API 接收消息发送请求
+2. **验证 Token** - 验证请求的身份令牌
+3. **加入队列** - 消息立即加入队列，返回成功响应
+4. **后台处理** - 独立线程按顺序处理队列中的消息
+5. **控制微信** - 使用 uiautomation 搜索联系人并发送消息
+6. **间隔控制** - 每条消息发送后等待指定时间（默认 1 秒）
+
+## 📚 使用场景
+
+- 📢 **消息群发** - 一键发送通知给多个联系人
+- 🤖 **自动回复** - 结合其他系统实现自动化回复
+- 📊 **报警通知** - 监控系统发送报警消息到微信
+- 🔔 **定时提醒** - 设置定时任务发送提醒消息
+- 🌐 **系统集成** - 集成到现有系统中实现微信通知
+
+## 📝 注意事项
+
+### 使用前准备
+- ✅ 确保微信 PC 客户端已启动并登录
+- ✅ 微信可以最小化，但不能关闭
+- ✅ 确保联系人名称准确（区分大小写）
+
+### 消息发送逻辑
+- 消息会立即加入队列并返回成功响应
+- 后台线程按顺序处理队列中的消息
+- 每条消息发送后自动等待 1 秒（可配置）
+- 某个联系人发送失败会跳过并继续处理下一条
+
+### 日志查看
+
+```powershell
+# 实时查看日志
+Get-Content wechat_automation.log -Wait
+
+# 查看最后 50 行
+Get-Content wechat_automation.log -Tail 50
+```
+
+## 🛠️ 技术栈
+
+- **Flask** - 轻量级 Web 框架
+- **uiautomation** - Windows UI 自动化库
+- **threading** - 多线程支持
+- **queue** - 线程安全队列
+- **logging** - 日志系统
+- **requests** - HTTP 请求库，用于下载图片
+- **Pillow** - 图片处理库
+- **pywin32** - Windows API 支持，用于剪贴板操作
+
+## 📖 完整文档
+
+- [使用说明.md](使用说明.md) - 详细的使用说明和 API 文档
+- [快速启动指南.md](快速启动指南.md) - 5 分钟快速上手指南
+
+## ❓ 常见问题
+
+**Q: 提示"未找到微信窗口"**
+> 确保微信已启动并且窗口标题为"微信"
+
+**Q: 找不到联系人**
+> 检查联系人名称是否正确，注意大小写
+
+**Q: 如何修改 Token**
+> 编辑 `config.json` 文件中的 `token` 字段
+
+**Q: 如何修改消息间隔时间**
+> 编辑 `config.json` 文件中的 `message_interval` 字段（单位：秒）
+
+**Q: 可以发送图片或文件吗**
+> 已支持通过 URL 发送图片（使用 action: "sendpic"），文件功能将在后续版本添加
+
+**Q: 图片支持哪些格式**
+> 支持常见图片格式：JPG、PNG、GIF、BMP 等
+
+## 🎯 未来计划
+
+- [x] 支持发送图片（已完成）
+- [ ] 支持发送文件
+- [ ] 消息发送状态查询
+- [ ] Web 管理界面
+- [ ] 消息发送历史记录
+- [ ] 支持群聊消息
+
+## 📜 版本历史
+
+### v2.1.0 (2026-03-12)
+- ✨ 增加基于守护进程与 WPush 渠道的 `monitor.py` 微信脱落/掉线预警体系，自带限流防骚扰。
+
+### v2.0.0 (2026-03-11)
+- ✨ 架构重构，将核心代码沉降至 `scripts`，支持根目录环境脱耦
+- ✨ 新增 `skill_cli.py` 提供极简同步命令行发送，完美兼容 OpenClaw 等 Agent 系统
+- ✨ 新增 `run.bat` 并维护 HTTP 异步队列原设，达成独立双形态运转
+
+### v1.1.0 (2025-11-29)
+- ✅ 修复特殊字符通过 SendKeys 发送丢失的问题，重构底层为自动化剪贴板机制
+- ✅ 优化微信会话列表激活策略与图片缓存层
+- ✅ 全面增加健壮性与重试机制
+
+### v1.0.0 (2025-10-31)
+- ✅ 新增图片发送功能（sendpic action）
+- ✅ 支持通过 URL 下载图片并发送
+- ✅ 自动剪贴板操作发送图片
+- ✅ 自动清理临时文件
+
+### v1.0.0 (2025-10-30)
+- ✅ 实现基础 HTTP API 服务
+- ✅ 实现消息队列管理
+- ✅ 实现微信自动化控制
+- ✅ 添加 Token 身份验证
+- ✅ 添加完善的日志系统
+- ✅ 支持批量发送消息
+
+## 📄 许可证
+
+本项目仅供学习和研究使用。
+
+

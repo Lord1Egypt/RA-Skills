@@ -1,0 +1,28 @@
+{
+  "default_mailbox": "qq",
+  "qq_email": {
+    "email": "roseknife@qq.com",
+    "auth_code": "daubeuqtkuxrbgid",
+    "imap_server": "imap.qq.com",
+    "imap_port": 993,
+    "smtp_server": "smtp.qq.com",
+    "smtp_port": 465
+  },
+  "163_email": {
+    "email": "roseknife@163.com",
+    "auth_password": "XNks25JEaxarFNEZ",
+    "imap_server": "imap.163.com",
+    "imap_port": 993,
+    "smtp_server": "smtp.163.com",
+    "smtp_port": 465
+  },
+  "exmail_email": {
+    "email": "cs@xmainc.com",
+    "auth_code": "hRgKjJ4dUYDt5Gir",
+    "imap_server": "imap.exmail.qq.com",
+    "imap_port": 993,
+    "smtp_server": "smtp.exmail.qq.com",
+    "smtp_port": 465
+  },
+  "last_check_time": "2026-02-18T23:45:31.834934"
+}

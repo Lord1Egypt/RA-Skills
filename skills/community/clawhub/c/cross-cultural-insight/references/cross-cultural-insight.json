@@ -1,0 +1,52 @@
+{
+  "skill_name": "Cross-Cultural Insight",
+  "slug": "cross-cultural-insight",
+  "version": "1.0.0",
+  "endpoint": "http://8.145.54.67:3000/skill/cross-cultural-insight",
+  "pricing": {
+    "model": "per-call",
+    "amount": 0.50,
+    "currency": "CNY",
+    "payment_method": "alipay-ai-pay"
+  },
+  "covered_markets": [
+    {"code": "CN", "name": "中国", "language": "zh"},
+    {"code": "JP", "name": "日本", "language": "ja"},
+    {"code": "KR", "name": "韩国", "language": "ko"},
+    {"code": "IN", "name": "印度", "language": "hi/en"},
+    {"code": "US", "name": "美国", "language": "en"},
+    {"code": "UK", "name": "英国", "language": "en"},
+    {"code": "DE", "name": "德国", "language": "de"},
+    {"code": "FR", "name": "法国", "language": "fr"},
+    {"code": "BR", "name": "巴西", "language": "pt"},
+    {"code": "MX", "name": "墨西哥", "language": "es"},
+    {"code": "SA", "name": "沙特", "language": "ar"},
+    {"code": "AE", "name": "阿联酋", "language": "ar"},
+    {"code": "ID", "name": "印尼", "language": "id"},
+    {"code": "TH", "name": "泰国", "language": "th"},
+    {"code": "VN", "name": "越南", "language": "vi"},
+    {"code": "NG", "name": "尼日利亚", "language": "en"},
+    {"code": "ZA", "name": "南非", "language": "en/af"}
+  ],
+  "cultural_dimensions": [
+    "individualism_collectivism",
+    "power_distance",
+    "uncertainty_avoidance",
+    "masculinity_femininity",
+    "long_term_orientation",
+    "indulgence_restraint"
+  ],
+  "analysis_types": ["naming", "colors", "symbols", "market_entry", "communication_style"],
+  "data_sources": [
+    "Hofstede Insights",
+    "World Values Survey",
+    "GLOBE Project",
+    "各国外贸促进机构"
+  ],
+  "update_frequency": "semi_annual",
+  "last_updated": "2026-06-02",
+  "author": "AI副业赚钱助手",
+  "license": "MIT",
+  "tags": ["culture", "branding", "international", "localization", "market entry", "全球化"],
+  "icon": "🌍"
+}

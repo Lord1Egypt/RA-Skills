@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+pyarrow
+fastapi
+uvicorn
+pytest
+python-dateutil
+scipy
+matplotlib
+pytz
+geopy
+psutil

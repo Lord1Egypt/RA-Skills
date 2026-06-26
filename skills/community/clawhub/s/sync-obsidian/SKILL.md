@@ -1,35 +1,219 @@
 ---
-name: "Sync Obsidian"
-description: "Turn every Claude Code session into a beautiful Obsidian note — automatically. Generates dual output: structured Markdown reports + interactive Canvas visual..."
-category: "productivity"
-source: "ClawHub"
-tags: [knowledge-management, notes, obsidian, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sync-obsidian"
-sourceUrl: "https://clawhub.ai/skills/sync-obsidian"
+name: sync-obsidian
+description: "Turn every Claude Code session into a beautiful Obsidian note — automatically. Generates dual output: structured Markdown reports + interactive Canvas visual maps. Zero config, auto-detects projects."
+argument-hint: "[plan|report] [title]"
+disable-model-invocation: false
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit
 ---
 
-# Sync Obsidian
+# Sync to Obsidian — Auto-Detect Project Sync
 
-> Turn every Claude Code session into a beautiful Obsidian note — automatically. Generates dual output: structured Markdown reports + interactive Canvas visual...
+Automatically sync your Claude Code session plans and implementation reports to your Obsidian vault.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sync-obsidian`
-- **Source URL:** [https://clawhub.ai/skills/sync-obsidian](https://clawhub.ai/skills/sync-obsidian)
+Every sync produces **two files**: a detailed Markdown note + an Obsidian Canvas visual map.
 
-## Overview
+The project name is **auto-detected** — no per-project configuration needed.
 
+## Configuration
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sync-obsidian
+Only one path to set — your Obsidian vault root:
+
+```
+OBSIDIAN_VAULT = /Users/you/Documents/Obsidian Vault
+```
+
+> Update this to your actual Obsidian vault path before first use.
+
+## Auto Project Detection
+
+The skill automatically detects the current project name (in priority order):
+
+1. **Git repo name**: `basename $(git rev-parse --show-toplevel)`
+2. **Current directory name**: `basename $PWD` (fallback if not in a git repo)
+
+Sync targets are derived from the project name:
+- **Markdown**: `{OBSIDIAN_VAULT}/[Project] {project_name}/`
+- **Canvas**: `{OBSIDIAN_VAULT}/[Project] {project_name}/canvas/`
+
+> Directories are auto-created if they don't exist (`mkdir -p`).
+
+## Usage
+
+```
+/sync-obsidian plan               # Sync the latest plan file
+/sync-obsidian report             # Generate and sync an implementation report
+/sync-obsidian plan Auth Redesign # Sync plan with custom title
+/sync-obsidian report API Layer   # Sync report with custom title
+```
+
+- `$ARGUMENTS[0]`: Type — `plan` or `report` (required)
+- `$ARGUMENTS[1]`: Custom title (optional — auto-inferred from content if omitted)
+
+## Execution Flow
+
+### Step 0: Detect Project
+
+1. Run `basename $(git rev-parse --show-toplevel 2>/dev/null) 2>/dev/null || basename $PWD` to get project name
+2. Set `PROJECT_DIR = [Project] {project_name}`
+3. Set `CANVAS_DIR = [Project] {project_name}/canvas`
+4. Run `mkdir -p` to ensure both directories exist
+
+### When type = `plan`
+
+1. Read the latest `.md` file from `.claude/plans/`
+2. If no plan file found, extract plan content from the current conversation context
+3. Convert to Obsidian note format (see templates below)
+4. Write Markdown to `{OBSIDIAN_VAULT}/{PROJECT_DIR}/`
+5. Write Canvas to `{OBSIDIAN_VAULT}/{CANVAS_DIR}/`
+6. Filename: `[Plan] {title} ({YYYY-MM-DD}).md` / `.canvas`
+
+### When type = `report`
+
+1. Summarize the implementation work completed in the current session
+2. Include: what was done, which files changed, key design decisions, follow-up TODOs
+3. Convert to Obsidian note format
+4. Write Markdown to `{OBSIDIAN_VAULT}/{PROJECT_DIR}/`
+5. Write Canvas to `{OBSIDIAN_VAULT}/{CANVAS_DIR}/`
+6. Filename: `[Report] {title} ({YYYY-MM-DD}).md` / `.canvas`
+
+## Markdown Templates
+
+### Plan Template
+
+```markdown
+# [Plan] {title}
+
+> Date: {YYYY-MM-DD}
+> Source: Claude Code Session
+> Project: {project_name}
+> Status: Pending / Approved
+
+---
+
+{Original plan content, preserved in full markdown}
+
+---
+
+> Synced from `.claude/plans/{filename}`
+```
+
+### Report Template
+
+```markdown
+# [Report] {title}
+
+> Completed: {YYYY-MM-DD}
+> Source: Claude Code Session
+> Project: {project_name}
+
+---
+
+## Summary
+
+{1-3 sentence overview}
+
+## Completed Work
+
+{Detailed list of completed work:}
+- Files created/modified
+- Key design decisions
+- Technical details
+
+## File Changes
+
+| File | Action | Description |
+|------|--------|-------------|
+| ... | Created/Modified | ... |
+
+## Design Decisions
+
+{Important architectural/technical decisions and rationale}
+
+## Follow-up TODO
+
+- [ ] {Next steps}
+
+---
+
+> Auto-generated by Claude Code
+```
+
+## Canvas Sync (Dual Output)
+
+Every Markdown sync **also generates an Obsidian Canvas file** (`.canvas`) for visual exploration.
+
+### Canvas Structure
+
+Canvas is a JSON format with `nodes` (cards/groups) and `edges` (connections).
+
+**Report Canvas layout:**
+- `grp_summary` (color:4 cyan) — Summary: title + date + 1-3 sentence overview
+- `grp_work` (color:6 pink) — Completed work: split into sub-cards (steps, rules, etc.)
+- `grp_files` (color:5 purple) — File changes: table of files and operations
+- `grp_decisions` (color:3 green) — Design decisions: architecture/tech choices and rationale
+- `grp_todo` (color:2 orange) — Follow-up TODO: checklist of next steps
+
+**Plan Canvas layout:**
+- `grp_overview` (color:4) — Plan overview and goals
+- `grp_steps` (color:6) — Implementation steps, one text node per step
+- `grp_architecture` (color:3) — Architecture/tech decisions
+- `grp_risks` (color:2) — Risks and considerations
+
+**Layout principles:**
+- Groups connected by edges showing flow direction
+- Top-left start: Summary → Work/Steps → Files/Architecture → TODO
+- Color key: 1=red, 2=orange, 3=green, 4=cyan, 5=purple, 6=pink
+
+**Sizing rules (prevent content clipping):**
+- Text node min width 320px, recommended 500-660px
+- Estimate 35px per line of text (including line spacing)
+- Headers (##) at 45px, code blocks at 28px per line
+- Text node height = line_count × 35 + 60 (top/bottom padding)
+- Groups add 20px padding around contained text nodes
+- Minimum 80px gap between groups (vertical and horizontal)
+- **Better too large than too small** — clipping is worse than whitespace
+
+## Important Rules
+
+1. **No YAML frontmatter** — use `>` quote blocks for metadata instead
+2. **Quote blocks for metadata** — date, source, status, project in `>` blocks
+3. **Preserve original plan content** — never trim or rewrite technical details
+4. **Reports must be specific** — list actual file paths, code patterns, design rationale
+5. **Always output both files** — Markdown + Canvas on every sync
+6. **Report full paths** — tell the user where both files were written
+7. **Auto-create directories** — use `mkdir -p` if project or canvas dir doesn't exist
+
+## Auto-Sync Setup (Optional)
+
+Add this to your project's `CLAUDE.md` to enable the full sync lifecycle:
+
+```markdown
+## Auto Sync to Obsidian
+
+### Plan Sync (Before Implementation)
+
+When a plan/design discussion is complete and about to move into implementation,
+call `/sync-obsidian plan` FIRST — so the user can review it in Obsidian before
+giving the green light.
+
+Trigger when:
+- A plan or design discussion has been finalized
+- User indicates approval intent ("looks good", "let's do it")
+- Before starting any implementation work
+
+Flow: Discuss → Sync plan → User reviews in Obsidian → Confirmed → Implement
+
+### Report Sync (After Implementation)
+
+After completing substantive work, call `/sync-obsidian report` before the session ends.
+
+Trigger when:
+- Code files were created, edited, or deleted
+- A plan was implemented
+- Important architecture discussions or decisions were made
+
+### Do NOT trigger when:
+- Pure Q&A / casual chat
+- Only read files, no modifications
+- User explicitly says no sync needed
 ```

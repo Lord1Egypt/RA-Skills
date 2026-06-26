@@ -1,35 +1,41 @@
 ---
-name: "Yang Openclaw Health"
-description: "Quick health check for OpenClaw installations by Yang. Checks Node.js version, Gateway status, config files, port conflicts, and common problems. Use when tr..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yang-openclaw-health"
-sourceUrl: "https://clawhub.ai/skills/yang-openclaw-health"
+name: yang-openclaw-health
+description: Quick health check for OpenClaw installations by Yang. Checks Node.js version, Gateway status, config files, port conflicts, and common problems. Use when troubleshooting OpenClaw installation or configuration issues.
 ---
 
-# Yang Openclaw Health
+# OpenClaw Health Check by Yang
 
-> Quick health check for OpenClaw installations by Yang. Checks Node.js version, Gateway status, config files, port conflicts, and common problems. Use when tr...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yang-openclaw-health`
-- **Source URL:** [https://clawhub.ai/skills/yang-openclaw-health](https://clawhub.ai/skills/yang-openclaw-health)
-
-## Overview
-
+Quick diagnostics for OpenClaw installation issues. Run this to check common problems.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/yang-openclaw-health
+npx clawhub@latest install yang-openclaw-health
 ```
+
+## What it checks
+
+- ✅ Node.js version (requires 18+)
+- ✅ Gateway status (running/stopped)
+- ✅ Config file existence
+- ✅ Port conflicts (default 3000)
+- ✅ Environment variables
+- ✅ Permission issues
+
+## Usage
+
+After installation, run:
+
+```bash
+node ~/.openclaw/skills/yang-openclaw-health/diagnose.js
+```
+
+## Need Help?
+
+If diagnostics show issues you can't fix:
+- 📧 **Installation Service**: ¥99-299
+- 🔗 **Landing Page**: https://yang1002378395-cmyk.github.io/openclaw-install-service/
+
+## License
+
+MIT

@@ -1,0 +1,50 @@
+{
+  "version": "1.0.3",
+  "scenarios": [
+    {
+      "name": "get_product_success",
+      "request": "GET /v1/products/123",
+      "expect_http": 200
+    },
+    {
+      "name": "get_order_success",
+      "request": "GET /v1/orders/456",
+      "expect_http": 200
+    },
+    {
+      "name": "job_poll_success",
+      "request": "GET /v1/jobs/550e8400-e29b-41d4-a716-446655440000",
+      "expect_http": 200
+    },
+    {
+      "name": "product_update_accepted",
+      "request": "POST /v1/jobs/products/update",
+      "expect_http": 202
+    },
+    {
+      "name": "import_over_limit_rejected",
+      "request": "POST /v1/jobs/products/import with 51 items",
+      "expect_http": 400
+    },
+    {
+      "name": "bad_signature_forbidden",
+      "request": "POST /v1/jobs/products/update with invalid HMAC",
+      "expect_http": 403
+    },
+    {
+      "name": "idempotency_conflict",
+      "request": "POST replay failed request",
+      "expect_http": 409
+    },
+    {
+      "name": "business_error_stock",
+      "request": "POST invalid stock transition",
+      "expect_http": 422
+    },
+    {
+      "name": "service_unavailable",
+      "request": "POST while Redis unavailable",
+      "expect_http": 503
+    }
+  ]
+}

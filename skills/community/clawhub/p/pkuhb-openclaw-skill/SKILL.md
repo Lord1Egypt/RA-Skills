@@ -1,35 +1,301 @@
 ---
-name: "Pkuhb Openclaw Skill"
-description: "提供北京大学肖睿团队的OpenClaw平台入门指南，涵盖产品定位、技术架构、部署配置、Skills开发及安全实践。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pkuhb-openclaw-skill"
-sourceUrl: "https://clawhub.ai/skills/pkuhb-openclaw-skill"
+name: pkuhb-openclaw-skill
+description: 北京大学2026年OpenClaw（龙虾）使用入门指南。基于肖睿团队课件，系统讲解OpenClaw的产品定位、技术架构、核心能力、应用场景、部署配置、Skills开发及安全实践。适用于AI Agent初学者及希望深入了解OpenClaw生态的用户。
+version: 1.0.5
+tags:
+  - OpenClaw
+  - AI Agent
+  - 龙虾
+  - 自主智能体
+  - 北京大学
+  -肖睿团队
 ---
 
-# Pkuhb Openclaw Skill
+# 🦞 北京大学2026年OpenClaw使用入门指南
 
-> 提供北京大学肖睿团队的OpenClaw平台入门指南，涵盖产品定位、技术架构、部署配置、Skills开发及安全实践。
+> **来源**: 北京大学肖睿团队《OpenClaw001：龙虾使用入门》  
+> **版本**: 2026年3月 | **作者**: 李晴
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pkuhb-openclaw-skill`
-- **Source URL:** [https://clawhub.ai/skills/pkuhb-openclaw-skill](https://clawhub.ai/skills/pkuhb-openclaw-skill)
+---
 
-## Overview
+## 一、OpenClaw概述
 
+### 1.1 产品定位
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pkuhb-openclaw-skill
+**OpenClaw** 是一个**自托管的本地优先AI助手平台**，核心特点：
+
+| 特性 | 说明 |
+|------|------|
+| 本地优先 | 数据存储在本地，用户完全掌控 |
+| 多平台接入 | 支持飞书、钉钉、微信、QQ、Telegram等 |
+| 模型无关 | 支持Claude、GPT、DeepSeek、Kimi等任意模型 |
+| 开源免费 | MIT协议，社区驱动 |
+
+### 1.2 发展历程
+
+| 时间 | 里程碑 |
+|------|--------|
+| 2025年11月 | 项目启动，最初名为"Clawdbot" |
+| 2026年1月29日 | 更名为"Moltbot"（Anthropic要求） |
+| 2026年1月30日 | 最终定名"OpenClaw" |
+| 2026年2月 | 创始人加入OpenAI，项目移交基金会 |
+| 2026年3月 | GitHub Stars突破30万+，超越Linux |
+
+### 1.3 市场表现
+
+- **250,000+** GitHub Stars（约60天）
+- **2,500,000+** 周访问量
+- **10,700+** 社区Skills插件
+
+---
+
+## 二、AI进化阶段
+
+### 五个阶段模型
+
+| 阶段 | 特征 | 代表产品 |
+|------|------|----------|
+| 第一阶段 | 对话式交互 | ChatGPT |
+| 第二阶段 | 推理与思考 | DeepSeek R1 |
+| 第三阶段 | 云端Agent | Manus、Genspark |
+| 第四阶段 | 本地Agent | Claude Code |
+| 第五阶段 | **平民化Agent** | **OpenClaw** |
+
+> **核心观点**: "执行能力正在从技术团队快速扩散到普通用户手中"
+
+---
+
+## 三、技术架构
+
+### 3.1 核心组件
+
 ```
+┌─────────────────────────────────────────────────────┐
+│                    模型层 (LLM)                      │
+│         Claude / GPT / DeepSeek / Kimi 等            │
+├─────────────────────────────────────────────────────┤
+│                 执行/框架层 (Gateway)                  │
+│  任务规划 │ 工具选择 │ 状态管理 │ 事件调度            │
+├─────────────────────────────────────────────────────┤
+│                    工具层 (Skills)                   │
+│     内置工具 + 10,700+ 社区Skills + MCP扩展          │
+├─────────────────────────────────────────────────────┤
+│                   通讯层 (Channel)                   │
+│      飞书 │ 钉钉 │ 微信 │ QQ │ Telegram等           │
+└─────────────────────────────────────────────────────┘
+```
+
+### 3.2 记忆系统
+
+OpenClaw采用**文件为本源、向量检索加速**的混合方案：
+
+| 文件 | 用途 |
+|------|------|
+| `SOUL.md` | Agent人格与行为准则 |
+| `USER.md` | 用户画像与偏好 |
+| `MEMORY.md` | 长期记忆 |
+| `memory/YYYY-MM-DD.md` | 每日会话日志 |
+| `AGENTS.md` | 多Agent协作配置 |
+
+### 3.3 检索机制 (RAG)
+
+- **向量索引**: 基于Embedding的语义检索
+- **关键词匹配**: BM25精确匹配
+- **时间衰减**: 近记忆权重更高
+- **混合搜索**: 多路召回+Rerank
+
+---
+
+## 四、Agent运行流程
+
+### ReAct模式
+
+```
+用户输入 → 意图识别 → 上下文检索 → 任务拆解
+    ↑                                    ↓
+    ←  最终决策  ←  结果观察  ←  工具调用  ←
+```
+
+**七步执行流程**:
+1. 接收输入 (Input)
+2. 意图识别 (Intent)
+3. 上下文检索 (RAG)
+4. 任务拆解 (Planning)
+5. 工具调用 (Action)
+6. 结果观察 (Observation)
+7. 最终决策 (Decision)
+
+---
+
+## 五、模型选择建议
+
+### 5.1 国内模型（推荐日常使用）
+
+| 模型 | 优势 | 适用场景 |
+|------|------|----------|
+| Step 3.5 | 逻辑推理强、指令遵循高 | 日常主力、复杂任务 |
+| M2.5 (MiniMax) | 响应快、长对话稳定 | 工具调用、日常交互 |
+| K2.5 (Kimi) | 超长上下文 | 深度研究、写长文 |
+| Qwen | 多模态、本地可跑 | 视觉任务、开源部署 |
+
+### 5.2 国际模型（复杂任务首选）
+
+| 模型 | 优势 | 适用场景 |
+|------|------|----------|
+| Claude Opus 4.6 | 极致稳定、长任务不崩 | 核心规划、重要代码 |
+| GPT-5 系列 | 生态广、函数调用规范 | 代码开发 |
+| Gemini 3 Pro | 多模态、超长上下文 | 文档/视频分析 |
+
+### 5.3 混合策略建议
+
+- **简单高频任务**: Step 3.5 Flash / M2.5 Flash
+- **中等复杂任务**: Kimi-research / Gemini 3 Pro Flash
+- **核心规划任务**: Claude Opus 4.6
+- **视觉/多模态**: Qwen视觉版 / GLM-4V
+
+---
+
+## 六、工作区配置
+
+### 6.1 目录结构
+
+```
+~/.openclaw/workspace/
+├── SOUL.md          # 核心人格定义（必填）
+├── USER.md          # 用户画像（必填）
+├── IDENTITY.md      # Agent名字与形象
+├── AGENTS.md        # 安全规则
+├── HEARTBEAT.md     # 定时主动任务
+├── MEMORY.md        # 长期记忆
+├── memory/
+│   └── YYYY-MM-DD.md  # 每日会话日志
+└── skills/
+    └── <skill-name>/
+        └── SKILL.md
+```
+
+### 6.2 SOUL.md编写要点
+
+```markdown
+# SOUL.md - 核心人格定义
+
+## 核心原则
+- 先给答案，再解释
+- 简洁有力
+- 重点询问（删除/修改需确认）
+
+## 说话风格
+- 专业 + 轻松
+- Markdown清晰排版
+- 默认100-300字
+
+## 绝对红线
+- 不询问/存储敏感信息
+```
+
+### 6.3 USER.md编写要点
+
+```markdown
+# USER.md - 关于用户
+
+- 名字：
+- 常驻地：（时区）
+- 主要工作：
+- 偏好：
+- 禁忌：
+```
+
+---
+
+## 七、Skills开发规范
+
+### 7.1 SKILL.md格式
+
+```markdown
+---
+name: skill-name
+description: 什么时候用这个skill，触发场景描述
+---
+
+# 技能名称
+
+## 何时使用
+（触发条件）
+
+## 使用步骤
+1. ...
+2. ...
+
+## 注意事项
+- ...
+```
+
+### 7.2 开发四步走
+
+1. **创建目录**: `skills/<skill-name>/`
+2. **定义规范**: 编写SKILL.md
+3. **逻辑实现**: 编写Python/JS/Shell脚本
+4. **加载生效**: `openclaw gateway restart`
+
+---
+
+## 八、安全实践
+
+### 8.1 核心风险
+
+| 风险类型 | 说明 |
+|----------|------|
+| 供应链攻击 | 恶意Skills植入木马 |
+| 权限过大 | 坏Skill可控制整台电脑 |
+| 实例暴露 | 公网无认证导致泄露 |
+
+> ⚠️ **统计数据**: 36% Skills含有安全漏洞，13%含恶意载荷
+
+### 8.2 安全建议
+
+- **最小化挂载**: 仅挂载必要目录
+- **独立用户**: Agent用独立系统账号
+- **Shell白名单**: 限制高风险命令
+- **定期审计**: 检查logs和memory目录
+- **及时更新**: 保持核心和Skills最新
+
+---
+
+## 九、国内替代产品
+
+| 产品 | 部署 | 核心优势 | 入口 |
+|------|------|----------|------|
+| Kimi Claw | 云端 | 5000+ Skills | kimi.moonshot.cn |
+| ArkClaw | 云端 | 飞书深度适配 | 火山引擎 |
+| LobsterAI | 本地 | 本地+IM全覆盖 | lobsterai.youdao.com |
+| AutoClaw | 本地 | 浏览器自动化强 | autoglm.zhipuai.cn |
+| WorkBuddy | 本地 | 企微最强 | codebuddy.cn |
+
+---
+
+## 十、常见问题
+
+### Q1: OpenClaw和Claude Code有什么区别？
+> OpenClaw更开放，支持任意模型；Claude Code主要绑定Claude模型。
+
+### Q2: 本地部署推荐什么设备？
+> **Mac mini** > Linux > WSL。内存建议16GB+。
+
+### Q3: Skills安全吗？
+> ⚠️ 建议从可信来源安装，定期扫描，限制权限。
+
+### Q4: MEMORY.md越来越大怎么办？
+> 定期精简，移至memory/历史文件夹。建议控制在1500字以内。
+
+---
+
+## 📚 参考资料
+
+- 北京大学肖睿团队《OpenClaw001：龙虾使用入门》
+- OpenClaw 官网: https://openclaw.ai
+- ClawHub市场: https://clawhub.ai
+- OpenClawmp: https://openclawmp.stepfun.com
+
+---
+
+*本指南基于北京大学2026年3月课件整理，供OpenClaw学习者参考。*

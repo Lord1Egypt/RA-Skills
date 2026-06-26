@@ -1,35 +1,72 @@
 ---
-name: "Data Recovery Assistant"
-description: "数据恢复诊断助手。教AI Agent诊断各种数据丢失场景（误删、格式化、分区丢失、硬盘异响、RAW分区等）， 推荐对应工具和操作步骤，区分SSD和HDD的不同处理方案。 触发词：数据恢复、文件丢失、误删、格式化、硬盘坏了、分区丢失、恢复数据"
-category: "other"
-source: "ClawHub"
-tags: [data-recovery, diagnostic, hard-drive, troubleshooting]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-recovery-assistant"
-sourceUrl: "https://clawhub.ai/skills/data-recovery-assistant"
+name: data-recovery-assistant
+description: >
+  数据恢复诊断助手。教AI Agent诊断各种数据丢失场景（误删、格式化、分区丢失、硬盘异响、RAW分区等），
+  推荐对应工具和操作步骤，区分SSD和HDD的不同处理方案。
+  触发词：数据恢复、文件丢失、误删、格式化、硬盘坏了、分区丢失、恢复数据
 ---
 
-# Data Recovery Assistant
+# 数据恢复诊断助手
 
-> 数据恢复诊断助手。教AI Agent诊断各种数据丢失场景（误删、格式化、分区丢失、硬盘异响、RAW分区等）， 推荐对应工具和操作步骤，区分SSD和HDD的不同处理方案。 触发词：数据恢复、文件丢失、误删、格式化、硬盘坏了、分区丢失、恢复数据
+> 基于数据恢复专业经验，帮助AI准确诊断数据丢失场景并给出可操作方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-recovery-assistant`
-- **Source URL:** [https://clawhub.ai/skills/data-recovery-assistant](https://clawhub.ai/skills/data-recovery-assistant)
+## 诊断流程
 
-## Overview
+### 第一步：确认故障类型
 
+| 症状 | 可能原因 | 紧急程度 |
+|------|---------|---------|
+| 误删后回收站清空 | 逻辑删除 | 🔵 低 — 尽快处理即可 |
+| 格式化/重装系统 | 文件系统覆盖 | 🟡 中 — 越快越好 |
+| 分区变RAW/无法访问 | 文件系统损坏 | 🟡 中 |
+| 硬盘不识别/不转 | 电路板/电机故障 | 🔴 高 — 别自己拆 |
+| 硬盘异响(咔咔/吱吱) | 磁头损坏 | 🔴 紧急 — 立即断电 |
+| 进水/摔坏 | 物理损坏 | 🔴 紧急 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-recovery-assistant
+### 第二步：按情况推荐方案
+
+**逻辑故障（误删/格式化/RAW分区）：**
+- 立即停止写入，不要再存新文件
+- 推荐工具链：R-Studio → DMDE → Recuva（按优先级）
+- 镜像优先原则：先用 ddrescue 做全盘镜像，在镜像上恢复
+
+**物理故障（不识别/异响）：**
+- **不要自己拆盘**，开盘需要超净环境
+- 异响立即断电，以免划伤盘片
+- 推荐找专业数据恢复机构处理
+
+**SSD 特殊情况：**
+- TRIM 开启后删除的数据几乎无法恢复
+- 主控损坏需要芯片级维修
+- 跟HDD的处理方案完全不同
+
+### 第三步：操作建议
+
+```markdown
+## 用户可以做
+1. 下载并运行 DiskGenius/CrystalDiskInfo 查看SMART信息
+2. 用 ddrescue 创建磁盘镜像（命令行需要Linux环境）
+3. 用 R-Studio/DMDE 在镜像上扫描恢复
+
+## 用户不要做
+1. ⛔ 对异响硬盘通电多次
+2. ⛔ 用免费软件反复扫描写入
+3. ⛔ 自己开盘更换磁头
+4. ⛔ 对SSD做长时间通电解焊
 ```
+
+## 工具参考
+
+| 工具 | 适用场景 | 费用 |
+|------|---------|------|
+| ddrescue | Linux下创建磁盘镜像 | 免费 |
+| TestDisk | 分区表修复 | 免费 |
+| DMDE | 深度扫描恢复 | 免费版限4000文件 |
+| R-Studio | 专业恢复(最强) | 付费 |
+| Recuva | 简单误删恢复 | 免费版可用 |
+
+## 注意事项
+
+- **不要在源盘上操作** — 先镜像再恢复是铁律
+- 恢复后的文件不要存回源盘
+- 物理故障 vs 逻辑故障的处理方案完全不同，不要混用

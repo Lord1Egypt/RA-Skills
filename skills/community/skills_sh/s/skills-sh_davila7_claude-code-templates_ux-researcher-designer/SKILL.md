@@ -1,35 +1,30 @@
 ---
-name: "ux-researcher-designer"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/ux-researcher-designer"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/ux-researcher-designer"
+name: ux-researcher-designer
+description: UX research and design toolkit for Senior UX Designer/Researcher including data-driven persona generation, journey mapping, usability testing frameworks, and research synthesis. Use for user research, persona creation, journey mapping, and design validation.
 ---
 
-# ux-researcher-designer
+# UX Researcher & Designer
 
-> Indexed by skills.sh from davila7/claude-code-templates
+Comprehensive toolkit for user-centered research and experience design.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/ux-researcher-designer`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/ux-researcher-designer](https://skills.sh/davila7/claude-code-templates/ux-researcher-designer)
+## Core Capabilities
+- Data-driven persona generation
+- Customer journey mapping
+- Usability testing frameworks
+- Research synthesis and insights
+- Design validation methods
 
-## Overview
+## Key Scripts
 
+### persona_generator.py
+Creates research-backed personas from user data and interviews.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/ux-researcher-designer
-```
+**Usage**: `python scripts/persona_generator.py [json]`
+
+**Features**:
+- Analyzes user behavior patterns
+- Identifies persona archetypes
+- Extracts psychographics
+- Generates scenarios
+- Provides design implications
+- Confidence scoring based on sample size

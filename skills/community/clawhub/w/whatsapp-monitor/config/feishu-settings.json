@@ -1,0 +1,36 @@
+{
+  "feishu": {
+    "app_id": "YOUR_APP_ID",
+    "app_secret": "YOUR_APP_SECRET",
+    "tenant_access_token": "YOUR_TENANT_ACCESS_TOKEN",
+    "table_app_token": "YOUR_TABLE_APP_TOKEN",
+    "table_token": "YOUR_TABLE_TOKEN"
+  },
+  "table": {
+    "name": "WhatsApp 消息监控日志",
+    "fields": [
+      {"field_name": "timestamp", "type": 5, "property": {"date_format": "yyyy-MM-dd HH:mm:ss"}},
+      {"field_name": "source", "type": 1},
+      {"field_name": "sender", "type": 1},
+      {"field_name": "message_content", "type": 1},
+      {"field_name": "keyword_matched", "type": 1},
+      {"field_name": "priority", "type": 3},
+      {"field_name": "message_type", "type": 1},
+      {"field_name": "attachment", "type": 1},
+      {"field_name": "chat_link", "type": 1}
+    ]
+  },
+  "export": {
+    "batch_threshold": 10,
+    "schedule": "every 30 minutes",
+    "retry_on_failure": true,
+    "max_retries": 3,
+    "timeout_seconds": 30
+  },
+  "integration": {
+    "auto_create_table": true,
+    "add_missing_fields": true,
+    "log_export": true,
+    "notify_on_export": false
+  }
+}

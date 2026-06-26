@@ -1,35 +1,84 @@
 ---
-name: "ClawPhone WeChat Control"
-description: "处理微信会话列表、进入聊天、发送消息、处理微信内弹窗与聊天页失败排查。适用于用户要求查看微信消息、回复联系人、转发、处理聊天输入框或发送失败时。执行时必须先确认当前在微信的哪个页面，再按聊天场景一步一验。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawphone-wechat-control"
-sourceUrl: "https://clawhub.ai/skills/clawphone-wechat-control"
+name: clawphone-wechat-control
+description: 处理微信会话列表、进入聊天、发送消息、处理微信内弹窗与聊天页失败排查。适用于用户要求查看微信消息、回复联系人、转发、处理聊天输入框或发送失败时。执行时必须先确认当前在微信的哪个页面，再按聊天场景一步一验。
 ---
 
 # ClawPhone WeChat Control
 
-> 处理微信会话列表、进入聊天、发送消息、处理微信内弹窗与聊天页失败排查。适用于用户要求查看微信消息、回复联系人、转发、处理聊天输入框或发送失败时。执行时必须先确认当前在微信的哪个页面，再按聊天场景一步一验。
+## 使用时机
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawphone-wechat-control`
-- **Source URL:** [https://clawhub.ai/skills/clawphone-wechat-control](https://clawhub.ai/skills/clawphone-wechat-control)
+- 用户要求读取或回复微信消息。
+- 需要进入某个联系人聊天页。
+- 聊天发送、转发、粘贴、长按菜单等操作失败。
 
-## Overview
+## 页面判断
 
+先区分当前处于哪一类页面：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawphone-wechat-control
-```
+- 桌面/非微信
+- 微信会话列表
+- 某个聊天页
+- 联系人资料页
+- 微信弹窗或菜单
+
+不同页面的操作完全不同。不要在未确认页面时直接输入或发送。
+
+## 回复消息标准流程
+
+1. 确认已进入目标聊天页。
+2. 截图确认底部真实输入框位置。
+3. 只执行“点输入框”这一步，并再次确认键盘或光标已出现。
+4. 先尝试 `type_text(...)`。
+5. 若 `type_text(...)` 失败或文本未进入输入框，立即切换到“剪贴板 + 长按输入框 + 点`粘贴`”兜底路径。
+6. 再次确认文本已经出现在输入框内。
+7. 截图确认绿色`发送`按钮真实可见。
+8. 点击当前截图里的发送按钮。
+9. 再次截图，确认新的右侧消息气泡已经出现。
+
+## 进入微信
+
+1. 可先尝试 `launch_app("com.tencent.mm")`。
+2. 立即检查前台应用是否真的变成 `com.tencent.mm`。
+3. 若仍停留在桌面或其他 App，不要重复盲开；先读取当前桌面状态。
+4. 桌面能识别到 `微信` 图标时，优先 `click_by_text("微信")` 进入。
+5. 进入后再次确认当前页面是会话列表、聊天页还是弹窗页。
+
+## 关键约束
+
+- 不要在未聚焦输入框时直接 `type_text(...)`。
+- 不要把某次截图里的输入框或发送按钮坐标复用到下一次。
+- 不要把 `press_enter` 当成默认发送方式；只有可见发送按钮不可用时才可兜底尝试。
+- 如果误入`朋友资料`页，先返回聊天页，再重新开始发送流程。
+
+## 会话定位
+
+- 会话列表优先用联系人文字进入。
+- 若点击联系人失败，先截图确认是否有遮挡层、导入提示、搜索页或资料页。
+- 若 `click_by_text` 无法命中会话项，但截图已能明确识别目标会话所在行，可基于当前截图临时点击该行；点完立即复核是否进入聊天页。
+- 同名联系人或列表状态不明时，先截图确认，不要盲点。
+
+## 输入兜底
+
+- 输入框已聚焦，不代表 `type_text(...)` 一定能命中微信输入框。
+- 若 `type_text(...)` 返回失败，优先执行：
+  1. `set_clipboard(...)`
+  2. 长按当前截图里的输入框空白区域
+  3. 截图确认微信自定义菜单出现
+  4. 基于当前截图临时点击 `粘贴`
+- 粘贴后必须再次确认文本已进入输入框，再进行发送。
+
+## 菜单与弹窗
+
+- 微信自定义菜单通常不能靠 `click_by_text` 命中。
+- 长按后先截图，再基于当前弹窗临时点击。
+- 一步菜单一张图，不要连续盲点。
+
+## 失败复盘模板
+
+失败时按这几个问题复盘：
+
+1. 当时在哪个页面。
+2. 失败发生在“进聊天 / 聚焦输入框 / 输入文字 / 点击发送 / 发送验证”的哪一步。
+3. 当时依据的是当前截图，还是误用了旧坐标/旧假设。
+4. 是否做了操作后的二次确认。
+5. 是否及时切换到了 `launch_app`、`click_by_text`、`type_text` 的兜底分支，而不是在同一路径上重复试错。

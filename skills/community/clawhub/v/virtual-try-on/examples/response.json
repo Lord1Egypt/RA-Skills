@@ -1,0 +1,24 @@
+{
+  "task_id": "task_2IIk3Z6NKuPZP7moonEI_12345",
+  "status": "completed",
+  "created_at": "2026-04-01T10:30:00Z",
+  "completed_at": "2026-04-01T10:45:30Z",
+  "inputs": {
+    "Clothing Image 1": "https://example.com/shirt.png",
+    "Clothing Image 2": "https://example.com/pants.png",
+    "Clothing Image 3": "https://example.com/jacket.png",
+    "Clothing Image 4": "https://example.com/accessories.png"
+  },
+  "outputs": [
+    {
+      "name": "result",
+      "url": "https://cdn.miraskill.cc/__skill_publish_files__/wangyang/product_result_compressed.png",
+      "description": "Generated e-commerce product photo"
+    }
+  ],
+  "processing_time_ms": 930000,
+  "model_info": {
+    "style_analyzer": "image_to_text_gpt5",
+    "generator": "nano_banana_pro"
+  }
+}

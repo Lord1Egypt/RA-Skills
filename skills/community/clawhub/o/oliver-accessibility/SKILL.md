@@ -1,35 +1,127 @@
 ---
-name: "Accessibility"
-description: "Enhances web accessibility by ensuring semantic HTML, ARIA roles, keyboard navigation, focus management, and screen reader support per WCAG guidelines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oliver-accessibility"
-sourceUrl: "https://clawhub.ai/skills/oliver-accessibility"
+name: accessibility
+description: Improves web accessibility (a11y): semantic HTML, ARIA, keyboard navigation, focus management, and screen reader support. Use when 无障碍, 可访问性, a11y, 键盘导航, 屏幕阅读器, WCAG, or making UI accessible.
 ---
 
-# Accessibility
+# 无障碍与可访问性（Accessibility / a11y）
 
-> Enhances web accessibility by ensuring semantic HTML, ARIA roles, keyboard navigation, focus management, and screen reader support per WCAG guidelines.
+帮助前端实现符合 WCAG 理念的无障碍：语义化、ARIA、键盘与焦点、屏幕阅读器支持。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oliver-accessibility`
-- **Source URL:** [https://clawhub.ai/skills/oliver-accessibility](https://clawhub.ai/skills/oliver-accessibility)
+## 触发场景
 
-## Overview
+- 用户说「无障碍」「可访问性」「a11y」「键盘导航」「读屏适配」「WCAG」
+- 需求里提到「残障用户」「视障」「仅用键盘操作」「焦点顺序」
+- 设计/产品要求通过 a11y 审计或合规
 
+## 分析维度
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oliver-accessibility
+### 1. 语义与结构
+
+| 要点 | 做法 |
+|------|------|
+| 语义化 HTML | 用 `<main>` `<nav>` `<article>` `<button>` 等，避免 div 包一切 |
+| 标题层级 | 单页内 h1 一个，h2–h6 不跳级 |
+| 列表与表格 | `<ul>`/`<ol>`、`<table>` 配 `<th scope>`，不用 div 仿表格 |
+
+### 2. 键盘与焦点
+
+| 要点 | 做法 |
+|------|------|
+| 可聚焦 | 交互元素可被 Tab 聚焦；自定义控件需 `tabIndex={0}` 或 `-1`（程序控制时） |
+| 焦点顺序 | DOM 顺序即 Tab 顺序；模态打开时焦点 trap、关闭回原焦点 |
+| 可见焦点 | 不用 `outline: none` 且无替代；提供 `:focus-visible` 样式 |
+| 键盘操作 | 支持 Enter/Space 激活、Esc 关闭、方向键操作列表/菜单 |
+
+### 3. ARIA 与名称
+
+| 场景 | 做法 |
+|------|------|
+| 名称 | 按钮/链接有可读文本或 `aria-label`/`aria-labelledby` |
+| 状态 | 展开/选中/禁用等用 `aria-expanded` `aria-selected` `aria-disabled` |
+| 角色 | 非语义组件用 `role` 匹配行为（如 `role="button"` `role="dialog"`） |
+| 动态区域 | 重要更新用 `aria-live`（polite/assertive） |
+
+### 4. 视觉与对比
+
+| 要点 | 做法 |
+|------|------|
+| 对比度 | 文本与背景至少 4.5:1（大字 3:1）；不单靠颜色区分信息 |
+| 焦点/状态 | 除颜色外有形状、图标或文字区分 |
+| 缩放 | 支持 200% 缩放不破坏布局（rem、弹性布局） |
+
+## 执行流程
+
+### 1. 确认切入点
+
+用户给了什么，决定从哪里开始：
+
+| 用户给的 | 第一步做什么 |
+|---------|------------|
+| 具体组件/页面代码 | 直接读代码，按维度逐项检查，输出问题列表 |
+| 截图或描述 | 先问：「是要检查现有代码，还是新写一个无障碍版本？」 |
+| 只说「做无障碍」 | 问：「是整站审计，还是某个具体页面/组件？有没有合规要求（WCAG 2.1 AA）？」 |
+| 已有 axe/Lighthouse 报告 | 读报告，按优先级排问题，给出每条的具体修改方案 |
+
+### 2. 读代码，逐维度检查
+
+拿到代码后，按以下顺序检查（不要跳过，不要只看一个维度）：
+
+**语义与结构**
+- 交互元素是不是用了正确的 HTML 标签？（`<button>` 不是 `<div onClick>`，`<a href>` 不是 `<span onClick>`）
+- 标题层级有没有跳级？（h1 → h3 跳过 h2 是问题）
+- 表单每个 input 有没有对应的 `<label>`？
+
+**键盘与焦点**
+- 所有交互元素能不能用 Tab 键到达？
+- 模态框/弹层打开时焦点有没有 trap？关闭后有没有回到触发元素？
+- 有没有 `outline: none` 且没有替代的焦点样式？
+
+**ARIA**
+- 图标按钮、纯图片链接有没有 `aria-label`？
+- 动态内容（toast、错误提示、加载状态）有没有 `aria-live`？
+- 自定义控件（下拉、tab、accordion）有没有正确的 `role` 和状态属性？
+
+**视觉**
+- 文字与背景对比度是否达到 4.5:1（大字 3:1）？
+- 信息传达有没有只靠颜色区分（如红色=错误，但没有图标或文字）？
+
+### 3. 发现问题后的处理
+
+- 每个问题给出：**位置**（文件/组件/行）+ **问题描述** + **具体修改代码**
+- 标优先级：**阻塞**（用键盘/读屏完全无法使用）> **重要**（体验明显受损）> **建议**（增强）
+- 如果问题很多，先只列阻塞级，问用户：「阻塞级问题有 X 个，先修这些还是一起看完整报告？」
+
+### 4. 没有代码时怎么办
+
+用户只描述需求、没给代码：直接给出该场景的无障碍实现模板（含 HTML 结构 + ARIA + 键盘交互），不要只给原则列表。
+
+## 输出模板
+
+```markdown
+## 无障碍检查与改进报告
+
+### 范围与标准
+- 范围：…
+- 参考：WCAG 2.1 AA / 自定义
+
+### 问题列表（按优先级）
+| 位置/组件 | 问题 | 建议修改 | 优先级 |
+|-----------|------|----------|--------|
+| … | … | … | 高/中/低 |
+
+### 修改要点汇总
+- 语义：…
+- 键盘/焦点：…
+- ARIA/名称：…
+- 视觉/对比：…
+
+### 验证建议
+- 工具：axe / Lighthouse / WAVE
+- 手动：键盘全流程 + 读屏测试
 ```
+
+## 项目相关
+
+- React：焦点用 `useRef` + `focus()`，陷阱用 `focus-trap-react` 或自实现
+- Vue：`@keydown`、`ref` 聚焦；可配合 `vue-a11y` 类库
+- 组件库：优先用已带 a11y 的（如 Radix、Headless UI），再按需覆盖样式

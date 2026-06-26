@@ -1,0 +1,92 @@
+name: vocab-voyage
+display_name: Vocab Voyage
+description: Vocabulary tools for SAT, ISEE, SSAT, GRE, GMAT, LSAT, PSAT prep — Word of the Day, definitions, quizzes, course word lists, study plan previews. 13 test-prep courses. Hosted, no install required.
+version: 1.0.0
+homepage: https://vocab.voyage
+documentation: https://vocab.voyage/mcp
+repository: https://github.com/jaideepdhanoa/vocab-voyage-mcp
+license: MIT
+publisher:
+  name: Vocab Voyage
+  url: https://vocab.voyage
+
+categories:
+  - education
+  - productivity
+  - reference
+
+keywords:
+  - sat
+  - isee
+  - ssat
+  - gre
+  - gmat
+  - lsat
+  - psat
+  - vocabulary
+  - tutor
+  - k12
+
+# This is a remote (hosted) MCP server — no local install required.
+remote:
+  url: https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server?ref=smithery
+  transport: streamable-http
+
+auth:
+  required: false
+  schemes:
+    - type: anonymous
+      description: Rate-limited at 60 req/min per IP. Default for unauthenticated clients.
+    - type: bearer
+      description: Optional personal token (vv_mcp_…) generated at https://vocab.voyage/mcp. Unlocks personalized tools and 600 req/hour rate limit.
+      token_url: https://vocab.voyage/mcp
+      documentation_url: https://vocab.voyage/developers/auth
+      scopes:
+        - name: mcp.read
+          description: Read MCP metadata and public tool results.
+        - name: mcp.tools
+          description: Invoke public MCP tools (definition, quiz, courses, study plan).
+        - name: profile.read
+          description: Read connected user's display name, account type, and preferred course.
+        - name: progress.read
+          description: Read mastery, streaks, and recent sessions for the connected user.
+
+tools:
+  - name: get_word_of_the_day
+    description: Returns today's vocabulary Word of the Day. Optionally scoped to a test family (isee, ssat, sat, psat, gre, gmat, lsat, general).
+  - name: get_definition
+    description: Look up the definition, part of speech, example sentence, and synonyms/antonyms for a vocabulary word.
+    ui:
+      resourceUri: ui://vocab-voyage/definition
+      description: Definition card with examples and synonyms.
+  - name: generate_quiz
+    description: Generate a multiple-choice vocabulary quiz for a test family. Returns 1–10 questions with answers.
+    ui:
+      resourceUri: ui://vocab-voyage/quiz
+      description: Interactive vocabulary quiz card.
+  - name: get_course_word_list
+    description: Get a sample of vocabulary words from a specific Vocab Voyage course.
+  - name: list_courses
+    description: Lists all 13 Vocab Voyage courses with their slugs and descriptions.
+  - name: explain_word_in_context
+    description: Explain what a word means inside a specific sentence — useful when a word has multiple meanings.
+  - name: study_plan_preview
+    description: Returns a sample 7-day study plan (5 words/day) for a given test family.
+    ui:
+      resourceUri: ui://vocab-voyage/study-plan
+      description: Seven-day study plan preview.
+
+rate_limits:
+  anonymous: 60 requests per minute per IP
+  authenticated: 600 requests per hour per user
+
+discovery:
+  agent_card: https://vocab.voyage/.well-known/agent-card.json
+  server_card: https://vocab.voyage/.well-known/mcp/server-card.json
+  mcp_apps: https://vocab.voyage/.well-known/mcp/apps.json
+  api_catalog: https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/api-catalog
+  nlweb_ask: https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/nlweb-ask
+  auth_docs: https://vocab.voyage/developers/auth
+  oauth_protected_resource: https://vocab.voyage/.well-known/oauth-protected-resource
+  openapi: https://vocab.voyage/openapi.json
+  schemamap: https://vocab.voyage/schemamap.xml

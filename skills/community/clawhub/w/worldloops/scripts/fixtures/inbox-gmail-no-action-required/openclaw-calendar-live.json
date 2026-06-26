@@ -1,0 +1,12 @@
+{
+  "events": [
+    {
+      "id": "daily-brief-test-cal-no-action-001",
+      "summary": "1:1 with manager",
+      "description": "Weekly check-in.",
+      "start": "2026-05-21T15:00:00.000Z",
+      "end": "2026-05-21T15:30:00.000Z"
+    }
+  ],
+  "count": 1
+}

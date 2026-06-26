@@ -1,0 +1,17 @@
+interface:
+  display_name: "AIGroup Finnhub MCP"
+  short_description: "News, sentiment, filings, and event-driven market intel"
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#1D4ED8"
+  default_prompt: "Use $aigroup-finnhub-mcp to analyze a ticker with news, sentiment, filings, and technical signals."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "aigroup-finnhub-mcp"
+      description: "Finnhub market intelligence and event data server"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true

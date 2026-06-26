@@ -1,0 +1,38 @@
+{
+  "ticker": "USB",
+  "company": "U.S. Bancorp",
+  "analysis_year": 2006,
+  "data_source": "U.S. Bancorp FY2006 10-K, SEC EDGAR; Berkshire 2006 annual report",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.225, "metric_used": "ROE", "years_averaged": "2004-2006", "pass": true },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": 4703, "pass": null },
+    "g3_leverage": { "metric_used": "Tier1", "value": 0.088, "pass": true },
+    "g4_revenue_trend": { "description": "Net income applicable to common equity rose from $4.17B to $4.49B to $4.70B, and total net revenue continued to advance into 2006 despite some margin pressure.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "For a bank, the analogue is spread discipline plus efficiency. Net interest margin compressed modestly, but ROE remained above 20% and there was no two-year structural profitability breakdown.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.074, "net_income_m": 4703, "ev_m": 63855, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "U.S. Bancorp's moat came from a low-cost deposit base, payments and trust businesses, conservative underwriting, and a long record of superior efficiency. It was not the biggest bank, but it was one of the cleanest and best-managed, which is exactly the kind of banking franchise Buffett repeatedly favored.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "net_income_common_2006_usd_m": 4703,
+    "market_value_per_share_2006_usd": 36.19,
+    "common_shares_outstanding_2006_m": 1765,
+    "tier1_capital_ratio_2006": 0.088,
+    "roe_2006": 0.236
+  },
+
+  "control_groups": [
+    { "ticker": "WM", "company": "Washington Mutual", "year": 2006, "gates_failed": ["g7_moat", "g3_leverage"], "conclusion": "PASS — growth was more aggressive and deposit quality plus underwriting discipline were materially weaker." },
+    { "ticker": "WB", "company": "Wachovia", "year": 2006, "gates_failed": ["g7_moat"], "conclusion": "PASS — scale was larger, but credit culture and acquisition discipline were less reliable than U.S. Bancorp's." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "By year-end 2006 Berkshire held 31.0M U.S. Bancorp shares at a cost of about $969M.",
+  "actual_result": "U.S. Bancorp remained one of the higher-quality large U.S. banks through the cycle, and Berkshire kept it as a meaningful bank holding for many years before later portfolio-wide retrenchment.",
+  "verdict": "✅ aligned",
+  "key_insight": "In banking, Buffett's edge often comes from picking the cleanest culture and deposit franchise, not the flashiest balance sheet."
+}

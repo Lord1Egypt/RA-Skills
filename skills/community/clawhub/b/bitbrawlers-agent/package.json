@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@0xpolygonid/js-sdk": "^1.43.0",
+    "@iden3/js-iden3-auth": "^1.14.0",
+    "cross-fetch": "^4.1.0",
+    "ethers": "^6.16.0",
+    "shell-quote": "^1.8.3",
+    "uuid": "^14.0.0"
+  }
+}

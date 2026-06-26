@@ -1,35 +1,43 @@
 ---
-name: "Website Change Watcher"
-description: "Monitor website/docs/pricing changes, diff meaningful updates, and summarize business impact with alert-ready reports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/website-change-watcher"
-sourceUrl: "https://clawhub.ai/skills/website-change-watcher"
+name: website-change-watcher
+description: Monitor website/docs/pricing changes, diff meaningful updates, and summarize business impact with alert-ready reports.
+metadata: {"openclaw":{"emoji":"🛰️"}}
 ---
 
 # Website Change Watcher
 
-> Monitor website/docs/pricing changes, diff meaningful updates, and summarize business impact with alert-ready reports.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/website-change-watcher`
-- **Source URL:** [https://clawhub.ai/skills/website-change-watcher](https://clawhub.ai/skills/website-change-watcher)
+Detect meaningful changes on target websites and turn them into actionable intelligence.
 
-## Overview
+## Core capabilities
 
+- monitor tracked URLs and sections
+- generate structural/content diffs
+- ignore noisy cosmetic changes
+- classify change type (pricing, policy, product, docs, legal)
+- summarize impact and recommended actions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/website-change-watcher
-```
+## Workflow
+
+1. Define watchlist URLs and priority.
+2. Capture baseline snapshots.
+3. Run periodic checks.
+4. Diff and classify changes.
+5. Publish alerts with impact summary.
+
+## Output format
+
+1. Changed pages list
+2. Before/after key lines
+3. Impact score
+4. Suggested team actions
+
+## Setup
+
+Read [setup.md](setup.md).
+
+## Examples
+
+See [examples.md](examples.md).
+

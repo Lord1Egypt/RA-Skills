@@ -1,35 +1,65 @@
 ---
-name: "Psychology Daily"
-description: "当用户说"今日心理学动态"、"今日心理学新闻"、"心理学界新闻"、"脑科学新研究"、"神经科学进展"、"心理学前沿"、"最新心理学研究"等时，搜索并整理当日心理学与脑科学领域最新研究发现和新闻，输出10条结构化结果（中英文权威来源结合）。仅输出当日内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psychology-daily"
-sourceUrl: "https://clawhub.ai/skills/psychology-daily"
+name: psychology-daily
+description: 当用户说"今日心理学动态"、"今日心理学新闻"、"心理学界新闻"、"脑科学新研究"、"神经科学进展"、"心理学前沿"、"最新心理学研究"等时，搜索并整理当日心理学与脑科学领域最新研究发现和新闻，输出10条结构化结果（中英文权威来源结合）。仅输出当日内容。
 ---
 
 # Psychology Daily
 
-> 当用户说"今日心理学动态"、"今日心理学新闻"、"心理学界新闻"、"脑科学新研究"、"神经科学进展"、"心理学前沿"、"最新心理学研究"等时，搜索并整理当日心理学与脑科学领域最新研究发现和新闻，输出10条结构化结果（中英文权威来源结合）。仅输出当日内容。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psychology-daily`
-- **Source URL:** [https://clawhub.ai/skills/psychology-daily](https://clawhub.ai/skills/psychology-daily)
+当用户请求当日心理学与脑科学动态时，搜索并整理最新研究发现和新闻，输出10条结构化内容（中外来源结合，全中文）。
 
-## Overview
+## 工作流程
 
+1. **解析请求** — 确认触发词（心理学/脑科学 + 今日/动态/新闻）
+2. **多关键词搜索** — 并行发起2-3组搜索，覆盖国内外来源
+3. **收集结果** — 获取10+条原始结果（留出去重余地）
+4. **去重与筛选** — 剔除重复、旧闻（30天前）、低可信度来源
+5. **格式化输出** — 按结构输出10条结果
+6. **兜底** — 如当日真无新内容，说明情况并扩大至近7天
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psychology-daily
+## 搜索策略
+
+### 中文搜索（并行执行）
+
+- `site:psychology.gov.cn 心理学 最新研究 2026`
+- `心理学 脑科学 新研究 2026年`
+- `今日心理学新闻 神经科学`
+
+### 英文搜索（并行执行）
+
+- `psychology news today 2026 -site:twitter.com -site:facebook.com`
+- `neuroscience research breakthrough today 2026`
+- `latest psychology findings today`
+
+> 参考完整来源列表和搜索模板： [references/sources.md](references/sources.md)
+
+## 输出结构
+
+每条结果按以下格式输出（emoji 标记类型）：
+
 ```
+🧠 [标题]
+📖 来源: [媒体/期刊名] | [日期]
+📝 [一句话摘要，说明重要发现或新闻要点]
+🔗 [链接]
+---
+```
+
+如为学术论文，标记为 `📚` 而非 `📖`。
+
+## 结果要求
+
+- **数量**：恰好10条，国内外各约5条
+- **时间**：仅当日（2026年4月28日）
+- **排序**：按重要程度/相关性排列，不按来源分组
+- **语言**：标题和摘要全中文，来源名保持原语言
+- **去重**：同一研究不同报道只保留最完整的一条
+- **可信度**：优先使用学术期刊、权威科普媒体
+
+## 关键原则
+
+- 搜索是核心手段，灵活使用关键词组合，不要死板套模板
+- 学术论文优先于一般新闻
+- 结果少时最多扩展至近7天，但需注明"近7天"而非"今日"
+- 不要编造内容，查不到就说"当日暂无公开新内容"

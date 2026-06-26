@@ -1,0 +1,8 @@
+{
+  "name": "self-improving-agent",
+  "version": "1.0.0",
+  "description": "Captures learnings, errors, and corrections for continuous improvement",
+  "author": "OpenClaw community",
+  "license": "MIT",
+  "type": "skill"
+}

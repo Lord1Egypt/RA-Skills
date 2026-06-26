@@ -1,35 +1,23 @@
----
-name: "Piadas Reddit"
-description: "Busca e retorna piadas reais recentes e limpas do subreddit r/tiodopave com score > 5, evitando repetições e conteúdo NSFW."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tiodopave"
-sourceUrl: "https://clawhub.ai/skills/tiodopave"
----
+# tiodopave - Piadas do Reddit
 
-# Piadas Reddit
+Busca piadas aleatórias do subreddit r/tiodopave (reddit.com/r/tiodopave).
 
-> Busca e retorna piadas reais recentes e limpas do subreddit r/tiodopave com score > 5, evitando repetições e conteúdo NSFW.
+## Uso
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tiodopave`
-- **Source URL:** [https://clawhub.ai/skills/tiodopave](https://clawhub.ai/skills/tiodopave)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tiodopave
+node ~/.openclaw/workspace/skills/tiodopave/index.mjs
 ```
+
+## O que faz
+
+1. Busca os posts mais recentes do r/tiodopave (limit: 20)
+2. Filtra posts com score > 5
+3. Escolhe um aleatoriamente
+4. Retorna o título e o conteúdo (selftext)
+
+## Regras
+
+- **NUNCA usar piadas geradas por IA** — só conteúdo real do Reddit
+- **Sem repetição** — evitar a última piada enviada (armazenar em /tmp/last-joke.txt)
+- **Limpar texto** — remover links, formatação Reddit, emojis excessivos
+- **Sem NSFW** — filtrar posts flaired "NSFW" ou que contenham palavras-chave adulto

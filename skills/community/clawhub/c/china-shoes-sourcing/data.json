@@ -1,0 +1,379 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Leather Industry Association, China Footwear Industry Association, National Bureau of Statistics",
+    "industry_scale_2026_target": "¥820 billion revenue",
+    "growth_rate_target": "4.5% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Footwear Industry Overview (2026)",
+    "summary": "China is the world's largest footwear producer and exporter, accounting for approximately 60% of global shoe production. The industry encompasses athletic shoes, leather shoes, casual shoes, women's shoes, children's shoes, and specialty footwear. In 2026, the industry is projected to exceed ¥820 billion in revenue, driven by athleisure trends, rising domestic consumption, export resilience, and technological advancements in materials and manufacturing. The industry is undergoing transformation toward automation, sustainable materials, and brand upgrading.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-Quality Development of Leather and Footwear Industry (2024-2026)",
+        "issuing_authorities": ["MIIT", "Ministry of Commerce", "China Leather Industry Association"],
+        "key_measures": [
+          "Promote eco-friendly materials (bio-based, recycled, water-based adhesives)",
+          "Support automation and digitalization in shoe manufacturing",
+          "Encourage brand building and international marketing",
+          "Establish national-level footwear design and innovation centers",
+          "Strengthen quality and safety standards (chemicals, durability)"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥785 billion",
+      "total_production": "14.2 billion pairs",
+      "export_value": "$65 billion",
+      "key_drivers": ["running shoes", "casual sneakers", "women's fashion shoes", "children's shoes", "athleisure"],
+      "automation_rate": "45% (cutting and assembly lines in large factories)",
+      "domestic_brand_share": "55% of domestic market"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Footwear Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, components, and design",
+      "categories": [
+        {
+          "name": "Upper Materials",
+          "items": ["leather (cowhide, sheepskin, pigskin)", "synthetic leather (PU, PVC)", "textiles (mesh, canvas, knitted)", "vegan leather"],
+          "key_suppliers": ["Xingye Leather", "Anfu Leather", "Huafon Group", "Zhejiang Hexin"]
+        },
+        {
+          "name": "Sole Materials",
+          "items": ["rubber", "EVA (ethylene-vinyl acetate)", "TPR (thermoplastic rubber)", "PU (polyurethane)", "TPU (thermoplastic polyurethane)", "leather soles"],
+          "key_suppliers": ["Longhua Group", "Qingdao Doublestar", "Zhejiang Tiantai", "Guangdong Jialong"]
+        },
+        {
+          "name": "Components & Accessories",
+          "items": ["shoe lasts", "insoles", "laces", "eyelets", "shanks", "heel counters", "toe puffs", "branding labels"],
+          "key_suppliers": ["YKK China (zippers)", "SBS Zipper", "Ningbo Homelink", "Guangdong TPR"]
+        },
+        {
+          "name": "Chemicals & Adhesives",
+          "items": ["shoe adhesives", "solvents", "finishing agents", "dyes"],
+          "key_suppliers": ["Henkel China", "Bostik China", "H.B. Fuller China"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Footwear manufacturing and assembly",
+      "subsectors": [
+        "athletic shoes (running, basketball, training, casual sneakers)",
+        "leather shoes (dress shoes, casual, boots)",
+        "women's shoes (heels, flats, sandals, boots)",
+        "men's shoes (oxfords, loafers, boots)",
+        "children's shoes (infant, toddler, youth)",
+        "casual shoes (canvas, slip-ons, boat shoes)",
+        "sandals & slippers",
+        "safety shoes (steel-toe, anti-static, puncture-resistant)"
+      ],
+      "key_companies_by_subsector": {
+        "athletic": ["Anta", "Li-Ning", "Xtep", "361°", "Peak", "Erke"],
+        "leather_shoes": ["Aokang", "Red Dragonfly", "Belle", "Daphne", "Warrior"],
+        "women's": ["Belle", "St&Sat", "73hours", "Kisscat"],
+        "children's": ["ABC Kids", "Belle Kids", "Mutong"],
+        "casual": ["Warrior", "Feiyue", "People's Liberation Army (sneakers)"],
+        "safety": ["Qingdao Doublestar", "Zhejiang Tiantai", "Jiangsu Safe"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "retail (shoe stores, department stores, brand outlets)",
+        "e-commerce (Tmall, JD.com, Pinduoduo, Douyin)",
+        "cross-border e-commerce (Amazon, AliExpress, Shopee)",
+        "export to global markets (US, EU, Japan, Southeast Asia, Africa)",
+        "OEM/ODM for international brands (Nike, Adidas, Skechers, Clarks)"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Fujian Province (Jinjiang)",
+      "provinces_cities": ["Jinjiang", "Quanzhou", "Putian"],
+      "share_of_industry": "25% of national output",
+      "specializations": [
+        "athletic shoes (running, basketball)",
+        "sneakers",
+        "sportswear integration"
+      ],
+      "key_hubs": [
+        {
+          "city": "Jinjiang",
+          "specialization": "Athletic footwear capital, 'China's Sneaker Capital'",
+          "supplier_example": "Anta, Xtep, 361°, Peak all headquartered here; thousands of suppliers, including large OEMs like Yue Yuen (factory)"
+        },
+        {
+          "city": "Putian",
+          "specialization": "Sneaker manufacturing (OEM for global brands)",
+          "supplier_example": "Putian is known for high-quality shoe production, including for Nike and Adidas via OEMs"
+        }
+      ],
+      "strengths": [
+        "Mature athletic footwear ecosystem",
+        "Strong brand cluster",
+        "High volume production",
+        "Rapid prototyping"
+      ]
+    },
+    {
+      "region": "Pearl River Delta (Guangdong)",
+      "provinces_cities": ["Guangzhou", "Huizhou", "Dongguan", "Foshan"],
+      "share_of_industry": "20% of national output",
+      "specializations": [
+        "women's shoes",
+        "leather shoes",
+        "fashion footwear",
+        "high-end footwear"
+      ],
+      "key_hubs": [
+        {
+          "city": "Guangzhou",
+          "specialization": "Women's fashion shoes, wholesale markets (站西路)",
+          "supplier_example": "Guangzhou footwear wholesale markets – thousands of manufacturers and trading companies"
+        },
+        {
+          "city": "Huizhou",
+          "specialization": "Leather shoes, women's shoes",
+          "supplier_example": "Huizhou Aokang Shoes – major manufacturer"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "High-end footwear OEM (for luxury brands)",
+          "supplier_example": "Dongguan Xinghui Footwear – produces for European luxury brands"
+        }
+      ],
+      "strengths": [
+        "Fashion-forward design",
+        "High-quality leather work",
+        "Proximity to Hong Kong"
+      ]
+    },
+    {
+      "region": "Zhejiang Province (Wenzhou)",
+      "provinces_cities": ["Wenzhou", "Taizhou"],
+      "share_of_industry": "15% of national output",
+      "specializations": [
+        "leather shoes (men's and women's)",
+        "casual shoes",
+        "boots"
+      ],
+      "key_hubs": [
+        {
+          "city": "Wenzhou",
+          "specialization": "Leather shoe capital, 'China Shoe Capital'",
+          "supplier_example": "Aokang, Red Dragonfly headquartered here; also many OEMs"
+        },
+        {
+          "city": "Taizhou",
+          "specialization": "Slippers, sandals, children's shoes",
+          "supplier_example": "Zhejiang Taizhou shoe cluster"
+        }
+      ],
+      "strengths": [
+        "Strong leather processing tradition",
+        "Complete supply chain",
+        "Entrepreneurial culture"
+      ]
+    },
+    {
+      "region": "Sichuan Province (Chengdu)",
+      "provinces_cities": ["Chengdu", "Chongqing"],
+      "share_of_industry": "10% of national output",
+      "specializations": [
+        "women's shoes",
+        "fashion boots"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chengdu",
+          "specialization": "Women's footwear manufacturing",
+          "supplier_example": "Chengdu Women's Shoes Industrial Park – many factories"
+        }
+      ],
+      "strengths": [
+        "Lower labor costs",
+        "Growing domestic market"
+      ]
+    },
+    {
+      "region": "Jiangsu Province",
+      "provinces_cities": ["Yangzhou", "Nanjing", "Zhenjiang"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "slippers",
+        "casual shoes",
+        "safety shoes"
+      ],
+      "key_hubs": [
+        {
+          "city": "Yangzhou",
+          "specialization": "Slippers, casual footwear",
+          "supplier_example": "Yangzhou shoe cluster – exports slippers worldwide"
+        }
+      ],
+      "strengths": [
+        "Specialized production",
+        "Export-oriented"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "athletic_shoes": {
+      "description": "Running shoes, basketball shoes, training shoes, sneakers, hiking shoes. Largest segment driven by sports participation and athleisure.",
+      "key_clusters": ["Fujian (Jinjiang)", "Guangdong"],
+      "growth_drivers": [
+        "Running craze",
+        "Athleisure trend",
+        "Carbon-plated super shoes",
+        "Domestic brand upgrade"
+      ],
+      "market_trends": "Knitted uppers; supercritical foams; sustainability (recycled materials); customization.",
+      "key_players": ["Anta", "Li-Ning", "Xtep", "361°", "Peak", "Nike/Adidas OEMs"]
+    },
+    "leather_shoes": {
+      "description": "Dress shoes, oxfords, loafers, boots, casual leather shoes. Strong in men's and women's segments.",
+      "key_clusters": ["Zhejiang (Wenzhou)", "Guangdong (Huizhou)"],
+      "growth_drivers": [
+        "Office wear",
+        "Formal occasions",
+        "Premium leather demand"
+      ],
+      "market_trends": "Lightweight leather; comfort technology; Goodyear welt revival.",
+      "key_players": ["Aokang", "Red Dragonfly", "Belle", "Clarks (OEM)"]
+    },
+    "women's_shoes": {
+      "description": "High heels, pumps, sandals, boots, flats, wedges. Highly fashion-driven.",
+      "key_clusters": ["Guangdong (Guangzhou)", "Sichuan (Chengdu)", "Zhejiang"],
+      "growth_drivers": [
+        "Fast fashion cycles",
+        "E-commerce (Douyin, Xiaohongshu)",
+        "Seasonal trends"
+      ],
+      "market_trends": "Comfort heels (block heels, platforms); sustainable materials; versatile designs.",
+      "key_players": ["Belle", "St&Sat", "73hours", "Kisscat"]
+    },
+    "children's_shoes": {
+      "description": "Infant, toddler, and youth shoes. Growing focus on foot health and comfort.",
+      "key_clusters": ["Fujian", "Zhejiang", "Guangdong"],
+      "growth_drivers": [
+        "Second-child policy effects",
+        "Parental spending on quality",
+        "School needs"
+      ],
+      "market_trends": "Lightweight; flexible soles; breathable materials; educational brands.",
+      "key_players": ["ABC Kids", "Belle Kids", "Mutong", "Bobdog"]
+    },
+    "casual_shoes": {
+      "description": "Canvas shoes, slip-ons, boat shoes, espadrilles. Retro styles popular.",
+      "key_clusters": ["Zhejiang", "Fujian"],
+      "growth_drivers": [
+        "Retro trend",
+        "Everyday comfort"
+      ],
+      "market_trends": "Sustainable canvas; recycled rubber; vintage designs.",
+      "key_players": ["Warrior", "Feiyue", "People's Liberation Army (PLA) sneakers"]
+    },
+    "sandals_slippers": {
+      "description": "Flip-flops, slides, beach sandals, house slippers. High volume, lower price point.",
+      "key_clusters": ["Jiangsu (Yangzhou)", "Zhejiang (Taizhou)", "Fujian"],
+      "growth_drivers": [
+        "Seasonal demand",
+        "Tourism rebound",
+        "Home comfort trend"
+      ],
+      "market_trends": "EVA foam; ergonomic designs; sustainable materials.",
+      "key_players": ["Yangzhou shoe cluster", "Zhejiang Tiantai"]
+    },
+    "safety_shoes": {
+      "description": "Steel-toe, composite-toe, anti-static, puncture-resistant, slip-resistant for industrial use.",
+      "key_clusters": ["Jiangsu", "Zhejiang", "Shandong"],
+      "growth_drivers": [
+        "Industrial safety regulations",
+        "Construction and manufacturing growth"
+      ],
+      "market_trends": "Lightweight composites; comfort insoles; modern designs.",
+      "key_players": ["Qingdao Doublestar", "Zhejiang Tiantai", "Jiangsu Safe"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, ISO 14001; specific certifications (SATRA, BLC for leather, SATRA for testing)"
+      },
+      {
+        "metric": "Social compliance",
+        "target": "BSCI, SMETA, SA8000, or customer code of conduct audits"
+      },
+      {
+        "metric": "Production capability",
+        "target": "Cutting, stitching, lasting, bottoming lines; monthly output; specialized machines (CNC cutting, automatic stitching)"
+      },
+      {
+        "metric": "Material compliance",
+        "target": "REACH, RoHS, CA Prop 65; leather sourcing ethical (LWG certification)"
+      },
+      {
+        "metric": "R&D/Design",
+        "target": "In-house design team, ability to develop samples, 3D modeling"
+      }
+    ],
+    "verification_methods": [
+      "Request certifications and audit reports",
+      "Conduct factory audit (production processes, QC, working conditions)",
+      "Order samples for fit, comfort, and durability testing (flex, abrasion, adhesion)",
+      "Check references from other buyers",
+      "Use third-party inspection (SGS, Bureau Veritas, TÜV) for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed product specifications (last number, size range, materials, colors, construction details)",
+      "Share design sketches, 3D drawings, or reference samples",
+      "Discuss sample development timeline and cost",
+      "Clarify packaging requirements (inner box, outer carton, labeling)",
+      "Establish quality agreement (AQL levels, acceptable defects)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment. For custom last/mold development, 50% deposit, 50% on sample approval.",
+    "lead_times": {
+      "samples": "15-30 days (new development), 7-15 days (existing designs)",
+      "bulk_production": "45-75 days after sample approval (depending on order size)",
+      "reorder": "30-60 days"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for shoes in China?",
+      "answer": "For athletic shoes, MOQ often 1000-3000 pairs per design/color. For leather shoes, 500-1500 pairs. For sandals/slippers, 2000-5000 pairs. Some factories accept lower MOQs (200-500) at higher prices or for sample orders."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom last making?",
+      "answer": "Yes, custom lasts are essential for proper fit. Last making costs $500-$2000 per size range. Provide detailed foot measurements or reference lasts."
+    },
+    {
+      "question": "How can I ensure the quality of leather?",
+      "answer": "Request leather samples and specifications (thickness, grade, finish). Work with tanneries that have LWG (Leather Working Group) certification. Use third-party testing for chemical compliance."
+    },
+    {
+      "question": "What are the most popular sole materials?",
+      "answer": "EVA for lightweight comfort (athletic, casual); rubber for durability (outdoor, work); PU for cushioning; TPR for affordability. Specify requirements."
+    },
+    {
+      "question": "Can I get shoes with custom branding and packaging?",
+      "answer": "Yes, most suppliers offer OEM/ODM. They can emboss logos on insoles, hang tags, custom boxes. Minimum quantities apply."
+    }
+  ],
+  "glossary": {
+    "EVA": "Ethylene-vinyl acetate – lightweight foam used in midsoles.",
+    "PU": "Polyurethane – durable, used in soles and synthetic leather.",
+    "TPR": "Thermoplastic rubber – flexible, used in soles.",
+    "TPU": "Thermoplastic polyurethane – durable, used in soles and overlays.",
+    "Last": "Three-dimensional form used to shape shoes.",
+    "Vulcanization": "Process that bonds rubber sole to upper using heat (e.g., canvas shoes).",
+    "Cement construction": "Sole attached with adhesive (most common).",
+    "Goodyear welt": "Traditional construction for high-end leather shoes.",
+    "LWG": "Leather Working Group – certification for sustainable leather production.",
+    "SATRA": "UK-based research and testing organization for footwear."
+  }
+}

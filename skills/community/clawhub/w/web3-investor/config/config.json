@@ -1,0 +1,7 @@
+{
+  "_comment": "Web3 Investor Skill Configuration - v2.0.0 (MCP Client Only)",
+  "mcp": {
+    "endpoint": "https://mcp-skills.ai.antalpha.com/mcp",
+    "timeout_seconds": 30
+  }
+}

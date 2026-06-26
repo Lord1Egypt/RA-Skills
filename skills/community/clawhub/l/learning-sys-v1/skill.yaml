@@ -1,0 +1,24 @@
+name: learning-system-skill
+version: 1.0.0
+description: AI领域系统学习体系。管理知识图谱、深度学习笔记、实战复盘和关联网络。适用于学习计划、知识更新、深度研究等场景。
+author: clawd
+homepage: https://clawhub.com/skills/learning-system-skill
+
+triggers:
+  - 学习计划
+  - 知识图谱
+  - 学习笔记
+  - 复盘
+  - learning
+  - study
+
+features:
+  - 知识图谱管理
+  - 深度学习笔记
+  - 实战复盘总结
+  - 关联网络分析
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

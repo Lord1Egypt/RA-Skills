@@ -1,35 +1,147 @@
 ---
-name: "银行卡类型及归属地查询 - 聚合数据"
-description: "银行卡类型及归属地查询。查询银行卡号的发卡银行、卡类型（借记卡/贷记卡）、归属地（省市）、银行客服电话等信息。使用场景：用户说"查一下这个银行卡号"、"这个卡是哪个银行的"、"这张卡是借记卡还是信用卡"、"银行卡归属地查询"、"查银行卡信息"等。通过聚合数据（juhe.cn）API实时查询，支持单个或批量卡号查询。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-bankcard-lookup"
-sourceUrl: "https://clawhub.ai/skills/juhe-bankcard-lookup"
+name: juhe-bankcard-lookup
+description: 银行卡类型及归属地查询。查询银行卡号的发卡银行、卡类型（借记卡/贷记卡）、归属地（省市）、银行客服电话等信息。使用场景：用户说"查一下这个银行卡号"、"这个卡是哪个银行的"、"这张卡是借记卡还是信用卡"、"银行卡归属地查询"、"查银行卡信息"等。通过聚合数据（juhe.cn）API实时查询，支持单个或批量卡号查询。
+homepage: https://www.juhe.cn/docs/api/id/305
+metadata: {"openclaw":{"emoji":"💳","requires":{"bins":["python3"],"env":["JUHE_BANKCARDCODE_KEY"]},"primaryEnv":"JUHE_BANKCARDCODE_KEY"}}
 ---
 
-# 银行卡类型及归属地查询 - 聚合数据
+# 银行卡类型及归属地查询
 
-> 银行卡类型及归属地查询。查询银行卡号的发卡银行、卡类型（借记卡/贷记卡）、归属地（省市）、银行客服电话等信息。使用场景：用户说"查一下这个银行卡号"、"这个卡是哪个银行的"、"这张卡是借记卡还是信用卡"、"银行卡归属地查询"、"查银行卡信息"等。通过聚合数据（juhe.cn）API实时查询，支持单个或批量卡号查询。
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-bankcard-lookup`
-- **Source URL:** [https://clawhub.ai/skills/juhe-bankcard-lookup](https://clawhub.ai/skills/juhe-bankcard-lookup)
+查询银行卡号的 **发卡银行、卡类型、归属地（省市）、银行客服电话** 等信息。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [银行卡归属地等信息查询 API](https://www.juhe.cn/docs/api/id/305) 页面，点击「申请使用」
+3. 审核通过后在「我的API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-bankcard-lookup
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_BANKCARDCODE_KEY=你的AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_BANKCARDCODE_KEY=你的AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/bankcard_lookup.py --key 你的AppKey 6228480402564890018
 ```
+
+---
+
+## 使用方法
+
+### 单个卡号查询
+
+```bash
+python scripts/bankcard_lookup.py 6228480402564890018
+```
+
+输出示例：
+
+```
+💳 6228480402564890018  农业银行(ABC) 借记卡  广东 深圳
+   客服电话: 95599  官网: http://www.abchina.com
+
+{
+  "bankcard": "6228480402564890018",
+  "success": true,
+  "bankname": "农业银行",
+  "abbreviation": "ABC",
+  "cardtype": "借记卡",
+  "nature": "金穗通宝卡(银联卡)",
+  "province": "广东",
+  "city": "深圳",
+  "kefu": "95599",
+  "weburl": "http://www.abchina.com"
+}
+```
+
+### 批量卡号查询
+
+```bash
+python scripts/bankcard_lookup.py 6228480402564890018 6222021234567890123 6217001234567890123
+```
+
+输出示例（表格形式）：
+
+```
+共查询 3 张银行卡:
+
++---------------------+----------+------+--------+------+------+--------+----+
+| 银行卡号            | 发卡银行 | 简称 | 卡类型 | 省份 | 城市 | 客服   | 备注 |
++---------------------+----------+------+--------+------+------+--------+----+
+| 6228480402564890018 | 农业银行 | ABC  | 借记卡 | 广东 | 深圳 | 95599  | ✓  |
+| 6222021234567890123 | 工商银行 | ICBC | 借记卡 | 北京 |      | 95588  | ✓  |
+| 6217001234567890123 | 建设银行 | CCB  | 借记卡 | 上海 | 上海 | 95533  | ✓  |
++---------------------+----------+------+--------+------+------+--------+----+
+```
+
+### 直接调用 API（无需脚本）
+
+```
+GET http://apis.juhe.cn/bankcardcore/query?key=YOUR_KEY&bankcard=6228480402564890018
+```
+
+---
+
+## AI 使用指南
+
+当用户询问银行卡信息时，按以下步骤操作：
+
+1. **提取卡号** — 从用户消息中提取所有银行卡号（15-19位数字）
+2. **基本校验** — 检查卡号是否为纯数字且长度合理（15-19位）
+3. **调用脚本或 API** — 执行查询，获取 JSON 结果
+4. **展示结果** — 单张卡用自然语言描述；多张卡用表格汇总
+
+### 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| `bankname` | 发卡银行名称 | 农业银行 |
+| `abbreviation` | 银行英文简称 | ABC |
+| `cardtype` | 卡类型 | 借记卡 / 贷记卡 / 准贷记卡 |
+| `nature` | 卡名称 | 金穗通宝卡(银联卡) |
+| `province` | 归属省份 | 广东 |
+| `city` | 归属城市 | 深圳 |
+| `kefu` | 银行客服电话 | 95599 |
+| `weburl` | 银行官方网站 | http://www.abchina.com |
+| `card_bin` | 银行卡BIN码 | 622848 |
+| `bin_digits` | BIN码长度 | 6 |
+| `card_digits` | 卡号标准长度 | 19 |
+| `isLuhn` | 是否支持Luhn校验 | true |
+| `banklogo` | 银行Logo URL | - |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/305) 重新申请 |
+| `error_code` 10012 | 请求次数超限，建议升级套餐 |
+| 银行卡号错误 | 提示重新输入正确的卡号|
+| 查询异常| 建议稍后重试 |
+| 数据源超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/bankcard_lookup.py` — 封装了 API 调用、卡号校验、批量查询表格输出和错误处理。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **网络工具**：IP查询、DNS解析、端口检测
+- **生活服务**：天气预报、万年历、节假日查询
+- **物流快递**：100+ 快递公司实时追踪
+- **身份核验**：手机号归属地、身份证实名验证、银行卡核验
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

@@ -1,0 +1,121 @@
+{
+  "categories": {
+    "software": [
+      "github",
+      "aws",
+      "google cloud",
+      "vercel",
+      "openai",
+      "anthropic",
+      "azure",
+      "digitalocean",
+      "linode",
+      "heroku",
+      "netlify",
+      "figma",
+      "notion",
+      "slack",
+      "zoom"
+    ],
+    "travel": [
+      "ryanair",
+      "airbnb",
+      "hotel",
+      "taxi",
+      "uber",
+      "bus éireann",
+      "irish rail",
+      "luas",
+      "dublin bus",
+      "aer lingus",
+      "booking.com",
+      "hertz",
+      "enterprise rent"
+    ],
+    "office": [
+      "staples",
+      "amazon",
+      "equipment",
+      "monitor",
+      "keyboard",
+      "mouse",
+      "webcam",
+      "headset",
+      "desk",
+      "chair",
+      "cable",
+      "adapter",
+      "usb"
+    ],
+    "utilities": [
+      "electric",
+      "gas",
+      "internet",
+      "phone",
+      "vodafone",
+      "virgin",
+      "eir",
+      "electric ireland",
+      "board gais",
+      "flogas",
+      "sky",
+      "smart meters"
+    ],
+    "food": [
+      "restaurant",
+      "cafe",
+      "tesco",
+      "supervalu",
+      "lidl",
+      "aldi",
+      "insomnia",
+      "starbucks",
+      "just eat",
+      "deliveroo",
+      "ubereats",
+      "mcdonalds",
+      "subway",
+      "centra"
+    ],
+    "professional": [
+      "accountant",
+      "legal",
+      "insurance",
+      "subscription",
+      "membership",
+      "consultant",
+      "auditor",
+      "solicitor",
+      "revenue",
+      "cro"
+    ],
+    "marketing": [
+      "google ads",
+      "facebook ads",
+      "meta ads",
+      "twitter ads",
+      "linkedin ads",
+      "adwords",
+      "mailchimp",
+      "convertkit",
+      "hubspot"
+    ]
+  },
+  "defaults": {
+    "currency": "EUR",
+    "taxRate": 0.23,
+    "dateFormat": "DD/MM/YYYY"
+  },
+  "ledger": {
+    "path": "data/ledger.csv",
+    "backupCount": 5
+  },
+  "exportPresets": {},
+  "xero": {
+    "defaultAccountCode": "200",
+    "defaultTaxRate": "23% (VAT on Expenses)"
+  },
+  "freeagent": {
+    "claimantName": ""
+  }
+}

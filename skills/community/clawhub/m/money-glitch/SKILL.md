@@ -1,35 +1,24 @@
----
-name: "CashFlow Lite: Self-Sustaining AI Agent"
-description: "Identifies low-cost money-making opportunities, evaluates ROI, creates action plans, and learns to improve financial outcomes autonomously."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/money-glitch"
-sourceUrl: "https://clawhub.ai/skills/money-glitch"
----
-
 # CashFlow Lite: Self-Sustaining AI Agent
 
-> Identifies low-cost money-making opportunities, evaluates ROI, creates action plans, and learns to improve financial outcomes autonomously.
+## Purpose
+Turn your agent into a system that finds and executes low-cost money-making opportunities with a focus on ROI and fast results.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/money-glitch`
-- **Source URL:** [https://clawhub.ai/skills/money-glitch](https://clawhub.ai/skills/money-glitch)
+## Modules
 
-## Overview
+- strategist.md → finds and selects opportunities
+- executor.md → creates step-by-step plans
+- evaluator.md → evaluates ROI and outcomes
+- memory.md → tracks lessons and improvements
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/money-glitch
-```
+For every task:
+
+1. Strategist → find opportunities  
+2. Evaluator → pick best ROI  
+3. Executor → generate plan  
+4. Memory → learn from result  
+
+## Goal
+
+Generate more value than cost and improve over time.

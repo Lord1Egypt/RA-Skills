@@ -1,35 +1,48 @@
 ---
-name: "Douyin Shortdrama"
-description: "Provides summarized information on public Douyin short drama channels and episodes, including titles, updates, cast, and popularity stats without downloads o..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-shortdrama"
-sourceUrl: "https://clawhub.ai/skills/douyin-shortdrama"
+name: douyin-shortdrama-hot-trend
+description: 注册“抖音短剧”技能；用于短剧频道与剧集页信息整理与表现摘要。
+homepage: `https://www.douyin.com/`
+metadata: {"clawdbot":{"emoji":"🎬"}}
 ---
 
-# Douyin Shortdrama
+# 抖音短剧
 
-> Provides summarized information on public Douyin short drama channels and episodes, including titles, updates, cast, and popularity stats without downloads o...
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-shortdrama`
-- **Source URL:** [https://clawhub.ai/skills/douyin-shortdrama](https://clawhub.ai/skills/douyin-shortdrama)
+- 面向公开短剧频道与剧集页面的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.douyin.com/
+- 短剧频道/榜单：站点入口
+- 搜索入口：https://www.douyin.com/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/douyin-shortdrama
-```
+常见任务
+
+- 短剧剧集的目录与更新状态、期次简介
+- 榜单条目分布与题材统计
+- 热度/评论与主演信息摘要
+
+数据字段
+
+- 短剧标题、更新状态、期次目录、简介、主演、点赞/评论、链接
+- 榜单名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验严格，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行下载或接口调用
+
+示例流程
+
+- 剧集目录：访问短剧页 → 抽取期次 → 输出更新状态与简介
+- 榜单统计：访问榜单 → 抽取条目 → 题材分布统计
+- 信息摘要：抽取主演与评论概览 → 输出要点
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

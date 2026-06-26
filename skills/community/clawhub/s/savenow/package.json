@@ -1,0 +1,38 @@
+{
+  "name": "savenow",
+  "version": "0.1.1",
+  "description": "OpenClaw + Telegram skill that saves durable conversation notes to a daily memory file, with semantic-dedupe preview/apply flow and inline Apply/Cancel buttons.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Arif Celebi",
+  "homepage": "https://github.com/Chelebii/savenow#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chelebii/savenow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chelebii/savenow/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node tests/run.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "scripts/",
+    "examples/"
+  ],
+  "keywords": [
+    "openclaw",
+    "telegram",
+    "skill",
+    "memory",
+    "claude-code",
+    "notes"
+  ]
+}

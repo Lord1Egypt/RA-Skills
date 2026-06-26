@@ -1,35 +1,32 @@
----
-name: "My System Info Skill"
-description: "生成包含系统信息、CPU、内存、磁盘、网络、进程和服务状态的详细Markdown格式运维报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-system-info-skill"
-sourceUrl: "https://clawhub.ai/skills/my-system-info-skill"
----
+# 系统信息报告技能
 
-# My System Info Skill
+## 功能描述
+该技能用于生成详细的系统运维报告，包含：
 
-> 生成包含系统信息、CPU、内存、磁盘、网络、进程和服务状态的详细Markdown格式运维报告。
+- 🖥️ **系统基本信息**（主机名、OS、内核、用户、运行时间）
+- ⚙️ **CPU信息**（架构、核心数、性能参数）
+- 🧠 **内存信息**（使用量、可用内存、交换空间）
+- 💾 **磁盘信息**（块设备、分区、文件系统使用情况）
+- 🌐 **网络信息**（网络接口配置）
+- 📈 **进程信息**（运行中的进程概览）
+- 🛠️ **服务状态**（systemd管理的服务状态）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-system-info-skill`
-- **Source URL:** [https://clawhub.ai/skills/my-system-info-skill](https://clawhub.ai/skills/my-system-info-skill)
+## 输出格式
+- 生成**Markdown格式**的报告（.md文件）
+- 包含可折叠的详细信息区块
+- 文件保存在`system-tool-results`目录下
+- 文件名包含时间戳（如：system_report_2024-01-01_12-00-00.md）
 
-## Overview
+## 使用方法
+1. 安装此Skill到OpenClaw
+2. 通过对话调用："生成系统报告" 或 "创建系统运维报告"
+3. 报告将自动生成并可在指定目录查看
 
+## 适用场景
+- 系统运维监控
+- 故障排查
+- 环境信息收集
+- 定期系统健康检查
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-system-info-skill
-```
+## 标签
+`system` `monitoring` `report` `markdown` `diagnostics`

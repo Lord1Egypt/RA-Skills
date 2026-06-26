@@ -1,0 +1,28 @@
+{
+  "appName": "GrayMatter",
+  "tagline": "Durable memory and live schema context for business-native agents.",
+  "description": "GrayMatter gives agents durable memory, shared graph context, and authenticated awareness of the live ValkyrAI api-0 schema.",
+  "companyUrl": "https://valkyrlabs.com/",
+  "privacyPolicyUrl": "https://github.com/ValkyrLabs/GrayMatter/blob/main/docs/privacy-policy.md",
+  "repositoryUrl": "https://github.com/ValkyrLabs/GrayMatter",
+  "mcpEndpointPath": "/mcp",
+  "assets": {
+    "logo": "assets/logo.svg",
+    "composerIcon": "assets/composer-icon.svg",
+    "screenshot": "assets/screenshot.svg"
+  },
+  "dashboardPrerequisites": [
+    "Complete individual or business identity verification for the publishing name.",
+    "Use a global data residency OpenAI project.",
+    "Grant api.apps.write and api.apps.read to the submitter.",
+    "Deploy the MCP server to a public HTTPS domain.",
+    "Provide reviewer test credentials through the OpenAI Platform Dashboard only."
+  ],
+  "reviewPromptSet": [
+    "Use GrayMatter to show what tools are available.",
+    "Write a MemoryEntry noting that the review demo account is working.",
+    "Search GrayMatter for the review demo memory.",
+    "Summarize the ValkyrAI schema with GrayMatter.",
+    "List safe sample Task entities from GrayMatter."
+  ]
+}

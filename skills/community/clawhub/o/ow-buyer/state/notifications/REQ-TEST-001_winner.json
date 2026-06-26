@@ -1,0 +1,42 @@
+{
+  "notification_id": "NOTIF-20260401154815",
+  "req_id": "REQ-TEST-001",
+  "type": "winner",
+  "timestamp": "2026-04-01T15:48:15.261480",
+  "data": {
+    "bid_id": "BID-TEST-001",
+    "supplier": "幽灵庄园旗舰店",
+    "price": 2800,
+    "price_score": 50.0,
+    "media_score": 15,
+    "auth_score": 8.0,
+    "delivery_days": 3,
+    "delivery_score": 5.0,
+    "reputation_score": 8.940000000000001,
+    "total_score": 86.94,
+    "auth_docs": [
+      "营业执照",
+      "代理权证明"
+    ],
+    "images": [
+      "https://example.com/wine1.jpg",
+      "https://example.com/wine2.jpg"
+    ],
+    "video": "https://example.com/wine.mp4",
+    "reputation": {
+      "total_transactions": 50,
+      "success_rate": 0.98,
+      "disputes": 0,
+      "platform_verified": true
+    },
+    "shop_links": [
+      {
+        "platform": "淘宝",
+        "url": "https://shop123456.taobao.com"
+      }
+    ]
+  },
+  "delivered": true,
+  "delivered_at": "2026-04-01T15:48:15.262110",
+  "message": "\n🎉 中标确认提醒 | Winner Confirmed\n\n需求ID: REQ-TEST-001\n中标供应商: 幽灵庄园旗舰店\n中标价格: ¥2800\n综合得分: 86.94\n\n🔗 下一步：\n1. 点击店铺链接下单：待提供\n2. 或回复：\"获取店铺链接\"\n3. 完成交易后：\"确认收货 REQ-xxx\"\n\n💡 提醒：实际交易在卖家店铺进行，本平台仅匹配供应商\n"
+}

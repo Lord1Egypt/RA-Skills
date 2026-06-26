@@ -1,0 +1,93 @@
+{
+  "name": "ppt_skill",
+  "description": "PPT 智能架构师（政务数字化版）：面向政务数字化领域，代写产品推介、规划方案、阶段汇报等场景的完整 PPT 文案",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "PPT 主题/标题（如：XX市数字政府建设方案）"
+      },
+      "industry": {
+        "type": "string",
+        "description": "行业领域",
+        "default": "政务数字化"
+      },
+      "ppt_type": {
+        "type": "string",
+        "enum": [
+          "产品/方案推介",
+          "规划/建设方案",
+          "项目建设汇报",
+          "项目结项汇报",
+          "政策解读/研究报告",
+          "培训/教学课件",
+          "工作汇报",
+          "领导汇报/专题报告",
+          "会议发言/致辞",
+          "其他"
+        ],
+        "description": "PPT 类型，影响结构模板和设计风格"
+      },
+      "audience": {
+        "type": "string",
+        "description": "目标受众（如：市/区/县级领导、局办负责人、业务科室、评审专家）"
+      },
+      "government_level": {
+        "type": "string",
+        "enum": ["市级及以上", "区县级", "乡镇/街道级", "多层级混合", "不明确"],
+        "description": "政府层级，影响用词正式程度、政策引用深度",
+        "default": "不明确"
+      },
+      "duration_minutes": {
+        "type": "integer",
+        "description": "演讲时长（分钟），用于估算页数和内容深度",
+        "minimum": 1,
+        "maximum": 120
+      },
+      "key_message": {
+        "type": "string",
+        "description": "核心信息/核心观点（一句话概括想传达的最重要信息）"
+      },
+      "policy_references": {
+        "type": "string",
+        "description": "相关国家/地方政策依据（如：数字中国建设整体布局规划、XX省数字经济促进条例），用于政策对齐"
+      },
+      "tone": {
+        "type": "string",
+        "description": "语气/风格（如：专业严谨、求真务实、创新进取）",
+        "default": "专业严谨"
+      },
+      "brand_colors": {
+        "type": "string",
+        "description": "品牌色/主色调（如：#003C71 或 红+蓝），用于配色方案建议"
+      },
+      "company_materials": {
+        "type": "string",
+        "description": "【产品/方案推介场景必填】公司介绍、产品白皮书、技术方案、成功案例/客户列表、资质荣誉等素材"
+      },
+      "project_materials": {
+        "type": "string",
+        "description": "【项目建设/结项汇报场景必填】项目计划、建设成果、关键里程碑、测试报告、问题清单、下期计划等素材"
+      },
+      "planning_materials": {
+        "type": "string",
+        "description": "【规划/建设方案场景建议提供】需求文档、调研报告、技术标准、预算框架、相关政策文件等素材"
+      },
+      "existing_content": {
+        "type": "string",
+        "description": "其他已有内容素材或补充说明，AI 将基于所有素材进行结构编排"
+      },
+      "template_preference": {
+        "type": "string",
+        "enum": ["政务标准", "科技政务", "简洁稳重", "学术正式", "无偏好"],
+        "description": "模板风格偏好",
+        "default": "无偏好"
+      }
+    },
+    "required": ["topic", "ppt_type", "audience"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

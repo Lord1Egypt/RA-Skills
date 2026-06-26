@@ -1,0 +1,17 @@
+{
+  "name": "id-emas-pro",
+  "version": "1.0.0",
+  "description": "Skill harga emas Indonesia real-time untuk OpenClaw",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test:price": "node scripts/main.js price --brand antam",
+    "test:compare": "node scripts/main.js compare --tier free",
+    "test:ai": "KIMI_API_KEY=your_key node scripts/main.js ai-analysis --tier ai"
+  },
+  "keywords": ["openclaw", "skill", "emas", "gold", "indonesia", "antam", "logam-mulia"],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,26 @@
+{
+  "url": "https://api.github.com/repos/stripe/stripe-node/releases/123456789",
+  "assets_url": "https://api.github.com/repos/stripe/stripe-node/releases/123456789/assets",
+  "upload_url": "https://uploads.github.com/repos/stripe/stripe-node/releases/123456789/assets{?name,label}",
+  "html_url": "https://github.com/stripe/stripe-node/releases/tag/v8.0.0",
+  "id": 123456789,
+  "author": {
+    "login": "stripe-ci",
+    "id": 11111111,
+    "avatar_url": "https://avatars.githubusercontent.com/u/11111111?v=4",
+    "html_url": "https://github.com/stripe-ci",
+    "type": "User"
+  },
+  "node_id": "RE_kwDOABCDEF4HGhIjK",
+  "tag_name": "v8.0.0",
+  "target_commitish": "main",
+  "name": "v8.0.0",
+  "draft": false,
+  "prerelease": false,
+  "created_at": "2026-01-10T09:30:00Z",
+  "published_at": "2026-01-10T10:00:00Z",
+  "assets": [],
+  "tarball_url": "https://api.github.com/repos/stripe/stripe-node/tarball/v8.0.0",
+  "zipball_url": "https://api.github.com/repos/stripe/stripe-node/zipball/v8.0.0",
+  "body": "## v8.0.0 — January 10, 2026\n\nThis is a major release with significant API improvements. Please read the migration guide before upgrading.\n\n## Breaking Changes\n\n- `stripe.webhooks.constructEvent()` has been renamed to `stripe.webhooks.verify()`. The old method has been removed entirely. Update all webhook handlers to use the new method.\n- `createCustomer()` now requires the `email` parameter. Previously this was optional; it is now mandatory to improve deliverability of Stripe-generated receipts.\n- `stripe.charges.create()` is removed — use `stripe.paymentIntents.create()` instead. The Charges API is fully deprecated.\n- `StripeError.type` property removed — use `StripeError.code` instead for error classification.\n- Minimum Node.js version bumped from 12 to 18. Node 12, 14, and 16 are no longer supported.\n\n## Migration Guide\n\n### Webhook verification\n\nBefore:\n```js\nconst event = stripe.webhooks.constructEvent(payload, sig, secret);\n```\n\nAfter:\n```js\nconst event = await stripe.webhooks.verify(payload, sig, secret);\n```\n\nNote: `verify()` is now async and returns a Promise. Ensure your handler is `async`.\n\n### Customer creation\n\nBefore:\n```js\nconst customer = await stripe.customers.create({ name: 'Jenny Rosen' });\n```\n\nAfter:\n```js\nconst customer = await stripe.customers.create({\n  name: 'Jenny Rosen',\n  email: 'jenny@example.com'  // now required\n});\n```\n\n## New Features\n\n- `stripe.webhooks.verify()` now supports Ed25519 signature verification\n- Improved TypeScript types across all resources\n- Added `stripe.paymentLinks.create()` convenience method\n- `stripe.customers.search()` now supports cursor-based pagination\n\n## Bug Fixes\n\n- Fixed race condition in webhook signature timing validation\n- Resolved memory leak in long-running server processes\n- Corrected TypeScript overload for `stripe.invoices.pay()`\n\n## Deprecations (will be removed in v9)\n\n- `stripe.customers.update()` — use `stripe.customers.modify()` (alias with clearer name)\n- `autoRetry` option — use `maxNetworkRetries` instead\n\nFor a complete migration guide, see [MIGRATION.md](https://github.com/stripe/stripe-node/blob/main/MIGRATION.md).\n"
+}

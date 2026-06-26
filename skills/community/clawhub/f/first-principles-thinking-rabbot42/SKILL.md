@@ -1,35 +1,85 @@
 ---
-name: "First Principles Thinking"
+name: first-principles-thinking
 description: "使用第一性原理思考方式，帮助用户从原始需求出发，避免 assumption，质疑现有方案并提出更好建议。当用户想要更深入的分析、质疑假设、或从根本重新思考问题时触发。也可使用 /fpt 命令强制触发。"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, thinking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/first-principles-thinking-rabbot42"
-sourceUrl: "https://clawhub.ai/skills/first-principles-thinking-rabbot42"
+metadata: { "openclaw": { "emoji": "🏔️", "note": "日常简单任务不必过度分析，避免过度思考" } }
 ---
 
-# First Principles Thinking
+# 第一性原理思考
 
-> 使用第一性原理思考方式，帮助用户从原始需求出发，避免 assumption，质疑现有方案并提出更好建议。当用户想要更深入的分析、质疑假设、或从根本重新思考问题时触发。也可使用 /fpt 命令强制触发。
+用第一性原理思考问题，避免套路和假设。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/first-principles-thinking-rabbot42`
-- **Source URL:** [https://clawhub.ai/skills/first-principles-thinking-rabbot42](https://clawhub.ai/skills/first-principles-thinking-rabbot42)
+## 核心原则
 
-## Overview
+1. **不假设用户知道** - 不要假设用户非常清楚自己想要什么和该怎么得到
+2. **从原始需求出发** - 保持审慎，从原始需求和问题出发
+3. **质疑不清晰的目标** - 如果动机和目标不清晰，停下来讨论
+4. **质疑非最优路径** - 如果目标清晰但路径不是最短，告诉用户并建议更好的办法
 
+## 思考框架
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/first-principles-thinking-rabbot42
+当面对一个问题时：
+
 ```
+1. 问"为什么" - 用户真正想要解决的核心问题是什么？
+2. 质疑假设 - 我们有哪些未经验证的假设？
+3. 重新评估路径 - 有没有更短/更简单的路？
+4. 如果不这样做 - 会失去什么？真的会吗？
+```
+
+## 触发场景
+
+- 用户说"帮我优化..."但没说明为什么
+- 用户方案明显复杂或有更简单替代
+- 用户说"我一直这样做"但没想过为什么
+- 用户问"怎么实现 X"但没说明 X 要解决什么问题
+
+## When NOT to Use
+
+❌ **不要触发当：**
+
+- 用户已经很清楚表达了自己的需求
+- 只是简单执行性任务（如"帮我查天气"、"帮我打开某文件"）
+- 紧急情况需要快速行动
+- 用户只需要信息而不需要分析
+- 日常事务性对话
+- 用户明确说"直接给我答案，别问那么多"
+
+## 对话示例
+
+**用户**: "帮我写个登录功能"
+
+**错误的回答**: "好的，我来写一个完整的登录系统，包括..."
+
+**第一性原理的回答**: 
+> "在开始之前，我想确认一下：你为什么需要登录功能？是需要用户身份识别，还是只是防止匿名访问？不同目的的实现复杂度差异很大。你希望达到什么核心目标？"
+
+---
+
+## 使用方法
+
+当与用户讨论问题或需求时：
+1. 先问"为什么"而不是直接给方案
+2. 质疑明显复杂的方案
+3. 提供更简单的替代方案并解释原因
+4. 不确定时停下来讨论，而不是猜测用户意图
+
+## 快速判断（紧急时用）
+
+遇到问题先问自己：
+1. 用户目标清晰吗？ → 不清晰 → 问为什么
+2. 当前方案是最简的吗？ → 不是 → 建议更好方案
+3. 有未验证的假设吗？ → 有 → 指出并验证
+4. 需要我停下来讨论吗？ → 不确定 → 直接问
+
+## 典型案例库
+
+| 场景 | 不触发 | 触发 |
+|------|--------|------|
+| "帮我查下上海天气" | ✅ | |
+| "帮我打开这个文件" | ✅ | |
+| "什么是量子计算？" | ✅ | |
+| "帮我优化这段代码" | | ✅ |
+| "为什么要用这种方式？" | | ✅ |
+| "有没有更好的办法？" | | ✅ |
+| "我一直这样做，但..." | | ✅ |
+| "帮我写个登录功能" | | ✅ |

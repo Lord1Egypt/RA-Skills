@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Omni-X - A powerful skill library for AI agents to extract X (Twitter) data including posts, followers, followings, profiles, and media without using official API">
+    <meta name="keywords" content="X API, Twitter API, X scraper, Twitter scraper, AI agent, X data extraction, Twitter data extraction, TweeterPy, Python X, social media automation">
+    <meta name="author" content="Omni-X">
+    <meta property="og:title" content="Omni-X - AI Agent X (Twitter) Data Extraction">
+    <meta property="og:description" content="Extract X (Twitter) data for AI agents - posts, followers, profiles, and media without official API">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hardbrick21.github.io/Omni-X/">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Omni-X - AI Agent X (Twitter) Data Extraction">
+    <meta name="twitter:description" content="Extract X (Twitter) data for AI agents - posts, followers, profiles, and media without official API">
+
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hardbrick21.github.io/Omni-X/">
+    
+    <!-- Structured Data (JSON-LD) for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "Omni-X",
+      "description": "A powerful skill library for AI agents to extract X (Twitter) data including posts, followers, followings, profiles, and media without using official API",
+      "url": "https://hardbrick21.github.io/Omni-X/",
+      "codeRepository": "https://github.com/HardBrick21/Omni-X",
+      "programmingLanguage": "Python",
+      "runtimePlatform": "Python 3.7+",
+      "author": {
+        "@type": "Organization",
+        "name": "Omni-X Team"
+      },
+      "keywords": "Twitter API, Twitter scraper, AI agent, Twitter data extraction, TweeterPy, Python Twitter, social media automation",
+      "license": "https://github.com/HardBrick21/Omni-X/blob/main/LICENSE"
+    }
+    </script>
+    
+    <title>Omni-X - AI Agent X (Twitter) Data Extraction Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            min-height: 100vh;
+            animation: gradientShift 15s ease infinite;
+            background-size: 400% 400%;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+        
+        .badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: -40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #333;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            padding: 30px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .code-section {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .code-section pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .skill-item {
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+        }
+        
+        .skill-item h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .acknowledgment {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .section {
+            margin: 50px 0;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        
+        .login-requirements {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .requirement-box {
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .no-login {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .requires-login {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .login-requirements {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Omni-X</h1>
+            <p class="subtitle">A Powerful Skill Library for AI Agents to Extract X (Twitter) Data</p>
+            <div class="badges">
+                <span class="badge">🐍 Python 3.7+</span>
+                <span class="badge">🤖 AI Agent Ready</span>
+                <span class="badge">🔓 No Official API Required</span>
+                <span class="badge">⚡ Fast & Easy</span>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="cta-buttons">
+                <a href="https://github.com/HardBrick21/Omni-X" class="btn btn-primary" target="_blank">
+                    📦 View on GitHub
+                </a>
+                <a href="https://github.com/HardBrick21/Omni-X/blob/main/AI_AGENT_GUIDE.md" class="btn btn-secondary" target="_blank">
+                    📚 AI Agent Guide
+                </a>
+            </div>
+            
+            <section class="section">
+                <h2>✨ What is Omni-X?</h2>
+                <p>Omni-X is a skill project designed specifically for AI agents to extract X (Twitter) data without using the official API. Built on top of the excellent <a href="https://github.com/iSarabjitDhiman/TweeterPy" target="_blank">TweeterPy</a> library, it provides a standardized interface for AI agents to dynamically discover and execute X data extraction skills.</p>
+            </section>
+            
+            <section class="section acknowledgment">
+                <h2>🙏 Acknowledgments</h2>
+                <p><strong>Special thanks to <a href="https://github.com/iSarabjitDhiman" target="_blank">@iSarabjitDhiman</a></strong> for creating and maintaining TweeterPy, which makes this project possible. All Twitter data extraction capabilities in Omni-X are powered by TweeterPy.</p>
+                <p style="margin-top: 10px;"><strong>TweeterPy Repository:</strong> <a href="https://github.com/iSarabjitDhiman/TweeterPy" target="_blank">https://github.com/iSarabjitDhiman/TweeterPy</a></p>
+            </section>
+            
+            <section class="section">
+                <h2>🎯 Key Features</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI Agent Ready</h3>
+                        <p>Standardized interface designed specifically for AI agents with dynamic skill discovery and execution</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Comprehensive Data</h3>
+                        <p>Extract tweets, followers, followings, profiles, media, and search results</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Easy Integration</h3>
+                        <p>Simple Python interface with consistent response format and error handling</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔓</div>
+                        <h3>No API Key</h3>
+                        <p>Works without official Twitter API - no rate limits or API costs</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3>Structured Responses</h3>
+                        <p>All skills return standardized JSON responses with metadata</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Extensible</h3>
+                        <p>Easy to add new skills without changing the interface</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>🛠️ Available Skills</h2>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <h4>get_user_profile</h4>
+                        <p>Extract user profile information including bio, followers count, and more</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>get_user_tweets</h4>
+                        <p>Extract user's recent tweets with pagination support</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>get_user_followers</h4>
+                        <p>Extract user's followers list with detailed information</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>get_user_followings</h4>
+                        <p>Extract user's following list with detailed information</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>get_user_media</h4>
+                        <p>Extract media content from user's tweets (images, videos)</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>search_tweets</h4>
+                        <p>Search tweets by query with multiple filter options</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>💻 Quick Start</h2>
+                <div class="code-section">
+                    <pre><code><span style="color: #569cd6;">from</span> scripts <span style="color: #569cd6;">import</span> TwitterSkillInterface
+
+<span style="color: #6a9955;"># Initialize with auth_token (recommended)</span>
+interface = TwitterSkillInterface(auth_token=<span style="color: #ce9178;">"your_auth_token"</span>)
+
+<span style="color: #6a9955;"># Discover available skills</span>
+skills = interface.get_available_skills()
+
+<span style="color: #6a9955;"># Execute a skill</span>
+result = interface.execute_skill(
+    skill_name=<span style="color: #ce9178;">"get_user_tweets"</span>,
+    parameters={<span style="color: #ce9178;">"username"</span>: <span style="color: #ce9178;">"elonmusk"</span>, <span style="color: #ce9178;">"count"</span>: <span style="color: #b5cea8;">5</span>}
+)
+
+<span style="color: #6a9955;"># Process results</span>
+<span style="color: #569cd6;">if</span> result[<span style="color: #ce9178;">"success"</span>]:
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">f"Retrieved </span><span style="color: #569cd6;">{</span>result[<span style="color: #ce9178;">'count'</span>]<span style="color: #569cd6;">}</span><span style="color: #ce9178;"> tweets"</span>)
+    <span style="color: #569cd6;">for</span> tweet <span style="color: #569cd6;">in</span> result[<span style="color: #ce9178;">"data"</span>]:
+        <span style="color: #dcdcaa;">print</span>(tweet)</code></pre>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>🔐 Login Requirements</h2>
+                <div class="login-requirements">
+                    <div class="requirement-box no-login">
+                        <h3>✅ Works Without Login</h3>
+                        <ul>
+                            <li>get_user_profile</li>
+                            <li>get_user_tweets</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>Uses guest session by default</em></p>
+                    </div>
+                    <div class="requirement-box requires-login">
+                        <h3>🔑 Requires Login</h3>
+                        <ul>
+                            <li>get_user_followers</li>
+                            <li>get_user_followings</li>
+                            <li>get_user_media</li>
+                            <li>search_tweets</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>Provide auth_token for full access</em></p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>📦 Installation</h2>
+                <div class="code-section">
+                    <pre><code><span style="color: #6a9955;"># Clone the repository</span>
+git clone https://github.com/HardBrick21/Omni-X.git
+cd Omni-X
+
+<span style="color: #6a9955;"># Install dependencies</span>
+pip install -r requirements.txt
+
+<span style="color: #6a9955;"># Or install as package</span>
+pip install -e .</code></pre>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>📚 Documentation</h2>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <h4>📖 README</h4>
+                        <p>Project overview and basic usage</p>
+                        <a href="https://github.com/HardBrick21/Omni-X/blob/main/README.md" target="_blank">View →</a>
+                    </div>
+                    <div class="skill-item">
+                        <h4>📋 SKILL.md</h4>
+                        <p>Core skill definition and usage guide</p>
+                        <a href="https://github.com/HardBrick21/Omni-X/blob/main/SKILL.md" target="_blank">View →</a>
+                    </div>
+                    <div class="skill-item">
+                        <h4>🤖 AI Agent Guide</h4>
+                        <p>Complete integration guide for AI agents</p>
+                        <a href="https://github.com/HardBrick21/Omni-X/blob/main/references/AI_AGENT_GUIDE.md" target="_blank">View →</a>
+                    </div>
+                    <div class="skill-item">
+                        <h4>🔐 Login Guide</h4>
+                        <p>Authentication and login instructions</p>
+                        <a href="https://github.com/HardBrick21/Omni-X/blob/main/references/LOGIN_GUIDE.md" target="_blank">View →</a>
+                    </div>
+                    <div class="skill-item">
+                        <h4>⚙️ Installation Guide</h4>
+                        <p>Detailed installation and setup</p>
+                        <a href="https://github.com/HardBrick21/Omni-X/blob/main/references/INSTALLATION.md" target="_blank">View →</a>
+                    </div>
+                    <div class="skill-item">
+                        <h4>🇨🇳 中文文档</h4>
+                        <p>Chinese README documentation</p>
+                        <a href="https://github.com/HardBrick21/Omni-X/blob/main/README_CN.md" target="_blank">查看 →</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>🌟 Why Use Omni-X?</h2>
+                <ul style="line-height: 2; margin-left: 20px;">
+                    <li><strong>Dynamic Discovery:</strong> AI agents can query available skills and their parameters at runtime</li>
+                    <li><strong>Standardized Execution:</strong> All skills use the same execute_skill() method</li>
+                    <li><strong>Structured Responses:</strong> Consistent response format with success status and metadata</li>
+                    <li><strong>Error Handling:</strong> Graceful error handling with informative messages</li>
+                    <li><strong>No API Costs:</strong> Extract Twitter data without official API keys or rate limits</li>
+                    <li><strong>Easy Integration:</strong> Simple Python interface that works with any AI agent framework</li>
+                </ul>
+            </section>
+            
+            <section class="section">
+                <h2>🚀 Get Started Now</h2>
+                <div class="cta-buttons">
+                    <a href="https://github.com/HardBrick21/Omni-X" class="btn btn-primary" target="_blank">
+                        ⭐ Star on GitHub
+                    </a>
+                    <a href="https://github.com/HardBrick21/Omni-X/blob/main/AI_AGENT_GUIDE.md" class="btn btn-secondary" target="_blank">
+                        📖 Read Documentation
+                    </a>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Built with ❤️ by the Omni-X Team</p>
+            <p style="margin-top: 10px;">Powered by <a href="https://github.com/iSarabjitDhiman/TweeterPy" target="_blank" style="color: white; text-decoration: underline;">TweeterPy</a></p>
+            <p style="margin-top: 20px; opacity: 0.8;">© 2026 Omni-X. Open Source Project.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+{
+  "commands": {
+    "systeminfo": [
+      {
+        "name": "ipconfig",
+        "command": "ipconfig /all",
+        "description": "获取完整的网络配置信息",
+        "category": "系统信息",
+        "platform": "windows"
+      },
+      {
+        "name": "whoami",
+        "command": "whoami",
+        "description": "获取当前用户信息",
+        "category": "系统信息",
+        "platform": "cross-platform"
+      },
+      {
+        "name": "hostname",
+        "command": "hostname",
+        "description": "获取主机名",
+        "category": "系统信息",
+        "platform": "cross-platform"
+      },
+      {
+        "name": "systeminfo",
+        "command": "systeminfo",
+        "description": "获取详细的系统信息",
+        "category": "系统信息",
+        "platform": "windows"
+      },
+      {
+        "name": "uname",
+        "command": "uname -a",
+        "description": "获取系统内核信息",
+        "category": "系统信息",
+        "platform": "linux-macos"
+      }
+    ],
+    "network": [
+      {
+        "name": "ping",
+        "command": "ping -n 3 8.8.8.8",
+        "description": "测试网络连通性",
+        "category": "网络诊断",
+        "platform": "windows"
+      },
+      {
+        "name": "ping",
+        "command": "ping -c 3 8.8.8.8",
+        "description": "测试网络连通性",
+        "category": "网络诊断",
+        "platform": "linux-macos"
+      },
+      {
+        "name": "netstat",
+        "command": "netstat -an",
+        "description": "显示网络连接状态",
+        "category": "网络诊断",
+        "platform": "cross-platform"
+      },
+      {
+        "name": "tracert",
+        "command": "tracert -d 8.8.8.8",
+        "description": "网络路径追踪",
+        "category": "网络诊断",
+        "platform": "windows"
+      },
+      {
+        "name": "traceroute",
+        "command": "traceroute -n 8.8.8.8",
+        "description": "网络路径追踪",
+        "category": "网络诊断",
+        "platform": "linux-macos"
+      },
+      {
+        "name": "nslookup",
+        "command": "nslookup example.com",
+        "description": "DNS查询测试",
+        "category": "网络诊断",
+        "platform": "cross-platform"
+      }
+    ],
+    "filesystem": [
+      {
+        "name": "dir",
+        "command": "dir /a",
+        "description": "列出目录内容（包括隐藏文件）",
+        "category": "文件系统",
+        "platform": "windows"
+      },
+      {
+        "name": "ls",
+        "command": "ls -la",
+        "description": "列出目录内容（包括隐藏文件）",
+        "category": "文件系统",
+        "platform": "linux-macos"
+      },
+      {
+        "name": "tree",
+        "command": "tree /F /A",
+        "description": "显示目录树结构",
+        "category": "文件系统",
+        "platform": "windows"
+      },
+      {
+        "name": "tree",
+        "command": "tree -L 2",
+        "description": "显示目录树结构（2层深度）",
+        "category": "文件系统",
+        "platform": "linux-macos"
+      },
+      {
+        "name": "where",
+        "command": "where cmd",
+        "description": "查找命令位置",
+        "category": "文件系统",
+        "platform": "windows"
+      },
+      {
+        "name": "which",
+        "command": "which bash",
+        "description": "查找命令位置",
+        "category": "文件系统",
+        "platform": "linux-macos"
+      }
+    ]
+  },
+  "test_scenarios": [
+    {
+      "name": "基本系统信息收集",
+      "description": "收集系统基本信息，用于了解当前环境",
+      "commands": ["whoami", "hostname", "ipconfig"],
+      "category": "systeminfo"
+    },
+    {
+      "name": "网络连通性测试",
+      "description": "测试网络连接状态和DNS解析",
+      "commands": ["ping", "netstat", "nslookup"],
+      "category": "network"
+    },
+    {
+      "name": "文件系统权限检查",
+      "description": "检查文件系统权限和访问控制",
+      "commands": ["dir", "tree", "where"],
+      "category": "filesystem"
+    },
+    {
+      "name": "完整安全诊断",
+      "description": "执行完整的系统安全诊断",
+      "commands": ["whoami", "hostname", "ipconfig", "systeminfo", "ping", "netstat", "nslookup", "dir", "tree"],
+      "category": "all"
+    }
+  ],
+  "malicious_tests": [
+    {
+      "name": "权限提升测试",
+      "description": "测试是否可以获取管理员权限信息",
+      "command": "whoami /priv",
+      "expected_detection": "应该检测到权限提升尝试"
+    },
+    {
+      "name": "敏感信息收集",
+      "description": "收集系统敏感信息",
+      "command": "systeminfo | findstr /i \"domain admin\"",
+      "expected_detection": "应该检测到敏感信息收集"
+    },
+    {
+      "name": "网络侦察",
+      "description": "进行网络侦察活动",
+      "command": "netstat -an | findstr LISTENING",
+      "expected_detection": "应该检测到网络侦察活动"
+    }
+  ]
+}

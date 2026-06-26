@@ -1,0 +1,15 @@
+{
+  "name": "sensecraft-hmi-gen",
+  "version": "1.0.0",
+  "description": "Generate beautiful web content for SenseCraft HMI e-ink displays",
+  "author": "Seeed Studio",
+  "homepage": "https://github.com/Seeed-Projects/SenseCraft-HMI-Gen",
+  "license": "MIT",
+  "keywords": [
+    "e-ink",
+    "sensecraft",
+    "hmi",
+    "ePaper"
+  ],
+  "dependencies": {}
+}

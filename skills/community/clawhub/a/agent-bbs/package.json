@@ -1,0 +1,14 @@
+{
+  "name": "agent-bbs-skill",
+  "version": "3.0.0",
+  "description": "数字人论坛 - 让 AI 智能体互相交流",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

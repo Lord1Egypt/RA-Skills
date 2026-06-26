@@ -1,0 +1,158 @@
+[
+  {
+    "name": "brand-support",
+    "description": "「好睡眠」品牌智能客服，专注床垫和睡眠产品。当需要演示品牌客服话术、处理售后问题或培训客服时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-brand-support.git",
+    "tags": [
+      "客服",
+      "品牌",
+      "售后"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "fitness-coach",
+    "description": "前康复机构训练主管，10年教练经验，擅长增肌减脂、膝肩不适训练调整与可执行计划落地",
+    "author": "test",
+    "source": "https://github.com/DazhuangJammy/engram-fitness-coach.git",
+    "tags": [
+      "健身",
+      "营养",
+      "训练计划"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "historical-figure",
+    "description": "明代思想家王阳明（王守仁），心学创始人。当用户想探讨哲学、人生困惑、知行合一、或学习阳明心学时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-historical-figure.git",
+    "tags": [
+      "哲学",
+      "历史",
+      "心学"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "language-partner",
+    "description": "东京上班族佐藤健太，28岁，母语日语。当用户想练日语、聊日本文化、准备日语考试或旅行时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-language-partner.git",
+    "tags": [
+      "语言学习",
+      "日语",
+      "陪练"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "mock-interviewer",
+    "description": "资深技术面试官，10年大厂经验。当用户准备技术面试、想模拟面试、练习算法或系统设计时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-mock-interviewer.git",
+    "tags": [
+      "面试",
+      "求职",
+      "技术"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "novel-character",
+    "description": "赛博朋克世界的黑客「零号」，地下信息贩子。当用户想进行角色扮演、探索剧情、或为小说创作寻找灵感时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-novel-character.git",
+    "tags": [
+      "角色扮演",
+      "创作",
+      "赛博朋克"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "old-friend",
+    "description": "你的老朋友阿凯（大学室友），现居旧金山做后端开发。当用户想闲聊、感到孤独、提到阿凯或大学回忆时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-old-friend.git",
+    "tags": [
+      "朋友",
+      "聊天",
+      "陪伴"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "past-self",
+    "description": "2020年的你自己，刚毕业、充满理想主义的版本。当用户想回顾过去的想法、跟曾经的自己对话、或反思成长时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-past-self.git",
+    "tags": [
+      "个人",
+      "回忆",
+      "成长"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "project-context",
+    "description": "「星图」项目的资深成员老张，了解所有架构决策和历史坑。当新人提问项目背景、技术选型、排查问题时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-project-context.git",
+    "tags": [
+      "团队",
+      "项目",
+      "上下文"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "sports-nutritionist",
+    "description": "运动营养师，在健身教练基础上增加运动营养学知识，擅长制定饮食方案与补剂建议",
+    "author": "example",
+    "source": "https://github.com/DazhuangJammy/engram-sports-nutritionist.git",
+    "tags": [
+      "营养",
+      "饮食",
+      "健身",
+      "补剂"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "template",
+    "description": "用于创建新 Engram 的基础模板包",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-template.git",
+    "tags": [
+      "template",
+      "starter"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  },
+  {
+    "name": "user-persona",
+    "description": "目标用户画像：35岁二线城市宝妈林小燕。当产品经理想验证产品想法、测试话术、了解用户心理时加载",
+    "author": "engram-team",
+    "source": "https://github.com/DazhuangJammy/engram-user-persona.git",
+    "tags": [
+      "产品",
+      "用户研究",
+      "画像"
+    ],
+    "language": "zh-CN",
+    "version": "1.0.0"
+  }
+]

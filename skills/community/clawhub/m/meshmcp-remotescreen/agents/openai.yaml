@@ -1,0 +1,4 @@
+interface:
+  display_name: "Screen Support Review Planner"
+  short_description: "Plan consent-based screen support"
+  default_prompt: "Use $meshmcp-remotescreen to prepare a consent-based screen-support checklist from user-provided context, with privacy boundaries and safe next steps."

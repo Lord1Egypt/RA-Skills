@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Human Brainstorm Question",
+  "type": "object",
+  "required": ["language", "reason", "question", "options", "allow_freeform"],
+  "properties": {
+    "language": { "type": "string" },
+    "reason": { "type": "string" },
+    "question": { "type": "string" },
+    "recommended_option": { "type": "string" },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "consequence"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "consequence": { "type": "string" }
+        }
+      }
+    },
+    "allow_freeform": { "type": "boolean", "default": true }
+  },
+  "additionalProperties": false
+}

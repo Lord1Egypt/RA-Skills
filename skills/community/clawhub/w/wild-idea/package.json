@@ -1,0 +1,20 @@
+{
+  "id": "wildidea",
+  "version": "5.0.0",
+  "description": "Wild domain injection brainstorming engine. Inject 17 remote domains (hydrothermal vents, monasteries, bee dances, Bushmen, casinos, classical music, immune system, alchemy, polar expeditions) + random Mao seeds + random Chinese character web search as concrete 'nails'. Juxtapose nails directly against user-domain 'counterparts'. Zero abstraction. Dual gate: comfort check + web verification.",
+  "type": "productivity",
+  "author": "liwenyu2002",
+  "source": "https://github.com/liwenyu2002/wildidea",
+  "require": {
+    "python": ">=3.8",
+    "env": ["TAVILY_API_KEY"]
+  },
+  "structure": {
+    "core": "SKILL.md",
+    "clawscan": "CLAWSCAN.md",
+    "domains": "references/paradigms.md",
+    "scripts": ["scripts/pick_seed.py", "scripts/search_char.py"],
+    "templates": ["templates/poster.html", "templates/output-example.md"]
+  },
+  "tags": ["brainstorming", "creativity", "lateral-thinking", "product-design", "innovation"]
+}

@@ -1,0 +1,1417 @@
+{
+  "version": "1.0",
+  "total": 83,
+  "models": [
+    {
+      "id": "01",
+      "name": "芒格思维模型 01：多元思维模型（Multi-Model Thinking）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 01：多元思维模型（Multi-Model Thinking）的影响？",
+        "如何避免芒格思维模型 01：多元思维模型（Multi-Model Thinking）导致的判断偏差？",
+        "芒格思维模型 01：多元思维模型（Multi-Model Thinking）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "02",
+      "name": "芒格思维模型 02：机会成本（Opportunity Cost）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 02：机会成本（Opportunity Cost）的影响？",
+        "如何避免芒格思维模型 02：机会成本（Opportunity Cost）导致的判断偏差？",
+        "芒格思维模型 02：机会成本（Opportunity Cost）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "03",
+      "name": "芒格思维模型 03：复利效应（Compound Effect）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 03：复利效应（Compound Effect）的影响？",
+        "如何避免芒格思维模型 03：复利效应（Compound Effect）导致的判断偏差？",
+        "芒格思维模型 03：复利效应（Compound Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "04",
+      "name": "芒格思维模型 04：临界质量（Critical Mass）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 04：临界质量（Critical Mass）的影响？",
+        "如何避免芒格思维模型 04：临界质量（Critical Mass）导致的判断偏差？",
+        "芒格思维模型 04：临界质量（Critical Mass）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "05",
+      "name": "芒格思维模型 05：准备启动（Preparation & Launch）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 05：准备启动（Preparation & Launch）的影响？",
+        "如何避免芒格思维模型 05：准备启动（Preparation & Launch）导致的判断偏差？",
+        "芒格思维模型 05：准备启动（Preparation & Launch）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "06",
+      "name": "芒格模型 Phase 2 - 能力圈（Circle of Competence）开发文档",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格模型 Phase 2 - 能力圈（Circle of Competence）开发文档的影响？",
+        "如何避免芒格模型 Phase 2 - 能力圈（Circle of Competence）开发文档导致的判断偏差？",
+        "芒格模型 Phase 2 - 能力圈（Circle of Competence）开发文档可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "07",
+      "name": "芒格思维模型 07：逆向思维（Inversion）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 07：逆向思维（Inversion）的影响？",
+        "如何避免芒格思维模型 07：逆向思维（Inversion）导致的判断偏差？",
+        "芒格思维模型 07：逆向思维（Inversion）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "08",
+      "name": "芒格思维模型 08：第一性原理（First Principles）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 08：第一性原理（First Principles）的影响？",
+        "如何避免芒格思维模型 08：第一性原理（First Principles）导致的判断偏差？",
+        "芒格思维模型 08：第一性原理（First Principles）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "09",
+      "name": "芒格思维模型 09：护城河（Moat）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 09：护城河（Moat）的影响？",
+        "如何避免芒格思维模型 09：护城河（Moat）导致的判断偏差？",
+        "芒格思维模型 09：护城河（Moat）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "10",
+      "name": "芒格思维模型 10：安全边际（Margin of Safety）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 10：安全边际（Margin of Safety）的影响？",
+        "如何避免芒格思维模型 10：安全边际（Margin of Safety）导致的判断偏差？",
+        "芒格思维模型 10：安全边际（Margin of Safety）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "11",
+      "name": "芒格思维模型 11：Lollapalooza 效应（Lollapalooza Effect）",
+      "category": "business",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 11：Lollapalooza 效应（Lollapalooza Effect）的影响？",
+        "如何避免芒格思维模型 11：Lollapalooza 效应（Lollapalooza Effect）导致的判断偏差？",
+        "芒格思维模型 11：Lollapalooza 效应（Lollapalooza Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "12",
+      "name": "芒格思维模型 12：确认偏误（Confirmation Bias）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 12：确认偏误（Confirmation Bias）的影响？",
+        "如何避免芒格思维模型 12：确认偏误（Confirmation Bias）导致的判断偏差？",
+        "芒格思维模型 12：确认偏误（Confirmation Bias）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "13",
+      "name": "芒格思维模型 13：锚定效应（Anchoring Effect）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 13：锚定效应（Anchoring Effect）的影响？",
+        "如何避免芒格思维模型 13：锚定效应（Anchoring Effect）导致的判断偏差？",
+        "芒格思维模型 13：锚定效应（Anchoring Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "14",
+      "name": "芒格思维模型 14：损失厌恶（Loss Aversion）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 14：损失厌恶（Loss Aversion）的影响？",
+        "如何避免芒格思维模型 14：损失厌恶（Loss Aversion）导致的判断偏差？",
+        "芒格思维模型 14：损失厌恶（Loss Aversion）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "15",
+      "name": "芒格思维模型 15：社会认同（Social Proof）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 15：社会认同（Social Proof）的影响？",
+        "如何避免芒格思维模型 15：社会认同（Social Proof）导致的判断偏差？",
+        "芒格思维模型 15：社会认同（Social Proof）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "16",
+      "name": "芒格思维模型 16：稀缺性（Scarcity）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 16：稀缺性（Scarcity）的影响？",
+        "如何避免芒格思维模型 16：稀缺性（Scarcity）导致的判断偏差？",
+        "芒格思维模型 16：稀缺性（Scarcity）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "17",
+      "name": "芒格思维模型 17：权威影响（Authority Influence）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 17：权威影响（Authority Influence）的影响？",
+        "如何避免芒格思维模型 17：权威影响（Authority Influence）导致的判断偏差？",
+        "芒格思维模型 17：权威影响（Authority Influence）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "18",
+      "name": "芒格思维模型 18：承诺一致（Commitment and Consistency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 18：承诺一致（Commitment and Consistency）的影响？",
+        "如何避免芒格思维模型 18：承诺一致（Commitment and Consistency）导致的判断偏差？",
+        "芒格思维模型 18：承诺一致（Commitment and Consistency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "19",
+      "name": "芒格思维模型 19：喜好原理（Liking Principle）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 19：喜好原理（Liking Principle）的影响？",
+        "如何避免芒格思维模型 19：喜好原理（Liking Principle）导致的判断偏差？",
+        "芒格思维模型 19：喜好原理（Liking Principle）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "20",
+      "name": "芒格思维模型 20：对比原理（Contrast Principle）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 20：对比原理（Contrast Principle）的影响？",
+        "如何避免芒格思维模型 20：对比原理（Contrast Principle）导致的判断偏差？",
+        "芒格思维模型 20：对比原理（Contrast Principle）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "21",
+      "name": "芒格思维模型 21：可得性启发（Availability Heuristic）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 21：可得性启发（Availability Heuristic）的影响？",
+        "如何避免芒格思维模型 21：可得性启发（Availability Heuristic）导致的判断偏差？",
+        "芒格思维模型 21：可得性启发（Availability Heuristic）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "22",
+      "name": "芒格思维模型 22：代表性启发（Representativeness Heuristic）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 22：代表性启发（Representativeness Heuristic）的影响？",
+        "如何避免芒格思维模型 22：代表性启发（Representativeness Heuristic）导致的判断偏差？",
+        "芒格思维模型 22：代表性启发（Representativeness Heuristic）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "23",
+      "name": "芒格思维模型 23：沉没成本（Sunk Cost）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 23：沉没成本（Sunk Cost）的影响？",
+        "如何避免芒格思维模型 23：沉没成本（Sunk Cost）导致的判断偏差？",
+        "芒格思维模型 23：沉没成本（Sunk Cost）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "24",
+      "name": "芒格思维模型 24：框架效应（Framing Effect）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 24：框架效应（Framing Effect）的影响？",
+        "如何避免芒格思维模型 24：框架效应（Framing Effect）导致的判断偏差？",
+        "芒格思维模型 24：框架效应（Framing Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "25",
+      "name": "芒格思维模型 25：后见之明（Hindsight Bias）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 25：后见之明（Hindsight Bias）的影响？",
+        "如何避免芒格思维模型 25：后见之明（Hindsight Bias）导致的判断偏差？",
+        "芒格思维模型 25：后见之明（Hindsight Bias）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "26",
+      "name": "芒格思维模型 26：过度自信偏差（Overconfidence Bias）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 26：过度自信偏差（Overconfidence Bias）的影响？",
+        "如何避免芒格思维模型 26：过度自信偏差（Overconfidence Bias）导致的判断偏差？",
+        "芒格思维模型 26：过度自信偏差（Overconfidence Bias）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "27",
+      "name": "芒格思维模型 27：禀赋效应（Endowment Effect）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 27：禀赋效应（Endowment Effect）的影响？",
+        "如何避免芒格思维模型 27：禀赋效应（Endowment Effect）导致的判断偏差？",
+        "芒格思维模型 27：禀赋效应（Endowment Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "28",
+      "name": "芒格思维模型 28：现状偏误（Status Quo Bias）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 28：现状偏误（Status Quo Bias）的影响？",
+        "如何避免芒格思维模型 28：现状偏误（Status Quo Bias）导致的判断偏差？",
+        "芒格思维模型 28：现状偏误（Status Quo Bias）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "29",
+      "name": "芒格思维模型 29：赌徒谬误（Gambler's Fallacy）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 29：赌徒谬误（Gambler's Fallacy）的影响？",
+        "如何避免芒格思维模型 29：赌徒谬误（Gambler's Fallacy）导致的判断偏差？",
+        "芒格思维模型 29：赌徒谬误（Gambler's Fallacy）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "30",
+      "name": "芒格思维模型 30：光环效应（Halo Effect）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 30：光环效应（Halo Effect）的影响？",
+        "如何避免芒格思维模型 30：光环效应（Halo Effect）导致的判断偏差？",
+        "芒格思维模型 30：光环效应（Halo Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "31",
+      "name": "芒格思维模型 31：均值回归（Regression to the Mean）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 31：均值回归（Regression to the Mean）的影响？",
+        "如何避免芒格思维模型 31：均值回归（Regression to the Mean）导致的判断偏差？",
+        "芒格思维模型 31：均值回归（Regression to the Mean）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "32",
+      "name": "芒格思维模型 32：激励机制（Incentive Bias）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 32：激励机制（Incentive Bias）的影响？",
+        "如何避免芒格思维模型 32：激励机制（Incentive Bias）导致的判断偏差？",
+        "芒格思维模型 32：激励机制（Incentive Bias）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "33",
+      "name": "芒格思维模型 33：二阶思维（Second-Order Thinking）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 33：二阶思维（Second-Order Thinking）的影响？",
+        "如何避免芒格思维模型 33：二阶思维（Second-Order Thinking）导致的判断偏差？",
+        "芒格思维模型 33：二阶思维（Second-Order Thinking）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "34",
+      "name": "芒格思维模型 34：地图不是疆域（Map is Not Territory）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 34：地图不是疆域（Map is Not Territory）的影响？",
+        "如何避免芒格思维模型 34：地图不是疆域（Map is Not Territory）导致的判断偏差？",
+        "芒格思维模型 34：地图不是疆域（Map is Not Territory）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "35",
+      "name": "芒格思维模型 35：奥卡姆剃刀（Occam's Razor）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 35：奥卡姆剃刀（Occam's Razor）的影响？",
+        "如何避免芒格思维模型 35：奥卡姆剃刀（Occam's Razor）导致的判断偏差？",
+        "芒格思维模型 35：奥卡姆剃刀（Occam's Razor）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "36",
+      "name": "芒格思维模型 36：汉隆剃刀（Hanlon's Razor）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 36：汉隆剃刀（Hanlon's Razor）的影响？",
+        "如何避免芒格思维模型 36：汉隆剃刀（Hanlon's Razor）导致的判断偏差？",
+        "芒格思维模型 36：汉隆剃刀（Hanlon's Razor）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "37",
+      "name": "芒格思维模型 37：博弈论（Game Theory）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 37：博弈论（Game Theory）的影响？",
+        "如何避免芒格思维模型 37：博弈论（Game Theory）导致的判断偏差？",
+        "芒格思维模型 37：博弈论（Game Theory）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "38",
+      "name": "芒格思维模型 38：幂律分布（Power Law Distribution）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 38：幂律分布（Power Law Distribution）的影响？",
+        "如何避免芒格思维模型 38：幂律分布（Power Law Distribution）导致的判断偏差？",
+        "芒格思维模型 38：幂律分布（Power Law Distribution）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "39",
+      "name": "芒格思维模型 39：反脆弱（Antifragile）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 39：反脆弱（Antifragile）的影响？",
+        "如何避免芒格思维模型 39：反脆弱（Antifragile）导致的判断偏差？",
+        "芒格思维模型 39：反脆弱（Antifragile）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "40",
+      "name": "芒格思维模型 40：黑天鹅（Black Swan）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 40：黑天鹅（Black Swan）的影响？",
+        "如何避免芒格思维模型 40：黑天鹅（Black Swan）导致的判断偏差？",
+        "芒格思维模型 40：黑天鹅（Black Swan）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "41",
+      "name": "芒格思维模型 41：幸存者偏差（Survivorship Bias）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 41：幸存者偏差（Survivorship Bias）的影响？",
+        "如何避免芒格思维模型 41：幸存者偏差（Survivorship Bias）导致的判断偏差？",
+        "芒格思维模型 41：幸存者偏差（Survivorship Bias）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "42",
+      "name": "芒格思维模型 42：达克效应（Dunning-Kruger Effect）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 42：达克效应（Dunning-Kruger Effect）的影响？",
+        "如何避免芒格思维模型 42：达克效应（Dunning-Kruger Effect）导致的判断偏差？",
+        "芒格思维模型 42：达克效应（Dunning-Kruger Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "43",
+      "name": "芒格思维模型 43：反馈循环（Feedback Loops）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 43：反馈循环（Feedback Loops）的影响？",
+        "如何避免芒格思维模型 43：反馈循环（Feedback Loops）导致的判断偏差？",
+        "芒格思维模型 43：反馈循环（Feedback Loops）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "44",
+      "name": "芒格思维模型 44：市场先生（Mr. Market）",
+      "category": "core",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 44：市场先生（Mr. Market）的影响？",
+        "如何避免芒格思维模型 44：市场先生（Mr. Market）导致的判断偏差？",
+        "芒格思维模型 44：市场先生（Mr. Market）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "45",
+      "name": "芒格思维模型 45：贝叶斯思维（Bayesian Thinking）",
+      "category": "investing",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 45：贝叶斯思维（Bayesian Thinking）的影响？",
+        "如何避免芒格思维模型 45：贝叶斯思维（Bayesian Thinking）导致的判断偏差？",
+        "芒格思维模型 45：贝叶斯思维（Bayesian Thinking）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "46",
+      "name": "芒格思维模型 46：边际思维（Marginal Thinking）",
+      "category": "investing",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 46：边际思维（Marginal Thinking）的影响？",
+        "如何避免芒格思维模型 46：边际思维（Marginal Thinking）导致的判断偏差？",
+        "芒格思维模型 46：边际思维（Marginal Thinking）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "47",
+      "name": "芒格思维模型 47：供需关系（Supply and Demand）",
+      "category": "investing",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 47：供需关系（Supply and Demand）的影响？",
+        "如何避免芒格思维模型 47：供需关系（Supply and Demand）导致的判断偏差？",
+        "芒格思维模型 47：供需关系（Supply and Demand）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "48",
+      "name": "芒格思维模型 48：网络效应（Network Effects）",
+      "category": "business",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 48：网络效应（Network Effects）的影响？",
+        "如何避免芒格思维模型 48：网络效应（Network Effects）导致的判断偏差？",
+        "芒格思维模型 48：网络效应（Network Effects）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "49",
+      "name": "芒格思维模型 49：杠杆（Leverage）",
+      "category": "business",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 49：杠杆（Leverage）的影响？",
+        "如何避免芒格思维模型 49：杠杆（Leverage）导致的判断偏差？",
+        "芒格思维模型 49：杠杆（Leverage）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "50",
+      "name": "芒格思维模型 50：非对称风险（Asymmetric Risk）",
+      "category": "business",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 50：非对称风险（Asymmetric Risk）的影响？",
+        "如何避免芒格思维模型 50：非对称风险（Asymmetric Risk）导致的判断偏差？",
+        "芒格思维模型 50：非对称风险（Asymmetric Risk）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "51",
+      "name": "芒格思维模型 51：比较优势（Comparative Advantage）",
+      "category": "business",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 51：比较优势（Comparative Advantage）的影响？",
+        "如何避免芒格思维模型 51：比较优势（Comparative Advantage）导致的判断偏差？",
+        "芒格思维模型 51：比较优势（Comparative Advantage）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "52",
+      "name": "芒格思维模型 52：叙事谬误（Narrative Fallacy）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 52：叙事谬误（Narrative Fallacy）的影响？",
+        "如何避免芒格思维模型 52：叙事谬误（Narrative Fallacy）导致的判断偏差？",
+        "芒格思维模型 52：叙事谬误（Narrative Fallacy）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "53",
+      "name": "芒格思维模型 53：边际递减（Diminishing Returns）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 53：边际递减（Diminishing Returns）的影响？",
+        "如何避免芒格思维模型 53：边际递减（Diminishing Returns）导致的判断偏差？",
+        "芒格思维模型 53：边际递减（Diminishing Returns）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "54",
+      "name": "芒格思维模型 54：近因效应（Recency Bias）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 54：近因效应（Recency Bias）的影响？",
+        "如何避免芒格思维模型 54：近因效应（Recency Bias）导致的判断偏差？",
+        "芒格思维模型 54：近因效应（Recency Bias）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "55",
+      "name": "芒格思维模型 55：弹性（Elasticity）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 55：弹性（Elasticity）的影响？",
+        "如何避免芒格思维模型 55：弹性（Elasticity）导致的判断偏差？",
+        "芒格思维模型 55：弹性（Elasticity）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "56",
+      "name": "芒格思维模型 56：从众效应（Bandwagon Effect）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 56：从众效应（Bandwagon Effect）的影响？",
+        "如何避免芒格思维模型 56：从众效应（Bandwagon Effect）导致的判断偏差？",
+        "芒格思维模型 56：从众效应（Bandwagon Effect）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "57",
+      "name": "芒格思维模型 57：创造性破坏（Creative Destruction）",
+      "category": "business",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 57：创造性破坏（Creative Destruction）的影响？",
+        "如何避免芒格思维模型 57：创造性破坏（Creative Destruction）导致的判断偏差？",
+        "芒格思维模型 57：创造性破坏（Creative Destruction）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "58",
+      "name": "芒格思维模型 58：峰终定律（Peak-End Rule）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 58：峰终定律（Peak-End Rule）的影响？",
+        "如何避免芒格思维模型 58：峰终定律（Peak-End Rule）导致的判断偏差？",
+        "芒格思维模型 58：峰终定律（Peak-End Rule）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "59",
+      "name": "芒格思维模型 59：利益攸关（Skin in the Game）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 59：利益攸关（Skin in the Game）的影响？",
+        "如何避免芒格思维模型 59：利益攸关（Skin in the Game）导致的判断偏差？",
+        "芒格思维模型 59：利益攸关（Skin in the Game）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "60",
+      "name": "芒格思维模型 60：遍历性（Ergodicity）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 60：遍历性（Ergodicity）的影响？",
+        "如何避免芒格思维模型 60：遍历性（Ergodicity）导致的判断偏差？",
+        "芒格思维模型 60：遍历性（Ergodicity）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "61",
+      "name": "芒格思维模型 61：冗余（Redundancy）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 61：冗余（Redundancy）的影响？",
+        "如何避免芒格思维模型 61：冗余（Redundancy）导致的判断偏差？",
+        "芒格思维模型 61：冗余（Redundancy）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "62",
+      "name": "芒格思维模型 62：压力影响（Stress-Influence Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 62：压力影响（Stress-Influence Tendency）的影响？",
+        "如何避免芒格思维模型 62：压力影响（Stress-Influence Tendency）导致的判断偏差？",
+        "芒格思维模型 62：压力影响（Stress-Influence Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "63",
+      "name": "芒格思维模型 63：被剥夺超级反应（Deprival-Superreaction Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 63：被剥夺超级反应（Deprival-Superreaction Tendency）的影响？",
+        "如何避免芒格思维模型 63：被剥夺超级反应（Deprival-Superreaction Tendency）导致的判断偏差？",
+        "芒格思维模型 63：被剥夺超级反应（Deprival-Superreaction Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "64",
+      "name": "芒格思维模型 64：嫉妒倾向（Envy/Jealousy Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 64：嫉妒倾向（Envy/Jealousy Tendency）的影响？",
+        "如何避免芒格思维模型 64：嫉妒倾向（Envy/Jealousy Tendency）导致的判断偏差？",
+        "芒格思维模型 64：嫉妒倾向（Envy/Jealousy Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "65",
+      "name": "芒格思维模型 65：巴甫洛夫联想（Pavlovian Association）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 65：巴甫洛夫联想（Pavlovian Association）的影响？",
+        "如何避免芒格思维模型 65：巴甫洛夫联想（Pavlovian Association）导致的判断偏差？",
+        "芒格思维模型 65：巴甫洛夫联想（Pavlovian Association）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "66",
+      "name": "芒格思维模型 66：简单痛苦规避（Simple Pain-Avoiding Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 66：简单痛苦规避（Simple Pain-Avoiding Tendency）的影响？",
+        "如何避免芒格思维模型 66：简单痛苦规避（Simple Pain-Avoiding Tendency）导致的判断偏差？",
+        "芒格思维模型 66：简单痛苦规避（Simple Pain-Avoiding Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "67",
+      "name": "芒格思维模型 67：好奇心倾向（Curiosity Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 67：好奇心倾向（Curiosity Tendency）的影响？",
+        "如何避免芒格思维模型 67：好奇心倾向（Curiosity Tendency）导致的判断偏差？",
+        "芒格思维模型 67：好奇心倾向（Curiosity Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "68",
+      "name": "芒格思维模型 68：互惠倾向（Reciprocity Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 68：互惠倾向（Reciprocity Tendency）的影响？",
+        "如何避免芒格思维模型 68：互惠倾向（Reciprocity Tendency）导致的判断偏差？",
+        "芒格思维模型 68：互惠倾向（Reciprocity Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "69",
+      "name": "芒格思维模型 69：尊重理由倾向（Reason-Respecting Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 69：尊重理由倾向（Reason-Respecting Tendency）的影响？",
+        "如何避免芒格思维模型 69：尊重理由倾向（Reason-Respecting Tendency）导致的判断偏差？",
+        "芒格思维模型 69：尊重理由倾向（Reason-Respecting Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "70",
+      "name": "芒格思维模型 70：格栅理论（Latticework of Mental Models）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 70：格栅理论（Latticework of Mental Models）的影响？",
+        "如何避免芒格思维模型 70：格栅理论（Latticework of Mental Models）导致的判断偏差？",
+        "芒格思维模型 70：格栅理论（Latticework of Mental Models）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "71",
+      "name": "芒格思维模型 71：系统思维（Systems Thinking）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 71：系统思维（Systems Thinking）的影响？",
+        "如何避免芒格思维模型 71：系统思维（Systems Thinking）导致的判断偏差？",
+        "芒格思维模型 71：系统思维（Systems Thinking）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "72",
+      "name": "芒格思维模型 72：熵增定律（Entropy）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 72：熵增定律（Entropy）的影响？",
+        "如何避免芒格思维模型 72：熵增定律（Entropy）导致的判断偏差？",
+        "芒格思维模型 72：熵增定律（Entropy）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "73",
+      "name": "芒格思维模型 73：影响圈/关注圈（Circle of Control）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 73：影响圈/关注圈（Circle of Control）的影响？",
+        "如何避免芒格思维模型 73：影响圈/关注圈（Circle of Control）导致的判断偏差？",
+        "芒格思维模型 73：影响圈/关注圈（Circle of Control）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "74",
+      "name": "芒格思维模型 74：帕累托原则（Pareto Principle / 80-20 Rule）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 74：帕累托原则（Pareto Principle / 80-20 Rule）的影响？",
+        "如何避免芒格思维模型 74：帕累托原则（Pareto Principle / 80-20 Rule）导致的判断偏差？",
+        "芒格思维模型 74：帕累托原则（Pareto Principle / 80-20 Rule）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "75",
+      "name": "芒格思维模型 75：知识复利（Compounding Knowledge）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 75：知识复利（Compounding Knowledge）的影响？",
+        "如何避免芒格思维模型 75：知识复利（Compounding Knowledge）导致的判断偏差？",
+        "芒格思维模型 75：知识复利（Compounding Knowledge）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "76",
+      "name": "芒格思维模型 76：权威错误影响（Authority-Misinfluence Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 76：权威错误影响（Authority-Misinfluence Tendency）的影响？",
+        "如何避免芒格思维模型 76：权威错误影响（Authority-Misinfluence Tendency）导致的判断偏差？",
+        "芒格思维模型 76：权威错误影响（Authority-Misinfluence Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "77",
+      "name": "芒格思维模型 77：废话倾向（Twaddle Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 77：废话倾向（Twaddle Tendency）的影响？",
+        "如何避免芒格思维模型 77：废话倾向（Twaddle Tendency）导致的判断偏差？",
+        "芒格思维模型 77：废话倾向（Twaddle Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "78",
+      "name": "芒格思维模型 78：康德式公平倾向（Kantian Fairness Tendency）",
+      "category": "psychology",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 78：康德式公平倾向（Kantian Fairness Tendency）的影响？",
+        "如何避免芒格思维模型 78：康德式公平倾向（Kantian Fairness Tendency）导致的判断偏差？",
+        "芒格思维模型 78：康德式公平倾向（Kantian Fairness Tendency）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "79",
+      "name": "芒格思维模型 79：容错设计（Margin of Error）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 79：容错设计（Margin of Error）的影响？",
+        "如何避免芒格思维模型 79：容错设计（Margin of Error）导致的判断偏差？",
+        "芒格思维模型 79：容错设计（Margin of Error）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "80",
+      "name": "芒格思维模型 80：耐心（Patience）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 80：耐心（Patience）的影响？",
+        "如何避免芒格思维模型 80：耐心（Patience）导致的判断偏差？",
+        "芒格思维模型 80：耐心（Patience）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "81",
+      "name": "芒格思维模型 81：知识谦逊（Intellectual Humility）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 81：知识谦逊（Intellectual Humility）的影响？",
+        "如何避免芒格思维模型 81：知识谦逊（Intellectual Humility）导致的判断偏差？",
+        "芒格思维模型 81：知识谦逊（Intellectual Humility）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "82",
+      "name": "芒格思维模型 82：延迟满足（Delayed Gratification）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 82：延迟满足（Delayed Gratification）的影响？",
+        "如何避免芒格思维模型 82：延迟满足（Delayed Gratification）导致的判断偏差？",
+        "芒格思维模型 82：延迟满足（Delayed Gratification）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "83",
+      "name": "芒格思维模型 83：什么都不做（Do Nothing）",
+      "category": "systems",
+      "description": "",
+      "questions": [
+        "在这个决策中，是否存在芒格思维模型 83：什么都不做（Do Nothing）的影响？",
+        "如何避免芒格思维模型 83：什么都不做（Do Nothing）导致的判断偏差？",
+        "芒格思维模型 83：什么都不做（Do Nothing）可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "connections": {
+    "local": {
+      "name": "Local SQLite",
+      "type": "sqlite",
+      "path": "./data/analyst.db",
+      "description": "Default local database for CSV imports and ad-hoc analysis",
+      "auto_connect": true
+    }
+  },
+  "templates": {
+    "postgresql": {
+      "type": "postgresql",
+      "host": "",
+      "port": 5432,
+      "database": "",
+      "user": "",
+      "password_env": "PG_PASSWORD",
+      "ssl": true,
+      "description": "Set password via PG_PASSWORD environment variable"
+    },
+    "mysql": {
+      "type": "mysql",
+      "host": "",
+      "port": 3306,
+      "database": "",
+      "user": "",
+      "password_env": "MYSQL_PASSWORD",
+      "ssl": true,
+      "description": "Set password via MYSQL_PASSWORD environment variable"
+    }
+  },
+  "settings": {
+    "default_connection": "local",
+    "default_limit": 1000,
+    "auto_execute_select": true,
+    "require_confirmation_for_writes": true,
+    "show_query_before_execute": true,
+    "log_queries": true
+  }
+}

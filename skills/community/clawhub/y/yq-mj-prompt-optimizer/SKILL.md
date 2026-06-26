@@ -1,35 +1,50 @@
 ---
-name: "Yq Mj Prompt Optimizer"
-description: "Midjourney提示词优化技能。当用户提供中文描述生成MJ图片时，自动应用敏感词过滤和风格增强规则，直接输出可用的英文提示词，无需提醒。触发词：MJ、Midjourney、midjourney、AI图片生成、AI绘图、生成图片、帮我画、生成提示词、优化提示词。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yq-mj-prompt-optimizer"
-sourceUrl: "https://clawhub.ai/skills/yq-mj-prompt-optimizer"
+name: mj-prompt-optimizer
+description: Midjourney提示词优化技能。当用户提供中文描述生成MJ图片时，自动应用敏感词过滤和风格增强规则，直接输出可用的英文提示词，无需提醒。触发词：MJ、Midjourney、midjourney、AI图片生成、AI绘图、生成图片、帮我画、生成提示词、优化提示词。
+version: 1.0.0
 ---
 
-# Yq Mj Prompt Optimizer
+# MJ Prompt Optimizer
 
-> Midjourney提示词优化技能。当用户提供中文描述生成MJ图片时，自动应用敏感词过滤和风格增强规则，直接输出可用的英文提示词，无需提醒。触发词：MJ、Midjourney、midjourney、AI图片生成、AI绘图、生成图片、帮我画、生成提示词、优化提示词。
+中文描述 → 可用英文MJ提示词，自动过滤敏感词，直接输出。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yq-mj-prompt-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/yq-mj-prompt-optimizer](https://clawhub.ai/skills/yq-mj-prompt-optimizer)
+## 核心原则
 
-## Overview
+MJ的敏感词判断逻辑是**组合模式识别**，不是单个词判断：
+- 三个品类词同时出现 → 触发"服装套装/制服"过滤
+- "黑色+翅膀/角/牙" → 触发"暗黑意象"过滤
+- 单个词单独测试通过，合在一起触发 → 是组合问题，不是某个词的问题
 
+## 敏感词替换规则（直接应用，不询问）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yq-mj-prompt-optimizer
-```
+| 类别 | 替換前（敏感） | 替換后（可用） |
+|------|--------------|--------------|
+| 表情 | 调皮坏笑 | 咧嘴调皮笑 / 阳光露齿笑 |
+| 虎牙 | 露出小虎牙 / 小虎牙微露 | 俏皮露尖牙 |
+| 身体 | 手指涂黑色指甲油 | 直接删除 |
+| 翅膀 | 黑色翅膀 | 浅灰翅膀 / 银色翅膀 |
+| 角 | 黑色弧形犄角 | 弧形角饰 |
+| 套装 | 三件深色品类同时出现 | 合并为2件，或换浅色 |
+| 服装色 | 黑色正装+长裤+皮鞋（三件套） | 深灰西服外套配深灰长裤（2件）|
+
+## 通用替换规则
+
+- Q版酷帅少年 → Q版酷少年
+- 露出 → 改为更柔和动词（俏皮/阳光）
+- 黑色 → 优先换为 深灰 / 浅灰 / 银色
+- 三件以上服装品类 → 合并为2件描述
+
+## 工作流程
+
+1. 接收用户中文描述
+2. 应用敏感词替换表（不提醒，直接替换）
+3. 补充MJ标准后缀：
+   `3D render, matte PVC texture, ultra detailed, Pop Mart style, --no text, watermark, cropped, blurry`
+4. 直接输出英文提示词
+
+## 敏感词参考库
+
+详细规则见 `references/sensitive-words.md`，包含：
+- 已验证敏感词清单
+- 穷举法排查流程（当遇到新报错时定位用的流程）
+- 组合触发模式说明

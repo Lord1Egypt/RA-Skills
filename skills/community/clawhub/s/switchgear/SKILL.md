@@ -1,35 +1,102 @@
 ---
-name: "Switchgear"
+name: "switchgear"
+version: "1.0.0"
 description: "Switchgear specification manager. Use when json switchgear tasks, csv switchgear tasks, checking switchgear status."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/switchgear"
-sourceUrl: "https://clawhub.ai/skills/switchgear"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [switchgear, electrical, cli, tool]
+category: "electrical"
 ---
 
-# Switchgear
+# switchgear
 
-> Switchgear specification manager. Use when json switchgear tasks, csv switchgear tasks, checking switchgear status.
+Switchgear specification manager. Use when json switchgear tasks, csv switchgear tasks, checking switchgear status.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/switchgear`
-- **Source URL:** [https://clawhub.ai/skills/switchgear](https://clawhub.ai/skills/switchgear)
+### `status`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/switchgear
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Description |
+|----------|-------------|
+| `SWITCHGEAR_DIR` | Data directory (default: ~/.switchgear/) |
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

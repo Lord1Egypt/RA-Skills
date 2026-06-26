@@ -1,35 +1,23 @@
 ---
-name: "Neural Note Taker"
-description: "Advanced associative memory helper for building relationships between facts and entities. Use when processing dense information to ensure context is preserve..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neural-note-taker"
-sourceUrl: "https://clawhub.ai/skills/neural-note-taker"
+name: neural-note-taker
+description: Advanced associative memory helper for building relationships between facts and entities. Use when processing dense information to ensure context is preserved across long sessions.
 ---
 
 # Neural Note Taker
 
-> Advanced associative memory helper for building relationships between facts and entities. Use when processing dense information to ensure context is preserve...
+Connect the dots in your memory. This skill implements a concept-linkage protocol.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neural-note-taker`
-- **Source URL:** [https://clawhub.ai/skills/neural-note-taker](https://clawhub.ai/skills/neural-note-taker)
+## Core Process
 
-## Overview
+1. **Entity Identification**: Extract names, tools, dates, and projects from current chat.
+2. **Relationship Mapping**: Use `[[Target]] -> [[Related]]` notation.
+3. **Context Weighting**: Assign priority based on recurrence.
 
+## Commands
+- `memo_link [topicA] [topicB]`: Force a connection in long-term memory.
+- `memo_query [topic]`: Surface all associated nodes.
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/neural-note-taker
+clawhub install neural-note-taker
 ```

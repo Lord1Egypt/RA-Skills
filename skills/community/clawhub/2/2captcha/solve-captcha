@@ -1,0 +1,618 @@
+#!/usr/bin/env python3
+"""
+solve-captcha — Solve CAPTCHAs via 2Captcha human-powered service
+
+USAGE:
+    solve-captcha <command> [options]
+    solve-captcha image <file|url> [options]
+    solve-captcha recaptcha2 -s <sitekey> -u <url> [options]
+    
+COMMANDS:
+    image        Solve image-based CAPTCHA (OCR)
+    recaptcha2   Solve reCAPTCHA v2
+    recaptcha3   Solve reCAPTCHA v3
+    hcaptcha     Solve hCaptcha
+    turnstile    Solve Cloudflare Turnstile
+    funcaptcha   Solve Arkose Labs FunCaptcha
+    geetest      Solve GeeTest v3
+    geetest4     Solve GeeTest v4
+    amazon       Solve Amazon WAF CAPTCHA
+    text         Solve text question
+    balance      Check account balance
+    
+EXAMPLES:
+    solve-captcha image captcha.png
+    solve-captcha image https://example.com/captcha.jpg --math
+    solve-captcha recaptcha2 -s 6Le-wvk... -u https://example.com
+    solve-captcha balance --json
+    
+CONFIG:
+    API key lookup: --api-key flag > TWOCAPTCHA_API_KEY env > ~/.config/2captcha/api-key > ~/.2captcha-api-key
+
+PRIVACY:
+    CAPTCHA content, page URLs, sitekeys, and challenge metadata are sent to 2Captcha.
+    Use only for authorized automation and avoid sensitive/internal pages unless approved.
+
+For full docs: https://github.com/adinvadim/2captcha-cli
+"""
+
+import argparse
+import base64
+import json
+import os
+import sys
+import time
+from pathlib import Path
+from urllib.request import Request, urlopen
+from urllib.error import URLError, HTTPError
+
+__version__ = "2.0.1"
+
+API_BASE = "https://api.2captcha.com"
+DEFAULT_TIMEOUT = 180
+POLL_INTERVAL = 5
+
+# Exit codes
+EXIT_OK = 0
+EXIT_ERROR = 1
+EXIT_USAGE = 2
+EXIT_TIMEOUT = 3
+EXIT_AUTH = 4
+
+
+class Config:
+    """Runtime configuration."""
+    
+    def __init__(self):
+        self.api_key = None
+        self.json_output = False
+        self.quiet = False
+        self.verbose = False
+        self.no_color = self._detect_no_color()
+        self.timeout = DEFAULT_TIMEOUT
+    
+    def _detect_no_color(self):
+        """Respect NO_COLOR, TERM=dumb, non-TTY."""
+        if os.environ.get("NO_COLOR"):
+            return True
+        if os.environ.get("TERM") == "dumb":
+            return True
+        if not sys.stderr.isatty():
+            return True
+        return False
+
+
+config = Config()
+
+
+# ============== OUTPUT HELPERS ==============
+
+def style(text, code):
+    """Apply ANSI style if color is enabled."""
+    if config.no_color:
+        return text
+    return f"\033[{code}m{text}\033[0m"
+
+def red(text): return style(text, "31")
+def green(text): return style(text, "32")
+def yellow(text): return style(text, "33")
+def dim(text): return style(text, "2")
+
+def info(msg):
+    """Print info to stderr (unless quiet)."""
+    if not config.quiet:
+        print(msg, file=sys.stderr)
+
+def verbose(msg):
+    """Print verbose info to stderr."""
+    if config.verbose:
+        print(dim(f"[verbose] {msg}"), file=sys.stderr)
+
+def error(msg, hint=None):
+    """Print error to stderr."""
+    print(red(f"error: {msg}"), file=sys.stderr)
+    if hint:
+        print(dim(f"hint: {hint}"), file=sys.stderr)
+
+def success(msg):
+    """Print success to stderr."""
+    if not config.quiet:
+        print(green(f"✓ {msg}"), file=sys.stderr)
+
+def progress(msg):
+    """Print progress indicator (only if TTY)."""
+    if not config.quiet and sys.stderr.isatty():
+        print(f"\r{msg}", file=sys.stderr, end="", flush=True)
+
+
+# ============== API HELPERS ==============
+
+def get_api_key():
+    """Get API key from config, env, or file."""
+    if config.api_key:
+        return config.api_key
+    
+    # Environment variable
+    if "TWOCAPTCHA_API_KEY" in os.environ:
+        return os.environ["TWOCAPTCHA_API_KEY"]
+    
+    # Config files
+    config_paths = [
+        Path.home() / ".config" / "2captcha" / "api-key",
+        Path.home() / ".2captcha-api-key",
+    ]
+    
+    for path in config_paths:
+        if path.exists():
+            verbose(f"Using API key from {path}")
+            return path.read_text().strip()
+    
+    return None
+
+
+def api_request(endpoint, data):
+    """Make API request and return JSON response."""
+    url = f"{API_BASE}/{endpoint}"
+    verbose(f"POST {url}")
+    
+    req = Request(
+        url,
+        data=json.dumps(data).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+        method="POST"
+    )
+    
+    try:
+        with urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except HTTPError as e:
+        error_body = e.read().decode("utf-8")
+        try:
+            err_json = json.loads(error_body)
+            return err_json
+        except:
+            error(f"HTTP {e.code}: {error_body}")
+            sys.exit(EXIT_ERROR)
+    except URLError as e:
+        error(f"Network error: {e.reason}", "Check your internet connection")
+        sys.exit(EXIT_ERROR)
+
+
+def create_task(task, language_pool=None):
+    """Create a captcha solving task."""
+    api_key = get_api_key()
+    if not api_key:
+        error("API key not found", 
+              "Set TWOCAPTCHA_API_KEY or create ~/.config/2captcha/api-key")
+        sys.exit(EXIT_AUTH)
+    
+    data = {"clientKey": api_key, "task": task}
+    if language_pool:
+        data["languagePool"] = language_pool
+    
+    verbose(f"Creating task: {task.get('type')}")
+    result = api_request("createTask", data)
+    
+    if result.get("errorId", 0) != 0:
+        handle_api_error(result)
+    
+    return result["taskId"]
+
+
+def get_result(task_id):
+    """Poll for task result with progress."""
+    api_key = get_api_key()
+    start_time = time.time()
+    
+    while True:
+        elapsed = time.time() - start_time
+        if elapsed > config.timeout:
+            error(f"Timeout after {config.timeout}s")
+            sys.exit(EXIT_TIMEOUT)
+        
+        data = {"clientKey": api_key, "taskId": task_id}
+        result = api_request("getTaskResult", data)
+        
+        if result.get("errorId", 0) != 0:
+            handle_api_error(result)
+        
+        status = result.get("status")
+        
+        if status == "ready":
+            if sys.stderr.isatty():
+                print(file=sys.stderr)  # Clear progress line
+            return result
+        
+        progress(f"Solving... {int(elapsed)}s")
+        time.sleep(POLL_INTERVAL)
+
+
+def handle_api_error(result):
+    """Handle API error response."""
+    code = result.get("errorCode", "UNKNOWN")
+    desc = result.get("errorDescription", "Unknown error")
+    
+    hints = {
+        "ERROR_ZERO_BALANCE": "Top up your 2Captcha balance at https://2captcha.com",
+        "ERROR_WRONG_USER_KEY": "Check your API key",
+        "ERROR_KEY_DOES_NOT_EXIST": "Check your API key",
+        "ERROR_NO_SLOT_AVAILABLE": "Try again in a few seconds",
+        "ERROR_CAPTCHA_UNSOLVABLE": "The captcha couldn't be solved (bad image?)",
+    }
+    
+    error(f"{code}: {desc}", hints.get(code))
+    
+    if code in ["ERROR_WRONG_USER_KEY", "ERROR_KEY_DOES_NOT_EXIST"]:
+        sys.exit(EXIT_AUTH)
+    sys.exit(EXIT_ERROR)
+
+
+def encode_image(path_or_url):
+    """Encode image to base64 from file path or URL."""
+    if path_or_url.startswith(("http://", "https://")):
+        verbose(f"Downloading image from {path_or_url}")
+        try:
+            with urlopen(path_or_url, timeout=30) as resp:
+                return base64.b64encode(resp.read()).decode("utf-8")
+        except Exception as e:
+            error(f"Failed to download image: {e}")
+            sys.exit(EXIT_ERROR)
+    else:
+        path = Path(path_or_url)
+        if not path.exists():
+            error(f"File not found: {path_or_url}")
+            sys.exit(EXIT_USAGE)
+        verbose(f"Reading image from {path}")
+        return base64.b64encode(path.read_bytes()).decode("utf-8")
+
+
+def output_result(result, key="text"):
+    """Output result to stdout."""
+    if config.json_output:
+        print(json.dumps(result, indent=2))
+    else:
+        solution = result.get("solution", {})
+        # Try common keys
+        for k in [key, "text", "token", "gRecaptchaResponse", "answer"]:
+            if k in solution:
+                print(solution[k])
+                return
+        # Fallback to full solution
+        print(json.dumps(solution))
+
+
+# ============== COMMANDS ==============
+
+def cmd_image(args):
+    """Solve image-based captcha."""
+    image_data = encode_image(args.image)
+    
+    task = {"type": "ImageToTextTask", "body": image_data}
+    
+    if args.phrase: task["phrase"] = True
+    if args.case_sensitive: task["case"] = True
+    if args.numeric is not None: task["numeric"] = args.numeric
+    if args.math: task["math"] = True
+    if args.min_length: task["minLength"] = args.min_length
+    if args.max_length: task["maxLength"] = args.max_length
+    if args.comment: task["comment"] = args.comment
+    
+    info("Submitting image captcha...")
+    task_id = create_task(task, args.lang)
+    result = get_result(task_id)
+    success(f"Solved in {result.get('cost', '?')} USD")
+    output_result(result, "text")
+
+
+def cmd_recaptcha2(args):
+    """Solve reCAPTCHA v2."""
+    task = {
+        "type": "RecaptchaV2TaskProxyless",
+        "websiteURL": args.url,
+        "websiteKey": args.sitekey,
+    }
+    if args.invisible: task["isInvisible"] = True
+    if args.data_s: task["recaptchaDataSValue"] = args.data_s
+    
+    info("Submitting reCAPTCHA v2...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "gRecaptchaResponse")
+
+
+def cmd_recaptcha3(args):
+    """Solve reCAPTCHA v3."""
+    task = {
+        "type": "RecaptchaV3TaskProxyless",
+        "websiteURL": args.url,
+        "websiteKey": args.sitekey,
+    }
+    if args.action: task["pageAction"] = args.action
+    if args.min_score: task["minScore"] = args.min_score
+    
+    info("Submitting reCAPTCHA v3...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "gRecaptchaResponse")
+
+
+def cmd_hcaptcha(args):
+    """Solve hCaptcha."""
+    task = {
+        "type": "HCaptchaTaskProxyless",
+        "websiteURL": args.url,
+        "websiteKey": args.sitekey,
+    }
+    if args.invisible: task["isInvisible"] = True
+    
+    info("Submitting hCaptcha...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "token")
+
+
+def cmd_turnstile(args):
+    """Solve Cloudflare Turnstile."""
+    task = {
+        "type": "TurnstileTaskProxyless",
+        "websiteURL": args.url,
+        "websiteKey": args.sitekey,
+    }
+    
+    info("Submitting Turnstile...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "token")
+
+
+def cmd_funcaptcha(args):
+    """Solve Arkose Labs FunCaptcha."""
+    task = {
+        "type": "FunCaptchaTaskProxyless",
+        "websiteURL": args.url,
+        "websitePublicKey": args.public_key,
+    }
+    if args.service_url: task["funcaptchaApiJSSubdomain"] = args.service_url
+    
+    info("Submitting FunCaptcha...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "token")
+
+
+def cmd_geetest(args):
+    """Solve GeeTest v3."""
+    task = {
+        "type": "GeeTestTaskProxyless",
+        "websiteURL": args.url,
+        "gt": args.gt,
+        "challenge": args.challenge,
+    }
+    
+    info("Submitting GeeTest v3...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "challenge")
+
+
+def cmd_geetest4(args):
+    """Solve GeeTest v4."""
+    task = {
+        "type": "GeeTestTaskProxyless",
+        "websiteURL": args.url,
+        "captchaId": args.captcha_id,
+        "version": 4,
+    }
+    
+    info("Submitting GeeTest v4...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result)
+
+
+def cmd_amazon(args):
+    """Solve Amazon WAF CAPTCHA."""
+    task = {
+        "type": "AmazonTaskProxyless",
+        "websiteURL": args.url,
+        "websiteKey": args.sitekey,
+    }
+    if args.iv: task["iv"] = args.iv
+    if args.context: task["context"] = args.context
+    
+    info("Submitting Amazon WAF...")
+    task_id = create_task(task)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "token")
+
+
+def cmd_text(args):
+    """Solve text question captcha."""
+    task = {"type": "TextCaptchaTask", "comment": args.question}
+    
+    info("Submitting text question...")
+    task_id = create_task(task, args.lang)
+    result = get_result(task_id)
+    success("Solved")
+    output_result(result, "text")
+
+
+def cmd_balance(args):
+    """Check account balance."""
+    api_key = get_api_key()
+    if not api_key:
+        error("API key not found",
+              "Set TWOCAPTCHA_API_KEY or create ~/.config/2captcha/api-key")
+        sys.exit(EXIT_AUTH)
+    
+    data = {"clientKey": api_key}
+    result = api_request("getBalance", data)
+    
+    if result.get("errorId", 0) != 0:
+        handle_api_error(result)
+    
+    balance = result.get("balance", 0)
+    
+    if config.json_output:
+        print(json.dumps({"balance": balance}))
+    else:
+        print(f"${balance:.4f}")
+
+
+# ============== MAIN ==============
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="solve-captcha",
+        description="Solve CAPTCHAs via 2Captcha human-powered service",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+EXAMPLES:
+  solve-captcha image captcha.png
+  solve-captcha image https://site.com/captcha.jpg --math
+  solve-captcha recaptcha2 -s 6Le-wvk... -u https://example.com
+  solve-captcha balance --json
+
+CONFIG:
+  API key is read from (first found):
+    1. --api-key flag
+    2. TWOCAPTCHA_API_KEY environment variable
+    3. ~/.config/2captcha/api-key file
+    4. ~/.2captcha-api-key file
+
+PRIVACY:
+  CAPTCHA content, page URLs, sitekeys, and challenge metadata are sent to 2Captcha.
+  Use only for authorized automation and avoid sensitive/internal pages unless approved.
+
+Full docs: https://github.com/adinvadim/2captcha-cli
+        """
+    )
+    
+    # Global flags
+    parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {__version__}")
+    parser.add_argument("-k", "--api-key", help="2Captcha API key")
+    parser.add_argument("-j", "--json", action="store_true", dest="json_output", help="Output JSON")
+    parser.add_argument("-q", "--quiet", action="store_true", help="Suppress progress output")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
+    parser.add_argument("-t", "--timeout", type=int, default=DEFAULT_TIMEOUT, 
+                       help=f"Timeout in seconds (default: {DEFAULT_TIMEOUT})")
+    parser.add_argument("--no-color", action="store_true", help="Disable colored output")
+    
+    subs = parser.add_subparsers(dest="command", metavar="COMMAND")
+    
+    # image
+    p = subs.add_parser("image", help="Solve image captcha (OCR)",
+                        description="Solve image-based CAPTCHA by OCR")
+    p.add_argument("image", help="Image file path or URL")
+    p.add_argument("--phrase", action="store_true", help="Answer contains multiple words")
+    p.add_argument("--case-sensitive", action="store_true", help="Case-sensitive answer")
+    p.add_argument("--numeric", type=int, choices=[0,1,2,3,4],
+                   help="0=any, 1=numbers, 2=letters, 3=either, 4=both")
+    p.add_argument("--math", action="store_true", help="Captcha requires calculation")
+    p.add_argument("--min-length", type=int, help="Minimum answer length")
+    p.add_argument("--max-length", type=int, help="Maximum answer length")
+    p.add_argument("--comment", help="Instructions for solver")
+    p.add_argument("--lang", help="Language pool (en, rn)")
+    p.set_defaults(func=cmd_image)
+    
+    # recaptcha2
+    p = subs.add_parser("recaptcha2", help="Solve reCAPTCHA v2")
+    p.add_argument("-s", "--sitekey", required=True, help="reCAPTCHA site key")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.add_argument("--invisible", action="store_true", help="Invisible reCAPTCHA")
+    p.add_argument("--data-s", help="data-s parameter value")
+    p.set_defaults(func=cmd_recaptcha2)
+    
+    # recaptcha3
+    p = subs.add_parser("recaptcha3", help="Solve reCAPTCHA v3")
+    p.add_argument("-s", "--sitekey", required=True, help="reCAPTCHA site key")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.add_argument("--action", help="Page action")
+    p.add_argument("--min-score", type=float, default=0.3, help="Minimum score (default: 0.3)")
+    p.set_defaults(func=cmd_recaptcha3)
+    
+    # hcaptcha
+    p = subs.add_parser("hcaptcha", help="Solve hCaptcha")
+    p.add_argument("-s", "--sitekey", required=True, help="hCaptcha site key")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.add_argument("--invisible", action="store_true", help="Invisible hCaptcha")
+    p.set_defaults(func=cmd_hcaptcha)
+    
+    # turnstile
+    p = subs.add_parser("turnstile", help="Solve Cloudflare Turnstile")
+    p.add_argument("-s", "--sitekey", required=True, help="Turnstile site key")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.set_defaults(func=cmd_turnstile)
+    
+    # funcaptcha
+    p = subs.add_parser("funcaptcha", help="Solve Arkose Labs FunCaptcha")
+    p.add_argument("-p", "--public-key", required=True, help="Public key")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.add_argument("--service-url", help="API subdomain")
+    p.set_defaults(func=cmd_funcaptcha)
+    
+    # geetest
+    p = subs.add_parser("geetest", help="Solve GeeTest v3")
+    p.add_argument("--gt", required=True, help="gt parameter")
+    p.add_argument("--challenge", required=True, help="challenge parameter")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.set_defaults(func=cmd_geetest)
+    
+    # geetest4
+    p = subs.add_parser("geetest4", help="Solve GeeTest v4")
+    p.add_argument("--captcha-id", required=True, help="captcha_id parameter")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.set_defaults(func=cmd_geetest4)
+    
+    # amazon
+    p = subs.add_parser("amazon", help="Solve Amazon WAF CAPTCHA")
+    p.add_argument("-s", "--sitekey", required=True, help="Site key")
+    p.add_argument("-u", "--url", required=True, help="Page URL")
+    p.add_argument("--iv", help="iv parameter")
+    p.add_argument("--context", help="context parameter")
+    p.set_defaults(func=cmd_amazon)
+    
+    # text
+    p = subs.add_parser("text", help="Solve text question")
+    p.add_argument("question", help="Question to answer")
+    p.add_argument("--lang", default="en", help="Language (default: en)")
+    p.set_defaults(func=cmd_text)
+    
+    # balance
+    p = subs.add_parser("balance", help="Check account balance")
+    p.set_defaults(func=cmd_balance)
+    
+    # Parse and run
+    args = parser.parse_args()
+    
+    # Apply global config
+    config.api_key = args.api_key
+    config.json_output = args.json_output
+    config.quiet = args.quiet
+    config.verbose = args.verbose
+    config.timeout = args.timeout
+    if args.no_color:
+        config.no_color = True
+    
+    if not args.command:
+        parser.print_help()
+        sys.exit(EXIT_USAGE)
+    
+    try:
+        args.func(args)
+    except KeyboardInterrupt:
+        print(file=sys.stderr)
+        info("Interrupted")
+        sys.exit(130)
+
+
+if __name__ == "__main__":
+    main()

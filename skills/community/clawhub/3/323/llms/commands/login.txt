@@ -1,0 +1,69 @@
+--------------------------------------------------------------------------------
+title: "login"
+description: "Authenticate with Skill Hub via browser SSO."
+source: "/llms/commands/login.txt"
+--------------------------------------------------------------------------------
+
+# login — Browser SSO Login
+
+Authenticate with the Skill Hub registry via browser-based SSO. Required for publishing skills.
+
+## Syntax
+
+```bash
+ai-skills login [options]
+```
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-f, --force` | Force re-login even if already authenticated |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Behavior
+
+### CLI Mode (default)
+
+- **Not logged in**: Opens browser for SSO login, shows success message on completion
+- **Already logged in**: Prompts for confirmation before re-login; user can cancel
+- **`--force`**: Skips confirmation and directly re-authenticates
+- **Login failure**: Displays error message and sets `process.exitCode = 1`
+
+### Pure Mode (`--pure`)
+
+- **Not logged in**: Initiates SSO login, outputs `Login successful: Name (email)` on success
+- **Already logged in**: Outputs `Already logged in as Name (email).` and returns without re-login
+- **`--force`**: Forces SSO login even if already logged in
+- **Login failure**: Outputs `Login failed: <reason>` and sets `process.exitCode = 1`
+
+## Examples
+
+```bash
+# Login (interactive)
+ai-skills login
+
+# Login (pure mode for AI agents)
+ai-skills login --pure
+
+# Force re-login
+ai-skills login --force --pure
+```
+
+## Pure Mode Output
+
+**Already logged in:**
+```
+Already logged in as 张三 (zhangsan@test.com).
+```
+
+**Login successful:**
+```
+Login successful: 张三 (zhangsan@test.com)
+```
+
+**Login failed:**
+```
+Login failed: Login timeout
+```

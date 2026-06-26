@@ -1,0 +1,256 @@
+# Safety Profile: L1 — Draft & Organize
+#
+# Philosophy: Do anything to YOUR OWN stuff. Nothing outbound.
+# Create drafts, organize inbox, edit docs, manage files — but never
+# send a message, comment, RSVP, or share in a way that notifies others.
+#
+# Key principle: if an action could cause a notification to another human,
+# it's blocked. Everything else is allowed.
+
+gmail:
+  search: true
+  get: true
+  messages: true
+  attachment: true
+  url: true
+  history: true
+  thread:
+    get: true
+    modify: true             # Label/archive threads
+    attachments: true
+  labels:
+    list: true
+    get: true
+    create: true             # Create labels for triage
+    modify: true             # Apply/remove labels
+    delete: true             # Delete labels (your own labels)
+  batch:
+    modify: true             # Bulk label changes for triage
+    delete: false            # Permanent delete — L4 only
+  send: false                # OUTBOUND — blocked
+  track: false               # Tracking has outbound side effects
+  drafts:
+    list: true
+    get: true
+    create: true             # Create drafts for human review
+    update: true             # Edit drafts
+    delete: true             # Delete your own drafts
+    send: false              # OUTBOUND — blocked
+  settings: false            # Admin settings blocked (vacation, sendas, delegates, forwarding, autoforward, watch)
+  watch: false
+  autoforward: false
+  delegates: false
+  filters: true              # Legacy alias — points to settings.filters
+  forwarding: false
+  sendas: false
+  vacation: false
+
+calendar:
+  calendars: true
+  acl: true
+  events: true
+  event: true
+  create: true               # Create your own events
+  update: true               # Update your own events
+  delete: true               # Delete your own events
+  freebusy: true
+  respond: false             # OUTBOUND — RSVP notifies organizer
+  propose-time: false        # OUTBOUND — notifies organizer
+  colors: true
+  conflicts: true
+  search: true
+  time: true
+  users: true
+  team: true
+  focus-time: true           # Your own focus time
+  out-of-office: true        # Your own OOO status
+  working-location: true     # Your own working location
+
+drive:
+  ls: true
+  search: true
+  get: true
+  download: true
+  upload: true
+  mkdir: true
+  copy: true
+  delete: true               # Delete your own files
+  move: true
+  rename: true
+  share: true                # Grants access (no message sent)
+  unshare: true              # Remove access
+  permissions: true
+  url: true
+  drives: true
+  comments:
+    list: true               # Read comments
+    get: true                # Read comments
+    create: false            # OUTBOUND — notifies collaborators
+    update: false            # OUTBOUND — notifies collaborators
+    delete: false            # Destructive on shared content
+    reply: false             # OUTBOUND — notifies collaborators
+
+contacts:
+  search: true
+  list: true
+  get: true
+  create: true               # Address book is private
+  update: true               # Address book is private
+  delete: true               # Address book is private
+  directory:
+    list: true
+    search: true
+  other:
+    list: true
+    search: true
+    delete: true             # Clean up Other Contacts
+
+tasks:
+  lists:
+    list: true
+    create: true             # Create task lists
+  list: true
+  get: true
+  add: true                  # Create tasks
+  update: true
+  done: true
+  undo: true
+  delete: true               # Delete your own tasks
+  clear: true                # Clear completed tasks
+
+docs:
+  export: true
+  info: true
+  cat: true
+  list-tabs: true
+  create: true               # Create your own docs
+  copy: true                 # Copy docs
+  write: true                # Edit your own docs
+  insert: true
+  delete: true
+  find-replace: true
+  update: true
+  edit: true
+  sed: true
+  clear: true
+  structure: true
+  comments:
+    list: true               # Read comments
+    get: true                # Read comments
+    add: false               # OUTBOUND — notifies collaborators
+    reply: false             # OUTBOUND — notifies collaborators
+    resolve: false           # OUTBOUND — notifies collaborators
+    delete: false            # Destructive on shared content
+
+sheets:
+  get: true
+  metadata: true
+  notes: true
+  export: true
+  update: true               # Edit your own sheets
+  append: true
+  insert: true
+  clear: true
+  format: true
+  create: true
+  copy: true
+
+slides:
+  export: true
+  info: true
+  list-slides: true
+  read-slide: true
+  create: true               # Create your own slides
+  create-from-markdown: true
+  copy: true
+  add-slide: true
+  delete-slide: true
+  update-notes: true
+  replace-slide: true
+
+chat:
+  spaces:
+    list: true
+    find: true
+    create: false            # OUTBOUND — creates shared space
+  messages:
+    list: true
+    send: false              # OUTBOUND — sends message
+  threads:
+    list: true
+  dm:
+    send: false              # OUTBOUND — sends DM
+    space: false             # OUTBOUND — creates DM channel (may notify)
+
+forms:
+  get: true
+  create: true               # Create your own forms
+  responses:
+    list: true
+    get: true
+
+appscript:
+  get: true
+  content: true
+  run: false                 # Executes arbitrary code
+  create: true               # Create scripts (safe, doesn't run them)
+
+classroom: false             # Entire service has outbound operations
+
+people:
+  me: true
+  get: true
+  search: true
+  relations: true
+
+groups:
+  list: true
+  members: true
+
+keep:
+  list: true
+  get: true
+  search: true
+  attachment: true
+
+aliases:
+  send: false                # Maps to gmail.send — OUTBOUND
+  ls: true
+  search: true
+  open: true
+  download: true
+  upload: true
+  login: true
+  logout: true
+  status: true
+  me: true
+  whoami: true
+
+auth:
+  credentials:
+    set: true
+    list: true
+  add: true                  # Login/auth setup
+  services: true
+  list: true
+  alias:
+    list: true
+    set: true
+    unset: true
+  status: true
+  keyring: true
+  remove: true               # Logout
+  tokens:
+    list: true
+    delete: true
+    export: true
+    import: true
+  manage: true
+  service-account:
+    set: true
+    unset: true
+    status: true
+  keep: true
+
+config: true
+time: true

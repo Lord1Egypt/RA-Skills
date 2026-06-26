@@ -1,0 +1,19 @@
+{
+  "name": "follow-builders-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for Follow Builders skill — feed generation and digest preparation",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "fetch": "node fetch-and-prepare.js",
+    "prepare-digest": "node fetch-and-prepare.js",
+    "cli": "node cli.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0",
+    "proper-lockfile": "^4.1.0",
+    "rettiwt-api": "^3.1.1"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "moudao",
+  "version": "1.0.0",
+  "description": "谋道 - 基于「道法术器」框架的AI规划专家",
+  "main": "scripts/moudao.js",
+  "scripts": {
+    "quick": "node scripts/moudao.js --quick",
+    "deep": "node scripts/moudao.js --deep",
+    "diagnose": "node scripts/moudao.js --diagnose"
+  },
+  "keywords": [
+    "ai",
+    "planning",
+    "道法术器",
+    "谋道",
+    "规划",
+    "目标拆解",
+    "创业咨询",
+    "职业发展"
+  ],
+  "author": "moudao",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

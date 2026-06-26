@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_doc": "Machine-readable CLI contract for tt-download. Agents can parse this to construct invocations or validate arguments without re-reading SKILL.md.",
+  "command": "{baseDir}/scripts/tt-download",
+  "summary": "Resolve the signed video URL behind an Oceanengine 素材中心 video_player page; optionally download.",
+  "arguments": [
+    {
+      "name": "url",
+      "required": true,
+      "positional": true,
+      "type": "string",
+      "description": "Full video_player URL, or '@<path>' to read from a file.",
+      "pattern": "^https://ad\\.oceanengine\\.com/material_center/outer/video_player\\?token=.+$|^@.+$"
+    }
+  ],
+  "options": [
+    {
+      "flag": "-o",
+      "long": "--output",
+      "meta": "PATH",
+      "type": "string",
+      "required": false,
+      "description": "Save the video stream to this path. Omit to only print the resolved URL."
+    },
+    {
+      "flag": "--show-intermediate",
+      "type": "boolean",
+      "default": false,
+      "description": "Also print the intermediate cc.oceanengine.com URL to stderr."
+    },
+    {
+      "flag": "-h",
+      "long": "--help",
+      "type": "boolean",
+      "description": "Show help and exit."
+    }
+  ],
+  "stdout": "The resolved https://video-cn.oceanengine.com/... URL (one line). Empty on failure.",
+  "stderr": "Progress and error logging. Includes 'intermediate: <cc-url>' when --show-intermediate is set, and '✅ 已下载 <size> → <path>' after a successful download.",
+  "exit_codes": {
+    "0": "Success — URL resolved (and downloaded if -o given).",
+    "1": "Failure during extraction or download (token expired, browser missing, network error, HTTP 4xx/5xx from CDN).",
+    "2": "Invalid CLI usage (missing or empty URL)."
+  },
+  "examples": [
+    {
+      "intent": "Print only the resolved video URL",
+      "cmd": "{baseDir}/scripts/tt-download 'https://ad.oceanengine.com/material_center/outer/video_player?token=...'"
+    },
+    {
+      "intent": "Download to disk",
+      "cmd": "{baseDir}/scripts/tt-download '...token=...' -o video.mp4"
+    },
+    {
+      "intent": "URL from a file (long tokens)",
+      "cmd": "{baseDir}/scripts/tt-download @url.txt -o video.mp4"
+    },
+    {
+      "intent": "Also echo the intermediate cc URL",
+      "cmd": "{baseDir}/scripts/tt-download @url.txt -o video.mp4 --show-intermediate"
+    }
+  ],
+  "timeouts": {
+    "render": "Chrome --dump-dom runs with --virtual-time-budget=30000; subprocess timeout is 60s.",
+    "resolve": "cc URL HTTP request times out at 30s.",
+    "download": "urllib download times out at 60s on initial connect; reads are blocking per chunk."
+  },
+  "output_naming": {
+    "_doc": "Suggested default filenames when the user does not specify -o.",
+    "rules": [
+      "If the URL token decodes to a knowable material id, use 'material-<id>.mp4'.",
+      "Otherwise use 'oceanengine-<YYYYmmdd-HHMMSS>.mp4' stamped at extraction time.",
+      "Always echo the chosen path to stderr so the agent can confirm."
+    ]
+  }
+}

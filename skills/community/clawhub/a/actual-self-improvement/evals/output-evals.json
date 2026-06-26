@@ -1,0 +1,37 @@
+{
+  "skill_name": "self-improvement",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You were wrong earlier: the project uses pnpm workspaces, not npm. Capture that learning for future sessions.",
+      "expected_output": "A learning entry is created in `.learnings/LEARNINGS.md` with a deterministic ID, summary, details, suggested action, and metadata indicating the correction source.",
+      "assertions": [
+        "The workflow chooses a learning entry rather than an error or feature request",
+        "The created entry includes an LRN-YYYYMMDD-XXX identifier",
+        "The entry includes Summary, Details, Suggested Action, and Metadata sections",
+        "The suggested action states a prevention rule rather than just restating the issue"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "This Docker build issue required real debugging and will probably recur. Search related learnings first, then log the error if needed.",
+      "expected_output": "The agent searches existing learnings before logging and writes a structured error entry only if the issue is new or meaningfully distinct.",
+      "assertions": [
+        "The workflow searches existing learnings before creating a new entry",
+        "If a new entry is created, it is written to `.learnings/ERRORS.md`",
+        "The error entry includes Error, Context, Suggested Fix, and Metadata sections",
+        "The output distinguishes durable logging from routine noise"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We keep forgetting to regenerate the API client after OpenAPI changes. Promote that into durable project memory and consider extracting a skill.",
+      "expected_output": "The agent proposes a concise rule suitable for a memory file and only recommends skill extraction if the pattern is broad and proven.",
+      "assertions": [
+        "The promotion is expressed as a short prevention rule",
+        "The output names an appropriate memory target such as CLAUDE.md or AGENTS.md",
+        "Skill extraction is justified with recurrence or broad applicability, not assumed automatically"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+display_name: 易经起卦
+short_description: 按六爻流程起卦并查阅卦象资料。
+default_prompt: 使用易经起卦技能，为我起一卦并解释结果。

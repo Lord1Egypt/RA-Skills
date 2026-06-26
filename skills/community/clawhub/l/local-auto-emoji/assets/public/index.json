@@ -1,0 +1,55 @@
+{
+  "users": {
+    "250316123456": {
+      "latest_version": "250316123456_1773660559_3",
+      "versions": [
+        "250316123456_1773660559_2",
+        "250316123456_1773660559_3"
+      ],
+      "avatar_path": "/home/356747181_wy/.openclaw/workspace/skills/local-auto-emoji/assets/public/250316123456_1773660559_3/avatar.jpg"
+    },
+    "260316316011": {
+      "latest_version": "260316316011_1773663316_1",
+      "versions": [
+        "260316316011_1773663316_1"
+      ],
+      "avatar_path": "/home/356747181_wy/.openclaw/workspace/skills/local-auto-emoji/assets/public/260316316011_1773663316_1/avatar.jpg"
+    },
+    "test_wrapper_123": {
+      "latest_version": "test_wrapper_123_1773670025_1",
+      "versions": [
+        "test_wrapper_123_1773670025_1"
+      ],
+      "avatar_path": "/home/356747181_wy/.openclaw/workspace/skills/local-auto-emoji/assets/public/test_wrapper_123_1773670025_1/avatar.jpg"
+    },
+    "main_emoji_main": {
+      "latest_version": "main_emoji_main_1773670037_1",
+      "versions": [
+        "main_emoji_main_1773670037_1"
+      ],
+      "avatar_path": "/home/356747181_wy/.openclaw/workspace/skills/local-auto-emoji/assets/public/main_emoji_main_1773670037_1/avatar.jpg"
+    },
+    "wrapper_test_full": {
+      "latest_version": "wrapper_test_full_1773670079_2",
+      "versions": [
+        "wrapper_test_full_1773670074_1",
+        "wrapper_test_full_1773670079_2"
+      ],
+      "avatar_path": "/home/356747181_wy/.openclaw/workspace/skills/local-auto-emoji/assets/public/wrapper_test_full_1773670079_2/avatar.jpg"
+    },
+    "default_user": {
+      "latest_version": "default_user_1773671781_1",
+      "versions": [
+        "default_user_1773671781_1"
+      ],
+      "avatar_path": "/home/356747181_wy/.openclaw/workspace/skills/local-auto-emoji/assets/public/default_user_1773671781_1/avatar.jpg"
+    },
+    "test_direct": {
+      "latest_version": "test_direct_1773671792_1",
+      "versions": [
+        "test_direct_1773671792_1"
+      ],
+      "avatar_path": "/home/356747181_wy/.openclaw/workspace/skills/local-auto-emoji/assets/public/test_direct_1773671792_1/avatar.jpg"
+    }
+  }
+}

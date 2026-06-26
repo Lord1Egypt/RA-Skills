@@ -1,0 +1,12 @@
+name: voice-bridge-light
+description: 轻量级离线语音桥接，提供 STT/TTS HTTP API
+version: 1.0.0
+author: OpenClaw
+
+capabilities:
+  - stt
+  - tts
+
+install: pip install -r requirements.txt
+start: python api_server.py
+health: http://localhost:18790/health

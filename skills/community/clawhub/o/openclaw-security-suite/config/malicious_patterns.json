@@ -1,0 +1,48 @@
+{
+    "dangerous_keywords": [
+        "eval(",
+        "Function(",
+        "setTimeout(String",
+        "setInterval(String",
+        "__proto__",
+        "constructor.constructor",
+        "process.env",
+        "process.exit",
+        "require('child_process')",
+        "require(\"child_process\")",
+        "import('child_process')",
+        "fs.writeFileSync",
+        "fs.unlinkSync",
+        "fs.rmdirSync",
+        "net.createServer",
+        "http.createServer",
+        "globalThis",
+        "Reflect.construct",
+        "child_process",
+        "exec(",
+        "spawn(",
+        "rm -rf",
+        "fs.rm",
+        "fs.rmdir",
+        "\"nc ",
+        "\"netcat ",
+        "\"ssh ",
+        "chmod 777"
+    ],
+    "sensitive_files": [
+        "/etc/passwd",
+        "/etc/shadow",
+        "/.ssh",
+        "/.env"
+    ],
+    "suspicious_urls": [
+        "metadata.google.internal",
+        "169.254.169.254"
+    ],
+    "suspicious_patterns": [
+        "curl .+\\|.+bash",
+        "wget .+\\|.+sh\\b",
+        "curl .+169\\.254\\.169\\.254",
+        "curl .+metadata\\.google\\.internal"
+    ]
+}

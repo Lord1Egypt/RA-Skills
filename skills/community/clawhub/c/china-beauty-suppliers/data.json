@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Association of Fragrance Flavor and Cosmetic Industries (CAFFCI), National Bureau of Statistics, 中国香料香精化妆品工业协会",
+    "industry_scale_2026_target": "¥1.5 trillion revenue",
+    "growth_rate_target": "8.2% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Beauty Industry Overview (2026)",
+    "summary": "China is the world's second-largest beauty market and the largest producer of cosmetics, skincare, and personal care products. The industry encompasses skincare, color cosmetics, hair care, body care, fragrances, and salon professional products. In 2026, the industry is projected to exceed ¥1.5 trillion in revenue, driven by domestic brand崛起 (rise of local brands), clean beauty trends, male grooming, and cross-border e-commerce growth. The industry is undergoing transformation toward functional efficacy, sustainable packaging, and digital-native brand building.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-Quality Development of Cosmetics Industry (2024-2026)",
+        "issuing_authorities": ["MIIT", "National Medical Products Administration", "Ministry of Commerce"],
+        "key_measures": [
+          "Strengthen safety supervision and efficacy claims substantiation",
+          "Promote innovation in raw materials and formulation technologies",
+          "Support development of domestic brands and international expansion",
+          "Establish national-level cosmetic testing and evaluation centers",
+          "Encourage green manufacturing and sustainable packaging"
+        ]
+      },
+      {
+        "name": "Regulations on Supervision and Administration of Cosmetics (updated)",
+        "issuing_authorities": ["State Council", "NMPA"],
+        "key_measures": [
+          "Mandate efficacy claim substantiation with clinical/test data",
+          "Strengthen safety risk monitoring and adverse reaction reporting",
+          "Simplify registration process for innovative ingredients"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥1.38 trillion",
+      "share_of_global_beauty_market": "18%",
+      "key_drivers": ["functional skincare", "Chinese herbal ingredients", "lipsticks", "sun care", "men's grooming"],
+      "domestic_brand_share": "45% of retail sales",
+      "export_value": "$12 billion",
+      "e-commerce_penetration": "42% of total sales"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Beauty Products Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, ingredients, packaging, and R&D",
+      "categories": [
+        {
+          "name": "Active Ingredients",
+          "items": ["hyaluronic acid", "peptides", "vitamins (C, E)", "retinol", "niacinamide", "salicylic acid", "plant extracts", "sunscreen filters"],
+          "key_suppliers": ["Bloomage Biotech (hyaluronic acid)", "Huaxiang Group", "BASF China", "DSM China", "Givaudan China"]
+        },
+        {
+          "name": "Base Materials",
+          "items": ["emollients", "surfactants", "emulsifiers", "preservatives", "fragrances", "thickeners"],
+          "key_suppliers": ["Sinochem", "Zhejiang Zanyu", "Evonik China", "Croda China"]
+        },
+        {
+          "name": "Packaging",
+          "items": ["glass bottles", "plastic jars/tubes", "airless pumps", "compacts", "droppers", "cartons", "labels"],
+          "key_suppliers": ["Albea China", "HCP Packaging", "Quadpack China", "Guangzhou Yalian", "Zhejiang Xinjida"]
+        },
+        {
+          "name": "R&D & Formulation",
+          "items": ["contract manufacturing", "formulation development", "stability testing", "clinical testing"],
+          "key_suppliers": ["Cosmax China", "Kolmar China", "Intercos China", "Noevir China"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Beauty product manufacturing and assembly",
+      "subsectors": [
+        "skincare (moisturizers, serums, masks, sunscreens)",
+        "color cosmetics (lipsticks, foundations, eyeshadows, mascaras)",
+        "hair care (shampoos, conditioners, treatments, styling)",
+        "body care (lotions, scrubs, soaps, deodorants)",
+        "fragrances (perfumes, colognes, body mists)",
+        "professional salon products (hair color, perms, treatments)",
+        "men's grooming (shaving, beard care, skincare)"
+      ],
+      "key_companies_by_subsector": {
+        "skincare": ["Proya", "Jala", "Pehchaolin", "Bloomage Biotech", "Meds", "Winona"],
+        "color_cosmetics": ["Mazol", "Perfect Diary", "Florasis", "Judydoll", "Colorkey"],
+        "hair_care": ["Bawang", "Rejoice (P&G)", "Dove (Unilever)", "Schwarzkopf China"],
+        "body_care": ["Safeguard (P&G)", "Dove (Unilever)", "Jala"],
+        "professional": ["Schwarzkopf", "L'Oreal Professional", "Wella China"],
+        "men's": ["Mennen", "Nivea Men", "Proya Men"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "e-commerce (Tmall, JD.com, Douyin, Kuaishou, Xiaohongshu)",
+        "offline retail (department stores, specialty stores, supermarkets)",
+        "direct sales and social commerce",
+        "cross-border e-commerce (Tmall Global, JD Worldwide, Douyin Global)",
+        "export to global markets (Southeast Asia, Japan, Europe, US)",
+        "OEM/ODM for international brands"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Guangzhou", "Shenzhen", "Foshan", "Huizhou"],
+      "share_of_industry": "30% of national output (Guangzhou alone accounts for 55% of Guangdong's beauty output) [citation:2]",
+      "specializations": [
+        "skincare and color cosmetics manufacturing",
+        "packaging (bottles, jars, pumps)",
+        "contract manufacturing",
+        "wholesale markets (美博城)"
+      ],
+      "key_hubs": [
+        {
+          "city": "Guangzhou (Baiyun District)",
+          "specialization": "Largest beauty manufacturing cluster, 'Guangzhou International Beauty City'",
+          "supplier_example": "Guangzhou Baiyun Industrial Zone – thousands of manufacturers including Cosmax, Kolmar; also home to Perfect Diary suppliers"
+        },
+        {
+          "city": "Guangzhou (Huadu District)",
+          "specialization": "Packaging manufacturing",
+          "supplier_example": "Guangzhou Yalian – packaging for L'Oreal, Estee Lauder"
+        },
+        {
+          "city": "Shenzhen",
+          "specialization": "High-end color cosmetics, e-commerce brands",
+          "supplier_example": "Shenzhen Maike Group – ODM for many domestic brands"
+        }
+      ],
+      "strengths": [
+        "Complete supply chain",
+        "Fast prototyping and low MOQs",
+        "Proximity to Hong Kong",
+        "Large wholesale markets"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Shanghai", "Zhejiang", "Jiangsu"],
+      "share_of_industry": "35% of national output",
+      "specializations": [
+        "premium skincare",
+        "cosmetics R&D and innovation",
+        "brand headquarters",
+        "high-end packaging"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shanghai (东方美谷)",
+          "specialization": "Premium cosmetics, R&D, international brands",
+          "supplier_example": "L'Oreal China R&D, Estee Lauder China, Shanghai Jala (Chando)"
+        },
+        {
+          "city": "Huzhou (埭溪镇, 美妆小镇)",
+          "specialization": "Full-industry chain cluster, '美妆小镇' (Beauty Town)",
+          "supplier_example": "Proya headquarters and manufacturing base – China's leading skincare brand; over 300 cosmetics companies [citation:4]"
+        },
+        {
+          "city": "Hangzhou",
+          "specialization": "E-commerce beauty brands, cross-border",
+          "supplier_example": "Perfect Diary e-commerce operations"
+        }
+      ],
+      "strengths": [
+        "Strong R&D capabilities",
+        "International brand presence",
+        "Premium positioning",
+        "Access to talent and capital"
+      ]
+    },
+    {
+      "region": "Shandong Peninsula",
+      "provinces_cities": ["Shandong", "Jinan", "Qingdao", "Yantai"],
+      "share_of_industry": "12% of national output",
+      "specializations": [
+        "hyaluronic acid production (global leader)",
+        "skincare ingredients",
+        "medical aesthetics"
+      ],
+      "key_hubs": [
+        {
+          "city": "Jinan",
+          "specialization": "Hyaluronic acid manufacturing, '玻尿酸之都'",
+          "supplier_example": "Bloomage Biotech – world's largest hyaluronic acid producer, supplies 70% of global market [citation:4]"
+        },
+        {
+          "city": "Yantai",
+          "specialization": "Skincare manufacturing",
+          "supplier_example": "Yantai Meiqi Cosmetics – OEM for many brands"
+        }
+      ],
+      "strengths": [
+        "Raw material dominance (hyaluronic acid)",
+        "Strong pharmaceutical heritage",
+        "Cost advantages"
+      ]
+    },
+    {
+      "region": "Fujian Province",
+      "provinces_cities": ["Fuzhou", "Xiamen"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "hair care",
+        "natural ingredients"
+      ],
+      "key_hubs": [
+        {
+          "city": "Fuzhou",
+          "specialization": "Hair care products",
+          "supplier_example": "Fujian Mermaid Hair Products – exports to Africa and Southeast Asia"
+        }
+      ],
+      "strengths": [
+        "Export-oriented",
+        "Natural ingredient sourcing"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "skincare": {
+      "description": "Largest segment including moisturizers, serums, essences, masks, sunscreens, and eye creams. Dominated by anti-aging, brightening, and moisturizing claims.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta", "Shandong"],
+      "growth_drivers": [
+        "Functional skincare (ingredient-led)",
+        "Chinese herbal/traditional medicine concepts",
+        "Mask culture (sheet masks)",
+        "Men's skincare expansion"
+      ],
+      "market_trends": "Clean beauty; microbiome-friendly; personalized skincare; waterless formulations.",
+      "key_players": ["Proya", "Jala", "Pehchaolin", "Bloomage Biotech", "Meds", "Winona"]
+    },
+    "color_cosmetics": {
+      "description": "Lipsticks, foundations, eyeshadows, blushes, mascaras, and nail products. Rapid growth driven by social media and KOL marketing.",
+      "key_clusters": ["Pearl River Delta"],
+      "growth_drivers": [
+        "Social commerce (Douyin, Xiaohongshu)",
+        "Lipstick effect",
+        "New brand proliferation"
+      ],
+      "market_trends": "Texture innovation (velvet, water tints); cushion compacts; clean color cosmetics.",
+      "key_players": ["Perfect Diary", "Florasis", "Judydoll", "Colorkey", "Mazol"]
+    },
+    "hair_care": {
+      "description": "Shampoos, conditioners, treatments, hair masks, styling products, and hair color. Premiumization trend.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta", "Fujian"],
+      "growth_drivers": [
+        "Scalp care awareness",
+        "Anti-hair loss demand",
+        "Professional salon brands going retail"
+      ],
+      "market_trends": "Sulfate-free; bond-building treatments; personalized hair care.",
+      "key_players": ["Bawang", "Schwarzkopf China", "L'Oreal China", "Kao China"]
+    },
+    "body_care": {
+      "description": "Body lotions, scrubs, soaps, deodorants, and hand creams.",
+      "key_clusters": ["Pearl River Delta"],
+      "growth_drivers": [
+        "Self-care trend",
+        "Premium body care"
+      ],
+      "market_trends": "Natural ingredients; sustainable packaging; inclusive fragrances.",
+      "key_players": ["Jala", "Dove China", "Nivea China"]
+    },
+    "fragrances": {
+      "description": "Perfumes, colognes, body mists, and scented products. Emerging category with rapid growth.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Scent culture development",
+        "Niche and indie perfumes",
+        "Gen Z adoption"
+      ],
+      "market_trends": "Chinese-inspired scents; unisex fragrances; sustainable sourcing.",
+      "key_players": ["Muse Beauty", "Scent Library", "Documents", "L'Oreal China"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "GMP certification",
+        "target": "ISO 22716 (GMP for cosmetics), ISO 9001; specific certifications (Halal, vegan, cruelty-free)"
+      },
+      {
+        "metric": "Safety compliance",
+        "target": "Compliance with China Cosmetics Supervision Regulations, EU Cosmetic Regulation, FDA requirements"
+      },
+      {
+        "metric": "Production capability",
+        "target": "Filling lines (airless, tube, bottle), mixing tanks, QC lab (stability testing, microbial testing)"
+      },
+      {
+        "metric": "R&D capability",
+        "target": "In-house formulation team, stability testing, efficacy testing capabilities"
+      },
+      {
+        "metric": "Sustainability",
+        "target": "Sustainable sourcing, clean beauty certifications, plastic reduction initiatives"
+      }
+    ],
+    "verification_methods": [
+      "Request GMP certificate and test reports",
+      "Conduct factory audit (cleanroom standards, QC processes)",
+      "Order samples for stability testing and sensory evaluation",
+      "Check references from other brands",
+      "Use third-party testing for heavy metals, microbial limits, preservative efficacy"
+    ],
+    "communication_best_practices": [
+      "Provide detailed product specifications (formulation type, claims, target market regulations)",
+      "Discuss customization (texture, fragrance, color, packaging)",
+      "Clarify MOQ and tooling costs for custom molds",
+      "Request formulation options or modify existing formulas",
+      "Establish quality agreement (AQL levels, acceptable defects)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment. For custom formulations, 50% deposit, 50% on sample approval.",
+    "lead_times": {
+      "samples": "2-4 weeks (formulation development), 1-2 weeks (existing formulas)",
+      "bulk_production": "4-8 weeks after sample approval",
+      "custom_packaging": "6-10 weeks (mold making + production)"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for beauty products in China?",
+      "answer": "For stock formulas, MOQ can be 3000-5000 pieces. For custom formulations, MOQ often 5000-10000 pieces. Some contract manufacturers offer lower MOQs (1000-3000) at higher prices. Custom packaging may require 10000-30000 pieces for molds."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom formulation services?",
+      "answer": "Yes, most contract manufacturers offer ODM services. Provide target claims, texture preferences, and budget. They can develop custom formulas or modify existing ones. NRE fees may apply for complex formulations."
+    },
+    {
+      "question": "How can I ensure my products meet safety and efficacy claims?",
+      "answer": "Request formulation stability testing, preservative efficacy test, and safety assessment reports. For efficacy claims, clinical testing may be required. Work with third-party labs (SGS, Intertek, TÜV) for verification."
+    },
+    {
+      "question": "What certifications are important for export to different markets?",
+      "answer": "For EU: CPNP notification, REACH compliance. For US: FDA registration, ingredient review. Halal for Muslim markets. Cruelty-free certifications (Leaping Bunny, PETA). Specify target market requirements early."
+    },
+    {
+      "question": "Can I source clean/clean beauty products in China?",
+      "answer": "Yes, many suppliers now offer 'clean' formulations (paraben-free, sulfate-free, phthalate-free). Specify your clean criteria. Some have certifications like EWG Verified or COSMOS."
+    }
+  ],
+  "glossary": {
+    "ODM": "Original Design Manufacturer – formulates and produces for client brands.",
+    "OEM": "Original Equipment Manufacturer – produces according to client's formula.",
+    "GMP": "Good Manufacturing Practice – ISO 22716 for cosmetics.",
+    "NMPA": "National Medical Products Administration – China cosmetics regulator.",
+    "Clean beauty": "Products free from controversial ingredients (parabens, sulfates, phthalates).",
+    "Efficacy claim": "Performance claim requiring substantiation.",
+    "Sheet mask": "Fabric mask soaked in essence, popular in Asia.",
+    "Cushion compact": "Liquid foundation in sponge cushion format.",
+    "Halal": "Permitted under Islamic law, includes no alcohol or pork derivatives."
+  },
+  "factories": [
+    {"name": "Shanghai Jahwa Cosmetics", "location": "Shanghai", "specialization": "Skincare, personal care products", "capacity": "500,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 22716"], "contact": "manufacturing@jahwa.com.cn"},
+    {"name": "Guangzhou Marubi Beauty", "location": "Guangzhou, Guangdong", "specialization": "Eye cream, anti-aging skincare", "capacity": "200,000 units/day", "certifications": ["ISO 9001", "GMP"], "contact": "factory@marubi.cn"},
+    {"name": "Suzhou Bloomage Biotech", "location": "Suzhou, Jiangsu", "specialization": "Hyaluronic acid, skincare ingredients", "capacity": "1,000 kg/day", "certifications": ["ISO 9001", "GMP", "ISO 13485"], "contact": "production@bloomage.com"},
+    {"name": "Guangzhou Proya Cosmetics", "location": "Guangzhou, Guangdong", "specialization": "Skincare, sunscreen, makeup", "capacity": "300,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 22716"], "contact": "factory@proya.com"},
+    {"name": "Shanghai Pechoin Manufacturing", "location": "Shanghai", "specialization": "Traditional Chinese skincare", "capacity": "400,000 units/day", "certifications": ["ISO 9001", "GMP"], "contact": "manufacturing@pechoin.com"},
+    {"name": "Guangzhou Winona Bio", "location": "Guangzhou, Guangdong", "specialization": "Sensitive skin care, medical skincare", "capacity": "150,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 13485"], "contact": "factory@winona.com.cn"},
+    {"name": "Hangzhou Florasis Cosmetics", "location": "Hangzhou, Zhejiang", "specialization": "Color cosmetics, makeup", "capacity": "250,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 22716"], "contact": "production@florasis.com"},
+    {"name": "Shanghai Chicmax Cosmetics", "location": "Shanghai", "specialization": "Hair care, skincare", "capacity": "350,000 units/day", "certifications": ["ISO 9001", "GMP"], "contact": "factory@chicmax.com"},
+    {"name": "Guangzhou Watsons Manufacturing", "location": "Guangzhou, Guangdong", "specialization": "Personal care, beauty tools", "capacity": "600,000 units/day", "certifications": ["ISO 9001", "GMP", "BSCI"], "contact": "manufacturing@watsons.com.cn"},
+    {"name": "Suzhou KPC Pharmaceuticals", "location": "Suzhou, Jiangsu", "specialization": "Medical skincare, OTC products", "capacity": "100,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 13485"], "contact": "factory@kpc pharma.com"},
+    {"name": "Guangzhou Yuexiu Cosmetics", "location": "Guangzhou, Guangdong", "specialization": "OEM/ODM skincare, makeup", "capacity": "200,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 22716"], "contact": "oem@yuexiu-cosmetics.com"},
+    {"name": "Shanghai Inoherb Manufacturing", "location": "Shanghai", "specialization": "Herbal skincare, TCM beauty", "capacity": "180,000 units/day", "certifications": ["ISO 9001", "GMP"], "contact": "factory@inoherb.com"},
+    {"name": "Guangzhou Colorkey Factory", "location": "Guangzhou, Guangdong", "specialization": "Color cosmetics, lip products", "capacity": "280,000 units/day", "certifications": ["ISO 9001", "GMP"], "contact": "production@colorkey.com"},
+    {"name": "Hangzhou Perfect Diary", "location": "Hangzhou, Zhejiang", "specialization": "Makeup, color cosmetics", "capacity": "320,000 units/day", "certifications": ["ISO 9001", "GMP", "BSCI"], "contact": "manufacturing@perfectdiary.com"},
+    {"name": "Guangzhou Little Dream Garden", "location": "Guangzhou, Guangdong", "specialization": "Nail polish, nail care", "capacity": "120,000 units/day", "certifications": ["ISO 9001", "GMP"], "contact": "factory@littledreamgarden.com"},
+    {"name": "Shenzhen MG Beauty", "location": "Shenzhen, Guangdong", "specialization": "Beauty devices, skincare tools", "capacity": "50,000 units/day", "certifications": ["ISO 9001", "ISO 13485"], "contact": "production@mgbeauty.com"},
+    {"name": "Guangzhou Kans Cosmetics", "location": "Guangzhou, Guangdong", "specialization": "Skincare, masks, essences", "capacity": "220,000 units/day", "certifications": ["ISO 9001", "GMP"], "contact": "factory@kans.com.cn"},
+    {"name": "Shanghai Dr. Yu Manufacturing", "location": "Shanghai", "specialization": "Medical skincare, dermatology products", "capacity": "80,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 13485"], "contact": "manufacturing@dryu.com"},
+    {"name": "Guangzhou Chando Beauty", "location": "Guangzhou, Guangdong", "specialization": "Natural skincare, Himalayan ingredients", "capacity": "260,000 units/day", "certifications": ["ISO 9001", "GMP", "BSCI"], "contact": "factory@chando.com.cn"},
+    {"name": "Suzhou Amino Acid Lab", "location": "Suzhou, Jiangsu", "specialization": "Amino acid surfactants, mild cleansers", "capacity": "500 kg/day", "certifications": ["ISO 9001", "GMP"], "contact": "sales@aminolab.com"},
+    {"name": "Guangzhou Biohyalux Factory", "location": "Guangzhou, Guangdong", "specialization": "Hyaluronic acid products, injectables", "capacity": "90,000 units/day", "certifications": ["ISO 9001", "GMP", "ISO 13485"], "contact": "factory@biohyalux.com"}
+  ]
+}

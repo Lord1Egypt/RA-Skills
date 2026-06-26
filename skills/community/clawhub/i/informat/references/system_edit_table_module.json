@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_edit_table_module",
+    "description": "Modify data table module information.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Data table ID (must exist)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Data table name"
+        }
+      },
+      "required": ["id", "name"]
+    }
+  }
+}

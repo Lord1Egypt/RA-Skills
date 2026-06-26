@@ -1,0 +1,17 @@
+{
+  "search_keywords": ["AI产品", "Agent产品"],
+  "time_window_days": 3,
+  "max_pages": 2,
+  "tag": 818,
+  "order": "create",
+  "language": "zh",
+  "max_results_per_keyword": 5,
+  "request_delay": 2,
+  "onboarding_complete": false,
+  "user_preferences": {
+    "report_style": "detailed",
+    "focus_areas": ["面试问题", "项目经验", "技术栈"],
+    "company_filter": [],
+    "min_view_count": 0
+  }
+}

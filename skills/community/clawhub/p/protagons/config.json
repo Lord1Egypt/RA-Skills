@@ -1,0 +1,60 @@
+{
+  "skill": "protagons",
+  "version": "1.1.0",
+  "description": "Browse, search, deploy, and generate Protagon AI character identities. Deploy loads a rich SOUL.md personality for the agent to adopt.",
+  "author": "Protagons",
+  "homepage": "https://usaw.ai/voices",
+  "entry": "protagons.mjs",
+  "tools": [
+    {
+      "name": "protagons_list",
+      "description": "List available Protagons from the public library. Returns an agent-friendly summary with name, tagline, slug, and category for each character.",
+      "parameters": {
+        "page": { "type": "number", "description": "Page number (default 1)", "optional": true },
+        "limit": { "type": "number", "description": "Items per page, max 100 (default 20)", "optional": true },
+        "category": { "type": "string", "description": "Filter by category slug", "optional": true },
+        "search": { "type": "string", "description": "Search by name", "optional": true }
+      }
+    },
+    {
+      "name": "protagons_search",
+      "description": "Search for Protagons by keyword or category. Returns a numbered list of matching characters with name, tagline, category, and slug. Use this when the user wants to find a specific type of character.",
+      "parameters": {
+        "search": { "type": "string", "description": "Free-text search query (e.g. 'dry and technical', 'friendly copywriter')", "optional": true },
+        "category": { "type": "string", "description": "Filter by category slug", "optional": true },
+        "limit": { "type": "number", "description": "Max results (default 10)", "optional": true }
+      }
+    },
+    {
+      "name": "protagons_categories",
+      "description": "List all available Protagon categories. Use this to help users narrow down what kind of character they want."
+    },
+    {
+      "name": "protagons_get",
+      "description": "Fetch a single Protagon by slug. Returns the full .protagon.json with all dimensions, personality, and synthesized prompt.",
+      "parameters": {
+        "slug": { "type": "string", "description": "Protagon slug (e.g. 'software-developer')", "required": true }
+      }
+    },
+    {
+      "name": "protagons_deploy",
+      "description": "Load a Protagon character identity. Fetches a rich, pre-generated SOUL.md from the Protagons API and returns it as content for the agent to adopt. Does not write to disk — the caller decides how to apply the identity.",
+      "parameters": {
+        "slug": { "type": "string", "description": "Protagon slug to deploy", "required": true }
+      }
+    },
+    {
+      "name": "protagons_status",
+      "description": "Check the Protagons skill status and get hints for verifying the active character identity."
+    },
+    {
+      "name": "protagons_generate",
+      "description": "Generate a new Protagon from a description. Your Google API key is sent to the Protagons backend (api.usaw.ai) which calls Gemini on your behalf — the key is used only for that request and is not stored. Use a scoped or throwaway key if preferred.",
+      "parameters": {
+        "name": { "type": "string", "description": "Character name", "required": true },
+        "description": { "type": "string", "description": "Character description (min 20 chars)", "required": true },
+        "google_api_key": { "type": "string", "description": "Google/Gemini API key (BYOK) — sent to api.usaw.ai for server-side Gemini call, not stored", "required": true }
+      }
+    }
+  ]
+}

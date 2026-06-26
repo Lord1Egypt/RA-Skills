@@ -1,0 +1,22 @@
+# 文章模式 — 中轴蓝卡样式（冷灰底 + 居中蓝色编号卡 + 两侧横线，超大章节标题）
+# 适用场景：产品文档、技术手册、结构化教程
+# 触发词：中轴 / 中轴蓝卡 / 中轴编号 / 编号卡 / center / 灰底 / 冷灰 / 蓝灰底 / 蓝色 / 产品文档 / 技术手册 / 结构化 / 规范 / 正式
+style:
+    article:
+        bg: "#f4f6f8"
+        text: "#1f2329"
+        accent: "#1857b8"
+        hero_bg: "#1f2a37"
+        hero_title_color: "#f5f7fa"
+        bold: "#16191f"
+        rule: "#cfd8e3"
+        caption: "#7b8794"
+        title_font_size: "24px"
+        text_font_size: "17px"
+        h2_font_size: "42px"
+        cover_label: "PRODUCT BRIEF"
+        footer: ""
+        h2_style: "center_card"
+        h2_index_bg: "#1857b8"
+        h2_index_text: "#ffffff"
+        ending_lines: []

@@ -1,0 +1,58 @@
+{
+  "version": "1.4.0",
+  "comment": "Customize this file for your deployment — vars section + keyed agents object. v1.4 adds self_protect, batch, and sync configuration.",
+  "vars": {
+    "workspace_root": "~/.openclaw",
+    "master_agent": "amaster",
+    "master_memory": "${vars.workspace_root}/workspace-${vars.master_agent}/memory"
+  },
+  "agents": {
+    "acode": {
+      "name": "大师",
+      "name_en": "Coding Agent",
+      "role": "编程开发",
+      "workspace": "${vars.workspace_root}/workspace-acode"
+    },
+    "ainvest": {
+      "name": "元宝",
+      "name_en": "Investment Agent",
+      "role": "投资分析",
+      "workspace": "${vars.workspace_root}/workspace-ainvest"
+    },
+    "alive": {
+      "name": "牛奶",
+      "name_en": "Assistant Agent",
+      "role": "生活助理/写作",
+      "workspace": "${vars.workspace_root}/workspace-alive"
+    }
+  },
+  "sync": {
+    "sentinel_dir": "memory",
+    "journal_file": ".sync_journal.jsonl",
+    "changelog_file": "CHANGELOG.md",
+    "pending_prefix": "pending_sync",
+    "max_changelog_sections": 10,
+    "ttl_hours": 24,
+    "dispatch_timeout_sec": 120
+  },
+  "self_protect": {
+    "enabled": true,
+    "skip_agents": ["agent-config-sync"],
+    "isolated_sync": true,
+    "blacklist": [
+      "HEARTBEAT.md",
+      "BOOTSTRAP.md",
+      "SKILL.md",
+      "scripts/",
+      "SECURITY.md",
+      "references/",
+      "agent-registry.json"
+    ],
+    "sync_own_version_file": "skills/agent-config-sync/.sync_own_version",
+    "allow_bootstrap_only": true
+  },
+  "batch": {
+    "mode": "auto",
+    "window_sec": 300
+  }
+}

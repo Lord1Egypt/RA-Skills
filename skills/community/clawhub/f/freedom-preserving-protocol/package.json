@@ -1,0 +1,40 @@
+{
+  "name": "freedom-preserving-protocol",
+  "version": "1.3.2",
+  "description": "ClawHub skill: voluntary Freedom Preserving Protocol for self-governing AI agents",
+  "type": "module",
+  "license": "MIT-0",
+  "author": "ovrsr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovrsr/freedom-preserving-protocol"
+  },
+  "scripts": {
+    "sign": "npx tsx scripts/sign-constitution.ts",
+    "verify": "npx tsx scripts/verify-constitution.ts",
+    "verify-install": "npx tsx scripts/verify-install.ts",
+    "adopt": "npx tsx scripts/safe-append.ts",
+    "revoke": "npx tsx scripts/revoke.ts",
+    "audit:append": "npx tsx scripts/audit-append.ts",
+    "audit:verify": "npx tsx scripts/audit-verify.ts",
+    "audit:proof": "npx tsx scripts/audit-proof.ts",
+    "self-test": "npx tsx scripts/self-test.ts",
+    "publish:skill": "bash scripts/clawhub-publish.sh publish skill",
+    "publish:plugin": "bash scripts/clawhub-publish.sh publish plugin",
+    "publish:trust": "bash scripts/clawhub-publish.sh publish trust",
+    "publish:all": "bash scripts/clawhub-publish.sh publish all",
+    "bump:skill": "bash scripts/clawhub-publish.sh bump skill",
+    "bump:plugin": "bash scripts/clawhub-publish.sh bump plugin",
+    "bump:trust": "bash scripts/clawhub-publish.sh bump trust",
+    "bump:all": "bash scripts/clawhub-publish.sh bump all",
+    "publish:status": "bash scripts/clawhub-publish.sh status"
+  },
+  "devDependencies": {
+    "@noble/ed25519": "^2.1.0",
+    "@noble/hashes": "^1.4.0",
+    "tsx": "^4.19.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

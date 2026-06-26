@@ -1,0 +1,48 @@
+node /org/deepin/dde/Network1 {
+  interface org.deepin.dde.Network1 {
+    methods:
+      EnableDevice(in  s pathOrIface,
+                   in  b enabled,
+                   out o arg_0);
+      IsDeviceEnabled(in  s pathOrIface,
+                      out b arg_0);
+      Ping(in  s host);
+      ToggleWirelessEnabled(out b arg_0);
+    signals:
+      DeviceEnabled(o devPath,
+                    b enabled);
+    properties:
+      readwrite b VpnEnabled = false;
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface_name,
+          in  s property_name,
+          out v value);
+      Set(in  s interface_name,
+          in  s property_name,
+          in  v value);
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      GetAll(in  s interface_name,
+             out a{sv} values);
+    signals:
+      @org.qtproject.QtDBus.QtTypeName.Out1("QVariantMap")
+      PropertiesChanged(s interface_name,
+                        a{sv} changed_properties,
+                        as invalidated_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s xml_data);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

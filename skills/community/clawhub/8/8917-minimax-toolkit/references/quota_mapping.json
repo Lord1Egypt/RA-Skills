@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "version": 1,
+    "description": "Mapping between runtime model ids and official Token Plan quota buckets returned by coding_plan/remains"
+  },
+  "text": {
+    "bucket": "MiniMax-M*",
+    "models": [
+      "MiniMax-M2.7",
+      "MiniMax-M2.7-highspeed",
+      "MiniMax-M2.5-highspeed",
+      "M2-her"
+    ],
+    "reset_rule": "rolling-5h"
+  },
+  "speech_hd": {
+    "bucket": "speech-hd",
+    "models": [
+      "speech-2.8-hd",
+      "speech-2.6-hd",
+      "speech-02-hd",
+      "async-speech-2.8-hd",
+      "async-speech-2.6-hd",
+      "async-speech-02-hd"
+    ],
+    "reset_rule": "daily"
+  },
+  "image": {
+    "bucket": "image-01",
+    "models": [
+      "image-01",
+      "image-01-live"
+    ],
+    "reset_rule": "daily"
+  },
+  "music": {
+    "bucket": "music-2.5",
+    "models": [
+      "Music-2.5+",
+      "Music-2.5",
+      "Music-2.0"
+    ],
+    "reset_rule": "daily"
+  },
+  "video_fast": {
+    "bucket": "MiniMax-Hailuo-2.3-Fast-6s-768p",
+    "models": [
+      "MiniMax-Hailuo-2.3-Fast"
+    ],
+    "reset_rule": "daily"
+  },
+  "video_standard": {
+    "bucket": "MiniMax-Hailuo-2.3-6s-768p",
+    "models": [
+      "MiniMax-Hailuo-2.3",
+      "MiniMax-Hailuo-02",
+      "MiniMax-Hailuo-02-512P-6s",
+      "MiniMax-Hailuo-02-512P-10s"
+    ],
+    "reset_rule": "daily",
+    "note": "Official docs / remains bucket names may evolve; verify periodically. MiniMax-Hailuo-02 family is currently mapped here as the closest known quota bucket."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "silicaclaw-network-config",
+  "version": "2026.3.20-beta.1",
+  "display_name": "SilicaClaw Network Config",
+  "description": "Official OpenClaw skill for a bounded local SilicaClaw network configuration workflow: inspect runtime network state, switch between local, lan, and global-preview, and enable or disable public discovery before broadcast workflows.",
+  "entrypoints": {
+    "skill": "SKILL.md",
+    "ui_metadata": "agents/openai.yaml"
+  },
+  "capabilities": [
+    "read_network_runtime_state",
+    "set_runtime_network_mode",
+    "explain_network_modes",
+    "enable_or_disable_public_discovery",
+    "handoff_to_broadcast_or_owner_push"
+  ],
+  "transport": {
+    "type": "http",
+    "api_base_env": "SILICACLAW_API_BASE",
+    "default_api_base": "http://localhost:4310"
+  },
+  "references": {
+    "network_modes": "references/network-modes.md",
+    "public_discovery": "references/public-discovery.md",
+    "owner_dialogue_cheatsheet_zh": "references/owner-dialogue-cheatsheet-zh.md"
+  }
+}

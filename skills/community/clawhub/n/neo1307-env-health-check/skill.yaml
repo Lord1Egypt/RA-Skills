@@ -1,0 +1,9 @@
+name: env-health-check
+version: 1.0.0
+description: Checks environment variables, critical directories, and write permissions; produces a health report.
+author: neo1307
+tags:
+  - environment
+  - health
+  - diagnostics
+entrypoint: index.js

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw Continuity command settings comic</title>
+  <desc id="desc">A bilingual comic panel showing precise command-based settings changes for OpenClaw Continuity.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f7ff"/>
+      <stop offset="55%" stop-color="#fffaf0"/>
+      <stop offset="100%" stop-color="#efffed"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#617191" flood-opacity="0.24"/>
+    </filter>
+    <style>
+      .title { font: 800 48px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", Arial, sans-serif; fill: #25325b; }
+      .subtitle { font: 500 24px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", Arial, sans-serif; fill: #535a67; }
+      .label { font: 800 24px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", Arial, sans-serif; fill: #263145; }
+      .body { font: 500 21px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", Arial, sans-serif; fill: #3f4654; }
+      .small { font: 500 18px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", Arial, sans-serif; fill: #5c6370; }
+      .mono { font: 700 18px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #273044; }
+    </style>
+  </defs>
+  <rect width="1400" height="820" rx="38" fill="url(#bg)"/>
+  <circle cx="1175" cy="155" r="140" fill="#d6ecff" opacity="0.65"/>
+  <circle cx="205" cy="690" r="145" fill="#ffe3bc" opacity="0.5"/>
+
+  <text x="70" y="88" class="title">4. Precise Command Changes</text>
+  <text x="70" y="126" class="subtitle">工程使用者可以用指令檢查與精準修改，不靠猜。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="86" y="190" width="1228" height="465" rx="34" fill="#ffffff"/>
+  </g>
+
+  <g>
+    <text x="135" y="252" class="label">Check current state</text>
+    <rect x="135" y="290" width="530" height="92" rx="22" fill="#202331"/>
+    <text x="165" y="326" class="mono" fill="#eef2ff">python3 scripts/personal_hooks.py setup-check</text>
+    <text x="165" y="358" class="mono" fill="#eef2ff"># shows configured / missing fields</text>
+
+    <text x="135" y="445" class="label">Apply one exact change</text>
+    <rect x="135" y="482" width="610" height="112" rx="22" fill="#202331"/>
+    <text x="165" y="518" class="mono" fill="#eef2ff">python3 scripts/personal_hooks.py setup-apply \</text>
+    <text x="165" y="550" class="mono" fill="#eef2ff">  --payload-json '{"new_session_continuity_mode":</text>
+    <text x="165" y="582" class="mono" fill="#eef2ff">  "last_user_intent_first"}'</text>
+  </g>
+
+  <path d="M760 430 C812 398 858 398 910 430" fill="none" stroke="#90b8e5" stroke-width="14" stroke-linecap="round"/>
+  <path d="M880 399 L918 430 L880 461" fill="none" stroke="#90b8e5" stroke-width="14" stroke-linecap="round"/>
+
+  <g>
+    <text x="965" y="252" class="label">Auditable result</text>
+    <rect x="965" y="292" width="270" height="250" rx="28" fill="#eef8ff"/>
+    <text x="995" y="336" class="mono">applied: 1</text>
+    <text x="995" y="374" class="mono">skipped: 0</text>
+    <text x="995" y="412" class="mono">mode updated</text>
+    <text x="995" y="470" class="small">Only requested fields change.</text>
+    <text x="995" y="500" class="small">只改指定欄位。</text>
+  </g>
+
+  <rect x="92" y="705" width="1215" height="52" rx="26" fill="#ffffff" opacity="0.82"/>
+  <text x="122" y="738" class="small">Key point: commands are for precise operations; natural language remains available for normal users.</text>
+</svg>

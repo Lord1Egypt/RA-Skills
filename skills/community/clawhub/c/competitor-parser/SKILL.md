@@ -1,35 +1,208 @@
----
-name: "Competitor Parser"
-description: "Автоматический сбор и анализ данных о конкурентах в робототехнике из Google и базы знаний с выводом рейтинга, цен и адресов."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/competitor-parser"
-sourceUrl: "https://clawhub.ai/skills/competitor-parser"
+# SKILL.md - Парсинг конкурентов
+
+## 🎯 Назначение
+
+Автоматический сбор и анализ данных о конкурентах в сфере робототехники.
+
 ---
 
-# Competitor Parser
+## 🚀 Быстрый запуск
 
-> Автоматический сбор и анализ данных о конкурентах в робототехнике из Google и базы знаний с выводом рейтинга, цен и адресов.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/competitor-parser`
-- **Source URL:** [https://clawhub.ai/skills/competitor-parser](https://clawhub.ai/skills/competitor-parser)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/competitor-parser
+cd /home/larthe/.openclaw/workspace && python3 competitors_scraper.py
 ```
+
+---
+
+## 📊 Источники данных
+
+| Источник | Метод | Статус |
+|----------|-------|--------|
+| Google Search | HTML парсинг | ✅ |
+| Яндекс.Карты | HTTP запросы | ⚠️ |
+| 2ГИС | HTTP запросы | ⚠️ |
+| VK | HTTP запросы | ⚠️ |
+| База знаний | Встроенные данные | ✅ |
+
+---
+
+## 📁 Файлы
+
+| Файл | Описание |
+|------|----------|
+| `competitors_scraper.py` | Скрипт парсера |
+| `competitors_data.json` | Полные данные (JSON) |
+| `competitors_data.csv` | Таблица (CSV) |
+| `TELEGRAM-BOT-COMPETITORS.md` | Инструкция для бота |
+| `COMPETITOR-PARSING.md` | Техническая документация |
+
+---
+
+## 🔧 Команды
+
+### Запуск парсинга
+
+```bash
+cd /home/larthe/.openclaw/workspace
+python3 competitors_scraper.py
+```
+
+### Чтение результатов
+
+```bash
+# JSON (полные данные)
+cat competitors_data.json
+
+# CSV (таблица)
+cat competitors_data.csv
+
+# Через jq (красивый вывод)
+jq '.[].name' competitors_data.json
+```
+
+### Проверка статуса
+
+```bash
+# Дата последнего обновления
+stat competitors_data.json
+
+# Количество записей
+jq 'length' competitors_data.json
+```
+
+---
+
+## 📤 Формат вывода
+
+### JSON структура
+
+```json
+{
+  "name": "Название компании",
+  "address": "Адрес",
+  "website": "Сайт",
+  "phone": "Телефон",
+  "price": "Цена",
+  "rating": "Рейтинг",
+  "vk": "Группа VK",
+  "notes": "Примечание",
+  "source": "Источник",
+  "date": "Дата сбора"
+}
+```
+
+---
+
+## 💡 Сценарии использования
+
+### 1. Быстрый анализ
+
+**Запрос:** "Какие у нас конкуренты?"
+
+**Действия:**
+1. Запустить парсер
+2. Прочитать JSON
+3. Вывести ТОП-5 по рейтингу
+
+### 2. Сравнение цен
+
+**Запрос:** "Какие цены у конкурентов?"
+
+**Действия:**
+1. Извлечь цены из JSON
+2. Посчитать мин/макс/среднее
+3. Сгруппировать по сегментам
+
+### 3. Анализ локаций
+
+**Запрос:** "Где находятся конкуренты?"
+
+**Действия:**
+1. Извлечь адреса
+2. Сгруппировать по районам
+3. Показать на карте (текстово)
+
+---
+
+## ⚠️ Ограничения
+
+### Текущие
+
+- Яндекс.Карты: требуется API для полного доступа
+- 2ГИС: динамическая загрузка (нужен браузер)
+- VK: требуется авторизация
+
+### Решения
+
+**Для полного парсинга:**
+```bash
+sudo apt-get install -y chromium chromium-driver
+```
+
+**Затем в скрипте:**
+- Раскомментировать `init_browser()`
+- Использовать Selenium вместо requests
+
+---
+
+## 🎯 Примеры ответов
+
+### Успешный парсинг
+
+```
+✅ Парсинг завершён!
+
+📈 Найдено: 6 конкурентов
+
+🏆 ТОП-3 по рейтингу:
+1. Кванториум ⭐4.9 — бесплатно/от 5000₽
+2. Академия Робототехники ⭐4.8 — от 8000₽/мес
+3. Роббо Клуб ⭐4.7 — от 7500₽/мес
+
+💰 Средний ценник: 7000-8000₽/мес
+
+📁 Отправить полный отчёт?
+```
+
+### Если парсинг недоступен
+
+```
+⚠️ Прямой парсинг временно недоступен.
+
+Но есть данные из базы знаний:
+
+[6 конкурентов из get_known_competitors()]
+
+Для полного парсинга нужна установка Chromium.
+```
+
+---
+
+## 🔄 Обновление данных
+
+**Автоматически:** при запросе пользователя
+
+**Вручную:**
+```bash
+python3 competitors_scraper.py
+```
+
+**Рекомендуется:** обновлять раз в 1-2 недели
+
+---
+
+## 📞 Интеграция с Telegram
+
+**Отправка файла:**
+```bash
+openclaw message send --channel telegram \
+  --target "652766550" \
+  --message "📊 Отчёт по конкурентам" \
+  --media "/home/larthe/.openclaw/workspace/competitors_data.csv"
+```
+
+---
+
+**Версия:** 1.0  
+**Обновлено:** 2026-03-22  
+**Статус:** ✅ Работает

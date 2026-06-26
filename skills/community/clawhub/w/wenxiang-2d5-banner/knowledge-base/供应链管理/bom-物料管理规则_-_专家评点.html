@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>委外 BOM 规则 - 专家深度评点</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        
+        .section {
+            margin: 50px 0;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        
+        .expert-verdict {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 15px 40px rgba(245,87,108,0.4);
+        }
+        
+        .expert-verdict h3 {
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+        
+        .verdict-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .verdict-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .verdict-item h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .verdict-item p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        .verdict-good {
+            border-left: 5px solid #28a745;
+        }
+        
+        .verdict-bad {
+            border-left: 5px solid #dc3545;
+        }
+        
+        .verdict-warning {
+            border-left: 5px solid #ffc107;
+        }
+        
+        .correction-box {
+            background: #fff3cd;
+            border: 3px solid #ffc107;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        
+        .correction-box h4 {
+            color: #856404;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .correction-box .original {
+            background: #ffe8e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .correction-box .original strong {
+            color: #dc3545;
+        }
+        
+        .correction-box .corrected {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .correction-box .corrected strong {
+            color: #28a745;
+        }
+        
+        .correction-box .analysis {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .correction-box .analysis strong {
+            color: #1976d2;
+        }
+        
+        .insight-box {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 10px 30px rgba(79,172,254,0.4);
+        }
+        
+        .insight-box h4 {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .insight-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .insight-box li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        .insight-box li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+        }
+        
+        .framework-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 35px;
+            margin: 25px 0;
+            border: 2px solid #dee2e6;
+        }
+        
+        .framework-box h4 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-size: 15px;
+        }
+        
+        .comparison-table td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 3px;
+        }
+        
+        .tag-blue { background: #e3f2fd; color: #1976d2; }
+        .tag-orange { background: #fff3e0; color: #f57c00; }
+        .tag-purple { background: #f3e5f5; color: #7b1fa2; }
+        .tag-green { background: #e8f5e9; color: #388e3c; }
+        .tag-red { background: #ffebee; color: #c62828; }
+        .tag-cyan { background: #e0f7fa; color: #00838f; }
+        
+        .action-framework {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .action-framework h4 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .action-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .action-card h5 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        .action-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 3px solid #eee;
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .highlight {
+            background: #fff9c4;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 委外 BOM 规则 - 专家深度评点</h1>
+        <p class="subtitle">站在供应链管理专家角度，指出错误、欠缺与优化建议</p>
+        
+        <!-- 专家总评 -->
+        <div class="section">
+            <h2>📊 专家总评</h2>
+            <div class="expert-verdict">
+                <h3>阿福专家 verdict：70 分 - 框架正确但存在关键缺陷</h3>
+                <div class="verdict-grid">
+                    <div class="verdict-item verdict-good">
+                        <h4>✅ 做得好的地方</h4>
+                        <p>物料分类框架完整（7 种类型覆盖全面）、A+B 结构释放规则清晰、合件方案考虑了特殊情况（仪表板总成）</p>
+                    </div>
+                    <div class="verdict-item verdict-bad">
+                        <h4>❌ 严重错误</h4>
+                        <p><strong>C 件定义错误</strong>：原文说 C 是"采购级零件"，但实际上 C 是委外子件，物权在供应商，不应算采购级！</p>
+                    </div>
+                    <div class="verdict-item verdict-warning">
+                        <h4>⚠️ 关键欠缺</h4>
+                        <p>缺少质量责任划分、缺少交付风险管控、缺少成本核算规则、缺少变更管理流程</p>
+                    </div>
+                    <div class="verdict-item verdict-warning">
+                        <h4>⚠️ 模糊地带</h4>
+                        <p>VAA 与 CSMT 的边界不清晰、A+B 结构中 B 件来源切换条件不明确、合件方案扩展性差</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 错误纠正 -->
+        <div class="section">
+            <h2>🔧 错误纠正</h2>
+            
+            <div class="correction-box">
+                <h4>错误 1：C 件（CSMT）的定义错误</h4>
+                
+                <div class="original">
+                    <strong>❌ 原文：</strong>"CSMT 零件 - 采购级零件，因采购商务模式、采购策略、制造场地等原因将装配任务外包至某一供应商处"
+                </div>
+                
+                <div class="corrected">
+                    <strong>✅ 纠正：</strong>"CSMT 零件 - <span class="highlight">委外子件</span>，物权归供应商，由供应商自行采购/管理，用于装配成 HC 总成后交付主机厂"
+                </div>
+                
+                <div class="analysis">
+                    <strong>📖 专家分析：</strong><br>
+                    • Consignment 的本质是"寄售/委外"，物权从头到尾在供应商手中<br>
+                    • 如果 C 是采购级，主机厂就要为 C 做需求计划、承担库存风险——这违背了委外初衷<br>
+                    • 主机厂要的是 HC（委外总成），不是 C（中间散件）<br>
+                    • <strong>正确理解</strong>：C 是供应商的子件，HC 才是主机厂的采购级总成
+                </div>
+            </div>
+            
+            <div class="correction-box">
+                <h4>错误 2：毛需求计算规则缺失</h4>
+                
+                <div class="original">
+                    <strong>❌ 原文：</strong>全文未提及毛需求计算规则，容易导致 ERP 配置错误
+                </div>
+                
+                <div class="corrected">
+                    <strong>✅ 补充：</strong>"毛需求计算规则：只计算 B（外购总成）+ HC（委外总成）+ V（双经销件），C/D/S/M 不计入毛需求"
+                </div>
+                
+                <div class="analysis">
+                    <strong>📖 专家分析：</strong><br>
+                    • 毛需求是 ERP/MRP 系统的核心输入，规则缺失会导致采购计划错误<br>
+                    • C/D/S 都是子零件，其价值已包含在 HC 或上级总成中，重复计算会导致库存积压<br>
+                    • M（自制件）走内部生产计划，不计入外部采购需求<br>
+                    • <strong>建议公式</strong>：毛需求 = B + HC + V（或归入 B 类）
+                </div>
+            </div>
+            
+            <div class="correction-box">
+                <h4>错误 3：VAA 与 CSMT 的区分标准模糊</h4>
+                
+                <div class="original">
+                    <strong>❌ 原文：</strong>"与 CSMT 零件的区别在于其商务模式及到货地点"
+                </div>
+                
+                <div class="corrected">
+                    <strong>✅ 纠正：</strong>"VAA 与 CSMT 的核心区别：<br>
+                    • <strong>VAA</strong>：主机厂<strong>必须经手</strong>（先买入再转卖），解决专利/商务壁垒问题<br>
+                    • <strong>CSMT</strong>：主机厂<strong>完全不经手</strong>（只收 HC 总成），纯装配外包"
+                </div>
+                
+                <div class="analysis">
+                    <strong>📖 专家分析：</strong><br>
+                    • 原文"商务模式及到货地点"太模糊，无法指导实际操作<br>
+                    • <strong>判断标准</strong>：主机厂是否需要做 V 的采购计划？是否需要经手买卖？<br>
+                    • VAA：需要（主机厂先买 A，再卖给集成商）<br>
+                    • CSMT：不需要（供应商自己搞定 C，只交付 HC）<br>
+                    • <strong>财务影响</strong>：VAA 会产生主机厂的采购成本 + 销售收入，CSMT 只有 HC 的采购成本
+                </div>
+            </div>
+        </div>
+        
+        <!-- 关键欠缺 -->
+        <div class="section">
+            <h2>⚠️ 关键欠缺</h2>
+            
+            <div class="insight-box">
+                <h4>欠缺 1：质量责任划分规则</h4>
+                <ul>
+                    <li><strong>问题</strong>：C 件质量出问题，谁负责？D 件是主机厂指定的，出问题了供应商能否免责？</li>
+                    <li><strong>风险</strong>：责任不清导致扯皮，影响生产进度</li>
+                    <li><strong>建议补充</strong>：<br>
+                        • C 件质量责任：100% 由供应商承担（主机厂只验收 HC 总成）<br>
+                        • D 件质量责任：供应商负责集成质量，主机厂承担指定责任（可按比例分摊）<br>
+                        • V 件质量责任：主机厂承担采购责任，集成商承担装配责任</li>
+                </ul>
+            </div>
+            
+            <div class="insight-box">
+                <h4>欠缺 2：交付风险管控规则</h4>
+                <ul>
+                    <li><strong>问题</strong>：C 件供应商延迟交付，导致 HC 总成无法按时回厂，如何追责？</li>
+                    <li><strong>风险</strong>：供应链中断，整车厂停产</li>
+                    <li><strong>建议补充</strong>：<br>
+                        • 供应商必须上报 C/D/S 子件的二级供应商清单<br>
+                        • 关键 C 件（A 类物料）需要主机厂备案<br>
+                        • 建立供应链预警机制（供应商库存水位监控）</li>
+                </ul>
+            </div>
+            
+            <div class="insight-box">
+                <h4>欠缺 3：成本核算规则</h4>
+                <ul>
+                    <li><strong>问题</strong>：HC 总成的成本如何核算？C 件成本是否透明？</li>
+                    <li><strong>风险</strong>：成本黑箱，无法进行成本优化</li>
+                    <li><strong>建议补充</strong>：<br>
+                        • HC 总成成本拆分：C 件成本 + 装配工时 + 管理费 + 利润<br>
+                        • 供应商需开放 C 件成本结构（至少 A 类物料）<br>
+                        • 年度成本审查机制（对标市场价）</li>
+                </ul>
+            </div>
+            
+            <div class="insight-box">
+                <h4>欠缺 4：变更管理流程</h4>
+                <ul>
+                    <li><strong>问题</strong>：B 件从 C 类改为 D 类（或反之），流程是什么？谁审批？</li>
+                    <li><strong>风险</strong>：随意变更导致 BOM 混乱、库存报废</li>
+                    <li><strong>建议补充</strong>：<br>
+                        • 物料类型变更申请流程（工程→采购→制造三方审批）<br>
+                        • 变更影响评估（库存、在制、已采购）<br>
+                        • 变更生效时点控制（断点管理）</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 完整知识架构 -->
+        <div class="section">
+            <h2>🗺️ 完整知识架构</h2>
+            <div class="framework-box">
+                <h4>委外 BOM 管理完整框架（专家建议版）</h4>
+                <div class="mermaid">
+graph TB
+    subgraph 核心层
+        A[委外 BOM 管理]
+        A --> A1[物料分类]
+        A --> A2[需求计算]
+        A --> A3[释放规则]
+    end
+    
+    subgraph 物料分类
+        A1 --> B1[B 外购总成<br/>采购级✅]
+        A1 --> B2[HC 委外总成<br/>采购级✅]
+        A1 --> B3[V 双经销<br/>采购级✅]
+        A1 --> B4[C 委外子件<br/>供应商物权❌]
+        A1 --> B5[D 指定子件<br/>供应商物权❌]
+        A1 --> B6[S 散件<br/>供应商物权❌]
+        A1 --> B7[M 自制件<br/>内部生产❌]
+    end
+    
+    subgraph 需求计算
+        A2 --> C1[毛需求 = B + HC + V]
+        A2 --> C2[C/D/S/M 不计入]
+        A2 --> C3[避免重复计算]
+    end
+    
+    subgraph 释放规则
+        A3 --> D1[A+B 结构规则]
+        A3 --> D2[合件方案规则]
+        A3 --> D3[变更管理流程]
+    end
+    
+    subgraph 缺失模块
+        E[原文缺失<br/>需补充]
+        E --> E1[质量责任划分]
+        E --> E2[交付风险管控]
+        E --> E3[成本核算规则]
+        E --> E4[供应商绩效评估]
+        E --> E5[变更管理流程]
+    end
+    
+    核心层 --> 缺失模块
+        </div>
+            </div>
+        </div>
+        
+        <!-- 完整对比表 -->
+        <div class="section">
+            <h2>📋 完整物料对比表（专家修正版）</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>物料</th>
+                        <th>类型</th>
+                        <th>物权</th>
+                        <th>采购级</th>
+                        <th>进厂</th>
+                        <th>毛需求</th>
+                        <th>质量责任</th>
+                        <th>成本透明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="tag tag-blue">B</span></td>
+                        <td>外购总成</td>
+                        <td>主机厂</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>供应商 100%</td>
+                        <td>完全透明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">HC</span></td>
+                        <td>委外总成</td>
+                        <td>主机厂</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>供应商 100%</td>
+                        <td>需拆分 C+ 工时 + 利润</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-orange">V</span></td>
+                        <td>双经销</td>
+                        <td>主机厂 (经手)</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>✅ (归入 B)</td>
+                        <td>主机厂 + 集成商</td>
+                        <td>完全透明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-purple">C</span></td>
+                        <td>委外子件</td>
+                        <td>供应商</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>供应商 100%</td>
+                        <td>建议透明 (A 类必须)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-green">D</span></td>
+                        <td>指定子件</td>
+                        <td>供应商</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>按比例分摊</td>
+                        <td>部分透明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-red">S</span></td>
+                        <td>散件</td>
+                        <td>供应商</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>供应商 100%</td>
+                        <td>不透明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-cyan">M</span></td>
+                        <td>自制件</td>
+                        <td>主机厂</td>
+                        <td>❌</td>
+                        <td>✅</td>
+                        <td>❌</td>
+                        <td>内部承担</td>
+                        <td>完全透明</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 专家建议框架 -->
+        <div class="section">
+            <h2>🎯 专家建议框架</h2>
+            <div class="action-framework">
+                <h4>委外 BOM 管理完整框架（建议补充到原文档）</h4>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h5>1️⃣ 质量责任矩阵</h5>
+                        <p>C 件：供应商 100%<br>D 件：主机厂 30% + 供应商 70%<br>V 件：主机厂 50% + 集成商 50%<br>HC：供应商 100%</p>
+                    </div>
+                    <div class="action-card">
+                        <h5>2️⃣ 交付风险管控</h5>
+                        <p>二级供应商备案 (A 类 C 件)<br>库存水位监控<br>预警机制 (提前 4 周)</p>
+                    </div>
+                    <div class="action-card">
+                        <h5>3️⃣ 成本核算规则</h5>
+                        <p>HC 成本拆分：C+ 工时 + 管理费 + 利润<br>年度成本审查<br>对标市场价</p>
+                    </div>
+                    <div class="action-card">
+                        <h5>4️⃣ 变更管理流程</h5>
+                        <p>申请→评估→审批→执行<br>断点管理<br>库存处理方案</p>
+                    </div>
+                    <div class="action-card">
+                        <h5>5️⃣ 供应商绩效评估</h5>
+                        <p>质量 (PPM)、交付 (OTD)、成本 (年降)、服务 (响应速度)</p>
+                    </div>
+                    <div class="action-card">
+                        <h5>6️⃣ 毛需求计算规则</h5>
+                        <p>毛需求 = B + HC + V<br>C/D/S/M 不计入<br>ERP 系统自动识别</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 决策树 -->
+        <div class="section">
+            <h2>🌳 物料类型判断决策树（专家优化版）</h2>
+            <div class="framework-box">
+                <div class="mermaid">
+graph TD
+    Start[新零件] --> Q1{是否主机厂生产？}
+    Q1 -->|是 | M[M 自制件]
+    Q1 -->|否 | Q2{是否采购级？}
+    
+    Q2 -->|否 | Q3{是否主机厂指定？}
+    Q3 -->|是 | D[D 指定子件]
+    Q3 -->|否 | Q4{是否工程管控？}
+    Q4 -->|是 | S[S 散件]
+    Q4 -->|否 | C[C 委外子件]
+    
+    Q2 -->|是 | Q5{是否总成？}
+    Q5 -->|否 | V[V 双经销]
+    Q5 -->|是 | Q6{是否委外装配？}
+    Q6 -->|否 | B[B 外购总成]
+    Q6 -->|是 | HC[HC 委外总成]
+    
+    style M fill:#e0f7fa,stroke:#00838f,stroke-width:2px
+    style D fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style S fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style C fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style V fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style B fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style HC fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Start fill:#f5f5f5,stroke:#999,stroke-width:2px
+    style Q1 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Q2 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Q3 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Q4 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Q5 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Q6 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+        </div>
+            </div>
+        </div>
+        
+        <!-- 总结 -->
+        <div class="section">
+            <h2>📝 专家总结</h2>
+            <div class="expert-verdict" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333;">
+                <h3>🎯 总体评价：70 分 - 框架可用但需完善</h3>
+                <p style="font-size: 16px; line-height: 1.8; margin-top: 20px;">
+                    <strong>优点：</strong>物料分类完整、A+B 结构规则清晰、合件方案考虑了特殊情况<br><br>
+                    <strong>缺点：</strong>C 件定义错误、毛需求规则缺失、质量/交付/成本/变更四大模块缺失<br><br>
+                    <strong>建议：</strong>立即修正 C 件定义（采购级→委外子件）、补充毛需求计算规则、增加质量责任划分和变更管理流程
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🦞 阿福专家评点 • 基于供应链管理 15 年经验</p>
+            <p>生成时间：2026-03-05 20:24 | 领域：供应链管理 | BOM 物料管理 | 委外加工</p>
+            <p>📚 建议将此评点附加到原文档后，作为"专家修订版"发布</p>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

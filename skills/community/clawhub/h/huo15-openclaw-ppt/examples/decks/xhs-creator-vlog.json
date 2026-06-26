@@ -1,0 +1,48 @@
+{
+  "year": "2026",
+  "slides": [
+    {
+      "type": "hero_cover",
+      "eyebrow": "生活博主 · 笔记 #47",
+      "title": "关于做幻灯片这件小事",
+      "subtitle": "写给刚入行的运营小伙伴",
+      "footnote": "@小路 · 2026"
+    },
+    {
+      "type": "quote_card",
+      "quote": "好的 PPT 不是塞满了内容，而是留出了呼吸。",
+      "author": "小路",
+      "role": "内容设计师"
+    },
+    {
+      "type": "content_list",
+      "title": "我用了 3 年才明白的事",
+      "en_sub": "3 Years of Learning",
+      "numbered": true,
+      "items": [
+        {"label": "少即是多", "desc": "一张 slide 一个观点就够了"},
+        {"label": "色彩克制", "desc": "超过 3 个颜色就像年夜饭"},
+        {"label": "字号有阶梯", "desc": "从 hero 到 body 差 10 倍"},
+        {"label": "留白是奢侈品", "desc": "信息密度不是越高越好"},
+        {"label": "字体少而精", "desc": "一套衬线 + 一套非衬线"}
+      ]
+    },
+    {
+      "type": "kpi_triple",
+      "title": "一些小数据",
+      "en_sub": "Tiny Metrics",
+      "items": [
+        {"value": "47", "label": "笔记篇数", "caption": "周更两年半"},
+        {"value": "8.2k", "label": "收藏", "caption": "比赞还多的幸福"},
+        {"value": "4.8★", "label": "读者满意度", "caption": "留言互动数据"}
+      ]
+    },
+    {
+      "type": "call_to_action",
+      "title": "下期见啦。",
+      "subtitle": "关注我，下一期讲配色。",
+      "cta": "小红书 @小路生活志",
+      "footnote": "爱你，mua ♡"
+    }
+  ]
+}

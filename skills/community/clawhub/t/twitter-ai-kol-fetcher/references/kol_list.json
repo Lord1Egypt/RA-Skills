@@ -1,0 +1,494 @@
+[
+  {
+    "username": "OpenAI",
+    "name": "OpenAI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "AnthropicAI",
+    "name": "Anthropic",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "GoogleAI",
+    "name": "Google AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "MetaAI",
+    "name": "Meta AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "xAI",
+    "name": "xAI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "MistralAI",
+    "name": "Mistral AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "CohereAI",
+    "name": "Cohere",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "DeepMind",
+    "name": "DeepMind",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "GoogleDeepMind",
+    "name": "Google DeepMind",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "MicrosoftAI",
+    "name": "Microsoft AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "NvidiaAI",
+    "name": "NVIDIA AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "StabilityAI",
+    "name": "Stability AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "RunwayML",
+    "name": "Runway",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "PerplexityAI",
+    "name": "Perplexity",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "CharacterAI",
+    "name": "Character AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "inflectionAI",
+    "name": "Inflection AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "adept_ai",
+    "name": "Adept AI",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "Groq",
+    "name": "Groq",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "replit",
+    "name": "Replit",
+    "type": "company",
+    "category": "official"
+  },
+  {
+    "username": "cursor_ai",
+    "name": "Cursor",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "Windsurf",
+    "name": "Windsurf",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "vercel",
+    "name": "Vercel",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "sama",
+    "name": "Sam Altman",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "elonmusk",
+    "name": "Elon Musk",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "DarioAmodei",
+    "name": "Dario Amodei",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "AndrewYNg",
+    "name": "吴恩达",
+    "type": "founder",
+    "category": "person"
+  },
+  {
+    "username": "ylecun",
+    "name": "Yann LeCun",
+    "type": "chief",
+    "category": "person"
+  },
+  {
+    "username": "JeffDean",
+    "name": "Jeff Dean",
+    "type": "executive",
+    "category": "person"
+  },
+  {
+    "username": "hwchase17",
+    "name": "Harrison Chase",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "sherwinwu",
+    "name": "Sherwin Wu",
+    "type": "product",
+    "category": "person"
+  },
+  {
+    "username": "pmarca",
+    "name": "Marc Andreessen",
+    "type": "investor",
+    "category": "person"
+  },
+  {
+    "username": "cdixon",
+    "name": "Chris Dixon",
+    "type": "investor",
+    "category": "person"
+  },
+  {
+    "username": "shaunmm",
+    "name": "Shaun Maguire",
+    "type": "investor",
+    "category": "person"
+  },
+  {
+    "username": "mitchellh",
+    "name": "Mitchell Hashimoto",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "emollick",
+    "name": "Ethan Mollick",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "swyx",
+    "name": "swyx",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "sx",
+    "name": "AI News",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "heyBarsee",
+    "name": "Barsee",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "thefireship",
+    "name": "Fireship",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "mgsiegler",
+    "name": "AI Reviewer",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "polynoamial",
+    "name": "Noam Brown",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "goodfellow_ian",
+    "name": "Ian Goodfellow",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "drfeit",
+    "name": "Andrew Feldman",
+    "type": "executive",
+    "category": "person"
+  },
+  {
+    "username": "elon做任何",
+    "name": "Elon Musk",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "Demis Hassabis",
+    "name": "Demis Hassabis",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "ilyasut",
+    "name": "Ilya Sutskever",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "mustafasuleymn",
+    "name": "Mustafa Suleyman",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "arthur_pc",
+    "name": "Arthur",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "AravB",
+    "name": "Aravind",
+    "type": "founder",
+    "category": "person"
+  },
+  {
+    "username": "drfeigal",
+    "name": "Fei-Fei Li",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "mikeking",
+    "name": "Mike Krieger",
+    "type": "ceo",
+    "category": "person"
+  },
+  {
+    "username": "benedictg",
+    "name": "Benedict Evans",
+    "type": "analyst",
+    "category": "person"
+  },
+  {
+    "username": "jason",
+    "name": "Jason",
+    "type": "investor",
+    "category": "person"
+  },
+  {
+    "username": "a16z",
+    "name": "a16z",
+    "type": "vc",
+    "category": "institution"
+  },
+  {
+    "username": "sequoia",
+    "name": "Sequoia",
+    "type": "vc",
+    "category": "institution"
+  },
+  {
+    "username": "greylock",
+    "name": "Greylock",
+    "type": "vc",
+    "category": "institution"
+  },
+  {
+    "username": "foundersfund",
+    "name": "Founders Fund",
+    "type": "vc",
+    "category": "institution"
+  },
+  {
+    "username": "indexventures",
+    "name": "Index Ventures",
+    "type": "vc",
+    "category": "institution"
+  },
+  {
+    "username": "jeremyharris",
+    "name": "Jeremy Harris",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "ml_bernhard",
+    "name": "Bernhard",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "AiBreakfast",
+    "name": "AI Breakfast",
+    "type": "newsletter",
+    "category": "media"
+  },
+  {
+    "username": "LatentSpaceAI",
+    "name": "Latent Space",
+    "type": "newsletter",
+    "category": "media"
+  },
+  {
+    "username": "TheAIEconomist",
+    "name": "The AI Economist",
+    "type": "analyst",
+    "category": "media"
+  },
+  {
+    "username": "DynamicWebPa",
+    "name": "Dynamic Web",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "sarah_ocker",
+    "name": "Sarah O'Connor",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "rohanvarma",
+    "name": "Rohan Varma",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "github",
+    "name": "GitHub",
+    "type": "platform",
+    "category": "official"
+  },
+  {
+    "username": "streamlit",
+    "name": "Streamlit",
+    "type": "platform",
+    "category": "official"
+  },
+  {
+    "username": "langchainai",
+    "name": "LangChain",
+    "type": "platform",
+    "category": "official"
+  },
+  {
+    "username": "jinx_ritu",
+    "name": "Ritu",
+    "type": "influencer",
+    "category": "person"
+  },
+  {
+    "username": "hardmaru",
+    "name": "Hardmaru",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "quocle",
+    "name": "Quoc Le",
+    "type": "researcher",
+    "category": "person"
+  },
+  {
+    "username": "Ch元Luc",
+    "name": "PyTorch",
+    "type": "framework",
+    "category": "official"
+  },
+  {
+    "username": "tensorflow",
+    "name": "TensorFlow",
+    "type": "framework",
+    "category": "official"
+  },
+  {
+    "username": "WeightsNAS",
+    "name": "Weights & Biases",
+    "type": "platform",
+    "category": "official"
+  },
+  {
+    "username": "anysphere",
+    "name": "Anysphere",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "Jasper_AI",
+    "name": "Jasper",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "copy_ai",
+    "name": "Copy.ai",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "NotionHQ",
+    "name": "Notion",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "slack",
+    "name": "Slack",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "Figma",
+    "name": "Figma",
+    "type": "company",
+    "category": "product"
+  },
+  {
+    "username": "githubactions",
+    "name": "GitHub Actions",
+    "type": "platform",
+    "category": "official"
+  }
+]

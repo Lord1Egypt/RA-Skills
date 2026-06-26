@@ -1,0 +1,79 @@
+{
+  "name": "innotech-poe-api",
+  "version": "1.0.0",
+  "description": "Intelligent AI model selection and orchestration via Poe API for OpenClaw",
+  "author": "Calvin Lam",
+  "license": "MIT",
+  "tags": ["ai", "models", "orchestration", "poe", "claude", "gpt", "gemini"],
+  "entry_point": "scripts/poe_client.py",
+  "environment_variables": [
+    {
+      "name": "POE_API_KEY",
+      "description": "Poe API key for authentication",
+      "required": true,
+      "secret": true
+    }
+  ],
+  "requirements": ["openai>=1.0.0"],
+  "documentation": {
+    "main": "SKILL.md",
+    "model_selection": "MODEL_SELECTION_GUIDE.md",
+    "readme": "README.md"
+  },
+  "task_types": [
+    "programming",
+    "ui_design",
+    "data_analysis",
+    "requirement_analysis",
+    "web_search",
+    "image_generation",
+    "video_generation",
+    "audio_generation"
+  ],
+  "supported_models": {
+    "text": [
+      "claude-opus-4.6",
+      "claude-sonnet-4.6",
+      "claude-haiku-4.5",
+      "gemini-3.1-pro",
+      "gpt-5.3-codex"
+    ],
+    "search": [
+      "perplexity-search",
+      "perplexity-sonar-pro",
+      "perplexity-sonar-rsn-pro",
+      "o3-deep-research",
+      "o4-mini-deep-research"
+    ],
+    "image": [
+      "imagen-4-ultra",
+      "nano-banana-2",
+      "nano-banana-pro",
+      "nano-banana",
+      "gpt-image-1.5"
+    ],
+    "video": [
+      "veo-3.1",
+      "sora-2-pro",
+      "kling-o3",
+      "sora-2",
+      "wan-2.6"
+    ],
+    "audio": [
+      "elevenlabs-v3",
+      "gemini-2.5-flash-tts",
+      "hailuo-speech-02",
+      "hailuo-music-v1.5"
+    ]
+  },
+  "default_models": {
+    "programming": "claude-sonnet-4.6",
+    "ui_design": "gemini-3.1-pro",
+    "data_analysis": "claude-sonnet-4.6",
+    "requirement_analysis": "claude-sonnet-4.6",
+    "web_search": "perplexity-sonar-pro",
+    "image_generation": "nano-banana-2",
+    "video_generation": "veo-3.1",
+    "audio_generation": "elevenlabs-v3"
+  }
+}

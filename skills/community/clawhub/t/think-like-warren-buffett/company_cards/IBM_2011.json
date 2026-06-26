@@ -1,0 +1,30 @@
+{
+  "ticker": "IBM",
+  "company": "International Business Machines",
+  "analysis_year": 2011,
+  "data_source": "FY2011 10-K, SEC EDGAR",
+  "analyzed_date": "2026-03-10",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.25, "metric_used": "ROIC", "years_averaged": "2009-2011", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.0, "fcf": 15800, "net_income": 15900, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 1.5, "pass": true },
+    "g4_revenue_trend": { "description": "Aggregate revenue growing, but hardware structurally declining, masked by services growth", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "46% gross margin, slight multi-year decline from mix shift", "declining_2plus_years": true, "pass": false },
+    "g6_earnings_yield": { "value": 0.072, "net_income_m": 15900, "ev_m": 220000, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "FAIL", "moat_type": "switching_cost", "description": "Enterprise IT switching costs are real but eroding. AWS launched 2006, cloud migration undermining on-premise lock-in. IBM's mainframe moat is real for existing customers but new workloads going to cloud. Moat is defending, not growing.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    { "ticker": "ORCL", "company": "Oracle", "year": 2011, "gates_failed": [], "conclusion": "BUY — also passes hard gates. Oracle database moat arguably stronger than IBM (more defensible against cloud). Framework correctly identifies both as quality but IBM's moat more at risk." },
+    { "ticker": "ACN", "company": "Accenture", "year": 2011, "gates_failed": [], "conclusion": "BUY — also passes. Services moat (talent + client relationships) different from IBM's product moat." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Bought ~$12B starting 2011",
+  "actual_result": "Loss — sold entire position 2018, Buffett: 'I was wrong about IBM'",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "Gate ⑦ is forward-looking. Gross margin decline (gate ⑤) was an early warning. The key question is not 'does the moat exist today' but 'is the moat expanding or contracting?' IBM's moat was contracting."
+}

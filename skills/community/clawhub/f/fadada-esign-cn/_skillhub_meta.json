@@ -1,0 +1,25 @@
+{
+  "name": "fadada-esign",
+  "version": "2.0.0",
+  "description": "法大大电子合同与电子签署技能（FASC API 5.0）。一键发送合同给对方签署，支持查询签署状态、下载已签署合同。适用于HR合同、销售合同、协议签署等场景。",
+  "author": "FaDaDa E-Sign Team",
+  "license": "MIT",
+  "tags": ["电子签", "合同", "法大大", "电子合同", "签署"],
+  "categories": ["business", "productivity"],
+  "languages": ["python"],
+  "requirements": {
+    "python": ">=3.7",
+    "dependencies": ["requests>=2.25.0"]
+  },
+  "entry_points": {
+    "cli": "fadada_esign.cli:main"
+  },
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md"
+  },
+  "examples": [
+    "examples/quick_start.py",
+    "examples/batch_send.py"
+  ]
+}

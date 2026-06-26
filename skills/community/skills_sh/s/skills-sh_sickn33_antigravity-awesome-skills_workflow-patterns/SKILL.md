@@ -1,35 +1,42 @@
 ---
-name: "workflow-patterns"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/workflow-patterns"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/workflow-patterns"
+name: workflow-patterns
+description: Use this skill when implementing tasks according to Conductor's TDD workflow, handling phase checkpoints, managing git commits for tasks, or understanding the verification protocol.
+risk: safe
+source: community
+date_added: '2026-02-27'
 ---
 
-# workflow-patterns
+# Workflow Patterns
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Guide for implementing tasks using Conductor's TDD workflow, managing phase checkpoints, handling git commits, and executing the verification protocol that ensures quality throughout implementation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/workflow-patterns`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/workflow-patterns](https://skills.sh/sickn33/antigravity-awesome-skills/workflow-patterns)
+## Use this skill when
 
-## Overview
+- Implementing tasks from a track's plan.md
+- Following TDD red-green-refactor cycle
+- Completing phase checkpoints
+- Managing git commits and notes
+- Understanding quality assurance gates
+- Handling verification protocols
+- Recording progress in plan files
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/workflow-patterns
-```
+- The task is unrelated to workflow patterns
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -1,0 +1,42 @@
+[
+  {
+    "query": "You were wrong earlier: this repo uses pnpm workspaces, not npm. Please remember that for future tasks.",
+    "should_trigger": true
+  },
+  {
+    "query": "That Docker build failure took real debugging. Capture the lesson so we do not repeat it next week.",
+    "should_trigger": true
+  },
+  {
+    "query": "Before touching CI again, check whether we already logged any learnings about flaky Playwright runs.",
+    "should_trigger": true
+  },
+  {
+    "query": "This capability is missing right now — can you track it as a future feature rather than implementing it immediately?",
+    "should_trigger": true
+  },
+  {
+    "query": "We keep regenerating the API client after spec changes. Turn that into a durable rule and maybe extract a skill.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fix the TypeScript error in src/server.ts.",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarise this PDF.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make a bar chart from this CSV.",
+    "should_trigger": false
+  },
+  {
+    "query": "Why does this bash command say permission denied?",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a new skill for Stripe onboarding.",
+    "should_trigger": false
+  }
+]

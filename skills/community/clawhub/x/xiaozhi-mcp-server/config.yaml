@@ -1,0 +1,6 @@
+# xiaozhi-mcp-server Configuration
+port: 28765
+token: ""
+target_session: "qqbot:c2c:1C9C1F3BE0CF030A30712F8DEC4D78D4"
+task_timeout: 180
+log_level: info

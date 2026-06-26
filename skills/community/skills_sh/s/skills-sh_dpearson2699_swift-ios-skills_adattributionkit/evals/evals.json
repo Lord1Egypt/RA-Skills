@@ -1,0 +1,44 @@
+{
+  "skill_name": "adattributionkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm wiring a custom-rendered install ad in a publisher app. Show the AdAttributionKit flow from signed JWS to AppImpression, UIEventAttributionView placement, click handling, fallback if the impression is stale, and how this differs from StoreKit-rendered ads.",
+      "expected_output": "A source-grounded custom ad flow that creates a fresh AppImpression from compact JWS, places one UIEventAttributionView per tappable ad/control, handles handleTap within its 15-minute limit, checks AppImpression.isSupported, and distinguishes custom-rendered ads from StoreKit overlay/product-view behavior.",
+      "files": [],
+      "expectations": [
+        "Creates AppImpression from compactJWS and checks AppImpression.isSupported before using impression APIs.",
+        "Places one UIEventAttributionView over each tappable custom ad/control and warns against views that intercept touches above it.",
+        "Calls handleTap only after a validated attribution-view tap and mentions the 15-minute limit after creating the AppImpression.",
+        "Recommends requesting or creating a fresh impression when the click-through impression is stale or expired.",
+        "Distinguishes custom-rendered ad handling from StoreKit-rendered ads, where StoreKit records views after 2 seconds and clicks on tap when supplied an AppImpression."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this SKAdNetwork migration note: 'AdAttributionKit replaces SKAdNetwork, so delete SKAN update calls. SKAdNetwork automatically bridges all conversion values into AdAttributionKit, so one update API is enough. Keep only .skadnetwork IDs in the publisher app.' What should we correct?",
+      "expected_output": "A correction-focused migration review that preserves coexistence, explains when to call AdAttributionKit and SKAdNetwork update APIs, avoids overclaiming automatic bridging, notes shared ID compatibility, and keeps attribution winner behavior accurate.",
+      "files": [],
+      "expectations": [
+        "States AdAttributionKit and SKAdNetwork can coexist and impressions from both are ranked together with only one winner per conversion.",
+        "Recommends using AdAttributionKit update APIs for AdAttributionKit integrations, SKAdNetwork APIs for SKAdNetwork integrations, and both sets when integrated with both frameworks.",
+        "Avoids claiming that SKAdNetwork universally bridges all conversion values or that one API is always enough.",
+        "Mentions update calls are ignored when there are no pending postbacks for the relevant framework.",
+        "Mentions .adattributionkit and .skadnetwork ad network IDs are compatible across both frameworks while publisher Info.plist declarations still need to cover the intended framework setup."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm configuring the advertised app server side for AdAttributionKit postback copies and re-engagement. Give me the Info.plist keys, endpoint path rules, first conversion update timing, postback window basics, and the JSON spelling I should expect for re-engagement conversion type.",
+      "expected_output": "Advertised-app setup guidance that nests postback copy keys under AdAttributionKit, derives the well-known endpoint from the registrable domain, calls a conversion update on first launch, summarizes conversion/postback windows, and uses the correct re-engagement JSON payload spelling.",
+      "files": [],
+      "expectations": [
+        "Shows AttributionCopyEndpoint and OptInForReengagementPostbackCopies nested under the top-level AdAttributionKit Info.plist dictionary.",
+        "States the endpoint must accept HTTPS POST at /.well-known/appattribution/report-attribution/ and that the system uses the registrable domain while ignoring subdomains.",
+        "Recommends calling a conversion value update on first launch or as early as possible to start the conversion window.",
+        "Summarizes the three postback windows as days 0-2, 3-7, and 8-35 with 24-48 hour first-postback and 24-144 hour later-postback delays.",
+        "Uses the exact postback JSON conversion-type spelling \"re-engagement\" and distinguishes it from Swift enum spelling such as .reengagement."
+      ]
+    }
+  ]
+}

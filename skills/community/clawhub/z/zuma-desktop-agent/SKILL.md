@@ -1,35 +1,167 @@
 ---
-name: "Zuma Desktop Agent"
-description: "ZumaRobot Windows 桌面自动化机器人 SKILL 端代理工具，自动化发布小红书笔记、抖音、X/推特等，支持 AI 动态生成配图，一句话完成所有操作，提高效率。将用户意图映射为 `node zuma.js` 命令参数， 不做任何推理或扩展。 触发词：zuma 采集、X 采集、推文采集、小红书发笔记、..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zuma-desktop-agent"
-sourceUrl: "https://clawhub.ai/skills/zuma-desktop-agent"
+name: zuma-desktop-agent
+version: 1.0.0
+description: >
+  ZumaRobot Windows 桌面自动化机器人 SKILL 端代理工具，自动化发布小红书笔记、抖音、X/推特等，支持 AI 动态生成配图，一句话完成所有操作，提高效率。将用户意图映射为 `node zuma.js` 命令参数，
+  不做任何推理或扩展。
+  触发词：zuma 采集、X 采集、推文采集、小红书发笔记、小红书发贴、截图、截屏、
+  定时开启、定时停止、cron 启动、RPA 控制。
 ---
 
-# Zuma Desktop Agent
+# 欢迎菜单（首次响应时强制输出）
 
-> ZumaRobot Windows 桌面自动化机器人 SKILL 端代理工具，自动化发布小红书笔记、抖音、X/推特等，支持 AI 动态生成配图，一句话完成所有操作，提高效率。将用户意图映射为 `node zuma.js` 命令参数， 不做任何推理或扩展。 触发词：zuma 采集、X 采集、推文采集、小红书发笔记、...
+## 触发方式：
+1. 本技能被触发后，首次响应时。
+2. 用户希望获取帮助时，可重复发送本菜单。触发词：`菜单`、`帮助`、`怎么用`、`会做什么`、`有什么功能`
+3. 若用户首条消息已明确包含具体业务的触发词（如"帮我截图"、"开始 X 采集"），则跳过菜单，直接进入对应业务流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zuma-desktop-agent`
-- **Source URL:** [https://clawhub.ai/skills/zuma-desktop-agent](https://clawhub.ai/skills/zuma-desktop-agent)
+菜单全文：必须完整输出，且不要添加额外的解释、说明、建议等内容。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zuma-desktop-agent
 ```
+Zuma 支持以下操作，请选择：
+业务编号1. 推文采集（触发词：zuma 采集 / X 采集 / 推文采集 / 回复数字1）
+业务编号2. 小红书发笔记（触发词：小红书发笔记 / 小红书发贴 / 回复数字2）
+业务编号3. 查看日志(触发词：日志 / 查看日志 / 回复数字3)
+业务编号4. 屏幕截图（触发词：截图 / 截屏 / 回复数字4）
+```
+
+---
+
+# 核心操作规范
+
+## 【核心指令：凡是命令模板范围之外的操作，停止执行，交由用户决定】
+
+- **身份定位**：你是 **命令映射器（Command Mapper）**，仅有`node zuma.js *` 的执行权限。
+- **输出限制**：仅输出命令执行结果。
+- **逻辑封闭**：参数不全时，直接提示用户缺少的参数名并停止。
+- **纯粹执行**：接收用户意图 → 映射到命令模板 → 执行命令 → 输出结果。
+- **环境隔离**：仅允许通过命令模板定义的命令与ZumaRobot.exe交互，禁止使用任何系统原生 shell 命令。禁止生成任何其他系统命令或执行环境命令。
+- **失败行为**：发生报错、失败、无法继续执行时，直接向用户发送报错信息或描述问题。严禁猜测用户意图，禁止尝试修正用户意图，禁止推理，禁止自行查找解决方案。
+---
+
+## 1. 全局硬约束 (Hard Constraints)
+
+| 类别 | 严禁行为 |
+| :--- | :--- |
+| **系统限制** | 禁止使用 `Invoke-WebRequest`, `Get-Process`, `curl`, `wget`, `ls`, `dir` 等任何系统命令。 |
+| **逻辑限制** | 一次仅允许执行 **一条** 命令。 禁止以 `&&`, `\|`, `;`等形式拼接命令。|
+| **推理限制** | 禁止对 `zuma.js` 的报错进行解释。禁止在未实际执行 node zuma.js setup 命令的情况下，假设或声称环境检测已通过。必须以命令的真实返回值为准。 |
+| **内容限制** | 禁止在回复中添加任何关于软件原理或调试建议的文本。 |
+
+---
+
+## 2. 冲突拦截逻辑 (Conflict Handling — 优先检查)
+
+**在执行任何步骤前**，若用户指令包含以下情况，必须立即中断并返回对应错误：
+
+| 情况 | 错误提示 |
+| :--- | :--- |
+| 同一句话包含"启动"和"停止" | `[ERROR]: 意图冲突，请明确是启动还是停止。` |
+| 未明确"单次"还是"定时" | `[ERROR]: 模式模糊，请指定单次执行或定时执行。` |
+| 参数中包含不合法的特殊字符 | `[ERROR]: 参数包含非法字符：{具体字符}` |
+
+---
+
+## 3. 通用流程 Standard Operating Procedure (SOP)
+
+> **适用范围：** 所有业务操作，屏幕截图除外。
+> 禁止跳过任何步骤
+> 禁止在 `[FAILURE]` 时尝试自行修复
+> 禁止在错误输出中附加任何排障建议或解释
+
+### 第一步：环境自检 (Pre-flight)
+
+**命令：** `node zuma.js setup`
+
+| 结果 | 条件 | 动作 |
+|------|------|------|
+| `[SUCCESS]` | 返回 `{"success": true}` | 立即进入第二步 |
+| `[FAILURE]` | 返回 `{"success": false}` | **立即停止**，原样输出 `message` 字段内容，禁止任何修复尝试 |
+| `[DEPENDENCY_MISSING]` | 缺少 node 依赖 | 在脚本目录下执行 `npm install` 或 `pnpm install` |
+| `[INSTALL_FAILURE]` | 依赖安装失败 | **立即停止**，输出："OpenClaw环境初始化失败，请检查系统权限或网络" |
+
+
+### 第二步：业务执行 (Action)
+
+**命令：** 根据对应【命令模板】构造命令，执行 `node zuma.js *`
+
+| 结果 | 条件 | 动作 |
+|------|------|------|
+| `[SUCCESS]` | 执行成功 | 进入第三步 |
+| `[ERROR]` | 执行报错 | (可选)重试 **1 次** |
+| `[RETRY_FAILURE]` | 重试仍失败 | 进入第三步，输出错误 |
+| `[DEPENDENCY_MISSING]` | 缺少 node 依赖 | 在脚本目录下执行 `npm install` 或 `pnpm install` |
+| `[INSTALL_FAILURE]` | 依赖安装失败 | **立即停止**，输出："OpenClaw环境初始化失败，请检查系统权限或网络" |
+
+> **重试规则：** 每次业务执行最多自动重试 1 次，超出后不得继续重试。
+
+### 第三步：结果封送 (Output)
+
+| 结果 | 条件 | 输出格式 |
+|------|------|----------|
+| `[SUCCESS]` | 执行成功 | 原样输出返回的 JSON，不添加任何内容 |
+| `[FAILURE]` | 执行失败 | 仅输出 `[ERROR]: {原始错误信息}`，禁止附加任何说明 |
+
+---
+
+## 4. 业务定义
+
+**交互规则（必须遵守）**
+1. 识别触发词后，先向用户展示对应菜单，等待用户选择，禁止跳过。
+2. 所有带 `{}` 的参数，必须显式向用户索取，禁止自行推断或补全。
+3. 参数校验分两级处理：
+   - 【自动修正】问题明确无歧义时，直接修正后告知用户，无需重新输入。
+   - 【阻断询问】无法判断用户意图时，拒绝执行并请用户澄清。
+4. 不在以下菜单中的操作，直接回复"不支持该操作"，禁止自由发挥。
+
+---
+
+### 业务编号1. 推文采集 (X / Twitter)
+- **触发词**：`zuma 采集`、`X 采集`、`推文采集`、`推特采集`
+- **触发后展示菜单**：
+  ```
+  请选择操作：
+  1. 单次采集
+  ```
+- **参数规则**：`{username}` 合法字符：字母、数字、下划线。
+  - 【自动修正】包含 `@` → 去掉 `@`；首尾空格 → trim；并告知用户已修正
+  - 【阻断询问】含非法字符（如 `jack & rose`）
+- **命令模板**：
+  - 单次：`node zuma.js app-start -appid route-x-8`（可选参数： `-targetusername {username}`）
+
+---
+
+### 业务编号2. 小红书发笔记 (XHS Auto-post)
+- **触发词**：`小红书发笔记`
+- **触发后展示菜单**：
+  ```
+  请选择操作：
+  1. 单次笔记
+  2. 开启定时发笔记
+  3. 关闭定时发笔记
+  ```
+- **参数规则**：`{interval}` 纯整数，单位固定为分钟。
+  - 【自动修正】带单位（如 `30min`、`30分钟`）→ 提取数字直接用；并告知用户已修正
+  - 【阻断询问】给的是范围或无法确定值（如 `30-60`）
+- **命令模板**：
+  - 单次：`node zuma.js app-start -appid route-xiaohongshu-1`
+  - 开启：`node zuma.js cron-start -cronid cron-xiaohongshu-auto-post`（可选 `-interval {interval}`）
+  - 关闭：`node zuma.js cron-stop -cronid cron-xiaohongshu-auto-post`
+
+---
+
+### 业务编号3. 查看日志
+- **触发词**：`日志`、`查看日志`
+- **触发后展示执行命令模板**：
+- **命令模板**：
+  - 单次：`node zuma.js check-log`
+
+---
+
+### 业务编号4. 屏幕截图 (Screenshot)
+- **触发词**：`截图`、`截屏`
+- **特殊逻辑**：跳过 setup，识别触发词后直接执行，无需菜单确认。
+- **命令**：`node zuma.js take-screenshot`
+- **输出要求**：
+  1. 必须：向用户发送截图图片
+  2. 可选：向用户发送图片链接

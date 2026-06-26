@@ -1,0 +1,83 @@
+# Meta-Skill Generator 配置文件
+
+system:
+  name: "Meta-Skill Generator"
+  version: "0.1.0"
+  description: "AI 技能自动生成与管理框架"
+
+vector_db:
+  # 向量数据库类型: chroma 或 qdrant
+  type: "chroma"
+  # 持久化目录
+  persist_dir: "skills/vector_store"
+  # 相似度阈值
+  similarity_threshold: 0.9
+  # 检索返回数量
+  default_top_k: 5
+
+generator:
+  # 代码生成模型
+  model: "deepseek-chat"
+  # 备用模型
+  fallback_model: "openai/gpt-4"
+  # API 配置
+  api:
+    base_url: "https://api.deepseek.com"
+    api_key: "YOUR_API_KEY_HERE"
+  # 基础类
+  base_class: "BaseSkill"
+  # 必需方法
+  required_methods:
+    - "execute"
+    - "validate_input"
+    - "handle_error"
+  # 最大重试次数
+  max_retries: 3
+
+tester:
+  # 超时时间（秒）
+  timeout: 10
+  # 内存限制
+  memory_limit: "256m"
+  # CPU 限制
+  cpu_limit: 0.5
+  # 容器镜像
+  container_image: "python:3.11-slim"
+  # 是否使用 Docker
+  use_docker: true
+
+evaluator:
+  # 评分权重
+  weights:
+    success_rate: 0.4    # 测试成功率
+    speed: 0.2           # 速度
+    robustness: 0.2      # 鲁棒性
+    quality: 0.2         # 代码质量
+  # 通过阈值
+  pass_threshold: 0.7
+  # 最小测试用例数
+  min_test_cases: 3
+
+optimizer:
+  # 优化策略
+  strategies:
+    - "改写法"
+    - "压缩法"
+  # 最大迭代次数
+  max_iterations: 3
+
+scheduler:
+  # 自动重构
+  auto_refactor:
+    enabled: true
+    schedule: "0 2 * * 6"  # 每周六凌晨2点
+    min_usage_count: 5
+    output_dir: "skills/generated"
+
+storage:
+  # 技能存储目录
+  skills_dir: "skills/skill_library"
+  # 元数据文件
+  metadata_file: "metadata.yaml"
+  # 日志目录
+  logs_dir: "logs"

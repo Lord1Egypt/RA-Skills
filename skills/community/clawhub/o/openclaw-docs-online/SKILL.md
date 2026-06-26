@@ -1,35 +1,61 @@
 ---
-name: "openclaw-docs-online"
-description: "OpenClaw 官方文档查询技能 - 指导如何访问和查询 https://docs.openclaw.ai/ 官方文档"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-docs-online"
-sourceUrl: "https://clawhub.ai/skills/openclaw-docs-online"
+name: openclaw-docs
+description: OpenClaw 官方文档查询技能 - 指导如何访问和查询 https://docs.openclaw.ai/ 官方文档
+metadata:
+  version: 1.0.0
+  author: Slava Chan @UyNewNas
+  category: documentation
+  tags: [openclaw, docs, query, guide, official]
 ---
 
-# openclaw-docs-online
+# OpenClaw 官方文档查询技能
 
-> OpenClaw 官方文档查询技能 - 指导如何访问和查询 https://docs.openclaw.ai/ 官方文档
+指导 AI 如何访问和查询 OpenClaw 官方文档 (https://docs.openclaw.ai/)，获取准确、权威的产品信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-docs-online`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-docs-online](https://clawhub.ai/skills/openclaw-docs-online)
+## 核心功能
 
-## Overview
+- **文档访问指导** - 指导如何正确访问官方文档
+- **信息查询策略** - 提供高效的文档查询方法
+- **内容验证机制** - 确保获取信息的准确性
+- **结构化输出** - 提供清晰的查询结果
 
+## 五要素框架
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-docs-online
-```
+本技能严格遵循五要素框架设计：
+
+### WHEN（触发条件）
+- 用户询问 OpenClaw 功能、配置、使用方法时
+- 需要确认 OpenClaw 官方特性或限制时
+- 遇到 OpenClaw 相关问题需要查找官方解答时
+- 需要了解 OpenClaw 最新版本更新内容时
+
+### WHAT（具体成果）
+- 输出基于官方文档的准确答案
+- 提供文档来源链接和引用位置
+- 给出可操作的具体步骤
+- 标注信息的时效性和适用版本
+
+### HOW（步骤逻辑）
+1. 识别查询意图，确定关键词
+2. 访问官方文档，定位相关章节
+3. 提取核心信息，验证准确性
+4. 结构化输出，附带引用来源
+
+### REFERENCE（正反样例）
+- 【正例】用户问"如何配置 Gateway"，访问文档后输出完整配置步骤和参数说明
+- 【反例】凭记忆回答配置方法，未验证文档，导致参数错误
+
+### LIMITS（明确限制）
+- 必须访问官方文档验证信息
+- 不得凭记忆或推测回答技术问题
+- 必须标注信息来源和时效性
+- 文档无法找到答案时必须明确告知
+
+---
+
+**新技能已创建成功！** 🎉
+
+📝 注意：
+- 本技能需要网络访问能力
+- 查询结果以官方文档为准
+- 建议定期更新文档知识

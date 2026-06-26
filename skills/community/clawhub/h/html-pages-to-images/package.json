@@ -1,0 +1,26 @@
+{
+  "name": "html-pages-to-images-skill",
+  "version": "1.0.0",
+  "description": "Agent Skill: 将 HTML 文件中的多个页面元素转换为独立的图片文件",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "convert": "node index.js",
+    "start": "node index.js",
+    "test": "node index.js"
+  },
+  "keywords": [
+    "agent",
+    "skill",
+    "html",
+    "screenshot",
+    "puppeteer",
+    "image",
+    "conversion"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.6.1"
+  }
+}

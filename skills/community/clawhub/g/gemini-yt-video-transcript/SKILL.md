@@ -1,35 +1,37 @@
 ---
-name: "Gemini Yt Video Transcript"
+name: gemini-yt-video-transcript
 description: "Create a verbatim transcript for a YouTube URL using Google Gemini (speaker labels, paragraph breaks; no time codes). Use when the user asks to transcribe a YouTube video or wants a clean transcript (no timestamps)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gemini-yt-video-transcript"
-sourceUrl: "https://clawhub.ai/skills/gemini-yt-video-transcript"
+summary: "Generate a verbatim YouTube transcript via Google Gemini (speaker labels, no time codes)."
+version: 1.0.4
+homepage: https://github.com/odrobnik/gemini-yt-video-transcript-skill
+metadata: {"openclaw":{"emoji":"📝","requires":{"env":["GEMINI_API_KEY"],"bins":["python3"]}}}
 ---
 
-# Gemini Yt Video Transcript
+# Gemini YouTube Video Transcript
 
-> Create a verbatim transcript for a YouTube URL using Google Gemini (speaker labels, paragraph breaks; no time codes). Use when the user asks to transcribe a YouTube video or wants a clean transcript (no timestamps).
+Create a **verbatim transcript** for a YouTube URL using **Google Gemini**.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gemini-yt-video-transcript`
-- **Source URL:** [https://clawhub.ai/skills/gemini-yt-video-transcript](https://clawhub.ai/skills/gemini-yt-video-transcript)
+**Output format**
+- First line: YouTube video title
+- Then transcript lines only in the form:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gemini-yt-video-transcript
 ```
+Speaker: text
+```
+
+**Requirements**
+- No time codes
+- No extra headings / lists / commentary
+
+## Usage
+
+```bash
+python3 {baseDir}/scripts/youtube_transcript.py "https://www.youtube.com/watch?v=..."
+```
+
+Options:
+- `--out <path>` Write transcript to a specific file (default: auto-named in the workspace `out/` folder).
+
+## Delivery
+
+When chatting: send the resulting transcript as a document/attachment.

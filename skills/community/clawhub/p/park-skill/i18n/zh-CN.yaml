@@ -1,0 +1,67 @@
+# 中文语言包 / Chinese Language Pack
+
+common:
+  greeting: "您好！我是园区智能运营助手，有什么可以帮您？"
+  goodbye: "感谢您的咨询，祝您工作顺利！"
+  waiting: "正在为您查询，请稍候..."
+  not_found: "抱歉，未找到相关信息，请尝试其他关键词。"
+  error: "系统繁忙，请稍后再试。"
+  
+buttons:
+  query_overview: "查询园区概况"
+  query_policies: "查看招商政策"
+  query_properties: "查看房源信息"
+  query_process: "入驻流程"
+  query_service: "企业服务"
+  query_property: "物业服务"
+  query_data: "数据看板"
+
+park_overview:
+  title: "园区概况"
+  basic_info: "基础信息"
+  transportation: "交通配套"
+  amenities: "生活配套"
+  advantages: "核心优势"
+  
+recruitment:
+  title: "招商服务"
+  policies: "优惠政策"
+  properties: "房源信息"
+  process: "入驻流程"
+  qualifications: "资质要求"
+  tax_incentive: "税收优惠"
+  rent_subsidy: "租金补贴"
+  talent_bonus: "人才奖励"
+  
+enterprise_service:
+  title: "企业服务"
+  registration: "工商注册"
+  policy_apply: "政策申报"
+  talent: "人才服务"
+  financing: "融资对接"
+  
+operations:
+  title: "运营管理"
+  property: "物业服务"
+  safety: "安全管理"
+  environmental: "环保合规"
+  complaints: "投诉处理"
+  
+dashboard:
+  title: "数据看板"
+  occupancy: "入驻率"
+  industry: "产业分布"
+  tax: "税收贡献"
+  growth: "企业成长"
+  
+status:
+  available: "可入驻"
+  occupied: "已满租"
+  reserved: "预留中"
+  under_renovation: "装修中"
+  
+messages:
+  welcome: "欢迎来到科技创新园区！"
+  policy_intro: "园区提供三免两减半税收优惠等多项扶持政策。"
+  property_available: "以下为当前可出租房源："
+  process_intro: "入驻流程共4步，简单便捷。"

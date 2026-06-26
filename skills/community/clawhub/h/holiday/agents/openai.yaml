@@ -1,0 +1,7 @@
+interface:
+  display_name: "Holiday Lookup"
+  short_description: "Research official holidays, observed days, and closures by jurisdiction."
+  default_prompt: "Use $holiday to determine whether a date is an official holiday, observed day, or regular workday in a specific country or region."
+
+policy:
+  allow_implicit_invocation: true

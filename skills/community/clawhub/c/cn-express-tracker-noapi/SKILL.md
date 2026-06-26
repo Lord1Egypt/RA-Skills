@@ -1,35 +1,100 @@
 ---
-name: "中文快递查询（免api）"
-description: "中国快递物流查询工具。当用户需要查询顺丰、圆通、中通、申通、韵达、京东、EMS等中国快递公司的物流信息时使用。用户会说"帮我查个快递"、"快递到哪了"、"查一下物流"、"track my package"等。支持单号追踪和物流轨迹展示，无需API Key。Use for ANY Chinese express t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-express-tracker-noapi"
-sourceUrl: "https://clawhub.ai/skills/cn-express-tracker-noapi"
+name: cn-express-tracker
+description: 中国快递物流查询工具。当用户需要查询顺丰、圆通、中通、申通、韵达、京东、EMS等中国快递公司的物流信息时使用。用户会说"帮我查个快递"、"快递到哪了"、"查一下物流"、"track my package"等。支持单号追踪和物流轨迹展示，无需API Key。Use for ANY Chinese express tracking requests.
 ---
 
-# 中文快递查询（免api）
+# 中文快递查询 (CN Express Tracker)
 
-> 中国快递物流查询工具。当用户需要查询顺丰、圆通、中通、申通、韵达、京东、EMS等中国快递公司的物流信息时使用。用户会说"帮我查个快递"、"快递到哪了"、"查一下物流"、"track my package"等。支持单号追踪和物流轨迹展示，无需API Key。Use for ANY Chinese express t...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-express-tracker-noapi`
-- **Source URL:** [https://clawhub.ai/skills/cn-express-tracker-noapi](https://clawhub.ai/skills/cn-express-tracker-noapi)
+查询中国主流快递公司的物流信息，支持顺丰、圆通、中通、申通、韵达、京东、EMS/邮政、德邦、百世等 50+ 家快递公司。
+无需 API Key，即装即用。
 
-## Overview
+## 使用说明
 
+### 快速查询
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-express-tracker-noapi
+用户提供快递单号即可查询。脚本会自动识别快递公司（基于单号前缀）。
+
 ```
+python3 scripts/track.py --num <快递单号>
+```
+
+### 指定快递公司
+
+如果自动识别失败或不准确，可以手动指定快递公司代码：
+
+```
+python3 scripts/track.py --num <快递单号> --com <公司代码>
+```
+
+### 快递公司代码速查
+
+| 代码 | 公司 |
+|------|------|
+| `shunfeng` / `sf` | 顺丰速运 |
+| `yuantong` / `yt` | 圆通速递 |
+| `zhongtong` / `zto` | 中通快递 |
+| `shentong` / `sto` | 申通快递 |
+| `yunda` / `yundaex` | 韵达快递 |
+| `ems` | EMS |
+| `youzhengguonei` / `post` | 中国邮政 |
+| `jd` | 京东快递 |
+| `huitongkuaidi` / `htky` | 百世快递 |
+| `debangwuliu` / `deppon` | 德邦物流 |
+
+完整代码表见 `references/courier-codes.md`。
+
+## 工作流程
+
+### 方法 1：用户提供了单号 + 快递公司（首选）
+
+1. 用户直接说"帮我查顺丰快递 SF1234567890"
+2. 运行：`python3 scripts/track.py --num SF1234567890 --com shunfeng`
+3. 将完整结果返回给用户
+
+### 方法 2：用户只提供了单号
+
+1. 用户说"帮我查这个快递 YT7450353838751"
+2. 先运行脚本自动识别：`python3 scripts/track.py --num YT7450353838751`
+3. 如果结果异常（无数据），联系用户确认快递公司后再查
+4. 将完整结果返回给用户
+
+### 方法 3：用户想查多个快递
+
+1. 用户说"帮我查这三个快递到哪了"
+2. 逐个查询每个单号
+3. 汇总所有结果返回给用户
+
+## 输出格式说明
+
+查询结果包含：
+- **快递公司** — 承运方名称
+- **快递单号** — 查询的单号
+- **当前状态** — 在途/已揽收/派件中/已签收/疑难...
+- **物流轨迹** — 按时间倒序排列的所有物流节点（时间和地点）
+- **详情链接** — 快递100查看链接
+
+## 常见场景与话术
+
+### "帮我查个快递"
+→ 追问单号和快递公司，或引导用户直接提供单号
+
+### "快递到哪了 / 物流信息"
+→ 让用户提供单号，用脚本查询
+
+### "查顺丰/圆通/中通..."
+→ 使用对应代码 + 单号，--com 参数指定公司
+
+### 查询失败时的应对
+- 确认单号是否输错（数字字母组合）
+- 确认选择了正确的快递公司
+- 新寄出的快递可能需要几小时才会更新
+- 顺丰单号部分需要寄件人或收件人手机号后四位（单独询问用户）
+
+## 技术说明
+
+- 数据来源：快递100（kuaidi100.com）免费查询接口
+- 脚本使用 Python 标准库（urllib），无需安装额外依赖
+- 无需配置 API Key
+- 单号查询频率建议 >30 分钟/次，过于频繁可能导致短时封禁

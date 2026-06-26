@@ -1,0 +1,69 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "stable-coin.aggregates",
+  "inferred_schema": {
+    "properties": {
+      "holdersPctChange": {
+        "type": "number"
+      },
+      "holdersSum": {
+        "type": "number"
+      },
+      "marketCapPercentChange": {
+        "type": "number"
+      },
+      "marketCapSum": {
+        "type": "number"
+      },
+      "totalActiveAddresses": {
+        "type": "number"
+      },
+      "totalActiveAddressesPercentChange": {
+        "type": "number"
+      },
+      "totalTransferVolume": {
+        "type": "number"
+      },
+      "totalTransferVolumePercentChange": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "holdersPctChange",
+      "holdersSum",
+      "marketCapPercentChange",
+      "marketCapSum",
+      "totalActiveAddresses",
+      "totalActiveAddressesPercentChange",
+      "totalTransferVolume",
+      "totalTransferVolumePercentChange"
+    ],
+    "type": "object"
+  },
+  "notes": [
+    "Documentation example is empty, but live aggregates return a stable scalar object."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/stable-coin/aggregates",
+    "path_params": {},
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/stable-coin/aggregates"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "data_keys": [
+      "holdersPctChange",
+      "holdersSum",
+      "marketCapPercentChange",
+      "marketCapSum",
+      "totalActiveAddresses",
+      "totalActiveAddressesPercentChange",
+      "totalTransferVolume",
+      "totalTransferVolumePercentChange"
+    ],
+    "message": "success"
+  },
+  "shape_family": "envelope_object",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/stable-coin__aggregates.json"
+}

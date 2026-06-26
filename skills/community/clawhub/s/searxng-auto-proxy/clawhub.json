@@ -1,0 +1,31 @@
+{
+  "name": "searxng-auto-proxy",
+  "version": "3.0.0",
+  "description": "SearXNG 自适应代理检测 v3.0 - 三层架构（规则 + 动态 + 优化），自动切换代理，智能优化节点",
+  "author": "pengong101",
+  "license": "MIT",
+  "tags": ["searxng", "proxy", "adaptive", "clash", "search"],
+  "requires": {
+    "services": ["SearXNG (Docker)", "Clash Proxy"],
+    "python": ">=3.8",
+    "packages": ["aiohttp", "pyyaml"]
+  },
+  "features": [
+    "三层自适应架构（规则 + 动态 + 优化）",
+    "13 个引擎代理规则配置",
+    "30 秒动态探测引擎状态",
+    "30 分钟自动测速选路",
+    "三级缓存优化（引擎/延迟/节点）",
+    "故障自动降级与恢复",
+    "后台常驻服务",
+    "Clash API 集成"
+  ],
+  "updated": "2026-03-21",
+  "changelog": "v3.0.0: 完整三层架构实现，动态探测，自动优化，性能提升 50%",
+  "entry": "adapter.py",
+  "config": {
+    "proxy-rules": "proxy-rules.yml",
+    "cache": "proxy-cache.json",
+    "log": "/root/.openclaw/logs/searxng-proxy-adapter.log"
+  }
+}

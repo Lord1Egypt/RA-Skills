@@ -1,0 +1,15 @@
+[Unit]
+Description=Blocket listing watcher (poll only; no LLM)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# Set WorkingDirectory and ExecStart to where you unpacked this skill (absolute path).
+WorkingDirectory=%h/.openclaw/scripts/blocket-watch
+ExecStart=%h/.openclaw/scripts/blocket-watch/poll.sh
+Environment=HOME=%h
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=default.target

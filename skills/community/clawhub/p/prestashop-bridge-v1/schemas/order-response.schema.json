@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "reference",
+    "customer_id",
+    "current_status",
+    "currency_iso",
+    "total_paid_tax_incl",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "customer_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "current_status": {
+      "type": "string",
+      "enum": [
+        "payment_accepted",
+        "processing_in_progress",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ]
+    },
+    "currency_iso": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "total_paid_tax_incl": {
+      "type": "number",
+      "minimum": 0
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

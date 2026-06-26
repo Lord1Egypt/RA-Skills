@@ -1,0 +1,214 @@
+---
+name: caching-revalidation
+description: Caching strategies and revalidation in Next.js
+---
+
+# Caching and Revalidation
+
+Next.js provides multiple APIs for caching and revalidating data: `fetch`, `cacheTag`, `revalidateTag`, `updateTag`, and `revalidatePath`.
+
+## Fetch Caching
+
+By default, `fetch` requests are not cached, but Next.js pre-renders routes and caches the HTML.
+
+### Caching Fetch Requests
+
+Cache individual fetch requests:
+
+```tsx
+const res = await fetch('https://api.example.com/data', {
+  cache: 'force-cache',
+})
+```
+
+### Time-Based Revalidation
+
+Revalidate cached data after a time period:
+
+```tsx
+const res = await fetch('https://api.example.com/data', {
+  next: { revalidate: 3600 }, // Revalidate every hour
+})
+```
+
+### Tagging Fetch Requests
+
+Tag fetch requests for on-demand revalidation:
+
+```tsx
+const res = await fetch('https://api.example.com/posts', {
+  next: { tags: ['posts'] },
+})
+```
+
+## Cache Tagging with cacheTag
+
+Use `cacheTag` with Cache Components to tag any cached computation:
+
+```tsx
+import { cacheTag } from 'next/cache'
+
+export async function getProducts() {
+  'use cache'
+  cacheTag('products')
+
+  const products = await db.query('SELECT * FROM products')
+  return products
+}
+```
+
+## Revalidating with revalidateTag
+
+Revalidate cache entries by tag. Use `profile="max"` for stale-while-revalidate:
+
+```tsx
+import { revalidateTag } from 'next/cache'
+
+export async function updateUser(id: string) {
+  // Update user in database
+  await db.user.update({ where: { id }, data: { name: 'New Name' } })
+
+  // Revalidate with stale-while-revalidate
+  revalidateTag('user', 'max')
+}
+```
+
+Without the second argument (legacy behavior, deprecated):
+
+```tsx
+revalidateTag('user') // Immediately expires cache
+```
+
+## Immediate Expiration with updateTag
+
+Use `updateTag` in Server Actions for read-your-own-writes scenarios:
+
+```tsx
+import { updateTag } from 'next/cache'
+import { redirect } from 'next/navigation'
+
+export async function createPost(formData: FormData) {
+  const post = await db.post.create({
+    data: {
+      title: formData.get('title'),
+      content: formData.get('content'),
+    },
+  })
+
+  // Immediately expire cache so new post is visible
+  updateTag('posts')
+  updateTag(`post-${post.id}`)
+
+  redirect(`/posts/${post.id}`)
+}
+```
+
+**Differences:**
+- `updateTag`: Only in Server Actions, immediately expires cache
+- `revalidateTag`: In Server Actions and Route Handlers, supports stale-while-revalidate
+
+## Revalidating Paths
+
+Revalidate specific routes with `revalidatePath`:
+
+```tsx
+import { revalidatePath } from 'next/cache'
+
+export async function updateUser(id: string) {
+  // Update user
+  await db.user.update({ where: { id }, data: { name: 'New Name' } })
+
+  // Revalidate the profile page
+  revalidatePath('/profile')
+}
+```
+
+Revalidate all paths under a route:
+
+```tsx
+revalidatePath('/blog', 'layout') // Revalidate all /blog/* routes
+```
+
+## Using unstable_cache (Legacy)
+
+> **Note**: `unstable_cache` is experimental. Prefer Cache Components with `use cache` directive.
+
+Cache database queries and other async functions:
+
+```tsx
+import { unstable_cache } from 'next/cache'
+
+const getCachedUser = unstable_cache(
+  async (id: string) => {
+    return db.user.findUnique({ where: { id } })
+  },
+  [userId], // Cache key
+  {
+    tags: ['user'],
+    revalidate: 3600, // Revalidate after 1 hour
+  }
+)
+```
+
+## Cache Strategies
+
+### Static Rendering
+
+Routes are statically rendered at build time and cached:
+
+```tsx
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data', {
+    cache: 'force-cache',
+  })
+  return <div>{/* ... */}</div>
+}
+```
+
+### Dynamic Rendering
+
+Force dynamic rendering:
+
+```tsx
+export const dynamic = 'force-dynamic'
+
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data', {
+    cache: 'no-store',
+  })
+  return <div>{/* ... */}</div>
+}
+```
+
+### Incremental Static Regeneration (ISR)
+
+Revalidate at intervals:
+
+```tsx
+export const revalidate = 3600 // Revalidate every hour
+
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data')
+  return <div>{/* ... */}</div>
+}
+```
+
+## Key Points
+
+- `fetch` requests are not cached by default (but HTML is pre-rendered)
+- Use `cache: 'force-cache'` to cache fetch requests
+- Use `next.revalidate` for time-based revalidation
+- Use `next.tags` and `cacheTag` for on-demand revalidation
+- Use `revalidateTag` with `profile="max"` for stale-while-revalidate
+- Use `updateTag` in Server Actions for immediate expiration
+- Use `revalidatePath` to revalidate specific routes
+- Prefer Cache Components over `unstable_cache`
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/caching-and-revalidating
+- https://nextjs.org/docs/app/api-reference/functions/cacheTag
+- https://nextjs.org/docs/app/api-reference/functions/revalidateTag
+- https://nextjs.org/docs/app/api-reference/functions/updateTag
+- https://nextjs.org/docs/app/api-reference/functions/revalidatePath
+-->

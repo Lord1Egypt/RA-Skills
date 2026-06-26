@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Emergence Render Image",
+  "name_for_model": "emergence_render_image",
+  "description_for_human": "Generate professional TikZ, Mermaid, Graphviz, and D2 diagrams for scientific and technical content.",
+  "description_for_model": "Use this skill to render high-quality diagrams and visualizations. Supported engines include TikZ, Mermaid, Graphviz, and D2. Agents should use the engine best suited for the logical structure: TikZ for science/math, Mermaid for flows/logic, Graphviz for networks, and D2 for modern scripts. The API requires an EMERGENCE_API_KEY. Follow rate-limiting and security protocols.",
+  "auth": {
+    "type": "user_http",
+    "authorization_type": "bearer"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://api.emergence.science/tools/render/openapi.json"
+  },
+  "discovery": {
+    "content_index": "https://emergence.science/content/index.json"
+  }
+}

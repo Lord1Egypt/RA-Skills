@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会议纪要 | 东北犊角兽 × 囍悦公社 跨界合作规划</title>
+<style>
+/* ══════════════════════════════════════════════
+   Design Tokens — 会议纪要融合模板
+   ══════════════════════════════════════════════ */
+@page {
+  size: A4;
+  margin: 20mm 22mm 25mm 22mm;
+}
+
+:root {
+  /* 色彩体系 */
+  --c-navy:     #1B2838;
+  --c-navy-90:  rgba(27, 40, 56, 0.92);
+  --c-gold:     #D4A853;
+  --c-gold-soft:#F5E6C8;
+  --c-gold-bg:  rgba(212, 168, 83, 0.08);
+  --c-blue:     rgb(142, 205, 232);
+  --c-blue-soft:rgba(142, 205, 232, 0.15);
+  --c-text:     rgb(62, 62, 62);
+  --c-dark:     rgba(0, 0, 0, 0.85);
+  --c-light:    rgb(120, 120, 120);
+  --c-muted:    rgb(160, 160, 160);
+  --c-bg:       #FAFAFA;
+  --c-card:     #FFFFFF;
+  --c-border:   rgba(0, 0, 0, 0.06);
+
+  /* 主题色条 */
+  --theme-1: #3B82F6;  /* 蓝 — 战略 */
+  --theme-2: #10B981;  /* 绿 — 业务 */
+  --theme-3: #F59E0B;  /* 橙 — 洞察 */
+  --theme-4: #8B5CF6;  /* 紫 — 社群 */
+  --theme-5: #EF4444;  /* 红 — 行动 */
+  --theme-6: #06B6D4;  /* 青 — 空间 */
+  --theme-7: #EC4899;  /* 粉 — 价值观 */
+  --theme-8: #6366F1;  /* 靛 — 趋势 */
+
+  /* 排版 */
+  --f: "PingFang SC", -apple-system, "Hiragino Sans GB",
+       "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --f-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC",
+             Georgia, serif;
+  --fs:   14px;
+  --fs-s: 12px;
+  --fs-m: 15px;
+  --fs-l: 18px;
+  --fs-xl: 24px;
+  --fs-2xl: 32px;
+  --lh:   1.8;
+  --sp:   24px;
+  --radius: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: var(--fs); -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--f);
+  line-height: var(--lh);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 容器 ── */
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--c-card);
+}
+
+@media screen {
+  .page {
+    margin: 20px auto;
+    box-shadow: 0 1px 30px rgba(0,0,0,0.08);
+    border-radius: 2px;
+  }
+  .cover { page-break-after: auto; }
+}
+
+.content {
+  padding: 40px 48px;
+}
+
+/* ══════════════════════════════════════════════
+   Section 1: 一图读懂 — 封面页
+   ══════════════════════════════════════════════ */
+.cover {
+  background: linear-gradient(135deg, #1B2838 0%, #2A3F55 40%, #1E3045 100%);
+  color: #fff;
+  padding: 48px 48px 40px;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212,168,83,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cover__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(212, 168, 83, 0.15);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  color: var(--c-gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.cover__title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.cover__subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 32px;
+}
+
+.cover__meta {
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.cover__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cover__meta-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+}
+
+/* 一图读懂 — 业务架构流程图 */
+.arch-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 8px 0 32px;
+  position: relative;
+}
+
+.arch-node {
+  text-align: center;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  flex: 0 0 auto;
+  min-width: 160px;
+  position: relative;
+}
+
+.arch-node--l1 {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+.arch-node--l2 {
+  background: rgba(212, 168, 83, 0.15);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+}
+.arch-node--l3 {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.arch-node__tier {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.arch-node--l1 .arch-node__tier { color: #60A5FA; }
+.arch-node--l2 .arch-node__tier { color: var(--c-gold); }
+.arch-node--l3 .arch-node__tier { color: #A78BFA; }
+
+.arch-node__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.arch-node__desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+}
+
+.arch-arrow {
+  font-size: 20px;
+  color: rgba(255,255,255,0.25);
+  margin: 0 8px;
+  flex-shrink: 0;
+}
+
+/* KPI 卡片网格 */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.kpi-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.kpi-card__value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--c-gold);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.kpi-card__label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.4;
+}
+
+/* 封面 — 关键决策 */
+.cover-decisions {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+
+.cover-decisions__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-gold);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.cover-decisions__list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.cover-decisions__item {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+}
+
+.cover-decisions__num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: rgba(212, 168, 83, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-gold);
+  margin-top: 1px;
+}
+
+/* ══════════════════════════════════════════════
+   Section 2: 会议概览
+   ══════════════════════════════════════════════ */
+.section {
+  margin-bottom: 36px;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--c-navy);
+}
+
+.section__icon {
+  width: 28px;
+  height: 28px;
+  background: var(--c-navy);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section__icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--c-gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.section__title {
+  font-size: var(--fs-l);
+  font-weight: 700;
+  color: var(--c-dark);
+  letter-spacing: 0.01em;
+}
+
+.section__subtitle {
+  font-size: var(--fs-s);
+  color: var(--c-muted);
+  margin-left: auto;
+}
+
+/* 元信息标签 */
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--c-light);
+  background: var(--c-bg);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--c-border);
+}
+
+.meta-tag svg {
+  width: 12px;
+  height: 12px;
+  stroke: var(--c-light);
+  fill: none;
+  stroke-width: 2;
+}
+
+.summary-text {
+  font-size: var(--fs-m);
+  line-height: 1.9;
+  color: var(--c-text);
+  text-align: justify;
+}
+
+.summary-highlight {
+  background: linear-gradient(180deg, transparent 60%, var(--c-gold-bg) 60%);
+  font-weight: 600;
+  color: var(--c-dark);
+}
+
+/* ══════════════════════════════════════════════
+   Section 3: 主题深度解读
+   ══════════════════════════════════════════════ */
+.topic-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  display: flex;
+  page-break-inside: avoid;
+}
+
+.topic-card__bar {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.topic-card__body {
+  padding: 18px 22px;
+  flex: 1;
+}
+
+.topic-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.topic-card__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-dark);
+}
+
+.topic-card__time {
+  font-size: 11px;
+  color: var(--c-muted);
+  font-family: "SF Mono", "Fira Code", monospace;
+  background: var(--c-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.topic-card__points {
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.topic-card__point {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--c-text);
+  padding-left: 16px;
+  position: relative;
+}
+
+.topic-card__point::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-muted);
+}
+
+/* ══════════════════════════════════════════════
+   Section 4: 关键决策与共识
+   ══════════════════════════════════════════════ */
+.decision-list {
+  display: grid;
+  gap: 12px;
+}
+
+.decision-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--c-gold-bg);
+  border-left: 3px solid var(--c-gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  page-break-inside: avoid;
+}
+
+.decision-item__num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--c-gold);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+.decision-item__text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--c-dark);
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════
+   Section 5: 金句精选
+   ══════════════════════════════════════════════ */
+.quotes-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.quote-card {
+  background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
+  border: 1px solid rgba(212, 168, 83, 0.15);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  position: relative;
+  page-break-inside: avoid;
+}
+
+.quote-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-size: 48px;
+  font-family: var(--f-serif);
+  color: rgba(212, 168, 83, 0.2);
+  line-height: 1;
+}
+
+.quote-card__text {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--c-dark);
+  font-style: italic;
+  padding-left: 8px;
+  font-family: var(--f-serif);
+}
+
+.quote-card__tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-gold);
+  background: rgba(212, 168, 83, 0.12);
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-style: normal;
+  font-family: var(--f);
+}
+
+/* ══════════════════════════════════════════════
+   Section 6: 行动项
+   ══════════════════════════════════════════════ */
+.action-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.action-table thead {
+  background: var(--c-navy);
+  color: #fff;
+}
+
+.action-table th {
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.action-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--c-border);
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.action-table tbody tr:nth-child(even) {
+  background: var(--c-bg);
+}
+
+.action-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.priority-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.priority-badge--high {
+  background: rgba(239, 68, 68, 0.1);
+  color: #DC2626;
+}
+
+.priority-badge--mid {
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+}
+
+.priority-badge--low {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+/* ══════════════════════════════════════════════
+   Section 7: AI 洞察
+   ══════════════════════════════════════════════ */
+.insight-box {
+  background: linear-gradient(135deg, #F0F4FF 0%, #EFF6FF 100%);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+}
+
+.insight-box__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.insight-box__icon {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insight-box__icon svg {
+  width: 12px;
+  height: 12px;
+  fill: #fff;
+}
+
+.insight-box__label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3B82F6;
+  letter-spacing: 0.5px;
+}
+
+.insight-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.insight-list li {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  padding-left: 18px;
+  position: relative;
+}
+
+.insight-list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: #3B82F6;
+  font-weight: 700;
+  font-family: monospace;
+}
+
+/* ══════════════════════════════════════════════
+   Section 8: 个人复盘
+   ══════════════════════════════════════════════ */
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.review-card {
+  background: var(--c-bg);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  page-break-inside: avoid;
+}
+
+.review-card--full {
+  grid-column: 1 / -1;
+}
+
+.review-card__label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.review-card__value {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--c-dark);
+}
+
+/* 时间日志 */
+.timeline {
+  display: flex;
+  gap: 0;
+  height: 32px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.timeline__seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  padding: 0 8px;
+}
+
+.timeline__seg--work {
+  background: var(--c-navy);
+}
+
+.timeline__seg--life {
+  background: var(--c-gold);
+}
+
+.timeline-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--c-light);
+}
+
+.timeline-legend__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* ══════════════════════════════════════════════
+   Section 9: 章节概要 — 时间轴区块
+   ══════════════════════════════════════════════ */
+.chapter-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+.chapter-timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--c-gold), var(--c-blue), var(--c-gold));
+  border-radius: 1px;
+}
+
+.chapter-item {
+  position: relative;
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  page-break-inside: avoid;
+  transition: box-shadow 0.2s;
+}
+
+.chapter-item::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c-gold);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--c-gold);
+}
+
+.chapter-item__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.chapter-item__time {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-gold);
+  font-family: "SF Mono", "Fira Code", monospace;
+  background: var(--c-gold-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.chapter-item__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-dark);
+  line-height: 1.4;
+}
+
+.chapter-item__desc {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--c-light);
+}
+
+/* ══════════════════════════════════════════════
+   Section 10: 决策与待办提取 — 汇总卡片
+   ══════════════════════════════════════════════ */
+.extract-block {
+  background: var(--c-navy);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  page-break-inside: avoid;
+}
+
+.extract-block__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: 16px;
+}
+
+.extract-block__badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--c-gold);
+  fill: none;
+  stroke-width: 2;
+}
+
+.extract-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.extract-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.extract-card--full {
+  grid-column: 1 / -1;
+}
+
+.extract-card__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--c-gold);
+  margin-bottom: 8px;
+}
+
+.extract-card__list {
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.extract-card__item {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  padding-left: 14px;
+  position: relative;
+}
+
+.extract-card__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.extract-card__item--decision::before {
+  background: var(--c-gold);
+}
+
+.extract-card__item--todo::before {
+  background: var(--c-blue);
+}
+
+.extract-card__item--risk::before {
+  background: #EF4444;
+}
+
+.extract-card__item--next::before {
+  background: #10B981;
+}
+
+.extract-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 16px 0;
+  grid-column: 1 / -1;
+}
+
+/* ── 页脚 ── */
+.footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 11px;
+  color: var(--c-muted);
+  border-top: 1px solid var(--c-border);
+  margin-top: 24px;
+}
+
+/* ── 打印优化 ── */
+@media print {
+  body { background: #fff; }
+  .page { box-shadow: none; margin: 0; max-width: none; }
+  .content { padding: 0; }
+  .cover { page-break-after: always; }
+  .section { page-break-inside: avoid; }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ═══════════ Section 1: 一图读懂 — 封面页 ═══════════ -->
+  <div class="cover">
+    <div class="cover__badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      MEETING MINUTES
+    </div>
+
+    <h1 class="cover__title">东北犊角兽 × 囍悦公社<br>跨界合作规划讨论</h1>
+    <p class="cover__subtitle">青年社群生态共建 · 商业体融合模式探讨</p>
+
+    <div class="cover__meta">
+      <span class="cover__meta-item">
+        <svg class="cover__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2026年4月3日
+      </span>
+      <span class="cover__meta-item">
+        <svg class="cover__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        15:45 - 16:31 | 约46分钟
+      </span>
+      <span class="cover__meta-item">
+        <svg class="cover__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        2人 · 商务合作洽谈
+      </span>
+    </div>
+
+    <!-- 业务架构流程图 -->
+    <div class="arch-flow">
+      <div class="arch-node arch-node--l1">
+        <div class="arch-node__tier">一级业务</div>
+        <div class="arch-node__label">东北犊角兽 IP</div>
+        <div class="arch-node__desc">内容品牌 · 流量积累<br>小投入 · 品牌建设</div>
+      </div>
+      <div class="arch-arrow">&#10132;</div>
+      <div class="arch-node arch-node--l2">
+        <div class="arch-node__tier">二级业务</div>
+        <div class="arch-node__label">囍悦公社 · 俱乐部</div>
+        <div class="arch-node__desc">100位超级东北人<br>资源整合 · 圈层运营</div>
+      </div>
+      <div class="arch-arrow">&#10132;</div>
+      <div class="arch-node arch-node--l3">
+        <div class="arch-node__tier">三级业务</div>
+        <div class="arch-node__label">X · 未知可能</div>
+        <div class="arch-node__desc">银发旅居 · 新消费<br>项目操盘 · 无限可能</div>
+      </div>
+    </div>
+
+    <!-- KPI 指标卡 -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card__value">100+</div>
+        <div class="kpi-card__label">超级东北人<br>嘉宾目标</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card__value">5城</div>
+        <div class="kpi-card__label">会客厅布局<br>青/哈/理/深/沈</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card__value">8人</div>
+        <div class="kpi-card__label">定制旅修<br>最小成团</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card__value">3层</div>
+        <div class="kpi-card__label">业务架构<br>IP→俱乐部→X</div>
+      </div>
+    </div>
+
+    <!-- 关键决策摘要 -->
+    <div class="cover-decisions">
+      <div class="cover-decisions__title">KEY DECISIONS</div>
+      <ul class="cover-decisions__list">
+        <li class="cover-decisions__item">
+          <span class="cover-decisions__num">1</span>
+          <span>凯德合作定位为"青年社群持续运营服务"，非单次活动采购</span>
+        </li>
+        <li class="cover-decisions__item">
+          <span class="cover-decisions__num">2</span>
+          <span>以共享视频播客空间为核心载体，搭载青年投稿与内容生产机制</span>
+        </li>
+        <li class="cover-decisions__item">
+          <span class="cover-decisions__num">3</span>
+          <span>先在东北扎实落地，成功后再考虑全国复制；不依赖外部品牌背书</span>
+        </li>
+        <li class="cover-decisions__item">
+          <span class="cover-decisions__num">4</span>
+          <span>强化女性视角与慢生活理念，推动刚柔并济的内容风格转型</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════════ 正文内容区 ═══════════ -->
+  <div class="content">
+
+    <!-- ═══════════ Section 2: 会议概览 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <h2 class="section__title">会议概览</h2>
+      </div>
+
+      <div class="meta-bar">
+        <span class="meta-tag">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          2026-04-03
+        </span>
+        <span class="meta-tag">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          15:45 — 16:31 (46min)
+        </span>
+        <span class="meta-tag">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          约2人
+        </span>
+        <span class="meta-tag">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          商务合作洽谈
+        </span>
+      </div>
+
+      <p class="summary-text">
+        本次为双方合作洽谈，核心围绕<span class="summary-highlight">东北犊角兽 IP 延伸</span>，共建超级东北人圈层生态。讨论了一二三级业务落地路径、双方优势互补方向，最终达成合作共识，约定逐步推进项目落地。会议聚焦于如何通过内容共创、资源协同与商业体合作，在哈尔滨以<span class="summary-highlight">凯德广场为试点</span>落地首个青年社群运营项目，并以此为基础探索可复制的轻量化青年社区产品模型。
+      </p>
+    </div>
+
+    <!-- ═══════════ Section 3: 主题深度解读 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h2 class="section__title">主题深度解读</h2>
+        <span class="section__subtitle">融合双源 · 9大议题</span>
+      </div>
+
+      <!-- 主题1 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-1)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">超级个体与生态体构建方向</h3>
+            <span class="topic-card__time">00:00 - 04:40</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>核心战略定位：</strong>先做板块间战略合作，逐步搭建超级个体、超级团队组成的生态体，不做固化死板的组织形态</li>
+            <li class="topic-card__point"><strong>资源价值逻辑：</strong>东北犊角兽 IP 内容制作能力提升后，可嫁接优质嘉宾资源；不开发浪费资源还会影响 IP 进一步发展</li>
+            <li class="topic-card__point"><strong>长期价值预判：</strong>和100位超级东北嘉宾建立强链接后，存在业务跃迁的可能性，能带来全新的项目机会</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题2 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-2)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">双方人设与能力互补分析</h3>
+            <span class="topic-card__time">00:04:40</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>发起人人设定位：</strong>草根创业出身，走真诚真实路线，贴近普通用户</li>
+            <li class="topic-card__point"><strong>合作方能力优势：</strong>亲和力极强，能对接高维专家资源，可搭建全国性专家级市场</li>
+            <li class="topic-card__point"><strong>互补价值结论：</strong>发起人负责 IP 内容前端积累，合作方负责后端资源运作，双方能力互补实现 IP 起飞</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题3 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-3)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">一二三业务层级规划</h3>
+            <span class="topic-card__time">00:06:19</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>一级业务：</strong>东北犊角兽 IP，小投入低回报，核心积累高质量流量与品牌，营收全部投入内容升级与流量投放</li>
+            <li class="topic-card__point"><strong>二级业务：</strong>100位超级东北人嘉宾资源整合，打造圈层俱乐部，挖掘商业价值，由合作方主导运作</li>
+            <li class="topic-card__point"><strong>三级业务：</strong>开放的未知项目，依托一二层积累的势能，承接外部项目操盘、新赛道机会（银发旅居、新消费等）</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题4 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-4)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">囍悦公社业务梳理</h3>
+            <span class="topic-card__time">00:09:38</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>项目起源：</strong>2024年末梳理业务，最早做青岛囍柿小酒馆时定名，在哈尔滨打造过非商业化的囍欢会客厅</li>
+            <li class="topic-card__point"><strong>现有业务线：</strong>医疗策展与市场部变革、境外研学文旅产品（大理深度文化研学）</li>
+            <li class="topic-card__point"><strong>感兴趣方向：</strong>青年社群与非遗教育，计划从学校课外活动切入，做艺术节、主题策展</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题5 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-5)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">凯德广场试点项目策划</h3>
+            <span class="topic-card__time">00:06:29</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>需求本质：</strong>解决长期缺乏自有青年社群的问题，从"做一次活动来一批人流"转向"拥有稳定青年用户资产"</li>
+            <li class="topic-card__point"><strong>产品模型：</strong>可裂变的"青年社群细胞核"——共享视频播客空间为物理载体，搭载内容生产与青年参与体系</li>
+            <li class="topic-card__point"><strong>预算区间：</strong>大型活动30-50万，试水型10-15万；标准产品包15-30万/场</li>
+            <li class="topic-card__point"><strong>规模测算：</strong>覆盖10个商业体约300万，100个商业体可达3000万</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题6 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-6)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">青年社群链接方案与校园渗透</h3>
+            <span class="topic-card__time">00:14:00</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>核心价值：</strong>觉醒后的年轻人可成为内容矩阵的蚂蚁军团 KOC，抓住年轻发声具备极高能量价值</li>
+            <li class="topic-card__point"><strong>融合方向：</strong>在 yes go 现有玩法上结合东北犊角兽内容形态，推出全新综合玩法</li>
+            <li class="topic-card__point"><strong>校园渗透：</strong>与高校合作建立"青犊兽"校园小组，鼓励学生开展校园播客；通过投稿奖励激发参与</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题7 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-7)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">东北人情感需求洞察与价值观共识</h3>
+            <span class="topic-card__time">00:21:44</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>标签矮化问题：</strong>在外成功的东北人长期存在标签被矮化的问题，说出自己是东北人时不够骄傲</li>
+            <li class="topic-card__point"><strong>项目精神内核：</strong>脱离传统商务商圈的低级玩法，走尊重生命与心灵成长的路线，符合当下年轻人觉醒状态</li>
+            <li class="topic-card__point"><strong>差异化定位：</strong>倡导"去油、去登味"，重塑东北青年心理状态与生活理念，提升城市整体活力</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题8 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: var(--theme-8)"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">线下空间与康养产品规划</h3>
+            <span class="topic-card__time">00:16:37</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>全国会客厅布局：</strong>在青岛、哈尔滨、大理、深圳等多地布局囍欢会客厅，作为线下资源链接的小空间</li>
+            <li class="topic-card__point"><strong>大理定制产品：</strong>8人成团的小型定制旅修考察产品，提供认知升级、心灵调整、圈层搭建服务</li>
+            <li class="topic-card__point"><strong>康养结合：</strong>东北人饮食习惯易出健康问题，结合医疗行业资源匹配康养需求，符合大健康趋势</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 主题9 -->
+      <div class="topic-card">
+        <div class="topic-card__bar" style="background: #14B8A6"></div>
+        <div class="topic-card__body">
+          <div class="topic-card__header">
+            <h3 class="topic-card__title">项目推进节奏共识</h3>
+            <span class="topic-card__time">00:32:41</span>
+          </div>
+          <ul class="topic-card__points">
+            <li class="topic-card__point"><strong>分步推进路径：</strong>先利用东北犊角兽 IP 流量，用小产品对接合作机会，逐步链接到100位超级东北嘉宾</li>
+            <li class="topic-card__point"><strong>势能积累逻辑：</strong>先积累势能，后续做感兴趣的项目会更简单；平衡事业和生活，少内耗不焦虑</li>
+            <li class="topic-card__point"><strong>立足东北起步：</strong>优先深耕本地，验证模式有效性；以凯德哈尔滨项目为样板，避免过早扩张</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ Section 4: 关键决策与共识 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2 class="section__title">关键决策与共识</h2>
+      </div>
+
+      <div class="decision-list">
+        <div class="decision-item">
+          <span class="decision-item__num">1</span>
+          <span class="decision-item__text">项目定位：凯德合作不是单次活动，而是向其销售"青年社群持续运营服务"，实现从流量引入到人群留存的转变</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-item__num">2</span>
+          <span class="decision-item__text">产品形态：以共享视频播客空间为核心载体，搭载青年投稿与内容生产机制，形成可裂变的"青年社群细胞核"</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-item__num">3</span>
+          <span class="decision-item__text">执行原则：先在东北扎实落地，成功后再考虑全国复制；独立前行，不依赖外部品牌背书</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-item__num">4</span>
+          <span class="decision-item__text">内容方向：强化女性视角与慢生活理念，推动刚柔并济的内容风格转型，倡导积极、开放、创新的心理青年态</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-item__num">5</span>
+          <span class="decision-item__text">组织分工：东北犊角兽承担内容输出与话题引领；囍悦公社负责社群运营、资源嫁接与商业化落地</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ Section 5: 金句精选 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h2 class="section__title">金句精选</h2>
+      </div>
+
+      <div class="quotes-grid">
+        <div class="quote-card">
+          <p class="quote-card__text">找一个人谈恋爱很容易，找一个人前期做个小买卖，一眼能挣到多少钱是很容易的事，可是长长久久走下去的一定是思想认知的高度是匹配的，这样的人是很难找的。</p>
+          <span class="quote-card__tag">思考启发</span>
+        </div>
+
+        <div class="quote-card">
+          <p class="quote-card__text">前期碰到一群合适的人，真的能把这个势能聚起来，这个是可遇不可求的。</p>
+          <span class="quote-card__tag">战略洞见</span>
+        </div>
+
+        <div class="quote-card">
+          <p class="quote-card__text">左手事业右手生活，保护好工作，创造新的增量价值，生活上好好生活，少内耗不焦虑，体会更多层面的快乐。</p>
+          <span class="quote-card__tag">执行策略</span>
+        </div>
+
+        <div class="quote-card">
+          <p class="quote-card__text">你的思维层次不提升，你永远不能把20块钱的T恤穿成百万大牌的感觉。</p>
+          <span class="quote-card__tag">思考启发</span>
+        </div>
+
+        <div class="quote-card">
+          <p class="quote-card__text">成功的东北人说出自己是东北人时不够骄傲，存在深层的情感需求——我们抓住的是人心所向最深层的情感和价值需求。</p>
+          <span class="quote-card__tag">战略洞见</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ Section 6: 行动项 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h2 class="section__title">行动项</h2>
+      </div>
+
+      <table class="action-table">
+        <thead>
+          <tr>
+            <th style="width:40%">行动项</th>
+            <th style="width:18%">负责人</th>
+            <th style="width:22%">时间节点</th>
+            <th style="width:20%">优先级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>与凯德王总明确预算与具体需求</td>
+            <td>旭文</td>
+            <td>待定</td>
+            <td><span class="priority-badge priority-badge--high">高优</span></td>
+          </tr>
+          <tr>
+            <td>搭建凯德商场内公共视频播客录制空间</td>
+            <td>旭文 / 闪客</td>
+            <td>五一活动前</td>
+            <td><span class="priority-badge priority-badge--high">高优</span></td>
+          </tr>
+          <tr>
+            <td>确定克新在凯德活动中的内容策划介入方式</td>
+            <td>发起人 / 旭文</td>
+            <td>待定</td>
+            <td><span class="priority-badge priority-badge--mid">中优</span></td>
+          </tr>
+          <tr>
+            <td>完成哈尔滨、沈阳录制后前往大理考察对接资源</td>
+            <td>发起人</td>
+            <td>录制完成后</td>
+            <td><span class="priority-badge priority-badge--mid">中优</span></td>
+          </tr>
+          <tr>
+            <td>实地考察哈尔滨小院及潜在合作人群（孟老师等）</td>
+            <td>旭文</td>
+            <td>四月内</td>
+            <td><span class="priority-badge priority-badge--mid">中优</span></td>
+          </tr>
+          <tr>
+            <td>收集并筛选高校学生投稿问题用于节目内容</td>
+            <td>旭文</td>
+            <td>持续进行</td>
+            <td><span class="priority-badge priority-badge--low">持续</span></td>
+          </tr>
+          <tr>
+            <td>双方共同构想项目未来落地方案，梳理事项时间进展</td>
+            <td>双方</td>
+            <td>持续进行</td>
+            <td><span class="priority-badge priority-badge--low">持续</span></td>
+          </tr>
+          <tr>
+            <td>7号对接联盟相关工作</td>
+            <td>发起人</td>
+            <td>4月7日</td>
+            <td><span class="priority-badge priority-badge--mid">中优</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════ Section 7: 章节概要 — 时间轴 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h2 class="section__title">章节概要</h2>
+        <span class="section__subtitle">时间轴 · 全程回顾</span>
+      </div>
+
+      <div class="chapter-timeline">
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">00:00</span>
+            <span class="chapter-item__title">提出生态化合作的核心思路</span>
+          </div>
+          <p class="chapter-item__desc">推进不同板块之间的战略合作，构建超级个体、超级团队组成的灵活生态体，基于东北犊角兽 IP 积累的嘉宾资源做进一步开发</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">04:40</span>
+            <span class="chapter-item__title">分析双方能力互补性</span>
+          </div>
+          <p class="chapter-item__desc">发起人走草根真诚路线适合前端 IP 积累；合作方亲和力强可操盘后端资源整合，双方能力互补可实现业务跃迁</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">06:19</span>
+            <span class="chapter-item__title">畅想三级业务的可能性</span>
+          </div>
+          <p class="chapter-item__desc">依托一二层级攒足势能后可开发新消费项目（如银发旅居），三级业务充满可能性，全球都有东北人，发展张力充足</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">09:38</span>
+            <span class="chapter-item__title">囍悦公社业务梳理与合作意向确认</span>
+          </div>
+          <p class="chapter-item__desc">介绍囍悦公社发展历程与现有业务线（医疗策展、境外研学文旅），确认合作意向与信任基础，明确感兴趣方向为非遗教育和青年社群</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">14:00</span>
+            <span class="chapter-item__title">讨论青年社群链接方案</span>
+          </div>
+          <p class="chapter-item__desc">结合 yes go 玩法和东北犊角兽内容形态打造全新综合玩法，年轻人可成为 KOC 蚂蚁军团，提供极低人力成本和全新活力</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">16:37</span>
+            <span class="chapter-item__title">规划线下空间与康养产品</span>
+          </div>
+          <p class="chapter-item__desc">全国多城布局囍欢会客厅，大理打造 8 人定制旅修产品，结合医疗行业资源切入康养赛道</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">21:44</span>
+            <span class="chapter-item__title">明确项目核心定位与情感价值</span>
+          </div>
+          <p class="chapter-item__desc">抓住在外成功东北人的标签矮化问题和深层情感需求，走心灵成长路线，脱离传统低端商务玩法，与市场现有产品形成差异化</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">29:00</span>
+            <span class="chapter-item__title">分析人口趋势与旅居机会</span>
+          </div>
+          <p class="chapter-item__desc">大量东北人举家离开东北，传统乡土观念瓦解，可承接东北人全国各地群居生活需求，梳理出三级业务框架</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">32:41</span>
+            <span class="chapter-item__title">确认项目推进节奏</span>
+          </div>
+          <p class="chapter-item__desc">先做小产品对接凯德，稳步链接 100 位超级东北人；先积累势能，平衡事业和生活，少内耗不焦虑</p>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-item__header">
+            <span class="chapter-item__time">35:40</span>
+            <span class="chapter-item__title">收尾与后续安排</span>
+          </div>
+          <p class="chapter-item__desc">约定共同梳理落地方案和时间进展，邀请发起人完成哈尔滨、沈阳录制后前往大理考察，7 号对接联盟工作</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ Section 8: AI 洞察 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h2 class="section__title">AI 洞察</h2>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-box__header">
+          <div class="insight-box__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="insight-box__label">STRATEGIC ANALYSIS</span>
+        </div>
+        <ul class="insight-list">
+          <li>本次讨论已完成从"情怀驱动"到"产品思维"的关键跃迁，将抽象的青年社群理想转化为可定价、可交付、可复制的标准服务包</li>
+          <li>"视频播客 + 公共空间 + 青年投稿"三位一体的设计，既控制成本又保障传播长尾效应，具备极强杠杆属性</li>
+          <li>对外部资源的态度清醒务实——借用经验库但不依附品牌，标志着本土化独立品牌的成熟意识</li>
+          <li>三级业务架构设计合理：一级做流量品牌（低回报高积累），二级做圈层资源整合（核心变现），三级保持开放性（势能转化），形成完整的商业飞轮</li>
+          <li>抓住东北人深层情感需求（标签矮化、文化认同）作为社群凝聚力的底层逻辑，比纯商业利益驱动更具持久性和裂变潜力</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════ Section 8: 个人复盘 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h2 class="section__title">个人复盘</h2>
+      </div>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="review-card__label">MY ROLE</div>
+          <div class="review-card__value">合作方、方案共创者</div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__label">SPEAKING STYLE</div>
+          <div class="review-card__value">思路清晰，坦诚沟通，逐步梳理业务方向，认同对方观点同时输出自身资源与思路</div>
+        </div>
+        <div class="review-card review-card--full">
+          <div class="review-card__label">KEY OUTPUT</div>
+          <div class="review-card__value">梳理了囍悦公社现有业务与资源，确认了合作意向，明确了分步推进的项目路径，发出了大理考察邀请</div>
+        </div>
+        <div class="review-card review-card--full">
+          <div class="review-card__label">HIGHLIGHT MOMENT</div>
+          <div class="review-card__value">点出长期合作核心是思想认知匹配，凝聚势能可遇不可求，统一了双方合作的价值观共识</div>
+        </div>
+      </div>
+
+      <!-- 时间日志 -->
+      <div style="margin-top: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--c-muted); letter-spacing: 1px; margin-bottom: 8px;">TIME LOG</div>
+        <div class="timeline">
+          <div class="timeline__seg timeline__seg--work" style="flex: 82;">
+            工作 · 合作洽谈 00:00 - 00:37
+          </div>
+          <div class="timeline__seg timeline__seg--life" style="flex: 18;">
+            生活 00:37 - 00:45
+          </div>
+        </div>
+        <div class="timeline-legend">
+          <span><span class="timeline-legend__dot" style="background: var(--c-navy)"></span>工作：洽谈合作，梳理业务、优势，讨论定位与路径</span>
+          <span><span class="timeline-legend__dot" style="background: var(--c-gold)"></span>生活：沟通行程安排，准备赶车</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ Section 10: 决策与待办提取 ═══════════ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon">
+          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        </div>
+        <h2 class="section__title">决策与待办提取</h2>
+        <span class="section__subtitle">一页速览</span>
+      </div>
+
+      <div class="extract-block">
+        <div class="extract-block__badge">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          DECISIONS EXTRACTED
+        </div>
+
+        <div class="extract-grid">
+          <div class="extract-card">
+            <div class="extract-card__label">STRATEGIC DECISIONS</div>
+            <ul class="extract-card__list">
+              <li class="extract-card__item extract-card__item--decision">凯德合作 = 青年社群持续运营服务（非单次活动）</li>
+              <li class="extract-card__item extract-card__item--decision">产品核心 = 共享视频播客空间 + 青年投稿机制</li>
+              <li class="extract-card__item extract-card__item--decision">组织分工：犊角兽做内容引领，囍悦公社做运营落地</li>
+              <li class="extract-card__item extract-card__item--decision">先东北扎实落地，再全国复制</li>
+            </ul>
+          </div>
+
+          <div class="extract-card">
+            <div class="extract-card__label">CONTENT DIRECTION</div>
+            <ul class="extract-card__list">
+              <li class="extract-card__item extract-card__item--decision">强化女性视角 + 慢生活理念</li>
+              <li class="extract-card__item extract-card__item--decision">倡导"去油、去登味"的新东北青年态</li>
+              <li class="extract-card__item extract-card__item--decision">打造老中青三代跨代际对话</li>
+              <li class="extract-card__item extract-card__item--decision">抓住东北人深层情感需求（文化认同）</li>
+            </ul>
+          </div>
+
+          <div class="extract-divider"></div>
+
+          <div class="extract-card extract-card--full">
+            <div class="extract-card__label">IMMEDIATE TODOS</div>
+            <ul class="extract-card__list">
+              <li class="extract-card__item extract-card__item--todo"><strong>4月7日</strong> — 发起人对接联盟相关工作</li>
+              <li class="extract-card__item extract-card__item--todo"><strong>五一前</strong> — 搭建凯德商场公共视频播客录制空间（旭文/闪客）</li>
+              <li class="extract-card__item extract-card__item--todo"><strong>四月内</strong> — 实地考察哈尔滨小院及孟老师等资源（旭文）</li>
+              <li class="extract-card__item extract-card__item--todo"><strong>待定</strong> — 与凯德王总明确预算与需求（旭文）</li>
+              <li class="extract-card__item extract-card__item--todo"><strong>录制后</strong> — 发起人前往大理考察对接资源</li>
+            </ul>
+          </div>
+
+          <div class="extract-card">
+            <div class="extract-card__label">RISKS & WATCH ITEMS</div>
+            <ul class="extract-card__list">
+              <li class="extract-card__item extract-card__item--risk">经济欠发达地区言论管控敏感，需内容安全机制</li>
+              <li class="extract-card__item extract-card__item--risk">部分学校校友会运作功利化，需自下而上重建信任</li>
+              <li class="extract-card__item extract-card__item--risk">避免过早扩张，先验证模式有效性</li>
+            </ul>
+          </div>
+
+          <div class="extract-card">
+            <div class="extract-card__label">NEXT MILESTONES</div>
+            <ul class="extract-card__list">
+              <li class="extract-card__item extract-card__item--next">凯德哈尔滨首个试点项目启动</li>
+              <li class="extract-card__item extract-card__item--next">链接首批 100 位超级东北人嘉宾</li>
+              <li class="extract-card__item extract-card__item--next">标准产品包定价（15-30万/场）</li>
+              <li class="extract-card__item extract-card__item--next">全国商业体复制推广</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 页脚 ── -->
+    <div class="footer">
+      东北犊角兽 × 囍悦公社 · 会议纪要融合版 · AI 辅助生成 · 2026-04-03
+    </div>
+
+  </div><!-- .content -->
+</div><!-- .page -->
+</body>
+</html>

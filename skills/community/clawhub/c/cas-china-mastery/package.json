@@ -1,0 +1,19 @@
+{
+  "name": "cas-china-mastery",
+  "version": "1.0.0",
+  "description": "中国企业会计准则全面实务体系：5本财政部权威著作2021-2025版，覆盖1项基本准则+40项具体准则",
+  "author": "Wang Dongjie, CGMA/AICPA&CIMA",
+  "license": "MIT",
+  "keywords": [
+    "企业会计准则",
+    "CAS",
+    "中国会计",
+    "新收入准则",
+    "新金融工具准则",
+    "新租赁准则",
+    "长期股权投资",
+    "所得税会计",
+    "CGMA",
+    "财务报告"
+  ]
+}

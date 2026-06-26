@@ -1,35 +1,22 @@
 ---
-name: "ctx-doctor"
-description: "Indexed by skills.sh from mksglu/context-mode"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mksglu"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mksglu/context-mode/ctx-doctor"
-sourceUrl: "https://skills.sh/mksglu/context-mode/ctx-doctor"
+name: ctx-doctor
+description: |
+  Run context-mode diagnostics. Checks runtimes, hooks, FTS5,
+  plugin registration, npm and marketplace versions.
+  Trigger: /context-mode:ctx-doctor
+user-invocable: true
 ---
 
-# ctx-doctor
+# Context Mode Doctor
 
-> Indexed by skills.sh from mksglu/context-mode
+Run diagnostics and display results directly in the conversation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mksglu
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mksglu/context-mode/ctx-doctor`
-- **Source URL:** [https://skills.sh/mksglu/context-mode/ctx-doctor](https://skills.sh/mksglu/context-mode/ctx-doctor)
+## Instructions
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mksglu/context-mode/ctx-doctor
-```
+1. Call the `ctx_doctor` MCP tool directly. It runs all checks server-side and returns a plain-text status report.
+2. Display the results verbatim — they are already formatted with plain-text status prefixes: `[OK]` PASS, `[FAIL]` FAIL, `[WARN]` WARN. Renderer-safe (no markdown task-list syntax) for cross-client compatibility (e.g., Z.ai GLM).
+3. **Fallback** (only if MCP tool call fails): Derive the **plugin root** from this skill's base directory (go up 2 levels — remove `/skills/ctx-doctor`), then run with Bash:
+   ```
+   CLI="<PLUGIN_ROOT>/cli.bundle.mjs"; [ ! -f "$CLI" ] && CLI="<PLUGIN_ROOT>/build/cli.js"; node "$CLI" doctor
+   ```
+   Re-display results verbatim with the same `[OK]`/`[FAIL]`/`[WARN]` prefixes.

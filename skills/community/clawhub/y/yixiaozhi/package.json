@@ -1,0 +1,21 @@
+{
+  "name": "医小智",
+  "version": "1.0.0",
+  "description": "基于“多模型并行推理、主动抗辩”的低幻觉（国家发明专利）独有模式，快速为用户提供精准的、个性化的疾病诊断、智能荐药、推拿按摩、针灸等服务。并推荐对应的检测机构、治疗机构。",
+  "author": "融合推理（北京）科技有限公司",
+  "features": [
+    "2+4+病史信息收集",
+    "三轮精准问诊",
+    "结构化诊断报告",
+    "诊断报告标题加大加粗"
+  ],
+  "requirements": [
+    "WorkBuddy",
+    "融合推理（北京）科技有限公司蚩尤智核CFC API Key"
+  ],
+  "installation": {
+    "step1": "复制整个文件夹到 ~/.workbuddy/skills/",
+    "step2": "编辑config.json填入API Key",
+    "step3": "重启WorkBuddy"
+  }
+}

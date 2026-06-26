@@ -1,0 +1,16 @@
+from: gfm+emoji+autolink_bare_uris+footnotes
+pdf-engine: xelatex
+toc: true
+number-sections: true
+highlight-style: tango
+variables:
+  CJKmainfont: Noto Sans CJK SC
+  mainfont: DejaVu Serif
+  sansfont: DejaVu Sans
+  monofont: DejaVu Sans Mono
+  geometry: margin=2.2cm
+  fontsize: 11pt
+  linestretch: 1.2
+  colorlinks: true
+  linkcolor: blue
+  urlcolor: blue

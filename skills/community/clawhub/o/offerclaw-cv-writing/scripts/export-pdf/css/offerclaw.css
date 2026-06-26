@@ -1,0 +1,260 @@
+/*
+ *   OfferClaw CV (WeasyPrint port) — Serif variant
+ */
+
+/* ===== Font faces ===== */
+
+@font-face {
+    font-family: "OfferClaw Sans";
+    src:
+        {{FONT_SANS_REGULAR_SRC}};
+}
+
+@font-face {
+    font-family: "OfferClaw Sans";
+    src:
+        {{FONT_SANS_BOLD_SRC}};
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "OfferClaw Sans";
+    src:
+        {{FONT_SANS_ITALIC_SRC}};
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "OfferClaw Serif";
+    src:
+        {{FONT_SERIF_BOLD_SRC}};
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "OfferClaw Mono";
+    src:
+        {{FONT_MONO_REGULAR_SRC}};
+}
+
+/* ===== Text ===== */
+
+a,
+a span {
+    font-family: {{FONT_MONO_STACK}};
+}
+
+code {
+    font-family: {{FONT_MONO_STACK}};
+}
+
+p,
+.bullet-item {
+    font-family: {{FONT_SANS_STACK}};
+    font-size: 9.5pt;
+    line-height: 1.8;
+    color: #000000;
+}
+
+/* ===== Title ===== */
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    font-family: {{FONT_SERIF_STACK}};
+}
+
+h1 {
+    font-size: 25pt;
+    color: #000000;
+    line-height: 1.5;
+    border-bottom: 0;
+    /* serif overrides */
+    padding: 1mm 0 0 0;
+    margin: 3mm 1mm 0 1mm;
+}
+
+h1,
+blockquote p {
+    text-align: center;
+}
+
+h2 {
+    color: #000000;
+    font-size: 13pt;
+    border-bottom: 1px solid #333333;
+    margin-top: 2.4mm !important;
+    margin-bottom: 1.9mm !important;
+    line-height: 1;
+    /* serif overrides */
+    padding: 1.2mm 0;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    color: #000000;
+    line-height: 1.8;
+    font-size: 11pt;
+}
+
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    font-weight: normal;
+    font-size: 10.5pt;
+}
+
+h1,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+p,
+li p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@media print {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        page-break-after: avoid;
+    }
+}
+
+em {
+    display: inline-block;
+    transform: skewX(-10deg);
+}
+
+strong {
+    color: #000000;
+    font-weight: 800;
+}
+
+h2 strong {
+    font-weight: 900;
+}
+
+/* ===== List (rendered as div to avoid weasyprint ul indentation) ===== */
+
+.bullet-item {
+    margin: 0;
+    padding: 0;
+}
+
+.bullet-item::before {
+    content: "\2022\00a0\00a0";
+    font-weight: bold;
+}
+
+/* ===== Avatar ===== */
+
+.avatar,
+img[alt="avatar"] {
+    display: block;
+    position: relative;
+    top: 1mm;
+    z-index: 9999;
+    float: right;
+    object-fit: cover;
+    overflow: hidden;
+    width: 24mm;
+    height: 24mm;
+    border-radius: 50%;
+    /* serif overrides */
+    box-shadow: none;
+    border: none;
+    margin-top: -29mm !important;
+    right: 1mm;
+}
+
+p:has(.avatar, img[alt="avatar"]) {
+    height: 0;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* ===== Link ===== */
+
+a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+/* ===== Code ===== */
+
+code {
+    background-color: #fff;
+    color: #000000 !important;
+    font-size: 9.5pt;
+}
+
+/* ===== Block Quote ===== */
+
+blockquote,
+blockquote * {
+    line-height: 1.6;
+    padding: 0;
+    border-inline-start: none !important;
+    font-size: 9.3pt;
+}
+
+blockquote a {
+    color: #000000 !important;
+}
+
+/* serif overrides for blockquote */
+blockquote {
+    margin: 0 1mm 6mm 1mm;
+    padding: 0;
+    background: unset !important;
+    border-left-width: unset;
+    border-left-style: unset;
+}
+
+blockquote p {
+    line-height: 1.5;
+}
+
+/* ===== Custom Class ===== */
+
+.entry-title,
+div[alt="entry-title"] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon,
+span[alt="icon"] {
+    font-family: "OfferClaw Icon";
+    color: #000000;
+}
+
+/* ===== Horizontal Line ===== */
+
+hr {
+    border-top: 2px solid #dae3eac9;
+    border-bottom: none;
+    margin: 15mm 0 12mm 0;
+}
+
+@media print {
+    hr {
+        page-break-after: always;
+        margin: 0;
+        visibility: hidden;
+    }
+}

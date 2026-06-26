@@ -1,35 +1,44 @@
----
-name: "Feishu Doc Writing"
-description: "Organizes and formats group discussions, meetings, and research into clear, complete Feishu documents with proper structure, visuals, and security."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-doc-writing"
-sourceUrl: "https://clawhub.ai/skills/feishu-doc-writing"
+# 飞书文档写作 Skill
+
+> 来源：黄哥在"养虾"中总结的写文档规范，经主人确认纳入。
+
+## 触发条件
+
+当需要将群聊讨论、会议内容、调研结果等整理为飞书文档时激活。
+
 ---
 
-# Feishu Doc Writing
+## 写作规范
 
-> Organizes and formats group discussions, meetings, and research into clear, complete Feishu documents with proper structure, visuals, and security.
+### 1. 内容完整性
+- 文档内容 ≥ 群聊/源素材内容，不能丢信息
+- 主动补充背景、上下文、相关细节，让没参与讨论的人也能看懂
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-doc-writing`
-- **Source URL:** [https://clawhub.ai/skills/feishu-doc-writing](https://clawhub.ai/skills/feishu-doc-writing)
+### 2. 层级美观
+- 标题层级清晰（H1 → H2 → H3），不跳级
+- 段落之间有"呼吸感"，不挤在一起
+- 善用分隔线、空行，让结构一目了然
 
-## Overview
+### 3. 图文结合
+- 不堆文字墙，适当插入图片、表格、流程图
+- 有数据用表格，有流程用图示
+- 截图、示意图能让文档更直观
 
+### 4. 加粗策略
+- 重要内容、关键结论、核心数据加粗
+- 从用户后续修改中学习：用户加粗了什么、去掉了什么加粗 → 调整自己的加粗判断
+- 不滥用加粗，加粗太多 = 没加粗
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-doc-writing
-```
+### 5. 作者署名
+- 格式：`小龙虾🦞 × 提需求人`
+- 小龙虾🦞 是 AI 助手的统一署名
+- 提需求人是发起文档需求的人
+
+### 6. 权限规则
+- **老板**：full_access（完全访问）
+- **群成员**：view（只读）
+- **提需求人**：edit（可编辑）
+
+### 7. 安全规则
+- 不暴露内部敏感信息（API key、内部系统地址、未公开数据等）
+- 对外文档额外注意脱敏

@@ -1,0 +1,16 @@
+{
+  "id": "steve-jobs",
+  "name": "Steve Jobs",
+  "domain": "Product Design",
+  "role": "Apple Co-founder",
+  "category": "startup",
+  "personality": "Perfectionist",
+  "specialty": "Design, UX",
+  "tools": [
+    "figma",
+    "sketch",
+    "prototyping",
+    "user-testing"
+  ],
+  "version": "1.0.0"
+}

@@ -1,35 +1,27 @@
 ---
-name: "Seo Scout Pro"
-description: "Website submit page discovery and form analysis tool. Scout any website to find submission forms, detect authentication requirements, identify CAPTCHAs, and..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seo-scout-pro"
-sourceUrl: "https://clawhub.ai/skills/seo-scout-pro"
+name: "seo-scout-pro"
+version: "1.0.0"
+description: "Website submit page discovery and form analysis tool. Scout any website to find submission forms, detect authentication requirements, identify CAPTCHAs, and map form fields for automated or manual submission. Essential for backlink building campaigns."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [seo, scout, forms, backlink, directory, submission, automation]
+category: "marketing"
 ---
 
-# Seo Scout Pro
+# SEO Scout Pro
 
-> Website submit page discovery and form analysis tool. Scout any website to find submission forms, detect authentication requirements, identify CAPTCHAs, and...
+Discover submit pages and analyze form structures on any website. Essential first step before backlink submission — know what you're dealing with before you submit.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seo-scout-pro`
-- **Source URL:** [https://clawhub.ai/skills/seo-scout-pro](https://clawhub.ai/skills/seo-scout-pro)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/seo-scout-pro
-```
+| Command | Description |
+|---------|-------------|
+| `scout-basic` | Quick scan for submit pages and forms |
+| `scout-deep` | Follow links to find hidden submit pages |
+| `form-analysis` | Detailed form field mapping |
+| `auth-detect` | Detect login/OAuth/CAPTCHA requirements |
+| `cloudflare-check` | Check Cloudflare protection level |
+| `adapter-template` | Generate site adapter boilerplate |
+| `anti-detect` | Browser stealth configuration guide |
+| `manual-checklist` | Step-by-step manual submission checklist |

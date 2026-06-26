@@ -1,0 +1,39 @@
+# Three-Factor Stock Analyzer Configuration
+# Copy this file and add your API keys
+
+# API Keys (can also use environment variables)
+fmp_api_key: "YOUR_FMP_API_KEY_HERE"  # Get from financialmodelingprep.com
+
+# DCF Analysis Settings
+dcf_discount_rate: 0.10          # WACC / required return (10% default)
+terminal_growth: 0.025           # Perpetual growth rate (2.5% default)
+projection_years: 10             # Years to project FCF
+margin_of_safety: 0.20           # Required discount to intrinsic value (20%)
+
+# Trend Analysis Settings  
+pivot_lookback: 20               # Days to look back for pivot points
+volume_confirm_ratio: 1.5        # Volume must be 1.5x average to confirm
+ma_short: 20                     # Short-term MA period
+ma_long: 60                      # Long-term MA period
+
+# VIX / Sentiment Settings
+vix_low_threshold: 15            # VIX below this = complacency
+vix_normal_threshold: 20         # Normal VIX range
+vix_high_threshold: 25           # Elevated VIX (caution)
+vix_panic_threshold: 30          # High VIX (panic)
+max_iv_rank: 70                  # Max acceptable IV percentile
+
+# Scoring Weights (must sum to 1.0)
+value_weight: 0.40               # DCF weight
+trend_weight: 0.35               # Livermore trend weight
+sentiment_weight: 0.25           # VIX sentiment weight
+
+# Buy Signal Thresholds
+min_score_threshold: 60          # Minimum score for each factor
+composite_threshold: 70          # Minimum composite score for buy
+
+# Position Sizing (max % of portfolio per position)
+max_position_size: 0.15          # 15% maximum
+high_confidence_size: 0.10       # 10% for high confidence
+medium_confidence_size: 0.07     # 7% for medium confidence
+low_confidence_size: 0.03        # 3% for low confidence

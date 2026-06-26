@@ -1,0 +1,146 @@
+# 标书分析助手配置文件
+
+# 监控的网站配置
+data_sources:
+  # 政府采购类
+  - name: "中国政府采购网"
+    url: "http://www.ccgp.gov.cn/"
+    type: "rss"
+    category: "政府"
+    keywords: ["信息化", "数字化", "系统集成", "软件开发", "硬件", "服务"]
+    min_amount: 1000000  # 100万
+    enabled: true
+
+  - name: "中国招标投标公共服务平台"
+    url: "https://www.cebpubservice.com/"
+    type: "api"
+    category: "综合"
+    keywords: ["金融", "运营商", "交通", "央企", "信息化"]
+    min_amount: 5000000  # 500万
+    enabled: true
+
+  # 运营商类
+  - name: "中国移动采购与招标"
+    url: "https://b2b.10086.cn/"
+    type: "web"
+    category: "运营商"
+    keywords: ["IT", "系统", "设备", "服务"]
+    min_amount: 10000000  # 1000万
+    enabled: true
+
+  - name: "中国联通采购"
+    url: "https://www.chinaunicombidding.cn/"
+    type: "web"
+    category: "运营商"
+    keywords: ["IT", "系统", "设备", "服务"]
+    min_amount: 10000000
+    enabled: true
+
+  - name: "中国电信阳光采购"
+    url: "https://caigou.chinatelecom.com.cn/"
+    type: "web"
+    category: "运营商"
+    keywords: ["IT", "系统", "设备", "服务"]
+    min_amount: 10000000
+    enabled: true
+
+  # 金融类
+  - name: "银行采购平台"
+    type: "aggregate"
+    category: "金融"
+    keywords: ["金融科技", "IT", "系统", "软件", "硬件"]
+    min_amount: 5000000
+    enabled: true
+
+  # 央企类
+  - name: "国家电网"
+    url: "https://ecp.sgcc.com.cn/"
+    type: "web"
+    category: "央企"
+    keywords: ["信息化", "数字化", "系统", "设备"]
+    min_amount: 10000000
+    enabled: true
+
+# 分析维度配置
+analysis_dimensions:
+  contract:
+    enabled: true
+    fields:
+      - "合同类型"
+      - "合同期限"
+      - "违约责任"
+      - "知识产权"
+      - "保密条款"
+
+  payment:
+    enabled: true
+    fields:
+      - "付款节奏"
+      - "预付款比例"
+      - "进度款条件"
+      - "质保金比例"
+      - "逾期条款"
+
+  technical:
+    enabled: true
+    fields:
+      - "核心技术要求"
+      - "性能指标"
+      - "兼容性要求"
+      - "安全合规"
+      - "技术标准"
+
+  evaluation:
+    enabled: true
+    fields:
+      - "评标方法"
+      - "分值权重"
+      - "资格门槛"
+      - "加分项"
+      - "废标条款"
+
+  other:
+    enabled: true
+    fields:
+      - "交付周期"
+      - "售后服务"
+      - "培训要求"
+      - "资质要求"
+
+# 推送配置
+notifications:
+  feishu:
+    enabled: true
+    webhook: ""  # 需要配置飞书机器人webhook
+
+  email:
+    enabled: true
+    smtp_server: "smtp.126.com"
+    smtp_port: 465
+    username: "ylbwjf@126.com"
+    password: ""  # 需要配置邮箱密码
+    to: "ylbwjf@126.com"
+
+# 定时任务配置
+schedule:
+  # 每小时抓取一次
+  crawl_interval: 3600  # 秒
+
+  # 重点汇报间隔
+  report_interval: 7200  # 2小时
+
+  # 高价值项目立即推送阈值（万元）
+  high_value_threshold: 1000
+
+# 存储配置
+storage:
+  type: "sqlite"  # sqlite/mysql/postgresql
+  path: "./data/tenders.db"
+
+# LLM配置
+llm:
+  provider: "openai"  # openai/anthropic/azure
+  model: "gpt-4o"
+  api_key: ""  # 需要配置API密钥
+  temperature: 0.3
+  max_tokens: 4000

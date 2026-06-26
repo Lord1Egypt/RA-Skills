@@ -1,0 +1,17 @@
+### 可用命令（三级命令结构）
+- `help` - 显示帮助信息，查看所有命令和参数
+- `config set` - 配置 API URL 和 Token
+  - `--url`: API 基础地址 (例如: http://localhost:8000)
+  - `--token`: API Token (Bearer 凭证)
+- `photos` - 照片管理
+  - `list` - 查询照片列表
+  - `info` - 获取单张照片信息 (`--photo-id`)
+  - `delete` - 删除单张照片 (`--photo-id`)
+- `tags list` - 查询分类标签
+- `albums list` - 查询相册列表
+- `locations` - 查询照片位置
+  - `list` - 查询位置分布（地点，照片数量）
+  - `timeline` - 查询足迹时间轴（开始日期，结束日期，地点，照片数量）
+- `people list` - 查询已识别的人物/面孔
+- `folders list` - 查询挂载的存储文件夹列表
+- `medias get` - 获取照片的媒体文件（支持 base64 编码和文件下载）

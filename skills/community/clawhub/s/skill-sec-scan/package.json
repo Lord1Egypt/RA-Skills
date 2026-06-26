@@ -1,0 +1,12 @@
+{
+  "name": "skill-security-scanner",
+  "version": "4.2.0",
+  "description": "Enterprise-grade Skill security detection tool with static analysis + LLM semantic analysis",
+  "keywords": ["security", "scanner", "skill", "openclaw", "clawhub"],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skill-security-scanner"
+  }
+}

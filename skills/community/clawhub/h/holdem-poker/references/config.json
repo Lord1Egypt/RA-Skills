@@ -1,0 +1,14 @@
+{
+  "game": {
+    "startingChips": 100,
+    "smallBlind": 1,
+    "bigBlind": 2,
+    "numPlayers": 3,
+    "autoDelay": 1000
+  },
+  "display": {
+    "clearScreen": true,
+    "showAIEvaluations": false,
+    "cardAnimation": false
+  }
+}

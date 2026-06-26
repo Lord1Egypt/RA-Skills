@@ -1,0 +1,288 @@
+{
+  "version": "0.1.0",
+  "format": "cda-graph",
+  "metadata": {
+    "name": "building_thermal_system",
+    "domain": "thermodynamics",
+    "description": "三房间建筑热力学系统：outdoor → wall_north → room_A → inner_wall → room_B，含空调（room_A）和散热器（room_B）",
+    "entity_count": 5,
+    "edge_count": 6,
+    "created_by": "cda-data-synth",
+    "creation_time": "2026-04-27T03:00:00Z",
+    "scenario": "phase1_verification"
+  },
+  "entities": [
+    {
+      "id": 0,
+      "name": "outdoor",
+      "type": "thermal_node",
+      "domain": "thermodynamics",
+      "position": {
+        "values": [305.0],
+        "coordinates": ["temperature_K"],
+        "units": ["K"]
+      },
+      "momentum": {
+        "values": [0.0],
+        "coordinates": ["heat_flux_W"],
+        "units": ["W"]
+      },
+      "attributes": {
+        "mass": 1e10,
+        "specific_heat": 1005.0,
+        "thermal_conductivity": 0.026,
+        "volume": 1e7,
+        "material_type": "air",
+        "is_boundary": true
+      },
+      "belief": {
+        "distribution_type": "gaussian",
+        "mean": [305.0, 0.0],
+        "covariance": [[0.01, 0.0], [0.0, 0.1]]
+      }
+    },
+    {
+      "id": 1,
+      "name": "wall_north",
+      "type": "thermal_node",
+      "domain": "thermodynamics",
+      "position": {
+        "values": [300.0],
+        "coordinates": ["temperature_K"],
+        "units": ["K"]
+      },
+      "momentum": {
+        "values": [50.0],
+        "coordinates": ["heat_flux_W"],
+        "units": ["W"]
+      },
+      "attributes": {
+        "mass": 500.0,
+        "specific_heat": 840.0,
+        "thermal_conductivity": 0.8,
+        "volume": 0.2,
+        "material_type": "brick",
+        "thickness": 0.3
+      },
+      "belief": {
+        "distribution_type": "gaussian",
+        "mean": [300.0, 50.0],
+        "covariance": [[1.0, 0.0], [0.0, 5.0]]
+      }
+    },
+    {
+      "id": 2,
+      "name": "room_A",
+      "type": "thermal_node",
+      "domain": "thermodynamics",
+      "position": {
+        "values": [295.0],
+        "coordinates": ["temperature_K"],
+        "units": ["K"]
+      },
+      "momentum": {
+        "values": [0.0],
+        "coordinates": ["heat_flux_W"],
+        "units": ["W"]
+      },
+      "attributes": {
+        "mass": 200.0,
+        "specific_heat": 1005.0,
+        "thermal_conductivity": 0.026,
+        "volume": 160.0,
+        "material_type": "air",
+        "has_ac": true,
+        "ac_power": -1500.0,
+        "ac_setpoint": 293.0
+      },
+      "belief": {
+        "distribution_type": "gaussian",
+        "mean": [295.0, 0.0],
+        "covariance": [[0.5, 0.0], [0.0, 10.0]]
+      }
+    },
+    {
+      "id": 3,
+      "name": "inner_wall",
+      "type": "thermal_node",
+      "domain": "thermodynamics",
+      "position": {
+        "values": [293.0],
+        "coordinates": ["temperature_K"],
+        "units": ["K"]
+      },
+      "momentum": {
+        "values": [20.0],
+        "coordinates": ["heat_flux_W"],
+        "units": ["W"]
+      },
+      "attributes": {
+        "mass": 300.0,
+        "specific_heat": 840.0,
+        "thermal_conductivity": 0.6,
+        "volume": 0.15,
+        "material_type": "concrete",
+        "thickness": 0.2
+      },
+      "belief": {
+        "distribution_type": "gaussian",
+        "mean": [293.0, 20.0],
+        "covariance": [[0.5, 0.0], [0.0, 2.0]]
+      }
+    },
+    {
+      "id": 4,
+      "name": "room_B",
+      "type": "thermal_node",
+      "domain": "thermodynamics",
+      "position": {
+        "values": [290.0],
+        "coordinates": ["temperature_K"],
+        "units": ["K"]
+      },
+      "momentum": {
+        "values": [0.0],
+        "coordinates": ["heat_flux_W"],
+        "units": ["W"]
+      },
+      "attributes": {
+        "mass": 180.0,
+        "specific_heat": 1005.0,
+        "thermal_conductivity": 0.026,
+        "volume": 140.0,
+        "material_type": "air",
+        "has_heater": true,
+        "heater_power": 800.0
+      },
+      "belief": {
+        "distribution_type": "gaussian",
+        "mean": [290.0, 0.0],
+        "covariance": [[0.5, 0.0], [0.0, 5.0]]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source_id": 0,
+      "target_id": 1,
+      "mechanism_type": "thermal_conduction",
+      "mechanism_params": {
+        "conductivity": 0.8,
+        "cross_section_area": 20.0,
+        "distance": 0.3,
+        "function_form": "fourier_law",
+        "effective_coefficient": 53.33
+      },
+      "strength": 0.85,
+      "delay": 0.0,
+      "confidence": 0.95,
+      "source_knowledge": "physics_equation"
+    },
+    {
+      "source_id": 1,
+      "target_id": 2,
+      "mechanism_type": "thermal_conduction",
+      "mechanism_params": {
+        "conductivity": 0.8,
+        "cross_section_area": 20.0,
+        "distance": 0.3,
+        "function_form": "fourier_law",
+        "effective_coefficient": 53.33
+      },
+      "strength": 0.80,
+      "delay": 0.0,
+      "confidence": 0.95,
+      "source_knowledge": "physics_equation"
+    },
+    {
+      "source_id": 2,
+      "target_id": 3,
+      "mechanism_type": "thermal_conduction",
+      "mechanism_params": {
+        "conductivity": 0.6,
+        "cross_section_area": 15.0,
+        "distance": 0.2,
+        "function_form": "fourier_law",
+        "effective_coefficient": 45.0
+      },
+      "strength": 0.75,
+      "delay": 0.0,
+      "confidence": 0.90,
+      "source_knowledge": "physics_equation"
+    },
+    {
+      "source_id": 3,
+      "target_id": 4,
+      "mechanism_type": "thermal_conduction",
+      "mechanism_params": {
+        "conductivity": 0.6,
+        "cross_section_area": 15.0,
+        "distance": 0.2,
+        "function_form": "fourier_law",
+        "effective_coefficient": 45.0
+      },
+      "strength": 0.75,
+      "delay": 0.0,
+      "confidence": 0.90,
+      "source_knowledge": "physics_equation"
+    },
+    {
+      "source_id": 2,
+      "target_id": 2,
+      "mechanism_type": "thermal_convection",
+      "mechanism_params": {
+        "h_convection": 10.0,
+        "area": 5.0,
+        "function_form": "ac_cooling",
+        "controlled": true,
+        "setpoint": 293.0,
+        "max_power": 1500.0,
+        "control_law": "proportional",
+        "kp": 50.0
+      },
+      "strength": 0.60,
+      "delay": 0.0,
+      "confidence": 0.80,
+      "source_knowledge": "equipment_manual"
+    },
+    {
+      "source_id": 4,
+      "target_id": 4,
+      "mechanism_type": "thermal_convection",
+      "mechanism_params": {
+        "h_convection": 8.0,
+        "area": 3.0,
+        "function_form": "heater",
+        "controlled": true,
+        "power": 800.0,
+        "control_law": "on_off",
+        "threshold_temp": 288.0
+      },
+      "strength": 0.55,
+      "delay": 0.0,
+      "confidence": 0.80,
+      "source_knowledge": "equipment_manual"
+    }
+  ],
+  "initial_state": {
+    "timestamp": 0.0,
+    "hamiltonian": {
+      "initial_total_energy": 55270.0,
+      "note": "Sum of thermal energy across all entities: E_i = m_i * C_i * T_i"
+    }
+  },
+  "hamiltonian_definition": {
+    "type": "thermal_analogy",
+    "kinetic_energy": {
+      "formula": "T = sum_i p_i^2 / (2 * C_i * m_i)",
+      "note": "p_i is heat flux (thermal momentum analogy)"
+    },
+    "potential_energy": {
+      "formula": "V = sum_edges (k_eff * A / d) * (T_i - T_j)^2 / 2",
+      "note": "Pairwise thermal interaction energy"
+    },
+    "conservation_quantity": "total_thermal_energy",
+    "tolerance": 1.0e-4,
+    "note": "Not strictly conserved due to AC and heater (energy sources/sinks)"
+  }
+}

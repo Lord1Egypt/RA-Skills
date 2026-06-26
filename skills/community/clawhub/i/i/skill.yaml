@@ -1,0 +1,66 @@
+skill:
+  name: Memo
+  description: 私人工作记录助理，支持添加记录、统计分析、待办管理，数据本地持久化存储
+  version: 2.0.0
+  author: WorkBuddy
+  type: 工具
+  platform: WorkBuddy
+
+  tags:
+    - 工作记录
+    - 私人助理
+    - 统计报告
+    - 待办管理
+    - 长期记忆
+
+  data:
+    storage: local
+    file: records.json
+    format: json
+
+  intents:
+    - name: 添加记录
+      description: 添加工作记录，支持口语化输入，自动识别时间、类型、人员等信息
+      examples:
+        - "帮我记一下今天和贾辉沟通了ERP权限的问题"
+        - "2月26号完成了干部系统flash插件问题处理"
+        - "记录：下周需要协调张光辉门禁录入"
+
+    - name: 统计报告
+      description: 统计指定时间段内的工作记录，生成结构化报告
+      examples:
+        - "帮我统计本周工作"
+        - "生成上月工作报告"
+        - "2026-02-26 至 2026-02-28 的工作汇总"
+
+    - name: 查看待办
+      description: 查看未完成的待办事项
+      examples:
+        - "有什么待办没处理？"
+        - "还有什么没做的？"
+
+    - name: 搜索记录
+      description: 按关键词搜索历史工作记录
+      examples:
+        - "找找关于ERP的记录"
+        - "贾辉相关的记录有哪些"
+
+    - name: 导出报告
+      description: 将统计报告导出为 Markdown 文件
+      examples:
+        - "导出本周工作记录"
+        - "把上月记录导出成文件"
+
+    - name: 标记完成
+      description: 将待办事项标记为已完成
+      examples:
+        - "贾辉ERP权限已处理完了"
+        - "门禁录入的事搞定了"
+
+  dependencies:
+    python: ">=3.8"
+    packages:
+      - json
+      - re
+      - os
+      - datetime

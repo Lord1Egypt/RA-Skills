@@ -1,35 +1,45 @@
 ---
-name: "cost-optimizer"
-description: "Indexed by skills.sh from jmsktm/claude-settings"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jmsktm"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jmsktm/claude-settings/cost-optimizer"
-sourceUrl: "https://skills.sh/jmsktm/claude-settings/cost-optimizer"
+name: Cost Optimizer
+slug: cost-optimizer
+description: Analyze spending patterns and identify opportunities to reduce costs without sacrificing quality
+category: business
+complexity: intermediate
+version: "1.0.0"
+author: "ID8Labs"
+triggers:
+  - "reduce costs"
+  - "optimize spending"
+  - "cost analysis"
+tags:
+  - cost-reduction
+  - optimization
+  - finance
 ---
 
-# cost-optimizer
+# Cost Optimizer
 
-> Indexed by skills.sh from jmsktm/claude-settings
+Analyze spending patterns and identify opportunities to reduce costs without sacrificing quality or performance. Turn expense data into actionable savings strategies.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jmsktm
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jmsktm/claude-settings/cost-optimizer`
-- **Source URL:** [https://skills.sh/jmsktm/claude-settings/cost-optimizer](https://skills.sh/jmsktm/claude-settings/cost-optimizer)
+## Core Workflows
 
-## Overview
+### Workflow 1: Spend Analysis
+1. **Gather Data** - Collect all expense data
+2. **Categorize** - Group spending by type and vendor
+3. **Trend Analysis** - Identify patterns over time
+4. **Benchmark** - Compare to industry standards
+5. **Identify Opportunities** - Flag areas for reduction
 
+### Workflow 2: Vendor Optimization
+1. **Vendor Review** - Audit current vendor relationships
+2. **Price Comparison** - Research alternative options
+3. **Consolidation** - Identify vendor consolidation opportunities
+4. **Renegotiation** - Prepare for contract renegotiation
+5. **Track Savings** - Monitor realized savings
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jmsktm/claude-settings/cost-optimizer
-```
+## Quick Reference
+
+| Action | Command |
+|--------|---------|
+| Analyze costs | "Analyze spending for [period]" |
+| Find savings | "Identify cost reduction opportunities" |
+| Vendor review | "Review vendor [name] spending" |

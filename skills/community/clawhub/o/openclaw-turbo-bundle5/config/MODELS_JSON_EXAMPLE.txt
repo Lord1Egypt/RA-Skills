@@ -1,0 +1,25 @@
+{
+  "groq": {
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "apiKey": "VOTRE_CLE_GROQ_ICI",
+    "models": [
+      {
+        "id": "llama3-70b-8192",
+        "label": "Groq LLaMA 3 70B (Fast)",
+        "capabilities": ["text", "tools"]
+      },
+      {
+        "id": "mixtral-8x7b-32768",
+        "label": "Groq Mixtral 8x7B (Fast)",
+        "capabilities": ["text", "tools"]
+      }
+    ]
+  },
+  "openrouter": {
+    "apiKey": "VOTRE_CLE_OPENROUTER_ICI",
+    "models": {
+      "openrouter/auto": { "alias": "Free Models" },
+      "canopylabs/orpheus-arabic-saudi": { "label": "Arabic Model" }
+    }
+  }
+}

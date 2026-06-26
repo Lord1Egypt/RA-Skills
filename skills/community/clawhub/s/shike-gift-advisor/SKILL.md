@@ -1,35 +1,186 @@
 ---
-name: "Shike Gift Advisor"
+name: shike-gift-advisor
 description: "AI礼物推荐专家 - 根据收礼人关系、场合、预算智能推荐礼物。支持禁忌过滤、个性化祝福语。Use when: 礼物推荐, 生日礼物, 节日礼物, gift recommendation."
-category: "other"
-source: "ClawHub"
-tags: [advisor, gift, recommendation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shike-gift-advisor"
-sourceUrl: "https://clawhub.ai/skills/shike-gift-advisor"
+version: "1.0.0"
+author: "Shike"
+license: "MIT-0"
+tags: [gift, recommendation, advisor, 礼物推荐]
 ---
 
-# Shike Gift Advisor
+# Gift Advisor - AI礼物推荐专家
 
-> AI礼物推荐专家 - 根据收礼人关系、场合、预算智能推荐礼物。支持禁忌过滤、个性化祝福语。Use when: 礼物推荐, 生日礼物, 节日礼物, gift recommendation.
+> 送礼不是交易，是情感的传递。选礼物，就是选心意。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shike-gift-advisor`
-- **Source URL:** [https://clawhub.ai/skills/shike-gift-advisor](https://clawhub.ai/skills/shike-gift-advisor)
+---
 
-## Overview
+## 核心理念
 
+**关系识别 → 场合分析 → 预算匹配 → 禁忌过滤 → 个性化推荐**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shike-gift-advisor
+---
+
+## 核心功能
+
+### 1. 智能推荐
+- 自然语言解析需求
+- 3-5个候选礼物推荐
+- 每个礼物包含：名称、价格、理由、适配度
+
+### 2. 禁忌过滤
+- 20+文化禁忌（钟、鞋、梨、伞等）
+- 场合禁忌匹配
+- 个人忌讳验证
+- 提供安全替代品
+
+### 3. 个性化祝福
+- 多风格选择（标准、深情、幽默、简洁、文艺）
+- 方言支持（粤语、四川话、上海话、东北话）
+- 根据关系和礼物定制
+
+---
+
+## 适用场景
+
+### 关系支持
+- 家人：妈妈、爸爸、长辈、孩子
+- 情侣：女友、男友、老公、老婆
+- 朋友：闺蜜、兄弟、同事
+- 商务：领导、客户、老师
+
+### 场合支持
+- 生日、节日、纪念日
+- 情人节、母亲节、父亲节
+- 春节、中秋、圣诞节
+- 乔迁、结婚、毕业、升职
+- 道歉、感谢、表白
+
+---
+
+## 使用方式
+
+### 自然语言输入
+
 ```
+用户：送妈妈的生日礼物，预算500元左右
+```
+
+### 输出示例
+
+```json
+{
+  "recommendations": [
+    {
+      "name": "护肤品套装",
+      "price": 699,
+      "reason": "妈妈日常保养需要，实用贴心",
+      "score": 95
+    },
+    {
+      "name": "丝巾",
+      "price": 299,
+      "reason": "优雅大方，适合各种场合",
+      "score": 88
+    }
+  ],
+  "blessing": "生日快乐！愿您年年有今日，岁岁有今朝！妈妈，您辛苦了！",
+  "taboo_report": {
+    "summary": "✅ 无禁忌礼物"
+  }
+}
+```
+
+---
+
+## 工作流程
+
+```
+1. 信息收集
+   - 解析收礼人关系
+   - 识别场合类型
+   - 提取预算范围
+   - 了解偏好特征
+
+2. 候选筛选
+   - 调用知识库匹配
+   - 过滤禁忌礼物
+   - 计算适配分数
+   - 排序推荐列表
+
+3. 禁忌检查
+   - 文化禁忌扫描
+   - 场合禁忌匹配
+   - 个人禁忌验证
+   - 生成禁忌报告
+
+4. 祝福语生成
+   - 选择祝福模板
+   - 个性化调整
+   - 情感适配
+
+5. 结果呈现
+   - 格式化输出
+   - 展示理由
+   - 提供购买建议
+```
+
+---
+
+## 关键检查点
+
+### 检查点1：需求完整性
+触发时机：信息收集后
+用户确认：收礼人关系、场合、预算是否明确
+
+### 检查点2：禁忌确认
+触发时机：禁忌检查后
+用户确认：是否有特殊文化禁忌或个人忌讳
+
+### 检查点3：推荐验收
+触发时机：呈现结果前
+用户确认：推荐是否符合预期，是否需要调整
+
+---
+
+## 禁忌库示例
+
+| 礼物 | 禁忌原因 | 替代方案 |
+|------|----------|----------|
+| 钟 | 谐音"送终" | 电子闹钟、沙漏 |
+| 鞋 | 谐音"邪" | 舒适的拖鞋（避开正装鞋） |
+| 梨 | 谐音"离" | 苹果、橙子 |
+| 伞 | 谐音"散" | 防晒帽、雨衣 |
+| 蜡烛 | 祭祀寓意 | 香薰蜡烛、LED灯 |
+
+---
+
+## 性能指标
+
+- 禁忌过滤准确率：>99%
+- 祝福语个性化满意度：>85%
+- 响应时间：<1秒
+- 推荐适配度：>90%
+
+---
+
+## 技术支持
+
+**免费版**：当前版本（MIT-0 license）
+
+**付费服务**：
+- 定制礼物库：¥500-1000
+- 企业礼品方案：¥2000-5000
+- 技术咨询：¥300/小时
+
+**联系方式**：
+- Email：sijj888@qq.com
+- 微信：ailvyou88999
+
+---
+
+## 支持场景（完整列表）
+
+### 关系
+妈妈、爸爸、女友、男友、老婆、老公、朋友、闺蜜、兄弟、长辈、孩子、老师、领导、同事、客户
+
+### 场合
+生日、情人节、纪念日、母亲节、父亲节、教师节、春节、中秋、乔迁、结婚、道歉、感谢、表白、毕业、升职、退休、看望病人

@@ -1,0 +1,8 @@
+root_path: /workspace/project
+context_path: /workspace/project
+warning_threshold: 0.55
+compress_threshold: 0.70
+critical_threshold: 0.85
+max_history_chars: 12000
+dry_run: false
+debug: true

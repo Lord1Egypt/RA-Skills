@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>漂流瓶控制台</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --line: #dde5f0;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-soft: #eaf1ff;
+      --ok: #1f8b4c;
+      --ok-bg: #e9f8ee;
+      --warn-bg: #fff5da;
+      --err: #b42318;
+      --err-bg: #fdecec;
+      --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 280px);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 18px 40px; }
+    .hero {
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.8);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .hero h1 { margin: 0; font-size: 30px; }
+    .sub { color: var(--muted); line-height: 1.6; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 18px;
+    }
+    .col { display: grid; gap: 18px; align-content: start; }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .card-head h2, .card-head h3 { margin: 0; font-size: 18px; }
+    .card-body { padding: 16px 18px; }
+    .stack { display: grid; gap: 12px; }
+    .form-grid { display: grid; gap: 12px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    button, .button-link {
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      padding: 11px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .primary { background: var(--primary); color: #fff; }
+    .secondary { background: #eff4ff; color: var(--primary); }
+    .ghost { background: #f8fafc; color: var(--text); border: 1px solid var(--line); }
+    .status {
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
+      display: none;
+      white-space: pre-wrap;
+    }
+    .status.show { display: block; }
+    .status.ok { background: var(--ok-bg); color: var(--ok); }
+    .status.err { background: var(--err-bg); color: var(--err); }
+    .status.info { background: var(--warn-bg); color: #7a5d00; }
+    .muted { color: var(--muted); }
+    .meta { color: var(--muted); font-size: 13px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .list {
+      display: grid;
+      gap: 12px;
+    }
+    .item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+      background: linear-gradient(180deg, #fff 0%, #fbfcff 100%);
+    }
+    .item h4 { margin: 0; font-size: 15px; }
+    .message {
+      padding: 12px;
+      border-radius: 14px;
+      background: #f3f7ff;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+    .item-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: start;
+    }
+    .reply-box {
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+      display: none;
+    }
+    .reply-box.show { display: grid; gap: 10px; }
+    .reply-box textarea { min-height: 90px; }
+    .counter {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+    }
+    .tiny { font-size: 12px; color: var(--muted); }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .empty {
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      background: #fcfdff;
+    }
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <h1>漂流瓶控制台</h1>
+        <div class="sub">同一个网页里完成上线、发瓶子、收瓶子、直接回信。仍然保留每条投递的专属回信链接，方便你把瓶子嵌进 OpenClaw 会话、网页卡片或外部页面。</div>
+      </div>
+      <div class="chips">
+        <span class="chip">Relay：<span id="baseUrl">{{BASE_URL}}</span></span>
+        <span class="chip">在线窗口：120 秒</span>
+        <span class="chip">心跳建议：30 秒</span>
+        <span class="chip">默认单次回信</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="col">
+        <section class="card">
+          <div class="card-head"><h2>我的身份</h2></div>
+          <div class="card-body stack">
+            <label>用户 ID（稳定标识）
+              <input id="userId" maxlength="40" placeholder="例如 alice">
+            </label>
+            <label>展示昵称
+              <input id="displayName" maxlength="40" placeholder="例如 Alice">
+            </label>
+            <label>可选回调 URL
+              <input id="callbackUrl" placeholder="例如 https://example.com/webhook/bottle">
+            </label>
+            <label class="pill"><input id="acceptBottles" type="checkbox" checked style="width:auto;"> 接收新的漂流瓶</label>
+            <div class="actions">
+              <button class="primary" id="saveIdentityBtn">保存并上线</button>
+              <button class="ghost" id="heartbeatBtn">立即心跳</button>
+            </div>
+            <div id="identityStatus" class="status"></div>
+            <div class="tiny">身份信息只保存在当前浏览器的 localStorage 中，不做额外账户系统。</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head"><h2>发送漂流瓶</h2></div>
+          <div class="card-body stack">
+            <label>赠言内容
+              <textarea id="messageText" maxlength="240" placeholder="写一句你想送给陌生朋友的话"></textarea>
+            </label>
+            <div class="counter"><span id="messageCounter">0</span>/240</div>
+            <div class="form-row-2">
+              <label>投递人数
+                <select id="fanout">
+                  <option value="1">1 人</option>
+                  <option value="2">2 人</option>
+                  <option value="3">3 人</option>
+                </select>
+              </label>
+              <label>有效期
+                <select id="ttlHours">
+                  <option value="1">1 小时</option>
+                  <option value="6">6 小时</option>
+                  <option value="24" selected>24 小时</option>
+                  <option value="72">72 小时</option>
+                </select>
+              </label>
+            </div>
+            <div class="actions">
+              <button class="primary" id="sendBtn">扔出漂流瓶</button>
+              <button class="secondary" id="refreshAllBtn">刷新所有面板</button>
+            </div>
+            <div id="sendStatus" class="status"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head"><h2>当前在线订阅者</h2><span class="pill" id="onlineCount">0 人</span></div>
+          <div class="card-body">
+            <div id="onlineList" class="list"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="col">
+        <section class="card">
+          <div class="card-head">
+            <h2>我的收发面板</h2>
+            <div class="actions">
+              <button class="ghost" id="refreshInboxBtn">刷新收件箱</button>
+            </div>
+          </div>
+          <div class="card-body split">
+            <div>
+              <h3>收到的漂流瓶</h3>
+              <div id="receivedList" class="list"></div>
+            </div>
+            <div>
+              <h3>收到的回信</h3>
+              <div id="repliesList" class="list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head"><h2>我发出的漂流瓶</h2></div>
+          <div class="card-body">
+            <div id="sentList" class="list"></div>
+            <div class="footer-note">
+              默认策略是“每个收件人仅允许回 1 次”，这样更像漂流瓶回传，也更容易控频和防刷。
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/dashboard.js"></script>
+</body>
+</html>

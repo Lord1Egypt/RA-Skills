@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-03-12T11:44:00+08:00",
+  "enabled": true,
+  "checkIntervalSeconds": 60,
+  "notification": {
+    "channel": "feishu",
+    "recipientUserId": "ou_b96f5424607baf3a0455b55e0f4a2213",
+    "enabled": true
+  },
+  "thresholds": {
+    "subagents": {
+      "maxConcurrent": 10,
+      "maxRunningTimeHours": 2,
+      "alertOnStuck": true,
+      "stuckThresholdMinutes": 30
+    },
+    "quota": {
+      "tokenUsagePercent": 80,
+      "messageUsagePercent": 80,
+      "diskUsagePercent": 80,
+      "alertOnApproaching": true,
+      "alertOnExceeded": true
+    },
+    "gateway": {
+      "checkHealth": true,
+      "healthEndpoint": "http://localhost:3000/health",
+      "alertOnFailure": true,
+      "consecutiveFailures": 3
+    },
+    "system": {
+      "memoryUsagePercent": 90,
+      "diskUsagePercent": 85,
+      "cpuUsagePercent": 90
+    }
+  },
+  "alertChannels": {
+    "feishu": {
+      "enabled": true,
+      "chatType": "private",
+      "format": "markdown"
+    }
+  },
+  "quietHours": {
+    "enabled": false,
+    "start": "23:00",
+    "end": "08:00",
+    "timezone": "Asia/Shanghai"
+  }
+}

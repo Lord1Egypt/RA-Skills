@@ -1,0 +1,30 @@
+{
+  "composition": {
+    "id": "Creative_Sample",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "durationInFrames": 300,
+    "defaultProps": {
+      "title": "Sample Creative",
+      "sequences": [
+        {
+          "id": 1,
+          "name": "Scene 1",
+          "from": 0,
+          "durationInFrames": 300,
+          "onScreenText": "Replace this manifest with generated output",
+          "asset": {
+            "fallbackImage": "./assets/scene-1.png"
+          }
+        }
+      ],
+      "audio": {
+        "voiceover": "",
+        "music": "",
+        "voiceVolume": 1,
+        "musicVolume": 0.2
+      }
+    }
+  }
+}

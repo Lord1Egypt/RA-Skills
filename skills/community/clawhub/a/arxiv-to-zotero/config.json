@@ -1,0 +1,43 @@
+{
+  "query": "",
+  "sources": {
+    "arxiv": {
+      "enabled": true,
+      "max_results": 50,
+      "sort_by": "submittedDate",
+      "request_timeout_seconds": 30,
+      "max_retries": 3,
+      "min_interval_seconds": 3,
+      "retry_sleep_seconds": 10,
+      "max_retry_sleep_seconds": 300
+    }
+  },
+  "dedupe": {
+    "zotero_title_prefix_min_chars": 42,
+    "zotero_cache_term_limit": 12,
+    "zotero_cache_rows_per_query": 100,
+    "zotero_cache_qmode_everything": true,
+    "include_default_tag_cache": true,
+    "include_target_collection_cache": true
+  },
+  "import_policy": {
+    "require_pdf": true,
+    "max_new_items": 50
+  },
+  "zotero": {
+    "library_id": "",
+    "library_type": "user",
+    "api_key_env": "ZOTERO_API_KEY",
+    "target_collection_key": "",
+    "target_collection_name": "arxiv-to-zotero",
+    "auto_create_collection": true,
+    "default_tags": [
+      "arxiv-to-zotero"
+    ]
+  },
+  "run": {
+    "timeout_seconds": 20,
+    "export_summary_path": "",
+    "dry_run": false
+  }
+}

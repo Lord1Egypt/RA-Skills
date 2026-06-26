@@ -1,0 +1,9 @@
+{
+  "name": "my_stock_watchlist_skill",
+  "slug": "my-stock-watchlist-skill",
+  "description": "管理股票观察列表的钉钉多维表格技能",
+  "version": "1.0.0",
+  "author": "main",
+  "tags": ["dingtalk", "stock", "watchlist"],
+  "dependencies": ["dingtalk-ai-table"]
+}

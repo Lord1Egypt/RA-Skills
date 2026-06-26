@@ -1,35 +1,208 @@
 ---
-name: "Stocktorch"
-description: "A股智能分析系统。支持个股综合分析（技术/财务/资金流/新闻融合）和大盘实时分析。"
-category: "data-science"
-source: "ClawHub"
-tags: [a-share, analysis, chinese, finance, stock]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stocktorch"
-sourceUrl: "https://clawhub.ai/skills/stocktorch"
+name: 股票研究
+version: 2.0.0
+description: A股智能分析系统。支持个股综合分析（技术/财务/资金流/新闻融合）和大盘实时分析。
+trigger: 股票代码、分析股票、大盘分析、投资建议
 ---
 
-# Stocktorch
+# 股票研究
 
-> A股智能分析系统。支持个股综合分析（技术/财务/资金流/新闻融合）和大盘实时分析。
+A股智能分析系统，提供个股综合分析和大盘实时分析。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stocktorch`
-- **Source URL:** [https://clawhub.ai/skills/stocktorch](https://clawhub.ai/skills/stocktorch)
+---
 
-## Overview
+## 触发场景
 
+| 用户输入 | 触发功能 |
+|----------|----------|
+| 股票代码（如 000001） | **综合分析**（默认） |
+| "分析 XXX 股票" | **先用浏览器搜索获取股票代码** → 综合分析 |
+| "XXX 股票 **财务** 情况" | **财务分析**（单模块） |
+| "XXX 股票 **技术** 指标" | **技术分析**（单模块） |
+| "XXX 股票 **资金流**" | **资金流分析**（单模块） |
+| "XXX 股票 **同业对比**" | **同业对比**（单模块） |
+| "大盘怎么样" | **大盘分析** |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stocktorch
+---
+
+## 股票代码获取
+
+当用户输入股票名称而非代码时（如"中国建筑"），AI 使用浏览器搜索：
+
 ```
+1. browser_use 打开百度
+2. 搜索 "XXX 股票代码"
+3. 从搜索结果提取 6 位代码
+4. 验证格式（6位数字，以 0/3/6 开头）
+```
+
+**常见股票代码速查**：
+| 名称 | 代码 |
+|------|------|
+| 中国建筑 | 601668 |
+| 平安银行 | 000001 |
+| 招商银行 | 600036 |
+| 贵州茅台 | 600519 |
+| 中国平安 | 601318 |
+| 比亚迪 | 002594 |
+| 宁德时代 | 300750 |
+
+---
+
+## 核心逻辑
+
+### 单模块分析（用户指定某方面）
+```
+用户指定 → 只输出该模块内容
+    ├── 技术分析 → 输出技术指标解读
+    ├── 财务分析 → 输出财报分析报告
+    ├── 资金流分析 → 输出资金流向解读
+    └── 同业对比 → 输出估值对比表格
+```
+
+### 综合分析（用户只给股票代码）
+```
+综合分析 = 整合多个数据源模块
+    ├── 技术数据（MA/RSI/MACD/KDJ）
+    ├── 财务数据（三大报表）
+    ├── 资金流数据（主力/北向）
+    ├── 同业对比数据
+    └── 新闻/舆情数据（search_web）
+    → 多维度评分 → 操作建议 → 生成完整报告
+```
+
+### 大盘分析（用户问大盘）
+```
+AI 直接使用 search_web 获取实时数据 → 分析走势 → 生成报告
+```
+
+---
+
+## 调用方式
+
+### 1. 单模块分析（用户指定某方面）
+
+用户明确要求看某个方面时，只输出该模块内容：
+
+| 模块 | 命令 | 输出内容 |
+|------|------|----------|
+| 技术分析 | `python3 run_skill.py <代码> technical` | MA/RSI/MACD/KDJ 解读 |
+| 财务分析 | `python3 run_skill.py <代码> finance` | **深度财报分析**（按《读财报》方法论） |
+| 资金流分析 | `python3 run_skill.py <代码> capital_flow` | 主力/北向资金流向 |
+| 同业对比 | `python3 run_skill.py <代码> compare_peers` | 估值/财务指标对比表 |
+
+**财务分析必须包含**：
+1. 审计意见检查（一票否决）
+2. 资产负债表速读四步法
+3. 现金流量表分析（现金流肖像+五大黄金标准）
+4. 造假风险红旗排查
+5. 杜邦分析（ROE拆解）
+6. 财务健康度评分（90分制）
+
+**详细方法论见**：`docs/data_sources.md` 和 `report/读财报.md`
+
+### 2. 综合分析（默认）
+
+用户只给股票代码或说"分析某股票"时：
+
+1. **获取技术数据**：`python3 run_skill.py <代码> technical`
+2. **获取财务数据**：`python3 run_skill.py <代码> finance`（0.5秒获取18年数据）
+3. **搜索新闻**：使用 `browser_use` 搜索最新公司动态
+4. **整合分析**：读 `docs/comprehensive.md` 进行多维度评分
+5. **生成报告**：保存到 `reports/` 目录
+
+```bash
+python3 run_skill.py <股票代码>
+```
+
+### 3. 大盘分析
+
+用户询问大盘时：
+
+1. **读取详细文档**：读 `docs/market.md` 了解大盘分析方法
+2. **获取当前日期**：搜索前必须确定具体日期
+3. **搜索实时数据**：指数收盘、热点板块、市场策略
+4. **生成报告**：保存到 `reports/` 目录
+
+```bash
+python3 run_skill.py market report
+```
+
+---
+
+## 详细文档索引
+
+| 文档 | 内容 | 读取时机 |
+|------|------|----------|
+| `docs/data_sources.md` | 数据源模块说明（技术/财务/资金流/同业/新闻） | 个股分析前必读 |
+| `docs/comprehensive.md` | 综合分析方法论（评分体系、风险评估、操作建议） | 整合分析前必读 |
+| `docs/market.md` | 大盘分析说明（搜索内容、报告结构） | 大盘分析前必读 |
+| `docs/output_format.md` | 输出格式参数说明 | 需自定义输出时读取 |
+| `report/读财报.md` | 财报分析方法论（已独立） | 财务分析时必读 |
+
+---
+
+## 快速示例
+
+```bash
+# 综合分析（默认）
+python3 run_skill.py 000001
+
+# 只看财务情况
+python3 run_skill.py 600036 finance
+
+# 只看技术指标
+python3 run_skill.py 002050 technical
+
+# 只看资金流向
+python3 run_skill.py 000001 capital_flow
+
+# 只看同业对比
+python3 run_skill.py 002050 compare_peers
+
+# 大盘分析
+python3 run_skill.py market report
+
+# 多周期技术分析
+python3 run_skill.py 002050 technical --period daily_weekly_monthly
+
+# JSON格式输出
+python3 run_skill.py 000001 --format json
+```
+
+---
+
+## 目录结构
+
+```
+stocktourch/
+├── SKILL.md           # 调度说明（本文件）
+├── run_skill.py       # 入口脚本
+│
+├── docs/              # 详细文档（按需读取）
+│   ├── data_sources.md    # 数据源模块
+│   ├── comprehensive.md   # 综合分析方法
+│   ├── market.md          # 大盘分析
+│   └── output_format.md   # 输出格式
+│
+├── core/              # 核心代码
+│   ├── stock_analyzer.py      # 技术分析
+│   ├── financial_analyzer.py  # 财务分析
+│   ├── market_analyzer.py     # 市场分析
+│   └── ai_market_analyzer.py  # AI分析器
+│
+├── report/            # 财报模块
+│   └── 读财报.md         # 财报方法论
+│
+├── utils/             # 工具模块
+└── reports/           # 输出报告
+```
+
+---
+
+## AI 调度铁律
+
+1. **先读文档再动手**：个股分析先读 `docs/data_sources.md`
+2. **时效性必须明确**：搜索前先获取当前日期，禁止模糊时间词
+3. **数据来源标注**：报告每条数据注明来源和时间
+4. **报告保存规范**：文件名包含日期时间戳

@@ -1,35 +1,174 @@
 ---
-name: "租车自驾行前助手：准备清单 + 各国注意事项 + 经典路线"
-description: "租车自驾行前准备与合规路线规划助手，生成强视觉HTML卡片页面，覆盖行前清单、各国/地区租车注意事项、安全驾驶合规提醒及自驾路线推荐。当用户提到"租车自驾""自驾游准备""租车注意事项""自驾路线""road trip""car rental checklist""self-drive itinerary""自驾..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/car-rental-self-drive-planner"
-sourceUrl: "https://clawhub.ai/skills/car-rental-self-drive-planner"
+name: car-rental-self-drive-planner
+description: 租车自驾行前准备与合规路线规划助手，生成强视觉HTML卡片页面，覆盖行前清单、各国/地区租车注意事项、安全驾驶合规提醒及自驾路线推荐。当用户提到"租车自驾""自驾游准备""租车注意事项""自驾路线""road trip""car rental checklist""self-drive itinerary""自驾攻略""租车流程"时使用。
 ---
 
-# 租车自驾行前助手：准备清单 + 各国注意事项 + 经典路线
+# CarRental Self-Drive Planner
 
-> 租车自驾行前准备与合规路线规划助手，生成强视觉HTML卡片页面，覆盖行前清单、各国/地区租车注意事项、安全驾驶合规提醒及自驾路线推荐。当用户提到"租车自驾""自驾游准备""租车注意事项""自驾路线""road trip""car rental checklist""self-drive itinerary""自驾...
+为计划在中国境内或出境租车自驾的普通游客，生成一份完整的行前指南 HTML 页面（强视觉卡片布局）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/car-rental-self-drive-planner`
-- **Source URL:** [https://clawhub.ai/skills/car-rental-self-drive-planner](https://clawhub.ai/skills/car-rental-self-drive-planner)
+## 输入字段
 
-## Overview
+| 字段 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| location | string | YES | - | 国家或城市 |
+| days | int | YES | - | 行程天数 |
+| trip_type | enum | NO | both | classic_loop / cross_region / both |
+| drivers | enum | NO | couple | solo / couple / family / with_kids / mixed |
+| experience_level | enum | NO | intermediate | beginner / intermediate / advanced |
+| car_preference | enum | NO | automatic | automatic / manual / not_sure |
+| style_preference | enum | NO | balanced | scenic / city / culture / balanced |
 
+### 缺失字段处理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/car-rental-self-drive-planner
-```
+- `location` 或 `days` 缺失：**必须追问**，不可猜测
+- 其余字段缺失：静默使用默认值
+- `trip_type=both`：输出经典环线 + 跨区域各一条（最多两条路线）
+- `trip_type=classic_loop`：只输出一条环线
+- `trip_type=cross_region`：只输出一条跨区域路线
+
+## 合规与禁限规则
+
+1. 不输出确定性错误事实；无法确认的规则用"可能需要 / 建议咨询租车公司或查看官方说明"
+2. 收费/禁停/限行/通行证不确定时用"可能存在 / 请在地图与官方渠道确认"
+3. 不提供规避违法内容
+4. 不推荐危险路段/无信号区域的穿越式玩法；路线只推荐成熟景区与主干道
+5. 所有内容以"以当地交通法规与租车合同为准"为基本前提
+6. 紧急电话号码不确定时用泛化写法："当地紧急号码（如 112 / 当地区号），以当地为准"
+7. 涉及过境/跨国时用"建议提前了解过境手续"，不提供具体通关操作指南
+
+## 生成流程
+
+### Step 1：解析与追问
+
+解析用户输入。`location` 和 `days` 缺失则追问。可选字段填充默认值。
+
+### Step 2：调整路线难度
+
+根据 `experience_level` 和 `drivers`：
+
+| 经验 | 每日驾驶 | 路况 | 适合 |
+|------|---------|------|------|
+| beginner | <=200km | 高速/国道 | beginner, with_kids, family |
+| intermediate | <=350km | 含部分山区 | intermediate, couple |
+| advanced | <=500km | 含挑战性路段 | advanced, solo |
+
+统一建议：白天为主，夜间尽量减少长距离驾驶。
+
+### Step 3：生成国家/地区租车差异
+
+基于 `location` 生成 6-10 条差异要点（对应 Card B），不确定的用模糊措辞。
+
+### Step 4：生成路线
+
+按 `trip_type` 从路线模板选择并填充（见下方路线模板章节），最多两条。
+
+### Step 5：组装 HTML
+
+将所有内容填入 HTML 模板，生成完整可渲染的单文件 HTML。参考 [html-template.md](html-template.md)。
+
+## 输出卡片说明
+
+输出为**单个 HTML 文件**（含内联 CSS），强视觉卡片式布局，共 4 张卡片 + Header + Footer。
+
+### Header
+
+- 标题：`{location} · {days}天租车自驾行前计划`
+- 副标题：偏好摘要（经验等级、trip_type、出行人群、风格偏好）
+- 合规提示条（橙黄背景）："以当地交通法规与租车合同为准，本指南仅供参考"
+
+### Card A：行前准备清单
+
+用 check 图标逐条列出，**必须覆盖**四类：
+
+1. **证件**：驾照、国际驾照/翻译件（如适用）、护照/身份证、信用卡（预授权）
+2. **保险**：关注责任范围、免赔额、事故报案流程（不写具体条款）
+3. **导航与通讯**：离线地图、紧急号码、租车公司联系方式、漫游/本地 SIM
+4. **车辆与出行**：轮胎/雨雪装备、儿童座椅（如适用）、充电器/适配器、行车记录仪（如合规）
+
+### Card B：租车关键注意事项
+
+6-10 条该地区常见差异要点，**必须包含**：
+
+- 驾照/年龄/驾龄要求（"可能需要"措辞）
+- 路费与通行（现金/ETC/租车代扣、收费摄像头）
+- 停车规则（路边/市中心限制/停车计费）
+- 油量与还车标准（满油/同等油量/油费差异）
+- 押金与信用卡预授权说明
+- 事故处理流程（安全->联系租车->报警/报案）
+- 夜间与山区/高速风险提示
+
+### Card C：安全驾驶与合规
+
+左右分栏 Do / Don't 布局：
+
+- **Do（3-5条）**：系安全带、遵守限速、保持车距、疲劳时休息、熟悉车辆操控
+- **Don't（3-5条）**：酒驾（强调法律严惩）、行车中用手机、超速/闯禁行、疲劳驾驶、忽视天气预警
+
+### Card D：推荐路线
+
+每条路线统一格式（色条区分）：
+
+- 路线标题（如"经典环线：{region}"或"跨区域：{outline}"）
+- 天数分配（按天 1-3 行摘要，不精确到小时）
+- 起终点（建议城市/城区类型，不给精确地址）
+- 路网难度：低 / 中 / 高
+- 适合人群标签
+- 3-6 个亮点（景点类型：老城/海岸/山地/湖区/博物馆/市场等）
+- 合规提示：只推荐成熟景区与主干道
+
+### Footer
+
+- 提示出发前查看当地官方交通规则与租车合同
+- 紧急电话（泛化写法）
+- 数据时效提示："路线与规则可能随时间更新，请以最新官方信息为准"
+
+## 路线生成模板
+
+### 模板 A：经典环线
+
+单一国家/地区内环形路线，围绕海岸、山湖、古城、国家公园等主题。起终点相同或相近城市，优先成熟旅游公路，每天 1-2 个核心景点类型。
+
+### 模板 B：城市+郊野
+
+1-2 城市集群 + 1 段自然景观。城市段安排文化/美食/购物，郊野段安排自然/户外，交替安排避免连续多天纯驾驶。
+
+### 模板 C：跨区域/跨国
+
+两国或多地区连接。起终点设在交通便利城市，用"建议提前了解过境手续"提示，路线覆盖两种以上风景类型。
+
+## 视觉规范
+
+### 配色
+
+- Header：深蓝 `#1a365d` 渐变至 `#2b6cb0`
+- Card A 标题条：绿色 `#38a169`
+- Card B 标题条：蓝色 `#3182ce`
+- Card C 标题条：红色 `#e53e3e`；Do 区域绿底 `#f0fff4`；Don't 区域红底 `#fff5f5`
+- Card D 标题条：紫色 `#805ad5`；路线 1 紫色条；路线 2 橙色 `#dd6b20` 条
+- 合规提示条：橙黄 `#fefcbf` 背景 + `#744210` 文字
+- Footer：浅灰 `#f7fafc`
+
+### 布局
+
+- CSS Grid 两列（移动端单列 `@media max-width:600px`）
+- 圆角 `12px`、轻阴影 `box-shadow: 0 2px 8px rgba(0,0,0,0.08)`
+- 系统默认无衬线字体栈
+
+### 图标（纯文本 emoji）
+
+使用：✅（清单）、⚠（警告/合规）、🚗（路线）、✔（Do）、✘（Don't）、📍（起终点）、📋（注意事项）、🛡（安全）、🗺（路线卡片）
+
+## 不确定性处理速查
+
+| 场景 | 措辞 |
+|------|------|
+| 驾照/保险规则不确定 | "可能需要…建议咨询租车公司或查看官方说明" |
+| 收费/禁停/限行不确定 | "可能存在…请在地图与官方渠道确认" |
+| 紧急电话不确定 | "当地紧急号码（如 112 / 当地区号），以当地为准" |
+| 通关手续 | "建议提前了解过境手续" |
+| 特定路段安全性 | "建议查看最新路况信息" |
+
+## HTML 模板
+
+生成 HTML 时，参考 [html-template.md](html-template.md) 中的完整模板骨架与 CSS 样式。所有动态内容从输入字段和生成的数据填充到占位符位置。

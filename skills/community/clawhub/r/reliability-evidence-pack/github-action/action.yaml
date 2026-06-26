@@ -1,0 +1,77 @@
+name: "REP Validate"
+description: "Validate REP bundles using the REP specification validator"
+author: "OpenClaw"
+branding:
+  icon: "check-circle"
+  color: "green"
+
+inputs:
+  rep-path:
+    description: "Path to the REP bundle file or directory to validate"
+    required: true
+    default: "."
+
+  mode:
+    description: "Validation mode: strict or lenient"
+    required: false
+    default: "lenient"
+
+  fail-on-warnings:
+    description: "Treat warnings as errors (exit code non-zero)"
+    required: false
+    default: "false"
+
+  rep-version:
+    description: "Version of REP spec to validate against"
+    required: false
+    default: "latest"
+
+outputs:
+  result:
+    description: "Validation result (pass or fail)"
+    value: ${{ steps.validate.outputs.result }}
+
+  errors:
+    description: "Number of errors found"
+    value: ${{ steps.validate.outputs.errors }}
+
+  warnings:
+    description: "Number of warnings found"
+    value: ${{ steps.validate.outputs.warnings }}
+
+  json-output:
+    description: "Full validation results as JSON"
+    value: ${{ steps.validate.outputs.json-output }}
+
+runs:
+  using: composite
+  steps:
+    - name: Validate REP bundle
+      id: validate
+      shell: bash
+      env:
+        INPUT_REP_PATH: ${{ inputs.rep-path }}
+        INPUT_MODE: ${{ inputs.mode }}
+        INPUT_FAIL_ON_WARNINGS: ${{ inputs.fail-on-warnings }}
+        INPUT_REP_VERSION: ${{ inputs.rep-version }}
+      run: |
+        ${{ github.action_path }}/entrypoint.sh
+
+    - name: Upload validation report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: rep-validation-report
+        path: rep-validation-report.json
+        retention-days: 30
+
+    - name: Set output variables
+      shell: bash
+      run: |
+        echo "result=${{ steps.validate.outputs.result }}" >> $GITHUB_OUTPUT
+        echo "errors=${{ steps.validate.outputs.errors }}" >> $GITHUB_OUTPUT
+        echo "warnings=${{ steps.validate.outputs.warnings }}" >> $GITHUB_OUTPUT
+
+        # Escape JSON for GITHUB_OUTPUT
+        JSON_ESCAPED=$(echo '${{ steps.validate.outputs.json-output }}' | jq -Rs .)
+        echo "json-output=$JSON_ESCAPED" >> $GITHUB_OUTPUT

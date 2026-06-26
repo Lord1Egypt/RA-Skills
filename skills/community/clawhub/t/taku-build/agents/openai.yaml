@@ -1,0 +1,3 @@
+display_name: Taku Build
+short_description: Execute approved plans with TDD and visible progress.
+default_prompt: Use Taku Build to choose an execution mode, follow TDD, and implement the approved plan.

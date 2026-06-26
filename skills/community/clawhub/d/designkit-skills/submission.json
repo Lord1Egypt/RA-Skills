@@ -1,0 +1,6 @@
+{
+  "slug": "designkit-skills",
+  "name": "designkit-skills",
+  "version": "1.0.0",
+  "publish_command": "clawhub skill publish /Users/cxr/code/designkit-skills/dist/clawhub-submission/designkit-skills --slug designkit-skills --name \"designkit-skills\" --version 1.0.0 --tags latest"
+}

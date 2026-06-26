@@ -1,0 +1,128 @@
+{
+  "skill_name": "project-assistant",
+  "evaluated_at": "2026-03-11",
+  "summary": {
+    "total_evals": 8,
+    "should_trigger": 6,
+    "should_not_trigger": 2
+  },
+  "checks": [
+    {
+      "item": "SKILL.md exists",
+      "status": "PASS",
+      "value": true
+    },
+    {
+      "item": "YAML frontmatter valid",
+      "status": "PASS",
+      "value": true
+    },
+    {
+      "item": "name field present",
+      "status": "PASS",
+      "value": "project-assistant"
+    },
+    {
+      "item": "name is kebab-case",
+      "status": "PASS",
+      "value": "project-assistant"
+    },
+    {
+      "item": "name length <= 64",
+      "status": "PASS",
+      "value": 17
+    },
+    {
+      "item": "description present",
+      "status": "PASS",
+      "value": "项目初始化与智能分析工具..."
+    },
+    {
+      "item": "description length <= 1024",
+      "status": "PASS",
+      "value": 82
+    },
+    {
+      "item": "no unexpected frontmatter keys",
+      "status": "PASS",
+      "value": ["name", "description", "metadata"]
+    },
+    {
+      "item": "SKILL.md lines < 500",
+      "status": "PASS",
+      "value": 208
+    }
+  ],
+  "trigger_analysis": [
+    {
+      "id": "eval-0",
+      "prompt": "这个项目的架构是什么？",
+      "expected": "trigger",
+      "keywords_matched": ["项目", "架构"],
+      "confidence": "high"
+    },
+    {
+      "id": "eval-1",
+      "prompt": "WiFi功能是怎么实现的？",
+      "expected": "trigger",
+      "keywords_matched": ["功能", "实现"],
+      "confidence": "medium"
+    },
+    {
+      "id": "eval-2",
+      "prompt": "如何构建这个项目？",
+      "expected": "trigger",
+      "keywords_matched": ["构建", "项目"],
+      "confidence": "high"
+    },
+    {
+      "id": "eval-3",
+      "prompt": "main函数在哪里？",
+      "expected": "trigger",
+      "keywords_matched": ["函数", "哪里"],
+      "confidence": "high"
+    },
+    {
+      "id": "eval-4",
+      "prompt": "修改login函数会影响什么？",
+      "expected": "trigger",
+      "keywords_matched": ["修改", "影响"],
+      "confidence": "high"
+    },
+    {
+      "id": "eval-5",
+      "prompt": "帮我初始化这个项目",
+      "expected": "trigger",
+      "keywords_matched": ["初始化", "项目"],
+      "confidence": "high"
+    },
+    {
+      "id": "eval-6",
+      "prompt": "今天天气怎么样？",
+      "expected": "no_trigger",
+      "keywords_matched": [],
+      "confidence": "high"
+    },
+    {
+      "id": "eval-7",
+      "prompt": "写一个冒泡排序",
+      "expected": "no_trigger",
+      "keywords_matched": [],
+      "confidence": "high"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "medium",
+      "issue": "description 缺少英文触发词",
+      "suggestion": "添加英文关键词如 'project structure', 'code analysis', 'how to implement'"
+    },
+    {
+      "priority": "low",
+      "issue": "触发词可能过于宽泛",
+      "suggestion": "考虑添加更具体的上下文，如 '在项目目录中' 或 '关于这个项目'"
+    }
+  ],
+  "overall_score": 8.5,
+  "grade": "A-"
+}

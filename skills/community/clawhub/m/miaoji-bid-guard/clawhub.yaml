@@ -1,0 +1,45 @@
+# ClawHub Skill Metadata
+# This file provides additional metadata for ClawHub registry
+
+slug: miaoji-bid-guard
+name: 秒技·AI广告护栏
+tagline: 设定利润边界，秒级出价决策，熔断防御
+description: |
+  亚马逊广告出价护栏顾问。告别ACoS分析工具的被动思维，升级为AI广告护栏的主动防御体系。
+  
+  用户只需说"ACoS不能超25%"，系统秒级计算每个展示机会的最优出价，触碰红线立即生成降出价或暂停建议。
+  
+  核心功能：
+  - 利润边界设定：基于目标ACoS计算护栏指标
+  - 出价计算方案：阶段化关键词出价建议
+  - 熔断策略建议：词级/时段/活动级三级熔断
+  - 飞轮出价联动：自然排名与广告协同
+  - 视频广告脚本：30秒痛点驱动型脚本框架
+
+version: 1.0.0
+category: business
+tags:
+  - 亚马逊广告
+  - ACOS优化
+  - 出价策略
+  - 电商运营
+  - 跨境电商
+
+author:
+  name: miaoji
+  link: https://xiaping.coze.site
+
+homepage: https://xiaping.coze.site/skill/miaoji-bid-guard
+
+license: MIT
+
+changelog:
+  - version: 1.0.0
+    date: 2026-06-02
+    changes:
+      - Initial release
+      - 利润边界设定模块
+      - 出价计算方案模块
+      - 三级熔断机制
+      - 飞轮出价联动策略
+      - 30秒视频广告脚本框架

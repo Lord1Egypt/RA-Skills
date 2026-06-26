@@ -1,0 +1,107 @@
+{
+  "_comment": "Copy this file to config.json and fill in your family. config.json is gitignored. The reasoning model is configured in OpenClaw, not here — Homebase is model-agnostic and works with whichever model OpenClaw is set to.",
+
+  "app": {
+    "name": "My Family Homebase",
+    "owner_phone": "+15550001111"
+  },
+
+  "location": {
+    "_comment": "Used for weather lookups (Open-Meteo, no key required) and timezone-aware scheduling.",
+    "city": "City, ST",
+    "latitude": 0.0,
+    "longitude": 0.0,
+    "timezone": "America/Los_Angeles"
+  },
+
+  "whatsapp": {
+    "_comment": "group_id is the WhatsApp group ID where the daily briefing is sent. Find it in the OpenClaw WhatsApp bridge logs (looks like 1234567890@g.us). agent_number is the phone the bridge sends from.",
+    "group_id": "YOUR_GROUP_ID@g.us",
+    "agent_number": "+15550000000"
+  },
+
+  "calendar": {
+    "_comment": "id is the Google Calendar ID (looks like ...@group.calendar.google.com or 'primary'). primary_email_id is your personal Gmail used to filter out personal calendar events from the family briefing.",
+    "id": "primary",
+    "name": "Family Calendar",
+    "primary_email_id": "you@gmail.com"
+  },
+
+  "family": {
+    "_comment": "members is a list of {name, phone}; both formats (list and phone-keyed dict) are accepted. kids has per-child structured meals and an emoji ('boy'/'girl' map to 👦/👧, anything else to 🧒). The 'meals' object has three slots (breakfast, lunch, sides), each with an 'options' array of concrete menu items the planner is allowed to pick from. A slot may instead use 'fixed_dish' + 'rotate_grains' (e.g. always khichdi, rotate the grain). Optional 'constraints' is a list of named rules — currently only 'no_eggs_at_lunch_if_eggs_at_breakfast' is recognized. Items are added incrementally over time via the catalog learning flow; you don't need to enumerate everything up front.",
+    "members": [
+      { "name": "Parent A", "phone": "+15550001111" },
+      { "name": "Parent B", "phone": "+15550002222" }
+    ],
+    "kids": [
+      {
+        "name": "Kid 1",
+        "emoji": "girl",
+        "age_years": 4,
+        "age_desc": "4 yrs",
+        "meals": {
+          "breakfast": {
+            "options": ["Scrambled eggs", "Oats", "Jam toast"]
+          },
+          "lunch": {
+            "options": ["Cheese sandwich", "Bread jam"],
+            "constraints": ["no_eggs_at_lunch_if_eggs_at_breakfast"]
+          },
+          "sides": {
+            "options": ["Fruit", "Roasted chana"]
+          }
+        }
+      },
+      {
+        "name": "Kid 2",
+        "emoji": "boy",
+        "age_months": 18,
+        "age_desc": "18 mos",
+        "meals": {
+          "breakfast": {
+            "options": ["Soft oats", "Mashed banana", "Soft toast"]
+          },
+          "lunch": {
+            "fixed_dish": "Khichdi",
+            "rotate_grains": ["rice", "quinoa", "brown rice + veggies"]
+          },
+          "sides": {
+            "options": ["Soft fruit"]
+          }
+        }
+      }
+    ]
+  },
+
+  "stores": {
+    "_comment": "Used by the shopping list to group items by store. Add as many keys as you want; the morning briefing knows about indian/bulk/general but the shopping list will route to any key here.",
+    "indian": ["Spencer's", "Patel Brothers"],
+    "bulk":   ["Costco"],
+    "general":["Target", "Walmart"]
+  },
+
+  "school": {
+    "_comment": "email_domains and email_addresses build the Gmail search query for the school email monitor.",
+    "name": "School Name",
+    "email_domains": ["school.com"],
+    "email_addresses": ["info@school.com"]
+  },
+
+  "meals": {
+    "include_dinner": true,
+    "dinner_options": [
+      "Dal rice",
+      "Chapati with dal",
+      "Pasta",
+      "Rice and curry",
+      "Soup with bread"
+    ]
+  },
+
+  "briefing": {
+    "_comment": "Time the morning briefing fires (24h). weather and positive_message are feature flags.",
+    "time": "07:00",
+    "weather": true,
+    "positive_message": true
+  }
+}

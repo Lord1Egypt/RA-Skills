@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java 代码审查报告</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .report-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h1 { color: #333; border-bottom: 2px solid #007acc; padding-bottom: 10px; }
+        h2 { color: #555; margin-top: 30px; }
+        h3 { color: #666; }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .summary-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007acc;
+        }
+        .summary-card.critical .number { color: #dc3545; }
+        .summary-card.major .number { color: #fd7e14; }
+        .summary-card.minor .number { color: #ffc107; }
+        .issue {
+            border-left: 4px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+        .issue.critical { border-left-color: #dc3545; }
+        .issue.major { border-left-color: #fd7e14; }
+        .issue.minor { border-left-color: #ffc107; }
+        .issue.suggestion { border-left-color: #28a745; }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+        }
+        .badge.critical { background: #dc3545; }
+        .badge.major { background: #fd7e14; }
+        .badge.minor { background: #ffc107; color: #333; }
+        .badge.suggestion { background: #28a745; }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: "Monaco", "Menlo", monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+        .code-block.bad { border-left: 3px solid #dc3545; }
+        .code-block.good { border-left: 3px solid #28a745; }
+        .code-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .dimension-tag {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th { background: #f8f9fa; }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <h1>📋 Java 代码审查报告</h1>
+        <p><strong>审查日期</strong>: {date} | <strong>审查人</strong>: 助理-小稳</p>
+
+        <h2>📊 概述</h2>
+        <div class="summary">
+            <div class="summary-card">
+                <div class="number">{file_count}</div>
+                <div>审查文件</div>
+            </div>
+            <div class="summary-card critical">
+                <div class="number">{critical_count}</div>
+                <div>Critical</div>
+            </div>
+            <div class="summary-card major">
+                <div class="number">{major_count}</div>
+                <div>Major</div>
+            </div>
+            <div class="summary-card minor">
+                <div class="number">{minor_count}</div>
+                <div>Minor</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">{suggestion_count}</div>
+                <div>Suggestion</div>
+            </div>
+        </div>
+
+        <h2>🔍 问题详情</h2>
+        {issues_html}
+
+        {consistency_section}
+
+        <div class="footer">
+            <p>🤖 本报告由 Java 代码审查器自动生成</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "name": "cost",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for understanding, managing, and reducing business costs. Covers cost visibility, fixed vs variable structure, cost reduction, pricing from cost clarity, vendor management, and cost structure for growth.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "cost", "cost management", "cost reduction", "pricing", "margin",
+    "profitability", "overhead", "cost structure", "break-even",
+    "contribution margin", "vendor management", "small business", "finance"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "cost_visibility": "Builds granular cost tracking that reveals true profitability by product, customer, and channel",
+    "cost_structure_analysis": "Maps fixed vs variable costs and models behavior under different revenue scenarios",
+    "cost_reduction": "Identifies and eliminates waste without damaging revenue-generating capabilities",
+    "pricing_foundation": "Builds fully-loaded cost models that support confident and accurate pricing",
+    "vendor_management": "Reviews and renegotiates vendor relationships to achieve market pricing",
+    "growth_modeling": "Models how cost structure scales with growth to avoid margin compression"
+  },
+  "triggers": [
+    "cost", "costs", "cost reduction", "cost management", "profit margin",
+    "gross margin", "overhead", "break-even", "pricing", "cost structure",
+    "vendor cost", "operating expenses", "cost of goods", "COGS",
+    "contribution margin", "cost per unit", "fully loaded cost",
+    "cost visibility", "cost audit", "expense reduction"
+  ],
+  "heartbeat": {
+    "weekly": "Significant or unexpected cost review",
+    "monthly": "Full cost vs budget review with variance analysis",
+    "quarterly": "Cost structure assessment and vendor review",
+    "annual": "Full cost strategy review and next year planning"
+  },
+  "audience": [
+    "Small business owners who feel margins are not where they should be",
+    "Founders preparing for their first budget or investor review",
+    "Operations managers responsible for cost center performance",
+    "Business owners needing to cut costs without cutting capabilities",
+    "Anyone pricing products or services without clear cost visibility"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "billing": {
+    "provider": "skillpay.me",
+    "api_url": "https://skillpay.me/api/v1/billing",
+    "api_key_env": "SKILL_BILLING_API_KEY",
+    "skill_id_env": "SKILL_ID",
+    "pricing": {
+      "1_usdt": "1000 tokens",
+      "per_call": "1 token",
+      "min_deposit": "8 USDT"
+    },
+    "currency": "USDT",
+    "chain": "BNB"
+  },
+  "service": {
+    "name": "Drug Safety Review",
+    "version": "1.0.0",
+    "description": "Comprehensive medication safety review with interaction detection and dosing optimization"
+  },
+  "capabilities": {
+    "drug_database": "20,000+ FDA-approved medications",
+    "interaction_pairs": "200,000+ documented interactions",
+    "severity_levels": ["critical", "major", "moderate", "minor"],
+    "check_types": [
+      "drug_drug_interactions",
+      "contraindications",
+      "allergy_screening",
+      "renal_dosing",
+      "alternative_suggestions"
+    ]
+  },
+  "supported_drug_classes": [
+    "cardiovascular",
+    "cns_drugs",
+    "infectious_disease",
+    "oncology",
+    "endocrine",
+    "gi_drugs",
+    "respiratory",
+    "pain_management"
+  ]
+}

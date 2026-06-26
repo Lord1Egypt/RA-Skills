@@ -1,0 +1,32 @@
+{
+  "user_name": "",
+  "goals": {
+    "primary_goal": "maintain",
+    "calorie_target": 2000,
+    "macro_split": {
+      "protein_g": 150,
+      "carbs_g": 200,
+      "fat_g": 67
+    },
+    "custom_goals": []
+  },
+  "hydration": {
+    "daily_target_oz": 64,
+    "default_glass_oz": 8
+  },
+  "supplements": [],
+  "preferences": {
+    "dietary_style": null,
+    "activity_level": "active",
+    "adjust_for_exercise": false,
+    "units": "imperial",
+    "reminder_frequency": "daily"
+  },
+  "body": {
+    "current_weight": null,
+    "target_weight": null,
+    "height": null,
+    "age": null,
+    "sex": null
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "auth": {
+    "client_id": "YOUR_AZURE_APP_CLIENT_ID",
+    "authority": "https://login.microsoftonline.com/common",
+    "scopes": ["Files.Read"]
+  },
+  "paths": {
+    "token_cache": "/root/.openclaw/workspace/tmp/onedrive_photo_batch/token_cache.json",
+    "db": "/root/.openclaw/workspace/tmp/onedrive_photo_batch/index.db",
+    "tmp_dir": "/root/.openclaw/workspace/tmp/onedrive_photo_batch/work",
+    "recycle_dir": "/root/.openclaw/workspace/tmp_photo",
+    "log_file": "/root/.openclaw/workspace/tmp/onedrive_photo_batch/skill.log"
+  },
+  "ocr": {
+    "endpoint": "https://api.siliconflow.cn/v1",
+    "api_key": "YOUR_SILICONFLOW_API_KEY",
+    "default_model": "Qwen/Qwen3-VL-8B-Instruct",
+    "prompt": "请进行OCR，逐行输出可见文字，再给三条关键内容摘要。",
+    "default_interval_sec": 1.5,
+    "model_intervals_sec": {
+      "Qwen/Qwen3-VL-8B-Instruct": 1.5,
+      "Qwen/Qwen3-VL-8B-Thinking": 2.0,
+      "deepseek-ai/DeepSeek-OCR": 1.5,
+      "PaddlePaddle/PaddleOCR-VL-1.5": 1.0,
+      "THUDM/GLM-4.1V-9B-Thinking": 2.5
+    },
+    "album_overrides": {
+      "/Pictures/Scans": "deepseek-ai/DeepSeek-OCR",
+      "/Pictures/Poster": "Qwen/Qwen3-VL-8B-Instruct"
+    },
+    "batch_overrides": {
+      "nightly_full": "Qwen/Qwen3-VL-8B-Instruct"
+    },
+    "timeout_sec": 180,
+    "max_tokens": 900
+  },
+  "embedding": {
+    "enabled": true,
+    "endpoint": "https://api.siliconflow.cn/v1",
+    "api_key": "YOUR_SILICONFLOW_API_KEY",
+    "model": "BAAI/bge-m3",
+    "timeout_sec": 60
+  },
+  "performance": {
+    "parallel": 2,
+    "max_download_kbps": 2048,
+    "retry": 2
+  },
+  "mode": {
+    "read_only": true
+  }
+}

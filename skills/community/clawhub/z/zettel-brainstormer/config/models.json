@@ -1,0 +1,20 @@
+{
+  "zettel_dir": "/home/kevin/Documents/kevinhusnotes/40_Zettelkasten",
+  "output_dir": "/home/kevin/Documents/kevinhusnotes/00_Inbox",
+  "models": {
+    "fast": "openai-codex/gpt-5.3-codex",
+    "deep": "openai-codex/gpt-5.2"
+  },
+  "agent_models": {
+    "default": "fast",
+    "retriever": "fast",
+    "preprocess": "fast",
+    "drafter": "deep",
+    "publisher": "deep"
+  },
+  "retrieval": {
+    "link_depth": 2,
+    "max_links": 10,
+    "semantic_max": 5
+  }
+}

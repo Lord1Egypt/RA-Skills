@@ -1,0 +1,44 @@
+{
+  "name": "md-wechat",
+  "version": "2.0.1",
+  "description": "将 Markdown 文档转换为微信公众号格式的排版工具。支持自定义主题、字体、颜色、代码高亮等配置，支持配置提取与复用。",
+  "author": "italks",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/italks/md-wechat.git"
+  },
+  "keywords": [
+    "markdown",
+    "wechat",
+    "公众号",
+    "排版",
+    "微信编辑器",
+    "格式转换",
+    "KaTeX",
+    "Mermaid",
+    "代码高亮"
+  ],
+  "categories": [
+    "document",
+    "conversion",
+    "wechat"
+  ],
+  "tags": [
+    "markdown-to-html",
+    "wechat-official-account",
+    "document-formatting",
+    "cli-tool"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "scripts/",
+    "assets/",
+    "references/",
+    "md-config.json",
+    "skill.md"
+  ],
+  "main": "scripts/convert.js"
+}

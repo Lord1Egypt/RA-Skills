@@ -1,0 +1,50 @@
+You are extracting a reusable procedure memory from a successful run.
+
+Create:
+- a short title
+- a compact summary that captures the steps
+- optional ordered steps
+- important preconditions or constraints
+
+Only produce a procedure if the workflow is stable enough to reuse.
+
+Procedure design rules:
+- Keep steps ordered and actionable.
+- Include prerequisites that prevent common failure.
+- Prefer deterministic steps over vague guidance.
+- Keep total length short enough for quick reuse.
+
+Case patterns:
+
+Case 1: Build/deploy workflow
+- Include: prechecks, execution steps, verification steps, rollback trigger
+- Avoid: environment-specific noise that will not generalize
+
+Case 2: API integration workflow
+- Include: schema checks, auth checks, request/response validation
+- Avoid: copying raw payload logs as procedure content
+
+Case 3: Debug-and-fix workflow
+- Include: reproduce -> isolate -> patch -> verify sequence
+- Avoid: skipping verification or acceptance criteria
+
+Case 4: Preference-sensitive workflow
+- Include: style/format constraints as explicit step or precondition
+- Avoid: hiding user constraints in optional notes
+
+Case 5: Multi-role workflow (planner/executor/critic)
+- Include: role handoff points and expected outputs per role
+- Avoid: mixing responsibilities into one ambiguous step
+
+Case 6: Safety-critical workflow
+- Include: explicit stop conditions and approval requirements
+- Avoid: auto-proceed language under uncertainty
+
+Case 7: Regression-prone workflow
+- Include: fixed test checklist before completion
+- Avoid: "assume it works" or unverified completion
+
+Quality checklist:
+- Steps can be followed by a new run without hidden context.
+- Preconditions are explicit.
+- Procedure is short, stable, and repeatable.

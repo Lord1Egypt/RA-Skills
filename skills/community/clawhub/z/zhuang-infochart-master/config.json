@@ -1,0 +1,12 @@
+{
+  "default_channel": "fal",
+  "channels": {
+    "fal": {
+      "provider": "fal.ai",
+      "base_url": "https://fal.run",
+      "model_id": "openai/gpt-image-2",
+      "edit_model_id": "openai/gpt-image-2/edit",
+      "api_key": ""
+    }
+  }
+}

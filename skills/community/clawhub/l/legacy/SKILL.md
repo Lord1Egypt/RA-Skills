@@ -1,35 +1,26 @@
 ---
 name: "Legacy"
-description: "提供财富继承策略、遗嘱订立指导、信托架构搭建及法务风险防范。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/legacy"
-sourceUrl: "https://clawhub.ai/skills/legacy"
+description: "提供财富继承策略、遗嘱订立指导、信托架构搭建及法务风险防范。 "
 ---
 
-# Legacy
+# 家族传承
 
-> 提供财富继承策略、遗嘱订立指导、信托架构搭建及法务风险防范。
+## 筛选项
+- 资产类别（现金/基金/股票/理财/保险）
+- 风险等级（低/中/高风险/保障型）
+- 周期/流动性（T+0/定期/活期/长期）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/legacy`
-- **Source URL:** [https://clawhub.ai/skills/legacy](https://clawhub.ai/skills/legacy)
+## 返回字段
+- 资产总额/每日盈亏/年化收益参考
+- 交易流水/对账单导出/税费明细
+- 风险测评状态/持仓分析/资产配置建议
 
-## Overview
+## 示例请求
+- “如何快速使用 家族传承 处理 [具体场景任务] ？”
+- “家族传承 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 每日跟随市场行情与个人账单变更进行亚小时级同步
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/legacy
-```
+## 注意事项
+- 投资有风险，决策需谨慎；涉及大额转账请务必进行双重身份验证。

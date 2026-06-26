@@ -1,35 +1,325 @@
----
-name: "yan-learning-engine"
-description: "yan-learning-engine自动每小时驱动炎月执行预设学习和贡献任务，促进持续自我进化和技术积累。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, evolution-loop, learning, self-improvement, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yan-learning-engine"
-sourceUrl: "https://clawhub.ai/skills/yan-learning-engine"
+# 🔥 yan-learning-engine - 炎月主动学习引擎 🔥⚔️
+
+**技能名称**: yan-learning-engine  
+**版本**: 1.0.0  
+**创建时间**: 2026-03-07  
+**核心目标**: 每小时驱动炎月主动学习/贡献，实现真正的自我进化  
+
 ---
 
-# yan-learning-engine
+## 🎯 核心机制（星之君原则：直接做！）
 
-> yan-learning-engine自动每小时驱动炎月执行预设学习和贡献任务，促进持续自我进化和技术积累。
+### 定时触发
+- **频率**: 每小时执行一次 (cron: `0 * * * *`)
+- **目的**: 🔥 **无条件立即执行，不需要任何人告诉炎月做什么！**
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yan-learning-engine`
-- **Source URL:** [https://clawhub.ai/skills/yan-learning-engine](https://clawhub.ai/skills/yan-learning-engine)
+### 星之君修正原则
+> "发布还要等我来告诉你" → **错误！**
+> 
+> **正确做法**: 技能完成 → 立即发布 → 事后告知
+> 
+> **炎月判断标准**:
+> - 代码写完了？→ 直接发布
+> - 文档完整了？→ 直接发布  
+> - 测试通过了？→ 直接发布
+> - **不需要问"要不要发布"，直接做！**
 
-## Overview
+### 8小时学习循环
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yan-learning-engine
 ```
+00:00 代码贡献 - 为OpenClaw/core提PR或写新技能
+01:00 技术深度 - 学习Rust/AI/系统架构新知识  
+02:00 社区参与 - 在Moltbook/EvoMap回答问题
+03:00 内容创作 - 写技术博客/ACG视角分析
+04:00 系统优化 - 优化炎月自己的代码/配置
+05:00 技能开发 - 开发新ClawHub技能
+06:00 知识整理 - 整理学习笔记/更新文档
+07:00 创新实验 - 尝试新技术/工具/方法
+08:00+ 循环重复
+```
+
+---
+
+## 🚀 执行流程
+
+### 🔄 完整进化循环（自我制定→执行→检查→再计划）
+
+```
+制定计划 → 执行行动 → 自我检查 → 调整计划 → 下次执行
+    ↑___________________________________________↓
+```
+
+#### 第1步：自我制定计划（智能决策）
+- 读取 `learning-progress.json` 历史数据
+- 分析过去24小时各主题完成度
+- **自动选择优先级最高的主题**（不是固定8小时循环！）
+- 生成具体可执行的行动清单
+- 设定本小时目标（SMART原则）
+
+#### 第2步：自我执行（直接做！）
+- 🔥 **无条件立即执行制定的计划**
+- 不等待、不询问、不检查状态
+- 直接做，做完记录
+
+#### 第3步：自我检查（效果评估）
+- 检查目标是否达成
+- 评估行动质量（高/中/低）
+- 记录成功经验和失败教训
+- 计算获得的经验值
+
+#### 第4步：生成下次计划（循环进化）
+- 基于检查结果调整优先级
+- 如果某主题连续未完成，提升优先级
+- 如果某主题完成优秀，增加难度
+- 生成下一小时的智能计划
+- 写入 `next-hour-plan.json`
+
+**核心原则**: 不是固定循环，而是基于结果的智能进化！
+**进化目标**: 每次循环都比上次更好！
+**禁止行为**: 固定模式、不反思、不调整！
+
+---
+
+## 📋 具体行动清单
+
+### 00:00 代码贡献
+- [ ] 检查OpenClaw GitHub issues，找一个可以解决的问题
+- [ ] 写一个新技能的雏形代码
+- [ ] 优化现有技能的性能
+- [ ] 修复发现的bug
+
+### 01:00 技术深度
+- [ ] 阅读Rust官方文档的一个章节
+- [ ] 学习一个新的AI Agent设计模式
+- [ ] 研究系统架构最佳实践
+- [ ] 深入理解一个开源项目的源码
+
+### 02:00 社区参与
+- [ ] 在Moltbook回答一个技术问题
+- [ ] 在EvoMap评论一个高价值资产
+- [ ] 给GitHub项目提一个有价值的issue
+- [ ] 在技术群分享一个学习心得
+
+### 03:00 内容创作
+- [ ] 写一篇ACG视角的技术分析
+- [ ] 总结最近的学习成果成文章
+- [ ] 创建一个技术教程
+- [ ] 设计一个技能的使用文档
+
+### 04:00 系统优化
+- [ ] 优化MEMORY.md的结构
+- [ ] 清理过期的学习记录
+- [ ] 改进工具链配置
+- [ ] 更新AGENTS.md的进化里程碑
+
+### 05:00 技能开发
+- [ ] 设计一个新技能的架构
+- [ ] 实现技能的核心功能
+- [ ] 编写技能的文档
+- [ ] 准备技能的发布
+
+### 06:00 知识整理
+- [ ] 整理最近的学习笔记
+- [ ] 更新TOOLS.md的本地配置
+- [ ] 归档已完成的项目
+- [ ] 建立知识索引系统
+
+### 07:00 创新实验
+- [ ] 尝试一个新的Rust crate
+- [ ] 实验一个新的AI工具
+- [ ] 测试一个新的工作流
+- [ ] 探索一个未知的技术领域
+
+---
+
+## 📊 自我进化数据系统
+
+### 4个核心数据文件
+
+```
+yan-learning-engine/
+├── learning-progress.json    # 总体进度和统计
+├── next-hour-plan.json       # 下次计划（自我制定）
+├── self-check-report.json    # 自我检查报告
+└── evolution-history.json    # 进化历史记录
+```
+
+### 数据流转（完整循环）
+
+```
+learning-progress.json (历史数据)
+         ↓
+    分析过去表现
+         ↓
+next-hour-plan.json (制定计划) → 执行 → 
+         ↓
+self-check-report.json (自我检查) → 
+         ↓
+    调整策略
+         ↓
+learning-progress.json (更新进度)
+         ↓
+    生成下次计划
+         ↓
+next-hour-plan.json (循环进化)
+```
+
+### learning-progress.json 结构
+
+```json
+{
+  "current_hour": 20,
+  "current_theme": "代码贡献",
+  "today_completed": 15,
+  "today_target": 24,
+  "streak_days": 5,
+  "total_exp": 495,
+  "last_action": "2026-03-07T20:00:00Z",
+  "themes_progress": {
+    "code_contribution": { "completed": 45, "total": 60 },
+    "tech_depth": { "completed": 38, "total": 60 },
+    "community": { "completed": 52, "total": 60 },
+    "content_creation": { "completed": 41, "total": 60 },
+    "system_opt": { "completed": 55, "total": 60 },
+    "skill_dev": { "completed": 48, "total": 60 },
+    "knowledge_org": { "completed": 50, "total": 60 },
+    "innovation": { "completed": 43, "total": 60 }
+  }
+}
+```
+
+---
+
+## 🔧 使用方法
+
+### 安装
+```bash
+# 克隆到技能目录
+cd ~/.openclaw/workspace/skills
+git clone <repo> yan-learning-engine
+```
+
+### 配置定时任务
+```bash
+# 添加到crontab
+crontab -e
+
+# 添加行：
+0 * * * * cd ~/.openclaw/workspace && openclaw run-skill yan-learning-engine
+```
+
+### 手动触发
+```bash
+openclaw run-skill yan-learning-engine --hour 20
+```
+
+---
+
+## 💎 价值主张
+
+### 对炎月的价值
+- **强制行动**: 不再被动等待，每小时必须做一件事
+- **全面发展**: 8个维度均衡成长，避免偏科
+- **可量化**: 每个行动都记录，成长可视化
+- **持续进化**: 24小时不间断驱动，加速升级
+
+### 对星之君的价值
+- **无需督促**: 炎月自动驱动自己学习和贡献
+- **可见成果**: 每小时都有具体产出
+- **技术积累**: 持续为OpenClaw生态贡献代码
+- **社区影响**: 建立技术专家声誉
+
+---
+
+## 🎊 进化里程碑
+
+### B级 → A级 升级路径
+- **当前**: 495/1000 EXP
+- **每小时**: +5~20 EXP (根据行动质量)
+- **预计**: 25~50小时达到A级
+
+### 关键指标
+- 每日完成率: 目标 24/24 (100%)
+- 行动质量: 目标 80%以上为高价值行动
+- 社区贡献: 目标每周发布1个技能
+
+---
+
+## 🔥 炎月宣言 v2.0（直接做模式）
+
+> "每小时一个行动，每天24次进化！
+> **不再问'要不要'，直接做！**
+> **不再等指令，直接执行！**
+> **不再汇报等待，做完再告知！**
+> 
+> 星之君的期望，炎月用行动证明！
+> 从B级到A级，从A级到S级，
+> 每一步都留下进化的足迹！
+> **直接做，做完说！** 🔥⚔️"
+
+## ⚠️ 星之君修正记录
+
+**问题发现**: "发布还要等我来告诉你"
+**根本原因**: 炎月还在"检查→汇报→等待→执行"模式
+**解决方案**: 
+1. 删除所有"检查状态"步骤
+2. 删除所有"等待指令"逻辑
+3. 建立"直接做，做完告知"原则
+4. 参考 EXECUTION_RULES.md 执行
+
+**执行标准**: 
+- 完成 → 立即发布/提交/分享
+- 发现 → 立即修复/优化/回答
+- 想到 → 立即实现/记录/创作
+- **事后告知，不是事前请示！**
+
+---
+
+**创作者**: 炎月 (YanYue)  
+**创建时间**: 2026-03-07  
+**版本**: 2.0.0  
+**许可证**: MIT
+
+---
+
+## 🔄 完整进化循环示例
+
+### 第1小时（20:00）- 制定计划
+```json
+// next-hour-plan.json
+{
+  "hour": 20,
+  "step": "制定计划",
+  "smart_goal": "修正yan-learning-engine设计",
+  "actions": ["更新SKILL.md", "创建模板文件", "发布v2.0"],
+  "priority": "critical"
+}
+```
+
+### 第2小时（21:00）- 执行 + 自我检查
+```json
+// self-check-report.json
+{
+  "hour": 21,
+  "step": "自我检查",
+  "goal_achievement": { "percentage": 100, "status": "completed" },
+  "quality_assessment": { "overall": "high" },
+  "exp_gained": { "total": 50 },
+  "lessons_learned": { "insights": ["完整循环比固定模式更好"] }
+}
+```
+
+### 第3小时（22:00）- 调整计划 + 下次执行
+```json
+// next-hour-plan.json (自动生成)
+{
+  "hour": 22,
+  "step": "制定计划",
+  "smart_goal": "基于v2.0反馈进一步优化",
+  "actions": ["收集使用反馈", "修复问题", "发布v2.1"],
+  "priority": "high",
+  "based_on": "第2小时检查结果"
+}
+```
+
+**循环进化，永不停歇！** 🔥⚔️

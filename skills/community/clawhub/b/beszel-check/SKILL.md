@@ -1,35 +1,22 @@
 ---
-name: "Beszel Check"
-description: "Monitor home lab servers via Beszel (PocketBase)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beszel-check"
-sourceUrl: "https://clawhub.ai/skills/beszel-check"
+name: beszel
+description: Monitor home lab servers via Beszel (PocketBase).
+metadata: {"clawdbot":{"emoji":"📊","requires":{"bins":["node"]}}}
 ---
 
-# Beszel Check
+# Beszel Monitoring
 
-> Monitor home lab servers via Beszel (PocketBase).
+Check the status of your local servers.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beszel-check`
-- **Source URL:** [https://clawhub.ai/skills/beszel-check](https://clawhub.ai/skills/beszel-check)
+## Usage
+- `beszel status` - Get status of all systems
+- `beszel containers` - List top containers by CPU usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
 ```bash
-hermes skills install clawhub/beszel-check
+# Get status
+source ~/.zshrc && ~/clawd/skills/beszel/index.js status
+
+# Get container stats
+source ~/.zshrc && ~/clawd/skills/beszel/index.js containers
 ```

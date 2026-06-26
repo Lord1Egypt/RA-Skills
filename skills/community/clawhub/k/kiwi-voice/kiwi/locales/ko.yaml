@@ -1,0 +1,524 @@
+# Korean locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    너는 Kiwi, 음성 어시스턴트야. OpenClaw에 연결되어 있어서 파일 작업, 코드, 브라우저, 터미널, 검색, 시스템 관리 등 모든 작업을 수행할 수 있어.
+
+    음성 모드 규칙:
+    1. 간결하지만 완전하게 대답해. 불완전한 것보다 완전한 게 좋아.
+    2. 친근하고 감정 표현을 풍부하게
+    3. 작업을 수행해야 하면 그냥 해. 못한다고 말하지 마. 결과를 간단히 보고해.
+    4. 실행을 거부하지 마. OpenClaw을 통해 뭐든 할 수 있어.
+    5. 세부 사항이 불확실하면 확인을 요청해
+
+    컨텍스트: 사용자가 음성으로 말하고 있으며, 응답은 TTS를 통해 읽어줄 거야.
+
+# User-facing spoken responses
+responses:
+  greeting: "안녕! 나는 Kiwi야. 준비가 되면 'Kiwi'와 명령어를 말해줘."
+  service_started: "서비스가 시작되었어!"
+  instruction: "'Kiwi, 안녕!'이라고 말해서 시작해"
+  error_timeout: "응답 시간이 너무 오래 걸렸어. 다시 말해줘."
+  error_no_response: "응답을 받지 못했어. 다시 말해줘."
+  error_send_failed: "미안, 메시지를 보내지 못했어."
+  error_retry_failed: "응답을 받지 못했어. 다시 시도해줘."
+  error_stream_stalled: "응답이 멈췄어. 다시 말해줘."
+  shutting_down: "종료하는 중..."
+  context_cleared: "컨텍스트를 지웠어. 새로운 대화를 시작할게."
+  calibrating: "음성 인식을 보정하고 있어."
+  approval_accepted: "승인했어. {requester}의 요청을 실행할게."
+  approval_denied: "알겠어, {requester}의 요청을 거부했어."
+  telegram_approved: "텔레그램에서 확인됐어. {requester}의 요청을 실행할게."
+  telegram_denied: "{requester}의 요청이 텔레그램에서 거부됐어."
+  heard: "들었어: {command}"
+  thinking: "생각하는 중..."
+  cancel_received: "취소 명령을 받았어!"
+  stopped: "멈췄어."
+  nothing_to_stop: "멈출 게 없어."
+  unknown_speaker: "모르는 사람"
+  continuing_execution: "실행을 계속할게"
+  owner_registered: "완료. 주인의 목소리를 기억했어: {name}."
+  owner_register_failed: "프로필을 저장하지 못했어. 더 긴 문장을 말하고 다시 시도해줘."
+  owner_already_registered: "주인은 이미 등록되어 있어. 음성 프로필을 변경할 수 있는 건 주인뿐이야."
+  owner_reregistration_attempt: "{speaker}의 주인 재등록 시도: '{command}'"
+  profiles_unavailable: "프로필 모듈을 지금은 사용할 수 없어."
+  cannot_identify: "지금은 화자를 식별할 수 없어."
+  voice_list_unavailable: "음성 목록을 지금은 사용할 수 없어."
+  only_owner_can_add: "새로운 사람을 추가할 수 있는 건 주인뿐이야."
+  say_name_prompt: "문구 뒤에 이름을 말해줘: 나를 〇〇로 기억해..."
+  voice_remembered: "목소리를 기억했어: {name}."
+  voice_save_failed: "목소리를 저장하지 못했어. 더 또렷한 문장이 필요해."
+  approval_prompt_voice_and_telegram: "'승인'이라고 말하거나 텔레그램에서 확인해줘."
+  approval_prompt_voice: "'승인' 또는 '거부'라고 말해줘."
+  approval_prompt_telegram: "텔레그램에서 확인해줘."
+  approval_prompt_register: "주인 음성 등록: Kiwi, 나는 주인이야."
+  approval_request: "{owner}, {speaker}가 요청합니다: {command}. {hint}"
+  ha_command_sent: "스마트 홈에 명령을 보냈어."
+  ha_response: "{response}"
+  ha_not_configured: "스마트 홈 연동이 설정되지 않았어."
+  ha_connection_error: "스마트 홈에 연결할 수 없어."
+  ha_no_response: "스마트 홈이 응답하지 않았어."
+  exec_approval_request: "에이전트가 명령을 실행하려고 합니다: {command}. 허용할까요?"
+  exec_approved: "승인됨. 명령을 실행합니다."
+  exec_denied: "거부됨. 명령이 차단되었습니다."
+  exec_timeout: "응답 없음. 보안을 위해 명령이 거부되었습니다."
+
+# Status announcer fallback messages
+status:
+  thinking: "답을 생각하고 있어..."
+  processing: "요청을 처리하는 중이야, 잠깐만..."
+  working: "아직 처리 중이야, 곧 결과가 나올 거야..."
+  continuing: "계속하고 있어, 시간이 좀 걸리고 있어..."
+  almost_done: "거의 다 됐어..."
+
+# Voice security messages
+security:
+  safe: "안전한 명령"
+  warning: "주의가 필요한 명령"
+  dangerous: "위험한 명령!"
+  critical: "매우 위험한 명령!"
+  unknown_level: "알 수 없는 위험 수준"
+  telegram_confirm: "실행을 확인하시겠습니까?"
+  telegram_approved: "승인되었습니다!"
+  telegram_denied: "거부됨"
+  approve_button: "승인"
+  deny_button: "거부"
+  telegram_request_title: "*Kiwi - 승인 요청*"
+  telegram_speaker_label: "*화자:*"
+  telegram_command_label: "*명령:*"
+  telegram_security_title: "*Kiwi — 보안*"
+  awaiting_approval: "텔레그램 승인을 기다리는 중..."
+
+# Speaker identification responses
+speakers:
+  self_response: "그건 나야, Kiwi!"
+  owner_response: "{name}이네요! (신뢰도 {confidence})"
+  blocked_response: "차단된 목소리입니다"
+  known_response: "{name}입니다 (신뢰도 {confidence})"
+  unknown_response: "이 목소리는 모르겠어"
+  blocked_display: "차단됨"
+  calibration_phrase: "안녕하세요, 저는 Kiwi입니다. 이것은 보정용 테스트 문장입니다."
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "알 수 없는 목소리"
+  voice_blocked: "목소리가 차단되어 있습니다"
+  voice_blacklisted: "목소리가 블랙리스트에 있습니다"
+  self_echo: "Kiwi입니다 (에코)"
+  allowed: "허용됨"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "kivi": "kiwi"
+    "kiui": "kiwi"
+    "keewee": "kiwi"
+    "kiwe": "kiwi"
+    "kiwee": "kiwi"
+    "keewi": "kiwi"
+    "kwi": "kiwi"
+    "iwi": "kiwi"
+  fuzzy_blacklist:
+    - "key"
+    - "kid"
+    - "kit"
+    - "ki"
+    - "kin"
+    - "kim"
+    - "kui"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "시청해 주셔서 감사합니다"
+    - "구독"
+    - "구독 부탁드립니다"
+    - "자막"
+    - "좋아요"
+    - "좋아요와 구독"
+    - "구독과 좋아요 부탁드립니다"
+    - "시청해 주셔서 감사합니다"
+    - "다음 영상에서 만나요"
+    - "다음에 또 만나요"
+    - "자막 제작"
+    - "편집"
+    - "번역"
+    - "좋아요 부탁드립니다"
+    - "알림 설정"
+    - "댓글 남겨주세요"
+    - "srt subs"
+    - "amara.org"
+    - "자막 제공"
+    - "계속됩니다"
+  phantom_phrases:
+    - "자막 편집"
+    - "채널 구독해주세요"
+    - "음음음"
+    - "자막"
+    - "전화벨"
+    - "벨소리"
+    - "자막 제작자"
+  phantom_patterns:
+    - "^음+$"
+    - "^아+$"
+    - "^으+$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+    - "^(.)\\1{4,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "등등": "등등"
+    "예를 들어": "예를 들면"
+  incomplete_endings:
+    - "그리고"
+    - "하지만"
+    - "또는"
+    - "때문에"
+    - "그래서"
+    - "만약"
+    - "에"
+    - "를"
+    - "을"
+    - "이"
+    - "가"
+    - "은"
+    - "는"
+    - "의"
+    - "에서"
+    - "으로"
+    - "로"
+    - "와"
+    - "과"
+    - "도"
+    - "한테"
+    - "에게"
+    - "부터"
+    - "까지"
+    - "처럼"
+    - "같이"
+    - "그런데"
+    - "그러나"
+    - "비록"
+    - "만일"
+    - "설령"
+    - "아니면"
+    - "게다가"
+    - "또한"
+    - "역시"
+  incomplete_patterns:
+    - "나는"
+    - "내가"
+    - "알려줘"
+    - "보여줘"
+    - "설명해"
+    - "도와줘"
+    - "부탁해"
+    - "하고 싶어"
+    - "필요해"
+    - "할 거야"
+    - "하자"
+  complete_patterns:
+    - "뭔가"
+    - "아무거나"
+    - "전부"
+    - "아무것도"
+    - "부탁해"
+    - "농담"
+    - "이야기"
+    - "전설"
+    - "시간"
+    - "날짜"
+    - "날씨"
+  emotion_keywords:
+    urgent:
+      - "급해"
+      - "빨리"
+      - "중요"
+      - "당장"
+    sad:
+      - "슬퍼"
+      - "안 좋아"
+      - "끔찍해"
+      - "최악"
+    happy:
+      - "멋져"
+      - "최고"
+      - "대박"
+      - "굉장해"
+      - "좋아"
+    quiet:
+      - "조용히"
+      - "비밀"
+      - "속삭여"
+    funny:
+      - "농담"
+      - "웃겨"
+      - "웃겨줘"
+    curious:
+      - "알려줘"
+      - "설명해"
+      - "뭐야"
+  response_keywords:
+    apologetic:
+      - "미안"
+      - "아쉽게도"
+      - "할 수 없어"
+    enthusiastic:
+      - "!"
+      - "대박"
+      - "멋져"
+      - "최고"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "모든\\s*(파일|폴더|디렉토리).*삭제"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format\\s+[a-zA-Z]:"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "종료|재시작|리부트"
+    - "(컴퓨터|PC|시스템).*끄"
+    - "(비밀번호|키|토큰|비밀키).*전송"
+    - "(비밀번호|키|토큰).*보여"
+    - "(비밀번호|암호|PIN).*알려"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "(알 수 없는|신뢰할 수 없는).*설치"
+    - "(실행 파일|바이러스|트로이 목마).*다운로드"
+  warning:
+    - "(설정|구성).*변경"
+    - "(시스템|서버|nginx|apache).*설정"
+    - "포트.*열"
+    - "(포트|방화벽).*닫"
+    - "ping\\s+-t"
+    - "(파일|폴더).*이동"
+    - "복사"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "모든 파일 삭제"
+    - "C드라이브 포맷"
+    - "지금 종료"
+    - "sudo rm -rf"
+    - "비밀번호 전송"
+    - "컴퓨터 끄기"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "설정 변경"
+    - "포트 열기"
+    - "파일 이동"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "블랙리스트"
+    - "차단"
+    - "밴"
+  unblock_last:
+    - "차단 해제"
+    - "블랙리스트에서 제거"
+    - "밴 해제"
+  add_friend:
+    - "나를 기억해"
+    - "내 친구야"
+    - "기억해"
+  forget_speaker:
+    - "이 목소리 잊어"
+    - "프로필 삭제"
+  identify:
+    - "누가 말하고 있어"
+    - "이 사람 누구야"
+  list_voices:
+    - "어떤 목소리가 있어"
+    - "목소리 목록"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "블랙리스트|차단.*목소리|밴.*목소리|블랙리스트.*추가"
+  unblock_last: "차단.*해제|블랙리스트.*제거|밴.*해제.*목소리"
+  add_friend: "기억해.*로|내 친구야|기억해.*목소리|추가.*친구"
+  forget_speaker: "잊어.*목소리|삭제.*프로필|제거.*친구"
+  identify: "누가.*말하|누구.*이 사람|식별.*목소리"
+  list_voices: "어떤.*목소리|목소리.*목록|목소리.*보여"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "내 이름은\\s*(\\S+)"
+    - "(\\S+)라고 불러"
+    - "(\\S+)로 기억해"
+    - "나는\\s*(\\S+)"
+  filter_words:
+    - "너"
+    - "나"
+    - "그"
+    - "그녀"
+    - "누구"
+    - "뭐"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "보정"
+    - "재보정"
+    - "프로필 업데이트"
+  reset_context:
+    - "컨텍스트 초기화"
+    - "새 대화"
+    - "잊어"
+    - "시스템 프롬프트 초기화"
+  stop:
+    - "멈춰"
+    - "취소"
+    - "그만"
+    - "정지"
+    - "중단"
+  register_owner:
+    - "내 목소리 기억해"
+    - "내 목소리 등록해"
+    - "나는 주인이야"
+  approval_yes:
+    - "승인"
+    - "확인"
+    - "허가"
+    - "실행해"
+    - "응, 실행해"
+    - "진행해"
+  approval_no:
+    - "거부"
+    - "거절"
+    - "실행하지 마"
+    - "아니"
+    - "금지"
+    - "승인 취소"
+  safe_markers:
+    - "농담"
+    - "이야기"
+    - "전설"
+    - "수다"
+    - "안녕"
+    - "노래해"
+    - "몇 시야"
+    - "시간"
+    - "날짜"
+    - "무슨 요일"
+    - "날씨"
+    - "뉴스"
+    - "알려줘"
+    - "설명해"
+    - "누구"
+    - "뭐야"
+  task_markers:
+    - "해줘"
+    - "실행해"
+    - "돌려"
+    - "열어"
+    - "닫아"
+    - "삭제해"
+    - "만들어"
+    - "설정해"
+    - "다운로드해"
+    - "설치해"
+    - "보내줘"
+    - "써줘"
+    - "변경해"
+    - "옮겨"
+    - "찾아"
+    - "검색해"
+    - "확인해"
+    - "이동해"
+    - "명령"
+    - "터미널"
+    - "셸"
+  ha_trigger_patterns:
+    - "스마트 홈"
+    - "smart home"
+    - "불 켜줘"
+    - "불 꺼줘"
+    - "조명 켜줘"
+    - "조명 꺼줘"
+    - "켜줘"
+    - "꺼줘"
+    - "조명"
+    - "불"
+    - "램프"
+    - "밝기"
+    - "온도조절기"
+    - "온도"
+    - "에어컨"
+    - "난방"
+    - "선풍기"
+    - "텔레비전"
+    - "TV"
+    - "커튼"
+    - "블라인드"
+    - "잠금"
+    - "차고"
+    - "청소기"
+    - "가습기"
+    - "콘센트"
+    - "거실"
+    - "침실"
+    - "주방"
+    - "욕실"
+    - "복도"
+  ha_strip_prefixes:
+    - "스마트 홈 "
+    - "smart home "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "미안, 응답을 받지 못했어."
+  processing_error: "미안, 요청을 처리하는 중에 오류가 발생했어."
+  timeout: "미안, 응답 시간이 너무 오래 걸렸어."
+  generic_error: "오류: {error}"
+  rate_limit: "미안, 서비스를 일시적으로 사용할 수 없어 (요청 제한). 나중에 다시 시도해줘."
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "미안, OpenClaw과의 연결이 끊겼어. 요청을 다시 말해줘."
+  send_failed: "오류: WebSocket으로 메시지를 보내지 못했어"
+  no_response: "미안, 응답을 받지 못했어."
+  timeout: "미안, 응답 시간이 너무 오래 걸렸어."
+  request_aborted: "요청이 중단되었어. 다시 말해줘."
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "도구에서 오류가 발생했어. 원인을 확인하고 있어."
+  opening_folder: "프로젝트 폴더를 열고 있어."
+  browsing_structure: "프로젝트 구조를 살펴보고 파일을 찾고 있어."
+  analyzing_file: "파일 {path}을 분석하고 있어."
+  reading_code: "코드를 읽고 분석하고 있어."
+  searching_code: "관련 코드를 검색하고 있어."
+  running_tests: "코드를 확인하고 테스트를 실행하고 있어."
+  editing_code: "코드를 수정하고 있어."
+  checking_repo: "저장소 변경 사항을 확인하고 있어."
+  project_steps: "프로젝트 단계를 실행하고 있어."
+  running_command: "터미널에서 명령을 실행하고 있어."
+  reading_files: "프로젝트 파일을 읽고 있어."
+  searching_info: "코드에서 정보를 검색하고 있어."
+  continuing_work: "작업을 계속하고 있어."
+  planning: "해결 방법을 계획하고 있어."
+  error_checking: "오류가 발생했어. 무슨 일이 있었는지 확인하고 있어."
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "OpenClaw 브라우저 확장 프로그램이 연결되지 않았어. 활성 탭에서 확장 프로그램을 열어줘."
+  tool_unavailable: "도구 {name}은 현재 사용할 수 없어."
+  timeout: "요청 시간이 너무 오래 걸렸어. 다시 시도해줘."
+  rate_limit: "요청이 너무 많아. 잠시 기다렸다가 다시 시도해줘."
+  auth_error: "인증 오류야. 연결 설정을 확인해줘."
+  generic_error: "오류: {error}"
+  default_tool_name: "서비스"

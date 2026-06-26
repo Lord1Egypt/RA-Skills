@@ -1,0 +1,15 @@
+# China Telecom Mail Skill Configuration
+
+[email]
+# POP3 server (for receiving emails)
+server = "pop.chinatelecom.cn"
+port = 995
+username = "zhanggh5@chinatelecom.cn"
+password = "填写密码"
+
+[smtp]
+# SMTP server (for sending emails)
+server = "smtp.chinatelecom.cn"
+port = 465
+username = "zhanggh5@chinatelecom.cn"
+password = "填写密码"

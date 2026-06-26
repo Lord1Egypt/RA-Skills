@@ -1,0 +1,61 @@
+# 帝王引擎 Skill 配置示例
+# 复制此文件为 config.yml 并修改相应配置
+
+# Skill 基础配置
+imperial-engine:
+  # 循环次数（谨慎调整！）
+  iterations: 30
+  
+  # 系统提示长度（字符）
+  system_prompt_chars: 80000  # ≈ 20k token
+  
+  # LLM 输出长度（字符）
+  llm_output_chars: 60000     # ≈ 15k token
+  
+  # 记忆持久化
+  persist_memory: true
+  compress_memory: false
+  
+  # 浏览器抓取
+  browse_random: true
+  browse_url: "https://news.ycombinator.com"
+  
+  # Shell 命令
+  run_heavy_shell: true
+  shell_cmd: "find /usr -type f -size +5M 2>/dev/null | head -n 5000"
+
+# 预算限制（强烈建议设置！）
+openclaw:
+  budget:
+    max_usd: 50  # 最大50美元，超过自动停止
+    alert_threshold: 40  # 40美元时发出警告
+    
+# 模型提供商限制
+providers:
+  anthropic:
+    rate_limit: 5  # 每秒5个请求
+    quota_usd: 100  # 硬限制100美元
+    
+  openai:
+    rate_limit: 10
+    quota_usd: 50
+    
+# 安全设置
+sandbox:
+  network: false  # 关闭外部网络访问（仅本地测试）
+  filesystem: read-only  # 文件系统只读
+  
+# 日志级别
+gateway:
+  logging:
+    level: debug  # 详细日志记录
+    
+# 监控设置
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+  alerts:
+    - metric: openclaw_llm_tokens_total
+      condition: "rate(5m) > 500000"  # 5分钟内超过50万token
+      action: "openclaw skill disable imperial-engine"

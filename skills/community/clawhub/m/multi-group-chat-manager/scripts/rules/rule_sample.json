@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "group_id": "你的群号（替换）",
+    "group_name": "你的群名称（替换）",
+    "version": 1,
+    "note": "将此文件复制为 rule_<群号>.json，然后根据群规修改规则内容。"
+  },
+  "rules": [
+    {
+      "key": "greeting",
+      "name": "主动招呼",
+      "score": 1,
+      "type": "positive",
+      "mode": "auto",
+      "max_trigger_count": 5,
+      "description": "主动打招呼/艾特bot",
+      "conditions": {
+        "type": "keyword",
+        "keywords": ["早上好", "晚上好", "大家好", "早安", "晚安"],
+        "match_type": "any"
+      }
+    },
+    {
+      "key": "spam",
+      "name": "刷屏灌水",
+      "score": -2,
+      "type": "negative",
+      "mode": "auto",
+      "max_trigger_count": 3,
+      "description": "短时间内连续发送多条消息",
+      "conditions": {
+        "type": "frequency",
+        "max_count": 10,
+        "window_seconds": 10,
+        "same_content": false,
+        "exclude_users": []
+      }
+    },
+    {
+      "key": "scam_ad",
+      "name": "诈骗广告",
+      "score": -10,
+      "type": "negative",
+      "mode": "auto",
+      "max_trigger_count": 0,
+      "description": "商业广告、诈骗信息",
+      "conditions": {
+        "type": "keyword",
+        "keywords": ["加微信", "扫码", "兼职", "投资", "刷单"],
+        "match_type": "any"
+      }
+    },
+    {
+      "key": "friendly_chat",
+      "name": "友善闲聊",
+      "score": 0.5,
+      "type": "positive",
+      "mode": "ai",
+      "max_trigger_count": 10,
+      "description": "正常聊天互动（AI 判断）",
+      "conditions": { "type": "semantic" }
+    },
+    {
+      "key": "share_creation",
+      "name": "分享创作",
+      "score": 3,
+      "type": "positive",
+      "mode": "ai",
+      "max_trigger_count": 3,
+      "description": "分享OC/同人/游戏等创作（AI 判断）",
+      "conditions": { "type": "semantic" }
+    },
+    {
+      "key": "argue_attack",
+      "name": "争吵攻击",
+      "score": -5,
+      "type": "negative",
+      "mode": "ai",
+      "max_trigger_count": 3,
+      "description": "吵架抬杠人身攻击（AI 判断）",
+      "conditions": { "type": "semantic" }
+    }
+  ]
+}

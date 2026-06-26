@@ -1,0 +1,38 @@
+{
+  "name": "toutiao-article-reader",
+  "version": "1.0.0",
+  "description": "使用浏览器自动化阅读今日头条、微信公众号、知乎等平台文章。自动提取标题、作者、发布时间、正文内容，并生成内容摘要。",
+  "author": "Your Name",
+  "license": "MIT",
+  "keywords": [
+    "article",
+    "reader",
+    "toutiao",
+    "browser",
+    "automation",
+    "playwright",
+    "头条",
+    "文章",
+    "阅读"
+  ],
+  "main": "scripts/read_article.py",
+  "scripts": {
+    "test": "python3 scripts/read_article.py https://www.toutiao.com/article/7622885072810607113/"
+  },
+  "dependencies": {
+    "playwright": "^1.58.0",
+    "beautifulsoup4": "^4.12.0"
+  },
+  "engines": {
+    "python": ">=3.8",
+    "openclaw": ">=2026.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/toutiao-article-reader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/toutiao-article-reader/issues"
+  },
+  "homepage": "https://github.com/yourusername/toutiao-article-reader#readme"
+}

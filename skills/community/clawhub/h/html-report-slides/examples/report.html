@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform AI 能力全景图 & 故事线规划</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #0a0e1a;
+    color: #e0e6f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* === COVER SLIDE === */
+  .slide {
+    width: 1280px;
+    min-height: 720px;
+    margin: 40px auto;
+    background: linear-gradient(135deg, #0f1629 0%, #1a1f3a 50%, #0f1629 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(100, 140, 255, 0.15);
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(80, 120, 255, 0.08);
+    padding: 60px 70px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(80, 120, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .slide-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+    text-align: center;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(80, 120, 255, 0.15), rgba(120, 80, 255, 0.15));
+    border: 1px solid rgba(80, 120, 255, 0.3);
+    border-radius: 30px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7cacff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .cover-title {
+    font-size: 52px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #7cacff 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .cover-subtitle {
+    font-size: 22px;
+    color: #8899bb;
+    font-weight: 400;
+    margin-bottom: 50px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    color: #5a6a8a;
+    font-size: 14px;
+  }
+
+  .cover-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* === ARCHITECTURE SLIDE === */
+  .slide-header {
+    margin-bottom: 40px;
+  }
+
+  .slide-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5070ff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .slide-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .slide-title span {
+    background: linear-gradient(135deg, #5070ff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Architecture layers */
+  .arch-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .arch-layer {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.2s;
+  }
+
+  .arch-layer:hover {
+    transform: translateX(4px);
+  }
+
+  .arch-label {
+    width: 110px;
+    min-width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    padding: 18px 12px;
+    text-align: center;
+    position: relative;
+  }
+
+  .arch-label::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .arch-items {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 14px 20px;
+    gap: 10px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .arch-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .arch-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Layer colors */
+  .layer-user .arch-label { background: linear-gradient(135deg, #2d6a4f, #40916c); }
+  .layer-user .arch-item { background: rgba(64, 145, 108, 0.15); border-color: rgba(64, 145, 108, 0.25); color: #95d5b2; }
+
+  .layer-reach .arch-label { background: linear-gradient(135deg, #5070ff, #3a5ce0); }
+  .layer-reach .arch-item { background: rgba(80, 112, 255, 0.12); border-color: rgba(80, 112, 255, 0.25); color: #a0b4ff; }
+
+  .layer-agent .arch-label { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+  .layer-agent .arch-item { background: rgba(124, 58, 237, 0.12); border-color: rgba(124, 58, 237, 0.25); color: #c4b5fd; }
+
+  .layer-support .arch-label { background: linear-gradient(135deg, #c2410c, #ea580c); }
+  .layer-support .arch-item { background: rgba(234, 88, 12, 0.12); border-color: rgba(234, 88, 12, 0.2); color: #fed7aa; }
+
+  .layer-cloud .arch-label { background: linear-gradient(135deg, #475569, #64748b); }
+  .layer-cloud .arch-item { background: rgba(100, 116, 139, 0.15); border-color: rgba(100, 116, 139, 0.25); color: #cbd5e1; }
+
+  .arch-item.highlight {
+    border-color: rgba(255, 200, 50, 0.5) !important;
+    box-shadow: 0 0 12px rgba(255, 200, 50, 0.1);
+  }
+
+  .arch-item .badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 200, 50, 0.2);
+    color: #fcd34d;
+  }
+
+  /* Arrow indicator between layers */
+  .arch-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0;
+    color: #3a4a6a;
+    font-size: 18px;
+  }
+
+  /* === STORYLINES SLIDE === */
+  .storylines {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .storyline {
+    background: rgba(255,255,255,0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .storyline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+  }
+
+  .storyline-1::before { background: linear-gradient(180deg, #5070ff, #a78bfa); }
+  .storyline-2::before { background: linear-gradient(180deg, #10b981, #34d399); }
+  .storyline-3::before { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
+
+  .storyline-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .storyline-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .storyline-1 .storyline-num { background: linear-gradient(135deg, #5070ff, #7c3aed); }
+  .storyline-2 .storyline-num { background: linear-gradient(135deg, #10b981, #059669); }
+  .storyline-3 .storyline-num { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+  .storyline-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .storyline-path {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .path-node {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .storyline-1 .path-node { background: rgba(80, 112, 255, 0.12); border: 1px solid rgba(80, 112, 255, 0.25); color: #a0b4ff; }
+  .storyline-2 .path-node { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.25); color: #6ee7b7; }
+  .storyline-3 .path-node { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.25); color: #fcd34d; }
+
+  .path-arrow {
+    color: #4a5a7a;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .storyline-desc {
+    font-size: 14px;
+    color: #8899bb;
+    line-height: 1.7;
+  }
+
+  .storyline-desc strong {
+    color: #c0ccee;
+  }
+
+  /* === KEY DECISIONS SLIDE === */
+  .decisions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .decision-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 24px;
+    position: relative;
+  }
+
+  .decision-card.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .decision-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .decision-icon.blue { background: rgba(80, 112, 255, 0.15); }
+  .decision-icon.purple { background: rgba(124, 58, 237, 0.15); }
+  .decision-icon.green { background: rgba(16, 185, 129, 0.15); }
+  .decision-icon.orange { background: rgba(245, 158, 11, 0.15); }
+
+  .decision-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .decision-content {
+    font-size: 13px;
+    color: #8899bb;
+    line-height: 1.7;
+  }
+
+  .decision-options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .option-a {
+    color: #a0b4ff;
+  }
+
+  .option-b {
+    color: #fcd34d;
+  }
+
+  .option-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .option-a .option-dot { background: #5070ff; }
+  .option-b .option-dot { background: #f59e0b; }
+
+  /* === NEXT STEPS SLIDE === */
+  .next-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 20px 24px;
+  }
+
+  .step-time {
+    min-width: 80px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(80, 112, 255, 0.1);
+    border: 1px solid rgba(80, 112, 255, 0.2);
+    color: #7cacff;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #e0e6f0;
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: #7788aa;
+    line-height: 1.6;
+  }
+
+  .step-owner {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(167, 139, 250, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    color: #c4b5fd;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  /* Footer */
+  .slide-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 70px;
+    right: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3a4a6a;
+    font-size: 11px;
+  }
+
+  /* Print optimization */
+  @media print {
+    body { background: #fff; }
+    .slide { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: COVER -->
+<div class="slide">
+  <div class="slide-cover">
+    <div class="cover-title">Platform AI 能力全景图<br>& 故事线规划</div>
+  </div>
+  <div class="slide-footer">
+    <span>Platform AI Strategy</span>
+    <span>1 / 4</span>
+  </div>
+</div>
+
+<!-- SLIDE 2: ARCHITECTURE -->
+<div class="slide" style="padding: 40px 50px;">
+  <div class="slide-header" style="margin-bottom: 20px;">
+    <div class="slide-number">01 &mdash; Architecture</div>
+    <div class="slide-title"><span>全景图</span></div>
+  </div>
+
+  <svg viewBox="0 0 1180 620" style="width:100%;height:auto;" font-family="Inter, 'PingFang SC', sans-serif">
+    <defs>
+      <marker id="arrowBlue" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 5 2, 0 4" fill="#5070ff"/></marker>
+      <marker id="arrowBlueRev" markerWidth="5" markerHeight="4" refX="0" refY="2" orient="auto"><polygon points="5 0, 0 2, 5 4" fill="#5070ff"/></marker>
+      <marker id="arrowGreen" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 5 2, 0 4" fill="#10b981"/></marker>
+      <marker id="arrowOrange" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 5 2, 0 4" fill="#f59e0b"/></marker>
+    </defs>
+
+    <!-- ==================== 第5层（最底）: 云产品 ==================== -->
+    <rect x="30" y="530" width="1120" height="70" rx="10" fill="rgba(71,85,105,0.25)" stroke="rgba(100,116,139,0.4)" stroke-width="1"/>
+    <text x="65" y="570" font-size="14" font-weight="700" fill="#94a3b8">云产品</text>
+    <text x="170" y="568" font-size="12" fill="#94a3b8">CVM</text>
+    <text x="270" y="568" font-size="12" fill="#94a3b8">COS</text>
+    <text x="370" y="568" font-size="12" fill="#94a3b8">TDSQL</text>
+    <text x="470" y="568" font-size="12" fill="#94a3b8">CLB</text>
+    <text x="570" y="568" font-size="12" fill="#94a3b8">VPC</text>
+    <text x="670" y="568" font-size="12" fill="#94a3b8">CDN</text>
+    <text x="770" y="568" font-size="12" fill="#94a3b8">TKE</text>
+    <text x="870" y="568" font-size="12" fill="#94a3b8">CBS</text>
+    <text x="970" y="568" font-size="12" fill="#94a3b8">WAF</text>
+    <text x="1070" y="568" font-size="12" fill="#94a3b8">……</text>
+
+    <!-- ==================== 第4层: 支撑层（已有系统）==================== -->
+    <rect x="30" y="420" width="1120" height="80" rx="10" fill="rgba(234,88,12,0.08)" stroke="rgba(234,88,12,0.3)" stroke-width="1"/>
+    <text x="40" y="450" font-size="13" font-weight="700" fill="#fdba74">支撑层</text>
+    <rect x="60" y="460" width="130" height="30" rx="6" fill="rgba(234,88,12,0.15)" stroke="rgba(234,88,12,0.3)"/>
+    <text x="125" y="480" font-size="12" fill="#fed7aa" text-anchor="middle" font-weight="700">Andon</text>
+    <rect x="210" y="460" width="110" height="30" rx="6" fill="rgba(234,88,12,0.15)" stroke="rgba(234,88,12,0.3)"/>
+    <text x="265" y="480" font-size="12" fill="#fed7aa" text-anchor="middle" font-weight="700">TSA</text>
+    <rect x="340" y="460" width="140" height="30" rx="6" fill="rgba(234,88,12,0.15)" stroke="rgba(234,88,12,0.3)"/>
+    <text x="410" y="480" font-size="12" fill="#fed7aa" text-anchor="middle" font-weight="700">CRM / CEM</text>
+    <rect x="500" y="460" width="110" height="30" rx="6" fill="rgba(234,88,12,0.15)" stroke="rgba(234,88,12,0.3)"/>
+    <text x="555" y="480" font-size="12" fill="#fed7aa" text-anchor="middle" font-weight="700">计费</text>
+    <rect x="630" y="460" width="120" height="30" rx="6" fill="rgba(234,88,12,0.15)" stroke="rgba(234,88,12,0.3)"/>
+    <text x="690" y="480" font-size="12" fill="#fed7aa" text-anchor="middle" font-weight="700">云API</text>
+    <rect x="770" y="460" width="220" height="30" rx="6" fill="rgba(234,88,12,0.15)" stroke="rgba(234,88,12,0.3)"/>
+    <text x="880" y="480" font-size="12" fill="#fed7aa" text-anchor="middle" font-weight="700">……</text>
+
+    <!-- ==================== 第3层: Agent 层 ==================== -->
+    <rect x="30" y="300" width="1120" height="95" rx="10" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+    <text x="40" y="328" font-size="13" font-weight="700" fill="#c4b5fd">Agent 层</text>
+    <!-- ProductA -->
+    <rect x="60" y="338" width="140" height="36" rx="8" fill="rgba(124,58,237,0.2)" stroke="rgba(167,139,250,0.5)" stroke-width="1.5"/>
+    <text x="130" y="361" font-size="13" fill="#e0d4ff" text-anchor="middle" font-weight="600">ProductA</text>
+    <!-- CloudAgent 构建 -->
+    <rect x="230" y="338" width="190" height="36" rx="8" fill="rgba(124,58,237,0.2)" stroke="rgba(167,139,250,0.5)" stroke-width="1.5"/>
+    <text x="325" y="361" font-size="13" fill="#e0d4ff" text-anchor="middle" font-weight="600">CloudAgent 构建</text>
+    <!-- InternalHub -->
+    <rect x="450" y="338" width="110" height="36" rx="8" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.35)"/>
+    <text x="505" y="361" font-size="13" fill="#c4b5fd" text-anchor="middle" font-weight="700">InternalHub</text>
+    <!-- Git Skill库 -->
+    <rect x="590" y="333" width="200" height="46" rx="8" fill="rgba(124,58,237,0.2)" stroke="rgba(167,139,250,0.5)" stroke-width="1.5"/>
+    <text x="690" y="353" font-size="13" fill="#e0d4ff" text-anchor="middle" font-weight="600">Git Skill库</text>
+    <text x="690" y="370" font-size="10" fill="#a78bfa" text-anchor="middle" font-weight="700">SkillHub · ClawHub</text>
+    <!-- TCCLI -->
+    <rect x="820" y="338" width="310" height="36" rx="8" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.35)"/>
+    <text x="975" y="361" font-size="13" fill="#c4b5fd" text-anchor="middle" font-weight="700">TCCLI</text>
+
+
+
+    <!-- ==================== 第2层: 触达层 ==================== -->
+    <rect x="30" y="130" width="1120" height="125" rx="10" fill="rgba(80,112,255,0.08)" stroke="rgba(80,112,255,0.3)" stroke-width="1"/>
+    <text x="40" y="158" font-size="13" font-weight="700" fill="#93b4ff">触达层</text>
+    <!-- AssistantApp 外圈虚线容器 -->
+    <rect x="50" y="162" width="200" height="86" rx="10" fill="rgba(80,112,255,0.04)" stroke="rgba(100,140,255,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="150" y="205" font-size="22" fill="#e0d4ff" text-anchor="middle" font-weight="800" letter-spacing="2">AssistantApp</text>
+    <text x="150" y="226" font-size="10" fill="#a78bfa" text-anchor="middle" font-weight="700">本地 + 云端 (小程序)</text>
+    <!-- IM 外圈容器（包含三个Q） -->
+    <rect x="265" y="166" width="430" height="78" rx="10" fill="rgba(80,112,255,0.06)" stroke="rgba(100,140,255,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="480" y="183" font-size="11" fill="#7cacff" text-anchor="middle" font-weight="700">IM（IM / 飞书 / Slack / Teams）</text>
+    <!-- ServiceBot-A inside IM -->
+    <rect x="280" y="190" width="110" height="36" rx="8" fill="rgba(80,112,255,0.15)" stroke="rgba(80,112,255,0.35)"/>
+    <text x="335" y="213" font-size="13" fill="#a0b4ff" text-anchor="middle" font-weight="700">ServiceBot-A</text>
+    <!-- ServiceBot-B inside IM -->
+    <rect x="405" y="190" width="110" height="36" rx="8" fill="rgba(80,112,255,0.15)" stroke="rgba(80,112,255,0.35)"/>
+    <text x="460" y="213" font-size="13" fill="#a0b4ff" text-anchor="middle" font-weight="700">ServiceBot-B</text>
+    <!-- ServiceBot-C inside IM -->
+    <rect x="530" y="190" width="110" height="36" rx="8" fill="rgba(80,112,255,0.15)" stroke="rgba(80,112,255,0.35)"/>
+    <text x="585" y="213" font-size="13" fill="#a0b4ff" text-anchor="middle" font-weight="700">ServiceBot-C</text>
+    <!-- 官网外圈容器 -->
+    <rect x="710" y="162" width="430" height="86" rx="10" fill="rgba(80,112,255,0.04)" stroke="rgba(250,200,50,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="925" y="178" font-size="11" fill="#fcd34d" text-anchor="middle" font-weight="600">官网</text>
+    <!-- 官网智能客服 -->
+    <rect x="725" y="190" width="180" height="42" rx="8" fill="rgba(80,112,255,0.12)" stroke="rgba(80,112,255,0.3)"/>
+    <text x="815" y="215" font-size="13" fill="#a0b4ff" text-anchor="middle" font-weight="700">官网智能客服</text>
+    <!-- Skill 广场 -->
+    <rect x="920" y="190" width="205" height="42" rx="8" fill="rgba(80,112,255,0.2)" stroke="rgba(100,140,255,0.55)" stroke-width="2"/>
+    <text x="1023" y="215" font-size="13" fill="#c0d4ff" text-anchor="middle" font-weight="700">Skill 广场</text>
+
+    <!-- ==================== 三条故事线连线 ==================== -->
+
+    <!-- ① WB线（蓝色）: ProductA ↔ CloudAgent 构建（Agent层内，双向） -->
+    <line x1="202" y1="356" x2="228" y2="356" stroke="#5070ff" stroke-width="2" marker-start="url(#arrowBlueRev)" marker-end="url(#arrowBlue)" opacity="0.85"/>
+    <!-- WB线: CloudAgent 构建 → AssistantApp（Agent层 → 触达层）-->
+    <path d="M 280,338 C 280,288 150,270 150,250" fill="none" stroke="#5070ff" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#arrowBlue)" opacity="0.85"/>
+    <!-- WB线标签 -->
+    <text x="185" y="288" font-size="13" fill="#5070ff" font-weight="700" font-style="italic">WB线</text>
+
+    <!-- ② claw线（绿色）: Git Skill库 → IM三个Q -->
+    <path d="M 660,333 C 640,288 500,268 490,228" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#arrowGreen)" opacity="0.85"/>
+    <!-- claw线标签 -->
+    <text x="580" y="288" font-size="13" fill="#10b981" font-weight="700" font-style="italic">claw线</text>
+
+    <!-- ③ skill线（橙色）: TCCLI → Skill广场 -->
+    <path d="M 975,338 C 990,298 1023,268 1023,234" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#arrowOrange)" opacity="0.85"/>
+    <!-- skill线标签 -->
+    <text x="1000" y="288" font-size="13" fill="#f59e0b" font-weight="700" font-style="italic">skill线</text>
+
+    <!-- ==================== 支撑层 → Agent层 连线（单向虚线） ==================== -->
+    <!-- Andon → ProductA（蓝色虚线） -->
+    <path d="M 125,458 L 125,378" fill="none" stroke="#5070ff" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#arrowBlue)" opacity="0.8"/>
+    <!-- 云API → TCCLI（橙色虚线） -->
+    <path d="M 690,458 C 750,428 920,408 960,378" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#arrowOrange)" opacity="0.8"/>
+
+    <!-- ==================== claw线补充：IM → AssistantApp（绿色虚线） ==================== -->
+    <path d="M 265,208 C 248,208 230,208 215,212" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#arrowGreen)" opacity="0.85"/>
+
+    <!-- ==================== 第1层（最上）: 用户 ==================== -->
+    <rect x="30" y="20" width="1120" height="90" rx="10" fill="rgba(45,106,79,0.08)" stroke="rgba(64,145,108,0.3)" stroke-width="1"/>
+    <text x="40" y="48" font-size="13" font-weight="700" fill="#95d5b2">用户</text>
+    <!-- 内部用户 -->
+    <rect x="50" y="55" width="150" height="40" rx="8" fill="rgba(64,145,108,0.2)" stroke="rgba(64,145,108,0.4)"/>
+    <text x="125" y="80" font-size="14" fill="#a7f3d0" text-anchor="middle" font-weight="600">内部用户</text>
+    <!-- 外部用户组 -->
+    <rect x="230" y="52" width="910" height="48" rx="8" fill="rgba(64,145,108,0.06)" stroke="rgba(64,145,108,0.2)" stroke-dasharray="4,3"/>
+    <text x="255" y="71" font-size="12" font-weight="600" fill="#6ee7b7">外部用户</text>
+    <rect x="340" y="59" width="150" height="32" rx="6" fill="rgba(64,145,108,0.15)" stroke="rgba(64,145,108,0.3)"/>
+    <text x="415" y="80" font-size="12" fill="#95d5b2" text-anchor="middle" font-weight="700">中长尾</text>
+    <rect x="570" y="59" width="150" height="32" rx="6" fill="rgba(64,145,108,0.15)" stroke="rgba(64,145,108,0.3)"/>
+    <text x="645" y="80" font-size="12" fill="#95d5b2" text-anchor="middle" font-weight="700">大客户</text>
+    <rect x="800" y="59" width="150" height="32" rx="6" fill="rgba(64,145,108,0.15)" stroke="rgba(64,145,108,0.3)"/>
+    <text x="875" y="80" font-size="12" fill="#95d5b2" text-anchor="middle" font-weight="700">海外</text>
+
+
+
+
+  </svg>
+
+  <div class="slide-footer">
+    <span>Platform AI Strategy</span>
+    <span>2 / 4</span>
+  </div>
+</div>
+
+<!-- SLIDE 3: STORYLINES -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-number">02 &mdash; Storylines</div>
+    <div class="slide-title">三条 <span>故事线</span></div>
+  </div>
+
+  <div class="storylines">
+    <!-- Storyline 1 -->
+    <div class="storyline storyline-1">
+      <div class="storyline-header">
+        <div class="storyline-num">1</div>
+        <div class="storyline-title">WB线 —— ProductA → CloudAgent → AssistantApp</div>
+      </div>
+      <div class="storyline-path">
+        <div class="path-node">ProductA / InternalHub</div>
+        <div class="path-arrow">&#8644;</div>
+        <div class="path-node">CloudAgent 构建</div>
+        <div class="path-arrow">&#10140;</div>
+        <div class="path-node">AssistantApp (本地+云端)</div>
+      </div>
+      <div class="storyline-desc">
+        把部门在已有系统上构建的 Agent 能力，迁移到 <strong>CloudAgent</strong> 框架构建，统一输出到 <strong>AssistantApp</strong> 触达用户。<br>
+        核心待定：专家目录的定位 —— <strong>"Platform 技术专家"</strong> vs <strong>"Cloud Platform技术专家"</strong>，名字决定了承载范围和对外口径。<br>
+        WB 需支持 <strong>内部可见 / 外部可见</strong> 权限分层，预计最快 5 月底上线。<br>
+        👉 <a href="https://dengjiawei-6gp37cs851079739-1363812791.tcloudbaseapp.com/workbuddy-experts-lite.html" target="_blank" style="color: #a78bfa; text-decoration: underline;">WB 专家 Demo</a>
+      </div>
+    </div>
+
+    <!-- Storyline 2 -->
+    <div class="storyline storyline-2">
+      <div class="storyline-header">
+        <div class="storyline-num">2</div>
+        <div class="storyline-title">Claw通过IM渠道及Workbuddy触达客户</div>
+      </div>
+      <div class="storyline-path">
+        <div class="path-node">ServiceBot-A / ServiceBot-B / ServiceBot-C</div>
+        <div class="path-arrow">&#10140;</div>
+        <div class="path-node">IM (IM/飞书/Slack/Teams)</div>
+        <div class="path-arrow">&#10140;</div>
+        <div class="path-node">Workbuddy</div>
+      </div>
+      <div class="storyline-desc">
+        三个 Q（ServiceBot-A、ServiceBot-B、ServiceBot-C）通过 <strong>IM 渠道</strong>（IM、飞书、Slack、Teams）及 <strong>Workbuddy</strong> 触达客户。<br>
+        后端系统是<strong>一体的</strong>，前端多渠道分发。属于Cloud Platform创新场景，同时维护好大客户体系。
+      </div>
+    </div>
+
+    <!-- Storyline 3 -->
+    <div class="storyline storyline-3">
+      <div class="storyline-header">
+        <div class="storyline-num">3</div>
+        <div class="storyline-title">skill线 —— TCCLI → Skill 广场</div>
+      </div>
+      <div class="storyline-path">
+        <div class="path-node">CLI 能力</div>
+        <div class="path-arrow">&#10140;</div>
+        <div class="path-node">Skill 声明式封装</div>
+        <div class="path-arrow">&#10140;</div>
+        <div class="path-node">Skill 广场 (官网)</div>
+        <div class="path-arrow">&#10140;</div>
+        <div class="path-node">外部客户自助使用</div>
+      </div>
+      <div class="storyline-desc">
+        现有基础已具备（TCCLI → Skill 封装），核心问题是<strong>缺少宣传口径</strong>。<br>
+        CLI 是命令式，Skill 是声明式 —— Skill 依赖大模型转换为命令执行。<br>
+        喜茶等客户已关注阿里云 Skill 广场，主推 ServiceBot-A/ServiceBot-B 集成方案，备选 Skill 广场自助方案。
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>Platform AI Strategy</span>
+    <span>3 / 4</span>
+  </div>
+</div>
+
+<!-- SLIDE 4: KEY DECISIONS & NEXT STEPS -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-number">03 &mdash; Next Steps</div>
+    <div class="slide-title"><span>下一步</span></div>
+  </div>
+
+  <div class="decisions" style="margin-bottom: 30px;">
+    <div class="decision-card">
+      <div class="decision-icon blue">&#9733;</div>
+      <div class="decision-title">专家目录定位</div>
+      <div class="decision-content">
+        名字决定了承载范围和对外影响力
+        <div class="decision-options">
+          <div class="option option-a"><div class="option-dot"></div>方案 A：Platform 技术专家（范围小，可控）</div>
+          <div class="option option-b"><div class="option-dot"></div>方案 B：Cloud Platform技术专家（范围大，需跨团队协同）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision-card">
+      <div class="decision-icon purple">&#9881;</div>
+      <div class="decision-title">WB 内外版本</div>
+      <div class="decision-content">
+        AssistantApp 需支持内部可见 / 外部可见的权限分层。<br>
+        Skill 先分内部版和外部版，专家再分内部版和外部版。<br>
+        <strong>预计最快 5 月底，最慢 H1</strong>
+      </div>
+    </div>
+
+    <div class="decision-card">
+      <div class="decision-icon orange">&#9889;</div>
+      <div class="decision-title">CloudAgent 内网打通</div>
+      <div class="decision-content">
+        当前只有本地环境和公网环境，缺少 IDC 内网环境。<br>
+        能力没问题，卡在<strong>资源审批</strong>。计划先自建代理穿透，仅限内部使用。
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>Platform AI Strategy</span>
+    <span>4 / 4</span>
+  </div>
+</div>
+
+</body>
+</html>

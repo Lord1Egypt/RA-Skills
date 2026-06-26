@@ -1,0 +1,11 @@
+presets:
+  creator_invite:
+    day0: first_touch
+    day3: nudge
+    day7: proof_followup
+    day10: breakup
+  b2b_intro:
+    day0: first_touch
+    day4: insight_followup
+    day8: case_study_followup
+    day12: breakup

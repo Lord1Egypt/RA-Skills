@@ -1,0 +1,14 @@
+[
+  {
+    "checked_at": "2026-05-21",
+    "claim": "The merchant is a suitable artisan-gallery pilot candidate from the supplied research report.",
+    "source": "supplied deep-research-report (2).md",
+    "status": "research_derived"
+  },
+  {
+    "checked_at": "2026-05-21",
+    "claim": "The public website URL candidate is remarkablethings.com.",
+    "source_url": "https://remarkablethings.com/",
+    "status": "not_independently_verified_in_repo"
+  }
+]

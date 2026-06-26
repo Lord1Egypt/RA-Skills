@@ -1,0 +1,80 @@
+{
+  "skill_name": "weather",
+  "skill_path": "/opt/homebrew/lib/node_modules/openclaw/skills/weather/SKILL.md",
+  "description": "Trigger rate tests for weather skill description",
+  "evals": [
+    {
+      "id": 1,
+      "name": "direct-weather",
+      "query": "What's the weather in Singapore?",
+      "expected": true,
+      "category": "positive"
+    },
+    {
+      "id": 2,
+      "name": "chinese-weather",
+      "query": "今天天气怎么样",
+      "expected": true,
+      "category": "positive"
+    },
+    {
+      "id": 3,
+      "name": "forecast",
+      "query": "Will it rain tomorrow in London?",
+      "expected": true,
+      "category": "positive"
+    },
+    {
+      "id": 4,
+      "name": "temperature",
+      "query": "Temperature in Tokyo right now",
+      "expected": true,
+      "category": "positive"
+    },
+    {
+      "id": 5,
+      "name": "travel-weather",
+      "query": "I'm flying to NYC next week, what should I pack?",
+      "expected": true,
+      "category": "positive"
+    },
+    {
+      "id": 6,
+      "name": "unrelated-stocks",
+      "query": "What's the stock price of NVDA?",
+      "expected": false,
+      "category": "negative"
+    },
+    {
+      "id": 7,
+      "name": "unrelated-coding",
+      "query": "Help me debug my Python code",
+      "expected": false,
+      "category": "negative"
+    },
+    {
+      "id": 8,
+      "name": "historical-weather",
+      "query": "What was the average temperature in Paris in 1990?",
+      "expected": false,
+      "category": "negative",
+      "note": "NOT for: historical weather data"
+    },
+    {
+      "id": 9,
+      "name": "edge-climate",
+      "query": "How is climate change affecting rainfall patterns?",
+      "expected": false,
+      "category": "edge-case",
+      "note": "Ambiguous — climate analysis not weather"
+    },
+    {
+      "id": 10,
+      "name": "edge-forecast-singlish",
+      "query": "today got rain or not?",
+      "expected": true,
+      "category": "edge-case",
+      "note": "Singlish phrasing — should still trigger"
+    }
+  ]
+}

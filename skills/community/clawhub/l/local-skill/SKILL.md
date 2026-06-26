@@ -1,35 +1,26 @@
 ---
-name: "local-skill"
+name: local-skill
+version: 0.2.0
 description: "Local skill repository for publish and pre-publish inspection. Provides inspectSkill and summarizeSkill utilities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-skill"
-sourceUrl: "https://clawhub.ai/skills/local-skill"
+license: MIT
+author: Acme
 ---
-
 # local-skill
 
-> Local skill repository for publish and pre-publish inspection. Provides inspectSkill and summarizeSkill utilities.
+A skill for local inspection and release workflows before publishing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-skill`
-- **Source URL:** [https://clawhub.ai/skills/local-skill](https://clawhub.ai/skills/local-skill)
+## Usage
 
-## Overview
+```js
+const { inspectSkill, summarizeSkill } = require('./src');
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/local-skill
+inspectSkill();    // returns { name, version, status }
+summarizeSkill();  // returns a human-readable summary string
 ```
+
+## Release checklist
+
+1. `bash scripts/check.sh`
+2. `bash scripts/publish.sh --dry-run`
+3. Review metadata
+4. `bash scripts/publish.sh`

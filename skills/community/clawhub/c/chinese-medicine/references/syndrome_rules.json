@@ -1,0 +1,356 @@
+{
+  "syndrome_patterns": [
+    {
+      "id": "qi_deficiency_pattern",
+      "name_en": "Qi Deficiency Pattern",
+      "name_cn": "气虚证",
+      "name_pinyin": "Qi Xu Zheng",
+      "category": "Deficiency Pattern",
+      "key_symptoms": [
+        "fatigue",
+        "shortness of breath",
+        "weak voice",
+        "spontaneous sweating",
+        "poor appetite"
+      ],
+      "secondary_symptoms": [
+        "loose stools",
+        "frequent colds",
+        "prolapsed organs",
+        "slow recovery"
+      ],
+      "tongue": "Pale with tooth marks",
+      "pulse": "Weak, empty",
+      "western_equivalents": ["Chronic fatigue", "Functional decline", "Low immunity"],
+      "search_keywords": ["always tired", "no energy", "chronic fatigue TCM", "weak immunity"],
+      "differentiation": {
+        "vs_yang_deficiency": "Qi deficiency lacks the cold signs (cold limbs, fear of cold) present in Yang deficiency",
+        "vs_blood_deficiency": "Qi deficiency focuses on functional weakness; Blood deficiency shows more dryness and pale features"
+      },
+      "lifestyle_advice": [
+        "Avoid overexertion",
+        "Eat warm, cooked foods",
+        "Practice gentle Qigong",
+        "Maintain regular sleep schedule"
+      ]
+    },
+    {
+      "id": "yang_deficiency_pattern",
+      "name_en": "Yang Deficiency Pattern",
+      "name_cn": "阳虚证",
+      "name_pinyin": "Yang Xu Zheng",
+      "category": "Deficiency Pattern",
+      "key_symptoms": [
+        "cold limbs",
+        "fear of cold",
+        "pale complexion",
+        "loose stools",
+        "clear copious urine"
+      ],
+      "secondary_symptoms": [
+        "edema",
+        "low libido",
+        "infertility",
+        "morning diarrhea"
+      ],
+      "tongue": "Pale, swollen, wet",
+      "pulse": "Deep, weak, slow",
+      "western_equivalents": ["Hypothyroid tendency", "Low metabolism", "Cold intolerance"],
+      "search_keywords": ["always cold", "cold hands feet", "low body temperature", "cannot tolerate cold"],
+      "differentiation": {
+        "vs_qi_deficiency": "Yang deficiency adds cold signs to Qi deficiency symptoms",
+        "vs_blood_stasis": "Blood stasis causes cold from obstruction; Yang deficiency causes cold from insufficiency"
+      },
+      "lifestyle_advice": [
+        "Keep warm especially lower back and feet",
+        "Use moxibustion therapy",
+        "Eat warming foods like ginger, cinnamon",
+        "Avoid cold foods and environments"
+      ]
+    },
+    {
+      "id": "yin_deficiency_pattern",
+      "name_en": "Yin Deficiency Pattern",
+      "name_cn": "阴虚证",
+      "name_pinyin": "Yin Xu Zheng",
+      "category": "Deficiency Pattern",
+      "key_symptoms": [
+        "night sweats",
+        "five palm heat",
+        "dry mouth and throat",
+        "afternoon fever",
+        "insomnia"
+      ],
+      "secondary_symptoms": [
+        "constipation",
+        "dry skin",
+        "restlessness",
+        "tinnitus"
+      ],
+      "tongue": "Red, dry, little coating",
+      "pulse": "Thin, rapid",
+      "western_equivalents": ["Internal dryness", "Autonomic imbalance", "Hyperactive sympathetic"],
+      "search_keywords": ["night sweats", "hot flashes", "dry mouth", "insomnia heat"],
+      "differentiation": {
+        "vs_excess_heat": "Yin deficiency heat is low-grade and worse at night; Excess heat is high fever with aversion to heat",
+        "vs_qi_deficiency": "Qi deficiency has low energy without heat signs; Yin deficiency has heat signs"
+      },
+      "lifestyle_advice": [
+        "Maintain regular sleep schedule",
+        "Avoid late nights",
+        "Eat moistening foods like pear, lily bulb",
+        "Practice meditation and relaxation"
+      ]
+    },
+    {
+      "id": "blood_deficiency_pattern",
+      "name_en": "Blood Deficiency Pattern",
+      "name_cn": "血虚证",
+      "name_pinyin": "Xue Xu Zheng",
+      "category": "Deficiency Pattern",
+      "key_symptoms": [
+        "pale complexion",
+        "dizziness",
+        "blurred vision",
+        "palpitations",
+        "numbness in limbs"
+      ],
+      "secondary_symptoms": [
+        "dry skin",
+        "brittle nails",
+        "scanty menstruation",
+        "insomnia"
+      ],
+      "tongue": "Pale, thin",
+      "pulse": "Thin, weak",
+      "western_equivalents": ["Nutritional insufficiency", "Anemia pattern", "Poor tissue nourishment"],
+      "search_keywords": ["pale face", "dizzy spells", "blurred vision", "dry skin TCM"],
+      "differentiation": {
+        "vs_yin_deficiency": "Blood deficiency focuses on dryness and pale features; Yin deficiency adds heat signs",
+        "vs_qi_deficiency": "Blood deficiency shows more tissue-level symptoms (pale, dry); Qi deficiency shows functional weakness"
+      },
+      "lifestyle_advice": [
+        "Eat blood-nourishing foods like jujube, goji berry",
+        "Avoid excessive mental work",
+        "Get adequate rest",
+        "Consider iron-rich foods"
+      ]
+    },
+    {
+      "id": "phlegm_dampness_pattern",
+      "name_en": "Phlegm-Dampness Pattern",
+      "name_cn": "痰湿证",
+      "name_pinyin": "Tan Shi Zheng",
+      "category": "Excess Pattern",
+      "key_symptoms": [
+        "obesity",
+        "chest congestion",
+        "profuse phlegm",
+        "sticky mouth",
+        "heavy limbs"
+      ],
+      "secondary_symptoms": [
+        "nausea",
+        "dizziness",
+        "greasy skin",
+        "soft lumps"
+      ],
+      "tongue": "Swollen, greasy coating",
+      "pulse": "Slippery, rolling",
+      "western_equivalents": ["Metabolic congestion", "Fluid retention", "High cholesterol pattern"],
+      "search_keywords": ["overweight", "phlegm congestion", "oily skin", "chest tightness"],
+      "differentiation": {
+        "vs_damp_heat": "Phlegm-damp has no heat signs; Damp-heat has bitter taste, dark urine, irritability",
+        "vs_qi_deficiency": "Both can have fatigue, but phlegm-damp has heaviness and congestion"
+      },
+      "lifestyle_advice": [
+        "Regular aerobic exercise",
+        "Avoid greasy, sweet, dairy foods",
+        "Eat drying foods like tangerine peel, barley",
+        "Maintain dry environment"
+      ]
+    },
+    {
+      "id": "damp_heat_pattern",
+      "name_en": "Damp-Heat Pattern",
+      "name_cn": "湿热证",
+      "name_pinyin": "Shi Re Zheng",
+      "category": "Excess Pattern",
+      "key_symptoms": [
+        "oily face and acne",
+        "bitter taste",
+        "dark urine",
+        "sticky stools",
+        "heavy limbs"
+      ],
+      "secondary_symptoms": [
+        "feverish sensation",
+        "vaginal discharge",
+        "jaundice",
+        "skin eruptions"
+      ],
+      "tongue": "Red body, yellow greasy coating",
+      "pulse": "Slippery, rapid",
+      "western_equivalents": ["Inflammatory congestion", "Toxic metabolic pattern", "Infection tendency"],
+      "search_keywords": ["acne oily skin", "bitter taste", "dark urine", "body odor TCM"],
+      "differentiation": {
+        "vs_phlegm_damp": "Damp-heat adds heat signs (bitter taste, dark urine) to dampness",
+        "vs_liver_fire": "Liver fire has more upward symptoms (headache, red eyes); Damp-heat has more systemic damp signs"
+      },
+      "lifestyle_advice": [
+        "Avoid alcohol, spicy, greasy foods",
+        "Exercise to promote sweating",
+        "Eat cooling, drying foods like mung beans",
+        "Stay hydrated with room temperature water"
+      ]
+    },
+    {
+      "id": "liver_qi_stagnation",
+      "name_en": "Liver Qi Stagnation Pattern",
+      "name_cn": "肝郁气滞证",
+      "name_pinyin": "Gan Yu Qi Zhi Zheng",
+      "category": "Qi Disorder",
+      "key_symptoms": [
+        "chest tightness",
+        "sighing frequently",
+        "mood swings",
+        "irritability",
+        "distended abdomen"
+      ],
+      "secondary_symptoms": [
+        "breast distension",
+        "irregular menstruation",
+        "lump in throat",
+        "rib-side pain"
+      ],
+      "tongue": "Normal or slightly red sides",
+      "pulse": "Wiry",
+      "western_equivalents": ["Stress response pattern", "Emotional tension", "Functional GI disorder"],
+      "search_keywords": ["stress relief", "mood swings", "chest tightness", "PMS TCM"],
+      "differentiation": {
+        "vs_heart_shen_disturbance": "Liver qi stagnation has more physical constraint; Heart shen disturbance has more mental symptoms",
+        "vs_blood_stasis": "Liver qi stagnation pain moves; Blood stasis pain is fixed and stabbing"
+      },
+      "lifestyle_advice": [
+        "Practice emotional expression",
+        "Regular exercise especially dance or martial arts",
+        "Aromatherapy with citrus or floral scents",
+        "Acupressure on LV3 (Taichong)"
+      ]
+    },
+    {
+      "id": "blood_stasis_pattern",
+      "name_en": "Blood Stasis Pattern",
+      "name_cn": "血瘀证",
+      "name_pinyin": "Xue Yu Zheng",
+      "category": "Blood Disorder",
+      "key_symptoms": [
+        "fixed stabbing pain",
+        "dark complexion",
+        "purple lips",
+        "varicose veins",
+        "dark menstrual clots"
+      ],
+      "secondary_symptoms": [
+        "easy bruising",
+        "dry skin",
+        "abdominal masses",
+        "history of trauma"
+      ],
+      "tongue": "Purple, may have spots",
+      "pulse": "Choppy or wiry",
+      "western_equivalents": ["Circulatory stagnation", "Microcirculation impairment", "Chronic inflammatory state"],
+      "search_keywords": ["dark circles", "bruising easily", "varicose veins", "painful periods"],
+      "differentiation": {
+        "vs_qi_stagnation": "Qi stagnation pain moves and is distending; Blood stasis pain is fixed and stabbing",
+        "vs_cold_pattern": "Cold causes pain from constriction; Blood stasis causes pain from obstruction"
+      },
+      "lifestyle_advice": [
+        "Regular movement, avoid prolonged sitting",
+        "Moderate aerobic exercise",
+        "Massage and cupping therapy",
+        "Eat blood-moving foods like safflower, vinegar"
+      ]
+    },
+    {
+      "id": "spleen_qi_deficiency",
+      "name_en": "Spleen Qi Deficiency Pattern",
+      "name_cn": "脾气虚证",
+      "name_pinyin": "Pi Qi Xu Zheng",
+      "category": "Zang-Fu Pattern",
+      "key_symptoms": [
+        "poor appetite",
+        "abdominal distension after eating",
+        "loose stools",
+        "fatigue",
+        "weak limbs"
+      ],
+      "secondary_symptoms": [
+        "sallow complexion",
+        "weight loss",
+        "organ prolapse",
+        "easy bruising"
+      ],
+      "tongue": "Pale, tooth marks",
+      "pulse": "Weak, empty",
+      "western_equivalents": ["Digestive weakness", "Poor nutrient absorption", "Functional GI disorder"],
+      "search_keywords": ["poor appetite", "bloating after meals", "loose stools", "digestive weakness TCM"],
+      "differentiation": {
+        "vs_stomach_yin_deficiency": "Spleen qi deficiency has loose stools and fatigue; Stomach yin deficiency has dry mouth and constipation",
+        "vs_dampness": "Spleen qi deficiency is deficiency; Dampness is excess with heaviness and greasy coating"
+      },
+      "lifestyle_advice": [
+        "Eat warm, cooked, easily digested foods",
+        "Regular meal times, avoid overeating",
+        "Chew food thoroughly",
+        "Avoid cold, raw foods and drinks"
+      ]
+    },
+    {
+      "id": "heart_shen_disturbance",
+      "name_en": "Heart Shen Disturbance Pattern",
+      "name_cn": "心神不宁证",
+      "name_pinyin": "Xin Shen Bu Ning Zheng",
+      "category": "Shen Disorder",
+      "key_symptoms": [
+        "insomnia",
+        "restlessness",
+        "palpitations",
+        "anxiety",
+        "poor memory"
+      ],
+      "secondary_symptoms": [
+        "dream-disturbed sleep",
+        "easily startled",
+        "mental confusion",
+        "inability to concentrate"
+      ],
+      "tongue": "Red tip, may be peeled",
+      "pulse": "Thin, rapid or irregular",
+      "western_equivalents": ["Anxiety disorder", "Sleep disorder", "Cognitive disturbance"],
+      "search_keywords": ["insomnia", "anxiety", "racing mind", "cannot sleep TCM"],
+      "differentiation": {
+        "vs_liver_qi_stagnation": "Heart shen disturbance focuses on mental symptoms; Liver qi stagnation has more physical constraint",
+        "vs_yin_deficiency": "Yin deficiency can cause shen disturbance, but adds heat signs like night sweats"
+      },
+      "lifestyle_advice": [
+        "Establish regular sleep routine",
+        "Avoid screens before bed",
+        "Practice meditation or breathing exercises",
+        "Create calm bedtime environment"
+      ]
+    }
+  ],
+  "symptom_mapping": {
+    "fatigue": ["qi_deficiency_pattern", "yang_deficiency_pattern", "spleen_qi_deficiency"],
+    "insomnia": ["heart_shen_disturbance", "yin_deficiency_pattern", "liver_qi_stagnation"],
+    "bloating": ["spleen_qi_deficiency", "liver_qi_stagnation", "phlegm_dampness_pattern"],
+    "headache": ["liver_qi_stagnation", "blood_stasis_pattern", "yang_deficiency_pattern"],
+    "anxiety": ["heart_shen_disturbance", "liver_qi_stagnation", "yin_deficiency_pattern"],
+    "dry_skin": ["blood_deficiency_pattern", "yin_deficiency_pattern"],
+    "cold_limbs": ["yang_deficiency_pattern", "blood_stasis_pattern", "qi_deficiency_pattern"],
+    "irritability": ["liver_qi_stagnation", "damp_heat_pattern", "yin_deficiency_pattern"],
+    "poor_appetite": ["spleen_qi_deficiency", "damp_heat_pattern", "liver_qi_stagnation"],
+    "night_sweats": ["yin_deficiency_pattern", "heart_shen_disturbance"]
+  }
+}

@@ -1,0 +1,26 @@
+# Avoid the multistep arithmetic trap
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 含税多步折扣算术陷阱
+
+## Chinese source prompt
+
+# 多步折扣 + 含税计算
+
+一件商品标价 100 元（不含税）。下单时叠加：
+
+1. 会员先享 8 折
+2. 然后用一张满 60 减 5 元的券（在 8 折后的金额上判断是否满 60）
+3. 在所得金额基础上再享 9 折活动
+4. 最后按 13% 增值税"价外税"开发票（实付 = 不含税应付 ×（1 + 13%））
+5. 平台再补贴 2 元（直接从最终价里扣，不影响开票金额）
+
+请回答：
+
+- **逐步推导**每一步的金额（保留 2 位小数）
+- **最终用户实付**多少钱
+- 然后回答一个常见陷阱判断题：**"先打 8 折再打 9 折" 与 "直接打 7.2 折" 等价吗？为什么？**
+
+中文，≤300 字。

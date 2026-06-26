@@ -1,0 +1,40 @@
+{
+  "project": "ring-sizer",
+  "window": "last_30d",
+  "signals": [
+    {
+      "id": "retention_d3_drop",
+      "title": "Day-3 retention dropped after onboarding changes",
+      "area": "onboarding",
+      "priority": "high",
+      "metric": "d3_retention",
+      "current_value": 0.17,
+      "baseline_value": 0.26,
+      "delta_percent": -34.6,
+      "evidence": [
+        "Biggest drop between onboarding step 2 and paywall",
+        "Drop began after release 1.8.0"
+      ],
+      "suggested_actions": [
+        "Move paywall after first successful ring measurement",
+        "Shorten onboarding step 2 to one required input"
+      ],
+      "keywords": ["onboarding", "paywall", "measurement"]
+    },
+    {
+      "id": "feature_usage_high_no_upgrade",
+      "title": "High feature usage but low upgrade conversion in premium flow",
+      "area": "conversion",
+      "priority": "medium",
+      "metric": "premium_feature_usage_to_upgrade",
+      "current_value": 0.06,
+      "baseline_value": 0.09,
+      "delta_percent": -33.3,
+      "evidence": [
+        "Users repeat free core action but do not enter checkout",
+        "Conversion loss concentrated on first paywall view"
+      ],
+      "keywords": ["premium", "upgrade", "checkout", "paywall"]
+    }
+  ]
+}

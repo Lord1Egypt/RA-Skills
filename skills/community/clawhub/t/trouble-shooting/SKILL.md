@@ -1,35 +1,195 @@
 ---
-name: "trouble-shooting"
-description: "问题排查与上下文隔离。用户说报错了/遇到问题时，创建隔离环境（worktree/subagent）专门排查，当前主线上下文保持不变。解决后回到主线继续。触发词：报错了、有问题、排查。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trouble-shooting"
-sourceUrl: "https://clawhub.ai/skills/trouble-shooting"
+name: trouble-shooting
+description: 问题排查与上下文隔离。用户说报错了/遇到问题时，创建隔离环境（worktree/subagent）专门排查，当前主线上下文保持不变。解决后回到主线继续。触发词：报错了、有问题、排查。
 ---
 
-# trouble-shooting
+# Trouble Shooting - 上下文隔离的问题排查
 
-> 问题排查与上下文隔离。用户说报错了/遇到问题时，创建隔离环境（worktree/subagent）专门排查，当前主线上下文保持不变。解决后回到主线继续。触发词：报错了、有问题、排查。
+## 核心概念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trouble-shooting`
-- **Source URL:** [https://clawhub.ai/skills/trouble-shooting](https://clawhub.ai/skills/trouble-shooting)
+- **主线 Agent**：当前的所有对话历史 = 主线任务，保持不变
+- **隔离环境**：新建的 worktree/subagent，专门用于排查问题
+- **切换**：遇到问题 → 切到隔离环境 → 解决 → 切回主线
 
-## Overview
+## 工作流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trouble-shooting
 ```
+主线 Agent（当前所有上下文）
+       ↓ 用户说"报错了"
+   ━━━━━━━━━━━━━━━━━━━━━
+   启动隔离排查
+   ━━━━━━━━━━━━━━━━━━━━━
+       ↓
+  创建隔离环境（二选一）
+  ┌────────────────────┐
+  │ 选项1: Worktree    │  ← 物理隔离，推荐
+  │ 选项2: Subagent    │  ← 逻辑隔离，worktree 失败时用
+  └────────────────────┘
+       ↓
+  [在隔离环境内排查问题]
+       ↓
+  用户确认解决 / 说"解决了"
+       ↓
+  销毁隔离环境
+       ↓
+  回到主线 Agent（上下文完整保留）
+```
+
+## 使用方式
+
+### 1. 启动排查
+
+**触发**：说"报错了"、"有问题"、或直接 `/trouble-shooting`
+
+**交互**：
+
+```
+用户：报错了，useEffect 无限循环
+
+Claude（主线 Agent）：
+🔧 启动问题排查
+
+当前主线上下文已保护。
+创建隔离环境...
+
+请选择：
+[1] Worktree 隔离（推荐，文件系统级隔离）
+[2] Subagent 隔离（快速，上下文级隔离）
+
+用户：1
+
+Claude：
+✅ Worktree 已创建: ../project-trouble-0327-xxxx
+🔍 切换到隔离环境排查问题...
+
+[自动进入 worktree，开始排查]
+```
+
+### 2. 在隔离环境内排查
+
+**Worktree 模式**：
+- 在新目录中修改代码，不会影响原分支
+- 可以自由尝试各种解决方案
+- 找到方案后，可以选择应用 worktree 的变更或丢弃
+
+**Subagent 模式**：
+- 创建子 agent，只接收问题相关信息
+- 子 agent 分析后返回诊断结果
+- 主线 agent 根据结果决定是否应用方案
+
+### 3. 结束排查
+
+找到解决方案后，询问用户：
+
+```
+💡 问题定位完成
+原因：useEffect 缺少依赖数组
+方案：添加 [userId] 依赖
+
+请确认：
+[1] 问题解决，应用变更并回到主线
+[2] 继续排查
+[3] 放弃本次尝试，回到主线（丢弃隔离环境变更）
+
+用户：1
+```
+
+### 4. 回到主线
+
+```
+Claude：
+✅ 隔离环境变更已应用
+🗑️ 隔离环境已清理
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 回到主线
+
+主线上下文完整保留，继续之前的任务...
+```
+
+## 完整示例（Worktree 模式）
+
+```
+主 Agent（主线）：
+用户：
+正在开发登录页面，现在用 useEffect 做轮询，
+但是报错了说 Maximum update depth exceeded
+[上下文...]
+
+Claude：
+🔧 启动问题排查（Worktree 隔离）
+主线上下文已保护
+
+✅ 创建 worktree: ../project-trouble-0327-a1b2
+正在切换到隔离环境...
+
+--- 【切换到 Worktree】 ---
+
+隔离环境 Agent：
+让我分析这个问题...
+
+查看 src/pages/Login.tsx 第 45 行：
+问题确认：useEffect 中 setState 且未指定依赖数组
+
+试修方案：
+```diff
+- useEffect(() => {
++ useEffect(() => {
+     const timer = setInterval(refresh, 5000);
+     return () => clearInterval(timer);
+- });
++ }, [userId]);
+```
+
+验证通过，问题解决。
+
+--- 【回到主 Agent】 ---
+
+Claude：
+💡 诊断结果：缺少依赖数组
+✅ 已在隔离环境验证
+
+请确认：
+[1] 应用变更并回到主线 ←
+[2] 继续排查
+[3] 放弃
+
+用户：1
+
+Claude：
+✅ 已应用变更
+🗑️ 已清理 worktree
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 回到主线
+
+登录页面开发继续...
+[主线上下文完整保留]
+```
+
+## 隔离策略选择
+
+| 策略 | 适用场景 | 特点 |
+|-----|---------|------|
+| Worktree | 需要修改代码验证 | 物理隔离，安全可靠 |
+| Subagent | 纯诊断分析 | 轻量快速，无文件变更 |
+
+默认优先尝试 Worktree，失败时自动降级到 Subagent。
+
+## 命令别名
+
+- `/trouble-shooting` - 启动排查
+- `/trouble-shooting solved` - 手动标记解决
+- `/trouble-shooting back` - 放弃排查，回到主线
+
+## 脚本说明
+
+| 脚本 | 用途 |
+|-----|------|
+| `start_troubleshoot.py <title>` | 保存主线快照，创建隔离环境 |
+| `finish_troubleshoot.py <apply|discard>` | 应用或丢弃变更，清理隔离环境 |
+| `list_troubleshoots.py` | 列出历史问题及解决方案 |
+
+## 核心原则
+
+1. **主线无需确认**：当前 agent 的所有上下文就是主线
+2. **切出去解决**：真正的隔离，不在当前上下文解决
+3. **回来无感**：主线上下文自动保留，无缝继续

@@ -1,35 +1,39 @@
----
-name: "n Skill"
-description: "Create, manage, sync, and share minimalist notes with tags, search, and reminders across multiple devices using simple commands."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/n"
-sourceUrl: "https://clawhub.ai/skills/n"
+name: n
+
+version: 1.0.0
+
+description: "A minimalist note-taking skill for creating, managing, and syncing notes across devices. Use when: user wants to take quick notes, organize thoughts, or access notes from anywhere."
+
 ---
 
 # n Skill
 
-> Create, manage, sync, and share minimalist notes with tags, search, and reminders across multiple devices using simple commands.
+A minimalist note-taking skill for creating, managing, and syncing notes across devices.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/n`
-- **Source URL:** [https://clawhub.ai/skills/n](https://clawhub.ai/skills/n)
+## Features
+- Create new notes with simple commands
+- Organize notes by tags or categories
+- Search notes by keywords
+- Sync notes across multiple devices
+- Share notes with other users
+- Set reminders for important notes
 
-## Overview
+## Usage Examples
+- "Create a new note about project ideas"
+- "Add tag 'work' to my last note"
+- "Search notes for 'meeting'
+- "Sync my notes"
+- "Share note 123 with John"
 
+## Benefits
+- Quick and easy note-taking without complex interfaces
+- Seamless sync across all your devices
+- Powerful search functionality to find notes quickly
+- Simple sharing options for collaboration
+- Minimalist design focused on functionality
+
+## How It Works
+The n skill uses a lightweight backend to store and sync notes, ensuring that your data is always up-to-date across all devices. It leverages natural language processing to understand your commands and execute them efficiently.
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/n
-```
+Simply install the n skill from clawhub.ai and start taking notes immediately. No configuration required - just start using it!

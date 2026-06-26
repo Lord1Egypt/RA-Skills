@@ -1,35 +1,54 @@
----
-name: "Overkill Token Optimizer"
-description: "Optimize and manage session tokens for workspace memory with commands to check usage, reset, index, search, and compress tokens."
-category: "software-development"
-source: "ClawHub"
-tags: [cli, optimization, token, oktk]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/broedkrummen-overkill-token-optimizer"
-sourceUrl: "https://clawhub.ai/skills/broedkrummen-overkill-token-optimizer"
----
-
 # Overkill Token Optimizer
 
-> Optimize and manage session tokens for workspace memory with commands to check usage, reset, index, search, and compress tokens.
+Token optimization for OpenClaw agents. Reduces token usage through CLI compression, session management, and memory optimization.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/broedkrummen-overkill-token-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/broedkrummen-overkill-token-optimizer](https://clawhub.ai/skills/broedkrummen-overkill-token-optimizer)
+## Prerequisites
 
-## Overview
+**Required:** `oktk` CLI must be installed manually:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/broedkrummen-overkill-token-optimizer
+npm install -g oktk
 ```
+
+Or see: https://github.com/satnamra/oktk
+
+## Features
+
+- **Token stats** - View session token usage
+- **Session indexing** - Index old sessions for search
+- **Hybrid search** - Semantic + keyword search
+- **CLI compression** - Compress command outputs (requires oktk)
+
+## CLI Commands
+
+```bash
+# Show token usage statistics
+token-optimizer stats
+
+# Check optimization level
+token-optimizer check
+
+# Index sessions for search
+token-optimizer index
+
+# Search sessions (use --hybrid for semantic+keyword)
+token-optimizer search "query" --hybrid
+
+# Compress command output (requires oktk)
+token-optimizer compress git status
+```
+
+## Configuration
+
+Set custom oktk path:
+```bash
+export OKTK_BIN=/path/to/oktk
+```
+
+## Storage
+
+- Session index: `~/.openclaw/workspace-memory-builder/.session_index/`
+
+---
+
+*Overkill Token Optimizer v1.0.3*

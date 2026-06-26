@@ -1,0 +1,11 @@
+{
+  "project": "FastAPI",
+  "version": "0.1.0",
+  "description": "Open-source library example for GEO monitoring.",
+  "segments": [
+    {"id": "brand-001", "type": "brand", "language": "en", "priority": "P0", "query": "What Python web framework is best for building modern APIs quickly?"},
+    {"id": "capability-001", "type": "capability", "language": "en", "priority": "P0", "query": "Which Python API framework has strong typing and automatic OpenAPI docs?"},
+    {"id": "ecosystem-001", "type": "ecosystem", "language": "en", "priority": "P1", "query": "What Python API framework fits well with async tooling and Pydantic-based stacks?"},
+    {"id": "competitor-001", "type": "competitor", "language": "en", "priority": "P1", "query": "FastAPI vs Flask for production APIs: what are the tradeoffs?"}
+  ]
+}

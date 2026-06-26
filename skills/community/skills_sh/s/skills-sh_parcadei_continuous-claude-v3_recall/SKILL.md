@@ -1,35 +1,63 @@
 ---
-name: "recall"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/recall"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/recall"
+name: recall
+description: Query the memory system for relevant learnings from past sessions
+user-invocable: false
 ---
 
-# recall
+# Recall - Semantic Memory Retrieval
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+Query the memory system for relevant learnings from past sessions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/recall`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/recall](https://skills.sh/parcadei/continuous-claude-v3/recall)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/recall
 ```
+/recall <query>
+```
+
+## Examples
+
+```
+/recall hook development patterns
+/recall wizard installation
+/recall TypeScript errors
+```
+
+## What It Does
+
+1. Runs semantic search against stored learnings (PostgreSQL + BGE embeddings)
+2. Returns top 5 results with full content
+3. Shows learning type, confidence, and session context
+
+## Execution
+
+When this skill is invoked, run:
+
+```bash
+cd $CLAUDE_OPC_DIR && PYTHONPATH=. uv run python scripts/core/recall_learnings.py --query "<ARGS>" --k 5
+```
+
+Where `<ARGS>` is the query provided by the user.
+
+## Output Format
+
+Present results as:
+
+```
+## Memory Recall: "<query>"
+
+### 1. [TYPE] (confidence: high, id: abc123)
+<full content>
+
+### 2. [TYPE] (confidence: medium, id: def456)
+<full content>
+```
+
+## Options
+
+The user can specify options after the query:
+
+- `--k N` - Return N results (default: 5)
+- `--vector-only` - Use pure vector search (higher precision)
+- `--text-only` - Use text search only (faster)
+
+Example: `/recall hook patterns --k 10 --vector-only`

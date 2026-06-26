@@ -1,0 +1,34 @@
+{
+  "id": "11",
+  "name": "机器人",
+  "category": "先进制造业",
+  "keywords": [
+    "机器人",
+    "工业机器人",
+    "服务机器人",
+    "协作机器人",
+    "机器人集成"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🤖",
+    "maxDescriptionLength": 200
+  }
+}

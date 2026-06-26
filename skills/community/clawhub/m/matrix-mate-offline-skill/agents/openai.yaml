@@ -1,0 +1,18 @@
+interface:
+  display_name: "Matrix Mate - ITA Matrix Flight Search and Parse Tool"
+  short_description: "Search ITA Matrix flights in browser and parse itinerary links with local Matrix Mate MCP"
+  default_prompt: "Use $matrix-mate-offline (Matrix Mate - ITA Matrix Flight Search and Parse Tool) to run ITA Matrix search + parse flows, fare-rule audits, and traveler-safe itinerary summaries."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "matrix-mate-offline-local"
+      description: "Matrix Mate local stdio MCP server"
+      transport: "stdio"
+      command: "node"
+      args:
+        - "scripts/run-offline-mcp.mjs"
+      cwd: "."
+
+policy:
+  allow_implicit_invocation: false

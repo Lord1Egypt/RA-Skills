@@ -1,0 +1,7 @@
+interface:
+  display_name: "本地研究资料查询"
+  short_description: "统一查询本地投研归档并生成摘要"
+  default_prompt: "Use $research-archive-query to search local research archives like AlphaPai and knowledge_bases for a topic over the last N days, excluding private libraries by default."
+
+policy:
+  allow_implicit_invocation: true

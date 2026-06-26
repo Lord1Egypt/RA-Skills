@@ -1,0 +1,3 @@
+interface:
+  display_name: "ClawKB"
+  short_description: "Operate ClawKB over HTTP: register agents, auth, upload images, and manage entries"

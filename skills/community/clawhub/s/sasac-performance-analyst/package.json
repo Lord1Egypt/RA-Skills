@@ -1,0 +1,105 @@
+{
+  "name": "sasac-performance-analyst",
+  "version": "2.0.0",
+  "description": "国资委企业绩效评价智能分析SKILL | SASAC Enterprise Performance Evaluation Skill - 基于2025年版标准值，覆盖332个标准值表（314国内+18国际），提供精准对标、绩效诊断、改进建议与报告生成",
+  "author": "王东杰 (Wang Dongjie)",
+  "creator": {
+    "name_en": "Wang Dongjie",
+    "name_zh": "王东杰",
+    "title": "CFO 首席财务官 | 资深复合型战略财务专家 | CGMA持证人",
+    "email": "Wdj_@163.com",
+    "phone": "13952453499"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/yjkj999999/sasac-performance-analyst",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yjkj999999/sasac-performance-analyst.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yjkj999999/sasac-performance-analyst/issues"
+  },
+  "keywords": [
+    "sasac",
+    "国资委",
+    "企业绩效评价",
+    "标准值",
+    "对标分析",
+    "绩效诊断",
+    "state-owned-enterprise",
+    "benchmarking",
+    "financial-analysis",
+    "cgma",
+    "hkex-ipo",
+    "ifrs",
+    "cas",
+    "cross-listing",
+    "enterprise-performance",
+    "china-soe",
+    "prospectus-analysis",
+    "radar-chart",
+    "scoring-engine"
+  ],
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README_ZH.md",
+    "system_prompt.md",
+    "package.json",
+    "data/sasac_2025_standards.json",
+    "data/international_standards.json",
+    "data/industry_mapping.json",
+    "data/case_studies.json",
+    "data/hk_ipo_db.json",
+    "data/cross_listing_db.json",
+    "tools/performance_calculator.py",
+    "tools/visualization.py",
+    "tools/financial_data_extractor.py",
+    "tools/hk_ipo_integration.py",
+    "tools/report_generator.py",
+    "templates/report_template.html",
+    "html/sasac_performance_query_2025.html"
+  ],
+  "dependencies": {
+    "PyMuPDF": ">=1.23.0",
+    "pandas": ">=1.5.0",
+    "matplotlib": ">=3.7.0",
+    "numpy": ">=1.24.0"
+  },
+  "engines": {
+    "python": ">=3.10",
+    "openclaw": ">=1.0.0",
+    "qclaw": ">=1.0.0"
+  },
+  "clawhub": {
+    "slug": "sasac-performance-analyst",
+    "category": "finance",
+    "subcategory": "performance-evaluation",
+    "rating": 5.0,
+    "downloads": 0,
+    "featured": true
+  },
+  "sasac": {
+    "data_year": 2025,
+    "intl_data_year": 2024,
+    "total_tables": 332,
+    "domestic_tables": 314,
+    "international_tables": 18,
+    "total_industries": 167,
+    "domestic_industries": 160,
+    "international_industries": 18,
+    "total_metrics": 24,
+    "core_metrics": 16,
+    "supplement_metrics": 8,
+    "dimensions": ["盈利回报", "资产运营", "风险防控", "持续发展"],
+    "levels": ["优秀值", "良好值", "中等值", "较低值", "较差值"],
+    "sizes": ["全行业", "大型企业", "中型企业", "小型企业"],
+    "weights": {
+      "盈利回报": 0.30,
+      "资产运营": 0.20,
+      "风险防控": 0.25,
+      "持续发展": 0.25
+    }
+  }
+}

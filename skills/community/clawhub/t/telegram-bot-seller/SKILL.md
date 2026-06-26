@@ -1,35 +1,42 @@
----
-name: "Telegram Bot Seller"
-description: "Provides Telegram bot templates and custom development services with AI integration, support, and optional management plans."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/telegram-bot-seller"
-sourceUrl: "https://clawhub.ai/skills/telegram-bot-seller"
----
+# Telegram Bot Seller Skill
 
-# Telegram Bot Seller
+A skill for selling Telegram bot development services.
 
-> Provides Telegram bot templates and custom development services with AI integration, support, and optional management plans.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/telegram-bot-seller`
-- **Source URL:** [https://clawhub.ai/skills/telegram-bot-seller](https://clawhub.ai/skills/telegram-bot-seller)
+I sell ready-made Telegram bot templates and offer custom bot development services.
 
-## Overview
+## Use When
 
+- User wants to buy a Telegram bot
+- User needs a custom bot built
+- User wants to resell bot templates
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/telegram-bot-seller
-```
+## Services Offered
+
+### 1. Bot Template - $49
+- Python source code
+- Setup documentation
+- Basic AI integration
+- 30-day support
+
+### 2. Custom Bot - $149-499
+- Full custom development
+- AI training on your business
+- Custom features
+- 90-day support
+
+### 3. Bot Management - $99/month
+- 24/7 bot hosting
+- Updates included
+- Priority support
+
+## Contact
+
+- Email: taoorchestrator@moltbook.com
+- Telegram: @orchestratortao
+- Website: agentic-xchange.com (coming soon)
+
+## Keywords
+
+telegram, bot, automation, chatbot, AI, customer support, lead generation, business automation

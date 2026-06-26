@@ -1,0 +1,11 @@
+{
+  "name": "family-finance-manager",
+  "version": "0.1.0",
+  "description": "家庭财务健康管家 - 全面家庭财务管理工具，包括收支分析、储蓄目标拆解、保险配置建议、财务风险预警和财务健康报告",
+  "keywords": ["family-finance", "financial-planning", "budget", "savings", "insurance", "investment"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/family-finance-manager",
+  "language": ["en", "zh"],
+  "tags": ["finance", "family", "budget", "savings", "insurance"]
+}

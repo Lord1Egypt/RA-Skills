@@ -1,0 +1,39 @@
+{
+  "description": "C 盘大文件迁移配置（示例）",
+  "migrationTarget": "/path/to/migration-target/",
+  "categories": {
+    "VMware": {
+      "patterns": ["*.iso", "*.zip"],
+      "keywords": ["VMware", "ESXi", "VCSA"],
+      "targetSubdir": "VMware"
+    },
+    "PDF": {
+      "patterns": ["*.pdf"],
+      "targetSubdir": "PDF"
+    },
+    "Videos": {
+      "patterns": ["*.mp4", "*.avi", "*.mkv", "*.mov", "*.wmv"],
+      "targetSubdir": "Videos"
+    },
+    "Archive": {
+      "patterns": ["*.zip", "*.rar", "*.7z", "*.tar", "*.gz"],
+      "targetSubdir": "Archive"
+    },
+    "Images": {
+      "patterns": ["*.jpg", "*.jpeg", "*.png", "*.gif", "*.bmp", "*.tiff"],
+      "targetSubdir": "Pictures"
+    },
+    "Others": {
+      "patterns": ["*"],
+      "targetSubdir": "Others"
+    }
+  },
+  "defaultMinSizeMB": 100,
+  "deleteAfterMigrate": false,
+  "logFile": "/path/to/migration-target/upload-log.jsonl",
+  "notes": [
+    "迁移前必须得到用户确认",
+    "迁移完成后询问是否删除原文件",
+    "所有迁移操作都会记录到日志文件"
+  ]
+}

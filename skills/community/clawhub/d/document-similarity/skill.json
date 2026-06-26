@@ -1,0 +1,21 @@
+{
+  "name": "Document Similarity",
+  "description": "Compare two images or PDFs for visual similarity via the PDFAPIHub cloud API. Documents are uploaded to pdfapihub.com for comparison.",
+  "method": "POST",
+  "endpoint": "/v1/document/similarity",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url1", "type": "string", "required": false, "description": "URL to first image/PDF" },
+        { "name": "url2", "type": "string", "required": false, "description": "URL to second image/PDF" },
+        { "name": "image1_base64", "type": "string", "required": false, "description": "Base64 for first image/PDF" },
+        { "name": "image2_base64", "type": "string", "required": false, "description": "Base64 for second image/PDF" },
+        { "name": "method", "type": "string", "required": false, "default": "auto", "enum": ["auto", "feature_match", "ssim", "phash"], "description": "Similarity comparison method" }
+      ],
+      "also_accepts": "multipart/form-data with 'file1' and 'file2' fields"
+    }
+  }
+}

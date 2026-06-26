@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{PROJECT_NAME}} UAT 验收报告</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #2563eb;
+      --danger: #dc2626;
+      --warn: #f59e0b;
+      --ok: #16a34a;
+      --info: #0891b2;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    header { padding: 28px 32px; background: linear-gradient(135deg, #1d4ed8, #0f172a); color: white; }
+    header h1 { margin: 0 0 8px; font-size: 26px; }
+    header .meta { color: #dbeafe; display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: 13px; }
+    main { padding: 24px 32px 48px; }
+    .summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+    .card, section { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); }
+    .card { padding: 16px; }
+    .card .label { color: var(--muted); font-size: 13px; }
+    .card .value { margin-top: 6px; font-size: 28px; font-weight: 700; }
+    .value.ok { color: var(--ok); } .value.warn { color: var(--warn); } .value.danger { color: var(--danger); }
+    section { padding: 18px; margin-top: 18px; }
+    h2 { margin: 0 0 12px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 16px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+    .tabs button { border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; background: white; cursor: pointer; color: #374151; }
+    .tabs button.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .tab { display: none; }
+    .tab.active { display: block; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 9px 8px; text-align: left; vertical-align: top; }
+    th { color: #374151; background: #f9fafb; }
+    .issue { border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 12px; margin: 10px 0; background: #fff; }
+    .issue.formal { border-left-color: var(--danger); }
+    .issue.confirm { border-left-color: var(--warn); }
+    .issue.review { border-left-color: var(--info); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: #eef2ff; color: #3730a3; }
+    .badge.danger { background: #fee2e2; color: #991b1b; }
+    .badge.warn { background: #fef3c7; color: #92400e; }
+    .badge.ok { background: #dcfce7; color: #166534; }
+    .evidence-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+    figure { margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
+    figure img { display: block; width: 100%; max-height: 260px; object-fit: contain; background: #f9fafb; }
+    figcaption { padding: 8px 10px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
+    .audit-pass { color: var(--ok); font-weight: 700; }
+    .audit-fail { color: var(--danger); font-weight: 700; }
+    @media (max-width: 900px) { .summary { grid-template-columns: repeat(2, 1fr); } main, header { padding-left: 18px; padding-right: 18px; } }
+    @media print { body { background: white; } .tabs { display: none; } .tab { display: block !important; page-break-before: always; } section, .card { box-shadow: none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{PROJECT_NAME}} UAT 验收报告</h1>
+    <div class="meta">
+      <span>版本：{{VERSION}}</span>
+      <span>环境：{{ENVIRONMENT}}</span>
+      <span>日期：{{REPORT_DATE}}</span>
+      <span>执行人：{{EXECUTOR}}</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="summary">
+      <div class="card"><div class="label">执行记录</div><div class="value">{{EXECUTION_COUNT}}</div></div>
+      <div class="card"><div class="label">正式问题</div><div class="value danger">{{FORMAL_ISSUE_COUNT}}</div></div>
+      <div class="card"><div class="label">待确认项</div><div class="value warn">{{TO_CONFIRM_COUNT}}</div></div>
+      <div class="card"><div class="label">菜单/文档差异</div><div class="value">{{MENU_DIFF_COUNT}}</div></div>
+    </div>
+
+    <section>
+      <h2>一、总体结论</h2>
+      <p>{{OVERALL_CONCLUSION}}</p>
+      <table>
+        <tr><th>范围</th><td>{{SCOPE}}</td></tr>
+        <tr><th>主要风险</th><td>{{MAIN_RISKS}}</td></tr>
+        <tr><th>准出建议</th><td>{{GO_NO_GO_RECOMMENDATION}}</td></tr>
+      </table>
+    </section>
+
+    <nav class="tabs" id="moduleTabs">
+      <!-- Repeat button per module: <button data-tab="module-1" class="active">模块名</button> -->
+      {{MODULE_TAB_BUTTONS}}
+    </nav>
+
+    <div id="moduleSections">
+      <!-- Repeat this block per module -->
+      <section class="tab active" id="module-1">
+        <h2>{{MODULE_NAME}}</h2>
+        <p><strong>模块结论：</strong>{{MODULE_CONCLUSION}}</p>
+
+        <h3>覆盖子菜单</h3>
+        <p>{{COVERED_MENUS}}</p>
+
+        <h3>正式问题</h3>
+        <div class="issue formal">
+          <span class="badge danger">Formal ISSUE</span>
+          <strong>{{ISSUE_ID}}｜{{ISSUE_TITLE}}</strong>
+          <p><strong>URL地址：</strong>{{PAGE_URL}}</p>
+          <p><strong>复现步骤：</strong>{{REPRO_STEPS}}</p>
+          <p><strong>预期结果：</strong>{{EXPECTED}}</p>
+          <p><strong>实际结果：</strong>{{ACTUAL}}</p>
+          <p><strong>证据：</strong>{{EVIDENCE_REF}}</p>
+        </div>
+        {{FORMAL_ISSUE_BLOCKS}}
+
+        <h3>待确认项</h3>
+        <div class="issue confirm">
+          <span class="badge warn">To-confirm</span>
+          <strong>{{CONFIRM_ID}}｜{{CONFIRM_TITLE}}</strong>
+          <p>{{CONFIRM_DESCRIPTION}}</p>
+        </div>
+        {{TO_CONFIRM_BLOCKS}}
+
+        <h3>执行记录</h3>
+        <table>
+          <thead><tr><th>时间</th><th>菜单</th><th>URL</th><th>操作</th><th>预期</th><th>实际</th><th>状态</th><th>证据</th></tr></thead>
+          <tbody>{{EXECUTION_ROWS}}</tbody>
+        </table>
+
+        <h3>菜单/文档差异</h3>
+        <table>
+          <thead><tr><th>文档名称</th><th>系统实际名称</th><th>影响</th><th>处理建议</th></tr></thead>
+          <tbody>{{MENU_DIFF_ROWS}}</tbody>
+        </table>
+
+        <h3>有效截图证据</h3>
+        <div class="evidence-grid">{{EVIDENCE_FIGURES}}</div>
+      </section>
+      {{MODULE_SECTIONS}}
+    </div>
+
+    <section>
+      <h2>最终审核结果</h2>
+      <p class="{{AUDIT_CLASS}}">{{AUDIT_RESULT}}</p>
+      <ul>
+        <li>模块/TAB 完整性：{{AUDIT_MODULE_COMPLETENESS}}</li>
+        <li>URL 与接口 URL 分离：{{AUDIT_URL_SEPARATION}}</li>
+        <li>截图归属校验：{{AUDIT_SCREENSHOT_OWNERSHIP}}</li>
+        <li>NotFound 分类：{{AUDIT_NOTFOUND_CLASSIFICATION}}</li>
+        <li>复现步骤可读性：{{AUDIT_REPRO_READABILITY}}</li>
+        <li>ZIP 命名与桌面复制：{{AUDIT_PACKAGE_CHECK}}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>交付物</h2>
+      <table>
+        <tr><th>HTML 报告</th><td>{{REPORT_PATH}}</td></tr>
+        <tr><th>ZIP 包</th><td>{{ZIP_PATH}}</td></tr>
+        <tr><th>桌面副本</th><td>{{DESKTOP_COPY_PATH}}</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('#moduleTabs button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#moduleTabs button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = document.getElementById(btn.dataset.tab);
+        if (tab) tab.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

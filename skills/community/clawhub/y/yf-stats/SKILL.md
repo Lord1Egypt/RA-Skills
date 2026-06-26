@@ -1,35 +1,23 @@
 ---
-name: "yf-stats"
-description: "Fetches stock data and generates price charts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yf-stats"
-sourceUrl: "https://clawhub.ai/skills/yf-stats"
+name: yf-stats
+description: Fetches stock data and generates price charts.
+metadata:
+  openclaw:
+    emoji: "📈"
+    binaries: ["python3"]
+    dependencies: 
+      python: "requirements.txt"
+    command: "python3 yf_scraper.py {{ticker}} {{chart_flag}}"
 ---
 
-# yf-stats
+# Yahoo Finance Pro
 
-> Fetches stock data and generates price charts.
+Use this to get financial data. If the user asks for a "chart," "graph," or "trend," include the `--chart` flag.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yf-stats`
-- **Source URL:** [https://clawhub.ai/skills/yf-stats](https://clawhub.ai/skills/yf-stats)
+## Parameters
+- `ticker`: The symbol (e.g., ONDS).
+- `chart_flag`: Use `--chart` if a visual is requested, otherwise leave blank.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yf-stats
-```
+## Example
+- User: "Show me the ONDS chart."
+- Agent runs: `python3 yf_scraper.py ONDS --chart`

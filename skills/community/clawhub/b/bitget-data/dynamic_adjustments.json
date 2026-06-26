@@ -1,0 +1,9 @@
+{
+  "time": "2026-03-09T15:11:59.924Z",
+  "strategy": "dynamic-rsi",
+  "adjustments": {
+    "btc": null,
+    "sol": null,
+    "eth": null
+  }
+}

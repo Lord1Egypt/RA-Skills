@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "text": "Generated .docx file exists",
+      "passed": true,
+      "evidence": "Found: ['eval5.docx']"
+    },
+    {
+      "text": "Output is a valid .docx file",
+      "passed": true,
+      "evidence": "Valid .docx structure"
+    },
+    {
+      "text": "Headings rendered correctly",
+      "passed": true,
+      "evidence": "Heading count: 4"
+    },
+    {
+      "text": "Code blocks and formatting preserved",
+      "passed": true,
+      "evidence": "Bold formatting found"
+    }
+  ]
+}

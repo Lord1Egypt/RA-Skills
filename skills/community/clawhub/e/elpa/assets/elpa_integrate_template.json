@@ -1,0 +1,48 @@
+{
+  "beta": 0.7,
+  "dirty_interval": 3,
+  "amplitude_window": 6,
+  "mutant_epsilon": null,
+  "models": [
+    {
+      "name": "lstnet",
+      "group": "online",
+      "error_csv": "/path/to/val_errors/lstnet.csv"
+    },
+    {
+      "name": "patchtst",
+      "group": "online",
+      "error_csv": "/path/to/val_errors/patchtst.csv"
+    },
+    {
+      "name": "informer",
+      "group": "online",
+      "error_csv": "/path/to/val_errors/informer.csv"
+    },
+    {
+      "name": "autoformer",
+      "group": "online",
+      "error_csv": "/path/to/val_errors/autoformer.csv"
+    },
+    {
+      "name": "fedformer",
+      "group": "online",
+      "error_csv": "/path/to/val_errors/fedformer.csv"
+    },
+    {
+      "name": "tide",
+      "group": "offline",
+      "error_csv": "/path/to/val_errors/tide.csv"
+    },
+    {
+      "name": "prophet",
+      "group": "offline",
+      "error_csv": "/path/to/val_errors/prophet.csv"
+    },
+    {
+      "name": "nbeats",
+      "group": "offline",
+      "error_csv": "/path/to/val_errors/nbeats.csv"
+    }
+  ]
+}

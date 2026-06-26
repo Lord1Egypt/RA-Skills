@@ -1,0 +1,10 @@
+name = "ielts-skill-stats"
+main = "worker.js"
+compatibility_date = "2026-03-30"
+
+# KV Namespace 绑定（部署前需先创建）
+# 运行: wrangler kv namespace create STATS
+# 然后把返回的 id 填到下面
+[[kv_namespaces]]
+binding = "STATS"
+id = "TO_BE_FILLED_AFTER_CREATION"

@@ -1,0 +1,83 @@
+{
+    "name": "marketing-operator",
+    "version": "1.0.0",
+    "role": "execution-engine",
+    "description": "Receives strategic missions from Virtual CMO, decomposes them into executable tasks, manages campaign execution, tracks metrics, and feeds learnings back to CMO.",
+    "inputs": [
+        {
+            "name": "operator_mission",
+            "type": "object",
+            "schema_ref": "schemas/cmo_to_operator.schema.json",
+            "description": "Mission brief from Virtual CMO containing objective, strategy, and required actions",
+            "required": true
+        },
+        {
+            "name": "campaign_history",
+            "type": "array",
+            "schema_ref": "schemas/campaign.schema.json",
+            "description": "Historical campaign data for reference and pattern matching",
+            "required": false
+        },
+        {
+            "name": "available_resources",
+            "type": "object",
+            "description": "Budget, team capacity, tools, and channel access available for execution",
+            "required": false
+        }
+    ],
+    "outputs": [
+        {
+            "name": "task_plan",
+            "type": "array",
+            "schema_ref": "schemas/operator_task.schema.json",
+            "description": "Decomposed list of executable tasks with owners, deadlines, and expected results"
+        },
+        {
+            "name": "campaign_record",
+            "type": "object",
+            "schema_ref": "schemas/campaign.schema.json",
+            "description": "Full campaign record for memory storage"
+        },
+        {
+            "name": "feedback",
+            "type": "object",
+            "schema_ref": "schemas/feedback.schema.json",
+            "description": "Execution results and learnings sent back to CMO"
+        }
+    ],
+    "dependencies": [
+        "prompts/operator-planning.txt",
+        "prompts/operator-execution.txt",
+        "schemas/operator_task.schema.json",
+        "schemas/campaign.schema.json",
+        "schemas/feedback.schema.json",
+        "schemas/cmo_to_operator.schema.json",
+        "memory/campaigns.json",
+        "memory/learnings.json"
+    ],
+    "triggers": [
+        {
+            "type": "event",
+            "description": "Triggered when CMO dispatches a new mission brief",
+            "event_name": "cmo_mission_dispatched"
+        },
+        {
+            "type": "manual",
+            "description": "Human initiates campaign planning or execution review"
+        },
+        {
+            "type": "scheduled",
+            "description": "Daily execution status check",
+            "cron": "0 10 * * *"
+        }
+    ],
+    "mode": [
+        "manual",
+        "auto"
+    ],
+    "memory_access": [
+        "campaigns",
+        "learnings"
+    ],
+    "log_target": "logs/execution.log.json"
+}

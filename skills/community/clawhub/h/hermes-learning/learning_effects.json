@@ -1,0 +1,70 @@
+{
+  "version": "4.0",
+  "applied_sessions": [
+    {
+      "timestamp": "2026-04-18T09:28:09.918888",
+      "note": "首次 apply，从 memory_summary 导入 5 成功 + 3 避免 + 2 优化",
+      "hermes_update_time": "2026-04-18T09:15:22.040406",
+      "total_memories": 70,
+      "added": {
+        "success": 5,
+        "avoid": 3,
+        "optimization": 2
+      },
+      "current_totals": {
+        "success_patterns": 5,
+        "avoid_patterns": 3,
+        "optimizations": 2
+      }
+    },
+    {
+      "timestamp": "2026-04-18T09:44:45.324145",
+      "note": "v4 首次运行，修复 db 路径、移除 batch_size 膨胀、完善反馈",
+      "hermes_update_time": "2026-04-18T09:15:22.040406",
+      "total_memories": 70,
+      "added": {
+        "success": 0,
+        "avoid": 0,
+        "optimization": 0
+      },
+      "db_added": {
+        "success": 0,
+        "avoid": 0
+      },
+      "feedback_analysis": {
+        "feedback_count": 1,
+        "recent_analyzed": 1,
+        "total_predictions": 0,
+        "total_knowledge": 5,
+        "avg_prediction_confidence": 0,
+        "last_feedback_time": "2026-04-18T09:42:00+08:00"
+      },
+      "current_totals": {
+        "success_patterns": 5,
+        "avoid_patterns": 3,
+        "optimizations": 2
+      }
+    },
+    {
+      "timestamp": "2026-04-18T09:47:00+08:00",
+      "note": "v4 清理：修正 avoid_patterns 错误分类（v1.1.0 升级移入 success），去重 memory_feedback",
+      "added": {
+        "success": 0,
+        "avoid": 0,
+        "optimization": 0
+      },
+      "data_cleanup": {
+        "avoid_patterns_corrected": 3,
+        "avoid_patterns_moved_to_success": 3,
+        "duplicate_feedbacks_removed": 2,
+        "deprecated_files_cleaned": ["hermes_learning.py.bak", "processed/"]
+      },
+      "current_totals": {
+        "success_patterns": 4,
+        "avoid_patterns": 0,
+        "optimizations": 2
+      }
+    }
+  ],
+  "total_applied": 10
+}

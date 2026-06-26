@@ -1,0 +1,6 @@
+[project]
+name = "public-osm-map-context"
+version = "0.1.0"
+description = "Zero-API-key public OpenStreetMap map context CLI for property screening."
+requires-python = ">=3.11"
+dependencies = []

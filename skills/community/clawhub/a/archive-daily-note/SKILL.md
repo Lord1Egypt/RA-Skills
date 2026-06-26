@@ -1,35 +1,42 @@
 ---
-name: "Archive Daily Note"
-description: "Automatically moves yesterday's Obsidian daily note into a past-days/ archive folder using the Obsidian CLI move command to preserve wiki-links."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/archive-daily-note"
-sourceUrl: "https://clawhub.ai/skills/archive-daily-note"
+name: archive-daily-note
+description: Automatically moves yesterday's Obsidian daily note into a past-days/ archive folder using the Obsidian CLI move command to preserve wiki-links.
+metadata: {"openclaw":{"requires":{"bins":["obsidian"]},"homepage":"https://github.com/madebydia/archive-daily-note","author":"Diana Park (@madebydia)"}}
 ---
 
-# Archive Daily Note
+# Archive Daily Note Skill
 
-> Automatically moves yesterday's Obsidian daily note into a past-days/ archive folder using the Obsidian CLI move command to preserve wiki-links.
+Automatically moves yesterday's Obsidian daily note into a `past-days/` archive folder.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/archive-daily-note`
-- **Source URL:** [https://clawhub.ai/skills/archive-daily-note](https://clawhub.ai/skills/archive-daily-note)
+## What It Does
 
-## Overview
+Runs daily (e.g., at 12:05 AM) to move the previous day's note from the vault root into `past-days/`. Uses `obsidian move` to preserve wiki-links.
 
+## Cron Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/archive-daily-note
+Schedule as an isolated cron job running shortly after midnight:
+
 ```
+Schedule: 5 0 * * * (daily at 00:05)
+Target: isolated
+```
+
+**Prompt:**
+```
+Move yesterday's Obsidian daily note into the past-days/ folder.
+The note is at the vault root named like 'MM-DD-YYYY DayOfWeek.md'.
+Use `obsidian move` so links stay updated.
+If it's already in past-days or doesn't exist, skip silently.
+```
+
+## Requirements
+
+- Obsidian CLI (`obsidian move` command)
+- Daily notes named in `MM-DD-YYYY DayOfWeek.md` format
+- A `past-days/` folder in the vault
+
+## Behavior
+
+- **Idempotent**: Safe to run multiple times; skips if already archived or missing
+- **Link-safe**: Uses Obsidian's move command to update all internal links
+- **Silent**: No output on skip — only reports if something goes wrong

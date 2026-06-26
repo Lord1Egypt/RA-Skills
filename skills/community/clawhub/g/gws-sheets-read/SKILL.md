@@ -1,35 +1,48 @@
 ---
-name: "Gws Sheets Read"
+name: gws-sheets-read
 description: "Google Sheets: Read values from a spreadsheet."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-sheets-read"
-sourceUrl: "https://clawhub.ai/skills/gws-sheets-read"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws sheets +read --help"
 ---
 
-# Gws Sheets Read
+# sheets +read
 
-> Google Sheets: Read values from a spreadsheet.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-sheets-read`
-- **Source URL:** [https://clawhub.ai/skills/gws-sheets-read](https://clawhub.ai/skills/gws-sheets-read)
+Read values from a spreadsheet
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-sheets-read
+gws sheets +read --spreadsheet <ID> --range <RANGE>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--spreadsheet` | ✓ | — | Spreadsheet ID |
+| `--range` | ✓ | — | Range to read (e.g. 'Sheet1!A1:B2') |
+
+## Examples
+
+```bash
+gws sheets +read --spreadsheet ID --range "Sheet1!A1:D10"
+gws sheets +read --spreadsheet ID --range Sheet1
+```
+
+## Tips
+
+- Read-only — never modifies the spreadsheet.
+- For advanced options, use the raw values.get API.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-sheets](../gws-sheets/SKILL.md) — All read and write spreadsheets commands

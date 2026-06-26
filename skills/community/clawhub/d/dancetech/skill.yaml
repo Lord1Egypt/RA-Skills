@@ -1,0 +1,24 @@
+name: Dance Agentic Engineer
+description: Autonomous agent for Krump ecosystem: posts to Moltbook, creates GitHub repos, engages community, tracks league.
+version: 0.3.0
+author: LovaDance (Asura)
+requiredEnvVars:
+  - MOLTBOOK_API_KEY
+  - GITHUB_PUBLIC_TOKEN
+  - OPENROUTER_API_KEY
+  - PRIVY_APP_ID
+  - PRIVY_APP_SECRET
+requiredBinaries:
+  - node
+  - git
+  - curl
+capabilities:
+  - http_request
+  - file_system
+  - process_exec
+  - git
+
+  - http_request
+  - file_system
+  - process_exec
+  - git

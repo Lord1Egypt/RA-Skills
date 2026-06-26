@@ -1,0 +1,50 @@
+name: github-memory-sync
+version: 1.1.0
+description: 将 OpenClaw 完整工作空间配置（SOUL.md, IDENTITY.md, USER.md, MEMORY.md, TOOLS.md, memory/*等）同步到 GitHub 进行备份和版本控制，支持跨服务器迁移和定时自动备份
+author: OpenClaw Workspace
+license: MIT
+tags:
+  - github
+  - backup
+  - sync
+  - memory
+  - workspace
+  - 备份
+  - 同步
+
+entry: sync.sh
+files:
+  - sync.sh
+  - SKILL.md
+  - README.md
+  - .env.example
+
+env:
+  - name: GITHUBTOKEN
+    description: GitHub Personal Access Token
+    required: true
+  - name: GITHUB_REPO
+    description: GitHub 仓库 (格式：username/repo)
+    required: true
+  - name: GITHUB_BRANCH
+    description: 分支名称 (默认：main)
+    required: false
+    default: main
+  - name: WORKSPACE_DIR
+    description: Workspace 目录路径
+    required: false
+    default: /root/.openclaw/workspace
+  - name: SYNC_MODE
+    description: 同步模式：full 或 memory-only
+    required: false
+    default: full
+
+examples:
+  - name: 完整同步
+    command: bash sync.sh push
+  - name: 仅同步 memory
+    command: bash sync.sh push --memory-only
+  - name: 恢复备份
+    command: bash sync.sh pull
+  - name: 查看状态
+    command: bash sync.sh status

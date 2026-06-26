@@ -1,0 +1,2 @@
+rembg[cpu,cli]==2.0.72
+socksio==1.0.0

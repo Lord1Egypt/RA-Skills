@@ -1,35 +1,202 @@
 ---
-name: "What At Home(家里有什么)"
-description: "智能家庭物品管理。解决"东西在哪"、"家里有什么"的困惑。支持四级结构：套房→房间→家具→物品。关键词：收纳、整理、居家、存储、物品管理、找东西、家里有什么、东西放在哪、清点物品。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/what-at-home"
-sourceUrl: "https://clawhub.ai/skills/what-at-home"
+name: what-at-home
+name_zh: 家里有什么
+icon: 🏠
+description: A simple solution for: "What's in my house?" and "Where did I put that thing?"
+Stop wondering what's in your home. Record everything you own, find anything instantly.
+Perfect for: Home inventory, item tracking, moving preparation, decluttering, knowing what you have
+智能家庭物品管理。解决"东西在哪"、"家里有什么"的困惑。记录家中所有物品存放位置，需要时快速找到。
+适用场景：家庭物品管理、搬家整理、清点物资、记录杂物
+支持四级结构：套房→房间→家具→物品。关键词：收纳、整理、居家、存储、物品管理、找东西、家里有什么、东西放在哪、清点物品。
+version: 1.0.3
+tags: [收纳, 整理, 居家, 存储, 物品管理, 找东西, 生活, 清点, 盘点]
 ---
 
-# What At Home(家里有什么)
+# 🏠 家庭收纳智能管理系统
 
-> 智能家庭物品管理。解决"东西在哪"、"家里有什么"的困惑。支持四级结构：套房→房间→家具→物品。关键词：收纳、整理、居家、存储、物品管理、找东西、家里有什么、东西放在哪、清点物品。
+## 数据结构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/what-at-home`
-- **Source URL:** [https://clawhub.ai/skills/what-at-home](https://clawhub.ai/skills/what-at-home)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/what-at-home
 ```
+套房 (suite)
+  └── 房间 (room)
+      └── 家具 (furniture)
+          └── 物品 (item)
+```
+
+**存储位置**：`{workspace}/data/home_storage.json`（默认为 `~/.openclaw/workspace/data/home_storage.json`）
+
+## 命令对照表
+
+| 用户输入示例 | 命令 | 参数 |
+|--------------|------|------|
+| 设置一套房叫XXX，有客厅、卧室 | init_suite | suite_name, rooms |
+| 给XXX加一个房间叫YYY | add_room | suite_name, room_name |
+| 客厅有个电视柜 | add_furniture | room_name, furniture_name |
+| 把遥控器放在客厅电视柜里，数量2 | add_item | item_name, location, quantity |
+| 我的遥控器在哪？ | query | item_name |
+| 查看XXX | list | suite_name |
+| 搜索遥控 | search | keyword |
+| 把遥控器搬到卧室衣柜 | move | item_name, new_location |
+| 删除遥控器 | delete | item_name |
+| 备份数据 | backup | - |
+| 列出备份 | list_backups | - |
+| 恢复 20260325_143000 | restore | timestamp |
+| 导出数据 / 导出JSON | export | format |
+
+## 操作命令详解
+
+### 初始化套房
+```
+"设置一套房叫XXX，有客厅、卧室"
+"添加套房：工作室，包含厨房和卫生间"
+```
+
+### 新增房间
+```
+"给XXX加一个房间叫YYY"
+"工作室新增卧室"
+```
+
+### 新增家具
+```
+"客厅有个电视柜"
+"主卧有个大衣柜"
+```
+
+### 添加物品
+```
+"把XXX放在YYY的ZZZ里"
+"客厅电视柜里放一个遥控器，数量2"
+```
+
+### 查询物品
+```
+"我的XXX在哪？"
+"遥控器在哪里"
+"查看工作室"
+```
+
+### 搜索物品（模糊匹配）
+```
+"搜索遥控"
+"找一下手机"
+```
+
+### 查看套房
+```
+"查看工作室"
+```
+输出格式示例：
+```
+🏠 中海寰宇 物品清单
+============================================================
+房间         家具              物品                            
+------------------------------------------------------------
+厨房         冰箱              (空)
+             橱柜              黑豆 x1, 花生 x1, 鹰嘴豆 x1, 米 x1, 玻璃饭盒 x1
+             灶台柜             米 x1, 面 x1, 粉丝 x1, 小米 x1      
+卫生间        镜面柜             剃须刀 x1, 剃须泡沫 x1               
+             储物架             (空)
+主卧         大衣柜             (空)
+次卧         大衣柜             (空)
+书房         书架              (空)
+             书桌              (空)
+             榻榻米             米 x2                          
+客厅         电视机柜            透明胶 x2, 工具箱 x1                
+             餐边柜             (空)
+             沙发              苹果 x1                         
+             电视柜             遥控器 x3                        
+============================================================
+```
+
+### 物品搬动
+```
+"把XXX搬到YYY的ZZZ"
+"遥控器移到卧室衣柜"
+```
+
+### 删除物品
+```
+"删除XXX"
+"把遥控器扔了"
+```
+
+### 备份与恢复
+```
+"备份数据" - 创建备份
+"列出备份" - 查看所有备份
+"恢复数据 20260325_143000" - 从备份恢复
+```
+
+### 导出数据
+```
+"导出数据" - 导出为易读文本
+"导出JSON" - 导出为 JSON 格式
+```
+
+## 物品属性
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| id | string | 唯一ID (UUID) |
+| name | string | 物品名称 |
+| quantity | number | 数量，默认1 |
+| addedAt | string | 放入时间 (ISO) |
+| updatedAt | string | 更新时间 (ISO) |
+| note | string | 备注（可选） |
+
+## 时间戳字段
+
+| 层级 | 字段 | 说明 |
+|------|------|------|
+| 套房 | createdAt, updatedAt | 创建/更新时间 |
+| 房间 | createdAt, updatedAt | 创建/更新时间 |
+| 家具 | createdAt, updatedAt | 创建/更新时间 |
+| 物品 | addedAt, updatedAt | 放入/更新时间 |
+
+## 执行流程
+
+1. 解析用户输入，识别操作类型和实体
+2. 加载/创建数据文件
+3. 执行相应操作
+4. 保存数据
+5. 返回操作结果
+
+## 注意事项
+
+- 首次使用必须先创建套房和房间
+- 物品名称允许重复（不同家具下可以有同名物品）
+- 位置描述格式：房间-家具 或 房间家具（连续）
+- 搜索支持模糊匹配，输入"遥控"可找到"遥控器"等
+
+## 智能功能
+
+### 智能推荐
+```
+"推荐存放位置 遥控器"
+"推荐位置 书籍"
+```
+系统会根据物品类型（电器、书籍、衣物、食品等）推荐合适的存放位置。
+
+### 智能检测与确认
+添加物品时，系统会自动检测并提示用户确认：
+
+| 检测场景 | 提示内容 | 【是】 | 【否】 |
+|----------|----------|--------|--------|
+| **同位置已有同名物品** | 数量合并确认 | 合并数量 | 继续添加（不合并） |
+| **全屋已有同名物品** | 归纳建议 | 归纳到已有位置 | 坚持放到目标位置 |
+| **非推荐位置** | 位置建议 | 确认放到目标位置 | 坚持放到目标位置 |
+
+### 推荐物品类型库
+系统内置以下物品类型的推荐位置：
+- **电器类**：遥控器、充电器、耳机、手机、平板、电脑、键盘、鼠标
+- **书籍类**：书、杂志、漫画、笔记本、本子
+- **衣物类**：衣服、裤子、裙子、外套、内衣、袜子、帽子、围巾、手套
+- **被褥类**：被子、毯子、枕头、床单、被套
+- **食品类**：零食、饮料、水、茶叶、咖啡、方便面、水果
+- **药品类**：药、创可贴、体温计
+- **日常用品**：钥匙、钱包、卡、证件、伞、包
+- **化妆品**：化妆品、护肤品、口红、香水
+- **工具类**：工具、螺丝刀、锤子、剪刀、胶带
+- **玩具类**：玩具、游戏机、积木
+- **运动类**：瑜伽垫、跳绳、球

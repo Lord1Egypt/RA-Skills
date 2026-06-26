@@ -1,0 +1,8 @@
+{
+  "name": "x-interact",
+  "version": "1.0.0",
+  "description": "X.com (Twitter) interaction via Tavily web search and extraction",
+  "repository": "https://github.com/0x-wzw/x-interact",
+  "tags": ["x.com", "twitter", "tavily", "social", "search", "mcp"],
+  "skills": ["x-interact"]
+}

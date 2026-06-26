@@ -1,35 +1,42 @@
 ---
-name: "Pdf Extract"
+name: pdf-extract
 description: "Extract text from PDF files for LLM processing"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pdf-extract"
-sourceUrl: "https://clawhub.ai/skills/pdf-extract"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📄",
+        "requires": { "bins": ["pdftotext"] },
+        "install":
+          [
+            {
+              "id": "dnf",
+              "kind": "dnf",
+              "package": "poppler-utils",
+              "bins": ["pdftotext"],
+              "label": "Install via dnf",
+            },
+          ],
+      },
+  }
 ---
 
-# Pdf Extract
+# PDF Extract
 
-> Extract text from PDF files for LLM processing
+Extract text from PDF files for LLM processing. Uses `pdftotext` from the poppler-utils package to convert PDF documents into plain text.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pdf-extract`
-- **Source URL:** [https://clawhub.ai/skills/pdf-extract](https://clawhub.ai/skills/pdf-extract)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pdf-extract
+# Extract all text from a PDF
+pdf-extract "document.pdf"
+
+# Extract text from specific pages
+pdf-extract "document.pdf" --pages 1-5
+```
+
+## Install
+
+```bash
+sudo dnf install poppler-utils
 ```

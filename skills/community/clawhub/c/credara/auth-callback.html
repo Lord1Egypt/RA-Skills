@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Credara — Signing in…</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0a0a0a; color: #ccc;
+           display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .msg { text-align: center; }
+    .spinner { width: 32px; height: 32px; border: 3px solid #333; border-top-color: #6366f1;
+               border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+<div class="msg">
+  <div class="spinner"></div>
+  <p>Signing you in…</p>
+</div>
+<script>
+(async function() {
+  const qp = new URLSearchParams(location.search);
+  const code = qp.get('code');
+  const verified = qp.get('verified') === '1';
+
+  if (!code) {
+    // No code — check if we already have a token (direct dashboard redirect)
+    if (localStorage.getItem('accessToken')) {
+      window.location.href = '/dashboard';
+    } else {
+      window.location.href = '/?error=missing_code';
+    }
+    return;
+  }
+
+  try {
+    const resp = await fetch('/api/auth/exchange-code', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code }),
+    });
+
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      console.error('[auth-callback] exchange failed:', err);
+      window.location.href = '/?error=auth_failed';
+      return;
+    }
+
+    const { accessToken, refreshToken } = await resp.json();
+    localStorage.setItem('accessToken', accessToken);
+    if (refreshToken) localStorage.setItem('refreshToken', refreshToken);
+
+    // Clean up URL before redirect (no token residue in history)
+    history.replaceState(null, '', '/auth-callback');
+
+    if (verified) {
+      window.location.href = '/dashboard?verified=1';
+    } else {
+      window.location.href = '/dashboard';
+    }
+  } catch (e) {
+    console.error('[auth-callback] error:', e);
+    window.location.href = '/?error=auth_failed';
+  }
+})();
+</script>
+<div class="legal-footer" style="text-align:center;padding:2rem 0 1rem;font-size:.7rem;color:#888;font-family:'Space Mono',monospace">
+  &copy; 2026 Credara &middot;
+  <a href="/terms" style="color:#888;margin:0 .5rem">Terms</a> &middot;
+  <a href="/privacy" style="color:#888;margin:0 .5rem">Privacy</a> &middot;
+  <a href="/disclosures" style="color:#888;margin:0 .5rem">Legal</a>
+</div>
+</body>
+</html>

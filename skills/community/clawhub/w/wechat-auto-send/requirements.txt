@@ -1,0 +1,11 @@
+# 微信自动发送消息技能依赖
+
+pyautogui>=0.9.53
+pygetwindow>=0.0.9
+pyperclip>=1.8.2
+
+# 可选：用于更稳定的窗口管理
+# pywin32>=300
+
+# 安装命令：
+# pip install -r requirements.txt

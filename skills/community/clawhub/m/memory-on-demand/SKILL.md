@@ -1,35 +1,64 @@
 ---
-name: "Memory On Demand"
+name: memory-on-demand
 description: "按需记忆检索。当用户询问历史相关问题时，自动搜索 memory 和 QMD 获取相关信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-on-demand"
-sourceUrl: "https://clawhub.ai/skills/memory-on-demand"
+argument-hint: "自动记忆检索"
 ---
 
-# Memory On Demand
+# Memory On Demand - 按需记忆检索
 
-> 按需记忆检索。当用户询问历史相关问题时，自动搜索 memory 和 QMD 获取相关信息。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-on-demand`
-- **Source URL:** [https://clawhub.ai/skills/memory-on-demand](https://clawhub.ai/skills/memory-on-demand)
+当用户问题包含以下关键词时自动触发：
+- "之前"、"以前"、"上次"
+- "历史"、"记录"
+- "那次"、"那次"
+- "还记得吗"
+- "我之前"
+- "之前我们"
+- "那时候"
 
-## Overview
+## 执行流程
 
+### 1. 判断是否需要检索
+检查用户问题是否与历史记录相关。
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 2. 选择检索方式
+
+**首选：QMD 搜索**（更快、更准确）
 ```bash
-hermes skills install clawhub/memory-on-demand
+qmd search "关键词" --limit 5
 ```
+
+**备选：Memory 搜索**
+```bash
+# 搜索 memory 文件
+grep -r "关键词" ~/.openclaw/workspace/memory/
+
+# 或使用 memory_search
+```
+
+### 3. 返回结果
+将搜索结果整理后返回给用户。
+
+## 使用示例
+
+用户问："之前那次健身训练的记录是什么？"
+
+自动执行：
+1. 检测到"之前"关键词
+2. 执行 `qmd search "健身 训练"`
+3. 返回相关记录
+
+## 优势
+
+- **按需加载**：只在需要时搜索，不浪费 context
+- **自动触发**：无需手动指定
+- **多源检索**：QMD + Memory 双保险
+
+## 配置
+
+- QMD 索引：已配置 workspace + butler + researcher + sessions
+- Memory 文件：自动读取 memory/*.md
+
+---
+*自动记忆检索 skill*

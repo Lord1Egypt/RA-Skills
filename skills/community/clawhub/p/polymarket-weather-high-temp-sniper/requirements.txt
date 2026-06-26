@@ -1,0 +1,4 @@
+simmer-sdk>=0.1.0
+requests>=2.28.0
+python-dotenv>=0.21.0
+pytz>=2022.7

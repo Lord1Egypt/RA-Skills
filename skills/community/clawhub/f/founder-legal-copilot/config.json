@@ -1,0 +1,167 @@
+{
+  "name": "founder-legal-copilot",
+  "version": "1.0.0",
+  "description": "Legal copilot for founders - 27 deliverables across 5 startup phases",
+  "author": "Danillo Costa",
+  "homepage": "https://legalkit.legal",
+  "sponsors": {
+    "contextual_ai": {
+      "role": "RAG grounded analysis on legal templates",
+      "api": "https://api.contextual.ai/v1/",
+      "docs": "https://docs.contextual.ai",
+      "features": ["safe_generator", "contract_reviewer"],
+      "model": "contextual-rag-v2"
+    },
+    "redis": {
+      "role": "Persistent cross-session memory for deal history",
+      "plugin": "openclaw-redis-agent-memory",
+      "docs": "https://redis.io/docs",
+      "ttl_days": 90,
+      "namespace": "founder-legal-copilot"
+    },
+    "civic": {
+      "role": "Auth, audit trail, PII scrubbing",
+      "plugin": "openclaw-civic-skill",
+      "docs": "https://docs.civic.com",
+      "sensitivity": "medium",
+      "audit_log": true
+    },
+    "apify": {
+      "role": "Live legal data scraping (SEC EDGAR, corporate records)",
+      "mcp": "https://mcp.apify.com",
+      "docs": "https://docs.apify.com",
+      "actors": {
+        "sec_edgar": "apify/sec-edgar-scraper",
+        "state_corps": "apify/us-state-corporation-scraper",
+        "pacer": "apify/pacer-bankruptcy-search",
+        "ucc": "apify/ucc-filings-search"
+      },
+      "timeout_seconds": 60
+    },
+    "friendliai": {
+      "role": "Fast inference provider (GLM-5, 9x cheaper than GPT-4)",
+      "baseUrl": "https://api.friendli.ai/serverless/v1",
+      "docs": "https://friendli.ai/docs",
+      "features": ["all"]
+    },
+    "elevenlabs": {
+      "role": "Multilingual voice narration of legal reports",
+      "api": "https://api.elevenlabs.io/v1/",
+      "docs": "https://elevenlabs.io/docs",
+      "default_voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "model": "eleven_turbo_v2_5",
+      "optional": true
+    }
+  },
+  "features": {
+    "safe_generator": {
+      "prompt": "prompts/safe-generator.md",
+      "sponsor": "contextual_ai",
+      "template": "templates/safe-post-money.md",
+      "supported_types": ["post-money", "pre-money", "mfn"],
+      "required_entity": "delaware-c-corp"
+    },
+    "contract_reviewer": {
+      "prompt": "prompts/contract-review.md",
+      "sponsor": "contextual_ai",
+      "max_pages": 100,
+      "output_format": "json",
+      "pii_scrub": true
+    },
+    "health_check": {
+      "prompt": "prompts/health-check.md",
+      "items": 25,
+      "max_score": 100,
+      "output_format": "markdown",
+      "stages": ["pre-incorporation", "seed", "series-a", "growth", "exit"]
+    },
+    "due_diligence": {
+      "prompt": "prompts/due-diligence.md",
+      "sponsor": "apify",
+      "live_data": true,
+      "cache_hours": 24,
+      "report_format": "structured-markdown"
+    }
+  },
+  "i18n": {
+    "supported": ["en", "es", "pt", "zh"],
+    "default": "en"
+  },
+  "models": {
+    "primary": {
+      "provider": "friendliai",
+      "model": "zai-org/GLM-5",
+      "context_window": 128000,
+      "temperature": 0.1
+    },
+    "fallback": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-6",
+      "context_window": 200000,
+      "temperature": 0.1
+    }
+  },
+  "phases": {
+    "1_pre_incorporation": {
+      "name": "Pre-Incorporation",
+      "deliverables": [
+        "Founder NDA",
+        "IP Assignment (pre-entity)",
+        "Co-Founder Agreement"
+      ]
+    },
+    "2_incorporation": {
+      "name": "Incorporation",
+      "deliverables": [
+        "Certificate of Incorporation",
+        "Bylaws",
+        "Founder Stock Purchase",
+        "83(b) Election",
+        "CIIA",
+        "PIIA",
+        "Initial Board Consent"
+      ]
+    },
+    "3_pre_seed": {
+      "name": "Pre-Seed / Friends and Family",
+      "deliverables": [
+        "SAFE (MFN)",
+        "Convertible Note",
+        "Investor NDA",
+        "Cap Table (initial)"
+      ]
+    },
+    "4_seed": {
+      "name": "Seed Round",
+      "deliverables": [
+        "SAFE (post-money)",
+        "Term Sheet",
+        "409A Valuation",
+        "Stock Option Plan",
+        "Employee CIIA",
+        "Privacy Policy",
+        "Terms of Service",
+        "Offer Letter Template"
+      ]
+    },
+    "5_series_a_plus": {
+      "name": "Series A and Beyond",
+      "deliverables": [
+        "Series A Term Sheet",
+        "SPA and IRA",
+        "ROFR/Co-Sale Agreement",
+        "Voting Agreement",
+        "D&O Insurance",
+        "Data Processing Agreement (GDPR/CCPA)",
+        "Corporate Minutes Template",
+        "Due Diligence Checklist"
+      ]
+    }
+  },
+  "disclaimers": {
+    "en": "This tool provides educational legal information, not legal advice. Always consult a licensed attorney before signing legal documents.",
+    "pt": "Esta ferramenta fornece informações jurídicas educacionais, não aconselhamento jurídico. Sempre consulte um advogado licenciado antes de assinar documentos legais.",
+    "es": "Esta herramienta proporciona información legal educativa, no asesoramiento legal. Siempre consulte a un abogado autorizado antes de firmar documentos legales.",
+    "zh": "本工具提供法律教育信息，而非法律建议。在签署法律文件之前，请务必咨询持牌律师。"
+  }
+}

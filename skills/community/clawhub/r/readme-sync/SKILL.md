@@ -1,35 +1,281 @@
 ---
-name: "README Sync"
-description: "在每次代码查询/修改工作开始前按需读取README.md了解项目状态，工作结束后按需更新README。触发场景：(1)用户询问项目相关问题（如"并发数是多少？"），(2)需要进行代码查询或修改时。读取时无需确认；写入README或代码时必须先确认。支持跨平台（Claude Code、OpenClaw、Trae、C..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/readme-sync"
-sourceUrl: "https://clawhub.ai/skills/readme-sync"
+name: readme-sync
+description: 在每次代码查询/修改工作开始前按需读取README.md了解项目状态，工作结束后按需更新README。触发场景：(1)用户询问项目相关问题（如"并发数是多少？"），(2)需要进行代码查询或修改时。读取时无需确认；写入README或代码时必须先确认。支持跨平台（Claude Code、OpenClaw、Trae、Cursor等）。
 ---
 
 # README Sync
 
-> 在每次代码查询/修改工作开始前按需读取README.md了解项目状态，工作结束后按需更新README。触发场景：(1)用户询问项目相关问题（如"并发数是多少？"），(2)需要进行代码查询或修改时。读取时无需确认；写入README或代码时必须先确认。支持跨平台（Claude Code、OpenClaw、Trae、C...
+在代码工作前后自动同步 README.md，保持项目文档最新。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/readme-sync`
-- **Source URL:** [https://clawhub.ai/skills/readme-sync](https://clawhub.ai/skills/readme-sync)
+---
 
-## Overview
+## 工具脚本
 
+本 skill 提供 `scripts/readme_operations.py` 工具，简化操作：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/readme-sync
+# 读取指定章节（按需读取，节省 token）
+python scripts/readme_operations.py read "技术栈"      # 读单个章节
+python scripts/readme_operations.py read all           # 读整个 README
+
+# 扫描项目结构（预览，不写入文件）
+python scripts/readme_operations.py scan
+
+# 初始化 README
+python scripts/readme_operations.py init               # 使用空模板
+python scripts/readme_operations.py auto-init           # 扫描代码后生成
+
+# 查看待更新条目
+python scripts/readme_operations.py pending
+
+# 添加待更新条目
+python scripts/readme_operations.py add changelog "新增用户认证功能" --related src/auth/
+python scripts/readme_operations.py add progress "完成支付模块重构"
+python scripts/readme_operations.py add trap "xxx 容易搞反，要注意 yyy"
+
+# 同步到 README（需确认）
+python scripts/readme_operations.py sync
+
+# 清空待更新
+python scripts/readme_operations.py clear
 ```
+
+### README 不存在时的处理
+
+| 情况 | 处理方式 |
+|------|---------|
+| 项目有代码但无 README | `auto-init` 扫描目录结构和技术栈，生成初始 README |
+| 空项目（无代码） | 先用 `init` 创建空模板，任务完成后再补充 |
+| 任务完成时发现无 README | 主动询问用户是否创建 |
+
+---
+
+## 核心原则
+
+| 场景 | 是否确认 | 原因 |
+|------|---------|------|
+| 读取 README | ❌ 不确认 | 只读，不改变任何内容 |
+| 写入/修改 README | ✅ 必须确认 | 涉及文件变更 |
+| 修改代码文件 | ✅ 必须确认 | 涉及代码变更 |
+| 回答项目相关问题（纯查询） | ❌ 不确认 | 仅信息输出 |
+
+---
+
+## 按需加载策略（节省 Token）
+
+### 读取策略：最小基准 + 按需叠加
+
+**第一步：最小基准（任何任务都建议读）**
+
+| 场景 | 最小基准章节 | 原因 |
+|------|------------|------|
+| 任何代码相关任务 | `## 一句话定位` + `## 项目结构` | 知道项目干什么、代码在哪 |
+
+**第二步：按需叠加（根据任务类型追加）**
+
+| 用户问题类型 | 追加读取章节 | 原因 |
+|------------|------------|------|
+| 项目概况/定位 | `## 技术栈` | 了解用什么做的 |
+| Bug 相关 | `## 踩坑记录` + `## 近期修改记录` | 查类似问题和近期变动 |
+| 技术方案选型 | `## 技术栈` + `## 项目结构` | 看现有技术栈和目录 |
+| API 相关 | `## API 概览` | 查接口说明 |
+| 进度状态 | `## 当前进度` | 了解当前进行中的工作 |
+| 代码修改/新增 | `## 近期修改记录` + 相关代码 | 了解近期改了什么 |
+
+**第三步：必要时扩大读取范围**
+
+以下情况应该扩大读取，不能死守最小基准：
+- Bug 的根因不明确 → 扩大读技术栈、踩坑记录、近期修改
+- 代码修改涉及多个模块 → 扩大读项目结构、API 概览
+- 技术方案影响架构 → 扩大读技术栈、进度
+- **原则：读不懂的时候扩大读取，而不是瞎猜**
+
+### 代码文件读取原则
+
+- **按需小量读取**：只读相关函数/类，不全量读文件
+- **大文件用 grep**：超过 200 行的文件，用 `grep` 定位关键行
+- **目录结构扫描**：用 `ls` 而非读文件列表
+
+### Token 节省原则
+
+**不是"只读一个章节"，而是"先读最相关的，必要时扩大"**
+
+- 始终有最小基准（项目定位 + 结构）
+- 按任务类型追加相关章节
+- **读不懂/查不清楚时，扩大读取，不是瞎猜**
+- 避免全量读 README，只读任务需要的部分
+
+### 写入原则
+
+- **增量更新**：只改相关章节，不重写整个文件
+- **格式保持**：更新时遵循已有格式和结构
+- **最小改动**：只写必要的更新，不过度描述
+
+---
+
+## 工作流程
+
+### 阶段 1：工作开始前 — 按需读取 README
+
+```
+触发条件：
+- 用户询问项目相关问题
+- 用户要求查看/修改代码
+- 任何需要了解项目背景的任务
+
+动作：
+1. 定位项目根目录的 README.md
+2. 如果 README 不存在：
+   a. 有代码 → 用 `auto-init` 扫描生成
+   b. 空项目 → 继续工作，任务结束后询问是否创建
+3. 根据任务类型，按"最小基准 + 按需叠加"读取相关章节
+4. 总结所需信息，已知的不重复读取
+5. 继续工作，不打断用户
+```
+
+### 阶段 2：工作进行中 — 缓存变更
+
+```
+触发条件：
+- 发现 README 与实际不符
+- 完成了一个值得记录的功能
+- 修复了一个重要 bug
+- 进度有了实质推进
+
+动作：
+1. 将变更内容缓存（不立即写入）
+   → 使用: python scripts/readme_operations.py add <type> <content>
+2. 继续当前工作，不打断
+3. 记录待更新条目（最多缓存 5 条）
+```
+
+**判断是否值得记录：**
+- ✅ 新功能完成（重要的）
+- ✅ Bug 修复（尤其是容易踩坑的）
+- ✅ 进度里程碑
+- ✅ 技术栈或依赖变更
+- ❌ 显而易见的代码命名
+- ❌ 一次性闲聊信息
+- ❌ 推测性内容（未经确认）
+
+### 阶段 3：工作结束后 — 写入确认
+
+```
+触发条件：
+- 工作基本完成（用户说"好了"、"完成了"）
+- 或积累待更新条目 ≥ 3 条
+- 或 session 结束时
+
+动作：
+1. 展示待更新内容摘要
+   → 使用: python scripts/readme_operations.py pending
+2. 询问用户确认：
+   - 全部写入 / 部分写入 / 跳过
+3. 用户确认后执行写入
+   → 使用: python scripts/readme_operations.py sync
+```
+
+**确认示例：**
+```
+📝 README 有 2 处需要更新：
+1. [changelog] 新增用户认证功能 @2026-04-14
+2. [progress] 完成支付模块重构
+
+确认写入？ (全部/部分/跳过)
+```
+
+---
+
+## README 标准格式
+
+```markdown
+# 项目名称
+
+## 一句话定位
+[项目是干什么的，1-2 行]
+
+## 技术栈
+- 语言/框架：xxx
+- 数据库：xxx
+- 其他关键依赖：xxx
+
+## 项目结构
+```
+├── src/           # 源代码
+├── tests/         # 测试
+└── docs/          # 文档
+```
+
+## 当前进度
+- [x] 完成：xxx
+- [ ] 进行中：xxx
+- [ ] 计划中：xxx
+
+## API 概览（如适用）
+| 接口 | 说明 |
+|------|------|
+| GET /xxx | xxx |
+
+## 踩坑记录
+- ⚠️ xxx 容易搞错，要注意 xxx
+- ❌ xxx 会导致 xxx，解决方案是 xxx
+
+## 近期修改记录
+<!-- 最近 10 条修改，按时间倒序 -->
+| 日期 | 修改内容 | 相关文件/模块 |
+|------|---------|--------------|
+| 2026-04-14 | 新增用户认证功能 | src/auth/ |
+| 2026-04-13 | 修复支付回调并发问题 | src/payment/ |
+```
+
+### 近期修改记录说明
+
+| 字段 | 说明 |
+|------|------|
+| 日期 | 格式 YYYY-MM-DD |
+| 修改内容 | 一句话描述，动词优先（新增/修复/重构/更新） |
+| 相关文件/模块 | 方便定位，可选 |
+
+**为什么需要这个章节：**
+- **同事 Review**：快速了解近期变动，不用翻 git log
+- **AI 上下文**：新 session 开始时快速掌握项目近况
+- **历史追溯**：出问题能快速定位到相关的修改
+
+**维护规则：**
+- 只保留最近 **10 条**，更早的归档到 git commit message
+- 单条不超过 50 字
+- 与 `## 当前进度` 保持一致（完成的移到"完成"列表）
+
+---
+
+## 平台兼容性说明
+
+| 平台 | README 支持 | 额外支持 |
+|------|------------|---------|
+| Claude Code | ✅ | CLAUDE.md（原生）|
+| OpenClaw | ✅ | — |
+| Trae | ✅ | — |
+| Cursor | ✅ | .cursorrules |
+| Copilot | ⚠️ | 依赖用户引导 |
+
+**核心策略：** README.md 是所有平台都能读取的标准格式，优先保证它是最新的。
+
+---
+
+## 触发指令
+
+| 指令 | 何时用 |
+|------|--------|
+| `/readme sync` | 手动触发同步，查看待更新内容 |
+| `/readme status` | 查看 README 当前状态和缓存条数 |
+| `/readme diff` | 查看 README 与实际项目的差异 |
+
+---
+
+## 注意事项
+
+1. **不自动重写 README** — 只更新与工作相关的章节
+2. **按需加载** — 只读任务需要的部分，不全量加载
+3. **最小改动** — 只写必要的更新，不过度描述
+4. **中文优先** — 项目文档使用中文（README.md 中文优先，英文项目可用英文）
+5. **修改记录要及时归档** — 保持最近 10 条，过期移到 git 历史

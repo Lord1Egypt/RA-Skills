@@ -1,0 +1,12 @@
+{
+  "id": "interior-proposal",
+  "name": "室内设计方案提案自动化",
+  "version": "4.1.0",
+  "description": "一键生成专业室内设计方案提案PPT，支持商业/住宅两种内容架构。商业空间侧重投资回报与消费者心理，家装空间侧重家庭场景与生活美学。输入项目信息，自动生成12-14页专业提案PPT",
+  "author": "温州隐室空间设计",
+  "license": "MIT",
+  "keywords": ["室内设计", "PPT", "提案", "商业空间", "住宅", "投资回报", "隐室空间"],
+  "requirements": ["python3", "python-pptx", "Pillow"],
+  "bins": [],
+  "main": "scripts/generate_proposal_ppt.py"
+}

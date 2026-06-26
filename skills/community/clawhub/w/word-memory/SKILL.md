@@ -1,35 +1,180 @@
 ---
-name: "Word Memory"
-description: "单词记忆助手 - 艾宾浩斯记忆曲线、每日打卡、词汇测试"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/word-memory"
-sourceUrl: "https://clawhub.ai/skills/word-memory"
+name: word-memory
+version: 1.0.0
+description: 单词记忆助手 - 艾宾浩斯记忆曲线、每日打卡、词汇测试
 ---
 
-# Word Memory
+# 📚 Word Memory - 单词记忆助手
 
-> 单词记忆助手 - 艾宾浩斯记忆曲线、每日打卡、词汇测试
+## 触发规则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/word-memory`
-- **Source URL:** [https://clawhub.ai/skills/word-memory](https://clawhub.ai/skills/word-memory)
+**关键词：**
+- 背单词、记单词、单词记忆
+- 每日单词、单词打卡
+- 艾宾浩斯、记忆曲线
+- 四级、六级、考研、托福、雅思
+- 测试我、默写
 
-## Overview
+**场景：**
+- 用户想背单词但需要计划
+- 用户需要每日单词推送
+- 用户想测试记忆效果
+- 用户查询单词释义/例句
 
+## 功能描述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/word-memory
+### 核心功能
+
+1. **艾宾浩斯记忆曲线**
+   - 自动安排复习时间
+   - 5 个复习节点：5min、30min、12h、1d、2d、4d、7d、15d
+   - 智能调整难度
+
+2. **词库选择**
+   - 四级词汇（4500 词）
+   - 六级词汇（6000 词）
+   - 考研词汇（5500 词）
+   - 托福词汇（8000 词）
+   - 雅思词汇（8000 词）
+   - GRE 词汇（12000 词）
+   - 自定义词库
+
+3. **每日单词推送**
+   - 定时推送（可设置时间）
+   - 每日新词 + 复习词
+   - 数量可配置（10/20/50/100）
+
+4. **单词测试**
+   - 英译中测试
+   - 中译英测试
+   - 拼写测试
+   - 听力测试（可选）
+
+5. **单词详情**
+   - 释义（多义项）
+   - 音标（英式/美式）
+   - 例句（3-5 句）
+   - 词根词缀
+   - 近义词/反义词
+   - 常用搭配
+
+### 学习模式
+
+- 📖 **学习模式**：新词学习，显示完整信息
+- 📝 **测试模式**：隐藏释义，测试记忆
+- ⚡ **快速模式**：只记核心释义
+- 🎯 **重点模式**：只复习错误率高的词
+
+## 权限需求
+
+- [x] 网络访问（词典 API）
+- [x] 文件读写（学习进度存储）
+- [x] 定时任务（每日推送）
+
+## 数据源
+
+- 有道词典 API
+- 柯林斯词典
+- 剑桥词典
+- 开源词库（CEDICT 等）
+
+## 示例对话
+
 ```
+用户：我想背四级单词
+助手：好的！帮你设置四级词汇学习计划 📚
+- 每日新词：20 个
+- 推送时间：早上 8:00
+- 复习提醒：按艾宾浩斯曲线
+
+现在开始学习吗？
+
+用户：开始
+助手：【今日学习】2026-03-16
+
+📖 新词 (20 个)
+1. abandon /əˈbændən/ v. 放弃，抛弃
+   例句：He abandoned his plan to travel.
+   词根：a-(加强) + ban(禁止) → 彻底禁止 → 放弃
+
+2. ability /əˈbɪləti/ n. 能力，才能
+   例句：She has the ability to pass the exam.
+   词根：abil(能) + -ity(名词后缀)
+
+...
+
+📝 复习 (15 个)
+1. previous /ˈpriːviəs/ adj. 以前的
+   你的记忆：✅ 正确 (第 3 次复习)
+
+用户：测试我
+助手：【单词测试】
+
+1. "abandon" 的意思是？
+   A. 吸收  B. 放弃  C. 绝对  D. 能力
+   你的答案：B
+   ✅ 正确！
+
+2. "能力" 用英语怎么说？
+   你的答案：ability
+   ✅ 正确！
+
+得分：100% 🎉
+
+用户：查询 "persistent"
+助手：persistent /pəˈsɪstənt/ adj.
+📝 释义：
+1. 坚持的，执着的
+2. 持续的，反复出现的
+
+🔊 音标：英 /pəˈsɪstənt/ 美 /pərˈsɪstənt/
+
+📖 例句：
+1. She is persistent in her efforts.
+2. The problem is persistent.
+
+🌳 词根：per-(始终) + sist(站) + -ent → 始终站着 → 坚持的
+
+🔄 近义词：insistent, determined
+🔄 反义词：irresolute
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/word-memory/progress.json
+{
+  "word_list": "CET-4",
+  "daily_new": 20,
+  "push_time": "08:00",
+  "learned": [
+    {
+      "word": "abandon",
+      "learned_date": "2026-03-16",
+      "next_review": "2026-03-16T12:00:00",
+      "review_count": 3,
+      "error_count": 0,
+      "mastery": 0.85
+    }
+  ],
+  "statistics": {
+    "total_learned": 120,
+    "streak_days": 7,
+    "avg_accuracy": 0.92
+  }
+}
+```
+
+## 待办事项
+
+- [ ] 实现词库导入
+- [ ] 实现艾宾浩斯算法
+- [ ] 实现定时推送
+- [ ] 实现测试功能
+- [ ] 添加进度统计
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

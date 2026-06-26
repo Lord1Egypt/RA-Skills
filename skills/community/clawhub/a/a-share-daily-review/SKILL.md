@@ -1,35 +1,123 @@
 ---
-name: "A股每日复盘模板"
-description: "Generate A-share stock market daily review templates with 7 professional styles including short-term sentiment, dragon head strategy, trend trading, quantita..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-daily-review"
-sourceUrl: "https://clawhub.ai/skills/a-share-daily-review"
+name: a-share-daily-review
+description: Generate A-share stock market daily review templates with 7 professional styles including short-term sentiment, dragon head strategy, trend trading, quantitative analysis, personal trading review, top trader comprehensive review, and complete professional structure. Perfect for traders who want systematic market analysis. Supports Markdown output with auto-filled data fields.
 ---
 
-# A股每日复盘模板
+# A股每日复盘模板 Skill
 
-> Generate A-share stock market daily review templates with 7 professional styles including short-term sentiment, dragon head strategy, trend trading, quantita...
+生成专业级 A 股复盘模板，支持 7 种常见复盘风格，适用于不同交易体系。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-daily-review`
-- **Source URL:** [https://clawhub.ai/skills/a-share-daily-review](https://clawhub.ai/skills/a-share-daily-review)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/a-share-daily-review
+# 生成默认复盘模板（职业交易员完整结构）
+/a-share-review
+
+# 指定复盘类型
+/a-share-review --type 情绪      # 短线情绪流
+/a-share-review --type 龙头      # 龙头战法
+/a-share-review --type 趋势      # 趋势交易
+/a-share-review --type 数据      # 量化数据复盘
+/a-share-review --type 个人      # 个人交易复盘
+/a-share-review --type 游资      # 顶级游资复盘（14模块完整版）⭐推荐
+/a-share-review --type 完整      # 职业交易员完整结构（默认）
+
+# 指定输出路径
+/a-share-review --type 游资 --output ~/reviews/2024-01-15.md
 ```
+
+## 复盘类型详解
+
+| 类型 | 适用人群 | 核心关注点 | 模块数 |
+|------|----------|------------|--------|
+| **情绪** | 打板族、龙头战法 | 涨停/跌停数、连板梯队、炸板率、热点题材 | 6 |
+| **龙头** | 专做核心股 | 龙头周期、梯队结构、分歧/加速判断 | 4 |
+| **趋势** | 波段交易者 | 板块趋势、强势股筛选、回踩/突破买点 | 4 |
+| **数据** | 量化思维 | 核心数据统计、板块强度、成功率分析 | 6 |
+| **个人** | 所有交易者 | 今日操作、对错总结、改进计划 | 6 |
+| **游资** | 职业交易员、顶级游资 | 14模块完整框架，覆盖指数/情绪/梯队/题材/龙头/盈亏效应/资金/轮动/信号/推演/计划/个人 | 14 ⭐ |
+| **完整** | 职业交易员 | 综合所有维度的精简框架 | 9 |
+
+## 顶级游资复盘模板（游资）详解 ⭐
+
+顶级游资复盘只抓 **3个核心**：
+1️⃣ **情绪周期** — 市场处在什么阶段
+2️⃣ **龙头是谁** — 资金围绕谁
+3️⃣ **明天怎么玩** — 资金可能去哪里
+
+### 14模块结构：
+
+1. **指数环境** — 三大指数、成交量判断、市场风格
+2. **市场情绪** — 涨停/跌停/炸板率、情绪周期定位
+3. **连板梯队** — 高度、股票、题材、状态
+4. **热点题材结构** — 题材强度、主线/次主线/轮动
+5. **核心龙头股** — 空间龙/题材龙/趋势龙/中军
+6. **今日赚钱效应** — 打板/低吸/趋势哪种模式赚钱
+7. **今日亏钱效应** — 亏钱来源、危险模式
+8. **资金风格** — 游资/机构/北向资金状态
+9. **板块轮动** — 近5日资金轮动路径
+10. **市场信号** — 新题材/龙头分歧/断板等重要信号
+11. **次日推演** — 情绪推演、重点观察、关注股票
+12. **明日交易计划** — 交易模式、重点标的、风控纪律
+13. **个人交易复盘** — 今日操作、对错分析、改进计划
+14. **市场总结** — 核心一句话总结
+
+**建议复盘流程（30分钟）：**
+1️⃣ 看指数 → 2️⃣ 看涨停板 → 3️⃣ 看连板梯队 → 4️⃣ 看龙头 → 5️⃣ 推演明天
+
+## 其他模板结构
+
+### 一、短线情绪流复盘
+- 指数环境（大盘、量能、风格）
+- 情绪指标（涨跌停、连板高度、炸板率）
+- 连板梯队（5板→2板完整表格）
+- 热门题材（题材+涨停数+核心股）
+- 市场核心股（龙头/中军/补涨）
+- 明日预期（情绪判断+风险点）
+
+### 二、龙头战法复盘
+- 龙头股（辨识度、地位稳定性）
+- 龙头周期（启动/发酵/加速/分歧/退潮）
+- 龙头梯队（龙头/补涨龙/中军/套利）
+- 次日机会（分歧低吸/回封/二波）
+
+### 三、趋势交易复盘
+- 指数趋势（上升/震荡/下跌）
+- 板块趋势（强趋势行业追踪）
+- 强势股（创新高、20日线上、放量）
+- 交易计划（回踩买点、突破买点、止损）
+
+### 四、量化数据复盘
+- 核心数据（涨停数、炸板率、成交额等）
+- 板块强度（涨幅+资金流向）
+- 统计分析（连板成功率、首板成功率、龙头溢价）
+
+### 五、个人交易复盘
+- 今日操作（股票+买入原因+结果）
+- 错误总结（追高、情绪退潮买股、未止损）
+- 正确总结（等分歧、龙头策略正确）
+- 改进计划（减少情绪交易、等确认再上仓位）
+
+### 六、职业交易员完整复盘（完整）
+综合所有模块：指数环境、市场情绪、连板梯队、热门题材、核心龙头、赚钱效应、亏钱效应、明日推演、个人交易复盘
+
+## Output
+
+生成 Markdown 格式复盘模板，保存至：
+- 默认：`~/a-share-reviews/YYYY-MM-DD-{type}.md`
+- 或指定 `--output` 路径
+
+## 推荐使用
+
+**新手**：从 `--type 个人` 开始，每天记录自己的交易
+**进阶**：使用 `--type 游资`，建立完整的复盘体系
+**专注龙头**：`--type 龙头` 或 `--type 情绪`
+**趋势波段**：`--type 趋势`
+**数据分析**：`--type 数据`
+
+## Tips
+
+- 每天收盘后用 `/a-share-review --type 游资` 快速生成当日复盘框架
+- 坚持记录可形成自己的交易数据库
+- 个人复盘最重要，建议每天用 `--type 个人` 或 `--type 游资`
+- 顶级游资复盘模板建议复盘时间控制在30分钟内

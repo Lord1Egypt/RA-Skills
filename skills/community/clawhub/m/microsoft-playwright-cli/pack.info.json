@@ -1,0 +1,28 @@
+{
+  "skillId": "playwright-cli",
+  "version": "0.1.9",
+  "build": "20260430-0620",
+  "checksum": {
+    "algorithm": "sha256",
+    "files": 11,
+    "sizeKB": 120,
+    "note": "Checksum is based on the original zip file content; individual file hashes omitted for brevity."
+  },
+  "install": {
+    "method": "manual",
+    "source": "zip",
+    "sourceId": "playwright-cli---bf43c1c2-ddd4-4e47-ae3c-a6a1637daa37.zip",
+    "installedBy": "ou_04e872f50f8b16312993eadbb16ca5ec",
+    "timestamp": "2026-04-30T06:45:00Z"
+  },
+  "compatibility": {
+    "openclaw": ">=2026.4.5",
+    "playwright-cli": ">=1.51.0"
+  },
+  "metadata": {
+    "originalRepo": "https://github.com/microsoft/playwright-cli",
+    "license": "MIT",
+    "author": "Microsoft (Playwright CLI Team)",
+    "description": "Automate browser interactions, test web pages and work with Playwright tests."
+  }
+}

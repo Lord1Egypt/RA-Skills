@@ -1,0 +1,45 @@
+{
+  "name": "thinking-skill",
+  "displayName": "Thinking - 深度思考与规划",
+  "version": "1.0.0",
+  "description": "元认知思考引擎 - 让 Agent 在行动前先思考、检索记忆、整合经验、规划最佳路径",
+  "author": "Spark",
+  "license": "MIT",
+  "keywords": [
+    "thinking",
+    "planning",
+    "memory",
+    "analysis",
+    "元认知",
+    "思考",
+    "规划"
+  ],
+  "categories": [
+    "效率工具",
+    "元技能"
+  ],
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills/tree/main/thinking-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/rfdiosuao/openclaw-skills/issues"
+  },
+  "homepage": "https://github.com/rfdiosuao/openclaw-skills/tree/main/thinking-skill#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "capabilities": {
+    "trigger": "keyword",
+    "triggerWords": [
+      "/thinking",
+      "先思考一下",
+      "think about this",
+      "规划一下",
+      "分析一下"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

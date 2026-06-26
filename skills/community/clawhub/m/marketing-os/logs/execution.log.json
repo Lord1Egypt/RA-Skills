@@ -1,0 +1,61 @@
+{
+    "version": "1.0.0",
+    "description": "Execution audit log — records every action taken by the Marketing OS",
+    "schema_version": "2024-01",
+    "log_format": {
+        "timestamp": "ISO 8601",
+        "level": "info | warn | error | critical",
+        "source": "skill name or system",
+        "workflow_id": "reference to workflow",
+        "step_id": "reference to step",
+        "action": "what was done",
+        "input_summary": "abbreviated input (max 500 chars)",
+        "output_summary": "abbreviated output (max 500 chars)",
+        "status": "success | failure | skipped | pending",
+        "duration_ms": "execution time in milliseconds",
+        "error": "error message if applicable",
+        "metadata": "additional context"
+    },
+    "entries": [
+        {
+            "timestamp": "2024-01-15T09:00:00Z",
+            "level": "info",
+            "source": "system",
+            "workflow_id": null,
+            "step_id": null,
+            "action": "system_initialized",
+            "input_summary": "{}",
+            "output_summary": "{\"status\": \"ready\"}",
+            "status": "success",
+            "duration_ms": 0,
+            "error": null,
+            "metadata": {
+                "version": "1.0.0",
+                "note": "Marketing OS execution log initialized"
+            }
+        }
+    ],
+    "retention": {
+        "max_entries": 10000,
+        "archive_after": "30 days",
+        "delete_after": "180 days",
+        "archive_format": "gzip"
+    },
+    "statistics": {
+        "total_entries": 1,
+        "by_level": {
+            "info": 1,
+            "warn": 0,
+            "error": 0,
+            "critical": 0
+        },
+        "by_status": {
+            "success": 1,
+            "failure": 0,
+            "skipped": 0,
+            "pending": 0
+        },
+        "last_error": null,
+        "uptime_since": "2024-01-15T09:00:00Z"
+    }
+}

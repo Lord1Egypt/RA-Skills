@@ -1,0 +1,97 @@
+{
+  "gateway": {
+    "mode": "local",
+    "bind": "loopback",
+    "port": 18789
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-chat",
+        "thinking": "stream"
+      },
+      "workspace": "~/OpenClaw输出",
+      "subagents": {
+        "allowAgents": ["hermes", "coder", "qa"]
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "开发助手",
+        "model": "deepseek/deepseek-chat",
+        "tools": {
+          "profile": "coding"
+        }
+      },
+      {
+        "id": "coder",
+        "name": "代码专家",
+        "model": "qwen/qwen3-coder-plus",
+        "tools": {
+          "profile": "coding"
+        }
+      },
+      {
+        "id": "qa",
+        "name": "质量保证",
+        "model": "deepseek/deepseek-chat",
+        "description": "代码审查和测试"
+      }
+    ]
+  },
+  "models": {
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com",
+        "apiKey": "${DEEPSEEK_API_KEY}",
+        "api": "openai-completions"
+      },
+      "qwen": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "${QWEN_API_KEY}",
+        "api": "openai-completions"
+      },
+      "ollama": {
+        "baseUrl": "http://localhost:11434",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen2.5:7b",
+            "name": "Qwen 2.5 7B",
+            "context": 32768
+          },
+          {
+            "id": "gemma2:2b",
+            "name": "Gemma 2 2B",
+            "context": 8192
+          }
+        ]
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "memory-core": {
+        "enabled": true
+      },
+      "excel-xlsx": {
+        "enabled": true
+      },
+      "smart-router": {
+        "enabled": true
+      }
+    }
+  },
+  "session": {
+    "store": ".openclaw-memory"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.4.15",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "template": "development",
+    "environment": "development"
+  },
+  "description": "开发配置 - 专注于代码开发、测试和本地模型集成"
+}

@@ -1,0 +1,9 @@
+{
+  "text": "JPEG transparent fallback should become white background",
+  "width": 760,
+  "height": 260,
+  "format": "jpg",
+  "background": "transparent",
+  "default_color": "#222222",
+  "padding": 24
+}

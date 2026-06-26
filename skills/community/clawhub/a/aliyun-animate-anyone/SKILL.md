@@ -1,35 +1,88 @@
 ---
-name: "Aliyun Animate Anyone"
-description: "Use when generating dance or motion-transfer videos with Alibaba Cloud Model Studio AnimateAnyone (`animate-anyone-gen2`) using a detected character image an..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aliyun-animate-anyone"
-sourceUrl: "https://clawhub.ai/skills/aliyun-animate-anyone"
+name: aliyun-animate-anyone
+description: Use when generating dance or motion-transfer videos with Alibaba Cloud Model Studio AnimateAnyone (`animate-anyone-gen2`) using a detected character image and an action template. Use when cloning motion from a dance/action video into a target character image.
+version: 1.0.0
 ---
 
-# Aliyun Animate Anyone
+Category: provider
 
-> Use when generating dance or motion-transfer videos with Alibaba Cloud Model Studio AnimateAnyone (`animate-anyone-gen2`) using a detected character image an...
+# Model Studio AnimateAnyone
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aliyun-animate-anyone`
-- **Source URL:** [https://clawhub.ai/skills/aliyun-animate-anyone](https://clawhub.ai/skills/aliyun-animate-anyone)
+## Validation
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/aliyun-animate-anyone
+mkdir -p output/aliyun-animate-anyone
+python -m py_compile skills/ai/video/aliyun-animate-anyone/scripts/prepare_animate_anyone_request.py && echo "py_compile_ok" > output/aliyun-animate-anyone/validate.txt
 ```
+
+Pass criteria: command exits 0 and `output/aliyun-animate-anyone/validate.txt` is generated.
+
+## Output And Evidence
+
+- Save normalized request payloads, detection outputs, template IDs, and task polling snapshots under `output/aliyun-animate-anyone/`.
+- Record whether the result should keep the reference image background or the source video background.
+
+Use AnimateAnyone when the task needs motion transfer from a template video rather than plain talking-head animation.
+
+## Critical model names
+
+Use these exact model strings:
+- `animate-anyone-detect-gen2`
+- `animate-anyone-template-gen2`
+- `animate-anyone-gen2`
+
+Selection guidance:
+- Run image detection first.
+- Run template generation on the source motion video.
+- Use `animate-anyone-gen2` for the final video job.
+
+## Prerequisites
+
+- China mainland (Beijing) only.
+- Set `DASHSCOPE_API_KEY` in your environment, or add `dashscope_api_key` to `~/.alibabacloud/credentials`.
+- Input files must be public HTTP/HTTPS URLs.
+
+## Normalized interface (video.animate_anyone)
+
+### Detect Request
+- `model` (string, optional): default `animate-anyone-detect-gen2`
+- `image_url` (string, required)
+
+### Template Request
+- `model` (string, optional): default `animate-anyone-template-gen2`
+- `video_url` (string, required)
+
+### Generate Request
+- `model` (string, optional): default `animate-anyone-gen2`
+- `image_url` (string, required)
+- `template_id` (string, required)
+- `use_ref_img_bg` (bool, optional): whether to keep the input image background
+
+### Response
+- `task_id` (string)
+- `task_status` (string)
+- `video_url` (string, when finished)
+
+## Quick start
+
+```bash
+python skills/ai/video/aliyun-animate-anyone/scripts/prepare_animate_anyone_request.py \
+  --image-url "https://example.com/dancer.png" \
+  --template-id "tmpl_xxx" \
+  --use-ref-img-bg
+```
+
+## Operational guidance
+
+- The action template must come from the official template-generation API.
+- Full-body images work best when `use_ref_img_bg=false`; half-body images are not recommended in that mode.
+- This skill is best for dancing or large body motion transfer, not generic talking-head tasks.
+
+## Output location
+
+- Default output: `output/aliyun-animate-anyone/request.json`
+- Override base dir with `OUTPUT_DIR`.
+
+## References
+
+- `references/sources.md`

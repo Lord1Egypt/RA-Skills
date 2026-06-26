@@ -1,0 +1,11 @@
+{
+  "name": "techvideo-wizard-skill",
+  "version": "1.6.0",
+  "displayName": "视频脚本向导",
+  "description": "通过 6 步结构化引导，帮助用户生成专业产品视频旁白脚本，适用于产品演示、技术介绍等场景",
+  "author": "",
+  "license": "MIT",
+  "tags": ["视频", "脚本生成", "产品演示", "多媒体", "旁白"],
+  "homepage": "",
+  "repository": ""
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@openclaw/clawsafe-hook",
+  "version": "1.0.0",
+  "description": "clawSafe middleware hook for OpenClaw - intercepts and blocks malicious input",
+  "main": "index.js",
+  "openclaw": {
+    "hooks": ["./hook"]
+  },
+  "keywords": ["openclaw", "hook", "security", "clawsafe"],
+  "author": "小夏",
+  "license": "MIT"
+}

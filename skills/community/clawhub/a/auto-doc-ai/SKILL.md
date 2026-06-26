@@ -1,35 +1,73 @@
 ---
-name: "Auto Doc AI"
-description: "基于 AST 和 LLM 自动生成 Python 代码文档（Google Style docstring）。 自动分析代码结构，生成符合 Google Style 的 docstring。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-doc-ai"
-sourceUrl: "https://clawhub.ai/skills/auto-doc-ai"
+name: auto-doc-ai
+displayName: Auto Doc AI — 智能代码文档生成器
+description: >
+  基于 AST 和 LLM 自动生成 Python 代码文档（Google Style docstring）。
+  自动分析代码结构，生成符合 Google Style 的 docstring。
+author: antonia-sz
+version: 1.0.0
+tags: [python, documentation, codegen, developer-tools, ai]
 ---
 
-# Auto Doc AI
+# Auto Doc AI — 智能代码文档生成器
 
-> 基于 AST 和 LLM 自动生成 Python 代码文档（Google Style docstring）。 自动分析代码结构，生成符合 Google Style 的 docstring。
+自动分析 Python 代码结构，生成符合 Google Style 的 docstring 文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-doc-ai`
-- **Source URL:** [https://clawhub.ai/skills/auto-doc-ai](https://clawhub.ai/skills/auto-doc-ai)
+## 功能特性
 
-## Overview
+- 🔍 基于 AST 解析代码结构
+- 🤖 智能函数/类/方法分析
+- 📝 生成 Google Style docstring
+- 📁 支持单文件或整个目录批量处理
+- 🔄 支持增量更新（跳过已有文档的函数）
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 为单个文件生成文档
+
 ```bash
-hermes skills install clawhub/auto-doc-ai
+/generate-docs /path/to/your_script.py
 ```
+
+### 为整个目录生成文档
+
+```bash
+/generate-docs /path/to/src/ --recursive
+```
+
+### 强制更新已有文档
+
+```bash
+/generate-docs /path/to/src/ --overwrite
+```
+
+### 预览模式（不写入文件）
+
+```bash
+/generate-docs /path/to/your_script.py --dry-run
+```
+
+## 生成的文档格式示例
+
+```python
+def process_data(data, threshold=0.5):
+    """处理输入数据并返回过滤后的结果。
+
+    Args:
+        data (list): 输入数据列表。
+        threshold (float, optional): 过滤阈值，默认为 0.5。
+
+    Returns:
+        list: 过滤后的数据列表。
+
+    Raises:
+        ValueError: 如果数据格式无效。
+    """
+    pass
+```
+
+## 注意事项
+
+- 仅支持 Python 3.7+ 的文件
+- 建议先使用 `--dry-run` 预览生成的文档
+- 使用 `--overwrite` 会替换所有现有 docstring

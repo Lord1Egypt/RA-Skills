@@ -1,35 +1,26 @@
 ---
-name: "人民币大写转换工具，将数字金额转换为人民币大写金额字符串。"
-description: "人民币大写转换工具，将数字金额转换为人民币大写字符串"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rmb-upper-skill"
-sourceUrl: "https://clawhub.ai/skills/rmb-upper-skill"
+name: rmb-upper-skill
+description: 人民币大写转换工具，将数字金额转换为人民币大写字符串
 ---
 
-# 人民币大写转换工具，将数字金额转换为人民币大写金额字符串。
+# RMB Upper Skill
 
-> 人民币大写转换工具，将数字金额转换为人民币大写字符串
+将数字金额转换为人民币大写字符串。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rmb-upper-skill`
-- **Source URL:** [https://clawhub.ai/skills/rmb-upper-skill](https://clawhub.ai/skills/rmb-upper-skill)
+## 功能
 
-## Overview
+- 支持整数和小数金额
+- 支持负数（显示"负"前缀）
+- 符合财务规范的人民币大写格式
 
+## 示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rmb-upper-skill
-```
+| 输入 | 输出 |
+|------|------|
+| 1023.5 | 壹仟零贰拾叁元伍角 |
+| 1002003.01 | 壹佰万贰仟零叁元零壹分 |
+| -12.3 | 负拾贰元叁角 |
+
+## 使用
+
+通过工具 `rmb_upper_tool` 调用，参数 `amount` 为数字金额字符串。

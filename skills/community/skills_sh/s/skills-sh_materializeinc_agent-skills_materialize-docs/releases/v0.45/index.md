@@ -1,0 +1,92 @@
+# Materialize v0.45
+## v0.45.0
+
+#### Sources and sinks
+
+* Expose source progress metadata as a subsource that can be used to
+  monitor **ingestion progress**. The name of the progress subsource can be
+  specified using the `EXPOSE PROGRESS AS` clause in `CREATE SOURCE`;
+  otherwise, it will be named `<src_name>_progress` by default.
+
+  **Example**
+
+  ```mzsql
+  -- Given a "purchases" Kafka source, a "purchases_progress"
+  -- subsource is automatically created
+  SELECT partition, "offset"
+  FROM (
+	    SELECT upper(partition)::uint8 AS partition, "offset"
+	    FROM purchases_progress
+  )
+  WHERE partition IS NOT NULL;
+
+   partition |  offset
+  -----------+----------
+   0         | 13645902
+   1         | 13659722
+   2         | 13656787
+  ```
+
+  For Kafka sources, the progress subsource returns the next possible offset to
+  consume from the identified partitions, and for PostgreSQL sources it returns
+  the last Log Sequence Number (LSN) consumed from the upstream replication
+  stream.
+
+#### SQL
+
+* Improve the behavior of the `search_path` configuration parameter to match that of
+  [PostgreSQL](https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH).
+  You can now specify multiple schemas and Materialize will correctly resolve
+  unqualified names by following the search path, as well as create objects in
+  the first schema named (i.e. the _current schema_).
+
+* Support `options` settings on connection startup. As an example, you can
+now specify the cluster to connect to in the `psql` connection string:
+
+  ```mzsql
+  psql "postgres://user%40domain.com@host:6875/materialize?options=--cluster%3Dfoo"
+  ```
+
+* Add support for the `\du` meta-command, which lists all roles/users of the database.
+
+* Add support for new SQL functions:
+
+  | Function                                        | Description                                                             |
+  | ----------------------------------------------- | ----------------------------------------------------------------------- |
+  | [`ceiling`](/sql/functions/#numbers-functions)       | Works as an alias of the `ceil` function.                               |
+
+<br>
+
+* Remove the `CREATE USER` command, as well as the `LOGIN` and `SUPERUSER`
+  attributes from the [`CREATE ROLE`](/sql/create-role/) command. This is part
+  of the work to enable **Role-based access control** (RBAC) in a future release
+  ([#11579](https://github.com/MaterializeInc/materialize/issues/11579)).
+
+#### Bug fixes and other improvements
+
+* Improve the error message for naming collisions, specifying the catalog item
+  type.
+
+  **Example**
+
+  ```mzsql
+  CREATE VIEW foo AS SELECT 'bar';
+
+  ERROR:  view "materialize.public.foo" already exists
+  ```
+
+* Fix a bug that would sporadically prevent clusters from coming online ([#17774](https://github.com/MaterializeInc/materialize/issues/17774)).
+
+* Improve `SUBSCRIBE` error handling. Prior to this release, subscriptions
+  ignored errors in their input, which could lead to correctness issues.
+
+* Return an error rather than crashing if source data contains invalid
+  retractions, which might happen in the presence of e.g. incomplete or invalid
+  data ([#17709](https://github.com/MaterializeInc/materialize/issues/17709)).
+
+* Fix a bug that could cause Materialize to crash when expressions in `CREATE
+  TABLE ... DEFAULT` clauses or `INSERT ... RETURNING` clauses contained nested
+  parentheses ([#17723](https://github.com/MaterializeInc/materialize/issues/17723)).
+
+* Avoid panicking when attempting to parse a range from strings containing
+  multibyte characters ([#17803](https://github.com/MaterializeInc/materialize/issues/17803)).

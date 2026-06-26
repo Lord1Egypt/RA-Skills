@@ -1,0 +1,6 @@
+{
+  "last_sync": "2026-04-18T09:44:00+08:00",
+  "sync_frequency_hours": 24,
+  "auto_apply": false,
+  "note": "v4: auto_apply 改为 false，由 WorkBuddy 自动化在每日 22:00 触发 apply"
+}

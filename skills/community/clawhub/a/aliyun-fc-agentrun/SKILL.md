@@ -1,35 +1,111 @@
 ---
-name: "Aliyun Fc Agentrun"
-description: "Use when managing Function Compute AgentRun resources via OpenAPI (runtime, sandbox, model, memory, credentials), including creating runtimes/endpoints, quer..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aliyun-fc-agentrun"
-sourceUrl: "https://clawhub.ai/skills/aliyun-fc-agentrun"
+name: aliyun-fc-agentrun
+description: Use when managing Function Compute AgentRun resources via OpenAPI (runtime, sandbox, model, memory, credentials), including creating runtimes/endpoints, querying status, and troubleshooting AgentRun workflows.
+version: 1.0.0
 ---
 
-# Aliyun Fc Agentrun
+Category: service
 
-> Use when managing Function Compute AgentRun resources via OpenAPI (runtime, sandbox, model, memory, credentials), including creating runtimes/endpoints, quer...
+# Function Compute AgentRun (OpenAPI)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aliyun-fc-agentrun`
-- **Source URL:** [https://clawhub.ai/skills/aliyun-fc-agentrun](https://clawhub.ai/skills/aliyun-fc-agentrun)
+Use AgentRun OpenAPI (ROA) to manage runtimes, sandboxes, model services, memory, and credentials.
 
-## Overview
+## Prerequisites
 
+- AccessKey via RAM user (least privilege).
+- Select the correct regional endpoint (see `references/endpoints.md`). If unsure, choose the most reasonable region for the task or ask the user.
+- Use OpenAPI Explorer or official SDK to avoid manual signing (ROA requires SignatureV1).
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Workflow
+
+1) Choose region endpoint (`agentrun.cn-<region>.aliyuncs.com`).
+2) Create runtime → publish version → create runtime endpoint.
+3) Create sandbox/template if needed.
+4) Configure credentials and model services as required.
+5) Query resources for troubleshooting.
+
+## API Groups
+
+See `references/api_overview.md` for the full API list and grouping.
+
+## Script quickstart
+
 ```bash
-hermes skills install clawhub/aliyun-fc-agentrun
+python skills/compute/fc/aliyun-fc-agentrun/scripts/quickstart.py
 ```
+
+Environment variables:
+
+- `AGENTRUN_ENDPOINT`
+- `ALICLOUD_ACCESS_KEY_ID`
+- `ALICLOUD_ACCESS_KEY_SECRET`
+- `OUTPUT_DIR` (optional)
+
+## Runtime flow script
+
+```bash
+AGENTRUN_RUNTIME_NAME="my-runtime" \\
+AGENTRUN_RUNTIME_ENDPOINT_NAME="my-runtime-endpoint" \\
+python skills/compute/fc/aliyun-fc-agentrun/scripts/runtime_flow.py
+```
+
+Environment variables:
+
+- `AGENTRUN_ENDPOINT`
+- `ALICLOUD_ACCESS_KEY_ID`
+- `ALICLOUD_ACCESS_KEY_SECRET`
+- `AGENTRUN_RUNTIME_NAME`
+- `AGENTRUN_RUNTIME_ENDPOINT_NAME`
+- `AGENTRUN_RUNTIME_DESC` (optional)
+- `OUTPUT_DIR` (optional)
+
+## Cleanup script
+
+```bash
+AGENTRUN_RUNTIME_ID="runtime-id" \\
+AGENTRUN_RUNTIME_ENDPOINT_ID="endpoint-id" \\
+python skills/compute/fc/aliyun-fc-agentrun/scripts/cleanup_runtime.py
+```
+
+Environment variables:
+
+- `AGENTRUN_ENDPOINT`
+- `ALICLOUD_ACCESS_KEY_ID`
+- `ALICLOUD_ACCESS_KEY_SECRET`
+- `AGENTRUN_RUNTIME_ID`
+- `AGENTRUN_RUNTIME_ENDPOINT_ID`
+- `OUTPUT_DIR` (optional)
+
+## SDK Notes
+
+See `references/sdk.md` for SDK acquisition guidance.
+
+## Output Policy
+
+If you store any generated files or responses, write them under:
+`output/compute-fc-agentrun/`.
+
+## Validation
+
+```bash
+mkdir -p output/aliyun-fc-agentrun
+for f in skills/compute/fc/aliyun-fc-agentrun/scripts/*.py; do
+  python3 -m py_compile "$f"
+done
+echo "py_compile_ok" > output/aliyun-fc-agentrun/validate.txt
+```
+
+Pass criteria: command exits 0 and `output/aliyun-fc-agentrun/validate.txt` is generated.
+
+## Output And Evidence
+
+- Save artifacts, command outputs, and API response summaries under `output/aliyun-fc-agentrun/`.
+- Include key parameters (region/resource id/time range) in evidence files for reproducibility.
+
+## References
+
+- API overview and operation list: `references/api_overview.md`
+- Regional endpoints: `references/endpoints.md`
+- SDK guidance: `references/sdk.md`
+
+- Source list: `references/sources.md`

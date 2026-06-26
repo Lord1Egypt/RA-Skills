@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="5">
+  <title>OpenClaw Agent Sessions</title>
+  <style>
+    :root {
+      --bg: #05060a;
+      --panel: #0f1118;
+      --panel-alt: #151823;
+      --border: #1f2333;
+      --text: #e8eaed;
+      --muted: #9ba3b4;
+      --run: #1dd1a1;
+      --idle: #feca57;
+      --stale: #ff6b6b;
+      --exited: #576574;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'SFMono-Regular', Consolas, Menlo, ui-monospace, monospace;
+      background: radial-gradient(circle at top, rgba(29,78,216,0.15), transparent 45%), var(--bg);
+      color: var(--text);
+      padding: 32px;
+    }
+    h2 { margin: 0 0 8px; font-weight: 600; }
+    p.meta { color: var(--muted); margin: 4px 0 24px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; }
+    .card .label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0; }
+    .card .value { font-size: 1.5rem; margin: 4px 0 0; }
+    .accent-run { border-color: rgba(29,209,161,0.5); box-shadow: 0 0 12px rgba(29,209,161,0.2); }
+    .accent-idle { border-color: rgba(254,202,87,0.5); box-shadow: 0 0 12px rgba(254,202,87,0.2); }
+    .accent-stale { border-color: rgba(255,107,107,0.5); box-shadow: 0 0 12px rgba(255,107,107,0.2); }
+    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    thead th { background: #0b0d13; position: sticky; top: 0; z-index: 1; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    tr:nth-child(even) { background: var(--panel-alt); }
+    .status { padding: 2px 10px; border-radius: 999px; font-weight: 600; font-size: 0.85rem; }
+    .status-run { background: rgba(29,209,161,0.12); color: var(--run); }
+    .status-idle { background: rgba(254,202,87,0.12); color: var(--idle); }
+    .status-stale { background: rgba(255,107,107,0.12); color: var(--stale); }
+    .status-exited { background: rgba(87,101,116,0.12); color: var(--exited); }
+    @media (max-width: 900px) {
+      body { padding: 16px; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <h2>OpenClaw Agent Sessions</h2>
+  <p class="meta">Last generated: 2026-03-03 12:40:51 &nbsp;|&nbsp; Window: 720 min &nbsp;|&nbsp; Sessions: 5</p>
+  
+    <div class="cards">
+      <div class="card accent-run"><p class="label">RUN</p><p class="value">1</p></div>
+      <div class="card accent-idle"><p class="label">IDLE</p><p class="value">0</p></div>
+      <div class="card accent-stale"><p class="label">STALE</p><p class="value">4</p></div>
+      <div class="card"><p class="label">Σ Tokens (window)</p><p class="value">86.8k</p></div>
+      <div class="card"><p class="label">Σ Cost</p><p class="value">$1.30</p></div>
+      <div class="card"><p class="label">Longest run</p><p class="value">-</p></div>
+      <div class="card"><p class="label">Avg lag</p><p class="value">12:04</p></div>
+    </div>
+    
+  <table>
+    <thead>
+      <tr>
+        <th>Session</th>
+        <th>Status</th>
+        <th>Runtime</th>
+        <th>Last Update (ago)</th>
+        <th>Last Update (local)</th>
+        <th>Tokens</th>
+        <th>Cost</th>
+        <th>Model</th>
+        <th>Kind</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>agent:main:main</td><td><span class='status status-run'>RUN</span></td><td>-</td><td>00:47 ago</td><td>2026-03-03 12:40:03</td><td>73.1k</td><td>$1.10</td><td>gpt-5.1-codex</td><td>direct</td></tr><tr><td>telegram:slash:1028523939</td><td><span class='status status-stale'>STALE</span></td><td>-</td><td>13:16 ago</td><td>2026-03-03 12:27:35</td><td>-</td><td>-</td><td>gpt-5.1-codex</td><td>direct</td></tr><tr><td>agent:main:subagent:825a9c68-cbd2-4f51-992a-bffac1348a68</td><td><span class='status status-stale'>STALE</span></td><td>-</td><td>15:04 ago</td><td>2026-03-03 12:25:47</td><td>-</td><td>-</td><td>gpt-5.1-codex</td><td>direct</td></tr><tr><td>agent:main:subagent:cffb3d61-bf7d-4691-8758-269155e98a15</td><td><span class='status status-stale'>STALE</span></td><td>-</td><td>15:29 ago</td><td>2026-03-03 12:25:21</td><td>-</td><td>-</td><td>gpt-5.1-codex</td><td>direct</td></tr><tr><td>agent:main:subagent:0e56e32b-bb07-4ceb-a104-9fdbbdc395e5</td><td><span class='status status-stale'>STALE</span></td><td>-</td><td>15:42 ago</td><td>2026-03-03 12:25:08</td><td>13.7k</td><td>$0.21</td><td>gpt-5.1-codex</td><td>direct</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

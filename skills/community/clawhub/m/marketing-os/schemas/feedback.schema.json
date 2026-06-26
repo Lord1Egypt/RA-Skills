@@ -1,0 +1,171 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "marketing-os/schemas/feedback.schema.json",
+    "title": "Execution Feedback",
+    "description": "Structured feedback from Marketing Operator to Virtual CMO after campaign execution",
+    "type": "object",
+    "required": [
+        "feedback_id",
+        "mission_id",
+        "campaign_id",
+        "timestamp",
+        "execution_result",
+        "metrics",
+        "learnings",
+        "confidence_in_data"
+    ],
+    "properties": {
+        "feedback_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique feedback identifier"
+        },
+        "mission_id": {
+            "type": "string",
+            "description": "Reference to the original CMO mission"
+        },
+        "campaign_id": {
+            "type": "string",
+            "description": "Reference to the executed campaign"
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this feedback was generated"
+        },
+        "execution_result": {
+            "type": "string",
+            "description": "Factual summary of what happened during execution"
+        },
+        "metrics": {
+            "type": "object",
+            "description": "Performance metrics from execution",
+            "properties": {
+                "impressions": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "clicks": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "conversions": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "cost": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "revenue": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "ctr": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Click-through rate %"
+                },
+                "conversion_rate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Conversion rate %"
+                },
+                "cpa": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Cost per acquisition"
+                },
+                "roas": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Return on ad spend"
+                },
+                "engagement_rate": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "custom_metrics": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "number"
+                    },
+                    "description": "Any additional metrics not covered above"
+                }
+            }
+        },
+        "metrics_labels": {
+            "type": "object",
+            "description": "Labels indicating data source for each metric",
+            "additionalProperties": {
+                "type": "string",
+                "enum": [
+                    "MEASURED",
+                    "ESTIMATED",
+                    "PENDING"
+                ]
+            }
+        },
+        "learnings": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            },
+            "description": "Specific insights from execution — what worked, what didn't, why"
+        },
+        "issues": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "description",
+                    "severity",
+                    "impact"
+                ],
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "severity": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 10
+                    },
+                    "impact": {
+                        "type": "string"
+                    },
+                    "resolution": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "open",
+                            "resolved",
+                            "mitigated"
+                        ]
+                    }
+                }
+            }
+        },
+        "recommendations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Specific, actionable recommendations for CMO strategy adjustment"
+        },
+        "confidence_in_data": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "How reliable the reported metrics are (0-100)"
+        },
+        "data_pending_until": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When remaining metrics are expected to be available"
+        }
+    }
+}

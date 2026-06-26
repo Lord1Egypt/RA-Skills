@@ -1,35 +1,19 @@
 ---
-name: "OpenAI Whisper Local"
-description: "Local speech-to-text with the Whisper CLI (no API key)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openai-whisper-local"
-sourceUrl: "https://clawhub.ai/skills/openai-whisper-local"
+name: openai-whisper
+description: Local speech-to-text with the Whisper CLI (no API key).
+homepage: https://openai.com/research/whisper
+metadata: {"clawdbot":{"emoji":"🎙️","requires":{"bins":["whisper"]},"install":[{"id":"brew","kind":"brew","formula":"openai-whisper","bins":["whisper"],"label":"Install OpenAI Whisper (brew)"}]}}
 ---
 
-# OpenAI Whisper Local
+# Whisper (CLI)
 
-> Local speech-to-text with the Whisper CLI (no API key).
+Use `whisper` to transcribe audio locally.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openai-whisper-local`
-- **Source URL:** [https://clawhub.ai/skills/openai-whisper-local](https://clawhub.ai/skills/openai-whisper-local)
+Quick start
+- `whisper /path/audio.mp3 --model medium --output_format txt --output_dir .`
+- `whisper /path/audio.m4a --task translate --output_format srt`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openai-whisper-local
-```
+Notes
+- Models download to `~/.cache/whisper` on first run.
+- `--model` defaults to `turbo` on this install.
+- Use smaller models for speed, larger for accuracy.

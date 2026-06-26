@@ -1,35 +1,86 @@
 ---
-name: "gsap-awwwards-website"
-description: "Indexed by skills.sh from eng0ai/eng0-template-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "eng0ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/eng0ai/eng0-template-skills/gsap-awwwards-website"
-sourceUrl: "https://skills.sh/eng0ai/eng0-template-skills/gsap-awwwards-website"
+name: gsap-awwwards-website
+description: SPYLT product landing with GSAP scroll animations, React 19, and Tailwind CSS 4.
 ---
 
-# gsap-awwwards-website
+# GSAP Awwwards Website
 
-> Indexed by skills.sh from eng0ai/eng0-template-skills
+A stunning product landing page with GSAP scroll animations, modern React 19 architecture, and Tailwind CSS 4 styling.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** eng0ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/eng0ai/eng0-template-skills/gsap-awwwards-website`
-- **Source URL:** [https://skills.sh/eng0ai/eng0-template-skills/gsap-awwwards-website](https://skills.sh/eng0ai/eng0-template-skills/gsap-awwwards-website)
+## Tech Stack
 
-## Overview
+- **Framework**: React 19
+- **Build Tool**: Vite
+- **Animation**: GSAP
+- **Styling**: Tailwind CSS 4
+- **Package Manager**: npm
+- **Output**: `dist` directory
+- **Dev Port**: 5173
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Clone the Template
+
 ```bash
-hermes skills install skills-sh/eng0ai/eng0-template-skills/gsap-awwwards-website
+git clone --depth 1 https://github.com/Eng0AI/gsap-awwwards-website-template.git .
 ```
+
+If the directory is not empty:
+
+```bash
+git clone --depth 1 https://github.com/Eng0AI/gsap-awwwards-website-template.git _temp_template
+mv _temp_template/* _temp_template/.* . 2>/dev/null || true
+rm -rf _temp_template
+```
+
+### 2. Remove Git History (Optional)
+
+```bash
+rm -rf .git
+git init
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+Creates a production build in the `dist/` directory.
+
+## Deploy
+
+> **CRITICAL**: For Vercel, you MUST use `vercel build --prod` then `vercel deploy --prebuilt --prod`. Never use `vercel --prod` directly.
+
+### Vercel (Recommended)
+
+```bash
+vercel pull --yes -t $VERCEL_TOKEN
+vercel build --prod -t $VERCEL_TOKEN
+vercel deploy --prebuilt --prod --yes -t $VERCEL_TOKEN
+```
+
+### Netlify
+
+```bash
+netlify deploy --prod --dir=dist
+```
+
+## Development
+
+```bash
+npm run dev
+```
+
+Opens at http://localhost:5173
+
+## Notes
+
+- Static React site - no environment variables needed
+- Never run `npm run dev` in VM environment

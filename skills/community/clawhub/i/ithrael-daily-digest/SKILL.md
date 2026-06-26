@@ -1,35 +1,107 @@
 ---
-name: "Daily Digest"
-description: "每日摘要生成技能。扫描当前工作目录下的所有 .md 文件，生成结构化摘要报告。触发词："生成今日摘要"、"daily digest"、"生成摘要报告"、"汇总 markdown 文件"。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ithrael-daily-digest"
-sourceUrl: "https://clawhub.ai/skills/ithrael-daily-digest"
+name: daily-digest
+description: 每日摘要生成技能。扫描当前工作目录下的所有 .md 文件，生成结构化摘要报告。触发词："生成今日摘要"、"daily digest"、"生成摘要报告"、"汇总 markdown 文件"。
 ---
 
-# Daily Digest
+# Daily Digest - 每日摘要生成
 
-> 每日摘要生成技能。扫描当前工作目录下的所有 .md 文件，生成结构化摘要报告。触发词："生成今日摘要"、"daily digest"、"生成摘要报告"、"汇总 markdown 文件"。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ithrael-daily-digest`
-- **Source URL:** [https://clawhub.ai/skills/ithrael-daily-digest](https://clawhub.ai/skills/ithrael-daily-digest)
+本技能用于扫描当前工作目录（或指定目录）下的所有 `.md` 文件，自动生成一份结构化的摘要报告，包含文件清单、标题、章节结构、字数统计等信息。
 
-## Overview
+## 触发场景
 
+当用户表达以下意图时使用本技能：
+- "生成今日摘要"
+- "帮我汇总今天的 markdown 文件"
+- "生成每日报告"
+- "daily digest"
+- "汇总当前目录的 .md 文件"
+- "看看今天写了哪些文档"
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+### 基础用法（扫描当前目录）
+
 ```bash
-hermes skills install clawhub/ithrael-daily-digest
+python3 {baseDir}/scripts/generate_digest.py
 ```
+
+### 指定目录
+
+```bash
+python3 {baseDir}/scripts/generate_digest.py /path/to/directory
+```
+
+### 输出到文件
+
+```bash
+python3 {baseDir}/scripts/generate_digest.py > daily-digest-$(date +%Y-%m-%d).md
+```
+
+## 输出格式
+
+生成的摘要报告包含以下部分：
+
+1. **报告头信息**
+   - 生成时间
+   - 扫描目录
+   - 文件总数
+
+2. **文件清单**
+   - 每个 .md 文件的标题（提取自一级标题）
+   - 字数统计
+   - 章节列表（提取自二级标题）
+
+3. **统计汇总**
+   - 总文件数
+   - 总字数
+   - 平均字数
+
+## 示例输出
+
+```markdown
+# 📋 今日摘要报告
+
+**生成时间**: 2026-05-25 19:00:00
+**扫描目录**: /home/admin/workspace
+**文件总数**: 3
+
+---
+
+## 📄 文件清单
+
+### meeting-notes.md
+- **标题**: 周会纪要
+- **字数**: 1250
+- **章节**: 参会人員，讨论议题，行动计划
+
+### project-update.md
+- **标题**: 项目进度更新
+- **字数**: 800
+- **章节**: 本周完成，下周计划
+
+---
+
+## 📊 统计汇总
+
+- **总文件数**: 3
+- **总字数**: 2050
+- **平均字数**: 683
+```
+
+## 脚本说明
+
+`scripts/generate_digest.py` 功能：
+- 自动扫描指定目录下的所有 `.md` 文件
+- 提取一级标题作为文档标题
+- 提取二级标题作为章节列表
+- 统计每个文件的字数
+- 生成汇总统计信息
+
+## 注意事项
+
+- 仅处理 `.md` 后缀的文件
+- 文件按字母顺序排序
+- 无法读取的文件会显示错误信息
+- 支持 UTF-8 编码的文件

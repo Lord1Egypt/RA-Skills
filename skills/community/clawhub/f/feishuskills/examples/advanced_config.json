@@ -1,0 +1,28 @@
+{
+  "app_id": "cli_xxx",
+  "app_secret": "xxx",
+  "verification_token": "xxx",
+  "encrypt_key": "xxx",
+  "webhook_url": "https://your-domain.com/webhook/feishu",
+  "permissions": [
+    "im:readonly",
+    "contact:user.base:readonly",
+    "drive:readonly"
+  ],
+  "features": {
+    "message_handling": true,
+    "document_access": true,
+    "drive_management": true,
+    "wiki_access": true,
+    "permission_management": true
+  },
+  "fallback_strategies": {
+    "manual_setup_guide": true,
+    "alternative_apis": true,
+    "community_solutions": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "feishu_integration.log"
+  }
+}

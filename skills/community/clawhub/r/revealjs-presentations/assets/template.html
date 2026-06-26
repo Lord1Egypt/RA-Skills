@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/{{THEME}}.css">
+  <!-- Uncomment for code highlighting -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css"> -->
+  <style>
+    /* Custom styles go here */
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title Slide -->
+      <section>
+        <h1>{{TITLE}}</h1>
+        <p>{{SUBTITLE}}</p>
+      </section>
+
+      <!-- Content Slides -->
+      <section>
+        <h2>Slide Title</h2>
+        <p>Content here</p>
+      </section>
+
+      <!-- Fragment Example -->
+      <section>
+        <h2>Step by Step</h2>
+        <p class="fragment fade-up">First point</p>
+        <p class="fragment fade-up">Second point</p>
+        <p class="fragment fade-up">Third point</p>
+      </section>
+
+      <!-- Auto-Animate Example -->
+      <!--
+      <section data-auto-animate>
+        <h2>Auto Animate</h2>
+      </section>
+      <section data-auto-animate>
+        <h2 style="color: #6366f1;">Auto Animate</h2>
+        <p>New content fades in automatically</p>
+      </section>
+      -->
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <!-- Uncomment plugins as needed -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script> -->
+  <script>
+    Reveal.initialize({
+      hash: true,
+      transition: 'slide',
+      controls: true,
+      progress: true,
+      center: true,
+      width: 1400,
+      height: 800,
+      margin: 0.04,
+      // plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

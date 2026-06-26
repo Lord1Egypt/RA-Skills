@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "models": {
+    "local": {
+      "id": "ollama:deepseek-r1:14b",
+      "name": "本地模型",
+      "type": "local",
+      "cost": 0,
+      "enabled": true
+    },
+    "deepseek": {
+      "id": "deepseek/deepseek-chat",
+      "name": "DeepSeek通用模型",
+      "type": "cloud",
+      "cost": 0.001,
+      "enabled": true
+    },
+    "reasoner": {
+      "id": "deepseek/deepseek-reasoner",
+      "name": "DeepSeek推理模型",
+      "type": "cloud",
+      "cost": 0.002,
+      "enabled": true
+    },
+    "kimi": {
+      "id": "moonshot/kimi-k2.5",
+      "name": "Kimi长文本模型",
+      "type": "cloud",
+      "cost": 0.003,
+      "enabled": true
+    }
+  },
+  "tasks": {
+    "chat": {
+      "name": "日常对话",
+      "recommendedModel": "local",
+      "description": "日常聊天、简单问答"
+    },
+    "simple": {
+      "name": "简单问答",
+      "recommendedModel": "local",
+      "description": "信息查询、基础问题"
+    },
+    "research": {
+      "name": "研究分析",
+      "recommendedModel": "reasoner",
+      "description": "复杂推理、研究任务"
+    },
+    "longdoc": {
+      "name": "长文档处理",
+      "recommendedModel": "kimi",
+      "description": "长文本分析、多文件处理"
+    },
+    "code": {
+      "name": "编程开发",
+      "recommendedModel": "deepseek",
+      "description": "代码生成、技术问题"
+    },
+    "analysis": {
+      "name": "数据分析",
+      "recommendedModel": "reasoner",
+      "description": "数据分析、统计计算"
+    },
+    "creative": {
+      "name": "创意写作",
+      "recommendedModel": "deepseek",
+      "description": "创意写作、内容生成"
+    }
+  },
+  "costStrategy": "balanced",
+  "autoSwitch": true,
+  "logSwitches": true
+}

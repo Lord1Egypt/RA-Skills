@@ -1,0 +1,18 @@
+{
+  "priority": [
+    "GeneralRules.md",
+    "ContinuousExecutionDirective.md",
+    "OptimizationRules.md",
+    "OptimizationDirective.md",
+    "OptimizationChecklist.md",
+    "ReportingTemplate.md",
+    "AcceptanceTemplate.md",
+    "QualityRubric.md",
+    "ModuleSystem.md"
+  ],
+  "exclude": [
+    "ReferenceMap.md",
+    "ModuleGraph.md",
+    "ConflictReport.md"
+  ]
+}

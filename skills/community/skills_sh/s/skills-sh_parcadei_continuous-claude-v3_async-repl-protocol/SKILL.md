@@ -1,35 +1,29 @@
 ---
-name: "async-repl-protocol"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/async-repl-protocol"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/async-repl-protocol"
+name: async-repl-protocol
+description: Async REPL Protocol
 ---
 
-# async-repl-protocol
+# Async REPL Protocol
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When working with Agentica's async REPL harness for testing.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/async-repl-protocol`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/async-repl-protocol](https://skills.sh/parcadei/continuous-claude-v3/async-repl-protocol)
+## Rules
 
-## Overview
+### 1. Use `await` for Future-returning tools
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/async-repl-protocol
+```python
+content = await view_file(path)  # NOT view_file(path)
+answer = await ask_memory("...")
 ```
+
+### 2. Single code block per response
+
+Compute AND return in ONE block. Multiple blocks means only first executes.
+
+```python
+# GOOD: Single block
+content = await view_file(path)
+return any(c.isdigit() for c in content)
+
+# BAD: Split blocks (second block never runs)
+content = await view_file(path)

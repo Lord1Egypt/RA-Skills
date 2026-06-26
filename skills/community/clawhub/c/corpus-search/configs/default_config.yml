@@ -1,0 +1,12 @@
+# Corpus Search - 默认配置
+
+search:
+  default_limit: 10
+  max_limit: 100
+
+models:
+  embedding: "BAAI/bge-small-zh-v1.5"
+
+storage:
+  # 指向 corpus-builder 的语料库目录
+  persist_directory: "/home/admin/.openclaw/workspace/skills/corpus-builder/corpus/chroma"

@@ -1,0 +1,3 @@
+[console_scripts]
+comfyui-agent-skill-mie = comfyui.cli:main_module
+comfyui-skill = comfyui.cli:main_module

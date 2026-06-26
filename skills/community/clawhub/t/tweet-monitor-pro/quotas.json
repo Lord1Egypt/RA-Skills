@@ -1,0 +1,12 @@
+{
+  "test_user_123": {
+    "plan": "free",
+    "used": 1,
+    "limit": 10
+  },
+  "test_upgrade": {
+    "plan": "pro",
+    "used": 3,
+    "limit": 1000
+  }
+}

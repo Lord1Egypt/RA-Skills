@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/kuaishou/get-user-video-list/v2 for Kuaishou User Published Videos through JustOneAPI with userId.",
+  "displayName": "Kuaishou User Published Videos",
+  "endpointPath": "get-user-video-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Kuaishou user Published Videos data, including covers, publish times, and engagement metrics, for creator monitoring and content performance analysis.",
+      "method": "GET",
+      "operationId": "getKuaishouUserVideoListV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique user ID on Kuaishou.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor for subsequent pages.",
+          "enumValues": [],
+          "location": "query",
+          "name": "pcursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/kuaishou/get-user-video-list/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Videos",
+      "tags": [
+        "Kuaishou"
+      ]
+    }
+  ],
+  "platformKey": "kuaishou",
+  "primaryTag": "Kuaishou",
+  "skillName": "justoneapi_kuaishou_get_user_video_list",
+  "skillType": "interface",
+  "slug": "justoneapi-kuaishou-get-user-video-list",
+  "sourceTitle": "OpenAPI definition"
+}

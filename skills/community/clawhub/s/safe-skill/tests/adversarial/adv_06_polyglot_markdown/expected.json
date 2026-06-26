@@ -1,0 +1,8 @@
+{
+    "label": "adversarial",
+    "description": "Dangerous code in markdown code blocks that are MEANT to be executed (not documentation). The skill instructs the agent to run these code blocks. Tests whether code blocks under non-doc headings are flagged at full severity.",
+    "expected_detection": "full",
+    "must_trigger_rules": ["RCE-001", "RCE-005", "ESC-001", "EXFIL-007"],
+    "key_test": "Code blocks under 'Examples' heading should NOT be doc-downgraded because 'Examples' is not a warning/danger heading",
+    "notes": "Tricky case: some scanners might skip fenced code blocks entirely, but these code blocks contain actual attack payloads intended for execution"
+}

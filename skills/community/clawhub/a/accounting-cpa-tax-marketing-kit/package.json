@@ -1,0 +1,32 @@
+{
+  "name": "accounting-cpa-tax-marketing-kit",
+  "version": "1.0.0",
+  "description": "Generate compliant marketing campaigns for CPA firms, enrolled agents, and tax preparation businesses — IRS Circular 230, AICPA Code § 1.400, state board disclosure requirements, and FTC rules enforced in every output.",
+  "main": "SKILL.md",
+  "keywords": [
+    "accounting",
+    "cpa",
+    "tax",
+    "marketing",
+    "circular-230",
+    "aicpa",
+    "enrolled-agent",
+    "tax-preparation",
+    "compliance",
+    "professional-services"
+  ],
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "clawhub": {
+    "category": "professional-services-marketing",
+    "tags": ["accounting", "cpa", "tax-firm", "enrolled-agent", "circular-230", "compliance", "marketing"],
+    "freePrompt": "01_firm_brand_acquisition",
+    "pricing": {
+      "free": ["prompts/01_firm_brand_acquisition.md"],
+      "pro": {
+        "price": 29,
+        "includes": "all"
+      }
+    }
+  }
+}

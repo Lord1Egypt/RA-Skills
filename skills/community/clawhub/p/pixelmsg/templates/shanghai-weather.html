@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shanghai Weather</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    * { font-family: 'Inter', -apple-system, sans-serif; }
+    body { background: #fafaf9; margin: 0; padding: 0; }
+  </style>
+</head>
+<body>
+
+<div x-data="{
+  data: null,
+  get loaded() { return this.data !== null },
+  get cur() { return this.data?.current },
+  get daily() {
+    if (!this.data) return [];
+    const d = this.data.daily;
+    const result = d.time.map((t, i) => ({
+      date: t,
+      code: d.weather_code[i],
+      high: Math.round(d.temperature_2m_max[i]),
+      low: Math.round(d.temperature_2m_min[i])
+    }));
+    const lows = result.map(r => r.low);
+    const highs = result.map(r => r.high);
+    const min = Math.min(...lows) - 1;
+    const max = Math.max(...highs) + 1;
+    const span = max - min;
+    return result.map(r => ({
+      ...r,
+      barLeft: Math.round((r.low - min) / span * 100),
+      barWidth: Math.max(Math.round((r.high - r.low) / span * 100), 4)
+    }));
+  },
+  wmo(code) {
+    const map = {
+      0:'Sunny', 1:'Mostly Sunny', 2:'Cloudy', 3:'Overcast',
+      45:'Fog', 48:'Freezing Fog',
+      51:'Light Drizzle', 53:'Drizzle', 55:'Heavy Drizzle',
+      61:'Light Rain', 63:'Rain', 65:'Heavy Rain',
+      71:'Light Snow', 73:'Snow', 75:'Heavy Snow',
+      80:'Showers', 81:'Moderate Showers', 82:'Heavy Showers',
+      95:'Thunderstorm', 99:'Severe Thunderstorm'
+    };
+    return map[code] || 'Unknown';
+  },
+  dayLabel(dateStr, i) {
+    if (i === 0) return 'Today';
+    if (i === 1) return 'Tomorrow';
+    if (i === 2) return 'Day 3';
+    const d = new Date(dateStr);
+    return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+  },
+  windDir(deg) {
+    const dirs = ['N','NE','E','SE','S','SW','W','NW'];
+    return dirs[Math.round(deg / 45) % 8] + ' Wind';
+  }
+}" x-init="
+  try {
+    data = await (await fetch('https://api.open-meteo.com/v1/forecast?latitude=31.23&longitude=121.47&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia/Shanghai&forecast_days=5')).json()
+  } catch(e) {
+    data = {
+      current: { temperature_2m: 22, apparent_temperature: 20, relative_humidity_2m: 68, weather_code: 2, wind_speed_10m: 12, wind_direction_10m: 135 },
+      daily: {
+        time: ['2026-04-03','2026-04-04','2026-04-05','2026-04-06','2026-04-07'],
+        weather_code: [2, 61, 63, 3, 1],
+        temperature_2m_max: [24, 19, 16, 18, 23],
+        temperature_2m_min: [16, 14, 12, 13, 15]
+      }
+    }
+  }
+" id="app">
+
+  <!-- Loading -->
+  <div x-show="!loaded" style="width:800px; background:#fafaf9; padding:48px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; height:300px;">
+    <div style="font-size:13px; color:#aaa;">Loading...</div>
+  </div>
+
+  <!-- Content -->
+  <div x-show="loaded" style="width:800px; background:#fafaf9; padding:48px; box-sizing:border-box;">
+
+    <!-- Location -->
+    <div style="margin-bottom:32px;">
+      <div style="font-size:11px; font-weight:500; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Shanghai · Live</div>
+      <div style="font-size:28px; font-weight:700; color:#111; letter-spacing:-0.5px;">Shanghai</div>
+    </div>
+
+    <!-- Temperature -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex; align-items:flex-start; gap:4px;">
+        <span style="font-size:80px; font-weight:700; color:#111; line-height:1; letter-spacing:-3px;" x-text="cur ? Math.round(cur.temperature_2m) : '--'"></span>
+        <span style="font-size:24px; font-weight:400; color:#bbb; margin-top:10px;">°C</span>
+      </div>
+      <div style="font-size:16px; color:#777; margin-top:8px;" x-text="cur ? wmo(cur.weather_code) : ''"></div>
+    </div>
+
+    <!-- Stats -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; margin-bottom:32px; padding:20px 0; border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5;">
+      <div style="text-align:center;">
+        <div style="font-size:11px; color:#bbb; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Feels Like</div>
+        <div style="font-size:15px; font-weight:500; color:#333;" x-text="cur ? Math.round(cur.apparent_temperature) + '°' : '--'"></div>
+      </div>
+      <div style="text-align:center; border-left:1px solid #e5e5e5; border-right:1px solid #e5e5e5;">
+        <div style="font-size:11px; color:#bbb; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Humidity</div>
+        <div style="font-size:15px; font-weight:500; color:#333;" x-text="cur ? cur.relative_humidity_2m + '%' : '--'"></div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:11px; color:#bbb; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Wind</div>
+        <div style="font-size:15px; font-weight:500; color:#333;" x-text="cur ? windDir(cur.wind_direction_10m) + ' ' + Math.round(cur.wind_speed_10m) + 'km/h' : '--'"></div>
+      </div>
+    </div>
+
+    <!-- Forecast -->
+    <div>
+      <div style="font-size:11px; color:#bbb; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">5-Day Forecast</div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <template x-for="(f, i) in daily" :key="f.date">
+          <div style="display:grid; grid-template-columns:48px 64px 1fr 36px; align-items:center; gap:12px;">
+            <div style="font-size:13px; font-weight:500; color:#777;" x-text="dayLabel(f.date, i)"></div>
+            <div style="font-size:13px; color:#aaa;" x-text="wmo(f.code)"></div>
+            <div style="position:relative; height:3px; background:#e9e9e9; border-radius:2px;">
+              <div style="position:absolute; height:100%; background:#333; border-radius:2px;"
+                   :style="'left:' + f.barLeft + '%; width:' + f.barWidth + '%'"></div>
+            </div>
+            <div style="font-size:13px; font-weight:500; color:#333; text-align:right;">
+              <span x-text="f.high"></span>°
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- Source -->
+    <div style="font-size:11px; color:#ccc; margin-top:24px; text-align:right;">Open-Meteo</div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

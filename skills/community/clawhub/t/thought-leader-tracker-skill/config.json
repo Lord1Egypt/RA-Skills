@@ -1,0 +1,46 @@
+{
+  "thoughtLeaders": [
+    {
+      "name": "Boris Cherny",
+      "keywords": ["Boris Cherny", "performance", "React", "JavaScript", "web performance"],
+      "platforms": ["youtube", "apple-podcasts", "spotify"]
+    },
+    {
+      "name": "李飞飞 (Fei-Fei Li)",
+      "keywords": ["Fei-Fei Li", "李飞飞", "AI", "artificial intelligence", "computer vision", "human-centered AI"],
+      "platforms": ["youtube", "apple-podcasts", "spotify"]
+    },
+    {
+      "name": "Elen Verna",
+      "keywords": ["Elen Verna", "product management", "SaaS", "growth", "product strategy"],
+      "platforms": ["youtube", "apple-podcasts", "spotify"]
+    },
+    {
+      "name": "Peter Steinberger",
+      "keywords": ["Peter Steinberger", "software development", "programming", "tech leadership"],
+      "platforms": ["youtube", "apple-podcasts", "spotify"]
+    },
+    {
+      "name": "Dan Koe",
+      "keywords": ["Dan Koe", "creator economy", "personal development", "entrepreneurship", "digital marketing"],
+      "platforms": ["youtube", "apple-podcasts", "spotify"]
+    },
+    {
+      "name": "Demis Hassabis",
+      "keywords": ["Demis Hassabis", "DeepMind", "AI", "artificial intelligence", "machine learning", "AGI"],
+      "platforms": ["youtube", "apple-podcasts", "spotify"]
+    }
+  ],
+  "timeRanges": {
+    "7days": 7,
+    "30days": 30
+  },
+  "outputFormat": {
+    "includeTitle": true,
+    "includeLink": true,
+    "includePublishDate": true,
+    "includeSummary": true,
+    "includeKeyPoints": true
+  },
+  "commonThemesThreshold": 2
+}

@@ -1,0 +1,24 @@
+name: openmemo-memory
+version: "1.0.0"
+description: Persistent memory system for OpenClaw agents
+author: OpenMemo
+
+tools:
+  - recall_memory
+  - write_memory
+  - check_task_memory
+
+mode:
+  - bootstrap
+  - memory
+
+features:
+  - Persistent agent memory
+  - Task deduplication
+  - Scene-aware recall
+  - Memory inspector
+  - Local-first architecture
+
+setup:
+  install: "pip install openmemo openmemo-openclaw"
+  serve: "openmemo serve"

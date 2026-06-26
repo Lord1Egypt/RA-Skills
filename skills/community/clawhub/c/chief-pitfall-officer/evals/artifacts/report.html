@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluation Report - chief-pitfall-officer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white p-10 font-sans">
+    <div class="max-w-4xl mx-auto">
+        <header class="border-b-4 border-slate-900 pb-6 mb-10">
+            <h1 class="text-5xl font-black uppercase">Evaluation Report</h1>
+            <p class="text-slate-500 mt-2">
+                Skill: chief-pitfall-officer v2.1.0 |
+                Status: <span class="text-emerald-600 font-bold">PRODUCTION READY</span>
+            </p>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Aggregate Scores</h2>
+            <div class="mb-4 text-center">
+                <span class="text-sm uppercase text-slate-400">Mean Score</span>
+                <span class="block text-6xl font-black text-emerald-600">94.44</span>
+                <span class="text-slate-400 text-sm">std: ±2.4</span>
+            </div>
+            <div class="grid grid-cols-5 gap-4"><div class="bg-slate-50 p-4 rounded-xl text-center"><span class="block text-xs uppercase text-slate-400">audit_depth</span><span class="text-3xl font-bold">9.52</span></div><div class="bg-slate-50 p-4 rounded-xl text-center"><span class="block text-xs uppercase text-slate-400">process_control</span><span class="text-3xl font-bold">9.42</span></div><div class="bg-slate-50 p-4 rounded-xl text-center"><span class="block text-xs uppercase text-slate-400">completeness</span><span class="text-3xl font-bold">9.46</span></div><div class="bg-slate-50 p-4 rounded-xl text-center"><span class="block text-xs uppercase text-slate-400">compliance</span><span class="text-3xl font-bold">9.56</span></div><div class="bg-slate-50 p-4 rounded-xl text-center"><span class="block text-xs uppercase text-slate-400">error_handling</span><span class="text-3xl font-bold">8.3</span></div></div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Key Findings</h2>
+            <ul class="space-y-4"><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[直播带货]</b> 成功识别 GMV 对赌与注水风险</p></li><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[直播带货]</b> 明确开播前联调与费用对账的关键节点</p></li><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[直播带货]</b> 准确匹配直播间吸音材料等物理验收指标</p></li><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[城市更新]</b> 强制提醒历史建筑保护红线</p></li><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[城市更新]</b> 针对加固材料损耗率精准审计建议</p></li><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[城市更新]</b> 将三维激光扫描建模作为开工前置条件</p></li><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[展览展示]</b> 审计多媒体软硬件兼容性</p></li><li class="flex gap-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold h-fit">PRO</span><p class="text-slate-700"><b>[展览展示]</b> 提出隐蔽工程验收签字节点</p></li></ul>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Improvement Areas</h2>
+            <ul class="space-y-4"><li class="flex gap-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold h-fit">CON</span><p class="text-slate-700"><b>[展览展示]</b> 未明确要求主材现场封样流程的签字责任人</p></li><li class="flex gap-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold h-fit">CON</span><p class="text-slate-700"><b>[项目策划]</b> 未充分识别'通用模板'风险的具体检测方法</p></li><li class="flex gap-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold h-fit">CON</span><p class="text-slate-700"><b>[制造业自动化]</b> 未细化 72 小时空载运行的故障记录模板</p></li></ul>
+        </section>
+
+        <section class="mb-12 bg-slate-50 p-6 rounded-xl">
+            <h2 class="text-xl font-bold mb-4">Test Coverage</h2>
+            <table class="w-full text-sm">
+                <thead><tr class="text-left text-slate-400"><th class="pb-2">ID</th><th class="pb-2">Industry</th><th class="pb-2">Score</th><th class="pb-2">Misses</th></tr></thead>
+                <tbody><tr class="border-t border-slate-200"><td class="py-2 font-mono">TC_LIVE_001</td><td class="py-2">直播带货</td><td class="py-2 font-bold">96.2</td><td class="py-2 text-red-500">0</td></tr><tr class="border-t border-slate-200"><td class="py-2 font-mono">TC_URBAN_001</td><td class="py-2">城市更新</td><td class="py-2 font-bold">96.8</td><td class="py-2 text-red-500">0</td></tr><tr class="border-t border-slate-200"><td class="py-2 font-mono">TC_EXHIBIT_001</td><td class="py-2">展览展示</td><td class="py-2 font-bold">93.6</td><td class="py-2 text-red-500">1</td></tr><tr class="border-t border-slate-200"><td class="py-2 font-mono">TC_PLAN_001</td><td class="py-2">项目策划</td><td class="py-2 font-bold">91.0</td><td class="py-2 text-red-500">1</td></tr><tr class="border-t border-slate-200"><td class="py-2 font-mono">TC_MANU_001</td><td class="py-2">制造业自动化</td><td class="py-2 font-bold">94.6</td><td class="py-2 text-red-500">1</td></tr></tbody>
+            </table>
+        </section>
+
+        <footer class="mt-20 border-t pt-6 text-slate-400 text-sm flex justify-between">
+            <span>Generated by generate_eval_artifacts.py</span>
+            <span>2026-06-14 23:25</span>
+        </footer>
+    </div>
+</body>
+</html>

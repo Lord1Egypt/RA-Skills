@@ -1,0 +1,26 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "debug": false
+  },
+  "logging": {
+    "enabled": true,
+    "level": "info"
+  },
+  "auth": {
+    "enabled": true
+  },
+  "mcpServers": {},
+  "openclaw": {
+    "deployment": {
+      "isolated_environment": true
+    },
+    "network": {
+      "firewall_enabled": true
+    },
+    "credentials": {
+      "default_passwords_changed": true
+    }
+  }
+}

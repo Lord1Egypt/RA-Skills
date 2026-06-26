@@ -1,35 +1,40 @@
 ---
-name: "ClawHub Release Manager"
-description: "Safely release and publish skill updates to ClawHub with version bump discipline. Use when preparing patch/minor releases, running lint/build checks, writing..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-release-manager"
-sourceUrl: "https://clawhub.ai/skills/clawhub-release-manager"
+name: clawhub-release-manager
+description: Safely release and publish skill updates to ClawHub with version bump discipline. Use when preparing patch/minor releases, running lint/build checks, writing changelogs, and publishing a skill folder. Do not use for unrelated package registries. Success = bumped version, passing checks, published release id, and concise release note.
 ---
 
 # ClawHub Release Manager
 
-> Safely release and publish skill updates to ClawHub with version bump discipline. Use when preparing patch/minor releases, running lint/build checks, writing...
+## Workflow
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-release-manager`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-release-manager](https://clawhub.ai/skills/clawhub-release-manager)
+1. Preflight
+- Confirm `clawhub whoami` authenticated.
+- Ensure working directory points to target skill.
 
-## Overview
+2. Versioning
+- Determine bump type (patch by default for fixes).
+- Update version in all required places (runtime + package manifest).
 
+3. Validation
+- Run project checks (Bun preferred):
+  - `bun run lint`
+  - `bun run build`
+- Stop on failure and return fix-first plan.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawhub-release-manager
-```
+4. Publish
+- Run `clawhub publish ... --version ... --changelog ...`
+- Capture and return release id.
+
+5. Post-publish
+- Provide install/update command to test.
+- Suggest scanner rerun if security-related.
+
+## Output format
+
+Use `references/output-template.md`.
+
+## Guardrails
+
+- Do not publish without a version bump.
+- Keep changelog factual and tied to code/docs changes.
+- Include routing disclosure in release notes when behavior or data flow changed.

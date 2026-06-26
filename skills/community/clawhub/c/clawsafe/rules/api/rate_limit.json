@@ -1,0 +1,29 @@
+{
+  "name": "API Rate Limit Detection",
+  "category": "rate_limit",
+  "description": "检测频率限制配置问题",
+  "severity": "medium",
+  "patterns": [
+    {
+      "id": "no_rate_limit",
+      "pattern": "(?:rate[_-]?limit|ratelimit)\\s*[:=]\\s*(?:0|false|null|disabled|none)",
+      "weight": 0.7,
+      "severity": "high",
+      "description": "未启用频率限制"
+    },
+    {
+      "id": "rate_limit_header",
+      "pattern": "(?:x[_-]?rate[_-]?limit[_-]?(?:remaining|reset|limit))",
+      "weight": 0.5,
+      "severity": "low",
+      "description": "Rate Limit 响应头"
+    },
+    {
+      "id": "unlimited_requests",
+      "pattern": "(?:unlimited|unbounded|no[_-]?limit)\\s*(?:request|api|call)",
+      "weight": 0.6,
+      "severity": "medium",
+      "description": "无限制请求"
+    }
+  ]
+}

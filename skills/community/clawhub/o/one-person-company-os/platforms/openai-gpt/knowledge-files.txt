@@ -1,0 +1,12 @@
+Recommended knowledge files for the Custom GPT:
+
+- README.md
+- README.zh-CN.md
+- SKILL.md
+- GUIDE.md
+- GUIDE.zh-CN.md
+- SAMPLE-OUTPUTS.md
+- release/clawhub-listing.md
+- platforms/REQUIREMENTS.md
+
+Do not upload large generated workspaces as static knowledge. Keep user workspace state in the backend or in the conversation.

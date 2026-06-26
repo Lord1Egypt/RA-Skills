@@ -1,35 +1,26 @@
 ---
 name: "AC Repair"
 description: "提供空调加氟、清洗保养、故障排查及上门维修预约指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ac-repair"
-sourceUrl: "https://clawhub.ai/skills/ac-repair"
 ---
 
-# AC Repair
+# 空调维修
 
-> 提供空调加氟、清洗保养、故障排查及上门维修预约指引。
+## 筛选项
+- 服务半价（时薪/计件/整屋/一口价）
+- 服务范围（室内/室外/高空/深度）
+- 紧急程度（即时响应/预约到家/周期维护）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ac-repair`
-- **Source URL:** [https://clawhub.ai/skills/ac-repair](https://clawhub.ai/skills/ac-repair)
+## 返回字段
+- 服务工时预估/人员资质/服务保险覆盖
+- 工具自带/耗材清单/二次上门保障
+- 历史星级/实名认证状态/用户追评
 
-## Overview
+## 示例请求
+- “如何快速使用 空调维修 处理 [具体场景任务] ？”
+- “空调维修 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 依据季节需求波动与区域运力状态每周进行评估更新
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ac-repair
-```
+## 注意事项
+- 建议上门服务期间留人陪同；贵重物品请提前收起或告知服务人员。

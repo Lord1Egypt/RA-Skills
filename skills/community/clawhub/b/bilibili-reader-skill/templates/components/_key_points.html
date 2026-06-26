@@ -1,0 +1,11 @@
+{# ── 核心要点 ── #}
+{% if key_points_cn %}
+<div class="section">
+    <h3 class="section-title">🎯 核心要点</h3>
+    <ul class="key-points">
+        {% for point in key_points_cn %}
+        <li>{{ point }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

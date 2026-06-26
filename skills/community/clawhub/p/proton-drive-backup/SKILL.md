@@ -1,35 +1,35 @@
 ---
-name: "Proton Drive Backup"
-description: "Automated backup to Proton Drive with age-based truncation — sync configs, memory files, content drafts, and media with configurable retention periods. Use w..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/proton-drive-backup"
-sourceUrl: "https://clawhub.ai/skills/proton-drive-backup"
+name: proton-drive-backup
+version: 1.0.2
+description: Automated backup to Proton Drive with age-based truncation — sync configs, memory files, content drafts, and media with configurable retention periods. Use when you need privacy-first cloud backup for AI workspaces. Requires Proton Drive desktop app.
+metadata:
+  {"openclaw": {"emoji": "☁️", "requires": {"bins": ["bash", "rsync", "docker"], "env": []}, "primaryEnv": null, "network": {"outbound": false, "reason": "Copies files to local Proton Drive sync folder. Proton Drive app handles encrypted upload separately."}}}
 ---
 
 # Proton Drive Backup
 
-> Automated backup to Proton Drive with age-based truncation — sync configs, memory files, content drafts, and media with configurable retention periods. Use w...
+Privacy-first cloud backup via Proton Drive's local sync folder. Copies workspace files with age-based truncation to keep storage manageable.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/proton-drive-backup`
-- **Source URL:** [https://clawhub.ai/skills/proton-drive-backup](https://clawhub.ai/skills/proton-drive-backup)
+## Retention Policy
 
-## Overview
+| Content Type | Retention | Rationale |
+|---|---|---|
+| Configs (plists, JSON) | Forever | Small, critical |
+| Memory files | 60 days | Daily notes age out |
+| Content drafts | Forever | Intellectual property |
+| Images | 90 days | Large, reproducible |
+| Audio | 30 days | Very large, reproducible |
+| Video | 60 days | Largest files |
+| Docker backups | Keep 3 | Rotated |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/proton-drive-backup
+bash scripts/backup_to_proton.sh
 ```
+
+Safe to run multiple times — uses rsync for incremental sync.
+
+## Files
+
+- `scripts/backup_to_proton.sh` — Backup script with configurable paths and retention

@@ -1,35 +1,115 @@
 ---
-name: "Auto Course Player"
-description: "通过自动控制 Chrome 浏览器，顺序播放网课视频，自动检测完成并切换，支持暂停恢复及进度统计。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-course-player"
-sourceUrl: "https://clawhub.ai/skills/auto-course-player"
+name: auto-course-player
+description: 自动播放网课视频。使用浏览器自动化控制 Chrome 播放网课平台视频，自动检测播放完成并切换到下一个视频。Use when: (1) 用户需要自动播放网课视频，(2) 批量完成课程学习，(3) 需要记录学习进度。支持暂停、恢复、进度查看。
 ---
 
-# Auto Course Player
+# 自动网课播放器 🎓
 
-> 通过自动控制 Chrome 浏览器，顺序播放网课视频，自动检测完成并切换，支持暂停恢复及进度统计。
+**警告：使用前请确认符合学校规定和学术诚信政策。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-course-player`
-- **Source URL:** [https://clawhub.ai/skills/auto-course-player](https://clawhub.ai/skills/auto-course-player)
+## 功能
 
-## Overview
+- ✅ 自动按顺序播放视频
+- ✅ 检测播放完成自动切换
+- ✅ 记录学习进度
+- ✅ 支持暂停/恢复
+- ✅ 学习时长统计
 
+## 使用流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-course-player
+### 步骤 1: 准备工作
+
+1. 用 Chrome 打开网课平台
+2. 扫码登录
+3. 进入课程列表页面
+4. 确保 OpenClaw 的 Chrome 扩展已启用（Browser Relay）
+
+### 步骤 2: 启动自动播放
+
+告诉 Bill：
 ```
+开始自动播放网课
+```
+
+或指定课程：
+```
+播放 [课程名称] 的所有视频
+```
+
+### 步骤 3: 监控进度
+
+随时询问：
+```
+当前进度如何？
+还剩多少视频？
+今天学习了多久？
+```
+
+### 步骤 4: 控制播放
+
+```
+暂停播放
+继续播放
+停止播放（保存进度）
+跳到下一个视频
+```
+
+## 技术实现
+
+### 播放检测机制
+
+1. **视频元素检测** - 查找页面中的 `<video>` 元素
+2. **播放状态监控** - 检查 `video.paused` 和 `video.ended`
+3. **进度条检测** - 监控播放进度百分比
+4. **下一课按钮** - 自动点击"下一个"或返回列表选择
+
+### 防检测策略
+
+- 使用真实浏览器（非 headless）
+- 保持正常播放速度（不加速）
+- 模拟人类行为（偶尔暂停）
+- 记录真实学习时间
+
+## 进度记录
+
+学习记录保存在：`memory/course-progress.md`
+
+格式：
+```markdown
+## 2026-03-12
+
+**课程**: [课程名称]
+**总视频数**: [数量]
+**已完成**: [数量]
+**学习时长**: [X 小时 Y 分钟]
+**最后播放**: [视频名称]
+**状态**: [进行中/已完成]
+```
+
+## 脚本资源
+
+- `scripts/start-player.js` - 启动播放器
+- `scripts/check-progress.js` - 检查进度
+- `scripts/generate-report.js` - 生成学习报告
+
+## 注意事项
+
+⚠️ **重要：**
+1. 不要关闭浏览器
+2. 保持网络连接
+3. 定期检查进度
+4. 如遇验证码需人工处理
+5. 建议分批次完成（避免异常）
+
+## 错误处理
+
+| 问题 | 解决方案 |
+|------|----------|
+| 视频不播放 | 检查网络/刷新页面 |
+| 无法切换下一课 | 人工介入点击 |
+| 登录过期 | 重新扫码登录 |
+| 检测到异常 | 暂停并联系人工 |
+
+---
+
+*合理使用，遵守学术诚信。* 📚

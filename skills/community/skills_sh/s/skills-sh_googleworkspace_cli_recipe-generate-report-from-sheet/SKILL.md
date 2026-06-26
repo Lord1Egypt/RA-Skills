@@ -1,35 +1,38 @@
 ---
-name: "recipe-generate-report-from-sheet"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-generate-report-from-sheet"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-generate-report-from-sheet"
+name: recipe-generate-report-from-sheet
+description: "Read data from a Google Sheet and create a formatted Google Docs report."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-sheets
+        - gws-docs
+        - gws-drive
 ---
 
-# recipe-generate-report-from-sheet
+# Generate a Google Docs Report from Sheet Data
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-sheets`, `gws-docs`, `gws-drive`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-generate-report-from-sheet`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-generate-report-from-sheet](https://skills.sh/googleworkspace/cli/recipe-generate-report-from-sheet)
+Read data from a Google Sheet and create a formatted Google Docs report.
 
-## Overview
+## Steps
 
+1. Read the data: `gws sheets +read --spreadsheet SHEET_ID --range "Sales!A1:D"`
+2. Create the report doc: `gws docs documents create --json '{"title": "Sales Report - January 2025"}'`
+3. Write the report: `gws docs +write --document-id DOC_ID --text '## Sales Report - January 2025
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-generate-report-from-sheet
-```
+### Summary
+Total deals: 45
+Revenue: $125,000
+
+### Top Deals
+1. Acme Corp - $25,000
+2. Widget Inc - $18,000'`
+4. Share with stakeholders: `gws drive permissions create --params '{"fileId": "DOC_ID"}' --json '{"role": "reader", "type": "user", "emailAddress": "cfo@company.com"}'`
+

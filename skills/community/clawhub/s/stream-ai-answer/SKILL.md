@@ -1,35 +1,170 @@
 ---
-name: "流式AI检索问答技能"
-description: "通用流式AI检索问答技能 — 为任意行业应用提供四步流式分析交互界面。 触发场景：用户输入关键词 → AI自动执行：理解意图 → 检索知识库 → 流式生成 → 来源标记 → 完整回答。 当需要实现以下任意场景时激活： (1) AI搜索框 / 智能咨询组件重构 (2) 知识库问答（医疗/法律/金融/教育等垂直领域）..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, chatbot, frontend, knowledge-base, rag, stream]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stream-ai-answer"
-sourceUrl: "https://clawhub.ai/skills/stream-ai-answer"
+name: stream-ai-answer
+description: >
+  通用流式AI检索问答技能 — 为任意行业应用提供四步流式分析交互界面。
+  触发场景：用户输入关键词 → AI自动执行：理解意图 → 检索知识库 → 流式生成 → 来源标记 → 完整回答。
+  当需要实现以下任意场景时激活：
+  (1) AI搜索框 / 智能咨询组件重构
+  (2) 知识库问答（医疗/法律/金融/教育等垂直领域）
+  (3) 流式回答 + 分步思考过程可视化
+  (4) 带来源引用的AI回答（PubMed/DOI/文档/数据库）
+  (5) DeepSeek风格四步分析卡片
+  (6) 任何需要"边想边说"透明AI过程的项目
+  适用行业：医疗、法律、金融、教育、能源、政务、制造等
+  适配项目类型：React H5/WebApp、企业知识库、客服系统、问诊平台、科普中心、CRM/ERP AI助手
 ---
 
-# 流式AI检索问答技能
+# stream-ai-answer — 通用流式AI检索问答技能
 
-> 通用流式AI检索问答技能 — 为任意行业应用提供四步流式分析交互界面。 触发场景：用户输入关键词 → AI自动执行：理解意图 → 检索知识库 → 流式生成 → 来源标记 → 完整回答。 当需要实现以下任意场景时激活： (1) AI搜索框 / 智能咨询组件重构 (2) 知识库问答（医疗/法律/金融/教育等垂直领域）...
+> 本skill为开发者提供一套可复用的AI检索问答交互范式，适用于任意行业的知识库产品。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stream-ai-answer`
-- **Source URL:** [https://clawhub.ai/skills/stream-ai-answer](https://clawhub.ai/skills/stream-ai-answer)
+## 核心价值
 
-## Overview
+将AI搜索框从「输入→等待→结果」升级为「输入→实时思考可视化→带来源的完整回答」
 
+用户清晰看到AI在思考什么，答案有来源可查、可点击、可信度提升。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stream-ai-answer
+---
+
+## 四步流程（通用版）
+
+| 步骤 | 状态 | 图标 | 适用场景说明 |
+|------|------|------|------------|
+| ① 理解问题意图 | 🔍 | `理解意图` | **所有场景**，识别用户真正想查什么 |
+| ② 检索知识库/数据库 | 🗄️ | `检索内容` | 有结构化知识库时启用；无知识库可跳过 |
+| ③ 深度分析 & 生成 | 🧠 | `深度分析` | **所有场景**，模型推理+内容生成 |
+| ④ 来源标记 & 完成 | 📚 | `来源标记` | 有外部引用时启用；无来源则标注"综合知识回答" |
+
+---
+
+## 组件视觉结构
+
 ```
+┌─────────────────────────────────────────┐
+│ 🤖 AI 智能回答              🔥 实时生成   │
+├─────────────────────────────────────────┤
+│ 🔍 理解问题意图...          ✅          │
+│ 🗄️ 检索知识库内容...        ⏳          │  ← 根据步骤数动态显示
+│ 🧠 深度分析与生成...        ○          │
+│ 📚 来源标记...              ○          │
+├─────────────────────────────────────────┤
+│ ⭐ [模型名称] · 结合N条知识库内容       │  ← 底部来源统计
+└─────────────────────────────────────────┘
+                  ↓ 流式展开
+┌─────────────────────────────────────────┐
+│ [流式生成的回答正文，带关键词高亮]       │
+├─────────────────────────────────────────┤
+│ 📚 参考来源：                        │
+│ ① [标题] · [来源平台] · [可点击链接]  │
+│ ② [标题] · [来源平台]                │
+└─────────────────────────────────────────┘
+```
+
+### 状态视觉规则
+
+| 状态 | 视觉 | CSS类 |
+|------|------|-------|
+| `pending` | 灰圆圈 ○ | `text-gray-400` |
+| `active` | 蓝色旋转 + 脉冲 | `text-blue-500 animate-spin` |
+| `done` | 绿色勾 ✅ | `text-green-500` |
+| `error` | 红色叉 ❌ | `text-red-500` |
+
+---
+
+## 行业适配指南
+
+### 医疗健康
+- 步骤：🔍→🗄️（检索医学文献）→🧠→📚
+- 来源格式：PubMed DOI / 临床指南 / NCCN / CMA
+- Prompt风格：需强提醒"不作为诊断依据"
+- 典型项目：患者教育平台、医生继续教育、科研助手
+
+### 法律
+- 步骤：🔍→🗄️（检索法规条文）→🧠→📚
+- 来源格式：法律条文编号 / 判决书 / 司法解释
+- Prompt风格：明确"仅供参考，不构成法律意见"
+- 典型项目：法律咨询平台、企业合规助手
+
+### 金融/财税
+- 步骤：🔍→🗄️（检索政策文件）→🧠→📚
+- 来源格式：财政部/税务局公告 / 法规链接
+- Prompt风格：明确"不构成投资建议"
+- 典型项目：财报解读、政策问答、理财咨询
+
+### 通用企业知识库
+- 步骤：🔍→🗄️（检索内部文档）→🧠
+- 来源格式：内部文档名称 / Confluence链接
+- Prompt风格：简洁专业，直接给答案
+- 典型项目：内部问答机器人、客服辅助、CRM AI助手
+
+---
+
+## 实施流程
+
+### Step 1：判断场景复杂度
+
+| 场景 | 步骤数 | 是否检索知识库 |
+|------|--------|--------------|
+| 简单问答（FAQ类）| 2步（🔍→🧠）| 否，直接生成 |
+| 知识库检索 | 3步（🔍→🗄️→🧠）| 是，RAG检索 |
+| 专业领域（医疗/法律）| 4步（🔍→🗄️→🧠→📚）| 是，强引用 |
+| 深度报告生成 | 5步（🔍→🗄️→🧠→📚→⚡）| 多源聚合 |
+
+### Step 2：设计步骤配置
+
+```typescript
+// 通用3步（企业知识库）
+const steps = [
+  { key: 'understand', label: '理解问题意图', status: 'pending' },
+  { key: 'retrieve',   label: '检索知识库内容', status: 'pending' },
+  { key: 'generate',   label: '深度分析与生成', status: 'pending' },
+];
+
+// 专业4步（医疗/法律/金融）
+const steps = [
+  { key: 'understand', label: '理解问题意图', status: 'pending' },
+  { key: 'retrieve',   label: '检索专业数据库', status: 'pending' },
+  { key: 'analyze',    label: '深度分析证据', status: 'pending' },
+  { key: 'generate',   label: '生成回答', status: 'pending' },
+];
+```
+
+### Step 3：接入API（见 references/frontend-pattern.md）
+
+### Step 4：行业Prompt定制（见 references/prompts.md）
+
+### Step 5：来源解析配置（见 references/frontend-pattern.md）
+
+---
+
+## 文件说明
+
+| 文件 | 用途 | 何时读取 |
+|------|------|---------|
+| `references/frontend-pattern.md` | React组件代码 + 流式实现 | 开发时 |
+| `references/prompts.md` | 各行业系统Prompt模板 | Prompt设计时 |
+| `assets/AIAnalysisCard.tsx` | 可直接复制的React组件 | 组件开发时 |
+
+---
+
+## 快速接入路径
+
+### React项目（Vite + TypeScript）
+1. 复制 `assets/AIAnalysisCard.tsx` → `src/components/common/`
+2. 修改 `references/frontend-pattern.md` 中的API端点
+3. 在目标页面引入并替换原有loading状态
+
+### 非React项目
+- 参考 `references/frontend-pattern.md` 中的纯函数封装 `streamAI()`
+- 按UI框架（Vue/Svelte/Angular）自行实现 `AIAnalysisCard`
+
+---
+
+## 依赖要求
+
+- React 18+（或任意UI框架）
+- TypeScript（支持TSX）
+- TailwindCSS（使用现有颜色变量）
+- 支持 `stream: true` 的LLM API
+  - ✅ MiniMax / DeepSeek / OpenAI / Azure OpenAI / 百度千帆
+  - ✅ 本地模型（Ollama + SSE）

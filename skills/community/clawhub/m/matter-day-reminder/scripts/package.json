@@ -1,0 +1,14 @@
+{
+  "name": "reminder-skill-scripts",
+  "version": "1.0.0",
+  "description": "Reminder skill helper scripts",
+  "main": "index.js",
+  "scripts": {
+    "check": "node reminder-checker.js",
+    "test-lunar": "node test-lunar.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1",
+    "lunar-javascript": "^1.7.7"
+  }
+}

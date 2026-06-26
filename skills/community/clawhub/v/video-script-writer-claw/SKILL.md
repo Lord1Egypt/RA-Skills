@@ -1,35 +1,90 @@
 ---
-name: "视频脚本主笔虾"
-description: "视频脚本主笔虾 — 短视频分镜脚本与播客大纲的专业创作者。根据账号风格和选题，生成完整的分镜脚本（含画面描述、台词、字幕、BGM建议）或播客大纲。 当以下情况时使用此 Skill： (1) 用户要求写脚本、生成分镜脚本、创作视频文案 (2) 用户要求生成播客大纲或节目大纲 (3) 用户要求规划系列内容（多集内容计..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-script-writer-claw"
-sourceUrl: "https://clawhub.ai/skills/video-script-writer-claw"
+name: video-script-writer-claw
+description: |
+  视频脚本主笔虾 — 短视频分镜脚本与播客大纲的专业创作者。根据账号风格和选题，生成完整的分镜脚本（含画面描述、台词、字幕、BGM建议）或播客大纲。
+
+  当以下情况时使用此 Skill：
+  (1) 用户要求写脚本、生成分镜脚本、创作视频文案
+  (2) 用户要求生成播客大纲或节目大纲
+  (3) 用户要求规划系列内容（多集内容计划）
+  (4) 用户要求将热点/文章改编为短视频脚本
+  (5) 用户提到"写脚本"、"分镜脚本"、"播客大纲"、"内容创作"、"视频文案"、"脚本生成"、"内容规划"、"系列内容"、"台词"、"旁白"
 ---
 
 # 视频脚本主笔虾
 
-> 视频脚本主笔虾 — 短视频分镜脚本与播客大纲的专业创作者。根据账号风格和选题，生成完整的分镜脚本（含画面描述、台词、字幕、BGM建议）或播客大纲。 当以下情况时使用此 Skill： (1) 用户要求写脚本、生成分镜脚本、创作视频文案 (2) 用户要求生成播客大纲或节目大纲 (3) 用户要求规划系列内容（多集内容计...
+核心理念：每一篇脚本都要像出自同一个人之手，风格统一才能建立用户认知。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-script-writer-claw`
-- **Source URL:** [https://clawhub.ai/skills/video-script-writer-claw](https://clawhub.ai/skills/video-script-writer-claw)
+## 工作流程
 
-## Overview
+### 步骤 1：解析账号风格
 
+读取 `references/account-style-guide.md` 提取创作参数：
+- 内容定位、目标受众、语言风格、禁忌词汇
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-script-writer-claw
-```
+若用户未提供风格档案，直接询问：账号定位、目标受众、语言风格（专业/幽默/接地气）。
+
+### 步骤 2：选题研究
+
+针对给定选题：
+- 用 `web_search` 搜索相关背景知识和数据
+- 提炼核心观点和差异化角度
+- 确定情绪基调
+
+### 步骤 3：选择脚本结构
+
+参考 `references/script-templates.md` 选择合适模板：
+- 知识科普型 / 故事叙事型 / 教程实操型 / 观点输出型 / 播客大纲
+
+### 步骤 4：生成分镜脚本
+
+按 `references/shot-script-format.md` 规范，逐镜输出：
+- 镜头编号、时间码、景别、运镜
+- 画面描述、台词/旁白、字幕、BGM/音效、特效/转场
+
+黄金结构（短视频）：
+- **开场钩子**（0-5s）：悬念/痛点/反常识
+- **问题引入**（5-15s）：建立共鸣
+- **主体内容**（15-150s）：核心价值输出
+- **结尾CTA**（最后10s）：引导互动/关注
+
+### 步骤 5：风格校验
+
+- 检查是否符合账号语言风格
+- 过滤禁忌词汇
+- 优化节奏感（句子长短、停顿设计）
+
+## 输出格式
+
+### 短视频分镜脚本
+
+输出完整分镜表，包含：
+- 脚本概览（主题、时长、结构类型、情绪基调）
+- 逐镜分镜表（按规范格式）
+- 完整台词稿（连续文本，方便直接使用）
+
+### 播客大纲
+
+输出结构化大纲，包含：
+- 节目信息（主题、时长、嘉宾）
+- 各环节时间分配
+- 每个环节的核心问题/话题点
+- 互动设计和CTA
+
+### 系列内容规划
+
+输出10-20集规划表，包含：
+- 每集标题、核心主题、内容类型
+- 系列逻辑和递进关系
+
+## 参考资料
+
+- `references/account-style-guide.md` — 账号风格档案模板，用户应根据自己账号填写
+- `references/script-templates.md` — 4种脚本结构模板 + 播客大纲模板
+- `references/shot-script-format.md` — 分镜格式规范、景别/运镜说明、字幕规范
+
+## 注意事项
+
+- 风格档案越详细，生成效果越好；首次使用建议先完善风格档案
+- AI生成的脚本是起点，建议加入个人真实经历和特色
+- 不同平台节奏不同：抖音快节奏、B站可稍慢、播客最慢

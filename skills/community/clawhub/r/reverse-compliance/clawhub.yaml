@@ -1,0 +1,54 @@
+name: reverse-compliance
+version: 1.0.2
+type: openclaw-skill
+description: "出海逆向合规战略系统：把合规变成护城河和利润中心，全球最严标准倒推架构，一次投入终身降维"
+emoji: "🛡️"
+author:
+  name: 秒技工作室
+  link: https://xiaping.coze.site
+homepage: https://cloudtrip.ai
+
+publisher:
+  name: "云旅智能体超市"
+  website: https://cloudtrip.ai
+  contact: support@cloudtrip.ai
+
+required_env:
+  - OPENAI_API_KEY
+primary_env: OPENAI_API_KEY
+
+apis:
+  - name: OpenAI API
+    domain: api.openai.com
+    purpose: "LLM大语言模型调用，用于合规方案生成和策略建议"
+    auth:
+      type: Bearer Token
+      env_var: OPENAI_API_KEY
+
+category: compliance
+tags:
+  - compliance
+  - GDPR
+  - EU-AI-Act
+  - reverse-compliance
+  - cross-border
+  - trust
+  - 出海合规
+  - 逆向合规
+  - 合规护城河
+  - 合规降维
+
+triggers:
+  - "逆向合规"
+  - "出海合规"
+  - "GDPR合规"
+  - "欧盟合规"
+  - "合规护城河"
+  - "合规降维"
+  - "信任构建"
+  - "合规方案"
+  - "跨境合规"
+  - "EU AI Act"
+  - "GPSR"
+  - "REACH合规"
+  - "合规中台"

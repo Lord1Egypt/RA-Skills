@@ -1,0 +1,69 @@
+{
+  "search_hot": {
+    "description": "热门搜索词榜单，展示平台当前热度最高的搜索关键词",
+    "fields": {
+      "total": "热搜词总数",
+      "items": "热搜词列表，按热度从高到低排序",
+      "rank": "排名序号",
+      "keyword": "热搜关键词"
+    },
+    "example_response": {
+      "code": 0,
+      "msg": "success",
+      "data": {
+        "total": 5,
+        "items": [
+          { "rank": 1, "keyword": "热门综艺A" },
+          { "rank": 2, "keyword": "文化探秘" },
+          { "rank": 3, "keyword": "美食之旅" },
+          { "rank": 4, "keyword": "音乐现场" },
+          { "rank": 5, "keyword": "体育赛事" }
+        ]
+      }
+    }
+  },
+  "search_live": {
+    "description": "直播搜索返回示例",
+    "example_response": {
+      "code": 0,
+      "data": {
+        "list": [
+          {
+            "liveId": "LV_001",
+            "title": "示例直播标题",
+            "anchorName": "示例主播",
+            "anchorAvatar": "https://cdn.example.com/avatar.jpg",
+            "viewerCount": 10000,
+            "coverUrl": "https://cdn.example.com/cover.jpg",
+            "status": 1
+          }
+        ],
+        "page": 1,
+        "pageSize": 20,
+        "total": 100
+      },
+      "msg": "success"
+    }
+  },
+  "search_variety": {
+    "description": "综艺搜索返回示例",
+    "example_response": {
+      "code": 0,
+      "data": {
+        "list": [
+          {
+            "varietyId": "VY_001",
+            "title": "示例综艺名称",
+            "coverUrl": "https://cdn.example.com/cover.jpg",
+            "episodeCount": 12,
+            "playCount": 5000000
+          }
+        ],
+        "page": 1,
+        "pageSize": 20,
+        "total": 50
+      },
+      "msg": "success"
+    }
+  }
+}

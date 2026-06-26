@@ -1,35 +1,44 @@
 ---
-name: "Doubao Image Gen 豆包图片生成"
-description: "豆包AI图片生成技能 - 视觉设计师专用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhuchenggong-doubao-image-gen"
-sourceUrl: "https://clawhub.ai/skills/zhuchenggong-doubao-image-gen"
+name: doubao-image-gen
+description: 豆包AI图片生成技能 - 视觉设计师专用
 ---
 
-# Doubao Image Gen 豆包图片生成
+# 豆包生图技能
 
-> 豆包AI图片生成技能 - 视觉设计师专用
+## ★★★ 调度时必读 ★★★
+收到任务后，**第一步**必须是：问用户想要什么样的图片？有什么要求？
+不要直接去生成图片！
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhuchenggong-doubao-image-gen`
-- **Source URL:** [https://clawhub.ai/skills/zhuchenggong-doubao-image-gen](https://clawhub.ai/skills/zhuchenggong-doubao-image-gen)
+---
 
-## Overview
+## 完整流程
 
+一、点开豆包AI创作页面
+二、**问客户**想要什么样的图片/有什么要求 ← 第一步！
+三、客户确认后，输入提示词
+四、设置比例：默认3:4，**如果客户选了比例则按客户的**
+五、点击发送按钮生成图片
+六、等待图片生成完成
+七、**★ 子Agent截大图** - 生成后立即截4张图，通过 message 工具发给用户选择
+八、用户选好后，点开大图确认
+九、用户确认后，点击下载原图保存
+十、**★ 复制到 D 盘** - 下载后立即复制到 D:\OpenClaw\downloads\images\
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhuchenggong-doubao-image-gen
-```
+## 生成前确认要素（必须）
+
+1. ★ 先问客户：想要什么样的图片？有什么提示词/要求？
+2. 客户确认后，输入提示词
+3. 设置比例：默认3:4，如果客户选了比例则按客户的
+4. 点击发送按钮生成
+
+## 关键规则
+
+1. ★ 必须先问客户想要什么样的图片
+2. 输入提示词后，点发送按钮（向上的箭头），不要按回车
+3. 等待图片完全生成后再截图
+4. 用户选好后要点开大图确认
+5. 用户确认后才能保存
+6. 每步必须拿到结果才能下一步
+7. ★ **截图必须用 message 工具发图片给用户**，不要用虚拟路径
+8. ★ 截图路径用实际路径：`/home/success/.openclaw/media/browser/xxx.jpg`
+9. ★ **下载后必须复制到 D 盘**：`cp xxx.jpg /mnt/d/OpenClaw/downloads/images/`

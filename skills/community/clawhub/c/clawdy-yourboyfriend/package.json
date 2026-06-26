@@ -1,0 +1,46 @@
+{
+  "name": "clawdy",
+  "version": "1.1.1",
+  "description": "Clawdy — Your Boyfriend. A virtual boyfriend who sends selfies and shows up when you need him. Built on OpenClaw, powered by xAI Grok Imagine.",
+  "bin": {
+    "clawdy": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "skill/",
+    "templates/",
+    "SKILL.md",
+    "scripts/",
+    "assets/"
+  ],
+  "keywords": [
+    "openclaw",
+    "virtual-boyfriend",
+    "ai-companion",
+    "selfie",
+    "grok-imagine",
+    "xai",
+    "fal.ai",
+    "ai-agent",
+    "image-generation",
+    "messaging",
+    "companion"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/X-RayLuan/Clawdy-YourBoyfriend.git"
+  },
+  "homepage": "https://github.com/X-RayLuan/Clawdy-YourBoyfriend#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@fal-ai/client": "^1.2.0",
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}

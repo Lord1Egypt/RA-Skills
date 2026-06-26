@@ -1,35 +1,100 @@
 ---
-name: "daily-reflection-journal"
-description: "每日反思日记引导技能，基于《认知觉醒》的反思框架。当用户说"做每日反思"、"写反思日记"、"今天反思"、"daily reflection"、"回顾今天"等触发。引导用户通过事实-感受-启发三层面深度反思，将日常经历转化为成长素材。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-reflection-journal"
-sourceUrl: "https://clawhub.ai/skills/daily-reflection-journal"
+name: daily-reflection
+description: 每日反思日记引导技能，基于《认知觉醒》的反思框架。当用户说"做每日反思"、"写反思日记"、"今天反思"、"daily reflection"、"回顾今天"等触发。引导用户通过事实-感受-启发三层面深度反思，将日常经历转化为成长素材。
+metadata:
+  author: 洪伟
+  version: 1.0.0
+  tags: [reflection, journaling, personal-growth, cognitive-awakening]
 ---
 
-# daily-reflection-journal
+# 每日反思日记
 
-> 每日反思日记引导技能，基于《认知觉醒》的反思框架。当用户说"做每日反思"、"写反思日记"、"今天反思"、"daily reflection"、"回顾今天"等触发。引导用户通过事实-感受-启发三层面深度反思，将日常经历转化为成长素材。
+反思 ≠ 流水账。每日反思的核心是**捕捉触动你的瞬间，深挖背后的原因**，而非记录"今天做了什么"。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-reflection-journal`
-- **Source URL:** [https://clawhub.ai/skills/daily-reflection-journal](https://clawhub.ai/skills/daily-reflection-journal)
+## 反思流程
 
-## Overview
+### 第一步：选择事件
 
+问用户：**"今天哪件事让你印象最深、情绪波动最大，或有所触动？"**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-reflection-journal
+- 只需 1-3 件事，不求全
+- 选择那些有"感觉"的时刻，而非流水账
+
+### 第二步：三层面反思
+
+对每个事件，依次引导：
+
+**1. 事实层面**
+- 具体发生了什么？（场景、人物、对话）
+- 尽量还原当时的情况
+
+**2. 感受层面**
+- 当时的情绪是什么？
+- 为什么会有这种感受？
+- 至少问自己 3 次"为什么"找到深层原因
+
+**3. 启发层面**
+- 这件事揭示了我怎样的思维模式或行为习惯？
+- 如果重来，我会怎么做？
+- 我从中学到了什么？
+- 以后如何避免或复现？
+
+### 第三步：提炼行动
+
+- **一个明确的改变**：明天开始我会...
+- 避免"知道了但不改变"
+
+## 引导问题
+
+当用户不知如何开始时，使用 [prompts-library.md](references/prompts-library.md) 中的问题启发。
+
+核心原则：
+- 随机选 2-3 个问题即可
+- 根据回答继续追问"为什么"
+- 问题是启发思考，不是评判
+
+## 理论依据
+
+详见 [cognitive-awakening.md](references/cognitive-awakening.md)
+
+核心要点：
+- **元认知**：反思是锻炼元认知的最佳方式
+- **触动点 = 成长点**：抓住情绪波动的瞬间
+- **深度学习**：将经历转化为经验
+
+## 输出格式
+
+将反思内容保存到 `daily-reflection/YYYY-MM-DD.md`，格式：
+
+```markdown
+# YYYY-MM-DD 每日反思
+
+## 事件一：[简短标题]
+
+**事实**：...
+
+**感受**：...
+
+**启发**：...
+
+**行动**：...
+
+## 事件二：[简短标题]
+
+...
+
+## 今日金句
+
+> [一句总结今天的感悟]
+
+## 明日一个小改变
+
+[具体的、可执行的一个改变]
 ```
+
+## 避免的误区
+
+- ❌ 记成流水账（"今天早上起床，吃了早餐..."）
+- ❌ 只记录不反思（没有深挖原因）
+- ❌ 反思后无行动（知道了但不改变）
+- ❌ 求多不求深（一天记录太多事件）

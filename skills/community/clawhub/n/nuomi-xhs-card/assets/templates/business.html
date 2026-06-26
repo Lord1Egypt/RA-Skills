@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 商务简报风格 ===== */
+/* 封面样式 */
+.card-cover-business {
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* 顶部装饰线 */
+.card-cover-business:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 1.25);
+  background: #2c7be5;
+  z-index: 30;
+}
+
+.card-cover-business .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.5)
+  );
+  z-index: 2;
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-business .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+  z-index: 10;
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-business .cover-content {
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  padding: calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 10;
+}
+
+.card-cover-business .cover-title {
+  color: #283e59;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 3.75);
+}
+
+.card-cover-business .cover-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(var(--spacing) * 12.5);
+  height: calc(var(--spacing) * 0.75);
+  background: #2c7be5;
+}
+
+.card-cover-business .cover-description {
+  color: #6e84a3;
+}
+
+.card-cover-business .cover-tag {
+  background: #f5f8fb;
+  color: #2c7be5;
+  border: 1px solid #e0e7f0;
+  border-radius: 4px;
+
+  font-size: calc(var(--spacing) * 3);
+  transition: all 0.3s ease;
+}
+
+.card-cover-business .cover-tag:hover {
+  background: #e0e7f0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.card-cover-business .cover-date {
+  color: #95aac9;
+
+  font-size: calc(var(--spacing) * 3);
+}
+.card-business {
+  width: 100%;
+  background: #ffffff;
+  padding: calc(var(--spacing) * 6.25) calc(var(--spacing) * 5);
+  font-family: "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  --highlight-color: #2c7be5;
+  --highlight-bg-color: rgba(44, 123, 229, 0.1);
+}
+
+/* 顶部蓝色装饰条 */
+.card-business .card-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 1.5);
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+}
+
+/* 右上角商务图标装饰 */
+.card-business .card-header::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * 3.75);
+  right: calc(var(--spacing) * 3.75);
+  width: calc(var(--spacing) * 7.5);
+  height: calc(var(--spacing) * 7.5);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%233b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.card-business .card-content-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.card-business .card-content {
+  position: relative;
+  height: calc(var(--card-height) - calc(var(--spacing) * 20));
+}
+
+/* 主标题样式 - 商务风格 */
+.card-business h1 {
+  font-size: calc(var(--spacing) * 6);
+  position: relative;
+  color: #1e3a8a;
+  margin-bottom: calc(var(--spacing) * 4);
+  font-weight: 600;
+  padding-bottom: calc(var(--spacing) * 3);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* 副标题样式 */
+.card-business h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #1e3a8a;
+  margin-bottom: calc(var(--spacing) * 4);
+  font-weight: 500;
+  position: relative;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 2)
+    calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  border-left: 3px solid #3b82f6;
+}
+
+/* 段落样式 */
+.card-business p {
+  color: #334155;
+  font-size: inherit;
+}
+
+.card-business strong {
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.card-business em {
+  color: #3b82f6;
+  font-style: italic;
+}
+
+.card-business p a {
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.2);
+  transition: all 0.2s ease;
+}
+
+.card-business p a:hover {
+  color: #1d4ed8;
+  border-bottom: 1px solid rgba(29, 78, 216, 0.4);
+}
+
+.card-business ul ul,
+.card-business ul ol {
+  padding-left: calc(var(--spacing) * 5);
+}
+/* 有序列表样式 */
+.card-business li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 3);
+  color: #334155;
+  line-height: 1.6;
+  font-size: inherit;
+}
+
+/* 序号商务风格 */
+.card-business li:before {
+  content: attr(data-index);
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  background: #f1f5f9;
+  color: #3b82f6;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6);
+  font-weight: 600;
+  border-radius: 4px;
+  display: block;
+  position: absolute;
+  left: calc(var(--spacing) * -7);
+  top: 0;
+}
+
+/* 小标题样式 */
+.card-business h3 {
+  display: block;
+  color: #1e3a8a;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4);
+  font-weight: 600;
+}
+
+/* 表格样式 */
+.card-business table {
+  border-collapse: collapse;
+  margin: calc(var(--spacing) * 5) 0;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.card-business th {
+  background-color: #f8fafc;
+  color: #1e3a8a;
+  padding: calc(var(--spacing) * 2.5);
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  font-weight: 600;
+}
+
+.card-business td {
+  color: #334155;
+  padding: calc(var(--spacing) * 2.5);
+  border: 1px solid #e5e7eb;
+}
+
+.card-business tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+/* 代码块样式 */
+.card-business pre {
+  border: 1px solid #e5e7eb;
+  background-color: #f8fafc;
+  border-radius: 4px;
+  padding: calc(var(--spacing) * 3);
+  overflow-x: auto;
+}
+
+.card-business code:not(pre code) {
+  background-color: #f1f5f9;
+  color: #2563eb;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1);
+  border-radius: 3px;
+  font-family: "SF Mono", "Menlo", monospace;
+  font-size: calc(var(--spacing) * 3.6);
+}
+
+/* 引用块样式 */
+.card-business blockquote {
+  background-color: #f8fafc;
+  border-left: 4px solid #3b82f6;
+  color: #475569;
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+  margin: calc(var(--spacing) * 4) 0;
+  font-style: italic;
+}
+
+.card-business ul > li:before {
+  content: "•";
+  color: #3b82f6;
+  font-size: calc(var(--spacing) * 4.5);
+  font-weight: bold;
+}
+
+/* 水平线样式 */
+.card-business hr {
+  height: calc(var(--spacing) * 0.25);
+  border: none;
+  background: #e5e7eb;
+  margin: calc(var(--spacing) * 5) 0;
+}
+
+/* 图片样式 */
+.card-business img {
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* 添加商务风格的页脚装饰 */
+.card-business .card-footer {
+  text-align: right;
+  font-size: calc(var(--spacing) * 3);
+  color: #64748b;
+  border-top: 1px solid #e5e7eb;
+  line-height: 3;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-business">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

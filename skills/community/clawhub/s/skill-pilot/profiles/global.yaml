@@ -1,0 +1,30 @@
+# 环境配置模板：海外环境
+# 适用：海外网络环境
+
+name: global
+description: 海外环境，优先使用国际引擎
+
+# 路由配置
+routing:
+  preferred_capabilities:
+    - global
+    - accurate
+  avoid_capabilities: []
+  fallback_order:
+    - global-engine
+    - backup-engine
+
+# 超时配置 (秒)
+timeout:
+  search: 30
+  fetch: 30
+  summarize: 30
+  analyze: 60
+
+# 降级配置
+max_fallback: 3
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl_seconds: 300

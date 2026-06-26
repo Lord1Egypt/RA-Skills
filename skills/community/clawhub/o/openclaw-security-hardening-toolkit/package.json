@@ -1,0 +1,12 @@
+{
+  "name": "openclaw-security-hardening-toolkit",
+  "version": "1.0.0",
+  "description": "Complete security audit and hardening suite for OpenClaw deployments — instance exposure, credential protection, skill verification, access control, incident response",
+  "keywords": ["openclaw", "security", "hardening", "cve", "audit"],
+  "author": "thebrierfox",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill",
+    "entrypoint": "SKILL.md"
+  }
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>妈妈必买清单</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: linear-gradient(160deg, #FFF8FC 0%, #FFF0F5 100%);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+  .bg-deco {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 10% 20%, rgba(255,182,193,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(135,206,250,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  /* 顶部标题栏 */
+  .top-bar {
+    background: linear-gradient(135deg, #FF6B8A, #FF8FAB);
+    padding: 28px 50px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .top-bar::after {
+    content: "";
+    position: absolute;
+    bottom: -18px; left: 0; right: 0;
+    height: 18px;
+    background: linear-gradient(135deg, #FF6B8A, #FF8FAB);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .top-title { color: white; font-size: 44px; font-weight: 800; letter-spacing: 2px; }
+  .top-subtitle { color: rgba(255,255,255,0.9); font-size: 20px; margin-top: 4px; }
+  .top-emoji { font-size: 56px; }
+  .page-num {
+    background: rgba(255,255,255,0.25); color: white;
+    font-size: 18px; font-weight: 600;
+    padding: 6px 18px; border-radius: 20px;
+  }
+
+  /* 主体内容区 */
+  .content { padding: 50px 50px 30px; }
+  .section-label {
+    background: linear-gradient(135deg, #FF6B8A, #FF8FAB);
+    color: white; font-size: 20px; font-weight: 700;
+    padding: 8px 24px; border-radius: 16px;
+    display: inline-block; margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  /* 物品网格 */
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 30px;
+  }
+  .item-card {
+    background: white;
+    border: 2px dashed #FFB6C1;
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: all 0.2s;
+  }
+  .item-num {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, #FF6B8A, #FF8FAB);
+    color: white; font-size: 18px; font-weight: 800;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .item-info { flex: 1; }
+  .item-name {
+    font-size: 22px; font-weight: 700; color: #333;
+    margin-bottom: 4px;
+  }
+  .item-qty {
+    font-size: 17px; color: #FF6B8A; font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .item-tip {
+    font-size: 14px; color: #999;
+    line-height: 1.4;
+  }
+
+  /* 底部总结 */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(135deg, #FFF0F5, #FFE4EC);
+    border-top: 2px dashed #FFB6C1;
+    padding: 16px 50px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .bottom-icon { font-size: 36px; }
+  .bottom-text { font-size: 20px; color: #FF6B8A; font-weight: 600; }
+  .bottom-tags { display: flex; gap: 8px; margin-left: auto; }
+  .tag {
+    background: #FF6B8A; color: white;
+    font-size: 13px; padding: 4px 12px; border-radius: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="bg-deco"></div>
+
+  <div class="top-bar">
+    <div>
+      <div class="top-title">👩 妈妈必买清单</div>
+      <div class="top-subtitle">预产期1月的赶紧来抄！</div>
+    </div>
+    <div class="top-emoji">🤰</div>
+    <div class="page-num">2/8</div>
+  </div>
+
+  <div class="content">
+    <div class="section-label">🏥 医院篇 · 妈妈住院包</div>
+    <div class="items-grid">
+      <div class="item-card">
+        <div class="item-num">1</div>
+        <div class="item-info">
+          <div class="item-name">产褥垫</div>
+          <div class="item-qty">准备2包，带去医院1包</div>
+          <div class="item-tip">内检/生产时铺床上必备</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">2</div>
+        <div class="item-info">
+          <div class="item-name">卫生巾 / 安睡裤</div>
+          <div class="item-qty">夜用加长款 + 安睡裤各1包</div>
+          <div class="item-tip">产后恶露量多，安睡裤更方便</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">3</div>
+        <div class="item-info">
+          <div class="item-name">一次性马桶垫</div>
+          <div class="item-qty">准备1包（30片装）</div>
+          <div class="item-tip">医院马桶公用，卫生必备</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">4</div>
+        <div class="item-info">
+          <div class="item-name">一次性内裤</div>
+          <div class="item-qty">准备10条，用完即丢</div>
+          <div class="item-tip">产后恶露多，脏了直接扔</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">5</div>
+        <div class="item-info">
+          <div class="item-name">哺乳内衣</div>
+          <div class="item-qty">准备2件，建议选无钢圈款</div>
+          <div class="item-tip">方便哺乳，防下垂</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">6</div>
+        <div class="item-info">
+          <div class="item-name">电动吸奶器</div>
+          <div class="item-qty">双边电动款，预算500+</div>
+          <div class="item-tip">开奶/追奶/背奶必备神器</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">7</div>
+        <div class="item-info">
+          <div class="item-name">吸管杯 / 吸管</div>
+          <div class="item-qty">躺床上喝水不方便，吸管必备</div>
+          <div class="item-tip">选择保温吸管杯更实用</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">8</div>
+        <div class="item-info">
+          <div class="item-name">会阴清洗器</div>
+          <div class="item-qty">1个，住院期间每天用到</div>
+          <div class="item-tip">顺产妈妈必买，冲洗伤口超方便</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">9</div>
+        <div class="item-info">
+          <div class="item-name">家居服 / 月子服</div>
+          <div class="item-qty">准备2套，选纯棉开衫款</div>
+          <div class="item-tip">方便哺乳，产后易出汗多备1套</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">10</div>
+        <div class="item-info">
+          <div class="item-name">防溢乳垫</div>
+          <div class="item-qty">1包（一次性更方便）</div>
+          <div class="item-tip">奶阵来的时候防止溢奶尴尬</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-num">11</div>
+        <div class="item-info">
+          <div class="item-name">胎心监护带</div>
+          <div class="item-qty">1副，产房做胎监要用</div>
+          <div class="item-tip">医院要求自备，买通用的就行</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bottom-icon">🤱</div>
+    <div class="bottom-text">👆 以上11项，妈妈住院必备！</div>
+    <div class="bottom-tags">
+      <div class="tag">#待产包清单</div>
+      <div class="tag">#孕期囤货</div>
+    </div>
+  </div>
+</body>
+</html>

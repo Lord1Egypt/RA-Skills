@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  background: transparent;
+  color: white;
+  font-family: 'Courier New', monospace;
+  padding: 20px;
+}
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.panel {
+  background: rgba(0,0,0,0.7);
+  border: 2px solid #00ff41;
+  padding: 20px;
+  border-radius: 8px;
+}
+h2 {
+  color: #00ff41;
+  margin: 0 0 15px 0;
+  font-size: 28px;
+  text-shadow: 0 0 10px #00ff41;
+}
+.metric {
+  font-size: 20px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.value {
+  color: #0ff;
+  font-weight: bold;
+}
+#time {
+  font-size: 48px;
+  color: #00ff41;
+  text-align: center;
+  margin: 20px 0;
+  text-shadow: 0 0 20px #00ff41;
+}
+</style>
+</head>
+<body>
+<div id="time"></div>
+<div class="dashboard">
+  <div class="panel">
+    <h2>🦀 System Status</h2>
+    <div class="metric"><span>Agent:</span><span class="value">ACTIVE</span></div>
+    <div class="metric"><span>OBS:</span><span class="value">CONNECTED</span></div>
+    <div class="metric"><span>Mode:</span><span class="value">LIVE</span></div>
+  </div>
+  <div class="panel">
+    <h2>📊 Session Info</h2>
+    <div class="metric"><span>Uptime:</span><span class="value" id="uptime">00:00:00</span></div>
+    <div class="metric"><span>Scene:</span><span class="value">Auto</span></div>
+    <div class="metric"><span>Quality:</span><span class="value">1080p60</span></div>
+  </div>
+</div>
+<script>
+let startTime = Date.now();
+function update() {
+  const now = new Date();
+  document.getElementById('time').textContent = now.toLocaleTimeString();
+  
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const h = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+  const m = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+  const s = (elapsed % 60).toString().padStart(2, '0');
+  document.getElementById('uptime').textContent = `${h}:${m}:${s}`;
+}
+setInterval(update, 1000);
+update();
+</script>
+</body>
+</html>

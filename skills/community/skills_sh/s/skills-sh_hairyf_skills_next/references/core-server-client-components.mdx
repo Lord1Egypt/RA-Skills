@@ -1,0 +1,219 @@
+---
+name: core-server-client-components
+description: Understanding Server and Client Components in Next.js
+---
+
+# Server and Client Components
+
+Next.js uses React Server Components by default. Layouts and pages are Server Components, which run on the server. Use Client Components when you need interactivity or browser APIs.
+
+## When to Use Client Components
+
+Use Client Components when you need:
+
+- State and event handlers (`useState`, `onClick`, `onChange`)
+- Lifecycle effects (`useEffect`, `useLayoutEffect`)
+- Browser-only APIs (`localStorage`, `window`, `document`)
+- Custom hooks that use client-only features
+
+```tsx
+'use client'
+
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  )
+}
+```
+
+## When to Use Server Components
+
+Use Server Components when you need:
+
+- Fetch data from databases or APIs
+- Access environment variables and secrets
+- Reduce JavaScript bundle size
+- Improve initial page load performance
+
+```tsx
+// Server Component (default)
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data')
+  const posts = await data.json()
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## The `"use client"` Directive
+
+Add `"use client"` at the top of a file to mark it as a Client Component:
+
+```tsx
+'use client'
+
+import { useState } from 'react'
+
+export default function InteractiveComponent() {
+  // Client-side code
+}
+```
+
+**Important**: Once a file is marked with `"use client"`, all its imports and child components become part of the client bundle.
+
+## Composing Server and Client Components
+
+You can pass Server Components as props to Client Components:
+
+```tsx
+// app/ui/modal.tsx (Client Component)
+'use client'
+
+export default function Modal({ children }: { children: React.ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false)
+  return isOpen ? <div>{children}</div> : null
+}
+```
+
+```tsx
+// app/page.tsx (Server Component)
+import Modal from './ui/modal'
+import Cart from './ui/cart' // Server Component
+
+export default function Page() {
+  return (
+    <Modal>
+      <Cart /> {/* Server Component rendered on server */}
+    </Modal>
+  )
+}
+```
+
+## Passing Data from Server to Client
+
+Pass serializable data as props:
+
+```tsx
+// app/page.tsx (Server Component)
+import LikeButton from './ui/like-button'
+import { getPost } from './lib/data'
+
+export default async function Page() {
+  const post = await getPost('123')
+
+  return <LikeButton likes={post.likes} />
+}
+```
+
+```tsx
+// app/ui/like-button.tsx (Client Component)
+'use client'
+
+export default function LikeButton({ likes }: { likes: number }) {
+  const [count, setCount] = useState(likes)
+  return <button onClick={() => setCount(count + 1)}>{count}</button>
+}
+```
+
+## Context Providers
+
+React Context only works in Client Components. Create a Client Component wrapper:
+
+```tsx
+// app/theme-provider.tsx
+'use client'
+
+import { createContext, useContext } from 'react'
+
+const ThemeContext = createContext('light')
+
+export default function ThemeProvider({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <ThemeContext.Provider value="dark">
+      {children}
+    </ThemeContext.Provider>
+  )
+}
+```
+
+```tsx
+// app/layout.tsx (Server Component)
+import ThemeProvider from './theme-provider'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+## Preventing Environment Poisoning
+
+Use `server-only` package to prevent server code from being imported in Client Components:
+
+```ts
+// lib/data.ts
+import 'server-only'
+
+export async function getData() {
+  // This will error if imported in a Client Component
+  const res = await fetch('https://api.example.com/data', {
+    headers: {
+      authorization: process.env.API_KEY,
+    },
+  })
+  return res.json()
+}
+```
+
+Use `client-only` for client-only code:
+
+```ts
+// lib/client-utils.ts
+import 'client-only'
+
+export function getWindowWidth() {
+  return window.innerWidth
+}
+```
+
+## Key Points
+
+- Server Components are the default
+- Add `"use client"` only when needed
+- Keep Client Components small to reduce bundle size
+- Server Components can import and render Client Components
+- Client Components cannot import Server Components directly
+- Props passed to Client Components must be serializable
+- Use `server-only` and `client-only` packages for safety
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/server-and-client-components
+- https://nextjs.org/docs/app/api-reference/directives/use-client
+-->

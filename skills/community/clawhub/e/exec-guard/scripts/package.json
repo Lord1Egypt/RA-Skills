@@ -1,0 +1,16 @@
+{
+  "name": "exec-guard",
+  "version": "0.2.0",
+  "description": "AI Agent Command Execution Module - Safe system command execution with timeout control, memory protection, background process management",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js --server"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "tree-kill": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "smart-search",
+  "version": "1.0.0",
+  "description": "OpenClaw AgentSkill for intelligent search routing with quota management",
+  "main": "index.js",
+  "dependencies": {
+    "proper-lockfile": "^4.1.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests found\""
+  }
+}

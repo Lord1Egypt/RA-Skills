@@ -1,0 +1,30 @@
+{
+  "wallets": {
+    "0x5B704c4c6b22c11B5B060C3A2391FB47df36d544": {
+      "success": 1,
+      "fail": 1,
+      "lastUsed": 0
+    }
+  },
+  "rpcs": {
+    "https://rpc-url-kamu": {
+      "success": 1,
+      "fail": 1,
+      "lastUsed": 1777439356245
+    }
+  },
+  "actions":{
+  "wallets": {},
+  "rpcs": {},
+  "actions": {
+    "tx_success": 1,
+    "tx_fail": 1,
+    "api_success": 1,
+    "api_fail": 1
+  },
+  "defi": {
+    "swap_success": 1,
+    "swap_fail": 1
+  }
+  }
+}

@@ -1,35 +1,27 @@
 ---
-name: "Tripwire"
-description: "Tripwire host-based IDS reference. Cryptographic key setup, database initialization, integrity checks, policy rules with severity levels, twcfg.txt configura..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tripwire"
-sourceUrl: "https://clawhub.ai/skills/tripwire"
+name: "tripwire"
+version: "1.0.0"
+description: "Tripwire host-based IDS reference. Cryptographic key setup, database initialization, integrity checks, policy rules with severity levels, twcfg.txt configuration, and report analysis with twprint."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [tripwire, ids, integrity, security, linux, compliance]
+category: "sysops"
 ---
 
 # Tripwire
 
-> Tripwire host-based IDS reference. Cryptographic key setup, database initialization, integrity checks, policy rules with severity levels, twcfg.txt configura...
+Tripwire host-based intrusion detection system reference.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tripwire`
-- **Source URL:** [https://clawhub.ai/skills/tripwire](https://clawhub.ai/skills/tripwire)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tripwire
-```
+| Command | Description |
+|---------|-------------|
+| `intro` | What is Tripwire, architecture, editions |
+| `install` | Installation and cryptographic key setup |
+| `init` | Initialize baseline database |
+| `check` | Run integrity check, severity filtering |
+| `update` | Update database and policy |
+| `policy` | twpol.txt rules, property masks, severity |
+| `config` | twcfg.txt settings, email, report levels |
+| `reporting` | twprint, email alerts, SIEM integration |

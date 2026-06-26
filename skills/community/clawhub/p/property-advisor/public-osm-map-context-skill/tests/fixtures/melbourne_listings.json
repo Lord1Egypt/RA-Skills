@@ -1,0 +1,21 @@
+{
+  "listings": [
+    {
+      "id": "listing_archive",
+      "title": "The Archive, Southbank",
+      "price": "A$786/wk",
+      "location": "Southbank VIC",
+      "address": "205 Normanby Rd, Southbank VIC 3006",
+      "description": "Full listing description should not be echoed by map context.",
+      "image_url": "https://example.test/archive.jpg",
+      "url": "https://example.test/archive"
+    },
+    {
+      "id": "listing_area_only",
+      "title": "Apartment in Southbank",
+      "price": "A$645/wk",
+      "location": "Southbank VIC",
+      "url": "https://example.test/southbank"
+    }
+  ]
+}

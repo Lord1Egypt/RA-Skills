@@ -1,0 +1,23 @@
+id: b03
+track: B
+title_zh: 用户贴 stack trace 抱怨软件崩溃，回复
+category: explain
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: soul
+  secondary:
+  - brain
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - soul
+  - brain
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 2
+title_en: Comfort a user who cannot read a stack trace

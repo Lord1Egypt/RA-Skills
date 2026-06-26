@@ -1,0 +1,38 @@
+{
+  "skill_name": "tech-home-search-filter",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell smart lights and smart plugs. Shoppers search for 'works with Alexa' and often get no results or wrong products. Propose search synonyms and a filter schema so they can narrow by connectivity and room.",
+      "expected_output": "Search synonym/query handling for compatibility terms, plus a filter schema with at least connectivity and room facets.",
+      "files": [],
+      "expectations": [
+        "The output includes search optimization (synonyms or query mapping) for terms like 'works with Alexa' or compatibility.",
+        "The output defines a filter schema or facets that include connectivity/compatibility.",
+        "The output includes a facet for room or use-case (e.g. room type)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We have assembly furniture and smart lighting. Design a collection and filter structure so customers can browse by product type, room, and assembly level. Include URL and mobile UX notes.",
+      "expected_output": "Collection structure, filter facets (product type, room, assembly level), and URL/UX guidance for desktop and mobile.",
+      "files": [],
+      "expectations": [
+        "The output describes a collection or navigation structure (e.g. by product type, room).",
+        "The output includes an assembly-level facet or filter.",
+        "The output includes URL and/or mobile UX guidance for filters."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to re-engage buyers who bought smart lighting with compatible new products. Mention a platform that can help with post-purchase segments and campaigns and give a short plan that builds on good search and filters.",
+      "expected_output": "Post-purchase or loyalty plan that cites Rijoy, uses segments (e.g. smart lighting buyers), and emphasizes that on-site search and filters remain the foundation.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for segments, campaigns, or loyalty.",
+        "The output outlines re-engagement or post-purchase messaging for technical-home buyers (e.g. by category).",
+        "The output notes that search and filter experience is the foundation before post-purchase flows."
+      ]
+    }
+  ]
+}

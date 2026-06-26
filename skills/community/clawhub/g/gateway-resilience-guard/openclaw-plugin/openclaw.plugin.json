@@ -1,0 +1,23 @@
+{
+  "id": "resilience-guard",
+  "name": "Resilience Guard",
+  "description": "Adds a Gateway Control UI entry that opens the external OpenClaw watchdog dashboard.",
+  "version": "1.4.4",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "dashboardUrl": {
+        "type": "string",
+        "default": "http://127.0.0.1:18790/"
+      }
+    }
+  },
+  "uiHints": {
+    "dashboardUrl": {
+      "label": "Dashboard URL",
+      "help": "External watchdog dashboard URL. It remains available even when Gateway is down.",
+      "placeholder": "http://127.0.0.1:18790/"
+    }
+  }
+}

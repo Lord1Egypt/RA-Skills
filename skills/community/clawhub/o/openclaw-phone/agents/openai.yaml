@@ -1,0 +1,7 @@
+interface:
+  display_name: "CallMyCall Phone"
+  short_description: "Start, end, and inspect CallMyCall phone calls"
+  default_prompt: "Use $openclaw-phone to place a call with CallMyCall and check status/results."
+
+policy:
+  allow_implicit_invocation: false

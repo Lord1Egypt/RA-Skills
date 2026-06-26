@@ -1,0 +1,25 @@
+{
+  "name": "conan-weekly-report",
+  "version": "1.0.2",
+  "description": "名侦探柯南动画周报技能 - 每周自动收集并整理柯南最新剧情进展",
+  "author": "拓海",
+  "license": "MIT",
+  "keywords": [
+    "anime",
+    "conan",
+    "weekly-report",
+    "entertainment",
+    "japanese-animation"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "clawhub": "^0.7.0"
+  }
+}

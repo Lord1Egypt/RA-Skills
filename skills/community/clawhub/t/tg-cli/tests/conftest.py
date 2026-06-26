@@ -1,0 +1,77 @@
+"""Shared test fixtures."""
+
+import os
+import sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import pytest
+
+# Ensure tests can import the package without an editable install.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+# Set env vars before importing
+os.environ.setdefault("TG_API_ID", "0")
+os.environ.setdefault("TG_API_HASH", "test")
+os.environ.setdefault("OUTPUT", "rich")
+
+from tg_cli.db import MessageDB
+
+
+@pytest.fixture
+def db(tmp_path):
+    """Create a temporary database for testing."""
+    db_path = tmp_path / "test.db"
+    d = MessageDB(db_path=db_path)
+    yield d
+    d.close()
+
+
+@pytest.fixture
+def populated_db(tmp_path, monkeypatch):
+    """Create a temp DB with sample data and patch config to use it."""
+    db_path = tmp_path / "test.db"
+    monkeypatch.setenv("DB_PATH", str(db_path))
+
+    import tg_cli.config as config_mod
+    monkeypatch.setattr(config_mod, "_PROJECT_ROOT", tmp_path)
+
+    db = MessageDB(db_path=db_path)
+
+    now = datetime.now(timezone.utc)
+    messages = [
+        dict(
+            chat_id=100,
+            chat_name="TestGroup",
+            msg_id=i,
+            sender_id=42,
+            sender_name="Alice",
+            content=f"Message {i}: {'Web3' if i % 2 == 0 else 'Python'} discussion",
+            timestamp=now - timedelta(hours=i),
+        )
+        for i in range(1, 11)
+    ]
+    db.insert_batch(messages)
+    yield db, db_path
+    db.close()
+
+
+def make_msg(
+    chat_id: int = 100,
+    chat_name: str = "TestChat",
+    msg_id: int = 1,
+    sender_id: int = 42,
+    sender_name: str = "Alice",
+    content: str = "Hello World",
+    hours_ago: float = 0,
+):
+    ts = datetime.now(timezone.utc) - timedelta(hours=hours_ago)
+    return dict(
+        chat_id=chat_id,
+        chat_name=chat_name,
+        msg_id=msg_id,
+        sender_id=sender_id,
+        sender_name=sender_name,
+        content=content,
+        timestamp=ts,
+    )

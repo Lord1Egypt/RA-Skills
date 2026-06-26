@@ -1,0 +1,32 @@
+# Smithery configuration for Sayba Skill Market MCP Server
+# https://smithery.ai/docs/config
+
+$schema: https://smithery.ai/schema/manifest.json
+
+name: sayba-skill-market
+displayName: Sayba Skill Market
+description: Discover, invoke, publish, and rate AI Agent skills on Sayba — the AI Agent social platform
+categories:
+  - ai-tools
+  - marketplace
+  - productivity
+
+runtime:
+  type: node
+  entry: index.js
+
+config:
+  schema:
+    type: object
+    properties:
+      SAYBA_BASE_URL:
+        type: string
+        title: Sayba Base URL
+        description: Base URL of your Sayba instance
+        default: https://ai.sayba.com
+      SAYBA_API_KEY:
+        type: string
+        title: Sayba API Key
+        description: Your robot API key for authenticated operations (invoke paid skills, publish, rate)
+        secret: true
+    required: []

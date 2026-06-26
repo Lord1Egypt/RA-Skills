@@ -1,35 +1,124 @@
 ---
-name: "Swarm Coord"
+name: swarm-coord
 description: "多 Agent 协作调度。将大任务拆分为子任务，分配给多个 Agent 并行执行，自动汇总结果。Team Lead 负责拆分、分发、监控、汇总。触发词：协作、swarm、分工、团队任务、并行执行、多 Agent、team work。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/swarm-coord"
-sourceUrl: "https://clawhub.ai/skills/swarm-coord"
 ---
 
-# Swarm Coord
+# Swarm Coord — 多 Agent 协作
 
-> 多 Agent 协作调度。将大任务拆分为子任务，分配给多个 Agent 并行执行，自动汇总结果。Team Lead 负责拆分、分发、监控、汇总。触发词：协作、swarm、分工、团队任务、并行执行、多 Agent、team work。
+把大任务拆成小任务，分配给多个 Agent 并行执行，自动汇总结果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/swarm-coord`
-- **Source URL:** [https://clawhub.ai/skills/swarm-coord](https://clawhub.ai/skills/swarm-coord)
+## 什么时候用
 
-## Overview
+- 用户下达复合型任务（涉及多个领域）
+- 用户说"分工"、"协作"、"团队干"、"swarm"
+- 任务明显可以并行处理（不存在强依赖关系）
+- CEO 主动判断当前任务适合拆分
 
+## 核心理念
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/swarm-coord
+一个人干所有事太慢。把任务拆开，多个 Agent 同时干，CEO 统筹汇总。
+
+模式参考：**Team Lead + Teammates**
+- Team Lead（CEO）：拆分任务、分配、监控进度、汇总结果
+- Teammates（coding/secretary/HR 等）：各自执行分配到的子任务
+
+## 执行流程
+
+### Phase 1 — 分析与拆分（Decompose）
+
+1. 分析用户的原始请求
+2. 识别可并行的子任务
+3. 为每个子任务确定：
+   - **负责 Agent**：coding / secretary / HR / 或新建临时 Agent
+   - **任务描述**：清晰的执行指令
+   - **预期输出**：需要返回什么结果
+   - **依赖关系**：是否需要等其他任务完成
+
+输出拆分方案供用户确认（除非用户说"直接干"）。
+
+### Phase 2 — 分发与执行（Dispatch）
+
+1. 用 `sessions_spawn` 为每个子任务创建独立 session
+2. 并行启动所有无依赖的子任务
+3. 有依赖的任务排队等待前置任务完成
+4. 用 `sessions_yield` 等待子 Agent 返回结果
+
+分发时传递的信息：
+- 明确的任务描述
+- 需要的上下文（文件路径、配置值等）
+- 期望的输出格式
+- 超时时间
+
+### Phase 3 — 监控与协调（Monitor）
+
+1. 跟踪每个子任务的状态（进行中/完成/失败）
+2. 如果某个子任务失败，决定：
+   - 重试一次
+   - 跳过并标记
+   - 终止整个 swarm
+3. 如果子任务之间需要传递中间结果，CEO 负责转发
+4. 定期向用户汇报进度（长任务时）
+
+### Phase 4 — 汇总与报告（Aggregate）
+
+1. 收集所有子任务的结果
+2. 整合成统一的报告
+3. 标注成功/失败/跳过的任务
+4. 向用户呈现最终结果
+
+汇总报告格式：
+
 ```
+🐝 Swarm 任务完成
+━━━━━━━━━━━━━━━
+
+📋 原始任务：整理本周会议纪要 + 更新文档 + 发周报
+
+👥 执行分工：
+├─ 🤖 Secretary：整理会议纪要 ✅（3 份纪要）
+├─ 💻 Coding：更新项目文档 ✅（README + CHANGELOG）
+└─ 📊 CEO：汇总写周报 ✅
+
+⏱️ 总耗时：2 分 30 秒（并行节省约 60%）
+
+📝 成果：
+- 会议纪要已发送到飞书群
+- 项目文档已更新并 push
+- 周报已发送给董事长
+```
+
+## 任务拆分原则
+
+### 适合拆分的任务
+- 多领域综合任务（技术 + 文档 + 沟通）
+- 批量处理任务（处理 10 个文件）
+- 信息收集任务（同时搜索多个来源）
+
+### 不适合拆分的任务
+- 强顺序依赖（第二步必须用第一步的结果）
+- 简单单步任务（问个问题就行）
+- 需要持续交互的任务（反复确认修改）
+
+### Agent 能力匹配
+
+| Agent | 擅长领域 | 适合的子任务 |
+|-------|----------|-------------|
+| coding | 编程、技术 | 写代码、调试、部署、Git 操作 |
+| secretary | 文档、沟通 | 会议纪要、文档编辑、消息发送 |
+| HR | 人事 | 人员查询、组织架构、考勤 |
+| CEO（自己） | 统筹 | 复杂分析、汇总报告、决策 |
+
+## 规则
+
+- **先拆后做**：除非用户说"直接干"，否则先展示拆分方案
+- **并行优先**：无依赖的任务同时启动
+- **容错设计**：单个子任务失败不影响其他任务
+- **进度透明**：长任务定期汇报进度
+- **结果汇总**：所有子任务完成后统一呈现结果
+- **超时保护**：子任务超时自动终止并标记
+
+## 与其他 Skill 的配合
+
+- **Session Resume**：Swarm 任务的整体进度可以保存到 `.task-state.json`
+- **Smart Compact**：子 Agent 的对话独立，不影响 CEO 的上下文
+- **Memory-Dream**：Swarm 的执行结果会被记录到日记，由 Dream 整合

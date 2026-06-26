@@ -1,0 +1,19 @@
+{
+  "name": "daily-report-assistant",
+  "version": "1.0.0",
+  "description": "龙虾教研日报助手 - 对话记录日报，月底一键汇总",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {},
+  "optionalDependencies": {
+    "mcporter": "latest"
+  },
+  "tools": {
+    "mcporter": {
+      "description": "腾讯文档 MCP 工具，通过 npx 运行，技能运行时自动获取",
+      "install": "npx -y mcporter --version"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "llc-name-rules-guide",
+  "version": "1.0.0",
+  "description": "LLC name rules guide for LLCClass.com, covering suffix requirements, restricted words, availability checks, and state naming compliance.",
+  "keywords": [
+    "llc",
+    "llc-name-rules",
+    "name-availability",
+    "restricted-words",
+    "business-name",
+    "llcclass"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/llc-name-rules",
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/llc-name-rules",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

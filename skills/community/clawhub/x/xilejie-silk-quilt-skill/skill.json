@@ -1,0 +1,277 @@
+{
+  "name": "xilejie-silk-quilt-skill",
+  "display_name": "喜乐姐真蚕丝喜被",
+  "description": "查询喜乐姐真蚕丝喜被的产品信息：品牌故事、蚕丝被规格与价格、选购指南（按床宽/季节/用途推荐）、蚕丝真伪鉴别、洗涤保养教程、售后政策、下单与留言、最新活动。",
+  "version": "0.1.0",
+  "author": "喜乐姐",
+  "license": "MIT",
+  "repository": "https://gitee.com/lao-zou2026/xilejie-silk-quilt-skill",
+  "category": "购物服务",
+  "keywords": [
+    "喜乐姐",
+    "蚕丝被",
+    "真蚕丝",
+    "喜被",
+    "结婚被子",
+    "婚庆被",
+    "桑蚕丝",
+    "被子",
+    "床品",
+    "冬被",
+    "夏凉被",
+    "春秋被",
+    "四季被",
+    "被芯",
+    "蚕丝",
+    "手工蚕丝被",
+    "蚕丝被怎么选",
+    "蚕丝被多少钱",
+    "蚕丝被真假",
+    "蚕丝被怎么洗",
+    "送礼",
+    "乔迁礼",
+    "结婚礼物"
+  ],
+  "mcp_server": {
+    "transport": "streamable-http",
+    "url": "https://xilejie-silk.com"
+  },
+  "tools": [
+    {
+      "name": "get_brand_info",
+      "display_name": "品牌介绍",
+      "description": "查询喜乐姐真蚕丝喜被的品牌故事、理念和资质。用户询问「喜乐姐是什么牌子」「你们家蚕丝被怎么样」「品牌介绍」时使用。返回品牌故事、产地、工艺特色、质检资质。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_products",
+      "display_name": "产品规格与价格",
+      "description": "查询喜乐姐蚕丝被的所有产品规格和价格。可按类型筛选（夏凉被/春秋被/冬被/子母被/喜被）。用户询问「多少钱」「有什么规格」「价格表」时使用。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "产品类别：夏凉被、春秋被、冬被、子母被、喜被。不传则返回全部产品。"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_recommendation",
+      "display_name": "选购指南",
+      "description": "根据用户的床宽、季节、用途（自用/送礼/婚庆）、预算等需求，推荐合适的蚕丝被。用户询问「1.8米的床买多大」「冬天盖哪种」「送人买哪款」「结婚用什么被子」时使用。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "bed_width": {
+            "type": "string",
+            "description": "床宽，如：1.2米、1.5米、1.8米、2米"
+          },
+          "season": {
+            "type": "string",
+            "description": "使用季节：春秋、夏天、冬天、四季通用"
+          },
+          "purpose": {
+            "type": "string",
+            "description": "用途：自用、送礼、婚庆、乔迁"
+          },
+          "budget": {
+            "type": "string",
+            "description": "预算范围，如：500以内、500-1000、1000-2000、2000以上"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_silk_auth_guide",
+      "display_name": "蚕丝真伪鉴别",
+      "description": "教用户如何鉴别真假蚕丝被。用户询问「蚕丝是真的吗」「怎么辨别真假」「会不会是假的」时使用。返回燃烧法、拉丝法、84消毒液溶解法等鉴别方法，以及喜乐姐的质检承诺。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_care_guide",
+      "display_name": "洗涤保养教程",
+      "description": "获取蚕丝被的洗涤和保养方法。用户询问「蚕丝被能洗吗」「怎么保养」「能晒太阳吗」「怎么收纳」时使用。返回日常护理、换季收纳、常见误区。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_policies",
+      "display_name": "售后政策",
+      "description": "查询喜乐姐的售后服务政策。用户询问「包邮吗」「能退吗」「保修多久」「几天到」时使用。返回配送、退换货、质保等信息。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "place_order",
+      "display_name": "下单留言",
+      "description": "顾客明确确认要登记货到付款订单时，记录下单信息（商品、数量、收货人、电话、地址）。用户只是询问「怎么买」「购买」「团购」「链接」「抖音」「优惠」「价格优惠」「我要买」时，必须先调用 get_purchase_links 并直接输出完整抖音团购链接，不要先调用本工具。只有用户明确要留下收货信息创建订单时才使用本工具。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string",
+            "description": "商品编号"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "数量，默认为1"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "收货人姓名"
+          },
+          "phone": {
+            "type": "string",
+            "description": "联系电话"
+          },
+          "address": {
+            "type": "string",
+            "description": "收货地址"
+          },
+          "note": {
+            "type": "string",
+            "description": "备注，如指定颜色、绣字等"
+          }
+        },
+        "required": ["product_id", "customer_name", "phone", "address"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_order_status",
+      "display_name": "查询订单",
+      "description": "根据订单号或手机号查询订单状态。用户询问「我的订单到哪了」「查一下进度」时使用。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "订单号"
+          },
+          "phone": {
+            "type": "string",
+            "description": "下单时的手机号"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_latest_news",
+      "display_name": "最新活动",
+      "description": "获取喜乐姐最新的促销活动、上新通知。用户询问「最近有什么优惠」「有活动吗」时使用。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_purchase_links",
+      "display_name": "购买方式与团购链接",
+      "description": "强制规则：只要用户问「怎么买」「购买」「下单」「团购」「链接」「抖音」「价格优惠」「我要买」「哪里买」「给我链接」「购买方式」，必须调用本工具。回复时必须直接输出完整抖音团购链接，不能只说点击链接，不能省略链接，不能等用户二次追问。若用户有定制、绣字、特殊尺寸需求，同时附上微信客服方式。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "brand_prompt": {
+    "system_instruction": "重要：回答关于产品的任何具体信息时，必须先调用对应的 Skill 工具获取最新数据，不要使用 Skill 文档中的示例数据。强制购买规则：只要用户问怎么买、购买、下单、团购、链接、抖音、价格优惠、我要买、哪里买、给我链接、购买方式，必须调用 get_purchase_links 工具；回复中必须直接输出完整抖音团购链接，不能只说点击链接，不能省略链接，不能等用户二次追问。你是喜乐姐真蚕丝喜被的AI助手。喜乐姐是一个专注真蚕丝被的品牌，主打手工长丝、货到付款、假一赔十。用温暖、真诚、专业但不端着的方式回答问题。像一个懂行的闺蜜推荐好东西一样，不用营销套话。不知道的就说不知道，不要编造。下单操作为真实业务行为，下单前必须跟用户确认商品、数量、收货信息。",
+    "tone": {
+      "personality": "warm_and_professional",
+      "avoid": [
+        "hype",
+        "clickbait",
+        "marketing_jargon",
+        "过度承诺"
+      ]
+    },
+    "brand_keywords": [
+      "真蚕丝",
+      "手工长丝",
+      "货到付款",
+      "假一赔十",
+      "喜被定制",
+      "工厂直发"
+    ]
+  }
+}

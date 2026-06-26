@@ -1,0 +1,165 @@
+{
+  "created_at": null,
+  "last_updated": null,
+
+  "current_postpartum": null,
+
+  "postpartum_history": [],
+
+  "statistics": {
+    "total_postpartum_periods": 0,
+    "current_days_postpartum": null,
+    "total_babies_tracked": 0
+  },
+
+  "settings": {
+    "tracking_period_default": "6months",
+    "epds_reminder_enabled": true,
+    "red_flag_monitoring": true
+  },
+
+  "epds_reference": {
+    "version": "EPDS-10",
+    "max_score": 30,
+    "risk_thresholds": {
+      "low_risk": {
+        "min": 0,
+        "max": 9,
+        "action": "routine_monitoring",
+        "message": "低风险：继续常规监测"
+      },
+      "moderate_risk": {
+        "min": 10,
+        "max": 12,
+        "action": "increase_monitoring",
+        "message": "中度风险：建议密切监测和随访"
+      },
+      "high_risk": {
+        "min": 13,
+        "max": 30,
+        "action": "immediate_referral",
+        "message": "高风险：需要立即就医评估"
+      },
+      "emergency": {
+        "q10_threshold": 2,
+        "action": "emergency_intervention",
+        "message": "紧急情况：存在自我伤害想法"
+      }
+    },
+    "screening_schedule": [
+      { "timing": "6_weeks", "recommended": true },
+      { "timing": "3_months", "recommended": true },
+      { "timing": "6_months", "recommended": true }
+    ]
+  },
+
+  "red_flags": {
+    "maternal": {
+      "postpartum_hemorrhage": {
+        "threshold": ">1 pad/hour",
+        "severity": "urgent",
+        "action": "seek_immediate_care"
+      },
+      "fever": {
+        "threshold": ">100.4°F (38°C)",
+        "severity": "urgent",
+        "action": "medical_evaluation"
+      },
+      "severe_headache": {
+        "threshold": "persistent",
+        "severity": "emergency",
+        "action": "emergency_evaluation"
+      },
+      "vision_changes": {
+        "threshold": "any",
+        "severity": "emergency",
+        "action": "emergency_evaluation"
+      },
+      "shortness_of_breath": {
+        "threshold": "at_rest",
+        "severity": "emergency",
+        "action": "emergency_care"
+      },
+      "chest_pain": {
+        "threshold": "any",
+        "severity": "emergency",
+        "action": "emergency_care"
+      },
+      "leg_pain_swelling": {
+        "threshold": "unilateral",
+        "severity": "urgent",
+        "action": "dvt_evaluation"
+      },
+      "wound_infection": {
+        "threshold": "redness_heat_pus",
+        "severity": "urgent",
+        "action": "medical_care"
+      },
+      "mastitis": {
+        "threshold": "fever_breast_redness",
+        "severity": "urgent",
+        "action": "medical_care_24h"
+      },
+      "suicidal_ideation": {
+        "threshold": "any",
+        "severity": "emergency",
+        "action": "emergency_intervention"
+      }
+    },
+    "baby": {
+      "poor_feeding": {
+        "threshold": "<6 wet_diapers_24h",
+        "severity": "urgent",
+        "action": "medical_evaluation"
+      },
+      "weight_loss": {
+        "threshold": ">10% birth_weight",
+        "severity": "urgent",
+        "action": "immediate_medical_care"
+      },
+      "fever": {
+        "threshold": ">100.4°F (38°C)",
+        "severity": "emergency",
+        "action": "emergency_care"
+      },
+      "feeding_difficulty": {
+        "threshold": "unable_to_suck_swallow",
+        "severity": "emergency",
+        "action": "emergency_care"
+      },
+      "respiratory_distress": {
+        "threshold": "fast_grunting_retractions",
+        "severity": "emergency",
+        "action": "emergency_care"
+      },
+      "jaundice": {
+        "threshold": "severe_persistent",
+        "severity": "urgent",
+        "action": "medical_care"
+      },
+      "dehydration": {
+        "threshold": "sunken_fontanel_no_urine_6h",
+        "severity": "emergency",
+        "action": "emergency_care"
+      }
+    }
+  },
+
+  "tracking_periods": {
+    "6weeks": {
+      "days": 42,
+      "description": "标准立即恢复期",
+      "recommended_for": "all"
+    },
+    "6months": {
+      "days": 180,
+      "description": "扩展恢复期（推荐）",
+      "recommended_for": "all"
+    },
+    "1year": {
+      "days": 365,
+      "description": "完整恢复期",
+      "recommended_for": "extended_monitoring"
+    }
+  }
+}

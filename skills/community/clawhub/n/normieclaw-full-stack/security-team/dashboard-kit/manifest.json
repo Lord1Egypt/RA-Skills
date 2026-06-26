@@ -1,0 +1,15 @@
+{
+  "skill_id": "security-team",
+  "display_name": "Security Team",
+  "description": "Automated security auditing with issue tracking, severity scoring, and remediation guidance.",
+  "icon": "Shield",
+  "accent_color": "#f97316",
+  "sidebar": { "route": "/security", "label": "Security", "icon": "Shield", "children": [{"label":"Overview","route":"/security"},{"label":"Issues","route":"/security/issues","icon":"AlertTriangle"},{"label":"Scan History","route":"/security/history","icon":"History"}] },
+  "database": { "prefix": "sec", "tables": [
+    { "name": "sec_audits", "description": "Security audit results", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"run_date","type":"TIMESTAMPTZ"},{"name":"overall_score","type":"NUMERIC(4,1)"},{"name":"findings_count","type":"INTEGER","default":0},{"name":"critical_count","type":"INTEGER","default":0},{"name":"raw_log","type":"JSONB"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_sec_audits_user","columns":["user_id","run_date DESC"]}] },
+    { "name": "sec_issues", "description": "Identified security issues", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"audit_id","type":"UUID","references":"sec_audits(id)"},{"name":"council","type":"TEXT"},{"name":"severity","type":"TEXT"},{"name":"title","type":"TEXT"},{"name":"description","type":"TEXT"},{"name":"remediation","type":"TEXT"},{"name":"status","type":"TEXT","default":"open"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_sec_issues_user","columns":["user_id","status"]}] }
+  ] },
+  "widgets": [{ "id": "security-score", "type": "stat", "title": "Security Score", "description": "Latest audit score out of 10", "size": "1x1" }],
+  "settings": [{ "key": "scan_frequency", "label": "Scan Frequency", "type": "select", "default": "weekly" }],
+  "sync": { "mode": "webhook", "source_files": [] }
+}

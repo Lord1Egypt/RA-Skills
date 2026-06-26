@@ -1,0 +1,146 @@
+# ClawHub Skill Package Configuration
+# DocPilot 文档智能处理技能 - ClawHub 发布配置
+
+name: DocPilot
+version: 2.0.0
+author: TokenAI
+description:
+  en: Document parsing, information extraction, and document classification with high precision
+  zh: 高精度文档解析、信息抽取、文档分类
+
+category: tool
+tags:
+  - pdf
+  - document
+  - extraction
+  - ocr
+  - table
+  - parser
+  - classify
+  - openclaw
+
+# OpenClaw 技能入口
+entry: index.py
+
+# Python 依赖
+dependencies:
+  - requests>=2.28.0
+
+# 配置项
+config:
+  - name: DOCPilot_BASE_URL
+    type: string
+    required: false
+    default: https://docpilot.token-ai.com.cn
+    description:
+      en: API Base URL
+      zh: API 基础地址
+
+  - name: DOCPilot_API_KEY
+    type: string
+    required: true
+    description:
+      en: API Key for authentication (Bearer token)
+      zh: API 鉴权密钥（Bearer token）
+
+# 命令定义
+commands:
+  - name: parse
+    description:
+      en: Parse a document (PDF/Image/Word/Excel)
+      zh: 解析文档（PDF/图片/Word/Excel）
+    usage: DocPilot parse <file_path> [options]
+    options:
+      - name: --output
+        description:
+          en: Output format (structured/markdown/text)
+          zh: 输出格式
+        value: structured|markdown|text
+      - name: --layout
+        description:
+          en: Enable layout analysis
+          zh: 启用版面分析
+      - name: --table
+        description:
+          en: Enable table recognition
+          zh: 启用表格识别
+      - name: --seal
+        description:
+          en: Enable seal recognition
+          zh: 启用印章检测
+      - name: --dpi
+        description:
+          en: DPI for PDF/image conversion
+          zh: PDF/图片转图像分辨率
+        value: 72|144|200|216
+      - name: --pages
+        description:
+          en: Page range (e.g., 1-5,8,10-12)
+          zh: 页码范围
+      - name: --bbox
+        description:
+          en: Include bbox coordinates in elements
+          zh: 包含边界框坐标
+      - name: --include-image
+        description:
+          en: Include images in markdown output
+          zh: 在 markdown 中包含图片
+      - name: --image-format
+        description:
+          en: Image format (url/base64)
+          zh: 图片格式
+        value: url|base64
+
+  - name: extract
+    description:
+      en: Extract structured fields from document
+      zh: 从文档中抽取结构化字段
+    usage: DocPilot extract <file_path> --schema <JSON>
+    options:
+      - name: --schema
+        description:
+          en: Field schema (JSON string or file path)
+          zh: 字段 schema（JSON 字符串或文件路径）
+        required: true
+      - name: --prompt
+        description:
+          en: Prompt mode schema
+          zh: 提示词模式 schema
+      - name: --schema-ref
+        description:
+          en: Schema reference template
+          zh: 模板引用
+      - name: --options
+        description:
+          en: Extended options
+          zh: 扩展配置
+
+  - name: classify
+    description:
+      en: Classify document type
+      zh: 文档分类
+    usage: DocPilot classify <file_path> [options]
+    options:
+      - name: --mode
+        description:
+          en: Classification mode
+          zh: 分类模式
+        value: classify_only|classify_and_split
+      - name: --categories
+        description:
+          en: Category schema (JSON string or file path)
+          zh: 分类 schema（JSON 字符串或文件路径）
+
+# 打包文件列表
+files:
+  - index.py
+  - SKILL.md
+  - requirements.txt
+  - config.example.json
+  - icon.svg
+  - README_zh.md
+  - README.md
+  - clawhub.yaml
+
+# 许可证
+license: MIT

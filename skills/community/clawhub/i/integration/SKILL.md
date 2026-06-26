@@ -1,35 +1,17 @@
----
-name: "my integration"
-description: "my integration enables searching GitHub repositories, reading files, fetching pull requests and commits, and generating summaries for code analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/integration"
-sourceUrl: "https://clawhub.ai/skills/integration"
----
+# My Integration
 
-# my integration
+## Purpose
+Demonstrate a basic ClawHub skill.
 
-> my integration enables searching GitHub repositories, reading files, fetching pull requests and commits, and generating summaries for code analysis.
+## When to Use
+Use this skill when a user needs help with integrations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/integration`
-- **Source URL:** [https://clawhub.ai/skills/integration](https://clawhub.ai/skills/integration)
+## Instructions
+1. Understand the integration requirement.
+2. Identify the target system.
+3. Suggest implementation steps.
+4. Provide examples when helpful.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/integration
-```
+## Examples
+User: Help me connect Service A to Service B.
+Assistant: Follow these steps...

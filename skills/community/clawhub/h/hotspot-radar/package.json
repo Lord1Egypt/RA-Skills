@@ -1,0 +1,31 @@
+{
+  "name": "hotspot-radar",
+  "version": "1.1.0",
+  "description": "全网热榜追踪器 - 聚合微博/知乎/抖音/B站/小红书热搜榜单",
+  "main": "scripts/index.js",
+  "scripts": {
+    "start": "node scripts/index.js",
+    "fetch": "node scripts/index.js fetch",
+    "report": "node scripts/index.js report",
+    "html": "node scripts/index.js html",
+    "quick": "node scripts/index.js quick",
+    "monitor": "node scripts/monitor.js",
+    "init": "node scripts/index.js init"
+  },
+  "keywords": [
+    "hotspot",
+    "trending",
+    "social-media",
+    "weibo",
+    "zhihu",
+    "bilibili",
+    "douyin",
+    "xiaohongshu"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {}
+}

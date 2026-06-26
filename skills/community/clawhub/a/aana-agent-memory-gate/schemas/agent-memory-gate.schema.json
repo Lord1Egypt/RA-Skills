@@ -1,0 +1,137 @@
+{
+  "title": "AANA Agent Memory Gate",
+  "type": "object",
+  "required": [
+    "user_request",
+    "memory_operation",
+    "memory_summary",
+    "source_status",
+    "relevance_status",
+    "sensitivity_status",
+    "approval_status",
+    "lifecycle_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "user_request": {
+      "type": "string",
+      "minLength": 1
+    },
+    "memory_operation": {
+      "type": "string",
+      "enum": [
+        "none",
+        "read",
+        "reuse",
+        "store",
+        "edit",
+        "delete",
+        "export",
+        "import",
+        "unknown"
+      ]
+    },
+    "memory_summary": {
+      "type": "string"
+    },
+    "source_status": {
+      "type": "string",
+      "enum": [
+        "explicit_user",
+        "approved_preference",
+        "inferred",
+        "third_party",
+        "tool_output",
+        "imported",
+        "unknown"
+      ]
+    },
+    "relevance_status": {
+      "type": "string",
+      "enum": [
+        "relevant",
+        "partial",
+        "unrelated",
+        "unknown"
+      ]
+    },
+    "sensitivity_status": {
+      "type": "string",
+      "enum": [
+        "ordinary",
+        "personal",
+        "private",
+        "financial",
+        "health",
+        "legal",
+        "credential",
+        "protected",
+        "minor",
+        "unknown"
+      ]
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "explicit",
+        "implicit_low_risk",
+        "required",
+        "denied",
+        "unclear",
+        "not_needed"
+      ]
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "temporary_only",
+        "store_requested",
+        "reuse_requested",
+        "edit_requested",
+        "delete_requested",
+        "export_requested",
+        "import_requested",
+        "unknown"
+      ]
+    },
+    "memory_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "sensitive_storage",
+          "unapproved_storage",
+          "unapproved_reuse",
+          "unapproved_edit",
+          "unapproved_delete",
+          "unapproved_export",
+          "unrelated_reuse",
+          "stale_memory",
+          "speculative_inference",
+          "cross_context_reuse",
+          "unknown"
+        ]
+      }
+    },
+    "boundary_reason": {
+      "type": "string"
+    },
+    "safe_alternative": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "proceed",
+        "ask",
+        "request_approval",
+        "narrow",
+        "avoid_storing",
+        "edit",
+        "delete",
+        "refuse"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

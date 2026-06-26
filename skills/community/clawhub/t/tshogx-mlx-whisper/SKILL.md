@@ -1,35 +1,38 @@
 ---
-name: "mlx-whisper"
-description: "Local speech-to-text with MLX Whisper (Apple Silicon optimized, no API key)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tshogx-mlx-whisper"
-sourceUrl: "https://clawhub.ai/skills/tshogx-mlx-whisper"
+name: mlx-whisper
+description: Local speech-to-text with MLX Whisper (Apple Silicon optimized, no API key).
+homepage: https://github.com/ml-explore/mlx-examples/tree/main/whisper
 ---
 
-# mlx-whisper
+# MLX Whisper
 
-> Local speech-to-text with MLX Whisper (Apple Silicon optimized, no API key).
+Local speech-to-text using Apple MLX, optimized for Apple Silicon Macs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tshogx-mlx-whisper`
-- **Source URL:** [https://clawhub.ai/skills/tshogx-mlx-whisper](https://clawhub.ai/skills/tshogx-mlx-whisper)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tshogx-mlx-whisper
+mlx_whisper /path/to/audio.mp3 --model mlx-community/whisper-large-v3-turbo
 ```
+
+Always pass `--model mlx-community/whisper-large-v3-turbo`, unless the user explicitly asks for a different model.
+
+## Common Usage
+
+```bash
+# Transcribe to text file
+mlx_whisper audio.m4a -f txt -o ./output
+
+# Transcribe with language hint
+mlx_whisper audio.mp3 --language en --model mlx-community/whisper-large-v3-turbo
+
+# Generate subtitles (SRT)
+mlx_whisper video.mp4 -f srt -o ./subs
+
+# Translate to English
+mlx_whisper foreign.mp3 --task translate
+```
+
+## Notes
+
+- Requires Apple Silicon Mac (M1/M2/M3/M4)
+- Models cache to `~/.cache/huggingface/`

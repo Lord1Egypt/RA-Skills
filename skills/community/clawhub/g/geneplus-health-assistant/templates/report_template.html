@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PATIENT_NAME}} - {{REPORT_TITLE}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .report-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .header .patient-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+        .header .patient-info span {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        .risk-banner {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px 40px;
+            text-align: center;
+        }
+        .risk-banner .score {
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .risk-banner .label {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #38ef7d;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        th {
+            background: #f8f9fa;
+            color: #333;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 2px solid #dee2e6;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .warning-row td {
+            background: #fff3cd;
+            font-weight: 500;
+        }
+        .status-normal {
+            color: #28a745;
+            font-weight: 500;
+        }
+        .status-warning {
+            color: #e67e22;
+            font-weight: 600;
+        }
+        .status-danger {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        .disease-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .disease-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #38ef7d;
+        }
+        .disease-item.warning {
+            border-left-color: #f5576c;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+        }
+        .disease-item h4 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .disease-item .disease-name {
+            font-size: 13px;
+            color: #666;
+        }
+        .disease-item .risk-level {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        .risk-low { background: #d4edda; color: #155724; }
+        .risk-medium { background: #fff3cd; color: #856404; }
+        .risk-high { background: #f8d7da; color: #721c24; }
+        .advice-list {
+            list-style: none;
+        }
+        .advice-list li {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .advice-list li::before {
+            content: "✓";
+            background: #38ef7d;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        .cta-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .cta-btn.phone {
+            background: #38ef7d;
+            color: white;
+        }
+        .disclaimer {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3cd;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #856404;
+            line-height: 1.6;
+        }
+        .disclaimer strong {
+            color: #dc3545;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="report-card">
+            <div class="header">
+                <h1>🏥 {{REPORT_TITLE}}</h1>
+                <div class="subtitle">{{REPORT_SUBTITLE}}</div>
+                <div class="patient-info">
+                    <span>👤 {{PATIENT_NAME}}</span>
+                    <span>🎂 {{PATIENT_AGE}}岁</span>
+                    <span>👩 {{PATIENT_GENDER}}</span>
+                    <span>📍 {{PATIENT_REGION}}</span>
+                    <span>💼 {{PATIENT_JOB}}</span>
+                </div>
+            </div>
+            
+            <div class="risk-banner">
+                <div class="score">{{ADR_SCORE}} / 100</div>
+                <div class="label">综合疾病风险值（ADR）| {{RISK_LEVEL}}</div>
+            </div>
+            
+            <div class="content">
+                <!-- 一、基础信息 -->
+                <div class="section">
+                    <h2 class="section-title">一、患者基础信息摘要</h2>
+                    <table>
+                        <tr><th style="width:25%">项目</th><th>内容</th></tr>
+                        <tr><td>姓名</td><td>{{PATIENT_NAME}}</td></tr>
+                        <tr><td>年龄</td><td>{{PATIENT_AGE}}岁</td></tr>
+                        <tr><td>生理性别</td><td>{{PATIENT_GENDER}}</td></tr>
+                        <tr><td>常住地域</td><td>{{PATIENT_REGION}}</td></tr>
+                        <tr><td>职业</td><td>{{PATIENT_JOB}}</td></tr>
+                        <tr><td>既往病史</td><td>{{MEDICAL_HISTORY}}</td></tr>
+                        <tr><td>家族遗传史</td><td>{{FAMILY_HISTORY}}</td></tr>
+                        <tr><td>生活方式与行为暴露</td><td>{{LIFESTYLE}}</td></tr>
+                        <tr><td>当前用药/过敏史</td><td>{{MEDICATION}}</td></tr>
+                        <tr><td>体检日期</td><td>{{EXAM_DATE}}</td></tr>
+                    </table>
+                </div>
+                
+                <!-- 二、体检数据 -->
+                <div class="section">
+                    <h2 class="section-title">二、体检数据摘要</h2>
+                    {{LAB_RESULTS_TABLE}}
+                </div>
+                
+                <!-- 三、核心发现 -->
+                <div class="section">
+                    <h2 class="section-title">三、核心风险发现</h2>
+                    <table>
+                        <tr><th style="width:30%">评估项目</th><th>结果</th></tr>
+                        <tr><td>综合疾病风险值（ADR）</td><td><strong>{{ADR_SCORE}} / 100</strong></td></tr>
+                        <tr><td>风险等级</td><td><span class="status-warning">{{RISK_LEVEL}}</span></td></tr>
+                        <tr><td>核心高危归因</td><td>{{CORE_RISK_FACTORS}}</td></tr>
+                        <tr><td>当前总体判断</td><td>{{OVERALL_ASSESSMENT}}</td></tr>
+                    </table>
+                </div>
+                
+                <!-- 四、异常指标评估 -->
+                <div class="section">
+                    <h2 class="section-title">四、异常指标风险评估</h2>
+                    {{ABNORMAL_INDICATORS_TABLE}}
+                </div>
+                
+                <!-- 五、潜在疾病风险 -->
+                <div class="section">
+                    <h2 class="section-title">五、潜在疾病风险降序排列</h2>
+                    {{DISEASE_RISK_CARDS}}
+                </div>
+                
+                <!-- 六、干预建议 -->
+                <div class="section">
+                    <h2 class="section-title">六、个性化干预建议</h2>
+                    {{ADVICE_LIST}}
+                </div>
+                
+                <!-- 七、结论 -->
+                <div class="section">
+                    <h2 class="section-title">七、结论摘要</h2>
+                    {{CONCLUSION_TABLE}}
+                </div>
+                
+                <!-- 八、筛查与联系方式（仅当有癌症相关风险时显示） -->
+                {{#if HAS_CANCER_RISK}}
+                <div class="section">
+                    <div class="cta-section">
+                        <h3>🏃 健康筛查与咨询</h3>
+                        <p style="margin-bottom: 20px; opacity: 0.9;">{{SCREENING_DESCRIPTION}}</p>
+                        <div class="cta-buttons">
+                            <a href="{{SCREENING_URL}}" target="_blank" class="cta-btn">
+                                🔗 {{SCREENING_NAME}}
+                            </a>                             
+                            <a href="tel:{{HOTLINE_NUMBER}}" class="cta-btn phone">
+                                📞 {{HOTLINE_NUMBER}}
+                            </a>                             
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                
+                <!-- 免责声明 -->
+                <div class="disclaimer">
+                    <strong>⚠️ 重要提示：</strong>本报告仅作为健康管理与疾病风险评估参考，<strong>不能替代医生面诊、体格检查、实验室检查及影像学检查结果，亦不能作为确诊依据</strong>。如出现胸痛、呼吸困难、持续高热、意识障碍、明显血压/血糖异常、黑便便血、黄疸、突发肢体无力或其他急性严重不适，请<strong>立即前往正规医疗机构就诊或急诊处理</strong>。
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>报告生成时间：{{GENERATE_DATE}} | 评估依据：{{EXAM_SOURCE}}</p>
+                <p>Powered by {{POWERED_BY}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

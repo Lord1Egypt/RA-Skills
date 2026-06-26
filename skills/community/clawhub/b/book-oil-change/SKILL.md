@@ -1,35 +1,66 @@
 ---
-name: "Book Oil Change"
-description: "Book oil-change services through Lokuli MCP. Use when user needs to find and book oil-change. Triggers on requests like "book a oil-change", "find oil-change near me", or any oil-change service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-oil-change"
-sourceUrl: "https://clawhub.ai/skills/book-oil-change"
+name: book-oil-change
+description: Book oil-change services through Lokuli MCP. Use when user needs to find and book oil-change. Triggers on requests like "book a oil-change", "find oil-change near me", or any oil-change service request.
 ---
 
-# Book Oil Change
+# uook oil change
 
-> Book oil-change services through Lokuli MCP. Use when user needs to find and book oil-change. Triggers on requests like "book a oil-change", "find oil-change near me", or any oil-change service request.
+Book oil-change services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-oil-change`
-- **Source URL:** [https://clawhub.ai/skills/book-oil-change](https://clawhub.ai/skills/book-oil-change)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-oil-change
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "oil-change",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

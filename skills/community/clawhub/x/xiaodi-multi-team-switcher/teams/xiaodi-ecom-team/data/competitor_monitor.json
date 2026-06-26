@@ -1,0 +1,22 @@
+{
+  "last_updated": "2026-03-27T17:10:16.052236",
+  "competitors": {
+    "B0XXXXXX1": {
+      "asin": "B0XXXXXX1",
+      "name": "竞品A - 车载手机支架",
+      "url": "https://www.amazon.com/dp/B0XXXXXX1",
+      "platform": "amazon",
+      "current_price": 0,
+      "previous_price": 0,
+      "price_history": [],
+      "current_bsr": 0,
+      "previous_bsr": 0,
+      "bsr_history": [],
+      "rating": 0,
+      "review_count": 0,
+      "has_coupon": false,
+      "coupon_value": 0,
+      "last_updated": ""
+    }
+  }
+}

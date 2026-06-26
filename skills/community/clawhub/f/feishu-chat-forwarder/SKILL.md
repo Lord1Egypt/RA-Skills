@@ -1,35 +1,18 @@
----
-name: "feishu-chat-forwarder"
-description: "Fetch recent messages from a Feishu group chat and forward them as a merged message to a specified user or chat."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-chat-forwarder"
-sourceUrl: "https://clawhub.ai/skills/feishu-chat-forwarder"
----
+# Chat Forwarder (chat-forwarder)
 
-# feishu-chat-forwarder
+A skill to fetch recent chat history from a group and send it as a "Merge Forward" (合并转发) message to a target user.
 
-> Fetch recent messages from a Feishu group chat and forward them as a merged message to a specified user or chat.
+## Tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-chat-forwarder`
-- **Source URL:** [https://clawhub.ai/skills/feishu-chat-forwarder](https://clawhub.ai/skills/feishu-chat-forwarder)
+### `node skills/chat-forwarder/index.js`
+Fetches and forwards messages.
 
-## Overview
+**Options:**
+- `--source <chat_id>`: Source Chat ID (e.g., `oc_xxx`).
+- `--target <open_id>`: Target User/Chat ID to receive the forward.
+- `--limit <number>`: Number of recent messages to forward (default: 20, max 100).
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/feishu-chat-forwarder
+node skills/chat-forwarder/index.js --source "oc_123..." --target "ou_456..." --limit 50
 ```

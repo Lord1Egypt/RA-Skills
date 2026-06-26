@@ -1,0 +1,37 @@
+{
+  "name": "xhs-smart-scheduler",
+  "displayName": "小红书智能排期发布器",
+  "description": "帮助内容创作者实现小红书内容的自动化排期和定时发布",
+  "version": "1.0.0",
+  "author": "liujian",
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "pricing": {
+    "model": "freemium",
+    "free": {
+      "description": "5篇/天，基础定时功能"
+    },
+    "paid": {
+      "price": 29,
+      "currency": "USD",
+      "period": "monthly",
+      "description": "20篇/天，智能排期，飞书通知"
+    }
+  },
+  "tags": [
+    "xiaohongshu",
+    "social-media",
+    "content-scheduler",
+    "automation",
+    "productivity"
+  ],
+  "homepage": "https://github.com/liujian/xhs-scheduler-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liujian/xhs-scheduler-skill"
+  },
+  "requirements": {
+    "mcpServers": ["xiaohongshu-mcp"],
+    "pythonPackages": ["requests", "pyyaml", "python-dateutil"]
+  }
+}

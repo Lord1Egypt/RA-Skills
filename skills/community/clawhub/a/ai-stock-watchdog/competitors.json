@@ -1,0 +1,162 @@
+{
+  "_comment": "Sector peers, conglomerate segment mapping, and ticker-to-sector index. Managed by AI stock watchdog skill.",
+  "sector_peers": {
+    "IT Services": ["TCS", "INFY", "HCLTECH", "WIPRO", "TECHM", "LTIM", "PERSISTENT", "COFORGE", "MPHASIS"],
+    "Private Banks": ["HDFCBANK", "ICICIBANK", "AXISBANK", "KOTAKBANK", "INDUSINDBK", "IDFCFIRSTB", "FEDERALBNK", "BANDHANBNK"],
+    "PSU Banks": ["SBIN", "BANKBARODA", "CANBK", "PNB", "UNIONBANK", "INDIANB", "BANKINDIA"],
+    "NBFC": ["BAJFINANCE", "BAJAJFINSV", "CHOLAFIN", "SHRIRAMFIN", "M&MFIN", "LICHSGFIN", "MANAPPURAM", "MUTHOOTFIN", "POONAWALLA"],
+    "Oil & Gas - Upstream": ["ONGC", "OIL"],
+    "Oil & Gas - Refining & Petchem": ["RELIANCE", "IOC", "BPCL", "HPCL", "MRPL", "CHENNPETRO"],
+    "Oil & Gas - Distribution": ["GAIL", "IGL", "MGL", "GUJGASLTD", "ATGL"],
+    "Auto OEM": ["MARUTI", "M&M", "TATAMOTORS", "BAJAJ-AUTO", "EICHERMOT", "HEROMOTOCO", "TVSMOTOR", "ASHOKLEY"],
+    "Auto Ancillaries": ["BOSCHLTD", "MOTHERSON", "BHARATFORG", "EXIDEIND", "AMARAJABAT", "SUNDRMFAST", "ENDURANCE"],
+    "Cement": ["ULTRACEMCO", "SHREECEM", "AMBUJACEM", "ACC", "DALBHARAT", "RAMCOCEM", "JKCEMENT", "BIRLACEMENTS"],
+    "FMCG": ["HINDUNILVR", "ITC", "NESTLEIND", "BRITANNIA", "DABUR", "MARICO", "GODREJCP", "TATACONSUM", "COLPAL", "EMAMILTD"],
+    "Pharma - Large Cap": ["SUNPHARMA", "DRREDDY", "CIPLA", "DIVISLAB", "LUPIN", "AUROPHARMA", "TORNTPHARM", "ZYDUSLIFE"],
+    "Pharma - Mid Cap": ["ALKEM", "IPCALAB", "GLENMARK", "BIOCON", "NATCOPHARM", "LAURUSLABS"],
+    "Metals - Steel": ["TATASTEEL", "JSWSTEEL", "SAIL", "JINDALSTEL", "NMDC"],
+    "Metals - Non-ferrous": ["HINDALCO", "VEDL", "NATIONALUM", "HINDCOPPER"],
+    "Power - Generation": ["NTPC", "POWERGRID", "TATAPOWER", "ADANIPOWER", "JSWENERGY", "NHPC"],
+    "Power - Renewable": ["ADANIGREEN", "TATAPOWER", "NHPC", "SJVN", "IREDA"],
+    "Telecom": ["BHARTIARTL", "RELIANCE", "IDEA", "TATACOMM"],
+    "Realty": ["DLF", "GODREJPROP", "OBEROIRLTY", "PRESTIGE", "BRIGADE", "MACROTECH", "PHOENIXLTD", "SOBHA"],
+    "Consumer Durables": ["TITAN", "HAVELLS", "VOLTAS", "CROMPTON", "WHIRLPOOL", "DIXON", "BAJAJELEC", "BLUESTARLT"],
+    "Chemicals": ["PIDILITIND", "SRF", "AARTIIND", "DEEPAKNTR", "NAVINFLUOR", "PIIND", "CLEAN", "ATUL"],
+    "Capital Goods": ["LT", "SIEMENS", "ABB", "BEL", "BHEL", "CUMMINSIND", "THERMAX", "KAYNES"],
+    "Defence": ["HAL", "BEL", "BDL", "MAZDOCK", "COCHINSHIP", "GRSE"],
+    "Insurance - Life": ["SBILIFE", "HDFCLIFE", "ICICIPRULI", "LICI", "MAXFIN"],
+    "Insurance - General": ["ICICIGI", "STARHEALTH", "NIACL"],
+    "Asset Management": ["HDFCAMC", "NAM-INDIA", "UTIAMC", "ABSLAMC", "ANGELONE"],
+    "Logistics": ["CONCOR", "BLUEDART", "DELHIVERY", "TCI", "MAHLOG", "ALLCARGO"],
+    "Hospitality": ["INDHOTEL", "EIHOTEL", "CHALET", "LEMONTREE"],
+    "Aviation": ["INDIGO", "SPICEJET", "AIRPORTAUTH"],
+    "Paints": ["ASIANPAINT", "BERGEPAINT", "KANSAINER", "AKZOINDIA", "INDIGOPNTS"],
+    "Retail": ["DMART", "TRENT", "SHOPERSTOP", "VMART", "RELIANCE"],
+    "Digital / Internet": ["ZOMATO", "PAYTM", "NYKAA", "POLICYBZR", "CARTRADE", "RELIANCE"],
+    "Conglomerate": ["RELIANCE", "ITC", "LT", "GRASIM", "ADANIENT", "TATACHEM", "GODREJIND"]
+  },
+  "conglomerate_segments": {
+    "RELIANCE": {
+      "segments": {
+        "O2C (Oil-to-Chemicals)": {
+          "description": "Refining (Jamnagar — world's largest single-site) + Petrochemicals (polymers, polyester, elastomers)",
+          "key_metrics": ["Singapore GRM", "petchem spreads (PE, PP, PVC)", "refining throughput", "crude-product spread"],
+          "peers_for_segment": ["IOC", "BPCL", "HPCL", "MRPL"],
+          "regulatory_watch": ["oil ministry pricing", "export duty on petroleum products", "windfall tax"]
+        },
+        "Digital Services (Jio)": {
+          "description": "Jio Platforms — telecom (JioMobile), broadband (JioFiber), digital apps ecosystem",
+          "key_metrics": ["subscriber count", "ARPU", "data per subscriber", "JioFiber adds", "churn rate"],
+          "peers_for_segment": ["BHARTIARTL", "IDEA"],
+          "regulatory_watch": ["TRAI tariff orders", "spectrum auction", "5G rollout mandates"]
+        },
+        "Retail": {
+          "description": "Reliance Retail — physical stores + digital commerce across grocery, fashion, electronics, pharma",
+          "key_metrics": ["store count", "revenue per sqft", "same-store sales growth", "digital commerce %", "footfall"],
+          "peers_for_segment": ["DMART", "TRENT", "SHOPERSTOP", "VMART"],
+          "regulatory_watch": ["FDI policy in retail", "ONDC platform"]
+        },
+        "Oil & Gas (E&P)": {
+          "description": "Upstream exploration — KG-D6 block gas production, CBM",
+          "key_metrics": ["KG-D6 gas production volume", "gas realization price", "APM gas pricing"],
+          "peers_for_segment": ["ONGC", "OIL"],
+          "regulatory_watch": ["APM gas price revision (semi-annual)", "gas marketing freedom"]
+        },
+        "New Energy": {
+          "description": "Solar (gigafactory), green hydrogen, battery storage, carbon fiber",
+          "key_metrics": ["capex commitment vs spend", "capacity commissioning timelines", "partnership announcements"],
+          "peers_for_segment": ["ADANIGREEN", "TATAPOWER"],
+          "regulatory_watch": ["PLI scheme for solar/battery", "green hydrogen policy"]
+        }
+      },
+      "sum_of_parts_note": "Reliance trades at a holding company discount/premium to the sum of segment values. Track SOTP vs CMP periodically."
+    },
+    "HDFCBANK": {
+      "segments": {
+        "Retail Banking": {
+          "description": "Retail loans (home, auto, personal, credit cards), CASA deposits, branch banking",
+          "key_metrics": ["retail loan growth %", "CASA ratio", "retail NPA", "credit card spends", "branch count"],
+          "peers_for_segment": ["ICICIBANK", "AXISBANK", "KOTAKBANK"]
+        },
+        "Wholesale Banking": {
+          "description": "Corporate loans, trade finance, cash management, investment banking",
+          "key_metrics": ["wholesale book growth", "corporate NPA", "large exposure concentration"],
+          "peers_for_segment": ["ICICIBANK", "AXISBANK", "SBIN"]
+        },
+        "Treasury": {
+          "description": "Investment portfolio (G-Secs, bonds), forex, derivatives trading",
+          "key_metrics": ["treasury income volatility", "modified duration of bond portfolio", "MTM gains/losses"],
+          "peers_for_segment": ["ICICIBANK", "SBIN", "KOTAKBANK"]
+        }
+      },
+      "merger_integration_note": "Post-HDFC Ltd merger (Jul 2023): track merged book integration, LDR (loan-to-deposit ratio) normalization from elevated levels, PSL compliance, branch conversion of HDFC Ltd offices, and synergy realization in operating costs. The merged entity has a significantly different balance sheet profile than standalone HDFC Bank."
+    },
+    "LT": {
+      "segments": {
+        "Infrastructure Projects": {
+          "description": "EPC across buildings, transportation, heavy civil, power, water",
+          "key_metrics": ["order inflow", "order book", "execution pace (revenue vs book)", "margin trend"],
+          "peers_for_segment": ["ENGINERSIN", "NBCC", "KEC"]
+        },
+        "IT & Technology Services": {
+          "description": "LTIMindtree + L&T Technology Services",
+          "key_metrics": ["constant currency growth", "deal TCV", "attrition", "margin"],
+          "peers_for_segment": ["TCS", "INFY", "HCLTECH"]
+        },
+        "Financial Services": {
+          "description": "L&T Finance (NBFC)",
+          "key_metrics": ["AUM growth", "NPA", "cost-to-income"],
+          "peers_for_segment": ["BAJFINANCE", "CHOLAFIN"]
+        }
+      }
+    },
+    "ITC": {
+      "segments": {
+        "Cigarettes": {
+          "description": "India's dominant cigarette manufacturer — Gold Flake, Classic, Navy Cut",
+          "key_metrics": ["volume growth", "realization per stick", "EBIT margin", "excise duty impact"],
+          "regulatory_watch": ["GST on cigarettes", "excise duty in Budget", "plain packaging regulations"]
+        },
+        "FMCG - Others": {
+          "description": "Aashirvaad, Sunfeast, Bingo, Yippee, Engage, Fiama, Savlon",
+          "key_metrics": ["revenue growth", "EBIT margin trend (from losses to profit)", "market share in key categories"],
+          "peers_for_segment": ["HINDUNILVR", "BRITANNIA", "DABUR"]
+        },
+        "Hotels": {
+          "description": "ITC Hotels (being demerged) — luxury to mid-market",
+          "key_metrics": ["RevPAR", "occupancy", "room additions"],
+          "peers_for_segment": ["INDHOTEL", "EIHOTEL", "CHALET"]
+        },
+        "Agri Business": {
+          "description": "Leaf tobacco, soya, wheat, spices — B2B commodity trading",
+          "key_metrics": ["revenue (volatile)", "margin (low but steady)"]
+        },
+        "Paperboards & Packaging": {
+          "description": "PSPB — paperboards, specialty papers, packaging",
+          "key_metrics": ["realization per tonne", "capacity utilization"]
+        }
+      }
+    }
+  },
+  "ticker_to_sector": {},
+  "sector_regulators": {
+    "Private Banks": ["RBI"],
+    "PSU Banks": ["RBI"],
+    "NBFC": ["RBI"],
+    "Insurance - Life": ["IRDAI"],
+    "Insurance - General": ["IRDAI"],
+    "Asset Management": ["SEBI"],
+    "Telecom": ["TRAI", "DoT"],
+    "Pharma - Large Cap": ["USFDA", "CDSCO", "DCGI"],
+    "Pharma - Mid Cap": ["USFDA", "CDSCO", "DCGI"],
+    "Oil & Gas - Upstream": ["DGH", "MoPNG"],
+    "Oil & Gas - Refining & Petchem": ["MoPNG"],
+    "Oil & Gas - Distribution": ["PNGRB"],
+    "Power - Generation": ["CERC", "CEA"],
+    "Power - Renewable": ["MNRE", "CERC"],
+    "Aviation": ["DGCA"],
+    "Realty": ["RERA (state-level)"],
+    "Metals - Steel": ["Ministry of Steel"],
+    "Defence": ["MoD", "DPP/DAP"]
+  }
+}

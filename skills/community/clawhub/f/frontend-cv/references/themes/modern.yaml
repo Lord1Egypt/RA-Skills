@@ -1,0 +1,59 @@
+meta:
+  variant: modern
+  display_name: RenderCV ModernCV
+
+fonts:
+  links:
+    - https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Noto+Serif+SC:wght@400;500;700&display=swap
+  body_stack: '"Source Serif 4","Noto Serif SC","Songti SC","STSong",serif'
+  heading_stack: '"Source Serif 4","Noto Serif SC","Songti SC","STSong",serif'
+  section_stack: '"Source Serif 4","Noto Serif SC","Songti SC","STSong",serif'
+
+colors:
+  name: "#00529c"
+  headline: "#556575"
+  section: "#00529c"
+  links: "#00529c"
+  text: "#2c2c2c"
+  muted: "#4a4a4a"
+  muted_soft: "#b8b0a9"
+  rule: "#00529c"
+  title: "#1f1f1f"
+  subtitle: "#444444"
+  bullet: "#1f1f1f"
+
+page:
+  top: "0.7in"
+  right: "0.7in"
+  bottom: "0.7in"
+  left: "0.7in"
+
+header:
+  align: left
+  show_icons: true
+  separator: ""
+  social_display: username
+  website_display: domain
+  name_size: "25pt"
+  name_weight: 400
+  headline_size: "10pt"
+  connection_size: "9.2pt"
+  gap: "0.54cm"
+
+section:
+  title_size: "17pt"
+  title_weight: 400
+  space_above: "0.55cm"
+
+entry:
+  layout: left-meta
+  meta_width: "3.35cm"
+  column_gap: "0.48cm"
+  gap: "0.42cm"
+  body_size: "9.8pt"
+  meta_size: "9pt"
+  bullet: "•"
+  bullet_indent: "0.2cm"
+  bullet_text_gap: "0.34cm"
+  highlights_top: "0.12cm"
+  bullet_gap: "0.08cm"

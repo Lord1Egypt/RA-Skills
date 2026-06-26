@@ -1,0 +1,107 @@
+name: LI-mvp-kanban-skill
+version: "0.0.2"
+description: MVP 看板系统 - 支持任务管理、泳道、批量操作和 AI 分析
+author: 北京老李
+license: MIT
+homepage: https://github.com/your-username/mvp-kanban
+
+# Docker 镜像依赖
+dependencies:
+  docker:
+    image: your-dockerhub-username/mvp-kanban:latest
+    tag: v3.0.0
+    ports:
+      - "9999:5000"
+    volumes:
+      - kanban-data:/app/data
+    environment:
+      - FLASK_ENV=production
+
+# MCP 配置
+mcp:
+  enabled: true
+  config: mcp.json
+  tools: 21
+  tool_categories:
+    - name: 任务管理
+      count: 7
+    - name: 泳道管理
+      count: 5
+    - name: 批量操作
+      count: 3
+    - name: AI 功能
+      count: 4
+    - name: 辅助功能
+      count: 2
+
+# 文档
+documentation:
+  - SKILL.md
+  - USAGE_METHODS.md
+  - API.md
+  - WEB_UI_GUIDE.md
+  - QUICK_TEST.md
+
+# 标签
+tags:
+  - kanban
+  - task-management
+  - project-management
+  - mcp
+  - ai
+  - devops
+  - productivity
+
+# 分类
+category: productivity
+
+# 兼容性
+compatibility:
+  openclaw: ">=1.0.0"
+  python: ">=3.12"
+  docker: ">=20.10"
+
+# 安装后钩子
+hooks:
+  post_install: |
+    echo "✅ MVP Kanban Skill 安装完成!"
+    echo "🌐 访问：http://localhost:9999"
+    echo "📖 文档：cat SKILL.md"
+
+# 卸载前钩子
+  pre_uninstall: |
+    echo "⚠️ 停止 Docker 容器..."
+    docker stop mvp-kanban || true
+    docker rm mvp-kanban || true
+
+# 配置项
+config:
+  port:
+    type: integer
+    default: 9999
+    description: Web 界面端口
+  data_volume:
+    type: string
+    default: kanban-data
+    description: 数据卷名称
+
+# 截图（可选）
+screenshots:
+  - url: https://example.com/screenshot1.png
+    description: Web 界面
+  - url: https://example.com/screenshot2.png
+    description: 看板视图
+
+# 更新日志
+changelog:
+  v3.0.0:
+    - 完整的增删改查功能
+    - Web 界面优化
+    - MCP 工具增加到 21 个
+    - AI 分析功能
+    - 向量搜索
+  v2.0.0:
+    - 泳道支持
+    - 拖拽交互
+  v1.0.0:
+    - 初始版本

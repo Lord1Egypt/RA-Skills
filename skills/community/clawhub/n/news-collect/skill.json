@@ -1,0 +1,9 @@
+{
+  "id": "news-collect",
+  "name": "News Collect",
+  "layer": "collect",
+  "executor": "news_collect_v1",
+  "input_kind": "collector_request_markdown",
+  "output_kind": "report_markdown",
+  "description": "Run a repo-local news scan via news-aggregator-skill and write a standardized report plus raw JSON into content-production/inbox/, including lightweight writing-angle decisions for recommended topics."
+}

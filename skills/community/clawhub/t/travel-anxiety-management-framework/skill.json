@@ -1,0 +1,20 @@
+{
+  "name": "Travel Anxiety Management Framework",
+  "slug": "travel-anxiety-management-framework",
+  "version": "1.0.0",
+  "description": "Systematic approach to managing travel anxiety",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel anxiety management framework",
+    "travel anxiety management framework"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

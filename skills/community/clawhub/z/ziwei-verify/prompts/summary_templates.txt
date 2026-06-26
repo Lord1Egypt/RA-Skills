@@ -1,0 +1,130 @@
+# 结果摘要模板
+
+## 校正成功摘要
+```
+【生时校正完成】
+原始时间：{original_birth_dt}
+校正时间：{corrected_birth_dt}
+偏移量：{shift_description}
+置信度提升：{original_confidence:.2f} → {new_confidence:.2f}
+高影响校验点：{original_high} → {new_high}
+
+关键变化：
+{changes}
+
+结果状态：✅ CALIBRATION_DONE
+```
+
+## 校正失败摘要
+```
+【生时校正未完成】
+原因：{failure_reason}
+
+评估详情：
+- 候选方案数：{total_candidates}
+- 最优置信度：{best_confidence:.3f}（阈值 ≥{threshold:.2f}）
+- 剩余高影响点：{best_high_impact}
+
+建议操作：
+{suggestions}
+
+结果状态：❌ LOW_CONFIDENCE
+```
+
+## 交互模式等待用户选择
+```
+【等待用户确认】
+会话ID：{session_id}
+
+已生成 {candidate_count} 个候选方案，请选择：
+
+{table}
+
+回复数字（0-2）确认方案，或回复 'skip' 跳过。
+```
+
+## 完整报告（Markdown）
+```markdown
+# 生时校正报告
+
+## 基本信息
+- 原始出生时间：`{original_birth_dt}`
+- 性别：{gender}
+- 评估时间：{timestamp}
+
+## 候选方案对比
+
+| 方案 | 时间偏移 | 置信度 | 高影响点 | 关键变化 |
+|------|---------|--------|----------|----------|
+| 0 | {shift0_desc} | {conf0:.3f} | {high0} | {changes0} |
+| 1 | {shift1_desc} | {conf1:.3f} | {high1} | {changes1} |
+| 2 | {shift2_desc} | {conf2:.3f} | {high2} | {changes2} |
+
+## 推荐方案
+**{best_index}** - {best_shift_desc}
+- 置信度：{best_conf:.3f}
+- 剩余问题：{best_high_impact} 个高影响点
+
+## 结论
+{conclusion}
+```
+
+## 飞书卡片消息（Card Message）
+```json
+{
+  "msg_type": "interactive",
+  "card": {
+    "config": {"wide_screen_mode": true},
+    "header": {
+      "title": {"tag": "plain_text", "content": "🔮 生时校正候选方案"},
+      "template": "blue"
+    },
+    "elements": [
+      {
+        "tag": "div",
+        "text": {
+          "content": "原始时间：{original_birth_dt}\n已生成 {count} 个候选方案，请选择：",
+          "tag": "lark_md"
+        }
+      },
+      {
+        "tag": "action",
+        "actions": [
+          {
+            "tag": "button",
+            "text": {"tag": "plain_text", "content": "方案 0：{shift0_desc}"},
+            "type": "default",
+            "value": {"session_id": "{session_id}", "choice": "0"}
+          },
+          {
+            "tag": "button",
+            "text": {"tag": "plain_text", "content": "方案 1：{shift1_desc}"},
+            "type": "default",
+            "value": {"session_id": "{session_id}", "choice": "1"}
+          },
+          {
+            "tag": "button",
+            "text": {"tag": "plain_text", "content": "方案 2：{shift2_desc}"},
+            "type": "default",
+            "value": {"session_id": "{session_id}", "choice": "2"}
+          }
+        ]
+      },
+      {
+        "tag": "note",
+        "elements": [
+          {
+            "tag": "lark_md",
+            "content": "置信度：{conf0:.3f} / {conf1:.3f} / {conf2:.3f}\n高影响点：{high0} / {high1} / {high2}"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## 语音播报提示（TTS）
+```
+生时校正已完成。系统为您推荐{shift_description}方案，置信度{confidence:.2f}。请查看详细报告并确认。
+```

@@ -1,0 +1,4 @@
+version: 1
+display_name: Hierarchical Task Spawn
+short_description: Split medium tasks into fine tasks and complex tasks into nested spawned workstreams.
+default_prompt: Use this skill when a single spawned task is still too broad and should be decomposed into a shallow task tree.

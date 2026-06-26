@@ -1,35 +1,373 @@
 ---
-name: "Technical Eval"
+name: technical-eval
 description: "在市场全貌清楚之后，把需要对比的技术方案并排分析，输出结构化对比和推荐结论。工作流包含：技术问题定义、全景扫描、趋势雷达、深度评估、PoC验证、风险控制、选型决策、报告生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/technical-eval"
-sourceUrl: "https://clawhub.ai/skills/technical-eval"
+homepage: https://github.com/vincentlau2046-sudo/technical-eval
+metadata: {"clawdbot":{"emoji":"🔧"}}
 ---
 
-# Technical Eval
+# Technical Evaluation
 
-> 在市场全貌清楚之后，把需要对比的技术方案并排分析，输出结构化对比和推荐结论。工作流包含：技术问题定义、全景扫描、趋势雷达、深度评估、PoC验证、风险控制、选型决策、报告生成。
+专业的技术选型评估工作流，从需求定义到实施路径的完整决策支持。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/technical-eval`
-- **Source URL:** [https://clawhub.ai/skills/technical-eval](https://clawhub.ai/skills/technical-eval)
+## 工作流步骤（详细规范）
 
-## Overview
+### 步骤1：技术问题/选型需求定义
 
+**方法论**：
+- 使用 KANO 模型区分基本需求、期望需求和兴奋需求
+- 应用 SMART 原则确保需求可衡量
+- 采用 MoSCoW 优先级排序法（Must have, Should have, Could have, Won't have）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/technical-eval
+**实施步骤**：
+1. 与利益相关者访谈，收集业务场景和技术约束
+2. 应用 KANO 模型对需求进行分类和优先级排序
+3. 定义量化成功标准（性能指标、成本阈值、时间要求等）
+4. 文档化硬性约束条件（合规、安全、集成要求等）
+5. 验证需求完整性并获得关键干系人确认
+
+**量化要求**：
+- 必须包含至少3个可量化的成功标准（如：响应时间≤100ms，成本≤$50k/年，部署时间≤2周）
+- 需求优先级必须明确标注（P0/P1/P2 或 Must/Should/Could）
+- 置信区间：需求收集阶段的置信度≥80%（基于干系人覆盖度）
+- 必须明确标注无法量化的内容为"定性分析"
+
+### 步骤2：技术全景扫描 → 候选清单 + 对比矩阵
+
+**方法论**：
+- 应用技术雷达扫描框架（ThoughtWorks 技术雷达模型）
+- 使用多源数据融合策略（官方文档+社区反馈+基准测试）
+- 实施候选过滤算法（基于硬性约束的排除规则）
+
+**实施步骤**：
+1. 配置 Tavily API 域名白名单，集成技术专业数据源
+2. 执行多关键词搜索（技术名称+版本+应用场景+性能指标）
+3. 应用硬性约束过滤器，排除不符合基本要求的方案
+4. 构建初步对比矩阵，包含核心功能、性能、成本、生态等维度
+5. 验证候选清单的完整性（覆盖主流、新兴、替代方案）
+
+**量化要求**：
+- 候选清单必须包含5-10个技术方案
+- 对比矩阵必须包含至少8个量化维度
+- 数据源必须包含以下类别：MLPerf/官方基准测试、GitHub 活跃度、Stack Overflow 讨论量、技术招聘需求、企业技术博客
+- 每个数据点必须标注来源URL和时间戳
+- 置信区间：数据完整性≥90%，时效性≤6个月
+
+### 步骤3：趋势雷达 → 技术成熟度和风险评级
+
+**方法论**：
+- 应用 Gartner 技术成熟度曲线模型
+- 使用四象限分类法（Adopt/Trail/Assets/Hold）
+- 实施多维度成熟度评估（社区活跃度、企业采用度、文档完善度、安全记录）
+
+**实施步骤**：
+1. 收集各候选技术的社区指标（GitHub stars/forks/contributors, commits frequency）
+2. 分析企业采用情况（知名用户案例、招聘需求趋势、技术博客提及度）
+3. 评估技术文档和学习资源完善度
+4. 检查安全漏洞历史和维护响应速度
+5. 应用四象限分类模型，生成技术成熟度雷达图
+
+**量化要求**：
+- 成熟度评分必须基于5个维度：社区活跃度(0-100)、企业采用度(0-100)、文档质量(0-100)、安全记录(0-100)、维护响应(0-100)
+- 风险评级必须包含概率(1-5)和影响(1-5)两个维度
+- 四象限分类必须有明确的阈值标准：
+  - Adopt: 成熟度总分≥75且风险评级≤2
+  - Trail: 成熟度总分50-74且风险评级≤3  
+  - Assets: 成熟度总分≥60但技术栈已存在
+  - Hold: 成熟度总分<50或风险评级≥4
+- 置信区间：成熟度评估置信度≥85%
+
+### 步骤4：方案深度评估 → 加权评分 + SWOT 分析
+
+**方法论**：
+- 应用 AHP 层次分析法确定评估维度权重
+- 使用加权评分模型进行量化比较
+- 结合 SWOT 分析框架识别战略优势和风险
+
+**实施步骤**：
+1. 基于步骤1的需求优先级，使用 AHP 法计算各评估维度权重
+2. 收集各候选方案在所有维度的量化数据
+3. 应用加权评分公式：总分 = Σ(维度得分 × 权重)
+4. 为每个候选方案生成详细的 SWOT 矩阵
+5. 进行敏感性分析，验证评分结果的稳定性
+
+**量化要求**：
+- 评估维度权重总和必须=1.0，且基于AHP一致性检验(CR<0.1)
+- 每个维度的评分必须有具体数值(1-10分制)和评分依据
+- SWOT 分析中必须标注哪些是量化事实，哪些是定性分析
+- 加权评分必须包含置信区间(±5%)
+- 敏感性分析必须测试权重变化±20%对排名的影响
+
+### 步骤5：PoC 验证计划 → 验证场景 + Go/No-Go 决策标准
+
+**方法论**：
+- 应用实验设计(DOE)原则设计验证场景
+- 使用 SMART 原则定义 Go/No-Go 标准
+- 实施资源估算和风险管理
+
+**实施步骤**：
+1. 基于排名前3的候选方案，识别关键验证点
+2. 设计具体的 PoC 场景，覆盖核心业务需求和边界条件
+3. 定义量化的成功标准和 Go/No-Go 决策阈值
+4. 估算所需资源（人力、时间、硬件、软件许可）
+5. 制定详细的执行计划和里程碑
+
+**量化要求**：
+- PoC 场景必须包含至少3个核心验证点和2个边界条件测试
+- Go/No-Go 标准必须是可量化的阈值（如：性能提升≥20%，错误率≤0.1%，部署时间≤1天）
+- 资源估算必须包含具体数值：人力(人天)、时间(天)、成本(美元)
+- 必须定义明确的决策时间点和负责人
+- 置信区间：资源估算误差范围±15%
+
+### 步骤6：风险控制矩阵 → 概率×影响 + 缓解策略
+
+**方法论**：
+- 应用 FMEA(失效模式与影响分析)框架
+- 使用风险优先级数(RPN)=概率×影响×检测难度
+- 实施分层缓解策略（规避、转移、减轻、接受）
+
+**实施步骤**：
+1. 识别实施过程中的潜在风险（技术、人员、时间、成本、集成等）
+2. 评估每个风险的概率(1-5)、影响(1-5)和检测难度(1-5)
+3. 计算风险优先级数(RPN)，确定重点关注风险
+4. 为高优先级风险制定具体的缓解策略和应急预案
+5. 定义风险监控指标和触发条件
+
+**量化要求**：
+- 风险矩阵必须包含至少10个具体风险项
+- RPN 阈值：高风险(RPN≥12)、中风险(6≤RPN<12)、低风险(RPN<6)
+- 缓解策略必须包含具体行动项、负责人、完成时间
+- 监控指标必须是可量化的（如：进度偏差>10%、成本超支>15%）
+- 必须包含应急预算(总预算的10-20%)
+
+### 步骤7：选型决策 → 推荐方案 + 实施路径
+
+**方法论**：
+- 应用决策树分析法综合所有评估结果
+- 使用项目管理方法论制定实施路径
+- 实施 ROI(投资回报率)分析验证决策合理性
+
+**实施步骤**：
+1. 综合前6个步骤的结果，形成最终推荐方案
+2. 制定详细的实施路径，包括阶段划分、里程碑、资源分配
+3. 计算预期收益和投资回报率(ROI)
+4. 定义成功度量指标和回顾机制
+5. 获得关键干系人对决策的正式确认
+
+**量化要求**：
+- 推荐理由必须基于量化数据，引用具体评分和排名
+- 实施路径必须包含具体时间表（开始/结束日期）、里程碑、资源需求
+- ROI 计算必须包含具体数值：预期收益、投资成本、回收期
+- 成功指标必须是可量化的（如：性能提升X%、成本降低Y%、用户满意度Z分）
+- 置信区间：ROI 预测置信度≥80%
+
+### 步骤8：选型决策报告
+
+**方法论**：
+- 应用金字塔原理构建报告结构
+- 使用数据可视化最佳实践呈现关键洞察
+- 实施执行摘要和详细附录的分层信息架构
+
+**实施步骤**：
+1. 整合所有分析结果，按照金字塔原理组织内容
+2. 创建执行摘要，突出3-5个关键洞察和推荐
+3. 生成详细的数据附录和分析过程文档
+4. 调用 ppt-generator 技能创建可视化演示文稿
+5. 进行报告质量检查和一致性验证
+
+**量化要求**：
+- 执行摘要必须包含3-5个关键洞察，每个都有量化支撑
+- 报告必须包含完整的数据源列表，每个数据点都有来源和时间戳
+- 可视化图表必须遵循数据可视化最佳实践（清晰、准确、无误导）
+- 必须通过一致性检查：所有步骤的结论逻辑一致，无矛盾
+- 报告完整性：必须包含所有8个步骤的输出，缺一不可
+
+## 数据源增强配置
+
+### Tavily API 域名白名单配置
+为确保技术评估的专业性和准确性，系统配置以下域名白名单：
+
 ```
+# 技术基准测试
+mlperf.org
+benchmarkai.com
+paperswithcode.com
+
+# 官方文档和基准
+official documentation domains (*.apache.org, *.io, *.org, *.com)
+
+# 开发者社区
+github.com
+stackoverflow.com
+gitlab.com
+bitbucket.org
+
+# 技术招聘
+linkedin.com/jobs
+indeed.com
+glassdoor.com
+levels.fyi
+
+# 企业技术博客
+engineering blogs (*.engineering.*, tech.*.*)
+medium.com
+dev.to
+hackernoon.com
+
+# 行业分析
+gartner.com
+forrester.com
+idc.com
+techcrunch.com
+wired.com
+```
+
+### 数据源优先级
+1. **一级数据源**：官方基准测试、MLPerf、GitHub 官方仓库
+2. **二级数据源**：Stack Overflow、技术招聘数据、企业官方博客
+3. **三级数据源**：社区博客、论坛讨论、第三方评测
+
+## 量化强化原则
+
+### 量化优先级
+1. **强制量化**：性能指标、成本数据、时间估算、资源需求
+2. **半量化**：成熟度评分、风险评级、权重分配（必须有数值范围）
+3. **定性标注**：用户体验、团队偏好、战略契合度（必须明确标注"定性分析"）
+
+### 评分标准
+- **性能评分**：基于基准测试结果，10分制（10=最优，1=最差）
+- **成本评分**：基于TCO计算，10分制（10=成本最低，1=成本最高）
+- **成熟度评分**：基于5维度综合，100分制（≥75=成熟，50-74=成长，<50=早期）
+- **风险评分**：概率×影响，25分制（≥12=高风险，6-11=中风险，<6=低风险）
+
+### 置信区间要求
+- 数据收集阶段：≥80%
+- 成熟度评估：≥85%  
+- 资源估算：±15%误差范围
+- ROI预测：≥80%
+- 最终决策：≥90%
+
+## 行业专业化模板
+
+系统提供5个技术领域专业化模板，每个模板定义特定的评估维度和权重：
+
+### 模板目录结构
+```
+skills/technical-eval/templates/
+├── ai-infra.json          # AI基础设施模板
+├── ai-software.json       # AI软件模板  
+├── cloud-native.json      # 云原生模板
+├── database.json          # 数据库模板
+└── frontend-framework.json # 前端框架模板
+```
+
+### 模板使用规则
+1. **自动匹配**：根据用户输入的技术领域关键词自动选择对应模板
+2. **权重调整**：模板提供默认权重，可根据具体需求进行微调（±20%）
+3. **维度扩展**：可在模板基础上添加领域特定的评估维度
+4. **兼容性保证**：所有模板保持相同的JSON结构，确保API兼容性
+
+## 输出文件结构
+
+所有分析结果自动保存到：
+
+```
+~/.openclaw/workspace/tech-insight/technical-eval/{主题}/
+├── evaluation-report.md        # 完整选型决策报告
+├── presentation.html           # 可视化演示文稿（乔布斯风格）
+├── data/
+│   ├── requirements.md        # 需求规格说明书
+│   ├── candidate-matrix.csv   # 候选清单对比矩阵
+│   ├── maturity-radar.json    # 成熟度雷达数据
+│   ├── weighted-scores.csv    # 加权评分数据
+│   ├── swot-analysis.json     # SWOT 分析数据
+│   └── poc-plan.md           # PoC 验证计划
+├── risk-matrix.md             # 风险控制矩阵
+└── sources.md                 # 数据源和参考文献
+```
+
+**示例**：
+- AI 推理框架评估 → `tech-insight/technical-eval/ai-inference-frameworks/`
+- 云原生数据库对比 → `tech-insight/technical-eval/cloud-native-databases/`
+
+## 使用示例
+
+```
+用户: 评估 AI 推理框架（TensorRT vs ONNX Runtime vs TorchServe）
+用户: 对比云原生数据库方案
+用户: 选择前端框架（React vs Vue vs Svelte）
+用户: 评估容器编排工具
+用户: 技术选型：消息队列系统
+```
+
+## 自动执行流程（固化配置）
+
+当触发技术评估时，系统会：
+
+1. **设置标准化环境变量**
+   ```bash
+   export WORKSPACE_DIR="/home/Vincent/.openclaw/workspace"
+   export TECH_INSIGHT_DIR="$WORKSPACE_DIR/tech-insight"
+   ```
+
+2. **创建标准化输出目录（绝对路径）**
+   ```bash
+   EVAL_TOPIC="用户指定的评估主题"
+   OUTPUT_DIR="$TECH_INSIGHT_DIR/technical-eval/$EVAL_TOPIC"
+   mkdir -p "$OUTPUT_DIR"
+   mkdir -p "$OUTPUT_DIR/data"
+   
+   # 强制验证目录存在
+   if [ ! -d "$OUTPUT_DIR" ]; then
+       echo "Error: Failed to create output directory: $OUTPUT_DIR"
+       exit 1
+   fi
+   ```
+
+3. **执行完整八步工作流**
+   - 并行收集多源数据（Tavily API + GitHub + Stack Overflow）
+   - 应用专业评估框架和四象限分类
+   - 生成量化洞察和风险矩阵
+   - 严格按照量化要求执行每个步骤
+
+4. **保存结构化输出并自动生成演示文稿**
+   ```bash
+   # 保存完整报告和数据文件
+   write "$OUTPUT_DIR/evaluation-report.md"
+   write "$OUTPUT_DIR/data/*.csv"
+   
+   # 记录数据源
+   write "$OUTPUT_DIR/sources.md"
+   
+   # 强制调用 ppt-generator 技能生成乔布斯风演示文稿
+   # 基于 evaluation-report.md 内容生成 presentation.html
+   invoke_ppt_generator "$OUTPUT_DIR/evaluation-report.md" "$OUTPUT_DIR/presentation.html"
+   ```
+
+5. **流程完整性验证**
+   ```bash
+   # 必需文件检查
+   required_files=("evaluation-report.md" "presentation.html")
+   for file in "${required_files[@]}"; do
+       if [ ! -f "$OUTPUT_DIR/$file" ]; then
+           echo "Error: Missing required file: $OUTPUT_DIR/$file"
+           exit 1
+       fi
+   done
+   echo "✅ All required files generated successfully"
+   ```
+
+6. **返回结果摘要**
+   - 在对话中显示关键洞察（3-5个要点）
+   - 提供完整文件路径
+   - **确保所有必需文件都已生成**
+
+## 质量保证
+
+- **目录结构固化**: 严格遵循 `tech-insight/technical-eval/{主题}/` 路径
+- **流程固化**: 必须调用 ppt-generator 生成演示文稿
+- **数据验证**: 交叉验证多个数据源确保准确性
+- **分析一致性**: 确保各步骤结论逻辑一致
+- **引用完整性**: 所有数据点都有明确来源和时间戳
+- **可复现性**: 相同输入产生相同输出，支持审计
+- **实用性**: 所有输出都面向实际决策，避免纯理论分析
+- **量化强制**: 所有评估步骤优先量化，无法量化的内容明确标注"定性分析"

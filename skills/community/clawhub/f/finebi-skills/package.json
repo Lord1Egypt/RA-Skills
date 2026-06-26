@@ -1,0 +1,31 @@
+{
+  "name": "finebi-skills",
+  "version": "0.2.33",
+  "description": "Skill markdown assets for FineBI OpenClaw-style workflows.",
+  "files": [
+    "SKILL.md",
+    "agents",
+    "skills",
+    "references",
+    "README.md"
+  ],
+  "keywords": [
+    "finebi",
+    "skills",
+    "openclaw",
+    "prompt-assets"
+  ],
+  "author": "zsmj1994",
+  "license": "ISC",
+  "scripts": {
+    "pack:check": "pnpm pack",
+    "clawhub:whoami": "npx clawhub whoami",
+    "clawhub:inspect": "npx clawhub inspect finebi-skills",
+    "clawhub:publish:dry-run": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/clawhub-publish.ps1 --dry-run",
+    "clawhub:publish": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/clawhub-publish.ps1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

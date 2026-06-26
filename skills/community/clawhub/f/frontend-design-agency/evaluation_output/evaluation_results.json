@@ -1,0 +1,412 @@
+{
+  "evaluation_metadata": {
+    "skill_name": "frontend-design-agency",
+    "evaluation_date": "2026-03-22",
+    "evaluator": "Claude Judge",
+    "model": "FiSi-Adaptiert-Frontend",
+    "dimensions": ["accuracy", "practical", "exam_ready", "assets", "references"]
+  },
+  "results": [
+    {
+      "category": "design_thinking",
+      "category_name": "Design Thinking & Produktverständnis",
+      "scores": {
+        "accuracy": 9,
+        "practical": 9,
+        "exam_ready": 10,
+        "assets": 8,
+        "references": 8
+      },
+      "average": 8.8,
+      "strengths": [
+        "Ausgezeichnete Verhaltensregeln (10 Punkte) zur Produktanalyse",
+        "Klare Anforderungen an Eingaben (Produkttyp, Nutzerrolle, Szenario)",
+        "Definition of Done mit 10 Checkpunkten",
+        "Explizite Regel: 'Baue niemals einfach direkt eine UI'"
+      ],
+      "weaknesses": [
+        "Kein explizites Persona-Template",
+        "Keine konkreten Beispiele für Nutzerforschung"
+      ],
+      "missing_assets": [
+        "user-persona-template.md",
+        "product-requirements-checklist.md"
+      ],
+      "recommendations": [
+        "Erstelle ein User-Persona-Template mit typischen B2B/B2C-Rollen",
+        "Füge Beispiele für typische Produkttypen und deren Nutzeraufgaben hinzu"
+      ]
+    },
+    {
+      "category": "visual_direction",
+      "category_name": "Visuelle Richtung & Gestalterische These",
+      "scores": {
+        "accuracy": 10,
+        "practical": 10,
+        "exam_ready": 10,
+        "assets": 9,
+        "references": 9
+      },
+      "average": 9.6,
+      "strengths": [
+        "Visual Direction Canvas mit 10 umfassenden Punkten",
+        "Format für Gestalterische These mit klarem Muster",
+        "Konkrete Stilrichtungs-Beispiele (editorial, premium, technisch, warm)",
+        "Anti-Generic Check integriert"
+      ],
+      "weaknesses": [
+        "Keine visuelle Moodboard-Vorlage",
+        "Fehlende Beispiele für unterschiedliche Branchen"
+      ],
+      "missing_assets": [
+        "moodboard-template.md",
+        "style-direction-examples.md"
+      ],
+      "recommendations": [
+        "Erstelle eine Moodboard-Vorlage mit Bildplatzierungen",
+        "Sammle 3-5 vollständige Beispiele für verschiedene Produkttypen"
+      ]
+    },
+    {
+      "category": "color_tokens",
+      "category_name": "Farbkonzept & Design Tokens",
+      "scores": {
+        "accuracy": 9,
+        "practical": 9,
+        "exam_ready": 9,
+        "assets": 7,
+        "references": 8
+      },
+      "average": 8.4,
+      "strengths": [
+        "Design System Rules: Farbrollen statt Einzelwerte",
+        "Visual Direction Canvas: 11 Farbrollen definiert",
+        "Klare Unterscheidung Canvas/Surface/Elevated",
+        "Tokens-first Ansatz explizit gefordert"
+      ],
+      "weaknesses": [
+        "Keine konkreten Farbpalette-Beispiele",
+        "Fehlendes Token-Template für CSS/Tailwind",
+        "Keine Kontrast-Prüf-Anweisungen"
+      ],
+      "missing_assets": [
+        "color-palette-examples.md",
+        "tokens-css-template.css",
+        "contrast-check-guide.md"
+      ],
+      "recommendations": [
+        "Erstelle 3-5 vollständige Farbpalette-Beispiele (Dark/Light)",
+        "Füge ein CSS-Token-Template mit CSS-Variablen hinzu",
+        "Integriere WCAG-Kontrast-Anforderungen"
+      ]
+    },
+    {
+      "category": "typography",
+      "category_name": "Typografie & Hierarchy",
+      "scores": {
+        "accuracy": 9,
+        "practical": 8,
+        "exam_ready": 9,
+        "assets": 6,
+        "references": 7
+      },
+      "average": 7.8,
+      "strengths": [
+        "Design System Rules: Mindest-Ebenen Display-H1-H2-H3-Body-Small-Label-Mono",
+        "Jede Ebene braucht Größe, Gewicht, Laufweite, Zeilenhöhe",
+        "Typografie-Hierarchie in Visual Direction Canvas",
+        "Klarer Schriftcharakter in Stilrichtung"
+      ],
+      "weaknesses": [
+        "Keine konkreten Schriftarten-Empfehlungen",
+        "Fehlendes Typografie-Scale-Template",
+        "Keine Beispiele für gute/böse Schrift-Paarungen"
+      ],
+      "missing_assets": [
+        "typography-scale-template.md",
+        "font-pairing-examples.md",
+        "type-system-checklist.md"
+      ],
+      "recommendations": [
+        "Erstelle ein Typografie-Scale-Template mit konkreten px/rem-Werten",
+        "Füge 5-10 empfohlene Schriftpaarungen für verschiedene Stile hinzu",
+        "Erstelle eine visuelle Typografie-Referenz"
+      ]
+    },
+    {
+      "category": "layout",
+      "category_name": "Layout, Raum & Raster",
+      "scores": {
+        "accuracy": 9,
+        "practical": 9,
+        "exam_ready": 9,
+        "assets": 8,
+        "references": 8
+      },
+      "average": 8.6,
+      "strengths": [
+        "Spacing-Skala 4-8-12-16-24-32-48-64 in Design System Rules",
+        "Raum und Raster im Visual Direction Canvas",
+        "Content-Breite, Grid-System, vertikale Rhythmik definiert",
+        "Anti-Kartenfriedhof Regel"
+      ],
+      "weaknesses": [
+        "Keine konkreten Grid-System-Beispiele (12-Spalten, etc.)",
+        "Fehlende Layout-Vorlagen für häufige Patterns",
+        "Keine Breakpoint-Werte definiert"
+      ],
+      "missing_assets": [
+        "grid-system-template.md",
+        "layout-patterns-library.md",
+        "breakpoint-definition.md"
+      ],
+      "recommendations": [
+        "Erstelle ein 12-Spalten-Grid-Template mit Tailwind-Implementierung",
+        "Dokumentiere 5-8 häufige Layout-Patterns (Sidebar, Split, etc.)"
+      ]
+    },
+    {
+      "category": "motion",
+      "category_name": "Motion & Animation",
+      "scores": {
+        "accuracy": 8,
+        "practical": 7,
+        "exam_ready": 8,
+        "assets": 5,
+        "references": 6
+      },
+      "average": 6.8,
+      "strengths": [
+        "Motion-Prinzipien im Visual Direction Canvas",
+        "Trennung 'Was darf animiert werden / Was bleibt statisch'",
+        "Zustandswechsel sichtbar machen",
+        "Focus-States in Design System Rules erwähnt"
+      ],
+      "weaknesses": [
+        "Sehr oberflächlich - nur 4 Fragen im Canvas",
+        "Keine konkreten Timing-Werte (ms, easing-functions)",
+        "Fehlende Beispiele für Hover/Focus-Animationen",
+        "Kein Motion-System oder -Tokens"
+      ],
+      "missing_assets": [
+        "motion-system-guide.md",
+        "animation-timing-tokens.md",
+        "micro-interactions-library.md",
+        "easing-functions-reference.md"
+      ],
+      "recommendations": [
+        "Erstelle ein Motion-System mit Timing-Token (fast: 150ms, normal: 300ms, slow: 500ms)",
+        "Dokumentiere Standard-Easing-Funktionen",
+        "Füge 5-10 Micro-Interaction-Beispiele hinzu"
+      ]
+    },
+    {
+      "category": "components",
+      "category_name": "Komponenten-System",
+      "scores": {
+        "accuracy": 10,
+        "practical": 9,
+        "exam_ready": 10,
+        "assets": 8,
+        "references": 9
+      },
+      "average": 9.2,
+      "strengths": [
+        "Umfassende Komponentenregeln im Visual Direction Canvas",
+        "Zustandsmodell: default, hover, focus, active, disabled, loading, error, empty",
+        "Typische Kandidaten: Page Header, KPI Block, Filter Bar, Data Table, Empty State, Status Badge",
+        "shadcn/ui als Startpunkt, nicht Endzustand"
+      ],
+      "weaknesses": [
+        "Keine konkreten Code-Beispiele für Komponenten",
+        "Fehlende Prop-Interface-Definitionen",
+        "Keine Storybook-Dokumentation erwähnt"
+      ],
+      "missing_assets": [
+        "component-template.tsx",
+        "component-checklist.md",
+        "common-patterns-library.md"
+      ],
+      "recommendations": [
+        "Erstelle ein TypeScript-Component-Template mit Props-Interface",
+        "Füge 3-5 vollständige Komponenten-Beispiele (Button, Card, Table) hinzu"
+      ]
+    },
+    {
+      "category": "responsive",
+      "category_name": "Responsive Design",
+      "scores": {
+        "accuracy": 9,
+        "practical": 8,
+        "exam_ready": 9,
+        "assets": 7,
+        "references": 7
+      },
+      "average": 8.0,
+      "strengths": [
+        "Design System Rules: Responsives Verhalten mit Umbruchslogik",
+        "Klare Fragen: Was wird gestapelt? Was wird gekürzt?",
+        "Mobile-First erwähnt in Quality Gate",
+        "Breakpoint-Entscheidungen in System-Qualität"
+      ],
+      "weaknesses": [
+        "Keine konkreten Breakpoint-Werte (sm, md, lg, xl)",
+        "Fehlende Pattern-Library für mobile Umbrüche",
+        "Keine Touch-Target-Größen-Anforderungen"
+      ],
+      "missing_assets": [
+        "breakpoint-definition.md",
+        "responsive-patterns-library.md",
+        "mobile-first-checklist.md"
+      ],
+      "recommendations": [
+        "Definiere konkrete Breakpoints (640/768/1024/1280px)",
+        "Erstelle Pattern-Library für mobile Umbrüche (Table → Cards, etc.)"
+      ]
+    },
+    {
+      "category": "accessibility",
+      "category_name": "Accessibility & UX",
+      "scores": {
+        "accuracy": 8,
+        "practical": 8,
+        "exam_ready": 8,
+        "assets": 6,
+        "references": 7
+      },
+      "average": 7.4,
+      "strengths": [
+        "Design System Rules: Accessibility mit Pflichtkriterien",
+        "Semantische Struktur, Tastaturbedienbarkeit, Fokuszustände",
+        "Labels statt nur Placeholder",
+        "ARIA-Attribute bei komplexen Controls erwähnt"
+      ],
+      "weaknesses": [
+        "Keine WCAG-Referenz oder Konkretisierung (AA vs AAA)",
+        "Fehlende Checkliste für Accessibility-Review",
+        "Keine Screenreader-Test-Anweisungen",
+        "Kontrast-Prüfung nicht detailliert"
+      ],
+      "missing_assets": [
+        "accessibility-checklist.md",
+        "wcag-compliance-guide.md",
+        "a11y-testing-guide.md",
+        "focus-states-template.md"
+      ],
+      "recommendations": [
+        "Erstelle eine WCAG-2.1-AA-Checkliste",
+        "Füge Screenreader-Test-Anleitung hinzu",
+        "Definiere minimale Touch-Target-Größen (44px)"
+      ]
+    },
+    {
+      "category": "anti_generic",
+      "category_name": "Anti-Generic Check & Qualitätssicherung",
+      "scores": {
+        "accuracy": 10,
+        "practical": 10,
+        "exam_ready": 10,
+        "assets": 9,
+        "references": 9
+      },
+      "average": 9.6,
+      "strengths": [
+        "Hervorragendes Quality Gate mit 7 Prüfbereichen",
+        "Expliziter Anti-Generic Check im Canvas",
+        "Konkrete Verbote: KI-Einheitsbrei, Kartenfriedhof, übermäßige Gradients",
+        "Definition of Done mit 10 prüfbaren Punkten",
+        "Abschlussfrage: 'Wenn diese UI auf der Website eines teuren SaaS live wäre...'"
+      ],
+      "weaknesses": [
+        "Keine automatisierten Checks oder Tools erwähnt",
+        "Fehlende visuelle Beispiele für 'Generic' vs 'Distinctive'"
+      ],
+      "missing_assets": [
+        "generic-vs-distinctive-examples.md",
+        "quality-check-script.md"
+      ],
+      "recommendations": [
+        "Erstelle visuelle Beispiele: Guter vs Generischer Stil",
+        "Füge Lighthouse/axe-Core Integration hinzu"
+      ]
+    }
+  ],
+  "summary": {
+    "total_categories": 10,
+    "average_overall": 8.42,
+    "categories_above_8": 7,
+    "categories_below_7": 1,
+    "categories_needing_attention": [
+      {
+        "category": "motion",
+        "score": 6.8,
+        "priority": "high",
+        "issue": "Zu oberflächlich, fehlende konkrete Werte und Beispiele"
+      },
+      {
+        "category": "typography",
+        "score": 7.8,
+        "priority": "medium",
+        "issue": "Fehlende konkrete Schriftarten und Scale-Templates"
+      },
+      {
+        "category": "accessibility",
+        "score": 7.4,
+        "priority": "medium",
+        "issue": "Keine WCAG-Details, fehlende Checklisten"
+      }
+    ],
+    "strongest_categories": [
+      {
+        "category": "visual_direction",
+        "score": 9.6
+      },
+      {
+        "category": "anti_generic",
+        "score": 9.6
+      }
+    ],
+    "weakest_categories": [
+      {
+        "category": "motion",
+        "score": 6.8
+      }
+    ]
+  },
+  "total_missing_assets": [
+    "user-persona-template.md",
+    "product-requirements-checklist.md",
+    "moodboard-template.md",
+    "style-direction-examples.md",
+    "color-palette-examples.md",
+    "tokens-css-template.css",
+    "contrast-check-guide.md",
+    "typography-scale-template.md",
+    "font-pairing-examples.md",
+    "type-system-checklist.md",
+    "grid-system-template.md",
+    "layout-patterns-library.md",
+    "breakpoint-definition.md",
+    "motion-system-guide.md",
+    "animation-timing-tokens.md",
+    "micro-interactions-library.md",
+    "easing-functions-reference.md",
+    "component-template.tsx",
+    "component-checklist.md",
+    "common-patterns-library.md",
+    "responsive-patterns-library.md",
+    "mobile-first-checklist.md",
+    "accessibility-checklist.md",
+    "wcag-compliance-guide.md",
+    "a11y-testing-guide.md",
+    "focus-states-template.md",
+    "generic-vs-distinctive-examples.md",
+    "quality-check-script.md"
+  ],
+  "priority_actions": [
+    "1. SOFORT: Motion-System verstärken (Score 6.8)",
+    "2. WICHTIG: Accessibility-Checkliste erstellen (Score 7.4)",
+    "3. WICHTIG: Typography-Assets ergänzen (Score 7.8)",
+    "4. OPTIONAL: Weitere Templates und Beispiele hinzufügen"
+  ]
+}

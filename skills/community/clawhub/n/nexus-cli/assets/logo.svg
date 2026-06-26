@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="hatGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4A843"/>
+      <stop offset="50%" stop-color="#F0D080"/>
+      <stop offset="100%" stop-color="#D4A843"/>
+    </linearGradient>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F2040"/>
+      <stop offset="100%" stop-color="#0A1628"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Tentacles (8 total, spread below the head) -->
+  <!-- Back tentacles (drawn first, behind body) -->
+  <path d="M58 95 Q45 110 38 125 Q32 138 28 148 Q26 154 30 152 Q34 148 38 140 Q44 128 50 115 Q54 108 58 100" fill="#0A1628" opacity="0.8"/>
+  <path d="M142 95 Q155 110 162 125 Q168 138 172 148 Q174 154 170 152 Q166 148 162 140 Q156 128 150 115 Q146 108 142 100" fill="#0A1628" opacity="0.8"/>
+
+  <!-- Mid-back tentacles -->
+  <path d="M65 98 Q52 118 42 132 Q35 142 32 150 Q30 156 34 153 Q38 148 44 138 Q52 124 60 110 Q64 104 66 100" fill="#0A1628" opacity="0.85"/>
+  <path d="M135 98 Q148 118 158 132 Q165 142 168 150 Q170 156 166 153 Q162 148 156 138 Q148 124 140 110 Q136 104 134 100" fill="#0A1628" opacity="0.85"/>
+
+  <!-- Mid-front tentacles -->
+  <path d="M72 100 Q62 120 55 135 Q50 145 48 152 Q46 158 50 155 Q54 150 58 142 Q64 130 70 118 Q73 110 74 104" fill="#0D1D35"/>
+  <path d="M128 100 Q138 120 145 135 Q150 145 152 152 Q154 158 150 155 Q146 150 142 142 Q136 130 130 118 Q127 110 126 104" fill="#0D1D35"/>
+
+  <!-- Front tentacles -->
+  <path d="M80 102 Q72 122 68 138 Q65 148 64 154 Q63 160 67 156 Q70 150 72 142 Q76 130 80 118 Q82 110 82 106" fill="#0F2040"/>
+  <path d="M120 102 Q128 122 132 138 Q135 148 136 154 Q137 160 133 156 Q130 150 128 142 Q124 130 120 118 Q118 110 118 106" fill="#0F2040"/>
+
+  <!-- Tentacle suckers (small circles on front tentacles) -->
+  <circle cx="70" cy="130" r="1.5" fill="#1A3050"/>
+  <circle cx="68" cy="138" r="1.5" fill="#1A3050"/>
+  <circle cx="66" cy="145" r="1.2" fill="#1A3050"/>
+  <circle cx="130" cy="130" r="1.5" fill="#1A3050"/>
+  <circle cx="132" cy="138" r="1.5" fill="#1A3050"/>
+  <circle cx="134" cy="145" r="1.2" fill="#1A3050"/>
+
+  <!-- Octopus Head/Body -->
+  <ellipse cx="100" cy="82" rx="38" ry="32" fill="url(#bodyGrad)"/>
+
+  <!-- Head highlight -->
+  <ellipse cx="93" cy="74" rx="20" ry="14" fill="#0F2240" opacity="0.5"/>
+
+  <!-- Eyes -->
+  <ellipse cx="86" cy="86" rx="8" ry="9" fill="#071020"/>
+  <ellipse cx="114" cy="86" rx="8" ry="9" fill="#071020"/>
+  <ellipse cx="86" cy="86" rx="6" ry="7" fill="#00BCD4"/>
+  <ellipse cx="114" cy="86" rx="6" ry="7" fill="#00BCD4"/>
+  <!-- Pupils -->
+  <ellipse cx="88" cy="85" rx="3" ry="4" fill="#0A1628"/>
+  <ellipse cx="116" cy="85" rx="3" ry="4" fill="#0A1628"/>
+  <!-- Eye shine -->
+  <circle cx="84" cy="83" r="1.8" fill="white" opacity="0.7"/>
+  <circle cx="112" cy="83" r="1.8" fill="white" opacity="0.7"/>
+
+  <!-- Tricorn Hat -->
+  <!-- Hat base/brim -->
+  <path d="M52 72 Q60 80 100 78 Q140 80 148 72 Q144 68 100 70 Q56 68 52 72Z" fill="#0A1628" stroke="#D4A843" stroke-width="1"/>
+
+  <!-- Hat crown -->
+  <path d="M62 72 Q64 48 100 42 Q136 48 138 72 Q120 68 100 67 Q80 68 62 72Z" fill="#0A1628"/>
+
+  <!-- Hat left fold -->
+  <path d="M52 72 Q48 60 58 50 Q64 52 62 72Z" fill="#0D1D35"/>
+
+  <!-- Hat right fold -->
+  <path d="M148 72 Q152 60 142 50 Q136 52 138 72Z" fill="#0D1D35"/>
+
+  <!-- Gold trim on hat -->
+  <path d="M52 72 Q60 78 100 76 Q140 78 148 72" fill="none" stroke="url(#hatGold)" stroke-width="2.5"/>
+  <path d="M62 70 Q64 50 100 44 Q136 50 138 70" fill="none" stroke="url(#hatGold)" stroke-width="1.5"/>
+
+  <!-- Hat cockade/medallion -->
+  <circle cx="100" cy="52" r="5" fill="#D4A843"/>
+  <circle cx="100" cy="52" r="3" fill="#0A1628"/>
+  <circle cx="100" cy="52" r="1.5" fill="#D4A843"/>
+
+  <!-- Hat feather plume -->
+  <path d="M100 47 Q104 38 108 32 Q110 28 107 30 Q104 34 100 42" fill="#D4A843" opacity="0.9"/>
+  <path d="M100 47 Q98 40 100 34 Q101 30 98 32 Q96 36 98 44" fill="#F0D080" opacity="0.7"/>
+
+  <!-- "ADMIRARR" text -->
+  <text x="100" y="176" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3" fill="#0A1628">ADMIRARR</text>
+
+  <!-- Tagline -->
+  <text x="100" y="191" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="7" font-weight="400" letter-spacing="1.5" fill="#5A6A7A" font-style="italic">Command your fleet.</text>
+</svg>

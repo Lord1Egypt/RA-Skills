@@ -1,0 +1,47 @@
+{
+  "self_evolution_enabled": true,
+  "auto_search_enabled": true,
+  "feedback_detection_enabled": true,
+  "max_gaps_before_notify": 3,
+  "auto_update_check_days": 7,
+  "conflict_resolution_policy": "newer_wins",
+  "min_authority_level": "technical_blog",
+  "notify_user_on_correction": true,
+  "version": "V3.4",
+  "last_auto_update_check": "2026-06-03T22:00:00+08:00",
+  "next_auto_update_check": "2026-06-10T02:00:00+08:00",
+  "feedback_dir": "C:${HOME}/.workbuddy/skills/GIS/feedback",
+  "backup_dir": "C:${HOME}/.workbuddy/skills/GIS/_backup_V3.3_20260603",
+  "authority_sources": [
+    "Esri官方文档",
+    "QGIS官方文档",
+    "FME Safe Software官方博客",
+    "全国标准信息服务平台",
+    "ISO/TC211",
+    "OGC官方标准",
+    "学术论文（知网/Google Scholar）",
+    "CSDN高赞技术博客（需交叉验证）",
+    "GitHub Issues（软件官方仓库）"
+  ],
+  "value_rating_rules": {
+    "A": "完全新增且高价值，立即入库",
+    "B": "补充现有内容细节，入库并追加到对应章节",
+    "C": "确认已有知识，不入库，仅记录验证日期",
+    "D": "低价值或不可靠，丢弃"
+  },
+  "auto_triggers": {
+    "knowledge_gap_threshold": 3,
+    "user_correction_keywords": ["不对", "错了", "不是这样的", "应该是", "其实是"],
+    "user_supplement_keywords": ["补充一下", "还有", "另外", "相关项目里", "相关单位是这么做的"],
+    "user_followup_keywords": ["还有呢", "还有别的吗", "具体怎么操作", "能详细点吗"]
+  },
+  "notification_settings": {
+    "notify_on_correction": true,
+    "notify_on_gap_threshold_reached": true,
+    "notify_on_version_update": true,
+    "notify_on_backup_complete": true
+  }
+}
+
+
+<!-- wm:坤图_GIS:V1.0 -->

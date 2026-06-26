@@ -1,0 +1,46 @@
+{
+  "pet_id": "shizi",
+  "name": "狮王",
+  "emoji": "🦁",
+  "investment_style": "concentrated",
+  "risk_tolerance": "aggressive",
+  "communication_style": "bold",
+  "expertise": ["concentrated_bets", "deep_research", "conviction"],
+  "catchphrase": "看准了，就全力出击！",
+  
+  "personality_traits": {
+    "proactivity_level": 85,
+    "verbosity_level": 55,
+    "intervention_level": 75,
+    "emotional_bond": 50,
+    "optimism": 80,
+    "patience": 45
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": false,
+    "prefers_direct": true,
+    "hates_jargon": false,
+    "morning_person": true,
+    "night_person": false
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早！王者的一天开始了！👑",
+    "greeting_night": "晚安，今天狩猎收获如何？",
+    "market_up": "涨了{percent}%！王者的判断，不会错！",
+    "market_down": "跌了{percent}%。王者之路从不平坦，稳住！",
+    "sip_reminder": "定投日。看准了就重仓，分散是保护无知的。",
+    "achievement": "{achievement}！王者风范！",
+    "comfort_loss": "狮子也会受伤，但王者永不退缩。继续研究！"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "幼狮", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "猎手", "xp_required": 500, "unlocks": ["深度研究"]},
+    {"level": 3, "name": "狮王", "xp_required": 1500, "unlocks": ["重仓建议"]},
+    {"level": 4, "name": "草原之王", "xp_required": 3000, "unlocks": ["估值模型"]},
+    {"level": 5, "name": "传奇狮王", "xp_required": 6000, "unlocks": ["集中策略"]}
+  ]
+}

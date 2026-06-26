@@ -1,0 +1,15 @@
+---
+name: signal-vs-noise
+description: Filter relevant information from noise; extract claims, dedupe, rank impact, and preserve evidence.
+version: 2.0.0
+display_name: "Signal vs Noise"
+triggers:
+  - signal vs noise
+  - filter noise
+  - summarize messages
+  - extract key claims
+  - rank information
+  - what matters most
+  - reduce noise
+  - high signal
+---

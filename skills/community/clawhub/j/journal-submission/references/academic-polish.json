@@ -1,0 +1,489 @@
+{
+  "meta": {
+    "skill": "AI 学术论文润色",
+    "version": "1.0.0",
+    "last_updated": "2026-06-06",
+    "description": "学术论文润色数据底座，覆盖全球顶级期刊规范、引用格式规则、学术英语错误模式与多学科术语词典"
+  },
+
+  "journal_specs": {
+    "nature": {
+      "journal": "Nature",
+      "publisher": "Nature Publishing Group / Springer Nature",
+      "impact_factor": "64.8 (2023)",
+      "article_types": ["Article", "Letter", "Brief Communication", "Review", "Perspective", "News & Views", "Comment", "Correspondence"],
+      "formatting_requirements": {
+        "abstract": {"max_words": 200, "structure": "非结构化单段摘要，不含引用", "style": "客观陈述研究背景、方法、主要发现和意义"},
+        "main_text": {
+          "article": {"max_words": 3000, "max_figures": 6, "sections": ["Introduction (无标题)", "Results", "Discussion(可合并)", "Methods(末尾)"]},
+          "letter": {"max_words": 1500, "max_figures": 4, "sections": ["正文(无标题分段)", "Methods(末尾)"]}
+        },
+        "references": {"max": 50, "style": "Nature 编号引用 [序号]，顺序排列"},
+        "figures": {"resolution": "300 dpi", "accepted_formats": ["TIFF", "EPS", "PDF", "JPEG"], "color_mode": "RGB"},
+        "supplementary": {"allowed": true, "file_size_limit": "50 MB per file"}
+      },
+      "submission_checklist": [
+        "投稿信 (Cover Letter) 必须包含研究意义的简要陈述",
+        "作者贡献声明 (Author Contributions)",
+        "利益冲突声明 (Competing Interests)",
+        "数据可用性声明 (Data Availability)",
+        "代码可用性声明 (Code Availability) 如适用"
+      ]
+    },
+    "science": {
+      "journal": "Science",
+      "publisher": "American Association for the Advancement of Science (AAAS)",
+      "impact_factor": "56.9 (2023)",
+      "article_types": ["Research Article", "Report", "Review", "Perspective", "Policy Forum", "Technical Comment"],
+      "formatting_requirements": {
+        "abstract": {"max_words": 125, "structure": "非结构化单段摘要，不含引用", "style": "简明扼要概括研究问题、方法、结果和结论"},
+        "main_text": {
+          "research_article": {"max_words": 4500, "sections": ["Introduction", "Results", "Discussion", "Materials and Methods(末尾)"]},
+          "report": {"max_words": 2500, "max_figures": 4, "sections": ["正文", "References and Notes", "Supplementary Materials"]}
+        },
+        "references": {"max": 50, "style": "编号引用 [序号]，按出现顺序排列"},
+        "figures": {"resolution": "300 dpi minimum", "accepted_formats": ["TIFF", "EPS", "PDF"], "figure_caption": "独立的简短标题+说明"},
+        "supplementary": {"allowed": true, "required": true, "label": "Supplementary Materials (SM)"}
+      },
+      "submission_checklist": [
+        "投稿信 (Cover Letter)",
+        "作者贡献声明",
+        "利益冲突声明",
+        "数据和材料可用性声明",
+        "如涉及人体实验需伦理审批声明"
+      ]
+    },
+    "elsevier": {
+      "publisher": "Elsevier",
+      "journals_count": "2,500+",
+      "template_formats": ["LaTeX (elsarticle.cls)", "Word (Elsevier template)"],
+      "formatting_requirements": {
+        "abstract": {"max_words": "200-300 (视具体期刊)", "structure": "结构化：Background / Methods / Results / Conclusions (部分期刊)", "highlights": "3-5 条研究亮点 (每个 ≤ 85 字符)"},
+        "main_text": {
+          "original_research": {"sections": ["Introduction", "Methods", "Results", "Discussion", "Conclusions"], "typical_length": "3,000-8,000 words"},
+          "review": {"sections": ["Introduction", "正文小标题自定", "Conclusions"], "typical_length": "5,000-15,000 words"}
+        },
+        "references": {"style": "APA 或 Numbered (编号)", "max": "无硬性上限"},
+        "figures": {"resolution": "300 dpi", "accepted_formats": ["TIFF", "EPS", "JPEG", "PDF"], "individual_file": true, "figure_numbering": "Fig. 1, Fig. 2..."},
+        "supplementary": {"allowed": true}
+      },
+      "submission_checklist": [
+        "投稿信 (Cover Letter)",
+        "Graphical Abstract (图形摘要)",
+        "Highlights (研究亮点)",
+        "CRediT Author Statement (作者贡献)",
+        "Declaration of Interest (利益声明)"
+      ]
+    },
+    "ieee": {
+      "publisher": "Institute of Electrical and Electronics Engineers",
+      "primary_template": "IEEEtran.cls (LaTeX) / IEEE Word Template",
+      "formatting_requirements": {
+        "abstract": {"max_words": 250, "structure": "单段非结构化摘要", "keywords": "3-8 个关键词 (IEEE Taxonomy)"},
+        "main_text": {
+          "conference": {"page_limit": "4-6 pages (双栏)", "sections": ["Introduction", "Related Work", "Proposed Method", "Experiments", "Conclusion"]},
+          "transaction": {"page_limit": "8-14 pages (双栏)", "sections": ["Introduction", "Related Work", "Methodology", "Experimental Results", "Discussion", "Conclusion"]}
+        },
+        "format": {"column": "双栏 (Two-column)", "font": "Times New Roman 10pt", "margin": "19mm 各边"},
+        "references": {"style": "IEEE 编号引用 [1], [2]-[5]", "format": "[序号] 作者, \"标题,\" 期刊/会议, vol., no., pp., 月 年."},
+        "figures": {"resolution": "300 dpi", "accepted_formats": ["TIFF", "EPS", "PDF", "PNG"], "placement": "浮动体，居中，标题在下方"},
+        "equations": {"numbering": "右对齐括号编号 (1), (2)", "format": "LaTeX equation 环境"}
+      }
+    },
+    "acm": {
+      "publisher": "Association for Computing Machinery",
+      "primary_template": "ACM Primary Article Template (acmart.cls)",
+      "formatting_requirements": {
+        "abstract": {"max_words": 250, "structure": "单段摘要", "ccs_concepts": "必须包含 CCS Concepts 分类"},
+        "main_text": {
+          "research": {"page_limit": "8-12 pages (单栏)", "sections": ["Introduction", "Related Work", "Method/Design", "Evaluation", "Discussion", "Conclusion"]},
+          "survey": {"page_limit": "15-25 pages"}
+        },
+        "format": {"column": "单栏 (Single-column)", "font": "Linux Libertine 10pt", "margin": "1 inch 各边"},
+        "references": {"style": "ACM Reference Format (编号)", "format": "[1] Author. Year. Title. Journal, Vol, No, Article. DOI"},
+        "figures": {"resolution": "300 dpi", "caption_position": "图题在图下方，表题在表上方"},
+        "acm_rights": {"required": true, "options": ["Author pays (开放获取)", "Reader pays (传统)"]}
+      }
+    },
+    "plos": {
+      "journal": "PLOS (Public Library of Science)",
+      "journals": ["PLOS ONE", "PLOS Biology", "PLOS Medicine", "PLOS Computational Biology", "PLOS Genetics", "PLOS Pathogens", "PLOS Neglected Tropical Diseases"],
+      "formatting_requirements": {
+        "abstract": {"max_words": 300, "structure": "结构化：Background / Methodology/Principal Findings / Conclusions / Significance"},
+        "main_text": {
+          "plos_one": {"sections": ["Introduction", "Materials and Methods", "Results", "Discussion", "Conclusions"], "no_word_limit": true},
+          "others": {"sections": "视具体期刊而定"}
+        },
+        "references": {"style": "Vancouver (编号)", "format": "1. Author. Title. Journal. Year;Vol:Pages. DOI"},
+        "figures": {"resolution": "300 dpi", "accepted_formats": ["TIFF", "EPS", "PNG"], "file_size": "≤ 10 MB per figure"},
+        "data_availability": {"required": true, "statement": "必须包含 Data Availability Statement"},
+        "open_access": "CC BY 4.0 许可证，收取 APC (Article Processing Charge)"
+      }
+    }
+  },
+
+  "citation_rules": {
+    "apa_7th": {
+      "name": "APA 7th Edition",
+      "full_name": "American Psychological Association Style (7th Edition)",
+      "year": 2019,
+      "primary_disciplines": ["心理学", "教育学", "社会学", "商学", "护理学", "语言学"],
+      "in_text_citation": {
+        "single_author": "(Smith, 2023) 或 Smith (2023)",
+        "two_authors": "(Smith & Jones, 2023) 或 Smith and Jones (2023)",
+        "three_or_more": "(Smith et al., 2023)",
+        "direct_quote": "(Smith, 2023, p. 42) — 必须包含页码",
+        "multiple_sources": "(Smith, 2023; Jones, 2022) — 按字母排序，分号分隔",
+        "no_author": "(\"Title of Article,\" 2023)"
+      },
+      "reference_format": {
+        "journal_article": "Author, A. A., & Author, B. B. (Year). Title of article. *Title of Periodical, Volume*(Issue), Page-Page. https://doi.org/xxxxx",
+        "book": "Author, A. A. (Year). *Title of work: Capital letter also for subtitle*. Publisher.",
+        "book_chapter": "Author, A. A. (Year). Title of chapter. In E. E. Editor (Ed.), *Title of book* (pp. xx-xx). Publisher.",
+        "conference": "Author, A. A. (Year, Month Day). Title of paper [Paper presentation]. Conference Name, Location.",
+        "website": "Author, A. A. (Year, Month Day). Title of page. Site Name. URL",
+        "thesis": "Author, A. A. (Year). *Title of dissertation* [Doctoral dissertation/Master's thesis, Institution]. Database Name."
+      },
+      "doi_rules": "始终以 https://doi.org/ 形式呈现 DOI；无 DOI 的学术文章可省略 DOI",
+      "hanging_indent": "每条参考文献首行顶格，后续行缩进 0.5 英寸 (1.27 cm)"
+    },
+    "mla_9th": {
+      "name": "MLA 9th Edition",
+      "full_name": "Modern Language Association Style (9th Edition)",
+      "year": 2021,
+      "primary_disciplines": ["文学", "语言学", "文化研究", "比较文学", "艺术史", "哲学"],
+      "in_text_citation": {
+        "single_author": "(Smith 42) — 作者姓氏 + 页码，无逗号",
+        "two_authors": "(Smith and Jones 42)",
+        "three_or_more": "(Smith et al. 42)",
+        "no_page": "仅 (Smith)，无页码时省略",
+        "indirect_quote": "Smith argues that... (42)"
+      },
+      "reference_format": {
+        "journal_article": "Author(s). \"Title of Article.\" *Title of Journal*, vol. #, no. #, Year, pp. xx-xx. *Database*, DOI.",
+        "book": "Author. *Title of Book*. Publisher, Year.",
+        "book_chapter": "Author. \"Title of Chapter.\" *Title of Book*, edited by Editor, Publisher, Year, pp. xx-xx.",
+        "website": "Author. \"Title of Webpage.\" *Website Name*, Publisher, Date, URL."
+      },
+      "core_container": "MLA 9th 强调 'Containers' 概念（如期刊是文章的 Container，数据库是期刊的第二 Container）",
+      "works_cited": "标题为 'Works Cited'（居中），无编号；按作者姓氏字母排序"
+    },
+    "chicago": {
+      "name": "Chicago Manual of Style 17th Edition",
+      "full_name": "The Chicago Manual of Style (17th Edition)",
+      "year": 2017,
+      "primary_disciplines": ["历史", "艺术史", "人类学", "政治学", "音乐学"],
+      "two_systems": {
+        "notes_bibliography": {
+          "description": "脚注/尾注 + 参考文献 (Notes-Bibliography)",
+          "in_text": "上标数字 `^1` 对应脚注或尾注",
+          "footnote_first": "1. Author, *Title* (Publisher, Year), Page.",
+          "footnote_subsequent": "2. Author, *Short Title*, Page.",
+          "bibliography": "Author. *Title*. Publisher, Year."
+        },
+        "author_date": {
+          "description": "文中作者-日期引用 (Author-Date)",
+          "in_text": "(Smith 2023, 42)",
+          "reference": "Smith, John. 2023. *Title*. Publisher."
+        }
+      }
+    },
+    "harvard": {
+      "name": "Harvard Referencing",
+      "full_name": "Harvard Referencing Style",
+      "primary_disciplines": ["经济学", "商学", "管理学", "市场营销", "会计学", "法学(部分)"],
+      "in_text_citation": {
+        "single_author": "(Smith, 2023) 或 Smith (2023)",
+        "two_authors": "(Smith and Jones, 2023)",
+        "three_authors": "(Smith, Jones and Brown, 2023)",
+        "four_or_more": "(Smith et al., 2023)",
+        "direct_quote": "(Smith, 2023, p.42)",
+        "multiple_sources": "(Smith, 2023; Jones, 2022)"
+      },
+      "reference_format": {
+        "journal_article": "Smith, A. (2023) 'Title of article', *Title of Journal*, Volume(Issue), pp. xx-xx. doi: xxxxx.",
+        "book": "Smith, A. (2023) *Title of book*. Place: Publisher.",
+        "book_chapter": "Smith, A. (2023) 'Title of chapter', in Jones, B. (ed.) *Title of book*. Place: Publisher, pp. xx-xx.",
+        "conference": "Smith, A. (2023) 'Title of paper', *Conference Proceedings*, Location, Date. Place: Publisher, pp. xx-xx.",
+        "website": "Smith, A. (2023) *Title of page*. Available at: URL (Accessed: Date)."
+      },
+      "reference_list_title": "'Reference List' 按作者姓氏字母排序",
+      "harvard_variants": "注意：各大学可能有自己的 Harvard 变体（如 Anglia Ruskin、Exeter、Leeds 等）"
+    },
+    "ieee_ref": {
+      "name": "IEEE Citation",
+      "full_name": "Institute of Electrical and Electronics Engineers Citation Style",
+      "primary_disciplines": ["电子工程", "计算机科学", "信息技术", "通信工程", "自动化"],
+      "in_text_citation": {
+        "format": "方括号编号 [1], [2], [3]-[5]",
+        "single": "[1]",
+        "multiple": "[1], [2], [4]",
+        "range": "[3]-[5]",
+        "repeated": "首次出现赋予唯一编号，后续引用使用同一编号",
+        "order": "全文按引用出现先后顺序编号"
+      },
+      "reference_format": {
+        "journal": "[1] A. Author, \"Title of paper,\" *Abbrev. Journal Name*, vol. X, no. X, pp. xxx-xxx, Mon. Year, doi: xxxxx.",
+        "conference": "[2] A. Author, \"Title of paper,\" in *Proc. Conf. Name*, City, Country, Year, pp. xxx-xxx.",
+        "book": "[3] A. Author, *Title of Book*, Xth ed. City, Country: Publisher, Year.",
+        "book_chapter": "[4] A. Author, \"Title of chapter,\" in *Title of Book*, Editor, Ed. City: Publisher, Year, ch. X, pp. xxx-xxx.",
+        "thesis": "[5] A. Author, \"Title of thesis,\" Ph.D. dissertation, Dept., Univ., City, Country, Year.",
+        "standard": "[6] *Title of Standard*, Standard Number, Date.",
+        "website": "[7] A. Author. (Year, Month Day). *Title* [Online]. Available: URL"
+      },
+      "abbreviation_rules": "期刊名使用 IEEE 标准缩写，作者名用首字母+姓氏（如 J. Smith），月份用前 3 字母+点（如 Jan.）"
+    },
+    "vancouver": {
+      "name": "Vancouver Style",
+      "full_name": "ICMJE Recommendations (Vancouver Style)",
+      "primary_disciplines": ["医学", "生物医学", "药学", "公共卫生", "临床科学"],
+      "in_text_citation": {
+        "format": "方括号编号 [1] 或上标 ^1",
+        "sequential": "按出现顺序编号",
+        "multiple": "[1,2,4] 或 [1-4]"
+      },
+      "reference_format": {
+        "journal": "1. Author AA, Author BB. Title of article. Abbreviated Journal Name. Year;Vol(Issue):Pages.",
+        "journal_with_doi": "1. Author AA. Title. Journal. Year;Vol:Pages. DOI",
+        "book": "2. Author AA. Title of Book. Edition. Place: Publisher; Year.",
+        "chapter": "3. Author AA. Title of chapter. In: Editor EE, editor. Title of Book. Place: Publisher; Year. p. xx-xx.",
+        "website": "4. Author AA. Title [Internet]. Year [cited Year Mon Day]. Available from: URL"
+      },
+      "author_rules": "列出前 6 位作者后加 et al.；作者格式：姓氏 + 空格 + 首字母（无标点）",
+      "journal_abbreviation": "期刊名使用 NLM (National Library of Medicine) 标准缩写"
+    },
+    "gbt_7714": {
+      "name": "GB/T 7714-2015",
+      "full_name": "信息与文献 参考文献著录规则 (GB/T 7714-2015)",
+      "year": 2015,
+      "primary_disciplines": ["所有中文学术期刊", "中文论文", "学位论文", "学术报告"],
+      "in_text_citation": {
+        "sequential": "顺序编码制：[1], [2], [1,3-5]",
+        "author_year": "著者-出版年制：(张三, 2023)",
+        "note": "同一出版物内只能选择一种体制，不可混用"
+      },
+      "reference_format": {
+        "journal": "[1] 作者. 题名[J]. 刊名, 年, 卷(期): 起页-止页.",
+        "journal_english": "[1] Author A A. Title[J]. Journal Name, Year, Vol(Issue): Pages.",
+        "book": "[2] 作者. 书名[M]. 版本. 出版地: 出版社, 年.",
+        "thesis": "[3] 作者. 题名[D]. 保存地: 保存单位, 年.",
+        "conference": "[4] 作者. 题名[C]//会议录名. 出版地: 出版社, 年: 起页-止页.",
+        "patent": "[5] 专利所有者. 专利题名: 专利号[P]. 公告日期.",
+        "website": "[6] 作者. 题名[EB/OL]. (发布日期)[引用日期]. 获取和访问路径."
+      },
+      "document_type_codes": {
+        "J": "期刊文章",
+        "M": "专著",
+        "D": "学位论文",
+        "C": "会议录/论文集中析出文献",
+        "P": "专利",
+        "EB/OL": "电子文献/在线资源",
+        "N": "报纸文章",
+        "R": "报告",
+        "S": "标准"
+      }
+    }
+  },
+
+  "academic_errors": {
+    "grammar_errors": [
+      {"id": "AE-G-001", "category": "主谓一致", "pattern": "单数主语 + 复数动词 / 复数主语 + 单数动词", "bad_example": "The data shows that...", "good_example": "The data show that...", "explanation": "data 在学术英语中通常视为复数（datum 的单数形式）"},
+      {"id": "AE-G-002", "category": "冠词缺失", "pattern": "单数可数名词前缺少冠词", "bad_example": "Result of experiment indicates...", "good_example": "The result of the experiment indicates...", "explanation": "单数可数名词前通常需要冠词 the/a/an"},
+      {"id": "AE-G-003", "category": "时态错误", "pattern": "文献综述/方法描述时态混乱", "bad_example": "Smith (2023) finds that...", "good_example": "Smith (2023) found that...", "explanation": "一般过去时用于引用前人研究，一般现在时用于陈述客观事实"},
+      {"id": "AE-G-004", "category": "不定式分裂", "pattern": "to + 副词 + 动词", "bad_example": "to accurately measure", "good_example": "to measure accurately", "explanation": "正式学术写作中避免分裂不定式"},
+      {"id": "AE-G-005", "category": "悬垂分词", "pattern": "分词的逻辑主语与主句主语不一致", "bad_example": "Analyzing the data, the results were significant.", "good_example": "Analyzing the data, we found significant results.", "explanation": "分词短语的逻辑主语应与主句主语一致"},
+      {"id": "AE-G-006", "category": "比较级不完整", "pattern": "缺少比较对象或比较基准", "bad_example": "This method is more accurate.", "good_example": "This method is more accurate than the baseline approach.", "explanation": "比较级必须明确被比较的对象"},
+      {"id": "AE-G-007", "category": "代词指代不明", "pattern": "it/this/they 无明确先行词", "bad_example": "This suggests that...", "good_example": "This finding suggests that...", "explanation": "指示代词后最好跟一个名词明确指代对象"},
+      {"id": "AE-G-008", "category": "双重否定", "pattern": "not + 否定词连用", "bad_example": "This is not uncommon.", "good_example": "This is common.", "explanation": "学术写作宜直截了当，避免迂回表达"}
+    ],
+    "style_errors": [
+      {"id": "AE-S-001", "category": "口语化表达", "pattern": "使用口语/非正式词汇", "bad_example": "The algorithm works really well.", "good_example": "The algorithm demonstrates excellent performance.", "alternatives": {"a lot of": "substantial / considerable", "big": "large / significant / substantial", "get": "obtain / acquire / achieve", "make sure": "ensure / verify / confirm", "find out": "determine / ascertain / investigate"}},
+      {"id": "AE-S-002", "category": "冗余表达", "pattern": "不必要的修饰词或重复", "bad_example": "It is absolutely essential to note that...", "good_example": "It is essential that...", "overused_phrases": ["It is worth noting that", "It should be pointed out that", "Needless to say", "As a matter of fact"]},
+      {"id": "AE-S-003", "category": "弱化表达", "pattern": "使用模糊限定的弱化措辞", "bad_example": "The results seem to suggest that the method might be somewhat effective.", "good_example": "The results indicate that the method is effective.", "weakeners": ["seems to", "appears to", "might be", "could possibly", "somewhat", "rather"]},
+      {"id": "AE-S-004", "category": "被动语态过度", "pattern": "全文大量使用被动语态导致行文呆板", "bad_example": "It was found that the temperature was increased by the reaction.", "good_example": "We found that the reaction increased the temperature.", "balance_tip": "方法部分可使用被动，结果和讨论部分适当使用主动语态"},
+      {"id": "AE-S-005", "category": "段落过长", "pattern": "单段落超过 200 词无逻辑分隔", "rule": "每段围绕一个中心思想，建议 80-150 词，超过 200 词考虑拆分"},
+      {"id": "AE-S-006", "category": "过渡词缺失", "pattern": "段落间缺少逻辑连接词", "transition_words": {"addition": "Furthermore / Moreover / In addition / Additionally", "contrast": "However / Nevertheless / In contrast / Conversely / On the other hand", "cause_effect": "Therefore / Consequently / As a result / Thus / Hence", "example": "For instance / For example / Specifically / In particular", "conclusion": "In conclusion / Overall / In summary / Taken together"}}
+    ],
+    "discipline_specific": [
+      {"id": "AE-D-001", "discipline": "计算机科学", "error": "将 'parameter' 与 'argument' 混用", "explanation": "parameter 是函数定义中的变量，argument 是调用时传入的实际值"},
+      {"id": "AE-D-002", "discipline": "医学", "error": "将 'incidence' 与 'prevalence' 混用", "explanation": "incidence 是新发病例数（率），prevalence 是某一时点患病人数（率）"},
+      {"id": "AE-D-003", "discipline": "统计学", "error": "将 'correlation' 与 'causation' 混用", "explanation": "相关性≠因果性，相关性的结论不能暗示因果关系"},
+      {"id": "AE-D-004", "discipline": "化学", "error": "'significant figures' 使用不一致", "explanation": "全文有效数字位数应保持一致，如均保留 3 位有效数字"},
+      {"id": "AE-D-005", "discipline": "经济学", "error": "将 'nominal' 与 'real' GDP 混用", "explanation": "nominal GDP 未经通胀调整，real GDP 已调整"},
+      {"id": "AE-D-006", "discipline": "生物学", "error": "'gene' 与 'allele' 混用", "explanation": "gene 是遗传单位，allele 是基因的特定变体形式"},
+      {"id": "AE-D-007", "discipline": "物理学", "error": "'accuracy' 与 'precision' 互换", "explanation": "accuracy（准确度）= 接近真值的程度，precision（精密度）= 重复测量的一致性"},
+      {"id": "AE-D-008", "discipline": "心理学", "error": "'affect' 与 'effect' 混用", "explanation": "affect 主要作动词（影响），effect 主要作名词（效果/影响）"}
+    ]
+  },
+
+  "discipline_lexicon": {
+    "computer_science": {
+      "discipline": "计算机科学",
+      "standard_terms": {
+        "algorithm": "算法",
+        "computational complexity": "计算复杂度",
+        "machine learning": "机器学习",
+        "neural network": "神经网络",
+        "natural language processing": "自然语言处理",
+        "distributed system": "分布式系统",
+        "concurrency": "并发",
+        "throughput": "吞吐量",
+        "latency": "延迟",
+        "bandwidth": "带宽",
+        "scalability": "可扩展性",
+        "fault tolerance": "容错性",
+        "encryption": "加密",
+        "decryption": "解密",
+        "authentication": "身份认证",
+        "authorization": "授权",
+        "middleware": "中间件",
+        "containerization": "容器化",
+        "orchestration": "编排",
+        "microservice": "微服务"
+      },
+      "verb_phrases": ["implement an algorithm", "deploy a model", "evaluate performance", "optimize parameters", "benchmark against", "propose a framework", "validate the approach"],
+      "journal_abbreviations": {"IEEE Trans. Pattern Anal. Mach. Intell.": "TPAMI", "J. Mach. Learn. Res.": "JMLR", "ACM Comput. Surv.": "CSUR", "IEEE Trans. Neural Netw. Learn. Syst.": "TNNLS"}
+    },
+    "medicine": {
+      "discipline": "医学与生物医学",
+      "standard_terms": {
+        "randomized controlled trial": "随机对照试验 (RCT)",
+        "cohort study": "队列研究",
+        "case-control study": "病例对照研究",
+        "meta-analysis": "荟萃分析 / 元分析",
+        "systematic review": "系统综述",
+        "odds ratio": "比值比 (OR)",
+        "hazard ratio": "风险比 (HR)",
+        "confidence interval": "置信区间 (CI)",
+        "p-value": "P 值",
+        "statistical significance": "统计显著性",
+        "clinical significance": "临床显著性",
+        "placebo": "安慰剂",
+        "double-blind": "双盲",
+        "adverse event": "不良事件",
+        "contraindication": "禁忌症",
+        "prognosis": "预后",
+        "etiology": "病因学",
+        "pathogenesis": "发病机制",
+        "morbidity": "发病率",
+        "mortality": "死亡率"
+      },
+      "verb_phrases": ["administer treatment", "assess outcomes", "recruit participants", "obtain informed consent", "analyze survival data", "adjust for confounders", "report adverse events"],
+      "journal_abbreviations": {"N. Engl. J. Med.": "NEJM", "Lancet": "The Lancet", "JAMA": "J. Am. Med. Assoc.", "BMJ": "Br. Med. J.", "Nat. Med.": "Nature Medicine"}
+    },
+    "physics": {
+      "discipline": "物理学",
+      "standard_terms": {
+        "quantum mechanics": "量子力学",
+        "general relativity": "广义相对论",
+        "thermodynamics": "热力学",
+        "electromagnetism": "电磁学",
+        "superconductivity": "超导性",
+        "entanglement": "纠缠",
+        "wavefunction": "波函数",
+        "Hamiltonian": "哈密顿量",
+        "Lagrangian": "拉格朗日量",
+        "spectroscopy": "光谱学",
+        "diffraction": "衍射",
+        "interferometry": "干涉测量",
+        "laser cooling": "激光冷却",
+        "Bose-Einstein condensate": "玻色-爱因斯坦凝聚"
+      },
+      "journal_abbreviations": {"Phys. Rev. Lett.": "PRL", "Phys. Rev. D": "PRD", "Nat. Phys.": "Nature Physics", "Rev. Mod. Phys.": "RMP"}
+    },
+    "chemistry": {
+      "discipline": "化学",
+      "standard_terms": {
+        "catalysis": "催化",
+        "polymerization": "聚合",
+        "oxidation-reduction": "氧化还原",
+        "chromatography": "色谱",
+        "mass spectrometry": "质谱",
+        "nuclear magnetic resonance": "核磁共振 (NMR)",
+        "X-ray diffraction": "X 射线衍射 (XRD)",
+        "molarity": "摩尔浓度",
+        "stoichiometry": "化学计量",
+        "enantiomer": "对映异构体",
+        "ligand": "配体",
+        "substrate": "底物",
+        "synthesis": "合成",
+        "yield": "产率"
+      },
+      "journal_abbreviations": {"J. Am. Chem. Soc.": "JACS", "Angew. Chem. Int. Ed.": "Angewandte", "Chem. Rev.": "Chemical Reviews", "Nat. Chem.": "Nature Chemistry"}
+    },
+    "economics": {
+      "discipline": "经济学",
+      "standard_terms": {
+        "gross domestic product": "国内生产总值 (GDP)",
+        "inflation": "通货膨胀",
+        "monetary policy": "货币政策",
+        "fiscal policy": "财政政策",
+        "supply and demand": "供求关系",
+        "elasticity": "弹性",
+        "marginal utility": "边际效用",
+        "opportunity cost": "机会成本",
+        "equilibrium": "均衡",
+        "externality": "外部性",
+        "regression analysis": "回归分析",
+        "panel data": "面板数据",
+        "endogeneity": "内生性",
+        "instrumental variable": "工具变量 (IV)",
+        "difference-in-differences": "双重差分 (DID)",
+        "regression discontinuity": "断点回归 (RDD)"
+      },
+      "journal_abbreviations": {"Am. Econ. Rev.": "AER", "Q. J. Econ.": "QJE", "J. Polit. Econ.": "JPE", "Econometrica": "Econometrica"}
+    },
+    "psychology": {
+      "discipline": "心理学",
+      "standard_terms": {
+        "cognitive bias": "认知偏差",
+        "confirmation bias": "确认偏误",
+        "working memory": "工作记忆",
+        "executive function": "执行功能",
+        "attachment theory": "依恋理论",
+        "emotional regulation": "情绪调节",
+        "self-efficacy": "自我效能感",
+        "cognitive dissonance": "认知失调",
+        "social facilitation": "社会助长",
+        "operant conditioning": "操作性条件反射",
+        "effect size": "效应量 (Cohen's d, η²)",
+        "reliability": "信度 (Cronbach's α)",
+        "validity": "效度",
+        "ecological validity": "生态效度"
+      },
+      "journal_abbreviations": {"Annu. Rev. Psychol.": "ARP", "Psychol. Bull.": "Psychological Bulletin", "J. Pers. Soc. Psychol.": "JPSP", "Psychol. Sci.": "Psychological Science"}
+    }
+  },
+
+  "style_guidelines": {
+    "academic_writing_tone": [
+      {"principle": "客观性 (Objectivity)", "description": "避免主观臆断和情感化表达，基于证据和数据进行陈述", "bad": "We believe this is the best method.", "good": "The experimental results demonstrate that this method outperforms existing approaches."},
+      {"principle": "精确性 (Precision)", "description": "使用精确的量化表述，避免模糊限定词", "bad": "The temperature increased a lot.", "good": "The temperature increased by 15.3°C ± 0.5°C (mean ± SD)."},
+      {"principle": "简洁性 (Conciseness)", "description": "用最少的词表达完整意思，删除冗余修饰", "bad": "It is important to note that in the case of our study, we found...", "good": "Our study found..."},
+      {"principle": "正式性 (Formality)", "description": "使用正式学术词汇，避免口语和缩写", "bad": "can't, don't, it's", "good": "cannot, do not, it is"},
+      {"principle": "可复现性 (Reproducibility)", "description": "方法部分提供足够细节使他人可复现实验", "checklist": ["样本量", "试剂批次号", "设备型号和参数", "统计方法和版本", "代码和数据来源"]}
+    ],
+    "paragraph_structure": {
+      "ideal": "主题句 (Topic Sentence) → 支持句 (Supporting Evidence) → 分析解释 (Analysis) → 过渡句 (Transition)",
+      "intro_section": "背景 → 问题/差距 → 目标/假设 → 研究意义",
+      "methods_section": "设计 → 参与者/材料 → 流程 → 统计方法",
+      "results_section": "最核心发现 → 次要发现 → 支持数据 → 图表引用",
+      "discussion_section": "主要发现小结 → 与前人对比 → 解释机制 → 局限性 → 意义与展望"
+    },
+    "common_hedging": [
+      {"phrase": "suggest", "strength": "弱", "alternative": "indicate / demonstrate (仅在证据充分时)"},
+      {"phrase": "appear to", "strength": "弱", "alternative": "are consistent with / support"},
+      {"phrase": "tend to", "strength": "中弱", "alternative": "typically / generally"},
+      {"phrase": "may / might", "strength": "弱", "alternative": "could potentially (保留适度委婉)", "note": "may/might 在讨论局限性时合理，在陈述结论时避免"},
+      {"phrase": "it is possible that", "strength": "弱", "alternative": "one explanation is that"}
+    ],
+    "ethical_writing": [
+      {"rule": "剽窃", "description": "任何直接抄录他人文字必须用引号并标注出处；改写也需引用来源"},
+      {"rule": "数据伪造", "description": "绝对禁止伪造、篡改或选择性报告数据。所有数据须可溯源"},
+      {"rule": "图像操作", "description": "图像增强须作用于整幅图，不可局部修改。拼接图须标明边界"},
+      {"rule": "作者贡献", "description": "署名须反映实际贡献。荣誉作者(Guest Authorship)和幽灵作者(Ghost Authorship)均属学术不端"},
+      {"rule": "一稿多投", "description": "同一手稿不可同时投递至多个期刊"},
+      {"rule": "引用圈套", "description": "编辑/审稿人不应强迫作者引用不相关文献以提升期刊影响因子"}
+    ]
+  }
+}

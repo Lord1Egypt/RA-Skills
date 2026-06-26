@@ -1,0 +1,20 @@
+{
+  "name": "ollama-memory-setup",
+  "version": "1.2.3",
+  "description": "Set up, diagnose, repair, and quality-test private local OpenClaw semantic memory search using Ollama embeddings.",
+  "author": "brasco05",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "ollama",
+    "memory",
+    "semantic-search",
+    "embeddings",
+    "nomic-embed-text",
+    "local-ai",
+    "privacy",
+    "node-llama-cpp",
+    "quality-test",
+    "private-embeddings"
+  ]
+}

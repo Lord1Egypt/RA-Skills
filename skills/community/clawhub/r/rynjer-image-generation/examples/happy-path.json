@@ -1,0 +1,32 @@
+{
+  "rewrite_image_prompt": {
+    "goal": "Create a hero image for an AI analytics landing page",
+    "raw_prompt": "futuristic dashboard hero",
+    "use_case": "landing",
+    "tone": "premium",
+    "audience": "B2B SaaS buyers"
+  },
+  "estimate_image_cost": {
+    "use_case": "landing",
+    "count": 1,
+    "resolution": "1K",
+    "aspect_ratio": "16:9",
+    "quality_mode": "fast",
+    "price_version": "2026-02-02-v1"
+  },
+  "generate_image": {
+    "prompt": "Create a premium landing-page hero image for an AI analytics platform, sleek dashboard hints, dark interface glow, modern enterprise aesthetic, clean composition, high-end commercial lighting.",
+    "use_case": "landing",
+    "aspect_ratio": "16:9",
+    "resolution": "1K",
+    "quality_mode": "fast",
+    "count": 1,
+    "scene": "text-to-image",
+    "auto_poll": true,
+    "poll_attempts": 4,
+    "poll_interval_ms": 2000
+  },
+  "poll_image_result": {
+    "request_id": "openclaw-REPLACE_ME"
+  }
+}

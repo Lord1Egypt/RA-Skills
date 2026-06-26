@@ -1,0 +1,84 @@
+{
+  "name": "negotiate_safe",
+  "version": "0.1.0",
+  "description": "OpenClaw skill for APOA-constrained SAFE negotiation.",
+  "entrypoint": "run_safe.py",
+  "skill_file": "SKILL.md",
+  "files": [
+    "_turn_once.py",
+    "_stream_negotiate.py",
+    "artifacts.py",
+    "cancel_flow.py",
+    "delivery_store.py",
+    "documents/__init__.py",
+    "documents/templates/__init__.py",
+    "documents/templates/base.py",
+    "documents/templates/safe.py",
+    "executed_pdf.py",
+    "format_event.py",
+    "identity.py",
+    "links.py",
+    "local_protocol.py",
+    "minting.py",
+    "operator_ready.py",
+    "openclaw_turn_agent.py",
+    "orchestrator.py",
+    "parse_constraints.py",
+    "parse_identity.py",
+    "reconcile.py",
+    "run_safe.py",
+    "session_flow.py",
+    "skill_manifest.json",
+    "sshsign_session.py",
+    "state_store.py",
+    "projector.py",
+    "telegram.py",
+    "telegram_push.py",
+    "trace_log.py",
+    "typing_loop.py",
+    "upstream.py"
+  ],
+  "required_bins": [
+    "python3",
+    "ssh",
+    "openclaw"
+  ],
+  "required_env": [
+    "USER_DID",
+    "NEGOTIATE_SAFE_BOT_ROLE",
+    "TELEGRAM_BOT_USERNAME"
+  ],
+  "optional_env": [
+    "SSHSIGN_HOST",
+    "CLAW_NEGOTIATE_SCAN_INTERVAL",
+    "COMPANY_NAME",
+    "FOUNDER_NAME",
+    "FOUNDER_TITLE",
+    "INVESTOR_NAME",
+    "INVESTOR_FIRM",
+    "NEGOTIATION_TTL",
+    "NEGOTIATE_SAFE_TURN_MODEL",
+    "PROVISION_BASE_URL"
+  ],
+  "commands": {
+    "demo_checklist": "python3 scripts/demo_checklist.py",
+    "smoke_install": "python3 scripts/smoke_install.py --skill-dir ~/.agents/skills/negotiate_safe",
+    "doctor": "python3 run_safe.py doctor",
+    "status": "python3 run_safe.py status --session-code INV-XXXXX",
+    "smoke": "python3 run_safe.py smoke --output-dir /tmp/safe_negotiate",
+    "operator_setup": "python3 run_safe.py operator-setup --env-file .env",
+    "prepare": "python3 run_safe.py prepare --message-file /tmp/safe_request.txt --output-dir /tmp/safe_negotiate",
+    "negotiate": "python3 run_safe.py negotiate --output-dir /tmp/safe_negotiate",
+    "scan": "python3 run_safe.py scan",
+    "bind": "python3 run_safe.py bind --message \"/bind INV-XXXXX\" --chat-id <group_chat_id> --from-id <telegram_user_id>"
+  },
+  "health_checks": [
+    "doctor",
+    "unit_tests"
+  ],
+  "notes": [
+    "sshsign is the shared workflow source of truth.",
+    "Telegram signing URLs must only route to signer DMs.",
+    "Native sshsign leases gate negotiation streams and creator-side finalization."
+  ]
+}

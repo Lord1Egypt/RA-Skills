@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "profile": "standard",
+  "platform": "linux",
+  "arch": "x64",
+  "createdAt": "2026-04-19T02:32:26.535Z",
+  "mermaid": {
+    "bundled": false
+  }
+}

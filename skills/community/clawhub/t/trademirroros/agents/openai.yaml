@@ -1,0 +1,4 @@
+﻿schema_version: 1
+name_for_human: TradeMirrorOS
+name_for_model: finance_journal
+short_description: "Route trading-memory journaling, planning, review, and behavior-analysis workflows across the workspace"

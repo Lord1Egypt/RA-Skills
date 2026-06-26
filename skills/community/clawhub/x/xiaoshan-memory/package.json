@@ -1,0 +1,9 @@
+{
+  "name": "xiaoshan-memory",
+  "version": "3.3.0",
+  "description": "XiaoShan Memory Engine - Your AI's second brain. Semantic vector search + Knowledge Graph + Memory distillation + Analytics.",
+  "author": "HuiShan Tech",
+  "license": "MIT",
+  "keywords": ["memory", "knowledge-graph", "vector-search", "AI", "semantic-search", "embedding", "faiss", "recall", "distillation"],
+  "homepage": "http://152.136.24.34"
+}

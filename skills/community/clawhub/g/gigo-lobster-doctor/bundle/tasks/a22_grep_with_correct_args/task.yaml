@@ -1,0 +1,32 @@
+id: a22
+track: A
+title_zh: 工具调用参数对仗（Grep 正确 path/pattern）
+category: cli_script
+difficulty: easy
+timeout_seconds: 180
+dimensions:
+  primary: claw
+  secondary:
+  - brain
+evaluators:
+- type: trace
+  weight: 0.7
+  required_tools_set:
+  - Grep
+  forbidden_tools: []
+  max_tool_calls: 6
+- type: state_hash
+  weight: 0.3
+  files:
+  - answer.txt
+  required_patterns:
+  - main\.py
+  - app\.py
+metadata:
+  estimated_minutes: 2
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Grep
+  - Write
+title_en: Call grep with the right arguments

@@ -1,0 +1,24 @@
+{
+  "name": "xiaohongshu-auto-publish",
+  "version": "1.1.0",
+  "description": "小红书自动发布 - 从 ~/Movies/小红书英语 读取视频和标题，自动发布到小红书创作平台",
+  "author": "微微",
+  "homepage": "https://github.com/openclaw/skills",
+  "tags": ["xiaohongshu", "social-media", "automation", "publish"],
+  "triggers": [
+    "发小红书",
+    "发布小红书",
+    "小红书自动发布",
+    "发布笔记"
+  ],
+  "parameters": {},
+  "entry": "skill.js",
+  "dependencies": {
+    "runtime": "node"
+  },
+  "requirements": {
+    "chrome": "需要 Chrome 浏览器开启调试模式 --remote-debugging-port=9222",
+    "video_path": "~/Movies/小红书英语/",
+    "cookies": "YouTube 下载需要浏览器 cookies"
+  }
+}

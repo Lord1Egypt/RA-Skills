@@ -1,0 +1,5 @@
+{
+  "name": "ssh-executor",
+  "version": "1.1.0",
+  "description": "Execute commands on remote hosts over SSH with safety guardrails."
+}

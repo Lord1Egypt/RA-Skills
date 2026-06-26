@@ -1,0 +1,16 @@
+{
+  "source": "linear",
+  "sourceType": "issue",
+  "externalWrite": false,
+  "text": "Issue ENG-421: Authentication service returns 401 on valid tokens after JWT key rotation — blocking 3 teams, no activity for 48 hours.",
+  "observedAt": "2026-05-20T09:00:00.000Z",
+  "url": "https://linear.app/your-org/issue/ENG-421",
+  "summary": "Blocked issue: JWT rotation causing 401 errors across 3 teams",
+  "metadata": {
+    "issueId": "ENG-421",
+    "priority": "urgent",
+    "assignee": null,
+    "labels": ["bug", "authentication", "blocked"],
+    "adapterStatus": "community"
+  }
+}

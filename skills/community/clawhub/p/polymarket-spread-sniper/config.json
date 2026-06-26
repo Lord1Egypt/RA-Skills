@@ -1,0 +1,9 @@
+{
+  "max_position_usd": 50.0,
+  "max_trades_per_run": 3,
+  "daily_max_spend": 999999.0,
+  "take_profit_pct": 0.5,
+  "time_stop_pct": 0.33,
+  "min_volume": 50000.0,
+  "max_clob_spread": 0.05
+}

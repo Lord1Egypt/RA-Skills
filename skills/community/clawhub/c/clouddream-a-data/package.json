@@ -1,0 +1,26 @@
+{
+  "name": "clouddream-a-data-skill",
+  "version": "1.0.0",
+  "description": "云梦A股数据获取Skill",
+  "main": "index.py",
+  "bin": {
+    "clouddream-a-data": "./index.py"
+  },
+  "scripts": {
+    "start": "python index.py"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "a-share",
+    "stock",
+    "data"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "pandas": "^2.0.0",
+    "requests": "^2.31.0",
+    "beautifulsoup4": "^4.12.0"
+  }
+}

@@ -1,0 +1,7 @@
+# Python 依赖（极简版 - 仅 0.6B 模型）
+torch>=2.0.0
+qwen-asr>=0.0.6
+transformers>=4.37.0
+sentencepiece>=0.1.99
+protobuf>=4.25.0
+numpy>=1.24.0

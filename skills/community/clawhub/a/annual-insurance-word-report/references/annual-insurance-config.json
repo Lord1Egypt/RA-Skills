@@ -1,0 +1,43 @@
+{
+  "connection": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "user": "root",
+    "password": "root",
+    "database": "test_db",
+    "charset": "utf8mb4"
+  },
+  "params": {
+    "year": "2025",
+    "report_title": "2025年保险福利业务分析报告"
+  },
+  "queries": {
+    "main": "SELECT CASE typecode WHEN 1 THEN '参保人次' WHEN 2 THEN '参保金额' WHEN 3 THEN '参保人数' WHEN 4 THEN '受助人次' WHEN 5 THEN '互助金额' WHEN 6 THEN '受助人数' ELSE CONCAT('typecode=', typecode) END AS label, SUM(COALESCE(tuanyi, 0)) AS tuanyi, SUM(COALESCE(zinv, 0)) AS zinv, SUM(COALESCE(nvgongteji, 0) + COALESCE(nvgongteji25, 0)) AS nvgongteji, SUM(COALESCE(zhongji, 0) + COALESCE(zhongdajibing90, 0) + COALESCE(zhongdajibing40, 0)) AS zhongji, SUM(COALESCE(qingzheng, 0)) AS qingzheng, SUM(COALESCE(yiliao, 0)) AS yiliao, SUM(COALESCE(jintie, 0)) AS jintie, SUM(COALESCE(buchongyiliao, 0)) AS buchongyiliao, SUM(COALESCE(liangai, 0)) AS liangai, SUM(COALESCE(zonghea, 0)) AS zonghea, SUM(COALESCE(zongheb, 0)) AS zongheb, SUM(COALESCE(tuanyi, 0) + COALESCE(zinv, 0) + COALESCE(nvgongteji, 0) + COALESCE(nvgongteji25, 0) + COALESCE(zhongji, 0) + COALESCE(zhongdajibing90, 0) + COALESCE(zhongdajibing40, 0) + COALESCE(qingzheng, 0) + COALESCE(yiliao, 0) + COALESCE(jintie, 0) + COALESCE(buchongyiliao, 0) + COALESCE(liangai, 0) + COALESCE(zonghea, 0) + COALESCE(zongheb, 0)) AS total FROM gh_hg_bscyearall_dues WHERE date_year = {{year}} AND typecode IN (1, 2, 3, 4, 5, 6) GROUP BY typecode ORDER BY typecode;"
+  },
+  "scalars": {
+    "year": "{{year}}",
+    "report_title": "{{report_title}}",
+    "generated_at": "{{now:yyyy-MM-dd HH:mm:ss}}"
+  },
+  "tables": [
+    {
+      "name": "main",
+      "marker": "{{TABLE:main}}",
+      "columns": [
+        "label",
+        "tuanyi",
+        "zinv",
+        "nvgongteji",
+        "zhongji",
+        "qingzheng",
+        "yiliao",
+        "jintie",
+        "buchongyiliao",
+        "liangai",
+        "zonghea",
+        "zongheb",
+        "total"
+      ]
+    }
+  ]
+}

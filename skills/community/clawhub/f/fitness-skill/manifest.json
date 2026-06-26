@@ -1,0 +1,29 @@
+{
+  "name": "fitness-skill",
+  "version": "1.2.2",
+  "description": "Personal fitness planning, live workout tracking with session support, auto-stale-session cleanup, Feishu-integrated reminders, and exportable training reports.",
+  "author": "jp",
+  "license": "MIT",
+  "os": ["linux", "darwin"],
+  "requires": {
+    "bins": ["python3"],
+    "env": []
+  },
+  "optional_env": ["FEISHU_FITNESS_DOC_ID"],
+  "entry_points": {
+    "fitness-plan": "scripts/fitness-plan.py",
+    "fitness-log": "scripts/fitness-log.py",
+    "fitness-status": "scripts/fitness-status.py"
+  },
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "manifest.json",
+    "requirements.txt",
+    "scripts/fitness_skill.py",
+    "scripts/fitness-plan.py",
+    "scripts/fitness-log.py",
+    "scripts/fitness-status.py",
+    "references/schemas.json"
+  ]
+}

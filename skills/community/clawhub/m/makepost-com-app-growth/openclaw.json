@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "makepost": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://makepost.com/api/mcp/",
+        "--header",
+        "Authorization: Bearer ${MAKEPOST_API_KEY}"
+      ]
+    }
+  }
+}

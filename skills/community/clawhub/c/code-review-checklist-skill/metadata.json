@@ -1,0 +1,24 @@
+{
+  "slug": "code-review-checklist-skill",
+  "name": "Code Review Checklist Skill",
+  "version": "0.1.1",
+  "tags": [
+    "code-review-checklist",
+    "openclaw",
+    "software",
+    "templates"
+  ],
+  "category": "Software Quality",
+  "changelog": [
+    {
+      "version": "0.1.1",
+      "date": "2026-05-18",
+      "notes": "Version bump to publish updated package after v0.1.0 already existed on ClawHub."
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-05-18",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

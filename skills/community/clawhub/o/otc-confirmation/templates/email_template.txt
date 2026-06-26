@@ -1,0 +1,17 @@
+您的一次性确认码：{code}
+
+操作：{operation}
+会话：{session}
+
+请在发起操作的原会话中回复此确认码以授权执行。
+此确认码仅可使用一次，验证后立即失效。
+
+---
+
+Your one-time confirmation code: {code}
+
+Operation: {operation}
+Session: {session}
+
+Reply with this code in the original chat to authorize.
+This code is single-use and expires after verification.

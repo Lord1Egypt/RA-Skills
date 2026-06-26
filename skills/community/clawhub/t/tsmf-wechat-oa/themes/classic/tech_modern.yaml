@@ -1,0 +1,159 @@
+name: 科技现代 Pro
+description: 高对比度浅色科技风，专业清晰，适合技术、编程、AI类文章
+keywords:
+  - 技术
+  - 编程
+  - 代码
+  - 开发
+  - 算法
+  - AI
+  - 人工智能
+  - 机器学习
+  - Python
+  - JavaScript
+  - 前端
+  - 后端
+  - 架构
+  - 系统
+  - 教程
+  - 指南
+  - 工具
+  - 软件
+  - 数码
+  - 科技
+
+colors:
+  # 主色调 - 科技蓝
+  primary: "#2563eb"
+  # 强调色 - 电紫
+  accent: "#7c3aed"
+  # 文字色 - 深蓝灰（高对比度）
+  text: "#0f172a"
+  # 次要文字
+  text_light: "#475569"
+  # 背景色 - 极浅灰
+  background: "#f8fafc"
+  # 代码块背景 - 深色
+  code_bg: "#0f172a"
+  # 代码块文字 - 浅色
+  code_text: "#e2e8f0"
+  # 引用块背景
+  blockquote_bg: "#eff6ff"
+  # 边框色
+  border: "#cbd5e1"
+  # 链接色
+  link: "#2563eb"
+  # 强调文字
+  highlight: "#7c3aed"
+
+styles:
+  # 正文样式
+  body:
+    font_size: "16px"
+    line_height: "1.8"
+    letter_spacing: "0.3px"
+    padding: "0 20px"
+    margin: "0 0 18px 0"
+
+  # H1 标题 - 大气醒目
+  h1:
+    font_size: "24px"
+    font_weight: "700"
+    margin: "32px 0 20px 0"
+    padding: "0 20px 12px 20px"
+    text_align: "left"
+    border_bottom: "3px solid #2563eb"
+
+  # H2 标题 - 层次分明
+  h2:
+    font_size: "19px"
+    font_weight: "600"
+    margin: "28px 0 16px 0"
+    padding: "10px 16px"
+    border_left: "4px solid #2563eb"
+    background_color: "#f1f5f9"
+    border_radius: "0 8px 8px 0"
+
+  # H3 标题 - 简洁清晰
+  h3:
+    font_size: "17px"
+    font_weight: "600"
+    margin: "24px 0 12px 0"
+    padding: "0 20px"
+    border_left: "3px solid #7c3aed"
+    padding_left: "12px"
+
+  # 引用块 - 科技感
+  blockquote:
+    font_size: "15px"
+    padding: "16px 20px"
+    margin: "20px 0"
+    border_left: "4px solid #2563eb"
+    background_color: "#eff6ff"
+    border_radius: "0 8px 8px 0"
+    line_height: "1.75"
+
+  # 行内代码 - 醒目突出
+  code_inline:
+    font_size: "14px"
+    padding: "3px 8px"
+    border_radius: "4px"
+    background_color: "#e0e7ff"
+    color: "#3730a3"
+    font_weight: "500"
+
+  # 代码块 - 专业深色
+  code_block:
+    font_size: "14px"
+    padding: "18px 20px"
+    margin: "24px 0"
+    border_radius: "10px"
+    background_color: "#0f172a"
+    border: "1px solid #1e293b"
+    line_height: "1.7"
+    color: "#e2e8f0"
+
+  # 列表 - 清晰有序
+  list:
+    font_size: "16px"
+    margin: "16px 0"
+    padding: "0 20px 0 36px"
+    line_height: "1.8"
+
+  # 分隔线 - 简约
+  separator:
+    border_top: "2px solid #e2e8f0"
+    margin: "32px 20%"
+
+  # 图片 - 圆角美化
+  image:
+    border_radius: "8px"
+    border: "1px solid #e2e8f0"
+
+  # 链接 - 蓝色突出
+  link:
+    color: "#2563eb"
+    text_decoration: "none"
+    border_bottom: "1px dashed #2563eb"
+
+  # 强调文字
+  strong:
+    font_weight: "600"
+    color: "#0f172a"
+
+  # 表格
+  table:
+    border_collapse: "collapse"
+    width: "100%"
+    margin: "20px 0"
+    
+  table_th:
+    background_color: "#f1f5f9"
+    padding: "12px 16px"
+    border: "1px solid #cbd5e1"
+    font_weight: "600"
+    text_align: "left"
+    
+  table_td:
+    padding: "10px 16px"
+    border: "1px solid #e2e8f0"

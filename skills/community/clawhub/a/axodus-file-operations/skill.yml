@@ -1,0 +1,8 @@
+---
+name: file-operations
+description: Perform safe, auditable file operations with path validation and backups.
+version: 1.0.0
+display_name: "File Operations"
+triggers:
+System.Object[]
+---

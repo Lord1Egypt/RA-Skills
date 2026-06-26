@@ -1,0 +1,28 @@
+{
+  "name": "TwtAPI",
+  "slug": "twtapi",
+  "tagline": "Live Twitter/X data from TwtAPI",
+  "description": "Access live Twitter/X data through TwtAPI's hosted public skill gateway. Search tweets, look up user profiles, read timelines, inspect followers and following, fetch tweet details, and check trends with structured JSON. Works with OpenClaw and other compatible skill runners. Get your skill key at https://www.twtapi.com/en/.",
+  "category": "data",
+  "tags": ["twitter", "x", "social-media", "search", "api", "data"],
+  "version": "1.2.0",
+  "license": "MIT-0",
+  "author": {
+    "name": "TwtAPI"
+  },
+  "bins": ["python3"],
+  "env": {
+    "TWTAPI_SKILL_KEY": {
+      "description": "Your dedicated TwtAPI skill key",
+      "required": true,
+      "primary": true
+    }
+  },
+  "install": [
+    {
+      "name": "Install Python (brew)",
+      "bins": ["python3"],
+      "command": "brew install python"
+    }
+  ]
+}

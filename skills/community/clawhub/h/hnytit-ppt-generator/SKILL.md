@@ -1,35 +1,127 @@
 ---
-name: "河南油田工程科技PPT生成器"
-description: "河南油田工程科技股份有限公司专属PPT制作技能。用户上传PPT模板和代表性文件后激活。触发词：做PPT、做PPT、生成PPT、帮我做个PPT、做份PPT、PPT模板、按照模板做、严格按照模板。"
-category: "other"
-source: "ClawHub"
-tags: [hunanyoutian, ppt, presentation, template]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hnytit-ppt-generator"
-sourceUrl: "https://clawhub.ai/skills/hnytit-ppt-generator"
+name: hnytit-ppt-generator
+description: 河南油田工程科技股份有限公司专属PPT制作技能。用户上传PPT模板和代表性文件后激活。触发词：做PPT、做PPT、生成PPT、帮我做个PPT、做份PPT、PPT模板、按照模板做、严格按照模板。
 ---
 
-# 河南油田工程科技PPT生成器
+# 河南油田工程科技 PPT 制作技能
 
-> 河南油田工程科技股份有限公司专属PPT制作技能。用户上传PPT模板和代表性文件后激活。触发词：做PPT、做PPT、生成PPT、帮我做个PPT、做份PPT、PPT模板、按照模板做、严格按照模板。
+## 模板基准文件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hnytit-ppt-generator`
-- **Source URL:** [https://clawhub.ai/skills/hnytit-ppt-generator](https://clawhub.ai/skills/hnytit-ppt-generator)
+- **模板文件**：`references/template-specs.md` — 必须严格遵守的设计规范
+- **模板主题色板**：`references/palette.md`（自动从模板提取）
+- **参考PPT**：`assets/公司知识平台中期汇报.pptx`（11页结构参考）
+- **参考PPT2**：`assets/石油天然气站场本质安全提升方案.pptx`（41页详细方案参考）
 
-## Overview
+---
 
+## 制作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hnytit-ppt-generator
+### 第一步：需求确认
+
+用户说"做一份关于XXX的PPT"时，先确认：
+- 主题是什么？
+- 用途（汇报/培训/提案/介绍）？
+- 大概几页？
+- 内容从哪里来（用户提供文字/我写/两者结合）？
+
+### 第二步：内容规划
+
+参考 `references/template-specs.md` 中的结构规范，规划幻灯片：
+
+**标准PPT结构**：
+1. 封面页 — 公司名称 + 文档标题 + 日期
+2. 目录页 — 章节列表
+3. 内容页（根据实际内容决定页数）
+4. 结尾页 — 感谢/总结 + 底部标语
+
+### 第三步：严格按模板生成
+
+使用 `pptx-generator` 技能（PptxGenJS）生成，必须遵守：
+
+**颜色规范（严禁偏离）**：
 ```
+primary:   "2D2D8A"   ← 深蓝（标题/强调）
+accent:    "009999"   ← 青绿（副标题/图标）
+accent2:   "99CC00"   ← 绿色（标签）
+highlight: "FFFF99"   ← 黄色（高亮块）
+bg:        "DAEDEF"   ← 浅蓝（内容块背景）
+bg_main:   "FFFFFF"   ← 白色（主背景）
+text:      "333333"   ← 深灰（正文）
+text_lite: "808080"   ← 中灰（辅助文字）
+```
+
+**字体规范**：
+- 中文正文：微软雅黑
+- 中文标题：华文行楷（封面）或 微软雅黑加粗
+- 英文/数字：Arial
+- 备用：宋体、黑体
+
+**底部标语（每页必须有）**：`友好  和谐  向上  健康`
+
+**页码徽章**（封面除外）：
+- 位置：x=9.0", y=5.2"，圆形，直径0.35"
+- 颜色：`"2D2D8A"` 填充，白字
+
+---
+
+## 内容页版式参考
+
+### 标题+正文
+```
+标题：24-32pt，#2D2D8A，加粗，左对齐或居中
+正文：16-18pt，#333333，微软雅黑，1.5倍行距
+强调：背景 #FFFF99 色块，内边距
+```
+
+### 左右分栏（60/40）
+```
+左栏（60%）：文字说明，配图标
+右栏（40%）：图表/示意图
+中间分隔：竖线 #DADADA
+```
+
+### 卡片式
+```
+卡片背景：#DAEDEF，圆角矩形
+卡片顶部色条：#009999（宽100%，高0.05"）
+卡片标题：#2D2D8A 加粗
+卡片内容：#333333
+```
+
+### 表格
+```
+表头背景：#2D2D8A，白字
+表格正文：#FFFFFF背景，#333333文字
+斑马纹（可选）：#F5F5F5
+边框线：#DADADA
+```
+
+---
+
+## 输出要求
+
+生成的 PPT 文件保存到：
+```
+/workspace/skills/ppt-templates/output/演示文稿.pptx
+```
+
+生成后告知用户文件位置，并说明共几页。
+
+---
+
+## 注意事项
+
+1. **禁止偏离配色**：即使内容需要强调，也不能用红色（#FF0000等）作为主色调
+2. **禁止省略标语**：底部标语每页都要有（封面可省略）
+3. **页码不能断**：页码必须从1连续编号到最后一页
+4. **内容不够时的处理**：主动向用户询问更多内容，不要凭空编造数据
+5. **技术方案类PPT**：参考 PPT2（41页）的详细结构，增加技术参数表格和案例描述
+
+---
+
+## 参考文件路径
+
+- 模板规范：`/workspace/skills/ppt-templates/references/template-specs.md`
+- 参考PPT1：`/workspace/skills/ppt-templates/assets/公司知识平台中期汇报.pptx`
+- 参考PPT2：`/workspace/skills/ppt-templates/assets/石油天然气站场本质安全提升方案.pptx`
+- 输出目录：`/workspace/skills/ppt-templates/output/`

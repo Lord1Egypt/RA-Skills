@@ -1,0 +1,106 @@
+{
+  "skill_name": "brand-voice",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to define our brand voice. We're a B2B SaaS company that sells developer tools.",
+      "expected_output": "Should check for existing brand-voice-guide.md. Should check for product-marketing-context.md to use as starting point. Should walk through sections conversationally: Brand Personality (character sketch), Voice Attributes (with is/is not/sounds like/doesn't sound like), Core Messaging Pillars, Tone Spectrum by channel and situation, Style Rules, Terminology, and Audience-Specific Notes. Should adapt for a technical B2B audience — e.g., suggest spectrums like 'technical vs accessible' and 'peer-level vs authoritative'. Should create .agents/brand-voice-guide.md when complete.",
+      "assertions": [
+        "Checks for existing brand-voice-guide.md",
+        "Checks for product-marketing-context.md",
+        "Asks for brand personality character sketch",
+        "Captures voice attributes with is/is not format",
+        "Captures messaging pillars with priority ranking",
+        "Covers tone adaptation by channel and situation",
+        "Adapts for technical B2B audience",
+        "Creates file at .agents/brand-voice-guide.md"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We already have a product marketing context set up. Can you build our brand voice guide from that?",
+      "expected_output": "Should read .agents/product-marketing-context.md (or .claude/ location). Should pull Brand Voice, Customer Language, and Personas sections as starting points. Should draft voice attributes from the existing tone/personality fields. Should draft messaging pillars from Differentiation and Proof Points. Should draft audience-specific notes from Personas. Should present the draft and ask what needs expanding rather than starting from scratch.",
+      "assertions": [
+        "Reads existing product-marketing-context.md",
+        "Pulls Brand Voice section as starting point",
+        "Pulls Customer Language for terminology",
+        "Pulls Personas for audience-specific notes",
+        "Drafts pillars from Differentiation and Proof Points",
+        "Presents draft before asking additional questions",
+        "Does not re-ask information already captured"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Our brand voice needs to work across very different audiences — we talk to anxious family members choosing home care and also to referring physicians. Help us define our voice.",
+      "expected_output": "Should recognize multi-audience scenario. Should capture a unified brand personality that works across both audiences. Should document voice attributes that remain constant. Should capture audience-specific tone shifts — warmer and more reassuring for family members, clinical and efficient for physicians. Should ask about channels each audience uses and adapt tone-by-channel accordingly. Should handle the trust/empathy dimension that healthcare demands.",
+      "assertions": [
+        "Recognizes multi-audience scenario",
+        "Captures unified brand personality",
+        "Documents constant voice attributes",
+        "Captures audience-specific tone shifts",
+        "Adapts for family member audience (warm, reassuring)",
+        "Adapts for physician audience (clinical, efficient)",
+        "Addresses trust and empathy for healthcare context"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "We need a style guide for our content team. Things like Oxford comma, capitalization rules, how we refer to our product, inclusive language — that kind of thing.",
+      "expected_output": "Should recognize this as primarily a style rules and terminology request. Should still capture minimal brand personality and voice attributes for context, but focus depth on Style Rules (grammar, mechanics, formatting, punctuation) and Terminology (preferred terms, product names, inclusive language, jargon management, competitor terms). Should present grammar choices as options to decide on rather than open-ended questions. Should help them make decisions efficiently.",
+      "assertions": [
+        "Focuses on style rules and terminology sections",
+        "Presents grammar rules as choices not open-ended questions",
+        "Covers product name capitalization and shorthand",
+        "Covers inclusive language guidance",
+        "Covers jargon management",
+        "Covers competitor term handling",
+        "Still captures minimal voice context"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Update our brand voice guide — we just expanded to a new channel (TikTok) and need tone guidance for short-form video content.",
+      "expected_output": "Should read existing .agents/brand-voice-guide.md. Should identify the Tone Spectrum section as the primary update target. Should add TikTok/short-form video to the channel tone table. Should ask about tone adjustments for the platform (likely more casual, energetic, visual-first). Should preserve all existing content. Should consider whether voice attributes need any adjustment for this more casual channel.",
+      "assertions": [
+        "Reads existing brand-voice-guide.md",
+        "Updates Tone Spectrum section",
+        "Adds TikTok to channel tone table",
+        "Asks about platform-specific tone",
+        "Preserves existing content",
+        "Considers voice attribute implications"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Write homepage copy for our product.",
+      "expected_output": "Should recognize this is a copywriting task, not a brand voice task. Should check for brand-voice-guide.md and product-marketing-context.md (as other skills do for context). Should defer to the copywriting skill for actually writing the homepage copy.",
+      "assertions": [
+        "Recognizes this as a copywriting task",
+        "May check for or suggest brand-voice-guide.md",
+        "References or defers to copywriting skill",
+        "Does not attempt to write homepage copy using brand voice patterns"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're an early-stage startup, just two founders. We haven't written much content yet but want to establish our voice before we start. Can you help?",
+      "expected_output": "Should adapt for early-stage with minimal existing content. Should focus on Brand Personality and Voice Attributes (the foundation). Should not overwhelm with style rules or terminology at this stage — mark those as '[to revisit]'. Should offer to co-write example sentences for voice attributes since they don't have existing content to reference. Should suggest sensible defaults for basic style rules rather than presenting every option.",
+      "assertions": [
+        "Adapts for early-stage company",
+        "Focuses on personality and voice attributes",
+        "Offers to co-write example sentences",
+        "Marks advanced sections as to-revisit",
+        "Suggests sensible defaults for style rules",
+        "Does not overwhelm with full framework"
+      ],
+      "files": []
+    }
+  ]
+}

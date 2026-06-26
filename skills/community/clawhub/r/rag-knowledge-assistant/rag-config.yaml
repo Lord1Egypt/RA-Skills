@@ -1,0 +1,56 @@
+# RAG 配置文件
+# 用于配置向量数据库、Embedding 模型和检索参数
+
+rag:
+  enabled: true
+  
+  # 向量数据库配置
+  vectorstore:
+    type: chroma
+    # 向量库存储路径 (相对于 workspace 目录)
+    persist_directory: ./vectorstore
+    
+  # Embedding 模型配置
+  embedding:
+    type: huggingface
+    model: BAAI/bge-m3
+    device: cpu
+    # 可选：使用 API 服务
+    # type: openai
+    # model: text-embedding-3-small
+    # api_key: ${OPENAI_API_KEY}
+  
+  # 检索参数
+  retrieval:
+    top_k: 5              # 返回最相关的 K 个片段
+    score_threshold: 0.6   # 相似度阈值 (0-1)
+    include_metadata: true # 是否包含元数据 (来源、页码等)
+  
+  # 文本分块参数
+  chunking:
+    chunk_size: 500       # 每块字数
+    chunk_overlap: 50     # 重叠字数
+  
+  # 知识库配置
+  knowledge_bases:
+    - name: default
+      # 知识库路径 (相对于 workspace 目录)
+      path: ./knowledge
+      description: 默认知识库
+      enabled: true
+    
+    # 可以添加多个知识库
+    # - name: company-policies
+    #   path: ./knowledge/company-policies
+    #   description: 公司制度文档
+    #   enabled: true
+    # 
+    # - name: product-docs
+    #   path: ./knowledge/product-docs
+    #   description: 产品文档
+    #   enabled: true
+
+# 日志配置
+logging:
+  level: INFO
+  file: ./logs/rag.log

@@ -1,35 +1,214 @@
 ---
-name: "Crayfish Diary"
-description: "A WorkBuddy skill for quick diary and memo recording with automatic year/month/day directory organization. Supports Chinese and English triggers - start with..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crayfish-diary"
-sourceUrl: "https://clawhub.ai/skills/crayfish-diary"
+name: crayfish-diary
+description: A WorkBuddy skill for quick diary and memo recording with automatic year/month/day directory organization. Supports Chinese and English triggers - start with "帮我记一下" or "help me record", end with "结束记录" or "end recording".
 ---
 
-# Crayfish Diary
+# 龙虾日记技能
 
-> A WorkBuddy skill for quick diary and memo recording with automatic year/month/day directory organization. Supports Chinese and English triggers - start with...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crayfish-diary`
-- **Source URL:** [https://clawhub.ai/skills/crayfish-diary](https://clawhub.ai/skills/crayfish-diary)
+这是一个帮助用户快速记录日记、备忘内容的技能。当用户请求记录内容时，自动在指定空间创建结构化的日记存储目录，按年月日组织 markdown 文件，方便用户管理和检索历史记录。
 
-## Overview
+## 使用场景
 
+此技能应在以下情况下触发：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crayfish-diary
+- 用户说"帮我记一下"或"help me record"开始记录，说"结束记录"或"end recording"结束记录
+- 用户想快速记录想法、待办事项、会议记录等内容
+- 用户需要创建日记或备忘录
+- 用户表达需要记录信息的意图
+
+## 工作流程
+
+### 1. 开始记录
+
+当用户说"帮我记一下"或"help me record"或"start recording"时，技能开始监听并记录后续内容。
+
+1. 确定日记存储位置：
+   - 如果用户明确指定了存储位置（如"在 Claw 空间记一下"），则使用指定空间
+   - 如果没有指定，默认在当前工作空间创建 `龙虾日记` 目录
+2. 提示用户："好的，请继续说，我会记录下来。说'结束记录'或'end recording'完成记录。"
+
+### 2. 收集内容
+
+收集用户后续的所有对话内容，直到用户说"结束记录"。
+
+### 3. 创建目录结构
+
+按以下层级创建目录：
+
 ```
+龙虾日记/
+└── YYYY/           # 年份目录（如 2026）
+    └── MM/         # 月份目录（如 03）
+        └── DD/     # 日期目录（如 11）
+            └── *.md  # 具体的日记文件
+```
+
+例如：
+```
+龙虾日记/
+└── 2026/
+    └── 03/
+        └── 11/
+            └── 日常记录.md
+```
+
+### 4. 创建日记文件
+
+日记文件命名规则：
+
+- 如果用户给了标题，使用用户提供的标题作为文件名
+- 如果没有标题，使用时间戳作为文件名，如 `22-00-日常记录.md`
+- 文件名格式：`[时间]-[标题].md`
+
+### 5. 生成摘要
+
+为当天所有日记生成摘要，放在日期目录的 README.md 中：
+
+```markdown
+# YYYY-MM-DD 日记摘要
+
+## 记录列表
+
+1. **[时间] [标题]**: [内容前50字摘要]...
+2. **[时间] [标题]**: [内容前50字摘要]...
+
+---
+*共 N 条记录*
+```
+
+### 6. 写入内容
+
+在 markdown 文件中写入以下内容：
+
+```markdown
+# [标题]
+
+**时间**: YYYY-MM-DD HH:mm
+**标签**: [用户指定的标签，如无则省略]
+
+---
+
+[用户要记录的内容]
+
+---
+
+*由龙虾日记自动记录*
+```
+
+## 执行示例
+
+### 示例 1：简单记录
+
+用户输入：
+```
+帮我记一下
+```
+
+智能体回复：
+```
+好的，请继续说，我会记录下来。说"结束记录"完成记录。
+```
+
+用户继续：
+```
+今天完成了技能开发任务，创建了一个龙虾日记技能
+结束记录
+```
+
+执行步骤：
+1. 创建目录：`龙虾日记/2026/03/11/`
+2. 创建文件：`22-00-技能开发任务.md`
+3. 更新日期摘要：`龙虾日记/2026/03/11/README.md`
+4. 写入内容：
+
+```markdown
+# 技能开发任务
+
+**时间**: 2026-03-11 22:00
+
+---
+
+今天完成了技能开发任务，创建了一个龙虾日记技能
+
+---
+
+*由龙虾日记自动记录*
+```
+
+### 示例 2：带标题的记录
+
+用户输入：
+```
+帮我记一下会议纪要
+```
+
+用户继续：
+```
+今天讨论了新产品的设计方案，确定了三个核心功能
+结束记录
+```
+
+执行步骤：
+1. 创建目录：`龙虾日记/2026/03/11/`
+2. 创建文件：`会议纪要.md`
+3. 更新日期摘要
+4. 写入内容
+
+### 示例 3：指定空间的记录
+
+用户输入：
+```
+在 Claw 空间帮我记一下
+```
+
+用户继续：
+```
+我的学习笔记：今天学习了 Python 异步编程
+结束记录
+```
+
+执行步骤：
+1. 在 Claw 空间创建目录：`龙虾日记/2026/03/11/`
+2. 创建文件：`学习笔记.md`
+3. 更新日期摘要
+4. 写入内容
+
+## 技术实现
+
+### 目录创建
+
+使用 `execute_command` 工具创建目录：
+
+```bash
+mkdir -p "空间路径/龙虾日记/YYYY/MM/DD"
+```
+
+### 文件写入
+
+使用 `write_to_file` 工具创建 markdown 文件，包含完整的日记格式。
+
+### 时间处理
+
+- 年份：YYYY 格式（如 2026）
+- 月份：MM 格式（如 03）
+- 日期：DD 格式（如 11）
+- 时间：HH:mm 格式（如 22:00）
+
+当前日期时间从系统信息中获取。
+
+## 注意事项
+
+1. 如果目录已存在，不需要重新创建
+2. 如果文件已存在，询问用户是追加内容还是创建新文件
+3. 保持 markdown 格式的整洁和一致性
+4. 支持中英文混合的文件命名
+5. 对于特殊字符（如 / : * ? " < > |），在文件名中替换为下划线或删除
+
+## 扩展功能（可选）
+
+- 支持为日记添加标签分类
+- 支持检索历史日记
+- 支持导出日记为 PDF 或其他格式
+- 支持日记模板自定义

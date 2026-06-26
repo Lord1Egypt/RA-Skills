@@ -1,0 +1,144 @@
+# 视频分析流水线模板
+
+> 视频帧提取 → 内容分析 → 生成视频笔记
+
+## 元数据
+
+```yaml
+name: video-analysis-pipeline
+version: 1.0.0
+description: 视频帧提取 → 内容分析 → 生成文字笔记
+intent_type: media_processing
+author: openclaw-skill-compounder
+created: 2026-04-30
+```
+
+## 流水线定义
+
+### Step 1: 视频帧提取
+
+```yaml
+step: 1
+skill: video-frames
+trigger: 用户提供视频URL或本地路径
+timeout: 120s
+
+input:
+  video_source: "${user.video_input}"
+  extraction_mode: "${user.extraction_mode || 'key_frames'}"
+  max_frames: "${user.max_frames || 20}"
+  include_timestamps: true
+    
+output:
+  result_field: "extracted_frames"
+  metadata:
+    - video_duration
+    - frame_count
+    - key_moments
+    - fps
+  confidence_weight: 0.9
+```
+
+### Step 2: 视频内容分析
+
+```yaml
+step: 2
+skill: analyze_video
+trigger: step_1 完成
+timeout: 90s
+depends_on: step_1
+
+input:
+  video_source: "${user.video_input}"
+  frames: "${step_1.result.extracted_frames}"
+  analysis_focus:
+    - "${user.analysis_focus || 'main_content'}"
+    - key_ideas
+    - action_items
+    - conclusions
+    
+output:
+  result_field: "video_analysis"
+  metadata:
+    - summary
+    - key_timestamps
+    - topic_segments
+  confidence_weight: 0.85
+```
+
+### Step 3: 笔记生成
+
+```yaml
+step: 3
+skill: writing-agent
+trigger: step_2 完成
+timeout: 60s
+depends_on: step_2
+
+input:
+  text: "${step_2.result.video_analysis.summary}"
+  context:
+    format: "${user.note_format || '结构化笔记'}"
+    include_timestamps: "${user.include_timestamps || true}"
+    style: "${user.note_style || '简洁清晰'}"
+    audience: "${user.audience || '个人学习'}"
+    
+output:
+  result_field: "video_notes"
+  metadata:
+    - word_count
+    - section_count
+    - action_items
+  confidence_weight: 0.85
+```
+
+## 数据流转
+
+```yaml
+data_flow:
+  step_1_to_step_2:
+    extracted_frames → frames
+    key_moments → metadata.key_moments
+    
+  step_2_to_step_3:
+    video_analysis.summary → text
+    key_timestamps → context.key_timestamps
+```
+
+## 异常处理
+
+```yaml
+error_handling:
+  step_1_failure:
+    strategy: confirm
+    message: "视频帧提取失败，可能是格式不支持。是否尝试直接分析视频？"
+    
+  step_2_failure:
+    strategy: fallback
+    fallback_skill: writing-agent
+    message: "视频分析失败，尝试基于帧描述生成笔记"
+    
+  step_3_failure:
+    strategy: retry
+    max_attempts: 2
+    message: "笔记生成失败，尝试简化格式"
+```
+
+## 适用场景
+
+- 视频课程学习笔记
+- 线上分享/演讲记录
+- 教程视频要点提取
+- 会议视频记录整理
+- 投资策略视频分析
+
+## 触发词示例
+
+```
+"帮我提取这个视频的内容"
+"分析一下这个视频的重点"
+"把这个视频转成文字笔记"
+"视频课程笔记生成"
+"帮我整理这个演讲视频"
+"分析这个投资策略视频"
+```

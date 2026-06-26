@@ -1,0 +1,5 @@
+devices:
+#  main:	# device name
+#    ip: 192.168.50.230
+#    mac: EC:00:00:00:00:6C
+#    subnet_mask: 255.255.255.0

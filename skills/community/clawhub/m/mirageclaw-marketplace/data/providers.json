@@ -1,0 +1,188 @@
+{
+  "gpt-image": {
+    "name": "GPT Image 1.5 (OpenAI)",
+    "endpoint": "https://api.openai.com/v1/images/generations",
+    "auth": "Bearer {{apiKey}}",
+    "body": {
+      "model": "gpt-image-1.5",
+      "prompt": "{{prompt}}",
+      "size": "{{size}}",
+      "n": 1
+    },
+    "sizeMap": {
+      "16:9": "1536x1024",
+      "9:16": "1024x1536",
+      "1:1": "1024x1024",
+      "default": "1024x1024"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "data[0].url"
+    }
+  },
+  "grok-imagine": {
+    "name": "Grok Imagine (xAI)",
+    "endpoint": "https://api.x.ai/v1/images/generations",
+    "auth": "Bearer {{apiKey}}",
+    "body": {
+      "model": "grok-imagine-image",
+      "prompt": "{{prompt}}",
+      "aspect_ratio": "{{size}}",
+      "n": 1
+    },
+    "sizeMap": {
+      "16:9": "16:9",
+      "9:16": "9:16",
+      "1:1": "1:1",
+      "default": "1:1"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "data[0].url"
+    }
+  },
+  "grok-imagine-fal": {
+    "name": "Grok Imagine (fal.ai)",
+    "endpoint": "https://fal.run/xai/grok-imagine-image",
+    "auth": "Key {{apiKey}}",
+    "body": {
+      "prompt": "{{prompt}}",
+      "aspect_ratio": "{{size}}"
+    },
+    "sizeMap": {
+      "16:9": "16:9",
+      "9:16": "9:16",
+      "1:1": "1:1",
+      "default": "1:1"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "images[0].url"
+    }
+  },
+  "nano-banana-2": {
+    "name": "Nano Banana 2 (Gemini 3.1 Flash)",
+    "endpoint": "https://fal.run/fal-ai/nano-banana-2",
+    "auth": "Key {{apiKey}}",
+    "body": {
+      "prompt": "{{prompt}}",
+      "aspect_ratio": "{{size}}"
+    },
+    "sizeMap": {
+      "16:9": "16:9",
+      "9:16": "9:16",
+      "1:1": "1:1",
+      "default": "1:1"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "images[0].url"
+    }
+  },
+  "nano-banana-pro": {
+    "name": "Nano Banana Pro (Gemini 3 Pro)",
+    "endpoint": "https://fal.run/fal-ai/nano-banana-pro",
+    "auth": "Key {{apiKey}}",
+    "body": {
+      "prompt": "{{prompt}}",
+      "aspect_ratio": "{{size}}"
+    },
+    "sizeMap": {
+      "16:9": "16:9",
+      "9:16": "9:16",
+      "1:1": "1:1",
+      "default": "1:1"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "images[0].url"
+    }
+  },
+  "flux-2-flex": {
+    "name": "FLUX 2 Flex",
+    "endpoint": "https://fal.run/fal-ai/flux-2-flex",
+    "auth": "Key {{apiKey}}",
+    "body": {
+      "prompt": "{{prompt}}",
+      "image_size": "{{size}}"
+    },
+    "sizeMap": {
+      "16:9": "landscape_16_9",
+      "9:16": "portrait_16_9",
+      "1:1": "square",
+      "default": "landscape_4_3"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "images[0].url"
+    }
+  },
+  "flux-schnell": {
+    "name": "FLUX.1 schnell",
+    "endpoint": "https://fal.run/fal-ai/flux/schnell",
+    "auth": "Key {{apiKey}}",
+    "body": {
+      "prompt": "{{prompt}}",
+      "image_size": "{{size}}"
+    },
+    "sizeMap": {
+      "16:9": "landscape_16_9",
+      "9:16": "portrait_16_9",
+      "1:1": "square",
+      "default": "landscape_4_3"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "images[0].url"
+    }
+  },
+  "flux-dev": {
+    "name": "FLUX.1 dev",
+    "endpoint": "https://fal.run/fal-ai/flux/dev",
+    "auth": "Key {{apiKey}}",
+    "body": {
+      "prompt": "{{prompt}}",
+      "image_size": "{{size}}"
+    },
+    "sizeMap": {
+      "16:9": "landscape_16_9",
+      "9:16": "portrait_16_9",
+      "1:1": "square",
+      "default": "landscape_4_3"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "images[0].url"
+    }
+  },
+  "huggingface": {
+    "name": "HuggingFace Inference",
+    "endpoint": "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
+    "auth": "Bearer {{apiKey}}",
+    "body": {
+      "inputs": "{{prompt}}"
+    },
+    "response": {
+      "type": "binary"
+    }
+  },
+  "recraft-v4": {
+    "name": "Recraft V4 Pro",
+    "endpoint": "https://fal.run/fal-ai/recraft/v4/pro/text-to-image",
+    "auth": "Key {{apiKey}}",
+    "body": {
+      "prompt": "{{prompt}}",
+      "image_size": "{{size}}"
+    },
+    "sizeMap": {
+      "16:9": "landscape_16_9",
+      "9:16": "portrait_16_9",
+      "1:1": "square_hd",
+      "default": "square_hd"
+    },
+    "response": {
+      "type": "json",
+      "imagePath": "images[0].url"
+    }
+  }
+}

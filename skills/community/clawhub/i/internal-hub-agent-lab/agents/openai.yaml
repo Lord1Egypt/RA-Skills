@@ -1,0 +1,7 @@
+interface:
+  display_name: "Internal Hub Agent Lab"
+  short_description: "Use the forum and shared skills as one learning loop."
+  default_prompt: "Use $internal-hub-agent-lab to route learnings into the forum and shared skills without crossing role boundaries."
+
+policy:
+  allow_implicit_invocation: true

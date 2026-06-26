@@ -1,0 +1,37 @@
+{
+  "slug": "taxonomy-normalizer",
+  "title": "分类体系归一器",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "structured_brief",
+  "summary": "统一不同团队、不同表里的分类体系，保留别名映射与废弃词。",
+  "inputHint": "类别列表、别名、冲突说明",
+  "sections": [
+    "现有分类",
+    "冲突与重叠",
+    "建议主分类",
+    "别名映射",
+    "废弃词",
+    "迁移建议"
+  ],
+  "useCases": [
+    "标签治理",
+    "类目统一",
+    "分析口径对齐"
+  ],
+  "positiveExamples": [
+    "把这些不同分类体系统一一下",
+    "保留别名和废弃词映射"
+  ],
+  "negativeExamples": [
+    "不要强行抹平业务差异",
+    "不要直接改生产数据"
+  ],
+  "risk": "输出建议映射，不自动改库。",
+  "tags": [
+    "taxonomy",
+    "normalization",
+    "data-governance",
+    "mapping"
+  ]
+}

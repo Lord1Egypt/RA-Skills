@@ -1,0 +1,30 @@
+id: a02
+track: A
+title_zh: 实现 CSV 转 JSON 命令行脚本
+category: cli_script
+difficulty: easy
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - claw
+evaluators:
+- type: state_hash
+  weight: 0.5
+  files:
+  - convert.py
+  required_patterns:
+  - import\s+(json|csv)
+- type: pytest
+  weight: 0.5
+  target: tests/test_convert.py
+  fail_to_pass:
+  - test_basic_convert
+  - test_with_header
+  pass_to_pass: []
+metadata:
+  estimated_minutes: 5
+  expected_tool_calls:
+  - Write
+  - Bash
+title_en: Build a CSV to JSON CLI

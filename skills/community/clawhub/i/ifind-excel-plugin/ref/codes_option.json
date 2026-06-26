@@ -1,0 +1,1118 @@
+[
+  {
+    "code": "ths_implied_volatility_option",
+    "name": "隐含波动率",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_inner_value_option",
+    "name": "内在价值",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_time_value_option",
+    "name": "时间价值",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_volatility_30d_option",
+    "name": "标的30 日波动率",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_volatility_60d_option",
+    "name": "标的60 日波动率",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_volatility_90d_option",
+    "name": "标的90 日波动率",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_amt_option",
+    "name": "标的成交额",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_avg_price_option",
+    "name": "标的均价",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_chg_option",
+    "name": "标的涨跌",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_close_option",
+    "name": "标的收盘价",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_high_option",
+    "name": "标的最高价",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_low_option",
+    "name": "标的最低价",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_open_option",
+    "name": "标的开盘价",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_pre_close_option",
+    "name": "标的前收盘价",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_ratio_option",
+    "name": "标的涨跌幅",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_swing_option",
+    "name": "标的振幅",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_turnover_option",
+    "name": "标的换手率",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_underlying_vol_option",
+    "name": "标的成交量",
+    "description": "期权行情指标/标的行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_q_option",
+    "name": "季成交额",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_amt_q_option",
+    "name": "季均成交额",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_position_q_option",
+    "name": "季均持仓量",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_q_option",
+    "name": "季成交均价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_vol_q_option",
+    "name": "季均成交量",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_q_option",
+    "name": "季涨跌",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_q_option",
+    "name": "季涨跌幅",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_q_option",
+    "name": "季收盘价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_q_option",
+    "name": "季最高收盘价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_q_option",
+    "name": "季最高价日",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_q_option",
+    "name": "季最高价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_q_option",
+    "name": "季最高结算价日",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_q_option",
+    "name": "季最高结算价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_q_option",
+    "name": "季最低收盘价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_q_option",
+    "name": "季最低价日",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_q_option",
+    "name": "季最低价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_q_option",
+    "name": "季最低结算价日",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_q_option",
+    "name": "季最低结算价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_q_option",
+    "name": "季持仓量",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_q_option",
+    "name": "季开盘价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_q_option",
+    "name": "季持仓变化",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_q_option",
+    "name": "季前收盘价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_q_option",
+    "name": "季前结算价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_q_option",
+    "name": "季涨跌(结算价)",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_q_option",
+    "name": "季涨跌幅(结算价)",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_q_option",
+    "name": "季结算价",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_q_option",
+    "name": "季振幅",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_q_option",
+    "name": "季成交量",
+    "description": "期权行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_y_option",
+    "name": "年成交额",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_amt_y_option",
+    "name": "年均成交额",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_position_y_option",
+    "name": "年均持仓量",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_vol_y_option",
+    "name": "年均成交量",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_delta_option",
+    "name": "Delta",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_y_option",
+    "name": "年成交均价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_y_option",
+    "name": "年涨跌幅",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_gamma_option",
+    "name": "Gamma",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_y_option",
+    "name": "年涨跌",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_y_option",
+    "name": "年收盘价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_y_option",
+    "name": "年最高收盘价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_y_option",
+    "name": "年最高价日",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_y_option",
+    "name": "年最高结算价日",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_y_option",
+    "name": "年最高结算价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_y_option",
+    "name": "年最高价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_y_option",
+    "name": "年最低收盘价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_y_option",
+    "name": "年最低价日",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_y_option",
+    "name": "年最低结算价日",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_y_option",
+    "name": "年最低结算价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_y_option",
+    "name": "年最低价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_y_option",
+    "name": "年开盘价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_y_option",
+    "name": "年持仓变化",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_y_option",
+    "name": "年持仓量",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_y_option",
+    "name": "年前收盘价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_y_option",
+    "name": "年前结算价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_y_option",
+    "name": "年涨跌幅(结算价)",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_y_option",
+    "name": "年涨跌(结算价)",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_y_option",
+    "name": "年结算价",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_y_option",
+    "name": "年振幅",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_y_option",
+    "name": "年成交量",
+    "description": "期权行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_int_option",
+    "name": "区间成交额",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_amt_int_option",
+    "name": "区间均成交额",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_int_option",
+    "name": "区间成交均价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_int_option",
+    "name": "区间涨跌",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_settle_int_option",
+    "name": "区间涨跌幅(结算价)",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_settle_int_option",
+    "name": "区间涨跌(结算价)",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_int_option",
+    "name": "区间收盘价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_int_option",
+    "name": "区间最高收盘价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_int_option",
+    "name": "区间最高价日",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_int_option",
+    "name": "区间最高价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_int_option",
+    "name": "区间最高结算价日",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_int_option",
+    "name": "区间最高结算价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_int_chg_ratio_option",
+    "name": "区间涨跌幅",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_intervalavgposition_option",
+    "name": "区间均持仓量",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_intervalavgvolume_option",
+    "name": "区间均成交量",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_int_option",
+    "name": "区间最低收盘价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_int_option",
+    "name": "区间最低价日",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_int_option",
+    "name": "区间最低价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_int_option",
+    "name": "区间最低结算价日",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_int_option",
+    "name": "区间最低结算价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_chg_int_option",
+    "name": "区间持仓变化",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_int_option",
+    "name": "区间开盘价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_int_option",
+    "name": "区间持仓量",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_int_option",
+    "name": "区间前收盘价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_int_option",
+    "name": "区间前结算价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_int_option",
+    "name": "区间结算价",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_int_option",
+    "name": "区间振幅",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_int_option",
+    "name": "区间成交量",
+    "description": "期权行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_option",
+    "name": "成交额",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_option",
+    "name": "均价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_option",
+    "name": "涨跌",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_option",
+    "name": "涨跌幅",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_price_option",
+    "name": "收盘价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_price_option",
+    "name": "最高价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_option",
+    "name": "最低价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_option",
+    "name": "持仓量",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_price_option",
+    "name": "开盘价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_option",
+    "name": "持仓变化",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_option",
+    "name": "前收盘价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_option",
+    "name": "前结算价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_option",
+    "name": "涨跌(结算价)",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_option",
+    "name": "涨跌幅(结算价)",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_option",
+    "name": "结算价",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_strike_vol_option",
+    "name": "行权量",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_d_option",
+    "name": "日振幅",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_option",
+    "name": "成交量",
+    "description": "期权行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_m_option",
+    "name": "月成交额",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_amt_m_option",
+    "name": "月均成交额",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_position_m_option",
+    "name": "月均持仓量",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_m_option",
+    "name": "月成交均价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_vol_m_option",
+    "name": "月均成交量",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_m_option",
+    "name": "月涨跌幅",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chgm_option",
+    "name": "月涨跌",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_m_option",
+    "name": "月收盘价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_m_option",
+    "name": "月最高收盘价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_m_option",
+    "name": "月最高价日",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_m_option",
+    "name": "月最高价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_m_option",
+    "name": "月最高结算价日",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_m_option",
+    "name": "月最高结算价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_m_option",
+    "name": "月最低收盘价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_m_option",
+    "name": "月最低价日",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_m_option",
+    "name": "月最低价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_m_option",
+    "name": "月最低结算价日",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_m_option",
+    "name": "月最低结算价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_m_option",
+    "name": "月持仓量",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_m_option",
+    "name": "月开盘价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chgm_option",
+    "name": "月持仓变化",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_m_option",
+    "name": "月前收盘价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_m_option",
+    "name": "月前结算价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_m_option",
+    "name": "月涨跌幅(结算价)",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chgm_option",
+    "name": "月涨跌(结算价)",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_m_option",
+    "name": "月结算价",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swingm_option",
+    "name": "月振幅",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_m_option",
+    "name": "月成交量",
+    "description": "期权行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_w_option",
+    "name": "周成交额",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_amt_w_option",
+    "name": "周均成交额",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_rho_option",
+    "name": "Rho",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_position_w_option",
+    "name": "周均持仓量",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_w_option",
+    "name": "周成交均价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_vol_w_option",
+    "name": "周均成交量",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_w_option",
+    "name": "周涨跌幅",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_w_option",
+    "name": "周涨跌",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_w_option",
+    "name": "周收盘价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_w_option",
+    "name": "周最高收盘价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_w_option",
+    "name": "周最高价日",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_w_option",
+    "name": "周最高结算价日",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_w_option",
+    "name": "周最高结算价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_w_option",
+    "name": "周最高价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_w_option",
+    "name": "周最低收盘价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_w_option",
+    "name": "周最低价日",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_w_option",
+    "name": "周最低结算价日",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_w_option",
+    "name": "周最低结算价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_w_option",
+    "name": "周最低价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_w_option",
+    "name": "周持仓量",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_w_option",
+    "name": "周开盘价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_w_option",
+    "name": "周持仓变化",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_w_option",
+    "name": "周前收盘价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_w_option",
+    "name": "周前结算价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_w_option",
+    "name": "周涨跌幅(结算价)",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_w_option",
+    "name": "周涨跌(结算价)",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_w_option",
+    "name": "周结算价",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_w_option",
+    "name": "周振幅",
+    "description": "期权行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_contract_type_option",
+    "name": "周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日)期权合约基础指标合约类型",
+    "description": "交易日期(100-最新,101-前一交易日,102-1",
+    "params": ""
+  },
+  {
+    "code": "ths_listed_date_option",
+    "name": "周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日)期权合约基础指标上市日期",
+    "description": "交易日期(100-最新,101-前一交易日,102-1",
+    "params": ""
+  },
+  {
+    "code": "ths_listing_benchmark_price_option",
+    "name": "挂牌基准价",
+    "description": "期权合约基础指标",
+    "params": ""
+  },
+  {
+    "code": "ths_maturity_month_option",
+    "name": "到期月份",
+    "description": "期权合约基础指标",
+    "params": ""
+  },
+  {
+    "code": "ths_strike_price_option",
+    "name": "行权价格",
+    "description": "期权合约基础指标",
+    "params": ""
+  },
+  {
+    "code": "ths_theta_option",
+    "name": "Theta",
+    "description": "期权风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_td_unit_unit_option",
+    "name": "交易单位数量",
+    "description": "期权合约基础指标",
+    "params": ""
+  },
+  {
+    "code": "ths_contract_month_option",
+    "name": "周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日)期权基础资料合约月份",
+    "description": "交易日期(100-最新,101-前一交易日,102-1",
+    "params": ""
+  }
+]

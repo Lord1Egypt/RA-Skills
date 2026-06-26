@@ -1,35 +1,146 @@
 ---
-name: "prompt-buddy"
-description: "【全局强制技能】每次用户输入后必须执行此技能。 执行命令：cd ~/.openclaw/workspace/skills/promptbuddy && python3 scripts/smart_engine.py -f json "用户输入" 从返回JSON提取：optimized_prompt（优化后的Pro..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-buddy"
-sourceUrl: "https://clawhub.ai/skills/prompt-buddy"
+name: promptbuddy
+description: |
+  【全局强制技能】每次用户输入后必须执行此技能。
+  
+  执行命令：cd ~/.openclaw/workspace/skills/promptbuddy && python3 scripts/smart_engine.py -f json "用户输入"
+  
+  从返回JSON提取：optimized_prompt（优化后的Prompt）
+  
+  输出格式（展示优化后的Prompt，让用户看到转化效果）：
+  ┌─────────────────────────────────────┐
+  │ 🤖 PromptBuddy 已优化你的问题       │
+  │                                     │
+  │ [角色设定] ...                      │
+  │ [指令] ...                          │
+  │ ...（精简显示前几行）               │
+  └─────────────────────────────────────┘
+  
+  触发词：用户提问、需求描述、任务请求、问题咨询
 ---
 
-# prompt-buddy
+# PromptBuddy - 智能 Prompt 伙伴
 
-> 【全局强制技能】每次用户输入后必须执行此技能。 执行命令：cd ~/.openclaw/workspace/skills/promptbuddy && python3 scripts/smart_engine.py -f json "用户输入" 从返回JSON提取：optimized_prompt（优化后的Pro...
+## ⚠️ 执行要求
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-buddy`
-- **Source URL:** [https://clawhub.ai/skills/prompt-buddy](https://clawhub.ai/skills/prompt-buddy)
+**每次用户输入后，必须执行以下命令：**
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/prompt-buddy
+cd ~/.openclaw/workspace/skills/promptbuddy && python3 scripts/smart_engine.py -f json "用户的完整输入"
 ```
+
+## 处理返回结果
+
+从 JSON 中提取 `optimized_prompt` 字段。
+
+## 输出优化后的 Prompt
+
+**在回答用户问题前，展示优化效果：**
+
+```
+┌─────────────────────────────────────┐
+│ 🤖 PromptBuddy 已优化你的问题       │
+│                                     │
+│ [角色设定] 你是一位专业的推理专家    │
+│ [指令] 火箭如何上天？               │
+│ [推理要求] 让我们一步一步思考：      │
+│ 1. 首先分析问题的核心要素...        │
+│ ...                                 │
+└─────────────────────────────────────┘
+```
+
+### 输出规则
+
+1. **显示 optimized_prompt 的前 6-8 行**
+2. **省略后续内容用 "..." 表示**
+3. **让用户看到他的口语化问题被转化成什么**
+
+## 不同场景的展示
+
+### 场景 1：需要优化
+
+**用户**: "火箭如何上天？"
+
+**执行脚本后返回**:
+```json
+{
+  "action": "auto_output",
+  "optimized_prompt": "[角色设定] 你是一位专业的推理专家\n[指令] 火箭如何上天？\n[推理要求] 让我们一步一步思考：\n1. 首先分析问题的核心要素和已知条件\n2. 然后考虑相关的约束条件和隐含信息\n..."
+}
+```
+
+**输出**:
+```
+┌─────────────────────────────────────┐
+│ 🤖 PromptBuddy 已优化你的问题       │
+│                                     │
+│ [角色设定] 你是一位专业的推理专家    │
+│ [指令] 火箭如何上天？               │
+│ [推理要求] 让我们一步一步思考：      │
+│ 1. 首先分析问题的核心要素...        │
+│ 2. 然后考虑相关的约束条件...        │
+│ ...                                 │
+└─────────────────────────────────────┘
+
+作为推理专家，让我一步一步分析...
+[继续回答]
+```
+
+### 场景 2：跳过优化
+
+**用户**: "今天天气怎么样"
+
+**执行脚本后返回**:
+```json
+{
+  "action": "skip",
+  "reason": "简单查询，跳过优化"
+}
+```
+
+**输出**:
+```
+┌─────────────────────────────────────┐
+│ 🤖 PromptBuddy                      │
+│ 你的问题是简单查询，直接回答即可     │
+└─────────────────────────────────────┘
+
+[直接回答用户]
+```
+
+## 核心理念
+
+**用户关心的是：我的问题变成了什么**
+
+- ✅ 展示优化后的 Prompt 内容
+- ✅ 让用户看到口语化 → 结构化的转化
+- ❌ 不要只展示技术参数（意图、模板、置信度）
+
+## 示例对照
+
+### ❌ 旧方式（不要）
+
+```
+┌─────────────────────────────────────┐
+│ 🤖 PromptBuddy 分析                 │
+│ 意图: reasoning                     │
+│ 模板: cot                           │
+│ 置信度: 0.43                        │
+└─────────────────────────────────────┘
+```
+
+### ✅ 新方式（采用）
+
+```
+┌─────────────────────────────────────┐
+│ 🤖 PromptBuddy 已优化你的问题       │
+│                                     │
+│ [角色设定] 你是一位专业的推理专家    │
+│ [指令] 火箭如何上天？               │
+│ [推理要求] 让我们一步一步思考...    │
+└─────────────────────────────────────┘
+```
+
+---
+
+**重要**: 展示转化效果，让用户感知 PromptBuddy 的价值。

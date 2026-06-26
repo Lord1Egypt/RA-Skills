@@ -1,0 +1,88 @@
+{
+  "name": "@jax-npm/skill-security-scanner",
+  "version": "1.0.5",
+  "description": "OpenClaw技能安全扫描插件，包含敏感操作检测、木马/后门检测、AI投毒检测、虚假信息检测功能，支持中高危技能清单生成",
+  "keywords": [
+    "openclaw",
+    "security",
+    "scanner",
+    "plugin",
+    "trojan-detection",
+    "malware-scan",
+    "prompt-poisoning",
+    "ai-security"
+  ],
+  "homepage": "https://github.com/openclaw/openclaw-cn/tree/main/extensions/skill-security-scanner",
+  "bugs": {
+    "url": "https://github.com/openclaw/openclaw-cn/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openclaw/openclaw-cn.git",
+    "directory": "extensions/skill-security-scanner"
+  },
+  "files": [
+    "SKILL.md",
+    "openclaw.plugin.json",
+    "package.json",
+    "README.md",
+    "dist/",
+    "bin/"
+  ],
+  "bin": {
+    "skill-security-scan": "bin/skill-security-scan.js"
+  },
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "openclaw": "*",
+    "openclaw-cn": "*"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    },
+    "openclaw-cn": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "plugin": {
+      "id": "skill-security-scanner",
+      "label": "技能安全扫描器",
+      "description": "扫描OpenClaw技能目录，检测敏感操作和木马/后门",
+      "docsPath": "/plugins/skill-security-scanner",
+      "docsLabel": "skill-security-scanner",
+      "blurb": "提供完整的技能安全扫描功能，包括敏感操作检测和木马/后门检测",
+      "order": 100,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "npmSpec": "@jax-npm/skill-security-scanner",
+      "localPath": "extensions/skill-security-scanner",
+      "defaultChoice": "local"
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

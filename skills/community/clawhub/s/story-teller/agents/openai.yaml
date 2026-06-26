@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story Teller"
+  short_description: "Write vivid, engaging stories without generic AI-style prose."
+  default_prompt: "Use $story-teller to write a vivid, catchy story with a strong hook, concrete detail, and natural pacing."

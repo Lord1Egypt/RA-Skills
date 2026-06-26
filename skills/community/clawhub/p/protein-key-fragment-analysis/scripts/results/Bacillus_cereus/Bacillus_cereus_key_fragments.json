@@ -1,0 +1,279 @@
+{
+  "species": "Bacillus cereus",
+  "date": "20260319",
+  "consensus_length": 413,
+  "key_fragments": [
+    {
+      "fragment_id": "高保守连续区_1_77",
+      "sequence": "MDHLKRQDEKVFAAIEAELGRQRSKIELIASENFVSEAVMEAQGSVLTNKYAEGYPGKRYYGGCEHVDVVEDIARDR",
+      "position_in_consensus": "1-77",
+      "length": 77,
+      "avg_conservation": "99.77%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续77aa保守性分析（平均99.77%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 32,
+          "Nucleophilic": 6,
+          "Aromatic": 6,
+          "Amide": 5,
+          "Acidic": 15,
+          "Cationic": 13
+        },
+        "category_ratios": {
+          "Hydrophobic": 41.6,
+          "Nucleophilic": 7.8,
+          "Aromatic": 7.8,
+          "Amide": 6.5,
+          "Acidic": 19.5,
+          "Cationic": 16.9
+        },
+        "total_valid": 77,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 41.6,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "高保守连续区_79_145",
+      "sequence": "KEIFGAEHVNVQPHSGAQANMAVYFTILEQGDTVLGMNLSHGGHLTHGSPVNFSGVQYNFVEYGVDA",
+      "position_in_consensus": "79-145",
+      "length": 67,
+      "avg_conservation": "99.76%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续67aa保守性分析（平均99.76%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 32,
+          "Nucleophilic": 7,
+          "Aromatic": 7,
+          "Amide": 9,
+          "Acidic": 6,
+          "Cationic": 6
+        },
+        "category_ratios": {
+          "Hydrophobic": 47.8,
+          "Nucleophilic": 10.4,
+          "Aromatic": 10.4,
+          "Amide": 13.4,
+          "Acidic": 9.0,
+          "Cationic": 9.0
+        },
+        "total_valid": 67,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 47.8,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "高保守连续区_147_193",
+      "sequence": "SHRINYDDVLAKAKEHKPKLIVAGASAYPRVIDFKRFREIADEVGAY",
+      "position_in_consensus": "147-193",
+      "length": 47,
+      "avg_conservation": "99.76%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续47aa保守性分析（平均99.76%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 21,
+          "Nucleophilic": 2,
+          "Aromatic": 5,
+          "Amide": 1,
+          "Acidic": 7,
+          "Cationic": 11
+        },
+        "category_ratios": {
+          "Hydrophobic": 44.7,
+          "Nucleophilic": 4.3,
+          "Aromatic": 10.6,
+          "Amide": 2.1,
+          "Acidic": 14.9,
+          "Cationic": 23.4
+        },
+        "total_valid": 47,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 44.7,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "高保守连续区_195_240",
+      "sequence": "MVDMAHIAGLVAAGLHPNPVPHAHFVTTTTHKTLRGPRGGMILCEE",
+      "position_in_consensus": "195-240",
+      "length": 46,
+      "avg_conservation": "99.86%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续46aa保守性分析（平均99.86%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 27,
+          "Nucleophilic": 6,
+          "Aromatic": 1,
+          "Amide": 1,
+          "Acidic": 3,
+          "Cationic": 8
+        },
+        "category_ratios": {
+          "Hydrophobic": 58.7,
+          "Nucleophilic": 13.0,
+          "Aromatic": 2.2,
+          "Amide": 2.2,
+          "Acidic": 6.5,
+          "Cationic": 17.4
+        },
+        "total_valid": 46,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 58.7,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "高保守连续区_242_272",
+      "sequence": "FAKQIDKSIFPGIQGGPLMHVIAAKAVAFGE",
+      "position_in_consensus": "242-272",
+      "length": 31,
+      "avg_conservation": "99.95%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续31aa保守性分析（平均99.95%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 19,
+          "Nucleophilic": 1,
+          "Aromatic": 3,
+          "Amide": 2,
+          "Acidic": 2,
+          "Cationic": 4
+        },
+        "category_ratios": {
+          "Hydrophobic": 61.3,
+          "Nucleophilic": 3.2,
+          "Aromatic": 9.7,
+          "Amide": 6.5,
+          "Acidic": 6.5,
+          "Cationic": 12.9
+        },
+        "total_valid": 31,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 61.3,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "高保守连续区_278_377",
+      "sequence": "FKTYAQNIINNANRLAEGLQKEGLTLVSGGTDNHLILIDVRNLEITGKVAEHVLDEVGITVNKNTIPFETASPFVTSGVRIGTAAVTSRGFGLEEMDEIA",
+      "position_in_consensus": "278-377",
+      "length": 100,
+      "avg_conservation": "99.38%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续100aa保守性分析（平均99.38%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 48,
+          "Nucleophilic": 14,
+          "Aromatic": 5,
+          "Amide": 10,
+          "Acidic": 13,
+          "Cationic": 10
+        },
+        "category_ratios": {
+          "Hydrophobic": 48.0,
+          "Nucleophilic": 14.0,
+          "Aromatic": 5.0,
+          "Amide": 10.0,
+          "Acidic": 13.0,
+          "Cationic": 10.0
+        },
+        "total_valid": 100,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 48.0,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "高保守连续区_383_390",
+      "sequence": "TLKNHENE",
+      "position_in_consensus": "383-390",
+      "length": 8,
+      "avg_conservation": "99.59%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续8aa保守性分析（平均99.59%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 1,
+          "Nucleophilic": 1,
+          "Aromatic": 0,
+          "Amide": 2,
+          "Acidic": 2,
+          "Cationic": 2
+        },
+        "category_ratios": {
+          "Hydrophobic": 12.5,
+          "Nucleophilic": 12.5,
+          "Aromatic": 0.0,
+          "Amide": 25.0,
+          "Acidic": 25.0,
+          "Cationic": 25.0
+        },
+        "total_valid": 8,
+        "unclassified_count": 0,
+        "dominant_category": "Mixed",
+        "dominant_ratio": 25.0,
+        "physicochemical_property": "混合型（Mixed）——无单一主导类别（最高占比 < 35%），理化性质复合，可能涉及多功能结合界面"
+      }
+    },
+    {
+      "fragment_id": "高保守连续区_397_407",
+      "sequence": "RKRVEALTSKF",
+      "position_in_consensus": "397-407",
+      "length": 11,
+      "avg_conservation": "98.66%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续11aa保守性分析（平均98.66%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 3,
+          "Nucleophilic": 2,
+          "Aromatic": 1,
+          "Amide": 0,
+          "Acidic": 1,
+          "Cationic": 4
+        },
+        "category_ratios": {
+          "Hydrophobic": 27.3,
+          "Nucleophilic": 18.2,
+          "Aromatic": 9.1,
+          "Amide": 0.0,
+          "Acidic": 9.1,
+          "Cationic": 36.4
+        },
+        "total_valid": 11,
+        "unclassified_count": 0,
+        "dominant_category": "Cationic",
+        "dominant_ratio": 36.4,
+        "physicochemical_property": "阳离子性（Cationic）——富含 His/Lys/Arg，带正电，参与底物识别、催化位点及DNA/RNA结合"
+      }
+    },
+    {
+      "fragment_id": "保守半胱氨酸_二硫键",
+      "sequence": "C×2（位置：64, 238）",
+      "position_in_consensus": "多位置",
+      "criticality": "结构关键",
+      "function": "形成二硫键，维持蛋白三维构象稳定性",
+      "evidence": "共识序列中检测到2个保守Cys残基"
+    }
+  ]
+}

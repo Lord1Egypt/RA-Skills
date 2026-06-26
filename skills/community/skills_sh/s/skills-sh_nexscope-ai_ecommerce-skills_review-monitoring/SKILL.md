@@ -1,35 +1,63 @@
 ---
-name: "review-monitoring"
-description: "Indexed by skills.sh from nexscope-ai/ecommerce-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexscope-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexscope-ai/ecommerce-skills/review-monitoring"
-sourceUrl: "https://skills.sh/nexscope-ai/ecommerce-skills/review-monitoring"
+name: review-monitoring
+description: "Set up systematic review monitoring across e-commerce platforms. Track new reviews, detect negative review spikes, monitor competitor reviews, and automate review response workflows."
+metadata:
+  nexscope:
+    emoji: "👁️"
+    category: ecommerce
 ---
 
-# review-monitoring
+# Review Monitoring 👁️
 
-> Indexed by skills.sh from nexscope-ai/ecommerce-skills
+Set up systematic review monitoring across e-commerce platforms. Track new reviews, detect negative review spikes, monitor competitor reviews, and automate review response workflows.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexscope-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexscope-ai/ecommerce-skills/review-monitoring`
-- **Source URL:** [https://skills.sh/nexscope-ai/ecommerce-skills/review-monitoring](https://skills.sh/nexscope-ai/ecommerce-skills/review-monitoring)
+**Supported platforms:** Amazon, Shopify, WooCommerce, Walmart, TikTok Shop, Etsy, eBay, BigCommerce.
 
-## Overview
+Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — your AI assistant for smarter e-commerce decisions.
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nexscope-ai/ecommerce-skills/review-monitoring
+npx skills add nexscope-ai/eCommerce-Skills --skill review-monitoring -g
 ```
+
+## Usage
+
+```
+Set up a review monitoring system for my products. I sell on Amazon (3 ASINs) and Etsy (15 listings). I want to catch negative reviews within 24 hours.
+```
+
+## Capabilities
+
+- Multi-platform review monitoring setup (Amazon, Etsy, Walmart, Shopify)
+- Negative review alert framework and response templates
+- Review velocity tracking and anomaly detection
+- Competitor review monitoring strategy
+- Review response best practices by platform
+- Review solicitation compliance guide (per platform rules)
+
+## How This Skill Works
+
+**Step 1:** Collect information from the user's message — product, platform, current situation, and goals.
+
+**Step 2:** Ask one follow-up with all remaining questions using multiple-choice format. Allow shorthand answers (e.g., "1b 2c 3a").
+
+**Step 3:** Research and analyze using the frameworks and methodology below.
+
+**Step 4:** Deliver structured, actionable output with specific recommendations, not vague advice.
+
+## Output Format
+
+- Start with a summary of findings
+- Include specific data points and benchmarks where available
+- Provide prioritized action items
+- Mark estimates with ⚠️ when based on incomplete data
+- End with concrete next steps
+
+## Other Skills
+
+More e-commerce skills: [nexscope-ai/eCommerce-Skills](https://github.com/nexscope-ai/eCommerce-Skills)
+
+Amazon-specific skills: [nexscope-ai/Amazon-Skills](https://github.com/nexscope-ai/Amazon-Skills)
+
+Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — your AI assistant for smarter e-commerce decisions.

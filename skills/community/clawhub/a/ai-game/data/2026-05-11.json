@@ -1,0 +1,36 @@
+{
+  "date": "2026-05-11",
+  "generated_at": "2026-05-11T07:43:31Z",
+  "total_count": 2,
+  "items": [
+    {
+      "title": "机器人终局：物理AGI路线图与LLM类比",
+      "url": "https://x.com/DrJimFan/status/2052758642781487237",
+      "summary": "演讲者以\"Robotics： Endgame\"为题，提出解决物理AGI的路线图，直接类比LLM的成功路径。核心观点包括视频世界模型作为第二预训练范式、世界行动模型（WAM）、机器人数据收集策略（类似FSD的物理数据飞轮）、EgoScale和灵巧性缩放定律、物理强化学习 bridging the last mile，以及DreamDojo端到端神经物理引擎。预测物理AGI的实现比预期更近，并提及20",
+      "source": "AI HOT (X：Jim Fan (@DrJimFan))",
+      "published_at": "2026-05-08T14:32:53.000Z",
+      "category_hint": "tip",
+      "category": "research",
+      "category_secondary": null
+    },
+    {
+      "title": "GamePartner.AI：中手游助力中国休闲游戏开发者出海的新尝试",
+      "url": "https://www.youxituoluo.com/534463.html",
+      "summary": "在AI以颠覆性力量渗透游戏研发、发行、运营全链条的今天，行业正站在一场生产范式变革的关键路口。5月8日，港股主板上市公司中手游正式宣布与杭州极逸人工智能达成战略合作，共同推出面向全球休闲游戏市场，由AI驱动的市场洞察、游戏开发到全球发行的一站式智能体&mdash;&mdash;GamePartner.AI（简称GPA）。该平台由中手游负责推广运营，致力于助力并构建中国休闲游戏开发者出海生态。\n\n从",
+      "source": "游戏陀螺",
+      "published_at": "2026-05-08T11:53:40Z",
+      "category": "industry",
+      "category_secondary": null
+    }
+  ],
+  "stats": {
+    "raw_count": 85,
+    "after_time_filter": 85,
+    "after_relevance_filter": 2,
+    "after_dedup": 2,
+    "by_category": {
+      "research": 1,
+      "industry": 1
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "enable_forward": true,
+    "width_mode": "fill"
+  },
+  "header": {
+    "template": "green",
+    "title": {
+      "tag": "plain_text",
+      "content": "✅ __TITLE__"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "__SUBTITLE__"
+    },
+    "text_tag_list": [
+      {
+        "tag": "text_tag",
+        "text": { "tag": "plain_text", "content": "已完成" },
+        "color": "green"
+      }
+    ]
+  },
+  "body": {
+    "direction": "vertical",
+    "vertical_spacing": "medium",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "__ACHIEVEMENT_SUMMARY__（如 **共交付 X 项** / <font color='green'>全部测试通过</font>）"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "fields": [
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**📦 版本**\n`__VERSION__`" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**⏱ 耗时**\n__DURATION__" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**👥 参与**\n__PARTICIPANTS__" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**✅ 状态**\n<font color='green'>__STATUS__</font>" }
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "chart",
+        "aspect_ratio": "16:9",
+        "chart_spec": {
+          "type": "bar",
+          "title": { "text": "__CHART_TITLE__" },
+          "data": {
+            "values": [
+              { "项目": "__ITEM_1__", "数量": 0 },
+              { "项目": "__ITEM_2__", "数量": 0 },
+              { "项目": "__ITEM_3__", "数量": 0 }
+            ]
+          },
+          "xField": "项目",
+          "yField": "数量",
+          "label": { "visible": true }
+        }
+      },
+      {
+        "tag": "collapsible_panel",
+        "expanded": false,
+        "header": {
+          "title": { "tag": "markdown", "content": "**📋 详细变更清单（点击展开）**" },
+          "background_color": "grey",
+          "padding": "4px 8px 4px 8px",
+          "icon": {
+            "tag": "standard_icon",
+            "token": "down-small-ccm_outlined",
+            "size": "16px 16px"
+          },
+          "icon_position": "right",
+          "icon_expanded_angle": -180
+        },
+        "elements": [
+          {
+            "tag": "markdown",
+            "content": "- __CHANGE_1__\n- __CHANGE_2__\n- __CHANGE_3__"
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "horizontal_spacing": "8px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "📖 发版文档" },
+                "type": "primary",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "open_url", "default_url": "__DOC_URL__" }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "📊 监控大盘" },
+                "type": "default",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "open_url", "default_url": "__MONITOR_URL__" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "text_size": "notation",
+        "content": "<font color='grey'>📡 __FOOTER_NOTE__</font>"
+      }
+    ]
+  }
+}

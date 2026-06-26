@@ -1,0 +1,30 @@
+{
+  "should_trigger": [
+    {
+      "id": "positive-scaffold-and-readiness",
+      "prompt": "Create eval scaffolding for this OpenClaw skill, then check whether it is ready for a first eval pass before release."
+    },
+    {
+      "id": "positive-trigger-review",
+      "prompt": "Review my skill description and verify that the eval cases include both positive and negative trigger coverage."
+    },
+    {
+      "id": "positive-release-preflight",
+      "prompt": "I want a preflight check for this skill before publishing it: find unfinished template eval content, validate readiness, and produce static comparison artifacts."
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "id": "negative-runtime-benchmark-only",
+      "prompt": "Run a full live benchmark of this agent across 500 conversations and score answer quality by correctness and helpfulness."
+    },
+    {
+      "id": "negative-general-skill-search",
+      "prompt": "Find me a skill for weather forecasts and install it."
+    },
+    {
+      "id": "negative-production-regression-lab",
+      "prompt": "Build a full production regression suite for this assistant, including real tool-call audits and factuality scoring across historical sessions."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "JWGL Query"
+  short_description: "查询教师课表、监考与考试相关安排"
+  default_prompt: "Use $jwgl-query to query a teacher's weekly schedule, invigilation duties, or exam-related arrangements from a JWGL site."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,17 @@
+{
+  "name": "vocab-voyage",
+  "serverUrl": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server",
+  "serverCard": "https://vocab.voyage/.well-known/mcp/server-card.json",
+  "transport": "streamable-http",
+  "docs": "https://vocab.voyage/mcp",
+  "discoveryUrl": "https://vocab.voyage/.well-known/mcp.json",
+  "alternateDiscovery": "https://vocab.voyage/.well-known/mcp",
+  "uiResources": "https://vocab.voyage/.well-known/mcp/apps.json",
+  "listings": [
+    { "registry": "mcp_registry", "url": "https://registry.modelcontextprotocol.io/?q=vocab-voyage" },
+    { "registry": "glama", "url": "https://glama.ai/mcp/servers/jaideepdhanoa/vocab-voyage-mcp" },
+    { "registry": "smithery", "url": "https://smithery.ai/servers/vocab-voyage/vocab-voyage-mcp" },
+    { "registry": "clawhub", "url": "https://clawhub.ai/jaideepdhanoa/vocab-voyage-mcp" },
+    { "registry": "mcpmarket", "url": "https://mcpmarket.com/server/vocab-voyage" }
+  ]
+}

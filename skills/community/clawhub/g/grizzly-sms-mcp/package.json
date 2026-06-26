@@ -1,0 +1,35 @@
+{
+  "name": "mcp-grizzly-sms",
+  "version": "1.0.0",
+  "description": "MCP server for Grizzly SMS service integration",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "node test-mcp.js",
+    "test:api": "node test-api-methods.js"
+  },
+  "keywords": [
+    "mcp",
+    "sms",
+    "grizzly-sms",
+    "grizzlysms",
+    "verification",
+    "otp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.7.0",
+    "dotenv": "^16.4.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

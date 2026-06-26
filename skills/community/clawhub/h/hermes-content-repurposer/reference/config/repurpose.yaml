@@ -1,0 +1,85 @@
+# Brand voice and platform configuration
+brand:
+  name: "YourBrandName"
+  voice: "professional-but-warm"
+  industry: "tech"
+  niche: "SaaS platforms and developer tools"
+  target_audience: "Founders, CTOs, product managers at growth-stage tech companies"
+  tone_adjectives:
+    - "confident"
+    - "insightful"
+    - "approachable"
+    - "data-driven"
+    - "occasionally-witty"
+  hashtags:
+    default: ["#YourBrand", "#Tech", "#SaaS"]
+    twitter: ["#YourBrand", "#TechTwitter"]
+    linkedin: ["#YourBrand", "#TechLeadership", "#Productivity"]
+  cta:
+    default: "Want more insights? Subscribe at yourbrand.com/newsletter"
+    newsletter: "Enjoyed this edition? Share it with a founder friend."
+    twitter: "Follow @YourBrand for daily insights"
+    linkedin: "Follow our page for weekly deep dives"
+
+# Content source config
+source:
+  min_word_count: 300
+  max_word_count: 10000
+  default_language: "en"
+  formats:
+    - markdown
+    - html
+    - plaintext
+    - pdf
+    - youtube_transcript
+    - podcast_transcript
+
+# Output format control
+output_formats:
+  twitter_thread:
+    enabled: true
+    max_tweets: 15
+    min_tweets: 4
+    max_chars_per_tweet: 280
+    include_cta: true
+    thread_label: true  # Adds "1/10, 2/10..." numbering
+
+  linkedin_post:
+    enabled: true
+    max_chars: 3000
+    include_hashtags: true
+    include_cta: true
+    max_hashtags: 5
+    preferred_format: "thought_leader"  # Options: thought_leader, company_page, short_tip
+
+  newsletter:
+    enabled: true
+    max_chars: 5000
+    include_header: true
+    include_footer: true
+    include_toc: true
+    max_sections: 6
+
+  video_script:
+    enabled: true
+    max_duration_seconds: 60
+    include_timestamps: true
+    include_scene_directions: true
+    default_format: "tiktok"  # Options: tiktok, youtube_shorts, instagram_reels
+    voiceover:
+      provider: "elevenlabs"
+      voice_id: "default"
+
+  tweet:
+    enabled: true
+    max_chars: 280
+    count: 5
+    include_cta: false
+
+# Processing
+processing:
+  batch_size: 5
+  max_concurrent: 2
+  temp_dir: "./.temp"
+  output_dir: "./output"
+  auto_cleanup_temp: true

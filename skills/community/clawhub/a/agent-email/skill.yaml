@@ -1,0 +1,3 @@
+name: agent-email
+version: 1.0.0
+description: "Reporting and alerts via thundarr@agentmail.to"

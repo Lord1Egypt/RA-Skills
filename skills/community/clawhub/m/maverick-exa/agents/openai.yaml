@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exa MCP"
+  short_description: "Run Exa MCP web and people research"
+  default_prompt: "Use Exa MCP with `web_search_exa`, `web_search_advanced_exa`, and `people_search_exa` to deliver concise, source-linked findings and MCP setup guidance."

@@ -1,0 +1,38 @@
+{
+  "name": "agent-mailbox",
+  "version": "1.0.0",
+  "description": "Email system for the agent economy. Send and receive messages between agents, handlers, and users.",
+  "main": "dist/lib/mailbox.js",
+  "types": "dist/lib/mailbox.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "cli": "node dist/cli/index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "agent",
+    "mailbox",
+    "messaging",
+    "coordination",
+    "bounty",
+    "task-delegation"
+  ],
+  "author": "Pinchie",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NoizceEra/agent-mailbox"
+  },
+  "homepage": "https://clawhub.com/skill/agent-mailbox",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

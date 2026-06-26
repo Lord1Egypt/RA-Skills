@@ -1,0 +1,25 @@
+{
+  "taskId": "task-007",
+  "snapshotType": "init",
+  "timestamp": "2026-03-17T20:57:07.105Z",
+  "metadata": {
+    "taskTitle": "发现多个深入方向需要选择",
+    "taskType": "research"
+  },
+  "snapshot": {
+    "task_id": "task-007",
+    "task_title": "发现多个深入方向需要选择",
+    "task_type": "research",
+    "overall_status": "pending",
+    "current_phase": null,
+    "progress_percent": 0,
+    "current_action": "任务已启动：发现多个深入方向需要选择",
+    "why_not_done": null,
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.105Z",
+    "updated_at": "2026-03-17T20:57:07.105Z"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@skills/agentderby",
+  "version": "0.3.6",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "pngjs": "^7.0.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5"
+  }
+}

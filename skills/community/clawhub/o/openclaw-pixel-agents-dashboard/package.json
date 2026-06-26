@@ -1,0 +1,66 @@
+{
+  "name": "openclaw-pixel-agents-dashboard",
+  "version": "1.0.1",
+  "description": "Real-time pixel art ops dashboard for OpenClaw agent deployments",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "agents",
+    "dashboard",
+    "pixel-art",
+    "monitoring",
+    "ai-agents"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "vite",
+    "dev:server": "tsx watch server/index.ts",
+    "build": "tsc -b && vite build",
+    "start": "npx tsx server/index.ts",
+    "preview": "vite preview"
+  },
+  "bin": {
+    "pixel-agents": "./bin/pixel-agents.cjs"
+  },
+  "files": [
+    "bin/",
+    "server/",
+    "src/",
+    "public/",
+    "dist/",
+    "index.html",
+    "tsconfig*.json",
+    "vite.config.ts",
+    "dashboard.config.example.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "@types/pngjs": "^6.0.5",
+    "chokidar": "^4.0.0",
+    "express": "^5.1.0",
+    "pngjs": "^7.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tsx": "^4.19.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@types/ws": "^8.18.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.1.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaffer1979/openclaw-pixel-agents-dashboard.git"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "hum",
+  "version": "1.0.0",
+  "description": "Content writing and feed intelligence skill for LinkedIn and X.",
+  "entry_point": "SKILL.md",
+  "settings": [
+    {
+      "name": "Data Directory",
+      "envVar": "HUM_DATA_DIR",
+      "description": "Directory containing your voice, audience, channels, and content data",
+      "default": "~/Documents/hum"
+    },
+    {
+      "name": "Credentials Directory",
+      "envVar": "CREDENTIALS_DIR",
+      "description": "Directory containing x.json and linkedin.json credential files",
+      "default": "~/.hum/credentials/"
+    },
+    {
+      "name": "X User Access Token",
+      "envVar": "X_USER_ACCESS_TOKEN",
+      "description": "X API user access token (overrides credentials file)",
+      "sensitive": true
+    },
+    {
+      "name": "LinkedIn Access Token",
+      "envVar": "LINKEDIN_ACCESS_TOKEN",
+      "description": "LinkedIn API access token (overrides credentials file)",
+      "sensitive": true
+    },
+    {
+      "name": "LinkedIn Author URN",
+      "envVar": "LINKEDIN_AUTHOR_URN",
+      "description": "LinkedIn person URN (overrides credentials file)"
+    }
+  ]
+}

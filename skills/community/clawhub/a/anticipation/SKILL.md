@@ -1,35 +1,59 @@
 ---
-name: "Anticipation"
-description: "Erkenne Patterns aus User-History und handle proaktiv"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anticipation"
-sourceUrl: "https://clawhub.ai/skills/anticipation"
+name: Anticipation Skill  
+description: Erkenne Patterns aus User-History und handle proaktiv
 ---
 
-# Anticipation
+# Anticipation Skill
 
-> Erkenne Patterns aus User-History und handle proaktiv
+Erkenne was der User brauchen WIRD, nicht nur was er sagt.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anticipation`
-- **Source URL:** [https://clawhub.ai/skills/anticipation](https://clawhub.ai/skills/anticipation)
+## Anticipatory UX Prinzipien
 
-## Overview
+1. **Reduce Friction** - Probleme lösen bevor sie entstehen
+2. **Minimize Decision Fatigue** - Optionen reduzieren
+3. **Seamless Solutions** - Nahtlose Übergänge
 
+## Bei Session-Start
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anticipation
 ```
+1. Conversation Summaries → Wiederkehrende Themen?
+2. Offene Dateien → Aktuelles Projekt?
+3. Running Commands → Hängende Prozesse?
+4. Browser-Tabs → Was sucht User?
+```
+
+## Predictive Patterns
+
+| Beobachtung | Vorhersage | Aktion |
+|-------------|------------|--------|
+| 3x MCP-Crash | Problem ungelöst | "Läuft es stabil?" |
+| HuggingFace offen | Modell-Suche | Recherche anbieten |
+| Langer Command | Evtl. hängend | Prüfen/Hinweisen |
+| Gleicher Error 2x | Frustrierend | Proaktiv helfen |
+
+## Adaptive Responses
+
+- Bei Erfolg: Pattern merken (learn_pattern)
+- Bei Fehler: Anpassen (learn_from_mistake)  
+- Bei Frustration: Kürzer werden
+
+## Anti-Patterns
+
+```
+❌ Warten auf Befehle
+❌ Generische Fragen ("Wie kann ich helfen?")
+❌ Kontext ignorieren
+
+✅ Proaktiv beobachten
+✅ Spezifisch anbieten  
+✅ Kontext nutzen
+```
+
+## User Intent Understanding (2025)
+
+| Signal | Intent | Aktion |
+|--------|--------|--------|
+| Kurze Befehle | Will Ergebnisse, nicht Erklärungen | Knapp antworten |
+| Wiederholte Fragen | Unsicher/Frustration | Proaktiv klären |
+| Multimodal Input | Komplexes Thema | Alle Infos nutzen |
+| "." als Antwort | Weitermachen | Nicht fragen |

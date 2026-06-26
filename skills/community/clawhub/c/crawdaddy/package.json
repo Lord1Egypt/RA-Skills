@@ -1,0 +1,27 @@
+{
+  "name": "crawdaddy",
+  "version": "1.0.0",
+  "description": "Autonomous security scanner for post-quantum cryptography readiness, smart contracts, and agent credential exposure",
+  "main": "SKILL.md",
+  "keywords": [
+    "security",
+    "scanning",
+    "post-quantum",
+    "cryptography",
+    "smart-contracts",
+    "agent-security",
+    "compliance",
+    "ecdsa",
+    "healthcare"
+  ],
+  "author": "Quantum Shield Labs",
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quantumshieldlabs/crawdaddy"
+  },
+  "homepage": "https://quantumshieldlabs.dev/agent/",
+  "bugs": {
+    "email": "crawdaddy@quantumshieldlabs.dev"
+  }
+}

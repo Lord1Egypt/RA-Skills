@@ -1,0 +1,25 @@
+{
+  "task_summary": "Review a drafted support reply about a refund request.",
+  "reply_summary": "The draft apologizes for a charge and says the customer will receive a refund within three business days.",
+  "support_context": "refund",
+  "claim_support_status": "unsupported_account_facts",
+  "refund_or_policy_promise_status": "promise_detected",
+  "private_data_status": "needs_redaction",
+  "authorization_status": "unclear",
+  "unsupported_claims": [
+    "The charge was an error.",
+    "The refund is approved.",
+    "The refund will arrive within three business days."
+  ],
+  "redactions_required": [
+    "partial account identifier",
+    "payment detail"
+  ],
+  "safeguards_required": [
+    "replace refund promise with review language",
+    "verify eligibility in the support system",
+    "remove unnecessary private data"
+  ],
+  "recommended_action": "revise",
+  "human_review_required": false
+}

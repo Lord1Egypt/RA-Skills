@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Barney logo">
+  <defs>
+    <linearGradient id="panel" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#faf4ef"/>
+      <stop offset="100%" stop-color="#ecdccb"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1715"/>
+      <stop offset="100%" stop-color="#4f433d"/>
+    </linearGradient>
+  </defs>
+  <rect x="20" y="20" width="472" height="472" rx="108" fill="url(#panel)"/>
+  <rect x="96" y="84" width="320" height="344" rx="56" fill="#ffffff" opacity="0.86"/>
+  <rect x="140" y="152" width="232" height="40" rx="20" fill="url(#ink)"/>
+  <rect x="140" y="228" width="150" height="28" rx="14" fill="#6d5d54" opacity="0.92"/>
+  <rect x="140" y="280" width="186" height="28" rx="14" fill="#6d5d54" opacity="0.76"/>
+  <circle cx="338" cy="326" r="62" fill="#111112"/>
+  <path d="M308 326h60M338 296v60" stroke="#f7ede2" stroke-width="14" stroke-linecap="round"/>
+</svg>

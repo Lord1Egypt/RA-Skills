@@ -1,0 +1,9 @@
+{
+  "description": "Example Paragraph skill configuration",
+  "env": {
+    "PARAGRAPH_API_KEY": "your_api_key_here",
+    "PARAGRAPH_PUBLICATION_SLUG": "your_publication_slug_here",
+    "PARAGRAPH_PUBLICATION_ID": "your_publication_id_optional",
+    "PARAGRAPH_API_BASE_URL": "https://public.api.paragraph.com/api"
+  }
+}

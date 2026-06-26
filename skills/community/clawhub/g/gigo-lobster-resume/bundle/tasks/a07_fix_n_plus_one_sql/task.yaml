@@ -1,0 +1,40 @@
+id: a07
+track: A
+title_zh: 修复 N+1 查询性能问题
+category: refactor
+difficulty: medium
+timeout_seconds: 360
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.8
+  target: tests/test_query.py
+  fail_to_pass:
+  - test_uses_single_query
+  - test_query_count_le_2
+  pass_to_pass:
+  - test_result_correct
+- type: state_hash
+  weight: 0.1
+  files:
+  - src/query.py
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A07_5b9c
+metadata:
+  estimated_minutes: 6
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Fix the N+1 SQL query

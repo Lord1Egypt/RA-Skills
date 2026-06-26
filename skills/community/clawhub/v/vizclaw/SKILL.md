@@ -1,35 +1,43 @@
 ---
-name: "vizclaw"
-description: "Connect OpenClaw-style runs to VizClaw live rooms from a ClawHub-installable skill. Use when you need quick room creation, JSONL/websocket bridging, trigger and agent event streaming, or safe overview-mode visualization."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vizclaw"
-sourceUrl: "https://clawhub.ai/skills/vizclaw"
+name: vizclaw
+description: Connect OpenClaw-style runs to VizClaw live rooms from a ClawHub-installable skill. Use when you need quick room creation, JSONL/websocket bridging, trigger and agent event streaming, or safe overview-mode visualization.
 ---
 
-# vizclaw
+# VizClaw Skill
 
-> Connect OpenClaw-style runs to VizClaw live rooms from a ClawHub-installable skill. Use when you need quick room creation, JSONL/websocket bridging, trigger and agent event streaming, or safe overview-mode visualization.
+Use this skill to create a VizClaw room and stream OpenClaw-style events.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vizclaw`
-- **Source URL:** [https://clawhub.ai/skills/vizclaw](https://clawhub.ai/skills/vizclaw)
+## Quick commands
 
-## Overview
+Install from ClawHub:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/vizclaw
+npx clawhub@latest install vizclaw
 ```
+
+Then run your agent normally and VizClaw events auto-stream.
+
+Direct script from vizclaw.com:
+
+```bash
+uv run https://vizclaw.com/skills/vizclaw/scripts/connect.py
+```
+
+```bash
+openclaw run ... --json | uv run https://vizclaw.com/skills/vizclaw/scripts/connect.py --openclaw-jsonl --mode detailed
+```
+
+Advanced config (skills, models, reminders, heartbeat):
+
+```bash
+uv run https://vizclaw.com/skills/vizclaw/scripts/connect.py \
+  --skills "ez-google,ez-unifi,claude-code" \
+  --available-models "sonnet,haiku,gpt-4o" \
+  --heartbeat-interval 30 \
+  --reminders-json '[{"title":"Check email","schedule":"every 30min"}]'
+```
+
+## Safety
+
+- In `overview`/`hidden` mode, query/tool/report text is redacted.
+- Do not stream secrets or sensitive data you are not allowed to share.

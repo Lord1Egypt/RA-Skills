@@ -1,0 +1,7 @@
+{
+  "_comment": "memory-booster 配置文件。安装后请根据需要调整 memory_dirs。",
+  "memory_dirs": [],
+  "_memory_dirs_help": "留空则自动检测工作区下的 .workbuddy/memory/ 目录。手动指定示例：[\"/Users/xxx/WorkBuddy/xxx/.workbuddy/memory\", \"/Users/xxx/.workbuddy/memory\"]",
+  "chroma_db_dir": "",
+  "_chroma_db_dir_help": "语义索引存储位置。留空则默认存在本 skill 目录下的 chroma_db/。"
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "北京退休金测算"
+  short_description: "北京市企业职工退休金测算、投入评估与缴费策略优化助手"
+  default_prompt: "Use $retirecalc-beijing to collect user inputs step by step and calculate Beijing pension outcomes with strategy comparisons."
+
+policy:
+  allow_implicit_invocation: true

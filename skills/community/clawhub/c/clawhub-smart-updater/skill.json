@@ -1,0 +1,15 @@
+{
+  "name": "ClawHub Smart Updater",
+  "slug": "clawhub-smart-updater",
+  "version": "1.1.0",
+  "description": "Intelligent ClawHub skill updater with smart merge - preserves local modifications, detects conflicts, and provides merge recommendations",
+  "author": "Klepeto (vilda)",
+  "license": "MIT-0",
+  "tags": ["clawhub", "updater", "smart-merge", "backup", "version-control", "automation"],
+  "category": "utilities",
+  "requires": {
+    "bins": ["clawhub", "python3"],
+    "os": ["windows", "linux", "darwin"]
+  },
+  "changelog": "Initial release - Intelligent skill updater with smart merge, conflict detection, automatic backups, and diff generation. All config values use placeholders."
+}

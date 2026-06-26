@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Walmart Products"
+  short_description: "Submit Dataify Walmart product tasks by URL, category URL, SKU, or keyword"
+  icon_small: "./assets/dataify-walmart-products-small.svg"
+  icon_large: "./assets/dataify-walmart-products-large.svg"
+  default_prompt: "Use $dataify-walmart-products to submit Walmart product Builder tasks by URL, category URL, SKU, or keyword through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

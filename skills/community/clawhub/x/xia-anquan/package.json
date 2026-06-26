@@ -1,0 +1,13 @@
+{
+  "name": "xia-anquan",
+  "version": "1.0.0",
+  "description": "CIK安全监控 - OpenClaw Agent 安全防护 skill",
+  "main": "scripts/audit.cjs",
+  "scripts": {
+    "audit": "node scripts/audit.cjs",
+    "monitor": "node scripts/monitor.cjs --daemon"
+  },
+  "keywords": ["security", "openclaw", "cik", "agent-safety", "安全"],
+  "author": "星小路",
+  "license": "MIT"
+}

@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "config": {
+    "data_collection_days": 7,
+    "optimization_interval": 604800,
+    "enable_ab_testing": true,
+    "enable_auto_optimization": false
+  },
+  "optimization_strategies": {
+    "hit_rate_analysis": {
+      "enabled": true,
+      "high_hit_threshold": 50,
+      "low_hit_threshold": 10
+    },
+    "accuracy_analysis": {
+      "enabled": true,
+      "min_accuracy": 0.85
+    },
+    "ab_testing": {
+      "enabled": true,
+      "sample_size": 100,
+      "min_confidence": 0.95
+    },
+    "dynamic_priority": {
+      "enabled": false,
+      "adjustment_interval": 86400
+    }
+  },
+  "keywords": {
+    "coder": [
+      "debug", "code", "github", "pr", "git", "api",
+      "编程", "代码", "调试", "开发"
+    ],
+    "danao": [
+      "search", "research", "study", "learn", "总结",
+      "搜索", "研究", "学习", "调研"
+    ],
+    "writer": [
+      "write", "article", "content", "公众号", "小红书",
+      "写作", "文章", "文案", "创作"
+    ],
+    "engineer": [
+      "design", "architecture", "方案", "系统",
+      "设计", "架构", "技术方案"
+    ],
+    "manager": [
+      "schedule", "task", "manage", "飞书", "日程",
+      "日程", "任务", "管理", "协作"
+    ]
+  }
+}

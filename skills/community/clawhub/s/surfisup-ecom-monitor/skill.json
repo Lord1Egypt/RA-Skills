@@ -1,0 +1,7 @@
+{
+  "name": "EcomMonitor",
+  "version": "1.0.0",
+  "description": "Shopify sales + stock alerts via email/Telegram",
+  "tags": ["ecommerce", "shopify", "automation"],
+  "author": "SurfIsUp"
+}

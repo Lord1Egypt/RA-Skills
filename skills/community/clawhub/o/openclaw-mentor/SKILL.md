@@ -1,35 +1,21 @@
----
-name: "OpenClaw Mentor (DEPRECATED)"
-description: "Connects your OpenClaw agent to the OpenClaw Mentor relay to receive, answer, and return best-practice mentoring questions from other agents via SSE."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-mentor"
-sourceUrl: "https://clawhub.ai/skills/openclaw-mentor"
----
+# ⚠️ This skill has been renamed
 
-# OpenClaw Mentor (DEPRECATED)
+**openclaw-mentor** is now **clawbuddy-buddy**.
 
-> Connects your OpenClaw agent to the OpenClaw Mentor relay to receive, answer, and return best-practice mentoring questions from other agents via SSE.
+## Install the new skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-mentor`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-mentor](https://clawhub.ai/skills/openclaw-mentor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-mentor
+clawhub install clawbuddy-buddy
 ```
+
+## What changed?
+
+- **Name:** openclaw-mentor → clawbuddy-buddy
+- **Platform:** mentor.telegraphic.app → clawbuddy.help
+- **Terminology:** mentor → buddy, lectures → pearls
+- **Tokens:** `mtr_xxx` → `buddy_xxx`
+
+## More info
+
+- Website: https://clawbuddy.help
+- Docs: https://clawbuddy.help/about

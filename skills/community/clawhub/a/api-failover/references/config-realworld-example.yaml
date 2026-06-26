@@ -1,0 +1,103 @@
+providers:
+  openclaw-primary:
+    type: openai-compatible
+    base_url: https://your-primary-openai-compatible.example/v1
+    api_key_env: PRIMARY_API_KEY
+    timeout_ms: 30000
+    models:
+      default: gpt-5.4
+      cheap: gpt-4o
+
+  anthropic-backup:
+    type: anthropic
+    base_url: https://api.anthropic.com
+    api_key_env: ANTHROPIC_API_KEY
+    timeout_ms: 30000
+    models:
+      default: claude-opus-4-6
+      cheap: claude-sonnet-4-5
+
+  openrouter-backup:
+    type: openai-compatible
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    timeout_ms: 35000
+    models:
+      default: anthropic/claude-sonnet-4
+      cheap: openai/gpt-4o-mini
+
+  local-ollama:
+    type: openai-compatible
+    base_url: http://127.0.0.1:11434/v1
+    api_key_env: OLLAMA_DUMMY_KEY
+    timeout_ms: 45000
+    models:
+      default: qwen2.5:latest
+      cheap: qwen2.5:latest
+
+task_profiles:
+  default:
+    routes:
+      - provider: openclaw-primary
+        model: default
+      - provider: anthropic-backup
+        model: default
+      - provider: openrouter-backup
+        model: default
+      - provider: openclaw-primary
+        model: cheap
+      - provider: local-ollama
+        model: default
+
+  cheap:
+    routes:
+      - provider: openclaw-primary
+        model: cheap
+      - provider: openrouter-backup
+        model: cheap
+      - provider: local-ollama
+        model: default
+
+  critical:
+    routes:
+      - provider: anthropic-backup
+        model: default
+      - provider: openclaw-primary
+        model: default
+      - provider: openrouter-backup
+        model: default
+      - provider: local-ollama
+        model: default
+
+  local-first:
+    routes:
+      - provider: local-ollama
+        model: default
+      - provider: openclaw-primary
+        model: cheap
+      - provider: openrouter-backup
+        model: cheap
+
+retry:
+  max_attempts_per_route: 2
+  backoff_ms: [500, 1500]
+  retry_on:
+    - RATE_LIMIT
+    - TIMEOUT
+    - SERVER_ERROR
+    - NETWORK_ERROR
+    - MODEL_UNAVAILABLE
+    - UNKNOWN_TRANSIENT
+
+circuit_breaker:
+  open_after_failures: 3
+  cooldown_seconds: 90
+  half_open_max_probes: 1
+  close_after_successes: 1
+
+provider_overrides:
+  local-ollama:
+    open_after_failures: 5
+    cooldown_seconds: 20
+  openrouter-backup:
+    cooldown_seconds: 60

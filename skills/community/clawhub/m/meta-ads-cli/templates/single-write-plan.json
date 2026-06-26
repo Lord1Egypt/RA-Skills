@@ -1,0 +1,18 @@
+{
+  "goal": "Example one-step pause after separate read/review",
+  "requires_user_approval": true,
+  "commands": [
+    {
+      "id": "pause-ad-placeholder",
+      "intent": "Pause one reviewed ad. Replace placeholders before linting/running.",
+      "command": ["meta", "ads", "ad", "update", "<AD_ID>", "--status", "PAUSED"]
+    }
+  ],
+  "verification": [
+    "Run `meta ads ad get <AD_ID>` after the write and confirm status is PAUSED."
+  ],
+  "rollback_or_stop_rules": [
+    "Run only one write at a time.",
+    "Stop immediately after any failed or unexpected result."
+  ]
+}

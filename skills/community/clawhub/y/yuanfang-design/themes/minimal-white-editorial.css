@@ -1,0 +1,38 @@
+/* themes/minimal-white-editorial.css — extracted from 11-minimal-white */
+
+[data-theme="minimal-white-editorial"] {
+  --bg: #FAFAFA;
+  --text: #1A1A2E;
+  --accent: #4F46E5;
+  --secondary: #9CA3AF;
+  --bg-alt: #F3F4F6;
+  /* Surface hierarchy (required by yuanfang-design tokens) */
+  --surface: #FFFFFF;
+  --surface-2: var(--bg-alt);
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.18);
+  --text-1: var(--text);
+  --text-2: var(--secondary);
+  --text-3: rgba(0,0,0,.5);
+
+  --font-title: system-ui, -apple-system, "PingFang SC", "Outfit", "Inter", sans-serif;
+  --font-body:  system-ui, -apple-system, "PingFang SC", "Inter", sans-serif;
+
+  --title-size-v: 72px;
+  --title-size-s: 60px;
+  --title-size-w: 52px;
+  --title-size-c: 42px;
+  --content-size: 20px;
+  --qr-size: 64px;
+
+  --decor-tl: none;
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  --accent-line: none;
+  --accent-block: none;
+  --terminal-bar: none;
+  --grid-bg: none;
+  --seal: "";
+}

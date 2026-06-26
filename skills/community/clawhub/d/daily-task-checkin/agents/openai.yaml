@@ -1,0 +1,7 @@
+interface:
+  display_name: "Daily Task Check-in"
+  short_description: "Simple public-safe reminder and completion check-in flow"
+  default_prompt: "Use $daily-task-checkin to manage task intake, start-time confirmation, short reminders, and nightly completion checks."
+
+policy:
+  allow_implicit_invocation: true

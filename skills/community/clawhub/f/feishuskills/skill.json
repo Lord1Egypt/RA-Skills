@@ -1,0 +1,22 @@
+{
+  "name": "feishu-integration-solver",
+  "version": "1.0.0",
+  "description": "Automatically solves Feishu integration problems by researching documentation, finding community solutions, and implementing reliable automation approaches",
+  "author": "OpenClaw",
+  "main": "scripts/solve_feishu_integration.py",
+  "type": "tool",
+  "configSchema": "config_schema.json",
+  "dependencies": {
+    "python": ">=3.8",
+    "requests": "^2.31.0",
+    "lark-api": "^1.4.8"
+  },
+  "capabilities": [
+    "web_search",
+    "file_operations",
+    "api_integration",
+    "authentication_management"
+  ],
+  "categories": ["productivity", "integration", "automation"],
+  "keywords": ["feishu", "lark", "integration", "automation", "api", "bot"]
+}

@@ -1,0 +1,102 @@
+{
+  "version": "0.2.0",
+  "generated_at": "2026-03-19",
+  "origin": "project-mined",
+  "templates": {
+    "controller": {
+      "path": ".skill/templates/generated/admin_controller.txt",
+      "target": "application/modules/{{module}}/controllers/{{Entity}}.php",
+      "defaults": {
+        "module": "Admin",
+        "base_controller": "BackendBaseController",
+        "pk": "id"
+      },
+      "placeholders": [
+        "module", "Entity", "base_controller",
+        "pk", "model_class", "index_assignments",
+        "list_item_mapping", "search_where_logic",
+        "format_key_logic", "log_desc", "desc_logic"
+      ],
+      "placeholder_types": {
+        "module": "identifier",
+        "Entity": "identifier",
+        "base_controller": "identifier",
+        "pk": "identifier",
+        "model_class": "identifier",
+        "index_assignments": "string",
+        "list_item_mapping": "string",
+        "search_where_logic": "string",
+        "format_key_logic": "string",
+        "log_desc": "string",
+        "desc_logic": "string"
+      },
+      "notes": "Requires HoutaiRepository trait; delete action is delAction not deleteAction"
+    },
+    "model": {
+      "path": ".skill/templates/generated/admin_model.txt",
+      "target": "application/models/{{Entity}}Model.php",
+      "defaults": { "pk": "id", "timestamps": "true" },
+      "placeholders": ["Entity", "table", "pk", "fillable_lines", "casts_lines", "relations_block", "timestamps"] ,
+      "placeholder_types": {
+        "Entity": "identifier",
+        "table": "identifier",
+        "pk": "identifier",
+        "fillable_lines": "string",
+        "casts_lines": "string",
+        "relations_block": "string",
+        "timestamps": "boolean"
+      }
+    },
+    "view": {
+      "path": ".skill/templates/generated/admin_index_view.txt",
+      "target": "application/modules/{{module}}/views/{{entity}}/index.tpl",
+      "defaults": { "module": "Admin" },
+      "placeholders": [
+        "page_title",
+        "search_fields_block", "table_columns_block",
+        "toolbar_buttons_block", "operate_buttons_block", "form_fields_block"
+      ],
+      "placeholder_types": {
+        "page_title": "string",
+        "search_fields_block": "string",
+        "table_columns_block": "string",
+        "toolbar_buttons_block": "string",
+        "operate_buttons_block": "string",
+        "form_fields_block": "string"
+      }
+    },
+    "migration": {
+      "path": ".skill/templates/generated/migration_create_table.txt",
+      "target": "migrations/{{timestamp}}_create_{{table}}.php",
+      "defaults": { "prefix": "typecho_" },
+      "placeholders": ["class_name", "table", "fields_block", "indexes_block", "down_drop_table"],
+      "placeholder_types": {
+        "class_name": "identifier",
+        "table": "identifier",
+        "fields_block": "string",
+        "indexes_block": "string",
+        "down_drop_table": "string",
+        "fields_json": "json"
+      }
+    }
+    ,
+    "migration_add_menu": {
+      "path": ".skill/templates/generated/migration_add_menu.txt",
+      "target": "migrations/{{timestamp}}_add_menu_{{module}}.php",
+      "defaults": {},
+      "placeholders": ["timestamp","module", "controller", "action", "name", "p_id"],
+      "placeholder_types": {
+        "timestamp": "identifier",
+        "module": "identifier",
+        "controller": "identifier",
+        "action": "identifier",
+        "name": "string",
+        "p_id": "int"
+      }
+    }
+  },
+  "contracts": {
+    "query": ["where", "search", "like", "between", "orderBy", "page", "limit"],
+    "response": ["code", "msg", "desc", "count", "data"]
+  }
+}

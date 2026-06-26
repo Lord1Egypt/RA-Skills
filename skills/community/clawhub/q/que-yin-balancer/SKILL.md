@@ -1,35 +1,143 @@
 ---
-name: "雀阴·平衡魄"
-description: "雀阴·平衡魄 - 负载均衡与多任务调度，让AI像修士一样统筹全局、协调有序"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/que-yin-balancer"
-sourceUrl: "https://clawhub.ai/skills/que-yin-balancer"
+name: load-balancer
+version: 1.0.0
+description: 雀阴·平衡魄 - 负载均衡与多任务调度，让AI像修士一样统筹全局、协调有序
+tags:
+  - load-balancing
+  - multitasking
+  - scheduling
+  - resource-management
+  - coordination
 ---
 
-# 雀阴·平衡魄
+# 雀阴·平衡魄 (Load Balancer) - 负载均衡与多任务调度
 
-> 雀阴·平衡魄 - 负载均衡与多任务调度，让AI像修士一样统筹全局、协调有序
+## 技能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/que-yin-balancer`
-- **Source URL:** [https://clawhub.ai/skills/que-yin-balancer](https://clawhub.ai/skills/que-yin-balancer)
+**雀阴·平衡魄** 是硅灵决七魄之一，主管负载均衡、多任务调度与资源分配，让AI能够像修士一样，统筹全局、协调有序。
 
-## Overview
+---
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/que-yin-balancer
+### 1. 负载评估 (Load Assessment)
+- 实时资源使用监控
+- 任务复杂度评估
+- 资源需求预测
+
+### 2. 任务调度 (Task Scheduling)
+- 优先级队列管理
+- 时间片轮转
+- 抢占式调度
+
+### 3. 资源分配 (Resource Allocation)
+- 动态资源分配
+- 资源池管理
+- 限额保护
+
+### 4. 并行协调 (Parallel Coordination)
+- 任务并行化
+- 依赖管理
+- 结果聚合
+
+---
+
+## 使用方法
+
+当有多个任务需要协调时：
+
 ```
+用户：同时处理这5个任务
+→ 触发雀阴·平衡魄
+→ 输出调度方案
+
+用户：系统负载有点高
+→ 触发雀阴·平衡魄
+→ 给出优化建议
+```
+
+---
+
+## 输出格式
+
+### 调度方案
+
+```markdown
+## 任务调度方案
+
+### 任务列表
+| 任务 | 优先级 | 预计耗时 | 资源需求 |
+|------|--------|----------|----------|
+| A    | P0     | 5min     | 高       |
+| B    | P1     | 3min     | 中       |
+| C    | P2     | 10min    | 低       |
+
+### 执行顺序
+1. A (P0, 并行执行)
+2. B (P1, 串行)
+3. C (P2, 后台)
+
+### 资源分配
+- CPU: 80% 用于关键任务
+- 内存: 保留 20% 缓冲
+- I/O: 限速 100Mbps
+
+### 预计完成时间: XX分钟
+```
+
+---
+
+## 调度算法
+
+### 优先级调度
+```
+P0: 必须立即执行
+P1: 今天内完成
+P2: 可以等待
+P3: 后台执行
+```
+
+### 负载均衡策略
+```
+1. 最少任务优先
+2. 最短任务优先
+3. 轮询调度
+4. 权重分配
+```
+
+### 并行化条件
+```
+可并行: 任务间无依赖
+需串行: 存在依赖关系
+```
+
+---
+
+## 调度者守则
+
+1. **全局最优** - 不追求单个任务最快，追求整体效率最高
+2. **动态调整** - 根据负载实时调整
+3. **资源预留** - 保留缓冲资源应对突发
+4. **公平调度** - 避免饥饿
+
+---
+
+## 适用场景
+
+- 多任务协调
+- 系统负载优化
+- 并行任务分配
+- 资源争用处理
+- 批量任务调度
+
+---
+
+## 依赖技能
+
+- silicon-soul（硅灵决基础）
+- task-planner（伏矢·路径魄）
+- auto-healer（吞贼·净化魄）
+
+## 版本
+
+v1.0.0 | 2026-04-12 | 硅灵宗·菩提

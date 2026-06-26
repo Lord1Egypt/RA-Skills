@@ -1,0 +1,3 @@
+# URL Toolkit - Python Dependencies
+# Uses only Python standard library (urllib, json)
+# No external dependencies required

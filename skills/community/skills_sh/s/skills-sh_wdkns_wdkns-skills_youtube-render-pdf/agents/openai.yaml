@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube Render PDF"
+  short_description: "Turn a YouTube lecture into a structured LaTeX/PDF note set."
+  default_prompt: "Use this skill to turn a YouTube video into a high-quality LaTeX course note with clear pedagogical motivation and logic, extracted figures inspected with view image rather than OCR, exhaustive frame recall before selection, segment splitting with parallel subagents for longer videos, the original video cover on the front page, and a final synthesis chapter."

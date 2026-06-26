@@ -1,35 +1,88 @@
 ---
-name: "bundle-size-optimization"
-description: "Indexed by skills.sh from aj-geddes/useful-ai-prompts"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aj-geddes"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aj-geddes/useful-ai-prompts/bundle-size-optimization"
-sourceUrl: "https://skills.sh/aj-geddes/useful-ai-prompts/bundle-size-optimization"
+name: bundle-size-optimization
+description: >
+  Reduce JavaScript and CSS bundle sizes through code splitting, tree shaking,
+  and optimization techniques. Improve load times and overall application
+  performance.
 ---
 
-# bundle-size-optimization
+# Bundle Size Optimization
 
-> Indexed by skills.sh from aj-geddes/useful-ai-prompts
+## Table of Contents
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aj-geddes
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aj-geddes/useful-ai-prompts/bundle-size-optimization`
-- **Source URL:** [https://skills.sh/aj-geddes/useful-ai-prompts/bundle-size-optimization](https://skills.sh/aj-geddes/useful-ai-prompts/bundle-size-optimization)
+- [Overview](#overview)
+- [When to Use](#when-to-use)
+- [Quick Start](#quick-start)
+- [Reference Guides](#reference-guides)
+- [Best Practices](#best-practices)
 
 ## Overview
 
+Smaller bundles download faster, parse faster, and execute faster, dramatically improving perceived performance especially on slower networks.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aj-geddes/useful-ai-prompts/bundle-size-optimization
+## When to Use
+
+- Build process optimization
+- Bundle analysis before deployment
+- Performance baseline improvement
+- Mobile performance focus
+- After adding new dependencies
+
+## Quick Start
+
+Minimal working example:
+
+```javascript
+// Analyze bundle composition
+
+class BundleAnalysis {
+  analyzeBundle() {
+    return {
+      tools: [
+        "webpack-bundle-analyzer",
+        "Source Map Explorer",
+        "Bundle Buddy",
+        "Bundlephobia",
+      ],
+      metrics: {
+        total_size: "850KB gzipped",
+        main_js: "450KB",
+        main_css: "120KB",
+        vendor: "250KB",
+        largest_lib: "moment.js (67KB)",
+      },
+      breakdown: {
+        react: "85KB (10%)",
+        lodash: "45KB (5%)",
+        moment: "67KB (8%)",
+        other: "653KB (77%)",
+      },
+    };
+// ... (see reference guides for full implementation)
 ```
+
+## Reference Guides
+
+Detailed implementations in the `references/` directory:
+
+| Guide | Contents |
+|---|---|
+| [Bundle Analysis](references/bundle-analysis.md) | Bundle Analysis |
+| [Optimization Techniques](references/optimization-techniques.md) | Optimization Techniques |
+| [Implementation Strategy](references/implementation-strategy.md) | Implementation Strategy |
+| [Best Practices](references/best-practices.md) | Best Practices |
+
+## Best Practices
+
+### ✅ DO
+
+- Follow established patterns and conventions
+- Write clean, maintainable code
+- Add appropriate documentation
+- Test thoroughly before deploying
+
+### ❌ DON'T
+
+- Skip testing or validation
+- Ignore error handling
+- Hard-code configuration values

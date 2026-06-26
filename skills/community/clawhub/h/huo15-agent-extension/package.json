@@ -1,0 +1,14 @@
+{
+  "name": "huo15-agent-extension",
+  "version": "1.0.0",
+  "description": "动态Agent配置同步技能 - 将主Agent的工作区配置同步到动态Agent工作区",
+  "main": "index.ts",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "dynamic-agent",
+    "sync"
+  ],
+  "author": "青岛火一五信息科技有限公司",
+  "license": "ISC"
+}

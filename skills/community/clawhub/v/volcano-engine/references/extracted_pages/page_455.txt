@@ -1,0 +1,26 @@
+13. 其他说明
+13.1 兼容 OpenAI SDK
+为方便您集成和使用，火山方舟模型 API 会尽可能兼容 OpenAI API。修改 base url 、model  、 api_key
+等少量配置，轻松将方舟模型服务集成到您已有的系统中。
+说明
+社区第三方 SDK 不由火山引擎团队维护，本文仅供参考。
+前提条件
+说明
+方舟平台的新用户？获取 API Key 及 开通模型等准备工作，请参见 快速入门
+ 。
+OpenAI SDK
+Python版本：3.7及以上。
+OpenAI SDK：1.0版本及以上，安装命令：
+快速开始示例• 
+• 
+pip install --upgrade "openai>=1.0"Python
+from  openai import  OpenAI
+import  os
+client = OpenAI(   
+# The base URL for model invocation
+    base_url= "https://ark.cn-beijing.volces.com/api/v3" ,   
+# Replace with your API Key
+    api_key=os.environ.get( "ARK_API_KEY" ), 
+)
+completion = client.chat.completions.create(API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 450/485

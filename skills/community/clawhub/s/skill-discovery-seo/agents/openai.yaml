@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Discovery SEO"
+  short_description: "Improve skill metadata, naming, prompts, and listings for agent discovery"
+  default_prompt: "Use $skill-discovery-seo to improve this skill's name, description, metadata, tags, listing copy, and example prompts so agents can find and choose it more reliably."

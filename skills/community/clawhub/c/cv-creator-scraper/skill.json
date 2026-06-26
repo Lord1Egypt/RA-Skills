@@ -1,0 +1,11 @@
+{
+  "name": "creator-scraper-cv",
+  "version": "1.8.0",
+  "channel": "stable",
+  "updated_at": "2026-06-05",
+  "update": {
+    "manifest_url": "https://raw.githubusercontent.com/creativault/skills/main/creator-scraper-cv/skill-manifest.json",
+    "manifest_url_env": "CV_SKILL_UPDATE_MANIFEST_URL",
+    "auto_update_env": "CV_SKILL_AUTO_UPDATE"
+  }
+}

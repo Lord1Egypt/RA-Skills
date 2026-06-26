@@ -1,0 +1,43 @@
+{
+  "skill_name": "convert-memory-files-between-systems",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我需要将 memory-lancedb-pro 的记忆文件转换成 markdown 格式，并导入到 memos-local-openclaw-plugin 系统中，文件路径是 /home/user123/memory-lancedb-pro/，你能帮我吗？",
+      "expectations": [
+        "确认 memory-lancedb-pro 的数据存储位置和格式",
+        "使用 Python 脚本将记忆从 JSONL 备份文件转换为 markdown 文件",
+        "删除配置文件中关于 memory-lancedb-pro 的所有内容",
+        "将转换好的 markdown 记忆文件导入到 memos-local-openclaw-plugin 系统中"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我在从 memory-lancedb-pro 切换到 memos-local-openclaw-plugin 时遇到了问题，配置文件总是被自动还原，能帮我解决吗？",
+      "expectations": [
+        "使用 Python 脚本精确删除配置文件中的 memory-lancedb-pro 相关内容",
+        "确保配置文件的有效性和持久化"
+      ],
+      "trigger_confidence": "medium"
+    },
+    {
+      "id": 3,
+      "prompt": "我有 657 条记忆数据在 memory-lancedb-pro 里，想迁移到 memos-local-openclaw-plugin，但不知道怎么操作，能给我详细步骤吗？",
+      "expectations": [
+        "提供详细的步骤说明，包括确认数据存储位置、检查 JSONL 文件结构、转换文件、修改配置文件、确认新系统配置、导入数据到新系统",
+        "验证导入结果，确保数据库记录数从 212 条增加到 869 条"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "我试过用 sed 和 grep 删除配置文件中的 memory-lancedb-pro 相关行，但配置文件总是无效，有什么好的方法吗？",
+      "expectations": [
+        "提供使用 Python 脚本删除配置文件中相关配置的方法",
+        "避免格式问题，确保配置文件的有效性"
+      ],
+      "trigger_confidence": "medium"
+    }
+  ]
+}

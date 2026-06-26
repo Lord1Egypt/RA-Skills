@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "layer": "policy",
+  "delivery": {
+    "single_skill": true,
+    "stdlib_only": true,
+    "no_host_text_copy": true,
+    "evidence_before_delivery": true
+  },
+  "rules": [
+    {
+      "id": "single-skill-runtime",
+      "title": "Keep runtime mode as single skill",
+      "level": "error",
+      "path": "tool_config.runtime.skill_mode",
+      "operator": "equals",
+      "value": "single"
+    },
+    {
+      "id": "stdlib-runtime",
+      "title": "Runtime depends on stdlib only",
+      "level": "error",
+      "path": "tool_config.runtime.stdlib_only",
+      "operator": "equals",
+      "value": true
+    },
+    {
+      "id": "state-phase-coverage",
+      "title": "State progression covers all workflow phases",
+      "level": "error",
+      "path": "state_layer.phase_alignment.missing_in_state",
+      "operator": "empty"
+    },
+    {
+      "id": "no-host-copy",
+      "title": "Delivery policy prohibits copying host text",
+      "level": "error",
+      "path": "policy.delivery.no_host_text_copy",
+      "operator": "equals",
+      "value": true
+    },
+    {
+      "id": "request-core-fields",
+      "title": "Request has filled core inputs",
+      "level": "warn",
+      "path": "state_layer.missing_core_fields",
+      "operator": "empty"
+    }
+  ]
+}

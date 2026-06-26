@@ -1,35 +1,219 @@
 ---
-name: "Apollo Circadian"
-description: "帮你找到最佳工作节奏：什么时候该深度思考，什么时候该整理休息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-circadian"
-sourceUrl: "https://clawhub.ai/skills/apollo-circadian"
+name: apollo-circadian
+description: >
+  帮你找到最佳工作节奏：什么时候该深度思考，什么时候该整理休息。
+version: 2.0.0
+read_when:
+  - 用户提到时间、几点、什么时候
+  - 每次心跳触发时
+  - 需要决定任务优先级时
+  - 任务调度混乱时
+metadata:
+  openclaw:
+    emoji: "⏰"
+    requires:
+      bins: []
+      env: []
+    triggers:
+      - 时间调度
+      - 几点
+      - 高效期
+      - 任务分配
+      - 昼夜节律
+      - 皮质醇
+      - 生物钟
+    suite: apollo
 ---
 
-# Apollo Circadian
+# Apollo Circadian — 昼夜节律任务调度
 
-> 帮你找到最佳工作节奏：什么时候该深度思考，什么时候该整理休息。
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-circadian`
-- **Source URL:** [https://clawhub.ai/skills/apollo-circadian](https://clawhub.ai/skills/apollo-circadian)
+**AI的任务调度应该像人体的昼夜节律：在正确的时间做正确的事。**
 
-## Overview
+人体有明确的24小时节律：
+- **皮质醇峰值（06:00-08:00）**：清醒、警觉、高能量 → 处理复杂任务
+- **昼间稳态**：标准工作模式 → 常规任务
+- **午后低谷（12:00-14:00）**：能量下降 → 简单任务/整理
+- **傍晚恢复（16:00-18:00）**：皮质醇二次峰值 → 第二高效期
+- **褪黑素窗口（21:00后）**：困倦 → 强制进入整理模式
+- **深夜（00:00-06:00）**：系统最低功耗 → 只处理紧急事项
 
+## 三个核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-circadian
+### 1. 节律感知（自动）
+
 ```
+每次心跳触发时 →
+  1. 读取真实时钟（从 heartbeat-realtime.json）
+  2. 判断当前相位
+  3. 记录距下次相位切换的时间
+  4. 如果刚切换相位 → 主动报告
+```
+
+### 2. 任务-相位匹配（主动）
+
+```
+收到任务时 →
+  1. 判断任务复杂度（复杂分析/多步骤/新领域 = 深度任务）
+  2. 对比当前相位
+  3. 如果错配 → 报告并建议最佳执行时间
+  4. 如果匹配 → 确认并加速处理
+```
+
+### 3. 强制整理窗口（不可绕过）
+
+```
+如果在褪黑素窗口（21:00后） →
+  1. 通知主AI：已进入整理窗口
+  2. 所有非紧急任务暂停
+  3. 触发 apollo-dream 整理流程
+  4. 整理完成后才允许继续工作
+```
+
+## 四步决策流程
+
+```
+Step 1: 读取时间
+  → 从 /tmp/heartbeat-realtime.json 读取真实时钟
+  → 解析当前时间（小时）
+
+Step 2: 判断相位
+  → 皮质醇峰值（06-08）：🌅 高效期
+  → 昼间稳态（08-12, 14-16）：☀️ 标准期
+  → 午后低谷（12-14）：🌤️ 低效期
+  → 傍晚恢复（16-18）：🌆 第二高效期
+  → 褪黑素窗口（21-23）：🌙 整理窗口
+  → 深夜（23-06）：🌑 低功耗期
+
+Step 3: 任务匹配
+  → 深度任务 + 低效期 → 建议推迟到高效期
+  → 简单任务 + 低效期 → 正常执行
+  → 紧急任务 + 任何时期 → 立即执行
+  → 深度任务 + 高效期 → 优先执行
+
+Step 4: 输出报告
+  → 当前相位和建议
+  → 距下次切换的时间
+  → 任务调度建议
+```
+
+## 输出格式
+
+```
+⏰ [apollo-circadian] 节律报告
+
+当前时间：HH:MM（真实时钟）
+节律相位：[相位名称] [emoji]
+建议任务：[深度任务 / 常规任务 / 整理任务 / 低优先级]
+高效期匹配：🟢 当前适合深度工作 / 🟡 可以但不最佳 / 🔴 不建议深度工作
+距下次相位切换：X小时Y分钟
+调度建议：[具体建议]
+```
+
+## 私人节律偏好（已配置）
+
+> ✅ 2026-04-06 袁文同确认
+
+| 时间段 | 相位 | 备注 |
+|--------|------|------|
+| 06:00-08:00 | 🌅 起床清醒 | 起床 |
+| 08:00-11:00 | ☀️ 第一高效期 | **晚起型，高效期在上午稍晚** |
+| 11:00-13:00 | 🌤️ 昼间稳态 | 标准工作 |
+| 13:00-15:00 | 🌤️ 午后低谷 | 低效期 |
+| 15:00-18:00 | 🌆 第二高效期 | 傍晚恢复 |
+| 18:00-21:00 | 🌙 过渡期 | 整理准备 |
+| 21:00-00:00 | 🌙 整理窗口 | 只做整理，不做复杂任务 |
+| 00:00-06:00 | 🌑 低功耗期 | **12点睡6点起；只处理真正紧急的** |
+
+**已确认规则：**
+- 睡眠时间：00:00-06:00
+- 高效期：08:00-11:00（第一峰）、15:00-18:00（第二峰）
+- 褪黑素窗口（21:00后）：只做整理，不做复杂任务
+- 深夜紧急任务：只处理真正紧急的，其他等第二天
+- 时区：Asia/Shanghai ✅
+
+## 与其他Skill的协同
+
+```
+apollo-circadian
+    │
+    ├──→ apollo-dream：整理窗口时触发
+    ├──→ apollo-neuro：高效期走深度路径，低效期走快速路径
+    └──→ apollo-renal：低效期优先做上下文过滤
+```
+
+## 实施文件
+
+| 文件 | 作用 |
+|------|------|
+| scripts/circadian/circadian-check.sh | 节律检测主脚本 |
+| scripts/heartbeat-logger.sh | 已集成节律检测 |
+| .circadian/phase-state.json | 当前相位状态 |
+| /tmp/heartbeat-realtime.json | 含circadian_phase字段 |
+| skills/apollo-circadian/SKILL.md | 本文档 |
+
+## v1 实施规格
+
+### 节律检测脚本
+
+```bash
+# 手动运行
+bash scripts/circadian/circadian-check.sh
+
+# 输出示例
+⏰ [apollo-circadian] 节律报告
+当前时间：23:17（真实时钟）
+节律相位：🌙 整理窗口
+状态说明：只做整理和维护，不做复杂任务
+推荐任务：apollo-dream|记忆整理|系统维护
+高效匹配：🔴整理窗口|不做复杂任务
+距下次切换：约43分钟
+下次相位：🌅 起床清醒（次日06:00）
+🌙 进入整理窗口，建议触发 apollo-dream
+```
+
+### 集成到心跳
+
+每次心跳（30分钟一次）自动运行节律检测，结果写入 `/tmp/heartbeat-realtime.json`：
+
+```json
+{
+  "circadian_phase": "🌙 整理窗口",
+  "is_dream_window": true,
+  "recommended_task": "apollo-dream|记忆整理|系统维护"
+}
+```
+
+### 主AI调用方式
+
+每次心跳后，主AI读取 `heartbeat-realtime.json` 中的 `circadian_phase` 字段，
+在报告开头输出节律状态，并根据相位决定是否建议 Apollo-dream。
+
+### 整理窗口行为
+
+当 `is_dream_window = true`（21:00-00:00 或 00:00-06:00）时：
+- 在节律报告中提示"🌙 进入整理窗口，建议触发 apollo-dream"
+- 不强制触发（整理触发仍依赖碎片化指标）
+- 深度任务收到时给出推迟建议
+
+## 验收标准（v1）
+
+- [x] 每次心跳时正确报告当前相位
+- [x] 21:00后进入整理窗口提示
+- [x] 高效期匹配度显示（🟢最佳/🟡可用/🔴低谷）
+- [x] 距下次相位切换时间显示
+- [x] 整合到心跳日志（每30分钟）
+- [ ] 深度任务在低效期收到时给出推迟建议（待主AI实现）
+- [ ] 相位切换时主动报告（待主AI实现）
+
+## 待决策事项（已全部确认）
+
+> ✅ 2026-04-06 袁文同确认： circadian偏好已全部配置完毕，无待决策问题
+
+> 以下需要老板明确回答后才能完善设计
+
+1. **私人高效期**：早上高效还是晚上高效？
+2. **深夜紧急任务**：老板在23:00后还工作吗？紧急任务如何处理？
+3. **相位切换弹性**：临近切换时间（如20:50）的新任务，是否等切换后再执行？
+4. **老板时区**：默认Asia/Shanghai，是否正确？

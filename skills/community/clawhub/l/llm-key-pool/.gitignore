@@ -1,0 +1,16 @@
+# Config with secrets
+llm_config.yaml
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+*.egg
+
+# IDE
+.idea/
+.vscode/

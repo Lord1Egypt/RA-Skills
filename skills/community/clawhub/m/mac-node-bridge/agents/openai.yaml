@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mac Node Bridge"
+  short_description: "Wire macOS node tools into a Linux gateway via SSH wrappers"
+  default_prompt: "Use $mac-node-bridge to wire macOS-only tools from connected Mac nodes into a Linux OpenClaw gateway with SSH wrappers."

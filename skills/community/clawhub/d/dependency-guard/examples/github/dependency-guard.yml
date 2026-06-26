@@ -1,0 +1,54 @@
+name: dependency-guard
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+concurrency:
+  group: socket-scan-${{ github.ref }}-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  socket-security:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Socket CLI
+        run: npm install -g socket
+
+      - name: Run Socket CI scan
+        env:
+          # SOCKET_SECURITY_API_KEY is for Socket's GitHub integration (socket ci).
+          # This is different from SOCKET_SECURITY_API_TOKEN used for local CLI auth.
+          SOCKET_SECURITY_API_KEY: ${{ secrets.SOCKET_SECURITY_API_KEY }}
+          GH_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: socket ci
+
+      # Optional: add Firewall-based install protection in CI for package fetches.
+      # - name: Add Socket Firewall
+      #   uses: socketdev/action@v1
+      #   with:
+      #     mode: firewall
+      #
+      # - name: Protected npm install
+      #   run: sfw npm ci

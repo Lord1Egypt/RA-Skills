@@ -1,0 +1,58 @@
+# Memory System Cron 任务配置
+
+## 推荐 Cron 任务
+
+### 1. 每日记忆清理 (每天 00:00)
+清理过期记忆，自动整理索引。
+
+```bash
+openclaw cron add \
+  --name daily-memory-cleanup \
+  --schedule "0 0 * * *" \
+  --agent main \
+  --execute "python3 /path/to/scripts/memory.py cleanup && python3 /path/to/scripts/memory.py summary"
+```
+
+### 2. 每日 L2 提炼 (每天 21:00)
+将 short-term 记忆中有价值的内容提炼到 long-term events。
+
+```bash
+openclaw cron add \
+  --name daily-memory-distill \
+  --schedule "0 21 * * *" \
+  --agent main \
+  --message "请执行: MEMORY_DIR=~/.openclaw/workspace/memory python3 /root/.openclaw/workspace/skills/open-memory-system/scripts/distill_l2.py"
+```
+
+### 3. 每周记忆蒸馏 (每周一 06:00)
+将短记忆提炼到长期记忆。
+
+```bash
+openclaw cron add \
+  --name weekly-memory-distill \
+  --schedule "0 6 * * 1" \
+  --agent main \
+  --execute "python3 /path/to/scripts/memory.py distill"
+```
+
+## 快速安装
+
+### Step 1: 创建 cron（手动模式）
+```bash
+# 每日清理
+openclaw cron add \
+  --name daily-memory-cleanup \
+  --schedule "0 0 * * *" \
+  --agent main \
+  --message "请执行: MEMORY_DIR=~/.openclaw/workspace/memory python3 /root/.openclaw/workspace/skills/open-memory-system/scripts/memory.py cleanup && python3 /root/.openclaw/workspace/skills/open-memory-system/scripts/memory.py summary"
+```
+
+### Step 2: 验证安装
+```bash
+openclaw cron list | grep memory
+```
+
+### Step 3: 测试运行
+```bash
+MEMORY_DIR=~/.openclaw/workspace/memory python3 /root/.openclaw/workspace/skills/open-memory-system/scripts/memory.py summary
+```

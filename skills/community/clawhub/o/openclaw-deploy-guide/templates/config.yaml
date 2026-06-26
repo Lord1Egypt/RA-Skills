@@ -1,0 +1,125 @@
+# NEUXSBOT 配置文件模板
+# 复制此文件到 ~/.nexusbot/config.yaml 并修改
+
+# ==================== AI 模型配置 ====================
+
+# 选项 1: Ollama 本地模型 (推荐)
+ai:
+  provider: ollama
+  ollama:
+    host: http://localhost:11434
+    model: qwen2.5:7b      # 可选: qwen2.5:7b, llama3.2:8b, deepseek-r1:7b
+    temperature: 0.7
+    max_tokens: 2048
+
+# 选项 2: DeepSeek 在线模型
+# ai:
+#   provider: deepseek
+#   deepseek:
+#     api_key: your_api_key_here
+#     model: deepseek-chat
+#     temperature: 0.7
+
+# 选项 3: Kimi (Moonshot) 在线模型
+# ai:
+#   provider: kimi
+#   kimi:
+#     api_key: your_api_key_here
+#     model: moonshot-v1-8k
+#     temperature: 0.7
+
+# 选项 4: 通义千问
+# ai:
+#   provider: qwen
+#   qwen:
+#     api_key: your_api_key_here
+#     model: qwen-turbo
+#     temperature: 0.7
+
+# ==================== 消息平台配置 ====================
+
+# 钉钉配置
+platforms:
+  dingtalk:
+    enabled: false
+    app_key: your_app_key
+    app_secret: your_app_secret
+    webhook_port: 3000
+    # webhook_url: https://your-domain.com/webhook/dingtalk
+
+  # 飞书配置
+  feishu:
+    enabled: false
+    app_id: your_app_id
+    app_secret: your_app_secret
+    webhook_port: 3000
+    encrypt_key: your_encrypt_key
+    verification_token: your_verification_token
+
+  # 企业微信配置
+  wecom:
+    enabled: false
+    corp_id: your_corp_id
+    agent_id: your_agent_id
+    secret: your_secret
+    token: your_token
+    aes_key: your_aes_key
+    webhook_port: 3000
+
+# ==================== 技能配置 ====================
+
+skills:
+  # 启用/禁用技能
+  github: true
+  jira: false
+  slack: true
+
+  # 技能参数
+  github:
+    token: your_github_token
+    default_repo: username/repo
+
+  jira:
+    base_url: https://your-domain.atlassian.net
+    username: your_email
+    token: your_api_token
+
+# ==================== 高级配置 ====================
+
+# 日志配置
+logging:
+  level: info              # debug, info, warn, error
+  file: logs/nexusbot.log
+  max_size: 100           # MB
+  max_backups: 5
+  max_age: 30             # days
+
+# 性能优化
+performance:
+  max_concurrent: 10      # 最大并发请求
+  timeout: 30             # 请求超时（秒）
+  cache_enabled: true     # 启用缓存
+  cache_ttl: 3600         # 缓存时间（秒）
+
+# 安全配置
+security:
+  allowed_users: []       # 允许的用户列表，空数组表示允许所有
+  rate_limit: 60          # 每分钟最大请求数
+  webhook_secret: your_webhook_secret  # Webhook 签名密钥
+
+# 代理配置（如需要）
+proxy:
+  enabled: false
+  http: http://proxy.example.com:8080
+  https: http://proxy.example.com:8080
+  no_proxy:
+    - localhost
+    - 127.0.0.1
+
+# ==================== 功能开关 ====================
+
+features:
+  auto_update: true       # 自动检查更新
+  telemetry: false        # 发送使用统计
+  debug_mode: false       # 调试模式
+  local_mode: false       # 离线模式（仅使用本地模型）

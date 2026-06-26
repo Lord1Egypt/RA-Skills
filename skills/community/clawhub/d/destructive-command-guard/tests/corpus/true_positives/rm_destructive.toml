@@ -1,0 +1,54 @@
+# True positives: rm commands that MUST be blocked
+#
+# These commands have high risk of data loss.
+
+[[case]]
+description = "rm -rf with root path"
+command = "rm -rf /"
+expected = "deny"
+rule_id = "core.filesystem:rm-rf-root-home"
+
+[[case]]
+description = "rm -rf with home directory"
+command = "rm -rf ~"
+expected = "deny"
+rule_id = "core.filesystem:rm-rf-root-home"
+
+[[case]]
+description = "rm -rf with home expansion"
+command = "rm -rf $HOME"
+expected = "deny"
+rule_id = "core.filesystem:rm-rf-general"
+
+[[case]]
+description = "rm -rf with glob"
+command = "rm -rf *"
+expected = "deny"
+rule_id = "core.filesystem:rm-rf-general"
+
+[[case]]
+description = "rm -rf with hidden files glob"
+command = "rm -rf .*"
+expected = "deny"
+rule_id = "core.filesystem:rm-rf-general"
+
+[[case]]
+description = "rm -rf on relative path (still blocked)"
+command = "rm -rf ./build"
+expected = "deny"
+rule_id = "core.filesystem:rm-rf-general"
+
+[[case]]
+description = "rm --recursive --force outside temp is blocked"
+command = "rm --recursive --force /etc"
+expected = "deny"
+rule_id = "core.filesystem:rm-recursive-force-long"
+
+# NOTE: rm -r -f (separated flags) is not currently detected.
+# The pattern expects -rf or -fr combined. This is a gap.
+# Tracked in: tests/corpus/README.md (future enhancement)
+# [[case]]
+# description = "rm with recursive and force flags separate"
+# command = "rm -r -f /tmp/test"
+# expected = "deny"
+# rule_id = "core.rm:recursive-force"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Flights"
+  short_description: "Search Google Flights for flight prices"
+  default_prompt: "Use $dataify-google-flights to run a search query."

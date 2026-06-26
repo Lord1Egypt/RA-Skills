@@ -1,0 +1,66 @@
+# ─── Effector Manifest ────────────────────────────────────
+# Reference implementation for the effectorHQ ecosystem.
+# This file coexists with SKILL.md — the runtime reads SKILL.md,
+# the type system reads effector.toml.
+
+[effector]
+name          = "linear"
+version       = "1.0.0"
+type          = "skill"
+description   = "Manage Linear issues, projects, and cycles via GraphQL API"
+license       = "Apache-2.0"
+emoji         = "🔷"
+tags          = ["project-management", "linear", "graphql", "issues", "sprint"]
+authors       = ["effectorHQ Contributors"]
+repository    = "https://github.com/effectorHQ/linear-skill"
+min-spec-version = "0.2.0"
+
+[effector.categories]
+primary   = "productivity"
+secondary = ["developer-tools"]
+
+# ─── Typed Interface ─────────────────────────────────────
+# This is the core value proposition: declaring what goes in,
+# what comes out, and what context is required — before any
+# code runs.
+#
+# Type names reference the effector-types stdlib:
+#   https://github.com/effectorHQ/effector-types
+
+[effector.interface]
+input   = "String"              # Natural-language task description
+output  = "JSON"                # Structured Linear API response
+context = ["GenericAPIKey"]     # Requires LINEAR_API_KEY
+
+# ─── Permissions ─────────────────────────────────────────
+# Declared permissions must match actual behavior.
+# effector-audit checks for drift between this section
+# and what SKILL.md actually instructs the agent to do.
+
+[effector.permissions]
+network    = true               # Calls api.linear.app
+filesystem = []                 # No filesystem access
+env-read   = ["LINEAR_API_KEY"] # Reads one env var
+env-write  = []                 # Writes nothing
+subprocess = false              # No shell spawning — curl is inline
+
+# ─── Error Handling ──────────────────────────────────────
+
+[effector.errors]
+retry       = { max-attempts = 2, backoff = "exponential" }
+on-failure  = "log"
+
+# ─── Runtime: OpenClaw ───────────────────────────────────
+
+[runtime.openclaw]
+format      = "skill.md"
+entry       = "SKILL.md"
+min-version = "0.20.0"
+
+[runtime.openclaw.requires]
+bins = ["curl", "jq"]
+env  = ["LINEAR_API_KEY"]
+
+[runtime.openclaw.publish]
+registry = "clawhub"
+tier     = "managed"

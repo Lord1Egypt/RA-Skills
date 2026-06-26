@@ -1,0 +1,16 @@
+{
+  "action": "full_automation",
+  "path": "C:\\TIA_Projects",
+  "name": "AutoProject",
+  "device_name": "PLC_1",
+  "cpu_model": "CPU 1511-1 PN",
+  "family": "S7-1500",
+  "firmware": "V4.0",
+  "plc_name": "PLC_1",
+  "block_type": "OB",
+  "block_name": "Main",
+  "description": "主程序循环",
+  "interface": "PN/IE",
+  "ip_address": "192.168.0.1",
+  "close_after": true
+}

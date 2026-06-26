@@ -1,0 +1,2025 @@
+﻿<!doctype html>
+<!--
+  网站诊断报告 — 对齐 MarkAI WebsiteAnalysisReport/v3（ChatContent → WebsiteGuide）
+
+  数据：window.__WEBSITE_DIAGNOSIS__
+  生成：siluzan-tso website-diagnosis render --data ./diagnosis.json [--collect ./collect.json]
+-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网站诊断报告</title>
+    <script>
+      (function () {
+        var k = "wd-report-theme";
+        var s = localStorage.getItem(k);
+        var dark =
+          s === "dark" ||
+          (s !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (dark) document.documentElement.setAttribute("data-theme", "dark");
+      })();
+    </script>
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        color-scheme: light;
+        --bg-page: #f5f7fa;
+        --surface: #ffffff;
+        --surface-muted: #f7f8fa;
+        --text-primary: #1d2129;
+        --text-secondary: #4e5969;
+        --text-muted: #86909c;
+        --border: #e5e6eb;
+        --border-light: #ebeef5;
+        --link: #165dff;
+        --accent: #165dff;
+        --shadow: rgba(0, 0, 0, 0.08);
+        --shadow-hover: rgba(0, 0, 0, 0.1);
+        --marketing-bg: linear-gradient(135deg, #f0f5ff 0%, #e8f3ff 100%);
+        --ring-track: #e5e6eb;
+        --table-head-bg: #f5f7fa;
+        --table-head-text: #909399;
+        --table-cell-text: #606266;
+        --table-title: #333333;
+        --priority-high-bg: #ffece8;
+        --priority-medium-bg: #fff3e8;
+        --priority-low-bg: #e8f8f2;
+        --lt-blue-bg: #eef6ff;
+        --lt-orange-bg: #fff7ec;
+        --lt-green-bg: #eafdf4;
+        --lt-purple-bg: #f4f2ff;
+        --status-excellent-bg: #e8f8f2;
+        --status-good-bg: #e8f3ff;
+        --status-normal-bg: #fff3e8;
+        --status-poor-bg: #ffece8;
+        --btn-theme-bg: #ffffff;
+        --btn-theme-border: #e5e6eb;
+        --btn-theme-text: #4e5969;
+      }
+
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --bg-page: #0f1419;
+        --surface: #1a1f26;
+        --surface-muted: #232a33;
+        --text-primary: #e8eaed;
+        --text-secondary: #a8b0bb;
+        --text-muted: #7a8490;
+        --border: #2e3742;
+        --border-light: #2a323d;
+        --link: #6ba1ff;
+        --accent: #4d8dff;
+        --shadow: rgba(0, 0, 0, 0.35);
+        --shadow-hover: rgba(0, 0, 0, 0.45);
+        --marketing-bg: linear-gradient(135deg, #1a2438 0%, #152030 100%);
+        --ring-track: #3a4452;
+        --table-head-bg: #232a33;
+        --table-head-text: #8b949e;
+        --table-cell-text: #a8b0bb;
+        --table-title: #c9d1d9;
+        --priority-high-bg: #3d2224;
+        --priority-medium-bg: #3d2e1a;
+        --priority-low-bg: #1a3328;
+        --lt-blue-bg: #1a2840;
+        --lt-orange-bg: #332818;
+        --lt-green-bg: #1a3328;
+        --lt-purple-bg: #2a2240;
+        --status-excellent-bg: #1a3328;
+        --status-good-bg: #1a2840;
+        --status-normal-bg: #332818;
+        --status-poor-bg: #3d2224;
+        --btn-theme-bg: #232a33;
+        --btn-theme-border: #2e3742;
+        --btn-theme-text: #a8b0bb;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+          "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: var(--bg-page);
+        color: var(--text-primary);
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      #app {
+        min-height: 100vh;
+      }
+
+      /* common.scss */
+      .report-container {
+        background: var(--bg-page);
+        container-type: inline-size;
+        padding: 24px 16px 40px;
+      }
+
+      .report-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--surface);
+        border-radius: 8px;
+        padding: 28px;
+        box-shadow: 0 2px 8px var(--shadow);
+        transition:
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .report-section {
+        margin-bottom: 40px;
+        background: var(--surface);
+        border-radius: 12px;
+      }
+
+      .report-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-header {
+        margin-bottom: 20px;
+      }
+
+      .section-header h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+        padding-bottom: 12px;
+        display: inline-block;
+      }
+
+      .marketing-text {
+        padding: 16px;
+        background: var(--marketing-bg);
+        border-left: 4px solid var(--accent);
+        border-radius: 4px;
+        margin-bottom: 24px;
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--text-primary);
+      }
+
+      .marketing-text p {
+        margin: 0;
+      }
+
+      .marketing-text strong {
+        color: var(--accent);
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 4px;
+      }
+
+      /* ReportHeader */
+      .report-header {
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .header-title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .main-title {
+        flex: 1;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .btn-theme {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 16px;
+        background: var(--btn-theme-bg);
+        border: 1px solid var(--btn-theme-border);
+        border-radius: 6px;
+        color: var(--btn-theme-text);
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .btn-theme:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .btn-export {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-export:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      }
+
+      .header-info {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .info-item {
+        font-size: 15px;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .info-separator {
+        color: var(--border);
+        font-size: 15px;
+      }
+
+      .website-url {
+        cursor: pointer;
+        color: var(--link) !important;
+        word-break: break-all;
+      }
+
+      /* HealthOverview */
+      .health-overview {
+        display: flex;
+        gap: 32px;
+        margin-bottom: 24px;
+        align-items: center;
+      }
+
+      .website-score-wrapper {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: center;
+      }
+
+      .score-ring-wrapper {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        padding: 20px;
+        width: 250px;
+      }
+
+      .score-center {
+        position: absolute;
+        top: 110px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .score-number {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--text-primary);
+        line-height: 1;
+      }
+
+      .score-total {
+        font-size: 16px;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      .score-rating {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .score-desc {
+        margin-top: 8px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        text-align: center;
+        max-width: 200px;
+        line-height: 1.5;
+      }
+
+      .divider-line {
+        width: 1px;
+        height: 300px;
+        background-color: var(--border);
+      }
+
+      .radar-chart {
+        flex: 1;
+        background: var(--surface);
+        border-radius: 8px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .radar-chart-title {
+        text-align: center;
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-top: 12px;
+        font-weight: 500;
+      }
+
+      /* RiskMap */
+      .risk-map-content {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      .bar-chart-wrapper {
+        flex-shrink: 0;
+        width: 40%;
+        height: 294px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+      }
+
+      .risk-table-wrapper {
+        flex: 1;
+        height: 327px;
+      }
+
+      .risk-table-title {
+        height: 24px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: right;
+        color: var(--table-title);
+        margin: 0 0 8px;
+      }
+
+      .risk-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      .risk-table th,
+      .risk-table td {
+        border: 1px solid var(--border-light);
+        padding: 10px 12px;
+        color: var(--table-cell-text);
+      }
+
+      .risk-table th {
+        background: var(--table-head-bg);
+        color: var(--table-head-text);
+        font-weight: 500;
+        text-align: left;
+      }
+
+      .risk-table .tc {
+        text-align: center;
+      }
+
+      /* ModuleDetail */
+      .module-detail {
+        margin-bottom: 32px;
+      }
+
+      .module-detail:last-child {
+        margin-bottom: 0;
+      }
+
+      .module-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        padding: 16px;
+        background: var(--surface-muted);
+        border-radius: 8px;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .module-header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex: 1;
+        flex-wrap: wrap;
+      }
+
+      .module-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+        padding-left: 12px;
+        border-left: 4px solid #165dff;
+        white-space: nowrap;
+      }
+
+      .module-description {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .module-score-info {
+        font-size: 14px;
+        color: var(--text-secondary);
+        white-space: nowrap;
+      }
+
+      .module-score-info .score-value {
+        font-size: 20px;
+        font-weight: 700;
+        color: #35bd4b;
+        margin: 0 4px;
+      }
+
+      .module-score-info .total-score-value {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0 4px;
+      }
+
+      .module-items-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .module-item-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-width: 0;
+      }
+
+      .module-item-card:hover {
+        box-shadow: 0 4px 12px var(--shadow-hover);
+        transform: translateY(-2px);
+      }
+
+      .module-item-card .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .item-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+        flex: 1;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      .status-badge {
+        flex-shrink: 0;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .item-description {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0;
+        word-break: break-word;
+      }
+
+      .score-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .score-label {
+        font-size: 14px;
+        color: var(--text-muted);
+      }
+
+      .score-percentage {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 12px;
+        background: var(--ring-track);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: 12px;
+      }
+
+      .suggestion-box {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+        border-left: 3px solid #ff7d00;
+        border-radius: 4px;
+        margin-top: 4px;
+      }
+
+      .suggestion-text {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      /* LoadingSpeed */
+      .loading-speed-section {
+        margin-bottom: 24px;
+        padding: 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+
+      .loading-speed-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .loading-speed-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+      }
+
+      .loading-speed-status {
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .loading-speed-status.status-excellent {
+        background: var(--status-excellent-bg);
+        color: #00b42a;
+      }
+
+      .loading-speed-status.status-good {
+        background: var(--status-good-bg);
+        color: #165dff;
+      }
+
+      .loading-speed-status.status-normal {
+        background: var(--status-normal-bg);
+        color: #ff7d00;
+      }
+
+      .loading-speed-status.status-poor {
+        background: var(--status-poor-bg);
+        color: #f53f3f;
+      }
+
+      .loading-speed-desc {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin: 0 0 24px;
+        line-height: 1.6;
+      }
+
+      .loading-speed-charts {
+        display: flex;
+        justify-content: space-around;
+        gap: 40px;
+        margin-bottom: 24px;
+      }
+
+      .speed-chart-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .chart-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+      }
+
+      .speed-details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .speed-detail-item {
+        font-size: 13px;
+        color: var(--text-secondary);
+        text-align: center;
+      }
+
+      .speed-value {
+        font-weight: 600;
+      }
+
+      .speed-legend {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .legend-icon {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+      }
+
+      .legend-text {
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+
+      /* PriorityPlan */
+      .priority-columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .priority-column {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .priority-high {
+        background: var(--priority-high-bg);
+      }
+
+      .priority-high .priority-title {
+        color: #991b25;
+      }
+
+      .priority-high .priority-badge {
+        color: #991b25;
+        border: 1px solid #991b25;
+      }
+
+      .priority-high .item-bullet,
+      .priority-high .impact-icon,
+      .priority-high .impact-text {
+        color: #f53f3f !important;
+      }
+
+      .priority-medium {
+        background: var(--priority-medium-bg);
+        --color: #ff7d00;
+      }
+
+      .priority-medium .priority-title {
+        color: var(--color);
+      }
+
+      .priority-medium .priority-badge {
+        color: var(--color);
+        border: 1px solid var(--color);
+      }
+
+      .priority-medium .item-bullet,
+      .priority-medium .impact-icon,
+      .priority-medium .impact-text {
+        color: var(--color) !important;
+      }
+
+      .priority-low {
+        background: var(--priority-low-bg);
+        --color: #00b42a;
+      }
+
+      .priority-low .priority-title {
+        color: var(--color);
+      }
+
+      .priority-low .priority-badge {
+        color: var(--color);
+        border: 1px solid var(--color);
+      }
+
+      .priority-low .item-bullet,
+      .priority-low .impact-icon,
+      .priority-low .impact-text {
+        color: var(--color) !important;
+      }
+
+      .priority-header-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .priority-icon {
+        font-size: 24px;
+        line-height: 1;
+      }
+
+      .priority-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+        gap: 8px;
+      }
+
+      .priority-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.3;
+      }
+
+      .priority-subtitle {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin: 0 0 0 36px;
+        line-height: 1.5;
+      }
+
+      .priority-badge {
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        white-space: nowrap;
+        background: transparent;
+      }
+
+      .priority-items {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .priority-item-card {
+        --content-margin-left: 14px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+      }
+
+      .priority-item-card .item-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .item-bullet {
+        font-size: 20px;
+        line-height: 1.4;
+        font-weight: bold;
+        color: var(--text-primary);
+      }
+
+      .item-title-text {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      .priority-item-card .item-description {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0 0 12px var(--content-margin-left);
+      }
+
+      .item-impact {
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        margin-left: var(--content-margin-left);
+      }
+
+      .impact-icon {
+        flex-shrink: 0;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.6;
+      }
+
+      .impact-text {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* LongtermValue */
+      .longterm-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .longterm-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 24px;
+        border-radius: 12px;
+        border-left: 4px solid;
+      }
+
+      .longterm-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .card-blue {
+        background: var(--lt-blue-bg);
+        border-left-color: #165dff;
+      }
+
+      .card-orange {
+        background: var(--lt-orange-bg);
+        border-left-color: #ff7d00;
+      }
+
+      .card-green {
+        background: var(--lt-green-bg);
+        border-left-color: #00b42a;
+      }
+
+      .card-purple {
+        background: var(--lt-purple-bg);
+        border-left-color: #722ed1;
+      }
+
+      .card-blue .card-icon {
+        --bgc: #dbeafe;
+      }
+
+      .card-orange .card-icon {
+        --bgc: #ffedd5;
+      }
+
+      .card-green .card-icon {
+        --bgc: #dcfce7;
+      }
+
+      .card-purple .card-icon {
+        --bgc: #f3e8ff;
+      }
+
+      html[data-theme="dark"] .card-blue .card-icon {
+        --bgc: #1e3a5f;
+      }
+
+      html[data-theme="dark"] .card-orange .card-icon {
+        --bgc: #4a3520;
+      }
+
+      html[data-theme="dark"] .card-green .card-icon {
+        --bgc: #1a4030;
+      }
+
+      html[data-theme="dark"] .card-purple .card-icon {
+        --bgc: #3d2d5c;
+      }
+
+      .card-icon {
+        flex-shrink: 0;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        border-radius: 50%;
+        background-color: var(--bgc);
+      }
+
+      .card-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0 0 8px;
+        line-height: 1.3;
+      }
+
+      .card-desc {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      @container (max-width: 860px) {
+        .health-overview {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .divider-line {
+          width: 90%;
+          height: 1px;
+        }
+
+        .radar-chart {
+          width: 100%;
+        }
+      }
+
+      @container (max-width: 900px) {
+        .risk-map-content {
+          flex-direction: column;
+        }
+
+        .bar-chart-wrapper {
+          width: 100%;
+          height: 300px;
+        }
+
+        .risk-table-wrapper {
+          width: 100%;
+          height: auto;
+        }
+
+        .risk-table-title {
+          display: none;
+        }
+      }
+
+      @container (max-width: 1200px) {
+        .priority-columns {
+          grid-template-columns: 1fr;
+        }
+
+        .priority-items {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .loading-speed-charts {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .longterm-cards {
+          grid-template-columns: 1fr;
+        }
+
+        .main-title {
+          font-size: 24px;
+        }
+
+        .header-title-wrapper {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .module-items-grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        .priority-items {
+          grid-template-columns: 1fr !important;
+        }
+      }
+
+      @media print {
+        body {
+          background: var(--surface);
+        }
+
+        .report-container {
+          padding: 0;
+          background: var(--surface);
+        }
+
+        .report-content {
+          box-shadow: none;
+        }
+
+        .btn-export,
+        .btn-theme {
+          display: none;
+        }
+
+        .report-section {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      window.__WEBSITE_DIAGNOSIS__ = window.__WEBSITE_DIAGNOSIS__ || null;
+    </script>
+    <script>
+      /**
+       * 网站诊断报告运行时 — 对齐 MarkAI WebsiteAnalysisReport/v3
+       * 数据源：window.__WEBSITE_DIAGNOSIS__（与 getWebsiteDiagnosisData.data 同结构）
+       */
+      (function () {
+        "use strict";
+
+        const THEME_KEY = "wd-report-theme";
+        let radarChartInst = null;
+        let riskChartInst = null;
+        let chartModulesCache = [];
+        let chartRiskCache = [];
+
+        function isDarkTheme() {
+          return document.documentElement.getAttribute("data-theme") === "dark";
+        }
+
+        function getChartTheme() {
+          const dark = isDarkTheme();
+          return {
+            axisName: dark ? "#a8b0bb" : "#4e5969",
+            splitArea: dark ? ["#1a1f26", "#232a33"] : ["#ffffff", "#f7f8fa"],
+            axisLabel: dark ? "#a8b0bb" : "#666666",
+          };
+        }
+
+        function getRingTrackColor() {
+          return (
+            getComputedStyle(document.documentElement).getPropertyValue("--ring-track").trim() ||
+            "#e5e6eb"
+          );
+        }
+
+        function updateThemeToggleLabel() {
+          const btn = document.getElementById("btn-theme-toggle");
+          if (btn) btn.textContent = isDarkTheme() ? "☀️ 白天" : "🌙 夜晚";
+        }
+
+        function updateScoreRingTracks() {
+          const track = getRingTrackColor();
+          document
+            .querySelectorAll(".score-ring circle:first-of-type, .speed-ring circle:first-of-type")
+            .forEach((el) => el.setAttribute("stroke", track));
+        }
+
+        function refreshCharts() {
+          const theme = getChartTheme();
+          if (radarChartInst && chartModulesCache.length) {
+            radarChartInst.setOption({
+              radar: {
+                axisName: { color: theme.axisName },
+                splitArea: { areaStyle: { color: theme.splitArea } },
+              },
+            });
+            radarChartInst.resize();
+          }
+          if (riskChartInst && chartRiskCache.length) {
+            riskChartInst.setOption({
+              yAxis: { axisLabel: { color: theme.axisLabel } },
+              series: [{ label: { color: theme.axisLabel } }, {}],
+            });
+            riskChartInst.resize();
+          }
+          updateScoreRingTracks();
+        }
+
+        function applyTheme(theme) {
+          document.documentElement.setAttribute("data-theme", theme === "dark" ? "dark" : "light");
+          localStorage.setItem(THEME_KEY, theme);
+          updateThemeToggleLabel();
+          refreshCharts();
+        }
+
+        function toggleTheme() {
+          applyTheme(isDarkTheme() ? "light" : "dark");
+        }
+
+        function ensureTheme() {
+          const stored = localStorage.getItem(THEME_KEY);
+          if (stored === "light" || stored === "dark") {
+            document.documentElement.setAttribute(
+              "data-theme",
+              stored === "dark" ? "dark" : "light",
+            );
+          } else if (!document.documentElement.hasAttribute("data-theme")) {
+            document.documentElement.setAttribute("data-theme", "light");
+          }
+        }
+
+        ensureTheme();
+
+        const ItemStatus = {
+          Excellent: "优秀",
+          Good: "良好",
+          Normal: "一般",
+          Poor: "较差",
+          Full: "完整",
+          NeedImprove: "需优化",
+          Absent: "缺失",
+        };
+
+        const PAGE_SCORE_LEVEL = [
+          { id: "s1", level: "优秀", description: "可直接投放广告", color: "#00b42a", min: 90 },
+          {
+            id: "s2",
+            level: "良好",
+            description: "小幅优化后可直接投放广告",
+            color: "#00b42a",
+            min: 80,
+            max: 89.99,
+          },
+          {
+            id: "s3",
+            level: "一般",
+            description: "需要重点优化",
+            color: "#ff7d00",
+            min: 70,
+            max: 79.99,
+          },
+          {
+            id: "s4",
+            level: "较差",
+            description: "需要大幅改进优化",
+            color: "#f53f3f",
+            min: 60,
+            max: 69.99,
+          },
+          {
+            id: "s5",
+            level: "不建议投放",
+            description: "不建议投放广告，需要全面整改",
+            color: "#f53f3f",
+            max: 59.99,
+          },
+        ];
+
+        const INDUSTRY_TEXT_MAP = [
+          {
+            status: "优秀",
+            content: "网站表现优秀，远高于行业平均值，可放心开启广告投放",
+            min: 90,
+          },
+          { status: "良好", content: "网站处于行业中上水平，具备良好的优化基础", min: 80, max: 89 },
+          { status: "一般", content: "网站略低于行业平均值，建议进行针对性优化", min: 70, max: 79 },
+          { status: "不佳", content: "网站低于行业平均值，需要重点优化", min: 60, max: 69 },
+          { status: "较差", content: "网站远低于行业标准，建议马上优化", max: 59.99 },
+        ];
+
+        const CORE_ISSUES_DATA = [
+          { id: "ci1", issue: "首屏缺乏清晰CTA", impact: "广告落地页效果差", priority: "高" },
+          { id: "ci2", issue: "转化跟踪未部署", impact: "无法归因广告效果", priority: "高" },
+          { id: "ci3", issue: "移动端显示异常", impact: "移动端转化下降15%–25%", priority: "高" },
+          { id: "ci4", issue: "页面加载缓慢", impact: "首屏加载慢", priority: "高" },
+          { id: "ci5", issue: "导航栏与清晰度", impact: "用户找不到关键信息", priority: "中" },
+          { id: "ci6", issue: "表单复杂或缺乏清晰", impact: "用户找不到关键信息", priority: "中" },
+          { id: "ci7", issue: "类目页与详情页内容不匹配", impact: "广告相关性低", priority: "中" },
+          { id: "ci8", issue: "网站语言与广告不一致", impact: "用户体验差", priority: "中" },
+          { id: "ci9", issue: "缺少社媒分享入口", impact: "二次传播效率低", priority: "低" },
+          { id: "ci10", issue: "品牌风格不统一", impact: "品牌可信度低", priority: "低" },
+        ];
+
+        const PRIORITY_GROUP_DATA = [
+          {
+            优先级: "高",
+            执行周期: "1-2周",
+            影响内容: "影响转化和广告投放",
+            优化项: [
+              {
+                优化方向: "核心Banner与首屏CTA",
+                具体任务: "优化Banner图片清晰度、风格统一；突出首屏核心CTA和价值主张",
+                广告影响说明: "提升Landing Page Experience评分，降低跳出率，直接影响Quality Score",
+              },
+              {
+                优化方向: "转化跟踪部署",
+                具体任务: "部署GA4、GTM、Facebook Pixe等；设置表单提交、电话点击事件",
+                广告影响说明: "完整数据采集，支持自动出价和再营销，提高广告ROI",
+              },
+              {
+                优化方向: "移动端适配优化",
+                具体任务: "响应式布局优化；按钮触控目标≥44px；检查移动端首屏加载",
+                广告影响说明: "移动端体验直接影响广告质量分和移动端转化率",
+              },
+              {
+                优化方向: "页面加载速度优化",
+                具体任务: "压缩图片、JS/CSS；使用缓存/CDN；优化首屏加载",
+                广告影响说明: "提升Google Ads速度评分，降低CPC成本，提高广告排名",
+              },
+            ],
+          },
+          {
+            优先级: "中",
+            执行周期: "2-4周",
+            影响内容: "影响用户体验",
+            优化项: [
+              {
+                优化方向: "导航栏与页面布局调整",
+                具体任务: "栏目精简，导航层级≤3；首屏信息层级清晰",
+                广告影响说明: "提升用户体验，降低跳出率，增加表单提交概率",
+              },
+              {
+                优化方向: "表单优化",
+                具体任务: "字段≤6个，必填≤4个；自动校验和清晰错误提示",
+                广告影响说明: "提升表单提交率，增加转化量，优化广告ROI",
+              },
+              {
+                优化方向: "产品类目页与详情页内容优化",
+                具体任务: "每页英文说明≥200词；每产品≥3张高清图；规格参数齐全",
+                广告影响说明: "提高Ad Relevance和转化率，降低广告质量分惩罚",
+              },
+            ],
+          },
+          {
+            优先级: "低",
+            执行周期: "1-3个月",
+            影响内容: "优化细节提高美观或品牌感",
+            优化项: [
+              {
+                优化方向: "全站语言统一",
+                具体任务: "全站英文（除语言切换外）",
+                广告影响说明: "保证广告与落地页语言一致，提升Ad Relevance",
+              },
+              {
+                优化方向: "品牌视觉统一",
+                具体任务: "图片、Banner风格统一；字体、Logo、配色一致",
+                广告影响说明: "提升品牌认知度和广告可信度，间接增加转化",
+              },
+              {
+                优化方向: "社媒分享功能完善",
+                具体任务: "添加OG标签、社交媒体Card；配置社媒分享按钮",
+                广告影响说明: "提升社交可分享性，辅助再营销和广告推广",
+              },
+            ],
+          },
+        ];
+
+        /** 对齐 useWebsiteGuide/config allModuleConfigs（仅渲染所需字段） */
+        const ALL_MODULE_CONFIGS = [
+          {
+            id: "m1",
+            name: "网站内容及结构诊断",
+            abbreviation: "内容与结构",
+            desc: "评估网站结构合理性",
+            优先级: "高",
+            影响程度: 5,
+            改进难度: 5,
+            items: [
+              { id: "m1i1", name: "Banner轮播图", fullMarks: 5 },
+              { id: "m1i2", name: "导航栏", fullMarks: 2 },
+              { id: "m1i3", name: "首页信息布局", fullMarks: 4 },
+              { id: "m1i4", name: "产品类目页", fullMarks: 2 },
+              { id: "m1i5", name: "产品详情页", fullMarks: 4 },
+              { id: "m1i6", name: "公司介绍页", fullMarks: 3 },
+              { id: "m1i7", name: "联系我们页", fullMarks: 4 },
+              { id: "m1i8", name: "表单提交流程", fullMarks: 4 },
+              { id: "m1i9", name: "社交媒体链接", fullMarks: 2 },
+            ],
+          },
+          {
+            id: "m2",
+            name: "网站性能诊断",
+            abbreviation: "网站技术性能",
+            desc: "评估网站的基础性能指标",
+            优先级: "高",
+            影响程度: 5,
+            改进难度: 3,
+            items: [
+              { id: "m2i1", name: "加载速度", fullMarks: 8, isShowCardOnReport: false },
+              { id: "m2i2", name: "HTTPS安全", fullMarks: 5 },
+              { id: "m2i3", name: "404页面", fullMarks: 4 },
+              { id: "m2i4", name: "图片清晰度", fullMarks: 4 },
+              { id: "m2i5", name: "移动端适配", fullMarks: 4 },
+            ],
+          },
+          {
+            id: "m3",
+            name: "营销基础与广告落地页诊断",
+            abbreviation: "营销基础与落地页",
+            desc: "评估网站内容是否适合开启线上营销",
+            优先级: "中",
+            影响程度: 3,
+            改进难度: 2,
+            items: [
+              { id: "m3i1", name: "企业邮箱", fullMarks: 6 },
+              { id: "m3i2", name: "联系电话", fullMarks: 3 },
+              { id: "m3i4", name: "语言一致性", fullMarks: 3 },
+              { id: "m3i5", name: "地址地图", fullMarks: 3 },
+            ],
+          },
+          {
+            id: "m4",
+            name: "用户体验与转化分析诊断",
+            abbreviation: "用户体验与转化",
+            desc: "评估网站内容的用户友好度",
+            优先级: "中",
+            影响程度: 3,
+            改进难度: 4,
+            items: [
+              { id: "m4i1", name: "页面布局", fullMarks: 3 },
+              { id: "m4i2", name: "CTA按钮", fullMarks: 5 },
+              { id: "m4i3", name: "表单体验", fullMarks: 3 },
+              { id: "m4i4", name: "内容可读性", fullMarks: 3 },
+              { id: "m4i5", name: "社媒分享可扩展性", fullMarks: 1 },
+            ],
+          },
+          {
+            id: "m5",
+            name: "媒体广告投放辅助检查",
+            abbreviation: "广告辅助检查",
+            desc: "评估网站内容是否适合开启广告投放",
+            优先级: "低",
+            影响程度: 2,
+            改进难度: 2,
+            items: [
+              { id: "m5i1", name: "落地页速度", fullMarks: 3 },
+              { id: "m5i2", name: "询盘转化路径", fullMarks: 4 },
+              { id: "m5i4", name: "跟踪与分析", fullMarks: 3 },
+            ],
+          },
+          {
+            id: "m6",
+            name: "社交媒体辅助检查",
+            abbreviation: "网站是否适合开启社交媒体",
+            desc: "评估网站内容是否适合引用到社交媒体",
+            优先级: "低",
+            影响程度: 2,
+            改进难度: 1,
+            items: [
+              { id: "m6i1", name: "内容可引用性", fullMarks: 2 },
+              { id: "m6i2", name: "内容可分享性", fullMarks: 2 },
+              { id: "m6i3", name: "视觉风格统一", fullMarks: 1 },
+            ],
+          },
+        ];
+
+        function formatDate(dateString) {
+          if (!dateString) return "";
+          const d = new Date(dateString);
+          if (Number.isNaN(d.getTime())) return "";
+          const pad = (n) => String(n).padStart(2, "0");
+          return `${d.getFullYear()}年${pad(d.getMonth() + 1)}月${pad(d.getDate())}日 ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+        }
+
+        function calcPercentage(score, totalScore) {
+          if (!totalScore) return 0;
+          return Math.round((Number(score) / Number(totalScore)) * 100);
+        }
+
+        function getRatingInfo(ratingId, score) {
+          if (ratingId) {
+            const hit = PAGE_SCORE_LEVEL.find((x) => x.id === ratingId);
+            if (hit) return hit;
+          }
+          const s = Number(score) || 0;
+          for (const info of PAGE_SCORE_LEVEL) {
+            if (info.min != null && info.max != null && s >= info.min && s <= info.max) return info;
+            if (info.min != null && info.max == null && s >= info.min) return info;
+            if (info.max != null && info.min == null && s <= info.max) return info;
+          }
+          return PAGE_SCORE_LEVEL[PAGE_SCORE_LEVEL.length - 1];
+        }
+
+        function getIndustryInfo(score) {
+          const s = Number(score) || 0;
+          for (const item of INDUSTRY_TEXT_MAP) {
+            if (item.min != null && item.max != null && s >= item.min && s <= item.max) return item;
+            if (item.min != null && item.max == null && s >= item.min) return item;
+            if (item.max != null && item.min == null && s < item.max + 1) return item;
+          }
+          return INDUSTRY_TEXT_MAP[INDUSTRY_TEXT_MAP.length - 1];
+        }
+
+        function getPriorityDisplay(priority) {
+          if (priority === "高" || priority === "High") return "🔴 高";
+          if (priority === "低" || priority === "Low") return "🟢 低";
+          return "🟡 中";
+        }
+
+        function getStarDisplay(level) {
+          const n = Math.max(0, Math.min(5, Number(level) || 0));
+          return "⭐".repeat(n);
+        }
+
+        /** 对齐 useWebsiteGuide/utils parseAIResultData */
+        function parseAIResultData(value) {
+          if (!value) return {};
+          if (value.websiteGuideResult) return value.websiteGuideResult;
+
+          const data = { ...value };
+          if (!data.coreIssues || !Array.isArray(data.coreIssues)) data.coreIssues = [];
+
+          if (data.modules && Array.isArray(data.modules)) {
+            data.modules = data.modules.map((module) => {
+              const moduleConfig = ALL_MODULE_CONFIGS.find((c) => c.id === module.id);
+              if (!moduleConfig) return module;
+
+              const enrichedModule = {
+                ...module,
+                desc: moduleConfig.desc,
+                name: moduleConfig.name,
+                abbreviation: moduleConfig.abbreviation,
+                priority: moduleConfig.优先级,
+                impact: moduleConfig.影响程度,
+                difficulty: moduleConfig.改进难度,
+                totalScore: +moduleConfig.items
+                  .reduce((sum, item) => sum + item.fullMarks, 0)
+                  .toFixed(2),
+              };
+
+              if (module.items && Array.isArray(module.items)) {
+                enrichedModule.items = module.items.map((item) => {
+                  const itemConfig = moduleConfig.items.find((c) => c.id === item.id);
+                  if (!itemConfig) return item;
+                  return {
+                    ...item,
+                    isShowCardOnReport: itemConfig.isShowCardOnReport !== false,
+                    name: itemConfig.name,
+                    totalScore: itemConfig.fullMarks,
+                  };
+                });
+                enrichedModule.score = +enrichedModule.items
+                  .reduce((sum, item) => sum + (Number(item.score) || 0), 0)
+                  .toFixed(2);
+              }
+              return enrichedModule;
+            });
+
+            data.score = data.modules.reduce((sum, module) => sum + (Number(module.score) || 0), 0);
+            const correctRating = getRatingInfo(undefined, data.score);
+            if (correctRating) data.ratingId = correctRating.id;
+          }
+
+          if (data.coreIssuesIds && Array.isArray(data.coreIssuesIds)) {
+            data.coreIssues = CORE_ISSUES_DATA.filter((item) =>
+              data.coreIssuesIds.includes(item.id),
+            );
+          }
+
+          data.lighthouseResult = data.lighthouseResult || data.lighthouse || null;
+          return data;
+        }
+
+        function getItemStatusStyle(item) {
+          const orange = [ItemStatus.NeedImprove, ItemStatus.Normal];
+          const red = [ItemStatus.Poor, ItemStatus.Absent];
+          const green = [ItemStatus.Full, ItemStatus.Excellent, ItemStatus.Good];
+          const status = ItemStatus[item.status];
+          if (orange.includes(status)) return { color: "#ff7d00", backgroundColor: "#fff3e8" };
+          if (red.includes(status)) return { color: "#f53f3f", backgroundColor: "#ffece8" };
+          if (green.includes(status)) return { color: "#00b42a", backgroundColor: "#e8f8f2" };
+          return { color: "#4e5969", backgroundColor: "#f7f8fa" };
+        }
+
+        function getModuleItemsGridColumns(items) {
+          const len = (items || []).filter((item) => item.isShowCardOnReport !== false).length;
+          if (len <= 2 || len % 2 === 0) return 2;
+          return 3;
+        }
+
+        function getSpeedColor(score) {
+          if (score >= 90) return "#00b42a";
+          if (score >= 50) return "#ff7d00";
+          return "#f53f3f";
+        }
+
+        function getSpeedInfo(value) {
+          const v = Number(value) || 0;
+          if (v <= 2.5) return { color: "#00b42a", backgroundColor: "#e8f8f2", statusText: "优秀" };
+          if (v <= 4) return { color: "#ff7d00", backgroundColor: "#fff3e8", statusText: "需改进" };
+          return { color: "#f53f3f", backgroundColor: "#ffece8", statusText: "较差" };
+        }
+
+        function formatTimeSeconds(val) {
+          if (!val) return "0秒";
+          return `${val}秒`;
+        }
+
+        function getLoadingSpeedStatus(desktopScore, mobileScore) {
+          const avg = (Number(desktopScore) + Number(mobileScore)) / 2;
+          if (avg >= 90) return "优秀";
+          if (avg >= 70) return "良好";
+          if (avg >= 50) return "一般";
+          return "需优化";
+        }
+
+        function getLoadingSpeedStatusClass(desktopScore, mobileScore) {
+          const avg = (Number(desktopScore) + Number(mobileScore)) / 2;
+          if (avg >= 90) return "status-excellent";
+          if (avg >= 70) return "status-good";
+          if (avg >= 50) return "status-normal";
+          return "status-poor";
+        }
+
+        function getFinalStatusDescription(lh) {
+          const desktop = lh?.desktop?.speedIndex;
+          const mobile = lh?.mobile?.speedIndex;
+          const avg = (Number(desktop) + Number(mobile)) / 2;
+          const finalStatus = getSpeedInfo(avg);
+          if (finalStatus.statusText === "优秀") {
+            return "网站加载速度快，页面响应及时，达到行业领先水平";
+          }
+          return "网站加载速度较慢，建议进行全面优化，提升页面性能";
+        }
+
+        function escapeHtml(s) {
+          return String(s ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function renderLoadingSpeed(lh) {
+          if (!lh) return "";
+          const desktopScore = lh.desktop?.score || 0;
+          const mobileScore = lh.mobile?.score || 0;
+          const statusClass = getLoadingSpeedStatusClass(desktopScore, mobileScore);
+          const statusText = getLoadingSpeedStatus(desktopScore, mobileScore);
+
+          const ring = (score, prefix) => {
+            const s = Number(score) || 0;
+            const color = getSpeedColor(s);
+            const d = lh[prefix] || {};
+            return `
+        <div class="speed-chart-item">
+          <div class="chart-title">${prefix === "desktop" ? "PC端加载速度 💻" : "移动端加载速度 📱"}</div>
+          <div class="speed-ring">
+            <svg width="180" height="180" viewBox="0 0 180 180">
+              <circle cx="90" cy="90" r="70" fill="none" stroke="#e5e6eb" stroke-width="20"/>
+              <circle cx="90" cy="90" r="70" fill="none" stroke="${color}" stroke-width="20"
+                stroke-dasharray="${s * 4.4} 440" stroke-linecap="round" transform="rotate(-90 90 90)"/>
+              <text x="90" y="90" text-anchor="middle" dominant-baseline="middle" font-size="36" font-weight="600" fill="${color}">${s}</text>
+            </svg>
+          </div>
+          <div class="speed-details">
+            <div class="speed-detail-item">首屏加载时间：<span class="speed-value" style="color:${getSpeedInfo(d.firstContentfulPaint || 0).color}">${formatTimeSeconds(d.firstContentfulPaint)}</span></div>
+            <div class="speed-detail-item">完全加载时间：<span class="speed-value" style="color:${getSpeedInfo(d.speedIndex || 0).color}">${formatTimeSeconds(d.speedIndex)}</span></div>
+          </div>
+        </div>`;
+          };
+
+          return `
+      <div class="loading-speed-section">
+        <div class="loading-speed-header">
+          <h4 class="loading-speed-title">加载速度</h4>
+          <span class="loading-speed-status ${statusClass}">${statusText}</span>
+        </div>
+        <p class="loading-speed-desc">${escapeHtml(getFinalStatusDescription(lh))}</p>
+        <div class="loading-speed-charts">${ring(desktopScore, "desktop")}${ring(mobileScore, "mobile")}</div>
+        <div class="speed-legend">
+          <div class="legend-item"><span class="legend-icon" style="background:#f53f3f"></span><span class="legend-text">0-49</span></div>
+          <div class="legend-item"><span class="legend-icon" style="background:#ff7d00"></span><span class="legend-text">50-89</span></div>
+          <div class="legend-item"><span class="legend-icon" style="background:#00b42a"></span><span class="legend-text">90-100</span></div>
+        </div>
+      </div>`;
+        }
+
+        function renderModuleDetail(module, index, lighthouseResult) {
+          const cols = getModuleItemsGridColumns(module.items);
+          const cards = (module.items || [])
+            .filter((item) => item.isShowCardOnReport !== false)
+            .map((item) => {
+              const style = getItemStatusStyle(item);
+              const pct = calcPercentage(item.score, item.totalScore);
+              const statusLabel = ItemStatus[item.status] || item.status || "正常";
+              const suggestion =
+                item.suggestion && pct < 100
+                  ? `<div class="suggestion-box" style="border-left-color:${style.color};background-color:${style.backgroundColor}">
+                <span class="suggestion-icon">💡</span>
+                <span class="suggestion-text">${escapeHtml(item.suggestion)}</span>
+              </div>`
+                  : "";
+              return `
+          <div class="module-item-card">
+            <div class="card-header">
+              <h4 class="item-title">${escapeHtml(item.name)}</h4>
+              <span class="status-badge" style="color:${style.color};background-color:${style.backgroundColor}">${escapeHtml(statusLabel)}</span>
+            </div>
+            <div class="card-content">${item.issue ? `<p class="item-description">${escapeHtml(item.issue)}</p>` : ""}</div>
+            <div class="card-footer">
+              <div class="score-info">
+                <span class="score-label">完成度</span>
+                <span class="score-percentage">${pct}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:${pct}%;background-color:${style.color}"></div>
+              </div>
+            </div>
+            ${suggestion}
+          </div>`;
+            })
+            .join("");
+
+          const loading =
+            module.id === "m2" && lighthouseResult ? renderLoadingSpeed(lighthouseResult) : "";
+
+          return `
+      <div class="module-detail">
+        <div class="module-header">
+          <div class="module-header-left">
+            <h3 class="module-title">${index + 1}. ${escapeHtml(module.abbreviation)}</h3>
+            <span class="module-score-info">此项得分<span class="score-value">${module.score}分</span>（满分<span class="total-score-value">${module.totalScore}</span>分）</span>
+          </div>
+          <span class="module-description">${escapeHtml(module.desc)}</span>
+        </div>
+        ${loading}
+        <div class="module-items-grid" style="grid-template-columns:repeat(${cols}, 1fr)">${cards}</div>
+      </div>`;
+        }
+
+        function renderPriorityPlan() {
+          return PRIORITY_GROUP_DATA.map((group) => {
+            const cls =
+              group.优先级 === "高"
+                ? "priority-high"
+                : group.优先级 === "中"
+                  ? "priority-medium"
+                  : "priority-low";
+            const title =
+              group.优先级 === "高"
+                ? "急需优化！"
+                : group.优先级 === "中"
+                  ? "建议优化"
+                  : "推荐优化";
+            const icon = group.优先级 === "高" ? "🔥" : group.优先级 === "中" ? "💡" : "🚩";
+            const items = group.优化项
+              .map(
+                (item) => `
+          <div class="priority-item-card">
+            <div class="item-header"><span class="item-bullet">•</span><h4 class="item-title-text">${escapeHtml(item.优化方向)}</h4></div>
+            <p class="item-description">${escapeHtml(item.具体任务)}</p>
+            <div class="item-impact"><span class="impact-icon">↑</span><span class="impact-text">${escapeHtml(item.广告影响说明)}</span></div>
+          </div>`,
+              )
+              .join("");
+            return `
+        <div class="priority-column ${cls}">
+          <div class="priority-header">
+            <div class="priority-header-top">
+              <div class="priority-icon-wrapper"><span class="priority-icon">${icon}</span></div>
+              <div class="priority-info">
+                <h3 class="priority-title">${title}</h3>
+                <div class="priority-badge">${escapeHtml(group.执行周期)}</div>
+              </div>
+            </div>
+            <p class="priority-subtitle">${escapeHtml(group.影响内容)}</p>
+          </div>
+          <div class="priority-items">${items}</div>
+        </div>`;
+          }).join("");
+        }
+
+        function renderLongtermValue() {
+          const cards = [
+            {
+              cls: "card-blue",
+              icon: "📊",
+              title: "季度诊断与复盘",
+              desc: "定期评估优化效果，调整策略方向",
+            },
+            {
+              cls: "card-orange",
+              icon: "📋",
+              title: "数据仪表盘持续追踪",
+              desc: "实时监控核心指标波动，及时发现问题",
+            },
+            {
+              cls: "card-green",
+              icon: "🧪",
+              title: "A/B测试与投放策略联动",
+              desc: "通过科学测试优化广告创意与落地页",
+            },
+            {
+              cls: "card-purple",
+              icon: "🎯",
+              title: "监控核心指标",
+              desc: "CPL、转化率、广告ROI、首屏加载速度全方位监测",
+            },
+          ];
+          return cards
+            .map(
+              (c) => `
+        <div class="longterm-card ${c.cls}">
+          <div class="card-icon"><span>${c.icon}</span></div>
+          <div class="card-content">
+            <h4 class="card-title">${c.title}</h4>
+            <p class="card-desc">${c.desc}</p>
+          </div>
+        </div>`,
+            )
+            .join("");
+        }
+
+        function initRadarChart(el, modules) {
+          if (!window.echarts || !el) return null;
+          const theme = getChartTheme();
+          const chart = echarts.init(el);
+          chart.setOption({
+            radar: {
+              indicator: modules.map((m) => ({ name: m.abbreviation, max: m.totalScore })),
+              radius: "60%",
+              splitNumber: 4,
+              axisName: { color: theme.axisName, fontSize: 12 },
+              splitArea: { areaStyle: { color: theme.splitArea } },
+            },
+            series: [
+              {
+                type: "radar",
+                data: [
+                  {
+                    value: modules.map((m) => Number(m.score) || 0),
+                    name: "评分",
+                    areaStyle: { color: "rgba(22, 93, 255, 0.2)" },
+                    lineStyle: { color: "#165dff", width: 2 },
+                    itemStyle: { color: "#165dff" },
+                  },
+                ],
+              },
+            ],
+          });
+          return chart;
+        }
+
+        function initRiskBarChart(el, riskMapData) {
+          if (!window.echarts || !el) return null;
+          const theme = getChartTheme();
+          const data = [...riskMapData].reverse();
+          const moduleNames = data.map((v) => v.module);
+          const totalScores = data.map((v) => Number((v.score || "").split("/")[1]) || 0);
+          const actualScores = data.map((v) => Number((v.score || "").split("/")[0]) || 0);
+          const chart = echarts.init(el);
+          chart.setOption({
+            tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
+            grid: { left: "8px", right: "65px", top: "0", bottom: "0", containLabel: true },
+            xAxis: { type: "value", show: false, max: Math.max(...totalScores, 1) },
+            yAxis: {
+              type: "category",
+              data: moduleNames,
+              axisLabel: {
+                color: theme.axisLabel,
+                fontSize: 12,
+                formatter: (value) => {
+                  const maxChars = 8;
+                  if (value.length <= maxChars) return value;
+                  const lines = [];
+                  for (let i = 0; i < value.length; i += maxChars)
+                    lines.push(value.slice(i, i + maxChars));
+                  return lines.join("\n");
+                },
+              },
+              axisLine: { show: false },
+              axisTick: { show: false },
+            },
+            series: [
+              {
+                name: "总分",
+                type: "bar",
+                data: totalScores,
+                barWidth: 20,
+                itemStyle: { color: "#0099FF", borderRadius: [0, 4, 4, 0] },
+                label: {
+                  show: true,
+                  position: "right",
+                  formatter: (p) => `${actualScores[p.dataIndex]}/${p.value}`,
+                  color: theme.axisLabel,
+                  fontSize: 12,
+                },
+                z: 1,
+              },
+              {
+                name: "得分",
+                type: "bar",
+                data: actualScores,
+                barWidth: 20,
+                barGap: "-100%",
+                itemStyle: { color: "#00CC00", borderRadius: [0, 4, 4, 0] },
+                z: 2,
+              },
+            ],
+          });
+          return chart;
+        }
+
+        function renderReport(raw) {
+          const data = parseAIResultData(raw);
+          const rating = getRatingInfo(data.ratingId, data.score);
+          const industry = getIndustryInfo(data.score);
+          const ratingColor = rating.color;
+          const riskMapData = (data.modules || []).map((module) => ({
+            module: module.abbreviation,
+            score: `${module.score}/${module.totalScore}`,
+            priority: getPriorityDisplay(module.priority),
+            impact: getStarDisplay(module.impact),
+            difficulty: getStarDisplay(module.difficulty),
+          }));
+
+          const dash = ((Number(data.score) || 0) / 100) * 471;
+
+          document.getElementById("app").innerHTML = `
+      <div class="report-container">
+        <div class="report-content" id="report-root">
+          <div class="report-header">
+            <div class="header-title-wrapper">
+              <h1 class="main-title">网站诊断报告</h1>
+              <div class="export-btn-wrapper header-actions">
+                <button id="btn-theme-toggle" class="btn-theme" type="button">🌙 夜晚</button>
+                <button class="btn-export" type="button" onclick="window.print()">
+                  <svg viewBox="0 0 1024 1024" width="16" height="16"><path d="M832 512c-17.6 0-32 14.4-32 32v256c0 17.6-14.4 32-32 32H256c-17.6 0-32-14.4-32-32V544c0-17.6-14.4-32-32-32s-32 14.4-32 32v256c0 52.8 43.2 96 96 96h512c52.8 0 96-43.2 96-96V544c0-17.6-14.4-32-32-32z" fill="currentColor"/><path d="M505.6 646.4c6.4 6.4 14.4 9.6 22.4 9.6s16-3.2 22.4-9.6l192-192c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0L544 563.2V160c0-17.6-14.4-32-32-32s-32 14.4-32 32v403.2L326.4 409.6c-12.8-12.8-32-12.8-44.8 0s-12.8 32 0 44.8l224 192z" fill="currentColor"/></svg>
+                  导出PDF
+                </button>
+              </div>
+            </div>
+            <div class="header-info">
+              <span class="info-item">网站地址：<a class="website-url" href="${escapeHtml(data.url)}" target="_blank" rel="noopener">${escapeHtml(data.url)}</a></span>
+              <span class="info-separator">|</span>
+              <span class="info-item">诊断时间：${escapeHtml(formatDate(data.analyzedAt))}</span>
+            </div>
+          </div>
+
+          <div class="report-section">
+            <div class="section-header"><h2><span>一 </span><span class="section-title">网站健康快览</span></h2></div>
+            <div class="marketing-text">
+              <p><span>您的网站总评分</span><strong>${Number(data.score).toFixed(1)}</strong><span>分！</span></p>
+              <p>若优化到位，广告投放回报率可提升约30%，直接带来成本节省和更多潜在客户！</p>
+            </div>
+            <div class="health-overview">
+              <div class="website-score-wrapper">
+                <div class="score-ring-wrapper">
+                  <svg class="score-ring" width="180" height="180" viewBox="0 0 180 180">
+                    <circle class="score-ring-track" cx="90" cy="90" r="75" fill="none" stroke="#e5e6eb" stroke-width="16"/>
+                    <circle cx="90" cy="90" r="75" fill="none" stroke="${ratingColor}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${dash} 471" transform="rotate(-90 90 90)"/>
+                  </svg>
+                  <div class="score-center">
+                    <div class="score-number">${Number(data.score).toFixed(1)}</div>
+                    <div class="score-total">/ 100</div>
+                  </div>
+                  <div class="score-rating" style="color:${ratingColor}">${escapeHtml(industry.status)}</div>
+                  <div class="score-desc">${escapeHtml(industry.content)}</div>
+                </div>
+              </div>
+              <div class="divider-line"></div>
+              <div class="radar-chart">
+                <div id="chart-radar" class="radar-chart-container" style="width:100%;height:350px"></div>
+                <div class="radar-chart-title">各模块健康度分布</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-section">
+            <div class="section-header"><h2><span>二 </span><span class="section-title">网站风险模块分级与优先级处理指南</span></h2></div>
+            <div class="marketing-text">
+              <p>从图中可以看到，高风险问题主要集中在营销基础和追踪模块。</p>
+              <p>优先处理这些模块，可最快提升广告效果和转化率。</p>
+            </div>
+            <div class="risk-map-content">
+              <div class="bar-chart-wrapper"><div id="chart-risk-bar" class="bar-chart-container" style="width:100%;height:100%"></div></div>
+              <div class="risk-table-wrapper">
+                <p class="risk-table-title">满分 100 分</p>
+                <table class="risk-table">
+                  <thead><tr><th>模块</th><th>得分</th><th>影响程度</th><th>改进难度</th></tr></thead>
+                  <tbody>${riskMapData
+                    .map(
+                      (row) =>
+                        `<tr><td>${escapeHtml(row.module)}</td><td class="tc">${escapeHtml(row.score)}</td><td class="tc">${row.impact}</td><td class="tc">${row.difficulty}</td></tr>`,
+                    )
+                    .join("")}</tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-section">
+            <div class="section-header"><h2><span>三 </span><span class="section-title">六大模块详细诊断结果</span></h2></div>
+            ${(data.modules || []).map((m, i) => renderModuleDetail(m, i, data.lighthouseResult)).join("")}
+          </div>
+
+          <div class="report-section">
+            <div class="section-header"><h2><span>四 </span><span class="section-title">优化优先级与行动计划</span></h2></div>
+            <div class="marketing-text">
+              <p>行动计划以任务化方式呈现，您可以直接分配给团队执行。</p>
+              <p>高优先级任务可优先完成，快速释放广告投放价值！</p>
+            </div>
+            <div class="priority-columns">${renderPriorityPlan()}</div>
+          </div>
+
+          <div class="report-section">
+            <div class="section-header"><h2><span>五 </span><span class="section-title">长期价值</span></h2></div>
+            <div class="marketing-text"><p>建议建立季度诊断机制，持续追踪ROI变化，为广告复盘与长期优化提供数据支撑。</p></div>
+            <div class="longterm-cards">${renderLongtermValue()}</div>
+          </div>
+        </div>
+      </div>`;
+
+          chartModulesCache = data.modules || [];
+          chartRiskCache = riskMapData;
+          radarChartInst = initRadarChart(
+            document.getElementById("chart-radar"),
+            chartModulesCache,
+          );
+          riskChartInst = initRiskBarChart(
+            document.getElementById("chart-risk-bar"),
+            chartRiskCache,
+          );
+
+          document.getElementById("btn-theme-toggle")?.addEventListener("click", toggleTheme);
+          updateThemeToggleLabel();
+          updateScoreRingTracks();
+
+          const resize = () => {
+            radarChartInst?.resize();
+            riskChartInst?.resize();
+          };
+          window.addEventListener("resize", resize);
+        }
+
+        if (window.__WEBSITE_DIAGNOSIS__) {
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", () =>
+              renderReport(window.__WEBSITE_DIAGNOSIS__),
+            );
+          } else {
+            renderReport(window.__WEBSITE_DIAGNOSIS__);
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

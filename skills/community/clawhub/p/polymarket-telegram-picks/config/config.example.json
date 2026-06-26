@@ -1,0 +1,4 @@
+{
+  "telegram_bot_token": "你的 Bot Token（从 @BotFather 获取）",
+  "telegram_chat_id": "你的 Chat ID（与 Bot 对话后从 getUpdates 或机器人获取）"
+}

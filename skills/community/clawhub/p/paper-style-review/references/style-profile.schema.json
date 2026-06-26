@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "version": "0.2",
+    "taskType": "master-thesis",
+    "language": "zh-CN",
+    "expectedRefCount": 6,
+    "useRefsAsOnlyBasis": true,
+    "extractionRisk": []
+  },
+  "majorityBasis": {
+    "structureBasis": [],
+    "logicBasis": [],
+    "formatBasis": [],
+    "expressionBasis": [],
+    "antiAiBasis": []
+  },
+  "minorityTraits": [],
+  "refConflicts": [],
+  "basisIndex": [
+    {
+      "basisId": "basis-001",
+      "dimension": "structure",
+      "claim": "",
+      "supportedByRefs": [],
+      "conflictedRefs": [],
+      "evidenceSnippets": [],
+      "confidence": "high"
+    }
+  ],
+  "handoffSummary": {
+    "structure": [],
+    "logic": [],
+    "format": [],
+    "expression": [],
+    "antiAi": []
+  }
+}

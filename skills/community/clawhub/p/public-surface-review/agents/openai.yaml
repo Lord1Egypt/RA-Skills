@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Guard"
+  short_description: "Pre-release audit for GitHub repos and ClawHub skills"
+  default_prompt: "Use $public-surface-review to audit the public surface before release. Check README, SKILL.md, launch docs in the working tree, and public metadata for leaks, weak first-run copy, and public-audience mismatch."

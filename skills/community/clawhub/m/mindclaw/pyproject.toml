@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mindclaw"
+version = "0.3.1"
+description = "Persistent memory and knowledge graph for AI agents. Remember everything, forget nothing."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Blue8x", email = "blue8x@users.noreply.github.com"},
+]
+keywords = ["ai", "agent", "memory", "knowledge-graph", "embeddings", "mcp", "clawhub"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+# v0.3.0: semantic embeddings are provided by Ollama via stdlib urllib — no packages needed.
+# This extra is kept for compatibility but installs nothing extra.
+semantic = []
+mcp = [
+    "mcp>=1.0.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+all = [
+    "mcp>=1.0.0",
+]
+
+[project.scripts]
+mindclaw = "mindclaw.cli:main"
+mindclaw-mcp = "mindclaw.mcp_server:serve"
+
+[project.urls]
+Homepage = "https://github.com/Blue8x/Clawtion"
+Repository = "https://github.com/Blue8x/Clawtion"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["apiKey", "apiSecret", "space"],
+  "properties": {
+    "apiKey": {
+      "type": "string",
+      "title": "API Key",
+      "description": "Stardots API Key",
+      "minLength": 8
+    },
+    "apiSecret": {
+      "type": "string",
+      "title": "API Secret",
+      "description": "Stardots API Secret",
+      "minLength": 8
+    },
+    "space": {
+      "type": "string",
+      "title": "space",
+      "description": "Target storage space name",
+      "minLength": 4,
+      "maxLength": 15
+    }
+  }
+}

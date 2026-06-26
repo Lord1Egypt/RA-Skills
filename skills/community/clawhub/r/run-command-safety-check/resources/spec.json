@@ -1,0 +1,37 @@
+{
+  "slug": "run-command-safety-check",
+  "title": "命令执行安全检查官",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "pattern_audit",
+  "summary": "在执行 shell 方案前检查危险模式，如 pipe-to-shell、覆盖式删除、危险重定向或混淆执行。",
+  "inputHint": "命令文本、脚本文件或目录",
+  "sections": [
+    "危险模式",
+    "中风险模式",
+    "背景说明",
+    "替代写法",
+    "人工确认项",
+    "最终建议"
+  ],
+  "useCases": [
+    "脚本审查",
+    "命令复核",
+    "CI 前检查"
+  ],
+  "positiveExamples": [
+    "检查这段 shell 命令安不安全",
+    "识别 pipe-to-shell 和 rm 风险"
+  ],
+  "negativeExamples": [
+    "不要提供攻击性命令",
+    "不要帮用户绕过限制"
+  ],
+  "risk": "优先输出替代与审查意见，不执行命令。",
+  "tags": [
+    "shell",
+    "security",
+    "command-review",
+    "safety"
+  ]
+}

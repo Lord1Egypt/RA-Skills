@@ -1,35 +1,29 @@
----
-name: "Feishu Common"
-description: "Provides shared Feishu authentication, tenant token caching, retry handling, and authenticated API request support for dependent Feishu skills."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-common"
-sourceUrl: "https://clawhub.ai/skills/feishu-common"
----
+# feishu-common Skill
 
-# Feishu Common
+## Description
+Shared Feishu authentication and API helper for OpenClaw Feishu skills.
 
-> Provides shared Feishu authentication, tenant token caching, retry handling, and authenticated API request support for dependent Feishu skills.
+Provides:
+- Tenant token acquisition and cache
+- Retry and timeout handling
+- Authenticated request wrapper with token refresh
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-common`
-- **Source URL:** [https://clawhub.ai/skills/feishu-common](https://clawhub.ai/skills/feishu-common)
+## Install Requirement
+Install this skill before installing or running dependent Feishu skills.
 
-## Overview
+## Usage
+Dependent skills should import from `feishu-common`:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-common
+```javascript
+const { getToken, fetchWithRetry, fetchWithAuth } = require("../feishu-common/index.js");
 ```
+
+Compatibility alias is also available:
+
+```javascript
+const { getToken, fetchWithAuth } = require("../feishu-common/feishu-client.js");
+```
+
+## Files
+- `index.js`: Main implementation.
+- `feishu-client.js`: Compatibility alias to `index.js`.

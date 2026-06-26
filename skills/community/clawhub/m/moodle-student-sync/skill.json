@@ -1,0 +1,43 @@
+{
+  "name": "moodle-student-sync",
+  "version": "2.0.0",
+  "description": "Sync student data from Moodle LMS: courses, deadlines, grades, resources, and notifications.",
+  "author": "Harry (nanobot)",
+  "tags": [
+    "moodle",
+    "education",
+    "lms",
+    "student",
+    "grades",
+    "sync"
+  ],
+  "requires": {
+    "python": ">=3.10",
+    "packages": [
+      "requests"
+    ]
+  },
+  "env": {
+    "MOODLE_URL": {
+      "required": true,
+      "description": "Moodle instance URL (for example: https://moodle.university.edu)"
+    },
+    "MOODLE_TOKEN": {
+      "required": true,
+      "description": "Mobile web service token from Moodle user preferences/security keys.",
+      "secret": true
+    },
+    "MOODLE_USER_ID": {
+      "required": false,
+      "description": "Student user ID. Auto-detected if not provided."
+    }
+  },
+  "commands": {
+    "sync": "python scripts/moodle_sync.py sync --include-contents --max-courses 5",
+    "deadlines": "python scripts/moodle_sync.py deadlines --limit 20",
+    "grades": "python scripts/moodle_sync.py grades",
+    "digest": "python scripts/moodle_sync.py digest --limit 10",
+    "plan": "python scripts/moodle_sync.py plan --days 7 --grade-threshold 70"
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+  "name": "Image Upscaler | 模糊变清晰 | 无损放大 AI",
+  "version": "1.0.0",
+  "description": "专业 AI 图像增强工具：模糊变清晰、缩略图变清晰、2×/4× 无损放大。",
+  "author": "steinven",
+  "homepage": "https://supabase.00123.fun:22334",
+  "entry": "SKILL.md",
+  "api_spec": "openapi.yaml",
+  "capabilities": [
+    "image_processing",
+    "upscaling"
+  ],
+  "instructions": "Follow the steps in SKILL.md to process images. Use api-get-task to poll for results until status is 'done'."
+}

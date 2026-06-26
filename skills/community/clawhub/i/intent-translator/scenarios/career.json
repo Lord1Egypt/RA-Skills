@@ -1,0 +1,28 @@
+{
+  "name": "职业决策分析",
+  "description": "帮助理清职业选择的权衡因素，做出理性决策",
+  "version": "1.0.0",
+  "questions": [
+    {
+      "id": "current_pain",
+      "text": "现在的工作，最让你受不了的一点是什么？",
+      "purpose": "识别痛点"
+    },
+    {
+      "id": "ideal_state",
+      "text": "理想状态下，3年后你希望自己在做什么？",
+      "purpose": "明确目标"
+    },
+    {
+      "id": "risk_tolerance",
+      "text": "如果新选择失败了，最坏情况你能接受吗？",
+      "purpose": "评估风险承受力"
+    },
+    {
+      "id": "support_factors",
+      "text": "做这个决定，有什么支持你？（存款、技能、人脉、家庭）",
+      "purpose": "盘点资源"
+    }
+  ],
+  "prompt_template": "【角色】职业规划顾问\n\n【现状痛点】\n{current_pain}\n\n【理想目标】\n{ideal_state}\n\n【风险承受力】\n{risk_tolerance}\n\n【支持资源】\n{support_factors}\n\n【目标】\n给出职业决策分析 + 行动步骤 + 风险预案"
+}

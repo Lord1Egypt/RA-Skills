@@ -1,0 +1,15 @@
+{
+  "name": "voko-subagent",
+  "version": "1.0.0",
+  "description": "VOKO 子 Agent 处理 Skill - 在 Gateway 内运行，创建真正的子 Agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["voko", "subagent", "im"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  }
+}

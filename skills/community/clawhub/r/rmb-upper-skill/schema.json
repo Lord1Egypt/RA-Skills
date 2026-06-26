@@ -1,0 +1,14 @@
+{
+  "name": "rmb_upper_tool",
+  "description": "将数字金额转换为人民币大写字符串，例如 1023.5 -> 壹仟零贰拾叁元伍角",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "amount": {
+        "type": "string",
+        "description": "数字金额字符串，只能是数字格式，例如 1023.5、1002003.01、-12.3"
+      }
+    },
+    "required": ["amount"]
+  }
+}

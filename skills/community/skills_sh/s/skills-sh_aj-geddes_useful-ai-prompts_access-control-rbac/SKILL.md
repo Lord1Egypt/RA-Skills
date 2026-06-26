@@ -1,35 +1,95 @@
 ---
-name: "access-control-rbac"
-description: "Indexed by skills.sh from aj-geddes/useful-ai-prompts"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aj-geddes"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aj-geddes/useful-ai-prompts/access-control-rbac"
-sourceUrl: "https://skills.sh/aj-geddes/useful-ai-prompts/access-control-rbac"
+name: access-control-rbac
+description: >
+  Implement Role-Based Access Control (RBAC), permissions management, and
+  authorization policies. Use when building secure access control systems with
+  fine-grained permissions.
 ---
 
-# access-control-rbac
+# Access Control & RBAC
 
-> Indexed by skills.sh from aj-geddes/useful-ai-prompts
+## Table of Contents
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aj-geddes
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aj-geddes/useful-ai-prompts/access-control-rbac`
-- **Source URL:** [https://skills.sh/aj-geddes/useful-ai-prompts/access-control-rbac](https://skills.sh/aj-geddes/useful-ai-prompts/access-control-rbac)
+- [Overview](#overview)
+- [When to Use](#when-to-use)
+- [Quick Start](#quick-start)
+- [Reference Guides](#reference-guides)
+- [Best Practices](#best-practices)
 
 ## Overview
 
+Implement comprehensive Role-Based Access Control systems with permissions management, attribute-based policies, and least privilege principles.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aj-geddes/useful-ai-prompts/access-control-rbac
+## When to Use
+
+- Multi-tenant applications
+- Enterprise access management
+- API authorization
+- Admin dashboards
+- Data access controls
+- Compliance requirements
+
+## Quick Start
+
+Minimal working example:
+
+```javascript
+// rbac-system.js
+class Permission {
+  constructor(resource, action) {
+    this.resource = resource;
+    this.action = action;
+  }
+
+  toString() {
+    return `${this.resource}:${this.action}`;
+  }
+}
+
+class Role {
+  constructor(name, description) {
+    this.name = name;
+    this.description = description;
+    this.permissions = new Set();
+    this.inherits = new Set();
+  }
+
+  addPermission(permission) {
+    this.permissions.add(permission.toString());
+  }
+
+  removePermission(permission) {
+// ... (see reference guides for full implementation)
 ```
+
+## Reference Guides
+
+Detailed implementations in the `references/` directory:
+
+| Guide | Contents |
+|---|---|
+| [Node.js RBAC System](references/nodejs-rbac-system.md) | Node.js RBAC System |
+| [Python ABAC (Attribute-Based Access Control)](references/python-abac-attribute-based-access-control.md) | Python ABAC (Attribute-Based Access Control) |
+| [Java Spring Security RBAC](references/java-spring-security-rbac.md) | Java Spring Security RBAC |
+
+## Best Practices
+
+### ✅ DO
+
+- Implement least privilege
+- Use role hierarchies
+- Audit access changes
+- Regular access reviews
+- Separate duties
+- Document permissions
+- Test access controls
+- Use attribute-based policies
+
+### ❌ DON'T
+
+- Grant excessive permissions
+- Share accounts
+- Skip access reviews
+- Hardcode permissions
+- Ignore audit logs
+- Use role explosion

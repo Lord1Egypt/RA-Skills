@@ -1,0 +1,1044 @@
+# Agent Memory Ontology Schema v2.0
+# 专为 Agent 记忆管理系统设计的知识图谱模式
+# 基于 Moltbook 社区最佳实践和现有 ontology 系统扩展
+
+types:
+  # ========== 核心记忆实体类型 ==========
+  
+  Decision:
+    required: [title, rationale, made_at]
+    properties:
+      title:
+        type: string
+        description: "决策标题"
+      rationale:
+        type: string
+        description: "决策理由和考虑因素"
+      made_at:
+        type: string
+        description: "决策时间 (ISO 8601)"
+      context:
+        type: string
+        description: "决策背景"
+      alternatives_considered:
+        type: array
+        description: "考虑过的其他选项"
+      impact:
+        type: string
+        enum: ["low", "medium", "high", "critical"]
+        description: "影响程度"
+      confidence:
+        type: number
+        description: "决策置信度 (0-1)"
+      status:
+        type: string
+        enum: ["tentative", "final", "revised", "reversed"]
+        description: "决策状态"
+      tags:
+        type: array
+        description: "标签列表 (#decision, #architecture, #strategy 等)"
+      memory_ref:
+        type: string
+        description: "关联记忆文件 (如 memory/2026-03-12.md)"
+      related_tasks:
+        type: array
+        description: "相关任务 ID 列表"
+      related_projects:
+        type: array
+        description: "相关项目 ID 列表"
+      strength:
+        type: number
+        default: 1.0
+        description: "记忆强度 (0.0-1.0)"
+      decay_rate:
+        type: number
+        default: 0.95
+        description: "衰减率，Decision 默认 0.95/月"
+      last_accessed:
+        type: string
+        description: "最后访问时间 (ISO 8601)"
+      provenance:
+        type: array
+        description: "来源追踪 ['session:xxx', 'inference:yyy']"
+      source_trust:
+        type: string
+        enum: ["high", "medium", "low"]
+        default: "medium"
+        description: "来源信任度"
+
+  Finding:
+    required: [title, content, discovered_at]
+    properties:
+      title:
+        type: string
+        description: "发现标题"
+      content:
+        type: string
+        description: "发现内容详情"
+      discovered_at:
+        type: string
+        description: "发现时间 (ISO 8601)"
+      type:
+        type: string
+        enum: ["technical", "process", "insight", "bug", "optimization", "pattern"]
+        description: "发现类型"
+      evidence:
+        type: string
+        description: "证据或数据支持"
+      implications:
+        type: string
+        description: "影响和后续行动建议"
+      confidence:
+        type: string
+        enum: ["speculation", "likely", "confirmed", "verified"]
+        description: "置信度"
+      tags:
+        type: array
+        description: "标签列表 (#finding, #technical, #insight 等)"
+      source:
+        type: string
+        description: "来源 (如：实验、用户反馈、日志分析)"
+      memory_ref:
+        type: string
+        description: "关联记忆文件"
+      related_decisions:
+        type: array
+        description: "相关决策 ID 列表"
+      strength:
+        type: number
+        default: 1.0
+        description: "记忆强度 (0.0-1.0)"
+      decay_rate:
+        type: number
+        default: 0.80
+        description: "衰减率，Finding 默认 0.80/月"
+      last_accessed:
+        type: string
+        description: "最后访问时间 (ISO 8601)"
+      provenance:
+        type: array
+        description: "来源追踪 ['session:xxx', 'inference:yyy']"
+      source_trust:
+        type: string
+        enum: ["high", "medium", "low"]
+        default: "medium"
+        description: "来源信任度"
+
+  Commitment:
+    required: [description, source, created_at]
+    properties:
+      description:
+        type: string
+        description: "承诺内容"
+      source:
+        type: string
+        description: "承诺来源 (如：消息 ID、会议记录)"
+      created_at:
+        type: string
+        description: "创建时间 (ISO 8601)"
+      due_date:
+        type: string
+        description: "截止日期"
+      priority:
+        type: string
+        enum: ["low", "medium", "high", "urgent"]
+        description: "优先级"
+      status:
+        type: string
+        enum: ["pending", "in_progress", "fulfilled", "broken", "renegotiated"]
+        description: "承诺状态"
+      committed_to:
+        type: string
+        description: "承诺对象 (人、团队、自己)"
+      context:
+        type: string
+        description: "承诺背景"
+      related_tasks:
+        type: array
+        description: "衍生任务 ID 列表"
+      tags:
+        type: array
+        description: "标签列表"
+      strength:
+        type: number
+        default: 1.0
+        description: "记忆强度 (0.0-1.0)"
+      decay_rate:
+        type: number
+        default: 0.85
+        description: "衰减率，Commitment 默认 0.85/月"
+      last_accessed:
+        type: string
+        description: "最后访问时间 (ISO 8601)"
+      provenance:
+        type: array
+        description: "来源追踪 ['session:xxx', 'user:yyy']"
+      source_trust:
+        type: string
+        enum: ["high", "medium", "low"]
+        default: "medium"
+        description: "来源信任度"
+
+  ContextSnapshot:
+    required: [title, captured_at, content_summary]
+    properties:
+      title:
+        type: string
+        description: "快照标题"
+      captured_at:
+        type: string
+        description: "捕获时间 (ISO 8601)"
+      content_summary:
+        type: string
+        description: "内容摘要 (TL;DR)"
+      session_id:
+        type: string
+        description: "会话 ID"
+      key_entities:
+        type: array
+        description: "关键实体 ID 列表"
+      compression_ratio:
+        type: number
+        description: "压缩比率"
+      original_tokens:
+        type: number
+        description: "原始 token 数"
+      compressed_tokens:
+        type: number
+        description: "压缩后 token 数"
+      tags:
+        type: array
+        description: "标签列表"
+      memory_ref:
+        type: string
+        description: "关联记忆文件"
+      strength:
+        type: number
+        default: 1.0
+        description: "记忆强度 (0.0-1.0)"
+      decay_rate:
+        type: number
+        default: 0.75
+        description: "衰减率，ContextSnapshot 默认 0.75/月"
+      last_accessed:
+        type: string
+        description: "最后访问时间 (ISO 8601)"
+      provenance:
+        type: array
+        description: "来源追踪 ['session:xxx']"
+      source_trust:
+        type: string
+        enum: ["high", "medium", "low"]
+        default: "medium"
+        description: "来源信任度"
+
+  LessonLearned:
+    required: [title, lesson, learned_at]
+    properties:
+      title:
+        type: string
+        description: "经验教训标题"
+      lesson:
+        type: string
+        description: "经验教训内容"
+      learned_at:
+        type: string
+        description: "学习时间 (ISO 8601)"
+      context:
+        type: string
+        description: "学习背景 (什么情况下学到的)"
+      mistake_or_success:
+        type: string
+        enum: ["mistake", "success", "observation", "best_practice"]
+        description: "来自错误还是成功"
+      application:
+        type: string
+        description: "如何应用这个教训"
+      related_findings:
+        type: array
+        description: "相关发现 ID 列表"
+      related_decisions:
+        type: array
+        description: "相关决策 ID 列表"
+      tags:
+        type: array
+        description: "标签列表 (#lesson, #mistake, #best-practice 等)"
+      memory_ref:
+        type: string
+        description: "关联记忆文件"
+      strength:
+        type: number
+        default: 1.0
+        description: "记忆强度 (0.0-1.0)"
+      decay_rate:
+        type: number
+        default: 0.90
+        description: "衰减率，LessonLearned 默认 0.90/月"
+      last_accessed:
+        type: string
+        description: "最后访问时间 (ISO 8601)"
+      provenance:
+        type: array
+        description: "来源追踪 ['session:xxx', 'inference:yyy']"
+      source_trust:
+        type: string
+        enum: ["high", "medium", "low"]
+        default: "medium"
+        description: "来源信任度"
+
+  # ========== Phase 2: 偏好实体 ==========
+
+  Preference:
+    required: [title, pattern, preference_type, learned_at]
+    properties:
+      title:
+        type: string
+        description: "偏好标题"
+      pattern:
+        type: string
+        description: "偏好模式（任务描述）"
+      preference_type:
+        type: string
+        enum: [temporal, tool, frequency, action]
+        description: "偏好类型: temporal=时间模式, tool=工具选择, frequency=频率, action=动作"
+      confidence:
+        type: number
+        description: "置信度 (0.0-1.0)"
+      learned_from:
+        type: array
+        description: "学习来源实体 ID 列表"
+      learned_at:
+        type: string
+        description: "学习时间 (ISO 8601)"
+      tags:
+        type: array
+        description: "标签列表 (#preference, #temporal 等)"
+      strength:
+        type: number
+        default: 1.0
+        description: "记忆强度 (0.0-1.0)"
+      decay_rate:
+        type: number
+        default: 0.90
+        description: "衰减率，Preference 默认 0.90/月"
+      last_accessed:
+        type: string
+        description: "最后访问时间 (ISO 8601)"
+      provenance:
+        type: array
+        description: "来源追踪 ['inference:preference_engine']"
+      source_trust:
+        type: string
+        enum: ["high", "medium", "low"]
+        default: "medium"
+        description: "来源信任度"
+
+  # ========== Phase 4: Concept-Mediated Graph ==========
+
+  Concept:
+    required: [name]
+    properties:
+      name:
+        type: string
+        description: "Concept name (unique identifier)"
+      description:
+        type: string
+        description: "Concept description"
+      related_concepts:
+        type: array
+        description: "Related concept IDs"
+      instance_count:
+        type: number
+        default: 0
+        description: "Number of entities linked to this concept"
+      created_at:
+        type: string
+        description: "Creation time (ISO 8601)"
+      tags:
+        type: array
+        description: "Tags (#concept, #performance, etc.)"
+      strength:
+        type: number
+        default: 1.0
+        description: "Memory strength"
+      decay_rate:
+        type: number
+        default: 0.95
+        description: "Decay rate"
+      last_accessed:
+        type: string
+        description: "Last access time (ISO 8601)"
+      provenance:
+        type: array
+        description: "Source tracking"
+
+  # ========== Phase 8: Write-Time Gating (AEAM) ==========
+# 基于 Selective Memory 论文的写入时门控机制
+# 参考: https://arxiv.org/abs/2603.15994
+
+  SignificanceScore:
+    required: [entity_id, total_score, breakdown, model, created_at]
+    properties:
+      entity_id:
+        type: string
+        description: "被评分的实体 ID"
+      total_score:
+        type: number
+        description: "综合显著性评分 0.0-1.0"
+      breakdown:
+        type: object
+        description: "三元评分明细"
+        properties:
+          source_reputation:
+            type: number
+            description: "来源声誉 0.0-1.0 (权重 40%)"
+          novelty:
+            type: number
+            description: "新颖性 0.0-1.0 (权重 35%)"
+          reliability:
+            type: number
+            description: "可靠性 0.0-1.0 (权重 25%)"
+      weights_used:
+        type: object
+        description: "计算时使用的权重配置"
+        properties:
+          source_reputation:
+            type: number
+            default: 0.40
+          novelty:
+            type: number
+            default: 0.35
+          reliability:
+            type: number
+            default: 0.25
+      model:
+        type: string
+        description: "评分使用的 LLM 模型"
+      created_at:
+        type: string
+        description: "评分时间 (ISO 8601)"
+      tags:
+        type: array
+        description: "标签列表"
+
+  MemorySource:
+    required: [id, source_type, reliability, use_count, last_used]
+    properties:
+      source_type:
+        type: string
+        enum: [user_input, agent_reflection, external_knowledge, task_result, kg_extractor, consolidation_engine, preference_engine, decay_engine]
+        description: "来源类型"
+      reliability:
+        type: number
+        default: 0.5
+        description: "历史准确率 0.0-1.0"
+      use_count:
+        type: number
+        default: 0
+        description: "使用次数"
+      last_used:
+        type: string
+        description: "最后使用时间 (ISO 8601)"
+      accuracy_history:
+        type: array
+        description: "历史准确率记录 [{timestamp, correct}]"
+      avg_accuracy:
+        type: number
+        default: 0.5
+        description: "近期平均准确率"
+      tags:
+        type: array
+        description: "标签列表"
+
+  GatingPolicy:
+    required: [id, threshold, auto_archive_below, enabled, updated_at]
+    properties:
+      id:
+        type: string
+        description: "策略 ID (如 gate_default)"
+      threshold:
+        type: number
+        default: 0.5
+        description: "显著性阈值，>=此值 STORE"
+      auto_archive_below:
+        type: number
+        default: 0.3
+        description: "低于此值 REJECT，之间 ARCHIVE"
+      weights:
+        type: object
+        description: "三元评分权重配置"
+        properties:
+          source_reputation:
+            type: number
+            default: 0.40
+          novelty:
+            type: number
+            default: 0.35
+          reliability:
+            type: number
+            default: 0.25
+      enabled:
+        type: boolean
+        default: true
+        description: "是否启用门控"
+      updated_at:
+        type: string
+        description: "更新时间 (ISO 8601)"
+      description:
+        type: string
+        description: "策略描述"
+      tags:
+        type: array
+        description: "标签列表"
+
+  ArchivedMemory:
+    required: [id, original_id, archived_reason, archived_at, cold_storage_path]
+    properties:
+      original_id:
+        type: string
+        description: "原始实体 ID"
+      archived_reason:
+        type: string
+        enum: [below_threshold, superseded, decay, manual]
+        description: "归档原因"
+      archived_at:
+        type: string
+        description: "归档时间 (ISO 8601)"
+      cold_storage_path:
+        type: string
+        description: "冷存储文件路径"
+      original_entity:
+        type: object
+        description: "原始实体完整数据 (用于恢复)"
+      significance_score_at_archive:
+        type: number
+        description: "归档时的显著性评分"
+      strength_at_archive:
+        type: number
+        description: "归档时的记忆强度"
+      access_count:
+        type: number
+        default: 0
+        description: "归档后访问次数"
+      last_accessed:
+        type: string
+        description: "最后访问时间 (ISO 8601)"
+      tags:
+        type: array
+        description: "标签列表"
+
+# ========== Phase 3: Consolidation Engine ==========
+
+  SkillCard:
+    required: [title, summary, source_episodes, consolidated_at]
+    properties:
+      title:
+        type: string
+        description: "技能卡片标题"
+      summary:
+        type: string
+        description: "LLM 生成的简洁摘要"
+      source_episodes:
+        type: array
+        description: "来源实体 ID 列表"
+      consolidated_at:
+        type: string
+        description: "合并时间 (ISO 8601)"
+      conflict_notes:
+        type: string
+        description: "冲突标记说明"
+      entity_types_consolidated:
+        type: array
+        description: "合并的实体类型列表"
+      confidence:
+        type: number
+        description: "LLM 判断置信度 (0-1)"
+      tags:
+        type: array
+        description: "标签列表"
+      strength:
+        type: number
+        default: 1.0
+        description: "记忆强度"
+      decay_rate:
+        type: number
+        default: 0.99
+        description: "几乎不衰减"
+      last_accessed:
+        type: string
+        description: "最后访问时间"
+      provenance:
+        type: array
+        description: "来源追踪 ['consolidation:engine']"
+      source_trust:
+        type: string
+        enum: ["high", "medium", "low"]
+        default: "high"
+        description: "信任度"
+
+  ConflictReview:
+    required: [entity1_id, entity2_id, conflict_type, created_at]
+    properties:
+      entity1_id:
+        type: string
+        description: "第一个实体 ID"
+      entity2_id:
+        type: string
+        description: "第二个实体 ID"
+      conflict_type:
+        type: string
+        enum: [factual, decision, recommendation]
+        description: "冲突类型"
+      description:
+        type: string
+        description: "冲突描述"
+      status:
+        type: string
+        enum: [pending, resolved_keep_first, resolved_keep_second, resolved_manual]
+        default: pending
+        description: "解决状态"
+      resolution_notes:
+        type: string
+        description: "解决说明"
+      created_at:
+        type: string
+        description: "创建时间"
+      resolved_at:
+        type: string
+        description: "解决时间"
+
+  # ========== 扩展的工作实体 ==========
+  
+  Task:
+    required: [title, status]
+    properties:
+      title:
+        type: string
+        description: "任务标题"
+      status:
+        type: string
+        enum: ["pending", "in_progress", "blocked", "testing", "completed", "cancelled"]
+        description: "任务状态"
+      description:
+        type: string
+        description: "任务描述"
+      project_id:
+        type: string
+        description: "所属项目 ID"
+      goal_id:
+        type: string
+        description: "关联目标 ID"
+      assignee_id:
+        type: string
+        description: "负责人 ID"
+      due_date:
+        type: string
+        description: "截止日期 (YYYY-MM-DD)"
+      priority:
+        type: string
+        enum: ["low", "medium", "high", "urgent"]
+        description: "优先级"
+      estimated_hours:
+        type: number
+        description: "预估工时"
+      actual_hours:
+        type: number
+        description: "实际工时"
+      blockers:
+        type: array
+        description: "阻塞任务 ID 列表"
+      dependencies:
+        type: array
+        description: "依赖任务 ID 列表"
+      tags:
+        type: array
+        description: "标签列表"
+      created_from_commitment:
+        type: string
+        description: "来源承诺 ID"
+      memory_ref:
+        type: string
+        description: "关联记忆文件"
+
+  Project:
+    required: [name, status]
+    properties:
+      name:
+        type: string
+        description: "项目名称"
+      status:
+        type: string
+        enum: ["planning", "active", "paused", "completed", "cancelled"]
+        description: "项目状态"
+      description:
+        type: string
+        description: "项目描述"
+      start_date:
+        type: string
+        description: "开始日期 (YYYY-MM-DD)"
+      target_date:
+        type: string
+        description: "目标完成日期 (YYYY-MM-DD)"
+      actual_date:
+        type: string
+        description: "实际完成日期 (YYYY-MM-DD)"
+      priority:
+        type: string
+        enum: ["low", "medium", "high", "critical"]
+        description: "优先级"
+      budget:
+        type: string
+        description: "预算信息"
+      tags:
+        type: array
+        description: "标签列表"
+      memory_ref:
+        type: string
+        description: "关联记忆文件"
+
+  Note:
+    required: [content, created_at]
+    properties:
+      content:
+        type: string
+        description: "笔记内容"
+      created_at:
+        type: string
+        description: "创建时间 (ISO 8601)"
+      created_by:
+        type: string
+        description: "创建者 ID"
+      note_type:
+        type: string
+        enum: ["general", "meeting", "research", "idea", "reference", "temporary"]
+        description: "笔记类型"
+      project_id:
+        type: string
+        description: "关联项目 ID"
+      task_id:
+        type: string
+        description: "关联任务 ID"
+      tags:
+        type: array
+        description: "标签列表"
+      importance:
+        type: string
+        enum: ["low", "medium", "high", "archival"]
+        description: "重要性"
+      memory_ref:
+        type: string
+        description: "关联记忆文件"
+
+relations:
+  # ========== 记忆核心关系 ==========
+  
+  led_to_decision:
+    from_types: [Finding]
+    to_types: [Decision]
+    cardinality: many_to_many
+    description: "发现导致决策"
+
+  decision_created:
+    from_types: [Decision]
+    to_types: [Task, Commitment]
+    cardinality: one_to_many
+    description: "决策创建任务或承诺"
+
+  finding_supported_by:
+    from_types: [Finding]
+    to_types: [Note, ContextSnapshot]
+    cardinality: many_to_many
+    description: "发现由笔记或快照支持"
+
+  lesson_from:
+    from_types: [LessonLearned]
+    to_types: [Decision, Finding, Task, Project]
+    cardinality: many_to_many
+    description: "经验教训来源于"
+
+  commitment_fulfilled_by:
+    from_types: [Commitment]
+    to_types: [Task]
+    cardinality: one_to_many
+    description: "承诺由任务完成"
+
+  context_contains:
+    from_types: [ContextSnapshot]
+    to_types: [Decision, Finding, Task, Note]
+    cardinality: one_to_many
+    description: "上下文快照包含实体"
+
+  memory_references:
+    from_types: [Decision, Finding, LessonLearned, Commitment, ContextSnapshot, Task, Note]
+    to_types: [Note]
+    cardinality: many_to_many
+    description: "记忆实体引用笔记"
+
+  # ========== Phase 3: Consolidation 关系 ==========
+
+  consolidated_from:
+    from_types: [SkillCard]
+    to_types: [Decision, Finding, LessonLearned]
+    cardinality: one_to_many
+    description: "SkillCard 由多个实体合并而来"
+
+  conflict_between:
+    from_types: [ConflictReview]
+    to_types: [Decision, Finding, LessonLearned, Commitment]
+    cardinality: many_to_many
+    description: "ConflictReview 标记的冲突实体"
+
+  # ========== Phase 4: Concept-Mediated Graph 关系 ==========
+
+  is_a:
+    from_types: [Concept]
+    to_types: [Concept]
+    cardinality: many_to_many
+    description: "Concept hierarchy - child is_a parent (e.g., 'Cache Optimization' is_a 'Performance')"
+
+  part_of:
+    from_types: [Concept]
+    to_types: [Concept]
+    cardinality: many_to_many
+    description: "Concept aggregation - child is part of parent (e.g., 'Redis' part_of 'Caching')"
+
+  synonym_of:
+    from_types: [Concept]
+    to_types: [Concept]
+    cardinality: many_to_many
+    description: "Concept synonym relationship (e.g., 'Speed' synonym_of 'Performance')"
+
+  instance_of:
+    from_types: [Decision, Finding, LessonLearned, SkillCard, ContextSnapshot]
+    to_types: [Concept]
+    cardinality: many_to_many
+    description: "Entity is an instance of/conceptualized by a concept"
+
+  # ========== 项目和任务关系 (继承自原 schema) ==========
+  
+  has_owner:
+    from_types: [Project, Task, Goal]
+    to_types: [Person]
+    cardinality: many_to_one
+    description: "拥有者关系"
+
+  has_member:
+    from_types: [Project]
+    to_types: [Person]
+    cardinality: many_to_many
+    description: "项目成员关系"
+
+  has_task:
+    from_types: [Project, Goal]
+    to_types: [Task]
+    cardinality: one_to_many
+    description: "包含任务关系"
+
+  depends_on:
+    from_types: [Task]
+    to_types: [Task]
+    cardinality: many_to_many
+    acyclic: true
+    description: "任务依赖关系"
+
+  blocks:
+    from_types: [Task]
+    to_types: [Task]
+    cardinality: many_to_many
+    acyclic: true
+    description: "任务阻塞关系"
+
+  has_goal:
+    from_types: [Project]
+    to_types: [Goal]
+    cardinality: one_to_many
+    description: "项目目标关系"
+
+  contributes_to:
+    from_types: [Task]
+    to_types: [Goal]
+    cardinality: many_to_many
+    description: "任务贡献目标关系"
+
+  has_milestone:
+    from_types: [Project]
+    to_types: [Milestone]
+    cardinality: one_to_many
+    description: "项目里程碑关系"
+
+  # ========== 人员关系 ==========
+  
+  created_by:
+    from_types: [Decision, Finding, LessonLearned, Commitment, Note]
+    to_types: [Person]
+    cardinality: many_to_one
+    description: "创建者关系"
+
+  committed_to_person:
+    from_types: [Commitment]
+    to_types: [Person]
+    cardinality: many_to_one
+    description: "对某人承诺"
+
+  assigned_to:
+    from_types: [Task]
+    to_types: [Person]
+    cardinality: many_to_one
+    description: "分配给人"
+
+# ========== 记忆进化字段 (Phase 1b) ==========
+# 所有实体类型都支持以下可选字段，用于 Decay Engine 和 Memory Health Dashboard
+
+common_memory_fields:
+  strength:
+    type: number
+    default: 1.0
+    description: "记忆强度 (0.0-1.0)，Decay Engine 使用"
+  decay_rate:
+    type: number
+    default: 0.95
+    description: "衰减率，按类型不同：Decision=0.95, LessonLearned=0.90, Finding=0.80, SkillCard=0.99"
+  last_accessed:
+    type: string
+    description: "最后访问时间 (ISO 8601)，用于 Decay Engine 计算"
+  provenance:
+    type: array
+    description: "来源追踪列表，格式: 'session:{id}', 'inference:{engine}', 'user:{id}'"
+  source_trust:
+    type: string
+    enum: ["high", "medium", "low"]
+    default: "medium"
+    description: "来源信任度，基于观察次数和来源可靠性"
+  # ========== Phase 8: Write-Time Gating 公共字段 ==========
+  significance_score:
+    type: number
+    default: 0.5
+    description: "显著性评分 0.0-1.0，Write-Time Gating 使用，>=0.5 STORE，0.3-0.5 ARCHIVE，<0.3 REJECT"
+  source_id:
+    type: string
+    description: "MemorySource ID 引用，记录实体来源"
+  is_archived:
+    type: boolean
+    default: false
+    description: "是否已归档到冷存储"
+  superseded_by:
+    type: string
+    nullable: true
+    description: "被谁替代 (版本链支持)"
+
+# Decay rates by entity type
+decay_rates:
+  Decision: 0.95    # 慢衰减，高价值
+  LessonLearned: 0.90  # 中等衰减
+  Finding: 0.80     # 快衰减，容易过时
+  SkillCard: 0.99   # 几乎不衰减
+  Commitment: 0.85  # 中等衰减
+  ContextSnapshot: 0.75  # 快衰减
+
+# ========== 验证规则 ==========
+validations:
+  temporal_consistency:
+    - "Decision.made_at <= related Task.due_date if both exist"
+    - "Finding.discovered_at <= related Decision.made_at if related"
+    - "LessonLearned.learned_at >= related Finding.discovered_at if related"
+    - "ContextSnapshot.captured_at >= related entities' created_at"
+
+  reference_integrity:
+    - "Decision.related_tasks must reference existing Task entities"
+    - "Finding.related_decisions must reference existing Decision entities"
+    - "Commitment.related_tasks must reference existing Task entities"
+    - "Task.memory_ref should point to existing memory file"
+
+  status_consistency:
+    - "Task.status = 'completed' only if all blockers are resolved"
+    - "Commitment.status = 'fulfilled' only if related Task.status = 'completed'"
+    - "Decision.status = 'reversed' requires a newer Decision that supersedes it"
+
+  memory_tagging:
+    - "All Decision entities should have at least one tag"
+    - "All Finding entities should have type specified"
+    - "All LessonLearned entities should have mistake_or_success specified"
+
+# ========== 索引建议 ==========
+indexes:
+  - entity_type: Decision
+    fields: [made_at, tags, status]
+    purpose: "快速查询特定时间段或状态的决策"
+  
+  - entity_type: Finding
+    fields: [discovered_at, type, tags]
+    purpose: "按类型和时间检索发现"
+  
+  - entity_type: Commitment
+    fields: [status, due_date, committed_to]
+    purpose: "追踪待履行承诺"
+  
+  - entity_type: LessonLearned
+    fields: [mistake_or_success, tags]
+    purpose: "检索经验教训"
+  
+  - entity_type: ContextSnapshot
+    fields: [captured_at, session_id]
+    purpose: "按会话检索上下文快照"
+
+# ========== 使用示例 ==========
+examples:
+  create_decision: |
+    {
+      "op": "create",
+      "entity": {
+        "id": "dec_001",
+        "type": "Decision",
+        "properties": {
+          "title": "采用知识图谱进行记忆管理",
+          "rationale": "基于 Moltbook 社区 50+ 条评论的最佳实践，知识图谱提供结构化和可查询的记忆",
+          "made_at": "2026-03-12T23:00:00+08:00",
+          "context": "记忆系统优化讨论",
+          "alternatives_considered": ["纯文本日志", "向量数据库", "关系数据库"],
+          "impact": "high",
+          "confidence": 0.9,
+          "status": "final",
+          "tags": ["#decision", "#memory", "#architecture"],
+          "memory_ref": "memory/2026-03-12.md"
+        }
+      }
+    }
+
+  create_finding: |
+    {
+      "op": "create",
+      "entity": {
+        "id": "find_001",
+        "type": "Finding",
+        "properties": {
+          "title": "上下文压缩后恢复效率低",
+          "content": "当前从压缩状态恢复需要重新读取大量文件，效率低下",
+          "discovered_at": "2026-03-12T22:00:00+08:00",
+          "type": "process",
+          "evidence": "平均恢复时间 3-5 分钟，需要读取 10+ 文件",
+          "implications": "需要建立快速索引和摘要机制",
+          "confidence": "confirmed",
+          "tags": ["#finding", "#memory", "#optimization"],
+          "source": "会话性能分析"
+        }
+      }
+    }
+
+  create_lesson: |
+    {
+      "op": "create",
+      "entity": {
+        "id": "lesson_001",
+        "type": "LessonLearned",
+        "properties": {
+          "title": "立即记录重要决策",
+          "lesson": "不要等到上下文压缩时才保存重要决策，应该立即记录到知识图谱",
+          "learned_at": "2026-03-12T23:00:00+08:00",
+          "context": "Moltbook 记忆管理讨论",
+          "mistake_or_success": "best_practice",
+          "application": "每次重要决策后立即创建 Decision 实体",
+          "tags": ["#lesson", "#best-practice", "#memory"],
+          "memory_ref": "memory/2026-03-12.md"
+        }
+      }
+    }

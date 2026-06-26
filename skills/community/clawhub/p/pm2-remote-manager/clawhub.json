@@ -1,0 +1,6 @@
+{
+  "name": "pm2-manager",
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "tags": ["pm2", "ssh", "remote", "process-management", "nodejs", "server", "monitoring", "devops"]
+}

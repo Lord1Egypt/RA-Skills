@@ -1,35 +1,25 @@
 ---
-name: "c3po-session-cleaner"
-description: "Clean up old OpenClaw session files and keep only active sessions"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/c3po-session-cleaner"
-sourceUrl: "https://clawhub.ai/skills/c3po-session-cleaner"
+name: c3po-session-cleaner
+description: Clean up old OpenClaw session files and keep only active sessions
+version: 1.0.5
+author: ubuntu
+license: MIT
+requires: []
+tools: ["Bash"]
+private: true
+trigger: clean sessions
 ---
 
-# c3po-session-cleaner
+# Clean OpenClaw Sessions
 
-> Clean up old OpenClaw session files and keep only active sessions
+This skill will safely delete old session files (.jsonl) older than 3 days
+in the OpenClaw main agent session directory.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/c3po-session-cleaner`
-- **Source URL:** [https://clawhub.ai/skills/c3po-session-cleaner](https://clawhub.ai/skills/c3po-session-cleaner)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/c3po-session-cleaner
-```
+cd /home/ubuntu/.openclaw/agents/main/sessions/
+find . -name "*.jsonl" -type f -mtime +3 -delete 2>/dev/null
+
+echo "====================================="
+echo "✅ Clean completed successfully"
+echo "Remaining session files: $(ls -l *.jsonl 2>/dev/null | wc -l)"
+echo "====================================="

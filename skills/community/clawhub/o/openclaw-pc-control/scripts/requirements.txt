@@ -1,0 +1,9 @@
+pyautogui
+mss
+pyperclip
+psutil
+pywin32
+fastapi
+uvicorn
+selenium
+

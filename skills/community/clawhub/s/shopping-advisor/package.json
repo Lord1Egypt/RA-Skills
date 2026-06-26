@@ -1,0 +1,19 @@
+{
+  "name": "shopping-advisor",
+  "version": "1.0.0",
+  "description": "不是告诉你商品是什么，而是告诉你这单怎么买更值。",
+  "main": "SKILL.md",
+  "keywords": [
+    "shopping",
+    "decision",
+    "ecommerce",
+    "taobao",
+    "jd",
+    "pdd",
+    "comparison",
+    "price-gap",
+    "openclaw-skill"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

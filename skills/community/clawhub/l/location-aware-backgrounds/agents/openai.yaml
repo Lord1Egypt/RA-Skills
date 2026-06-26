@@ -1,0 +1,4 @@
+interface:
+  display_name: "Location Aware Backgrounds"
+  short_description: "Generate place-aware background images"
+  default_prompt: "Use $location-aware-backgrounds to generate and save a location-aware background image, using Nano Banana Pro for the render."

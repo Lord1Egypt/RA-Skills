@@ -1,0 +1,2497 @@
+{
+  "timestamp": "2026-03-21T03:31:38.358Z",
+  "config": {
+    "iterations": 10,
+    "messageSizes": [
+      {
+        "name": "small",
+        "size": 100
+      },
+      {
+        "name": "medium",
+        "size": 1024
+      },
+      {
+        "name": "large",
+        "size": 10240
+      }
+    ],
+    "recipient": "product-manager",
+    "outputFile": "/home/kali/.openclaw/workspace/agent_comm/performance-comparison-results.json",
+    "cleanupAfterTest": true
+  },
+  "scenarios": {
+    "small": {
+      "messageSize": "small",
+      "sizeBytes": 100,
+      "scenarios": {
+        "legacy": {
+          "name": "旧架构 (直接文件系统)",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 0.9281579999999963,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063898359_zid154v01.json",
+                "latency": 0.814832999999993,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 5.771007999999995,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063898460_knjbm4a26.json",
+                "latency": 5.752654000000007,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 1.6549039999999877,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063898567_4lg6p4e0u.json",
+                "latency": 1.6345190000000116,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 1.9009469999999737,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063898670_y5e4ork9q.json",
+                "latency": 1.870442999999966,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 0.4688489999999774,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063898772_mtzj3i0op.json",
+                "latency": 0.4546410000000378,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 2.058624000000009,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063898874_j6zq0fc50.json",
+                "latency": 2.0398989999999912,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 0.4382180000000062,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063898979_z8yf2yvgl.json",
+                "latency": 0.4280469999999923,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 2.139370999999983,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899083_qb4ztda6o.json",
+                "latency": 2.117966000000024,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 4.928555999999958,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899191_u16c07111.json",
+                "latency": 4.909483000000023,
+                "size": 313
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 2.8719099999998434,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899297_uvdjyll7v.json",
+                "latency": 2.757366999999931,
+                "size": 313
+              }
+            }
+          ],
+          "latencies": [
+            0.9281579999999963,
+            5.771007999999995,
+            1.6549039999999877,
+            1.9009469999999737,
+            0.4688489999999774,
+            2.058624000000009,
+            0.4382180000000062,
+            2.139370999999983,
+            4.928555999999958,
+            2.8719099999998434
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 2.316054499999973,
+            "min": 0.4382180000000062,
+            "max": 5.771007999999995,
+            "p50": 2.058624000000009,
+            "p90": 5.771007999999995,
+            "p95": 5.771007999999995,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          }
+        },
+        "newTransport": {
+          "name": "新传输层 (统一传输层)",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 0.934144999999944,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899401_iz3zzcl66.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 1,
+                "timestamp": 1774063899402,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063899401_02c8mzd7b",
+                  "timestamp": 1774063899402
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 3.2730750000000626,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899503_qoqwkhi2x.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 3,
+                "timestamp": 1774063899506,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063899503_d4pwtms0q",
+                  "timestamp": 1774063899506
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 0.8703680000000986,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899607_nymnkpkct.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 1,
+                "timestamp": 1774063899608,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063899607_7tmf3b1e5",
+                  "timestamp": 1774063899608
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 6.4307719999999335,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899709_q5g9ijp1n.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 6,
+                "timestamp": 1774063899715,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 6,
+                  "traceId": "trace_1774063899709_hbujneqyg",
+                  "timestamp": 1774063899715
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 3.4116170000002057,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899817_i3cod5iax.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 4,
+                "timestamp": 1774063899821,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063899817_8tsj7ju10",
+                  "timestamp": 1774063899821
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 2.257462999999916,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063899925_w10ggesfj.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 2,
+                "timestamp": 1774063899927,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063899924_f21qrlhg3",
+                  "timestamp": 1774063899927
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 0.8254549999999199,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900028_acjgx528o.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 0,
+                "timestamp": 1774063900028,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063900027_qq4toez39",
+                  "timestamp": 1774063900028
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 1.487060000000156,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900130_2pqg64byl.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 1,
+                "timestamp": 1774063900131,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063900130_2a6vawyc7",
+                  "timestamp": 1774063900131
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 8.04441799999995,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900232_07pz8kjyk.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 8,
+                "timestamp": 1774063900240,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 8,
+                  "traceId": "trace_1774063900232_qig741362",
+                  "timestamp": 1774063900240
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 6.0917169999997896,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900343_8cdipm44r.json",
+                "recipient": "product-manager",
+                "size": 686,
+                "latency": 5,
+                "timestamp": 1774063900348,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 6,
+                  "traceId": "trace_1774063900342_dqlvs8igl",
+                  "timestamp": 1774063900348
+                }
+              }
+            }
+          ],
+          "latencies": [
+            0.934144999999944,
+            3.2730750000000626,
+            0.8703680000000986,
+            6.4307719999999335,
+            3.4116170000002057,
+            2.257462999999916,
+            0.8254549999999199,
+            1.487060000000156,
+            8.04441799999995,
+            6.0917169999997896
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 3.3626089999999977,
+            "min": 0.8254549999999199,
+            "max": 8.04441799999995,
+            "p50": 3.2730750000000626,
+            "p90": 8.04441799999995,
+            "p95": 8.04441799999995,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-45.19%",
+            "absolute": "-1.05ms",
+            "legacyAverage": 2.316054499999973,
+            "newAverage": 3.3626089999999977
+          }
+        },
+        "jsonTransport": {
+          "name": "JSON协议 + 新传输层",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 4.81609299999991,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900453_uhdmzsc22.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 4,
+                "timestamp": 1774063900457,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063900453_nwdar9ubj",
+                  "timestamp": 1774063900457
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 11.956309000000147,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900561_vwhhbt6uo.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 12,
+                "timestamp": 1774063900573,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 12,
+                  "traceId": "trace_1774063900561_z7nmx0zpi",
+                  "timestamp": 1774063900573
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 4.055440999999973,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900674_2knyzbcok.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 4,
+                "timestamp": 1774063900678,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063900674_4vmfkn8bw",
+                  "timestamp": 1774063900678
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 7.273489000000154,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900778_4029mqrua.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 7,
+                "timestamp": 1774063900785,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 7,
+                  "traceId": "trace_1774063900778_gveao7k7g",
+                  "timestamp": 1774063900785
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 2.6942840000001524,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900886_zf8xmvc8k.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 3,
+                "timestamp": 1774063900889,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063900886_n2w8bwho8",
+                  "timestamp": 1774063900889
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 2.4218689999997878,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063900990_apk4kh4xu.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 2,
+                "timestamp": 1774063900992,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063900990_tkl5bkx0b",
+                  "timestamp": 1774063900992
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 37.64077700000007,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901093_a0e8czibc.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 38,
+                "timestamp": 1774063901131,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 38,
+                  "traceId": "trace_1774063901093_8zpjlja87",
+                  "timestamp": 1774063901131
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 5.7727350000000115,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901234_jm4pitblb.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 5,
+                "timestamp": 1774063901239,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 5,
+                  "traceId": "trace_1774063901234_mj3oebrri",
+                  "timestamp": 1774063901239
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 7.050106000000142,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901343_u8r2tj506.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 7,
+                "timestamp": 1774063901350,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 7,
+                  "traceId": "trace_1774063901343_4hmjxat58",
+                  "timestamp": 1774063901350
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 1.1259900000000016,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901451_q7kofuuwc.json",
+                "recipient": "product-manager",
+                "size": 3564,
+                "latency": 1,
+                "timestamp": 1774063901452,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063901451_bsxza6em2",
+                  "timestamp": 1774063901452
+                }
+              }
+            }
+          ],
+          "latencies": [
+            4.81609299999991,
+            11.956309000000147,
+            4.055440999999973,
+            7.273489000000154,
+            2.6942840000001524,
+            2.4218689999997878,
+            37.64077700000007,
+            5.7727350000000115,
+            7.050106000000142,
+            1.1259900000000016
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 8.480709300000035,
+            "min": 1.1259900000000016,
+            "max": 37.64077700000007,
+            "p50": 5.7727350000000115,
+            "p90": 37.64077700000007,
+            "p95": 37.64077700000007,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-266.17%",
+            "absolute": "-6.16ms",
+            "legacyAverage": 2.316054499999973,
+            "newAverage": 8.480709300000035
+          }
+        },
+        "msgpackTransport": {
+          "name": "MessagePack协议 + 新传输层",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 3.013844000000063,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901556_ouyrd4srh.json",
+                "recipient": "product-manager",
+                "size": 687,
+                "latency": 1,
+                "timestamp": 1774063901557,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063901556_1rk3r55ho",
+                  "timestamp": 1774063901557
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 5.846748999999818,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901660_ut1u9xgtc.json",
+                "recipient": "product-manager",
+                "size": 688,
+                "latency": 5,
+                "timestamp": 1774063901665,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 5,
+                  "traceId": "trace_1774063901660_cdbko91hs",
+                  "timestamp": 1774063901665
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 2.585994000000028,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901768_9jj7jki7s.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 1,
+                "timestamp": 1774063901769,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063901768_ytim6n1ch",
+                  "timestamp": 1774063901769
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 3.3251390000000356,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901872_0g6hxak53.json",
+                "recipient": "product-manager",
+                "size": 691,
+                "latency": 1,
+                "timestamp": 1774063901873,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063901872_sn26j0kj5",
+                  "timestamp": 1774063901873
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 8.662348999999722,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063901978_jscvpjq38.json",
+                "recipient": "product-manager",
+                "size": 692,
+                "latency": 7,
+                "timestamp": 1774063901985,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 7,
+                  "traceId": "trace_1774063901978_1ftk176gl",
+                  "timestamp": 1774063901985
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 3.130992999999762,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902087_91zhn7lbo.json",
+                "recipient": "product-manager",
+                "size": 691,
+                "latency": 1,
+                "timestamp": 1774063902088,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063902087_hlv019jbz",
+                  "timestamp": 1774063902088
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 2.538832000000184,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902190_tl2bdzif0.json",
+                "recipient": "product-manager",
+                "size": 692,
+                "latency": 1,
+                "timestamp": 1774063902191,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063902190_zwltzcxgu",
+                  "timestamp": 1774063902191
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 2.7931839999992008,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902294_ux9i78bkq.json",
+                "recipient": "product-manager",
+                "size": 689,
+                "latency": 1,
+                "timestamp": 1774063902295,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063902294_ky3seodzj",
+                  "timestamp": 1774063902295
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 7.488338999999542,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902399_wf7u1kgki.json",
+                "recipient": "product-manager",
+                "size": 688,
+                "latency": 5,
+                "timestamp": 1774063902404,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 5,
+                  "traceId": "trace_1774063902399_l05pfpotj",
+                  "timestamp": 1774063902404
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 4.746968000000379,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902508_f0ue97moz.json",
+                "recipient": "product-manager",
+                "size": 691,
+                "latency": 1,
+                "timestamp": 1774063902509,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063902508_6bh2uijik",
+                  "timestamp": 1774063902509
+                }
+              }
+            }
+          ],
+          "latencies": [
+            3.013844000000063,
+            5.846748999999818,
+            2.585994000000028,
+            3.3251390000000356,
+            8.662348999999722,
+            3.130992999999762,
+            2.538832000000184,
+            2.7931839999992008,
+            7.488338999999542,
+            4.746968000000379
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 4.413239099999873,
+            "min": 2.538832000000184,
+            "max": 8.662348999999722,
+            "p50": 3.3251390000000356,
+            "p90": 8.662348999999722,
+            "p95": 8.662348999999722,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-90.55%",
+            "absolute": "-2.10ms",
+            "legacyAverage": 2.316054499999973,
+            "newAverage": 4.413239099999873
+          }
+        }
+      }
+    },
+    "medium": {
+      "messageSize": "medium",
+      "sizeBytes": 1024,
+      "scenarios": {
+        "legacy": {
+          "name": "旧架构 (直接文件系统)",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 1.2687949999999546,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902611_e1jxwo50g.json",
+                "latency": 1.245879000000059,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 8.217548000000534,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902715_ghgiyxvrp.json",
+                "latency": 8.199367999999595,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 5.277493000000504,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902829_h51in9iu3.json",
+                "latency": 5.2629739999993035,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 1.174528000000464,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063902936_8fn39jade.json",
+                "latency": 1.1659520000002885,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 1.931709999999839,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903043_9rg0ql56m.json",
+                "latency": 1.9225870000000214,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 2.1850720000002184,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903147_lvd5zgdq8.json",
+                "latency": 2.170861999999943,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 0.8016910000005737,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903249_uc65swth2.json",
+                "latency": 0.7921470000001136,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 5.6522610000001805,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903351_7wl7gh1gp.json",
+                "latency": 5.642577000000529,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 1.4229260000001887,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903457_64gf0sdb4.json",
+                "latency": 1.4140230000002703,
+                "size": 838
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 2.043823999999404,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903561_8b98hn2cb.json",
+                "latency": 2.0342890000001717,
+                "size": 838
+              }
+            }
+          ],
+          "latencies": [
+            1.2687949999999546,
+            8.217548000000534,
+            5.277493000000504,
+            1.174528000000464,
+            1.931709999999839,
+            2.1850720000002184,
+            0.8016910000005737,
+            5.6522610000001805,
+            1.4229260000001887,
+            2.043823999999404
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 2.997584800000186,
+            "min": 0.8016910000005737,
+            "max": 8.217548000000534,
+            "p50": 2.043823999999404,
+            "p90": 8.217548000000534,
+            "p95": 8.217548000000534,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          }
+        },
+        "newTransport": {
+          "name": "新传输层 (统一传输层)",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 3.985367000000224,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903667_igmkpc0qh.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 4,
+                "timestamp": 1774063903671,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063903667_4iykin3cf",
+                  "timestamp": 1774063903671
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 1.5100710000006075,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903771_r5sh7lx8x.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 2,
+                "timestamp": 1774063903773,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063903771_k6uoctsde",
+                  "timestamp": 1774063903773
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 1.0331139999998413,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903874_7pg7ugqdk.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 1,
+                "timestamp": 1774063903875,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063903874_f7gzmxanr",
+                  "timestamp": 1774063903875
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 1.0704789999999775,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063903978_eahn1zr0y.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 1,
+                "timestamp": 1774063903979,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063903978_2iryc05al",
+                  "timestamp": 1774063903979
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 2.7941979999995965,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904083_b7pixn5o9.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 2,
+                "timestamp": 1774063904085,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063904083_sttxmpi05",
+                  "timestamp": 1774063904085
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 4.128463000000011,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904187_g44kamuxc.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 4,
+                "timestamp": 1774063904191,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063904187_28o2mwsjm",
+                  "timestamp": 1774063904191
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 4.112951000000066,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904294_ek0lstxxp.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 5,
+                "timestamp": 1774063904299,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 5,
+                  "traceId": "trace_1774063904294_nwbswg918",
+                  "timestamp": 1774063904299
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 3.7808259999992515,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904399_l8ph2q0vy.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 4,
+                "timestamp": 1774063904403,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063904399_uetap66pt",
+                  "timestamp": 1774063904403
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 3.2424049999999625,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904506_aolpmbfli.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 4,
+                "timestamp": 1774063904510,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063904506_qwv6pusiy",
+                  "timestamp": 1774063904510
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 4.464265999999952,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904611_nq2fnnp5o.json",
+                "recipient": "product-manager",
+                "size": 1211,
+                "latency": 5,
+                "timestamp": 1774063904616,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 5,
+                  "traceId": "trace_1774063904611_rnejwaiy2",
+                  "timestamp": 1774063904616
+                }
+              }
+            }
+          ],
+          "latencies": [
+            3.985367000000224,
+            1.5100710000006075,
+            1.0331139999998413,
+            1.0704789999999775,
+            2.7941979999995965,
+            4.128463000000011,
+            4.112951000000066,
+            3.7808259999992515,
+            3.2424049999999625,
+            4.464265999999952
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 3.012213999999949,
+            "min": 1.0331139999998413,
+            "max": 4.464265999999952,
+            "p50": 3.7808259999992515,
+            "p90": 4.464265999999952,
+            "p95": 4.464265999999952,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-0.49%",
+            "absolute": "-0.01ms",
+            "legacyAverage": 2.997584800000186,
+            "newAverage": 3.012213999999949
+          }
+        },
+        "jsonTransport": {
+          "name": "JSON协议 + 新传输层",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 2.2883169999995516,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904720_2lra9itgs.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 2,
+                "timestamp": 1774063904722,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063904720_vz3mvanac",
+                  "timestamp": 1774063904722
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 3.9770659999994677,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904830_m2t97y9dv.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 4,
+                "timestamp": 1774063904834,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063904830_e6ocxun3k",
+                  "timestamp": 1774063904834
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 1.9221349999997983,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063904936_l7gax1gwy.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 2,
+                "timestamp": 1774063904938,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063904936_4zbq7bblc",
+                  "timestamp": 1774063904938
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 1.2388499999997293,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905039_sv5eq6081.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 1,
+                "timestamp": 1774063905040,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063905038_3x7c8apiq",
+                  "timestamp": 1774063905040
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 7.352939999999762,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905141_sxs1yv38a.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 7,
+                "timestamp": 1774063905148,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 8,
+                  "traceId": "trace_1774063905140_5zdx4h1nf",
+                  "timestamp": 1774063905148
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 2.5778739999996105,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905249_6iv2vyelr.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 3,
+                "timestamp": 1774063905252,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063905249_15resgocs",
+                  "timestamp": 1774063905252
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 1.5970409999999902,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905353_w5k7zsjri.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 1,
+                "timestamp": 1774063905354,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063905353_55ryrogz2",
+                  "timestamp": 1774063905354
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 4.928925000000163,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905456_wt0xwpmds.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 5,
+                "timestamp": 1774063905461,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 5,
+                  "traceId": "trace_1774063905456_72r69dvtj",
+                  "timestamp": 1774063905461
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 2.1480069999997795,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905562_0u1qcr0g5.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 2,
+                "timestamp": 1774063905564,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063905562_jt0sisdzq",
+                  "timestamp": 1774063905564
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 10.664951000000656,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905667_kt8aovcbv.json",
+                "recipient": "product-manager",
+                "size": 10914,
+                "latency": 11,
+                "timestamp": 1774063905678,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 11,
+                  "traceId": "trace_1774063905667_l6imcynxg",
+                  "timestamp": 1774063905678
+                }
+              }
+            }
+          ],
+          "latencies": [
+            2.2883169999995516,
+            3.9770659999994677,
+            1.9221349999997983,
+            1.2388499999997293,
+            7.352939999999762,
+            2.5778739999996105,
+            1.5970409999999902,
+            4.928925000000163,
+            2.1480069999997795,
+            10.664951000000656
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 3.869610599999851,
+            "min": 1.2388499999997293,
+            "max": 10.664951000000656,
+            "p50": 2.5778739999996105,
+            "p90": 10.664951000000656,
+            "p95": 10.664951000000656,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-29.09%",
+            "absolute": "-0.87ms",
+            "legacyAverage": 2.997584800000186,
+            "newAverage": 3.869610599999851
+          }
+        },
+        "msgpackTransport": {
+          "name": "MessagePack协议 + 新传输层",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 2.748595000000023,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905787_qd22imkjv.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 1,
+                "timestamp": 1774063905788,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063905787_paln8xjmi",
+                  "timestamp": 1774063905788
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 9.662190999999439,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063905892_o8s88wy62.json",
+                "recipient": "product-manager",
+                "size": 688,
+                "latency": 8,
+                "timestamp": 1774063905900,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 8,
+                  "traceId": "trace_1774063905892_871sd1av3",
+                  "timestamp": 1774063905900
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 4.33327300000019,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906003_2qb1rhiio.json",
+                "recipient": "product-manager",
+                "size": 689,
+                "latency": 3,
+                "timestamp": 1774063906006,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063906003_ane562fzy",
+                  "timestamp": 1774063906006
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 7.490012999999635,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906108_yheh8b6kt.json",
+                "recipient": "product-manager",
+                "size": 691,
+                "latency": 6,
+                "timestamp": 1774063906114,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 6,
+                  "traceId": "trace_1774063906108_d2whb3f6y",
+                  "timestamp": 1774063906114
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 3.8979699999999866,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906223_5d8xsjkry.json",
+                "recipient": "product-manager",
+                "size": 688,
+                "latency": 1,
+                "timestamp": 1774063906224,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063906223_q9kgwpodt",
+                  "timestamp": 1774063906224
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 5.658523000000059,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906328_amcoxi611.json",
+                "recipient": "product-manager",
+                "size": 692,
+                "latency": 3,
+                "timestamp": 1774063906331,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063906328_pbwn93dhz",
+                  "timestamp": 1774063906331
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 3.70386900000085,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906433_l2cilftsl.json",
+                "recipient": "product-manager",
+                "size": 688,
+                "latency": 3,
+                "timestamp": 1774063906436,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063906433_ywzfaixm0",
+                  "timestamp": 1774063906436
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 6.066515000000436,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906539_tabkzxzk9.json",
+                "recipient": "product-manager",
+                "size": 689,
+                "latency": 4,
+                "timestamp": 1774063906543,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063906539_ht58mn9iz",
+                  "timestamp": 1774063906543
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 2.7881950000009965,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906646_uf6jgo13k.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 0,
+                "timestamp": 1774063906646,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 0,
+                  "traceId": "trace_1774063906646_vkzsoi32c",
+                  "timestamp": 1774063906646
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 5.560068000000683,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906750_ruyhg1fod.json",
+                "recipient": "product-manager",
+                "size": 691,
+                "latency": 4,
+                "timestamp": 1774063906754,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063906750_z5nnjrp5w",
+                  "timestamp": 1774063906754
+                }
+              }
+            }
+          ],
+          "latencies": [
+            2.748595000000023,
+            9.662190999999439,
+            4.33327300000019,
+            7.490012999999635,
+            3.8979699999999866,
+            5.658523000000059,
+            3.70386900000085,
+            6.066515000000436,
+            2.7881950000009965,
+            5.560068000000683
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 5.19092120000023,
+            "min": 2.748595000000023,
+            "max": 9.662190999999439,
+            "p50": 5.560068000000683,
+            "p90": 9.662190999999439,
+            "p95": 9.662190999999439,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-73.17%",
+            "absolute": "-2.19ms",
+            "legacyAverage": 2.997584800000186,
+            "newAverage": 5.19092120000023
+          }
+        }
+      }
+    },
+    "large": {
+      "messageSize": "large",
+      "sizeBytes": 10240,
+      "scenarios": {
+        "legacy": {
+          "name": "旧架构 (直接文件系统)",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 0.5657289999999193,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906855_4bzihssma.json",
+                "latency": 0.558418000000529,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 3.1065569999991567,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063906962_h1ptxbyaj.json",
+                "latency": 3.0987549999990733,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 2.8432539999994333,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907065_iwd7n4kt4.json",
+                "latency": 2.830926000000545,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 3.877243000000817,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907175_e8ck64nj1.json",
+                "latency": 3.8686870000001363,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 1.1407639999997627,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907281_80svdwt3j.json",
+                "latency": 1.1300270000010642,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 0.9110430000000633,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907383_o2wok55vf.json",
+                "latency": 0.9032900000001973,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 1.056592000000819,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907485_zvvkm21k7.json",
+                "latency": 1.0486610000007204,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 1.3293530000009923,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907587_jozf83fzl.json",
+                "latency": 1.321404000000257,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 35.05498299999999,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907692_kt4n8on0g.json",
+                "latency": 35.042890999999145,
+                "size": 10055
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 4.129861999999775,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907829_ckk9i7bgo.json",
+                "latency": 4.123426000000109,
+                "size": 10055
+              }
+            }
+          ],
+          "latencies": [
+            0.5657289999999193,
+            3.1065569999991567,
+            2.8432539999994333,
+            3.877243000000817,
+            1.1407639999997627,
+            0.9110430000000633,
+            1.056592000000819,
+            1.3293530000009923,
+            35.05498299999999,
+            4.129861999999775
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 5.401538000000073,
+            "min": 0.5657289999999193,
+            "max": 35.05498299999999,
+            "p50": 2.8432539999994333,
+            "p90": 35.05498299999999,
+            "p95": 35.05498299999999,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          }
+        },
+        "newTransport": {
+          "name": "新传输层 (统一传输层)",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 2.1914450000003853,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063907934_rlwd2sqxy.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 2,
+                "timestamp": 1774063907936,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063907934_hcxva3jrc",
+                  "timestamp": 1774063907936
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 1.4926329999998416,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908038_323vkuvq3.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 1,
+                "timestamp": 1774063908039,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063908038_b6v1es2re",
+                  "timestamp": 1774063908039
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 1.0434489999988728,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908141_vn7p2pjkn.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 1,
+                "timestamp": 1774063908142,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063908141_x3g1wi9b1",
+                  "timestamp": 1774063908142
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 6.379549999999654,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908248_vv2zjqpfw.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 6,
+                "timestamp": 1774063908254,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 6,
+                  "traceId": "trace_1774063908248_chipszcut",
+                  "timestamp": 1774063908254
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 1.3838550000000396,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908355_cau8gf9qx.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 1,
+                "timestamp": 1774063908356,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063908355_vyeset735",
+                  "timestamp": 1774063908356
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 1.5849799999996321,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908457_blmwa2133.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 2,
+                "timestamp": 1774063908459,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063908457_n6cxzrqrb",
+                  "timestamp": 1774063908459
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 2.0605409999989206,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908560_z3eiwwvz5.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 2,
+                "timestamp": 1774063908562,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063908560_hic8rudwe",
+                  "timestamp": 1774063908562
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 1.824667999999292,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908662_uu2ku0d59.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 2,
+                "timestamp": 1774063908664,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 2,
+                  "traceId": "trace_1774063908662_zacsujow8",
+                  "timestamp": 1774063908664
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 1.193664999998873,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908767_te8llvtuo.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 1,
+                "timestamp": 1774063908768,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063908767_vc3wtb2j1",
+                  "timestamp": 1774063908768
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 2.859812000000602,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908870_0foai7sbh.json",
+                "recipient": "product-manager",
+                "size": 10428,
+                "latency": 3,
+                "timestamp": 1774063908873,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063908870_nudqkdvra",
+                  "timestamp": 1774063908873
+                }
+              }
+            }
+          ],
+          "latencies": [
+            2.1914450000003853,
+            1.4926329999998416,
+            1.0434489999988728,
+            6.379549999999654,
+            1.3838550000000396,
+            1.5849799999996321,
+            2.0605409999989206,
+            1.824667999999292,
+            1.193664999998873,
+            2.859812000000602
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 2.2014597999996113,
+            "min": 1.0434489999988728,
+            "max": 6.379549999999654,
+            "p50": 1.824667999999292,
+            "p90": 6.379549999999654,
+            "p95": 6.379549999999654,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "59.24%",
+            "absolute": "3.20ms",
+            "legacyAverage": 5.401538000000073,
+            "newAverage": 2.2014597999996113
+          }
+        },
+        "jsonTransport": {
+          "name": "JSON协议 + 新传输层",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 10.40422000000035,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063908976_vyhkt6ysf.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 8,
+                "timestamp": 1774063908984,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 10,
+                  "traceId": "trace_1774063908974_zozh0gzbi",
+                  "timestamp": 1774063908984
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 13.927827000001344,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909094_6d94idbk5.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 6,
+                "timestamp": 1774063909100,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 14,
+                  "traceId": "trace_1774063909086_g80w9o271",
+                  "timestamp": 1774063909100
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 6.760696999999709,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909205_nhow4olmd.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 3,
+                "timestamp": 1774063909208,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 6,
+                  "traceId": "trace_1774063909202_x9qp9319b",
+                  "timestamp": 1774063909208
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 3.935184999998455,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909310_9yv5xc1qo.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 3,
+                "timestamp": 1774063909313,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 4,
+                  "traceId": "trace_1774063909309_50icvw46b",
+                  "timestamp": 1774063909313
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 3.4472509999995964,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909417_tzwtx94qh.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 1,
+                "timestamp": 1774063909418,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063909416_03fucu280",
+                  "timestamp": 1774063909419
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 8.194289999999455,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909523_g6p2uhtj1.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 5,
+                "timestamp": 1774063909528,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 8,
+                  "traceId": "trace_1774063909520_aphticgio",
+                  "timestamp": 1774063909528
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 9.245011000000886,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909635_tq3olhx0w.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 6,
+                "timestamp": 1774063909641,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 9,
+                  "traceId": "trace_1774063909632_p47okvcu2",
+                  "timestamp": 1774063909641
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 8.176365999999689,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909747_mrn168idi.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 3,
+                "timestamp": 1774063909750,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 8,
+                  "traceId": "trace_1774063909742_kdlw8hx3b",
+                  "timestamp": 1774063909750
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 8.216648999999961,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909855_erc9m3e4q.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 5,
+                "timestamp": 1774063909860,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 8,
+                  "traceId": "trace_1774063909852_rlfb3bxtv",
+                  "timestamp": 1774063909860
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 7.750490999998874,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063909963_7jggzxhiz.json",
+                "recipient": "product-manager",
+                "size": 148927,
+                "latency": 5,
+                "timestamp": 1774063909968,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 7,
+                  "traceId": "trace_1774063909961_dmy0uyuzy",
+                  "timestamp": 1774063909968
+                }
+              }
+            }
+          ],
+          "latencies": [
+            10.40422000000035,
+            13.927827000001344,
+            6.760696999999709,
+            3.935184999998455,
+            3.4472509999995964,
+            8.194289999999455,
+            9.245011000000886,
+            8.176365999999689,
+            8.216648999999961,
+            7.750490999998874
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 8.005798699999833,
+            "min": 3.4472509999995964,
+            "max": 13.927827000001344,
+            "p50": 8.194289999999455,
+            "p90": 13.927827000001344,
+            "p95": 13.927827000001344,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-48.21%",
+            "absolute": "-2.60ms",
+            "legacyAverage": 5.401538000000073,
+            "newAverage": 8.005798699999833
+          }
+        },
+        "msgpackTransport": {
+          "name": "MessagePack协议 + 新传输层",
+          "iterations": [
+            {
+              "iteration": 1,
+              "latency": 7.510524000001169,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910074_cg9yypbva.json",
+                "recipient": "product-manager",
+                "size": 691,
+                "latency": 3,
+                "timestamp": 1774063910077,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 3,
+                  "traceId": "trace_1774063910074_2aahs26jj",
+                  "timestamp": 1774063910077
+                }
+              }
+            },
+            {
+              "iteration": 2,
+              "latency": 3.0210040000001754,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910197_ldg952qn4.json",
+                "recipient": "product-manager",
+                "size": 693,
+                "latency": 0,
+                "timestamp": 1774063910197,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 0,
+                  "traceId": "trace_1774063910197_xcr599z85",
+                  "timestamp": 1774063910197
+                }
+              }
+            },
+            {
+              "iteration": 3,
+              "latency": 15.384702999999718,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910301_ndvt4c3if.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 13,
+                "timestamp": 1774063910314,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 13,
+                  "traceId": "trace_1774063910301_e1tpcg0jr",
+                  "timestamp": 1774063910314
+                }
+              }
+            },
+            {
+              "iteration": 4,
+              "latency": 9.896882000000915,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910416_31mrc0ni5.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 9,
+                "timestamp": 1774063910425,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 9,
+                  "traceId": "trace_1774063910416_kj2vei73g",
+                  "timestamp": 1774063910425
+                }
+              }
+            },
+            {
+              "iteration": 5,
+              "latency": 3.211804000000484,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910555_2edg1x8o9.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 1,
+                "timestamp": 1774063910556,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063910555_c023su970",
+                  "timestamp": 1774063910556
+                }
+              }
+            },
+            {
+              "iteration": 6,
+              "latency": 2.3836190000001807,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910659_0k77ykhes.json",
+                "recipient": "product-manager",
+                "size": 689,
+                "latency": 0,
+                "timestamp": 1774063910659,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 0,
+                  "traceId": "trace_1774063910659_r3pi8ug0t",
+                  "timestamp": 1774063910659
+                }
+              }
+            },
+            {
+              "iteration": 7,
+              "latency": 1.800452999999834,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910761_7k37bgr8q.json",
+                "recipient": "product-manager",
+                "size": 691,
+                "latency": 1,
+                "timestamp": 1774063910762,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063910761_a5oc4dbno",
+                  "timestamp": 1774063910762
+                }
+              }
+            },
+            {
+              "iteration": 8,
+              "latency": 1.9539500000009866,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910863_uz66c5kek.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 1,
+                "timestamp": 1774063910864,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063910863_v40fqwq3q",
+                  "timestamp": 1774063910864
+                }
+              }
+            },
+            {
+              "iteration": 9,
+              "latency": 2.1693190000005416,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063910966_nogerrrxh.json",
+                "recipient": "product-manager",
+                "size": 687,
+                "latency": 1,
+                "timestamp": 1774063910967,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 1,
+                  "traceId": "trace_1774063910966_tieahokup",
+                  "timestamp": 1774063910967
+                }
+              }
+            },
+            {
+              "iteration": 10,
+              "latency": 21.655439000000115,
+              "success": true,
+              "result": {
+                "success": true,
+                "filepath": "/home/kali/.openclaw/workspace/agent_comm/inbox/product-manager/1774063911085_ior0tb27z.json",
+                "recipient": "product-manager",
+                "size": 690,
+                "latency": 20,
+                "timestamp": 1774063911105,
+                "metadata": {
+                  "transport": "filesystem",
+                  "latency": 20,
+                  "traceId": "trace_1774063911085_gfg58u2h6",
+                  "timestamp": 1774063911105
+                }
+              }
+            }
+          ],
+          "latencies": [
+            7.510524000001169,
+            3.0210040000001754,
+            15.384702999999718,
+            9.896882000000915,
+            3.211804000000484,
+            2.3836190000001807,
+            1.800452999999834,
+            1.9539500000009866,
+            2.1693190000005416,
+            21.655439000000115
+          ],
+          "successes": 10,
+          "failures": 0,
+          "summary": {
+            "average": 6.898769700000412,
+            "min": 1.800452999999834,
+            "max": 21.655439000000115,
+            "p50": 3.211804000000484,
+            "p90": 21.655439000000115,
+            "p95": 21.655439000000115,
+            "totalIterations": 10,
+            "successfulIterations": 10,
+            "successRate": "100.00%"
+          },
+          "improvement": {
+            "vsLegacy": "-27.72%",
+            "absolute": "-1.50ms",
+            "legacyAverage": 5.401538000000073,
+            "newAverage": 6.898769700000412
+          }
+        }
+      }
+    }
+  }
+}

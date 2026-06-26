@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Sprint Pack Builder"
+  short_description: "Turn notes into a 20-minute proof pack"
+  default_prompt: "Use $skill-sprint-pack-builder to convert these notes or upstream agent-skill ideas into a 20-minute action, proof checklist, redaction checklist, public-safe Skool post, reusable skill card, runtime adaptation notes, next reps, and verification criteria."

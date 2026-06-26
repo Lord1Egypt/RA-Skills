@@ -1,0 +1,30 @@
+{
+  "ai_analysis_history": {
+    "created_at": "2025-01-08",
+    "last_updated": "2025-01-08",
+    "total_analyses": 0,
+    "total_predictions": 0,
+    "total_reports_generated": 0,
+    "total_chat_sessions": 0,
+
+    "analyses": [],
+    "predictions": [],
+    "reports": [],
+    "chat_sessions": [],
+
+    "statistics": {
+      "most_common_risk_assessed": null,
+      "average_analysis_time_ms": null,
+      "success_rate": null,
+      "last_analysis_date": null
+    },
+
+    "user_feedback": []
+  },
+
+  "metadata": {
+    "version": "1.0.0",
+    "data_retention_days": 365,
+    "auto_cleanup_enabled": false
+  }
+}

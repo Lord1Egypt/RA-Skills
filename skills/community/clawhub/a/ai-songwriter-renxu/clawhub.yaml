@@ -1,0 +1,23 @@
+name: ai-songwriter-renxu
+version: 3.3.0
+description: AI歌曲创作核心技能 — 八层门禁链路，合辙押韵歌词创作 + MiniMax mmx-cli 音乐生成。支持诗词改编、主题创作、押韵验证、发音质量控制、多渠道文件投递。
+author: renxu
+homepage: https://clawhub.ai/skills/ai-songwriter-renxu
+license: MIT
+tags:
+  - songwriting
+  - rhyming
+  - music-generation
+  - minimax
+  - mmx
+  - lyrics
+  - poetry
+  - thematic
+  - epic-corporate
+category: utility
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md
+  - references/rhyme-table-20260522.md
+  - references/session-20260522-chengfei.md

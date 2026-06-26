@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "text": "Generated .docx file exists",
+      "passed": true,
+      "evidence": "Found: ['eval2.docx']"
+    },
+    {
+      "text": "Output is a valid .docx file",
+      "passed": true,
+      "evidence": "Valid .docx structure"
+    },
+    {
+      "text": "Contract style uses FangSong (仿宋) for body text",
+      "passed": true,
+      "evidence": "FangSong found in styles.xml"
+    },
+    {
+      "text": "Bold formatting preserved in output",
+      "passed": true,
+      "evidence": "Bold formatting found"
+    },
+    {
+      "text": "Headings rendered correctly",
+      "passed": true,
+      "evidence": "Heading count: 4"
+    }
+  ]
+}

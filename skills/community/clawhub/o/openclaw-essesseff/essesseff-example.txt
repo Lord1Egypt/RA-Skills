@@ -1,0 +1,44 @@
+# essesseff API Configuration (required when NOT using --non-essesseff-subscriber-mode)
+ESSESSEFF_API_KEY=your-essesseff-api-key-here
+# ESSESSEFF_API_BASE_URL=https://essesseff.com/api/v1  # Optional - defaults to https://essesseff.com/api/v1
+ESSESSEFF_ACCOUNT_SLUG=my-team
+
+# GitHub Org Admin PAT (required ONLY for --create-app when using --non-essesseff-subscriber-mode)
+# Used to create repos in GITHUB_ORG and push cloned-and-replaced content (including .github/workflows).
+# Classic PAT: grant "repo" and "workflow" scopes. Fine-grained: Contents + Metadata + Workflows read/write.
+# Do not confuse with GITHUB_TOKEN (Argo CD machine user).
+# GITHUB_ORG_ADMIN_PAT=ghp_yourOrgAdminPersonalAccessToken
+
+# GitHub Machine User Credentials (required for Argo CD setup: --setup-argocd)
+# See: https://www.essesseff.com/docs/deployment/github-argocd-machine-user-setup#step-0:-tldr---quick-setup-for-essesseff-onboarding-utility
+ARGOCD_MACHINE_USER="your-argocd-machine-username"
+GITHUB_TOKEN="ghp_yourGitHubPersonalAccessToken"
+ARGOCD_MACHINE_EMAIL="your-email@example.com"
+
+# Organization/App Config (required)
+GITHUB_ORG="my-org"
+APP_NAME="my-app"
+
+# Template Configuration (required for --create-app)
+# For subscriber mode: TEMPLATE_IS_GLOBAL required. For --non-essesseff-subscriber-mode: use template name = GitHub org.
+# All current possible TEMPLATE_NAME values (global templates):
+#   TEMPLATE_NAME="essesseff-hello-world-fastapi-template"    # Python FastAPI
+#   TEMPLATE_NAME="essesseff-hello-world-flask-template"      # Python Flask
+#   TEMPLATE_NAME="essesseff-hello-world-go-template"         # Go
+#   TEMPLATE_NAME="essesseff-hello-world-nodejs-template"     # Node.js
+#   TEMPLATE_NAME="essesseff-hello-world-php-template"        # PHP
+#   TEMPLATE_NAME="essesseff-helloworld-springboot-templat"   # Java Spring Boot
+TEMPLATE_NAME="essesseff-hello-world-go-template"
+TEMPLATE_IS_GLOBAL=true
+
+# App Configuration (optional for --create-app)
+APP_DESCRIPTION="My new essesseff app"
+REPOSITORY_VISIBILITY="private"
+
+# K8S_NAMESPACE (optional) - Kubernetes namespace for {{K8S_NAMESPACE}} in templates; if unset, GITHUB_ORG is used (must be valid K8s namespace)
+# K8S_NAMESPACE="my-k8s-namespace"
+
+# Argo CD Instance URL (optional, for --setup-argocd only; subscriber mode only)
+# When set, the utility will register each environment's Argo CD application URL with essesseff
+# (e.g. https://argocd.example.com/applications/argocd/my-app-dev)
+# ARGOCD_INSTANCE_URL="https://argocd.example.com"

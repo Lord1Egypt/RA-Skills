@@ -1,0 +1,140 @@
+# ClawMobile Default Configuration
+# This file contains default settings for ClawMobile Skill
+
+# API Configuration
+api:
+  base_url: "http://localhost:8765"
+  timeout: 30000  # 30 seconds
+  max_retries: 3
+  retry_delay: 1000  # milliseconds
+
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 8765
+  workers: 4
+  debug: false
+
+# Authentication Configuration
+auth:
+  token_env: "CLAWMOBILE_API_TOKEN"
+  default_token: "clawmobile-secret-token-change-in-production"
+  token_header: "Authorization"
+  token_prefix: "Bearer"
+
+# Connection Configuration
+connection:
+  mode: "local"  # "local" or "remote"
+  remote_host: null
+  port: 8765
+  max_retries: 60
+  test_interval: 30000  # 30 seconds
+  auto_reconnect: true
+  reconnect_delay: 5000  # milliseconds
+
+# Device Configuration
+device:
+  connection_timeout: 60000  # 60 seconds
+  test_interval: 10000  # 10 seconds
+  max_connection_attempts: 10
+
+# Membership Configuration
+membership:
+  default_tier: "free"
+  api_url: "http://localhost:8765"
+  daily_runs:
+    free: 3
+    vip: -1  # unlimited
+    svip: -1  # unlimited
+
+# Recording Configuration
+recording:
+  default_duration: 300  # 5 minutes
+  max_duration: 3600  # 1 hour
+  capture_screenshots: true
+  capture_ui_tree: true
+  auto_stop: false
+  floating_window: true
+
+# Workflow Configuration
+workflow:
+  default_timeout: 300000  # 5 minutes
+  max_parallel_tasks: 5
+  save_history: true
+  max_history_size: 1000
+
+# AI Intervention Configuration
+ai_intervention:
+  enabled: false  # requires VIP or higher
+  threshold: 0.7
+  max_decisions: 10
+  timeout: 5000  # 5 seconds
+  learn_from_decisions: true
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "clawmobile.log"
+  max_size: "10MB"
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  console_output: true
+
+# Performance Configuration
+performance:
+  connection_pool_size: 10
+  request_timeout: 30000
+  chunk_size: 8192
+  enable_compression: false
+
+# Security Configuration
+security:
+  validate_ssl: true
+  allowed_hosts: []
+  enable_rate_limiting: false
+  rate_limit: 100  # requests per minute
+
+# Feature Flags
+features:
+  enable_scheduling: true  # requires VIP or higher
+  enable_ai_intervention: true  # requires VIP or higher
+  enable_natural_language: true
+  enable_parameter_decision: false  # SVIP only
+  enable_import_export: true  # requires VIP or higher
+  enable_analytics: true
+
+# Cache Configuration
+cache:
+  enabled: true
+  ttl: 3600  # 1 hour
+  max_size: 1000
+
+# Notifications Configuration
+notifications:
+  enabled: false
+  webhook_url: null
+  events:
+    - task_completed
+    - task_failed
+    - membership_expired
+
+# Export Configuration
+export:
+  formats:
+    - json
+    - yaml
+  include_metadata: true
+  include_history: false
+
+# Import Configuration
+import:
+  validate_schema: true
+  overwrite: false
+  preserve_history: true
+
+# Testing Configuration
+testing:
+  mock_server_port: 9876
+  test_timeout: 10000
+  parallel_tests: false

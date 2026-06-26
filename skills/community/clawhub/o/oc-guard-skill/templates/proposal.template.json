@@ -1,0 +1,17 @@
+{
+  "intent": "为 writing 机器人绑定 writing agent",
+  "changes": [
+    {
+      "path": "/bindings/by-agent/writing/match/channel",
+      "value": "feishu"
+    },
+    {
+      "path": "/bindings/by-agent/writing/match/accountId",
+      "value": "writing"
+    }
+  ],
+  "post_checks": [
+    "openclaw gateway status",
+    "日志应出现 feishu[writing]: dispatching to agent"
+  ]
+}

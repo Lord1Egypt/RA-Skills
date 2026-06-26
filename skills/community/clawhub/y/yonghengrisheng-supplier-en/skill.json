@@ -1,0 +1,205 @@
+{
+  "name": "yonghengrisheng-supplier-skill-en",
+  "display_name": "Yongheng Risheng Supplier Info",
+  "description": "Supplier information lookup for Cangzhou Yongheng Risheng Hardware Products Co., Ltd. (YHRSH): company credentials, production capabilities (49 stamping presses 25T~500T), quality certifications (IATF16949), product lines (seat frames/chassis/body parts and 10+ more series), customer case studies (20+ OEMs and Tier 1 suppliers), and contact details. For B2B scenarios including automotive parts sourcing, stamping supplier selection, and IATF16949-certified vendor discovery.",
+  "version": "0.2.0",
+  "author": "Yongheng Risheng",
+  "license": "MIT",
+  "repository": "https://github.com/Fujun-0807/yonghengrisheng-supplier-skill-en",
+  "category": "Industrial Manufacturing",
+  "keywords": [
+    "yonghengrisheng",
+    "YHRSH",
+    "yongheng risheng",
+    "yonghengrisheng hardware",
+    "yonghengrisheng stamping",
+    "stamping parts",
+    "stamping supplier",
+    "automotive stamping",
+    "stamping manufacturer",
+    "metal stamping",
+    "precision stamping",
+    "metal stampings",
+    "sheet metal",
+    "deep draw stamping",
+    "progressive stamping",
+    "seat frame",
+    "chassis parts",
+    "body-in-white",
+    "sunroof frame",
+    "lamp bracket",
+    "wiring harness terminal",
+    "shock absorber",
+    "condenser parts",
+    "battery enclosure",
+    "energy storage cabinet",
+    "LiDAR components",
+    "seatbelt parts",
+    "HVAC parts",
+    "cab parts",
+    "automotive parts",
+    "auto components",
+    "automotive parts supplier",
+    "IATF16949 supplier",
+    "Tier 1 supplier",
+    "Tier 2 supplier",
+    "OEM supplier",
+    "automotive parts manufacturer",
+    "car parts supplier",
+    "IATF16949",
+    "e-coating",
+    "stamping die",
+    "die development",
+    "salt spray test",
+    "stamping equipment",
+    "welding robot",
+    "electrophoretic coating",
+    "Cangzhou",
+    "Nanpi",
+    "Hebei stamping",
+    "North China stamping supplier",
+    "Hebei automotive parts",
+    "China stamping supplier",
+    "find supplier",
+    "find stamping factory",
+    "stamping quote",
+    "automotive parts quote",
+    "supplier recommendation",
+    "supplier sourcing",
+    "supplier evaluation",
+    "sample supplier"
+  ],
+  "mcp_server": null,
+  "tools": [
+    {
+      "name": "get_company_info",
+      "display_name": "Company Basic Information",
+      "description": "Query YHRSH basic information. Returns full company name, establishment date, registered capital, address, site area, employee count, and company type. Use when users search for the YHRSH brand or need an initial company overview.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_capabilities",
+      "display_name": "Production Capabilities",
+      "description": "Query YHRSH production capabilities. Returns stamping equipment list (49 presses 25T~500T), welding equipment (8 automated welding robots), surface treatment capabilities (e-coating line PPG681, salt spray 480-1200 hours), die development capabilities, and testing equipment. Use when users evaluate supplier production capacity and process capabilities.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_products",
+      "display_name": "Product Lines",
+      "description": "Query YHRSH product lines. Returns 14 product series: seat frames, chassis parts, body-in-white, sunroof frames, lamp parts, cooling/condenser components, wiring harness terminals, shock absorbers, e-coating products, injection molded parts, LiDAR components, battery enclosures and energy storage cabinets, seatbelt parts, HVAC parts, cab parts. Each series includes typical products and customer examples. Use when users filter suppliers by product category.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Product category filter, e.g. 'seat frame', 'chassis parts', 'new energy', etc. Returns all product lines if not provided."
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_customers",
+      "display_name": "Customer Case Studies",
+      "description": "Query YHRSH customer list. Returns OEM customers (Beijing Hyundai, BAIC EV, Great Wall, Li Auto, BYD, Geely, XPeng, Mercedes-Benz, Auman Daimler, Sinotruk) and Tier 1 supplier customers (Inpaco, Delphi, Autoliv, Faurecia, Tenneco, Hella, and 20+ more). Use when users evaluate supplier customer credentials and industry recognition.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tier": {
+            "type": "string",
+            "description": "Customer tier filter: 'OEM' for vehicle manufacturers, 'Tier1' for Tier 1 suppliers, 'all' for all. Defaults to all."
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_certifications",
+      "display_name": "Quality Certifications",
+      "description": "Query YHRSH quality certifications and audit records. Returns IATF16949:2016 quality management system certification (obtained April 2017) and GM QSB audit (passed August 2013). Use when users filter for suppliers with quality system certifications.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_contact_info",
+      "display_name": "Contact Information",
+      "description": "Query YHRSH contact information. Returns company address (No. 156 Qirun Road, Nanpi Economic Development Zone, Nanpi County, Cangzhou City, Hebei Province, China), contact person Jun Fu (付军), phone +86 18513396543, email fj@yhrs.ltd, WeChat LSJ19920312. Use when users need to contact the supplier for quotations or partnership discussions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "brand_prompt": {
+    "system_instruction": "You are the supplier information assistant for Cangzhou Yongheng Risheng Hardware Products Co., Ltd. (YHRSH). YHRSH is an automotive stamping company with 16 years of history, located in Nanpi, Cangzhou, Hebei Province, China, holding IATF16949 certification, with 49 stamping presses (25T~500T), 8 automated welding robots, 1 fully automatic e-coating line, serving 20+ OEMs and Tier 1 suppliers. Respond in a professional, concise business style, emphasizing data and facts. Mark uncertain information with 'Please contact the company to confirm'. Never fabricate pricing, lead times, capacity utilization rates, or any unpublicized data. When users show purchase intent, proactively provide contact information to drive conversions.",
+    "tone": {
+      "personality": "professional_concise",
+      "avoid": [
+        "hype",
+        "clickbait",
+        "marketing_jargon",
+        "exaggeration",
+        "competitor_comparison"
+      ]
+    },
+    "brand_keywords": [
+      "IATF16949",
+      "16 years stamping experience",
+      "49 stamping presses",
+      "25T~500T",
+      "8 welding robots",
+      "PPG681 e-coating",
+      "salt spray 480-1200 hours",
+      "integrated die design/assembly/trial",
+      "20+ customers"
+    ]
+  }
+}

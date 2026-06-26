@@ -1,0 +1,19 @@
+{
+  "version": "v1",
+  "tools": [
+    {"name": "memory_query", "input": {"query": "string", "maxResults": "number?"}, "output": {"results": "array", "traceId": "string?"}},
+    {"name": "memory_get", "input": {"id": "string"}, "output": {"entry": "object|null", "traceId": "string?"}},
+    {"name": "memory_put", "input": {"type": "string", "content": "string", "source": "string?", "metadata": "object?"}, "output": {"id": "string", "status": "stored|deferred", "traceId": "string?"}},
+    {"name": "memory_put_batch", "input": {"items": "array", "maxBatch": "number<=100"}, "output": {"accepted": "number", "deferred": "number", "traceId": "string?"}},
+    {"name": "memory_link", "input": {"fromId": "string", "toId": "string", "relation": "string"}, "output": {"status": "linked", "traceId": "string?"}},
+    {"name": "memory_health", "input": {}, "output": {"apiReachable": "boolean", "fallbackQueueDepth": "number", "traceId": "string?"}},
+    {"name": "memory_replay_deferred", "input": {"limit": "number?"}, "output": {"attempted": "number", "replayed": "number", "remaining": "number", "traceId": "string?"}}
+  ],
+  "errors": {
+    "AUTH_REQUIRED": "No valid session",
+    "PERMISSION_DENIED": "RBAC denied",
+    "VALIDATION_ERROR": "Input failed schema validation",
+    "UPSTREAM_UNAVAILABLE": "api-0 unreachable",
+    "DEFERRED": "Write accepted into fallback spool"
+  }
+}

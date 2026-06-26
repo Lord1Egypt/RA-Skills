@@ -1,0 +1,8 @@
+interface:
+  display_name: "YOLO26 OpenVINO for AI PCs"
+  short_description: "Compress and accelerate YOLO26 on Intel AI PCs."
+  brand_color: "#0071C5"
+  default_prompt: "Use $openvino-yolo-aipc to export YOLO26 to OpenVINO FP32/INT8, run it on Intel CPU/GPU/NPU, compare performance, and build a local AI PC vision task."
+
+policy:
+  allow_implicit_invocation: true

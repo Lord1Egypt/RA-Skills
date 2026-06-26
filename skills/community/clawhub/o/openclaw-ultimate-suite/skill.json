@@ -1,0 +1,35 @@
+{
+  "name": "openclaw-ultimate-suite",
+  "version": "3.0.0",
+  "description": "OpenClaw 终极技能整合套件 - 29 个技能一站式整合 × 61 个专业 Agent × 安全内置 × 自动激活 × 飞书集成。晴晴超级版：办公效率 + 生活助手 + 社交媒体 + 信息收集 + AI 代理 + 安全守护。",
+  "author": "晴晴",
+  "license": "MIT",
+  "tags": ["suite", "productivity", "office", "social-media", "ai-agents", "security", "chinese", "automation"],
+  "metadata": {
+    "clawdbot": {
+      "emoji": "🚀",
+      "category": "productivity",
+      "requires": {
+        "env": ["AUTO_SKILL_ACTIVATION", "FEISHU_NOTIFY", "IRONCLAW_AUTO_SCAN"],
+        "files": ["skills/*", "docs/*", "examples/*"]
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wd041216-bit/openclaw-ultimate-suite"
+  },
+  "homepage": "https://github.com/wd041216-bit/openclaw-ultimate-suite",
+  "suites": {
+    "office": ["office", "productivity", "note", "writing-assistant", "calendar", "todolist"],
+    "life": ["weather", "email-daily-summary"],
+    "social-media": ["xiaohongshu-mcp", "social-media-scheduler", "tiktok-crawling"],
+    "info-collection": ["multi-search-engine", "playwright", "summarize", "ontology"],
+    "ai-agents": ["agency-agents", "proactive-agent-lite", "xiucheng-self-improving-agent"],
+    "security": ["ironclaw-guardian-evolved", "skill-vetter", "openclaw-guardian-ultra"],
+    "github-clones": ["openclaw-free-web-search", "openclaw-hierarchical-task-spawn", "openclaw-github-repo-commander", "openclaw-feishu-file-delivery"],
+    "晴晴优化": ["agency-agents-evolved", "openclaw-life-office-suite"]
+  },
+  "totalSkills": 29,
+  "totalAgents": 61
+}

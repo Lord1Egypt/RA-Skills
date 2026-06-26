@@ -1,0 +1,3 @@
+skill	phase	score	method	notes
+openclaw-agent-onboarding	baseline	82	dry_run	Strong concept and references; missing decision matrix, output formats, and explicit verification gate.
+openclaw-agent-onboarding	optimized	91	dry_run	Added decision matrix, required change/final report formats, verification gate, and test prompts.

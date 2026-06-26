@@ -1,0 +1,29 @@
+{
+	"evals": [
+		{
+			"eval_name": "board-seo-setup",
+			"expected_output": "Corrects the user's board names to be SEO-friendly (e.g., 'Minimalist Gold Jewelry Aesthetics', 'Everyday Office Accessories'). References board_strategy.md.",
+			"files": [
+			],
+			"id": 0,
+			"prompt": "I'm launching a new line of minimalist gold jewelry. What should I name my Pinterest boards? I was thinking 'My Brand Jewelry' and 'Necklaces'."
+		},
+		{
+			"eval_name": "fix-low-traffic-pins",
+			"expected_output": "Explains that flat-lays lack lifestyle context. Advises using 2:3 vertical images, adding text overlays, and using lifestyle photography to inspire users.",
+			"files": [
+			],
+			"id": 1,
+			"prompt": "I post my flat-lay t-shirt photos every day but get zero outbound clicks. What am I doing wrong?"
+		},
+		{
+			"eval_name": "rijoy-ugc-integration",
+			"expected_output": "Recommends integrating the RIJOY loyalty program. Suggests giving points/rewards to customers who pin their winter coat outfits, explaining how this drives organic social proof.",
+			"files": [
+			],
+			"id": 2,
+			"prompt": "I want to get my existing customers to help me market my winter coats on Pinterest. Any ideas?"
+		}
+	],
+	"skill_name": "pinterest-visual-marketing"
+}

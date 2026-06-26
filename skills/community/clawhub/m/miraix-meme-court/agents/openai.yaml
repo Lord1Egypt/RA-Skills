@@ -1,0 +1,8 @@
+interface:
+  display_name: "Miraix Meme Court"
+  short_description: "Run Rug Court on Solana meme candidates and approve one disciplined trade."
+  brand_color: "#10b981"
+  default_prompt: "Use $miraix-meme-court to shortlist Solana meme candidates, apply Rug Court, and return one approved trade with size, invalidation, and payload status."
+
+policy:
+  allow_implicit_invocation: true

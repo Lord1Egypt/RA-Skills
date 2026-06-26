@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "outline-generator"
+version = "1.0.1"
+description = "小说大纲生成器 - 根据小说类型、主题、字数生成 15 节拍结构化大纲"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "OpenClaw Community"}
+]
+keywords = [
+    "novel",
+    "outline",
+    "writing",
+    "chinese-novel",
+    "outline-generator",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "pyyaml>=6.0.1",
+    "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "pytest>=7.0.0",
+]
+
+[project.scripts]
+outline-generator = "scripts.generate_outline:main"
+
+[project.urls]
+Homepage = "https://github.com/openclaw/openclaw"
+Documentation = "https://github.com/openclaw/openclaw/tree/main/skills/outline-generator"
+Repository = "https://github.com/openclaw/openclaw.git"
+Issues = "https://github.com/openclaw/openclaw/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*"]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+extend-select = [
+    "F",  # Pyflakes
+    "E",  # Pycodestyle errors
+    "W",  # Pycodestyle warnings
+    "I",  # isort
+    "UP", # pyupgrade
+]
+
+[tool.ruff.lint]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]

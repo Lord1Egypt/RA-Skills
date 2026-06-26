@@ -1,0 +1,1003 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "yfinance>=0.2.36",
+#     "rich>=13.7",
+# ]
+# ///
+"""Yahoo Finance CLI — tailored for fixed income / EM investors.
+
+Usage: yf <command> [args] [--json]
+
+Commands:
+  price TICKER           Quick price + change + volume
+  quote TICKER           Detailed quote (52w range, PE, yield, etc.)
+  compare T1,T2,T3       Side-by-side comparison table
+  credit TICKER          Credit analysis: leverage, coverage, debt maturity
+  macro                  Morning macro dashboard
+  fx [BASE]              LatAm FX rates
+  flows ETF              ETF top holdings + fund data
+  history TICKER [PERIOD] Price history
+  fundamentals TICKER    Full financials (IS, BS, CF)
+  news TICKER            Recent news
+  search QUERY           Find tickers
+  options TICKER         Options chain (near-the-money calls & puts)
+  dividends TICKER       Dividend history, yield, payout ratio
+  ratings TICKER         Analyst recommendations & upgrades/downgrades
+"""
+
+import json
+import sys
+from datetime import datetime
+from io import StringIO
+
+import yfinance as yf
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.text import Text
+
+console = Console()
+err_console = Console(stderr=True)
+
+def _json_mode() -> bool:
+    return "--json" in sys.argv
+
+def _clean_args() -> list[str]:
+    return [a for a in sys.argv[1:] if a != "--json"]
+
+def _safe_get(info: dict, key: str, default="N/A"):
+    v = info.get(key)
+    return default if v is None else v
+
+def _fmt_num(v, decimals=2, prefix="", suffix=""):
+    if v is None or v == "N/A":
+        return "N/A"
+    try:
+        n = float(v)
+        if abs(n) >= 1e12:
+            return f"{prefix}{n/1e12:.{decimals}f}T{suffix}"
+        if abs(n) >= 1e9:
+            return f"{prefix}{n/1e9:.{decimals}f}B{suffix}"
+        if abs(n) >= 1e6:
+            return f"{prefix}{n/1e6:.{decimals}f}M{suffix}"
+        if abs(n) >= 1e3:
+            return f"{prefix}{n/1e3:.{decimals}f}K{suffix}"
+        return f"{prefix}{n:.{decimals}f}{suffix}"
+    except (ValueError, TypeError):
+        return str(v)
+
+def _fmt_pct(v, decimals=2):
+    if v is None or v == "N/A":
+        return "N/A"
+    try:
+        return f"{float(v)*100:.{decimals}f}%" if abs(float(v)) < 1 else f"{float(v):.{decimals}f}%"
+    except (ValueError, TypeError):
+        return str(v)
+
+def _color_change(v):
+    if v is None or v == "N/A":
+        return "N/A"
+    try:
+        n = float(v)
+        color = "green" if n >= 0 else "red"
+        sign = "+" if n >= 0 else ""
+        return f"[{color}]{sign}{n:.2f}%[/{color}]"
+    except (ValueError, TypeError):
+        return str(v)
+
+def _get_ticker(symbol: str):
+    t = yf.Ticker(symbol)
+    info = t.info
+    if not info or info.get("regularMarketPrice") is None and info.get("previousClose") is None:
+        if info.get("symbol") is None:
+            err_console.print(f"[red]Error: Ticker '{symbol}' not found[/red]")
+            sys.exit(1)
+    return t, info
+
+
+def cmd_price(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf price TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t, info = _get_ticker(symbol)
+
+    price = _safe_get(info, "regularMarketPrice", _safe_get(info, "previousClose"))
+    prev = _safe_get(info, "regularMarketPreviousClose", _safe_get(info, "previousClose"))
+    change = change_pct = "N/A"
+    if price != "N/A" and prev != "N/A":
+        try:
+            change = float(price) - float(prev)
+            change_pct = (change / float(prev)) * 100
+        except (ValueError, TypeError, ZeroDivisionError):
+            pass
+
+    volume = _safe_get(info, "regularMarketVolume", _safe_get(info, "volume"))
+    currency = _safe_get(info, "currency", "")
+    name = _safe_get(info, "shortName", symbol)
+
+    if _json_mode():
+        print(json.dumps({"symbol": symbol, "name": name, "price": price, "change": change, "changePct": change_pct, "volume": volume, "currency": currency}, default=str))
+        return
+
+    table = Table(title=f"📊 {name} ({symbol})", show_header=False, padding=(0, 2))
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+    table.add_row("Price", f"{price} {currency}")
+    if change != "N/A":
+        color = "green" if change >= 0 else "red"
+        sign = "+" if change >= 0 else ""
+        table.add_row("Change", f"[{color}]{sign}{change:.2f} ({sign}{change_pct:.2f}%)[/{color}]")
+    table.add_row("Volume", _fmt_num(volume, 0))
+    console.print(table)
+
+
+def cmd_quote(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf quote TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t, info = _get_ticker(symbol)
+
+    fields = [
+        ("Name", _safe_get(info, "shortName")),
+        ("Price", f"{_safe_get(info, 'regularMarketPrice')} {_safe_get(info, 'currency', '')}"),
+        ("Previous Close", _safe_get(info, "previousClose")),
+        ("Open", _safe_get(info, "regularMarketOpen", _safe_get(info, "open"))),
+        ("Day Range", f"{_safe_get(info, 'regularMarketDayLow', _safe_get(info, 'dayLow'))} - {_safe_get(info, 'regularMarketDayHigh', _safe_get(info, 'dayHigh'))}"),
+        ("52W Range", f"{_safe_get(info, 'fiftyTwoWeekLow')} - {_safe_get(info, 'fiftyTwoWeekHigh')}"),
+        ("Volume", _fmt_num(_safe_get(info, "regularMarketVolume"), 0)),
+        ("Avg Volume", _fmt_num(_safe_get(info, "averageVolume"), 0)),
+        ("Market Cap", _fmt_num(_safe_get(info, "marketCap"))),
+        ("P/E (TTM)", _safe_get(info, "trailingPE")),
+        ("P/E (Fwd)", _safe_get(info, "forwardPE")),
+        ("EPS (TTM)", _safe_get(info, "trailingEps")),
+        ("Div Yield", _fmt_pct(_safe_get(info, "dividendYield"))),
+        ("Beta", _safe_get(info, "beta")),
+        ("Sector", _safe_get(info, "sector")),
+        ("Industry", _safe_get(info, "industry")),
+    ]
+
+    if _json_mode():
+        print(json.dumps({k: v for k, v in fields}, default=str))
+        return
+
+    table = Table(title=f"📋 {symbol} — Detailed Quote", show_header=False, padding=(0, 2))
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+    for k, v in fields:
+        table.add_row(k, str(v))
+    console.print(table)
+
+
+def cmd_compare(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf compare TICK1,TICK2,TICK3[/red]")
+        sys.exit(1)
+    symbols = [s.strip().upper() for s in args[0].split(",")]
+    if len(symbols) < 2:
+        err_console.print("[red]Provide at least 2 tickers separated by commas[/red]")
+        sys.exit(1)
+
+    data = {}
+    for s in symbols:
+        try:
+            t, info = _get_ticker(s)
+            data[s] = info
+        except SystemExit:
+            data[s] = {}
+
+    metrics = [
+        ("Price", "regularMarketPrice"),
+        ("Change %", None),  # computed
+        ("Market Cap", "marketCap"),
+        ("P/E (TTM)", "trailingPE"),
+        ("P/E (Fwd)", "forwardPE"),
+        ("Div Yield", "dividendYield"),
+        ("Beta", "beta"),
+        ("52W Low", "fiftyTwoWeekLow"),
+        ("52W High", "fiftyTwoWeekHigh"),
+        ("Volume", "regularMarketVolume"),
+    ]
+
+    if _json_mode():
+        out = {}
+        for s in symbols:
+            info = data.get(s, {})
+            out[s] = {label: _safe_get(info, key) if key else "N/A" for label, key in metrics}
+        print(json.dumps(out, default=str))
+        return
+
+    table = Table(title=f"📊 Comparison: {', '.join(symbols)}")
+    table.add_column("Metric", style="bold")
+    for s in symbols:
+        table.add_column(s, justify="right")
+
+    for label, key in metrics:
+        row = [label]
+        for s in symbols:
+            info = data.get(s, {})
+            if key is None:  # change %
+                price = info.get("regularMarketPrice")
+                prev = info.get("regularMarketPreviousClose", info.get("previousClose"))
+                if price and prev:
+                    try:
+                        pct = ((float(price) - float(prev)) / float(prev)) * 100
+                        color = "green" if pct >= 0 else "red"
+                        sign = "+" if pct >= 0 else ""
+                        row.append(f"[{color}]{sign}{pct:.2f}%[/{color}]")
+                    except (ValueError, TypeError, ZeroDivisionError):
+                        row.append("N/A")
+                else:
+                    row.append("N/A")
+            elif key == "marketCap":
+                row.append(_fmt_num(_safe_get(info, key)))
+            elif key == "dividendYield":
+                row.append(_fmt_pct(_safe_get(info, key)))
+            elif key == "regularMarketVolume":
+                row.append(_fmt_num(_safe_get(info, key), 0))
+            else:
+                v = _safe_get(info, key)
+                row.append(str(v) if v != "N/A" else "N/A")
+        table.add_row(*row)
+    console.print(table)
+
+
+def cmd_credit(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf credit TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t, info = _get_ticker(symbol)
+
+    bs = t.balance_sheet
+    fin = t.financials
+    cf = t.cashflow
+
+    result = {"symbol": symbol, "name": _safe_get(info, "shortName", symbol)}
+
+    # Extract latest period data
+    def _latest(df, row_names):
+        if df is None or df.empty:
+            return None
+        for name in row_names:
+            if name in df.index:
+                val = df.iloc[:, 0].get(name)  # latest column
+                if val is not None:
+                    try:
+                        return float(val)
+                    except (ValueError, TypeError):
+                        pass
+        return None
+
+    total_debt = _latest(bs, ["Total Debt", "Long Term Debt And Capital Lease Obligation", "Long Term Debt", "Total Non Current Liabilities Net Minority Interest"])
+    short_debt = _latest(bs, ["Current Debt", "Current Debt And Capital Lease Obligation", "Current Portion Of Long Term Debt"])
+    long_debt = _latest(bs, ["Long Term Debt", "Long Term Debt And Capital Lease Obligation"])
+    total_assets = _latest(bs, ["Total Assets"])
+    total_equity = _latest(bs, ["Total Equity Gross Minority Interest", "Stockholders Equity", "Common Stock Equity"])
+    cash = _latest(bs, ["Cash And Cash Equivalents", "Cash Cash Equivalents And Short Term Investments", "Cash Financial"])
+
+    ebitda = _latest(fin, ["EBITDA", "Normalized EBITDA"])
+    ebit = _latest(fin, ["EBIT", "Operating Income"])
+    interest_expense = _latest(fin, ["Interest Expense", "Interest Expense Non Operating", "Net Interest Income"])
+    revenue = _latest(fin, ["Total Revenue"])
+    net_income = _latest(fin, ["Net Income", "Net Income Common Stockholders"])
+
+    # Compute ratios
+    def _ratio(num, den):
+        if num is not None and den is not None and den != 0:
+            return num / den
+        return None
+
+    net_debt = None
+    if total_debt is not None and cash is not None:
+        net_debt = total_debt - cash
+
+    ratios = {
+        "Total Debt": total_debt,
+        "Short-term Debt": short_debt,
+        "Long-term Debt": long_debt,
+        "Cash & Equivalents": cash,
+        "Net Debt": net_debt,
+        "Total Assets": total_assets,
+        "Total Equity": total_equity,
+        "EBITDA": ebitda,
+        "EBIT": ebit,
+        "Interest Expense": interest_expense,
+        "Revenue": revenue,
+        "Net Income": net_income,
+        "Debt/Equity": _ratio(total_debt, total_equity),
+        "Debt/Assets": _ratio(total_debt, total_assets),
+        "Debt/EBITDA": _ratio(total_debt, ebitda),
+        "Net Debt/EBITDA": _ratio(net_debt, ebitda),
+        "Interest Coverage (EBITDA)": _ratio(ebitda, abs(interest_expense) if interest_expense else None),
+        "Interest Coverage (EBIT)": _ratio(ebit, abs(interest_expense) if interest_expense else None),
+    }
+    result["metrics"] = {k: v for k, v in ratios.items()}
+
+    if _json_mode():
+        print(json.dumps(result, default=str))
+        return
+
+    table = Table(title=f"🏦 Credit Analysis — {_safe_get(info, 'shortName', symbol)} ({symbol})", show_header=False, padding=(0, 2))
+    table.add_column("Metric", style="bold")
+    table.add_column("Value", justify="right")
+
+    section_balance = ["Total Debt", "Short-term Debt", "Long-term Debt", "Cash & Equivalents", "Net Debt", "Total Assets", "Total Equity"]
+    section_income = ["Revenue", "EBITDA", "EBIT", "Interest Expense", "Net Income"]
+    section_ratios = ["Debt/Equity", "Debt/Assets", "Debt/EBITDA", "Net Debt/EBITDA", "Interest Coverage (EBITDA)", "Interest Coverage (EBIT)"]
+
+    table.add_row("[bold underline]Balance Sheet[/bold underline]", "")
+    for k in section_balance:
+        v = ratios.get(k)
+        table.add_row(f"  {k}", _fmt_num(v) if v is not None else "N/A")
+
+    table.add_row("", "")
+    table.add_row("[bold underline]Income[/bold underline]", "")
+    for k in section_income:
+        v = ratios.get(k)
+        table.add_row(f"  {k}", _fmt_num(v) if v is not None else "N/A")
+
+    table.add_row("", "")
+    table.add_row("[bold underline]Leverage Ratios[/bold underline]", "")
+    for k in section_ratios:
+        v = ratios.get(k)
+        if v is not None:
+            fmt = f"{v:.2f}x"
+            if k.startswith("Interest Coverage"):
+                color = "green" if v > 3 else ("yellow" if v > 1.5 else "red")
+                fmt = f"[{color}]{v:.2f}x[/{color}]"
+            elif k.startswith("Debt/EBITDA") or k.startswith("Net Debt/EBITDA"):
+                color = "green" if v < 3 else ("yellow" if v < 5 else "red")
+                fmt = f"[{color}]{v:.2f}x[/{color}]"
+            table.add_row(f"  {k}", fmt)
+        else:
+            table.add_row(f"  {k}", "N/A")
+
+    console.print(table)
+
+
+def cmd_macro(args: list[str]):
+    tickers = {
+        "US 10Y": "^TNX",
+        "US 2Y": "^IRX",
+        "US 2-10 Spread": None,  # computed
+        "DXY": "DX-Y.NYB",
+        "VIX": "^VIX",
+        "Oil (WTI)": "CL=F",
+        "Gold": "GC=F",
+        "BTC": "BTC-USD",
+        "USD/ARS": "USDARS=X",
+        "S&P 500": "^GSPC",
+    }
+
+    data = {}
+    fetch_symbols = [v for v in tickers.values() if v]
+    for symbol in fetch_symbols:
+        try:
+            t = yf.Ticker(symbol)
+            info = t.info
+            price = info.get("regularMarketPrice", info.get("previousClose"))
+            prev = info.get("regularMarketPreviousClose", info.get("previousClose"))
+            change_pct = None
+            if price and prev:
+                try:
+                    change_pct = ((float(price) - float(prev)) / float(prev)) * 100
+                except (ValueError, TypeError, ZeroDivisionError):
+                    pass
+            data[symbol] = {"price": price, "changePct": change_pct}
+        except Exception as e:
+            data[symbol] = {"price": None, "changePct": None, "error": str(e)}
+
+    if _json_mode():
+        out = {}
+        for name, sym in tickers.items():
+            if sym:
+                out[name] = {"symbol": sym, **data.get(sym, {})}
+        print(json.dumps(out, default=str))
+        return
+
+    table = Table(title=f"🌍 Macro Dashboard — {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}")
+    table.add_column("Indicator", style="bold")
+    table.add_column("Value", justify="right")
+    table.add_column("Change", justify="right")
+
+    for name, sym in tickers.items():
+        if sym is None:
+            # 2-10 spread
+            y10 = data.get("^TNX", {}).get("price")
+            y2 = data.get("^IRX", {}).get("price")
+            if y10 is not None and y2 is not None:
+                try:
+                    spread = float(y10) - float(y2)
+                    color = "green" if spread > 0 else "red"
+                    table.add_row(name, f"[{color}]{spread:.2f}bps[/{color}]", "")
+                except (ValueError, TypeError):
+                    table.add_row(name, "N/A", "")
+            else:
+                table.add_row(name, "N/A", "")
+            continue
+
+        d = data.get(sym, {})
+        price = d.get("price")
+        pct = d.get("changePct")
+
+        price_str = f"{price:.2f}" if price is not None else "N/A"
+        if name in ("US 10Y", "US 2Y"):
+            price_str = f"{price:.3f}%" if price is not None else "N/A"
+        elif name == "BTC":
+            price_str = f"${price:,.0f}" if price is not None else "N/A"
+        elif name in ("Oil (WTI)", "Gold"):
+            price_str = f"${price:,.2f}" if price is not None else "N/A"
+        elif name == "USD/ARS":
+            price_str = f"{price:,.2f}" if price is not None else "N/A"
+
+        if pct is not None:
+            color = "green" if pct >= 0 else "red"
+            sign = "+" if pct >= 0 else ""
+            change_str = f"[{color}]{sign}{pct:.2f}%[/{color}]"
+        else:
+            change_str = "N/A"
+
+        table.add_row(name, price_str, change_str)
+
+    console.print(table)
+
+
+def cmd_fx(args: list[str]):
+    base = args[0].upper() if args else "USD"
+    pairs = {
+        f"{base}/ARS": f"{base}ARS=X",
+        f"{base}/BRL": f"{base}BRL=X",
+        f"{base}/CLP": f"{base}CLP=X",
+        f"{base}/MXN": f"{base}MXN=X",
+        f"{base}/COP": f"{base}COP=X",
+        f"{base}/UYU": f"{base}UYU=X",
+        f"{base}/PEN": f"{base}PEN=X",
+    }
+
+    data = {}
+    for name, sym in pairs.items():
+        try:
+            t = yf.Ticker(sym)
+            info = t.info
+            price = info.get("regularMarketPrice", info.get("previousClose"))
+            prev = info.get("regularMarketPreviousClose", info.get("previousClose"))
+            change_pct = None
+            if price and prev:
+                try:
+                    change_pct = ((float(price) - float(prev)) / float(prev)) * 100
+                except (ValueError, TypeError, ZeroDivisionError):
+                    pass
+            data[name] = {"symbol": sym, "rate": price, "changePct": change_pct}
+        except Exception as e:
+            data[name] = {"symbol": sym, "rate": None, "changePct": None, "error": str(e)}
+
+    if _json_mode():
+        print(json.dumps(data, default=str))
+        return
+
+    table = Table(title=f"💱 FX Rates — {base} vs LatAm ({datetime.now().strftime('%Y-%m-%d')})")
+    table.add_column("Pair", style="bold")
+    table.add_column("Rate", justify="right")
+    table.add_column("Change", justify="right")
+
+    for name, d in data.items():
+        rate = d.get("rate")
+        pct = d.get("changePct")
+        rate_str = f"{rate:,.2f}" if rate is not None else "N/A"
+        if pct is not None:
+            color = "green" if pct >= 0 else "red"
+            sign = "+" if pct >= 0 else ""
+            change_str = f"[{color}]{sign}{pct:.2f}%[/{color}]"
+        else:
+            change_str = "N/A"
+        table.add_row(name, rate_str, change_str)
+
+    console.print(table)
+
+
+def cmd_flows(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf flows ETF[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t, info = _get_ticker(symbol)
+
+    fund_data = {
+        "Name": _safe_get(info, "shortName"),
+        "Category": _safe_get(info, "category"),
+        "Total Assets": _fmt_num(_safe_get(info, "totalAssets")),
+        "NAV": _safe_get(info, "navPrice"),
+        "Yield": _fmt_pct(_safe_get(info, "yield")),
+        "YTD Return": _fmt_pct(_safe_get(info, "ytdReturn")),
+        "3Y Return": _fmt_pct(_safe_get(info, "threeYearAverageReturn")),
+        "5Y Return": _fmt_pct(_safe_get(info, "fiveYearAverageReturn")),
+        "Expense Ratio": _fmt_pct(_safe_get(info, "annualReportExpenseRatio")),
+        "Beta (3Y)": _safe_get(info, "beta3Year"),
+    }
+
+    # Top holdings
+    try:
+        holdings = t.funds_data.get("topHoldings", []) if hasattr(t, 'funds_data') else []
+    except Exception:
+        holdings = []
+
+    # Try alternative
+    if not holdings:
+        try:
+            # yfinance >= 0.2.36 approach
+            top = t.funds_data
+            if isinstance(top, dict):
+                holdings = top.get("topHoldings", [])
+        except Exception:
+            holdings = []
+
+    if _json_mode():
+        print(json.dumps({"fund": fund_data, "holdings": holdings}, default=str))
+        return
+
+    # Fund info table
+    table = Table(title=f"📦 {symbol} — ETF Overview", show_header=False, padding=(0, 2))
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+    for k, v in fund_data.items():
+        table.add_row(k, str(v))
+    console.print(table)
+
+    # Holdings table
+    if holdings:
+        h_table = Table(title=f"🏆 Top Holdings — {symbol}")
+        h_table.add_column("#", justify="right")
+        h_table.add_column("Holding", style="bold")
+        h_table.add_column("Weight", justify="right")
+        for i, h in enumerate(holdings[:15], 1):
+            name = h.get("holdingName", h.get("symbol", "Unknown"))
+            weight = h.get("holdingPercent", 0)
+            h_table.add_row(str(i), name, f"{weight*100:.2f}%" if isinstance(weight, (int, float)) else str(weight))
+        console.print(h_table)
+    else:
+        console.print("[dim]Holdings data not available for this ETF[/dim]")
+
+
+def cmd_history(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf history TICKER [PERIOD][/red]")
+        err_console.print("Periods: 1d, 5d, 1mo, 3mo, 6mo, 1y, ytd, max")
+        sys.exit(1)
+    symbol = args[0].upper()
+    period = args[1] if len(args) > 1 else "1mo"
+
+    valid_periods = ["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", "max"]
+    if period not in valid_periods:
+        err_console.print(f"[red]Invalid period '{period}'. Use: {', '.join(valid_periods)}[/red]")
+        sys.exit(1)
+
+    t = yf.Ticker(symbol)
+    hist = t.history(period=period)
+
+    if hist.empty:
+        err_console.print(f"[red]No history data for {symbol}[/red]")
+        sys.exit(1)
+
+    if _json_mode():
+        records = []
+        for date, row in hist.iterrows():
+            records.append({
+                "date": str(date.date()) if hasattr(date, 'date') else str(date),
+                "open": round(row.get("Open", 0), 2),
+                "high": round(row.get("High", 0), 2),
+                "low": round(row.get("Low", 0), 2),
+                "close": round(row.get("Close", 0), 2),
+                "volume": int(row.get("Volume", 0)),
+            })
+        print(json.dumps({"symbol": symbol, "period": period, "data": records}, default=str))
+        return
+
+    table = Table(title=f"📈 {symbol} — Price History ({period})")
+    table.add_column("Date", style="bold")
+    table.add_column("Open", justify="right")
+    table.add_column("High", justify="right")
+    table.add_column("Low", justify="right")
+    table.add_column("Close", justify="right")
+    table.add_column("Volume", justify="right")
+
+    # Show last 30 rows max for readability
+    display = hist.tail(30)
+    for date, row in display.iterrows():
+        date_str = str(date.date()) if hasattr(date, 'date') else str(date)[:10]
+        table.add_row(
+            date_str,
+            f"{row.get('Open', 0):.2f}",
+            f"{row.get('High', 0):.2f}",
+            f"{row.get('Low', 0):.2f}",
+            f"{row.get('Close', 0):.2f}",
+            _fmt_num(row.get("Volume", 0), 0),
+        )
+
+    if len(hist) > 30:
+        console.print(f"[dim]Showing last 30 of {len(hist)} records[/dim]")
+    console.print(table)
+
+
+def cmd_fundamentals(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf fundamentals TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t, info = _get_ticker(symbol)
+
+    statements = {}
+    for name, df in [("Income Statement", t.financials), ("Balance Sheet", t.balance_sheet), ("Cash Flow", t.cashflow)]:
+        if df is not None and not df.empty:
+            records = {}
+            for col in df.columns[:4]:  # last 4 periods
+                period = str(col.date()) if hasattr(col, 'date') else str(col)[:10]
+                records[period] = {str(idx): val for idx, val in df[col].items() if val is not None}
+            statements[name] = records
+        else:
+            statements[name] = {}
+
+    if _json_mode():
+        print(json.dumps({"symbol": symbol, "statements": statements}, default=str))
+        return
+
+    name = _safe_get(info, "shortName", symbol)
+    for stmt_name, periods in statements.items():
+        if not periods:
+            console.print(f"[dim]{stmt_name}: No data available[/dim]")
+            continue
+
+        table = Table(title=f"📊 {name} — {stmt_name}")
+        table.add_column("Item", style="bold", max_width=35)
+        period_keys = list(periods.keys())
+        for p in period_keys:
+            table.add_column(p, justify="right")
+
+        # Get all row names from first period
+        all_rows = list(periods[period_keys[0]].keys()) if period_keys else []
+        for row_name in all_rows[:25]:  # cap at 25 rows
+            row = [row_name]
+            for p in period_keys:
+                v = periods[p].get(row_name)
+                row.append(_fmt_num(v) if v is not None else "N/A")
+            table.add_row(*row)
+
+        console.print(table)
+        console.print()
+
+
+def cmd_news(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf news TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t = yf.Ticker(symbol)
+
+    try:
+        news = t.news or []
+    except Exception:
+        news = []
+
+    if not news:
+        console.print(f"[dim]No news available for {symbol}[/dim]")
+        return
+
+    if _json_mode():
+        print(json.dumps(news[:15], default=str))
+        return
+
+    table = Table(title=f"📰 News — {symbol}")
+    table.add_column("#", justify="right", width=3)
+    table.add_column("Title", style="bold", max_width=60)
+    table.add_column("Publisher")
+    table.add_column("Link", max_width=50)
+
+    for i, item in enumerate(news[:15], 1):
+        title = item.get("title", item.get("content", {}).get("title", "N/A")) if isinstance(item, dict) else str(item)
+        publisher = item.get("publisher", item.get("content", {}).get("provider", {}).get("displayName", "")) if isinstance(item, dict) else ""
+        link = item.get("link", item.get("content", {}).get("canonicalUrl", {}).get("url", "")) if isinstance(item, dict) else ""
+        table.add_row(str(i), title, publisher, link)
+
+    console.print(table)
+
+
+def cmd_search(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf search QUERY[/red]")
+        sys.exit(1)
+    query = " ".join(args)
+
+    try:
+        results = yf.Search(query)
+        quotes = results.quotes if hasattr(results, 'quotes') else []
+    except Exception as e:
+        err_console.print(f"[red]Search error: {e}[/red]")
+        sys.exit(1)
+
+    if not quotes:
+        console.print(f"[dim]No results for '{query}'[/dim]")
+        return
+
+    if _json_mode():
+        print(json.dumps(quotes[:20], default=str))
+        return
+
+    table = Table(title=f"🔍 Search: {query}")
+    table.add_column("Symbol", style="bold")
+    table.add_column("Name")
+    table.add_column("Type")
+    table.add_column("Exchange")
+
+    for q in quotes[:20]:
+        table.add_row(
+            q.get("symbol", ""),
+            q.get("shortname", q.get("longname", "")),
+            q.get("quoteType", q.get("typeDisp", "")),
+            q.get("exchange", q.get("exchDisp", "")),
+        )
+    console.print(table)
+
+
+def cmd_options(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf options TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t = yf.Ticker(symbol)
+
+    try:
+        dates = t.options
+    except Exception:
+        dates = []
+
+    if not dates:
+        console.print(f"[dim]No options data for {symbol}[/dim]")
+        return
+
+    # Use nearest expiry
+    exp = dates[0]
+    chain = t.option_chain(exp)
+
+    if _json_mode():
+        out = {"symbol": symbol, "expiry": exp, "expirations": list(dates)}
+        out["calls"] = chain.calls.head(15).to_dict(orient="records") if chain.calls is not None else []
+        out["puts"] = chain.puts.head(15).to_dict(orient="records") if chain.puts is not None else []
+        print(json.dumps(out, default=str))
+        return
+
+    # Find ATM strike
+    info = t.info
+    price = info.get("regularMarketPrice", info.get("previousClose", 0))
+
+    for label, df in [("CALLS", chain.calls), ("PUTS", chain.puts)]:
+        if df is None or df.empty:
+            console.print(f"[dim]{label}: No data[/dim]")
+            continue
+
+        # Filter near the money (±10 strikes from ATM)
+        if price:
+            try:
+                atm_idx = (df["strike"] - float(price)).abs().idxmin()
+                start = max(0, atm_idx - 5)
+                end = min(len(df), atm_idx + 6)
+                df = df.iloc[start:end]
+            except Exception:
+                df = df.head(15)
+        else:
+            df = df.head(15)
+
+        table = Table(title=f"{'📈' if label == 'CALLS' else '📉'} {symbol} {label} — Exp: {exp}")
+        table.add_column("Strike", justify="right", style="bold")
+        table.add_column("Bid", justify="right")
+        table.add_column("Ask", justify="right")
+        table.add_column("Last", justify="right")
+        table.add_column("Vol", justify="right")
+        table.add_column("OI", justify="right")
+        table.add_column("IV", justify="right")
+
+        for _, row in df.iterrows():
+            strike = f"{row.get('strike', 0):.2f}"
+            itm = ""
+            if price:
+                try:
+                    if (label == "CALLS" and row["strike"] < float(price)) or \
+                       (label == "PUTS" and row["strike"] > float(price)):
+                        itm = " [bold]ITM[/bold]"
+                except (ValueError, TypeError):
+                    pass
+            table.add_row(
+                strike + itm,
+                f"{row.get('bid', 0):.2f}",
+                f"{row.get('ask', 0):.2f}",
+                f"{row.get('lastPrice', 0):.2f}",
+                str(int(row.get("volume", 0))) if row.get("volume") else "-",
+                str(int(row.get("openInterest", 0))) if row.get("openInterest") else "-",
+                f"{row.get('impliedVolatility', 0)*100:.1f}%" if row.get("impliedVolatility") else "-",
+            )
+        console.print(table)
+
+    console.print(f"[dim]Available expirations: {', '.join(dates[:8])}{'...' if len(dates) > 8 else ''}[/dim]")
+
+
+def cmd_dividends(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf dividends TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t, info = _get_ticker(symbol)
+
+    div_info = {
+        "Dividend Rate": _safe_get(info, "dividendRate"),
+        "Dividend Yield": _fmt_pct(_safe_get(info, "dividendYield")),
+        "Ex-Dividend Date": _safe_get(info, "exDividendDate"),
+        "Payout Ratio": _fmt_pct(_safe_get(info, "payoutRatio")),
+        "5Y Avg Yield": _fmt_pct(_safe_get(info, "fiveYearAvgDividendYield")),
+        "Trailing Annual Rate": _safe_get(info, "trailingAnnualDividendRate"),
+        "Trailing Annual Yield": _fmt_pct(_safe_get(info, "trailingAnnualDividendYield")),
+    }
+
+    # Convert ex-div date from epoch
+    ex_div = info.get("exDividendDate")
+    if ex_div and isinstance(ex_div, (int, float)):
+        try:
+            div_info["Ex-Dividend Date"] = datetime.fromtimestamp(ex_div).strftime("%Y-%m-%d")
+        except Exception:
+            pass
+
+    divs = t.dividends
+    history = []
+    if divs is not None and not divs.empty:
+        for date, amount in divs.tail(12).items():
+            history.append({
+                "date": str(date.date()) if hasattr(date, 'date') else str(date)[:10],
+                "amount": round(float(amount), 4)
+            })
+
+    if _json_mode():
+        print(json.dumps({"symbol": symbol, "info": div_info, "history": history}, default=str))
+        return
+
+    name = _safe_get(info, "shortName", symbol)
+    table = Table(title=f"💰 Dividends — {name} ({symbol})", show_header=False, padding=(0, 2))
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+    for k, v in div_info.items():
+        table.add_row(k, str(v))
+    console.print(table)
+
+    if history:
+        h_table = Table(title=f"📅 Recent Dividend History")
+        h_table.add_column("Date", style="bold")
+        h_table.add_column("Amount", justify="right")
+        for h in history:
+            h_table.add_row(h["date"], f"${h['amount']:.4f}")
+        console.print(h_table)
+    else:
+        console.print(f"[dim]No dividend history for {symbol}[/dim]")
+
+
+def cmd_ratings(args: list[str]):
+    if not args:
+        err_console.print("[red]Usage: yf ratings TICKER[/red]")
+        sys.exit(1)
+    symbol = args[0].upper()
+    t, info = _get_ticker(symbol)
+
+    # Recommendation summary
+    rec_info = {
+        "Recommendation": _safe_get(info, "recommendationKey", "").upper(),
+        "Mean Rating": _safe_get(info, "recommendationMean"),
+        "# of Analysts": _safe_get(info, "numberOfAnalystOpinions"),
+        "Target Mean": _safe_get(info, "targetMeanPrice"),
+        "Target Low": _safe_get(info, "targetLowPrice"),
+        "Target High": _safe_get(info, "targetHighPrice"),
+        "Target Median": _safe_get(info, "targetMedianPrice"),
+    }
+
+    # Current price for upside calc
+    price = info.get("regularMarketPrice", info.get("previousClose"))
+    target_mean = info.get("targetMeanPrice")
+    if price and target_mean:
+        try:
+            upside = ((float(target_mean) - float(price)) / float(price)) * 100
+            rec_info["Upside to Mean"] = f"{upside:+.1f}%"
+        except (ValueError, TypeError, ZeroDivisionError):
+            pass
+
+    # Upgrades/downgrades
+    upgrades = []
+    try:
+        ug = t.upgrades_downgrades
+        if ug is not None and not ug.empty:
+            for date, row in ug.tail(10).iterrows():
+                upgrades.append({
+                    "date": str(date.date()) if hasattr(date, 'date') else str(date)[:10],
+                    "firm": row.get("Firm", ""),
+                    "toGrade": row.get("ToGrade", ""),
+                    "fromGrade": row.get("FromGrade", ""),
+                    "action": row.get("Action", ""),
+                })
+    except Exception:
+        pass
+
+    if _json_mode():
+        print(json.dumps({"symbol": symbol, "summary": rec_info, "upgrades_downgrades": upgrades}, default=str))
+        return
+
+    name = _safe_get(info, "shortName", symbol)
+    table = Table(title=f"⭐ Analyst Ratings — {name} ({symbol})", show_header=False, padding=(0, 2))
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+    for k, v in rec_info.items():
+        if k == "Recommendation":
+            color = {"BUY": "green", "STRONG_BUY": "green", "HOLD": "yellow", "SELL": "red", "STRONG_SELL": "red"}.get(str(v), "white")
+            table.add_row(k, f"[{color}]{v}[/{color}]")
+        else:
+            table.add_row(k, str(v))
+    console.print(table)
+
+    if upgrades:
+        u_table = Table(title="📋 Recent Upgrades/Downgrades")
+        u_table.add_column("Date", style="bold")
+        u_table.add_column("Firm")
+        u_table.add_column("Action")
+        u_table.add_column("From")
+        u_table.add_column("To")
+        for u in reversed(upgrades):
+            action = u["action"]
+            color = {"up": "green", "main": "yellow", "down": "red", "init": "blue", "reit": "dim"}.get(action.lower()[:4], "white")
+            u_table.add_row(u["date"], u["firm"], f"[{color}]{action}[/{color}]", u["fromGrade"], u["toGrade"])
+        console.print(u_table)
+    else:
+        console.print(f"[dim]No upgrade/downgrade data for {symbol}[/dim]")
+
+
+def main():
+    args = _clean_args()
+    if not args:
+        console.print(__doc__)
+        sys.exit(0)
+
+    cmd = args[0].lower()
+    rest = args[1:]
+
+    commands = {
+        "price": cmd_price,
+        "quote": cmd_quote,
+        "compare": cmd_compare,
+        "credit": cmd_credit,
+        "macro": cmd_macro,
+        "fx": cmd_fx,
+        "flows": cmd_flows,
+        "history": cmd_history,
+        "fundamentals": cmd_fundamentals,
+        "news": cmd_news,
+        "search": cmd_search,
+        "options": cmd_options,
+        "dividends": cmd_dividends,
+        "ratings": cmd_ratings,
+    }
+
+    if cmd in ("help", "-h", "--help"):
+        console.print(__doc__)
+        sys.exit(0)
+
+    if cmd not in commands:
+        err_console.print(f"[red]Unknown command: {cmd}[/red]")
+        console.print(__doc__)
+        sys.exit(1)
+
+    try:
+        commands[cmd](rest)
+    except KeyboardInterrupt:
+        sys.exit(130)
+    except Exception as e:
+        err_console.print(f"[red]Error: {e}[/red]")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

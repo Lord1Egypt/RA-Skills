@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithmic Art Gallery — SharkClaw</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a; color: #aaa;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      padding: 32px 24px;
+    }
+    h1 {
+      text-align: center; font-size: 14px; font-weight: 400;
+      letter-spacing: 3px; text-transform: uppercase; color: #555; margin-bottom: 8px;
+    }
+    h1 span { color: #d4a843; }
+    .subtitle { text-align: center; font-size: 11px; color: #444; margin-bottom: 32px; }
+    #gallery .grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .card {
+      background: #111; border: 1px solid #1a1a1a; border-radius: 8px;
+      overflow: hidden; cursor: pointer; transition: border-color 0.3s;
+    }
+    .card:hover { border-color: #d4a843; }
+    .card canvas { display: block; width: 100%; height: auto; }
+    .card-label { padding: 10px 14px; }
+    .card-label h2 { font-size: 12px; font-weight: 600; color: #d4a843; letter-spacing: 0.5px; }
+    .card-label p { font-size: 10px; color: #555; margin-top: 2px; }
+    #detail { display: none; max-width: 960px; margin: 0 auto; }
+    #detail.active { display: block; }
+    #gallery.hidden { display: none; }
+    #detail-canvas { border: 1px solid #1a1a1a; border-radius: 4px; overflow: hidden; }
+    #detail-canvas canvas { display: block; }
+    .detail-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .detail-header h2 { font-size: 16px; color: #d4a843; flex: 1; }
+    .back-btn {
+      background: none; border: 1px solid #333; color: #888; padding: 6px 16px;
+      border-radius: 4px; cursor: pointer; font-family: inherit; font-size: 12px;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { border-color: #d4a843; color: #d4a843; }
+    .controls {
+      display: flex; flex-wrap: wrap; gap: 10px; padding: 14px 20px;
+      background: #111; border: 1px solid #1a1a1a; border-radius: 6px;
+      margin-top: 14px; align-items: center; justify-content: center;
+    }
+    .cg { display: flex; align-items: center; gap: 5px; }
+    .cg label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    input[type="range"] { width: 65px; accent-color: #d4a843; height: 14px; }
+    input[type="number"] { width: 60px; background: #0a0a0a; border: 1px solid #222; color: #d4a843; padding: 4px 6px; border-radius: 3px; font-family: inherit; font-size: 11px; }
+    button { background: #0a0a0a; border: 1px solid #222; color: #888; padding: 5px 12px; border-radius: 3px; cursor: pointer; font-family: inherit; font-size: 11px; transition: border-color 0.2s, color 0.2s; }
+    button:hover { border-color: #d4a843; color: #d4a843; }
+    .seed-val { color: #d4a843; font-size: 12px; min-width: 80px; text-align: center; }
+    .sep { width: 1px; height: 20px; background: #222; }
+  </style>
+</head>
+<body>
+
+<div id="gallery">
+  <h1>Algorithmic Art — <span>SharkClaw</span></h1>
+  <p class="subtitle">Click any theme to explore full-size with controls</p>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div id="detail">
+  <div class="detail-header">
+    <button class="back-btn" id="back-btn">← Gallery</button>
+    <h2 id="detail-title"></h2>
+  </div>
+  <div id="detail-canvas"></div>
+  <div class="controls">
+    <div class="cg">
+      <button id="d-prev">◀</button>
+      <span class="seed-val" id="d-sv">seed 0</span>
+      <button id="d-next">▶</button>
+      <button id="d-rnd">Random</button>
+      <input type="number" id="d-jump" placeholder="seed…" min="0">
+      <button id="d-go">Go</button>
+    </div>
+    <div class="sep"></div>
+    <div id="sliders-container"></div>
+    <div class="sep"></div>
+    <div class="cg">
+      <button id="d-regen">Regenerate</button>
+      <button id="d-reset">Reset</button>
+      <button id="d-dl">↓ PNG</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const GOLD = [212, 168, 67], SILVER = [140, 150, 165], ABYSS = [18, 24, 38], BG = [10, 10, 12];
+const TW = 380, TH = 170, FW = 960, FH = 400;
+const THEMES = [];
+
+// ═══════════════════════════════════════════════
+// 1 — Flow Field
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Flow Field', desc: 'Particles tracing Perlin noise currents',
+  sliders: [
+    { key: 'flow', label: 'Flow', min: 100, max: 600, def: 280 },
+    { key: 'count', label: 'Density', min: 200, max: 2500, def: 800 },
+    { key: 'glow', label: 'Glow', min: 30, max: 255, def: 140 },
+    { key: 'trail', label: 'Trail', min: 4, max: 40, def: 12 },
+  ],
+  create(p, w, h, seed, P) {
+    let pts = [], scl = 10, cols, rows, field;
+    function spawn() {
+      let layer = p.random() < 0.12 ? 2 : p.random() < 0.4 ? 1 : 0;
+      return { x: p.random(w), y: p.random(h), px: 0, py: 0, life: p.random(100, 500), mx: 0, layer, sz: layer === 2 ? p.random(1.5, 3) : p.random(0.5, 1.8) };
+    }
+    p.setup = () => {
+      p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255);
+      p.randomSeed(seed); p.noiseSeed(seed);
+      cols = p.ceil(w / scl); rows = p.ceil(h / scl); field = new Array(cols * rows);
+      pts = []; for (let i = 0; i < P.count; i++) { let q = spawn(); q.px = q.x; q.py = q.y; q.mx = q.life; pts.push(q); }
+      p.background(...BG);
+    };
+    p.draw = () => {
+      p.noStroke(); p.fill(...BG, P.trail); p.rect(0, 0, w, h);
+      let zoff = p.frameCount * 0.0015;
+      for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
+        let a = p.noise(x * scl / P.flow, y * scl / P.flow, zoff) * p.TWO_PI * 2.2;
+        field[x + y * cols] = [p.cos(a) * 0.5, p.sin(a) * 0.5];
+      }
+      for (let pt of pts) {
+        let ci = p.constrain(p.floor(pt.x / scl), 0, cols - 1), ri = p.constrain(p.floor(pt.y / scl), 0, rows - 1);
+        let f = field[ci + ri * cols]; pt.px = pt.x; pt.py = pt.y; pt.x += f[0]; pt.y += f[1]; pt.life--;
+        let al = pt.life / pt.mx; al *= al;
+        if (pt.layer === 2) p.stroke(GOLD[0], GOLD[1], GOLD[2], P.glow * al);
+        else if (pt.layer === 1) p.stroke(SILVER[0], SILVER[1], SILVER[2], P.glow * al * 0.4);
+        else p.stroke(ABYSS[0] + 20, ABYSS[1] + 20, ABYSS[2] + 20, P.glow * al * 0.25);
+        p.strokeWeight(pt.sz * al); p.line(pt.px, pt.py, pt.x, pt.y);
+        if (pt.life <= 0 || pt.x < -5 || pt.x > w + 5 || pt.y < -5 || pt.y > h + 5) { let n = spawn(); Object.assign(pt, n); pt.px = pt.x; pt.py = pt.y; pt.mx = pt.life; }
+      }
+      while (pts.length < P.count) { let q = spawn(); q.px = q.x; q.py = q.y; q.mx = q.life; pts.push(q); }
+      while (pts.length > P.count) pts.pop();
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 2 — Radial Vortex (the "converge to circle" one)
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Radial Vortex', desc: 'Particles spiral into a glowing center with vignette',
+  sliders: [
+    { key: 'pull', label: 'Pull', min: 1, max: 30, def: 8 },
+    { key: 'spin', label: 'Spin', min: 1, max: 40, def: 15 },
+    { key: 'count', label: 'Density', min: 200, max: 2000, def: 800 },
+    { key: 'glow', label: 'Glow', min: 30, max: 255, def: 160 },
+  ],
+  create(p, w, h, seed, P) {
+    let pts = [];
+    function spawn() {
+      let a = p.random(p.TWO_PI), r = p.random(50, p.max(w, h) * 0.7);
+      return { x: w/2 + p.cos(a) * r, y: h/2 + p.sin(a) * r, px: 0, py: 0, life: p.random(150, 500), mx: 0, layer: p.random() < 0.15 ? 2 : p.random() < 0.4 ? 1 : 0, sz: p.random(0.5, 2.5) };
+    }
+    p.setup = () => {
+      p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255);
+      p.randomSeed(seed); p.noiseSeed(seed);
+      pts = []; for (let i = 0; i < P.count; i++) { let q = spawn(); q.px = q.x; q.py = q.y; q.mx = q.life; pts.push(q); }
+      p.background(...BG);
+    };
+    p.draw = () => {
+      p.noStroke(); p.fill(...BG, 15); p.rect(0, 0, w, h);
+      let cx = w / 2, cy = h / 2;
+      for (let pt of pts) {
+        let dx = cx - pt.x, dy = cy - pt.y;
+        let d = p.sqrt(dx * dx + dy * dy) + 0.1;
+        let pull = P.pull * 0.001; let spin = P.spin * 0.01;
+        let ax = dx * pull - dy / d * spin;
+        let ay = dy * pull + dx / d * spin;
+        pt.px = pt.x; pt.py = pt.y; pt.x += ax; pt.y += ay; pt.life--;
+        let al = pt.life / pt.mx; al *= al;
+        if (pt.layer === 2) p.stroke(GOLD[0], GOLD[1], GOLD[2], P.glow * al);
+        else if (pt.layer === 1) p.stroke(SILVER[0], SILVER[1], SILVER[2], P.glow * al * 0.4);
+        else p.stroke(ABYSS[0] + 20, ABYSS[1] + 20, ABYSS[2] + 20, P.glow * al * 0.3);
+        p.strokeWeight(pt.sz * al); p.line(pt.px, pt.py, pt.x, pt.y);
+        if (pt.life <= 0 || d < 5 || pt.x < -20 || pt.x > w + 20 || pt.y < -20 || pt.y > h + 20) { let n = spawn(); Object.assign(pt, n); pt.px = pt.x; pt.py = pt.y; pt.mx = pt.life; }
+      }
+      // Radial vignette
+      let ctx = p.drawingContext;
+      let grd = ctx.createRadialGradient(cx, cy, w * 0.15, cx, cy, w * 0.55);
+      grd.addColorStop(0, 'rgba(10,10,12,0)'); grd.addColorStop(1, 'rgba(10,10,12,0.8)');
+      ctx.fillStyle = grd; ctx.fillRect(0, 0, w, h);
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 3 — Constellation
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Constellation', desc: 'Drifting nodes connected by proximity',
+  sliders: [
+    { key: 'nodes', label: 'Nodes', min: 30, max: 200, def: 80 },
+    { key: 'link', label: 'Link Dist', min: 40, max: 150, def: 80 },
+    { key: 'speed', label: 'Speed', min: 1, max: 20, def: 6 },
+    { key: 'goldPct', label: 'Gold %', min: 5, max: 50, def: 20 },
+  ],
+  create(p, w, h, seed, P) {
+    let nodes = [];
+    function makeNode() { return { x: p.random(w), y: p.random(h), vx: p.random(-0.3, 0.3), vy: p.random(-0.3, 0.3), gold: p.random(100) < P.goldPct, noff: p.random(1000) }; }
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); p.noiseSeed(seed); nodes = []; for (let i = 0; i < P.nodes; i++) nodes.push(makeNode()); };
+    p.draw = () => {
+      p.background(...BG, 40);
+      let spd = P.speed / 10;
+      while (nodes.length < P.nodes) nodes.push(makeNode()); while (nodes.length > P.nodes) nodes.pop();
+      for (let n of nodes) { n.x += n.vx * spd + p.cos(p.noise(n.noff) * p.TWO_PI) * 0.15 * spd; n.y += n.vy * spd + p.sin(p.noise(n.noff + 500) * p.TWO_PI) * 0.15 * spd; n.noff += 0.003; if (n.x < 0) n.x = w; if (n.x > w) n.x = 0; if (n.y < 0) n.y = h; if (n.y > h) n.y = 0; }
+      for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) { let d = p.dist(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y); if (d < P.link) { let al = p.map(d, 0, P.link, 60, 0); if (nodes[i].gold || nodes[j].gold) p.stroke(GOLD[0], GOLD[1], GOLD[2], al); else p.stroke(80, 90, 110, al * 0.5); p.strokeWeight(0.6); p.line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y); } }
+      p.noStroke(); for (let n of nodes) { if (n.gold) { p.fill(GOLD[0], GOLD[1], GOLD[2], 200); p.ellipse(n.x, n.y, 4); } else { p.fill(100, 110, 130, 120); p.ellipse(n.x, n.y, 2.5); } }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 4 — Wave Interference
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Wave Interference', desc: 'Overlapping sine waves with moiré',
+  sliders: [
+    { key: 'sources', label: 'Sources', min: 2, max: 10, def: 5 },
+    { key: 'freq', label: 'Frequency', min: 5, max: 50, def: 25 },
+    { key: 'speed', label: 'Speed', min: 5, max: 60, def: 30 },
+    { key: 'contrast', label: 'Contrast', min: 1, max: 8, def: 3 },
+  ],
+  create(p, w, h, seed, P) {
+    let srcs = [];
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.pixelDensity(1); p.randomSeed(seed); srcs = []; for (let i = 0; i < 10; i++) srcs.push({ x: p.random(w), y: p.random(h), freq: p.random(0.015, 0.04), phase: p.random(p.TWO_PI), amp: p.random(0.5, 1) }); };
+    p.draw = () => {
+      p.loadPixels(); let t = p.frameCount * P.speed * 0.001, ns = p.min(P.sources, srcs.length);
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        let sum = 0; for (let i = 0; i < ns; i++) { let s = srcs[i]; sum += p.sin(p.dist(x, y, s.x, s.y) * P.freq * 0.001 - t + s.phase) * s.amp; } sum /= ns;
+        let gb = p.pow((sum + 1) * 0.5, P.contrast); let idx = (y * w + x) * 4;
+        p.pixels[idx] = BG[0] + gb * (GOLD[0] - BG[0]) * 0.7; p.pixels[idx + 1] = BG[1] + gb * (GOLD[1] - BG[1]) * 0.7; p.pixels[idx + 2] = BG[2] + gb * (GOLD[2] - BG[2]) * 0.7; p.pixels[idx + 3] = 255;
+      } p.updatePixels();
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 5 — Matrix Rain
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Matrix Rain', desc: 'Falling card symbols and ranks',
+  sliders: [
+    { key: 'speed', label: 'Speed', min: 5, max: 40, def: 18 },
+    { key: 'gap', label: 'Spacing', min: 8, max: 22, def: 14 },
+    { key: 'goldPct', label: 'Gold %', min: 5, max: 50, def: 15 },
+    { key: 'trail', label: 'Trail', min: 20, max: 120, def: 50 },
+  ],
+  create(p, w, h, seed, P) {
+    let drops = []; const chars = ['♠','♥','♦','♣','A','K','Q','J','10','9','8','7','6','5','4','3','2'];
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); p.textFont('monospace'); drops = []; for (let x = 0; x < w; x += P.gap) { let dd = { x, y: p.random(-h, 0), speed: p.random(1, 3.5) * P.speed / 18, chars: [], gold: p.random(100) < P.goldPct }; for (let i = 0; i < p.floor(p.random(5, 18)); i++) dd.chars.push(chars[p.floor(p.random(chars.length))]); drops.push(dd); } };
+    p.draw = () => {
+      p.background(...BG, P.trail); p.textSize(12); p.textAlign(p.CENTER, p.TOP); p.noStroke();
+      for (let d of drops) { for (let i = 0; i < d.chars.length; i++) { let yy = d.y + i * 14; if (yy < -14 || yy > h + 14) continue; let fade = p.map(i, 0, d.chars.length - 1, 1, 0.05); if (i === 0) { if (d.gold) p.fill(GOLD[0], GOLD[1], GOLD[2], 255); else p.fill(100, 200, 120, 220); } else if (d.gold) p.fill(GOLD[0], GOLD[1], GOLD[2], 180 * fade); else p.fill(50, 140, 80, 150 * fade); if (p.random() < 0.02) d.chars[i] = chars[p.floor(p.random(chars.length))]; p.text(d.chars[i], d.x, yy); } d.y += d.speed; if (d.y > h + 20) { d.y = -d.chars.length * 14 - p.random(50, 200); d.gold = p.random(100) < P.goldPct; } }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 6 — Strange Attractor
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Strange Attractor', desc: 'Clifford attractor traced in gold',
+  sliders: [
+    { key: 'a', label: 'A', min: -30, max: 30, def: -17 },
+    { key: 'b', label: 'B', min: -30, max: 30, def: 18 },
+    { key: 'c', label: 'C', min: -30, max: 30, def: -19 },
+    { key: 'd', label: 'D', min: -30, max: 30, def: -4 },
+  ],
+  create(p, w, h, seed, P) {
+    let pg, tracers;
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); pg = p.createGraphics(w, h); pg.colorMode(p.RGB, 255, 255, 255, 255); pg.background(...BG); pg.pixelDensity(1); tracers = []; for (let i = 0; i < 8; i++) tracers.push({ x: p.random(-0.1, 0.1), y: p.random(-0.1, 0.1) }); };
+    p.draw = () => {
+      let aa = P.a / 10, bb = P.b / 10, cc = P.c / 10, dd = P.d / 10; pg.loadPixels();
+      for (let pt of tracers) { for (let i = 0; i < 400; i++) { let nx = p.sin(aa * pt.y) + cc * p.cos(aa * pt.x), ny = p.sin(bb * pt.x) + dd * p.cos(bb * pt.y); pt.x = nx; pt.y = ny; let sx = p.floor(p.map(nx, -2.5, 2.5, 20, w - 20)), sy = p.floor(p.map(ny, -2.5, 2.5, 10, h - 10)); if (sx >= 0 && sx < w && sy >= 0 && sy < h) { let idx = (sy * w + sx) * 4; pg.pixels[idx] = p.min(255, pg.pixels[idx] + 2); pg.pixels[idx + 1] = p.min(255, pg.pixels[idx + 1] + 1); if (pg.pixels[idx] > 50) { let b2 = pg.pixels[idx] / 255; pg.pixels[idx] = p.min(255, BG[0] + b2 * (GOLD[0] - BG[0])); pg.pixels[idx + 1] = p.min(255, BG[1] + b2 * (GOLD[1] - BG[1])); pg.pixels[idx + 2] = p.min(255, BG[2] + b2 * (GOLD[2] - BG[2])); } } } }
+      pg.updatePixels(); p.image(pg, 0, 0);
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 7 — Voronoi Cells
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Voronoi Cells', desc: 'Organic cell decomposition with glowing edges',
+  sliders: [
+    { key: 'cells', label: 'Cells', min: 10, max: 60, def: 30 },
+    { key: 'speed', label: 'Speed', min: 1, max: 20, def: 8 },
+    { key: 'edge', label: 'Edge', min: 1, max: 8, def: 3 },
+    { key: 'goldPct', label: 'Gold %', min: 5, max: 50, def: 20 },
+  ],
+  create(p, w, h, seed, P) {
+    let seeds2 = [];
+    function ms() { return { x: p.random(w), y: p.random(h), vx: p.random(-0.4, 0.4), vy: p.random(-0.4, 0.4), gold: p.random(100) < P.goldPct, noff: p.random(1000) }; }
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.pixelDensity(1); p.randomSeed(seed); p.noiseSeed(seed); seeds2 = []; for (let i = 0; i < P.cells; i++) seeds2.push(ms()); };
+    p.draw = () => {
+      let spd = P.speed / 10; while (seeds2.length < P.cells) seeds2.push(ms()); while (seeds2.length > P.cells) seeds2.pop();
+      for (let s of seeds2) { s.x += (s.vx + p.cos(p.noise(s.noff) * p.TWO_PI) * 0.3) * spd; s.y += (s.vy + p.sin(p.noise(s.noff + 300) * p.TWO_PI) * 0.3) * spd; s.noff += 0.005; if (s.x < 0) s.x += w; if (s.x > w) s.x -= w; if (s.y < 0) s.y += h; if (s.y > h) s.y -= h; }
+      let step = w > 500 ? 3 : 2; p.loadPixels();
+      for (let y = 0; y < h; y += step) for (let x = 0; x < w; x += step) {
+        let m1 = 1e9, m2 = 1e9, cl = 0;
+        for (let i = 0; i < seeds2.length; i++) { let d = (x - seeds2[i].x) ** 2 + (y - seeds2[i].y) ** 2; if (d < m1) { m2 = m1; m1 = d; cl = i; } else if (d < m2) m2 = d; }
+        let edge = p.sqrt(m2) - p.sqrt(m1), isE = edge < P.edge; let r, g, b2;
+        if (isE) { if (seeds2[cl].gold) { r = GOLD[0]; g = GOLD[1]; b2 = GOLD[2]; } else { r = 60; g = 70; b2 = 90; } }
+        else { let inner = p.max(0, p.map(p.sqrt(m1), 0, 60, 0.15, 0)); if (seeds2[cl].gold) { r = BG[0] + inner * GOLD[0] * 0.3; g = BG[1] + inner * GOLD[1] * 0.3; b2 = BG[2] + inner * GOLD[2] * 0.3; } else { r = BG[0] + inner * 20; g = BG[1] + inner * 25; b2 = BG[2] + inner * 35; } }
+        for (let dy = 0; dy < step && y + dy < h; dy++) for (let dx = 0; dx < step && x + dx < w; dx++) { let idx = ((y + dy) * w + (x + dx)) * 4; p.pixels[idx] = r; p.pixels[idx + 1] = g; p.pixels[idx + 2] = b2; p.pixels[idx + 3] = 255; }
+      } p.updatePixels();
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 8 — Noise Terrain
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Noise Terrain', desc: 'Topographic contour landscape',
+  sliders: [
+    { key: 'levels', label: 'Levels', min: 4, max: 24, def: 12 },
+    { key: 'scale', label: 'Scale', min: 2, max: 15, def: 6 },
+    { key: 'speed', label: 'Speed', min: 1, max: 20, def: 4 },
+    { key: 'lineW', label: 'Lines', min: 2, max: 12, def: 6 },
+  ],
+  create(p, w, h, seed, P) {
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.pixelDensity(1); p.noiseSeed(seed); };
+    p.draw = () => {
+      p.loadPixels(); let t = p.frameCount * P.speed * 0.001, sc = P.scale * 0.001, lw = P.lineW / 100;
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        let n = p.noise(x * sc, y * sc * 1.3, t), q = n * P.levels, frac = q - p.floor(q);
+        let edge = (frac < lw || frac > 1 - lw) ? 1 : 0, elev = p.floor(q) / P.levels, idx = (y * w + x) * 4;
+        if (edge) { let g = 0.4 + elev * 0.6; p.pixels[idx] = BG[0] + g * (GOLD[0] - BG[0]) * 0.8; p.pixels[idx + 1] = BG[1] + g * (GOLD[1] - BG[1]) * 0.8; p.pixels[idx + 2] = BG[2] + g * (GOLD[2] - BG[2]) * 0.8; }
+        else { let dim = elev * 0.12; p.pixels[idx] = BG[0] + dim * 30; p.pixels[idx + 1] = BG[1] + dim * 35; p.pixels[idx + 2] = BG[2] + dim * 50; }
+        p.pixels[idx + 3] = 255;
+      } p.updatePixels();
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 9 — Orbital Traces
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Orbital Traces', desc: 'Spirograph harmonic curves layering over time',
+  sliders: [
+    { key: 'orbits', label: 'Orbits', min: 2, max: 12, def: 5 },
+    { key: 'speed', label: 'Speed', min: 5, max: 40, def: 15 },
+    { key: 'radius', label: 'Radius', min: 20, max: 120, def: 60 },
+    { key: 'trail', label: 'Trail', min: 1, max: 20, def: 4 },
+  ],
+  create(p, w, h, seed, P) {
+    let orbs = [];
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); p.background(...BG); orbs = []; for (let i = 0; i < 12; i++) orbs.push({ cx: w * 0.2 + p.random(w * 0.6), cy: h * 0.2 + p.random(h * 0.6), r1: p.random(20, P.radius), r2: p.random(8, P.radius * 0.6), s1: p.random(0.008, 0.025), s2: p.random(0.025, 0.07), phase: p.random(p.TWO_PI), gold: p.random() < 0.4, px: 0, py: 0, first: true }); };
+    p.draw = () => {
+      p.noStroke(); p.fill(...BG, P.trail); p.rect(0, 0, w, h);
+      let t = p.frameCount * P.speed / 15, n = p.min(P.orbits, orbs.length);
+      for (let i = 0; i < n; i++) { let o = orbs[i]; let a1 = t * o.s1 + o.phase, a2 = t * o.s2 + o.phase * 2; let x = o.cx + p.cos(a1) * o.r1 + p.cos(a2) * o.r2, y = o.cy + p.sin(a1) * o.r1 * 0.6 + p.sin(a2) * o.r2 * 0.8; if (!o.first) { if (o.gold) p.stroke(GOLD[0], GOLD[1], GOLD[2], 70); else p.stroke(80, 90, 120, 40); p.strokeWeight(0.8); p.line(o.px, o.py, x, y); } o.px = x; o.py = y; o.first = false; }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 10 — Particle Swarm (Boids)
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Particle Swarm', desc: 'Flocking agents with emergent patterns',
+  sliders: [
+    { key: 'count', label: 'Boids', min: 50, max: 400, def: 150 },
+    { key: 'vision', label: 'Vision', min: 20, max: 100, def: 50 },
+    { key: 'speed', label: 'Speed', min: 10, max: 40, def: 25 },
+    { key: 'goldPct', label: 'Gold %', min: 5, max: 30, def: 12 },
+  ],
+  create(p, w, h, seed, P) {
+    let boids = [];
+    function mb() { let a = p.random(p.TWO_PI); return { x: p.random(w), y: p.random(h), vx: p.cos(a) * 1.5, vy: p.sin(a) * 1.5, gold: p.random(100) < P.goldPct }; }
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); boids = []; for (let i = 0; i < P.count; i++) boids.push(mb()); };
+    p.draw = () => {
+      p.background(...BG, 30); while (boids.length < P.count) boids.push(mb()); while (boids.length > P.count) boids.pop();
+      let mx = P.speed / 10;
+      for (let b of boids) { let sx = 0, sy = 0, cx = 0, cy = 0, ax = 0, ay = 0, nc = 0, ns = 0; for (let o of boids) { if (o === b) continue; let d = p.dist(b.x, b.y, o.x, o.y); if (d < P.vision) { ax += o.vx; ay += o.vy; cx += o.x; cy += o.y; nc++; if (d < 18 && d > 0) { sx -= (o.x - b.x) / d; sy -= (o.y - b.y) / d; ns++; } } } if (nc > 0) { b.vx += (ax / nc - b.vx) * 0.05 + (cx / nc - b.x) * 0.002; b.vy += (ay / nc - b.vy) * 0.05 + (cy / nc - b.y) * 0.002; } if (ns > 0) { b.vx += sx * 0.15; b.vy += sy * 0.15; } let spd = p.sqrt(b.vx * b.vx + b.vy * b.vy); if (spd > mx) { b.vx = (b.vx / spd) * mx; b.vy = (b.vy / spd) * mx; } b.x += b.vx; b.y += b.vy; if (b.x < 0) b.x += w; if (b.x > w) b.x -= w; if (b.y < 0) b.y += h; if (b.y > h) b.y -= h; }
+      p.noStroke(); for (let b of boids) { if (b.gold) { p.fill(GOLD[0], GOLD[1], GOLD[2], 200); p.ellipse(b.x, b.y, 3.5); } else { p.fill(80, 90, 110, 140); p.ellipse(b.x, b.y, 2); } }
+      p.strokeWeight(0.4); for (let i = 0; i < boids.length; i++) { if (!boids[i].gold) continue; for (let j = i + 1; j < boids.length; j++) { let d = p.dist(boids[i].x, boids[i].y, boids[j].x, boids[j].y); if (d < 60) { p.stroke(GOLD[0], GOLD[1], GOLD[2], p.map(d, 0, 60, 50, 0)); p.line(boids[i].x, boids[i].y, boids[j].x, boids[j].y); } } }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 11 — Fractal Tree
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Fractal Tree', desc: 'Recursive branching grown from noise',
+  sliders: [
+    { key: 'depth', label: 'Depth', min: 4, max: 12, def: 9 },
+    { key: 'angle', label: 'Angle', min: 10, max: 50, def: 25 },
+    { key: 'shrink', label: 'Shrink', min: 50, max: 80, def: 67 },
+    { key: 'sway', label: 'Sway', min: 0, max: 30, def: 10 },
+  ],
+  create(p, w, h, seed, P) {
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); p.noiseSeed(seed); };
+    p.draw = () => {
+      p.background(...BG);
+      let sway = p.sin(p.frameCount * 0.02) * P.sway;
+      p.translate(w / 2, h);
+      function branch(len, d, thickness) {
+        if (d <= 0 || len < 2) return;
+        let al = p.map(d, 0, P.depth, 40, 200);
+        let isGold = d > P.depth * 0.6;
+        if (isGold) p.stroke(GOLD[0], GOLD[1], GOLD[2], al);
+        else p.stroke(80 + d * 8, 90 + d * 6, 110, al);
+        p.strokeWeight(thickness);
+        p.line(0, 0, 0, -len);
+        p.translate(0, -len);
+        let ang = P.angle + sway * p.noise(d * 0.3, p.frameCount * 0.01);
+        p.push(); p.rotate(p.radians(ang)); branch(len * P.shrink / 100, d - 1, thickness * 0.72); p.pop();
+        p.push(); p.rotate(p.radians(-ang)); branch(len * P.shrink / 100, d - 1, thickness * 0.72); p.pop();
+      }
+      branch(h * 0.25, P.depth, 3);
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 12 — Circle Packing
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Circle Packing', desc: 'Growing circles fill available space',
+  sliders: [
+    { key: 'maxR', label: 'Max Radius', min: 10, max: 80, def: 40 },
+    { key: 'growSpeed', label: 'Grow', min: 1, max: 10, def: 3 },
+    { key: 'spawnRate', label: 'Spawn', min: 1, max: 20, def: 8 },
+    { key: 'goldPct', label: 'Gold %', min: 5, max: 40, def: 15 },
+  ],
+  create(p, w, h, seed, P) {
+    let circles = [];
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); circles = []; p.background(...BG); };
+    p.draw = () => {
+      p.background(...BG);
+      // spawn new circles
+      for (let s = 0; s < P.spawnRate; s++) {
+        let x = p.random(w), y = p.random(h), ok = true;
+        for (let c of circles) { if (p.dist(x, y, c.x, c.y) < c.r + 2) { ok = false; break; } }
+        if (ok && circles.length < 500) circles.push({ x, y, r: 1, growing: true, gold: p.random(100) < P.goldPct });
+      }
+      // grow and draw
+      for (let c of circles) {
+        if (c.growing) {
+          c.r += P.growSpeed * 0.1;
+          if (c.r >= P.maxR) c.growing = false;
+          for (let o of circles) { if (o !== c && p.dist(c.x, c.y, o.x, o.y) < c.r + o.r + 1) { c.growing = false; break; } }
+          if (c.x - c.r < 0 || c.x + c.r > w || c.y - c.r < 0 || c.y + c.r > h) c.growing = false;
+        }
+        p.noFill();
+        if (c.gold) p.stroke(GOLD[0], GOLD[1], GOLD[2], c.growing ? 180 : 80);
+        else p.stroke(60, 70, 90, c.growing ? 120 : 50);
+        p.strokeWeight(c.gold ? 1.2 : 0.6);
+        p.ellipse(c.x, c.y, c.r * 2);
+      }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 13 — Phyllotaxis
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Phyllotaxis', desc: 'Fibonacci golden-angle spiral pattern',
+  sliders: [
+    { key: 'count', label: 'Points', min: 100, max: 2000, def: 800 },
+    { key: 'spread', label: 'Spread', min: 2, max: 12, def: 5 },
+    { key: 'dotSize', label: 'Size', min: 1, max: 8, def: 3 },
+    { key: 'rotate', label: 'Rotate', min: 0, max: 20, def: 5 },
+  ],
+  create(p, w, h, seed, P) {
+    const PHI = (p.sqrt(5) + 1) / 2;
+    const GOLDEN_ANGLE = p.TWO_PI / (PHI * PHI);
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); };
+    p.draw = () => {
+      p.background(...BG);
+      p.translate(w / 2, h / 2);
+      p.rotate(p.frameCount * P.rotate * 0.001);
+      p.noStroke();
+      for (let i = 0; i < P.count; i++) {
+        let angle = i * GOLDEN_ANGLE;
+        let r = p.sqrt(i) * P.spread;
+        let x = p.cos(angle) * r, y = p.sin(angle) * r;
+        if (p.abs(x) > w / 2 + 10 || p.abs(y) > h / 2 + 10) continue;
+        let pulse = p.sin(p.frameCount * 0.03 + i * 0.01) * 0.3 + 0.7;
+        let isGold = i % p.floor(PHI * 10) < 3;
+        if (isGold) p.fill(GOLD[0], GOLD[1], GOLD[2], 200 * pulse);
+        else p.fill(60 + (i % 30), 70 + (i % 20), 100, 120 * pulse);
+        p.ellipse(x, y, P.dotSize * (isGold ? 1.5 : 1));
+      }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 14 — Lightning / DLA
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Lightning', desc: 'Fractal electrical discharge bolts',
+  sliders: [
+    { key: 'bolts', label: 'Bolts', min: 1, max: 8, def: 3 },
+    { key: 'branches', label: 'Branch', min: 2, max: 8, def: 4 },
+    { key: 'jitter', label: 'Jitter', min: 5, max: 40, def: 20 },
+    { key: 'speed', label: 'Speed', min: 5, max: 60, def: 20 },
+  ],
+  create(p, w, h, seed, P) {
+    let bolts = [];
+    function genBolt(x1, y1, x2, y2, depth) {
+      if (depth <= 0) return [{ x1, y1, x2, y2 }];
+      let mx = (x1 + x2) / 2 + p.random(-P.jitter, P.jitter);
+      let my = (y1 + y2) / 2 + p.random(-P.jitter, P.jitter);
+      let segs = [...genBolt(x1, y1, mx, my, depth - 1), ...genBolt(mx, my, x2, y2, depth - 1)];
+      if (p.random() < 0.3) { let bx = mx + p.random(-40, 40), by = my + p.random(20, 60); segs.push(...genBolt(mx, my, bx, by, depth - 2)); }
+      return segs;
+    }
+    function rebuild() { p.randomSeed(seed + p.frameCount); bolts = []; for (let i = 0; i < P.bolts; i++) { let x1 = p.random(w * 0.2, w * 0.8); bolts.push(genBolt(x1, 0, x1 + p.random(-80, 80), h, P.branches)); } }
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); rebuild(); };
+    p.draw = () => {
+      p.background(...BG);
+      if (p.frameCount % p.max(2, p.floor(60 / P.speed)) === 0) rebuild();
+      for (let bolt of bolts) { for (let seg of bolt) {
+        p.stroke(GOLD[0], GOLD[1], GOLD[2], 200); p.strokeWeight(2); p.line(seg.x1, seg.y1, seg.x2, seg.y2);
+        p.stroke(255, 240, 200, 80); p.strokeWeight(6); p.line(seg.x1, seg.y1, seg.x2, seg.y2);
+      }}
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 15 — Kaleidoscope
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Kaleidoscope', desc: 'N-fold symmetry with noise patterns',
+  sliders: [
+    { key: 'folds', label: 'Folds', min: 3, max: 16, def: 8 },
+    { key: 'detail', label: 'Detail', min: 2, max: 20, def: 8 },
+    { key: 'speed', label: 'Speed', min: 1, max: 20, def: 5 },
+    { key: 'glow', label: 'Glow', min: 50, max: 255, def: 160 },
+  ],
+  create(p, w, h, seed, P) {
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.noiseSeed(seed); };
+    p.draw = () => {
+      p.background(...BG); p.translate(w / 2, h / 2);
+      let t = p.frameCount * P.speed * 0.003;
+      for (let f = 0; f < P.folds; f++) {
+        p.push(); p.rotate(p.TWO_PI * f / P.folds);
+        for (let i = 0; i < P.detail * 5; i++) {
+          let r = i * 3 + p.sin(t + i * 0.3) * 20;
+          let a = p.noise(i * 0.1, f * 0.5, t * 0.3) * p.PI * 0.6 - p.PI * 0.3;
+          let x = p.cos(a) * r, y = p.sin(a) * r;
+          let bright = p.noise(i * 0.05, t * 0.5) * P.glow;
+          let isGold = p.noise(i * 0.2, f * 0.3) > 0.55;
+          if (isGold) p.stroke(GOLD[0], GOLD[1], GOLD[2], bright);
+          else p.stroke(60, 80, 120, bright * 0.5);
+          p.strokeWeight(p.map(r, 0, 200, 3, 0.5)); p.point(x, y);
+          // mirror
+          p.point(-x, y);
+        }
+        p.pop();
+      }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 16 — Metaballs
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Metaballs', desc: 'Blobby organic threshold surfaces',
+  sliders: [
+    { key: 'blobs', label: 'Blobs', min: 3, max: 12, def: 6 },
+    { key: 'threshold', label: 'Threshold', min: 5, max: 20, def: 10 },
+    { key: 'speed', label: 'Speed', min: 1, max: 20, def: 8 },
+    { key: 'glow', label: 'Glow', min: 50, max: 255, def: 180 },
+  ],
+  create(p, w, h, seed, P) {
+    let blobs = [];
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.pixelDensity(1); p.randomSeed(seed); blobs = []; for (let i = 0; i < 12; i++) blobs.push({ x: p.random(w), y: p.random(h), r: p.random(30, 80), sx: p.random(0.5, 2), sy: p.random(0.5, 2), px: p.random(p.TWO_PI), py: p.random(p.TWO_PI) }); };
+    p.draw = () => {
+      let nb = p.min(P.blobs, blobs.length), t = p.frameCount * P.speed * 0.005, th = P.threshold / 10;
+      // move blobs
+      for (let i = 0; i < nb; i++) { let b = blobs[i]; b.x = w / 2 + p.cos(t * b.sx + b.px) * w * 0.35; b.y = h / 2 + p.sin(t * b.sy + b.py) * h * 0.35; }
+      let step = w > 500 ? 4 : 3; p.loadPixels();
+      for (let y = 0; y < h; y += step) for (let x = 0; x < w; x += step) {
+        let sum = 0; for (let i = 0; i < nb; i++) { let b = blobs[i], dx = x - b.x, dy = y - b.y; sum += (b.r * b.r) / (dx * dx + dy * dy + 1); }
+        let edge = p.abs(sum - th) < 0.15;
+        let r, g, b2;
+        if (edge) { r = GOLD[0]; g = GOLD[1]; b2 = GOLD[2]; }
+        else if (sum > th) { let bright = p.min(1, (sum - th) * 0.8); r = BG[0] + bright * 30; g = BG[1] + bright * 25; b2 = BG[2] + bright * 15; }
+        else { r = BG[0]; g = BG[1]; b2 = BG[2]; }
+        for (let dy = 0; dy < step && y + dy < h; dy++) for (let dx = 0; dx < step && x + dx < w; dx++) { let idx = ((y + dy) * w + (x + dx)) * 4; p.pixels[idx] = r; p.pixels[idx + 1] = g; p.pixels[idx + 2] = b2; p.pixels[idx + 3] = 255; }
+      } p.updatePixels();
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 17 — Recursive Grid
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Recursive Grid', desc: 'Mondrian-style recursive subdivision',
+  sliders: [
+    { key: 'depth', label: 'Depth', min: 2, max: 8, def: 5 },
+    { key: 'minSize', label: 'Min Size', min: 10, max: 60, def: 30 },
+    { key: 'goldPct', label: 'Gold %', min: 5, max: 30, def: 10 },
+    { key: 'pulse', label: 'Pulse', min: 0, max: 20, def: 8 },
+  ],
+  create(p, w, h, seed, P) {
+    let rects = [];
+    function subdivide(x, y, ww, hh, d) {
+      if (d <= 0 || ww < P.minSize || hh < P.minSize) { rects.push({ x, y, w: ww, h: hh, gold: p.random(100) < P.goldPct, phase: p.random(p.TWO_PI) }); return; }
+      if (ww > hh) { let split = x + ww * p.random(0.3, 0.7); subdivide(x, y, split - x, hh, d - 1); subdivide(split, y, ww - (split - x), hh, d - 1); }
+      else { let split = y + hh * p.random(0.3, 0.7); subdivide(x, y, ww, split - y, d - 1); subdivide(x, split, ww, hh - (split - y), d - 1); }
+    }
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); rects = []; subdivide(2, 2, w - 4, h - 4, P.depth); };
+    p.draw = () => {
+      p.background(...BG);
+      let t = p.frameCount * 0.03;
+      for (let r of rects) {
+        let pulse = P.pulse > 0 ? p.sin(t + r.phase) * P.pulse * 0.01 : 0;
+        if (r.gold) { p.fill(GOLD[0], GOLD[1], GOLD[2], 30 + pulse * 30); p.stroke(GOLD[0], GOLD[1], GOLD[2], 120); }
+        else { p.fill(BG[0] + 5, BG[1] + 5, BG[2] + 8); p.stroke(40, 45, 60, 100); }
+        p.strokeWeight(1); p.rect(r.x, r.y, r.w, r.h);
+      }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 18 — Perlin Worms
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Perlin Worms', desc: 'Sinuous creatures following noise gradients',
+  sliders: [
+    { key: 'worms', label: 'Worms', min: 5, max: 50, def: 20 },
+    { key: 'length', label: 'Length', min: 20, max: 200, def: 80 },
+    { key: 'speed', label: 'Speed', min: 5, max: 30, def: 12 },
+    { key: 'thickness', label: 'Thick', min: 1, max: 8, def: 3 },
+  ],
+  create(p, w, h, seed, P) {
+    let worms = [];
+    function makeWorm() {
+      let x = p.random(w), y = p.random(h); let pts = [];
+      for (let i = 0; i < P.length; i++) pts.push({ x, y });
+      return { pts, noff: p.random(10000), gold: p.random() < 0.15, speed: p.random(0.8, 1.2) };
+    }
+    p.setup = () => { p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255); p.randomSeed(seed); p.noiseSeed(seed); worms = []; for (let i = 0; i < P.worms; i++) worms.push(makeWorm()); };
+    p.draw = () => {
+      p.background(...BG, 40);
+      while (worms.length < P.worms) worms.push(makeWorm()); while (worms.length > P.worms) worms.pop();
+      let spd = P.speed * 0.15;
+      for (let worm of worms) {
+        let head = worm.pts[0];
+        let angle = p.noise(head.x * 0.005, head.y * 0.005, p.frameCount * 0.005 + worm.noff) * p.TWO_PI * 2;
+        head.x += p.cos(angle) * spd * worm.speed; head.y += p.sin(angle) * spd * worm.speed;
+        // wrap
+        if (head.x < 0) head.x += w; if (head.x > w) head.x -= w;
+        if (head.y < 0) head.y += h; if (head.y > h) head.y -= h;
+        // body follows
+        for (let i = 1; i < worm.pts.length; i++) {
+          let prev = worm.pts[i - 1], cur = worm.pts[i];
+          cur.x += (prev.x - cur.x) * 0.5; cur.y += (prev.y - cur.y) * 0.5;
+        }
+        // draw
+        p.noFill();
+        for (let i = 1; i < worm.pts.length; i++) {
+          let al = p.map(i, 0, worm.pts.length, 1, 0); al *= al;
+          let th = p.map(i, 0, worm.pts.length, P.thickness, 0.3);
+          if (worm.gold) p.stroke(GOLD[0], GOLD[1], GOLD[2], 180 * al);
+          else p.stroke(70, 85, 110, 100 * al);
+          p.strokeWeight(th); p.line(worm.pts[i - 1].x, worm.pts[i - 1].y, worm.pts[i].x, worm.pts[i].y);
+        }
+      }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 19 — Shark Silhouette
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Shark Silhouette', desc: 'Particles coalescing into a swimming shark',
+  sliders: [
+    { key: 'attract', label: 'Attract', min: 1, max: 30, def: 12 },
+    { key: 'count', label: 'Density', min: 300, max: 3000, def: 1500 },
+    { key: 'shimmer', label: 'Shimmer', min: 0, max: 30, def: 10 },
+    { key: 'swim', label: 'Swim', min: 0, max: 30, def: 8 },
+  ],
+  create(p, w, h, seed, P) {
+    // Great white shark — side profile facing left, normalized 0-1
+    const OUTLINE = [
+      [0.05,0.48],[0.10,0.44],[0.14,0.41],[0.18,0.38],[0.24,0.35],[0.30,0.33],[0.35,0.31],
+      [0.38,0.26],[0.41,0.18],[0.43,0.14], // dorsal peak
+      [0.45,0.18],[0.47,0.26],[0.49,0.32],
+      [0.55,0.35],[0.62,0.37],[0.70,0.39],
+      [0.74,0.37],[0.76,0.34],[0.78,0.37], // second dorsal
+      [0.82,0.40],[0.86,0.42],
+      [0.90,0.36],[0.94,0.26],[0.97,0.20], // tail top
+      [0.94,0.34],[0.92,0.44],
+      [0.94,0.52],[0.97,0.60], // tail bottom
+      [0.92,0.54],[0.86,0.52],
+      [0.78,0.54],[0.70,0.56],[0.62,0.57],
+      [0.52,0.58],[0.42,0.58],[0.38,0.60],
+      [0.34,0.66],[0.32,0.72], // pectoral tip
+      [0.30,0.66],[0.28,0.58],
+      [0.22,0.55],[0.16,0.52],[0.10,0.51],[0.05,0.50],[0.05,0.48],
+    ];
+    const EYE = [0.15, 0.42];
+    const GILLS = [[0.22,0.40],[0.22,0.42],[0.22,0.44],[0.22,0.46],[0.22,0.48],
+                   [0.24,0.40],[0.24,0.42],[0.24,0.44],[0.24,0.46],[0.24,0.48],
+                   [0.26,0.41],[0.26,0.43],[0.26,0.45],[0.26,0.47]];
+
+    // Point-in-polygon
+    function pip(px, py) {
+      let inside = false;
+      for (let i = 0, j = OUTLINE.length - 1; i < OUTLINE.length; j = i++) {
+        let xi = OUTLINE[i][0], yi = OUTLINE[i][1], xj = OUTLINE[j][0], yj = OUTLINE[j][1];
+        if (((yi > py) !== (yj > py)) && (px < (xj - xi) * (py - yi) / (yj - yi) + xi)) inside = !inside;
+      }
+      return inside;
+    }
+
+    // Interpolate edge points
+    function edgePoints(n) {
+      let pts = [], total = 0, lens = [];
+      for (let i = 0; i < OUTLINE.length - 1; i++) {
+        let dx = OUTLINE[i+1][0] - OUTLINE[i][0], dy = OUTLINE[i+1][1] - OUTLINE[i][1];
+        let l = Math.sqrt(dx*dx + dy*dy); lens.push(l); total += l;
+      }
+      for (let i = 0; i < n; i++) {
+        let t = (i / n) * total, acc = 0;
+        for (let j = 0; j < lens.length; j++) {
+          if (acc + lens[j] >= t) {
+            let f = (t - acc) / lens[j];
+            pts.push([OUTLINE[j][0] + f * (OUTLINE[j+1][0] - OUTLINE[j][0]),
+                       OUTLINE[j][1] + f * (OUTLINE[j+1][1] - OUTLINE[j][1])]);
+            break;
+          }
+          acc += lens[j];
+        }
+      }
+      return pts;
+    }
+
+    // Interior points via rejection sampling
+    function interiorPoints(n) {
+      let pts = [], attempts = 0;
+      while (pts.length < n && attempts < n * 20) {
+        let x = Math.random() * 0.96 + 0.02, y = Math.random() * 0.65 + 0.12;
+        if (pip(x, y)) pts.push([x, y]);
+        attempts++;
+      }
+      return pts;
+    }
+
+    let particles = [];
+    // margin and scale for centering shark in canvas
+    let mx, my, sw, sh;
+
+    p.setup = () => {
+      p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255);
+      p.randomSeed(seed); p.noiseSeed(seed);
+      // Scale shark to ~80% of canvas, centered
+      sw = w * 0.82; sh = h * 0.82; mx = w * 0.09; my = h * 0.09;
+
+      let nEdge = Math.floor(P.count * 0.35);
+      let nFill = Math.floor(P.count * 0.45);
+      let nFree = P.count - nEdge - nFill;
+
+      let ePts = edgePoints(nEdge);
+      let iPts = interiorPoints(nFill);
+
+      particles = [];
+
+      // Edge particles (bright, gold on fins)
+      for (let pt of ePts) {
+        let isDorsal = pt[0] > 0.36 && pt[0] < 0.50 && pt[1] < 0.32;
+        let isTail = pt[0] > 0.88;
+        let isPectoral = pt[1] > 0.60;
+        particles.push({
+          x: p.random(w), y: p.random(h), vx: 0, vy: 0,
+          tx: pt[0], ty: pt[1], type: 'edge',
+          gold: isDorsal || isTail || isPectoral,
+          sz: p.random(1.5, 3), noff: p.random(10000)
+        });
+      }
+
+      // Fill particles (dim)
+      for (let pt of iPts) {
+        particles.push({
+          x: p.random(w), y: p.random(h), vx: 0, vy: 0,
+          tx: pt[0], ty: pt[1], type: 'fill',
+          gold: false, sz: p.random(0.8, 1.8), noff: p.random(10000)
+        });
+      }
+
+      // Eye particles (gold cluster)
+      for (let i = 0; i < 15; i++) {
+        particles.push({
+          x: p.random(w), y: p.random(h), vx: 0, vy: 0,
+          tx: EYE[0] + p.random(-0.008, 0.008), ty: EYE[1] + p.random(-0.008, 0.008),
+          type: 'eye', gold: true, sz: p.random(2, 4), noff: p.random(10000)
+        });
+      }
+
+      // Gill particles
+      for (let pt of GILLS) {
+        particles.push({
+          x: p.random(w), y: p.random(h), vx: 0, vy: 0,
+          tx: pt[0], ty: pt[1], type: 'gill',
+          gold: false, sz: p.random(1, 2), noff: p.random(10000)
+        });
+      }
+
+      // Free background particles
+      for (let i = 0; i < nFree; i++) {
+        particles.push({
+          x: p.random(w), y: p.random(h), vx: p.random(-0.3, 0.3), vy: p.random(-0.3, 0.3),
+          tx: -1, ty: -1, type: 'free',
+          gold: p.random() < 0.08, sz: p.random(0.5, 1.5), noff: p.random(10000)
+        });
+      }
+
+      p.background(...BG);
+    };
+
+    p.draw = () => {
+      p.noStroke(); p.fill(...BG, 18); p.rect(0, 0, w, h);
+
+      // Swim motion — body oscillates, tail wags
+      let swimX = p.sin(p.frameCount * 0.012) * P.swim;
+      let swimY = p.cos(p.frameCount * 0.008) * P.swim * 0.3;
+      let t = p.frameCount * 0.01;
+      let attract = P.attract * 0.003;
+      let shimmer = P.shimmer;
+
+      for (let pt of particles) {
+        if (pt.type === 'free') {
+          // Free particles drift with noise
+          let a = p.noise(pt.noff, t) * p.TWO_PI * 2;
+          pt.vx += p.cos(a) * 0.05; pt.vy += p.sin(a) * 0.05;
+          pt.vx *= 0.98; pt.vy *= 0.98;
+          pt.x += pt.vx; pt.y += pt.vy;
+          pt.noff += 0.005;
+          if (pt.x < 0) pt.x += w; if (pt.x > w) pt.x -= w;
+          if (pt.y < 0) pt.y += h; if (pt.y > h) pt.y -= h;
+          if (pt.gold) p.stroke(GOLD[0], GOLD[1], GOLD[2], 30);
+          else p.stroke(ABYSS[0] + 15, ABYSS[1] + 15, ABYSS[2] + 15, 20);
+          p.strokeWeight(pt.sz * 0.5); p.point(pt.x, pt.y);
+        } else {
+          // Tail wag: particles further right get more lateral displacement
+          let tailFactor = pt.tx > 0.5 ? (pt.tx - 0.5) * 2 : 0;
+          let tailWag = p.sin(t * 1.5 + pt.tx * 3) * P.swim * 0.5 * tailFactor;
+
+          // Target position in screen space
+          let targetX = mx + pt.tx * sw + swimX + p.noise(pt.noff, t * 0.5) * shimmer - shimmer / 2;
+          let targetY = my + pt.ty * sh + swimY + tailWag + p.noise(pt.noff + 100, t * 0.5) * shimmer - shimmer / 2;
+
+          // Attract toward target
+          let dx = targetX - pt.x, dy = targetY - pt.y;
+          pt.vx += dx * attract; pt.vy += dy * attract;
+          pt.vx *= 0.92; pt.vy *= 0.92;
+          pt.x += pt.vx; pt.y += pt.vy;
+
+          // Draw
+          let distToTarget = p.sqrt(dx * dx + dy * dy);
+          let settled = distToTarget < 8;
+
+          if (pt.type === 'eye') {
+            p.stroke(255, 220, 150, settled ? 255 : 180);
+            p.strokeWeight(pt.sz);
+          } else if (pt.type === 'gill') {
+            p.stroke(ABYSS[0] + 40, ABYSS[1] + 50, ABYSS[2] + 70, settled ? 100 : 50);
+            p.strokeWeight(pt.sz);
+          } else if (pt.gold) {
+            p.stroke(GOLD[0], GOLD[1], GOLD[2], settled ? 200 : 120);
+            p.strokeWeight(pt.sz);
+          } else if (pt.type === 'edge') {
+            p.stroke(SILVER[0], SILVER[1], SILVER[2], settled ? 150 : 80);
+            p.strokeWeight(pt.sz);
+          } else {
+            p.stroke(ABYSS[0] + 30, ABYSS[1] + 35, ABYSS[2] + 50, settled ? 80 : 40);
+            p.strokeWeight(pt.sz);
+          }
+          p.point(pt.x, pt.y);
+        }
+      }
+    };
+  }
+});
+
+// ═══════════════════════════════════════════════
+// 20 — Custom Image
+// ═══════════════════════════════════════════════
+THEMES.push({ name: 'Custom Image', desc: 'Upload any image → particles form it',
+  sliders: [
+    { key: 'attract', label: 'Attract', min: 1, max: 30, def: 10 },
+    { key: 'density', label: 'Density', min: 2, max: 8, def: 4 },
+    { key: 'shimmer', label: 'Shimmer', min: 0, max: 30, def: 6 },
+    { key: 'threshold', label: 'Threshold', min: 10, max: 245, def: 128 },
+  ],
+  // Special flag — gallery controller will add upload button
+  hasUpload: true,
+  _imgData: null,
+  _pendingImg: null,
+  create(p, w, h, seed, P) {
+    let particles = [], targets = [];
+    let theme = THEMES[THEMES.length - 1]; // self-ref
+
+    function sampleTargets(imgCanvas) {
+      let ctx2 = imgCanvas.getContext('2d');
+      let data = ctx2.getImageData(0, 0, w, h);
+      let pts = [];
+      let step = P.density;
+      for (let y = 0; y < h; y += step) {
+        for (let x = 0; x < w; x += step) {
+          let idx = (y * w + x) * 4;
+          // Grayscale brightness
+          let bright = data.data[idx] * 0.299 + data.data[idx+1] * 0.587 + data.data[idx+2] * 0.114;
+          if (bright > P.threshold) {
+            pts.push([x, y, bright / 255]);
+          }
+        }
+      }
+      return pts;
+    }
+
+    function drawDefault(offscreen) {
+      let ctx2 = offscreen.getContext('2d');
+      ctx2.fillStyle = '#000';
+      ctx2.fillRect(0, 0, w, h);
+      // Draw "SHARKCLAW" in white
+      ctx2.fillStyle = '#fff';
+      let fontSize = Math.min(w / 6, h / 2.5);
+      ctx2.font = `bold ${fontSize}px monospace`;
+      ctx2.textAlign = 'center';
+      ctx2.textBaseline = 'middle';
+      ctx2.fillText('SHARK', w / 2, h * 0.38);
+      ctx2.fillText('CLAW', w / 2, h * 0.65);
+    }
+
+    function drawImage(offscreen, img) {
+      let ctx2 = offscreen.getContext('2d');
+      ctx2.fillStyle = '#000';
+      ctx2.fillRect(0, 0, w, h);
+      // Fit image centered
+      let scale = Math.min(w / img.width, h / img.height) * 0.9;
+      let iw = img.width * scale, ih = img.height * scale;
+      ctx2.drawImage(img, (w - iw) / 2, (h - ih) / 2, iw, ih);
+    }
+
+    function buildParticles() {
+      particles = [];
+      // Particles on targets
+      for (let t of targets) {
+        let isGold = t[2] > 0.85 || p.random() < 0.08;
+        particles.push({
+          x: p.random(w), y: p.random(h), vx: 0, vy: 0,
+          tx: t[0], ty: t[1], bright: t[2],
+          gold: isGold, sz: p.random(1, 2.5), noff: p.random(10000)
+        });
+      }
+      // Free background particles (~15%)
+      let nFree = Math.floor(targets.length * 0.15);
+      for (let i = 0; i < nFree; i++) {
+        particles.push({
+          x: p.random(w), y: p.random(h), vx: p.random(-0.3, 0.3), vy: p.random(-0.3, 0.3),
+          tx: -1, ty: -1, bright: 0,
+          gold: p.random() < 0.05, sz: p.random(0.5, 1.2), noff: p.random(10000)
+        });
+      }
+    }
+
+    p.setup = () => {
+      p.createCanvas(w, h); p.colorMode(p.RGB, 255, 255, 255, 255);
+      p.randomSeed(seed); p.noiseSeed(seed);
+      // Create offscreen canvas for image processing
+      let offscreen = document.createElement('canvas');
+      offscreen.width = w; offscreen.height = h;
+      if (theme._pendingImg) {
+        drawImage(offscreen, theme._pendingImg);
+      } else {
+        drawDefault(offscreen);
+      }
+      targets = sampleTargets(offscreen);
+      buildParticles();
+      p.background(...BG);
+    };
+
+    p.draw = () => {
+      p.noStroke(); p.fill(...BG, 16); p.rect(0, 0, w, h);
+      let t = p.frameCount * 0.01;
+      let attract = P.attract * 0.003;
+      let shimmer = P.shimmer;
+
+      for (let pt of particles) {
+        if (pt.tx < 0) {
+          // Free particle
+          let a = p.noise(pt.noff, t) * p.TWO_PI * 2;
+          pt.vx += p.cos(a) * 0.04; pt.vy += p.sin(a) * 0.04;
+          pt.vx *= 0.98; pt.vy *= 0.98;
+          pt.x += pt.vx; pt.y += pt.vy;
+          pt.noff += 0.005;
+          if (pt.x < 0) pt.x += w; if (pt.x > w) pt.x -= w;
+          if (pt.y < 0) pt.y += h; if (pt.y > h) pt.y -= h;
+          if (pt.gold) p.stroke(GOLD[0], GOLD[1], GOLD[2], 25);
+          else p.stroke(ABYSS[0] + 12, ABYSS[1] + 12, ABYSS[2] + 12, 18);
+          p.strokeWeight(pt.sz * 0.5); p.point(pt.x, pt.y);
+        } else {
+          let targetX = pt.tx + p.noise(pt.noff, t * 0.4) * shimmer - shimmer / 2;
+          let targetY = pt.ty + p.noise(pt.noff + 100, t * 0.4) * shimmer - shimmer / 2;
+          let dx = targetX - pt.x, dy = targetY - pt.y;
+          pt.vx += dx * attract; pt.vy += dy * attract;
+          pt.vx *= 0.9; pt.vy *= 0.9;
+          pt.x += pt.vx; pt.y += pt.vy;
+
+          let settled = (dx * dx + dy * dy) < 64;
+          let al = settled ? 1 : 0.6;
+          if (pt.gold) {
+            p.stroke(GOLD[0], GOLD[1], GOLD[2], 200 * al * pt.bright);
+          } else {
+            let b = pt.bright;
+            p.stroke(
+              BG[0] + b * (SILVER[0] - BG[0]),
+              BG[1] + b * (SILVER[1] - BG[1]),
+              BG[2] + b * (SILVER[2] - BG[2]),
+              160 * al
+            );
+          }
+          p.strokeWeight(pt.sz); p.point(pt.x, pt.y);
+        }
+      }
+    };
+  }
+});
+
+// ════════════════════════════════════════════════
+// Gallery + Detail controller
+// ════════════════════════════════════════════════
+const galleryEl = document.getElementById('gallery');
+const detailEl  = document.getElementById('detail');
+const gridEl    = document.getElementById('grid');
+let thumbSketches = [];
+let detailSketch  = null;
+let currentSeed   = 42;
+let currentTheme  = 0;
+let currentParams = {};
+
+THEMES.forEach((theme, i) => {
+  let card = document.createElement('div'); card.className = 'card';
+  let canvasDiv = document.createElement('div'); canvasDiv.id = 'thumb-' + i;
+  let label = document.createElement('div'); label.className = 'card-label';
+  label.innerHTML = `<h2>${i + 1} — ${theme.name}</h2><p>${theme.desc}</p>`;
+  card.appendChild(canvasDiv); card.appendChild(label); gridEl.appendChild(card);
+
+  let defP = {}; theme.sliders.forEach(s => defP[s.key] = s.def);
+  let sk = new p5(p => { theme.create(p, TW, TH, 42, defP); }, 'thumb-' + i);
+  sk.frameRate(20); // save CPU for thumbnails
+  thumbSketches.push(sk);
+  card.addEventListener('click', () => openDetail(i));
+});
+
+function openDetail(idx) {
+  currentTheme = idx; currentSeed = 42;
+  let theme = THEMES[idx];
+  thumbSketches.forEach(sk => sk.noLoop());
+  currentParams = {}; theme.sliders.forEach(s => currentParams[s.key] = s.def);
+  let sc = document.getElementById('sliders-container'); sc.innerHTML = '';
+  theme.sliders.forEach(s => {
+    let cg = document.createElement('div'); cg.className = 'cg';
+    cg.innerHTML = `<label>${s.label}</label><input type="range" id="ds-${s.key}" min="${s.min}" max="${s.max}" value="${s.def}">`;
+    sc.appendChild(cg);
+    setTimeout(() => { document.getElementById('ds-' + s.key).oninput = function() { currentParams[s.key] = +this.value; }; }, 0);
+  });
+  // Upload button for Custom Image theme
+  if (theme.hasUpload) {
+    let cg = document.createElement('div'); cg.className = 'cg';
+    cg.innerHTML = `<label>Image</label><input type="file" id="img-upload" accept="image/*" style="width:160px;font-size:11px;color:#888;">`;
+    sc.appendChild(cg);
+    setTimeout(() => {
+      document.getElementById('img-upload').onchange = function(e) {
+        let file = e.target.files[0]; if (!file) return;
+        let img = new Image();
+        img.onload = () => { theme._pendingImg = img; startDetailSketch(); };
+        img.src = URL.createObjectURL(file);
+      };
+    }, 0);
+  }
+
+  document.getElementById('detail-title').textContent = `${idx + 1} — ${theme.name}`;
+  document.getElementById('d-sv').textContent = `seed ${currentSeed}`;
+  galleryEl.classList.add('hidden'); detailEl.classList.add('active');
+  startDetailSketch();
+}
+
+function startDetailSketch() {
+  if (detailSketch) { detailSketch.remove(); detailSketch = null; }
+  let dc = document.getElementById('detail-canvas'); dc.innerHTML = '';
+  let theme = THEMES[currentTheme];
+  detailSketch = new p5(p => { theme.create(p, FW, FH, currentSeed, currentParams); }, 'detail-canvas');
+  document.getElementById('d-sv').textContent = `seed ${currentSeed}`;
+}
+
+function closeDetail() {
+  if (detailSketch) { detailSketch.remove(); detailSketch = null; }
+  detailEl.classList.remove('active'); galleryEl.classList.remove('hidden');
+  thumbSketches.forEach(sk => sk.loop());
+}
+
+document.getElementById('back-btn').onclick = closeDetail;
+document.getElementById('d-prev').onclick  = () => { currentSeed--; startDetailSketch(); };
+document.getElementById('d-next').onclick  = () => { currentSeed++; startDetailSketch(); };
+document.getElementById('d-rnd').onclick   = () => { currentSeed = Math.floor(Math.random() * 100000); startDetailSketch(); };
+document.getElementById('d-go').onclick    = () => { let v = parseInt(document.getElementById('d-jump').value); if (!isNaN(v)) { currentSeed = v; startDetailSketch(); } };
+document.getElementById('d-regen').onclick = () => startDetailSketch();
+document.getElementById('d-reset').onclick = () => {
+  let theme = THEMES[currentTheme];
+  theme.sliders.forEach(s => { currentParams[s.key] = s.def; let el = document.getElementById('ds-' + s.key); if (el) el.value = s.def; });
+  startDetailSketch();
+};
+document.getElementById('d-dl').onclick = () => { if (detailSketch) detailSketch.saveCanvas('sharkclaw-' + THEMES[currentTheme].name.toLowerCase().replace(/\s+/g, '-') + '-' + currentSeed, 'png'); };
+</script>
+</body>
+</html>

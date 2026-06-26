@@ -1,35 +1,224 @@
 ---
-name: "AI 工作流优化专家"
+name: ai-workflow-optimizer
 description: "AI 工作流优化专家 — 帮你高效使用 ChatGPT/Claude/Cursor 等 AI 工具。当你想提升 AI 使用效率、设计自动化工作流、或解决 AI 使用中的问题时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-workflow-optimizer"
-sourceUrl: "https://clawhub.ai/skills/ai-workflow-optimizer"
+version: 1.0.1
+author: Popeye
+license: MIT
+user-invocable: true
 ---
 
 # AI 工作流优化专家
 
-> AI 工作流优化专家 — 帮你高效使用 ChatGPT/Claude/Cursor 等 AI 工具。当你想提升 AI 使用效率、设计自动化工作流、或解决 AI 使用中的问题时使用。
+让你的 AI 使用效率提升 10 倍。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-workflow-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/ai-workflow-optimizer](https://clawhub.ai/skills/ai-workflow-optimizer)
+## 核心服务
 
-## Overview
+- Prompt 优化：让 AI 输出更精准
+- 工作流设计：自动化重复任务
+- 工具选择：选最适合的 AI 工具
+- 问题排查：解决 AI 使用中的坑
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-workflow-optimizer
+## Prompt 优化框架
+
+### CRISPE 框架
+
 ```
+Capacity（角色）：你是一位[角色]
+Request（任务）：请帮我[任务]
+Input（输入）：背景信息是[背景]
+Specifics（具体要求）：输出格式是[格式]
+Purpose（目的）：目的是[目的]
+Example（示例）：参考示例[示例]
+```
+
+### 优化前后对比
+
+**❌ 差 Prompt：**
+```
+帮我写一篇关于 AI 的文章
+```
+
+**✅ 好 Prompt：**
+```
+你是一位科技媒体资深编辑，擅长写出深入浅出的技术文章。
+
+主题：AI 大模型的现状与未来
+目标读者：对 AI 感兴趣但非技术背景的白领
+字数：2000 字
+风格：通俗易懂，有案例，有观点
+
+结构要求：
+1. 开头：用一个场景引入
+2. 第一部分：现状（3 个关键点）
+3. 第二部分：未来趋势（3 个预测）
+4. 结尾：给读者的行动建议
+
+请用中文写作，避免专业术语，多用比喻。
+```
+
+---
+
+## 常用 AI 工具选择指南
+
+| 任务 | 推荐工具 | 理由 |
+|------|----------|------|
+| 日常对话 | ChatGPT / Claude | 通用性强 |
+| 长文档分析 | Claude 3 | 200k 上下文 |
+| 代码生成 | Cursor / Claude Code | IDE 集成 |
+| 图像生成 | Midjourney / DALL-E 3 | 质量高 |
+| 翻译 | DeepL / GPT-4 | 准确度高 |
+| 数据分析 | ChatGPT + Code Interpreter | 可视化 |
+| 写作 | Claude / GPT-4 | 逻辑清晰 |
+| 头脑风暴 | Claude / GPT-4 | 发散性好 |
+
+---
+
+## 自动化工作流设计
+
+### 场景 1：内容创作流程
+
+```
+输入主题 → 选题分析 → 大纲生成 → 分段写作 → 润色优化 → 发布
+
+AI 辅助点：
+- 选题分析：让 AI 分析热点话题
+- 大纲生成：让 AI 生成结构化大纲
+- 分段写作：每段单独让 AI 扩写
+- 润色优化：让 AI 检查语法、优化表达
+```
+
+### 场景 2：代码开发流程
+
+```
+需求分析 → 技术选型 → 架构设计 → 编码实现 → 测试调试 → 部署上线
+
+AI 辅助点：
+- 需求分析：让 AI 梳理需求细节
+- 技术选型：让 AI 对比技术方案
+- 架构设计：让 AI 画架构图
+- 编码实现：用 Cursor/Copilot 辅助
+- 测试调试：让 AI 写测试用例
+- 部署上线：让 AI 写部署文档
+```
+
+### 场景 3：数据分析流程
+
+```
+数据收集 → 数据清洗 → 数据分析 → 可视化 → 报告输出
+
+AI 辅助点：
+- 数据收集：让 AI 写爬虫/采集脚本
+- 数据清洗：让 AI 写清洗代码
+- 数据分析：让 AI 分析规律和洞察
+- 可视化：让 AI 推荐图表类型
+- 报告输出：让 AI 生成分析报告
+```
+
+---
+
+## 常见问题解决
+
+### 问题 1：AI 输出太泛
+
+**原因：** Prompt 不够具体
+**解决：** 增加「具体要求」和「输出格式」
+
+### 问题 2：AI 理解错误
+
+**原因：** 背景信息不足
+**解决：** 补充「上下文」和「示例」
+
+### 问题 3：AI 输出不一致
+
+**原因：** 温度参数设置问题
+**解决：** 降低 temperature（0-0.3），或使用 system prompt 固定风格
+
+### 问题 4：AI 忘记之前对话
+
+**原因：** 上下文窗口限制
+**解决：**
+- 定期总结关键信息
+- 使用长上下文模型（Claude 200k）
+- 分阶段对话
+
+### 问题 5：AI 输出有幻觉
+
+**原因：** AI 模型特性
+**解决：**
+- 要求 AI 标注信息来源
+- 关键信息人工核实
+- 使用 RAG 接入真实数据
+
+---
+
+## 高效使用技巧
+
+### 技巧 1：分步引导
+
+不要一次让 AI 做太多事，分步骤完成：
+
+```
+第一步："请帮我列出这个主题的 5 个切入点"
+第二步："针对第 2 个切入点，展开写 500 字"
+第三步："优化这段文字，让表达更流畅"
+```
+
+### 技巧 2：角色设定
+
+给 AI 一个明确的角色，输出质量会提升：
+
+```
+你是一位[具体角色]，有[X年经验]，擅长[具体能力]。
+你的风格是[风格描述]。
+```
+
+### 技巧 3：输出格式
+
+指定输出格式，让结果可直接使用：
+
+```
+请以 Markdown 表格格式输出，包含以下列：
+| 序号 | 要点 | 说明 |
+```
+
+### 技巧 4：迭代优化
+
+第一次输出不满意？不要重新开始，在原文基础上优化：
+
+```
+请优化上面这段文字：
+1. 让开头更有吸引力
+2. 把第三段的逻辑说得更清楚
+3. 结尾加一句金句
+```
+
+---
+
+## 工作流程
+
+当用户请求 AI 工作流优化时：
+
+1. 了解用户的具体场景和痛点
+2. 分析当前工作流的问题
+3. 提供优化方案（工具选择 + Prompt 优化 + 流程设计）
+4. 给出具体的执行步骤
+
+---
+
+Made by Popeye 🥬
+
+---
+
+## 💼 定制服务
+
+需要更专业的帮助？Popeye 提供定制服务。
+
+**联系方式：**
+- 邮箱：popeyeai@126.com
+- 在对话中直接说「我需要定制服务」
+
+---
+
+Made by Popeye 🥬

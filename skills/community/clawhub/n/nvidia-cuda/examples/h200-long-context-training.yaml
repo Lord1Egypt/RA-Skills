@@ -1,0 +1,32 @@
+hardware_tier: h200-memory-first
+objective: long-context transformer training
+
+precision:
+  baseline: bf16
+  tf32_matmul: high
+  fp8_candidate: false
+
+distributed:
+  launcher: torchrun
+  backend: nccl
+  data_parallel: true
+  fsdp: true
+  fsdp_strategy: full_shard
+  tensor_parallel: 1
+  sequence_parallel: false
+  context_parallel: 2
+  activation_checkpointing: selective
+
+dataloader:
+  pin_memory: true
+  persistent_workers: true
+  prefetch_factor: 4
+  num_workers_per_rank: 8
+
+profiling:
+  first_tool: nsys
+  second_tool: ncu
+
+notes:
+  - Choose H200 when model memory and bandwidth dominate the decision.
+  - Use FSDP before broadening checkpointing if state replication is the main memory problem.

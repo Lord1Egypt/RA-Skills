@@ -1,0 +1,74 @@
+[
+  {
+    "name": "财联社-AI",
+    "url": "https://www.cls.cn/subject/1321",
+    "enabled": true
+  },
+  {
+    "name": "36氪-AI",
+    "url": "https://36kr.com/motif/327686782977",
+    "include_keywords": ["ai", "人工智能", "大模型", "模型", "智能体", "agent", "gpt", "claude", "openai", "anthropic", "kimi", "deepseek", "算力", "推理", "芯片", "aigc"],
+    "enabled": true
+  },
+  {
+    "name": "36氪快讯-AI",
+    "url": "https://36kr.com/newsflashes/",
+    "include_keywords": ["ai", "人工智能", "大模型", "模型", "智能体", "agent", "gpt", "claude", "openai", "anthropic", "kimi", "算力", "推理"],
+    "enabled": true
+  },
+  {
+    "name": "OpenAI新闻",
+    "url": "https://openai.com/zh-Hans-CN/news/",
+    "enabled": true
+  },
+  {
+    "name": "Anthropic新闻",
+    "url": "https://www.anthropic.com/news",
+    "enabled": true
+  },
+  {
+    "name": "Forrester博客",
+    "url": "https://www.forrester.com/blogs/",
+    "enabled": true
+  },
+  {
+    "name": "CMSWire",
+    "url": "https://www.cmswire.com/",
+    "enabled": true
+  },
+  {
+    "name": "CX Today",
+    "url": "https://www.cxtoday.com/latest-news/",
+    "enabled": true
+  },
+  {
+    "name": "Readhub-AI",
+    "url": "https://readhub.cn/news/ai",
+    "enabled": true
+  },
+  {
+    "name": "GitHub Trending",
+    "url": "https://github.com/trending?since=daily",
+    "include_keywords": ["ai", "agent", "model", "llm", "rag", "inference", "diffusion", "gpt", "claude", "openai", "anthropic", "deepseek", "machine learning", "ml"],
+    "fallback_to_now": true,
+    "enabled": true
+  },
+  {
+    "name": "Google DeepMind博客",
+    "url": "https://deepmind.google/discover/blog/",
+    "enabled": false,
+    "note": "jina/agent-reach 无法获取博客列表标题和日期，需要 browser 模式"
+  },
+  {
+    "name": "Google Cloud博客",
+    "url": "https://cloud.google.com/blog/",
+    "fallback_to_now": true,
+    "enabled": true
+  },
+  {
+    "name": "SteveBlank",
+    "url": "https://steveblank.com/feed/",
+    "type": "rss",
+    "enabled": true
+  }
+]

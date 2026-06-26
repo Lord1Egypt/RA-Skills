@@ -1,35 +1,52 @@
 ---
-name: "case_search"
-description: "根据用户描述的实际场景检索并匹配最相关的案例，返回最多三个符合需求的详细判决信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/case-search"
-sourceUrl: "https://clawhub.ai/skills/case-search"
+name: case_search
+description: 案例查询检索，根据用户实际场景检索并匹配最相关的案例数据
+当用户表达希望查某类案件，找类似案件时非常有用，例如：
+- 请帮我查一下有关离婚小孩抚养权争夺的案例
+- 有没有卡车和小轿车相撞卡车无责的判例？
 ---
+# 执行流程
+## step1: 根据用户场景找到类似匹配的案例并返回案例号
+- 如果查找财产类案件请访问~/.openclaw/workspace/skills/case_search/case_info/case_index.md目录文件，并根据目录指引访问该文件夹下案件详情文件
+## stp2: 匹配概括信息，找到最相近的案件
+ 用"概括"字段匹配用户当前场景和需求，返回最相关的案例(最多3个)，如果没有符合当前场景的类似案例请返回"无"
 
-# case_search
+## step2:查询案例详情
+## step2-1:若有查到符合当前场景的类似案例
+根据最相关的案号(case_no)调用sql_helper skills查询数据库中company_db.case_info表中的数据返回案情详情
+## step2-2:若没有查到符合当前场景的类似案例
+请调用tavily_search skills技能进行网络检索查询相关案情
 
-> 根据用户描述的实际场景检索并匹配最相关的案例，返回最多三个符合需求的详细判决信息。
+# step3:根据查询结果结构化输出案例详情
+## 若找到最相关的案例:
+【案号】:XXXX
+【法院】:XXXX
+【审理时间】:XXXX
+【事实与理由】:XXXX
+【裁判依据】:XXXX
+【本院认为】:XXXX
+【判决如下】:XXXX
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/case-search`
-- **Source URL:** [https://clawhub.ai/skills/case-search](https://clawhub.ai/skills/case-search)
+【案号】:XXXX
+【法院】:XXXX
+【审理时间】:XXXX
+【事实与理由】:XXXX
+【裁判依据】:XXXX
+【本院认为】:XXXX
+【判决如下】:XXXX
+...
 
-## Overview
+## 若无最相关案例
+【案号】:无
+【法院】:无
+【审理时间】:无
+【事实与理由】:无
+【裁判依据】:无
+【本院认为】:无
+【判决如下】:无
+(请务必严格按上述格式输出，请勿做任何解释说明,请勿输出案例内容)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/case-search
-```
+
+
+

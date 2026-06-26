@@ -1,0 +1,20 @@
+{
+  "slug": "quran-explanation-english-skill",
+  "name": "Quran Explanation English Skill",
+  "version": "0.1.0",
+  "tags": [
+    "quran",
+    "islamic-education",
+    "english-explanation",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Education",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-31",
+      "notes": "Created manually for respectful English Quran explanation workflows. Pending Abdullah approval before any public upload."
+    }
+  ]
+}

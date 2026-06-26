@@ -1,0 +1,2246 @@
+{
+  "airports": [
+    {
+      "code": "PEK",
+      "name": "北京首都国际机场",
+      "city": "北京",
+      "cityCode": "BJS",
+      "province": "北京市",
+      "region": "华北"
+    },
+    {
+      "code": "PKX",
+      "name": "北京大兴国际机场",
+      "city": "北京",
+      "cityCode": "BJS",
+      "province": "北京市",
+      "region": "华北"
+    },
+    {
+      "code": "NAY",
+      "name": "北京南苑机场",
+      "city": "北京",
+      "cityCode": "BJS",
+      "province": "北京市",
+      "region": "华北",
+      "deprecated": true
+    },
+    {
+      "code": "SHA",
+      "name": "上海虹桥国际机场",
+      "city": "上海",
+      "cityCode": "SHA",
+      "province": "上海市",
+      "region": "华东"
+    },
+    {
+      "code": "PVG",
+      "name": "上海浦东国际机场",
+      "city": "上海",
+      "cityCode": "SHA",
+      "province": "上海市",
+      "region": "华东"
+    },
+    {
+      "code": "CAN",
+      "name": "广州白云国际机场",
+      "city": "广州",
+      "cityCode": "CAN",
+      "province": "广东省",
+      "region": "华南"
+    },
+    {
+      "code": "SZX",
+      "name": "深圳宝安国际机场",
+      "city": "深圳",
+      "cityCode": "SZX",
+      "province": "广东省",
+      "region": "华南"
+    },
+    {
+      "code": "CTU",
+      "name": "成都双流国际机场",
+      "city": "成都",
+      "cityCode": "CTU",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "TFU",
+      "name": "成都天府国际机场",
+      "city": "成都",
+      "cityCode": "CTU",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "HGH",
+      "name": "杭州萧山国际机场",
+      "city": "杭州",
+      "cityCode": "HGH",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "NKG",
+      "name": "南京禄口国际机场",
+      "city": "南京",
+      "cityCode": "NKG",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "WUH",
+      "name": "武汉天河国际机场",
+      "city": "武汉",
+      "cityCode": "WUH",
+      "province": "湖北省",
+      "region": "华中"
+    },
+    {
+      "code": "XIY",
+      "name": "西安咸阳国际机场",
+      "city": "西安",
+      "cityCode": "XIY",
+      "province": "陕西省",
+      "region": "西北"
+    },
+    {
+      "code": "CKG",
+      "name": "重庆江北国际机场",
+      "city": "重庆",
+      "cityCode": "CKG",
+      "province": "重庆市",
+      "region": "西南"
+    },
+    {
+      "code": "XMN",
+      "name": "厦门高崎国际机场",
+      "city": "厦门",
+      "cityCode": "XMN",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "CSX",
+      "name": "长沙黄花国际机场",
+      "city": "长沙",
+      "cityCode": "CSX",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "KMG",
+      "name": "昆明长水国际机场",
+      "city": "昆明",
+      "cityCode": "KMG",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "KWE",
+      "name": "贵阳龙洞堡国际机场",
+      "city": "贵阳",
+      "cityCode": "KWE",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "DLC",
+      "name": "大连周水子国际机场",
+      "city": "大连",
+      "cityCode": "DLC",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "TAO",
+      "name": "青岛胶东国际机场",
+      "city": "青岛",
+      "cityCode": "TAO",
+      "province": "山东省",
+      "region": "华东"
+    },
+    {
+      "code": "TSN",
+      "name": "天津滨海国际机场",
+      "city": "天津",
+      "cityCode": "TSN",
+      "province": "天津市",
+      "region": "华北"
+    },
+    {
+      "code": "CGO",
+      "name": "郑州新郑国际机场",
+      "city": "郑州",
+      "cityCode": "CGO",
+      "province": "河南省",
+      "region": "华中"
+    },
+    {
+      "code": "FOC",
+      "name": "福州长乐国际机场",
+      "city": "福州",
+      "cityCode": "FOC",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "SHE",
+      "name": "沈阳桃仙国际机场",
+      "city": "沈阳",
+      "cityCode": "SHE",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "HRB",
+      "name": "哈尔滨太平国际机场",
+      "city": "哈尔滨",
+      "cityCode": "HRB",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "KHN",
+      "name": "南昌昌北国际机场",
+      "city": "南昌",
+      "cityCode": "KHN",
+      "province": "江西省",
+      "region": "华东"
+    },
+    {
+      "code": "TYN",
+      "name": "太原武宿国际机场",
+      "city": "太原",
+      "cityCode": "TYN",
+      "province": "山西省",
+      "region": "华北"
+    },
+    {
+      "code": "TNA",
+      "name": "济南遥墙国际机场",
+      "city": "济南",
+      "cityCode": "TNA",
+      "province": "山东省",
+      "region": "华东"
+    },
+    {
+      "code": "SJW",
+      "name": "石家庄正定国际机场",
+      "city": "石家庄",
+      "cityCode": "SJW",
+      "province": "河北省",
+      "region": "华北"
+    },
+    {
+      "code": "CGQ",
+      "name": "长春龙嘉国际机场",
+      "city": "长春",
+      "cityCode": "CGQ",
+      "province": "吉林省",
+      "region": "东北"
+    },
+    {
+      "code": "LHW",
+      "name": "兰州中川国际机场",
+      "city": "兰州",
+      "cityCode": "LHW",
+      "province": "甘肃省",
+      "region": "西北"
+    },
+    {
+      "code": "NNG",
+      "name": "南宁吴圩国际机场",
+      "city": "南宁",
+      "cityCode": "NNG",
+      "province": "广西壮族自治区",
+      "region": "华南"
+    },
+    {
+      "code": "NGB",
+      "name": "宁波栎社国际机场",
+      "city": "宁波",
+      "cityCode": "NGB",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "ZUH",
+      "name": "珠海金湾机场",
+      "city": "珠海",
+      "cityCode": "ZUH",
+      "province": "广东省",
+      "region": "华南"
+    },
+    {
+      "code": "HAK",
+      "name": "海口美兰国际机场",
+      "city": "海口",
+      "cityCode": "HAK",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "SYX",
+      "name": "三亚凤凰国际机场",
+      "city": "三亚",
+      "cityCode": "SYX",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "URC",
+      "name": "乌鲁木齐地窝堡国际机场",
+      "city": "乌鲁木齐",
+      "cityCode": "URC",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "LXA",
+      "name": "拉萨贡嘎国际机场",
+      "city": "拉萨",
+      "cityCode": "LXA",
+      "province": "西藏自治区",
+      "region": "西南"
+    },
+    {
+      "code": "LJG",
+      "name": "丽江三义国际机场",
+      "city": "丽江",
+      "cityCode": "LJG",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "KWL",
+      "name": "桂林两江国际机场",
+      "city": "桂林",
+      "cityCode": "KWL",
+      "province": "广西壮族自治区",
+      "region": "华南"
+    },
+    {
+      "code": "JGN",
+      "name": "上海九华山机场",
+      "city": "上海",
+      "cityCode": "SHA",
+      "province": "上海市",
+      "region": "华东"
+    },
+    {
+      "code": "KHG",
+      "name": "喀什国际机场",
+      "city": "喀什",
+      "cityCode": "KHG",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "YIN",
+      "name": "伊宁国际机场",
+      "city": "伊宁",
+      "cityCode": "YIN",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "AAT",
+      "name": "阿勒泰雪都国际机场",
+      "city": "阿勒泰",
+      "cityCode": "AAT",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "TUQ",
+      "name": "吐鲁番交河国际机场",
+      "city": "吐鲁番",
+      "cityCode": "TUQ",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "KRL",
+      "name": "库尔勒梨城机场",
+      "city": "库尔勒",
+      "cityCode": "KRL",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "HTU",
+      "name": "和田机场",
+      "city": "和田",
+      "cityCode": "HTU",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "KRY",
+      "name": "克拉玛依机场",
+      "city": "克拉玛依",
+      "cityCode": "KRY",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "AKU",
+      "name": "阿克苏红旗坡机场",
+      "city": "阿克苏",
+      "cityCode": "AKU",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "BSX",
+      "name": "博乐阿拉山口机场",
+      "city": "博乐",
+      "cityCode": "BSX",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "NLT",
+      "name": "那拉提机场",
+      "city": "那拉提",
+      "cityCode": "NLT",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "HMI",
+      "name": "哈密机场",
+      "city": "哈密",
+      "cityCode": "HMI",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "KCA",
+      "name": "库车龟兹机场",
+      "city": "库车",
+      "cityCode": "KCA",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "NJS",
+      "name": "且末机场",
+      "city": "且末",
+      "cityCode": "NJS",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "RQA",
+      "name": "若羌楼兰机场",
+      "city": "若羌",
+      "cityCode": "RQA",
+      "province": "新疆维吾尔自治区",
+      "region": "西北"
+    },
+    {
+      "code": "DXN",
+      "name": "德宏芒市机场",
+      "city": "芒市",
+      "cityCode": "DXN",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "SYM",
+      "name": "普洱思茅机场",
+      "city": "普洱",
+      "cityCode": "SYM",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "LUM",
+      "name": "芒市机场",
+      "city": "芒市",
+      "cityCode": "LUM",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "JHG",
+      "name": "西双版纳嘎洒国际机场",
+      "city": "西双版纳",
+      "cityCode": "JHG",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "DLU",
+      "name": "大理凤仪机场",
+      "city": "大理",
+      "cityCode": "DLU",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "YYA",
+      "name": "延安南泥湾机场",
+      "city": "延安",
+      "cityCode": "YYA",
+      "province": "陕西省",
+      "region": "西北"
+    },
+    {
+      "code": "SIA",
+      "name": "西安咸阳国际机场",
+      "city": "西安",
+      "cityCode": "SIA",
+      "province": "陕西省",
+      "region": "西北"
+    },
+    {
+      "code": "HZG",
+      "name": "汉中城固机场",
+      "city": "汉中",
+      "cityCode": "HZG",
+      "province": "陕西省",
+      "region": "西北"
+    },
+    {
+      "code": "榆林",
+      "name": "榆林榆阳机场",
+      "city": "榆林",
+      "cityCode": "UYN",
+      "province": "陕西省",
+      "region": "西北"
+    },
+    {
+      "code": "XIN",
+      "name": "安康富强机场",
+      "city": "安康",
+      "cityCode": "AKA",
+      "province": "陕西省",
+      "region": "西北"
+    },
+    {
+      "code": "LZY",
+      "name": "林芝米林机场",
+      "city": "林芝",
+      "cityCode": "LZY",
+      "province": "西藏自治区",
+      "region": "西南"
+    },
+    {
+      "code": "BPX",
+      "name": "昌都邦达机场",
+      "city": "昌都",
+      "cityCode": "BPX",
+      "province": "西藏自治区",
+      "region": "西南"
+    },
+    {
+      "code": "RKZ",
+      "name": "日喀则和平机场",
+      "city": "日喀则",
+      "cityCode": "RKZ",
+      "province": "西藏自治区",
+      "region": "西南"
+    },
+    {
+      "code": "DZH",
+      "name": "达州河市机场",
+      "city": "达州",
+      "cityCode": "DZH",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "GYS",
+      "name": "广元盘龙机场",
+      "city": "广元",
+      "cityCode": "GYS",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "JZH",
+      "name": "九寨沟黄龙机场",
+      "city": "九寨沟",
+      "cityCode": "JZH",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "LZO",
+      "name": "泸州云龙机场",
+      "city": "泸州",
+      "cityCode": "LZO",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "MIG",
+      "name": "绵阳南郊机场",
+      "city": "绵阳",
+      "cityCode": "MIG",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "XIC",
+      "name": "西昌青山机场",
+      "city": "西昌",
+      "cityCode": "XIC",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "PZI",
+      "name": "攀枝花保安营机场",
+      "city": "攀枝花",
+      "cityCode": "PZI",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "YBP",
+      "name": "宜宾菜坝机场",
+      "city": "宜宾",
+      "cityCode": "YBP",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "ZUY",
+      "name": "遵义茅台机场",
+      "city": "遵义",
+      "cityCode": "ZYI",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "LLB",
+      "name": "荔波机场",
+      "city": "荔波",
+      "cityCode": "LLB",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "KWE",
+      "name": "贵阳龙洞堡国际机场",
+      "city": "贵阳",
+      "cityCode": "KWE",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "TEN",
+      "name": "铜仁凤凰机场",
+      "city": "铜仁",
+      "cityCode": "TEN",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "AVK",
+      "name": "安顺黄果树机场",
+      "city": "安顺",
+      "cityCode": "AVA",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "HZH",
+      "name": "黎平机场",
+      "city": "黎平",
+      "cityCode": "HZH",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "ZYI",
+      "name": "遵义新舟机场",
+      "city": "遵义",
+      "cityCode": "ZYI",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "LOP",
+      "name": "澜沧景迈机场",
+      "city": "澜沧",
+      "cityCode": "LOP",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "WMT",
+      "name": "遵义茅台机场",
+      "city": "遵义",
+      "cityCode": "WMT",
+      "province": "贵州省",
+      "region": "西南"
+    },
+    {
+      "code": "SYI",
+      "name": "昭通机场",
+      "city": "昭通",
+      "cityCode": "SYM",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "DCY",
+      "name": "稻城亚丁机场",
+      "city": "稻城",
+      "cityCode": "DCY",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "HDO",
+      "name": "红原机场",
+      "city": "红原",
+      "cityCode": "HDO",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "PGR",
+      "name": "格尔木机场",
+      "city": "格尔木",
+      "cityCode": "GOQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "GOQ",
+      "name": "格尔木机场",
+      "city": "格尔木",
+      "cityCode": "GOQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "XNN",
+      "name": "西宁曹家堡国际机场",
+      "city": "西宁",
+      "cityCode": "XNN",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "GZI",
+      "name": "玉树巴塘机场",
+      "city": "玉树",
+      "cityCode": "GZG",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "YUS",
+      "name": "果洛玛沁机场",
+      "city": "果洛",
+      "cityCode": "GMQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "IQM",
+      "name": "祁连机场",
+      "city": "祁连",
+      "cityCode": "HBQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "GXH",
+      "name": "海北祁连机场",
+      "city": "祁连",
+      "cityCode": "HBQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "SQE",
+      "name": "石渠机场",
+      "city": "石渠",
+      "cityCode": "SQE",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "XFS",
+      "name": "遂宁安居机场",
+      "city": "遂宁",
+      "cityCode": "XFS",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "NAO",
+      "name": "南充高坪机场",
+      "city": "南充",
+      "cityCode": "NAO",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "JNG",
+      "name": "济宁曲阜机场",
+      "city": "济宁",
+      "cityCode": "JNG",
+      "province": "山东省",
+      "region": "华东"
+    },
+    {
+      "code": "YNT",
+      "name": "烟台蓬莱国际机场",
+      "city": "烟台",
+      "cityCode": "YNT",
+      "province": "山东省",
+      "region": "华东"
+    },
+    {
+      "code": "WEH",
+      "name": "威海大水泊机场",
+      "city": "威海",
+      "cityCode": "WEH",
+      "province": "山东省",
+      "region": "华东"
+    },
+    {
+      "code": "DOY",
+      "name": "东营胜利机场",
+      "city": "东营",
+      "cityCode": "DOY",
+      "province": "山东省",
+      "region": "华东"
+    },
+    {
+      "code": "WEF",
+      "name": "潍坊机场",
+      "city": "潍坊",
+      "cityCode": "WEF",
+      "province": "山东省",
+      "region": "华东"
+    },
+    {
+      "code": "LYG",
+      "name": "连云港花果山机场",
+      "city": "连云港",
+      "cityCode": "LYG",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "CZX",
+      "name": "常州奔牛国际机场",
+      "city": "常州",
+      "cityCode": "CZX",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "WUX",
+      "name": "无锡硕放国际机场",
+      "city": "无锡",
+      "cityCode": "WUX",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "SZV",
+      "name": "苏州光福机场",
+      "city": "苏州",
+      "cityCode": "SZV",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "NTG",
+      "name": "南通兴东国际机场",
+      "city": "南通",
+      "cityCode": "NTG",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "YZH",
+      "name": "盐城南洋机场",
+      "city": "盐城",
+      "cityCode": "YNZ",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "XUZ",
+      "name": "徐州观音国际机场",
+      "city": "徐州",
+      "cityCode": "XUZ",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "HIA",
+      "name": "淮安涟水机场",
+      "city": "淮安",
+      "cityCode": "HIA",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "YNZ",
+      "name": "盐城机场",
+      "city": "盐城",
+      "cityCode": "YNZ",
+      "province": "江苏省",
+      "region": "华东"
+    },
+    {
+      "code": "JSJ",
+      "name": "揭阳潮汕国际机场",
+      "city": "揭阳",
+      "cityCode": "SWA",
+      "province": "广东省",
+      "region": "华南"
+    },
+    {
+      "code": "SWA",
+      "name": "揭阳潮汕国际机场",
+      "city": "揭阳",
+      "cityCode": "SWA",
+      "province": "广东省",
+      "region": "华南"
+    },
+    {
+      "code": "MFM",
+      "name": "澳门国际机场",
+      "city": "澳门",
+      "cityCode": "MFM",
+      "province": "澳门特别行政区",
+      "region": "华南"
+    },
+    {
+      "code": "HKG",
+      "name": "香港国际机场",
+      "city": "香港",
+      "cityCode": "HKG",
+      "province": "香港特别行政区",
+      "region": "华南"
+    },
+    {
+      "code": "TPE",
+      "name": "台湾桃园国际机场",
+      "city": "台北",
+      "cityCode": "TPE",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "TSA",
+      "name": "台北松山机场",
+      "city": "台北",
+      "cityCode": "TPE",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "KHH",
+      "name": "高雄国际机场",
+      "city": "高雄",
+      "cityCode": "KHH",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "RMQ",
+      "name": "台中清泉岗机场",
+      "city": "台中",
+      "cityCode": "RMQ",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "WNI",
+      "name": "北竿南竿机场",
+      "city": "马祖",
+      "cityCode": "WNI",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "LHR",
+      "name": "花莲机场",
+      "city": "花莲",
+      "cityCode": "HUN",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "HUN",
+      "name": "花莲机场",
+      "city": "花莲",
+      "cityCode": "HUN",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "TTT",
+      "name": "台东丰年机场",
+      "city": "台东",
+      "cityCode": "TTT",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "CYI",
+      "name": "嘉义机场",
+      "city": "嘉义",
+      "cityCode": "CYI",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "MFK",
+      "name": "马祖南竿机场",
+      "city": "马祖",
+      "cityCode": "MFK",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "CMJ",
+      "name": "澎湖马公机场",
+      "city": "澎湖",
+      "cityCode": "CMJ",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "TNN",
+      "name": "台南机场",
+      "city": "台南",
+      "cityCode": "TNN",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "PIF",
+      "name": "屏东机场",
+      "city": "屏东",
+      "cityCode": "PIF",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "KYD",
+      "name": "兰屿机场",
+      "city": "兰屿",
+      "cityCode": "KYD",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "WOO",
+      "name": "望安机场",
+      "city": "澎湖",
+      "cityCode": "WOO",
+      "province": "台湾省",
+      "region": "华东"
+    },
+    {
+      "code": "ZUH",
+      "name": "珠海金湾机场",
+      "city": "珠海",
+      "cityCode": "ZUH",
+      "province": "广东省",
+      "region": "华南"
+    },
+    {
+      "code": "OXB",
+      "name": "三亚机场",
+      "city": "三亚",
+      "cityCode": "SYX",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "BAR",
+      "name": "琼海博鳌机场",
+      "city": "琼海",
+      "cityCode": "BAR",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "HCJ",
+      "name": "儋州机场",
+      "city": "儋州",
+      "cityCode": "HCJ",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "FYJ",
+      "name": "抚远东极机场",
+      "city": "抚远",
+      "cityCode": "FYJ",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "MDG",
+      "name": "牡丹江海浪国际机场",
+      "city": "牡丹江",
+      "cityCode": "MDG",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "HEK",
+      "name": "黑河瑷珲机场",
+      "city": "黑河",
+      "cityCode": "HEK",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "JXA",
+      "name": "鸡西兴凯湖机场",
+      "city": "鸡西",
+      "cityCode": "JXA",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "MDG",
+      "name": "牡丹江海浪国际机场",
+      "city": "牡丹江",
+      "cityCode": "MDG",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "HRB",
+      "name": "哈尔滨太平国际机场",
+      "city": "哈尔滨",
+      "cityCode": "HRB",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "LZI",
+      "name": "伊春林都机场",
+      "city": "伊春",
+      "cityCode": "LDS",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "LDS",
+      "name": "伊春林都机场",
+      "city": "伊春",
+      "cityCode": "LDS",
+      "province": "黑龙江省",
+      "region": "东北"
+    },
+    {
+      "code": "JNZ",
+      "name": "锦州湾国际机场",
+      "city": "锦州",
+      "cityCode": "JNZ",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "DDA",
+      "name": "丹东浪头机场",
+      "city": "丹东",
+      "cityCode": "DDG",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "DDG",
+      "name": "丹东浪头机场",
+      "city": "丹东",
+      "cityCode": "DDG",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "WFA",
+      "name": "营口兰旗机场",
+      "city": "营口",
+      "cityCode": "YKH",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "YKH",
+      "name": "营口兰旗机场",
+      "city": "营口",
+      "cityCode": "YKH",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "CHG",
+      "name": "朝阳机场",
+      "city": "朝阳",
+      "cityCode": "CHG",
+      "province": "辽宁省",
+      "region": "东北"
+    },
+    {
+      "code": "DBS",
+      "name": "长白山机场",
+      "city": "长白山",
+      "cityCode": "NBS",
+      "province": "吉林省",
+      "region": "东北"
+    },
+    {
+      "code": "NBS",
+      "name": "长白山机场",
+      "city": "长白山",
+      "cityCode": "NBS",
+      "province": "吉林省",
+      "region": "东北"
+    },
+    {
+      "code": "YNJ",
+      "name": "延吉朝阳川国际机场",
+      "city": "延吉",
+      "cityCode": "YNJ",
+      "province": "吉林省",
+      "region": "东北"
+    },
+    {
+      "code": "CGQ",
+      "name": "长春龙嘉国际机场",
+      "city": "长春",
+      "cityCode": "CGQ",
+      "province": "吉林省",
+      "region": "东北"
+    },
+    {
+      "code": "THD",
+      "name": "通化三源浦机场",
+      "city": "通化",
+      "cityCode": "TNH",
+      "province": "吉林省",
+      "region": "东北"
+    },
+    {
+      "code": "SPB",
+      "name": "松原查干湖机场",
+      "city": "松原",
+      "cityCode": "YSQ",
+      "province": "吉林省",
+      "region": "东北"
+    },
+    {
+      "code": "HLH",
+      "name": "乌兰浩特义勒力特机场",
+      "city": "乌兰浩特",
+      "cityCode": "HLH",
+      "province": "内蒙古自治区",
+      "region": "华北"
+    },
+    {
+      "code": "XIL",
+      "name": "锡林浩特机场",
+      "city": "锡林浩特",
+      "cityCode": "XIL",
+      "province": "内蒙古自治区",
+      "region": "华北"
+    },
+    {
+      "code": "TGO",
+      "name": "通辽机场",
+      "city": "通辽",
+      "cityCode": "TGO",
+      "province": "内蒙古自治区",
+      "region": "华北"
+    },
+    {
+      "code": "BPL",
+      "name": "博克图机场",
+      "city": "博克图",
+      "cityCode": "BPL",
+      "province": "内蒙古自治区",
+      "region": "华北"
+    },
+    {
+      "code": "WUA",
+      "name": "乌海机场",
+      "city": "乌海",
+      "cityCode": "WUA",
+      "province": "内蒙古自治区",
+      "region": "华北"
+    },
+    {
+      "code": "BAV",
+      "name": "包头东河机场",
+      "city": "包头",
+      "cityCode": "BAV",
+      "province": "内蒙古自治区",
+      "region": "华北"
+    },
+    {
+      "code": "HET",
+      "name": "呼和浩特白塔国际机场",
+      "city": "呼和浩特",
+      "cityCode": "HET",
+      "province": "内蒙古自治区",
+      "region": "华北"
+    },
+    {
+      "code": "CDE",
+      "name": "承德普宁机场",
+      "city": "承德",
+      "cityCode": "CDE",
+      "province": "河北省",
+      "region": "华北"
+    },
+    {
+      "code": "SGP",
+      "name": "唐山三女河机场",
+      "city": "唐山",
+      "cityCode": "TVS",
+      "province": "河北省",
+      "region": "华北"
+    },
+    {
+      "code": "TVS",
+      "name": "唐山三女河机场",
+      "city": "唐山",
+      "cityCode": "TVS",
+      "province": "河北省",
+      "region": "华北"
+    },
+    {
+      "code": "LHD",
+      "name": "秦皇岛北戴河机场",
+      "city": "秦皇岛",
+      "cityCode": "BPE",
+      "province": "河北省",
+      "region": "华北"
+    },
+    {
+      "code": "BPE",
+      "name": "秦皇岛北戴河机场",
+      "city": "秦皇岛",
+      "cityCode": "BPE",
+      "province": "河北省",
+      "region": "华北"
+    },
+    {
+      "code": "HDG",
+      "name": "邯郸机场",
+      "city": "邯郸",
+      "cityCode": "HDG",
+      "province": "河北省",
+      "region": "华北"
+    },
+    {
+      "code": "CIH",
+      "name": "长治王村机场",
+      "city": "长治",
+      "cityCode": "CIH",
+      "province": "山西省",
+      "region": "华北"
+    },
+    {
+      "code": "DAT",
+      "name": "大同云冈机场",
+      "city": "大同",
+      "cityCode": "DAT",
+      "province": "山西省",
+      "region": "华北"
+    },
+    {
+      "code": "WUT",
+      "name": "忻州五台山机场",
+      "city": "忻州",
+      "cityCode": "WUT",
+      "province": "山西省",
+      "region": "华北"
+    },
+    {
+      "code": "LYA",
+      "name": "洛阳北郊机场",
+      "city": "洛阳",
+      "cityCode": "LYA",
+      "province": "河南省",
+      "region": "华中"
+    },
+    {
+      "code": "NYN",
+      "name": "南阳姜营机场",
+      "city": "南阳",
+      "cityCode": "NNY",
+      "province": "河南省",
+      "region": "华中"
+    },
+    {
+      "code": "NNY",
+      "name": "南阳姜营机场",
+      "city": "南阳",
+      "cityCode": "NNY",
+      "province": "河南省",
+      "region": "华中"
+    },
+    {
+      "code": "XIA",
+      "name": "信阳明港机场",
+      "city": "信阳",
+      "cityCode": "XAI",
+      "province": "河南省",
+      "region": "华中"
+    },
+    {
+      "code": "LAF",
+      "name": "安阳红旗渠机场",
+      "city": "安阳",
+      "cityCode": "AYN",
+      "province": "河南省",
+      "region": "华中"
+    },
+    {
+      "code": "PNY",
+      "name": "平顶山机场",
+      "city": "平顶山",
+      "cityCode": "PDS",
+      "province": "河南省",
+      "region": "华中"
+    },
+    {
+      "code": "WGN",
+      "name": "岳阳三荷机场",
+      "city": "岳阳",
+      "cityCode": "YYA",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "FYG",
+      "name": "永州零陵机场",
+      "city": "永州",
+      "cityCode": "LLF",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "LLF",
+      "name": "永州零陵机场",
+      "city": "永州",
+      "cityCode": "LLF",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "HJJ",
+      "name": "怀化芷江机场",
+      "city": "怀化",
+      "cityCode": "HJJ",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "DYG",
+      "name": "张家界荷花国际机场",
+      "city": "张家界",
+      "cityCode": "DYG",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "JIS",
+      "name": "常德桃花源机场",
+      "city": "常德",
+      "cityCode": "CGD",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "CGD",
+      "name": "常德桃花源机场",
+      "city": "常德",
+      "cityCode": "CGD",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "HHA",
+      "name": "长沙黄花国际机场",
+      "city": "长沙",
+      "cityCode": "HHA",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "WUH",
+      "name": "武汉天河国际机场",
+      "city": "武汉",
+      "cityCode": "WUH",
+      "province": "湖北省",
+      "region": "华中"
+    },
+    {
+      "code": "WDS",
+      "name": "十堰武当山机场",
+      "city": "十堰",
+      "cityCode": "WDS",
+      "province": "湖北省",
+      "region": "华中"
+    },
+    {
+      "code": "SHS",
+      "name": "沙市机场",
+      "city": "荆州",
+      "cityCode": "SHS",
+      "province": "湖北省",
+      "region": "华中"
+    },
+    {
+      "code": "YIH",
+      "name": "宜昌三峡机场",
+      "city": "宜昌",
+      "cityCode": "YIH",
+      "province": "湖北省",
+      "region": "华中"
+    },
+    {
+      "code": "ENH",
+      "name": "恩施许家坪机场",
+      "city": "恩施",
+      "cityCode": "ENH",
+      "province": "湖北省",
+      "region": "华中"
+    },
+    {
+      "code": "XFN",
+      "name": "襄阳刘集机场",
+      "city": "襄阳",
+      "cityCode": "XFN",
+      "province": "湖北省",
+      "region": "华中"
+    },
+    {
+      "code": "HAK",
+      "name": "海口美兰国际机场",
+      "city": "海口",
+      "cityCode": "HAK",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "SYX",
+      "name": "三亚凤凰国际机场",
+      "city": "三亚",
+      "cityCode": "SYX",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "BAR",
+      "name": "琼海博鳌机场",
+      "city": "琼海",
+      "cityCode": "BAR",
+      "province": "海南省",
+      "region": "华南"
+    },
+    {
+      "code": "CGD",
+      "name": "常德桃花源机场",
+      "city": "常德",
+      "cityCode": "CGD",
+      "province": "湖南省",
+      "region": "华中"
+    },
+    {
+      "code": "KWL",
+      "name": "桂林两江国际机场",
+      "city": "桂林",
+      "cityCode": "KWL",
+      "province": "广西壮族自治区",
+      "region": "华南"
+    },
+    {
+      "code": "LZH",
+      "name": "柳州白莲机场",
+      "city": "柳州",
+      "cityCode": "LZH",
+      "province": "广西壮族自治区",
+      "region": "华南"
+    },
+    {
+      "code": "NNG",
+      "name": "南宁吴圩国际机场",
+      "city": "南宁",
+      "cityCode": "NNG",
+      "province": "广西壮族自治区",
+      "region": "华南"
+    },
+    {
+      "code": "BHY",
+      "name": "北海福成机场",
+      "city": "北海",
+      "cityCode": "BHY",
+      "province": "广西壮族自治区",
+      "region": "华南"
+    },
+    {
+      "code": "WUZ",
+      "name": "梧州西江机场",
+      "city": "梧州",
+      "cityCode": "WUZ",
+      "province": "广西壮族自治区",
+      "region": "华南"
+    },
+    {
+      "code": "JIU",
+      "name": "九江庐山机场",
+      "city": "九江",
+      "cityCode": "JIU",
+      "province": "江西省",
+      "region": "华东"
+    },
+    {
+      "code": "KOW",
+      "name": "赣州黄金机场",
+      "city": "赣州",
+      "cityCode": "KOW",
+      "province": "江西省",
+      "region": "华东"
+    },
+    {
+      "code": "JGS",
+      "name": "井冈山机场",
+      "city": "井冈山",
+      "cityCode": "JGS",
+      "province": "江西省",
+      "region": "华东"
+    },
+    {
+      "code": "SYM",
+      "name": "景德镇罗家机场",
+      "city": "景德镇",
+      "cityCode": "JDZ",
+      "province": "江西省",
+      "region": "华东"
+    },
+    {
+      "code": "JDZ",
+      "name": "景德镇罗家机场",
+      "city": "景德镇",
+      "cityCode": "JDZ",
+      "province": "江西省",
+      "region": "华东"
+    },
+    {
+      "code": "SRC",
+      "name": "上饶三清山机场",
+      "city": "上饶",
+      "cityCode": "SQD",
+      "province": "江西省",
+      "region": "华东"
+    },
+    {
+      "code": "FOC",
+      "name": "福州长乐国际机场",
+      "city": "福州",
+      "cityCode": "FOC",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "XMN",
+      "name": "厦门高崎国际机场",
+      "city": "厦门",
+      "cityCode": "XMN",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "WUS",
+      "name": "武夷山机场",
+      "city": "武夷山",
+      "cityCode": "WUS",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "QZA",
+      "name": "泉州晋江国际机场",
+      "city": "泉州",
+      "cityCode": "JJN",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "JJN",
+      "name": "泉州晋江国际机场",
+      "city": "泉州",
+      "cityCode": "JJN",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "LLO",
+      "name": "连城冠豸山机场",
+      "city": "连城",
+      "cityCode": "LCX",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "LCX",
+      "name": "连城冠豸山机场",
+      "city": "连城",
+      "cityCode": "LCX",
+      "province": "福建省",
+      "region": "华东"
+    },
+    {
+      "code": "HYN",
+      "name": "台州路桥机场",
+      "city": "台州",
+      "cityCode": "HYN",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "WNZ",
+      "name": "温州龙湾国际机场",
+      "city": "温州",
+      "cityCode": "WNZ",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "NGB",
+      "name": "宁波栎社国际机场",
+      "city": "宁波",
+      "cityCode": "NGB",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "HGH",
+      "name": "杭州萧山国际机场",
+      "city": "杭州",
+      "cityCode": "HGH",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "HSN",
+      "name": "舟山普陀山机场",
+      "city": "舟山",
+      "cityCode": "HSN",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "YIW",
+      "name": "义乌机场",
+      "city": "义乌",
+      "cityCode": "YIW",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "JUZ",
+      "name": "衢州机场",
+      "city": "衢州",
+      "cityCode": "JUZ",
+      "province": "浙江省",
+      "region": "华东"
+    },
+    {
+      "code": "JHG",
+      "name": "西双版纳嘎洒国际机场",
+      "city": "景洪",
+      "cityCode": "JHG",
+      "province": "云南省",
+      "region": "西南"
+    },
+    {
+      "code": "PZI",
+      "name": "攀枝花保安营机场",
+      "city": "攀枝花",
+      "cityCode": "PZI",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "NAO",
+      "name": "南充高坪机场",
+      "city": "南充",
+      "cityCode": "NAO",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "GHN",
+      "name": "广安南充机场",
+      "city": "广安",
+      "cityCode": "GUA",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "ZHY",
+      "name": "中卫沙坡头机场",
+      "city": "中卫",
+      "cityCode": "ZHY",
+      "province": "宁夏回族自治区",
+      "region": "西北"
+    },
+    {
+      "code": "INC",
+      "name": "银川河东国际机场",
+      "city": "银川",
+      "cityCode": "INC",
+      "province": "宁夏回族自治区",
+      "region": "西北"
+    },
+    {
+      "code": "IWX",
+      "name": "固原六盘山机场",
+      "city": "固原",
+      "cityCode": "GYU",
+      "province": "宁夏回族自治区",
+      "region": "西北"
+    },
+    {
+      "code": "GYU",
+      "name": "固原六盘山机场",
+      "city": "固原",
+      "cityCode": "GYU",
+      "province": "宁夏回族自治区",
+      "region": "西北"
+    },
+    {
+      "code": "ZHY",
+      "name": "中卫沙坡头机场",
+      "city": "中卫",
+      "cityCode": "ZHY",
+      "province": "宁夏回族自治区",
+      "region": "西北"
+    },
+    {
+      "code": "XNN",
+      "name": "西宁曹家堡国际机场",
+      "city": "西宁",
+      "cityCode": "XNN",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "GSU",
+      "name": "果洛玛沁机场",
+      "city": "果洛",
+      "cityCode": "GMQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "GMQ",
+      "name": "果洛玛沁机场",
+      "city": "果洛",
+      "cityCode": "GMQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "GZG",
+      "name": "甘德机场",
+      "city": "甘德",
+      "cityCode": "GZG",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "YUS",
+      "name": "玉树巴塘机场",
+      "city": "玉树",
+      "cityCode": "YUS",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "HBQ",
+      "name": "海北祁连机场",
+      "city": "祁连",
+      "cityCode": "HBQ",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "ARM",
+      "name": "茫崖花土沟机场",
+      "city": "茫崖",
+      "cityCode": "MXC",
+      "province": "青海省",
+      "region": "西北"
+    },
+    {
+      "code": "SCQ",
+      "name": "石渠机场",
+      "city": "石渠",
+      "cityCode": "SCQ",
+      "province": "四川省",
+      "region": "西南"
+    },
+    {
+      "code": "DNY",
+      "name": "稻城亚丁机场",
+      "city": "稻城",
+      "cityCode": "DCY",
+      "province": "四川省",
+      "region": "西南"
+    }
+  ],
+  "provinces": {
+    "北京市": {
+      "region": "华北",
+      "major_cities": [
+        "北京"
+      ]
+    },
+    "天津市": {
+      "region": "华北",
+      "major_cities": [
+        "天津"
+      ]
+    },
+    "上海市": {
+      "region": "华东",
+      "major_cities": [
+        "上海"
+      ]
+    },
+    "重庆市": {
+      "region": "西南",
+      "major_cities": [
+        "重庆"
+      ]
+    },
+    "河北省": {
+      "region": "华北",
+      "major_cities": [
+        "石家庄",
+        "唐山",
+        "秦皇岛",
+        "邯郸"
+      ]
+    },
+    "山西省": {
+      "region": "华北",
+      "major_cities": [
+        "太原",
+        "大同",
+        "运城",
+        "长治"
+      ]
+    },
+    "内蒙古自治区": {
+      "region": "华北",
+      "major_cities": [
+        "呼和浩特",
+        "包头",
+        "赤峰",
+        "鄂尔多斯"
+      ]
+    },
+    "辽宁省": {
+      "region": "东北",
+      "major_cities": [
+        "沈阳",
+        "大连",
+        "锦州",
+        "丹东",
+        "鞍山"
+      ]
+    },
+    "吉林省": {
+      "region": "东北",
+      "major_cities": [
+        "长春",
+        "吉林",
+        "延吉",
+        "长白山"
+      ]
+    },
+    "黑龙江省": {
+      "region": "东北",
+      "major_cities": [
+        "哈尔滨",
+        "大庆",
+        "牡丹江",
+        "齐齐哈尔",
+        "佳木斯"
+      ]
+    },
+    "江苏省": {
+      "region": "华东",
+      "major_cities": [
+        "南京",
+        "苏州",
+        "无锡",
+        "常州",
+        "南通",
+        "扬州",
+        "徐州",
+        "盐城"
+      ]
+    },
+    "浙江省": {
+      "region": "华东",
+      "major_cities": [
+        "杭州",
+        "宁波",
+        "温州",
+        "义乌",
+        "舟山",
+        "台州",
+        "衢州"
+      ]
+    },
+    "安徽省": {
+      "region": "华东",
+      "major_cities": [
+        "合肥",
+        "黄山",
+        "阜阳",
+        "安庆"
+      ]
+    },
+    "福建省": {
+      "region": "华东",
+      "major_cities": [
+        "福州",
+        "厦门",
+        "泉州",
+        "武夷山"
+      ]
+    },
+    "江西省": {
+      "region": "华东",
+      "major_cities": [
+        "南昌",
+        "景德镇",
+        "赣州",
+        "九江",
+        "井冈山"
+      ]
+    },
+    "山东省": {
+      "region": "华东",
+      "major_cities": [
+        "济南",
+        "青岛",
+        "烟台",
+        "威海",
+        "潍坊",
+        "临沂",
+        "济宁",
+        "东营"
+      ]
+    },
+    "河南省": {
+      "region": "华中",
+      "major_cities": [
+        "郑州",
+        "洛阳",
+        "南阳",
+        "信阳",
+        "安阳"
+      ]
+    },
+    "湖北省": {
+      "region": "华中",
+      "major_cities": [
+        "武汉",
+        "宜昌",
+        "襄阳",
+        "恩施",
+        "十堰",
+        "荆州"
+      ]
+    },
+    "湖南省": {
+      "region": "华中",
+      "major_cities": [
+        "长沙",
+        "张家界",
+        "常德",
+        "怀化",
+        "永州",
+        "岳阳"
+      ]
+    },
+    "广东省": {
+      "region": "华南",
+      "major_cities": [
+        "广州",
+        "深圳",
+        "珠海",
+        "揭阳",
+        "惠州",
+        "湛江",
+        "梅州"
+      ]
+    },
+    "广西壮族自治区": {
+      "region": "华南",
+      "major_cities": [
+        "南宁",
+        "桂林",
+        "柳州",
+        "北海",
+        "梧州"
+      ]
+    },
+    "海南省": {
+      "region": "华南",
+      "major_cities": [
+        "海口",
+        "三亚",
+        "琼海",
+        "儋州"
+      ]
+    },
+    "四川省": {
+      "region": "西南",
+      "major_cities": [
+        "成都",
+        "绵阳",
+        "九寨沟",
+        "泸州",
+        "宜宾",
+        "达州",
+        "西昌",
+        "稻城"
+      ]
+    },
+    "贵州省": {
+      "region": "西南",
+      "major_cities": [
+        "贵阳",
+        "遵义",
+        "安顺",
+        "铜仁",
+        "荔波",
+        "黎平",
+        "兴义"
+      ]
+    },
+    "云南省": {
+      "region": "西南",
+      "major_cities": [
+        "昆明",
+        "丽江",
+        "大理",
+        "西双版纳",
+        "香格里拉",
+        "芒市",
+        "普洱"
+      ]
+    },
+    "西藏自治区": {
+      "region": "西南",
+      "major_cities": [
+        "拉萨",
+        "林芝",
+        "昌都",
+        "日喀则",
+        "阿里"
+      ]
+    },
+    "陕西省": {
+      "region": "西北",
+      "major_cities": [
+        "西安",
+        "延安",
+        "汉中",
+        "榆林",
+        "安康"
+      ]
+    },
+    "甘肃省": {
+      "region": "西北",
+      "major_cities": [
+        "兰州",
+        "敦煌",
+        "嘉峪关",
+        "张掖",
+        "庆阳"
+      ]
+    },
+    "青海省": {
+      "region": "西北",
+      "major_cities": [
+        "西宁",
+        "格尔木",
+        "玉树",
+        "果洛",
+        "海晏"
+      ]
+    },
+    "宁夏回族自治区": {
+      "region": "西北",
+      "major_cities": [
+        "银川",
+        "中卫",
+        "固原"
+      ]
+    },
+    "新疆维吾尔自治区": {
+      "region": "西北",
+      "major_cities": [
+        "乌鲁木齐",
+        "喀什",
+        "伊宁",
+        "库尔勒",
+        "阿克苏",
+        "和田",
+        "克拉玛依",
+        "吐鲁番",
+        "阿勒泰",
+        "哈密",
+        "博乐",
+        "那拉提"
+      ]
+    },
+    "香港特别行政区": {
+      "region": "华南",
+      "major_cities": [
+        "香港"
+      ]
+    },
+    "澳门特别行政区": {
+      "region": "华南",
+      "major_cities": [
+        "澳门"
+      ]
+    },
+    "台湾省": {
+      "region": "华东",
+      "major_cities": [
+        "台北",
+        "高雄",
+        "台中",
+        "台南",
+        "花莲",
+        "澎湖",
+        "马祖"
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ghibli-style-skill",
+  "version": "2.0.1",
+  "type": "module",
+  "description": "Ghibli Style Image Generator \u2014 AI-powered studio ghibli ai art generator",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "name": "project-memory",
+  "slug": "project-memory",
+  "version": "1.0.0",
+  "displayName": "项目记忆管理",
+  "description": "跨智能体的项目记忆系统，支持项目隔离和共享访问",
+  "author": "local",
+  "triggers": {
+    "commands": ["/project", "/memory"],
+    "patterns": [
+      "使用项目",
+      "切换到项目",
+      "切换项目",
+      "选择项目",
+      "创建项目",
+      "项目列表",
+      "保存记忆",
+      "搜索记忆"
+    ]
+  },
+  "tools": [
+    {
+      "name": "project_list",
+      "description": "列出所有可用项目",
+      "parameters": {}
+    },
+    {
+      "name": "project_create",
+      "description": "创建新项目",
+      "parameters": {
+        "name": {
+          "type": "string",
+          "description": "项目名称",
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "description": "项目描述"
+        }
+      }
+    },
+    {
+      "name": "project_use",
+      "description": "切换到指定项目",
+      "parameters": {
+        "name": {
+          "type": "string",
+          "description": "项目名称",
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "project_info",
+      "description": "获取当前项目信息",
+      "parameters": {}
+    },
+    {
+      "name": "project_archive",
+      "description": "归档项目",
+      "parameters": {
+        "name": {
+          "type": "string",
+          "description": "项目名称",
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "project_delete",
+      "description": "删除项目",
+      "parameters": {
+        "name": {
+          "type": "string",
+          "description": "项目名称",
+          "required": true
+        },
+        "confirm": {
+          "type": "boolean",
+          "description": "确认删除",
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "memory_save",
+      "description": "保存记忆到当前项目",
+      "parameters": {
+        "title": {
+          "type": "string",
+          "description": "记忆标题",
+          "required": true
+        },
+        "content": {
+          "type": "string",
+          "description": "记忆内容",
+          "required": true
+        },
+        "tags": {
+          "type": "array",
+          "description": "标签数组"
+        }
+      }
+    },
+    {
+      "name": "memory_search",
+      "description": "搜索当前项目记忆",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "搜索关键词",
+          "required": true
+        },
+        "limit": {
+          "type": "number",
+          "description": "返回结果数量",
+          "default": 10
+        }
+      }
+    },
+    {
+      "name": "memory_list",
+      "description": "列出当前项目记忆条目",
+      "parameters": {
+        "limit": {
+          "type": "number",
+          "description": "返回数量",
+          "default": 20
+        },
+        "offset": {
+          "type": "number",
+          "description": "偏移量",
+          "default": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "projectsDir": "~/.openclaw/projects",
+    "autoSave": true,
+    "maxMemoryEntries": 1000
+  }
+}

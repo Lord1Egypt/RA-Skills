@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "commentId": "pending_comment_001",
+      "content": "测试评论",
+      "replyContent": "测试回复",
+      "addedAt": "2026-04-02T06:00:20.812Z",
+      "status": "pending"
+    },
+    {
+      "commentId": "pending_test_1775109893510",
+      "content": "测试",
+      "addedAt": "2026-04-02T06:04:53.511Z",
+      "status": "pending"
+    }
+  ],
+  "lastUpdated": "2026-04-02T06:04:53.511Z"
+}

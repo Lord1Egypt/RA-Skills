@@ -1,0 +1,4 @@
+version: 1
+display_name: OpenClaw Vertex Setup
+short_description: Configure OpenClaw Vertex with npm-aligned Gateway startup.
+default_prompt: Configure or repair OpenClaw so it uses Vertex AI Gemini models through normal startup paths, keep the Gateway service aligned with the globally installed npm openclaw binary, verify the shared env and service wiring, and validate the current default model path.

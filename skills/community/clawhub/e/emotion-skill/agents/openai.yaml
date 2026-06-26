@@ -1,0 +1,7 @@
+interface:
+  display_name: "情绪.skill / Emotion Skill"
+  short_description: "Markdown-first playbook for coding agents under pressure: evidence first, scope tight, progress visible, closeout guarded."
+  default_prompt: "Use $emotion-skill when a coding-agent task involves repeated failure, evidence requests, scoped edits, silent delay, confusion, or post-success closeout. Read SKILL.md first, then load only the matching reference: routing-playbook, response-constraints, real-scenarios, subagent-forward-tests, model-prompts, integration notes, examples, or value model. Apply the behavior directly; do not require a Python classifier."
+
+policy:
+  allow_implicit_invocation: true

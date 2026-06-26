@@ -1,0 +1,683 @@
+/* 书籍级PDF — 共享CSS模板
+   基于焦橙主题设计系统
+
+   ⚠️ 边距规则（重要！避免重复出血）：
+   - @page margin：只控制上下边距（18mm），左右设为0
+   - .content padding：控制左右边距（55px）
+   - 不要在@page和HTML元素中同时设置左右边距，否则会叠加导致内容区过窄
+   - 封面(.cover)和尾页(.back-page)有独立的@page规则（margin:0），自行通过padding控制
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --text: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --accent: #C2410C;
+  --accent-light: #FFF7ED;
+  --border: #E5E5E5;
+  --code-bg: #F5F5F0;
+  --tip-bg: #F0FDF4;
+  --tip-border: #22C55E;
+  --warn-bg: #FEF2F2;
+  --warn-border: #EF4444;
+  --section-line: #C2410C;
+  --highlight: #FFFBEB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@page {
+  size: A4;
+  margin: 18mm 0;  /* 左右边距由.content padding控制，这里只设上下 */
+}
+
+@page cover-page {
+  size: A4;
+  margin: 0;
+}
+
+@page back-page {
+  size: A4;
+  margin: 0;
+}
+
+body {
+  font-family: 'Noto Sans SC', 'Inter', -apple-system, system-ui, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ==================== Cover ==================== */
+
+.cover {
+  page: cover-page;
+  page-break-after: always;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 55px;
+  background: linear-gradient(135deg, #FFFBF5 0%, #FFF5EB 25%, #FFFFFF 100%);
+  position: relative;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  width: 80px;
+  height: 5px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 140px;
+  width: 30px;
+  height: 5px;
+  background: #FDBA74;
+  border-radius: 3px;
+}
+
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-bottom: 24px;
+  font-family: 'Inter', sans-serif;
+}
+
+.cover h1 {
+  font-size: 36pt;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.cover h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.cover-subtitle {
+  font-size: 14pt;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.cover-en {
+  font-family: 'Inter', sans-serif;
+  font-size: 11pt;
+  color: #9CA3AF;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
+.cover-meta {
+  font-size: 9.5pt;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  line-height: 2;
+}
+
+.cover-meta strong { color: var(--text); font-weight: 600; }
+
+.cover-author {
+  margin-top: 20px;
+  font-size: 10pt;
+  color: var(--text-secondary);
+  line-height: 2;
+}
+
+.cover-author strong {
+  font-size: 12pt;
+  color: var(--text);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.cover-author a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cover-disclaimer {
+  margin-top: 14px;
+  font-size: 8.5pt;
+  color: #9CA3AF;
+  line-height: 1.8;
+}
+
+.cover-exclusive {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  font-size: 9pt;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ==================== TOC ==================== */
+
+.toc {
+  page-break-after: always;
+  padding: 10px 55px 0;
+}
+
+.toc h2 {
+  font-size: 22pt;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.toc-sub {
+  font-size: 10pt;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.toc-group {
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.toc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px dotted #D4D4D4;
+  font-size: 10.5pt;
+}
+
+.toc-item .num {
+  color: var(--accent);
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  margin-right: 10px;
+  min-width: 24px;
+  font-size: 10pt;
+}
+
+.toc-item .title { font-weight: 500; }
+
+.toc-item .en {
+  font-family: 'Inter', sans-serif;
+  font-size: 9pt;
+  color: #9CA3AF;
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.toc-item a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+/* ==================== Content ==================== */
+
+.content {
+  padding: 0 55px;
+}
+
+h2.section-title {
+  font-size: 20pt;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 45px;
+  margin-bottom: 6px;
+  padding-top: 18px;
+  border-top: 3px solid var(--section-line);
+  page-break-after: avoid;
+}
+
+h2.section-title .num {
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  margin-right: 6px;
+  font-size: 18pt;
+}
+
+.section-en {
+  font-family: 'Inter', sans-serif;
+  font-size: 10pt;
+  color: #9CA3AF;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.section-intro {
+  font-size: 11.5pt;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 13pt;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 24px;
+  margin-bottom: 8px;
+  page-break-after: avoid;
+}
+
+h3 .en {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5pt;
+  color: #9CA3AF;
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+h4 {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+p { margin-bottom: 10px; }
+
+/* ==================== Components ==================== */
+
+/* Tip */
+.tip {
+  background: var(--tip-bg);
+  border-left: 4px solid var(--tip-border);
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 10pt;
+  page-break-inside: avoid;
+}
+
+.tip::before {
+  content: '核心建议';
+  display: block;
+  font-weight: 700;
+  font-size: 8.5pt;
+  letter-spacing: 0.5px;
+  color: #16A34A;
+  margin-bottom: 3px;
+}
+
+/* Warning */
+.warning {
+  background: var(--warn-bg);
+  border-left: 4px solid var(--warn-border);
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 10pt;
+  page-break-inside: avoid;
+}
+
+.warning::before {
+  content: '注意';
+  display: block;
+  font-weight: 700;
+  font-size: 8.5pt;
+  letter-spacing: 0.5px;
+  color: #DC2626;
+  margin-bottom: 3px;
+}
+
+/* Callout */
+.callout {
+  background: var(--highlight);
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  font-size: 10pt;
+  page-break-inside: avoid;
+}
+
+.callout strong { color: var(--accent); }
+
+/* Code */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  line-height: 1.6;
+  margin: 10px 0 14px;
+  page-break-inside: avoid;
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  background: var(--code-bg);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+pre code { background: none; padding: 0; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+
+thead th {
+  background: #F5F5F0;
+  font-weight: 600;
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 2px solid var(--border);
+  font-size: 8.5pt;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+
+/* Steps */
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 14px 0;
+  page-break-inside: avoid;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  margin-top: 2px;
+}
+
+.step-content { flex: 1; }
+.step-content h4 {
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 10.5pt;
+  line-height: 1.6;
+}
+
+/* Lists */
+ul, ol { margin: 6px 0 12px 22px; }
+li { margin-bottom: 3px; }
+
+em { font-style: italic; color: var(--text-secondary); }
+strong { font-weight: 600; }
+
+.page-break { page-break-before: always; }
+
+/* File tree */
+.file-tree {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  line-height: 1.7;
+  margin: 10px 0 14px;
+  page-break-inside: avoid;
+}
+
+/* Flow diagram */
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.flow-item {
+  background: white;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--accent);
+}
+
+.flow-arrow {
+  color: #D1D5DB;
+  font-size: 18pt;
+  font-weight: 300;
+}
+
+/* Compare box */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0;
+  page-break-inside: avoid;
+}
+
+.compare-good, .compare-bad {
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 9.5pt;
+}
+
+.compare-good {
+  background: var(--tip-bg);
+  border: 1px solid #BBF7D0;
+}
+
+.compare-good::before {
+  content: '推荐';
+  display: block;
+  font-weight: 700;
+  font-size: 8.5pt;
+  color: #16A34A;
+  margin-bottom: 4px;
+}
+
+.compare-bad {
+  background: var(--warn-bg);
+  border: 1px solid #FECACA;
+}
+
+.compare-bad::before {
+  content: '不推荐';
+  display: block;
+  font-weight: 700;
+  font-size: 8.5pt;
+  color: #DC2626;
+  margin-bottom: 4px;
+}
+
+.compare-good pre, .compare-bad pre {
+  margin: 6px 0 0;
+  font-size: 8.5pt;
+}
+
+/* Diagram placeholder */
+.diagram {
+  background: #F9FAFB;
+  border: 2px dashed #D1D5DB;
+  border-radius: 12px;
+  padding: 30px;
+  margin: 20px 0;
+  text-align: center;
+  color: #9CA3AF;
+  font-size: 9pt;
+  page-break-inside: avoid;
+}
+
+.diagram .label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-size: 10pt;
+}
+
+/* ==================== Footer ==================== */
+
+.footer-note {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 8.5pt;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ==================== Back page ==================== */
+
+.back-page {
+  page: back-page;
+  page-break-before: always;
+  page-break-inside: avoid;
+  page-break-after: avoid;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 55px 40px;
+  background: linear-gradient(135deg, #FFFBF5 0%, #FFF5EB 25%, #FFFFFF 100%);
+  text-align: center;
+}
+
+.back-page-title {
+  font-size: 22pt;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.back-page-subtitle {
+  font-size: 12pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+.back-page-qr-wrapper {
+  background: white;
+  padding: 16px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.back-page-qr {
+  width: 220px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.back-page-info {
+  font-size: 9.5pt;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  max-width: 400px;
+}
+
+.back-page-info strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.back-page-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 9px 24px;
+  background: var(--accent);
+  color: white;
+  font-size: 10pt;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.back-page-social {
+  margin-top: 18px;
+  font-size: 9.5pt;
+  color: var(--text-secondary);
+  line-height: 2;
+}
+
+.back-page-social a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-page-social .social-sep {
+  margin: 0 8px;
+  color: #D1D5DB;
+}
+
+.back-page-footer {
+  margin-top: 28px;
+  font-size: 8.5pt;
+  color: #B0B0B0;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}

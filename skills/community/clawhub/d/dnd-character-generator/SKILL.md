@@ -1,35 +1,34 @@
 ---
-name: "Dnd Character Generator"
-description: "Generate cinematic D&D character portraits and tabletop RPG hero art from a text description. Ideal for Dungeons & Dragons players, dungeon masters, TTRPG ca..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dnd-character-generator"
-sourceUrl: "https://clawhub.ai/skills/dnd-character-generator"
+name: dnd-character-generator
+description: Generate cinematic D&D character portraits and tabletop RPG hero art from a text description. Ideal for Dungeons & Dragons players, dungeon masters, TTRPG campaigns, and virtual tabletop tokens — create wizards, warriors, paladins, rogues, and any fantasy character class in stunning detail via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Dnd Character Generator
+# D&D Character Art Generator
 
-> Generate cinematic D&D character portraits and tabletop RPG hero art from a text description. Ideal for Dungeons & Dragons players, dungeon masters, TTRPG ca...
+Generate cinematic D&D character portraits and tabletop RPG hero art from a text description. Ideal for Dungeons & Dragons players, dungeon masters, TTRPG campaigns, and virtual tabletop tokens — create wizards, warriors, paladins, rogues, and any fantasy character class in stunning detail.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dnd-character-generator`
-- **Source URL:** [https://clawhub.ai/skills/dnd-character-generator](https://clawhub.ai/skills/dnd-character-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dnd-character-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create dnd character art generator images.
+
+## Quick start
+```bash
+node dndcharactergenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/dnd-character-generator
 ```

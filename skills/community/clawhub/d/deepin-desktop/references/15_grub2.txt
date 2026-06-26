@@ -1,0 +1,57 @@
+=== org.deepin.dde.Grub2 /org/deepin/dde/Grub2 ===
+node /org/deepin/dde/Grub2 {
+  interface org.deepin.dde.Grub2 {
+    methods:
+      GetAvailableGfxmodes(out as gfxModes);
+      GetSimpleEntryTitles(out as titles);
+      PrepareGfxmodeDetect();
+      Reset();
+      SetDefaultEntry(in  s entry);
+      SetEnableTheme(in  b enabled);
+      SetGfxmode(in  s gfxmode);
+      SetTimeout(in  u timeout);
+    signals:
+    properties:
+      readonly b EnableTheme = true;
+      readonly s Gfxmode = '3840x2160,2560x1440,2560x1080,1920x1080,1400x1050,1280x1024,1440x900,1280x960,1280x720,1024x768,auto';
+      readonly u Timeout = 1;
+      readonly b Updating = false;
+      readonly s ThemeFile = '/boot/grub/themes/deepin-fallback/theme.txt';
+      readonly s DefaultEntry = '统信桌面操作系统 V25 专业版';
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+  node Theme {
+  };
+  node Fstart {
+  };
+  node EditAuthentication {
+  };
+};

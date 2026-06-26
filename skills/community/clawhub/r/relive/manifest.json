@@ -1,0 +1,29 @@
+{
+  "name": "relive",
+  "version": "0.1.0",
+  "author": "JoonasKahnwald",
+  "description": "AI数字分身克隆技能 - 输入图片、聊天记录、音频，复刻人物的人格、声音和形象",
+  "dependencies": {
+    "rank_bm25": ">=0.2.2",
+    "pyyaml": ">=6.0",
+    "jinja2": ">=3.1.0",
+    "pandas": ">=2.0.0",
+    "numpy": ">=1.24.0",
+    "torch": ">=2.0.0",
+    "torchaudio": ">=2.0.0",
+    "librosa": ">=0.10.0",
+    "soundfile": ">=0.12.0",
+    "pillow": ">=10.0.0",
+    "modelscope": ">=1.9.0",
+    "requests": ">=2.28.0"
+  },
+  "models": {
+    "voice": ["CosyVoice3-0.5B"]
+  },
+  "input_formats": {
+    "images": ["jpg", "jpeg", "png", "webp"],
+    "audio": ["mp3", "wav", "m4a", "ogg"],
+    "chat": ["csv", "txt", "json"]
+  },
+  "output_modes": ["text", "voice", "video"]
+}

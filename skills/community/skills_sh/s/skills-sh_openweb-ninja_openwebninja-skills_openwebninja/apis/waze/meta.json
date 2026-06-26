@@ -1,0 +1,11 @@
+{
+  "api_id": "waze",
+  "portal_api_id": "waze",
+  "rapidapi_host": "waze.p.rapidapi.com",
+  "notes": "Returns all current alerts and jams in the bounding box in a single call. No pagination.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/waze.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/waze",
+  "openwebninja_url": "https://www.openwebninja.com/api/waze"
+}

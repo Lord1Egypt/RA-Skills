@@ -1,0 +1,15 @@
+{
+  "name": "starter-html-video",
+  "entry": "index.html",
+  "width": 1280,
+  "height": 720,
+  "duration": 3.0,
+  "fps": 12,
+  "assets": {},
+  "senseaudio": {
+    "voices": [],
+    "image_tasks": [],
+    "video_tasks": [],
+    "transcripts": []
+  }
+}

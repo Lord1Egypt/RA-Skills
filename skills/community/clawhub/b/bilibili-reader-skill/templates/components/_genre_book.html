@@ -1,0 +1,23 @@
+{# ── 书籍拆解专用 ── #}
+{% if key_quotes %}
+<div class="section">
+    <h3 class="section-title">💬 关键引述</h3>
+    <div class="content-block">
+        {% for q in key_quotes %}
+        <div style="margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #00a1d6;">
+            <em>"{{ q.quote }}"</em>
+            {% if q.context %}
+            <br><span style="font-size: 9pt; color: #666;">— {{ q.context }}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if reference_works_cn %}
+<div class="section">
+    <h3 class="section-title">🎨 参考作品</h3>
+    <div class="content-block">{{ reference_works_cn }}</div>
+</div>
+{% endif %}

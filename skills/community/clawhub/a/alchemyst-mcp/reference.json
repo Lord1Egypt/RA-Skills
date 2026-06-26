@@ -1,0 +1,433 @@
+{
+    "mode": "server",
+    "name": "alchemyst-context-mcp",
+    "status": "ok",
+    "durationMs": 1618,
+    "transport": "HTTP https://mcp.getalchemystai.com/mcp/sse",
+    "source": {
+        "kind": "import",
+        "path": "/Users/anuran/Library/Application Support/Code/User/mcp.json",
+        "importKind": "vscode"
+    },
+    "tools": [
+        {
+            "name": "alchemyst_ai_search_context",
+            "description": "Search for context data in the context processor",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "The search query used to search for context data"
+                    },
+                    "similarity_threshold": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "description": "Maximum similarity threshold"
+                    },
+                    "minimum_similarity_threshold": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "description": "Minimum similarity threshold"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "enum": [
+                            "internal",
+                            "external"
+                        ],
+                        "default": "internal",
+                        "description": "Search scope"
+                    },
+                    "metadata": {
+                        "anyOf": [
+                            {
+                                "type": "null"
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "fileName": {
+                                        "type": "string"
+                                    },
+                                    "fileSize": {
+                                        "type": "number"
+                                    },
+                                    "fileType": {
+                                        "type": "string"
+                                    },
+                                    "groupName": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "default": [
+                                            "default"
+                                        ]
+                                    },
+                                    "lastModified": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "fileName",
+                                    "fileSize",
+                                    "fileType",
+                                    "lastModified"
+                                ],
+                                "additionalProperties": false
+                            }
+                        ],
+                        "default": null,
+                        "description": "Additional metadata for the search"
+                    }
+                },
+                "required": [
+                    "query",
+                    "similarity_threshold",
+                    "minimum_similarity_threshold"
+                ],
+                "additionalProperties": false,
+                "x-output-schema": {
+                    "type": "object",
+                    "additionalProperties": {}
+                }
+            },
+            "options": [
+                {
+                    "property": "query",
+                    "cliName": "query",
+                    "description": "The search query used to search for context data",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<query>"
+                },
+                {
+                    "property": "similarity_threshold",
+                    "cliName": "similarity-threshold",
+                    "description": "Maximum similarity threshold",
+                    "required": true,
+                    "type": "number",
+                    "placeholder": "<similarity-threshold:number>",
+                    "exampleValue": "1"
+                },
+                {
+                    "property": "minimum_similarity_threshold",
+                    "cliName": "minimum-similarity-threshold",
+                    "description": "Minimum similarity threshold",
+                    "required": true,
+                    "type": "number",
+                    "placeholder": "<minimum-similarity-threshold:number>",
+                    "exampleValue": "1"
+                },
+                {
+                    "property": "scope",
+                    "cliName": "scope",
+                    "description": "Search scope",
+                    "required": false,
+                    "type": "string",
+                    "placeholder": "<scope:internal|external>",
+                    "exampleValue": "internal",
+                    "enumValues": [
+                        "internal",
+                        "external"
+                    ],
+                    "defaultValue": "internal"
+                },
+                {
+                    "property": "metadata",
+                    "cliName": "metadata",
+                    "description": "Additional metadata for the search",
+                    "required": false,
+                    "type": "unknown",
+                    "placeholder": "<metadata>",
+                    "exampleValue": "null",
+                    "defaultValue": null
+                }
+            ]
+        },
+        {
+            "name": "alchemyst_ai_add_context",
+            "description": "Add context data to the context processor",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the user submitting the context data"
+                    },
+                    "organization_id": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The organization ID associated with the context"
+                    },
+                    "documents": {
+                        "type": "array",
+                        "items": {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "type": "string",
+                                            "description": "The content of the document"
+                                        }
+                                    },
+                                    "required": [
+                                        "content"
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "source": {
+                        "type": "string",
+                        "description": "The source of the context data"
+                    },
+                    "context_type": {
+                        "type": "string",
+                        "enum": [
+                            "resource",
+                            "conversation",
+                            "instruction"
+                        ],
+                        "description": "Type of the context"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "enum": [
+                            "internal",
+                            "external"
+                        ],
+                        "default": "internal",
+                        "description": "Scope of the context"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "properties": {
+                            "file_name": {
+                                "type": "string",
+                                "description": "Name of the file"
+                            },
+                            "doc_type": {
+                                "type": "string",
+                                "description": "Type/MIME of the file"
+                            },
+                            "modalities": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Modalities present in the document"
+                            },
+                            "size": {
+                                "type": "number",
+                                "description": "Size of the file in bytes"
+                            }
+                        },
+                        "required": [
+                            "file_name",
+                            "doc_type",
+                            "modalities",
+                            "size"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "user_id",
+                    "organization_id",
+                    "documents",
+                    "source",
+                    "context_type",
+                    "metadata"
+                ],
+                "additionalProperties": false,
+                "x-output-schema": {
+                    "type": "object",
+                    "additionalProperties": {}
+                }
+            },
+            "options": [
+                {
+                    "property": "user_id",
+                    "cliName": "user-id",
+                    "description": "The unique identifier of the user submitting the context data",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<user-id>",
+                    "exampleValue": "example-id"
+                },
+                {
+                    "property": "organization_id",
+                    "cliName": "organization-id",
+                    "description": "The organization ID associated with the context",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<organization-id>",
+                    "exampleValue": "example-id"
+                },
+                {
+                    "property": "documents",
+                    "cliName": "documents",
+                    "required": true,
+                    "type": "array",
+                    "arrayItemType": "unknown",
+                    "placeholder": "<documents:value1,value2>",
+                    "exampleValue": "value1,value2"
+                },
+                {
+                    "property": "source",
+                    "cliName": "source",
+                    "description": "The source of the context data",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<source>"
+                },
+                {
+                    "property": "context_type",
+                    "cliName": "context-type",
+                    "description": "Type of the context",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<context-type:resource|conversation|instruction>",
+                    "exampleValue": "resource",
+                    "enumValues": [
+                        "resource",
+                        "conversation",
+                        "instruction"
+                    ]
+                },
+                {
+                    "property": "scope",
+                    "cliName": "scope",
+                    "description": "Scope of the context",
+                    "required": false,
+                    "type": "string",
+                    "placeholder": "<scope:internal|external>",
+                    "exampleValue": "internal",
+                    "enumValues": [
+                        "internal",
+                        "external"
+                    ],
+                    "defaultValue": "internal"
+                },
+                {
+                    "property": "metadata",
+                    "cliName": "metadata",
+                    "required": true,
+                    "type": "unknown",
+                    "placeholder": "<metadata>"
+                }
+            ]
+        },
+        {
+            "name": "alchemyst_ai_context_mcp_view_context",
+            "description": "Get context information for a user",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "User ID to get context for"
+                    },
+                    "organization_id": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "Organization ID of the user"
+                    }
+                },
+                "required": [
+                    "user_id",
+                    "organization_id"
+                ],
+                "additionalProperties": false,
+                "x-output-schema": {
+                    "type": "object",
+                    "additionalProperties": {}
+                }
+            },
+            "options": [
+                {
+                    "property": "user_id",
+                    "cliName": "user-id",
+                    "description": "User ID to get context for",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<user-id>",
+                    "exampleValue": "example-id"
+                },
+                {
+                    "property": "organization_id",
+                    "cliName": "organization-id",
+                    "description": "Organization ID of the user",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<organization-id>",
+                    "exampleValue": "example-id"
+                }
+            ]
+        },
+        {
+            "name": "alchemyst_ai_context_mcp_view_docs",
+            "description": "Get documents view for a user",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "User ID to get document view for"
+                    },
+                    "organization_id": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "Organization ID of the user"
+                    }
+                },
+                "required": [
+                    "user_id",
+                    "organization_id"
+                ],
+                "additionalProperties": false,
+                "x-output-schema": {
+                    "type": "object",
+                    "additionalProperties": {}
+                }
+            },
+            "options": [
+                {
+                    "property": "user_id",
+                    "cliName": "user-id",
+                    "description": "User ID to get document view for",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<user-id>",
+                    "exampleValue": "example-id"
+                },
+                {
+                    "property": "organization_id",
+                    "cliName": "organization-id",
+                    "description": "Organization ID of the user",
+                    "required": true,
+                    "type": "string",
+                    "placeholder": "<organization-id>",
+                    "exampleValue": "example-id"
+                }
+            ]
+        }
+    ]
+}

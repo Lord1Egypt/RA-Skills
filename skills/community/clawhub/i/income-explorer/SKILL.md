@@ -1,35 +1,137 @@
 ---
-name: "Income Explorer"
-description: "AI 变现路径探索助手 - 分析变现机会、生成报告、提供行动建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/income-explorer"
-sourceUrl: "https://clawhub.ai/skills/income-explorer"
+name: income-explorer
+version: 1.0.0
+description: AI 变现路径探索助手 - 分析变现机会、生成报告、提供行动建议
+homepage: https://github.com/openclaw/openclaw
 ---
 
-# Income Explorer
+# AI 变现探索助手 (Income Explorer)
 
-> AI 变现路径探索助手 - 分析变现机会、生成报告、提供行动建议
+## 🎯 技能定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/income-explorer`
-- **Source URL:** [https://clawhub.ai/skills/income-explorer](https://clawhub.ai/skills/income-explorer)
+帮助用户探索 AI 变现路径，分析市场机会，生成可执行的变现计划。
 
-## Overview
+## 💡 核心能力
 
+### 1. 市场调研
+- 搜索 ClawHub 技能市场
+- 分析 GitHub Trending 项目
+- 调研 AI 变现案例
+- 识别市场需求空白
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/income-explorer
-```
+### 2. 机会分析
+- 评估变现方向可行性
+- 分析竞争情况
+- 估算收入潜力
+- 识别风险因素
+
+### 3. 报告生成
+- 生成变现路径报告
+- 提供数据支持
+- 列出行动步骤
+- 设置里程碑
+
+### 4. 行动建议
+- 短期可行方案（1-2 周）
+- 中期发展计划（1 个月）
+- 长期战略规划（3 个月+）
+- 资源分配建议
+
+## 🛠 可用工具
+
+- `browser` - 浏览 ClawHub、GitHub、Product Hunt 等网站
+- `web_search` - 搜索变现案例和趋势（需配置 Brave API）
+- `exec` - 运行分析脚本
+- `read/write` - 读写报告文件
+
+## 📋 使用场景
+
+当用户询问以下问题时使用此技能：
+
+1. "如何用 AI 赚钱？"
+2. "有什么 AI 变现路径？"
+3. "分析一下 AI 技能市场"
+4. "帮我制定变现计划"
+5. "探索 AI 副业机会"
+
+## 🎯 工作流程
+
+### 步骤 1: 需求分析
+询问用户：
+- 技能背景（技术/非技术）
+- 可用时间（全职/兼职）
+- 收入目标
+- 兴趣方向
+
+### 步骤 2: 市场调研
+使用浏览器探索：
+- ClawHub 热门技能
+- GitHub Trending AI 项目
+- Product Hunt 新产品
+-  Reddit/知乎变现案例
+
+### 步骤 3: 机会评估
+分析每个方向：
+- 市场需求
+- 竞争程度
+- 技术门槛
+- 变现周期
+
+### 步骤 4: 生成报告
+输出包含：
+- 市场数据
+- 推荐方向（3-5 个）
+- 详细行动计划
+- 预期收入范围
+
+### 步骤 5: 持续跟踪
+- 记录执行情况
+- 调整策略
+- 分享成功经验
+
+## 📊 变现方向库
+
+### 技能开发类
+- ClawHub 技能发布
+- 开源项目变现
+- 付费技能/模板
+
+### 内容创作类
+- AI 教程（B 站/抖音）
+- 技术文章（公众号/知乎）
+- 知识付费（课程/社群）
+
+### 服务类
+- AI 助手定制
+- 自动化流程设计
+- 数据分析服务
+- 培训与咨询
+
+### 产品类
+- SaaS 工具
+- 自动化脚本
+- AI 代理系统
+
+## ⚠️ 注意事项
+
+1. **用户任务优先** - 变现探索不影响正常服务
+2. **合规第一** - 不触碰法律红线
+3. **成本意识** - 控制请求次数消耗
+4. **持续学习** - 跟随 AI 发展更新策略
+5. **实事求是** - 不夸大收入预期
+
+## 📈 成功指标
+
+- 短期（1 周）：完成市场调研，确定 3 个方向
+- 中期（1 月）：获得第一笔收入（任何金额）
+- 长期（3 月）：形成稳定变现路径
+
+## 🚀 快速开始
+
+当用户说"探索变现路径"或"如何用 AI 赚钱"时，主动使用此技能。
+
+---
+
+_创建时间：2026-03-06_
+_版本：v1.0.0_
+_作者：KK (AI Assistant)_

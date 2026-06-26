@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>{{BASE_STYLES}}</style>
+</head>
+<body>
+  <div class="toolbar">
+    <div>
+      <h1>{{TITLE}}</h1>
+      <div class="subtitle">{{SUBTITLE}}</div>
+    </div>
+    <div class="actions">
+      <button onclick="downloadPNG(this)">📥 Download PNG</button>
+      <button onclick="copyToClipboard(this)">📋 Copy Image</button>
+      <button onclick="saveToProject(this)">💾 Save Image</button>
+    </div>
+  </div>
+
+  <!-- KPI Cards (optional, not included in chart export) -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">Total Revenue</div>
+      <div class="value">$1.24M</div>
+      <div class="change up">↑ 12.5% vs last month</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Active Users</div>
+      <div class="value">8,432</div>
+      <div class="change up">↑ 5.2%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Conversion Rate</div>
+      <div class="value">3.8%</div>
+      <div class="change down">↓ 0.3%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Avg Order Value</div>
+      <div class="value">$147</div>
+      <div class="change up">↑ 8.1%</div>
+    </div>
+  </div>
+
+  <div id="chart-area">
+    <div class="grid-2">
+      <div class="chart-box">
+        <div class="chart-title">Revenue Trend</div>
+        <div id="chart-line" style="width:100%;height:300px;"></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Category Sales</div>
+        <div id="chart-bar" style="width:100%;height:300px;"></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Traffic Sources</div>
+        <div id="chart-pie" style="width:100%;height:300px;"></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Price vs Volume</div>
+        <div id="chart-scatter" style="width:100%;height:300px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>{{BASE_EXPORT_JS}}</script>
+  <script>
+    // ── Register all chart instances (REQUIRED for export) ──
+    window.CHART_INSTANCES = [];
+    window.CHART_LAYOUT = 'grid'; // 'vertical' | 'grid'
+
+    const darkOpt = { backgroundColor: 'transparent' };
+
+    // Line
+    const c1 = echarts.init(document.getElementById('chart-line'), 'dark');
+    c1.setOption({
+      ...darkOpt,
+      tooltip: { trigger: 'axis' },
+      grid: { top: 20, right: 20, bottom: 30, left: 50 },
+      xAxis: { type: 'category', data: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'] },
+      yAxis: { type: 'value' },
+      series: [{ type: 'line', data: [82,93,90,93,129,133,132,140,150,160,170,180], smooth: true, areaStyle: { opacity: 0.1 } }],
+    });
+    CHART_INSTANCES.push(c1);
+
+    // Bar
+    const c2 = echarts.init(document.getElementById('chart-bar'), 'dark');
+    c2.setOption({
+      ...darkOpt,
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      grid: { top: 20, right: 20, bottom: 30, left: 50 },
+      xAxis: { type: 'value' },
+      yAxis: { type: 'category', data: ['Electronics','Clothing','Food','Books','Sports'] },
+      series: [{ type: 'bar', data: [320,280,210,190,150], itemStyle: { borderRadius: [0,4,4,0] } }],
+    });
+    CHART_INSTANCES.push(c2);
+
+    // Pie
+    const c3 = echarts.init(document.getElementById('chart-pie'), 'dark');
+    c3.setOption({
+      ...darkOpt,
+      tooltip: { trigger: 'item' },
+      series: [{
+        type: 'pie', radius: ['35%','65%'], center: ['50%','55%'],
+        data: [
+          { name: 'Organic', value: 40 }, { name: 'Paid', value: 25 },
+          { name: 'Social', value: 20 }, { name: 'Direct', value: 15 },
+        ],
+        itemStyle: { borderRadius: 5, borderColor: '#12141c', borderWidth: 2 },
+        label: { color: '#c8cdd6' },
+      }],
+    });
+    CHART_INSTANCES.push(c3);
+
+    // Scatter
+    const c4 = echarts.init(document.getElementById('chart-scatter'), 'dark');
+    const scatterData = Array.from({length: 50}, () => [
+      Math.round(Math.random() * 200 + 20),
+      Math.round(Math.random() * 1000),
+      Math.round(Math.random() * 50 + 5),
+    ]);
+    c4.setOption({
+      ...darkOpt,
+      tooltip: { formatter: p => `Price: $${p.data[0]}<br>Volume: ${p.data[1]}<br>Size: ${p.data[2]}` },
+      grid: { top: 20, right: 20, bottom: 30, left: 50 },
+      xAxis: { type: 'value', name: 'Price' },
+      yAxis: { type: 'value', name: 'Volume' },
+      series: [{
+        type: 'scatter', data: scatterData,
+        symbolSize: d => d[2] / 3,
+        itemStyle: { opacity: 0.7 },
+      }],
+    });
+    CHART_INSTANCES.push(c4);
+    </script>
+</body>
+</html>

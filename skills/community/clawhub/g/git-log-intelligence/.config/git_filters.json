@@ -1,0 +1,11 @@
+{
+  "ignore_patterns": [
+    "fix(ci)",
+    "style:",
+    "^ci",
+    "^docs",
+    "^test",
+    "^chore",
+    "Dependabot"
+  ]
+}

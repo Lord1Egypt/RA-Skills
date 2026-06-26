@@ -1,0 +1,5231 @@
+{
+ "txt_dir": "/home/jjw/.claude/skills/zhujue-characters/txt",
+ "characters": [
+  {
+   "id": "yiqine",
+   "name": "忆秦娥",
+   "cat": "主要人物",
+   "aka": [
+    "易招弟",
+    "招弟",
+    "易青娥",
+    "青娥",
+    "秦娥",
+    "宁州第一",
+    "秦腔皇后",
+    "烧火丫头"
+   ],
+   "role": "主角。本名易招弟，舅舅改名易青娥，成名后剧作家秦八娃改为忆秦娥。秦腔名伶，戏几乎贯穿全书。",
+   "match": [
+    "忆秦娥",
+    "易青娥",
+    "易招弟",
+    "招弟",
+    "青娥",
+    "秦娥"
+   ],
+   "chapters": [
+    {
+     "file": "part0001.html",
+     "label": "上部·一"
+    },
+    {
+     "file": "part0002.html",
+     "label": "上部·二"
+    },
+    {
+     "file": "part0003.html",
+     "label": "上部·三"
+    },
+    {
+     "file": "part0004.html",
+     "label": "上部·四"
+    },
+    {
+     "file": "part0005.html",
+     "label": "上部·五"
+    },
+    {
+     "file": "part0006.html",
+     "label": "上部·六"
+    },
+    {
+     "file": "part0007.html",
+     "label": "上部·七"
+    },
+    {
+     "file": "part0008.html",
+     "label": "上部·八"
+    },
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0011.html",
+     "label": "上部·十一"
+    },
+    {
+     "file": "part0012.html",
+     "label": "上部·十二"
+    },
+    {
+     "file": "part0013.html",
+     "label": "上部·十三"
+    },
+    {
+     "file": "part0014.html",
+     "label": "上部·十四"
+    },
+    {
+     "file": "part0015.html",
+     "label": "上部·十五"
+    },
+    {
+     "file": "part0016.html",
+     "label": "上部·十六"
+    },
+    {
+     "file": "part0017.html",
+     "label": "上部·十七"
+    },
+    {
+     "file": "part0018.html",
+     "label": "上部·十八"
+    },
+    {
+     "file": "part0019.html",
+     "label": "上部·十九"
+    },
+    {
+     "file": "part0020.html",
+     "label": "上部·二十"
+    },
+    {
+     "file": "part0021.html",
+     "label": "上部·二十一"
+    },
+    {
+     "file": "part0022.html",
+     "label": "上部·二十二"
+    },
+    {
+     "file": "part0023.html",
+     "label": "上部·二十三"
+    },
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0025.html",
+     "label": "上部·二十五"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0027.html",
+     "label": "上部·二十七"
+    },
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0030.html",
+     "label": "上部·三十"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0035.html",
+     "label": "上部·三十五"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0039.html",
+     "label": "上部·三十九"
+    },
+    {
+     "file": "part0040.html",
+     "label": "上部·四十"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0044.html",
+     "label": "上部·四十四"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0051.html",
+     "label": "上部·五十一"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0054.html",
+     "label": "上部·五十四"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0059.html",
+     "label": "中部·四"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0063.html",
+     "label": "中部·八"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0066.html",
+     "label": "中部·十一"
+    },
+    {
+     "file": "part0067.html",
+     "label": "中部·十二"
+    },
+    {
+     "file": "part0068.html",
+     "label": "中部·十三"
+    },
+    {
+     "file": "part0069.html",
+     "label": "中部·十四"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0071.html",
+     "label": "中部·十六"
+    },
+    {
+     "file": "part0072.html",
+     "label": "中部·十七"
+    },
+    {
+     "file": "part0073.html",
+     "label": "中部·十八"
+    },
+    {
+     "file": "part0074.html",
+     "label": "中部·十九"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0076.html",
+     "label": "中部·二十一"
+    },
+    {
+     "file": "part0077.html",
+     "label": "中部·二十二"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0080.html",
+     "label": "中部·二十五"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0082.html",
+     "label": "中部·二十七"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0084.html",
+     "label": "中部·二十九"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0086.html",
+     "label": "中部·三十一"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0090.html",
+     "label": "中部·三十五"
+    },
+    {
+     "file": "part0091.html",
+     "label": "中部·三十六"
+    },
+    {
+     "file": "part0092.html",
+     "label": "中部·三十七"
+    },
+    {
+     "file": "part0093.html",
+     "label": "中部·三十八"
+    },
+    {
+     "file": "part0094.html",
+     "label": "中部·三十九"
+    },
+    {
+     "file": "part0095.html",
+     "label": "中部·四十"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0099.html",
+     "label": "中部·四十四"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0103.html",
+     "label": "中部·四十八"
+    },
+    {
+     "file": "part0104.html",
+     "label": "中部·四十九"
+    },
+    {
+     "file": "part0105.html",
+     "label": "中部·五十"
+    },
+    {
+     "file": "part0106.html",
+     "label": "下部·一"
+    },
+    {
+     "file": "part0107.html",
+     "label": "下部·二"
+    },
+    {
+     "file": "part0108.html",
+     "label": "下部·三"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0110.html",
+     "label": "下部·五"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0112.html",
+     "label": "下部·七"
+    },
+    {
+     "file": "part0113.html",
+     "label": "下部·八"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0115.html",
+     "label": "下部·十"
+    },
+    {
+     "file": "part0116.html",
+     "label": "下部·十一"
+    },
+    {
+     "file": "part0117.html",
+     "label": "下部·十二"
+    },
+    {
+     "file": "part0118.html",
+     "label": "下部·十三"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0121.html",
+     "label": "下部·十六"
+    },
+    {
+     "file": "part0122.html",
+     "label": "下部·十七"
+    },
+    {
+     "file": "part0123.html",
+     "label": "下部·十八"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0126.html",
+     "label": "下部·二十一"
+    },
+    {
+     "file": "part0127.html",
+     "label": "下部·二十二"
+    },
+    {
+     "file": "part0128.html",
+     "label": "下部·二十三"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0130.html",
+     "label": "下部·二十五"
+    },
+    {
+     "file": "part0131.html",
+     "label": "下部·二十六"
+    },
+    {
+     "file": "part0132.html",
+     "label": "下部·二十七"
+    },
+    {
+     "file": "part0133.html",
+     "label": "下部·二十八"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0135.html",
+     "label": "下部·三十"
+    },
+    {
+     "file": "part0136.html",
+     "label": "下部·三十一"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0138.html",
+     "label": "下部·三十三"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0143.html",
+     "label": "下部·三十八"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0147.html",
+     "label": "下部·四十二"
+    },
+    {
+     "file": "part0148.html",
+     "label": "下部·四十三"
+    },
+    {
+     "file": "part0149.html",
+     "label": "下部·四十四"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    },
+    {
+     "file": "part0151.html",
+     "label": "后记"
+    }
+   ],
+   "chapter_count": 151
+  },
+  {
+   "id": "husanyuan",
+   "name": "胡三元",
+   "cat": "主要人物",
+   "aka": [
+    "三元",
+    "胡老师"
+   ],
+   "role": "忆秦娥的舅舅，县剧团鼓师，技艺高超而性格张扬，是把她带进剧团的人。",
+   "match": [
+    "胡三元",
+    "三元"
+   ],
+   "chapters": [
+    {
+     "file": "part0001.html",
+     "label": "上部·一"
+    },
+    {
+     "file": "part0002.html",
+     "label": "上部·二"
+    },
+    {
+     "file": "part0003.html",
+     "label": "上部·三"
+    },
+    {
+     "file": "part0004.html",
+     "label": "上部·四"
+    },
+    {
+     "file": "part0005.html",
+     "label": "上部·五"
+    },
+    {
+     "file": "part0007.html",
+     "label": "上部·七"
+    },
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0011.html",
+     "label": "上部·十一"
+    },
+    {
+     "file": "part0012.html",
+     "label": "上部·十二"
+    },
+    {
+     "file": "part0013.html",
+     "label": "上部·十三"
+    },
+    {
+     "file": "part0014.html",
+     "label": "上部·十四"
+    },
+    {
+     "file": "part0015.html",
+     "label": "上部·十五"
+    },
+    {
+     "file": "part0016.html",
+     "label": "上部·十六"
+    },
+    {
+     "file": "part0017.html",
+     "label": "上部·十七"
+    },
+    {
+     "file": "part0018.html",
+     "label": "上部·十八"
+    },
+    {
+     "file": "part0019.html",
+     "label": "上部·十九"
+    },
+    {
+     "file": "part0020.html",
+     "label": "上部·二十"
+    },
+    {
+     "file": "part0021.html",
+     "label": "上部·二十一"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0027.html",
+     "label": "上部·二十七"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0035.html",
+     "label": "上部·三十五"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0039.html",
+     "label": "上部·三十九"
+    },
+    {
+     "file": "part0040.html",
+     "label": "上部·四十"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0044.html",
+     "label": "上部·四十四"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0067.html",
+     "label": "中部·十二"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0077.html",
+     "label": "中部·二十二"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0095.html",
+     "label": "中部·四十"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0104.html",
+     "label": "中部·四十九"
+    },
+    {
+     "file": "part0105.html",
+     "label": "中部·五十"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0113.html",
+     "label": "下部·八"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0115.html",
+     "label": "下部·十"
+    },
+    {
+     "file": "part0116.html",
+     "label": "下部·十一"
+    },
+    {
+     "file": "part0117.html",
+     "label": "下部·十二"
+    },
+    {
+     "file": "part0118.html",
+     "label": "下部·十三"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0122.html",
+     "label": "下部·十七"
+    },
+    {
+     "file": "part0123.html",
+     "label": "下部·十八"
+    },
+    {
+     "file": "part0135.html",
+     "label": "下部·三十"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    },
+    {
+     "file": "part0151.html",
+     "label": "后记"
+    }
+   ],
+   "chapter_count": 72
+  },
+  {
+   "id": "hucaixiang",
+   "name": "胡彩香",
+   "cat": "主要人物",
+   "aka": [
+    "彩香"
+   ],
+   "role": "宁州县剧团旦角名角，忆秦娥早期的师傅式人物，与米兰是对手。",
+   "match": [
+    "胡彩香"
+   ],
+   "chapters": [
+    {
+     "file": "part0002.html",
+     "label": "上部·二"
+    },
+    {
+     "file": "part0003.html",
+     "label": "上部·三"
+    },
+    {
+     "file": "part0004.html",
+     "label": "上部·四"
+    },
+    {
+     "file": "part0005.html",
+     "label": "上部·五"
+    },
+    {
+     "file": "part0006.html",
+     "label": "上部·六"
+    },
+    {
+     "file": "part0007.html",
+     "label": "上部·七"
+    },
+    {
+     "file": "part0008.html",
+     "label": "上部·八"
+    },
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0011.html",
+     "label": "上部·十一"
+    },
+    {
+     "file": "part0012.html",
+     "label": "上部·十二"
+    },
+    {
+     "file": "part0013.html",
+     "label": "上部·十三"
+    },
+    {
+     "file": "part0014.html",
+     "label": "上部·十四"
+    },
+    {
+     "file": "part0015.html",
+     "label": "上部·十五"
+    },
+    {
+     "file": "part0016.html",
+     "label": "上部·十六"
+    },
+    {
+     "file": "part0017.html",
+     "label": "上部·十七"
+    },
+    {
+     "file": "part0018.html",
+     "label": "上部·十八"
+    },
+    {
+     "file": "part0019.html",
+     "label": "上部·十九"
+    },
+    {
+     "file": "part0020.html",
+     "label": "上部·二十"
+    },
+    {
+     "file": "part0022.html",
+     "label": "上部·二十二"
+    },
+    {
+     "file": "part0025.html",
+     "label": "上部·二十五"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0027.html",
+     "label": "上部·二十七"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0035.html",
+     "label": "上部·三十五"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0039.html",
+     "label": "上部·三十九"
+    },
+    {
+     "file": "part0040.html",
+     "label": "上部·四十"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0059.html",
+     "label": "中部·四"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0090.html",
+     "label": "中部·三十五"
+    },
+    {
+     "file": "part0095.html",
+     "label": "中部·四十"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0115.html",
+     "label": "下部·十"
+    },
+    {
+     "file": "part0116.html",
+     "label": "下部·十一"
+    },
+    {
+     "file": "part0117.html",
+     "label": "下部·十二"
+    },
+    {
+     "file": "part0118.html",
+     "label": "下部·十三"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0122.html",
+     "label": "下部·十七"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0149.html",
+     "label": "下部·四十四"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    }
+   ],
+   "chapter_count": 73
+  },
+  {
+   "id": "milan",
+   "name": "米兰",
+   "cat": "主要人物",
+   "aka": [],
+   "role": "宁州县剧团旦角主演，与胡彩香争戏；后调离。",
+   "match": [
+    "米兰"
+   ],
+   "chapters": [
+    {
+     "file": "part0002.html",
+     "label": "上部·二"
+    },
+    {
+     "file": "part0003.html",
+     "label": "上部·三"
+    },
+    {
+     "file": "part0004.html",
+     "label": "上部·四"
+    },
+    {
+     "file": "part0005.html",
+     "label": "上部·五"
+    },
+    {
+     "file": "part0006.html",
+     "label": "上部·六"
+    },
+    {
+     "file": "part0008.html",
+     "label": "上部·八"
+    },
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0011.html",
+     "label": "上部·十一"
+    },
+    {
+     "file": "part0012.html",
+     "label": "上部·十二"
+    },
+    {
+     "file": "part0013.html",
+     "label": "上部·十三"
+    },
+    {
+     "file": "part0015.html",
+     "label": "上部·十五"
+    },
+    {
+     "file": "part0017.html",
+     "label": "上部·十七"
+    },
+    {
+     "file": "part0018.html",
+     "label": "上部·十八"
+    },
+    {
+     "file": "part0019.html",
+     "label": "上部·十九"
+    },
+    {
+     "file": "part0020.html",
+     "label": "上部·二十"
+    },
+    {
+     "file": "part0022.html",
+     "label": "上部·二十二"
+    },
+    {
+     "file": "part0025.html",
+     "label": "上部·二十五"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0027.html",
+     "label": "上部·二十七"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0035.html",
+     "label": "上部·三十五"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0039.html",
+     "label": "上部·三十九"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0082.html",
+     "label": "中部·二十七"
+    },
+    {
+     "file": "part0107.html",
+     "label": "下部·二"
+    },
+    {
+     "file": "part0116.html",
+     "label": "下部·十一"
+    },
+    {
+     "file": "part0117.html",
+     "label": "下部·十二"
+    },
+    {
+     "file": "part0118.html",
+     "label": "下部·十三"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0149.html",
+     "label": "下部·四十四"
+    }
+   ],
+   "chapter_count": 41
+  },
+  {
+   "id": "liaoyaohui",
+   "name": "廖耀辉",
+   "cat": "主要人物",
+   "aka": [
+    "廖师",
+    "廖师傅"
+   ],
+   "role": "县剧团灶上师傅，对少年易青娥有性骚扰行为，是她的童年阴影。",
+   "match": [
+    "廖耀辉",
+    "廖师"
+   ],
+   "chapters": [
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0021.html",
+     "label": "上部·二十一"
+    },
+    {
+     "file": "part0022.html",
+     "label": "上部·二十二"
+    },
+    {
+     "file": "part0023.html",
+     "label": "上部·二十三"
+    },
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0025.html",
+     "label": "上部·二十五"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0027.html",
+     "label": "上部·二十七"
+    },
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0030.html",
+     "label": "上部·三十"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0090.html",
+     "label": "中部·三十五"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0104.html",
+     "label": "中部·四十九"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0122.html",
+     "label": "下部·十七"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    }
+   ],
+   "chapter_count": 40
+  },
+  {
+   "id": "goucunzhong",
+   "name": "苟存忠",
+   "cat": "主要人物",
+   "aka": [
+    "老苟"
+   ],
+   "role": "存字辈四位老艺人之一（忠）。传授忆秦娥吹火等绝技，《杀生》一折后病逝舞台。",
+   "match": [
+    "苟存忠"
+   ],
+   "chapters": [
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0025.html",
+     "label": "上部·二十五"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0027.html",
+     "label": "上部·二十七"
+    },
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0051.html",
+     "label": "上部·五十一"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0068.html",
+     "label": "中部·十三"
+    },
+    {
+     "file": "part0072.html",
+     "label": "中部·十七"
+    },
+    {
+     "file": "part0073.html",
+     "label": "中部·十八"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0143.html",
+     "label": "下部·三十八"
+    },
+    {
+     "file": "part0148.html",
+     "label": "下部·四十三"
+    }
+   ],
+   "chapter_count": 31
+  },
+  {
+   "id": "gucunxiao",
+   "name": "古存孝",
+   "cat": "主要人物",
+   "aka": [
+    "老古",
+    "古老师"
+   ],
+   "role": "存字辈老艺人之一（孝），导戏的老把式，长期指点忆秦娥。",
+   "match": [
+    "古存孝"
+   ],
+   "chapters": [
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0051.html",
+     "label": "上部·五十一"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0054.html",
+     "label": "上部·五十四"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0059.html",
+     "label": "中部·四"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0063.html",
+     "label": "中部·八"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0080.html",
+     "label": "中部·二十五"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0148.html",
+     "label": "下部·四十三"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    }
+   ],
+   "chapter_count": 38
+  },
+  {
+   "id": "zhoucunren",
+   "name": "周存仁",
+   "cat": "主要人物",
+   "aka": [
+    "老周"
+   ],
+   "role": "存字辈老艺人之一（仁），擅武戏、把子功。",
+   "match": [
+    "周存仁"
+   ],
+   "chapters": [
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0051.html",
+     "label": "上部·五十一"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    }
+   ],
+   "chapter_count": 18
+  },
+  {
+   "id": "qiucunyi",
+   "name": "裘存义",
+   "cat": "主要人物",
+   "aka": [
+    "老裘"
+   ],
+   "role": "存字辈老艺人之一（义）。",
+   "match": [
+    "裘存义"
+   ],
+   "chapters": [
+    {
+     "file": "part0021.html",
+     "label": "上部·二十一"
+    },
+    {
+     "file": "part0022.html",
+     "label": "上部·二十二"
+    },
+    {
+     "file": "part0023.html",
+     "label": "上部·二十三"
+    },
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0051.html",
+     "label": "上部·五十一"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    }
+   ],
+   "chapter_count": 21
+  },
+  {
+   "id": "fengxiaoxiao",
+   "name": "封潇潇",
+   "cat": "主要人物",
+   "aka": [
+    "潇潇"
+   ],
+   "role": "县剧团小生演员，忆秦娥的初恋；后逐渐消沉。注意与导演'封子/封导'并非同一人。",
+   "match": [
+    "封潇潇"
+   ],
+   "chapters": [
+    {
+     "file": "part0006.html",
+     "label": "上部·六"
+    },
+    {
+     "file": "part0008.html",
+     "label": "上部·八"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0059.html",
+     "label": "中部·四"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0067.html",
+     "label": "中部·十二"
+    },
+    {
+     "file": "part0072.html",
+     "label": "中部·十七"
+    },
+    {
+     "file": "part0074.html",
+     "label": "中部·十九"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0077.html",
+     "label": "中部·二十二"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0084.html",
+     "label": "中部·二十九"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0090.html",
+     "label": "中部·三十五"
+    },
+    {
+     "file": "part0091.html",
+     "label": "中部·三十六"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0116.html",
+     "label": "下部·十一"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0147.html",
+     "label": "下部·四十二"
+    }
+   ],
+   "chapter_count": 38
+  },
+  {
+   "id": "chujiahe",
+   "name": "楚嘉禾",
+   "cat": "主要人物",
+   "aka": [
+    "嘉禾"
+   ],
+   "role": "与忆秦娥同期入团的旦角，貌美而心气高，是贯穿全书的终身竞争对手。",
+   "match": [
+    "楚嘉禾"
+   ],
+   "chapters": [
+    {
+     "file": "part0006.html",
+     "label": "上部·六"
+    },
+    {
+     "file": "part0007.html",
+     "label": "上部·七"
+    },
+    {
+     "file": "part0008.html",
+     "label": "上部·八"
+    },
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0012.html",
+     "label": "上部·十二"
+    },
+    {
+     "file": "part0013.html",
+     "label": "上部·十三"
+    },
+    {
+     "file": "part0017.html",
+     "label": "上部·十七"
+    },
+    {
+     "file": "part0018.html",
+     "label": "上部·十八"
+    },
+    {
+     "file": "part0020.html",
+     "label": "上部·二十"
+    },
+    {
+     "file": "part0021.html",
+     "label": "上部·二十一"
+    },
+    {
+     "file": "part0025.html",
+     "label": "上部·二十五"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0059.html",
+     "label": "中部·四"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0063.html",
+     "label": "中部·八"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0071.html",
+     "label": "中部·十六"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0084.html",
+     "label": "中部·二十九"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0091.html",
+     "label": "中部·三十六"
+    },
+    {
+     "file": "part0093.html",
+     "label": "中部·三十八"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0108.html",
+     "label": "下部·三"
+    },
+    {
+     "file": "part0110.html",
+     "label": "下部·五"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0112.html",
+     "label": "下部·七"
+    },
+    {
+     "file": "part0113.html",
+     "label": "下部·八"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0121.html",
+     "label": "下部·十六"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0131.html",
+     "label": "下部·二十六"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0143.html",
+     "label": "下部·三十八"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    }
+   ],
+   "chapter_count": 60
+  },
+  {
+   "id": "liuhongbing",
+   "name": "刘红兵",
+   "cat": "主要人物",
+   "aka": [],
+   "role": "地区官员之子，死缠烂打追到忆秦娥成为第一任丈夫，纨绔而痴情，终离婚。",
+   "match": [
+    "刘红兵"
+   ],
+   "chapters": [
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0059.html",
+     "label": "中部·四"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0063.html",
+     "label": "中部·八"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0066.html",
+     "label": "中部·十一"
+    },
+    {
+     "file": "part0067.html",
+     "label": "中部·十二"
+    },
+    {
+     "file": "part0068.html",
+     "label": "中部·十三"
+    },
+    {
+     "file": "part0069.html",
+     "label": "中部·十四"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0071.html",
+     "label": "中部·十六"
+    },
+    {
+     "file": "part0072.html",
+     "label": "中部·十七"
+    },
+    {
+     "file": "part0073.html",
+     "label": "中部·十八"
+    },
+    {
+     "file": "part0074.html",
+     "label": "中部·十九"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0076.html",
+     "label": "中部·二十一"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0080.html",
+     "label": "中部·二十五"
+    },
+    {
+     "file": "part0082.html",
+     "label": "中部·二十七"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0084.html",
+     "label": "中部·二十九"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0086.html",
+     "label": "中部·三十一"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0090.html",
+     "label": "中部·三十五"
+    },
+    {
+     "file": "part0091.html",
+     "label": "中部·三十六"
+    },
+    {
+     "file": "part0092.html",
+     "label": "中部·三十七"
+    },
+    {
+     "file": "part0093.html",
+     "label": "中部·三十八"
+    },
+    {
+     "file": "part0094.html",
+     "label": "中部·三十九"
+    },
+    {
+     "file": "part0095.html",
+     "label": "中部·四十"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0099.html",
+     "label": "中部·四十四"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0103.html",
+     "label": "中部·四十八"
+    },
+    {
+     "file": "part0104.html",
+     "label": "中部·四十九"
+    },
+    {
+     "file": "part0107.html",
+     "label": "下部·二"
+    },
+    {
+     "file": "part0108.html",
+     "label": "下部·三"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0110.html",
+     "label": "下部·五"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0112.html",
+     "label": "下部·七"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0115.html",
+     "label": "下部·十"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0126.html",
+     "label": "下部·二十一"
+    },
+    {
+     "file": "part0128.html",
+     "label": "下部·二十三"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0130.html",
+     "label": "下部·二十五"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0147.html",
+     "label": "下部·四十二"
+    }
+   ],
+   "chapter_count": 68
+  },
+  {
+   "id": "qinbawa",
+   "name": "秦八娃",
+   "cat": "主要人物",
+   "aka": [],
+   "role": "乡间杂货铺出身的剧作家，为忆秦娥改艺名、量身写《狐仙劫》等戏，是她的精神导师。",
+   "match": [
+    "秦八娃"
+   ],
+   "chapters": [
+    {
+     "file": "part0001.html",
+     "label": "上部·一"
+    },
+    {
+     "file": "part0054.html",
+     "label": "上部·五十四"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0080.html",
+     "label": "中部·二十五"
+    },
+    {
+     "file": "part0082.html",
+     "label": "中部·二十七"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0099.html",
+     "label": "中部·四十四"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0103.html",
+     "label": "中部·四十八"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0112.html",
+     "label": "下部·七"
+    },
+    {
+     "file": "part0113.html",
+     "label": "下部·八"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0123.html",
+     "label": "下部·十八"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0131.html",
+     "label": "下部·二十六"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0143.html",
+     "label": "下部·三十八"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0147.html",
+     "label": "下部·四十二"
+    },
+    {
+     "file": "part0148.html",
+     "label": "下部·四十三"
+    },
+    {
+     "file": "part0149.html",
+     "label": "下部·四十四"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    },
+    {
+     "file": "part0151.html",
+     "label": "后记"
+    }
+   ],
+   "chapter_count": 34
+  },
+  {
+   "id": "shihuaiyu",
+   "name": "石怀玉",
+   "cat": "主要人物",
+   "aka": [
+    "怀玉"
+   ],
+   "role": "画家，为忆秦娥痴狂作画，成为她生命后期的伴侣，结局悲剧。",
+   "match": [
+    "石怀玉"
+   ],
+   "chapters": [
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0126.html",
+     "label": "下部·二十一"
+    },
+    {
+     "file": "part0127.html",
+     "label": "下部·二十二"
+    },
+    {
+     "file": "part0128.html",
+     "label": "下部·二十三"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0130.html",
+     "label": "下部·二十五"
+    },
+    {
+     "file": "part0131.html",
+     "label": "下部·二十六"
+    },
+    {
+     "file": "part0132.html",
+     "label": "下部·二十七"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0135.html",
+     "label": "下部·三十"
+    },
+    {
+     "file": "part0136.html",
+     "label": "下部·三十一"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0147.html",
+     "label": "下部·四十二"
+    }
+   ],
+   "chapter_count": 17
+  },
+  {
+   "id": "songyu",
+   "name": "宋雨",
+   "cat": "主要人物",
+   "aka": [],
+   "role": "忆秦娥培养、带在身边的后辈（娃娃生/徒弟式人物）。",
+   "match": [
+    "宋雨"
+   ],
+   "chapters": [
+    {
+     "file": "part0128.html",
+     "label": "下部·二十三"
+    },
+    {
+     "file": "part0130.html",
+     "label": "下部·二十五"
+    },
+    {
+     "file": "part0132.html",
+     "label": "下部·二十七"
+    },
+    {
+     "file": "part0133.html",
+     "label": "下部·二十八"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0136.html",
+     "label": "下部·三十一"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0138.html",
+     "label": "下部·三十三"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0148.html",
+     "label": "下部·四十三"
+    },
+    {
+     "file": "part0149.html",
+     "label": "下部·四十四"
+    }
+   ],
+   "chapter_count": 14
+  },
+  {
+   "id": "liuyi",
+   "name": "刘忆",
+   "cat": "主要人物",
+   "aka": [],
+   "role": "忆秦娥与刘红兵之子，智力有障碍，是她沉重的牵挂。",
+   "match": [
+    "刘忆"
+   ],
+   "chapters": [
+    {
+     "file": "part0099.html",
+     "label": "中部·四十四"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0103.html",
+     "label": "中部·四十八"
+    },
+    {
+     "file": "part0106.html",
+     "label": "下部·一"
+    },
+    {
+     "file": "part0107.html",
+     "label": "下部·二"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0110.html",
+     "label": "下部·五"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0127.html",
+     "label": "下部·二十二"
+    },
+    {
+     "file": "part0128.html",
+     "label": "下部·二十三"
+    },
+    {
+     "file": "part0130.html",
+     "label": "下部·二十五"
+    },
+    {
+     "file": "part0132.html",
+     "label": "下部·二十七"
+    },
+    {
+     "file": "part0133.html",
+     "label": "下部·二十八"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0135.html",
+     "label": "下部·三十"
+    },
+    {
+     "file": "part0136.html",
+     "label": "下部·三十一"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0138.html",
+     "label": "下部·三十三"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0147.html",
+     "label": "下部·四十二"
+    },
+    {
+     "file": "part0148.html",
+     "label": "下部·四十三"
+    }
+   ],
+   "chapter_count": 25
+  },
+  {
+   "id": "huangzhengda",
+   "name": "黄正大",
+   "cat": "次要人物",
+   "aka": [
+    "黄主任",
+    "黄正"
+   ],
+   "role": "宁州县剧团主任/领导，作风官僚，曾整治胡三元；传与米兰有染。",
+   "match": [
+    "黄正大"
+   ],
+   "chapters": [
+    {
+     "file": "part0005.html",
+     "label": "上部·五"
+    },
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0012.html",
+     "label": "上部·十二"
+    },
+    {
+     "file": "part0013.html",
+     "label": "上部·十三"
+    },
+    {
+     "file": "part0015.html",
+     "label": "上部·十五"
+    },
+    {
+     "file": "part0020.html",
+     "label": "上部·二十"
+    },
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0039.html",
+     "label": "上部·三十九"
+    },
+    {
+     "file": "part0040.html",
+     "label": "上部·四十"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0118.html",
+     "label": "下部·十三"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    }
+   ],
+   "chapter_count": 21
+  },
+  {
+   "id": "zhujiru",
+   "name": "朱继儒",
+   "cat": "次要人物",
+   "aka": [
+    "老朱",
+    "朱团"
+   ],
+   "role": "县剧团副主任/领导层，相对正派，后在剧团事务中多有出场。",
+   "match": [
+    "朱继儒"
+   ],
+   "chapters": [
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0014.html",
+     "label": "上部·十四"
+    },
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0040.html",
+     "label": "上部·四十"
+    },
+    {
+     "file": "part0041.html",
+     "label": "上部·四十一"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0055.html",
+     "label": "上部·五十五"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0068.html",
+     "label": "中部·十三"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0080.html",
+     "label": "中部·二十五"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    }
+   ],
+   "chapter_count": 25
+  },
+  {
+   "id": "shanyangping",
+   "name": "单仰平",
+   "cat": "次要人物",
+   "aka": [
+    "仰平"
+   ],
+   "role": "省秦腔团团长，把忆秦娥调入省团并予以支持。",
+   "match": [
+    "单仰平"
+   ],
+   "chapters": [
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0069.html",
+     "label": "中部·十四"
+    },
+    {
+     "file": "part0072.html",
+     "label": "中部·十七"
+    },
+    {
+     "file": "part0074.html",
+     "label": "中部·十九"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0092.html",
+     "label": "中部·三十七"
+    },
+    {
+     "file": "part0093.html",
+     "label": "中部·三十八"
+    },
+    {
+     "file": "part0094.html",
+     "label": "中部·三十九"
+    },
+    {
+     "file": "part0095.html",
+     "label": "中部·四十"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0106.html",
+     "label": "下部·一"
+    },
+    {
+     "file": "part0113.html",
+     "label": "下部·八"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    }
+   ],
+   "chapter_count": 24
+  },
+  {
+   "id": "xueguisheng",
+   "name": "薛桂生",
+   "cat": "次要人物",
+   "aka": [
+    "薛团",
+    "桂生"
+   ],
+   "role": "省团小生演员，兰花指有名，后来当上团长。",
+   "match": [
+    "薛桂生"
+   ],
+   "chapters": [
+    {
+     "file": "part0091.html",
+     "label": "中部·三十六"
+    },
+    {
+     "file": "part0092.html",
+     "label": "中部·三十七"
+    },
+    {
+     "file": "part0093.html",
+     "label": "中部·三十八"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0121.html",
+     "label": "下部·十六"
+    },
+    {
+     "file": "part0123.html",
+     "label": "下部·十八"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0126.html",
+     "label": "下部·二十一"
+    },
+    {
+     "file": "part0131.html",
+     "label": "下部·二十六"
+    },
+    {
+     "file": "part0135.html",
+     "label": "下部·三十"
+    },
+    {
+     "file": "part0136.html",
+     "label": "下部·三十一"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0142.html",
+     "label": "下部·三十七"
+    },
+    {
+     "file": "part0143.html",
+     "label": "下部·三十八"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0147.html",
+     "label": "下部·四十二"
+    },
+    {
+     "file": "part0148.html",
+     "label": "下部·四十三"
+    },
+    {
+     "file": "part0149.html",
+     "label": "下部·四十四"
+    }
+   ],
+   "chapter_count": 24
+  },
+  {
+   "id": "fengzi",
+   "name": "封子",
+   "cat": "次要人物",
+   "aka": [
+    "封导"
+   ],
+   "role": "省团导演（'封导'），有夫人，戏路上与忆秦娥多有交集。注意：并非小生封潇潇。",
+   "match": [
+    "封子",
+    "封导"
+   ],
+   "chapters": [
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0063.html",
+     "label": "中部·八"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0066.html",
+     "label": "中部·十一"
+    },
+    {
+     "file": "part0067.html",
+     "label": "中部·十二"
+    },
+    {
+     "file": "part0068.html",
+     "label": "中部·十三"
+    },
+    {
+     "file": "part0069.html",
+     "label": "中部·十四"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0072.html",
+     "label": "中部·十七"
+    },
+    {
+     "file": "part0073.html",
+     "label": "中部·十八"
+    },
+    {
+     "file": "part0074.html",
+     "label": "中部·十九"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0076.html",
+     "label": "中部·二十一"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0080.html",
+     "label": "中部·二十五"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0082.html",
+     "label": "中部·二十七"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0091.html",
+     "label": "中部·三十六"
+    },
+    {
+     "file": "part0092.html",
+     "label": "中部·三十七"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0099.html",
+     "label": "中部·四十四"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0104.html",
+     "label": "中部·四十九"
+    },
+    {
+     "file": "part0108.html",
+     "label": "下部·三"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    }
+   ],
+   "chapter_count": 40
+  },
+  {
+   "id": "dingzhirou",
+   "name": "丁至柔",
+   "cat": "次要人物",
+   "aka": [
+    "丁团"
+   ],
+   "role": "剧团中人，在名分与戏份上与忆秦娥一方有龃龉。",
+   "match": [
+    "丁至柔"
+   ],
+   "chapters": [
+    {
+     "file": "part0112.html",
+     "label": "下部·七"
+    },
+    {
+     "file": "part0113.html",
+     "label": "下部·八"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0121.html",
+     "label": "下部·十六"
+    },
+    {
+     "file": "part0123.html",
+     "label": "下部·十八"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    }
+   ],
+   "chapter_count": 7
+  },
+  {
+   "id": "zhouyuzhi",
+   "name": "周玉枝",
+   "cat": "次要人物",
+   "aka": [],
+   "role": "与忆秦娥、楚嘉禾同期的旦角学员，性子温和。",
+   "match": [
+    "周玉枝"
+   ],
+   "chapters": [
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0059.html",
+     "label": "中部·四"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0062.html",
+     "label": "中部·七"
+    },
+    {
+     "file": "part0063.html",
+     "label": "中部·八"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0071.html",
+     "label": "中部·十六"
+    },
+    {
+     "file": "part0073.html",
+     "label": "中部·十八"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0084.html",
+     "label": "中部·二十九"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0093.html",
+     "label": "中部·三十八"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0135.html",
+     "label": "下部·三十"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0143.html",
+     "label": "下部·三十八"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    }
+   ],
+   "chapter_count": 32
+  },
+  {
+   "id": "gonglili",
+   "name": "龚丽丽",
+   "cat": "次要人物",
+   "aka": [
+    "丽丽"
+   ],
+   "role": "与忆秦娥同期的女学员。",
+   "match": [
+    "龚丽丽"
+   ],
+   "chapters": [
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0066.html",
+     "label": "中部·十一"
+    },
+    {
+     "file": "part0067.html",
+     "label": "中部·十二"
+    },
+    {
+     "file": "part0069.html",
+     "label": "中部·十四"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0076.html",
+     "label": "中部·二十一"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    }
+   ],
+   "chapter_count": 9
+  },
+  {
+   "id": "zhangguangrong",
+   "name": "张光荣",
+   "cat": "次要人物",
+   "aka": [],
+   "role": "县剧团乐队/演员，胡彩香的丈夫。",
+   "match": [
+    "张光荣"
+   ],
+   "chapters": [
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0011.html",
+     "label": "上部·十一"
+    },
+    {
+     "file": "part0012.html",
+     "label": "上部·十二"
+    },
+    {
+     "file": "part0015.html",
+     "label": "上部·十五"
+    },
+    {
+     "file": "part0039.html",
+     "label": "上部·三十九"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0111.html",
+     "label": "下部·六"
+    },
+    {
+     "file": "part0115.html",
+     "label": "下部·十"
+    },
+    {
+     "file": "part0116.html",
+     "label": "下部·十一"
+    },
+    {
+     "file": "part0117.html",
+     "label": "下部·十二"
+    },
+    {
+     "file": "part0118.html",
+     "label": "下部·十三"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0122.html",
+     "label": "下部·十七"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    }
+   ],
+   "chapter_count": 22
+  },
+  {
+   "id": "songguangzu",
+   "name": "宋光祖",
+   "cat": "次要人物",
+   "aka": [
+    "宋师",
+    "宋师傅"
+   ],
+   "role": "县剧团灶上厨师（'宋师'），对易青娥较为照应。",
+   "match": [
+    "宋光祖",
+    "宋师"
+   ],
+   "chapters": [
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0010.html",
+     "label": "上部·十"
+    },
+    {
+     "file": "part0021.html",
+     "label": "上部·二十一"
+    },
+    {
+     "file": "part0022.html",
+     "label": "上部·二十二"
+    },
+    {
+     "file": "part0023.html",
+     "label": "上部·二十三"
+    },
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0025.html",
+     "label": "上部·二十五"
+    },
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0030.html",
+     "label": "上部·三十"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0038.html",
+     "label": "上部·三十八"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0056.html",
+     "label": "中部·一"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    }
+   ],
+   "chapter_count": 27
+  },
+  {
+   "id": "yilaidi",
+   "name": "易来弟",
+   "cat": "次要人物",
+   "aka": [
+    "来弟"
+   ],
+   "role": "忆秦娥的姐姐。",
+   "match": [
+    "易来弟",
+    "来弟"
+   ],
+   "chapters": [
+    {
+     "file": "part0001.html",
+     "label": "上部·一"
+    },
+    {
+     "file": "part0019.html",
+     "label": "上部·十九"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0075.html",
+     "label": "中部·二十"
+    },
+    {
+     "file": "part0077.html",
+     "label": "中部·二十二"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0084.html",
+     "label": "中部·二十九"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0123.html",
+     "label": "下部·十八"
+    },
+    {
+     "file": "part0130.html",
+     "label": "下部·二十五"
+    },
+    {
+     "file": "part0135.html",
+     "label": "下部·三十"
+    },
+    {
+     "file": "part0137.html",
+     "label": "下部·三十二"
+    },
+    {
+     "file": "part0151.html",
+     "label": "后记"
+    }
+   ],
+   "chapter_count": 13
+  },
+  {
+   "id": "liusituan",
+   "name": "刘四团",
+   "cat": "次要人物",
+   "aka": [
+    "四团"
+   ],
+   "role": "古存孝的年轻助手。",
+   "match": [
+    "刘四团"
+   ],
+   "chapters": [
+    {
+     "file": "part0026.html",
+     "label": "上部·二十六"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0121.html",
+     "label": "下部·十六"
+    },
+    {
+     "file": "part0122.html",
+     "label": "下部·十七"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    }
+   ],
+   "chapter_count": 11
+  },
+  {
+   "id": "huifangling",
+   "name": "惠芳龄",
+   "cat": "次要人物",
+   "aka": [],
+   "role": "比忆秦娥年轻的后辈演员，性子大大咧咧。",
+   "match": [
+    "惠芳龄"
+   ],
+   "chapters": [
+    {
+     "file": "part0043.html",
+     "label": "上部·四十三"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0115.html",
+     "label": "下部·十"
+    },
+    {
+     "file": "part0140.html",
+     "label": "下部·三十五"
+    }
+   ],
+   "chapter_count": 15
+  },
+  {
+   "id": "liqinge",
+   "name": "李青娥",
+   "cat": "次要人物",
+   "aka": [],
+   "role": "省城名演员（与易青娥同'青娥'，曾有人据此造谣易青娥是其私生女）。注意：与主角易青娥并非同一人。",
+   "match": [
+    "李青娥"
+   ],
+   "chapters": [
+    {
+     "file": "part0001.html",
+     "label": "上部·一"
+    },
+    {
+     "file": "part0042.html",
+     "label": "上部·四十二"
+    },
+    {
+     "file": "part0151.html",
+     "label": "后记"
+    }
+   ],
+   "chapter_count": 3
+  },
+  {
+   "id": "lihuiniang",
+   "name": "李慧娘",
+   "cat": "戏曲角色",
+   "aka": [
+    "鬼怨",
+    "杀生"
+   ],
+   "role": "《游西湖》(含《鬼怨》《杀生》)中角色，忆秦娥的成名戏，吹火绝技所在。",
+   "match": [
+    "李慧娘"
+   ],
+   "chapters": [
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0051.html",
+     "label": "上部·五十一"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0063.html",
+     "label": "中部·八"
+    },
+    {
+     "file": "part0064.html",
+     "label": "中部·九"
+    },
+    {
+     "file": "part0065.html",
+     "label": "中部·十"
+    },
+    {
+     "file": "part0066.html",
+     "label": "中部·十一"
+    },
+    {
+     "file": "part0068.html",
+     "label": "中部·十三"
+    },
+    {
+     "file": "part0070.html",
+     "label": "中部·十五"
+    },
+    {
+     "file": "part0071.html",
+     "label": "中部·十六"
+    },
+    {
+     "file": "part0072.html",
+     "label": "中部·十七"
+    },
+    {
+     "file": "part0073.html",
+     "label": "中部·十八"
+    },
+    {
+     "file": "part0074.html",
+     "label": "中部·十九"
+    },
+    {
+     "file": "part0076.html",
+     "label": "中部·二十一"
+    },
+    {
+     "file": "part0078.html",
+     "label": "中部·二十三"
+    },
+    {
+     "file": "part0079.html",
+     "label": "中部·二十四"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0082.html",
+     "label": "中部·二十七"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0092.html",
+     "label": "中部·三十七"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0106.html",
+     "label": "下部·一"
+    },
+    {
+     "file": "part0108.html",
+     "label": "下部·三"
+    },
+    {
+     "file": "part0110.html",
+     "label": "下部·五"
+    },
+    {
+     "file": "part0114.html",
+     "label": "下部·九"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    }
+   ],
+   "chapter_count": 36
+  },
+  {
+   "id": "baishe",
+   "name": "白娘子",
+   "cat": "戏曲角色",
+   "aka": [
+    "白蛇传",
+    "许仙",
+    "白素贞"
+   ],
+   "role": "《白蛇传》中角色（白娘子/许仙），忆秦娥的代表剧目之一。",
+   "match": [
+    "白娘子",
+    "白蛇传"
+   ],
+   "chapters": [
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0044.html",
+     "label": "上部·四十四"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0046.html",
+     "label": "上部·四十六"
+    },
+    {
+     "file": "part0047.html",
+     "label": "上部·四十七"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0050.html",
+     "label": "上部·五十"
+    },
+    {
+     "file": "part0051.html",
+     "label": "上部·五十一"
+    },
+    {
+     "file": "part0052.html",
+     "label": "上部·五十二"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0054.html",
+     "label": "上部·五十四"
+    },
+    {
+     "file": "part0057.html",
+     "label": "中部·二"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0060.html",
+     "label": "中部·五"
+    },
+    {
+     "file": "part0061.html",
+     "label": "中部·六"
+    },
+    {
+     "file": "part0066.html",
+     "label": "中部·十一"
+    },
+    {
+     "file": "part0068.html",
+     "label": "中部·十三"
+    },
+    {
+     "file": "part0073.html",
+     "label": "中部·十八"
+    },
+    {
+     "file": "part0077.html",
+     "label": "中部·二十二"
+    },
+    {
+     "file": "part0082.html",
+     "label": "中部·二十七"
+    },
+    {
+     "file": "part0083.html",
+     "label": "中部·二十八"
+    },
+    {
+     "file": "part0085.html",
+     "label": "中部·三十"
+    },
+    {
+     "file": "part0087.html",
+     "label": "中部·三十二"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0090.html",
+     "label": "中部·三十五"
+    },
+    {
+     "file": "part0091.html",
+     "label": "中部·三十六"
+    },
+    {
+     "file": "part0092.html",
+     "label": "中部·三十七"
+    },
+    {
+     "file": "part0093.html",
+     "label": "中部·三十八"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0099.html",
+     "label": "中部·四十四"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0103.html",
+     "label": "中部·四十八"
+    },
+    {
+     "file": "part0105.html",
+     "label": "中部·五十"
+    },
+    {
+     "file": "part0108.html",
+     "label": "下部·三"
+    },
+    {
+     "file": "part0109.html",
+     "label": "下部·四"
+    },
+    {
+     "file": "part0110.html",
+     "label": "下部·五"
+    },
+    {
+     "file": "part0112.html",
+     "label": "下部·七"
+    },
+    {
+     "file": "part0116.html",
+     "label": "下部·十一"
+    },
+    {
+     "file": "part0120.html",
+     "label": "下部·十五"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0134.html",
+     "label": "下部·二十九"
+    },
+    {
+     "file": "part0138.html",
+     "label": "下部·三十三"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    },
+    {
+     "file": "part0146.html",
+     "label": "下部·四十一"
+    },
+    {
+     "file": "part0150.html",
+     "label": "下部·四十五"
+    }
+   ],
+   "chapter_count": 50
+  },
+  {
+   "id": "hujiumei",
+   "name": "胡九妹",
+   "cat": "戏曲角色",
+   "aka": [
+    "狐仙",
+    "狐仙劫"
+   ],
+   "role": "秦八娃为忆秦娥量身创作的《狐仙劫》主角，狐仙九妹。",
+   "match": [
+    "胡九妹",
+    "狐仙劫"
+   ],
+   "chapters": [
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0098.html",
+     "label": "中部·四十三"
+    },
+    {
+     "file": "part0099.html",
+     "label": "中部·四十四"
+    },
+    {
+     "file": "part0100.html",
+     "label": "中部·四十五"
+    },
+    {
+     "file": "part0101.html",
+     "label": "中部·四十六"
+    },
+    {
+     "file": "part0102.html",
+     "label": "中部·四十七"
+    },
+    {
+     "file": "part0105.html",
+     "label": "中部·五十"
+    },
+    {
+     "file": "part0106.html",
+     "label": "下部·一"
+    },
+    {
+     "file": "part0108.html",
+     "label": "下部·三"
+    },
+    {
+     "file": "part0113.html",
+     "label": "下部·八"
+    },
+    {
+     "file": "part0119.html",
+     "label": "下部·十四"
+    },
+    {
+     "file": "part0122.html",
+     "label": "下部·十七"
+    },
+    {
+     "file": "part0123.html",
+     "label": "下部·十八"
+    },
+    {
+     "file": "part0124.html",
+     "label": "下部·十九"
+    },
+    {
+     "file": "part0125.html",
+     "label": "下部·二十"
+    },
+    {
+     "file": "part0126.html",
+     "label": "下部·二十一"
+    },
+    {
+     "file": "part0129.html",
+     "label": "下部·二十四"
+    },
+    {
+     "file": "part0131.html",
+     "label": "下部·二十六"
+    },
+    {
+     "file": "part0136.html",
+     "label": "下部·三十一"
+    },
+    {
+     "file": "part0139.html",
+     "label": "下部·三十四"
+    },
+    {
+     "file": "part0141.html",
+     "label": "下部·三十六"
+    },
+    {
+     "file": "part0144.html",
+     "label": "下部·三十九"
+    }
+   ],
+   "chapter_count": 22
+  },
+  {
+   "id": "hufenglian",
+   "name": "胡凤莲",
+   "cat": "戏曲角色",
+   "aka": [
+    "游龟山"
+   ],
+   "role": "《游龟山》中角色，忆秦娥早期所演。",
+   "match": [
+    "胡凤莲",
+    "游龟山"
+   ],
+   "chapters": [
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0096.html",
+     "label": "中部·四十一"
+    }
+   ],
+   "chapter_count": 4
+  },
+  {
+   "id": "yangjiajiang",
+   "name": "杨家将",
+   "cat": "戏曲角色",
+   "aka": [
+    "焦赞",
+    "孟良",
+    "穆桂英",
+    "打焦赞"
+   ],
+   "role": "《杨家将》系列(含《打焦赞》)中角色，忆秦娥武戏剧目。",
+   "match": [
+    "杨家将",
+    "焦赞",
+    "孟良",
+    "穆桂英"
+   ],
+   "chapters": [
+    {
+     "file": "part0024.html",
+     "label": "上部·二十四"
+    },
+    {
+     "file": "part0028.html",
+     "label": "上部·二十八"
+    },
+    {
+     "file": "part0029.html",
+     "label": "上部·二十九"
+    },
+    {
+     "file": "part0031.html",
+     "label": "上部·三十一"
+    },
+    {
+     "file": "part0032.html",
+     "label": "上部·三十二"
+    },
+    {
+     "file": "part0033.html",
+     "label": "上部·三十三"
+    },
+    {
+     "file": "part0034.html",
+     "label": "上部·三十四"
+    },
+    {
+     "file": "part0035.html",
+     "label": "上部·三十五"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0037.html",
+     "label": "上部·三十七"
+    },
+    {
+     "file": "part0044.html",
+     "label": "上部·四十四"
+    },
+    {
+     "file": "part0045.html",
+     "label": "上部·四十五"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    },
+    {
+     "file": "part0049.html",
+     "label": "上部·四十九"
+    },
+    {
+     "file": "part0053.html",
+     "label": "上部·五十三"
+    },
+    {
+     "file": "part0088.html",
+     "label": "中部·三十三"
+    },
+    {
+     "file": "part0089.html",
+     "label": "中部·三十四"
+    },
+    {
+     "file": "part0094.html",
+     "label": "中部·三十九"
+    },
+    {
+     "file": "part0097.html",
+     "label": "中部·四十二"
+    },
+    {
+     "file": "part0118.html",
+     "label": "下部·十三"
+    },
+    {
+     "file": "part0127.html",
+     "label": "下部·二十二"
+    },
+    {
+     "file": "part0132.html",
+     "label": "下部·二十七"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    },
+    {
+     "file": "part0149.html",
+     "label": "下部·四十四"
+    }
+   ],
+   "chapter_count": 24
+  },
+  {
+   "id": "honghu",
+   "name": "韩英",
+   "cat": "戏曲角色",
+   "aka": [
+    "洪湖赤卫队",
+    "彭霸天"
+   ],
+   "role": "《洪湖赤卫队》中角色，现代戏。",
+   "match": [
+    "韩英",
+    "彭霸天"
+   ],
+   "chapters": [
+    {
+     "file": "part0013.html",
+     "label": "上部·十三"
+    },
+    {
+     "file": "part0014.html",
+     "label": "上部·十四"
+    },
+    {
+     "file": "part0015.html",
+     "label": "上部·十五"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0048.html",
+     "label": "上部·四十八"
+    }
+   ],
+   "chapter_count": 5
+  },
+  {
+   "id": "dujuanshan",
+   "name": "柯湘",
+   "cat": "戏曲角色",
+   "aka": [
+    "杜鹃山",
+    "雷刚"
+   ],
+   "role": "《杜鹃山》中角色，现代样板戏。",
+   "match": [
+    "柯湘",
+    "杜鹃山"
+   ],
+   "chapters": [
+    {
+     "file": "part0009.html",
+     "label": "上部·九"
+    },
+    {
+     "file": "part0036.html",
+     "label": "上部·三十六"
+    },
+    {
+     "file": "part0058.html",
+     "label": "中部·三"
+    },
+    {
+     "file": "part0080.html",
+     "label": "中部·二十五"
+    },
+    {
+     "file": "part0081.html",
+     "label": "中部·二十六"
+    },
+    {
+     "file": "part0127.html",
+     "label": "下部·二十二"
+    },
+    {
+     "file": "part0145.html",
+     "label": "下部·四十"
+    }
+   ],
+   "chapter_count": 7
+  }
+ ]
+}

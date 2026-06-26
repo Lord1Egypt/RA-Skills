@@ -1,0 +1,49 @@
+{
+  "year": "2026",
+  "slides": [
+    {
+      "type": "hero_cover",
+      "eyebrow": "INTRODUCING",
+      "title": "M4 Ultra.",
+      "subtitle": "地球上最强的芯片。",
+      "footnote": "Apple · Cupertino · 2026"
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "title": "Performance",
+      "subtitle": "性能"
+    },
+    {
+      "type": "big_stat",
+      "caption": "CPU PERFORMANCE",
+      "value": "2x",
+      "unit": "比 M3 Ultra 快",
+      "footnote": "基于实际应用工作负载",
+      "accent": true
+    },
+    {
+      "type": "kpi_triple",
+      "title": "重要数字",
+      "en_sub": "Key Metrics",
+      "items": [
+        {"value": "192", "label": "GB 统一内存", "caption": "整张内存池共享"},
+        {"value": "80B", "label": "晶体管", "caption": "3nm 工艺"},
+        {"value": "4TB/s", "label": "内存带宽", "caption": "AI 推理飞起"}
+      ]
+    },
+    {
+      "type": "quote_card",
+      "quote": "One more thing…",
+      "author": "Tim Cook",
+      "role": "Apple CEO"
+    },
+    {
+      "type": "call_to_action",
+      "title": "Available today.",
+      "subtitle": "即刻可购买。",
+      "cta": "apple.com/store",
+      "footnote": "Apple · 2026"
+    }
+  ]
+}

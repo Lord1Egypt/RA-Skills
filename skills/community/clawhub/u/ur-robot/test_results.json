@@ -1,0 +1,42 @@
+{
+  "test_date": "2026-04-02 10:29:52",
+  "robot_model": "UR5e",
+  "ursim_version": "e-Series 5.13+",
+  "tests": [
+    {
+      "name": "连接测试",
+      "status": "PASS",
+      "details": "模拟模式",
+      "error": "",
+      "timestamp": "10:29:52"
+    },
+    {
+      "name": "关节控制测试",
+      "status": "PASS",
+      "details": "模拟模式",
+      "error": "",
+      "timestamp": "10:29:52"
+    },
+    {
+      "name": "笛卡尔运动测试",
+      "status": "PASS",
+      "details": "模拟模式",
+      "error": "",
+      "timestamp": "10:29:52"
+    },
+    {
+      "name": "IO 控制测试",
+      "status": "PASS",
+      "details": "模拟模式",
+      "error": "",
+      "timestamp": "10:29:52"
+    },
+    {
+      "name": "力控模式测试",
+      "status": "SKIP",
+      "details": "需要真机",
+      "error": "",
+      "timestamp": "10:29:52"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Personal Asset Library"
+  short_description: "Phase skill to extract asset cards and conservative merge groups from parsed files"
+  default_prompt: "Use $caixu-build-asset-library after the current stage has been identified as asset building, create the build pipeline run, read parsed files, extract canonical asset cards from trustworthy text, persist them, and only merge versions when the evidence is strong."

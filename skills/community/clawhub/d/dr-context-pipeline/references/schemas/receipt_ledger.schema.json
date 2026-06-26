@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "receipt-ledger.schema.json",
+  "title": "Receipt Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "mode", "run_id", "entries"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "mode": { "type": "string", "const": "audit" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step", "status"],
+      "properties": {
+        "step": {
+          "type": "string",
+          "enum": [
+            "load_always_on",
+            "route_message",
+            "retrieve_snippets",
+            "build_retrieval_bundle",
+            "compress_context",
+            "lint_context_pack",
+            "prepare_reasoning_input",
+            "emit_audit_artifacts"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["succeeded", "failed", "skipped"]
+        },
+        "started_at_utc": { "type": "string", "minLength": 1 },
+        "finished_at_utc": { "type": "string", "minLength": 1 },
+        "tool_name": { "type": "string" },
+        "proof": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifact_path": { "type": "string" },
+            "artifact_sha256": { "type": "string" },
+            "summary": { "type": "string" },
+            "output_excerpt": { "type": "string" }
+          }
+        },
+        "error": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "const": "succeeded" } },
+            "required": ["status"]
+          },
+          "then": {
+            "required": ["proof"]
+          }
+        },
+        {
+          "if": {
+            "properties": { "status": { "const": "failed" } },
+            "required": ["status"]
+          },
+          "then": {
+            "required": ["error"]
+          }
+        }
+      ]
+    }
+  }
+}

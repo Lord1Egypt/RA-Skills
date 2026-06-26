@@ -1,0 +1,48 @@
+{
+  "skill_name": "gajago-sns",
+  "status": "complete",
+  "current_experiment": 3,
+  "baseline_score": 96.0,
+  "best_score": 100.0,
+  "experiments": [
+    {
+      "id": 0,
+      "score": 24,
+      "max_score": 25,
+      "pass_rate": 96.0,
+      "status": "baseline",
+      "description": "original skill — no changes"
+    },
+    {
+      "id": 1,
+      "score": 25,
+      "max_score": 25,
+      "pass_rate": 100.0,
+      "status": "keep",
+      "description": "added 원문 충실도 규칙 section — no fabrication, source-only terms"
+    },
+    {
+      "id": 2,
+      "score": 25,
+      "max_score": 25,
+      "pass_rate": 100.0,
+      "status": "keep",
+      "description": "added 채널별 카피 톤 가이드 — Instagram punchy, Facebook article, Band community"
+    },
+    {
+      "id": 3,
+      "score": 25,
+      "max_score": 25,
+      "pass_rate": 100.0,
+      "status": "keep",
+      "description": "added 출력 전 자기검증 checklist — 4-point verification before output"
+    }
+  ],
+  "eval_breakdown": [
+    {"name": "원문 충실도", "pass_count": 19, "total": 20},
+    {"name": "날조 없음", "pass_count": 20, "total": 20},
+    {"name": "입력 핵심정보 반영", "pass_count": 20, "total": 20},
+    {"name": "기존 콘텐츠 독립성", "pass_count": 20, "total": 20},
+    {"name": "채널 포맷 준수", "pass_count": 20, "total": 20}
+  ]
+}

@@ -1,35 +1,27 @@
 ---
-name: "财新网科技新闻"
-description: "Fetch and summarize Chinese tech news from 财新网 (caixin.com). Use when user asks about caixin tech news, tech updates from 财新, or wants news from caixin.com/t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/caixin-news"
-sourceUrl: "https://clawhub.ai/skills/caixin-news"
+name: caixin
+description: Fetch and summarize Chinese tech news from 财新网 (caixin.com). Use when user asks about caixin tech news, tech updates from 财新, or wants news from caixin.com/tech/.
 ---
 
-# 财新网科技新闻
+# 财新科技新闻
 
-> Fetch and summarize Chinese tech news from 财新网 (caixin.com). Use when user asks about caixin tech news, tech updates from 财新, or wants news from caixin.com/t...
+Fetch tech news from https://www.caixin.com/tech/
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/caixin-news`
-- **Source URL:** [https://clawhub.ai/skills/caixin-news](https://clawhub.ai/skills/caixin-news)
+## Usage
 
-## Overview
+Use `web_fetch` to get content from:
+- https://www.caixin.com/tech/
 
+Extract the latest news articles (titles, summaries, dates). Present in clean Chinese format with:
+- 日期
+- 标题
+- 简要摘要
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/caixin-news
-```
+## Output Format
+
+按时间倒序排列今日/昨日要闻，每条包含：
+- 新闻标题
+- 一句话摘要
+- 相关链接
+
+过滤掉纯股票代码、重复内容、无意义噪音。

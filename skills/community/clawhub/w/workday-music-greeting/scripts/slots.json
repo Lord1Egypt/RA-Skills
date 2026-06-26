@@ -1,0 +1,7 @@
+{
+  "morning": { "start": 6, "end": 9 },
+  "focus":   { "start": 9, "end": 12 },
+  "working": { "start": 12, "end": 14 },
+  "chill":   { "start": 14, "end": 18 },
+  "off":     { "start": 18, "end": 6 }
+}

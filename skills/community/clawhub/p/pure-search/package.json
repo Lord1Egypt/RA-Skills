@@ -1,0 +1,20 @@
+{
+    "name": "pure-search",
+    "version": "1.0.0",
+    "description": "A lightweight, API-key-free web search skill based on DuckDuckGo and Trafilatura. Returns highly relevant URLs and clean markdown content.",
+    "keywords": [
+        "search",
+        "duckduckgo",
+        "trafilatura",
+        "openclaw",
+        "clean"
+    ],
+    "license": "MIT",
+    "author": "Antigravity",
+    "acceptLicenseTerms": true,
+    "files": [
+        "SKILL.md",
+        "scripts/search.py",
+        "package.json"
+    ]
+}

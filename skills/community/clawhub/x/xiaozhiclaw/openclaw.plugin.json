@@ -1,0 +1,29 @@
+{
+  "id": "xiaozhi-channel",
+  "name": "XiaoZhi Channel",
+  "description": "Connect XiaoZhi AI ESP32 hardware as a voice channel",
+  "channels": ["xiaozhi"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "port": {
+        "type": "number",
+        "default": 8080,
+        "description": "WebSocket server port for XiaoZhi devices"
+      },
+      "sttProvider": {
+        "type": "string",
+        "enum": ["whisper", "openai"],
+        "default": "openai",
+        "description": "Speech-to-text provider"
+      },
+      "ttsProvider": {
+        "type": "string",
+        "enum": ["openai", "elevenlabs"],
+        "default": "openai",
+        "description": "Text-to-speech provider"
+      }
+    }
+  }
+}

@@ -1,35 +1,94 @@
 ---
-name: "Multi-Agent Skill Evaluator"
+name: skill-evaluator
+version: "1.4.0"
 description: "帮我评估一下这个 skill。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [evaluation, meta, multi-agent, quality, review]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-agent-skill-evaluator"
-sourceUrl: "https://clawhub.ai/skills/multi-agent-skill-evaluator"
 ---
 
-# Multi-Agent Skill Evaluator
+# Skill Evaluator — 多智能体技能评估
 
-> 帮我评估一下这个 skill。
+对目标 skill 进行**结构化多维度评估**。用 3 个隔离的子 agent 作为独立考官，各自全面评估后汇总结果。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-agent-skill-evaluator`
-- **Source URL:** [https://clawhub.ai/skills/multi-agent-skill-evaluator](https://clawhub.ai/skills/multi-agent-skill-evaluator)
+## 工作流
 
-## Overview
+### Step 1：读取目标 skill
 
+读取目标 skill 目录下的全部文件，跳过二进制和非文本文件：
+- `SKILL.md`
+- `scripts/*`（.sh, .py, .js 等）
+- `references/*`（.md 等）
+- 其他文本配置文件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-agent-skill-evaluator
+### Step 2：并行启动 3 个子 agent
+
+使用 `references/evaluation-protocol.md` 中的评估协议，填充评估技能信息和全部文件内容后，**同时** spawn 3 个子 agent（使用 `mode="run"`）。
+
+每个子 agent 的 task 内容必须包含：
+1. 角色声明（你是独立考官 A/B/C）
+2. 评估技能信息
+3. 全部评估材料（完整文件内容）
+4. 评估标准（8个维度定义，直接从 evaluation-protocol.md 引用）
+5. 输出格式要求（含 `===SCORE_SUMMARY===` 标记行）
+
+注意：使用 `sessions_spawn` 并行发送，不要串行等待。然后 `sessions_yield` 等待全部完成。
+
+### Step 2.5（可选）：分歧追问
+
+聚合分数时如果某个维度最高分 - 最低分 ≥ 3， spawn 一个追问子 agent 专门分析：
+
+```
+你是 Skill Evaluator 的追问考官。关于技能 xxx 的"安全性"维度：
+考官 A（9分）理由：...
+考官 B（4分）理由：...
+
+请分析双方分歧：谁的论据更强？是否存在双方都没发现的盲点？
+```
+
+将追问结果加入最终报告。
+
+### Step 3：聚合结果
+
+从每个子 agent 的输出中提取分数摘要（解析 `===SCORE_SUMMARY===` 标记段）和详细评语。
+
+若某个子 agent 未完成或输出格式异常，标记为 `N/A` 并在报告中注明。
+
+汇总输出（严格按以下结构）：
+
+```
+══════════════════════════════════════
+  Skill 评估报告：<skill名称> v<版本>
+══════════════════════════════════════
+
+📊 各维度评分
+┌────────────────────┬────┬────┬────┬──────┐
+│ 维度               │ A  │ B  │ C  │ 均分 │
+├────────────────────┼────┼────┼────┼──────┤
+│ 1. 功能完整性      │    │    │    │      │
+│ 2. 代码质量        │    │    │    │      │
+│ 3. 健壮性          │    │    │    │      │
+│ 4. 安全性          │    │    │    │      │
+│ 5. 文档质量        │    │    │    │      │
+│ 6. 依赖合理性      │    │    │    │      │
+│ 7. 预估运行效果    │    │    │    │      │
+│ 8. 总评            │    │    │    │      │
+└────────────────────┴────┴────┴────┴──────┘
+
+注：维度均分 = (A+B+C)/3，保留一位小数
+
+🔍 主要分歧点
+
+列出最高分-最低分 ≥ 3 的维度（如有），附各方论据和分析。
+
+✅ 共识优势
+
+至少 2 个考官均明确提及的优点（引用原文关键词）
+
+⚠️ 共识问题
+
+至少 2 个考官均明确指出的问题（引用原文关键词）
+
+📝 综合评语
+
+- 整体质量定位
+- 最值得改进的 1-2 个点
+- 建议评级：推荐 / 可用但有坑 / 不推荐
 ```

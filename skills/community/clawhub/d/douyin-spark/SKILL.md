@@ -1,35 +1,83 @@
----
-name: "douyin-spark"
-description: "自动识别抖音带火花联系人，批量发送自定义消息续火花，支持列表管理和重燃火花进度追踪。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-spark"
-sourceUrl: "https://clawhub.ai/skills/douyin-spark"
----
+# 抖音自动续火花技能
 
-# douyin-spark
+自动为抖音私信联系人续火花，保持火花标识不灭。
 
-> 自动识别抖音带火花联系人，批量发送自定义消息续火花，支持列表管理和重燃火花进度追踪。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-spark`
-- **Source URL:** [https://clawhub.ai/skills/douyin-spark](https://clawhub.ai/skills/douyin-spark)
+- 自动识别有火花图标的联系人（名字旁边带数字的）
+- 批量发送续火花消息
+- 支持自定义消息内容
+- 记录火花联系人列表
+- 自动追踪重燃中火花的进度
 
-## Overview
+## 使用方法
 
+### 在 OpenClaw 对话中使用（推荐）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/douyin-spark
+直接告诉 AI 助手：
+
 ```
+帮我续火花
+给火花联系人发消息
+续火花，说：你好呀
+查看火花联系人列表
+把 XXX 加到火花联系人
+```
+
+### AI 助手执行流程
+
+当用户说"续火花"时，AI 助手应：
+
+1. **打开抖音聊天页面**
+   ```
+   browser action=navigate url=https://www.douyin.com/chat?isPopup=1
+   ```
+
+2. **获取联系人列表快照**（使用 refs="role"）
+   ```
+   browser action=snapshot refs=role
+   ```
+
+3. **逐个点击联系人并发送消息**
+   - 点击联系人（通过 ref 定位）
+   - 在输入框（ref=e713）输入消息
+   - 按 Enter 发送
+
+4. **发送默认消息**：`我是 ai 续火花助手，我来续火花了`
+
+5. **报告发送结果**，包括每个联系人的火花天数和状态
+
+### 查看联系人列表
+
+```bash
+node ~/.openclaw/workspace/skills/douyin-spark/douyin-spark.js --list
+```
+
+## 配置文件
+
+联系人列表保存在：`~/.openclaw/workspace/memory/douyin-spark-contacts.md`
+
+## 火花规则
+
+- **灰色火花**：超过 24 小时不聊天变灰，发消息可重新点亮
+- **彩色火花**：连续聊天保持
+- **重燃中**：火花已灭，需连续聊 3 天恢复（显示 X/3 进度）
+
+## 注意事项
+
+- 每天至少发一次消息保持火花
+- 避免发送相同内容（可能被限流）
+- 群聊也可以有火花
+- 发送消息后等待 1-2 秒再发下一个，避免限流
+
+## 浏览器操作要点
+
+- 使用 `refs="role"` 获取稳定的元素引用
+- 输入框通常是 `ref=e713`（发送消息输入框）
+- 联系人列表项包含用户名和火花天数
+- 重燃中的火花显示为"重燃中 X/3"
+
+## 依赖
+
+- OpenClaw 浏览器工具
+- 抖音网页版已登录

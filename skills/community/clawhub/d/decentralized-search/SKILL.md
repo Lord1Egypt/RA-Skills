@@ -1,35 +1,69 @@
 ---
-name: "presearch"
+name: "presearch-search"
 description: "Production-ready decentralized search for AI agents. Privacy-first, uncensored web search via distributed node infrastructure."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/decentralized-search"
-sourceUrl: "https://clawhub.ai/skills/decentralized-search"
 ---
 
-# presearch
+# Presearch Search API
 
-> Production-ready decentralized search for AI agents. Privacy-first, uncensored web search via distributed node infrastructure.
+**Endpoint:** `https://na-us-1.presearch.com/v1/search`  
+**Method:** GET  
+**Auth:** Bearer Token  
+**Rate Limit:** 100 requests/minute
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/decentralized-search`
-- **Source URL:** [https://clawhub.ai/skills/decentralized-search](https://clawhub.ai/skills/decentralized-search)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/decentralized-search
+## Authentication
+```http
+Authorization: Bearer YOUR_API_KEY_HERE
 ```
+
+## Parameters
+
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `q` | string | ✅ | - | Search query |
+| `lang` | string | ❌ | en-US | Language code |
+| `time` | string | ❌ | any | any, day, week, month, year |
+| `page` | string | ❌ | 1 | Page number |
+| `safe` | string | ❌ | 1 | Safe search |
+
+## Response
+```json
+{
+  "data": {
+    "standardResults": [
+      {
+        "title": "string",
+        "link": "string",
+        "description": "string"
+      }
+    ],
+    "pagination": {
+      "current_page": 1,
+      "has_next": true
+    }
+  }
+}
+```
+
+## Error Codes
+- 401: Invalid API key
+- 402: Payment required  
+- 422: Invalid parameters
+- 429: Rate limit exceeded
+
+## Usage
+```python
+# Python
+with PresearchSkill(api_key) as skill:
+    results = skill.search("AI agents")
+```
+
+```javascript
+// Node.js
+const results = await skill.search({ query: "AI agents" });
+```
+
+## Privacy Features
+- No tracking or profiling
+- Decentralized node network
+- Encrypted traffic
+- Uncensored results

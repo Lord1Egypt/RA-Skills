@@ -1,0 +1,15 @@
+{
+  "title": "Study completion trend",
+  "goal": "trend",
+  "dataset": [
+    { "day": "2026-03-01", "completionRate": 62, "targetRate": 75 },
+    { "day": "2026-03-02", "completionRate": 68, "targetRate": 75 },
+    { "day": "2026-03-03", "completionRate": 71, "targetRate": 75 },
+    { "day": "2026-03-04", "completionRate": 77, "targetRate": 75 }
+  ],
+  "xField": "day",
+  "series": [
+    { "name": "Completion", "field": "completionRate" },
+    { "name": "Target", "field": "targetRate" }
+  ]
+}

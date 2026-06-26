@@ -1,35 +1,265 @@
 ---
-name: "X Expert"
-description: "智能 X (Twitter) 发布助手 - 通过对话式流程帮助用户创建、策划和发布推文内容"
-category: "social-media"
-source: "ClawHub"
-tags: [publish, social-media, twitter, x]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/x-expert"
-sourceUrl: "https://clawhub.ai/skills/x-expert"
+name: x-expert
+description: 智能 X (Twitter) 发布助手 - 通过对话式流程帮助用户创建、策划和发布推文内容
+homepage: https://github.com/shiyusimon/x-publisher-skill
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🐦",
+        "requires":
+          {
+            "env": ["X_API_KEY", "X_API_SECRET", "X_ACCESS_TOKEN", "X_ACCESS_TOKEN_SECRET"],
+            "bins": ["node"],
+          },
+        "install":
+          [
+            {
+              "id": "npm",
+              "kind": "npm",
+              "package": "twitter-api-v2",
+              "label": "Install twitter-api-v2",
+            },
+          ],
+      },
+  }
 ---
 
-# X Expert
+# X Expert — 智能 X 发布助手
 
-> 智能 X (Twitter) 发布助手 - 通过对话式流程帮助用户创建、策划和发布推文内容
+这是一个智能的 X (Twitter) 发布助手，通过**对话式流程**帮助你创建、策划和发布推文。
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/x-expert`
-- **Source URL:** [https://clawhub.ai/skills/x-expert](https://clawhub.ai/skills/x-expert)
+## 使用方式
 
-## Overview
+输入 `/x-expert` 启动对话式发布流程。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/x-expert
+## 对话流程 (共 9 步)
+
+### 步骤 1: 确认是否需要收集信息
+
+**询问用户**：
+> "你是否需要我先帮你收集/搜索一些信息？例如行业动态、热点话题、竞品动态等。"
+
+**用户回答后**：
+- 如果需要 → 进入步骤 2
+- 如果不需要 → 进入步骤 3
+
+---
+
+### 步骤 2: 收集信息
+
+**询问用户**：
+> "你想收集哪方面的信息？请告诉我主题或关键词。"
+
+**用户回答后**：
+1. 使用 Exa / MiniMax / Brave Search 搜索相关信息
+2. 总结搜索结果，以要点形式呈现给用户
+3. 询问用户是否需要基于这些信息继续
+
+**可选：持续深入**
+- 用户可以继续追问更具体的问题
+
+---
+
+### 步骤 3: 是否需要帮忙做推文
+
+**询问用户**：
+> "你是否需要我帮你撰写推文内容？还是你已经想好了内容？"
+
+**用户回答后**：
+- 如果需要 AI 撰写 → 进入步骤 4
+- 如果用户已有内容 → 进入步骤 5
+
+---
+
+### 步骤 4: 确定推文风格
+
+**询问用户**（如果需要 AI 撰写）：
+1. "你希望推文是什么风格？"
+   - 选项：专业、幽默、随意、正式、温暖、犀利 等
+
+2. "需要我搜索一些类似的优秀推文作为参考吗？"
+   - 如果需要，使用 Exa/MiniMax 搜索相关主题的热门推文
+
+3. "目标受众是谁？"
+   - 选项：开发者、产品经理、普通用户、行业专家 等
+
+**基于以上信息生成推文内容**，然后询问用户是否满意，或需要修改。
+
+---
+
+### 步骤 5: 确定发布设置
+
+**询问用户**：
+
+1. "是否需要定时发布？"
+   - 如果需要，记录具体发布时间
+
+2. "是否每次发布前都需要你检阅？"
+   - 选项：每次检阅、直接发布、仅检阅重要内容
+
+---
+
+### 步骤 6: 是否需要配图
+
+**询问用户**：
+> "需要配图吗？"
+
+**用户回答后**：
+- 如果需要 → 进入步骤 7
+- 如果不需要 → 进入步骤 9
+
+---
+
+### 步骤 7: 确定图片风格
+
+**询问用户**：
+> "图片风格有什么要求？"
+
+**选项**：
+- 抽象风格
+- 插画风格
+- 真实照片风格
+- 极简风格
+- 科技感风格
+- 用户自定义描述
+
+**同时询问用户**：
+> "你想用什么服务生成图片？"
+
+**选项**：
+- DALL-E 3
+- MiniMax Image
+- Nano Banana
+- Leonardo.ai
+- 用户自己上传
+
+---
+
+### 步骤 8: 生成配图
+
+**执行图片生成**：
+1. 根据推文内容和用户要求的风格生成 prompt
+2. 调用用户选择的图像生成服务
+3. 展示生成的图片给用户确认
+
+---
+
+### 步骤 9: 最终确认
+
+**询问用户**：
+> "推文内容已准备好，需要我发布吗？"
+
+**展示内容预览**：
+- 推文文本
+- 配图（如有）
+- 发布时间（如有定时）
+
+**用户确认后**：
+- 执行发布
+- 返回发布结果（链接等）
+
+---
+
+## 完整对话示例
+
 ```
+用户: /x-expert
+
+X Expert: 你是否需要我先帮你收集/搜索一些信息？例如行业动态、热点话题、竞品动态等。
+
+用户: 是的，我想了解一下最近 AI 编程工具的最新动态
+
+X Expert: 好的，让我搜索一下...
+[搜索结果]
+最近 AI 编程工具的动态：
+1. Claude Code 发布新功能...
+2. Cursor 推出...
+3. Bolt.new ...
+
+你想基于这些信息继续，还是有其他想了解的？
+
+用户: 好的，这些信息足够了，我想开始写推文
+
+X Expert: 你是否需要我帮你撰写推文内容？
+
+用户: 是的，我希望风格专业一些，能引用一些数据
+
+X Expert: 好的，你希望我搜索一些类似的优秀推文作为参考吗？
+
+用户: 好的，帮我搜索
+
+X Expert: [搜索结果] 热门 AI 编程推文案例...
+
+基于以上信息，我帮你生成了推文草稿：
+---
+标题：AI 编程工具最新动态
+正文：最新数据显示，AI 编程工具的使用量同比增长 150%！🎉
+...
+
+你觉得这个内容怎么样？需要修改吗？
+
+用户: 不错，我需要配图，风格要科技感，用 DALL-E
+
+X Expert: 好的，正在生成配图...
+[生成图片]
+
+推文已准备好：
+---
+内容：AI 编程工具最新动态...
+配图：[图片预览]
+---
+
+需要我发布吗？
+
+用户: 发布吧
+
+X Expert: [发布成功]
+推文链接：https://twitter.com/xxx/status/xxx
+```
+
+---
+
+## 脚本说明
+
+`scripts/` 目录包含以下辅助脚本：
+
+| 脚本 | 功能 |
+|------|------|
+| `collect-info.js` | 使用 Exa/MiniMax/Brave Search 收集信息 |
+| `generate-tweet.js` | 根据主题和风格生成推文内容 |
+| `generate-image.js` | 调用图像生成服务创建配图 |
+| `post-tweet.js` | 发布单条推文 |
+| `post-thread.js` | 发布推文串 |
+| `post-media.js` | 发布带媒体的推文 |
+| `schedule-tweet.js` | 定时发布推文 |
+| `draft-review.js` | 生成草稿供审核 |
+
+---
+
+## 环境变量
+
+```
+X_API_KEY=your_api_key
+X_API_SECRET=your_api_secret
+X_ACCESS_TOKEN=your_access_token
+X_ACCESS_TOKEN_SECRET=your_access_token_secret
+```
+
+---
+
+## 安全注意事项
+
+1. **不要分享 API Keys** - 只在本地环境使用
+2. **使用环境变量** - 始终通过环境变量传递凭证
+3. **发布前确认** - 默认需要用户确认后才能发布
+
+---
+
+## 故障排除
+
+- 如果收到 401 错误，检查 Access Token 是否有效
+- 如果收到 403 错误，检查 App 权限
+- 如果图片生成失败，检查 API 配置

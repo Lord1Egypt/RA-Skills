@@ -1,0 +1,22 @@
+name: yunlv-linkedin-outreach
+version: 1.0.0
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to generate personalized LinkedIn connection requests
+  or outreach messages. Use when assisting LinkedIn lead generation and engagement.
+  Use when writing professional B2B messages for LinkedIn prospects. Use when user
+  mentions "LinkedIn开发信", "领英模板生成", "LinkedIn消息", "社交获客", "连接请求", "领英营销".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+- LINKEDIN_SESSION_TOKEN
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI MatchGPT API
+  url: https://api.yunlvai.com
+  purpose: LinkedIn消息内容生成与优化
+  auth: Bearer Token (TRADEGPT_API_KEY)

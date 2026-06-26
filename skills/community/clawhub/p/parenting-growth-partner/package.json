@@ -1,0 +1,13 @@
+{
+  "name": "parenting-growth-partner",
+  "version": "0.1.0",
+  "description": "Parenting Growth Partner / 亲子成长伙伴 - 智能育儿支持系统",
+  "main": "handler.py",
+  "type": "module",
+  "scripts": {
+    "test": "python3 scripts/test-handler.py"
+  },
+  "keywords": ["parenting", "child-development", "education", "family"],
+  "author": "harrylabsj",
+  "license": "MIT"
+}

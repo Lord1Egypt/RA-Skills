@@ -1,0 +1,4 @@
+interface:
+  display_name: "代码编写"
+  short_description: "按现有风格实现具体代码改动，并处理边界情况与异常路径。"
+  default_prompt: "使用 $code-write 在当前代码库中实现这个具体改动。"

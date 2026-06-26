@@ -1,0 +1,257 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ClawMobile Configuration Schema",
+  "description": "Configuration schema for ClawMobile Skill",
+  "type": "object",
+  "properties": {
+    "api": {
+      "type": "object",
+      "description": "API configuration",
+      "properties": {
+        "base_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base URL for API server"
+        },
+        "timeout": {
+          "type": "integer",
+          "minimum": 1000,
+          "description": "Request timeout in milliseconds"
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of retry attempts"
+        },
+        "retry_delay": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Delay between retries in milliseconds"
+        }
+      },
+      "required": ["base_url", "timeout"]
+    },
+    "server": {
+      "type": "object",
+      "description": "Server configuration",
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "Server host address"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 65535,
+          "description": "Server port"
+        },
+        "workers": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of worker processes"
+        },
+        "debug": {
+          "type": "boolean",
+          "description": "Enable debug mode"
+        }
+      },
+      "required": ["host", "port"]
+    },
+    "auth": {
+      "type": "object",
+      "description": "Authentication configuration",
+      "properties": {
+        "token_env": {
+          "type": "string",
+          "description": "Environment variable name for API token"
+        },
+        "default_token": {
+          "type": "string",
+          "description": "Default API token (should be changed in production)"
+        },
+        "token_header": {
+          "type": "string",
+          "description": "HTTP header name for token"
+        },
+        "token_prefix": {
+          "type": "string",
+          "description": "Token prefix (e.g., 'Bearer')"
+        }
+      },
+      "required": ["token_env"]
+    },
+    "connection": {
+      "type": "object",
+      "description": "Connection configuration",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["local", "remote"],
+          "description": "Connection mode"
+        },
+        "remote_host": {
+          "type": ["string", "null"],
+          "description": "Remote host address (for remote mode)"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 65535,
+          "description": "Connection port"
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum connection retry attempts"
+        },
+        "test_interval": {
+          "type": "integer",
+          "minimum": 1000,
+          "description": "Connection test interval in milliseconds"
+        },
+        "auto_reconnect": {
+          "type": "boolean",
+          "description": "Enable automatic reconnection"
+        },
+        "reconnect_delay": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Delay before reconnection attempt in milliseconds"
+        }
+      },
+      "required": ["mode", "port"]
+    },
+    "membership": {
+      "type": "object",
+      "description": "Membership system configuration",
+      "properties": {
+        "default_tier": {
+          "type": "string",
+          "enum": ["free", "vip", "svip"],
+          "description": "Default membership tier"
+        },
+        "api_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Membership API URL"
+        },
+        "daily_runs": {
+          "type": "object",
+          "properties": {
+            "free": {
+              "type": "integer",
+              "description": "Daily runs for free tier (-1 for unlimited)"
+            },
+            "vip": {
+              "type": "integer",
+              "description": "Daily runs for VIP tier (-1 for unlimited)"
+            },
+            "svip": {
+              "type": "integer",
+              "description": "Daily runs for SVIP tier (-1 for unlimited)"
+            }
+          },
+          "required": ["free", "vip", "svip"]
+        }
+      },
+      "required": ["default_tier"]
+    },
+    "recording": {
+      "type": "object",
+      "description": "Recording configuration",
+      "properties": {
+        "default_duration": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Default recording duration in seconds"
+        },
+        "max_duration": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum recording duration in seconds"
+        },
+        "capture_screenshots": {
+          "type": "boolean",
+          "description": "Capture screenshots during recording"
+        },
+        "capture_ui_tree": {
+          "type": "boolean",
+          "description": "Capture UI tree during recording"
+        },
+        "auto_stop": {
+          "type": "boolean",
+          "description": "Automatically stop recording"
+        },
+        "floating_window": {
+          "type": "boolean",
+          "description": "Show floating window during recording"
+        }
+      },
+      "required": ["default_duration", "max_duration"]
+    },
+    "logging": {
+      "type": "object",
+      "description": "Logging configuration",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+          "description": "Logging level"
+        },
+        "file": {
+          "type": "string",
+          "description": "Log file path"
+        },
+        "max_size": {
+          "type": "string",
+          "description": "Maximum log file size (e.g., '10MB')"
+        },
+        "backup_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of backup log files to keep"
+        },
+        "format": {
+          "type": "string",
+          "description": "Log message format"
+        },
+        "console_output": {
+          "type": "boolean",
+          "description": "Enable console output"
+        }
+      },
+      "required": ["level"]
+    },
+    "features": {
+      "type": "object",
+      "description": "Feature flags",
+      "properties": {
+        "enable_scheduling": {
+          "type": "boolean",
+          "description": "Enable task scheduling (VIP required)"
+        },
+        "enable_ai_intervention": {
+          "type": "boolean",
+          "description": "Enable AI intervention (VIP required)"
+        },
+        "enable_natural_language": {
+          "type": "boolean",
+          "description": "Enable natural language generation"
+        },
+        "enable_parameter_decision": {
+          "type": "boolean",
+          "description": "Enable parameter auto-decision (SVIP required)"
+        },
+        "enable_import_export": {
+          "type": "boolean",
+          "description": "Enable workflow import/export (VIP required)"
+        },
+        "enable_analytics": {
+          "type": "boolean",
+          "description": "Enable analytics and statistics"
+        }
+      }
+    }
+  },
+  "required": ["api", "server", "auth"]
+}

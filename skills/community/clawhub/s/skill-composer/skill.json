@@ -1,0 +1,84 @@
+{
+  "name": "skill-composer",
+  "version": "1.0.0",
+  "description": "编排多个 OpenClaw 技能成自动化工作流，一次命令完成复杂任务。",
+  "homepage": "https://github.com/utopiabenben/ai-skills",
+  "author": "小叮当 (智脑)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/utopiabenben/ai-skills"
+  },
+  "keywords": [
+    "openclaw",
+    "workflow",
+    "automation",
+    "composer",
+    "pipeline",
+    "orchestration"
+  ],
+  "openclaw": {
+    "emoji": "🔗",
+    "minOpenClawVersion": "0.7.0",
+    "tags": ["automation", "productivity", "devops"],
+    "skills": ["*"],  # 可以编排任何已安装的技能
+    "ui": {
+      "type": "cli"
+    },
+    "requirements": {
+      "bins": ["python3"],
+      "python": ["PyYAML>=5.4"]
+    },
+    "install": [
+      {
+        "id": "python-pyyaml",
+        "kind": "pip",
+        "package": "PyYAML",
+        "label": "Install PyYAML dependency"
+      }
+    ],
+    "commands": [
+      {
+        "name": "run",
+        "description": "Run a workflow definition",
+        "params": [
+          {
+            "name": "workflow",
+            "type": "file",
+            "required": true,
+            "description": "Path to workflow YAML file"
+          }
+        ]
+      },
+      {
+        "name": "preview",
+        "description": "Preview workflow steps without executing",
+        "params": [
+          {
+            "name": "workflow",
+            "type": "file",
+            "required": true,
+            "description": "Path to workflow YAML file"
+          }
+        ]
+      },
+      {
+        "name": "validate",
+        "description": "Validate workflow syntax",
+        "params": [
+          {
+            "name": "workflow",
+            "type": "file",
+            "required": true,
+            "description": "Path to workflow YAML file"
+          }
+        ]
+      },
+      {
+        "name": "examples",
+        "description": "List example workflows",
+        "params": []
+      }
+    ]
+  }
+}

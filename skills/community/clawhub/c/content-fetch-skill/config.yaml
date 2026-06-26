@@ -1,0 +1,27 @@
+fetch_site:
+  proxy: none
+  twitter:
+    proxy: http://127.0.0.1:17890
+    cookies_path: cookies/twitter_cookie.json
+    domain: x.com
+  zhihu:
+    proxy: none
+    cookies_path: cookies/zhihu_cookie.json
+    domain: zhihu.com
+  wechat:
+    proxy: none
+    cookies_path: ''
+    domain: mp.weixin.qq.com
+  toutiao:
+    proxy: none
+    cookies_path: ''
+    domain: toutiao.com
+  huxiu:
+    proxy: none
+    cookies_path: ''
+    domain: huxiu.com
+  general:
+    proxy: none
+    cookies_path: ''
+headless: true
+default_url: ''

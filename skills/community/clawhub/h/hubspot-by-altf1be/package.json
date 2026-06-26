@@ -1,0 +1,39 @@
+{
+  "name": "openclaw-skill-hubspot-by-altf1be",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for HubSpot — full platform CLI covering CRM, CMS, Marketing, Conversations, and Automation",
+  "type": "module",
+  "bin": {
+    "hubspot": "./scripts/hubspot.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/hubspot.mjs",
+    "help": "node scripts/hubspot.mjs --help"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "hubspot",
+    "crm",
+    "cms",
+    "marketing",
+    "automation",
+    "contacts",
+    "deals",
+    "tickets"
+  ],
+  "author": "Abdelkrim BOUJRAF <abdelkrim@alt-f1.be> (https://www.alt-f1.be)",
+  "license": "MIT",
+  "homepage": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-hubspot-by-altf1be",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-hubspot-by-altf1be.git"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

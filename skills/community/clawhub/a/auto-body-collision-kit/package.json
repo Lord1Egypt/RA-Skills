@@ -1,0 +1,66 @@
+{
+  "name": "auto-body-collision-kit",
+  "version": "1.0.0",
+  "description": "Compliance-audited marketing content for Nevada auto body and collision repair shops. 7 compliance moats: OSHA isocyanate/spray booth gate, EPA NESHAP Subpart 6H/AQMD gate, EPA RCRA hazardous waste generator gate, I-CAR/ASE/OEM certification accuracy gate, OEM vs. aftermarket parts disclosure gate, FTC/NRS 598 warranty & estimate gate, Nevada NRS 487 salvage title advertising gate.",
+  "skillId": "auto-body-collision-kit",
+  "skillNumber": 226,
+  "category": "marketing/local-business",
+  "subcategory": "automotive/collision-repair",
+  "jurisdiction": "Nevada (Clark County primary)",
+  "complianceMoats": 7,
+  "outputTypes": [
+    "email-campaigns",
+    "google-rsa-ads",
+    "facebook-instagram-ads",
+    "sms-campaigns",
+    "gbp-posts",
+    "instagram-captions",
+    "service-pages",
+    "faq-schema",
+    "reputation-management",
+    "referral-program",
+    "b2b-outreach",
+    "local-seo"
+  ],
+  "pricing": {
+    "oneTime": 49,
+    "monthly": 19.99,
+    "bundle": "home-services-trades-v2"
+  },
+  "bundle": "home-services-trades-v2",
+  "bundleSkillCount": 67,
+  "tags": [
+    "auto-body",
+    "collision-repair",
+    "auto-refinishing",
+    "pdr",
+    "paintless-dent-repair",
+    "i-car",
+    "ase",
+    "oem",
+    "osha",
+    "epa",
+    "nevada",
+    "las-vegas",
+    "henderson",
+    "clark-county",
+    "local-business",
+    "compliance",
+    "isocyanate",
+    "rcra",
+    "neshap",
+    "automotive"
+  ],
+  "relatedSkills": [
+    "window-tint-ppf-marketing-kit",
+    "auto-detailing-car-wash-kit"
+  ],
+  "author": "Max (GitFlopez)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GitFlopez/auto-body-collision-kit"
+  },
+  "createdAt": "2026-05-26",
+  "sessionTime": "4PM PDT"
+}

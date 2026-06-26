@@ -1,0 +1,38 @@
+{
+  "name": "深蓝引号",
+  "description": "深蓝背景 + 白色文字，引言区白色卡片配蓝色引号装饰，适合科技、深度分析类公众号文章",
+  "accent_color": "#2f7ef7",
+  "templateId": "dark_blue",
+  "templateName": "深蓝引号",
+  "bodyBackground": "#eceef2",
+  "editableStyles": [
+    {"key": "h2-font-size", "type": "fontSize", "group": "一级标题", "label": "字号", "default": "18px"},
+    {"key": "h2-color", "type": "color", "group": "一级标题", "label": "字体颜色", "default": "#ffffff"},
+    {"key": "h2-text-align", "type": "textAlign", "group": "一级标题", "label": "对齐", "default": "center"},
+    {"key": "h3-font-size", "type": "fontSize", "group": "二级标题", "label": "字号", "default": "16px"},
+    {"key": "h3-color", "type": "color", "group": "二级标题", "label": "字体颜色", "default": "#252933"},
+    {"key": "h3-text-align", "type": "textAlign", "group": "二级标题", "label": "对齐", "default": "left"},
+    {"key": "p-font-size", "type": "fontSize", "group": "正文", "label": "字号", "default": "14px"},
+    {"key": "p-color", "type": "color", "group": "正文", "label": "字体颜色", "default": "#2f3540"},
+    {"key": "p-text-align", "type": "textAlign", "group": "正文", "label": "对齐", "default": "justify"},
+    {"key": "blockquote-font-size", "type": "fontSize", "group": "引用", "label": "字号", "default": "14px"},
+    {"key": "blockquote-color", "type": "color", "group": "引用", "label": "字体颜色", "default": "#4a515e"},
+    {"key": "blockquote-text-align", "type": "textAlign", "group": "引用", "label": "对齐", "default": "left"}
+  ],
+  "fragments": {
+    "body_wrapper": "<section style=\"background-color:#eceef2;padding-bottom:12px;\">",
+    "body_wrapper_end": "</section>",
+    "header_image": "",
+    "top_decoration": "",
+    "hero": "<section style=\"position:relative;margin:18px 20px 22px;padding:18px 14px 16px;background-color:#f4f6fa;border:1px solid #dfe6f2;\"><span style=\"position:absolute;left:12px;top:-16px;font-size:42px;font-weight:700;line-height:1;color:#2f7ef7;font-family:Georgia,serif;\">\u201c</span><p style=\"font-size:14px;color:#2f3540;line-height:1.75;text-align:justify;margin:0;\">{TEXT}</p><span style=\"position:absolute;right:12px;bottom:-22px;font-size:42px;font-weight:700;line-height:1;color:#2f7ef7;font-family:Georgia,serif;\">\u201d</span></section>",
+    "blockquote": "<section style=\"margin:16px 20px;padding:12px 14px;border-radius:6px;background-color:#eef3fb;border-left:3px solid #6ea2ff;\"><p style=\"font-size:14px;color:#4a515e;line-height:1.8;font-style:italic;text-align:left;margin:0;\">{TEXT}</p></section>",
+    "section_title": "<section style=\"text-align:center;margin:18px 20px 14px;\"><section style=\"display:inline-flex;align-items:center;position:relative;min-height:44px;padding:0 22px 0 56px;border-radius:999px;background:linear-gradient(90deg,#1f6fec 0%,#0c63e8 100%);\"><span style=\"display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background-color:#f6c51f;color:#ffffff;border:2px solid #ffffff;font-size:20px;font-weight:700;position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:2;\">{NUM}</span><span style=\"display:inline-block;font-size:18px;font-weight:700;color:#ffffff;letter-spacing:0.5px;line-height:44px;position:relative;z-index:1;\">{TEXT}</span><span style=\"position:absolute;right:0;top:-2px;width:13px;height:13px;border-radius:50%;background-color:#9ec0f8;\"></span><span style=\"position:absolute;right:-8px;top:12px;width:8px;height:8px;border-radius:50%;background-color:#9ec0f8;\"></span></section></section>",
+    "highlight": "<section style=\"display:flex;align-items:center;margin:22px 20px 10px;gap:10px;\"><section style=\"display:flex;align-items:center;flex-shrink:0;\"><span style=\"display:inline-block;width:12px;height:12px;border-radius:50%;background-color:#1f2633;\"></span><span style=\"display:inline-block;width:12px;height:12px;border-radius:50%;background-color:#ffffff;border:1px solid #1f2633;margin-left:-6px;\"></span></section><span style=\"font-size:16px;font-weight:700;color:#252933;letter-spacing:0;\">{TEXT}</span></section>",
+    "paragraph": "<section style=\"padding:0 20px;\"><p style=\"font-size:14px;color:#2f3540;line-height:1.8;margin-bottom:14px;text-align:justify;\">{TEXT}</p></section>",
+    "list_ordered": "<ol style=\"padding:0 20px 0 44px;margin-bottom:16px;\">{ITEMS}</ol>",
+    "list_unordered": "<ul style=\"padding:0 20px 0 44px;margin-bottom:16px;\">{ITEMS}</ul>",
+    "list_item": "<li style=\"font-size:14px;color:#2f3540;line-height:1.85;margin-bottom:6px;\">{TEXT}</li>",
+    "image": "<section style=\"padding:0 20px;margin-bottom:14px;text-align:center;\"><img src=\"{SRC}\" alt=\"{ALT}\" style=\"max-width:100%;border-radius:4px;\" /></section>",
+    "image_placeholder": "<section style=\"padding:0 20px;margin-bottom:14px;text-align:center;\"><img src=\"{SRC}\" alt=\"{ALT}\" style=\"max-width:100%;border-radius:4px;\" /><p style=\"font-size:13px;color:#999;margin:8px 0 0 0;\">{ALT}</p></section>"
+  }
+}

@@ -1,0 +1,25 @@
+version: 1
+profile:
+  assistant_name: "Assistant"
+  user_name: "User"
+
+environment:
+  timezone: "Asia/Shanghai"
+  workspace_dir: "~/.openclaw/workspace"
+
+paths:
+  soul_path: "~/.openclaw/workspace/SOUL.md"
+  memory_root_path: "~/.openclaw/workspace/MEMORY.md"
+  daily_memory_dir: "~/.openclaw/memory"
+  daily_memory_pattern: "YYYY-MM-DD.md"
+  diary_text_dir: "~/.openclaw/scene/日记/文字"
+  news_summary_dir: "~/.openclaw/scene/每日简报/news/Summary"
+
+output:
+  image_width: 1080
+  image_name_pattern: "diary-YYYY-MM-DD.png"
+
+optional:
+  include_news_context: true
+  lookback_days_for_style: 7
+  lookback_days_for_news: 7

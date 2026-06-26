@@ -1,0 +1,143 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 1,
+    "primary": [
+      {
+        "memory_id": "mem_f5f72117338d",
+        "time_id": "T1780040929",
+        "time_ts": 1780040929,
+        "person_id": "_system",
+        "nature_id": "note",
+        "content": "The project deadline is March 15th, 2026. The team needs to deliver the API v2 with authentication and rate limiting.",
+        "content_hash": "9b34f0466218",
+        "importance": "medium",
+        "is_aggregated": 0,
+        "source_count": 1,
+        "owner_agent_id": "_system",
+        "visibility": "private",
+        "valence": 0.0,
+        "arousal": 0.2,
+        "dominance": 0.5,
+        "significance": "notable",
+        "confidence": 0.5,
+        "primary_emotions": "{}",
+        "compound_emotions": "[]",
+        "source": "agent_memory",
+        "source_id": "",
+        "deleted": 0,
+        "custom_ttl": null,
+        "valid_from": null,
+        "valid_until": null,
+        "occurrence_time": null,
+        "mention_time": null,
+        "created_at": 1780040929,
+        "_sources": {
+          "structured": true,
+          "semantic": false,
+          "bm25": true,
+          "entity": false,
+          "causal": false
+        },
+        "_structured_rrf": 0.01639344262295082,
+        "_bm25_rrf": 0.01639344262295082,
+        "_semantic_rrf": 0.0,
+        "_entity_rrf": 0.0,
+        "_causal_rrf": 0.0,
+        "_structured_rank": 1,
+        "_bm25_rank": 1,
+        "_semantic_rank": 0,
+        "_entity_rank": 0,
+        "_causal_rank": 0,
+        "_hit_count": 2,
+        "_rrf_score": 0.03278688524590164,
+        "_rank_score": 0.544262264922677,
+        "_rank_breakdown": {
+          "importance": 0.075,
+          "time": 0.09999990902174877,
+          "structured": 0.14754098360655737,
+          "semantic": 0.0,
+          "entity": 0.0,
+          "causal": 0.0,
+          "quality": 0.0335,
+          "multi_hit": 0.005000000000000001,
+          "recency_bias": 0.1499999904472839
+        },
+        "last_accessed_ts": 1780040929.5502365,
+        "temporal_context": {
+          "is_valid": true,
+          "status": "active"
+        },
+        "_rerank_score": 0.5585,
+        "_quality_score": 0.335,
+        "_quality_grade": "D"
+      }
+    ],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [],
+      "expanded": false
+    },
+    "query": "deadline",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_b36a5c2b7cfc",
+      "query": "deadline",
+      "result_summary": "found 1 results via tempr_4way, top_score=0.544",
+      "confidence": 0.7721311324613385,
+      "sources_consulted": [
+        "mem_f5f72117338d"
+      ],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1780040929.5461993
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 1 results",
+          "timestamp": 1780040929.5482
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=20)",
+          "timestamp": 1780040929.5482
+        },
+        {
+          "step_type": "bm25_search",
+          "detail": "BM25 found 1 results",
+          "timestamp": 1780040929.5502365
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1780040929.5502365
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1780040929.5502365
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 1 results (hits: {'structured': 1, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 1}, multi: 1)",
+          "timestamp": 1780040929.5502365
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 1 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1780040929.5461993
+    },
+    "status": "ok"
+  },
+  "expires_at": 1780044529.5881574,
+  "created_at": 1780040929.5881574,
+  "_hmac": "6b05ca76beaf2ba1812fbfb790a67a5c7f4edcb6e551f10bf6f9f8d06b85fbe5"
+}

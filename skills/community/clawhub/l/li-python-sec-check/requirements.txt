@@ -1,0 +1,20 @@
+# Li_python_sec_check - Python 依赖
+
+# 核心依赖
+# 无额外依赖，仅使用 Python 标准库
+
+# 可选工具依赖
+# 以下工具通过 pip 单独安装，非必须
+
+# 代码质量检查
+flake8>=6.0.0
+
+# 安全扫描
+bandit>=1.7.0
+
+# 依赖漏洞扫描
+pip-audit>=2.5.0
+
+# 开发依赖
+pytest>=7.0.0
+pytest-cov>=4.0.0

@@ -1,0 +1,45 @@
+id: NX2-003
+name: "spawn/eval/complete 集成 config agent 映射"
+type: coding
+created_at: "2026-03-29T09:00:00Z"
+
+scope:
+  files:
+    - packages/cli/src/commands/spawn.ts
+    - packages/cli/src/commands/eval.ts
+    - packages/cli/src/commands/complete.ts
+    - packages/cli/src/__tests__/spawn.test.ts
+  boundaries:
+    - packages/core/src/config.ts
+    - packages/notify/
+    - packages/spawn/
+    - packages/prompts/
+  conflicts_with: [NX2-002, NX2-004]
+
+deliverables:
+  - "packages/cli/src/commands/spawn.ts：runSpawn 从 nexum/config.json 读取 config，用 resolveAgentCli(config, contract.generator) 决定实际使用的 CLI；SpawnPayload 新增 agentCli: 'codex'|'claude' 字段，供编排者 sessions_spawn 时选择正确的 agentId"
+  - "packages/cli/src/commands/eval.ts：runSpawnEval 同样用 resolveAgentCli(config, contract.evaluator) 决定 evaluator CLI；SpawnPayload 的 agentId 使用 resolveAgentCli 结果"
+  - "packages/cli/src/commands/complete.ts：retry 时的 retryPayload 同样包含 agentCli 字段"
+  - "spawn.test.ts：新增测试，验证 config 中 eval→codex 映射被正确解析到 SpawnPayload.agentCli"
+  - "pnpm build && pnpm test 通过"
+
+eval_strategy:
+  type: unit
+  criteria:
+    - id: C1
+      desc: "SpawnPayload 包含 agentCli 字段，值来自 resolveAgentCli"
+      method: "review: 检查 SpawnPayload 类型和 runSpawn 实现"
+      threshold: pass
+    - id: C2
+      desc: "contract.evaluator = 'eval' 时，agentCli 解析为 config 中配置的值（默认 'codex'）"
+      method: "unit: mock config，验证 eval 映射"
+      threshold: pass
+    - id: C3
+      desc: "pnpm build && pnpm test 通过"
+      method: "unit: 运行构建和测试"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: [NX2-002]

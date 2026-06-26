@@ -1,35 +1,34 @@
 ---
-name: "Unzip Tool"
-description: "List, test, and extract files from ZIP archives. Use when you need to decompress or inspect ZIP file contents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/unzip-tool"
-sourceUrl: "https://clawhub.ai/skills/unzip-tool"
+name: unzip-tool
+description: List, test, and extract files from ZIP archives. Use when you need to decompress or inspect ZIP file contents.
 ---
 
-# Unzip Tool
+# ZIP Extraction Utility
 
-> List, test, and extract files from ZIP archives. Use when you need to decompress or inspect ZIP file contents.
+Extract files from ZIP archives with support for selective extraction, overwrite control, and archive inspection.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/unzip-tool`
-- **Source URL:** [https://clawhub.ai/skills/unzip-tool](https://clawhub.ai/skills/unzip-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/unzip-tool
+unzip-tool [options] <archive> [file...]
+```
+
+## Options
+
+- `-l`: List archive contents without extracting
+- `-d dir`: Extract to specified directory
+- `-o`: Overwrite files without prompting
+- `-n`: Never overwrite existing files
+
+## Examples
+
+```bash
+# Extract to current directory
+unzip-tool archive.zip
+
+# Extract to specific folder
+unzip-tool archive.zip -d /target/dir
+
+# List contents only
+unzip-tool -l archive.zip
 ```

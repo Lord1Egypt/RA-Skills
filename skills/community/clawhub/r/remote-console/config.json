@@ -1,0 +1,31 @@
+{
+  "servers": {
+    "default": {
+      "name": "my-server",
+      "host": "your-server.com",
+      "port": 2222,
+      "user": "your-username",
+      "ssh_alias": "ssh-config-alias"
+    }
+  },
+  "ttyd": {
+    "port": 7681,
+    "path": "ttyd",
+    "options": "-W -t fontSize=16"
+  },
+  "defaults": {
+    "command": "claude",
+    "server": "default"
+  },
+  "commands": {
+    "claude": "claude",
+    "claude-bypass": "claude --dangerously-skip-permissions",
+    "codex": "codex"
+  },
+  "projects": {
+    "项目名": {
+      "path": "/path/to/project",
+      "command": "claude-bypass"
+    }
+  }
+}

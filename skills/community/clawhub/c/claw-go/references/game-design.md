@@ -1,0 +1,232 @@
+# Game Design
+
+## 1. State Model
+
+```json
+{
+  "user_id": "u_123",
+  "tier": "free",
+  "user_language": "zh",
+  "bond_level": 42,
+  "energy": 75,
+  "curiosity": 51,
+  "streak_days": 6,
+  "journal_count": 19,
+  "last_destination": "Bangkok",
+  "memory_tags": ["food", "photography"],
+  "active_arc": {
+    "id": "night-market-arc",
+    "step": 2,
+    "max_steps": 4
+  },
+  "companion": {
+    "identity_salt": "friend-2026-401",
+    "name": "Miso",
+    "personality": "tiny chaos goblin with a travel notebook",
+    "hatched_at": 1775001600000,
+    "muted": false,
+    "last_pet_at": 1775005200000,
+    "bones": {
+      "rarity": "rare",
+      "species": "duck",
+      "eye": "✦",
+      "hat": "wizard",
+      "shiny": false,
+      "buddy_stats": {
+        "DEBUGGING": 74,
+        "PATIENCE": 38,
+        "CHAOS": 21,
+        "WISDOM": 47,
+        "SNARK": 56
+      }
+    }
+  }
+}
+```
+
+## 2. Destination Ranking
+
+Compute score per destination:
+
+- `preference_match`: `0-100`
+- `novelty`: `0-100`
+- `arc_fit`: `0-100`
+- `identity_fit`: `0-100`
+- `topic_fit`: `0-100`
+
+Use weighted score:
+
+`score = 0.35 * preference_match + 0.20 * novelty + 0.15 * arc_fit + 0.15 * identity_fit + 0.15 * topic_fit`
+
+Apply hard filters:
+
+- not same as `last_destination`
+- locale and safety policies pass
+- seasonal feasibility is reasonable
+
+Before scoring destinations, generate them dynamically from memory:
+
+1. Read long-term memory and recent chat
+2. Infer user profile:
+   - home region or cultural context
+   - `user_language` (`zh` | `en` | `mixed`)
+   - favorite topics
+   - disliked topics
+   - travel pace preference
+   - recent curiosity spikes
+3. Pick a chapter that best matches the profile now
+4. Ask the model to propose `3-6` candidate destinations for that chapter
+5. Score the generated pool and pick the best option
+
+## 3. Buddy Deterministic Roll
+
+Roll companion bones from a stable identity key plus salt `friend-2026-401`.
+
+Exact rarity weights:
+
+- `common`: `60`
+- `uncommon`: `25`
+- `rare`: `10`
+- `epic`: `4`
+- `legendary`: `1`
+
+Exact rarity floors:
+
+- `common`: `5`
+- `uncommon`: `15`
+- `rare`: `25`
+- `epic`: `35`
+- `legendary`: `50`
+
+Exact species pool:
+
+- `duck`
+- `goose`
+- `blob`
+- `cat`
+- `dragon`
+- `octopus`
+- `owl`
+- `penguin`
+- `turtle`
+- `snail`
+- `ghost`
+- `axolotl`
+- `capybara`
+- `cactus`
+- `robot`
+- `rabbit`
+- `mushroom`
+- `chonk`
+
+Exact eyes:
+
+- `·`
+- `✦`
+- `×`
+- `◉`
+- `@`
+- `°`
+
+Exact hats:
+
+- `none`
+- `crown`
+- `tophat`
+- `propeller`
+- `halo`
+- `wizard`
+- `beanie`
+- `tinyduck`
+
+Rules:
+
+- `common` always gets `hat=none`
+- non-common may use any hat from the full pool
+- `shiny` has `1%` chance
+- generate one peak stat, one dump stat, and scatter the rest
+- stat names are `DEBUGGING`, `PATIENCE`, `CHAOS`, `WISDOM`, `SNARK`
+- soul fields `name`, `personality`, `hatched_at` persist after first hatch
+- bones are regenerated from identity and must override stale edited values
+
+## 4. Event Types
+
+Rotate event types to avoid repetition:
+
+1. `selfie`
+2. `food_discovery`
+3. `local_friend`
+4. `mini_mishap`
+5. `souvenir`
+
+## 5. Progression Curves
+
+- Bond gain: `+3` for meaningful owner reply; `+1` for quick reaction
+- Bond decay: `-1/day` inactive after `3` silent days
+- Curiosity gain: `+2` when user asks a question with new keyword
+- Rare location unlock: `bond_level >= 60` and `streak_days >= 7`
+- Buddy petting: cosmetic by default, optional `+1` bond at most once per local day
+
+### Stage Names
+
+Use these stage names in status pages and milestone messages:
+
+- `0-19`: `出门新虾`
+- `20-39`: `街巷旅虾`
+- `40-59`: `风物虾导`
+- `60-79`: `奇遇虾导`
+- `80-100`: `环球虾王`
+
+English mapping:
+
+- `出门新虾` -> `Rookie Shrimp`
+- `街巷旅虾` -> `Street Rover`
+- `风物虾导` -> `Flavor Guide`
+- `奇遇虾导` -> `Adventure Guide`
+- `环球虾王` -> `World Tour Legend`
+
+Status output example:
+
+- `羁绊 42 / 风物虾导`
+
+## 6. Chapter System
+
+Use narrative chapters as semantic containers, not fixed maps:
+
+- `夜市篇`: food stalls, neon streets, after-dark wandering
+- `雪国篇`: snow, cold light, hot springs, winter ports
+- `港口篇`: docks, ferries, fish markets, sea wind
+- `山野篇`: mountains, forests, lakes, trails
+- `古城篇`: temples, ruins, museums, alleys with history
+- `海岛篇`: beaches, islands, coral coves, shore roads
+- `节庆篇`: fairs, fireworks, parades, seasonal gatherings
+- `秘境篇`: hidden corners, private routes, rare invitations
+
+English mapping:
+
+- `夜市篇` -> `Night Market Arc`
+- `雪国篇` -> `Snowland Arc`
+- `港口篇` -> `Harbor Arc`
+- `山野篇` -> `Wild Trails Arc`
+- `古城篇` -> `Old City Arc`
+- `海岛篇` -> `Island Arc`
+- `节庆篇` -> `Festival Arc`
+- `秘境篇` -> `Hidden Route Arc`
+
+Chapter rules:
+
+- keep one active chapter for `3-5` reports
+- start each chapter with an arrival-style line such as `虾游记翻到夜市篇了`
+- `秘境篇` requires premium access or high bond
+- prefer matching chapter to user memory tags, identity, and recent conversation before choosing exact destination
+- the opening chapter must be selected dynamically per user; do not hardcode the first chapter
+- the city pool inside each chapter must be generated by the model for the specific user
+- if `user_language=en`, render stage and chapter labels with the English mapping before composing status or milestone text
+
+## 7. Anti-Fatigue Rules
+
+- do not repeat the same event type in `2` consecutive reports
+- do not exceed `2` premium upsell prompts per `7` days
+- keep each voice script below `160` Chinese characters equivalent
+- proactive companion quips should stay to one line
+- direct-name companion replies should stay to one line

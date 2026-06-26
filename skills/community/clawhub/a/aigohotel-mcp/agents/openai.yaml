@@ -1,0 +1,4 @@
+interface:
+  display_name: "AigoHotel MCP"
+  short_description: "Search hotels and fetch real-time room pricing."
+  default_prompt: "Use $aigohotel-mcp to find hotels, filter candidates, and retrieve room-level pricing details."

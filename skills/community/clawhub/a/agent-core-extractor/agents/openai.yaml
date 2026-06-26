@@ -1,0 +1,3 @@
+display_name: AgentPearl Exporter
+short_description: Export supported agent repos into source-only agent-core zips.
+default_prompt: Export agent-core files from supported repositories into a portability pack.

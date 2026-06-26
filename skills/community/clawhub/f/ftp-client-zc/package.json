@@ -1,0 +1,15 @@
+{
+  "name": "ftp-client-zc",
+  "version": "0.1.0",
+  "description": "Simple FTP client skill for OpenClaw (ZC version)",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "张小龙",
+  "license": "MIT",
+  "dependencies": {
+    "basic-ftp": "^5.3.0",
+    "minimist": "^1.2.8"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "feishu-voice-note",
+  "displayName": "🎙️ 飞书语音条生成",
+  "version": "1.1.0",
+  "description": "飞书原生语音条（语音消息）生成工具。支持 TTS 转 OPUS 格式，自动发送语音条到飞书。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://clawhub.com/skills/feishu-voice-note",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/feishu-voice-note"
+  },
+  "keywords": [
+    "feishu",
+    "voice",
+    "tts",
+    "audio",
+    "opus",
+    "语音条",
+    "语音消息"
+  ],
+  "engines": {
+    "openclaw": ">=2026.3.13"
+  },
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "config": {
+    "ttsProvider": "edge",
+    "ffmpegPath": "C:\\ffmpeg\\ffmpeg-8.1-essentials_build\\bin\\ffmpeg.exe",
+    "audioBitrate": "32k",
+    "audioFormat": "opus"
+  },
+  "triggers": [
+    "发送语音条",
+    "用语音回复",
+    "语音消息",
+    "语音条",
+    "TTS 转语音"
+  ],
+  "changelog": "## v1.1.0 (2026-03-29)\n\n- ✅ 修复命令格式（添加 --channel 和 --account 参数）\n- ✅ 更新执行流程为 v1.1\n- ✅ 添加安全审查（Open ID 打码）\n- ✅ 完善故障排除文档\n\n## v1.0.0 (2026-03-18)\n\n- ✅ 初始版本\n- ✅ 支持 TTS 生成 MP3\n- ✅ 支持 ffmpeg 转 OPUS\n- ✅ 支持飞书语音条发送"
+}

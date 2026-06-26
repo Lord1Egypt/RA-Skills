@@ -1,0 +1,22 @@
+{
+  "name": "subagent-distiller",
+  "version": "3.0.1",
+  "description": "自动增量提取对话中的结构化知识，过滤垃圾，动态聚类，专注长期价值",
+  "author": "Mashirops",
+  "license": "MIT",
+  "keywords": ["memory", "distillation", "knowledge", "subagent", "openclaw"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/subagent-distiller"
+  },
+  "main": "incremental_slice.py",
+  "scripts": {
+    "slice": "python3 incremental_slice.py",
+    "distill": "python3 realtime_distill.py",
+    "remind": "python3 lifecycle_manager.py",
+    "consolidate": "python3 domain_consolidate.py"
+  },
+  "engines": {
+    "python": ">=3.10"
+  }
+}

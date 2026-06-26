@@ -1,0 +1,36 @@
+{
+  "lastCheckTime": "2026-03-27T19:22:00.567621",
+  "archivedRecords": [
+    "AsPtRWVCLh",
+    "RT6vjJHFbe",
+    "54ylFd5g5b"
+  ],
+  "baseId": "QOG9lyrgJP3Oo757S9wn4AyZVzN67Mw4",
+  "tableId": "atLkTeV",
+  "generatedDocs": [
+    {
+      "recordId": "54ylFd5g5b",
+      "title": "金谷信托项目查手工添加可疑交易，交易申请金额、份额都是空的问题",
+      "type": "问题",
+      "filename": "问题_金谷信托项目查手工添加可疑交易，交易申请金额、份额都是空的问_54ylFd5g5b_20260327.md",
+      "path": "/root/.openclaw/PMworkspace/workspace-dingtalk-JinShi/skills/knowledge-base/docs/问题_金谷信托项目查手工添加可疑交易，交易申请金额、份额都是空的问_54ylFd5g5b_20260327.md",
+      "generatedAt": "2026-03-27T19:21:47.189576"
+    },
+    {
+      "recordId": "AsPtRWVCLh",
+      "title": "金谷信托项目测试环境服务器及数据库相关信息",
+      "type": "需求",
+      "filename": "需求_金谷信托项目测试环境服务器及数据库相关信息_AsPtRWVCLh_20260327.md",
+      "path": "/root/.openclaw/PMworkspace/workspace-dingtalk-JinShi/skills/knowledge-base/docs/需求_金谷信托项目测试环境服务器及数据库相关信息_AsPtRWVCLh_20260327.md",
+      "generatedAt": "2026-03-27T19:21:53.812604"
+    },
+    {
+      "recordId": "RT6vjJHFbe",
+      "title": "金谷信托项目可疑交易提交时出现完整性错误",
+      "type": "问题",
+      "filename": "问题_金谷信托项目可疑交易提交时出现完整性错误_RT6vjJHFbe_20260327.md",
+      "path": "/root/.openclaw/PMworkspace/workspace-dingtalk-JinShi/skills/knowledge-base/docs/问题_金谷信托项目可疑交易提交时出现完整性错误_RT6vjJHFbe_20260327.md",
+      "generatedAt": "2026-03-27T19:22:00.567576"
+    }
+  ]
+}

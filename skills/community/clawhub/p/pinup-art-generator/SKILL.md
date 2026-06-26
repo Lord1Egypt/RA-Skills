@@ -1,35 +1,34 @@
 ---
-name: "Pinup Art Generator"
-description: "Generate classic 1950s pin-up art, retro glamour illustrations, vintage poster portraits, mid-century advertising art, and Gil Elvgren style pinup girls. Per..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pinup-art-generator"
-sourceUrl: "https://clawhub.ai/skills/pinup-art-generator"
+name: pinup-art-generator
+description: Generate classic 1950s pin-up art, retro glamour illustrations, vintage poster portraits, mid-century advertising art, and Gil Elvgren style pinup girls. Perfect for Etsy sellers, vintage poster designers, retro merch creators, rockabilly fans, tiki bar decor, and nostalgic 70s/80s aesthetic lovers who want classic pinup portrait illustrations with timeless retro charm via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Pinup Art Generator
+# Pin-Up Art Generator
 
-> Generate classic 1950s pin-up art, retro glamour illustrations, vintage poster portraits, mid-century advertising art, and Gil Elvgren style pinup girls. Per...
+Generate classic 1950s pin-up art, retro glamour illustrations, vintage poster portraits, mid-century advertising art, and Gil Elvgren style pinup girls. Perfect for Etsy sellers, vintage poster designers, retro merch creators, rockabilly fans, tiki bar decor, and nostalgic 70s/80s aesthetic lovers who want classic pinup portrait illustrations with timeless retro charm.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pinup-art-generator`
-- **Source URL:** [https://clawhub.ai/skills/pinup-art-generator](https://clawhub.ai/skills/pinup-art-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pinup-art-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create pin up art generator images.
+
+## Quick start
+```bash
+node pinupartgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/pinup-art-generator
 ```

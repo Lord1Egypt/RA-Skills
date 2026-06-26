@@ -1,0 +1,42 @@
+{
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+
+  "note_title":      "GTR3 Health Log",
+  "callout_title":   "Auto-generated",
+  "callout_body":    "This note was automatically created from Amazfit GTR3 data via HCGateway.",
+
+  "summary_heading": "Summary",
+  "col_metric":      "Metric",
+  "col_value":       "Value",
+  "row_steps":       "Steps",
+  "row_distance":    "Distance",
+  "row_sleep_dur":   "Sleep Duration",
+  "row_resting_hr":  "Resting HR",
+  "row_spo2":        "SpO2 (avg)",
+
+  "sleep_heading":   "Sleep",
+  "sleep_period":    "Period",
+  "sleep_duration":  "Duration",
+  "sleep_no_data":   "No sleep data available for this date.",
+  "col_stage":       "Stage",
+  "col_minutes":     "Minutes",
+  "stage_deep":      "Deep",
+  "stage_rem":       "REM",
+  "stage_light":     "Light",
+  "stage_awake":     "Awake",
+
+  "hr_heading":      "Heart Rate",
+  "hr_avg":          "Avg",
+  "hr_resting":      "Resting HR",
+
+  "spo2_heading":    "SpO2",
+  "spo2_avg":        "Avg Blood Oxygen",
+
+  "nav_yesterday":   "Yesterday",
+  "nav_tomorrow":    "Tomorrow",
+
+  "fm_weekday_key":  "weekday",
+  "fm_source":       "HCGateway / Amazfit GTR3",
+  "tag_health":      "health",
+  "tag_auto":        "auto-generated"
+}

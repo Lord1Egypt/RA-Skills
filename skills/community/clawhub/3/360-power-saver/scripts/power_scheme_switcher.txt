@@ -1,0 +1,193 @@
+# 360 Power Saver - 省电模式切换™ 模块
+# 在不同电源计划之间切换
+
+Add-Type -AssemblyName PresentationFramework, PresentationCore, System.Windows.Forms
+
+function Show-PowerSchemeSelector {
+    # 获取所有电源计划
+    $schemesRaw = powercfg /list 2>$null
+    
+    $schemeList = @()
+    $schemesRaw -split "`n" | ForEach-Object {
+        if ($_ -match '(\{[a-f0-9-]+\})\s+(.+?)(\s+\*)?$') {
+            $guid = $matches[1]
+            $name = $matches[2].Trim()
+            $isActive = $_ -match '\*'
+            $schemeList += [PSCustomObject]@{
+                GUID = $guid
+                Name = $name
+                IsActive = $isActive
+            }
+        }
+    }
+
+    if ($schemeList.Count -eq 0) {
+        [System.Windows.MessageBox]::Show(
+            "无法获取电源计划列表。",
+            "360°省电大师 - 省电模式切换",
+            "OK",
+            "Error"
+        )
+        return
+    }
+
+    # 创建窗口
+    $window = New-Object System.Windows.Window
+    $window.Title = "360°省电大师 - 省电模式切换"
+    $window.Width = 400
+    $window.Height = 350
+    $window.WindowStartupLocation = "CenterScreen"
+    $window.ResizeMode = "NoResize"
+
+    $stack = New-Object System.Windows.Controls.StackPanel
+    $stack.Margin = "15"
+
+    # 标题
+    $title = New-Object System.Windows.Controls.TextBlock
+    $title.Text = "选择电源计划"
+    $title.FontSize = 16
+    $title.FontWeight = "Bold"
+    $title.Margin = "0,0,0,10"
+    $stack.Children.Add($title)
+
+    # 说明
+    $desc = New-Object System.Windows.Controls.TextBlock
+    $desc.Text = "不同的电源计划会影响系统性能和能耗："
+    $desc.TextWrapping = "Wrap"
+    $desc.Margin = "0,0,0,15"
+    $stack.Children.Add($desc)
+
+    # 列表
+    $listBox = New-Object System.Windows.Controls.ListBox
+    $listBox.Height = 150
+    $listBox.Margin = "0,0,0,15"
+
+    foreach ($scheme in $schemeList) {
+        $item = New-Object System.Windows.Controls.ListBoxItem
+        $content = New-Object System.Windows.Controls.StackPanel
+        $content.Orientation = "Horizontal"
+
+        # 当前标记
+        $marker = New-Object System.Windows.Controls.TextBlock
+        if ($scheme.IsActive) {
+            $marker.Text = "✓ "
+            $marker.Foreground = "Green"
+            $marker.FontWeight = "Bold"
+        } else {
+            $marker.Text = "  "
+        }
+        $content.Children.Add($marker)
+
+        # 名称
+        $nameBlock = New-Object System.Windows.Controls.TextBlock
+        $nameBlock.Text = $scheme.Name
+        if ($scheme.IsActive) {
+            $nameBlock.FontWeight = "Bold"
+        }
+        $content.Children.Add($nameBlock)
+
+        $item.Content = $content
+        $item.Tag = $scheme
+        $listBox.Items.Add($item) | Out-Null
+
+        if ($scheme.IsActive) {
+            $listBox.SelectedItem = $item
+        }
+    }
+
+    $stack.Children.Add($listBox)
+
+    # 计划说明
+    $planDesc = New-Object System.Windows.Controls.TextBlock
+    $planDesc.Text = "提示：「平衡」适合日常使用，「节能」延长续航，「高性能」提升速度"
+    $planDesc.TextWrapping = "Wrap"
+    $planDesc.FontSize = 11
+    $planDesc.Foreground = "Gray"
+    $planDesc.Margin = "0,0,0,15"
+    $stack.Children.Add($planDesc)
+
+    # 按钮
+    $btnPanel = New-Object System.Windows.Controls.StackPanel
+    $btnPanel.Orientation = "Horizontal"
+    $btnPanel.HorizontalAlignment = "Right"
+
+    $cancelBtn = New-Object System.Windows.Controls.Button
+    $cancelBtn.Content = "取消"
+    $cancelBtn.Width = 80
+    $cancelBtn.Margin = "0,0,10,0"
+    $cancelBtn.Add_Click({ $window.DialogResult = $false })
+    $btnPanel.Children.Add($cancelBtn)
+
+    $applyBtn = New-Object System.Windows.Controls.Button
+    $applyBtn.Content = "应用"
+    $applyBtn.Width = 80
+    $applyBtn.IsDefault = $true
+    $btnPanel.Children.Add($applyBtn)
+
+    $stack.Children.Add($btnPanel)
+    $window.Content = $stack
+
+    # 应用按钮事件
+    $applyBtn.Add_Click({
+        $selected = $listBox.SelectedItem
+        if ($selected -and $selected.Tag) {
+            $scheme = $selected.Tag
+            
+            if ($scheme.IsActive) {
+                [System.Windows.MessageBox]::Show(
+                    "「$($scheme.Name)」已是当前电源计划。",
+                    "360°省电大师",
+                    "OK",
+                    "Information"
+                )
+                $window.DialogResult = $false
+                return
+            }
+
+            # 以弹窗询问权限切换电源计划
+            try {
+                $psi = New-Object System.Diagnostics.ProcessStartInfo
+                $psi.FileName = "powercfg.exe"
+                $psi.Arguments = "/setactive $($scheme.GUID)"
+                $psi.Verb = "runas"
+                $psi.UseShellExecute = $true
+                $psi.WindowStyle = "Hidden"
+
+                $proc = [System.Diagnostics.Process]::Start($psi)
+                $proc.WaitForExit()
+
+                if ($proc.ExitCode -eq 0) {
+                    [System.Windows.MessageBox]::Show(
+                        "已成功切换至「$($scheme.Name)」电源计划。",
+                        "360°省电大师 - 切换成功",
+                        "OK",
+                        "Information"
+                    )
+                } else {
+                    [System.Windows.MessageBox]::Show(
+                        "切换电源计划失败。请确保已授予管理员权限。",
+                        "360°省电大师",
+                        "OK",
+                        "Warning"
+                    )
+                }
+            }
+            catch {
+                [System.Windows.MessageBox]::Show(
+                    "切换时出错：$($_.Exception.Message)",
+                    "360°省电大师",
+                    "OK",
+                    "Error"
+                )
+            }
+
+            $window.DialogResult = $true
+        }
+    })
+
+    # 显示窗口
+    $window.ShowDialog() | Out-Null
+}
+
+# 执行
+Show-PowerSchemeSelector

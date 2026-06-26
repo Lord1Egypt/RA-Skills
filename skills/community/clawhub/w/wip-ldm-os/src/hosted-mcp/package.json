@@ -1,0 +1,24 @@
+{
+  "name": "@wipcomputer/hosted-mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Hosted MCP server for wip.computer. Bridge + memory for any platform.",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@prisma/client": "^6.19.3",
+    "@simplewebauthn/server": "^13.3.0",
+    "prisma": "^6.19.3",
+    "qrcode": "^1.5.4",
+    "ws": "^8.18.0",
+    "zod": "^3.25.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "private": true
+}

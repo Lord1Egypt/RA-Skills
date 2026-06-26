@@ -1,0 +1,14 @@
+{
+  "name": "film-image-gen",
+  "version": "1.0.0",
+  "description": "影视概念图生成技能 - 通过优创 AIGC API 生成电影海报/分镜图/角色设计",
+  "main": "scripts/image-gen.ps1",
+  "keywords": ["image", "concept-art", "poster", "storyboard", "film", "aigc", "openclaw", "skill"],
+  "author": "taosiuman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taosiuman/film-image-gen-skill.git"
+  },
+  "files": ["SKILL.md", "README.md", "scripts/"]
+}

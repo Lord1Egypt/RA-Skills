@@ -1,0 +1,112 @@
+{
+  "name": "ai-content-studio",
+  "version": "1.0.0",
+  "description": "AI全链路内容工坊 — 多平台内容一键创作与发布自动化工作流",
+  "workflow": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "选题研究",
+        "skill": "agent-reach",
+        "action": "search_multi_platform",
+        "inputs": {
+          "topic": "{{input_topic}}",
+          "platforms": ["xiaohongshu", "weibo", "rss", "github"]
+        },
+        "outputs": ["hot_topics", "trending_titles", "engagement_data"],
+        "next_step": 2
+      },
+      {
+        "step": 2,
+        "name": "内容理解与摘要",
+        "skill": "summarize",
+        "action": "summarize_content",
+        "inputs": {
+          "sources": "{{step1.hot_topics}}",
+          "max_length": "medium",
+          "extract_key_points": true
+        },
+        "outputs": ["core_insights", "key_statistics", "topic_keywords"],
+        "next_step": 3
+      },
+      {
+        "step": 3,
+        "name": "公众号深度文章撰写",
+        "skill": "wechat-article-pro",
+        "action": "write_article",
+        "inputs": {
+          "topic": "{{input_topic}}",
+          "insights": "{{step2.core_insights}}",
+          "style": "liurun",
+          "length": "3000-5000",
+          "auto_cover": true,
+          "auto_format": true
+        },
+        "outputs": ["article_content", "cover_image_url", "article_title"],
+        "next_step": 4
+      },
+      {
+        "step": 4,
+        "name": "知识卡片生成",
+        "skill": "card-renderer",
+        "action": "render_cards",
+        "inputs": {
+          "content": "{{step2.core_insights}}",
+          "styles": ["cyber", "mac_pro", "bauhaus"],
+          "aspect_ratio": "3:4",
+          "cover_title": "{{step3.article_title}}"
+        },
+        "outputs": ["cover_card", "detail_cards"],
+        "next_step": 5
+      },
+      {
+        "step": 5,
+        "name": "小红书文案适配",
+        "skill": "summarize",
+        "action": "adapt_for_xiaohongshu",
+        "inputs": {
+          "article": "{{step3.article_content}}",
+          "style": "seed_article_marketing",
+          "length": "800-1000",
+          "add_hashtags": true,
+          "trending_topics": "{{step1.hot_topics}}"
+        },
+        "outputs": ["xiaohongshu_caption", "hashtags", "short_title"],
+        "next_step": 6
+      },
+      {
+        "step": 6,
+        "name": "双平台发布",
+        "skill": "xiaohongshutools",
+        "action": "publish_note",
+        "inputs": {
+          "caption": "{{step5.xiaohongshu_caption}}",
+          "images": "{{step4.detail_cards}}",
+          "hashtags": "{{step5.hashtags}}",
+          "title": "{{step5.short_title}}"
+        },
+        "outputs": ["xiaohongshu_post_id"],
+        "publish_to_wechat": true,
+        "wechat_article": "{{step3.article_content}}",
+        "wechat_cover": "{{step3.cover_image_url}}"
+      }
+    ],
+    "inputs": {
+      "required": ["input_topic"],
+      "optional": ["publish_immediately", "style_preference", "target_platforms"]
+    },
+    "outputs": {
+      "wechat_article_url": "公众号文章链接",
+      "xiaohongshu_note_url": "小红书笔记链接",
+      "knowledge_cards": ["卡片1.png", "卡片2.png", "卡片3.png"],
+      "total_content_items": 3
+    }
+  },
+  "metadata": {
+    "estimated_duration_minutes": 15,
+    "automation_level": "high",
+    "requires_human_review": ["xiaohongshu_publish", "wechat_publish"],
+    "platforms": ["wechat", "xiaohongshu", "web"],
+    "compatible_topics": ["AI", "科技", "商业", "职场", "生活方式", "教育"]
+  }
+}

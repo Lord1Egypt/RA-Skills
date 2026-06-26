@@ -1,0 +1,10 @@
+{
+  "name": "tiktok-live-mon",
+  "version": "1.0.0",
+  "description": "TikTok Live stream monitoring and recording",
+  "main": "SKILL.md",
+  "openclaw": {
+    "skill": true,
+    "category": "media"
+  }
+}

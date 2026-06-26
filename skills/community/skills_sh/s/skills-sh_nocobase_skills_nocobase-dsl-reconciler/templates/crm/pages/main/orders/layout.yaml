@@ -1,0 +1,26 @@
+blocks:
+  - key: filterForm
+    type: filterForm
+    coll: nb_crm_orders
+    fields:
+      - field: order_no
+        label: Search
+    js_items:
+      - key: order_stats_filter_block
+        file: ./js/orders_filterForm_order_stats_filter_block.js
+        desc: Order Stats Filter Block
+    field_layout:
+      - - col:
+            - '[JS:Order Stats Filter Block]'
+            - order_no
+          size: 24
+  - key: reference
+    type: reference
+    templateRef:
+      templateUid: yjwjoi4erle
+      templateName: 'Table: Orders'
+      targetUid: 4326c50faf8
+      mode: reference
+layout:
+  - - filterForm
+  - - reference

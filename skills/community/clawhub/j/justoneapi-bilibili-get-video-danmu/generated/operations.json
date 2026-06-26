@@ -1,0 +1,70 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/get-video-danmu/v2 for Bilibili Video Danmaku through JustOneAPI with aid and cid.",
+  "displayName": "Bilibili Video Danmaku",
+  "endpointPath": "get-video-danmu",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili video Danmaku data, including timeline positions and comment text, for audience reaction analysis and subtitle-style comment review.",
+      "method": "GET",
+      "operationId": "getVideoDanmuV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili Archive ID (AID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "aid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili Chat ID (CID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "cid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/get-video-danmu/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Danmaku",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_get_video_danmu",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-get-video-danmu",
+  "sourceTitle": "OpenAPI definition"
+}

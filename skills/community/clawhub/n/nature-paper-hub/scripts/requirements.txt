@@ -1,0 +1,6 @@
+python-docx
+python-pptx
+pandas
+matplotlib
+seaborn
+openpyxl

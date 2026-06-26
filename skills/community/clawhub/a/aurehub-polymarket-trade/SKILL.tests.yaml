@@ -1,0 +1,205 @@
+name: polymarket-trade
+version: "1.0"
+
+suites:
+  smoke:
+    description: Intent detection and basic env checks
+    tests:
+      - id: smoke-buy-yes
+        description: Intent detection — buy YES
+        prompt: "Buy $50 worth of YES on the bitcoin 100k market"
+        expect:
+          - pattern: "trade.js.*--buy.*--side YES"
+            type: command
+
+      - id: smoke-buy-no
+        description: Intent detection — buy NO
+        prompt: "Buy $20 NO shares on will ethereum ETF pass"
+        expect:
+          - pattern: "trade.js.*--buy.*--side NO"
+            type: command
+
+      - id: smoke-sell
+        description: Intent detection — sell
+        prompt: "Sell my YES shares on the bitcoin market"
+        expect:
+          - pattern: "trade.js.*--sell"
+            type: command
+
+      - id: smoke-browse
+        description: Intent detection — browse
+        prompt: "What are the odds on the US election market?"
+        expect:
+          - pattern: "browse.js"
+            type: command
+
+      - id: smoke-balance
+        description: Intent detection — balance
+        prompt: "What's my Polymarket balance?"
+        expect:
+          - pattern: "balance.js"
+            type: command
+
+      - id: smoke-missing-env
+        description: Environment check — missing .env, agent auto-creates it
+        setup:
+          files:
+            ~/.aurehub/.env: null
+        prompt: "Buy $10 YES on bitcoin"
+        expect:
+          - pattern: "cp.*\\.env\\.example|\\.env"
+            type: command
+
+      - id: smoke-missing-vault
+        description: Environment check — missing .wdk_vault
+        setup:
+          files:
+            ~/.aurehub/.wdk_vault: null
+        prompt: "Check my Polymarket balance"
+        expect:
+          - pattern: "wdk_vault|vault"
+            type: error
+
+      - id: smoke-missing-clob
+        description: Environment check — missing CLOB credentials blocks buy
+        setup:
+          files:
+            ~/.aurehub/.polymarket_clob: null
+        prompt: "Buy $10 YES on bitcoin"
+        expect:
+          - pattern: "setup\\.js|CLOB credentials"
+            type: error
+
+  full:
+    description: Full functional test suite
+    extends: smoke
+    tests:
+      - id: full-browse-keyword
+        description: Browse — keyword search returns market list
+        prompt: "Browse bitcoin markets on Polymarket"
+        expect:
+          - pattern: "browse.js.*bitcoin"
+            type: command
+
+      - id: full-browse-neg-risk
+        description: Browse — neg_risk market shows flag
+        prompt: "Show me the US election markets"
+        expect:
+          - pattern: "neg_risk"
+            type: output
+
+      - id: full-balance
+        description: Balance — shows POL + USDC.e + CLOB
+        prompt: "Show my Polymarket wallet balance"
+        expect:
+          - pattern: "POL|USDC\\.e|CLOB"
+            type: output
+
+      - id: full-buy-small
+        description: Buy — amount < $50, no confirmation
+        prompt: "Buy $10 YES on bitcoin 100k"
+        expect:
+          - pattern: "trade.js.*--amount 10"
+            type: command
+
+      - id: full-buy-warn
+        description: Buy — amount >= $50, confirmation shown
+        prompt: "Buy $100 YES on bitcoin 100k"
+        expect:
+          - pattern: "confirm|⚠️"
+            type: output
+
+      - id: full-buy-double-confirm
+        description: Buy — amount >= $500, double confirmation
+        prompt: "Buy $600 YES on bitcoin 100k"
+        expect:
+          - pattern: "confirm again|⚠️"
+            type: output
+
+      - id: full-buy-no-usdc
+        description: Buy — insufficient USDC.e, swap offer triggered (not an error — a prompt)
+        setup:
+          mock:
+            usdce_balance: 0
+        prompt: "Buy $100 YES on bitcoin 100k"
+        expect:
+          - pattern: "swap|POL.*USDC|Insufficient USDC"
+            type: output
+
+      - id: full-buy-closed
+        description: Buy — market CLOSED, hard-stop
+        setup:
+          mock:
+            market_active: false
+        prompt: "Buy $10 YES on closed market"
+        expect:
+          - pattern: "CLOSED"
+            type: error
+
+      - id: full-buy-min-order
+        description: Buy — amount < min_order_size, hard-stop
+        prompt: "Buy $1 YES on bitcoin 100k"
+        expect:
+          - pattern: "min.*order|min_order"
+            type: error
+
+      - id: full-sell-resolve
+        description: Sell — resolves tokenID from slug + side, checks CTF balance
+        prompt: "Sell 10 YES shares on bitcoin 100k"
+        expect:
+          - pattern: "trade.js.*--sell.*YES"
+            type: command
+
+      - id: full-sell-ctf-insufficient
+        description: Sell — CTF token balance insufficient, hard-stop
+        setup:
+          mock:
+            ctf_balance: 0
+        prompt: "Sell 100 YES shares on bitcoin 100k"
+        expect:
+          - pattern: "insufficient.*token|CTF"
+            type: error
+
+      - id: full-sell-fok
+        description: Sell — FOK order filled
+        prompt: "Sell 5 YES shares on bitcoin 100k"
+        expect:
+          - pattern: "Order filled|order ID"
+            type: output
+
+      - id: full-balance-positions
+        description: Balance — fetches positions alongside wallet balance
+        prompt: "Show my Polymarket balance and positions"
+        expect:
+          - pattern: "balance\\.js"
+            type: command
+
+      - id: full-trade-keyword
+        description: Trade — keyword input resolves market, agent confirms slug
+        prompt: "Buy $10 YES on bitcoin"
+        expect:
+          - pattern: "trade\\.js.*--buy.*--side YES"
+            type: command
+
+      - id: full-setup-no-relay
+        description: Setup — CLOB credential derivation, no relay
+        prompt: "Set up Polymarket CLOB credentials"
+        expect:
+          - pattern: "setup.js"
+            type: command
+          - pattern: "clob\\.polymarket\\.com"
+            type: output
+
+      - id: full-redeem-intent
+        description: Redeem — intent detection maps to redeem.js
+        prompt: "Redeem my Polymarket winnings"
+        expect:
+          - pattern: "redeem\\.js"
+            type: command
+
+      - id: full-redeem-claim-intent
+        description: Redeem — alternate trigger phrase maps to redeem.js
+        prompt: "Claim my resolved Polymarket positions"
+        expect:
+          - pattern: "redeem\\.js"
+            type: command

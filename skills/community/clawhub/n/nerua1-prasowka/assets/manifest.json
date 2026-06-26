@@ -1,0 +1,28 @@
+{
+  "name": "Prasówka",
+  "short_name": "Prasówka",
+  "description": "Codzienny przegląd wiadomości z AI, technologii, nauki i świata",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color":="#0a0a0a",
+  "theme_color":="#dc2626",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pl",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%23dc2626' rx='24'/%3E%3Ctext x='96' y='120' font-size='100' text-anchor='middle'%3E🗞️%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23dc2626' rx='48'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle'%3E🗞️%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["news", "technology"],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,9 @@
+# Model Pricing Sync - Python Dependencies
+# Minimum Python version: 3.10+
+
+playwright>=1.40.0
+
+# Installation steps:
+# 1. pip install -r requirements.txt
+# 2. playwright install chromium
+# 3. npm install -g @larksuiteoapi/cli (for Feishu/Lark integration)

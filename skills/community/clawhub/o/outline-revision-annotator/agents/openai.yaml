@@ -1,0 +1,4 @@
+interface:
+  display_name: "Outline Revision Annotator"
+  short_description: "Compare revised drafts and generate structural-change annotated PDFs. / 对比修订稿并生成结构改动标注 PDF。"
+  default_prompt: "Use $outline-revision-annotator to compare a revised PDF outline, script, or character bio against an older version and generate a new structural-change annotated PDF. / 用 $outline-revision-annotator 对比新版 PDF 大纲、剧本或人物小传与旧版，并生成新的结构改动标注版 PDF。"

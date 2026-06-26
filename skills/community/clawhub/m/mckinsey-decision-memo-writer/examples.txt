@@ -1,0 +1,11 @@
+1. Turn this PDF into a decision memo. Focus on what matters, risks, and what I should do next.
+
+2. Summarize this proposal as a practical decision brief for a non expert. I want key points, risks, open questions, and a recommendation.
+
+3. I’m comparing these two school options. Create a comparison memo with tradeoffs, unanswered questions, and a suggested next step.
+
+4. Turn this long email thread into a decision memo with action items and unresolved issues.
+
+5. Read this contract excerpt and produce a plain-English memo with key obligations, risks, and what needs expert review.
+
+6. I’m busy. Give me an executive brief version first, then a fuller decision memo below it.

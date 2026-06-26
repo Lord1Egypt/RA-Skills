@@ -1,0 +1,6 @@
+{
+  "name": "desensitize-list",
+  "description": "列出支持的脱敏规则",
+  "command": "python3 ~/.workbuddy/skills/mitools-desensitize/desensitize.py list",
+  "args": []
+}

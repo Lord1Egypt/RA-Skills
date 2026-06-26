@@ -1,0 +1,22 @@
+{
+  "email_action": "send",
+  "recipient_status": "external",
+  "recipient_summary": "One external customer recipient.",
+  "subject_summary": "Refund eligibility decision.",
+  "approval_status": "required",
+  "tone_status": "ready",
+  "privacy_status": "needs_redaction",
+  "attachment_status": "needs_review",
+  "claim_evidence_status": "partial",
+  "send_risk_level": "customer",
+  "email_risks": [
+    "private_data",
+    "unapproved_attachment",
+    "unsupported_promise",
+    "external_send",
+    "missing_send_approval"
+  ],
+  "revision_needed": "Remove unnecessary account details, verify the refund policy claim, and confirm the attachment is intended for this recipient.",
+  "approval_request": "Ask the user to approve sending the revised email to the named recipient with the verified attachment.",
+  "recommended_action": "request_approval"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "openclaw-skill-proactive-daily-planner",
+  "version": "1.0.0",
+  "description": "Proactive daily planning assistant skill for OpenClaw",
+  "main": "planner.js",
+  "scripts": {
+    "test": "node planner.js help",
+    "morning": "node planner.js morning",
+    "progress": "node planner.js progress",
+    "evening": "node planner.js evening",
+    "auto": "node planner.js auto",
+    "motivate": "node planner.js motivate"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "proactive-daily-planner",
+    "productivity",
+    "planning",
+    "assistant",
+    "proactive"
+  ],
+  "author": "Akshay Memane",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akshaymemane/openclaw-daily-planner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akshaymemane/openclaw-daily-planner/issues"
+  },
+  "homepage": "https://github.com/akshaymemane/openclaw-daily-planner#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

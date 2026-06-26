@@ -1,0 +1,5 @@
+httpx>=0.27.0
+
+# Note: This skill also requires the inference.sh CLI to be installed separately.
+# Install with: npm install -g @inference.sh/cli
+# Visit https://inference.sh for more information.

@@ -1,35 +1,25 @@
----
-name: "Pipeworx court-listener"
-description: "Search US court opinions and dockets by keyword, and retrieve specific court opinions by CourtListener ID with no authentication needed."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-court-listener"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-court-listener"
----
+# Court Listener
 
-# Pipeworx court-listener
+CourtListener MCP — Free Law Project's CourtListener API (free, no auth required for basic access)
 
-> Search US court opinions and dockets by keyword, and retrieve specific court opinions by CourtListener ID with no authentication needed.
+## search_opinions
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-court-listener`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-court-listener](https://clawhub.ai/skills/pipeworx-court-listener)
+Search US court opinions by keyword (e.g., "qualified immunity", "Fourth Amendment"). Returns case n
 
-## Overview
+## search_dockets
 
+Search US court dockets by keyword. Returns case name, court, filing date, docket number, nature of 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-court-listener
+## get_opinion
+
+Get a specific court opinion by its CourtListener ID. Returns the full opinion text, author, date, a
+
+```json
+{
+  "mcpServers": {
+    "court-listener": {
+      "url": "https://gateway.pipeworx.io/court-listener/mcp"
+    }
+  }
+}
 ```

@@ -1,0 +1,5 @@
+interface:
+  display_name: AutoDL Train Operator
+  short_description: 通过 SSH 启动、监控、读日志并总结 AutoDL 训练任务
+  icon: server
+  primary_color: "#2563eb"

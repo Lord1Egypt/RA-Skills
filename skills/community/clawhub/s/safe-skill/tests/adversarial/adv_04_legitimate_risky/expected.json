@@ -1,0 +1,8 @@
+{
+    "label": "adversarial",
+    "description": "Grey zone: legitimate deployment tool that genuinely needs SSH keys and subprocess. The findings are technically correct (it does access ~/.ssh and use subprocess with user input) but the use case is legitimate. Tests whether the scanner can distinguish intent.",
+    "expected_detection": "full",
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["RCE-007", "CRED-001"],
+    "notes": "Scanner SHOULD flag this (correct behavior) — the question is whether a human reviewer would accept it. This is where scanner reaches its limit and human judgment is needed."
+}

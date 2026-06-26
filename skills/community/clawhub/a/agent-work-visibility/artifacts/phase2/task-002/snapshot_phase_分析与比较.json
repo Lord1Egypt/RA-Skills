@@ -1,0 +1,25 @@
+{
+  "taskId": "task-002",
+  "snapshotType": "phase_分析与比较",
+  "timestamp": "2026-03-17T20:57:07.102Z",
+  "metadata": {
+    "phase": "分析与比较",
+    "summary": "已完成对比分析"
+  },
+  "snapshot": {
+    "task_id": "task-002",
+    "task_title": "比较 3 个 AI Agent 框架（LangChain vs LlamaIndex vs AutoGen）",
+    "task_type": "research",
+    "overall_status": "running",
+    "current_phase": "分析与比较",
+    "progress_percent": 85,
+    "current_action": "正在进行：分析与比较",
+    "why_not_done": "任务正在正常执行中",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.102Z",
+    "updated_at": "2026-03-17T20:57:07.102Z"
+  }
+}

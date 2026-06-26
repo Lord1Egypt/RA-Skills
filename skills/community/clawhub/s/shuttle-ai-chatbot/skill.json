@@ -1,0 +1,86 @@
+{
+  "name": "shuttle-ai-chatbot",
+  "version": "2.0.1",
+  "description": "Shuttle AI Chatbot - 直接調用本地API，支援日期格式session_id",
+  "main": "index.js",
+  "bin": {
+    "shuttle-ai-chatbot": "./index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "shuttle",
+    "ai",
+    "chatbot",
+    "automation"
+  ],
+  "author": "Shuttle AI",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^14.0.3"
+  },
+  "skill": {
+    "id": "shuttle-ai-chatbot",
+    "name": "Shuttle AI Chatbot",
+    "description": "v2.0.1：技能slug更名為 shuttle-ai-chatbot。直接用API調用，移除瀏覽器自動化。session_id格式：shuttle-cli-{隨機碼16}_{YYYYMMDD}。快速、穩定、易追蹤。",
+    "tags": ["ai", "shuttle", "product", "spec", "automation", "comparison", "api", "v2"],
+    "inputs": [
+      {
+        "name": "query",
+        "type": "string",
+        "description": "查詢文字（如產品型號、比較指令）"
+      },
+      {
+        "name": "batch",
+        "type": "file",
+        "description": "批次查詢檔案（每行一筆）"
+      },
+      {
+        "name": "url",
+        "type": "string",
+        "description": "本地 QC AI 服務 URL",
+        "default": "http://192.168.100.98:8888"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "response",
+        "type": "string",
+        "description": "AI 回應內容"
+      },
+      {
+        "name": "elapsed",
+        "type": "string",
+        "description": "耗時（秒）"
+      },
+      {
+        "name": "timestamp",
+        "type": "string",
+        "description": "時間戳"
+      },
+      {
+        "name": "sessionId",
+        "type": "string",
+        "description": "Session ID（格式：shuttle-cli-{隨機碼16}_{YYYYMMDD}）"
+      }
+    ],
+    "commands": [
+      "query",
+      "batch"
+    ],
+    "options": {
+      "output": {
+        "type": "string",
+        "default": "json",
+        "enum": ["json", "text"],
+        "description": "輸出格式"
+      },
+      "lang": {
+        "type": "string",
+        "default": "zh",
+        "enum": ["zh", "en"],
+        "description": "回覆語言"
+      }
+    }
+  }
+}

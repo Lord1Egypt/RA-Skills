@@ -1,0 +1,18 @@
+[
+  {"name": "Berlin", "ars": "110000000000", "state": "Berlin"},
+  {"name": "München", "ars": "091620000000", "state": "Bayern"},
+  {"name": "Stuttgart", "ars": "081110000000", "state": "Baden-Württemberg"},
+  {"name": "Düsseldorf", "ars": "051110000000", "state": "Nordrhein-Westfalen"},
+  {"name": "Wiesbaden", "ars": "064140000000", "state": "Hessen"},
+  {"name": "Hannover", "ars": "032410000000", "state": "Niedersachsen"},
+  {"name": "Dresden", "ars": "146120000000", "state": "Sachsen"},
+  {"name": "Mainz", "ars": "073150000000", "state": "Rheinland-Pfalz"},
+  {"name": "Kiel", "ars": "010020000000", "state": "Schleswig-Holstein"},
+  {"name": "Saarbrücken", "ars": "100410000000", "state": "Saarland"},
+  {"name": "Potsdam", "ars": "120540000000", "state": "Brandenburg"},
+  {"name": "Schwerin", "ars": "130030000000", "state": "Mecklenburg-Vorpommern"},
+  {"name": "Erfurt", "ars": "160630000000", "state": "Thüringen"},
+  {"name": "Magdeburg", "ars": "150030000000", "state": "Sachsen-Anhalt"},
+  {"name": "Bremen", "ars": "040110000000", "state": "Bremen"},
+  {"name": "Hamburg", "ars": "020000000000", "state": "Hamburg"}
+]

@@ -1,0 +1,150 @@
+/*
+ * Million Dollar Landing — Design Tokens
+ * Paste into src/app/globals.css (inside @layer utilities and as global @keyframes)
+ *
+ * Dependencies: Tailwind CSS
+ * Fonts: Sora (display), DM Sans (body), JetBrains Mono (mono) via next/font/google
+ *
+ * CUSTOMISE: Replace the --brand-* variables below with your actual brand colors.
+ * Everything in this file that references brand colors uses these variables.
+ */
+
+/* ── Brand color variables — REPLACE THESE ───────────────────────────────── */
+:root {
+  /* Your primary CTA/accent color as raw RGB values (used for rgba() calls) */
+  --brand-rgb: 249, 115, 22;         /* orange — replace with your brand: e.g. 99,102,241 for indigo */
+  /* Complementary glow color (opposite end of spectrum from brand) */
+  --brand-complement-rgb: 124, 58, 237; /* purple — adjust to complement your brand */
+}
+
+/* ── Radix / shadcn CSS variables ─────────────────────────────────────────── */
+:root {
+  --background: 222 47% 3%;
+  --foreground: 210 40% 95%;
+  --card: 222 47% 5%;
+  --card-foreground: 210 40% 95%;
+  --popover: 222 40% 7%;
+  --popover-foreground: 210 40% 95%;
+  --primary: 24.6 95% 53.1%;          /* update to your brand hue */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 222 30% 12%;
+  --secondary-foreground: 210 40% 95%;
+  --muted: 222 30% 10%;
+  --muted-foreground: 215 20% 60%;
+  --accent: 222 30% 12%;
+  --accent-foreground: 210 40% 95%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 95%;
+  --border: 222 30% 14%;
+  --input: 222 30% 10%;
+  --ring: 24.6 95% 53.1%;             /* update to your brand hue */
+  --radius: 0.625rem;
+}
+
+/* ── Glass surfaces ───────────────────────────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-raised {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+
+  /* Dot-grid background pattern */
+  .dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Dark card surfaces — for dashboard/inner content */
+  .card-dark {
+    background: rgba(5, 8, 18, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .card-dark-solid {
+    background: rgba(5, 8, 18, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Gradient border on hover — works with any border-radius */
+  .gradient-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(var(--brand-rgb), 0.55),
+      rgba(var(--brand-complement-rgb), 0.45)
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .gradient-border:hover::before { opacity: 1; }
+
+  /* Infinite horizontal marquee */
+  .marquee-track {
+    display: flex;
+    will-change: transform;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* Shimmer gradient text */
+  .text-shimmer {
+    background-size: 200% auto !important;
+    animation: text-shimmer 4s linear infinite;
+  }
+
+  /* Terminal cursor blink */
+  .cursor-blink { animation: blink 1.1s step-end infinite; }
+
+  /* iOS Safari auto-zoom fix — all form elements must be ≥ 16px */
+  input, select, textarea { font-size: 16px; }
+
+  /* Horizontal overflow hardening */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ── Keyframes (global — outside @layer) ─────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes text-shimmer {
+  to { background-position: 200% center; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* fade-up, logo-breathe, pulse-glow are defined in tailwind.config.js keyframes
+ * so they work as animate-fade-up, animate-logo-breathe, animate-pulse-glow utilities */

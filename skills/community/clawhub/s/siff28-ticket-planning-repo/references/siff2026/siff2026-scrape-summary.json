@@ -1,0 +1,57 @@
+{
+  "fetched_at_utc": "2026-06-03T13:34:00Z",
+  "main_json_url": "https://www.siff.com/files/2026/cndata-20260603-001.json",
+  "schedule_page_url": "https://www.siff.com/page/paipian",
+  "official_xlsx_url": "https://www.siff.com/schedule/paipianexportcn",
+  "yangtze_delta_article_url": "https://www.siff.com/content?aid=101260602141949831498906159288325659",
+  "main_records": 1574,
+  "main_unique_films": 367,
+  "main_unique_cinemas": 44,
+  "main_dates": [
+    "6月12日",
+    "6月13日",
+    "6月14日",
+    "6月15日",
+    "6月16日",
+    "6月17日",
+    "6月18日",
+    "6月19日",
+    "6月20日",
+    "6月21日"
+  ],
+  "long_delta_records": 36,
+  "long_delta_cinemas": [
+    "南京：幸福蓝海国际影城（荔枝广场旗舰店）",
+    "合肥：万达影城合肥悦方IDMALL店",
+    "宁波：宁波影都（鄞州印象城CINITY店）",
+    "杭州：浙影时代影城·西湖文化广场店",
+    "苏州：苏艺影城（艺术中心IMAX店）"
+  ],
+  "combined_records": 1610,
+  "files": {
+    "第28届上海国际电影节排片表-官方.xlsx": {
+      "bytes": 139667,
+      "sha256": "52bf3896d8c128eb56e541429f3c0496407989bc244dc16800f5e066981ea07e"
+    },
+    "siff2026-official-cndata-20260603-001.json": {
+      "bytes": 1975114,
+      "sha256": "118a964e4c27570fea436ff5eafc0f45fd5bb7e482fde616976cf10279faa16b"
+    },
+    "siff2026-shanghai-screenings.csv": {
+      "bytes": 488171,
+      "sha256": "f087c2cfe9daf9030442320dd9ec5f5650363c459670e570a2104ac598c923f5",
+      "records": 1574
+    },
+    "siff2026-yangtze-delta-screenings.csv": {
+      "bytes": 7551,
+      "sha256": "a11d21287734f4d929bfcc97902a187dd38517aae60d5ca2c1e5a577ed02fff8",
+      "records": 36
+    },
+    "siff2026-all-screenings-combined.csv": {
+      "bytes": 495551,
+      "sha256": "b2340b03a31e4dbae3076bbeebe708ceb1a5ea1edf0e85a59b36128a203f3381",
+      "records": 1610
+    }
+  },
+  "csv_note": "CSV fields are whitespace-normalized to one line per record; UTF-8 BOM included for Excel."
+}

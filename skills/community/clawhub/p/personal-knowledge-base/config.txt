@@ -1,0 +1,20 @@
+# 个人知识库技能配置文件
+# 配置变量说明：
+# 当创建KnowledgeBaseManager时，变量值从此文件读取
+
+# 知识库根目录
+workspace_root=D:\Nancy\MyWork\WorkBuddyWorkSpace\MyKnowledgeBase
+
+# 嵌入模型名称
+embedding_model=embedding-3
+# 智谱LLM模型名称
+ZHIPUAI_LLM_MODEL=glm-4-flash
+
+# 知识库缺省文本块大小
+DEFAULT_CHUNK_SIZE=1000
+
+# 默认检索的文本块最多数量
+DEFAULT_TOP_K=3
+
+# 相似度过滤阈值
+DEFAULT_SIMILARITY_THRESHOLD=0.5

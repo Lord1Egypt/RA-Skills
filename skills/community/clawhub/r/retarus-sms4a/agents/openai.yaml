@@ -1,0 +1,4 @@
+interface:
+  display_name: "Retarus SMS4A"
+  short_description: "Send SMS and check SMS4A status"
+  default_prompt: "Use $retarus-sms4a to send an SMS job or check SMS delivery status across the Retarus SMS4A datacenters."

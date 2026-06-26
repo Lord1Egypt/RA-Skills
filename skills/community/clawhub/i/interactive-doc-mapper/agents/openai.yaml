@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interactive Doc Mapper"
+  short_description: "JSON-driven interactive app workflow maps"
+  default_prompt: "Use $interactive-doc-mapper to create a single-page interactive HTML workflow map from app packages, components, actions, payloads, and review notes."

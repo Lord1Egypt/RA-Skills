@@ -1,0 +1,26 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_table_record_batch_delete",
+		"description": "Batch delete specified data table records. Must delete the corresponding table data according to the prompt, and must not delete table data unrelated to the prompt. Args: tableId: Data table ID, must be filled, data comes from the id field obtained by calling _query_all_table_list, do not fabricate it yourself; recordIdList: Record ID list. Returns: Number of records deleted in batch",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"tableId": {
+					"description": "Data table ID",
+					"type": "string"
+				},
+				"recordIdList": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"description": "Record ID list"
+					}
+				}
+			},
+			"required": [
+					"tableId","recordIdList"
+				]
+			}
+		}
+}

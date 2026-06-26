@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目整体按期推进，当前唯一关键关口是验收签收</title>
+  <style>
+    :root {
+      --primary: #1A56DB; --primary-light: #E3EDFF; --accent: #1C64F2;
+      --bg: #FFFFFF; --surface: #F9FAFB; --text: #111928; --text-muted: #6B7280;
+      --border: #E5E7EB; --success: #057A55; --warning: #B45309; --danger: #E02424;
+      --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace; --radius: 8px;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.55; }
+    h1 { font-size: 2.25rem; font-weight: 700; color: var(--primary); border-bottom: 3px solid var(--primary); padding-bottom: .5rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 600; color: var(--text); border-left: 4px solid var(--primary); padding-left: .75rem; margin-top: 1.75rem; }
+    h3 { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-top: 1.1rem; }
+    p { margin: .5rem 0; } a { color: var(--primary); }
+    strong { font-weight: 700; } blockquote { border-left: 3px solid var(--border); margin: .75rem 0; padding: .5rem 1rem; color: var(--text-muted); }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem; text-align: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; }
+    .kpi-value { font-size: 1.9rem; font-weight: 700; color: var(--primary); line-height: 1.2; }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--tip { background: #F0FDF4; border-color: #22C55E; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .93rem; }
+    .highlight-sentence { font-size: 1.05rem; font-weight: 700; color: var(--primary); border-left: 3px solid var(--primary); padding-left: .9rem; margin: 1rem 0 1.2rem; line-height: 1.65; }
+
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); border: 2px solid var(--bg); }
+    .timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; }
+    .timeline-content { color: var(--text); line-height: 1.6; }
+
+    [data-component="chart"] { margin: 1.1rem 0; }
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    body.no-animations .fade-in-up { opacity: 1; transform: none; transition: none; }
+
+    /* TOC: hover to open, click to lock, no backdrop */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 1.5rem 1rem; background: var(--surface);
+      border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease;
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.18); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 200;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+  </style>
+</head>
+<body>
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+  <script type="application/json" id="report-summary">
+  {
+    "title": "项目整体按期推进，当前唯一关键关口是验收签收",
+    "author": "",
+    "date": "2026-03-16",
+    "abstract": "本月项目整体仍在计划内推进，3个关键里程碑中已有 2 个完成，唯一需要重点盯住的交付关口是最终验收签收，月底前应完成 go/no-go 判断。",
+    "sections": ["交付健康度一眼看清", "哪些已经完成，哪些仍需盯紧", "接下来管理层需要关注什么"],
+    "kpis": [
+      {"label": "里程碑完成率", "value": "[数据待填写]", "trend": ""},
+      {"label": "任务完成数", "value": "[数据待填写]", "trend": ""}
+    ]
+  }
+  </script>
+
+  <button class="toc-toggle" id="toc-toggle-btn" aria-label="目录" aria-expanded="false">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar" aria-label="报告目录">
+    <h4>目录</h4>
+    <a href="#section-guan-jian-zhi-biao" data-section="关键指标">关键指标</a>
+    <a href="#section-li-cheng-bei-jin-zhan" data-section="里程碑进展">里程碑进展</a>
+    <a href="#section-ben-yue-zong-jie" data-section="本月总结">本月总结</a>
+  </nav>
+
+  <div class="main-with-toc">
+    <div class="report-wrapper">
+
+      <h1>项目整体按期推进，当前唯一关键关口是验收签收</h1>
+      <p class="report-meta">2026-03-16</p>
+
+      <blockquote>本报告的核心结论是：项目仍按计划推进，关键执行风险已经从“多点分散”收敛为“单点验收”。接下来管理层最需要关注的不是新增任务量，而是月底前能否完成验收签收并给出上线 go/no-go 判断。</blockquote>
+
+      <section data-section="交付健康度一眼看清" data-summary="从进度和任务吞吐看，项目整体交付健康，当前风险并不在执行节奏，而在最后一个验收关口是否按期关闭。">
+        <h2 id="section-guan-jian-zhi-biao">交付健康度一眼看清</h2>
+        <div data-component="kpi" class="kpi-grid">
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">里程碑完成率</div>
+            <div class="kpi-value" data-target-value="67" data-suffix="%">67%</div>
+            <div class="kpi-trend kpi-trend--up">↑ 2/3 已完成</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">任务完成数</div>
+            <div class="kpi-value" data-target-value="24">24</div>
+            <div class="kpi-trend kpi-trend--up">↑ 本月新增</div>
+          </div>
+        </div>
+        <p class="highlight-sentence">这组指标说明执行节奏是稳定的，真正需要重点管理的不是“做得够不够快”，而是“最后一个里程碑能否顺利签收”。</p>
+      </section>
+
+      <section data-section="哪些已经完成，哪些仍需盯紧" data-summary="需求与联调阶段都已落地，当前唯一未关闭的是最终验收，因此接下来的项目管理应围绕验收闭环展开。">
+        <h2 id="section-li-cheng-bei-jin-zhan">哪些已经完成，哪些仍需盯紧</h2>
+        <div data-component="timeline" class="timeline fade-in-up">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">里程碑 1</div>
+            <div class="timeline-content"><strong>需求评审与范围冻结</strong> — 已完成。核心需求已经评审通过，相关文档归档，范围边界明确。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">里程碑 2</div>
+            <div class="timeline-content"><strong>开发联调与测试</strong> — 已完成。核心功能联调通过，测试覆盖达到预期，交付质量稳定。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--warning);"></div>
+            <div class="timeline-date">里程碑 3</div>
+            <div class="timeline-content"><strong>最终验收与上线确认</strong> — 进行中。当前正在推进用户验收，预计本月末完成并形成上线结论。</div>
+          </div>
+        </div>
+        <div data-component="callout" class="callout callout--tip fade-in-up">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">验收阶段是当前唯一的关键关口。建议同步记录阻塞项、责任人和预计关闭日期，避免管理层只看到“进行中”而看不到风险边界。</div>
+        </div>
+      </section>
+
+      <section data-section="接下来管理层需要关注什么" data-summary="项目已经从执行推进转入验收决策阶段，下一步的关键不是扩展工作项，而是按时完成签收并准备上线决策。">
+        <h2 id="section-ben-yue-zong-jie">接下来管理层需要关注什么</h2>
+        <p>本月项目整体推进顺利，<strong>3 个关键里程碑中已有 2 个完成</strong>，说明执行侧节奏稳定、协作有效。当前阶段不再是“全面推进”的问题，而是“单点收口”的问题，即最终验收能否按期关闭。</p>
+        <p>下月管理重点应放在两件事上：一是确保验收问题单在时限内闭环，二是在当前 sprint 末完成上线 go/no-go 决策，避免项目因决策延迟而被动拖期。</p>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    if (!document.body.classList.contains('no-animations')) {
+      const fadeObserver = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+        }),
+        { threshold: 0.08 }
+      );
+      document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+      const kpiObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseFloat(el.dataset.targetValue);
+          if (isNaN(target)) return;
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const isFloat = String(target).includes('.');
+          const decimals = isFloat ? String(target).split('.')[1].length : 0;
+          let startTime = null;
+          const duration = 1200;
+          const animate = ts => {
+            if (!startTime) startTime = ts;
+            const progress = Math.min((ts - startTime) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = isFloat ? (ease * target).toFixed(decimals) : Math.floor(ease * target).toLocaleString();
+            el.textContent = prefix + current + suffix;
+            if (progress < 1) requestAnimationFrame(animate);
+            else el.textContent = prefix + (isFloat ? target.toFixed(decimals) : target.toLocaleString()) + suffix;
+          };
+          requestAnimationFrame(animate);
+          kpiObserver.unobserve(el);
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.kpi-value[data-target-value]').forEach(el => kpiObserver.observe(el));
+    }
+
+    // TOC: hover to open, click to lock, no backdrop
+    const tocBtn = document.getElementById('toc-toggle-btn');
+    const tocSidebar = document.getElementById('toc-sidebar');
+    if (tocBtn && tocSidebar) {
+      let locked = false, closeTimer;
+      function openToc() {
+        clearTimeout(closeTimer);
+        tocSidebar.classList.add('open');
+        tocBtn.setAttribute('aria-expanded', 'true');
+      }
+      function scheduleClose() {
+        closeTimer = setTimeout(() => {
+          if (!locked) {
+            tocSidebar.classList.remove('open');
+            tocBtn.setAttribute('aria-expanded', 'false');
+          }
+        }, 150);
+      }
+      tocBtn.addEventListener('mouseenter', openToc);
+      tocSidebar.addEventListener('mouseenter', openToc);
+      tocBtn.addEventListener('mouseleave', scheduleClose);
+      tocSidebar.addEventListener('mouseleave', scheduleClose);
+      tocBtn.addEventListener('click', () => {
+        locked = !locked;
+        tocBtn.classList.toggle('locked', locked);
+        if (locked) openToc(); else scheduleClose();
+      });
+      document.querySelectorAll('.toc-sidebar a').forEach(a => a.addEventListener('click', () => {
+        if (!locked) scheduleClose();
+      }));
+    }
+
+    // TOC active state
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = e.target.dataset.section;
+        const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`);
+        if (link) link.classList.toggle('active', e.isIntersecting);
+      });
+    }, { rootMargin: '-10% 0px -60% 0px' });
+    document.querySelectorAll('section[data-section]').forEach(s => sectionObserver.observe(s));
+  </script>
+
+
+  <script>
+    // Edit mode: hover bottom-left hotzone to reveal button, click to toggle
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

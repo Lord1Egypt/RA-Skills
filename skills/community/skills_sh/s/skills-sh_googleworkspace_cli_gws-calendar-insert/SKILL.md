@@ -1,35 +1,58 @@
 ---
-name: "gws-calendar-insert"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-calendar-insert"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-calendar-insert"
+name: gws-calendar-insert
+description: "Google Calendar: Create a new event."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws calendar +insert --help"
 ---
 
-# gws-calendar-insert
+# calendar +insert
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-calendar-insert`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-calendar-insert](https://skills.sh/googleworkspace/cli/gws-calendar-insert)
+create a new event
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-calendar-insert
+gws calendar +insert --summary <TEXT> --start <TIME> --end <TIME>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--calendar` | — | primary | Calendar ID (default: primary) |
+| `--summary` | ✓ | — | Event summary/title |
+| `--start` | ✓ | — | Start time (ISO 8601, e.g., 2024-01-01T10:00:00Z) |
+| `--end` | ✓ | — | End time (ISO 8601) |
+| `--location` | — | — | Event location |
+| `--description` | — | — | Event description/body |
+| `--attendee` | — | — | Attendee email (can be used multiple times) |
+| `--meet` | — | — | Add a Google Meet video conference link |
+
+## Examples
+
+```bash
+gws calendar +insert --summary 'Standup' --start '2026-06-17T09:00:00-07:00' --end '2026-06-17T09:30:00-07:00'
+gws calendar +insert --summary 'Review' --start ... --end ... --attendee alice@example.com
+gws calendar +insert --summary 'Meet' --start ... --end ... --meet
+```
+
+## Tips
+
+- Use RFC3339 format for times (e.g. 2026-06-17T09:00:00-07:00).
+- The --meet flag automatically adds a Google Meet link to the event.
+
+> [!CAUTION]
+> This is a **write** command — confirm with the user before executing.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-calendar](../gws-calendar/SKILL.md) — All manage calendars and events commands

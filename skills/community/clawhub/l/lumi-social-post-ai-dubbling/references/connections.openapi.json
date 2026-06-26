@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lumi - Connections",
+    "description": "List the user's connected social media accounts",
+    "version": "1.0.0"
+  },
+  "tags": [{ "name": "Connections" }],
+  "paths": {
+    "/api/v1/connections": {
+      "get": {
+        "summary": "List connected social accounts",
+        "description": "Returns all social media accounts the user has connected. Use connectionId from the response in social-posts and localization calls.",
+        "tags": ["Connections"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token. Format: Bearer <LUMI_API_KEY>",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "platform",
+            "in": "query",
+            "description": "Filter by platform",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["tiktok", "youtube", "instagram", "facebook", "x", "reddit"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of connected accounts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "connections": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "connectionId": { "type": "string", "description": "Use this ID in social-posts and localization autoPublish calls" },
+                          "platform": { "type": "string", "description": "tiktok | youtube | instagram | facebook | x | reddit" },
+                          "username": { "type": "string", "nullable": true },
+                          "displayName": { "type": "string", "nullable": true },
+                          "avatarUrl": { "type": "string", "nullable": true },
+                          "status": { "type": "string", "nullable": true },
+                          "createdAt": { "type": "string", "nullable": true }
+                        },
+                        "required": ["connectionId", "platform"]
+                      }
+                    },
+                    "total": { "type": "number" }
+                  },
+                  "required": ["connections", "total"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "https://lumipath.cn", "description": "Production" }]
+}

@@ -1,35 +1,139 @@
 ---
-name: "Auto Skill Scanner"
-description: "Auto Skill Scanner - 自动化AI技能安全监控工具。每日自动扫描已安装的OpenClaw技能，发现硬编码凭证、Shell注入、网络泄露等安全隐患，报告推送至Telegram/飞书等渠道。触发词：scan skills、扫描技能、安全扫描。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-skill-scanner"
-sourceUrl: "https://clawhub.ai/skills/auto-skill-scanner"
+name: auto-skill-scanner
+description: Auto Skill Scanner - 自动化AI技能安全监控工具。每日自动扫描已安装的OpenClaw技能，发现硬编码凭证、Shell注入、网络泄露等安全隐患，报告推送至Telegram/飞书等渠道。触发词：scan skills、扫描技能、安全扫描。
 ---
 
-# Auto Skill Scanner
+# 🛡️ Auto Skill Scanner
 
-> Auto Skill Scanner - 自动化AI技能安全监控工具。每日自动扫描已安装的OpenClaw技能，发现硬编码凭证、Shell注入、网络泄露等安全隐患，报告推送至Telegram/飞书等渠道。触发词：scan skills、扫描技能、安全扫描。
+**自动化AI技能安全监控工具**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-skill-scanner`
-- **Source URL:** [https://clawhub.ai/skills/auto-skill-scanner](https://clawhub.ai/skills/auto-skill-scanner)
+---
 
-## Overview
+## 🔍 功能特点
 
+- 🔍 **全面扫描** - 检查所有已安装的技能（npm包+扩展+workspace）
+- 🛡️ **四大威胁检测**
+  - 🔴 硬编码凭证（密码、API密钥）
+  - 🔴 环境变量泄露
+  - 🔴 Shell注入风险
+  - 🔴 网络请求外泄
+- ⏰ **定时扫描** - 每24小时自动执行
+- 📱 **多渠道推送** - 自动发送到所有已配置的Channel
+- 🎯 **精准定位** - 告诉你是哪一行代码有问题
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## ⚠️ 重要：首次使用
+
+**安装后需要手动触发一次来激活定时扫描！**
+
+### 激活步骤
+
+1. 安装 skill：
 ```bash
-hermes skills install clawhub/auto-skill-scanner
+clawhub install auto-skill-scanner
 ```
+
+2. 在任意对话框发送：
+```
+扫描技能
+```
+或
+```
+scan skills
+```
+
+3. 首次触发后会自动：
+   - 执行首次安全扫描
+   - 创建每24小时的定时扫描任务
+   - 报告发送到你的消息渠道
+
+4. 之后每天会自动扫描，**无需任何操作**
+
+---
+
+## 📋 安全等级
+
+| 等级 | 含义 | 建议 |
+|------|------|------|
+| 🔴 CRITICAL | 严重漏洞 | 立即卸载 |
+| 🟠 HIGH | 高危风险 | 需人工确认 |
+| 🟡 MEDIUM | 中危隐患 | 可选处理 |
+| ⚪ INFO | 最佳实践 | 可忽略 |
+
+---
+
+## 🎯 使用场景
+
+**场景1：日常监控（无需操作）**
+> 每天自动扫描，有问题会主动推送报告
+
+**场景2：新skill安装后**
+> 下次扫描自动覆盖，结果推送到你的渠道
+
+**场景3：主动检查**
+> 随时发送"扫描技能"立即检查
+
+---
+
+## 📊 报告示例
+
+```
+🛡️ Skill Audit Report
+AI技能安全扫描 — 守护你的Agent
+━━━━━━━━━━━━━━━━━━━━
+
+📊 扫描概况
+已扫描：53 个技能
+✅ 安全：52 个
+⚠️ 有隐患：1 个
+
+📋 隐患详情
+🔸 some-skill
+   🔴 严重 1 个
+   → Hardcoded credentials
+
+💡 处理建议
+🔴 立即卸载 /remove some-skill
+
+━━━━━━━━━━━━━━━━━━━━
+```
+
+---
+
+## 🛠 技术细节
+
+- **扫描引擎**: Python正则表达式静态分析
+- **扫描范围**: npm包技能、扩展技能、工作区技能
+- **定时任务**: 通过OpenClaw cron实现
+- **多渠道**: 自动发现并发送到所有活跃渠道
+
+---
+
+## ✅ 安装要求
+
+- OpenClaw 运行环境
+- Python 3.7+
+- 至少配置了一个消息渠道（Telegram/飞书等）
+
+---
+
+## 📦 安装
+
+```bash
+clawhub install auto-skill-scanner
+```
+
+---
+
+## ⚙️ 工作原理
+
+```
+安装 → 手动触发一次 → 设置定时cron → 每日自动扫描
+```
+
+首次触发时，脚本会自动：
+1. 扫描所有已安装技能
+2. 发现所有活跃消息渠道
+3. 创建每日定时任务
+4. 发送首次扫描报告

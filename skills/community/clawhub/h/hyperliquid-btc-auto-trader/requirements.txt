@@ -1,0 +1,6 @@
+hyperliquid-python-sdk>=1.0.0
+pandas
+pandas_ta
+python-dotenv
+schedule
+numpy

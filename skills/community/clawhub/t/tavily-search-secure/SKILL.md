@@ -1,35 +1,35 @@
 ---
-name: "Tavily Search Secure"
-description: "Tavily API ile güvenli web arama ve URL içerik çıkarma yap. Use when: hızlı web araştırması, kaynaklı sonuç toplama, belirli URL'lerden metin çekme ve özetle..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tavily-search-secure"
-sourceUrl: "https://clawhub.ai/skills/tavily-search-secure"
+name: tavily-search
+description: "Tavily API ile güvenli web arama ve URL içerik çıkarma yap. Use when: hızlı web araştırması, kaynaklı sonuç toplama, belirli URL'lerden metin çekme ve özetleme gerektiğinde."
 ---
 
-# Tavily Search Secure
+# Tavily Search (Secure)
 
-> Tavily API ile güvenli web arama ve URL içerik çıkarma yap. Use when: hızlı web araştırması, kaynaklı sonuç toplama, belirli URL'lerden metin çekme ve özetle...
+Tavily API ile güvenli arama/extract akışı çalıştır.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tavily-search-secure`
-- **Source URL:** [https://clawhub.ai/skills/tavily-search-secure](https://clawhub.ai/skills/tavily-search-secure)
+## Gereksinim
 
-## Overview
+- `TAVILY_API_KEY` ortam değişkeni tanımlı olmalı.
+- API anahtarını dosyaya yazma, commit etme veya çıktıda gösterme.
 
+## Arama
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tavily-search-secure
+node {baseDir}/scripts/search.mjs "query"
+node {baseDir}/scripts/search.mjs "query" -n 8 --deep
+node {baseDir}/scripts/search.mjs "query" --topic news --days 3
 ```
+
+## URL içerik çıkarma
+
+```bash
+node {baseDir}/scripts/extract.mjs "https://example.com/article"
+node {baseDir}/scripts/extract.mjs "https://a.com" "https://b.com"
+```
+
+## Güvenlik kuralları
+
+- Sadece `http` / `https` URL kabul et.
+- Localhost, loopback, private IP ve `.local/.internal` alan adlarını reddet.
+- Tek istekte URL sayısını sınırlı tut (script varsayılanı uygular).
+- Hata durumunda kısa ve temiz hata ver; anahtar veya hassas veri dökme.

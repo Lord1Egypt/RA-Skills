@@ -1,0 +1,63 @@
+name: linkedin-content-machine
+version: 1.0.0
+description: AI-Powered LinkedIn Post Generator for Creators - Transform YouTube videos into 10 LinkedIn posts per video
+price: 199
+category: productivity
+author: Sanny
+homepage: https://github.com/appincubator/linkedin-content-machine
+
+emoji: 🚀
+
+requires:
+  bins:
+    - bash
+    - node
+  node: ">=16.0.0"
+
+install:
+  - type: script
+    run: npm install
+  - type: symlink
+    source: linkedin-post-generator
+    target: /usr/local/bin/linkedin-post-generator
+
+files:
+  - SKILL.md
+  - README.md
+  - linkedin-post-generator
+  - linkedin-research
+  - linkedin-samples.md
+  - linkedin-email-template
+  - quickstart
+
+entrypoints:
+  - name: linkedin-post-generator
+    description: Generate LinkedIn posts from YouTube video URLs
+    examples:
+      - linkedin-post-generator https://youtube.com/watch?v=xyz
+      - linkedin-post-generator https://youtube.com/watch?v=xyz --count 20
+  - name: linkedin-research
+    description: Research creator's LinkedIn audience and optimal posting times
+    examples:
+      - linkedin-research @creator
+      - linkedin-research @creator --competitors
+
+target_users:
+  - YouTube creators with 10K-1M subscribers
+  - Content creators looking to expand to LinkedIn
+  - Marketing teams managing creator content
+  - Agencies serving content creators
+
+features:
+  - Transform 1 YouTube video into 10 LinkedIn posts
+  - Extract key insights and quotable moments
+  - Adapt content for LinkedIn's professional audience
+  - Generate multiple post formats (listicles, stories, tips)
+  - Include relevant hashtags and mentions
+  - Maintain creator's authentic voice
+
+limitations:
+  - Requires YouTube video URL or transcript
+  - Best for educational/insightful content
+  - Manual review recommended for final posts
+  - Quality depends on video transcript quality

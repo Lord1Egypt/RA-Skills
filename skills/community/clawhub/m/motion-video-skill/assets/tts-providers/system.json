@@ -1,0 +1,10 @@
+{
+  "id": "system",
+  "label": "System Read Aloud",
+  "type": "local",
+  "description": "本机朗读兜底，适合快速试听和离线预览。",
+  "confirmationFields": ["provider", "voice", "language", "speed"],
+  "voiceRequired": false,
+  "supportsLocalFallback": false,
+  "envHints": []
+}

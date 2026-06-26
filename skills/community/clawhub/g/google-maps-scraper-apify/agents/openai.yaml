@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Maps Scraper (Apify)"
+  short_description: "Run Google Maps place, review, image, and contact scraping through Apify"
+  default_prompt: "Use $google-maps-scraper-apify to build a Google Maps scraping payload and run actor kLdarP5qiTvc9CwtP with APIFY_TOKEN."

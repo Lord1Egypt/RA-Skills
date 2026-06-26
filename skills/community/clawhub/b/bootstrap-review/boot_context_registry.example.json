@@ -1,0 +1,76 @@
+{
+  "assistant": {
+    "workspace": "~/.openclaw/workspaces/assistant",
+    "boot_files": [
+      "IDENTITY.md",
+      "SOUL.md",
+      "USER.md",
+      "MEMORY.md",
+      "AGENTS.md",
+      "TOOLS.md",
+      "HEARTBEAT.md"
+    ],
+    "shared_context": [
+      { "type": "path_registry_key", "key": "USER_CONTEXT" }
+    ],
+    "agent_context": [
+      { "type": "workspace_relative", "path": "notes/assistant-role-notes.md", "required": false }
+    ],
+    "review_goals": [
+      "shorten boot files",
+      "remove redundancy",
+      "validate references",
+      "keep assistant as front door and secretary"
+    ],
+    "staging_dir": ".boot-review"
+  },
+  "daily-coach": {
+    "workspace": "~/.openclaw/workspaces/daily-coach",
+    "boot_files": [
+      "IDENTITY.md",
+      "SOUL.md",
+      "USER.md",
+      "MEMORY.md",
+      "AGENTS.md",
+      "TOOLS.md"
+    ],
+    "shared_context": [
+      { "type": "path_registry_key", "key": "USER_CONTEXT" }
+    ],
+    "agent_context": [
+      { "type": "workspace_relative", "path": "templates/daily-plan-template.md", "required": false }
+    ],
+    "review_goals": [
+      "keep daily coach centered on planning, review, and alignment",
+      "avoid admin-system sprawl",
+      "ensure stable life constraints are present but concise",
+      "replace vague shared-note references with real workspace-relative or registry-backed references"
+    ],
+    "staging_dir": ".boot-review"
+  },
+  "system_engineer": {
+    "workspace": "~/.openclaw/workspaces/system_engineer",
+    "boot_files": [
+      "IDENTITY.md",
+      "SOUL.md",
+      "USER.md",
+      "MEMORY.md",
+      "AGENTS.md",
+      "TOOLS.md",
+      "HEARTBEAT.md"
+    ],
+    "shared_context": [
+      { "type": "path_registry_key", "key": "USER_CONTEXT" }
+    ],
+    "agent_context": [
+      { "type": "workspace_relative", "path": "memory/2026-03-14.md", "required": false }
+    ],
+    "review_goals": [
+      "keep system engineer technical and architecture-focused",
+      "avoid personal-coaching bleed",
+      "preserve durable technical decisions in the right file",
+      "replace vague shared-note references with real workspace-relative or registry-backed references"
+    ],
+    "staging_dir": ".boot-review"
+  }
+}

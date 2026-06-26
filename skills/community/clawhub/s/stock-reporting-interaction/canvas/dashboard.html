@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投资分析仪表盘</title>
+  <style>
+    :root {
+      --bg: #1e1e2e;
+      --panel: #282838;
+      --text: #cdd6f4;
+      --accent: #89b4fa;
+      --up: #f04050;
+      --down: #40c060;
+      --border: #45475a;
+      --muted: #6c7086;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', sans-serif;
+      background: var(--bg); color: var(--text);
+      padding: 16px;
+    }
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .panel {
+      background: var(--panel); border-radius: 10px;
+      padding: 16px; border: 1px solid var(--border);
+    }
+    .panel-title {
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 10px; text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .index-card {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .index-card:last-child { border-bottom: none; }
+    .index-name { font-size: 14px; font-weight: 500; }
+    .index-value { font-size: 16px; font-weight: 700; }
+    .index-change { font-size: 13px; padding: 2px 8px; border-radius: 4px; }
+    .up { color: var(--up); }
+    .down { color: var(--down); }
+    .up-bg { background: rgba(240, 64, 80, 0.15); color: var(--up); }
+    .down-bg { background: rgba(64, 192, 96, 0.15); color: var(--down); }
+
+    .full-width { grid-column: 1 / -1; }
+    .score-ring {
+      width: 120px; height: 120px; margin: 0 auto;
+      position: relative;
+    }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring .value {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px; font-weight: 700;
+    }
+    .sector-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 0;
+    }
+    .sector-bar .name { width: 80px; font-size: 12px; }
+    .sector-bar .bar {
+      flex: 1; height: 8px; border-radius: 4px;
+      background: var(--border);
+    }
+    .sector-bar .bar-fill {
+      height: 100%; border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+    .sector-bar .pct { width: 50px; text-align: right; font-size: 12px; }
+
+    .capital-flow { display: flex; gap: 16px; text-align: center; }
+    .capital-item { flex: 1; }
+    .capital-value { font-size: 20px; font-weight: 700; margin: 4px 0; }
+    .capital-label { font-size: 11px; color: var(--muted); }
+    .capital-trend { font-size: 11px; }
+
+    .alert-item {
+      padding: 8px; margin: 4px 0; border-radius: 6px;
+      font-size: 13px; border-left: 3px solid;
+    }
+    .alert-warn { background: rgba(249, 226, 175, 0.1); border-color: #f9e2af; }
+    .alert-info { background: rgba(137, 180, 250, 0.1); border-color: #89b4fa; }
+    .alert-danger { background: rgba(243, 139, 168, 0.1); border-color: #f38ba8; }
+
+    .timestamp {
+      text-align: center; color: var(--muted);
+      font-size: 11px; margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard" id="app">
+    <!-- 主要指数 -->
+    <div class="panel">
+      <div class="panel-title">📊 主要指数</div>
+      <div id="indices"></div>
+    </div>
+
+    <!-- 市场综合评分 -->
+    <div class="panel" style="text-align: center;">
+      <div class="panel-title">🎯 市场综合评分</div>
+      <div class="score-ring">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="52" fill="none"
+                  stroke="var(--border)" stroke-width="8"/>
+          <circle cx="60" cy="60" r="52" fill="none"
+                  stroke="var(--accent)" stroke-width="8"
+                  stroke-dasharray="327" stroke-dashoffset="130"
+                  stroke-linecap="round" id="score-ring-fill"/>
+        </svg>
+        <div class="value" id="score-value">--</div>
+      </div>
+      <div id="score-label" style="margin-top:8px; font-size:13px;">加载中...</div>
+    </div>
+
+    <!-- 板块强弱 -->
+    <div class="panel full-width">
+      <div class="panel-title">🔥 板块强弱排名</div>
+      <div id="sectors"></div>
+    </div>
+
+    <!-- 资金流向 -->
+    <div class="panel">
+      <div class="panel-title">💰 资金流向</div>
+      <div class="capital-flow" id="capital"></div>
+    </div>
+
+    <!-- 预警信息 -->
+    <div class="panel">
+      <div class="panel-title">🔔 预警提醒</div>
+      <div id="alerts"></div>
+    </div>
+  </div>
+
+  <div class="timestamp" id="timestamp"></div>
+
+  <script>
+    // ========== 仪表盘数据渲染引擎 ==========
+    // 由 OpenClaw Agent 通过 canvas eval 注入数据
+
+    window.updateDashboard = function(data) {
+      // 指数
+      const indicesHtml = (data.indices || []).map(idx => {
+        const cls = idx.change >= 0 ? 'up' : 'down';
+        const sign = idx.change >= 0 ? '+' : '';
+        return `
+          <div class="index-card">
+            <div>
+              <div class="index-name">${idx.name}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="index-value ${cls}">${idx.value.toFixed(2)}</div>
+              <span class="index-change ${cls}-bg">${sign}${idx.change.toFixed(2)}%</span>
+            </div>
+          </div>`;
+      }).join('');
+      document.getElementById('indices').innerHTML = indicesHtml;
+
+      // 评分
+      if (data.score !== undefined) {
+        const score = data.score;
+        const offset = 327 - (327 * score / 100);
+        document.getElementById('score-ring-fill').setAttribute('stroke-dashoffset', offset);
+        document.getElementById('score-value').textContent = score;
+        const color = score >= 60 ? 'var(--up)' : score >= 40 ? 'var(--accent)' : 'var(--down)';
+        document.getElementById('score-ring-fill').setAttribute('stroke', color);
+        document.getElementById('score-value').style.color = color;
+        document.getElementById('score-label').textContent = data.scoreLabel || '';
+      }
+
+      // 板块
+      const sectorsHtml = (data.sectors || []).slice(0, 8).map(s => {
+        const cls = s.change >= 0 ? 'up' : 'down';
+        const width = Math.min(Math.abs(s.change) * 10, 100);
+        const bgColor = s.change >= 0 ? 'var(--up)' : 'var(--down)';
+        return `
+          <div class="sector-bar">
+            <span class="name">${s.name}</span>
+            <div class="bar">
+              <div class="bar-fill" style="width:${width}%;background:${bgColor}"></div>
+            </div>
+            <span class="pct ${cls}">${s.change >= 0 ? '+' : ''}${s.change.toFixed(2)}%</span>
+          </div>`;
+      }).join('');
+      document.getElementById('sectors').innerHTML = sectorsHtml;
+
+      // 资金
+      const capitalHtml = (data.capital || []).map(c => {
+        const cls = c.value >= 0 ? 'up' : 'down';
+        return `
+          <div class="capital-item">
+            <div class="capital-label">${c.label}</div>
+            <div class="capital-value ${cls}">${c.value >= 0 ? '+' : ''}${c.value.toFixed(1)}亿</div>
+            <div class="capital-trend ${cls}">${c.trend}</div>
+          </div>`;
+      }).join('');
+      document.getElementById('capital').innerHTML = capitalHtml;
+
+      // 预警
+      const alertsHtml = (data.alerts || []).map(a => {
+        const cls = a.level === 'danger' ? 'alert-danger' :
+                    a.level === 'warn' ? 'alert-warn' : 'alert-info';
+        return `<div class="alert-item ${cls}">${a.icon} ${a.message}</div>`;
+      }).join('');
+      document.getElementById('alerts').innerHTML = alertsHtml || '<div style="color:var(--muted);font-size:13px;">暂无预警</div>';
+
+      // 时间戳
+      document.getElementById('timestamp').textContent =
+        `数据更新: ${new Date().toLocaleString('zh-CN')}`;
+    };
+
+    // 初始占位
+    document.getElementById('timestamp').textContent = '等待 Agent 推送数据...';
+  </script>
+</body>
+</html>

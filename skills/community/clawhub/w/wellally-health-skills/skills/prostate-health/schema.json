@@ -1,0 +1,258 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/prostate-health.json",
+  "title": "Prostate Health Record",
+  "description": "前列腺健康记录，包括PSA检测、IPSS评分、DRE检查等",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "description": "记录唯一标识符",
+      "pattern": "^prostate_[0-9]{8}_[0-9]{3}$"
+    },
+    "record_type": {
+      "type": "string",
+      "enum": ["psa_test", "ipss_score", "dre_exam", "ultrasound_exam", "status", "screening_plan", "risk_assessment"],
+      "description": "记录类型"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "检测日期"
+    },
+    "psa_result": {
+      "type": "object",
+      "description": "PSA检测结果",
+      "properties": {
+        "total_psa": {
+          "type": "number",
+          "description": "总PSA值 (ng/mL)"
+        },
+        "free_psa": {
+          "type": "number",
+          "description": "游离PSA值 (ng/mL)"
+        },
+        "ratio": {
+          "type": "number",
+          "description": "游离/总PSA比值"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["ng/mL"],
+          "description": "单位"
+        },
+        "reference": {
+          "type": "string",
+          "description": "参考值"
+        },
+        "trend": {
+          "type": "string",
+          "enum": ["stable", "increasing", "decreasing"],
+          "description": "趋势"
+        },
+        "risk_level": {
+          "type": "string",
+          "enum": ["low", "low-moderate", "moderate", "high"],
+          "description": "风险等级"
+        },
+        "interpretation": {
+          "type": "string",
+          "description": "结果解释"
+        }
+      }
+    },
+    "ipss_score": {
+      "type": "object",
+      "description": "IPSS评分结果",
+      "properties": {
+        "incomplete_emptying": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "不完全排空感 (0-5分)"
+        },
+        "frequency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "排尿频度 (0-5分)"
+        },
+        "intermittency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "排尿间断 (0-5分)"
+        },
+        "urgency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "排尿犹豫 (0-5分)"
+        },
+        "weak_stream": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "尿流弱 (0-5分)"
+        },
+        "straining": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "用力排尿 (0-5分)"
+        },
+        "nocturia": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "夜尿次数 (0-5分)"
+        },
+        "total_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 35,
+          "description": "总分 (0-35分)"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["mild", "moderate", "severe"],
+          "description": "严重程度"
+        },
+        "quality_of_life_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 6,
+          "description": "生活质量评分 (0-6分)"
+        }
+      }
+    },
+    "dre": {
+      "type": "object",
+      "description": "直肠指检结果",
+      "properties": {
+        "last_exam": {
+          "type": "string",
+          "format": "date",
+          "description": "检查日期"
+        },
+        "findings": {
+          "type": "string",
+          "description": "检查发现"
+        },
+        "size": {
+          "type": "string",
+          "enum": ["normal", "enlarged", "atrophied"],
+          "description": "前列腺大小"
+        },
+        "texture": {
+          "type": "string",
+          "enum": ["soft", "firm", "nodular", "hard"],
+          "description": "质地"
+        },
+        "nodule": {
+          "type": "boolean",
+          "description": "是否有结节"
+        },
+        "tenderness": {
+          "type": "boolean",
+          "description": "是否有触痛"
+        },
+        "mobility": {
+          "type": "string",
+          "enum": ["normal", "reduced", "fixed"],
+          "description": "活动度"
+        },
+        "notes": {
+          "type": "string",
+          "description": "备注"
+        }
+      }
+    },
+    "prostate_volume": {
+      "type": "object",
+      "description": "前列腺体积",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "volume_ml": {
+          "type": "number",
+          "description": "体积 (mL)"
+        },
+        "weight_g": {
+          "type": "number",
+          "description": "估算重量 (g)"
+        },
+        "inner_gland_cm": {
+          "type": "number",
+          "description": "内腺大小 (cm)"
+        },
+        "residual_urine_ml": {
+          "type": "number",
+          "description": "残余尿量 (mL)"
+        },
+        "nodule": {
+          "type": "boolean",
+          "description": "是否有结节"
+        },
+        "calcification": {
+          "type": "boolean",
+          "description": "是否有钙化"
+        },
+        "interpretation": {
+          "type": "string",
+          "enum": ["normal", "mild_enlargement", "moderate_enlargement", "severe_enlargement", "atrophied"],
+          "description": "结果解释"
+        }
+      }
+    },
+    "screening_plan": {
+      "type": "object",
+      "description": "筛查计划",
+      "properties": {
+        "psa_frequency": {
+          "type": "string",
+          "description": "PSA检测频率"
+        },
+        "dre_frequency": {
+          "type": "string",
+          "description": "DRE检查频率"
+        },
+        "next_psa": {
+          "type": "string",
+          "format": "date",
+          "description": "下次PSA检测日期"
+        },
+        "next_dre": {
+          "type": "string",
+          "format": "date",
+          "description": "下次DRE检查日期"
+        },
+        "risk_category": {
+          "type": "string",
+          "enum": ["average", "high"],
+          "description": "风险类别"
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "required": ["record_id", "record_type", "date"]
+}

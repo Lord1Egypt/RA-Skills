@@ -1,0 +1,65 @@
+name: yunlv-customs-scout
+version: 1.0.2
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to find import/export trade data, competitor customers,
+  or market intelligence from customs data. Use when searching for active buyers of
+  specific products in target markets. Use when performing competitor client mining
+  via trade records. Use when user mentions "海关数据", "进出口数据", "采购商", "竞争对手客户", "挖客户",
+  "贸易数据", "Import Intel".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI MatchGPT API
+  url: https://api.yunlvai.com
+  purpose: 海关贸易数据查询与智能匹配
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: customer-development
+tags:
+- 海关数据
+- 进出口数据
+- 贸易情报
+- 竞品客户挖掘
+- B2B外贸
+- 采购商发现
+triggers:
+- 海关数据
+- 进出口记录
+- 竞争对手客户
+- 挖采购商
+- 竞品分析
+- 贸易情报
+- 进口商查询
+- 采购记录
+- customs data
+- trade intelligence
+pricing:
+  free:
+    features:
+    - 每天5次免费查询
+    - 基础贸易数据
+    - 近3个月记录
+  basic:
+    price: 599
+    currency: CNY
+    period: month
+    features:
+    - 每月500次查询
+    - 完整联系方式
+    - 决策人挖掘
+    - 邮件触达
+  pro:
+    price: 1999
+    currency: CNY
+    period: month
+    features:
+    - 无限查询
+    - 竞品客户分析
+    - 采购预测
+    - WhatsApp+邮件双通道触达

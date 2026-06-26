@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Introduction Writer"
+  short_description: "Chinese academic introduction chapter writer"
+  default_prompt: "Use $thesis-introduction-writer to write a rigorous Chinese introduction chapter from my thesis topic and study details."

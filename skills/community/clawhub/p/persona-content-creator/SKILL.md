@@ -1,35 +1,39 @@
 ---
-name: "Persona Content Creator"
+name: persona-content-creator
 description: "Create, organize, and distribute content across Workspace."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/persona-content-creator"
-sourceUrl: "https://clawhub.ai/skills/persona-content-creator"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-docs
+        - gws-drive
+        - gws-gmail
+        - gws-chat
+        - gws-slides
 ---
 
-# Persona Content Creator
+# Content Creator
 
-> Create, organize, and distribute content across Workspace.
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-docs`, `gws-drive`, `gws-gmail`, `gws-chat`, `gws-slides`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/persona-content-creator`
-- **Source URL:** [https://clawhub.ai/skills/persona-content-creator](https://clawhub.ai/skills/persona-content-creator)
+Create, organize, and distribute content across Workspace.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +file-announce`
 
+## Instructions
+- Draft content in Google Docs with `gws docs +write`.
+- Organize content assets in Drive folders — use `gws drive files list` to browse.
+- Share finished content by announcing in Chat with `gws workflow +file-announce`.
+- Send content review requests via email with `gws gmail +send`.
+- Upload media assets to Drive with `gws drive +upload`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/persona-content-creator
-```
+## Tips
+- Use `gws docs +write` for quick content updates — it handles the Docs API formatting.
+- Keep a 'Content Calendar' in a shared Sheet for tracking publication schedules.
+- Use `--format yaml` for human-readable output when debugging API responses.
+

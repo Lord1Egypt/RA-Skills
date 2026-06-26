@@ -1,35 +1,54 @@
----
-name: "Ai Image Generator"
-description: "基于文本描述或参考图生成高质量图片，支持局部编辑、风格迁移和批量变体生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-image-generator"
-sourceUrl: "https://clawhub.ai/skills/ai-image-generator"
----
+# AI 图片生成助手
 
-# Ai Image Generator
+**定价**：¥149-799/月
 
-> 基于文本描述或参考图生成高质量图片，支持局部编辑、风格迁移和批量变体生成。
+## 功能
+- 文生图：文字描述生成高质量图片
+- 图生图：基于参考图生成变体
+- 图片编辑：局部修改、风格迁移
+- 批量生成：一次生成多个变体
+- 模板库：预设风格模板
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-image-generator`
-- **Source URL:** [https://clawhub.ai/skills/ai-image-generator](https://clawhub.ai/skills/ai-image-generator)
+## 目标客户
+- 设计师/插画师
+- 内容创作者/自媒体
+- 电商运营/营销人员
+- 游戏/动漫从业者
 
-## Overview
+## ROI 分析
+| 场景 | 节省成本 | 价值 |
+|------|----------|------|
+| 商业图设计 | ¥500/张 → ¥10/张 | 节省 98% |
+| 社交媒体配图 | 2小时/天 → 10分钟 | 效率 +1100% |
+| 电商产品图 | ¥200/张 → ¥5/张 | 节省 97% |
+| 游戏素材 | ¥1000/套 → ¥50/套 | 节省 95% |
 
+**平均 ROI：50-200 倍**
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 快速开始
 ```bash
-hermes skills install clawhub/ai-image-generator
+# 安装依赖
+pip install openai pillow
+
+# 生成图片
+python generate.py "一只可爱的猫咪在咖啡店里喝咖啡，动漫风格"
 ```
+
+## 配置
+```json
+{
+  "api_key": "your-api-key",
+  "model": "dall-e-3",
+  "default_size": "1024x1024",
+  "default_quality": "standard"
+}
+```
+
+## 使用示例
+1. **文生图**：输入描述 → 生成图片
+2. **图生图**：上传参考图 → 生成变体
+3. **风格迁移**：选择风格 → 应用到图片
+4. **批量生成**：输入多个描述 → 批量生成
+
+---
+创建时间：2026-03-13

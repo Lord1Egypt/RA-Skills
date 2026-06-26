@@ -1,0 +1,14 @@
+[
+  {
+    "input": "帮我看看这个 README 怎么优化：\n# My Project\nThis is a project.\n## Install\nnpm install\n## License\nMIT",
+    "expected_output_includes": ["评分报告", "评分详情", "改进建议", "总分", "使用指南", "优化示例", "贡献与社区"]
+  },
+  {
+    "input": "请给这段 README 打个分并给出具体改进建议:\n# kubecm\nKubeConfig Manager\n\n## Install\nbrew install kubecm\n\n## Usage\nkubecm add -f kubeconfig",
+    "expected_output_includes": ["评分报告", "kubecm", "改进建议", "总分", "优点", "贡献与社区"]
+  },
+  {
+    "input": "帮我审查一下这段 README：\n# Data Parser\nThis tool parses data from CSV to JSON.\n\n### Usage\n```python\nimport parser\nparser.run('data.csv')\n```",
+    "expected_output_includes": ["项目简介", "快速开始", "贡献与社区", "结构与规范", "改进建议", "总分"]
+  }
+]

@@ -1,0 +1,16 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_automatic_query_define",
+		"description": "Query specified automation configuration.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Automation ID."
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "eval_name": "reverse-spec-module-level",
+  "configuration": "without_skill",
+  "expectations": [
+    {"text": "Spec accurately describes the behavior of both core functions: GetSupervisor and Generate", "passed": true, "evidence": "Both functions are described in detail"},
+    {"text": "Spec covers the version-branching logic", "passed": true, "evidence": "Version branches and corresponding tool sets are listed in a table"},
+    {"text": "Spec flags suspicious behavior or noteworthy points using [NOTE] tags", "passed": false, "evidence": "No suspicious behavior flagged, no [NOTE] tags used — all content is purely descriptive"},
+    {"text": "Spec distinguishes between what the code actually does and what it might have intended to do", "passed": false, "evidence": "Only describes what the code does, without distinguishing actual behavior from possible intent"},
+    {"text": "Spec includes dependency relationships (what it depends on / who depends on it)", "passed": true, "evidence": "Dependency diagram lists all dependencies in detail"},
+    {"text": "Spec does not write any files to the project source directory", "passed": true, "evidence": "Output saved only to the workspace outputs directory"},
+    {"text": "Spec describes the configuration priority chain", "passed": true, "evidence": "Configuration override chain is explicitly described"}
+  ]
+}

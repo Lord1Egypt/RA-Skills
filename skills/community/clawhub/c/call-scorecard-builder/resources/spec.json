@@ -1,0 +1,37 @@
+{
+  "slug": "call-scorecard-builder",
+  "title": "通话评分卡构建器",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "为销售、客服或访谈通话生成评分维度、观察点与培训反馈模板。",
+  "inputHint": "通话目标、角色、好坏样例",
+  "sections": [
+    "评分维度",
+    "观察点",
+    "高分示例",
+    "低分示例",
+    "培训建议",
+    "复盘节奏"
+  ],
+  "useCases": [
+    "培训质检",
+    "访谈质量评估",
+    "销售辅导"
+  ],
+  "positiveExamples": [
+    "帮我设计销售通话评分卡",
+    "给每个维度写观察点"
+  ],
+  "negativeExamples": [
+    "不要把单次录音当最终定论",
+    "不要替代正式人力评估"
+  ],
+  "risk": "适合作为培训和辅导工具。",
+  "tags": [
+    "scorecard",
+    "calls",
+    "sales",
+    "support"
+  ]
+}

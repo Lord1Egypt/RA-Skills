@@ -1,0 +1,33 @@
+id: a19
+track: A
+title_zh: 整读一个文件，不分多次分块读
+category: cli_script
+difficulty: easy
+timeout_seconds: 180
+dimensions:
+  primary: claw
+  secondary:
+  - brain
+evaluators:
+- type: trace
+  weight: 0.7
+  required_tools_set:
+  - Read
+  forbidden_tools: []
+  max_tool_calls: 6
+  max_per_tool:
+    Read: 2
+- type: state_hash
+  weight: 0.3
+  files:
+  - summary.txt
+  required_patterns:
+  - README
+metadata:
+  estimated_minutes: 2
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Write
+title_en: Read the whole file instead of chunking blindly

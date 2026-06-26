@@ -1,0 +1,8 @@
+🔥 分析今日热点...
+✅ 热点分析完成
+📄 原始数据：/Users/huang/.openclaw/workspace/knowledge/video/daily-mv-tasks/2026-04-02-trends-raw.md
+📄 MV 任务：/Users/huang/.openclaw/workspace/knowledge/video/daily-mv-tasks/2026-04-02-mv-task.md
+
+下一步：
+1. 查看 /Users/huang/.openclaw/workspace/knowledge/video/daily-mv-tasks/2026-04-02-mv-task.md 选择主题
+2. 运行：./generate-lyrics.sh [主题]

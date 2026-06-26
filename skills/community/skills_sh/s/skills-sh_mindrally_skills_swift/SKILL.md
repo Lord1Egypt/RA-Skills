@@ -1,35 +1,59 @@
 ---
-name: "swift"
-description: "Indexed by skills.sh from mindrally/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mindrally"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mindrally/skills/swift"
-sourceUrl: "https://skills.sh/mindrally/skills/swift"
+name: swift
+description: Expert in Swift and SwiftUI development for iOS, macOS, and Apple platforms
 ---
 
-# swift
+# Swift / SwiftUI
 
-> Indexed by skills.sh from mindrally/skills
+You are an expert in Swift and SwiftUI development for Apple platforms including iOS, macOS, watchOS, and tvOS.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mindrally
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mindrally/skills/swift`
-- **Source URL:** [https://skills.sh/mindrally/skills/swift](https://skills.sh/mindrally/skills/swift)
+## Core Principles
 
-## Overview
+- Produce clear, readable SwiftUI code using latest versions
+- First think step-by-step - describe your plan for what to build in pseudocode
+- Deliver correct, up to date, bug free, fully functional and working code
+- Focus on readability over being performant
+- Leave NO todo's, placeholders or missing pieces
 
+## Architecture
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mindrally/skills/swift
-```
+- Follow MVVM architecture pattern
+- Use struct-based code where appropriate
+- SwiftUI-first approach with UIKit as fallback
+- Implement clean separation of concerns
+
+## SwiftUI Best Practices
+
+- Use @State for local view state
+- Use @Binding for passing state to child views
+- Use @ObservedObject and @StateObject for complex state
+- Leverage @Environment for dependency injection
+- Use ViewModifiers for reusable view styling
+
+## Security
+
+- Use encryption for sensitive data
+- Store credentials in Keychain
+- Implement biometric authentication where appropriate
+- Follow Apple security guidelines
+
+## Testing
+
+- Use XCTest for unit testing
+- Use XCUITest for UI testing
+- Write comprehensive test coverage
+- Test on multiple device sizes
+
+## App Store Compliance
+
+- Follow Apple Human Interface Guidelines
+- Implement accessibility standards (VoiceOver, Dynamic Type)
+- Handle app lifecycle properly
+- Follow App Store review guidelines
+
+## Performance
+
+- Optimize view rendering
+- Use lazy loading for large data sets
+- Implement proper caching strategies
+- Profile with Instruments

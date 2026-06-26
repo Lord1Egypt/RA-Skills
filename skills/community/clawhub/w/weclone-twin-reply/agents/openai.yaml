@@ -1,0 +1,4 @@
+interface:
+  display_name: "weclone-twin-reply"
+  short_description: "Draft a review-gated reply from an existing digital twin"
+  default_prompt: "Use $weclone-twin-reply to assemble a review-gated digital twin reply from an existing persona pack and chat context."

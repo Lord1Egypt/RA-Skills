@@ -1,0 +1,33 @@
+{
+  "system": {
+    "cpu": {
+      "warning": 50,
+      "critical": 80,
+      "description": "CPU 使用率阈值（%）"
+    },
+    "memory": {
+      "warning": 70,
+      "critical": 90,
+      "description": "内存使用率阈值（%）"
+    },
+    "disk": {
+      "warning": 70,
+      "critical": 90,
+      "description": "磁盘使用率阈值（%）"
+    }
+  },
+  "cronJobs": {
+    "warningThreshold": 2,
+    "criticalThreshold": 5,
+    "successRateWarning": 80,
+    "successRateCritical": 60,
+    "description": "定时任务失败阈值和成功率阈值"
+  },
+  "notifications": {
+    "channel": "discord",
+    "to": "channel:1478698808631361647",
+    "onWarning": true,
+    "onCritical": true,
+    "description": "通知配置"
+  }
+}

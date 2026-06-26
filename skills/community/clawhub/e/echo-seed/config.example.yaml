@@ -1,0 +1,22 @@
+# Echo Seed 配置文件
+
+# 数据库配置
+database:
+  path: "./data/capsules.db"
+
+# Web 服务配置
+web:
+  host: "0.0.0.0"
+  port: 5000
+  debug: true
+
+# Notion 同步（可选）
+notion:
+  enabled: false
+  api_key: ""
+  parent_page_id: ""
+
+# Google Calendar（可选）
+google_calendar:
+  enabled: false
+  credentials_file: "credentials.json"

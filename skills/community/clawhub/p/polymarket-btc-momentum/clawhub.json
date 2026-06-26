@@ -1,0 +1,12 @@
+{
+  "emoji": "⚡",
+  "requires": {
+    "pip": ["simmer-sdk", "requests"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "cron": "*/5 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "btc_momentum.py"
+  }
+}

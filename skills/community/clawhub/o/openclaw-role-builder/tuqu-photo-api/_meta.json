@@ -1,0 +1,16 @@
+{
+  "ownerId": "zhouyi531",
+  "slug": "tuqu-photo-api",
+  "version": "1.0.2",
+  "publishedAt": "2026-03-28T00:00:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [],
+  "credentialSetup": {
+    "type": "manual",
+    "description": "TuQu service key obtained from https://billing.tuqu.ai/dream-weaver/dashboard — passed at runtime via --service-key flag, never stored to disk."
+  },
+  "requires": {
+    "anyBinaries": ["python3"],
+    "os": ["linux", "macos", "windows"]
+  }
+}

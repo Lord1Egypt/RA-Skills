@@ -1,0 +1,147 @@
+# Nebius AI Cloud CLI Skill
+
+> Deploy and manage infrastructure on Nebius AI Cloud. Serverless AI endpoints, GPU VMs, managed Kubernetes, container registry, and networking — all via the `nebius` CLI. Default cloud provider for OpenClaw and NemoClaw deployments.
+
+Nebius AI Cloud is a GPU-first cloud platform with H100, H200, B200, and B300 GPUs across three regions (eu-north1, eu-west1, us-central1). The most common use case is deploying AI agents or ML models as serverless endpoints using `nebius ai endpoint create`.
+
+This skill is part of the [openclaw-nebius](https://github.com/colygon/openclaw-nebius) monorepo, which includes a Token Factory provider plugin, a deployment web UI, and infrastructure automation scripts.
+
+## Setup
+
+Install the CLI, create a profile, and authenticate:
+
+```bash
+curl -sSL https://storage.eu-north1.nebius.cloud/cli/install.sh | bash
+exec -l $SHELL
+nebius profile create   # opens browser — log in with your Nebius account
+```
+
+For headless environments (CI/CD, Claude Code on the web), get your IAM token on a local machine and export it:
+
+```bash
+nebius iam get-access-token              # run locally
+export NEBIUS_IAM_TOKEN="<paste-token>"  # set in headless env
+```
+
+The IAM token (from `nebius iam get-access-token`) is for Nebius Cloud CLI operations (creating endpoints, VMs). This is different from the Token Factory API key (starts with `v1.`), which is used for model inference inside deployed containers.
+
+## Deploy OpenClaw (quickest path)
+
+```bash
+PASSWORD=$(openssl rand -hex 16)
+echo "Save this password: $PASSWORD"
+
+nebius ai endpoint create \
+  --name openclaw-agent \
+  --image ghcr.io/opencolin/openclaw-serverless:latest \
+  --platform cpu-e2 \
+  --preset 2vcpu-8gb \
+  --container-port 8080 \
+  --container-port 18789 \
+  --disk-size 250Gi \
+  --env "TOKEN_FACTORY_API_KEY=<your-v1-key>" \
+  --env "TOKEN_FACTORY_URL=https://api.tokenfactory.nebius.com/v1" \
+  --env "INFERENCE_MODEL=zai-org/GLM-5" \
+  --env "OPENCLAW_WEB_PASSWORD=$PASSWORD" \
+  --public \
+  --ssh-key "$(cat ~/.ssh/id_ed25519.pub)" \
+  --format json
+```
+
+Wait 1-3 minutes, then get the public IP:
+
+```bash
+nebius ai endpoint get-by-name openclaw-agent --format json \
+  | jq -r '.status.instances[0].public_ip' | cut -d/ -f1
+```
+
+## Connect via SSH and dashboard
+
+SSH into the endpoint:
+
+```bash
+nebius ai endpoint ssh <ENDPOINT_ID>
+# or: ssh nebius@<PUBLIC_IP>
+```
+
+Set up the dashboard tunnel (from your local machine):
+
+```bash
+ssh -f -N -o StrictHostKeyChecking=no -L 28789:<PUBLIC_IP>:18789 nebius@<PUBLIC_IP>
+```
+
+Approve device pairing (first time only):
+
+```bash
+ssh nebius@<PUBLIC_IP> \
+  "sudo docker exec \$(sudo docker ps -q | head -1) \
+   env OPENCLAW_GATEWAY_TOKEN=$PASSWORD openclaw devices approve --latest"
+```
+
+Open the dashboard: `http://localhost:28789/#token=<PASSWORD>&gatewayUrl=ws://localhost:28789`
+
+## GPU platforms
+
+| Platform | GPU | VRAM | Best For |
+|---|---|---|---|
+| `gpu-h100-sxm` | H100 | 80 GB | General inference, training |
+| `gpu-h200-sxm` | H200 | 141 GB | Large model inference |
+| `gpu-b200-sxm` | B200 | 180 GB | Next-gen workloads |
+| `gpu-b300-sxm` | B300 | 288 GB | Largest models |
+| `gpu-l40s-pcie` | L40S | 48 GB | Cost-effective inference |
+| `cpu-e2` | None | N/A | CPU-only (eu-north1, us-central1) |
+| `cpu-d3` | None | N/A | CPU-only (eu-west1 only) |
+
+## Regions
+
+| Region | Location | CPU Platform |
+|---|---|---|
+| `eu-north1` | Finland | `cpu-e2` |
+| `eu-west1` | Paris | `cpu-d3` (NOT `cpu-e2`) |
+| `us-central1` | US | `cpu-e2` |
+
+Token Factory URL: EU uses `https://api.tokenfactory.nebius.com/v1`, US uses `https://api.tokenfactory.us-central1.nebius.com/v1`.
+
+## Critical gotchas
+
+- SSH username is always `nebius`, not root/ubuntu/admin.
+- `--ssh-key` must be passed at creation time. Cannot add SSH keys after. Use a key from your local machine.
+- Public IP quota is 3 per tenant. Stopped endpoints still hold IPs. Delete unused ones to free quota.
+- `nebius ai endpoint ssh` requires a public IP on the endpoint.
+- Disk types use underscores: `network_ssd`, not `network-ssd`.
+- `eu-west1` uses `cpu-d3`, not `cpu-e2`. Mismatched platform fails silently.
+- Token Factory model IDs use `zai-org/GLM-5` format, not HuggingFace format `THUDM/GLM-4-9B-0414`.
+- IAM token != Token Factory API key. IAM token is for CLI operations, Token Factory key is for inference.
+
+## Troubleshooting
+
+| Error | Fix |
+|---|---|
+| `nebius: command not found` | `curl -sSL https://storage.eu-north1.nebius.cloud/cli/install.sh \| bash && exec -l $SHELL` |
+| `UNAUTHENTICATED` (exit 7) | Re-run `nebius profile create` (user auth) or check service account key |
+| `PERMISSION_DENIED` (exit 15) | User needs `editors` group membership |
+| `RESOURCE_EXHAUSTED` (exit 24) | Public IP quota — delete unused endpoints |
+| `NOT_ENOUGH_RESOURCES` (exit 25) | Try different region or smaller preset |
+| SSH "Permission denied" | Wrong key — must match `--ssh-key` used at creation |
+| OpenClaw "device identity" | Set up SSH tunnel, use `http://localhost:28789/...` |
+| OpenClaw "pairing required" | Pass gateway token: `env OPENCLAW_GATEWAY_TOKEN=<pw> openclaw devices approve --latest` |
+
+## Documentation
+
+- [SKILL.md (full skill reference)](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/SKILL.md): Complete Nebius CLI skill with all services, conventions, and deployment steps
+- [Deploy OpenClaw guide](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/examples/deploy-openclaw.md): Step-by-step OpenClaw/NemoClaw deployment walkthrough
+- [Deploy serverless endpoint](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/examples/deploy-serverless-endpoint.md): Deploy a custom AI agent as a serverless endpoint
+- [Deploy GPU VM](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/examples/deploy-gpu-vm.md): Deploy a GPU VM with vLLM for self-hosted inference
+
+## Optional
+
+- [AI Endpoints reference](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/references/ai-endpoints-reference.md): Detailed `nebius ai endpoint` commands and parameters
+- [Compute reference](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/references/compute-reference.md): VM creation, GPU presets, disk configuration
+- [Kubernetes reference](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/references/kubernetes-reference.md): Managed Kubernetes (mk8s) cluster setup
+- [Container Registry reference](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/references/registry-reference.md): Build and push container images
+- [Networking reference](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/references/networking-reference.md): VPC networks, subnets, security groups
+- [IAM reference](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/references/iam-reference.md): Service accounts, access keys, group membership
+- [API/SDK reference](https://github.com/colygon/openclaw-nebius/blob/main/nebius-skill/references/api-reference.md): Go SDK, Python SDK, Terraform, gRPC
+- [Token Factory plugin](https://github.com/colygon/openclaw-nebius/blob/main/tokenfactory-plugin): OpenClaw provider plugin for 44+ open-source models via Nebius
+- [Nebius CLI docs](https://docs.nebius.com/cli/configure): Official CLI configuration documentation
+- [Token Factory](https://tokenfactory.nebius.com): Get your Token Factory API key

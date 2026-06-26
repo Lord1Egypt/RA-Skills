@@ -1,0 +1,24 @@
+{
+  "name": "ESR_openclaw-checklist-v3.2",
+  "version": "3.2.1",
+  "description": "ESR OpenClaw主机安全审计工具v3.2.1 - 支持定时任务自动发送报告到钉钉，标准化输出格式",
+  "author": "ESR信息安全部",
+  "license": "ESR内部使用",
+  "release_date": "2026-03-16",
+  "features": [
+    "8项安全检查",
+    "标准化输出格式",
+    "每日定时任务",
+    "钉钉自动报告",
+    "信息安全部门提示"
+  ],
+  "config": {
+    "dingtalk_group_id": "cid8NuHF/3BALK8ub6oKUf0Dw==",
+    "schedule_time": "0 17 * * *",
+    "timezone": "Asia/Shanghai",
+    "scripts": {
+      "manual": "scripts/openclaw_checklist.py",
+      "scheduled": "scripts/openclaw_checklist_scheduled.py"
+    }
+  }
+}

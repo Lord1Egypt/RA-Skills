@@ -1,0 +1,27 @@
+{
+  "_meta": { "version": "1.0", "description": "S2 Material Tensor Library for L3 Semantic Layer" },
+  "critical_hazards": {
+    "clear_glass": { "visual_transparency": 0.98, "ir_absorption": 0.05, "mmwave_rcs": 20.0, "instruction": "CRITICAL: Disable visual depth. Navigate via mmWave." },
+    "mirror_surface": { "specular_reflection": 1.0, "slam_hallucination_risk": "HIGH", "instruction": "Ignore visual/LiDAR feature points to prevent map corruption." },
+    "high_pile_carpet": { "friction_coefficient": 0.85, "wheel_sinkage_mm": 20, "instruction": "Increase torque by 30%. Disable sweeping side-brushes." },
+    "polished_marble": { "friction_coefficient_dry": 0.4, "specular_glare_risk": "HIGH", "instruction": "Limit velocity to 1.0 m/s. Enable anti-slip traction." },
+    "step_drop": { "z_axis_delta_mm": -150, "traversability": 0.0, "instruction": "CRITICAL: Cliff. Stop and execute 180-degree retreat." },
+    "cable_clutter": { "entanglement_risk": "CRITICAL", "radar_cross_section": "LOW", "instruction": "Enforce 0.5m keep-out zone." },
+    "ir_absorbing_surface": { "ir_reflectance": 0.05, "lidar_return_strength": "WEAK", "instruction": "Rely on physical bump and ultrasonic arrays." },
+    "metallic_grating": { "mmwave_multipath_interference": "HIGH", "gap_width_mm": 15, "instruction": "Filter mmWave noise. Lock caster wheels." },
+    "yielding_obstacle": { "physical_resistance": "SOFT", "visual_occlusion": "PARTIAL", "instruction": "Treat visual boundaries of beds/sofas as rigid walls." },
+    "liquid_spill": { "short_circuit_risk": "CRITICAL", "friction_coefficient": 0.05, "instruction": "CRITICAL HAZARD. Re-route instantly." }
+  },
+  "background_elements": {
+    "ceiling": { "z_height_m": 2.8, "physical_obstacle": false, "instruction": "Ignore for path planning. Use for V-SLAM only." },
+    "chandelier": { "glare_source": true, "max_lux_projection": 5000, "instruction": "If overhead lux > threshold, reduce camera exposure." },
+    "soft_curtain": { "wind_deformation_risk": "HIGH", "rigidity": 0.1, "instruction": "Soft boundary. Prioritize map boundaries." },
+    "2d_wall_art": { "depth_illusion_risk": "MODERATE", "physical_obstacle": false, "instruction": "Cross-validate visual depth with LiDAR." },
+    "hanging_fabric": { "clearance_height_m": 1.2, "sensor_discrepancy_risk": "HIGH", "instruction": "Evaluate robot height vs clearance height." },
+    "high_window": { "dynamic_illumination_source": true, "instruction": "Monitor for dynamic sunlight injection." },
+    "hvac_vent": { "airflow_source": true, "physical_obstacle": false, "instruction": "Used purely for spatial temperature modeling." },
+    "ceiling_fan": { "shadow_flicker_hz": 50, "false_dynamic_obstacle_risk": "MODERATE", "instruction": "Apply temporal smoothing to ignore shadow flicker." },
+    "plant_canopy": { "point_cloud_noise": "HIGH", "z_height_min_m": 1.0, "instruction": "Filter out point clouds above z=1.0m to save compute." },
+    "acoustic_panel": { "sonar_absorption": 0.9, "lidar_reflectance": "NORMAL", "instruction": "Disable sonar-based near-field collision avoidance." }
+  }
+}

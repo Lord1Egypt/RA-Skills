@@ -1,0 +1,73 @@
+{
+  "created_at": null,
+  "last_updated": null,
+
+  "fertility_assessment": {
+    "user_id": null,
+    "age": null,
+    "infertility_type": null,
+    "partner_age": null,
+    "trying_to_conceive_months": null,
+
+    "semen_analysis": {
+      "date": null,
+      "abstinence_period": null,
+      "volume": {},
+      "concentration": {},
+      "total_count": {},
+      "motility": {},
+      "morphology": {},
+      "ph": {},
+      "liquefaction": {},
+      "diagnosis": null
+    },
+
+    "hormones": {
+      "date": null,
+      "testosterone": {},
+      "lh": {},
+      "fsh": {},
+      "prl": {},
+      "e2": {}
+    },
+
+    "varicocele": {
+      "present": null,
+      "side": null,
+      "grade": null,
+      "confirmed_by": null,
+      "surgery": null,
+      "surgery_date": null,
+      "notes": null
+    },
+
+    "infections": {
+      "chlamydia": null,
+      "gonorrhea": null,
+      "mycoplasma": null,
+      "ureaplasma": null,
+      "date": null,
+      "treated": null
+    },
+
+    "genetic_testing": {
+      "karyotype": null,
+      "y_chromosome_microdeletion": null,
+      "cftr_mutation": null
+    },
+
+    "recommendations": []
+  },
+
+  "statistics": {
+    "total_semen_analyses": 0,
+    "last_analysis_date": null,
+    "diagnosis": null,
+    "tracking_duration_months": 0
+  },
+
+  "settings": {
+    "reminder_frequency": "quarterly",
+    "follow_up_reminder": true
+  }
+}

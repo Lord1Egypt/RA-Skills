@@ -1,0 +1,24 @@
+{
+  "templates": [
+    {"id": "agentic-risk-intake", "stage": "intake", "type": "intake"},
+    {"id": "tool-permission-inventory", "stage": "permissions", "type": "inventory"},
+    {"id": "credential-secret-handling-checklist", "stage": "credentials", "type": "checklist"},
+    {"id": "data-exposure-review", "stage": "data", "type": "review"},
+    {"id": "prompt-injection-test-plan", "stage": "testing", "type": "plan"},
+    {"id": "retrieval-source-trust-review", "stage": "retrieval", "type": "review"},
+    {"id": "approval-gate-audit", "stage": "controls", "type": "audit"},
+    {"id": "external-action-review", "stage": "actions", "type": "review"},
+    {"id": "logging-auditability-review", "stage": "observability", "type": "review"},
+    {"id": "model-provider-configuration-review", "stage": "configuration", "type": "review"},
+    {"id": "data-retention-review", "stage": "data", "type": "review"},
+    {"id": "dependency-supply-chain-review", "stage": "dependencies", "type": "review"},
+    {"id": "sandbox-least-privilege-checklist", "stage": "permissions", "type": "checklist"},
+    {"id": "production-readiness-security-checklist", "stage": "launch", "type": "checklist"},
+    {"id": "launch-blocker-checklist", "stage": "launch", "type": "checklist"},
+    {"id": "rollback-plan", "stage": "launch", "type": "plan"},
+    {"id": "incident-response-plan", "stage": "incident", "type": "plan"},
+    {"id": "human-escalation-procedure", "stage": "incident", "type": "procedure"},
+    {"id": "red-team-test-report", "stage": "testing", "type": "report"},
+    {"id": "security-signoff-memo", "stage": "signoff", "type": "memo"}
+  ]
+}

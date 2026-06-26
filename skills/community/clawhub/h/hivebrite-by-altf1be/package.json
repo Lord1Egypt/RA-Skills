@@ -1,0 +1,39 @@
+{
+  "name": "openclaw-skill-hivebrite-by-altf1be",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for Hivebrite — full admin API CLI covering users, companies, events, groups, donations, memberships, emailings, mentoring, news, projects, media center, forums, and more",
+  "type": "module",
+  "bin": {
+    "hivebrite": "./scripts/hivebrite.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/hivebrite.mjs",
+    "help": "node scripts/hivebrite.mjs --help"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "hivebrite",
+    "community",
+    "members",
+    "events",
+    "groups",
+    "donations",
+    "mentoring",
+    "alumni"
+  ],
+  "author": "Abdelkrim BOUJRAF <abdelkrim@alt-f1.be> (https://www.alt-f1.be)",
+  "license": "MIT",
+  "homepage": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-hivebrite-by-altf1be",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-hivebrite-by-altf1be.git"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "saas",
+    "keywords": ["saas", "b2b", "subscription", "crm", "admin", "console"],
+    "pattern": "Work-first dashboard with concise onboarding and persistent primary action",
+    "style": "data-dense",
+    "colorMood": "trustworthy neutrals with a clear action accent",
+    "typographyMood": "professional, compact, readable",
+    "motion": "quiet transitions for filters, drawers, and state changes",
+    "chart": "stat cards plus line/bar charts for trends and comparisons",
+    "risks": ["marketing hero replacing the workspace", "low-density cards hiding operational detail"],
+    "antiPatterns": ["decorative gradients as primary structure", "unlabeled icon-only tools"]
+  },
+  {
+    "id": "fintech",
+    "keywords": ["fintech", "bank", "finance", "crypto", "wallet", "invoice", "billing"],
+    "pattern": "Trust-first dashboard with balances, risk states, audit trail, and clear next actions",
+    "style": "minimal",
+    "colorMood": "stable blue/green neutrals with strict danger states",
+    "typographyMood": "precise, numeric, high contrast",
+    "motion": "subtle confirmation and risk feedback only",
+    "chart": "time-series, comparison bars, and tabular details with export paths",
+    "risks": ["playful visual language reducing trust", "color-only profit/loss communication"],
+    "antiPatterns": ["neon cyber styling for serious finance", "ambiguous destructive actions"]
+  },
+  {
+    "id": "healthcare",
+    "keywords": ["health", "medical", "clinic", "dental", "pharmacy", "patient", "therapy"],
+    "pattern": "Guided task flow with calm hierarchy, strong labels, and clear recovery paths",
+    "style": "minimal",
+    "colorMood": "calm accessible tones with clear warning and error roles",
+    "typographyMood": "human, readable, low fatigue",
+    "motion": "reassuring transitions, no surprise movement",
+    "chart": "progress trends and summaries with plain-language explanations",
+    "risks": ["low contrast calming palettes", "hidden labels in critical forms"],
+    "antiPatterns": ["decorative medical imagery over task clarity", "tiny touch targets"]
+  },
+  {
+    "id": "ecommerce",
+    "keywords": ["shop", "store", "ecommerce", "marketplace", "cart", "checkout", "product"],
+    "pattern": "Product-led browsing with strong media, filters, comparison, and checkout confidence",
+    "style": "editorial",
+    "colorMood": "brand-forward accents with neutral product surfaces",
+    "typographyMood": "clear commerce hierarchy with readable prices",
+    "motion": "fast hover/tap feedback and cart confirmation",
+    "chart": "only for seller dashboards or comparison analytics",
+    "risks": ["visual effects competing with product inspection", "unclear price/availability states"],
+    "antiPatterns": ["cropped product media", "hidden shipping or error feedback"]
+  },
+  {
+    "id": "creative",
+    "keywords": ["portfolio", "agency", "studio", "creator", "photography", "editorial"],
+    "pattern": "Portfolio-led narrative with memorable first viewport and selective case-study depth",
+    "style": "editorial",
+    "colorMood": "high-contrast neutrals with one expressive accent",
+    "typographyMood": "distinctive display with restrained body",
+    "motion": "purposeful reveals tied to content rhythm",
+    "chart": "rare; use visual timelines or case metrics when needed",
+    "risks": ["style overpowering work samples", "scroll theatrics blocking access"],
+    "antiPatterns": ["generic split hero", "decorative mockups without real work"]
+  },
+  {
+    "id": "wellness",
+    "keywords": ["spa", "beauty", "wellness", "meditation", "fitness", "booking", "lifestyle"],
+    "pattern": "Emotion-led service page with service clarity, trust proof, and low-friction booking",
+    "style": "soft",
+    "colorMood": "warm natural tones with a premium accent",
+    "typographyMood": "calm, elegant, approachable",
+    "motion": "gentle, short transitions with reduced-motion fallback",
+    "chart": "habit streaks or progress charts only when product-led",
+    "risks": ["pastel contrast failures", "luxury styling hiding booking details"],
+    "antiPatterns": ["overly bright wellness gradients", "placeholder stock atmosphere"]
+  },
+  {
+    "id": "education",
+    "keywords": ["education", "learning", "course", "student", "school", "flashcard"],
+    "pattern": "Learning path with progress, next task, feedback loops, and approachable empty states",
+    "style": "bento",
+    "colorMood": "encouraging accents with quiet surfaces",
+    "typographyMood": "friendly, readable, structured",
+    "motion": "reward moments and progress feedback, never distracting from reading",
+    "chart": "progress, mastery, and completion summaries",
+    "risks": ["gamification clutter", "unclear next lesson state"],
+    "antiPatterns": ["dense dashboards for beginners", "reward animation blocking tasks"]
+  },
+  {
+    "id": "gaming",
+    "keywords": ["game", "gaming", "esports", "arcade", "quest", "leaderboard"],
+    "pattern": "Immersive status-first interface with strong feedback and readable controls",
+    "style": "immersive",
+    "colorMood": "high-energy palette balanced by readable surfaces",
+    "typographyMood": "expressive headings with legible UI text",
+    "motion": "high feedback, strict performance budget",
+    "chart": "leaderboards, comparisons, progression, and match history",
+    "risks": ["motion overload", "stylized text reducing readability"],
+    "antiPatterns": ["all-caps tiny labels", "animations that delay input"]
+  },
+  {
+    "id": "data-dashboard",
+    "keywords": ["dashboard", "analytics", "metrics", "kpi", "monitoring", "reporting"],
+    "pattern": "Scan-first analytical workspace with filters, summaries, charts, and drill-down paths",
+    "style": "data-dense",
+    "colorMood": "semantic chart palette with restrained UI chrome",
+    "typographyMood": "compact, tabular, legible",
+    "motion": "state transitions only; no decorative chart animation by default",
+    "chart": "match chart to question: trend, compare, composition, distribution, funnel, timeline",
+    "risks": ["chart decoration hiding insight", "too many equal-weight cards"],
+    "antiPatterns": ["pie charts for many categories", "color-only series distinction"]
+  }
+]

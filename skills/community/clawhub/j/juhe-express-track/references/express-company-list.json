@@ -1,0 +1,3963 @@
+{
+    "resultcode": "200",
+    "reason": "查询支持的快递公司成功",
+    "result": [
+        {
+            "com": "顺丰",
+            "no": "sf"
+        },
+        {
+            "com": "申通",
+            "no": "sto"
+        },
+        {
+            "com": "圆通",
+            "no": "yt"
+        },
+        {
+            "com": "韵达",
+            "no": "yd"
+        },
+        {
+            "com": "天天",
+            "no": "tt"
+        },
+        {
+            "com": "EMS",
+            "no": "ems"
+        },
+        {
+            "com": "中通",
+            "no": "zto"
+        },
+        {
+            "com": "汇通（百世快递）",
+            "no": "ht"
+        },
+        {
+            "com": "全峰",
+            "no": "qf"
+        },
+        {
+            "com": "德邦",
+            "no": "db"
+        },
+        {
+            "com": "国通",
+            "no": "gt"
+        },
+        {
+            "com": "如风达",
+            "no": "rfd"
+        },
+        {
+            "com": "京东快递",
+            "no": "jd"
+        },
+        {
+            "com": "宅急送",
+            "no": "zjs"
+        },
+        {
+            "com": "EMS国际",
+            "no": "emsg"
+        },
+        {
+            "com": "Fedex国际",
+            "no": "fedex"
+        },
+        {
+            "com": "邮政国内（挂号信）",
+            "no": "yzgn"
+        },
+        {
+            "com": "UPS国际快递",
+            "no": "ups"
+        },
+        {
+            "com": "中铁快运",
+            "no": "ztky"
+        },
+        {
+            "com": "AAE全球专递",
+            "no": "aae"
+        },
+        {
+            "com": "DHL",
+            "no": "dhl"
+        },
+        {
+            "com": "DPEX国际快递",
+            "no": "dpex"
+        },
+        {
+            "com": "百世快运",
+            "no": "baishiwuliu"
+        },
+        {
+            "com": "马来西亚（大包EMS）",
+            "no": "malaysiaems"
+        },
+        {
+            "com": "中通快运",
+            "no": "ztoky"
+        },
+        {
+            "com": "安能物流",
+            "no": "anneng"
+        },
+        {
+            "com": "壹米滴答",
+            "no": "ymdd"
+        },
+        {
+            "com": "丹鸟物流",
+            "no": "danniao"
+        },
+        {
+            "com": "顺心捷达",
+            "no": "sxjdfreight"
+        },
+        {
+            "com": "跨越快递",
+            "no": "kuayue"
+        },
+        {
+            "com": "九点半快递",
+            "no": "0930am"
+        },
+        {
+            "com": "千里速递",
+            "no": "1000ex"
+        },
+        {
+            "com": "百米快运",
+            "no": "100mexpress"
+        },
+        {
+            "com": "139快递",
+            "no": "139express"
+        },
+        {
+            "com": "168 美中快递",
+            "no": "168tochina"
+        },
+        {
+            "com": "一起飞啊国际速运",
+            "no": "17feia"
+        },
+        {
+            "com": "2GO",
+            "no": "2go"
+        },
+        {
+            "com": "纬狮物联网",
+            "no": "360lion"
+        },
+        {
+            "com": "365国际快递",
+            "no": "365group"
+        },
+        {
+            "com": "七逸物流",
+            "no": "7eexpress"
+        },
+        {
+            "com": "BEL北俄国际",
+            "no": "8256ru"
+        },
+        {
+            "com": "永利八达通",
+            "no": "8dt"
+        },
+        {
+            "com": "八方安运",
+            "no": "8fay"
+        },
+        {
+            "com": "美速通",
+            "no": "99mst"
+        },
+        {
+            "com": "A2U速递",
+            "no": "a2u"
+        },
+        {
+            "com": "ABC全球速递",
+            "no": "abcglobalex"
+        },
+        {
+            "com": "领跑者快递",
+            "no": "abcus"
+        },
+        {
+            "com": "ABF",
+            "no": "abf"
+        },
+        {
+            "com": "ABX Express",
+            "no": "abxexpress"
+        },
+        {
+            "com": "ACS雅仕快递",
+            "no": "acs"
+        },
+        {
+            "com": "安达速递",
+            "no": "adapost"
+        },
+        {
+            "com": "安达易国际速递",
+            "no": "adiexpress"
+        },
+        {
+            "com": "ADP Express",
+            "no": "adp"
+        },
+        {
+            "com": "澳丰速递",
+            "no": "afexpress"
+        },
+        {
+            "com": "阿富汗邮政",
+            "no": "afghan"
+        },
+        {
+            "com": "airpak expresss",
+            "no": "airpak"
+        },
+        {
+            "com": "Airpak Express",
+            "no": "airpakexpress"
+        },
+        {
+            "com": "Airwings Courier Express India",
+            "no": "airwingsindia"
+        },
+        {
+            "com": "澳捷物流",
+            "no": "ajlogistics"
+        },
+        {
+            "com": "阿尔巴尼亚(Posta shqipatre)",
+            "no": "albania"
+        },
+        {
+            "com": "亚马逊物流",
+            "no": "amazon"
+        },
+        {
+            "com": "爱尔兰邮政",
+            "no": "anposten"
+        },
+        {
+            "com": "Antron Express",
+            "no": "antronexpress"
+        },
+        {
+            "com": "AOL快递",
+            "no": "aolau"
+        },
+        {
+            "com": "澳天速运",
+            "no": "aotsd"
+        },
+        {
+            "com": "APC Postal Logistics",
+            "no": "apcpli"
+        },
+        {
+            "com": "apgecommerce",
+            "no": "apgecommerce"
+        },
+        {
+            "com": "美国汉邦快递",
+            "no": "aplus100"
+        },
+        {
+            "com": "Aramex快递",
+            "no": "aramex"
+        },
+        {
+            "com": "方舟国际速递",
+            "no": "arkexpress"
+        },
+        {
+            "com": "Art Logexpress",
+            "no": "artlogexpress"
+        },
+        {
+            "com": "Asendia",
+            "no": "asendia"
+        },
+        {
+            "com": "Asendia HK",
+            "no": "asendiahk"
+        },
+        {
+            "com": "Asendia USA",
+            "no": "asendiausa"
+        },
+        {
+            "com": "上海亚翔",
+            "no": "asiafly"
+        },
+        {
+            "com": "安世通快递",
+            "no": "astexpress"
+        },
+        {
+            "com": "澳达国际物流",
+            "no": "auadexpress"
+        },
+        {
+            "com": "澳邮中国快运",
+            "no": "auexpress"
+        },
+        {
+            "com": "澳德物流",
+            "no": "auodexpress"
+        },
+        {
+            "com": "澳邦国际物流",
+            "no": "ausbondexpress"
+        },
+        {
+            "com": "澳世速递",
+            "no": "ausexpress"
+        },
+        {
+            "com": "澳大利亚邮政",
+            "no": "auspost"
+        },
+        {
+            "com": "Austa国际速递",
+            "no": "austa"
+        },
+        {
+            "com": "奥地利邮政",
+            "no": "austria"
+        },
+        {
+            "com": "中联快递",
+            "no": "auvanda"
+        },
+        {
+            "com": "AUV国际快递",
+            "no": "auvexpress"
+        },
+        {
+            "com": "澳新物流",
+            "no": "axexpress"
+        },
+        {
+            "com": "阿塞拜疆邮政",
+            "no": "azerbaijan"
+        },
+        {
+            "com": "百福东方物流",
+            "no": "baifudongfang"
+        },
+        {
+            "com": "百腾物流",
+            "no": "baitengwuliu"
+        },
+        {
+            "com": "帮帮发转运",
+            "no": "bangbangex"
+        },
+        {
+            "com": "孟加拉国（EMS）",
+            "no": "bangladesh"
+        },
+        {
+            "com": "斑马物流",
+            "no": "banma"
+        },
+        {
+            "com": "报通快递",
+            "no": "baoxianda"
+        },
+        {
+            "com": "BRT Bartolini",
+            "no": "bartolini"
+        },
+        {
+            "com": "佰麒快递",
+            "no": "beckygo"
+        },
+        {
+            "com": "蜜蜂速递",
+            "no": "bee001"
+        },
+        {
+            "com": "锋鸟物流",
+            "no": "beebird"
+        },
+        {
+            "com": "beiou express",
+            "no": "beiou"
+        },
+        {
+            "com": "白俄罗斯邮政",
+            "no": "belpost"
+        },
+        {
+            "com": "飛斯特",
+            "no": "bester"
+        },
+        {
+            "com": "上海缤纷物流",
+            "no": "bflg"
+        },
+        {
+            "com": "不丹邮政",
+            "no": "bhutanpost"
+        },
+        {
+            "com": "宅急便",
+            "no": "bin"
+        },
+        {
+            "com": "笨鸟海淘",
+            "no": "birdex"
+        },
+        {
+            "com": "飞鸟国际物流",
+            "no": "birdsystem"
+        },
+        {
+            "com": "青云物流",
+            "no": "bjqywl"
+        },
+        {
+            "com": "鑫世锐达",
+            "no": "bjxsrd"
+        },
+        {
+            "com": "远通盛源",
+            "no": "bjytsywl"
+        },
+        {
+            "com": "佰乐捷通",
+            "no": "bljt56"
+        },
+        {
+            "com": "Bluecare Express",
+            "no": "bluecare"
+        },
+        {
+            "com": "蓝天国际航空快递",
+            "no": "blueskyexpress"
+        },
+        {
+            "com": "波黑邮政",
+            "no": "bohei"
+        },
+        {
+            "com": "Bombino Express",
+            "no": "bombinoexp"
+        },
+        {
+            "com": "border-express",
+            "no": "borderexpress"
+        },
+        {
+            "com": "Hermes Borderguru",
+            "no": "borderguru"
+        },
+        {
+            "com": "堡昕德速递",
+            "no": "bosind"
+        },
+        {
+            "com": "速方物流",
+            "no": "bphchina"
+        },
+        {
+            "com": "比利时邮政",
+            "no": "bpost"
+        },
+        {
+            "com": "百千诚物流",
+            "no": "bqcwl"
+        },
+        {
+            "com": "Brazil Post",
+            "no": "brazilposten"
+        },
+        {
+            "com": "宏桥国际物流",
+            "no": "briems"
+        },
+        {
+            "com": "深圳宝通达",
+            "no": "btdair"
+        },
+        {
+            "com": "利佳顺",
+            "no": "btexp"
+        },
+        {
+            "com": "邦泰快运",
+            "no": "btexpress"
+        },
+        {
+            "com": "Buffalo",
+            "no": "buffaloex"
+        },
+        {
+            "com": "保加利亚邮政",
+            "no": "bulgarian"
+        },
+        {
+            "com": "捷买送",
+            "no": "buylogic"
+        },
+        {
+            "com": "百通物流",
+            "no": "buytong"
+        },
+        {
+            "com": "博源恒通",
+            "no": "byht"
+        },
+        {
+            "com": "Cacesa南美专线",
+            "no": "cacesapostal"
+        },
+        {
+            "com": "彩丰物流",
+            "no": "caifengwl"
+        },
+        {
+            "com": "新喀里多尼亚",
+            "no": "caledonia"
+        },
+        {
+            "com": "柬埔寨(Cambodia Post)",
+            "no": "cambodia"
+        },
+        {
+            "com": "到了港快递",
+            "no": "camekong"
+        },
+        {
+            "com": "Canpar",
+            "no": "canpar"
+        },
+        {
+            "com": "加拿大邮政",
+            "no": "canpost"
+        },
+        {
+            "com": "中集冷云",
+            "no": "cccc58"
+        },
+        {
+            "com": "次晨达物流",
+            "no": "ccd56"
+        },
+        {
+            "com": "中迅三方物流",
+            "no": "cd3fwl"
+        },
+        {
+            "com": "CDEK",
+            "no": "cdek"
+        },
+        {
+            "com": "鑫宸物流",
+            "no": "cdxinchen56"
+        },
+        {
+            "com": "捷克邮政",
+            "no": "ceskaposta"
+        },
+        {
+            "com": "CEVA物流",
+            "no": "cevalogistics"
+        },
+        {
+            "com": "银雁专送",
+            "no": "cfss"
+        },
+        {
+            "com": "Cgs Express",
+            "no": "cgsexpress"
+        },
+        {
+            "com": "长江国际速递",
+            "no": "changjiangexpress"
+        },
+        {
+            "com": "昌宇国际",
+            "no": "changwooair"
+        },
+        {
+            "com": "天天国际",
+            "no": "checkparcel"
+        },
+        {
+            "com": "捷豹国际快递",
+            "no": "cheetahexpress"
+        },
+        {
+            "com": "车满满",
+            "no": "chemanman"
+        },
+        {
+            "com": "城际快递",
+            "no": "chengjisudi"
+        },
+        {
+            "com": "河北橙配",
+            "no": "chengpei"
+        },
+        {
+            "com": "诚通物流",
+            "no": "chengtongwuliu"
+        },
+        {
+            "com": "诚义物流",
+            "no": "cherry56"
+        },
+        {
+            "com": "智利邮政",
+            "no": "chile"
+        },
+        {
+            "com": "中邮电商",
+            "no": "chinapostcb"
+        },
+        {
+            "com": "华欣物流",
+            "no": "chinastarlogistics"
+        },
+        {
+            "com": "同舟行物流",
+            "no": "chinatzx"
+        },
+        {
+            "com": "秦远国际物流",
+            "no": "chinz56"
+        },
+        {
+            "com": "中翼国际物流",
+            "no": "chnexp"
+        },
+        {
+            "com": "赛时国际货运",
+            "no": "choice"
+        },
+        {
+            "com": "法国大包、EMS-法文（Chronopost France）",
+            "no": "chronopostfra"
+        },
+        {
+            "com": "法国邮政（大包EMS）",
+            "no": "chronopostfren"
+        },
+        {
+            "com": "Chronopost Portugal",
+            "no": "chronopostport"
+        },
+        {
+            "com": "诚和通",
+            "no": "cht361"
+        },
+        {
+            "com": "出口易",
+            "no": "chukou1"
+        },
+        {
+            "com": "中骅物流",
+            "no": "chunghwa56"
+        },
+        {
+            "com": "春辉物流",
+            "no": "chunhuiwuliu"
+        },
+        {
+            "com": "City-link Express",
+            "no": "citylink"
+        },
+        {
+            "com": "CJ Dropshipping",
+            "no": "cjdroshipping"
+        },
+        {
+            "com": "长吉物流",
+            "no": "cjqy"
+        },
+        {
+            "com": "城晓国际快递",
+            "no": "ckeex"
+        },
+        {
+            "com": "CK物流",
+            "no": "ckexpress"
+        },
+        {
+            "com": "群航云物流",
+            "no": "cloudlogistics365"
+        },
+        {
+            "com": "C&C国际速递",
+            "no": "cncexp"
+        },
+        {
+            "com": "辰诺达国际物流",
+            "no": "cndexpress"
+        },
+        {
+            "com": "中邮快递",
+            "no": "cnpex"
+        },
+        {
+            "com": "速舟物流",
+            "no": "cnspeedster"
+        },
+        {
+            "com": "Colis Prive",
+            "no": "colisprive"
+        },
+        {
+            "com": "法国邮政(Colissimo)",
+            "no": "colissimo"
+        },
+        {
+            "com": "商壹国际物流",
+            "no": "com1express"
+        },
+        {
+            "com": "Comet Hellas",
+            "no": "comethellas"
+        },
+        {
+            "com": "邦通国际",
+            "no": "comexpress"
+        },
+        {
+            "com": "哥伦比亚邮政",
+            "no": "copost"
+        },
+        {
+            "com": "西班牙邮政",
+            "no": "correosdees"
+        },
+        {
+            "com": "Correos Express",
+            "no": "correosexpress"
+        },
+        {
+            "com": "Courier Exe",
+            "no": "courierexe"
+        },
+        {
+            "com": "Couriers Please",
+            "no": "couriersplease"
+        },
+        {
+            "com": "华中快递",
+            "no": "cpsair"
+        },
+        {
+            "com": "疯狂快递",
+            "no": "crazyexpress"
+        },
+        {
+            "com": "环旅快运",
+            "no": "crossbox"
+        },
+        {
+            "com": "cse",
+            "no": "cse"
+        },
+        {
+            "com": "泰国中通CTO",
+            "no": "ctoexp"
+        },
+        {
+            "com": "塞浦路斯邮政",
+            "no": "cypruspost"
+        },
+        {
+            "com": "小飞侠速递",
+            "no": "cyxfx"
+        },
+        {
+            "com": "云南诚中",
+            "no": "czwlyn"
+        },
+        {
+            "com": "全球国际货运",
+            "no": "dbschenker"
+        },
+        {
+            "com": "大道物流",
+            "no": "ddwl"
+        },
+        {
+            "com": "德邦物流",
+            "no": "debangwuliu"
+        },
+        {
+            "com": "德创物流",
+            "no": "dechuangwuliu"
+        },
+        {
+            "com": "德中快递",
+            "no": "decnlh"
+        },
+        {
+            "com": "德方物流",
+            "no": "defangwuliu"
+        },
+        {
+            "com": "德坤物流",
+            "no": "dekuncn"
+        },
+        {
+            "com": "Deltec Courier",
+            "no": "deltec"
+        },
+        {
+            "com": "德国(Deutsche Post)",
+            "no": "deutschepost"
+        },
+        {
+            "com": "东风全球速递",
+            "no": "dfglobalex"
+        },
+        {
+            "com": "达发物流",
+            "no": "dfwl"
+        },
+        {
+            "com": "DHL Active Tracing",
+            "no": "dhlactive"
+        },
+        {
+            "com": "DHL Benelux",
+            "no": "dhlbenelux"
+        },
+        {
+            "com": "DHL（德国件）",
+            "no": "dhlde"
+        },
+        {
+            "com": "DHL Global Mail Asia",
+            "no": "dhlecommerceasia"
+        },
+        {
+            "com": "DHL（国际件）",
+            "no": "dhlen"
+        },
+        {
+            "com": "西班牙DHL",
+            "no": "dhles"
+        },
+        {
+            "com": "DHL eCommerce",
+            "no": "dhlglobalmail"
+        },
+        {
+            "com": "DHL HK",
+            "no": "dhlhk"
+        },
+        {
+            "com": "DHL-荷兰（DHL Netherlands）",
+            "no": "dhlnetherlands"
+        },
+        {
+            "com": "DHL（波兰件）",
+            "no": "dhlpoland"
+        },
+        {
+            "com": "墩豪运",
+            "no": "dhy86"
+        },
+        {
+            "com": "递五方云仓",
+            "no": "di5pll"
+        },
+        {
+            "com": "店通快递",
+            "no": "diantongkuaidi"
+        },
+        {
+            "com": "Direct Link",
+            "no": "directlink"
+        },
+        {
+            "com": "递四方",
+            "no": "disifang"
+        },
+        {
+            "com": "东骏快捷物流",
+            "no": "dj56"
+        },
+        {
+            "com": "东风快递",
+            "no": "dongfengexp"
+        },
+        {
+            "com": "东瀚物流",
+            "no": "donghanwl"
+        },
+        {
+            "com": "东红物流",
+            "no": "donghong"
+        },
+        {
+            "com": "CJ物流",
+            "no": "doortodoor"
+        },
+        {
+            "com": "DPD",
+            "no": "dpd"
+        },
+        {
+            "com": "DPD 比利时",
+            "no": "dpdbe"
+        },
+        {
+            "com": "DPD（德国件）",
+            "no": "dpdgermany"
+        },
+        {
+            "com": "DPD（波兰件）",
+            "no": "dpdpoland"
+        },
+        {
+            "com": "DPD Romania",
+            "no": "dpdro"
+        },
+        {
+            "com": "DPD（俄罗斯）",
+            "no": "dpdru"
+        },
+        {
+            "com": "DPD（英国件）",
+            "no": "dpduk"
+        },
+        {
+            "com": "递必易国际物流",
+            "no": "dpe"
+        },
+        {
+            "com": "DPEXEN",
+            "no": "dpexen"
+        },
+        {
+            "com": "老司机国际快递",
+            "no": "driverfastgo"
+        },
+        {
+            "com": "DSV",
+            "no": "dsv"
+        },
+        {
+            "com": "DTDC India",
+            "no": "dtdcindia"
+        },
+        {
+            "com": "多道供应链",
+            "no": "duodao56"
+        },
+        {
+            "com": "递五洲国际物流",
+            "no": "dwz56"
+        },
+        {
+            "com": "EASY EXPRESS",
+            "no": "easyexpress"
+        },
+        {
+            "com": "E跨通国际快运",
+            "no": "ecallturn"
+        },
+        {
+            "com": "宅配通",
+            "no": "ecan"
+        },
+        {
+            "com": "EC-Firstclass",
+            "no": "ecfirstclass"
+        },
+        {
+            "com": "ECMS Express",
+            "no": "ecmsglobal"
+        },
+        {
+            "com": "东西E全运",
+            "no": "ecotransite"
+        },
+        {
+            "com": "ECPOST",
+            "no": "ecpost"
+        },
+        {
+            "com": "龙象国际物流",
+            "no": "edragon"
+        },
+        {
+            "com": "E直运",
+            "no": "edtexpress"
+        },
+        {
+            "com": "EFS POST",
+            "no": "efspost"
+        },
+        {
+            "com": "易连供应链",
+            "no": "elianpost"
+        },
+        {
+            "com": "萨尔瓦多邮政",
+            "no": "elsalvadorpost"
+        },
+        {
+            "com": "希腊邮政",
+            "no": "eltahell"
+        },
+        {
+            "com": "阿联酋邮政",
+            "no": "emirates"
+        },
+        {
+            "com": "波兰小包(Poczta Polska)",
+            "no": "emonitoring"
+        },
+        {
+            "com": "EMPS Express",
+            "no": "empsexpress"
+        },
+        {
+            "com": "ems国际快递",
+            "no": "emsguoji"
+        },
+        {
+            "com": "乌克兰EMS",
+            "no": "emsukraine"
+        },
+        {
+            "com": "泛捷国际速递",
+            "no": "epanex"
+        },
+        {
+            "com": "联众国际",
+            "no": "epspost"
+        },
+        {
+            "com": "EQUICK国际快递",
+            "no": "equick"
+        },
+        {
+            "com": "卓志速运",
+            "no": "esdex"
+        },
+        {
+            "com": "一海通",
+            "no": "eshipping"
+        },
+        {
+            "com": "易速国际物流",
+            "no": "espeedpost"
+        },
+        {
+            "com": "东方汇",
+            "no": "est365"
+        },
+        {
+            "com": "Estafeta",
+            "no": "estafeta"
+        },
+        {
+            "com": "Estafeta USA",
+            "no": "estafetausa"
+        },
+        {
+            "com": "Estes",
+            "no": "estes"
+        },
+        {
+            "com": "e速海淘",
+            "no": "esuhaitao"
+        },
+        {
+            "com": "易达速递",
+            "no": "eta100"
+        },
+        {
+            "com": "ETEEN专线",
+            "no": "eteenlog"
+        },
+        {
+            "com": "E通速递",
+            "no": "etong"
+        },
+        {
+            "com": "eTower",
+            "no": "etower"
+        },
+        {
+            "com": "欧亚专线",
+            "no": "euasia"
+        },
+        {
+            "com": "德国 EUC POST",
+            "no": "eucpost"
+        },
+        {
+            "com": "EU-EXPRESS",
+            "no": "euexpress"
+        },
+        {
+            "com": "易邮国际",
+            "no": "euguoji"
+        },
+        {
+            "com": "Eurodis快递",
+            "no": "eurodis"
+        },
+        {
+            "com": "败欧洲",
+            "no": "europe8"
+        },
+        {
+            "com": "优莎速运",
+            "no": "eusacn"
+        },
+        {
+            "com": "EWE",
+            "no": "ewe"
+        },
+        {
+            "com": "Exelot",
+            "no": "exelot"
+        },
+        {
+            "com": "安鲜达物流",
+            "no": "exfresh"
+        },
+        {
+            "com": "Expeditors",
+            "no": "expeditors"
+        },
+        {
+            "com": "探路者国际物流",
+            "no": "explorer56"
+        },
+        {
+            "com": "澳洲新干线快递",
+            "no": "expressplus"
+        },
+        {
+            "com": "天马迅达快递",
+            "no": "expresstochina"
+        },
+        {
+            "com": "E速达",
+            "no": "exsuda"
+        },
+        {
+            "com": "易友通",
+            "no": "eyou800"
+        },
+        {
+            "com": "全家快递",
+            "no": "famiport"
+        },
+        {
+            "com": "颿达国际",
+            "no": "fandaguoji"
+        },
+        {
+            "com": "凡宇速递",
+            "no": "fanyukuaidi"
+        },
+        {
+            "com": "Fardar Worldwide",
+            "no": "fardarww"
+        },
+        {
+            "com": "泛远国际物流",
+            "no": "fargroup"
+        },
+        {
+            "com": "速派快递",
+            "no": "fastgo"
+        },
+        {
+            "com": "加拿大联通快运",
+            "no": "fastontime"
+        },
+        {
+            "com": "Fastway Ireland",
+            "no": "fastway"
+        },
+        {
+            "com": "新西兰Fastway",
+            "no": "fastwaynz"
+        },
+        {
+            "com": "斑马物联网",
+            "no": "fbz"
+        },
+        {
+            "com": "头等舱国际物流",
+            "no": "fcexpress"
+        },
+        {
+            "com": "FedEx（英国件）",
+            "no": "fedexuk"
+        },
+        {
+            "com": "FedEx（美国）",
+            "no": "fedexus"
+        },
+        {
+            "com": "联邦转运FedRoad",
+            "no": "fedroad"
+        },
+        {
+            "com": "飞康达物流",
+            "no": "feikangda"
+        },
+        {
+            "com": "飞蓝国际速递",
+            "no": "feilanex"
+        },
+        {
+            "com": "飞远快递",
+            "no": "feiyuanvipshop"
+        },
+        {
+            "com": "风行速递",
+            "no": "fengex"
+        },
+        {
+            "com": "奉天物流",
+            "no": "fengtianexpress"
+        },
+        {
+            "com": "丰网速运",
+            "no": "fengwang"
+        },
+        {
+            "com": "Fetchr",
+            "no": "fetchr"
+        },
+        {
+            "com": "斐济邮政",
+            "no": "fiji"
+        },
+        {
+            "com": "芬兰邮政-Posti",
+            "no": "finland"
+        },
+        {
+            "com": "FirstMile",
+            "no": "firstmile"
+        },
+        {
+            "com": "Flash Express",
+            "no": "flashexpress"
+        },
+        {
+            "com": "花瓣转运",
+            "no": "flowerkd"
+        },
+        {
+            "com": "飞力士物流",
+            "no": "flysman"
+        },
+        {
+            "com": "飞特物流",
+            "no": "flytexpress"
+        },
+        {
+            "com": "四方格",
+            "no": "fourpxus"
+        },
+        {
+            "com": "FOX国际速递",
+            "no": "foxglobal"
+        },
+        {
+            "com": "FQ狂派速递",
+            "no": "freakyquick"
+        },
+        {
+            "com": "复融供应链",
+            "no": "fron"
+        },
+        {
+            "com": "富腾达国际货运代理公司",
+            "no": "ftd"
+        },
+        {
+            "com": "丰通快运",
+            "no": "ftky365"
+        },
+        {
+            "com": "法翔速运",
+            "no": "ftlexpress"
+        },
+        {
+            "com": "孚界国际",
+            "no": "fujexp"
+        },
+        {
+            "com": "富吉速运",
+            "no": "fujisuyun"
+        },
+        {
+            "com": "Fulfillmen",
+            "no": "fulfillmen"
+        },
+        {
+            "com": "福鑫跨境电商物流",
+            "no": "fxexp"
+        },
+        {
+            "com": "能达快递",
+            "no": "ganzhongnengda"
+        },
+        {
+            "com": "高翔物流",
+            "no": "gaopost"
+        },
+        {
+            "com": "高铁快运",
+            "no": "gaotieex"
+        },
+        {
+            "com": "GATI快递",
+            "no": "gaticn"
+        },
+        {
+            "com": "GATI",
+            "no": "gatien"
+        },
+        {
+            "com": "Gati-KWE",
+            "no": "gatikwe"
+        },
+        {
+            "com": "飞洋快递",
+            "no": "gcex"
+        },
+        {
+            "com": "冠达快递",
+            "no": "gda"
+        },
+        {
+            "com": "港快速递",
+            "no": "gdkd"
+        },
+        {
+            "com": "快捷快物流",
+            "no": "gdkjk56"
+        },
+        {
+            "com": "全网物流",
+            "no": "gdqwwl"
+        },
+        {
+            "com": "德国GDSK",
+            "no": "gdskde"
+        },
+        {
+            "com": "威速易供应链",
+            "no": "gdwse"
+        },
+        {
+            "com": "鑫兴鹏快运",
+            "no": "gdxxp"
+        },
+        {
+            "com": "GE2D跨境物流",
+            "no": "ge2d"
+        },
+        {
+            "com": "极客冷链",
+            "no": "geeklogistics"
+        },
+        {
+            "com": "Geis Global Logistics",
+            "no": "geis"
+        },
+        {
+            "com": "Geodis",
+            "no": "geodis"
+        },
+        {
+            "com": "格鲁吉亚(Georgian Pos）",
+            "no": "georgianpost"
+        },
+        {
+            "com": "加纳邮政",
+            "no": "ghanapost"
+        },
+        {
+            "com": "GHT物流",
+            "no": "ghtexpress"
+        },
+        {
+            "com": "捷安达国际速递",
+            "no": "giantpost"
+        },
+        {
+            "com": "直布罗陀[英国]( Royal Gibraltar Post)",
+            "no": "gibraltar"
+        },
+        {
+            "com": "极客快送",
+            "no": "gklife"
+        },
+        {
+            "com": "全球特快",
+            "no": "global99"
+        },
+        {
+            "com": "全球立达",
+            "no": "globalleader"
+        },
+        {
+            "com": "globaltracktrace",
+            "no": "globaltracktrace"
+        },
+        {
+            "com": "Globegistics Inc",
+            "no": "globegisticsinc"
+        },
+        {
+            "com": "GLOBELL",
+            "no": "globellexpress"
+        },
+        {
+            "com": "GLS",
+            "no": "gls"
+        },
+        {
+            "com": "意大利GLS",
+            "no": "glsitaly"
+        },
+        {
+            "com": "英脉物流",
+            "no": "gml"
+        },
+        {
+            "com": "时安达速递",
+            "no": "goex"
+        },
+        {
+            "com": "高捷快运",
+            "no": "goldjet"
+        },
+        {
+            "com": "共速达",
+            "no": "gongsuda"
+        },
+        {
+            "com": "日日顺智慧物联",
+            "no": "gooday365"
+        },
+        {
+            "com": "快客快递",
+            "no": "gotoquick"
+        },
+        {
+            "com": "UBI Australia",
+            "no": "gotoubi"
+        },
+        {
+            "com": "金岸物流",
+            "no": "gplexpress"
+        },
+        {
+            "com": "Grand Slam Express",
+            "no": "grandslamexpress"
+        },
+        {
+            "com": "亨洋速递",
+            "no": "greatocean"
+        },
+        {
+            "com": "格陵兰岛邮政",
+            "no": "greenland"
+        },
+        {
+            "com": "吉时速递",
+            "no": "gseexpress"
+        },
+        {
+            "com": "德尚国际速递",
+            "no": "gslexpress"
+        },
+        {
+            "com": "联合快递",
+            "no": "gslhkd"
+        },
+        {
+            "com": "GSM快递",
+            "no": "gsm"
+        },
+        {
+            "com": "GSO(GLS US)",
+            "no": "gso"
+        },
+        {
+            "com": "GT国际快运",
+            "no": "gtgogo"
+        },
+        {
+            "com": "跨境易通",
+            "no": "gti56"
+        },
+        {
+            "com": "广通速递",
+            "no": "gtongsudi"
+        },
+        {
+            "com": "GTT EXPRESS快递",
+            "no": "gttexpress"
+        },
+        {
+            "com": "冠达物流",
+            "no": "guanda"
+        },
+        {
+            "com": "永邦快递",
+            "no": "guangdongyongbang"
+        },
+        {
+            "com": "冠庭国际物流",
+            "no": "guanting"
+        },
+        {
+            "com": "全联速运",
+            "no": "guexp"
+        },
+        {
+            "com": "光线速递",
+            "no": "gxwl"
+        },
+        {
+            "com": "海带宝",
+            "no": "haidaibao"
+        },
+        {
+            "com": "山东海红",
+            "no": "haihongwangsong"
+        },
+        {
+            "com": "海盟速递",
+            "no": "haimengsudi"
+        },
+        {
+            "com": "海星桥快递",
+            "no": "haixingqiao"
+        },
+        {
+            "com": "海中转运",
+            "no": "haizhongzhuanyun"
+        },
+        {
+            "com": "亚美尼亚邮政",
+            "no": "haypost"
+        },
+        {
+            "com": "新竹物流",
+            "no": "hct"
+        },
+        {
+            "com": "宏递快运",
+            "no": "hd"
+        },
+        {
+            "com": "汇达物流",
+            "no": "hdcexpress"
+        },
+        {
+            "com": "河北建华",
+            "no": "hebeijianhua"
+        },
+        {
+            "com": "黑豹物流",
+            "no": "heibaowuliu"
+        },
+        {
+            "com": "Hermesworld",
+            "no": "hermesworld"
+        },
+        {
+            "com": "合心速递",
+            "no": "hexinexpress"
+        },
+        {
+            "com": "华瀚快递",
+            "no": "hhair56"
+        },
+        {
+            "com": "华翰物流",
+            "no": "hhexp"
+        },
+        {
+            "com": "嗨转全球",
+            "no": "highforing"
+        },
+        {
+            "com": "Highsince",
+            "no": "highsince"
+        },
+        {
+            "com": "黑狗物流",
+            "no": "higoexpress"
+        },
+        {
+            "com": "猴急送",
+            "no": "hjs"
+        },
+        {
+            "com": "云邮跨境快递",
+            "no": "hkems"
+        },
+        {
+            "com": "环海快运",
+            "no": "hkglobalsea"
+        },
+        {
+            "com": "海联快递",
+            "no": "hltop"
+        },
+        {
+            "com": "好来运快递",
+            "no": "hlyex"
+        },
+        {
+            "com": "华美快递",
+            "no": "hmus"
+        },
+        {
+            "com": "飞鹰物流",
+            "no": "hnfy"
+        },
+        {
+            "com": "方圆物流",
+            "no": "hnfywl"
+        },
+        {
+            "com": "河南全速通",
+            "no": "hnqst"
+        },
+        {
+            "com": "如家国际快递",
+            "no": "homecourier"
+        },
+        {
+            "com": "红远物流",
+            "no": "hongywl"
+        },
+        {
+            "com": "鸿桥供应链",
+            "no": "hotscm"
+        },
+        {
+            "com": "皇家云仓",
+            "no": "hotwms"
+        },
+        {
+            "com": "Hound Express",
+            "no": "hound"
+        },
+        {
+            "com": "高铁速递",
+            "no": "hre"
+        },
+        {
+            "com": "锦程快递",
+            "no": "hrex"
+        },
+        {
+            "com": "韩润物流",
+            "no": "hrsz"
+        },
+        {
+            "com": "克罗地亚邮政",
+            "no": "hrvatska"
+        },
+        {
+            "com": "鸿泰物流",
+            "no": "ht56"
+        },
+        {
+            "com": "环东物流",
+            "no": "huandonglg"
+        },
+        {
+            "com": "环球速运",
+            "no": "huanqiu"
+        },
+        {
+            "com": "中国香港环球快运",
+            "no": "huanqiuabc"
+        },
+        {
+            "com": "环球快递",
+            "no": "huanqiukd"
+        },
+        {
+            "com": "华企快运",
+            "no": "huaqikuaiyun"
+        },
+        {
+            "com": "华夏货运",
+            "no": "huaxiahuoyun"
+        },
+        {
+            "com": "华夏龙物流",
+            "no": "huaxialongwuliu"
+        },
+        {
+            "com": "华兴速运",
+            "no": "huaxingsuyun"
+        },
+        {
+            "com": "美国汇达快递",
+            "no": "huidaex"
+        },
+        {
+            "com": "汇峰物流",
+            "no": "huif56"
+        },
+        {
+            "com": "辉隆物流",
+            "no": "huilongwuliu"
+        },
+        {
+            "com": "汇森速运",
+            "no": "huisenky"
+        },
+        {
+            "com": "驼峰国际",
+            "no": "humpline"
+        },
+        {
+            "com": "匈牙利（Magyar Posta）",
+            "no": "hungary"
+        },
+        {
+            "com": "伙伴物流",
+            "no": "huoban"
+        },
+        {
+            "com": "户通物流",
+            "no": "hutongwuliu"
+        },
+        {
+            "com": "豪翔物流",
+            "no": "hxjsd"
+        },
+        {
+            "com": "鸿远物流",
+            "no": "hyeship"
+        },
+        {
+            "com": "华航快递",
+            "no": "hzpl"
+        },
+        {
+            "com": "爱拜物流",
+            "no": "ibuy8"
+        },
+        {
+            "com": "冰岛(Iceland Post)",
+            "no": "iceland"
+        },
+        {
+            "com": "百成大达物流",
+            "no": "idada"
+        },
+        {
+            "com": "大马鹿速运",
+            "no": "idamalu"
+        },
+        {
+            "com": "泛太优达",
+            "no": "iex"
+        },
+        {
+            "com": "无限速递",
+            "no": "igcaexpress"
+        },
+        {
+            "com": "iMile",
+            "no": "imile"
+        },
+        {
+            "com": "IML艾姆勒",
+            "no": "imlb2c"
+        },
+        {
+            "com": "印度邮政",
+            "no": "india"
+        },
+        {
+            "com": "INI国际转运公司",
+            "no": "inico"
+        },
+        {
+            "com": "多米尼加（INPOSDOM）",
+            "no": "inposdom"
+        },
+        {
+            "com": "Intelcom Express",
+            "no": "intelcom"
+        },
+        {
+            "com": "Interlink Express",
+            "no": "interlink"
+        },
+        {
+            "com": "i-parcel",
+            "no": "iparcel"
+        },
+        {
+            "com": "以色列邮政",
+            "no": "israelpost"
+        },
+        {
+            "com": "意大利SAD",
+            "no": "italysad"
+        },
+        {
+            "com": "科捷物流",
+            "no": "itl"
+        },
+        {
+            "com": "驿扬国际速运",
+            "no": "iyoungspeed"
+        },
+        {
+            "com": "牙买加（Jamaica Post）",
+            "no": "jamaicapost"
+        },
+        {
+            "com": "日本邮政",
+            "no": "japanposten"
+        },
+        {
+            "com": "jcex",
+            "no": "jcex"
+        },
+        {
+            "com": "嘉诚速达",
+            "no": "jcsuda"
+        },
+        {
+            "com": "骏达快递",
+            "no": "jdexpressusa"
+        },
+        {
+            "com": "京东国际快递",
+            "no": "jdiex"
+        },
+        {
+            "com": "急递速递",
+            "no": "jdpplus"
+        },
+        {
+            "com": "Jersey Post",
+            "no": "jerseypost"
+        },
+        {
+            "com": "澳速通",
+            "no": "jetexpressgroup"
+        },
+        {
+            "com": "景光物流",
+            "no": "jgwl"
+        },
+        {
+            "com": "佳辰国际速递",
+            "no": "jiachenexpress"
+        },
+        {
+            "com": "佳成快递",
+            "no": "jiacheng"
+        },
+        {
+            "com": "加佳物流",
+            "no": "jiajiawl"
+        },
+        {
+            "com": "嘉里大通",
+            "no": "jialidatong"
+        },
+        {
+            "com": "加运美快递",
+            "no": "jiayunmeiwuliu"
+        },
+        {
+            "com": "加州猫速递",
+            "no": "jiazhoumao"
+        },
+        {
+            "com": "吉邦物流",
+            "no": "jibang56"
+        },
+        {
+            "com": "捷邦物流",
+            "no": "jieborne"
+        },
+        {
+            "com": "捷特快递",
+            "no": "jietekuaidi"
+        },
+        {
+            "com": "极光转运",
+            "no": "jiguangzhuanyun"
+        },
+        {
+            "com": "金大物流",
+            "no": "jindawuliu"
+        },
+        {
+            "com": "Jingle Express速递",
+            "no": "jingleexpressx"
+        },
+        {
+            "com": "京广速递快件",
+            "no": "jinguangsudikuaijian"
+        },
+        {
+            "com": "晋越快递",
+            "no": "jinyuekuaidi"
+        },
+        {
+            "com": "九宫物流",
+            "no": "jiugong"
+        },
+        {
+            "com": "久易快递",
+            "no": "jiuyicn"
+        },
+        {
+            "com": "急先达物流",
+            "no": "jixianda"
+        },
+        {
+            "com": "吉祥邮",
+            "no": "jixiangyou"
+        },
+        {
+            "com": "佳捷翔物流",
+            "no": "jjx888"
+        },
+        {
+            "com": "奔腾物流",
+            "no": "jnbenteng"
+        },
+        {
+            "com": "J-NET捷网",
+            "no": "jnet"
+        },
+        {
+            "com": "joeyco",
+            "no": "joeyco"
+        },
+        {
+            "com": "约旦邮政",
+            "no": "jordan"
+        },
+        {
+            "com": "急速国际",
+            "no": "jsexp"
+        },
+        {
+            "com": "时达通",
+            "no": "jssdt56"
+        },
+        {
+            "com": "极兔速递",
+            "no": "jtexpress"
+        },
+        {
+            "com": "JT Express PH",
+            "no": "jtexpressph"
+        },
+        {
+            "com": "J&T Express TH",
+            "no": "jtexpressth"
+        },
+        {
+            "com": "聚鼎物流",
+            "no": "judingwuliu"
+        },
+        {
+            "com": "聚盟共建",
+            "no": "jumstc"
+        },
+        {
+            "com": "君安快递(转运中国)",
+            "no": "junanex"
+        },
+        {
+            "com": "骏丰国际速递",
+            "no": "junfengguoji"
+        },
+        {
+            "com": "集先锋快递",
+            "no": "jxfex"
+        },
+        {
+            "com": "Kaha Express",
+            "no": "kahaexpress"
+        },
+        {
+            "com": "哈萨克斯坦",
+            "no": "kazpost"
+        },
+        {
+            "com": "KCS Express",
+            "no": "kcs"
+        },
+        {
+            "com": "肯尼亚(POSTA KENYA)",
+            "no": "kenya"
+        },
+        {
+            "com": "嘉里电子商务",
+            "no": "kerryecommerce"
+        },
+        {
+            "com": "TGX精英速运",
+            "no": "kerryexpress"
+        },
+        {
+            "com": "启邦国际物流",
+            "no": "keypon"
+        },
+        {
+            "com": "快服务",
+            "no": "kfwnet"
+        },
+        {
+            "com": "货运皇",
+            "no": "kingfreight"
+        },
+        {
+            "com": "北美运通",
+            "no": "kingspeed"
+        },
+        {
+            "com": "跨境直邮通",
+            "no": "kjde"
+        },
+        {
+            "com": "跨境翼物流",
+            "no": "kjy"
+        },
+        {
+            "com": "考拉速递",
+            "no": "koalaexp"
+        },
+        {
+            "com": "番薯国际货运",
+            "no": "koali"
+        },
+        {
+            "com": "韩国邮政",
+            "no": "koreapost"
+        },
+        {
+            "com": "快达物流",
+            "no": "kuaidawuliu"
+        },
+        {
+            "com": "快捷快递",
+            "no": "kuaijiesudi"
+        },
+        {
+            "com": "快优达速递",
+            "no": "kuaiyouda"
+        },
+        {
+            "com": "日本大和运输(Yamato)",
+            "no": "kuronekoyamato"
+        },
+        {
+            "com": "酷藤快递",
+            "no": "kutengexpress"
+        },
+        {
+            "com": "京华达物流",
+            "no": "kwt56"
+        },
+        {
+            "com": "卡行天下",
+            "no": "kxtx"
+        },
+        {
+            "com": "鼎润物流",
+            "no": "la911"
+        },
+        {
+            "com": "拉火速运",
+            "no": "lahuoex"
+        },
+        {
+            "com": "Landmark Global",
+            "no": "landmarkglobal"
+        },
+        {
+            "com": "蓝弧快递",
+            "no": "lanhukuaidi"
+        },
+        {
+            "com": "塞内加尔邮政",
+            "no": "laposte"
+        },
+        {
+            "com": "LaserShip",
+            "no": "lasership"
+        },
+        {
+            "com": "拉脱维亚",
+            "no": "latvia"
+        },
+        {
+            "com": "立邦国际物流",
+            "no": "lbexps"
+        },
+        {
+            "com": "LDXpress",
+            "no": "ldxpress"
+        },
+        {
+            "com": "乐达全球速递",
+            "no": "leda"
+        },
+        {
+            "com": "楽道物流",
+            "no": "ledaowuliu"
+        },
+        {
+            "com": "乐递供应链",
+            "no": "ledii"
+        },
+        {
+            "com": "云豹国际货运",
+            "no": "leopard"
+        },
+        {
+            "com": "LWE云豹",
+            "no": "leopardschina"
+        },
+        {
+            "com": "美联快递",
+            "no": "letseml"
+        },
+        {
+            "com": "龙枫国际快递",
+            "no": "lfexpress"
+        },
+        {
+            "com": "lazada",
+            "no": "lgs"
+        },
+        {
+            "com": "联邦快递",
+            "no": "lianbangkuaidi"
+        },
+        {
+            "com": "联昊通物流",
+            "no": "lianhaowuliu"
+        },
+        {
+            "com": "黎巴嫩邮政",
+            "no": "libanpost"
+        },
+        {
+            "com": "Line Clear Express & Logistics",
+            "no": "lineclear"
+        },
+        {
+            "com": "一号线国际快递",
+            "no": "lineone"
+        },
+        {
+            "com": "Linex",
+            "no": "linexsolutions"
+        },
+        {
+            "com": "领送供应链",
+            "no": "lingsong"
+        },
+        {
+            "com": "立陶宛邮政",
+            "no": "lithuania"
+        },
+        {
+            "com": "LNL Express",
+            "no": "lnlexpress"
+        },
+        {
+            "com": "准实快运",
+            "no": "lnzsky"
+        },
+        {
+            "com": "龙邦速运",
+            "no": "longbansuyun"
+        },
+        {
+            "com": "龙邦快递",
+            "no": "longbanwuliu"
+        },
+        {
+            "com": "加拿大龙行速运",
+            "no": "longcps"
+        },
+        {
+            "com": "龙飞祥快递",
+            "no": "longfx"
+        },
+        {
+            "com": "长风物流",
+            "no": "longvast"
+        },
+        {
+            "com": "恒通快递",
+            "no": "lqht"
+        },
+        {
+            "com": "乐天速递",
+            "no": "ltexp"
+        },
+        {
+            "com": "乐天国际",
+            "no": "ltianexp"
+        },
+        {
+            "com": "蓝天快递",
+            "no": "ltx"
+        },
+        {
+            "com": "路邦物流",
+            "no": "lubang56"
+        },
+        {
+            "com": "陆本速递",
+            "no": "luben"
+        },
+        {
+            "com": "吉捷国际速递",
+            "no": "luckyfastex"
+        },
+        {
+            "com": "卢森堡邮政",
+            "no": "luxembourg"
+        },
+        {
+            "com": "LWE",
+            "no": "lwe"
+        },
+        {
+            "com": "澳门邮政",
+            "no": "macau"
+        },
+        {
+            "com": "马其顿邮政",
+            "no": "macedonia"
+        },
+        {
+            "com": "MailAmericas",
+            "no": "mailamericas"
+        },
+        {
+            "com": "麦力快递",
+            "no": "mailikuaidi"
+        },
+        {
+            "com": "迈隆递运",
+            "no": "mailongdy"
+        },
+        {
+            "com": "马尔代夫邮政",
+            "no": "maldives"
+        },
+        {
+            "com": "马耳他邮政",
+            "no": "malta"
+        },
+        {
+            "com": "今枫国际快运",
+            "no": "mapieexpress"
+        },
+        {
+            "com": "澳洲迈速快递",
+            "no": "maxeedexpress"
+        },
+        {
+            "com": "木春货运",
+            "no": "mchy"
+        },
+        {
+            "com": "Meest快递",
+            "no": "meest"
+        },
+        {
+            "com": "美邦国际快递",
+            "no": "meibang"
+        },
+        {
+            "com": "美快国际物流",
+            "no": "meiquick"
+        },
+        {
+            "com": "美泰物流",
+            "no": "meitai"
+        },
+        {
+            "com": "门对门",
+            "no": "menduimen"
+        },
+        {
+            "com": "墨西哥邮政",
+            "no": "mexico"
+        },
+        {
+            "com": "Mexico Senda",
+            "no": "mexicodenda"
+        },
+        {
+            "com": "明大国际跨境物流",
+            "no": "mingdaexpress"
+        },
+        {
+            "com": "明亮物流",
+            "no": "mingliangwuliu"
+        },
+        {
+            "com": "闽盛快递",
+            "no": "minshengkuaidi"
+        },
+        {
+            "com": "深圳淼深国际物流",
+            "no": "miuson"
+        },
+        {
+            "com": "美龙快递",
+            "no": "mjexp"
+        },
+        {
+            "com": "猛犸速递",
+            "no": "mmlogi"
+        },
+        {
+            "com": "摩尔多瓦邮政",
+            "no": "moldova"
+        },
+        {
+            "com": "摩纳哥 EMS",
+            "no": "monacoems"
+        },
+        {
+            "com": "蒙古邮政",
+            "no": "mongolpost"
+        },
+        {
+            "com": "魔速达",
+            "no": "mosuda"
+        },
+        {
+            "com": "MRW",
+            "no": "mrw"
+        },
+        {
+            "com": "Mexico Multipack",
+            "no": "multipack"
+        },
+        {
+            "com": "中俄速通（淼信）",
+            "no": "mxe56"
+        },
+        {
+            "com": "美西快递",
+            "no": "mxkd"
+        },
+        {
+            "com": "MyHermes",
+            "no": "myhermes"
+        },
+        {
+            "com": "德国Hermes",
+            "no": "myhermesde"
+        },
+        {
+            "com": "MyIB",
+            "no": "myib"
+        },
+        {
+            "com": "Mypostonline",
+            "no": "mypostonline"
+        },
+        {
+            "com": "Nationwide Express",
+            "no": "nationwide2u"
+        },
+        {
+            "com": "荷兰皇家邮政",
+            "no": "nceexpress"
+        },
+        {
+            "com": "南方传媒物流",
+            "no": "ndwl"
+        },
+        {
+            "com": "星云速递",
+            "no": "nebuex"
+        },
+        {
+            "com": "荷兰速递",
+            "no": "nederlandpost"
+        },
+        {
+            "com": "尼尔快递",
+            "no": "nell"
+        },
+        {
+            "com": "尼泊尔邮政",
+            "no": "nepalpost"
+        },
+        {
+            "com": "新极速国际物流",
+            "no": "nes56"
+        },
+        {
+            "com": "新蛋物流",
+            "no": "neweggozzo"
+        },
+        {
+            "com": "Newgistics",
+            "no": "newgistics"
+        },
+        {
+            "com": "申通快递(新西兰)",
+            "no": "newsto"
+        },
+        {
+            "com": "家家通快递",
+            "no": "newsway"
+        },
+        {
+            "com": "新西兰邮政",
+            "no": "newzealand"
+        },
+        {
+            "com": "哪吒速运",
+            "no": "nezhasuyun"
+        },
+        {
+            "com": "尼日利亚邮政小包",
+            "no": "nigerianpost"
+        },
+        {
+            "com": "Ninja Van",
+            "no": "ninjavan"
+        },
+        {
+            "com": "牛仔速运",
+            "no": "niuzaiexpress"
+        },
+        {
+            "com": "NLE",
+            "no": "nle"
+        },
+        {
+            "com": "欧亚专线",
+            "no": "nlebv"
+        },
+        {
+            "com": "Nova Poshta",
+            "no": "novaposhta"
+        },
+        {
+            "com": "新顺丰（NSF）",
+            "no": "nsf"
+        },
+        {
+            "com": "偌亚奥国际",
+            "no": "nuoyaao"
+        },
+        {
+            "com": "OCA Argentina",
+            "no": "ocaargen"
+        },
+        {
+            "com": "OC-Post",
+            "no": "ocpost"
+        },
+        {
+            "com": "阿曼(Oman Post)",
+            "no": "oman"
+        },
+        {
+            "com": "无限配",
+            "no": "omni2"
+        },
+        {
+            "com": "Omni Parcel快递",
+            "no": "omniparcel"
+        },
+        {
+            "com": "爱沙尼亚",
+            "no": "omniva"
+        },
+        {
+            "com": "一速递",
+            "no": "oneexpress"
+        },
+        {
+            "com": "1号仓",
+            "no": "onehcang"
+        },
+        {
+            "com": "OnTrac",
+            "no": "ontrac"
+        },
+        {
+            "com": "OPEK（FedEx波兰）",
+            "no": "opek"
+        },
+        {
+            "com": "橙联股份",
+            "no": "orangeconnex"
+        },
+        {
+            "com": "中欧快运",
+            "no": "otobv"
+        },
+        {
+            "com": "承诺达特快(圆通)",
+            "no": "otpexpress"
+        },
+        {
+            "com": "波音速递",
+            "no": "overseaex"
+        },
+        {
+            "com": "Packeta",
+            "no": "packeta"
+        },
+        {
+            "com": "Packlink",
+            "no": "packlink"
+        },
+        {
+            "com": "巴基斯坦邮政",
+            "no": "pakistan"
+        },
+        {
+            "com": "诚一物流",
+            "no": "parcelchina"
+        },
+        {
+            "com": "英国邮政大包",
+            "no": "parcelforce"
+        },
+        {
+            "com": "PCA Express",
+            "no": "pcaexpress"
+        },
+        {
+            "com": "鹏程快递",
+            "no": "pcexpress"
+        },
+        {
+            "com": "普畅物流",
+            "no": "pcwl56"
+        },
+        {
+            "com": "陪行物流",
+            "no": "peixingwuliu"
+        },
+        {
+            "com": "鹏远国际速递",
+            "no": "pengyuanexpress"
+        },
+        {
+            "com": "秘鲁邮政",
+            "no": "peru"
+        },
+        {
+            "com": "皇家物流",
+            "no": "pfcexpress"
+        },
+        {
+            "com": "Parcel Freight Logistics",
+            "no": "pflogistics"
+        },
+        {
+            "com": "菲律宾邮政",
+            "no": "phlpost"
+        },
+        {
+            "com": "平安达腾飞",
+            "no": "pingandatengfei"
+        },
+        {
+            "com": "Pitney Bowes",
+            "no": "pitneybowes"
+        },
+        {
+            "com": "极地快递",
+            "no": "polarexpress"
+        },
+        {
+            "com": "北极星快运",
+            "no": "polarisexpress"
+        },
+        {
+            "com": "葡萄牙邮政",
+            "no": "portugalctt"
+        },
+        {
+            "com": "丹麦邮政",
+            "no": "postdanmarken"
+        },
+        {
+            "com": "意大利邮政",
+            "no": "poste"
+        },
+        {
+            "com": "PostElbe",
+            "no": "postelbe"
+        },
+        {
+            "com": "Posten AB",
+            "no": "postenab"
+        },
+        {
+            "com": "挪威邮政",
+            "no": "postennorge"
+        },
+        {
+            "com": "荷兰邮政",
+            "no": "postnl"
+        },
+        {
+            "com": "荷兰邮政小包",
+            "no": "postnlparcels"
+        },
+        {
+            "com": "台湾（中华邮政）",
+            "no": "postserv"
+        },
+        {
+            "com": "土耳其邮政",
+            "no": "ptt"
+        },
+        {
+            "com": "Purolator",
+            "no": "purolator"
+        },
+        {
+            "com": "秦邦速运",
+            "no": "qbsy"
+        },
+        {
+            "com": "ANTS EXPRESS",
+            "no": "qdants"
+        },
+        {
+            "com": "7E速递",
+            "no": "qesd"
+        },
+        {
+            "com": "易达通快递",
+            "no": "qexpress"
+        },
+        {
+            "com": "雪域易购",
+            "no": "qhxyyg"
+        },
+        {
+            "com": "秦岭智能速运",
+            "no": "qinling"
+        },
+        {
+            "com": "全峰快递",
+            "no": "quanfengkuaidi"
+        },
+        {
+            "com": "全信通快递",
+            "no": "quanxintong"
+        },
+        {
+            "com": "瞬程物流",
+            "no": "quickway"
+        },
+        {
+            "com": "Qxpress",
+            "no": "qxpress"
+        },
+        {
+            "com": "Red Express",
+            "no": "redexpress"
+        },
+        {
+            "com": "人人转运",
+            "no": "renrenex"
+        },
+        {
+            "com": "叙利亚邮政",
+            "no": "republic"
+        },
+        {
+            "com": "瑞丰速递",
+            "no": "rfsd"
+        },
+        {
+            "com": "日昱物流",
+            "no": "riyuwuliu"
+        },
+        {
+            "com": "RL Carriers",
+            "no": "rlcarriers"
+        },
+        {
+            "com": "澳洲飞跃物流",
+            "no": "rlgaustralia"
+        },
+        {
+            "com": "荣庆物流",
+            "no": "rokin"
+        },
+        {
+            "com": "罗马尼亚邮政",
+            "no": "romanian"
+        },
+        {
+            "com": "皇家国际速运",
+            "no": "royal"
+        },
+        {
+            "com": "英国邮政小包",
+            "no": "royalmail"
+        },
+        {
+            "com": "Royal Shipments",
+            "no": "royalshipments"
+        },
+        {
+            "com": "RPX国际快递",
+            "no": "rpx"
+        },
+        {
+            "com": "RR Donnelley",
+            "no": "rrdonnelley"
+        },
+        {
+            "com": "日日通国际",
+            "no": "rrthk"
+        },
+        {
+            "com": "瑞天速递",
+            "no": "rtexpress"
+        },
+        {
+            "com": "如风达快递",
+            "no": "rufengda"
+        },
+        {
+            "com": "瑞典邮政",
+            "no": "ruidianyouzheng"
+        },
+        {
+            "com": "润东国际快线",
+            "no": "rundongex"
+        },
+        {
+            "com": "俄罗斯邮政",
+            "no": "russia"
+        },
+        {
+            "com": "Safexpress",
+            "no": "safexpress"
+        },
+        {
+            "com": "Saia LTL Freight",
+            "no": "saia"
+        },
+        {
+            "com": "赛诚国际物流",
+            "no": "saicheng"
+        },
+        {
+            "com": "叁虎物流",
+            "no": "sanhuwuliu"
+        },
+        {
+            "com": "三盛快递",
+            "no": "sanshengco"
+        },
+        {
+            "com": "SAP Express",
+            "no": "sapexpress"
+        },
+        {
+            "com": "沙特阿拉伯邮政",
+            "no": "saudipost"
+        },
+        {
+            "com": "丰程物流",
+            "no": "sccod"
+        },
+        {
+            "com": "Scg Express",
+            "no": "scgexpress"
+        },
+        {
+            "com": "中加国际快递",
+            "no": "scicglobal"
+        },
+        {
+            "com": "力展物流",
+            "no": "sclzl"
+        },
+        {
+            "com": "伟邦(SCS)国际速递",
+            "no": "scsex"
+        },
+        {
+            "com": "速佳达快运",
+            "no": "scsujiada"
+        },
+        {
+            "com": "意大利SDA快递",
+            "no": "sda"
+        },
+        {
+            "com": "速达通",
+            "no": "sdto"
+        },
+        {
+            "com": "优配速运",
+            "no": "sdyoupei"
+        },
+        {
+            "com": "Selektvracht",
+            "no": "selektvracht"
+        },
+        {
+            "com": "Sendle",
+            "no": "sendle"
+        },
+        {
+            "com": "速递中国",
+            "no": "sendtochina"
+        },
+        {
+            "com": "塞尔维亚邮政",
+            "no": "serbia"
+        },
+        {
+            "com": "International Seur",
+            "no": "seur"
+        },
+        {
+            "com": "7天连锁物流",
+            "no": "sevendays"
+        },
+        {
+            "com": "澳邮中国快运",
+            "no": "sfnl"
+        },
+        {
+            "com": "曹操到",
+            "no": "sfpost"
+        },
+        {
+            "com": "上大物流",
+            "no": "shangda"
+        },
+        {
+            "com": "商桥物流",
+            "no": "shangqiao56"
+        },
+        {
+            "com": "尚途国际货运",
+            "no": "shangtuguoji"
+        },
+        {
+            "com": "闪货极速达",
+            "no": "shanhuodidi"
+        },
+        {
+            "com": "盛通快递",
+            "no": "shengtongscm"
+        },
+        {
+            "com": "神马快递",
+            "no": "shenma"
+        },
+        {
+            "com": "苏豪快递",
+            "no": "shipsoho"
+        },
+        {
+            "com": "世运快递",
+            "no": "shiyunkuaidi"
+        },
+        {
+            "com": "上海林道货运",
+            "no": "shlindao"
+        },
+        {
+            "com": "森鸿物流",
+            "no": "showl"
+        },
+        {
+            "com": "wish邮",
+            "no": "shpostwish"
+        },
+        {
+            "com": "Shree Tirupati",
+            "no": "shreetirupati"
+        },
+        {
+            "com": "顺昌国际",
+            "no": "shunchangguoji"
+        },
+        {
+            "com": "万色速递",
+            "no": "shwise"
+        },
+        {
+            "com": "上海御风速运",
+            "no": "shyfwl"
+        },
+        {
+            "com": "SIGN国际速递",
+            "no": "signedexpress"
+        },
+        {
+            "com": "ZTE跨境快件",
+            "no": "signexpress"
+        },
+        {
+            "com": "四海捷运",
+            "no": "sihiexpress"
+        },
+        {
+            "com": "新加坡邮政",
+            "no": "singpost"
+        },
+        {
+            "com": "Sinoex",
+            "no": "sinoex"
+        },
+        {
+            "com": "Siodemka",
+            "no": "siodemka"
+        },
+        {
+            "com": "四季安物流",
+            "no": "sja56"
+        },
+        {
+            "com": "SkyNet国际快递",
+            "no": "skynet"
+        },
+        {
+            "com": "SkyNet（马来西亚）",
+            "no": "skynetmalaysia"
+        },
+        {
+            "com": "SkyNet Worldwide Express",
+            "no": "skynetworldwide"
+        },
+        {
+            "com": "斯洛伐克(Slovenská Posta)",
+            "no": "slovak"
+        },
+        {
+            "com": "斯洛伐克邮政",
+            "no": "slovakiapost"
+        },
+        {
+            "com": "斯里兰卡(Sri Lanka Post)",
+            "no": "slpost"
+        },
+        {
+            "com": "城市之星",
+            "no": "soclgz"
+        },
+        {
+            "com": "布基纳法索邮政",
+            "no": "sonapost"
+        },
+        {
+            "com": "Sonic-Ex速递",
+            "no": "sonicex"
+        },
+        {
+            "com": "南非邮政",
+            "no": "southafrican"
+        },
+        {
+            "com": "行必达同城快递",
+            "no": "speeda"
+        },
+        {
+            "com": "Spee-Dee Delivery",
+            "no": "speedee"
+        },
+        {
+            "com": "申必达国际速递",
+            "no": "speedoex"
+        },
+        {
+            "com": "新加坡邮政(大包、EMS)",
+            "no": "speedpost"
+        },
+        {
+            "com": "春风物流",
+            "no": "spring56"
+        },
+        {
+            "com": "速速达",
+            "no": "ssd"
+        },
+        {
+            "com": "捷记.星速递",
+            "no": "starex"
+        },
+        {
+            "com": "Star Track 快递",
+            "no": "startrack"
+        },
+        {
+            "com": "速腾快递",
+            "no": "ste56"
+        },
+        {
+            "com": "申通快递(澳大利亚)",
+            "no": "stointlau"
+        },
+        {
+            "com": "速必达",
+            "no": "subida"
+        },
+        {
+            "com": "速方国际物流",
+            "no": "sufast"
+        },
+        {
+            "com": "速风快递",
+            "no": "sufengkuaidi"
+        },
+        {
+            "com": "穗佳物流",
+            "no": "suijiawuliu"
+        },
+        {
+            "com": "郑州速捷",
+            "no": "sujievip"
+        },
+        {
+            "com": "速卖通线上物流",
+            "no": "sumaitong"
+        },
+        {
+            "com": "顺达快递",
+            "no": "sundarexpress"
+        },
+        {
+            "com": "新杰物流",
+            "no": "sunjex"
+        },
+        {
+            "com": "Superb Grace",
+            "no": "superbgrace"
+        },
+        {
+            "com": "速配鸥翼",
+            "no": "superoz"
+        },
+        {
+            "com": "速通物流",
+            "no": "sut56"
+        },
+        {
+            "com": "香港速通国际快运",
+            "no": "sutongst"
+        },
+        {
+            "com": "速邮达物流",
+            "no": "suyd56"
+        },
+        {
+            "com": "速邮达",
+            "no": "suyoda"
+        },
+        {
+            "com": "Swiship UK",
+            "no": "swishipuk"
+        },
+        {
+            "com": "瑞士邮政",
+            "no": "swisspost"
+        },
+        {
+            "com": "三象速递",
+            "no": "sxexpress"
+        },
+        {
+            "com": "山西红马甲",
+            "no": "sxhongmajia"
+        },
+        {
+            "com": "沈阳佳惠尔",
+            "no": "syjiahuier"
+        },
+        {
+            "com": "SYNSHIP快递",
+            "no": "synship"
+        },
+        {
+            "com": "顺友物流",
+            "no": "sypost"
+        },
+        {
+            "com": "沈阳特急送",
+            "no": "sytjs"
+        },
+        {
+            "com": "安骏物流",
+            "no": "szanjun"
+        },
+        {
+            "com": "Szendex",
+            "no": "szendex"
+        },
+        {
+            "com": "联合运通",
+            "no": "szlhyt"
+        },
+        {
+            "com": "通邮国际物流",
+            "no": "szty56"
+        },
+        {
+            "com": "联运通物流",
+            "no": "szuem"
+        },
+        {
+            "com": "三志物流",
+            "no": "szwl"
+        },
+        {
+            "com": "泰进物流",
+            "no": "taijin"
+        },
+        {
+            "com": "天美快递",
+            "no": "taimek"
+        },
+        {
+            "com": "中華郵政",
+            "no": "taiwanpost"
+        },
+        {
+            "com": "泰嘉物流",
+            "no": "takesend"
+        },
+        {
+            "com": "坦桑尼亚邮政",
+            "no": "tanzania"
+        },
+        {
+            "com": "淘布斯国际物流",
+            "no": "taoplus"
+        },
+        {
+            "com": "通达全球",
+            "no": "tarrive"
+        },
+        {
+            "com": "Geniki Taxydromiki",
+            "no": "taxydromiki"
+        },
+        {
+            "com": "黑猫宅急便(台湾)",
+            "no": "tcat"
+        },
+        {
+            "com": "TCI XPS",
+            "no": "tcixps"
+        },
+        {
+            "com": "TD Cargo",
+            "no": "tdcargo"
+        },
+        {
+            "com": "良程吉运",
+            "no": "tdzh"
+        },
+        {
+            "com": "腾达物流",
+            "no": "tengdawl"
+        },
+        {
+            "com": "泰国邮政",
+            "no": "thailand"
+        },
+        {
+            "com": "The Courier Guy",
+            "no": "thecourierguy"
+        },
+        {
+            "com": "SOHO苏豪国际",
+            "no": "thesohoex"
+        },
+        {
+            "com": "加拿大雷霆快递",
+            "no": "thunderexpress"
+        },
+        {
+            "com": "风雷集团",
+            "no": "thundershipping"
+        },
+        {
+            "com": "天天快递",
+            "no": "tiantian"
+        },
+        {
+            "com": "天翔快递",
+            "no": "tianxiang"
+        },
+        {
+            "com": "天纵物流",
+            "no": "tianzong"
+        },
+        {
+            "com": "Titan泰坦国际速递",
+            "no": "timelytitan"
+        },
+        {
+            "com": "TIPSA",
+            "no": "tipsa"
+        },
+        {
+            "com": "天津老扬州物流",
+            "no": "tjlyz56"
+        },
+        {
+            "com": "明达国际速递",
+            "no": "tmwexpress"
+        },
+        {
+            "com": "明通国际快递",
+            "no": "tnjex"
+        },
+        {
+            "com": "TNT（澳大利亚件）",
+            "no": "tntau"
+        },
+        {
+            "com": "法国TNT",
+            "no": "tntfr"
+        },
+        {
+            "com": "TNT（意大利件）",
+            "no": "tntitaly"
+        },
+        {
+            "com": "tnt国际快递",
+            "no": "tntuk"
+        },
+        {
+            "com": "Toll",
+            "no": "toll"
+        },
+        {
+            "com": "Toll Priority",
+            "no": "tollpriority"
+        },
+        {
+            "com": "汤加邮政",
+            "no": "tongapost"
+        },
+        {
+            "com": "通和天下",
+            "no": "tonghetianxia"
+        },
+        {
+            "com": "通源速运",
+            "no": "tongyuansuyun"
+        },
+        {
+            "com": "Pony Express",
+            "no": "tonyexpress"
+        },
+        {
+            "com": "中运全速",
+            "no": "topspeedex"
+        },
+        {
+            "com": "Trackon",
+            "no": "trackon"
+        },
+        {
+            "com": "英超物流",
+            "no": "trackparcel"
+        },
+        {
+            "com": "TRAKPAK",
+            "no": "trakpak"
+        },
+        {
+            "com": "转运四方",
+            "no": "transrush"
+        },
+        {
+            "com": "至诚速递",
+            "no": "trustusexpress"
+        },
+        {
+            "com": "TST速运通",
+            "no": "tstexp"
+        },
+        {
+            "com": "天天欧洲物流",
+            "no": "ttkeurope"
+        },
+        {
+            "com": "突尼斯邮政",
+            "no": "tunisia"
+        },
+        {
+            "com": "海龟国际速递",
+            "no": "turtle"
+        },
+        {
+            "com": "拓威天海",
+            "no": "twth"
+        },
+        {
+            "com": "天翼快递",
+            "no": "tykd"
+        },
+        {
+            "com": "铁中快运",
+            "no": "tzky"
+        },
+        {
+            "com": "优邦速运",
+            "no": "ubonex"
+        },
+        {
+            "com": "优邦德国",
+            "no": "ubonexde"
+        },
+        {
+            "com": "德国优拜物流",
+            "no": "ubuy"
+        },
+        {
+            "com": "UBX Express",
+            "no": "ubxuk"
+        },
+        {
+            "com": "合众速递",
+            "no": "ucs"
+        },
+        {
+            "com": "UEQ",
+            "no": "ueq"
+        },
+        {
+            "com": "UEX国际物流",
+            "no": "uex"
+        },
+        {
+            "com": "UEX & IEX",
+            "no": "uexiex"
+        },
+        {
+            "com": "飞碟快递",
+            "no": "ufokuaidi"
+        },
+        {
+            "com": "优海国际速递",
+            "no": "uhi"
+        },
+        {
+            "com": "乌克兰邮政",
+            "no": "ukrpost"
+        },
+        {
+            "com": "优联吉运物流",
+            "no": "uluckex"
+        },
+        {
+            "com": "联合速运",
+            "no": "unitedex"
+        },
+        {
+            "com": "UPS快递",
+            "no": "upsfreight"
+        },
+        {
+            "com": "UPS Mail Innovations",
+            "no": "upsmailinno"
+        },
+        {
+            "com": "万国邮政",
+            "no": "upu"
+        },
+        {
+            "com": "易境达",
+            "no": "uscbexpress"
+        },
+        {
+            "com": "皓晨优递",
+            "no": "uschen"
+        },
+        {
+            "com": "华夏国际速递",
+            "no": "uschuaxia"
+        },
+        {
+            "com": "全酋通Usky",
+            "no": "uskyexpress"
+        },
+        {
+            "com": "USPS",
+            "no": "usps"
+        },
+        {
+            "com": "乌兹别克斯坦(大、小包)",
+            "no": "uzbekistan"
+        },
+        {
+            "com": "乌兹别克斯坦邮政",
+            "no": "uzbekistanpost"
+        },
+        {
+            "com": "美通",
+            "no": "valueway"
+        },
+        {
+            "com": "万庚国际速递",
+            "no": "vangen"
+        },
+        {
+            "com": "越中国际物流",
+            "no": "vctrans"
+        },
+        {
+            "com": "维达物流",
+            "no": "vlogistics"
+        },
+        {
+            "com": "越南邮政",
+            "no": "vnpost"
+        },
+        {
+            "com": "沃伊供应链",
+            "no": "voilogistics"
+        },
+        {
+            "com": "VOVA Logistics",
+            "no": "vovalogistics"
+        },
+        {
+            "com": "维普恩物流",
+            "no": "vps"
+        },
+        {
+            "com": "vstation",
+            "no": "vstation"
+        },
+        {
+            "com": "万博快递",
+            "no": "wanboex"
+        },
+        {
+            "com": "河南万里物流",
+            "no": "wanliwuliu"
+        },
+        {
+            "com": "新西兰万德隆物流公司",
+            "no": "wdllogistics"
+        },
+        {
+            "com": "wedepot物流",
+            "no": "wedepot"
+        },
+        {
+            "com": "文捷航空",
+            "no": "wenjiesudi"
+        },
+        {
+            "com": "西翼物流",
+            "no": "westwingexpress"
+        },
+        {
+            "com": "威盛快递",
+            "no": "wherexpress"
+        },
+        {
+            "com": "香港伟豪国际物流",
+            "no": "whgjkd"
+        },
+        {
+            "com": "Whistl",
+            "no": "whistl"
+        },
+        {
+            "com": "万邑通",
+            "no": "winit"
+        },
+        {
+            "com": "合联国际物流",
+            "no": "winlink"
+        },
+        {
+            "com": "万家康物流",
+            "no": "wjkwl"
+        },
+        {
+            "com": "星空国际",
+            "no": "wlwex"
+        },
+        {
+            "com": "华盟快递",
+            "no": "wmglobalexpress"
+        },
+        {
+            "com": "wndirect快递",
+            "no": "wndirect"
+        },
+        {
+            "com": "渥途国际速运",
+            "no": "wotu"
+        },
+        {
+            "com": "威时沛运货运",
+            "no": "wtdchina"
+        },
+        {
+            "com": "華信物流WTO",
+            "no": "wtologistics"
+        },
+        {
+            "com": "万运国际快递",
+            "no": "wygj168"
+        },
+        {
+            "com": "迅达速递",
+            "no": "xdexpress"
+        },
+        {
+            "com": "信达速运",
+            "no": "xdsuyun"
+        },
+        {
+            "com": "先飞达物流",
+            "no": "xfdwuliu"
+        },
+        {
+            "com": "西安城联速递",
+            "no": "xianchengliansudi"
+        },
+        {
+            "com": "祥龙运通物流",
+            "no": "xianglongyuntong"
+        },
+        {
+            "com": "喜来快递",
+            "no": "xilaikd"
+        },
+        {
+            "com": "新邦物流",
+            "no": "xinbangwuliu"
+        },
+        {
+            "com": "星辰快递",
+            "no": "xingchenex"
+        },
+        {
+            "com": "行运易",
+            "no": "xingyiyun"
+        },
+        {
+            "com": "西邮寄",
+            "no": "xipost"
+        },
+        {
+            "com": "西游寄",
+            "no": "xiyoug"
+        },
+        {
+            "com": "希优特快递",
+            "no": "xiyoutekuaidi"
+        },
+        {
+            "com": "快弟来了",
+            "no": "xlair"
+        },
+        {
+            "com": "贝海国际速递",
+            "no": "xlobo"
+        },
+        {
+            "com": "xpresspost",
+            "no": "xpresspost"
+        },
+        {
+            "com": "星前物流",
+            "no": "xqkjwl"
+        },
+        {
+            "com": "鑫通宝物流",
+            "no": "xtb"
+        },
+        {
+            "com": "迅速快递",
+            "no": "xunsuexpress"
+        },
+        {
+            "com": "行云物流",
+            "no": "xyb2b"
+        },
+        {
+            "com": "新元国际快递",
+            "no": "xynyc"
+        },
+        {
+            "com": "源安达快递",
+            "no": "yad"
+        },
+        {
+            "com": "亚风速递",
+            "no": "yafengsudi"
+        },
+        {
+            "com": "洋包裹",
+            "no": "yangbaoguo"
+        },
+        {
+            "com": "耀飞同城快递",
+            "no": "yaofeikuaidi"
+        },
+        {
+            "com": "耀奇物流",
+            "no": "yaoqi56"
+        },
+        {
+            "com": "YDH",
+            "no": "ydhex"
+        },
+        {
+            "com": "也门邮政",
+            "no": "yemen"
+        },
+        {
+            "com": "宇航通物流",
+            "no": "yhtlogistics"
+        },
+        {
+            "com": "易客满",
+            "no": "yikeman"
+        },
+        {
+            "com": "亿领速运",
+            "no": "yilingsuyun"
+        },
+        {
+            "com": "银捷速递",
+            "no": "yinjiesudi"
+        },
+        {
+            "com": "音素快运",
+            "no": "yinsu"
+        },
+        {
+            "com": "易欧洲国际物流",
+            "no": "yiouzhou"
+        },
+        {
+            "com": "一柒物流",
+            "no": "yiqiguojiwuliu"
+        },
+        {
+            "com": "一起送",
+            "no": "yiqisong"
+        },
+        {
+            "com": "亿顺航",
+            "no": "yishunhang"
+        },
+        {
+            "com": "易通达",
+            "no": "yitongda"
+        },
+        {
+            "com": "一统飞鸿",
+            "no": "yitongfeihong"
+        },
+        {
+            "com": "云路物流",
+            "no": "ylscm"
+        },
+        {
+            "com": "纵通速运",
+            "no": "ynztsy"
+        },
+        {
+            "com": "YODEL",
+            "no": "yodel"
+        },
+        {
+            "com": "永昌物流",
+            "no": "yongchang56"
+        },
+        {
+            "com": "优胜国际速递",
+            "no": "yoseus"
+        },
+        {
+            "com": "邮邦国际",
+            "no": "youban"
+        },
+        {
+            "com": "邮必佳",
+            "no": "youbijia"
+        },
+        {
+            "com": "雅澳物流",
+            "no": "yourscm"
+        },
+        {
+            "com": "优优速递",
+            "no": "youyou"
+        },
+        {
+            "com": "邮政国际",
+            "no": "youzhengguoji"
+        },
+        {
+            "com": "壹世达国际物流",
+            "no": "ysdgj56"
+        },
+        {
+            "com": "远航国际快运",
+            "no": "yuanhhk"
+        },
+        {
+            "com": "玥玛速运",
+            "no": "yue777"
+        },
+        {
+            "com": "越丰物流",
+            "no": "yuefengwuliu"
+        },
+        {
+            "com": "宇佳物流",
+            "no": "yujiawl"
+        },
+        {
+            "com": "煜嘉物流",
+            "no": "yujiawuliu"
+        },
+        {
+            "com": "宇捷通",
+            "no": "yujtong"
+        },
+        {
+            "com": "德国云快递",
+            "no": "yunexpress"
+        },
+        {
+            "com": "韵丰物流",
+            "no": "yunfeng56"
+        },
+        {
+            "com": "云聚物流",
+            "no": "yunjuwuliu"
+        },
+        {
+            "com": "运通快递",
+            "no": "yuntongkuaidi"
+        },
+        {
+            "com": "YUN TRACK",
+            "no": "yuntrack"
+        },
+        {
+            "com": "云众物流",
+            "no": "yunzhong56"
+        },
+        {
+            "com": "宇鑫物流",
+            "no": "yuxinwuliu"
+        },
+        {
+            "com": "燕文物流",
+            "no": "yw56"
+        },
+        {
+            "com": "西安运逸快递",
+            "no": "yyexp"
+        },
+        {
+            "com": "亚洲顺物流",
+            "no": "yzswuliu"
+        },
+        {
+            "com": "众帮物流",
+            "no": "zbwl"
+        },
+        {
+            "com": "直德邮",
+            "no": "zdepost"
+        },
+        {
+            "com": "全球速运",
+            "no": "zdwex"
+        },
+        {
+            "com": "增益速递",
+            "no": "zengyisudi"
+        },
+        {
+            "com": "众辉达物流",
+            "no": "zhdpt"
+        },
+        {
+            "com": "郑州建华",
+            "no": "zhengzhoujianhua"
+        },
+        {
+            "com": "浙鑫物流",
+            "no": "zhexinwuliu"
+        },
+        {
+            "com": "智谷特货",
+            "no": "zhiguil"
+        },
+        {
+            "com": "中外速运(中澳速)",
+            "no": "zhongaosu"
+        },
+        {
+            "com": "众川国际",
+            "no": "zhongchuan"
+        },
+        {
+            "com": "中宏物流",
+            "no": "zhonghongwl"
+        },
+        {
+            "com": "CHS中环国际快递",
+            "no": "zhonghuan"
+        },
+        {
+            "com": "中环转运",
+            "no": "zhonghuanus"
+        },
+        {
+            "com": "中技物流",
+            "no": "zhongjiwuliu"
+        },
+        {
+            "com": "中睿速递",
+            "no": "zhongruisudi"
+        },
+        {
+            "com": "中速快件",
+            "no": "zhongsukuaidi"
+        },
+        {
+            "com": "中天万运",
+            "no": "zhongtianwanyun"
+        },
+        {
+            "com": "中外运速递",
+            "no": "zhongwaiyun"
+        },
+        {
+            "com": "创运物流",
+            "no": "zjcy56"
+        },
+        {
+            "com": "振捷国际货运",
+            "no": "zjgj56"
+        },
+        {
+            "com": "苏通快运",
+            "no": "zjstky"
+        },
+        {
+            "com": "三真驿道",
+            "no": "zlink"
+        },
+        {
+            "com": "青旅物流",
+            "no": "zqlwl"
+        },
+        {
+            "com": "中融泰隆",
+            "no": "zrtl"
+        },
+        {
+            "com": "转瞬达集运",
+            "no": "zsda56"
+        },
+        {
+            "com": "中速国际",
+            "no": "zsgj"
+        },
+        {
+            "com": "中途速递",
+            "no": "ztcce"
+        },
+        {
+            "com": "中兴国际快递",
+            "no": "zteexpress"
+        },
+        {
+            "com": "中通冷链",
+            "no": "ztocc"
+        },
+        {
+            "com": "中通国际",
+            "no": "ztoglobal"
+        },
+        {
+            "com": "佐达物流",
+            "no": "zuodaexpress"
+        },
+        {
+            "com": "中远快运",
+            "no": "zy100"
+        },
+        {
+            "com": "中原快运",
+            "no": "zy886"
+        },
+        {
+            "com": "菜鸟速递",
+            "no": "cainiaozhisong"
+        }
+    ],
+    "error_code": 0
+}

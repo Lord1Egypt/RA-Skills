@@ -1,0 +1,26 @@
+{
+  "name": "wx-tabbar-icons",
+  "version": "1.0.0",
+  "description": "微信小程序 TabBar 图标生成技能。用 Python PIL 绘制 16 种简约几何风格图标（推荐/首页/记录/聊天/历史/我的/购物车/订单/搜索/分类/收藏/消息/地图/统计/相机/扫码），自动匹配 tab 文字、生成选中/未选中双色 PNG、更新 app.json。",
+  "license": "MIT-0",
+  "author": "flowstart",
+  "keywords": [
+    "微信小程序",
+    "tabbar",
+    "图标",
+    "icon",
+    "wechat",
+    "miniprogram",
+    "PIL",
+    "毕设",
+    "openclaw",
+    "skill"
+  ],
+  "clawhub": {
+    "acceptLicenseTerms": true
+  },
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "requires": {}
+  }
+}

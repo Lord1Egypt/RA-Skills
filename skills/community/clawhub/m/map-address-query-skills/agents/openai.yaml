@@ -1,0 +1,4 @@
+interface:
+  display_name: "Map Address Query"
+  short_description: "Geocode addresses and measure travel distance"
+  default_prompt: "Use $map-address-query to help set up map address queries, resolve addresses, and calculate distances."

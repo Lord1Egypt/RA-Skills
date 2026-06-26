@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "dry_run": false,
+  "timezone": "UTC",
+  "anchor": "05:00",
+  "day_end": "22:00",
+  "window_minutes": 300,
+  "buffer_minutes": 5,
+  "prompt": "ping — session warm-up, no action needed",
+  "claude_bin": "claude",
+  "claude_args": ["-p"]
+}

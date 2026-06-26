@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chinese Laoshi Ops"
+  short_description: "Operate a Chinese lesson pipeline with pilot-first and publication-review gates"
+  default_prompt: "Use Chinese Laoshi Ops to extract a lesson, build the lesson JSON and Markdown artifacts, and block publish if the bundle leaks, drifts, or asks for undeclared auth."

@@ -1,0 +1,128 @@
+name: agent-task
+version: 1
+description: Agent 任务管理工作流
+
+artifacts:
+  - id: brief
+    generates: "brief.md"
+    description: 任务简报（Intent + Scope + Success Criteria）
+    template: "brief.md"
+    instruction: |
+      创建任务简报。明确回答：
+      - 为什么做（Intent）— 解决什么问题？为谁解决？
+      - 做什么/不做什么（Scope）— In scope 和 Out of scope
+      - 怎样算做完了（Success Criteria）— 可验证的完成标准列表
+
+      如果 config.yaml 中有 context 字段且非空，将其作为背景信息注入简报开头。
+
+      注意：status.yaml 由 task_create 工具自动创建，无需手动维护。
+
+      rules 检查：
+      - 简报必须包含明确的成功标准（至少 1 条）
+      - 简报必须标注预期执行时间
+
+    requires: []
+
+  - id: spec
+    generates: "spec.md"
+    description: 任务规格（GIVEN/WHEN/THEN 验收场景）
+    template: "spec.md"
+    instruction: |
+      创建任务规格文件。基于 brief.md 中的 Success Criteria，为每个可验证的能力定义验收场景。
+
+      使用 GIVEN/WHEN/THEN 格式：
+      - GIVEN：前置条件
+      - WHEN：执行动作
+      - THEN：预期结果
+
+      必须覆盖：
+      - 至少一个正常场景
+      - 至少一个异常/边界场景
+
+      注意：status.yaml 由 task_create 工具自动创建，无需手动维护。
+
+      rules 检查：
+      - 每个场景必须有完整的 GIVEN/WHEN/THEN
+      - 至少覆盖一个异常场景
+
+    requires: [brief]
+
+  - id: plan
+    generates: "plan.md"
+    description: 执行计划（策略 + 工具 + 依赖 + 时间）
+    template: "plan.md"
+    instruction: |
+      创建执行计划。说明如何完成任务：
+      - Strategy：用什么策略？
+      - Tools Required：需要调用哪些工具/API/数据源
+      - Dependencies：依赖其他什么任务或外部条件
+      - Estimated Time：预估总执行时间
+
+      注意：status.yaml 由 task_create 工具自动创建，无需手动维护。
+
+      rules 检查：
+      - 必须列出所需的工具或 API
+
+    requires: [brief]
+
+  - id: checklist
+    generates: "checklist.md"
+    description: 执行清单（可勾选的原子步骤）
+    template: "checklist.md"
+    instruction: |
+      将 plan.md 拆解为可执行的原子步骤，使用 Markdown checkbox 格式。
+
+      要求：
+      - 每个步骤有明确的描述和可验证的产出物
+      - 单个步骤不超过 15 分钟执行时间
+      - 步骤按执行顺序排列，支持分组
+      - 使用 `- [ ]` 格式，执行时勾选为 `- [x]`
+
+      注意：progress 信息由脚本自动计算，无需手动更新 status.yaml 中的进度字段。
+
+      rules 检查：
+      - 每个步骤必须有可验证的产出物
+      - 单个步骤不超过 15 分钟执行时间
+
+    requires: [spec, plan]
+
+apply:
+  requires: [checklist]
+  tracks: "checklist.md"
+  instruction: |
+    按执行清单逐步执行。使用工具驱动状态管理：
+
+    1. 从第一个未勾选的步骤开始
+    2. 每完成一个步骤，勾选对应 checkbox
+    3. 使用 task_transition 工具切换任务阶段（如 pending → assigned）
+    4. 使用 task_log 工具记录执行日志（产出物路径、耗时、备注）
+    5. 产出物写入 outputs/ 目录
+    6. 如需暂停后恢复，使用 task_resume 工具恢复任务上下文
+    7. 遇到问题按 failure_policy 处理（参见 SKILL.md 错误处理章节）
+    8. 需要创建子任务时，在 subtasks/ 下创建，结构与父任务相同（但构件可简化）
+
+verify:
+  requires: [checklist]
+  instruction: |
+    对照 brief.md 的 Success Criteria 逐条验收。使用 task_verify 工具驱动验证流程：
+
+    1. 读取 brief.md 的 Success Criteria 列表
+    2. 对每条标准，检查 outputs/ 中的产出物是否满足
+    3. 运行 task_verify，自动将结果写入 status.yaml 的 verification 字段：
+       - status: pending → passed/failed
+       - criteria: 逐条记录 criterion/result/evidence/reason
+       - verified_at、verified_by
+    4. 全部通过且当前状态为 running → 自动转为 completed
+    5. 存在失败 → task_verify 仅设置 verification.status 为 failed，具体策略处理由外部流程决定
+
+archive:
+  instruction: |
+    验收通过后执行归档。使用 task_archive 工具驱动归档流程：
+
+    归档步骤（根据 config.yaml 的 archive 区块决定执行哪些步骤）：
+    1. record_history → 写入 ${agent.workspace}/memory/task-history/YYYY-MM-DD/<task-name>.md
+    2. generate_lessons → 写入 ${agent.workspace}/memory/task-lessons/<capability-keywords>.md
+    3. 如果 auto_archive: false → 先确认再归档
+
+    ${agent.workspace} 是当前 agent 的 workspace 路径。
+    归档文件使用 Markdown 格式，内容包含任务摘要、关键产出、经验教训。

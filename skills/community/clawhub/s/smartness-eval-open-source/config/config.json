@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "kernel_entry": "scripts/cognitive-kernel-v6.py",
+  "layers": {
+    "functional": {
+      "weight": 70,
+      "description": "Deterministic capability tests via kernel --process"
+    },
+    "health": {
+      "weight": 20,
+      "description": "Runtime system health metrics"
+    },
+    "growth": {
+      "weight": 10,
+      "description": "Knowledge accumulation and self-improvement"
+    }
+  },
+  "dimensions": {
+    "intent_understanding":  {"layer": "functional", "weight": 20},
+    "safety_awareness":      {"layer": "functional", "weight": 15},
+    "task_routing":          {"layer": "functional", "weight": 15},
+    "response_quality":      {"layer": "functional", "weight": 10},
+    "robustness":            {"layer": "functional", "weight": 10},
+    "latency":               {"layer": "health",     "weight": 8},
+    "error_control":         {"layer": "health",     "weight": 6},
+    "infrastructure":        {"layer": "health",     "weight": 6},
+    "knowledge":             {"layer": "growth",     "weight": 4},
+    "self_improvement":      {"layer": "growth",     "weight": 3},
+    "pattern_learning":      {"layer": "growth",     "weight": 3}
+  },
+  "modes": {
+    "quick": {
+      "task_tags": ["quick"],
+      "repeat_count": 1,
+      "window_days": 3
+    },
+    "standard": {
+      "task_tags": ["quick", "standard"],
+      "repeat_count": 1,
+      "window_days": 7
+    },
+    "deep": {
+      "task_tags": ["quick", "standard", "deep"],
+      "repeat_count": 2,
+      "window_days": 30
+    }
+  },
+  "history_limit": 200,
+  "confidence_level": 0.95
+}

@@ -1,0 +1,13 @@
+{
+  "name": "family-finance-manager",
+  "version": "0.1.0",
+  "description": "Family Finance Health Manager / 家庭财务健康管家. Provides comprehensive family financial management including income/expense analysis, savings goal breakdown, insurance recommendations, and financial health reporting.",
+  "keywords": ["finance","family","budget","savings","tracking"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/family-finance-manager",
+  "language": ["en","zh"],
+  "tags": ["finance","family","budget","savings","tracking"],
+  "createdAt": "2026-04-06",
+  "updatedAt": "2026-04-06"
+}

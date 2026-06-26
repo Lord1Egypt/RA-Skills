@@ -1,0 +1,41 @@
+# 错误码查询 - MiniMax 开放平台文档中心
+
+错误码查询 - MiniMax 开放平台文档中心
+🎉 MiniMax-M2.7 全新发布！订阅 Token Plan，尽享全模态模型。 立即体验  ➔
+MiniMax 开放平台文档中心 home page
+Anthropic API 兼容（推荐）
+OpenAI API 兼容
+文本对话（Anthropic API 兼容）
+文本对话（OpenAI API 兼容）
+如需反馈问题，请提供 Header 中的 trace_id，以便我们为您排查。
+错误码  含义  解决方法
+未知错误/系统默认错误
+未授权/Token 不匹配/Cookie 缺失
+请检查 API Key
+系统错误/下游服务错误
+请调整 max_tokens
+不可见字符比例超限/非法字符超过 10%
+请检查输入内容，是否包含不可见字符或非法字符
+ASR 相似度检查失败
+请检查 file_id 与 text_validation 匹配度
+克隆提示词相似度检查失败
+请检查克隆提示音频和提示词
+语音克隆样本或 voice_id 参数错误
+请检查 Voice Cloning 接口下的 file_id 和 T2A v2，T2A Large v2 接口下的 voice_id 参数
+语音时长不符合要求(太长或太短)
+请检查 voice_clone file_id 文件时长，最少应不低于 10 秒，最长应不超过 5 分钟
+用户语音克隆功能被禁用
+使用语音克隆功能需要完成账户身份认证，请根据您的使用需求在账户系管理》账户信息中进行个人或企业认证
+语音克隆 voice_id 重复
+请修改 voice_id，确保未和已有 voice_id 重复
+无权访问该 voice_id
+请确认是否为该 voice_id 创建者
+请避免请求骤增骤减情况
+语音克隆提示音频太长
+请调整 prompt_audio 音频文件时长（＜ 8s）
+无效的 API Key
+超出Token Plan资源限制
+请等待下一个时间段资源释放后，再次尝试
+如有其他疑问，请联系我们  api@minimaxi.com 。
+此页面对您有帮助吗？
+是        否

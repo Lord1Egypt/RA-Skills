@@ -1,35 +1,49 @@
 ---
-name: "Tongcheng"
-description: "提供同程旅行酒店与机票公开页面的价格、评分和时刻摘要，支持轻量分析与行程预算估算。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tongcheng"
-sourceUrl: "https://clawhub.ai/skills/tongcheng"
+name: tongcheng-hot-trend
+description: 注册“同程旅行”热门技能；当需要访问或自动化同程相关内容时调用。
+homepage: `https://www.ly.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Tongcheng
+# 同程旅行
 
-> 提供同程旅行酒店与机票公开页面的价格、评分和时刻摘要，支持轻量分析与行程预算估算。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tongcheng`
-- **Source URL:** [https://clawhub.ai/skills/tongcheng](https://clawhub.ai/skills/tongcheng)
+- 面向酒店与机票公开页面的检索与价格/时刻摘要
+- 不提供下单、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.ly.com/
+- 酒店：https://hotel.ly.com/
+- 机票：https://flight.ly.com/
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tongcheng
-```
+常见任务
+
+- 指定城市与日期的酒店列表摘要（均价、评分、位置）
+- 航线时刻与价格对比（直飞/中转、时长、里程）
+- 行程组合与预算估算
+
+数据字段
+
+- 酒店名称、链接、均价、评分、评论数、地理位置、设施摘要
+- 航班号、出发/到达机场与时间、是否直飞、价格、舱位
+- 行程日期、到达/离开时间、合计预算
+
+自动化要点
+
+- 页面动态渲染与人机校验，建议人工打开后触发解析
+- 价格与库存实时变动，需标注采集时间
+- 频率控制，不进行批量抓取；使用轻量摘要
+
+示例流程
+
+- 酒店清单：输入城市与日期 → 列表解析 → 输出均价与评分分布
+- 航线对比：设定航线 → 抽取航班条目 → 对比价格与时长
+- 行程组合：选择酒店与航班 → 生成出行清单 → 导出摘要
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

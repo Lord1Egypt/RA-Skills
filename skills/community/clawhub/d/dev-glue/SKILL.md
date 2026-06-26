@@ -1,35 +1,49 @@
 ---
-name: "Dev Glue"
-description: "JSON transformation, schema validation, text diffing, document conversion. Four developer utility micro-services. Use for data transformation, validation, an..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dev-glue"
-sourceUrl: "https://clawhub.ai/skills/dev-glue"
+name: dev-glue
+description: JSON transformation, schema validation, text diffing, document conversion. Four developer utility micro-services. Use for data transformation, validation, and format conversion.
 ---
 
 # Dev Glue
 
-> JSON transformation, schema validation, text diffing, document conversion. Four developer utility micro-services. Use for data transformation, validation, an...
+Four utility services for data transformation and validation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dev-glue`
-- **Source URL:** [https://clawhub.ai/skills/dev-glue](https://clawhub.ai/skills/dev-glue)
+## Services
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dev-glue
+### /transform-json — JSON Transformation
+Apply expressions to transform JSON data.
 ```
+POST /x402s/transform-json
+Body: {"input": {"users": [...]}, "expression": "users[0].name"}
+Response: {"output": "Alice", "expression": "users[0].name"}
+Price: $0.001 USDC
+```
+
+### /validate-json — Schema Validation
+Validate JSON against schema with human-readable errors.
+```
+POST /x402s/validate-json
+Body: {"input": {...}, "schema": {...}}
+Response: {"valid": false, "errors": [{"path": ["name"], "message": "required", "rule": "required"}]}
+Price: $0.001 USDC
+```
+
+### /compare-text — Text Diff
+Semantic diff between two texts with similarity score.
+```
+POST /x402s/compare-text
+Body: {"text1": "Hello world", "text2": "Hello there world"}
+Response: {"similarity": 0.647, "additions": 6, "deletions": 0, "diffs": [...]}
+Price: $0.001 USDC
+```
+
+### /convert-doc — Format Conversion
+Markdown to HTML to plain text.
+```
+POST /x402s/convert-doc
+Body: {"input": "# Hello\n**bold**", "from_format": "markdown", "to_format": "html"}
+Response: {"output": "<h1>Hello</h1><p><strong>bold</strong></p>"}
+Price: $0.002 USDC
+```
+
+## Payment
+x402 protocol — USDC on Base.

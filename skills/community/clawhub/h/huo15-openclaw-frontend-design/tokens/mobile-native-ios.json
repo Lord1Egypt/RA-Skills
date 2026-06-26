@@ -1,0 +1,44 @@
+{
+  "name": "mobile-native-ios",
+  "displayName": "MOBILE-NATIVE · iOS HIG",
+  "version": "1.0.0",
+  "color": {
+    "paper": "oklch(0.985 0.005 75)",
+    "groupedBg": "oklch(0.94 0.005 75)",
+    "ink": "oklch(0.18 0.005 280)",
+    "mute": "oklch(0.55 0.01 280)",
+    "sep": "oklch(0.88 0.005 280)",
+    "accent": "oklch(0.66 0.16 50)",
+    "card": "oklch(1 0 0)"
+  },
+  "colorHex": {
+    "paper": "#fafaf6",
+    "groupedBg": "#efefe9",
+    "ink": "#2c2c33",
+    "mute": "#85858a",
+    "sep": "#dddde0",
+    "accent": "#cf7a26",
+    "card": "#ffffff"
+  },
+  "typography": {
+    "display": "Manrope 800",
+    "body": "IBM Plex Sans 400/500/600"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 20, "xl": 32, "2xl": 64 },
+  "radius": { "icon": 8, "button": 7, "list": 14, "fab": 18, "pill": 999 },
+  "shadow": {
+    "navbarBlur": "saturate(180%) blur(20px)",
+    "card": "0 1px 2px oklch(0 0 0 / .08), 0 0 0 .5px oklch(0 0 0 / .04)"
+  },
+  "redLineWaiver": ["accent 用自有暖橙替代 system blue #007AFF（红线 #8 合规：Apple 自家 App 也都用品牌色而非系统蓝）"],
+  "examplePath": "../examples/mobile-native/ios/index.html",
+  "motion": {
+    "duration": { "fast": 200, "normal": 350, "slow": 500 },
+    "easing": {
+      "iosSpring": "cubic-bezier(0.32, 0.72, 0, 1)",
+      "iosDefault": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "stagger": { "normal": 70 },
+    "philosophy": "Apple HIG spring — iosSpring 模仿 SwiftUI 的 .interactiveSpring；模态弹出 350ms、tab 切换 200ms"
+  }
+}

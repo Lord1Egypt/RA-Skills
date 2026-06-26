@@ -1,0 +1,16 @@
+{
+  "domains": [
+    "centralrestaurante.com",
+    "alchemist.dk",
+    "caitlinmcweeney.com"
+  ],
+  "maxResults": 100,
+  "resultMode": "emailsOnly",
+  "maxPagesPerWebsite": 3,
+  "concurrency": 100,
+  "requestTimeoutSecs": 5,
+  "extractPhones": true,
+  "extractSocials": true,
+  "includePersonalData": true,
+  "sameDomainOnly": true
+}

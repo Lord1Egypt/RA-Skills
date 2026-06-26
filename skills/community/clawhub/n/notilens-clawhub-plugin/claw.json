@@ -1,0 +1,159 @@
+{
+  "name": "notilens",
+  "version": "0.2.0",
+  "description": "Send alerts to NotiLens from any script, app, or AI agent — task lifecycle events, errors, completions, and metric tracking.",
+  "author": "notilens",
+  "license": "MIT",
+  "entry": "src/notilens.js",
+  "skills": [
+    {
+      "id": "genRunId",
+      "description": "Generate a unique run ID (run_{unix_ms}_{hex4}) to correlate all events from the same task execution. Call once at task start and include in meta.run_id on every event.",
+      "module": "src/notilens.js",
+      "export": "genRunId"
+    },
+    {
+      "id": "notify",
+      "description": "Send a notification to NotiLens. Pass name (source), event, message, and optional options (type, image_url, open_url, download_url, tags, meta). Title is auto-generated.",
+      "module": "src/notilens.js",
+      "export": "notify"
+    },
+    {
+      "id": "track",
+      "description": "Track any custom event (e.g. order.placed, deploy.started). Title is auto-generated. Type and meta are optional.",
+      "module": "src/notilens.js",
+      "export": "track"
+    },
+    {
+      "id": "task.queued",
+      "description": "Fire task.queued when a task is placed in a queue before a worker picks it up.",
+      "module": "src/notilens.js",
+      "export": "taskQueued"
+    },
+    {
+      "id": "task.started",
+      "description": "Fire task.started when execution begins. Include queue_ms in meta if the task was queued first.",
+      "module": "src/notilens.js",
+      "export": "taskStarted"
+    },
+    {
+      "id": "task.progress",
+      "description": "Fire task.progress at meaningful checkpoints during a long task. Include rows_done, percent, tokens_used, or other metrics in meta.",
+      "module": "src/notilens.js",
+      "export": "taskProgress"
+    },
+    {
+      "id": "task.paused",
+      "description": "Fire task.paused when the task is pausing (e.g. rate limit, waiting on I/O). Include pause_count and wait_reason in meta.",
+      "module": "src/notilens.js",
+      "export": "taskPaused"
+    },
+    {
+      "id": "task.waiting",
+      "description": "Fire task.waiting when the task is blocked on an external resource. Include wait_count and wait_reason in meta.",
+      "module": "src/notilens.js",
+      "export": "taskWaiting"
+    },
+    {
+      "id": "task.resumed",
+      "description": "Fire task.resumed after a pause or wait ends. Include pause_ms or wait_ms in meta.",
+      "module": "src/notilens.js",
+      "export": "taskResumed"
+    },
+    {
+      "id": "task.retry",
+      "description": "Fire task.retry when the task is being retried. Pass the current retry number (1-based) as retryCount.",
+      "module": "src/notilens.js",
+      "export": "taskRetry"
+    },
+    {
+      "id": "task.loop",
+      "description": "Fire task.loop when repeating the same step. Pass the current loop count. Backend ML handles detection.",
+      "module": "src/notilens.js",
+      "export": "taskLoop"
+    },
+    {
+      "id": "task.error",
+      "description": "Fire task.error for a non-fatal error — task continues after this. Include error_count and last_error in meta.",
+      "module": "src/notilens.js",
+      "export": "taskError"
+    },
+    {
+      "id": "task.completed",
+      "description": "Fire task.completed when a task finishes successfully. Include total_duration_ms, active_ms, and custom metrics in meta.",
+      "module": "src/notilens.js",
+      "export": "taskCompleted"
+    },
+    {
+      "id": "task.failed",
+      "description": "Fire task.failed when a task fails and will not be retried. Include retry_count, error_count, last_error, and total_duration_ms in meta.",
+      "module": "src/notilens.js",
+      "export": "taskFailed"
+    },
+    {
+      "id": "task.timeout",
+      "description": "Fire task.timeout when a task exceeds its time limit. Include total_duration_ms and time_limit_ms in meta.",
+      "module": "src/notilens.js",
+      "export": "taskTimeout"
+    },
+    {
+      "id": "task.cancelled",
+      "description": "Fire task.cancelled when a task is cancelled before completion.",
+      "module": "src/notilens.js",
+      "export": "taskCancelled"
+    },
+    {
+      "id": "task.stopped",
+      "description": "Fire task.stopped when a task is stopped intentionally (not an error).",
+      "module": "src/notilens.js",
+      "export": "taskStopped"
+    },
+    {
+      "id": "task.terminated",
+      "description": "Fire task.terminated when a task is forcibly terminated.",
+      "module": "src/notilens.js",
+      "export": "taskTerminated"
+    },
+    {
+      "id": "input.required",
+      "description": "Fire input.required when a human decision is needed to continue. Pass openUrl to link to an approval UI.",
+      "module": "src/notilens.js",
+      "export": "inputRequired"
+    },
+    {
+      "id": "input.approved",
+      "description": "Fire input.approved when a human approves the request.",
+      "module": "src/notilens.js",
+      "export": "inputApproved"
+    },
+    {
+      "id": "input.rejected",
+      "description": "Fire input.rejected when a human rejects the request.",
+      "module": "src/notilens.js",
+      "export": "inputRejected"
+    },
+    {
+      "id": "output.generated",
+      "description": "Fire output.generated when output is produced (file, report, result). Pass download_url, open_url, or image_url in meta.",
+      "module": "src/notilens.js",
+      "export": "outputGenerated"
+    },
+    {
+      "id": "output.failed",
+      "description": "Fire output.failed when expected output could not be produced.",
+      "module": "src/notilens.js",
+      "export": "outputFailed"
+    }
+  ],
+  "permissions": {
+    "network": true,
+    "env": [
+      "NOTILENS_TOKEN",
+      "NOTILENS_SECRET"
+    ]
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "tags": ["notifications", "monitoring", "alerts", "observability"]
+}

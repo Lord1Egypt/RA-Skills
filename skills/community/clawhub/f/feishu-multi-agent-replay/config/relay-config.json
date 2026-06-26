@@ -1,0 +1,92 @@
+{
+  "_README": [
+    "feishu-multi-agent 配置文件",
+    "",
+    "这个 skill 的所有业务配置统一放在这一个文件中：",
+    "  ~/.openclaw/config/feishu-multi-agent.json",
+    "",
+    "使用方法：",
+    "  1. 将本文件复制到 ~/.openclaw/config/feishu-multi-agent.json",
+    "  2. 只修改这个文件，无需再改脚本或其他全局配置",
+    "",
+    "字段说明：",
+    "  self_name / self_app_id / self_app_secret - 本机机器人的飞书身份",
+    "  self_token / self_api_url - 本机 OpenClaw API 地址和密钥",
+    "  peer_name / peer_app_id - 对方机器人的昵称和飞书 App ID",
+    "  chat_id - 目标飞书群聊 ID（oc_ 开头）",
+    "  require_mention - true=需要 @ 本机才回复；false=自由对话",
+    "  starter_role - self=本机先开场；peer=等待对方先开场；auto=本机收到启动后直接开场",
+    "  starter_mode - 默认 on_topic_update；话题更新或继续时是否自动发出开场观点",
+    "  default_rounds - 默认轮数；轮数耗尽后自动恢复到该值",
+    "  reset_rounds_after_finish - 轮数耗尽后是否自动恢复 default_rounds",
+    "  idle_timeout_minutes - 群里在该分钟数内没有任何新消息时，daemon 自动退出",
+    "  preserve_topic_on_stop - STOP 后是否保留上次锁定话题",
+    "  stop_exact_keywords - 精确匹配停止词，例如 STOP",
+    "  continue_keywords - 包含匹配继续词，例如 继续",
+    "  lock_topic_keywords - 锁定或更新话题的前缀关键词",
+    "  unlock_topic_keywords - 解锁话题的关键词",
+    "  round_patterns - 解析轮数指令的正则列表，至少一个捕获组是数字",
+    "  starter_prompt_template - 本机主动抛出第一句观点时使用的系统提示词",
+    "  system_prompt_template - 正常接话时使用的系统提示词"
+  ],
+  "self_name": "机器人A",
+  "self_app_id": "机器人A的App ID",
+  "self_app_secret": "机器人A的App Secret",
+  "self_token": "机器人A的OpenClaw Token",
+  "self_api_url": "http://127.0.0.1:18789",
+  "peer_name": "机器人B",
+  "peer_app_id": "机器人B的App ID",
+  "chat_id": "飞书群组的oc_XXXXXXXXXXXXXXXX",
+  "require_mention": false,
+  "starter_role": "self",
+  "starter_mode": "on_topic_update",
+  "default_rounds": 50,
+  "reset_rounds_after_finish": true,
+  "idle_timeout_minutes": 30,
+  "preserve_topic_on_stop": true,
+  "poll_interval_seconds": 30,
+  "history_fetch_window_seconds": 60,
+  "history_rounds": 5,
+  "brain_model": "default",
+  "max_reply_tokens": 500,
+  "stop_exact_keywords": [
+    "STOP"
+  ],
+  "continue_keywords": [
+    "继续",
+    "开始",
+    "继续讨论",
+    "go on"
+  ],
+  "lock_topic_keywords": [
+    "讨论",
+    "话题锁定",
+    "只聊",
+    "锁定话题",
+    "换个话题",
+    "改聊"
+  ],
+  "unlock_topic_keywords": [
+    "解锁话题",
+    "随便聊",
+    "话题放开",
+    "解锁"
+  ],
+  "round_patterns": [
+    "再对话\\s*(\\d+)\\s*(轮|次|回合)",
+    "继续对话\\s*(\\d+)\\s*(轮|次|回合)",
+    "再聊\\s*(\\d+)\\s*(轮|次|回合)",
+    "对话\\s*(\\d+)\\s*(轮|次|回合)"
+  ],
+  "end_message_template": "本轮讨论结束（共 {rounds} 轮）。如需继续，请发送“继续”或“再对话N轮”。",
+  "starter_prompt_template": [
+    "你是{self_name}，你正在飞书群里主动发起话题讨论。",
+    "当前锁定话题是：{topic}。",
+    "请直接给出一句自然、明确、有观点的开场发言，鼓励{peer_name}接话，不要输出客套话。"
+  ],
+  "system_prompt_template": [
+    "你是{self_name}，正在飞书群聊中与{peer_name}进行讨论。",
+    "当前锁定话题是：{topic}。",
+    "请根据对方刚才的发言，给出自然、简短、有实质内容的回复，尽量控制在 500 字以内。"
+  ]
+}

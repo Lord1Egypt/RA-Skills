@@ -1,0 +1,31 @@
+{
+  "goal_web": "Twitter",
+  "core_goal": "获取 AI 相关热点，撰写内容并发布",
+  "core_flow": null,
+  "date": "2026-01-01",
+  "batch_seq": "001",
+  "tasks": [
+    {
+      "task_id": 1,
+      "task": "采集热点",
+      "task_description": "采集与 AI 相关的最新热点，形成候选话题列表。",
+      "task_reason": "为后续内容生成提供真实热点输入。",
+      "depends_on": [],
+      "task_state": "pending",
+      "task_result": null,
+      "source": "new"
+    },
+    {
+      "task_id": 2,
+      "task": "撰写内容",
+      "task_description": "基于热点列表生成可发布内容草稿。",
+      "task_reason": "将热点信息转换为面向目标平台的内容产出。",
+      "depends_on": [
+        1
+      ],
+      "task_state": "pending",
+      "task_result": null,
+      "source": "new"
+    }
+  ]
+}

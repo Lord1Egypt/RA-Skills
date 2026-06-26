@@ -1,0 +1,16 @@
+Action Plan for {{idea_name}}:
+
+1. MVP Creation:
+   - Landing page: {{landing_page}}
+   - CTA: {{call_to_action}}
+
+2. Outreach:
+   - Email template: {{email_template}}
+
+3. Execution:
+   - Step-by-step tasks: {{tasks}}
+
+4. KPI Tracking:
+   - Expected Revenue: {{expected_gain}}
+   - Cost: {{cost}}
+   - Expected ROI: {{roi}}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ORGANIC · 火一五前端设计技能 v2.0 示例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: oklch(0.96 0.025 85);
+    --ink: oklch(0.28 0.04 50);
+    --clay: oklch(0.62 0.13 45);
+    --moss: oklch(0.45 0.10 145);
+    --sky: oklch(0.78 0.07 220);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:18px;line-height:1.7;overflow-x:hidden}
+  .wrap{max-width:1080px;margin:0 auto;padding:64px 32px 120px;position:relative}
+  .blob{position:absolute;border-radius:42% 58% 70% 30% / 45% 50% 50% 55%;filter:blur(2px);opacity:.45;z-index:0;pointer-events:none}
+  .blob-a{top:80px;right:-80px;width:380px;height:340px;background:var(--clay)}
+  .blob-b{top:540px;left:-120px;width:300px;height:280px;background:var(--moss)}
+  .blob-c{bottom:120px;right:120px;width:200px;height:180px;background:var(--sky)}
+  header,h1,.lede,.cards,.note,footer{position:relative;z-index:1}
+  header{display:flex;justify-content:space-between;align-items:baseline}
+  .logo{font-family:"Caveat",cursive;font-size:36px;color:var(--moss);font-weight:600}
+  nav a{margin-left:24px;color:var(--ink);text-decoration:none;font-size:16px}
+  nav a:hover{color:var(--clay)}
+  h1{font-family:"Caveat",cursive;font-size:clamp(56px,10vw,144px);line-height:1;color:var(--clay);font-weight:600;margin:80px 0 16px;max-width:14ch}
+  h1::after{content:"";display:inline-block;width:.4em;height:.4em;background:var(--moss);border-radius:55% 45% 60% 40%;margin-left:.15em;vertical-align:.1em}
+  .lede{font-size:22px;line-height:1.55;max-width:38ch;color:var(--ink)}
+  .lede em{color:var(--moss);font-style:normal;border-bottom:3px wavy var(--clay);padding-bottom:1px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin:80px 0}
+  .card{background:oklch(1 0 0 / .55);padding:32px;border-radius:48% 52% 55% 45% / 50% 50% 50% 50%;border:2px solid var(--ink)}
+  .card h3{font-family:"Caveat",cursive;font-size:36px;color:var(--moss);font-weight:600;margin-bottom:8px}
+  .card p{font-size:16px;line-height:1.6}
+  .note{font-family:"Caveat",cursive;font-size:28px;color:var(--clay);text-align:center;transform:rotate(-1.2deg);max-width:30ch;margin:48px auto 0}
+  footer{margin-top:80px;padding-top:24px;border-top:2px dotted var(--ink);display:flex;justify-content:space-between;font-size:14px;color:var(--moss);font-family:"Caveat",cursive;font-weight:600}
+  @media (max-width:720px){.cards{grid-template-columns:1fr;gap:24px}.wrap{padding:40px 20px 80px}.blob{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="blob blob-a"></span>
+  <span class="blob blob-b"></span>
+  <span class="blob blob-c"></span>
+  <header>
+    <span class="logo">huo15 · 慢慢做</span>
+    <nav><a href="#">关于</a><a href="#">手记</a><a href="#">订阅</a></nav>
+  </header>
+  <h1>种一棵树<br>最好的时候</h1>
+  <p class="lede">ORGANIC 流派示例 — 手写体 Caveat + 衬线 Source Serif，土橙 / 森林绿 / 雾蓝三色，<em>不规则圆角</em>与轻微旋转的便签，柔边斑块替代渐变。</p>
+  <section class="cards">
+    <article class="card"><h3>柔边</h3><p>每个圆角都不一样，border-radius 用 4 段不同的百分比，避免统一 16px 的工业感。</p></article>
+    <article class="card"><h3>暖色</h3><p>oklch 暖色域里挑 3 个相近色，纯色而非渐变，避开 AI 渐变模糊背景。</p></article>
+    <article class="card"><h3>不齐</h3><p>便签轻微旋转 -1.2°，文字下划线用 wavy 装饰，所有"完美"都被刻意打破。</p></article>
+  </section>
+  <p class="note">— 差异点：每一处不规则都是手挑的，不是随机的。</p>
+  <footer><span>© 2026 huo15</span><span>ORGANIC · v2.0</span></footer>
+</div>
+</body>
+</html>

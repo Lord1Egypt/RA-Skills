@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clear Task"
+  short_description: "Clarify, confirm, then execute with guidance."
+  default_prompt: "Use $clear-task to clarify this idea, ask me to confirm the requirements, then build an internal expert-guided task package and execute after approval."

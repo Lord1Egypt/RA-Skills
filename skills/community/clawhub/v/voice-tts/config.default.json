@@ -1,0 +1,24 @@
+{
+  "defaultVoice": "zh-CN-XiaoxiaoNeural",
+  "defaultRate": "+0%",
+  "defaultPitch": "+0Hz",
+  "agentVoices": {
+    "main": "zh-CN-XiaoxiaoNeural"
+  },
+  "paths": {
+    "mediaIn": "~/.openclaw/media/inbound",
+    "mediaOut": "~/.openclaw/media/outbound",
+    "processed": "~/.openclaw/media/voice_processed"
+  },
+  "asr": {
+    "defaultInitialPrompt": "以下是中文语音转文字。常见词包括：管家、研究员、邮差、码农、产品、运维、OpenClaw、小爱、Telegram、QQBot、MiniMax、Home Assistant。",
+    "defaultTemperature": 0,
+    "conditionOnPreviousText": true
+  },
+  "limits": {
+    "maxFileAgeSeconds": 300,
+    "minFileSizeBytes": 1000,
+    "ttsTimeoutMs": 60000,
+    "asrTimeoutMs": 300000
+  }
+}

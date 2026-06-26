@@ -1,0 +1,14 @@
+# RoundTable Skill Dependencies
+# Python 3.8+
+
+# Core dependencies (if any external packages needed)
+# Currently using only Python standard library
+
+# Optional dependencies for advanced features
+# aiohttp>=3.8.0      # Async HTTP client (if needed for notifications)
+# requests>=2.28.0    # HTTP client (fallback)
+
+# Development dependencies
+# pytest>=7.0.0       # Testing framework
+# black>=22.0.0       # Code formatter
+# flake8>=4.0.0       # Linter

@@ -1,35 +1,24 @@
----
-name: "Yanji Bus Query"
-description: "查询延吉公交线路的实时车辆位置，可指定线路号、子线路及模糊匹配起始和终点站名。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yanjibus"
-sourceUrl: "https://clawhub.ai/skills/yanjibus"
----
+# 延吉公交实时查询项目
 
-# Yanji Bus Query
+## Skills
 
-> 查询延吉公交线路的实时车辆位置，可指定线路号、子线路及模糊匹配起始和终点站名。
+### /bus - 延吉公交实时查询
+查询延吉公交线路的实时车辆位置。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yanjibus`
-- **Source URL:** [https://clawhub.ai/skills/yanjibus](https://clawhub.ai/skills/yanjibus)
+用法: 当用户问公交相关问题时，运行 `bash ./yanji-bus.sh <线路号> [子线路号] [--from <站名> --to <站名>]`
 
-## Overview
+当用户提供了出发站和目的站时，使用 --from 和 --to 参数自动判断乘坐方向。站名支持模糊匹配（包含关系即可）。
 
+常用线路速查:
+- 3路3线: 火车站 ↔ 兴农三队
+- 4路: 火车站 ↔ 延吉西站
+- 6路: 火车站 ↔ 兴安小学
+- 9路: 延吉人民体育场 ↔ 万家盛苑
+- 10路: 延吉西站 ↔ 公交集团五车队
+- 37路: 军分区东 ↔ 延吉西站
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yanjibus
-```
+如果用户只说了线路号没说子线路号，默认子线路为1。3路有3条子线路(1/2/3)。
+
+## 配合使用
+
+可配合 [高德地图 skill](https://github.com/kaichen/amap-skill) 使用，实现步行导航到公交站、查找目的地附近站点等功能。

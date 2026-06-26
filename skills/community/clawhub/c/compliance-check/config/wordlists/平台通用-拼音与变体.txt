@@ -1,0 +1,12 @@
+# 平台通用·拼音/谐音/变体示例（可自增）
+# 一行一词；想用技巧的都可加这里，与多词库一起对比。
+# regex: 可写正则，例如 regex: s\s*b\s*
+sb
+nb
+tmd
+nmsl
+cnm
+rnm
+cao
+fuck
+shit

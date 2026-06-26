@@ -1,35 +1,15 @@
 ---
-name: "edit-article"
-description: "Indexed by skills.sh from mattpocock/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mattpocock"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mattpocock/skills/edit-article"
-sourceUrl: "https://skills.sh/mattpocock/skills/edit-article"
+name: edit-article
+description: Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an article draft.
+disable-model-invocation: true
 ---
 
-# edit-article
+1. First, divide the article into sections based on its headings. Think about the main points you want to make during those sections.
 
-> Indexed by skills.sh from mattpocock/skills
+Consider that information is a directed acyclic graph, and that pieces of information can depend on other pieces of information. Make sure that the order of the sections and their contents respects these dependencies.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mattpocock
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mattpocock/skills/edit-article`
-- **Source URL:** [https://skills.sh/mattpocock/skills/edit-article](https://skills.sh/mattpocock/skills/edit-article)
+Confirm the sections with the user.
 
-## Overview
+2. For each section:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mattpocock/skills/edit-article
-```
+2a. Rewrite the section to improve clarity, coherence, and flow. Use maximum 240 characters per paragraph.

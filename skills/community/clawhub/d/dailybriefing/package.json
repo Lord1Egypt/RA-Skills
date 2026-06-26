@@ -1,0 +1,16 @@
+{
+  "name": "daily-briefing",
+  "version": "1.1.0",
+  "description": "Generate daily morning briefings with weather, traffic limits, and news",
+  "type": "module",
+  "scripts": {
+    "briefing": "node scripts/generate-briefing.mjs",
+    "test": "node scripts/test-all.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "keywords": ["daily", "briefing", "weather", "news", "beijing"],
+  "author": "Kimi Claw",
+  "license": "MIT"
+}

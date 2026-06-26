@@ -1,35 +1,201 @@
 ---
-name: "微信QQ自动发消息"
-description: "Windows 平台微信和 QQ 自动发消息工具。支持搜索联系人、发送消息、截图OCR分析、智能回复建议（需用户确认后发送）。"
-category: "productivity"
-source: "ClawHub"
-tags: [auto-reply, automation, gui-automation, messaging, ocr, pyautogui, qq, qq-bot, wechat, wechat-bot, windows]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-qq-sender"
-sourceUrl: "https://clawhub.ai/skills/wechat-qq-sender"
+name: wechat-qq-sender
+version: 1.0.0
+description: Windows 平台微信和 QQ 自动发消息工具。支持搜索联系人、发送消息、截图OCR分析、智能回复建议（需用户确认后发送）。
+author: OpenClaw Community
+tags: [wechat, qq, messaging, automation, windows, ocr]
 ---
 
-# 微信QQ自动发消息
+# WeChat & QQ Sender
 
-> Windows 平台微信和 QQ 自动发消息工具。支持搜索联系人、发送消息、截图OCR分析、智能回复建议（需用户确认后发送）。
+⚠️ **隐私与安全警告**
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-qq-sender`
-- **Source URL:** [https://clawhub.ai/skills/wechat-qq-sender](https://clawhub.ai/skills/wechat-qq-sender)
+本工具涉及以下敏感操作，请仔细阅读：
 
-## Overview
+| 操作 | 风险 | 防护措施 |
+|------|------|---------|
+| **屏幕截图** | 会捕获屏幕可见内容，可能包含敏感信息 | 截图仅保存到本地 `~/.openclaw/workspace/screenshots/`，不会自动上传 |
+| **剪贴板操作** | 会临时覆盖剪贴板内容 | 发送完成后恢复剪贴板（部分场景） |
+| **键盘模拟** | 模拟键盘输入发送消息 | 发送前需用户确认，不会自动发送 |
+| **鼠标控制** | 移动鼠标点击窗口 | 发送期间请勿操作鼠标 |
 
+**建议：**
+- ✅ 仅在测试环境使用
+- ✅ 避免在包含敏感信息的聊天中使用
+- ✅ 发送期间不要操作鼠标键盘
+- ❌ 不要将截图上传到外部 AI 服务（可能泄露隐私）
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+⚠️ **风险提示**：本工具会控制鼠标键盘、读写剪贴板、自动发送消息。请确保在信任环境下使用，不要在含有敏感信息的会话中使用。
+
+Windows 平台微信和 QQ 自动发消息工具，使用 Python + PyAutoGUI 实现。
+
+## 功能特性
+
+- ✅ 微信自动发消息
+- ✅ QQ 自动发消息
+- ✅ 支持中文、英文、颜文字
+- ✅ 使用剪贴板粘贴（支持特殊字符）
+- ✅ 截图保存到本地
+- ✅ 本地 OCR 识别（可选）
+- ✅ 智能回复建议（**需用户确认后发送**）
+
+## 系统要求
+
+- Windows 10/11
+- Python 3.10+
+- 微信/QQ 桌面版已安装并登录
+
+## 依赖安装
+
+### 基础依赖
 ```bash
-hermes skills install clawhub/wechat-qq-sender
+pip install pyautogui pygetwindow pyperclip pillow
 ```
+
+### OCR 依赖（必需，用于截图识别）
+```bash
+# EasyOCR（推荐，中文识别效果更好）
+pip install easyocr
+
+# 首次运行时会自动下载模型（约 100MB）
+```
+
+**注意**：EasyOCR 首次加载需要下载模型，请保持网络畅通。
+
+## 使用方法
+
+### 微信发消息
+
+```bash
+python wechat_send_message.py <联系人> <消息>
+```
+
+示例：
+```bash
+python wechat_send_message.py 联系人A "你好呀！(๑•̀ㅂ•́)و✧"
+```
+
+### QQ 发消息
+
+```bash
+python qq_send_message.py <联系人> <消息>
+```
+
+示例：
+```bash
+python qq_send_message.py "联系人B" "Hello~"
+```
+
+### 截图 + OCR + 智能回复
+
+```bash
+python qq_capture_and_reply.py <群聊名称>
+```
+
+**流程说明：**
+1. 截取聊天区域
+2. OCR 识别聊天内容（如果安装了 OCR 引擎）
+3. 分析内容并生成回复建议
+4. **显示回复建议，等待用户确认**
+5. 用户输入 `y` 发送，或输入自定义内容，或输入 `n` 取消
+6. 发送消息
+
+**示例：**
+```bash
+python qq_capture_and_reply.py "工作群"
+# 显示：建议回复：收到~
+# 提示：是否发送？输入 y 发送，n 取消，或输入自定义回复：
+# 用户输入 y → 发送
+# 用户输入 n → 取消
+# 用户输入其他 → 作为自定义回复发送
+```
+
+## 工作原理
+
+1. **查找窗口**：使用 `pygetwindow` 查找微信/QQ 窗口
+2. **激活窗口**：将窗口置于前台
+3. **搜索联系人**：
+   - 微信：Ctrl+F 打开搜索，输入名字，两次回车选择
+   - QQ：Ctrl+Alt+S 打开搜索，点击联系人
+4. **发送消息**：使用剪贴板粘贴文字（支持中文和颜文字），按 Enter 发送
+
+## ⚠️ 重要风险提示
+
+| 风险 | 说明 | 建议 |
+|------|------|------|
+| **剪贴板操作** | 脚本会临时修改剪贴板内容 | 发送期间不要复制其他内容 |
+| **鼠标键盘控制** | 脚本会模拟鼠标点击和键盘输入 | 发送期间不要操作鼠标键盘 |
+| **自动发送** | 消息会直接发送到聊天窗口 | 仔细确认回复内容后再发送 |
+| **隐私泄露** | OCR 会识别聊天内容 | 不要在敏感聊天中使用 |
+| **账号安全** | 脚本控制微信/QQ 发送消息 | 只在信任环境下使用 |
+
+## 数据存储
+
+本技能会在以下位置读写文件：
+
+| 路径 | 用途 | 是否可删除 |
+|------|------|-----------|
+| `~/.openclaw/workspace/screenshots/` | 保存聊天截图 | ✅ 可随时删除 |
+| `~/.openclaw/workspace/temp/` | 临时文件（剪贴板图片等） | ✅ 可随时删除 |
+
+**注意**：截图文件仅保存在本地，不会自动上传或发送到任何外部服务。
+
+## 文件说明
+
+| 文件 | 功能 |
+|------|------|
+| `wechat_send_message.py` | 微信发消息 |
+| `qq_send_message.py` | QQ 发消息 |
+| `qq_capture_and_reply.py` | 截图 + OCR + 智能回复（需确认） |
+| `ocr_helper.py` | OCR 辅助模块 |
+
+## 注意事项
+
+- 微信/QQ 窗口需要可见，不能最小化
+- 首次使用建议先测试，确保坐标正确
+- 发送期间不要操作鼠标键盘
+- 如果发送失败，检查窗口位置和输入法
+- **重要**：`qq_capture_and_reply.py` 会显示回复建议并等待用户确认，不会未经同意自动发送
+
+## 故障排除
+
+| 问题 | 解决方案 |
+|------|----------|
+| 找不到窗口 | 确保微信/QQ 已打开 |
+| 发送失败 | 检查窗口是否被其他应用遮挡 |
+| 中文乱码 | 使用剪贴板粘贴功能 |
+| 点击位置不对 | 调整脚本中的坐标 |
+| OCR 失败 | 安装 pytesseract 或 easyocr |
+
+## 更新日志
+
+### v1.1.3 (2026-03-11)
+- 优化截图区域：只截中间聊天内容，去掉左右边栏
+- 添加自动清理功能：只保留最近10张截图
+- 提高 OCR 识别准确率
+
+### v1.1.2 (2026-03-11)
+- 更换 OCR 引擎：Tesseract → EasyOCR
+- EasyOCR 中文识别效果更好
+- 添加置信度过滤（>0.4）
+- 优化识别速度和准确率
+
+### v1.1.1 (2026-03-11)
+- 修复 package.json 格式问题（移除 Python 依赖声明）
+- 增加详细的隐私警告和数据路径声明
+- 明确截图仅本地保存，不会自动上传
+
+### v1.0.0 (2026-03-09)
+- 初始版本
+- 支持微信和 QQ 发消息
+- 支持截图 + OCR + 智能回复（需用户确认）
+
+## 许可证
+
+MIT License
+
+## 作者
+
+OpenClaw Community

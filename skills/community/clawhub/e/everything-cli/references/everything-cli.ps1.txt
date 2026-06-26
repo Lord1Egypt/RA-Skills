@@ -1,0 +1,841 @@
+[CmdletBinding()]
+param(
+    [Parameter(Position = 0)]
+    [string]$Command = "help",
+
+    [Parameter(ValueFromRemainingArguments = $true)]
+    [string[]]$Arguments
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+$ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+if ($env:EVERYTHING_CLI_SKILL_ROOT) {
+    $SkillRoot = (Resolve-Path -LiteralPath $env:EVERYTHING_CLI_SKILL_ROOT).Path
+}
+else {
+    $SkillRoot = (Resolve-Path (Join-Path $ScriptRoot "..")).Path
+}
+
+if ($env:EVERYTHING_CLI_REPO_ROOT) {
+    $WorkspaceRoot = (Resolve-Path -LiteralPath $env:EVERYTHING_CLI_REPO_ROOT).Path
+}
+else {
+    $WorkspaceRoot = (Resolve-Path (Join-Path $ScriptRoot "..\\..\\..")).Path
+}
+
+$CacheRoot = if ($env:EVERYTHING_CLI_CACHE_ROOT) {
+    $env:EVERYTHING_CLI_CACHE_ROOT
+}
+elseif ($env:LOCALAPPDATA) {
+    Join-Path $env:LOCALAPPDATA "agent-everything.exe"
+}
+else {
+    Join-Path $env:TEMP "agent-everything.exe"
+}
+
+$RepoEsPath = Join-Path $WorkspaceRoot "vendor\\es.exe"
+$EsPath = if (Test-Path -LiteralPath $RepoEsPath -PathType Leaf) {
+    $RepoEsPath
+}
+else {
+    Join-Path (Join-Path $CacheRoot "vendor") "es.exe"
+}
+
+$VendorRoot = Split-Path -Parent $EsPath
+$EsVersion = "1.1.0.30"
+
+function Write-Json {
+    param([Parameter(Mandatory = $true)] $Value)
+
+    $Value | ConvertTo-Json -Depth 8
+}
+
+function Show-Help {
+    @"
+Everything CLI wrapper for agents.
+
+Usage:
+  ev ensure
+  ev ensure --install-shim
+  ev search --query "invoice ext:pdf" --limit 10
+  ev recent --days 3 --path "C:\Users\izayo\Downloads"
+  ev count --query "ext:docx report"
+  ev raw -sort path -n 5 project
+
+Commands:
+  ensure    Download es.exe if missing and verify Everything is running.
+  search    Query the Everything index. Default output format is JSON.
+  recent    Search by modified time window, sorted by date-modified descending.
+  count     Return the number of matches for a query.
+  raw       Pass arguments through to es.exe as-is.
+  help      Show this message.
+
+Shared search options:
+  --query <text>       Search expression. First bare argument also works.
+  --limit <n>          Max results to return. Default: 20
+  --offset <n>         Result offset. Default: 0
+  --scope <both|files|folders>
+  --path <dir>         Restrict search to a directory subtree.
+  --sort <field>       name | path | size | extension | date-modified | date-created |
+                       date-accessed | run-count | date-run | date-recently-changed
+  --asc / --desc       Sort order. Default: --desc
+  --since <iso-date>   Lower bound for modified time.
+  --until <iso-date>   Upper bound for modified time.
+  --case               Case-sensitive search.
+  --regex              Regex search.
+  --whole-word         Whole-word search.
+  --match-path         Match against the full path.
+  --format <json|text|paths>
+  --allow-empty        Allow an empty global query.
+
+Recent-only options:
+  --days <n>           Modified in the last N days. Default: 7
+
+Count-only options:
+  --json               Emit a JSON object instead of a bare integer.
+
+Ensure-only options:
+  --install-shim       Install ev/everything-cli shims via the Python launcher.
+  --shim-dir <dir>     Override the shim install directory.
+"@
+}
+
+function Read-OptionValue {
+    param(
+        [string[]]$Tokens,
+        [int]$Index,
+        [string]$OptionName
+    )
+
+    if ($Index + 1 -ge $Tokens.Count) {
+        throw "Missing value for $OptionName."
+    }
+
+    return $Tokens[$Index + 1]
+}
+
+function Normalize-Sort {
+    param([string]$Sort)
+
+    $key = $Sort.ToLowerInvariant()
+    $map = @{
+        "name" = "name"
+        "path" = "path"
+        "size" = "size"
+        "ext" = "extension"
+        "extension" = "extension"
+        "modified" = "date-modified"
+        "dm" = "date-modified"
+        "date-modified" = "date-modified"
+        "created" = "date-created"
+        "dc" = "date-created"
+        "date-created" = "date-created"
+        "accessed" = "date-accessed"
+        "da" = "date-accessed"
+        "date-accessed" = "date-accessed"
+        "run-count" = "run-count"
+        "rc" = "run-count"
+        "date-run" = "date-run"
+        "dr" = "date-run"
+        "recently-changed" = "date-recently-changed"
+        "date-recently-changed" = "date-recently-changed"
+    }
+
+    if (-not $map.ContainsKey($key)) {
+        throw "Unsupported sort field: $Sort"
+    }
+
+    return $map[$key]
+}
+
+function Parse-DateValue {
+    param([string]$Text)
+
+    try {
+        return [DateTime]::Parse($Text, [System.Globalization.CultureInfo]::InvariantCulture)
+    }
+    catch {
+        throw "Invalid date value: $Text"
+    }
+}
+
+function Parse-SearchLikeArguments {
+    param(
+        [string[]]$Tokens,
+        [switch]$IncludeDays,
+        [switch]$IncludeJsonSwitch
+    )
+
+    $options = [ordered]@{
+        Query = $null
+        Limit = 20
+        Offset = 0
+        Scope = "both"
+        Path = $null
+        Sort = "date-modified"
+        Descending = $true
+        Since = $null
+        Until = $null
+        Format = "json"
+        Days = 7
+        CaseSensitive = $false
+        Regex = $false
+        WholeWord = $false
+        MatchPath = $false
+        AllowEmpty = $false
+        Json = $false
+        Help = $false
+    }
+
+    for ($i = 0; $i -lt $Tokens.Count; $i++) {
+        $token = $Tokens[$i]
+
+        switch ($token) {
+            "--" {
+                if ($i + 1 -lt $Tokens.Count) {
+                    $tail = $Tokens[($i + 1)..($Tokens.Count - 1)]
+                    if ($options.Query) {
+                        $options.Query = "$($options.Query) $($tail -join ' ')"
+                    }
+                    else {
+                        $options.Query = $tail -join " "
+                    }
+                }
+                $i = $Tokens.Count
+                break
+            }
+            "--query" {
+                $options.Query = Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token
+                $i++
+            }
+            "--limit" {
+                $options.Limit = [int](Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token)
+                $i++
+            }
+            "--offset" {
+                $options.Offset = [int](Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token)
+                $i++
+            }
+            "--scope" {
+                $options.Scope = (Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token).ToLowerInvariant()
+                $i++
+            }
+            "--path" {
+                $options.Path = Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token
+                $i++
+            }
+            "--sort" {
+                $options.Sort = Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token
+                $i++
+            }
+            "--asc" {
+                $options.Descending = $false
+            }
+            "--desc" {
+                $options.Descending = $true
+            }
+            "--since" {
+                $options.Since = Parse-DateValue (Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token)
+                $i++
+            }
+            "--until" {
+                $options.Until = Parse-DateValue (Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token)
+                $i++
+            }
+            "--format" {
+                $options.Format = (Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token).ToLowerInvariant()
+                $i++
+            }
+            "--days" {
+                if (-not $IncludeDays) {
+                    throw "The --days option is only valid with the recent command."
+                }
+                $options.Days = [int](Read-OptionValue -Tokens $Tokens -Index $i -OptionName $token)
+                $i++
+            }
+            "--case" {
+                $options.CaseSensitive = $true
+            }
+            "--regex" {
+                $options.Regex = $true
+            }
+            "--whole-word" {
+                $options.WholeWord = $true
+            }
+            "--match-path" {
+                $options.MatchPath = $true
+            }
+            "--allow-empty" {
+                $options.AllowEmpty = $true
+            }
+            "--json" {
+                if (-not $IncludeJsonSwitch) {
+                    $options.Format = "json"
+                }
+                else {
+                    $options.Json = $true
+                }
+            }
+            "--text" {
+                $options.Format = "text"
+            }
+            "--paths" {
+                $options.Format = "paths"
+            }
+            "--help" {
+                $options.Help = $true
+            }
+            default {
+                if ($token.StartsWith("-")) {
+                    throw "Unknown option: $token"
+                }
+
+                if ($options.Query) {
+                    $options.Query = "$($options.Query) $token"
+                }
+                else {
+                    $options.Query = $token
+                }
+            }
+        }
+    }
+
+    if ($options.Scope -notin @("both", "files", "folders")) {
+        throw "Invalid --scope value: $($options.Scope)"
+    }
+
+    if ($options.Format -notin @("json", "text", "paths")) {
+        throw "Invalid --format value: $($options.Format)"
+    }
+
+    if ($options.Limit -lt 0) {
+        throw "--limit must be >= 0."
+    }
+
+    if ($options.Offset -lt 0) {
+        throw "--offset must be >= 0."
+    }
+
+    if ($IncludeDays -and $options.Days -lt 1) {
+        throw "--days must be >= 1."
+    }
+
+    return [PSCustomObject]$options
+}
+
+function Get-EverythingExePath {
+    $candidates = New-Object System.Collections.Generic.List[string]
+
+    if ($env:EVERYTHING_EXE) {
+        $candidates.Add($env:EVERYTHING_EXE)
+    }
+
+    $command = Get-Command Everything.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($command -and $command.Source) {
+        $candidates.Add($command.Source)
+    }
+
+    $candidates.Add("C:\Program Files\Everything\Everything.exe")
+    $candidates.Add("C:\Program Files (x86)\Everything\Everything.exe")
+
+    foreach ($candidate in ($candidates | Select-Object -Unique)) {
+        if ($candidate -and (Test-Path -LiteralPath $candidate -PathType Leaf)) {
+            return (Resolve-Path -LiteralPath $candidate).Path
+        }
+    }
+
+    throw "Everything.exe not found. Set EVERYTHING_EXE or install Everything from voidtools."
+}
+
+function Get-EsArchitecture {
+    param([string]$EverythingExePath)
+
+    if ($env:EVERYTHING_ES_ARCH) {
+        return $env:EVERYTHING_ES_ARCH.ToLowerInvariant()
+    }
+
+    if ($EverythingExePath -match "\\Program Files \(x86\)\\") {
+        return "x86"
+    }
+
+    $architecture = [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture.ToString().ToLowerInvariant()
+    switch ($architecture) {
+        "x64" { return "x64" }
+        "arm64" { return "arm64" }
+        default { return "x86" }
+    }
+}
+
+function Ensure-EsCli {
+    param([string]$EverythingExePath)
+
+    if (Test-Path -LiteralPath $EsPath -PathType Leaf) {
+        return (Resolve-Path -LiteralPath $EsPath).Path
+    }
+
+    New-Item -ItemType Directory -Force -Path $VendorRoot | Out-Null
+
+    $arch = Get-EsArchitecture -EverythingExePath $EverythingExePath
+    $zipName = "ES-$EsVersion.$arch.zip"
+    $zipPath = Join-Path $VendorRoot $zipName
+    $downloadUrl = "https://www.voidtools.com/$zipName"
+
+    Invoke-WebRequest -Uri $downloadUrl -OutFile $zipPath
+    Expand-Archive -LiteralPath $zipPath -DestinationPath $VendorRoot -Force
+    Remove-Item -LiteralPath $zipPath -Force
+
+    if (-not (Test-Path -LiteralPath $EsPath -PathType Leaf)) {
+        throw "Downloaded $downloadUrl but es.exe was not found after extraction."
+    }
+
+    return (Resolve-Path -LiteralPath $EsPath).Path
+}
+
+function Ensure-EverythingRunning {
+    param([string]$EverythingExePath)
+
+    $existing = Get-Process Everything -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($existing) {
+        return $existing
+    }
+
+    Start-Process -FilePath $EverythingExePath -ArgumentList @("-startup", "-first-instance") | Out-Null
+
+    $deadline = (Get-Date).AddSeconds(10)
+    do {
+        Start-Sleep -Milliseconds 250
+        $existing = Get-Process Everything -ErrorAction SilentlyContinue | Select-Object -First 1
+    }
+    while (-not $existing -and (Get-Date) -lt $deadline)
+
+    if (-not $existing) {
+        throw "Everything did not start within 10 seconds."
+    }
+
+    return $existing
+}
+
+function Invoke-Es {
+    param([string[]]$EsArguments)
+
+    $everythingExePath = Get-EverythingExePath
+    $esCliPath = Ensure-EsCli -EverythingExePath $everythingExePath
+    $process = Ensure-EverythingRunning -EverythingExePath $everythingExePath
+
+    $outputLines = & $esCliPath @EsArguments 2>&1
+    $exitCode = $LASTEXITCODE
+    $outputText = ($outputLines | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
+
+    if ($exitCode -ne 0) {
+        $message = if ($outputText) { $outputText } else { "es.exe exited with code $exitCode." }
+        throw "es.exe failed: $message"
+    }
+
+    return [PSCustomObject]@{
+        EverythingExe = $everythingExePath
+        EsPath = $esCliPath
+        ProcessId = $process.Id
+        Output = $outputText
+    }
+}
+
+function Normalize-PathFilter {
+    param([string]$PathText)
+
+    if (-not $PathText) {
+        return $null
+    }
+
+    $resolved = $PathText
+    if (Test-Path -LiteralPath $PathText -PathType Container) {
+        $resolved = (Resolve-Path -LiteralPath $PathText).Path
+        if ($resolved -notmatch "[\\/]$") {
+            $resolved = "$resolved\"
+        }
+    }
+
+    return $resolved
+}
+
+function Split-SearchExpression {
+    param([string]$Expression)
+
+    if ([string]::IsNullOrWhiteSpace($Expression)) {
+        return @()
+    }
+
+    $terms = New-Object System.Collections.Generic.List[string]
+    $buffer = New-Object System.Text.StringBuilder
+    $inQuotes = $false
+
+    foreach ($character in $Expression.ToCharArray()) {
+        if ($character -eq '"') {
+            [void]$buffer.Append($character)
+            $inQuotes = -not $inQuotes
+            continue
+        }
+
+        if ([char]::IsWhiteSpace($character) -and -not $inQuotes) {
+            if ($buffer.Length -gt 0) {
+                $terms.Add($buffer.ToString())
+                [void]$buffer.Clear()
+            }
+            continue
+        }
+
+        [void]$buffer.Append($character)
+    }
+
+    if ($buffer.Length -gt 0) {
+        $terms.Add($buffer.ToString())
+    }
+
+    return $terms
+}
+
+function Build-EsTerms {
+    param([pscustomobject]$Options)
+
+    $parts = New-Object System.Collections.Generic.List[string]
+
+    switch ($Options.Scope) {
+        "files" { $parts.Add("file:") }
+        "folders" { $parts.Add("folder:") }
+    }
+
+    if ($Options.Since -or $Options.Until) {
+        $start = if ($Options.Since) {
+            $Options.Since.ToString("yyyy-MM-ddTHH:mm:ss")
+        }
+        else {
+            "1970-01-01T00:00:00"
+        }
+
+        $end = if ($Options.Until) {
+            $Options.Until.ToString("yyyy-MM-ddTHH:mm:ss")
+        }
+        else {
+            (Get-Date).ToString("yyyy-MM-ddTHH:mm:ss")
+        }
+
+        $parts.Add("dm:$start..$end")
+    }
+
+    foreach ($term in (Split-SearchExpression -Expression $Options.Query)) {
+        $parts.Add($term)
+    }
+
+    return $parts
+}
+
+function Assert-QueryIsSafe {
+    param([string[]]$Terms, [pscustomobject]$Options)
+
+    $hasNarrowing = ($Terms.Count -gt 0) -or [bool]$Options.Path -or [bool]$Options.Since -or [bool]$Options.Until
+    if (-not $Options.AllowEmpty -and -not $hasNarrowing) {
+        throw "Refusing an empty global search. Pass --query, narrow with --path/--since, or add --allow-empty."
+    }
+}
+
+function Get-EsSearchModifiers {
+    param([pscustomobject]$Options)
+
+    $modifiers = New-Object System.Collections.Generic.List[string]
+
+    if ($Options.CaseSensitive) {
+        $modifiers.Add("-case")
+    }
+    if ($Options.Regex) {
+        $modifiers.Add("-regex")
+    }
+    if ($Options.WholeWord) {
+        $modifiers.Add("-whole-word")
+    }
+    if ($Options.MatchPath) {
+        $modifiers.Add("-match-path")
+    }
+
+    return $modifiers
+}
+
+function Get-EsCount {
+    param([string[]]$Terms, [pscustomobject]$Options)
+
+    $args = New-Object System.Collections.Generic.List[string]
+    $args.Add("-get-result-count")
+    foreach ($modifier in (Get-EsSearchModifiers -Options $Options)) {
+        $args.Add($modifier)
+    }
+    if ($Options.Path) {
+        $args.Add("-path")
+        $args.Add((Normalize-PathFilter -PathText $Options.Path))
+    }
+    foreach ($term in $Terms) {
+        $args.Add($term)
+    }
+
+    $response = Invoke-Es -EsArguments $args
+    $text = $response.Output.Trim()
+    if (-not $text) {
+        return 0
+    }
+
+    return [int]$text
+}
+
+function Convert-RowsToResults {
+    param([object[]]$Rows)
+
+    $results = New-Object System.Collections.Generic.List[object]
+
+    foreach ($row in $Rows) {
+        $path = $row.Path
+        if (-not $path) {
+            continue
+        }
+
+        $attributes = $row.Attributes
+        $isDirectory = $false
+        if ($attributes) {
+            $isDirectory = $attributes.ToUpperInvariant().Contains("D")
+        }
+
+        $sizeBytes = $null
+        if ($row.Size -and $row.Size -match "^\d+$") {
+            $sizeBytes = [Int64]$row.Size
+        }
+
+        $name = Split-Path -Path $path -Leaf
+        $parent = Split-Path -Path $path -Parent
+
+        $results.Add([PSCustomObject]@{
+            path = $path
+            name = $name
+            parent = $parent
+            isDirectory = $isDirectory
+            sizeBytes = $sizeBytes
+            dateModified = if ($row.DateModified) { $row.DateModified } else { $null }
+            attributes = if ($attributes) { $attributes } else { $null }
+        })
+    }
+
+    return $results.ToArray()
+}
+
+function Get-SearchPayload {
+    param([pscustomobject]$Options)
+
+    $normalizedSort = Normalize-Sort -Sort $Options.Sort
+    $terms = Build-EsTerms -Options $Options
+    $query = $terms -join " "
+    Assert-QueryIsSafe -Terms $terms -Options $Options
+
+    $count = Get-EsCount -Terms $terms -Options $Options
+    $results = @()
+
+    if ($count -gt 0 -and $Options.Limit -gt 0) {
+        $args = New-Object System.Collections.Generic.List[string]
+        foreach ($item in @(
+            "-date-format", "1",
+            "-size-format", "1",
+            "-csv",
+            "-no-header",
+            "-full-path-and-name",
+            "-size",
+            "-dm",
+            "-attribs",
+            "-sort", $normalizedSort,
+            "-offset", "$($Options.Offset)",
+            "-n", "$($Options.Limit)"
+        )) {
+            $args.Add([string]$item)
+        }
+
+        if ($Options.Descending) {
+            $args.Add("-sort-descending")
+        }
+        else {
+            $args.Add("-sort-ascending")
+        }
+
+        foreach ($modifier in (Get-EsSearchModifiers -Options $Options)) {
+            $args.Add($modifier)
+        }
+
+        if ($Options.Path) {
+            $args.Add("-path")
+            $args.Add((Normalize-PathFilter -PathText $Options.Path))
+        }
+
+        foreach ($term in $terms) {
+            $args.Add($term)
+        }
+
+        $response = Invoke-Es -EsArguments $args
+        if (-not [string]::IsNullOrWhiteSpace($response.Output)) {
+            $rows = $response.Output | ConvertFrom-Csv -Header @("Path", "Size", "DateModified", "Attributes")
+            $results = @(Convert-RowsToResults -Rows $rows)
+        }
+    }
+
+    return [PSCustomObject]@{
+        query = $query
+        count = $count
+        offset = $Options.Offset
+        limit = $Options.Limit
+        scope = $Options.Scope
+        sort = $normalizedSort
+        descending = [bool]$Options.Descending
+        path = if ($Options.Path) { Normalize-PathFilter -PathText $Options.Path } else { $null }
+        results = @($results)
+    }
+}
+
+function Write-SearchPayload {
+    param([pscustomobject]$Payload, [string]$Format)
+
+    switch ($Format) {
+        "json" {
+            Write-Output (Write-Json -Value $Payload)
+        }
+        "paths" {
+            if ($Payload.results.Count -eq 0) {
+                return
+            }
+            $Payload.results | ForEach-Object { $_.path }
+        }
+        "text" {
+            if ($Payload.results.Count -eq 0) {
+                Write-Output "No results."
+                return
+            }
+
+            Write-Output "count=$($Payload.count) showing=$($Payload.results.Count) offset=$($Payload.offset)"
+            $Payload.results |
+                Select-Object @{
+                    Name = "Type"
+                    Expression = { if ($_.isDirectory) { "dir" } else { "file" } }
+                }, @{
+                    Name = "Modified"
+                    Expression = { $_.dateModified }
+                }, @{
+                    Name = "Size"
+                    Expression = { if ($_.sizeBytes -ne $null) { $_.sizeBytes } else { "" } }
+                }, @{
+                    Name = "Path"
+                    Expression = { $_.path }
+                } |
+                Format-Table -AutoSize |
+                Out-String |
+                ForEach-Object { $_.TrimEnd() }
+        }
+        default {
+            throw "Unsupported output format: $Format"
+        }
+    }
+}
+
+function Invoke-EnsureCommand {
+    $everythingExePath = Get-EverythingExePath
+    $esCliPath = Ensure-EsCli -EverythingExePath $everythingExePath
+    $process = Ensure-EverythingRunning -EverythingExePath $everythingExePath
+
+    Write-Output (Write-Json -Value ([PSCustomObject]@{
+        ok = $true
+        everythingExe = $everythingExePath
+        esExe = $esCliPath
+        processId = $process.Id
+        workspace = $WorkspaceRoot
+    }))
+}
+
+function Invoke-SearchCommand {
+    param([string[]]$Tokens)
+
+    $options = Parse-SearchLikeArguments -Tokens $Tokens
+    if ($options.Help) {
+        Show-Help
+        return
+    }
+
+    $payload = Get-SearchPayload -Options $options
+    Write-SearchPayload -Payload $payload -Format $options.Format
+}
+
+function Invoke-RecentCommand {
+    param([string[]]$Tokens)
+
+    $options = Parse-SearchLikeArguments -Tokens $Tokens -IncludeDays
+    if ($options.Help) {
+        Show-Help
+        return
+    }
+
+    $options.Since = (Get-Date).AddDays(-1 * $options.Days)
+    $options.Sort = "date-modified"
+    $options.Descending = $true
+
+    $payload = Get-SearchPayload -Options $options
+    Write-SearchPayload -Payload $payload -Format $options.Format
+}
+
+function Invoke-CountCommand {
+    param([string[]]$Tokens)
+
+    $options = Parse-SearchLikeArguments -Tokens $Tokens -IncludeJsonSwitch
+    if ($options.Help) {
+        Show-Help
+        return
+    }
+
+    $terms = Build-EsTerms -Options $options
+    $query = $terms -join " "
+    Assert-QueryIsSafe -Terms $terms -Options $options
+    $count = Get-EsCount -Terms $terms -Options $options
+
+    if ($options.Json) {
+        Write-Output (Write-Json -Value ([PSCustomObject]@{
+            query = $query
+            count = $count
+            path = if ($options.Path) { Normalize-PathFilter -PathText $options.Path } else { $null }
+        }))
+        return
+    }
+
+    Write-Output $count
+}
+
+function Invoke-RawCommand {
+    param([string[]]$Tokens)
+
+    $passthrough = $Tokens
+    if ($passthrough.Count -gt 0 -and $passthrough[0] -eq "--") {
+        if ($passthrough.Count -eq 1) {
+            $passthrough = @()
+        }
+        else {
+            $passthrough = $passthrough[1..($passthrough.Count - 1)]
+        }
+    }
+
+    if (-not $passthrough -or $passthrough.Count -eq 0) {
+        throw "raw expects es.exe arguments after --"
+    }
+
+    $response = Invoke-Es -EsArguments $passthrough
+    if ($response.Output) {
+        Write-Output $response.Output
+    }
+}
+
+switch ($Command.ToLowerInvariant()) {
+    "ensure" { Invoke-EnsureCommand }
+    "search" { Invoke-SearchCommand -Tokens $Arguments }
+    "recent" { Invoke-RecentCommand -Tokens $Arguments }
+    "count" { Invoke-CountCommand -Tokens $Arguments }
+    "raw" { Invoke-RawCommand -Tokens $Arguments }
+    "help" { Show-Help }
+    default { throw "Unknown command: $Command" }
+}

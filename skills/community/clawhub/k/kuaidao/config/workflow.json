@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "name": "快导(KD) - 脚本生成工作流",
+    "version": "1.0.0",
+    "description": "10步完整执行流程",
+    "total_steps": 10
+  },
+  "workflow": {
+    "name": "快导系列",
+    "description": "生成多平台短视频脚本的10步流程",
+    "execution_mode": "step_by_step",
+    "error_handling": "stop_and_notify",
+    "step_timeout": 300,
+    "user_config_required": [
+      "copy_library_path",
+      "report_space_id",
+      "platform_keywords",
+      "rules_path"
+    ],
+    "steps": {
+      "step1": {
+        "name": "搜索目标平台爆款",
+        "description": "搜索并选定平台爆款视频",
+        "note": "关键词池从用户配置的platforms.json读取",
+        "execution": {
+          "method": "random_sample",
+          "sample_size": "用户配置",
+          "results_per_search": 20,
+          "final_selection": "用户配置"
+        },
+        "output": {
+          "selected_keywords": [],
+          "trending_videos": [],
+          "final_selection": []
+        }
+      },
+      "step2": {
+        "name": "读取平台规则",
+        "description": "读取平台运营规则文档",
+        "note": "规则文档由用户通过'规则更新系列'生成",
+        "rules_summary": [
+          "时长要求",
+          "核心指标",
+          "引流限制",
+          "原创要求",
+          "互动率要求",
+          "违规红线",
+          "文案要求"
+        ],
+        "output": {
+          "platform_rules": {},
+          "key_requirements": []
+        }
+      },
+      "step3": {
+        "name": "搜索外网平台",
+        "description": "搜索TikTok/YouTube爆款",
+        "note": "关键词池从用户配置的外部关键词设置读取",
+        "execution": {
+          "method": "random_sample",
+          "sample_size": 3,
+          "results_per_search": 20,
+          "final_selection": 1
+        },
+        "skip_condition": "如无爆款可选，则取消本次任务执行"
+      },
+      "step4": {
+        "name": "同质化检查",
+        "description": "检查避免与已有脚本重复",
+        "note": "从用户配置的文案库路径读取已有脚本",
+        "action": "读取文案库，输出已有脚本详情",
+        "output": {
+          "existing_scripts_count": 0,
+          "existing_scripts": [],
+          "themes_to_avoid": []
+        }
+      },
+      "step5": {
+        "name": "格式检查",
+        "description": "现场读取Excel实际格式",
+        "action": "使用Python openpyxl读取，禁止凭记忆",
+        "check_items": {
+        "title_row": ["字体", "字号", "粗体", "字体颜色", "填充类型", "填充颜色", "水平对齐", "垂直对齐", "自动换行", "边框", "行高"],
+        "data_row_A": ["字体", "字号", "粗体", "填充类型", "填充颜色", "水平对齐", "垂直对齐", "自动换行", "边框", "行高", "合并"],
+        "data_row_B_H": ["字体", "字号", "粗体", "填充类型", "水平对齐", "垂直对齐", "自动换行", "边框", "行高", "合并"],
+        "data_row_I_N": ["字体", "字号", "粗体", "填充类型", "水平对齐", "垂直对齐", "自动换行", "边框", "行高", "合并"],
+        "summary": ["总行数", "总列数", "标题行格式", "数据行A列格式", "数据行B-H列格式", "数据行I-N列格式", "合并单元格范围"]
+      },
+        "output": {
+          "format_confirmed": false,
+          "format_details": {}
+        }
+      },
+      "step6": {
+        "name": "生成脚本",
+        "description": "生成差异化脚本",
+        "note": "分镜数量根据总时长和分镜时长自动计算",
+        "requirements": {
+          "script_count": "用户配置，默认5条",
+          "segments_per_script": "auto",
+          "segment_duration": "from_platform_config",
+          "content_detail": "from_platform_config"
+        },
+        "key_rules": [
+          "每个分镜时长必须符合平台配置",
+          "A列必须包含完整故事叙述（起承转合）",
+          "C-H列内容必须详细（满足字数要求）",
+          "脚本必须差异化"
+        ]
+      },
+      "step7": {
+        "name": "合理性检查",
+        "description": "对生成的脚本进行批量检查",
+        "check_dimensions": [
+          "时间合理性",
+          "内容合理性",
+          "场景合理性",
+          "台词合理性",
+          "分镜时长限制",
+          "技术描述合理性",
+          "标题合理性",
+          "格式合理性",
+          "故事叙述"
+        ],
+        "action_on_fail": "直接修改脚本，记录修改内容"
+      },
+      "step8": {
+        "name": "更新文案库",
+        "description": "将脚本写入Excel文案库",
+        "execution": {
+          "method": "split_write",
+          "scripts_per_batch": 1,
+          "write_mode": "append",
+          "preserve_format": true
+        },
+        "output": {
+          "write_status": [],
+          "start_row": 0,
+          "end_row": 0
+        }
+      },
+      "step9": {
+        "name": "全面检查对比",
+        "description": "验证写入后的文件",
+        "method": "python_openpyxl",
+        "visual_confirmation": "禁止",
+        "check_dimensions": [
+          "格式正确性",
+          "内容完整性",
+          "写入位置正确性"
+        ],
+        "error_handling": {
+          "first_fail": "自主修改格式问题",
+          "after_fix": "重新执行step9",
+          "second_fail": "删除step8写入的所有内容，回退到step8重新执行"
+        }
+      },
+      "step10": {
+        "name": "提交报告",
+        "description": "生成并保存执行报告",
+        "note": "保存到用户配置的飞书空间ID",
+        "report_format": "markdown",
+        "save_location": "飞书知识库",
+        "naming": "日期-快导-平台名称"
+      }
+    }
+  },
+  "rule_update_workflow": {
+    "name": "规则更新系列",
+    "description": "生成/更新平台规则文档（单次任务，非周期）",
+    "execution_mode": "manual",
+    "steps": [
+      "搜索平台规则变化",
+      "搜索违规案例",
+      "搜索爆款趋势",
+      "生成规则文档"
+    ],
+    "output": {
+      "rules_document": "保存到用户配置的rules_path目录（默认：references/platform_rules/）"
+    }
+  }
+}

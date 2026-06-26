@@ -1,35 +1,220 @@
 ---
-name: "financial-report-analyzer"
-description: "智能解析PDF格式财务报告，自动提取关键财务指标，生成可视化分析图表和投资参考报告。适用于分析中国A股、港股、美股上市公司的财务报表。Use when user needs to analyze financial reports, extract financial data from PDFs, compar..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/financial-report-analyzer"
-sourceUrl: "https://clawhub.ai/skills/financial-report-analyzer"
+name: financial-report-analyzer
+description: 智能解析PDF格式财务报告，自动提取关键财务指标，生成可视化分析图表和投资参考报告。适用于分析中国A股、港股、美股上市公司的财务报表。Use when user needs to analyze financial reports, extract financial data from PDFs, compare financial metrics across periods, generate investment analysis reports, or understand company financial health for Chinese A-share, Hong Kong, or US listed companies.
 ---
 
-# financial-report-analyzer
+# 财报智析 - Financial Report Analyzer
 
-> 智能解析PDF格式财务报告，自动提取关键财务指标，生成可视化分析图表和投资参考报告。适用于分析中国A股、港股、美股上市公司的财务报表。Use when user needs to analyze financial reports, extract financial data from PDFs, compar...
+智能解析PDF财报，提取关键财务指标，生成可视化分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/financial-report-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/financial-report-analyzer](https://clawhub.ai/skills/financial-report-analyzer)
+## ⚠️ 重要声明
 
-## Overview
+**本工具仅供学习和研究使用，分析结果仅供参考，不构成投资建议。股市有风险，投资需谨慎。所有数据处理在本地完成，不会上传至任何外部服务器。**
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/financial-report-analyzer
+## 功能概览
+
+1. **PDF财报解析** - 自动提取三大报表数据
+2. **关键指标计算** - 盈利能力、成长能力、偿债能力、运营能力
+3. **可视化图表** - 生成趋势图、结构图、对比图
+4. **多期对比** - 支持多期财报对比分析
+
+---
+
+## 使用方法
+
+### 基础用法
+
+用户上传PDF财报文件后，自动执行分析：
+
 ```
+用户: 帮我分析这份财报
+[上传PDF文件]
+```
+
+### 进阶用法
+
+```
+用户: 对比这三年的财报变化
+[上传多个PDF文件]
+
+用户: 生成可视化图表
+
+用户: 分析盈利能力指标
+```
+
+---
+
+## 分析流程
+
+### Step 1: 读取PDF文件
+
+使用 `scripts/extract_pdf.py` 提取PDF文本内容：
+
+```bash
+python scripts/extract_pdf.py <pdf_path>
+```
+
+### Step 2: 解析财务数据
+
+使用 `scripts/parse_financial_data.py` 识别并提取财务数据：
+
+```bash
+python scripts/parse_financial_data.py <extracted_text_file>
+```
+
+### Step 3: 生成分析报告
+
+根据解析的数据生成结构化分析报告，包括：
+- 关键财务指标表格
+- 可视化图表（调用 `scripts/generate_charts.py`）
+- 简要分析结论
+
+---
+
+## 财务指标体系
+
+### 📊 盈利能力指标
+
+| 指标 | 计算公式 | 说明 |
+|------|----------|------|
+| 营业收入 | - | 主营业务收入 |
+| 净利润 | - | 归属于母公司股东的净利润 |
+| 毛利率 | (营业收入-营业成本)/营业收入 | 反映产品盈利能力 |
+| 净利率 | 净利润/营业收入 | 反映整体盈利能力 |
+| ROE | 净利润/平均净资产 | 净资产收益率 |
+| ROA | 净利润/平均总资产 | 总资产收益率 |
+
+### 📈 成长能力指标
+
+| 指标 | 计算公式 | 说明 |
+|------|----------|------|
+| 营收增长率 | (本期营收-上期营收)/上期营收 | 收入增长速度 |
+| 净利润增长率 | (本期净利润-上期净利润)/上期净利润 | 利润增长速度 |
+| 总资产增长率 | (本期总资产-上期总资产)/上期总资产 | 规模扩张速度 |
+
+### 💰 偿债能力指标
+
+| 指标 | 计算公式 | 说明 |
+|------|----------|------|
+| 资产负债率 | 总负债/总资产 | 财务杠杆水平 |
+| 流动比率 | 流动资产/流动负债 | 短期偿债能力 |
+| 速动比率 | (流动资产-存货)/流动负债 | 即时偿债能力 |
+
+### 🔄 运营能力指标
+
+| 指标 | 计算公式 | 说明 |
+|------|----------|------|
+| 总资产周转率 | 营业收入/平均总资产 | 资产使用效率 |
+| 应收账款周转天数 | 365/(营业收入/平均应收账款) | 回款速度 |
+| 存货周转天数 | 365/(营业成本/平均存货) | 库存管理效率 |
+
+---
+
+## 输出格式
+
+### 1. 关键指标摘要
+
+```
+📊 关键财务指标摘要
+═══════════════════════════════════════════
+报告期: 2024年年报
+公司名称: [公司名称]
+═══════════════════════════════════════════
+
+【盈利能力】
+营业收入: XXX亿元 (同比+X%)
+净利润: XXX亿元 (同比+X%)
+毛利率: XX% 
+净利率: XX%
+ROE: XX%
+
+【成长能力】
+营收增长率: +X%
+净利润增长率: +X%
+
+【偿债能力】
+资产负债率: XX%
+流动比率: X.X
+
+【运营能力】
+总资产周转率: X.X
+═══════════════════════════════════════════
+```
+
+### 2. 可视化图表
+
+自动生成以下图表：
+- `revenue_trend.png` - 收入趋势图
+- `profit_margin.png` - 利润率变化图
+- `asset_structure.png` - 资产负债结构图
+- `cash_flow.png` - 现金流分析图
+
+### 3. 分析报告
+
+生成Markdown格式的完整分析报告，包含：
+- 执行摘要
+- 详细财务数据分析
+- 风险提示
+- 免责声明
+
+---
+
+## 多期对比分析
+
+当用户提供多期财报时，自动执行对比分析：
+
+1. **趋势分析** - 关键指标变化趋势
+2. **同比分析** - 与上年同期对比
+3. **结构分析** - 收入/成本结构变化
+4. **异常检测** - 识别异常波动指标
+
+---
+
+## 技术实现
+
+### 依赖库
+
+```
+pdfplumber - PDF文本提取
+pandas - 数据处理
+matplotlib - 图表生成
+numpy - 数值计算
+```
+
+### 数据处理流程
+
+```
+PDF文件 → 文本提取 → 数据清洗 → 指标计算 → 图表生成 → 报告输出
+```
+
+---
+
+## 限制说明
+
+1. **数据来源** - 仅支持用户上传的PDF文件，不连接外部数据库
+2. **格式支持** - 主要针对中国A股财报格式优化
+3. **准确性** - 自动提取可能存在误差，建议人工核对关键数据
+4. **时效性** - 分析基于历史数据，不预测未来表现
+
+---
+
+## 安全与隐私
+
+✅ **本地处理** - 所有数据在用户本地处理  
+✅ **无网络传输** - 不连接外部API或服务器  
+✅ **只读访问** - 仅读取用户提供的PDF文件  
+✅ **无数据存储** - 不保存任何用户数据  
+
+---
+
+## 参考资料
+
+详细财务指标说明参见 `references/financial_metrics.md`
+
+报告模板参见 `references/report_template.md`
+
+---
+
+*免责声明：本工具由AI生成，仅供学习交流使用。投资有风险，决策需谨慎。*

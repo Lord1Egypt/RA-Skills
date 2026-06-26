@@ -1,0 +1,3 @@
+display_name: Trinity Evolution
+short_description: Audit and operate a validated OpenClaw self-evolution loop.
+default_prompt: Check the OpenClaw self-evolution status, verify promotion gates, and summarize practical user-facing capability changes.

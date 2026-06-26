@@ -1,0 +1,139 @@
+{
+  "hotel_info": {
+    "name": "杭州开元名都大酒店",
+    "brand": "开元名都",
+    "city": "杭州",
+    "rooms": 300,
+    "open_date": "2018-01-01",
+    "star_rating": "五星"
+  },
+  "monthly_data": {
+    "current_month": {
+      "month": "2026年1月",
+      "available_room_nights": 9300,
+      "sold_room_nights": 6743,
+      "occ": 72.5,
+      "adr": 658,
+      "revpar": 477,
+      "revenue": {
+        "total": 2185,
+        "room": 1420,
+        "fb": 580,
+        "fb_breakdown": {
+          "breakfast": 125,
+          "lunch": 210,
+          "dinner": 155,
+          "banquet": 90
+        },
+        "other": 185,
+        "channel_mix": {
+          "direct": {"rooms": 2697, "pct": 40, "adr": 695, "revenue": 568},
+          "corporate": {"rooms": 1886, "pct": 28, "adr": 638, "revenue": 429},
+          "ota": {"rooms": 1349, "pct": 20, "adr": 612, "revenue": 350},
+          "group": {"rooms": 472, "pct": 7, "adr": 520, "revenue": 49},
+          "walkin": {"rooms": 339, "pct": 5, "adr": 720, "revenue": 24}
+        }
+      },
+      "cost": {
+        "total": 1207,
+        "labor": 612,
+        "labor_rate": 28.0,
+        "utility": 87,
+        "utility_rate": 4.0,
+        "marketing": 98,
+        "marketing_rate": 4.5,
+        "admin": 65,
+        "admin_rate": 3.0,
+        "maintenance": 44,
+        "maintenance_rate": 2.0,
+        "other": 98,
+        "other_rate": 4.5,
+        "fb_cost": 203,
+        "fb_cost_rate": 35.0
+      },
+      "profit": {
+        "gop": 728,
+        "gop_margin": 33.3,
+        "noi": 348,
+        "noi_margin": 15.9,
+        "net_profit": 278,
+        "net_margin": 12.7
+      }
+    },
+    "budget": {
+      "occ": 70,
+      "adr": 680,
+      "revpar": 476,
+      "total_revenue": 2150,
+      "gop": 710,
+      "gop_margin": 33.0
+    },
+    "last_year": {
+      "occ": 69.3,
+      "adr": 672,
+      "revpar": 466,
+      "total_revenue": 2075,
+      "gop": 673,
+      "gop_margin": 32.4
+    }
+  },
+  "breakeven": {
+    "fixed_cost": 634,
+    "variable_cost_per_night": 58,
+    "contribution_margin": 165,
+    "contribution_margin_rate": 33.0,
+    "breakeven_occ": 59.5,
+    "safety_margin": 13.0
+  },
+  "competitors": [
+    {
+      "name": "竞品A-开元名都",
+      "occ": 70.2,
+      "adr": 620,
+      "revpar": 435,
+      "gop_margin": 31.8
+    },
+    {
+      "name": "竞品B-国际五星",
+      "occ": 68.5,
+      "adr": 880,
+      "revpar": 603,
+      "gop_margin": 36.5
+    }
+  ],
+  "industry_benchmark": {
+    "full_service_hotel": {
+      "occ_range": [55, 70],
+      "adr_range": [450, 800],
+      "revpar_range": [300, 500],
+      "gop_margin_range": [30, 40],
+      "labor_cost_rate": [25, 35]
+    },
+    "delonix_standards": {
+      "kaiyuan_mingdu": {
+        "occ_target": 65,
+        "adr_target": 650,
+        "gop_margin_target": 33
+      },
+      "kaiyuan_mingting": {
+        "occ_target": 70,
+        "adr_target": 480,
+        "gop_margin_target": 30
+      }
+    }
+  },
+  "trend_12_months": [
+    {"month": "2025年2月", "occ": 68.2, "adr": 620, "revpar": 423, "gop": 680, "gop_margin": 32.5},
+    {"month": "2025年3月", "occ": 71.5, "adr": 635, "revpar": 454, "gop": 715, "gop_margin": 33.2},
+    {"month": "2025年4月", "occ": 73.8, "adr": 650, "revpar": 480, "gop": 745, "gop_margin": 33.8},
+    {"month": "2025年5月", "occ": 75.2, "adr": 668, "revpar": 502, "gop": 765, "gop_margin": 34.1},
+    {"month": "2025年6月", "occ": 72.0, "adr": 655, "revpar": 472, "gop": 730, "gop_margin": 33.5},
+    {"month": "2025年7月", "occ": 78.5, "adr": 680, "revpar": 534, "gop": 790, "gop_margin": 34.5},
+    {"month": "2025年8月", "occ": 80.2, "adr": 695, "revpar": 557, "gop": 820, "gop_margin": 35.0},
+    {"month": "2025年9月", "occ": 74.5, "adr": 660, "revpar": 492, "gop": 750, "gop_margin": 33.8},
+    {"month": "2025年10月", "occ": 76.8, "adr": 675, "revpar": 518, "gop": 780, "gop_margin": 34.2},
+    {"month": "2025年11月", "occ": 71.2, "adr": 645, "revpar": 459, "gop": 710, "gop_margin": 33.2},
+    {"month": "2025年12月", "occ": 69.8, "adr": 635, "revpar": 443, "gop": 695, "gop_margin": 32.8},
+    {"month": "2026年1月", "occ": 72.5, "adr": 658, "revpar": 477, "gop": 728, "gop_margin": 33.3}
+  ]
+}

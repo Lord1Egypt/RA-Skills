@@ -1,35 +1,82 @@
 ---
-name: "jin-duo-duo-strategy"
-description: "基于技术分析的股票交易策略分析工具；当用户需要进行股票买卖点分析、技术形态识别、交易策略评估时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jin-duo-duo-strategy-skill"
-sourceUrl: "https://clawhub.ai/skills/jin-duo-duo-strategy-skill"
+name: jin-duo-duo-strategy-skill
+description: 基于技术分析的股票交易策略分析工具；当用户需要进行股票买卖点分析、技术形态识别、交易策略评估时使用
+dependency:
+  python:
+    - pandas>=2.0.0
+    - numpy>=1.24.0
 ---
 
-# jin-duo-duo-strategy
+# 金多多股票策略分析 Skill
 
-> 基于技术分析的股票交易策略分析工具；当用户需要进行股票买卖点分析、技术形态识别、交易策略评估时使用
+## 任务目标
+- 本 Skill 用于：根据技术指标和K线形态分析股票，匹配6种交易策略
+- 能力包含：技术指标计算、形态识别辅助、策略评分与推荐
+- 触发条件：用户提供股票数据或询问买卖时机、策略分析时
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jin-duo-duo-strategy-skill`
-- **Source URL:** [https://clawhub.ai/skills/jin-duo-duo-strategy-skill](https://clawhub.ai/skills/jin-duo-duo-strategy-skill)
+## 前置准备
+- 依赖说明：scripts 脚本所需的依赖包
+  ```
+  pandas>=2.0.0
+  numpy>=1.24.0
+  ```
+- 输入数据准备：准备股票历史数据，包含以下字段
+  - 日期、开盘价、最高价、最低价、收盘价、成交量
+  - 支持 CSV 文件或 JSON 格式
+  - 数据格式说明见 references/strategy-guide.md
 
-## Overview
+## 操作步骤
+- 标准流程：
+  1. **数据准备**：用户提供股票历史数据（CSV 文件或 JSON 格式）
+  2. **指标计算**：调用 `scripts/technical_indicators.py` 计算技术指标
+     - 该脚本会计算移动平均线（MA5/10/20/60）、MACD 指标、成交量分析
+     - 输出结构化的指标数据
+  3. **形态识别与策略匹配**：智能体根据计算结果和 K 线数据，识别技术形态
+     - 识别 K 线形态（出水芙蓉、金针探底、看跌吞没等）
+     - 匹配策略条件（见 references/strategy-guide.md）
+  4. **评分与推荐**：根据策略条件计算得分，输出匹配的策略和操作建议
+  5. **生成报告**：输出包含策略类型、操作建议、关键信号、风险提示的分析报告
 
+- 可选分支：
+  - 当 数据不足（少于20个交易日）→ 提示用户补充数据，策略判断可能不准确
+  - 当 信号模糊（多个策略条件接近）→ 标记为"观望等待"（策略六），建议继续观察
+  - 当 满足多个买入策略 → 选择得分最高的策略，并列出次要信号
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jin-duo-duo-strategy-skill
-```
+## 资源索引
+- 必要脚本：见 [scripts/technical_indicators.py](scripts/technical_indicators.py)（用途：计算 MA、MACD、成交量等技术指标）
+- 领域参考：见 [references/strategy-guide.md](references/strategy-guide.md)（何时读取：策略匹配、形态识别时）
+- 输出资产：无固定模板，根据分析结果动态生成报告
+
+## 注意事项
+- 本 Skill 仅基于技术分析，不构成投资建议
+- 所有技术指标计算由脚本完成，确保数据准确性
+- K 线形态识别和策略判断由智能体基于数据分析完成
+- 评分机制仅供参考，实际操作需结合市场环境和个人风险偏好
+- 建议至少提供 60 个交易日的数据以获得更准确的分析结果
+
+## 使用示例
+
+### 示例1：从 CSV 文件分析股票
+- 功能说明：读取股票 CSV 数据，计算指标并匹配策略
+- 执行方式：调用脚本 + 智能体分析
+- 关键步骤：
+  ```bash
+  python scripts/technical_indicators.py --input stock_data.csv
+  ```
+- 指导要点：CSV 需包含日期、开盘、最高、最低、收盘、成交量字段
+
+### 示例2：从 JSON 数据快速分析
+- 功能说明：直接传入 JSON 格式的股票数据进行分析
+- 执行方式：调用脚本 + 智能体分析
+- 关键步骤：
+  ```bash
+  echo '{"data":[{"date":"2024-01-01","open":10.0,"high":10.5,"low":9.8,"close":10.2,"volume":1000000}]}' | \
+  python scripts/technical_indicators.py --input-format json
+  ```
+- 指导要点：JSON 数组需包含完整的 OHLCV 数据
+
+### 示例3：策略条件查询
+- 功能说明：用户询问特定策略的判断条件
+- 执行方式：仅智能体（无需脚本）
+- 关键步骤：读取 references/strategy-guide.md 中的策略定义，解释给用户
+- 指导要点：策略六（观望等待）是所有其他策略不匹配时的默认选项

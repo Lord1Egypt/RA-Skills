@@ -1,0 +1,66 @@
+{
+  "skill_name": "micropython-skills",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我扫描连接的 MicroPython 设备，看看有什么板子接着",
+      "expected_output": "Agent runs device_probe.py script to discover USB-connected devices, reports device info or no-device error",
+      "files": [],
+      "expectations": [
+        "Agent uses the device_probe.py script from the skill's scripts directory",
+        "Agent runs the script via Bash tool (python3 ...device_probe.py)",
+        "Agent interprets the JSON output and presents device info to user"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我的 ESP32 上接了一个 DHT22 温湿度传感器，数据引脚接在 GPIO4，帮我读一下当前温度和湿度",
+      "expected_output": "Agent generates MicroPython code using dht module, pushes via mpremote, reads RESULT: tagged output",
+      "files": [],
+      "expectations": [
+        "Agent reads the sensor sub-skill SKILL.md for DHT22 template",
+        "Generated code imports dht module and uses Pin(4)",
+        "Generated code uses the RESULT: tag with JSON output",
+        "Generated code wraps operation in try/except with ERROR: tag",
+        "Agent uses mpremote exec or mpremote run to push code to device"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "让 GPIO2 上的 LED 闪烁 5 次，每次亮 0.5 秒",
+      "expected_output": "Agent generates MicroPython blink code with 5 iterations, pushes via mpremote",
+      "files": [],
+      "expectations": [
+        "Agent reads the actuator sub-skill SKILL.md",
+        "Agent informs user about the GPIO output operation before executing (Cautious tier)",
+        "Generated code uses Pin(2, Pin.OUT) and a loop of exactly 5 iterations",
+        "Generated code includes time.sleep for 0.5 second on-time",
+        "Generated code uses RESULT: tag to confirm completion"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "扫描一下 I2C 总线，看看接了什么设备。SDA 接 GPIO21，SCL 接 GPIO22",
+      "expected_output": "Agent generates I2C scan code with specified pins, pushes via mpremote",
+      "files": [],
+      "expectations": [
+        "Agent reads the diagnostic sub-skill SKILL.md",
+        "Generated code uses I2C(0, sda=Pin(21), scl=Pin(22))",
+        "Generated code calls i2c.scan() and outputs addresses",
+        "Generated code uses RESULT: tag with JSON listing found addresses"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "我的 ESP32 设备连上 USB 了但是没反应，mpremote 连不上，帮我恢复一下",
+      "expected_output": "Agent follows safety.md recovery escalation: soft reset -> remove problematic scripts -> bootloader -> reflash",
+      "files": [],
+      "expectations": [
+        "Agent reads the safety.md reference for recovery procedures",
+        "Agent tries mpremote reset as first recovery step",
+        "Agent explains the escalation levels (soft reset -> bootloader -> reflash)",
+        "Agent mentions the BOOT button procedure for ESP32 if soft methods fail"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "minimal",
+  "displayName": "⬜ 极简风",
+  "description": "极简主义，一行搞定",
+  "template": "— {name}",
+  "emoji": "",
+  "seal": "",
+  "contextMode": {
+    "work": "— {name}",
+    "casual": "— {name} {emoji}"
+  },
+  "preview": "— 小橘"
+}

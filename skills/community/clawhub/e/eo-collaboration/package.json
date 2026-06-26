@@ -1,0 +1,52 @@
+{
+  "name": "openclaw-eo-plugin",
+  "version": "2.2.0",
+  "description": "Everything Openclaw - Multi-Expert Collaboration Plugin for OpenClaw",
+  "main": "dist/index.js",
+  "type": "module",
+  "openclaw": {
+    "version": ">=2026.3.0",
+    "build": {
+      "openclawVersion": "2026.3.0"
+    },
+    "compat": {
+      "pluginApi": "1.0"
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {}
+    },
+    "extensions": [
+      {
+        "kind": "Tool",
+        "id": "eo_collab",
+        "name": "eo_collab",
+        "description": "Main multi-expert collaboration tool"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --test tests/",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "multi-agent",
+    "collaboration",
+    "expert"
+  ],
+  "author": "467718584",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2026.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.37",
+    "typescript": "^5.9.3"
+  }
+}

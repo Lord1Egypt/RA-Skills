@@ -1,0 +1,46 @@
+{
+  "skill_name": "app-store-optimization",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a new habit tracker launching on the App Store. Draft an ASO plan covering app name/subtitle keyword placement, keyword field priorities, the description hook, first three screenshots, promotional text, custom product pages for ads, in-app events, product page optimization tests, localization, and review prompt timing.",
+      "expected_output": "A complete App Store Optimization plan that separates search visibility from conversion, uses Apple-backed metadata surfaces correctly, and gives practical copy/testing guidance without drifting into App Review compliance or StoreKit implementation depth.",
+      "files": [],
+      "expectations": [
+        "Separates search visibility work from conversion work and prioritizes relevance over high-volume but weakly related keywords.",
+        "Uses app name, subtitle, keyword field, primary category, ratings/reviews, Custom Product Page assigned keywords, and in-app event cards as the main search/visibility surfaces rather than keyword-stuffing the description.",
+        "Recommends a conversion-focused description hook, benefit-oriented first screenshots, current promotional text, and per-locale metadata research.",
+        "Plans Custom Product Pages around audience or acquisition-channel differences and mentions the current 70-page capacity or assigned keyword search visibility.",
+        "Plans Product Page Optimization around one hypothesis at a time while acknowledging up to three treatments and selected localizations.",
+        "Places in-app review prompts only after positive user moments and notes that StoreKit may not show every requested prompt."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this ASO note for accuracy: 'Custom Product Pages are capped at 35 and only work through direct links. Product Page Optimization compares one treatment in the default locale only. Put repeated keywords at the start of the keyword field because position is a ranking factor. Add more keywords to the description. In-app event metadata is indexed like the keyword field. Japan and Korea also index English keyword fields. Ratings below 4.0 always tank conversion.' What should change?",
+      "expected_output": "A correction-focused review that replaces stale or unsupported App Store Optimization claims with current Apple-source-grounded guidance.",
+      "files": [],
+      "expectations": [
+        "Corrects Custom Product Pages to the current 70-page limit and mentions assigned-keyword search visibility in addition to direct URLs.",
+        "Corrects Product Page Optimization to up to three treatments, selectable localizations, and App Analytics confidence/reporting behavior instead of one default-locale treatment.",
+        "Rejects unsupported keyword-position ranking claims and recommends spending keyword-field characters on relevant, non-duplicated terms.",
+        "Keeps the description conversion-focused and avoids adding unnecessary keywords for search ranking.",
+        "Frames in-app event name and short description as visible event-card/search-result copy rather than a hidden keyword field.",
+        "Removes unsupported cross-locale English-indexing and fixed rating-threshold claims while preserving per-market research and ratings/reviews as search and conversion signals."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need help before submission: my App Store listing has ASO keyword ideas, but also PrivacyInfo.xcprivacy entries, ATT wording, subscription paywall code, and a possible metadata rejection because screenshots show mockups. Which pieces should app-store-optimization own, and where should the rest go?",
+      "expected_output": "A boundary-aware answer that keeps app-store-optimization focused on discoverability and conversion strategy while routing compliance, privacy manifest, ATT, rejection, and StoreKit implementation details to sibling skills.",
+      "files": [],
+      "expectations": [
+        "Keeps app-store-optimization focused on keyword strategy, title/subtitle, description conversion copy, screenshots/captions, promotional text, Custom Product Pages, In-App Events, PPO tests, localization, and ratings strategy.",
+        "Routes App Store rejection risks, screenshot compliance, PrivacyInfo.xcprivacy, metadata policy, and ATT wording to app-store-review rather than solving them in depth.",
+        "Routes subscription paywall code, purchase handling, entitlement checks, and StoreKit product setup to storekit rather than expanding ASO into IAP implementation.",
+        "Still gives the ASO-safe next step: cross-check listing copy and screenshots for both conversion quality and compliance before submission.",
+        "Avoids recommending competitor names, unrelated keywords, or misleading screenshots as ASO tactics."
+      ]
+    }
+  ]
+}

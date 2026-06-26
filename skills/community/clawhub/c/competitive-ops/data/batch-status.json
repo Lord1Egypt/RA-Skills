@@ -1,0 +1,29 @@
+{
+  "batch_id": "batch-2026-04-07",
+  "filter": "tier 1",
+  "started": "2026-04-07T00:00:00Z",
+  "completed": "2026-04-07T00:00:00Z",
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "results": [
+    {
+      "company": "Anthropic",
+      "status": "success",
+      "score": 77.7,
+      "report": "data/reports/2026-04-07/anthropic-2026-04-07.md"
+    },
+    {
+      "company": "OpenAI",
+      "status": "success",
+      "score": 81.1,
+      "report": "data/reports/2026-04-07/openai-2026-04-07.md"
+    },
+    {
+      "company": "Google DeepMind",
+      "status": "success",
+      "score": 80.9,
+      "report": "data/reports/2026-04-07/google-deepmind-2026-04-07.md"
+    }
+  ]
+}

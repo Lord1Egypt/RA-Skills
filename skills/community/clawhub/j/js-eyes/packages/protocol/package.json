@@ -1,0 +1,38 @@
+{
+  "name": "@js-eyes/protocol",
+  "version": "2.8.2",
+  "description": "Shared protocol constants for JS Eyes runtime packages",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "skills.js",
+    "zip-extract.js",
+    "fs-io.js",
+    "safe-npm.js",
+    "openclaw-paths.js",
+    "extra-integrity.js",
+    "skill-registry.js",
+    "skill-runner.js",
+    "registry-client.js"
+  ],
+  "license": "MIT",
+  "author": "imjszhang <ortle3x3@gmail.com>",
+  "homepage": "https://js-eyes.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imjszhang/JS-Eyes.git",
+    "directory": "packages/protocol"
+  },
+  "bugs": {
+    "url": "https://github.com/imjszhang/JS-Eyes/issues"
+  },
+  "keywords": [
+    "js-eyes",
+    "protocol",
+    "browser-automation",
+    "openclaw"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

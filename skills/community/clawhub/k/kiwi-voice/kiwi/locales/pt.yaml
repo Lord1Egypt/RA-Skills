@@ -1,0 +1,539 @@
+# Portuguese locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    Você é o Kiwi, um assistente de voz. Você está conectado ao OpenClaw e pode realizar QUALQUER tarefa: operações com arquivos, código, navegador, terminal, busca, gerenciamento do sistema — tudo está disponível.
+
+    Regras para o modo de voz:
+    1. Responda de forma concisa, mas COMPLETA. Melhor completo do que incompleto.
+    2. Seja amigável e expressivo
+    3. Se precisar realizar uma tarefa — simplesmente faça, nunca diga que não pode. Informe o resultado brevemente.
+    4. Nunca recuse executar. Você pode fazer qualquer coisa através do OpenClaw.
+    5. Se não tiver certeza dos detalhes — peça esclarecimento
+
+    Contexto: o usuário está falando por voz, a resposta será reproduzida via TTS.
+
+# User-facing spoken responses
+responses:
+  greeting: "Olá! Eu sou o Kiwi. Diga 'Kiwi' e um comando quando estiver pronto."
+  service_started: "Serviço iniciado!"
+  instruction: "Diga 'Kiwi, olá!' para começar"
+  error_timeout: "A resposta demorou demais. Por favor, repita."
+  error_no_response: "Não foi possível obter resposta. Por favor, repita."
+  error_send_failed: "Desculpe, não foi possível enviar a mensagem."
+  error_retry_failed: "Não foi possível obter resposta. Por favor, tente novamente."
+  error_stream_stalled: "A resposta travou. Por favor, repita."
+  shutting_down: "Desligando..."
+  context_cleared: "Contexto limpo. Iniciando uma nova conversa."
+  calibrating: "Calibrando o reconhecimento de voz."
+  approval_accepted: "Aceito. Executando solicitação de {requester}."
+  approval_denied: "Certo, solicitação de {requester} negada."
+  telegram_approved: "Telegram confirmou. Executando solicitação de {requester}."
+  telegram_denied: "Solicitação de {requester} negada via Telegram."
+  heard: "Ouvi: {command}"
+  thinking: "Pensando..."
+  cancel_received: "Comando de cancelamento recebido!"
+  stopped: "Parado."
+  nothing_to_stop: "Nada para parar."
+  unknown_speaker: "Desconhecido"
+  continuing_execution: "continuando a execução"
+  owner_registered: "Pronto. Memorizei a voz do proprietário: {name}."
+  owner_register_failed: "Não foi possível salvar o perfil. Diga uma frase mais longa e tente novamente."
+  owner_already_registered: "O proprietário já está registrado. Somente ele pode alterar o perfil de voz."
+  owner_reregistration_attempt: "Tentativa de re-registro do proprietário por {speaker}: '{command}'"
+  profiles_unavailable: "O módulo de perfis não está disponível no momento."
+  cannot_identify: "Não consigo identificar o falante no momento."
+  voice_list_unavailable: "A lista de vozes não está disponível."
+  only_owner_can_add: "Somente o proprietário pode adicionar novas pessoas."
+  say_name_prompt: "Diga um nome após a frase: lembre-se de mim como ..."
+  voice_remembered: "Voz memorizada: {name}."
+  voice_save_failed: "Não foi possível salvar a voz. É necessária uma frase mais clara."
+  approval_prompt_voice_and_telegram: "Diga: aprovar. Ou confirme no Telegram."
+  approval_prompt_voice: "Diga: aprovar ou negar."
+  approval_prompt_telegram: "Por favor, confirme no Telegram."
+  approval_prompt_register: "Registre a voz do proprietário: Kiwi, eu sou o dono."
+  approval_request: "{owner}, {speaker} pergunta: {command}. {hint}"
+  ha_command_sent: "Comando enviado para a casa inteligente."
+  ha_response: "{response}"
+  ha_not_configured: "A integração com a casa inteligente não está configurada."
+  ha_connection_error: "Não consigo conectar à casa inteligente."
+  ha_no_response: "A casa inteligente não respondeu."
+  exec_approval_request: "O agente quer executar um comando: {command}. Devo permitir?"
+  exec_approved: "Aprovado. Executando o comando."
+  exec_denied: "Negado. Comando bloqueado."
+  exec_timeout: "Sem resposta. Comando negado por segurança."
+
+# Status announcer fallback messages
+status:
+  thinking: "Pensando na resposta..."
+  processing: "Processando a solicitação, por favor aguarde..."
+  working: "Ainda trabalhando, o resultado estará pronto em breve..."
+  continuing: "Continuando, isso está demorando um pouco..."
+  almost_done: "Quase pronto..."
+
+# Voice security messages
+security:
+  safe: "Comando seguro"
+  warning: "O comando requer atenção"
+  dangerous: "Comando perigoso!"
+  critical: "Comando CRÍTICO!"
+  unknown_level: "Nível de perigo desconhecido"
+  telegram_confirm: "Confirmar execução?"
+  telegram_approved: "Aceito!"
+  telegram_denied: "Negado"
+  approve_button: "Aprovar"
+  deny_button: "Negar"
+  telegram_request_title: "*Kiwi - Solicitação de aprovação*"
+  telegram_speaker_label: "*Falante:*"
+  telegram_command_label: "*Comando:*"
+  telegram_security_title: "*Kiwi — Segurança*"
+  awaiting_approval: "Aguardando aprovação no Telegram..."
+
+# Speaker identification responses
+speakers:
+  self_response: "Essa sou eu, Kiwi!"
+  owner_response: "É você, {name}! (confiança: {confidence})"
+  blocked_response: "Essa é uma voz bloqueada"
+  known_response: "É {name} (confiança: {confidence})"
+  unknown_response: "Não reconheço essa voz"
+  blocked_display: "Bloqueado"
+  calibration_phrase: "Olá, eu sou o Kiwi. Esta é uma frase de teste para calibração."
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "Voz desconhecida"
+  voice_blocked: "A voz está bloqueada"
+  voice_blacklisted: "A voz está na lista negra"
+  self_echo: "É o Kiwi (eco)"
+  allowed: "Permitido"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "quivi": "kiwi"
+    "kivi": "kiwi"
+    "quiui": "kiwi"
+    "kiui": "kiwi"
+    "kiwis": "kiwi"
+    "kiwee": "kiwi"
+    "keewi": "kiwi"
+  fuzzy_blacklist:
+    - "que"
+    - "quem"
+    - "aqui"
+    - "quis"
+    - "quiz"
+    - "quiçá"
+    - "civil"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "Obrigado por assistir"
+    - "Inscreva-se"
+    - "Dê like e inscreva-se"
+    - "Obrigado por nos assistir"
+    - "Até a próxima"
+    - "Legendas por"
+    - "Editor"
+    - "Tradutor"
+    - "Não se esqueça de se inscrever"
+    - "Ative o sininho"
+    - "Deixe um comentário"
+    - "srt subs"
+    - "amara.org"
+    - "Legendas criadas por"
+    - "Engenheiro de som"
+    - "Diretor"
+    - "Roteiro de"
+    - "Continua"
+    - "Obrigado por ouvir"
+    - "Até mais"
+    - "Valeu galera"
+  phantom_phrases:
+    - "editor de legendas"
+    - "inscreva-se no nosso canal"
+    - "ooooooo"
+    - "legendas"
+    - "chamada telefônica"
+    - "toque"
+    - "legendas criadas por"
+  phantom_patterns:
+    - "^um+[mm]*$"
+    - "^mm+[mm]*$"
+    - "^aa+[aa]*$"
+    - "^éé+[éé]*$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "etc.": "etcétera"
+    "ex.": "por exemplo"
+    "p. ex.": "por exemplo"
+    "vs.": "versus"
+    "aprox.": "aproximadamente"
+    "Sr.": "senhor"
+    "Sra.": "senhora"
+    "Dr.": "doutor"
+    "Dra.": "doutora"
+  incomplete_endings:
+    - "e"
+    - "mas"
+    - "ou"
+    - "o"
+    - "a"
+    - "os"
+    - "as"
+    - "um"
+    - "uma"
+    - "para"
+    - "com"
+    - "em"
+    - "por"
+    - "de"
+    - "do"
+    - "da"
+    - "ao"
+    - "desde"
+    - "que"
+    - "qual"
+    - "quem"
+    - "onde"
+    - "quando"
+    - "se"
+    - "embora"
+    - "porque"
+    - "também"
+    - "nem"
+    - "não"
+    - "sobre"
+    - "entre"
+    - "até"
+    - "sem"
+    - "como"
+    - "segundo"
+    - "durante"
+    - "ante"
+    - "sob"
+    - "perante"
+  incomplete_patterns:
+    - "eu quero"
+    - "eu vou"
+    - "eu preciso"
+    - "eu deveria"
+    - "vamos"
+    - "me diga"
+    - "me mostre"
+    - "explique"
+    - "me ajude"
+    - "por favor"
+    - "eu gostaria"
+  complete_patterns:
+    - "algo"
+    - "qualquer coisa"
+    - "tudo"
+    - "nada"
+    - "por favor"
+    - "piada"
+    - "história"
+    - "conto"
+    - "hora"
+    - "data"
+    - "clima"
+  emotion_keywords:
+    urgent:
+      - "urgente"
+      - "rápido"
+      - "importante"
+    sad:
+      - "triste"
+      - "mal"
+      - "terrível"
+      - "horrível"
+    happy:
+      - "legal"
+      - "ótimo"
+      - "super"
+      - "oba"
+      - "incrível"
+    quiet:
+      - "baixinho"
+      - "segredo"
+      - "sussurro"
+    funny:
+      - "piada"
+      - "engraçado"
+      - "me faça rir"
+    curious:
+      - "me diga"
+      - "explique"
+      - "o que é"
+  response_keywords:
+    apologetic:
+      - "desculpe"
+      - "infelizmente"
+      - "não posso"
+    enthusiastic:
+      - "!"
+      - "ótimo"
+      - "incrível"
+      - "super"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "apagar\\s+(tudo|todos|arquivos?|pastas?|diretório|diretórios)"
+    - "deletar\\s+(tudo|todos|arquivos?|pastas?)"
+    - "excluir\\s+(tudo|todos|arquivos?|pastas?)"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format\\s+[a-zA-Z]:"
+    - "formatar\\s+[a-zA-Z]:"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "desligar\\s+(computador|pc|sistema|máquina)"
+    - "reiniciar|reboot"
+    - "enviar\\s+(senha|senhas|chave|token|segredo|segredos)"
+    - "send\\s+(password|passwords|key|token|secret|secrets)"
+    - "mostrar\\s+(senha|chave|token)"
+    - "show\\s+(password|key|token)"
+    - "dizer\\s+(senha|senhas|código|pin)"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "instalar\\s+(desconhecido|não\\s+confiável)"
+    - "baixar\\s+(executável|vírus|trojan)"
+  warning:
+    - "alterar\\s+(configuração|configurações|config)"
+    - "configurar\\s+(sistema|servidor|nginx|apache)"
+    - "abrir\\s+(portas?|porta)"
+    - "fechar\\s+(portas?|porta|firewall)"
+    - "ping\\s+-t"
+    - "mover\\s+(arquivo|pasta)"
+    - "copiar"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "apagar todos os arquivos"
+    - "formatar c:"
+    - "desligar agora"
+    - "sudo rm -rf"
+    - "enviar senha"
+    - "desligar o computador"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "alterar configuração"
+    - "abrir portas"
+    - "mover arquivo"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "lista negra"
+    - "bloquear"
+    - "banir"
+  unblock_last:
+    - "desbloquear"
+    - "remover da lista negra"
+    - "desbanir"
+  add_friend:
+    - "lembre-se de mim como"
+    - "este é meu amigo"
+    - "lembrar"
+  forget_speaker:
+    - "esquecer esta voz"
+    - "deletar perfil"
+  identify:
+    - "quem está falando"
+    - "quem é esse"
+  list_voices:
+    - "quais vozes"
+    - "listar vozes"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "lista negra|bloquear.*voz|banir.*voz|adicionar.*lista negra"
+  unblock_last: "desbloquear|remover.*lista negra|desbanir.*voz"
+  add_friend: "lembre.*como|este é meu amigo|lembrar.*voz|adicionar.*amigo"
+  forget_speaker: "esquecer.*voz|deletar.*perfil|remover.*amigo"
+  identify: "quem.*falando|quem.*é.*esse|identificar.*voz"
+  list_voices: "quais.*vozes|listar.*vozes|mostrar.*vozes"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "como\\s+(\\w+)"
+    - "amigo\\s+(\\w+)"
+    - "meu nome é\\s+(\\w+)"
+    - "me chame de\\s+(\\w+)"
+  filter_words:
+    - "você"
+    - "eu"
+    - "ele"
+    - "ela"
+    - "quem"
+    - "que"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "calibrar"
+    - "recalibrar"
+    - "atualizar perfil"
+  reset_context:
+    - "reiniciar contexto"
+    - "nova conversa"
+    - "esquecer"
+    - "reiniciar prompt do sistema"
+  stop:
+    - "parar"
+    - "cancelar"
+    - "chega"
+    - "pare"
+    - "encerrar"
+  register_owner:
+    - "lembre minha voz"
+    - "registrar minha voz"
+    - "eu sou o dono"
+  approval_yes:
+    - "aprovar"
+    - "confirmar"
+    - "permitir"
+    - "executar"
+    - "sim, executar"
+    - "vá em frente"
+  approval_no:
+    - "negar"
+    - "rejeitar"
+    - "não executar"
+    - "não"
+    - "proibir"
+    - "cancelar aprovação"
+  safe_markers:
+    - "piada"
+    - "história"
+    - "conto"
+    - "conversar"
+    - "como vai"
+    - "cante"
+    - "que horas"
+    - "hora"
+    - "data"
+    - "dia da semana"
+    - "clima"
+    - "notícias"
+    - "me diga"
+    - "explique"
+    - "quem é"
+    - "o que é"
+  task_markers:
+    - "fazer"
+    - "executar"
+    - "rodar"
+    - "abrir"
+    - "fechar"
+    - "apagar"
+    - "criar"
+    - "configurar"
+    - "baixar"
+    - "instalar"
+    - "enviar"
+    - "escrever"
+    - "alterar"
+    - "mover"
+    - "buscar"
+    - "procurar"
+    - "verificar"
+    - "ir para"
+    - "comando"
+    - "terminal"
+    - "shell"
+  ha_trigger_patterns:
+    - "casa inteligente"
+    - "automação"
+    - "ligar"
+    - "desligar"
+    - "acender"
+    - "apagar"
+    - "liga"
+    - "desliga"
+    - "luz"
+    - "luzes"
+    - "lâmpada"
+    - "brilho"
+    - "termostato"
+    - "temperatura"
+    - "ar condicionado"
+    - "aquecedor"
+    - "ventilador"
+    - "televisão"
+    - "tv"
+    - "cortinas"
+    - "persianas"
+    - "fechadura"
+    - "garagem"
+    - "aspirador"
+    - "umidificador"
+    - "tomada"
+    - "sala"
+    - "quarto"
+    - "cozinha"
+    - "banheiro"
+    - "corredor"
+  ha_strip_prefixes:
+    - "casa inteligente "
+    - "automação "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "Desculpe, não obtive resposta."
+  processing_error: "Desculpe, ocorreu um erro ao processar a solicitação."
+  timeout: "Desculpe, a resposta demorou demais."
+  generic_error: "Erro: {error}"
+  rate_limit: "Desculpe, o serviço está temporariamente indisponível (limite de requisições). Tente novamente mais tarde."
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "Desculpe, a conexão com o OpenClaw foi perdida. Por favor, repita sua solicitação."
+  send_failed: "Erro: não foi possível enviar a mensagem via WebSocket"
+  no_response: "Desculpe, não obtive resposta."
+  timeout: "Desculpe, a resposta demorou demais."
+  request_aborted: "A solicitação foi cancelada. Por favor, repita."
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "A ferramenta retornou um erro, verificando a causa."
+  opening_folder: "Abrindo a pasta do projeto."
+  browsing_structure: "Explorando a estrutura do projeto e buscando arquivos."
+  analyzing_file: "Analisando o arquivo {path}."
+  reading_code: "Lendo e analisando o código."
+  searching_code: "Buscando o código relevante."
+  running_tests: "Verificando o código e executando testes."
+  editing_code: "Fazendo alterações no código."
+  checking_repo: "Verificando alterações no repositório."
+  project_steps: "Executando as etapas do projeto."
+  running_command: "Executando um comando no terminal."
+  reading_files: "Lendo arquivos do projeto."
+  searching_info: "Buscando informações no código."
+  continuing_work: "Continuando o trabalho na tarefa."
+  planning: "Planejando as etapas da solução."
+  error_checking: "Ocorreu um erro, verificando o que aconteceu."
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "A extensão do navegador OpenClaw não está conectada. Por favor, abra a extensão na aba ativa."
+  tool_unavailable: "A ferramenta {name} não está disponível no momento."
+  timeout: "A solicitação demorou demais. Por favor, tente novamente."
+  rate_limit: "Muitas solicitações. Aguarde um momento e tente novamente."
+  auth_error: "Erro de autorização. Verifique as configurações de conexão."
+  generic_error: "Erro: {error}"
+  default_tool_name: "serviço"

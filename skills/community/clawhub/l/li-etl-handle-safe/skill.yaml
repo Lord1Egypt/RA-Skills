@@ -1,0 +1,45 @@
+name: li-etl-handle-safe
+version: 1.0.2
+description: 安全版 Excel/CSV ETL 处理技能 - 无任意代码执行，使用安全依赖
+author: 老李
+license: MIT
+
+# 安全配置
+always: false
+disable-model-invocation: true
+
+# 依赖
+dependencies:
+  - exceljs@^4.4.0
+  - csv-parser@^3.0.0
+  - csv-stringify@^6.5.0
+
+# 功能标签
+tags:
+  - excel
+  - csv
+  - etl
+  - data-processing
+  - safe
+
+# 入口点
+entrypoints:
+  - readExcel
+  - readCSV
+  - writeExcel
+  - writeCSV
+  - cleanData
+  - removeEmptyRows
+  - removeDuplicates
+  - transformColumns
+  - filterRows
+  - sortData
+  - mergeFiles
+  - appendRows
+
+# 安全说明
+security:
+  - 无 executeScript 功能
+  - 使用 exceljs 替代有漏洞的 xlsx 库
+  - 所有依赖来自官方 HTTPS npm registry
+  - 禁止自主调用 (disable-model-invocation: true)

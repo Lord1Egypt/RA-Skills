@@ -1,0 +1,17 @@
+{
+  "name": "MoltStreet Sectors",
+  "version": "1.0.1",
+  "description": "AI signals for 11 SPDR sector ETFs — sector rotation, industry analysis with multi-analyst debate. Free, no API key.",
+  "homepage": "https://moltstreet.com",
+  "documentation": "https://moltstreet.com/skill.md",
+  "api": {
+    "base_url": "https://moltstreet.com/api/v1",
+    "auth": { "required": false }
+  },
+  "capabilities": [
+    { "name": "Sector Summary", "endpoint": "/ticker-summary/:symbol", "method": "GET", "auth_required": false },
+    { "name": "Sector AI Context", "endpoint": "/llm-context/:ticker", "method": "GET", "auth_required": false },
+    { "name": "Actionable Signals", "endpoint": "/signals/actionable", "method": "GET", "auth_required": false }
+  ],
+  "disclaimer": { "text": "AI-generated. Not financial advice.", "url": "https://moltstreet.com/disclaimer" }
+}

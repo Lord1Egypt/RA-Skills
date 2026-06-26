@@ -1,0 +1,65 @@
+{
+  "bots": [
+    {
+      "name": "xiaogua",
+      "feishu_bot_id": "cli_xxxxx",
+      "open_id": "ou_xxxxx",
+      "capabilities": ["breakdown", "product-thinking", "doc-gen"],
+      "invoke": {
+        "type": "http",
+        "url": "https://xiaogua.example.com/tools/invoke",
+        "auth": "Bearer <token>",
+        "timeout_ms": 20000
+      }
+    },
+    {
+      "name": "xiaogu",
+      "feishu_bot_id": "cli_yyyyy",
+      "open_id": "ou_yyyyy",
+      "capabilities": ["code", "data", "devops"],
+      "invoke": {
+        "type": "http",
+        "url": "https://xiaogu.example.com/tools/invoke",
+        "auth": "Bearer <token>",
+        "timeout_ms": 20000
+      }
+    }
+  ],
+  "routes": [
+    {
+      "match": {
+        "chat_id": "oc_project_team",
+        "keywords": ["拆解", "product"],
+        "mentioned": "xiaogua"
+      },
+      "actions": [
+        { "type": "assign", "target": "xiaogua" },
+        { "type": "notify", "target": "xiaogu" }
+      ]
+    },
+    {
+      "match": {
+        "chat_id": "oc_project_team",
+        "keywords": ["实现", "代码"],
+        "mentioned": "xiaogu"
+      },
+      "actions": [
+        { "type": "assign", "target": "xiaogu" }
+      ]
+    }
+  ],
+  "approvals": {
+    "oc_project_team": [
+      {
+        "name": "plan_signoff",
+        "trigger_expression": "state == 'ready_for_plan_approval'",
+        "timeout_minutes": 10,
+        "escalate_to": "ou_a59dcab9829fb83c83f2ba30b422f7cd"
+      }
+    ]
+  },
+  "rate_limits": {
+    "default_per_minute": 4,
+    "oc_project_team": 8
+  }
+}

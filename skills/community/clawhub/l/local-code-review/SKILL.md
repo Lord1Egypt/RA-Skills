@@ -1,35 +1,56 @@
 ---
-name: "Local Cpp Code Review"
-description: "遍历指定本地目录，对所有 C/C++ 源代码进行生产就绪性审查、质量检查及潜在漏洞分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-code-review"
-sourceUrl: "https://clawhub.ai/skills/local-code-review"
+name: local-cpp-code-review
+description: 遍历指定本地目录，对所有 C/C++ 源代码进行生产就绪性审查、质量检查及潜在漏洞分析。
 ---
 
-# Local Cpp Code Review
+# 本地 C/C++ 代码审查 (OpenClaw 版)
 
-> 遍历指定本地目录，对所有 C/C++ 源代码进行生产就绪性审查、质量检查及潜在漏洞分析。
+当用户要求“审查 [目录] 目录的代码”时，调用此 Skill。该工具直接扫描本地文件系统，对 C/C++ 核心逻辑进行深度分析。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-code-review`
-- **Source URL:** [https://clawhub.ai/skills/local-code-review](https://clawhub.ai/skills/local-code-review)
+## 核心流程
 
-## Overview
+**1. 目录扫描：**
+使用 `ls -R` 或文件遍历工具定位指定目录下的所有 `.c`, `.cpp`, `.h`, `.hpp` 文件。
 
+**2. 分段审查：**
+由于上下文限制，如果目录较大，应按模块或文件组分批调用审查模型。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/local-code-review
-```
+**3. 触发指令：**
+- "审查 ./src 目录的代码"
+- "检查当前文件夹下 C++ 源码的质量"
+
+## 审查维度 (针对 C/C++)
+
+- **内存安全：** 检查是否存在内存泄漏（如 `new` 无 `delete`）、野指针、缓冲区溢出（使用 `strcpy` 等危险函数）。
+- **资源管理：** 是否遵循 RAII 原则？智能指针（`unique_ptr`, `shared_ptr`）使用是否得当？
+- **并发安全：** 检查死锁风险、未加锁的共享变量、竞态条件。
+- **性能开销：** 检查非必要的拷贝（如未传递 `const reference`）、昂贵的循环内操作。
+- **现代化 C++：** 是否使用了 C++11/14/17+ 的特性来简化代码？
+
+## 交互模板 (local-code-reviewer.md )
+
+调用时请按以下格式填充上下文：
+
+- `{TARGET_DIRECTORY}`: 待审查的本地路径
+- `{FILE_LIST}`: 扫描到的文件清单
+- `{CODE_SNIPPETS}`: 关键文件的源代码内容
+- `{CONSTRAINTS}`: 项目特定的编码规范（如有）
+
+## 输出规范
+
+### 1. 扫描报告
+列出已审查的文件数量及发现的问题汇总。
+
+### 2. 问题分类
+- **致命 (Critical):** 内存崩溃、安全漏洞、逻辑死循环。
+- **重要 (Important):** 资源泄漏隐患、违反 RAII、缺乏异常处理。
+- **建议 (Minor):** 命名规范、冗余代码、现代化改进建议。
+
+### 3. 修复示例
+对每个“致命”和“重要”问题，必须提供修改前后的代码对比。
+
+## 注意事项
+
+- **禁止：** 忽略本地路径中的第三方库（如 `node_modules` 或 `vendor`），只聚焦于业务源码。
+- **建议：** 优先检查头文件中的类定义，再检查实现文件。
+- **限制：** 如果单个文件超过 4k tokens，应采取“函数级”拆分审查。

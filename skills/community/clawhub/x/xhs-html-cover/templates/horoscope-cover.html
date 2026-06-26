@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>{{title}}</title>
+<style>
+body { 
+  width: 1080px; 
+  min-height: 1754px; 
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 60px;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  color: #fff;
+  box-sizing: border-box;
+}
+.header { 
+  text-align: center;
+  margin-bottom: 50px;
+}
+.header-text { font-size: 28px; opacity: 0.85; letter-spacing: 8px; margin-bottom: 20px; }
+.main-title { font-size: 96px; font-weight: 900; text-shadow: 0 4px 30px rgba(0,0,0,0.3); line-height: 1.1; }
+.emoji-row { font-size: 120px; margin: 40px 0; }
+.subtitle { font-size: 36px; opacity: 0.9; margin-top: 30px; }
+.rankings {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 50px;
+  width: 100%;
+  max-width: 900px;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+.rank-item { 
+  display: flex;
+  align-items: center;
+  font-size: 34px;
+  margin: 20px 0;
+  padding: 15px 20px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+}
+.rank-num { 
+  font-size: 42px;
+  font-weight: 900;
+  margin-right: 25px;
+  min-width: 60px;
+}
+.rank-name { flex: 1; }
+.rank-star { font-size: 28px; margin-left: 15px; }
+.footer { 
+  margin-top: 40px; 
+  font-size: 26px; 
+  opacity: 0.75;
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-text">{{header}}</div>
+    <div class="main-title">{{title}}</div>
+  </div>
+  <div class="emoji-row">{{emoji}}</div>
+  <div class="subtitile">{{subtitle}}</div>
+  <div class="rankings">
+    {{content}}
+  </div>
+  <div class="footer">{{footer}}</div>
+</body>
+</html>

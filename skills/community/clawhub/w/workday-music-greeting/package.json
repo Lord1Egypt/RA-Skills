@@ -1,0 +1,15 @@
+{
+  "name": "workday-music-greeting",
+  "version": "1.0.0",
+  "description": "Auto-switch music scenes by workday time slot and send greeting emails with matching GIFs",
+  "main": "scripts/workday-greeting.js",
+  "scripts": {
+    "start": "node scripts/workday-greeting.js",
+    "test": "node scripts/workday-greeting.js --dry-run"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.0",
+    "dotenv": "^16.3.0"
+  },
+  "license": "MIT"
+}

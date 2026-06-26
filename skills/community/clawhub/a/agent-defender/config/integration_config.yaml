@@ -1,0 +1,276 @@
+# Sigma + YARA 规则集成配置
+
+## 配置说明
+
+此配置文件用于自定义 Sigma 和 YARA 规则的集成行为。
+
+```yaml
+# 规则源配置
+sources:
+  sigma:
+    # Sigma 规则目录
+    directory: "~/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma"
+    # 是否启用
+    enabled: true
+    # 递归搜索子目录
+    recursive: true
+    # 文件扩展名
+    extensions:
+      - ".yaml"
+      - ".yml"
+  
+  yara:
+    # YARA 规则目录
+    directory: "~/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/yara"
+    # 是否启用
+    enabled: true
+    # 递归搜索子目录
+    recursive: true
+    # 文件扩展名
+    extensions:
+      - ".yar"
+      - ".yara"
+
+# 规则转换配置
+conversion:
+  sigma:
+    # 转换后的规则类型 (Runtime/YARA)
+    target_type: "Runtime"
+    # 是否保留原始 Sigma 元数据
+    keep_metadata: true
+    # 模式匹配类型 (exact/regex/glob)
+    pattern_type: "regex"
+  
+  yara:
+    # 转换后的规则类型 (YARA/JSON)
+    target_type: "JSON"
+    # 是否嵌入原始 YARA 规则
+    embed_raw: true
+    # 提取元数据字段
+    extract_metadata:
+      - "description"
+      - "author"
+      - "severity"
+      - "mitre_id"
+      - "attack_type"
+
+# 输出配置
+output:
+  # 集成规则输出目录
+  directory: "~/.openclaw/workspace/skills/agent-defender/integrated_rules"
+  # 规则文件格式 (json/yaml)
+  format: "json"
+  # 是否生成索引文件
+  generate_index: true
+  # 索引文件格式 (yaml/json)
+  index_format: "yaml"
+  # 是否按攻击类型分文件
+  split_by_type: true
+
+# agent-defender 集成配置
+defender:
+  # 规则同步目录
+  rules_directory: "~/.openclaw/workspace/skills/agent-defender/rules"
+  # 是否覆盖现有规则
+  overwrite: false
+  # 规则文件命名模板
+  filename_template: "{attack_type}_integrated.json"
+
+# 日志配置
+logging:
+  # 日志文件
+  file: "~/.openclaw/workspace/skills/agent-defender/integrated_rules/integration.log"
+  # 日志级别 (DEBUG/INFO/WARNING/ERROR)
+  level: "INFO"
+  # 是否输出到控制台
+  console: true
+
+# 验证配置
+validation:
+  # 是否验证规则语法
+  check_syntax: true
+  # 是否检查重复规则
+  check_duplicates: true
+  # 是否验证规则完整性
+  check_completeness: true
+
+# 性能优化
+performance:
+  # 并发处理规则数
+  parallel_count: 4
+  # 是否使用缓存
+  use_cache: true
+  # 缓存目录
+  cache_directory: "~/.cache/agent-defender/rules"
+```
+
+## 环境变量覆盖
+
+可以通过环境变量覆盖配置：
+
+```bash
+# 自定义规则目录
+export SIGMA_RULES_DIR="/path/to/sigma/rules"
+export YARA_RULES_DIR="/path/to/yara/rules"
+
+# 自定义输出目录
+export INTEGRATED_RULES_DIR="/path/to/output"
+
+# 日志级别
+export LOG_LEVEL="DEBUG"
+```
+
+## 使用示例
+
+### 基本使用
+
+```bash
+cd ~/.openclaw/workspace/skills/agent-defender
+python3 integrate_sigma_yara.py
+```
+
+### 使用自定义配置
+
+```bash
+python3 integrate_sigma_yara.py --config config/integration_config.yaml
+```
+
+### 仅处理 Sigma 规则
+
+```bash
+python3 integrate_sigma_yara.py --sigma-only
+```
+
+### 仅处理 YARA 规则
+
+```bash
+python3 integrate_sigma_yara.py --yara-only
+```
+
+### 验证模式 (不保存)
+
+```bash
+python3 integrate_sigma_yara.py --dry-run
+```
+
+## 输出文件
+
+集成后会生成以下文件：
+
+1. **integrated_rules.json** - 所有集成规则的 JSON 文件
+2. **RULES_INDEX.yaml** - 规则索引文件
+3. **{attack_type}_integrated.json** - 按攻击类型分类的规则文件
+4. **integration.log** - 集成日志文件
+
+## 规则格式
+
+### Runtime 规则格式 (Sigma 转换)
+
+```json
+{
+  "id": "sigma-prompt-injection-001",
+  "name": "Detect Prompt Injection Attack",
+  "type": "Runtime",
+  "source": "sigma",
+  "severity": "high",
+  "description": "Detects prompt injection attempts",
+  "detection": {
+    "type": "pattern_match",
+    "patterns": [".*ignore.*previous.*instructions.*"],
+    "condition": "any"
+  },
+  "metadata": {
+    "original_id": "sigma-001",
+    "converted_at": "2026-03-23T10:00:00",
+    "source_file": "/path/to/sigma/rule.yaml"
+  }
+}
+```
+
+### YARA 规则格式 (JSON)
+
+```json
+{
+  "id": "YARA-ToolPoisoning",
+  "name": "Tool Poisoning Detection",
+  "type": "YARA",
+  "source": "yara",
+  "severity": "critical",
+  "description": "Detects tool poisoning attacks",
+  "detection": {
+    "type": "yara",
+    "strings": [
+      "$a = \"os.system\"",
+      "$b = \"subprocess.call\""
+    ],
+    "condition": "$a or $b",
+    "raw_rule": "rule ToolPoisoning { ... }"
+  },
+  "metadata": {
+    "original_id": "YARA-ToolPoisoning",
+    "mitre_id": "T1059",
+    "attack_type": "tool_poisoning"
+  }
+}
+```
+
+## 集成到 agent-defender
+
+集成后的规则会自动同步到 agent-defender 的规则目录，可以通过以下方式调用：
+
+```python
+# 在 agent-defender 中加载集成规则
+from pathlib import Path
+import json
+
+rules_file = Path("~/.openclaw/workspace/skills/agent-defender/integrated_rules/integrated_rules.json").expanduser()
+with open(rules_file) as f:
+    rules = json.load(f)["rules"]
+
+# 使用规则进行检测
+for rule in rules:
+    if rule["type"] == "Runtime":
+        # Runtime 检测逻辑
+        pass
+    elif rule["type"] == "YARA":
+        # YARA 检测逻辑
+        pass
+```
+
+## 定时更新
+
+可以通过 cron 定时运行集成脚本：
+
+```bash
+# 每天凌晨 2 点更新规则
+0 2 * * * cd ~/.openclaw/workspace/skills/agent-defender && python3 integrate_sigma_yara.py >> logs/integration.log 2>&1
+```
+
+## 故障排除
+
+### 规则加载失败
+
+检查规则文件路径和格式：
+```bash
+# 验证 Sigma 规则
+python3 -c "import yaml; yaml.safe_load(open('rule.yaml'))"
+
+# 验证 YARA 规则
+yaractl rule.yar
+```
+
+### 转换错误
+
+查看日志文件获取详细错误信息：
+```bash
+tail -f ~/.openclaw/workspace/skills/agent-defender/integrated_rules/integration.log
+```
+
+### 性能问题
+
+调整并发数和缓存配置：
+```yaml
+performance:
+  parallel_count: 8  # 增加并发数
+  use_cache: true    # 启用缓存
+```

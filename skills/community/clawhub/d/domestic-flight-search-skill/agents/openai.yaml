@@ -1,0 +1,4 @@
+interface:
+  display_name: "Domestic Flight Search"
+  short_description: "Find China domestic flights with reference fares"
+  default_prompt: "Use $domestic-flight-search to find China domestic flights after the user has configured a Juhe API key."

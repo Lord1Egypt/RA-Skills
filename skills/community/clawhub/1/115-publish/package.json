@@ -1,0 +1,56 @@
+{
+  "name": "115-skills",
+  "version": "1.0.1",
+  "description": "115 网盘智能管理 Skill - 扫码登录、文件管理、智能整理、分享转存、离线下载",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --ci --maxWorkers=2",
+    "lint": "eslint lib/ test/ index.js",
+    "lint:fix": "eslint lib/ test/ index.js --fix",
+    "format": "prettier --write 'lib/**/*.js' 'test/**/*.js' index.js",
+    "build": "echo 'No build step required'",
+    "release": "bash scripts/release.sh",
+    "local-ci": "bash scripts/local-ci.sh",
+    "precommit": "npm run lint && npm test"
+  },
+  "keywords": [
+    "115",
+    "cloud-storage",
+    "openclaw",
+    "skill",
+    "file-manager",
+    "offline-download",
+    "transfer"
+  ],
+  "author": "115 Skills Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sukris/115-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sukris/115-skills/issues"
+  },
+  "homepage": "https://github.com/sukris/115-skills#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0",
+    "puppeteer": "^24.39.1",
+    "qrcode": "^1.5.3",
+    "qs": "^6.15.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-node": "^11.1.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.1"
+  }
+}

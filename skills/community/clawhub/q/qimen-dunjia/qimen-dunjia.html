@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>奇门遁甲高阶专业排盘系统</title>
+ <!-- 核心依赖 -->
+ <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <!-- 图标库 -->
+ <script src="https://unpkg.com/lucide@latest"></script>
+ <style>
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap');
+ body { background-color: #f1f5f9; }
+ .font-gua { font-family: 'Noto Serif SC', serif; }
+ .qimen-cell { transition: all 0.2s ease; }
+ .qimen-cell:hover { background-color: #fffbeb; }
+ /* 隐藏滚动条 */
+ ::-webkit-scrollbar { width: 0px; background: transparent; }
+ .glass-panel {
+ background: rgba(255, 255, 255, 0.7);
+ backdrop-filter: blur(10px);
+ border: 1px solid rgba(255, 255, 255, 0.3);
+ }
+ .text-glow { text-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+ </style>
+</head>
+<body>
+ <div id="root"></div>
+
+ <script type="text/babel">
+ const { useState, useMemo, useEffect } = React;
+
+ // --- Lucide 图标包装组件 ---
+ const Icon = ({ name, size = 16, className = "" }) => {
+ useEffect(() => {
+ if (window.lucide) window.lucide.createIcons();
+ }, [name]);
+ return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
+ };
+
+ // --- 常量定义 ---
+ const TIAN_GAN = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+ const DI_ZHI = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+ const PALACE_MAP = [
+ null,
+ { name: '坎', num: 1, gua: '☵', element: '水', zhi: [0], dir: "正北" },
+ { name: '坤', num: 2, gua: '☷', element: '土', zhi: [5, 6], dir: "西南" },
+ { name: '震', num: 3, gua: '☳', element: '木', zhi: [3], dir: "正东" },
+ { name: '巽', num: 4, gua: '☴', element: '木', zhi: [4, 5], dir: "东南" },
+ { name: '中', num: 5, gua: '', element: '土', zhi: [], dir: "中宫" },
+ { name: '乾', num: 6, gua: '☰', element: '金', zhi: [10, 11], dir: "西北" },
+ { name: '兑', num: 7, gua: '☱', element: '金', zhi: [9], dir: "正西" },
+ { name: '艮', num: 8, gua: '☶', element: '土', zhi: [1, 2], dir: "东北" },
+ { name: '离', num: 9, gua: '☲', element: '火', zhi: [6], dir: "正南" },
+ ];
+ const NINE_STARS = [
+ null,
+ { name: '天蓬', type: '凶', weight: 30 }, { name: '天芮', type: '凶', weight: 20 }, { name: '天冲', type: '吉', weight: 80 },
+ { name: '天辅', type: '吉', weight: 90 }, { name: '天禽', type: '吉', weight: 100 }, { name: '天心', type: '吉', weight: 90 },
+ { name: '天柱', type: '凶', weight: 40 }, { name: '天任', type: '吉', weight: 85 }, { name: '天英', type: '平', weight: 60 },
+ ];
+ const EIGHT_DOORS = [
+ null,
+ { name: '休门', element: '水', type: '吉', weight: 90 }, { name: '死门', element: '土', type: '凶', weight: 10 },
+ { name: '伤门', element: '木', type: '凶', weight: 30 }, { name: '杜门', element: '木', type: '平', weight: 50 },
+ null, 
+ { name: '开门', element: '金', type: '吉', weight: 95 }, { name: '惊门', element: '金', type: '凶', weight: 40 },
+ { name: '生门', element: '土', type: '吉', weight: 100 }, { name: '景门', element: '火', type: '平', weight: 65 },
+ ];
+ const EIGHT_GODS = ['值符', '腾蛇', '太阴', '六合', '白虎', '玄武', '九地', '九天'];
+ const GOD_WEIGHTS = { '值符': 100, '腾蛇': 20, '太阴': 80, '六合': 85, '白虎': 10, '玄武': 20, '九地': 75, '九天': 90 };
+
+ const SOLAR_TERMS_JU = {
+ '冬至': [1, 7, 4], '小寒': [2, 8, 5], '大寒': [3, 9, 6], '立春': [8, 5, 2], '雨水': [9, 6, 3], '惊蛰': [1, 7, 4],
+ '春分': [3, 9, 6], '清明': [4, 1, 7], '谷雨': [5, 2, 8], '立夏': [4, 1, 7], '小满': [5, 2, 8], '芒种': [6, 3, 9],
+ '夏至': [9, 3, 6], '小暑': [8, 2, 5], '大暑': [7, 1, 4], '立秋': [2, 5, 8], '处暑': [1, 4, 7], '白露': [9, 3, 6],
+ '秋分': [7, 1, 4], '寒露': [6, 9, 3], '霜降': [5, 8, 2], '立冬': [6, 9, 3], '小雪': [5, 8, 2], '大雪': [4, 7, 1],
+ };
+ const SOLAR_TERMS_C = [5.4055, 20.12, 3.87, 18.73, 5.63, 20.646, 4.81, 20.1, 5.52, 21.04, 5.678, 21.37, 7.108, 22.83, 7.5, 23.13, 7.646, 23.042, 8.318, 23.438, 7.438, 22.36, 7.18, 21.94];
+ const SOLAR_TERM_NAMES = ['小寒', '大寒', '立春', '雨水', '惊蛰', '春分', '清明', '谷雨', '立夏', '小满', '芒种', '夏至', '小暑', '大暑', '立秋', '处暑', '白露', '秋分', '寒露', '霜降', '立冬', '小雪', '大雪', '冬至'];
+
+ // --- 核心算法 ---
+ const getTermDay = (year, termIndex) => {
+ const y = year % 100, d = 0.2422, l = Math.floor(y / 4);
+ return Math.floor(y * d + SOLAR_TERMS_C[termIndex]) - l;
+ };
+
+ const getSolarTerm = (date) => {
+ const y = date.getFullYear(), m = date.getMonth(), d = date.getDate();
+ const base = m * 2;
+ const d1 = getTermDay(y, base), d2 = getTermDay(y, base + 1);
+ const idx = d < d1 ? (base - 1 + 24) % 24 : (d >= d1 && d < d2 ? base : base + 1);
+ return { idx, name: SOLAR_TERM_NAMES[idx] };
+ };
+
+ const getGanZhi = (date) => {
+ const y = date.getFullYear(), m = date.getMonth(), d = date.getDate(), h = date.getHours();
+ const term = getSolarTerm(date);
+ const liChun = new Date(y, 1, getTermDay(y, 2));
+ const chineseYear = date < liChun ? y - 1 : y;
+ const yOffset = (chineseYear - 4) % 60;
+ const yG = (yOffset < 0 ? yOffset + 60 : yOffset) % 10;
+ const yZ = (yOffset < 0 ? yOffset + 60 : yOffset) % 12;
+ const mZ = (Math.floor(term.idx / 2) + 1) % 12;
+ const mG = ([2, 4, 6, 8, 0][yG % 5] + (mZ - 2 + 12) % 12) % 10;
+ const utc1 = Date.UTC(1900, 0, 31), utc2 = Date.UTC(y, m, d);
+ const dOffset = Math.floor((utc2 - utc1) / 86400000);
+ const dG = (dOffset % 10 + 10) % 10, dZ = ((dOffset + 4) % 12 + 12) % 12;
+ const hZ = Math.floor((h + 1) / 2) % 12;
+ const hG = ([0, 2, 4, 6, 8][dG % 5] + hZ) % 10;
+ return { y: TIAN_GAN[yG] + DI_ZHI[yZ], m: TIAN_GAN[mG] + DI_ZHI[mZ], d: TIAN_GAN[dG] + DI_ZHI[dZ], h: TIAN_GAN[hG] + DI_ZHI[hZ], vals: { yG, yZ, mG, mZ, dG, dZ, hG, hZ }, term: term.name };
+ };
+
+ const getStatus = (stemIdx, palaceNum, doorIdx) => {
+ const res = [];
+ if (stemIdx === undefined || stemIdx === null) return res;
+ const jiXing = { 4:[3], 5:[2], 6:[8], 7:[9], 8:[4], 9:[4] };
+ if (jiXing[stemIdx]?.includes(palaceNum)) res.push('刑');
+ const ruMu = { 1:[2], 2:[6], 3:[8], 4:[6], 5:[8], 6:[8], 7:[4], 8:[4], 9:[2] };
+ if (ruMu[stemIdx]?.includes(palaceNum)) res.push('墓');
+ if (doorIdx && PALACE_MAP[palaceNum]) {
+ const dE = EIGHT_DOORS[doorIdx].element, pE = PALACE_MAP[palaceNum].element;
+ const po = { '金':['木'], '木':['土'], '土':['水'], '水':['火'], '火':['金'] };
+ if (po[dE]?.includes(pE)) res.push('迫');
+ }
+ return res;
+ };
+
+ const getExtra = (hZ, dG, dZ) => {
+ const ma = [8, 0, 4].includes(hZ) ? 8 : ([2, 6, 10].includes(hZ) ? 2 : ([11, 3, 7].includes(hZ) ? 4 : 6));
+ const kongIdx = (10 - dG + dZ) % 12;
+ const kong = [kongIdx, (kongIdx + 1) % 12];
+ const kongPalaces = [];
+ for(let i=1; i<=9; i++) if (PALACE_MAP[i].zhi.some(z => kong.includes(z))) kongPalaces.push(i);
+ return { ma, kong: kongPalaces };
+ };
+
+ const buildChart = (ju, gz) => {
+ const qiYi = [4, 5, 6, 7, 8, 9, 3, 2, 1];
+ let earth = {};
+ let cur = ju.num;
+ for (let i = 0; i < 9; i++) {
+ earth[cur] = qiYi[i];
+ cur = ju.type === 'Yang' ? (cur === 9 ? 1 : cur + 1) : (cur === 1 ? 9 : cur - 1);
+ }
+ let gap = (gz.vals.hG - gz.vals.hZ + 12) % 12;
+ const leadStem = { 0:4, 10:5, 8:6, 6:7, 4:8, 2:9 }[gap];
+ let leadP = Object.keys(earth).find(k => earth[k] === leadStem);
+ const hStemLoc = gz.vals.hG === 0 ? leadP : Object.keys(earth).find(k => earth[k] === gz.vals.hG);
+ const rot = [1, 8, 3, 4, 9, 2, 7, 6];
+ const shift = (rot.indexOf(Number(hStemLoc == 5 ? 2 : hStemLoc)) - rot.indexOf(Number(leadP == 5 ? 2 : leadP)) + 8) % 8;
+ let heaven = {}, heavenStems = {}, doors = {}, gods = {};
+ rot.forEach((p, i) => {
+ const target = rot[(i + shift) % 8];
+ heaven[target] = p;
+ heavenStems[target] = { m: earth[p], s: p == 2 ? earth[5] : null };
+ });
+ const dShift = (gz.vals.hZ - (12 - gap) % 12 + 12) % 12;
+ let dP = Number(leadP == 5 ? 2 : leadP);
+ for(let i=0; i<dShift; i++) dP = ju.type === 'Yang' ? (dP === 9 ? 1 : dP + 1) : (dP === 1 ? 9 : dP - 1);
+ if (dP === 5) dP = 2;
+ const dRotShift = (rot.indexOf(dP) - rot.indexOf(Number(leadP == 5 ? 2 : leadP)) + 8) % 8;
+ rot.forEach((p, i) => {
+ const target = rot[(i + dRotShift) % 8];
+ doors[target] = p === 5 ? null : p;
+ });
+ const gShift = rot.indexOf(Number(hStemLoc == 5 ? 2 : hStemLoc));
+ rot.forEach((p, i) => {
+ let idx = ju.type === 'Yang' ? (i - gShift + 8) % 8 : (gShift - i + 8) % 8;
+ gods[p] = idx;
+ });
+ return { earth, heaven, heavenStems, doors, gods, extra: getExtra(gz.vals.hZ, gz.vals.dG, gz.vals.dZ), hStemLoc: Number(hStemLoc) };
+ };
+
+ const Cell = ({ num, data }) => {
+ if (num === 5) return (
+ <div className="bg-slate-50 flex flex-col items-center justify-center h-full border border-slate-200">
+ <span className="text-[10px] text-slate-400 uppercase tracking-tighter font-medium">Center 5</span>
+ <span className="text-3xl font-bold text-slate-700">{TIAN_GAN[data?.earth[5]]}</span>
+ </div>
+ );
+ const d = data;
+ const god = EIGHT_GODS[d.gods[num]];
+ const star = NINE_STARS[d.heaven[num]];
+ const doorIdx = d.doors[num], door = EIGHT_DOORS[doorIdx];
+ const h = d.heavenStems[num], e = d.earth[num];
+ const status = [...new Set([...getStatus(h.m, num, doorIdx), ...getStatus(h.s, num, doorIdx)])];
+ const isMa = d.extra.ma === num, isKong = d.extra.kong.includes(num);
+
+ return (
+ <div className="bg-white border border-slate-200 relative p-1.5 flex flex-col justify-between h-full qimen-cell group shadow-sm">
+ <div className="flex justify-between items-start">
+ <span className={`text-[12px] font-bold px-1.5 py-0.5 rounded shadow-sm ${god === '值符' ? 'bg-amber-500 text-white' : 'text-slate-500 bg-slate-100'}`}>{god}</span>
+ <div className="flex gap-1">
+ {isMa && <span className="w-5 h-5 bg-blue-500 text-white text-[10px] flex items-center justify-center rounded-full shadow-sm">马</span>}
+ {isKong && <span className="w-5 h-5 border border-slate-300 text-slate-400 text-[10px] flex items-center justify-center rounded-full">空</span>}
+ </div>
+ </div>
+ <div className="flex justify-between items-center px-1">
+ <div className="flex flex-col items-center">
+ <span className={`text-lg font-bold ${star.type === '吉' ? 'text-red-600' : 'text-slate-800'}`}>{star.name.slice(1)}</span>
+ {h.s !== null && <span className="text-[10px] text-slate-400">禽{TIAN_GAN[h.s]}</span>}
+ </div>
+ <div className="flex flex-col items-center gap-1">
+ {status.includes('刑') && <span className="text-[10px] font-bold bg-red-600 text-white px-1.5 rounded-sm">刑</span>}
+ {status.includes('迫') && <span className="text-[10px] font-bold bg-orange-500 text-white px-1.5 rounded-sm">迫</span>}
+ {status.includes('墓') && <span className="text-[10px] font-bold bg-slate-500 text-white px-1.5 rounded-sm">墓</span>}
+ </div>
+ <div className="flex flex-col items-center">
+ <span className={`text-lg font-bold ${door.type === '吉' ? 'text-red-600' : 'text-slate-800'}`}>{door.name.charAt(0)}</span>
+ <span className="text-[10px] text-slate-400">门</span>
+ </div>
+ </div>
+ <div className="flex justify-between items-end px-1 relative">
+ <span className="text-2xl font-bold text-amber-700 z-10">{TIAN_GAN[h.m]}</span>
+ <span className="absolute inset-0 flex items-center justify-center text-4xl text-slate-100 opacity-20 pointer-events-none font-gua">{PALACE_MAP[num].name}</span>
+ <span className="text-2xl font-bold text-slate-900 z-10">{TIAN_GAN[e]}</span>
+ </div>
+ </div>
+ );
+ };
+
+ const AnalysisSection = ({ data }) => {
+ const [randomSeed, setRandomSeed] = useState(0);
+ useEffect(() => { setRandomSeed(Math.floor(Math.random() * 100)); }, [data]);
+
+ const scores = useMemo(() => {
+ if (!data) return { wealth: 50, success: 50, relation: 50, outcome: 50 };
+ const hourPalace = data.hStemLoc;
+ const god = EIGHT_GODS[data.gods[hourPalace]];
+ const star = NINE_STARS[data.heaven[hourPalace]];
+ const door = EIGHT_DOORS[data.doors[hourPalace]];
+ const baseScore = (GOD_WEIGHTS[god] + star.weight + door.weight) / 3;
+ 
+ // 计算全局利好加成：开休生三吉门的位置
+ let globalAuspicious = 0;
+ Object.values(data.doors).forEach(d => {
+ if (d && [1, 6, 8].includes(d)) globalAuspicious += 5;
+ });
+
+ // 扣除空亡影响
+ const isKong = data.extra.kong.includes(hourPalace) ? -20 : 0;
+
+ return {
+ wealth: Math.min(100, Math.max(0, Math.round(baseScore + (door.name === '生门' ? 20 : -10)))),
+ success: Math.min(100, Math.max(0, Math.round(baseScore + (god === '值符' ? 15 : -5)))),
+ relation: Math.min(100, Math.max(0, Math.round(baseScore + (god === '六合' ? 25 : -10)))),
+ outcome: Math.min(100, Math.max(0, Math.round(baseScore * 0.7 + globalAuspicious + isKong)))
+ };
+ }, [data]);
+
+ // 扩展版动态秘法推语逻辑
+ const secretWords = useMemo(() => {
+ if (!data) return "";
+ const prefixPool = ["天垂象，圣人则之。", "乾坤挪移，气理相随。", "易理深微，存乎一心。", "大衍之数，定于瞬息。", "阴阳顺逆，妙难穷尽。", "万物齐乎巽，圣人谋乎中。", "天发杀机，移星易宿。", "地发杀机，龙蛇起陆。"];
+ const horseWords = data.extra.ma === data.hStemLoc ? 
+ ["驿马动转，事多变迁，宜速战速决。", "马入空门，动而无功，宜静守其成。", "天马行空，贵人指路，远行大吉。"] : 
+ ["气场内敛，宜守不宜进，深藏若虚。", "根基稳固，潜龙在渊，宜修身养性。", "时机未至，凡事不可强求，待时而发。"];
+ const statusWords = data.extra.kong.includes(data.hStemLoc) ?
+ ["落宫空亡，虚火上升，事多阻碍。", "空中楼阁，梦幻泡影，需脚踏实地。"] :
+ ["落宫充实，气势如虹，谋事有根。"];
+ const successWords = scores.outcome > 75 ? 
+ ["顺天应人，谋事易成，此乃上吉之兆。", "如鱼得水，事半功倍，贵人暗中相助。"] : 
+ scores.outcome > 45 ? ["中道而行，虽有小阻，坚持可成。", "云遮雾罩，拨云见日，需有耐心。"] :
+ ["阴错阳差，此时不宜大举动工。", "路途艰辛，小心驶得万年船。"];
+ 
+ const p = prefixPool[randomSeed % prefixPool.length];
+ const h = horseWords[randomSeed % horseWords.length];
+ const st = statusWords[randomSeed % statusWords.length];
+ const s = successWords[randomSeed % successWords.length];
+ 
+ return `“${p}${st}${h}${s}奇门之妙在于趋吉避凶，望君审时度势。”`;
+ }, [data, randomSeed, scores.outcome]);
+
+ // 开运建议：吉方由"值符"决定，吉色由该宫位五行决定
+ const guidance = useMemo(() => {
+ if (!data) return { color: "金色", dir: "正南" };
+ // 查找值符（Index 0）所在的宫位
+ const zhiFuPalaceIdx = Object.entries(data.gods).find(([p, g]) => g === 0)?.[0] || 5;
+ const pInfo = PALACE_MAP[zhiFuPalaceIdx];
+ const colorMap = { '金': '白/金色', '木': '青/绿色', '水': '黑/蓝色', '火': '红/紫色', '土': '黄/棕色' };
+ return { color: colorMap[pInfo.element], dir: pInfo.dir };
+ }, [data]);
+
+ const ProgressBar = ({ label, value, icon, color }) => (
+ <div className="mb-4">
+ <div className="flex justify-between items-center mb-1.5">
+ <span className="flex items-center gap-2 text-sm font-bold text-slate-700">
+ <Icon name={icon} size={14} className={color} />
+ {label}
+ </span>
+ <span className={`text-sm font-mono font-bold ${color}`}>{value}%</span>
+ </div>
+ <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden shadow-inner">
+ <div className={`h-full ${color.replace('text', 'bg')} transition-all duration-1000 shadow-[0_0_8px_rgba(0,0,0,0.1)]`} style={{ width: `${value}%` }}></div>
+ </div>
+ </div>
+ );
+
+ return (
+ <div className="p-6 mt-4 glass-panel rounded-3xl border border-slate-200 shadow-xl">
+ <div className="flex justify-between items-center mb-6">
+ <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+ <Icon name="sparkles" size={18} className="text-amber-500" />
+ 灵机推演 · 盘面解析
+ </h2>
+ <span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-bold animate-pulse">AI 推演中</span>
+ </div>
+ 
+ <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+ <div>
+ <ProgressBar label="财运指数" value={scores.wealth} icon="coins" color="text-amber-600" />
+ <ProgressBar label="问事成功率" value={scores.success} icon="trending-up" color="text-green-600" />
+ <ProgressBar label="人际/感情" value={scores.relation} icon="heart" color="text-rose-600" />
+ <ProgressBar label="结果利好的可能性" value={scores.outcome} icon="shield-check" color="text-blue-600" />
+ </div>
+ <div className="flex flex-col gap-4">
+ <div className="bg-slate-900/5 p-4 rounded-2xl border border-slate-200 shadow-inner">
+ <h3 className="text-xs font-bold text-slate-800 mb-2 flex items-center gap-1">
+ <Icon name="message-square-quote" size={14} className="text-slate-400" />
+ 东方秘法推语
+ </h3>
+ <p className="text-xs text-slate-600 leading-relaxed italic font-serif">
+ {secretWords}
+ </p>
+ </div>
+ <div className="grid grid-cols-2 gap-3">
+ <div className="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center">
+ <span className="text-[10px] text-slate-400 mb-1">今日吉方</span>
+ <span className="text-sm font-bold text-slate-700 flex items-center gap-1">
+ <Icon name="compass" size={12} className="text-blue-500" />
+ {guidance.dir}
+ </span>
+ </div>
+ <div className="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center">
+ <span className="text-[10px] text-slate-400 mb-1">开运吉色</span>
+ <span className="text-sm font-bold text-slate-700 flex items-center gap-1">
+ <Icon name="palette" size={12} className="text-amber-500" />
+ {guidance.color}
+ </span>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div className="mt-8 pt-6 border-t border-slate-200/50">
+ <div className="bg-slate-900 text-white p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 border border-slate-700 shadow-2xl relative overflow-hidden group">
+ <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-amber-500/20 transition-all"></div>
+ <div className="text-center md:text-left z-10">
+ <h3 className="font-bold text-base flex items-center justify-center md:justify-start gap-2 leading-tight">
+ <Icon name="globe" size={18} className="text-blue-400" />
+ 来自东方古老的神秘预测学，想要更深层次的预测分析？
+ </h3>
+ <p className="text-slate-400 text-[10px] mt-1 tracking-wider uppercase font-mono leading-none">
+ Ancient mysterious prophecy of the East. Want a deeper predictive analysis?
+ </p>
+ </div>
+ <div className="flex gap-3 z-10">
+ <a href="mailto:qmdj6988@163.com" className="bg-blue-600 hover:bg-blue-500 px-6 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 shadow-lg whitespace-nowrap">
+ <Icon name="mail" size={14} /> 邮箱: qmdj6988@163.com
+ </a>
+ </div>
+ </div>
+ </div>
+ </div>
+ );
+ };
+
+ const App = () => {
+ const [date, setDate] = useState(new Date());
+ const gz = useMemo(() => getGanZhi(date), [date]);
+ const ju = useMemo(() => {
+ const isYang = ['冬至','小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种'].includes(gz.term);
+ return { num: SOLAR_TERMS_JU[gz.term]?.[gz.vals.dZ % 3] || 1, type: isYang ? 'Yang' : 'Yin', name: gz.term };
+ }, [gz]);
+ const chart = useMemo(() => buildChart(ju, gz), [ju, gz]);
+ const adjustTime = (hours) => setDate(new Date(date.getTime() + hours * 3600000));
+
+ return (
+ <div className="min-h-screen p-2 md:p-8 flex flex-col items-center">
+ <div className="w-full max-w-[480px] bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
+ {/* Header */}
+ <div className="p-6 bg-slate-900 text-white relative">
+ <div className="flex justify-between items-start mb-4">
+ <div>
+ <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2 leading-none">
+ <Icon name="zap" className="text-amber-400 fill-amber-400" />
+ 奇门遁甲专业排盘
+ </h1>
+ <p className="text-[10px] text-slate-500 font-mono mt-1 uppercase leading-none">Advanced Divination Engine v4.0</p>
+ </div>
+ <button onClick={() => setDate(new Date())} className="p-2 bg-slate-800 hover:bg-slate-700 rounded-full transition-colors shadow-lg">
+ <Icon name="refresh-cw" size={20} />
+ </button>
+ </div>
+ <input 
+ type="datetime-local" 
+ className="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-xl text-sm focus:ring-2 focus:ring-amber-500 outline-none transition-all shadow-inner"
+ value={new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0, 16)}
+ onChange={(e) => setDate(new Date(e.target.value))}
+ />
+ </div>
+
+ {/* Quick Controls */}
+ <div className="flex border-b border-slate-100">
+ <button onClick={() => adjustTime(-2)} className="flex-1 py-3 hover:bg-slate-50 text-slate-500 text-xs font-bold border-r flex items-center justify-center gap-1 transition-all">
+ <Icon name="chevron-left" size={14} /> 前一时辰
+ </button>
+ <button onClick={() => adjustTime(2)} className="flex-1 py-3 hover:bg-slate-50 text-slate-500 text-xs font-bold flex items-center justify-center gap-1 transition-all">
+ 后一时辰 <Icon name="chevron-right" size={14} />
+ </button>
+ </div>
+
+ {/* Four Pillars */}
+ <div className="px-6 py-4 bg-amber-50/40 grid grid-cols-4 gap-2 text-center border-b border-amber-100 shadow-inner">
+ {['年','月','日','时'].map((l, i) => (
+ <div key={l}>
+ <p className="text-[10px] text-amber-600 font-bold mb-1 uppercase tracking-widest leading-none">{l}</p>
+ <p className={`text-xl font-bold ${l === '日' ? 'text-red-600' : 'text-slate-800'} text-glow leading-none`}>{[gz.y, gz.m, gz.d, gz.h][i]}</p>
+ </div>
+ ))}
+ </div>
+
+ {/* Meta Info */}
+ <div className="px-6 py-3 flex justify-between items-center text-xs text-slate-500 font-medium bg-white">
+ <span className="flex items-center gap-1">
+ <Icon name={ju.type === 'Yang' ? 'sun' : 'moon'} size={14} className={ju.type === 'Yang' ? 'text-amber-500' : 'text-indigo-400'} />
+ {ju.name} · {['上','中','下'][gz.vals.dZ % 3]}元
+ </span>
+ <span className="bg-slate-900 text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-md">
+ {ju.type === 'Yang' ? '阳' : '阴'}遁 {ju.num} 局
+ </span>
+ </div>
+
+ {/* The Grid */}
+ <div className="p-4 bg-slate-100">
+ <div className="aspect-square grid grid-cols-3 grid-rows-3 gap-[1px] bg-slate-300 border border-slate-300 rounded-lg overflow-hidden shadow-inner">
+ {[4, 9, 2, 3, 5, 7, 8, 1, 6].map(n => <Cell key={n} num={n} data={chart} />)}
+ </div>
+ </div>
+
+ {/* Analysis Section */}
+ <AnalysisSection data={chart} />
+
+ {/* Legend Footer */}
+ <div className="p-6 bg-slate-50 flex justify-center gap-6 text-[11px] text-slate-400 font-medium border-t border-slate-200">
+ <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> 驿马</div>
+ <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full border border-slate-300"></span> 旬空</div>
+ </div>
+ </div>
+ <p className="mt-8 text-slate-400 text-[10px] tracking-widest uppercase mb-12">Mastery of Time & Space · Ancient Wisdom for Modern Business</p>
+ </div>
+ );
+ };
+
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+ root.render(<App />);
+ </script>
+</body>
+</html>

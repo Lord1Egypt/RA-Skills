@@ -1,35 +1,28 @@
 ---
-name: "Daily Antifraud Report"
-description: "每天早上生成反诈简报：查询中国国内银行以及支付机构等反欺诈新闻，需要详细的反诈信息。 Use when: 用户说"生成今日反诈简报"，或 cron 在早上 8 点触发。 NOT FOR: 国外银行或金融机构的新闻。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-antifraud-report"
-sourceUrl: "https://clawhub.ai/skills/daily-antifraud-report"
+name: daily-antifraud-report
+description: >
+  每天早上生成反诈简报：查询中国国内银行以及支付机构等反欺诈新闻，需要详细的反诈信息。
+  Use when: 用户说"生成今日反诈简报"，或 cron 在早上 8 点触发。
+  NOT FOR: 国外银行或金融机构的新闻。
 ---
+# Daily Anti-Fraud Report
 
-# Daily Antifraud Report
+## When to Run
 
-> 每天早上生成反诈简报：查询中国国内银行以及支付机构等反欺诈新闻，需要详细的反诈信息。 Use when: 用户说"生成今日反诈简报"，或 cron 在早上 8 点触发。 NOT FOR: 国外银行或金融机构的新闻。
+- 每天 8:00 AM 通过 cron 触发
+- 用户主动说「给我今天的反诈简报」「今天有什么反诈热点」
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-antifraud-report`
-- **Source URL:** [https://clawhub.ai/skills/daily-antifraud-report](https://clawhub.ai/skills/daily-antifraud-report)
+## Workflow
 
-## Overview
+1. 查看中国国内的反诈新闻：
+   查看过去一周的中国国内银行及金融支付机构的反诈新闻（中国新闻网、中国人民银行网站、百度、知乎、微信公众号等）
 
+2. 分析发生的具体案例信息：
+   获取发生时间、具体作案过程、银行名称、涉案金额等。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-antifraud-report
-```
+3. 整合输出以下格式，推送飞书
+
+## Output Format
+1. {案例时间}{具体案例过程}{银行名称}{涉案金额}{其他信息}
+2. ...
+

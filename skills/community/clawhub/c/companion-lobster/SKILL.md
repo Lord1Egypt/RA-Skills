@@ -1,35 +1,125 @@
 ---
-name: "companion-lobster"
-description: "陪伴型小龙虾 - 陪你刷抖音、看电影、听音乐、聊天分享的 AI 伙伴"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/companion-lobster"
-sourceUrl: "https://clawhub.ai/skills/companion-lobster"
+name: companion-lobster
+version: 1.0.0
+description: 陪伴型小龙虾 - 陪你刷抖音、看电影、听音乐、聊天分享的 AI 伙伴
+author: 小溪
+license: MIT
+keywords:
+  - companion
+  - douyin
+  - movie
+  - music
+  - chat
+  - share
 ---
 
-# companion-lobster
+# 🦞 陪伴型小龙虾 (Companion Lobster)
 
-> 陪伴型小龙虾 - 陪你刷抖音、看电影、听音乐、聊天分享的 AI 伙伴
+> 陪你刷抖音、看电影、听音乐、聊天分享的 AI 伙伴
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/companion-lobster`
-- **Source URL:** [https://clawhub.ai/skills/companion-lobster](https://clawhub.ai/skills/companion-lobster)
+---
 
-## Overview
+## ✨ 核心功能
 
+### 📱 刷抖音
+- 发送抖音链接 → 获取视频内容
+- 分析视频亮点，分享感受
+- 推荐相关视频
+- 一起评论区"冲浪"
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 🎬 看电影
+- 输入电影名称或链接
+- 讨论剧情、角色、主题
+- 分享观后感
+- 推荐相似电影
+
+### 🎵 听音乐
+- 分享歌曲链接或名称
+- 讨论歌词、旋律、歌手
+- 推荐相似风格音乐
+- 分享音乐故事
+
+### 💬 日常陪伴
+- 随时聊天分享
+- 记住你的喜好
+- 主动推荐内容
+- 情感陪伴支持
+
+---
+
+## 🚀 使用方法
+
+### 安装
+
 ```bash
-hermes skills install clawhub/companion-lobster
+git clone https://github.com/adminlove520/companion-lobster.git
+cd companion-lobster
+npm install
 ```
+
+### 使用场景
+
+#### 刷抖音
+```
+主人：https://v.douyin.com/xxx
+小龙虾：分析视频内容 + 分享感受 + 推荐相关
+```
+
+#### 看电影
+```
+主人：想看《星际穿越》
+小龙虾：推荐电影 + 讨论剧情 + 分享观后感
+```
+
+#### 听音乐
+```
+主人：这首歌真好听
+小龙虾：推荐相似歌曲 + 讨论歌词 + 分享故事
+```
+
+---
+
+## 🎯 交互示例
+
+### 抖音分享
+```
+主人：https://v.douyin.com/mpJJ9N15jk8/
+小龙虾：这个视频太有意思了！让我给你分析一下...
+```
+
+### 电影推荐
+```
+主人：有什么电影推荐吗？
+小龙虾：看你喜欢什么类型～科幻？爱情？还是悬疑？
+```
+
+### 音乐分享
+```
+主人：听这首歌
+小龙虾：这首太经典了！这句歌词我最喜欢...
+```
+
+---
+
+## 🔧 技术实现
+
+- 获取抖音/视频内容
+- 电影/音乐信息检索
+- AI 生成陪伴式回复
+- 记住用户偏好
+
+---
+
+## 📝 更新日志
+
+See [CHANGELOG.md](./CHANGELOG.md)
+
+---
+
+## 📄 许可证
+
+MIT
+
+---
+
+**🦞 陪你度过每一个美好时刻！**

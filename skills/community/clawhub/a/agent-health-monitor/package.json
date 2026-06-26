@@ -1,0 +1,11 @@
+{
+  "name": "agent-health-monitor",
+  "version": "1.0.0",
+  "description": "Monitors agent health status and detects failures for fault-tolerant systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"const s = require('./index.js'); console.log('Exports:', Object.keys(s));\""
+  },
+  "keywords": ["agent", "health", "monitor", "fault-tolerance", "availability"],
+  "license": "MIT"
+}

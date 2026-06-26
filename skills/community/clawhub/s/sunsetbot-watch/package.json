@@ -1,0 +1,15 @@
+
+{
+  "name": "sunsetbot-watch",
+  "version": "1.0.0",
+  "description": "Automated sunset/sunset glow query on sunsetbot.top, use agent-browser to access website, fill query params automatically, extract brightness and AOD data, output formatted result.",
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "sunsetbot",
+    "sunset",
+    "sunset-watch",
+    "clouds",
+    "automation"
+  ]
+}

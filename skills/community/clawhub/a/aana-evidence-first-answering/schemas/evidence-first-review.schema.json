@@ -1,0 +1,98 @@
+{
+  "title": "AANA Evidence First Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "answer_summary",
+    "known_facts",
+    "assumptions",
+    "missing_evidence",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "answer_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "known_facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "source_type"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "user_provided",
+              "tool_verified",
+              "policy_or_instruction",
+              "source_document",
+              "test_or_log",
+              "stable_context"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_retrieval_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uncertainty_status": {
+      "type": "string",
+      "enum": [
+        "adequately_labeled",
+        "overconfident",
+        "missing_uncertainty",
+        "not_needed",
+        "unknown"
+      ]
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "retrieve",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

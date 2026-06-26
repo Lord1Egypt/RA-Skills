@@ -1,0 +1,35 @@
+{
+  "name": "weather",
+  "version": "2.0.0",
+  "description": "Get current weather and forecasts with AQI, pollen, alerts, and lifestyle suggestions",
+  "main": "lib/client.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint lib/ tests/",
+    "format": "prettier --write lib/ tests/"
+  },
+  "keywords": [
+    "weather",
+    "forecast",
+    "aqi",
+    "pollen",
+    "alerts",
+    "bilingual",
+    "cli"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "vitest": "^1.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "bin": {
+    "weather": "weather.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

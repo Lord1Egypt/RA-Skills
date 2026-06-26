@@ -1,35 +1,31 @@
 ---
-name: "Link Saver"
-description: "链接收藏夹，保存和整理有用的网页链接"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/link-saver"
-sourceUrl: "https://clawhub.ai/skills/link-saver"
+name: link-saver
+version: 1.0.0
+description: 链接收藏夹，保存和整理有用的网页链接
+author: 黄豆豆
+tags: [链接, 收藏, 书签, 效率, 工具]
 ---
 
-# Link Saver
+# link-saver - 链接收藏夹
 
-> 链接收藏夹，保存和整理有用的网页链接
+保存和整理有用的网页链接。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/link-saver`
-- **Source URL:** [https://clawhub.ai/skills/link-saver](https://clawhub.ai/skills/link-saver)
+## 功能
+1. **保存链接** - 收藏网页链接并添加描述
+2. **分类管理** - 按类别整理链接
+3. **快速搜索** - 搜索已保存的链接
 
-## Overview
+## 触发关键词
+- 保存链接
+- 收藏链接
+- 添加书签
+- 查看链接
+- 搜索链接
 
+## 数据存储
+- links.json - 链接数据
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/link-saver
-```
+## 使用示例
+- "保存 https://example.com 我的收藏"
+- "查看所有链接"
+- "搜索 Python 教程"

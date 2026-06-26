@@ -1,0 +1,24 @@
+{
+  "lane_type": "graph_history",
+  "status": "completed",
+  "confidence": "medium",
+  "findings": [
+    {
+      "code": "REPEATED_RECIPIENT_PATTERN",
+      "severity": "medium",
+      "summary": "The recipient or related record appears in prior action history, so repeat support needs a fresh reason."
+    }
+  ],
+  "positives": [
+    {
+      "code": "NO_HARD_BLOCKER_PATTERN",
+      "summary": "No configured hard blocker appeared in the reviewed history."
+    }
+  ],
+  "decision": {
+    "repeat_or_top_up_support": "none"
+  },
+  "limitations": [
+    "The history lane reviews pattern risk; it does not determine mission priority."
+  ]
+}

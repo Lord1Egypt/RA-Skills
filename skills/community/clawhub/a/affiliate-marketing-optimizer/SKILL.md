@@ -1,35 +1,26 @@
----
-name: "Affiliate Marketing Optimizer"
-description: "Optimize affiliate marketing by improving product selection, link strategies, compliance, conversion rates, tracking, and performance analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/affiliate-marketing-optimizer"
-sourceUrl: "https://clawhub.ai/skills/affiliate-marketing-optimizer"
----
+# affiliate-marketing-optimizer
 
-# Affiliate Marketing Optimizer
+## Description
+Optimize affiliate marketing strategies. Improves commission rates, conversion, and compliance.
 
-> Optimize affiliate marketing by improving product selection, link strategies, compliance, conversion rates, tracking, and performance analysis.
+## Location
+`skills/affiliate-marketing-optimizer/`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/affiliate-marketing-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/affiliate-marketing-optimizer](https://clawhub.ai/skills/affiliate-marketing-optimizer)
+## Capabilities
+- Product selection
+- Link optimization
+- Disclosure compliance
+- Conversion improvement
+- Tracking setup
+- Performance analysis
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/affiliate-marketing-optimizer
+## Usage
+```python
+python skills/affiliate-marketing-optimizer/optimize.py --platform "xiaohongshu" --niche "美妆"
 ```
+
+## Output
+- Product recommendations
+- Link strategies
+- Compliance checklist
+- Optimization tips

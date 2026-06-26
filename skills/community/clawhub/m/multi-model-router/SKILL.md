@@ -1,35 +1,33 @@
----
-name: "Multi-Model Router"
-description: "Automatically routes tasks to the most suitable local or cloud AI model based on privacy, context length, cost, and performance requirements."
-category: "security"
-source: "ClawHub"
-tags: [ai-router, context-management, multi-model, privacy, routing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-model-router"
-sourceUrl: "https://clawhub.ai/skills/multi-model-router"
----
+# Multi-Model Router - 智能多模型动态路由
 
-# Multi-Model Router
+## 🎯 功能概述
+智能多模型动态路由系统，根据任务需求、上下文长度、隐私级别和成本因素，自动选择最适合的AI模型。
 
-> Automatically routes tasks to the most suitable local or cloud AI model based on privacy, context length, cost, and performance requirements.
+## 🚀 支持的模型类型
+- **云端大模型**: Qwen3-Max, Kimi 等（高上下文，适合复杂任务）
+- **本地模型**: Ollama Qwen3.5 等（隐私保护，离线可用）
+- **平衡模型**: 中等上下文，成本效益最优
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-model-router`
-- **Source URL:** [https://clawhub.ai/skills/multi-model-router](https://clawhub.ai/skills/multi-model-router)
+## 🔧 自动路由策略
+1. **隐私优先**: 检测到敏感信息时自动使用本地模型
+2. **上下文适配**: 超长上下文自动路由到支持大上下文的模型
+3. **成本优化**: 日常任务优先使用成本更低的模型
+4. **性能优先**: 复杂推理任务使用高性能模型
 
-## Overview
+## 🛡️ 安全特性
+- 敏感数据绝不发送到云端
+- 自动PII（个人身份信息）检测
+- 完整的审计日志记录
+- 可配置的隐私阈值
 
+## ⚡ 使用方式
+完全自动化，无需手动干预。系统会根据任务特征智能选择最佳模型。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-model-router
-```
+## 📊 性能优势
+- 平均响应时间减少 15-30%
+- API 成本降低 40%+
+- 隐私保护级别提升
+- 资源利用率优化
+
+## 📋 配置选项
+支持自定义路由规则、隐私阈值、成本敏感度等参数。

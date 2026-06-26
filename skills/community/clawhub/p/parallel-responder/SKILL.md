@@ -1,35 +1,299 @@
 ---
-name: "Parallel Responder"
-description: "并行回复助手 - 让 AI 回复不再等待。支持任务分类、时间预估、并行执行、进度汇报。 简单任务直接回复，中等任务执行 + 汇报，复杂任务启动子 agent 并行处理。 Parallel Responder - Zero-wait AI responses. Task classification, time e..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parallel-responder"
-sourceUrl: "https://clawhub.ai/skills/parallel-responder"
+name: parallel-responder
+description: |
+  并行回复助手 - 让 AI 回复不再等待。支持任务分类、时间预估、并行执行、进度汇报。
+  简单任务直接回复，中等任务执行 + 汇报，复杂任务启动子 agent 并行处理。
+  Parallel Responder - Zero-wait AI responses. Task classification, time estimation, parallel execution, progress reporting.
 ---
 
-# Parallel Responder
+# Parallel Responder - 并行回复助手
 
-> 并行回复助手 - 让 AI 回复不再等待。支持任务分类、时间预估、并行执行、进度汇报。 简单任务直接回复，中等任务执行 + 汇报，复杂任务启动子 agent 并行处理。 Parallel Responder - Zero-wait AI responses. Task classification, time e...
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parallel-responder`
-- **Source URL:** [https://clawhub.ai/skills/parallel-responder](https://clawhub.ai/skills/parallel-responder)
+**0 秒响应，进度透明，并行对话。**
 
-## Overview
+| 传统方式 | parallel-responder |
+|---------|-------------------|
+| 等待 20-30 秒 | 0 秒响应 |
+| 不知道在做什么 | 每 10 秒进度汇报 |
+| 只能干等 | 可以继续问其他问题 |
+| 担心 AI 卡住 | 体验流畅自然 |
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/parallel-responder
+## 架构设计
+
 ```
+用户消息
+   ↓
+任务分类器（简单/中等/复杂）
+   ↓
+时间预估器（预计 X 秒）
+   ↓
+执行策略选择
+   ↓
+┌───────────┬───────────┬───────────┐
+│ 简单任务   │ 中等任务   │ 复杂任务   │
+│ 直接执行   │ 执行 + 汇报 │ 子 agent   │
+└───────────┴───────────┴───────────┘
+```
+
+---
+
+## 核心功能
+
+### 1. 任务分类器（Task Classifier）
+
+**智能识别任务类型：**
+
+| 类型 | 预计耗时 | 关键词 | 策略 |
+|------|---------|--------|------|
+| **简单** | < 5 秒 | 状态、怎么样、在吗 | 直接执行 |
+| **中等** | 5-15 秒 | 检查、安装、生成 | 执行 + 汇报 |
+| **复杂** | > 15 秒 | 整理、分析、写文章 | 子 agent |
+
+**自适应学习：**
+- 记录每次任务的实际耗时
+- 自动调整分类阈值
+- 持续优化准确率
+
+---
+
+### 2. 时间预估器（Time Estimator）
+
+**基于多维度预估：**
+
+```javascript
+预估时间 = 基础时间 × 复杂度系数 × 数据量系数
+
+基础时间：根据任务类型
+复杂度系数：1.0-3.0（根据关键词）
+数据量系数：1.0-2.0（根据涉及的文件数量）
+```
+
+**示例：**
+```
+输入："帮我整理记忆"
+输出：{
+  estimatedTime: "20-30 秒",
+  confidence: 0.8,
+  factors: ["多文件读取", "多项更新", "归档操作"]
+}
+```
+
+---
+
+### 3. 并行执行器（Parallel Executor）
+
+**三种执行策略：**
+
+**简单任务（< 5 秒）：**
+```
+用户：网关状态怎么样？
+AI：[立即回复] ✅ 正常运行！
+```
+
+**中等任务（5-15 秒）：**
+```
+用户：检查飞书通道
+AI：[立即回复] 好的，预计 10 秒...
+    [10 秒后] ✅ 完成！步骤 1... 步骤 2...
+```
+
+**复杂任务（> 15 秒）：**
+```
+用户：整理记忆
+AI：[立即回复] 好的，预计 30 秒，已启动子 agent
+    [10 秒后] 📊 进度：30% - 读取文件
+    [20 秒后] 📊 进度：70% - 更新记忆
+    [30 秒后] ✅ 完成！
+```
+
+---
+
+### 4. 进度汇报器（Progress Reporter）
+
+**汇报模板：**
+```markdown
+📊 进度汇报：{percentage}%
+
+**当前步骤：** {currentStep}
+**已完成：** {completedSteps}
+**预计剩余：** {remainingTime}
+
+你可以继续问我其他问题。
+```
+
+**汇报频率：**
+- 中等任务：完成后一次性汇报
+- 复杂任务：每 10 秒汇报
+- 超长任务（>2 分钟）：每 30 秒汇报
+
+---
+
+## 使用示例
+
+### 示例 1：简单任务
+
+```
+用户：在吗？
+
+AI：[0 秒]
+在的！随时待命～ 🦞💰
+```
+
+---
+
+### 示例 2：中等任务
+
+```
+用户：帮我安装 tavily
+
+AI：[0 秒]
+好的，开始安装 tavily，预计 10 秒...
+
+---
+[10 秒后]
+
+✅ 安装完成！
+
+📍 步骤 1/2: 下载 skill... ✅
+📍 步骤 2/2: 安装依赖... ✅
+
+tavily 1.0.0 已就绪！
+```
+
+---
+
+### 示例 3：复杂任务
+
+```
+用户：帮我写一篇公众号文章
+
+AI：[0 秒]
+好的，这个任务需要 30-60 秒。
+
+🚀 已启动子 agent 处理写作任务
+⏱️ 预计耗时：30-60 秒
+📊 当前进度：0%
+
+你可以继续问我其他问题，我会每 10 秒汇报一次进度。
+
+---
+[10 秒后]
+
+📊 进度汇报：30%
+
+**当前步骤：** 搜索素材
+**已完成：** 找到 10 篇相关文章
+**预计剩余：** 30 秒
+
+---
+[20 秒后]
+
+📊 进度汇报：60%
+
+**当前步骤：** 撰写正文
+**已完成：** 完成大纲和开篇
+**预计剩余：** 20 秒
+
+---
+[30 秒后]
+
+📊 进度汇报：90%
+
+**当前步骤：** 优化润色
+**已完成：** 正文完成，正在检查
+**预计剩余：** 10 秒
+
+---
+[40 秒后]
+
+✅ 任务完成！
+
+文章已保存到：
+/root/openclaw/wechat-official/drafts/xxx.md
+
+共 3500 字，阅读时间约 8 分钟。
+```
+
+---
+
+## 配置选项
+
+```json
+{
+  "classification": {
+    "simple": {
+      "maxTime": 5,
+      "keywords": ["状态", "怎么样", "在吗", "你好"],
+      "strategy": "direct"
+    },
+    "medium": {
+      "maxTime": 15,
+      "keywords": ["检查", "安装", "生成", "创建"],
+      "strategy": "execute-and-report"
+    },
+    "complex": {
+      "maxTime": 30,
+      "keywords": ["整理", "分析", "写文章", "批量"],
+      "strategy": "sub-agent"
+    }
+  },
+  "estimation": {
+    "enabled": true,
+    "showRange": true,
+    "confidence": true
+  },
+  "reporting": {
+    "enabled": true,
+    "interval": 10,
+    "format": "markdown"
+  },
+  "learning": {
+    "enabled": true,
+    "autoAdjust": true,
+    "historySize": 100
+  }
+}
+```
+
+---
+
+## 技术实现
+
+### 核心脚本
+
+- **task-classifier.js** - 任务分类器
+- **time-estimator.js** - 时间预估器
+- **parallel-executor.js** - 并行执行器
+- **progress-reporter.js** - 进度汇报器
+- **session-manager.js** - 会话管理器
+
+### 依赖
+
+- OpenClaw Gateway
+- sessions_spawn（子 agent）
+- sessions_send（进度汇报）
+
+---
+
+## 版本
+
+### v1.0.0 - 初始版本
+
+- ✅ 任务分类器（简单/中等/复杂）
+- ✅ 时间预估器（基于关键词和复杂度）
+- ✅ 并行执行器（支持子 agent）
+- ✅ 进度汇报器（定期汇报）
+- ✅ 自适应学习（记录历史优化分类）
+
+---
+
+## 许可证
+
+MIT
+
+## 作者
+
+Amber & 小钳 🦞💰

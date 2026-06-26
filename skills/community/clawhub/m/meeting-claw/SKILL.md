@@ -1,35 +1,41 @@
 ---
-name: "MeetingClaw - Intelligent Meeting Minutes Assistant"
-description: "智能会议纪要生成工具，支持火山引擎录音文件识别2.0，自动生成结构化会议纪要。使用场景：(1) 上传音频文件生成会议纪要；(2) 语音转文字并智能总结；(3) 提取待办事项和核心观点；(4) 支持2小时以内音频处理。"
-category: "productivity"
-source: "ClawHub"
-tags: [ai-office, feishu, meeting-minutes, productivity, speech-recognition, volcengine]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meeting-claw"
-sourceUrl: "https://clawhub.ai/skills/meeting-claw"
+name: meeting-claw
+version: 1.0.0
+description: 智能会议纪要生成工具，支持火山引擎录音文件识别2.0，自动生成结构化会议纪要。使用场景：(1) 上传音频文件生成会议纪要；(2) 语音转文字并智能总结；(3) 提取待办事项和核心观点；(4) 支持2小时以内音频处理。
 ---
 
-# MeetingClaw - Intelligent Meeting Minutes Assistant
+# MeetingClaw 智能会议纪要工具
 
-> 智能会议纪要生成工具，支持火山引擎录音文件识别2.0，自动生成结构化会议纪要。使用场景：(1) 上传音频文件生成会议纪要；(2) 语音转文字并智能总结；(3) 提取待办事项和核心观点；(4) 支持2小时以内音频处理。
+## 功能说明
+- 支持火山引擎两种识别模式：
+  1. 极速版：无需上传文件，直接提交本地音频二进制流，识别速度快，价格4.5元/小时，赠送20小时免费额度
+  2. 标准版：通过火山引擎对象存储TOS上传文件生成公网URL调用，价格更低约2.5元/小时，适合长音频批量处理
+- 自动生成结构化会议纪要，包含：
+  1. 会议主题：智能推断核心主题
+  2. 基本信息：自动读取音频创建时间，无需手动输入
+  3. 会议综述：高度抽象提炼会议核心内容
+  4. 会议智能总结：深度分析提炼关键观点、结论、核心问题，重要内容引用原文原话
+  5. 待办事项：自动提取会后待执行任务，明确指派发言人
+  6. 其他重要事项：补充遗漏关键信息
+- 音频时长限制：最长2小时，与火山引擎官方限制一致
+- 自动保存原始录音文件和生成的纪要，按日期归档
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meeting-claw`
-- **Source URL:** [https://clawhub.ai/skills/meeting-claw](https://clawhub.ai/skills/meeting-claw)
+## 使用流程
+1. 接收用户上传的音频文件（支持mp3/wav/m4a等常见格式）
+2. 自动识别音频时长，超过2小时提示用户截断
+3. 选择识别模式（默认极速版，用户可指定标准版降低成本）
+4. 调用火山引擎录音文件识别接口获取转写文本
+5. 调用OpenClaw大模型对转写文本进行智能分析，生成结构化纪要
+6. 按日期归档保存：原始音频存放在`~/workspace/MeetingClaw/YYYYMMDD/`，纪要保存为同名.md文件
+7. 返回生成的会议纪要给用户
 
-## Overview
+## 配置要求
+- 火山引擎API密钥：需配置`VOLC_ACCESS_KEY`和`VOLC_SECRET_KEY`环境变量
+- 极速版开通：需开通「Doubao-录音文件识别2.0极速版」服务
+- 标准版开通：需同时开通火山引擎对象存储TOS服务和「录音文件识别2.0标准版」服务
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meeting-claw
-```
+## 安全规则
+1. 所有音频文件仅在本地和火山引擎官方服务器传输，不向第三方泄露
+2. 本地保存的音频文件默认保留30天，到期自动清理，用户可自定义保留周期
+3. 生成的会议纪要仅保存在用户本地工作区，不会上传到任何公共服务器
+4. 严格遵循火山引擎数据隐私协议，转写过程数据仅用于识别，不会被留存或用于其他用途

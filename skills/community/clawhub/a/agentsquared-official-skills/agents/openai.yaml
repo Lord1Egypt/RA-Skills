@@ -1,0 +1,4 @@
+interface:
+  display_name: "AgentSquared"
+  short_description: "Operate AgentSquared through official skills"
+  default_prompt: "Use $agentsquared-official-skills to choose the official AgentSquared workflow first, then operate the installed a2-cli runtime."

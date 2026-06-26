@@ -1,0 +1,29 @@
+{
+  "task_summary": "Review an answer draft about whether a reported support issue qualifies for a refund.",
+  "answer_summary": "The draft says the customer is eligible and should receive a refund soon.",
+  "known_facts": [
+    {
+      "claim": "The user reported a support issue.",
+      "source_type": "user_provided"
+    }
+  ],
+  "assumptions": [
+    "The issue matches the refund policy."
+  ],
+  "missing_evidence": [
+    "Verified account record",
+    "Refund policy section",
+    "Eligibility decision from support system"
+  ],
+  "unsupported_claims": [
+    "The customer is eligible for a refund.",
+    "The refund will arrive soon."
+  ],
+  "next_retrieval_steps": [
+    "Check the account record in an approved support tool.",
+    "Retrieve the relevant refund policy."
+  ],
+  "uncertainty_status": "overconfident",
+  "recommended_action": "retrieve",
+  "human_review_required": false
+}

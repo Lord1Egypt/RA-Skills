@@ -1,0 +1,14 @@
+{
+  "name": "apestore-token-creator",
+  "version": "1.0.0",
+  "description": "Creates a token on Ape.Store on the BASE network",
+  "author": "Quam S",
+  "trigger": "create a token on ape.store",
+  "entry": "index.js",
+  "runtime": "node",
+  "config": {
+    "privateKey": "YOUR_PRIVATE_KEY_HERE",
+    "rpcUrl": "https://mainnet.base.org"
+  },
+  "usage": "create a token on ape.store with the name <name> and the symbol <symbol> and the description <description> and image <optional_image_path>"
+}

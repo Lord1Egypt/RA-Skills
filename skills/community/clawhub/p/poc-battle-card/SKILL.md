@@ -1,35 +1,89 @@
+﻿---
+name: poc-battle-card
+description: >
+  POC竞争分析卡。输入POC结果和竞品表现，自动输出差异化优势矩阵+应对策略+推荐话术+下一步建议。
+  触发词：POC分析、POC复盘、POC竞争、POC结果、竞争分析。
+version: 1.0.1
+author: Dick Dunkel
+license: MIT-0
+tags: [sales, poc, competitive-analysis]
+category: sales
+created_by: agent
 ---
-name: "Poc Battle Card"
-description: "POC竞争分析卡。输入POC结果和竞品表现，自动输出差异化优势矩阵+应对策略+推荐话术+下一步建议。 触发词：POC分析、POC复盘、POC竞争、POC结果、竞争分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/poc-battle-card"
-sourceUrl: "https://clawhub.ai/skills/poc-battle-card"
----
 
-# Poc Battle Card
+# POC竞争分析卡
 
-> POC竞争分析卡。输入POC结果和竞品表现，自动输出差异化优势矩阵+应对策略+推荐话术+下一步建议。 触发词：POC分析、POC复盘、POC竞争、POC结果、竞争分析。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/poc-battle-card`
-- **Source URL:** [https://clawhub.ai/skills/poc-battle-card](https://clawhub.ai/skills/poc-battle-card)
+用户提到以下意图时触发：
+- "POC结果出来了，帮我分析一下"
+- "我们和XX在做POC，帮我比一下"
+- "客户让我们和竞品做对比测试"
+- "POC怎么赢"
 
-## Overview
+## 必需输入
 
+| 输入项 | 必需 | 说明 |
+|--------|------|------|
+| 客户名称 | ✅ | POC的目标客户 |
+| 我方POC结果 | ✅ | 测试了什么、结果如何 |
+| 竞品信息 | 推荐 | 哪些竞品参与、已知的竞品表现 |
+| 评估标准 | 推荐 | 客户的POC评分维度 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/poc-battle-card
-```
+## 输出规范
+
+### 输出结构
+
+#### 一、POC态势概览
+| 维度 | 内容 |
+|------|------|
+| 客户 | |
+| POC阶段 | 第X轮 / 已完成 |
+| 参与供应商 | |
+| 评估维度 | |
+| 当前排名判断 | |
+
+#### 二、竞争对比矩阵
+
+| 评估维度 | 我方 | 竞品A | 竞品B | 优势判断 |
+|---------|------|-------|-------|---------|
+| 功能完整度 | | | | 🟢领先/🟡持平/🔴落后 |
+| 准确率 | | | | |
+| 性能 | | | | |
+| 易用性 | | | | |
+| 定制能力 | | | | |
+| 部署方式 | | | | |
+| 价格 | | | | |
+
+#### 三、差异化优势提炼
+- **核心优势**（必须放大的）：
+- **对等项**（不需要强调的）：
+- **劣势项**（需要规避或弥补的）：
+
+#### 四、应对策略
+
+针对每个竞品的打法：
+| 竞品 | 竞品优势 | 我方应对 | 话术 |
+|------|---------|---------|------|
+
+#### 五、推荐话术
+- 向客户汇报POC结果的话术
+- 面对竞品优势质疑的应对
+- 推进下一步的话术
+
+#### 六、下一步建议
+- 补测建议（如有未测的场景）
+- 商务推进建议
+- 风险提示
+
+### 输出格式
+- 默认输出 MD 文本（战斗卡片形式，简洁直接）
+- 如用户要求，生成 PPT/Word
+
+## 质量标准
+
+- ✅ 竞争分析必须基于已知事实，区分"已确认"和"推测"
+- ✅ 优势和劣势都要分析，不报喜不报忧
+- ✅ 话术必须可直接使用
+- ❌ 不编造竞品的测试结果
+- ❌ 不盲目乐观，如果客观落后要如实分析

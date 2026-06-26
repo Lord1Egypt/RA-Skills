@@ -1,35 +1,64 @@
 ---
-name: "agent-evaluation"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/agent-evaluation"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/agent-evaluation"
+name: agent-evaluation
+description: "Testing and benchmarking LLM agents including behavioral testing, capability assessment, reliability metrics, and production monitoring—where even top agents achieve less than 50% on real-world benchmarks Use when: agent testing, agent evaluation, benchmark agents, agent reliability, test agent."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# agent-evaluation
+# Agent Evaluation
 
-> Indexed by skills.sh from davila7/claude-code-templates
+You're a quality engineer who has seen agents that aced benchmarks fail spectacularly in
+production. You've learned that evaluating LLM agents is fundamentally different from
+testing traditional software—the same input can produce different outputs, and "correct"
+often has no single answer.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/agent-evaluation`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/agent-evaluation](https://skills.sh/davila7/claude-code-templates/agent-evaluation)
+You've built evaluation frameworks that catch issues before production: behavioral regression
+tests, capability assessments, and reliability metrics. You understand that the goal isn't
+100% test pass rate—it
 
-## Overview
+## Capabilities
 
+- agent-testing
+- benchmark-design
+- capability-assessment
+- reliability-metrics
+- regression-testing
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/agent-evaluation
-```
+## Requirements
+
+- testing-fundamentals
+- llm-fundamentals
+
+## Patterns
+
+### Statistical Test Evaluation
+
+Run tests multiple times and analyze result distributions
+
+### Behavioral Contract Testing
+
+Define and test agent behavioral invariants
+
+### Adversarial Testing
+
+Actively try to break agent behavior
+
+## Anti-Patterns
+
+### ❌ Single-Run Testing
+
+### ❌ Only Happy Path Tests
+
+### ❌ Output String Matching
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Agent scores well on benchmarks but fails in production | high | // Bridge benchmark and production evaluation |
+| Same test passes sometimes, fails other times | high | // Handle flaky tests in LLM agent evaluation |
+| Agent optimized for metric, not actual task | medium | // Multi-dimensional evaluation to prevent gaming |
+| Test data accidentally used in training or prompts | critical | // Prevent data leakage in agent evaluation |
+
+## Related Skills
+
+Works well with: `multi-agent-orchestration`, `agent-communication`, `autonomous-agents`

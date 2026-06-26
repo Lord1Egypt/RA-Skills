@@ -1,0 +1,137 @@
+# Memory Knowledge Graph Workflow
+# 构建知识图谱、检测冲突、生成报告
+
+name: memory-knowledgegraph
+description: 记忆系统知识图谱构建与冲突检测
+version: 1.0.0
+
+triggers:
+  - type: manual
+    description: 手动触发知识图谱构建
+  - type: schedule
+    cron: "0 6 * * *"  # 每天 6:00 执行
+    description: 每日自动构建知识图谱
+
+workspace: /home/claw/.openclaw/workspace
+
+steps:
+  # 步骤 1: 验证环境
+  - name: validate-environment
+    description: 验证 Python 环境和依赖
+    action: shell
+    command: |
+      echo "🔍 验证环境..."
+      VENV_PATH="/home/claw/.openclaw/workspace/skills/local-memory/venv/bin/python"
+      if [ ! -f "$VENV_PATH" ]; then
+        echo "❌ 虚拟环境不存在"
+        exit 1
+      fi
+      
+      # 检查依赖
+      $VENV_PATH -c "import networkx; import pyvis; from sentence_transformers import SentenceTransformer; print('✅ 依赖已就绪')"
+    on_failure: abort
+
+  # 步骤 2: 构建知识图谱
+  - name: build-knowledge-graph
+    description: 从记忆文件提取实体和关系，生成知识图谱
+    action: shell
+    command: |
+      echo "📊 构建知识图谱..."
+      cd /home/claw/.openclaw/workspace
+      /home/claw/.openclaw/workspace/skills/local-memory/venv/bin/python \
+        scripts/knowledge_graph_builder.py \
+        --workspace /home/claw/.openclaw/workspace \
+        --output memory/knowledge_graph.html \
+        --stats memory/state/knowledge_graph_stats.json
+    outputs:
+      - path: memory/knowledge_graph.html
+        type: html
+        description: 知识图谱可视化
+      - path: memory/state/knowledge_graph_stats.json
+        type: json
+        description: 图谱统计信息
+    on_failure: continue
+
+  # 步骤 3: 检测冲突
+  - name: detect-conflicts
+    description: 检测记忆片段间的语义冲突
+    action: shell
+    command: |
+      echo "⚠️ 检测记忆冲突..."
+      cd /home/claw/.openclaw/workspace
+      /home/claw/.openclaw/workspace/skills/local-memory/venv/bin/python \
+        scripts/conflict_detector.py \
+        --workspace /home/claw/.openclaw/workspace \
+        --output memory/state/conflict_report.json \
+        --model all-MiniLM-L6-v2
+    outputs:
+      - path: memory/state/conflict_report.json
+        type: json
+        description: 冲突检测报告
+    on_failure: continue
+
+  # 步骤 4: 生成综合报告
+  - name: generate-summary
+    description: 生成综合摘要报告
+    action: shell
+    command: |
+      echo "📝 生成综合报告..."
+      cd /home/claw/.openclaw/workspace
+      
+      # 读取统计数据
+      STATS_FILE="memory/state/knowledge_graph_stats.json"
+      CONFLICT_FILE="memory/state/conflict_report.json"
+      
+      if [ -f "$STATS_FILE" ] && [ -f "$CONFLICT_FILE" ]; then
+        echo "✅ 报告生成完成"
+        echo ""
+        echo "📊 知识图谱统计:"
+        cat "$STATS_FILE" | python3 -c "import sys, json; d=json.load(sys.stdin); print(f'  节点数: {d[\"node_count\"]}'); print(f'  边数: {d[\"edge_count\"]}'); print(f'  密度: {d[\"density\"]:.4f}')"
+        echo ""
+        echo "⚠️ 冲突检测:"
+        cat "$CONFLICT_FILE" | python3 -c "import sys, json; d=json.load(sys.stdin); print(f'  总片段: {d[\"total_segments\"]}'); print(f'  冲突数: {d[\"total_conflicts\"]}'); print(f'  高严重性: {d[\"conflict_summary\"][\"high\"]}'); print(f'  中严重性: {d[\"conflict_summary\"][\"medium\"]}'); print(f'  低严重性: {d[\"conflict_summary\"][\"low\"]}')"
+      else
+        echo "⚠️ 部分报告文件不存在"
+      fi
+
+  # 步骤 5: 更新记忆索引
+  - name: update-memory-index
+    description: 更新 FAISS 记忆索引
+    action: shell
+    command: |
+      echo "🔄 更新记忆索引..."
+      cd /home/claw/.openclaw/workspace
+      if [ -f "scripts/update_memory_index.sh" ]; then
+        bash scripts/update_memory_index.sh
+      else
+        echo "⚠️ 索引更新脚本不存在，跳过"
+      fi
+    on_failure: continue
+
+outputs:
+  knowledge_graph:
+    path: memory/knowledge_graph.html
+    type: html
+    description: 交互式知识图谱可视化
+  graph_stats:
+    path: memory/state/knowledge_graph_stats.json
+    type: json
+    description: 图谱统计信息
+  conflict_report:
+    path: memory/state/conflict_report.json
+    type: json
+    description: 冲突检测报告
+
+notifications:
+  on_success:
+    - type: log
+      message: "知识图谱构建完成"
+  on_failure:
+    - type: log
+      message: "知识图谱构建失败，请检查日志"
+
+# 配置
+config:
+  timeout: 300  # 5 分钟超时
+  retry_count: 2
+  retry_delay: 30

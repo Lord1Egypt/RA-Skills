@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 32" fill="none">
+  <!-- Mark -->
+  <rect width="28" height="28" y="2" rx="6" fill="#14F195"/>
+  <path d="M14 6.5L9 20.5h2.8l1.2-3.6h2l1.2 3.6H19L14 6.5zm-.6 8.4l.6-2.6.6 2.6h-1.2z" fill="#09090b"/>
+  <!-- Wordmark -->
+  <text x="36" y="21" font-family="Inter,system-ui,-apple-system,sans-serif" font-size="17" font-weight="600" letter-spacing="-0.02em" fill="#fafafa">ASG Card</text>
+</svg>

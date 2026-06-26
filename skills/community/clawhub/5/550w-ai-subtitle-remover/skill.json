@@ -1,0 +1,12 @@
+{
+  "name": "ai-subtitle-remover",
+  "version": "1.0.1",
+  "description": "基于 550W AI 平台的 AI 视频去字幕能力，智能识别并无痕擦除视频中的硬字幕、水印、台标、Logo",
+  "platforms": ["SkillHub", "ClawHub"],
+  "agents": ["OpenClaw", "Hermes"],
+  "actions": ["uploadVideo", "submitTask", "taskDetail", "taskList", "queryCredits", "workflow"],
+  "credentials": {
+    "required": ["userNo", "apiKey"],
+    "applyUrl": "https://qzm.550wai.cn"
+  }
+}

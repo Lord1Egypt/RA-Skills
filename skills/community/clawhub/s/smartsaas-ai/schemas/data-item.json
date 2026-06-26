@@ -1,0 +1,19 @@
+{
+  "resource": "data-item",
+  "endpoint": "POST /api/protected/data/folders/:folderId/items",
+  "backendSource": "DataSchema/DataContent.mjs (DataItemSchema)",
+  "createScript": "scripts/add-to-dataset.sh",
+  "fields": {
+    "data": { "type": "object", "required": true, "notes": "Must match the folder's dataSchema" },
+    "dataId": { "type": "ObjectId", "required": true, "notes": "Set by route from folderId" },
+    "posted_by": { "type": "ObjectId", "required": true, "notes": "Set by backend" },
+    "flagged": { "type": "boolean", "required": false, "notes": "default false" },
+    "priority": { "type": "number", "required": false, "notes": "default 0" },
+    "location": { "type": "object", "required": false },
+    "images": { "type": "array", "required": false, "notes": "default []" },
+    "companyId": { "type": "ObjectId", "required": false },
+    "aiNotes": { "type": "string", "required": false }
+  },
+  "notes": "Request body is the item's 'data' object; dataId and posted_by are set by backend. Folder must have dataSchema or request is rejected.",
+  "folderId": "Use the top-level _id from the create-dataset response: { \"success\": true, \"message\": \"Data posted\", \"data\": { ... }, \"_id\": \"<folderId>\" }."
+}

@@ -1,0 +1,49 @@
+# CSI 2000 股票分析器配置文件
+
+# 数据获取配置
+data_source:
+  # 行情数据源（可扩展：tushare、akshare、baostock等）
+  market_data: 'simulated'  # 模拟数据，实际使用时改为真实数据源
+  news_source: 'tavily'     # 新闻数据源
+  financial_source: 'simulated'  # 财务数据源
+
+# API密钥配置
+api_keys:
+  tavily: '${TAVILY_API_KEY}'  # 从环境变量读取
+  tushare: ''
+  akshare: ''
+
+# 缓存配置
+cache:
+  enabled: true
+  expire_days: 1  # 数据缓存过期天数
+  path: './data/cache'
+
+# 分析参数配置
+analysis:
+  default_days: 120  # 默认分析天数
+  technical_indicators:
+    macd:
+      fast_period: 12
+      slow_period: 26
+      signal_period: 9
+    kdj:
+      n: 9
+      m1: 3
+      m2: 3
+    rsi:
+      period: 14
+    ema:
+      periods: [5, 10, 20, 60]
+
+# 输出配置
+output:
+  report_format: 'text'  # 支持 text、markdown、json
+  save_report: true
+  report_dir: './reports'
+
+# 风险控制
+risk_control:
+  max_position_ratio: 0.3  # 单只股票最大仓位比例
+  stop_loss_ratio: 0.1  # 止损比例
+  take_profit_ratio: 0.2  # 止盈比例

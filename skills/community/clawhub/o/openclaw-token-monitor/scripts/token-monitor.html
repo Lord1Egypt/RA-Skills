@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenClaw Token 监控中心</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0e17; --surface:#111827; --surface2:#1a2235; --border:#1e2d45;
+  --text:#e2e8f0; --muted:#64748b; --accent:#3b82f6;
+  --green:#10b981; --orange:#f59e0b; --red:#ef4444;
+  --purple:#8b5cf6; --pink:#ec4899; --cyan:#06b6d4;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Inter',system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; font-size:14px; }
+.wrap { max-width:1440px; margin:0 auto; padding:18px; }
+
+/* Header */
+.header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:10px; }
+.header-left h1 { font-size:20px; font-weight:700; background:linear-gradient(135deg,#3b82f6,#10b981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.header-left p { font-size:11px; color:var(--muted); margin-top:2px; }
+.live-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:600; color:#10b981; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2); padding:2px 9px; border-radius:20px; }
+.live-dot { width:6px; height:6px; background:#10b981; border-radius:50%; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.meta-row { display:flex; gap:16px; flex-wrap:wrap; margin-top:7px; }
+.meta-item { font-size:11px; color:var(--muted); }
+.meta-item span { color:var(--text); font-variant-numeric:tabular-nums; }
+
+/* Date picker bar */
+.datebar { display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+.datebar-label { font-size:11px; color:var(--muted); font-weight:500; }
+.date-btn { background:var(--surface2); border:1px solid var(--border); color:var(--text); border-radius:6px; padding:4px 10px; font-size:11px; cursor:pointer; transition:all 0.15s; }
+.date-btn:hover { border-color:var(--accent); color:var(--accent); }
+.date-btn.active { background:rgba(59,130,246,0.15); border-color:var(--accent); color:var(--accent); }
+.date-nav { background:var(--surface2); border:1px solid var(--border); color:var(--muted); border-radius:6px; padding:4px 8px; font-size:11px; cursor:pointer; }
+.date-nav:hover { border-color:var(--muted); color:var(--text); }
+#date-display { font-size:12px; font-weight:600; color:var(--text); min-width:90px; text-align:center; }
+#date-select { background:var(--surface2); border:1px solid var(--border); color:var(--text); border-radius:6px; padding:4px 8px; font-size:11px; outline:none; }
+.error-box { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25); border-radius:8px; padding:12px 14px; color:var(--red); font-size:12px; margin-bottom:12px; display:none; }
+
+/* KPI */
+.kpi-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-bottom:12px; }
+@media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.kpi { background:var(--surface); border:1px solid var(--border); border-radius:9px; padding:12px 14px; position:relative; overflow:hidden; }
+.kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; border-radius:9px 9px 0 0; }
+.kpi.green::before{background:linear-gradient(90deg,#10b981,#34d399)}
+.kpi.blue::before{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.kpi.orange::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.kpi.purple::before{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.kpi.pink::before{background:linear-gradient(90deg,#ec4899,#f472b6)}
+.kpi.cyan::before{background:linear-gradient(90deg,#06b6d4,#22d3ee)}
+.kpi-label { font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:5px; white-space:nowrap; overflow:hidden; }
+.kpi-value { font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-0.02em; transition:color 0.2s; }
+.kpi-value.green{color:#10b981}.kpi-value.blue{color:#3b82f6}.kpi-value.orange{color:#f59e0b}.kpi-value.purple{color:#8b5cf6}.kpi-value.pink{color:#ec4899}.kpi-value.cyan{color:#06b6d4}
+.kpi-sub{font-size:9px;color:var(--muted);margin-top:2px}
+.kpi-sub.yuan{color:#f59e0b;font-weight:600}
+.kpi-delta { font-size:9px; margin-left:4px; }
+.kpi-delta.up{color:#10b981}.kpi-delta.down{color:#ef4444}
+
+/* Rate row */
+.rate-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:12px; }
+@media(max-width:900px){.rate-row{grid-template-columns:1fr 1fr}}
+.rate-card { background:var(--surface); border:1px solid var(--border); border-radius:9px; padding:10px 12px; display:flex; align-items:center; gap:10px; }
+.rate-icon { width:32px; height:32px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+.rate-icon.blue{background:rgba(59,130,246,0.15);color:#60a5fa}
+.rate-icon.green{background:rgba(16,185,129,0.15);color:#34d399}
+.rate-icon.orange{background:rgba(245,158,11,0.15);color:#fbbf24}
+.rate-icon.purple{background:rgba(139,92,246,0.15);color:#a78bfa}
+.rate-info { flex:1; min-width:0 }
+.rate-label { font-size:8.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:1px }
+.rate-value { font-size:16px; font-weight:700; font-variant-numeric:tabular-nums; }
+.rate-unit { font-size:9px; color:var(--muted); margin-left:2px }
+
+/* Charts */
+.chart-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+@media(max-width:960px){.chart-row{grid-template-columns:1fr}}
+.chart-card { background:var(--surface); border:1px solid var(--border); border-radius:9px; padding:14px 16px; }
+.chart-title { font-size:11px; font-weight:600; color:var(--text); margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; }
+.chart-badge { font-size:8.5px; font-weight:600; background:rgba(59,130,246,0.12); color:#60a5fa; padding:1px 5px; border-radius:6px; border:1px solid rgba(59,130,246,0.18); }
+.chart-wrap { position:relative; height:190px; }
+#heartbeatCanvas { z-index:2; }
+.chart-wrap.tall{height:230px}
+
+/* Monthly projection bar */
+.proj-bar { background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:9px; padding:10px 14px; margin-bottom:12px; display:flex; gap:20px; flex-wrap:wrap; align-items:center; }
+.proj-label { font-size:11px; color:var(--orange); font-weight:600; display:flex; align-items:center; gap:5px; }
+.proj-label span { font-size:13px; }
+.proj-item { font-size:11px; color:var(--muted); }
+.proj-item span { color:var(--text); font-weight:600; font-variant-numeric:tabular-nums; margin-left:3px; }
+
+/* Table */
+.table-card { background:var(--surface); border:1px solid var(--border); border-radius:9px; overflow:hidden; margin-bottom:12px; }
+.table-header { display:flex; align-items:center; justify-content:space-between; padding:11px 14px; border-bottom:1px solid var(--border); }
+.table-title { font-size:11px; font-weight:600; }
+.table-count { font-size:10px; color:var(--muted); background:var(--surface2); padding:1px 6px; border-radius:7px; }
+table{width:100%;border-collapse:collapse}
+thead th{padding:8px 11px;text-align:left;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+tbody td{padding:7px 11px;font-size:11px;border-bottom:1px solid rgba(30,45,69,0.35);vertical-align:middle;font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:rgba(59,130,246,0.04)}
+.td-key{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
+.td-model{font-size:10px;color:var(--accent);font-weight:500}
+.td-kind{font-size:9.5px;background:var(--surface2);color:var(--muted);padding:1px 5px;border-radius:3px;display:inline-block}
+.num{text-align:right}
+.bar-cell{min-width:80px}
+.bar-track{height:3.5px;background:var(--surface2);border-radius:2px;overflow:hidden;margin:2px 0 1px;display:flex}
+.bar-fill{height:100%;border-radius:2px;transition:width 0.25s ease}
+.bar-fill.input{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.bar-fill.output{background:linear-gradient(90deg,#10b981,#34d399)}
+.bar-pct{font-size:8.5px;color:var(--muted)}
+.td-time{font-size:10px;color:var(--muted);white-space:nowrap}
+.td-age{font-size:10px;color:var(--muted)}
+
+/* Export btn */
+.export-btn { background:var(--surface2); border:1px solid var(--border); color:var(--muted); border-radius:6px; padding:4px 10px; font-size:10px; cursor:pointer; transition:all 0.15s; }
+.export-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+.footer { text-align:center; font-size:9.5px; color:var(--muted); padding:10px 0 4px }
+
+/* Settings bar */
+.setbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:8px 12px; }
+.setbar-left { display:flex; align-items:center; gap:8px; }
+.setbar-right { display:flex; align-items:center; gap:6px; }
+.setbar-label { font-size:11px; color:var(--muted); font-weight:500; }
+.setbar-select { background:var(--surface2); border:1px solid var(--border); color:var(--text); border-radius:5px; padding:3px 7px; font-size:11px; outline:none; cursor:pointer; }
+.setbar-select:focus { border-color:var(--accent); }
+.setbar-hint { font-size:10px; color:var(--muted); }
+.setbar-btn { background:var(--surface2); border:1px solid var(--border); color:var(--muted); border-radius:5px; padding:4px 10px; font-size:10.5px; cursor:pointer; transition:all 0.15s; display:flex; align-items:center; gap:4px; }
+.setbar-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+/* Session detail modal */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:9999; padding:20px; backdrop-filter:blur(4px); display:none; }
+.modal-overlay.open { display:flex; }
+.modal { background:var(--surface); border:1px solid var(--border); border-radius:12px; width:100%; max-width:560px; max-height:85vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.modal-header { display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid var(--border); }
+.modal-title { font-size:14px; font-weight:700; color:var(--text); }
+.modal-close { background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer; padding:2px 6px; border-radius:4px; }
+.modal-close:hover { color:var(--text); background:var(--surface2); }
+.modal-body { padding:16px 18px; }
+.modal-section { margin-bottom:18px; }
+.modal-section:last-child { margin-bottom:0; }
+.modal-section-title { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:var(--muted); margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+.modal-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.modal-stat { background:var(--surface2); border:1px solid var(--border); border-radius:7px; padding:10px 12px; }
+.modal-stat-label { font-size:9.5px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
+.modal-stat-value { font-size:18px; font-weight:700; font-variant-numeric:tabular-nums; }
+.modal-stat-value.blue {color:#3b82f6}.modal-stat-value.green{color:#10b981}.modal-stat-value.orange{color:#f59e0b}.modal-stat-value.purple{color:#8b5cf6}
+.modal-bar { height:6px; background:var(--surface2); border-radius:3px; overflow:hidden; margin-top:6px; display:flex; }
+.modal-bar-fill { height:100%;transition:width 0.3s ease }
+.modal-bar-fill.input {background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.modal-bar-fill.output {background:linear-gradient(90deg,#10b981,#34d399)}
+.modal-key { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); word-break:break-all; background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:8px 10px; margin-bottom:10px; }
+.modal-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.modal-tag { font-size:10px; background:var(--surface2); border:1px solid var(--border); color:var(--muted); padding:2px 7px; border-radius:4px; }
+.modal-tag.blue {background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.3);color:#60a5fa}
+.modal-tag.green {background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.3);color:#34d399}
+.modal-cny-note { font-size:11px; color:var(--muted); margin-top:8px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div class="header-left">
+    <h1>OpenClaw Token 监控中心</h1>
+    <p>实时追踪 &middot; 历史回溯 &middot; 费用统计</p>
+  </div>
+  <div class="live-badge"><span class="live-dot"></span><span id="live-label">实时监控中</span></div>
+</div>
+
+<div class="meta-row">
+  <div class="meta-item">&#128338; <span id="m-clock">&#8212;</span></div>
+  <div class="meta-item">轮询 <span>3秒</span></div>
+  <div class="meta-item">会话 <span id="m-sess">&#8212;</span></div>
+  <div class="meta-item">采样 <span id="m-pts">0</span></div>
+  <div class="meta-item">DB <span id="m-db">&#8212;</span></div>
+</div>
+
+<!-- Settings bar -->
+<div class="setbar">
+  <div class="setbar-left">
+    <span class="setbar-label">轮询</span>
+    <select id="poll-select" class="setbar-select">
+      <option value="500">0.5秒（高频）</option>
+      <option value="1000">1秒（快速）</option>
+      <option value="1500">1.5秒</option>
+      <option value="2000">2秒</option>
+      <option value="3000" selected>3秒（标准）</option>
+      <option value="5000">5秒（省资源）</option>
+      <option value="10000">10秒（低功耗）</option>
+      <option value="30000">30秒</option>
+    </select>
+    <span class="setbar-hint">（选择后点确认生效）</span>
+    <button class="setbar-btn" id="btn-poll-confirm" title="确认修改轮询间隔">&#10003; 确认</button>
+  </div>
+  <div class="setbar-right">
+    <button class="setbar-btn" id="btn-export-img" title="导出图表图片">&#128247; 导出图表</button>
+    <button class="setbar-btn lang-btn" id="btn-lang" onclick="toggleLang()" title="Language">&#127760; EN</button>
+    <button class="setbar-btn" id="btn-export-csv" title="导出CSV">&#11015; CSV</button>
+  </div>
+</div>
+
+<div class="error-box" id="error-box"></div>
+
+<!-- Date picker -->
+<div class="datebar">
+  <span class="datebar-label">日期</span>
+  <button class="date-nav" id="btn-prev" title="前一天">&#8592;</button>
+  <span id="date-display">加载中...</span>
+  <button class="date-nav" id="btn-next" title="后一天">&#8594;</button>
+  <select id="date-select"></select>
+  <button class="date-btn" id="btn-today">今日</button>
+  <button class="date-btn active" id="btn-live">实时</button>
+</div>
+
+<!-- KPI -->
+<div class="kpi-wrap">
+<div class="kpi-grid">
+  <div class="kpi green">
+    <div class="kpi-label" id="lbl-kin">输入 Tokens</div>
+    <div class="kpi-value green" id="k-in">&#8212;<span class="kpi-delta" id="d-in"></span></div>
+    <div class="kpi-sub" id="lbl-subin">累计</div>
+  </div>
+  <div class="kpi blue">
+    <div class="kpi-label" id="lbl-kout">输出 Tokens</div>
+    <div class="kpi-value blue" id="k-out">&#8212;<span class="kpi-delta" id="d-out"></span></div>
+    <div class="kpi-sub">累计</div>
+  </div>
+  <div class="kpi orange">
+    <div class="kpi-label">总消耗 Tokens</div>
+    <div class="kpi-value orange" id="k-total">&#8212;<span class="kpi-delta" id="d-total"></span></div>
+    <div class="kpi-sub" id="lbl-subtotal">输入+输出</div>
+  </div>
+  <div class="kpi purple">
+    <div class="kpi-label" id="lbl-kcny">预估费用</div>
+    <div class="kpi-value orange" id="k-cny">&#8212;<span class="kpi-delta" id="d-cny"></span></div>
+    <div class="kpi-sub" id="lbl-subcny">人民币</div>
+  </div>
+  <div class="kpi purple" id="kpi-model">
+    <div class="kpi-label" id="lbl-kmodel">模型</div>
+    <div class="kpi-value purple" id="k-model" style="font-size:11px">未检测</div>
+    <div class="kpi-sub" id="lbl-submodel">费用计数</div>
+  </div>
+  <div class="kpi cyan">
+    <div class="kpi-label" id="lbl-kctx">上下文已用</div>
+    <div class="kpi-value cyan" id="k-ctx">&#8212;</div>
+    <div class="kpi-sub" id="lbl-subctx">上下文窗口</div>
+  </div>
+  <div class="kpi pink">
+    <div class="kpi-label" id="lbl-ksess">活跃会话数</div>
+    <div class="kpi-value pink" id="k-sesscnt">&#8212;</div>
+    <div class="kpi-sub" id="lbl-subsess">当前统计</div>
+  </div>
+</div>
+
+  </div><!-- /kpi-wrap -->
+<!-- Monthly projection -->
+<div class="proj-bar" id="proj-bar" style="display:none">
+  <div class="proj-label">&#9889; 本月预估账单 <span id="proj-cny">&#8212;</span></div>
+  <div class="proj-item">已用 <span id="proj-days">0</span> 天</div>
+  <div class="proj-item">预计 <span id="proj-total">&#8212;</span> tokens</div>
+  <div class="proj-item">费用 <span id="proj-cny2">&#8212;</span></div>
+</div>
+
+<!-- Rate -->
+<div class="rate-row">
+  <div class="rate-card">
+    <div class="rate-icon blue">&#9650;</div>
+    <div class="rate-info">
+      <div class="rate-label" id="lbl-rin">输入速率</div>
+      <div class="rate-value"><span id="r-in">0</span><span class="rate-unit">tok/s</span></div>
+    </div>
+  </div>
+  <div class="rate-card">
+    <div class="rate-icon green">&#9650;</div>
+    <div class="rate-info">
+      <div class="rate-label" id="lbl-rout">输出速率</div>
+      <div class="rate-value"><span id="r-out">0</span><span class="rate-unit">tok/s</span></div>
+    </div>
+  </div>
+  <div class="rate-card">
+    <div class="rate-icon orange">&#9651;</div>
+    <div class="rate-info">
+      <div class="rate-label" id="lbl-rtotal">总速率</div>
+      <div class="rate-value"><span id="r-total">0</span><span class="rate-unit">tok/s</span></div>
+    </div>
+  </div>
+  <div class="rate-card">
+    <div class="rate-icon purple">&#165;</div>
+    <div class="rate-info">
+      <div class="rate-label" id="lbl-rcny">费用增速</div>
+      <div class="rate-value"><span id="r-cny">0</span><span class="rate-unit">¥/min</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Charts -->
+<div class="chart-row">
+  <div class="chart-card">
+    <div class="chart-title">
+      <span id="lbl-chart1">&#128202; Token 消耗趋势</span>
+      <div class="chart-badge" id="c-pts">0 采样点</div>
+    </div>
+    <div class="chart-wrap tall">
+      <div style="position:relative;width:100%;height:100%;">
+      <canvas id="mainChart"></canvas>
+      <canvas id="heartbeatCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
+    </div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">
+      <span id="lbl-chart2">&#128202; 各会话分布</span>
+    </div>
+    <div class="chart-wrap tall">
+      <canvas id="sessionChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Table -->
+<div class="table-card">
+  <div class="table-header">
+    <div class="table-title" id="lbl-tabletitle">&#128203; 会话详情 <span id="t-date" style="font-weight:400;color:var(--muted);font-size:10px;margin-left:6px"></span></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <div class="table-count" id="t-count">0 个会话</div>
+      <button class="export-btn" id="btn-export">&#11015; <span id="lbl-export">导出 CSV</span></button>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th id="lbl-th-sess">会话</th><th id="lbl-th-model">模型</th><th id="lbl-th-kind">类型</th>
+        <th class="num" id="lbl-th-in">输入</th><th class="num" id="lbl-th-out">输出</th><th class="num" id="lbl-th-total">合计</th>
+        <th id="lbl-th-bar">分布</th><th class="num" id="lbl-th-ctx">上下文</th><th id="lbl-th-upd">更新时间</th><th id="lbl-th-age">活跃</th>
+      </tr>
+    </thead>
+    <tbody id="s-tbody"></tbody>
+  </table>
+</div>
+
+<div class="footer" id="lbl-footer">OpenClaw Token 监控中心 &middot; 永久存储 &middot; <span id="lbl-pricing">MiniMax ¥2.1/&#x4E07; in &middot; ¥8.4/&#x4E07; out</span></div>
+</div>
+
+
+
+<!-- Session detail modal -->
+<div class="modal-overlay" id="session-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">&#128203; 会话详情</div>
+      <button class="modal-close" id="modal-close">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-key" id="modal-key"></div>
+      <div class="modal-tags" id="modal-tags"></div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Token 消耗</div>
+        <div class="modal-grid">
+          <div class="modal-stat"><div class="modal-stat-label">输入</div><div class="modal-stat-value blue" id="m-in">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">输出</div><div class="modal-stat-value green" id="m-out">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">合计</div><div class="modal-stat-value orange" id="m-total">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">费用</div><div class="modal-stat-value purple" id="m-cny">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">上下文窗口</div><div class="modal-stat-value purple" id="m-ctx">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">活跃时长</div><div class="modal-stat-value purple" id="m-age">-</div></div>
+        </div>
+        <div class="modal-bar" id="m-bar"><div class="modal-bar-fill input" id="m-bar-in"></div><div class="modal-bar-fill output" id="m-bar-out"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:4px"><span style="font-size:9px;color:#3b82f6" id="m-pct-in"></span><span style="font-size:9px;color:#10b981" id="m-pct-out"></span></div>
+        <div class="modal-cny-note">&#128176; MiniMax 费用 = 输入&#215;¥2.1/&#x4E07; + 输出&#215;¥8.4/&#x4E07;</div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">会话信息</div>
+        <div class="modal-grid">
+          <div class="modal-stat"><div class="modal-stat-label">模型</div><div style="font-size:13px;font-weight:600;color:var(--accent);margin-top:4px" id="m-model">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">类型</div><div style="font-size:13px;font-weight:600;color:var(--muted);margin-top:4px" id="m-kind">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">更新时间</div><div style="font-size:13px;color:var(--muted);margin-top:4px" id="m-time">-</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">会话 ID</div><div style="font-size:11px;color:var(--muted);margin-top:4px;word-break:break-all" id="m-id">-</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+// ── i18n (bilingual) ────────────────────────────────────────────────────
+var I18N = {
+  zh: {
+    title: 'OpenClaw Token \u76d1\u63a7\u4e2d\u5fc3', tag: '\u5b9e\u65f6\u8ffd\u8e2a &middot; \u5386\u53f2\u56de\u6eaf &middot; \u8d39\u7528\u7edf\u8ba1',
+    liveLabel: '\u5b9e\u65f6\u76d1\u63a7\u4e2d', histLabel: '\u5386\u53f2\u89c6\u56fe',
+    pollLabel: '\u8f6e\u8be2', pollHint: '\uff08\u9009\u62e9\u540e\u70b9\u786e\u8ba4\u751f\u6548\uff09',
+    confirmBtn: '\u2714 \u786e\u8ba4',
+    exportImg: '\U0001f4f7 \u5bfc\u51fa\u56fe\u8868', exportCsv: '\u2b07\ufe0f CSV',
+    dateLabel: '\u65e5\u671f', prevBtn: '\u2190', nextBtn: '\u2192', todayBtn: '\u4eca\u65e5', liveBtn: '\u5b9e\u65f6',
+    loading: '\u52a0\u8f7d\u4e2d...',
+    kIn: '\u8f93\u5165 Tokens', kOut: '\u8f93\u51fa Tokens', kTotal: '\u603b\u6d88\u8017 Tokens',
+    kCny: '\u9884\u4f30\u8d39\u7528', kCtx: '\u4e0a\u4e0b\u6587\u5df2\u7528', kSess: '\u6d3b\u8dc3\u4f1a\u8bdd\u6570',
+    subIn: '\u7d2f\u8ba1', subOut: '\u7d2f\u8ba1', subTotal: '\u8f93\u5165+\u8f93\u51fa', subCny: '\u4eba\u6c11\u5e01',
+    subCtx: '\u4e0a\u4e0b\u6587\u7a97\u53e3', subSess: '\u5f53\u524d\u7edf\u8ba1',
+    projLabel: '\u26a1 \u672c\u6708\u9884\u4f30\u8d26\u5355', projUsed: '\u5df2\u7528', projDays: '\u5929', projTotal: 'tokens', projCost: '\u8d39\u7528',
+    rIn: '\u8f93\u5165\u901f\u7387', rOut: '\u8f93\u51fa\u901f\u7387', rTotal: '\u603b\u901f\u7387', rCny: '\u8d39\u7528\u589e\u901f',
+    tokPerS: 'tok/s', cnyPerMin: '\u00a5/min',
+    chartTitle: 'Token \u6d88\u8017\u8d8b\u52bf', sessTitle: '\u5404\u4f1a\u8bdd\u5206\u5e03',
+    cPts: '\u91c7\u6837\u70b9', mPts: '\u91c7\u6837',
+    tableTitle: '\u4f1a\u8bdd\u8be6\u60c5', noSess: '\u6682\u65e0\u6570\u636e',
+    mdl: '\u6a21\u578b', kind: '\u7c7b\u578b', input: '\u8f93\u5165', output: '\u8f93\u51fa',
+    total: '\u603b\u8ba1', bar: '\u5360\u6bd4', ctx: '\u4e0a\u4e0b\u6587', upd: '\u66f4\u65b0', age: '\u6d3b\u8dc3\u65f6\u957f',
+    modalTitle: '\u4f1a\u8bdd\u8be6\u60c5', closeBtn: '\u00d7 \u5173\u95ed',
+    inpRate: '\u8f93\u5165\u901f\u7387', outRate: '\u8f93\u51fa\u901f\u7387',
+    errTitle: '\u9519\u8bef', errClose: '\u00d7',
+    histMode: '\u7d2f\u8ba1\u603b\u6d88\u8017', liveMode: '\u6bcf\u6b21\u8f6e\u8be2\u589e\u91cf',
+    modelDetected: '\u68c0\u6d4b\u5230\u6a21\u578b',
+    noModel: '\u672a\u77e5\u6a21\u578b',
+    costBreakdown: '\u8d39\u7528\u660e\u7ec6',
+  },
+  en: {
+    title: 'OpenClaw Token Monitor', tag: 'Real-time &middot; History &middot; Cost Analytics',
+    liveLabel: 'Live', histLabel: 'History',
+    pollLabel: 'Poll', pollHint: '(confirm to apply)',
+    confirmBtn: '\u2714 Confirm',
+    exportImg: '\U0001f4f7 Export Chart', exportCsv: '\u2b07\ufe0f CSV',
+    dateLabel: 'Date', prevBtn: '\u2190', nextBtn: '\u2192', todayBtn: 'Today', liveBtn: 'Live',
+    loading: 'Loading...',
+    kIn: 'Input Tokens', kOut: 'Output Tokens', kTotal: 'Total Tokens',
+    kCny: 'Est. Cost', kCtx: 'Context Used', kSess: 'Active Sessions',
+    subIn: 'cumulative', subOut: 'cumulative', subTotal: 'in+out', subCny: 'CNY',
+    subCtx: 'context window', subSess: 'current',
+    projLabel: '\u26a1 Monthly Est.', projUsed: 'Used', projDays: 'days', projTotal: 'tokens', projCost: 'cost',
+    rIn: 'Input Rate', rOut: 'Output Rate', rTotal: 'Total Rate', rCny: 'Cost Rate',
+    tokPerS: 'tok/s', cnyPerMin: '\u00a5/min',
+    chartTitle: 'Token Consumption', sessTitle: 'Session Distribution',
+    cPts: 'samples', mPts: 'pts',
+    tableTitle: 'Session Details', noSess: 'No data',
+    mdl: 'Model', kind: 'Type', input: 'Input', output: 'Output',
+    total: 'Total', bar: 'Share', ctx: 'Context', upd: 'Updated', age: 'Age',
+    modalTitle: 'Session Detail', closeBtn: '\u00d7 Close',
+    inpRate: 'In Rate', outRate: 'Out Rate',
+    errTitle: 'Error', errClose: '\u00d7',
+    histMode: 'Cumulative Total', liveMode: 'Per-Poll Delta',
+    modelDetected: 'Model', noModel: 'Unknown Model',
+    costBreakdown: 'Cost Breakdown',
+  }
+};
+var LANG = 'zh';
+function T(k){ return (I18N[LANG]||I18N.zh)[k] || k; }
+function toggleLang(){
+  LANG = LANG === 'zh' ? 'en' : 'zh';
+  var flag = LANG === 'zh' ? String.fromCodePoint(0x1F1FE,0x1F1F3)+ EN' : String.fromCodePoint(0x1F1E8,0x1F1E6)+ 中文';
+  document.getElementById('btn-lang').innerHTML = flag;
+  applyI18n();
+  if (isLive) { liveHistory = []; loadDate(currentDate); } else { var sel = document.getElementById('date-select'); if(sel) loadDate(sel.value); }
+}
+function applyI18n(){
+  var ll = document.getElementById('live-label');
+  if(ll) ll.textContent = isLive ? T('liveLabel') : T('histLabel');
+  var kpis = {
+    'lbl-kin': T('kIn'), 'lbl-subin': T('subIn'),
+    'lbl-kout': T('kOut'), 'lbl-subout': T('subOut'),
+    'lbl-ktotal': T('kTotal'), 'lbl-subtotal': T('subTotal'),
+    'lbl-kcny': T('kCny'), 'lbl-subcny': T('subCny'),
+    'lbl-kctx': T('kCtx'), 'lbl-subctx': T('subCtx'),
+    'lbl-ksess': T('kSess'), 'lbl-subsess': T('subSess'),
+  };
+  for (var id in kpis) { var el = document.getElementById(id); if(el) el.textContent = kpis[id]; }
+  var rates = {'lbl-rin': T('rIn'), 'lbl-rout': T('rOut'), 'lbl-rtotal': T('rTotal'), 'lbl-rcny': T('rCny')};
+  for (var id in rates) { var el = document.getElementById(id); if(el) el.textContent = rates[id]; }
+  var ct = document.getElementById('lbl-chart1'); if(ct) ct.innerHTML = '&#128202; '+T('chartTitle');
+  var cs = document.getElementById('lbl-chart2'); if(cs) cs.innerHTML = '&#128202; '+T('sessTitle');
+  var tt = document.getElementById('lbl-tabletitle'); if(tt) tt.innerHTML = '&#128203; '+T('tableTitle');
+  var fp = document.getElementById('lbl-pricing');
+  if(fp) { var p = getModelPricing(); fp.textContent = detectedModel+' \u00a5'+p.inp+'/M in \u00b7 \u00a5'+p.out+'/M out'; }
+  var ths = {
+    'lbl-th-sess': T('total'), 'lbl-th-model': T('mdl'),
+    'lbl-th-kind': T('kind'), 'lbl-th-in': T('input'),
+    'lbl-th-out': T('output'), 'lbl-th-total': T('total'),
+    'lbl-th-bar': T('bar'), 'lbl-th-ctx': T('ctx'),
+    'lbl-th-upd': T('upd'), 'lbl-th-age': T('age'),
+  };
+  for (var id in ths) { var el = document.getElementById(id); if(el) el.textContent = ths[id]; }
+}
+
+<script>
+  'use strict';
+
+  var MODEL_PRICING = {
+    'MiniMax-M2.7-highspeed': { inp: 6.0, out: 24.0 },
+    'MiniMax-M2.7':           { inp: 2.1, out: 8.4 },
+    'MiniMax-M2':            { inp: 1.0, out: 4.0 },
+    'gpt-4o':               { inp: 18.0, out: 72.0 },
+    'gpt-4-turbo':          { inp: 36.0, out: 108.0 },
+    'gpt-4o-mini':          { inp: 2.5, out: 10.0 },
+    'claude-3-5-sonnet':    { inp: 10.8, out: 54.0 },
+    'deepseek-chat':        { inp: 1.0, out: 2.0 },
+    'qwen3':                { inp: 0.8, out: 3.2 },
+    'qwen-max':             { inp: 20.0, out: 60.0 },
+  };
+  var detectedModel = 'MiniMax-M2.7';
+  function getModelPricing(m) {
+    m = m || detectedModel;
+    for (var k in MODEL_PRICING) { if (m.includes(k)) return MODEL_PRICING[k]; }
+    return MODEL_PRICING['MiniMax-M2.7'];
+  }
+  function calcCny(inp, out) { var p = getModelPricing(); return inp*p.inp/1e6 + out*p.out/1e6; }
+  var COLORS = ['#3b82f6','#10b981','#f59e0b','#8b5cf6','#ec4899','#ef4444','#06b6d4','#84cc16'];
+  var MAX_PTS = 120;
+
+  // ── State ────────────────────────────────────────────────────────────────
+  var currentDate = new Date().toISOString().slice(0,10);
+  var isLive = true;
+  var liveHistory = [];          // [{ts, input, output, rate}]
+  var lastBase = null;          // {input, output, ts} for rate calc
+  var yestSummary = null;
+
+  function fmtN(n) {
+    if (!n && n !== 0) return '-';
+    if (n >= 1e9) return (n/1e9).toFixed(2)+'B';
+    if (n >= 1e6) return (n/1e6).toFixed(2)+'M';
+    if (n >= 1e3) return (n/1e3).toFixed(1)+'K';
+    return String(n);
+  }
+
+  function fmtC(c) {
+    if (!c && c !== 0) return '-';
+    if (c >= 1000000) return '\u00a5'+(c/1e6).toFixed(2)+'M';
+    if (c >= 10000) return '\u00a5'+(c/1000).toFixed(2)+'K';
+    if (c >= 0.01) return '\u00a5'+c.toFixed(2);
+    return '\u00a5'+c.toFixed(4);
+  }
+
+  function pct(cur, prev) { if (!prev) return null; return ((cur-prev)/prev*100).toFixed(1); }
+  function esc(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function fmtAge(ms) { if (!ms) return '-'; if (ms<60000) return Math.round(ms/1000)+'s'; if (ms<3600000) return Math.round(ms/60000)+'m'; return (ms/3600000).toFixed(1)+'h'; }
+
+  // ── Chart setup ────────────────────────────────────────────────────────
+  var trendCtx = document.getElementById('mainChart').getContext('2d');
+
+  var trendChart = new Chart(trendCtx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [
+        { label:'Token\u6d88\u8017', data:[], borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,0.08)',
+          fill:true, tension:0.4, borderWidth:2, pointRadius:0, pointHoverRadius:5 },
+        { label:'\u901f\u7387(t/s)', data:[], borderColor:'#f59e0b', backgroundColor:'transparent',
+          borderWidth:2, borderDash:[5,3], pointRadius:0, tension:0.4, yAxisID:'y1', type:'line' }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      animation: { duration: 120, easing:'easeInOutCubic' },
+      interaction: { mode:'index', intersect:false },
+      plugins: {
+        legend:{ display:true, position:'top', labels:{ color:'#94a3b8', font:{size:10}, boxWidth:9, boxHeight:9, usePointStyle:true } },
+        tooltip: { callbacks:{ label: function(ctx) { return ' '+ctx.dataset.label+': '+fmtN(ctx.raw); } } },
+        zoom: {
+          pan: { mode: 'x', enabled: true },
+          zoom: {
+            wheel: { enabled: true },
+            pinch: { enabled: true },
+            mode: 'x'
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color:'rgba(30,45,69,0.5)', drawBorder:false },
+          ticks: { color:'#64748b', font:{size:9}, maxTicksLimit:20 }
+        },
+        y: {
+          position:'left',
+          grid: { color:'rgba(30,45,69,0.5)', drawBorder:false },
+          ticks: { color:'#64748b', font:{size:9}, callback: function(v){ return fmtN(v); } },
+        },
+        y1: {
+          position:'right', grid:{display:false},
+          ticks: { color:'#f59e0b', font:{size:9}, callback: function(v){ return fmtN(v)+'/s'; } },
+        }
+      }
+    }
+  });
+
+  // Heartbeat overlay on mainChart
+  (function(){
+    var hbCanvas = document.getElementById('heartbeatCanvas');
+    var hbCtx = hbCanvas.getContext('2d');
+    var WIN = 60;
+    var data = []; // [{v,ts}]
+
+    function resize(){
+      var r = hbCanvas.parentElement.getBoundingClientRect();
+      hbCanvas.width = r.width;
+      hbCanvas.height = r.height;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function draw(){
+      var W = hbCanvas.width, H = hbCanvas.height;
+      hbCtx.clearRect(0,0,W,H);
+      if(!data.length) return;
+      var vals = data.map(function(d){return d.v;});
+      var maxV = Math.max(1,...vals);
+      var pad=H*0.05, yMin=pad, yMax=H-pad;
+      var toY = function(v){return yMax-v/maxV*(yMax-yMin);};
+      var N=data.length, stepX=W/(WIN-1);
+      // fill
+      hbCtx.beginPath(); hbCtx.moveTo(0,yMax);
+      for(var i=0;i<N;i++) hbCtx.lineTo(W-(N-1-i)*stepX,toY(data[i].v));
+      hbCtx.lineTo(W,yMax); hbCtx.closePath();
+      var g=hbCtx.createLinearGradient(0,yMin,0,yMax);
+      g.addColorStop(0,'rgba(59,130,246,0.14)'); g.addColorStop(1,'rgba(59,130,246,0)');
+      hbCtx.fillStyle=g; hbCtx.fill();
+      // step line
+      hbCtx.strokeStyle='#3b82f6'; hbCtx.lineWidth=1.5;
+      hbCtx.shadowBlur=6; hbCtx.shadowColor='#3b82f6';
+      hbCtx.beginPath();
+      for(var i=0;i<N;i++){
+        var xi=W-(N-1-i)*stepX, yi=toY(data[i].v);
+        if(i===0) hbCtx.moveTo(xi,yi);
+        else{ hbCtx.lineTo(W-(N-i)*stepX,yi); hbCtx.lineTo(xi,yi); }
+      }
+      hbCtx.stroke(); hbCtx.shadowBlur=0;
+      // dot
+      hbCtx.beginPath(); hbCtx.arc(W,toY(data[N-1].v),3,0,Math.PI*2);
+      hbCtx.fillStyle='#3b82f6'; hbCtx.shadowBlur=8; hbCtx.shadowColor='#3b82f6'; hbCtx.fill(); hbCtx.shadowBlur=0;
+      // scan line
+      var sx=(Date.now()%1500)/1500*W;
+      var sg=hbCtx.createLinearGradient(sx-30,0,sx+5,0);
+      sg.addColorStop(0,'transparent'); sg.addColorStop(0.85,'rgba(59,130,246,0.06)'); sg.addColorStop(1,'rgba(59,130,246,0.18)');
+      hbCtx.fillStyle=sg; hbCtx.fillRect(sx-30,0,35,H);
+      // labels
+      hbCtx.fillStyle='#1a4060'; hbCtx.font='9px JetBrains Mono,monospace'; hbCtx.textAlign='left';
+      hbCtx.fillText(fmtN(maxV),3,yMin+9);
+      hbCtx.fillText(fmtN(Math.round(maxV/2)),3,(yMin+yMax)/2+4);
+      hbCtx.fillText('0',3,yMax-2);
+    }
+    (function loop(){ draw(); requestAnimationFrame(loop); })();
+
+    window.feedHeartbeat = function(pts){
+      pts.forEach(function(p){ data.push({v:Math.max(0,p.v||0),ts:p.ts||Date.now()}); });
+      if(data.length>WIN) data.shift();
+    };
+  })();
+
+  var sessCtx = document.getElementById('sessionChart').getContext('2d');
+  var sessChart = new Chart(sessCtx, {
+    type: 'doughnut',
+    data: { labels:[], datasets:[{data:[], backgroundColor:[], borderWidth:0, hoverOffset:5}] },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      animation:{duration:180, easing:'easeInOutQuart'},
+      cutout:'62%',
+      plugins:{
+        legend:{ position:'right', labels:{ color:'#94a3b8', font:{size:10}, padding:10, boxWidth:9, boxHeight:9, usePointStyle:true } },
+        tooltip:{ callbacks:{ label:function(ctx){ return ' '+ctx.label+': '+fmtN(ctx.raw)+' tokens'; } } }
+      }
+    }
+  });
+
+  // ── Update charts (streaming) ────────────────────────────────────────
+  function updateCharts(hist) {
+    // Build labels (time strings)
+    var labels = [];
+    // For live mode: show elapsed time from first point ("+M:SS" or "+H:MM:SS")
+    // For historical: show actual clock time (HH:MM)
+    var baseTs = hist.length > 0 ? (hist[0].ts || hist[0].timestamp || 0) : 0;
+    for (var i = 0; i < hist.length; i++) {
+      var hTs = hist[i].ts || hist[i].timestamp || 0;
+      var diff = (hTs - baseTs) / 1000; // seconds from first point
+      if (isLive) {
+        // Elapsed time from first point in session
+        var h = Math.floor(diff / 3600);
+        var m = Math.floor((diff % 3600) / 60);
+        var s = Math.floor(diff % 60);
+        if (h > 0) labels.push('+'+h+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));
+        else labels.push('+'+m+':'+String(s).padStart(2,'0'));
+      } else {
+        // Historical: show actual clock time
+        var t = new Date(hTs);
+        labels.push(t.getHours()+':'+String(t.getMinutes()).padStart(2,'0'));
+      }
+    }
+    // In historical mode, trim labels to match chartHist if sampling was applied
+    if (!isLive && hist.length > MAX_PTS) {
+      labels = labels.slice(0, chartHist.length);
+    }
+
+    // Single line: use cumulative total_tokens for historical view (step-function, shows real consumption)
+    // For live view: use delta per poll (shows activity between polls)
+    // Historical data is sampled to MAX_PTS to keep chart responsive
+    var totalData;
+    var chartHist = hist;
+    if (!isLive && hist.length > MAX_PTS) {
+      // Sample historical data evenly: keep first, last, and sample the middle
+      var step = Math.ceil(hist.length / MAX_PTS);
+      chartHist = [];
+      for (var _si = 0; _si < hist.length; _si += step) {
+        chartHist.push(hist[_si]);
+      }
+      // Always include the last point
+      if (chartHist[chartHist.length-1] !== hist[hist.length-1]) chartHist.push(hist[hist.length-1]);
+    }
+    if (isLive) {
+      // Live: cumulative from first point — line always starts at 0 and grows upward
+      // This shows accumulated consumption since monitoring began (like a heartbeat)
+      var minTot = Math.min.apply(null, chartHist.map(function(h){ return h.total_tokens||0; }));
+      totalData = chartHist.map(function(h){ return Math.max(0, (h.total_tokens||0) - minTot); });
+    } else {
+      // Historical: cumulative total_tokens — clamp to 0 to handle session resets
+      totalData = chartHist.map(function(h){ return Math.max(0, h.total_tokens || (h.input_tokens||0)+(h.output_tokens||0)); });
+    }
+    var rateData = hist.map(function(h){ return h.rate_total || h.rate || 0; });
+
+    // Streaming update
+    trendChart.data.labels = labels;
+    trendChart.data.datasets[0].data = totalData;
+    trendChart.data.datasets[1].data = rateData;
+    // Dynamic label: live=增量, historical=累计
+    trendChart.data.datasets[0].label = isLive ? '\u6bcf\u6b21\u8f6e\u8be2\u589e\u91cf' : '\u7d2f\u8ba1\u603b\u91c7\u8d39';
+    // Y axis: historical starts from 0, live auto-scales
+    if (!isLive) {
+      trendChart.options.scales.y.suggestedMin = 0;
+      trendChart.options.scales.y.suggestedMax = undefined;
+    } else {
+      // Always start Y-axis from 0 so line shows real activity height
+      trendChart.options.scales.y.suggestedMin = 0;
+      trendChart.options.scales.y.suggestedMax = undefined;
+    }
+    trendChart.update();
+
+    document.getElementById('c-pts').textContent = (hist||[]).length + ' 采样点';
+  }
+
+  function updateSessChart(sessions) {
+    var sL=[], sD=[], sC=[];
+    for (var j=0; j<(sessions||[]).length; j++) {
+      var s = sessions[j];
+      sL.push(s.shortKey || s.session_key || s.key || 'S'+j);
+      sD.push(s.totalTokens || s.total_tokens || 0);
+      sC.push(COLORS[j%COLORS.length]);
+    }
+    sessChart.data.labels = sL;
+    sessChart.data.datasets[0].data = sD;
+    sessChart.data.datasets[0].backgroundColor = sC;
+    sessChart.update({duration:250});
+  }
+
+  // ── Update KPIs ──────────────────────────────────────────────────────
+  // mode: 'live' or 'historical'
+  function updateKPIs(data, yesterday, mode) {
+    // Historical summary uses snake_case fields, live snap uses camelCase
+    var inp, out, tot, ctx, sess, rates;
+    if (mode === 'historical' && data) {
+      inp = Math.max(0, data.input_tokens || 0);
+      out = Math.max(0, data.output_tokens || 0);
+      tot = Math.max(0, data.total_tokens || 0);
+      ctx = Math.max(0, data.context_tokens || 0);
+      sess = data.session_count || 0;
+      rates = null; // no rate data in historical summary
+    } else if (data && data.totals) {
+      // Live snapshot
+      inp = Math.max(0, data.totals.inputTokens || 0);
+      out = Math.max(0, data.totals.outputTokens || 0);
+      tot = Math.max(0, data.totals.totalTokens || 0);
+      ctx = Math.max(0, data.totals.contextTokens || 0);
+      sess = data.sessionCount || 0;
+      rates = data;
+    } else {
+      inp = out = tot = ctx = sess = 0;
+      rates = null;
+    }
+    var y = yesterday || {};
+    document.getElementById('k-in').innerHTML = fmtN(inp) + '<span class="kpi-delta'+(inp>(y.input_tokens||0)?' up':' down')+'">'+(y.input_tokens?pct(inp,y.input_tokens):'')+'</span>';
+    document.getElementById('k-out').innerHTML = fmtN(out) + '<span class="kpi-delta'+(out>(y.output_tokens||0)?' up':' down')+'">'+(y.output_tokens?pct(out,y.output_tokens):'')+'</span>';
+    document.getElementById('k-total').innerHTML = fmtN(tot) + '<span class="kpi-delta'+(tot>(y.total_tokens||0)?' up':' down')+'">'+(y.total_tokens?pct(tot,y.total_tokens):'')+'</span>';
+    var cnyVal = calcCny(inp,out);
+    document.getElementById('k-cny').innerHTML = fmtC(cnyVal);
+    var mEl = document.getElementById('k-model');
+    if(mEl) {
+      var dm = detectedModel || '\u672a\u68c0\u6d4b';
+      mEl.textContent = dm.length > 18 ? dm.substring(0,16)+'...' : dm;
+    }
+    document.getElementById('k-ctx').textContent = fmtN(ctx);
+    document.getElementById('k-sesscnt').textContent = sess;
+    // Rate cards: only in live mode
+    if (mode === 'live' && rates) {
+      document.getElementById('r-in').textContent = fmtN(rates.rateIn||0);
+      document.getElementById('r-out').textContent = fmtN(rates.rateOut||0);
+      document.getElementById('r-total').textContent = fmtN(rates.rateTotal||0);
+      document.getElementById('r-cny').textContent = ((rates.rateCny||0) < 0.01) ? '<0.01' : (rates.rateCny||0).toFixed(3);
+    } else {
+      document.getElementById('r-in').textContent = '—';
+      document.getElementById('r-out').textContent = '—';
+      document.getElementById('r-total').textContent = '—';
+      document.getElementById('r-cny').textContent = '—';
+    }
+    document.getElementById('m-sess').textContent = sess;
+    document.getElementById('m-pts').textContent = mode === 'live' ? liveHistory.length : (data.history||[]).length;
+  }
+
+  // ── Update Table ────────────────────────────────────────────────────
+  function updateTable(sessions) {
+    var tbody = document.getElementById('s-tbody');
+    if (!(sessions||[]).length) {
+      tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--muted);padding:20px">暂无数据</td></tr>';
+      document.getElementById('t-count').textContent = '0 个会话';
+      return;
+    }
+    var rows = [];
+    for (var k=0; k<sessions.length; k++) {
+      var s = sessions[k];
+      var inp=s.inputTokens||s.input_tokens||0, out=s.outputTokens||s.output_tokens||0;
+      var tot=s.totalTokens||s.total_tokens||0, ctx=s.contextTokens||s.context_tokens||0;
+      var inPct=tot>0?Math.round(inp/tot*100):0, outPct=100-inPct;
+      rows.push('<tr style="cursor:pointer" onclick="showSessionModal\('+k+'\')">' +
+        '<td class="td-key">'+(s.shortKey||s.session_key||s.key||'-').slice(-10)+'</td>'+
+        '<td class="td-model">'+(s.model||'-')+'</td>'+
+        '<td><span class="td-kind">'+(s.kind||'-')+'</span></td>'+
+        '<td class="num" style="color:#3b82f6">'+fmtN(inp)+'</td>'+
+        '<td class="num" style="color:#10b981">'+fmtN(out)+'</td>'+
+        '<td class="num" style="color:#f59e0b;font-weight:700">'+fmtN(tot)+'</td>'+
+        '<td class="bar-cell"><div class="bar-track"><div class="bar-fill input" style="width:'+inPct+'%"></div><div class="bar-fill output" style="width:'+outPct+'%"></div></div>'+
+        '<div class="bar-pct">'+inPct+'% / '+outPct+'%</div></td>'+
+        '<td class="num" style="color:#8b5cf6">'+fmtN(ctx)+'</td>'+
+        '<td class="td-time">'+(s.timeStr||s.updated_at||'-')+'</td>'+
+        '<td class="td-age">'+(s.ageStr||fmtAge(s.ageMs||s.age_ms||0))+'</td></tr>');
+    }
+    tbody.innerHTML = rows.join('');
+    document.getElementById('t-count').textContent = sessions.length + ' 个会话';
+    // Store sessions globally for modal access
+    window.__sessions = sessions;
+  }
+
+  // ── Session click modal ───────────────────────────────────────────
+  window.showSessionModal = function(idx) {
+    var s = (window.__sessions||[])[idx];
+    if (!s) return;
+    var inp=s.inputTokens||s.input_tokens||0, out=s.outputTokens||s.output_tokens||0;
+    var tot=s.totalTokens||s.total_tokens||0, ctx=s.contextTokens||s.context_tokens||0;
+    var inPct=tot>0?Math.round(inp/tot*100):0, outPct=100-inPct;
+    document.getElementById('m-in').textContent = fmtN(inp);
+    document.getElementById('m-out').textContent = fmtN(out);
+    document.getElementById('m-total').textContent = fmtN(tot);
+    document.getElementById('m-cny').textContent = fmtC(calcCny(inp,out));
+    document.getElementById('m-ctx').textContent = fmtN(ctx);
+    document.getElementById('m-age').textContent = fmtAge(s.ageMs||s.age_ms||0);
+    document.getElementById('m-model').textContent = s.model||'-';
+    document.getElementById('m-kind').textContent = s.kind||'-';
+    document.getElementById('m-time').textContent = s.timeStr||s.updated_at||'-';
+    document.getElementById('modal-key').textContent = s.key||s.session_key||'-';
+    document.getElementById('m-bar-in').style.width = inPct+'%';
+    document.getElementById('m-bar-out').style.width = outPct+'%';
+    document.getElementById('m-pct-in').textContent = '输入 '+inPct+'%';
+    document.getElementById('m-pct-out').textContent = '输出 '+outPct+'%';
+    document.getElementById('session-modal').classList.add('open');
+  };
+  document.getElementById('modal-close').onclick = function(){ document.getElementById('session-modal').classList.remove('open'); };
+  document.getElementById('session-modal').onclick = function(e){ if(e.target===this) this.classList.remove('open'); };
+
+  // ── Date nav ───────────────────────────────────────────────────────
+  function loadDate(date) {
+    currentDate = date;
+    isLive = (date === new Date().toISOString().slice(0,10));
+    document.getElementById('date-display').textContent = date;
+    document.getElementById('btn-live').classList.toggle('active', isLive);
+    document.getElementById('live-label').textContent = isLive ? '实时监控中' : '历史视图';
+    document.getElementById('t-date').textContent = isLive ? '' : date;
+
+    // Reset liveHistory when entering historical mode
+    if (!isLive) liveHistory = [];
+
+    fetch('/api/daily?date='+date).then(function(r){ return r.json(); })
+      .then(function(data) {
+        updateKPIs(data.summary, null, 'historical');
+        // In live mode: populate liveHistory with today's full history so chart starts with all points
+        if (isLive && data.history && data.history.length > 0) {
+          liveHistory = data.history.map(function(h){
+            return { ts: h.ts||h.timestamp||0, input: h.input_tokens||0, output: h.output_tokens||0, rate: h.rate_total||h.rate||0 };
+          });
+          if (liveHistory.length > MAX_PTS) liveHistory = liveHistory.slice(-MAX_PTS);
+          if(window.feedHeartbeat) window.feedHeartbeat(liveHistory.map(function(h){return {v:(h.input||0)+(h.output||0),ts:h.ts};}));
+          updateCharts(liveHistory);
+        } else {
+          updateCharts(data.history||[]);
+          if(window.feedHeartbeat) window.feedHeartbeat(data.history.map(function(h){return {v:h.total_tokens||(h.input_tokens||0)+(h.output_tokens||0),ts:h.ts||h.timestamp};}));
+        }
+        updateSessChart(data.sessions||[]);
+        updateTable(data.sessions||[]);
+        document.getElementById('m-pts').textContent = (data.history||[]).length;
+        loadMonthly();
+      }).catch(function(){});
+
+    // yesterday comparison
+    var yd = new Date(date); yd.setDate(yd.getDate()-1);
+    fetch('/api/daily?date='+yd.toISOString().slice(0,10)).then(function(r){return r.json();})
+      .then(function(d){ yestSummary = d.summary; }).catch(function(){});
+  }
+
+  function loadMonthly() {
+    fetch('/api/monthly').then(function(r){return r.json();})
+      .then(function(data) {
+        var bar = document.getElementById('proj-bar');
+        if (!data.projected) { bar.style.display='none'; return; }
+        bar.style.display = 'flex';
+        document.getElementById('proj-cny').textContent = fmtC(data.projected.cost_cny||0);
+        document.getElementById('proj-cny2').textContent = fmtC(data.projected.cost_cny||0);
+        document.getElementById('proj-days').textContent = data.projected.days_so_far||0;
+        document.getElementById('proj-total').textContent = fmtN(data.projected.total_tokens||0);
+      }).catch(function(){});
+  }
+
+  function loadDates() {
+    fetch('/api/dates').then(function(r){return r.json();})
+      .then(function(dates) {
+        var sel = document.getElementById('date-select');
+        sel.innerHTML = '';
+        (dates||[]).forEach(function(d) {
+          var o = document.createElement('option'); o.value=d; o.textContent=d; sel.appendChild(o);
+        });
+        sel.value = currentDate;
+      }).catch(function(){});
+  }
+
+  document.getElementById('btn-prev').onclick = function() {
+    var dates = document.getElementById('date-select');
+    var idx = Array.from(dates.options).findIndex(function(o){return o.value===currentDate;});
+    if (idx >=0 && idx < dates.options.length-1) loadDate(dates.options[idx+1].value);
+  };
+  document.getElementById('btn-next').onclick = function() {
+    var dates = document.getElementById('date-select');
+    var idx = Array.from(dates.options).findIndex(function(o){return o.value===currentDate;});
+    if (idx > 0) loadDate(dates.options[idx-1].value);
+  };
+  loadDates(); // populate date dropdown on load
+  loadDate(currentDate); // initialize live view immediately
+  // Live clock: update every second independent of polling
+  setInterval(function(){
+    var now = new Date();
+    document.getElementById('m-clock').textContent = now.toTimeString().slice(0,8);
+  }, 1000);
+  document.getElementById('btn-today').onclick = function(){ currentDate=new Date().toISOString().slice(0,10); loadDate(currentDate); loadDates(); };
+  document.getElementById('btn-live').onclick = function(){ loadDate(new Date().toISOString().slice(0,10)); };
+  document.getElementById('date-select').onchange = function(){ if(this.value) loadDate(this.value); };
+
+  // ── Polling (replaces SSE for reliability) ───────────────────────
+  var pollTimer = null;
+
+  function startPolling(interval) {
+    if (pollTimer) clearInterval(pollTimer);
+    pollTimer = setInterval(function() {
+      if (!isLive) return;
+      fetch('/data')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          var snap = d.snap;
+          var hist = d.history || [];
+          if (!snap) return;
+
+          // Rate calculation
+          if (!lastBase) {
+            lastBase = { input: snap.totals.inputTokens, output: snap.totals.outputTokens, ts: snap.ts };
+          }
+          var dt = (snap.ts - lastBase.ts) / 1000;
+          if (dt >= 0.5) {
+            var din = Math.max(0, snap.totals.inputTokens - lastBase.input);
+            var dout = Math.max(0, snap.totals.outputTokens - lastBase.output);
+            var dcny = calcCny(snap.totals.inputTokens, snap.totals.outputTokens) - calcCny(lastBase.input, lastBase.output);
+            snap.rateIn = din / dt;
+            snap.rateOut = dout / dt;
+            snap.rateTotal = snap.rateIn + snap.rateOut;
+            snap.rateCny = Math.max(0, dcny * 60 / dt);
+            lastBase = { input: snap.totals.inputTokens, output: snap.totals.outputTokens, ts: snap.ts };
+          }
+
+          // Incremental update: only append points newer than latest known timestamp
+          if (hist.length > 0) {
+            var latestTs = liveHistory.length > 0 ? liveHistory[liveHistory.length-1].ts : 0;
+            var newPts = hist.filter(function(h){ return h.ts > latestTs; });
+            if (newPts.length > 0) {
+              newPts.forEach(function(h) {
+                liveHistory.push({ ts: h.ts, input: h.input_tokens || 0, output: h.output_tokens || 0, rate: h.rate_total || 0 });
+              });
+              if (liveHistory.length > MAX_PTS) liveHistory = liveHistory.slice(-MAX_PTS);
+            }
+            // Always refresh chart to show current state
+            if(window.feedHeartbeat) window.feedHeartbeat(liveHistory.map(function(h){return {v:(h.input||0)+(h.output||0),ts:h.ts};}));
+          updateCharts(liveHistory);
+          }
+
+          // Update live clock display
+          var now = new Date();
+          document.getElementById('m-clock').textContent = now.toTimeString().slice(0,8);
+          document.getElementById('m-pts').textContent = liveHistory.length;
+          if (snap.models && snap.models.length > 0) {
+            detectedModel = snap.models[0].name || detectedModel;
+          }
+          updateKPIs(snap, yestSummary, 'live');
+          if(window.feedHeartbeat) window.feedHeartbeat(liveHistory.map(function(h){return {v:(h.input||0)+(h.output||0),ts:h.ts};}));
+          updateCharts(liveHistory);
+          updateSessChart(snap.sessionData || []);
+          updateTable(snap.sessionData || []);
+        });
+    }, interval);
+  }
+
+  // Start polling (call after loadDate so isLive is set)
+  function restartPolling() {
+    var val = parseInt(document.getElementById('poll-select').value, 10);
+    localStorage.setItem('token_monitor_poll', val);
+    fetch('/api/config?poll='+val).catch(function(){});
+    startPolling(val);
+  }
+
+  document.getElementById('btn-poll-confirm').onclick = restartPolling;
+  document.getElementById('poll-select').onchange = function() {}; // 选择时不做任何事，只有点确认才生效
+
+  // ── Settings ──────────────────────────────────────────────────────
+  var saved = localStorage.getItem('token_monitor_poll');
+  if (saved) {
+    var val = parseInt(saved,10);
+    document.getElementById('poll-select').value = val;
+    startPolling(val);
+  } else {
+    startPolling(3000);
+  }
+
+  // ── Export image ────────────────────────────────────────────────
+  document.getElementById('btn-export-img').onclick = function() {
+    var url = trendChart.toBase64Image('image/png', 1.0);
+    var a = document.createElement('a'); a.href=url; a.download='token_trend_'+new Date().toISOString().slice(0,10)+'.png'; a.click();
+  };
+
+  // ── Export CSV ─────────────────────────────────────────────────
+  document.getElementById('btn-export-csv').onclick = function() {
+    fetch('/api/export').then(function(r){return r.json();})
+      .then(function(data) {
+        var csv = 'date,input_tokens,output_tokens,total_tokens,cost_cny,session_count\n';
+        (data.daily||[]).forEach(function(d){
+          csv += (d.date||'')+','+(d.input_tokens||0)+','+(d.output_tokens||0)+','+(d.total_tokens||0)+','+(d.cost_cny||0)+','+(d.session_count||0)+'\n';
+        });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+        a.download = 'token_history_'+new Date().toISOString().slice(0,10)+'.csv';
+        a.click();
+      }).catch(function(){});
+  };
+
+  // Reload page every 5 minutes to pick up server-side changes
+  setTimeout(function(){ location.reload(); }, 300000);
+</script>
+</body>
+</html>
+
+

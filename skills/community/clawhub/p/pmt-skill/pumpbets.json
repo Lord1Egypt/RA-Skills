@@ -1,0 +1,883 @@
+{
+  "version": "0.1.0",
+  "name": "pumpbets",
+  "instructions": [
+    {
+      "name": "createMarket",
+      "docs": [
+        "Create a new prediction market for a pump.fun token"
+      ],
+      "accounts": [
+        {
+          "name": "market",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Vault PDA to hold betting funds - now program-owned"
+          ]
+        },
+        {
+          "name": "creatorBet",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Creator's initial bet account - bet index 0"
+          ]
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Treasury account to receive creation fee - must match official treasury",
+            "SECURITY FIX M3: Validates treasury address to prevent fee redirection attacks"
+          ]
+        },
+        {
+          "name": "tokenMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "prediction",
+          "type": "bool"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "bondingProgress",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "placeBet",
+      "docs": [
+        "Take a position on an existing market"
+      ],
+      "accounts": [
+        {
+          "name": "market",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Vault PDA to hold betting funds - program-owned"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "prediction",
+          "type": "bool"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "bondingProgress",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "resolveMarket",
+      "docs": [
+        "Resolve a market with the final outcome"
+      ],
+      "accounts": [
+        {
+          "name": "market",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "oracle",
+          "isMut": false,
+          "isSigner": true,
+          "docs": [
+            "Oracle/keeper that can resolve markets"
+          ]
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Treasury account to receive platform fee - must match official treasury",
+            "SECURITY FIX M3: Validates treasury address to prevent fee redirection attacks"
+          ]
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Vault PDA holding betting funds - program-owned"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "outcome",
+          "type": {
+            "option": "bool"
+          }
+        },
+        {
+          "name": "voided",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "claimPayout",
+      "docs": [
+        "Claim returns for a winning position"
+      ],
+      "accounts": [
+        {
+          "name": "market",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userBet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Vault PDA holding betting funds - program-owned"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claimRefund",
+      "docs": [
+        "Claim refund for a voided market"
+      ],
+      "accounts": [
+        {
+          "name": "market",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userBet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Vault PDA holding betting funds - program-owned"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "closeVault",
+      "docs": [
+        "Close vault and recover rent after all claims are processed"
+      ],
+      "accounts": [
+        {
+          "name": "market",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Vault PDA to close - must be empty or nearly empty"
+          ]
+        },
+        {
+          "name": "recipient",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Market creator receives the rent"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "emergencyWithdraw",
+      "docs": [
+        "Emergency withdrawal - only treasury can call after 1 day delay",
+        "Used to recover stuck funds in case of bugs or unclaimed payouts"
+      ],
+      "accounts": [
+        {
+          "name": "market",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Vault PDA holding betting funds"
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true,
+          "docs": [
+            "Only treasury can trigger emergency withdrawal"
+          ]
+        },
+        {
+          "name": "recipient",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Recipient of emergency funds (treasury)"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "UserBet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "market",
+            "docs": [
+              "The market this bet is for"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "user",
+            "docs": [
+              "The user who placed this bet"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "amount",
+            "docs": [
+              "Amount wagered (lamports)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "prediction",
+            "docs": [
+              "User's prediction: true = YES, false = NO"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "slot",
+            "docs": [
+              "Slot when bet was placed"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimed",
+            "docs": [
+              "Whether payout/refund has been claimed"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BettingMarket",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tokenMint",
+            "docs": [
+              "The token mint this market is for"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "creator",
+            "docs": [
+              "The wallet that created this market (receives creator fee)"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "creationSlot",
+            "docs": [
+              "Slot when market was created"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "resolutionSlot",
+            "docs": [
+              "Slot when market resolves (creation_slot + ~1 hour)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "yesPool",
+            "docs": [
+              "Total SOL in YES pool (lamports)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "noPool",
+            "docs": [
+              "Total SOL in NO pool (lamports)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "totalBets",
+            "docs": [
+              "Total number of positions taken"
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "resolved",
+            "docs": [
+              "Whether market has been resolved"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "voided",
+            "docs": [
+              "Whether market was voided (one-sided pool)"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "outcome",
+            "docs": [
+              "Final outcome: Some(true) = YES won, Some(false) = NO won, None = voided"
+            ],
+            "type": {
+              "option": "bool"
+            }
+          },
+          {
+            "name": "rugDetectionStartSlot",
+            "docs": [
+              "Slot when rug detection started (if applicable)"
+            ],
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "bondingProgressAtStart",
+            "docs": [
+              "Bonding curve progress at market creation (for reference)"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vault",
+      "docs": [
+        "Vault account to hold market funds",
+        "Program-owned so we can transfer lamports from it"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "market",
+            "docs": [
+              "The market this vault belongs to"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "BetPlaced",
+      "fields": [
+        {
+          "name": "market",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "betAddress",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "amount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "prediction",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "slot",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "yesPoolAfter",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "noPoolAfter",
+          "type": "u64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "EmergencyWithdraw",
+      "fields": [
+        {
+          "name": "market",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "vault",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "amountWithdrawn",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "recipient",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "triggeredBy",
+          "type": "publicKey",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "MarketCreated",
+      "fields": [
+        {
+          "name": "market",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "tokenMint",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "creator",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "initialAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "initialPrediction",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "creationSlot",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "resolutionSlot",
+          "type": "u64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "MarketResolved",
+      "fields": [
+        {
+          "name": "market",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "outcome",
+          "type": {
+            "option": "bool"
+          },
+          "index": false
+        },
+        {
+          "name": "voided",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "totalPool",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "platformFee",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "creatorFee",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "resolutionSlot",
+          "type": "u64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "PayoutClaimed",
+      "fields": [
+        {
+          "name": "market",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "betAddress",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "payoutAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "originalBet",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "prediction",
+          "type": "bool",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "RefundClaimed",
+      "fields": [
+        {
+          "name": "market",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "betAddress",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "refundAmount",
+          "type": "u64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "VaultClosed",
+      "fields": [
+        {
+          "name": "market",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "vault",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "rentRecovered",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "recipient",
+          "type": "publicKey",
+          "index": false
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AlreadyResolved",
+      "msg": "This market has already been resolved"
+    },
+    {
+      "code": 6001,
+      "name": "MarketExpired",
+      "msg": "This market has expired and is no longer accepting bets"
+    },
+    {
+      "code": 6002,
+      "name": "NotResolved",
+      "msg": "Cannot claim - market has not been resolved yet"
+    },
+    {
+      "code": 6003,
+      "name": "AlreadyClaimed",
+      "msg": "You have already claimed your payout"
+    },
+    {
+      "code": 6004,
+      "name": "DidNotWin",
+      "msg": "Your prediction did not win"
+    },
+    {
+      "code": 6005,
+      "name": "TooEarlyToResolve",
+      "msg": "It is too early to resolve this market"
+    },
+    {
+      "code": 6006,
+      "name": "MarketNotVoided",
+      "msg": "Cannot claim payout - this market was voided"
+    },
+    {
+      "code": 6007,
+      "name": "TokenAlreadyGraduated",
+      "msg": "This token has already graduated - cannot create market"
+    },
+    {
+      "code": 6008,
+      "name": "MarketAlreadyExists",
+      "msg": "A market already exists for this token"
+    },
+    {
+      "code": 6009,
+      "name": "BetTooSmall",
+      "msg": "Bet amount is below the minimum (0.01 SOL)"
+    },
+    {
+      "code": 6010,
+      "name": "BetTooLarge",
+      "msg": "Bet amount exceeds the maximum (10 SOL)"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidTokenMint",
+      "msg": "Invalid token mint address"
+    },
+    {
+      "code": 6012,
+      "name": "InsufficientFunds",
+      "msg": "Insufficient funds for this operation"
+    },
+    {
+      "code": 6013,
+      "name": "InvalidAuthority",
+      "msg": "Only authorized accounts can perform this action"
+    },
+    {
+      "code": 6014,
+      "name": "OneSidedPool",
+      "msg": "Cannot resolve - pool is one-sided (market voided)"
+    },
+    {
+      "code": 6015,
+      "name": "ArithmeticOverflow",
+      "msg": "Arithmetic overflow occurred"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidOutcome",
+      "msg": "Market resolved without a valid outcome"
+    },
+    {
+      "code": 6017,
+      "name": "ClaimPeriodNotEnded",
+      "msg": "Claim period has not ended yet - wait 7 days after resolution"
+    },
+    {
+      "code": 6018,
+      "name": "BondingProgressTooHigh",
+      "msg": "Token bonding progress is too high (95%+) - market creation and betting not allowed"
+    },
+    {
+      "code": 6019,
+      "name": "InvalidTreasury",
+      "msg": "Invalid treasury address - must use official platform treasury"
+    },
+    {
+      "code": 6020,
+      "name": "EmergencyDelayNotPassed",
+      "msg": "Emergency withdrawal delay has not passed yet (1 day after resolution)"
+    },
+    {
+      "code": 6021,
+      "name": "VaultEmpty",
+      "msg": "Vault is empty - no funds to withdraw"
+    }
+  ],
+  "metadata": {
+    "address": "3mNbBV3Xc3rNJ4E87pSFzW7VhUZySHQDQVyd4MP2VFG6"
+  }
+}

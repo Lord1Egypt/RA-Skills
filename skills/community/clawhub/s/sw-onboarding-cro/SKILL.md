@@ -1,35 +1,46 @@
----
-name: "Onboarding CRO"
-description: "Optimize post-signup onboarding by defining activation, mapping flows, removing friction, redesigning steps, and measuring activation rates to boost user ret..."
-category: "other"
-source: "ClawHub"
-tags: [conversion, cro]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sw-onboarding-cro"
-sourceUrl: "https://clawhub.ai/skills/sw-onboarding-cro"
----
+# Onboarding CRO Skill
 
-# Onboarding CRO
+## Trigger
+Optimise post-signup onboarding for faster activation.
 
-> Optimize post-signup onboarding by defining activation, mapping flows, removing friction, redesigning steps, and measuring activation rates to boost user ret...
+**Trigger phrases:** "onboarding flow", "activation rate", "user onboarding", "time to value", "empty state", "onboarding checklist"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sw-onboarding-cro`
-- **Source URL:** [https://clawhub.ai/skills/sw-onboarding-cro](https://clawhub.ai/skills/sw-onboarding-cro)
+## Process
 
-## Overview
+1. **Define activation**: What is the key action that correlates with retention?
+2. **Map current flow**: Steps from signup to activation
+3. **Identify friction**: Where do users drop off post-signup?
+4. **Redesign**: Shortest path to activation event
+5. **Measure**: Activation rate before/after
 
+## Key Principles
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sw-onboarding-cro
-```
+- Time-to-value is everything. Users decide in the first session.
+- One primary action per screen. Don't overwhelm.
+- Checklists work: 3-5 items, show progress, celebrate completion
+- Empty states should educate and motivate, not just be blank
+- Progressive disclosure: show features as users need them
+- Personalise: ask 1-2 questions to tailor the experience
+- Skip tutorials — let users learn by doing
+
+## Onboarding Patterns
+
+### Checklist (best for tools with setup)
+- [ ] Complete profile
+- [ ] Create first [item]
+- [ ] Invite a teammate
+- [ ] Connect integration
+
+### Product Tour (best for complex UI)
+- Highlight 3-5 key features
+- Interactive, not passive
+- Skip option always visible
+
+### Template/Sample Data (best for content tools)
+- Pre-populate with example data
+- User edits rather than creates from scratch
+- Reduces blank-page anxiety
+
+## Output
+
+Redesigned onboarding flow: screen-by-screen breakdown, checklist items, empty state copy, activation metric definition, and success criteria.

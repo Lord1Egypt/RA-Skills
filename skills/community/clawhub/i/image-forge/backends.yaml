@@ -1,0 +1,110 @@
+# image-forge 后端注册表 + 调度策略
+# 优先级规则：用户显式指定 > style.preferred_backend > use_case.default_backend > global_default
+# 新后端上线：加条目 + 设 priority，不用改 SKILL.md
+
+backends:
+
+  - id: gpt-image-2
+    priority: 10
+    enabled: true
+    description: "OpenAI GPT Image 2 via CRS，写实/产品/海报/文字渲染首选"
+    type: crs
+    endpoint: "${CRS_BASE_URL:-http://127.0.0.1:8765}/openai/v1/images/generations"
+    edit_endpoint: "${CRS_BASE_URL:-http://127.0.0.1:8765}/openai/v1/images/edits"
+    auth_header: "Bearer $CRS_API_KEY"
+    default_size: "1536x1024"
+    supported_sizes:
+      - "1024x1024"
+      - "1536x1024"
+      - "1024x1536"
+      - "2048x2048"
+      - "3840x2160"
+      - "2160x3840"
+    default_quality: "high"
+    output_format: "png"
+    timeout_s: 180
+    # 该后端擅长的 rendering_style id
+    strong_at_rendering:
+      - photography
+      - cinematic-film-still
+      - 3d-render
+      - isometric
+      - retro-vintage
+      - cyberpunk-sci-fi
+      - minimalism
+    # 该后端擅长的 use_case id
+    strong_at_use_cases:
+      - poster-flyer          # 文字渲染是核心优势
+      - product-marketing
+      - ecommerce-main-image
+      - youtube-thumbnail
+      - app-web-design
+      - infographic-edu-visual
+
+  - id: nano-banana-2
+    priority: 5
+    enabled: true
+    description: "Gemini Imagen 3 via Nano Banana，艺术风格/多参考图/动漫/中国风首选"
+    type: gemini
+    script: "{baseDir}/scripts/generate_image.py"
+    default_aspect_ratio: "16:9"
+    supported_aspect_ratios: ["1:1", "3:4", "4:3", "9:16", "16:9"]
+    timeout_s: 120
+    # 该后端擅长的 rendering_style id
+    strong_at_rendering:
+      - anime-manga
+      - illustration
+      - sketch-line-art
+      - chibi-q-style
+      - pixel-art
+      - oil-painting
+      - watercolor
+      - ink-chinese-style
+    # 该后端擅长的 use_case id
+    strong_at_use_cases:
+      - profile-avatar        # 风格迁移灵活
+      - comic-storyboard
+      - game-asset
+
+# ─────────────────────────────────────────
+# 自动调度决策树
+# ─────────────────────────────────────────
+dispatch:
+  global_default: gpt-image-2
+
+  # 触发切换到 nano-banana-2 的信号（任一满足即切换）
+  prefer_nano_banana_when:
+    - multi_reference_images: true        # 用户提供 2+ 张参考图
+    - signature_style_matched: true       # 命中 Signature 风格（所有 10 个）
+    - rendering_style_in:                 # 命中以下 Rendering 风格
+        - anime-manga
+        - illustration
+        - sketch-line-art
+        - chibi-q-style
+        - pixel-art
+        - oil-painting
+        - watercolor
+        - ink-chinese-style
+
+  # 强制走 gpt-image-2 的任务类型（无论 rendering 属性如何）
+  # 根据 2026-04-24 卡牌实测：Gemini 在小细人物+排版组合场景质量较弱
+  force_gpt_image2_when:
+    - task_type_in: [card-art, trading-card, character-card, product-showcase]
+    - has_text_layout: true          # 有文字排版需求（技能标签、stats、屡历卡）
+    - realistic_portrait_with_frame: true  # 写实人物肖像 + 卡牌边框
+
+  # 用户显式触发词（覆盖一切自动判断）
+  user_override:
+    gpt-image-2:
+      - "用 GPT 画"
+      - "GPT Image 2"
+      - "gpt-image"
+      - "gpt图"
+      - "4K高清"
+      - "写实"
+      - "真实照片"
+    nano-banana-2:
+      - "用 Gemini 画"
+      - "nano banana"
+      - "Imagen"
+      - "gemini画"

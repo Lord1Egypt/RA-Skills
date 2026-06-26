@@ -1,0 +1,30 @@
+{
+  "save_name": "${save_name}",
+  "save_type": "${save_type}",
+  "created_at": "${created_at}",
+  "updated_at": "${updated_at}",
+  "core_data": {
+    "description": "核心数据，根据存档类型自由扩展"
+  },
+  "status": {
+    "current_state": null,
+    "progress": 0,
+    "flags": {}
+  },
+  "history": [
+    {
+      "timestamp": null,
+      "event": null,
+      "changes": {}
+    }
+  ],
+  "extended_data": {
+    "description": "扩展数据，存放特殊需求的数据"
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "author": "AI",
+    "tags": [],
+    "notes": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tesseractLang": "eng+chi_sim",
+  "ocrEnginePath": "/usr/local/bin/tesseract",
+  "yoloModelPath": "./models/yolov5s.onnx",
+  "translation": {
+    "provider": "google",
+    "apiKey": "",
+    "region": ""
+  }
+}

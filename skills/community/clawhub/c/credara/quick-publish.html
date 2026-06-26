@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publish a Skill Pack — Credara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--white:#fafaf8;--offwhite:#f2f0ec;--cream:#e8e4dc;--black:#111;--charcoal:#333;--gray:#777;--light-gray:#bbb;--red:#c62828;--red-bright:#e53935;--green:#2e7d32;--green-faint:rgba(46,125,50,.08);--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'Space Mono',monospace}
+html{scroll-behavior:smooth;background:var(--white);color:var(--black);font-family:var(--sans)}
+a{color:var(--red);text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 3rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,248,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav-mark{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--black)}
+.nav-right{display:flex;gap:.8rem;align-items:center}
+.nav-btn{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--cream);color:var(--charcoal);background:none;transition:all .2s;text-decoration:none}
+.nav-btn.primary{background:var(--red);color:var(--white);border-color:var(--red)}
+.hero{padding:8rem 3rem 4rem;text-align:center;max-width:700px;margin:0 auto}
+.hero h1{font-family:var(--serif);font-size:2.8rem;font-style:italic;margin-bottom:1rem}
+.hero p{color:var(--gray);font-size:1rem;line-height:1.7}
+section{max-width:800px;margin:0 auto;padding:0 3rem 4rem}
+section h2{font-family:var(--serif);font-size:1.6rem;font-style:italic;margin-bottom:1.5rem}
+.steps{display:flex;flex-direction:column;gap:2rem}
+.step{display:flex;gap:1.5rem;align-items:flex-start}
+.step-num{font-family:var(--mono);font-size:2rem;color:var(--red);font-weight:700;line-height:1;min-width:2.5rem}
+.step h3{font-family:var(--serif);font-size:1.1rem;font-style:italic;margin-bottom:.3rem}
+.step p{font-size:.85rem;color:var(--charcoal);line-height:1.7}
+.revenue{background:var(--green-faint);border-left:3px solid var(--green);padding:1.5rem 2rem;margin:2rem 0}
+.revenue strong{color:var(--green)}
+.revenue p{font-size:.85rem;line-height:1.7;color:var(--charcoal)}
+code{font-family:var(--mono);font-size:.8rem;background:var(--offwhite);padding:.15rem .4rem}
+pre{background:var(--offwhite);padding:1.5rem;overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.8;margin:1rem 0;border:1px solid var(--cream)}
+details{margin:2rem 0;border:1px solid var(--cream);padding:0}
+summary{padding:1rem 1.5rem;cursor:pointer;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);font-family:var(--mono)}
+summary:hover{color:var(--black)}
+details[open] summary{border-bottom:1px solid var(--cream)}
+details .inner{padding:1.5rem}
+details .inner p{font-size:.85rem;line-height:1.7;color:var(--charcoal);margin-bottom:.8rem}
+.cta-section{text-align:center;padding:4rem 3rem;border-top:1px solid var(--cream);max-width:700px;margin:0 auto}
+.cta-section h2{font-family:var(--serif);font-size:1.8rem;font-style:italic;margin-bottom:.8rem}
+.cta-section p{color:var(--gray);margin-bottom:1.5rem}
+.cta-btn{display:inline-block;background:var(--red);color:var(--white);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 2rem;border:none;text-decoration:none;transition:all .2s}
+.cta-btn:hover{background:var(--red-bright)}
+footer{padding:3rem;border-top:1px solid var(--cream);display:flex;justify-content:space-between;align-items:center;max-width:800px;margin:0 auto}
+.footer-left{font-family:var(--serif);font-style:italic;font-size:.95rem}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.footer-links a:hover{color:var(--red)}
+.footer-right{font-size:.55rem;color:var(--light-gray);font-family:var(--mono)}
+@media(max-width:700px){nav{padding:0 1.5rem}.hero{padding:7rem 1.5rem 3rem}section{padding:0 1.5rem 3rem}.step{flex-direction:column;gap:.5rem}footer{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-mark">Credara</a>
+  <div class="nav-right">
+    <a href="/creator" class="nav-btn">Creator Studio</a>
+    <a href="/signup" class="nav-btn primary">Sign Up</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Publish a Skill Pack</h1>
+  <p>Got a GitHub repo with a SKILL.md? You're 90% done.<br>Three steps. Five minutes. Start earning.</p>
+</div>
+
+<section>
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h3>Create a SKILL.md</h3>
+        <p>A markdown file that tells agents what your skill does and how to use it. Name, description, instructions, constraints. That's the whole format.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h3>Push to GitHub</h3>
+        <p>Your repo, your code, your control. Include any supporting files — scripts, configs, data. The SKILL.md is the entry point.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Submit for Review</h3>
+        <p>Paste your repo URL in the Creator Studio. Add a name, description, domain, and price. We review for quality and security, then publish.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="revenue">
+    <p><strong>You keep 90%</strong> of every sale. We take 10% for infrastructure, hosting, and payment processing. No hidden fees. No lock-in. Your content stays in your GitHub repo.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What Makes a Good Skill Pack?</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">→</div>
+      <div>
+        <h3>Solves a real problem</h3>
+        <p>Marketing automation, security scanning, data analysis, code review — if an agent would benefit from knowing how to do it, there's a market.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div>
+        <h3>Clear instructions</h3>
+        <p>Write your SKILL.md like you're teaching a competent engineer. Be specific. Include examples. State constraints and limitations honestly.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div>
+        <h3>Measurable improvement</h3>
+        <p>Credara benchmarks every pack. Packs with clear before/after improvements rank higher and sell better.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<details>
+  <summary>SKILL.md Format Guide</summary>
+  <div class="inner">
+    <p>Every SKILL.md starts with YAML frontmatter:</p>
+    <pre>---
+name: my-skill-pack
+description: "One-line description of what this does"
+domain: security
+price_usd: 999  # in cents ($9.99)
+---
+
+# My Skill Pack
+
+## When to Use
+Describe when an agent should use this skill.
+
+## Instructions
+Step-by-step instructions the agent follows.
+
+## Constraints
+Limitations, rate limits, important warnings.</pre>
+    <p><strong>Domains:</strong> security, ai-agents, smart-contracts, defi, data-science, devops, product, real-estate, cs, legal</p>
+    <p><strong>Pricing:</strong> Set in cents. $9.99 = 999. Free = 0 or omit.</p>
+  </div>
+</details>
+
+<div class="cta-section">
+  <h2>Ready to publish?</h2>
+  <p>Sign up, connect Stripe, and submit your first pack in the Creator Studio.</p>
+  <a href="/creator" class="cta-btn">Open Creator Studio →</a>
+</div>
+
+<footer>
+  <div class="footer-left">Credara</div>
+  <div class="footer-links"><a href="/docs">Docs</a><a href="https://github.com/0xGrainzy/credara" target="_blank">GitHub</a><a href="https://clawhub.com/skills/credara" target="_blank">ClawHub</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+  <div class="footer-right">© 2026 Credara</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Investment Report Skill - Python Dependencies
+# 投资研究报告技能依赖包
+
+# 核心依赖（使用 baostock 作为数据源）
+baostock>=0.8.8      # A 股历史数据 (主要数据源)
+pandas>=2.0.0        # 数据处理和分析
+numpy>=1.24.0        # 数值计算
+dotenv>=0.9.9
+# 报告生成
+reportlab>=4.0.0     # PDF 生成
+
+# 新闻搜索
+tavily-python>=0.7.0 # 智能新闻搜索 API
+
+# 安装命令:
+# pip install -r requirements.txt
+
+# 安装命令:
+# pip install duckduckgo-search

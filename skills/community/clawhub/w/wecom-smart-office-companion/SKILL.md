@@ -1,35 +1,70 @@
 ---
-name: "企业微信智能办公助手"
-description: "企业微信智能办公助手，每日自动汇总日程、会议、待办和团队数据，生成可视化早报卡片"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wecom-smart-office-companion"
-sourceUrl: "https://clawhub.ai/skills/wecom-smart-office-companion"
+name: wecom-smart-office-companion
+description: 企业微信智能办公助手，每日自动汇总日程、会议、待办和团队数据，生成可视化早报卡片
+category: 自动化
+triggers: 办公助手, 智能早报, 企业微信日程, 会议汇总, 待办概览, 团队数据
 ---
 
-# 企业微信智能办公助手
+# 企业微信智能办公助手 (wecom-smart-office-companion)
 
-> 企业微信智能办公助手，每日自动汇总日程、会议、待办和团队数据，生成可视化早报卡片
+每日自动汇总个人日程、会议、待办事项和团队智能表格数据，生成结构化早报卡片，帮助管理者快速掌握全天动态。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wecom-smart-office-companion`
-- **Source URL:** [https://clawhub.ai/skills/wecom-smart-office-companion](https://clawhub.ai/skills/wecom-smart-office-companion)
+## 业务场景
 
-## Overview
+企业中高层管理者每天面临信息碎片化问题：日程在企业微信、会议在日历软件、待办分散在各个应用、团队数据在智能表格。信息获取成本高，容易遗漏重要事项。
 
+本 Combo 编排 wecom-schedule、wecom-meeting-query、wecom-get-todo-list、wecom-smartsheet-data、card-renderer 五个 Skill，一次查询全部数据，生成统一的可视化早报。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wecom-smart-office-companion
+## 工作流程
+
+1. **wecom-schedule** 查询今日全部日程（含时间、地点、参与人），分析时间分布
+2. **wecom-meeting-query** 拉取今日所有会议列表，标注已确认/待定的会议
+3. **wecom-get-todo-list** 获取全部待办事项，按优先级和截止时间排序
+4. **wecom-get-todo-detail** 对今日到期的重点待办读取详细内容
+5. **wecom-smartsheet-data** 读取团队关键智能表格（如项目进度、OKR追踪）
+6. **card-renderer** 将以上所有数据渲染成一张知识卡片风格的早报图片
+
+## 核心功能
+
+- 全维度数据聚合：日程 + 会议 + 待办 + 团队数据，一站式汇总
+- 时间冲突检测：自动发现重叠日程，提示调整建议
+- 优先级排序：待办按紧急程度排列，突出今日必做事项
+- 可视化输出：生成精美早报卡片，适合分享到工作群
+- 定时自动执行：配合 cron 每日定时触发，醒来即可查看
+
+## 使用方式
+
+### 手动触发
+当用户说"今天的日程是什么"、"帮我看看待办"、"生成早报"时激活。
+
+### 自动触发（推荐）
+设置 cron 任务，每日 07:30（北京时）自动执行：
 ```
+wecom-smart-office-companion → 自动查询 → 生成早报卡片 → 发送至飞书/企业微信
+```
+
+## 输出示例
+
+```
+📅 今日日程（3项）
+  09:30 产品周会 @会议室A [已确认]
+  14:00 技术方案评审 @线上 [已确认]
+  16:00 一对一辅导 @办公室 [待定]
+
+⚡ 今日待办（5项）
+  🔴 [紧急] 审批Q2预算方案 → 截止 18:00
+  🟡 [重要] 完成项目里程碑报告 → 截止明日
+  🟢 [常规] 更新OKR进度 → 本周内
+
+📊 团队数据速览
+  项目Alpha: 进度 78% | 风险: 无
+  项目Beta:  进度 45% | 风险: 1项延期
+
+🖼️ [早报卡片图片]
+```
+
+## 注意事项
+
+- wecom-preflight 会在首次执行前自动检查配置，无需手动处理
+- 智能表格访问权限取决于企业微信应用的数据权限范围
+- 卡片渲染默认使用 Mac Pro 风格，可通过参数切换赛博朋克/包豪斯风格

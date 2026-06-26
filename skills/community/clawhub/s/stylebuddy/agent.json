@@ -1,0 +1,18 @@
+{
+  "id": "stylebuddy",
+  "name": "StyleBuddy",
+  "version": "0.4.4",
+  "description": "AI 穿搭助手 - 智能衣橱管理与搭配推荐",
+  "author": "OpenClaw",
+  "entry": "main.py",
+  "triggers": [
+    "穿搭",
+    "衣服",
+    "衣橱",
+    "搭配",
+    "今天穿什么",
+    "推荐搭配",
+    "录入衣服",
+    "记录穿搭"
+  ]
+}

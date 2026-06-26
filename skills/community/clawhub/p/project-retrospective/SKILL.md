@@ -1,35 +1,191 @@
 ---
-name: "Project Retrospective"
-description: "自动项目复盘机制。当完成复杂项目后，自动提取最优路径生成skill，并记录踩坑经验到memory。"
-category: "other"
-source: "ClawHub"
-tags: [knowledge-management, learning, meta-skill, retrospective]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/project-retrospective"
-sourceUrl: "https://clawhub.ai/skills/project-retrospective"
+name: project-retrospective
+version: 1.0.0
+description: 自动项目复盘机制。当完成复杂项目后，自动提取最优路径生成skill，并记录踩坑经验到memory。
+author: 小爪 (OpenClaw Community)
+tags: [retrospective, learning, meta-skill, knowledge-management]
 ---
 
-# Project Retrospective
+# 项目自动复盘机制
 
-> 自动项目复盘机制。当完成复杂项目后，自动提取最优路径生成skill，并记录踩坑经验到memory。
+## 1. 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/project-retrospective`
-- **Source URL:** [https://clawhub.ai/skills/project-retrospective](https://clawhub.ai/skills/project-retrospective)
+当完成一个复杂项目的开发后，自动将经验沉淀为可复用的知识。
 
-## Overview
+**核心功能**：
+- 自动识别复盘时机
+- 提取标准化最优路径 → 生成skill
+- 提取踩坑经验 → 记录到memory
 
+## 2. 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/project-retrospective
+满足以下**所有条件**时触发：
+
+### 2.1 时间条件
+- 对同一个项目的对话时长 ≥ 2小时
+- 或消息轮数 ≥ 50轮
+
+### 2.2 复杂度条件
+- 经历了多次尝试和修正
+- 遇到了多个问题和解决方案
+- 涉及多个文件的创建和修改
+
+### 2.3 用户触发
+用户明确表示要总结，例如：
+- "总结一下"
+- "把这个过程和经验总结一下"
+- "复盘一下"
+- "记录下来"
+
+## 3. 执行流程
+
+### 步骤1：确认复盘意图
+当检测到触发条件时，询问用户：
 ```
+检测到你刚完成了一个复杂项目的开发。是否需要我帮你：
+1. 提取标准化流程，生成可复用的skill
+2. 记录踩坑经验到memory
+
+这样下次遇到类似项目时可以直接参考。
+```
+
+### 步骤2：分析对话历史
+- 提取项目目标和背景
+- 识别关键步骤和决策点
+- 找出遇到的问题和解决方案
+- 总结最佳实践
+
+### 步骤3：生成skill文档
+
+**文件位置**：`/root/.openclaw/workspace/skills/<project-name>/SKILL.md`
+
+**内容结构**：
+```markdown
+---
+name: project-name
+description: 简短描述这个skill解决什么问题
+---
+
+# 项目名称
+
+## 1. 概述
+- 适用场景
+- 核心功能
+
+## 2. 核心文件清单
+- 需要创建/修改的文件列表
+
+## 3. 详细步骤
+- 步骤1：...
+- 步骤2：...
+- ...
+
+## 4. 常见问题和解决方案
+- 问题1：...
+- 问题2：...
+
+## 5. 案例分析
+- 实际应用示例
+- 经验教训
+```
+
+### 步骤4：生成memory文档
+
+**文件位置**：`/root/.openclaw/workspace/memory/YYYY-MM-DD-<project-name>-pitfalls.md`
+
+**内容结构**：
+```markdown
+# 项目名称踩坑记录
+
+**日期**：YYYY-MM-DD
+**项目**：项目描述
+
+## 1. 问题1标题
+
+### 问题描述
+详细描述遇到的问题
+
+### 尝试的解决方案
+- ❌ 方案1 - 为什么失败
+- ❌ 方案2 - 为什么失败
+- ✅ 方案3 - 最终成功
+
+### 最终解决方案
+具体的解决步骤
+
+### 经验教训
+从这个问题中学到的经验
+
+---
+
+## 2. 问题2标题
+...
+
+---
+
+## 总结和最佳实践
+- 开发流程建议
+- 文件管理建议
+- 调试技巧
+```
+
+### 步骤5：确认和保存
+- 展示生成的文档路径
+- 询问用户是否需要修改
+- 保存到对应位置
+
+## 4. 使用示例
+
+### 场景：开发FitClaw健身教练Agent
+
+**对话时长**：约3小时
+**消息轮数**：100+轮
+**涉及文件**：10+个
+
+**用户触发**：
+```
+用户："很好，然后小龙虾就先到这一段，然后我交接了。
+然后这个过程中，你要做两个：
+第一个：把做成一只垂直类的这种小龙虾的流程写成一个 skill
+第二个：就是把我们踩过的坑你写在 memory 里面"
+```
+
+**系统响应**：
+1. 创建skill：`vertical-agent-creator`
+2. 创建memory：`2026-03-12-fitclaw-pitfalls.md`
+
+## 5. 注意事项
+
+### 5.1 何时使用
+- ✅ 完成了复杂的多步骤项目
+- ✅ 经历了多次尝试和修正
+- ✅ 积累了可复用的经验
+- ❌ 简单的一次性任务
+- ❌ 没有通用价值的特定操作
+
+### 5.2 文档质量
+- 标准化流程要清晰、可复用
+- 踩坑记录要详细、有价值
+- 包含具体的代码示例和命令
+- 记录失败的尝试和原因
+
+### 5.3 命名规范
+- skill名称：`<domain>-<function>`
+- memory文件：`YYYY-MM-DD-<project>-pitfalls.md`
+
+## 6. 参考案例
+
+### 案例1：FitClaw开发
+- **生成的skill**：`vertical-agent-creator`
+- **生成的memory**：`2026-03-12-fitclaw-pitfalls.md`
+- **价值**：下次创建垂直类Agent时可直接参考
+
+### 案例2：生图功能实现
+- **关键经验**：API key加密、容灾机制
+- **踩坑点**：脚本丢失、路径限制
+- **可复用性**：高（其他需要图片处理的项目都可参考）
+
+---
+
+**使用建议**：每次完成复杂项目后，主动触发复盘机制，持续积累可复用的知识库。
+

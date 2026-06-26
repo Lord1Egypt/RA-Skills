@@ -1,0 +1,26 @@
+{
+  "review_id": "review_abc12345_20260602",
+  "overall_decision": "conditional_pass",
+  "confidence": 0.85,
+  "review_summary": "计划结构合理，N2和N3可并行，技能绑定正确。建议增加失败补偿路径。",
+  "scorecard": {
+    "goal_alignment": 80,
+    "topology_soundness": 90,
+    "skill_binding": 100,
+    "scope_safety": 85,
+    "executability": 90,
+    "efficiency_complexity": 75,
+    "risk_governance": 50
+  },
+  "issues": [
+    {"severity": "minor", "description": "N2和N3无失败补偿路径", "dimension": "risk_governance", "suggestion": "为IT开通和工位安排增加on_failure_route"},
+    {"severity": "info", "description": "N4引用了全局状态employee_info", "dimension": "scope_safety", "suggestion": "改为显式引用N1.employee_info"}
+  ],
+  "suggested_actions": ["为关键节点增加失败补偿路径", "优化scope引用为显式节点引用"],
+  "validation_report": {
+    "schema_valid": true,
+    "dag_valid": true,
+    "skills_bound": true,
+    "scope_valid": true
+  }
+}

@@ -1,35 +1,73 @@
 ---
-name: "ClawPhone Phone Control"
-description: "使用手机控制 MCP 完成手机界面感知与操作。适用于读取当前手机状态、打开 App、处理弹窗、点击控件、输入文本、排查手机自动化失败等场景。执行时优先读取界面状态，涉及坐标点击时必须基于当前截图临时判定，禁止把历史坐标当成通用规则。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawphone-phone-control"
-sourceUrl: "https://clawhub.ai/skills/clawphone-phone-control"
+name: clawphone-phone-control
+description: 使用手机控制 MCP 完成手机界面感知与操作。适用于读取当前手机状态、打开 App、处理弹窗、点击控件、输入文本、排查手机自动化失败等场景。执行时优先读取界面状态，涉及坐标点击时必须基于当前截图临时判定，禁止把历史坐标当成通用规则。
 ---
 
 # ClawPhone Phone Control
 
-> 使用手机控制 MCP 完成手机界面感知与操作。适用于读取当前手机状态、打开 App、处理弹窗、点击控件、输入文本、排查手机自动化失败等场景。执行时优先读取界面状态，涉及坐标点击时必须基于当前截图临时判定，禁止把历史坐标当成通用规则。
+## 快速流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawphone-phone-control`
-- **Source URL:** [https://clawhub.ai/skills/clawphone-phone-control](https://clawhub.ai/skills/clawphone-phone-control)
+1. 先感知，再操作。
+2. 优先用文字/节点能力，坐标点击只在当前截图下临时使用。
+3. 脆弱流程必须一步一验，不要把多步盲打成“理应成功”。
 
-## Overview
+## 感知优先级
 
+1. 先用 `get_screen_info` 判断前台应用、分辨率、可见文字。
+2. 需要精确定位时，再用 `capture_screen`。
+3. 需要找标准控件时，优先 `click_by_text` 或 `find_node`。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawphone-phone-control
-```
+## 操作原则
+
+- 输入前先确认输入框真的已获焦。
+- 启动 App 后先确认前台应用真的切换成功。
+- 若工具返回“已点击”“已启动”“已输入”，仍要以界面复核为准。
+- 发送前先确认文本真的已经进入输入框。
+- 点击发送前先确认发送控件真实可见。
+- 发送后必须再次确认界面已变化，不要仅凭工具返回值认定成功。
+
+## 启动 App
+
+1. 可先调用 `launch_app(...)`。
+2. 立即用 `get_current_app` 或 `get_screen_info` 确认前台应用是否真的切换。
+3. 若仍停留在桌面或其他 App，不要在同一路径上重复盲开。
+4. 先读取当前屏幕状态，再决定是否改用桌面图标点击、通知入口或其他页面内入口。
+
+## 输入兜底
+
+1. 先确认输入框已聚焦。
+2. 优先尝试 `type_text(...)`。
+3. 若 `type_text(...)` 失败，或文本没有真正进入输入框，立即切到兜底链路：
+   - `set_clipboard(...)`
+   - 长按当前截图里的输入区域
+   - 截图确认菜单
+   - 基于当前截图临时点击 `粘贴`
+4. 粘贴后再次确认文本真的进入输入框，再继续后续操作。
+
+## 坐标原则
+
+- 坐标只对应“当前设备、当前页面、当前截图”。
+- 不要把一次成功的坐标写成固定流程。
+- 如果页面一变、键盘弹出、工具栏切换，之前的坐标立即失效，应重新截图。
+
+## 失败排查
+
+按下面顺序定位失败点：
+
+1. 是否在正确页面。
+2. 是否点中了真实控件，而不是附近空白区域。
+3. 输入框是否真的聚焦。
+4. 文字是否真的进入输入框。
+5. 发送按钮是否真的出现且可点击。
+6. 操作后界面是否真的变化。
+7. 某条路径失败后，是否及时切换到更合适的兜底路径，而不是重复试错。
+
+## 微信等脆弱场景
+
+- 聊天发送属于脆弱流程，默认一步一验。
+- `press_enter` 只能作为兜底，不要把它当作“必然发送成功”的主路径。
+- 微信自定义弹窗通常不在无障碍树中，遇到菜单项时应截图后临时取坐标点击。
+
+## 参考
+
+- 需要工具说明时，读 `tools-reference.md`。

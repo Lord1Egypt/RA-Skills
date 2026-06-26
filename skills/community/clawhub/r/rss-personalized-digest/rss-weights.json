@@ -1,0 +1,84 @@
+{
+  "version": "1.1",
+  "last_updated": "2026-04-18",
+  "keywords": {
+    "电商": 1,
+    "淘宝": 2,
+    "阿里巴巴": 2,
+    "Alibaba": 2,
+    "taobao": 1,
+    "京东": 1,
+    "拼多多": 1,
+    "抖音": 1,
+    "美团": 1,
+    "电商平台": 1,
+    "李宁": 3,
+    "安踏": 3,
+    "耐克": 4,
+    "Nike": 4,
+    "阿迪达斯": 4,
+    "Adidas": 4,
+    "斐乐": 3,
+    "FILA": 3,
+    "运动鞋服": 2,
+    "鞋服": 2,
+    "球鞋": 3,
+    "运动鞋": 3,
+    "运动鞋服分销": 2,
+    "微博热搜": 1,
+    "热搜": 1
+  },
+  "base_weights": {
+    "电商": 1,
+    "淘宝": 2,
+    "阿里巴巴": 2,
+    "Alibaba": 2,
+    "taobao": 1,
+    "京东": 1,
+    "拼多多": 1,
+    "抖音": 1,
+    "美团": 1,
+    "电商平台": 1,
+    "李宁": 3,
+    "安踏": 3,
+    "耐克": 3,
+    "Nike": 3,
+    "阿迪达斯": 3,
+    "Adidas": 3,
+    "斐乐": 3,
+    "FILA": 3,
+    "运动鞋服": 2,
+    "鞋服": 2,
+    "球鞋": 1,
+    "运动鞋": 1,
+    "运动鞋服分销": 2,
+    "微博热搜": 1,
+    "热搜": 1
+  },
+  "history": [
+    {
+      "date": "2026-04-18 11:47",
+      "source": "click_test",
+      "url": "https://www.highsnobiety.com/p/nike-air-max-95-fc-obsidian/",
+      "incremented": [
+        "耐克: 3 -> 4",
+        "Nike: 3 -> 4",
+        "球鞋: 1 -> 2",
+        "运动鞋: 1 -> 2"
+      ]
+    },
+    {
+      "date": "2026-04-18 13:46",
+      "source": "click",
+      "url": "https://www.highsnobiety.com/p/adidas-tokyo-mj-snakeskin/",
+      "incremented": [
+        "阿迪达斯: 3 -> 4",
+        "Adidas: 3 -> 4",
+        "球鞋: 2 -> 3",
+        "运动鞋: 2 -> 3"
+      ]
+    }
+  ],
+  "redirect_base": "https://ec850a76c13b9d96-123-234-101-41.serveousercontent.com",
+  "server_url": "http://localhost:7890"
+}

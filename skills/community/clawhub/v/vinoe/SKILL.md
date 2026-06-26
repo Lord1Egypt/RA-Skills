@@ -1,35 +1,117 @@
 ---
-name: "VIN配件 精准译码"
-description: "通过 17 位 VIN 车架号 与 待译码的配件别名列表, 精准解出这些配件的 标准配件编码OE 与 标准配件名称等信息"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vinoe"
-sourceUrl: "https://clawhub.ai/skills/vinoe"
+name: jz-vin-oe
+description: 通过 17 位 VIN 车架号 与 待译码的配件别名列表, 精准解出这些配件的 标准配件编码OE 与 标准配件名称等信息
+metadata: { "openclaw": {  "requires": { "bins": ["python3"], "env": ["JZ_API_KEY"] }, "primaryEnv": "JZ_API_KEY" } }
 ---
 
-# VIN配件 精准译码
+# 积智数据 VIN 精准译码（ VIN+PARTSNAME）
 
-> 通过 17 位 VIN 车架号 与 待译码的配件别名列表, 精准解出这些配件的 标准配件编码OE 与 标准配件名称等信息
+基于 [VIN 精准译码 API] 的 OpenClaw 技能，支持：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vinoe`
-- **Source URL:** [https://clawhub.ai/skills/vinoe](https://clawhub.ai/skills/vinoe)
-
-## Overview
+- **VIN PARTSNAME 精准译码**：通过 17 位 VIN 车架号 与 待译码的配件别名列表, 精准解出这些配件的 标准配件编码OE 与 标准配件名称等信息
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+使用技能前需要申请数据，请联系【积智数据】  MOBILE (+86 13916450206/15821282326) ; EMAIL( juyuan@jikugroup.com/jiangzhihui@jikugroup.com)  获取。
+
+## 后端服务
+本技能依赖 VIN-PARTSNAME 精准译码 服务，接口地址：https://erp.qipeidao.com/jzOpenClaw/getVinOe
+
+## 环境变量配置
+
 ```bash
-hermes skills install clawhub/vinoe
+# Linux / macOS
+export JZ_API_KEY="your_appkey_here"
+
+# Windows PowerShell
+$env:JZ_API_KEY="your_appkey_here"
 ```
+
+## 脚本路径
+
+脚本文件：`skills/vinoe/get_vin_oe.py`
+
+## 使用方式
+
+### 1. 根据 VIN + 询价配件别名列表 精准解析出 询价配件的标准配件编码 与 标准配件名称 信息
+
+```bash
+python3 skills/vinoe/get_vin_oe.py {"vinCode":"LSVAL41Z882104202","partsNameList":["前保险杠皮","中网"]}
+```
+
+```
+##VIN 精准译码 请求参数
+
+| 字段名  | 类型   | 必填 | 说明                                           |
+|--------|--------|------|------------------------------------------------|
+| vin    | string | 是   | 17 位 VIN 车架号                               |
+| partsNames | list | 是   | 配件名称列表，每个元素为一个字符串。 |
+
+示例：
+
+```
+LSVAL41Z882104202  ["前保险杠皮","中网"]
+```
+
+## VIN 查询返回结果示例
+
+脚本直接输出接口 `model` 字段，结构与示例一致（示例简化）：
+
+```json
+ [
+    {
+      "partsOe": "1ZD807221GRU",
+      "aliasName": "前保险杠皮",
+      "stdName": "前保险杠皮",
+      "price4sSales": "1411.00",
+      "price4sNet": "1007.45",
+      "price4sSalesNoTax": "1248.67",
+      "dummy": false,
+      "oeSource": null,
+      "remark": null,
+      "referType": 0,
+      "priceRefer": null,
+      "priceSource": null
+    },
+    {
+      "partsOe": "1ZD8536689B9",
+      "aliasName": "中网",
+      "stdName": "中网",
+      "price4sSales": "378.00",
+      "price4sNet": "292.50",
+      "price4sSalesNoTax": "334.51",
+      "dummy": false,
+      "oeSource": null,
+      "remark": null,
+      "referType": 0,
+      "priceRefer": null,
+      "priceSource": null
+    }
+  ]
+```
+
+当出现错误（如 VIN 不正确或无数据），脚本会输出：
+
+```json
+{
+  "error": "api_error",
+  "state": 202,
+  "msg": "VIN不正确"
+}
+```
+
+
+## 常见错误码
+
+
+| 代号   | 说明      |
+|------|---------|
+| 10001 | 参数错误    |
+| 10004 | VIN 不正确或无数据 |
+
+
+## 在 OpenClaw 中的推荐用法
+
+1. 用户给出车架号和待译码e配件名称列表：「帮我查一下 VIN  `LSVAL41Z882104202` 询价配件： 前保险杠皮 中网 的 标准配件编码与标准名信息」。  
+2. 调用：  
+   `python3 skills/vinoe/get_vin_oe.py LSVAL41Z882104202 '["前保险杠皮","中网"]'`  
+3. 从返回中选取 `partsOe/aliasName/stdName/price4sSales/price4sNet/price4sSalesNoTax` 等字段，给出自然语言总结；

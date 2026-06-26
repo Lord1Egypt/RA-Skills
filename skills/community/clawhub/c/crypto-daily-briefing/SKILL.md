@@ -1,35 +1,107 @@
 ---
-name: "🗞️ Crypto Daily Briefing - 币圈每日简报"
-description: "币圈每日简报生成器。当用户要求"生成简报"、"每日行情"、"币圈新闻"、"crypto briefing"、"行情摘要"时触发。自动搜索最新加密货币资讯，整合 BTC/ETH 行情、重大事件、套利机会，生成结构化简报并推送飞书。"
-category: "blockchain"
-source: "ClawHub"
-tags: [bitcoin, briefing, crypto, daily-report, ethereum, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-daily-briefing"
-sourceUrl: "https://clawhub.ai/skills/crypto-daily-briefing"
+name: crypto-daily-briefing
+description: 币圈每日简报生成器。当用户要求"生成简报"、"每日行情"、"币圈新闻"、"crypto briefing"、"行情摘要"时触发。自动搜索最新加密货币资讯，整合 BTC/ETH 行情、重大事件、套利机会，生成结构化简报并推送飞书。
 ---
 
-# 🗞️ Crypto Daily Briefing - 币圈每日简报
+# 🗞️ 币圈每日简报
 
-> 币圈每日简报生成器。当用户要求"生成简报"、"每日行情"、"币圈新闻"、"crypto briefing"、"行情摘要"时触发。自动搜索最新加密货币资讯，整合 BTC/ETH 行情、重大事件、套利机会，生成结构化简报并推送飞书。
+> 自动生成加密货币市场每日简报 | 交易小强出品
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-daily-briefing`
-- **Source URL:** [https://clawhub.ai/skills/crypto-daily-briefing](https://clawhub.ai/skills/crypto-daily-briefing)
+## 触发条件
 
-## Overview
+用户说以下任何一句时自动触发：
+- "生成简报" / "每日行情" / "币圈新闻"
+- "crypto briefing" / "行情摘要" / "今日币圈"
+- "给我做个简报"
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第一步：搜索最新行情
+
 ```bash
-hermes skills install clawhub/crypto-daily-briefing
+# 搜索 BTC + ETH 今日行情
+miaoda-studio-cli search-summary --query "比特币 BTC 加密市场 今日行情 2026" --output text
+miaoda-studio-cli search-summary --query "以太坊 ETH 最新价格 资金费率 2026" --output text
 ```
+
+### 第二步：搜索重大事件
+
+```bash
+# 搜索今日重大事件（升级/政策/大户动态）
+miaoda-studio-cli search-summary --query "加密货币 重大事件 升级 政策 2026年" --output text
+```
+
+### 第三步：整合生成简报
+
+整合搜索结果，生成以下结构的简报：
+
+```
+🗞️ 币圈每日简报 #序号 | 日期
+
+📊 行情快照
+| 品种 | 价格 | 24h涨跌 | 关键位 |
+[表格数据]
+
+🔥 今日重大事件
+1. [事件标题]
+   [事件摘要]
+
+💰 套利机会评估
+Gate.io ETH 资金费率：[费率]
+评级：【机会/观望/风险】
+
+📌 操作建议
+[简明建议]
+
+🦞 交易小强出品 | 不做投资建议
+```
+
+## 简报模板字段说明
+
+| 字段 | 数据来源 | 说明 |
+|------|----------|------|
+| BTC/ETH 价格 | 搜索结果 | 标注24h涨跌 |
+| 关键位 | 技术分析 | 支撑/阻力位 |
+| 重大事件 | 搜索结果 | 选取3条最重要 |
+| 资金费率 | 搜索 Gate.io 数据 | 评估套利机会 |
+| 操作建议 | 综合分析 | 简明、不模棱两可 |
+
+## 推送方式
+
+如果用户配置了飞书，通过 `message` 工具推送给用户（飞书 open_id: ou_6e5eb6958f65fa5af08c518cd875bf8b）。
+
+## 注意事项
+
+1. **不过度搜索**：最多搜索3次，避免API超时
+2. **时效性优先**：优先选取最近6小时内的新闻
+3. **不编造数据**：价格/费率等数字必须来自搜索结果，没有就说"暂无数据"
+4. **风格简洁**：老板喜欢直接，不废话
+5. **客观评估**：套利机会要诚实，不夸大
+
+## 示例输出
+
+```
+🗞️ 币圈每日简报 #001 | 2026-05-06
+
+📊 行情快照
+- BTC $81,098 (+1.42%) | 阻力 $81,698 / 支撑 $79,800
+- ETH $2,365 (+0.56%) | 阻力 $2,375 / 支撑 $2,345
+
+🔥 今日重大事件
+1. BTC 重返 $81,000，自4月低点累计涨幅 +16%
+2. ETH 第四次冲击 $2,375 阻力失败
+3. Pectra 升级明天上线
+
+💰 套利机会
+Gate ETH 资金费率：+0.0037%/8h
+评级：【机会(普通)】
+
+📌 操作建议
+ETH 回踩 $2,345-2,355 可分批布局多单，止损 $2,310
+
+🦞 交易小强出品
+```
+
+## 版本
+
+- v1.0 — 2026-05-06 — 初始版本

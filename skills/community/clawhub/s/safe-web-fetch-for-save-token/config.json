@@ -1,0 +1,8 @@
+{
+  "allowed_domains": [],
+  "blocked_domains": [],
+  "max_content_size": 10485760,
+  "timeout": 30,
+  "user_agent": "SafeWebFetch/1.0 (Security-First)",
+  "max_redirects": 5
+}

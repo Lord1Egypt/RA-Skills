@@ -1,0 +1,12 @@
+{
+  "name": "jobaudit",
+  "version": "1.0.1",
+  "description": "OpenClaw job cost audit. Signal Loom AI.",
+  "bin": {
+    "jobaudit": "./scripts/jobaudit"
+  },
+  "signalloom": {
+    "api": true,
+    "free_tier": "3 audits/day"
+  }
+}

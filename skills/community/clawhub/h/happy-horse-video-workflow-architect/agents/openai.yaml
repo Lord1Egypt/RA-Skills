@@ -1,0 +1,7 @@
+interface:
+  display_name: "Happy Horse Workflow Architect"
+  short_description: "Turns Happy Horse ideas into workflow plans"
+  default_prompt: "Use $happy-horse-video-workflow-architect to turn my Happy Horse idea into a workflow plan with prompts, variants, and next-step tests."
+
+policy:
+  allow_implicit_invocation: true

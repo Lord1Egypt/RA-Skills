@@ -1,35 +1,33 @@
 ---
-name: "rss-aggregator"
-description: "Indexed by skills.sh from zephyrwang6/myskill"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "zephyrwang6"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/zephyrwang6/myskill/rss-aggregator"
-sourceUrl: "https://skills.sh/zephyrwang6/myskill/rss-aggregator"
+name: rss-aggregator
+description: Aggregates and summarizes recent updates from a predefined list of RSS feeds. Use when the user asks for "recent updates", "what's new", or "RSS updates" within a specific timeframe.
 ---
 
-# rss-aggregator
+# RSS Aggregator
 
-> Indexed by skills.sh from zephyrwang6/myskill
+This skill fetches and aggregates the latest updates from a curated list of RSS feeds defined in `references/feeds.opml`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** zephyrwang6
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/zephyrwang6/myskill/rss-aggregator`
-- **Source URL:** [https://skills.sh/zephyrwang6/myskill/rss-aggregator](https://skills.sh/zephyrwang6/myskill/rss-aggregator)
+## Usage
 
-## Overview
+When the user asks for updates (e.g., "recent updates", "last 3 days", "what's new"), use the `scripts/aggregate.py` script.
 
+### Command
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/zephyrwang6/myskill/rss-aggregator
+uv run --with feedparser scripts/aggregate.py --days <number_of_days>
 ```
+
+If the user doesn't specify a timeframe, default to 3 days.
+
+### Output
+
+The script outputs a list of updates in the following format:
+- Title
+- Author
+- Summary (~500 words, extracted from feed content)
+- Update Time
+- Link
+
+## Configuration
+
+The list of feeds is stored in `references/feeds.opml`.

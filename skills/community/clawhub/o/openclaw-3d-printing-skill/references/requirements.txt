@@ -1,0 +1,9 @@
+# Use Python 3.10-3.12 for the best CadQuery wheel support.
+# On Linux arm64 / Raspberry Pi, prefer micromamba + conda-forge for CadQuery itself.
+# After CadQuery works, install the rest of this file into the same environment.
+cadquery>=2.6.1,<3
+trimesh>=4,<5
+pyrender>=0.1.45,<0.2
+Pillow>=10,<13
+numpy>=1.24,<3
+lxml>=4.9,<7

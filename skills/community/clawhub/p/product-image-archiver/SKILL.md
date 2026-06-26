@@ -1,35 +1,133 @@
 ---
-name: "Product Image Archiver"
+name: product-image-archiver
+slug: product-image-archiver
+version: 1.0.0
 description: "定款商品原图无损下载&规范归档 - 人工触发单款操作，100% 保留原图，侵权风险标注，完整性校验"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-image-archiver"
-sourceUrl: "https://clawhub.ai/skills/product-image-archiver"
+changelog: "v1.0.0 初始版本：原图无损下载、规范归档、风险标注、完整性校验"
+metadata: {"clawdbot":{"emoji":"📁","requires":{"bins":["python3"],"python_deps":["requests","pandas","openpyxl","Pillow"]},"os":["win32"]}}
 ---
 
-# Product Image Archiver
+# 定款商品原图无损下载&规范归档 Skill
 
-> 定款商品原图无损下载&规范归档 - 人工触发单款操作，100% 保留原图，侵权风险标注，完整性校验
+## ⚠️ 重要安全声明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-image-archiver`
-- **Source URL:** [https://clawhub.ai/skills/product-image-archiver](https://clawhub.ai/skills/product-image-archiver)
+**本技能严格遵守以下安全铁律：**
 
-## Overview
+1. **原图无损** - 100% 保留网商园原图，不做任何裁剪、压缩、格式转换
+2. **仅人工触发** - 必须用户手动输入款号和商品链接，禁止批量操作
+3. **侵权标注** - 自动检测风险点，但不删除、不修改任何图片
+4. **规范归档** - 按固定模板分类存储，便于后续管理
+5. **完整性校验** - 自动检测漏图、损坏图，确保无遗漏
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/product-image-archiver
+## 功能概述
+
+### 能力映射（仅人工触发）
+
 ```
+用户输入：款号 + 商品链接（人工提供）
+    ↓
+Step 1: 定向原图无损下载（100% 保留原图）
+    ↓
+Step 2: 规范分类归档（3 个子文件夹）
+    ↓
+Step 3: 侵权风险标注（检测 Logo/肖像/水印）
+    ↓
+Step 4: 文件完整性校验（漏图/损坏图检测）
+    ↓
+Step 5: 生成归档清单（标注风险点）
+    ↓
+输出：规范归档的文件夹 + 《原图素材归档清单》
+```
+
+---
+
+## 归档结构（强制规范）
+
+```
+[款号]_[商品简称]/
+├── 01-网商园原图归档/
+│   ├── 001_original.jpg
+│   ├── 002_original.jpg
+│   └── ...
+├── 02-淘宝上架素材待匹配/
+│   └── (空文件夹)
+└── 03-商品资质档案/
+    ├── 质检报告.pdf
+    └── 原图素材归档清单.xlsx
+```
+
+---
+
+## 核心规则（强制执行）
+
+### 1. 原图无损保护
+
+- ✅ 100% 保留原始分辨率
+- ✅ 100% 保留原始格式
+- ✅ 100% 保留原始文件大小
+- ✅ 不做任何裁剪、压缩、滤镜、格式转换
+
+### 2. 侵权风险检测
+
+| 检测项 | 检测方法 | 标注方式 |
+|--------|----------|----------|
+| 品牌 Logo | 百度 AI Logo 识别 | 《归档清单》标注风险 |
+| 明星肖像 | 百度 AI 人脸检测 | 《归档清单》标注风险 |
+| 违规水印 | 图像分析检测 | 《归档清单》标注风险 |
+
+### 3. 完整性校验
+
+- ✅ 自动统计网页中的图片数量
+- ✅ 对比下载完成的文件数量
+- ✅ 检测文件是否损坏
+- ✅ 漏图自动重新下载
+- ✅ 损坏图自动重新下载
+
+---
+
+## 使用命令
+
+### 单款商品归档（推荐）
+
+```bash
+python scripts/archiver.py archive --款号 KZ20260326 --链接 "https://www.wsy.com/item/12345.html"
+```
+
+---
+
+## 输出物
+
+### 1. 规范归档的文件夹
+
+```
+KZ20260326_春秋立领夹克/
+├── 01-网商园原图归档/
+├── 02-淘宝上架素材待匹配/
+└── 03-商品资质档案/
+```
+
+### 2. 《原图素材归档清单》（Excel）
+
+包含：文件名、原始 URL、文件大小、分辨率、格式、风险检测、完整性
+
+---
+
+## 安全与合规声明
+
+**本技能不会：**
+- ❌ 修改、裁剪、压缩任何图片
+- ❌ 批量下载整个店铺
+- ❌ 自动抓取全站商品
+- ❌ 删除检测出风险的图片
+
+**本技能仅支持：**
+- ✅ 人工输入单个商品链接
+- ✅ 人工确认款号后操作
+- ✅ 100% 保留原图
+- ✅ 自动标注风险
+
+---
+
+*📁 定款商品原图归档 — 无损第一，规范归档，风险标注*

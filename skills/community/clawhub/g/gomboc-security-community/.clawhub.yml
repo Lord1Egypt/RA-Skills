@@ -1,0 +1,37 @@
+name: gomboc-security
+version: 0.2.3
+description: Deterministic code remediation for any codebase - fix security issues with 94%+ accuracy using Gomboc.ai Community Edition
+author: Gomboc AI
+license: MIT
+repository: https://github.com/andrewpetecoleman-cloud/gomboc-security
+homepage: https://www.gomboc.ai
+
+keywords:
+  - remediation
+  - code-quality
+  - security
+  - infrastructure
+  - agents
+  - agentic-coding
+  - deterministic
+
+categories:
+  - code-quality
+  - remediation
+
+# Required environment variables for runtime
+env:
+  GOMBOC_PAT:
+    required: true
+    sensitive: true
+    description: "Gomboc Personal Access Token for API authentication"
+    help: "Generate at https://app.gomboc.ai/settings/tokens (free Community Edition account required)"
+
+# Optional environment variables
+optional_env:
+  GOMBOC_MCP_URL:
+    default: "http://localhost:3100"
+    description: "MCP server URL for agent integration"
+  GOMBOC_POLICY:
+    default: "default"
+    description: "Security policy to apply (e.g., aws-cis, default)"

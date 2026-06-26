@@ -1,0 +1,82 @@
+[
+  {
+    "query": "我下周一要给上海的精品咖啡店 '山茶花咖啡 SHANCHA' 做品牌提案,大概 12 页左右,日式侘寂风,主色米白和深绿。能不能帮我做一份 pitch deck?",
+    "should_trigger": true
+  },
+  {
+    "query": "make me a 10-slide pitch deck for our seed round — we're a B2B AI observability startup called Glassbox, raised $4M from a16z, want cyberpunk-neon or tokyo-night vibe",
+    "should_trigger": true
+  },
+  {
+    "query": "我要去给团队做一场 30 分钟的技术分享,主题是 '我们为什么从 PostgreSQL 换到了 ClickHouse',希望能带演讲者模式 + 逐字稿,大概 15 页",
+    "should_trigger": true
+  },
+  {
+    "query": "做一份 9 张的小红书图文,主题是上海 5 家适合独处办公的咖啡店,白底柔和风,要有地图、推荐理由、营业时间",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm building an internal admin dashboard for our customer support team. I need: left sidebar nav, 4 KPI cards up top (tickets today, resolution rate, avg handle time, CSAT), a line chart of weekly ticket volume in the middle, and a table of the latest 10 tickets at the bottom. Should feel like Linear or Vercel.",
+    "should_trigger": true
+  },
+  {
+    "query": "design a hi-fi landing page for our new product 'Lumen', an AI reading companion. hero section + 3 feature blocks + pricing + footer, brand color is electric indigo",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我做一个产品发布会的 key visual 动效视频,大概 15 秒,要那种 logo morphing + particle burst + 文字 reveal 的感觉",
+    "should_trigger": true
+  },
+  {
+    "query": "我下个季度要做 OKR 评审,内容是 '把开发者首次部署时间从 8 分钟降到 90 秒',能不能帮我做个 6 页的双周报 slides 模板?",
+    "should_trigger": true
+  },
+  {
+    "query": "做一个 SaaS onboarding 的多步骤流原型,3 步:输入公司名 → 邀请团队 → 选择 use case。每步要有空状态、加载态、成功态。我用 React 写,需要可以直接嵌进 storybook。",
+    "should_trigger": true
+  },
+  {
+    "query": "我有一个很乱的 Stripe 风格设计稿,能用你帮我提取品牌色 + 字体,出一份 DESIGN.md 吗?然后基于它做一个 React 落地页",
+    "should_trigger": true
+  },
+  {
+    "query": "from this technical doc (paste below) generate a 6-page product overview PPT, corporate-clean theme, English, for enterprise customers...",
+    "should_trigger": true
+  },
+  {
+    "query": "can you extract the brand colors and font from https://linear.app and save it as a DESIGN.md so I can build a matching landing page?",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to write a Python script that parses CSV files in our downloads folder and produces a summary Excel report. Should run on macOS, no pandas if possible.",
+    "should_trigger": false
+  },
+  {
+    "query": "review this resume for me and tell me what to fix — it's for a senior frontend role, 7 years experience, mostly React and TypeScript",
+    "should_trigger": false
+  },
+  {
+    "query": "set up a Postgres schema for a multi-tenant SaaS — tenants, users, projects, with row-level security. we'll add audit log later.",
+    "should_trigger": false
+  },
+  {
+    "query": "给我们的 AI 客服产品起个英文名,要求:简洁、好念、域名 .ai 还能注册,3-5 个候选",
+    "should_trigger": false
+  },
+  {
+    "query": "write a 1500-word industry analysis on the agentic AI market in 2026 — TAM, key players, growth drivers, risks",
+    "should_trigger": false
+  },
+  {
+    "query": "this React component re-renders too often and freezes the tab. here's the code, can you figure out why and fix it?",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把这份 60 页的 PDF 合同翻译成英文,保持格式和表格不变,周一要给客户签字",
+    "should_trigger": false
+  },
+  {
+    "query": "we need a small internal tool to query our Snowflake data — just a single page where I paste a SQL query and see the results in a table. python flask, no react.",
+    "should_trigger": false
+  }
+]

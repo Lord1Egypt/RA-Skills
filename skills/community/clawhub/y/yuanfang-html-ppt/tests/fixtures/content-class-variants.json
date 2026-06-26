@@ -1,0 +1,48 @@
+{
+  "brand": "测试",
+  "theme": "pitch-deck-vc",
+  "title": "Layout class 元数据测试",
+  "slides": [
+    {
+      "layout": "content",
+      "class": "compact",
+      "kicker": "Compact",
+      "title": "紧凑布局",
+      "points": [
+        "更小的 padding",
+        "更小的 gap",
+        "适合一页 5+ 内容点"
+      ],
+      "notes": "compact 变体：间距压缩"
+    },
+    {
+      "layout": "content",
+      "title": "默认布局（无 class）",
+      "points": [
+        "标准 padding",
+        "标准 gap",
+        "正常密度"
+      ],
+      "notes": "对比组"
+    },
+    {
+      "layout": "data",
+      "class": "grid",
+      "kicker": "Grid variant",
+      "title": "2 列网格",
+      "metrics": [
+        { "label": "M1", "value": "12", "change": "↑" },
+        { "label": "M2", "value": "34", "change": "↑" },
+        { "label": "M3", "value": "56", "change": "↑" },
+        { "label": "M4", "value": "78", "change": "↑" }
+      ],
+      "notes": "2 列网格变体"
+    },
+    {
+      "layout": "cover",
+      "class": "minimal",
+      "title": "极简封面",
+      "notes": "极简封面变体：没有 kicker/subtitle/tags"
+    }
+  ]
+}

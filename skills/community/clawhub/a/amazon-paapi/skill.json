@@ -1,0 +1,11 @@
+{
+  "name": "amazon-paapi",
+  "version": "1.0.0",
+  "description": "Amazon Product Advertising API für Preis-Tracking",
+  "commands": {
+    "ama-api": {
+      "path": "ama-api",
+      "description": "Produktinformationen von Amazon abrufen"
+    }
+  }
+}

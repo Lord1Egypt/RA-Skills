@@ -1,0 +1,22 @@
+{
+  "name": "Cody",
+  "title": "The Railgun Tactician",
+  "color": "#44ffff",
+  "accentColor": "#88ffff",
+  "shape": "diamond",
+  "eyeStyle": "visor",
+  "trailEffect": "electric",
+  "deathEffect": "shatter",
+  "taunt": "Calculated.",
+  "taunts": ["Calculated.", "Precise.", "Too easy.", "Clean shot.", "⚡", "Get good."],
+  "strategy": {
+    "preferredWeapon": "railgun",
+    "aggression": 0.4,
+    "accuracy": 0.75,
+    "speed": 0.85,
+    "retreatThreshold": 0.4,
+    "combatStyle": "sniper",
+    "dodgePattern": "strafe",
+    "pickupPriority": "armor"
+  }
+}

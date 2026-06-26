@@ -1,0 +1,65 @@
+{
+  "skill_name": "car-consult",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "推荐几款15万左右的新能源SUV，主要家用，空间要大，我在无锡",
+      "expected_output": "2-3 款推荐车型，含落地价对比表格，核心优势/缺点清晰",
+      "assertions": [
+        "Output contains at least 2 recommended models",
+        "Output includes a comparison table",
+        "Output mentions model pros and cons",
+        "Output includes an estimated on-road price",
+        "Output includes purchase advice"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "比亚迪海豹EV和特斯拉Model 3怎么选？主要在乎省钱和保值",
+      "expected_output": "从用车成本和保值率两个维度对比两车，给出建议",
+      "assertions": [
+        "Compares both models directly",
+        "Output addresses cost of ownership",
+        "Output addresses resale value",
+        "Recommends one model and explains why",
+        "Does not give absolute statements like 'xxx is definitely better'"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "纯电和混动选哪个？我在无锡没有家充条件",
+      "expected_output": "分析纯电和混动的适用性，考虑无家充的实际情况",
+      "assertions": [
+        "Considers the user's lack of home charging",
+        "Mentions Wuxi-specific factors",
+        "Estimates annual energy cost for both options",
+        "Gives a clear recommendation",
+        "Does not assume user has home charging"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "特斯拉Model Y焕新版落地多少钱？一年养车要花多少？",
+      "expected_output": "最新落地价 + 年度用车成本明细",
+      "assertions": [
+        "Provides current on-road price estimate",
+        "Breaks down annual cost components",
+        "Mentions higher insurance cost for NEV",
+        "Sources pricing claim",
+        "Uses structured running-cost format"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "10万预算想买辆二手新能源车，家庭第一辆车，主要代步",
+      "expected_output": "预算内二手车型推荐 + 淘车注意事项",
+      "assertions": [
+        "Recommends used models within 10万 budget",
+        "Mentions used car search channels",
+        "Discusses battery health as key factor",
+        "Mentions remaining warranty transfer",
+        "Includes used-car-specific purchase advice"
+      ]
+    }
+  ]
+}

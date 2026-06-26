@@ -1,35 +1,108 @@
 ---
-name: "Morning Briefing Generator 晨会简报生成器"
-description: "每日早会简报生成器 — 自动聚合国内外新闻、财经资讯、行业动态，生成结构化早会简报并推送给指定用户。适用于企业高管、创业者、投资者等需要快速掌握每日要闻的场景。支持定时任务自动执行。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/morning-briefing-gen"
-sourceUrl: "https://clawhub.ai/skills/morning-briefing-gen"
+name: daily-briefing
+version: 1.0.0
+description: 每日早会简报生成器 — 自动聚合国内外新闻、财经资讯、行业动态，生成结构化早会简报并推送给指定用户。适用于企业高管、创业者、投资者等需要快速掌握每日要闻的场景。支持定时任务自动执行。
+keywords:
+  - 早会
+  - 简报
+  - 新闻聚合
+  - 日报
+  - 晨会
+  - briefing
+  - daily-news
+metadata:
+  openclaw:
+    emoji: "🌅"
+    requires:
+      bins: []
+      env: []
+    permissions:
+      files:
+        read:
+          - workspace:optional
+        write:
+          - workspace:optional
+      network:
+        - wttr.in:weather-only
+        - api.allorigins.win:cors-proxy
+      commands: []
 ---
 
-# Morning Briefing Generator 晨会简报生成器
+# 🌅 Daily Briefing — 每日早会简报
 
-> 每日早会简报生成器 — 自动聚合国内外新闻、财经资讯、行业动态，生成结构化早会简报并推送给指定用户。适用于企业高管、创业者、投资者等需要快速掌握每日要闻的场景。支持定时任务自动执行。
+自动生成结构化早会简报，支持定时推送。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/morning-briefing-gen`
-- **Source URL:** [https://clawhub.ai/skills/morning-briefing-gen](https://clawhub.ai/skills/morning-briefing-gen)
+## 功能特性
 
-## Overview
+- 📰 **多维度新闻聚合**：国内要闻、国际动态、财经资讯、科技行业、政策新规
+- 🎯 **行动建议**：根据当日要闻生成可执行建议
+- 📁 **文件输出**：Markdown 格式简报保存至 workspace
+- ⏰ **定时任务**：支持 cron 定时生成与推送
+- 🔒 **安全合规**：无外部数据外传，无凭证请求
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/morning-briefing-gen
+### 快速生成今日简报
+
 ```
+生成今日早会简报
+```
+
+### 指定日期
+
+```
+生成 [日期] 的早会简报，格式如 2026-04-12
+```
+
+### 设置每日定时早会
+
+```
+每天早上 8:00 生成早会简报并推送给我
+```
+
+## 输出示例
+
+```markdown
+# 🌅 每日早会简报（2026年4月12日）
+
+## 📢 今日重点资讯
+### 国内重要新闻
+- [新闻标题] [摘要] [来源链接]
+
+### 国际热点事件
+- [...]
+
+### 财经要闻
+- [...]
+
+### 科技行业动态
+- [...]
+
+### 政策新规
+- [...]
+
+## 🎯 今日行动建议
+1. [部门]: [建议内容]
+2. [...]
+```
+
+## 安全说明
+
+- 🔒 **本地处理**：所有数据在本地处理，无外部传输
+- 🔒 **无凭证**：无需 API Key，无凭证请求
+- 🔒 **只读网络**：仅获取天气信息和网页内容
+- 🔒 **可审计**：所有操作记录在 workspace 日志中
+
+## 技术架构
+
+- 纯文本生成，无外部依赖
+- 支持 OpenClaw cron 定时任务
+- 输出为标准 Markdown 格式
+
+## 更新日志
+
+### 1.0.0 (2026-04-13)
+- 初始版本发布
+- 支持国内/国际新闻、财经、科技、政策分类
+- 支持定时任务配置
+- 符合 ClawHub 安全标准

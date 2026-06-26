@@ -1,35 +1,71 @@
 ---
-name: "支付宝账单汇总"
-description: "支付宝账单自动汇总服务，支持周报、月报、年报三种周期。触发词：账单汇总、每周账单、每月账单、年度账单、消费分析、账单报告、账单周报、账单月报。当用户需要定期查看账单汇总、消费分析报告时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alipay-billing-summary"
-sourceUrl: "https://clawhub.ai/skills/alipay-billing-summary"
+name: alipay-billing-summary
+description: 支付宝账单自动汇总服务，支持周报、月报、年报三种周期。触发词：账单汇总、每周账单、每月账单、年度账单、消费分析、账单报告、账单周报、账单月报。当用户需要定期查看账单汇总、消费分析报告时使用此技能。
 ---
 
 # 支付宝账单汇总
 
-> 支付宝账单自动汇总服务，支持周报、月报、年报三种周期。触发词：账单汇总、每周账单、每月账单、年度账单、消费分析、账单报告、账单周报、账单月报。当用户需要定期查看账单汇总、消费分析报告时使用此技能。
+自动生成周、月、年度账单汇总报告，帮助用户了解消费习惯。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alipay-billing-summary`
-- **Source URL:** [https://clawhub.ai/skills/alipay-billing-summary](https://clawhub.ai/skills/alipay-billing-summary)
+## 核心功能
 
-## Overview
+### 周度汇总
+每周一 9:15 自动生成上周账单报告，包含：
+- 消费总额、收入总额
+- 支出分类和笔数（按消费场景分）
+- 用途分类
+- 大额支出（默认>800元）
+- 支付方式汇总（余额宝、花呗、银行卡、信用卡等全部）
+- 同比上上周变化分析
 
+### 月度汇总
+每月1日 9:15 自动生成上月账单报告，包含：
+- 总消费、总收入
+- 支付分类和笔数（按消费场景分）
+- 用途分类
+- 大额支出（默认>800元）
+- 支付方式汇总
+- 同比上上月和去年同月变化分析
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 年度汇总
+每年1月1日 9:15 自动生成去年账单报告，包含：
+- 全年总消费、总支出
+- 大额消费汇总（默认>800元）
+- 月消费汇总
+- 支付方式汇总
+- 同比前一年变化分析
+
+## 用户配置
+
+创建账单汇总任务时，需确认以下参数：
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| 推送时间 | 报告发送时间 | 9:15 |
+| 大额门槛 | 单笔超过此金额标记为大额 | 800元 |
+| 推送周期 | 周/月/年 | 全部开启 |
+
+## 创建任务
+
+使用 OpenClaw cron 创建定时任务：
+
 ```bash
-hermes skills install clawhub/alipay-billing-summary
+# 周度汇总（每周一 9:15）
+openclaw cron add --name "每周账单汇总" --cron "15 9 * * 1" --session isolated --message "帮我生成上周账单汇总报告，包含：消费总额、收入总额、支出分类和笔数（按消费场景分）、用途分类、大额支出（单笔超过800元）、支付方式汇总、同比上上周的变化分析。" --announce --tz Asia/Shanghai
+
+# 月度汇总（每月1日 9:15）
+openclaw cron add --name "每月账单汇总" --cron "15 9 1 * *" --session isolated --message "帮我生成上月账单汇总报告，包含：总消费、总收入、支付分类和笔数、用途分类、大额支出、支付方式汇总、同比上上月和去年同月的变化分析。" --announce --tz Asia/Shanghai
+
+# 年度汇总（每年1月1日 9:15）
+openclaw cron add --name "年度账单汇总" --cron "15 9 1 1 *" --session isolated --message "帮我生成去年年度账单汇总报告，包含：全年总消费、全年总支出、大额消费汇总、月消费汇总、支付方式汇总、同比前一年的变化分析。" --announce --tz Asia/Shanghai
 ```
+
+## 依赖
+
+此技能依赖 `call-alipay-service` 技能查询支付宝账单数据。
+
+## 注意事项
+
+- 账单数据来源于支付宝，需用户已授权
+- 周期为自然周/月/年
+- 大额门槛可根据用户消费水平调整

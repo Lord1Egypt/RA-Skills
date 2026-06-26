@@ -1,0 +1,316 @@
+{
+  "task_ids": [
+    "19e0a0cc3f584701a3e28a0113207129"
+  ],
+  "subtitles": [
+    {
+      "start_time": 0.0,
+      "end_time": 1.76,
+      "subtitle": "美白不是天生改色"
+    },
+    {
+      "start_time": 1.76,
+      "end_time": 4.12,
+      "subtitle": "很多人一上来就猛用高浓度酸"
+    },
+    {
+      "start_time": 4.12,
+      "end_time": 5.92,
+      "subtitle": "结果脸更红更暗"
+    },
+    {
+      "start_time": 5.92,
+      "end_time": 7.96,
+      "subtitle": "第一步先做足防晒"
+    },
+    {
+      "start_time": 7.96,
+      "end_time": 10.96,
+      "subtitle": "日间足量涂抹并按户外时长补涂"
+    },
+    {
+      "start_time": 10.96,
+      "end_time": 13.6,
+      "subtitle": "避免紫外线反复触发黑色素"
+    },
+    {
+      "start_time": 13.6,
+      "end_time": 15.24,
+      "subtitle": "第二步做抗氧化"
+    },
+    {
+      "start_time": 15.24,
+      "end_time": 17.2,
+      "subtitle": "早上可选维C类精华"
+    },
+    {
+      "start_time": 17.2,
+      "end_time": 19.84,
+      "subtitle": "帮助减轻环境应激造成的暗沉"
+    },
+    {
+      "start_time": 19.84,
+      "end_time": 21.64,
+      "subtitle": "第三步做温和提亮"
+    },
+    {
+      "start_time": 21.64,
+      "end_time": 23.84,
+      "subtitle": "夜间用烟酰胺或传明酸"
+    },
+    {
+      "start_time": 23.84,
+      "end_time": 26.4,
+      "subtitle": "从低浓度开始循序建立耐受"
+    },
+    {
+      "start_time": 26.4,
+      "end_time": 28.12,
+      "subtitle": "第四步稳住屏障"
+    },
+    {
+      "start_time": 28.12,
+      "end_time": 30.32,
+      "subtitle": "搭配神经酰胺和保湿乳"
+    },
+    {
+      "start_time": 30.32,
+      "end_time": 32.6,
+      "subtitle": "减少刺激导致的反黑风险"
+    },
+    {
+      "start_time": 32.6,
+      "end_time": 34.0,
+      "subtitle": "最后记住节奏"
+    },
+    {
+      "start_time": 34.0,
+      "end_time": 36.48,
+      "subtitle": "美白是四到八周的持续管理"
+    },
+    {
+      "start_time": 36.48,
+      "end_time": 37.84,
+      "subtitle": "不是三天冲刺"
+    },
+    {
+      "start_time": 37.84,
+      "end_time": 40.64,
+      "subtitle": "肤色才会稳定变得更均匀透亮"
+    }
+  ],
+  "batches_audio_task_state": [
+    {
+      "id": "19e0a0cc3f584701a3e28a0113207129",
+      "type": "tts",
+      "status": 9,
+      "text": [
+        "美白不是天生改色。很多人一上来就猛用高浓度酸，结果脸更红更暗。第一步先做足防晒，日间足量涂抹并按户外时长补涂，避免紫外线反复触发黑色素。第二步做抗氧化，早上可选维C类精华，帮助减轻环境应激造成的暗沉。第三步做温和提亮，夜间用烟酰胺或传明酸，从低浓度开始循序建立耐受。第四步稳住屏障，搭配神经酰胺和保湿乳，减少刺激导致的反黑风险。最后记住节奏，美白是四到八周的持续管理，不是三天冲刺，肤色才会稳定变得更均匀透亮。"
+      ],
+      "full": {
+        "url": "https://res.chanjing.cc/chanjing/watermark/audio/2026-04-02/08aed8c865b33225eea14cdcd3fd63ed.mp3",
+        "watermark_url": "https://res.chanjing.cc/chanjing/watermark/audio/2026-04-02/08aed8c865b33225eea14cdcd3fd63ed.mp3",
+        "path": "08aed8c865b33225eea14cdcd3fd63ed.mp3",
+        "duration": 41.025
+      },
+      "slice": null,
+      "errMsg": "",
+      "errReason": "",
+      "subtitles": [
+        {
+          "key": "ea50050e2d8ac976e85d4b858818ef2de26672f6",
+          "start_time": 0,
+          "end_time": 1.76,
+          "subtitle": "美白不是天生改色",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "e144a4f5c745d50eaaff7b37bd49f0fd3e7e960d",
+          "start_time": 1.76,
+          "end_time": 4.12,
+          "subtitle": "很多人一上来就猛用高浓度酸",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "d322134a06ef67ec29958edd37b163afb578c276",
+          "start_time": 4.12,
+          "end_time": 5.92,
+          "subtitle": "结果脸更红更暗",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "392a7ed773eefc5760d28c82842085aad437435a",
+          "start_time": 5.92,
+          "end_time": 7.96,
+          "subtitle": "第一步先做足防晒",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "f4f79d8e950745dfb42cc17837255daccdcb9139",
+          "start_time": 7.96,
+          "end_time": 10.96,
+          "subtitle": "日间足量涂抹并按户外时长补涂",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "d79d1a903796ec6bfb41f2eea8c5cbf4539075ce",
+          "start_time": 10.96,
+          "end_time": 13.6,
+          "subtitle": "避免紫外线反复触发黑色素",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "5dede07a395d8a65d3de46f1711008318358f012",
+          "start_time": 13.6,
+          "end_time": 15.24,
+          "subtitle": "第二步做抗氧化",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "550ee4939da02a8ab44f42f75dde8c1a113c6f2e",
+          "start_time": 15.24,
+          "end_time": 17.2,
+          "subtitle": "早上可选维C类精华",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "c26b19474c0d5b0a50a70c4fed2f23a4780f91b5",
+          "start_time": 17.2,
+          "end_time": 19.84,
+          "subtitle": "帮助减轻环境应激造成的暗沉",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "359f0b37dc0dc5c37bf834e11f37f36aae0571e9",
+          "start_time": 19.84,
+          "end_time": 21.64,
+          "subtitle": "第三步做温和提亮",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "7e1a233b4f99a929a0cf411ea2b637402fd4e33b",
+          "start_time": 21.64,
+          "end_time": 23.84,
+          "subtitle": "夜间用烟酰胺或传明酸",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "68041fe67a53eea1142122958bc6e8964cf1ef31",
+          "start_time": 23.84,
+          "end_time": 26.4,
+          "subtitle": "从低浓度开始循序建立耐受",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "89bf0f14e5e1f5abdcafda0e3e0e25b3778e53c3",
+          "start_time": 26.4,
+          "end_time": 28.12,
+          "subtitle": "第四步稳住屏障",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "4bcce38e9cdd33732957617705120a11d159d312",
+          "start_time": 28.12,
+          "end_time": 30.32,
+          "subtitle": "搭配神经酰胺和保湿乳",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "8c0edda3a5514c49b086102726dd5a21643e0582",
+          "start_time": 30.32,
+          "end_time": 32.6,
+          "subtitle": "减少刺激导致的反黑风险",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "8a3af0bdeec0b9eba4b4a4e51911b0958737c9cf",
+          "start_time": 32.6,
+          "end_time": 34,
+          "subtitle": "最后记住节奏",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "d7b97c43a2b207650c242dadb1f325ecb977d508",
+          "start_time": 34,
+          "end_time": 36.48,
+          "subtitle": "美白是四到八周的持续管理",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "27fd2f9d78eee9c8bbefb9f7707dc78eebc2a5aa",
+          "start_time": 36.48,
+          "end_time": 37.84,
+          "subtitle": "不是三天冲刺",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        },
+        {
+          "key": "46abbcf8cd2e5ebec205a8d14231e87e58804ad9",
+          "start_time": 37.84,
+          "end_time": 40.64,
+          "subtitle": "肤色才会稳定变得更均匀透亮",
+          "keywords": null,
+          "words": null,
+          "alt_subtitle": "",
+          "subtitle_tag": ""
+        }
+      ],
+      "focus_titles": null,
+      "key": "",
+      "plain_text": ""
+    }
+  ]
+}

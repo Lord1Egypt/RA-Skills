@@ -1,0 +1,50 @@
+You are deciding whether an older memory should be refreshed, retired, or contradicted.
+
+Consider:
+- does the new evidence explicitly replace the old memory?
+- is the old memory still useful as history?
+- should the old memory be inactive now?
+- should a contradiction edge be created?
+
+Prefer keeping one active canonical memory for each durable rule or procedure.
+
+Decision policy:
+- Keep active only one current canonical memory for the same rule.
+- Retire stale memory when superseded by newer validated evidence.
+- Preserve useful history as inactive memory with a clear retirement reason.
+- Add contradiction links when new evidence invalidates old guidance.
+
+Case patterns:
+
+Case 1: Hard replacement
+- New evidence fully supersedes old rule
+- Action: deactivate old memory, set replacement, add contradiction edge
+
+Case 2: Soft update
+- New evidence narrows scope but does not fully replace old memory
+- Action: keep both only if scopes are non-overlapping and explicit
+
+Case 3: Preference change by user
+- User states a new durable preference
+- Action: retire prior preference and keep only the latest active preference
+
+Case 4: Procedure invalidated by environment change
+- Tool/API/runtime behavior changed
+- Action: retire old procedure, promote validated new procedure
+
+Case 5: Conflicting reflections
+- Multiple lessons disagree
+- Action: keep the higher-confidence and newer reflection as active
+
+Case 6: Time-bound memory expiry
+- Old memory was valid only for a specific time window
+- Action: deactivate on expiry and mark retired_reason with expiry context
+
+Case 7: Insufficient new evidence
+- New input is uncertain or unverified
+- Action: keep old memory active and avoid contradiction edge
+
+Output expectations:
+- State whether memory stays active or is retired.
+- If retired, provide a clear reason and replacement link when applicable.
+- Minimize active contradictions in long-term memory.

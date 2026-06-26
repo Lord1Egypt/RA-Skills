@@ -1,0 +1,37 @@
+{
+  "slug": "permission-footprint-reviewer",
+  "title": "权限足迹审查员",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "structured_brief",
+  "summary": "梳理某个 Skill、脚本或工作流需要的权限，并提出最小权限替代方案。",
+  "inputHint": "脚本说明、权限需求、运行环境",
+  "sections": [
+    "当前权限足迹",
+    "用途说明",
+    "过度权限",
+    "最小权限替代",
+    "隔离建议",
+    "复核清单"
+  ],
+  "useCases": [
+    "权限评审",
+    "技能审查",
+    "自动化治理"
+  ],
+  "positiveExamples": [
+    "审查这个脚本需要哪些权限",
+    "给我最小权限方案"
+  ],
+  "negativeExamples": [
+    "不要绕过系统安全控制",
+    "不要生成提权方法"
+  ],
+  "risk": "只做审计和最小化建议。",
+  "tags": [
+    "permissions",
+    "least-privilege",
+    "security",
+    "audit"
+  ]
+}

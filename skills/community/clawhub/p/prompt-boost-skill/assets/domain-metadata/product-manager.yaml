@@ -1,0 +1,28 @@
+domain_name: product-manager
+task_types:
+  - prd-writing
+  - requirement-analysis
+  - feature-design
+  - roadmap-planning
+required_slots:
+  - business_goal
+  - user_group
+  - scenario
+  - output_format
+optional_slots:
+  - boundary
+  - priority
+  - acceptance_criteria
+clarify_templates:
+  - "这个需求主要面向哪类用户？"
+  - "你现在更想要需求分析、PRD，还是功能拆解？"
+  - "这个需求边界有没有你明确不想做的部分？"
+rewrite_template: >
+  请以资深产品经理视角，围绕【{business_goal}】，面向【{user_group}】
+  在【{scenario}】下输出【{output_format}】，包含问题定义、用户价值、方案方向与风险点。
+review_checklist:
+  - 业务目标是否明确
+  - 用户群体是否清晰
+  - 场景是否明确
+  - 输出形式是否说明
+risk_level: low

@@ -1,35 +1,28 @@
----
-name: "Signup Flow CRO"
-description: "Audit and optimize signup flows by mapping, measuring, reducing friction, accelerating access, and activating users for improved conversion rates."
-category: "other"
-source: "ClawHub"
-tags: [conversion, cro]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sw-signup-flow-cro"
-sourceUrl: "https://clawhub.ai/skills/sw-signup-flow-cro"
----
+# Signup Flow CRO Skill
 
-# Signup Flow CRO
+## Trigger
+Audit and optimise signup flows for higher conversion.
 
-> Audit and optimize signup flows by mapping, measuring, reducing friction, accelerating access, and activating users for improved conversion rates.
+**Trigger phrases:** "signup flow", "registration optimisation", "signup conversion", "reduce signup friction"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sw-signup-flow-cro`
-- **Source URL:** [https://clawhub.ai/skills/sw-signup-flow-cro](https://clawhub.ai/skills/sw-signup-flow-cro)
+## Process
 
-## Overview
+1. **Map**: Document every step from CTA click to account created
+2. **Measure**: Identify drop-off at each step
+3. **Reduce**: Eliminate unnecessary steps, defer non-critical fields
+4. **Accelerate**: Social auth, magic links, progressive profiling
+5. **Activate**: Connect signup to first value moment
 
+## Key Principles
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sw-signup-flow-cro
-```
+- Minimum viable signup: email only (or social auth)
+- Defer profile completion to post-signup
+- Progress indicator if >2 steps
+- Pre-fill where possible (social data, URL detection)
+- Email verification: don't block access — send verification in parallel
+- Show value preview before asking for signup
+- "Sign up free" > "Create account" > "Register"
+
+## Output
+
+Redesigned signup flow with: step-by-step wireframe description, field requirements per step, estimated conversion improvement, and implementation notes.

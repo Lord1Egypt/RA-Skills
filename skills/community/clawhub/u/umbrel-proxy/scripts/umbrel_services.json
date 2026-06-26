@@ -1,0 +1,410 @@
+[
+  {
+    "service_name": "plausible_plausible_1",
+    "service_ip": "10.21.0.9",
+    "service_port": "8000",
+    "proxy_name": "plausible_app_proxy_1",
+    "proxy_port": "9092",
+    "app_name": "plausible"
+  },
+  {
+    "service_name": "cloudflared_web_1",
+    "service_ip": "10.21.0.10",
+    "service_port": "3000",
+    "proxy_name": "cloudflared_app_proxy_1",
+    "proxy_port": "4499",
+    "app_name": "cloudflared"
+  },
+  {
+    "service_name": "perplexica_web_1",
+    "service_ip": "10.21.0.50",
+    "service_port": "3000",
+    "proxy_name": "perplexica_app_proxy_1",
+    "proxy_port": "3444",
+    "app_name": "perplexica"
+  },
+  {
+    "service_name": "perplexica_web_1",
+    "service_ip": "10.21.0.50",
+    "service_port": "8080",
+    "proxy_name": "perplexica_app_proxy_1",
+    "proxy_port": "3444",
+    "app_name": "perplexica"
+  },
+  {
+    "service_name": "cloudflared_connector_1",
+    "service_ip": "10.21.0.4",
+    "service_port": "8018",
+    "proxy_name": "cloudflared_app_proxy_1",
+    "proxy_port": "4499",
+    "app_name": "cloudflared"
+  },
+  {
+    "service_name": "bitcoin_app_1",
+    "service_ip": "10.21.21.8",
+    "service_port": "3000",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_app_1",
+    "service_ip": "10.21.21.8",
+    "service_port": "8333",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_app_1",
+    "service_ip": "10.21.21.8",
+    "service_port": "8333",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_i2pd_daemon_1",
+    "service_ip": "10.21.22.11",
+    "service_port": "2827",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_i2pd_daemon_1",
+    "service_ip": "10.21.22.11",
+    "service_port": "4444",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_i2pd_daemon_1",
+    "service_ip": "10.21.22.11",
+    "service_port": "4447",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_i2pd_daemon_1",
+    "service_ip": "10.21.22.11",
+    "service_port": "7070",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_i2pd_daemon_1",
+    "service_ip": "10.21.22.11",
+    "service_port": "7650",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_i2pd_daemon_1",
+    "service_ip": "10.21.22.11",
+    "service_port": "7654",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "bitcoin_i2pd_daemon_1",
+    "service_ip": "10.21.22.11",
+    "service_port": "7656",
+    "proxy_name": "bitcoin_app_proxy_1",
+    "proxy_port": "2100",
+    "app_name": "bitcoin"
+  },
+  {
+    "service_name": "prowlarr_server_1",
+    "service_ip": "10.21.0.25",
+    "service_port": "9696",
+    "proxy_name": "prowlarr_app_proxy_1",
+    "proxy_port": "9696",
+    "app_name": "prowlarr"
+  },
+  {
+    "service_name": "jellyfin_server_1",
+    "service_ip": "10.21.0.16",
+    "service_port": "8096",
+    "proxy_name": "jellyfin_app_proxy_1",
+    "proxy_port": "8096",
+    "app_name": "jellyfin"
+  },
+  {
+    "service_name": "jellyfin_server_1",
+    "service_ip": "10.21.0.16",
+    "service_port": "8920",
+    "proxy_name": "jellyfin_app_proxy_1",
+    "proxy_port": "8096",
+    "app_name": "jellyfin"
+  },
+  {
+    "service_name": "prowlarr_indexer_proxy_1",
+    "service_ip": "10.21.0.20",
+    "service_port": "8192",
+    "proxy_name": "prowlarr_app_proxy_1",
+    "proxy_port": "9696",
+    "app_name": "prowlarr"
+  },
+  {
+    "service_name": "ghost_db_1",
+    "service_ip": "10.21.0.46",
+    "service_port": "3306",
+    "proxy_name": "ghost_app_proxy_1",
+    "proxy_port": "3368",
+    "app_name": "ghost"
+  },
+  {
+    "service_name": "ghost_db_1",
+    "service_ip": "10.21.0.46",
+    "service_port": "33060",
+    "proxy_name": "ghost_app_proxy_1",
+    "proxy_port": "3368",
+    "app_name": "ghost"
+  },
+  {
+    "service_name": "audiobookshelf_web_1",
+    "service_ip": "10.21.0.19",
+    "service_port": "80",
+    "proxy_name": "audiobookshelf_app_proxy_1",
+    "proxy_port": "13378",
+    "app_name": "audiobookshelf"
+  },
+  {
+    "service_name": "ghost_web_1",
+    "service_ip": "10.21.0.51",
+    "service_port": "2368",
+    "proxy_name": "ghost_app_proxy_1",
+    "proxy_port": "3368",
+    "app_name": "ghost"
+  },
+  {
+    "service_name": "sonarr_server_1",
+    "service_ip": "10.21.0.15",
+    "service_port": "8989",
+    "proxy_name": "sonarr_app_proxy_1",
+    "proxy_port": "8989",
+    "app_name": "sonarr"
+  },
+  {
+    "service_name": "big-bear-umbrel-open-webui_big-bear-open-webui_1",
+    "service_ip": "10.21.0.52",
+    "service_port": "8080",
+    "proxy_name": "big-bear-umbrel-open-webui_app_proxy_1",
+    "proxy_port": "10123",
+    "app_name": "openwebui"
+  },
+  {
+    "service_name": "obsidian_server_1",
+    "service_ip": "10.21.0.43",
+    "service_port": "3001",
+    "proxy_name": "obsidian_app_proxy_1",
+    "proxy_port": "3435",
+    "app_name": "obsidian"
+  },
+  {
+    "service_name": "transmission_widget-server_1",
+    "service_ip": "10.21.0.36",
+    "service_port": "80",
+    "proxy_name": "transmission_app_proxy_1",
+    "proxy_port": "9091",
+    "app_name": "transmission"
+  },
+  {
+    "service_name": "plausible_plausible_events_db_1",
+    "service_ip": "10.21.0.49",
+    "service_port": "8123",
+    "proxy_name": "plausible_app_proxy_1",
+    "proxy_port": "9092",
+    "app_name": "plausible"
+  },
+  {
+    "service_name": "plausible_plausible_events_db_1",
+    "service_ip": "10.21.0.49",
+    "service_port": "9000",
+    "proxy_name": "plausible_app_proxy_1",
+    "proxy_port": "9092",
+    "app_name": "plausible"
+  },
+  {
+    "service_name": "plausible_plausible_events_db_1",
+    "service_ip": "10.21.0.49",
+    "service_port": "9009",
+    "proxy_name": "plausible_app_proxy_1",
+    "proxy_port": "9092",
+    "app_name": "plausible"
+  },
+  {
+    "service_name": "searxng_web_1",
+    "service_ip": "10.21.0.24",
+    "service_port": "8080",
+    "proxy_name": "searxng_app_proxy_1",
+    "proxy_port": "8182",
+    "app_name": "searxng"
+  },
+  {
+    "service_name": "transmission_server_1",
+    "service_ip": "10.21.0.39",
+    "service_port": "9091",
+    "proxy_name": "transmission_app_proxy_1",
+    "proxy_port": "9091",
+    "app_name": "transmission"
+  },
+  {
+    "service_name": "transmission_server_1",
+    "service_ip": "10.21.0.39",
+    "service_port": "51413",
+    "proxy_name": "transmission_app_proxy_1",
+    "proxy_port": "9091",
+    "app_name": "transmission"
+  },
+  {
+    "service_name": "transmission_server_1",
+    "service_ip": "10.21.0.39",
+    "service_port": "51413",
+    "proxy_name": "transmission_app_proxy_1",
+    "proxy_port": "9091",
+    "app_name": "transmission"
+  },
+  {
+    "service_name": "element_web_1",
+    "service_ip": "10.21.0.41",
+    "service_port": "8080",
+    "proxy_name": "element_app_proxy_1",
+    "proxy_port": "8088",
+    "app_name": "element"
+  },
+  {
+    "service_name": "plausible_plausible_db_1",
+    "service_ip": "10.21.0.34",
+    "service_port": "5432",
+    "proxy_name": "plausible_app_proxy_1",
+    "proxy_port": "9092",
+    "app_name": "plausible"
+  },
+  {
+    "service_name": "syncthing_server_1",
+    "service_ip": "10.21.0.2",
+    "service_port": "8384",
+    "proxy_name": "syncthing_app_proxy_1",
+    "proxy_port": "8384",
+    "app_name": "syncthing"
+  },
+  {
+    "service_name": "syncthing_server_1",
+    "service_ip": "10.21.0.2",
+    "service_port": "22000",
+    "proxy_name": "syncthing_app_proxy_1",
+    "proxy_port": "8384",
+    "app_name": "syncthing"
+  },
+  {
+    "service_name": "syncthing_server_1",
+    "service_ip": "10.21.0.2",
+    "service_port": "22000",
+    "proxy_name": "syncthing_app_proxy_1",
+    "proxy_port": "8384",
+    "app_name": "syncthing"
+  },
+  {
+    "service_name": "jellyseerr_server_1",
+    "service_ip": "10.21.0.27",
+    "service_port": "5055",
+    "proxy_name": "jellyseerr_app_proxy_1",
+    "proxy_port": "5056",
+    "app_name": "jellyseerr"
+  },
+  {
+    "service_name": "ntfy_app_1",
+    "service_ip": "10.21.0.48",
+    "service_port": "80",
+    "proxy_name": "ntfy_app_proxy_1",
+    "proxy_port": "13119",
+    "app_name": "ntfy"
+  },
+  {
+    "service_name": "synapse_server_1",
+    "service_ip": "10.21.0.37",
+    "service_port": "8008",
+    "proxy_name": "synapse_app_proxy_1",
+    "proxy_port": "8008",
+    "app_name": "synapse"
+  },
+  {
+    "service_name": "synapse_server_1",
+    "service_ip": "10.21.0.37",
+    "service_port": "8448",
+    "proxy_name": "synapse_app_proxy_1",
+    "proxy_port": "8008",
+    "app_name": "synapse"
+  },
+  {
+    "service_name": "synapse_server_1",
+    "service_ip": "10.21.0.37",
+    "service_port": "19090",
+    "proxy_name": "synapse_app_proxy_1",
+    "proxy_port": "8008",
+    "app_name": "synapse"
+  },
+  {
+    "service_name": "radarr_server_1",
+    "service_ip": "10.21.0.30",
+    "service_port": "7878",
+    "proxy_name": "radarr_app_proxy_1",
+    "proxy_port": "7878",
+    "app_name": "radarr"
+  },
+  {
+    "service_name": "calibre-web_server_1",
+    "service_ip": "10.21.0.31",
+    "service_port": "8083",
+    "proxy_name": "calibre-web_app_proxy_1",
+    "proxy_port": "8098",
+    "app_name": "calibre-web"
+  },
+  {
+    "service_name": "bazarr_server_1",
+    "service_ip": "10.21.0.29",
+    "service_port": "6767",
+    "proxy_name": "bazarr_app_proxy_1",
+    "proxy_port": "6767",
+    "app_name": "bazarr"
+  },
+  {
+    "service_name": "n8n_server_1",
+    "service_ip": "10.21.0.11",
+    "service_port": "5678",
+    "proxy_name": "n8n_app_proxy_1",
+    "proxy_port": "5678",
+    "app_name": "n8n"
+  },
+  {
+    "service_name": "samba_server_1",
+    "service_ip": "10.21.0.7",
+    "service_port": "139",
+    "proxy_name": "samba_app_proxy_1",
+    "proxy_port": "9445",
+    "app_name": "samba"
+  },
+  {
+    "service_name": "samba_server_1",
+    "service_ip": "10.21.0.7",
+    "service_port": "445",
+    "proxy_name": "samba_app_proxy_1",
+    "proxy_port": "9445",
+    "app_name": "samba"
+  },
+  {
+    "service_name": "samba_server_1",
+    "service_ip": "10.21.0.7",
+    "service_port": "445",
+    "proxy_name": "samba_app_proxy_1",
+    "proxy_port": "9445",
+    "app_name": "samba"
+  }
+]

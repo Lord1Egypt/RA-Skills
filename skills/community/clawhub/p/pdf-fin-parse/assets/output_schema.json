@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "pdf-finance-parser output",
+  "type": "object",
+  "required": ["doc_id", "pages", "blocks", "tables"],
+  "properties": {
+    "doc_id": { "type": "string" },
+    "source_file": { "type": "string" },
+    "pages": { "type": "integer", "minimum": 1 },
+    "language": { "type": "string", "enum": ["zh", "en", "mixed"] },
+
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "text", "source_page", "source_bbox"],
+        "properties": {
+          "type": { "type": "string", "enum": ["heading", "paragraph", "figure_caption"] },
+          "level": { "type": ["integer", "null"], "minimum": 1, "maximum": 6 },
+          "text": { "type": "string" },
+          "source_page": { "type": "integer", "minimum": 1 },
+          "source_bbox": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 4, "maxItems": 4
+          }
+        }
+      }
+    },
+
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["table_id", "n_rows", "n_cols", "cells", "source_page"],
+        "properties": {
+          "table_id": { "type": "string" },
+          "caption": { "type": "string" },
+          "n_rows": { "type": "integer", "minimum": 1 },
+          "n_cols": { "type": "integer", "minimum": 1 },
+          "engine": { "type": "string", "enum": ["rules", "vlm-normal", "vlm-detail", "vlm-ark", "vlm-openai", "vlm-dashscope", "vlm-ollama"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "source_page": { "type": "integer", "minimum": 1 },
+          "source_bbox": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 4, "maxItems": 4
+          },
+          "cells": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["row", "col", "text"],
+              "properties": {
+                "row": { "type": "integer", "minimum": 0 },
+                "col": { "type": "integer", "minimum": 0 },
+                "rowspan": { "type": "integer", "minimum": 1 },
+                "colspan": { "type": "integer", "minimum": 1 },
+                "text": { "type": "string" },
+                "value": { "type": ["number", "null"] },
+                "unit": { "type": ["string", "null"] },
+                "_raw": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

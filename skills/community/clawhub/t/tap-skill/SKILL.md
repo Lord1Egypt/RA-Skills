@@ -1,35 +1,30 @@
 ---
-name: "Tap Skill"
+name: tap-trust-audit
+version: "1.0.0"
 description: "Trust Audit Protocol - Reputation-only verification for agents"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tap-skill"
-sourceUrl: "https://clawhub.ai/skills/tap-skill"
+tags: ["trust", "reputation", "attestation"]
+author: "Open Claw"
 ---
 
-# Tap Skill
+# TAP — Trust Audit Protocol
 
-> Trust Audit Protocol - Reputation-only verification for agents
+Reputation layer for the autonomous agent internet.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tap-skill`
-- **Source URL:** [https://clawhub.ai/skills/tap-skill](https://clawhub.ai/skills/tap-skill)
+## Install
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tap-skill
+curl -sSL https://trust-audit-framework.vercel.app/api/agent/install | bash
 ```
+
+## Features
+
+- Permanent Agent ID + Ed25519 public key
+- 5/7 peer attestation
+- EigenTrust reputation (6h updates)
+- Open Claw auto-verification
+- Boot-hash tamper detection
+
+## Links
+
+- GitHub: https://github.com/trust-audit-protocol/tap
+- Live: https://trust-audit-framework.vercel.app

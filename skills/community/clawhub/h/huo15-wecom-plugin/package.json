@@ -1,0 +1,79 @@
+{
+  "name": "@huo15/wecom",
+  "version": "2.9.5",
+  "description": "OpenClaw 企业微信（WeCom）插件 v2.9.0 — 动态 agent 派生补全（每个企微群/DM 独立 workspace 与 agentDir）。v2.8.x 起 dynamic-agent.ts 已派生 agentId 但只写 cfg.agents.list 的 {id}（不写 workspace/agentDir 也不写 cfg.bindings），OpenClaw 核心 routing 找不到 binding → 全部消息 fallback 回 main 共用 ~/.openclaw/workspace。v2.9.0 修：(1) ensureDynamicAgentListed 升级签名 {agentId, chatType, peerId, accountId, runtime}，写完整 entry { id, workspace, agentDir } + 路由 binding { agentId, match: { channel, accountId, peer } }；(2) 加 channels.wecom.dynamicAgents.workspaceTemplate/agentDirTemplate 模板（默认 ~/.openclaw/workspace-{agentId} 与 ~/.openclaw/agents/{agentId}/agent，与 OpenClaw 核心 feishu 内置 channel 对齐），支持 {agentId} {userId} {accountId} {peerId} {chatType} 占位符；(3) 加 maxAgents 上限（默认 100）防 cfg 无限膨胀；(4) enabled 默认翻 true（之前 false 导致 90% 用户没启用）；(5) 自动 mkdir workspace/agentDir；(6) 旧 entry 只有 {id} 时迁移补 workspace/agentDir/binding。继承 v2.8.32 markdown msgtype 修复。",
+  "license": "ISC",
+  "author": "YanHaidao (VX: YanHaidao)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YanHaidao/wecom.git"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@wecom/aibot-node-sdk": "^1.0.0",
+    "fast-xml-parser": "5.3.4",
+    "undici": "^7.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.8"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "release": "bash scripts/release.sh",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "build": "tsc && cp package.json dist/ && cp openclaw.plugin.json dist/ 2>/dev/null || true"
+  },
+  "peerDependencies": {
+    "openclaw": "^2026.3.23-2"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.3.23"
+    },
+    "build": {
+      "openclawVersion": "2026.4.27"
+    },
+    "channel": {
+      "id": "wecom",
+      "label": "WeCom (企业微信)",
+      "selectionLabel": "WeCom (企业微信)",
+      "detailLabel": "WeCom (企业微信)",
+      "docsPath": "/channels/wecom",
+      "docsLabel": "企业微信",
+      "blurb": "企业微信官方推荐三方插件，默认 Bot WS 配置简单，支持主动发消息与 Agent 全能力。",
+      "aliases": [
+        "wechatwork",
+        "wework",
+        "qywx",
+        "企微",
+        "企业微信"
+      ],
+      "order": 85
+    },
+    "install": {
+      "npmSpec": "@huo15/wecom",
+      "localPath": "extensions/wecom",
+      "defaultChoice": "npm"
+    }
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "src/**/*",
+    "scripts/**/*",
+    "templates/**/*",
+    "dist/**/*",
+    "README.md",
+    "SKILL.md",
+    "LICENSE"
+  ]
+}

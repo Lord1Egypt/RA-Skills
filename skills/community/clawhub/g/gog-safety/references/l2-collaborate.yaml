@@ -1,0 +1,263 @@
+# Safety Profile: L2 — Draft & Collaborate
+#
+# Philosophy: Everything in L1, PLUS collaborative actions within shared workspaces.
+# Comment on docs, RSVP to events, run scripts — but NO direct messaging.
+#
+# Key principle: you can participate in shared work (comments, calendar responses),
+# but you cannot initiate direct communication (email send, chat send).
+
+gmail:
+  search: true
+  get: true
+  messages: true
+  attachment: true
+  url: true
+  history: true
+  thread:
+    get: true
+    modify: true
+    attachments: true
+  labels:
+    list: true
+    get: true
+    create: true
+    modify: true
+    delete: true
+  batch:
+    modify: true
+    delete: false            # Permanent delete — L4 only
+  send: false                # OUTBOUND — blocked (direct messaging)
+  track: false
+  drafts:
+    list: true
+    get: true
+    create: true
+    update: true
+    delete: true
+    send: false              # OUTBOUND — blocked (direct messaging)
+  settings:
+    filters: true            # Inbox organization
+    vacation: true           # L2 — OOO/vacation allowed
+    sendas: false            # L3+ only
+    delegates: false         # L4 only
+    forwarding: false        # L4 only
+    autoforward: false       # L4 only
+    watch: false             # L4 only
+  # Legacy aliases (hidden from help but still parsed)
+  watch: false
+  autoforward: false
+  delegates: false
+  filters: true
+  forwarding: false
+  sendas: false
+  vacation: true
+
+calendar:
+  calendars: true
+  acl: true
+  events: true
+  event: true
+  create: true
+  update: true
+  delete: true
+  freebusy: true
+  respond: true              # L2 — RSVP allowed (collaborative)
+  propose-time: true         # L2 — propose time allowed (collaborative)
+  colors: true
+  conflicts: true
+  search: true
+  time: true
+  users: true
+  team: true
+  focus-time: true
+  out-of-office: true
+  working-location: true
+
+drive:
+  ls: true
+  search: true
+  get: true
+  download: true
+  upload: true
+  mkdir: true
+  copy: true
+  delete: true
+  move: true
+  rename: true
+  share: true
+  unshare: true
+  permissions: true
+  url: true
+  drives: true
+  comments:
+    list: true
+    get: true
+    create: true             # L2 — comments allowed (collaborative)
+    update: true
+    delete: true
+    reply: true              # L2 — replies allowed (collaborative)
+
+contacts:
+  search: true
+  list: true
+  get: true
+  create: true
+  update: true
+  delete: true
+  directory:
+    list: true
+    search: true
+  other:
+    list: true
+    search: true
+    delete: true
+
+tasks:
+  lists:
+    list: true
+    create: true
+  list: true
+  get: true
+  add: true
+  update: true
+  done: true
+  undo: true
+  delete: true
+  clear: true
+
+docs:
+  export: true
+  info: true
+  cat: true
+  list-tabs: true
+  create: true
+  copy: true
+  write: true
+  insert: true
+  delete: true
+  find-replace: true
+  update: true
+  edit: true
+  sed: true
+  clear: true
+  structure: true
+  comments:
+    list: true
+    get: true
+    add: true                # L2 — comments allowed (collaborative)
+    reply: true              # L2 — replies allowed
+    resolve: true
+    delete: true
+
+sheets:
+  get: true
+  metadata: true
+  notes: true
+  export: true
+  update: true
+  append: true
+  insert: true
+  clear: true
+  format: true
+  create: true
+  copy: true
+
+slides:
+  export: true
+  info: true
+  list-slides: true
+  read-slide: true
+  create: true
+  create-from-markdown: true
+  copy: true
+  add-slide: true
+  delete-slide: true
+  update-notes: true
+  replace-slide: true
+
+chat:
+  spaces:
+    list: true
+    find: true
+    create: false            # OUTBOUND — creates shared space
+  messages:
+    list: true
+    send: false              # OUTBOUND — sends message
+  threads:
+    list: true
+  dm:
+    send: false              # OUTBOUND — sends DM
+    space: false             # OUTBOUND — creates DM channel
+
+forms:
+  get: true
+  create: true
+  responses:
+    list: true
+    get: true
+
+appscript:
+  get: true
+  content: true
+  run: true                  # L2 — script execution allowed
+  create: true
+
+classroom: true              # L2 — collaborative classroom actions allowed
+
+people:
+  me: true
+  get: true
+  search: true
+  relations: true
+
+groups:
+  list: true
+  members: true
+
+keep:
+  list: true
+  get: true
+  search: true
+  attachment: true
+
+aliases:
+  send: false                # OUTBOUND
+  ls: true
+  search: true
+  open: true
+  download: true
+  upload: true
+  login: true
+  logout: true
+  status: true
+  me: true
+  whoami: true
+
+auth:
+  credentials:
+    set: true
+    list: true
+  add: true
+  services: true
+  list: true
+  alias:
+    list: true
+    set: true
+    unset: true
+  status: true
+  keyring: true
+  remove: true
+  tokens:
+    list: true
+    delete: true
+    export: true
+    import: true
+  manage: true
+  service-account:
+    set: true
+    unset: true
+    status: true
+  keep: true
+
+config: true
+time: true

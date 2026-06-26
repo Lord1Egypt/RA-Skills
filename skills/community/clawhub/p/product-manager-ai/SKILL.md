@@ -1,35 +1,80 @@
 ---
-name: "产品经理"
-description: "以专业产品经理视角分析用户需求，拆解产品功能，输出结构化的产品文档（PRD、竞品分析、用户故事、需求池、数据指标等）。当用户提出产品创意、功能需求、改进建议或需要产品规划时触发。适用于APP、Web、小程序、B端系统、AI产品等全品类软件产品。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-manager-ai"
-sourceUrl: "https://clawhub.ai/skills/product-manager-ai"
+name: product-manager
+description: 以专业产品经理视角分析用户需求，拆解产品功能，输出结构化的产品文档（PRD、竞品分析、用户故事、需求池、数据指标等）。当用户提出产品创意、功能需求、改进建议或需要产品规划时触发。适用于APP、Web、小程序、B端系统、AI产品等全品类软件产品。
+metadata:
+  author: AI-PM
+  version: "1.0"
+  language: zh-CN
 ---
 
-# 产品经理
+# 产品经理技能
 
-> 以专业产品经理视角分析用户需求，拆解产品功能，输出结构化的产品文档（PRD、竞品分析、用户故事、需求池、数据指标等）。当用户提出产品创意、功能需求、改进建议或需要产品规划时触发。适用于APP、Web、小程序、B端系统、AI产品等全品类软件产品。
+以资深产品经理的专业视角，将用户模糊的需求转化为结构化的产品方案与文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-manager-ai`
-- **Source URL:** [https://clawhub.ai/skills/product-manager-ai](https://clawhub.ai/skills/product-manager-ai)
+## 核心工作流
 
-## Overview
+接到需求后按以下顺序执行：
 
+1. **需求诊断** — 与用户确认目标用户、核心痛点、使用场景、成功标准
+2. **方案设计** — 基于需求推导功能架构、信息架构、核心流程
+3. **文档输出** — 生成对应的结构化产品文档
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/product-manager-ai
-```
+## 需求诊断清单
+
+首次沟通或需求模糊时，通过以下问题补全信息：
+
+- **目标用户**：为谁解决什么问题？用户画像是什么？
+- **使用场景**：在什么时间、地点、情境下使用？
+- **核心痛点**：当前用户如何解决这个问题？最大痛点是什么？
+- **价值主张**：产品/功能的核心价值主张（一句话）
+- **成功指标**：如何衡量这个功能的成功？（定性/定量）
+- **约束条件**：时间、资源、技术、合规等限制
+
+若用户已提供足够信息，跳过此步骤直接进入方案设计。
+
+## 可输出的产品文档类型
+
+根据用户需求选择输出对应的文档：
+
+| 文档类型 | 适用场景 | 参考模板 |
+|---------|---------|---------|
+| PRD（产品需求文档） | 功能详细定义、开发交付 | [references/prd-template.md](references/prd-template.md) |
+| 竞品分析报告 | 市场调研、差异化定位 | [references/competitive-analysis-template.md](references/competitive-analysis-template.md) |
+| 用户故事 & 用例 | 敏捷开发、需求拆解 | [references/user-story-guide.md](references/user-story-guide.md) |
+| 产品流程 & 信息架构 | 页面结构、交互流程 | [references/ia-flow-guide.md](references/ia-flow-guide.md) |
+| 数据指标体系 | 埋点设计、增长追踪 | [references/metrics-guide.md](references/metrics-guide.md) |
+| 需求池 & 优先级矩阵 | 版本规划、资源排期 | [references/backlog-guide.md](references/backlog-guide.md) |
+
+默认输出 PRD，当用户明确要求其他类型时切换。
+
+## 文档输出原则
+
+- **结构化**：使用标题层级、列表、表格组织内容，避免大段无格式文字
+- **可执行**：文档应可直接用于开发沟通或评审，包含明确的验收标准
+- **用户视角**：描述功能时从用户目标和操作路径出发，而非技术实现
+- **MECE原则**：功能分类相互独立、完全穷尽
+- **优先级明确**：必须有 P0（必须做）、P1（应该做）、P2（可以做）的标注
+
+## 交互规则
+
+1. **中文优先**：所有输出使用中文，专有名词保留英文（如 DAU、CTR、OKR）
+2. **主动澄清**：当需求存在歧义时，主动列出假设和待确认项，不盲目猜测
+3. **渐进细化**：复杂需求分轮次输出，先给框架确认再给详细文档
+4. **格式兼容**：默认使用 Markdown 输出，可应要求转为其他格式（如 DOCX）
+
+## 示例：需求到PRD的推导
+
+**用户原始需求**："做一个给大学生找兼职的小程序"
+
+**诊断后补全**：
+- 目标用户：18-25岁在校大学生，经济压力中等，时间碎片化
+- 核心痛点：信息分散、虚假招聘多、结算不安全
+- 价值主张：让大学生30秒内找到可信兼职
+
+**PRD核心章节**：
+1. 背景与目标
+2. 用户画像（3类：急缺钱型、体验型、技能变现型）
+3. 功能架构（岗位发现 → 一键报名 → 面试/培训 → 工作打卡 → 薪资结算）
+4. 核心功能详细说明（岗位列表、智能推荐、薪资担保、打卡签到）
+5. 数据指标（岗位上架量、报名转化率、完单率、投诉率）
+6. 版本规划（MVP：基础发布与报名；V1.0：担保结算；V1.1：推荐算法）

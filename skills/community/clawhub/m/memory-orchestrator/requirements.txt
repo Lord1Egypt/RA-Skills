@@ -1,0 +1,24 @@
+# Memory Orchestrator 依赖
+# 核心库
+faiss-cpu>=1.7.4
+sentence-transformers>=2.2.2
+torch>=2.0.0
+transformers>=4.30.0
+
+# 多模态
+clip @ git+https://github.com/openai/CLIP.git
+whisper>=1.1.10
+
+# 知识图谱
+networkx>=3.1
+pyvis>=0.3.2
+
+# 情感分析
+torch>=2.0.0
+transformers>=4.30.0
+
+# 其他
+openpyxl>=3.1.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0

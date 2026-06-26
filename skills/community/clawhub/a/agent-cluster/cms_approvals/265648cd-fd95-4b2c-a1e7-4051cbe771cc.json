@@ -1,0 +1,21 @@
+{
+  "approval_id": "265648cd-fd95-4b2c-a1e7-4051cbe771cc",
+  "plan_id": "3130eaf2-516d-42fb-8425-9dba4b2c1354",
+  "risk_level": "medium",
+  "agent_id": "test_01",
+  "agent_role": "content_creator",
+  "status": "pending",
+  "tier": "agent_self",
+  "approver": "",
+  "reason": "",
+  "created_at": "2026-04-14T16:06:18.394985+00:00",
+  "expires_at": "2026-04-14T16:16:18.394959+00:00",
+  "history": [
+    {
+      "action": "submit",
+      "actor": "test_01",
+      "note": "Risk: medium, Tier: agent_self",
+      "timestamp": "2026-04-14T16:06:18.394992+00:00"
+    }
+  ]
+}

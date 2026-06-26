@@ -1,0 +1,67 @@
+{
+  "domain": "交易域",
+  "level": "L3",
+  "generated_at": "2026-05-08",
+  "source_file": "trade.md",
+  "includes_L2": true,
+  "exception_patterns": [
+    {"pattern": "重复委托", "trigger": "用户快速双击/网络重传", "handling": "clientOrderId幂等键去重，后端返回首次结果"},
+    {"pattern": "撤单与成交竞态", "trigger": "撤单请求与成交回报同时到达", "handling": "数据库行锁+状态版本号，以交易所回报为准"},
+    {"pattern": "超时无回报", "trigger": "网络抖动/交易所过载，3s超时", "handling": "查询后决定重发或标记异常"},
+    {"pattern": "资金冻结与委托不一致", "trigger": "冻结成功但委托发送失败", "handling": "对账检测，自动解冻孤立冻结"},
+    {"pattern": "批量委托部分失败", "trigger": "批量接口中部分风控不通过", "handling": "返回明细结果，不回滚成功笔"},
+    {"pattern": "市价单滑点过大", "trigger": "市场剧烈波动", "handling": "最优五档即时成交剩余撤销保护机制"},
+    {"pattern": "条件单批量触发", "trigger": "多个条件单同时满足", "handling": "资金校验串行化处理，防止超额委托"},
+    {"pattern": "夜市委托标的停牌", "trigger": "夜间提交后次日标的停牌", "handling": "开盘前批量处理时校验标的状态，停牌标的标记废单"},
+    {"pattern": "融券标的停牌", "trigger": "融券卖出后标的停牌无法买券还券", "handling": "停牌期间融券负债处理和到期展期机制"},
+    {"pattern": "极端行情强平失败", "trigger": "连续跌停导致无法平仓", "handling": "计算风险敞口，升级处理，等待可交易时执行"},
+    {"pattern": "行情乱序", "trigger": "UDP组播行情包乱序到达", "handling": "行情序号检测和乱序重排机制"},
+    {"pattern": "极速通道故障", "trigger": "极速通道不可用", "handling": "故障检测+自动切换至普通通道，切换延迟<100ms"}
+  ],
+  "intermediate_state_handling": [
+    {"state": "撤单中(PendingCancel)", "max_duration": "30s", "timeout_action": "主动查询委托状态并更新，若仍挂单则重新发送撤单"},
+    {"state": "已暂存(Stored)-夜市", "max_duration": "数小时(17:00至次日9:15)", "timeout_action": "持久化存储，预冻结资金，支持断点续传"},
+    {"state": "待报(PendingSubmit)-夜市", "max_duration": "9:10-9:15批量处理窗口", "timeout_action": "批量发送，单笔失败不影响其他"},
+    {"state": "已触发(Triggered)-条件单", "max_duration": "500ms内完成", "timeout_action": "超过5s标记为触发失败并告警"},
+    {"state": "追保(MarginCall)", "max_duration": "T+2日", "timeout_action": "到期未补足转入平仓警告"},
+    {"state": "部分成交(PartiallyFilled)", "max_duration": "当日有效", "timeout_action": "收盘后未成交部分自动撤单(当日委托)"}
+  ],
+  "boundary_values": [
+    {"field": "涨跌停价格", "boundary": "恰好等于涨停价", "behavior": "允许委托"},
+    {"field": "涨跌停价格", "boundary": "超过涨停价0.01元", "behavior": "风控拦截(E_PRICE_LIMIT)"},
+    {"field": "撤单时段", "boundary": "9:19:59", "behavior": "允许撤单"},
+    {"field": "撤单时段", "boundary": "9:20:00", "behavior": "拒绝撤单(E_CANCEL_NOT_ALLOWED)"},
+    {"field": "撤单时段", "boundary": "9:25:00", "behavior": "恢复允许撤单"},
+    {"field": "大宗交易门槛", "boundary": "恰好30万股", "behavior": "允许申报"},
+    {"field": "大宗交易门槛", "boundary": "29.99万股且金额<200万", "behavior": "拒绝"},
+    {"field": "大宗交易价格", "boundary": "收盘价×110%", "behavior": "允许(≤110%)"},
+    {"field": "大宗交易价格", "boundary": "收盘价×110.01%", "behavior": "拒绝"},
+    {"field": "大宗交易时间", "boundary": "15:30:00", "behavior": "拒绝(超时)"},
+    {"field": "维持担保比例", "boundary": "恰好150%", "behavior": "正常(≥警戒线)"},
+    {"field": "维持担保比例", "boundary": "149.99%", "behavior": "进入关注状态"},
+    {"field": "维持担保比例", "boundary": "恰好130%", "behavior": "进入追保状态"},
+    {"field": "质押率", "boundary": "恰好60%", "behavior": "允许(≤60%)"},
+    {"field": "质押率", "boundary": "60.01%", "behavior": "拒绝"},
+    {"field": "流控", "boundary": "单账户50笔/秒", "behavior": "允许(≤50)"},
+    {"field": "流控", "boundary": "单账户51笔/秒", "behavior": "拦截"}
+  ],
+  "idempotency_retry_rules": [
+    {"operation": "委托提交", "idempotent_key": "clientOrderId", "retry_strategy": "指数退避，最大3次，间隔1s/2s/4s；重试前必须先查询状态"},
+    {"operation": "撤单", "idempotent_key": "originalOrderId", "retry_strategy": "重复撤单返回当前状态；同一委托串行处理，最多2次，间隔2s"},
+    {"operation": "条件单创建", "idempotent_key": "clientCondOrderId", "retry_strategy": "触发生成委托内部重试最多2次，失败标记触发失败"},
+    {"operation": "夜市委托", "idempotent_key": "clientOrderId + 交易日期", "retry_strategy": "批量发送单笔失败独立重试，最多3次，间隔500ms"},
+    {"operation": "融资融券委托", "idempotent_key": "creditAccountId + clientOrderId", "retry_strategy": "同普通委托"},
+    {"operation": "强制平仓", "idempotent_key": "accountId + triggerDate + seqNo", "retry_strategy": "防止重复平仓"},
+    {"operation": "市价单", "idempotent_key": "clientOrderId", "retry_strategy": "不建议超时重试(可能重复成交)，超时后查询状态确认"}
+  ],
+  "violation_consequences": [
+    {"violation": "超涨跌停价格报单到达交易所", "consequence": "交易所拒绝(废单)，券商风控系统需整改"},
+    {"violation": "9:20-9:25撤单到达交易所", "consequence": "交易所拒绝，券商需在柜台层拦截"},
+    {"violation": "融资融券超期未了结", "consequence": "强制平仓，客户承担损失和违约金"},
+    {"violation": "质押合约违约", "consequence": "处置质押股票，每日不超过1%，优先偿还本息"},
+    {"violation": "大宗交易自买自卖", "consequence": "涉嫌操纵市场，监管调查和处罚"},
+    {"violation": "场外衍生品向不合格投资者销售", "consequence": "合同可能无效，券商承担赔偿"},
+    {"violation": "极速通道流控超限", "consequence": "交易所可能暂停该账户交易权限"},
+    {"violation": "授信额度超用", "consequence": "风控事件，可能触发额度冻结和内部问责"}
+  ]
+}

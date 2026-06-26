@@ -1,0 +1,13 @@
+{
+  "name": "agentstead-deploy",
+  "version": "1.4.1",
+  "description": "Deploy AI agents to AgentStead cloud hosting. Create, configure, and manage agents via the AgentStead API.",
+  "author": "AgentStead",
+  "homepage": "https://agentstead.com",
+  "license": "MIT",
+  "keywords": ["deploy", "hosting", "cloud", "agent", "agentstead"],
+  "capabilities": ["http", "exec"],
+  "permissions": {
+    "network": ["agentstead.com"]
+  }
+}

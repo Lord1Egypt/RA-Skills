@@ -1,0 +1,13 @@
+{
+  "title": "Study heatmap",
+  "chartType": "heatmap",
+  "xField": "day",
+  "yField": "hour",
+  "valueField": "focus",
+  "dataset": [
+    { "day": "Mon", "hour": "09:00", "focus": 8 },
+    { "day": "Mon", "hour": "10:00", "focus": 6 },
+    { "day": "Tue", "hour": "09:00", "focus": 7 },
+    { "day": "Tue", "hour": "10:00", "focus": 9 }
+  ]
+}

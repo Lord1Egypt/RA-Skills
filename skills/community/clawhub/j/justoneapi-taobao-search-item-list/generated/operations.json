@@ -1,0 +1,102 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/taobao/search-item-list/v1 for Taobao and Tmall Product Search through JustOneAPI with keyword.",
+  "displayName": "Taobao and Tmall Product Search",
+  "endpointPath": "search-item-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Taobao and Tmall product Search data, including titles, prices, and images, for product discovery.",
+      "method": "GET",
+      "operationId": "searchItemListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_sale",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `_sale`: Sales\n- `_bid`: Price: High to Low\n- `bid`: Price: Low to High\n- `_coefp`: General",
+          "enumValues": [
+            "_sale",
+            "_bid",
+            "bid",
+            "_coefp"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Whether to filter results to Tmall only.",
+          "enumValues": [],
+          "location": "query",
+          "name": "tmall",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Minimum price filter (inclusive).",
+          "enumValues": [],
+          "location": "query",
+          "name": "startPrice",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Maximum price filter (inclusive).",
+          "enumValues": [],
+          "location": "query",
+          "name": "endPrice",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/taobao/search-item-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Search",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    }
+  ],
+  "platformKey": "taobao",
+  "primaryTag": "Taobao and Tmall",
+  "skillName": "justoneapi_taobao_search_item_list",
+  "skillType": "interface",
+  "slug": "justoneapi-taobao-search-item-list",
+  "sourceTitle": "OpenAPI definition"
+}

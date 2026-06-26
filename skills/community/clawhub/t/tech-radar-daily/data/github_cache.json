@@ -1,0 +1,12 @@
+{
+  "nodejs/node": 116457,
+  "webtorrent/webtorrent": 30853,
+  "mafintosh/peerflix": 6271,
+  "ipfs/helia": 1297,
+  "mafintosh/peerwiki": 320,
+  "mafintosh/peercast": 518,
+  "bitcoinjs/bitcoinjs-lib": 5979,
+  "bitpay/bitcore": 4986,
+  "foliojs/pdfkit": 10620,
+  "Turfjs/turf": 10301
+}

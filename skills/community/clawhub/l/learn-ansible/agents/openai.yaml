@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn Ansible"
+  short_description: "LabEx Ansible courses and hands-on labs (MCP catalog)"
+  default_prompt: "Use $learn-ansible to find LabEx Ansible courses and hands-on labs."

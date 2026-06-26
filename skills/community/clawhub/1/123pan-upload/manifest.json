@@ -1,0 +1,95 @@
+{
+  "name": "123pan-upload",
+  "version": "1.2.0",
+  "description": "Upload files to 123pan and generate shareable links with privacy-friendly short links. Supports API upload (<10GB), WebDAV, and rclone for large files.",
+  "entry": "scripts/upload.py",
+  "config": {
+    "env": [
+      {
+        "name": "PAN123_ACCESS_TOKEN",
+        "required": true,
+        "description": "123pan API access token from https://www.123pan.com/dashboard/dev"
+      },
+      {
+        "name": "PAN123_DIRECT_FOLDER_ID",
+        "required": true,
+        "description": "Target folder ID with direct link enabled"
+      },
+      {
+        "name": "PAN123_WEBDAV_USER",
+        "required": false,
+        "description": "WebDAV username (only for WebDAV uploads >10GB)"
+      },
+      {
+        "name": "PAN123_WEBDAV_PASS",
+        "required": false,
+        "description": "WebDAV password (only for WebDAV uploads >10GB)"
+      },
+      {
+        "name": "RCLONE_BIN",
+        "required": false,
+        "description": "Path to rclone binary (defaults to system PATH or ~/.openclaw/rclone-v1.73.2-linux-amd64/rclone)"
+      },
+      {
+        "name": "RCLONE_CONFIG",
+        "required": false,
+        "description": "Path to dedicated rclone config file (recommended for isolation, avoids reading ~/.config/rclone/rclone.conf)"
+      }
+    ]
+  },
+  "security": {
+    "warnings": [
+      "WebDAV scripts may read ~/.config/rclone/rclone.conf. Use RCLONE_CONFIG env var to specify isolated config.",
+      "Large file uploads involve long-running API polling (may take minutes).",
+      "WebDAV credentials are sensitive - use environment variables, not config files."
+    ],
+    "suggested_isolation": {
+      "rclone_config": "Create dedicated rclone config: rclone config --config ~/123pan-rclone.conf",
+      "env_file": "Store credentials in .env file (add to .gitignore)"
+    }
+  },
+  "inputs": {
+    "file": {
+      "type": "string",
+      "description": "Path to the file to upload",
+      "required": true
+    },
+    "folder": {
+      "type": "number",
+      "description": "Target folder ID (overrides PAN123_DIRECT_FOLDER_ID)",
+      "required": false
+    },
+    "short-link": {
+      "type": "boolean",
+      "description": "Return short share link instead of direct link (default: true)",
+      "required": false,
+      "default": true
+    }
+  },
+  "outputs": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the upload was successful"
+    },
+    "file_id": {
+      "type": "number",
+      "description": "The file ID in 123pan"
+    },
+    "filename": {
+      "type": "string",
+      "description": "The uploaded filename"
+    },
+    "size": {
+      "type": "number",
+      "description": "File size in bytes"
+    },
+    "link": {
+      "type": "string",
+      "description": "The shareable link (short or direct based on options)"
+    },
+    "link_type": {
+      "type": "string",
+      "description": "Type of link: 'short_link', 'direct_link', or 'short_direct_link'"
+    }
+  }
+}

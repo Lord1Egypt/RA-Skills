@@ -1,0 +1,89 @@
+{
+  "description": "理财通指数名单索引。AI应先查此文件定位分类，再读取对应分类文件获取详情。",
+  "total_indices": 688,
+  "last_updated": "2026-04-01",
+  "note": "679条指数已填充理财通跳转URL，9条彭博债券指数（Wind无代码）暂无URL",
+  "categories": [
+    {
+      "name": "宽基",
+      "count": 72,
+      "file": "index_broad_market.json",
+      "sub_categories": {
+        "大盘": 29,
+        "综合": 28,
+        "小盘": 8,
+        "中盘": 7
+      }
+    },
+    {
+      "name": "风格策略",
+      "count": 117,
+      "file": "index_style_strategy.json",
+      "sub_categories": {
+        "红利": 46,
+        "价值": 29,
+        "质量": 18,
+        "成长": 14,
+        "多因子": 10
+      }
+    },
+    {
+      "name": "行业主题",
+      "count": 352,
+      "files": {
+        "科技产业": "index_industry_tech.json",
+        "医药医疗": "index_industry_medical.json",
+        "消费产业": "index_industry_consumer.json",
+        "制造产业": "index_industry_manufacturing.json",
+        "金融地产": "index_industry_finance.json",
+        "周期产业": "index_industry_cyclical.json",
+        "政策区域": "index_industry_policy.json",
+        "基础设施": "index_industry_infra.json"
+      },
+      "sub_categories": {
+        "科技产业": 99,
+        "医药医疗": 47,
+        "消费产业": 43,
+        "制造产业": 43,
+        "金融地产": 33,
+        "周期产业": 31,
+        "政策区域": 29,
+        "基础设施": 27
+      }
+    },
+    {
+      "name": "债券",
+      "count": 101,
+      "file": "index_bond.json",
+      "sub_categories": {
+        "利率债": 59,
+        "信用债": 31,
+        "综合债": 9,
+        "可转债": 2
+      }
+    },
+    {
+      "name": "商品",
+      "count": 6,
+      "file": "index_commodity.json",
+      "sub_categories": {
+        "贵金属": 3,
+        "能源化工": 1,
+        "农产品": 1,
+        "工业金属": 1
+      }
+    },
+    {
+      "name": "全球",
+      "count": 40,
+      "file": "index_global.json",
+      "sub_categories": {
+        "美国": 22,
+        "中概": 7,
+        "亚太": 7,
+        "欧洲": 3,
+        "南美": 1
+      }
+    }
+  ]
+}

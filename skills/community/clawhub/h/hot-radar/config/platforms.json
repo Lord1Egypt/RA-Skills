@@ -1,0 +1,131 @@
+{
+  "platforms": {
+    "知乎": {
+      "name": "知乎热榜",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.2,
+      "api": "https://api.zhihu.com/topstory/hot-lists/total"
+    },
+    "微博": {
+      "name": "微博热搜",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.0,
+      "api": "https://weibo.com/ajax/side/hotSearch"
+    },
+    "抖音": {
+      "name": "抖音热点",
+      "enabled": true,
+      "limit": 10,
+      "weight": 0.9,
+      "api": "https://www.douyin.com/aweme/v1/web/hot/search/list"
+    },
+    "YouTube": {
+      "name": "YouTube热门",
+      "enabled": false,
+      "limit": 10,
+      "weight": 1.1,
+      "api_key": "",
+      "note": "需 Google Cloud API Key，默认关闭"
+    },
+    "X/Twitter": {
+      "name": "X/Twitter趋势",
+      "enabled": false,
+      "limit": 10,
+      "weight": 0.8,
+      "note": "走代理，默认关闭"
+    },
+    "Instagram": {
+      "name": "Instagram热点",
+      "enabled": false,
+      "limit": 10,
+      "weight": 0.7,
+      "note": "需 Cookie，默认关闭"
+    },
+    "36氪": {
+      "name": "36氪",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.5,
+      "note": "科技+商业垂直媒体，RSS: https://36kr.com/feed"
+    },
+    "虎嗅": {
+      "name": "虎嗅",
+      "enabled": false,
+      "limit": 10,
+      "weight": 1.4,
+      "note": "JS渲染+云盾WAF，无法直接爬，默认关闭"
+    },
+    "雷锋网": {
+      "name": "雷锋网",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.3,
+      "note": "硬科技+AI媒体，RSS: https://www.leiphone.com/feed/"
+    },
+    "界面新闻": {
+      "name": "界面新闻",
+      "enabled": false,
+      "limit": 10,
+      "weight": 1.0,
+      "note": "RSS已下线，默认关闭"
+    },
+    "IT之家": {
+      "name": "IT之家",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.4,
+      "note": "头部科技媒体，RSS: https://www.ithome.com/rss/"
+    },
+    "爱范儿": {
+      "name": "爱范儿",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.2,
+      "note": "消费科技+商业，RSS: https://www.ifanr.com/feed/"
+    },
+    "TechCrunch": {
+      "name": "TechCrunch",
+      "enabled": true,
+      "limit": 10,
+      "weight": 2.0,
+      "note": "全球头部科技媒体，RSS: https://techcrunch.com/feed/"
+    },
+    "The Verge": {
+      "name": "The Verge",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.8,
+      "note": "科技+文化+设计，RSS: https://www.theverge.com/rss/index.xml"
+    },
+    "Wired": {
+      "name": "Wired",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.8,
+      "note": "科技+商业+文化，RSS: https://www.wired.com/feed/rss"
+    },
+    "Engadget": {
+      "name": "Engadget",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.5,
+      "note": "消费科技新闻，RSS: https://www.engadget.com/rss.xml"
+    },
+    "Ars Technica": {
+      "name": "Ars Technica",
+      "enabled": true,
+      "limit": 10,
+      "weight": 1.6,
+      "note": "深度科技+科学报道，RSS: https://feeds.arstechnica.com/arstechnica/index"
+    },
+    "今日热榜": {
+      "name": "今日热榜",
+      "enabled": false,
+      "limit": 10,
+      "weight": 0.7,
+      "note": "被 Cloudflare 拦截，默认关闭"
+    }
+  }
+}

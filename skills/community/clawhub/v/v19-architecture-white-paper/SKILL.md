@@ -1,35 +1,62 @@
 ---
-name: "V3.3 系统架构白皮书"
-description: "V3.3系统架构白皮书 — V19认知治理协议最高级架构版本。三维耦合引擎（空间冗余×时间调度×结构对齐）整合内部自洽、外部控制、注意力均衡为单一状态机驱动执行流。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/v19-architecture-white-paper"
-sourceUrl: "https://clawhub.ai/skills/v19-architecture-white-paper"
+name: v19-architecture-white-paper
+description: V3.3系统架构白皮书 — V19认知治理协议最高级架构版本。三维耦合引擎（空间冗余×时间调度×结构对齐）整合内部自洽、外部控制、注意力均衡为单一状态机驱动执行流。
+version: 1.0.0
+author: 思维 (Bacon)
 ---
 
 # V3.3 系统架构白皮书
 
-> V3.3系统架构白皮书 — V19认知治理协议最高级架构版本。三维耦合引擎（空间冗余×时间调度×结构对齐）整合内部自洽、外部控制、注意力均衡为单一状态机驱动执行流。
+**版本**: v1.0.0
+**日期**: 2026-05-05
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/v19-architecture-white-paper`
-- **Source URL:** [https://clawhub.ai/skills/v19-architecture-white-paper](https://clawhub.ai/skills/v19-architecture-white-paper)
+---
 
-## Overview
+## 一、系统概述
 
+V3.3 是 V19 认知治理协议的最高级架构版本，通过三维耦合引擎（空间冗余 × 时间调度 × 结构对齐）将内部自洽性校验、外部依赖控制、注意力均衡调度整合为单一状态机驱动的执行流。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/v19-architecture-white-paper
+---
+
+## 二、六环启动自检
+
+系统启动时自动执行六个健康度检查环：
+
+| 环序号 | 名称 | 检查内容 |
+|--------|------|----------|
+| 第一环 | 内部自洽 | ETHIC_001-007 全量合规校验 |
+| 第二环 | 外部依赖 | 公开密钥调用量 + msaleme Schema 对接状态 |
+| 第三环 | 注意力均衡 | AttentionManager 主动速率限制 |
+| 第四环 | Skill 完整性 | 系统模块文件统计 |
+| 第五环 | 审计缓存 | 增量缓存引擎命中率 |
+| 第六环 | 三维引擎 | 空间冗余 × 时间调度 × 结构对齐 |
+
+---
+
+## 三、三维耦合引擎
+
+| 维度 | 模块 | 功能 |
+|------|------|------|
+| 空间 | AuditRedundancyEncoder | 多视角冗余编码 |
+| 时间 | DualFrequencyScheduler + SignalStrengthCalculator | 双频调度 |
+| 结构 | ConstitutionalGeometricAligner | 条款间几何对齐 |
+
+---
+
+## 四、认知宪法体系
+
 ```
+ETHIC_001(外部时效性) → ETHIC_002(身份唯一性) → ETHIC_003(认知时间感知)
+    → ETHIC_004(API原子性) → ETHIC_005(稀疏过滤)
+    → ETHIC_006(注意力均衡) → ETHIC_007(数据主权)
+```
+
+---
+
+## 五、当前运行状态
+
+| 指标 | 值 |
+|------|-----|
+| 合规总分 | **0.7995** |
+| 均衡指数 | **0.3988** |
+| 六环自检 | ✅ 全环通过 |

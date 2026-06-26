@@ -1,0 +1,44 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_table_save_filter_condition",
+    "description": "Set field filter conditions for table view to filter records.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist)."
+        },
+        "filterViewType": {
+          "type": "string",
+          "description": "Filter condition label display position, recommended to use left by default. Optional values: left (left side), top (top), topBeforeToolbar (above toolbar), right (right side), none (not displayed)"
+        },
+        "filterConditionList": {
+          "type": "array",
+          "description": "Filter condition configuration list (corresponding to fields in the view filter area).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Field ID (field must exist)."
+              },
+              "name": {
+                "type": "string",
+                "description": "Field name, such as employee ID, name."
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["tableId", "filterViewType", "filterConditionList"],
+      "additionalProperties": false
+    }
+  }
+}

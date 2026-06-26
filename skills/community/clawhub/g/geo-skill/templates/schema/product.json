@@ -1,0 +1,160 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{PRODUCT_NAME}}",
+  "sku": "{{PRODUCT_SKU}}",
+  "gtin": "{{GTIN}}",
+  "description": "{{PRODUCT_DESCRIPTION}}",
+  "image": [
+    "{{PRODUCT_IMAGE_1}}",
+    "{{PRODUCT_IMAGE_2}}",
+    "{{PRODUCT_IMAGE_3}}"
+  ],
+  "video": "{{PRODUCT_VIDEO_URL}}",
+  
+  "brand": {
+    "@type": "Brand",
+    "name": "{{PARK_NAME}}"
+  },
+  
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "{{PARK_NAME}}",
+    "url": "{{WEBSITE_URL}}"
+  },
+  
+  "seller": {
+    "@type": "Organization",
+    "name": "{{PARK_NAME}}招商中心",
+    "url": "{{WEBSITE_URL}}/contact",
+    "telephone": "{{INVESTMENT_HOTLINE}}"
+  },
+  
+  "category": "{{PRODUCT_CATEGORY}}",
+  "material": "{{CONSTRUCTION_MATERIAL}}",
+  
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "{{PRICE_MIN}}",
+    "highPrice": "{{PRICE_MAX}}",
+    "priceCurrency": "CNY",
+    "availability": "{{AVAILABILITY_STATUS}}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": "{{PARK_NAME}}"
+    },
+    "offerCount": "{{AVAILABLE_COUNT}}"
+  },
+  
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "建筑面积",
+      "value": "{{BUILDING_AREA}}",
+      "unitCode": "MTK"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "使用面积",
+      "value": "{{USABLE_AREA}}",
+      "unitCode": "MTK"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "层高",
+      "value": "{{FLOOR_HEIGHT}}",
+      "unitCode": "MTR"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "楼层",
+      "value": "{{FLOOR_NUMBER}}",
+      "unitText": "层"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "总层数",
+      "value": "{{TOTAL_FLOORS}}",
+      "unitText": "层"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "楼板承重",
+      "value": "{{FLOOR_LOAD}}",
+      "unitCode": "KGM"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "供电容量",
+      "value": "{{POWER_CAPACITY}}",
+      "unitText": "KVA"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "电梯配置",
+      "value": "{{ELEVATOR_CONFIG}}"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "消防等级",
+      "value": "{{FIRE_RATING}}"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "装修状态",
+      "value": "{{RENOVATION_STATUS}}"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "交付标准",
+      "value": "{{DELIVERY_STANDARD}}"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "租期",
+      "value": "{{LEASE_TERM}}",
+      "unitText": "年起"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "免租期",
+      "value": "{{FREE_RENT_PERIOD}}",
+      "unitText": "个月"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "物业费",
+      "value": "{{PROPERTY_FEE}}",
+      "unitText": "元/㎡/月"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "停车位",
+      "value": "{{PARKING_SPACES}}",
+      "unitText": "个"
+    }
+  ],
+  
+  "hasMeasurement": {
+    "@type": "QuantitativeValue",
+    "value": "{{BUILDING_AREA}}",
+    "unitCode": "MTK"
+  },
+  
+  "条": {
+    "@type": "QuantitativeValue",
+    "value": "{{LENGTH}}",
+    "unitCode": "MTR"
+  },
+  "宽": {
+    "@type": "QuantitativeValue",
+    "value": "{{WIDTH}}",
+    "unitCode": "MTR"
+  },
+  "高": {
+    "@type": "QuantitativeValue",
+    "value": "{{HEIGHT}}",
+    "unitCode": "MTR"
+  }
+}

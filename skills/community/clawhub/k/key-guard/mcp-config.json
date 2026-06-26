@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "key-guard": {
+      "command": "node",
+      "args": ["/path/to/key-guard/key-guard.js"]
+    }
+  }
+}

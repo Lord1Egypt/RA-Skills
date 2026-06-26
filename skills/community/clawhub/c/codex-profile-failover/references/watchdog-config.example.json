@@ -1,0 +1,13 @@
+{
+  "agent": "main",
+  "thresholdPercent": 10,
+  "switchOnUsageError": true,
+  "sessionTargets": [
+    "agent:main:main"
+  ],
+  "intervalSeconds": 60,
+  "usageProbeEverySeconds": 60,
+  "switchSource": "auto-watchdog",
+  "eventLogPath": "/path/to/workspace/state/codex-profile-watchdog-events.jsonl",
+  "logPath": "/path/to/workspace/state/codex-profile-watchdog.log"
+}

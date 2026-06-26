@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "date": "2026-03-23",
+    "date_label": "2026年3月23日 · 周一",
+    "generated_at": "2026-03-23 09:30",
+    "generated_time": "09:30",
+    "role": "产品经理"
+  },
+  "tools": [
+    {"id": "claude", "name": "Claude", "icon": "fa-solid fa-message", "url": "https://claude.ai/new?q={prompt}"},
+    {"id": "chatgpt", "name": "ChatGPT", "icon": "fa-brands fa-openai", "url": "https://chatgpt.com/?q={prompt}"},
+    {"id": "copy", "name": "复制 Prompt", "icon": "fa-regular fa-copy", "url": null}
+  ],
+  "left_sidebar": {
+    "overview": [
+      {
+        "title": "行业头部厂商集中发布平台级更新",
+        "text": "多家厂商在本周密集发布产品更新和战略调整，信号指向平台能力的整合与生态卡位。"
+      },
+      {
+        "title": "开源社区活跃度持续走高",
+        "text": "多个高关注度开源项目在过去一周获得显著增长，社区协作正成为行业创新的重要推动力。"
+      },
+      {
+        "title": "监管与合规要求进一步明确",
+        "text": "新的行业法规和合规指引正在落地，对产品设计和数据处理流程提出更具体的要求。"
+      }
+    ],
+    "actions": [
+      {
+        "type": "learn",
+        "text": "梳理本周各厂商平台更新的差异，建立你的产品选型对比基线。",
+        "prompt": "请帮我对比本周主要厂商的平台更新，分析它们在能力、定价和生态方面的差异，并给出选型建议。"
+      },
+      {
+        "type": "try",
+        "text": "选取一个与你工作相关的开源项目，搭建本地环境并试用核心功能。",
+        "prompt": "请帮我评估这个开源项目的成熟度，列出上手步骤和潜在风险。"
+      },
+      {
+        "type": "watch",
+        "text": "持续关注监管动态，评估对现有产品流程的影响。",
+        "prompt": "请帮我整理最新的行业监管要求，并评估对我们产品设计的影响。"
+      },
+      {
+        "type": "alert",
+        "text": "检查当前产品流程是否满足新的合规要求，及时补齐缺口。",
+        "prompt": "请帮我制定一个合规检查清单，确保产品流程满足最新行业要求。"
+      }
+    ],
+    "trends": {
+      "rising": ["平台整合", "开源协作", "合规自动化", "跨境协同"],
+      "cooling": ["单点工具", "封闭生态"],
+      "steady": ["数据安全", "用户体验", "性能优化"],
+      "insight": "行业竞争正在从单一产品能力转向平台整合与生态构建。合规和开源正成为新的竞争维度。"
+    }
+  },
+  "articles": [
+    {
+      "id": "article-1",
+      "title": "某厂商发布新一代平台，强化企业级协作能力",
+      "priority": "major",
+      "time_label": "今天",
+      "source_date": "2026-03-23",
+      "source": "厂商官方博客",
+      "url": "https://example.com/blog/platform-update",
+      "summary": {
+        "what_happened": "该厂商的新一代平台正式上线，重点强化了多团队协作、权限管理和审计追踪能力。",
+        "why_it_matters": "平台级更新意味着竞争正在从功能层上移到治理层，对企业客户的选型决策影响深远。"
+      },
+      "relevance": "如果你在评估企业级工具，这次更新直接影响你的选型基线和集成成本。",
+      "tags": ["#平台更新", "#企业协作", "#治理"],
+      "is_exploration": false,
+      "credibility": {
+        "confidence": "high",
+        "source_tier": "tier-1",
+        "cross_refs": 3,
+        "evidence": "官方博客原文，2 家主流媒体交叉报道",
+        "sources": [
+          {"name": "厂商官方博客", "url": "https://example.com/blog/platform-update"},
+          {"name": "TechCrunch 报道", "url": "https://techcrunch.com/2026/03/23/platform-update"},
+          {"name": "36氪 报道", "url": "https://36kr.com/p/example-article"}
+        ]
+      }
+    },
+    {
+      "id": "article-2",
+      "title": "开源项目 X 在过去一周星数增长 200%",
+      "priority": "notable",
+      "time_label": "3月22日",
+      "source_date": "2026-03-22",
+      "source": "GitHub",
+      "url": "https://github.com/example/project-x",
+      "summary": {
+        "what_happened": "该项目在开发者社区引起广泛关注，核心卖点是轻量化部署和低门槛集成。",
+        "why_it_matters": "快速增长的社区关注度通常预示着生态成熟加速，值得在早期评估和跟进。"
+      },
+      "relevance": "如果你的产品需要类似功能，这个项目可能成为你的基础组件选项之一。",
+      "tags": ["#开源", "#社区增长", "#基础设施"],
+      "is_exploration": false,
+      "credibility": {
+        "confidence": "medium",
+        "source_tier": "tier-2",
+        "cross_refs": 1,
+        "evidence": "GitHub 仓库数据 + 社区讨论"
+      }
+    },
+    {
+      "id": "article-3",
+      "title": "新行业法规要求数据处理流程增加审计节点",
+      "priority": "normal",
+      "time_label": "3月22日",
+      "source_date": "2026-03-22",
+      "source": "行业媒体",
+      "url": "https://example.com/news/regulation-update",
+      "summary": {
+        "what_happened": "新法规要求所有涉及用户数据的处理流程必须增加可追溯的审计节点，并定期提交合规报告。",
+        "why_it_matters": "这对产品架构和数据流程设计提出了硬性要求，不合规可能导致业务受限。"
+      },
+      "relevance": "如果你的产品涉及用户数据处理，需要尽快评估现有流程是否满足新要求。",
+      "tags": ["#合规", "#数据安全", "#法规"],
+      "is_exploration": false,
+      "credibility": {
+        "confidence": "high",
+        "source_tier": "tier-2",
+        "cross_refs": 2,
+        "evidence": "行业媒体报道 + 官方政策文件引用"
+      }
+    }
+  ],
+  "data_sources": ["厂商官方博客", "GitHub", "行业媒体", "社区论坛"]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "bitcoin-price-feed",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Stream the Bitcoin price in real time. I want to see the live feed with OHLC and volume.",
+      "expected_output": "Subscribes to the Bitquery WebSocket (stream_bitquery.py or inline gql subscription), uses Trading.Tokens subscription for bid:bitcoin with 1s duration, and streams formatted OHLC and USD volume for each tick in real time.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need a real-time Bitcoin price feed with derived metrics — moving averages and change per tick.",
+      "expected_output": "Runs the streaming script or subscription that returns OHLC, Volume, and Price.Average (Mean, SMA, EMA, WMA); optionally computes tick-to-tick % change and presents derived metrics on the stream.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Subscribe to the Bitcoin price feed and show me the latest ticks as they come in.",
+      "expected_output": "Connects via WebSocket to Bitquery, subscribes to Trading.Tokens for bid:bitcoin (1s ticks), and prints each tick as it is streamed until the user stops or timeout.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 100%);
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #fbbf24 0%, #f472b6 100%);
+        }
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+        }
+        .oasis-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #d1d5db, #e5e7eb);
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-4xl mx-auto">
+        <!-- 顶部标题 -->
+        <div class="card overflow-hidden mb-6">
+            <div class="gradient-header px-10 py-12 text-white text-center">
+                <h1 class="text-3xl font-bold mb-3">{{title}}</h1>
+                <p class="text-lg opacity-90 font-light">{{subtitle}}</p>
+            </div>
+        </div>
+        
+        <!-- 情绪卡片 -->
+        <div class="card px-10 py-8 mb-6 bg-gradient-to-r from-yellow-50 to-pink-50">
+            <p class="text-gray-700 text-lg leading-relaxed">{{emotion_message}}</p>
+        </div>
+        
+        <!-- 避坑预警 -->
+        <div class="card px-10 py-8 mb-6 warning-box">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">⚠️ 贴心避雷提示</h2>
+            <div id="warning-content">{{warning_content}}</div>
+        </div>
+        
+        <!-- 行程详情 -->
+        <div class="card px-10 py-8 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-6">📍 无障碍路线详情</h2>
+            <div id="route-content">{{route_content}}</div>
+        </div>
+        
+        <!-- 绿洲补给站 -->
+        <div class="card px-10 py-8 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">🌿 绿洲补给站</h2>
+            <div id="oasis-content">{{oasis_content}}</div>
+        </div>
+        
+        <!-- 备选方案 -->
+        <div class="card px-10 py-8 mb-6 oasis-box">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">💡 备选方案</h2>
+            <div id="backup-content">{{backup_content}}</div>
+        </div>
+        
+        <!-- 地图 -->
+        <div class="card px-10 py-8 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">🗺️ 路线地图</h2>
+            <div class="rounded-xl overflow-hidden bg-gray-50">{{map_iframe}}</div>
+            <p class="text-sm text-gray-500 mt-4">💡 点击地图上的标记点可查看详情，路线已按无障碍标准规划</p>
+        </div>
+        
+        <!-- 核心承诺 -->
+        <div class="card px-10 py-8 mb-6 bg-gradient-to-r from-green-50 to-blue-50 text-center">
+            <p class="text-gray-700 italic text-lg">"这不是最快的路线，而是最温柔的路线。"</p>
+            <p class="text-gray-500 text-sm mt-2">让每一位行动不便的家人，都能有尊严、舒适地出门看看这个世界。</p>
+        </div>
+        
+        <div class="text-center text-gray-400 text-sm py-6">
+            <p>City Life Copilot · 无障碍守护模式 · Generated on {{date}}</p>
+        </div>
+    </div>
+</body>
+</html>

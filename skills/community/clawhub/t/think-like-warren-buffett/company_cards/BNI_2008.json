@@ -1,0 +1,30 @@
+{
+  "ticker": "BNI",
+  "company": "Burlington Northern Santa Fe (BNSF Railway)",
+  "analysis_year": 2009,
+  "data_source": "FY2008 10-K, SEC EDGAR",
+  "analyzed_date": "2026-03-10",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.19, "metric_used": "ROE", "years_averaged": "2006-2008", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.86, "fcf": 1800, "net_income": 2100, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.3, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue CAGR +13% over 5 years (2004-2008)", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Stable, operating ratio improving 85%→78%", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.048, "net_income_m": 2100, "ev_m": 44000, "exemption": "INFRA_EXEMPTION", "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "monopoly", "description": "Western US rail duopoly with Union Pacific. Government cannot approve new competing railroad. Physical infrastructure irreplaceable. Trucking cost per ton-mile is 3-4x rail. Pricing power embedded in franchise.", "pass": true }
+  },
+
+  "special_channel": "INFRA_EXEMPTION",
+
+  "control_groups": [
+    { "ticker": "UNP", "company": "Union Pacific", "year": 2008, "gates_failed": [], "conclusion": "BUY — also passes. Both are excellent railroads. Buffett chose BNSF because he could acquire the full company (BNI was public, UP was not available for full acquisition at the time)." },
+    { "ticker": "CSX", "company": "CSX", "year": 2008, "gates_failed": [], "conclusion": "BUY — also passes. Eastern railroad, same quality tier." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "$44B full acquisition (Berkshire already held a stake)",
+  "actual_result": "Historic win — Buffett called it 'an all-in wager on America's economic future'. Cumulative profits 2010-2025 exceed $40B.",
+  "verdict": "✅ aligned",
+  "key_insight": "INFRA_EXEMPTION applied: earnings yield 4.8% is below 6% threshold, but infrastructure monopoly with pricing power and improving efficiency justifies lower yield. All three railroads pass — framework identifies the quality tier correctly."
+}

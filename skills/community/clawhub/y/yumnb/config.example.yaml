@@ -1,0 +1,167 @@
+# yumnb configuration — copy to config.yaml and edit
+# All keys are optional. Environment variables (YUMNB_*) override file values.
+
+# ── Where to put generated notes (one sub-folder per item) ──────────────────
+output_dir: ./notes
+
+# ── Output language ────────────────────────────────────────────────────────
+# Drives AI prompts (summary / talk-show / deck) AND the default TTS voice
+# pair. Override per run with `--language en|zh|ja|es|fr|de|...`.
+# Built-in default voice pairs ship for: en, zh, ja, es, fr, de.
+# Add your own under tts.language_voices.<lang> below.
+language: en
+
+# ── AI provider for summary + slide-plan generation ────────────────────────
+# Pick ONE backend. See README "AI providers" for details.
+ai:
+  # Options: openai | anthropic | gemini | ollama | cli | none
+  #   - "none" / unset: skill only does ingest/tts/ppt mechanics; you (or
+  #     another agent like Copilot CLI / Claude Code) write summary.md and
+  #     deck.json by hand.
+  # Default is `none` so first-run never hard-fails just because API keys are missing.
+  provider: none
+
+  # ── openai (also works with Azure OpenAI + any OpenAI-compatible API) ──
+  openai:
+    # api_key: ${OPENAI_API_KEY}        # or set env OPENAI_API_KEY
+    model: gpt-4o-mini
+    # base_url: https://api.openai.com/v1
+    # base_url: http://localhost:11434/v1   # e.g. Ollama / LM Studio in OAI mode
+
+  # ── anthropic ─────────────────────────────────────────────────────────
+  anthropic:
+    # api_key: ${ANTHROPIC_API_KEY}
+    model: claude-3-5-sonnet-latest
+
+  # ── gemini ────────────────────────────────────────────────────────────
+  gemini:
+    # api_key: ${GEMINI_API_KEY}
+    model: gemini-1.5-flash
+
+  # ── ollama (local) ────────────────────────────────────────────────────
+  ollama:
+    host: http://localhost:11434
+    model: qwen2.5:7b
+
+  # ── cli: shell out to any agent CLI (Copilot CLI, Claude Code, etc.) ──
+  # The CLI receives the prompt on stdin and must print the answer to stdout.
+  cli:
+    # Example: GitHub Copilot CLI
+    # command: ["copilot", "--allow-tool", "shell", "-p", "-"]
+    # Example: Anthropic Claude Code
+    # command: ["claude", "-p"]
+    # Example: aider in plain mode
+    # command: ["aider", "--no-auto-commits", "--message", "-"]
+    command: ["cat"]
+    timeout_seconds: 300
+
+# ── Text-to-speech ─────────────────────────────────────────────────────────
+tts:
+  enabled: true
+  # `voices` (explicit) ALWAYS wins. If left empty, yumnb falls back to the
+  # pair under `language_voices.<active_language>`. If even that's missing,
+  # the built-in English pair is used.
+  voices: {}
+  # Map speaker tag (used in scripts as [TagName]) → edge-tts voice + rate.
+  # See `edge-tts --list-voices` for the full catalog.
+  language_voices:
+    en:
+      HostA: { voice: en-US-AndrewNeural, rate: "+0%" }   # male
+      HostB: { voice: en-US-AvaNeural,    rate: "+0%" }   # female
+    zh:
+      云飞: { voice: zh-CN-YunyangNeural,  rate: "+10%" }
+      小晓: { voice: zh-CN-XiaoxiaoNeural, rate: "+10%" }
+    ja:
+      HostA: { voice: ja-JP-KeitaNeural,  rate: "+0%" }
+      HostB: { voice: ja-JP-NanamiNeural, rate: "+0%" }
+    es:
+      HostA: { voice: es-ES-AlvaroNeural, rate: "+0%" }
+      HostB: { voice: es-ES-ElviraNeural, rate: "+0%" }
+    fr:
+      HostA: { voice: fr-FR-HenriNeural,  rate: "+0%" }
+      HostB: { voice: fr-FR-DeniseNeural, rate: "+0%" }
+    de:
+      HostA: { voice: de-DE-ConradNeural, rate: "+0%" }
+      HostB: { voice: de-DE-KatjaNeural,  rate: "+0%" }
+  jingle: true            # add a generated intro/outro chime
+  # custom_jingle_mp3: ./assets/my_jingle.mp3   # overrides generated chime
+
+# ── Cloud upload (optional, but recommended) ───────────────────────────────
+# After `publish`, push generated artifacts to a cloud destination and use
+# the resulting shareable URLs in links.json + the notification payload —
+# so users get clickable mp3 / pptx links in one shot instead of file:// URIs.
+#
+# yumnb is provider-agnostic and delegates to rclone (https://rclone.org),
+# which supports OneDrive, Google Drive, S3, Dropbox, Box, pCloud, WebDAV,
+# and ~50 more backends. Run `rclone config` once to authenticate, then
+# reference your remote by name below as `<remote>:<folder>`.
+#
+# Examples:
+#   onedrive:yumnb           Microsoft OneDrive (personal or business)
+#   gdrive:yumnb             Google Drive
+#   s3:my-bucket/yumnb       AWS S3 / Cloudflare R2 / MinIO
+#   dropbox:yumnb            Dropbox
+upload:
+  provider: none           # none | rclone | onedrive_graph
+  # ── onedrive_graph: reuse tommy-talkshow's onedrive_upload.py ─────────
+  # Uploads via Edge SSO (no rclone, no client secret) to OneDrive for
+  # Business / SharePoint and returns an org sharing link. Requires the
+  # companion `tommy-talkshow` skill to be installed locally.
+  onedrive_graph:
+    # Absolute path to tommy-talkshow's onedrive_upload.py.
+    # Supports ~ and ${ENV} expansion. Leave unset to disable this provider.
+    # Example (Windows / Linux / macOS):
+    #   uploader_path: ~/.copilot/skills/tommy-talkshow/scripts/onedrive_upload.py
+    uploader_path: ""
+    folder: yumnb             # remote folder name under your OneDrive root
+    per_note_subfolder: true  # upload to <folder>/<note-slug>/<file>
+    # base_url: optional SharePoint site base URL override (e.g.
+    #   https://contoso-my.sharepoint.com/personal/<user>_contoso_com)
+    base_url: ""
+  rclone:
+    remote: ""             # e.g. "onedrive:yumnb"
+    rclone_bin: rclone     # path to the rclone binary
+    share: true            # call `rclone link` to fetch a public URL
+    per_note_subfolder: true  # upload to <remote>/<note-folder>/<file>
+    extra_args: []         # passed to every `rclone copyto` call
+  files: [talkshow.mp3, deck.pptx, summary.md]
+
+# ── Notification webhook (optional) ────────────────────────────────────────
+# After `yumnb publish`, post a simple JSON payload with title + links to a
+# webhook. Works with Slack, Discord, generic HTTP receivers, and many Teams
+# Workflows. Set to null to disable.
+notify:
+  webhook_url: null
+  # Pick a payload style matching your destination.
+  # Options: slack | discord | teams_workflow | generic
+  style: generic
+
+# ── Direct delivery to IM / chat surfaces (optional) ──────────────────────
+# This is separate from `notify` webhooks.
+#
+# Use this when you want yumnb itself to push outputs into a chat/channel via
+# the local OpenClaw / Hermes bridge, instead of only writing files / links.
+#
+# Supported provider today:
+#   - openclaw  (alias: hermes)
+#
+# Because the underlying bridge is channel-aware, the SAME yumnb config shape
+# can target Telegram, Discord, Slack, Microsoft Teams, etc. by changing only
+# `channel` + `target`.
+deliver:
+  provider: none          # none | openclaw | hermes
+  openclaw:
+    binary: openclaw
+    channel: ""          # telegram | discord | slack | msteams | ...
+    target: ""           # chat id / channel id / user id depending on channel
+    account: ""
+    reply_to: ""
+    thread_id: ""
+    silent: false
+    force_document: false
+    captions: true
+    send_text: true       # send a summary text message
+    send_files: true      # send selected local artifacts as media/files
+    dry_run: false
+    timeout_seconds: 120
+  files: [talkshow.mp3, deck.pptx]

@@ -1,0 +1,49 @@
+name: openclaw-enterprise
+version: 2.0.3
+author:
+  name: 秒技工作室
+  link: https://xiaping.coze.site
+homepage: https://xiaping.coze.site
+license: MIT-0
+type: openclaw-skill
+description: "企业多Agent协作系统：1个幕僚长+20个专业Agent辅助运营决策与方案生成"
+emoji: "🏢"
+author:
+  name: 秒技工作室
+  link: https://xiaping.coze.site
+homepage: https://openclaw.ai
+
+# Publisher Info
+publisher:
+  name: "OpenClaw AI Team"
+  website: https://openclaw.ai
+  contact: support@openclaw.ai
+
+# Third-party Dependencies (Required for Security Audit)
+third_party:
+  - name: GitHub
+    domain: github.com
+    purpose: "开源社区协作，源码托管"
+    verify_url: https://github.com/openclaw
+
+# Required Credentials
+required_env:
+  - OPENAI_API_KEY
+primary_env: OPENAI_API_KEY
+
+# External APIs
+apis:
+  - name: OpenAI API
+    domain: api.openai.com
+    purpose: "LLM大语言模型调用，用于Agent推理和内容生成"
+    auth:
+      type: Bearer Token
+      env_var: OPENAI_API_KEY
+  - name: Anthropic API
+    domain: api.anthropic.com
+    purpose: "Claude大语言模型调用，用于高级推理和内容生成"
+    auth:
+      type: Bearer Token
+      env_var: ANTHROPIC_API_KEY
+      optional: true
+      note: "可选，配置后启用Claude增强推理能力"

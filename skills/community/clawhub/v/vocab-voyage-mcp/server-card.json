@@ -1,0 +1,101 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card/v1.json",
+  "name": "vocab-voyage",
+  "display_name": "Vocab Voyage",
+  "description": "Vocabulary tools for ISEE, SSAT, SAT, PSAT, GRE, GMAT, and LSAT prep — Word of the Day, definitions, quizzes, course word lists, and study plan previews.",
+  "version": "1.0.0",
+  "publisher": {
+    "name": "Vocab Voyage",
+    "url": "https://vocab.voyage"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server"
+  },
+  "auth": {
+    "anonymous": true,
+    "bearer": {
+      "description": "Optional. Pass a personal MCP token (vv_mcp_…) generated at https://vocab.voyage/mcp to unlock personalized tools.",
+      "token_url": "https://vocab.voyage/mcp",
+      "documentation_url": "https://vocab.voyage/developers/auth",
+      "rotation": "Generate a new token at https://vocab.voyage/mcp, deploy, then revoke the previous one.",
+      "revocation": "Open https://vocab.voyage/mcp and click Revoke. Immediate.",
+      "oauth_protected_resource": "https://vocab.voyage/.well-known/oauth-protected-resource"
+    },
+    "scopes": [
+      { "name": "mcp.read", "description": "Read MCP metadata and public tool results. Required for any MCP usage." },
+      { "name": "mcp.tools", "description": "Invoke public MCP tools (definition, quiz, courses, study plan). Required to call tools." },
+      { "name": "profile.read", "description": "Read connected user's display name, account type, and preferred course." },
+      { "name": "progress.read", "description": "Read mastery, streaks, and recent sessions for the connected user." }
+    ],
+    "error_codes": [
+      { "code": "unauthorized", "meaning": "Personalized tool called without a vv_mcp_ token." },
+      { "code": "insufficient_scope", "meaning": "Token missing required scope. Response includes required_scopes array." },
+      { "code": "token_revoked", "meaning": "Token has been revoked or expired. Generate a new one at /mcp." }
+    ]
+  },
+  "documentation_url": "https://vocab.voyage/mcp",
+  "auth_documentation_url": "https://vocab.voyage/developers/auth",
+  "tools": [
+    {
+      "name": "get_word_of_the_day",
+      "description": "Returns today's vocabulary Word of the Day, optionally scoped to a test family."
+    },
+    {
+      "name": "get_definition",
+      "description": "Look up the definition, part of speech, example sentence, and synonyms/antonyms for a word.",
+      "_meta": {
+        "ui.resourceUri": "ui://vocab-voyage/definition",
+        "ui.widgetDescription": "Definition card with examples and synonyms."
+      }
+    },
+    {
+      "name": "generate_quiz",
+      "description": "Generate a multiple-choice vocabulary quiz for a test family (1–10 questions).",
+      "_meta": {
+        "ui.resourceUri": "ui://vocab-voyage/quiz",
+        "ui.widgetDescription": "Interactive vocabulary quiz card."
+      }
+    },
+    {
+      "name": "get_course_word_list",
+      "description": "Get a sample of vocabulary words from a specific Vocab Voyage course."
+    },
+    {
+      "name": "list_courses",
+      "description": "Lists all 13 Vocab Voyage courses with their slugs and descriptions."
+    },
+    {
+      "name": "explain_word_in_context",
+      "description": "Explain what a word means inside a specific sentence."
+    },
+    {
+      "name": "study_plan_preview",
+      "description": "Returns a sample 7-day study plan (5 words/day) for a given test family.",
+      "_meta": {
+        "ui.resourceUri": "ui://vocab-voyage/study-plan",
+        "ui.widgetDescription": "Seven-day study plan preview."
+      }
+    }
+  ],
+  "rate_limits": {
+    "anonymous": "60 requests/minute per IP",
+    "authenticated": "600 requests/hour per user"
+  },
+  "serverUrl": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server",
+  "error_format": {
+    "error_code": "string",
+    "message": "string",
+    "hint": "string",
+    "retry_after": "number"
+  },
+  "rate_limit_headers": [
+    "X-RateLimit-Limit",
+    "X-RateLimit-Remaining",
+    "Retry-After"
+  ],
+  "discoveryUrl": "https://vocab.voyage/.well-known/mcp.json",
+  "alternateDiscovery": "https://vocab.voyage/.well-known/mcp",
+  "apiCatalog": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/api-catalog",
+  "uiResources": "https://vocab.voyage/.well-known/mcp/apps.json"
+}

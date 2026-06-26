@@ -1,35 +1,51 @@
 ---
-name: "Test Upload 2026"
-description: "Test upload skill for validating the clawhub publish workflow with meaningful content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-upload-2026"
-sourceUrl: "https://clawhub.ai/skills/test-upload-2026"
+name: test-upload-2026
+description: Test upload skill for validating the clawhub publish workflow with meaningful content.
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🧪"
+      }
+  }
 ---
 
 # Test Upload 2026
 
-> Test upload skill for validating the clawhub publish workflow with meaningful content.
+This is a comprehensive test skill to validate the ClawHub publish workflow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-upload-2026`
-- **Source URL:** [https://clawhub.ai/skills/test-upload-2026](https://clawhub.ai/skills/test-upload-2026)
+## Purpose
 
-## Overview
+This skill serves as a validation mechanism for the publishing process, ensuring that:
+- SKILL.md parsing works correctly
+- Content quality requirements are met
+- Metadata validation passes
+- Upload functionality operates as expected
 
+## Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-upload-2026
-```
+- **Validation Testing**: Comprehensive test of ClawHub publish workflow
+- **Content Quality**: Meets minimum content requirements with detailed documentation
+- **Metadata Compliance**: Properly formatted YAML frontmatter with required fields
+- **Workflow Verification**: Confirms end-to-end skill publishing capability
+
+## Usage
+
+This skill doesn't provide actual functionality but serves as a proof-of-concept for the publishing pipeline.
+
+## Requirements
+
+- OpenClaw v2026.2.9 or later
+- ClawHub CLI v0.7.0 or later
+- Internet connectivity for registry access
+
+## Development Notes
+
+Created on February 28, 2026 as part of troubleshooting the ClawHub publish workflow.
+This skill demonstrates proper SKILL.md structure and content depth requirements.
+
+## Related Skills
+
+- session-monitor: Real monitoring skill
+- task-persistence: Real persistence skill  
+- new-player-package-800: Comprehensive deployment optimization guide

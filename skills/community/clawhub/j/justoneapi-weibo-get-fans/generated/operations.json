@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weibo/get-fans/v1 for Weibo User Fans through JustOneAPI with uid.",
+  "displayName": "Weibo User Fans",
+  "endpointPath": "get-fans",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo user Fans data, including profile metadata and verification signals, for audience analysis and influencer research.",
+      "method": "GET",
+      "operationId": "getFansV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number, starting with 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/weibo/get-fans/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Fans",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo_get_fans",
+  "skillType": "interface",
+  "slug": "justoneapi-weibo-get-fans",
+  "sourceTitle": "OpenAPI definition"
+}

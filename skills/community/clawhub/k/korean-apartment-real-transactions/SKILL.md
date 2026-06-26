@@ -1,35 +1,25 @@
----
-name: "openclaw-eho"
-description: "Provides core functionality to analyze Korean apartment real estate transactions by region, type, and period using OpenClaw plugin commands."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/korean-apartment-real-transactions"
-sourceUrl: "https://clawhub.ai/skills/korean-apartment-real-transactions"
----
+모든집-아파트실거래가를 한눈에!
+사이트에 있는 기능을 일부 오픈클로에서 쓸수 있는 플러그인입니다
+자세한 사항은 npm 사이트를 확인하세요
+https://www.npmjs.com/package/@brokimyeah/openclaw-eho
 
-# openclaw-eho
+download files and
+ 
+openclaw plugins install "folderlocation"
+or download openclaw plugins install @brokimyeah/openclaw-eho
+ 
+check c\user\.openclaw\extensions\openclaw-eho If the folder exists, the plugin is installed successfully.
+ 
+and just ask 
 
-> Provides core functionality to analyze Korean apartment real estate transactions by region, type, and period using OpenClaw plugin commands.
+require sido value and period and typeDetail 
+ex)서울시(sido) 매매(typeDetail) 최근3개월(period)조회해줘
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/korean-apartment-real-transactions`
-- **Source URL:** [https://clawhub.ai/skills/korean-apartment-real-transactions](https://clawhub.ai/skills/korean-apartment-real-transactions)
+If OpenClaw cannot find the eho plugin, please try saying:
+"Please use the installed plugin 'eho'."
 
-## Overview
+While it does not include all features of the original website, it provides core functionality for 
+analyzing real estate transactions by region and apartment.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/korean-apartment-real-transactions
-```
+check more here 
+https://www.npmjs.com/package/@brokimyeah/openclaw-eho

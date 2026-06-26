@@ -1,35 +1,74 @@
 ---
-name: "Trigger"
+name: trigger
+version: "2.0.0"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+license: MIT-0
+tags: [trigger, tool, utility]
 description: "Trigger - command-line tool for everyday use Use when you need trigger."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trigger"
-sourceUrl: "https://clawhub.ai/skills/trigger"
 ---
 
 # Trigger
 
-> Trigger - command-line tool for everyday use Use when you need trigger.
+Event trigger toolkit — webhook handlers, file watchers, condition-based automation, event logging, and chain triggers.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trigger`
-- **Source URL:** [https://clawhub.ai/skills/trigger](https://clawhub.ai/skills/trigger)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `trigger run` | Execute main function |
+| `trigger list` | List all items |
+| `trigger add <item>` | Add new item |
+| `trigger status` | Show current status |
+| `trigger export <format>` | Export data |
+| `trigger help` | Show help |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/trigger
+# Show help
+trigger help
+
+# Quick start
+trigger run
 ```
+
+## Examples
+
+```bash
+# Run with defaults
+trigger run
+
+# Check status
+trigger status
+
+# Export results
+trigger export json
+```
+
+## How It Works
+
+
+## Tips
+
+- Run `trigger help` for all commands
+- Data stored in `~/.local/share/trigger/`
+
+
+## When to Use
+
+- to automate trigger tasks in your workflow
+- for batch processing trigger operations
+
+## Output
+
+Returns formatted output to stdout. Redirect to a file with `trigger run > output.txt`.
+
+## Configuration
+
+Set `TRIGGER_DIR` environment variable to change the data directory. Default: `~/.local/share/trigger/`
+
+---
+*Powered by BytesAgain | bytesagain.com*
+*Feedback & Feature Requests: https://bytesagain.com/feedback*

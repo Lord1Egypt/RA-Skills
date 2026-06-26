@@ -1,35 +1,55 @@
----
-name: "Productivity Tracker"
-description: "轻量级本地任务管理与时间追踪工具，支持任务管理、番茄钟、时间记录、每日统计和习惯打卡功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/productivity-tracker"
-sourceUrl: "https://clawhub.ai/skills/productivity-tracker"
----
+# Task Tracker - 任务管理与时间追踪
 
-# Productivity Tracker
+> 轻量级本地任务追踪工具，支持 TODO 管理、番茄钟、习惯追踪
 
-> 轻量级本地任务管理与时间追踪工具，支持任务管理、番茄钟、时间记录、每日统计和习惯打卡功能。
+## 功能列表
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/productivity-tracker`
-- **Source URL:** [https://clawhub.ai/skills/productivity-tracker](https://clawhub.ai/skills/productivity-tracker)
+### 核心功能
+- **任务管理** - 创建、编辑、删除、标记完成的任务
+- **番茄钟** - 25分钟专注计时 + 5分钟休息
+- **时间追踪** - 记录任务耗时
+- **每日统计** - 查看今日完成的任务和时间
+- **习惯打卡** - 追踪每日习惯完成情况
 
-## Overview
+### 使用场景
+- 知识工作者日常任务管理
+- 学生课程/作业追踪
+- 自由职业者工作时间记录
+- 习惯养成追踪
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/productivity-tracker
+### 创建任务
 ```
+添加任务: "项目报告撰写"
+```
+
+### 列出任务
+```
+查看任务 / 任务列表
+```
+
+### 完成任务
+```
+完成任务 1
+```
+
+### 开始番茄钟
+```
+开始番茄钟 / 专注 25分钟
+```
+
+### 查看统计
+```
+今日统计
+```
+
+### 习惯打卡
+```
+打卡 早起
+```
+
+## 注意事项
+
+- 数据存储在 `~/.task-tracker/` 目录
+- 番茄钟计时基于系统时间，关闭终端后停止

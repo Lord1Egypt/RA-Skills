@@ -1,35 +1,49 @@
 ---
-name: "documentation"
-description: "Indexed by skills.sh from anthropics/knowledge-work-plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/knowledge-work-plugins/documentation"
-sourceUrl: "https://skills.sh/anthropics/knowledge-work-plugins/documentation"
+name: documentation
+description: Write and maintain technical documentation. Trigger with "write docs for", "document this", "create a README", "write a runbook", "onboarding guide", or when the user needs help with any form of technical writing — API docs, architecture docs, or operational runbooks.
 ---
 
-# documentation
+# Technical Documentation
 
-> Indexed by skills.sh from anthropics/knowledge-work-plugins
+Write clear, maintainable technical documentation for different audiences and purposes.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/knowledge-work-plugins/documentation`
-- **Source URL:** [https://skills.sh/anthropics/knowledge-work-plugins/documentation](https://skills.sh/anthropics/knowledge-work-plugins/documentation)
+## Document Types
 
-## Overview
+### README
+- What this is and why it exists
+- Quick start (< 5 minutes to first success)
+- Configuration and usage
+- Contributing guide
 
+### API Documentation
+- Endpoint reference with request/response examples
+- Authentication and error codes
+- Rate limits and pagination
+- SDK examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/knowledge-work-plugins/documentation
-```
+### Runbook
+- When to use this runbook
+- Prerequisites and access needed
+- Step-by-step procedure
+- Rollback steps
+- Escalation path
+
+### Architecture Doc
+- Context and goals
+- High-level design with diagrams
+- Key decisions and trade-offs
+- Data flow and integration points
+
+### Onboarding Guide
+- Environment setup
+- Key systems and how they connect
+- Common tasks with walkthroughs
+- Who to ask for what
+
+## Principles
+
+1. **Write for the reader** — Who is reading this and what do they need?
+2. **Start with the most useful information** — Don't bury the lede
+3. **Show, don't tell** — Code examples, commands, screenshots
+4. **Keep it current** — Outdated docs are worse than no docs
+5. **Link, don't duplicate** — Reference other docs instead of copying

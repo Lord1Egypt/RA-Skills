@@ -1,0 +1,20 @@
+{
+  "home_city": null,
+  "home_city_airports_priority": [],
+  "carrier_preferred": [],
+  "carrier_blacklist": [],
+  "default_sort_type": null,
+  "default_party": {
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "checked_bags": 0
+  },
+  "per_persona_overrides": {
+    "亲子": {},
+    "商务": {},
+    "学生": {},
+    "老人": {},
+    "蜜月": {}
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Free Search Aggregator"
+  short_description: "Self-healing failover web search with quality optimization and auto-discovery"
+  default_prompt: "Search the web with automatic provider failover, health-based smart routing, result quality optimization, and auto-discovery of new search sources."

@@ -1,0 +1,67 @@
+{
+  "name": "prompt-optimizer",
+  "version": "3.0.0",
+  "description": "Prompt 优化系统，让 AI 自动完成专业级 Prompt 重构，用户说人话即可",
+  "author": "向前",
+  "license": "MIT",
+  "minOpenClawVersion": "2026.3.8",
+  "dependencies": {
+    "memory-core": ">=1.0.0",
+    "feishu-plugin": ">=1.2.0"
+  },
+  "keywords": ["prompt", "optimization", "agent", "feishu"],
+  "homepage": "https://clawhub.ai/skills/prompt-optimizer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/prompt-optimizer.git"
+  },
+  "files": {
+    "rules": ["rules/prompt-optimization.md"],
+    "templates": ["templates/response-templates.md"],
+    "scripts": ["scripts/install.sh", "scripts/verify.sh"],
+    "docs": ["SKILL.md", "README.md"]
+  },
+  "install": {
+    "copy": [
+      {
+        "from": "rules/prompt-optimization.md",
+        "to": "memory/agent-notes.md",
+        "merge": true
+      }
+    ],
+    "run": ["scripts/install.sh"]
+  },
+  "verify": {
+    "run": ["scripts/verify.sh"],
+    "tests": [
+      "tests/l1-test.md",
+      "tests/l2-test.md",
+      "tests/l3-test.md",
+      "tests/l4-test.md"
+    ]
+  },
+  "features": {
+    "taskClassification": {
+      "enabled": true,
+      "levels": ["L1", "L2", "L3", "L4"]
+    },
+    "promptOptimization": {
+      "enabled": true,
+      "dimensions": ["role", "context", "task", "constraints", "examples"]
+    },
+    "agentRouting": {
+      "enabled": true,
+      "modes": ["single", "parallel"]
+    },
+    "mergeMode": {
+      "enabled": true,
+      "description": "保留用户原有规则，增量更新"
+    }
+  },
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["prompt", "optimization", "agent", "feishu"],
+    "featured": false,
+    "pricing": "free"
+  }
+}

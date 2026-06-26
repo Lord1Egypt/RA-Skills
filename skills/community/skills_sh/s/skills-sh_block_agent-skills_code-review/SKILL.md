@@ -1,35 +1,50 @@
 ---
-name: "code-review"
-description: "Indexed by skills.sh from block/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "block"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/block/agent-skills/code-review"
-sourceUrl: "https://skills.sh/block/agent-skills/code-review"
+name: code-review
+description: Comprehensive code review checklist for pull requests
+author: goose
+version: "1.0"
+tags:
+  - development
+  - quality
+  - review
 ---
 
-# code-review
+# Code Review Checklist
 
-> Indexed by skills.sh from block/agent-skills
+When reviewing code, check each of these areas:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** block
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/block/agent-skills/code-review`
-- **Source URL:** [https://skills.sh/block/agent-skills/code-review](https://skills.sh/block/agent-skills/code-review)
+## Functionality
 
-## Overview
+- [ ] Code does what the PR description claims
+- [ ] Edge cases are handled
+- [ ] Error handling is appropriate
 
+## Code Quality
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/block/agent-skills/code-review
-```
+- [ ] Follows project style guide
+- [ ] No hardcoded values that should be configurable
+- [ ] Functions are focused and well-named
+
+## Testing
+
+- [ ] New functionality has tests
+- [ ] Tests are meaningful, not just for coverage
+- [ ] Existing tests still pass
+
+## Security
+
+- [ ] No credentials or secrets in code
+- [ ] User input is validated
+- [ ] SQL queries are parameterized
+
+## Performance
+
+- [ ] No obvious performance issues
+- [ ] Database queries are optimized
+- [ ] No unnecessary loops or iterations
+
+## Documentation
+
+- [ ] Public APIs are documented
+- [ ] Complex logic has comments explaining "why"
+- [ ] README updated if needed

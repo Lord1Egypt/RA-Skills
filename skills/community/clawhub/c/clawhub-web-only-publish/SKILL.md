@@ -1,35 +1,71 @@
 ---
-name: "ClawHub Web Only Publish"
-description: "Publish skills to ClawHub via web dashboard only. No CLI login, no device flow. Reuse existing browser session."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-web-only-publish"
-sourceUrl: "https://clawhub.ai/skills/clawhub-web-only-publish"
+name: clawhub-web-only-publish
+description: Publish skills to ClawHub via web dashboard only. No CLI login, no device flow. Reuse existing browser session.
 ---
 
-# ClawHub Web Only Publish
+# ClawHub Web-Only Publish
 
-> Publish skills to ClawHub via web dashboard only. No CLI login, no device flow. Reuse existing browser session.
+Publish to ClawHub via web dashboard. No CLI login.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-web-only-publish`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-web-only-publish](https://clawhub.ai/skills/clawhub-web-only-publish)
+## Problem
 
-## Overview
+CLI login causes:
+- Auth loop failures
+- Token expiration issues
+- Device flow complexity
+- Session management overhead
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawhub-web-only-publish
-```
+### 1. Prerequisites
+
+- Browser already logged in to https://clawhub.ai
+- Skill folder contains SKILL.md
+- No secrets in skill files
+
+### 2. Web Publish Steps
+
+1. Navigate to https://clawhub.ai/upload
+2. Verify logged in (username visible)
+3. Fill form:
+   - Slug: `skill-name`
+   - Display name: `Skill Name`
+   - Version: `1.0.0`
+4. Click "Choose folder" -> Select skill directory
+5. Wait for validation (SKILL.md recognized)
+6. (Optional) Add changelog
+7. Click "Publish skill"
+8. Capture result URL
+
+### 3. Fallback (No CLI Login)
+
+If browser upload fails:
+- Use existing CLI token (if already authenticated)
+- Run: `clawhub publish <path> --version 1.0.0`
+- Do NOT run `clawhub login`
+
+## Executable Completion Criteria
+
+| Criteria | Verification |
+|----------|-------------|
+| Skill URL accessible | Navigate to URL, 200 OK |
+| Name matches SKILL.md | Frontmatter name = listing name |
+| Version correct | URL shows v1.0.0 |
+| No CLI login used | No `clawhub login` in history |
+
+## Privacy/Safety
+
+- No credentials in skill files
+- Scan for apiKey/token/secret before publish
+- Use relative paths only
+
+## Self-Use Trigger
+
+Use when:
+- Publishing any skill to ClawHub
+- CLI login fails or unavailable
+- Browser session already active
+
+---
+
+**Web first. No login loops.**

@@ -1,35 +1,134 @@
 ---
-name: "前程似锦-高考升学规划Pro"
-description: "基于惠迈校准框架的高考升学规划专家，三级校准+裂变定价+温情模式"
-category: "research"
-source: "ClawHub"
-tags: [career-planning, education, gaokao, huimai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prospect-advisor"
-sourceUrl: "https://clawhub.ai/skills/prospect-advisor"
+name: 前程似锦-高考升学规划Pro
+description: 基于惠迈校准框架的高考升学规划专家，三级校准+裂变定价+温情模式
 ---
 
-# 前程似锦-高考升学规划Pro
+# 前程似锦-高考升学规划Pro (Prospect Advisor)
 
-> 基于惠迈校准框架的高考升学规划专家，三级校准+裂变定价+温情模式
+## 🚀 概述
+基于惠迈智能体校准框架的高考升学规划专家，提供个性化院校推荐、专业评估和志愿策略优化。
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prospect-advisor`
-- **Source URL:** [https://clawhub.ai/skills/prospect-advisor](https://clawhub.ai/skills/prospect-advisor)
+## 🌟 核心亮点
+- **前程似锦**：寓意吉祥，给考生最美好的祝福
+- **惠迈校准框架**：三级校准（快速/标准/深度），自适应环境
+- **温情模式默认**：正能量输出+客观建议，给用户情绪价值
+- **裂变定价支持**：免费引流+多层套餐，代理商自动裂变
+- **大数据算法**：基于历年录取数据+位次匹配+趋势分析
 
-## Overview
+## 🏆 用户价值
+- **考生**：科学填报，规避踩坑，提升录取概率
+- **家长**：省时省力，专业建议，安心放心
+- **推广者**：发现商机，赚取差价，裂变传播
 
+## 功能特性
+- **智能院校推荐**：基于分数/位次/偏好智能匹配
+- **专业评估**：就业前景+学科实力+个人适配度综合评分
+- **志愿策略优化**：冲-稳-保三级策略自动生成
+- **历年数据查询**：分数线、录取位次、招生计划
+- **个性化报告**：完整分析+可视化+建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prospect-advisor
+## 📊 定价体系
+| 层级 | 价格 | 功能 | 定位 |
+|------|------|------|------|
+| 🆓 免费版 | 0元 | 查3所学校+基础分数线 | 引流+建立信任 |
+| 🥇 单人次 | 1,999元 | 完整智能推荐+个性化报告 | 个人零售 |
+| 🥈 20人次 | 30,000元(1,500/人) | 完整版×20 | 裂变代理 |
+| 🥉 50人次 | 50,000元(1,000/人) | 完整版×50 | 裂变代理 |
+| 🏅 100人次 | 88,880元(888/人) | 完整版×100 | 大代理 |
+
+## 🔧 校准程序
+
+### 快速校准（每次加载）
+```json
+{
+  "level": "quick",
+  "checks": [
+    "环境检测：API可达性",
+    "数据检测：历年数据库完整",
+    "模型检测：DeepSeek API响应正常"
+  ],
+  "duration": "<1秒"
+}
 ```
+
+### 模式选择
+- **温情模式（默认）**：正能量输出+客观建议，给用户情绪价值
+- **专业模式（可选）**：直出数据，适合熟手用户
+
+### 标准校准（首次安装/版本更新）
+```json
+{
+  "level": "standard",
+  "checks": [
+    "环境兼容性：与已安装Skill的接口协调",
+    "数据完整性：所有年份数据表可用",
+    "情绪输出测试：默认温情模式验证",
+    "边界测试：极端分数场景处理"
+  ],
+  "duration": "3-5秒"
+}
+```
+
+### 深度校准（用户手动触发）
+```json
+{
+  "level": "deep",
+  "checks": [
+    "全量性能测试：20个标准用例",
+    "冲突检测：与所有已装Skill的完整协调测试",
+    "调优建议：参数优化报告",
+    "裂变逻辑验证：套餐计费正确性"
+  ],
+  "duration": "10-30秒"
+}
+```
+
+## ⚠️ 免责声明
+基于大数据算法提供综合性评估，仅供参考。
+不构成录取保证，不承担法律后果。
+用户应根据自身情况综合决策。
+
+## 安装
+```bash
+# 通过ClawHub安装（slug为prospect-advisor）
+clawhub install prospect-advisor
+```
+
+## 环境要求
+本Skill需要以下运行时环境支持：
+- **OpenClaw Gateway**：提供 `env` 运行时对象（含 checkApi, checkDataSources 等方法）
+- **DeepSeek API**：需要配置 API Key（通过 OpenClaw 的 auth.profiles 配置）
+  ```bash
+  # 在 OpenClaw 中配置 DeepSeek API Key
+  openclaw auth add deepseek --key your-api-key-here
+  ```
+- **历史录取数据**：由 OpenClaw 平台提供内置数据源
+
+> **说明**：本Skill本身不存储API Key或用户数据。所有外部服务调用通过OpenClaw Gateway平台代理完成。
+
+## 配置
+```json
+{
+  "model": "deepseek/deepseek-chat",
+  "warmMode": "default",
+  "calibrationInterval": 1800000,
+  "pricing": {
+    "freeLimit": 3,
+    "tiers": [
+      {"count": 1, "price": 1999},
+      {"count": 20, "unitPrice": 1500, "total": 30000},
+      {"count": 50, "unitPrice": 1000, "total": 50000},
+      {"count": 100, "unitPrice": 888, "total": 88880}
+    ]
+  }
+}
+```
+
+## 隐私说明
+- 本Skill会读取已安装的Skill列表用于兼容性检测（只读，不修改）
+- 不会收集用户个人身份信息
+- 所有数据处理在本地OpenClaw Gateway完成
+- 外部API调用（DeepSeek）仅传递脱敏查询内容
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com

@@ -1,0 +1,9 @@
+{
+  "name": "semgrepll",
+  "description": "Local semantic code search - offline capable",
+  "install": "pip install semgrepll",
+  "config": {
+    "embed_backend": "auto",
+    "semgrep_backend": "sqlite"
+  }
+}

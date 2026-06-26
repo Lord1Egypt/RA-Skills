@@ -1,0 +1,10 @@
+{
+  "model_name": "title",
+  "config_path": "data/config/title.config",
+  "optimization": {
+    "multithread": true,
+    "batch_size": 10,
+    "cache_size": 100,
+    "timeout": 30
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "openclaw-bot-dashboard",
+  "version": "1.0.5",
+  "description": "Launch and manage OpenClaw Dashboard web UI for monitoring bots, agents, models, and sessions. Supports macOS and Windows with automatic git detection and fallback download methods.",
+  "triggers": [
+    "打开 OpenClaw-bot-review",
+    "打开 Openclaw dashboard",
+    "打开 bot review",
+    "打开机器人大盘",
+    "打开 bot-review",
+    "打开openclaw机器人大盘",
+    "打开Openclaw大盘",
+    "open openclaw dashboard",
+    "open OpenClaw-bot-review",
+    "open bot review",
+    "open bot-review",
+    "open bot dashboard",
+    "launch bot review",
+    "start dashboard",
+    "openclaw dashboard"
+  ],
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ],
+  "requirements": {
+    "node": ">=18.0.0"
+  },
+  "author": "xmanrui",
+  "license": "MIT"
+}

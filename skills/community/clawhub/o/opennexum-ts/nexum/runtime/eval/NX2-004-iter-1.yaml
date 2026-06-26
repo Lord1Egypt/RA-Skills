@@ -1,0 +1,16 @@
+verdict: pass
+strategy_results:
+  - strategy_type: integration
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "在 /Users/tongyaojin/code/nexum-ts 运行 node packages/cli/dist/index.js status --project . --json，命令以 exit code 0 返回。随后使用 Node 程序化校验输出可被 JSON.parse 解析为数组，数组包含 6 个任务，且每个元素都具备 string 类型的 id/name/status 字段。"
+      - id: C3
+        result: pass
+        evidence: "在 /Users/tongyaojin/code/nexum-ts 运行 pnpm build，命令最终以 exit code 0 返回。输出显示 5 个包的 build 全部成功，汇总为 Tasks: 5 successful, 5 total。构建前有 pnpm 拉取 turbo 元数据失败的警告，但仓库随后回退到全局 turbo 2.8.21 并完成构建。"
+  - strategy_type: review
+    criteria_results:
+      - id: C2
+        result: pass
+        evidence: "检查 /Users/tongyaojin/code/nexum-ts/packages/core/src/errors.ts，可见 NexumError 定义了 code: string 字段，并在构造函数中通过 code: ErrorCode 赋值；同文件的 ErrorCode 枚举包含当前定义的全部错误码：TASK_NOT_FOUND、CONTRACT_NOT_FOUND、INVALID_VERDICT、CONFIG_INVALID、GIT_ERROR、SESSION_TIMEOUT。"
+feedback: "总体结论为 pass。C1、C2、C3 均满足。需要注意的是，C3 的通过依赖环境中的全局 turbo，因为根脚本使用 pnpm dlx turbo 且本地未安装 turbo；这不影响本次判定，但会带来可复现性风险。"

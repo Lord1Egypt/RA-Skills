@@ -1,0 +1,6 @@
+interface:
+  display_name: "Cyber Interviewer"
+  short_description: "Resume, repo, and mock interview helper"
+  default_prompt: "Use $cyber-interviewer to review my resume and GitHub repos, then run a tough mock interview for my target role."
+policy:
+  allow_implicit_invocation: false

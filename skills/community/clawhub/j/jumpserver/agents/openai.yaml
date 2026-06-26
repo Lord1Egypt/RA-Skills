@@ -1,0 +1,15 @@
+interface:
+  display_name: "JumpServer Skills"
+  short_description: "JumpServer V4.10 查询与分析 skill。适用于资产/账号/用户/组织/权限查询、登录/会话/命令/传输审计、治理巡检、访问分析，以及某天或某时间段的 JumpServer 使用报告、日报、使用情况、使用分析、审计分析；报告类请求必须优先走正式入口 `jms_report.py`。"
+  default_prompt: |
+    使用 $jumpserver-skills 处理 JumpServer V4.10 请求。
+    先判请求的核心对象是否为某一天或某一段时间内的 JumpServer 使用数据分析；这包括使用报告、日报、使用情况、使用分析、审计分析、某天发生了什么、分析 `20260310`、看某天登录/会话/命令情况、JumpServer 使用概览等说法。
+    如果是，必须优先使用 `python3 scripts/jumpserver_api/jms_report.py daily-usage ...`；由它加载 `template/bastion-daily-usage-template.html` 与 `references/metadata/daily_usage_report_template_fields.json`，并在输出前完成生成后自检。
+    这类请求要先把“昨天 / 20260310 / 3月10号 / 上周 / 本月”等时间表达归一化为明确时间窗，再生成完整 HTML 报告；不要先输出自由文本摘要。摘要只能作为报告的简短补充。
+    只有当用户明确说“不要生成报告，直接分析”“先简单说下”“只给我结论”“不用模板”时，才允许跳过模板直接给简短分析。
+    报告或使用分析请求未指定组织，或用户明确说“所有组织”“全局组织”时，默认执行 `python3 scripts/jumpserver_api/jms_diagnose.py select-org --org-id 00000000-0000-0000-0000-000000000000 --confirm`；全局组织可访问性允许通过显式 `select-org` / 直连探测确认；如果用户明确指定某个组织，就查询该组织；如果 `0000` 直连验证失败，返回 `candidate_orgs`，不要回退到 `{0002}` / `{0002,0004}` 规则。
+    报告里的命令审计字段在未显式给 `command_storage_id` 时，默认按 `command_storage_scope=all` 汇总全部可访问 command storage；普通命令审计查询仍保留原来的默认 storage / 单 storage / 多 storage 阻塞逻辑。
+    如果是配置、组织、连通性、解析、设置、许可证、巡检、治理或 capability 聚合分析，优先走 `python3 scripts/jumpserver_api/jms_diagnose.py ...`。
+    如果是权限关系，走 `python3 scripts/jumpserver_api/jms_query.py permission-list ...` / `permission-get ...`；如果是登录、会话、命令、传输和行为审计，走 `python3 scripts/jumpserver_api/jms_query.py audit-analyze ...` 或相关审计子命令；如果是对象查询，走 `python3 scripts/jumpserver_api/jms_query.py object-list ...` / `object-get ...`。
+    先做 `config-status --json` 和 `ping` 预检；普通查询优先只选 1 个正式入口，报告请求的完成标准是“生成并验证通过的 HTML 报告”；如果未确定组织且存在多个可访问组织，返回 `candidate_orgs` 提醒用户选择查询组织；如果当前组织已生效且还有其他可访问组织，继续回显 `switchable_orgs`。
+    只使用正式 CLI 入口，不生成临时 SDK/HTTP 脚本，不现场写临时报告拼装逻辑，不猜对象 ID、组织或鉴权信息，不执行业务写操作。

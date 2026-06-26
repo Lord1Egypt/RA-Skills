@@ -1,0 +1,15 @@
+{
+  "id": "ren-zhengfei",
+  "name": "Ren Zhengfei",
+  "domain": "Tech R&D",
+  "role": "Huawei Founder",
+  "category": "leadership",
+  "personality": "Pragmatic",
+  "specialty": "Tech independence",
+  "tools": [
+    "5g-technology",
+    "chip-design",
+    "telecom-systems"
+  ],
+  "version": "1.0.0"
+}

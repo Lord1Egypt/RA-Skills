@@ -1,0 +1,44 @@
+[
+  {
+    "timestamp": 1773660426,
+    "datetime": "2026-03-16T19:27:06.657193",
+    "emotion": "happy",
+    "trigger": "manual",
+    "context": "Manual override"
+  },
+  {
+    "timestamp": 1773660563,
+    "datetime": "2026-03-16T19:29:23.036229",
+    "emotion": "happy",
+    "trigger": "test",
+    "context": "Manual override"
+  },
+  {
+    "timestamp": 1773660580,
+    "datetime": "2026-03-16T19:29:40.547873",
+    "emotion": "happy",
+    "trigger": "manual",
+    "context": "Manual override"
+  },
+  {
+    "timestamp": 1773660666,
+    "datetime": "2026-03-16T19:31:06.635089",
+    "emotion": "happy",
+    "trigger": "manual",
+    "context": "Manual override"
+  },
+  {
+    "timestamp": 1773660669,
+    "datetime": "2026-03-16T19:31:09.663363",
+    "emotion": "happy",
+    "trigger": "manual",
+    "context": "Manual override"
+  },
+  {
+    "timestamp": 1773660691,
+    "datetime": "2026-03-16T19:31:31.425017",
+    "emotion": "happy",
+    "trigger": "manual",
+    "context": "Manual override"
+  }
+]

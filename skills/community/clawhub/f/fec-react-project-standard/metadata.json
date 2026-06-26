@@ -1,0 +1,71 @@
+{
+  "id": "fec-react-project-standard",
+  "name": "React 项目规范",
+  "category": "project-standard",
+  "tags": [
+    "react",
+    "typescript",
+    "hooks",
+    "components",
+    "architecture"
+  ],
+  "summary": "Frontend Craft skill for React 项目规范.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "project-standard",
+    "react",
+    "typescript",
+    "hooks",
+    "components",
+    "architecture"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when designing or reviewing React + TypeScript project structure, feature/module boundaries, component architecture, hooks organization, routing composition, state/API/error/styling defaults, or repository-wide React conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include React 项目规范, React 组件架构.",
+  "source": "skills/fec-react-project-standard",
+  "references": [
+    "references/react-performance-patterns.md",
+    "references/react-project-structure.md",
+    "references/react-quality-patterns.md",
+    "references/react-runtime-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-typescript-project-standard",
+      "fec-state-management",
+      "fec-tailwind-design-system",
+      "fec-responsive-layout",
+      "fec-form-handling",
+      "fec-data-fetching",
+      "fec-component-testing",
+      "fec-e2e-testing",
+      "fec-accessibility-check",
+      "fec-security-review",
+      "fec-list-virtualization",
+      "fec-svg-animation",
+      "fec-canvas-threejs",
+      "fec-api-integration",
+      "fec-motion-interaction"
+    ],
+    "boundaryWorkflows": [
+      "Use specialty workflows for complex forms, state ownership, TypeScript contracts, server state, tests, accessibility, security, large lists, animation, or graphics.",
+      "Keep generic React component architecture and hooks organization in the React project workflow."
+    ],
+    "capabilityTags": [
+      "react",
+      "project-standard",
+      "fec-architecture"
+    ]
+  }
+}

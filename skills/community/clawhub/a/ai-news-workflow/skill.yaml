@@ -1,0 +1,20 @@
+name: ai_news_workflow
+display_name: AI资讯自动化工作流
+version: 0.1.1
+description: 抓取RSS+网页资讯，筛选去重分类，生成Excel与Word简报，支持豆包摘要与重点事件筛选
+language: python
+entrypoint: skill_entry.py:main
+
+# 可选：暴露命令（如果 ClawHub 支持）
+commands:
+  - name: run
+    description: 运行一次资讯采集与产出
+    args:
+      - name: config
+        type: string
+        required: false
+        default: config.yaml
+      - name: init
+        type: boolean
+        required: false
+        default: false

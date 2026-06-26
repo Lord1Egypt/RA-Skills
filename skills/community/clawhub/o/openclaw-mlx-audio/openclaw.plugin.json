@@ -1,0 +1,92 @@
+{
+  "name": "@openclaw/mlx-audio",
+  "version": "0.1.0",
+  "displayName": "OpenClaw mlx-audio",
+  "description": "Local TTS & STT integration for OpenClaw using mlx-audio - Zero API keys, Zero cloud dependency",
+  "description.zh-CN": "基于 mlx-audio 的 OpenClaw 本地语音集成 - 无需 API 密钥，无需云服务",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw-mlx-audio",
+  "repository": "https://github.com/openclaw/openclaw-mlx-audio",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "openclaw": ">=0.1.0"
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "mlx_tts",
+        "description": "Convert text to speech using mlx-audio TTS models",
+        "description.zh-CN": "使用 mlx-audio TTS 模型将文本转换为语音"
+      },
+      {
+        "name": "mlx_stt",
+        "description": "Transcribe audio to text using mlx-audio Whisper models",
+        "description.zh-CN": "使用 mlx-audio Whisper 模型将音频转录为文本"
+      },
+      {
+        "name": "mlx_audio_status",
+        "description": "Check TTS and STT server status",
+        "description.zh-CN": "检查 TTS 和 STT 服务器状态"
+      }
+    ],
+    "commands": [
+      {
+        "name": "mlx-tts",
+        "description": "TTS operations (status, test, reload, models)",
+        "subcommands": ["status", "test", "reload", "models"]
+      },
+      {
+        "name": "mlx-stt",
+        "description": "STT operations (status, transcribe, reload, models)",
+        "subcommands": ["status", "transcribe", "reload", "models"]
+      }
+    ],
+    "skills": [
+      "./skills/mlx-tts/SKILL.md",
+      "./skills/mlx-stt/SKILL.md"
+    ]
+  },
+  "config": {
+    "tts": {
+      "enabled": true,
+      "model": "mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16",
+      "port": 19280,
+      "langCode": "zh",
+      "pythonEnvMode": "managed"
+    },
+    "stt": {
+      "enabled": true,
+      "model": "mlx-community/whisper-large-v3-turbo",
+      "port": 19290,
+      "language": "zh",
+      "pythonEnvMode": "managed"
+    }
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "tts": {
+        "type": "object",
+        "properties": {
+          "enabled": { "type": "boolean", "default": true },
+          "model": { "type": "string", "default": "mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16" },
+          "port": { "type": "number", "default": 19280 },
+          "langCode": { "type": "string", "default": "zh" },
+          "pythonEnvMode": { "type": "string", "enum": ["managed", "external"], "default": "managed" }
+        }
+      },
+      "stt": {
+        "type": "object",
+        "properties": {
+          "enabled": { "type": "boolean", "default": true },
+          "model": { "type": "string", "default": "mlx-community/whisper-large-v3-turbo" },
+          "port": { "type": "number", "default": 19290 },
+          "language": { "type": "string", "default": "zh" },
+          "pythonEnvMode": { "type": "string", "enum": ["managed", "external"], "default": "managed" }
+        }
+      }
+    }
+  }
+}

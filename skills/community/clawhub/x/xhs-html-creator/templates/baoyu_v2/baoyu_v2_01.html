@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; background:#f5f0e8; font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif; -webkit-font-smoothing:antialiased; }
+.page { width:1080px; height:1440px; background:#f5f0e8; position:relative; overflow:hidden; }
+.page::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(200,185,160,0.06) 3px, rgba(200,185,160,0.06) 4px); pointer-events:none; z-index:0; }
+.edge { position:absolute; top:0; bottom:0; width:8px; background: linear-gradient(180deg, #e8d5c4 0%, #d4c4a8 50%, #e8d5c4 100%); z-index:1; }
+.edge-l { left:0; border-radius:0 4px 4px 0; }
+.edge-r { right:0; border-radius:4px 0 0 4px; }
+.top-stripe { height:12px; background:linear-gradient(90deg, #d4a574, #e8c9a0, #d4a574); position:relative; z-index:2; }
+.hand-title { font-family:'ZCOOL KuaiLe', cursive, sans-serif; }
+.content-wrap { position:relative; z-index:2; padding:20px 48px 44px; }
+
+.main-title { text-align:center; margin-bottom:12px; padding-top:2px; }
+.mt1 { font-size:84px; color:#5a3e2b; font-weight:700; line-height:1.1; letter-spacing:2px; margin-bottom:8px; }
+.mt2 { font-size:42px; color:#e8919a; font-weight:700; letter-spacing:1px; }
+
+.stats { display:flex; gap:14px; margin-bottom:12px; padding:0 4px; }
+.sc { flex:1; background:#fff; border-radius:16px; padding:16px 8px; text-align:center; border:3px solid #e8d5c4; }
+.sc .num { font-size:68px; font-weight:700; color:#d4a574; line-height:1; }
+.sc .unit { font-size:30px; color:#d4a574; }
+.sc .lbl { font-size:30px; color:#8b6f5a; margin-top:4px; letter-spacing:2px; }
+
+.sub-hd { text-align:center; font-size:30px; color:#8b6f5a; letter-spacing:4px; margin-bottom:12px; }
+
+.tag-box { background:#fff; border-radius:16px; padding:14px 18px; margin-bottom:12px; border:2px solid #e8d5c4; }
+.tb-lbl { font-size:30px; color:#d4a574; font-weight:700; margin-bottom:10px; letter-spacing:2px; text-align:center; }
+.tb-items { display:flex; flex-wrap:wrap; gap:8px 10px; justify-content:center; }
+.tg { border-radius:22px; padding:7px 16px; font-size:30px; font-weight:600; }
+.tg-p { background:#fff0f2; border:1.5px solid #e8919a; color:#c96b7a; }
+.tg-b { background:#f0f6ff; border:1.5px solid #7ba3c9; color:#5a8ab5; }
+.tg-g { background:#fef6f0; border:1.5px solid #e8c9a0; color:#8b6f5a; }
+
+.nc { background:#fffef5; border:2px dashed #d4a574; border-radius:14px; padding:14px 18px; margin-bottom:12px; }
+.nc-tl { font-size:30px; color:#d4a574; font-weight:700; margin-bottom:8px; }
+.nc-bd { font-size:30px; color:#5a3e2b; line-height:1.7; }
+.nc-bd .pk { color:#d4687a; font-weight:700; }
+.nc-bd .bl { color:#5a8ab5; font-weight:700; }
+
+.lk { background:#fff5f6; border:2px solid #e8919a; border-radius:14px; padding:14px 18px; }
+.lk-tl { font-size:30px; color:#d4687a; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.lk-itms { display:flex; flex-wrap:wrap; gap:8px 10px; }
+.lk-it { background:#fff; border:1.5px solid #f5c4c4; border-radius:12px; padding:5px 14px; font-size:30px; color:#b87a8a; text-decoration:line-through; }
+
+.bt-bar { background:#5a3e2b; padding:16px 40px; display:flex; align-items:center; justify-content:center; position:absolute; bottom:0; left:0; right:0; }
+.bt-bar span { font-size:30px; color:#f5f0e8; letter-spacing:3px; font-weight:700; }
+</style>
+</head><body>
+<div class="page">
+  <div class="top-stripe"></div>
+  <div class="edge edge-l"></div>
+  <div class="edge edge-r"></div>
+  <div class="content-wrap">
+    <div class="main-title">
+      <div class="mt1 hand-title">&#127942; 闺蜜亲测！</div>
+      <div class="mt1 hand-title">新手妈咪<span class="mt2">『不踩雷』</span>待产包</div>
+    </div>
+
+    <div class="stats">
+      <div class="sc"><div class="num">32<span class="unit">项</span></div><div class="lbl">宝宝篇</div></div>
+      <div class="sc"><div class="num">22<span class="unit">项</span></div><div class="lbl">妈妈篇</div></div>
+      <div class="sc"><div class="num">5<span class="unit">项</span></div><div class="lbl">产房篇</div></div>
+    </div>
+
+    <div class="sub-hd">过来人真实复盘 · 仅供参考</div>
+
+    <div class="tag-box">
+      <div class="tb-lbl">&#127804; 本清单包含</div>
+      <div class="tb-items">
+        <span class="tg tg-p">宝宝衣物类</span>
+        <span class="tg tg-p">宝宝喂养类</span>
+        <span class="tg tg-p">宝宝护理类</span>
+        <span class="tg tg-b">妈妈衣物类</span>
+        <span class="tg tg-b">妈妈用品类</span>
+        <span class="tg tg-g">证件篇</span>
+        <span class="tg tg-g">产房篇</span>
+      </div>
+    </div>
+
+    <div class="nc">
+      <div class="nc-tl">&#128148; 过来人有话说</div>
+      <div class="nc-bd">待产包不是越多越好，带对东西才是关键！<br>宝宝篇我全部<span class="pk">亲测用上了</span>，妈妈篇也有<span class="bl">神器推荐</span>～</div>
+    </div>
+
+    <div class="lk">
+      <div class="lk-tl">&#9888; 避雷清单 · 这些真的不用带</div>
+      <div class="lk-itms">
+        <span class="lk-it">刀纸</span>
+        <span class="lk-it">指甲套盒</span>
+        <span class="lk-it">安抚奶嘴</span>
+        <span class="lk-it">半背衣</span>
+        <span class="lk-it">包被</span>
+        <span class="lk-it">冷敷贴</span>
+        <span class="lk-it">哺乳内衣</span>
+        <span class="lk-it">防溢乳垫</span>
+      </div>
+    </div>
+  </div>
+  <div class="bt-bar"><span>&#8595; 滑动查看宝宝篇 &#8595;</span></div>
+</div>
+</body></html>

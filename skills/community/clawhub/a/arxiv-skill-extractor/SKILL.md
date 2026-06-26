@@ -1,35 +1,42 @@
 ---
-name: "Arxiv Skill Extractor"
-description: "Automates the process of extracting reusable skill code from arXiv papers. Use this skill to turn paper insights into actual OpenClaw skills."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arxiv-skill-extractor"
-sourceUrl: "https://clawhub.ai/skills/arxiv-skill-extractor"
+name: arxiv-skill-extractor
+description: Automates the process of extracting reusable skill code from arXiv papers. Use this skill to turn paper insights into actual OpenClaw skills.
 ---
 
-# Arxiv Skill Extractor
+# ArXiv Skill Extractor
 
-> Automates the process of extracting reusable skill code from arXiv papers. Use this skill to turn paper insights into actual OpenClaw skills.
+This skill wraps `arxiv-paper-reviews` and provides an automated pipeline for:
+1.  Fetching papers.
+2.  Extracting key algorithms.
+3.  Generating skill templates.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arxiv-skill-extractor`
-- **Source URL:** [https://clawhub.ai/skills/arxiv-skill-extractor](https://clawhub.ai/skills/arxiv-skill-extractor)
+## Usage
 
-## Overview
+### Extract Skill from a Paper
 
+```javascript
+const { extractSkill } = require("./skills/arxiv-skill-extractor/index.js");
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/arxiv-skill-extractor
+async function run() {
+  const result = await extractSkill("4711d67c242a5ecba2751e6b");
+  console.log(result);
+}
+
+run();
 ```
+
+### Automation
+
+Run the default extraction loop (uses `local_task:arxiv_skill_learning` config):
+
+```bash
+# 自动读取 pending_skill_task.json 中的 paper_key
+node skills/arxiv-skill-extractor/index.js
+
+# 或直接指定 paper_key
+node skills/arxiv-skill-extractor/index.js 4711d67c242a5ecba2751e6b
+```
+
+## Why?
+
+We need to continuously learn from new research. Manual reading is slow. This skill bridges the gap between paper knowledge and executable code.

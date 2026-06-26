@@ -1,0 +1,19 @@
+name: oidc-hardened
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@9f3a9f2b10f67f4c8cc2f8a2ab95e1246e3f8b7c
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gha-deploy
+          aws-region: us-east-1
+      - run: aws sts get-caller-identity

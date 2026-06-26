@@ -1,0 +1,36 @@
+=== TRIDENT PLUGIN ===
+
+Repository: https://github.com/ShivaClaw/trident-plugin
+Status: Published to GitHub (April 17, 2026)
+
+Description:
+Trident is a three-tier persistent memory architecture for OpenClaw agents.
+It provides genuine continuity, identity, and recall without vendor lock-in.
+
+Files:
+- SKILL.md: Full skill definition and usage
+- plugin-manifest.json: Metadata for clayhub
+- package.json: Node package config
+- README.md: Overview and quick-start
+- INSTALL.md: Installation instructions
+- MIGRATION.md: Migration guide from old patterns
+- config.schema.json: Configuration reference
+- COMPLETION_REPORT.md: Technical checklist
+- INDEX.md: File navigation guide
+
+Key Features:
+✓ Daily episodic logs (memory/YYYY-MM-DD.md)
+✓ Curated long-term memory (MEMORY.md)
+✓ Project-scoped workstreams (memory/projects/)
+✓ Self-directed learning (memory/self/)
+✓ Operational lessons (memory/lessons/)
+✓ LCM integration for compacted context
+✓ WAL (Write-Ahead Logging) protocol
+✓ No vendor lock-in
+
+Installation:
+clawhub install ShivaClaw/trident-plugin
+or
+cp -r trident-plugin ~/.openclaw/skills/
+
+GitHub URL: https://github.com/ShivaClaw/trident-plugin

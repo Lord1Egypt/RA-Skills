@@ -1,35 +1,28 @@
 ---
-name: "recipe-create-gmail-filter"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-gmail-filter"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-gmail-filter"
+name: recipe-create-gmail-filter
+description: "Create a Gmail filter to automatically label, star, or categorize incoming messages."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
 ---
 
-# recipe-create-gmail-filter
+# Create a Gmail Filter
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-gmail-filter`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-gmail-filter](https://skills.sh/googleworkspace/cli/recipe-create-gmail-filter)
+Create a Gmail filter to automatically label, star, or categorize incoming messages.
 
-## Overview
+## Steps
 
+1. List existing labels: `gws gmail users labels list --params '{"userId": "me"}' --format table`
+2. Create a new label: `gws gmail users labels create --params '{"userId": "me"}' --json '{"name": "Receipts"}'`
+3. Create a filter: `gws gmail users settings filters create --params '{"userId": "me"}' --json '{"criteria": {"from": "receipts@example.com"}, "action": {"addLabelIds": ["LABEL_ID"], "removeLabelIds": ["INBOX"]}}'`
+4. Verify filter: `gws gmail users settings filters list --params '{"userId": "me"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-gmail-filter
-```

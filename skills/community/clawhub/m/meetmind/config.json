@@ -1,0 +1,76 @@
+{
+  "version": "0.6.0",
+  "model": "turbo",
+  "language": "zh",
+  "mode": "auto",
+  "_mode_options": {
+    "auto": "有证书→付费mTLS模式，无证书→试用模式",
+    "local": "强制本地 Whisper 转录（需安装）",
+    "cloud": "强制云端转录（需 API Key）"
+  },
+
+  "templates": {
+    "auto_detect": true,
+    "min_score_diff": 3,
+    "_note": "模板详细定义（ACE权重、输出块、prompt）在服务端 templates.json。Skill端只做关键词匹配选ID。",
+    "_templates": {
+      "product_review": {"name": "产品研讨会", "enabled": true},
+      "client_meeting": {"name": "客户会议", "enabled": true},
+      "weekly_standup": {"name": "内部周会", "enabled": true},
+      "interview": {"name": "面试", "enabled": true},
+      "sales_call": {"name": "销售拜访", "enabled": true},
+      "investment_review": {"name": "投资评审", "enabled": true},
+      "one_on_one": {"name": "1v1 沟通", "enabled": true},
+      "brainstorm": {"name": "头脑风暴", "enabled": true},
+      "retrospective": {"name": "复盘会", "enabled": true},
+      "general": {"name": "通用会议", "enabled": true}
+    }
+  },
+
+  "trial": {
+    "enabled": true,
+    "max_uses": 10,
+    "_note": "终身10次免费试用，无需mTLS证书。用完提示升级 ¥19.9/月。",
+    "max_chars": 8000,
+    "watermark": "试用版 — 升级到个人版（¥19.9/月）解锁跨会议记忆和无限使用"
+  },
+
+  "cross_meeting_memory": {
+    "enabled": true,
+    "storage_path": "~/.workbuddy/skills/meetmind/memory/",
+    "max_history_per_client": 20,
+    "retention": {
+      "free": "不存储",
+      "pay_per_use": "7天",
+      "monthly": "永久",
+      "enterprise": "永久+团队共享"
+    }
+  },
+
+  "cloud_api": {
+    "api_base": "https://www.hermesai.ltd/meetmind",
+    "auth": "mTLS 客户端证书",
+    "cert_dir": "certs/",
+    "_note": "付费用户获取 mTLS 证书。试用用户调用 /trial 端点无需证书。",
+    "timeout_sec": 120
+  },
+
+  "pricing_tiers": {
+    "trial": {"price": 0, "name": "试用", "max_uses": 10, "max_chars": 8000, "memory_days": 0, "audio_allowed": false},
+    "l1_free": {"price": 0, "name": "免费版", "monthly_limit": 5, "max_chars": 10000, "memory_days": 0, "audio_allowed": false},
+    "l2_monthly": {"price": 19.9, "name": "个人月付", "monthly_limit": 999, "memory_days": 365, "audio_allowed": false},
+    "l2_yearly": {"price": 99, "name": "个人年付", "monthly_limit": 999, "memory_days": 365, "audio_allowed": false},
+    "l3_audio": {"price": 3, "name": "音频加购（每次≤30min）", "memory_days": 365, "audio_allowed": true, "max_duration_min": 30},
+    "l4_enterprise": {"price": 9800, "name": "企业版", "memory_days": 365, "audio_allowed": true, "max_duration_min": 9999, "custom_templates": true}
+  },
+
+  "_models": {
+    "tiny": "75MB，极快，适合快速测试",
+    "base": "145MB，基础精度",
+    "small": "488MB，推荐（中文效果好）",
+    "medium": "1.5GB，高精度",
+    "large-v3": "3GB，最高精度",
+    "turbo": "1.5GB，large-v3 加速版"
+  },
+  "_note": "v0.6.0 核心变更：模板细节移至服务端，新增试用模式，支持自定义模板（L4企业版）"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "operation-quarantine",
+  "version": "1.0.3",
+  "description": "Prompt injection defense for OpenClaw agents",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-quarantine.js"
+  },
+  "dependencies": {
+    "fastify": "^5.0.0",
+    "dotenv": "^16.4.0",
+    "html-to-text": "^9.0.5"
+  },
+  "author": "David Valentin",
+  "license": "MIT-0"
+}

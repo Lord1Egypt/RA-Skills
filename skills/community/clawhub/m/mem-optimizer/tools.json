@@ -1,0 +1,50 @@
+{
+  "tools": [
+    {
+      "name": "mem_optimize",
+      "description": "执行记忆优化：扫描 memory 目录，压缩冗长的记忆文件，释放 token 消耗。默认 dryRun=true 仅预览。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "dryRun": {
+            "type": "boolean",
+            "default": true,
+            "description": "true=仅预览不修改文件，false=执行实际压缩"
+          }
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "status": "success|error",
+          "message": "优化结果摘要",
+          "stats": {
+            "freedTokens": "释放的 token 数量",
+            "summarizedTokens": "总结的 token 数量",
+            "filesProcessed": "处理的文件数",
+            "totalTokens": "总 token 数"
+          },
+          "details": "每个文件的优化详情",
+          "dryRun": "是否预览模式"
+        }
+      }
+    },
+    {
+      "name": "mem_stats",
+      "description": "统计 memory 目录的 token 使用情况，显示每个文件的大小和 token 数。",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "status": "success|error",
+          "totalFiles": "文件总数",
+          "totalTokens": "总 token 数",
+          "files": "每个文件的详情"
+        }
+      }
+    }
+  ]
+}

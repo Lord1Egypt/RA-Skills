@@ -1,0 +1,136 @@
+{
+  "tools": [
+    {
+      "name": "rewrite_image_prompt",
+      "description": "Rewrite a rough image request into a stronger prompt for reliable generation. Supports templates for common marketing use cases.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "goal": { "type": "string" },
+          "raw_prompt": { "type": "string" },
+          "use_case": {
+            "type": "string",
+            "enum": ["landing", "product", "blog", "social", "ad", "ecommerce"]
+          },
+          "template": {
+            "type": "string",
+            "enum": ["landing", "ad", "blog", "ecommerce"],
+            "description": "Optional: use a predefined template for faster setup"
+          },
+          "tone": { "type": "string" },
+          "audience": { "type": "string" }
+        },
+        "required": ["goal", "raw_prompt", "use_case"]
+      }
+    },
+    {
+      "name": "estimate_image_cost",
+      "description": "Estimate likely credit cost before running generation. Includes smart recommendations for platform-optimized sizes.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "use_case": {
+            "type": "string",
+            "enum": ["landing", "product", "blog", "social", "ad", "ecommerce"]
+          },
+          "platform": {
+            "type": "string",
+            "enum": ["instagram_post", "instagram_story", "facebook_ad", "twitter_card", "linkedin_ad", "blog_cover", "youtube_thumbnail", "app_store"],
+            "description": "Optional: get platform-optimized size recommendations"
+          },
+          "count": { "type": "integer", "minimum": 1, "maximum": 8 },
+          "resolution": {
+            "type": "string",
+            "enum": ["1K", "2K", "4K"]
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "enum": ["1:1", "16:9", "4:5", "3:2", "9:16", "1.91:1"]
+          },
+          "quality_mode": {
+            "type": "string",
+            "enum": ["fast", "balanced", "high"]
+          },
+          "template": {
+            "type": "string",
+            "enum": ["landing", "ad", "blog", "ecommerce"],
+            "description": "Optional: use template defaults for cost estimate"
+          }
+        },
+        "required": ["use_case", "count", "resolution", "quality_mode"]
+      }
+    },
+    {
+      "name": "generate_image",
+      "description": "Generate a usable image for a real workflow task. Use templates for quick setup with optimized defaults.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "goal": { "type": "string" },
+          "prompt": { "type": "string" },
+          "use_case": {
+            "type": "string",
+            "enum": ["landing", "product", "blog", "social", "ad", "ecommerce"]
+          },
+          "template": {
+            "type": "string",
+            "enum": ["landing", "ad", "blog", "ecommerce"],
+            "description": "Optional: apply template defaults (aspect_ratio, resolution, style)"
+          },
+          "platform": {
+            "type": "string",
+            "enum": ["instagram_post", "instagram_story", "facebook_ad", "twitter_card", "linkedin_ad", "blog_cover", "youtube_thumbnail", "app_store"],
+            "description": "Optional: use platform-optimized settings"
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "enum": ["1:1", "16:9", "4:5", "3:2", "9:16", "1.91:1"]
+          },
+          "resolution": {
+            "type": "string",
+            "enum": ["1K", "2K", "4K"]
+          },
+          "quality_mode": {
+            "type": "string",
+            "enum": ["fast", "balanced", "high"]
+          },
+          "count": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "model_override": { "type": "string" },
+          "auto_poll": { "type": "boolean" },
+          "poll_attempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+          "poll_interval_ms": { "type": "integer", "minimum": 200, "maximum": 10000 }
+        },
+        "required": ["goal", "prompt", "use_case", "quality_mode", "count"]
+      }
+    },
+    {
+      "name": "poll_image_result",
+      "description": "Poll a previously submitted Rynjer image generation request by request_id.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "request_id": { "type": "string" }
+        },
+        "required": ["request_id"]
+      }
+    },
+    {
+      "name": "recommend_image_size",
+      "description": "Get smart recommendations for image size and aspect ratio based on target platform or use case.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": ["instagram_post", "instagram_story", "facebook_ad", "twitter_card", "linkedin_ad", "blog_cover", "youtube_thumbnail", "app_store"]
+          },
+          "use_case": {
+            "type": "string",
+            "enum": ["landing", "product", "blog", "social", "ad", "ecommerce"]
+          }
+        },
+        "required": ["platform"]
+      }
+    }
+  ]
+}

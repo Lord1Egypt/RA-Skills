@@ -1,35 +1,22 @@
----
-name: "橫琴創業補貼助手"
-description: "幫助澳門創業者及企業查詢橫琴及澳門最新補貼政策、申請條件與流程指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hengqin-subsidy-helper"
-sourceUrl: "https://clawhub.ai/skills/hengqin-subsidy-helper"
----
-
 # 橫琴創業補貼助手
 
-> 幫助澳門創業者及企業查詢橫琴及澳門最新補貼政策、申請條件與流程指引。
+輸入你想要既創業方向/行業，AI幫你整理澳門同橫琴既補貼政策同申請條件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hengqin-subsidy-helper`
-- **Source URL:** [https://clawhub.ai/skills/hengqin-subsidy-helper](https://clawhub.ai/skills/hengqin-subsidy-helper)
+## 功能
 
-## Overview
+- 搜尋最新補貼計劃
+- 評估你是否符合申請資格
+- 列出申請所需文件
+- 提供申請流程教學
 
+## 適用對象
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hengqin-subsidy-helper
-```
+- 澳門創業者
+- 想去橫琴發展既企業
+- 想拎政府資助既中小企
+
+## 範例問題
+
+- 「我係澳門人，想開餐廳，有咩補貼？」
+- 「橫琴既青年創業援助計劃點樣申請？」
+- 「有咩適合科技公司既補貼？」

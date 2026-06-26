@@ -1,0 +1,11 @@
+bitable:
+  app_token: "<BITABLE_APP_TOKEN>"
+  table_id: "<BITABLE_TABLE_ID>"
+bot_name: "<BOT_NAME>"
+cloud_share:
+  enabled: true
+# 队列模式开关（true=走MQ队列，false=直接执行）
+use_mq_queue: false
+feishu:
+  app_id: "<APP_ID>"
+  app_secret: "<APP_SECRET>"

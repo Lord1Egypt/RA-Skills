@@ -1,0 +1,40 @@
+{
+  "site": {
+    "name": "站点名称（仅用于日志显示）",
+    "base_url": "https://staff.xxx.com",
+    "module": "info",
+    "vpn_interface": "ppp0",
+    "endpoints": {
+      "login_page": "/d.php/admin/login/index",
+      "login_submit": "/d.php/admin/login/doLogin",
+      "fetch": "/d.php/admin/{module}/listAjax",
+      "submit": "/d.php/admin/{module}/verifyStatus"
+    },
+    "login_fields": {
+      "username_field": "user_name",
+      "password_field": "password",
+      "totp_field": "card_num"
+    }
+  },
+  "auth": {
+    "username": "",
+    "password": "",
+    "totp_seed": ""
+  },
+  "moderation": {
+    "content_fields": ["title", "content"],
+    "api_url": "https://zyaokkmo.cc",
+    "api_key": "",
+    "strictness": "standard",
+    "type": "post"
+  },
+  "fetch": {
+    "pending_status": "1",
+    "page_size": 90,
+    "max_pages": 10
+  },
+  "submit": {
+    "approve_status": "2",
+    "reject_status": "3"
+  }
+}

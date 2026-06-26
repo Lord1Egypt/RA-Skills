@@ -1,35 +1,50 @@
----
-name: "Pipeworx translate"
-description: "Translate text between multiple languages, detect text language, and list all supported language codes and names."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-translate"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-translate"
----
+# Translate
 
-# Pipeworx translate
+Machine translation between dozens of languages, plus language detection.
 
-> Translate text between multiple languages, detect text language, and list all supported language codes and names.
+## Three tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-translate`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-translate](https://clawhub.ai/skills/pipeworx-translate)
+`translate` -- Translate text from one language to another. Requires source and target language codes.
 
-## Overview
+`detect_language` -- Identify the language of any text. Returns detected languages ranked by confidence.
 
+`list_languages` -- Get all supported language codes and names.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: English to Spanish
+
 ```bash
-hermes skills install clawhub/pipeworx-translate
+curl -X POST https://gateway.pipeworx.io/translate/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"translate","arguments":{"text":"The weather is beautiful today","source":"en","target":"es"}}}'
 ```
+
+## Common language codes
+
+| Code | Language |
+|------|----------|
+| en | English |
+| es | Spanish |
+| fr | French |
+| de | German |
+| pt | Portuguese |
+| zh | Chinese |
+| ja | Japanese |
+| ar | Arabic |
+| ru | Russian |
+| ko | Korean |
+
+Use `list_languages` for the full set.
+
+## Add to your client
+
+```json
+{
+  "mcpServers": {
+    "translate": {
+      "url": "https://gateway.pipeworx.io/translate/mcp"
+    }
+  }
+}
+```
+
+Powered by LibreTranslate.

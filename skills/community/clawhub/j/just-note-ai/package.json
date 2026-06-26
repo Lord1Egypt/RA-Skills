@@ -1,0 +1,25 @@
+{
+  "name": "just-note",
+  "version": "0.1.0",
+  "description": "零摩擦知识记录工具 - 像发消息一样记录一切，AI 自动分类整理",
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/just-note"
+  },
+  "keywords": [
+    "note",
+    "knowledge",
+    "ai",
+    "openclaw",
+    "skill"
+  ],
+  "bin": {
+    "just-note": "./bin/just-note"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md"
+  ]
+}

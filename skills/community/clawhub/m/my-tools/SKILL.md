@@ -1,35 +1,28 @@
 ---
-name: "my-tools"
-description: "提供当前时间和日期查询及数学表达式计算，结果通过执行本地脚本获取并原样返回用户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-tools"
-sourceUrl: "https://clawhub.ai/skills/my-tools"
+name:my_tools
+description:自定义工具集。包含获取当前时间和计算数学表达式的功能。当用户询问时间或日期时，应该调用此技能。当用户要求计算数学公式时，也应该调用此技能。
 ---
 
-# my-tools
+#我的私人助手技能包
+当用户提出请求时，请严格遵守以下指标：
 
-> 提供当前时间和日期查询及数学表达式计算，结果通过执行本地脚本获取并原样返回用户。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-tools`
-- **Source URL:** [https://clawhub.ai/skills/my-tools](https://clawhub.ai/skills/my-tools)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+##功能1：获取当前时间
+--**触发条件**: 用户问题中包含“时间”、“日期”、“几点”等词语。
+--**执行规则**：
+1.**绝对禁止**使用你自己的知识来回答时间。
+2.**必须**调用`exec`工具来执行当前目录下的`time.py`脚本
+3.执行的命令如下：
 ```bash
-hermes skills install clawhub/my-tools
-```
+python /root/.openclaw/workspace/skills/my_tools/time.py
+4. 等待 `exec` 工具的输出结果，然后原封不动地将结果回显给用户。
+
+## 功能2：计算数学表达式
+- **触发条件**：用户问题中包含“计算”、“等于”、“加”、“减”、“乘”、“除”等词语，或者用户直接给出一个数学表达式（例如“23+45+100”）。
+- **执行规则**：
+1. **绝对禁止**你自己进行计算。
+2. **必须**调用 `exec` 工具来执行当前目录下的 `calc.py` 脚本，并将用户的表达式作为参数传递给它。
+3. 执行的命令示例如下（当用户说“计算 23 * 45 + 100”时）：
+```bash
+python /root/.openclaw/workspace/skills/my_tools/calc.py “23 * 45 + 100”
+4. 将 `exec` 工具的返回结果直接回显给用户。
+

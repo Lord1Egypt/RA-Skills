@@ -1,0 +1,161 @@
+name: Content Task
+description: |
+  Workflow for Content-only tasks: creative agent delivers copy/strategy, no frontend needed.
+  Phases: 1 (Requirements) → 2 (Conception) → 3 (Content Creation) → 4 (QA) → 5 (Review) → 6 (Done).
+  No staging deploy — FlowClaw presents deliverable directly to the owner.
+  Use for: landing page copy, blog posts, UX flows, marketing strategy, brand messaging.
+version: "1.0.0"
+
+# Triggered by n8n when task type = "Standard" AND content category
+# OR manually selected for content-only work
+# Context from n8n: taskId, taskName, taskType, project_name
+#
+# Content task examples:
+#   - Landing page copy (headlines, sections, CTAs)
+#   - UX flow description / user journey
+#   - Marketing campaign messaging
+#   - Brand voice guidelines
+#   - Email sequences
+#
+# Primary agent: creative (Copywriter + UX Designer sub-roles)
+# No frontend implementation needed — content goes to concepts/ folder
+
+steps:
+  # --- Phase 1: Requirements ---
+  - read_notion_task:
+      taskId: "{taskId}"
+      output: "temp/briefing-{taskId}.md"
+
+  - update_notion:
+      taskId: "{taskId}"
+      status: "In Progress"
+
+  # --- Phase 2: Conception ---
+  # creative defines content strategy before writing
+  - spawn_agent:
+      agentId: "creative"
+      runtime: subagent
+      task: |
+        Role: UX Designer + Copywriter
+        TASK: Content strategy for "{task_name}"
+
+        Read briefing: file:temp/briefing-{taskId}.md
+
+        Before writing, define:
+        1. Target audience (who are we writing for?)
+        2. Content goal (what should the reader feel/do after?)
+        3. Tone of voice (formal/casual, warm/authoritative, etc.)
+        4. Key messages (3–5 core points to communicate)
+        5. Content structure (sections, flow, hierarchy)
+        6. CTA strategy (what action do we want?)
+
+        Output strategy to: concepts/content-strategy-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 600
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 600
+      pollInterval: 15
+
+  # --- Phase 3: Content Creation ---
+  - spawn_agent:
+      agentId: "creative"
+      runtime: subagent
+      task: |
+        Role: Copywriter
+        TASK: Write content for "{task_name}"
+
+        Read strategy doc first: file:concepts/content-strategy-{taskId}.md
+        Also reference briefing: file:temp/briefing-{taskId}.md
+
+        Write full content deliverable:
+        - Follow the strategy document
+        - Include all sections defined in content structure
+        - Write multiple options for headlines/CTAs (give the owner choices)
+        - Mark any placeholders as [PLACEHOLDER: description]
+        - Annotate layout hints where relevant (e.g., "hero section", "above fold")
+
+        Output to: concepts/content-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 900
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 900
+      pollInterval: 15
+
+  # --- Phase 4: QA ---
+  # quality checks content accuracy, consistency, links
+  - spawn_agent:
+      agentId: "quality"
+      runtime: subagent
+      task: |
+        Role: QA Engineer
+        TASK: Content QA for "{task_name}"
+
+        Review: file:concepts/content-{taskId}.md
+        Against strategy: file:concepts/content-strategy-{taskId}.md
+        Against briefing: file:temp/briefing-{taskId}.md
+
+        Content QA checklist:
+        1. Consistency — tone matches defined voice?
+        2. Coverage — all required sections present?
+        3. Accuracy — no factual claims that seem wrong or unverified?
+        4. Links — any mentioned URLs exist and return HTTP 200?
+        5. Completeness — no orphaned placeholders or TODOs?
+        6. Messaging — key messages from strategy present?
+
+        Verdict: ✅ PASS or ❌ FAIL (with specific issues)
+        Output to: temp/qa-content-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 600
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 600
+      pollInterval: 15
+
+  # --- Phase 5: Review ---
+  # No staging deploy for content — FlowClaw presents directly to the owner
+  - update_notion:
+      taskId: "{taskId}"
+      status: "Staging Review"
+
+  - notify_discord:
+      channel: project_updates
+      message: |
+        📝 **Content Ready — Owner Review Needed**
+
+        **Task:** {task_name}
+        **Type:** Content
+        **QA:** {qa_passed}
+
+        **Deliverables:**
+        - Strategy: concepts/content-strategy-{taskId}.md
+        - Content: concepts/content-{taskId}.md
+        - QA: temp/qa-content-{taskId}.md
+
+        **Notion:** {notion_url}
+
+        Owner: review content doc. Say "approved" to finalize, or give feedback.
+
+  # --- Phase 6: Done ---
+  # For content tasks: no deployment needed — FlowClaw documents completion
+  - update_notion:
+      taskId: "{taskId}"
+      status: "Done"
+
+  - notify_discord:
+      channel: project_updates
+      message: |
+        ✅ **Content Task Complete**
+
+        **Task:** {task_name}
+        **QA:** {qa_passed}
+
+        **Final Deliverable:** concepts/content-{taskId}.md
+        **Notion:** {notion_url}
+
+        Content delivered. No deployment needed for content-only tasks.
+        If implementation is required, create a follow-up Code task.

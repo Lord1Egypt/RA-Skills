@@ -1,0 +1,115 @@
+# Universal workflow definition schema for agentic-services-orchestrator-skill.
+# Workflow adapters should conform to this shape so the orchestrator can route
+# by policy instead of hardcoded lifecycle order.
+
+workflow_definition_schema:
+  schema_version: 1.0.0
+  required_top_level_fields:
+    - workflow_type
+    - stages
+    - allowed_transitions
+    - artifacts
+    - specialist_owners
+    - gates
+    - approval_states
+    - routing_rules
+    - recovery_actions
+    - required_fields
+    - terminal_states
+
+  primitives:
+    workflow_type:
+      description: Domain identifier, such as completetech_services, hiring_pipeline, software_release, or procurement.
+      required: true
+    stage:
+      description: Named lifecycle position within a workflow type.
+      required_fields: [id, label, purpose]
+    track:
+      description: Parallel workstream with owner, stage, dependencies, blockers, and output limits.
+      required_fields: [track_id, stage, status, owner]
+    artifact:
+      description: Versioned work product with source artifacts and approval impact.
+      required_fields: [artifact_type, owner, version_policy]
+    actor:
+      description: Person, team, role, specialist skill, plugin, or external approver.
+      required_fields: [role, authority]
+    decision:
+      description: Recorded choice with actor, evidence, rationale, and affected tracks.
+      required_fields: [decision_id, actor, timestamp, rationale]
+    gate:
+      description: Approval, risk, policy, quality, compliance, or human-authority checkpoint.
+      required_fields: [gate_id, owner, applies_when, approval_states]
+    dependency:
+      description: Condition, artifact, approval, fact, or external event needed before a transition or action.
+      required_fields: [dependency_id, needed_for, status]
+    event:
+      description: Append-only state change in the workflow event log.
+      required_fields: [event_id, type, actor, timestamp]
+    state_transition:
+      description: Allowed movement between stages/tracks/statuses under specified conditions.
+      required_fields: [from, to, when]
+    recovery_action:
+      description: Smallest useful safe action when a request is blocked or underspecified.
+      required_fields: [id, applies_when, output]
+
+  approval_states:
+    - unknown
+    - draft
+    - requested
+    - partial
+    - approved
+    - rejected
+    - expired
+    - superseded
+    - blocked
+    - conditional
+
+  event_types:
+    - artifact_created
+    - artifact_revised
+    - approval_requested
+    - approval_changed
+    - blocker_added
+    - blocker_removed
+    - scope_changed
+    - owner_changed
+    - decision_recorded
+    - track_started
+    - track_closed
+    - recovery_action_selected
+
+  adapter_shape:
+    workflow_type: TBD
+    label: TBD
+    default: false
+    stages: []
+    allowed_transitions: []
+    artifacts: []
+    specialist_owners: {}
+    gates: []
+    approval_states: []
+    routing_rules: []
+    recovery_actions: []
+    required_fields: []
+    terminal_states: []
+    validation_rules: []
+
+  validation_rules:
+    - id: invalid_transition
+      description: "Reject transitions not listed in allowed_transitions. Avoid catch-all source-to-target transition pairs; model exceptions as explicit gated transitions with evidence, owner, and rationale."
+    - id: missing_owner
+      description: Every active track, gate, decision, recovery action, and artifact must have an owner or `TBD`.
+    - id: orphaned_blocker
+      description: Every blocker must reference a track, artifact, gate, or decision.
+    - id: stale_approval
+      description: Expired or superseded approvals cannot authorize downstream action.
+    - id: artifact_without_source_or_version
+      description: Generated artifacts must include version and source_artifacts unless explicitly first version.
+    - id: gate_bypassed_without_rationale
+      description: Any skipped gate must record actor, timestamp, rationale, and permitted scope.
+    - id: unresolved_conflict
+      description: Tracks with unresolved conflicts cannot reach final output unless the conflict is outside scope.
+    - id: terminal_state_with_open_blockers
+      description: Terminal states cannot have open blockers unless terminal_state allows unresolved closure.
+    - id: external_action_without_approval_evidence
+      description: External send, launch, payment request, public proof, or production-impacting action needs approval evidence.

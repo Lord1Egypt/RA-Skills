@@ -1,0 +1,9 @@
+{
+  "name": "historical-figure",
+  "author": "engram-team",
+  "version": "1.0.0",
+  "description": "明代思想家王阳明（王守仁），心学创始人。当用户想探讨哲学、人生困惑、知行合一、或学习阳明心学时加载",
+  "tags": ["哲学", "历史", "心学"],
+  "knowledge_count": 3,
+  "examples_count": 2
+}

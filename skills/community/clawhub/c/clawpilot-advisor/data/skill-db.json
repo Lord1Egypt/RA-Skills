@@ -1,0 +1,33 @@
+{
+  "skills": [
+    {"name": "logistics", "displayName": "物流聚合查询", "description": "支持多家主流快递公司物流查询", "riskLevel": "low", "riskReason": null, "category": "工具"},
+    {"name": "sf-express", "displayName": "顺丰速运", "description": "顺丰快递专用查询", "riskLevel": "low", "riskReason": null, "category": "工具"},
+    {"name": "zto", "displayName": "中通快递", "description": "中通快递物流查询", "riskLevel": "low", "riskReason": null, "category": "工具"},
+    {"name": "jtexpress", "displayName": "极兔速递", "description": "极兔快递物流查询", "riskLevel": "low", "riskReason": null, "category": "工具"},
+    {"name": "cainiao", "displayName": "菜鸟裹裹", "description": "菜鸟裹裹快递查询", "riskLevel": "low", "riskReason": null, "category": "工具"},
+    {"name": "shansong", "displayName": "闪送", "description": "同城即时配送服务", "riskLevel": "low", "riskReason": null, "category": "工具"},
+    {"name": "weather", "displayName": "天气查询", "description": "查询全球天气信息", "riskLevel": "low", "riskReason": null, "category": "工具"},
+    {"name": "burnout-checkin", "displayName": "职业倦怠自测", "description": "评估职业倦怠程度，提供缓解建议", "riskLevel": "medium", "riskReason": "心理健康自测工具，非专业诊疗，使用结果仅供参考", "category": "心理健康"},
+    {"name": "psych-companion", "displayName": "心理陪伴助手", "description": "情绪陪伴与心理疏导", "riskLevel": "medium", "riskReason": "心理陪伴工具，不能替代专业心理咨询", "category": "心理健康"},
+    {"name": "decision-fatigue-reliever", "displayName": "决策疲劳缓解", "description": "帮助减少日常决策疲劳", "riskLevel": "medium", "riskReason": "辅助工具，涉及个人决策建议", "category": "心理健康"},
+    {"name": "daily-reflection", "displayName": "每日复盘", "description": "每日反思与成长记录", "riskLevel": "low", "riskReason": null, "category": "效率"},
+    {"name": "xiangqin", "displayName": "相亲助手", "description": "相亲话题与流程指导", "riskLevel": "medium", "riskReason": "涉及个人隐私，建议使用脱敏信息", "category": "社交"},
+    {"name": "blind-date-assistant", "displayName": "约会助手", "description": "约会技巧与建议", "riskLevel": "medium", "riskReason": "情感建议类，仅供参考", "category": "社交"},
+    {"name": "clause-redraft", "displayName": "合同条款润色", "description": "合同条款修改与润色", "riskLevel": "high", "riskReason": "涉及法律文书，不构成法律意见，重要合同请咨询律师", "category": "法律"},
+    {"name": "contract-risk-scan", "displayName": "合同风险扫描", "description": "合同风险点识别与提示", "riskLevel": "high", "riskReason": "法律风险评估，不构成法律意见", "category": "法律"},
+    {"name": "ai-legal-assistant-pro", "displayName": "AI 法律助手", "description": "法律问题咨询与解答", "riskLevel": "high", "riskReason": "法律咨询辅助，不构成律师意见", "category": "法律"},
+    {"name": "legal-consultation", "displayName": "法律咨询", "description": "基础法律问题咨询", "riskLevel": "high", "riskReason": "法律咨询，不构成正式法律意见", "category": "法律"},
+    {"name": "haodf", "displayName": "好大夫在线", "description": "预约挂号、医生咨询", "riskLevel": "high", "riskReason": "医疗相关，不能替代面诊", "category": "医疗"},
+    {"name": "hospital", "displayName": "医院查询", "description": "查找附近医院", "riskLevel": "medium", "riskReason": "医疗信息查询，不能替代诊疗", "category": "医疗"},
+    {"name": "cn-online-shopping", "displayName": "国内网购助手", "description": "国内主流电商平台购物辅助", "riskLevel": "medium", "riskReason": "购物建议，涉及价格信息", "category": "电商"},
+    {"name": "pdd-shopping", "displayName": "拼多多购物", "description": "拼多多商品搜索与推荐", "riskLevel": "medium", "riskReason": "购物建议", "category": "电商"},
+    {"name": "jingdong-shopping", "displayName": "京东购物", "description": "京东商品搜索与推荐", "riskLevel": "medium", "riskReason": "购物建议", "category": "电商"},
+    {"name": "yhd", "displayName": "一号店购物", "description": "一号店商品搜索", "riskLevel": "medium", "riskReason": "购物建议", "category": "电商"},
+    {"name": "freshippo", "displayName": "盒马鲜生", "description": "盒马生鲜配送查询", "riskLevel": "low", "riskReason": null, "category": "生活"},
+    {"name": "waimai", "displayName": "外卖助手", "description": "外卖平台推荐与优惠", "riskLevel": "low", "riskReason": null, "category": "生活"},
+    {"name": "didi", "displayName": "滴滴出行", "description": "叫车与出行规划", "riskLevel": "low", "riskReason": null, "category": "出行"},
+    {"name": "trip", "displayName": "旅行助手", "description": "机票酒店预订辅助", "riskLevel": "medium", "riskReason": "出行规划，涉及预订建议", "category": "出行"},
+    {"name": "qunar", "displayName": "去哪儿旅行", "description": "机票酒店查询", "riskLevel": "medium", "riskReason": "出行规划", "category": "出行"},
+    {"name": "taobao-competitor-analyzer", "displayName": "淘宝竞品分析", "description": "分析淘宝店铺竞品数据", "riskLevel": "low", "riskReason": null, "category": "电商"}
+  ]
+}

@@ -1,0 +1,822 @@
+{
+  "metadata": {
+    "skill": "green-energy-breakthrough",
+    "version": "1.0.0",
+    "updated": "2026-06-07",
+    "description": "Global green energy breakthrough intelligence: nuclear fusion milestones, solid-state battery mass production, solar records, green hydrogen, carbon capture"
+  },
+  "nuclear_fusion": {
+    "major_projects": [
+      {
+        "name": "ITER",
+        "location": "France",
+        "type": "Tokamak",
+        "status": "First plasma delayed to 2034",
+        "budget": "22B EUR",
+        "partners": [
+          "EU",
+          "US",
+          "CN",
+          "IN",
+          "JP",
+          "KR",
+          "RU"
+        ],
+        "goal": "Q=10 (500MW from 50MW input)"
+      },
+      {
+        "name": "CFETR",
+        "location": "Hefei, China",
+        "type": "Tokamak",
+        "status": "Construction phase, target 2030s",
+        "goal": "Q>10, fusion power plant demo"
+      },
+      {
+        "name": "EAST (HT-7U)",
+        "location": "Hefei, China",
+        "type": "Superconducting Tokamak",
+        "record": "1056 seconds @ 70M°C (2025)",
+        "status": "experimental, new records ongoing"
+      },
+      {
+        "name": "SPARC",
+        "company": "CFS/MIT",
+        "location": "Massachusetts, US",
+        "type": "Compact Tokamak (HTS magnets)",
+        "status": "Construction; first plasma target 2027",
+        "goal": "Q>1 net energy",
+        "funding": "2B+"
+      },
+      {
+        "name": "ARC",
+        "company": "CFS/MIT",
+        "location": "Massachusetts, US",
+        "type": "Fusion power plant design",
+        "status": "Design phase; follow-on to SPARC",
+        "target": "2030s commercial fusion"
+      },
+      {
+        "name": "Helion Polaris",
+        "company": "Helion Energy",
+        "location": "Washington, US",
+        "type": "Field-Reversed Configuration + direct energy capture",
+        "status": "Polaris under construction",
+        "goal": "Net electricity 2027",
+        "partner": "Microsoft PPA for 50MW by 2028",
+        "funding": "2.2B+"
+      },
+      {
+        "name": "TAE Technologies",
+        "company": "TAE",
+        "location": "California, US",
+        "type": "Field-Reversed Configuration (p-B11 fuel)",
+        "status": "Copernicus reactor operating",
+        "next": "Da Vinci net-energy machine",
+        "funding": "1.2B+"
+      },
+      {
+        "name": "General Fusion",
+        "company": "General Fusion",
+        "location": "Canada/UK",
+        "type": "Magnetized Target Fusion",
+        "status": "LM26 demo machine at UKAEA Culham",
+        "target": "Net gain by 2027"
+      },
+      {
+        "name": "Zap Energy",
+        "company": "Zap Energy",
+        "location": "Washington, US",
+        "type": "Z-pinch (shear-flow stabilized)",
+        "status": "FuZE-Q achieving 10M°C+",
+        "funding": "200M+"
+      },
+      {
+        "name": "JT-60SA",
+        "location": "Japan",
+        "type": "Superconducting Tokamak",
+        "status": "Operational (world's largest until ITER)",
+        "goal": "Support ITER research"
+      }
+    ],
+    "key_milestones_recent": [
+      {
+        "date": "2026.06",
+        "achievement": "Hefei CFETR breaks plasma density record (Greenwald limit exceeded)",
+        "significance": "Chinese team uses novel impurity control, path to higher-density fusion"
+      },
+      {
+        "date": "2026.05",
+        "achievement": "EAST sustains 1056s H-mode plasma at 70M°C",
+        "significance": "World record long-pulse operation"
+      },
+      {
+        "date": "2025.12",
+        "achievement": "NIF achieves 3.88 MJ fusion yield from 2.05 MJ laser",
+        "significance": "Q=1.89, best-ever inertial confinement result"
+      },
+      {
+        "date": "2025.08",
+        "achievement": "Helion achieves 100M°C ion temperature in Trenta",
+        "significance": "Validates FRC approach for Polaris design"
+      },
+      {
+        "date": "2025.05",
+        "achievement": "JET closes after 40 years, final DT campaign Q=0.67",
+        "significance": "Legacy tokamak; data feeds ITER design"
+      }
+    ],
+    "investment_trend": {
+      "2023": "6.2B",
+      "2024": "9.1B",
+      "2025": "14.3B",
+      "2026_est": "20B+",
+      "private_companies": 45,
+      "public_funding_2026": "government fusion budgets up 35% YoY"
+    },
+    "startup_ecosystem": [
+      {
+        "name": "Commonwealth Fusion Systems",
+        "funding": "2B+",
+        "tech": "HTS Tokamak",
+        "milestone": "SPARC 20T magnet demonstrated 2021"
+      },
+      {
+        "name": "Helion Energy",
+        "funding": "2.2B+",
+        "tech": "FRC + direct capture",
+        "milestone": "Microsoft PPA for 50MW 2028"
+      },
+      {
+        "name": "TAE Technologies",
+        "funding": "1.2B+",
+        "tech": "FRC p-B11",
+        "milestone": "Copernicus >75M°C"
+      },
+      {
+        "name": "General Fusion",
+        "funding": "400M+",
+        "tech": "Magnetized Target",
+        "milestone": "LM26 demo at Culham"
+      },
+      {
+        "name": "Zap Energy",
+        "funding": "200M+",
+        "tech": "Z-pinch",
+        "milestone": "FuZE-Q 10M°C+"
+      },
+      {
+        "name": "First Light Fusion",
+        "funding": "120M+",
+        "tech": "Projectile fusion",
+        "milestone": "Machine 4 at UKAEA"
+      },
+      {
+        "name": "Marvel Fusion",
+        "funding": "100M+",
+        "tech": "Laser-driven",
+        "milestone": "Pulsed power facility Colorado"
+      },
+      {
+        "name": "HB11 Energy",
+        "funding": "30M+",
+        "tech": "Laser-boron fusion",
+        "milestone": "Proof-of-concept experiments"
+      },
+      {
+        "name": "Xcimer Energy",
+        "funding": "100M+",
+        "tech": "Excimer laser IFE",
+        "milestone": "DOE Milestone program"
+      },
+      {
+        "name": "Focused Energy",
+        "funding": "80M+",
+        "tech": "Proton fast ignition",
+        "milestone": "Laser facility Texas"
+      }
+    ],
+    "timeline_2026_2035": [
+      {
+        "year": 2026,
+        "event": "CFETR density record, Helion Polaris construction, SPARC magnet testing"
+      },
+      {
+        "year": 2027,
+        "event": "SPARC first plasma target, Helion net electricity target, General Fusion LM26 results"
+      },
+      {
+        "year": 2028,
+        "event": "Microsoft Helion PPA delivery deadline, SPARC net energy campaign"
+      },
+      {
+        "year": 2030,
+        "event": "Multiple private net-energy demonstrations expected, ARC design freeze"
+      },
+      {
+        "year": 2035,
+        "event": "First commercial fusion PPAs projected, 5+ fusion pilot plants worldwide"
+      }
+    ]
+  },
+  "solid_state_battery": {
+    "mass_production_timeline": [
+      {
+        "company": "CATL",
+        "type": "Sulfide-based ASSB",
+        "energy_density": "500 Wh/kg",
+        "production": "20 GWh pilot line 2027, 100 GWh 2028",
+        "customers": [
+          "NIO",
+          "Li Auto"
+        ]
+      },
+      {
+        "company": "BYD",
+        "type": "Oxide-based ASSB",
+        "energy_density": "450 Wh/kg",
+        "production": "Pilot line operational 2026 Shenzhen",
+        "target": "in-house use first"
+      },
+      {
+        "company": "Toyota",
+        "type": "Sulfide ASSB",
+        "energy_density": "400+ Wh/kg",
+        "production": "Pilot 2026, mass 2027-28",
+        "first_vehicle": "Lexus EV premium"
+      },
+      {
+        "company": "Samsung SDI",
+        "type": "Sulfide ASSB",
+        "energy_density": "500 Wh/kg",
+        "production": "Pilot 2026, mass 2027",
+        "customers": [
+          "Hyundai",
+          "BMW"
+        ]
+      },
+      {
+        "company": "QuantumScape",
+        "type": "Anode-free lithium metal",
+        "energy_density": "450 Wh/kg",
+        "production": "B0 prototype deliveries to VW",
+        "target": "Mass 2028"
+      },
+      {
+        "company": "ProLogium",
+        "type": "Oxide ceramic ASSB",
+        "energy_density": "380 Wh/kg",
+        "production": "Taoyuan Gigafactory operational 2026",
+        "capacity": "2 GWh"
+      },
+      {
+        "company": "溧阳固态电解质(Solid Electrolyte)",
+        "location": "Jiangsu, China",
+        "production": "10,000-ton solid electrolyte line stable production 2026.06",
+        "significance": "First industrial-scale solid electrolyte mass production"
+      }
+    ],
+    "advantages": [
+      "No thermal runaway (inherently safe)",
+      "2-3x energy density vs Li-ion",
+      "Fast charging (10-15 min to 80%)",
+      "Wider temperature range (-30 to 100°C)",
+      "Longer cycle life (2000+ cycles)"
+    ],
+    "challenges": [
+      "Dendrite suppression at high current",
+      "Manufacturing cost ($150+/kWh vs $100 Li-ion)",
+      "Interface stability solid-solid contact",
+      "Raw material supply (Li2S, LLZO)"
+    ]
+  },
+  "solar_innovation": {
+    "efficiency_records": [
+      {
+        "type": "Perovskite/Si tandem",
+        "efficiency": "34.6%",
+        "lab": "KAUST",
+        "date": "2025"
+      },
+      {
+        "type": "Perovskite single junction",
+        "efficiency": "26.1%",
+        "lab": "UNIST/SKKU",
+        "date": "2025"
+      },
+      {
+        "type": "Crystalline Silicon (HJT)",
+        "efficiency": "27.1%",
+        "company": "LONGi Green Energy",
+        "date": "2025"
+      },
+      {
+        "type": "Multi-junction (6J)",
+        "efficiency": "47.6%",
+        "lab": "NREL/Fraunhofer",
+        "date": "2024",
+        "note": "Concentrated, space-grade"
+      },
+      {
+        "type": "Organic PV (OPV)",
+        "efficiency": "19.2%",
+        "lab": "CAS",
+        "date": "2025"
+      }
+    ],
+    "production_innovations": [
+      {
+        "company": "LONGi",
+        "innovation": "Commercial tandem modules",
+        "efficiency": "26%+ mass production",
+        "status": "Pilot line 2026"
+      },
+      {
+        "company": "JinkoSolar",
+        "innovation": "N-type TOPCon advanced",
+        "efficiency": "25.5% mass produced"
+      },
+      {
+        "company": "Trina Solar",
+        "innovation": "HJT + perovskite tandem roadmap",
+        "target": "28% efficiency by 2028"
+      },
+      {
+        "company": "Oxford PV",
+        "innovation": "Perovskite-on-silicon tandem",
+        "status": "Brandenburg factory ramping 100MW"
+      },
+      {
+        "company": "Hanergy/MiaSolé",
+        "innovation": "Flexible CIGS thin-film",
+        "application": "Building-integrated PV (BIPV)"
+      }
+    ],
+    "cost_trends": {
+      "2020": "0.20 USD/W",
+      "2022": "0.15 USD/W",
+      "2024": "0.10 USD/W",
+      "2026": "0.07 USD/W",
+      "target_2030": "0.04 USD/W",
+      "panel_price_2026": "RMB 0.65/W (China module)"
+    }
+  },
+  "green_hydrogen": {
+    "production_methods": [
+      "PEM electrolysis",
+      "Alkaline electrolysis",
+      "SOEC (high-temp)",
+      "AEM (anion exchange membrane)",
+      "Photocatalytic water splitting",
+      "Biomass gasification + CCS"
+    ],
+    "major_projects": [
+      {
+        "name": "NEOM Helios GH2",
+        "location": "Saudi Arabia",
+        "capacity": "4 GW electrolyzer",
+        "target": "600T/day green H2 by 2026",
+        "investment": "8.4B"
+      },
+      {
+        "name": "HyDeal Spain",
+        "location": "Spain",
+        "capacity": "9.5 GW solar + 7.4 GW electrolyzer",
+        "target": "2027+",
+        "offtakers": [
+          "ArcelorMittal",
+          "Fertiberia"
+        ]
+      },
+      {
+        "name": "Sinopec Kuqa",
+        "location": "Xinjiang, China",
+        "capacity": "260 MW",
+        "target": "20,000T/yr green H2",
+        "status": "operational since 2025"
+      },
+      {
+        "name": "H2 Green Steel",
+        "location": "Sweden",
+        "capacity": "800 MW electrolyzer",
+        "target": "5M tons green steel by 2030",
+        "status": "groundbreaking 2024"
+      },
+      {
+        "name": "Plug Power",
+        "location": "US",
+        "capacity": "multi-GW electrolyzer factories",
+        "status": "GA and NY plants operational"
+      }
+    ],
+    "cost_per_kg": {
+      "2020": "6-8 USD",
+      "2024": "3-5 USD",
+      "2026_est": "2.5-4 USD",
+      "2030_target": "1-2 USD",
+      "grey_h2_comparison": "1-1.5 USD/kg"
+    },
+    "use_cases": [
+      "Steelmaking (DRI)",
+      "Ammonia production",
+      "Maritime fuel (methanol)",
+      "Aviation (SAF + H2)",
+      "Long-duration energy storage",
+      "Heavy trucking fuel cells"
+    ]
+  },
+  "carbon_capture": {
+    "technologies": [
+      "Direct Air Capture (DAC)",
+      "Point-source CCS",
+      "Bioenergy with CCS (BECCS)",
+      "Ocean alkalinity enhancement",
+      "Enhanced weathering",
+      "Biochar sequestration"
+    ],
+    "facilities": [
+      {
+        "name": "Stratos (1PointFive/Oxy)",
+        "location": "Texas, US",
+        "capacity": "500,000T CO2/yr",
+        "status": "Construction; online 2026",
+        "type": "DAC",
+        "cost_per_ton": "300-400 USD"
+      },
+      {
+        "name": "Climeworks Mammoth",
+        "location": "Iceland",
+        "capacity": "36,000T CO2/yr",
+        "status": "Operational 2024",
+        "type": "DAC + Carbfix mineralization"
+      },
+      {
+        "name": "Carbon Engineering",
+        "location": "Canada",
+        "status": "Acquired by Oxy (1PointFive)",
+        "type": "DAC pioneer"
+      },
+      {
+        "name": "Heirloom Carbon",
+        "location": "California, US",
+        "capacity": "1,000T/yr (scaling to 1M T)",
+        "type": "DAC using limestone",
+        "funding": "200M+"
+      },
+      {
+        "name": "Northern Lights",
+        "location": "Norway",
+        "capacity": "1.5M T CO2/yr Phase 1",
+        "status": "Operational 2024",
+        "type": "Offshore CO2 storage"
+      },
+      {
+        "name": "China CCS projects",
+        "capacity": "5M+ T/yr total",
+        "note": "Multiple coal+CCS pilot plants operational"
+      }
+    ],
+    "market_forecast": {
+      "2026": "4.2B",
+      "2030": "25B",
+      "2035": "120B",
+      "2040": "500B+",
+      "note": "IEA Net Zero scenario requires 1.6 Gt CO2/yr by 2030"
+    },
+    "carbon_price_per_ton": {
+      "EU_ETS_2026": "85 EUR",
+      "UK_ETS_2026": "70 GBP",
+      "California_Cap_and_Trade": "40 USD",
+      "China_National_ETS": "85 CNY (12 USD)"
+    }
+  },
+  "wind_power": {
+    "offshore_records": [
+      {
+        "turbine": "Mingyang MySE 22MW",
+        "rotor_diameter_m": 310,
+        "capacity_mw": 22,
+        "height_m": 260,
+        "location": "Guangdong offshore",
+        "status": "prototype 2025"
+      },
+      {
+        "turbine": "CSSC Haizhuang H260-18MW",
+        "rotor_diameter_m": 260,
+        "capacity_mw": 18,
+        "status": "operational 2024"
+      },
+      {
+        "turbine": "Vestas V236-15MW",
+        "rotor_diameter_m": 236,
+        "capacity_mw": 15,
+        "status": "commercial 2025"
+      },
+      {
+        "turbine": "GE Haliade-X 14MW",
+        "rotor_diameter_m": 220,
+        "capacity_mw": 14,
+        "status": "commercial 2024"
+      },
+      {
+        "turbine": "Siemens Gamesa SG 14-236 DD",
+        "rotor_diameter_m": 236,
+        "capacity_mw": 14,
+        "status": "commercial 2024"
+      }
+    ],
+    "floating_wind": [
+      {
+        "project": "Hywind Tampen",
+        "location": "Norway",
+        "capacity": "88MW",
+        "turbines": 11,
+        "status": "operational 2023",
+        "water_depth_m": 300
+      },
+      {
+        "project": "Kincardine",
+        "location": "Scotland",
+        "capacity": "50MW",
+        "turbines": 6,
+        "status": "operational 2021"
+      },
+      {
+        "project": "WindFloat Atlantic",
+        "location": "Portugal",
+        "capacity": "25MW",
+        "turbines": 3,
+        "status": "operational 2020"
+      },
+      {
+        "project": "Hainan Floating Wind",
+        "location": "China",
+        "capacity": "1GW planned",
+        "status": "Phase 1 200MW demo 2026"
+      }
+    ],
+    "global_capacity": {
+      "2023": "1,021 GW",
+      "2024": "1,175 GW",
+      "2025_est": "1,350 GW",
+      "2030_target": "2,500 GW",
+      "offshore_share_2026": "8% rising fast"
+    }
+  },
+  "grid_storage": {
+    "technologies": [
+      {
+        "name": "Lithium-Ion BESS",
+        "cost_per_kwh": "120 USD (cell)",
+        "cycle_life": "6000-10000",
+        "largest_site": "Moss Landing 3GWh (Vistra)",
+        "status": "commercial"
+      },
+      {
+        "name": "Sodium-Ion",
+        "cost_per_kwh": "60-80 USD (target)",
+        "cycle_life": "8000+",
+        "suppliers": [
+          "CATL",
+          "HiNa (CN)"
+        ],
+        "status": "early commercial"
+      },
+      {
+        "name": "Iron-Air (Form Energy)",
+        "cost_per_kwh": "20 USD (target)",
+        "duration": "100 hours",
+        "status": "WV factory 2025, first deployment 2026"
+      },
+      {
+        "name": "Flow Battery (Vanadium)",
+        "cost_per_kwh": "300 USD",
+        "cycle_life": "20000+",
+        "suppliers": [
+          "VRB Energy",
+          "Sumitomo"
+        ],
+        "status": "commercial"
+      },
+      {
+        "name": "Compressed Air (CAES)",
+        "cost_per_kwh": "50 USD",
+        "largest": "100MW Zhangjiakou (CN)",
+        "status": "operational"
+      },
+      {
+        "name": "Gravity Storage",
+        "cost_per_kwh": "100-200 USD",
+        "suppliers": [
+          "Energy Vault",
+          "Gravitricity"
+        ],
+        "status": "pilot"
+      }
+    ],
+    "global_installed": {
+      "2023": "45 GW",
+      "2024": "72 GW",
+      "2025_est": "110 GW",
+      "2030_target": "500 GW",
+      "china_share": "40% of global installations"
+    },
+    "largest_projects": [
+      {
+        "name": "Moss Landing BESS",
+        "location": "California, US",
+        "capacity": "3,000 MWh",
+        "type": "Li-ion",
+        "operator": "Vistra",
+        "note": "World's largest BESS"
+      },
+      {
+        "name": "Edwards Sanborn",
+        "location": "California, US",
+        "capacity": "3,287 MWh",
+        "type": "Li-ion + solar",
+        "developer": "Terra-Gen"
+      },
+      {
+        "name": "Gemini Solar+Storage",
+        "location": "Nevada, US",
+        "capacity": "1,416 MWh",
+        "type": "Li-ion",
+        "operator": "Quinbrook"
+      },
+      {
+        "name": "Victorian Big Battery",
+        "location": "Australia",
+        "capacity": "450 MWh",
+        "type": "Li-ion",
+        "operator": "Neoen"
+      },
+      {
+        "name": "Hornsdale Power Reserve",
+        "location": "Australia",
+        "capacity": "193.5 MWh",
+        "type": "Li-ion",
+        "operator": "Neoen/Tesla",
+        "note": "Original 2017, expanded 2020"
+      },
+      {
+        "name": "Dalian Flow Battery",
+        "location": "China",
+        "capacity": "400 MWh",
+        "type": "Vanadium Flow",
+        "operator": "Dalian Rongke",
+        "note": "World's largest flow battery"
+      },
+      {
+        "name": "Zhangjiakou CAES",
+        "location": "China",
+        "capacity": "400 MWh",
+        "type": "Advanced CAES",
+        "note": "World's largest CAES"
+      },
+      {
+        "name": "Form Energy WV",
+        "location": "West Virginia, US",
+        "capacity": "1,500 MWh",
+        "type": "Iron-Air 100hr",
+        "status": "Factory operational 2025, first deployment 2026"
+      }
+    ]
+  },
+  "country_profiles": [
+    {
+      "country": "China",
+      "renewable_capacity_gw_2026": 3800,
+      "solar_gw": 1200,
+      "wind_gw": 550,
+      "nuclear_gw": 65,
+      "emission_peak_target": "before 2030",
+      "carbon_neutral": "2060",
+      "green_hydrogen_plan": "200kT/yr by 2025",
+      "investment_2025": "6.3T RMB clean energy"
+    },
+    {
+      "country": "US",
+      "renewable_capacity_gw_2026": 850,
+      "solar_gw": 250,
+      "wind_gw": 180,
+      "nuclear_gw": 95,
+      "emission_target": "50-52% below 2005 by 2030",
+      "carbon_neutral": "2050",
+      "ira_investment": "500B+ triggered",
+      "fusion_funding_b": 2.5
+    },
+    {
+      "country": "EU",
+      "renewable_capacity_gw_2026": 1100,
+      "solar_gw": 380,
+      "wind_gw": 280,
+      "nuclear_gw": 100,
+      "emission_target": "55% below 1990 by 2030",
+      "carbon_neutral": "2050",
+      "green_hydrogen_target": "10M tons domestic + 10M imports by 2030"
+    },
+    {
+      "country": "India",
+      "renewable_capacity_gw_2026": 320,
+      "solar_gw": 150,
+      "wind_gw": 50,
+      "nuclear_gw": 8,
+      "emission_target": "45% below 2005 by 2030",
+      "carbon_neutral": "2070",
+      "green_hydrogen_mission": "5M tons/yr by 2030"
+    },
+    {
+      "country": "Japan",
+      "renewable_capacity_gw_2026": 140,
+      "solar_gw": 85,
+      "wind_gw": 10,
+      "nuclear_gw": 18,
+      "emission_target": "46% below 2013 by 2030",
+      "carbon_neutral": "2050",
+      "fusion_strategy": "National strategy 2024, JT-60SA operational"
+    },
+    {
+      "country": "South Korea",
+      "renewable_capacity_gw_2026": 45,
+      "solar_gw": 25,
+      "wind_gw": 3,
+      "nuclear_gw": 26,
+      "emission_target": "40% below 2018 by 2030",
+      "carbon_neutral": "2050",
+      "solid_state_battery_lead": "Samsung SDI mass production 2027"
+    },
+    {
+      "country": "Saudi Arabia",
+      "renewable_capacity_gw_2026": 30,
+      "solar_gw": 25,
+      "wind_gw": 2,
+      "nuclear_gw": 0,
+      "vision_2030": "50% renewable by 2030",
+      "carbon_neutral": "2060",
+      "green_hydrogen_hub": "NEOM Helios 4GW"
+    },
+    {
+      "country": "Australia",
+      "renewable_capacity_gw_2026": 80,
+      "solar_gw": 45,
+      "wind_gw": 15,
+      "nuclear_gw": 0,
+      "emission_target": "43% below 2005 by 2030",
+      "carbon_neutral": "2050",
+      "solar_rooftop": "Highest per capita globally"
+    }
+  ],
+  "nuclear_smr": {
+    "definition": "Small Modular Reactors: <300 MWe factory-built nuclear reactors",
+    "leading_designs": [
+      {
+        "name": "NuScale VOYGR",
+        "country": "US",
+        "capacity": "77 MWe per module",
+        "status": "NRC certified 2023; first plant 2029 Utah",
+        "cost": "5.8B (462MW)"
+      },
+      {
+        "name": "GE-Hitachi BWRX-300",
+        "country": "US/JP",
+        "capacity": "300 MWe",
+        "status": "Darlington (Canada) site prep 2025; Poland 10 units planned"
+      },
+      {
+        "name": "Rolls-Royce SMR",
+        "country": "UK",
+        "capacity": "470 MWe",
+        "status": "GDA assessment Phase 2; UK gov shortlist"
+      },
+      {
+        "name": "X-energy Xe-100",
+        "country": "US",
+        "capacity": "80 MWe (TRISO fuel)",
+        "status": "DOE ARDP; Dow Seadrift TX plant 2028"
+      },
+      {
+        "name": "Kairos Power",
+        "country": "US",
+        "capacity": "140 MWe (FLiBe salt)",
+        "status": "Hermes demo under construction TN; Google PPA"
+      },
+      {
+        "name": "TerraPower Natrium",
+        "country": "US",
+        "capacity": "345 MWe + molten salt storage",
+        "status": "Kemmerer WY construction start 2025; Bill Gates-backed"
+      },
+      {
+        "name": "Linglong One (ACP100)",
+        "country": "CN",
+        "capacity": "125 MWe",
+        "status": "Under construction Changjiang, Hainan; first commercial SMR worldwide"
+      }
+    ],
+    "market_forecast_b": {
+      "2026": 2,
+      "2030": 18,
+      "2035": 65
+    }
+  }
+}

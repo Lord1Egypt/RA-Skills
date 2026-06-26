@@ -1,0 +1,8 @@
+{
+  "name": "qwen-wan-video",
+  "version": "1.0.0",
+  "description": "Direct integration with Qwen Wan 2.6 video generation model via DashScope API",
+  "keywords": ["video", "alibaba", "tongyi", "wanxiang", "qwen"],
+  "author": "wuchhao",
+  "license": "MIT"
+}

@@ -1,35 +1,80 @@
 ---
-name: "Tmux Remote"
-description: "Automation skill for Tmux Remote."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tmux-remote"
-sourceUrl: "https://clawhub.ai/skills/tmux-remote"
----
+name: tmux-remote
+description: Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.
+metadata: {"clawdbot":{"emoji":"🧵","os":["darwin","linux"],"requires":{"bins":["tmux"]}}}
 
-# Tmux Remote
+# tmux
 
-> Automation skill for Tmux Remote.
+Remote-control tmux sessions for interactive CLIs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tmux-remote`
-- **Source URL:** [https://clawhub.ai/skills/tmux-remote](https://clawhub.ai/skills/tmux-remote)
+## Basics
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+List sessions:
 ```bash
-hermes skills install clawhub/tmux-remote
+tmux ls
+```
+
+Attach to session:
+```bash
+tmux attach -t session-name
+```
+
+Create new session:
+```bash
+tmux new -s session-name
+```
+
+## Panes and Windows
+
+Split pane (vertical):
+```bash
+tmux split-pane -v
+```
+
+Split pane (horizontal):
+```bash
+tmux split-pane -h
+```
+
+New window:
+```bash
+tmux new-window
+```
+
+Switch pane:
+```bash
+tmux select-pane -[U|D|L|R]
+```
+
+## Keybindings
+
+Prefix: `Ctrl-b`
+
+- `c` - Create new window
+- `n` - Next window
+- `p` - Previous window
+- `w` - List windows
+- `d` - Detach
+- `%` - Split pane horizontally
+- `"` - Split pane vertically
+- `o` - Cycle panes
+- `arrow keys` - Navigate panes
+- `?` - List keybindings
+- `:` - Command prompt
+
+## Commands
+
+Execute command in pane:
+```bash
+tmux send-keys -t session-name:window.pane "command" Enter
+```
+
+Capture pane output:
+```bash
+tmux capture-pane -t session-name:window.pane -p
+```
+
+Kill pane:
+```bash
+tmux kill-pane -t session-name:window.pane
 ```

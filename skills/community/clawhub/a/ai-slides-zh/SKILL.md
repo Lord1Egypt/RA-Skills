@@ -1,35 +1,22 @@
 ---
-name: "Ai Slides Zh"
-description: "AI PPT生成 / 智能幻灯片制作 / 演示文稿自动撰写 / AI slides generator。一键从标题、大纲或笔记生成专业完整的PowerPoint演示文稿，包含标题页、目录、正文、总结页等完整结构。特别适合销售经理做客户提案、产品经理做项目方案、HR做培训课件、财务做年终汇报、市场做招商路演、管理者..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-slides-zh"
-sourceUrl: "https://clawhub.ai/skills/ai-slides-zh"
+name: ai-slides-zh
+description: >
+  AI PPT生成 / 智能幻灯片制作 / 演示文稿自动撰写 / AI slides generator。一键从标题、大纲或笔记生成专业完整的PowerPoint演示文稿，包含标题页、目录、正文、总结页等完整结构。特别适合销售经理做客户提案、产品经理做项目方案、HR做培训课件、财务做年终汇报、市场做招商路演、管理者做工作汇报的快速成稿需求。自动排版专业、内容逻辑清晰、即开即用。搜索触发词：做PPT / 生成幻灯片 / 快速制作演示文稿 / PPT模板自动填充 / 会议汇报课件 / 商业计划书制作 / 路演融资演稿
+tags: [AI生成PPT, 幻灯片制作, 演示文稿, PowerPoint, slides generator, 自动生成, 职场效率, 销售提案, 工作汇报, 快速成稿]
 ---
 
-# Ai Slides Zh
+# AI智能生成PPT演示文稿
 
-> AI PPT生成 / 智能幻灯片制作 / 演示文稿自动撰写 / AI slides generator。一键从标题、大纲或笔记生成专业完整的PowerPoint演示文稿，包含标题页、目录、正文、总结页等完整结构。特别适合销售经理做客户提案、产品经理做项目方案、HR做培训课件、财务做年终汇报、市场做招商路演、管理者...
+根据主题、大纲或草稿内容，自动生成结构完整、排版专业的PPT演示文稿，大幅提升制作效率。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-slides-zh`
-- **Source URL:** [https://clawhub.ai/skills/ai-slides-zh](https://clawhub.ai/skills/ai-slides-zh)
+## Tools Required
+- office-mcp: create_pptx, add_slide
 
-## Overview
+## Usage
+- "帮我做一个关于Q3销售业绩回顾的PPT，大概10页"
+- "根据这份产品介绍文字，生成一份客户演示用的幻灯片"
+- "我要给新员工培训，帮我制作一套公司规章制度的课件"
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-slides-zh
-```
+## Examples
+输入：帮我生成一份"2024年度市场部工作总结"PPT，包含工作回顾、核心成果、问题分析和明年计划，共12页
+输出：自动生成包含封面页（标题+汇报人+日期）、目录页、工作回顾（3页）、核心成果数据展示（2页）、问题与不足分析（2页）、2025年工作计划（2页）、总结与致谢页的完整PPT文件，每页配有标题、要点内容与专业排版格式

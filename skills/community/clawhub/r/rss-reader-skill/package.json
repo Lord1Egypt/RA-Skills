@@ -1,0 +1,60 @@
+{
+  "name": "rss-reader",
+  "version": "1.0.0",
+  "description": "RSS 订阅 + AI 摘要 + 汇总分析 + 飞书推送。首次使用自动添加 18 个精选订阅源。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "rss",
+    "ai",
+    "summary",
+    "feishu",
+    "news",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/rss-reader-skill"
+  },
+  "skills": [
+    {
+      "name": "rss-reader",
+      "entry": "SKILL.md",
+      "commands": [
+        "订阅 <url> [名称]",
+        "取消订阅 <url>",
+        "订阅列表",
+        "立即刷新",
+        "汇总"
+      ]
+    }
+  ],
+  "requirements": {
+    "python": ">=3.7",
+    "packages": [
+      "feedparser>=6.0.0",
+      "requests>=2.28.0"
+    ]
+  },
+  "env": {
+    "required": [
+      {
+        "name": "OPENAI_API_KEY",
+        "description": "AI 摘要 API Key（推荐使用智谱 AI）",
+        "example": "你的智谱API Key"
+      }
+    ],
+    "optional": [
+      {
+        "name": "OPENAI_BASE_URL",
+        "description": "API 地址（默认：智谱）",
+        "default": "https://open.bigmodel.cn/api/paas/v4"
+      },
+      {
+        "name": "FEISHU_WEBHOOK_URL",
+        "description": "飞书机器人 Webhook 地址",
+        "example": "https://open.feishu.cn/open-apis/bot/v2/hook/xxx"
+      }
+    ]
+  }
+}

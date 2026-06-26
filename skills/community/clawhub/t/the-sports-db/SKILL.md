@@ -1,35 +1,33 @@
 ---
-name: "the-sports-db"
-description: "Access sports data via TheSportsDB (teams, events, scores)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/the-sports-db"
-sourceUrl: "https://clawhub.ai/skills/the-sports-db"
+name: the-sports-db
+description: Access sports data via TheSportsDB (teams, events, scores).
+metadata: {"clawdbot":{"emoji":"🏟️","requires":{"env":["THE_SPORTS_DB_KEY"]}}}
 ---
 
-# the-sports-db
+# TheSportsDB
 
-> Access sports data via TheSportsDB (teams, events, scores).
+Free sports database.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/the-sports-db`
-- **Source URL:** [https://clawhub.ai/skills/the-sports-db](https://clawhub.ai/skills/the-sports-db)
+## Configuration
+Ensure `THE_SPORTS_DB_KEY` is set in `~/.clawdbot/.env`. (Default test key is often `123` or `3`).
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Search Team
 ```bash
-hermes skills install clawhub/the-sports-db
+curl -s "https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/searchteams.php?t=Palmeiras"
 ```
+
+### Last Events (Scores)
+Get last 5 events for a team ID:
+```bash
+curl -s "https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/eventslast.php?id=134465"
+```
+
+### Next Events (Fixtures)
+Get next 5 events for a team ID:
+```bash
+curl -s "https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/eventsnext.php?id=134465"
+```
+
+**Note:** Rate limit is 30 requests/minute.

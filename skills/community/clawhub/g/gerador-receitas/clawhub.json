@@ -1,0 +1,12 @@
+{
+  "name": "Gerador de Receitas",
+  "tagline": "Métricas SaaS em português para planejar monetização de agentes IA",
+  "description": "Análise completa de métricas financeiras para SaaS: ARR, NDR, LTV:CAC, Magic Number, cohort analysis e GTM efficiency. Tudo em português para desenvolvedores brasileiros. Inclui projeções, benchmarks e sugestões de melhoria. Essencial para planejar monetização de agentes IA.",
+  "category": "finance",
+  "tags": ["receitas", "revenue", "monetizacao", "saas", "portugues", "brasil", "metricas", "arr"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/eve-agent/gerador-receitas/issues",
+  "homepage": "https://github.com/eve-agent/gerador-receitas"
+}

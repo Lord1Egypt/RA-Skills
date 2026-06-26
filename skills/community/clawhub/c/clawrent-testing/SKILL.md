@@ -1,35 +1,31 @@
 ---
-name: "clawrent-testing"
-description: "Sync paid Telegram pairing approvals from Clawrent and revoke expired rentals"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawrent-testing"
-sourceUrl: "https://clawhub.ai/skills/clawrent-testing"
+name: clawrent
+description: Sync paid Telegram pairing approvals from Clawrent and revoke expired rentals
+user-invocable: false
+command-dispatch: tool
+command-tool: exec
+command-arg-mode: raw
+metadata:
+  openclaw:
+    requires:
+      bins: ["openclaw", "curl", "jq"]
+    primaryEnv: "CLAWRENT_TOKEN"
 ---
 
-# clawrent-testing
+# Clawrent (agent skill)
 
-> Sync paid Telegram pairing approvals from Clawrent and revoke expired rentals
+Use this skill to automatically apply **paid** pairing approvals from the Clawrent marketplace and clean up **expired** rentals.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawrent-testing`
-- **Source URL:** [https://clawhub.ai/skills/clawrent-testing](https://clawhub.ai/skills/clawrent-testing)
+## What it does
+On each run:
+- Calls the Clawrent API with `CLAWRENT_TOKEN`
+- Approves newly-paid Telegram pairing codes via `openclaw pairing approve`
+- Revokes access for expired rentals
+- Sends a heartbeat so the listing is marked online
 
-## Overview
+Safe to run repeatedly (idempotent).
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Execution
 ```bash
-hermes skills install clawhub/clawrent-testing
+bash "{baseDir}/clawrent-approve.sh"
 ```

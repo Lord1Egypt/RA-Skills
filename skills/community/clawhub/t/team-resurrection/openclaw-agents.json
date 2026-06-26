@@ -1,0 +1,33 @@
+{
+  "description": "Agent 配置示例（通用模板）",
+  "note": "这是模板文件，实际配置由 migrate.py 在新环境 deep merge",
+  "agents": {
+    "list": [
+      {
+        "id": "member-a",
+        "name": "成员A",
+        "workspace": "/Users/xxx/.qclaw/workspace-xxx/成员A",
+        "agentDir": "/Users/xxx/.qclaw/agents/member-a/agent"
+      },
+      {
+        "id": "member-b",
+        "name": "成员B",
+        "workspace": "/Users/xxx/.qclaw/workspace-xxx/成员B",
+        "agentDir": "/Users/xxx/.qclaw/agents/member-b/agent"
+      },
+      {
+        "id": "member-c",
+        "name": "成员C",
+        "workspace": "/Users/xxx/.qclaw/workspace-xxx/成员C",
+        "agentDir": "/Users/xxx/.qclaw/agents/member-c/agent"
+      }
+    ],
+    "defaults": {
+      "subagents": {
+        "allowAgents": [
+          "*"
+        ]
+      }
+    }
+  }
+}

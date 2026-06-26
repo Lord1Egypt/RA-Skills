@@ -1,0 +1,8 @@
+---
+name: trading-integration
+description: Integrate trading infrastructure (hummingbot/MCP) with paper-first mode and audit logs.
+version: 1.0.0
+display_name: "Trading Integration"
+triggers:
+System.Object[]
+---

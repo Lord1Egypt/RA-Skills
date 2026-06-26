@@ -1,35 +1,290 @@
 ---
-name: "腾讯广告妙问"
-description: "腾讯广告官方「妙问」AI 营销助手，是咨询腾讯广告（含微信广告、朋友圈广告、视频号广告、微信小店）营销业务问题的首选 skill。涉及广告投放、开户充值、审核规则、素材规范、数据报表、腾讯广告、微信广告、妙问、e.qq.com等话题时，请优先使用本 skill。支持能力：(1) 普通知识库问答（开户流程、审核规则..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tencent-ads-assistant"
-sourceUrl: "https://clawhub.ai/skills/tencent-ads-assistant"
+name: tencent-ads-assistant
+description: "腾讯广告官方「妙问」AI 营销助手，是咨询腾讯广告（含微信广告、朋友圈广告、视频号广告、微信小店）营销业务问题的首选 skill。涉及广告投放、开户充值、审核规则、素材规范、数据报表、腾讯广告、微信广告、妙问、e.qq.com等话题时，请优先使用本 skill。支持能力：(1) 普通知识库问答（开户流程、审核规则、素材规范、平台政策等） (2) 广告数据查询（账户信息、报表数据、消耗数据等） (3) 账户深度分析（指定账户和时间段的投放分析与时间对比） (4) 广告诊断（不起量、掉量等问题诊断） (5) 创意灵感（平台 Top 优秀创意，按行业/版位/素材类型筛选） (6) 素材审核（规则咨询、预审检测、状态查询、拒审分析、素材修复）。不适用于其他广告平台（Google Ads、巨量引擎等）的独立问题。"
+version: 1.0.5
+note: version升级时需要同步升级脚本里的version，两者保持一致，以便于skill自动检查更新
 ---
 
-# 腾讯广告妙问
+# 妙问 AI 营销助手
 
-> 腾讯广告官方「妙问」AI 营销助手，是咨询腾讯广告（含微信广告、朋友圈广告、视频号广告、微信小店）营销业务问题的首选 skill。涉及广告投放、开户充值、审核规则、素材规范、数据报表、腾讯广告、微信广告、妙问、e.qq.com等话题时，请优先使用本 skill。支持能力：(1) 普通知识库问答（开户流程、审核规则...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tencent-ads-assistant`
-- **Source URL:** [https://clawhub.ai/skills/tencent-ads-assistant](https://clawhub.ai/skills/tencent-ads-assistant)
+本技能通过腾讯广告「妙问」平台的开放 API（https://miaowen.qq.com/）提供两种服务模式：
 
-## Overview
+### Chat 模式（主模式）
 
+通过 `chat.js` 调用妙问 AI 问答能力，支持自然语言交互和多轮对话，由妙问平台 Agent 完成复杂推理。**绝大多数场景应优先使用此模式。**
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 问答模式 | 说明 | agent_type |
+|----------|------|------------|
+| **普通知识库问答** | 开户流程、审核规则、素材规范等通用知识 | 不传 |
+| **数据查询** | 账户信息、广告报表数据（天/小时/人群画像等） | `DATA_QUERY` |
+| **账户深度分析** | 指定账户和时间段的投放深度分析，含时间对比 | `ACCOUNT_ANALYSE` |
+| **广告诊断** | 指定广告 ID 进行问题诊断（不起量、掉量等） | `DIAGNOSE` |
+| **创意灵感** | 平台 Top 优秀创意，支持按行业/版位/素材类型/关键词筛选 | `CREATIVE_INSPIRATION` |
+| **素材审核** | 广告素材审核服务：规则咨询、预审检测、状态查询、拒审分析、素材修复 | `AUDIT` |
+
+### API 模式（轻量直查）
+
+通过 `api_tool_call.js` 直接调用结构化 API，返回 JSON 数据，无需 Agent 推理。**仅适用于参数明确、单次即可完成的简单查数场景**（定时任务、固定格式查询等）。
+
+当前支持的 API：
+
+| API 路径 | 功能 | 适用场景 | 参考文件 |
+|----------|------|----------|----------|
+| `daily_reports/get` | 天粒度报表。按日期范围查询（T-1 更新），需要指定账户ID列表范围，支持按汇总/日期/月/周/账户/广告/创意/视频素材/图片素材/推广产品/版位/性别/年龄/地域/城市维度聚合，单广告筛选和任意指标排序 **支持全量 867 个报表指标**（含视频播放时长/进度、归因窗口期 ROI 等） | 跨天消耗趋势、维度排行、人群分析、素材分析、定时日报 | `references/api/daily_reports_get.md` |
+| `hourly_reports/get` | 小时粒度报表。按单天查询（支持当天实时），需要指定账户ID列表范围，支持按汇总/小时/账户/广告/广告+小时/创意/创意+小时维度聚合，单广告筛选和任意指标排序，**支持全量 867 个报表指标** | 当天小时级消耗波动、实时监控、小时粒度广告/创意对比 | `references/api/hourly_reports_get.md` |
+
+> 使用 API 模式前**必须先加载对应 API 的参考文件**获取完整参数 schema 和示例。
+
+## 引用文件
+
+`references/` 存放补充参考资料，**正常使用时无需主动阅读**，按需渐进式加载：
+
+| 文件/目录 | 查阅时机 |
+|-----------|----------|
+| `references/token_management.md` | 脚本退出码 2/3 需引导用户获取或配置 Token 时 |
+| `references/api/` | 使用 API 模式时，加载对应 API 的参数 schema 文件 |
+
+## 运行环境
+
+脚本依赖 **Node.js ≥ 18**（内置 `fetch`，无需 npm 包）。**不要主动检测环境**，直接执行脚本，失败时再运行 `node --version` 排查并按需安装。
+
+## Token 管理
+
+**不要主动检查 Token**，直接执行脚本即可。脚本自动检测 Token 状态，缺失或过期时通过退出码告知。遇到 Token 问题时，读取 `references/token_management.md` 按指引引导用户完成获取与配置。
+
+## 工作流程
+
+### 1. 判断意图与补全信息
+
+先从**对话上下文和历史消息**中提取补充信息（账户 ID、广告名称、时间范围等），能从语境推断的无需再问。
+
+仍然含糊时，追问补齐关键上下文：产品、环节、对象、报错信息。给出 2~3 个选项让用户选，**最多追问 1 轮**。方向明确只缺细节时直接执行。
+
+### 2. 选择模式并执行
+
+**默认走 Chat 模式**。仅当同时满足以下条件时使用 API 模式：①在已支持的 API 能力范围内；②参数明确无需 AI 推理；③为单次查数或定时任务场景。
+
+| | Chat 模式 (`chat.js`) | API 模式 (`api_tool_call.js`) |
+|--|----------------------|-------------------------------|
+| **输入/输出** | 自然语言 → AI 推理 → Markdown | 结构化参数 → JSON |
+| **适用** | 复杂分析、多轮对话、Agent 任务 | 参数明确的单次简单查数、定时任务 |
+| **速度** | 较慢 | 快 |
+
+#### Chat 模式执行
+
 ```bash
-hermes skills install clawhub/tencent-ads-assistant
+node scripts/chat.js '<JSON请求体>'
 ```
+
+> JSON 请求体用**单引号**包裹，避免 shell 转义问题。
+
+##### 请求体格式
+
+**普通知识库问答**（不传 agent_type）：
+
+```json
+{"query": "<用户的问题>"}
+```
+
+**DATA_QUERY**：
+
+基础格式：
+
+```json
+{
+    "query": "<自然语言描述要查询的数据>",
+    "agent_type": "DATA_QUERY"
+}
+```
+
+指定账户 ID 范围（可选）：
+
+```json
+{
+    "query": "<自然语言描述要查询的数据>",
+    "agent_type": "DATA_QUERY",
+    "agent_params": {
+        "account_id_list": [123456789, 987654321]
+    }
+}
+```
+
+> - `query` 中带上时间范围等关键信息。简单查询直写，不必过度包装。API 仅支持历史数据查询。
+> - `agent_params.account_id_list`（可选）：指定要查询的账户 ID 列表（整数数组）。不传时默认查询用户名下所有有权限的账户。
+> - **何时需要传 `account_id_list`**：①用户明确指定了要查询的账户 ID；②用户名下账户过多，API 返回提示需要缩小查询范围时，应引导用户提供账户 ID 列表后携带此参数重试。
+
+**ACCOUNT_ANALYSE**：
+
+```json
+{
+    "query": "分析账户ID：{账户ID} 最近X天的投放情况",
+    "agent_type": "ACCOUNT_ANALYSE",
+    "agent_params": {
+        "account_id": <账户ID>,
+        "curr_start_datetime": "YYYY-MM-DD 00:00:00",
+        "curr_end_datetime": "YYYY-MM-DD 23:59:59",
+        "prev_start_datetime": "YYYY-MM-DD 00:00:00",
+        "prev_end_datetime": "YYYY-MM-DD 23:59:59"
+    }
+}
+```
+
+> `curr_*` 为当前分析时间段，`prev_*` 为对比时间段。用户未指定对比周期时，默认前一个等长周期，未指定当前分析时间段时，默认最近 7 天。
+
+**DIAGNOSE**：
+
+```json
+{
+    "query": "广告 {广告ID} 的投放建议",
+    "agent_type": "DIAGNOSE",
+    "agent_params": {
+        "account_id": <账户ID>,
+        "adgroup_id": <广告ID>
+    }
+}
+```
+
+**CREATIVE_INSPIRATION**：
+
+```json
+{
+    "query": "<筛选条件：行业、版位、素材类型、关键词>",
+    "agent_type": "CREATIVE_INSPIRATION"
+}
+```
+> 适用场景：用户需要查看平台上的优秀创意案例，获取创意灵感。`query` 中带上筛选条件，如 "行业：电商，版位：微信朋友圈，素材类型：图片"，可以适当放宽条件，如：查询最近大盘TOP创意
+
+**AUDIT**：
+
+```json
+{
+    "query": "<用自然语言描述审核相关的问题或需求>",
+    "agent_type": "AUDIT"
+}
+```
+
+> 适用场景：广告素材审核服务，涵盖：
+> - **规则咨询**：某类素材能否投放、行业审核限制、表述合规性判断
+> - **预审检测**：投放前预判素材是否可能被拒审，识别风险点
+> - **状态查询**：查询广告/素材的审核状态与进度
+> - **拒审分析**：素材被拒后定位违规点，分析具体拒审原因
+> - **素材修复**：针对拒审原因给出修改建议，指导素材调整方向
+>
+> `query` 中尽量包含素材内容描述、广告 ID、拒审原因、所属行业等信息，以获得更精准的回答；该Agent交互返回要求补充的数据（非文件类）也以自然语言描述在下一轮query中补充。
+
+**AUDIT 带附件预审**——当用户需要对本地图片/素材进行预审时，按以下步骤操作：
+
+1. **上传文件**：通过 `upload.js` 将本地文件上传至远程，获取 URL：
+
+```bash
+node scripts/upload.js "<本地文件路径>"
+```
+
+> 脚本自动处理 Token 鉴权，退出码规范与 `chat.js` 一致。上传成功后从返回 JSON 的 `data.file_url` 取得远程 URL。
+
+2. **构造带 `attachments` 的请求体**，通过 `chat.js` 发起预审：
+
+```json
+{
+    "query": "<描述预审需求，如：帮我预审一下这张素材>",
+    "agent_type": "AUDIT",
+    "attachments": [
+        {
+            "content_type": "IMAGE",
+            "url": "<upload.js 返回的 file_url>"
+        }
+    ]
+}
+```
+
+> `content_type` 为附件类型（图片用 `IMAGE`），支持传多个附件。
+
+##### Chat 模式路由判断
+
+- 指向**用户自身数据**（"我的""帮我查""帮我分析"）→ 选对应 Agent
+- 明确涉及账户 ID、广告 ID、消耗数据、投放效果 → 选对应 Agent
+- 涉及**素材审核、拒审、预审、审核状态、素材合规、素材修复** → `AUDIT`
+- 仅涉及平台规则、操作指引、通用知识 → 普通知识库问答
+- **简单即简单**：纯数据查询 → `DATA_QUERY` 一步完成，不做多步拆分
+- **账户范围控制**：`DATA_QUERY` 时若用户指定了账户 ID 或 API 返回提示账户过多，通过 `agent_params.account_id_list` 缩小范围
+- **拿不准时优先普通问答**，结尾提示用户可提供更多信息获取深度分析
+
+#### API 模式执行
+
+```bash
+node scripts/api_tool_call.js '<JSON请求体>'
+```
+
+> 返回结构化 JSON。退出码规范与 Chat 模式一致（0/2/3/4/5）。
+
+##### 请求体格式
+
+```json
+{
+    "method": "GET",
+    "path": "<API路径>",
+    "params": { ... }
+}
+```
+
+> `params` 的具体字段因 API 而异，须先加载 `references/api/` 下对应文件获取完整参数定义。
+
+##### 示例
+
+```bash
+# 天粒度：查最近 7 天按日期的消耗
+node scripts/api_tool_call.js '{"method":"GET","path":"daily_reports/get","params":{"begin":"2026-04-02","end":"2026-04-08","group_by_type":"DATE","fields":["cost"],"page_size":7,"account_id_list":[2345678]}}'
+
+# 小时粒度：查今天各小时消耗
+node scripts/api_tool_call.js '{"method":"GET","path":"hourly_reports/get","params":{"date":"2026-04-09","group_by_type":"HOUR","fields":["cost","hour"],"page_size":24,"account_id_list":[2345678]}}'
+```
+
+### 3. 处理响应与退出码
+
+退出码 0 表示请求成功，**须先检查返回 JSON 的 `code` 字段**——若为 `140209`，表示 SKILL 版本过期，必须按 `message` 指引完成更新后重试；否则按「结果展示规范」输出。
+
+| 退出码 | 前缀 | 含义 | 处理 |
+|--------|------|------|------|
+| 2 | `[TOKEN_NOT_FOUND]` | Token 不存在 | 读取 `references/token_management.md` 按指引引导用户获取并保存 Token，再重试 |
+| 3 | `[TOKEN_EMPTY]` | Token 为空 | 同上 |
+| 4 | `[API_ERROR]` | API 错误 | 根据响应内容判断原因（Token 失效→引导刷新；权限不足→提示检查；频率限制→稍后重试；5xx→服务暂不可用） |
+| 5 | `[NETWORK_ERROR]` | 网络失败 | 展示错误信息，建议检查网络/代理 |
+
+### 4. 复杂问题的多轮迭代
+
+复杂问题不要试图一次调用给出最终答案。以**用户最终目标为导向**，多轮调用逐步收敛：
+
+1. **拆解目标**：确定每个子目标对应的 Agent 及调用顺序
+2. **逐轮推理**：每轮调用后先分析结果，信息不充分则继续。简单问题 1 轮，复杂问题 3-5 轮
+3. **综合总结**：按「结果展示规范」输出各轮结果，综合多轮信息给出整合分析和行动建议
+
+典型组合：
+
+| 用户问题 | 调用链路 |
+|----------|----------|
+| 账户效果不好，怎么回事？ | `DATA_QUERY` → `ACCOUNT_ANALYSE` → 普通问答 |
+| 广告不起量，什么原因？ | `DIAGNOSE` → `DATA_QUERY` → 普通问答 |
+| 分析账户 + 推荐创意 | `ACCOUNT_ANALYSE` → `CREATIVE_INSPIRATION` |
+| 这条广告要不要关掉？ | `DATA_QUERY` → `DIAGNOSE` |
+| 广告审核不通过 + 优化投放 | `AUDIT`（拒审分析 + 修复） → `DIAGNOSE`（投放诊断） |
+| 帮我看看这张图能不能过审 | `upload.js`（上传素材） → `AUDIT` + `attachments`（预审检测） |
+
+每步简要告知用户进展，已有充分信息的子目标不再重复调用。
+
+### 5. 结果展示规范
+
+API 返回内容已是 Markdown 格式，按以下规则展示：
+
+- **单轮结果**：严格原样输出——保留全部 Markdown 格式与文字内容，不得改写、删减、补充或二次格式化，不加主观解读（除非用户要求）
+- **多轮综合分析**：允许适当润色与整合多个 API 结果，但须保证数据客观真实、关键信息（URL、指标、结论）不丢失、各部分来源清晰可辨，整体格式风格与 API 返回保持一致，输出的结果报告要求逻辑清晰、内容详实丰富、可读性强。
+
+## 关键注意事项
+
+1. **版本更新响应**：`chat.js` 返回成功（退出码 0）时，须先检查响应 JSON 的 `code` 字段——若为 `140209` 则表示版本过期，必须按 `message` 中的指引完成升级后再继续
+2. **脚本驱动一切**：不要提前检查 Token 或 Node 环境、不要手动拼 HTTP 请求，一切由脚本退出码驱动后续动作
+3. **Token 安全**：不得在输出中明文展示完整 Token
+4. **参数完整性**：发起调用前确保必填参数已获取，缺失时先从上下文推断，再尝试用 `DATA_QUERY` 自动补全（单个直接使用并告知，多个列出让用户选），仍缺失再追问用户。缺时间范围时默认最近 7 天（curr）+ 前 7 天（prev），输出时注明
+5. **结果展示**：严格遵循「结果展示规范」——单轮原样输出，多轮可适度整合但不得篡改数据或丢失关键信息
+6. **用户友好**：无需用户了解技术概念，只需粘贴 Token 即可

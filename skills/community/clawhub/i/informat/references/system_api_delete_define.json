@@ -1,0 +1,20 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_api_delete_define",
+		"description": "Delete existing API definition configuration. (Dangerous operation, only allowed when the user explicitly requests to delete a specific API)",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Unique ID of the API (must exist)"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		}
+	}
+}

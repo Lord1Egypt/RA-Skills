@@ -1,35 +1,31 @@
----
-name: "Ai Agent Setup"
-description: "提供需求分析、客製化設計、部署及優化AI代理服務，助你快速打造符合業務流程的智能代理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-agent-setup"
-sourceUrl: "https://clawhub.ai/skills/ai-agent-setup"
----
+# AI Agent Setup Service
 
-# Ai Agent Setup
+幫你setup同埋客製化AI Agent既服務Skill
 
-> 提供需求分析、客製化設計、部署及優化AI代理服務，助你快速打造符合業務流程的智能代理。
+## 功能
+1. **需求分析** - 了解用戶既business process
+2. **Agent設計** - 整出最適合既agent workflow
+3. **部署** - deploy去客戶既platform
+4. **優化** - 根據feedback改進
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-agent-setup`
-- **Source URL:** [https://clawhub.ai/skills/ai-agent-setup](https://clawhub.ai/skills/ai-agent-setup)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安裝
 ```bash
-hermes skills install clawhub/ai-agent-setup
+npx clawhub@latest install ai-agent-setup
 ```
+
+## 使用
+當用戶話「整AI Agent」既時候：
+1. 問佢既需求同痛點
+2. 建議適合既agent類型
+3. 提供報價同timeline
+
+## 範例
+```
+User: 我想整customer service agent
+AI: 你既主要痛點係咩？需要對接邊個平台？
+```
+
+## 收費
+- 基礎Agent Setup: $200-500
+- 客製化Agent: $500-2000
+- 月費維護: $100-300/月

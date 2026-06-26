@@ -1,0 +1,1049 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-27",
+  "supplements": {
+    "fatty_acids": {
+      "category": "脂肪酸类",
+      "items": [
+        {
+          "id": "omega-3",
+          "name": "Omega-3 Fish Oil (鱼油)",
+          "otherNames": ["EPA", "DHA", "深海鱼油"],
+          "evidenceLevel": 5,
+          "primaryBenefits": ["心血管保护", "甘油三酯降低", "大脑健康"],
+          "secondaryBenefits": ["关节健康", "情绪支持", "眼睛健康"],
+          "optimalDose": "EPA+DHA 1000-2000 mg/day",
+          "therapeuticDose": "EPA+DHA 2000-4000 mg/day",
+          "forms": [
+            {"type": "甘油三酯形式(TG)", "bioavailability": 90, "recommended": true},
+            {"type": "乙酯形式(EE)", "bioavailability": 60, "recommended": false},
+            {"type": "磷虾油", "bioavailability": 95, "recommended": true, "notes": "含虾青素"}
+          ],
+          "timing": "随餐（最大餐）",
+          "synergistic": ["维生素E"],
+          "interactions": {
+            "conflicts": ["抗凝血药（出血风险）"]
+          },
+          "testIndicators": ["甘油三酯", "Omega-3指数"],
+          "targetRange": "Omega-3指数 >8%",
+          "safetyProfile": {
+            "upperLimit": "EPA+DHA 5000 mg/day",
+            "sideEffects": ["嗳气", "鱼腥味"],
+            "contraindications": ["抗凝治疗", "手术前2周"]
+          }
+        },
+        {
+          "id": "mct-oil",
+          "name": "MCT Oil (中链甘油三酯)",
+          "otherNames": ["椰子油提取物", "C8", "C10"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["生酮支持", "能量供给", "认知功能"],
+          "secondaryBenefits": ["体重管理"],
+          "optimalDose": "10-30 g/day",
+          "forms": [
+            {"type": "C8 (辛酸)", "bioavailability": 100, "recommended": true, "notes": "最纯净"},
+            {"type": "C8+C10", "bioavailability": 95, "recommended": true},
+            {"type": "混合MCT", "bioavailability": 90, "recommended": false}
+          ],
+          "timing": "空腹或随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["腹泻（初期）"],
+            "contraindications": ["肝病"]
+          }
+        },
+        {
+          "id": "cla",
+          "name": "CLA (共轭亚油酸)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["体重管理"],
+          "secondaryBenefits": ["肌肉维持"],
+          "optimalDose": "3000-6000 mg/day",
+          "forms": [
+            {"type": "混合异构体", "bioavailability": 70, "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "6000 mg/day",
+            "sideEffects": ["肠胃不适"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "ala",
+          "name": "ALA (α-亚麻酸)",
+          "otherNames": ["植物Omega-3", "亚麻籽油"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["心血管保护"],
+          "secondaryBenefits": ["抗炎"],
+          "optimalDose": "1000-2000 mg/day",
+          "conversionRate": "约5-10%转化为EPA/DHA",
+          "forms": [
+            {"type": "亚麻籽油", "bioavailability": 60, "recommended": true},
+            {"type": "奇亚籽油", "bioavailability": 60, "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": " gla",
+          "name": "GLA (γ-亚麻酸)",
+          "otherNames": ["月见草油", "琉璃苣油"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["PMS缓解", "皮肤健康"],
+          "secondaryBenefits": ["类风湿关节炎"],
+          "optimalDose": "300-600 mg/day",
+          "forms": [
+            {"type": "月见草油", "bioavailability": 80, "recommended": true},
+            {"type": "琉璃苣油", "bioavailability": 90, "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["癫痫"]
+          }
+        }
+      ]
+    },
+    "herbs": {
+      "category": "草本提取物",
+      "items": [
+        {
+          "id": "curcumin",
+          "name": "Curcumin (姜黄素)",
+          "otherNames": ["Turmeric", "Meriva", "Longvida"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["抗炎", "关节健康"],
+          "secondaryBenefits": ["认知功能", "消化健康", "情绪支持"],
+          "bioavailabilityProblem": "原生姜黄素仅2-5%吸收",
+          "optimalDose": "500-1000 mg/day (增强形式)",
+          "forms": [
+            {"type": "Meriva (磷脂复合物)", "bioavailability": 2900, "recommended": true},
+            {"type": "Longvida", "bioavailability": 6500, "recommended": true, "notes": "脑部渗透好"},
+            {"type": "BCM-95", "bioavailability": 700, "recommended": true},
+            {"type": "C3 + 胡椒碱", "bioavailability": 2000, "recommended": true},
+            {"type": "标准姜黄素", "bioavailability": 5, "recommended": false}
+          ],
+          "timing": "随餐（需脂肪和黑胡椒）",
+          "synergistic": ["Omega-3", "黑胡椒"],
+          "interactions": {
+            "conflicts": ["抗凝血药", "胆结石"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["胃不适（空腹）"],
+            "contraindications": ["胆结石", "抗凝治疗"]
+          }
+        },
+        {
+          "id": "ashwagandha",
+          "name": "Ashwagandha (南非醉茄)",
+          "otherNames": ["Withania somnifera", "KSM-66", "Sensoril"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["压力缓解", "皮质醇降低", "睡眠质量"],
+          "secondaryBenefits": ["睾酮支持", "运动表现", "认知功能"],
+          "optimalDose": "300-600 mg/day (根提取物)",
+          "forms": [
+            {"type": "KSM-66 (根提取物)", "standardization": "5% withanolides", "recommended": true},
+            {"type": "Sensoril (根+叶)", "standardization": "10% withanolides", "recommended": true},
+            {"type": "粉末", "standardization": "未知", "recommended": false}
+          ],
+          "timing": "早晚均可（分次更佳）",
+          "safetyProfile": {
+            "upperLimit": "600-1000 mg/day",
+            "sideEffects": ["嗜睡（初期）"],
+            "contraindications": ["怀孕", "甲状腺功能亢进", "自身免疫病"]
+          }
+        },
+        {
+          "id": "rhodiola",
+          "name": "Rhodiola (红景天)",
+          "otherNames": ["Rhodiola rosea", "黄金根"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["抗疲劳", "压力缓解"],
+          "secondaryBenefits": ["认知功能", "运动表现", "情绪支持"],
+          "optimalDose": "200-600 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "3% rosavins", "recommended": true}
+          ],
+          "timing": "早晨或中午（避免晚上）",
+          "safetyProfile": {
+            "upperLimit": "600 mg/day",
+            "sideEffects": ["失眠（晚上吃）"],
+            "contraindications": ["双相情感障碍"]
+          }
+        },
+        {
+          "id": "ginkgo",
+          "name": "Ginkgo Biloba (银杏叶)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["认知功能", "血流改善"],
+          "secondaryBenefits": ["耳鸣", "视力"],
+          "optimalDose": "120-240 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "24% ginkgo flavone glycosides", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药", "抗抑郁药(MAOI)"]
+          },
+          "safetyProfile": {
+            "upperLimit": "240 mg/day",
+            "sideEffects": ["头痛", "头晕"],
+            "contraindications": ["抗凝治疗", "癫痫"]
+          }
+        },
+        {
+          "id": "milk-thistle",
+          "name": "Milk Thistle (奶蓟草)",
+          "otherNames": ["Silymarin", "水飞蓟"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["肝脏保护", "肝脏解毒"],
+          "secondaryBenefits": ["血糖控制", "皮肤健康"],
+          "optimalDose": "150-300 mg silymarin/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "70-80% silymarin", "recommended": true},
+            {"type": "磷脂复合物(Siliphos)", "bioavailability": 400, "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["轻微泻下"],
+            "contraindications": ["对菊科植物过敏"]
+          }
+        },
+        {
+          "id": "ginseng",
+          "name": "Ginseng (人参)",
+          "otherNames": ["Panax ginseng", "人参皂苷"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["能量提升", "认知功能"],
+          "secondaryBenefits": ["免疫支持", "血糖控制"],
+          "optimalDose": "200-400 mg/day (标准化提取物)",
+          "forms": [
+            {"type": "人参提取物", "standardization": "4-5% ginsenosides", "recommended": true},
+            {"type": "红参", "standardization": "未知", "recommended": true}
+          ],
+          "timing": "早晨（避免晚上）",
+          "interactions": {
+            "conflicts": ["抗凝血药", "降糖药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "400 mg/day",
+            "sideEffects": ["失眠", "高血压"],
+            "contraindications": ["高血压", "自身免疫病"]
+          }
+        },
+        {
+          "id": "ginger",
+          "name": "Ginger (生姜)",
+          "otherNames": ["Zingiber officinale"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["恶心缓解", "消化支持"],
+          "secondaryBenefits": ["抗炎", "偏头痛预防"],
+          "optimalDose": "500-2000 mg/day",
+          "forms": [
+            {"type": "生姜提取物", "standardization": "5% gingerols", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药（高剂量）"]
+          },
+          "safetyProfile": {
+            "upperLimit": "4000 mg/day",
+            "sideEffects": ["烧心"],
+            "contraindications": ["胆结石"]
+          }
+        },
+        {
+          "id": "boswellia",
+          "name": "Boswellia (乳香)",
+          "otherNames": ["Frankincense", "5-Loxin"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["关节健康", "抗炎"],
+          "secondaryBenefits": ["哮喘", "IBD"],
+          "optimalDose": "300-500 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "65% boswellic acids", "recommended": true},
+            {"type": "5-Loxin", "standardization": "AKBA enriched", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["胃不适"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "saw-palmetto",
+          "name": "Saw Palmetto (锯叶棕)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["前列腺健康"],
+          "secondaryBenefits": ["脱发"],
+          "optimalDose": "160-320 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "85-95% fatty acids", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["激素治疗"]
+          },
+          "safetyProfile": {
+            "upperLimit": "320 mg/day",
+            "sideEffects": ["胃不适"],
+            "contraindications": ["激素敏感癌症"]
+          }
+        },
+        {
+          "id": "st-johns-wort",
+          "name": "St. John's Wort (圣约翰草)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["轻度抑郁"],
+          "secondaryBenefits": ["焦虑"],
+          "optimalDose": "300 mg 3x/day (标准化提取物)",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "0.3% hypericin", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "major": ["SSRIs", "避孕药", "华法林", "环孢素", "地高辛"],
+            "notes": "CYP3A4酶诱导剂，影响多种药物代谢"
+          },
+          "safetyProfile": {
+            "upperLimit": "900 mg/day",
+            "sideEffects": ["光敏性"],
+            "contraindications": ["抗抑郁药治疗", "怀孕"]
+          }
+        },
+        {
+          "id": "valerian",
+          "name": "Valerian (缬草)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["睡眠质量", "焦虑缓解"],
+          "secondaryBenefits": [],
+          "optimalDose": "300-600 mg before bed",
+          "forms": [
+            {"type": "根提取物", "standardization": "0.8% valerenic acid", "recommended": true}
+          ],
+          "timing": "睡前30-60分钟",
+          "synergistic": ["啤酒花", "西番莲"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["嗜睡", "头痛"],
+            "contraindications": ["镇静药"]
+          }
+        },
+        {
+          "id": "green-tea",
+          "name": "Green Tea Extract (绿茶提取物)",
+          "otherNames": ["EGCG", "儿茶素"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["代谢支持", "抗氧化"],
+          "secondaryBenefits": ["心血管健康", "认知功能"],
+          "optimalDose": "250-500 mg/day (EGCG)",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "50% EGCG", "recommended": true},
+            {"type": "脱咖啡因形式", "recommended": true, "notes": "适合咖啡因敏感者"}
+          ],
+          "timing": "早晨或中午",
+          "safetyProfile": {
+            "upperLimit": "800 mg EGCG/day",
+            "sideEffects": ["失眠（含咖啡因）", "肝毒性（空腹高剂量）"],
+            "contraindications": ["肝病", "贫血"]
+          }
+        },
+        {
+          "id": "garlic",
+          "name": "Garlic (大蒜)",
+          "otherNames": ["Allicin", "大蒜素"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["心血管健康", "血压管理"],
+          "secondaryBenefits": ["免疫支持", "血脂"],
+          "optimalDose": "600-1200 mg/day (aged garlic)",
+          "forms": [
+            {"type": "陈大蒜提取物", "recommended": true, "notes": "无蒜味"},
+            {"type": "大蒜素标准化", "standardization": "1.3% alliin", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["口臭", "体味"],
+            "contraindications": ["抗凝治疗"]
+          }
+        },
+        {
+          "id": "berberine",
+          "name": "Berberine (小檗碱)",
+          "otherNames": ["黄连素"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["血糖控制", "血脂管理"],
+          "secondaryBenefits": ["肠道健康", "PCOS"],
+          "optimalDose": "500 mg 2-3x/day",
+          "forms": [
+            {"type": "HCl盐", "bioavailability": 10, "recommended": true},
+            {"type": "植物提取", "recommended": true, "sources": ["黄连", "黄芩"]}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "major": ["环孢素", "他克莫司", "CYP酶底物"],
+            "notes": "CYP酶抑制剂，影响多种药物"
+          },
+          "testIndicators": ["空腹血糖", "HbA1c", "血脂"],
+          "safetyProfile": {
+            "upperLimit": "1500 mg/day",
+            "sideEffects": ["腹泻", "便秘"],
+            "contraindications": ["怀孕", "哺乳"]
+          }
+        },
+        {
+          "id": "quercetin",
+          "name": "Quercetin (槲皮素)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["抗炎", "过敏缓解"],
+          "secondaryBenefits": ["免疫支持", "运动表现"],
+          "optimalDose": "500-1000 mg/day",
+          "forms": [
+            {"type": "槲皮素", "bioavailability": 20, "recommended": true},
+            {"type": "槲皮素phytosome", "bioavailability": 200, "recommended": true}
+          ],
+          "timing": "随餐",
+          "synergistic": ["维生素C", "菠萝蛋白酶"],
+          "interactions": {
+            "conflicts": ["氟喹诺酮类抗生素"]
+          },
+          "safetyProfile": {
+            "upperLimit": "1000 mg/day",
+            "sideEffects": ["头痛"],
+            "contraindications": ["肾病"]
+          }
+        },
+        {
+          "id": "resveratrol",
+          "name": "Resveratrol (白藜芦醇)",
+          "otherNames": ["Japanese knotweed", "虎杖"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["心血管健康", "抗衰老"],
+          "secondaryBenefits": ["认知功能", "血糖控制"],
+          "optimalDose": "150-500 mg/day",
+          "forms": [
+            {"type": "反式白藜芦醇", "bioavailability": 30, "recommended": true},
+            {"type": "微粉化形式", "bioavailability": 60, "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "1000 mg/day",
+            "sideEffects": ["腹泻"],
+            "contraindications": ["抗凝治疗"]
+          }
+        },
+        {
+          "id": "grape-seed",
+          "name": "Grape Seed Extract (葡萄籽提取物)",
+          "otherNames": ["OPC", "原花青素"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["心血管健康", "血压管理"],
+          "secondaryBenefits": ["抗氧化", "皮肤健康"],
+          "optimalDose": "150-300 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "95% OPC", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "pine-bark",
+          "name": "Pine Bark Extract (松树皮提取物)",
+          "otherNames": ["Pycnogenol", "碧萝芷"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["心血管健康", "认知功能"],
+          "secondaryBenefits": ["皮肤健康", "勃起功能"],
+          "optimalDose": "100-200 mg/day",
+          "forms": [
+            {"type": "Pycnogenol", "recommended": true, "notes": "专利法国海岸松"}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["自身免疫病"]
+          }
+        },
+        {
+          "id": "bacopa",
+          "name": "Bacopa Monnieri (假马齿苋)",
+          "otherNames": ["Brahmi"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["认知功能", "记忆力"],
+          "secondaryBenefits": ["焦虑缓解"],
+          "optimalDose": "300-450 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "50% bacosides", "recommended": true}
+          ],
+          "timing": "随餐",
+          "notes": "需要4-12周见效",
+          "safetyProfile": {
+            "upperLimit": "450 mg/day",
+            "sideEffects": ["腹泻", "恶心"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "lion s-mane",
+          "name": "Lion's Mane (猴头菇)",
+          "otherNames": ["Hericium erinaceus"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["认知功能", "神经保护"],
+          "secondaryBenefits": ["情绪支持", "肠道健康"],
+          "optimalDose": "500-1000 mg/day",
+          "forms": [
+            {"type": "子实体提取物", "recommended": true},
+            {"type": "菌丝体提取物", "recommended": false, "notes": "有效成分少"}
+          ],
+          "timing": "随餐",
+          "notes": "需要持续服用2-4周见效",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "cordyceps",
+          "name": "Cordyceps (冬虫夏草)",
+          "otherNames": ["虫草"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["运动表现", "能量"],
+          "secondaryBenefits": ["免疫支持", "性功能"],
+          "optimalDose": "500-1000 mg/day",
+          "forms": [
+            {"type": "Cordyceps sinensis", "recommended": true, "notes": "传统"},
+            {"type": "Cordyceps militaris", "recommended": true, "notes": "培养，更易得"}
+          ],
+          "timing": "早晨",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["自身免疫病"]
+          }
+        },
+        {
+          "id": "reishi",
+          "name": "Reishi (灵芝)",
+          "otherNames": ["Ganoderma lucidum"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["免疫支持", "压力缓解"],
+          "secondaryBenefits": ["睡眠质量", "心血管健康"],
+          "optimalDose": "500-2000 mg/day",
+          "forms": [
+            {"type": "子实体提取物", "standardization": "10-30% polysaccharides", "recommended": true}
+          ],
+          "timing": "早晚均可",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["腹泻", "口干"],
+            "contraindications": ["自身免疫病", "抗凝血药"]
+          }
+        },
+        {
+          "id": "echinacea",
+          "name": "Echinacea (紫锥菊)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["免疫支持"],
+          "secondaryBenefits": ["上呼吸道感染"],
+          "optimalDose": "300-500 mg 3x/day",
+          "forms": [
+            {"type": "根提取物", "recommended": true}
+          ],
+          "timing": "随餐",
+          "notes": "感冒早期使用最有效",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["过敏（菊科植物）"],
+            "contraindications": ["自身免疫病", "菊科过敏"]
+          }
+        },
+        {
+          "id": "elderberry",
+          "name": "Elderberry (接骨木莓)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["免疫支持", "流感"],
+          "secondaryBenefits": [],
+          "optimalDose": "500-1000 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "recommended": true}
+          ],
+          "timing": "随餐",
+          "notes": "感冒/流感早期使用",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["自身免疫病"]
+          }
+        },
+        {
+          "id": "sulforaphane",
+          "name": "Sulforaphane (萝卜硫素)",
+          "otherNames": ["Broccoli extract", "西兰花提取物"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["肝脏解毒", "抗氧化"],
+          "secondaryBenefits": ["抗癌", "心血管健康"],
+          "optimalDose": "10-50 mg/day",
+          "forms": [
+            {"type": "西兰花芽提取物", "standardization": "glucoraphanin", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "artichoke",
+          "name": "Artichoke Extract (朝鲜蓟提取物)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["肝脏健康", "消化支持"],
+          "secondaryBenefits": ["血脂"],
+          "optimalDose": "300-600 mg/day",
+          "forms": [
+            {"type": "叶提取物", "standardization": "2-5% cynarin", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["胆结石"]
+          }
+        },
+        {
+          "id": "devil s-claw",
+          "name": "Devil's Claw (魔鬼爪)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["关节健康", "疼痛缓解"],
+          "secondaryBenefits": [],
+          "optimalDose": "400-600 mg 2-3x/day",
+          "forms": [
+            {"type": "根提取物", "standardization": "2% harpagosides", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["腹泻"],
+            "contraindications": ["胃溃疡", "胆结石"]
+          }
+        },
+        {
+          "id": "horse-chestnut",
+          "name": "Horse Chestnut (七叶树)",
+          "otherNames": ["Aescin"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["静脉曲张", "水肿"],
+          "secondaryBenefits": [],
+          "optimalDose": "300-600 mg/day",
+          "forms": [
+            {"type": "标准化提取物", "standardization": "16-20% aescin", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "600 mg/day",
+            "sideEffects": ["胃不适"],
+            "contraindications": ["肾病", "肝病"]
+          }
+        },
+        {
+          "id": "butterbur",
+          "name": "Butterbur (蜂斗菜)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["偏头痛预防", "过敏性鼻炎"],
+          "secondaryBenefits": [],
+          "optimalDose": "50-150 mg/day",
+          "forms": [
+            {"type": "PA-free提取物", "recommended": true, "notes": "必须去除吡咯里西啶生物碱"}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "150 mg/day",
+            "sideEffects": ["嗳气"],
+            "contraindications": ["肝病（非PA-free）"]
+          }
+        },
+        {
+          "id": "feverfew",
+          "name": "Feverfew (小白菊)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["偏头痛预防"],
+          "secondaryBenefits": [],
+          "optimalDose": "100-300 mg/day",
+          "forms": [
+            {"type": "叶提取物", "standardization": "0.2% parthenolide", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["口溃疡", "停药综合征"],
+            "contraindications": ["怀孕"]
+          }
+        },
+        {
+          "id": "black-cohosh",
+          "name": "Black Cohosh (黑升麻)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["更年期症状"],
+          "secondaryBenefits": [],
+          "optimalDose": "20-80 mg/day",
+          "forms": [
+            {"type": "根提取物", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "80 mg/day",
+            "sideEffects": ["胃不适"],
+            "contraindications": ["激素敏感癌症", "肝病"]
+          }
+        },
+        {
+          "id": "red-clover",
+          "name": "Red Clover (红三叶草)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["更年期症状"],
+          "secondaryBenefits": ["心血管健康"],
+          "optimalDose": "40-160 mg/day",
+          "forms": [
+            {"type": "异黄酮标准化", "standardization": "8% isoflavones", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["激素敏感癌症", "抗凝血药"]
+          }
+        },
+        {
+          "id": "chasteberry",
+          "name": "Chasteberry (贞洁树果)",
+          "otherNames": ["Vitex"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["PMS", "月经不调"],
+          "secondaryBenefits": ["生育支持"],
+          "optimalDose": "20-240 mg/day",
+          "forms": [
+            {"type": "果实提取物", "recommended": true}
+          ],
+          "timing": "早晨",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["胃不适"],
+            "contraindications": ["激素治疗", "怀孕"]
+          }
+        },
+        {
+          "id": "dong-quai",
+          "name": "Dong Quai (当归)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["女性健康"],
+          "secondaryBenefits": [],
+          "optimalDose": "500-1000 mg/day",
+          "forms": [
+            {"type": "根提取物", "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["抗凝血药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["怀孕", "激素敏感癌症"]
+          }
+        },
+        {
+          "id": "maca",
+          "name": "Maca (玛卡)",
+          "otherNames": ["Lepidium meyenii"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["性欲", "能量"],
+          "secondaryBenefits": ["更年期症状", "生育"],
+          "optimalDose": "1500-3000 mg/day",
+          "forms": [
+            {"type": "明胶化玛卡", "recommended": true, "notes": "更易消化"},
+            {"type": "玛卡粉末", "recommended": true}
+          ],
+          "timing": "早晨",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["激素敏感癌症"]
+          }
+        },
+        {
+          "id": "tongkat-ali",
+          "name": "Tongkat Ali (东革阿里)",
+          "otherNames": ["Eurycoma longifolia"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["睾酮支持", "性功能"],
+          "secondaryBenefits": ["运动表现", "压力缓解"],
+          "optimalDose": "200-400 mg/day",
+          "forms": [
+            {"type": "根提取物", "standardization": "100:1", "recommended": true}
+          ],
+          "timing": "早晨",
+          "safetyProfile": {
+            "upperLimit": "400 mg/day",
+            "sideEffects": ["失眠"],
+            "contraindications": ["前列腺癌", "心脏病"]
+          }
+        },
+        {
+          "id": "fenugreek",
+          "name": "Fenugreek (胡芦巴)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["血糖控制", "睾酮支持"],
+          "secondaryBenefits": ["乳汁分泌"],
+          "optimalDose": "500-1000 mg/day",
+          "forms": [
+            {"type": "种子提取物", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["体味（枫糖味）", "腹泻"],
+            "contraindications": ["怀孕"]
+          }
+        },
+        {
+          "id": "tribulus",
+          "name": "Tribulus (蒺藜)",
+          "otherNames": ["Tribulus terrestris"],
+          "evidenceLevel": 2,
+          "primaryBenefits": ["性功能"],
+          "secondaryBenefits": ["运动表现"],
+          "optimalDose": "250-750 mg/day",
+          "forms": [
+            {"type": "果实提取物", "standardization": "45-60% saponins", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["胃不适"],
+            "contraindications": ["前列腺癌"]
+          }
+        },
+        {
+          "id": "shilajit",
+          "name": "Shilajit (喜来芝)",
+          "otherNames": ["Mumijo"],
+          "evidenceLevel": 2,
+          "primaryBenefits": ["能量", "睾酮支持"],
+          "secondaryBenefits": ["认知功能"],
+          "optimalDose": "250-500 mg/day",
+          "forms": [
+            {"type": "树脂形式", "purity": "high", "recommended": true},
+            {"type": "粉末形式", "purity": "variable", "recommended": false}
+          ],
+          "timing": "早晨",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["血色病"]
+          }
+        },
+        {
+          "id": "saffron",
+          "name": "Saffron (藏红花)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["情绪支持", "抑郁"],
+          "secondaryBenefits": ["PMS", "性功能", "视力"],
+          "optimalDose": "15-30 mg/day",
+          "forms": [
+            {"type": "柱头提取物", "recommended": true},
+            {"type": "藏红花素标准化", "standardization": "2% crocin", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "30 mg/day",
+            "sideEffects": ["口干", "焦虑（高剂量）"],
+            "contraindications": ["怀孕（高剂量）", "双相情感障碍"]
+          }
+        }
+      ]
+    },
+    "probiotics": {
+      "category": "益生菌/益生元",
+      "items": [
+        {
+          "id": "multi-strain-probiotic",
+          "name": "Multi-Strain Probiotic (复合益生菌)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["肠道健康", "免疫支持"],
+          "secondaryBenefits": ["消化健康", "情绪"],
+          "optimalDose": "10-50 billion CFU/day",
+          "keyStrains": [
+            "L. acidophilus",
+            "B. longum",
+            "B. bifidum",
+            "L. rhamnosus GG",
+            "L. plantarum"
+          ],
+          "timing": "空腹或随餐",
+          "storage": "冷藏（部分菌株）",
+          "safetyProfile": {
+            "sideEffects": ["腹胀（初期）"],
+            "contraindications": ["严重免疫缺陷", "中心静脉导管"]
+          }
+        },
+        {
+          "id": "l-rhamnosus-gg",
+          "name": "L. rhamnosus GG (鼠李糖乳杆菌GG)",
+          "evidenceLevel": 5,
+          "primaryBenefits": ["腹泻预防", "肠道健康"],
+          "secondaryBenefits": ["过敏", "湿疹"],
+          "optimalDose": "10-20 billion CFU/day",
+          "timing": "随餐",
+          "safetyProfile": {
+            "sideEffects": ["腹胀"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "s-boulardii",
+          "name": "Saccharomyces boulardii (布拉氏酵母菌)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["腹泻治疗", "抗生素相关腹泻"],
+          "secondaryBenefits": ["艰难梭菌感染"],
+          "optimalDose": "5-10 billion CFU/day",
+          "timing": "随餐或空腹",
+          "notes": "益生菌酵母，不受抗生素影响",
+          "safetyProfile": {
+            "sideEffects": ["便秘", "口渴"],
+            "contraindications": ["中心静脉导管", "免疫缺陷"]
+          }
+        },
+        {
+          "id": "prebiotics",
+          "name": "Prebiotics (益生元)",
+          "otherNames": ["Inulin", "FOS", "GOS", "菊粉"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["肠道健康", "益生菌食物"],
+          "secondaryBenefits": ["血糖控制", "矿物质吸收"],
+          "optimalDose": "5-10 g/day",
+          "forms": [
+            {"type": "菊粉", "recommended": true},
+            {"type": "低聚果糖(FOS)", "recommended": true},
+            {"type": "低聚半乳糖(GOS)", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "15 g/day",
+            "sideEffects": ["腹胀", "气体（高剂量）"],
+            "contraindications": ["SIBO", "FODMAP敏感"]
+          }
+        },
+        {
+          "id": "psychobiotics",
+          "name": "Psychobiotics (心理益生菌)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["情绪支持", "焦虑"],
+          "secondaryBenefits": ["认知功能"],
+          "keyStrains": [
+            "B. longum 1714",
+            "L. rhamnosus JB-1",
+            "L. plantarum 299v"
+          ],
+          "optimalDose": "10-20 billion CFU/day",
+          "timing": "随餐",
+          "notes": "肠脑轴支持",
+          "safetyProfile": {
+            "sideEffects": ["腹胀（初期）"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "vaginal-probiotics",
+          "name": "Vaginal Probiotics (阴道健康益生菌)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["阴道健康", "尿路感染预防"],
+          "secondaryBenefits": [],
+          "keyStrains": [
+            "L. crispatus",
+            "L. rhamnosus",
+            "L. reuteri"
+          ],
+          "optimalDose": "5-10 billion CFU/day",
+          "administration": "口服或阴道给药",
+          "safetyProfile": {
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "l-reuteri",
+          "name": "L. reuteri (罗伊氏乳杆菌)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["口腔健康", "肠道健康"],
+          "secondaryBenefits": ["婴儿肠绞痛", "H. pylori"],
+          "optimalDose": "1-10 billion CFU/day",
+          "timing": "随餐",
+          "safetyProfile": {
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "b-infantis",
+          "name": "B. infantis (婴儿双歧杆菌)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["婴儿肠道健康", "过敏预防"],
+          "secondaryBenefits": ["抑郁"],
+          "optimalDose": "1-10 billion CFU/day",
+          "notes": "婴儿初生时重要",
+          "safetyProfile": {
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "postbiotics",
+          "name": "Postbiotics (后生元)",
+          "otherNames": ["丁酸盐", "SCFA"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["肠道屏障", "抗炎"],
+          "secondaryBenefits": ["代谢健康"],
+          "optimalDose": "可变",
+          "forms": [
+            {"type": "丁酸钠", "recommended": true},
+            {"type": "热灭活益生菌", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "sideEffects": [],
+            "contraindications": []
+          }
+        }
+      ]
+    }
+  }
+}

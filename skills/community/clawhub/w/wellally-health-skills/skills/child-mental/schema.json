@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/child-mental-tracker.json",
+  "title": "Child Mental Health Tracker",
+  "description": "Data structure for child mental health tracking",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "child_profile": {
+      "type": "object",
+      "properties": {
+        "child_id": {"type": "string"},
+        "name": {"type": "string"},
+        "birth_date": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female"]}
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "age": {"type": "string"},
+          "age_months": {"type": "integer"},
+          "mood_assessment": {
+            "type": "object",
+            "properties": {
+              "overall_mood": {"type": "string"},
+              "mood_rating": {"type": "integer", "minimum": 1, "maximum": 10},
+              "mood_range": {"type": "string"},
+              "emotional_expression": {"type": "string"},
+              "emotional_regulation": {"type": "string"},
+              "dominant_mood": {"type": "string"}
+            }
+          },
+          "behavior_assessment": {
+            "type": "object",
+            "properties": {
+              "overall_behavior": {"type": "string"},
+              "activity_level": {"type": "string"},
+              "attention_span": {"type": "string"},
+              "compliance": {"type": "string"},
+              "aggression": {"type": "string"},
+              "oppositional": {"type": "string"}
+            }
+          },
+          "anxiety_screening": {
+            "type": "object",
+            "properties": {
+              "separation_anxiety": {"type": "string"},
+              "social_anxiety": {"type": "string"},
+              "generalized_anxiety": {"type": "string"},
+              "specific_phobias": {"type": "string"},
+              "overall_anxiety": {"type": "string"}
+            }
+          },
+          "attention_screening": {
+            "type": "object",
+            "properties": {
+              "inattention_score": {"type": "integer"},
+              "hyperactivity_score": {"type": "integer"},
+              "total_score": {"type": "integer"},
+              "interpretation": {"type": "string"},
+              "recommendation": {"type": "string"}
+            }
+          },
+          "social_assessment": {
+            "type": "object",
+            "properties": {
+              "peer_relationships": {"type": "string"},
+              "social_skills": {"type": "string"},
+              "play_behavior": {"type": "string"},
+              "communication": {"type": "string"}
+            }
+          },
+          "overall_assessment": {
+            "type": "string",
+            "enum": ["normal", "attention_needed", "professional_eval_recommended"]
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "mood_tracking": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "time": {"type": "string"},
+          "mood": {"type": "string"},
+          "mood_rating": {"type": "integer"},
+          "context": {"type": "string"},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "behavior_tracking": {
+      "type": "object",
+      "properties": {
+        "tantrums": {
+          "type": "object",
+          "properties": {
+            "frequency": {"type": "string"},
+            "triggers": {"type": "array", "items": {"type": "string"}},
+            "duration_minutes": {"type": "integer"},
+            "intervention_effective": {"type": "boolean"}
+          }
+        },
+        "sleep_issues": {"type": "boolean"},
+        "appetite_changes": {"type": "boolean"},
+        "social_withdrawal": {"type": "boolean"},
+        "aggression": {"type": "boolean"}
+      }
+    },
+    "scales": {
+      "type": "object",
+      "properties": {
+        "sdq": {
+          "type": "object",
+          "properties": {
+            "completed": {"type": "boolean"},
+            "total_difficulties": {"type": "integer"},
+            "emotional_symptoms": {"type": "integer"},
+            "conduct_problems": {"type": "integer"},
+            "hyperactivity": {"type": "integer"},
+            "peer_problems": {"type": "integer"},
+            "prosocial": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_assessments": {"type": "integer"},
+        "last_assessment_date": {"type": "string"},
+        "overall_trend": {"type": "string"},
+        "mood_trend": {"type": "string"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"]
+}

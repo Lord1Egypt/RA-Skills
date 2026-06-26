@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "name": "gmail",
+  "description": "Gmail integration - Send emails, manage labels, and automate Gmail",
+  "instructions": "instructions.md",
+  "tools": {
+    "auto_preload": false,
+    "entries": [
+      {"name": "gmail_send_email", "description": "Send an email", "parameters": {"type": "object", "properties": {"to": {"type": "string"}, "subject": {"type": "string"}, "body": {"type": "string"}}, "required": ["to", "subject", "body"]}},
+      {"name": "gmail_list_messages", "description": "List recent emails", "parameters": {"type": "object", "properties": {"max_results": {"type": "integer"}}}},
+      {"name": "gmail_create_label", "description": "Create a label", "parameters": {"type": "object", "properties": {"name": {"type": "string"}}, "required": ["name"]}}
+    ]
+  },
+  "env": [{"name": "GMAIL_CLIENT_ID", "description": "Google OAuth Client ID", "required": true}, {"name": "GMAIL_CLIENT_SECRET", "description": "Google OAuth Client Secret", "required": true}],
+  "tags": ["productivity", "email", "gmail"],
+  "author": "lukaizj",
+  "homepage": "https://github.com/lukaizj/gmail-integration-skill"
+}

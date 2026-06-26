@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>{{TITLE}}</h1>
+      <p class="subtitle">{{SUBTITLE}}</p>
+    </header>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      {{SUMMARY_HTML}}
+    </section>
+
+    <section id="ranking">
+      <h2>Ranking</h2>
+      {{RANKING_TABLE_HTML}}
+    </section>
+
+    <section id="details">
+      <h2>Model Detail</h2>
+      {{DETAILS_HTML}}
+    </section>
+
+    {{ANSWERS_HTML}}
+
+    <footer>{{FOOTER}}</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

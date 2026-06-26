@@ -1,0 +1,22 @@
+{
+  "name": "startup-helper",
+  "version": "1.0.0",
+  "description": "创业启动助手 - 一站式公司注册、ICP备案、商标注册、银行开户等全流程服务",
+  "author": "WorkBuddy",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "generate-checklist": "node scripts/checklist-generator.js"
+  },
+  "keywords": [
+    "startup",
+    "company-registration",
+    "icp-filing",
+    "trademark",
+    "bank-account",
+    "创业",
+    "公司注册",
+    "ICP备案"
+  ],
+  "dependencies": {}
+}

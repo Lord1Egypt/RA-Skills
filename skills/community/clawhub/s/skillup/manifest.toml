@@ -1,0 +1,29 @@
+name = "SkillUp"
+slug = "skillup"
+version = "0.1.9"
+description = "SkillUp is a cross-platform skill publishing tool for packaging and syncing custom skills to GitHub, Xiaping Skill, OpenClaw CN, and ClawHub."
+category = "开发辅助"
+visibility = "public"
+
+[github]
+enabled = true
+
+[xiaping]
+enabled = true
+title = "SkillUp"
+title_zh = "SkillUp"
+summary = "一个面向 Codex 和 OpenClaw 中文社区智能体的跨平台技能发布工具。"
+description_zh = "SkillUp 是一个跨平台技能发布工具，用于将你编写的技能检查、打包并同步到 GitHub、虾评 Skill、OpenClaw 中文社区与 ClawHub。"
+trigger = "[\"SkillUp\",\"skillup\",\"publish-skill\"]"
+category = "[\"开发辅助\"]"
+tags = "[\"Codex\",\"OpenClaw 中文社区\",\"GitHub\",\"自动化\"]"
+
+[openclaw]
+enabled = true
+title_zh = "SkillUp"
+description_zh = "SkillUp 是一个面向中文智能体社区的跨平台技能发布工具，可将技能同步发布到 GitHub、虾评 Skill、OpenClaw 中文社区与 ClawHub。"
+
+[clawhub]
+enabled = true
+title_en = "SkillUp"
+description_en = "SkillUp is a cross-platform skill publishing tool for packaging and syncing custom skills to GitHub, Xiaping Skill, OpenClaw CN, and ClawHub."

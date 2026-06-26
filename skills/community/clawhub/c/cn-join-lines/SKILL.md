@@ -1,35 +1,18 @@
----
-name: "Cn Join Lines"
-description: "Merge multiple lines of text into a single line with a customizable separator using a Python command-line tool."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-join-lines"
-sourceUrl: "https://clawhub.ai/skills/cn-join-lines"
----
+# cn-join-lines
 
-# Cn Join Lines
+文本行合并工具。将多行文本合并为单行，支持自定义分隔符。
 
-> Merge multiple lines of text into a single line with a customizable separator using a Python command-line tool.
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-join-lines`
-- **Source URL:** [https://clawhub.ai/skills/cn-join-lines](https://clawhub.ai/skills/cn-join-lines)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-join-lines
+python3 scripts/join_lines.py --text "第一行\n第二行\n第三行"
+python3 scripts/join_lines.py --text "第一行\n第二行" --separator ","
 ```
+
+纯Python标准库。
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

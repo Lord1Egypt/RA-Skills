@@ -1,35 +1,22 @@
 ---
-name: "Bailian Web Search"
-description: "AI-optimized web search via Bailian(Alibaba ModelStdio) API. Returns multisourced, concise web search results for LLMs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bailian-web-search"
-sourceUrl: "https://clawhub.ai/skills/bailian-web-search"
+name: bailian-web-search
+description: AI-optimized web search via Bailian(Alibaba ModelStdio) API. Returns multisourced, concise web search results for LLMs.
+homepage: https://bailian.console.aliyun.com/cn-beijing?tab=app#/mcp-market/detail/WebSearch
+metadata: {"clawdbot":{"emoji":"🔍","requires":{"bins":["bash","curl","jq"],"env":["DASHSCOPE_API_KEY"]},"primaryEnv":"DASHSCOPE_API_KEY"}}
 ---
 
 # Bailian Web Search
 
-> AI-optimized web search via Bailian(Alibaba ModelStdio) API. Returns multisourced, concise web search results for LLMs.
+AI-optimized web search using Bailian WebSearch(Enable_search) API. Designed for AI agents - returns clean, relevant content.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bailian-web-search`
-- **Source URL:** [https://clawhub.ai/skills/bailian-web-search](https://clawhub.ai/skills/bailian-web-search)
+## Search
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bailian-web-search
+{baseDir}/scripts/mcp-websearch.sh "query"
+{baseDir}/scripts/mcp-websearch.sh  "query"  10
 ```
+
+## Options
+
+- `<count>`: Number of results (default: 5, max: 20)
+- `<query>`: User Query for Websearch

@@ -1,0 +1,36 @@
+name: amazon-push-score
+version: 1.0.6
+type: openclaw-skill
+description: "亚马逊推送分计算与流量池分级系统：4维权重量化评估Listing流量获取能力，生成精准优化策略"
+emoji: "📊"
+homepage: https://cloudtrip.ai
+
+publisher:
+  name: "云旅智能体超市"
+  website: https://cloudtrip.ai
+  contact: support@cloudtrip.ai
+
+category: ecommerce-ai
+tags:
+  - amazon
+  - push-score
+  - a9
+  - ctr
+  - cvr
+  - 流量池
+  - 推送分
+  - A9算法
+  - 权重优化
+  - 运营策略
+
+triggers:
+  - "推送分"
+  - "流量池"
+  - "A9算法"
+  - "亚马逊权重"
+  - "CTR优化"
+  - "CVR优化"
+  - "运营等级"
+  - "流量分级"
+  - "亚马逊排名"
+  - "推送算法"

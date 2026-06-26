@@ -1,0 +1,228 @@
+/* huo15-markdown-export — Editorial Magazine
+ * 流派:Editorial(商业杂志体)
+ * 适合:品牌故事 / 深度长文 / 商业访谈 / 慢阅读类内容
+ * 关键差异化:大字 display 标题 + drop cap 首字下沉 + 大留白 + 满版图 + 衬线正文
+ *
+ * 灵感:The New Yorker / Bloomberg Businessweek / Wired Long-form / Aeon
+ * 设计哲学:不是网页,是杂志的视觉气质 — 留白决定品味,drop cap 决定节奏
+ *
+ * 用法提示:
+ * - 首段第一个汉字想要 drop cap,在 markdown 里包一层 <span class="dropcap">字</span>
+ * - 满版图:在图片下加 *图说*(emphasis 紧跟 img),自动渲染图说样式
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     "PT Serif", "Merriweather", Georgia, "Times New Roman", "Songti SC", STSong, SimSun, "Source Han Serif SC", "Noto Serif CJK SC", serif;
+  --font-heading:  "Playfair Display", "Merriweather", "PT Serif", Georgia, "Songti SC", STSong, "Source Han Serif SC", serif;
+  --font-display:  "Playfair Display", "Merriweather", "PT Serif", Georgia, "Songti SC", STSong, "Source Han Serif SC", serif;
+  --color-bg:      #fdfcf8;
+  --color-fg:      #1a1a1a;
+  --color-muted:   #5a5a5a;
+  --color-rule:    #c8c0b0;
+  --color-rule-soft: #ebe4d3;
+  --color-accent:  #a8341f;
+  --color-accent-soft: rgba(168, 52, 31, 0.07);
+  --color-code-bg: #f3eedf;
+  --quote-bar-color: var(--color-accent);
+  --quote-bg:      transparent;
+  --quote-fg:      var(--color-fg);
+  --table-th-bg:   transparent;
+  --table-stripe-bg: rgba(168, 52, 31, 0.04);
+  --measure:       var(--measure-narrow);
+  --leading:       1.85;
+  --fs-base:       18px;
+  --fs-h1:         3.2rem;
+  --fs-h2:         2rem;
+  --fs-h3:         1.4rem;
+  --fs-h4:         1.15rem;
+}
+
+/* === Editorial 特征 === */
+
+body { padding: 96px 32px 64px; }
+
+/* h1:超大 display 字 + 极紧行高 + 居中 */
+.markdown-body h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6em;
+  padding: 0;
+  border: none;
+}
+
+/* h1 后副标题:em 紧跟可作小标题(杂志 deck)*/
+.markdown-body h1 + p em:only-child {
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
+  color: var(--color-muted);
+  font-style: italic;
+  margin: 0 0 2em;
+}
+
+/* h2:小型大写 + 居中 + 上下细线 */
+.markdown-body h2 {
+  font-family: var(--font-display);
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 2.4em auto 1em;
+  padding: 0.6em 0;
+  max-width: 60%;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.markdown-body h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin: 1.8em 0 0.6em;
+}
+
+.markdown-body h4 {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+/* 正文:衬线 + 1.85 行高 + justify */
+.markdown-body p {
+  margin: 0 0 1.2em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* drop cap 首字下沉:用户在 markdown 里 <span class="dropcap">第一字</span> */
+.markdown-body .dropcap {
+  font-family: var(--font-display);
+  font-weight: 800;
+  float: left;
+  font-size: 4.4em;
+  line-height: 0.9;
+  margin: 0.05em 0.12em 0 -0.05em;
+  color: var(--color-accent);
+}
+
+/* 链接:衬线下划线,克制 */
+.markdown-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.markdown-body strong {
+  font-weight: 700;
+  color: var(--color-fg);
+}
+
+.markdown-body em { font-style: italic; }
+
+/* 杂志风引用:大引号 + 居中 + 无边框 */
+.markdown-body blockquote {
+  margin: 2em 0;
+  padding: 1em 2em;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4em;
+  line-height: 1.5;
+  color: var(--color-fg);
+  position: relative;
+}
+.markdown-body blockquote::before {
+  content: "\201C";
+  font-size: 4em;
+  line-height: 0;
+  vertical-align: -0.4em;
+  color: var(--color-accent);
+  margin-right: 0.1em;
+}
+.markdown-body blockquote::after {
+  content: "\201D";
+  font-size: 4em;
+  line-height: 0;
+  vertical-align: -0.4em;
+  color: var(--color-accent);
+  margin-left: 0.1em;
+}
+.markdown-body blockquote p { display: inline; }
+
+/* 列表:窄缩进 */
+.markdown-body ul, .markdown-body ol { padding-left: 1.4em; margin: 1em 0; }
+
+/* 杂志分隔:三星花饰(非 hr 横线)*/
+.markdown-body hr {
+  border: none;
+  text-align: center;
+  margin: 3em 0;
+  height: 1.4em;
+  position: relative;
+}
+.markdown-body hr::before {
+  content: "\2042";  /* asterism */
+  font-family: var(--font-display);
+  font-size: 1.6em;
+  color: var(--color-rule);
+  letter-spacing: 0.5em;
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-code-bg);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+}
+.markdown-body pre {
+  background: var(--color-code-bg);
+  padding: 1.2em;
+  border-radius: 0;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  font-size: 0.86em;
+  line-height: 1.6;
+}
+.markdown-body pre code { background: transparent; }
+
+/* 满版图:跨出 measure 显宽,杂志感 */
+.markdown-body img {
+  max-width: 130%;
+  margin-left: -15%;
+  margin-right: -15%;
+  border-radius: 0;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+/* 图说:img 后 *斜体* 自动样式 */
+.markdown-body img + em {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.86em;
+  color: var(--color-muted);
+  margin: 0 0 2em;
+  letter-spacing: 0.02em;
+}
+
+/* 表格:三线表(无竖框)*/
+.markdown-body table {
+  font-size: 0.92em;
+  font-family: var(--font-body);
+}
+.markdown-body table th, .markdown-body table td {
+  border: none;
+  padding: 0.6em 1em;
+}
+.markdown-body table thead {
+  border-top: 2px solid var(--color-fg);
+  border-bottom: 1px solid var(--color-fg);
+}
+.markdown-body table tbody { border-bottom: 2px solid var(--color-fg); }

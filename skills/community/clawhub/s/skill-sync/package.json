@@ -1,0 +1,24 @@
+{
+  "name": "skill-sync",
+  "version": "1.0.0",
+  "description": "Automatically sync local skills to ClawHub and GitHub",
+  "main": "scripts/sync.cjs",
+  "scripts": {
+    "start": "node scripts/sync.cjs",
+    "sync": "node scripts/sync.cjs"
+  },
+  "keywords": [
+    "skill-sync",
+    "clawhub",
+    "github",
+    "auto-sync",
+    "skill-manager",
+    "openclaw"
+  ],
+  "author": "sunnyhot",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunnyhot/skill-sync"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Deep Research",
+  "description": "Execute autonomous multi-step research using Google Gemini Deep Research Agent. Use for market analysis, competitive landscaping, literature reviews, technical research, due diligence.",
+  "version": "1.0.0",
+  "identifier": "deep-research-gemini",
+  "author": "sickn33",
+  "category": "research"
+}

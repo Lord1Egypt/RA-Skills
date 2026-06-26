@@ -1,0 +1,16 @@
+# Human-like Reply Skill Configuration
+
+# Enable/disable the skill globally
+enabled: true
+
+# Greeting behavior
+greeting_threshold: 3           # Rounds before reducing greetings
+topic_change_threshold: 5       # Rounds to consider a topic change
+silence_minutes: 30            # Silence period to reset greeting
+
+# Style preferences
+use_smileys: true              # Add emoji occasionally
+formal_level: 0.3              # 0=very casual, 0.5=balanced, 1=formal
+
+# Advanced (usually don't change)
+state_file: "memory/reply_state.json"

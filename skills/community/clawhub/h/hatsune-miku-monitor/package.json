@@ -1,0 +1,17 @@
+{
+  "name": "hatsune-miku-monitor",
+  "version": "1.0.1",
+  "description": "初音未来监控器 - 可爱的桌面系统监控工具",
+  "main": "SKILL.md",
+  "author": "gsp",
+  "scripts": {
+    "start": "python3 scripts/hatsune-ball.py",
+    "install-deps": "pip3 install psutil pillow --break-system-packages || pip3 install psutil pillow"
+  },
+  "dependencies": {
+    "python": ">=3.6",
+    "gtk": ">=3.0",
+    "psutil": "*",
+    "pillow": "*"
+  }
+}

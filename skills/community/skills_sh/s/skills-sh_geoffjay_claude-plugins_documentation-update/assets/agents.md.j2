@@ -1,0 +1,64 @@
+# Agent Reference
+
+This document provides a comprehensive reference of all agents available across plugins in the marketplace.
+
+## Overview
+
+- **Total Agents**: {{ stats.total_agents }}
+- **Total Plugins**: {{ stats.total_plugins }}
+- **Last Updated**: {{ now }}
+
+---
+
+{% for category, plugins in plugins_by_category.items() %}
+## {{ category|title }} Agents
+
+{% for plugin in plugins %}
+### {{ plugin.name }}
+
+**Description**: {{ plugin.description }}
+
+**Version**: {{ plugin.version }}
+
+{% if plugin.agents %}
+**Agents**:
+
+{% for agent in all_agents %}
+{% if agent.plugin == plugin.name %}
+#### {{ agent.name }}
+
+- **Model**: `{{ agent.model }}`
+- **Description**: {{ agent.description }}
+- **Location**: `plugins/{{ plugin.name }}/agents/{{ agent.file }}`
+
+{% endif %}
+{% endfor %}
+{% else %}
+*No agents defined*
+{% endif %}
+
+---
+
+{% endfor %}
+{% endfor %}
+
+## Usage
+
+To use an agent from the command line:
+
+```bash
+# Invoke with Task tool
+Use Task tool with subagent_type="<agent-name>"
+```
+
+## Model Distribution
+
+Agents are optimized for specific models based on their complexity:
+
+- **Haiku**: Fast execution for deterministic tasks
+- **Sonnet**: Complex reasoning and architecture decisions
+
+---
+
+*This documentation is automatically generated from the marketplace catalog.*
+*Last updated: {{ now }}*

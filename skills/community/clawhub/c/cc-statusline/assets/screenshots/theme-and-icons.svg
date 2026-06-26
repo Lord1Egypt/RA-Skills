@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title>Themes + icon styles / 主题与图标风格</title>
+  <desc>Current theme palette and icon style combinations used by cc-statusline.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020" />
+      <stop offset="55%" stop-color="#10192b" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  
+<style>
+  .bg { fill: url(#bg); }
+  .panel { fill: #111827; stroke: #243041; stroke-width: 1.2; }
+  .panel-soft { fill: #0f172a; stroke: #243041; stroke-width: 1.2; }
+  .panel-muted { fill: #0b1220; stroke: #1f2937; stroke-width: 1.2; }
+  .terminal { fill: #0b1020; stroke: #334155; stroke-width: 1.2; }
+  .title { fill: #f8fafc; font: 700 34px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .subtitle { fill: #94a3b8; font: 500 17px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .section { fill: #e2e8f0; font: 700 21px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .body { fill: #dbe4f0; font: 500 18px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .small { fill: #94a3b8; font: 500 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .mono { fill: #e5edf7; font: 600 19px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .mono-small { fill: #dbe4f0; font: 500 17px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .mono-tiny { fill: #cbd5e1; font: 500 15px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .chip { fill: #0f172a; stroke: #334155; stroke-width: 1; }
+  .chip-text { fill: #cbd5e1; font: 600 14px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .badge { fill: #1d4ed8; }
+  .badge-text { fill: #eff6ff; font: 700 14px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .accent-text { fill: #7dd3fc; font: 700 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .green { fill: #86efac; }
+  .yellow { fill: #fde68a; }
+  .orange { fill: #fdba74; }
+  .pink { fill: #f9a8d4; }
+  .blue { fill: #93c5fd; }
+  .muted { fill: #64748b; }
+</style>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900" rx="0"/>
+  <rect x="48" y="38" width="1504" height="824" rx="28" fill="rgba(15,23,42,0.65)" stroke="#334155" stroke-width="1.2"/>
+  <text class="title" x="90" y="102">Themes + icon styles / 主题与图标风格</text>
+  <text class="subtitle" x="90" y="136">Current theme palette and icon style combinations used by cc-statusline.</text>
+  <rect class="panel" x="90" y="184" width="340" height="236" rx="24"/>
+<rect x="90" y="184" width="340" height="10" rx="24" fill="#8b5cf6"/>
+<text class="section" x="116" y="232">Aurora / 极光</text>
+<text class="small" x="116" y="261">Blue-purple default Miluer look</text>
+<text class="body" x="116" y="302">Base palette: violet · cyan · neon green</text>
+<text class="body" x="116" y="336">Recommended preset: Full / 完整版</text>
+<text class="body" x="116" y="370">Good for the default showcase / 默认展示首选</text>
+<rect class="panel" x="450" y="184" width="340" height="236" rx="24"/>
+<rect x="450" y="184" width="340" height="10" rx="24" fill="#fb923c"/>
+<text class="section" x="476" y="232">Sunset / 日落</text>
+<text class="small" x="476" y="261">Warm orange-yellow-red palette</text>
+<text class="body" x="476" y="302">Base palette: amber · orange · coral</text>
+<text class="body" x="476" y="336">Recommended preset: Standard / 标准版</text>
+<text class="body" x="476" y="370">More lively and warm / 更有活力</text>
+<rect class="panel" x="810" y="184" width="340" height="236" rx="24"/>
+<rect x="810" y="184" width="340" height="10" rx="24" fill="#22d3ee"/>
+<text class="section" x="836" y="232">Ocean / 海洋</text>
+<text class="small" x="836" y="261">Cool cyan-blue-green palette</text>
+<text class="body" x="836" y="302">Base palette: cyan · teal · blue</text>
+<text class="body" x="836" y="336">Recommended preset: Developer / 开发者版</text>
+<text class="body" x="836" y="370">Calm technical tone / 冷静技术感</text>
+<rect class="panel" x="1170" y="184" width="340" height="236" rx="24"/>
+<rect x="1170" y="184" width="340" height="10" rx="24" fill="#94a3b8"/>
+<text class="section" x="1196" y="232">Mono / 单色</text>
+<text class="small" x="1196" y="261">Low-noise monochrome palette</text>
+<text class="body" x="1196" y="302">Base palette: white · gray · charcoal</text>
+<text class="body" x="1196" y="336">Recommended preset: Minimal / 极简版</text>
+<text class="body" x="1196" y="370">Clean and quiet / 低干扰</text>
+<rect class="terminal" x="90" y="470" width="450" height="258" rx="24"/>
+<rect x="90" y="470" width="450" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+<circle cx="114" cy="492" r="6" fill="#fb7185"/>
+<circle cx="136" cy="492" r="6" fill="#fbbf24"/>
+<circle cx="158" cy="492" r="6" fill="#34d399"/>
+<text class="small" x="186" y="497">classic / 经典</text>
+<rect x="90" y="514" width="450" height="6" fill="#8b5cf6"/>
+<text class="mono-small" x="114" y="558">✨ Claude Opus 4.6 │ ⚡ High · 🧠 Think │ ● Active</text>
+<text class="mono-small" x="114" y="589">🔋 92.5K/200.0K █████░░░░ 46% │ 📂 cl/repo │ 🌿 main ✓</text>
+<text class="mono-small" x="114" y="620">💬 Ctx ↑92.5K ↓4.8K │ 📈 Sum ↑128.0K ↓12.4K │ 💰 $0.28</text>
+<rect class="terminal" x="575" y="470" width="450" height="258" rx="24"/>
+<rect x="575" y="470" width="450" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+<circle cx="599" cy="492" r="6" fill="#fb7185"/>
+<circle cx="621" cy="492" r="6" fill="#fbbf24"/>
+<circle cx="643" cy="492" r="6" fill="#34d399"/>
+<text class="small" x="671" y="497">minimal / 极简</text>
+<rect x="575" y="514" width="450" height="6" fill="#94a3b8"/>
+<text class="mono-small" x="599" y="558">M Claude Opus 4.6 │ E High · T Think │ • Active</text>
+<text class="mono-small" x="599" y="589">C 92.5K/200.0K █████░░░░ 46% │ @ cl/repo │ git main ✓</text>
+<text class="mono-small" x="599" y="620">I/O Ctx ↑92.5K ↓4.8K │ Σ Sum ↑128.0K ↓12.4K │ $ $0.28</text>
+<rect class="terminal" x="1060" y="470" width="450" height="258" rx="24"/>
+<rect x="1060" y="470" width="450" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+<circle cx="1084" cy="492" r="6" fill="#fb7185"/>
+<circle cx="1106" cy="492" r="6" fill="#fbbf24"/>
+<circle cx="1128" cy="492" r="6" fill="#34d399"/>
+<text class="small" x="1156" y="497">developer / 开发者</text>
+<rect x="1060" y="514" width="450" height="6" fill="#10b981"/>
+<text class="mono-small" x="1084" y="558">λ Claude Opus 4.6 │ ≡ High · ∴ Think │ ● Active</text>
+<text class="mono-small" x="1084" y="589">[] 92.5K/200.0K █████░░░░ 46% │ :: cl/repo │ git main ✓</text>
+<text class="mono-small" x="1084" y="620">in Ctx ↑92.5K ↓4.8K │ Σ Sum ↑128.0K ↓12.4K │ $ $0.28</text>
+<text class="accent-text" x="90" y="786">Themes and icon styles can be switched independently / 主题与图标风格可以独立切换。</text>
+</svg>

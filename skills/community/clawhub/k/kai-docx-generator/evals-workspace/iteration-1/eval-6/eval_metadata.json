@@ -1,0 +1,11 @@
+{
+  "eval_id": 6,
+  "eval_name": "validate-generated-docx",
+  "prompt": "Generate meeting minutes and validate structure",
+  "assertions": [
+    {"name": "output_file_exists", "description": "Generated .docx file exists"},
+    {"name": "valid_docx", "description": "Output is a valid .docx file"},
+    {"name": "headings_present", "description": "Headings rendered correctly"},
+    {"name": "lists_rendered", "description": "Bullet lists rendered"}
+  ]
+}

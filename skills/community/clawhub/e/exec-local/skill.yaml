@@ -1,0 +1,13 @@
+name: exec_local
+version: 1.0.0
+description: Execute shell commands inside the Thundarr container.
+tools:
+  - name: exec
+    description: Run a shell command and return stdout and stderr.
+    input_schema:
+      type: object
+      properties:
+        command:
+          type: string
+      required:
+        - command

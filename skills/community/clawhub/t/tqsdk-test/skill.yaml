@@ -1,0 +1,54 @@
+name: tqsdk-read
+description: 天勤量化 - 期货实时行情与历史数据接口，提供国内期货、期权的实时报价、K线序列与历史数据查询。
+version: 1.0.0
+author: 真圆氦狗
+homepage: https://www.shinnytech.com/tqsdk/
+runtime: python3
+entrypoint: __init__.py:handler   # 指定入口函数
+
+parameters:
+  - name: action
+    type: string
+    required: true
+    enum:
+      - get_quote          # 获取实时盘口
+      - get_kline_serial   # 获取实时K线序列
+      - get_kline_data     # 获取历史K线数据（需专业版账号）
+    description: 要执行的操作类型
+
+  - name: symbol
+    type: string
+    required: true
+    description: 合约代码，格式如 "SHFE.rb2410"。对于多合约操作，可用逗号分隔，如 "SHFE.rb2410,DCE.m2409"
+
+  - name: duration_seconds
+    type: integer
+    required: false
+    default: 60
+    description: K线周期（秒），仅在 action 为 get_kline_serial 或 get_kline_data 时需要。例如 60=1分钟，300=5分钟
+
+  - name: data_length
+    type: integer
+    required: false
+    default: 200
+    description: 返回的K线序列长度，仅在 action 为 get_kline_serial 时使用
+
+  - name: start_dt
+    type: string
+    required: false
+    description: 历史数据起始时间（ISO 8601格式，如 "2024-01-01T09:00:00"），仅在 action 为 get_kline_data 时使用
+
+  - name: end_dt
+    type: string
+    required: false
+    description: 历史数据结束时间（ISO 8601格式），仅在 action 为 get_kline_data 时使用
+
+  - name: username
+    type: string
+    required: true
+    description: 天勤账号用户名（注册于官网）
+
+  - name: password
+    type: string
+    required: true
+    description: 天勤账号密码

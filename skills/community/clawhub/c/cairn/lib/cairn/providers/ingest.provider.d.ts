@@ -1,0 +1,44 @@
+import type { AddInput, AddResult, RefreshResult } from '../types/cairn.types.js';
+import type { Chat } from '../types/chat.types.js';
+import type { Db } from '../types/db.types.js';
+import type { Embed } from '../types/embed.types.js';
+import type { Ingest } from '../types/ingest.types.js';
+import type { SourceId } from '../types/primitives.types.js';
+export declare class IngestProvider implements Ingest {
+    private db;
+    private embed;
+    private chat?;
+    constructor(db: Db, embed: Embed, chat?: Chat | undefined);
+    private assertHealthy;
+    add(input: AddInput): Promise<AddResult>;
+    remove(ref: SourceId | string): Promise<void>;
+    refresh(ref: SourceId | string | 'all'): Promise<RefreshResult[]>;
+    reindex(ref: SourceId | string | 'all'): Promise<RefreshResult[]>;
+    link(from: SourceId | string, to: SourceId | string): Promise<void>;
+    unlink(from: SourceId | string, to: SourceId | string): Promise<void>;
+    links(): Promise<Array<{
+        from: SourceId;
+        to: SourceId;
+    }>>;
+    private addWeb;
+    private addCode;
+    private addFile;
+    private addText;
+    private addPdf;
+    private refreshOne;
+    private insertSource;
+    private resolve;
+    private indexSingle;
+    private refreshSingle;
+    private indexCodeFile;
+    private indexFileContent;
+    private indexEntities;
+    private rebuildSingleFileEdges;
+    private rebuildSourceEdges;
+    private collectExternalEntities;
+    private cascadeRebuildLinkedFrom;
+    private rebuildSourceEdgesById;
+    private runDocExtractionPass;
+    private applyDocExtraction;
+    private collectCodeEntities;
+}

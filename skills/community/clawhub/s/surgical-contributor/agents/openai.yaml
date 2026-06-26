@@ -1,0 +1,4 @@
+interface:
+  display_name: "Surgical Contributor"
+  short_description: "Ship tiny, tested, low-risk fixes maintainers can trust"
+  default_prompt: "Use $surgical-contributor to find one real pain point, reproduce it, apply the narrowest safe patch, add regression protection, self-review, and produce a maintainer-language PR summary."

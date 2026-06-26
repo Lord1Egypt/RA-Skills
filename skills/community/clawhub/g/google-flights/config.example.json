@@ -1,0 +1,9 @@
+{
+  "preferred_airlines": [],
+  "avoid_airlines": [],
+  "prefer_nonstop": false,
+  "max_layover_hours": 4,
+  "min_layover_minutes": 45,
+  "home_airports": [],
+  "loyalty_programs": {}
+}

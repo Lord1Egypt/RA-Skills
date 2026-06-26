@@ -1,0 +1,21 @@
+# LLM 配置（必填）
+llm_base_url: "https://api.deepseek.com/v1"
+llm_api_key: "your-api-key-here"
+llm_model: "deepseek-chat"
+
+# 新闻搜索（至少配置一个）
+serpapi_key: ""
+tavily_key: ""
+brave_key: ""
+bocha_key: ""
+
+# 妙想金融数据源（可选）— 配置后自动成为第一优先级
+mx_apikey: ""
+
+# 分析参数
+bias_threshold: 5.0
+news_max_age_days: 3
+enable_chip: true
+
+# 日志级别：DEBUG / INFO / WARNING / ERROR
+log_level: "INFO"

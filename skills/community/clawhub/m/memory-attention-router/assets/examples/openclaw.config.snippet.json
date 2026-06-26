@@ -1,0 +1,12 @@
+{
+  "skills": {
+    "entries": {
+      "memory-attention-router": {
+        "enabled": true,
+        "env": {
+          "MAR_DB_PATH": "/absolute/path/to/.openclaw-memory-router.sqlite3"
+        }
+      }
+    }
+  }
+}

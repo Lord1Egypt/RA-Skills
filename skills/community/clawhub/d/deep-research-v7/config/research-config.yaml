@@ -1,0 +1,44 @@
+# 研究领域定义
+research_domain: "AI LLM competition"
+
+# 关键提取指标
+key_metrics:
+  technology:
+    - model_size
+    - parameters
+    - performance_benchmark
+    - training_efficiency
+    - inference_speed
+  business:
+    - market_share
+    - user_count
+    - funding
+    - valuation
+    - growth_rate
+  innovation:
+    - architecture
+    - scaling_law
+    - efficiency_optimization
+    - novel_techniques
+
+# 数据源优先级
+data_sources:
+  - name: arxiv
+    priority: 1
+    full_text: true
+  - name: semantic_scholar
+    priority: 2
+    full_text: false
+  - name: web
+    priority: 3
+    full_text: false
+
+# 关键词（用于搜索）
+search_keywords:
+  - "GLM Chinese LLM"
+  - "MiniMax AI"
+  - "Moonshot Kimi"
+  - "Qwen Alibaba"
+  - "Chinese LLM competition 2025"
+  - "LLM scaling law optimization"
+  - "efficient transformer architecture"

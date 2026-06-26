@@ -1,0 +1,29 @@
+{
+  "dutyTable": {
+    "architect": {
+      "model": "opus",
+      "effort": "high",
+      "description": "Complex design, architecture decisions, integration review"
+    },
+    "builder": {
+      "model": "sonnet",
+      "effort": "high",
+      "description": "Standard coding tasks, feature implementation"
+    },
+    "reviewer": {
+      "model": "sonnet",
+      "effort": "medium",
+      "description": "Code review, bug detection, quality checks"
+    },
+    "integrator": {
+      "model": "opus",
+      "effort": "high",
+      "description": "Cross-branch merging, conflict resolution, final review"
+    },
+    "speedster": {
+      "model": "sonnet",
+      "effort": "low",
+      "description": "Quick fixes, typos, simple changes"
+    }
+  }
+}

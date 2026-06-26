@@ -1,0 +1,42 @@
+{
+  "name": "tophant-clawvault-installer",
+  "version": "0.2.13",
+  "description": "Install and manage ClawVault from OpenClaw agents.",
+  "author": "Tophant SPAI Lab",
+  "homepage": "https://github.com/tophant-ai/ClawVault",
+  "repository": "https://github.com/tophant-ai/ClawVault",
+  "main": "clawvault_manager.py",
+  "permissions": ["execute_command", "write_files", "read_files", "network"],
+  "permissions_rationale": {
+    "execute_command": "Required to run install, test, and service commands for ClawVault",
+    "write_files": "Creates configuration files in ~/.ClawVault/",
+    "read_files": "Reads ClawVault configuration from ~/.ClawVault/",
+    "network": "Downloads ClawVault package and reaches the dashboard API"
+  },
+  "tags": ["security", "ai-protection", "proxy", "threat-detection", "privacy", "openclaw", "plugin"],
+  "requirements": ["pyyaml"],
+  "python_version": ">=3.10",
+  "commands": {
+    "install": {
+      "description": "Install ClawVault and optionally configure OpenClaw proxy integration.",
+      "usage": "install --mode [quick|standard|advanced] [--install-plugin] [--plugin-dir <path>] [--no-start] [--no-proxy] [--restart-gateway]"
+    },
+    "health": {
+      "description": "Check ClawVault health status",
+      "usage": "health"
+    },
+    "generate-rule": {
+      "description": "Generate security rule from natural language or scenario",
+      "usage": "generate-rule <policy> [--scenario <name>] [--apply]"
+    },
+    "test": {
+      "description": "Run detection and plugin-acceptance checks.",
+      "usage": "test --category [all|sensitive|injection|commands]"
+    },
+    "uninstall": {
+      "description": "Uninstall ClawVault",
+      "usage": "uninstall [--keep-config]"
+    }
+  },
+  "scenarios": ["customer_service", "development", "production", "finance"]
+}

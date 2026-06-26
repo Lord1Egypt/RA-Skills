@@ -1,0 +1,37 @@
+{
+  "slug": "personal-deadline-radar",
+  "title": "个人截止日雷达",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "structured_brief",
+  "summary": "扫描个人待办、会议和消息摘要，找即将到期事项与时间冲突。",
+  "inputHint": "待办清单、日历摘要、截止日",
+  "sections": [
+    "临近截止事项",
+    "冲突时间段",
+    "高风险遗漏",
+    "建议重排",
+    "可延后事项",
+    "今日清单"
+  ],
+  "useCases": [
+    "时间管理",
+    "冲突预警",
+    "周计划"
+  ],
+  "positiveExamples": [
+    "帮我找最近的 deadline 风险",
+    "识别时间冲突"
+  ],
+  "negativeExamples": [
+    "不要自动改日历",
+    "不要伪造截止时间"
+  ],
+  "risk": "适合作为个人排程辅助。",
+  "tags": [
+    "deadlines",
+    "calendar",
+    "tasks",
+    "productivity"
+  ]
+}

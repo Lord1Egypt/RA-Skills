@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/reddit/get-post-comments/v1 for Reddit Post Comments through JustOneAPI with postId.",
+  "displayName": "Reddit Post Comments",
+  "endpointPath": "get-post-comments",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Reddit post Comments data, including text, authors, and timestamps, for discussion analysis and moderation research.",
+      "method": "GET",
+      "operationId": "getRedditPostCommentsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier of the Reddit post.",
+          "enumValues": [],
+          "location": "query",
+          "name": "postId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination token for the next page of results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/reddit/get-post-comments/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Comments",
+      "tags": [
+        "Reddit"
+      ]
+    }
+  ],
+  "platformKey": "reddit",
+  "primaryTag": "Reddit",
+  "skillName": "justoneapi_reddit_get_post_comments",
+  "skillType": "interface",
+  "slug": "justoneapi-reddit-get-post-comments",
+  "sourceTitle": "OpenAPI definition"
+}

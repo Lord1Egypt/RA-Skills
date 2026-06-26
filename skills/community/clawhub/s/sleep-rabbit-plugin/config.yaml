@@ -1,0 +1,89 @@
+# Sleep Analyzer v5.3.4 Configuration
+# Optional file writes with safe defaults
+
+name: "sleep-analyzer"
+version: "5.3.4"
+description: "Sleep analysis with optional file writes (disabled by default)"
+
+# Security configuration - SAFE DEFAULTS
+security:
+  runtime:
+    file_writes: "optional_disabled_by_default"  # SAFE DEFAULT
+    network_access: "none"
+    storage: "memory_primary"
+  installation:
+    network_required: "yes_for_optional_deps"
+    packages: ["mne", "numpy", "scipy"]  # Optional for advanced features
+
+# File write configuration - OPTIONAL, DISABLED BY DEFAULT
+file_writes:
+  enabled: false  # SAFE DEFAULT: No file writes unless user enables
+  location: "skill_directory"  # If enabled, restricted to skill directory
+  types:
+    charts: false  # plt.savefig disabled by default
+    csv_data: false  # .to_csv disabled by default
+    temporary_files: false  # Temporary files disabled by default
+  user_control: true  # User must explicitly enable file writes
+  
+# Logging configuration (optional, disabled by default)
+logging:
+  enabled: false  # Default disabled for security
+  file: "sleep_analyzer.log"  # Only if enabled
+  level: "INFO"
+
+# Storage configuration
+storage:
+  primary: "memory"  # Memory storage always available
+  export_format: "json"
+  export_location: "user_specified"  # User chooses location
+
+# Analysis features
+features:
+  basic_analysis: true  # Works with standard library
+  advanced_analysis: false  # Requires optional dependencies
+  file_outputs: false  # File outputs disabled by default (SAFE)
+
+# Commands with security declarations
+commands:
+  - name: "sleep-analyze-store"
+    description: "Analyze sleep data and store results in memory"
+    security: "read_only_input, memory_storage, no_file_writes_by_default"
+    options:
+      - name: "--save-charts"
+        description: "Enable saving analysis charts (optional)"
+        security: "enables_file_writes_to_skill_directory"
+      - name: "--save-data"
+        description: "Enable saving analysis data as CSV (optional)"
+        security: "enables_file_writes_to_skill_directory"
+    
+  - name: "export-result"
+    description: "Export analysis results to JSON file (user-initiated)"
+    security: "user_controlled_export, explicit_file_location"
+    
+  - name: "list-results"
+    description: "List all stored analysis results"
+    security: "memory_read_only, no_file_access"
+
+# Dependencies
+dependencies:
+  required:
+    - "python>=3.8"
+  
+  optional:
+    - "mne>=1.0"
+    - "numpy>=1.20"
+    - "scipy>=1.7"
+  
+  installation_notes: |
+    BASIC FUNCTIONALITY: Works with Python standard library, no file writes.
+    OPTIONAL FEATURES: Require network during installation only.
+    FILE WRITES: Disabled by default for security. User must explicitly enable.
+    See SECURITY_STATEMENT.md for complete details.
+
+
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+# 内容创作流水线：素材收集 → 总结 → 多平台裁剪 → 格式化
+# 使用技能：content-researcher, ai-content-tailor, wechat-formatter
+
+name: "content-creation-pipeline"
+steps:
+  - name: "Step 1: 收集素材"
+    skill: content-researcher
+    args:
+      - --topic
+      - "AI技能开发"
+      - --sources
+      - "web,news"
+      - --count
+      - "10"
+      - --output
+      - /tmp/research.json
+    output: research
+
+  - name: "Step 2: 裁剪为公众号文章"
+    skill: ai-content-tailor
+    args:
+      - --input
+      - "{{research}}"
+      - --platform
+      - wechat
+      - --output
+      - /tmp/wechat_article.md
+    output: wechat_article
+
+  - name: "Step 3: 格式化为公众号可用格式"
+    skill: wechat-formatter
+    args:
+      - --input
+      - "{{wechat_article}}"
+      - --output
+      - /tmp/final_wechat.md
+    output: final
+
+# 可选步骤：同时生成小红书笔记
+#  - name: "Step 4: 裁剪为小红书笔记"
+#    skill: ai-content-tailor
+#    args:
+#      - --input
+#      - "{{research}}"
+#      - --platform
+#      - xiaohongshu
+#      - --output
+#      - /tmp/xhs_note.md
+#    output: xhs_note
+
+# 执行：
+#   composer.py run content-creation-pipeline.yaml

@@ -1,35 +1,33 @@
 ---
-name: "Buy Sovereign Domain (Handshake DNS)"
-description: "Register sovereign domains (.badass, .forever, .fuck, .rebel, .pump, .hello, .howdy, .robo, .dnet, .f, bear emoji) on Ethereum mainnet via Impervious Domains..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/buy-handshake-domain"
-sourceUrl: "https://clawhub.ai/skills/buy-handshake-domain"
+name: badass-revival
+description: Register sovereign domains (.badass, .forever, .fuck, .rebel, .pump, .hello, .howdy, .robo, .dnet, .f, bear emoji) on Ethereum mainnet via Impervious Domains contracts
+user-invocable: true
+metadata: {"openclaw": {"requires": {"env": ["ETHEREUM_RPC_URL"]}}}
 ---
 
-# Buy Sovereign Domain (Handshake DNS)
+See the full registration skill spec at `{baseDir}/../../skills.md`.
 
-> Register sovereign domains (.badass, .forever, .fuck, .rebel, .pump, .hello, .howdy, .robo, .dnet, .f, bear emoji) on Ethereum mainnet via Impervious Domains...
+This skill registers `<label>.<tld>` domains as on-chain ERC-721 NFTs using Impervious Domains contracts (ENS fork) on Ethereum mainnet.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/buy-handshake-domain`
-- **Source URL:** [https://clawhub.ai/skills/buy-handshake-domain](https://clawhub.ai/skills/buy-handshake-domain)
+## Recommended TLDs
 
-## Overview
+| TLD | Vibe |
+|-----|------|
+| **.badass** | OG flagship — default choice, cheapest |
+| **.forever** | Permanence, legacy |
+| **.fuck** | Irreverent, punk |
+| **.rebel** | Counter-culture |
+| **.pump** | Degen / trading culture |
+| **.hello** | Friendly, approachable |
+| **.howdy** | Casual, warm |
+| **.robo** | Tech / AI identity |
+| **.dnet** | Decentralized network |
+| **.f** | Minimal, one-letter flex |
+| **xn--gp8h** | Bear emoji domain |
 
+## Quick summary
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/buy-handshake-domain
-```
+1. User picks a label + TLD
+2. Commit/reveal pattern (two transactions, ~1 min wait between)
+3. Domain minted as ERC-721 to user's wallet
+4. Full procedure, ABIs, safety constraints, and contract addresses in `{baseDir}/../../skills.md`

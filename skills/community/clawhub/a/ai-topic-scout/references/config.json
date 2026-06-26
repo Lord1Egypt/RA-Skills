@@ -1,0 +1,105 @@
+{
+  "baseId": "1R7q3QmWee0moO0QHX9w5k6gWxkXOEP2",
+  "tables": {
+    "youtube": {
+      "tableId": "XIrY0iP",
+      "fields": {
+        "博主名称": "SiMUiqn",
+        "频道ID": "L3VFG1h",
+        "频道链接": "KXSqned",
+        "内容方向": "QqUfXpe",
+        "状态": "J1lrPdX",
+        "添加时间": "FtWvlO2",
+        "备注": "zowJPVg"
+      },
+      "options": {
+        "状态": {
+          "活跃": "AJLFhkjUQ5",
+          "暂停": "KyMmqoV1ig"
+        }
+      }
+    },
+    "twitter": {
+      "tableId": "EqTHHH5",
+      "fields": {
+        "博主名称": "rmsZjFP",
+        "用户名": "4mPtR0m",
+        "主页链接": "2tGvZVL",
+        "内容方向": "OQwBSUx",
+        "状态": "WmpIvxl",
+        "添加时间": "OWeEy3l",
+        "备注": "jqCYFeR"
+      },
+      "options": {
+        "状态": {
+          "活跃": "XPRbdNPGSd",
+          "暂停": "kJdWMYgVFh"
+        }
+      }
+    },
+    "fetch": {
+      "tableId": "aPKY1AS",
+      "fields": {
+        "来源": "9CfGhgA",
+        "博主名称": "gy3iSFA",
+        "标题": "sOgimnr",
+        "内容摘要": "ZdXjedQ",
+        "原文链接": "QSCUcbZ",
+        "发布时间": "GRaUuNX",
+        "抓取时间": "KGlFmXz",
+        "内容类型": "oiOHGKT",
+        "关键词标签": "0frvonu",
+        "处理状态": "dTESzQu"
+      },
+      "options": {
+        "来源": {
+          "YouTube": "K0eH7jSyoa",
+          "Twitter": "FKsuxiF1gF"
+        },
+        "内容类型": {
+          "视频": "3J2CYLGWaW",
+          "推文": "bnXievbiIq",
+          "长推文": "6FyMRcFKhR",
+          "转推评论": "GUo1WzBk6K"
+        },
+        "处理状态": {
+          "待分析": "NpCv7Ha9vo",
+          "已分析": "henQNxNiJJ",
+          "已忽略": "GEexMNZynt"
+        }
+      }
+    },
+    "analysis": {
+      "tableId": "b2rBsbJ",
+      "fields": {
+        "主题": "WvZmgq1",
+        "热度评分": "8PJuVen",
+        "相关内容数": "JVbzpl7",
+        "来源博主": "X2YVmEZ",
+        "主题分类": "LzyoSlR",
+        "背景信息": "TxbcTA3",
+        "选题建议": "fDfE6K4",
+        "分析时间": "UopwbVE",
+        "状态": "bAvwcWc",
+        "相关内容": "X5DqSIL"
+      },
+      "options": {
+        "主题分类": {
+          "大模型": "bcIpzFLHOM",
+          "AI应用": "dkvpfGPJUU",
+          "AI编程": "LRm7Wu2pib",
+          "AI硬件": "NDv7yDyt70",
+          "AI政策": "uPMfg21OQy",
+          "AI创业": "mgimp6MKyZ",
+          "AI开源": "fwl1F8eY1I",
+          "其他": "wbaeuwuV8p"
+        },
+        "状态": {
+          "待审核": "W3TWv5Z75q",
+          "已采纳": "IlsxCluYsZ",
+          "已放弃": "ElOBFqYHQq"
+        }
+      }
+    }
+  }
+}

@@ -1,35 +1,22 @@
 ---
-name: "Annas Archive"
-description: "Find and download ebooks or papers from Anna's Archive with EPUB-first selection and /tmp storage. Use when a user asks to fetch a book/article, especially w..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/annas-archive"
-sourceUrl: "https://clawhub.ai/skills/annas-archive"
+name: annas-archive
+description: Find and download ebooks or papers from Anna's Archive with EPUB-first selection and /tmp storage. Use when a user asks to fetch a book/article, especially when arXiv has no result.
 ---
 
-# Annas Archive
+# annas-archive
 
-> Find and download ebooks or papers from Anna's Archive with EPUB-first selection and /tmp storage. Use when a user asks to fetch a book/article, especially w...
+## Workflow
+1. Search and rank (EPUB-first):
+   - `scripts/anna_epub_first.py --query "<query>"`
+2. Download when requested:
+   - `scripts/anna_epub_first.py --query "<query>" --download`
+3. If no matching book exists, report that in chat and stop.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/annas-archive`
-- **Source URL:** [https://clawhub.ai/skills/annas-archive](https://clawhub.ai/skills/annas-archive)
+Optional raw MCP search:
+- `mcporter call anna.book_search query="<query>"`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/annas-archive
-```
+## Runtime
+- Runner: `scripts/run-annas-mcp.sh`
+- Downloads: `/tmp/annas-archive-downloads`
+- Cleanup: `scripts/cleanup_annas_tmp.sh`
+- Optional env: `ANNAS_MCP_COMMAND` or `ANNAS_MCP_SOURCE_DIR`

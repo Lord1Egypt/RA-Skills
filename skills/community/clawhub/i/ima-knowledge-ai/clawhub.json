@@ -1,0 +1,182 @@
+{
+  "name": "AI Content Brief, Script & Outline Generator — Research Assistant for Video & Image",
+  "tagline": "AI brief, script & outline generator — research assistant for video, image & audio production",
+  "description": "AI content brief, script, and outline generator for video, image, and audio production. Works as an AI research assistant that provides expert guidance on workflow design, model selection, parameter optimization, and visual consistency. Generate briefs, scripts, and production outlines before using ima-image-ai, ima-video-ai, ima-voice-ai, or ima-all-ai. Essential reading for planning workflows, choosing models, optimizing prompts and parameters, maintaining character/style consistency, multi-shot production, and avoiding common mistakes. Transforms beginner attempts into professional-grade results. This is a knowledge skill — it provides strategic guidance, not API calls. Covers: content brief generation, script writing, outline creation, AI research assistance, and production best practices for all media types.",
+  "category": "productivity",
+  "tags": [
+    "knowledge",
+    "strategy",
+    "workflow",
+    "best-practices",
+    "ima-studio",
+    "content-creation",
+    "ai-guidance",
+    "model-selection",
+    "parameter-optimization",
+    "visual-consistency",
+    "character-design",
+    "vi-design",
+    "brand-identity",
+    "video-production",
+    "long-video",
+    "reference-driven",
+    "multi-media",
+    "creative-workflow",
+    "task-decomposition",
+    "production-guide",
+    "agent-knowledge",
+    "decision-support",
+    "cost-optimization",
+    "quality-guide",
+    "image-generation",
+    "video-generation",
+    "music-generation",
+    "ima-api",
+    "ai-content",
+    "creative-strategy"
+  ],
+  "version": "1.0.7",
+  "license": "MIT",
+  "pricing": "free",
+  "author": {
+    "name": "IMA Skills Team",
+    "url": "https://git.joyme.sg/imagent/skills/ima-knowledge-ai"
+  },
+  "support_url": "https://git.joyme.sg/imagent/skills/ima-knowledge-ai/-/issues",
+  "homepage": "https://git.joyme.sg/imagent/skills/ima-knowledge-ai",
+  "repository": {
+    "type": "git",
+    "url": "https://git.joyme.sg/imagent/skills/ima-knowledge-ai.git"
+  },
+  "keywords": [
+    "ima studio knowledge base",
+    "ai content strategy",
+    "workflow planning guide",
+    "model selection assistant",
+    "parameter optimization",
+    "visual consistency methods",
+    "character design workflow",
+    "vi brand identity system",
+    "long video production",
+    "multi-media creation",
+    "reference driven generation",
+    "task decomposition strategy",
+    "cost quality tradeoffs",
+    "best practices guide",
+    "production workflows",
+    "creative decision support",
+    "ai generation planning",
+    "content creation guide",
+    "professional workflows",
+    "ima api guidance"
+  ],
+  "permissions": [
+    "file_read"
+  ],
+  "requirements": {
+    "dependencies": {},
+    "config_paths": {
+      "knowledge_base": "~/.openclaw/skills/ima-knowledge-ai/references/"
+    }
+  },
+  "knowledge_topics": [
+    {
+      "name": "Workflow Design",
+      "file": "workflow-design.md",
+      "size": "7.2 KB",
+      "description": "Task decomposition strategies, dependency identification, multi-step workflow templates"
+    },
+    {
+      "name": "Model Selection",
+      "file": "model-selection.md",
+      "size": "9.7 KB",
+      "description": "Model capability matrix, cost vs. quality trade-offs, use case recommendations"
+    },
+    {
+      "name": "Parameter Optimization",
+      "file": "parameter-guide.md",
+      "size": "12 KB",
+      "description": "Resolution/aspect ratio guidelines, quality vs. speed trade-offs, compatibility matrix"
+    },
+    {
+      "name": "Visual Consistency",
+      "file": "visual-consistency.md",
+      "size": "12 KB",
+      "description": "Reference-driven workflow, multi-shot coherence, series generation strategies"
+    },
+    {
+      "name": "Video Generation Modes",
+      "file": "video-modes.md",
+      "size": "31 KB",
+      "description": "image_to_video vs reference_image_to_video, traditional vs modern workflow, fallback strategies"
+    },
+    {
+      "name": "Long Video Production",
+      "file": "long-video-production.md",
+      "size": "34 KB",
+      "description": "Multi-shot workflow, shot-by-shot generation, video stitching, 30s-3min production guide"
+    },
+    {
+      "name": "Character Design & IP",
+      "file": "character-design.md",
+      "size": "22 KB",
+      "description": "Turnaround sheets, expression library, outfit variants, game/animation character assets"
+    },
+    {
+      "name": "VI Design & Brand Identity",
+      "file": "vi-design.md",
+      "size": "31 KB",
+      "description": "Logo system, color palette, typography, application materials, brand consistency"
+    }
+  ],
+  "use_cases": [
+    "Planning complex multi-media content creation workflows",
+    "Choosing optimal models for image/video/music generation tasks",
+    "Optimizing generation parameters for quality, cost, or speed",
+    "Maintaining visual consistency across series or character designs",
+    "Producing long-form videos (30s-3min) with 10-15s model limits",
+    "Developing game/animation character assets and IP designs",
+    "Creating comprehensive VI/brand identity systems",
+    "Learning best practices before calling IMA Studio APIs",
+    "Avoiding common mistakes and parameter conflicts",
+    "Making informed cost vs. quality trade-off decisions"
+  ],
+  "target_audience": [
+    "AI agents using ima-image-ai, ima-video-ai, ima-voice-ai",
+    "Content creators planning multi-step workflows",
+    "Designers working on character/IP development",
+    "Brand managers creating VI/identity systems",
+    "Video producers making long-form content",
+    "Developers integrating IMA Studio APIs",
+    "Anyone needing strategic guidance for AI content creation"
+  ],
+  "search_optimized_terms": [
+    "how to plan ai content workflows",
+    "which ai model should i use",
+    "optimize ai generation parameters",
+    "maintain character consistency",
+    "create long videos with ai",
+    "character design workflow",
+    "brand identity system guide",
+    "ai generation best practices",
+    "visual consistency methods",
+    "task decomposition for ai"
+  ],
+  "related_skills": [
+    "ima-image-ai",
+    "ima-video-ai",
+    "ima-voice-ai",
+    "ima-all-ai",
+    "ima-resource-upload"
+  ],
+  "key_features": [
+    "184 KB comprehensive knowledge base",
+    "8 specialized knowledge topics",
+    "Real-world case studies with step-by-step workflows",
+    "Production-tested strategies (2026-02-27 IMA Studio API)",
+    "Reference-driven generation methodology",
+    "Cost transparency and optimization guidance",
+    "No API calls — pure strategic guidance",
+    "Complements all ima-*-ai execution skills"
+  ]
+}

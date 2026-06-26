@@ -1,35 +1,49 @@
 ---
-name: "build-ecommerce-faq-page"
+name: "Build Ecommerce FAQ Page"
 description: "Generate customer-facing answers for common ecommerce questions. Use when working on FAQ content for ecommerce operators, growth teams, merchants."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/modesty-build-ecommerce-faq-page"
-sourceUrl: "https://clawhub.ai/skills/modesty-build-ecommerce-faq-page"
+homepage: "https://www.skillboss.co/skills/build-ecommerce-faq-page"
+metadata: {"category":"ecommerce","subcategory":"catalog-content","skill_id":"build-ecommerce-faq-page","generated_day":"","seo_keywords":["FAQ generator AI","ecommerce FAQ writer","ecommerce AI","merchant workflow automation"]}
 ---
 
-# build-ecommerce-faq-page
+# Build Ecommerce FAQ Page
 
-> Generate customer-facing answers for common ecommerce questions. Use when working on FAQ content for ecommerce operators, growth teams, merchants.
+Generate customer-facing answers for common ecommerce questions. Use when working on FAQ content for ecommerce operators, growth teams, merchants.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/modesty-build-ecommerce-faq-page`
-- **Source URL:** [https://clawhub.ai/skills/modesty-build-ecommerce-faq-page](https://clawhub.ai/skills/modesty-build-ecommerce-faq-page)
+## Use When
 
-## Overview
+Use this skill for FAQ content work for ecommerce operators, growth teams, merchants.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/modesty-build-ecommerce-faq-page
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: FAQ generator AI, ecommerce FAQ writer, ecommerce AI, merchant workflow automation
+- Search intent: FAQ content
+- Canonical slug: `build-ecommerce-faq-page`
+- Install query: Install Build Ecommerce FAQ Page with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `web_search`
+
+## Suggested Prompt
+
+[Build Ecommerce FAQ Page] for my team
+
+## Notes
+
+- Generate customer-facing answers for common ecommerce questions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- FAQ generator AI
+- ecommerce FAQ writer
+- ecommerce AI
+- merchant workflow automation

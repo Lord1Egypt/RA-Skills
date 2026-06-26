@@ -1,35 +1,39 @@
 ---
-name: "Human Paced Web Ops"
-description: "Use human-paced browser interaction patterns for web navigation and search tasks with variable delays, hover-before-click, and light randomness. Improves rob..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/human-paced-web-ops"
-sourceUrl: "https://clawhub.ai/skills/human-paced-web-ops"
+name: human-paced-web-ops
+description: Use human-paced browser interaction patterns for web navigation and search tasks with variable delays, hover-before-click, and light randomness. Improves robustness and reduces brittle bot-like behavior while respecting website rules.
 ---
 
-# Human Paced Web Ops
+# Human-Paced Web Ops
 
-> Use human-paced browser interaction patterns for web navigation and search tasks with variable delays, hover-before-click, and light randomness. Improves rob...
+Use this skill when the task involves:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/human-paced-web-ops`
-- **Source URL:** [https://clawhub.ai/skills/human-paced-web-ops](https://clawhub.ai/skills/human-paced-web-ops)
+- Web search and browsing in dynamic pages
+- Multi-step page navigation that easily breaks with rigid scripts
+- Long-running read-and-collect workflows
 
-## Overview
+## Interaction Pattern
 
+Apply these defaults unless the task needs exact deterministic clicking:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/human-paced-web-ops
-```
+1. Before actions, wait for visible/interactive state first.
+2. Use small randomized delays between actions (for example 300-1200ms).
+3. Prefer `hover` before `click` on menus/buttons when possible.
+4. Use small random click offset inside the same target element (for example 2-8px), not random page clicking.
+5. Add occasional small scroll steps during long pages.
+6. Avoid repeated fixed-interval requests; pace actions with jitter.
+7. Every 5-10 interactions, re-check page state and URL before continuing.
+
+## Guardrails
+
+- If blocked by CAPTCHA, login challenge, paywall, or anti-bot page, pause and report the blocker URL plus required manual step.
+- Keep identity and session settings stable and traceable for repeatable runs.
+- Respect robots/terms and prefer official APIs when available.
+
+## Output Requirement
+
+For web collection tasks, include:
+
+- What was visited (titles + links)
+- What was extracted
+- What could not be accessed (and why)
+- Next recoverable step

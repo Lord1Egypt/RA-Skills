@@ -1,0 +1,37 @@
+{
+  "type": "result",
+  "title": "签署任务发起成功",
+  "fields": {
+    "taskId": {
+      "label": "任务ID",
+      "type": "text",
+      "copyable": true
+    },
+    "taskName": {
+      "label": "任务名称",
+      "type": "text"
+    },
+    "status": {
+      "label": "状态",
+      "type": "badge",
+      "color": "green"
+    },
+    "signerCount": {
+      "label": "签署方数量",
+      "type": "number"
+    }
+  },
+  "signers": [],
+  "actions": [
+    {
+      "label": "查看签署链接",
+      "type": "link",
+      "urlField": "signUrl"
+    },
+    {
+      "label": "查询签署状态",
+      "type": "action",
+      "action": "queryStatus"
+    }
+  ]
+}

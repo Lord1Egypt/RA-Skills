@@ -1,0 +1,68 @@
+
+---
+
+## 📄 references/component-library.md（组件库文档示例）
+
+```markdown
+# 项目组件库文档
+
+## 基础组件
+
+### Button 按钮
+**导入路径**: `import { Button } from '@your-company/ui'`
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| variant | 'primary' \| 'secondary' \| 'outline' \| 'ghost' | 'primary' | 按钮样式变体 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 按钮尺寸 |
+| disabled | boolean | false | 是否禁用 |
+| loading | boolean | false | 是否显示加载状态 |
+| leftIcon | ReactNode | - | 左侧图标 |
+| rightIcon | ReactNode | - | 右侧图标 |
+| onClick | () => void | - | 点击事件 |
+
+**Figma映射规则**:
+- Figma中的"Primary Button" → `variant="primary"`
+- Figma中的"Secondary Button" → `variant="secondary"`
+- Figma中的"Small"属性 → `size="sm"`
+- Figma中的"Large"属性 → `size="lg"`
+- 包含图标的按钮 → 设置对应的leftIcon/rightIcon
+
+### Input 输入框
+**导入路径**: `import { Input } from '@your-company/ui'`
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 输入框尺寸 |
+| placeholder | string | - | 占位文本 |
+| disabled | boolean | false | 是否禁用 |
+| error | boolean | false | 是否显示错误状态 |
+| leftIcon | ReactNode | - | 左侧图标 |
+| rightIcon | ReactNode | - | 右侧图标 |
+
+### Card 卡片
+**导入路径**: `import { Card } from '@your-company/ui'`
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| padding | 'none' \| 'sm' \| 'md' \| 'lg' | 'md' | 内边距 |
+| shadow | 'none' \| 'sm' \| 'md' \| 'lg' | 'sm' | 阴影大小 |
+| bordered | boolean | false | 是否显示边框 |
+| radius | 'none' \| 'sm' \| 'md' \| 'lg' | 'md' | 圆角大小 |
+
+## 组合组件
+
+### FormField 表单项
+**导入路径**: `import { FormField } from '@your-company/ui'`
+
+组合了Label、Input/Select和ErrorMessage的复合组件。
+
+### Modal 模态框
+**导入路径**: `import { Modal } from '@your-company/ui'`
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| open | boolean | false | 是否显示 |
+| onClose | () => void | - | 关闭回调 |
+| size | 'sm' \| 'md' \| 'lg' \| 'full' | 'md' | 模态框尺寸 |
+| closeOnClickOutside | boolean | true | 点击外部是否关闭 |

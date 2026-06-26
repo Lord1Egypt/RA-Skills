@@ -1,0 +1,32 @@
+{
+  "templates": [
+    {"id": "kickoff-agenda", "stage": "kickoff", "type": "agenda"},
+    {"id": "client-access-checklist", "stage": "access", "type": "checklist"},
+    {"id": "project-plan", "stage": "planning", "type": "plan"},
+    {"id": "milestone-tracker", "stage": "tracking", "type": "tracker"},
+    {"id": "weekly-status-update", "stage": "status", "type": "update"},
+    {"id": "decision-log", "stage": "tracking", "type": "log"},
+    {"id": "risk-and-issue-log", "stage": "tracking", "type": "log"},
+    {"id": "change-request-intake", "stage": "change", "type": "intake"},
+    {"id": "dependency-tracker", "stage": "tracking", "type": "tracker"},
+    {"id": "stakeholder-communication-plan", "stage": "planning", "type": "plan"},
+    {"id": "prototype-review-checklist", "stage": "review", "type": "checklist"},
+    {"id": "evaluation-run-report", "stage": "evaluation", "type": "report"},
+    {"id": "test-results-summary", "stage": "evaluation", "type": "summary"},
+    {"id": "acceptance-review-packet", "stage": "acceptance", "type": "packet"},
+    {"id": "launch-readiness-checklist", "stage": "launch", "type": "checklist"},
+    {"id": "monitoring-plan", "stage": "operations", "type": "plan"},
+    {"id": "support-plan", "stage": "support", "type": "plan"},
+    {"id": "handoff-checklist", "stage": "handoff", "type": "checklist"},
+    {"id": "administrator-runbook", "stage": "handoff", "type": "runbook"},
+    {"id": "user-reviewer-quickstart", "stage": "training", "type": "quickstart"},
+    {"id": "post-launch-review", "stage": "post_launch", "type": "review"},
+    {"id": "lessons-learned", "stage": "closeout", "type": "retrospective"},
+    {"id": "closeout-summary", "stage": "closeout", "type": "summary"},
+    {"id": "support-ticket-intake", "stage": "support", "type": "intake"},
+    {"id": "escalation-procedure", "stage": "support", "type": "procedure"},
+    {"id": "deployment-runbook", "stage": "launch", "type": "runbook"},
+    {"id": "defect-remediation-plan", "stage": "acceptance", "type": "plan"},
+    {"id": "training-session-plan", "stage": "training", "type": "plan"}
+  ]
+}

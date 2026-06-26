@@ -1,35 +1,195 @@
 ---
-name: "SKILL审查"
-description: "审查和优化现有技能（Skill）结构质量。当用户请求「优化技能」「审查技能」或需要检查技能规范性时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-check"
-sourceUrl: "https://clawhub.ai/skills/skill-check"
+name: skill-check
+description: 审查和优化现有技能（Skill）结构质量。当用户请求「优化技能」「审查技能」或需要检查技能规范性时触发。
 ---
 
-# SKILL审查
+## SKILL 技能审查器
 
-> 审查和优化现有技能（Skill）结构质量。当用户请求「优化技能」「审查技能」或需要检查技能规范性时触发。
+分析技能目录结构，识别改进点，输出优化建议和执行方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-check`
-- **Source URL:** [https://clawhub.ai/skills/skill-check](https://clawhub.ai/skills/skill-check)
+专注于**静态审查**：分析 SKILL 目录结构和逻辑完整性。
 
-## Overview
+## 技能工作流
 
+调用 `todo_write` 工具创建待办任务：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-check
+结构分析 → 问题识别 → 逻辑审查 → 输出报告
+
+## 审查维度
+
+### 结构性维度（脚本检测）
+
+| 维度 | 检查项 | 问题信号 |
+|------|--------|----------|
+| 渐进式披露 | SKILL.md 是否精简（< 500 行） | 正文过长、嵌套层级过深 |
+| 脚本沉淀 | 固定行为是否脚本化 | LLM 反复推理相同逻辑、确定性操作无脚本 |
+| 资源归位 | 资源文件是否在 assets/ | 模板、图片等散落在其他位置 |
+| 参考分离 | 参考文档是否在 references/ | API 文档、Schema 等混入正文 |
+
+### 逻辑性维度（LLM 分析）
+
+| 维度 | 检查项 | 问题信号 |
+|------|--------|----------|
+| 逻辑漏洞 | 流程是否完整、边界是否覆盖 | 缺少异常处理、边界条件未说明 |
+| 逻辑重复 | 是否存在冗余描述 | 相同规则多处重复、示例重复 |
+| 逻辑冲突 | 内容是否自洽 | 前后规则矛盾、示例与规则不符 |
+| 逻辑断层 | 步骤是否连贯 | 缺少前置条件、跳过关键步骤 |
+| 执行可行性 | 指令是否可执行 | 描述模糊、缺少具体参数 |
+| 执行确定性 | 路径、脚本、工具引用是否明确 | 使用「合适的位置」「相关脚本」等模糊指代 |
+| 工作目录 | 是否明确指定工作目录 | 使用相对路径但未说明工作目录、AI 可能在错误目录执行 |
+| 工作流展示 | 是否包含完整技能工作流章节 | 缺少技能工作流章节、步骤超过10个、步骤不清晰 |
+| 工作流步骤详解展示 | 技能工作流每个步骤是否有独立章节（简单步骤除外） | 缺少技能工作流详细步骤章节、步骤详解不清晰、步骤详解散落在各处 |
+| 使用说明章节 | 是否包含使用说明章节 | 缺少使用说明章节、使用方式不清晰、示例缺失 |
+
+### Agent 兼容性维度（脚本 + LLM 分析）
+
+| 维度 | 检查项 | 问题信号 |
+|------|--------|----------|
+| 工具绑定 | 是否绑定特定 Agent 工具 | 出现 Qoder/ClaudeCode/OpenClaw/Cursor 等工具名硬编码 |
+| API 依赖 | 是否使用特定工具独有 API | 调用特定工具的私有接口或 CLI |
+| 触发限定 | description 是否限定特定工具 | 「在 Qoder 中...」「仅适用于 ClaudeCode」 |
+| 路径耦合 | 是否依赖特定工具的目录结构 | 硬编码 .qoder/.claude/.cursor 等路径 |
+| 配置格式 | 是否依赖特定工具的配置格式 | 使用特定工具独有的配置文件格式 |
+
+**工作流展示模板**
+
 ```
+## 技能工作流
+
+调用 `todo_write` 工具创建待办任务：
+
+步骤1 → 步骤2 → 步骤3 → 步骤4 → 步骤5
+
+### 步骤1
+
+步骤1详解
+
+### 步骤2
+
+步骤2详解
+
+……
+
+```
+
+## 执行流程
+
+| 步骤 | 任务 | 执行者 | 说明 |
+|------|------|--------|------|
+| 运行脚本 | `python3 scripts/analyze.py <skill-dir>` | 脚本 | 获取结构分析报告，失败则退出码非零 |
+| 分析报告 | 识别问题优先级 | LLM | 基于脚本输出判断严重程度，优先处理 P0/P1 |
+| 逻辑审查 | 分析逻辑漏洞、重复、冲突 | LLM | 深度内容分析，对照「审查维度」逐项检查 |
+| 识别固定行为 | 找出确定性操作 | LLM | 判断是否应脚本化，参考「自由度匹配原则」 |
+| 输出方案 | 汇总问题和建议 | LLM | 按优先级排序，给出可直接执行的修复步骤 |
+
+**输入校验**：
+- 参数 `<skill-dir>` 必须为有效目录路径
+- 目录必须包含 `SKILL.md` 文件
+
+**自我迭代模式**：
+- 执行 `python3 scripts/review-loop.py <skill-dir>` 循环审查-修复直到无问题
+- 自动检测结构性问题并修复，支持 `--max-iterations` 限制迭代次数
+
+**异常处理**：
+- 脚本执行失败（退出码非零）→ 跳过结构检查，LLM 手动分析
+- SKILL.md 不存在 → 输出 P0 问题，终止审查
+- manifest.json 不存在 → 输出 P1 问题，继续审查
+
+**完成标准**：
+- 所有 P0 问题已识别并给出建议
+- 所有 P1 问题已识别并给出建议
+- 输出可执行的优化方案
+
+## 自由度匹配原则
+
+| 自由度 | 适用场景 | 沉淀形式 |
+|--------|----------|----------|
+| 低 | 操作脆弱、需严格顺序、确定性高 | `scripts/` 脚本 |
+| 中 | 有推荐模式、允许变体 | 伪代码/带参脚本 |
+| 高 | 多种可行方式、决策依赖上下文 | 文本说明 |
+
+**脚本化信号**（详见 [references/structure-patterns.md#脚本化方案](references/structure-patterns.md)）：
+- 相同代码反复写
+- LLM 多次推理相同逻辑
+- 操作步骤固定、易出错
+- 需要高可靠性
+
+## 目录结构规范
+
+```text
+skill-name/
+├── manifest.json    # 可选：技能元数据（name、description、normalizedName、category）
+├── SKILL.md         # 必需：核心工作流（< 500 行）
+├── scripts/         # 可选：可执行脚本（确定性操作）
+├── references/      # 可选：参考文档（按需加载）
+└── assets/          # 可选：资源文件（输出中使用）
+```
+
+| 目录 | 使用场景 | 示例 |
+|------|----------|------|
+| `scripts/` | 确定性操作、反复执行的逻辑，优先用 Python 脚本 | `analyze.py`、`validate.py` |
+| `references/` | 查阅类文档、API 规范、Schema | `api_reference.md`、`schema.md` |
+| `assets/` | 模板、图片、样板代码 | `template.pptx`、`logo.png` |
+
+## 审查报告模板
+
+```markdown
+# 技能审查报告：{skill-name}
+
+## 结构概览
+
+| 目录/文件 | 状态 | 说明 |
+|-----------|------|------|
+| manifest.json | ✅/⚠️/❌ | 元数据完整性 |
+| SKILL.md | ✅/⚠️/❌ | {行数} 行 |
+| scripts/ | ✅/❌ | {脚本数量} 个 |
+| references/ | ✅/❌ | {文档数量} 个 |
+| assets/ | ✅/❌ | {资源数量} 个 |
+
+## 章节结构
+
+| 章节 | 行数 | 状态 |
+|------|------|------|
+| {章节名} | {行数} | ✅/⚠️ |
+
+## 问题清单
+
+| 优先级 | 问题 | 建议 |
+|--------|------|------|
+| P0 | {问题描述} | {优化建议} |
+
+## 优化方案
+
+{具体执行步骤，可直接应用}
+```
+
+## 常见优化模式
+
+| 模式 | 触发条件 | 详细参考 |
+|------|----------|----------|
+| SKILL.md 拆分 | 超过 500 行或章节过长 | [patterns.md#拆分策略](references/structure-patterns.md) |
+| 固定行为脚本化 | 确定性操作无脚本 | [patterns.md#脚本化方案](references/structure-patterns.md) |
+| 资源文件归位 | 文件散落根目录 | [patterns.md#资源归位](references/structure-patterns.md) |
+| 参考文档分离 | 查阅类内容混入正文 | [patterns.md#文档分离](references/structure-patterns.md) |
+| Agent 兼容性修复 | 绑定特定工具或 API | [patterns.md#Agent兼容性](references/structure-patterns.md) |
+
+### 逻辑问题修正
+
+| 问题类型 | 检测方法 | 修正建议 |
+|----------|----------|----------|
+| 逻辑漏洞 | 检查流程完整性 | 补充缺失步骤或边界条件 |
+| 逻辑重复 | 识别相同规则多处出现 | 合并到单一位置，引用指向 |
+| 逻辑冲突 | 对比前后规则一致性 | 删除或标注例外情况 |
+| 逻辑断层 | 检查步骤连贯性 | 补充前置条件或过渡说明 |
+| 执行模糊 | 检查指令具体性、路径/脚本/工具引用明确性 | 替换模糊词为具体参数,替换模糊指代为具体路径、脚本名、工具名 |
+
+## 禁止事项
+
+- ❌ 删除 SKILL.md 核心工作流
+- ❌ 将脚本移出 scripts/ 目录
+- ❌ 破坏现有脚本的执行能力
+- ❌ 修改 frontmatter 中的 name 字段（必须与目录名一致）
+
+## 参考资料
+
+- 结构优化模式 → [references/structure-patterns.md](references/structure-patterns.md)

@@ -1,0 +1,22 @@
+{
+  "name": "openclaw-cron-replay",
+  "displayName": "OpenClaw Cron Replay",
+  "version": "0.1.0",
+  "summary": "Replay OpenClaw cron job formatting and delivery decisions locally using a trusted local installation.",
+  "repo": "https://github.com/pfrederiksen/openclaw-cron-replay",
+  "homepage": "https://github.com/pfrederiksen/openclaw-cron-replay",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "cron",
+    "replay",
+    "debugging",
+    "delivery",
+    "audit"
+  ],
+  "prerequisites": {
+    "binaries": [
+      "openclaw-cron-replay"
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 1,
+    "primary": [
+      {
+        "memory_id": "mem_045147bc2c5b",
+        "time_id": "T1779760502",
+        "time_ts": 1779760502,
+        "person_id": "t",
+        "nature_id": "note",
+        "content": "test conn",
+        "content_hash": "a5780b829e72",
+        "importance": "high",
+        "is_aggregated": 0,
+        "source_count": 1,
+        "owner_agent_id": "t",
+        "visibility": "team",
+        "valence": 0.0,
+        "arousal": 0.2,
+        "dominance": 0.5,
+        "significance": "notable",
+        "confidence": 0.5,
+        "primary_emotions": "{}",
+        "compound_emotions": "[]",
+        "source": "agent_memory",
+        "source_id": "",
+        "deleted": 0,
+        "custom_ttl": null,
+        "valid_from": null,
+        "valid_until": null,
+        "occurrence_time": null,
+        "mention_time": null,
+        "created_at": 1779760502,
+        "_sources": {
+          "structured": true,
+          "semantic": false,
+          "entity": false,
+          "causal": false
+        },
+        "_structured_rrf": 0.01639344262295082,
+        "_semantic_rrf": 0.0,
+        "_entity_rrf": 0.0,
+        "_causal_rrf": 0.0,
+        "_structured_rank": 1,
+        "_semantic_rank": 0,
+        "_entity_rank": 0,
+        "_causal_rank": 0,
+        "_hit_count": 1,
+        "_rrf_score": 0.01639344262295082,
+        "_rank_score": 0.4844122538623633,
+        "_rank_breakdown": {
+          "importance": 0.15,
+          "time": 0.09999986260132027,
+          "structured": 0.14754098360655737,
+          "semantic": 0.0,
+          "entity": 0.0,
+          "causal": 0.0,
+          "quality": 0.04000000000000001,
+          "multi_hit": 0.0
+        },
+        "temporal_context": {
+          "is_valid": true,
+          "status": "active"
+        },
+        "_rerank_score": 0.5045,
+        "_quality_score": 0.4,
+        "_quality_grade": "C"
+      }
+    ],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [],
+      "expanded": false
+    },
+    "query": "conn",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_1f9eaf18c43c",
+      "query": "conn",
+      "result_summary": "found 1 results via tempr_4way, top_score=0.484",
+      "confidence": 0.5422061269311816,
+      "sources_consulted": [
+        "mem_045147bc2c5b"
+      ],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779760502.8269045
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 1 results",
+          "timestamp": 1779760502.8309872
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=20)",
+          "timestamp": 1779760502.8309872
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779760502.8309872
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779760502.8309872
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 1 results (hits: {'structured': 1, 'semantic': 0, 'entity': 0, 'causal': 0}, multi: 0)",
+          "timestamp": 1779760502.8309872
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 1 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779760502.8269045
+    },
+    "status": "ok"
+  },
+  "expires_at": 1779764102.8409092,
+  "created_at": 1779760502.8409092,
+  "_hmac": "87594342249861cc3d992024e97dcc6762c94edf9c8fdcf19c9c0868d03136c8"
+}

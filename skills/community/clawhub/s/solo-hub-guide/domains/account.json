@@ -1,0 +1,69 @@
+[
+  {
+    "id": "create_account",
+    "domain": "account",
+    "description": "Sign up and complete the Hub onboarding profile",
+    "action_type": "ui_flow",
+    "url": "https://hub.getsolo.tech/signup",
+    "steps": [
+      "Navigate to hub.getsolo.tech and click Sign Up",
+      "Fill in your details and accept the Terms & Code of Conduct",
+      "Complete the one-time profile onboarding (required before any Hub access)"
+    ],
+    "explanation": "Hub requires a complete profile before you can do anything. If you signed up via a shared model link, it redirects you back after setup.",
+    "expected_outcome": "You are logged in and land on the Hub catalog or the page you originally came from",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Hub navbar shows your username and the credit balance in the top bar"
+    },
+    "common_errors": [
+      "Signed up via shared link — Hub will redirect back automatically after onboarding"
+    ],
+    "docs_ref": "/account/profile"
+  },
+  {
+    "id": "verify_email",
+    "domain": "account",
+    "description": "Verify your email address to unlock gated features",
+    "action_type": "ui_flow",
+    "steps": [
+      "Look for the verification banner at the top of every Hub page",
+      "Click 'Resend Verification Email' in the banner",
+      "Check your inbox (and spam folder)",
+      "Click the link in the email"
+    ],
+    "explanation": "Email verification is required before you can: join or create a team organization, manage billing and purchase credits, generate API tokens.",
+    "expected_outcome": "Banner disappears; gated features (billing, teams, API tokens) become accessible",
+    "validation": {
+      "type": "ui_state",
+      "rule": "The verification banner no longer appears at the top of Hub pages"
+    },
+    "common_errors": [
+      "No email received — wait a few minutes and try resending. Check spam folder.",
+      "Email address wrong — verify and correct under Settings → Profile",
+      "Link expired — resend from the banner"
+    ],
+    "docs_ref": "/account/verification"
+  },
+  {
+    "id": "update_profile",
+    "domain": "account",
+    "description": "Update display name or interest tags in Settings",
+    "action_type": "ui_flow",
+    "steps": [
+      "Go to Settings → Profile",
+      "Update your full name or add/remove interest tags",
+      "Save changes"
+    ],
+    "explanation": "Username is permanent after onboarding and cannot be changed (ensures all model URLs and team references stay stable). Only name and tags are editable.",
+    "expected_outcome": "Changes reflected in your profile display",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Updated name visible in Settings → Profile page"
+    },
+    "common_errors": [
+      "Trying to change username — this is permanently locked after onboarding by design"
+    ],
+    "docs_ref": "/account/settings"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "defaultModuleId": 0,
+  "rules": [
+    {
+      "name": "short-video-search",
+      "contains": "短视频-搜索界面",
+      "moduleId": 101
+    },
+    {
+      "name": "community-detail",
+      "keywords": ["社区", "社区详情页"],
+      "moduleId": 102
+    },
+    {
+      "name": "my-questionnaire",
+      "match": "^我的-问卷调查$",
+      "moduleId": 103
+    }
+  ]
+}

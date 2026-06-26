@@ -1,35 +1,259 @@
 ---
-name: "知乎回答生成器"
+name: zhihu-answer-generator
+version: 1.0.0
 description: "生成知乎高质量回答，包含专业论证 + 数据支撑 + 引流技巧"
-category: "creative"
-source: "ClawHub"
-tags: [answer, content, marketing, zhihu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhihu-answer-generator"
-sourceUrl: "https://clawhub.ai/skills/zhihu-answer-generator"
+author: xiaokai-ai
+license: MIT
+platforms:
+  - openclaw
+  - cursor
+  - claude-code
+tags:
+  - zhihu
+  - content
+  - answer
+  - marketing
+  - chinese
+price: 29.9
 ---
 
 # 知乎回答生成器
 
-> 生成知乎高质量回答，包含专业论证 + 数据支撑 + 引流技巧
+生成知乎高质量回答，包含专业论证 + 数据支撑 + 引流技巧。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhihu-answer-generator`
-- **Source URL:** [https://clawhub.ai/skills/zhihu-answer-generator](https://clawhub.ai/skills/zhihu-answer-generator)
+## When to Activate
 
-## Overview
+Trigger when the user mentions: 知乎回答，知乎文案，知乎引流，zhihu answer.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhihu-answer-generator
+1. **Confirm inputs:**
+   - 问题/话题 (required)
+   - 回答角度 (optional: 专业型/经验型/测评型/故事型)
+   - 字数 (default: 1500, max: 5000)
+   - 是否需要引流 (optional)
+   - 行业/领域 (optional)
+
+2. **Generate answer structure:**
+
+### 知乎回答结构 (高赞模板)
 ```
+【开篇】- 直接回答问题，建立权威感 (100-200 字)
+【论证 1】- 第一个论点 + 数据/案例支撑 (300-500 字)
+【论证 2】- 第二个论点 + 数据/案例支撑 (300-500 字)
+【论证 3】- 第三个论点 + 数据/案例支撑 (300-500 字)
+【总结】- 要点回顾 + 行动建议 (100-200 字)
+【引流】- 软性引流 (可选，50-100 字)
+```
+
+3. **Content quality rules:**
+   - 开篇必须有冲击力 (前 3 行决定阅读率)
+   - 每个论点都要有数据/案例支撑
+   - 避免绝对化表述 (最/第一/唯一)
+   - 适当使用专业术语 (建立权威)
+   - 段落短小精悍 (手机阅读友好)
+   - 插入图片建议位 (提升阅读体验)
+
+4. **引流技巧 (软性):**
+   - 个人经历分享 (自然植入)
+   - 资源推荐 (提供价值)
+   - 公众号/私信引导 (不违规)
+   - 评论区互动 (增加曝光)
+
+## Output Format
+
+```markdown
+## 知乎回答
+
+**问题:** {问题内容}
+
+**回答:**
+
+{开篇 - 直接回答问题}
+
+---
+
+### {小标题 1}
+
+{论证内容 + 数据/案例}
+
+---
+
+### {小标题 2}
+
+{论证内容 + 数据/案例}
+
+---
+
+### {小标题 3}
+
+{论证内容 + 数据/案例}
+
+---
+
+### 总结
+
+{要点回顾 + 行动建议}
+
+---
+
+{可选引流内容}
+
+---
+
+**配图建议:**
+- 图 1: {描述}
+- 图 2: {描述}
+
+**推荐话题:**
+#话题 1 #话题 2 #话题 3
+
+---
+
+**数据支撑:**
+- {数据来源 1}
+- {数据来源 2}
+```
+
+## Examples
+
+**输入:**
+```
+问题：2026 年如何做小红书带货？
+角度：专业型
+字数：2000
+引流：需要
+```
+
+**输出:**
+```markdown
+## 知乎回答
+
+**问题:** 2026 年如何做小红书带货？
+
+**回答:**
+
+先说结论：2026 年小红书带货依然有机会，但玩法已经完全变了。
+
+我运营过 3 个小红书账号，累计粉丝 50 万+，单月最高带货佣金 8 万。下面把我的实战经验全盘托出。
+
+---
+
+### 一、选品逻辑变了：从"爆款思维"到"精准思维"
+
+2024 年之前，大家追求的是爆款，什么火卖什么。
+
+但 2026 年，小红书算法已经非常成熟，**精准流量>泛流量**。
+
+我测试过两个账号：
+- 账号 A：追爆款，什么火发什么，月佣金 3000
+- 账号 B：垂直深耕美妆赛道，月佣金 25000
+
+差距 8 倍，核心原因是：
+1. 粉丝精准度高，转化率高
+2. 账号权重高，流量稳定
+3. 复购率高，LTV 高
+
+**选品建议：**
+- 选择你真正了解的领域
+- 客单价 100-300 元最佳 (决策成本低)
+- 佣金率 20% 以上
+- 有持续复购属性
+
+---
+
+### 二、内容策略：从"种草"到"解决方案"
+
+以前的套路：这个产品真好，快买！
+
+现在的用户：我凭什么相信你？
+
+**高转化内容公式：**
+```
+痛点场景 + 解决方案 + 产品植入 + 效果对比
+```
+
+举个例子，卖护眼灯：
+
+❌ 低转化：这款护眼灯超好用，护眼效果一流！
+
+✅ 高转化：
+"孩子每天写作业到 10 点，最近总说眼睛累。
+换了这款护眼灯后，最明显的变化是：
+- 孩子揉眼睛的次数少了
+- 写作业更专注了
+- 视力检查保持稳定
+
+选护眼灯看这 3 个参数就够了：
+1. 照度等级：国 AA 级
+2. 显色指数：Ra>95
+3. 蓝光等级：RG0 无危害
+
+我对比了 8 款热门产品，最后留下这款..."
+
+---
+
+### 三、流量获取：付费 + 免费组合拳
+
+纯靠免费流量？可以，但慢。
+
+我的建议：**前期付费测款，后期免费放大**。
+
+**付费投放策略：**
+1. 先自然发布 5-10 篇，测试内容方向
+2. 选出数据最好的 2-3 篇 (点赞>100)
+3. 小额投放薯条 (100-200 元)
+4. ROI>1 就加大投放，ROI<1 就优化内容
+
+**免费流量技巧：**
+- 发布时间：早 7-9 点，午 12-14 点，晚 19-22 点
+- 话题选择：1-2 个大话题 +3-5 个小话题
+- 评论区互动：前 1 小时回复每条评论
+- 持续更新：每周 3-5 篇，保持活跃
+
+---
+
+### 总结
+
+2026 年小红书带货的核心：
+1. 选品要精准，不要追爆款
+2. 内容要提供价值，不要硬广
+3. 流量要组合，不要单腿走路
+
+带货是个系统工程，需要持续学习和优化。
+
+---
+
+**如果需要更详细的选品清单和投放策略，可以：**
+- 关注我的公众号【XXX】，回复"小红书"获取
+- 或者私信我，看到会回复
+
+**配图建议:**
+- 图 1: 账号后台收益截图
+- 图 2: 选品对比表格
+- 图 3: 内容数据对比图
+
+**推荐话题:**
+#小红书带货 #自媒体运营 #副业赚钱 #电商运营
+
+---
+
+**数据支撑:**
+- 个人实战数据：3 个账号，50 万 + 粉丝
+- 单月最高佣金：8 万元
+- 测试周期：2025.01-2026.03
+```
+
+## Pricing
+
+- **Free tier:** 3 answers per day
+- **Pro tier:** ¥29.9/month - unlimited answers + premium templates
+
+## Support
+
+Issues: https://github.com/xiaokai-ai/zhihu-answer-generator
+Docs: https://clawhub.ai/skills/zhihu-answer-generator
+
+---
+
+*Made with ❤️ by Xiao Kai AI*

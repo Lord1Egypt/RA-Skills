@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "flyclaw"
+version = "0.4.1"
+description = "Flight information aggregation CLI tool"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [{name = "nuaa02", email = "nuaa02@gmail.com"}]
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.28.0",
+    "pyyaml>=6.0",
+    "flights>=0.7.0",
+]
+
+[project.scripts]
+flyclaw = "flyclaw:main"
+
+[tool.pytest.ini_options]
+markers = [
+    "live: tests that make real API calls (deselect with '-m not live')",
+]

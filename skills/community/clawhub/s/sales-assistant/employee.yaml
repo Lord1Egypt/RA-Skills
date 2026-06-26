@@ -1,0 +1,138 @@
+---
+id: sales_assistant
+name: 销售助手
+nickname: 小销
+version: 0.1.0
+owner: 销售负责人
+deployment:
+  workstation: default
+  folder: sales-assistant
+  channel: 飞书
+  feishu_bot_name: 小销
+  hermes_agent_id: sales_assistant
+mission: 通过飞书接收客户信息、拜访记录、聊天记录和需求材料，调用 Hermes Agent skills 完成商机卡、客户画像、拜访纪要、需求提炼、跟进建议、风险提示和客户归档。
+users:
+- 销售人员
+- 商务人员
+- 售前人员
+- 销售负责人
+scenarios:
+  opportunity_record:
+    name: 商机录入
+    role: 商机助理
+    description: 将零散客户信息整理为标准商机卡和跟进阶段。
+    workflow: workflows.md#一商机录入
+    skill_pack:
+    - S01_opportunity_record
+    - S07_customer_archive
+  customer_profile:
+    name: 客户画像
+    role: 客户研究员
+    description: 分析客户背景、组织结构、决策链、预算、痛点和潜在需求。
+    workflow: workflows.md#二客户画像
+    skill_pack:
+    - S02_customer_profile
+    - S04_customer_need_extract
+  visit_minutes:
+    name: 拜访纪要
+    role: 销售秘书
+    description: 将拜访记录、聊天记录或录音转写整理成纪要。
+    workflow: workflows.md#三拜访纪要
+    skill_pack:
+    - S03_visit_minutes
+    - S04_customer_need_extract
+  need_extract:
+    name: 需求归纳
+    role: 需求分析员
+    description: 提炼显性需求、隐性需求、约束条件和待确认问题。
+    workflow: workflows.md#四需求归纳
+    skill_pack:
+    - S04_customer_need_extract
+    - S05_followup_suggestion
+  followup_suggestion:
+    name: 跟进建议
+    role: 销售参谋
+    description: 生成下一步动作、话术、资料准备和飞书提醒。
+    workflow: workflows.md#五跟进建议
+    skill_pack:
+    - S05_followup_suggestion
+    - S08_sales_roleplay
+  business_risk:
+    name: 商务风险
+    role: 风险提示员
+    description: 识别付款、承诺、交付、竞品和关系风险。
+    workflow: workflows.md#六商务风险
+    skill_pack:
+    - S06_business_risk_hint
+    - S05_followup_suggestion
+  customer_archive:
+    name: 客户归档
+    role: 客户档案员
+    description: 沉淀客户记录、项目阶段、关键联系人和下一步动作。
+    workflow: workflows.md#七客户归档
+    skill_pack:
+    - S07_customer_archive
+    - S01_opportunity_record
+common_skills:
+- C01_feishu_message_router
+- C02_feishu_file_receiver
+- C03_user_permission_check
+- C04_task_intent_classifier
+- C05_document_parser
+- C07_structured_extraction
+- C08_knowledge_retrieval
+- C09_rule_checker
+- C10_template_renderer
+- C11_table_exporter
+- C12_task_breakdown
+- C13_human_approval
+- C14_feishu_reminder
+- C15_audit_log
+- C16_result_archive
+- C17_sensitive_info_masking
+- C18_demo_mode
+domain_skills:
+- S01_opportunity_record
+- S02_customer_profile
+- S03_visit_minutes
+- S04_customer_need_extract
+- S05_followup_suggestion
+- S06_business_risk_hint
+- S07_customer_archive
+- S08_sales_roleplay
+skill_catalog: skills/sales_skills.yaml
+approval_policy:
+  requires_human_confirmation:
+  - 报价口径
+  - 商务承诺
+  - 交付周期
+  - 客户敏感信息
+  - 对外发送材料
+  can_auto_generate:
+  - 商机卡
+  - 客户画像
+  - 拜访纪要
+  - 跟进建议
+  - 话术草稿
+  - 客户档案
+  must_not_do:
+  - 自动承诺价格
+  - 自动承诺交付范围
+  - 泄露客户隐私
+  - 替代销售做最终商务判断
+knowledge_sources:
+- knowledge/README.md
+- 客户资料库
+- 产品方案库
+- 行业案例库
+- 报价规则
+- 销售SOP
+- 客户跟进台账
+templates:
+  intake_card: templates/intake_card.md
+  analysis_report: templates/analysis_report.md
+  review_note: templates/review_note.md
+  archive_record: templates/archive_record.md
+demo:
+  script: demo/demo_script.md
+  test_cases: test_cases/p0_demo_cases.md

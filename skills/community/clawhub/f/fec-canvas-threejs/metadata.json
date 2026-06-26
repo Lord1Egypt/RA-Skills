@@ -1,0 +1,62 @@
+{
+  "id": "fec-canvas-threejs",
+  "name": "Canvas 与 Three.js",
+  "category": "implementation-capability",
+  "tags": [
+    "canvas",
+    "webgl",
+    "three.js",
+    "3d",
+    "visualization",
+    "r3f"
+  ],
+  "summary": "Frontend Craft skill for Canvas 与 Three.js.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "canvas",
+    "webgl",
+    "three.js",
+    "3d",
+    "visualization",
+    "r3f"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when building or reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, GLSL shaders, ShaderToy-to-WebGL adaptation, 2D/3D visualization, game rendering, animation loops, GPU resource cleanup, or rendering performance. Do not use for standard DOM UI, charts already covered by a chart library, or non-graphical performance work; Chinese triggers include Canvas, Three.js, WebGL, GLSL, Shader, 3D, 数据可视化, 游戏.",
+  "source": "skills/fec-canvas-threejs",
+  "references": [
+    "references/rendering-patterns.md",
+    "references/shader-webgl-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-web-workers",
+      "fec-svg-animation",
+      "fec-accessibility-check",
+      "fec-motion-interaction"
+    ],
+    "boundaryWorkflows": [
+      "Use a worker workflow when expensive graphics computation blocks the main thread.",
+      "Use an SVG animation workflow for small vector icons, path strokes, and UI micro-interactions.",
+      "Use an accessibility workflow for non-text alternatives and keyboard fallbacks."
+    ],
+    "capabilityTags": [
+      "canvas",
+      "threejs",
+      "performance",
+      "accessibility"
+    ]
+  }
+}

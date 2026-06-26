@@ -1,0 +1,563 @@
+{
+  "name": "competitor-war-room",
+  "version": "1.0.0",
+  "description": "Competitor War Room - Real-time competitive intelligence and counter-strategy engine",
+  "price": 0.5,
+  "sectors": {
+    "ai_saas": {
+      "key_players": [
+        "OpenAI",
+        "Anthropic",
+        "Google DeepMind",
+        "Cohere",
+        "Mistral AI",
+        "Meta AI",
+        "xAI",
+        "Perplexity",
+        "Midjourney",
+        "Stability AI"
+      ],
+      "market_size_2026e": "$91.6B",
+      "growth_rate": "32%",
+      "competition_focus": [
+        "Enterprise contracts",
+        "API pricing",
+        "Model performance benchmarks",
+        "Safety & compliance certifications",
+        "Multi-modal capabilities"
+      ]
+    },
+    "fintech": {
+      "key_players": [
+        "Stripe",
+        "Plaid",
+        "Wise",
+        "Revolut",
+        "Chime",
+        "Klarna",
+        "Affirm",
+        "Adyen",
+        "Ripple",
+        "Circle"
+      ],
+      "market_size_2026e": "$310B",
+      "growth_rate": "22%",
+      "competition_focus": [
+        "Cross-border payments",
+        "BNPL regulation",
+        "Embedded finance",
+        "CBDC integration",
+        "Open banking APIs"
+      ]
+    },
+    "ecommerce": {
+      "key_players": [
+        "Amazon",
+        "Shopify",
+        "Temu",
+        "Shein",
+        "TikTok Shop",
+        "Mercado Libre",
+        "Flipkart",
+        "Shopee",
+        "Lazada",
+        "Etsy"
+      ],
+      "market_size_2026e": "$6.8T",
+      "growth_rate": "14%",
+      "competition_focus": [
+        "Social commerce",
+        "Same-day delivery",
+        "AI recommendations",
+        "Sustainable packaging",
+        "Live shopping"
+      ]
+    },
+    "cybersecurity": {
+      "key_players": [
+        "CrowdStrike",
+        "Cloudflare",
+        "Zscaler",
+        "SentinelOne",
+        "Palo Alto Networks",
+        "Okta",
+        "Wiz",
+        "Snyk",
+        "Darktrace",
+        "Fortinet"
+      ],
+      "market_size_2026e": "$320B",
+      "growth_rate": "18%",
+      "competition_focus": [
+        "Zero trust architecture",
+        "AI threat detection",
+        "Cloud security posture",
+        "Supply chain security",
+        "XDR consolidation"
+      ]
+    },
+    "cloud": {
+      "key_players": [
+        "AWS",
+        "Microsoft Azure",
+        "Google Cloud",
+        "Oracle Cloud",
+        "DigitalOcean",
+        "Hetzner",
+        "Vultr",
+        "Linode",
+        "Alibaba Cloud",
+        "IBM Cloud"
+      ],
+      "market_size_2026e": "$620B",
+      "growth_rate": "25%",
+      "competition_focus": [
+        "GPU availability",
+        "Multi-cloud orchestration",
+        "Edge computing",
+        "Green cloud initiatives",
+        "Serverless adoption"
+      ]
+    },
+    "social_media": {
+      "key_players": [
+        "TikTok",
+        "Instagram",
+        "YouTube",
+        "X/Twitter",
+        "Snapchat",
+        "LinkedIn",
+        "Pinterest",
+        "Discord",
+        "Reddit",
+        "Bluesky"
+      ],
+      "market_size_2026e": "$285B (ad revenue)",
+      "growth_rate": "15%",
+      "competition_focus": [
+        "Short-form video",
+        "AI content creation tools",
+        "Creator monetization",
+        "Shopping integration",
+        "AR/VR experiences"
+      ]
+    }
+  },
+  "monitoring_dimensions": {
+    "product": {
+      "trigger": [
+        "New feature launch",
+        "UI/UX redesign",
+        "API endpoint changes",
+        "Documentation updates",
+        "Roadmap changes"
+      ],
+      "alert_level": "HIGH"
+    },
+    "pricing": {
+      "trigger": [
+        "Price plan changes",
+        "Per-seat/per-usage adjustments",
+        "Free tier modifications",
+        "Enterprise custom pricing signals",
+        "Promotional campaigns"
+      ],
+      "alert_level": "HIGH"
+    },
+    "hiring": {
+      "trigger": [
+        "Department headcount changes",
+        "C-suite hires/departures",
+        "Engineering vs Sales ratio shift",
+        "Remote policy changes",
+        "Intern/campus recruitment scale"
+      ],
+      "alert_level": "MEDIUM"
+    },
+    "funding": {
+      "trigger": [
+        "Funding rounds (amount/lead/valuation)",
+        "Acquisitions",
+        "IPO/SPAC signals",
+        "Secondary stock transactions",
+        "Layoffs/down rounds"
+      ],
+      "alert_level": "CRITICAL"
+    },
+    "social": {
+      "trigger": [
+        "Twitter/X follower growth",
+        "LinkedIn employee count",
+        "Glassdoor rating trend",
+        "G2/Capterra review velocity",
+        "Reddit mention sentiment",
+        "Trustpilot score changes"
+      ],
+      "alert_level": "LOW"
+    }
+  },
+  "counter_strategies": {
+    "product_attack": {
+      "detection": "Competitor launches feature directly competing with your core product",
+      "severity": "CRITICAL",
+      "response_catalog": [
+        "Accelerate roadmap for matching feature",
+        "Highlight existing differentiators in marketing",
+        "Launch complementary feature to neutralize",
+        "Acquire technology/talent in adjacent space",
+        "Expand to new vertical they cannot address"
+      ]
+    },
+    "price_war": {
+      "detection": "Competitor lowers prices by 30%+ or introduces aggressive free tier",
+      "severity": "HIGH",
+      "response_catalog": [
+        "Emphasize premium value/ROI over price",
+        "Launch value tier without devaluing premium",
+        "Bundle with partner products for perceived savings",
+        "Introduce usage-based pricing flexibility",
+        "Ignore if attacking non-core segment"
+      ]
+    },
+    "talent_raid": {
+      "detection": "Competitor aggressively recruits from your team",
+      "severity": "HIGH",
+      "response_catalog": [
+        "Review compensation benchmarks immediately",
+        "Accelerate promotion cycles for at-risk roles",
+        "Create retention bonuses tied to key milestones",
+        "File legal review for non-compete/NDA violations",
+        "Counter-offer with equity refresh grants"
+      ]
+    },
+    "marketing_blitz": {
+      "detection": "Competitor launches major brand campaign targeting your audience",
+      "severity": "MEDIUM",
+      "response_catalog": [
+        "Amplify customer success stories and case studies",
+        "Launch targeted comparison content (factual)",
+        "Increase retargeting budget for existing leads",
+        "Partner with industry analysts for positive coverage",
+        "Launch product improvements to change narrative"
+      ]
+    }
+  },
+  "competitive_frameworks": {
+    "swot": "Strengths, Weaknesses, Opportunities, Threats - Best for single competitor deep-dive analysis",
+    "porters_five": "Supplier Power, Buyer Power, Competitive Rivalry, Threat of New Entry, Threat of Substitution - Best for industry attractiveness assessment",
+    "blue_ocean": "Eliminate, Reduce, Raise, Create - Best for differentiation strategy and finding uncontested market space",
+    "bcg_matrix": "Stars, Cash Cows, Question Marks, Dogs - Best for product portfolio management and resource allocation"
+  },
+  "historical_competitive_moves": {
+    "openai_vs_google": {
+      "timeline": [
+        {
+          "date": "2022-11",
+          "event": "ChatGPT launch",
+          "google_response": "Internal Code Red declared",
+          "outcome": "Accelerated Gemini development by 12 months"
+        },
+        {
+          "date": "2023-02",
+          "event": "Microsoft Bing ChatGPT integration",
+          "google_response": "Bard launch (rushed, stumbled on demo)",
+          "outcome": "Google stock -8% on Bard demo error"
+        },
+        {
+          "date": "2023-12",
+          "event": "Gemini Ultra launch",
+          "openai_response": "GPT-4 Turbo price cut 50%",
+          "outcome": "AI API pricing war begins"
+        },
+        {
+          "date": "2024-05",
+          "event": "GPT-4o multimodal launch",
+          "google_response": "Gemini 1.5 Flash (lower cost)",
+          "outcome": "Multimodal becomes table stakes"
+        },
+        {
+          "date": "2025-2026",
+          "event": "Agentic AI race",
+          "google_response": "Project Mariner (deep browser integration)",
+          "openai_response": "Operator (autonomous desktop agent)",
+          "outcome": "Battle shifts from models to autonomous agents"
+        }
+      ],
+      "key_lesson": "Fast follower strategy works with distribution advantage (Google:Search/Android, Microsoft:Office/Windows)"
+    },
+    "tiktok_shop_vs_amazon": {
+      "timeline": [
+        {
+          "date": "2023-09",
+          "event": "TikTok Shop US launch",
+          "amazon_response": "Amazon Inspire (shoppable feed)",
+          "outcome": "Inspire failed to gain traction"
+        },
+        {
+          "date": "2024-03",
+          "event": "TikTok Shop $1B GMV month",
+          "amazon_response": "Haul (Temu-competitive discount store)",
+          "outcome": "Haul cannibalized Amazon's low-ASP sales"
+        },
+        {
+          "date": "2024-11",
+          "event": "TikTok Shop Black Friday ($2B GMV)",
+          "amazon_response": "Rufus AI shopping assistant expansion",
+          "outcome": "AI assistant differentiation vs social commerce"
+        }
+      ],
+      "key_lesson": "Social commerce threats require social-native responses, not bolt-on features"
+    },
+    "cloudflare_vs_aws": {
+      "timeline": [
+        {
+          "date": "2021",
+          "event": "R2 storage launch (no egress fees)",
+          "aws_response": "Price cut on S3 egress (limited scope)",
+          "outcome": "Cloudflare gained significant SMB market share"
+        },
+        {
+          "date": "2023",
+          "event": "Workers AI (edge inference)",
+          "aws_response": "Lambda@Edge ML upgrade",
+          "outcome": "Edge AI becomes competitive differentiator"
+        }
+      ],
+      "key_lesson": "Attack the incumbent's business model weakness rather than competing on feature parity"
+    }
+  },
+  "competitor_profiling": {
+    "profile_dimensions": [
+      "Leadership style",
+      "Company culture",
+      "Financial runway",
+      "Technical moat",
+      "Distribution strength",
+      "Brand perception",
+      "Regulatory vulnerability",
+      "Talent retention",
+      "Innovation velocity",
+      "Customer lock-in"
+    ],
+    "personality_archetypes": {
+      "aggressive_disruptor": {
+        "traits": [
+          "Fast iteration",
+          "Price undercutting",
+          "Negative marketing against incumbents",
+          "Talent poaching"
+        ],
+        "counter_strategy": "Ignore noise, focus on enterprise trust and SLAs",
+        "example": "OpenAI (2022-2025 phase)"
+      },
+      "slow_incumbent": {
+        "traits": [
+          "Large existing revenue to protect",
+          "Compliance-heavy processes",
+          "Acquisition over build preference",
+          "Brand safety focus"
+        ],
+        "counter_strategy": "Innovate in areas they cannot pivot to quickly",
+        "example": "Oracle, IBM, SAP"
+      },
+      "ecosystem_builder": {
+        "traits": [
+          "Platform play",
+          "Developer-first",
+          "Open source components",
+          "Marketplace model"
+        ],
+        "counter_strategy": "Build better developer experience and integrations",
+        "example": "Stripe, Shopify, AWS"
+      },
+      "stealth_predator": {
+        "traits": [
+          "Quiet R&D investment",
+          "Patent accumulation",
+          "Poach key hires silently",
+          "Launch when fully ready"
+        ],
+        "counter_strategy": "Recruit from their talent pool, monitor patent filings",
+        "example": "Apple, Amazon pre-launch phases"
+      }
+    }
+  },
+  "alert_severity_matrix": [
+    {
+      "trigger": "Competitor launches feature directly competing with core product",
+      "severity": "CRITICAL",
+      "response_time": "< 4 hours",
+      "action": "War room convened, CEO notification, counter-strategy within 24h"
+    },
+    {
+      "trigger": "Competitor raises $500M+ at $10B+ valuation",
+      "severity": "HIGH",
+      "response_time": "< 24 hours",
+      "action": "Board update, competitive positioning review"
+    },
+    {
+      "trigger": "Competitor hires C-suite from your company",
+      "severity": "HIGH",
+      "response_time": "< 12 hours",
+      "action": "Legal review (non-compete), knowledge transfer assessment"
+    },
+    {
+      "trigger": "Competitor lowers prices by 30%+",
+      "severity": "MEDIUM",
+      "response_time": "< 48 hours",
+      "action": "Pricing committee review, customer retention outreach"
+    },
+    {
+      "trigger": "Negative Glassdoor/Trustpilot trend for competitor",
+      "severity": "INFO",
+      "response_time": "< 1 week",
+      "action": "Identify hiring/positioning opportunities"
+    },
+    {
+      "trigger": "Competitor files patent in core area",
+      "severity": "MEDIUM",
+      "response_time": "< 1 week",
+      "action": "IP counsel review, prior art search"
+    },
+    {
+      "trigger": "Industry analyst downgrades competitor",
+      "severity": "INFO",
+      "response_time": "< 48 hours",
+      "action": "Sales enablement: share with prospects"
+    },
+    {
+      "trigger": "Competitor website traffic drops 20%+ month-over-month",
+      "severity": "INFO",
+      "response_time": "< 1 week",
+      "action": "Investigate cause, identify potential customer acquisition opportunity"
+    }
+  ],
+  "battle_cards": {
+    "template": {
+      "competitor_name": "[Name]",
+      "founded": "[Year], [HQ Location]",
+      "funding_total": "$[Amount] ([Last Round Date])",
+      "estimated_revenue": "$[Amount] (2026E)",
+      "headcount": "[Number] (LinkedIn)",
+      "key_products": [
+        "[Product 1]",
+        "[Product 2]"
+      ],
+      "primary_customers": "[Segment] ([Size], [Region])",
+      "pricing_model": "[Model, Starting Price]",
+      "strengths": [
+        "[Strength 1]",
+        "[Strength 2]"
+      ],
+      "weaknesses": [
+        "[Weakness 1]",
+        "[Weakness 2]"
+      ],
+      "recent_moves": [
+        "[Move, Date]"
+      ],
+      "threat_level": "[Critical/High/Medium/Low/Watch]",
+      "recommended_counter": [
+        "[Action 1]",
+        "[Action 2]"
+      ],
+      "last_updated": "[Date]"
+    }
+  },
+  "intelligence_collection": {
+    "osint_sources": [
+      {
+        "source": "Crunchbase",
+        "data": "Funding rounds, acquisitions, key hires",
+        "frequency": "Daily",
+        "reliability": "High",
+        "access": "Free tier available"
+      },
+      {
+        "source": "LinkedIn",
+        "data": "Headcount growth, department expansion, executive changes, job postings",
+        "frequency": "Weekly",
+        "reliability": "High",
+        "access": "Sales Navigator recommended ($99/mo)"
+      },
+      {
+        "source": "Glassdoor",
+        "data": "Employee sentiment, salary ranges, interview experience, culture signals",
+        "frequency": "Monthly",
+        "reliability": "Medium (self-selection bias)",
+        "access": "Free (limited)"
+      },
+      {
+        "source": "G2 / Capterra",
+        "data": "Customer satisfaction trends, feature comparison, user demographics",
+        "frequency": "Monthly",
+        "reliability": "Medium-High",
+        "access": "Free tier available"
+      },
+      {
+        "source": "SimilarWeb",
+        "data": "Website traffic, referral sources, geographic distribution, audience overlap",
+        "frequency": "Monthly",
+        "reliability": "Medium-High",
+        "access": "Paid ($199/mo+)"
+      },
+      {
+        "source": "BuiltWith",
+        "data": "Technology stack, tools used, platform migrations",
+        "frequency": "Monthly",
+        "reliability": "High",
+        "access": "Paid ($295/mo+)"
+      },
+      {
+        "source": "SEC Edgar / Companies House",
+        "data": "Financial filings, S-1, 10-K, 10-Q, annual reports",
+        "frequency": "Quarterly/Annually",
+        "reliability": "Very High",
+        "access": "Free"
+      },
+      {
+        "source": "USPTO / WIPO / EPO",
+        "data": "Patent applications, technology direction, IP strategy",
+        "frequency": "Monthly",
+        "reliability": "High",
+        "access": "Free"
+      },
+      {
+        "source": "Press releases / PR Newswire",
+        "data": "Product launches, partnerships, executive announcements",
+        "frequency": "Daily",
+        "reliability": "Medium (PR spin)",
+        "access": "Free (Google Alerts)"
+      },
+      {
+        "source": "Job boards (Indeed, AngelList)",
+        "data": "Hiring velocity, salary bands, role types, tech stack requirements",
+        "frequency": "Weekly",
+        "reliability": "High",
+        "access": "Free"
+      }
+    ]
+  },
+  "competitive_metrics": {
+    "market_share_estimation": [
+      "TAM (Total Addressable Market) size estimation",
+      "Revenue estimates from public sources",
+      "Headcount-based extrapolation (revenue/employee ratios)",
+      "Customer count from review platforms",
+      "Web traffic correlation with revenue (SimilarWeb)",
+      "App download trends (App Annie / data.ai)"
+    ],
+    "velocity_metrics": [
+      "Product release cadence (releases/month)",
+      "Hiring velocity (new openings/month)",
+      "Funding frequency (months between rounds)",
+      "Customer acquisition rate (review growth/month)",
+      "Social following growth rate (followers/month)"
+    ],
+    "health_indicators": {
+      "healthy": "Revenue growth >30% YoY, headcount growth consistent, positive reviews >4.0, press mentions positive, expanding office space",
+      "warning": "Revenue growth <15%, hiring freeze, review scores declining, executive departures, office space reduction",
+      "critical": "Layoffs announced, down round, product shutdown, mass executive exodus, legal trouble, acquisition rumors"
+    }
+  }
+}

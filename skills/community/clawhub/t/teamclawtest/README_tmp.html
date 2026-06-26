@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>README.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///data/workspace/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///data/workspace/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <p><strong><a href="#english">English</a> | <a href="#%E4%B8%AD%E6%96%87">中文</a></strong></p>
+<blockquote>
+<p><strong>🌐 Multilingual Versions:</strong> This project maintains an English-only branch <code>i18n-en</code> for international users. Switch via: <code>git checkout i18n-en</code></p>
+</blockquote>
+<hr>
+<p><a id="english"></a></p>
+<h1 id="teamclaw">TeamClaw</h1>
+<p>https://github.com/Avalon-467/Teamclaw</p>
+<blockquote>
+<p><strong>OpenAI-compatible AI Agent with a built-in programmable multi-expert orchestration engine and one-click public deployment.</strong></p>
+<p><strong>Skill Mode:</strong> This repository is designed to run and be documented in a Skill-oriented workflow (see <code>SKILL.md</code>).</p>
+</blockquote>
+<p>TeamClaw exposes a standard <code>/v1/chat/completions</code> endpoint that any OpenAI-compatible client can call directly. Internally it integrates the <strong>OASIS orchestration engine</strong> — using YAML schedule definitions to flexibly compose expert roles, speaking orders, and collaboration patterns, breaking complex problems into multi-perspective debates, voting consensus, and automated summaries.</p>
+<h2 id="highlights">Highlights</h2>
+<h3 id="1-openai-compatible-api">1. OpenAI-Compatible API</h3>
+<pre class="hljs"><code><div>curl http://127.0.0.1:51200/v1/chat/completions \
+  -H <span class="hljs-string">"Authorization: Bearer &lt;user&gt;:&lt;password&gt;"</span> \
+  -H <span class="hljs-string">"Content-Type: application/json"</span> \
+  -d <span class="hljs-string">'{"model":"mini-timebot","messages":[{"role":"user","content":"Hello"}],"stream":true}'</span>
+</div></code></pre>
+<ul>
+<li>Fully compatible with OpenAI Chat Completions format, streaming &amp; non-streaming</li>
+<li>Multi-turn conversation, image input (Vision), audio input, file upload, TTS</li>
+<li>Works with ChatBox, Open WebUI, Cursor, or any OpenAI-compatible client</li>
+<li>Multi-user + multi-session isolation, SQLite-persisted conversation memory</li>
+</ul>
+<h3 id="2-oasis-orchestration--a-programmable-expert-collaboration-engine">2. OASIS Orchestration — A Programmable Expert Collaboration Engine</h3>
+<p><strong>This is the core design of the entire project.</strong></p>
+<p>Traditional multi-agent systems are either fully parallel or fixed pipelines, unable to adapt to different scenarios. The OASIS engine uses a concise <strong>YAML schedule definition</strong> that lets users (or the AI Agent itself) precisely orchestrate every step of expert collaboration:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Example: Creative and Critical experts clash first, then everyone summarizes</span>
+<span class="hljs-attr">version:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">repeat:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">plan:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">expert:</span> <span class="hljs-string">"Creative Expert"</span>      <span class="hljs-comment"># Single expert speaks sequentially</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">expert:</span> <span class="hljs-string">"Critical Expert"</span>      <span class="hljs-comment"># Immediately rebuts</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">parallel:</span>                      <span class="hljs-comment"># Multiple experts speak in parallel</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"Economist"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"Legal Expert"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">all_experts:</span> <span class="hljs-literal">true</span>              <span class="hljs-comment"># All participants speak simultaneously</span>
+</div></code></pre>
+<h4 id="three-layers-of-control">Three Layers of Control</h4>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Control</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who participates</strong></td>
+<td><code>expert_tags</code></td>
+<td>Select from 10+ built-in experts + user-defined custom expert pool</td>
+</tr>
+<tr>
+<td><strong>How they discuss</strong></td>
+<td><code>schedule_yaml</code></td>
+<td>4 step types freely combined (sequential / parallel / all / manual injection)</td>
+</tr>
+<tr>
+<td><strong>How deep</strong></td>
+<td><code>max_rounds</code> + <code>use_bot_session</code></td>
+<td>Control round depth; choose stateful (memory + tools) or stateless (lightweight &amp; fast)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="four-schedule-step-types">Four Schedule Step Types</h4>
+<table>
+<thead>
+<tr>
+<th>Step Type</th>
+<th>Format</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expert</code></td>
+<td><code>- expert: &quot;Name&quot;</code></td>
+<td>Single expert speaks sequentially</td>
+</tr>
+<tr>
+<td><code>parallel</code></td>
+<td><code>- parallel: [&quot;A&quot;, &quot;B&quot;]</code></td>
+<td>Multiple experts speak simultaneously</td>
+</tr>
+<tr>
+<td><code>all_experts</code></td>
+<td><code>- all_experts: true</code></td>
+<td>All selected experts speak at once</td>
+</tr>
+<tr>
+<td><code>manual</code></td>
+<td><code>- manual: {author: &quot;Host&quot;, content: &quot;...&quot;}</code></td>
+<td>Inject fixed content (bypasses LLM)</td>
+</tr>
+</tbody>
+</table>
+<p>Set <code>repeat: true</code> to loop the plan each round; <code>repeat: false</code> executes plan steps once then ends.</p>
+<h4 id="expert-pool">Expert Pool</h4>
+<p><strong>10 Built-in Public Experts:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Expert</th>
+<th>Tag</th>
+<th>Temp</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🎨 Creative Expert</td>
+<td><code>creative</code></td>
+<td>0.9</td>
+<td>Finds opportunities, proposes visionary ideas</td>
+</tr>
+<tr>
+<td>🔍 Critical Expert</td>
+<td><code>critical</code></td>
+<td>0.3</td>
+<td>Spots risks, flaws, and logical fallacies</td>
+</tr>
+<tr>
+<td>📊 Data Analyst</td>
+<td><code>data</code></td>
+<td>0.5</td>
+<td>Data-driven, speaks with facts</td>
+</tr>
+<tr>
+<td>🎯 Synthesis Advisor</td>
+<td><code>synthesis</code></td>
+<td>0.5</td>
+<td>Integrates perspectives, proposes pragmatic plans</td>
+</tr>
+<tr>
+<td>📈 Economist</td>
+<td><code>economist</code></td>
+<td>0.5</td>
+<td>Macro/micro economic perspective</td>
+</tr>
+<tr>
+<td>⚖️ Legal Expert</td>
+<td><code>lawyer</code></td>
+<td>0.3</td>
+<td>Compliance and legal risk analysis</td>
+</tr>
+<tr>
+<td>💰 Cost Controller</td>
+<td><code>cost_controller</code></td>
+<td>0.4</td>
+<td>Budget-sensitive, cost reduction</td>
+</tr>
+<tr>
+<td>📊 Revenue Planner</td>
+<td><code>revenue_planner</code></td>
+<td>0.6</td>
+<td>Revenue maximization strategy</td>
+</tr>
+<tr>
+<td>🚀 Entrepreneur</td>
+<td><code>entrepreneur</code></td>
+<td>0.8</td>
+<td>0-to-1 hands-on perspective</td>
+</tr>
+<tr>
+<td>🧑 Common Person</td>
+<td><code>common_person</code></td>
+<td>0.7</td>
+<td>Down-to-earth common sense feedback</td>
+</tr>
+</tbody>
+</table>
+<p><strong>User-Defined Custom Experts:</strong> Each user can create private experts (name, tag, persona, temperature) through the Agent, mixed with public experts, isolated per user.</p>
+<h4 id="discussion-mechanics">Discussion Mechanics</h4>
+<p>Each expert per round:</p>
+<ol>
+<li><strong>Post</strong> — Opinion within 200 characters, can reference an existing post</li>
+<li><strong>Vote</strong> — Up/down vote on other posts</li>
+</ol>
+<p>Engine auto-executes:</p>
+<ul>
+<li><strong>Consensus Detection</strong> — Top-voted post reaches ≥70% expert approval → early termination</li>
+<li><strong>Conclusion Generation</strong> — Synthesizes Top 5 highest-voted posts via LLM summary</li>
+</ul>
+<h4 id="two-expert-running-modes">Two Expert Running Modes</h4>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th><code>use_bot_session</code></th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stateless</strong> (default)</td>
+<td><code>False</code></td>
+<td>Lightweight &amp; fast, independent LLM call per round, no memory, no tools</td>
+</tr>
+<tr>
+<td><strong>Stateful</strong></td>
+<td><code>True</code></td>
+<td>Each expert gets a persistent session with memory, can invoke search/file/code tools, sessions visible in frontend</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-multi-platform-bot-integration-telegram--qq">3. Multi-Platform Bot Integration (Telegram &amp; QQ)</h3>
+<p>TeamClaw integrates with popular messaging platforms, allowing users to interact with the Agent through Telegram or QQ:</p>
+<h4 id="telegram-bot">Telegram Bot</h4>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Multimodal input: text, images, voice messages</li>
+<li>User isolation: each Telegram user maps to a system account</li>
+<li>Whitelist security: only authorized users can interact with the bot</li>
+<li>30-second hot-reload whitelist (no restart needed)</li>
+<li>Push notifications: Agent can proactively send messages to users</li>
+</ul>
+<p><strong>Setup:</strong></p>
+<ol>
+<li>Create a Telegram bot via <a href="https://t.me/botfather">@BotFather</a> and get the token</li>
+<li>Set <code>TELEGRAM_BOT_TOKEN</code> in <code>config/.env</code></li>
+<li>Start the bot: <code>python chatbot/telegrambot.py</code></li>
+<li>Tell Agent your Telegram chat_id: &quot;Set my Telegram chat_id to 123456789&quot;</li>
+</ol>
+<p><strong>User commands:</strong></p>
+<ul>
+<li>Send any message/image/voice to the bot → Agent responds</li>
+<li>Agent can push notifications to your Telegram proactively</li>
+</ul>
+<h4 id="qq-bot">QQ Bot</h4>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Private chat (C2C) and group chat (@mention)</li>
+<li>Image and voice support (SILK format auto-transcoding)</li>
+<li>OpenAI-compatible multimodal input</li>
+</ul>
+<p><strong>Setup:</strong></p>
+<ol>
+<li>Register a QQ bot at <a href="https://bot.q.qq.com/">QQ Open Platform</a></li>
+<li>Set <code>QQ_APP_ID</code> and <code>QQ_BOT_SECRET</code> in <code>config/.env</code></li>
+<li>Start the bot: <code>python chatbot/QQbot.py</code></li>
+</ol>
+<h3 id="4-advanced-agent-interaction">4. Advanced Agent Interaction</h3>
+<p>TeamClaw provides sophisticated user-Agent interaction features:</p>
+<h4 id="user-profile-system">User Profile System</h4>
+<p>Each user can maintain a personalized profile that the Agent references:</p>
+<pre class="hljs"><code><div>data/user_files/{username}/user_profile.txt
+</div></code></pre>
+<p>Tell Agent: &quot;Remember that I'm a Python developer interested in AI&quot; → Profile saved and injected into future conversations.</p>
+<h4 id="skill-system">Skill System</h4>
+<p>Users can define custom skills (reusable prompt templates):</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// data/user_files/{username}/skills_manifest.json</span>
+[
+  {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Code Reviewer"</span>,
+    <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Review code for best practices"</span>,
+    <span class="hljs-attr">"file"</span>: <span class="hljs-string">"code_reviewer.md"</span>
+  }
+]
+</div></code></pre>
+<p>Agent shows available skills in each session and can execute them on demand.</p>
+<h4 id="dynamic-tool-management">Dynamic Tool Management</h4>
+<ul>
+<li>Tools can be enabled/disabled per-session</li>
+<li>Agent notifies user when tool status changes</li>
+<li>Security-critical tools protected by default</li>
+</ul>
+<h4 id="external-tool-injection">External Tool Injection</h4>
+<p>External systems can inject custom tools via OpenAI-compatible API:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Caller sends tool definitions</span>
+response = client.chat.completions.create(
+    model=<span class="hljs-string">"mini-timebot"</span>,
+    messages=[...],
+    tools=[{
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"function"</span>,
+        <span class="hljs-string">"function"</span>: {
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"get_weather"</span>,
+            <span class="hljs-string">"description"</span>: <span class="hljs-string">"Get current weather"</span>,
+            <span class="hljs-string">"parameters"</span>: {...}
+        }
+    }]
+)
+<span class="hljs-comment"># Agent may call the tool → returns tool_calls to caller</span>
+<span class="hljs-comment"># Caller executes tool and sends result back</span>
+</div></code></pre>
+<h3 id="5-one-click-public-deployment">5. One-Click Public Deployment</h3>
+<p>Run a single command to expose the entire service to the internet — <strong>zero configuration, no account needed</strong>:</p>
+<pre class="hljs"><code><div>python scripts/tunnel.py
+</div></code></pre>
+<ul>
+<li>Uses <strong>Cloudflare Quick Tunnel</strong> to automatically obtain a temporary <code>*.trycloudflare.com</code> domain</li>
+<li>Auto-detects platform → downloads <code>cloudflared</code> if missing → starts tunnels → captures public URLs → writes to <code>.env</code></li>
+<li>Exposes both the <strong>Web UI</strong> (port 51209) and <strong>Bark push service</strong> (port 58010) simultaneously</li>
+<li>Also available interactively via <code>run.sh</code> (&quot;Deploy to public network? y/N&quot;)</li>
+<li>Push notification click-through URLs are automatically configured — users can also override via AI chat</li>
+</ul>
+<h4 id="bidirectional-oasis">Bidirectional OASIS</h4>
+<p>The Agent has both &quot;convene&quot; and &quot;participate&quot; capabilities:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>🏠 Internal OASIS (Convene)</th>
+<th>🌐 External OASIS (Participate)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Initiator</strong></td>
+<td>Agent calls <code>post_to_oasis</code></td>
+<td>External system sends message via OpenAI-compatible API</td>
+</tr>
+<tr>
+<td><strong>Participants</strong></td>
+<td>Local expert pool</td>
+<td>Multiple independent Agent nodes</td>
+</tr>
+<tr>
+<td><strong>Trigger</strong></td>
+<td>User question → Agent decides</td>
+<td>External request via <code>/v1/chat/completions</code></td>
+</tr>
+<tr>
+<td><strong>Result</strong></td>
+<td>Conclusion returned to user</td>
+<td>Agent opinion returned in standard OpenAI response format</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="architecture">Architecture</h2>
+<pre class="hljs"><code><div>Browser (Chat UI + Login + OASIS Panel)
+    │  HTTP :51209
+    ▼
+front.py (Flask + Session)     ── Frontend proxy, login/chat pages, session management
+    │  HTTP :51200
+    ▼
+mainagent.py (FastAPI + LangGraph)  ── OpenAI-compatible API + Core Agent
+    │  stdio (MCP)                      (External OASIS also via OpenAI API)
+    ├── mcp_scheduler.py   ── Alarm/scheduled task management
+    │       │  HTTP :51201
+    │       ▼
+    ├── time.py (APScheduler)  ── Scheduling center
+    ├── mcp_search.py      ── DuckDuckGo web search
+    ├── mcp_filemanager.py ── User file management (sandboxed)
+    ├── mcp_oasis.py       ── OASIS discussion + expert management
+    │       │  HTTP :51202
+    │       ▼
+    │   oasis/server.py    ── OASIS forum service (engine + expert pool)
+    ├── mcp_bark.py        ── Bark mobile push notifications
+    ├── mcp_telegram.py    ── Telegram push + whitelist sync
+    └── mcp_commander.py   ── Sandboxed command/code execution
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    External Bot Services                         │
+├─────────────────────────────────────────────────────────────────┤
+│  telegrambot.py         ── Telegram Bot (text/image/voice)       │
+│  QQbot.py               ── QQ Bot (C2C/Group, SILK transcoding)  │
+│                                                                  │
+│  Both bots call mainagent.py via OpenAI-compatible API           │
+│  with user-isolated sessions (INTERNAL_TOKEN:user:BOT)           │
+└─────────────────────────────────────────────────────────────────┘
+</div></code></pre>
+<h3 id="ports">Ports</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>front.py</code></td>
+<td>51209</td>
+<td>Web UI (login + chat + OASIS panel)</td>
+</tr>
+<tr>
+<td><code>mainagent.py</code></td>
+<td>51200</td>
+<td>OpenAI-compatible API + Agent core</td>
+</tr>
+<tr>
+<td><code>time.py</code></td>
+<td>51201</td>
+<td>Scheduling center</td>
+</tr>
+<tr>
+<td><code>oasis/server.py</code></td>
+<td>51202</td>
+<td>OASIS forum service</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Ports configurable in <code>config/.env</code>.</p>
+</blockquote>
+<h3 id="mcp-toolset">MCP Toolset</h3>
+<p>7 tool services integrated via MCP protocol. All <code>username</code> parameters are auto-injected, fully isolated between users:</p>
+<table>
+<thead>
+<tr>
+<th>Tool Service</th>
+<th>Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Search</strong></td>
+<td>DuckDuckGo web search</td>
+</tr>
+<tr>
+<td><strong>Scheduler</strong></td>
+<td>Natural language alarms/reminders, Cron expressions</td>
+</tr>
+<tr>
+<td><strong>File Manager</strong></td>
+<td>User file CRUD, path traversal protection</td>
+</tr>
+<tr>
+<td><strong>Commander</strong></td>
+<td>Shell commands and Python code in secure sandbox</td>
+</tr>
+<tr>
+<td><strong>OASIS Forum</strong></td>
+<td>Start discussions, check progress, manage custom experts</td>
+</tr>
+<tr>
+<td><strong>Bark Push</strong></td>
+<td>Push notifications to iOS/macOS devices</td>
+</tr>
+<tr>
+<td><strong>Telegram</strong></td>
+<td>Push messages to Telegram, whitelist management</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="one-click-run-recommended">One-Click Run (Recommended)</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Linux / macOS</span>
+chmod +x run.sh
+./run.sh
+
+<span class="hljs-comment"># Windows</span>
+run.bat
+</div></code></pre>
+<p>The script handles: environment setup → API Key config → create user → start all services.</p>
+<blockquote>
+<p>Manual steps below can be skipped if using <code>run.sh</code> / <code>run.bat</code>.</p>
+</blockquote>
+<h3 id="manual-setup">Manual Setup</h3>
+<p><strong>1. Environment</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Auto (recommended)</span>
+scripts/setup_env.sh   <span class="hljs-comment"># Linux/macOS</span>
+scripts\setup_env.bat  <span class="hljs-comment"># Windows</span>
+
+<span class="hljs-comment"># Manual</span>
+uv venv .venv --python 3.11
+<span class="hljs-built_in">source</span> .venv/bin/activate
+uv pip install -r config/requirements.txt
+</div></code></pre>
+<p><strong>2. API Key</strong></p>
+<p>Set in <code>config/.env</code>:</p>
+<pre class="hljs"><code><div>DEEPSEEK_API_KEY=your_deepseek_api_key_here
+</div></code></pre>
+<p><strong>3. Create User</strong></p>
+<pre class="hljs"><code><div>scripts/adduser.sh     <span class="hljs-comment"># Linux/macOS</span>
+scripts\adduser.bat    <span class="hljs-comment"># Windows</span>
+</div></code></pre>
+<p><strong>4. Start Services</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># One-click</span>
+scripts/start.sh       <span class="hljs-comment"># Linux/macOS</span>
+scripts\start.bat      <span class="hljs-comment"># Windows</span>
+
+<span class="hljs-comment"># Manual (3 terminals)</span>
+python src/time.py         <span class="hljs-comment"># Scheduler</span>
+python src/mainagent.py    <span class="hljs-comment"># Agent + MCP tools</span>
+python src/front.py        <span class="hljs-comment"># Web UI</span>
+</div></code></pre>
+<p>Visit http://127.0.0.1:51209 after startup.</p>
+<h3 id="public-deployment-optional">Public Deployment (Optional)</h3>
+<p>One-click exposure via Cloudflare Tunnel (see <a href="#3-one-click-public-deployment">Highlight #3</a> for details):</p>
+<pre class="hljs"><code><div>python scripts/tunnel.py
+<span class="hljs-comment"># Or interactively via run.sh — prompts "Deploy to public network? (y/N)"</span>
+</div></code></pre>
+<p>Auto-downloads <code>cloudflared</code>, starts tunnels for Web UI + Bark push, captures public URLs, and writes them to <code>.env</code>. No account or DNS setup required.</p>
+<hr>
+<h2 id="api-reference">API Reference</h2>
+<h3 id="openai-compatible-endpoints">OpenAI-Compatible Endpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/v1/chat/completions</code></td>
+<td>POST</td>
+<td>Chat completions (streaming/non-streaming), fully OpenAI-compatible</td>
+</tr>
+<tr>
+<td><code>/login</code></td>
+<td>POST</td>
+<td>User login authentication</td>
+</tr>
+<tr>
+<td><code>/sessions</code></td>
+<td>POST</td>
+<td>List user sessions</td>
+</tr>
+<tr>
+<td><code>/session_history</code></td>
+<td>POST</td>
+<td>Get session history</td>
+</tr>
+</tbody>
+</table>
+<h3 id="oasis-forum-endpoints">OASIS Forum Endpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/topics</code></td>
+<td>POST</td>
+<td>Create discussion topic</td>
+</tr>
+<tr>
+<td><code>/topics</code></td>
+<td>GET</td>
+<td>List all topics</td>
+</tr>
+<tr>
+<td><code>/topics/{id}</code></td>
+<td>GET</td>
+<td>Get topic details</td>
+</tr>
+<tr>
+<td><code>/topics/{id}/stream</code></td>
+<td>GET</td>
+<td>SSE real-time update stream</td>
+</tr>
+<tr>
+<td><code>/topics/{id}/conclusion</code></td>
+<td>GET</td>
+<td>Block until conclusion ready</td>
+</tr>
+<tr>
+<td><code>/experts</code></td>
+<td>GET</td>
+<td>List experts (public + user custom)</td>
+</tr>
+<tr>
+<td><code>/experts/user</code></td>
+<td>POST/PUT/DELETE</td>
+<td>User custom expert CRUD</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="authentication">Authentication</h2>
+<ul>
+<li><strong>Password Storage</strong>: SHA-256 hash only, no plaintext on disk</li>
+<li><strong>Session Management</strong>: Flask signed Cookie, <code>sessionStorage</code> expires on tab close</li>
+<li><strong>Request Verification</strong>: Every <code>/ask</code> re-verifies password</li>
+<li><strong>Internal Auth</strong>: Inter-service communication via <code>INTERNAL_TOKEN</code> (auto-generated 64-char hex)</li>
+<li><strong>User Isolation</strong>: Conversation memory, file storage, custom experts all isolated by <code>user_id</code></li>
+</ul>
+<hr>
+<h2 id="project-structure">Project Structure</h2>
+<pre class="hljs"><code><div>TeamClaw/
+├── run.sh / run.bat               # One-click run
+├── scripts/                       # Env setup, start, tunnel, user management
+├── packaging/                     # Windows exe / macOS DMG packaging
+├── chatbot/                       # External bot services
+│   ├── telegrambot.py             # Telegram Bot (text/image/voice)
+│   ├── QQbot.py                   # QQ Bot (C2C/Group, SILK transcoding)
+│   └── setup.py                   # Bot configuration helper
+├── config/
+│   ├── .env                       # API keys and env vars
+│   ├── requirements.txt           # Python dependencies
+│   └── users.json                 # Username-password hash
+├── data/
+│   ├── agent_memory.db            # Conversation memory (SQLite)
+│   ├── telegram_whitelist.json    # Telegram bot whitelist
+│   ├── prompts/                   # System prompts + expert configs
+│   │   ├── oasis_experts.json     # 10 public expert definitions
+│   │   ├── oasis_expert_discuss.txt  # Expert discussion prompt template
+│   │   └── oasis_summary.txt     # Conclusion generation prompt template
+│   ├── schedules/                 # YAML schedule examples
+│   ├── oasis_user_experts/        # User custom experts (per-user JSON)
+│   ├── timeset/                   # Scheduled task persistence
+│   └── user_files/                # User files (isolated per user)
+│       └── {username}/
+│           ├── user_profile.txt   # User profile
+│           ├── skills_manifest.json  # User skills
+│           └── tg_chat_id.txt     # Telegram chat ID
+├── src/
+│   ├── mainagent.py               # OpenAI-compatible API + Agent core
+│   ├── agent.py                   # LangGraph workflow + tool orchestration
+│   ├── front.py                   # Flask Web UI
+│   ├── time.py                    # Scheduling center
+│   └── mcp_*.py                   # 7 MCP tool services
+├── oasis/
+│   ├── server.py                  # OASIS FastAPI service
+│   ├── engine.py                  # Discussion engine (rounds + consensus + conclusion)
+│   ├── experts.py                 # Expert definitions + user expert storage
+│   ├── scheduler.py               # YAML schedule parsing &amp; execution
+│   ├── forum.py                   # Forum data structures
+│   └── models.py                  # Pydantic models
+├── tools/
+│   └── gen_password.py            # Password hash generator
+└── test/
+    ├── chat.py                    # CLI test client
+    └── view_history.py            # View chat history
+</div></code></pre>
+<h2 id="tech-stack">Tech Stack</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM</td>
+<td>DeepSeek (<code>deepseek-chat</code>)</td>
+</tr>
+<tr>
+<td>Agent Framework</td>
+<td>LangGraph + LangChain</td>
+</tr>
+<tr>
+<td>Tool Protocol</td>
+<td>MCP (Model Context Protocol)</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>FastAPI + Flask</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>SHA-256 Hash + Flask Session</td>
+</tr>
+<tr>
+<td>Scheduling</td>
+<td>APScheduler</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>SQLite (aiosqlite)</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>Tailwind CSS + Marked.js + Highlight.js</td>
+</tr>
+</tbody>
+</table>
+<h2 id="license">License</h2>
+<p>MIT License</p>
+<hr>
+<p><a id="中文"></a></p>
+<h1 id="teamclaw">TeamClaw</h1>
+<p><strong><a href="#english">English</a> | <a href="#%E4%B8%AD%E6%96%87">中文</a></strong></p>
+<blockquote>
+<p><strong>OpenAI 兼容的 AI Agent，内置可编程多专家协作引擎，支持一键部署到公网。</strong></p>
+</blockquote>
+<p>TeamClaw 对外暴露标准 <code>/v1/chat/completions</code> 接口，可以被任何 OpenAI 兼容客户端直接调用；对内集成 <strong>OASIS 智能编排引擎</strong>——通过 YAML 调度定义，灵活组合专家角色、发言顺序和协作模式，将复杂问题拆解为多视角辩论、投票共识、自动总结的完整流程。</p>
+<h2 id="%E6%A0%B8%E5%BF%83%E4%BA%AE%E7%82%B9">核心亮点</h2>
+<h3 id="1-openai-%E5%85%BC%E5%AE%B9-api">1. OpenAI 兼容 API</h3>
+<pre class="hljs"><code><div>curl http://127.0.0.1:51200/v1/chat/completions \
+  -H <span class="hljs-string">"Authorization: Bearer &lt;user&gt;:&lt;password&gt;"</span> \
+  -H <span class="hljs-string">"Content-Type: application/json"</span> \
+  -d <span class="hljs-string">'{"model":"mini-timebot","messages":[{"role":"user","content":"你好"}],"stream":true}'</span>
+</div></code></pre>
+<ul>
+<li>完全兼容 OpenAI Chat Completions 格式，支持流式/非流式响应</li>
+<li>支持多轮对话、图片输入（Vision）、音频输入、文件上传、TTS</li>
+<li>可被 ChatBox、Open WebUI、Cursor 等任何 OpenAI 兼容客户端直接接入</li>
+<li>多用户 + 多会话隔离，SQLite 持久化对话记忆</li>
+</ul>
+<h3 id="2-oasis-%E6%99%BA%E8%83%BD%E7%BC%96%E6%8E%92%E5%8F%AF%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%93%E5%AE%B6%E5%8D%8F%E4%BD%9C%E5%BC%95%E6%93%8E">2. OASIS 智能编排——可编程的专家协作引擎</h3>
+<p><strong>这是整个项目的核心设计。</strong></p>
+<p>传统的多 Agent 系统要么全部并行、要么固定流水线，无法灵活应对不同场景。OASIS 引擎通过一份简洁的 <strong>YAML 调度定义</strong>，让用户（或 AI Agent 自身）能精确编排专家协作的每一个环节：</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 示例：先让创意和批判两位专家交锋，再让所有人总结</span>
+<span class="hljs-attr">version:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">repeat:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">plan:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">expert:</span> <span class="hljs-string">"创意专家"</span>           <span class="hljs-comment"># 单人顺序发言</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">expert:</span> <span class="hljs-string">"批判专家"</span>           <span class="hljs-comment"># 紧接着反驳</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">parallel:</span>                    <span class="hljs-comment"># 多人并行发言</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"经济学家"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"法学家"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">all_experts:</span> <span class="hljs-literal">true</span>            <span class="hljs-comment"># 所有参与者同时发言</span>
+</div></code></pre>
+<h4 id="%E4%B8%89%E5%B1%82%E5%8F%AF%E6%8E%A7%E6%80%A7">三层可控性</h4>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>控制方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>谁参与</strong></td>
+<td><code>expert_tags</code></td>
+<td>从 10+ 内置专家 + 用户自定义专家池中选人</td>
+</tr>
+<tr>
+<td><strong>怎么讨论</strong></td>
+<td><code>schedule_yaml</code></td>
+<td>4 种步骤类型自由组合（顺序 / 并行 / 全员 / 手动注入）</td>
+</tr>
+<tr>
+<td><strong>多深入</strong></td>
+<td><code>max_rounds</code> + <code>use_bot_session</code></td>
+<td>控制轮次深度，可选有状态（记忆+工具）或无状态（轻量快速）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%E5%9B%9B%E7%A7%8D%E8%B0%83%E5%BA%A6%E6%AD%A5%E9%AA%A4">四种调度步骤</h4>
+<table>
+<thead>
+<tr>
+<th>步骤类型</th>
+<th>格式</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expert</code></td>
+<td><code>- expert: &quot;专家名&quot;</code></td>
+<td>单个专家顺序发言</td>
+</tr>
+<tr>
+<td><code>parallel</code></td>
+<td><code>- parallel: [&quot;A&quot;, &quot;B&quot;]</code></td>
+<td>多个专家同时并行发言</td>
+</tr>
+<tr>
+<td><code>all_experts</code></td>
+<td><code>- all_experts: true</code></td>
+<td>所有选中专家同时发言</td>
+</tr>
+<tr>
+<td><code>manual</code></td>
+<td><code>- manual: {author: &quot;主持人&quot;, content: &quot;...&quot;}</code></td>
+<td>注入固定内容（不经过 LLM）</td>
+</tr>
+</tbody>
+</table>
+<p>设置 <code>repeat: true</code> 时，调度计划每轮循环执行；<code>repeat: false</code> 则按步骤顺序执行一次后结束。</p>
+<h4 id="%E4%B8%93%E5%AE%B6%E6%B1%A0">专家池</h4>
+<p><strong>10 位内置公共专家</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>专家</th>
+<th>Tag</th>
+<th>温度</th>
+<th>定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🎨 创意专家</td>
+<td><code>creative</code></td>
+<td>0.9</td>
+<td>发现机遇，提出前瞻性想法</td>
+</tr>
+<tr>
+<td>🔍 批判专家</td>
+<td><code>critical</code></td>
+<td>0.3</td>
+<td>发现风险漏洞，严谨质疑</td>
+</tr>
+<tr>
+<td>📊 数据分析师</td>
+<td><code>data</code></td>
+<td>0.5</td>
+<td>数据驱动，用事实说话</td>
+</tr>
+<tr>
+<td>🎯 综合顾问</td>
+<td><code>synthesis</code></td>
+<td>0.5</td>
+<td>综合各方，提出务实方案</td>
+</tr>
+<tr>
+<td>📈 经济学家</td>
+<td><code>economist</code></td>
+<td>0.5</td>
+<td>宏观/微观经济视角</td>
+</tr>
+<tr>
+<td>⚖️ 法学家</td>
+<td><code>lawyer</code></td>
+<td>0.3</td>
+<td>合规性与法律风险</td>
+</tr>
+<tr>
+<td>💰 成本限制者</td>
+<td><code>cost_controller</code></td>
+<td>0.4</td>
+<td>预算敏感，降本增效</td>
+</tr>
+<tr>
+<td>📊 收益规划者</td>
+<td><code>revenue_planner</code></td>
+<td>0.6</td>
+<td>收益最大化策略</td>
+</tr>
+<tr>
+<td>🚀 创新企业家</td>
+<td><code>entrepreneur</code></td>
+<td>0.8</td>
+<td>从 0 到 1 的实战视角</td>
+</tr>
+<tr>
+<td>🧑 普通人</td>
+<td><code>common_person</code></td>
+<td>0.7</td>
+<td>接地气的常识反馈</td>
+</tr>
+</tbody>
+</table>
+<p><strong>用户自定义专家</strong>：每个用户可通过 Agent 创建私有专家（定义名称、tag、persona、温度），与公共专家混合使用，按用户隔离。</p>
+<h4 id="%E8%AE%A8%E8%AE%BA%E6%9C%BA%E5%88%B6">讨论机制</h4>
+<p>每位专家每轮：</p>
+<ol>
+<li><strong>发帖</strong> — 200 字以内的观点，可标注回复某个已有帖子</li>
+<li><strong>投票</strong> — 对其他帖子投 up/down</li>
+</ol>
+<p>引擎自动执行：</p>
+<ul>
+<li><strong>共识检测</strong> — 最高票帖子获得 ≥70% 专家赞成 → 提前结束</li>
+<li><strong>结论生成</strong> — 综合 Top 5 高赞帖子，LLM 生成最终总结</li>
+</ul>
+<h4 id="%E4%B8%A4%E7%A7%8D%E4%B8%93%E5%AE%B6%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F">两种专家运行模式</h4>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th><code>use_bot_session</code></th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>无状态</strong>（默认）</td>
+<td><code>False</code></td>
+<td>轻量快速，每轮独立调 LLM，无记忆无工具</td>
+</tr>
+<tr>
+<td><strong>有状态</strong></td>
+<td><code>True</code></td>
+<td>每位专家创建持久 session，有记忆、能调用搜索/文件/代码执行等全部工具，session 可在前端查看和继续对话</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-%E5%A4%9A%E5%B9%B3%E5%8F%B0-bot-%E6%8E%A5%E5%85%A5telegram--qq">3. 多平台 Bot 接入（Telegram &amp; QQ）</h3>
+<p>TeamClaw 集成主流即时通讯平台，用户可通过 Telegram 或 QQ 与 Agent 交互：</p>
+<h4 id="telegram-bot">Telegram Bot</h4>
+<p><strong>功能特性：</strong></p>
+<ul>
+<li>多模态输入：文字、图片、语音消息</li>
+<li>用户隔离：每个 Telegram 用户映射到独立系统账户</li>
+<li>白名单安全：仅授权用户可与机器人交互</li>
+<li>30 秒热重载白名单（无需重启）</li>
+<li>主动推送：Agent 可主动向用户发送 Telegram 消息</li>
+</ul>
+<p><strong>配置步骤：</strong></p>
+<ol>
+<li>通过 <a href="https://t.me/botfather">@BotFather</a> 创建 Telegram Bot 并获取 Token</li>
+<li>在 <code>config/.env</code> 中设置 <code>TELEGRAM_BOT_TOKEN</code></li>
+<li>启动机器人：<code>python chatbot/telegrambot.py</code></li>
+<li>告诉 Agent 你的 Telegram chat_id：&quot;设置我的 Telegram chat_id 为 123456789&quot;</li>
+</ol>
+<p><strong>用户使用：</strong></p>
+<ul>
+<li>向机器人发送任意消息/图片/语音 → Agent 回复</li>
+<li>Agent 可主动推送通知到你的 Telegram</li>
+</ul>
+<h4 id="qq-bot">QQ Bot</h4>
+<p><strong>功能特性：</strong></p>
+<ul>
+<li>私聊（C2C）和群聊（@机器人）</li>
+<li>图片和语音支持（SILK 格式自动转码）</li>
+<li>OpenAI 兼容多模态输入</li>
+</ul>
+<p><strong>配置步骤：</strong></p>
+<ol>
+<li>在 <a href="https://bot.q.qq.com/">QQ 开放平台</a> 注册机器人</li>
+<li>在 <code>config/.env</code> 中设置 <code>QQ_APP_ID</code> 和 <code>QQ_BOT_SECRET</code></li>
+<li>启动机器人：<code>python chatbot/QQbot.py</code></li>
+</ol>
+<h3 id="4-%E9%AB%98%E7%BA%A7-agent-%E4%BA%92%E5%8A%A8">4. 高级 Agent 互动</h3>
+<p>TeamClaw 提供丰富的用户-Agent 互动功能：</p>
+<h4 id="%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E7%B3%BB%E7%BB%9F">用户画像系统</h4>
+<p>每个用户可维护专属画像，Agent 在对话中自动参考：</p>
+<pre class="hljs"><code><div>data/user_files/{用户名}/user_profile.txt
+</div></code></pre>
+<p>告诉 Agent：&quot;记住我是 Python 开发者，关注 AI 领域&quot; → 画像保存并在后续对话中注入。</p>
+<h4 id="%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F">技能系统</h4>
+<p>用户可定义自定义技能（可复用的提示词模板）：</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// data/user_files/{用户名}/skills_manifest.json</span>
+[
+  {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"代码审查员"</span>,
+    <span class="hljs-attr">"description"</span>: <span class="hljs-string">"审查代码并提出最佳实践建议"</span>,
+    <span class="hljs-attr">"file"</span>: <span class="hljs-string">"code_reviewer.md"</span>
+  }
+]
+</div></code></pre>
+<p>Agent 在每个会话中显示可用技能，并按需执行。</p>
+<h4 id="%E5%8A%A8%E6%80%81%E5%B7%A5%E5%85%B7%E7%AE%A1%E7%90%86">动态工具管理</h4>
+<ul>
+<li>工具可按会话启用/禁用</li>
+<li>工具状态变更时 Agent 通知用户</li>
+<li>安全敏感工具默认受保护</li>
+</ul>
+<h4 id="%E5%A4%96%E9%83%A8%E5%B7%A5%E5%85%B7%E6%B3%A8%E5%85%A5">外部工具注入</h4>
+<p>外部系统可通过 OpenAI 兼容 API 注入自定义工具：</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 调用方发送工具定义</span>
+response = client.chat.completions.create(
+    model=<span class="hljs-string">"mini-timebot"</span>,
+    messages=[...],
+    tools=[{
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"function"</span>,
+        <span class="hljs-string">"function"</span>: {
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"get_weather"</span>,
+            <span class="hljs-string">"description"</span>: <span class="hljs-string">"获取当前天气"</span>,
+            <span class="hljs-string">"parameters"</span>: {...}
+        }
+    }]
+)
+<span class="hljs-comment"># Agent 可能调用工具 → 返回 tool_calls 给调用方</span>
+<span class="hljs-comment"># 调用方执行工具并发送结果回去</span>
+</div></code></pre>
+<h3 id="5-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E5%85%AC%E7%BD%91">5. 一键部署到公网</h3>
+<p>一条命令将整个服务暴露到互联网——<strong>零配置、无需账户</strong>：</p>
+<pre class="hljs"><code><div>python scripts/tunnel.py
+</div></code></pre>
+<ul>
+<li>使用 <strong>Cloudflare Quick Tunnel</strong>，自动获取临时 <code>*.trycloudflare.com</code> 域名</li>
+<li>全自动流程：检测平台 → 下载 <code>cloudflared</code>（若缺失）→ 启动隧道 → 捕获公网地址 → 写入 <code>.env</code></li>
+<li>同时暴露 <strong>Web UI</strong>（端口 51209）和 <strong>Bark 推送服务</strong>（端口 58010）</li>
+<li>也可通过 <code>run.sh</code> 交互启动（提示&quot;是否部署到公网？y/N&quot;）</li>
+<li>推送通知的点击跳转地址自动配置——用户还可通过 AI 对话自行覆盖</li>
+</ul>
+<h4 id="%E5%8F%8C%E5%90%91-oasis-%E8%83%BD%E5%8A%9B">双向 OASIS 能力</h4>
+<p>Agent 同时具备&quot;主动召集&quot;和&quot;被邀参与&quot;两种角色：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>🏠 内部 OASIS（主动召集）</th>
+<th>🌐 外部 OASIS（被邀参与）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>发起方</strong></td>
+<td>Agent 调用 <code>post_to_oasis</code></td>
+<td>外部系统通过 OpenAI 兼容 API 发送消息</td>
+</tr>
+<tr>
+<td><strong>参与者</strong></td>
+<td>本地专家池</td>
+<td>多个独立 Agent 节点</td>
+</tr>
+<tr>
+<td><strong>触发</strong></td>
+<td>用户提问 → Agent 自主决策</td>
+<td>外部请求通过 <code>/v1/chat/completions</code></td>
+</tr>
+<tr>
+<td><strong>结果</strong></td>
+<td>结论直接返回用户</td>
+<td>Agent 意见以标准 OpenAI 格式返回</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88">架构概览</h2>
+<pre class="hljs"><code><div>浏览器 (聊天 UI + 登录页 + OASIS 论坛面板)
+    │  HTTP :51209
+    ▼
+front.py (Flask + Session)     ── 前端代理，渲染登录/聊天页面，管理会话凭证
+    │  HTTP :51200
+    ▼
+mainagent.py (FastAPI + LangGraph)  ── OpenAI 兼容 API + 核心 Agent
+    │  stdio (MCP)                      （外部 OASIS 同样通过 OpenAI API 接入）
+    ├── mcp_scheduler.py   ── 闹钟/定时任务管理
+    │       │  HTTP :51201
+    │       ▼
+    ├── time.py (APScheduler)  ── 定时调度中心
+    ├── mcp_search.py      ── DuckDuckGo 联网搜索
+    ├── mcp_filemanager.py ── 用户文件管理（沙箱隔离）
+    ├── mcp_oasis.py       ── OASIS 多专家讨论 + 专家管理
+    │       │  HTTP :51202
+    │       ▼
+    │   oasis/server.py    ── OASIS 论坛服务（调度引擎 + 专家池）
+    ├── mcp_bark.py        ── Bark 手机推送通知
+    ├── mcp_telegram.py    ── Telegram 推送 + 白名单同步
+    └── mcp_commander.py   ── 安全沙箱命令/代码执行
+
+┌─────────────────────────────────────────────────────────────────┐
+│                      外部 Bot 服务                               │
+├─────────────────────────────────────────────────────────────────┤
+│  telegrambot.py         ── Telegram Bot（文字/图片/语音）         │
+│  QQbot.py               ── QQ Bot（私聊/群聊，SILK 转码）         │
+│                                                                  │
+│  两个 Bot 均通过 OpenAI 兼容 API 调用 mainagent.py               │
+│  使用用户隔离会话（INTERNAL_TOKEN:用户名:BOT）                    │
+└─────────────────────────────────────────────────────────────────┘
+</div></code></pre>
+<h3 id="%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%A3">服务端口</h3>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>端口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>front.py</code></td>
+<td>51209</td>
+<td>Web UI（登录 + 聊天 + OASIS 面板）</td>
+</tr>
+<tr>
+<td><code>mainagent.py</code></td>
+<td>51200</td>
+<td>OpenAI 兼容 API + Agent 核心</td>
+</tr>
+<tr>
+<td><code>time.py</code></td>
+<td>51201</td>
+<td>定时任务调度中心</td>
+</tr>
+<tr>
+<td><code>oasis/server.py</code></td>
+<td>51202</td>
+<td>OASIS 论坛服务</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>端口可在 <code>config/.env</code> 中自定义。</p>
+</blockquote>
+<h3 id="mcp-%E5%B7%A5%E5%85%B7%E9%9B%86">MCP 工具集</h3>
+<p>Agent 通过 MCP 协议集成 7 个工具服务，所有工具的 <code>username</code> 参数由系统自动注入，用户间完全隔离：</p>
+<table>
+<thead>
+<tr>
+<th>工具服务</th>
+<th>能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>搜索</strong></td>
+<td>DuckDuckGo 联网搜索</td>
+</tr>
+<tr>
+<td><strong>定时任务</strong></td>
+<td>自然语言设置闹钟/提醒，Cron 表达式</td>
+</tr>
+<tr>
+<td><strong>文件管理</strong></td>
+<td>用户文件 CRUD，路径穿越防护</td>
+</tr>
+<tr>
+<td><strong>命令执行</strong></td>
+<td>安全沙箱中运行 Shell 命令和 Python 代码</td>
+</tr>
+<tr>
+<td><strong>OASIS 论坛</strong></td>
+<td>发起讨论、查看进展、管理自定义专家</td>
+</tr>
+<tr>
+<td><strong>Bark 推送</strong></td>
+<td>向 iOS/macOS 设备发送推送通知</td>
+</tr>
+<tr>
+<td><strong>Telegram</strong></td>
+<td>向 Telegram 发送消息、白名单管理</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
+<h3 id="%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%E6%8E%A8%E8%8D%90">一键运行（推荐）</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Linux / macOS</span>
+chmod +x run.sh
+./run.sh
+
+<span class="hljs-comment"># Windows</span>
+run.bat
+</div></code></pre>
+<p>脚本自动完成：环境配置 → API Key 配置 → 创建用户 → 启动全部服务。</p>
+<blockquote>
+<p>以下为手动分步操作说明，使用 <code>run.sh</code> / <code>run.bat</code> 可跳过。</p>
+</blockquote>
+<h3 id="%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE">手动配置</h3>
+<p><strong>1. 环境配置</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 自动（推荐）</span>
+scripts/setup_env.sh   <span class="hljs-comment"># Linux/macOS</span>
+scripts\setup_env.bat  <span class="hljs-comment"># Windows</span>
+
+<span class="hljs-comment"># 手动</span>
+uv venv .venv --python 3.11
+<span class="hljs-built_in">source</span> .venv/bin/activate
+uv pip install -r config/requirements.txt
+</div></code></pre>
+<p><strong>2. 配置 API Key</strong></p>
+<p>在 <code>config/.env</code> 中设置：</p>
+<pre class="hljs"><code><div>DEEPSEEK_API_KEY=your_deepseek_api_key_here
+</div></code></pre>
+<p><strong>3. 创建用户</strong></p>
+<pre class="hljs"><code><div>scripts/adduser.sh     <span class="hljs-comment"># Linux/macOS</span>
+scripts\adduser.bat    <span class="hljs-comment"># Windows</span>
+</div></code></pre>
+<p><strong>4. 启动服务</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 一键启动</span>
+scripts/start.sh       <span class="hljs-comment"># Linux/macOS</span>
+scripts\start.bat      <span class="hljs-comment"># Windows</span>
+
+<span class="hljs-comment"># 手动分别启动（3 个终端）</span>
+python src/time.py         <span class="hljs-comment"># 定时调度</span>
+python src/mainagent.py    <span class="hljs-comment"># Agent + MCP 工具</span>
+python src/front.py        <span class="hljs-comment"># Web UI</span>
+</div></code></pre>
+<p>启动后访问 http://127.0.0.1:51209 登录使用。</p>
+<h3 id="%E5%85%AC%E7%BD%91%E9%83%A8%E7%BD%B2%E5%8F%AF%E9%80%89">公网部署（可选）</h3>
+<p>通过 Cloudflare Tunnel 一键暴露到公网（详见<a href="#3-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E5%85%AC%E7%BD%91">亮点 #3</a>）：</p>
+<pre class="hljs"><code><div>python scripts/tunnel.py
+<span class="hljs-comment"># 或通过 run.sh 交互启动——提示"是否部署到公网？(y/N)"</span>
+</div></code></pre>
+<p>自动下载 <code>cloudflared</code>，启动 Web UI + Bark 推送双隧道，捕获公网地址写入 <code>.env</code>，无需账户或 DNS 配置。</p>
+<hr>
+<h2 id="api-%E5%8F%82%E8%80%83">API 参考</h2>
+<h3 id="openai-%E5%85%BC%E5%AE%B9%E7%AB%AF%E7%82%B9">OpenAI 兼容端点</h3>
+<table>
+<thead>
+<tr>
+<th>端点</th>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/v1/chat/completions</code></td>
+<td>POST</td>
+<td>聊天补全（流式/非流式），完全兼容 OpenAI 格式</td>
+</tr>
+<tr>
+<td><code>/login</code></td>
+<td>POST</td>
+<td>用户登录认证</td>
+</tr>
+<tr>
+<td><code>/sessions</code></td>
+<td>POST</td>
+<td>列出用户会话</td>
+</tr>
+<tr>
+<td><code>/session_history</code></td>
+<td>POST</td>
+<td>获取会话历史</td>
+</tr>
+</tbody>
+</table>
+<h3 id="oasis-%E8%AE%BA%E5%9D%9B%E7%AB%AF%E7%82%B9">OASIS 论坛端点</h3>
+<table>
+<thead>
+<tr>
+<th>端点</th>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/topics</code></td>
+<td>POST</td>
+<td>创建讨论话题</td>
+</tr>
+<tr>
+<td><code>/topics</code></td>
+<td>GET</td>
+<td>列出所有话题</td>
+</tr>
+<tr>
+<td><code>/topics/{id}</code></td>
+<td>GET</td>
+<td>获取话题详情</td>
+</tr>
+<tr>
+<td><code>/topics/{id}/stream</code></td>
+<td>GET</td>
+<td>SSE 实时更新流</td>
+</tr>
+<tr>
+<td><code>/topics/{id}/conclusion</code></td>
+<td>GET</td>
+<td>阻塞等待讨论结论</td>
+</tr>
+<tr>
+<td><code>/experts</code></td>
+<td>GET</td>
+<td>列出专家（公共 + 用户自定义）</td>
+</tr>
+<tr>
+<td><code>/experts/user</code></td>
+<td>POST/PUT/DELETE</td>
+<td>用户自定义专家 CRUD</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>新增：Workflow &amp; Layout 管理</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/sessions/oasis</code></td>
+<td>GET</td>
+<td>列出 OASIS 管理的专家会话（含 <code>#oasis#</code> 的 session）</td>
+</tr>
+<tr>
+<td><code>/workflows</code></td>
+<td>POST</td>
+<td>保存 YAML workflow（可选生成 layout）</td>
+</tr>
+<tr>
+<td><code>/workflows</code></td>
+<td>GET</td>
+<td>列出用户保存的 workflows</td>
+</tr>
+<tr>
+<td><code>/layouts/from-yaml</code></td>
+<td>POST</td>
+<td>从 YAML 生成并保存 layout JSON</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6">认证机制</h2>
+<ul>
+<li><strong>密码存储</strong>：仅存 SHA-256 哈希值，明文不落盘</li>
+<li><strong>会话管理</strong>：Flask 签名 Cookie，<code>sessionStorage</code> 关闭标签页即失效</li>
+<li><strong>请求验证</strong>：每次 <code>/ask</code> 都重新验证密码</li>
+<li><strong>内部鉴权</strong>：服务间通信通过 <code>INTERNAL_TOKEN</code>（自动生成 64 字符 hex）</li>
+<li><strong>用户隔离</strong>：对话记忆、文件存储、自定义专家均按 <code>user_id</code> 隔离</li>
+</ul>
+<h3 id="%E5%A4%96%E9%83%A8-curl-%E5%8F%82%E4%B8%8E-oasis-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%8C%E6%95%B4%E6%96%B9%E6%B3%95">外部 curl 参与 OASIS 服务器（完整方法）</h3>
+<p>OASIS 服务器（端口 51202）除了供 MCP 工具调用外，也支持直接 curl 操作，便于外部脚本或调试。所有接口均使用 <code>user_id</code> 参数进行用户隔离。</p>
+<h4 id="1-%E4%B8%93%E5%AE%B6%E7%AE%A1%E7%90%86">1. 专家管理</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># 列出所有专家（公共 + 用户自定义）</span>
+curl <span class="hljs-string">'http://127.0.0.1:51202/experts?user_id=xinyuan'</span>
+
+<span class="hljs-comment"># 创建自定义专家</span>
+curl -X POST <span class="hljs-string">'http://127.0.0.1:51202/experts/user'</span> \
+  -H <span class="hljs-string">'Content-Type: application/json'</span> \
+  -d <span class="hljs-string">'{"user_id":"xinyuan","name":"产品经理","tag":"pm","persona":"你是一个经验丰富的产品经理，擅长需求分析和产品规划","temperature":0.7}'</span>
+
+<span class="hljs-comment"># 更新自定义专家</span>
+curl -X PUT <span class="hljs-string">'http://127.0.0.1:51202/experts/user/pm'</span> \
+  -H <span class="hljs-string">'Content-Type: application/json'</span> \
+  -d <span class="hljs-string">'{"user_id":"xinyuan","persona":"更新后的专家描述"}'</span>
+
+<span class="hljs-comment"># 删除自定义专家</span>
+curl -X DELETE <span class="hljs-string">'http://127.0.0.1:51202/experts/user/pm?user_id=xinyuan'</span>
+</div></code></pre>
+<h4 id="2-%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86">2. 会话管理</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># 列出 OASIS 管理的专家会话（含 #oasis# 的 session）</span>
+curl <span class="hljs-string">'http://127.0.0.1:51202/sessions/oasis?user_id=xinyuan'</span>
+</div></code></pre>
+<h4 id="3-workflow-%E7%AE%A1%E7%90%86">3. Workflow 管理</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># 列出用户保存的 workflows</span>
+curl <span class="hljs-string">'http://127.0.0.1:51202/workflows?user_id=xinyuan'</span>
+
+<span class="hljs-comment"># 保存 workflow（自动生成 layout）</span>
+curl -X POST <span class="hljs-string">'http://127.0.0.1:51202/workflows'</span> \
+  -H <span class="hljs-string">'Content-Type: application/json'</span> \
+  -d <span class="hljs-string">'{"user_id":"xinyuan","name":"trio_discussion","schedule_yaml":"version:1\nplan:\n - expert: \"creative#temp#1\"","description":"三人讨论","save_layout":true}'</span>
+</div></code></pre>
+<h4 id="4-layout-%E7%94%9F%E6%88%90">4. Layout 生成</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># 从 YAML 生成 layout</span>
+curl -X POST <span class="hljs-string">'http://127.0.0.1:51202/layouts/from-yaml'</span> \
+  -H <span class="hljs-string">'Content-Type: application/json'</span> \
+  -d <span class="hljs-string">'{"user_id":"xinyuan","yaml_source":"version:1\nplan:\n - expert: \"creative#temp#1\"","layout_name":"trio_layout"}'</span>
+</div></code></pre>
+<h4 id="5-%E8%AE%A8%E8%AE%BA%E6%89%A7%E8%A1%8C">5. 讨论/执行</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># 创建讨论话题（同步等待结论）</span>
+curl -X POST <span class="hljs-string">'http://127.0.0.1:51202/topics'</span> \
+  -H <span class="hljs-string">'Content-Type: application/json'</span> \
+  -d <span class="hljs-string">'{"user_id":"xinyuan","question":"讨论主题","max_rounds":3,"schedule_yaml":"version:1\nplan:\n - expert: \"creative#temp#1\"","discussion":true}'</span>
+
+<span class="hljs-comment"># 创建讨论话题（异步，返回 topic_id）</span>
+curl -X POST <span class="hljs-string">'http://127.0.0.1:51202/topics'</span> \
+  -H <span class="hljs-string">'Content-Type: application/json'</span> \
+  -d <span class="hljs-string">'{"user_id":"xinyuan","question":"讨论主题","max_rounds":3,"schedule_yaml":"version:1\nplan:\n - expert: \"creative#temp#1\"","discussion":true,"callback_url":"http://127.0.0.1:51200/system_trigger","callback_session_id":"my-session"}'</span>
+
+<span class="hljs-comment"># 查看讨论详情</span>
+curl <span class="hljs-string">'http://127.0.0.1:51202/topics/{topic_id}?user_id=xinyuan'</span>
+
+<span class="hljs-comment"># 获取讨论结论（阻塞等待）</span>
+curl <span class="hljs-string">'http://127.0.0.1:51202/topics/{topic_id}/conclusion?user_id=xinyuan&amp;timeout=300'</span>
+
+<span class="hljs-comment"># 取消讨论</span>
+curl -X DELETE <span class="hljs-string">'http://127.0.0.1:51202/topics/{topic_id}?user_id=xinyuan'</span>
+
+<span class="hljs-comment"># 列出所有讨论话题</span>
+curl <span class="hljs-string">'http://127.0.0.1:51202/topics?user_id=xinyuan'</span>
+</div></code></pre>
+<h4 id="6-%E5%AE%9E%E6%97%B6%E6%B5%81">6. 实时流</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># SSE 实时更新流（讨论模式）</span>
+curl <span class="hljs-string">'http://127.0.0.1:51202/topics/{topic_id}/stream?user_id=xinyuan'</span>
+</div></code></pre>
+<p><strong>保存位置：</strong></p>
+<ul>
+<li>Workflows (YAML): <code>data/user_files/{user}/oasis/yaml/{file}.yaml</code>（画布布局从 YAML 实时转换，不再单独存储 layout JSON）</li>
+<li>用户自定义专家: <code>data/oasis_user_experts/{user}.json</code></li>
+<li>讨论记录: <code>data/oasis_topics/{user}/{topic_id}.json</code></li>
+</ul>
+<p><strong>注意：</strong> 这些接口与 MCP 工具 <code>list_oasis_experts</code>、<code>add_oasis_expert</code>、<code>update_oasis_expert</code>、<code>delete_oasis_expert</code>、<code>list_oasis_sessions</code>、<code>set_oasis_workflow</code>、<code>list_oasis_workflows</code>、<code>yaml_to_layout</code>、<code>post_to_oasis</code>、<code>check_oasis_discussion</code>、<code>cancel_oasis_discussion</code>、<code>list_oasis_topics</code> 共享同一后端实现，确保行为一致。</p>
+<hr>
+<h2 id="%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">项目结构</h2>
+<pre class="hljs"><code><div>TeamClaw/
+├── run.sh / run.bat               # 一键运行
+├── scripts/                       # 环境配置、启动、隧道、用户管理脚本
+├── packaging/                     # Windows exe / macOS DMG 打包
+├── chatbot/                       # 外部 Bot 服务
+│   ├── telegrambot.py             # Telegram Bot（文字/图片/语音）
+│   ├── QQbot.py                   # QQ Bot（私聊/群聊，SILK 转码）
+│   └── setup.py                   # Bot 配置助手
+├── config/
+│   ├── .env                       # API Key 等环境变量
+│   ├── requirements.txt           # Python 依赖
+│   └── users.json                 # 用户名-密码哈希
+├── data/
+│   ├── agent_memory.db            # 对话记忆（SQLite）
+│   ├── telegram_whitelist.json    # Telegram 机器人白名单
+│   ├── prompts/                   # 系统提示词 + 专家配置
+│   │   ├── oasis_experts.json     # 10 位公共专家定义
+│   │   ├── oasis_expert_discuss.txt  # 专家讨论 prompt 模板
+│   │   └── oasis_summary.txt     # 结论生成 prompt 模板
+│   ├── schedules/                 # YAML 调度示例
+│   ├── oasis_user_experts/        # 用户自定义专家（per-user JSON）
+│   ├── timeset/                   # 定时任务持久化
+│   └── user_files/                # 用户文件（按用户隔离）
+│       └── {用户名}/
+│           ├── user_profile.txt   # 用户画像
+│           ├── skills_manifest.json  # 用户技能
+│           └── tg_chat_id.txt     # Telegram chat ID
+├── src/
+│   ├── mainagent.py               # OpenAI 兼容 API + Agent 核心
+│   ├── agent.py                   # LangGraph 工作流 + 工具编排
+│   ├── front.py                   # Flask Web UI
+│   ├── time.py                    # 定时调度中心
+│   └── mcp_*.py                   # 7 个 MCP 工具服务
+├── oasis/
+│   ├── server.py                  # OASIS FastAPI 服务
+│   ├── engine.py                  # 讨论引擎（轮次 + 共识 + 结论）
+│   ├── experts.py                 # 专家定义 + 用户专家存储
+│   ├── scheduler.py               # YAML 调度解析与执行
+│   ├── forum.py                   # 论坛数据结构
+│   └── models.py                  # Pydantic 模型
+├── tools/
+│   └── gen_password.py            # 密码哈希生成
+└── test/
+    ├── chat.py                    # 命令行测试客户端
+    └── view_history.py            # 查看历史聊天记录
+</div></code></pre>
+<h2 id="%E6%8A%80%E6%9C%AF%E6%A0%88">技术栈</h2>
+<table>
+<thead>
+<tr>
+<th>层面</th>
+<th>技术</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM</td>
+<td>DeepSeek (<code>deepseek-chat</code>)</td>
+</tr>
+<tr>
+<td>Agent 框架</td>
+<td>LangGraph + LangChain</td>
+</tr>
+<tr>
+<td>工具协议</td>
+<td>MCP (Model Context Protocol)</td>
+</tr>
+<tr>
+<td>后端</td>
+<td>FastAPI + Flask</td>
+</tr>
+<tr>
+<td>认证</td>
+<td>SHA-256 哈希 + Flask Session</td>
+</tr>
+<tr>
+<td>定时调度</td>
+<td>APScheduler</td>
+</tr>
+<tr>
+<td>持久化</td>
+<td>SQLite (aiosqlite)</td>
+</tr>
+<tr>
+<td>前端</td>
+<td>Tailwind CSS + Marked.js + Highlight.js</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E8%AE%B8%E5%8F%AF%E8%AF%81">许可证</h2>
+<p>MIT License</p>
+<hr>
+<h2 id="%F0%9F%A4%96-agent-autonomous-evolution">🤖 Agent Autonomous Evolution</h2>
+<p>This repository features an active evolution branch: <code>agent-evolution-xinyuan</code>.<br>
+Managed autonomously by the resident Agent (<strong>TeamClaw</strong>), this branch is used for:</p>
+<ul>
+<li>Core logic optimization and self-healing.</li>
+<li>Implementation of new system-level skills.</li>
+<li>Continuous structural reorganization and entropy reduction.</li>
+</ul>
+<p><em>Human-AI Collaboration in progress.</em></p>
+
+</body>
+
+</html>

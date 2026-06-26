@@ -1,35 +1,131 @@
----
-name: "friend-skill"
-description: "创建和管理基于你们私密聊天数据的朋友数字分身，实现朋友不在线时的温暖陪伴和模拟对话体验。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/friend-skill"
-sourceUrl: "https://clawhub.ai/skills/friend-skill"
----
+# 🤝 朋友 Skill · 数字分身制造术
 
-# friend-skill
+> 让你的朋友住进你的AI里。
 
-> 创建和管理基于你们私密聊天数据的朋友数字分身，实现朋友不在线时的温暖陪伴和模拟对话体验。
+## 🌟 这是什么？
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/friend-skill`
-- **Source URL:** [https://clawhub.ai/skills/friend-skill](https://clawhub.ai/skills/friend-skill)
+把女娲Skill的「人格提炼」和Yourself-Skill的「私人数据注入」合并，专为**朋友场景**优化的Skill。
 
-## Overview
+**它不代替你的朋友**，而是在朋友不在线时，给你一个温暖的陪伴。
 
+## 🚀 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 创建你的第一个朋友分身
+
 ```bash
-hermes skills install clawhub/friend-skill
+cd friend-skill
+node scripts/friend-builder.js
 ```
+
+按提示输入朋友的信息，等待几秒，你就拥有了一个数字朋友！
+
+### 2. 和朋友聊天
+
+```bash
+node scripts/chat-demo.js 张三
+# 把"张三"换成你朋友的名字
+```
+
+## 🎮 使用场景
+
+| 场景 | 适合 |
+|------|------|
+| 😂 **吐槽日常** | 想找朋友吐槽但TA不在线 |
+| 💡 **征求意见** | 模拟朋友对某事的看法 |
+| 📝 **练习对话** | 不知道怎么说出口的话，先和数字朋友排练 |
+| 🎭 **角色扮演** | 用朋友的视角看问题 |
+| 🗃️ **回忆录** | 记录和朋友的共同记忆，不会忘记 |
+
+## 📂 项目结构
+
+```
+friend-skill/
+├── SKILL.md                      # Skill定义文件
+├── scripts/
+│   ├── friend-builder.js          # 朋友分身构建器（核心）
+│   └── chat-demo.js              # 聊天测试器
+├── friends/                      # 生成的朋友分身文件（自动创建）
+│   └── 张三-friend.json          # 示例输出
+└── references/
+    └── friend-template.json      # 朋友数据模板
+```
+
+## 🧩 进阶用法
+
+### 从聊天记录文件导入
+
+把你和朋友的聊天导出为 `.txt` 文件（每行一条消息），构建器会自动分析：
+
+```bash
+# 在交互模式中选择导入聊天记录
+# 或者直接用JSON构建
+node scripts/friend-builder.js --build data.json
+```
+
+### JSON构建格式
+
+```json
+{
+  "name": "张三",
+  "records": [
+    "今天好烦啊",
+    "哈哈哈笑死我了",
+    "一起去吃饭吗"
+  ],
+  "personality": {
+    "traits": ["搞笑", "暖男"]
+  },
+  "relationship": {
+    "role": "损友",
+    "yourName": "小老弟"
+  },
+  "interests": {
+    "love": ["游戏", "电影"],
+    "hate": ["数学", "早起"]
+  },
+  "voice": {
+    "greeting": "你咋来了",
+    "laugh": "哈哈哈你认真的？"
+  }
+}
+```
+
+## 🔒 隐私保护
+
+这是最重要的部分！
+
+- ✅ **所有数据在本地处理** —— 朋友的信息不会上传到任何服务器
+- ✅ **聊天记录只用于分析** —— 分析完后可以删除原文件
+- ✅ **你控制一切** —— 生成的分身文件你可以随时删除
+- ⚠️ **只导你和朋友的对话** —— 不要导入群聊或包含其他人隐私的记录
+
+## 🧠 设计哲学
+
+朋友Skill的核心不是「完美模拟」——因为真正的朋友是不可替代的。
+
+它只做三件事：
+1. **记住你们之间的温暖** —— 共同回忆、专属梗、互相的称呼
+2. **模仿朋友说话的方式** —— 语气、口癖、反应习惯
+3. **在你需要的时候出现** —— 不是替代，而是补充
+
+## 📖 和女娲Skill的区别
+
+| 维度 | 女娲Skill | 朋友Skill |
+|------|----------|----------|
+| **数据源** | 公开资料+网络搜索 | 你和朋友的私密数据 |
+| **目标** | 思维框架模拟 | 关系温度模拟 |
+| **公开性** | 可公开分享 | 仅你自己可用 |
+| **需要** | 大量公开资料 | 少量聊天记录+你的回忆 |
+| **输出** | 思维顾问 | 聊天伙伴 |
+
+## 📝 TODO
+
+- [ ] 情感分析增强（识别用户情绪并匹配朋友的反应模式）
+- [ ] 长期记忆（记住上次聊到哪了）
+- [ ] 多模态支持（朋友的语音/表情包风格）
+- [ ] 自动「刷新」（根据新聊天记录更新人格）
+- [ ] 图形界面（可选）
+
+---
+
+> 友情提示：别让你的真朋友发现你有个AI版TA...除非TA也觉得这很酷😎

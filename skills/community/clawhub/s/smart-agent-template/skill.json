@@ -1,0 +1,7 @@
+{
+  "name": "smart-agent-template",
+  "version": "1.0.0",
+  "description": "Smart Agent 工作流模板：三重判断 + 自动更新 + Context 优化",
+  "author": "sihj",
+  "tags": ["agent", "workflow", "template", "gtd", "auto-update"]
+}

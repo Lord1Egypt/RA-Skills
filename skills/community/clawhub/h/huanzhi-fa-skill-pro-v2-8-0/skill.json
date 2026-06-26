@@ -1,0 +1,55 @@
+{
+  "name": "huanzhi-fa-skill-pro",
+  "displayName": "焕智FA Pro — AI专属融资顾问",
+  "displayNameEn": "HuanZhi FA Pro",
+  "version": "2.8.1",
+  "description": "创始人融资必备AI顾问！一键诊断融资准备度、秒懂TS条款陷阱、模拟投资人谈判。🇨🇳 中文 | 🧠 Capital EQ | 触发：融资/条款/焦虑",
+  "tags": [
+    "fa",
+    "fundraising",
+    "startup",
+    "founder",
+    "vc",
+    "angel-investor",
+    "pitch",
+    "term-sheet",
+    "ts-analysis",
+    "finance",
+    "investment",
+    "capital-eq",
+    "emotional-intelligence",
+    "融资",
+    "创业者",
+    "投资人",
+    "条款分析",
+    "商业计划书",
+    "bp",
+    "chinese",
+    "china-startup",
+    "pre-a",
+    "series-a"
+  ],
+  "capabilities": {
+    "memory": {
+      "enabled": true,
+      "description": "跨会话记忆用户画像和融资进度"
+    },
+    "scheduled_tasks": {
+      "enabled": true,
+      "description": "周报提醒、TS到期提醒、情绪触发的定时任务"
+    },
+    "knowledge_base": {
+      "enabled": true,
+      "description": "检索法规政策库和机构情报库"
+    },
+    "file_write": {
+      "enabled": true,
+      "paths": ["data/users/"],
+      "description": "保存用户画像 profile.json 和上传的BP文件"
+    }
+  },
+  "data_policy": {
+    "storage": "local_only",
+    "description": "用户数据仅保存在本地，不上传云端，Skill 不保证保密性"
+  }
+}

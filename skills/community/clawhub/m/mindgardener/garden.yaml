@@ -1,0 +1,22 @@
+# Engram configuration
+workspace: .
+memory_dir: memory/
+entities_dir: memory/entities/
+graph_file: memory/graph.jsonl
+long_term_memory: MEMORY.md
+surprise_file: memory/surprise-scores.jsonl
+
+extraction:
+  model: gemini-2.0-flash
+  provider: google
+  temperature: 0.1
+
+consolidation:
+  surprise_threshold: 0.5
+  decay_days: 30
+  max_consolidation_items: 10
+
+schedule:
+  extract: "0 3 * * *"
+  backfill: "15 * * * *"
+  surprise: "30 3 * * *"

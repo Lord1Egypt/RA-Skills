@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "skill": "cementops-safety-training",
+    "domain": "Safety Hazards During Training Activities",
+    "version": "1.0.0",
+    "last_updated": "2026-04-01"
+  },
+  "hazards": [
+    {
+      "hazard_id": "ST-HAZ-001",
+      "hazard_name": "Hands-On Training Near Operating Equipment",
+      "description": "Hands-on and practical training conducted near or on operating equipment exposes trainees to the same hazards as normal operations, with the added risk that trainees are unfamiliar with the equipment and may not recognize developing hazards as quickly as experienced operators.",
+      "risk_level": "High",
+      "potential_consequences": [
+        "Entanglement in rotating equipment during demonstration",
+        "Electrical contact during LOTO training on partially de-energized systems",
+        "Falls during elevated platform training if fall protection is not properly supervised",
+        "Burns from hot surfaces during kiln or mill area familiarization",
+        "Struck-by injuries from mobile equipment during driving skills training"
+      ],
+      "controls": {
+        "engineering": [
+          "Conduct initial hands-on training on de-energized or isolated equipment whenever possible",
+          "Use training simulators or mock-ups for high-hazard tasks (e.g., LOTO practice boards, confined space training props)",
+          "Ensure all emergency stop devices are functional and accessible during any hands-on training near operating equipment"
+        ],
+        "administrative": [
+          "Maintain a 1:1 or 1:2 trainer-to-trainee ratio during hands-on training near operating equipment",
+          "Brief all trainees on emergency stop locations and procedures before beginning hands-on exercises",
+          "Establish controlled access to the training area; only the trainer and current trainees should be present",
+          "The competent person conducting training must remain within arm's reach of the trainee when the trainee is near operating equipment",
+          "Conduct a pre-training hazard assessment of the training area and document any temporary controls put in place",
+          "Schedule hands-on training during periods of reduced plant activity when possible (e.g., partial shutdown, weekend)"
+        ],
+        "ppe": [
+          "All trainees must wear full site PPE during hands-on training (hard hat, safety glasses, steel-toed boots, hearing protection)",
+          "Task-specific PPE must be provided and verified as properly fitted before the trainee approaches the equipment (e.g., harness for fall protection training, respirator for confined space training)"
+        ]
+      },
+      "monitoring": "The competent person must continuously observe trainees during hands-on exercises. Any unsafe act or condition must result in an immediate stop of training, correction of the issue, and re-briefing before continuing.",
+      "references": [
+        "30 CFR 46.7 (Task training requirements)",
+        "30 CFR 56.14105 (Procedures during repair or maintenance)",
+        "30 CFR 56.12016 (LOTO during training exercises)"
+      ],
+      "severity": "high",
+      "cfr_references": [
+        "30 CFR Part 46 (Training Requirements)"
+      ]
+    },
+    {
+      "hazard_id": "ST-HAZ-002",
+      "hazard_name": "Training Fatigue and Complacency",
+      "description": "Ineffective training delivery methods, such as extended lecture-only sessions, repetitive content year after year, or treating training as a checkbox exercise, lead to trainee disengagement and failure to retain critical safety information. This is a systemic hazard because it degrades the effectiveness of the entire safety training program.",
+      "risk_level": "Medium",
+      "potential_consequences": [
+        "Trainees do not retain critical safety information, increasing the likelihood of at-risk behaviors",
+        "Annual refresher training becomes perceived as a waste of time, undermining the overall safety culture",
+        "Competency evaluations become perfunctory, passing trainees who have not actually demonstrated understanding",
+        "Employees develop a false sense of security (trained on paper but not in practice)",
+        "Increased probability of incidents in the weeks following ineffective training due to reinforced complacency"
+      ],
+      "controls": {
+        "training_design": [
+          "Vary training delivery methods: mix classroom instruction, video, group discussion, hands-on practice, site walk-throughs, and scenario-based exercises",
+          "Limit lecture segments to 20 minutes or less before switching to an interactive activity or discussion",
+          "Use site-specific examples, photos, and incident case studies relevant to the trainees' actual work areas and equipment",
+          "Include practical demonstrations for safety-critical topics: extinguisher use, harness inspection, gas monitor operation, LOTO practice",
+          "Update refresher content annually to include new incidents, near misses, equipment changes, and regulatory updates",
+          "Solicit and act on trainee feedback after each training session to continuously improve content and delivery"
+        ],
+        "scheduling": [
+          "Distribute annual refresher training across the year in shorter segments (e.g., 12 monthly sessions of 40 minutes) rather than a single 8-hour day",
+          "Schedule training during alert hours; avoid training immediately after night shift, after meals, or at the end of a long shift",
+          "Allow breaks every 45-60 minutes during longer training sessions"
+        ],
+        "evaluation": [
+          "Use meaningful competency evaluations that require trainees to demonstrate understanding, not just sign an attendance sheet",
+          "Include scenario-based questions: 'What would you do if...' rather than true/false recall questions",
+          "Require hands-on demonstration for safety-critical tasks (LOTO, confined space, fall protection) rather than written quiz alone",
+          "Track evaluation results over time to identify topics where comprehension is consistently low, indicating a need to improve the training content for those topics"
+        ],
+        "culture": [
+          "Leadership should visibly participate in training sessions; when managers attend, it signals that training matters",
+          "Recognize and reward employees who actively participate in training, ask questions, and share real-world safety experiences",
+          "Never use training as punishment or a scheduling inconvenience; position it as an investment in the employee's safety and career",
+          "Encourage experienced employees to share stories and lessons learned during training sessions to make the content real and relatable"
+        ]
+      },
+      "monitoring": "Track leading indicators of training effectiveness: near-miss reporting rates (should increase after effective training), behavioral observation results, competency evaluation pass rates, and trainee satisfaction survey scores. Declining trends indicate training complacency is setting in.",
+      "references": [
+        "30 CFR 46.8 (Annual refresher training content requirements)",
+        "30 CFR 46.3(d) (Training plan must include evaluation of effectiveness)",
+        "MSHA Program Policy Manual, Volume IV, Part 46 Interpretations"
+      ],
+      "severity": "high",
+      "cfr_references": [
+        "30 CFR Part 46 (Training Requirements)"
+      ]
+    }
+  ]
+}

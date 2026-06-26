@@ -1,0 +1,120 @@
+# 发布策略配置
+
+publish_strategy:
+  # 错峰发布
+  stagger:
+    enabled: true
+    # 平台间发布间隔（秒）
+    interval: 30
+    # 随机偏移范围（秒）
+    random_offset: 10
+    
+  # 随机延迟
+  random_delay:
+    enabled: true
+    # 最小延迟（秒）
+    min: 5
+    # 最大延迟（秒）
+    max: 15
+    
+  # 失败重试
+  retry:
+    enabled: true
+    # 最大重试次数
+    max_attempts: 3
+    # 重试间隔（秒）
+    delay: 60
+    # 指数退避
+    exponential_backoff: true
+    
+  # 发布时间限制
+  time_window:
+    enabled: false
+    # 允许发布的时间段
+    allowed_hours:
+      start: 7
+      end: 23
+    # 周末是否允许发布
+    weekend_allowed: true
+    
+  # 频率限制
+  rate_limit:
+    enabled: true
+    # 每小时最大发布数量
+    max_per_hour: 10
+    # 每天最大发布数量
+    max_per_day: 50
+    
+  # 模拟人工操作
+  human_like:
+    enabled: true
+    # 鼠标移动延迟（毫秒）
+    mouse_delay: 100
+    # 输入延迟（毫秒/字符）
+    type_delay: 50
+    # 点击后等待时间（毫秒）
+    click_wait: 500
+    # 页面滚动
+    page_scroll:
+      enabled: true
+      # 滚动次数
+      count: 3
+      # 滚动间隔（毫秒）
+      interval: 1000
+
+# 定时发布
+schedule:
+  enabled: false
+  # 定时任务
+  tasks:
+    - name: "早间发布"
+      time: "09:00"
+      days: [mon, tue, wed, thu, fri]
+      
+    - name: "晚间发布"
+      time: "20:00"
+      days: [mon, wed, fri]
+      
+    - name: "周末发布"
+      time: "10:00"
+      days: [sat, sun]
+
+# 内容过滤
+content_filter:
+  # 标签过滤
+  tag_filter:
+    enabled: false
+    # 只同步包含这些标签的内容
+    include:
+      - "穿搭"
+      - "美食"
+    # 排除包含这些标签的内容
+    exclude:
+      - "广告"
+      - "推广"
+      
+  # 关键词过滤
+  keyword_filter:
+    enabled: false
+    # 排除包含这些关键词的内容
+    exclude_keywords:
+      - "微商"
+      - "代购"
+      
+  # 内容类型过滤
+  type_filter:
+    enabled: false
+    # 同步的内容类型
+    allowed_types:
+      - image
+      - video
+      # - live
+
+# 平台优先级
+platform_priority:
+  enabled: true
+  # 发布顺序（按优先级）
+  order:
+    - douyin
+    - kuaishou
+    - shipinhao

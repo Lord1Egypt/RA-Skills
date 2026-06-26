@@ -1,0 +1,52 @@
+# Code Quality Guardian - Dependencies
+# 代码质量守护者 - 依赖声明
+
+# Core dependencies
+# 核心依赖
+click>=8.0.0
+pyyaml>=6.0
+colorama>=0.4.6
+tabulate>=0.9.0
+jinja2>=3.1.0
+
+# Python code quality tools
+# Python 代码质量工具
+flake8>=6.0.0
+pylint>=2.17.0
+bandit[toml]>=1.7.0
+radon>=6.0.0
+xenon>=0.9.0
+
+# Type checking
+# 类型检查
+mypy>=1.0.0
+
+# Security scanning
+# 安全扫描
+safety>=2.3.0
+
+# JavaScript/TypeScript support (optional)
+# JavaScript/TypeScript 支持（可选）
+# Requires Node.js and npm for eslint
+# 需要 Node.js 和 npm 来运行 eslint
+
+# Go support (optional)
+# Go 支持（可选）
+# Requires Go installation
+# 需要安装 Go
+
+# Report generation
+# 报告生成
+markdown>=3.4.0
+
+# Development dependencies
+# 开发依赖
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=23.0.0
+isort>=5.12.0
+
+# Utility
+# 工具
+pathspec>=0.11.0
+tomli>=2.0.0;python_version<"3.11"

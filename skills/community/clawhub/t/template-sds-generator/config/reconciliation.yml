@@ -1,0 +1,4 @@
+default_mode: conservative_with_review
+critical_conflict_release_block: true
+single_low_authority_critical_numeric_to_no_data: true
+prefer_conservative_transport_resolution: true

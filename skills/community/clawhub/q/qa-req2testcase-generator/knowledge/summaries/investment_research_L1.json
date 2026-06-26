@@ -1,0 +1,48 @@
+{
+  "domain": "投研域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_research.md",
+  "key_terms": [
+    {"term": "研究报告(研报)", "definition": "分析师对公司/行业/宏观的研究成果，需经合规审查后发布"},
+    {"term": "静默期", "definition": "因参与投行项目等原因，分析师不得发布相关标的研报的期间"},
+    {"term": "佣金分仓", "definition": "机构客户将交易佣金按研究服务质量分配给券商研究所"},
+    {"term": "因子分析", "definition": "通过统计方法识别影响股票收益的系统性因素"},
+    {"term": "量化模型", "definition": "基于数学模型和算法的投资研究工具"},
+    {"term": "知识图谱", "definition": "以图结构表示实体间关系的知识管理系统"},
+    {"term": "IC/IR", "definition": "信息系数/信息比率，衡量因子预测能力的指标"},
+    {"term": "回测", "definition": "在历史数据上验证策略/模型有效性的过程"},
+    {"term": "公平披露", "definition": "同一研报需同时向所有订阅客户发布，不得选择性披露"},
+    {"term": "投资评级", "definition": "分析师对标的的投资建议等级(买入/增持/中性/减持/卖出)"},
+    {"term": "另类数据", "definition": "卫星图像、社交媒体、电商数据等非传统数据源"},
+    {"term": "NLP模型", "definition": "自然语言处理模型，用于研报文本分析和舆情情感分析"}
+  ],
+  "core_entities": [
+    {"name": "研究报告", "description": "分析师撰写的研究成果，含深度报告、点评、策略等类型"},
+    {"name": "分析师", "description": "持有执业资格的研究人员，覆盖特定行业/公司"},
+    {"name": "量化模型", "description": "因子模型、机器学习模型等数据驱动的研究工具"},
+    {"name": "数据采集任务", "description": "从各数据源拉取和清洗数据的任务"},
+    {"name": "因子", "description": "影响股票收益的系统性因素(价值/成长/动量等)"},
+    {"name": "知识库", "description": "公司数据库、行业数据库、宏观数据库等研究资料"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "静默期管理", "description": "IPO前后40天、再融资期间不得发布相关研报"},
+    {"rule": "客观公正", "description": "研报内容不得有误导性陈述"},
+    {"rule": "信息来源合规", "description": "不得使用内幕信息或未公开信息"},
+    {"rule": "评级体系统一", "description": "使用统一投资评级体系，变更需有依据"},
+    {"rule": "风险提示", "description": "研报必须包含风险提示章节"},
+    {"rule": "发布审批", "description": "所有研报发布前需经合规审查"},
+    {"rule": "利益冲突披露", "description": "披露公司与研究标的的业务关系"},
+    {"rule": "公平披露", "description": "同一研报同时向所有订阅客户发布"}
+  ],
+  "common_missing_items": [
+    {"item": "静默期标的自动拦截", "description": "系统自动标记静默期标的，拦截相关研报发布"},
+    {"item": "合规审查超时处理", "description": "合规审查超过4小时的自动提醒和升级"},
+    {"item": "研报推送失败重试", "description": "邮件/平台推送失败的重试机制和补发流程"},
+    {"item": "VIP优先阅读期控制", "description": "24小时后自动向普通客户开放"},
+    {"item": "模型上线前完整验证", "description": "必须通过回测+评审+3个月模拟运行"},
+    {"item": "因子失效监控", "description": "已上线因子IC持续为负时的下线/替换机制"},
+    {"item": "数据质量校验", "description": "数据缺失率<1%、异常值检测等质量规则"},
+    {"item": "回测数据泄露防护", "description": "回测框架时间戳严格控制，防止未来数据泄露"}
+  ]
+}

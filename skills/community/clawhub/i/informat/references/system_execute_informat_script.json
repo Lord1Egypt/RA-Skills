@@ -1,0 +1,55 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_execute_informat_script",
+		"description": "Execute the specified method of the Informat script file in the [published application runtime environment]. Used to simulate or trigger script logic during the official application runtime.\n\nExecution instructions:\n- The executed script must have been published with the application and exist in the [published application]\n- Only the script content in the published version can be executed, it will not read or affect unpublished scripts in the designer\n- If scriptId is not specified, the script to be executed can be inferred based on the context\n- If functionName is not specified, the method to be called can be inferred based on user intent\n- Only real functions exported through export in the script can be called, calling non-existent methods is prohibited\n- The execution process will not modify the script content, nor will it create test or temporary script files\n\nApplicable scenarios:\n- Verify the actual execution effect of the script after publication\n- Simulate real business calls\n- Troubleshoot script issues in the runtime environment.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"scriptId": {
+					"description": "Script ID",
+					"type": "string"
+				},
+				"functionName": {
+					"description": "Function name, needs to be an exported method",
+					"type": "string"
+				},
+				"functionParams": {
+				  "type": "array",
+				  "description": "Input parameters required to execute the target function, passed in order; if the function requires no parameters, an empty array [] can be passed",
+				  "items": {
+				    "oneOf": [
+				      { "type": "string" },
+				      { "type": "number" },
+				      { "type": "boolean" },
+				      { "type": "null" },
+				      {
+				        "type": "object",
+				        "additionalProperties": true
+				      },
+				      {
+				        "type": "array",
+				        "items": {
+				          "oneOf": [
+				            { "type": "string" },
+				            { "type": "number" },
+				            { "type": "boolean" },
+				            { "type": "null" },
+				            {
+				              "type": "object",
+				              "additionalProperties": true
+				            }
+				          ]
+				        }
+				      }
+				    ]
+				  },
+				  "default": []
+				}
+			},
+			"required": [
+					"scriptId","functionName"
+				]
+			}
+		}
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "quest-designer-skill",
+  "name": "Quest Designer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "game",
+    "openclaw",
+    "quest-designer",
+    "templates"
+  ],
+  "category": "Game Design",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-28",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

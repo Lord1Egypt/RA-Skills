@@ -1,0 +1,60 @@
+type: flowchart
+title: 火一五电商 · 订单履约全链路
+direction: TB
+
+# 多段 category + 终端 + 判定 + 数据节点 + 分组，展示 v1.3+ 全部美化能力
+groups:
+  - id: g_user
+    label: 用户旅程
+    children: [n_start, login, browse, cart]
+  - id: g_biz
+    label: 业务处理
+    children: [check_stock, create_order, pay]
+  - id: g_fulfill
+    label: 履约
+    children: [ship, deliver, n_end]
+  - id: g_data
+    label: 数据层
+    children: [db_order, db_user, cache, mq]
+
+nodes:
+  # 终端（开始/结束）→ 自动 terminal classDef
+  - { id: n_start, label: 开始, shape: stadium }
+  - { id: n_end,   label: 完成, shape: stadium }
+
+  # 用户旅程（category: c1 淡紫/主色系）
+  - { id: login,   label: 用户登录,     category: 1 }
+  - { id: browse,  label: 浏览商品,     category: 1 }
+  - { id: cart,    label: 加入购物车,   category: 1 }
+
+  # 业务分支（category: c2 —— 辅色）
+  - { id: check_stock, label: "库存是否充足?", shape: diamond }
+  - { id: create_order, label: 创建订单, category: 2 }
+  - { id: pay,          label: 支付,     category: 2 }
+
+  # 履约（category: c3 —— 绿/成功系）
+  - { id: ship,    label: 发货,         category: 3 }
+  - { id: deliver, label: 配送,         category: 3 }
+
+  # 数据层（cylinder → 自动 database classDef）
+  - { id: db_order, label: 订单库 PostgreSQL, shape: cylinder }
+  - { id: db_user,  label: 用户库 PostgreSQL, shape: cylinder }
+  - { id: cache,    label: Redis 缓存,        shape: cylinder }
+  - { id: mq,       label: Kafka 消息队列,    shape: cylinder }
+
+edges:
+  - { from: n_start,      to: login }
+  - { from: login,        to: browse }
+  - { from: login,        to: db_user, kind: dashed, label: 读/写 }
+  - { from: browse,       to: cache,   kind: dashed, label: 商品缓存 }
+  - { from: browse,       to: cart }
+  - { from: cart,         to: check_stock }
+  - { from: check_stock,  to: create_order, label: 是 }
+  - { from: check_stock,  to: browse,       label: 否，补货后重选, kind: dashed }
+  - { from: create_order, to: db_order }
+  - { from: create_order, to: mq,      label: 下单事件 }
+  - { from: create_order, to: pay }
+  - { from: pay,          to: ship }
+  - { from: pay,          to: mq,      label: 支付事件, kind: dashed }
+  - { from: ship,         to: deliver }
+  - { from: deliver,      to: n_end }

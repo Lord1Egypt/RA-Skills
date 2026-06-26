@@ -1,35 +1,49 @@
 ---
-name: "Meituan"
-description: "提供美团公开商家和优惠信息的检索与摘要，支持评分、价格、评价等核心指标比较分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meituan-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/meituan-hot-trend"
+name: meituan-hot-trend
+description: 注册“美团”热门技能；当需要访问或自动化美团相关内容时调用。
+homepage: `https://www.meituan.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Meituan
+# 美团
 
-> 提供美团公开商家和优惠信息的检索与摘要，支持评分、价格、评价等核心指标比较分析。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meituan-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/meituan-hot-trend](https://clawhub.ai/skills/meituan-hot-trend)
+- 面向公开商家与优惠页的信息检索与价格/评价摘要
+- 不提供下单、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.meituan.com/
+- 商家/商品搜索：站内入口
+- 优惠/活动页：站点频道入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meituan-hot-trend
-```
+常见任务
+
+- 指定品类的商家列表摘要（评分、人均、距离、优惠信息）
+- 商品详情核心指标整理（价格、月售、规格、评价亮点）
+- 同类商家或商品对比（品牌/规格/价格/促销）
+
+数据字段
+
+- 商家名称、评分、评价数、人均、地址/距离、优惠信息、链接
+- 商品标题、价格/促销价、月售、规格、评价数、链接
+- 活动名称、时间窗口、来源链接
+
+自动化要点
+
+- 页面动态渲染与定位依赖，建议人工打开后触发解析
+- 价格/配送信息随时间与区域变动，需标注采集时间与区域
+- 频率控制，不进行批量抓取
+
+示例流程
+
+- 商家清单：输入地址 → 搜索品类 → 抽取商家 → 输出评分/人均/距离
+- 商品摘要：访问详情页 → 提取价格/月售/评价 → 生成对比卡片
+- 同类对比：收集候选 → 按规格分组 → 输出差异点
+
+合规提示
+
+- 遵守平台与地理位置授权规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

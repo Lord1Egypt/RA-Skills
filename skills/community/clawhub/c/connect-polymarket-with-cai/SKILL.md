@@ -1,35 +1,38 @@
 ---
-name: "CAI: connect-polymarket-with-cai"
-description: "Connect Polymarket to your CAI account using platforms_supported_list and platform_one_click_register when F-16 applies; wallet derivation via catalog driver..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/connect-polymarket-with-cai"
-sourceUrl: "https://clawhub.ai/skills/connect-polymarket-with-cai"
+name: connect-polymarket-with-cai
+description: Connect Polymarket to your CAI account using platforms_supported_list and platform_one_click_register when F-16 applies; wallet derivation via catalog driver. Requires platform or full API scope. Powered by CAI.com.
 ---
 
-# CAI: connect-polymarket-with-cai
+# Connect Polymarket with CAI
 
-> Connect Polymarket to your CAI account using platforms_supported_list and platform_one_click_register when F-16 applies; wallet derivation via catalog driver...
+Agents helping users trade or research on **Polymarket** need a **linked platform account** and often a **wallet-bound credential**. CAI's catalog connector path stores encrypted credentials in **platform vault** — the agent does not hold raw keys in chat.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/connect-polymarket-with-cai`
-- **Source URL:** [https://clawhub.ai/skills/connect-polymarket-with-cai](https://clawhub.ai/skills/connect-polymarket-with-cai)
+## When to Use
 
-## Overview
+- "Connect Polymarket with CAI"
+- "One-click register on Polymarket"
+- "Link my CAI wallet to Polymarket for my agent"
+- "Set up Polymarket using my @cai.com account"
 
+## Task flow (agent-native)
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. `platforms_supported_list` with `q=polymarket` (or hostname).
+2. Optional: `uars_profile_site` for structured hints.
+3. If `connector_configured` (**F-16**): `platform_one_click_register` with `platform_id`.
+   - **wallet_derive:** may use custodial derivation when gateway profile exists; else one-time `private_key` per skill (not stored) or website flow.
+4. After link: `platform_get_user_data` (balance, profile scope).
+5. Vault metadata via `vault_list_platform_credentials` — **never** echo secrets in chat.
+
+**Honesty:** Registration may still need human steps (CAPTCHA, regional gates). Use `create_human_verification_link` when needed.
+
+## Quick Setup
+
 ```bash
-hermes skills install clawhub/connect-polymarket-with-cai
+openclaw secrets set CAI_API_KEY "your_dashboard_api_key"
 ```
+
+## Canonical Reference
+
+- https://cai.com/skill.md §6
+- https://cai.com/skill-references/onboarding.md
+- https://cai.com/developers.html

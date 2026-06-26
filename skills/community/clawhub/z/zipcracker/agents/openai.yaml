@@ -1,0 +1,6 @@
+interface:
+  display_name: "ZipCracker"
+  short_description: "World-class ZIP CTF cracking, KPA, and recovery workflows"
+  default_prompt: "Use $zipcracker like a top-tier ZIP CTF solver: profile this archive, choose the strongest clue-driven path, run the bundled workflow, and explain the exact command, rationale, and result."
+policy:
+  allow_implicit_invocation: true

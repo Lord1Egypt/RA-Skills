@@ -1,0 +1,70 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu/get-note-sub-comment/v2 for Xiaohongshu (RedNote) Comment Replies through JustOneAPI with commentId and noteId.",
+  "displayName": "Xiaohongshu (RedNote) Comment Replies",
+  "endpointPath": "get-note-sub-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu (RedNote) comment Replies data, including text, authors, and timestamps, for thread analysis and feedback research.",
+      "method": "GET",
+      "operationId": "getNoteSubCommentV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique comment identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "commentId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (use the cursor value returned by the last response).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-sub-comment/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Comment Replies",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu",
+  "primaryTag": "Xiaohongshu (RedNote)",
+  "skillName": "justoneapi_xiaohongshu_get_note_sub_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-get-note-sub-comment",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "self-improving",
+  "name": "Self-Improving Agent",
+  "version": "3.2.0",
+  "description": "Self-reflection, correction logging, persistent tiered memory, WAL protocol, cold-boot recovery, and automated daily review with self-healing cron. Learns from corrections, manages memory that compounds execution quality across restarts and context resets. The nightly cron rewrites workspace .md files with new lessons — no behavioral compliance required.",
+  "author": "joel-yi",
+  "license": "MIT",
+  "keywords": ["memory", "self-improving", "corrections", "learning", "persistence", "cron", "WAL"],
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "requires": {
+      "tools": ["cron", "read", "write", "exec"]
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "setup.md",
+    "heartbeat-rules.md",
+    "scripts/agent_memory.py",
+    "references/learning.md",
+    "references/boundaries.md",
+    "references/operations.md",
+    "references/scaling.md"
+  ],
+  "changelog": {
+    "3.2.0": "Auto-inject workspace hooks (zero manual steps), corrections trimming, self-healing cron, persistence auto-fix, dry-run, model safety, WAL-feeds-cron, ClawHub manifest",
+    "3.1.0": "Self-healing cron, persistence auto-fix, dry-run, model safety, WAL-feeds-cron, ClawHub manifest",
+    "3.0.0": "Automated daily review cron, seed content, post-install verification, cron-prompt command",
+    "2.0.0": "Tiered memory, WAL protocol, cold-boot recovery, heartbeat rules, workspace integration"
+  }
+}

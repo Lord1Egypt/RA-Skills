@@ -1,0 +1,75 @@
+# 解析器配置
+parser:
+  # 文件大小限制
+  max_file_size: 209715200  # 200MB
+  max_chunk_size: 52428800  # 50MB - 大文件拆分阈值
+  
+  # 文本分片配置
+  chunk_size: 1000          # 每个分片字符数
+  chunk_overlap: 200        # 分片重叠字符数
+  chunk_separator: ["\n\n", "\n", "。", "；", " "]
+  
+  # 解析引擎配置
+  engines:
+    primary: "unstructured"
+    timeout: 30             # 单次解析超时（秒）
+    
+    fallback:               # 备用引擎优先级
+      - name: "pymupdf"
+        priority: 1
+      - name: "pdfplumber"
+        priority: 2
+      - name: "tika"
+        priority: 3
+      - name: "ocr_only"
+        priority: 4
+  
+  # OCR 配置
+  ocr:
+    enabled: true
+    language: ["ch_sim", "en"]
+    dpi: 300
+    auto_rotate: true
+    deskew: true
+  
+  # 编码检测
+  encoding:
+    auto_detect: true
+    confidence_threshold: 0.7
+    fallback_encodings:
+      - "utf-8"
+      - "gbk"
+      - "gb2312"
+      - "big5"
+      - "utf-16"
+      - "latin-1"
+  
+  # 格式特定配置
+  formats:
+    pdf:
+      extract_images: true
+      extract_tables: true
+      preserve_layout: true
+    
+    docx:
+      extract_comments: true
+      extract_revisions: true
+      extract_headers: true
+      extract_footers: true
+    
+    excel:
+      extract_formulas: true
+      extract_charts: false
+      max_sheets: 50
+    
+    image:
+      supported_formats: ["jpg", "jpeg", "png", "gif", "tiff", "bmp", "webp"]
+      max_dimension: 8000  # 最大边长
+
+# 大文件处理
+large_file:
+  enabled: true
+  threshold: 52428800     # 50MB
+  split_strategy: "smart" # smart/chapter/page
+  parallel_workers: 4
+  progress_update_interval: 1.0  # 进度更新间隔（秒）

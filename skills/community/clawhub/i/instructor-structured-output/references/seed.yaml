@@ -1,0 +1,1562 @@
+meta:
+  id: finance-bp-139-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-139
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:07:15.548776+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: 20 finance-universal not_applicable + 6 AIL warn + 4 DAT warn + 1 DAT pass + 1 DAT not_applicable = 32
+      items reviewed across applicable scope
+    audit_pass_rate: 1/12 (8% applicable items pass; the 11 warn/fail/missing capture the architectural boundaries and divergences
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-139. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-139-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: PII Extraction and Scrub Replacement
+    positive_terms:
+    - PII
+    - scrub
+    - redact
+    - sensitive data
+    - compliance extraction
+    data_domain: domain_specific
+    negative_terms:
+    - SQL
+    - knowledge graph
+    ambiguity_question: PII = field-level extraction from text; for SQL safety use UC-008, for knowledge graph use UC-003.
+  - uc_id: UC-002
+    name: SOC Occupation Code Classification with field_validator
+    positive_terms:
+    - classification
+    - SOC code
+    - field_validator
+    - enum validation
+    - reask example
+    data_domain: domain_specific
+    negative_terms:
+    - free text classification
+    - sentiment
+  - uc_id: UC-003
+    name: Knowledge Graph Extraction (nodes + edges)
+    positive_terms:
+    - knowledge graph
+    - KG
+    - entity relations
+    - research synthesis
+    data_domain: mixed
+    negative_terms:
+    - SQL extraction
+    - flat field extraction
+  - uc_id: UC-004
+    name: Citation Substring Extraction with Fuzzy Match Verification
+    positive_terms:
+    - citation
+    - fact-checking
+    - RAG verification
+    - substring quote
+    data_domain: mixed
+    negative_terms:
+    - workloads where source text is unavailable (cannot verify substring)
+  - uc_id: UC-005
+    name: Parallel Multi-tool Routing
+    positive_terms:
+    - parallel tools
+    - Iterable
+    - Union types
+    - agent dispatcher
+    - Mode.PARALLEL_TOOLS
+    data_domain: mixed
+    negative_terms:
+    - DAG
+    - dependency
+    - sequential
+    ambiguity_question: parallel = independent tool calls in one shot; for dependent task chain use UC-009 (query planner
+      DAG) instead.
+  - uc_id: UC-006
+    name: Partial Streaming for UI Real-time Render
+    positive_terms:
+    - partial streaming
+    - UI typewriter
+    - rich console
+    - progressive render
+    data_domain: mixed
+    negative_terms:
+    - validator-strict
+    - business-rule-gated
+  - uc_id: UC-007
+    name: AI-driven SQLModel ORM Entity Generation
+    positive_terms:
+    - SQLModel
+    - ORM generation
+    - ResponseSchema
+    - entity bootstrapping
+    data_domain: domain_specific
+    negative_terms:
+    - SQL query generation
+    - SQL safety
+  - uc_id: UC-008
+    name: Safe SQL Generation with Guardrail
+    positive_terms:
+    - SQL generation
+    - safer SQL
+    - injection prevention
+    - validator guardrail
+    data_domain: domain_specific
+    negative_terms:
+    - workloads needing certified SQL safety (instructor's validator is user-defined, not externally audited)
+  - uc_id: UC-009
+    name: Query Planner DAG Decomposition
+    positive_terms:
+    - query planning
+    - DAG
+    - task decomposition
+    - multi-hop
+    data_domain: mixed
+    negative_terms:
+    - parallel
+    - independent
+    ambiguity_question: DAG = subqueries with dependencies; for independent parallel use UC-005 instead.
+  - uc_id: UC-010
+    name: OpenAI Batch API Offline Classification
+    positive_terms:
+    - batch processing
+    - offline classification
+    - cost reduction
+    - OpenAI Batch API
+    data_domain: mixed
+    negative_terms:
+    - real-time
+    - low-latency
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 28
+    fatal_constraints_count: 4
+    non_fatal_constraints_count: 43
+    use_cases_count: 10
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 8 source groups: cross_cutting(8),
+        llm_call(1), mode_selection(2), provider_patch(7), reask_loop(4), schema_generation(1), and 2 more.'
+      key_decisions: 28 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-021
+      type: missing
+      summary: failed_attempts XML rendering has no truncation; max_retries=5 can quintuple prompt size and exceed context
+        window
+    - id: BD-022
+      type: missing
+      summary: from_openai mode validation uses Python assert; silently bypassed under `python -O`
+    - id: BD-023
+      type: missing
+      summary: 4 of 20 supported providers (ollama / azure_openai / google / litellm) miss get_provider() substring table
+        — fall to Provider.UNKNOWN
+    - id: BD-024
+      type: missing
+      summary: Streaming Partial silently disables Pydantic validators — every interior yield is unverified
+    - id: BD-025
+      type: missing
+      summary: _processing_models is module-level mutable set without thread lock — Partial self-recursion guard has race
+        condition
+    - id: BD-026
+      type: missing
+      summary: Pydantic v1 hits AttributeError on Partial paths despite no version pin in pyproject
+    - id: BD-027
+      type: missing
+      summary: llm_validator default model is gpt-3.5-turbo but docstring says gpt-4o-mini (code/doc mismatch)
+    - id: BD-028
+      type: missing
+      summary: Per-mode reask handler has ~450 lines of provider-specific chunk-parsing duplication (extract_json / extract_json_async)
+    - id: BD-006
+      type: B/BA
+      summary: Tenacity retries on EVERY Exception (no retry= arg in initialize_retrying)
+    - id: BD-003
+      type: B
+      summary: Default Mode for OpenAI = Mode.TOOLS; for Anthropic = Mode.ANTHROPIC_TOOLS
+    - id: BD-008
+      type: B
+      summary: from_openai uses assert mode in {...} (5 base_urls); other 13 providers raise ModeError
+    - id: BD-001
+      type: B/BA
+      summary: max_retries has three independent layers with different defaults and semantics
+    - id: BD-009
+      type: B/BA
+      summary: get_provider() base_url substring table covers 16 of 20 supported providers
+    - id: BD-013
+      type: B
+      summary: chat / completions / messages properties all return self (alias chain to single wrapped create)
+    - id: BD-014
+      type: B
+      summary: AsyncInstructor.create auto-forwards Iterable[X] to create_iterable; sync Instructor.create does NOT
+    - id: BD-015
+      type: B/BA
+      summary: 9 @abstractmethod live on BaseCache (2) and BatchProvider (7); the rest of the extension surface is dispatch-dict
+        / factory-function based
+    - id: BD-016
+      type: B
+      summary: validation_context kwarg deprecated → context kwarg; both passed raises ConfigurationError
+    - id: BD-017
+      type: B
+      summary: apatch is deprecated; patch detects async via inspect.iscoroutinefunction
+    - id: BD-004
+      type: B/BA
+      summary: Reask injects validation errors as tool_result (Anthropic) / role=tool (OpenAI) / role=user text (MD_JSON /
+        JSON) — provider-native error channels
+    - id: BD-005
+      type: B
+      summary: failed_attempts list is rendered into next prompt as jinja2 XML, no truncation
+    - id: BD-007
+      type: B/BA
+      summary: Reask (prompt rewrite) ONLY fires on ValidationError / JSONDecodeError / InstructorValidationError — network/API
+        errors retry without reask
+    - id: BD-019
+      type: B/BA
+      summary: failed_attempts XML accumulation is unbounded with no truncation/summarization
+    - id: BD-012
+      type: B/BA
+      summary: 4 MIME types whitelisted for Image (jpeg / png / gif / webp); SVG / HEIC / AVIF rejected
+    - id: BD-010
+      type: M/BA
+      summary: Partial[Model] uses Pydantic v2 model_construct() to bypass validation during streaming
+    - id: BD-011
+      type: M
+      summary: jiter partial_mode = "trailing-strings" (one of 4 jiter modes)
+    - id: BD-018
+      type: B/BA
+      summary: PartialLiteralMixin is deprecated in code but stale doc still asks users to import it
+    - id: BD-002
+      type: B/BA
+      summary: strict=True default for Pydantic validation
+    - id: BD-020
+      type: T/B
+      summary: llm_validator default model is gpt-3.5-turbo (code) but docstring says gpt-4o-mini (mismatch — known bug)
+resources:
+  packages:
+  - name: pydantic v2 (effective hard floor)
+    version_pin: latest
+  - name: tenacity
+    version_pin: latest
+  - name: jinja2 (sandboxed Environment)
+    version_pin: latest
+  - name: jiter (Rust JSON parser)
+    version_pin: latest
+  - name: spacy (NOT used — instructor has no NER)
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install pydantic v2 (effective hard floor)
+    - python3 -m pip install tenacity
+    - python3 -m pip install jinja2 (sandboxed Environment)
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: instructor-C-001
+    when: 'When deploying instructor with from_openai (or routes converging on it: OpenAI / OpenRouter / Anyscale / Together
+      / Databricks) to production'
+    action: run the Python interpreter with the -O optimization flag, because from_openai validates the (provider, mode) pair
+      via Python assert statements that -O strips silently
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Under python -O, the assert mode in {...} blocks in from_openai are removed; invalid (provider, mode) combinations
+      reach the LLM call producing malformed kwargs, undefined provider responses, or silently wrong-shaped completions across
+      5 OpenAI-family base_urls
+    stage_ids:
+    - mode_selection
+    derived_from_bd_id: BD-G02
+  - id: instructor-C-003
+    when: When pointing instructor at self-hosted OpenAI-compatible endpoints (vLLM / TGI / Ollama / LiteLLM proxy) or providers
+      whose base_url is not in the 16-substring table (azure_openai / google / litellm / ollama)
+    action: rely on instructor's automatic mode validation, because get_provider() will return Provider.UNKNOWN — neither
+      the from_openai assert blocks nor the raise ModeError branches fire, leaving the (provider, mode) pair entirely unchecked
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Self-hosted endpoints fall to Provider.UNKNOWN; assert blocks dispatch on Provider enum values (OPENROUTER/ANYSCALE/TOGETHER/OPENAI/DATABRICKS)
+      so all assertions silently pass, and provider-specific optimizations are skipped — debugging wrong-shaped responses
+      requires reading the dispatch table source
+    stage_ids:
+    - mode_selection
+    - provider_patch
+    derived_from_bd_id: BD-G03
+  - id: instructor-C-007
+    when: When passing max_retries to instructor (especially via from_provider)
+    action: 'treat max_retries as a single semantic — it appears at three independent code points with different defaults:
+      patch.py default=1 (reask only), Instructor.create default=3 (reask only), and auto_client.py:180-185 transparently
+      passes it to openai.OpenAI(max_retries=...) which is the SDK''s HTTP-level retry (network only) — a single max_retries=5
+      to from_provider can yield 5 reasks × 5 SDK HTTP retries = 25 worst-case API calls'
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Passing one max_retries through from_provider transparently amplifies into both instructor reask and SDK
+      HTTP retry layers, producing up to N×N API calls; on rate-limited or pay-per-call providers this drains the cost budget
+      and triggers vendor throttling cascades within a single user request
+    stage_ids:
+    - provider_patch
+    - llm_call
+    derived_from_bd_id: BD-001
+  - id: instructor-C-012
+    when: When streaming Partial[Model] is required AND field validators must enforce business rules (PII / financial / medical
+      fields)
+    action: 'add explicit per-frame validation in the consumer generator loop (e.g. `for partial in stream: try: Model.model_validate(partial.model_dump());
+      except ValidationError: ...`) OR use non-streaming create() for the validator-gated path; do not rely on instructor''s
+      automatic validation for partial yields'
+    severity: fatal
+    kind: operational_lesson
+    modality: must
+    consequence: Without per-frame validation, PII fields can stream to the UI in unredacted form during construction and
+      only get redacted on the final frame; for HIPAA/GDPR/PCI-scoped data this is a disclosure incident even if the final
+      state is correct
+    stage_ids:
+    - streaming_partial
+  regular:
+  - id: instructor-C-002
+    when: When using instructor.from_openai or any factory routing through it (OpenAI / OpenRouter / Anyscale / Together /
+      Databricks)
+    action: 'explicitly validate the mode at user-code level via `if mode not in Mode.tool_modes() | Mode.json_modes(): raise
+      ValueError(...)` before instantiating the client, as belt-and-suspenders protection against assert stripping under -O'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without an explicit user-side mode check, deployments that ever run python -O lose the only mode-validation
+      guardrail; invalid modes silently produce malformed kwargs that may hit the LLM and waste API budget on unparseable
+      completions
+    stage_ids:
+    - mode_selection
+    derived_from_bd_id: BD-G02
+  - id: instructor-C-004
+    when: When using self-hosted OpenAI-compatible endpoints with instructor (vLLM / TGI / Ollama / LiteLLM proxy / azure_openai
+      / google / litellm)
+    action: explicitly pass mode= to from_provider or from_openai (e.g. mode=instructor.Mode.JSON) and validate the (provider,
+      mode) pair in user code before client construction; never rely on default mode resolution because Provider.UNKNOWN bypasses
+      every validation branch
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Default-routed self-hosted endpoints get neither assert nor raise ModeError checks; an unsupported mode silently
+      produces malformed kwargs and wasted API calls until the LLM returns garbled output that fails downstream validation
+    stage_ids:
+    - mode_selection
+    - provider_patch
+    derived_from_bd_id: BD-G03
+  - id: instructor-C-005
+    when: When designing application-level retry logic on top of instructor
+    action: treat instructor's max_retries as governing BOTH validation reasks (where the prompt is rewritten with failed_attempts
+      XML) and tenacity-driven retries on every other Exception (network errors, rate limits, OpenAI APIError) — both arms
+      re-enter the loop because Retrying() is initialized without a retry= argument and tenacity defaults to retry_if_exception_type(Exception)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Believing 'instructor only retries validation errors' (a documented misconception) leads to double-stacking
+      application-level retry around instructor; rate-limit storms and burst API costs follow when both layers retry the same
+      network failure
+    stage_ids:
+    - llm_call
+    - reask_loop
+    derived_from_bd_id: BD-006
+  - id: instructor-C-006
+    when: When instructor is wrapped in application-level tenacity Retrying or external retry middleware
+    action: set instructor max_retries to 1-2 and pass an explicit tenacity.Retrying(retry=retry_if_exception_type(OpenAIError
+      | NetworkError), stop=stop_after_attempt(N)) to the create() call so that network retries happen at one layer only,
+      preventing N×M API call multiplication
+    severity: high
+    kind: operational_lesson
+    modality: should
+    consequence: Without segregation, an OpenAIError can be retried by both instructor's tenacity loop and the application's
+      outer retry, multiplying API calls and burning the rate-limit/cost budget within seconds; production incidents have
+      been reported on the issue tracker for this pattern
+    stage_ids:
+    - llm_call
+  - id: instructor-C-008
+    when: When deploying instructor in production with explicit retry budget control
+    action: construct the OpenAI/Anthropic SDK client with explicit max_retries=N_HTTP and call Instructor(...).create(max_retries=N_REASK)
+      separately; budget total API calls = N_HTTP × N_REASK; never pass a single max_retries to from_provider in production
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without explicit per-layer separation, a 'safe-looking' max_retries=3 against from_provider on a strict-validator
+      workload can issue 9 API calls per user request; production cost incidents have surfaced in the instructor issue tracker
+      due to this exact pattern
+    stage_ids:
+    - provider_patch
+    - llm_call
+  - id: instructor-C-009
+    when: When integrating instructor into a Python project
+    action: pin pydantic>=2.0 in your application's pyproject.toml; instructor's Partial / PartialBase / function_calls validators
+      use create_model + model_construct + model_fields + model_validate_json + TypeAdapter, all of which are Pydantic v2-only
+      APIs without v1 fallback
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Pydantic v1 codebases hit AttributeError on Partial paths far from the install site; reask paths silently
+      passthrough because v2 BaseModel ignores @validator decorator; instructor's pyproject does NOT pin pydantic>=2.0, so
+      v1 install succeeds but breaks at runtime
+    stage_ids:
+    - validation
+    - streaming_partial
+    derived_from_bd_id: BD-G06
+  - id: instructor-C-010
+    when: When migrating an application from Pydantic v1 to use instructor (which requires v2)
+    action: globally replace @validator with @field_validator and @root_validator with @model_validator(mode='after'); audit
+      every BaseModel subclass for v1-only Config inner classes and convert to model_config = ConfigDict(...); v1 decorators
+      are silently ignored by v2 BaseModel (no warning) so missed conversions fail open
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: v1 @validator decorators are ignored by v2 BaseModel without warning; instructor's reask path receives no
+      ValidationError because the legacy validator never ran, so malformed LLM output passes silently into business logic
+    stage_ids:
+    - validation
+  - id: instructor-C-011
+    when: When using instructor's create_partial / Partial[Model] streaming for fields that have field_validator / model_validator
+      / Annotated validators
+    action: assume Pydantic validators run on each yielded partial instance — Partial uses model_construct() which bypasses
+      ALL validation; only the FINAL completed JSON triggers model_validate, leaving every interior yield unverified
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: UI consumers receive intermediate Partial frames that violate business rules (PII redaction validators, schema
+      invariants, regex-gated fields) until the last frame triggers model_validate; especially dangerous for compliance-relevant
+      fields where per-frame validation is needed but silently absent
+    stage_ids:
+    - streaming_partial
+    derived_from_bd_id: BD-G04
+  - id: instructor-C-013
+    when: When configuring max_retries with strict Pydantic validators on long-completion workloads
+    action: set instructor max_retries higher than 2 with strict validators because every reask appends a FailedAttempt record
+      and InstructorError.__str__ jinja2-renders ALL prior failures as `<failed_attempts><generation number=N>...</generation>...</failed_attempts>`
+      XML; prompt size grows linearly with retry count and can exceed the model context window
+    severity: high
+    kind: operational_lesson
+    modality: should_not
+    consequence: On long completions with strict validators, max_retries=5 may quintuple prompt size and surface as InstructorRetryException
+      (not LengthError); users debugging see 'too many retries' rather than the underlying context-window overrun, wasting
+      both diagnosis time and token budget
+    stage_ids:
+    - reask_loop
+    derived_from_bd_id: BD-G01
+  - id: instructor-C-014
+    when: When high max_retries (>=3) is needed for legitimate reasons on long-completion workloads
+    action: register a hook on completion:kwargs that truncates messages list (drop oldest failed_attempts entries before
+      each retry) OR pass an explicit tenacity.Retrying with stop_after_delay(N_seconds) instead of stop_after_attempt(N),
+      so total runtime is bounded even if prompt growth is not
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without active truncation, instructor has no truncation flag, no summarization mode, and no per-FailedAttempt
+      size cap; the only mitigation is hook-based message rewriting in user code or switching to time-bounded stop conditions
+    stage_ids:
+    - reask_loop
+  - id: instructor-C-015
+    when: When upgrading the underlying provider SDK (openai / anthropic / cohere / etc.) in a project using instructor
+    action: pin the provider SDK version to within the range instructor's CHANGELOG declares tested; instructor.patch wraps
+      client.chat.completions.create via @wraps(func) and silently drops new kwargs; SDK signature changes (e.g. openai 1.x
+      → 2.x) can break the patch without raising
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Provider SDK upgrade may change create() signature; instructor's @wraps-based patch silently passes through
+      unrecognized kwargs which the new SDK then rejects with cryptic TypeError far from the upgrade site, or worse silently
+      ignores them and produces wrong-shaped responses
+    stage_ids:
+    - provider_patch
+  - id: instructor-C-016
+    when: When using instructor.validation.llm_validator without explicitly specifying the model argument
+    action: explicitly pass model='gpt-4o-mini' (or your preferred model) to llm_validator(); the module-level default is
+      'gpt-3.5-turbo' but the docstring documents 'gpt-4o-mini' — relying on default gives a quality drop the docs do not
+      warn about
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Users following the docstring believe gpt-4o-mini-quality validation runs while actually getting gpt-3.5-turbo;
+      field validation accuracy (PII detection / classification / fact-check) silently degrades, and the discrepancy is invisible
+      until output quality is audited
+    stage_ids:
+    - validation
+    derived_from_bd_id: BD-G07
+  - id: instructor-C-017
+    when: 'When using Partial[Model] with self-referential model definitions (e.g. Partial[TreeNode] where TreeNode has children:
+      list[TreeNode]) in multi-threaded servers'
+    action: instantiate Partial[X] for self-referential models concurrently from multiple threads, because the recursion-guard
+      set _processing_models at module level in dsl/partial.py is mutated without threading.Lock — concurrent set add/discard
+      can race, producing duplicate work or corrupted membership checks
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Multi-threaded servers using Partial with self-referential models see intermittent failures (model class
+      corruption, infinite recursion escapes the guard, or wrong field schemas); the race is hard to reproduce and harder
+      to diagnose because the failure point is far from the Partial[X] instantiation site
+    stage_ids:
+    - streaming_partial
+    derived_from_bd_id: BD-G05
+  - id: instructor-C-018
+    when: When a multi-threaded server uses Partial with self-referential models
+    action: instantiate every Partial[X] eagerly at module-import or server-startup time before threads spawn (e.g. `_PARTIAL_TREE
+      = Partial[TreeNode]` at module top), so the _processing_models set mutation completes single-threaded; then reuse the
+      cached Partial classes from worker threads
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without eager instantiation, the first concurrent Partial[X] call from worker threads races on the module-level
+      set; symptoms include random AttributeError on missing fields, recursion-depth errors, or two threads holding inconsistent
+      versions of the same Partial class
+    stage_ids:
+    - streaming_partial
+    derived_from_bd_id: BD-G05
+  - id: instructor-C-019
+    when: When adding a new provider's streaming support to instructor (or upgrading an existing provider's chunk format)
+    action: edit instructor/dsl/partial.py:525-976 (extract_json + extract_json_async) to add the new per-provider chunk-format
+      branch; there is no shared chunk-format abstraction and ~450 lines of provider-specific branches live in one monolithic
+      function
+    severity: low
+    kind: architecture_guardrail
+    modality: must
+    consequence: 'High maintenance burden: any provider chunk format change (OpenAI tool_calls.delta, Anthropic delta.partial_json,
+      Cohere event_type, Mistral chunk.data.choices, Vertex/Gemini function_call.args, Writer chunk replace, etc.) requires
+      editing this single file; a missed branch silently drops chunks for the affected provider with no error'
+    stage_ids:
+    - streaming_partial
+    derived_from_bd_id: BD-G08
+  - id: instructor-C-020
+    when: When calling Instructor.create with response_model and the LLM may emit type-coerced JSON (e.g. '42' for an int
+      field)
+    action: explicitly pass strict=False to Instructor.create when type coercion is acceptable for your domain; instructor
+      defaults strict=True, which rejects Pydantic v2 type coercions and triggers reask round-trips for what may be tolerable
+      model output
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: strict=True default causes models that occasionally return '42' instead of 42 to trigger a full reask round-trip;
+      on workloads where the LLM's coercion-prone behavior is tolerable, every such case wastes one or more reask API calls
+      and inflates latency
+    stage_ids:
+    - validation
+    derived_from_bd_id: BD-002
+  - id: instructor-C-021
+    when: When constructing an Instructor or AsyncInstructor without explicit mode= argument
+    action: rely on the framework defaults only after confirming compatibility — OpenAI factories default to Mode.TOOLS, Anthropic
+      factories default to Mode.ANTHROPIC_TOOLS; for models that lack tool-calling support these defaults silently fall back
+      to JSON-mode behavior on the LLM side and produce malformed responses
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Default Mode.TOOLS / Mode.ANTHROPIC_TOOLS assume tool-calling support; using a model without tool-calling
+      (older or fine-tuned models) under default mode produces responses that do not match the dispatch handler expectations,
+      surfacing as ValidationError after the fact
+    stage_ids:
+    - mode_selection
+    derived_from_bd_id: BD-003
+  - id: instructor-C-022
+    when: When configuring streaming partial JSON parsing with custom jiter modes
+    action: use partial_mode='trailing-strings' (the instructor default at all 4 call sites in dsl/partial.py); other jiter
+      modes (off / on / trailing-strings-and-arrays) produce structurally-ambiguous Pydantic instances that mis-validate on
+      completion
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Switching to partial_mode='trailing-strings-and-arrays' tolerates mid-array truncation but the resulting
+      partial JSON can be interpreted multiple ways by Pydantic, causing the same chunk to parse to different structures across
+      runs and breaking deterministic UI rendering
+    stage_ids:
+    - streaming_partial
+    derived_from_bd_id: BD-011
+  - id: instructor-C-023
+    when: When constructing instructor.Image inputs from user-uploaded files
+    action: assume instructor accepts arbitrary image formats — VALID_MIME_TYPES is hard-coded to image/jpeg, image/png, image/gif,
+      image/webp; SVG, HEIC (iPhone default), AVIF and other formats raise MultimodalError before any provider call
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: iPhone-photo workflows commonly produce HEIC files; without client-side conversion to a supported MIME type,
+      every upload raises MultimodalError at the schema_generation stage and the user-facing error is a stack trace rather
+      than a clean 'unsupported format' message
+    stage_ids:
+    - schema_generation
+    derived_from_bd_id: BD-012
+  - id: instructor-C-024
+    when: When porting code between sync Instructor and AsyncInstructor with response_model=Iterable[X]
+    action: assume Instructor.create and AsyncInstructor.create handle Iterable[X] response_model identically — AsyncInstructor.create
+      auto-forwards Iterable[X] to create_iterable; sync Instructor.create does NOT, returning an unconsumed generator that
+      the caller must iterate explicitly
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Sync caller passing Iterable[X] silently receives an unconsumed generator object; iterating over the wrong
+      object yields no items because the LLM call hasn't actually run, masking the silent-empty failure as 'no records returned'
+    stage_ids:
+    - provider_patch
+    derived_from_bd_id: BD-014
+  - id: instructor-C-025
+    when: When passing additional context for Pydantic validators (custom data needed at validate-time)
+    action: use the context= kwarg, not the deprecated validation_context= kwarg; passing both raises ConfigurationError;
+      passing only validation_context= triggers a DeprecationWarning and is silently aliased to context
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Mixing both kwargs raises ConfigurationError at runtime; relying on validation_context= only triggers DeprecationWarning
+      that may be missed in CI logs; future versions plan to remove validation_context entirely
+    stage_ids:
+    - provider_patch
+    derived_from_bd_id: BD-016
+  - id: instructor-C-026
+    when: When wiring instructor as the async-side wrapper for an existing provider client
+    action: use the deprecated instructor.apatch entry point; instructor.patch detects async via inspect.iscoroutinefunction
+      and wires new_create_async or new_create_sync accordingly — apatch was removed as a separate API surface
+    severity: low
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Code calling instructor.apatch sees a deprecation warning today; in future versions removal of apatch causes
+      ImportError; the canonical entry instructor.patch handles both sync and async via runtime detection
+    stage_ids:
+    - provider_patch
+    derived_from_bd_id: BD-017
+  - id: instructor-C-027
+    when: When following the docs/concepts/partial.md instruction to import PartialLiteralMixin for Literal/Enum support in
+      Partial[Model]
+    action: import or subclass PartialLiteralMixin — it is deprecated in code (DeprecationWarning at partial.py:56-75); JsonCompleteness
+      now handles Literal/Enum natively; the docs are stale and have not been updated
+    severity: low
+    kind: operational_lesson
+    modality: must_not
+    consequence: Following the stale doc produces working but DeprecationWarning-emitting code; PartialLiteralMixin will be
+      removed in a future release, breaking codebases that follow the doc verbatim — runtime failure will be ImportError far
+      from the original copy-paste
+    stage_ids:
+    - streaming_partial
+    derived_from_bd_id: BD-018
+  - id: instructor-C-028
+    when: When passing timeout=N in kwargs to Instructor.create alongside max_retries
+    action: treat the timeout kwarg as a TOTAL deadline across all retries — initialize_retrying composes stop_after_attempt(max_retries)
+      | stop_after_delay(timeout) as OR; whichever fires first stops the loop; a 30-second timeout with 5 retries gives up
+      at second 30 even if only 2 retries happened
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Believing timeout is per-attempt causes users to set timeout=30 with max_retries=5 expecting up to 150 seconds;
+      tenacity actually caps at 30s total, so retries 3-5 never run; the resulting behavior is silent retry truncation that
+      looks like 'instructor gave up too early'
+    stage_ids:
+    - llm_call
+  - id: instructor-C-029
+    when: When wiring observability (tracing, metrics, logfire/langfuse) around instructor
+    action: 'register hooks ONLY against the 5 HookName events: completion:kwargs, completion:response, completion:error,
+      completion:last_attempt, parse:error; instructor has no metrics framework and no built-in tracing — hooks are the sole
+      observability surface'
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Calling Hooks.on() with an unrecognized hook_name raises ValueError per get_hook_name(); attempting to instrument
+      intermediate states beyond the 5 events requires forking instructor — there is no extension API for new hook events
+    stage_ids:
+    - llm_call
+    - validation
+    - reask_loop
+  - id: instructor-C-030
+    when: When implementing a custom Mode value or extending instructor with a third-party mode
+    action: register the new mode value in BOTH mode_handlers (processing/response.py:461-498) for schema injection AND REASK_HANDLERS
+      (processing/response.py:645-695) for error feedback injection; a missing entry in mode_handlers raises ConfigurationError
+      at handle_response_model
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Adding a new Mode enum value without entries in both dispatch dicts causes ConfigurationError at the first
+      call; only registering in mode_handlers leaves reask broken (KeyError at handle_reask_kwargs); the symmetric registration
+      is enforced by convention only, not by schema
+    stage_ids:
+    - mode_selection
+    - schema_generation
+    - reask_loop
+  - id: instructor-C-031
+    when: When passing user-supplied image URLs into instructor.Image.from_url that may include signed URLs whose underlying
+      content changes
+    action: use Image.from_url with signed URLs whose content is mutable (S3 presigned, expiring CDN paths) — the constructor
+      is decorated with @lru_cache so the same URL string returns the cached image bytes regardless of subsequent content
+      changes
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Two independent uploads using the same signed URL get the cached first-fetched bytes; users see images switching
+      for no apparent reason; the bug is invisible until cross-correlated by URL — caching is process-lifetime and there is
+      no eviction control
+    stage_ids:
+    - schema_generation
+  - id: instructor-C-032
+    when: When subclassing or wrapping the Instructor class to add custom behavior on chat.completions.create or messages.create
+    action: override the wrapped create method (returned by .chat.completions / .messages property accessors) at one place
+      — all three @property accessors return self, so .chat.completions.create, .completions.create, and .messages.create
+      all dispatch to the same underlying wrapped create method
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Naively overriding .chat.completions.create assuming a separate method per call style causes inconsistent
+      behavior — Anthropic-style .messages.create still hits the original wrapped create because all accessors alias to self;
+      subclass authors must understand the aliasing chain
+    stage_ids:
+    - provider_patch
+  - id: instructor-C-033
+    when: When marketing or describing the capability of an instructor-based PII extraction pipeline
+    action: claim 'certified PII detection' or 'compliance-grade PII redaction' for output — instructor delegates all extraction
+      to the LLM; UC-001 PII Extraction is documented as best-effort, not certified; HIPAA / GDPR / PCI compliance requires
+      deterministic post-processing on top of any LLM extraction
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Claiming certified PII detection invites legal exposure when the LLM hallucinates a missed PII field; instructor
+      provides no recall/precision guarantees and the upstream issue tracker explicitly disclaims certified compliance
+    stage_ids:
+    - validation
+  - id: instructor-C-034
+    when: When describing the latency or freshness characteristics of an instructor-based pipeline that runs against polling-based
+      provider APIs (Batch API, async submission flows)
+    action: claim real-time guarantees for the pipeline output — UC-010 OpenAI Batch API and similar offline workflows have
+      hours-scale latency by design; instructor merely wraps the submit/poll/retrieve cycle and adds no real-time path on
+      top
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Marketing 'real-time' for batch-API-backed workflows misleads downstream consumers into building latency-sensitive
+      systems on hours-scale infrastructure; the disconnect surfaces only after production workloads time out
+    stage_ids:
+    - llm_call
+  - id: instructor-C-035
+    when: When using instructor with strict validators on long completions (>4k tokens output) and high max_retries
+    action: claim instructor handles context-window overflow — there is no truncation, no summarization, and no per-FailedAttempt
+      size cap on the failed_attempts XML; long-completion + strict-validator workloads must add user-side hooks to truncate
+      messages before each retry or accept InstructorRetryException as the failure mode
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users believing instructor has built-in context management overprovision max_retries and underprovision context
+      budget; the failure mode is InstructorRetryException (not LengthError), making root-cause diagnosis harder than necessary
+    stage_ids:
+    - reask_loop
+  - id: instructor-C-036
+    when: When promoting an instructor-based SQL safety pipeline (UC-008 safer_sql_example pattern)
+    action: claim audited SQL injection prevention — UC-008's validator is user-defined and not externally audited; combining
+      LLM generation with a user-side validator does NOT equal certified safety; certified SQL safety requires an independent
+      SQL parser and policy engine
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Marketing certified SQL safety on a user-defined-validator pipeline misleads adopters; common attacks (Unicode
+      normalization, encoded payloads, parser-confusion patterns) bypass naive substring/regex validators that UC-008 example
+      uses as a starting template
+    stage_ids:
+    - validation
+  - id: instructor-C-037
+    when: When writing new code that constructs an Instructor client
+    action: prefer instructor.from_provider('provider/model') over per-provider factories like from_openai or from_anthropic;
+      AGENT.md L30 and docs/concepts/patching.md tip block recommend from_provider as the canonical entry; per-provider factories
+      remain for explicit setups but are no longer the default-recommended path
+    severity: low
+    kind: operational_lesson
+    modality: should
+    consequence: Per-provider factories couple call sites to specific providers; from_provider centralizes the choice and
+      survives provider migrations more cleanly; ignoring the project recommendation creates maintenance debt that compounds
+      across multi-provider deployments
+    stage_ids:
+    - provider_patch
+  - id: instructor-C-038
+    when: When validating user-supplied mode= argument in custom Instructor wrappers or middleware
+    action: 'use raise ModeError (matching the canonical pattern in 13 provider factories: anthropic / cohere / gemini / groq
+      / bedrock / fireworks / vertexai / xai / writer / cerebras / perplexity / genai / mistral) rather than Python assert;
+      assert is silently stripped under python -O while raise ModeError fires unconditionally'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using assert for mode validation creates the same -O fragility documented for from_openai (BD-G02); raise
+      ModeError is the project's canonical pattern across 13 of 20 providers and the safer default for custom wrappers
+    stage_ids:
+    - mode_selection
+  - id: instructor-C-039
+    when: When the messages payload may contain instructor.Image / Audio / PDF instances
+    action: ensure messages pass through convert_messages (called at instructor/processing/response.py:511-515 invocation
+      site) before reaching the provider — convert_messages walks the messages list and converts each multimodal Pydantic
+      object to the provider-specific format; bypassing it sends raw Pydantic objects to the SDK which will reject them
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping convert_messages causes the provider SDK to receive raw Image/Audio/PDF Pydantic instances it cannot
+      serialize; error surfaces as TypeError or schema validation failure deep inside the SDK, far from the user-side construction
+      site
+    stage_ids:
+    - schema_generation
+  - id: instructor-C-040
+    when: When passing a tenacity.Retrying or AsyncRetrying object as max_retries instead of an int
+    action: 'ensure the Retrying instance type matches the call surface — pass tenacity.AsyncRetrying to AsyncInstructor.create
+      paths and tenacity.Retrying to sync Instructor.create; initialize_retrying validates: passing the wrong subclass raises
+      InstructorRetryException with ''max_retries must be an int or a tenacity.Retrying/tenacity.AsyncRetrying object'''
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Passing tenacity.Retrying to async paths or AsyncRetrying to sync paths produces an immediate raise from
+      initialize_retrying; the failure surfaces as InstructorRetryException with no clear hint that the issue is sync/async
+      mismatch rather than retry-budget exhaustion
+    stage_ids:
+    - llm_call
+  - id: instructor-C-041
+    when: When implementing a custom validator that hooks into instructor's validation pipeline via Annotated[X, BeforeValidator(...)]
+      or AfterValidator
+    action: ensure the validator function is Pydantic v2-compatible and does NOT rely on legacy v1 ValidationInfo shape; instructor
+      calls model_validate_json or TypeAdapter().validate_json which expects v2 semantics; v1-style validator functions are
+      silently dropped (decorator ignored) without raising
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: v1-style validator functions registered via Annotated decorators get silently dropped because v2 BaseModel
+      ignores v1 decorator metadata; reask path receives no ValidationError, malformed LLM output passes silently, and the
+      missing validation is discovered only via integration tests
+    stage_ids:
+    - validation
+  - id: instructor-C-042
+    when: When implementing a provider-specific reask handler for a new mode
+    action: match the provider's native error feedback channel — use tool_result with is_error=true for Anthropic-family modes,
+      role='tool' messages for OpenAI tool-calling modes, role='user' text messages for MD_JSON / JSON modes; do NOT use a
+      single text-injection style across all providers because models self-correct better when error feedback uses the same
+      shape as the original tool/JSON interaction (BD-004)
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using role='user' text injection for Anthropic tool-mode reask reduces the model's ability to associate the
+      error with the failed tool_use; reask round-trips become less effective, total retry count increases, and total API
+      cost rises — measurable in benchmark runs (BD-004 rationale)
+    stage_ids:
+    - reask_loop
+    derived_from_bd_id: BD-004
+  - id: instructor-C-043
+    when: When the LLM may return multiple structured items in a single completion (parallel tool calls, list output)
+    action: wrap response_model in Iterable[X] (e.g. response_model=Iterable[User]) and call create_iterable explicitly on
+      sync Instructor; AsyncInstructor.create auto-forwards Iterable[X] but sync does not (BD-014); for partial streaming
+      wrap in Partial[X] and call create_partial
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Calling Instructor.create with Iterable[X] response_model on sync returns an unconsumed generator object;
+      the LLM call has not actually happened at return time; iterating produces zero items and the caller cannot tell whether
+      the LLM returned empty results or whether the wrong API was used
+    stage_ids:
+    - streaming_partial
+    - provider_patch
+  - id: instructor-C-044
+    when: When adding a new provider (the 21st provider) to instructor
+    action: implement from_NEW_PROVIDER that calls instructor.patch(client=NEW_CLIENT, mode=...) internally and registers
+      provider-specific handlers in mode_handlers and REASK_HANDLERS dicts; do NOT bypass instructor.patch because all 20
+      providers share one wrapped create() implementation and the retry / validation / hooks / cache logic is reused as-is
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: A new from_NEW that bypasses instructor.patch loses the entire reusable wrapper (no retry, no reask, no hooks,
+      no cache); the provider works for happy-path calls but degrades silently on validation failure because the canonical
+      wrapper logic was not invoked
+    stage_ids:
+    - provider_patch
+  - id: instructor-C-045
+    when: When extending instructor with a new mode, schema generator, or reask handler
+    action: introduce an ABC / Protocol surface for modes — instructor deliberately uses flat dispatch dicts (mode_handlers
+      + REASK_HANDLERS) keyed by Mode enum value because 20 providers x 36 modes = 720 combinations would explode any ABC
+      inheritance hierarchy; ABC use is reserved for the 9 narrow @abstractmethod surfaces (BaseCache 2 + BatchProvider 7)
+    severity: medium
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Replacing the flat dict dispatch with an ABC requires writing 720 method overrides in the worst case; the
+      project chose flat dispatch for scaling reasons; any PR that introduces ABC for modes will be rejected per BD-015 rationale
+    stage_ids:
+    - mode_selection
+    - schema_generation
+    - reask_loop
+    derived_from_bd_id: BD-015
+  - id: instructor-C-046
+    when: When constructing instructor.Image from raw base64 bytes on Python 3.13+
+    action: rely on Image.from_raw_base64's hand-rolled magic-byte detection (since imghdr was removed in 3.13); do NOT call
+      imghdr.what() in user code as a parallel detection path — the function is gone and the import will ImportError at module
+      load on 3.13+
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Code that imports imghdr for backward compatibility breaks on Python 3.13; the runtime ImportError prevents
+      any instructor.Image use until the import is removed; instructor's hand-rolled detection at multimodal.py:155-182 is
+      the canonical replacement
+    stage_ids:
+    - schema_generation
+  - id: instructor-C-047
+    when: When using instructor's templating feature (passing context= kwarg with jinja2 template strings in messages)
+    action: rely on instructor's jinja2 SandboxedEnvironment to fully prevent code execution from untrusted user-supplied
+      templates — SandboxedEnvironment blocks unsafe attribute access but does not validate template logic; user-controlled
+      templates can still leak data via legitimate filter chains
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Treating SandboxedEnvironment as a security boundary for fully-untrusted user templates risks information
+      disclosure via filter chains and template introspection; sandboxing is a defense-in-depth measure not a complete sandbox
+      — never let untrusted users author the template body
+    stage_ids:
+    - llm_call
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-139 / PII Extraction and Scrub Replacement
+    version: v6.1
+    intent_keywords:
+    - PII
+    - scrub
+    - redact
+    - sensitive data
+    - compliance extraction
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (2 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 9
+        ucs:
+        - uc_id: UC-001
+          name: PII Extraction and Scrub Replacement
+          short_description: Extract PII fields (SSN, phone, email, name, address) from unstructured documents and produce
+            a scrubbed version
+          sample_triggers:
+          - PII
+          - scrub
+          - redact
+        - uc_id: UC-002
+          name: SOC Occupation Code Classification with field_validator
+          short_description: Map free-text job descriptions to standardized SOC occupation codes; use Pydantic field_validator
+            to reject hallucinated codes and let reask retry wit
+          sample_triggers:
+          - classification
+          - SOC code
+          - field_validator
+        - uc_id: UC-003
+          name: Knowledge Graph Extraction (nodes + edges)
+          short_description: Convert free text into a structured KnowledgeGraph(nodes, edges)
+          sample_triggers:
+          - knowledge graph
+          - KG
+          - entity relations
+        - uc_id: UC-004
+          name: Citation Substring Extraction with Fuzzy Match Verification
+          short_description: Extract facts plus quoted source substrings; verify each citation's substring exists in the source
+            text via regex / fuzzy match
+          sample_triggers:
+          - citation
+          - fact-checking
+          - RAG verification
+        - uc_id: UC-005
+          name: Parallel Multi-tool Routing
+          short_description: Single LLM request triggers multiple tool calls in parallel (e.g
+          sample_triggers:
+          - parallel tools
+          - Iterable
+          - Union types
+        - uc_id: UC-006
+          name: Partial Streaming for UI Real-time Render
+          short_description: Stream Pydantic-typed fields as JSON arrives so UI can render typewriter-style progressive updates
+          sample_triggers:
+          - partial streaming
+          - UI typewriter
+          - rich console
+        - uc_id: UC-007
+          name: AI-driven SQLModel ORM Entity Generation
+          short_description: Use LLM to generate SQLModel ORM entity definitions and write them to a database
+          sample_triggers:
+          - SQLModel
+          - ORM generation
+          - ResponseSchema
+        - uc_id: UC-008
+          name: Safe SQL Generation with Guardrail
+          short_description: Generate SQL queries with a custom validator that prevents injection / unsafe operations
+          sample_triggers:
+          - SQL generation
+          - safer SQL
+          - injection prevention
+        - uc_id: UC-009
+          name: Query Planner DAG Decomposition
+          short_description: Decompose a natural-language question into a DAG of executable subqueries with explicit dependencies
+          sample_triggers:
+          - query planning
+          - DAG
+          - task decomposition
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 1
+        ucs:
+        - uc_id: UC-010
+          name: OpenAI Batch API Offline Classification
+          short_description: Bulk-classify large text corpora using OpenAI's Batch API endpoint for cost reduction
+          sample_triggers:
+          - batch processing
+          - offline classification
+          - cost reduction
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try pii extraction and scrub replacement
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try soc occupation code classification with field_validator
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try knowledge graph extraction (nodes + edges)
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 10 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Knowledge Graph Extraction (nodes + edges)
+    - SOC Occupation Code Classification with field_validator
+    - PII Extraction and Scrub Replacement
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

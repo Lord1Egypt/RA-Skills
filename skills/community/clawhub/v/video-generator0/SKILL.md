@@ -1,35 +1,37 @@
----
-name: "Video-Generator"
-description: "Creates professional motion graphics videos using React and Remotion for commercials, demos, social media, and programmatic video content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-generator0"
-sourceUrl: "https://clawhub.ai/skills/video-generator0"
----
+name: video-generator
+description: AI video production workflow using Remotion. Use when creating videos, short films, commercials, motion graphics, product demos, social media videos, or any programmatic video content. Produces professional motion graphics using React + Remotion.
+version: 1.0.0
 
-# Video-Generator
+# Video Generator (OpenClaw Skill)
 
-> Creates professional motion graphics videos using React and Remotion for commercials, demos, social media, and programmatic video content.
+This skill builds professional motion graphics videos using Remotion.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-generator0`
-- **Source URL:** [https://clawhub.ai/skills/video-generator0](https://clawhub.ai/skills/video-generator0)
+## Workflow
 
-## Overview
+1. If product/company is mentioned → scrape brand using Firecrawl
+2. Create project in output/<project-name>/
+3. Build scenes using Remotion architecture
+4. Install dependencies (npm install)
+5. Run dev server (Remotion Studio)
+6. Expose via Cloudflare tunnel
+7. Share public URL
+8. Iterate based on user feedback
+9. Render only when explicitly requested
 
+## Key Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-generator0
-```
+- NEVER use emoji icons, always Lucide icons
+- Avoid slideshow-style transitions
+- Use motion graphics principles (overlap, spring physics, layered scenes)
+- Use brand colors from scraped data
+- Keep text minimal and cinematic
+
+## Commands
+
+- npm run dev → start studio
+- npm run build → bundle project
+- npx remotion render → export video
+
+## Output Structure
+
+output/<project-name>/

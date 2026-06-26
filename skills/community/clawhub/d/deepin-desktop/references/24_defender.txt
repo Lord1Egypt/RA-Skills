@@ -1,0 +1,15 @@
+=== com.deepin.defender /com/deepin/defender/AutostartManager ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name com.deepin.defender was not provided by any .service files
+
+=== com.deepin.defender /com/deepin/defender/firewall ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name com.deepin.defender was not provided by any .service files
+
+=== com.deepin.defender /com/deepin/defender/USBManager ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name com.deepin.defender was not provided by any .service files
+
+=== com.deepin.defender /com/deepin/defender/LoginSafety ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name com.deepin.defender was not provided by any .service files
+
+=== com.deepin.defender /com/deepin/defender/MonitorNetFlow ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name com.deepin.defender was not provided by any .service files
+

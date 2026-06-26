@@ -1,35 +1,52 @@
 ---
-name: "OpenClaw自动进化系统"
-description: "OpenClaw 自进化系统 - 让AI具备自我学习与自我提升能力 通过「犯错→学习→提炼→强化」的闭环机制，实现真正的自我改进 核心能力：自动发现问题、分析根因、提出建议、验证效果、落地形成规则"
-category: "productivity"
-source: "ClawHub"
-tags: [auto-evolution, automation, learning]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-auto-evolve"
-sourceUrl: "https://clawhub.ai/skills/openclaw-auto-evolve"
+name: self-evolution
+description: |
+  OpenClaw 自进化系统 - 让AI具备自我学习与自我提升能力
+  通过「犯错→学习→提炼→强化」的闭环机制，实现真正的自我改进
+  核心能力：自动发现问题、分析根因、提出建议、验证效果、落地形成规则
+metadata:
+  openclaw:
+    emoji: '🧠'
+    primaryEnv: ''
+    version: '1.0.0'
 ---
 
-# OpenClaw自动进化系统
+# OpenClaw 自进化系统
 
-> OpenClaw 自进化系统 - 让AI具备自我学习与自我提升能力 通过「犯错→学习→提炼→强化」的闭环机制，实现真正的自我改进 核心能力：自动发现问题、分析根因、提出建议、验证效果、落地形成规则
+> 让AI具备真正的自我改进能力。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-auto-evolve`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-auto-evolve](https://clawhub.ai/skills/openclaw-auto-evolve)
+## 核心能力
 
-## Overview
+### 1. 自进化闭环
+自动发现问题 → 分析根因 → 提出建议 → 验证效果 → 落地形成规则
 
+### 2. 记忆分层管理
+- 核心记忆：常驻内存，跨会话持久化
+- 次要记忆：按需加载，语义检索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-auto-evolve
-```
+### 3. 规则治理
+- 集中式规则库
+- 置信度自动调整
+- 隐私分级保护
+
+### 4. 健康监控
+- 实时健康评分
+- 模块状态追踪
+- 问题预警
+
+## 使用方法
+
+### 触发关键词
+当用户提到以下词汇时，自动激活自进化功能：
+- 自进化、自愈、零人工维护、学习闭环
+
+### 手动触发
+直接输入：`/自进化`
+
+### 查看系统状态
+输入：`/自进化状态` 或 `/health`
+
+## 注意事项
+- 本技能依赖 OpenClaw 4.5+ 环境
+- 首次使用会自动初始化规则库
+- 建议配合 memory 模块使用效果更佳

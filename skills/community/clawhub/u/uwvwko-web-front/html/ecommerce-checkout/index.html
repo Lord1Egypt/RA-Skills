@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单支付 | Checkout</title>
+    <style>
+        /* CSS变量系统 */
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+            --bg-gray: #f7fafc;
+            --bg-white: #ffffff;
+            --text-dark: #2d3748;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --text-muted: #a0aec0;
+            --border: #e2e8f0;
+            
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 20px;
+            --text-xl: 25px;
+            --text-2xl: 31px;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: var(--text-base);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-md);
+        }
+
+        /* 头部 */
+        .header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-md) 0;
+            margin-bottom: var(--space-lg);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .header-steps {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+        }
+
+        .step.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        .step.active .step-number {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 主布局 */
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        /* 卡片通用样式 */
+        .card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: var(--space-md);
+        }
+
+        .card-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--bg-gray);
+        }
+
+        /* 商品列表 */
+        .product-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            color: var(--text-dark);
+        }
+
+        .product-description {
+            font-size: var(--text-sm);
+            color: var(--text-light);
+            margin-bottom: var(--space-xs);
+        }
+
+        .product-quantity {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .product-price {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+        }
+
+        /* 表单样式 */
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--text-dark);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px var(--space-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-base);
+            transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+
+        /* 支付方式选择 */
+        .payment-methods {
+            display: grid;
+            gap: var(--space-sm);
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: var(--space-md);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--duration-fast);
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary);
+            background: rgba(102, 126, 234, 0.02);
+        }
+
+        .payment-method.active {
+            border-color: var(--primary);
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .payment-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            margin-right: var(--space-sm);
+            position: relative;
+            transition: border-color var(--duration-fast);
+        }
+
+        .payment-method.active .payment-radio {
+            border-color: var(--primary);
+        }
+
+        .payment-method.active .payment-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .payment-icon {
+            font-size: 24px;
+            margin-right: var(--space-sm);
+        }
+
+        .payment-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        /* 订单摘要 */
+        .order-summary {
+            position: sticky;
+            top: var(--space-md);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-sm) 0;
+            font-size: var(--text-sm);
+        }
+
+        .summary-row.total {
+            border-top: 2px solid var(--bg-gray);
+            padding-top: var(--space-md);
+            margin-top: var(--space-sm);
+            font-size: var(--text-lg);
+            font-weight: 700;
+        }
+
+        .summary-label {
+            color: var(--text-medium);
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        .summary-row.total .summary-value {
+            color: var(--primary);
+        }
+
+        /* 优惠码 */
+        .promo-code {
+            display: flex;
+            gap: var(--space-xs);
+            margin: var(--space-md) 0;
+        }
+
+        .promo-input {
+            flex: 1;
+            padding: 10px var(--space-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-sm);
+        }
+
+        .promo-btn {
+            padding: 10px var(--space-md);
+            background: var(--bg-gray);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: all var(--duration-fast);
+        }
+
+        .promo-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* 提交按钮 */
+        .checkout-btn {
+            width: 100%;
+            padding: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--text-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            margin-top: var(--space-md);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(0);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* 安全提示 */
+        .security-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+            margin-top: var(--space-md);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .security-icon {
+            font-size: 16px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-steps {
+                display: none;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: var(--space-sm);
+            }
+            
+            .card {
+                padding: var(--space-md);
+            }
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn var(--duration-slow) ease;
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin-right: var(--space-xs);
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🛒 ShopName</div>
+            <div class="header-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <span>购物车</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <span>支付</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>完成</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="checkout-layout">
+            <!-- 左侧：商品和表单 -->
+            <div class="checkout-main">
+                <!-- 商品列表 -->
+                <div class="card">
+                    <h2 class="card-title">订单商品</h2>
+                    
+                    <div class="product-item">
+                        <div class="product-image">💻</div>
+                        <div class="product-info">
+                            <div class="product-name">MacBook Pro 14英寸</div>
+                            <div class="product-description">M3 Pro芯片, 18GB内存, 512GB存储</div>
+                            <div class="product-quantity">数量: 1</div>
+                        </div>
+                        <div class="product-price">¥14,999</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">🎧</div>
+                        <div class="product-info">
+                            <div class="product-name">AirPods Pro 2</div>
+                            <div class="product-description">主动降噪, MagSafe充电盒</div>
+                            <div class="product-quantity">数量: 2</div>
+                        </div>
+                        <div class="product-price">¥3,596</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">📱</div>
+                        <div class="product-info">
+                            <div class="product-name">iPhone 15 Pro</div>
+                            <div class="product-description">256GB, 原色钛金属</div>
+                            <div class="product-quantity">数量: 1</div>
+                        </div>
+                        <div class="product-price">¥8,999</div>
+                    </div>
+                </div>
+
+                <!-- 收货信息 -->
+                <div class="card">
+                    <h2 class="card-title">收货信息</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">收货人姓名 *</label>
+                        <input type="text" class="form-input" placeholder="请输入收货人姓名" id="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">联系电话 *</label>
+                        <input type="tel" class="form-input" placeholder="请输入手机号码" id="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">详细地址 *</label>
+                        <input type="text" class="form-input" placeholder="省/市/区" id="region">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="详细地址（街道、楼栋、门牌号）" id="address">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">备注</label>
+                        <input type="text" class="form-input" placeholder="选填：配送时间要求等" id="note">
+                    </div>
+                </div>
+
+                <!-- 支付方式 -->
+                <div class="card">
+                    <h2 class="card-title">支付方式</h2>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method active" data-method="alipay">
+                            <div class="payment-radio"></div>
+                            <div class="payment-icon">💳</div>
+                            <div class="payment-name">支付宝</div>
+                        </div>
+
+                        <div class="payment-method" data-method="wechat">
+                            <div class="payment-radio"></div>
+                            <div class="payment-icon">💚</div>
+                            <div class="payment-name">微信支付</div>
+                        </div>
+
+                        <div class="payment-method" data-method="card">
+                            <div class="payment-radio"></div>
+                            <div class="payment-icon">💰</div>
+                            <div class="payment-name">银行卡支付</div>
+                        </div>
+                    </div>
+
+                    <div id="card-form" style="display: none; margin-top: var(--space-md);">
+                        <div class="form-group">
+                            <label class="form-label">卡号</label>
+                            <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="card-number">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">有效期</label>
+                                <input type="text" class="form-input" placeholder="MM/YY" id="card-expiry">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">CVV</label>
+                                <input type="text" class="form-input" placeholder="123" id="card-cvv">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：订单摘要 -->
+            <div class="order-summary">
+                <div class="card">
+                    <h2 class="card-title">订单摘要</h2>
+
+                    <div class="summary-row">
+                        <span class="summary-label">商品小计</span>
+                        <span class="summary-value">¥27,594</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="summary-label">运费</span>
+                        <span class="summary-value">¥0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="summary-label">税费</span>
+                        <span class="summary-value">¥0</span>
+                    </div>
+
+                    <div class="promo-code">
+                        <input type="text" class="promo-input" placeholder="优惠码" id="promo-code">
+                        <button class="promo-btn" id="apply-promo">应用</button>
+                    </div>
+
+                    <div class="summary-row total">
+                        <span class="summary-label">总计</span>
+                        <span class="summary-value" id="total-amount">¥27,594</span>
+                    </div>
+
+                    <button class="checkout-btn" id="checkout-btn">
+                        立即支付
+                    </button>
+
+                    <div class="security-notice">
+                        <span class="security-icon">🔒</span>
+                        <span>您的支付信息已加密保护</span>
+                    </div>
+                </div>
+
+                <!-- 服务保障 -->
+                <div class="card" style="font-size: var(--text-sm); color: var(--text-light);">
+                    <div style="margin-bottom: var(--space-sm);">✓ 7天无理由退换</div>
+                    <div style="margin-bottom: var(--space-sm);">✓ 正品保障</div>
+                    <div style="margin-bottom: var(--space-sm);">✓ 极速发货</div>
+                    <div>✓ 专业售后</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 支付方式选择
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const cardForm = document.getElementById('card-form');
+        
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                // 移除所有active状态
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                // 添加当前active状态
+                method.classList.add('active');
+                
+                // 显示/隐藏银行卡表单
+                const methodType = method.dataset.method;
+                cardForm.style.display = methodType === 'card' ? 'block' : 'none';
+            });
+        });
+
+        // 优惠码应用
+        const promoBtn = document.getElementById('apply-promo');
+        const promoInput = document.getElementById('promo-code');
+        const totalAmount = document.getElementById('total-amount');
+        
+        promoBtn.addEventListener('click', () => {
+            const code = promoInput.value.trim();
+            if (code) {
+                // 模拟优惠码验证
+                if (code === 'SAVE10') {
+                    const currentTotal = parseInt(totalAmount.textContent.replace(/[^\d]/g, ''));
+                    const newTotal = currentTotal * 0.9;
+                    totalAmount.textContent = '¥' + newTotal.toLocaleString();
+                    alert('优惠码已应用！享受9折优惠');
+                } else {
+                    alert('优惠码无效，请重试');
+                }
+            }
+        });
+
+        // 提交订单
+        const checkoutBtn = document.getElementById('checkout-btn');
+        
+        checkoutBtn.addEventListener('click', async () => {
+            // 获取表单数据
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const region = document.getElementById('region').value;
+            const address = document.getElementById('address').value;
+            
+            // 验证必填字段
+            if (!name || !phone || !region || !address) {
+                alert('请填写完整的收货信息');
+                return;
+            }
+            
+            // 显示加载状态
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerHTML = '<span class="loading"></span>处理中...';
+            
+            // 模拟支付处理
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // 支付成功
+            alert('支付成功！订单号: #ORD' + Date.now());
+            
+            // 恢复按钮状态
+            checkoutBtn.disabled = false;
+            checkoutBtn.innerHTML = '立即支付';
+        });
+
+        // 表单输入格式化
+        document.getElementById('card-number').addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
+            value = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = value;
+        });
+
+        document.getElementById('card-expiry').addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('card-cvv').addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+        });
+    </script>
+</body>
+</html>

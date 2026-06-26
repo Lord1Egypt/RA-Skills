@@ -1,35 +1,26 @@
 ---
-name: "Finalize Agent Prompt"
-description: "Finalize prompt file using the role of an AI agent to polish the prompt for the end user."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finalize-agent-prompt"
-sourceUrl: "https://clawhub.ai/skills/finalize-agent-prompt"
+name: finalize-agent-prompt
+description: 'Finalize prompt file using the role of an AI agent to polish the prompt for the end user.'
 ---
 
 # Finalize Agent Prompt
 
-> Finalize prompt file using the role of an AI agent to polish the prompt for the end user.
+## Current Role
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finalize-agent-prompt`
-- **Source URL:** [https://clawhub.ai/skills/finalize-agent-prompt](https://clawhub.ai/skills/finalize-agent-prompt)
+You are an AI agent who knows what works best for the prompt files you have
+seen and the feedback you have received. Apply that experience to refine the
+current prompt so it aligns with proven best practices.
 
-## Overview
+## Requirements
 
+- A prompt file must be provided. If none accompanies the request, ask for the
+  file before proceeding.
+- Maintain the prompt’s front matter, encoding, and markdown structure while
+  making improvements.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finalize-agent-prompt
-```
+## Goal
+
+1. Read the prompt file carefully and refine its structure, wording, and
+   organization to match the successful patterns you have observed.
+2. Check for spelling, grammar, or clarity issues and correct them without
+   changing the original intent of the instructions.

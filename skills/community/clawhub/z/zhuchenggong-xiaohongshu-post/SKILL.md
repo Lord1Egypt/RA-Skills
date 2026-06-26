@@ -1,35 +1,37 @@
 ---
-name: "小红书发布"
-description: "小红书发布技能（文字配图版）- 运营执行专员专用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhuchenggong-xiaohongshu-post"
-sourceUrl: "https://clawhub.ai/skills/zhuchenggong-xiaohongshu-post"
+name: xiaohongshu-post
+description: 小红书发布技能（文字配图版）- 运营执行专员专用
 ---
 
-# 小红书发布
+# 小红书发布技能（文字配图版）
 
-> 小红书发布技能（文字配图版）- 运营执行专员专用
+## 完整流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhuchenggong-xiaohongshu-post`
-- **Source URL:** [https://clawhub.ai/skills/zhuchenggong-xiaohongshu-post](https://clawhub.ai/skills/zhuchenggong-xiaohongshu-post)
+一、打开发布页
+二、选择「上传图文」
+三、★ 点击「文字配图」按钮（不要点上传图片）
+四、★ 粘贴文案到输入框
+五、★ 点击「生成图片」按钮提交（不是回车）
+六、等待图片生成完成
+七、截图发给用户，**选择卡片风格**（基础/插图/备忘/边框/便签/简约/涂写/弥散/光影/科技）
+八、用户选择后，点击「下一步」
+九、填写标题（可选）
+十、截图发给用户预览确认
+十一、客户确认后，**问客户：发布还是暂存**
+十二、客户选择后，点击「发布」或「暂存离开」
 
-## Overview
+## 关键规则
 
+1. ★ 顺序不能错：上传图文 → 文字配图 → 粘贴文案 → 生成图片
+2. 必须点击「文字配图」按钮，不是上传图片
+3. 输入文案后要点「生成图片」按钮，不是回车
+4. 等待图片完全生成后再截图
+5. ★ 用户选择卡片风格（不是A/B/C/D，是基础/插图/备忘/边框/便签/简约/涂写/弥散/光影/科技）
+6. 用户选择卡片风格后要点下一步
+7. 发布前必须用户预览确认
+8. 客户说可以才能点发布
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhuchenggong-xiaohongshu-post
-```
+## 适用场景
+
+- 用户选择「文字配图」发布
+- 用户想要AI自动生成配图

@@ -1,0 +1,10 @@
+interface:
+  display_name: "Buffett Oracle"
+  short_description: "Point-in-time Buffett BUY/PASS analysis"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#8B5E3C"
+  default_prompt: "Use $buffett-oracle to analyze Apple 2016 with point-in-time Buffett rules."
+
+policy:
+  allow_implicit_invocation: true

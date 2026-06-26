@@ -1,0 +1,9 @@
+{
+  "name": "creative-inspiration-hub",
+  "version": "1.2.0",
+  "description": "创意灵感孵化器 - 使用本地规则引擎，通过跨领域组合、灵感触发、创意评估和思维导图生成，帮助创意工作者突破瓶颈",
+  "keywords": ["creative", "inspiration", "ideation", "mindmap", "innovation", "cross-domain"],
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "repository": "https://github.com/harrylabsj/creative-inspiration-hub"
+}

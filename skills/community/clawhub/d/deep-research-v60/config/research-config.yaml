@@ -1,0 +1,54 @@
+# 研究领域定义（用户按需修改）
+research_domain: "insurance cost control"  # 可改为: healthcare, finance, climate...
+
+# 关键提取指标（领域无关，按需增删）
+key_metrics:
+  performance:
+    - accuracy
+    - AUC
+    - F1
+    - precision
+    - recall
+  efficiency:
+    - cost_saving
+    - latency
+    - throughput
+  data:
+    - sample_size
+    - dataset
+    - features
+  methodology:
+    - model_type
+    - baseline
+    - validation
+
+# 数据源优先级（自动按此顺序尝试）
+data_sources:
+  - name: arxiv
+    priority: 1
+    full_text: true
+    api: "http://export.arxiv.org/api/query"
+    pdf_pattern: "https://arxiv.org/pdf/{id}.pdf"
+    
+  - name: pubmed_central
+    priority: 2
+    full_text: true
+    api: "https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa_file_list.cgi"
+    
+  - name: pubmed_abstract
+    priority: 3
+    full_text: false
+    api: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+    
+  - name: web_search
+    priority: 4
+    full_text: false
+    search_command: "web_search"
+
+# 输出配置
+output:
+  executive_summary_max_words: 500
+  validation_checklist_format: "markdown_table"
+  require_citation_for:
+    - quantitative_results
+    - performance_metrics

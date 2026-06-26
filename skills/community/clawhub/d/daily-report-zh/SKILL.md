@@ -1,35 +1,38 @@
 ---
-name: "Daily Report Zh"
-description: "智能日报生成助手，帮助职场人士将当天零散的工作事项快速整理成结构清晰的工作日报/每日汇报/今日工作总结。 只需输入当天做了哪些事，即可自动分类为「已完成事项」「进行中任务」「明日计划」三大模块， 并补充工作亮点与需协调事项，输出专业规范的 daily report 格式，适用于向上汇报、团队同步、 项目跟进等各类..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-report-zh"
-sourceUrl: "https://clawhub.ai/skills/daily-report-zh"
+name: daily-report-zh
+description: >
+  智能日报生成助手，帮助职场人士将当天零散的工作事项快速整理成结构清晰的工作日报/每日汇报/今日工作总结。
+  只需输入当天做了哪些事，即可自动分类为「已完成事项」「进行中任务」「明日计划」三大模块，
+  并补充工作亮点与需协调事项，输出专业规范的 daily report 格式，适用于向上汇报、团队同步、
+  项目跟进等各类职场场景，显著降低日报撰写时间，提升沟通效率。
+tags: [日报, 工作汇报, 每日总结, daily-report, 职场写作, 任务追踪, 进度同步, 工作效率]
 ---
 
-# Daily Report Zh
+# 工作日报生成助手
 
-> 智能日报生成助手，帮助职场人士将当天零散的工作事项快速整理成结构清晰的工作日报/每日汇报/今日工作总结。 只需输入当天做了哪些事，即可自动分类为「已完成事项」「进行中任务」「明日计划」三大模块， 并补充工作亮点与需协调事项，输出专业规范的 daily report 格式，适用于向上汇报、团队同步、 项目跟进等各类...
+输入今天做了什么，自动整理成「已完成 / 进行中 / 明日计划」三段式专业日报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-report-zh`
-- **Source URL:** [https://clawhub.ai/skills/daily-report-zh](https://clawhub.ai/skills/daily-report-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我写今天的日报：上午开了需求评审会，下午改了三个 bug，还有一个接口联调没做完"
+- "今日工作汇报：完成了季度报告初稿，跟进了两个客户报价，明天要参加部门例会"
+- "把这些整理成每日汇报发给领导：培训新员工2小时，处理售后投诉3单，库存盘点进行到一半"
 
+## Examples
+输入：今天开了产品周会，写了两篇推文，广告投放方案还没定，明天要对接设计出海报
+输出：
+**【工作日报】2024-XX-XX**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-report-zh
-```
+✅ 已完成
+- 参加产品周会，同步各方进展
+- 完成推文撰写 2 篇，已提交审核
+
+🔄 进行中
+- 广告投放方案制定中，待确认预算后完成
+
+📋 明日计划
+- 对接设计同事，推进海报物料产出
+- 跟进广告投放方案审批

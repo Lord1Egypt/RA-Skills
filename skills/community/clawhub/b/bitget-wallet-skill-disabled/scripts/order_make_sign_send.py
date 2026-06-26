@@ -1,0 +1,137 @@
+#!/usr/bin/env python3
+"""
+One-shot: makeOrder (new swap flow) → sign → send.
+Use this to avoid the ~60s expiry of makeOrder unsigned data. Run immediately after user confirms.
+
+Supports EVM and Solana chains. Pass --private-key for EVM or --private-key-sol for Solana.
+The script auto-detects chain from makeOrder response (chainId 501 = Solana, otherwise EVM).
+
+Security: Private keys are used in memory only, never printed or logged.
+The agent retrieves keys from secure storage (e.g. 1Password) and passes them here.
+
+Example (EVM):
+  python3 scripts/order_make_sign_send.py \\
+    --private-key "$EVM_KEY" --from-address 0x... --to-address 0x... \\
+    --order-id <from confirm> --from-chain bnb --from-contract 0x55d3... \\
+    --from-symbol USDT --to-chain bnb --to-contract "" --to-symbol BNB \\
+    --from-amount 1 --slippage 1.00 --market bgwevmaggregator --protocol bgwevmaggregator_v000
+
+Example (Solana):
+  python3 scripts/order_make_sign_send.py \\
+    --private-key-sol "$SOL_KEY" --from-address <sol_addr> --to-address <sol_addr> \\
+    --order-id <from confirm> --from-chain sol --from-contract <mint> \\
+    --from-symbol USDC --to-chain sol --to-contract <mint> --to-symbol USDT \\
+    --from-amount 5 --slippage 0.01 --market ... --protocol ...
+"""
+
+import json
+import sys
+from pathlib import Path
+
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+
+_SOLANA_CHAIN_ID = 501
+
+
+def _is_solana_order(order_data: dict) -> bool:
+    """Detect if order data contains Solana transactions."""
+    for tx_item in order_data.get("txs", []):
+        cid = tx_item.get("chainId") or (tx_item.get("deriveTransaction") or {}).get("chainId")
+        if cid is not None and int(cid) == _SOLANA_CHAIN_ID:
+            return True
+        chain_name = tx_item.get("chainName", "").lower()
+        if chain_name in ("sol", "solana"):
+            return True
+    return False
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="makeOrder + sign + send. Supports EVM and Solana. Keys used in memory only, never output."
+    )
+    parser.add_argument("--private-key", default=None, help="EVM private key (hex, from secure storage)")
+    parser.add_argument("--private-key-sol", default=None, help="Solana private key (base58 or hex, from secure storage)")
+    parser.add_argument("--from-address", required=True, help="Sender address")
+    parser.add_argument("--to-address", required=True, help="Receiver address (usually same as from-address)")
+    parser.add_argument("--order-id", required=True, help="From confirm response data.orderId")
+    parser.add_argument("--from-chain", required=True)
+    parser.add_argument("--from-contract", required=True)
+    parser.add_argument("--from-symbol", required=True)
+    parser.add_argument("--to-chain", required=True)
+    parser.add_argument("--to-contract", default="")
+    parser.add_argument("--to-symbol", required=True)
+    parser.add_argument("--from-amount", required=True)
+    parser.add_argument("--slippage", required=True)
+    parser.add_argument("--market", required=True)
+    parser.add_argument("--protocol", required=True)
+    args = parser.parse_args()
+
+    if not args.private_key and not args.private_key_sol:
+        print("Error: must provide --private-key (EVM) or --private-key-sol (Solana)", file=sys.stderr)
+        sys.exit(1)
+
+    from bitget_agent_api import make_order, send
+
+    resp = make_order(
+        order_id=args.order_id,
+        from_chain=args.from_chain,
+        from_contract=args.from_contract,
+        from_symbol=args.from_symbol,
+        from_address=args.from_address,
+        to_chain=args.to_chain,
+        to_contract=args.to_contract or "",
+        to_symbol=args.to_symbol,
+        to_address=args.to_address,
+        from_amount=args.from_amount,
+        slippage=args.slippage,
+        market=args.market,
+        protocol=args.protocol,
+    )
+    if resp.get("status") != 0 or resp.get("error_code") != 0:
+        print(json.dumps(resp, indent=2), file=sys.stderr)
+        sys.exit(1)
+
+    data = resp.get("data", {})
+    order_id = data.get("orderId")
+    txs = data.get("txs", [])
+    if not order_id or not txs:
+        print("Error: no orderId or txs in makeOrder response", file=sys.stderr)
+        sys.exit(1)
+
+    # Auto-detect chain and sign
+    if _is_solana_order(data):
+        if not args.private_key_sol:
+            print("Error: Solana order detected but --private-key-sol not provided", file=sys.stderr)
+            sys.exit(1)
+        from order_sign import sign_order_txs_solana
+        signed = sign_order_txs_solana(data, args.private_key_sol)
+    else:
+        if not args.private_key:
+            print("Error: EVM order detected but --private-key not provided", file=sys.stderr)
+            sys.exit(1)
+        from order_sign import sign_order_txs_evm
+        signed = sign_order_txs_evm(data, args.private_key)
+
+    for i, sig in enumerate(signed):
+        if i < len(txs):
+            txs[i]["sig"] = sig
+
+    # Clear keys from memory
+    args.private_key = None
+    args.private_key_sol = None
+
+    send_resp = send(order_id=order_id, txs=txs)
+    print(json.dumps(send_resp, indent=2))
+    if send_resp.get("status") != 0 or send_resp.get("error_code") != 0:
+        sys.exit(1)
+    print(
+        f"\nOrderId: {order_id}\nCheck: python3 scripts/bitget_agent_api.py get-order-details --order-id {order_id}",
+        file=sys.stderr,
+    )
+
+
+if __name__ == "__main__":
+    main()

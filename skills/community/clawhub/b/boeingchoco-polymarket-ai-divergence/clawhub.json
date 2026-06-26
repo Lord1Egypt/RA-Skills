@@ -1,0 +1,225 @@
+{
+  "emoji": "\ud83d\udd2e",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk>=0.11.1"
+    ]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Your Simmer SDK API key \u2014 get from simmer.markets/dashboard"
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Only needed for external-wallet self-custody trading. Not required when using managed wallets."
+    }
+  ],
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "ai_divergence.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_DIVERGENCE_MIN_EDGE",
+      "type": "number",
+      "default": 0.03,
+      "range": [
+        0.01,
+        0.3
+      ],
+      "step": 0.01,
+      "label": "Minimum edge threshold"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MAX_BET_USD",
+      "type": "number",
+      "default": 5,
+      "range": [
+        1,
+        200
+      ],
+      "step": 5,
+      "label": "Max bet per trade"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_KELLY_CAP",
+      "type": "number",
+      "default": 0.20,
+      "range": [
+        0.01,
+        1.0
+      ],
+      "step": 0.01,
+      "label": "Kelly fraction cap (fractional Kelly)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_DAILY_BUDGET_USD",
+      "type": "number",
+      "default": 25,
+      "range": [
+        10,
+        500
+      ],
+      "step": 10,
+      "label": "Daily budget"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MAX_TRADES_PER_RUN",
+      "type": "number",
+      "default": 3,
+      "range": [
+        1,
+        20
+      ],
+      "step": 1,
+      "label": "Max trades per run"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_DIRECTION_FILTER",
+      "type": "enum",
+      "default": "any",
+      "options": [
+        "any",
+        "yes_only",
+        "no_only"
+      ],
+      "label": "Direction filter"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_AI_SHRINKAGE",
+      "type": "number",
+      "default": 0.70,
+      "range": [
+        0.0,
+        1.0
+      ],
+      "step": 0.05,
+      "label": "AI calibration shrinkage (1.0 = trust AI fully, lower = more conservative)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MIN_LIQUIDITY_USD",
+      "type": "number",
+      "default": 1000,
+      "range": [
+        0,
+        50000
+      ],
+      "step": 100,
+      "label": "Minimum Polymarket liquidity (USD)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MIN_VOLUME_24H_USD",
+      "type": "number",
+      "default": 500,
+      "range": [
+        0,
+        50000
+      ],
+      "step": 100,
+      "label": "Minimum 24h volume (USD)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MAX_POS_PCT_LIQ",
+      "type": "number",
+      "default": 0.05,
+      "range": [
+        0.005,
+        0.5
+      ],
+      "step": 0.005,
+      "label": "Max position as fraction of market liquidity"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MIN_HOURS_TO_RESOLVE",
+      "type": "number",
+      "default": 6,
+      "range": [
+        0,
+        168
+      ],
+      "step": 1,
+      "label": "Skip markets resolving within this many hours"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MAX_DAYS_TO_RESOLVE",
+      "type": "number",
+      "default": 180,
+      "range": [
+        7,
+        730
+      ],
+      "step": 7,
+      "label": "Skip markets resolving beyond this many days"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MAX_DIV_SANITY",
+      "type": "number",
+      "default": 0.40,
+      "range": [
+        0.10,
+        1.0
+      ],
+      "step": 0.05,
+      "label": "Skip extreme divergences above this (likely stale data)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_MAX_SPREAD_PCT_EDGE",
+      "type": "number",
+      "default": 0.50,
+      "range": [
+        0.10,
+        2.0
+      ],
+      "step": 0.05,
+      "label": "Skip if half-spread > this fraction of edge"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_ENABLE_SPREAD_CHECK",
+      "type": "number",
+      "default": 1,
+      "range": [
+        0,
+        1
+      ],
+      "step": 1,
+      "label": "Enable CLOB spread check (1=on, 0=off)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_ENABLE_TIME_DECAY",
+      "type": "number",
+      "default": 1,
+      "range": [
+        0,
+        1
+      ],
+      "step": 1,
+      "label": "Scale by sqrt(days_to_resolve/30) (1=on, 0=off)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_CATEGORY_MULTIPLIERS",
+      "type": "string",
+      "default": "politics=0.60,crypto=0.60,sports=0.85,default=0.75",
+      "label": "Category-aware Kelly multipliers (CSV)"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_ENABLE_CATEGORY_MULTIPLIER",
+      "type": "number",
+      "default": 1,
+      "range": [
+        0,
+        1
+      ],
+      "step": 1,
+      "label": "Apply category Kelly multipliers (1=on, 0=off)"
+    }
+  ]
+}

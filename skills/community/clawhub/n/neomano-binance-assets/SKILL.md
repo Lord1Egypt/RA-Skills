@@ -1,35 +1,35 @@
 ---
-name: "Neomano Binance Assets (Read-only)"
-description: "Safe, read-only Binance balance viewer (Spot wallet) using Binance API keys with READ-ONLY permissions. Use when the user wants to check holdings/balances/as..."
-category: "blockchain"
-source: "ClawHub"
-tags: [assets, binance, crypto, read-only, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neomano-binance-assets"
-sourceUrl: "https://clawhub.ai/skills/neomano-binance-assets"
+name: neomano-binance-assets
+description: Safe, read-only Binance balance viewer (Spot wallet) using Binance API keys with READ-ONLY permissions. Use when the user wants to check holdings/balances/assets without trading.
+metadata: {"clawdbot":{"emoji":"🏦","requires":{"bins":["python3"],"env":["BINANCE_API_KEY","BINANCE_API_SECRET"]},"primaryEnv":"BINANCE_API_KEY"}}
 ---
 
-# Neomano Binance Assets (Read-only)
+## Safety (mandatory)
 
-> Safe, read-only Binance balance viewer (Spot wallet) using Binance API keys with READ-ONLY permissions. Use when the user wants to check holdings/balances/as...
+This skill is designed to be a **safe way to query balances**.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neomano-binance-assets`
-- **Source URL:** [https://clawhub.ai/skills/neomano-binance-assets](https://clawhub.ai/skills/neomano-binance-assets)
+- **READ-ONLY keys only**: In Binance, create an API key with **Read-only / Enable Reading** permissions.
+- Do **not** enable trading, margin, futures, transfers, or withdrawals.
+- (Recommended) Restrict the API key by **IP allowlist**.
+- Never print or send `BINANCE_API_SECRET`.
 
-## Overview
+## Credentials
 
+Set these environment variables (recommended: `~/.openclaw/.env` on the gateway machine):
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `BINANCE_API_KEY`
+- `BINANCE_API_SECRET`
+
+## What it does
+
+- Fetch Spot account balances via Binance signed endpoint:
+  - `GET https://api.binance.com/api/v3/account`
+- By default, it filters to **non-zero** assets.
+
+## Run
+
 ```bash
-hermes skills install clawhub/neomano-binance-assets
+python3 {baseDir}/scripts/assets.py
+python3 {baseDir}/scripts/assets.py --all
+python3 {baseDir}/scripts/assets.py --min 0.0001
 ```

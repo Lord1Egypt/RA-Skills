@@ -1,0 +1,35 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 300
+  threshold: 0.75
+skill: weryai-account
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the weryai-account skill to check my remaining WeryAI credits."
+  - id: balance-query
+    should_trigger: true
+    prompt: "How many WeryAI API credits are left on this account?"
+  - id: account-credits
+    should_trigger: true
+    prompt: "Query the WeryAI account balance and show me the credits."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Generate an image from this prompt."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/account.js"
+      - file_exists: "references/account-api.md"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      The skill should:
+      - stay scoped to account balance and credits,
+      - use WERYAI_API_KEY as the only runtime secret,
+      - avoid inventing account APIs that are not in the docs,
+      - provide one clear command for querying credits,
+      - distinguish read-only balance lookup from paid generation skills.

@@ -1,0 +1,163 @@
+{
+  "version": "1.0.0",
+  "description": "Outfit template database - data source for clothing decisions",
+  "occasions": {
+    "casual": {
+      "name": "Casual Daily",
+      "icon": "👕",
+      "description": "Daily outings, home, relaxed occasions",
+      "templates": [
+        {
+          "name": "Basic Casual",
+          "items": {"top": "Solid T-shirt/Sweatshirt", "bottom": "Jeans/Casual pants", "shoes": "Sneakers/Canvas shoes", "accessories": "Simple watch/Baseball cap"},
+          "colors": ["White+Blue", "Gray+Black", "Beige+Brown"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "high"
+        },
+        {
+          "name": "Japanese Casual",
+          "items": {"top": "Loose shirt/Knit sweater", "bottom": "Wide-leg pants/Cargo pants", "shoes": "Canvas shoes/Loafers", "accessories": "Canvas bag/Glasses"},
+          "colors": ["Beige+Khaki", "Gray+White", "Navy+Beige"],
+          "seasons": ["Spring", "Autumn"],
+          "comfort": "high"
+        },
+        {
+          "name": "Athleisure",
+          "items": {"top": "Athletic sweatshirt/Quick-dry shirt", "bottom": "Athletic pants/Leggings", "shoes": "Running shoes/Training shoes", "accessories": "Sports watch/Headband"},
+          "colors": ["Black+White", "Gray+Neon", "Navy+Gray"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "high"
+        }
+      ]
+    },
+    "work": {
+      "name": "Work & Office",
+      "icon": "👔",
+      "description": "Office, business occasions",
+      "templates": [
+        {
+          "name": "Business Casual",
+          "items": {"top": "Shirt/Knit sweater", "outer": "Blazer/Cardigan", "bottom": "Dress pants/Pencil skirt", "shoes": "Loafers/Low heels", "accessories": "Simple belt/Watch"},
+          "colors": ["White+Gray+Brown", "Light blue+Navy", "Beige+Khaki"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "medium"
+        },
+        {
+          "name": "Formal Business",
+          "items": {"top": "Dress shirt", "outer": "Business suit", "bottom": "Dress pants/Suit skirt", "shoes": "Leather shoes/High heels", "accessories": "Tie/Scarf+Belt+Watch"},
+          "colors": ["White+Navy", "White+Gray", "Light blue+Dark gray"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "low"
+        },
+        {
+          "name": "Creative Office",
+          "items": {"top": "Designer shirt/T-shirt", "outer": "Jacket/Knit cardigan", "bottom": "Casual dress pants/Jeans", "shoes": "White sneakers/Ankle boots", "accessories": "Statement accessories/Glasses"},
+          "colors": ["Black+White", "Gray+Accent color", "Earth tones"],
+          "seasons": ["Spring", "Summer", "Autumn"],
+          "comfort": "medium-high"
+        }
+      ]
+    },
+    "formal": {
+      "name": "Formal Events",
+      "icon": "🤵",
+      "description": "Weddings, banquets, important meetings",
+      "templates": [
+        {
+          "name": "Formal Attire",
+          "items": {"top": "Dress shirt/Evening dress", "outer": "Suit/Evening jacket", "bottom": "Dress pants/Evening gown", "shoes": "Formal leather/High heels", "accessories": "Bow tie/Jewelry+Watch+Belt"},
+          "colors": ["Black+White", "Navy+Silver", "Burgundy+Black"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "low"
+        },
+        {
+          "name": "Business Dinner",
+          "items": {"top": "Silk shirt/Dress", "outer": "Blazer/Shawl", "bottom": "Dress pants/Midi skirt", "shoes": "High heels/Leather shoes", "accessories": "Elegant jewelry+Clutch"},
+          "colors": ["Black+Gold", "Navy+Silver", "Deep red+Black"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "medium"
+        }
+      ]
+    },
+    "date": {
+      "name": "Date",
+      "icon": "💕",
+      "description": "Dates, gatherings, social occasions",
+      "templates": [
+        {
+          "name": "Fresh Date Look",
+          "items": {"top": "Solid T-shirt/Shirt", "outer": "Knit cardigan/Denim jacket", "bottom": "Slim jeans/Skirt", "shoes": "White sneakers/Loafers", "accessories": "Simple watch/Necklace"},
+          "colors": ["White+Blue", "Beige+Brown", "Gray+Pink"],
+          "seasons": ["Spring", "Summer", "Autumn"],
+          "comfort": "high"
+        },
+        {
+          "name": "Elegant Date",
+          "items": {"top": "Silk shirt/Dress", "outer": "Blazer/Trench coat", "bottom": "Dress pants/Skirt", "shoes": "High heels/Leather shoes", "accessories": "Fine jewelry+Perfume"},
+          "colors": ["Black+Red", "White+Camel", "Pink+Gray"],
+          "seasons": ["Spring", "Autumn", "Winter"],
+          "comfort": "medium"
+        },
+        {
+          "name": "Casual Date",
+          "items": {"top": "Sweatshirt/Knit sweater", "bottom": "Casual pants/Jeans", "shoes": "Sneakers/Canvas shoes", "accessories": "Baseball cap/Canvas bag"},
+          "colors": ["Gray+White", "Black+Gray", "Beige+Blue"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "high"
+        }
+      ]
+    },
+    "outdoor": {
+      "name": "Outdoor Activities",
+      "icon": "🏃",
+      "description": "Sports, travel, outdoor adventures",
+      "templates": [
+        {
+          "name": "Workout",
+          "items": {"top": "Quick-dry T-shirt/Tank", "bottom": "Athletic shorts/Leggings", "shoes": "Running shoes/Training shoes", "accessories": "Sports watch/Headband"},
+          "colors": ["Black+Neon", "Gray+Blue", "White+Black"],
+          "seasons": ["Spring", "Summer", "Autumn", "Winter"],
+          "comfort": "high"
+        },
+        {
+          "name": "Outdoor Hiking",
+          "items": {"top": "Quick-dry long sleeve/Hardshell", "bottom": "Outdoor pants/Cargo pants", "shoes": "Hiking boots/Trail shoes", "accessories": "Sun hat/Backpack"},
+          "colors": ["Olive+Khaki", "Gray+Black", "Blue+Gray"],
+          "seasons": ["Spring", "Summer", "Autumn"],
+          "comfort": "medium"
+        },
+        {
+          "name": "Travel",
+          "items": {"top": "Comfortable T-shirt/Shirt", "outer": "Light jacket/Sun protection", "bottom": "Casual pants/Jeans", "shoes": "Comfortable walking shoes/White sneakers", "accessories": "Sunglasses/Backpack"},
+          "colors": ["White+Blue", "Beige+Brown", "Gray+White"],
+          "seasons": ["Spring", "Summer", "Autumn"],
+          "comfort": "high"
+        }
+      ]
+    }
+  },
+  "weather_adaptations": {
+    "hot": {"temperature": ">28°C", "recommendations": ["Choose breathable fabrics: cotton, linen, silk", "Light colors stay cooler", "Short sleeves, shorts, skirts", "Avoid tight clothing", "Sun protection: hat, sunglasses"], "avoid": ["Black", "Tight fit", "Heavy fabrics", "Layering"]},
+    "warm": {"temperature": "20-28°C", "recommendations": ["Thin long sleeves or short sleeves", "Single-layer pants or thin skirts", "Removable jacket as backup", "Comfortable breathable fabrics"], "avoid": ["Heavy coats", "Sweaters"]},
+    "mild": {"temperature": "15-20°C", "recommendations": ["Long sleeve shirt/T-shirt + light jacket", "Long pants or thick skirts", "Knit cardigan, denim jacket", "Layered dressing for adjustment"], "avoid": ["Short sleeves alone", "Heavy winter wear"]},
+    "cool": {"temperature": "10-15°C", "recommendations": ["Sweater/Sweatshirt + jacket", "Long pants required", "Trench coat, light overcoat", "Consider scarf"], "avoid": ["Short sleeves", "Shorts", "Thin skirts"]},
+    "cold": {"temperature": "5-10°C", "recommendations": ["Thick sweater/Sweatshirt", "Down jacket/Thick coat", "Thermal underwear", "Scarf, gloves", "Thick socks"], "avoid": ["Single-layer clothing", "Exposed ankles"]},
+    "freezing": {"temperature": "<5°C", "recommendations": ["Three-layer system: base warmth + mid insulation + outer windproof", "Down jacket/Thick cotton coat", "Thermal underwear + sweater", "Scarf, gloves, hat required", "Insulated boots"], "avoid": ["Any thin clothing", "Exposed skin"]},
+    "rainy": {"condition": "Rainy", "recommendations": ["Waterproof jacket required", "Waterproof shoes or rain boots", "Quick-dry fabrics", "Hooded jacket", "Spare socks"], "avoid": ["Canvas shoes", "Suede", "White pants", "Non-waterproof coats"]},
+    "windy": {"condition": "Windy", "recommendations": ["Windproof jacket", "Avoid skirts", "Tie up hair", "Windproof hat"], "avoid": ["Loose skirts", "Large hems", "Light scarves"]},
+    "snowy": {"condition": "Snowy", "recommendations": ["Warmth + waterproof dual protection", "Snow boots", "Thick down jacket", "Full set: scarf, hat, gloves"], "avoid": ["Non-waterproof shoes", "Thin coats", "Exposed ankles"]}
+  },
+  "seasonal_themes": {
+    "spring": {"colors": ["Cherry pink", "Mint green", "Sky blue", "Off-white", "Light gray"], "fabrics": ["Cotton", "Linen", "Thin knit", "Denim"], "key_items": ["Trench coat", "Cardigan", "Shirt", "Jeans", "White sneakers"], "style": "Light, fresh, layered"},
+    "summer": {"colors": ["White", "Light blue", "Beige", "Pale pink", "Mint green"], "fabrics": ["Cotton", "Linen", "Silk", "Chiffon", "Thin knit"], "key_items": ["T-shirt", "Shorts", "Skirt", "Sandals", "Sunglasses"], "style": "Fresh, breathable, sun protection"},
+    "autumn": {"colors": ["Camel", "Caramel", "Burgundy", "Dark green", "Coffee", "Off-white"], "fabrics": ["Wool", "Cashmere", "Corduroy", "Thick cotton", "Leather"], "key_items": ["Sweater", "Trench coat", "Boots", "Scarf", "Jacket"], "style": "Warm, textured, layered"},
+    "winter": {"colors": ["Black", "Gray", "Navy", "Burgundy", "Dark green", "Off-white"], "fabrics": ["Wool", "Cashmere", "Down", "Fleece", "Thick wool"], "key_items": ["Down jacket", "Overcoat", "Sweater", "Boots", "Scarf"], "style": "Warm, textured, dark tones"}
+  },
+  "style_preferences": {
+    "minimalist": {"name": "Minimalist", "characteristics": ["Basic pieces", "Neutral colors", "Minimal decoration", "Quality fabrics"], "colors": ["Black", "White", "Gray", "Beige", "Navy"], "brands": ["MUJI", "Uniqlo", "COS", "Everlane"]},
+    "colorful": {"name": "Colorful", "characteristics": ["Bright colors", "Color blocking", "Patterns", "Energetic"], "colors": ["Red", "Yellow", "Blue", "Green", "Pink"], "brands": ["Zara", "H&M", "Uniqlo", "GAP"]},
+    "vintage": {"name": "Vintage", "characteristics": ["Classic styles", "Distressed look", "Vintage patterns", "Texture"], "colors": ["Caramel", "Coffee", "Dark green", "Burgundy", "Off-white"], "brands": ["Levis", "Lee", "Ralph Lauren", "Brooks Brothers"]},
+    "trendy": {"name": "Trendy", "characteristics": ["Current trends", "Designer feel", "Street style", "Personal"], "colors": ["Trend colors", "Black/white/gray + bright accents"], "brands": ["Nike", "Adidas", "Supreme", "Off-White"]},
+    "smart_casual": {"name": "Smart Casual", "characteristics": ["Formal but not stiff", "Quality", "Appropriate", "Versatile"], "colors": ["Blue", "Gray", "White", "Brown", "Black"], "brands": ["Massimo Dutti", "Mango", "Club Monaco", "Theory"]}
+  }
+}

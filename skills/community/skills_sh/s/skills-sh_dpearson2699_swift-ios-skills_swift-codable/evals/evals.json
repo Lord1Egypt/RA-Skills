@@ -1,0 +1,43 @@
+{
+  "skill_name": "swift-codable",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Review and correct this Codable API plan for an iOS 26 app: the team made every response model Codable, uses JSONDecoder().decode before checking HTTP status, configures .convertFromSnakeCase and expects image_url to populate imageURL automatically, decodes ISO 8601 timestamps with the default Date strategy, and decodes a wrapped response with `decoder` outside the function where it was declared. Give concise corrected Swift examples where useful. Explicitly correct every read-only API response model to Decodable, not Codable; state that image_url maps to imageUrl, not imageURL; and note that the envelope helper needs its own decoder because another function's decoder is out of scope.",
+      "expected_output": "A correction-focused Codable review that uses Decodable, not Codable, for read-only responses, validates HTTP status before decoding, configures date and key strategies in scope, handles imageURL with CodingKeys because image_url maps to imageUrl, and decodes a generic API envelope with a decoder declared in the same helper.",
+      "files": [],
+      "assertions": [
+        "Uses `Decodable` rather than `Codable` for read-only API response models.",
+        "Validates `HTTPURLResponse` status before attempting to decode the body.",
+        "Configures `JSONDecoder.dateDecodingStrategy = .iso8601` for ISO 8601 date strings.",
+        "Explains that `.convertFromSnakeCase` maps `image_url` to `imageUrl`, not `imageURL`, and uses `CodingKeys` for that field.",
+        "Shows the generic envelope decode with a decoder variable that is declared in the same helper where it is used."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "A teammate says we can delete all CodingKeys because `decoder.keyDecodingStrategy = .convertFromSnakeCase` will handle `user_id`, `image_url`, `base_uri`, and `display_name`. Review that claim and show the model code you would keep.",
+      "expected_output": "A key-strategy review that keeps automatic snake_case conversion for simple lower-camel properties while retaining CodingKeys for URL, URI, and ID initialism spellings that conversion cannot infer.",
+      "files": [],
+      "assertions": [
+        "States that `.convertFromSnakeCase` is suitable for simple snake_case to lower-camel mappings such as `display_name` to `displayName`.",
+        "States that `.convertFromSnakeCase` cannot infer initialism capitalization such as URL, URI, or ID.",
+        "Uses explicit `CodingKeys` for fields like `imageURL`, `baseURI`, or `userID`.",
+        "Avoids recommending manual CodingKeys for every simple snake_case property when a decoder strategy is enough."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this storage plan: a SwiftData `@Model` has an optional `Address` struct that conforms to Codable, and a SwiftUI settings screen stores a `UserPreferences` Codable struct in `@AppStorage`. The draft says Codable value types only work in SwiftData on iOS 18+ and proposes transformable/blob workarounds. The @AppStorage type can rely on synthesized Codable defaults if the stored JSON is `{}`. Give corrected boundary-aware guidance. State clearly that SwiftData persists compatible noncomputed stored properties declared on @Model types, including Codable structs and enums when they are part of the durable model schema. Do not propose @Attribute(.transformable), encoded Data, or encoded String blob storage as a fallback; use typed SwiftData properties and a complete RawRepresentable JSON String bridge for @AppStorage, including init?(rawValue:) and rawValue self-encoding/decoding.",
+      "expected_output": "A boundary-aware Codable storage review that uses source-backed SwiftData compatibility wording for compatible noncomputed @Model properties, avoids unsupported iOS 18+/transformable/blob fallback claims, stores @AppStorage values through a complete RawRepresentable JSON String raw-value bridge, and explains missing-key defaults need custom decoding or tolerant rawValue handling.",
+      "files": [],
+      "assertions": [
+        "States that @Model types can persist compatible noncomputed stored properties and explicitly includes Codable structs or enums, without asserting an unsupported iOS 18+ threshold.",
+        "Does not propose `@Attribute(.transformable)`, encoded `Data`, or encoded `String` blob storage as a fallback for the SwiftData Codable value property.",
+        "Uses a complete `RawRepresentable` JSON `String` raw-value bridge for storing a Codable value with `@AppStorage`.",
+        "Explains that synthesized `Decodable` does not use stored property default values when a nonoptional key is missing, so `{}` needs custom decoding or fallback handling.",
+        "Keeps the answer focused on Codable integration boundaries rather than expanding into full SwiftData schema design or SwiftUI state management."
+      ]
+    }
+  ]
+}

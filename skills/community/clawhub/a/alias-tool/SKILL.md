@@ -1,35 +1,32 @@
 ---
-name: "Alias Tool"
-description: "Create and manage command aliases in shell environments. Define shortcuts for frequently used commands."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alias-tool"
-sourceUrl: "https://clawhub.ai/skills/alias-tool"
+name: alias-tool
+description: Create and manage command aliases in shell environments. Define shortcuts for frequently used commands.
 ---
 
-# Alias Tool
+# Alias Tool - Command Aliases
 
-> Create and manage command aliases in shell environments. Define shortcuts for frequently used commands.
+Manage shell command aliases. Aliases create shortcuts for commonly used commands.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alias-tool`
-- **Source URL:** [https://clawhub.ai/skills/alias-tool](https://clawhub.ai/skills/alias-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/alias-tool
+alias ll='ls -la'
 ```
+
+## Features
+
+- Create new aliases
+- List defined aliases
+- Remove aliases
+- Persistent alias config
+
+## Examples
+
+```bash
+alias ll='ls -la'
+alias -p
+```
+
+## See Also
+
+- Related documentation: `man alias` (if available)

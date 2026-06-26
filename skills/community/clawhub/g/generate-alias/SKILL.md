@@ -1,35 +1,141 @@
----
-name: "Generate Alias"
-description: "根据企业名称智能提取核心品牌词和常用简称，生成多种别名并用|分隔，方便数据匹配和导入。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-alias"
-sourceUrl: "https://clawhub.ai/skills/generate-alias"
----
+# 企业别名智能生成技能 v3.0.0
 
-# Generate Alias
+## 重大更新
 
-> 根据企业名称智能提取核心品牌词和常用简称，生成多种别名并用|分隔，方便数据匹配和导入。
+### v3.0.0 (2026-03-25) 🎉 全面重构
+- 🚫 **严格过滤通用词**：不再使用"汽车"、"银行"、"证券"等通用行业词作为关键字
+- 🎯 **关键字独特性**：关键字必须能"独特标识"企业，避免在多数企业中出现
+- 📊 **频率验证**：通过全局词频分析，确保关键字出现率 < 3%
+- 🌐 **维基百科集成**：可配置从维基百科获取企业官方简称
+- ⚙️ **灵活配置**：支持离线模式（快速）和在线模式（准确）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-alias`
-- **Source URL:** [https://clawhub.ai/skills/generate-alias](https://clawhub.ai/skills/generate-alias)
+## 核心规则
 
-## Overview
+### 关键字来源优先级
+1. **维基百科官方简称**（开启时）
+2. **品牌映射** - 100+ 知名企业品牌/股票名
+3. **核心词提取** - 智能提取企业独特标识
 
+### 过滤规则（严格）
+- ❌ **企业类型词**：集团、控股、股份、有限、责任、公司
+- ❌ **地区前缀**：中国、北京、上海、浙江、广东等
+- ❌ **行业通用词**：汽车、银行、证券、能源、钢铁、机械等
+- ❌ **出现率 > 3%** 的词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-alias
+### 关键字标准
+- ✅ 至少 3 个字符
+- ✅ 能独特标识该企业
+- ✅ 不在其他大多数企业中出现
+
+## 触发方式
+
+当用户说：
+- "生成别名"
+- "智能别名"
+- "企业别名"
+- "给这个公司起个别名"
+- "提取关键字"
+- 或提供企业名称并要求生成别名
+
+## 功能
+
+### 1. 品牌映射（内置 100+ 企业）
 ```
+比亚迪 → 比亚迪|BYD
+伊利 → 伊利
+贵州茅台 → 茅台
+云南白药 → 白药
+```
+
+### 2. 核心词提取
+- 移除企业类型后缀（集团、股份、有限等）
+- 移除地区前缀（北京、上海、浙江等）
+- 提取剩余核心词
+
+### 3. 维基百科查询（可选）
+- 从中文维基百科获取企业官方简称
+- 需配置 `USE_WIKI = True`
+
+### 4. 过滤机制
+- 通用行业词过滤
+- 词频统计分析
+- 独特性验证
+
+## 使用示例
+
+### 离线模式（默认，快速稳定）
+```python
+from generate_alias import generate_rule_based_aliases
+
+aliases = generate_rule_based_aliases("比亚迪股份有限公司")
+# 输出: ['比亚迪', 'BYD']
+```
+
+### 在线模式（需要网络）
+```python
+# 修改脚本顶部 USE_WIKI = True
+# python generate_alias.py "比亚迪股份有限公司" --wiki
+```
+
+### 命令行
+```bash
+# 基本用法
+python generate_alias.py "比亚迪股份有限公司"
+
+# 禁用维基百科
+python generate_alias.py "比亚迪股份有限公司" --no-wiki
+```
+
+## 示例输出
+
+| 企业名称 | 关键字 |
+|---------|--------|
+| 比亚迪股份有限公司 | 比亚迪\|BYD |
+| 内蒙古伊利实业集团股份有限公司 | 伊利 |
+| 云南白药集团股份有限公司 | 白药 |
+| 北京东方雨虹防水技术股份有限公司 | 东方雨\|雨虹\|京东\|JD |
+| 长城汽车股份有限公司 | 长城\|哈弗 |
+| 佛山市海天调味食品股份有限公司 | 海天 |
+| 中国工商银行股份有限公司 | 工行\|工商银行 |
+
+## 过滤示例
+
+以下词**不会**作为关键字输出：
+- ❌ 汽车（所有车企都有，不独特）
+- ❌ 银行（所有银行都有，不独特）
+- ❌ 证券、能源、钢铁、机械
+- ❌ 中国、北京、上海、浙江等地区名
+- ❌ 集团、控股、股份、有限等企业类型词
+
+## 实现文件
+
+- `generate_alias.py` - 主程序（规则引擎）
+- `search_aliases.py` - 网络搜索模块
+- `corporate_relations.py` - 真实股权关系数据
+- `data_sources.py` - 数据源配置
+- `stock_names.py` - 上市公司股票名称映射
+
+## 配置选项
+
+```python
+# generate_alias.py 顶部配置
+USE_WIKI = False  # 是否使用维基百科（默认关闭，快速稳定）
+WIKI_TIMEOUT = 5  # 维基百科请求超时（秒）
+```
+
+## 更新日志
+
+### v3.0.0 (2026-03-25)
+- 🚫 新增严格过滤通用行业词规则
+- 🚫 新增词频统计分析
+- 🚫 新增关键字独特性验证
+- 🌐 集成维基百科查询
+- 📊 优化关键字提取算法
+
+### v2.1.0 (2026-03-20)
+- 📚 整合公开数据源
+- 🔄 动态数据补充
+
+### v2.0.0 (2026-03-20)
+- 🎯 重构关联企业数据
+- 📦 数据模块化

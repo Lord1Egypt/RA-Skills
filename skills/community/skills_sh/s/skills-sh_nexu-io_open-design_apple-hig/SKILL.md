@@ -1,35 +1,43 @@
 ---
-name: "apple-hig"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/apple-hig"
-sourceUrl: "https://skills.sh/nexu-io/open-design/apple-hig"
+name: apple-hig
+description: |
+  Apple Human Interface Guidelines as 14 agent skills covering platforms, foundations, components, patterns, inputs, and technologies for iOS, macOS, visionOS, watchOS, and tvOS.
+triggers:
+  - "apple hig"
+  - "human interface"
+  - "ios design"
+  - "macos design"
+  - "visionos design"
+od:
+  mode: design-system
+  category: design-systems
+  upstream: "https://github.com/raintree-technology/apple-hig-skills"
 ---
 
 # apple-hig
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from raintree-technology.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/apple-hig`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/apple-hig](https://skills.sh/nexu-io/open-design/apple-hig)
+## What it does
 
-## Overview
+Apple Human Interface Guidelines as 14 agent skills covering platforms, foundations, components, patterns, inputs, and technologies for iOS, macOS, visionOS, watchOS, and tvOS.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/raintree-technology/apple-hig-skills
+- Category: `design-systems`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/apple-hig
+# Inspect the upstream README for exact paths
+open https://github.com/raintree-technology/apple-hig-skills
 ```
+
+Then ask the agent to invoke this skill by name (`apple-hig`) or with
+one of the trigger phrases listed in this skill's frontmatter.

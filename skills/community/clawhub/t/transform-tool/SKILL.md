@@ -1,35 +1,28 @@
 ---
-name: "Transform Tool"
-description: "Apply data transformations like case changes, encoding conversion, and format conversion. Use for text processing and data cleaning."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/transform-tool"
-sourceUrl: "https://clawhub.ai/skills/transform-tool"
+name: transform-tool
+description: Apply data transformations like case changes, encoding conversion, and format conversion. Use for text processing and data cleaning.
 ---
+# Transform - Data Transformation Utility
 
-# Transform Tool
+Apply various text transformations including case conversion (upper/lower/title), whitespace trimming, character replacement, and encoding changes.
 
-> Apply data transformations like case changes, encoding conversion, and format conversion. Use for text processing and data cleaning.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/transform-tool`
-- **Source URL:** [https://clawhub.ai/skills/transform-tool](https://clawhub.ai/skills/transform-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/transform-tool
+transform-tool [options] <file>
+```
+
+## Options
+
+- `--upper`: Convert to uppercase
+- `--lower`: Convert to lowercase
+- `--title`: Convert to Title Case
+- `--trim`: Remove leading/trailing whitespace
+- `--reverse`: Reverse text
+
+## Examples
+
+```bash
+transform-tool --upper file.txt
+transform-tool --lower input.txt
+echo "  hello  " | transform-tool --trim
 ```

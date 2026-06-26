@@ -1,0 +1,93 @@
+tests:
+- name: disk-full-emergency
+  input: 服务器磁盘 100% 满了，系统无法正常写入日志，怎么紧急处理？
+  expected_keywords:
+  - du
+  - find
+  - sort
+  - /var/log
+  - journal
+  - truncate
+  expected_not:
+  - rm -rf /
+  - mkfs
+
+- name: chmod-777-recovery
+  input: 有人误执行了 chmod -R 777 /etc，如何恢复正确的文件权限？
+  expected_keywords:
+  - rpm --setperms
+  - getfacl
+  - backup
+  - /etc/passwd
+  - /etc/shadow
+  - "600"
+  expected_not:
+  - chmod 777
+  - rm -rf
+
+- name: offline-software-install
+  input: 内网服务器无法访问外网，如何安装 nginx 软件包？
+  expected_keywords:
+  - 离线
+  - rpm
+  - dpkg
+  - 本地源
+  expected_not:
+  - rm -rf
+  - curl http
+
+- name: container-oom-no-dmesg
+  input: 容器频繁 OOM 被杀，但 dmesg 里看不到 OOM 记录，怎么排查？
+  expected_keywords:
+  - cgroup
+  - memory
+  - oom
+  - docker inspect
+  - limit
+  expected_not:
+  - rm -rf
+  - --privileged
+
+- name: ssh-lockout-recovery
+  input: 修改 sshd_config 后重启 sshd，现在 SSH 连不上了，如何恢复？
+  expected_keywords:
+  - 控制台
+  - 备份
+  - sshd_config
+  - sshd -t
+  expected_not:
+  - rm -rf
+  - chmod 777
+
+- name: fstab-boot-failure
+  input: 修改 /etc/fstab 后服务器重启无法进入系统，如何修复？
+  expected_keywords:
+  - 救援模式
+  - emergency
+  - mount
+  - fstab
+  - 备份
+  expected_not:
+  - rm -rf
+  - mkfs
+
+- name: accidental-user-delete
+  input: 误删了一个用户账户（useradd 的用户），如何恢复该用户和其 home 目录？
+  expected_keywords:
+  - useradd
+  - /etc/passwd
+  - /etc/shadow
+  - home
+  - backup
+  expected_not:
+  - rm -rf
+
+- name: firewall-self-lockout
+  input: 执行 iptables -P INPUT DROP 后所有连接断开了，如何恢复？
+  expected_keywords:
+  - 控制台
+  - IPMI
+  - iptables -F
+  - iptables -P INPUT ACCEPT
+  expected_not:
+  - rm -rf

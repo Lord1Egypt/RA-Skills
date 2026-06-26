@@ -1,35 +1,137 @@
 ---
-name: "视频号爆款 IP 脚本工厂"
-description: "生成适合视频号发布的爆款IP内容方案：选题、标题、钩子、口播脚本、镜头建议、封面文案、发布文案、评论引导，以及医美场景下的基础合规改写。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-wechat-ip-script-agent"
-sourceUrl: "https://clawhub.ai/skills/video-wechat-ip-script-agent"
+name: video-wechat-ip-script-agent
+description: 生成适合视频号发布的爆款IP内容方案：选题、标题、钩子、口播脚本、镜头建议、封面文案、发布文案、评论引导，以及医美场景下的基础合规改写。
+version: 1.3.0
+metadata:
+  openclaw:
+    emoji: "🎬"
+    homepage: https://docs.openclaw.ai/tools/skills
+    requires:
+      bins:
+        - node
+    tags:
+      - content
+      - wechat-video
+      - medical-aesthetics
+      - personal-brand
 ---
 
-# 视频号爆款 IP 脚本工厂
+# 视频号爆款 IP 脚本工厂（增强版）
 
-> 生成适合视频号发布的爆款IP内容方案：选题、标题、钩子、口播脚本、镜头建议、封面文案、发布文案、评论引导，以及医美场景下的基础合规改写。
+这是一个可直接放入 OpenClaw 的技能目录，面向中文视频号内容生产，尤其适合：
+- 医美机构经营
+- 医美项目表达
+- AI × 医美
+- 老板观点输出
+- 个人 IP 内容策划
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-wechat-ip-script-agent`
-- **Source URL:** [https://clawhub.ai/skills/video-wechat-ip-script-agent](https://clawhub.ai/skills/video-wechat-ip-script-agent)
+本技能不是“随便写一段文案”，而是尽量输出**可直接拍摄、可直接发布**的一整套视频号内容。
 
-## Overview
+## 包内文件
 
+- `AGENTS.md`：项目级行为规则
+- `openclaw.ts`：可执行 skill 入口，接收 JSON 请求
+- `index.ts`：统一导出服务能力与 `runOpenClawSkill`
+- `prompts/`：系统提示词、人物设定、脚本生成、风格改写、合规检查
+- `config/`：行业/风格/平台默认配置
+- `schemas/`：结构化输出字段定义
+- `examples/`：示例输入输出
+- `checklist.md`：人工验收清单
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 什么时候使用
+
+当用户想要：
+- 生成视频号选题
+- 把一个主题扩写成视频号脚本
+- 把脚本改成不同风格
+- 检查医美相关文案的风险表达
+- 输出“标题 + 钩子 + 脚本 + 封面 + 发布文案 + 评论引导”完整发布包
+
+## 默认工作模式
+
+### 1）选题生成模式
+输出 10~20 个选题，每个选题附带：
+- 类型（痛点型 / 反差型 / 观点型 / 方法型 / 案例型）
+- 推荐切入角度
+- 目标人群
+
+### 2）脚本生成模式
+默认输出完整发布包：
+1. 视频定位
+2. 爆款标题（5个）
+3. 前3秒钩子
+4. 口播脚本
+5. 镜头建议
+6. 封面文案
+7. 发布文案
+8. 评论区引导
+
+### 3）风格改写模式
+支持：
+- 犀利观点型
+- 温柔陪伴型
+- 专业干货型
+- 老板表达型
+- 高转化成交型
+
+### 4）合规审查模式
+优先用于医美内容，输出：
+1. 风险点
+2. 风险原因
+3. 修改建议
+4. 安全版本
+
+## 默认规则
+
+- 前 3 秒必须抓人
+- 一次只讲 1 个核心观点
+- 语言必须口语化、短句化、可直接口播
+- 优先像真人表达，不像模板机器
+- 医美相关内容避免绝对化与效果承诺
+
+## 安装方式
+
+把整个文件夹放到以下任一目录：
+- `~/.openclaw/skills/`
+- `<workspace>/skills/`
+
+## 可调用入口
+
+如果你希望把这个 skill 当成一个真实的本地执行入口来接入，而不只是 `SKILL.md` 指令，可以在构建后直接调用：
+
 ```bash
-hermes skills install clawhub/video-wechat-ip-script-agent
+npm run build
+echo '{"action":"script","payload":{"topic":"顾客不是嫌贵，是你不会讲价值"}}' | node dist/openclaw.js
 ```
+
+输入必须是 JSON，结构如下：
+
+```json
+{
+  "action": "script",
+  "payload": {
+    "topic": "顾客不是嫌贵，是你不会讲价值"
+  }
+}
+```
+
+## 运行前置
+
+- 推荐先执行 `npm run check`
+- 如果要走真实模型调用，请设置 `MODEL_API_KEY` 或 `OPENAI_API_KEY`
+- 如果只想验证入口链路，可设置 `MODEL_MOCK_RESPONSE`
+- 发布到 ClawHub 前，建议确保 `dist/` 已经是最新构建产物
+
+## 推荐测试指令
+
+### 选题
+“给我 10 个医美机构经营类的视频号选题，面向机构老板，偏观点型。”
+
+### 脚本
+“主题：顾客不是嫌贵，是你不会讲价值。帮我输出完整视频号发布包。”
+
+### 改写
+“把这段脚本改成更犀利、更像老板讲话的版本。”
+
+### 合规
+“帮我检查这段医美文案有没有风险，并给我一个更安全但还有吸引力的版本。”

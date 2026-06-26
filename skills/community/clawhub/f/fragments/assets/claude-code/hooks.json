@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "You completed a task. Follow the fragments skill daily-log hook workflow: (1) assess if this session did meaningful work, (2) if yes, call memos_get_daily_log for today, (3) diff against existing content, (4) format new entries in .plan style, (5) show the user the merged log and ask for confirmation before saving."
+          }
+        ]
+      }
+    ]
+  }
+}

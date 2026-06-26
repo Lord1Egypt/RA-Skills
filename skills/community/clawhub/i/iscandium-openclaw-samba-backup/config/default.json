@@ -1,0 +1,15 @@
+{
+  "target_server_ip": "192.168.1.100",
+  "target_share_name": "backup",
+  "target_share_username": "your_username",
+  "target_share_password": "your_password",
+  "source_admin_username": "your_admin",
+  "source_admin_password": "your_admin_password",
+  "max_backups": 7,
+  "source_dir": null,
+  "target_folder": null,
+  "mount": {
+    "vers": "2.0",
+    "mount_point": "/mnt/iscandium-openclaw-samba-backup"
+  }
+}

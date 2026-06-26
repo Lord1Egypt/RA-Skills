@@ -1,0 +1,74 @@
+{
+  "weekdays": ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+
+  "note_title":      "Registro CPAP",
+  "callout_title":   "Generado automáticamente",
+  "callout_body":    "Esta nota fue creada automáticamente a partir de los datos de la API PrismaAPP (Löwenstein Medical).",
+
+  "summary_heading": "Resumen",
+  "col_metric":      "Métrica",
+  "col_value":       "Valor",
+  "col_rating":      "Evaluación",
+
+  "row_sleep":       "Duración del sueño",
+  "row_deepsleep":   "Sueño profundo",
+  "row_ahi":         "IAH",
+  "row_leakage":     "Fuga",
+  "row_snoring":     "Ronquidos",
+  "row_mask":        "Ajuste de mascarilla",
+  "row_therapy":     "Modo de terapia",
+
+  "overall_prefix":  "Evaluación global",
+
+  "sleep_heading":   "Sueño",
+  "sleep_duration":  "Duración",
+  "sleep_deepsleep": "Sueño profundo",
+  "sleep_goal":      "Objetivo",
+  "goal_reached":    "✅ alcanzado",
+  "goal_not_reached":"❌ no alcanzado",
+
+  "therapy_heading": "Terapia CPAP",
+  "therapy_rating":  "Evaluación",
+  "therapy_mode":    "Modo de terapia",
+  "pressure_label":  "Presión",
+
+  "snoring_heading": "Ronquidos & Mascarilla",
+  "snoring_of_time": "del tiempo de sueño",
+  "mask_label":      "Ajuste de mascarilla",
+  "mask_perfect":    "🟢 Perfecto",
+  "mask_ok":         "🟡 Correcto",
+  "mask_bad":        "🔴 Malo",
+
+  "ahi_0":           "≤ 5 — normal",
+  "ahi_1":           "5–15 — levemente elevado",
+  "ahi_2":           "15–30 — moderadamente elevado",
+  "ahi_3":           "> 30 — gravemente elevado",
+  "ahi_4":           "—",
+
+  "q_0":             "🟢 Bueno",
+  "q_1":             "🟡 Correcto",
+  "q_2":             "🔴 Malo",
+  "q_3":             "🟠 Límite",
+  "q_4":             "—",
+
+  "overall_great":   "🟢 Excelente",
+  "overall_good":    "🟢 Bueno",
+  "overall_ok":      "🟡 Correcto",
+  "overall_border":  "🟠 Límite",
+  "overall_bad":     "🔴 Malo",
+  "overall_none":    "— Sin datos",
+
+  "tag_great":       "excelente",
+  "tag_good":        "bueno",
+  "tag_ok":          "correcto",
+  "tag_border":      "limite",
+  "tag_bad":         "malo",
+  "tag_none":        "sin-datos",
+
+  "no_data_msg":     "No hay datos disponibles para esta fecha (dispositivo no utilizado o aún no sincronizado).",
+
+  "fm_weekday_key":  "día",
+  "fm_source":       "PrismaAPP / Löwenstein prisma SOFT max",
+  "tag_health":      "salud",
+  "tag_auto":        "auto-generado"
+}

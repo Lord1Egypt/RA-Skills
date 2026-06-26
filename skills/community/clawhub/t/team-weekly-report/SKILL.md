@@ -1,35 +1,117 @@
 ---
-name: "Team Weekly Report Generator"
-description: "团队周报汇总技能。收集组员周报图片，按「部门管理」和「项目管理」两大维度分类汇总，对比本周完成情况与上周计划，生成纯文本团队周报。当用户说"汇总周报"、"整理周报"、"生成周报"、"这是周报"（配图）、"项目进度汇总"时触发。支持分批收集、持久化存储、纵向对比。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/team-weekly-report"
-sourceUrl: "https://clawhub.ai/skills/team-weekly-report"
+name: team-weekly-report
+description: 团队周报汇总技能。收集组员周报图片，按「部门管理」和「项目管理」两大维度分类汇总，对比本周完成情况与上周计划，生成纯文本团队周报。当用户说"汇总周报"、"整理周报"、"生成周报"、"这是周报"（配图）、"项目进度汇总"时触发。支持分批收集、持久化存储、纵向对比。
 ---
 
-# Team Weekly Report Generator
+# 团队周报汇总
 
-> 团队周报汇总技能。收集组员周报图片，按「部门管理」和「项目管理」两大维度分类汇总，对比本周完成情况与上周计划，生成纯文本团队周报。当用户说"汇总周报"、"整理周报"、"生成周报"、"这是周报"（配图）、"项目进度汇总"时触发。支持分批收集、持久化存储、纵向对比。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/team-weekly-report`
-- **Source URL:** [https://clawhub.ai/skills/team-weekly-report](https://clawhub.ai/skills/team-weekly-report)
+收集组员周报图片 → OCR 提取 → 按两大维度重组 → 纵向对比上周计划 → 输出纯文本汇总周报。
 
-## Overview
+周报内容包含字段：**维度、项目、任务、本周完成情况、下周计划、用时（小时）**。
 
+两大分类维度：**部门管理** 和 **项目管理**。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/team-weekly-report
+## 数据存储
+
+所有周报数据持久化到 `memory/weekly-reports/` 目录，每周一个 JSON 文件：
+
 ```
+memory/weekly-reports/
+├── 2026-W15.json
+├── 2026-W14.json
+└── ...
+```
+
+文件命名规则：`{年}-W{ISO周数}.json`
+
+### 数据结构
+
+```json
+{
+  "week": "2026-W15",
+  "period": "2026-04-06 ~ 2026-04-10",
+  "members": [
+    {
+      "name": "张三",
+      "items": [
+        {
+          "dimension": "项目管理",
+          "project": "XXX系统",
+          "task": "用户模块重构",
+          "thisWeek": "完成接口设计，联调中",
+          "nextWeek": "完成前后端联调，提测",
+          "hours": 16
+        },
+        {
+          "dimension": "部门管理",
+          "project": "智维ERP部",
+          "task": "新人培训",
+          "thisWeek": "完成新人入职引导",
+          "nextWeek": "安排新人参与项目实战",
+          "hours": 4
+        }
+      ]
+    }
+  ]
+}
+```
+
+## 工作流
+
+### Step 1: 收集周报图片
+
+用户发送周报图片（可单张或多张，可分批发送）。
+
+对每张图片使用 `image` 工具，提取以下信息：
+- 姓名
+- 每条工作项：维度（部门管理/项目管理）、项目名、任务名、本周完成、下周计划、用时（小时）
+
+提取时注意：
+- 图片可能包含表格、列表等多种格式，灵活识别
+- 用时单位统一为小时
+- 如果图片中没有明确标注维度，根据任务名称自动判断（技术类→项目管理，管理类→部门管理），无法判断时默认归入"项目管理"
+- 部门管理维度下 project 统一填部门名称（如"智维ERP部"），不区分项目
+
+将提取的数据追加到本周数据文件 `memory/weekly-reports/{年}-W{周数}.json`。
+
+每收集完一张，简短确认："已收录 {姓名} 的周报（{条目数} 条）"。
+
+### Step 2: 汇总生成周报
+
+当用户说"汇总"、"生成周报"、"开始汇总"、"整理"时触发。
+
+1. 读取本周数据 `memory/weekly-reports/{年}-W{周数}.json`
+2. 读取上周数据（`W{N-1}.json`，用于对比）
+3. 按维度分组输出正文（部门管理 + 项目管理），正文只写本周完成情况，**不写上周对比**
+4. 最后统一做纵向对比，**只展示 ❌ 未达成 和 ➕ 新增**，不展示已达成项
+5. 汇总用时统计
+6. 输出纯文本周报
+
+### Step 3: 输出格式
+
+输出纯文本，格式参考 `references/report-template.md`。
+
+## 正文结构规则
+
+1. **部门管理**：直接按「任务」分组，不按项目层级。同一任务下按成员排列。
+2. **项目管理**：按「项目 > 任务」两层结构分组。同一项目下按任务分，同一任务下按成员排列。
+3. 正文每人每条只写：姓名、本周完成、用时。**不写上周计划和达成标记**。
+4. 纵向对比统一放在最后「与上周计划对比」板块。
+
+## 纵向对比逻辑
+
+对比上周计划（上周的 nextWeek）vs 本周完成（本周的 thisWeek）：
+- ❌ 未达成：上周计划了，但本周完成中未体现
+- ➕ 新增：本周有新工作，上周未计划
+
+**对比规则：**
+- 对比时允许模糊匹配（措辞不同但含义相同视为达成，不列出）
+- **只输出有 ❌ 或 ➕ 的成员**，如果某成员既无未达成也无新增，不显示该成员
+- 如果某个分类（❌ 或 ➕）下完全为空，省略该分类不显示
+- 首次收集（无上周数据）时，整块标注"首次收集，无上周数据，无法对比"
+
+## 资源
+
+- `references/report-template.md` — 输出模板

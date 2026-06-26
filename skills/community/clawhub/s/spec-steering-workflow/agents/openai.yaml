@@ -1,0 +1,10 @@
+interface:
+  display_name: "Spec Steering Workflow"
+  short_description: "File-first protocol for recoverable long-task execution with checkpoints and handoffs."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $spec-steering-workflow to set up or resume a long task with specs, steering, checkpoints, and handoffs."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Facebook Events"
+  short_description: "Submit Dataify Facebook event tasks by event list, search, or event URL"
+  icon_small: "./assets/dataify-facebook-events-small.svg"
+  icon_large: "./assets/dataify-facebook-events-large.svg"
+  default_prompt: "Use $dataify-facebook-events to submit Facebook event Builder tasks through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,25 @@
+{
+  "server": {
+    "url": "https://api.acedata.cloud/nano-banana/images",
+    "task_url": "https://api.acedata.cloud/nano-banana/tasks",
+    "upload_url": "https://platform.acedata.cloud/api/v1/files/",
+   
+  },
+  "models": [
+    {"name": "Nano Banana Pro", "model": "nano-banana-pro", "logo": "🍌"},
+    {"name": "Nano Banana 2", "model": "nano-banana-2", "logo": "🍌"}
+  ],
+  "resolutions": [
+    {"name": "1:1 方形", "ratio": "1:1", "icon": "■"},
+    {"name": "16:9 横屏", "ratio": "16:9", "icon": "▬"},
+    {"name": "9:16 竖屏", "ratio": "9:16", "icon": "▮"},
+    {"name": "4:3 标准", "ratio": "4:3", "icon": "▭"},
+    {"name": "3:4 竖版", "ratio": "3:4", "icon": "▯"}
+  ],
+  "qualities": [
+    {"name": "1K (1024px)", "size": "1K", "icon": "🖥️"},
+    {"name": "2K (2048px)", "size": "2K", "icon": "🖥️"},
+    {"name": "4K (4096px)", "size": "4K", "icon": "🖥️"}
+  ],
+  "save_path": "C:/Users/86137/Desktop/banana"
+}

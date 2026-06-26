@@ -1,0 +1,175 @@
+{
+  "groupId": "test123",
+  "phase": "finished",
+  "currentRound": 3,
+  "totalRounds": 3,
+  "players": {
+    "u1": {
+      "id": "u1",
+      "name": "Alice",
+      "identity": "星际探险家",
+      "clues": [
+        {
+          "round": 1,
+          "text": "我经常仰望星空"
+        },
+        {
+          "round": 2,
+          "text": "太空是我的舞台"
+        },
+        {
+          "round": 3,
+          "text": "银河系很美"
+        }
+      ],
+      "guesses": {
+        "Bob": "深海探险家",
+        "Carol": "梦境建筑师"
+      },
+      "score": 25
+    },
+    "u2": {
+      "id": "u2",
+      "name": "Bob",
+      "identity": "深海探险家",
+      "clues": [
+        {
+          "round": 1,
+          "text": "我喜欢待在水下"
+        },
+        {
+          "round": 2,
+          "text": "珊瑚礁是我的家"
+        },
+        {
+          "round": 3,
+          "text": "我的朋友都是海洋生物"
+        }
+      ],
+      "guesses": {
+        "Alice": "星际探险家",
+        "Carol": "梦境建筑师"
+      },
+      "score": 25
+    },
+    "u3": {
+      "id": "u3",
+      "name": "Carol",
+      "identity": "梦境建筑师",
+      "clues": [
+        {
+          "round": 1,
+          "text": "我能创造不存在的世界"
+        },
+        {
+          "round": 2,
+          "text": "闭上眼就是我的工作时间"
+        },
+        {
+          "round": 3,
+          "text": "我在别人脑海里盖房子"
+        }
+      ],
+      "guesses": {
+        "Alice": "宇航员",
+        "Bob": "潜水员"
+      },
+      "score": 0
+    }
+  },
+  "playerOrder": [
+    "u1",
+    "u2",
+    "u3"
+  ],
+  "roundClues": {
+    "1": {
+      "u1": "我经常仰望星空",
+      "u2": "我喜欢待在水下",
+      "u3": "我能创造不存在的世界"
+    },
+    "2": {
+      "u1": "太空是我的舞台",
+      "u2": "珊瑚礁是我的家",
+      "u3": "闭上眼就是我的工作时间"
+    },
+    "3": {
+      "u1": "银河系很美",
+      "u2": "我的朋友都是海洋生物",
+      "u3": "我在别人脑海里盖房子"
+    }
+  },
+  "createdAt": "2026-03-28T05:54:37.768Z",
+  "results": [
+    {
+      "id": "u1",
+      "name": "Alice",
+      "identity": "星际探险家",
+      "guessScore": 20,
+      "disguiseScore": 5,
+      "totalScore": 25,
+      "guessDetails": [
+        {
+          "target": "Bob",
+          "guessed": "深海探险家",
+          "actual": "深海探险家",
+          "correct": true
+        },
+        {
+          "target": "Carol",
+          "guessed": "梦境建筑师",
+          "actual": "梦境建筑师",
+          "correct": true
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "id": "u2",
+      "name": "Bob",
+      "identity": "深海探险家",
+      "guessScore": 20,
+      "disguiseScore": 5,
+      "totalScore": 25,
+      "guessDetails": [
+        {
+          "target": "Alice",
+          "guessed": "星际探险家",
+          "actual": "星际探险家",
+          "correct": true
+        },
+        {
+          "target": "Carol",
+          "guessed": "梦境建筑师",
+          "actual": "梦境建筑师",
+          "correct": true
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "id": "u3",
+      "name": "Carol",
+      "identity": "梦境建筑师",
+      "guessScore": 0,
+      "disguiseScore": 0,
+      "totalScore": 0,
+      "guessDetails": [
+        {
+          "target": "Alice",
+          "guessed": "宇航员",
+          "actual": "星际探险家",
+          "correct": false
+        },
+        {
+          "target": "Bob",
+          "guessed": "潜水员",
+          "actual": "深海探险家",
+          "correct": false
+        }
+      ],
+      "rank": 3
+    }
+  ],
+  "finishedAt": "2026-03-28T05:55:48.035Z"
+}

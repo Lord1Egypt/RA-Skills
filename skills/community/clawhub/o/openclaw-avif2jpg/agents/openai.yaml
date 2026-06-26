@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw AVIF to JPG"
+  short_description: "Convert AVIF images to JPG from files or folders."
+  default_prompt: "Convert AVIF images to JPG for the provided files or folders."

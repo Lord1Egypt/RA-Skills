@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "x-twitter": "^2.3.1",
+    "self-improving-agent": "^3.0.1"
+  }
+}

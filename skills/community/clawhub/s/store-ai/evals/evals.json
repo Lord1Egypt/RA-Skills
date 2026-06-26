@@ -1,0 +1,30 @@
+{
+  "skill_name": "sjtx-store-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "番茄卖完了",
+      "expected_output": "识别为补录售罄意图，提取商品名=番茄，type=sold_out，请求确认，展示 API 调用结构"
+    },
+    {
+      "id": 2,
+      "prompt": "胡萝卜还剩8斤，3块5一斤",
+      "expected_output": "识别为剩余量补录，提取 product_name=胡萝卜, type=remaining, remaining_qty=8, unit_price=3.5，展示确认摘要"
+    },
+    {
+      "id": 3,
+      "prompt": "今天进货了，番茄50斤2块钱，白菜30斤1块5",
+      "expected_output": "识别为录入进货，提取两个商品明细，展示进货单汇总和确认请求"
+    },
+    {
+      "id": 4,
+      "prompt": "查一下库存",
+      "expected_output": "意图模糊，展示3个候选（实时库存/今日概览/流水），让用户选择"
+    },
+    {
+      "id": 5,
+      "prompt": "今天卖了多少钱",
+      "expected_output": "识别为今日销售汇总，生成 GET /api/sales/today 调用"
+    }
+  ]
+}

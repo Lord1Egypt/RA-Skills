@@ -1,0 +1,20 @@
+{
+  "name": "easysoftskill",
+  "version": "1.0.0",
+  "description": "易软（EasySoft）数据查询 Skill——物业管理数据报表查询工具，支持欠费、收缴率、应收、实收、月报等多种报表类型。",
+  "license": "MIT-0",
+  "skillhub": {
+    "name": "easysoftskill",
+    "displayName": "易软数据查询",
+    "tags": [
+      "易软",
+      "物业",
+      "报表",
+      "收缴率",
+      "欠费",
+      "数据查询",
+      "EasySoft"
+    ],
+    "shortDescription": "物业管理数据报表查询——欠费、收缴率、应收、实收一键查询"
+  }
+}

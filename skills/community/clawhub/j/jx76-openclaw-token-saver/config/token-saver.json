@@ -1,0 +1,90 @@
+{
+  "_comment": "OpenClaw Token Saver 配置文件 - 自动触发优化建议",
+  
+  "triggers": {
+    "enabled": true,
+    "conditions": [
+      {
+        "name": "token_threshold_warning",
+        "type": "threshold",
+        "threshold": 0.7,
+        "action": "suggest_compact",
+        "message": "💡 Token 使用达到 70%，建议压缩上下文"
+      },
+      {
+        "name": "token_threshold_critical",
+        "type": "threshold",
+        "threshold": 0.8,
+        "action": "force_compact",
+        "message": "⚠️ Token 使用达到 80%，请立即优化"
+      },
+      {
+        "name": "token_threshold_emergency",
+        "type": "threshold",
+        "threshold": 0.9,
+        "action": "emergency_reset",
+        "message": "🚨 Token 使用达到 90%，即将达到上限！"
+      },
+      {
+        "name": "per_turn_limit",
+        "type": "per_turn",
+        "max_tokens": 4000,
+        "action": "warn_input_size",
+        "message": "单次请求 Token 过多，建议分批处理"
+      },
+      {
+        "name": "conversation_length",
+        "type": "turn_count",
+        "turns": 10,
+        "action": "suggest_compact",
+        "message": "对话已超过 10 轮，建议压缩上下文"
+      }
+    ]
+  },
+  
+  "auto_actions": {
+    "on_warning": {
+      "show_banner": true,
+      "suggest_commands": ["/compact", "/cc"],
+      "show_token_stats": true
+    },
+    "on_critical": {
+      "show_banner": true,
+      "suggest_commands": ["/compact", "/nc", "/reset"],
+      "show_token_stats": true,
+      "show_savings_tips": true
+    },
+    "on_emergency": {
+      "show_banner": true,
+      "force_suggestion": true,
+      "suggest_commands": ["/reset", "/new"],
+      "show_token_stats": true,
+      "show_detailed_guide": true
+    }
+  },
+  
+  "thresholds": {
+    "warning": 0.7,
+    "critical": 0.8,
+    "emergency": 0.9,
+    "per_turn_max": 4000,
+    "session_max": 50000
+  },
+  
+  "context_management": {
+    "auto_compact": {
+      "enabled": true,
+      "trigger_at": 0.75,
+      "min_turns": 5
+    },
+    "default_mode": "cc",
+    "emergency_mode": "nc"
+  },
+  
+  "notifications": {
+    "enabled": true,
+    "show_usage_bar": true,
+    "show_percentage": true,
+    "color_coded": true
+  }
+}

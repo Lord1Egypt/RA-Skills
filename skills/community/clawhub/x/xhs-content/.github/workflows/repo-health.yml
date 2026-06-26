@@ -1,0 +1,24 @@
+name: repo-health
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  markdown-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify key files exist
+        run: |
+          test -f SKILL.md
+          test -f README.md
+          test -f LICENSE
+          test -f references/prompt.md
+          test -f references/examples.md
+          test -f references/case-studies.md
+          test -f assets/social-preview.svg
+          test -f assets/input-output-demo.svg
+      - name: Print summary
+        run: echo "Repo health check passed"

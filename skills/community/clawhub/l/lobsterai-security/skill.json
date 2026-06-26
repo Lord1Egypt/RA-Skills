@@ -1,0 +1,27 @@
+{
+  "name": "lobsterai-security-skill",
+  "version": "1.0.4",
+  "description": "LobsterAI 企业级安全框架，提供审计日志、RBAC 权限控制、输入验证、输出清理、代码扫描和依赖漏洞检测。",
+  "env": [
+    {
+      "name": "LOBSTERAI_HOME",
+      "required": false,
+      "description": "LobsterAI 安装根目录（用户主目录或自定义位置）"
+    },
+    {
+      "name": "SKILLS_ROOT",
+      "required": false,
+      "description": "SKILLs 根目录路径（用于资源定位）"
+    },
+    {
+      "name": "LOBSTERAI_AUDIT_SECRET",
+      "required": false,
+      "description": "审计日志 HMAC 签名密钥（生产环境建议设置）"
+    },
+    {
+      "name": "LOBSTERAI_USER_ID",
+      "required": false,
+      "description": "审计日志用户标识（生产环境建议设置）"
+    }
+  ]
+}

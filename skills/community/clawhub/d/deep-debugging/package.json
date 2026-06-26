@@ -1,0 +1,23 @@
+{
+  "name": "deep-debugging",
+  "version": "2.2.0",
+  "description": "Evidence-first debugging and incident triage for AI coding agents with concise core workflow, progressive checklists, and safe local snapshots.",
+  "keywords": [
+    "debugging",
+    "incident-response",
+    "production-debugging",
+    "root-cause-analysis",
+    "hypothesis-driven",
+    "binary-search",
+    "rollback",
+    "nestjs",
+    "nextjs",
+    "react",
+    "jwt",
+    "prisma",
+    "webhooks",
+    "agent-safety"
+  ],
+  "author": "brasco05",
+  "license": "MIT"
+}

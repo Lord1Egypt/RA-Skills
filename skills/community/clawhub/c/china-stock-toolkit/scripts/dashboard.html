@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 全球市场实时仪表盘</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2d3748;
+        }
+        .header h1 { font-size: 28px; color: #fff; }
+        .header .time { color: #a0aec0; font-size: 14px; }
+        
+        /* Market Tabs */
+        .market-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            background: #2d3748;
+            border: none;
+            color: #a0aec0;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .tab:hover { background: #3d4a5c; color: #fff; }
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+        
+        /* Section */
+        .section { margin-bottom: 30px; }
+        .section-title {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Indices Grid */
+        .indices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        
+        .index-card {
+            background: #2d3748;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .index-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .index-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .index-name { font-size: 14px; color: #a0aec0; }
+        .index-badge {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #4a5568;
+        }
+        
+        .index-price {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .index-change {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        /* Colors: 红涨绿跌（A股习惯） */
+        .up { color: #ef4444; }
+        .down { color: #22c55e; }
+        .flat { color: #a0aec0; }
+        
+        /* Precious Metals */
+        .precious-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .precious-card {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #4a5568;
+        }
+        .precious-name {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .precious-price {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .precious-range {
+            font-size: 13px;
+            color: #a0aec0;
+            margin-top: 10px;
+        }
+        
+        /* Stock Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #1a202c;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-title { font-size: 24px; color: #fff; }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #a0aec0;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .detail-item {
+            background: #2d3748;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .detail-label { font-size: 12px; color: #a0aec0; margin-bottom: 5px; }
+        .detail-value { font-size: 20px; font-weight: 500; }
+        
+        /* Tax Calculator */
+        .tax-calc {
+            background: #2d3748;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .tax-title { font-size: 16px; color: #fff; margin-bottom: 15px; }
+        .tax-input {
+            background: #1a202c;
+            border: 1px solid #4a5568;
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .tax-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+        .tax-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #1a202c;
+            border-radius: 8px;
+            display: none;
+        }
+        .tax-result.show { display: block; }
+        
+        /* Disclaimer */
+        .disclaimer {
+            background: #2d3748;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+        .disclaimer strong { color: #f59e0b; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 22px; }
+            .indices-grid { grid-template-columns: repeat(2, 1fr); }
+            .precious-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🌍 全球市场实时仪表盘</h1>
+            <div class="time" id="updateTime">更新时间：--</div>
+        </div>
+        
+        <!-- Market Tabs -->
+        <div class="market-tabs">
+            <button class="tab active" onclick="switchMarket('cn')">🇨🇳 A股指数</button>
+            <button class="tab" onclick="switchMarket('hk')">🇭🇰 港股</button>
+            <button class="tab" onclick="switchMarket('precious')">💰 贵金属</button>
+            <button class="tab" onclick="switchMarket('us')">🇺🇸 美股（需配置）</button>
+            <button class="tab" onclick="switchMarket('calc')">🧮 税费计算</button>
+        </div>
+        
+        <!-- A股指数 -->
+        <div class="section" id="cn-section">
+            <div class="section-title">📊 A股大盘指数</div>
+            <div class="indices-grid" id="cn-indices">
+                <div class="index-card" onclick="showStockDetail('sh000001')">
+                    <div class="index-header">
+                        <span class="index-name">上证指数</span>
+                        <span class="index-badge">SH</span>
+                    </div>
+                    <div class="index-price up">--,---.--</div>
+                    <div class="index-change">--</div>
+                </div>
+                <div class="index-card" onclick="showStockDetail('sz399001')">
+                    <div class="index-header">
+                        <span class="index-name">深证成指</span>
+                        <span class="index-badge">SZ</span>
+                    </div>
+                    <div class="index-price up">--,---.--</div>
+                    <div class="index-change">--</div>
+                </div>
+                <div class="index-card" onclick="showStockDetail('sz399006')">
+                    <div class="index-header">
+                        <span class="index-name">创业板指</span>
+                        <span class="index-badge">SZ</span>
+                    </div>
+                    <div class="index-price up">-,---.--</div>
+                    <div class="index-change">--</div>
+                </div>
+                <div class="index-card" onclick="showStockDetail('sh000688')">
+                    <div class="index-header">
+                        <span class="index-name">科创50</span>
+                        <span class="index-badge">SH</span>
+                    </div>
+                    <div class="index-price up">-,---.--</div>
+                    <div class="index-change">--</div>
+                </div>
+                <div class="index-card" onclick="showStockDetail('bj899050')">
+                    <div class="index-header">
+                        <span class="index-name">北证50</span>
+                        <span class="index-badge">BJ</span>
+                    </div>
+                    <div class="index-price up">-,---.--</div>
+                    <div class="index-change">--</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 港股指数 -->
+        <div class="section" id="hk-section" style="display: none;">
+            <div class="section-title">🇭🇰 港股指数</div>
+            <div class="indices-grid" id="hk-indices">
+                <div class="index-card">
+                    <div class="index-header">
+                        <span class="index-name">恒生指数</span>
+                        <span class="index-badge">HK</span>
+                    </div>
+                    <div class="index-price up">--,---.--</div>
+                    <div class="index-change">--</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 贵金属 -->
+        <div class="section" id="precious-section" style="display: none;">
+            <div class="section-title">💰 贵金属行情</div>
+            <div class="precious-grid" id="precious-data">
+                <div class="precious-card">
+                    <div class="precious-name">🥇 黄金 XAU</div>
+                    <div class="precious-price up">-,---.--</div>
+                    <div class="index-change">--</div>
+                    <div class="precious-range">最高：--  最低：--</div>
+                </div>
+                <div class="precious-card">
+                    <div class="precious-name">🥈 白银 XAG</div>
+                    <div class="precious-price up">--.--</div>
+                    <div class="index-change">--</div>
+                    <div class="precious-range">最高：--  最低：--</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 美股指数（需配置） -->
+        <div class="section" id="us-section" style="display: none;">
+            <div class="section-title">🇺🇸 美股指数</div>
+            <div style="background: #2d3748; padding: 20px; border-radius: 12px; color: #a0aec0;">
+                <p style="margin-bottom: 15px;">⚠️ 美股数据需要配置 Yahoo Finance API Key</p>
+                <p style="font-size: 13px; margin-bottom: 10px;">配置方式：</p>
+                <code style="background: #1a202c; padding: 8px 12px; border-radius: 6px; display: block; margin-bottom: 15px;">
+                    export YAHOO_API_KEY=your_key_here
+                </code>
+                <p style="font-size: 12px;">获取API Key：<a href="https://developer.yahoo.com/api/" target="_blank" style="color: #667eea;">https://developer.yahoo.com/api/</a></p>
+            </div>
+        </div>
+        
+        <!-- 税费计算器 -->
+        <div class="section" id="calc-section" style="display: none;">
+            <div class="section-title">🧮 交易税费计算器</div>
+            <div class="tax-calc">
+                <div class="tax-title">输入交易信息</div>
+                <input type="number" class="tax-input" id="buyPrice" placeholder="买入价（元）">
+                <input type="number" class="tax-input" id="sellPrice" placeholder="卖出价（元）">
+                <input type="number" class="tax-input" id="volume" placeholder="交易数量（股）">
+                <button class="tax-btn" onclick="calculateTax()">计算费用</button>
+                
+                <div class="tax-result" id="taxResult">
+                    <div style="margin-bottom: 15px;">
+                        <div class="detail-label">买入金额</div>
+                        <div class="detail-value" id="buyAmount">--</div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <div class="detail-label">买入费用</div>
+                        <div class="detail-value" id="buyFee">--</div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <div class="detail-label">卖出金额</div>
+                        <div class="detail-value" id="sellAmount">--</div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <div class="detail-label">卖出费用</div>
+                        <div class="detail-value" id="sellFee">--</div>
+                    </div>
+                    <div style="border-top: 1px solid #4a5568; padding-top: 15px; margin-top: 15px;">
+                        <div class="detail-label">净利润</div>
+                        <div class="detail-value" id="profit" style="font-size: 28px;">--</div>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <div class="detail-label">收益率</div>
+                        <div class="detail-value" id="profitPct">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 免责声明 -->
+        <div class="disclaimer">
+            <strong>⚠️ 免责声明</strong><br>
+            本工具仅供学习和技术研究使用，不构成任何投资建议。数据可能存在延迟，不应作为交易决策依据。投资有风险，入市需谨慎。
+        </div>
+    </div>
+    
+    <!-- 股票详情弹窗 -->
+    <div class="modal" id="stockModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">股票详情</div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="detail-grid" id="stockDetail">
+                <div class="detail-item">
+                    <div class="detail-label">当前价</div>
+                    <div class="detail-value up">--,---.--</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">涨跌幅</div>
+                    <div class="detail-value up">--%</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">今开</div>
+                    <div class="detail-value">--,---.--</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">最高</div>
+                    <div class="detail-value">--,---.--</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">最低</div>
+                    <div class="detail-value">--,---.--</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">成交量</div>
+                    <div class="detail-value">--</div>
+                </div>
+            </div>
+            
+            <div class="tax-calc">
+                <div class="tax-title">税费计算（自动代入当前价）</div>
+                <input type="number" class="tax-input" id="modalBuyPrice" placeholder="买入价（元）">
+                <input type="number" class="tax-input" id="modalVolume" placeholder="数量（股）" value="100">
+                <button class="tax-btn" onclick="calculateModalTax()">计算卖出费用</button>
+                <div class="tax-result" id="modalTaxResult" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 数据存储
+        let marketData = {
+            cn: [],
+            hk: [],
+            precious: [],
+            currentPrice: null
+        };
+        
+        // 切换市场
+        function switchMarket(market) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            document.getElementById(market + '-section').style.display = 'block';
+        }
+        
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('updateTime').textContent = 
+                '更新时间：' + now.toLocaleString('zh-CN');
+        }
+        
+        // 格式化数字
+        function formatNum(num, decimals = 2) {
+            return num ? num.toLocaleString('zh-CN', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            }) : '--';
+        }
+        
+        // 判断涨跌
+        function getChangeClass(pct) {
+            if (pct > 0) return 'up';
+            if (pct < 0) return 'down';
+            return 'flat';
+        }
+        
+        // 更新A股数据
+        function updateCNData(data) {
+            marketData.cn = data;
+            const container = document.getElementById('cn-indices');
+            
+            data.forEach((item, idx) => {
+                const cards = container.querySelectorAll('.index-card');
+                if (cards[idx]) {
+                    const card = cards[idx];
+                    const priceEl = card.querySelector('.index-price');
+                    const changeEl = card.querySelector('.index-change');
+                    
+                    priceEl.textContent = formatNum(item.price);
+                    priceEl.className = 'index-price ' + getChangeClass(item.change_pct);
+                    
+                    const sign = item.change_pct >= 0 ? '+' : '';
+                    changeEl.textContent = `${sign}${item.change_pct.toFixed(2)}%`;
+                    changeEl.className = 'index-change ' + getChangeClass(item.change_pct);
+                }
+            });
+        }
+        
+        // 更新港股数据
+        function updateHKData(data) {
+            marketData.hk = data;
+            const container = document.getElementById('hk-indices');
+            
+            data.forEach((item, idx) => {
+                const cards = container.querySelectorAll('.index-card');
+                if (cards[idx]) {
+                    const card = cards[idx];
+                    const priceEl = card.querySelector('.index-price');
+                    const changeEl = card.querySelector('.index-change');
+                    
+                    priceEl.textContent = formatNum(item.price);
+                    priceEl.className = 'index-price ' + getChangeClass(item.change_pct);
+                    
+                    const sign = item.change_pct >= 0 ? '+' : '';
+                    changeEl.textContent = `${sign}${item.change_pct.toFixed(2)}%`;
+                    changeEl.className = 'index-change ' + getChangeClass(item.change_pct);
+                }
+            });
+        }
+        
+        // 更新贵金属数据
+        function updatePreciousData(data) {
+            marketData.precious = data;
+            const container = document.getElementById('precious-data');
+            
+            data.forEach((item, idx) => {
+                const cards = container.querySelectorAll('.precious-card');
+                if (cards[idx]) {
+                    const card = cards[idx];
+                    const priceEl = card.querySelector('.precious-price');
+                    const changeEl = card.querySelector('.index-change');
+                    const rangeEl = card.querySelector('.precious-range');
+                    
+                    priceEl.textContent = formatNum(item.price);
+                    priceEl.className = 'precious-price ' + getChangeClass(item.change_pct);
+                    
+                    const sign = item.change_pct >= 0 ? '+' : '';
+                    changeEl.textContent = `${sign}${item.change_pct.toFixed(2)}%`;
+                    changeEl.className = 'index-change ' + getChangeClass(item.change_pct);
+                    
+                    rangeEl.textContent = `最高：${formatNum(item.high)}  最低：${formatNum(item.low)}`;
+                }
+            });
+        }
+        
+        // 显示股票详情
+        function showStockDetail(code) {
+            document.getElementById('stockModal').classList.add('active');
+            document.getElementById('modalTitle').textContent = '加载中...';
+            
+            // 调用后端获取个股数据
+            fetch(`/api/stock?code=${code}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        closeModal();
+                        return;
+                    }
+                    
+                    marketData.currentPrice = data.price;
+                    document.getElementById('modalTitle').textContent = data.name + ' ' + code;
+                    
+                    const detailGrid = document.getElementById('stockDetail');
+                    const items = detailGrid.querySelectorAll('.detail-item');
+                    
+                    items[0].querySelector('.detail-value').textContent = formatNum(data.price);
+                    items[0].querySelector('.detail-value').className = 'detail-value ' + getChangeClass(data.change_pct);
+                    
+                    const sign = data.change_pct >= 0 ? '+' : '';
+                    items[1].querySelector('.detail-value').textContent = `${sign}${data.change_pct.toFixed(2)}%`;
+                    items[1].querySelector('.detail-value').className = 'detail-value ' + getChangeClass(data.change_pct);
+                    
+                    items[2].querySelector('.detail-value').textContent = formatNum(data.open);
+                    items[3].querySelector('.detail-value').textContent = formatNum(data.high);
+                    items[4].querySelector('.detail-value').textContent = formatNum(data.low);
+                    items[5].querySelector('.detail-value').textContent = formatNum(data.volume, 0);
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('获取数据失败');
+                    closeModal();
+                });
+        }
+        
+        // 关闭弹窗
+        function closeModal() {
+            document.getElementById('stockModal').classList.remove('active');
+        }
+        
+        // 计算税费
+        function calculateTax() {
+            const buyPrice = parseFloat(document.getElementById('buyPrice').value);
+            const sellPrice = parseFloat(document.getElementById('sellPrice').value);
+            const volume = parseInt(document.getElementById('volume').value);
+            
+            if (!buyPrice || !sellPrice || !volume) {
+                alert('请填写完整信息');
+                return;
+            }
+            
+            fetch('/api/calc_tax', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ buyPrice, sellPrice, volume })
+            })
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('taxResult').classList.add('show');
+                document.getElementById('buyAmount').textContent = '¥' + formatNum(data.buy_amount);
+                document.getElementById('buyFee').textContent = '¥' + formatNum(data.buy_fees.total_fee);
+                document.getElementById('sellAmount').textContent = '¥' + formatNum(data.sell_amount);
+                document.getElementById('sellFee').textContent = '¥' + formatNum(data.sell_fees.total_fee);
+                
+                const profitEl = document.getElementById('profit');
+                profitEl.textContent = '¥' + formatNum(data.profit);
+                profitEl.className = 'detail-value ' + getChangeClass(data.profit);
+                
+                const pctEl = document.getElementById('profitPct');
+                const sign = data.profit_pct >= 0 ? '+' : '';
+                pctEl.textContent = sign + data.profit_pct.toFixed(2) + '%';
+                pctEl.className = 'detail-value ' + getChangeClass(data.profit_pct);
+            });
+        }
+        
+        // 弹窗内税费计算
+        function calculateModalTax() {
+            const buyPrice = parseFloat(document.getElementById('modalBuyPrice').value);
+            const volume = parseInt(document.getElementById('modalVolume').value);
+            const sellPrice = marketData.currentPrice;
+            
+            if (!buyPrice || !volume || !sellPrice) {
+                alert('请填写买入价和数量');
+                return;
+            }
+            
+            fetch('/api/calc_tax', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ buyPrice, sellPrice, volume })
+            })
+            .then(r => r.json())
+            .then(data => {
+                const resultEl = document.getElementById('modalTaxResult');
+                resultEl.classList.add('show');
+                resultEl.innerHTML = `
+                    <div style="margin-bottom: 10px;">
+                        <span style="color: #a0aec0;">卖出金额：</span>
+                        <span style="color: #fff;">¥${formatNum(data.sell_amount)}</span>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <span style="color: #a0aec0;">卖出费用：</span>
+                        <span style="color: #fff;">¥${formatNum(data.sell_fees.total_fee)}</span>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <span style="color: #a0aec0;">净利润：</span>
+                        <span style="color: ${data.profit >= 0 ? '#ef4444' : '#22c55e'}; font-size: 24px;">¥${formatNum(data.profit)}</span>
+                    </div>
+                    <div>
+                        <span style="color: #a0aec0;">收益率：</span>
+                        <span style="color: ${data.profit_pct >= 0 ? '#ef4444' : '#22c55e'};">${data.profit_pct >= 0 ? '+' : ''}${data.profit_pct.toFixed(2)}%</span>
+                    </div>
+                `;
+            });
+        }
+        
+        // 刷新数据
+        function refreshData() {
+            // 获取A股数据
+            fetch('/api/indices')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.data) updateCNData(data.data);
+                    updateTime();
+                });
+            
+            // 获取港股数据
+            fetch('/api/hk')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.data) updateHKData(data.data);
+                });
+            
+            // 获取贵金属数据
+            fetch('/api/precious')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.data) updatePreciousData(data.data);
+                });
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTime();
+            // refreshData();
+            // setInterval(refreshData, 30000); // 30秒刷新一次
+        });
+        
+        // 点击弹窗外部关闭
+        document.getElementById('stockModal').addEventListener('click', (e) => {
+            if (e.target.id === 'stockModal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- 新闻分析板块 (新增) -->
+<div id="newsSection" class="section" style="display:none;">
+    <div class="section-title">📰 新闻分析与情绪监测</div>
+    
+    <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+        <input type="text" id="newsSearchInput" placeholder="输入股票代码或板块名称..." 
+               style="flex: 1; min-width: 300px; padding: 10px; border-radius: 8px; border: 1px solid #4a5568; background: #2d3748; color: #fff;">
+        <select id="newsTypeSelect" style="padding: 10px; border-radius: 8px; border: 1px solid #4a5568; background: #2d3748; color: #fff;">
+            <option value="stock">个股新闻</option>
+            <option value="sector">板块新闻</option>
+            <option value="policy">政策新闻</option>
+            <option value="market">市场情绪</option>
+        </select>
+        <button onclick="loadNews()" style="padding: 10px 20px; border-radius: 8px; border: none; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; cursor: pointer;">查询</button>
+    </div>
+    
+    <!-- 情绪汇总 -->
+    <div id="sentimentSummary" style="background: #2d3748; border-radius: 12px; padding: 20px; margin-bottom: 20px; display: none;">
+        <div style="font-size: 18px; color: #fff; margin-bottom: 10px;">📊 情绪汇总</div>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div>
+                <span style="color: #a0aec0;">整体情绪：</span>
+                <span id="overallSentiment" style="font-size: 20px; font-weight: bold;"></span>
+            </div>
+            <div>
+                <span style="color: #a0aec0;">利好：</span>
+                <span id="bullishCount" style="color: #ef4444; font-size: 18px;"></span>
+            </div>
+            <div>
+                <span style="color: #a0aec0;">利空：</span>
+                <span id="bearishCount" style="color: #22c55e; font-size: 18px;"></span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 新闻列表 -->
+    <div id="newsList" style="display: grid; gap: 15px;"></div>
+</div>
+
+<script>
+// 加载新闻
+function loadNews() {
+    const type = document.getElementById('newsTypeSelect').value;
+    const search = document.getElementById('newsSearchInput').value;
+    const newsList = document.getElementById('newsList');
+    const summaryDiv = document.getElementById('sentimentSummary');
+    
+    newsList.innerHTML = '<div style="text-align: center; color: #a0aec0;">加载中...</div>';
+    summaryDiv.style.display = 'none';
+    
+    let url = '';
+    if (type === 'stock' && search) {
+        url = `/api/stock_news?code=${search}&name=${search}`;
+    } else if (type === 'sector' && search) {
+        url = `/api/sector_news?name=${search}`;
+    } else if (type === 'policy') {
+        url = '/api/policy_news';
+    } else if (type === 'market') {
+        url = '/api/market_sentiment';
+    } else {
+        newsList.innerHTML = '<div style="text-align: center; color: #ef4444;">请输入查询内容</div>';
+        return;
+    }
+    
+    fetch(url)
+        .then(r => r.json())
+        .then(data => {
+            // 显示情绪汇总
+            if (data.summary) {
+                summaryDiv.style.display = 'block';
+                document.getElementById('overallSentiment').textContent = data.summary.overall;
+                document.getElementById('overallSentiment').style.color = 
+                    data.summary.overall.includes('看涨') ? '#ef4444' : 
+                    data.summary.overall.includes('看跌') ? '#22c55e' : '#e8e8e8';
+                document.getElementById('bullishCount').textContent = data.summary.bullish_count || 0;
+                document.getElementById('bearishCount').textContent = data.summary.bearish_count || 0;
+            }
+            
+            // 显示新闻列表
+            if (data.news && data.news.length > 0) {
+                newsList.innerHTML = data.news.map(n => `
+                    <div style="background: #2d3748; border-radius: 12px; padding: 20px; border-left: 4px solid ${n.sentiment.includes('利好') ? '#ef4444' : n.sentiment.includes('利空') ? '#22c55e' : '#a0aec0'};">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="font-size: 16px; color: #fff; font-weight: bold;">${n.title}</span>
+                            <span style="font-size: 14px; padding: 4px 10px; border-radius: 4px; background: ${n.sentiment.includes('利好') ? 'rgba(239,68,68,0.2)' : n.sentiment.includes('利空') ? 'rgba(34,197,94,0.2)' : 'rgba(160,174,192,0.2)'}; color: ${n.sentiment.includes('利好') ? '#ef4444' : n.sentiment.includes('利空') ? '#22c55e' : '#a0aec0'};">${n.sentiment}</span>
+                        </div>
+                        <div style="display: flex; gap: 15px; color: #a0aec0; font-size: 13px;">
+                            <span>📰 ${n.source}</span>
+                            <span>🕐 ${n.pub_time}</span>
+                            ${n.sentiment_score ? `<span>得分: ${n.sentiment_score}</span>` : ''}
+                        </div>
+                        ${n.url ? `<a href="${n.url}" target="_blank" style="color: #667eea; font-size: 13px; margin-top: 10px; display: inline-block;">查看详情 →</a>` : ''}
+                    </div>
+                `).join('');
+            } else {
+                newsList.innerHTML = '<div style="text-align: center; color: #a0aec0;">暂无新闻数据</div>';
+            }
+        })
+        .catch(e => {
+            newsList.innerHTML = `<div style="text-align: center; color: #ef4444;">加载失败: ${e.message}</div>`;
+        });
+}
+</script>

@@ -1,0 +1,19 @@
+{
+  "category": "profanity",
+  "version": "1.0",
+  "keywords": {
+    "操": {"severity": "severe", "aliases": ["草", "艹"]},
+    "妈的": {"severity": "moderate", "aliases": ["他妈的", "你妈的", "妈了个"]},
+    "傻逼": {"severity": "severe", "aliases": ["沙比", "煞笔"]},
+    "狗屎": {"severity": "moderate", "aliases": ["狗屁", "放屁"]},
+    "贱": {"severity": "moderate", "aliases": ["贱人", "贱货", "下贱"]},
+    "滚": {"severity": "mild", "aliases": ["滚蛋", "滚开"]},
+    "废物": {"severity": "mild", "aliases": ["废柴", "没用"]},
+    "混蛋": {"severity": "moderate", "aliases": ["浑蛋", "王八蛋"]},
+    "畜生": {"severity": "severe", "aliases": ["禽兽", "牲口"]},
+    "该死": {"severity": "mild", "aliases": ["去死", "找死"]},
+    "fuck": {"severity": "severe", "aliases": ["fucking", "f*ck"]},
+    "shit": {"severity": "moderate", "aliases": ["bullshit", "crap"]},
+    "damn": {"severity": "mild", "aliases": ["damned", "goddamn"]}
+  }
+}

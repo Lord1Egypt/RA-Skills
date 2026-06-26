@@ -1,0 +1,9 @@
+{
+  "$schema": "https://example.com/pdf-miner-config.schema.json",
+  "vision_api_key": "",
+  "vision_model": "qwen/qwen3.6-plus:free",
+  "vision_base_url": "https://openrouter.ai/api/v1",
+  "ocr_dpi": 200,
+  "ocr_max_page_dim": 2048,
+  "notes": "Edit this file with your API credentials before using --ocr. You can also use environment variables (OCR_API_KEY, OCR_MODEL, OCR_BASE_URL)."
+}

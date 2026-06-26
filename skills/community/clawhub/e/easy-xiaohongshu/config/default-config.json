@@ -1,0 +1,32 @@
+{
+  "pages": 8,
+  "ratio": "3:4",
+  "width": 1080,
+  "height": 1440,
+  "title_max_length": 20,
+  "content_min_length": 35,
+  "content_max_length": 70,
+  "hashtag_count": 10,
+  "output_dir": "./generated_images",
+  "api": {
+    "key": "",
+    "base_url": "https://z.3i0.cn/v1beta",
+    "model": "gemini-3.1-flash-image-preview",
+    "timeout_seconds": 120,
+    "max_retries": 3
+  },
+  "user_preferences": {
+    "account_type": "科技博主",
+    "content_direction": "AI 工具、数码测评",
+    "target_audience": "职场人士、效率追求者"
+  },
+  "mcp": {
+    "url": "http://localhost:18060/mcp",
+    "timeout_seconds": 30
+  },
+  "style_matching": {
+    "enabled": true,
+    "fallback_to": "清新简约",
+    "auto_detect_keywords": true
+  }
+}

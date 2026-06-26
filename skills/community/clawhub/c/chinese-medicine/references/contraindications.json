@@ -1,0 +1,198 @@
+{
+  "eighteen_contradictions": {
+    "name_cn": "十八反",
+    "name_en": "Eighteen Contradictions",
+    "description": "Classical herbal combinations that are contraindicated due to potential toxicity or adverse effects",
+    "classical_verse": "本草明言十八反，半蒌贝蔹及攻乌，藻戟遂芫俱战草，诸参辛芍叛藜芦。",
+    "contradictions": [
+      {
+        "group": "Wu Tou (Aconite) Group",
+        "herb": "Wu Tou (including Chuan Wu, Cao Wu, Fu Zi)",
+        "contraindicated_with": ["Ban Xia", "Gua Lou", "Bei Mu", "Bai Lian", "Bai Ji"],
+        "severity": "HIGH",
+        "mechanism": "Potential for increased toxicity and adverse cardiovascular effects",
+        "warning_en": "DO NOT COMBINE - Risk of serious toxicity",
+        "warning_cn": "禁止配伍 - 有严重毒性风险"
+      },
+      {
+        "group": "Gan Cao (Licorice) Group",
+        "herb": "Gan Cao (Licorice Root)",
+        "contraindicated_with": ["Gan Sui", "Da Ji", "Hai Zao", "Yuan Hua"],
+        "severity": "HIGH",
+        "mechanism": "May potentiate toxic effects and cause severe adverse reactions",
+        "warning_en": "DO NOT COMBINE - Classical contraindication",
+        "warning_cn": "禁止配伍 - 经典配伍禁忌"
+      },
+      {
+        "group": "Li Lu (Veratrum) Group",
+        "herb": "Li Lu (Veratrum)",
+        "contraindicated_with": ["Ren Shen", "Sha Shen", "Dan Shen", "Xuan Shen", "Ku Shen", "Xi Xin", "Shao Yao (Bai Shao and Chi Shao)"],
+        "severity": "HIGH",
+        "mechanism": "Enhanced toxicity affecting multiple organ systems",
+        "warning_en": "DO NOT COMBINE - High toxicity risk",
+        "warning_cn": "禁止配伍 - 高毒性风险"
+      }
+    ]
+  },
+  "nineteen_fears": {
+    "name_cn": "十九畏",
+    "name_en": "Nineteen Fears",
+    "description": "Herbal combinations that are traditionally considered incompatible or antagonistic",
+    "classical_verse": "硫黄原是火中精，朴硝一见便相争。水银莫与砒霜见，狼毒最怕密陀僧。巴豆性烈最为上，偏与牵牛不顺情。丁香莫与郁金见，牙硝难合京三棱。川乌草乌不顺犀，人参最怕五灵脂。官桂善能调冷气，若逢石脂便相欺。",
+    "fears": [
+      {"herb_a": "Liu Huang (Sulfur)", "herb_b": "Pu Xiao (Mirabilite)", "severity": "MODERATE", "note": "Antagonistic thermal properties"},
+      {"herb_a": "Shui Yin (Mercury)", "herb_b": "Pi Shuang (Arsenic)", "severity": "HIGH", "note": "Extreme toxicity when combined"},
+      {"herb_a": "Lang Du (Euphorbia)", "herb_b": "Mi Tuo Seng (Lithargyrum)", "severity": "HIGH", "note": "Enhanced toxicity"},
+      {"herb_a": "Ba Dou (Croton)", "herb_b": "Qian Niu (Morning Glory Seed)", "severity": "HIGH", "note": "Severe purgative interaction"},
+      {"herb_a": "Ding Xiang (Clove)", "herb_b": "Yu Jin (Curcuma)", "severity": "MODERATE", "note": "Antagonistic Qi effects"},
+      {"herb_a": "Ya Xiao (Sodium Nitrate)", "herb_b": "Jing San Leng (Sparganium)", "severity": "MODERATE", "note": "Reduced efficacy"},
+      {"herb_a": "Chuan Wu (Aconite)", "herb_b": "Xi Jiao (Rhinoceros Horn - now banned)", "severity": "MODERATE", "note": "Use Shui Niu Jiao (Water Buffalo Horn) with caution"},
+      {"herb_a": "Cao Wu (Wild Aconite)", "herb_b": "Xi Jiao (Rhinoceros Horn - now banned)", "severity": "MODERATE", "note": "Use Shui Niu Jiao with caution"},
+      {"herb_a": "Ren Shen (Ginseng)", "herb_b": "Wu Ling Zhi (Flying Squirrel Feces)", "severity": "MODERATE", "note": "Reduced efficacy of Ren Shen"},
+      {"herb_a": "Guan Gui (Cinnamon Bark)", "herb_b": "Chi Shi Zhi (Halloysite)", "severity": "LOW", "note": "Antagonistic effects"}
+    ]
+  },
+  "pregnancy_contraindications": {
+    "name_cn": "妊娠禁忌",
+    "name_en": "Pregnancy Contraindications",
+    "description": "Herbs and substances contraindicated during pregnancy",
+    "categories": {
+      "absolute_contraindications": {
+        "name_cn": "绝对禁忌",
+        "description": "Never use during pregnancy - high risk of miscarriage or fetal harm",
+        "herbs": [
+          {"name": "Ma Huang (Ephedra)", "risk": "Uterine stimulant, cardiovascular effects"},
+          {"name": "Fu Zi (Aconite)", "risk": "Cardiotoxic, teratogenic"},
+          {"name": "Chuan Wu (Aconitum)", "risk": "Highly toxic to fetus"},
+          {"name": "Cao Wu (Wild Aconitum)", "risk": "Highly toxic to fetus"},
+          {"name": "Tian Nan Xing (Arisaema)", "risk": "Teratogenic"},
+          {"name": "Gan Sui (Euphorbia)", "risk": "Strong purgative, causes miscarriage"},
+          {"name": "Da Ji (Euphorbia)", "risk": "Strong purgative, causes miscarriage"},
+          {"name": "Yuan Hua (Daphne)", "risk": "Uterine stimulant"},
+          {"name": "Qian Niu Zi (Morning Glory Seed)", "risk": "Strong purgative, uterine stimulant"},
+          {"name": "Ba Dou (Croton)", "risk": "Severe purgative, causes miscarriage"},
+          {"name": "Ban Mao (Mylabris)", "risk": "Highly toxic"},
+          {"name": "She Xiang (Musk)", "risk": "Uterine stimulant"},
+          {"name": "San Leng (Sparganium)", "risk": "Breaks Blood, causes miscarriage"},
+          {"name": "E Zhu (Curcuma zedoaria)", "risk": "Breaks Blood, causes miscarriage"},
+          {"name": "Shui Zhi (Leech)", "risk": "Breaks Blood stasis"},
+          {"name": "Meng Chong (Tabanus)", "risk": "Breaks Blood stasis"}
+        ]
+      },
+      "caution_required": {
+        "name_cn": "慎用",
+        "description": "Use with caution and only under professional guidance",
+        "herbs": [
+          {"name": "Da Huang (Rhubarb)", "risk": "Purgative, use only if necessary"},
+          {"name": "Fan Xie Ye (Senna)", "risk": "Strong purgative"},
+          {"name": "Tao Ren (Peach Kernel)", "risk": "Moves Blood, caution in first trimester"},
+          {"name": "Hong Hua (Safflower)", "risk": "Moves Blood, caution in first trimester"},
+          {"name": "Chuan Xiong (Ligusticum)", "risk": "Moves Blood, caution in first trimester"},
+          {"name": "Ru Xiang (Frankincense)", "risk": "Moves Blood"},
+          {"name": "Mo Yao (Myrrh)", "risk": "Moves Blood"},
+          {"name": "Dang Gui (Angelica)", "risk": "Generally safe but use with guidance"},
+          {"name": "Huang Qin (Scutellaria)", "risk": "Generally safe but avoid high doses"},
+          {"name": "Zhi Zi (Gardenia)", "risk": "Cooling herbs in excess may affect Yang"}
+        ]
+      }
+    },
+    "acupoints_contraindicated": {
+      "absolute": ["LI4 (Hegu)", "GB21 (Jianjing)", "SP6 (Sanyinjiao) - strong stimulation", "BL60 (Kunlun)", "BL67 (Zhiyin)"],
+      "caution": ["CV3-CV7 (lower abdomen points)", "ST36 (if strongly stimulated)"]
+    }
+  },
+  "hepatotoxicity_warnings": {
+    "name_cn": "肝毒性警告",
+    "name_en": "Hepatotoxicity Warnings",
+    "description": "Herbs with known or suspected liver toxicity",
+    "categories": {
+      "high_risk": {
+        "description": "Significant hepatotoxicity risk - monitor liver enzymes",
+        "herbs": [
+          {"name": "He Shou Wu (Raw Polygonum)", "risk": "Hepatitis, liver failure reported", "note": "Processed version (Zhi He Shou Wu) is safer"},
+          {"name": "Tu Jin Pi (Cortex Pseudolaricis)", "risk": "Severe hepatotoxicity"},
+          {"name": "Chuan Lian Zi (Melia)", "risk": "Hepatotoxic in high doses"},
+          {"name": "Shan Dou Gen (Sophora)", "risk": "Hepatitis reported"}
+        ]
+      },
+      "moderate_risk": {
+        "description": "Moderate risk with long-term or high-dose use",
+        "herbs": [
+          {"name": "Gan Cao (Licorice - long-term high dose)", "risk": "Pseudoaldosteronism, liver stress", "note": "Normal doses safe"},
+          {"name": "Ku Lian Pi (Melia bark)", "risk": "Hepatotoxic potential"},
+          {"name": "Lei Gong Teng (Tripterygium)", "risk": "Multiple organ toxicity including liver"}
+        ]
+      },
+      "precaution": {
+        "description": "Use with caution in liver disease",
+        "herbs": [
+          {"name": "Huang Yao Zi (Dioscorea)", "risk": "Hepatotoxicity reported"},
+          {"name": "Bai Xian Pi (Dictamnus)", "risk": "Caution with liver conditions"}
+        ]
+      }
+    }
+  },
+  "drug_interactions": {
+    "name_cn": "药物相互作用",
+    "name_en": "Drug-Herb Interactions",
+    "description": "Known or suspected interactions between herbs and pharmaceutical drugs",
+    "interactions": [
+      {
+        "herb": "Ren Shen (Ginseng)",
+        "interacts_with": ["Warfarin", "Insulin", "Oral hypoglycemics", "MAO inhibitors"],
+        "effect": "May affect blood sugar and clotting",
+        "recommendation": "Monitor closely, adjust doses as needed"
+      },
+      {
+        "herb": "Dang Gui (Angelica)",
+        "interacts_with": ["Warfarin", "Aspirin", "Antiplatelet drugs"],
+        "effect": "May enhance anticoagulant effects",
+        "recommendation": "Monitor INR, use with caution"
+      },
+      {
+        "herb": "Gan Cao (Licorice)",
+        "interacts_with": ["Corticosteroids", "Diuretics", "Digoxin", "Antihypertensives"],
+        "effect": "May potentiate steroids, affect potassium and blood pressure",
+        "recommendation": "Avoid long-term high-dose use with these medications"
+      },
+      {
+        "herb": "Huang Qin (Scutellaria)",
+        "interacts_with": ["Cyclosporine", "Warfarin"],
+        "effect": "May affect drug metabolism",
+        "recommendation": "Monitor drug levels"
+      },
+      {
+        "herb": "Bo He (Mint)",
+        "interacts_with": ["Cyclosporine"],
+        "effect": "May reduce drug absorption",
+        "recommendation": "Separate by 2-4 hours"
+      },
+      {
+        "herb": "Da Huang (Rhubarb)",
+        "interacts_with": ["Digoxin", "Diuretics", "Corticosteroids"],
+        "effect": "May cause electrolyte imbalance affecting drug efficacy",
+        "recommendation": "Monitor electrolytes"
+      }
+    ]
+  },
+  "safety_scanner": {
+    "scan_procedure": [
+      "Check for 18 Contradictions combinations",
+      "Check for 19 Fears combinations",
+      "Check for pregnancy contraindications",
+      "Check for hepatotoxicity risks",
+      "Check for drug interactions",
+      "Generate safety report"
+    ],
+    "report_template": {
+      "header": "Herb Safety Scan Report",
+      "sections": [
+        "Herbs Scanned",
+        "Contraindications Found",
+        "Safety Notes",
+        "No Conflicts",
+        "Recommendations"
+      ]
+    }
+  }
+}

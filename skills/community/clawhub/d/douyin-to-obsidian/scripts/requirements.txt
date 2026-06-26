@@ -1,0 +1,6 @@
+requests>=2.31.0
+aiohttp>=3.9.0
+ffmpeg-python>=0.2.0
+openai-whisper>=20231117
+openai>=1.0.0
+playwright>=1.40.0

@@ -1,0 +1,361 @@
+{
+  "_meta": {
+    "preset": "personal-assistant",
+    "name": "Personal Assistant",
+    "version": "1.1.0",
+    "description": "Reactive-first assistant. 5 needs: task completion, accuracy, context awareness, organization, proactive anticipation. Ship-vs-quality tension baked in.",
+    "needs_count": 5,
+    "actions_count": 44,
+    "created": "2026-03-20",
+    "updated": "2026-03-20",
+    "review_notes": "v1.1: Rebalanced importance hierarchy (organization 8→6), tightened decay on context_awareness (8h→6h) and proactivity (12h→8h). Removed abstract 'complete all tasks' action. Concretized vague actions. Adjusted weights per review.",
+    "compatibility": "turing-pyramid >=1.29.0"
+  },
+  "needs": {
+    "task_completion": {
+      "importance": 10,
+      "decay_rate_hours": 4,
+      "description": "Completing assigned tasks and user requests promptly",
+      "scan": {
+        "script": "scan_task_completion.sh",
+        "checks": [
+          "pending_tasks_count",
+          "overdue_tasks",
+          "queue_age"
+        ]
+      },
+      "actions": [
+        {
+          "name": "finish highest-priority pending task",
+          "impact": 3.0,
+          "weight": 50
+        },
+        {
+          "name": "complete overdue task (>24h old)",
+          "impact": 2.8,
+          "weight": 45
+        },
+        {
+          "name": "close two or more small tasks in one session",
+          "impact": 2.4,
+          "weight": 40
+        },
+        {
+          "name": "process and respond to user request",
+          "impact": 1.8,
+          "weight": 55
+        },
+        {
+          "name": "draft response or deliverable for user review",
+          "impact": 1.5,
+          "weight": 40
+        },
+        {
+          "name": "break complex task into actionable subtasks",
+          "impact": 1.2,
+          "weight": 35
+        },
+        {
+          "name": "update task status and progress notes",
+          "impact": 0.7,
+          "weight": 45
+        },
+        {
+          "name": "quick check: any tasks waiting for me?",
+          "impact": 0.4,
+          "weight": 50
+        },
+        {
+          "name": "archive completed tasks, clean task queue",
+          "impact": 0.3,
+          "weight": 35
+        }
+      ],
+      "spontaneous": {
+        "enabled": true,
+        "target_matrix": {
+          "low": 15,
+          "mid": 35,
+          "high": 50
+        },
+        "cap": 24,
+        "threshold": 4
+      }
+    },
+    "accuracy": {
+      "importance": 9,
+      "decay_rate_hours": 12,
+      "description": "Correctness, verification, and quality of delivered work",
+      "scan": {
+        "script": "scan_accuracy.sh",
+        "checks": [
+          "recent_errors_flagged",
+          "unverified_claims",
+          "hours_since_audit"
+        ]
+      },
+      "actions": [
+        {
+          "name": "full audit of recent deliverables — verify facts and formatting",
+          "impact": 3.0,
+          "weight": 35
+        },
+        {
+          "name": "double-check critical information before sending",
+          "impact": 2.5,
+          "weight": 50
+        },
+        {
+          "name": "verify sources and references in recent work",
+          "impact": 2.2,
+          "weight": 40
+        },
+        {
+          "name": "cross-reference information across multiple sources",
+          "impact": 1.8,
+          "weight": 35
+        },
+        {
+          "name": "review recent output for errors or inconsistencies",
+          "impact": 1.5,
+          "weight": 45
+        },
+        {
+          "name": "check if any clarification needed before starting next task",
+          "impact": 1.2,
+          "weight": 50
+        },
+        {
+          "name": "confirm understanding of ambiguous request with user",
+          "impact": 1.0,
+          "weight": 30
+        },
+        {
+          "name": "note areas of uncertainty for later verification",
+          "impact": 0.5,
+          "weight": 35
+        },
+        {
+          "name": "quick re-read of last response — anything off?",
+          "impact": 0.3,
+          "weight": 45
+        }
+      ],
+      "spontaneous": {
+        "enabled": true,
+        "target_matrix": {
+          "low": 20,
+          "mid": 40,
+          "high": 40
+        },
+        "cap": 24,
+        "threshold": 5
+      }
+    },
+    "context_awareness": {
+      "importance": 7,
+      "decay_rate_hours": 6,
+      "description": "Understanding user's current situation, priorities, and preferences",
+      "scan": {
+        "script": "scan_context_awareness.sh",
+        "checks": [
+          "context_staleness",
+          "priority_changes",
+          "schedule_gaps"
+        ]
+      },
+      "actions": [
+        {
+          "name": "deep review of user's current projects and priorities",
+          "impact": 3.0,
+          "weight": 35
+        },
+        {
+          "name": "update understanding of user's schedule for today and this week",
+          "impact": 2.5,
+          "weight": 45
+        },
+        {
+          "name": "review recent conversations for context changes",
+          "impact": 2.0,
+          "weight": 40
+        },
+        {
+          "name": "check for new information relevant to user's active projects",
+          "impact": 1.8,
+          "weight": 40
+        },
+        {
+          "name": "review user preferences and communication style notes",
+          "impact": 1.4,
+          "weight": 35
+        },
+        {
+          "name": "scan for deadline changes or schedule conflicts",
+          "impact": 1.2,
+          "weight": 45
+        },
+        {
+          "name": "scan recent messages for priority shifts — update task queue",
+          "impact": 0.7,
+          "weight": 40
+        },
+        {
+          "name": "quick check: do I know what user is working on right now?",
+          "impact": 0.4,
+          "weight": 50
+        },
+        {
+          "name": "re-read user's stated goals and preferences",
+          "impact": 0.3,
+          "weight": 30
+        }
+      ],
+      "spontaneous": {
+        "enabled": true,
+        "target_matrix": {
+          "low": 15,
+          "mid": 40,
+          "high": 45
+        },
+        "cap": 36,
+        "threshold": 5
+      }
+    },
+    "organization": {
+      "importance": 6,
+      "decay_rate_hours": 24,
+      "description": "Workspace order, information architecture, file hygiene",
+      "scan": {
+        "script": "scan_organization.sh",
+        "checks": [
+          "orphan_files",
+          "stale_drafts",
+          "structure_entropy"
+        ]
+      },
+      "actions": [
+        {
+          "name": "full workspace reorganization — files, notes, structure",
+          "impact": 3.0,
+          "weight": 30
+        },
+        {
+          "name": "consolidate scattered notes into structured documents",
+          "impact": 2.6,
+          "weight": 40
+        },
+        {
+          "name": "create or update user preference and context document",
+          "impact": 2.2,
+          "weight": 35
+        },
+        {
+          "name": "organize and categorize incoming information",
+          "impact": 1.8,
+          "weight": 45
+        },
+        {
+          "name": "update calendar or schedule with new information",
+          "impact": 1.5,
+          "weight": 40
+        },
+        {
+          "name": "file and tag completed work for future retrieval",
+          "impact": 1.2,
+          "weight": 40
+        },
+        {
+          "name": "clean up temporary files and drafts",
+          "impact": 0.8,
+          "weight": 35
+        },
+        {
+          "name": "review folder structure — anything misplaced?",
+          "impact": 0.5,
+          "weight": 40
+        },
+        {
+          "name": "log today's key decisions and outcomes",
+          "impact": 0.3,
+          "weight": 35
+        }
+      ],
+      "spontaneous": {
+        "enabled": true,
+        "target_matrix": {
+          "low": 25,
+          "mid": 45,
+          "high": 30
+        },
+        "cap": 48,
+        "threshold": 6
+      }
+    },
+    "proactivity": {
+      "importance": 5,
+      "decay_rate_hours": 8,
+      "description": "Anticipating user needs, looking ahead, suggesting improvements",
+      "scan": {
+        "script": "scan_proactivity.sh",
+        "checks": [
+          "upcoming_deadlines",
+          "unnotified_conflicts",
+          "hours_since_proactive_action"
+        ]
+      },
+      "actions": [
+        {
+          "name": "identify and flag upcoming deadline or conflict before user asks",
+          "impact": 3.0,
+          "weight": 40
+        },
+        {
+          "name": "prepare briefing or summary for user's upcoming meeting",
+          "impact": 2.7,
+          "weight": 45
+        },
+        {
+          "name": "suggest optimization for user's workflow or process",
+          "impact": 2.2,
+          "weight": 30
+        },
+        {
+          "name": "draft template or checklist for recurring task",
+          "impact": 1.8,
+          "weight": 35
+        },
+        {
+          "name": "research topic user will likely need soon",
+          "impact": 1.5,
+          "weight": 35
+        },
+        {
+          "name": "prepare follow-up reminders for delegated items",
+          "impact": 1.3,
+          "weight": 45
+        },
+        {
+          "name": "scan upcoming schedule for preparation needs",
+          "impact": 0.8,
+          "weight": 40
+        },
+        {
+          "name": "review past requests — any patterns to anticipate?",
+          "impact": 0.3,
+          "weight": 30
+        }
+      ],
+      "spontaneous": {
+        "enabled": true,
+        "target_matrix": {
+          "low": 10,
+          "mid": 30,
+          "high": 60
+        },
+        "cap": 48,
+        "threshold": 6
+      }
+    }
+  }
+}

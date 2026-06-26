@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Yandex Search"
+  short_description: "Search Yandex"
+  default_prompt: "Use $dataify-yandex-search to run a search query."

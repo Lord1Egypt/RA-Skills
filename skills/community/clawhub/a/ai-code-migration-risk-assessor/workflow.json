@@ -1,0 +1,113 @@
+{
+  "name": "AI Code Migration Risk Assessor",
+  "version": "1.0.0",
+  "description": "深度分析代码变更风险，评估影响范围并生成可靠重构方案",
+  "category": "AI",
+  "tags": ["code-analysis", "risk-assessment", "refactoring", "github", "devops"],
+  "triggers": [
+    "代码变更风险",
+    "重构评估",
+    "影响范围分析",
+    "迁移风险",
+    "代码改动分析",
+    "PR风险评估"
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "order": 1,
+        "name": "获取代码变更数据",
+        "skill": "github",
+        "actions": [
+          "list-commits",
+          "compare-refs",
+          "search-code"
+        ],
+        "input": "仓库 URL / PR 链接",
+        "output": "变更文件列表 + Commit 历史 + Diff 内容"
+      },
+      {
+        "order": 2,
+        "name": "深度代码审查",
+        "skill": "code-review-skill",
+        "actions": [
+          "analyze-diff",
+          "detect-patterns",
+          "security-scan"
+        ],
+        "input": "Diff 内容",
+        "output": "问题清单 + 风险点列表 + 严重程度"
+      },
+      {
+        "order": 3,
+        "name": "风险量化与依赖分析",
+        "skill": "agentic-devops",
+        "actions": [
+          "dependency-graph",
+          "audit-logs",
+          "risk-modeling"
+        ],
+        "input": "问题清单 + 变更文件",
+        "output": "量化风险等级 + 影响范围图谱 + 关联模块清单"
+      },
+      {
+        "order": 4,
+        "name": "生成重构方案",
+        "skill": "ai-code-migration-risk-assessor",
+        "actions": [
+          "risk-summary",
+          "action-plan",
+          "migration-guide"
+        ],
+        "input": "风险等级 + 影响范围 + 问题清单",
+        "output": "风险报告 + 分步骤重构方案 + 行动计划"
+      }
+    ],
+    "data_flow": {
+      "step1_output": "step2_input",
+      "step2_output": "step3_input",
+      "step3_output": "step4_input",
+      "final_output": "risk-report-and-action-plan"
+    },
+    "risk_levels": {
+      "P0": {
+        "label": "严重",
+        "color": "red",
+        "description": "破坏性变更，影响生产环境核心功能"
+      },
+      "P1": {
+        "label": "高危",
+        "color": "orange",
+        "description": "涉及 API 兼容性变更或数据迁移"
+      },
+      "P2": {
+        "label": "中危",
+        "color": "yellow",
+        "description": "逻辑重构，存在潜在 Bug 风险"
+      },
+      "P3": {
+        "label": "低危",
+        "color": "green",
+        "description": "纯代码格式优化，无运行时影响"
+      }
+    }
+  },
+  "dependencies": {
+    "github": {
+      "purpose": "获取变更数据",
+      "key_actions": ["list-commits", "compare-refs", "search-code"]
+    },
+    "code-review-skill": {
+      "purpose": "深度 Diff 审查",
+      "key_actions": ["analyze-diff", "detect-patterns", "security-scan"]
+    },
+    "agentic-devops": {
+      "purpose": "依赖关系分析 + 风险量化",
+      "key_actions": ["dependency-graph", "audit-logs", "risk-modeling"]
+    }
+  },
+  "author": "OpenClaw Agent",
+  "engines_min": {
+    "openclaw": ">=2026.1.0"
+  }
+}

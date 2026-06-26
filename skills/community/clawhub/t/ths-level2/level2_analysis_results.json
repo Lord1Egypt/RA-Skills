@@ -1,0 +1,218 @@
+[
+  {
+    "code": "600276",
+    "name": "恒瑞医药",
+    "level2_pressure_support": {
+      "support_level": 51.12,
+      "resistance_level": 51.95,
+      "bid_total_volume": 234900,
+      "ask_total_volume": 275000,
+      "spread": 0.17,
+      "pressure_ratio": 0.539
+    },
+    "level2_fund_flow": {
+      "main_fund_signal": "主力流出",
+      "main_fund_strength": "中",
+      "big_net_ratio": -0.2,
+      "total_big_volume": 209300,
+      "net_volume_ratio": -0.224
+    },
+    "level2_market_depth": {
+      "depth_signal": "卖盘偏强",
+      "depth_strength": "中",
+      "bid_sum": 234900,
+      "ask_sum": 275000,
+      "bid_ask_ratio": 0.85
+    },
+    "technical_indicators": {
+      "macd": 0.765,
+      "signal": 0.688,
+      "histogram": 0.076,
+      "rsi": 51.07,
+      "ma5": 49.46,
+      "ma20": 48.14
+    },
+    "level2_score": 50,
+    "level2_suggestion": "观望"
+  },
+  {
+    "code": "600760",
+    "name": "中航沈飞",
+    "level2_pressure_support": {
+      "support_level": 47.08,
+      "resistance_level": 47.96,
+      "bid_total_volume": 233900,
+      "ask_total_volume": 229300,
+      "spread": 0.18,
+      "pressure_ratio": 0.495
+    },
+    "level2_fund_flow": {
+      "main_fund_signal": "主力观望",
+      "main_fund_strength": "弱",
+      "big_net_ratio": 0.005,
+      "total_big_volume": 173900,
+      "net_volume_ratio": 0.059
+    },
+    "level2_market_depth": {
+      "depth_signal": "买卖均衡",
+      "depth_strength": "弱",
+      "bid_sum": 233900,
+      "ask_sum": 229300,
+      "bid_ask_ratio": 1.02
+    },
+    "technical_indicators": {
+      "macd": 1.083,
+      "signal": 0.975,
+      "histogram": 0.108,
+      "rsi": 48.93,
+      "ma5": 48.87,
+      "ma20": 48.76
+    },
+    "level2_score": 65,
+    "level2_suggestion": "适度关注"
+  },
+  {
+    "code": "600999",
+    "name": "招商证券",
+    "level2_pressure_support": {
+      "support_level": 14.98,
+      "resistance_level": 15.25,
+      "bid_total_volume": 336300,
+      "ask_total_volume": 253600,
+      "spread": 0.09,
+      "pressure_ratio": 0.43
+    },
+    "level2_fund_flow": {
+      "main_fund_signal": "主力观望",
+      "main_fund_strength": "弱",
+      "big_net_ratio": 0.053,
+      "total_big_volume": 184700,
+      "net_volume_ratio": 0.081
+    },
+    "level2_market_depth": {
+      "depth_signal": "买盘强势",
+      "depth_strength": "强",
+      "bid_sum": 336300,
+      "ask_sum": 253600,
+      "bid_ask_ratio": 1.33
+    },
+    "technical_indicators": {
+      "macd": 0.316,
+      "signal": 0.284,
+      "histogram": 0.032,
+      "rsi": 65.42,
+      "ma5": 14.41,
+      "ma20": 14.2
+    },
+    "level2_score": 75,
+    "level2_suggestion": "积极关注"
+  },
+  {
+    "code": "601888",
+    "name": "中国中免",
+    "level2_pressure_support": {
+      "support_level": 70.05,
+      "resistance_level": 71.35,
+      "bid_total_volume": 238500,
+      "ask_total_volume": 133100,
+      "spread": 0.62,
+      "pressure_ratio": 0.358
+    },
+    "level2_fund_flow": {
+      "main_fund_signal": "主力大幅流出",
+      "main_fund_strength": "强",
+      "big_net_ratio": -0.312,
+      "total_big_volume": 187300,
+      "net_volume_ratio": -0.168
+    },
+    "level2_market_depth": {
+      "depth_signal": "买盘强势",
+      "depth_strength": "强",
+      "bid_sum": 238500,
+      "ask_sum": 133100,
+      "bid_ask_ratio": 1.79
+    },
+    "technical_indicators": {
+      "macd": 4.618,
+      "signal": 4.156,
+      "histogram": 0.462,
+      "rsi": 12.14,
+      "ma5": 84.38,
+      "ma20": 79.11
+    },
+    "level2_score": 85,
+    "level2_suggestion": "积极关注"
+  },
+  {
+    "code": "002202",
+    "name": "金风科技",
+    "level2_pressure_support": {
+      "support_level": 28.03,
+      "resistance_level": 28.48,
+      "bid_total_volume": 310900,
+      "ask_total_volume": 269000,
+      "spread": 0.12,
+      "pressure_ratio": 0.464
+    },
+    "level2_fund_flow": {
+      "main_fund_signal": "主力流入",
+      "main_fund_strength": "中",
+      "big_net_ratio": 0.224,
+      "total_big_volume": 235300,
+      "net_volume_ratio": 0.127
+    },
+    "level2_market_depth": {
+      "depth_signal": "买盘偏强",
+      "depth_strength": "中",
+      "bid_sum": 310900,
+      "ask_sum": 269000,
+      "bid_ask_ratio": 1.16
+    },
+    "technical_indicators": {
+      "macd": 0.159,
+      "signal": 0.144,
+      "histogram": 0.016,
+      "rsi": 68.69,
+      "ma5": 24.99,
+      "ma20": 24.93
+    },
+    "level2_score": 85,
+    "level2_suggestion": "积极关注"
+  },
+  {
+    "code": "300188",
+    "name": "国投智能",
+    "level2_pressure_support": {
+      "support_level": 12.19,
+      "resistance_level": 12.48,
+      "bid_total_volume": 298400,
+      "ask_total_volume": 280600,
+      "spread": 0.07,
+      "pressure_ratio": 0.485
+    },
+    "level2_fund_flow": {
+      "main_fund_signal": "主力流出",
+      "main_fund_strength": "中",
+      "big_net_ratio": -0.124,
+      "total_big_volume": 210100,
+      "net_volume_ratio": -0.098
+    },
+    "level2_market_depth": {
+      "depth_signal": "买盘偏强",
+      "depth_strength": "中",
+      "bid_sum": 298400,
+      "ask_sum": 280600,
+      "bid_ask_ratio": 1.06
+    },
+    "technical_indicators": {
+      "macd": 0.181,
+      "signal": 0.163,
+      "histogram": 0.018,
+      "rsi": 64.87,
+      "ma5": 11.67,
+      "ma20": 11.54
+    },
+    "level2_score": 70,
+    "level2_suggestion": "积极关注"
+  }
+]

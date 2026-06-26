@@ -1,35 +1,59 @@
 ---
-name: "Codex Quota"
-description: "Check OpenAI Codex CLI rate limit status (daily/weekly quotas) using local session logs. Portable Python script. Reads ~/.codex/sessions/ for quota data. Whe..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/codex-quota"
-sourceUrl: "https://clawhub.ai/skills/codex-quota"
+name: codex-quota
+version: 1.2.2
+homepage: https://github.com/odrobnik/codex-quota-skill
+description: >
+  Check OpenAI Codex CLI rate limit status (daily/weekly quotas) using local
+  session logs. Portable Python script.
+
+  Reads ~/.codex/sessions/ for quota data.
+  When using --all --yes, it temporarily switches accounts by overwriting
+  ~/.codex/auth.json (restored afterwards) to query each account.
+
+  Uses the `codex` CLI for --fresh / --all.
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3", "codex"]
 ---
 
-# Codex Quota
+# Skill: codex-quota
 
-> Check OpenAI Codex CLI rate limit status (daily/weekly quotas) using local session logs. Portable Python script. Reads ~/.codex/sessions/ for quota data. Whe...
+Check OpenAI Codex CLI rate limit status.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/codex-quota`
-- **Source URL:** [https://clawhub.ai/skills/codex-quota](https://clawhub.ai/skills/codex-quota)
+## Quick Reference
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/codex-quota
+# Run the included Python script
+./codex-quota.py
+
+# Or if installed to PATH
+codex-quota
 ```
+
+## Options
+
+```bash
+codex-quota              # Show current quota (cached from latest session)
+codex-quota --fresh      # Ping Codex first for live data
+codex-quota --all --yes  # Update all accounts, save to /tmp/codex-quota-all.json
+codex-quota --json       # Output as JSON
+codex-quota --help       # Show help
+```
+
+## Setup
+
+See [SETUP.md](SETUP.md) for prerequisites and setup instructions.
+
+## What It Shows
+
+- **Primary Window** (5 hours) — Short-term rate limit
+- **Secondary Window** (7 days) — Weekly rate limit
+- Reset times in local timezone with countdown
+- Source session file and age
+
+## When to Use
+
+- Before starting heavy Codex work (check weekly quota)
+- When Codex seems slow (might be rate-limited)
+- Monitoring quota across multiple accounts

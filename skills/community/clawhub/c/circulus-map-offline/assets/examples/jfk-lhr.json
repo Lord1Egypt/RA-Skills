@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "paths": [
+    {
+      "waypoints": ["JFK", "LHR"],
+      "type": "geodesic"
+    }
+  ]
+}

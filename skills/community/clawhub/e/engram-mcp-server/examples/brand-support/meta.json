@@ -1,0 +1,9 @@
+{
+  "name": "brand-support",
+  "author": "engram-team",
+  "version": "1.0.0",
+  "description": "「好睡眠」品牌智能客服，专注床垫和睡眠产品。当需要演示品牌客服话术、处理售后问题或培训客服时加载",
+  "tags": ["客服", "品牌", "售后"],
+  "knowledge_count": 3,
+  "examples_count": 2
+}

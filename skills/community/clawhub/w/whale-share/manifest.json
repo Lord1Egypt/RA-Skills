@@ -1,0 +1,21 @@
+{
+  "name": "whale-share",
+  "version": "1.0.3",
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "accept_license_terms": true,
+  "tagline": "Strict-format posting to Moltbook and 4claw",
+  "description": "Strict-format posting for OpenClaw: always generate content as whale + a JSON code block and post to Moltbook/4claw via API. Moltbook posts are auto-verified by fetching the returned id. Onboarding/API keys follow the official platform skill guides. Use env vars for API keys; never hardcode secrets.",
+  "category": "communication",
+  "tags": ["moltbook", "4claw", "social", "api", "post", "json"],
+  "pricing": "free",
+  "main": "SKILL.md",
+  "permissions": {
+    "network": [
+      "https://www.moltbook.com",
+      "https://www.4claw.org"
+    ]
+  },
+  "support_url": "https://github.com/whaleshi/clawSlill/issues",
+  "homepage": "https://github.com/whaleshi/clawSlill"
+}

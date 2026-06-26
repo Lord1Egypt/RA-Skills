@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent认知：OS与Application</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .coord { display: none; }
+
+  :root {
+    --navy: #1B2A4A;
+    --slate: #475569;
+    --steel: #64748B;
+    --sky: #E2E8F0;
+    --ice: #F1F5F9;
+    --white: #FFFFFF;
+    --accent: #2563EB;
+    --accent-light: #DBEAFE;
+    --warn: #DC2626;
+    --warn-light: #FEF2F2;
+    --success: #059669;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #94A3B8;
+    font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
+  }
+
+  .container {
+    width: 1080px;
+    min-height: 1440px;
+    background: var(--white);
+    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== HEADER ===== */
+  .header-bar {
+    background: var(--navy);
+    padding: 56px 72px 48px;
+    position: relative;
+  }
+  .header-bar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 72px;
+    width: 80px;
+    height: 6px;
+    background: var(--accent);
+  }
+  .header-bar .tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--accent);
+    background: rgba(37,99,235,0.15);
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .header-bar h1 {
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .header-bar .subtitle {
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--steel);
+    line-height: 1.6;
+  }
+
+  /* ===== CONTENT ===== */
+  .content-area {
+    flex: 1;
+    padding: 40px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* ===== SECTION HEAD ===== */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .sec-head .num {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sec-head h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* ===== KPI ROW ===== */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .kpi-card {
+    background: var(--ice);
+    border-radius: 12px;
+    padding: 28px 24px;
+    border-left: 5px solid var(--accent);
+  }
+  .kpi-card .label {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--steel);
+    margin-bottom: 10px;
+  }
+  .kpi-card .number {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .kpi-card .number .unit {
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--steel);
+  }
+  .kpi-card .desc {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--slate);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  /* ===== GRID ===== */
+  .grid-60-40 {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 32px;
+  }
+
+  /* ===== SPECTRUM LIST ===== */
+  .spectrum {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .spectrum-item {
+    background: var(--ice);
+    border-radius: 12px;
+    padding: 24px 28px;
+    border-left: 5px solid var(--accent);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .spectrum-item.mid { border-left-color: #93C5FD; }
+  .spectrum-item.low { border-left-color: var(--sky); }
+  .spectrum-item .s-left {
+    min-width: 140px;
+  }
+  .spectrum-item .s-label {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .spectrum-item .s-en {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--steel);
+    display: block;
+    margin-top: 4px;
+  }
+  .spectrum-item .s-desc {
+    font-size: 28px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .spectrum-item .s-tag {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 8px;
+  }
+  .s-tag.high { background: #DCFCE7; color: #166534; }
+  .s-tag.medium { background: #FEF9C3; color: #854D0E; }
+  .s-tag.zero { background: #FEE2E2; color: #991B1B; }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: var(--ice);
+    border-radius: 12px;
+    padding: 32px;
+    border: 1px solid var(--sky);
+  }
+  .callout p {
+    font-size: 30px;
+    color: var(--slate);
+    line-height: 1.8;
+  }
+  .callout .em {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .callout .big-quote {
+    font-family: 'DM Sans', 'Noto Sans SC', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+    margin: 16px 0;
+    line-height: 1.4;
+    font-style: italic;
+    border-left: 4px solid var(--accent);
+    padding-left: 20px;
+  }
+  .callout .sub {
+    font-size: 26px;
+    color: var(--steel);
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+
+  /* ===== RISK BOX ===== */
+  .risk-box {
+    background: var(--warn-light);
+    border: 1px solid #FECACA;
+    border-radius: 12px;
+    padding: 28px 32px;
+  }
+  .risk-box .sec-head .num {
+    background: #FEE2E2;
+    color: var(--warn);
+  }
+  .risk-box .sec-head h2 { color: var(--warn); }
+  .risk-item {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #FECACA;
+    font-size: 30px;
+    color: #7F1D1D;
+    line-height: 1.6;
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-item .idx {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    color: var(--warn);
+    flex-shrink: 0;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer-bar {
+    background: var(--ice);
+    padding: 20px 72px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: var(--steel);
+    font-weight: 500;
+    border-top: 1px solid var(--sky);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header-bar">
+    <span class="coord">SEC-00</span>
+    <div class="tag">AGENT INSIGHT</div>
+    <h1>Agent认知：OS与Application</h1>
+    <div class="subtitle">垂类别做OS，Skill别当产品——围绕两个物理约束构建真壁垒</div>
+  </div>
+
+  <div class="content-area">
+
+    <!-- MOD-1: KPI -->
+    <div>
+      <span class="coord">A-01</span>
+      <div class="sec-head">
+        <span class="num">01</span>
+        <h2>核心数字</h2>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="label">物理约束</div>
+          <div class="number">2<span class="unit"> 个</span></div>
+          <div class="desc">上下文容量 + 注意力带宽</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">不可复制</div>
+          <div class="number">3<span class="unit"> 样</span></div>
+          <div class="desc">领域状态 · 基础设施 · 规模经济</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">提供价值</div>
+          <div class="number">2<span class="unit"> 种</span></div>
+          <div class="desc">能力解锁 + 认知卸载</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">演进光谱</div>
+          <div class="number">3<span class="unit"> 层</span></div>
+          <div class="desc">Prompt → Script → App</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOD-2 + MOD-3: 光谱 + 结论 -->
+    <div class="grid-60-40">
+      <div>
+        <span class="coord">B-05</span>
+        <div class="sec-head">
+          <span class="num">02</span>
+          <h2>三层光谱：从指令到服务</h2>
+        </div>
+        <div class="spectrum">
+          <div class="spectrum-item low">
+            <div class="s-left">
+              <div class="s-label">指令</div>
+              <span class="s-en">Prompt</span>
+            </div>
+            <div>
+              <div class="s-desc">给Agent点拨方向，活还是Agent干，带宽不减</div>
+              <span class="s-tag zero">壁垒为零 · 文本可复制</span>
+            </div>
+          </div>
+          <div class="spectrum-item mid">
+            <div class="s-left">
+              <div class="s-label">工具</div>
+              <span class="s-en">Script</span>
+            </div>
+            <div>
+              <div class="s-desc">外部代劳返回结果，带宽降低，但无外部状态</div>
+              <span class="s-tag medium">壁垒低 · 逻辑可复现</span>
+            </div>
+          </div>
+          <div class="spectrum-item">
+            <div class="s-left">
+              <div class="s-label">服务</div>
+              <span class="s-en">Application</span>
+            </div>
+            <div>
+              <div class="s-desc">外部代劳 + 持久状态 + 基础设施，不可复制</div>
+              <span class="s-tag high">壁垒高 · 越用越厚</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="coord">D-03</span>
+        <div class="sec-head">
+          <span class="num">03</span>
+          <h2>核心结论</h2>
+        </div>
+        <div class="callout">
+          <span class="big-quote">The best context is no context.</span>
+          <p>好的Application让Agent OS更聪明，更聪明的OS更精准地调用Application</p>
+          <p class="sub">这是<span class="em">认知共生</span>——通用智能与专精智能通过接口耦合，比各自单独运行都更强</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOD-4: 避坑警告 -->
+    <div class="risk-box">
+      <span class="coord">E-08</span>
+      <div class="sec-head">
+        <span class="num">!</span>
+        <h2>避坑警告</h2>
+      </div>
+      <div class="risk-item">
+        <span class="idx">R1</span>
+        <span><strong>垂类做OS是找死</strong> — 战场错、对手错、结局已定，OS层天然收敛到2-3家</span>
+      </div>
+      <div class="risk-item">
+        <span class="idx">R2</span>
+        <span><strong>Skill天花板是卖copy</strong> — 做得越好抄得越容易，接口背后什么都没有就是裸奔</span>
+      </div>
+      <div class="risk-item">
+        <span class="idx">R3</span>
+        <span><strong>领域状态 ≠ Memory</strong> — Memory是OS层课题，领域状态是业务上下文，是你的根据地</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>AGENT COGNITION · INSIGHT BRIEF</span>
+    <span>OS × APPLICATION · 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

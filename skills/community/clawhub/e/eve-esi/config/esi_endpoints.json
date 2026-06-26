@@ -1,0 +1,75 @@
+{
+  "pi_planets": {
+    "path": "/characters/{character_id}/planets/",
+    "method": "GET",
+    "auth": true,
+    "scope": "esi-planets.manage_planets.v1",
+    "description": "Liste aller PI-Planeten eines Characters"
+  },
+  "pi_planet_detail": {
+    "path": "/characters/{character_id}/planets/{planet_id}/",
+    "method": "GET",
+    "auth": true,
+    "scope": "esi-planets.manage_planets.v1",
+    "description": "Extraktoren, Factories, Links und Routes eines Planeten"
+  },
+  "universe_planet": {
+    "path": "/universe/planets/{planet_id}/",
+    "method": "GET",
+    "auth": false,
+    "description": "Planet-Metadaten (Name, Typ, System)"
+  },
+  "market_prices": {
+    "path": "/markets/prices/",
+    "method": "GET",
+    "auth": false,
+    "description": "Alle adjusted/average Preise (global)"
+  },
+  "market_orders": {
+    "path": "/markets/10000002/orders/",
+    "method": "GET",
+    "auth": false,
+    "params": [
+      "type_id",
+      "order_type"
+    ],
+    "description": "Jita Buy/Sell Orders fuer ein bestimmtes Item"
+  },
+  "system_kills": {
+    "path": "/universe/system_kills/",
+    "method": "GET",
+    "auth": false,
+    "description": "Ship/Pod/NPC Kills pro System (letzte Stunde)"
+  },
+  "system_jumps": {
+    "path": "/universe/system_jumps/",
+    "method": "GET",
+    "auth": false,
+    "description": "Jump-Traffic pro System (letzte Stunde)"
+  },
+  "route": {
+    "path": "/route/{origin}/{destination}/",
+    "method": "GET",
+    "auth": false,
+    "params": ["flag"],
+    "description": "Routenplanung (flags: shortest, secure, insecure)"
+  },
+  "system_info": {
+    "path": "/universe/systems/{system_id}/",
+    "method": "GET",
+    "auth": false,
+    "description": "System-Name, Security-Status, Constellation, Star"
+  },
+  "incursions": {
+    "path": "/incursions/",
+    "method": "GET",
+    "auth": false,
+    "description": "Aktive NPC-Incursions (Constellation, Staging System, State)"
+  },
+  "fw_systems": {
+    "path": "/fw/systems/",
+    "method": "GET",
+    "auth": false,
+    "description": "Faction-Warfare umkaempfte Systeme mit Ownership/Contested-Level"
+  }
+}

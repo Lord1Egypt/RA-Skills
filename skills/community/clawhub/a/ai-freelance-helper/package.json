@@ -1,0 +1,8 @@
+{
+  "name": "ai-freelance-helper",
+  "version": "1.0.2",
+  "description": "AI freelance assistant for pricing and project management",
+  "main": "index.js",
+  "author": "OpenClaw",
+  "license": "MIT"
+}

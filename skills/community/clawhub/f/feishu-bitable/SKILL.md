@@ -1,35 +1,19 @@
----
-name: "feishu-bitable"
-description: "Manage Feishu Bitable by listing tables and adding records or tasks using provided app credentials."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-bitable"
-sourceUrl: "https://clawhub.ai/skills/feishu-bitable"
----
+# Feishu Bitable Skill
 
-# feishu-bitable
+操作飞书多维表格（Bitable/Base）记录。
 
-> Manage Feishu Bitable by listing tables and adding records or tasks using provided app credentials.
+## 功能
+- 列出 Base 内的表
+- 向表中新增记录/任务
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-bitable`
-- **Source URL:** [https://clawhub.ai/skills/feishu-bitable](https://clawhub.ai/skills/feishu-bitable)
+## 使用方式
+该技能目前主要作为库/模板使用：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-bitable
+```javascript
+const { addRecord } = require('./add_task');
+// addRecord(appToken, tableId, fields)
 ```
+
+## 配置
+- `FEISHU_APP_ID`
+- `FEISHU_APP_SECRET`

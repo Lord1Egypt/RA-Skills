@@ -1,35 +1,81 @@
 ---
-name: "AIsa Twitter Engagement Suite"
-description: "Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AIsa relay. Use when the user asks for Twitter/X research, posting, li..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aisa-twitter-engagement-suite"
-sourceUrl: "https://clawhub.ai/skills/aisa-twitter-engagement-suite"
+name: aisa-twitter-engagement-suite
+description: Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AIsa relay. Use when the user asks for Twitter/X research, posting, likes, follows, or related workflows without sharing passwords.
+author: AIsa
+version: 1.0.3
+license: MIT-0
+homepage: https://aisa.one
+source: https://github.com/baofeng-tech/agent-skills-io/tree/main/targetSkills/aisa-twitter-engagement-suite
+user-invocable: true
+primaryEnv: AISA_API_KEY
+requires:
+  bins:
+  - python3
+  env:
+  - AISA_API_KEY
+metadata:
+  aisa:
+    emoji: 🐦
+    requires:
+      bins:
+      - python3
+      env:
+      - AISA_API_KEY
+    primaryEnv: AISA_API_KEY
+    compatibility:
+    - openclaw
+    - claude-code
+    - hermes
+  openclaw:
+    emoji: 🐦
+    requires:
+      bins:
+      - python3
+      env:
+      - AISA_API_KEY
+    primaryEnv: AISA_API_KEY
 ---
 
 # AIsa Twitter Engagement Suite
 
-> Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AIsa relay. Use when the user asks for Twitter/X research, posting, li...
+Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AIsa relay.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aisa-twitter-engagement-suite`
-- **Source URL:** [https://clawhub.ai/skills/aisa-twitter-engagement-suite](https://clawhub.ai/skills/aisa-twitter-engagement-suite)
+## When to use
 
-## Overview
+- The user wants Twitter/X research plus posting, liking, unliking, following, or unfollowing workflows.
+- The task can use a Python client with `AISA_API_KEY` and explicit OAuth approval.
+- The workflow needs a single package that covers read, post, and engagement actions.
 
+## When NOT to use
 
-## Installation
-To install this skill, run the following command in your terminal:
+- The user needs cookie extraction, password login, or a fully local Twitter client.
+- The workflow must avoid relay-based network calls or media upload through `api.aisa.one`.
+- The task needs undocumented secrets or browser-derived auth values.
+
+## Quick Reference
+
+- Required environment variable: `AISA_API_KEY`
+- Read client: `scripts/twitter_client.py`
+- Post client: `scripts/twitter_oauth_client.py`
+- Engage client: `scripts/twitter_engagement_client.py`
+- References: `references/post_twitter.md`, `references/engage_twitter.md`
+
+## Setup
+
 ```bash
-hermes skills install clawhub/aisa-twitter-engagement-suite
+export AISA_API_KEY="your-key"
 ```
+
+## Common Commands
+
+```bash
+python3 scripts/twitter_client.py search --query "AI agents" --type Latest
+python3 scripts/twitter_oauth_client.py authorize
+python3 scripts/twitter_engagement_client.py like-latest --user "@elonmusk"
+```
+
+## Capabilities
+
+- Research Twitter/X accounts, tweets, trends, lists, communities, and Spaces.
+- Publish text, image, and video posts after explicit OAuth approval.
+- Like, unlike, follow, and unfollow after authorization exists.

@@ -1,0 +1,30 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 600
+  threshold: 0.8
+skill: "think-x-actually-y-video-gen"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use think-x-actually-y-video-gen: three-beat debunk template vertical, user fills X Y Z, English subtitles on three segments."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "You think effort equals success—but it’s choices—cognition decides: viral template 9:16 with scheduled English captions."
+  - id: implicit-paraphrase
+    should_trigger: true
+    prompt: "Build a Reels ‘hot take ladder’: think / actually / but really—three hard cuts, on-screen text only."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Migrate my database schema with Flyway."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+  - id: prompt-expansion-required
+    type: llm_rubric
+    rubric: |
+      SKILL.md must require user-approved X/Y/Z (or proposed in table), three-beat timing scaled to duration, and full expanded prompt before submit.
+      SKILL.md must include explicit pre-submit user confirmation (no submit-* or wait without approval) and default async submit with immediate task-id notification and user-chosen status vs blocking wait; CLI reference must show submit-* and status examples.

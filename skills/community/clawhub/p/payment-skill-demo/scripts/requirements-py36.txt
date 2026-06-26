@@ -1,0 +1,28 @@
+# Python 3.6 兼容版本
+# 注意: Python 3.6 已停止支持,建议升级到 Python 3.8+
+
+# 异步 HTTP 客户端 (3.6 兼容版本)
+aiohttp==3.6.3
+multidict==4.7.6
+yarl==1.4.2
+
+# 数据验证
+pydantic==1.8.2
+
+# YAML 配置
+pyyaml==5.4.1
+
+# 环境变量管理
+python-dotenv==0.19.0
+
+# 加密库
+cryptography==3.4.8
+pycryptodome==3.10.4
+
+# 测试框架
+pytest==6.2.5
+pytest-asyncio==0.14.0
+pytest-cov==2.12.1
+
+# 缓存
+redis==3.5.3

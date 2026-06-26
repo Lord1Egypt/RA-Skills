@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ app_title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+  <canvas id="jarvis-bg"></canvas>
+  <div class="background-vignette"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <section class="panel brand-card">
+        <div class="jarvis-orb"></div>
+        <div>
+          <div class="brand-title">OPENCLAW<br>WEB GATEWAY</div>
+          <div class="brand-sub">{{ app_subtitle }}</div>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <h3>System status</h3>
+        <div class="status-block">
+          <div style="font-size: 18px; font-weight: 800; color: #e3fbff;">OpenClaw HTTP mode</div>
+          <div class="status-pill"><span class="dot"></span>Connection active</div>
+          <div class="kv"><strong style="color:#d9f7ff;">Base URL:</strong> <span id="baseUrlLabel"></span></div>
+          <div class="kv"><strong style="color:#d9f7ff;">Token loaded:</strong> <span id="tokenLoadedLabel"></span></div>
+          <div class="kv"><strong style="color:#d9f7ff;">Active user:</strong> <span id="activeUserLabel"></span></div>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <h3>Shortcuts</h3>
+        <div class="shortcut-grid">
+          <button class="shortcut-btn" data-shortcut="agenda">
+            <div class="big">Agenda</div>
+            <div class="small">Upcoming events</div>
+          </button>
+          <button class="shortcut-btn" data-shortcut="home">
+            <div class="big">Home</div>
+            <div class="small">Global home status</div>
+          </button>
+          <button class="shortcut-btn" data-shortcut="weather">
+            <div class="big">Weather</div>
+            <div class="small">Current conditions</div>
+          </button>
+          <button class="shortcut-btn" data-shortcut="diag">
+            <div class="big">OpenClaw</div>
+            <div class="small">Quick diagnostic</div>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel section" style="flex:1; min-height: 220px;">
+        <h3>Windows</h3>
+        <div class="window-grid">
+          <button class="window-btn" id="clearChatBtn">Clear</button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="panel topbar">
+        <div class="title-stack">
+          <h1>{{ app_title }}</h1>
+          <div class="sub">Local chat with OpenClaw and integrated windows</div>
+        </div>
+        <div class="user-pills" id="userPills"></div>
+      </header>
+
+      <section class="panel workspace">
+        <div class="composer">
+          <div class="composer-row">
+            <div class="input-shell">
+              <textarea id="messageInput" placeholder="Example: what events do I have today?"></textarea>
+            </div>
+            <div class="send-col">
+              <button class="send-btn" id="sendBtn">Send</button>
+              <div id="inputState" style="color:#9fd9e7; font-size:13px;">Ready</div>
+            </div>
+          </div>
+          <div class="status-line">
+            <div>Press Enter to send · Shift+Enter for a new line</div>
+            <div class="thinking-indicator">
+              <div class="wave"><span></span><span></span><span></span><span></span><span></span></div>
+              <span>Thinking…</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="typing-row" id="typingRow">
+          <div class="typing-bubble">
+            <span>Assistant is thinking</span>
+            <div class="typing-dots"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+
+        <div class="chat" id="chatScroll">
+          <div class="messages" id="messages"></div>
+
+          <div class="footer-hud">
+            <div class="footer-chip">HUD</div>
+            <div class="footer-chip" id="hudUserChip">USER: -</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="floatingWindows" class="floating-windows"></div>
+
+  <script>
+    window.GATEWAY_CONFIG = {
+      appTitle: {{ app_title|tojson }},
+      openclawBase: {{ openclaw_base|tojson }},
+      tokenLoaded: {{ token_loaded|tojson }},
+      defaultUser: {{ default_user|tojson }},
+      users: {{ users|tojson }},
+      googleMapsEmbedApiKey: {{ google_maps_embed_api_key|tojson }}
+    };
+  </script>
+
+  <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/background.js') }}"></script>
+</body>
+</html>

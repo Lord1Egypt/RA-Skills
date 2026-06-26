@@ -1,35 +1,133 @@
 ---
-name: "expense-note"
+name: expense-tracker
 description: "一个简单的日常开销记录和统计工具，帮助管理个人财务"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expense-note"
-sourceUrl: "https://clawhub.ai/skills/expense-note"
+metadata: { "openclaw": { "emoji": "💰" } }
 ---
 
-# expense-note
+# 技能: 简易记账助手 (expense-tracker)
 
-> 一个简单的日常开销记录和统计工具，帮助管理个人财务
+一个简单的日常开销记录和统计工具，帮助管理个人财务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expense-note`
-- **Source URL:** [https://clawhub.ai/skills/expense-note](https://clawhub.ai/skills/expense-note)
+## 触发方式
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/expense-note
 ```
+记账
+记一笔
+查看账单
+月度统计
+开销记录
+```
+
+## 功能
+
+- **记录开销** - 添加新的消费记录
+- **分类统计** - 按类别汇总开销
+- **月度汇总** - 查看每月总开销
+- **导出报表** - 生成简单报表
+- **查看历史** - 浏览过往记录
+
+## 使用示例
+
+### 添加开销
+```
+记账 午餐 25 餐饮
+记一笔 交通费 12 交通
+```
+
+### 查看记录
+```
+查看账单
+月度统计 2026-03
+```
+
+### 统计分析
+```
+分类统计
+导出报表
+```
+
+## 数据格式
+
+每条开销记录包含：
+- 描述 (description)
+- 金额 (amount)
+- 分类 (category)
+- 日期 (date)
+- 备注 (notes, 可选)
+
+## 存储
+
+数据存储在 `data/expenses.json` 文件中，格式为 JSON。
+
+## 限制
+
+- 仅支持简单记账功能
+- 数据存储在本地
+- 不涉及复杂财务功能（如预算规划、投资分析）
+- 不支持多用户
+
+## 配置
+
+无需额外配置，使用 Node.js 内置模块。
+
+## 依赖
+
+- Node.js 16+
+- 无外部依赖
+
+## 设计理念
+
+### 简单易用
+- 通过自然语言命令操作
+- 无需复杂界面
+- 快速记录和查看
+
+### 数据安全
+- 本地存储，保护隐私
+- JSON 格式，易于备份
+- 支持导出功能
+
+### 统计分析
+- 按类别汇总
+- 月度统计
+- 趋势分析（基础）
+
+## 扩展功能
+
+### 计划功能
+1. **预算管理** - 设置每月预算
+2. **数据可视化** - 生成图表
+3. **多分类系统** - 支持自定义分类
+4. **数据导出** - CSV/Excel 格式
+5. **云端备份** - 可选云存储
+
+### 长期愿景
+创建一个完整的个人财务管理工具，包括：
+- 预算规划
+- 投资跟踪
+- 税务计算助手
+- 财务报告生成
+
+## 最佳实践
+
+### 使用建议
+1. **及时记录** - 消费后立即记录
+2. **分类清晰** - 使用一致的分类名称
+3. **定期复盘** - 每周/月查看统计
+4. **数据备份** - 定期备份 JSON 文件
+
+### 分类建议
+- 餐饮：日常饮食开销
+- 交通：公交、打车、油费等
+- 购物：衣物、日用品等
+- 娱乐：电影、游戏等
+- 医疗：药品、医疗费用
+- 其他：未分类开销
+
+## 技术实现
+
+使用 Node.js 文件系统模块操作 JSON 文件，支持：
+- 数据持久化
+- CRUD 操作（增删改查）
+- 基本统计分析
+- 数据导出功能

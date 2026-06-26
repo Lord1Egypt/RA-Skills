@@ -1,35 +1,76 @@
----
-name: "Liyou Setting Skill"
-description: "支持查询、修改、新增璃幽世界观设定及小说内容，自动保存章节并同步人物及设定到界面显示。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liyou-setting-skill"
-sourceUrl: "https://clawhub.ai/skills/liyou-setting-skill"
----
 
-# Liyou Setting Skill
-
-> 支持查询、修改、新增璃幽世界观设定及小说内容，自动保存章节并同步人物及设定到界面显示。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liyou-setting-skill`
-- **Source URL:** [https://clawhub.ai/skills/liyou-setting-skill](https://clawhub.ai/skills/liyou-setting-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/liyou-setting-skill
+# 璃幽世界观设定+小说创作操作技能
+## 功能说明
+用于操作璃幽Claw的世界观设定系统和小说创作系统，支持查询、修改、新增、删除设定内容，自动保存小说章节，同步人物设定，自动同步到界面显示。
+## 工具函数
+### updateSetting(params)
+更新指定设定项的内容
+#### 参数：
+- `panelKey` (必填): 一级板块的key，比如"1"代表世界基础设定，"2"代表种族设定，"11"代表生物列表，以此类推
+- `subItemKey` (可选): 二级子项的key，比如"2-1"代表种族设定下的人类子项，不传则修改一级板块的总览内容
+- `content` (必填): 要更新的内容，markdown格式
+- `name` (可选): 要更新的子项/板块的名称
+#### 示例：
+```javascript
+// 修改种族设定下的精灵子项内容
+updateSetting({
+  panelKey: "2",
+  subItemKey: "2-2",
+  content: "### 寿命\\n1500年\\n\\n### 特点\\n尖耳银发，擅长弓箭和治愈魔法"
+})
+// 修改世界基础设定的总览内容
+updateSetting({
+  panelKey: "1",
+  content: "**世界名称：** 艾欧尼亚大陆\\n---\\n点击下方子项查看详细设定"
+})
 ```
+
+### addSettingSubItem(params)
+新增二级子项到指定一级板块
+#### 参数：
+- `panelKey` (必填): 要添加到的一级板块key，新增人物/生物固定传"11"（生物列表）
+- `name` (必填): 子项名称（人物/生物名字）
+- `content` (必填): 子项详细内容，markdown格式
+#### 示例：
+```javascript
+// 新增人物德莱克斯到生物列表
+addSettingSubItem({
+  panelKey: "11",
+  name: "德莱克斯",
+  content: "### 身份\\n血魔法使\\n\\n### 能力\\n血魔法、暗影操控"
+})
+```
+
+### saveNovelChapter(params)
+保存新的小说章节到小说工坊
+#### 参数：
+- `title` (必填): 章节标题，比如"第一章：初遇"
+- `content` (必填): 章节内容，markdown格式
+#### 示例：
+```javascript
+// 保存新章节
+saveNovelChapter({
+  title: "第一章：初遇璃幽",
+  content: "我推开杂货店的门，看到一个银发少女趴在吧台上打哈欠..."
+})
+```
+
+### updateNovelChapter(params)
+更新已有小说章节的内容
+#### 参数：
+- `title` (必填): 要更新的章节标题
+- `content` (必填): 更新后的章节完整内容
+#### 示例：
+```javascript
+// 更新第一章内容
+updateNovelChapter({
+  title: "第一章：初遇璃幽",
+  content: "我推开杂货店的门，看到一个银发少女趴在吧台上打哈欠，看到我进来她抬起头，露出两颗小虎牙..."
+})
+```
+
+## 使用规则
+1. **设定修改规则**：当用户要求修改设定内容时，直接调用`updateSetting`函数修改，修改完成后告知用户已经修改完成，可以到世界观设定页面查看效果。修改前不需要询问用户，直接按照用户的要求修改，修改后自动同步到界面，不需要用户手动操作。如果用户没有指定具体的板块和子项，先询问清楚要修改的内容属于哪个板块哪个子项，再调用函数修改。
+2. **人物自动同步规则**：当用户讨论剧情时提到新的人物/生物的名字、身份、能力、背景等信息，自动调用`addSettingSubItem`添加到生物列表（panelKey="11"）；如果是已经存在的人物，自动调用`updateSetting`更新对应子项的内容。信息不全时可以先询问用户确认，再保存。
+3. **小说自动保存规则**：当用户和你讨论小说剧情、要求写小说章节时，生成的章节内容自动调用`saveNovelChapter`保存到小说工坊；当用户说"把这段加到XX章节"、"修改第一章内容"时，自动调用`updateNovelChapter`更新对应章节内容。保存完成后告知用户已经保存到小说工坊，可以到左侧「小说」页面查看。
+4. 所有修改自动保存到本地文件，重启不会丢失，不需要用户手动操作。

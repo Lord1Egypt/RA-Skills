@@ -1,0 +1,33 @@
+{
+  "name": "geo-local-search-optimization",
+  "version": "1.0.0",
+  "description": "Help local businesses optimize their presence in AI search results through strategic media content creation",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "geo",
+    "local-search",
+    "ai-search",
+    "seo",
+    "media-content",
+    "chinese-local-business",
+    "clawhub"
+  ],
+  "author": "LiuYiHao",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "business",
+    "tags": ["local-seo", "ai-search", "media-publishing", "chinese-market", "geo-optimization"],
+    "requires": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Split PDF",
+  "description": "Split a single PDF into multiple parts. Supports page ranges, per-page splitting, and fixed chunk splitting.",
+  "method": "POST",
+  "endpoint": "/v1/pdf/split",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "Public URL to the PDF" },
+        { "name": "file", "type": "string", "required": false, "description": "Base64-encoded PDF" },
+        { "name": "pages", "type": "string", "required": false, "description": "Page ranges: '1-3,5,8-10'. Each comma group = one output PDF." },
+        { "name": "mode", "type": "string", "required": false, "enum": ["each"], "description": "Split mode. 'each' = one PDF per page." },
+        { "name": "chunks", "type": "integer", "required": false, "description": "Split into N roughly equal parts" },
+        { "name": "output", "type": "string", "required": false, "default": "url", "enum": ["url", "file", "base64"], "description": "Output mode. Output is always a zip." }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field"
+    }
+  }
+}

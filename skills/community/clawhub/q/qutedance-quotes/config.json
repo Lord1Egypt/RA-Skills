@@ -1,0 +1,10 @@
+{
+  "serviceUrl": "https://quotedance.api.gapgap.cc",
+  "apiKey": "",
+  "defaults": {
+    "type": "cn",
+    "topPlatesCount": 10
+  }
+}
+
+

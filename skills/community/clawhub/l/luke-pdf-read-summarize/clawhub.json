@@ -1,0 +1,10 @@
+{
+  "name": "Luke Pdf read-summarize",
+  "version": "1.0.0",
+  "description": "PDF 阅读与摘要工具 - 快速读取 PDF 并生成结构化摘要",
+  "keywords": ["pdf", "read", "summarize", "extract", "中文", "resume"],
+  "author": "Luke",
+  "license": "MIT",
+  "repository": "https://github.com/clawhub/skills/tree/main/luke-pdf-read-summarize",
+  "files": ["SKILL.md", "pdf-read-summarize.tool.js", "package.json"]
+}

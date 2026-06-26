@@ -1,35 +1,85 @@
 ---
-name: "msw-sprite-ruid"
-description: "Indexed by skills.sh from msw-git/msw-ai-coding-plugins-official"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "msw-git"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/msw-git/msw-ai-coding-plugins-official/msw-sprite-ruid"
-sourceUrl: "https://skills.sh/msw-git/msw-ai-coding-plugins-official/msw-sprite-ruid"
+name: msw-sprite-ruid
+description: "SpriteRendererComponent.SpriteRUID (world) and SpriteGUIRendererComponent.ImageRUID (UI) — native RUID type support (sprite / animationclip direct playback), thumbnail:// prefix for rendering avataritem / skeleton / animationclip as static thumbnail image, avatar item icon in inventory / shop / UI slot. Use when: assigning any RUID to a sprite renderer component, displaying an avatar item or resource as a thumbnail or icon, using animationclip directly in a renderer, rendering inventory item icons, displaying a thumbnail image in a world entity. Keywords: SpriteRUID, ImageRUID, thumbnail://, animationclip, RUID apply, RUID assign, thumbnail, item icon, sprite RUID, RUID to renderer"
 ---
 
-# msw-sprite-ruid
+# MSW Sprite RUID
 
-> Indexed by skills.sh from msw-git/msw-ai-coding-plugins-official
+Rules for assigning a RUID to `SpriteRendererComponent.SpriteRUID` (world) or
+`SpriteGUIRendererComponent.ImageRUID` (UI).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** msw-git
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/msw-git/msw-ai-coding-plugins-official/msw-sprite-ruid`
-- **Source URL:** [https://skills.sh/msw-git/msw-ai-coding-plugins-official/msw-sprite-ruid](https://skills.sh/msw-git/msw-ai-coding-plugins-official/msw-sprite-ruid)
+---
 
-## Overview
+## Native type support
 
+Both components accept a `sprite` or `animationclip` RUID directly — no extra
+animator component required.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/msw-git/msw-ai-coding-plugins-official/msw-sprite-ruid
+| Component | Property | Value form | Native RUID types |
+|---|---|---|---|
+| `SpriteRendererComponent` (world) | `SpriteRUID` | plain string | `sprite`, `animationclip` |
+| `SpriteGUIRendererComponent` (UI) | `ImageRUID` | `{ "DataId": "..." }` | `sprite`, `animationclip` |
+
+```lua
+-- World: sprite or animationclip RUID both work
+self.Entity.SpriteRendererComponent.SpriteRUID = ruid
+
+-- UI: sprite or animationclip RUID both work
+self.Entity.SpriteGUIRendererComponent.ImageRUID = { DataId = ruid }
 ```
+
+A `skeleton` / `avataritem` RUID assigned without the `thumbnail://` prefix
+**fails silently** (no error, nothing renders).
+
+---
+
+## animationclip: single animation vs multi-state
+
+- **Single looping animation** (background deco, idle effect, prop): set `SpriteRUID`
+  or `ImageRUID` directly to the `animationclip` RUID.
+- **Multi-state** (stand / move / attack / hit / die): use `StateAnimationComponent`
+  \+ `ActionSheet`. See [`msw-general/references/monster.md`](../msw-general/references/monster.md).
+
+---
+
+## `thumbnail://` prefix — static thumbnail from any resource
+
+Prepend `thumbnail://` to `SpriteRUID` or `ImageRUID` to render a **static
+thumbnail image** from any resource — useful for icons, preview images, and item
+thumbnails.
+
+    thumbnail://<32-char hex RUID>
+
+Accepted types: `sprite` · `animationclip` · `skeleton` · `avataritem`
+
+```lua
+-- World thumbnail (any resource type)
+self.Entity.SpriteRendererComponent.SpriteRUID = "thumbnail://" .. anyRuid
+
+-- UI thumbnail (any resource type)
+self.Entity.SpriteGUIRendererComponent.ImageRUID = { DataId = "thumbnail://" .. anyRuid }
+```
+
+### Primary use case: avataritem icons
+
+`avataritem` RUIDs cannot render without `thumbnail://`. With the prefix they
+become item icons for inventory slots, shop listings, and equip previews.
+
+```lua
+slotEntity.SpriteGUIRendererComponent.ImageRUID = {
+    DataId = "thumbnail://" .. avatarItemRuid,
+}
+```
+
+Search avatar item RUIDs with the `msw-search` skill (`searchAvatarItems`).
+
+---
+
+## Common pitfalls
+
+- `skeleton` / `avataritem` directly into `SpriteRUID` / `ImageRUID` without prefix → silently invisible.
+- `thumbnail://` = **static** image only. For live animation, assign the `animationclip` RUID directly (no prefix).
+- `ImageRUID` prefix goes **inside** `DataId`: `{ "DataId": "thumbnail://..." }` — not a separate field.
+- `CostumeManagerComponent.Custom*Equip`, `StateAnimationComponent.ActionSheet`, and `SkeletonRendererComponent.SkeletonRUID` do **not** accept `thumbnail://`.
+- Do **not** prepend `thumbnail://` to a RUID that was already retrieved *as* a thumbnail or icon image from `msw-search`. The prefix converts a source resource into its thumbnail — applying it to an already-thumbnail sprite is logically redundant. If the search query targeted an icon / thumbnail image and returned a `sprite` RUID, assign that RUID directly without any prefix.
+- To **search** for RUIDs use the `msw-search` skill — `searchAvatarItems` for avatar items; `searchResources` for everything else.

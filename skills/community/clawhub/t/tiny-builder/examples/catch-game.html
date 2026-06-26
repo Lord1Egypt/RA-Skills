@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐ Star Catcher!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #1a1a3e 0%, #0f0f23 100%);
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            overflow: hidden;
+            touch-action: none;
+        }
+        
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #score-display {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .star {
+            position: absolute;
+            cursor: pointer;
+            font-size: 48px;
+            transition: transform 0.1s;
+            user-select: none;
+            animation: twinkle 1s infinite;
+        }
+        
+        .star:hover {
+            transform: scale(1.2);
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(0); opacity: 0; }
+        }
+        
+        .caught {
+            animation: pop 0.3s forwards;
+        }
+        
+        #instructions {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-size: 28px;
+            z-index: 99;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        #instructions h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        #instructions button {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 28px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        
+        #instructions button:hover {
+            transform: scale(1.1);
+        }
+        
+        #instructions button:active {
+            transform: scale(0.95);
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="score-display">⭐ Score: <span id="score">0</span></div>
+        
+        <div id="instructions">
+            <h1>⭐ Star Catcher! ⭐</h1>
+            <p>Tap the falling stars before they disappear!</p>
+            <p>The faster you tap, the higher your score!</p>
+            <button onclick="startGame()">START GAME!</button>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let score = 0;
+        let gameRunning = false;
+        let starSpeed = 3;
+        let spawnRate = 800;
+        let stars = [];
+        let gameInterval;
+        let difficultyInterval;
+        
+        // Audio context for sound effects
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Play a fun beep sound when catching a star
+        function playBeep(frequency = 440, duration = 0.1) {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        function startGame() {
+            document.getElementById('instructions').classList.add('hidden');
+            gameRunning = true;
+            score = 0;
+            updateScore();
+            starSpeed = 3;
+            spawnRate = 800;
+            
+            // Spawn stars periodically
+            gameInterval = setInterval(spawnStar, spawnRate);
+            
+            // Gradually increase difficulty
+            difficultyInterval = setInterval(() => {
+                starSpeed += 0.5;
+                spawnRate = Math.max(400, spawnRate - 50);
+                clearInterval(gameInterval);
+                gameInterval = setInterval(spawnStar, spawnRate);
+            }, 10000);
+        }
+        
+        function spawnStar() {
+            if (!gameRunning) return;
+            
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.textContent = ['⭐', '🌟', '✨', '💫'][Math.floor(Math.random() * 4)];
+            
+            // Random horizontal position
+            const x = Math.random() * (window.innerWidth - 60);
+            star.style.left = x + 'px';
+            star.style.top = '-60px';
+            
+            // Click handler
+            star.addEventListener('click', () => catchStar(star));
+            star.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                catchStar(star);
+            });
+            
+            document.getElementById('game-container').appendChild(star);
+            
+            // Animate falling
+            let y = -60;
+            const fallInterval = setInterval(() => {
+                if (!gameRunning) {
+                    clearInterval(fallInterval);
+                    star.remove();
+                    return;
+                }
+                
+                y += starSpeed;
+                star.style.top = y + 'px';
+                
+                // Remove if off screen
+                if (y > window.innerHeight) {
+                    clearInterval(fallInterval);
+                    star.remove();
+                }
+            }, 20);
+            
+            // Store reference
+            stars.push({ element: star, interval: fallInterval });
+        }
+        
+        function catchStar(star) {
+            if (!gameRunning) return;
+            // Prevent double-tap scoring
+            if (star.dataset.caught) return;
+            star.dataset.caught = 'true';
+            
+            // Add to score
+            score += 10;
+            updateScore();
+            
+            // Play sound with varying pitch
+            playBeep(440 + (score * 2), 0.15);
+            
+            // Animate catch
+            star.classList.add('caught');
+            
+            // Remove after animation
+            setTimeout(() => {
+                star.remove();
+            }, 300);
+        }
+        
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            
+            // Pulse animation on score change
+            const scoreDisplay = document.getElementById('score-display');
+            scoreDisplay.style.transform = 'translateX(-50%) scale(1.1)';
+            setTimeout(() => {
+                scoreDisplay.style.transform = 'translateX(-50%) scale(1)';
+            }, 100);
+        }
+        
+        // Add background stars for ambiance
+        function createBackgroundStars() {
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.left = Math.random() * window.innerWidth + 'px';
+                star.style.top = Math.random() * window.innerHeight + 'px';
+                star.style.fontSize = (Math.random() * 10 + 5) + 'px';
+                star.style.opacity = Math.random() * 0.5 + 0.3;
+                star.textContent = '✨';
+                star.style.pointerEvents = 'none';
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
+                document.getElementById('game-container').appendChild(star);
+            }
+        }
+        
+        createBackgroundStars();
+        
+        // Smooth transitions
+        document.getElementById('score-display').style.transition = 'transform 0.2s';
+    </script>
+</body>
+</html>

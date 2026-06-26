@@ -1,0 +1,5 @@
+interface:
+  display_name: Literature Helper
+  short_description: Find papers and analyze one uploaded PDF
+  icon: book-open
+  color: "#2F6FEB"

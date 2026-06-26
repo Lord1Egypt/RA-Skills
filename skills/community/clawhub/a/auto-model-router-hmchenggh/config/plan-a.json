@@ -1,0 +1,38 @@
+{
+  "plan_name": "Plan A - International Models",
+  "description": "國際模型套餐，包含全球頂尖模型",
+  "task_models": {
+    "high_logic": {
+      "primary": "anthropic/claude-opus-4",
+      "fallback": "deepseek/deepseek-r1"
+    },
+    "code_generation": {
+      "primary": "openai/gpt-4.5",
+      "fallback": "anthropic/claude-sonnet-4"
+    },
+    "creative_writing": {
+      "primary": "openai/gpt-4o",
+      "fallback": "minimax/minimax-2.7"
+    },
+    "info_reading": {
+      "primary": "anthropic/claude-haiku",
+      "fallback": "google/gemini-flash"
+    },
+    "simple_repeat": {
+      "primary": "google/gemini-flash-lite",
+      "fallback": "openai/gpt-4o-mini"
+    },
+    "image_understanding": {
+      "primary": "anthropic/claude-sonnet-4",
+      "fallback": "google/gemini-2.0"
+    },
+    "image_generation": {
+      "primary": "openai/dall-e-3",
+      "fallback": "stability/stable-diffusion"
+    },
+    "video_audio": {
+      "primary": "openai/gpt-4o",
+      "fallback": "google/gemini-2.0"
+    }
+  }
+}

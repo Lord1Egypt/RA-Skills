@@ -1,35 +1,13 @@
----
-name: "led controler"
-description: "Control Raspberry Pi GPIO pins remotely by setting specified pins HIGH or LOW through RPC calls."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/led-ctrl"
-sourceUrl: "https://clawhub.ai/skills/led-ctrl"
----
-
-# led controler
-
-> Control Raspberry Pi GPIO pins remotely by setting specified pins HIGH or LOW through RPC calls.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/led-ctrl`
-- **Source URL:** [https://clawhub.ai/skills/led-ctrl](https://clawhub.ai/skills/led-ctrl)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/led-ctrl
-```
+# Pi GPIO Control Skill
+This skill allows OpenClaw agents to control GPIO pins on a Raspberry Pi via RPC.
+## Purpose
+Expose Raspberry Pi GPIO actions as local-like functions to the agent, while execution happens remotely
+on the Pi.
+## Actions
+- gpio_on(pin): Set GPIO pin HIGH
+- gpio_off(pin): Set GPIO pin LOW
+## Requirements
+- Raspberry Pi running pi-agent RPC server
+- HTTP endpoint available at http://pi.local:9000/run
+## Security
+Only predefined GPIO actions are allowed on the Pi side.

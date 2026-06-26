@@ -1,0 +1,16 @@
+page {
+  --paper: #fafaf6;
+  --paper-2: #fff8ed;
+  --ink: #1a1a1a;
+  --mute: #777777;
+  --accent: #d97706;
+  --card: #ffffff;
+  --sep: #ececec;
+  --moss: #5b8a3b;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'PingFang SC', 'Source Han Sans SC', 'Noto Sans SC', sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}

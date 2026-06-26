@@ -1,35 +1,14 @@
 ---
-name: "DeFi Yield Hunter"
-description: "Automation skill for DeFi Yield Hunter."
-category: "blockchain"
-source: "ClawHub"
-tags: [DeFi, apy, defi, ethereum, solana, staking, yield-farming]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/defi-yield-hunter"
-sourceUrl: "https://clawhub.ai/skills/defi-yield-hunter"
----
-
-# DeFi Yield Hunter
-
-> Automation skill for DeFi Yield Hunter.
-
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/defi-yield-hunter`
-- **Source URL:** [https://clawhub.ai/skills/defi-yield-hunter](https://clawhub.ai/skills/defi-yield-hunter)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/defi-yield-hunter
-```
+name: defi-yield-hunter
+description: >-
+  Automated DeFi yield optimization across Solana, Ethereum, Arbitrum, and Base.
+  Scans hundreds of protocols to find the highest APY opportunities, calculates
+  real risk-adjusted returns accounting for impermanent loss, and identifies
+  yield traps. Includes liquidity pool analytics, token pair correlation analysis,
+  and automated rebalancing. Monitors rug pulls, honeypot detection, and protocol
+  health scores. Builds and manages a diversified DeFi portfolio with auto-compounding.
+  Use for yield farming, liquidity providing, staking rewards, and DeFi portfolio
+  management. Compatible with Raydium, Orca, Jupiter, Aave, Compound, Uniswap.
+  Use cases: yield farming, DeFi investing, staking rewards, liquidity providing,
+  APY optimization, DeFi portfolio management, auto-compounding.
+version: 1.0.0

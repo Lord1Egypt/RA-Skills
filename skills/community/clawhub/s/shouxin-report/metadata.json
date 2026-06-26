@@ -1,0 +1,8 @@
+{
+  "name": "shouxin-report",
+  "version": "1.0.0",
+  "description": "固定模板授信调查报告：抽取、写作、终审、收口",
+  "keywords": ["授信", "报告", "首信", "模板", "Excel"],
+  "author": "Daisy",
+  "license": "MIT"
+}

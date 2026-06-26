@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>网课自动播放器</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+        h1 { margin-top: 0; }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 10px 5px;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
+        .btn:hover { opacity: 0.9; }
+        code {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .steps {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .steps ol { margin: 10px 0; padding-left: 20px; }
+        .steps li { margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <h1>🎓 网课自动播放器</h1>
+    
+    <div class="steps">
+        <h3>📌 安装书签（只需一次）</h3>
+        <ol>
+            <li>在 Chrome 中打开书签管理器：<code>Cmd+Shift+O</code></li>
+            <li>右键点击任意书签 → <strong>"添加网页"</strong></li>
+            <li>名称：<strong>网课自动播放</strong></li>
+            <li>网址：复制下面的代码（整段）</li>
+        </ol>
+    </div>
+    
+    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin: 20px 0;">
+        <strong>书签网址（复制整段）：</strong>
+        <textarea id="bookmark-code" style="width: 100%; height: 200px; margin-top: 10px; padding: 10px; border-radius: 4px; border: none; font-family: monospace; font-size: 11px;" readonly></textarea>
+    </div>
+    
+    <button class="btn" onclick="copyCode()">📋 复制书签代码</button>
+    <button class="btn" onclick="openNetclass()">🎓 打开网课平台</button>
+    
+    <div class="steps">
+        <h3>🎮 使用方法</h3>
+        <ol>
+            <li>访问网课平台并登录</li>
+            <li>进入课程播放页面</li>
+            <li>点击书签栏的<strong>"网课自动播放"</strong></li>
+            <li>右上角出现绿色状态框即启动成功</li>
+        </ol>
+    </div>
+    
+    <div class="steps">
+        <h3>⌨️ 控制台命令</h3>
+        <p>按 <code>F12</code> 打开控制台：</p>
+        <ul>
+            <li><code>caStop()</code> - 暂停播放</li>
+            <li><code>caStart()</code> - 继续播放</li>
+        </ul>
+    </div>
+
+    <script>
+        const bookmarkCode = `javascript:(function(){console.log('🎓 网课自动播放器已启动');const CONFIG={checkInterval:10000,videoEndThreshold:0.95,autoPlayDelay:2000};let state={isRunning:true,completedVideos:[],checkTimer:null};function log(...args){console.log('[CourseAutoplay]',...args);}function getVideoElement(){return document.querySelector('video');}function ensurePlayingAndMuted(){const video=getVideoElement();if(!video)return false;if(!video.muted){video.muted=true;video.volume=0;log('✅ 已静音');}if(video.paused){video.play().then(()=>log('✅ 已播放'));}return true;}function clickNextVideo(){const courseList=document.querySelector('[role="tabpanel"]');if(!courseList)return false;const videoItems=courseList.querySelectorAll('[cursor="pointer"]');for(let item of videoItems){const text=item.textContent;if(text.includes('视频')&&!state.completedVideos.includes(text)){log('📺 下一个视频:',text);item.click();return true;}}return false;}function handleDialog(){const confirmBtn=Array.from(document.querySelectorAll('[cursor="pointer"]')).find(btn=>btn.textContent.includes('确定'));if(confirmBtn){log('✅ 已关闭弹窗');confirmBtn.click();return true;}return false;}async function switchToNextVideo(){const video=getVideoElement();if(video){state.completedVideos.push('视频'+(state.completedVideos.length+1));log('✅ 已完成：'+state.completedVideos.length+'个视频');}if(clickNextVideo()){await new Promise(r=>setTimeout(r,CONFIG.autoPlayDelay));handleDialog();await new Promise(r=>setTimeout(r,500));ensurePlayingAndMuted();log('✅ 已切换到下一课');}}function checkAndHandle(){if(!state.isRunning)return;const video=getVideoElement();if(!video){log('⏳ 等待视频加载...');return;}ensurePlayingAndMuted();if(video.duration>0&&video.currentTime/video.duration>=CONFIG.videoEndThreshold){log('🎬 视频已完成');switchToNextVideo();}}ensurePlayingAndMuted();state.checkTimer=setInterval(checkAndHandle,CONFIG.checkInterval);const statusDiv=document.createElement('div');statusDiv.style.cssText='position:fixed;top:10px;right:10px;background:#4caf50;color:white;padding:10px 20px;border-radius:8px;z-index:999999;font-family:sans-serif;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,0.2);';statusDiv.innerHTML='🎓 自动播放运行中<br><span id="ca-status">视频：0</span>';document.body.appendChild(statusDiv);setInterval(()=>{const el=document.getElementById('ca-status');if(el)el.textContent='视频：'+state.completedVideos.length+' | 状态：'+(state.isRunning?'运行中':'已暂停');},2000);log('✅ 自动播放器已启动！');log('💡 提示：在控制台输入 window.caStop() 暂停，window.caStart() 继续');window.caStop=()=>{state.isRunning=false;log('⏸️ 已暂停');};window.caStart=()=>{state.isRunning=true;log('▶️ 已继续');};})();`;
+        
+        document.getElementById('bookmark-code').value = bookmarkCode;
+        
+        function copyCode() {
+            const textarea = document.getElementById('bookmark-code');
+            textarea.select();
+            document.execCommand('copy');
+            alert('✅ 已复制！现在去书签管理器粘贴吧！');
+        }
+        
+        function openNetclass() {
+            window.open('https://loginjxjyzx.qdu.edu.cn/', '_blank');
+        }
+    </script>
+</body>
+</html>

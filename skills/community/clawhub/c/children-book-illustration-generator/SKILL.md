@@ -1,35 +1,34 @@
 ---
-name: "Children Book Illustration Generator"
-description: "AI children's book illustration generator — create whimsical storybook art, picture book pages, fairy tale scenes, and kids' story illustrations. Perfect for..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/children-book-illustration-generator"
-sourceUrl: "https://clawhub.ai/skills/children-book-illustration-generator"
+name: children-book-illustration-generator
+description: AI children's book illustration generator — create whimsical storybook art, picture book pages, fairy tale scenes, and kids' story illustrations. Perfect for self-publishing authors, KDP creators, teachers, and parents making bedtime story books, educational materials, and nursery wall art via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Children Book Illustration Generator
+# Children's Book Illustration Generator
 
-> AI children's book illustration generator — create whimsical storybook art, picture book pages, fairy tale scenes, and kids' story illustrations. Perfect for...
+AI children's book illustration generator — create whimsical storybook art, picture book pages, fairy tale scenes, and kids' story illustrations. Perfect for self-publishing authors, KDP creators, teachers, and parents making bedtime story books, educational materials, and nursery wall art.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/children-book-illustration-generator`
-- **Source URL:** [https://clawhub.ai/skills/children-book-illustration-generator](https://clawhub.ai/skills/children-book-illustration-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/children-book-illustration-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create children book illustration ai generator images.
+
+## Quick start
+```bash
+node childrenbookillustrationgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `landscape`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/children-book-illustration-generator
 ```

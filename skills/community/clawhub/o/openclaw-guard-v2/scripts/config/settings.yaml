@@ -1,0 +1,18 @@
+# OpenClaw Guard 配置文件
+# v2.0 - 多级备份 + 飞书通知
+
+# 守护超时时间（秒）
+guard_timeout: 180
+
+# 备份目录
+backup_dir: /home/ljj/.openclaw/backups
+
+# Gateway 服务名
+gateway_service: openclaw-gateway
+
+# 最大备份数量（保留最近 N 份）
+max_backups: 5
+
+# 飞书通知配置
+feishu_enabled: true
+feishu_open_id: ou_0b05bbfa08fd31bb887ba0fc4dcf6854  # 开拓者的 Open ID

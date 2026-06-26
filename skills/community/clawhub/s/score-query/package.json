@@ -1,0 +1,30 @@
+{
+  "name": "score-query",
+  "version": "0.0.2",
+  "description": "学分查询技能 - 用于查询学生各科目成绩的OpenClaw技能",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "score",
+    "query",
+    "学分",
+    "成绩查询"
+  ],
+  "author": "YourName",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourname/openclaw-skill-score-query"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "systemName": "OpenClaw Feishu Multi-Agent",
+  "roles": [
+    {
+      "agentId": "main",
+      "roleName": "Coordinator",
+      "accountId": "coordinator",
+      "appId": "replace_me",
+      "appSecret": "replace_me",
+      "openId": "ou_replace_me",
+      "workspace": "/path/to/workspace",
+      "agentDir": "/path/to/agentDir",
+      "responsibility": "默认总调度，决定谁处理、何时拉起多人讨论、何时收束结论",
+      "triggerTerms": ["@Boss", "@Coordinator"],
+      "isCoordinator": true
+    },
+    {
+      "agentId": "design",
+      "roleName": "Design Lead",
+      "accountId": "design",
+      "appId": "replace_me",
+      "appSecret": "replace_me",
+      "openId": "ou_replace_me",
+      "workspace": "/path/to/workspace",
+      "agentDir": "/path/to/agentDir",
+      "responsibility": "设计、交互、视觉、体验判断",
+      "triggerTerms": ["@设计", "@Design"],
+      "isCoordinator": false
+    },
+    {
+      "agentId": "engineering",
+      "roleName": "Engineering Lead",
+      "accountId": "engineering",
+      "appId": "replace_me",
+      "appSecret": "replace_me",
+      "openId": "ou_replace_me",
+      "workspace": "/path/to/workspace",
+      "agentDir": "/path/to/agentDir",
+      "responsibility": "技术可行性、架构、实现边界",
+      "triggerTerms": ["@开发", "@Engineering"],
+      "isCoordinator": false
+    },
+    {
+      "agentId": "ops",
+      "roleName": "Operations Lead",
+      "accountId": "ops",
+      "appId": "replace_me",
+      "appSecret": "replace_me",
+      "openId": "ou_replace_me",
+      "workspace": "/path/to/workspace",
+      "agentDir": "/path/to/agentDir",
+      "responsibility": "运营、增长、传播、定位",
+      "triggerTerms": ["@运营", "@Ops"],
+      "isCoordinator": false
+    }
+  ]
+}

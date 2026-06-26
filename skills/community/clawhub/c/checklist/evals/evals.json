@@ -1,0 +1,104 @@
+{
+  "tests": [
+    {
+      "id": 1,
+      "prompt": "Create a deployment checklist",
+      "expected": "Should create deploy checklist with 15 items"
+    },
+    {
+      "id": 2,
+      "prompt": "Register an agent named 'backend'",
+      "expected": "Should register agent successfully"
+    },
+    {
+      "id": 3,
+      "prompt": "Register another agent named 'frontend'",
+      "expected": "Should register agent successfully"
+    },
+    {
+      "id": 4,
+      "prompt": "List all registered agents",
+      "expected": "Should show both backend and frontend agents"
+    },
+    {
+      "id": 5,
+      "prompt": "Switch to backend agent",
+      "expected": "Should switch current agent to backend"
+    },
+    {
+      "id": 6,
+      "prompt": "Assign item 4 to backend agent",
+      "expected": "Should assign item to backend"
+    },
+    {
+      "id": 7,
+      "prompt": "Claim an available task for current agent",
+      "expected": "Should claim next available item"
+    },
+    {
+      "id": 8,
+      "prompt": "Mark item 1 as done",
+      "expected": "Should update item status to done"
+    },
+    {
+      "id": 9,
+      "prompt": "Show current checklist progress",
+      "expected": "Should display progress with completion percentage"
+    },
+    {
+      "id": 10,
+      "prompt": "Set execution mode to sequential",
+      "expected": "Should set mode to sequential"
+    },
+    {
+      "id": 11,
+      "prompt": "Set execution mode to parallel",
+      "expected": "Should set mode to parallel"
+    },
+    {
+      "id": 12,
+      "prompt": "Set execution mode to loop",
+      "expected": "Should set mode to loop"
+    },
+    {
+      "id": 13,
+      "prompt": "Set max loop iterations to 5",
+      "expected": "Should set max_iterations to 5"
+    },
+    {
+      "id": 14,
+      "prompt": "Set exit condition as item 3 done",
+      "expected": "Should configure exit condition"
+    },
+    {
+      "id": 15,
+      "prompt": "Add a dependency: item 5 depends on item 3",
+      "expected": "Should add dependency"
+    },
+    {
+      "id": 16,
+      "prompt": "Show dependency tree",
+      "expected": "Should display dependency tree"
+    },
+    {
+      "id": 17,
+      "prompt": "Check for deadlocks in the workflow",
+      "expected": "Should report deadlock check results"
+    },
+    {
+      "id": 18,
+      "prompt": "Validate the entire checklist workflow",
+      "expected": "Should show validation results"
+    },
+    {
+      "id": 19,
+      "prompt": "Skip item 2 with reason 'not required'",
+      "expected": "Should skip item with reason"
+    },
+    {
+      "id": 20,
+      "prompt": "Show overall status of all agents",
+      "expected": "Should display multi-agent progress"
+    }
+  ]
+}

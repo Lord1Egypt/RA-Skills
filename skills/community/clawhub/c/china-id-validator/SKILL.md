@@ -1,35 +1,33 @@
 ---
-name: "China Id Validator"
+name: China ID Validator
 description: "Validate and extract info from Chinese ID card numbers (身份证). 身份证号码验证、归属地查询、出生日期提取、性别判断、年龄计算、15位转18位。China mainland ID card validator and parser."
-category: "other"
-source: "ClawHub"
-tags: [card, china, chinese, id, identity, validator]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-id-validator"
-sourceUrl: "https://clawhub.ai/skills/china-id-validator"
+tags: china, id, card, validator, identity, 身份证, chinese, utility, tool
 ---
 
-# China Id Validator
+# China ID Validator 🪪
 
-> Validate and extract info from Chinese ID card numbers (身份证). 身份证号码验证、归属地查询、出生日期提取、性别判断、年龄计算、15位转18位。China mainland ID card validator and parser.
+中国居民身份证号码验证与信息提取工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-id-validator`
-- **Source URL:** [https://clawhub.ai/skills/china-id-validator](https://clawhub.ai/skills/china-id-validator)
+## Features | 功能
 
-## Overview
+- **号码验证**：15位/18位身份证合法性校验
+- **信息提取**：省份、出生日期、性别、年龄
+- **格式转换**：15位↔18位互转
+- **校验码验证**：18位末位校验位验证
 
+## Usage | 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/china-id-validator
+# 验证身份证号
+python3 scripts/id_validator.py 110101199003079
+
+# 提取信息
+python3 scripts/id_validator.py validate 110101199003079
+
+# 生成测试号码（仅供测试）
+python3 scripts/id_validator.py generate 11 1990 3 7 男
 ```
+
+---
+
+*免责声明：本工具仅供学习参考，不构成任何投资或商业建议。*

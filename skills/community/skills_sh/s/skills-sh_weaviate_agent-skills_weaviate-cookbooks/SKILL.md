@@ -1,35 +1,43 @@
 ---
-name: "weaviate-cookbooks"
-description: "Indexed by skills.sh from weaviate/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "weaviate"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/weaviate/agent-skills/weaviate-cookbooks"
-sourceUrl: "https://skills.sh/weaviate/agent-skills/weaviate-cookbooks"
+name: weaviate-cookbooks
+description: Use this skill when the user wants to build AI applications with Weaviate. It contains a high-level index of architectural patterns, 'one-shot' blueprints, and best practices for common use cases. Currently, it includes references for building a Query Agent Chatbot, Data Explorer, Multimodal PDF RAG (Document Search), Basic RAG, Advanced RAG, Basic Agent, Agentic RAG, and optional guidance on how to build a frontend for each of them.
 ---
 
-# weaviate-cookbooks
-
-> Indexed by skills.sh from weaviate/agent-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** weaviate
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/weaviate/agent-skills/weaviate-cookbooks`
-- **Source URL:** [https://skills.sh/weaviate/agent-skills/weaviate-cookbooks](https://skills.sh/weaviate/agent-skills/weaviate-cookbooks)
+# Weaviate Cookbooks
 
 ## Overview
 
+This skill provides an index of implementation guides and foundational requirements for building Weaviate-powered AI applications. Use the references to quickly scaffold full-stack applications with best practices for connection management, environment setup, and application architecture.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/weaviate/agent-skills/weaviate-cookbooks
-```
+### Weaviate Cloud Instance
+
+If the user does not have an instance yet, direct them to the cloud console to register and create a free sandbox. Create a Weaviate instance via [Weaviate Cloud](https://console.weaviate.cloud/signin?utm_source=github&utm_campaign=agent_skills).
+
+## Before Building Any Cookbook
+
+Follow these shared guidelines before generating any cookbook app:
+
+- [Project Setup Contract](references/project_setup.md)
+- [Environment Requirements](references/environment_requirements.md)
+
+Then proceed to the specific cookbook reference below.
+
+## Cookbook Index
+
+- [Query Agent Chatbot](references/query_agent_chatbot.md): Build a full-stack chatbot using Weaviate Query Agent with streaming and chat history support.
+- [Data Explorer](references/data_explorer.md): Build a full-stack data explorer app including sorting, keyword search and tabular view of weaviate data.
+- [Multimodal RAG: Building Document Search](references/pdf_multimodal_rag.md): Build a multimodal Retrieval-Augmented Generation (RAG) system using Weaviate Embeddings (ModernVBERT/colmodernvbert) and Ollama with Qwen3-VL for generation.
+- [Basic RAG](references/basic_rag.md): Implement basic retrieval and generation with Weaviate. Useful for most forms of data retrieval from a Weaviate collection.
+- [Advanced RAG](references/advanced_rag.md): Improve on basic RAG by adding extra features such as re-ranking, query decomposition, query re-writing, LLM filter selection.
+- [Basic Agent](references/basic_agent.md): Build a tool-calling AI agent with structured outputs using DSPy. Covers AgentResponse signatures, RouterAgent, tool design, and sequential multi-step loops.
+- [Agentic RAG](references/agentic_rag.md): Build RAG-powered AI agents with Weaviate. Covers naive RAG tools, hierarchical RAG with LLM-created filters, vector DB memory, Weaviate Query Agent, and Elysia integration.
+
+## Interface (Optional)
+
+Use this when the user explicitly asks for a frontend for their Weaviate backend.
+
+- [Frontend Interface](references/frontend_interface.md): Build a Next.js frontend to interact with the Weaviate backend.
+
+## Client Usage
+
+- [Async Client](references/async_client.md): Guide for using the Weaviate Python async client in production applications (FastAPI, async frameworks). Covers connection patterns, lifecycle management, common pitfalls, and multi-cluster setups.

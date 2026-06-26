@@ -1,0 +1,595 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Skill Hub Gateway Skill API",
+    "version": "2.4.2",
+    "description": "Single-skill user closure runtime contract with api-key bridge, portal actions, and attachment normalization."
+  },
+  "servers": [
+    {
+      "url": "https://gateway-api.binaryworks.app"
+    }
+  ],
+  "x-portal-actions": {
+    "portal.me": {
+      "summary": "Get current user profile and auth mode",
+      "method": "GET",
+      "path": "/user/me",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalMeInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalMeOutput"
+      }
+    },
+    "portal.balance": {
+      "summary": "Get user point balance",
+      "method": "GET",
+      "path": "/user/points/balance",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalBalanceInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalBalanceOutput"
+      }
+    },
+    "portal.ledger.query": {
+      "summary": "Query point ledger with optional date range",
+      "method": "GET",
+      "path": "/user/points/ledger",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalLedgerQueryInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalLedgerQueryOutput"
+      }
+    },
+    "portal.usage.query": {
+      "summary": "Query usage rows by date range",
+      "method": "GET",
+      "path": "/user/usage",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalUsageQueryInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalUsageQueryOutput"
+      }
+    },
+    "portal.skill.execute": {
+      "summary": "Execute capability run via user-scoped endpoint",
+      "method": "POST",
+      "path": "/user/skills/execute",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalSkillExecuteInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalSkillExecuteOutput"
+      }
+    },
+    "portal.skill.poll": {
+      "summary": "Poll skill run state",
+      "method": "GET",
+      "path": "/user/skills/runs/{runId}",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalSkillPollInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalSkillPollOutput"
+      }
+    },
+    "portal.skill.presentation": {
+      "summary": "Fetch presentation payload for terminal run",
+      "method": "GET",
+      "path": "/user/skills/runs/{runId}/presentation",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalSkillPresentationInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalSkillPresentationOutput"
+      }
+    },
+    "portal.voucher.redeem": {
+      "summary": "Redeem voucher code (write action, requires confirm=true)",
+      "method": "POST",
+      "path": "/user/vouchers/redeem",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalVoucherRedeemInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalVoucherRedeemOutput"
+      }
+    },
+    "portal.recharge.create": {
+      "summary": "Create recharge order (write action, requires confirm=true)",
+      "method": "POST",
+      "path": "/user/recharge/orders",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalRechargeCreateInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalRechargeCreateOutput"
+      }
+    },
+    "portal.recharge.get": {
+      "summary": "Get recharge order status",
+      "method": "GET",
+      "path": "/user/recharge/orders/{orderId}",
+      "input_schema": {
+        "$ref": "#/components/schemas/PortalRechargeGetInput"
+      },
+      "output_schema": {
+        "$ref": "#/components/schemas/PortalRechargeGetOutput"
+      }
+    }
+  },
+  "paths": {
+    "/agent/install-code/issue": {
+      "post": {
+        "summary": "Issue install code"
+      }
+    },
+    "/agent/bootstrap": {
+      "post": {
+        "summary": "Exchange install code for api key"
+      }
+    },
+    "/agent/me": {
+      "get": {
+        "summary": "Resolve api_key + x-agent-uid to user binding"
+      }
+    },
+    "/user/api-key-login": {
+      "post": {
+        "summary": "Exchange api key + user id for user session token"
+      }
+    },
+    "/user/me": {
+      "get": {
+        "summary": "portal.me"
+      }
+    },
+    "/user/points/balance": {
+      "get": {
+        "summary": "portal.balance"
+      }
+    },
+    "/user/points/ledger": {
+      "get": {
+        "summary": "portal.ledger.query"
+      }
+    },
+    "/user/usage": {
+      "get": {
+        "summary": "portal.usage.query"
+      }
+    },
+    "/user/skills/execute": {
+      "post": {
+        "summary": "portal.skill.execute"
+      }
+    },
+    "/user/skills/runs/{runId}": {
+      "get": {
+        "summary": "portal.skill.poll"
+      }
+    },
+    "/user/skills/runs/{runId}/presentation": {
+      "get": {
+        "summary": "portal.skill.presentation"
+      }
+    },
+    "/user/vouchers/redeem": {
+      "post": {
+        "summary": "portal.voucher.redeem"
+      }
+    },
+    "/user/recharge/orders": {
+      "post": {
+        "summary": "portal.recharge.create"
+      }
+    },
+    "/user/recharge/orders/{orderId}": {
+      "get": {
+        "summary": "portal.recharge.get"
+      }
+    },
+    "/api/blob/upload": {
+      "post": {
+        "summary": "Upload-token endpoint reused by file_path normalization"
+      }
+    },
+    "/api/blob/upload-file": {
+      "post": {
+        "summary": "Direct upload fallback for file_path normalization"
+      }
+    },
+    "/skill/execute": {
+      "post": {
+        "summary": "Legacy execute script entry"
+      }
+    },
+    "/skill/runs/{runId}": {
+      "get": {
+        "summary": "Legacy poll script entry"
+      }
+    },
+    "/SKILL.md": {
+      "get": {
+        "summary": "Read skill markdown (English)"
+      }
+    },
+    "/SKILL.zh-CN.md": {
+      "get": {
+        "summary": "Read skill markdown (Chinese)"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PortalMeInput": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PortalMeOutput": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "auth_mode": {
+            "type": "string",
+            "enum": [
+              "password",
+              "api_key"
+            ]
+          }
+        }
+      },
+      "PortalBalanceInput": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PortalBalanceOutput": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "available_points": {
+            "type": "number"
+          }
+        }
+      },
+      "PortalLedgerQueryInput": {
+        "type": "object",
+        "properties": {
+          "date_from": {
+            "type": "string"
+          },
+          "date_to": {
+            "type": "string"
+          }
+        }
+      },
+      "PortalLedgerQueryOutput": {
+        "type": "object",
+        "properties": {
+          "timezone": {
+            "type": "string"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      "PortalUsageQueryInput": {
+        "type": "object",
+        "required": [
+          "date_from",
+          "date_to"
+        ],
+        "properties": {
+          "date_from": {
+            "type": "string"
+          },
+          "date_to": {
+            "type": "string"
+          },
+          "service_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PortalUsageQueryOutput": {
+        "type": "object",
+        "properties": {
+          "timezone": {
+            "type": "string"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      "PortalSkillExecuteInput": {
+        "type": "object",
+        "required": [
+          "capability"
+        ],
+        "properties": {
+          "capability": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "input": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "image_url": {
+                "type": "string"
+              },
+              "audio_url": {
+                "type": "string"
+              },
+              "file_url": {
+                "type": "string"
+              },
+              "attachment": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              },
+              "file_path": {
+                "type": "string"
+              }
+            }
+          },
+          "attachment": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              }
+            }
+          },
+          "file_path": {
+            "type": "string"
+          },
+          "site_base_url": {
+            "type": "string",
+            "description": "Optional override request field. Must equal trusted site base URL configured by runtime, otherwise rejected."
+          }
+        }
+      },
+      "PortalSkillExecuteOutput": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "capability": {
+            "type": "string"
+          },
+          "service_id": {
+            "type": "string"
+          },
+          "poll_url": {
+            "type": "string"
+          },
+          "queued_at": {
+            "type": "string"
+          },
+          "reused": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PortalSkillPollInput": {
+        "type": "object",
+        "required": [
+          "run_id"
+        ],
+        "properties": {
+          "run_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PortalSkillPollOutput": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "terminal": {
+            "type": "boolean"
+          },
+          "service_id": {
+            "type": "string"
+          },
+          "output": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "finished_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "PortalSkillPresentationInput": {
+        "type": "object",
+        "required": [
+          "run_id"
+        ],
+        "properties": {
+          "run_id": {
+            "type": "string"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "web",
+              "telegram"
+            ]
+          },
+          "include_files": {
+            "type": "boolean",
+            "description": "When true, include rendered file URLs in presentation output."
+          }
+        }
+      },
+      "PortalSkillPresentationOutput": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "PortalVoucherRedeemInput": {
+        "type": "object",
+        "required": [
+          "voucher_code",
+          "confirm"
+        ],
+        "properties": {
+          "voucher_code": {
+            "type": "string"
+          },
+          "confirm": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      },
+      "PortalVoucherRedeemOutput": {
+        "type": "object",
+        "properties": {
+          "voucher_code": {
+            "type": "string"
+          },
+          "points": {
+            "type": "number"
+          }
+        }
+      },
+      "PortalRechargeCreateInput": {
+        "type": "object",
+        "required": [
+          "points",
+          "confirm"
+        ],
+        "properties": {
+          "points": {
+            "type": "integer"
+          },
+          "confirm": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      },
+      "PortalRechargeCreateOutput": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "pay_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "amount_cents": {
+            "type": "integer"
+          },
+          "points": {
+            "type": "integer"
+          }
+        }
+      },
+      "PortalRechargeGetInput": {
+        "type": "object",
+        "required": [
+          "order_id"
+        ],
+        "properties": {
+          "order_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PortalRechargeGetOutput": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "pay_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "points": {
+            "type": "integer"
+          },
+          "paid_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

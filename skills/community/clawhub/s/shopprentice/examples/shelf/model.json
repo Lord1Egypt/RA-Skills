@@ -1,0 +1,24 @@
+{
+  "deps": [
+    {
+      "body": "Bottom",
+      "ref": "origin"
+    },
+    {
+      "body": "Top",
+      "ref": "Bottom"
+    },
+    {
+      "body": "Cap_Left",
+      "ref": "Bottom"
+    },
+    {
+      "body": "Cap_Right",
+      "ref": "Bottom"
+    },
+    {
+      "body": "Cleat",
+      "ref": "Bottom"
+    }
+  ]
+}

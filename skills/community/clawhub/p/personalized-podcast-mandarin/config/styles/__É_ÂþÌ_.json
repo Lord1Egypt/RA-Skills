@@ -1,0 +1,38 @@
+{
+  "name": "发散漫谈",
+  "description": "自由延展，轻松氛围，适合探索性话题",
+  "segment_count": {
+    "min": 3,
+    "max": 4
+  },
+  "dynamic_mode_preference": ["storytelling", "collaborate"],
+  "emotional_arc": [0.3, 0.4, 0.5, 0.4],
+  "persona_interaction": {
+    "default_chemistry": "朋友闲聊",
+    "role_distribution": "互相启发，没有明确分工",
+    "interaction_frequency": "中"
+  },
+  "content_characteristics": {
+    "data_density": "低",
+    "storytelling_ratio": "高",
+    "debate_intensity": "低"
+  },
+  "segment_guidelines": {
+    "setup": {
+      "dynamic_mode": "storytelling",
+      "emotional_tone": "curious",
+      "key_elements": ["个人经历", "抛出话题", "建立轻松氛围"]
+    },
+    "confrontation": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "curious",
+      "key_elements": ["联想发散", "分享案例", "探索可能性"]
+    },
+    "resolution": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "reflective",
+      "key_elements": ["总结感受", "开放思考", "没有结论也没关系"]
+    }
+  },
+  "special_instructions": "允许偏离主题，鼓励联想和个人故事，不追求信息密度"
+}

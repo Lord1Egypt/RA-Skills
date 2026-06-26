@@ -1,35 +1,49 @@
 ---
-name: "理财小助手"
-description: "理财小助手，收支记录、消费分析、预算提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pocket-money-manager"
-sourceUrl: "https://clawhub.ai/skills/pocket-money-manager"
+name: pocket-money-manager
+slug: pocket-money-manager
+version: 1.0.0
+description: 理财小助手，收支记录、消费分析、预算提醒。
+homepage: https://github.com/786793119/miya-skills
+metadata: {"openclaw":{"emoji":"💰","requires":{"bins":["python3"]},"os":["linux","darwin","win32"]}}
 ---
 
-# 理财小助手
+# 理财小助手 (Pocket Money Manager)
 
-> 理财小助手，收支记录、消费分析、预算提醒。
+你的私人记账管家。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pocket-money-manager`
-- **Source URL:** [https://clawhub.ai/skills/pocket-money-manager](https://clawhub.ai/skills/pocket-money-manager)
+## 功能
 
-## Overview
+- 记收入（工资/奖金/兼职/理财/红包）
+- 记支出（餐饮/交通/购物/住房/娱乐/医疗/教育）
+- 查看余额和收支统计
+- 周消费报告
+- 设置月预算
+- 超支预警提醒
 
+## 使用示例
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pocket-money-manager
+# 记收入
+python pocket-money-manager.py add_income 5000 工资
+
+# 记支出
+python pocket-money-manager.py add_expense 35 餐饮
+
+# 查看余额
+python pocket-money-manager.py get_balance
+
+# 周报告
+python pocket-money-manager.py get_weekly_report
+
+# 设置预算
+python pocket-money-manager.py set_budget 3000
 ```
+
+## 数据存储
+
+- 收支记录: `~/.memory/finance/records.json`
+- 预算设置: `~/.memory/finance/budget.json`
+
+---
+
+*By Miya - 2026*

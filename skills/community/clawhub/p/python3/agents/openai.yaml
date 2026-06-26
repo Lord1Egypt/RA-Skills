@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python Assistant"
+  short_description: "Set up, debug, and run safe Python workflows."
+  default_prompt: "Use $python to set up a project venv, install dependencies, and troubleshoot Python environment issues."
+
+policy:
+  allow_implicit_invocation: true

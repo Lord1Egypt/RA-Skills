@@ -1,35 +1,58 @@
 ---
-name: "快速笔记"
-description: "快速记录想法和笔记到本地文件。使用场景：(1) 快速记录灵感、想法 (2) 保存临时笔记 (3) 整理思路。支持添加、查看、搜索笔记。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quick-note"
-sourceUrl: "https://clawhub.ai/skills/quick-note"
+name: quick-note
+description: 快速记录想法和笔记到本地文件。使用场景：(1) 快速记录灵感、想法 (2) 保存临时笔记 (3) 整理思路。支持添加、查看、搜索笔记。
 ---
 
 # 快速笔记
 
-> 快速记录想法和笔记到本地文件。使用场景：(1) 快速记录灵感、想法 (2) 保存临时笔记 (3) 整理思路。支持添加、查看、搜索笔记。
+一个简单高效的笔记记录工具，帮助快速捕捉想法。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quick-note`
-- **Source URL:** [https://clawhub.ai/skills/quick-note](https://clawhub.ai/skills/quick-note)
+## 使用方法
 
-## Overview
+### 添加笔记
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/quick-note
 ```
+记一条笔记：今天学了新东西
+```
+
+或
+
+```
+note add 今天学了新东西
+```
+
+### 查看笔记
+
+```
+查看所有笔记
+```
+
+或
+
+```
+note list
+```
+
+### 搜索笔记
+
+```
+搜索笔记 关键词
+```
+
+或
+
+```
+note search 关键词
+```
+
+## 笔记存储
+
+笔记默认存储在 `~/.quick-notes/` 目录下，按日期分文件存储。
+
+## 命令参考
+
+- `note add <内容>` - 添加新笔记
+- `note list` - 列出所有笔记
+- `note search <关键词>` - 搜索笔记
+- `note today` - 查看今日笔记
+- `note clear` - 清空所有笔记

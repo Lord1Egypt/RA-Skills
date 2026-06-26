@@ -1,35 +1,49 @@
 ---
-name: "Feishu calendar sync, local ics to json data for AI agent"
-description: "Convert ICS calendar files to JSON format for importing, exporting, or processing Feishu calendar events and data integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-candy"
-sourceUrl: "https://clawhub.ai/skills/feishu-candy"
+name: feishu-candy
+description: Convert ICS (iCalendar) files to JSON for Feishu calendar integration. Use when user needs to import calendar events from ICS format, export Feishu calendar to JSON, or process calendar files for Feishu calendar apps. Triggers on: ICS to JSON conversion, calendar file parsing, Feishu calendar data transformation.
 ---
 
-# Feishu calendar sync, local ics to json data for AI agent
+# Feishu Calendar Candy
 
-> Convert ICS calendar files to JSON format for importing, exporting, or processing Feishu calendar events and data integration.
+Convert ICS calendar files to JSON format for Feishu calendar integration.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-candy`
-- **Source URL:** [https://clawhub.ai/skills/feishu-candy](https://clawhub.ai/skills/feishu-candy)
+## requirement
 
-## Overview
+install vdirsyncer and setup calendar sync
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run the conversion script:
+
 ```bash
-hermes skills install clawhub/feishu-candy
+python scripts/ics2json.py <input_directory> [-o output.json] [--split]
 ```
+
+## Arguments
+
+- `input_dir` - Directory containing .ics files (required)
+- `-o, --output` - Output JSON file (default: output.json)
+- `--split` - Output one JSON per ICS file instead of merging
+
+## Examples
+
+**Merge all ICS files into one JSON:**
+```bash
+python scripts/ics2json.py ./calendars -o events.json
+```
+
+**Split each ICS into separate JSON:**
+```bash
+python scripts/ics2json.py ./calendars --split
+```
+
+## Output Format
+
+Each event contains:
+- `uid` - Unique event identifier
+- `summary` - Event title
+- `status` - Event status
+- `organizer` - Organizer info
+- `start` - Start time (ISO format)
+- `end` - End time (ISO format)
+- `alarms` - List of reminders/triggers

@@ -1,0 +1,22 @@
+/* 暗色主题 - 科技感 */
+section { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", monospace; font-size: 15px; line-height: 1.8; color: #e0e0e0; background: #1e1e2e; padding: 15px; border-radius: 8px; }
+h1 { font-size: 22px; font-weight: bold; color: #89b4fa; text-align: center; margin: 20px 0 15px; }
+h1::after { content: ""; display: block; width: 80px; height: 3px; background: linear-gradient(90deg, #89b4fa, #cba6f7); margin: 8px auto 0; border-radius: 2px; }
+h2 { font-size: 18px; color: #cba6f7; margin: 18px 0 10px; padding-left: 10px; border-left: 4px solid #cba6f7; }
+h3 { font-size: 16px; color: #a6e3a1; margin: 15px 0 8px; }
+p { margin: 10px 0; text-align: justify; }
+img { max-width: 100%; border-radius: 6px; margin: 12px 0; border: 1px solid #313244; }
+blockquote { border-left: 4px solid #89b4fa; background: #313244; padding: 10px 15px; margin: 12px 0; color: #bac2de; border-radius: 0 6px 6px 0; }
+code { background: #313244; padding: 2px 6px; border-radius: 3px; font-size: 13px; color: #f38ba8; }
+pre { background: #181825; padding: 12px; border-radius: 6px; border: 1px solid #313244; font-size: 13px; line-height: 1.6; }
+pre code { background: none; color: #cdd6f4; padding: 0; }
+a { color: #89b4fa; text-decoration: none; }
+ul, ol { padding-left: 20px; margin: 10px 0; }
+li { margin: 4px 0; }
+li::marker { color: #cba6f7; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+th { background: #313244; color: #89b4fa; padding: 8px 12px; }
+td { border: 1px solid #313244; padding: 8px 12px; }
+tr:nth-child(even) td { background: #1e1e2e; }
+hr { border: none; border-top: 1px solid #313244; margin: 20px 0; }
+strong { color: #f9e2af; }

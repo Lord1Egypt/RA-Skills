@@ -1,0 +1,81 @@
+{
+  "stages": [
+    {
+      "name": "new",
+      "label": "New",
+      "description": "Lead identified, no outreach yet",
+      "order": 1,
+      "probability": 0.10,
+      "color": "#6B7280",
+      "auto_actions": []
+    },
+    {
+      "name": "contacted",
+      "label": "Contacted",
+      "description": "First touch made (email, call, LinkedIn, etc.)",
+      "order": 2,
+      "probability": 0.20,
+      "color": "#3B82F6",
+      "auto_actions": ["log_interaction"]
+    },
+    {
+      "name": "qualified",
+      "label": "Qualified",
+      "description": "Confirmed interest, budget, and timeline",
+      "order": 3,
+      "probability": 0.40,
+      "color": "#8B5CF6",
+      "auto_actions": ["log_interaction"]
+    },
+    {
+      "name": "proposal",
+      "label": "Proposal",
+      "description": "Pricing or proposal sent",
+      "order": 4,
+      "probability": 0.60,
+      "color": "#F59E0B",
+      "auto_actions": ["log_interaction", "set_follow_up_3d"]
+    },
+    {
+      "name": "negotiation",
+      "label": "Negotiation",
+      "description": "Discussing terms, reviewing contract",
+      "order": 5,
+      "probability": 0.80,
+      "color": "#F97316",
+      "auto_actions": ["log_interaction"]
+    },
+    {
+      "name": "won",
+      "label": "Won",
+      "description": "Deal closed, revenue booked",
+      "order": 6,
+      "probability": 1.00,
+      "color": "#10B981",
+      "auto_actions": ["log_interaction", "celebrate"]
+    },
+    {
+      "name": "lost",
+      "label": "Lost",
+      "description": "Deal fell through",
+      "order": 7,
+      "probability": 0.00,
+      "color": "#EF4444",
+      "auto_actions": ["log_interaction", "ask_lost_reason"]
+    }
+  ],
+  "settings": {
+    "allow_custom_stages": false,
+    "stale_threshold_days": 7,
+    "auto_follow_up_days": 3,
+    "lost_reasons": [
+      "competitor",
+      "budget",
+      "timing",
+      "no_response",
+      "not_a_fit",
+      "internal_decision",
+      "other"
+    ]
+  }
+}

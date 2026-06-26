@@ -1,0 +1,23 @@
+{
+  "id": "rag-memory",
+  "name": "RAG Memory",
+  "description": "Semantic memory via Qdrant — auto-injects relevant context before each response",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "qdrant_url":        { "type": "string" },
+      "qdrant_api_key":   { "type": "string", "default": "" },
+      "embed_base_url":   { "type": "string" },
+      "embed_api_key":    { "type": "string", "default": "" },
+      "embed_model":      { "type": "string", "default": "nomic-embed-text" },
+      "collection_prefix":{ "type": "string" },
+      "top_k":            { "type": "integer", "default": 5 },
+      "score_threshold":  { "type": "number",  "default": 0.70 },
+      "auto_inject":                  { "type": "boolean", "default": true },
+      "auto_inject_min_query_len":    { "type": "integer", "default": 20 },
+      "auto_inject_max_result_chars": { "type": "integer", "default": 500 }
+    },
+    "required": ["qdrant_url", "embed_base_url", "collection_prefix"]
+  }
+}

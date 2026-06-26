@@ -1,35 +1,35 @@
 ---
-name: "Laravel"
-description: "Avoid common Laravel mistakes — N+1 queries, mass assignment, cache gotchas, and queue serialization traps."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/laravel"
-sourceUrl: "https://clawhub.ai/skills/laravel"
+name: Laravel
+slug: laravel
+version: 1.0.1
+description: Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls.
+metadata: {"clawdbot":{"emoji":"🔴","requires":{"bins":["php","composer"]},"os":["linux","darwin","win32"]}}
 ---
 
-# Laravel
+## Quick Reference
 
-> Avoid common Laravel mistakes — N+1 queries, mass assignment, cache gotchas, and queue serialization traps.
+| Topic | File |
+|-------|------|
+| N+1 queries, eager loading, accessors, observers | `eloquent.md` |
+| Validation, middleware order, dependency injection | `controllers.md` |
+| Job serialization, retries, failed jobs | `queues.md` |
+| Guards, policies, gates, Sanctum tokens | `auth.md` |
+| XSS escaping, components, slots | `blade.md` |
+| Commands, scheduling, tinker | `artisan.md` |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/laravel`
-- **Source URL:** [https://clawhub.ai/skills/laravel](https://clawhub.ai/skills/laravel)
+## Critical Rules
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/laravel
-```
+- Eager load relationships — `with('posts')` not lazy `->posts` in loop (N+1)
+- `preventLazyLoading()` in dev AppServiceProvider — crashes on N+1, catches early
+- `env()` only in config files — returns null after `config:cache`
+- `$fillable` whitelist fields — `$guarded = []` allows mass assignment attacks
+- `find()` returns null — use `findOrFail()` to avoid null checks
+- Job properties serialize models as ID — re-fetched on process, may be stale/deleted
+- `route:cache` requires controller routes — closures break cached routes
+- `DB::transaction()` doesn't catch `exit`/timeout — only exceptions roll back
+- `RefreshDatabase` uses transactions — faster than `DatabaseMigrations`
+- `{!! $html !!}` skips escaping — XSS vector, use `{{ }}` by default
+- Middleware order matters — earlier middleware wraps later execution
+- `required` validation passes empty string — use `required|filled` for content
+- `firstOrCreate` persists immediately — `firstOrNew` returns unsaved model
+- Route model binding uses `id` — override `getRouteKeyName()` for slug

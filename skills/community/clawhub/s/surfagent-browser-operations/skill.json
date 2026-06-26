@@ -1,0 +1,8 @@
+{
+  "name": "browser-operations",
+  "version": "1.0.0",
+  "description": "Core browser operations skill for SurfAgent and similar browser agents, covering tab discipline, perception-first execution, human-like driving, proof rules, and token-efficient fallback patterns.",
+  "author": "MoonstoneLabs",
+  "keywords": ["browser", "surfagent", "automation", "perception", "tabs", "token-efficiency"],
+  "files": ["SKILL.md"]
+}

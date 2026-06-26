@@ -1,0 +1,13 @@
+interface:
+  display_name: "Earnings Quality Reviewer"
+  short_description: "Review earnings quality before valuation."
+  default_prompt: |
+    Use $earnings-quality-reviewer to assess whether reported earnings support valuation confidence.
+    Separate facts, assumptions, and inference.
+    Report cash conversion, accrual risk, working capital pressure, red flags, confidence impact, and data gaps.
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools: []

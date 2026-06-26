@@ -1,35 +1,35 @@
 ---
-name: "GSD Agent (→ gsd-orchestrator)"
-description: "Redirect — install `gsd-orchestrator` instead. This skill exists to reserve the name. The full orchestration skill with subprocess patterns, exit code handli..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gsd-agent"
-sourceUrl: "https://clawhub.ai/skills/gsd-agent"
+name: gsd-agent
+description: >
+  Redirect — install `gsd-orchestrator` instead.
+  This skill exists to reserve the name. The full orchestration skill
+  with subprocess patterns, exit code handling, and HeadlessJsonResult
+  documentation lives at `gsd-orchestrator`.
+metadata:
+  openclaw:
+    requires:
+      bins: [gsd]
+    install:
+      kind: node
+      package: gsd-pi
+      bins: [gsd]
 ---
 
-# GSD Agent (→ gsd-orchestrator)
+# gsd-agent → gsd-orchestrator
 
-> Redirect — install `gsd-orchestrator` instead. This skill exists to reserve the name. The full orchestration skill with subprocess patterns, exit code handli...
+> **This is a name reservation. Install [`gsd-orchestrator`](https://clawhub.com/skills/gsd-orchestrator) instead.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gsd-agent`
-- **Source URL:** [https://clawhub.ai/skills/gsd-agent](https://clawhub.ai/skills/gsd-agent)
+The `gsd-orchestrator` skill provides complete subprocess-based orchestration patterns for GSD projects:
 
-## Overview
+- Milestone creation from specs
+- Task execution via `gsd headless`
+- Status polling and blocker handling
+- Cost tracking and budget enforcement
+- Exit code interpretation (0/1/10/11)
+- HeadlessJsonResult JSON parsing
 
+## Install the real skill
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gsd-agent
+clawhub install gsd-orchestrator
 ```

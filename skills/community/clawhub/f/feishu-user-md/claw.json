@@ -1,0 +1,13 @@
+{
+  "name": "feishu-user-md",
+  "version": "1.1.0",
+  "description": "飞书端读取USER.md任务清单，实时解析并返回格式化的分类任务列表",
+  "author": "349840432m-dev",
+  "license": "MIT",
+  "permissions": ["fs"],
+  "entry": "SKILL.md",
+  "tags": ["feishu", "task", "user-md", "productivity", "task-list"],
+  "models": ["*"],
+  "minOpenClawVersion": "0.8.0",
+  "acceptLicenseTerms": true
+}

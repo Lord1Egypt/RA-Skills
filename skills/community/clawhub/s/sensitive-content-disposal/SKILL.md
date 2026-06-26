@@ -1,35 +1,150 @@
 ---
-name: "敏感内容处置器"
-description: "支持关键词脱敏、文件加密和水印添加，对扫描出的敏感内容进行合规处置并可发送通知，需先使用敏感内容扫描器。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sensitive-content-disposal"
-sourceUrl: "https://clawhub.ai/skills/sensitive-content-disposal"
+name: sensitive-disposal
+description: This skill handles sensitive content remediation after scanning. Supports two disposal methods: (1) Keyword masking/redaction with customizable granularity (partial replacement, keyword full replacement, regex middle replacement), (2) File encryption with password protection. Notifications can be sent via Feishu and WeChat. Use after sensitive-content-scanner skill. Free to use.
 ---
 
-# 敏感内容处置器
+# 合规处置工具（免费版）
 
-> 支持关键词脱敏、文件加密和水印添加，对扫描出的敏感内容进行合规处置并可发送通知，需先使用敏感内容扫描器。
+## 🎯 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sensitive-content-disposal`
-- **Source URL:** [https://clawhub.ai/skills/sensitive-content-disposal](https://clawhub.ai/skills/sensitive-content-disposal)
+对扫描发现的敏感内容进行合规处置，支持 **两种** 处置方式和通知功能。
 
-## Overview
+**免费使用** —— 无需订阅
 
+## 👤 适用人群
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sensitive-content-disposal
+- 🔒 安全合规人员
+- 📋 文档审核人员
+- 🛡️ 数据保护专员
+- 🏢 企业信息安全部门
+
+---
+
+## 🚀 两种处置方式
+
+### 方式一：关键词脱敏
+
+**操作**：
+1. 附件：扫描报告或文档文件
+2. 说：**"脱敏处理"**，告诉处置粒度
+
+**三种脱敏粒度**：
+
+| 粒度 | 示例 | 说明 |
+|------|------|------|
+| **部分替换** | `13812345678` → `138****5678` | 保留首尾，中间替换 |
+| **关键字替换** | `密码：123456` → `密码：[REDACTED]` | 完整替换敏感词 |
+| **正则替换** | `110101199001011234` → `110101********1234` | 按正则规则替换中间 |
+
+**支持的敏感类型**：
+- 🔢 身份证号
+- 📱 手机号码
+- 💳 银行卡号
+- ✉️ 邮箱地址
+- 🔑 密码/密钥
+
+---
+
+### 方式二：文件加密
+
+**操作**：
+1. 附件：要加密的文件
+2. 说：**"加密文件"**
+3. **输入密码**（系统会提示您输入）
+
+**加密选项**：
+- 🔐 设置加密密码
+- 📧 发送到邮箱
+- 💬 发送到飞书/微信
+
+---
+
+## 📋 保存方式
+
+处置完成后，系统会提示您选择保存方式：
+
+| 方式 | 说明 |
+|------|------|
+| **覆盖原文件** | 直接替换原文件（谨慎操作） |
+| **保存为新文件** | 生成如 `原文件_脱敏版.docx`（推荐） |
+
+---
+
+## 📢 通知功能
+
+处置完成后，可发送通知到：
+
+| 渠道 | 设置 |
+|------|------|
+| 📧 邮箱 | 关联邮箱地址 |
+| 💬 飞书 | 配置飞书 Webhook |
+| 💬 微信 | 配置企业微信 Webhook |
+
+**通知内容**：
+- 处置类型（脱敏/加密）
+- 处置文件数量
+- 处置时间
+- 密码（如加密）
+
+---
+
+## 📁 支持的文件格式
+
+| 类型 | 格式 | 脱敏 | 加密 |
+|------|------|------|------|
+| 文本 | txt, md, json, xml, csv | ✅ | ✅ |
+| Word | docx | ✅ | ✅ |
+| Excel | xlsx | ✅ | ✅ |
+| PowerPoint | pptx | ✅ | ✅ |
+| PDF | pdf | ✅ | ✅ |
+
+---
+
+## 💡 使用流程
+
 ```
+1️⃣ 扫描文档
+   └─ 使用"敏感内容扫描器"扫描文档
+
+2️⃣ 查看报告
+   └─ 查看扫描报告，了解敏感内容位置
+
+3️⃣ 选择处置
+   └─ 附件 + "脱敏处理" 或 "加密文件"
+
+4️⃣ 设置参数
+   └─ 选择脱敏粒度、输入密码等
+
+5️⃣ 选择保存
+   └─ 覆盖原文件 或 保存为新文件
+
+6️⃣ 发送通知（可选）
+   └─ 发送到邮箱/飞书/微信
+```
+
+---
+
+## ⚠️ 注意事项
+
+1. **备份原文件**：建议先备份重要文件
+2. **密码安全**：加密密码请妥善保管
+3. **不可逆操作**：脱敏操作不可逆，请确认后再执行
+4. **权限要求**：需要文件写入权限
+
+---
+
+## 🔧 技术信息（可选了解）
+
+**处置脚本**：`scripts/disposal.py`
+
+**依赖库**：
+- `python-docx` - Word文档处理
+- `openpyxl` - Excel处理
+- `python-pptx` - PPT处理
+- `PyMuPDF` - PDF处理
+
+---
+
+**版本**：1.2.0
+**更新日期**：2026-04-21
+**定价**：免费版

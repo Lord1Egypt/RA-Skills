@@ -1,0 +1,3 @@
+display_name: Taku Plan
+short_description: Turn approved designs into executable implementation plans.
+default_prompt: Use Taku Plan to review the approved design and write a concrete PLAN.md.

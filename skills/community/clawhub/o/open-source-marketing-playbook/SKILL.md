@@ -1,35 +1,49 @@
 ---
-name: "Open Source Marketing Playbook — HN, Reddit & Community Launch SOP"
-description: "Marketing playbook for open-source projects led by non-technical founders. Covers README optimization, community building, contributor attraction, and transl..."
-category: "creative"
-source: "ClawHub"
-tags: [branding, community, content, developer, developer-relations, devrel, documentation, founder-marketing, github, growth, marketing, non-technical, open-source, oss, oss-marketing, readme, star-growth, startup]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/open-source-marketing-playbook"
-sourceUrl: "https://clawhub.ai/skills/open-source-marketing-playbook"
+name: open-source-marketing-playbook
+description: |
+  Marketing playbook for open-source projects led by non-technical founders. Covers README optimization, community building, contributor attraction, and translating OSS traction into revenue. By @WeiYipei.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/open-source-marketing-playbook
+tags:
+  - open-source-marketing
+  - github-stars
+  - oss
+  - developer-marketing
+  - community-building
+  - readme
+  - product-hunt
+  - cold-start
+  - hacker-news
+  - claude-code
+  - ai-agent-skill
+  - agent-skill
+  - latest
+---
+# Open Source Marketing for Non-Technical Founders
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+## 📦 Install
+
+```bash
+clawhub install open-source-marketing-playbook
+```
+
+**What you get after installing:**
+- README-as-landing-page structure with badges and social proof
+- Community-first growth strategy (Discord/Slack without writing code)
+- Star momentum tactics and contributor funnel design
+
 ---
 
-# Open Source Marketing Playbook — HN, Reddit & Community Launch SOP
+You don't need to be a developer to market an open-source project. This playbook bridges the gap.
 
-> Marketing playbook for open-source projects led by non-technical founders. Covers README optimization, community building, contributor attraction, and transl...
+- **README as landing page**: Structure, badges, and social proof that convert visitors
+- **Community-first growth**: Discord/Slack strategy without writing code
+- **Star momentum**: How to trigger GitHub Trending without gaming the system
+- **Contributor funnel**: Attract and retain open-source contributors
+- **Monetization bridge**: From stars to sponsors to paid tiers
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/open-source-marketing-playbook`
-- **Source URL:** [https://clawhub.ai/skills/open-source-marketing-playbook](https://clawhub.ai/skills/open-source-marketing-playbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/open-source-marketing-playbook
-```
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-opensource
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

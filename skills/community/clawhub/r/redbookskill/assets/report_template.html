@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>饮品热点日报 {{report_date}}</title>
+<style>
+* {margin: 0;padding: 0;box-sizing: border-box;}
+body {font-family: "PingFang SC", "Microsoft YaHei", sans-serif;background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);padding: 20px 10px;line-height: 1.6;}
+.container {max-width: 750px;margin: 0 auto;background: #fff;border-radius: 20px;padding: 30px 20px;box-shadow: 0 10px 30px rgba(0,0,0,0.1);}
+.header {text-align: center;margin-bottom: 30px;padding-bottom: 20px;border-bottom: 2px solid #f8bbd0;}
+.header h1 {color: #ec407a;font-size: 24px;margin-bottom: 10px;}
+.header .date {color: #666;font-size: 16px;}
+.section-title {color: #2196f3;font-size: 20px;margin: 30px 0 20px;padding-left: 10px;border-left: 4px solid #2196f3;}
+.hotspot-card {background: #f8f9fa;border-radius: 12px;padding: 20px;margin-bottom: 15px;border-left: 4px solid #4caf50;}
+.hotspot-rank {display: inline-block;background: #4caf50;color: #fff;width: 24px;height: 24px;line-height: 24px;text-align: center;border-radius: 50%;font-size: 14px;margin-right: 10px;}
+.hotspot-keyword {font-size: 18px;font-weight: bold;color: #2e7d32;margin-bottom: 8px;}
+.hotspot-meta {color: #666;font-size: 14px;margin-bottom: 12px;}
+.hotspot-item {margin-bottom: 8px;font-size: 15px;}
+.hotspot-item strong {color: #ec407a;}
+.ref-link {color: #2196f3;text-decoration: none;margin-right: 10px;}
+.tag {display: inline-block;background: #e3f2fd;color: #1976d2;padding: 2px 8px;border-radius: 12px;font-size: 13px;margin-right: 5px;margin-bottom: 5px;}
+.avoid-card {background: #ffebee;border-radius: 12px;padding: 15px;margin-bottom: 10px;border-left: 4px solid #f44336;}
+.avoid-topic {font-weight: bold;color: #c62828;margin-bottom: 5px;}
+.avoid-reason {color: #666;font-size: 14px;}
+.footer {text-align: center;margin-top: 30px;color: #999;font-size: 13px;}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🍹 小红书饮品热点日报</h1>
+<div class="date">{{report_date}}</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">🔥 TOP10 热门选题</h2>
+{% for hotspot in top10_hotspots %}
+<div class="hotspot-card">
+<div class="hotspot-keyword">
+<span class="hotspot-rank">{{hotspot.rank}}</span>
+{{hotspot.keyword}}
+</div>
+<div class="hotspot-meta">24小时热度：{{hotspot.hot_value}}</div>
+<div class="hotspot-item">
+<strong>参考笔记：</strong>
+{% for link in hotspot.ref_links %}
+<a href="{{link}}" target="_blank" class="ref-link">笔记{{loop.index}}</a>
+{% endfor %}
+</div>
+<div class="hotspot-item">
+<strong>选题方向：</strong>
+<ul style="padding-left: 20px; margin: 5px 0;">
+{% for idea in hotspot.topic_ideas %}
+<li>{{idea}}</li>
+{% endfor %}
+</ul>
+</div>
+<div class="hotspot-item">
+<strong>推荐标签：</strong>
+{% for tag in hotspot.tags %}
+<span class="tag">{{tag}}</span>
+{% endfor %}
+</div>
+</div>
+{% endfor %}
+</div>
+
+<div class="section">
+<h2 class="section-title">⚠️ 低潜力选题避坑</h2>
+{% for avoid in avoid_topics %}
+<div class="avoid-card">
+<div class="avoid-topic">{{avoid.topic}}</div>
+<div class="avoid-reason">不建议原因：{{avoid.reason}}</div>
+</div>
+{% endfor %}
+</div>
+
+<div class="footer">
+数据来源：小红书近24小时低粉爆款笔记 | 每天9点自动更新
+</div>
+</div>
+</body>
+</html>

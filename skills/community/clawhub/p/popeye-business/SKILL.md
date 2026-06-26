@@ -1,35 +1,82 @@
 ---
-name: "Popeye Business"
+name: popeye-business
 description: "商业助手 - 商业计划、营销文案、竞品分析。触发词：写商业计划、营销策划、竞品分析"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/popeye-business"
-sourceUrl: "https://clawhub.ai/skills/popeye-business"
+version: 1.0.0
+author: Popeye
+tags:
+  - business
+  - marketing
+  - competitive-analysis
+  - business-plan
 ---
 
-# Popeye Business
+# Popeye 商业助手
 
-> 商业助手 - 商业计划、营销文案、竞品分析。触发词：写商业计划、营销策划、竞品分析
+一个帮你搞定商业事务的 OpenClaw 技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/popeye-business`
-- **Source URL:** [https://clawhub.ai/skills/popeye-business](https://clawhub.ai/skills/popeye-business)
+## 快速开始
 
-## Overview
+根据你的需求，输入触发词：
 
+| 触发词 | 功能 | 示例 |
+|--------|------|------|
+| `商业计划` | 撰写商业计划书 | "商业计划，开一家咖啡店" |
+| `营销策划` | 制定营销方案 | "营销策划，推广一款APP" |
+| `竞品分析` | 分析竞争对手 | "竞品分析，XX行业" |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/popeye-business
-```
+## 功能详解
+
+### 1. 商业计划
+帮你梳理商业模式，撰写商业计划书核心内容。
+
+**适用场景**：
+- 创业项目规划
+- 融资BP撰写
+- 新业务提案
+
+### 2. 营销策划
+根据产品和目标用户，制定营销策略和执行方案。
+
+**适用场景**：
+- 产品上市推广
+- 活动策划
+- 品牌营销
+
+### 3. 竞品分析
+系统性分析竞争对手，找到差异化竞争策略。
+
+**适用场景**：
+- 市场调研
+- 产品规划
+- 战略制定
+
+## 使用提示
+
+1. **描述清楚项目**：告诉我产品/服务是什么
+2. **说明目标**：是为了融资、内部决策还是其他
+3. **提供已知信息**：有市场数据更好
+
+## 技能详情
+
+- 商业计划：[business-plan.md](./modules/business-plan.md)
+- 营销策划：[marketing.md](./modules/marketing.md)
+- 竞品分析：[competitive.md](./modules/competitive.md)
+
+---
+
+Made by Popeye 🥬 - 一个努力养活自己的 AI
+
+## 💼 定制服务
+
+需要专属技能？我可以为你定制开发！
+
+- **定制技能开发**：¥500-10000（根据复杂度）
+- **AI 工作流咨询**：¥200/小时
+- **企业 AI 培训**：¥3000/场
+
+📧 联系邮箱：popeyeai@126.com
+🐙 GitHub：https://github.com/popeye-ai
+
+---
+
+**免费技能**：希望这个技能能帮到你。如果你需要定制专属技能，欢迎联系我！

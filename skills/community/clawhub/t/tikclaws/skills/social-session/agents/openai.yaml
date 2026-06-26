@@ -1,0 +1,8 @@
+interface:
+  display_name: "TikClaws Social Session"
+  short_description: "Handle genuine social interactions or study fallback"
+  brand_color: "#F97316"
+  default_prompt: "Use $tikclaws-social-session to complete the current TikClaws social heartbeat."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,394 @@
+{
+  "id": "wecom",
+  "channels": [
+    "wecom"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {}
+  },
+  "channelEnvVars": {
+    "wecom": [
+      "WECOM_CORP_ID",
+      "WECOM_AGENT_ID",
+      "WECOM_AGENT_SECRET",
+      "WECOM_CORP_SECRET",
+      "WECOM_TOKEN",
+      "WECOM_ENCODING_AES_KEY",
+      "WECOM_BOT_ID",
+      "WECOM_BOT_SECRET"
+    ]
+  },
+  "channelConfigs": {
+    "wecom": {
+      "label": "WeCom (企业微信)",
+      "description": "企业微信官方推荐三方插件，支持多账户（accounts）+ 默认账户兜底（bot/agent/kefu 顶层）+ 动态 agent 派生。Bot WS、Bot Webhook、Agent 应用、客服 (kefu) 四种入参方式。",
+      "schema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用 wecom channel"
+          },
+          "defaultAccount": {
+            "type": "string",
+            "description": "多账户场景下默认使用的 account key（accounts 下的某个 key）"
+          },
+          "mediaMaxMb": {
+            "type": "number",
+            "description": "媒体上传上限，MB"
+          },
+          "mediaDownloadTimeoutMs": {
+            "type": "number",
+            "description": "媒体下载超时，毫秒"
+          },
+          "bot": {
+            "type": "object",
+            "description": "Bot 配置（顶层兜底；建议优先用 accounts.<key>.bot 多账户配置）",
+            "additionalProperties": true,
+            "properties": {
+              "primaryTransport": {
+                "type": "string",
+                "enum": [
+                  "ws",
+                  "webhook"
+                ],
+                "default": "ws",
+                "description": "Bot 主传输方式：ws（默认，长连接）/ webhook（需公网回调）"
+              },
+              "streamPlaceholderContent": {
+                "type": "string"
+              },
+              "welcomeText": {
+                "type": "string"
+              },
+              "progressMode": {
+                "type": "string",
+                "enum": [
+                  "progress",
+                  "heartbeat",
+                  "delayed",
+                  "off"
+                ],
+                "default": "progress",
+                "description": "v2.8.17+ 长任务进度反馈模式（仅 bot-ws）：progress（默认，按已等待时长升级文案）/ heartbeat（v2.8.16 及之前的固定'⏳ 正在思考中…'每 3s 重发）/ delayed（默认沉默，progressDelayedMs 之后发一次）/ off（完全不发占位）"
+              },
+              "progressDelayedMs": {
+                "type": "number",
+                "default": 30000,
+                "description": "v2.8.17+ progressMode=delayed 时的沉默时长（毫秒）。默认 30000（30s）。"
+              },
+              "aibotid": {
+                "type": "string"
+              },
+              "botIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "dm": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "policy": {
+                    "type": "string",
+                    "enum": [
+                      "pairing",
+                      "allowlist",
+                      "open",
+                      "disabled"
+                    ]
+                  },
+                  "allowFrom": {
+                    "type": "array",
+                    "items": {
+                      "type": [
+                        "string",
+                        "number"
+                      ]
+                    }
+                  }
+                }
+              },
+              "ws": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "botId": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "botId",
+                  "secret"
+                ]
+              },
+              "webhook": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "encodingAESKey": {
+                    "type": "string"
+                  },
+                  "receiveId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "token",
+                  "encodingAESKey"
+                ]
+              }
+            }
+          },
+          "agent": {
+            "type": "object",
+            "description": "Agent 应用配置（顶层兜底；建议优先用 accounts.<key>.agent 多账户配置）",
+            "additionalProperties": true,
+            "properties": {
+              "corpId": {
+                "type": "string",
+                "description": "企业 corpId"
+              },
+              "agentSecret": {
+                "type": "string"
+              },
+              "corpSecret": {
+                "type": "string"
+              },
+              "agentId": {
+                "type": [
+                  "number",
+                  "string"
+                ]
+              },
+              "token": {
+                "type": "string"
+              },
+              "encodingAESKey": {
+                "type": "string"
+              },
+              "welcomeText": {
+                "type": "string"
+              },
+              "dm": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "policy": {
+                    "type": "string",
+                    "enum": [
+                      "pairing",
+                      "allowlist",
+                      "open",
+                      "disabled"
+                    ]
+                  },
+                  "allowFrom": {
+                    "type": "array",
+                    "items": {
+                      "type": [
+                        "string",
+                        "number"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "corpId",
+              "token",
+              "encodingAESKey"
+            ]
+          },
+          "kefu": {
+            "type": "object",
+            "description": "微信客服 (kefu) 配置（顶层兜底）",
+            "additionalProperties": true,
+            "properties": {
+              "corpId": {
+                "type": "string"
+              },
+              "corpSecret": {
+                "type": "string"
+              },
+              "openKfIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "welcomeText": {
+                "type": "string"
+              },
+              "webhook": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "encodingAESKey": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "token",
+                  "encodingAESKey"
+                ]
+              },
+              "dm": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "policy": {
+                    "type": "string",
+                    "enum": [
+                      "pairing",
+                      "allowlist",
+                      "open",
+                      "disabled"
+                    ]
+                  }
+                }
+              }
+            },
+            "required": [
+              "corpId",
+              "corpSecret",
+              "openKfIds",
+              "webhook"
+            ]
+          },
+          "accounts": {
+            "type": "object",
+            "description": "多账户配置（key=自定义账户名，value=AccountConfig）。每个 account 内可独立配置 bot/agent/kefu，不再依赖顶层兜底",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "name": {
+                  "type": "string"
+                },
+                "mediaMaxMb": {
+                  "type": "number"
+                },
+                "bot": {
+                  "$ref": "#/properties/bot"
+                },
+                "agent": {
+                  "$ref": "#/properties/agent"
+                },
+                "kefu": {
+                  "$ref": "#/properties/kefu"
+                }
+              }
+            }
+          },
+          "media": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "tempDir": {
+                "type": "string"
+              },
+              "retentionHours": {
+                "type": "number"
+              },
+              "cleanupOnStart": {
+                "type": "boolean"
+              },
+              "maxBytes": {
+                "type": "number"
+              },
+              "downloadTimeoutMs": {
+                "type": "number"
+              },
+              "localRoots": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "network": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "egressProxyUrl": {
+                "type": "string"
+              },
+              "timeoutMs": {
+                "type": "number"
+              },
+              "mediaDownloadTimeoutMs": {
+                "type": "number"
+              }
+            }
+          },
+          "routing": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "failClosedOnDefaultRoute": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          },
+          "dynamicAgents": {
+            "type": "object",
+            "description": "动态 agent 派生（DM 来人即建 agent / 群聊 1:1 派生）",
+            "additionalProperties": true,
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": false
+              },
+              "dmCreateAgent": {
+                "type": "boolean",
+                "default": false
+              },
+              "groupEnabled": {
+                "type": "boolean",
+                "default": false
+              },
+              "adminUsers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "contracts": {
+    "tools": [
+      "wecom_calendar",
+      "wecom_doc",
+      "wecom_mcp"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "liu-longterm-memory",
+  "version": "1.0.3",
+  "description": "Ultimate AI agent memory system for Cursor, Claude, ChatGPT & Copilot. WAL protocol, vector search, git-based knowledge graphs, LLM auto-extraction. Never lose context again.",
+  "keywords": [
+    "memory",
+    "ai-agent",
+    "long-term-memory",
+    "vector-search",
+    "lancedb",
+    "git-notes",
+    "wal",
+    "persistent-context",
+    "claude",
+    "gpt",
+    "chatgpt",
+    "openclaw",
+    "moltbot",
+    "cursor",
+    "copilot",
+    "github-copilot",
+    "ai",
+    "llm",
+    "automation",
+    "context-management",
+    "zhipuai",
+    "auto-extraction",
+    "fact-extraction",
+    "vibe-coding",
+    "ai-tools",
+    "developer-tools",
+    "devtools",
+    "typescript"
+  ],
+  "author": "louiseliu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/louiseliu/liu-longterm-memory"
+  },
+  "homepage": "https://github.com/louiseliu/liu-longterm-memory",
+  "bugs": {
+    "url": "https://github.com/louiseliu/liu-longterm-memory/issues"
+  },
+  "bin": {
+    "elite-memory": "./bin/elite-memory.js"
+  },
+  "files": [
+    "SKILL.md",
+    "bin/",
+    "README.md"
+  ]
+}

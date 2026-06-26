@@ -1,35 +1,98 @@
 ---
-name: "什么值得买价格爬取"
+name: smzdm-price
 description: "什么值得买价格爬取Skill - 从smzdm.com爬取NAS、电脑、手机等商品价格"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smzdm-price"
-sourceUrl: "https://clawhub.ai/skills/smzdm-price"
+version: 1.0.0
 ---
 
-# 什么值得买价格爬取
+# 什么值得买价格爬取Skill
 
-> 什么值得买价格爬取Skill - 从smzdm.com爬取NAS、电脑、手机等商品价格
+## 能力概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smzdm-price`
-- **Source URL:** [https://clawhub.ai/skills/smzdm-price](https://clawhub.ai/skills/smzdm-price)
+本Skill用于从[什么值得买](https://www.smzdm.com)网站爬取各类商品的价格信息，支持：
+- NAS私有云设备价格查询
+- 电脑硬件价格查询
+- 手机数码产品价格查询
+- 历史价格趋势分析
 
-## Overview
+## 技术原理
 
+- 使用 `browser` 工具打开网页
+- 使用 `snapshot` 获取页面结构化数据
+- 直接从页面文本中提取价格、标题、来源等信息
+- **无需截图！无需OCR！直接从页面结构提取数据**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smzdm-price
+## 使用方法
+
+### 1. 查询NAS价格
+
 ```
+查询极空间NAS的价格
+查询群晖NAS价格
+查询绿联NAS价格
+```
+
+### 2. 查询其他商品
+
+```
+查询iPhone 16价格
+查询RTX 5090显卡价格
+查询笔记本电脑价格
+```
+
+### 3. 指定平台
+
+```
+查询京东上的极空间NAS价格
+查询天猫上的绿联NAS价格
+```
+
+## 提取数据的方法
+
+**重要：必须按照以下步骤提取数据！**
+
+1. **打开搜索页面**
+   ```javascript
+   browser.open("https://search.smzdm.com/?c=faxian&s=商品名称")
+   ```
+
+2. **获取页面结构**（不要截图！）
+   ```javascript
+   browser.snapshot()
+   ```
+
+3. **从snapshot结果中直接读取**：
+   - 标题：在 `heading` 或 `link` 元素中
+   - 价格：在包含价格的元素中（如 `2737.41元`）
+   - 来源：商城名称（京东、天猫等）
+   - 链接：在 `link` 元素的 `/url` 属性中
+
+4. **不要使用OCR！不要截图！直接读取snapshot文本！**
+
+## 输出格式要求
+
+**1. 首先给出简短汇总（可选）：**
+```
+📱 OPPO Find X9 Pro 当前最低价：¥3989（拼多多）
+```
+
+**2. 然后输出表格（必须）：**
+
+| 配置 | 价格 | 时间 | 来源 | 链接 | 备注 |
+|------|------|------|------|------|------|
+| 12+256GB | ¥3989 | 03-12 | 拼多多 | [购买](https://www.smzdm.com/p/170149453/) | 史低价！ |
+| 16+512GB | ¥4799 | 03-15 | 京东 | [购买](https://www.smzdm.com/p/170008915/) | 国补+平台券 |
+
+**关键点：**
+- 必须包含：配置、价格、时间、来源、链接
+- 链接格式：`https://www.smzdm.com/p/数字ID/`，从页面结构中的 /url 字段获取（不是 go.smzdm.com 的跳转链接！）
+- 时间格式：MM-DD（来自页面发布时间）
+- 价格按从低到高排序
+- 史低价等重要信息放备注
+- 表格前可以加一行汇总：最低价信息
+
+## 注意事项
+
+- 遵守网站使用条款，仅用于个人学习
+- 不要过于频繁爬取
+- 价格可能有延迟，请以实际购买页面为准
+- 本技能仅抓取公开可见的价格信息

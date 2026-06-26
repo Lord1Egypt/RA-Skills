@@ -1,0 +1,25 @@
+{
+  "taskId": "task-009",
+  "snapshotType": "init",
+  "timestamp": "2026-03-17T20:57:07.106Z",
+  "metadata": {
+    "taskTitle": "访问需要登录的资源（权限不足）",
+    "taskType": "research"
+  },
+  "snapshot": {
+    "task_id": "task-009",
+    "task_title": "访问需要登录的资源（权限不足）",
+    "task_type": "research",
+    "overall_status": "pending",
+    "current_phase": null,
+    "progress_percent": 0,
+    "current_action": "任务已启动：访问需要登录的资源（权限不足）",
+    "why_not_done": null,
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.106Z",
+    "updated_at": "2026-03-17T20:57:07.106Z"
+  }
+}

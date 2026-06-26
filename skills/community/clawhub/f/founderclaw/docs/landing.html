@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FounderClaw — Multi-Agent Engineering Team for OpenClaw</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; }
+  .hero { text-align: center; padding: 80px 20px 40px; }
+  .hero h1 { font-size: 48px; background: linear-gradient(135deg, #ff6b35, #f7c948); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+  .hero p { font-size: 18px; color: #888; max-width: 600px; margin: 0 auto 40px; }
+  
+  .install-box { background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; padding: 20px; max-width: 700px; margin: 0 auto 40px; text-align: left; }
+  .install-box .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .install-box code { display: block; background: #0a0a0a; border: 1px solid #333; border-radius: 8px; padding: 16px; font-size: 14px; color: #4ade80; overflow-x: auto; position: relative; cursor: pointer; }
+  .install-box code:hover { border-color: #4ade80; }
+  .install-box .copy-hint { font-size: 11px; color: #666; margin-top: 8px; }
+  
+  .two-methods { display: flex; gap: 20px; max-width: 700px; margin: 0 auto 40px; }
+  .method { flex: 1; background: #111; border: 1px solid #222; border-radius: 12px; padding: 20px; }
+  .method h3 { color: #ff6b35; margin-bottom: 8px; }
+  .method p { font-size: 13px; color: #888; }
+  .method code { display: block; background: #0a0a0a; border: 1px solid #333; border-radius: 6px; padding: 10px; font-size: 13px; color: #4ade80; margin-top: 12px; }
+  
+  .features { max-width: 800px; margin: 0 auto 40px; }
+  .features h2 { text-align: center; margin-bottom: 24px; font-size: 24px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feature { background: #111; border: 1px solid #222; border-radius: 10px; padding: 16px; }
+  .feature .icon { font-size: 24px; margin-bottom: 8px; }
+  .feature h4 { font-size: 14px; margin-bottom: 4px; }
+  .feature p { font-size: 12px; color: #888; }
+  
+  .agents { max-width: 800px; margin: 0 auto 40px; }
+  .agents h2 { text-align: center; margin-bottom: 24px; font-size: 24px; }
+  .agent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .agent { background: #111; border: 1px solid #222; border-radius: 10px; padding: 14px; border-left: 3px solid; }
+  .agent .name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .agent .role { font-size: 11px; color: #888; }
+  
+  .ceo { border-color: #ff6b35; } .ceo .name { color: #ff6b35; }
+  .strat { border-color: #f59e0b; } .strat .name { color: #f59e0b; }
+  .ship { border-color: #3b82f6; } .ship .name { color: #3b82f6; }
+  .test { border-color: #8b5cf6; } .test .name { color: #8b5cf6; }
+  .safe { border-color: #ef4444; } .safe .name { color: #ef4444; }
+  .obs { border-color: #10b981; } .obs .name { color: #10b981; }
+  
+  footer { text-align: center; padding: 40px 20px; color: #444; font-size: 13px; }
+  footer a { color: #ff6b35; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>FounderClaw</h1>
+  <p>Multi-agent engineering team for OpenClaw. 29 skills, 6 agents, one command install.</p>
+</div>
+
+<div class="two-methods">
+  <div class="method">
+    <h3>💬 Chat Install</h3>
+    <p>Say this to your OpenClaw agent:</p>
+    <code>"install founderclaw"</code>
+  </div>
+  <div class="method">
+    <h3>🖥️ Terminal Install</h3>
+    <p>Run in your terminal:</p>
+    <code>curl -fsSL https://raw.githubusercontent.com/ashish797/FounderClaw/main/install.sh | bash</code>
+  </div>
+</div>
+
+<div class="install-box">
+  <div class="label">One-Command Install (copy & paste in chat)</div>
+  <code onclick="navigator.clipboard.writeText('install founderclaw')">install founderclaw</code>
+  <div class="copy-hint">↑ Click to copy. Paste in any OpenClaw chat.</div>
+</div>
+
+<div class="features">
+  <h2>What You Get</h2>
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="icon">📐</div>
+      <h4>Strategy</h4>
+      <p>Office hours, CEO review, eng review, design system</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🚀</div>
+      <h4>Shipping</h4>
+      <p>Code review, deploy, canary monitoring, changelogs</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🔍</div>
+      <h4>Testing</h4>
+      <p>QA, headless browser, screenshot testing, bug detection</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🛡️</div>
+      <h4>Safety</h4>
+      <p>Security audit, destructive command guardrails</p>
+    </div>
+    <div class="feature">
+      <div class="icon">📊</div>
+      <h4>Observer</h4>
+      <p>Debugging, retrospectives, second opinions</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🎯</div>
+      <h4>Auto Mode</h4>
+      <p>Explicit switch. Work continues while you sleep.</p>
+    </div>
+  </div>
+</div>
+
+<div class="agents">
+  <h2>The Team</h2>
+  <div class="agent-grid">
+    <div class="agent ceo"><div class="name">🎯 CEO</div><div class="role">Orchestrates everything</div></div>
+    <div class="agent strat"><div class="name">📐 Strategy</div><div class="role">Product thinking & design</div></div>
+    <div class="agent ship"><div class="name">🚀 Shipper</div><div class="role">Code review & deploy</div></div>
+    <div class="agent test"><div class="name">🔍 Tester</div><div class="role">QA & browser testing</div></div>
+    <div class="agent safe"><div class="name">🛡️ Safety</div><div class="role">Security & guardrails</div></div>
+    <div class="agent obs"><div class="name">📊 Observer</div><div class="role">Debug & retrospectives</div></div>
+  </div>
+</div>
+
+<footer>
+  <a href="https://github.com/ashish797/FounderClaw">GitHub</a> · MIT License · Built for OpenClaw
+</footer>
+
+</body>
+</html>

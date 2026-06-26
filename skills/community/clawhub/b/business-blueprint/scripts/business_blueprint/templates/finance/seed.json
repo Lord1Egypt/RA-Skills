@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "meta": {},
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [],
+    "actors": [],
+    "flowSteps": [],
+    "systems": []
+  },
+  "relations": [],
+  "views": [],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {},
+  "industryHints": {
+    "title": "金融行业蓝图关注点",
+    "description": "生成金融行业业务蓝图时，请确保覆盖以下关键领域，不要遗漏：",
+    "checklist": [
+      "风险控制：风险评估、预警、处置、反欺诈",
+      "信贷管理：申请、审批、放款、贷后管理",
+      "合规管理：合规检查、审计、监管报送",
+      "客户画像：360 度画像、信用评分、行为分析",
+      "客户服务：智能客服、投诉处理、满意度管理",
+      "产品管理：产品生命周期、定价、营销",
+      "渠道管理：网点、手机银行、网上银行、开放银行",
+      "运营中台：清算、结算、对账、报表",
+      "数据治理：数据质量、主数据、隐私保护"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "hello-skills",
+  "version": "1.0.1",
+  "description": "hello-skills skill",
+  "author": "",
+  "category": "trading",
+  "tags": [],
+  "main": "main.py"
+}

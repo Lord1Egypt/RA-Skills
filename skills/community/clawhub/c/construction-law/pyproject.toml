@@ -1,0 +1,18 @@
+[project]
+name = "construction-law"
+version = "2.11.0"
+description = "Construction contract analysis, claims templates, SOP calculator, and obligations registers for FIDIC, PSSCOC, SIA, and NEC"
+license = "MIT-0"
+requires-python = ">=3.9"
+
+# Zero dependencies for core use
+dependencies = []
+
+[project.optional-dependencies]
+excel = ["openpyxl>=3.1.0"]
+word = ["python-docx>=1.0.0"]
+all = ["openpyxl>=3.1.0", "python-docx>=1.0.0"]
+test = ["pytest>=8.0", "hypothesis>=6.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

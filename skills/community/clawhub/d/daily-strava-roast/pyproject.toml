@@ -1,0 +1,14 @@
+[project]
+name = "daily-strava-roast"
+version = "0.2.5"
+description = "Portable AgentSkill and CLI for generating playful daily Strava roasts"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+daily-strava-roast = "daily_strava_roast:main"
+
+[build-system]
+requires = ["uv_build>=0.11.2,<0.12.0"]
+build-backend = "uv_build"

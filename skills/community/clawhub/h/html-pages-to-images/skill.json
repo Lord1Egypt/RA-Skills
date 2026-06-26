@@ -1,0 +1,58 @@
+{
+  "name": "html-pages-to-images",
+  "version": "1.0.0",
+  "description": "将 HTML 文件中的多个页面元素转换为独立的图片文件",
+  "type": "skill",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "inputs": {
+    "htmlFile": {
+      "type": "string",
+      "description": "要转换的 HTML 文件路径（相对或绝对路径）",
+      "required": false,
+      "default": "xiaohongshu-articles.html"
+    },
+    "outputDir": {
+      "type": "string",
+      "description": "输出图片的目录路径",
+      "required": false,
+      "default": "output"
+    },
+    "pageWidth": {
+      "type": "number",
+      "description": "页面宽度（像素）",
+      "required": false,
+      "default": 375
+    },
+    "pageHeight": {
+      "type": "number",
+      "description": "页面高度（像素）",
+      "required": false,
+      "default": 667
+    },
+    "selector": {
+      "type": "string",
+      "description": "要截图的页面元素选择器",
+      "required": false,
+      "default": ".page"
+    }
+  },
+  "outputs": {
+    "images": {
+      "type": "array",
+      "description": "生成的图片文件路径数组"
+    },
+    "count": {
+      "type": "number",
+      "description": "生成的图片数量"
+    }
+  },
+  "keywords": [
+    "html",
+    "screenshot",
+    "puppeteer",
+    "image",
+    "conversion"
+  ]
+}

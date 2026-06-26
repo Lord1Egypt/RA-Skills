@@ -1,0 +1,22 @@
+{
+  "name": "shike-multi-agent",
+  "slug": "shike-multi-agent",
+  "version": "1.4.0",
+  "description": "Multi-Agent dispatch system for Chinese. Dispatcher delegates to 5 persistent sub-agents via sessions_spawn. Supports polling, reply-then-dispatch, sessionKey reuse. 多Agent调度系统。",
+  "author": "Shike",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "multi-agent",
+    "多agent",
+    "dispatcher",
+    "调度",
+    "协作"
+  ],
+  "license": "MIT-0",
+  "contact": {
+    "email": "sijj888@qq.com",
+    "wechat": "ailvyou88999",
+    "alipay": "13359609888",
+    "paypal": "paypal.me/skaicn"
+  }
+}

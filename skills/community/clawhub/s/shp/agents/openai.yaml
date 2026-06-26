@@ -1,0 +1,7 @@
+interface:
+  display_name: "Shapefile Toolkit"
+  short_description: "Inspect and fix Shapefile packaging, schema, and CRS issues."
+  default_prompt: "Use $shp to inspect, explain, or troubleshoot a Shapefile dataset, including sidecar files, CRS metadata, DBF encoding, schema limits, or conversion planning."
+
+policy:
+  allow_implicit_invocation: true

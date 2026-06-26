@@ -1,35 +1,24 @@
 ---
-name: "Pwd Tool"
-description: "Print the full path of the current working directory. Use for identifying your location in the filesystem."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pwd-tool"
-sourceUrl: "https://clawhub.ai/skills/pwd-tool"
+name: pwd-tool
+description: Print the full path of the current working directory. Use for identifying your location in the filesystem.
 ---
+# PWD - Print Working Directory
 
-# Pwd Tool
+Display the absolute path of the current working directory. Essential for navigation awareness and script path management.
 
-> Print the full path of the current working directory. Use for identifying your location in the filesystem.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pwd-tool`
-- **Source URL:** [https://clawhub.ai/skills/pwd-tool](https://clawhub.ai/skills/pwd-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/pwd-tool
+pwd-tool [options]
+```
+
+## Options
+
+- `-P`: Show physical path (resolve symlinks)
+- `-L`: Show logical path (with symlinks, default)
+
+## Examples
+
+```bash
+pwd-tool
+pwd-tool -P
 ```

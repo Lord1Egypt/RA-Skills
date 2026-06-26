@@ -1,0 +1,49 @@
+{
+  "ticker": "PTR",
+  "company": "PetroChina Company Limited",
+  "analysis_year": 2003,
+  "data_source": "PetroChina FY2003 Form 20-F, SEC EDGAR; Berkshire 2003 annual report; 2004 Berkshire AGM Q&A",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.175, "metric_used": "ROE", "years_averaged": "2001-2003", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.70, "fcf": 5850, "net_income": 8411, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.6, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue and profit expanded materially into 2003; the issue was commodity cyclicality, not structural decline.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Upstream profitability remained strong and there was no two-year gross-margin collapse in the reported period.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.188, "net_income_m": 8411, "ev_m": 44750, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "cost_advantage", "description": "PetroChina's moat was not brand or network. It was a huge low-cost reserve base, integrated domestic infrastructure, and state-linked access that made its asset position difficult to replicate. Buffett's own argument in 2004 was that, on reserves, output, and refining capacity, it was far cheaper than Exxon, BP, or Shell.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "owner_earnings_note": {
+      "summary": "PetroChina's weak raw FCF conversion in 2003 reflected very heavy reserve-development and infrastructure spend inside a still-cheap energy giant.",
+      "maintenance_vs_growth_view": "A large share of capex was sustaining and reserve-replacement spend rather than obviously discretionary growth capex, so owner earnings did not improve enough to rescue the Buffett-style quality case.",
+      "decision_impact": "The note explains why g2 may be too blunt for some resource bargains, but this memo still keeps PASS because the business remains capital-heavy and commodity-driven."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "No specific integrity or capital-allocation red flag drove the rejection here; the issue was business type and cash conversion, not management trustworthiness."
+    }
+  },
+
+  "metrics_snapshot": {
+    "net_income_2003_usd_m": 8411,
+    "operating_cash_flow_2003_usd_m": 16543,
+    "capital_expenditure_2003_usd_m": 10693,
+    "berkshire_cost_usd_m": 488
+  },
+
+  "control_groups": [
+    { "ticker": "XOM", "company": "Exxon Mobil", "year": 2004, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — same commodity exposure, but far less valuation support than PetroChina." },
+    { "ticker": "BP", "company": "BP p.l.c.", "year": 2004, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — integrated major with similar macro exposure, but without PetroChina's extreme discount." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire accumulated a PetroChina stake with cost around $488M and publicly discussed it in 2004.",
+  "actual_result": "Berkshire later exited around 2007 with a multi-billion-dollar gain after the position appreciated dramatically.",
+  "verdict": "❌ framework_wrong",
+  "key_insight": "The current framework intentionally leaves some ultra-cheap, capital-heavy resource bargains on the table when cash conversion does not clear the hard gate."
+}

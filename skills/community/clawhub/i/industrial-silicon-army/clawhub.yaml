@@ -1,0 +1,166 @@
+# ClawHub Publication Configuration
+# 产业互联网硅基军团 - ClawHub 发布配置
+
+name: industrial-silicon-army
+version: 1.4.1
+type: openclaw-skill
+description: "塑化行业AI助手：20个专业Agent辅助采购/生产/销售/财务决策，支持方案生成与规划建议"
+emoji: "🏭"
+author:
+  name: 秒技工作室
+  link: https://xiaping.coze.site
+homepage: https://cloudtrip.ai
+
+# Publisher Info
+publisher:
+  name: "LookingPlas × 云旅智能体超市"
+  website: "https://cloudtrip.ai"
+  github: "https://github.com/cloudtrip-ai"
+  contact: "support@cloudtrip.ai"
+
+# Required Credentials
+required_env:
+  - OPENAI_API_KEY
+primary_env: OPENAI_API_KEY
+
+# External APIs
+apis:
+  - name: OpenAI API
+    url: https://api.openai.com
+    purpose: "LLM大语言模型调用，用于Agent推理和内容生成"
+  - name: LookingPlas
+    url: https://api.lookingplas.com
+    purpose: "塑化行业参考信息，包括行情参考、供应商推荐"
+  - name: 1688
+    url: https://gw.1688.com
+    purpose: "采购参考信息，供应商方案比较"
+  - name: Enterprise APIs
+    url: https://api.lookingplas.com
+    purpose: "企业业务协同参考（可选，需企业版）"
+
+# Category & Tags
+category: industrial-ai
+tags:
+  - industrial
+  - manufacturing
+  - multi-agent
+  - AI运营
+  - 塑化行业
+  - 报价方案
+  - 库存规划
+  - erp
+  - scm
+  - supply-chain
+  - plastics
+  - china
+  - 真实场景验证
+  - 性能指标
+
+triggers:
+  - "塑化报价"
+  - "塑料原料采购"
+  - "库存管理"
+  - "生产排产"
+  - "客户跟进"
+  - "供应商方案参考"
+  - "B2B运营"
+  - "工厂管理"
+  - "ERP集成"
+  - "智能客服"
+  - "PP粒子询价"
+  - "改性料采购"
+  - "供应商匹配"
+
+# Pricing Tiers (must match SKILL.md)
+pricing:
+  basic:
+    price: 299
+    currency: CNY
+    period: month
+    features:
+      - "10个核心专业Agent"
+      - "采购/生产/销售链路"
+      - "基础数据看板"
+      - "3个并发用户"
+  professional:
+    price: 999
+    currency: CNY
+    period: month
+    features:
+      - "全部20个Agent"
+      - "全链路覆盖"
+      - "API集成（ERP/MES/WMS/CRM）"
+      - "15个并发用户"
+      - "SLA 99.5%"
+  enterprise:
+    price: 9999
+    currency: CNY
+    period: month
+    features:
+      - "私有部署"
+      - "行业定制"
+      - "源码交付"
+      - "专属顾问"
+
+# Performance Metrics (v1.1.0 new)
+performance:
+  benchmarks:
+    - metric: "报价响应时间"
+      target: "<60s"
+      actual: "28s"
+    - metric: "方案准确率"
+      target: "≥95%"
+      actual: "96.5%"
+    - metric: "多Agent协同成功率"
+      target: "≥90%"
+      actual: "94.2%"
+    - metric: "路由准确率"
+      target: "≥92%"
+      actual: "96.1%"
+    - metric: "报价采纳率"
+      target: "≥70%"
+      actual: "73.4%"
+
+# Security & Privacy Configuration (v1.3.0)
+# 解决 ClawScan Suspicious: LLM行为分析问题
+security:
+  # 文件系统读写范围限制
+  read_scope:
+    - "./data/industrial-silicon-army/"
+    - "./config/"
+    - "./scripts/"
+  write_scope:
+    - "./data/industrial-silicon-army/output/"
+  
+  # 敏感数据处理策略
+  sensitive_data_handling: "mask_and_encrypt"
+  mask_fields:
+    - account      # 银行账号
+    - tax_id       # 税号
+    - credit_score # 信用评分
+    - payment_info # 支付信息
+  
+  # 操作确认要求
+  require_confirmation: true
+  confirmation_triggers:
+    - "procurement"    # 采购建议
+    - "payment"       # 支付相关
+    - "data_export"   # 数据导出
+  
+  # 禁止的自动操作
+  auto_purchase: false        # 禁止自动下单
+  auto_payment: false         # 禁止自动付款
+  auto_transfer: false        # 禁止自动转账
+  
+  # 数据保留策略
+  data_retention:
+    financial: 0      # 财务数据不持久化
+    logs: 30          # 操作日志保留30天
+    analytics: 90    # 分析数据保留90天
+  
+  # API调用限制
+  api_restrictions:
+    1688:
+      read_only: true
+      auto_order: false
+      require_human_review: true

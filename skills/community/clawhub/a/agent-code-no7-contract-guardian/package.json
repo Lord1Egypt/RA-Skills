@@ -1,0 +1,12 @@
+{
+  "name": "agent-code-no7-contract-guardian",
+  "version": "1.0.0",
+  "description": "Agent Code No.7 合同卫士 - 合同审查与风险识别",
+  "keywords": ["agent", "contract", "legal", "risk", "review"],
+  "author": "monarchmio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monarchmio/agent-code-no7"
+  }
+}

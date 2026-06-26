@@ -1,0 +1,38 @@
+{
+  "name": "bank-financial-report",
+  "version": "1.0.0",
+  "description": "AI-powered financial statement analysis assistant - analyze balance sheets, income statements, cash flows, peer comparison, and investment thesis",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [
+    "bank",
+    "financial analysis",
+    "financial statement",
+    "credit analysis",
+    "investment research",
+    "财报分析",
+    "财务报表",
+    "财务分析",
+    "杜邦分析",
+    "估值分析"
+  ],
+  "author": "gechengling",
+  "license": "MIT",
+  "skill": {
+    "type": "conversation",
+    "triggers": [
+      "财报分析",
+      "财务报表分析",
+      "财务报表审核",
+      "财务分析",
+      "财务尽调",
+      "财务健康诊断",
+      "财务预警",
+      "财务指标分析",
+      "杜邦分析",
+      "估值分析"
+    ]
+  }
+}

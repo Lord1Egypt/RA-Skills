@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Literature Review Writer"
+  short_description: "Chinese academic literature review chapter writer"
+  default_prompt: "Use $thesis-literature-review-writer to write a rigorous Chinese literature review chapter from my thesis topic, variables, and references."

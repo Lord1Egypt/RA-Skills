@@ -1,0 +1,39 @@
+How to buy this ticket
+Fare for 1 adult
+This ticket is non-refundable.
+Fare 1: Carrier AA SAMPLEFARE ORD to PVG
+Passenger type ADT, ROUND-TRIP fare, booking codes O,Q
+Covers ORD-PVG, PVG-HKG
+United States Passenger Civil Aviation Security Service Fee (AY) 5.60
+Carrier-imposed surcharge (YQ) 220.00
+United States Passenger Facility Charge (XF) 4.50
+US International Departure Tax (US) 18.40
+Fare Construction
+ORD AA X/PVG KA HKG 385.00 NUC 385.00 END ROE 1.00 XT 5.60AY 220.00YQ 4.50XF 18.40US
+Total Airfare & Taxes 872.06
+
+Fare 1 Rules
+Category 5: Advance Purchase
+TICKETING MUST BE COMPLETED WITHIN 1 DAY AFTER RESERVATIONS ARE MADE.
+Category 6: Minimum Stay
+TRAVEL FROM LAST STOPOVER MUST COMMENCE NO EARLIER THAN THE FIRST SUN AFTER DEPARTURE.
+Category 7: Maximum Stay
+TRAVEL MUST COMMENCE NO LATER THAN 12 MONTHS AFTER DEPARTURE.
+Category 8: Stopovers
+STOPOVERS NOT PERMITTED.
+Category 9: Transfers
+2 TRANSFERS PERMITTED IN EACH DIRECTION.
+Category 10: Combinability
+OPEN JAWS/CIRCLE TRIPS NOT PERMITTED.
+Category 15: Sales Restrictions
+TICKETS MUST BE ISSUED ON/BEFORE 31DEC26. VALID FOR SALE IN US ONLY.
+Category 16: Penalties
+TICKET IS NON-REFUNDABLE. NO SHOW FORFEITS THE TICKET VALUE.
+Category 31: Voluntary Changes
+CHANGES PERMITTED FOR USD 250 BEFORE DEPARTURE.
+Category 33: Voluntary Refunds
+REFUND NOT PERMITTED.
+BAGGAGE
+FIRST CHECKED BAG USD 35. ONE CARRY-ON BAG PERMITTED.
+SEATS
+ADVANCE SEAT ASSIGNMENT IS AVAILABLE FOR A FEE.

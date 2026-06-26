@@ -1,0 +1,80 @@
+# 360 Power Saver - 电池健康分析™ 模块
+# 生成系统电池报告并打开
+
+Add-Type -AssemblyName PresentationFramework
+
+function New-BatteryReport {
+    # 检测是否有电池
+    $battery = Get-WmiObject -Class Win32_Battery -ErrorAction SilentlyContinue
+    
+    if (-not $battery) {
+        [System.Windows.MessageBox]::Show(
+            "未检测到电池设备。`n`n本功能仅适用于笔记本电脑。",
+            "360°省电大师 - 电池健康分析",
+            "OK",
+            "Warning"
+        )
+        return
+    }
+
+    # 提示用户
+    $result = [System.Windows.MessageBox]::Show(
+        "即将生成电池健康报告。`n`n报告将包含：`n• 电池设计容量与当前容量`n• 充放电循环次数`n• 电池使用历史`n`n点击「确定」继续",
+        "360°省电大师 - 电池健康分析",
+        "OKCancel",
+        "Information"
+    )
+
+    if ($result -ne "OK") {
+        return
+    }
+
+    # 生成报告路径
+    $reportPath = "$env:TEMP\battery-report-$(Get-Date -Format 'yyyyMMdd-HHmmss').html"
+
+    try {
+        # 生成电池报告
+        $process = Start-Process powercfg -ArgumentList "/batteryreport", "/output", $reportPath -NoNewWindow -Wait -PassThru
+        
+        if (Test-Path $reportPath) {
+            # 获取基本信息用于弹窗
+            $battery = Get-WmiObject -Class Win32_Battery
+            $estimatedCharge = $battery.EstimatedChargeRemaining
+            
+            $msg = "电池健康报告已生成！`n`n"
+            $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+            $msg += "📊 当前电量: $estimatedCharge%`n"
+            $msg += "📄 报告路径: $reportPath`n"
+            $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+            $msg += "报告已在浏览器中打开，请查阅详细信息。"
+
+            # 打开报告
+            Start-Process $reportPath
+
+            [System.Windows.MessageBox]::Show(
+                $msg,
+                "360°省电大师 - 电池健康分析完成",
+                "OK",
+                "Information"
+            )
+        } else {
+            [System.Windows.MessageBox]::Show(
+                "报告生成失败，请重试。",
+                "360°省电大师 - 电池健康分析",
+                "OK",
+                "Error"
+            )
+        }
+    }
+    catch {
+        [System.Windows.MessageBox]::Show(
+            "生成报告时出错：`n$($_.Exception.Message)",
+            "360°省电大师 - 电池健康分析",
+            "OK",
+            "Error"
+        )
+    }
+}
+
+# 执行
+New-BatteryReport

@@ -1,0 +1,99 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/imdb/main-search-query/v1 for IMDb Keyword Search through JustOneAPI with searchTerm.",
+  "displayName": "IMDb Keyword Search",
+  "endpointPath": "main-search-query",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get IMDb keyword Search data, including matched results, metadata, and ranking signals, for entity discovery and entertainment research.",
+      "method": "GET",
+      "operationId": "mainSearchQuery",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User's authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The term to search for (e.g., 'fire').",
+          "enumValues": [],
+          "location": "query",
+          "name": "searchTerm",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "Top",
+          "description": "Category of results to include in search.\n\nAvailable Values:\n- `Top`: Top Results\n- `Movies`: Movies\n- `Shows`: TV Shows\n- `People`: People\n- `Interests`: Interests\n- `Episodes`: Episodes\n- `Podcast`: Podcasts\n- `Video_games`: Video Games",
+          "enumValues": [
+            "Top",
+            "Movies",
+            "Shows",
+            "People",
+            "Interests",
+            "Episodes",
+            "Podcast",
+            "Video_games"
+          ],
+          "location": "query",
+          "name": "type",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 25,
+          "description": "Maximum number of results to return (1-300).",
+          "enumValues": [],
+          "location": "query",
+          "name": "limit",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "en_US",
+          "description": "Language and country preferences.\n\nAvailable Values:\n- `en_US`: English (US)\n- `fr_CA`: French (Canada)\n- `fr_FR`: French (France)\n- `de_DE`: German (Germany)\n- `hi_IN`: Hindi (India)\n- `it_IT`: Italian (Italy)\n- `pt_BR`: Portuguese (Brazil)\n- `es_ES`: Spanish (Spain)\n- `es_US`: Spanish (US)\n- `es_MX`: Spanish (Mexico)",
+          "enumValues": [
+            "en_US",
+            "fr_CA",
+            "fr_FR",
+            "de_DE",
+            "hi_IN",
+            "it_IT",
+            "pt_BR",
+            "es_ES",
+            "es_US",
+            "es_MX"
+          ],
+          "location": "query",
+          "name": "languageCountry",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/imdb/main-search-query/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Keyword Search",
+      "tags": [
+        "IMDb"
+      ]
+    }
+  ],
+  "platformKey": "imdb",
+  "primaryTag": "IMDb",
+  "skillName": "justoneapi_imdb_main_search_query",
+  "skillType": "interface",
+  "slug": "justoneapi-imdb-main-search-query",
+  "sourceTitle": "OpenAPI definition"
+}

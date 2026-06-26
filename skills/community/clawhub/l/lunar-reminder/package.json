@@ -1,0 +1,9 @@
+{
+  "name": "lunar-reminder",
+  "version": "1.0.0",
+  "description": "按农历日期设置提醒（生日、节日等）",
+  "private": true,
+  "dependencies": {
+    "lunar-javascript": "^1.6.12"
+  }
+}

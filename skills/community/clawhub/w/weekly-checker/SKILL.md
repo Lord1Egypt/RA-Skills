@@ -1,35 +1,205 @@
 ---
-name: "Weekly Checker"
-description: "OpenClaw 每周例行检查 - 检查系统状态、安全风险、技能库健康，生成检查报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weekly-checker"
-sourceUrl: "https://clawhub.ai/skills/weekly-checker"
+name: weekly-checker
+description: OpenClaw 每周例行检查 - 检查系统状态、安全风险、技能库健康，生成检查报告
+argument-hint: "[full|gateway|skills|security|system] [--report|--notify]"
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# Weekly Checker
+# OpenClaw 每周例行检查
 
-> OpenClaw 每周例行检查 - 检查系统状态、安全风险、技能库健康，生成检查报告
+**版本:** 1.0  
+**创建:** 2026-03-10  
+**作者:** SuperMike
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weekly-checker`
-- **Source URL:** [https://clawhub.ai/skills/weekly-checker](https://clawhub.ai/skills/weekly-checker)
+---
 
-## Overview
+## 功能说明
 
+每周自动执行系统全面检查，包括：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weekly-checker
+1. **OpenClaw 网关** - 运行状态、版本检查
+2. **技能库健康** - 文档完整性、技能数量
+3. **配置安全** - 凭据管理、访问控制
+4. **Windows 系统** - CPU、内存、磁盘、网络
+5. **安全风险** - 敏感信息、文件权限
+6. **日志检查** - 日志大小、异常记录
+
+**触发语句:**
+- "执行每周检查"
+- "检查系统安全"
+- "生成周检报告"
+
+---
+
+## 检查频率
+
+### 自动执行
+- **时间:** 每周一 09:00
+- **方式:** 定时任务自动运行
+- **通知:** 发现问题立即飞书通知
+
+### 手动执行
+- 对话触发："执行每周检查"
+- 命令行：`python tools/weekly_checker.py`
+
+---
+
+## 检查清单
+
+### OpenClaw 系统
+- [ ] 网关运行状态
+- [ ] 版本号检查
+- [ ] 配置文件安全性
+- [ ] 技能库文档完整性
+- [ ] 日志文件大小
+
+### Windows 系统
+- [ ] CPU 使用率（阈值：90%）
+- [ ] 内存使用率（阈值：90%）
+- [ ] 磁盘空间（阈值：90%）
+- [ ] 网络连接状态
+
+### 安全检查
+- [ ] 敏感文件权限
+- [ ] 明文密钥检测
+- [ ] 工作目录完整性
+- [ ] 技能库异常检测
+
+---
+
+## 通知策略
+
+### 🔴 严重问题（立即通知）
+- 网关未运行
+- CPU/内存/磁盘 >95%
+- 发现明文密钥泄露
+- 技能库异常
+
+### 🟡 警告信息（汇总通知）
+- CPU/内存/磁盘 >90%
+- 技能缺少文档
+- 日志文件过大
+- 配置建议
+
+### ✅ 正常状态
+- 记录日志
+- 不主动通知
+
+---
+
+## 报告格式
+
+### JSON 报告
+**位置:** `reports/weekly_check_YYYYMMDD.json`
+
+**内容:**
+```json
+{
+  "check_time": "2026-03-10T09:00:00",
+  "openclaw_gateway": {...},
+  "openclaw_version": {...},
+  "configuration": {...},
+  "skills": {...},
+  "windows_system": {...},
+  "security": {...},
+  "issues": [...],
+  "warnings": [...]
+}
 ```
+
+### 飞书通知
+**格式:**
+```
+🔴 OpenClaw 每周检查 - 发现问题
+
+检查时间：2026-03-10 09:00
+
+发现 2 个问题：
+• [网关] 网关未运行
+  建议：运行 openclaw gateway start
+• [磁盘] C 盘空间不足：92%
+  建议：清理磁盘空间
+
+系统状态摘要：
+- OpenClaw 网关：error
+- 技能库：45/46 有文档
+- CPU: 5%
+- 内存：45%
+- 安全风险：0 个
+```
+
+---
+
+## 处理流程
+
+### 发现问题
+1. 记录问题详情
+2. 评估严重程度
+3. 生成修复建议
+4. 飞书通知纪老师
+5. **等待指示**（不擅自修改）
+
+### 确保万无一失的情况
+仅在以下情况可自动修复：
+- ✅ 有明确修复方案
+- ✅ 修复操作可逆
+- ✅ 风险为零
+- ✅ 已有成功先例
+
+**示例:**
+- ✅ 清理>30 天的旧日志文件
+- ✅ 重启已停止的网关服务
+- ❌ 修改系统配置
+- ❌ 删除技能文件
+- ❌ 修改权限设置
+
+---
+
+## 相关文件
+
+- 检查工具：`tools/weekly_checker.py`
+- 技能文档：`skills/weekly-checker/SKILL.md`
+- 检查报告：`reports/weekly_check_*.json`
+- 通知模板：`reports/feishu_notification_*.txt`
+
+---
+
+## 历史报告
+
+**查看历史:**
+```bash
+# 查看最近 5 次报告
+Get-ChildItem reports/weekly_check_*.json | Select-Object -Last 5
+```
+
+**趋势分析:**
+- 网关稳定性
+- 技能库增长
+- 系统资源使用趋势
+- 安全问题统计
+
+---
+
+## 最佳实践
+
+### 检查前
+- 确保网关运行
+- 确保网络连接
+- 确保有足够权限
+
+### 检查后
+- 审查检查报告
+- 处理严重问题
+- 跟踪警告信息
+- 归档历史报告
+
+### 问题处理
+- 优先处理严重问题
+- 记录处理过程
+- 验证修复效果
+- 更新检查清单
+
+---
+
+_本技能用于定期系统检查，发现问题及时通知，谨慎执行修复操作。_

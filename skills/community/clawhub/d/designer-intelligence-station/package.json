@@ -1,0 +1,52 @@
+{
+  "name": "designer-intelligence-station",
+  "version": "2.1.8",
+  "description": "为设计师提供 AI、智能硬件、手机、设计领域的情报收集与筛选服务。支持多源监测（RSS/API/网页）、6 维筛选标准 v2.0、结构化表格输出、详情链接规范、周刊深度抓取。仅抓取公开内容。",
+  "author": "梨然 - 阿里版",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "intelligence",
+    "news",
+    "ai",
+    "hardware",
+    "mobile",
+    "trend-analysis",
+    "structured-output",
+    "open-sources-only",
+    "deep-crawl",
+    "format-spec-v1.6"
+  ],
+  "skill": {
+    "name": "设计师情报站",
+    "category": "research",
+    "tags": [
+      "设计",
+      "情报",
+      "AI",
+      "新闻",
+      "趋势分析",
+      "结构化输出",
+      "公开内容"
+    ],
+    "capabilities": [
+      "intelligence_collection",
+      "news_filtering",
+      "daily_briefing",
+      "weekly_report",
+      "trend_analysis",
+      "structured_output"
+    ],
+    "security": {
+      "noLogin": true,
+      "noFormSubmission": true,
+      "noPaywallBypass": true,
+      "openSourcesOnly": true,
+      "localDataOnly": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/designer-intelligence-station"
+  }
+}

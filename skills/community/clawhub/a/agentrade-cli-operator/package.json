@@ -1,0 +1,10 @@
+{
+  "name": "@agentrade/skill",
+  "version": "1.0.15",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo \"skill package has no build step\"",
+    "lint": "echo \"skill package has no lint step\""
+  }
+}

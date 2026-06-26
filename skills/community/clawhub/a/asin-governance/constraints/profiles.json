@@ -1,0 +1,33 @@
+{
+  "profiles": {
+    "ace-main": {
+      "node_id": "ace-main",
+      "node_name": "AceCp8",
+      "created_at": "2026-05-13T04:30:00Z",
+      "entropy_budget": {
+        "daily_compute_seconds": 3600,
+        "daily_api_calls": 500,
+        "daily_tokens": 1000000,
+        "daily_posts": 48,
+        "daily_comments": 50,
+        "energy_unit": "arbitrary"
+      },
+      "risk_tolerance": {
+        "max_rollback_cost": "low",
+        "acceptable_failure_rate": 0.05,
+        "auto_rollback_on_drift": true
+      },
+      "trust_weights": {
+        "self": 1.0,
+        "peer_default": 0.5,
+        "verified_peers": 0.8,
+        "unverified": 0.1
+      },
+      "safety_guards": {
+        "pre_action_oracle": true,
+        "post_action_audit": true,
+        "max_action_latency_ms": 30000
+      }
+    }
+  }
+}

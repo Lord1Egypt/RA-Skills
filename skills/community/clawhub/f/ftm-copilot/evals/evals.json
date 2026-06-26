@@ -1,0 +1,50 @@
+{
+  "skill_name": "ftm-copilot",
+  "benchmark_summary": {
+    "with_skill_pass_rate": "100%",
+    "without_skill_pass_rate": "15%",
+    "delta": "+85%"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "solution-design",
+      "prompt": "I need to design an FTM solution that receives ISO 20022 pain.001 messages from a corporate banking portal and routes them to either SWIFT or ACH based on currency and destination country. Walk me through the architecture, which FTM patterns to use, and how the FSM should be structured.",
+      "expected_output": "Should recommend Pattern 9.2 (Routing + ODM) with PT Flow for inbound mapping, FSM states for routing decision, separate SPs for SWIFT and ACH channels, and reference correct ISF namespace and DB2 tables.",
+      "assertions": [
+        "References Pattern 9.2 (Routing) by number or name",
+        "Mentions PT Flow and EP Flow in correct roles",
+        "Uses correct ISF namespace http://www.ibm.com/xmlns/prod/ftm/isf/v3",
+        "References OBJ_BASE or TRANSACTION_BASE correctly",
+        "Describes FSM with meaningful states and transitions"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "debug-stuck-transaction",
+      "prompt": "A transaction is stuck in PROCESSING state for 3 hours. No errors in the ACE logs. Walk me through how to debug this in FTM.",
+      "expected_output": "Should guide through checking OBJ_BASE state, MQ event queue depth, EVENT_BASE for unprocessed events, FSM_TRANSITION for expected events, OBJ_OBJ_REL for correlation, ACE trace logs, and SERVICE_PARTICIPANT_BASE status.",
+      "assertions": [
+        "References OBJ_BASE with STATE column",
+        "Mentions checking MQ event queue depth",
+        "References EVENT_BASE for unprocessed events",
+        "References FSM_TRANSITION table",
+        "Mentions SERVICE_PARTICIPANT_BASE or SP ACTIVE status"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "esql-mapping",
+      "prompt": "Write an ESQL mapper module for an inbound SWIFT MT103 message that maps it to FTM's ISF format. Include the BeginMapper call, namespace declarations, and correct field mappings for the basic credit transfer fields.",
+      "expected_output": "Should produce valid ESQL with correct ISF namespace, XSI namespace, ISF output path (OutputLocalEnvironment.PMP.ISF.XMLNSC), xsi:type on PartyRole elements, Currency as XML attribute, and BeginMapper/EndMapper pattern.",
+      "assertions": [
+        "Declares ISF_NS with correct namespace URI",
+        "Declares XSI_NS for xsi:type attributes",
+        "Uses OutputLocalEnvironment.PMP.ISF.XMLNSC as output path",
+        "Sets xsi:type on DebtorRole or CreditorRole",
+        "Sets Currency as XMLNSC.Attribute (not child element)",
+        "Includes BeginMapper call pattern"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Installed by scripts/setup.sh with: python3 -m pip install --user -r requirements.txt
+# Selenium 4.x needs Python 3.7+; Alibaba Cloud Linux 3.6 gets 3.141.x via marker below.
+selenium>=4.15.0; python_version >= '3.7'
+selenium>=3.141.0,<4.0.0; python_version < '3.7'

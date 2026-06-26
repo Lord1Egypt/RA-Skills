@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>复习计划 · {{exam_type}}</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+  <style>
+    :root {
+      --bg-primary:    #F5F6FA;
+      --bg-surface:    #FFFFFF;
+      --brand:         #6C63FF;
+      --color-high:    #FF4757;
+      --color-mid:     #F0920A;
+      --color-low:     #18A85A;
+      --text-primary:  #1A1A2E;
+      --text-secondary:#6B7280;
+      --border:        rgba(108, 99, 255, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── 顶部信息栏 ── */
+    .header {
+      padding: 12px 24px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid rgba(108, 99, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .header-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-exam  { background: rgba(108, 99, 255, 0.12); color: var(--brand); }
+    .badge-days  { background: rgba(255,  71,  87, 0.12); color: var(--color-high); }
+    .badge-score { background: rgba( 24, 168,  90, 0.12); color: var(--color-low); }
+    .print-btn {
+      margin-left: auto;
+      padding: 5px 14px;
+      background: rgba(108, 99, 255, 0.1);
+      border: 1px solid rgba(108, 99, 255, 0.25);
+      border-radius: 6px;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .print-btn:hover { background: rgba(108, 99, 255, 0.2); }
+
+    /* ── 主内容区 ── */
+    .main { padding: 20px 24px 32px; }
+
+    /* ── 分区通用样式 ── */
+    .section { margin-bottom: 32px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid;
+    }
+    .section-header.knowledge { border-color: var(--brand); }
+    .section-header.weakness  { border-color: var(--color-high); }
+    .section-header.plan      { border-color: var(--color-low); }
+
+    .section-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .section-icon.knowledge { background: rgba(108, 99, 255, 0.12); }
+    .section-icon.weakness  { background: rgba(255,  71,  87, 0.12); }
+    .section-icon.plan      { background: rgba( 24, 168,  90, 0.12); }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .section-header.knowledge .section-title { color: var(--brand); }
+    .section-header.weakness  .section-title { color: var(--color-high); }
+    .section-header.plan      .section-title { color: var(--color-low); }
+
+    .section-count {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* ════════════════════════════════
+       Section 1：思维导图
+       ════════════════════════════════ */
+    #mindmap-chart {
+      width: 100%;
+      height: 520px;
+      background: var(--bg-surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* ════════════════════════════════
+       Section 2：薄弱点预警
+       ════════════════════════════════ */
+    .wp-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .wp-item {
+      background: var(--bg-surface);
+      border: 1px solid rgba(255, 71, 87, 0.25);
+      border-left: 4px solid var(--color-high);
+      border-radius: 8px;
+      padding: 10px 13px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+    }
+    .wp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .wp-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-high);
+      flex: 1;
+    }
+    .wp-cat {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: rgba(255, 71, 87, 0.1);
+      color: var(--color-high);
+    }
+    .wp-evidence {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════════
+       Section 3：复习计划
+       ════════════════════════════════ */
+    .plan-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .plan-phase {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .plan-phase-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(108,99,255,0.04);
+    }
+    .phase-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+    .phase-range {
+      font-size: 12px;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+    .phase-focus {
+      font-size: 12px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .phase-focus.high { background: rgba(255,71,87,0.12); color: var(--color-high); }
+    .phase-focus.mid  { background: rgba(240,146,10,0.12); color: var(--color-mid);  }
+    .phase-focus.low  { background: rgba(24,168,90,0.12);  color: var(--color-low);  }
+    .phase-focus.all  { background: rgba(108,99,255,0.12); color: var(--brand);      }
+
+    .plan-topics {
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .plan-topic {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+    }
+    .topic-cat {
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      min-width: 100px;
+    }
+    .topic-points {
+      color: var(--text-primary);
+      flex: 1;
+      line-height: 1.55;
+    }
+    .topic-time {
+      font-size: 11px;
+      color: var(--brand);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ── 底部统计 ── */
+    .footer {
+      padding: 9px 24px;
+      background: var(--bg-surface);
+      border-top: 1px solid rgba(108,99,255,0.2);
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer span { color: var(--brand); font-weight: 700; }
+    .footer-brand {
+      margin-left: auto;
+      color: rgba(108,99,255,0.4);
+      font-size: 11px;
+      letter-spacing: 0.8px;
+    }
+
+    /* ── 打印 ── */
+    @media print {
+      body { font-size: 11px; }
+      .header { position: static; }
+      .print-btn { display: none; }
+      #mindmap-chart { height: 400px; }
+      .wp-list { grid-template-columns: repeat(2, 1fr); }
+      .wp-item, .plan-phase { break-inside: avoid; box-shadow: none; }
+      .footer { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-title">📋 复习计划</div>
+    <div class="badge badge-exam">📚 {{exam_type}}</div>
+    <div class="badge badge-days">⏳ 距考 {{days_remaining}} 天</div>
+    <div class="badge badge-score">🎯 {{target_score}}</div>
+    <button class="print-btn" onclick="window.print()">🖨️ 打印</button>
+  </div>
+
+  <div class="main">
+
+    <!-- Section 1：知识结构图（思维导图） -->
+    <div class="section">
+      <div class="section-header knowledge">
+        <div class="section-icon knowledge">🗂️</div>
+        <div class="section-title">知识结构图</div>
+        <div class="section-count">共 {{total_points}} 个考点 · 建议 {{total_hours}}h</div>
+      </div>
+      <div id="mindmap-chart"></div>
+    </div>
+
+    <!-- Section 2：薄弱点预警 -->
+    <div class="section">
+      <div class="section-header weakness">
+        <div class="section-icon weakness">⚠️</div>
+        <div class="section-title">薄弱点预警</div>
+        <div class="section-count">共 {{weak_points_count}} 个需重点攻克</div>
+      </div>
+      <div class="wp-list">
+        {{weak_points_html}}
+      </div>
+    </div>
+
+    <!-- Section 3：复习计划 -->
+    <div class="section">
+      <div class="section-header plan">
+        <div class="section-icon plan">📅</div>
+        <div class="section-title">复习计划</div>
+        <div class="section-count">{{plan_mode}} · {{plan_phases_count}} 个阶段</div>
+      </div>
+      <div class="plan-phases">
+        {{study_plan_html}}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    共 <span>{{total_points}}</span> 个考点 ·
+    薄弱点 <span>{{weak_points_count}}</span> 个 ·
+    建议总时长 <span>{{total_hours}}h</span>
+    <div class="footer-brand">天禧 AI Claw · 考前冲刺</div>
+  </div>
+
+  <script>
+    var mindmapData = {{echarts_tree_data}};
+
+    var chart = echarts.init(document.getElementById('mindmap-chart'));
+
+    var option = {
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove',
+        formatter: function(params) {
+          var d = params.data;
+          var tip = d.name;
+          if (d.hours) tip += '  ⏱ ' + d.hours + 'h';
+          if (d.evidence) tip += '<br/><span style="color:#6B7280;font-size:11px">' + d.evidence + '</span>';
+          return tip;
+        }
+      },
+      series: [{
+        type: 'tree',
+        data: [mindmapData],
+        left: '2%',
+        right: '18%',
+        top: '8%',
+        bottom: '8%',
+        symbol: 'circle',
+        symbolSize: function(value, params) {
+          var depth = params.treeAncestors ? params.treeAncestors.length : 0;
+          if (depth === 0) return 14;
+          if (depth === 1) return 10;
+          return 7;
+        },
+        orient: 'LR',
+        expandAndCollapse: true,
+        initialTreeDepth: 2,
+        roam: true,
+        label: {
+          position: 'left',
+          verticalAlign: 'middle',
+          align: 'right',
+          fontSize: 12,
+          color: '#1A1A2E',
+          formatter: function(params) {
+            var d = params.data;
+            if (d.hours) return d.name + '  ' + d.hours + 'h';
+            return d.name;
+          }
+        },
+        leaves: {
+          label: {
+            position: 'right',
+            verticalAlign: 'middle',
+            align: 'left',
+            fontSize: 11
+          }
+        },
+        itemStyle: {
+          borderWidth: 1.5
+        },
+        lineStyle: {
+          color: '#d0d0e8',
+          width: 1.5,
+          curveness: 0.5
+        },
+        emphasis: {
+          focus: 'descendant'
+        },
+        animationDuration: 550,
+        animationDurationUpdate: 750,
+        animationEasing: 'cubicOut'
+      }]
+    };
+
+    chart.setOption(option);
+
+    window.addEventListener('resize', function() {
+      chart.resize();
+    });
+  </script>
+
+</body>
+</html>

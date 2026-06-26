@@ -1,35 +1,133 @@
 ---
-name: "旺小美数据助手"
-description: "查询旺小美系统的客户、录音和接访/接诊数据。当你需要查看录音记录、获取客户信息、查询接访/接诊记录、分析录音内容时，使用此技能。适用于销售顾问、经理需要快速查询旺小美数据的场景。当用户提到"录音"、"客户"、"接访"、"接诊"、"来访"、"旺小美"等相关术语时，或需要查询销售数据、客户详情、录音文件时，应该触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wxm-assistant"
-sourceUrl: "https://clawhub.ai/skills/wxm-assistant"
+name: wxm-assistant
+description: 查询旺小美系统的客户、录音和接访/接诊数据。当你需要查看录音记录、获取客户信息、查询接访/接诊记录、分析录音内容时，使用此技能。适用于销售顾问、经理需要快速查询旺小美数据的场景。当用户提到"录音"、"客户"、"接访"、"接诊"、"来访"、"旺小美"等相关术语时，或需要查询销售数据、客户详情、录音文件时，应该触发此技能。
 ---
 
 # 旺小美数据助手
 
-> 查询旺小美系统的客户、录音和接访/接诊数据。当你需要查看录音记录、获取客户信息、查询接访/接诊记录、分析录音内容时，使用此技能。适用于销售顾问、经理需要快速查询旺小美数据的场景。当用户提到"录音"、"客户"、"接访"、"接诊"、"来访"、"旺小美"等相关术语时，或需要查询销售数据、客户详情、录音文件时，应该触发此技能。
+这是一个让AI能够查询旺小美系统数据的技能。通过扫码授权后，你可以让AI帮你查询录音、客户和接访等各类数据。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wxm-assistant`
-- **Source URL:** [https://clawhub.ai/skills/wxm-assistant](https://clawhub.ai/skills/wxm-assistant)
+## 首次使用 - 授权流程
 
-## Overview
+在使用此技能查询数据之前，需要先完成授权：
 
+1. **发起授权**：告诉我你想查询的数据（如"查看录音列表"）
+2. **扫码授权**：我会生成一个二维码，你用旺小美 App 扫描它
+3. **自动完成**：App 会自动获取当前登录的 token 并返回
+4. **开始使用**：授权完成后，我就可以帮你查询数据了
 
-## Installation
-To install this skill, run the following command in your terminal:
+授权信息会保存在 `~/.wangke-auth-token` 文件中，下次使用时无需重新授权。
+
+## 可以查询的数据
+
+### 录音相关
+
+- **录音列表** - 查看录音文件列表，支持按日期范围、状态、用户等筛选。日期格式：`YYYY-MM-DD HH:mm:ss`
+- **录音详情** - 查看指定录音的详细信息，包括转写文本
+- **录音分析** - 获取 AI 对录音的分析结果（NLP）
+- **录音搜索** - 按关键词搜索录音内容
+
+**使用示例**：
+- "显示最近10条录音记录"
+- "查看录音 ID 为 12345 的详情"
+- "查看今天的录音"
+- "查看2026-04-01到2026-04-30的录音"
+
+### 接访/接诊相关
+
+- **接访列表** - 查看接访/接诊记录列表，支持按时间范围筛选
+- **来访详情** - 查看指定来访的详细信息
+- **虚拟接访** - 查看虚拟接访记录
+
+**使用示例**：
+- "显示今天的接访记录"
+- "查看最近10条接访"
+- "查看2026-04-01到2026-04-30的接访记录"
+
+### 用户与项目
+
+- **当前用户** - 查看当前登录用户的详细信息（姓名、手机号、角色等）
+- **租户项目列表** - 查看当前用户有权限的所有租户和项目
+- **切换项目** - 切换到指定的项目
+
+**使用示例**：
+- "查看当前登录的用户信息"
+- "列出我有权限的所有租户和项目"
+- "切换到项目 ID 为 xxx"
+
+### 客户相关
+
+- **客户列表** - 查看客户列表，支持按时间范围、客户类型、成交状态、客户来源、客户级别、意向程度、是否有录音等多维度筛选
+- **客户详情** - 查看指定客户的详细信息
+- **客户搜索** - 按姓名或手机号搜索客户
+
+**使用示例**：
+- "显示意向客户列表"
+- "查看客户张三的详细信息"
+- "搜索手机号为 138xxxx 的客户"
+- "查看本周新增客户"
+- "查看已成交客户列表"
+
+## 技术实现
+
+此技能使用以下技术实现：
+
+1. **授权管理** (`scripts/auth-manager.js`)
+   - 启动本地 HTTP 服务器接收授权回调
+   - 生成授权二维码
+   - 管理 token 的存储和验证
+
+2. **API 客户端** (`scripts/api-client.js`)
+   - 封装所有旺小美后端 API 调用
+   - 自动处理认证头（`X-Auth-Token`, `X-Platform-Client`）
+   - 统一的错误处理
+
+3. **授权页面** (`references/auth.html`)
+   - 显示授权二维码
+   - 轮询授权状态
+   - 展示授权成功消息
+
+## API 端点
+
+技能使用以下旺小美后端 API：
+
+| 功能 | 方法 | 端点 |
+|------|------|------|
+| 用户信息 | GET | `/saas/v2/user/info` |
+| 租户项目列表 | GET | `/saas/v2/estate/tenant-and-estate/by-user-id` |
+| 切换项目 | POST | `/session/switch-project` |
+| 录音列表 | POST | `/beautx-ai-voice/app/audio/page` |
+| 录音详情 | GET | `/beautx-ai-voice/audio/detail/{audioId}` |
+| 录音 NLP | GET | `/beautx-ai-voice/app/audio/nlp-result/{audioId}` |
+| 接访/接诊列表 | GET | `/beautx-ai-voice/visit` |
+| 来访详情 | GET | `/app/visit/{visitId}` |
+| 客户列表 | POST | `/beautx-ai-voice/app/customer/pageV2` |
+| 客户详情 | GET | `/beautx-ai-voice/app/customer/detailV2` |
+
+## 注意事项
+
+1. **授权有效期**：授权 token 会持久化保存，直到手动清除
+2. **数据安全**：token 存储在本地文件中，权限设为仅用户可读写
+3. **网络要求**：需要能够访问 `wangkeapp.wangxiaobao.com`
+4. **App 版本**：需要旺小美 App 支持扫码授权功能
+
+## 清除授权
+
+如果需要重新授权或更换账号，可以删除授权文件：
+
 ```bash
-hermes skills install clawhub/wxm-assistant
+rm ~/.wangke-auth-token
 ```
+
+或告诉我"清除授权"，我会帮你处理。
+
+## 常见问题
+
+**Q: 授权失败怎么办？**
+A: 确保 App 已登录，网络连接正常，重新扫描二维码即可。
+
+**Q: Token 过期了怎么办？**
+A: 删除 `~/.wangke-auth-token` 文件，重新进行授权即可。
+
+**Q: 可以同时使用多个账号吗？**
+A: 目前不支持，每次授权会覆盖之前的 token。

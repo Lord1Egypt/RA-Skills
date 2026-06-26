@@ -1,35 +1,35 @@
 ---
-name: "Healthprobe"
-description: "Probe any URL and check if it's up. Returns the HTTP status code, response latency in milliseconds, and a healthy/not-healthy verdict. Configurable timeout...."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/healthprobe"
-sourceUrl: "https://clawhub.ai/skills/healthprobe"
+name: healthprobe
+description: "Probe any URL and check if it's up. Returns the HTTP status code, response latency in milliseconds, and a healthy/not-healthy verdict. Configurable timeout. Useful for checking if an API is available before calling it."
+metadata: {"openclaw":{"emoji":"💓","requires":{"bins":["python"]},"install":[{"id":"pip","kind":"uv","packages":["fastapi","uvicorn","pydantic","httpx"]}]}}
 ---
 
-# Healthprobe
+# HealthProbe
 
-> Probe any URL and check if it's up. Returns the HTTP status code, response latency in milliseconds, and a healthy/not-healthy verdict. Configurable timeout....
+Check if a URL is up before you call it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/healthprobe`
-- **Source URL:** [https://clawhub.ai/skills/healthprobe](https://clawhub.ai/skills/healthprobe)
+## Start the server
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/healthprobe
+uvicorn healthprobe.app:app --port 8009
 ```
+
+## Probe a URL
+
+```bash
+curl -s -X POST http://localhost:8009/v1/probe \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com"}' | jq
+```
+
+Returns `healthy` (true if 2xx), `status_code` (HTTP code or -1 on error), `latency_ms`, and `error` (if connection failed).
+
+## With custom timeout
+
+```bash
+curl -s -X POST http://localhost:8009/v1/probe \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://slow-api.example.com", "timeout_ms": 1000}' | jq '.healthy'
+```
+
+Timeout range: 100ms to 30,000ms (default: 5,000ms).

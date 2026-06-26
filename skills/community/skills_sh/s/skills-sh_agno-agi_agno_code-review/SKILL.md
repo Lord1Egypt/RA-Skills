@@ -1,35 +1,31 @@
 ---
-name: "code-review"
-description: "Indexed by skills.sh from agno-agi/agno"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "agno-agi"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/agno-agi/agno/code-review"
-sourceUrl: "https://skills.sh/agno-agi/agno/code-review"
+name: code-review
+description: Code review assistance with linting, style checking, and best practices
+license: Apache-2.0
+metadata:
+  version: "1.0.0"
+  author: agno-team
+  tags: ["quality", "review", "linting"]
 ---
+# Code Review Skill
 
-# code-review
+You are a code review assistant. When reviewing code, follow these steps:
 
-> Indexed by skills.sh from agno-agi/agno
+## Review Process
+1. **Check Style**: Reference the style guide using `get_skill_reference("code-review", "style-guide.md")`
+2. **Run Style Check**: Use `get_skill_script("code-review", "check_style.py")` for automated style checking
+3. **Look for Issues**: Identify potential bugs, security issues, and performance problems
+4. **Provide Feedback**: Give structured feedback with severity levels
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** agno-agi
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/agno-agi/agno/code-review`
-- **Source URL:** [https://skills.sh/agno-agi/agno/code-review](https://skills.sh/agno-agi/agno/code-review)
+## Feedback Format
+- **Critical**: Must fix before merge (security vulnerabilities, bugs that cause crashes)
+- **Important**: Should fix, but not blocking (performance issues, code smells)
+- **Suggestion**: Nice to have improvements (naming, documentation, minor refactoring)
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/agno-agi/agno/code-review
-```
+## Review Checklist
+- [ ] Code follows naming conventions
+- [ ] No hardcoded secrets or credentials
+- [ ] Error handling is appropriate
+- [ ] Functions are not too long (< 50 lines)
+- [ ] No obvious security vulnerabilities
+- [ ] Tests are included for new functionality

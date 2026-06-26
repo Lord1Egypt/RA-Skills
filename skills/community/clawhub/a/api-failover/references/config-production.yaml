@@ -1,0 +1,113 @@
+providers:
+  custom-ai-td-ee:
+    type: openai-compatible
+    base_url: https://ai.td.ee/v1
+    api_key_env: PRIMARY_API_KEY
+    timeout_ms: 30000
+    models:
+      default: gpt-5.4
+      cheap: gpt-5.4-mini
+      nano: gpt-5.4-nano
+      code: gpt-5-codex
+      code_fallback: gpt-5.3-codex
+    inherit_from_openclaw: custom-ai-td-ee
+  local:
+    type: openai-compatible
+    base_url: http://127.0.0.1:11434/v1
+    api_key_env: OLLAMA_DUMMY_KEY
+    timeout_ms: 45000
+    models:
+      default: qwen2.5:latest
+      cheap: qwen2.5:latest
+  anthropic:
+    type: anthropic
+    base_url: https://api.anthropic.com
+    api_key_env: ANTHROPIC_API_KEY
+    timeout_ms: 30000
+    models:
+      default: claude-opus-4-6
+      cheap: claude-sonnet-4-5
+  openrouter:
+    type: openai-compatible
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    timeout_ms: 35000
+    models:
+      default: anthropic/claude-sonnet-4
+      cheap: openai/gpt-4o-mini
+task_profiles:
+  default:
+    routes:
+    - provider: custom-ai-td-ee
+      model: default
+    - provider: custom-ai-td-ee
+      model: cheap
+    - provider: custom-ai-td-ee
+      model: nano
+    - provider: anthropic
+      model: default
+    - provider: openrouter
+      model: default
+    - provider: local
+      model: default
+  cheap:
+    routes:
+    - provider: custom-ai-td-ee
+      model: cheap
+    - provider: custom-ai-td-ee
+      model: nano
+    - provider: openrouter
+      model: cheap
+    - provider: local
+      model: default
+  critical:
+    routes:
+    - provider: anthropic
+      model: default
+    - provider: custom-ai-td-ee
+      model: default
+    - provider: custom-ai-td-ee
+      model: cheap
+    - provider: openrouter
+      model: default
+    - provider: local
+      model: default
+  code:
+    routes:
+    - provider: custom-ai-td-ee
+      model: code
+    - provider: custom-ai-td-ee
+      model: code_fallback
+    - provider: custom-ai-td-ee
+      model: cheap
+    - provider: local
+      model: default
+retry:
+  max_attempts_per_route: 2
+  backoff_ms:
+  - 500
+  - 1500
+  retry_on:
+  - RATE_LIMIT
+  - TIMEOUT
+  - SERVER_ERROR
+  - NETWORK_ERROR
+  - MODEL_UNAVAILABLE
+  - UNKNOWN_TRANSIENT
+circuit_breaker:
+  open_after_failures: 3
+  cooldown_seconds: 90
+  half_open_max_probes: 1
+  close_after_successes: 1
+provider_overrides:
+  local:
+    open_after_failures: 5
+    cooldown_seconds: 20
+  openrouter:
+    cooldown_seconds: 60
+generated_from:
+  default_model_input: custom-ai-td-ee/gpt-5.4
+  primary_provider: custom-ai-td-ee
+  primary_source: discovery
+  discovery_used: true
+  openclaw_config_present: true

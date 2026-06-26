@@ -1,0 +1,4 @@
+interface:
+  display_name: "BookMorph Magic"
+  short_description: "百变书魔坊：从书生成视频、音频与封面图的多形态内容模板"
+  default_prompt: "Use $bookmorph-magic when the user wants to turn a book into a packaged set of content assets such as video, audio, and cover images. This skill is a book-to-content orchestration template: connect your own book selector, longform generator, and cover generator, then bundle everything into a stable episode folder."

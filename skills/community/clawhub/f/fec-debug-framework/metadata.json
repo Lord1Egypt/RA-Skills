@@ -1,0 +1,55 @@
+{
+  "id": "fec-debug-framework",
+  "name": "前端诊断框架",
+  "category": "review-quality",
+  "tags": [
+    "debug",
+    "diagnostic",
+    "build-error",
+    "runtime-error",
+    "troubleshooting"
+  ],
+  "summary": "Unified 5-step diagnostic methodology for frontend issues: build failures, runtime errors, UI anomalies, and API/data problems.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "debug",
+    "diagnostic",
+    "build-error",
+    "runtime-error",
+    "troubleshooting"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when diagnosing frontend build failures, runtime errors, UI anomalies, API/data problems, white screens, request failures, or unexplained production exceptions; Chinese triggers include 调试, debug, 排查, 定位, 报错, 异常, 白屏, 请求失败.",
+  "source": "skills/fec-debug-framework",
+  "references": [
+    "references/report-template.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-dependency-upgrade"
+    ],
+    "boundaryWorkflows": [
+      "Use a dependency upgrade workflow when the task goal is dependency migration, CVE remediation, lockfile risk review, or major version planning.",
+      "Keep ordinary build failures in the debug workflow first; collect evidence before deciding that dependency versions or package migration are the root cause."
+    ],
+    "capabilityTags": [
+      "debug",
+      "diagnostic",
+      "build-error",
+      "runtime-error"
+    ]
+  }
+}

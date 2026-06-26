@@ -1,35 +1,89 @@
 ---
-name: "Tumblr Auto Post"
-description: "自动生成傅盛风格文章和封面图，一键发布到 Tumblr。每次运行时会依次询问主题、目标读者、写作目标、期望长度、内容偏好，确认后自动发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tumblr-auto-post"
-sourceUrl: "https://clawhub.ai/skills/tumblr-auto-post"
+name: tumblr-auto-post
+description: 自动生成傅盛风格文章和封面图，一键发布到 Tumblr。每次运行时会依次询问主题、目标读者、写作目标、期望长度、内容偏好，确认后自动发布。
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📝",
+        "requires": { "bins": ["python3", "uv"], "env": [] },
+      },
+  }
 ---
 
 # Tumblr Auto Post
 
-> 自动生成傅盛风格文章和封面图，一键发布到 Tumblr。每次运行时会依次询问主题、目标读者、写作目标、期望长度、内容偏好，确认后自动发布。
+自动生成傅盛风格文章 + 封面图，发布到 Tumblr。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tumblr-auto-post`
-- **Source URL:** [https://clawhub.ai/skills/tumblr-auto-post](https://clawhub.ai/skills/tumblr-auto-post)
+## 配置（已预置）
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tumblr-auto-post
 ```
+Tumblr 账号：remoneofcourse
+Consumer Key：6hFfvv3WkP46yy6Bgif9f8n0rOhli7eOTHOnBJ07PXk7njZrYK
+Access Token：55OHtil3amJeXLDnTGknXgCGJD7SLM0f09LaS7c0fTkV7w7vAS
+```
+
+## 完整对话流程（自动模式）
+
+**第1步：询问主题**
+> "想发什么主题？"
+
+**第2步：询问目标读者**
+> "目标读者是谁？"
+- 新手（零基础，需要通俗易懂）
+- 从业者（有基础，讲内行门道）
+- 泛用户（普通读者，故事感优先）
+
+**第3步：询问写作目标**
+> "写作目标是什么？"
+- 涨粉（标题党、结构化、引发共鸣）
+- 转化（行动号召、痛点共鸣）
+- 品牌表达（价值观输出、专业背书）
+- 观点输出（有态度、有争议、引发讨论）
+
+**第4步：询问期望长度**
+> "期望多长？"
+- 短文：800-1200字
+- 中长文：1500-2500字
+
+**第5步：询问内容偏好**
+> "内容需要哪些元素？"
+- 数据支撑
+- 真实案例
+- 金句
+- 小标题
+- 全部都要
+
+**第6步：自动生成并发布**
+根据以上输入生成完整文章 → 生成封面图（如有 GEMINI_API_KEY）→ **直接发布到 Tumblr** → 返回文章链接
+
+> 无需额外确认，5个问题回答完毕即触发发布
+
+## 傅盛写作风格特点
+
+- **开头**：用一个具体场景、困惑或痛点引出主题
+- **结构**：用"为什么"和"是什么"驱动思考
+- **类比**：把商业/技术概念用生活化的例子讲清楚
+- **态度**：观点鲜明，不回避矛盾
+- **结尾**：总结 + 给出一个可执行的行动建议
+- **数据**：用数据支撑论点，但不堆砌数字
+
+## 文章模板
+
+根据主题和目标读者定制化生成：
+1. 场景切入（一个具体问题或现象）
+2. 点出矛盾（大多数人的误区）
+3. 三点论述（方向、节奏、接受不完美）
+4. 总结升华 + 行动引导
+
+## 命令行
+
+```bash
+python3 ~/.openclaw/workspace/skills/tumblr-auto-post/scripts/tumblr_post.py "主题"
+```
+
+## 注意
+
+- 图片生成需要 GEMINI_API_KEY（可选，跳过后以纯文本发布）
+- 封面图生成需要 uv（已安装）+ GEMINI_API_KEY
+- 回答完5个问题后自动发布，无需二次确认

@@ -1,0 +1,4 @@
+interface:
+  display_name: "CRM Snail Mail (PostGrid)"
+  short_description: "Pull GHL/FUB contacts and send postal mail via PostGrid"
+  default_prompt: "Fetch contacts from GoHighLevel or Follow Up Boss, normalize mailable addresses, and send personalized letters/postcards through PostGrid with dry-run safety."

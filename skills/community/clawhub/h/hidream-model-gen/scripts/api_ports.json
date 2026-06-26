@@ -1,0 +1,3780 @@
+{
+  "version": "0.6.0",
+  "last_updated": "2026-03-06",
+  "base_url": "https://vivago.ai/api/gw",
+  "_architecture_notes": {
+    "level_1": "一级功能（大功能划分）",
+    "level_2": "二级端口（具体API端点配置）",
+    "naming": "display_name 与 Vivago 网站模型名称对齐",
+    "endpoint_version": "相同端点 + 不同 version = 不同模型名称",
+    "extensibility": "未来可扩展的一级功能包括: keyframe_to_video, template_to_video"
+  },
+  "categories": {
+    "text_to_image": {
+      "name": "文生图",
+      "name_en": "Text to Image",
+      "status": "active",
+      "default_port": "kling-image",
+      "description": "从文本描述生成图像",
+      "ports": {
+        "kling-image": {
+          "name": "Kling Image",
+          "display_name": "Kling O1",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_kling/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "kling-image-o1",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "速度快，质量优秀，推荐使用"
+        },
+        "hidream-txt2img": {
+          "name": "HiDream Txt2Img",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/image/txt2img/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "tested": true,
+          "speed": "medium",
+          "quality": "good",
+          "notes": "已测试，质量良好"
+        },
+        "nano-banana": {
+          "name": "Nano Banana",
+          "display_name": "Nano Banana 2",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_std/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "nano-banana-2",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "已测试，效果优秀，回调使用 txt2img 路径"
+        }
+      }
+    },
+    "image_to_video": {
+      "name": "图生视频",
+      "name_en": "Image to Video",
+      "status": "active",
+      "default_port": "v3Pro",
+      "description": "从静态图像生成视频",
+      "warning": "生成时间较长(2-3分钟)，请谨慎调用",
+      "ports": {
+        "v3Pro": {
+          "name": "V3 Pro",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3Pro",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "高质量，生成较慢"
+        },
+        "v3L": {
+          "name": "V3 Lite",
+          "display_name": "Vivago.ai 2.0 360p",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "360p分辨率，生成速度快"
+        },
+        "kling-video": {
+          "name": "Kling Video",
+          "display_name": "Kling video O1",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "kling-video-o1",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "medium",
+          "quality": "excellent",
+          "notes": "Kling视频模型，质量优秀"
+        }
+      }
+    },
+    "text_to_video": {
+      "name": "文生视频",
+      "name_en": "Text to Video",
+      "status": "testing",
+      "default_port": "v3L",
+      "description": "从文本描述生成视频",
+      "warning": "生成时间较长(2-3分钟)，请谨慎调用",
+      "ports": {
+        "v3L": {
+          "name": "V3 Lite",
+          "display_name": "Vivago.ai 2.0 360p",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "360p文生视频/图生视频，速度快"
+        },
+        "v3Pro": {
+          "name": "V3 Pro",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3Pro",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "高质量文生视频/图生视频"
+        },
+        "kling-video": {
+          "name": "Kling Video",
+          "display_name": "Kling video O1",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_gen2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "kling-video-o1",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "medium",
+          "quality": "excellent",
+          "notes": "文生视频/图生视频已测试，使用 gen2vid 端点"
+        }
+      }
+    },
+    "keyframe_to_video": {
+      "name": "视频首尾帧",
+      "name_en": "Keyframe-to-Video",
+      "status": "active",
+      "default_port": "v3L",
+      "description": "根据首尾帧生成过渡视频",
+      "ports": {
+        "v3L": {
+          "name": "V3 Lite Keyframe",
+          "display_name": "Vivago.ai 2.0 360p",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_keyframes/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "快速版本，360p分辨率"
+        },
+        "v3Pro": {
+          "name": "V3 Pro Keyframe",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_keyframes/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3Pro",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "高质量版本，慢但效果更好"
+        }
+      }
+    },
+    "image_to_image": {
+      "name": "图生图",
+      "name_en": "Image to Image",
+      "status": "active",
+      "default_port": "kling-image",
+      "description": "图像风格转换、编辑、AI肖像、虚拟试衣等功能",
+      "notes": "支持多图输入融合，可用于风格迁移、图像编辑、AI换脸、虚拟试衣等场景",
+      "ports": {
+        "kling-image": {
+          "name": "Kling Image Img2Img",
+          "display_name": "Kling O1",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_kling/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "kling-image-o1",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "max_images": 5,
+          "tested": true,
+          "speed": "fast",
+          "quality": "excellent",
+          "notes": "Kling O1 图生图，速度快，支持多图输入，enhance=2k，推荐使用"
+        },
+        "nano-banana": {
+          "name": "Nano Banana Img2Img",
+          "display_name": "Nano Banana 2",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_std/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "nano-banana-2",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "max_images": 5,
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "Nano Banana 2 图生图，质量优秀但较慢，支持多图输入"
+        }
+      }
+    },
+    "template_to_video": {
+      "name": "视频模板",
+      "name_en": "Template-to-Video",
+      "status": "active",
+      "default_port": "renovation_old_photos",
+      "description": "特定类型视频特效（固定视频模板）",
+      "notes": "不同template对应不同端点和参数",
+      "ports": {
+        "static_shot": {
+          "name": "Static Shot",
+          "display_name": "Static Shot",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "056c8f3b-3b9f-4b7c-bc1b-c790b1512dc8.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Static Shot"
+        },
+        "renovation_of_old_photos": {
+          "name": "Renovation of old photos",
+          "display_name": "Renovation of old photos",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "060c47d2-bb44-4a2f-85aa-00165843a07b.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Renovation of old photos"
+        },
+        "ash_out": {
+          "name": "Ash out",
+          "display_name": "Ash out",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "0c5806e2-9324-4652-8a2e-59276de345a1.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Ash out"
+        },
+        "mystic_traveler": {
+          "name": "Mystic Traveler",
+          "display_name": "Mystic Traveler",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "104e7ce0-6996-4802-9d60-ea2c20dc518d.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Template: Mystic Traveler",
+          "result_type": "video"
+        },
+        "shake_it_down": {
+          "name": "Shake It Down",
+          "display_name": "Shake It Down",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "10d8747c-0afd-4af1-88fa-cc4e464b5383.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Shake It Down"
+        },
+        "1930s_vintage_style": {
+          "name": "1930s vintage style",
+          "display_name": "1930s vintage style",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "113f556f-1c3b-4493-a169-fdc6d265ff55.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 1930s vintage style"
+        },
+        "barbie": {
+          "name": "Barbie",
+          "display_name": "Barbie",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "120e0a05-d4d5-4b04-9afd-62b2a6bd6f94.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Barbie"
+        },
+        "autumn_feast": {
+          "name": "Autumn Feast",
+          "display_name": "Autumn Feast",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "1340d4d6-1a9d-44b5-ba5f-25a451f435d5.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Template: Autumn Feast",
+          "result_type": "video"
+        },
+        "paparazzi_rush": {
+          "name": "Paparazzi Rush",
+          "display_name": "Paparazzi Rush",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "14041335-fcde-4013-8e47-f9c047da700d.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Paparazzi Rush"
+        },
+        "kiss_kiss": {
+          "name": "Kiss Kiss",
+          "display_name": "Kiss Kiss",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "165f52b8-3e14-4e3e-a39d-9491f2ce24ed.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Kiss Kiss"
+        },
+        "hip_twist": {
+          "name": "Hip Twist",
+          "display_name": "Hip Twist",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "18d7276f-b4d3-4078-a7bc-f196575ab258.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Hip Twist"
+        },
+        "magic_reveal_ravenclaw": {
+          "name": "Magic Reveal （Ravenclaw）",
+          "display_name": "Magic Reveal （Ravenclaw）",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "18d7782f-bfe8-49a1-9935-4a262d621fec.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Magic Reveal （Ravenclaw）"
+        },
+        "animal_cooking": {
+          "name": "Animal Cooking",
+          "display_name": "Animal Cooking",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "205b63fc-8d5e-4fd4-a6fc-7f207b6118af.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Animal Cooking"
+        },
+        "girlfriends_rose": {
+          "name": "Girlfriend's Rose",
+          "display_name": "Girlfriend's Rose",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "22673849-17b7-4bab-82d3-d8b8fee41417.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Girlfriend's Rose"
+        },
+        "eye_of_the_storm": {
+          "name": "Eye of the Storm",
+          "display_name": "Eye of the Storm",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "24b50c1f-d050-4ad6-94dc-1c762dc34b6a.mp4",
+          "supported_ratios": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Eye of the Storm"
+        },
+        "jungle_reign": {
+          "name": "Jungle Reign",
+          "display_name": "Jungle Reign",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "26747906-a44c-4d82-b88e-9f96119f990a.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Jungle Reign"
+        },
+        "the_final_professional": {
+          "name": "The Final Professional",
+          "display_name": "The Final Professional",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "26f77fbb-a6c9-42a4-8669-b722b336656a.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: The Final Professional"
+        },
+        "moving_figure": {
+          "name": "Moving Figure",
+          "display_name": "Moving Figure",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "2858143d-8a81-427c-b99f-f84ac8116f80.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Template: Moving Figure",
+          "result_type": "video"
+        },
+        "1940s_suit_portrait": {
+          "name": "1940s suit portrait",
+          "display_name": "1940s suit portrait",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "292bd62c-f0e6-474a-86c9-c57503d79e37.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 1940s suit portrait"
+        },
+        "bikini": {
+          "name": "Bikini",
+          "display_name": "Bikini",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "bb679f1b-ff17-4029-bf6a-e67fc91b1ee4.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Bikini"
+        },
+        "2000s_y2k": {
+          "name": "2000s Y2K",
+          "display_name": "2000s Y2K",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "91768459-aae6-4f4b-aef9-b57b77e50596.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "⚠️ CONTENT_REJECTED: 使用成年男性/女性样本可能触发内容审核，建议更换样本重试",
+          "result_type": "video"
+        },
+        "1960s_elegant": {
+          "name": "1960s Elegant",
+          "display_name": "1960s Elegant",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "30643be1-3bbe-463c-ab7e-842ac6e506da.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Template: 1960s Elegant",
+          "result_type": "video"
+        },
+        "color_the_lines": {
+          "name": "Color the Lines",
+          "display_name": "Color the Lines",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "32170db2-3792-4184-95f2-4515114517dd.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Color the Lines"
+        },
+        "1970s_disco": {
+          "name": "1970s disco",
+          "display_name": "1970s disco",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "325c53f6-2ffd-4896-b232-fd2d69a7d8fd.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 1970s disco"
+        },
+        "1990s_punk_rock": {
+          "name": "1990s Punk Rock",
+          "display_name": "1990s Punk Rock",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "379b6201-7828-423a-93b0-185432405a62.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 1990s Punk Rock"
+        },
+        "victory_dance": {
+          "name": "Victory Dance",
+          "display_name": "Victory Dance",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_animate/async",
+          "result_endpoint": "/v3/video/video_diffusion_animate/async/results",
+          "algo_type": "video_diffusion_animate",
+          "version": "v1",
+          "template_id": "37f1f5ca-e438-490b-b5bc-bbe47d5d67d7.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Victory Dance"
+        },
+        "magic_reveal_gryffindor": {
+          "name": "Magic Reveal （Gryffindor）",
+          "display_name": "Magic Reveal （Gryffindor）",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "3c1f7cfc-df0b-4147-899c-0030f9c912bb.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Magic Reveal （Gryffindor）"
+        },
+        "jiggle_jiggle": {
+          "name": "Jiggle Jiggle",
+          "display_name": "Jiggle Jiggle",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "e942eec6-9b14-42db-815f-38723322ce98.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Jiggle Jiggle"
+        },
+        "shaking": {
+          "name": "Shaking",
+          "display_name": "Shaking",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "3f20d5d8-8332-4cfb-af0e-1aa665595807.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Shaking"
+        },
+        "gentle_rose": {
+          "name": "Gentle Rose",
+          "display_name": "Gentle Rose",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "3f3d65c4-f5b6-4723-912a-bdad07aee31a.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Gentle Rose"
+        },
+        "doodle_alive": {
+          "name": "Doodle Alive",
+          "display_name": "Doodle Alive",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "419b1355-9192-4f20-ae5f-501ccc7decf3.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Template: Doodle Alive",
+          "result_type": "video"
+        },
+        "sexy_pants": {
+          "name": "Sexy Pants",
+          "display_name": "Sexy Pants",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "438ca94c-2a65-4ba8-a1c2-57008d059c16.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Sexy Pants"
+        },
+        "1970s": {
+          "name": "1970s",
+          "display_name": "1970s",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "4f12d18f-ca18-45ec-8b22-495184deed61.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Template: 1970s",
+          "result_type": "video"
+        },
+        "gratitude_photo": {
+          "name": "Gratitude Photo",
+          "display_name": "Gratitude Photo",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "4f41015b-e41f-4134-954e-1034edcec928.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Gratitude Photo"
+        },
+        "wings_of_divinity": {
+          "name": "Wings of Divinity",
+          "display_name": "Wings of Divinity",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "516aeec0-9259-4638-8d47-74e85bd09c1b.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Wings of Divinity"
+        },
+        "ghibli": {
+          "name": "Ghibli",
+          "display_name": "Ghibli",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/style_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "style_transformer",
+          "version": "v1",
+          "template_id": "51c6856c-60ec-4a32-8855-0a8251ededfb.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Ghibli"
+        },
+        "me_in_hand": {
+          "name": "Me in Hand",
+          "display_name": "Me in Hand",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "ef1d7794-3648-4ae6-b481-826fa5eb6422.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Me in Hand"
+        },
+        "frost_alert": {
+          "name": "Frost Alert",
+          "display_name": "Frost Alert",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "fcf1a5db-aa29-4287-8593-b8cbe3eea26a.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Frost Alert"
+        },
+        "music_box": {
+          "name": "MUSIC BOX",
+          "display_name": "MUSIC BOX",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "f9cd3729-02aa-4437-89f8-d2b6d302b3c1.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: MUSIC BOX"
+        },
+        "glasses_display": {
+          "name": "Glasses Display",
+          "display_name": "Glasses Display",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_multi_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_multi_img2vid/async/results",
+          "algo_type": "video_diffusion_multi_img2vid",
+          "version": "v3Pro",
+          "template_id": "94e05404-b8c0-4c11-b21a-88e439e93039.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Glasses Display"
+        },
+        "instant_sadness": {
+          "name": "Instant Sadness",
+          "display_name": "Instant Sadness",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "89d96114-0edc-4b90-81e1-319571195727.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Instant Sadness"
+        },
+        "headphone_vibe": {
+          "name": "Headphone Vibe",
+          "display_name": "Headphone Vibe",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "d33314c1-2cfc-4443-9cab-bf786db7e6e2.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Headphone Vibe"
+        },
+        "apt": {
+          "name": "APT",
+          "display_name": "APT",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_animate/async",
+          "result_endpoint": "/v3/video/video_diffusion_animate/async/results",
+          "algo_type": "video_diffusion_animate",
+          "version": "v1",
+          "template_id": "78a0033b-fc02-45dd-82ee-ae97baad5da7.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: APT"
+        },
+        "a_family": {
+          "name": "A Family",
+          "display_name": "A Family",
+          "status": "tested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "a58a2891-acd7-406a-9bb1-988a1763de80.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Template: A Family",
+          "result_type": "video"
+        },
+        "turkey_chasing": {
+          "name": "Turkey Chasing",
+          "display_name": "Turkey Chasing",
+          "status": "needs_fix",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "bfbf99a7-e76a-4c78-8f16-68c8ca4e4d4f.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "✅ Prompt已修复"
+        },
+        "1970s_punk_animation": {
+          "name": "1970s punk animation",
+          "display_name": "1970s punk animation",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "f0ed7c29-7a01-4970-9482-03006d06b5d9.mp4",
+          "supported_ratios": [
+            "4:3",
+            "3:4",
+            "9:16",
+            "1:1",
+            "16:9"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 1970s punk animation"
+        },
+        "drawings_alive": {
+          "name": "Drawings Alive",
+          "display_name": "Drawings Alive",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "f7e60a3f-7ee3-429f-be46-80793e96093a.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Drawings Alive"
+        },
+        "face_punch": {
+          "name": "Face Punch",
+          "display_name": "Face Punch",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "66b24a71-1a04-4695-8368-48f86642a9c2.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Face Punch"
+        },
+        "bring_comics_to_life": {
+          "name": "Bring Comics to Life",
+          "display_name": "Bring Comics to Life",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "a855fd12-1a85-4e83-a9f7-14a599d63735.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Bring Comics to Life"
+        },
+        "magic_reveal_hufflepuff": {
+          "name": "Magic Reveal （Hufflepuff）",
+          "display_name": "Magic Reveal （Hufflepuff）",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "f59260f4-86c6-4bc0-96eb-07574adc8883.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Magic Reveal （Hufflepuff）"
+        },
+        "glasses": {
+          "name": "Glasses",
+          "display_name": "Glasses",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "e63148ec-5939-4acd-8eed-56e22c5c67c2.mp4",
+          "supported_ratios": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Glasses"
+        },
+        "angel_wings": {
+          "name": "Angel Wings",
+          "display_name": "Angel Wings",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "90a5574d-9121-4225-ac2c-a54c6c96ea89.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Angel Wings"
+        },
+        "phoenix_wings": {
+          "name": "Phoenix Wings",
+          "display_name": "Phoenix Wings",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "9791d0ea-2f2c-47d2-b9c9-b934bb9cfd84.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Phoenix Wings"
+        },
+        "ai_archaeologist": {
+          "name": "AI archaeologist",
+          "display_name": "AI archaeologist",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "8219a1cb-61a1-435a-a991-d92e5dbfb73c.mp4",
+          "supported_ratios": [
+            "4:3",
+            "3:4",
+            "9:16",
+            "1:1",
+            "16:9"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: AI archaeologist"
+        },
+        "romantic_kiss": {
+          "name": "Romantic Kiss",
+          "display_name": "Romantic Kiss",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "86dddb80-e925-42c2-8511-d8e5b163a1c7.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Romantic Kiss"
+        },
+        "phoenix_warrior": {
+          "name": "Phoenix Warrior",
+          "display_name": "Phoenix Warrior",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "80c76107-08f2-4bdd-bea8-3e5b7c168fc9.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Phoenix Warrior"
+        },
+        "metallic_liquid_": {
+          "name": "Metallic Liquid ",
+          "display_name": "Metallic Liquid ",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "e13ef1f6-a193-476c-86b9-4fdabc381f1a.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "4:3",
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Metallic Liquid "
+        },
+        "tracking_shot": {
+          "name": "Tracking shot",
+          "display_name": "Tracking shot",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "dfac4909-4d10-4449-bbde-9805dd3faa9a.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Tracking shot"
+        },
+        "swag_zone": {
+          "name": "Swag Zone",
+          "display_name": "Swag Zone",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "5d1f6f0c-817e-43b2-aa46-1a50052aaf63.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Swag Zone"
+        },
+        "relax": {
+          "name": "Relax",
+          "display_name": "Relax",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "91f2c950-30ed-4253-af54-ed5be2458397.mp4",
+          "supported_ratios": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Relax"
+        },
+        "boyfriends_rose": {
+          "name": "Boyfriend's Rose",
+          "display_name": "Boyfriend's Rose",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "a71e77dd-e4c7-4707-bc09-a90314d59fad.mp4",
+          "supported_ratios": [
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3",
+            "16:9"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Boyfriend's Rose"
+        },
+        "gta_star": {
+          "name": "GTA star",
+          "display_name": "GTA star",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "ba629d2e-9719-4f95-ad20-f3c58366d182.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: GTA star"
+        },
+        "3d_architectural_models": {
+          "name": "3D Architectural Models",
+          "display_name": "3D Architectural Models",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "d9c79609-7fbf-4709-a558-c029e1380824.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 3D Architectural Models"
+        },
+        "tiger_snuggle": {
+          "name": "Tiger Snuggle",
+          "display_name": "Tiger Snuggle",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "ab8ca58d-c131-486d-90e9-98a9c48daefd.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Tiger Snuggle"
+        },
+        "earth_zoom_in": {
+          "name": "Earth Zoom In",
+          "display_name": "Earth Zoom In",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "5421e29c-e9d7-49bd-a2ef-c7a1154a7132.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Earth Zoom In"
+        },
+        "graduation": {
+          "name": "Graduation",
+          "display_name": "Graduation",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "ed9cee6c-7252-4323-b6e1-fa680f932d54.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Graduation"
+        },
+        "roar_of_the_dustlands": {
+          "name": "Roar of the Dustlands",
+          "display_name": "Roar of the Dustlands",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "cd86b87e-9146-4df4-abf8-db6e0d7bab6d.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Roar of the Dustlands"
+        },
+        "starship_chef": {
+          "name": "Starship Chef",
+          "display_name": "Starship Chef",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "68d42973-40f8-40cc-a208-19110afc85a4.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Starship Chef"
+        },
+        "autumn_stroll": {
+          "name": "Autumn Stroll",
+          "display_name": "Autumn Stroll",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "9a0ddcb7-a263-4ede-a4ba-bae3c3bfe367.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Autumn Stroll"
+        },
+        "crystal_wings": {
+          "name": "Crystal Wings",
+          "display_name": "Crystal Wings",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "a006eb49-50c3-4bbe-b905-2ea1ec1b67d9.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Crystal Wings"
+        },
+        "flaming_hand": {
+          "name": "Flaming Hand",
+          "display_name": "Flaming Hand",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "916c4c35-e1b5-46e8-b509-c6062e8a15c4.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Flaming Hand"
+        },
+        "panther_queen": {
+          "name": "Panther Queen",
+          "display_name": "Panther Queen",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "f58233ca-ea37-4875-9947-c543633c0722.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Panther Queen"
+        },
+        "iron_man": {
+          "name": "Iron Man",
+          "display_name": "Iron Man",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "8879f1a2-ea28-4c00-93eb-d0a4f58f151b.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Iron Man"
+        },
+        "gun_point": {
+          "name": "Gun Point",
+          "display_name": "Gun Point",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "75acf6b9-e6c9-49e9-9947-4010fe1ebb09.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Gun Point"
+        },
+        "back_to_steampunk": {
+          "name": "Back to Steampunk",
+          "display_name": "Back to Steampunk",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "8eb5f661-51a9-48b4-a8a0-926885a5e859.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Back to Steampunk"
+        },
+        "turkey_away": {
+          "name": "Turkey Away",
+          "display_name": "Turkey Away",
+          "status": "needs_fix",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "fdc290e5-4832-48b3-b6a0-1a84545bb849.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "✅ Prompt已修复"
+        },
+        "bald_me": {
+          "name": "Bald Me",
+          "display_name": "Bald Me",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "7fb4e9b2-96ae-4fae-9188-28509c1911ec.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Bald Me"
+        },
+        "1980s_cyber_anime_": {
+          "name": "1980s Cyber anime ",
+          "display_name": "1980s Cyber anime ",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "bb5435ac-4963-4c97-96bf-2d6d0a1b84fc.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 1980s Cyber anime "
+        },
+        "dance": {
+          "name": "Dance",
+          "display_name": "Dance",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "fbc9e607-c891-4d25-b4d9-c2405712f123.mp4",
+          "supported_ratios": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Dance"
+        },
+        "fairy": {
+          "name": "Fairy",
+          "display_name": "Fairy",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "86378a7d-89c5-459e-90c6-3ee7b1dc9898.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Fairy"
+        },
+        "ring_ring": {
+          "name": "Ring Ring",
+          "display_name": "Ring Ring",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "b1fadca0-e88c-4609-9d7d-14bfd42eebd8.mp4",
+          "supported_ratios": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Ring Ring"
+        },
+        "anime_figure": {
+          "name": "Anime Figure",
+          "display_name": "Anime Figure",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "5617ad50-c185-49ce-a270-ca036956cac6.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Anime Figure"
+        },
+        "limbo_dance": {
+          "name": "Limbo Dance",
+          "display_name": "Limbo Dance",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_animate/async",
+          "result_endpoint": "/v3/video/video_diffusion_animate/async/results",
+          "algo_type": "video_diffusion_animate",
+          "version": "v1",
+          "template_id": "d8c771f0-a255-4fec-b430-31448c5c02f4.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Limbo Dance"
+        },
+        "glam_cat": {
+          "name": "Glam Cat",
+          "display_name": "Glam Cat",
+          "status": "needs_fix",
+          "endpoint": "/v3/pipeline/figure_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "figure_transformer",
+          "version": "v1",
+          "template_id": "ae5e1f9c-0411-4960-9b74-3d4251c6523b.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "✅ Prompt已修复"
+        },
+        "satisfying_cut": {
+          "name": "Satisfying Cut",
+          "display_name": "Satisfying Cut",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "ff83acfa-9270-4cc7-8fa9-f41e859c0657.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Satisfying Cut"
+        },
+        "orbit_shot": {
+          "name": "Orbit Shot",
+          "display_name": "Orbit Shot",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "bb14b1e0-c816-40da-bf36-f3bbcf25b5b3.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Orbit Shot"
+        },
+        "chicken_time": {
+          "name": "Chicken Time",
+          "display_name": "Chicken Time",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "f826a97b-52e0-4496-b7fa-42cf8b27d2a2.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Chicken Time"
+        },
+        "planetary_racer": {
+          "name": "Planetary Racer",
+          "display_name": "Planetary Racer",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "8c2f6fb0-fe0a-478e-a139-7d36e5361cee.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Planetary Racer"
+        },
+        "squish_it": {
+          "name": "Squish it",
+          "display_name": "Squish it",
+          "status": "untested",
+          "endpoint": "/v3/video/video_effect_squeeze/async",
+          "result_endpoint": "/v3/video/video_effect_squeeze/async/results",
+          "algo_type": "video_effect_squeeze",
+          "version": "v1",
+          "template_id": "ef42229b-77f6-4db1-bf7f-458de654cf60.mp4",
+          "supported_ratios": [
+            "1:1",
+            "9:16",
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Squish it"
+        },
+        "zoom_out": {
+          "name": "Zoom out",
+          "display_name": "Zoom out",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "b9ed32c5-c8a6-45dc-85a6-c526da3ea44b.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Zoom out"
+        },
+        "ghost_rider": {
+          "name": "Ghost Rider",
+          "display_name": "Ghost Rider",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "c4e187ec-fcf4-41ce-b92d-416634084cc5.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Ghost Rider"
+        },
+        "earth_zoom_out_in": {
+          "name": "Earth Zoom Out In",
+          "display_name": "Earth Zoom Out In",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "a3793dda-b3f3-43cf-8639-bd5758d091be.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Earth Zoom Out In"
+        },
+        "thankful_vibes": {
+          "name": "Thankful Vibes",
+          "display_name": "Thankful Vibes",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "817d4fab-c3bb-4ab9-8e49-42600225a2e5.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Thankful Vibes"
+        },
+        "sunglasses_display": {
+          "name": "Sunglasses Display",
+          "display_name": "Sunglasses Display",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_multi_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_multi_img2vid/async/results",
+          "algo_type": "video_diffusion_multi_img2vid",
+          "version": "v3Pro",
+          "template_id": "d9e0fd8f-1d9e-4978-8916-19e276ec0a46.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Sunglasses Display"
+        },
+        "cloud_person": {
+          "name": "Cloud person",
+          "display_name": "Cloud person",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "737648df-4e3b-413f-9856-e3c11ab3d5c6.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Cloud person"
+        },
+        "handheld_shot": {
+          "name": "Handheld Shot",
+          "display_name": "Handheld Shot",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "9b01bcb7-cc6c-419c-805c-6a16b5ece24e.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Handheld Shot"
+        },
+        "dream_wings": {
+          "name": "Dream Wings",
+          "display_name": "Dream Wings",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "a475cd91-9c4a-4075-ab79-4c6025863a2c.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Dream Wings"
+        },
+        "turkey_giant": {
+          "name": "Turkey Giant",
+          "display_name": "Turkey Giant",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "b36db7c4-91e1-4770-abde-1bdf5fa2533d.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Turkey Giant"
+        },
+        "ice_cream": {
+          "name": "Ice cream",
+          "display_name": "Ice cream",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "5c8a2443-a3be-4315-9a16-b00b394189ac.mp4",
+          "supported_ratios": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Ice cream"
+        },
+        "sexy_man": {
+          "name": "Sexy man",
+          "display_name": "Sexy man",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "ab114168-6bf7-45c7-b0ca-7e750b403059.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Sexy man"
+        },
+        "push_in": {
+          "name": "Push-in",
+          "display_name": "Push-in",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "ec47c10d-5192-4be1-a1ea-d5400f7d391d.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Push-in"
+        },
+        "little_turkey": {
+          "name": "Little Turkey",
+          "display_name": "Little Turkey",
+          "status": "needs_fix",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "9b2c5c17-7abe-4ffe-b66a-f402e7e7c7a6.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "✅ Prompt已修复"
+        },
+        "cat_woman": {
+          "name": "Cat Woman",
+          "display_name": "Cat Woman",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "88f3be0a-c048-4b8c-9d4c-b8667318dee0.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Cat Woman"
+        },
+        "cyber_cooker": {
+          "name": "Cyber Cooker",
+          "display_name": "Cyber Cooker",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "aef7b5d0-b454-42e5-928f-105b351df088.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Cyber Cooker"
+        },
+        "joker": {
+          "name": "Joker",
+          "display_name": "Joker",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "9897fe70-9603-41eb-b349-d93f11cb2d46.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Joker"
+        },
+        "flash_flood": {
+          "name": "Flash Flood",
+          "display_name": "Flash Flood",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "f6182198-b91d-4f45-afdf-dde82a86eb4d.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Flash Flood"
+        },
+        "ghibli2": {
+          "name": "Ghibli2",
+          "display_name": "Ghibli2",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/style_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "style_transformer",
+          "version": "v1",
+          "template_id": "520fc40e-d569-4e0e-af1b-29c2371d50f2.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Ghibli2"
+        },
+        "snow_white": {
+          "name": "Snow White",
+          "display_name": "Snow White",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "55b914c6-63b2-4dc0-82a2-95c83e39c30f.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Snow White"
+        },
+        "animal_and_turkey": {
+          "name": "Animal and Turkey",
+          "display_name": "Animal and Turkey",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "ed5e0932-f5a7-4942-bc4f-79ece99e2d3c.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Animal and Turkey"
+        },
+        "boom_hair": {
+          "name": "Boom Hair",
+          "display_name": "Boom Hair",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "8a15d34f-2bfb-4164-ab28-6a32327f970c.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Boom Hair"
+        },
+        "curl_pop": {
+          "name": "Curl Pop",
+          "display_name": "Curl Pop",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "69c57e2f-7db3-4967-ad32-56ea398dd465.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Curl Pop"
+        },
+        "earth_zoom_out": {
+          "name": "Earth Zoom Out",
+          "display_name": "Earth Zoom Out",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "d433b908-aa91-47c6-a8de-0b40b70718ba.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Earth Zoom Out"
+        },
+        "urban_night_rider": {
+          "name": "Urban Night Rider",
+          "display_name": "Urban Night Rider",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "8f2818c2-e8f8-487c-b02b-5be3ff202fb9.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Urban Night Rider"
+        },
+        "paparazzi": {
+          "name": "Paparazzi",
+          "display_name": "Paparazzi",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "a8390351-5180-4a9a-9247-b81f6fb9f9f4.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Paparazzi"
+        },
+        "mermaid": {
+          "name": "Mermaid",
+          "display_name": "Mermaid",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_template/async",
+          "result_endpoint": "/v3/video/video_diffusion_template/async/results",
+          "algo_type": "video_diffusion_template",
+          "version": "v3Pro",
+          "template_id": "c87d4faa-abd5-41ad-89e6-73153d709bb9.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Mermaid"
+        },
+        "fleet_captain": {
+          "name": "Fleet Captain",
+          "display_name": "Fleet Captain",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "5f8f24a8-983c-48bd-85d7-fdca354dfc42.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Fleet Captain"
+        },
+        "fire_wings": {
+          "name": "Fire Wings",
+          "display_name": "Fire Wings",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "7a057976-af4e-4445-ae66-8b89afef40ae.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Fire Wings"
+        },
+        "1960s": {
+          "name": "1960s",
+          "display_name": "1960s",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "7d525864-0843-46bc-91f7-db9cbdb28622.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 1960s"
+        },
+        "dadada": {
+          "name": "DADADA",
+          "display_name": "DADADA",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_animate/async",
+          "result_endpoint": "/v3/video/video_diffusion_animate/async/results",
+          "algo_type": "video_diffusion_animate",
+          "version": "v1",
+          "template_id": "a1b6b944-c13f-4307-8488-febd0d035c7e.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: DADADA"
+        },
+        "long_hair": {
+          "name": "Long hair",
+          "display_name": "Long hair",
+          "status": "untested",
+          "endpoint": "/v2/image/image_easy_edit/async",
+          "result_endpoint": "/v2/image/image_easy_edit/async/results",
+          "algo_type": "image_easy_edit",
+          "version": "v1",
+          "template_id": "752ca89f-a94e-4aa6-8fc1-f3b42ea4cecc.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Long hair"
+        },
+        "elevator_turkey": {
+          "name": "Elevator Turkey",
+          "display_name": "Elevator Turkey",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "8f4644b0-c206-49e6-bf8e-d75dd0e468bd.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Elevator Turkey"
+        },
+        "fall_into_feast": {
+          "name": "Fall into feast",
+          "display_name": "Fall into feast",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "7741b58b-ecba-40c2-a701-c208ab7f2d0e.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Fall into feast"
+        },
+        "food_product_display": {
+          "name": "Food Product Display",
+          "display_name": "Food Product Display",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "73e8afeb-a0a7-4f6b-935b-2e3fd50ac898.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Food Product Display"
+        },
+        "cozy_harvest": {
+          "name": "Cozy Harvest",
+          "display_name": "Cozy Harvest",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "590363ef-c093-491c-bf5f-507b3a8480db.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Cozy Harvest"
+        },
+        "phone_bite": {
+          "name": "Phone Bite",
+          "display_name": "Phone Bite",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "975b4d75-14d0-4c5f-be0a-c2b9d15ded10.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Phone Bite"
+        },
+        "be_the_collectible": {
+          "name": "Be the Collectible",
+          "display_name": "Be the Collectible",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "986d3e0f-e0c2-4ac2-bbc5-0a48da71e662.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Be the Collectible"
+        },
+        "ice_queen": {
+          "name": "Ice Queen",
+          "display_name": "Ice Queen",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "f7281c26-0957-4811-9bc9-1bb8cf8cb774.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Ice Queen"
+        },
+        "shades_on": {
+          "name": "Shades On",
+          "display_name": "Shades On",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "df222792-3aee-4681-aaf0-9914b01e8c8e.mp4",
+          "supported_ratios": [
+            "1:1",
+            "16:9",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Shades On"
+        },
+        "skeletal_bloom": {
+          "name": "Skeletal Bloom",
+          "display_name": "Skeletal Bloom",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "f968142a-3688-402e-a7ce-9332fcca5273.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Skeletal Bloom"
+        },
+        "magic_reveal_slytherin": {
+          "name": "Magic Reveal （Slytherin）",
+          "display_name": "Magic Reveal （Slytherin）",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "aa73f29a-a16b-4ac8-8b79-a8221af7e453.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Magic Reveal （Slytherin）"
+        },
+        "muscles": {
+          "name": "Muscles",
+          "display_name": "Muscles",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "d60e6872-10ce-4a3b-a0d7-9acae94d4fea.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Muscles"
+        },
+        "mechanical_wings": {
+          "name": "Mechanical Wings",
+          "display_name": "Mechanical Wings",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "d403024f-96ea-413f-8987-12692629ce37.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "3:4",
+            "4:3"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Mechanical Wings"
+        },
+        "golden_retriever": {
+          "name": "Golden Retriever",
+          "display_name": "Golden Retriever",
+          "status": "untested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "9e8e8035-8b00-4559-bf74-7a28049d829b.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "9:16",
+            "4:3",
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Golden Retriever"
+        },
+        "back_to_school": {
+          "name": "Back to School",
+          "display_name": "Back to School",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/avatar_transformer/async",
+          "result_endpoint": "/v3/pipeline/avatar_transformer/async/results",
+          "algo_type": "avatar_transformer",
+          "version": "v1",
+          "template_id": "6f897723-db01-4954-9966-51094340bdbf.mp4",
+          "supported_ratios": [
+            "3:4",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Back to School"
+        },
+        "christmas_baby": {
+          "name": "Christmas Baby",
+          "display_name": "Christmas Baby",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/pet_dance/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "pet_dance",
+          "version": "v1",
+          "template_id": "2d4b1db7-b804-4b91-a668-631e69a85ffb.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Christmas Baby"
+        },
+        "christmas_gift": {
+          "name": "Christmas Gift",
+          "display_name": "Christmas Gift",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "e4846223-eb80-4289-be6a-fe2ab516da1b.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Christmas Gift"
+        },
+        "2026": {
+          "name": "2026",
+          "display_name": "2026",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "adf3f8f9-4d1f-4e95-8501-565fd9b89d14.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: 2026"
+        },
+        "crystal_ball": {
+          "name": "Crystal Ball",
+          "display_name": "Crystal Ball",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "23294ef6-3ce1-4e97-8d09-d2e418e55c03.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Crystal Ball"
+        },
+        "battle": {
+          "name": "Battle",
+          "display_name": "Battle",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "46c702a7-e13e-408d-8876-d432ac19a320.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Battle"
+        },
+        "girlfriend": {
+          "name": "Girlfriend",
+          "display_name": "Girlfriend",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "c5ba0934-a70a-438c-97a1-fa1e1a0f92a0.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Girlfriend"
+        },
+        "motorcycle_boy": {
+          "name": "Motorcycle Boy",
+          "display_name": "Motorcycle Boy",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "2dd9a902-7386-42c9-9e00-8cc8d028cd51.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "younger_self": {
+          "name": "Younger Self",
+          "display_name": "Younger Self",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "d174b522-9e81-4ee4-a3a7-cc05bbab14b8.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Younger Self"
+        },
+        "nine_grid_pet": {
+          "name": "Nine Grid Pet",
+          "display_name": "Nine Grid Pet",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "3dcf3974-560c-4f4f-90de-ef91347b9bc8.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "with_deceased": {
+          "name": "With Deceased",
+          "display_name": "With Deceased",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "d1cf7866-402e-435f-a1a2-a83905fc2d85.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: With Deceased"
+        },
+        "dinner_party": {
+          "name": "Dinner Party",
+          "display_name": "Dinner Party",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "7f9238cf-7850-4d2a-b4ab-da89e39ddd85.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "cyberpunk_2026": {
+          "name": "Cyberpunk 2026",
+          "display_name": "Cyberpunk 2026",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "da7c178e-911f-4380-90fc-57886f1c4c21.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Cyberpunk 2026"
+        },
+        "hi_2026": {
+          "name": "Hi 2026",
+          "display_name": "Hi 2026",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "378ca9df-1f1a-4b24-a256-3aeb60dce263.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Hi 2026"
+        },
+        "midnight_neon": {
+          "name": "Midnight Neon",
+          "display_name": "Midnight Neon",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "8f9d900b-d5ce-416f-908a-4f62a4adbb22.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "garden_lover": {
+          "name": "Garden Lover",
+          "display_name": "Garden Lover",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "a54cc0a3-fcfa-40e6-86ae-03099681bf01.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Garden Lover"
+        },
+        "goodnight_kiss": {
+          "name": "Goodnight Kiss",
+          "display_name": "Goodnight Kiss",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "83e7da92-ee22-4981-8922-f8b05c136163.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Goodnight Kiss"
+        },
+        "christmas_bear": {
+          "name": "Christmas Bear",
+          "display_name": "Christmas Bear",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "0290743c-cc30-447e-89ee-b5e3675bef26.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Christmas Bear"
+        },
+        "domineering_ceo": {
+          "name": "Domineering CEO",
+          "display_name": "Domineering CEO",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "e338c0f8-5469-4653-9681-f489ae0be89c.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "christmas_card": {
+          "name": "Christmas Card",
+          "display_name": "Christmas Card",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "3f9f3543-23dd-4414-ae6b-7d97ed9abec4.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Christmas Card"
+        },
+        "fireworks": {
+          "name": "Fireworks",
+          "display_name": "Fireworks",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "2424df7d-7c75-4981-96cc-2f5360e7c2d9.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Fireworks"
+        },
+        "photo_restore": {
+          "name": "Photo Restore",
+          "display_name": "Photo Restore",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/figure_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "figure_transformer",
+          "version": "v1",
+          "template_id": "43535e4c-1569-4b7b-870d-6c236e7bcbb5.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Photo Restore"
+        },
+        "white_sweater": {
+          "name": "White Sweater",
+          "display_name": "White Sweater",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "586810a5-5954-4b0a-ab1f-ee74e8cd0706.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "elegant_gentle": {
+          "name": "Elegant Gentle",
+          "display_name": "Elegant Gentle",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "5818f6e2-3afe-40ee-8a14-ee01a123df2a.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "anime_kiss": {
+          "name": "Anime Kiss",
+          "display_name": "Anime Kiss",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "7c5526e4-ac34-4005-9886-ca5b4fcfa0ca.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Anime Kiss"
+        },
+        "costume_change": {
+          "name": "Costume Change",
+          "display_name": "Costume Change",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "7f8b2675-649d-4f7f-b408-ff16cdb8174b.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "lens_heartbeat": {
+          "name": "Lens Heartbeat",
+          "display_name": "Lens Heartbeat",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "573a83fd-803b-4f17-8027-196ff1931f7b.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "santa_claus": {
+          "name": "Santa Claus",
+          "display_name": "Santa Claus",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "c9b2f812-8bdb-44c4-a100-7c334f914a5e.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Santa Claus"
+        },
+        "snowfield": {
+          "name": "Snowfield",
+          "display_name": "Snowfield",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "be68c43b-bd73-4f94-8a31-a8bb16250042.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Snowfield"
+        },
+        "darkroom_flash": {
+          "name": "Darkroom Flash",
+          "display_name": "Darkroom Flash",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "e6a1bf0b-ba57-4241-b9d5-abaeffed802f.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "noble_person": {
+          "name": "Noble Person",
+          "display_name": "Noble Person",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "b35a1c15-844f-442f-ae61-cbb33bfa272e.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "hold_deceased": {
+          "name": "Hold Deceased",
+          "display_name": "Hold Deceased",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "07644730-b4bd-4bef-bb08-07235434e218.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Hold Deceased"
+        },
+        "boyfriend": {
+          "name": "Boyfriend",
+          "display_name": "Boyfriend",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "8091e2bf-0eb7-4b75-a06a-1fd123d53c15.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Boyfriend"
+        },
+        "heavenly_hug": {
+          "name": "Heavenly Hug",
+          "display_name": "Heavenly Hug",
+          "status": "needs_fix",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "82482327-dddd-4133-a105-b7aefc877c98.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "✅ Prompt已修复"
+        },
+        "christmas_girl": {
+          "name": "Christmas Girl",
+          "display_name": "Christmas Girl",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "f9dc1c67-8bbf-4f36-be0a-2842c93201dd.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Christmas Girl"
+        },
+        "fighting_giant": {
+          "name": "Fighting Giant",
+          "display_name": "Fighting Giant",
+          "status": "needs_fix",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion_img2vid/async/results",
+          "algo_type": "video_diffusion_img2vid",
+          "version": "v3L",
+          "template_id": "23524908-5565-461b-a489-fd3f959d8a0e.mp4",
+          "supported_ratios": [
+            "16:9",
+            "1:1",
+            "3:4",
+            "4:3",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "✅ Prompt已修复"
+        },
+        "night_chat": {
+          "name": "Night Chat",
+          "display_name": "Night Chat",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "f25e0b60-f03a-468f-9d26-8e5412f2d952.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "beach_dance": {
+          "name": "Beach Dance",
+          "display_name": "Beach Dance",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/pet_dance/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "pet_dance",
+          "version": "v1",
+          "template_id": "89a76e78-a3ff-4497-a52c-7158254de350.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Beach Dance"
+        },
+        "polaroid": {
+          "name": "Polaroid",
+          "display_name": "Polaroid",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "46a6d384-5863-4480-8880-e337b3993a41.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "christmas_pet": {
+          "name": "Christmas Pet",
+          "display_name": "Christmas Pet",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/pet_dance/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "pet_dance",
+          "version": "v1",
+          "template_id": "1381d9e1-34cf-4cae-8517-98e782c148c7.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Christmas Pet"
+        },
+        "pet_sled": {
+          "name": "Pet Sled",
+          "display_name": "Pet Sled",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/proto_transformer/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "proto_transformer",
+          "version": "v1",
+          "template_id": "efc34290-26aa-4b64-a579-72033e15ad2b.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Pet Sled"
+        },
+        "kiss_hand": {
+          "name": "Kiss Hand",
+          "display_name": "Kiss Hand",
+          "status": "needs_fix",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "e2830f9d-01b7-4ed5-9451-ab26121002c4.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "✅ Prompt已修复"
+        },
+        "black_rose": {
+          "name": "Black Rose",
+          "display_name": "Black Rose",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "8636f6fa-b970-48e1-9746-917eb0b52029.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "couple_kissing": {
+          "name": "Couple Kissing",
+          "display_name": "Couple Kissing",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/outfit_transformer/async",
+          "result_endpoint": "/v3/pipeline/outfit_transformer/async/results",
+          "algo_type": "outfit_transformer",
+          "version": "v1",
+          "template_id": "d00361dc-d729-4389-92e5-5a0ad24dcbb3.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Couple Kissing"
+        },
+        "advanced_image": {
+          "name": "Advanced Image",
+          "display_name": "Advanced Image",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "ae0d7579-3520-4d25-8fb1-75a5810bd45e.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "gentle_pet": {
+          "name": "Gentle Pet",
+          "display_name": "Gentle Pet",
+          "status": "untested",
+          "endpoint": "/v3/pipeline/pet_dance/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "algo_type": "pet_dance",
+          "version": "v1",
+          "template_id": "a7d9ee6a-d198-480c-a3c9-b68ad002c390.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": false,
+          "notes": "Template: Gentle Pet"
+        },
+        "cool_boss": {
+          "name": "Cool Boss",
+          "display_name": "Cool Boss",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "dfd628a4-d1cb-4fba-b876-4d9c26e0fd63.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        },
+        "three_frames": {
+          "name": "Three Frames",
+          "display_name": "Three Frames",
+          "status": "tested",
+          "endpoint": "/v3/image/image_edit_gen/async",
+          "result_endpoint": "/v3/image/image_edit_gen/async/results",
+          "algo_type": "image_edit_gen",
+          "version": "v1",
+          "template_id": "5b483264-29a5-44f4-9e81-0e19f45d01eb.mp4",
+          "supported_ratios": [
+            "3:4"
+          ],
+          "max_batch_size": 1,
+          "tested": true,
+          "notes": "Tested: Returns image (static effect)",
+          "result_type": "image"
+        }
+      }
+    }
+  },
+  "_future_features": {
+    "planned": []
+  }
+}

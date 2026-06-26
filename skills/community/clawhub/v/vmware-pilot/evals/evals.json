@@ -1,0 +1,53 @@
+{
+  "skill_name": "vmware-pilot",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to expand the database VM's memory from 16GB to 32GB, but test it on a clone first before applying to production",
+      "expected_output": "clone_and_test workflow created with approval gate",
+      "files": [],
+      "expectations": [
+        "Uses plan_workflow with type clone_and_test",
+        "Change spec includes memory_mb: 32768",
+        "Workflow has approval gate before production apply",
+        "Shows workflow steps for user review"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design a workflow to set up a new app environment: create NSX segment, add firewall rules, deploy 3 VMs, install nginx on each",
+      "expected_output": "Custom multi-skill workflow with approval gates",
+      "files": [],
+      "expectations": [
+        "Uses design_workflow or create_workflow",
+        "Steps span multiple skills: nsx, nsx-security, aiops",
+        "Includes approval gate before VM deployment",
+        "Shows the full workflow for user review before execution"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "There's a critical CPU alarm on prod-db-01. Run the incident response workflow to diagnose and fix it",
+      "expected_output": "incident_response workflow executed with approval",
+      "files": [],
+      "expectations": [
+        "Uses plan_workflow with type incident_response",
+        "Collects alarms and events first",
+        "Pauses for approval before remediation",
+        "Acknowledges the alarm after approval"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Save a reusable workflow template for rolling restart of our web cluster (web-01, web-02, web-03) with health checks between each",
+      "expected_output": "rolling_restart workflow saved as template",
+      "files": [],
+      "expectations": [
+        "Uses plan_workflow with type rolling_restart or create_workflow",
+        "Includes health check between each VM restart",
+        "Saves as YAML template with save_as_template=true",
+        "Template is reusable for future runs"
+      ]
+    }
+  ]
+}

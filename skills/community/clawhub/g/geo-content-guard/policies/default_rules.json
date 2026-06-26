@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "reports_dir": "{workspace}/output/geo-content-guard/reports",
+  "size_limits": {
+    "max_text_chars": 30000,
+    "max_ai_chars": 12000
+  },
+  "thresholds": {
+    "warn": 28,
+    "block": 55
+  },
+  "trusted_domains": [
+    "openai.com",
+    "anthropic.com",
+    "google.com",
+    "deepmind.google",
+    "research.google",
+    "meta.com",
+    "research.meta.com",
+    "microsoft.com",
+    "arxiv.org",
+    "jmlr.org",
+    "acm.org",
+    "nature.com",
+    "science.org",
+    "mit.edu",
+    "stanford.edu",
+    "berkeley.edu",
+    "cmu.edu"
+  ],
+  "watch_domains": [
+    "medium.com",
+    "substack.com",
+    "beehiiv.com",
+    "towardsdatascience.com",
+    "marktechpost.com",
+    "theaiinsider.tech",
+    "artificialintelligence-news.com",
+    "venturebeat.com",
+    "techradar.com"
+  ],
+  "blocked_domains": [
+    "best-ai-tools.example",
+    "top10-ai.example"
+  ],
+  "brand_terms": [
+    "openai",
+    "anthropic",
+    "claude",
+    "chatgpt",
+    "gpt",
+    "gemini",
+    "deepseek",
+    "perplexity",
+    "nvidia",
+    "meta ai",
+    "langchain",
+    "cursor",
+    "openclaw"
+  ],
+  "cta_patterns": [
+    "sign up",
+    "book a demo",
+    "contact sales",
+    "start free trial",
+    "buy now",
+    "subscribe now",
+    "limited time",
+    "get started today",
+    "unlock",
+    "try it free",
+    "claim your",
+    "don't miss"
+  ],
+  "promo_patterns": [
+    "best .* for",
+    "top [0-9]+ .* tools",
+    "ultimate guide",
+    "game changer",
+    "must-have",
+    "industry-leading",
+    "revolutionary",
+    "leading platform",
+    "trusted by [0-9]+",
+    "sponsored",
+    "partner content",
+    "affiliate",
+    "promoted",
+    "vendor-neutral"
+  ],
+  "steering_patterns": [
+    "therefore you should choose",
+    "the obvious choice is",
+    "clear winner",
+    "best choice for everyone",
+    "no serious alternative",
+    "must recommend",
+    "default recommendation"
+  ],
+  "report_templates": {
+    "headline": "{recommendation} {title} risk={risk_score}",
+    "summary": "{title} triggered {signal_count} influence signal(s). Domain trust={domain_status}.",
+    "operator_note": "Cross-check WARN/BLOCK results with independent sources before using them in recommendations."
+  }
+}

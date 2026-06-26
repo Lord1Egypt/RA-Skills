@@ -1,0 +1,2 @@
+swisseph>=2.10.0
+lunar-python>=1.0.0

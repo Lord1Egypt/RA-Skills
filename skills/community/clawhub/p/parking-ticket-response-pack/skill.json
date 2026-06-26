@@ -1,0 +1,51 @@
+{
+  "slug": "parking-ticket-response-pack",
+  "name": "Parking Ticket Response Pack",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Prepare a deadline card, response checklist, evidence list, and short appeal draft for a parking ticket before the deadline passes.",
+  "author": "OpenClaw Batch AC",
+  "license": "MIT-0",
+  "language": "en",
+  "category": "Urgent Admin & Logistics",
+  "target_user": "Drivers or vehicle owners who received a parking ticket and need to decide whether to pay, contest, or gather evidence before a deadline.",
+  "tags": [
+    "parking-ticket",
+    "appeal-draft",
+    "deadline",
+    "admin",
+    "vehicle",
+    "dispute-prep"
+  ],
+  "trigger_keywords": [
+    "parking ticket deadline",
+    "contest parking ticket",
+    "appeal parking ticket",
+    "parking citation",
+    "pay or dispute parking ticket",
+    "parking fine response",
+    "ticket evidence checklist"
+  ],
+  "use_cases": [
+    "Capturing parking ticket facts",
+    "Building a deadline card from user-provided citation data",
+    "Choosing a pay or contest path for administrative planning",
+    "Gathering photos, receipts, permits, and timeline evidence",
+    "Drafting a short factual appeal for user review"
+  ],
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "requiresApi": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "requires": {},
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ],
+  "project": "daily-50-skills-2026-05-08"
+}

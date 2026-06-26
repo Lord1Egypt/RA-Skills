@@ -1,0 +1,16 @@
+## AI Interaction Tips
+给 AI 足够的上下文，回答质量翻倍 | Give AI enough context — quality doubles
+一次只问一个问题，AI 回答更精准 | Ask one question at a time for better answers
+不满意回答？换个角度重新问 | Not satisfied? Rephrase and ask again
+让 AI 扮演专家角色，回答更专业 | Ask AI to role-play as an expert
+用"step by step"让 AI 展示推理过程 | Use "step by step" for reasoning chains
+先让 AI 理解问题，再让它解决问题 | Let AI understand before solving
+给 AI 示例，few-shot 比 zero-shot 好 | Few-shot examples beat zero-shot prompts
+告诉 AI 输出格式，结构化回答更有用 | Specify output format for structured answers
+长对话记得总结上文，避免 AI 遗忘 | Summarize context in long chats to prevent forgetting
+AI 不确定时会编造，要求它说"不知道" | AI may hallucinate — ask it to say "I don't know"
+复杂任务拆成多轮对话，效果更好 | Break complex tasks into multi-turn conversations
+让 AI 先列大纲，再逐步展开细节 | Ask AI for an outline first, then expand
+用对比提问: "A 和 B 的区别是什么?" | Compare and contrast: "What's the diff between A and B?"
+让 AI 检查自己的回答是否有错 | Ask AI to verify its own answer
+提供约束条件: 字数限制、语言、风格 | Add constraints: word limit, language, style

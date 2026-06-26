@@ -1,35 +1,262 @@
 ---
-name: "DeepRead Insurance Documents"
-description: "Extract structured data from insurance claims, policies, EOBs, and loss reports. Pre-built schemas for claimant info, coverage, damages, adjuster notes. PII..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deepread-insurance"
-sourceUrl: "https://clawhub.ai/skills/deepread-insurance"
+name: deepread-insurance
+title: DeepRead Insurance Documents
+description: Extract structured data from insurance claims, policies, EOBs, and loss reports. Pre-built schemas for claimant info, coverage, damages, adjuster notes. PII redaction for compliant sharing. 97%+ accuracy. Free 2,000 pages/month.
+metadata: {"openclaw":{"requires":{"env":["DEEPREAD_API_KEY"]},"primaryEnv":"DEEPREAD_API_KEY","homepage":"https://www.deepread.tech"}}
 ---
 
-# DeepRead Insurance Documents
+# DeepRead Insurance Document Processing
 
-> Extract structured data from insurance claims, policies, EOBs, and loss reports. Pre-built schemas for claimant info, coverage, damages, adjuster notes. PII...
+Extract structured data from insurance claims, policy documents, Explanations of Benefits (EOBs), loss reports, and adjuster notes. Then redact claimant PII before sharing with third parties.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deepread-insurance`
-- **Source URL:** [https://clawhub.ai/skills/deepread-insurance](https://clawhub.ai/skills/deepread-insurance)
+> This skill instructs the agent to POST documents to `https://api.deepread.tech` and poll for results. No system files are modified.
 
-## Overview
+## What You Get Back
 
+Submit a claim form and get structured JSON:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deepread-insurance
+```json
+{
+  "claim_number": {"value": "CLM-2026-078432", "hil_flag": false, "found_on_page": 1},
+  "policy_number": {"value": "POL-HO3-445521", "hil_flag": false, "found_on_page": 1},
+  "claimant_name": {"value": "Robert Johnson", "hil_flag": false, "found_on_page": 1},
+  "date_of_loss": {"value": "2026-02-14", "hil_flag": false, "found_on_page": 1},
+  "date_reported": {"value": "2026-02-15", "hil_flag": false, "found_on_page": 1},
+  "loss_type": {"value": "Water Damage", "hil_flag": false, "found_on_page": 1},
+  "loss_description": {"value": "Burst pipe in basement caused flooding to finished living area, damaged drywall, carpet, and personal property", "hil_flag": false, "found_on_page": 2},
+  "property_address": {"value": "789 Elm Dr, Denver, CO 80202", "hil_flag": false, "found_on_page": 1},
+  "coverage_type": {"value": "Homeowners HO-3", "hil_flag": false, "found_on_page": 1},
+  "deductible": {"value": 1000.00, "hil_flag": false, "found_on_page": 1},
+  "estimated_damages": {"value": 24500.00, "hil_flag": true, "reason": "Multiple estimates on different pages"},
+  "adjuster": {"value": "Sarah Martinez, License #ADJ-44521", "hil_flag": false, "found_on_page": 3},
+  "line_items": {"value": [
+    {"category": "Structural", "description": "Drywall replacement — basement", "amount": 8500.00},
+    {"category": "Flooring", "description": "Carpet removal and replacement", "amount": 6200.00},
+    {"category": "Personal Property", "description": "Damaged furniture and electronics", "amount": 5800.00},
+    {"category": "Mitigation", "description": "Water extraction and drying", "amount": 4000.00}
+  ], "hil_flag": false, "found_on_page": 3},
+  "status": {"value": "Under Review", "hil_flag": false, "found_on_page": 1}
+}
 ```
+
+Fields with `hil_flag: true` need human review. Everything else is high-confidence.
+
+## Setup
+
+### Get Your API Key
+
+```bash
+open "https://www.deepread.tech/dashboard/?utm_source=clawhub"
+```
+
+Save it:
+```bash
+export DEEPREAD_API_KEY="sk_live_your_key_here"
+```
+
+## Insurance Claim Schema
+
+Pre-built schema for insurance claims and loss reports:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "claim_number": {"type": "string", "description": "Claim number or reference ID"},
+    "policy_number": {"type": "string", "description": "Insurance policy number"},
+    "claimant_name": {"type": "string", "description": "Name of the claimant or insured"},
+    "date_of_loss": {"type": "string", "description": "Date the loss or incident occurred (YYYY-MM-DD)"},
+    "date_reported": {"type": "string", "description": "Date the claim was reported (YYYY-MM-DD)"},
+    "loss_type": {"type": "string", "description": "Type of loss (Water Damage, Fire, Theft, Auto Collision, Liability, etc.)"},
+    "loss_description": {"type": "string", "description": "Detailed description of the loss or incident"},
+    "property_address": {"type": "string", "description": "Address of the property or location of incident"},
+    "coverage_type": {"type": "string", "description": "Type of coverage (Homeowners, Auto, Commercial, Liability, etc.)"},
+    "deductible": {"type": "number", "description": "Policy deductible amount"},
+    "estimated_damages": {"type": "number", "description": "Total estimated damage amount"},
+    "adjuster": {"type": "string", "description": "Claims adjuster name and license number"},
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": {"type": "string", "description": "Damage category (Structural, Personal Property, Medical, etc.)"},
+          "description": {"type": "string", "description": "Description of damage or expense"},
+          "amount": {"type": "number", "description": "Cost or estimate amount"}
+        }
+      },
+      "description": "Itemized list of damages or expenses"
+    },
+    "status": {"type": "string", "description": "Claim status (Filed, Under Review, Approved, Denied, Settled)"},
+    "settlement_amount": {"type": "number", "description": "Final settlement amount if resolved"},
+    "denial_reason": {"type": "string", "description": "Reason for denial if applicable"}
+  }
+}
+```
+
+## Extract Data From Insurance Documents
+
+### Python
+
+```python
+import requests
+import json
+import time
+
+API_KEY = "sk_live_YOUR_KEY"
+BASE = "https://api.deepread.tech"
+headers = {"X-API-Key": API_KEY}
+
+schema = json.dumps({
+    "type": "object",
+    "properties": {
+        "claim_number": {"type": "string", "description": "Claim number"},
+        "policy_number": {"type": "string", "description": "Policy number"},
+        "claimant_name": {"type": "string", "description": "Claimant name"},
+        "date_of_loss": {"type": "string", "description": "Date of loss (YYYY-MM-DD)"},
+        "loss_type": {"type": "string", "description": "Type of loss"},
+        "loss_description": {"type": "string", "description": "Description of the loss"},
+        "coverage_type": {"type": "string", "description": "Coverage type"},
+        "deductible": {"type": "number", "description": "Deductible amount"},
+        "estimated_damages": {"type": "number", "description": "Total estimated damages"},
+        "line_items": {
+            "type": "array",
+            "items": {"type": "object", "properties": {
+                "category": {"type": "string"},
+                "description": {"type": "string"},
+                "amount": {"type": "number"}
+            }},
+            "description": "Itemized damages"
+        },
+        "status": {"type": "string", "description": "Claim status"}
+    }
+})
+
+with open("claim.pdf", "rb") as f:
+    job = requests.post(
+        f"{BASE}/v1/process",
+        headers=headers,
+        files={"file": f},
+        data={"schema": schema},
+    ).json()
+
+job_id = job["id"]
+print(f"Processing: {job_id}")
+
+delay = 5
+while True:
+    time.sleep(delay)
+    result = requests.get(f"{BASE}/v1/jobs/{job_id}", headers=headers).json()
+
+    if result["status"] == "completed":
+        data = result["result"]["data"]
+        print(json.dumps(data, indent=2))
+
+        for field, value in data.items():
+            if isinstance(value, dict) and value.get("hil_flag"):
+                print(f"\n  REVIEW: {field} — {value.get('reason')}")
+        break
+    elif result["status"] == "failed":
+        print(f"Failed: {result.get('error')}")
+        break
+
+    delay = min(delay * 1.5, 15)
+```
+
+### cURL
+
+```bash
+curl -s -X POST https://api.deepread.tech/v1/process \
+  -H "X-API-Key: $DEEPREAD_API_KEY" \
+  -F "file=@claim.pdf" \
+  -F 'schema={"type":"object","properties":{"claim_number":{"type":"string","description":"Claim number"},"policy_number":{"type":"string","description":"Policy number"},"claimant_name":{"type":"string","description":"Claimant name"},"date_of_loss":{"type":"string","description":"Date of loss"},"loss_type":{"type":"string","description":"Type of loss"},"estimated_damages":{"type":"number","description":"Total damages"},"status":{"type":"string","description":"Claim status"}}}'
+```
+
+## Redact Claimant PII Before Sharing
+
+Redact claimant personal information before sending to adjusters, contractors, or third-party reviewers:
+
+```python
+# Step 1: Extract the claim data you need
+with open("claim.pdf", "rb") as f:
+    extract_job = requests.post(
+        f"{BASE}/v1/process",
+        headers=headers,
+        files={"file": f},
+        data={"schema": schema},
+    ).json()
+
+# Step 2: Redact PII from the original
+with open("claim.pdf", "rb") as f:
+    redact_job = requests.post(
+        f"{BASE}/v1/pii/redact",
+        headers=headers,
+        files={"file": f},
+    ).json()
+
+redact_id = redact_job["id"]
+delay = 5
+while True:
+    time.sleep(delay)
+    result = requests.get(f"{BASE}/v1/pii/{redact_id}", headers=headers).json()
+    if result["status"] == "completed":
+        report = result["report"]
+        print(f"Redacted {report['total_redactions']} PII instances")
+        for pii_type, info in report["pii_detected"].items():
+            print(f"  {pii_type}: {info['count']} found")
+        pdf = requests.get(result["redacted_file_url"]).content
+        with open("claim_redacted.pdf", "wb") as f:
+            f.write(pdf)
+        print("Saved: claim_redacted.pdf")
+        break
+    elif result["status"] == "failed":
+        print(f"Failed: {result.get('error')}")
+        break
+    delay = min(delay * 1.5, 15)
+```
+
+## Use Cases
+
+- **Claims Processing** — Extract claim numbers, dates, damage descriptions, and amounts from incoming claims
+- **Policy Document Analysis** — Pull coverage terms, limits, deductibles, and exclusions from policy documents
+- **EOB Processing** — Extract procedure codes, allowed amounts, patient responsibility from Explanations of Benefits
+- **Loss Reports** — Parse adjuster field reports for damage categories, estimates, and recommendations
+- **Subrogation** — Extract third-party liability information and recovery amounts
+- **Fraud Detection** — Batch-process claims and flag inconsistencies in dates, amounts, or descriptions
+- **Auto Claims** — Extract vehicle info, driver details, accident descriptions, and repair estimates
+- **Workers Comp** — Pull injury descriptions, medical provider info, and lost wage calculations
+
+## Tips for Insurance Documents
+
+- **Specify claim-specific field names** — Using "Claim number or reference ID" works better than just "number"
+- **Include status values** — Adding expected statuses (Filed, Under Review, Approved, Denied) in descriptions helps extraction
+- **Create blueprints for recurring form types** — If you process the same carrier's claim forms repeatedly, train a blueprint at deepread.tech/dashboard/optimizer for 20-30% improvement
+- **Always redact before external sharing** — Use PII redaction before sending to contractors, adjusters, or legal teams
+
+## BYOK — Zero Processing Costs
+
+Connect your own OpenAI, Google, or OpenRouter key via the dashboard. All document processing routes through your provider — zero DeepRead LLM costs, page quota skipped.
+
+Set it up: https://www.deepread.tech/dashboard/byok
+
+## Related DeepRead Skills
+
+- **deepread-ocr** — General OCR and structured extraction — `clawhub install uday390/deepread-ocr`
+- **deepread-pii** — Redact PII from any document — `clawhub install uday390/deepread-pii`
+- **deepread-form-fill** — Fill PDF forms with AI vision — `clawhub install uday390/deepread-form-fill`
+- **deepread-invoice** — Invoice and receipt processing — `clawhub install uday390/deepread-invoice`
+- **deepread-medical** — Medical records processing — `clawhub install uday390/deepread-medical`
+- **deepread-legal** — Legal document processing — `clawhub install uday390/deepread-legal`
+- **deepread-agent-setup** — OAuth device flow authentication — `clawhub install uday390/deepread-agent-setup`
+- **deepread-byok** — Bring Your Own Key setup — `clawhub install uday390/deepread-byok`
+
+## Support
+
+- **Dashboard**: https://www.deepread.tech/dashboard
+- **Demo Repo**: https://github.com/deepread-tech/deepread-demo
+- **n8n Node**: https://www.npmjs.com/package/n8n-nodes-deepread
+- **Issues**: https://github.com/deepread-tech/deep-read-service/issues
+- **Email**: hello@deepread.tech
+
+---
+
+**Get started free:** https://www.deepread.tech/dashboard/?utm_source=clawhub

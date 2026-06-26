@@ -1,0 +1,102 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7F7"/>
+      <stop offset="1" stop-color="#FFFDF7"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF8F8"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="2000" height="1200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#E7B7B7" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0L12 6L0 12V0Z" fill="#D96262"/>
+    </marker>
+    <style>
+      .title { font: 700 42px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#2E1F1F; }
+      .subtitle { font: 500 20px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#7B5A5A; }
+      .section { font: 700 24px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#6C2F2F; }
+      .label { font: 600 20px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#2E1F1F; }
+      .body { font: 500 16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#5F4A4A; }
+      .small { font: 500 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#8A6B6B; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <text x="80" y="85" class="title">Xiaohongshu Ops Skill Architecture</text>
+  <text x="80" y="120" class="subtitle">全自动运营小红书：配置 → 内容 → 图片 → 发布 → 学习</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="170" rx="26" ry="26" width="260" height="220" fill="url(#card)" stroke="#F0C8C8" stroke-width="2"/>
+    <text x="110" y="215" class="section">1. 配置层</text>
+    <text x="110" y="255" class="label">Profile / Rules</text>
+    <text x="110" y="288" class="body">• profile.json</text>
+    <text x="110" y="315" class="body">• rules.md</text>
+    <text x="110" y="342" class="body">• style-notes.md</text>
+    <text x="110" y="375" class="small">定义定位、风格、字数、图片策略、自动学习</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="390" y="170" rx="26" ry="26" width="300" height="220" fill="url(#card)" stroke="#F0C8C8" stroke-width="2"/>
+    <text x="420" y="215" class="section">2. 内容编排层</text>
+    <text x="420" y="255" class="label">run_ops_once / build_xhs_post</text>
+    <text x="420" y="288" class="body">• 选题 / angle</text>
+    <text x="420" y="315" class="body">• 标题 / 正文 / 分页结构</text>
+    <text x="420" y="342" class="body">• 中英混合标题 20 字内重写</text>
+    <text x="420" y="375" class="small">把主题编排成可发布的小红书内容资产</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="740" y="170" rx="26" ry="26" width="300" height="220" fill="url(#card)" stroke="#F0C8C8" stroke-width="2"/>
+    <text x="770" y="215" class="section">3. 图片策略层</text>
+    <text x="770" y="255" class="label">stock / cards-lite / mixed</text>
+    <text x="770" y="288" class="body">• select_image_mode.js</text>
+    <text x="770" y="315" class="body">• fetch_stock_images.js</text>
+    <text x="770" y="342" class="body">• generate_xhs_cards.js</text>
+    <text x="770" y="375" class="small">真实图优先，轻卡片兜底，少字图优先</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1090" y="170" rx="26" ry="26" width="340" height="220" fill="url(#card)" stroke="#F0C8C8" stroke-width="2"/>
+    <text x="1120" y="215" class="section">4. 发布执行层</text>
+    <text x="1120" y="255" class="label">Independent Browser Publish</text>
+    <text x="1120" y="288" class="body">• xhs_independent_browser.js</text>
+    <text x="1120" y="315" class="body">• xhs_independent_publish.js</text>
+    <text x="1120" y="342" class="body">• 自动上传 / 填写 / 发布</text>
+    <text x="1120" y="375" class="small">使用独立 profile 自动发到小红书</text>
+  </g>
+
+  <line x1="340" y1="280" x2="390" y2="280" stroke="#D96262" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="690" y1="280" x2="740" y2="280" stroke="#D96262" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1040" y1="280" x2="1090" y2="280" stroke="#D96262" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="500" rx="28" ry="28" width="580" height="250" fill="#FFFFFF" stroke="#F0C8C8" stroke-width="2"/>
+    <text x="155" y="545" class="section">5. 自动学习层 / Auto Learning</text>
+    <text x="155" y="585" class="label">Reference-only learning</text>
+    <text x="155" y="620" class="body">• 学标题表达</text>
+    <text x="155" y="648" class="body">• 学图片风格</text>
+    <text x="155" y="676" class="body">• 学 AI / 效率 / workflow 热点</text>
+    <text x="155" y="710" class="small">写入本地参考，不黑箱修改主 profile</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="770" y="500" rx="28" ry="28" width="660" height="250" fill="#FFFFFF" stroke="#F0C8C8" stroke-width="2"/>
+    <text x="805" y="545" class="section">6. 最终产物 / Final Outputs</text>
+    <text x="805" y="585" class="label">Publish-ready assets + Live publish</text>
+    <text x="805" y="620" class="body">• post.json</text>
+    <text x="805" y="648" class="body">• pages.json</text>
+    <text x="805" y="676" class="body">• PNG assets</text>
+    <text x="805" y="704" class="body">• Published Xiaohongshu note</text>
+    <text x="805" y="734" class="small">从配置到真实发布的一条完整自动化链路</text>
+  </g>
+
+  <line x1="700" y1="625" x2="770" y2="625" stroke="#D96262" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1260" y1="390" x2="1260" y2="500" stroke="#D96262" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="410" y1="390" x2="410" y2="500" stroke="#D96262" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <text x="80" y="840" class="small">Skill core: SKILL.md + references/ + scripts/   ·   Repo-friendly: README + .gitignore + assets</text>
+</svg>

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "text_suffixes": [
+    ".json",
+    ".md",
+    ".py",
+    ".txt"
+  ],
+  "exclude_directories": [
+    ".git",
+    ".artifacts",
+    "__pycache__"
+  ],
+  "blocked_patterns": [
+    {
+      "name": "path-signature",
+      "pattern": "(?:^|[^A-Za-z0-9_])(?:src[\\\\/]|/\u0055sers/|[A-Za-z]:\\\\)"
+    },
+    {
+      "name": "network-literal",
+      "pattern": "(?:https?:\\/\\/|w{3}\\.|\\b[a-z0-9-]+\\.(?:com|net|org|io|dev|app|ai|cn)\\b)"
+    }
+  ]
+}

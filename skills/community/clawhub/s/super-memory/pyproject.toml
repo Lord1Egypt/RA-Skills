@@ -1,0 +1,137 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "VERSION"
+pattern = "^(?P<version>\\d+\\.\\d+\\.\\d+)$"
+
+[project]
+name = "agent-memory"
+dynamic = ["version"]
+description = "Full-stack memory OS for AI agents — multi-engine recall, spirit-butler orchestration, skill distribution, and enterprise governance."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Agent Memory Contributors" }
+]
+keywords = ["memory", "ai-agent", "vector-search", "llm", "rag"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "typing_extensions>=3.7.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/agent-memory/agent-memory"
+Documentation = "https://agent-memory.readthedocs.io"
+Repository = "https://github.com/agent-memory/agent-memory"
+"Bug Tracker" = "https://github.com/agent-memory/agent-memory/issues"
+Changelog = "https://github.com/agent-memory/agent-memory/releases"
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+test = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+semantic = ["sqlite-vec>=0.1.9", "chromadb>=0.4.0", "sentence-transformers>=2.2.0", "transformers>=4.36.0"]
+reranker = ["FlagEmbedding>=1.2.0"]
+bm25 = ["rank-bm25>=0.2"]
+chinese = ["jieba>=0.42"]
+docs = ["sphinx>=7.0", "sphinx-rtd-theme>=2.0", "sphinx-autoapi>=3.0"]
+benchmark = ["psutil>=5.9", "matplotlib>=3.7"]
+numpy = ["numpy>=1.24"]
+hnswlib = ["hnswlib>=0.8"]
+web = [
+    "fastapi>=0.100",
+    "uvicorn[standard]>=0.20",
+    "pydantic>=2.0",
+]
+pg = [
+    "asyncpg>=0.29",
+]
+observability = ["opentelemetry-api>=1.20", "opentelemetry-sdk>=1.20"]
+all = [
+    "agent-memory[web,pg,semantic,reranker,bm25,chinese,numpy,hnswlib,observability]",
+]
+full = [
+    "sqlite-vec>=0.1.9",
+    "chromadb>=0.4.0",
+    "sentence-transformers>=2.2.0",
+    "transformers>=4.36.0",
+    "FlagEmbedding>=1.2.0",
+    "rank-bm25>=0.2",
+    "jieba>=0.42",
+    "fastapi>=0.100",
+    "uvicorn[standard]>=0.20",
+    "pydantic>=2.0",
+    "asyncpg>=0.29",
+    "numpy>=1.24",
+    "hnswlib>=0.8",
+    "opentelemetry-api>=1.20",
+    "opentelemetry-sdk>=1.20",
+]
+
+[project.scripts]
+agent-memory = "agent_memory.cli:main"
+agent-memory-server = "agent_memory.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agent_memory"]
+
+[tool.pytest.ini_options]
+testpaths = ["agent_memory/tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["agent_memory"]
+omit = [
+    "agent_memory/tests/*",
+    "agent_memory/backup_pre_v10/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
+fail_under = 80
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "C4", "TID252"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["agent_memory"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = ["agent_memory/tests/", "agent_memory/backup_pre_v10/"]

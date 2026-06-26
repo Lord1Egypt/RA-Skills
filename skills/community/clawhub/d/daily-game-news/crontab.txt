@@ -1,0 +1,4 @@
+# Daily Game News Cron Job
+# 每天北京时间 10:00 执行（根据配置文件）
+
+0 10 * * * cd /home/admin/.openclaw/workspace/skills/daily-game-news && source .venv/bin/activate && python scripts/crawler.py >> /home/admin/.openclaw/workspace/logs/daily-game-news.log 2>&1

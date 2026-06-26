@@ -1,0 +1,40 @@
+{
+  "databaseId": 2002,
+  "workflowName": "CI",
+  "headBranch": "release/1.2",
+  "headSha": "queue2002",
+  "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2002",
+  "repository": {
+    "nameWithOwner": "flowcreatebot/conspiracy-canvas"
+  },
+  "jobs": [
+    {
+      "name": "test (ubuntu-latest, python-3.12)",
+      "createdAt": "2026-03-05T11:00:00Z",
+      "startedAt": "2026-03-05T11:08:30Z",
+      "completedAt": "2026-03-05T11:17:00Z",
+      "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2002/job/2"
+    },
+    {
+      "name": "build / node-22",
+      "createdAt": "2026-03-05T11:00:00Z",
+      "startedAt": "2026-03-05T11:02:00Z",
+      "completedAt": "2026-03-05T11:09:30Z",
+      "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2002/job/3"
+    },
+    {
+      "name": "lint / ubuntu-latest",
+      "createdAt": "2026-03-05T11:00:00Z",
+      "startedAt": "2026-03-05T11:00:20Z",
+      "completedAt": "2026-03-05T11:02:00Z",
+      "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2002/job/4"
+    },
+    {
+      "name": "artifact-check",
+      "createdAt": "2026-03-05T11:00:00Z",
+      "startedAt": null,
+      "completedAt": null,
+      "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2002/job/5"
+    }
+  ]
+}

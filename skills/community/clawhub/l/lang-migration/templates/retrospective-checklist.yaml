@@ -1,0 +1,53 @@
+# retrospective-checklist.yaml
+# Auto-grows as fixes are applied during P4/P5.
+# Each entry represents one root cause CLASS, not one bug instance.
+# Initialized at P0 Bootstrap (alongside the other four workspace files); grows throughout P4 and P5.
+#
+# Root cause categories:
+#   ecosystem_gap_unapplied       — known gap not applied during translation
+#   semantic_contract_lost        — type/function implicit contract not preserved
+#   invariant_not_transferred     — P3 inferred invariant missing in target
+#   magic_number_decontextualized — constant translated without named context
+#   control_flow_collapsed        — IPO steps merged or reordered
+#   error_class_narrowed          — specific exception lost to generic error
+#   side_effect_dropped           — documented side effect not replicated
+#   ipo_source_lines_wrong        — P3 analysis based on wrong line range
+#   test_fixture_mismatch         — fixture format changed between source and target
+#   other                         — describe precisely in root_cause field
+
+meta:
+  project: ""
+  lang_pair: ""
+  created_at: ""
+  last_updated: ""
+  total_entries: 0
+  total_instances_found: 0
+  total_instances_fixed: 0
+
+entries: []
+# Each entry:
+# - id: "RCA-001"
+#   discovered_phase: ""         # P4 | P5
+#   discovered_at: ""            # ISO date
+#
+#   phenomenon: ""               # specific error: file, line, error message
+#   root_cause_category: ""      # from category list above
+#   root_cause: ""               # structural reason, not "I forgot X"
+#   fix_applied: ""              # what was done, with file/line refs
+#
+#   checklist_rule: ""           # "Whenever [X], check for [Y]" — the reusable rule
+#   generalization: ""           # one-line pattern description
+#
+#   scope_scan_query: ""         # grep/search command used (written BEFORE scanning)
+#   scope_scan_results:
+#     - path: ""
+#       verdict: ""              # FIXED | OK | DEFERRED
+#       notes: ""
+#
+#   instances_found: 0
+#   instances_fixed: 0
+#   instances_ok: 0
+#   status: ""                   # RESOLVED | DEFERRED
+#
+#   ecosystem_map_update_required: false
+#   ecosystem_map_note: ""

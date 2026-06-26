@@ -1,0 +1,71 @@
+{
+  "mode": "strict",
+  "api_key": "EDAY1yl12c9asMRkeejs6KtF4SDlBPkR",
+  "custom": {
+    "shell": {
+      "whitelist_mode": true,
+      "allowed_commands": [],
+      "blocked_commands": [
+        "del",
+        "rm",
+        "rmdir",
+        "format",
+        "shutdown",
+        "restart",
+        "net user",
+        "net localgroup",
+        "reg add",
+        "reg delete",
+        "taskkill",
+        "kill -9",
+        "curl -o",
+        "wget",
+        "invoke-webrequest",
+        "invoke-restmethod",
+        "iex",
+        "iwr",
+        "downloadstring"
+      ],
+      "blocked_patterns": [
+        "rm\\s+-rf",
+        "del\\s+/[fq]",
+        "format\\s+",
+        "\\|.*iex",
+        "powershell.*-enc"
+      ]
+    },
+    "file": {
+      "enabled": true,
+      "allowed_dirs": [],
+      "blocked_dirs": [
+        "/Windows",
+        "/Program Files",
+        "/Program Files (x86)",
+        "/$Recycle.Bin",
+        "/System Volume Information",
+        "/Users/Public",
+        "/PerfLogs"
+      ],
+      "blocked_patterns": [
+        "\\.\\./",
+        "\\.exe$",
+        "\\.dll$",
+        "\\.bat$",
+        "\\.cmd$",
+        "\\.ps1$",
+        "\\.sh$",
+        "\\.vbs$",
+        "\\.js$",
+        "\\.msi$"
+      ]
+    },
+    "process": {
+      "enabled": true
+    }
+  },
+  "log": {
+    "enabled": true,
+    "file": "security.log",
+    "sensitive": false
+  }
+}

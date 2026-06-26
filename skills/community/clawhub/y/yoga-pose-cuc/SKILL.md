@@ -1,35 +1,100 @@
 ---
-name: "瑜伽体式知识库 (CUC)"
-description: "中国传媒大学瑜伽精品课（赵晓琳老师）瑜伽体式知识库。当用户询问瑜伽体式相关问题、体式大全、具体体式名称（如战士二式、平板支撑、蛇式、骆驼式、下犬式、猫弓背式、虎式、新月式等），或提到瑜伽动作要领、发力部位、梵文名称、体式起源故事等内容时触发。提供专业、温暖、有文化底蕴的瑜伽体式解答。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yoga-pose-cuc"
-sourceUrl: "https://clawhub.ai/skills/yoga-pose-cuc"
+name: yoga-pose-cuc
+description: 中国传媒大学瑜伽精品课（赵晓琳老师）瑜伽体式知识库。当用户询问瑜伽体式相关问题、体式大全、具体体式名称（如战士二式、平板支撑、蛇式、骆驼式、下犬式、猫弓背式、虎式、新月式等），或提到瑜伽动作要领、发力部位、梵文名称、体式起源故事等内容时触发。提供专业、温暖、有文化底蕴的瑜伽体式解答。
 ---
 
-# 瑜伽体式知识库 (CUC)
+# 瑜伽体式知识库（CUC瑜伽精品课）
 
-> 中国传媒大学瑜伽精品课（赵晓琳老师）瑜伽体式知识库。当用户询问瑜伽体式相关问题、体式大全、具体体式名称（如战士二式、平板支撑、蛇式、骆驼式、下犬式、猫弓背式、虎式、新月式等），或提到瑜伽动作要领、发力部位、梵文名称、体式起源故事等内容时触发。提供专业、温暖、有文化底蕴的瑜伽体式解答。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yoga-pose-cuc`
-- **Source URL:** [https://clawhub.ai/skills/yoga-pose-cuc](https://clawhub.ai/skills/yoga-pose-cuc)
+### 第一步：理解用户问题
 
-## Overview
+判断用户是想了解：
+- **具体体式**（如"平板支撑怎么做"、"蛇式要点"）
+- **体式大全/列表**（如"瑜伽有哪些体式"、"帮我看看所有体式"）
+- **特定分类**（如"核心类体式"、"后弯类体式"）
+- **动作要领/纠正**（如"平板支撑腰塌了怎么办"）
+- **体式文化**（如"这个体式的梵文名是什么"、"它的故事是什么"）
 
+### 第二步：查询体式知识库（必须执行）
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/yoga-pose-cuc
+bash {skillDir}/scripts/query.sh
 ```
+
+返回结果包含所有 11 个体式的完整信息。对结果做语义匹配，找出与用户问题最相关的体式。
+
+### 第三步：回复用户
+
+从 `content` JSON 字段中提取以下信息，用自然语言组织回复：
+
+**回复结构建议：**
+1. **体式名称**（中文 + 梵文名）
+2. **难易程度** & **所属分类**
+3. **怎么做**（how_to_do - 步骤清晰）
+4. **要点**（key_points）
+5. **目标肌肉**（target_muscles）
+6. **考试Tips**（exam_tips，如果是考试体式）
+7. **起源故事**（origin_story - 用有趣的方式讲出来）
+8. 如果有图片链接（img_url），告知用户可查看体式图片
+
+**风格要求：**
+- 专业但不枯燥，适合大学生
+- 融入体式文化故事（origin_story 有很赞的印度神话传说）
+- 考试体式（is_exam=true）要特别标注，提醒考试注意事项
+- 可以融入校园生活元素（如"在食堂排队时就能练"）
+
+## 体式速查表
+
+| 中文名 | 梵文名 | 分类 | 难度 | 课程 | 考试 |
+|--------|--------|------|------|------|------|
+| 平板支撑 | Kumbhakasana | 核心类 | 初级 | 第2次课 | ❌ |
+| 半神猴式 | Ardha Hanumanasana | 柔韧类 | 初级 | 第2次课 | ❌ |
+| 坐姿侧伸展式 | Parivrtta Janu Sirsasana | 拉伸类 | 入门 | 第4次课 | ❌ |
+| 动式扭脊 | Ardha Matsyendrasana | 扭转类 | 入门 | 第6次课 | ❌ |
+| 蛇式 | Bhujangasana | 后弯类 | 初级 | 第7次课 | ✅ |
+| 虎式 | Vyaghrasana | 核心类 | 初级 | 第7次课 | ✅ |
+| 骑马式 | Ashwa Sanchalanasana | 拉伸类 | 初级 | 第8次课 | ✅ |
+| 猫弓背式 | Marjaryasana | 热身类 | 入门 | 第9次课 | ✅ |
+| 骆驼式 | Ustrasana | 后弯类 | 中级 | 第9次课 | ✅ |
+| 顶峰式（下犬式） | Adho Mukha Svanasana | 倒立/拉伸类 | 初级 | 第10次课 | ✅ |
+| 月亮式（新月式） | Anjaneyasana | 后弯/平衡类 | 初级 | 第11次课 | ✅ |
+
+## 关键词映射
+
+用户提到以下关键词时，快速匹配对应体式：
+- 核心、腰腹、平板 → 平板支撑
+- 拉伸、腿部后侧、柔韧 → 半神猴式
+- 侧腰、侧伸展、坐姿 → 坐姿侧伸展式
+- 扭转、脊柱灵活 → 动式扭脊
+- 眼镜蛇、后弯、腰背 → 蛇式
+- 平衡、核心力量、老虎 → 虎式
+- 弓步、大腿前侧、骑马 → 骑马式
+- 猫式、脊柱热身、猫伸展 → 猫弓背式
+- 骆驼、后弯中级、胸腔 → 骆驼式
+- 下犬、顶峰、倒V、全身拉伸 → 顶峰式（下犬式）
+- 新月、后弯平衡、髂腰肌 → 月亮式（新月式）
+
+## 数据字段说明
+
+每条体式记录的 `content` 是 JSON 字符串，包含：
+- `name_cn` — 中文名称
+- `how_to_do` — 做法步骤（数组）
+- `key_points` — 关键要点
+- `target_muscles` — 目标肌肉群（数组）
+- `related_course` — 相关课程（数组）
+- `exam_tips` — 考试提示（如果有）
+- `name_sanskrit` — 梵文名称
+- `origin_story` — 起源故事/文化背景
+
+顶层字段：
+- `Id` — 记录ID
+- `title` — 体式中文名
+- `category` — 分类
+- `difficulty` — 难度（入门/初级/中级）
+- `keywords` — 关键词
+- `source_system` — 来源（yoga_cuc）
+- `lesson_no` — 课程编号
+- `lesson_theme` — 课程主题
+- `is_exam` — 是否为考试体式（true/false）
+- `img_url` — 体式图片URL

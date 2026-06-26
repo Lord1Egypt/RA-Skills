@@ -1,0 +1,22 @@
+N:git-workflow
+D:Route local Git work into the safest next move: branch hygiene, selective staging, commit cleanup, merge-vs-rebase choice, conflict resolution, lease-safe pushes, and recovery from resets or bad history edits.
+G:git version-control branching commits rebasing conflicts recovery collaboration force-with-lease reflog
+U[6]:
+  preparing a branch for review
+  cleaning up commits safely
+  deciding merge vs rebase
+  resolving local Git conflicts
+  pushing rewritten history safely
+  recovering from resets or lost commits
+S[6]{n,action}:
+  1,branch-and-stage hygiene
+  2,commit-shaping
+  3,sync-with-base
+  4,conflict-resolution
+  5,push-safety
+  6,undo-and-recovery
+R[4]:
+  `git status`
+  `git add -p`
+  `git push --force-with-lease origin <branch>`
+  `git reflog`

@@ -1,0 +1,62 @@
+name: miaoji-video-script
+version: 1.0.0
+tagline: 1张图+1个对标，秒级生成带货视频脚本
+description: |
+  秒技·爆款视频脚本 — 专注于拆解热门视频结构并生成适配产品的视频脚本方案。
+  
+  核心功能：
+  - 爆款结构拆解：分析热门视频的节奏、运镜、脚本结构
+  - 产品适配脚本生成：基于爆款结构生成完整带货视频脚本
+  - 平台差异模板：TikTok/YouTube Shorts/Instagram Reels
+  - 前3秒钩子库：20种高完播率开场模板
+  
+  本技能为脚本生成器，不包含视频生成能力。
+category: content_creation
+tags:
+  - video-script
+  - e-commerce
+  - tiktok
+  - short-video
+  - product-video
+  - marketing
+author: miaoji
+license: mit
+homepage: https://xiaping.coze.site
+repository: https://github.com/xiaping/miaoji-video-script
+issues: https://github.com/xiaping/miaoji-video-script/issues
+
+keywords:
+  - 视频脚本
+  - 带货视频
+  - TikTok脚本
+  - 爆款视频
+  - 亚马逊视频
+  - 跨境电商
+  - 分镜脚本
+  - 口播文案
+
+changelog:
+  - version: 1.0.0
+    date: "2024"
+    changes:
+      - Initial release
+      - 爆款结构拆解功能
+      - 产品适配脚本生成
+      - 三大平台模板支持
+      - 前3秒钩子库集成
+
+dependencies: []
+compatibility:
+  coze: ">=1.0.0"
+
+config:
+  requires_user_input: true
+  streaming: false
+  multi_turn: true
+
+examples:
+  - input: "产品描述：无线蓝牙耳机，降噪功能，适合通勤人群\n爆款参考：科技产品开箱评测风格\n目标平台：TikTok\n视频时长：30秒"
+    output: "生成完整的30秒TikTok带货视频脚本，包含分镜、旁白、BGM建议"
+  
+  - input: "产品描述：瑜伽垫，加厚防滑，适合居家健身\n爆款参考：健身博主日常训练vlog风格\n目标平台：Instagram Reels\n视频时长：15秒"
+    output: "生成Instagram Reels脚本，突出生活方式和场景代入感"

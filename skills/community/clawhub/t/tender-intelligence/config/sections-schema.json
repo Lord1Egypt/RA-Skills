@@ -1,0 +1,23 @@
+{
+  "version": "3.0.0",
+  "description": "招标情报推送板块配置Schema v3.0",
+  "changeLog": "2026-05-11: 精简板块：去掉即将截止+工程类，TOP大项目>=500万，TOP关键词>=50万",
+  "sections": [
+    {"id": "data-quality", "name": "数据健康度", "tier": "basic", "default": true, "order": 0},
+    {"id": "overview", "name": "整体数据", "tier": "basic", "default": true, "order": 1},
+    {"id": "trend", "name": "近7日趋势", "tier": "basic", "default": true, "order": 2},
+    {"id": "city-dist", "name": "地市分布", "tier": "basic", "default": true, "order": 3},
+    {"id": "keywords", "name": "关键词分布", "tier": "pro", "default": true, "order": 4},
+    {"id": "top20-big", "name": "TOP20大项目", "tier": "basic", "default": true, "order": 5},
+    {"id": "top20-keyword", "name": "TOP20关键词相关", "tier": "basic", "default": true, "order": 6},
+    {"id": "top10-bidder-keyword", "name": "TOP10中标工程商", "tier": "pro", "default": true, "order": 7},
+    {"id": "top10-rival", "name": "TOP10竟对中标", "tier": "pro", "default": false, "order": 8}
+  ],
+  "tierMap": {
+    "trial": ["data-quality", "overview", "trend", "city-dist", "top20-big", "top20-keyword"],
+    "basic": ["data-quality", "overview", "trend", "city-dist", "top20-big", "top20-keyword"],
+    "pro": ["data-quality", "overview", "trend", "city-dist", "keywords", "top20-big", "top20-keyword", "top10-bidder-keyword", "top10-rival"],
+    "enterprise": ["data-quality", "overview", "trend", "city-dist", "keywords", "top20-big", "top20-keyword", "top10-bidder-keyword", "top10-rival"]
+  },
+  "tierThresholds": {"trial": 0, "basic": 99, "national": 399, "enterprise": 999}
+}

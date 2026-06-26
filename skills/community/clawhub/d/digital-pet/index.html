@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐰 数字宠物 - Digital Pet</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            max-width: 280px;
+        }
+        
+        #info h1 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        #info .subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        
+        #stats {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
+        #stats .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 6px 0;
+            font-size: 13px;
+        }
+        
+        #stats .stat-label {
+            color: #666;
+        }
+        
+        #stats .stat-value {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        #stats .bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+        
+        #stats .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        #controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            flex: 1;
+            min-width: 80px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button.secondary {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        button.secondary:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        #actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        
+        #actions button {
+            padding: 12px 8px;
+            font-size: 20px;
+        }
+        
+        #canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+        
+        #canvas:active {
+            cursor: grabbing;
+        }
+        
+        #bubble {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 16px 24px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            color: #333;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 200;
+            max-width: 200px;
+            text-align: center;
+        }
+        
+        #bubble.show {
+            opacity: 1;
+            transform: translate(-50%, -150%);
+        }
+        
+        #bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+        
+        .mood-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="info">
+            <h1>🐰 数字宠物</h1>
+            <div class="subtitle">Digital Pet - Labubu</div>
+            
+            <div id="stats">
+                <div class="stat">
+                    <span class="stat-label">❤️ 心情</span>
+                    <span class="stat-value" id="happiness-val">80%</span>
+                </div>
+                <div class="bar">
+                    <div class="bar-fill" id="happiness-bar" style="width: 80%"></div>
+                </div>
+                
+                <div class="stat" style="margin-top: 10px">
+                    <span class="stat-label">🍖 饱食度</span>
+                    <span class="stat-value" id="hunger-val">70%</span>
+                </div>
+                <div class="bar">
+                    <div class="bar-fill" id="hunger-bar" style="width: 70%"></div>
+                </div>
+                
+                <div class="stat" style="margin-top: 10px">
+                    <span class="stat-label">⚡ 活力</span>
+                    <span class="stat-value" id="energy-val">90%</span>
+                </div>
+                <div class="bar">
+                    <div class="bar-fill" id="energy-bar" style="width: 90%"></div>
+                </div>
+            </div>
+            
+            <div id="controls">
+                <button onclick="toggleAnimation()">⏸️ 暂停</button>
+                <button onclick="resetCamera()" class="secondary">🎥 重置</button>
+            </div>
+            
+            <div id="actions">
+                <button onclick="feed()" title="喂食">🍎</button>
+                <button onclick="play()" title="玩耍">🎾</button>
+                <button onclick="pet()" title="抚摸">👋</button>
+            </div>
+        </div>
+        
+        <div class="mood-indicator">
+            😊 开心
+        </div>
+        
+        <div id="bubble">你好！我是你的数字宠物！</div>
+        <canvas id="canvas"></canvas>
+    </div>
+    
+    <script src="sound.js"></script>
+    <script src="labubu.js"></script>
+    <script>
+        // 全局变量
+        let scene, camera, renderer, labubu;
+        let isPaused = false;
+        let mouseX = 0, mouseY = 0;
+        let isAutoRotating = true;
+        
+        // 宠物状态
+        let petStats = {
+            happiness: 80,
+            hunger: 70,
+            energy: 90,
+            mood: 'happy'
+        };
+        
+        // 初始化场景
+        function init() {
+            const canvas = document.getElementById('canvas');
+            
+            // 场景
+            scene = new THREE.Scene();
+            scene.background = null;
+            
+            // 相机
+            camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0.5, 6);
+            
+            // 渲染器
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            
+            // 光照
+            setupLighting();
+            
+            // 创建 Labubu
+            labubu = new Labubu();
+            scene.add(labubu.getMesh());
+            
+            // 创建地面
+            createGround();
+            
+            // 事件监听
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('mousemove', onMouseMove);
+            canvas.addEventListener('click', onCanvasClick);
+            
+            // 显示欢迎气泡
+            showBubble("你好！我是你的数字宠物！❤️", 3000);
+            
+            // 开始动画
+            animate();
+            
+            // 状态衰减
+            setInterval(updateStats, 5000);
+        }
+        
+        function setupLighting() {
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const mainLight = new THREE.DirectionalLight(0xfff4e6, 1);
+            mainLight.position.set(4, 8, 5);
+            mainLight.castShadow = true;
+            mainLight.shadow.mapSize.width = 2048;
+            mainLight.shadow.mapSize.height = 2048;
+            scene.add(mainLight);
+            
+            const fillLight = new THREE.DirectionalLight(0xddeeff, 0.4);
+            fillLight.position.set(-5, 3, 3);
+            scene.add(fillLight);
+            
+            const rimLight = new THREE.DirectionalLight(0xffddcc, 0.5);
+            rimLight.position.set(0, 5, -5);
+            scene.add(rimLight);
+        }
+        
+        function createGround() {
+            const groundGeo = new THREE.PlaneGeometry(20, 20);
+            const groundMat = new THREE.ShadowMaterial({ opacity: 0.15 });
+            const ground = new THREE.Mesh(groundGeo, groundMat);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -2;
+            ground.receiveShadow = true;
+            scene.add(ground);
+            
+            // 展示台
+            const platformGeo = new THREE.CylinderGeometry(2, 2.2, 0.15, 64);
+            const platformMat = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.15,
+                metalness: 0.1
+            });
+            const platform = new THREE.Mesh(platformGeo, platformMat);
+            platform.position.y = -2.05;
+            platform.receiveShadow = true;
+            scene.add(platform);
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function onMouseMove(event) {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        }
+        
+        function onCanvasClick() {
+            pet();
+        }
+        
+        function showBubble(text, duration = 2000) {
+            const bubble = document.getElementById('bubble');
+            bubble.textContent = text;
+            bubble.classList.add('show');
+            
+            setTimeout(() => {
+                bubble.classList.remove('show');
+            }, duration);
+        }
+        
+        // 更新状态显示
+        function updateStatsDisplay() {
+            document.getElementById('happiness-val').textContent = petStats.happiness + '%';
+            document.getElementById('happiness-bar').style.width = petStats.happiness + '%';
+            
+            document.getElementById('hunger-val').textContent = petStats.hunger + '%';
+            document.getElementById('hunger-bar').style.width = petStats.hunger + '%';
+            
+            document.getElementById('energy-val').textContent = petStats.energy + '%';
+            document.getElementById('energy-bar').style.width = petStats.energy + '%';
+            
+            // 更新心情表情
+            const moodIndicator = document.querySelector('.mood-indicator');
+            if (petStats.happiness > 80) {
+                moodIndicator.textContent = '😊 开心';
+            } else if (petStats.happiness > 50) {
+                moodIndicator.textContent = '🙂 不错';
+            } else if (petStats.happiness > 30) {
+                moodIndicator.textContent = '😐 一般';
+            } else {
+                moodIndicator.textContent = '😢 难过';
+            }
+        }
+        
+        // 状态衰减
+        function updateStats() {
+            if (isPaused) return;
+            
+            petStats.hunger = Math.max(0, petStats.hunger - 2);
+            petStats.energy = Math.max(0, petStats.energy - 1);
+            
+            if (petStats.hunger < 30 || petStats.energy < 20) {
+                petStats.happiness = Math.max(0, petStats.happiness - 3);
+            }
+            
+            updateStatsDisplay();
+        }
+        
+        // 交互功能
+        function feed() {
+            if (petStats.hunger >= 100) {
+                showBubble("我吃饱了！🍎");
+                return;
+            }
+            
+            petStats.hunger = Math.min(100, petStats.hunger + 20);
+            petStats.happiness = Math.min(100, petStats.happiness + 5);
+            petStats.energy = Math.min(100, petStats.energy + 5);
+            
+            updateStatsDisplay();
+            labubu.eatAnimation();
+            soundManager.play('feed');
+            showBubble("好吃！谢谢！😋");
+        }
+        
+        function play() {
+            if (petStats.energy < 20) {
+                showBubble("我太累了，想休息一下...😴");
+                return;
+            }
+            
+            petStats.happiness = Math.min(100, petStats.happiness + 15);
+            petStats.energy = Math.max(0, petStats.energy - 10);
+            petStats.hunger = Math.max(0, petStats.hunger - 5);
+            
+            updateStatsDisplay();
+            labubu.playAnimation();
+            soundManager.play('play');
+            showBubble("太好玩了！🎉");
+        }
+        
+        function pet() {
+            petStats.happiness = Math.min(100, petStats.happiness + 10);
+            updateStatsDisplay();
+            labubu.petAnimation();
+            soundManager.play('pet');
+            
+            const messages = [
+                "好舒服~ ❤️",
+                "喜欢你！🥰",
+                "好开心！😊",
+                "再来一下！👋"
+            ];
+            showBubble(messages[Math.floor(Math.random() * messages.length)]);
+        }
+        
+        function toggleAnimation() {
+            isPaused = !isPaused;
+            document.querySelector('button[onclick="toggleAnimation()"]').textContent = 
+                isPaused ? '▶️ 播放' : '⏸️ 暂停';
+        }
+        
+        function resetCamera() {
+            camera.position.set(0, 0.5, 6);
+        }
+        
+        // 动画循环
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (isPaused) return;
+            
+            const time = Date.now() * 0.001;
+            
+            if (labubu) {
+                labubu.animate(time, mouseX, mouseY);
+            }
+            
+            // 相机轻微跟随鼠标
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.02;
+            camera.position.y += (0.5 + mouseY * 0.3 - camera.position.y) * 0.02;
+            camera.lookAt(0, 0.3, 0);
+            
+            renderer.render(scene, camera);
+        }
+        
+        // 启动
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>

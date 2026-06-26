@@ -1,0 +1,26 @@
+[Unit]
+# DEPRECATED — legacy JSONL-source command hook. v1.0.2 replaced this with
+# paired-inbox-hook.service (signed inbox model). The legacy hook now refuses
+# to run without explicit --legacy-jsonl-source --i-understand-the-risks flags.
+# This unit file is retained for users upgrading from v1.0.0/v1.0.1 so their
+# `systemctl --user disable paired-sms-command-hook` path keeps working.
+Description=[DEPRECATED] Paired legacy JSONL command hook \u2014 use paired-inbox-hook instead
+Documentation=https://github.com/nj070574-gif/openclaw-paired-skill/blob/main/CHANGELOG.md
+ConditionPathExists=!%h/.config/paired/disable-legacy-hook
+After=openclaw.service network.target
+StartLimitIntervalSec=60
+StartLimitBurst=2
+
+[Service]
+Type=simple
+# Will exit with code 2 unless the user has consciously opted in to the
+# deprecated behaviour. That is intentional.
+ExecStart=%h/bin/paired-sms-command-hook --watch
+Restart=no
+TimeoutStartSec=15
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+# Not auto-enabled. Users who explicitly opted in must enable manually.
+WantedBy=

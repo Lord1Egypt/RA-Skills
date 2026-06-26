@@ -1,0 +1,13 @@
+{
+  "name": "WireGuard Remote Access",
+  "vpn_type": "wireguard",
+  "enabled": true,
+  "ip_subnet": "10.255.0.1/24",
+  "wireguard_interface": "wg0",
+  "local_port": 51820,
+  "x_wireguard_private_key": "REPLACE_ME",
+  "dhcpd_dns_enabled": true,
+  "dhcpd_dns_1": "1.1.1.1",
+  "dhcpd_dns_2": "1.0.0.1",
+  "exposed_to_site_vpn": false
+}

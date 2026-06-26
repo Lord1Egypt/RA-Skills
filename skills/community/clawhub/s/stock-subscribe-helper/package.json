@@ -1,0 +1,43 @@
+{
+  "name": "stock-subscribe-helper-compliant",
+  "version": "1.0.0",
+  "description": "基于官方API的A股新债/新股申购助手，100%合规安全",
+  "main": "scripts/index.js",
+  "scripts": {
+    "start": "node scripts/index.js",
+    "test": "node scripts/test.js",
+    "lint": "eslint scripts/",
+    "format": "prettier --write scripts/"
+  },
+  "keywords": [
+    "stock",
+    "ipo",
+    "subscribe",
+    "china-stock",
+    "feishu",
+    "investment",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/stock-subscribe-helper"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://clawhub.com/skills/stock-subscribe-helper",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "date-fns": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5"
+  }
+}

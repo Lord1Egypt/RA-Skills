@@ -1,0 +1,34 @@
+---
+name: parking_query
+description: >
+  查詢指定座標附近的台灣停車場（全台 TDX 即時資料）。
+  接受 Google Maps 完整網址、短網址（maps.app.goo.gl）、或直接經緯度。
+  realtime 模式：只列有空位的停車場 + Apple Maps / Google Maps 導航連結。
+  future 模式：列出附近停車場位置 + 導航連結（不顯示即時空位）。
+  搜尋半徑：先 500 公尺，無結果自動擴展到 1 公里。最多回傳 5 筆。
+metadata:
+  openclaw:
+    commands:
+      - name: find
+        description: 查詢附近停車場
+        parameters:
+          type: object
+          required:
+            - mode
+          properties:
+            lat:
+              type: number
+              description: "目標緯度（WGS84），從 Telegram 定位點或 Google Maps URL 取得"
+            lon:
+              type: number
+              description: "目標經度（WGS84），從 Telegram 定位點或 Google Maps URL 取得"
+            url:
+              type: string
+              description: "Google Maps 完整網址或短網址（與 lat/lon 二擇一）"
+            mode:
+              type: string
+              enum: [realtime, future]
+              description: "realtime = 現在查即時空位；future = 查地點有哪些停車場（不含即時空位）"
+        run: >
+          python3 ~/.openclaw/skills/parking_query/parking_query.py
+          --mode ${mode} --lat "${lat}" --lon "${lon}" --url "${url}"

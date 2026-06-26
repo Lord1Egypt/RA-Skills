@@ -1,0 +1,41 @@
+# EventLint -- lefthook configuration
+# Installed by: eventlint hooks install
+# Documentation: https://eventlint.pages.dev/docs/hooks
+#
+# This configuration integrates EventLint with git hooks via lefthook.
+# Pre-commit: scans staged files for event architecture issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    eventlint-check:
+      run: |
+        EVENTLINT_SKILL_DIR="${EVENTLINT_SKILL_DIR:-$HOME/.openclaw/skills/eventlint}"
+        if [[ -f "$EVENTLINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$EVENTLINT_SKILL_DIR/scripts/patterns.sh"
+          source "$EVENTLINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_eventlint_check
+        else
+          echo "[EventLint] Skill not found at $EVENTLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Event architecture issues detected in staged files!
+        Run 'eventlint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    eventlint-full-scan:
+      run: |
+        EVENTLINT_SKILL_DIR="${EVENTLINT_SKILL_DIR:-$HOME/.openclaw/skills/eventlint}"
+        if [[ -f "$EVENTLINT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$EVENTLINT_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[EventLint] Skill not found at $EVENTLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        EventLint detected event architecture quality issues in your codebase.
+        Run 'eventlint scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

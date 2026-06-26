@@ -1,0 +1,19 @@
+{
+  "name": "insurance-rate-table-generator",
+  "version": "1.0.0",
+  "description": "保险费率二维表生成工具",
+  "main": "scripts/generate-rate-table.js",
+  "scripts": {
+    "generate": "node scripts/generate-rate-table.js"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  },
+  "keywords": [
+    "insurance",
+    "rate-table",
+    "excel"
+  ],
+  "author": "",
+  "license": "ISC"
+}

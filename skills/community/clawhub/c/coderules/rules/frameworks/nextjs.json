@@ -1,0 +1,87 @@
+{
+  "name": "Next.js",
+  "version": "14+",
+  "extends": ["react"],
+  "priority": 80,
+
+  "rules": {
+    "router": {
+      "preferred": "App Router",
+      "message": "使用 App Router（app/ 目录），不使用 Pages Router"
+    },
+
+    "fileNaming": {
+      "page": "page.tsx",
+      "layout": "layout.tsx",
+      "loading": "loading.tsx",
+      "error": "error.tsx",
+      "notFound": "not-found.tsx",
+      "api": "route.ts"
+    },
+
+    "components": {
+      "server": {
+        "default": true,
+        "message": "默认使用服务端组件，需要交互时添加 'use client'"
+      },
+      "client": {
+        "directive": "'use client'",
+        "message": "需要交互（useState, useEffect 等）时添加 'use client'"
+      }
+    },
+
+    "dataFetching": {
+      "server": {
+        "method": "async/await",
+        "message": "服务端组件直接使用 async/await 获取数据"
+      },
+      "client": {
+        "method": "SWR / React Query / TanStack Query",
+        "message": "客户端组件使用 SWR 或 React Query"
+      },
+      "caching": {
+        "enabled": true,
+        "message": "使用 fetch 的 cache 选项或 unstable_cache"
+      }
+    },
+
+    "optimization": {
+      "image": {
+        "component": "next/image",
+        "message": "图片必须使用 next/image 组件"
+      },
+      "link": {
+        "component": "next/link",
+        "message": "链接必须使用 Link 组件"
+      },
+      "font": {
+        "method": "next/font",
+        "message": "字体使用 next/font 优化"
+      }
+    },
+
+    "metadata": {
+      "method": "export const metadata",
+      "message": "使用 metadata API 设置页面元信息"
+    }
+  },
+
+  "promptTemplates": [
+    "使用 App Router（app/ 目录）",
+    "页面文件命名为 page.tsx，布局为 layout.tsx",
+    "默认使用服务端组件，需要交互时添加 'use client'",
+    "服务端组件直接 async/await 获取数据",
+    "客户端组件使用 SWR 或 React Query",
+    "图片必须使用 next/image",
+    "链接必须使用 next/link 的 Link 组件",
+    "使用 metadata API 设置页面元信息"
+  ],
+
+  "fileTemplates": {
+    "page": "import { Metadata } from 'next';\n\nexport const metadata: Metadata = {\n  title: 'Page Title',\n};\n\nexport default async function Page() {\n  // TODO: 服务端数据获取\n  \n  return (\n    <main>\n      {/* TODO: 页面内容 */}\n    </main>\n  );\n}",
+
+    "layout": "export default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  );\n}",
+
+    "apiRoute": "import { NextResponse } from 'next/server';\n\nexport async function GET(request: Request) {\n  // TODO: 处理 GET 请求\n  return NextResponse.json({ data: 'response' });\n}\n\nexport async function POST(request: Request) {\n  // TODO: 处理 POST 请求\n  return NextResponse.json({ success: true });\n}"
+  }
+}

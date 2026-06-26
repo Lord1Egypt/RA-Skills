@@ -1,0 +1,10 @@
+{
+  "name": "tokenmail-skill-cli",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Node.js CLI for TokenMail skill",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "ethers": "^6.13.5"
+  }
+}

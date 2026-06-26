@@ -1,0 +1,21 @@
+{
+  "TASK-1774602175-4989": {
+    "task_id": "TASK-1774602175-4989",
+    "user_id": "0xTestUser123",
+    "account_name": "\u6d4b\u8bd5\u516c\u4f17\u53f7",
+    "max_articles": 100,
+    "payment_mode": "async",
+    "amount": 10.0,
+    "status": "payment_confirmed",
+    "created_at": "2026-03-27T17:02:55.128727",
+    "payment_proof": {
+      "tx_hash": "0x00064dfdc4442502",
+      "amount": 10.0
+    },
+    "started_at": null,
+    "completed_at": null,
+    "result": null,
+    "error": null,
+    "retry_count": 0
+  }
+}

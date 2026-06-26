@@ -1,0 +1,42 @@
+{
+  "name": "qoris-memory",
+  "version": "1.0.5",
+  "description": "Legacy listing. See qoris-memory-mcp for the canonical version under @qoris-ai.",
+  "author": "qorisai",
+  "license": "MIT-0",
+  "homepage": "https://qoris.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QORIS-AI/qoris-memory-openclaw-skill"
+  },
+  "keywords": [
+    "legacy",
+    "deprecated",
+    "openclaw",
+    "memory",
+    "mcp"
+  ],
+  "openclaw": {
+    "skill": true,
+    "primaryEnv": "QORIS_API_KEY",
+    "mcp": {
+      "server": "https://mcp.qoris.ai/mcp",
+      "auth": "bearer"
+    },
+    "requires": {
+      "env": [
+        "QORIS_API_KEY",
+        "QORIS_WORKSPACE_ID"
+      ]
+    },
+    "tools": [
+      "save_memory",
+      "get_memories",
+      "search_knowledge",
+      "update_memory",
+      "delete_memory",
+      "list_knowledge_documents",
+      "get_document_full_content"
+    ]
+  }
+}

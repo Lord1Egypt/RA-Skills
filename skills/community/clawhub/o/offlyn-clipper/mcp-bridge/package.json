@@ -1,0 +1,19 @@
+{
+  "name": "@offlyn/clipper-mcp-bridge",
+  "version": "0.1.0",
+  "description": "MCP stdio bridge from OpenClaw to Offlyn Clipper Unix socket",
+  "type": "module",
+  "bin": {
+    "clipper-mcp-bridge": "./index.mjs"
+  },
+  "scripts": {
+    "start": "node index.mjs",
+    "pair": "node pair.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

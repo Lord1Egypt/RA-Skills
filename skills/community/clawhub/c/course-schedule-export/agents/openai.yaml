@@ -1,0 +1,4 @@
+interface:
+  display_name: "Course Schedule Export"
+  short_description: "Convert messy timetables into verified .ics calendar exports"
+  default_prompt: "Use $course-schedule-export to normalize a timetable, verify coverage against the source, and generate a checked .ics file for Apple Calendar, Google Calendar, or similar apps."

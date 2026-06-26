@@ -1,35 +1,135 @@
 ---
-name: "Pans Gpu Monitor"
-description: "AI算力销售GPU监控工具。接入客户GPU使用数据，生成用量/效率周报，识别优化机会。 支持成本分析、异常告警、容量规划建议。 触发词：GPU监控, 用量报告, 效率分析, 成本优化, 周报生成"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pans-gpu-monitor"
-sourceUrl: "https://clawhub.ai/skills/pans-gpu-monitor"
+name: pans-gpu-monitor
+description: |
+  AI算力销售GPU监控工具。接入客户GPU使用数据，生成用量/效率周报，识别优化机会。
+  支持成本分析、异常告警、容量规划建议。
+  触发词：GPU监控, 用量报告, 效率分析, 成本优化, 周报生成
 ---
 
-# Pans Gpu Monitor
+# GPU 监控工具 — AI 算力销售用
 
-> AI算力销售GPU监控工具。接入客户GPU使用数据，生成用量/效率周报，识别优化机会。 支持成本分析、异常告警、容量规划建议。 触发词：GPU监控, 用量报告, 效率分析, 成本优化, 周报生成
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pans-gpu-monitor`
-- **Source URL:** [https://clawhub.ai/skills/pans-gpu-monitor](https://clawhub.ai/skills/pans-gpu-monitor)
+本工具帮助 AI 算力销售团队追踪客户 GPU 使用情况，生成结构化周报，识别优化机会与流失风险信号。
 
-## Overview
+## 输入数据格式
 
+通过 CLI 交互式收集以下数据（可部分提供，按需补充）：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pans-gpu-monitor
 ```
+客户名称: <name>
+监控周期: <start> ~ <end>（如 2026-04-07 ~ 2026-04-13）
+GPU 型号: <model>（如 H100 SXM 80GB）
+GPU 数量: <count>
+总费用（本期）: ¥<amount>
+平均利用率: <util>%（如 87%）
+峰值利用率: <peak>%（如 98%）
+空闲率: <idle>%（如 13%）
+异常中断次数: <failures>
+类型分布（训练/推理/开发测试）: <train>% / <infer>% / <dev>%
+```
+
+## 报告生成
+
+### 1. 用量与成本分析
+
+按以下维度计算并输出：
+
+- **日均成本**: 总费用 ÷ 天数
+- **GPU·小时均价**: 总费用 ÷ (GPU数量 × 运行小时数)
+- **利用率 vs 成本比**: 判断是否存在资源浪费
+- **训练/推理费用分项**: 按类型估算费用占比
+
+### 2. 效率评分（0-100）
+
+综合利用率、峰值利用率、空闲率、中断次数评分：
+
+| 评分 | 评价 | 建议 |
+|------|------|------|
+| 80-100 | 优秀 | 稳定运行，可推荐增购 |
+| 60-79 | 良好 | 有轻微优化空间 |
+| 40-59 | 一般 | 需关注浪费来源 |
+| 0-39 | 预警 | 建议安排技术review |
+
+### 3. 异常信号识别
+
+检查以下预警标志：
+
+- 利用率 < 40% 且持续 3 天以上 → 资源浪费告警
+- 峰值利用率 < 50% → 过度配置
+- 空闲率 > 30% → 存在资源闲置
+- 中断次数 ≥ 3 → 稳定性问题
+- 费用突增 > 20% 且无明显业务原因 → 异常排查
+
+### 4. 优化建议生成
+
+根据数据自动生成 2-4 条可操作的优化建议，例如：
+
+- 建议将低利用率实例缩容至更小规格
+- 建议将空闲 GPU 释放或重新分配
+- 建议增购高利用率时段的 GPU 资源
+- 建议排查频繁中断的根本原因
+
+### 5. 流失风险评估
+
+结合用量趋势和异常信号评估客户健康度：
+
+- 连续两周利用率下降 > 15% → 流失风险上升
+- 续约前 30 天出现异常 → 需主动介入
+- 长期低利用率 → 可能已找到替代方案
+
+## 输出格式
+
+输出 Markdown 格式的完整周报，包含：
+
+```
+## GPU 使用周报
+**客户:** <name> | **周期:** <start> ~ <end>
+
+### 核心指标
+| 指标 | 数值 | 同比变化 |
+|------|------|----------|
+| 总费用 | ¥<amount> | +/- <delta>% |
+| 平均利用率 | <util>% | +/- <delta>% |
+| 效率评分 | <score>/100 | <trend> |
+
+### 成本分析
+<分析内容>
+
+### 异常信号
+<告警列表（无则写"无"）>
+
+### 优化建议
+<2-4条建议>
+
+### 客户健康度评估
+<评估结论 + 流失风险判断>
+```
+
+## 使用示例
+
+```bash
+# 交互式输入数据
+npx clawhub@latest invoke pans-gpu-monitor
+
+# 或通过参数传入（伪代码）
+npx clawhub@latest invoke pans-gpu-monitor \
+  --client "某AI公司" \
+  --start "2026-04-07" \
+  --end "2026-04-13" \
+  --gpus "H100 SXM 80GB" \
+  --count 8 \
+  --cost 128000 \
+  --util 87 \
+  --peak 98 \
+  --idle 13 \
+  --failures 1 \
+  --train 60 --infer 30 --dev 10
+```
+
+## 适用场景
+
+- 每周客户 review 前准备数据
+- 识别需要介入的高风险客户
+- 生成客户成功报告支持续约谈判
+- 为 upsell 提供量化依据

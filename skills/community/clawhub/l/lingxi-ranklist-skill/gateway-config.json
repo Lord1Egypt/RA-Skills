@@ -1,0 +1,38 @@
+{
+  "active_env": "prod",
+  "base_urls": {
+    "prod": "https://zx.app.gtja.com:8443/"
+  },
+  "gateway_paths": {
+    "ranklist": "mcp/hq-20200002",
+    "mqtt": "mcp/mqtt"
+  },
+  "gateways": {
+    "ranklist": "https://zx.app.gtja.com:8443/mcp/hq-20200002",
+    "mqtt": "https://zx.app.gtja.com:8443/mcp/mqtt"
+  },
+  "known_domains": [
+    "ranklist",
+    "mqtt"
+  ],
+  "discovered_tools": [
+    {
+      "domain": "ranklist",
+      "gateway": "ranklist",
+      "toolName": "ranklist",
+      "description": "市场热榜查询（hq-20200002），支持最新价/涨跌值/涨跌幅/振幅/5分钟涨/换手率/总市值/市盈率/量比/成交量/成交额/当日资金净流入排序",
+      "label": "市场榜单",
+      "params": [
+        "code",
+        "limit",
+        "offset",
+        "order_by",
+        "sorted_type",
+        "mask"
+      ],
+      "callExample": "node skill-entry.js mcpClient call ranklist ranklist code=BK101003 limit=20 offset=0 sorted_type=1 order_by=2 'mask={\"M_64_0\":35184372088831}'"
+    }
+  ],
+  "learned_at": "2026-03-20T10:51:20.965Z",
+  "last_updated": "2026-04-09T00:00:00.000Z"
+}

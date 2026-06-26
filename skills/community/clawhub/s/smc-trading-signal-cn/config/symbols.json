@@ -1,0 +1,32 @@
+{
+  "symbols": [
+    {
+      "name": "黄金",
+      "code": "GC",
+      "source": "akshare",
+      "enabled": true,
+      "check_interval": 60
+    },
+    {
+      "name": "比特币",
+      "code": "BTCUSDT",
+      "source": "binance",
+      "enabled": false,
+      "check_interval": 30
+    }
+  ],
+  "timeframes": {
+    "trend": "1H",
+    "entry": "15M"
+  },
+  "atr": {
+    "period": 14,
+    "stop_loss": 1.0,
+    "take_profit": [1.5, 3.0, 5.0]
+  },
+  "risk_management": {
+    "max_position_size": 0.03,
+    "daily_loss_limit": 0.05,
+    "min_risk_reward": 1.5
+  }
+}

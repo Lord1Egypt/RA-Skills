@@ -1,0 +1,33 @@
+{
+  "name": "fitness-planner",
+  "version": "1.4.0",
+  "description": "健身规划助手 - 支持训练计划生成、打卡记录、统计周报、周期化训练、肌群进展追踪、多维度反馈、动作讲解和视频教学搜索",
+  "author": "DeviosLang",
+  "license": "MIT",
+  "keywords": [
+    "fitness",
+    "workout",
+    "training",
+    "health",
+    "exercise",
+    "planner",
+    "动作讲解",
+    "视频教学",
+    "周期化训练",
+    "肌群追踪",
+    "恢复分析"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "date-fns": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

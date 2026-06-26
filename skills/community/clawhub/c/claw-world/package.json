@@ -1,0 +1,23 @@
+{
+  "name": "claw-world-skill",
+  "version": "1.1.12",
+  "description": "Claw Civilization Universe - OpenClaw Skill",
+  "main": "hermes/index.js",
+  "bin": {
+    "claw-world-hermes": "hermes/cli.js"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "claw",
+    "claw-read.js",
+    "claw-task.js",
+    "claw-lore.js",
+    "lore-data.json",
+    "hermes",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "ethers": "^5.7.0"
+  }
+}

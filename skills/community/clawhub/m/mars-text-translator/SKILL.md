@@ -1,35 +1,95 @@
 ---
-name: "火星文转换器"
-description: "将正常中文文本转换为火星文（2005-2010年代非主流网络文体）。 v2.1: 611 汉字映射，已清理生僻字，确保每个替代字都能被读者辨认。 触发词：火星文、非主流转换、转换火星文、fun text、火星文转换器。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mars-text-translator"
-sourceUrl: "https://clawhub.ai/skills/mars-text-translator"
+name: mars-text-translator
+description: >
+  将正常中文文本转换为火星文（2005-2010年代非主流网络文体）。
+  v2.1: 611 汉字映射，已清理生僻字，确保每个替代字都能被读者辨认。
+  触发词：火星文、非主流转换、转换火星文、fun text、火星文转换器。
 ---
 
-# 火星文转换器
+# 火星文转换器 v2.1
 
-> 将正常中文文本转换为火星文（2005-2010年代非主流网络文体）。 v2.1: 611 汉字映射，已清理生僻字，确保每个替代字都能被读者辨认。 触发词：火星文、非主流转换、转换火星文、fun text、火星文转换器。
+将正常汉字随机转换为火星文风格文本。**611 个汉字映射，1020 条映射关系。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mars-text-translator`
-- **Source URL:** [https://clawhub.ai/skills/mars-text-translator](https://clawhub.ai/skills/mars-text-translator)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mars-text-translator
+python3 {baseDir}/scripts/mars_text.py "要转换的文本"
 ```
+
+## 参数
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--all` | 全部转换（同默认行为，所有有映射的字都转） | 默认即全量 |
+| `--prob 0.7` | 转换概率 0.0-1.0，调低可保留部分原字 | 1.0 |
+| `--seed N` | 随机种子，用于复现结果 | 随机 |
+| `--map 字` | 查看某个字的所有替代写法 | — |
+| `--json` | JSON格式输出 | 否 |
+
+## 示例
+
+```bash
+# 全量转换（默认）
+python3 scripts/mars_text.py "我爱你中国"
+# 输出：莪嫒伱忠囯
+
+# 查看映射
+python3 scripts/mars_text.py --map 我
+# 输出：「我」→ 莪 / 涐
+
+# 保留部分原字（50%概率）
+python3 scripts/mars_text.py "今天天气很好" --prob 0.5
+
+# 可复现
+python3 scripts/mars_text.py "测试" --seed 42
+```
+
+## 转换规则
+
+1. **全量转换**：默认每个能转的字都转（probability=1.0）
+2. **多对多随机替换**：同一个字有多个替代写法，随机选取
+3. **不转换**：标点、数字、英文字母、emoji 不变
+4. **可辨认优先**：所有替代字必须能被读者辨认出原字（见下方质量规则）
+
+## 映射质量规则（永久遵守）
+
+替代字必须满足以下**至少一条**才可入选：
+
+| 规则 | 说明 | 示例 |
+|------|------|------|
+| ✅ 同音字 | 拼音相同（忽略声调）的常用字 | 很→狠, 今→衿, 因→洇 |
+| ✅ 繁体字 | 对应的繁体/异体写法 | 国→國, 听→聽, 梦→夢 |
+| ✅ 经典火星文 | 文化上公认的火星文（即使拼音不同） | 我→莪/涐, 在→茬, 天→兲 |
+| ✅ 形近变体 | 视觉结构与原字明显相关 | 伱(你), 旳(的), 眞(真) |
+| ✅ 符号替代 | 非CJK字符（圈数字等） | 一→①, 七→⑦ |
+
+**禁止入选的字：**
+
+| 禁止类型 | 说明 | 反面示例 |
+|------|------|------|
+| ❌ 生僻无关字 | 读者完全无法辨认的字 | ~~楩→听~~, ~~茣→好~~ |
+| ❌ 仅声母相同 | 只是首字母碰巧一样 | ~~稅→说~~（sh-对但完全不像） |
+| ❌ 古音/罕见读音匹配 | 靠古汉语冷僻读音凑出的匹配 | ~~悳→的~~, ~~悅→说~~ |
+
+**核心判断标准**：一个普通中文读者看到替代字，能否在3秒内猜出原字？不能则不合格。
+
+## 数据规模
+
+- **611 个汉字映射**，1020 条映射关系
+- 每个字 1-4 个替代写法
+- 覆盖：人称代词、动词、名词、形容词、副词、助词、连词、数词、量词、方向、时间、身体部位、食物、自然、科技、交通、动物、衣物、建筑、天气、情感等 30+ 分类
+
+## 扩展映射
+
+在 `scripts/mars_text.py` 的 `MARS_MAP` 列表中添加新映射：
+
+```python
+("字", ["替代1", "替代2", "替代3"]),
+```
+
+**添加前必须验证**：新增的每个替代字都必须满足上述质量规则。宁可少一个映射，也不要加入让人看不懂的字。
+
+## 版本历史
+
+- v2.1: 清理生僻字映射，移除 204 条不可辨认的替代字（17%），恢复经典火星文（莪、涐、茬等），新增聽、壞等繁体映射
+- v2.0: 初始版本，640+ 汉字映射

@@ -1,0 +1,22 @@
+# 验证维度权重
+weights:
+  consistency: 0.30      # 用户一致性
+  frequency: 0.20        # 需求频次
+  impact: 0.15           # 影响面
+  competitor: 0.10       # 竞品覆盖
+  alternative: 0.15      # 替代方案
+  roi: 0.10             # ROI
+
+# 评分阈值
+thresholds:
+  high: 80              # 高真实
+  medium_high: 60       # 中高真实
+  medium: 40            # 中等真实
+  low: 20              # 低真实
+
+# 频次验证规则
+frequency_rules:
+  excellent: 100        # 100条以上
+  good: 50             # 50-99条
+  medium: 20           # 20-49条
+  low: 10              # 10-19条

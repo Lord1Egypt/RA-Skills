@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "scope": "latest_all_70",
+      "period": "2026-02",
+      "cities_checked": 70,
+      "mismatch_count": 0,
+      "mismatches": [],
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202603/t20260316_1962774.html"
+    },
+    {
+      "scope": "oldest_sample_8",
+      "period": "2023-09",
+      "cities_checked": 8,
+      "mismatch_count": 0,
+      "mismatches": [],
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202310/t20231019_1943721.html"
+    }
+  ],
+  "report_output": "artifacts/accuracy-boundary-report.json"
+}

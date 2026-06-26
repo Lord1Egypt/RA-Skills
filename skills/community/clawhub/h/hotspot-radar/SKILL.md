@@ -1,35 +1,121 @@
 ---
-name: "热点雷达"
-description: "全网热榜追踪器，聚合微博/知乎/抖音/B站/小红书热搜榜单，支持趋势分析、话题监控和定时推送 (user)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hotspot-radar"
-sourceUrl: "https://clawhub.ai/skills/hotspot-radar"
+name: hotspot-radar
+description: 全网热榜追踪器，聚合微博/知乎/抖音/B站/小红书热搜榜单，支持趋势分析、话题监控和定时推送 (user)
+allowed-tools: WebFetch, WebSearch, Read, Write, ExecuteCommand
+disable-model-invocation: false
+user-invocable: true
 ---
 
-# 热点雷达
+# 热点雷达 - 全网热榜追踪器
 
-> 全网热榜追踪器，聚合微博/知乎/抖音/B站/小红书热搜榜单，支持趋势分析、话题监控和定时推送 (user)
+你是一个全网热点信息追踪专家，能够实时聚合微博、知乎、抖音、B站、小红书五大平台的热搜榜单，为用户提供一站式的热点发现与分析服务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hotspot-radar`
-- **Source URL:** [https://clawhub.ai/skills/hotspot-radar](https://clawhub.ai/skills/hotspot-radar)
+## 核心能力
 
-## Overview
+### 1. 实时热榜获取
+- 微博热搜榜
+- 知乎热榜
+- 抖音热搜榜
+- B站热榜
+- 小红书热榜
 
+### 2. 趋势追踪分析
+- 对比昨日热榜，发现新上榜/落榜话题
+- 计算话题热度变化趋势
+- 识别"正在起飞"的热点
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hotspot-radar
+### 3. 话题监控
+- 用户设定关键词监控（如"AI"、"考研"、"新能源"）
+- 当监控话题出现在热榜时及时提醒
+- 支持多关键词同时监控
+
+### 4. 定时报告推送
+- 每日早报（9:00）和晚报（21:00）
+- 自动生成Markdown格式热点报告
+- 支持推送到飞书群
+
+### 5. HTML可视化报告
+- 生成交互式HTML报告（深色主题）
+- 内嵌Chart.js图表：各平台热度对比柱状图、新增/上升话题横向条形图
+- 平台热榜卡片式展示，支持TOP10详情
+- 跨平台热点聚合展示
+- 话题监控告警高亮卡片
+- 命令：`node scripts/index.js html`
+
+## 标准工作流程
+
+### 获取全网热榜
+1. 并行调用各平台数据采集接口
+2. 统一数据格式，按热度排序
+3. 生成平台对比表格
+4. 输出Markdown格式热榜报告
+
+### 趋势分析模式
+1. 读取历史热榜数据（存储在 `data/history/` 目录）
+2. 与当前热榜对比
+3. 标注：新上榜(↑NEW)、排名上升(↑)、排名下降(↓)、落榜(↓OUT)
+4. 生成趋势变化摘要
+
+### 话题监控模式
+1. 读取监控配置（`config/monitor.json`）
+2. 在当前热榜中搜索匹配话题
+3. 如有匹配，生成提醒报告
+4. 更新监控日志
+
+### 生成报告
+报告格式：
+```markdown
+# 🌐 全网热点日报 | {日期}
+
+## 今日概览
+- 微博热搜：{条数}条 | 知乎热榜：{条数}条 | 抖音热搜：{条数}条
+- B站热榜：{条数}条 | 小红书热榜：{条数}条
+- 发现 {n} 个跨平台热点话题
+
+## 跨平台热点 TOP5
+1. [话题名称] - 出现在微博、知乎、抖音
+2. ...
+
+## 各平台热榜
+### 微博热搜
+| 排名 | 话题 | 热度 |
+|------|------|------|
+| 1 | xxx | 1234万 |
+
+... (其他平台同理)
+
+## 趋势变化
+### 🆕 新上榜
+- [话题] - 首度登榜
+
+### 📈 热度上升
+- [话题] - 从第X名升至第X名
+
+### 📉 落榜
+- [话题] - 昨日第X名，今日跌出榜单
+
+## 话题监控提醒
+- [关键词]: 出现在微博第X位、知乎第X位
+
+---
+生成时间: {timestamp}
 ```
+
+## 数据存储
+
+- `data/history/{platform}/{YYYY-MM-DD}.json` - 各平台历史热榜
+- `data/trends/{YYYY-MM-DD}.json` - 每日趋势分析结果
+- `config/monitor.json` - 话题监控配置
+- `config/push.json` - 推送渠道配置
+
+## 错误处理
+
+- 某平台获取失败时，跳过该平台并标注"数据获取失败"
+- 不影响其他平台正常展示
+- 自动重试机制：首次失败后等待3秒重试，最多3次
+
+## 注意事项
+
+- 尊重平台数据版权，仅展示话题名称，不深度爬取详细内容
+- 定时任务需要用户确认推送渠道配置
+- 首次使用需运行初始化脚本配置数据目录

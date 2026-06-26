@@ -1,0 +1,28 @@
+{
+  "name": "daily-tongjian",
+  "version": "0.1.0",
+  "description": "Daily Tongjian / 每日资治通鉴 — progressive reading of Zizhi Tongjian (资治通鉴) with auto-tracked progress, full lecture text, scene art, and voice narration. | 逐卷逐讲通读《资治通鉴》，自动追踪进度，默认交付完整讲稿、配图与语音。",
+  "keywords": [
+    "zizhi-tongjian",
+    "history",
+    "chinese-history",
+    "lecture",
+    "daily",
+    "tts",
+    "historical-commentary",
+    "资治通鉴",
+    "历史",
+    "讲史"
+  ],
+  "author": "Tommy Yan <thriller.yan@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yumyumtum/YumSkills.git",
+    "directory": "daily-tongjian"
+  },
+  "homepage": "https://github.com/yumyumtum/YumSkills/tree/main/daily-tongjian",
+  "bugs": {
+    "url": "https://github.com/yumyumtum/YumSkills/issues"
+  }
+}

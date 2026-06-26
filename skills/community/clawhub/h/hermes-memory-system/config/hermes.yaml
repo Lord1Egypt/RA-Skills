@@ -1,0 +1,259 @@
+# Hermes 系统主配置文件
+# 版本: 1.0.0
+
+# 系统设置
+system:
+  name: "hermes"
+  version: "1.0.0"
+  environment: "production"  # development, staging, production
+  debug: false
+  log_level: "INFO"
+  
+  # 工作空间设置
+  workspace_dir: "/Users/apple/.openclaw/workspace"
+  data_dir: "{{ system.workspace_dir }}/hermes/data"
+  logs_dir: "{{ system.workspace_dir }}/hermes/logs"
+  cache_dir: "{{ system.workspace_dir }}/hermes/cache"
+  
+  # 性能设置
+  max_workers: 4
+  cache_size: 1000
+  cache_ttl_seconds: 3600
+  
+# 记忆系统配置
+memory:
+  enabled: true
+  
+  # 目录设置
+  workspace_dir: "{{ system.workspace_dir }}"
+  memory_dir: "{{ memory.workspace_dir }}/memory"
+  memory_file: "{{ memory.workspace_dir }}/MEMORY.md"
+  
+  # 同步设置
+  auto_sync: true
+  sync_batch_size: 10
+  sync_interval_seconds: 60
+  sync_on_shutdown: true
+  
+  # 预取设置
+  prefetch_enabled: true
+  prefetch_threshold: 0.1
+  max_prefetch_results: 5
+  prefetch_cache_size: 100
+  
+  # 嵌入模型设置
+  use_embedding: false  # 设置为 true 以使用嵌入模型（需要 API 密钥）
+  embedding_provider: "word_overlap"  # word_overlap, openai, ollama
+  embedding_model: "text-embedding-3-small"  # OpenAI 模型名称
+  embedding_api_key: ""  # 嵌入模型 API 密钥
+  embedding_base_url: ""  # 自定义 API 端点
+  embedding_cache_size: 1000
+  embedding_cache_ttl_seconds: 3600
+  
+  # 搜索设置
+  search_algorithm: "semantic"  # semantic, keyword, hybrid
+  semantic_threshold: 0.1
+  keyword_boost: 1.5
+  
+# Skill 生成系统配置
+skill_generation:
+  enabled: true
+  
+  # 目录设置
+  trajectories_dir: "{{ system.workspace_dir }}/trajectories"
+  skills_dir: "{{ system.workspace_dir }}/skills"
+  skill_analysis_dir: "{{ system.workspace_dir }}/skill_analysis"
+  skill_approvals_dir: "{{ system.workspace_dir }}/skill_approvals"
+  skill_templates_dir: "{{ system.data_dir }}/templates"
+  
+  # 轨迹记录设置
+  auto_record: true
+  min_trajectory_steps: 3
+  max_trajectory_steps: 50
+  record_tool_calls: true
+  record_file_operations: true
+  record_decisions: true
+  
+  # 复盘分析设置
+  debrief_enabled: true
+  debrief_algorithm: "rule_based"  # rule_based, llm_based
+  debrief_min_confidence: 0.3
+  debrief_max_candidates: 3
+  debrief_pattern_threshold: 1
+  
+  # Skill 生成设置
+  require_approval: true
+  auto_install: false
+  skill_template: "default"
+  skill_format: "openclaw"  # openclaw, hermes
+  
+  # 代码案例记录
+  record_code_cases: true
+  code_cases_dir: "{{ system.data_dir }}/code_cases"
+  min_code_quality_score: 0.5
+  
+# 数据导出配置
+data_export:
+  enabled: false
+  
+  # 目录设置
+  export_dir: "{{ system.data_dir }}/exports"
+  
+  # 记忆导出设置
+  export_memory: true
+  memory_export_format: "json"  # json, csv, markdown
+  memory_export_interval_hours: 24
+  memory_export_max_age_days: 30
+  
+  # 代码案例导出设置
+  export_code_cases: true
+  code_cases_export_format: "json"
+  sync_to_claude_optimization: false
+  claude_optimization_dir: "{{ system.workspace_dir }}/claude_optimization"
+  
+  # 性能数据导出
+  export_performance: true
+  performance_export_interval_hours: 1
+  
+# 性能监控配置
+performance:
+  enabled: true
+  
+  # 监控设置
+  metrics_port: 9090
+  health_check_interval_seconds: 30
+  performance_check_interval_seconds: 60
+  
+  # 监控阈值
+  memory_warning_mb: 100
+  memory_critical_mb: 200
+  response_time_warning_ms: 500
+  response_time_critical_ms: 1000
+  error_rate_warning_percent: 5
+  error_rate_critical_percent: 10
+  
+  # 性能优化
+  enable_caching: true
+  enable_compression: true
+  enable_batching: true
+  
+# 集成配置
+integration:
+  # OpenClaw 集成
+  openclaw:
+    enabled: true
+    workspace_dir: "{{ system.workspace_dir }}"
+    config_path: "{{ system.workspace_dir }}/../config.yaml"
+    
+  # Webhook 集成
+  webhooks:
+    enabled: false
+    endpoints:
+      - url: "https://api.example.com/webhook/hermes"
+        events: ["skill_generated", "memory_updated", "error_occurred"]
+        secret: ""
+        
+  # API 集成
+  api:
+    enabled: false
+    host: "0.0.0.0"
+    port: 8080
+    auth_required: true
+    api_keys: []
+    
+# 安全配置
+security:
+  enabled: true
+  
+  # API 安全
+  api_key_required: false
+  rate_limit_requests_per_minute: 60
+  rate_limit_burst_size: 10
+  
+  # 数据安全
+  encrypt_sensitive_data: false
+  encryption_key: ""
+  
+  # 访问控制
+  allowed_origins:
+    - "http://localhost:3000"
+    - "https://openclaw.ai"
+    
+  # 审计日志
+  audit_logging: true
+  audit_log_dir: "{{ system.logs_dir }}/audit"
+  
+# 日志配置
+logging:
+  # 日志级别
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  
+  # 日志文件
+  file_enabled: true
+  file_path: "{{ system.logs_dir }}/hermes.log"
+  max_size_mb: 100
+  backup_count: 5
+  
+  # 控制台日志
+  console_enabled: true
+  console_format: "colored"  # plain, colored, json
+  
+  # 结构化日志
+  structured_logging: true
+  log_format: "json"  # text, json
+  
+  # 日志轮转
+  rotation:
+    enabled: true
+    when: "midnight"  # midnight, hourly, daily, weekly
+    interval: 1
+    backup_count: 7
+    
+# 高级配置
+advanced:
+  # 实验功能
+  experimental_features: false
+  
+  # 调试设置
+  enable_profiling: false
+  profiling_dir: "{{ system.data_dir }}/profiles"
+  
+  # 开发设置
+  hot_reload: false
+  reload_watch_dirs: ["src"]
+  
+  # 测试设置
+  test_mode: false
+  mock_apis: false
+  
+# 环境变量覆盖
+# 以下配置可以通过环境变量覆盖：
+# - HERMES_MEMORY_ENABLED=true
+# - HERMES_LOG_LEVEL=DEBUG
+# - HERMES_EMBEDDING_API_KEY=sk-...
+
+# 配置验证规则
+_validation:
+  # 必需字段
+  required:
+    - system.name
+    - system.workspace_dir
+    
+  # 类型验证
+  types:
+    system.debug: "boolean"
+    memory.enabled: "boolean"
+    skill_generation.enabled: "boolean"
+    
+  # 范围验证
+  ranges:
+    memory.prefetch_threshold:
+      min: 0.0
+      max: 1.0
+    skill_generation.debrief_min_confidence:
+      min: 0.0
+      max: 1.0
+    performance.memory_warning_mb:
+      min: 10
+    performance.response_time_warning_ms:
+      min: 10

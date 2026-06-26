@@ -1,35 +1,121 @@
 ---
-name: "Image-crawler"
-description: "图片采集/爬虫工具，支持百度和Bing图片搜索引擎。当用户要求采集、爬取、下载、 搜集图片时使用。支持关键词拓展、图片去重（URL+内容hash，跨次运行持久化）、 进度监控和停滞检测。触发词：采集图片、爬取图片、下载图片、图片爬虫、抓取图片。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-crawler"
-sourceUrl: "https://clawhub.ai/skills/image-crawler"
+name: image-crawler
+description: >
+  图片采集/爬虫工具，支持百度和Bing图片搜索引擎。当用户要求采集、爬取、下载、
+  搜集图片时使用。支持关键词拓展、图片去重（URL+内容hash，跨次运行持久化）、
+  进度监控和停滞检测。触发词：采集图片、爬取图片、下载图片、图片爬虫、抓取图片。
 ---
 
-# Image-crawler
+# Image Crawler
 
-> 图片采集/爬虫工具，支持百度和Bing图片搜索引擎。当用户要求采集、爬取、下载、 搜集图片时使用。支持关键词拓展、图片去重（URL+内容hash，跨次运行持久化）、 进度监控和停滞检测。触发词：采集图片、爬取图片、下载图片、图片爬虫、抓取图片。
+通过百度/Bing图片搜索批量采集图片，内置去重、关键词拓展、进度监控。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-crawler`
-- **Source URL:** [https://clawhub.ai/skills/image-crawler](https://clawhub.ai/skills/image-crawler)
+## 快速流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/image-crawler
 ```
+1. 确认需求 → 2. 生成拓展关键词 → 3. 构造命令 → 4. 运行并监控 → 5. 汇报结果
+```
+
+## Step 1: 确认采集需求
+
+从用户请求中提取：
+- **关键词**（必须）：采集什么图片
+- **数量**（默认 100）：需要多少张
+- **输出目录**（默认 ./crawled_images）：存放位置
+- **引擎**（默认 baidu）：百度通常更稳定，中文搜索效果更好
+
+## Step 2: 关键词拓展
+
+利用 LLM 能力生成 5-15 个拓展关键词，传入 `--expand-terms`。
+
+拓展策略（按领域选择）：
+
+**设备/产品类**：品牌 + 型号 + 使用场景
+```
+用户说"挖掘机" → 三一,卡特,小松,沃尔沃,日立,临工,大型,小型,施工现场,工地
+```
+
+**动物/植物类**：品种 + 环境 + 状态
+```
+用户说"猫" → 橘猫,英短,布偶,暹罗,黑猫,可爱,睡觉,户外
+```
+
+**建筑/场景类**：风格 + 地点 + 时间
+```
+用户说"别墅" → 欧式,中式,现代,豪华,花园,室内,外观,夜景
+```
+
+**通用原则**：拓展词应增加多样性而非重复。中英文混合可增加搜索覆盖面。
+
+## Step 3: 构造并运行命令
+
+脚本位置：`scripts/image_crawler.py`（相对于此 SKILL.md）
+
+```bash
+python {skill_dir}/scripts/image_crawler.py \
+  -k "关键词1" -k "关键词2" \
+  -n 数量 \
+  -o 输出目录 \
+  -e baidu \
+  --expand --expand-terms "拓展词1,拓展词2,..." \
+  --json
+```
+
+**始终使用 `--json` 模式**以便解析输出。
+
+典型示例：
+```bash
+# 采集 200 张挖掘机图片
+python scripts/image_crawler.py \
+  -k "挖掘机" -k "excavator" \
+  -n 200 -o ./excavator_images \
+  --expand --expand-terms "三一,卡特,小松,沃尔沃,临工,大型,施工现场" \
+  --json
+```
+
+## Step 4: 监控采集过程
+
+以后台模式运行脚本，定期检查输出：
+
+1. 用 `exec` 以 `background: true` 启动脚本
+2. 用 `process(poll)` 获取最新输出
+3. 解析 JSON 行，关注以下事件：
+
+| type | 含义 | Agent 动作 |
+|------|------|-----------|
+| `progress` | 下载进度 | 向用户报告进度和预估时间 |
+| `stall` | 采集停滞 | 提醒用户可能有问题 |
+| `error` | 严重错误 | **立即中断并告知用户**（反爬/网络问题） |
+| `done` | 采集完成 | 汇报统计信息 |
+
+**停滞判断**：如果 `poll` 长时间无新 progress 输出（>60s），主动检查进程状态。
+
+## Step 5: 汇报结果
+
+采集完成后，向用户报告：
+- 成功下载数 / 目标数
+- 去重移除数
+- 总耗时
+- 输出目录路径
+- 如有失败，说明可能原因（反爬、网络、源站不可用）
+
+## 追加采集
+
+脚本支持跨次运行去重。如果用户需要更多图片，直接用相同输出目录再次运行：
+- `.dedup_hashes.json` 自动跳过已有图片
+- 文件编号自动递增，不会覆盖
+
+## 详细接口和自定义
+
+参见 [references/customization.md](references/customization.md)：
+- 完整 CLI 参数表
+- JSON 输出格式详解
+- 去重机制说明
+- 添加新搜索引擎指南
+- 常见问题排查
+
+## 脚本模板
+
+`scripts/` 下包含两个独立可用的引擎模板，适合用户学习或二次开发：
+- `baidu_crawler.py` — 百度图片搜索，接口清晰，中文搜索效果好
+- `bing_crawler.py` — Bing图片搜索，英文搜索覆盖面广

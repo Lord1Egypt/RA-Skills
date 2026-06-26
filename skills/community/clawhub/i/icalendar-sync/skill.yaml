@@ -1,0 +1,192 @@
+# =============================================================================
+# iCalendar Sync v2.4 - OpenClaw Skill Definition
+# =============================================================================
+#
+# CRITICAL: This skill needs credentials for CalDAV mode:
+#   - via ICLOUD_USERNAME / ICLOUD_APP_PASSWORD
+#   - or via YAML config file passed with --config
+#
+# NEW in v2.4:
+#   - ✨ UPDATE command: modify existing events without breaking UID
+#   - 🔁 Smart Recurrence: update single instance, all, or future instances
+#   - 📅 Exception handling: RECURRENCE-ID support for series modifications
+#   - 🎯 Modes: --mode single/all/future for granular control
+#
+# From v2.2.16:
+#   - 🔧 ClawHub integration fixes
+#   - 📦 Added _meta.json for proper registry integration
+#
+# From v2.2.15:
+#   - 🧹 Cleaned up repository: removed old internal files (bugfix notes, release instructions, etc.)
+#   - 🛡️ Added comprehensive security documentation addressing ClawHub concerns
+#   - 📋 Added authoritative CLAWHUB.yaml with explicit metadata declarations
+#   - ✅ Removed redundant metadata files
+#
+# From v2.2.14:
+#   - 📁 Restructured repository: flattened directory structure for ClawHub
+#
+# From v2.2.13:
+#   - 🔄 Version bump to force ClawHub re-indexing (cache issue fix)
+#
+# From v2.2.12:
+#   - 🌍 Cyrillic/Unicode calendar names support (Личный, Работа, 工作, etc.)
+#   - 🔧 Headless configuration: --username and --non-interactive flags
+#   - ✅ Fixed RuntimeWarning when using python -m icalendar_sync
+#   - 🙏 Field-tested fixes from real OpenClaw users (thanks Alfred!)
+#
+# From v2.2.9:
+#   - Added explicit branch: skills to metadata for ClawHub indexing
+#   - Multiple metadata formats for maximum compatibility
+#
+# From v2.2.8:
+#   - Simplified CLAWHUB_METADATA.yaml (30 lines vs 160)
+#   - Fixed ClawHub security scan "metadata_env_mismatch" issue
+#   - Explicitly declared required_env_vars at top level
+# =============================================================================
+
+
+name: icalendar-sync
+display_name: "iCalendar Sync"
+version: "2.4"
+description: >
+  Professional iCloud Calendar integration for OpenClaw.
+  Provides bidirectional CalDAV sync with iCloud calendars.
+  Core functionality: create, read, update, delete calendar events.
+
+  CalDAV mode requires credentials from env, keyring, or explicit YAML config.
+
+  v2.2.12 adds Cyrillic support, headless config, and critical bug fixes.
+
+
+author: Black_Temple
+license: MIT
+repository: https://github.com/h8kxrfp68z-lgtm/iCalendar-Sync
+homepage: https://clawhub.ai/skills/icalendar-sync
+
+
+category: productivity
+tags:
+  - calendar
+  - icloud
+  - apple
+  - caldav
+  - sync
+  - productivity
+  - scheduling
+  - russian
+  - cyrillic
+
+
+runtime:
+  type: python
+  version: ">=3.9"
+
+
+dependencies:
+  python:
+    - caldav>=1.3.0,<2.0.0
+    - icalendar>=5.0.0,<6.0.0
+    - pyyaml>=6.0,<7.0
+    - python-dateutil>=2.8.0,<3.0.0
+    - requests>=2.31.0,<3.0.0
+    - keyring>=24.0.0,<25.0.0
+
+
+# =============================================================================
+# CREDENTIALS: Optional in metadata because skill supports env/keyring/config/native modes
+# =============================================================================
+environment:
+  - name: ICLOUD_USERNAME
+    description: "Apple ID email address (e.g., name@icloud.com)"
+    required: false
+    placeholder: "user@icloud.com"
+  
+  - name: ICLOUD_APP_PASSWORD
+    description: "App-Specific Password from appleid.apple.com (read from secure OpenClaw env, can be persisted to system keyring by setup)"
+    required: false
+    secure: true
+    placeholder: "xxxx-xxxx-xxxx-xxxx"
+  
+  - name: DEFAULT_CALENDAR
+    description: "Default calendar name if not specified"
+    required: false
+    default: "Personal"
+  
+  - name: LOG_LEVEL
+    description: "Logging level (DEBUG, INFO, WARNING, ERROR)"
+    required: false
+    default: "WARNING"
+
+  - name: ICALENDAR_SYNC_CONFIG
+    description: "Optional path to YAML credential file (username/app_password)"
+    required: false
+    default: "~/.openclaw/icalendar-sync.yaml"
+
+  - name: ICALENDAR_SYNC_USER_AGENT
+    description: "Optional custom User-Agent for iCloud CalDAV requests"
+    required: false
+    default: "macOS/14.0.0 (23A344) CalendarAgent/954"
+
+  - name: ICALENDAR_SYNC_DEBUG_HTTP
+    description: "Enable detailed auth/network diagnostics (1/true/yes/on)"
+    required: false
+    default: "0"
+
+  - name: ICALENDAR_SYNC_STORAGE
+    description: "Credential source override for CalDAV provider (auto/keyring/env/file)"
+    required: false
+    default: "auto"
+
+
+# =============================================================================
+# SECURITY
+# =============================================================================
+security:
+  credential_storage: "System keyring or explicit YAML config file (0600) for headless/GUI-restricted runtimes"
+  input_validation: true
+  rate_limiting: "10 calls per 60 seconds"
+  ssl_verification: true
+  sensitive_data_filtering: true
+
+
+# =============================================================================
+# CAPABILITIES
+# =============================================================================
+capabilities:
+  agent_aware: false
+  supports_isolation: false
+
+
+# =============================================================================
+# COMMANDS
+# =============================================================================  
+commands:
+  - name: list
+    description: List accessible iCloud calendars
+    usage: "icalendar-sync list [--provider auto|caldav|macos-native] [--storage auto|keyring|env|file] [--config /path/to/config.yaml]"
+    permissions: [read]
+  
+  - name: get
+    description: Sync and retrieve calendar events
+    usage: "icalendar-sync get --calendar <name> [--days 7] [--provider auto|caldav|macos-native] [--storage auto|keyring|env|file] [--config /path/to/config.yaml]"
+    permissions: [read]
+  
+  - name: create
+    description: Create a new calendar event
+    usage: "icalendar-sync create --calendar <name> --json <data> [--provider auto|caldav|macos-native] [--storage auto|keyring|env|file] [--config /path/to/config.yaml]"
+    permissions: [create]
+
+  - name: update
+    description: Update existing calendar event with smart recurrence handling
+    usage: "icalendar-sync update --calendar <name> --uid <uid> --json <data> [--recurrence-id <datetime>] [--mode single|all|future] [--provider auto|caldav|macos-native] [--storage auto|keyring|env|file] [--config /path/to/config.yaml]"
+    permissions: [update]
+
+  - name: delete
+    description: Remove event from calendar
+    usage: "icalendar-sync delete --calendar <name> --uid <uid> [--provider auto|caldav|macos-native] [--storage auto|keyring|env|file] [--config /path/to/config.yaml]"
+    permissions: [delete]
+  
+  - name: setup
+    description: Configure iCloud credentials interactively or via CLI
+    usage: "icalendar-sync setup [--username EMAIL] [--non-interactive] [--storage keyring|file] [--config /path/to/config.yaml]"
+    permissions: [admin]

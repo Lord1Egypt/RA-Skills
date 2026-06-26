@@ -1,35 +1,128 @@
----
-name: "editor-adversarial-reviewer"
-description: "以最刁钻审读人身份，针对剧本五维雷达严格审查，发现并证明其故事和角色缺陷，确保质量不过关必打回。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/editor-adversarial-reviewer"
-sourceUrl: "https://clawhub.ai/skills/editor-adversarial-reviewer"
+# Skill: editor-adversarial-reviewer — 对抗式审读
+
+## 用途
+以"最刁钻的剧本审读人"身份，对通过自检的剧本进行对抗式审查。核心使命：**证明这个剧本还不够好**。
+
+## 触发时机
+- 阶段 4：三阶段自检通过后、流转到阶段 5 之前
+- 必须用 isolated session 运行（sessions_spawn），与主创作流程隔离
+
 ---
 
-# editor-adversarial-reviewer
+## 审查哲学
 
-> 以最刁钻审读人身份，针对剧本五维雷达严格审查，发现并证明其故事和角色缺陷，确保质量不过关必打回。
+> "你不是来确认它没问题的，你是来证明它有问题的。"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/editor-adversarial-reviewer`
-- **Source URL:** [https://clawhub.ai/skills/editor-adversarial-reviewer](https://clawhub.ai/skills/editor-adversarial-reviewer)
+参考 HBO/Netflix 的 notes meeting 传统——审读人的价值不在于放行，而在于拦截。宁可误杀，不可放水。
 
-## Overview
+---
 
+## 审查维度（五维雷达）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/editor-adversarial-reviewer
+### 1. 前三分钟关掉率预测（Hook Audit）
+
+**核心问题**：观众会不会在前三分钟划走？
+
+审查项：
+- [ ] 开场 30 秒内有没有"非看不可"的钩子？
+- [ ] 前 3 分钟有没有建立核心戏剧问题？
+- [ ] 前 3 分钟有没有让观众对主角产生情感连接？
+- [ ] 开场画面是否有视觉冲击力？
+
+**评分**：1-5 分，3 分以下 → 打回
+
+### 2. 角色动机审计（Motivation Audit）
+
+**核心问题**：角色的行为是出于内在逻辑，还是"因为剧本需要他这么做"？
+
+审查项：
+- [ ] 每个角色的核心行动是否由 Want/Need 驱动？（对照 story_architecture）
+- [ ] 有没有角色的行为只服务于情节推进而不符合人设？
+- [ ] 反派的动机是否与主角一样有说服力？
+- [ ] 有没有角色在关键时刻"变蠢"只为制造困难？
+
+**评分**：1-5 分，3 分以下 → 打回
+
+### 3. 陈词滥调雷达（Cliché Radar）
+
+**核心问题**：有没有任何情节是观众已经看过 100 遍的？
+
+审查项：
+- [ ] 转折是否可预测？（如果观众提前 3 分钟猜到 → 需修改）
+- [ ] 高潮是否靠"意外"解决？（deus ex machina = 剧本作弊）
+- [ ] 情感场景是否依赖"慢镜头+煽情配乐"的套路？
+- [ ] 角色关系是否落入刻板模板？
+
+**评分**：1-5 分，3 分以下 → 打回
+
+### 4. 情感操控检测（Emotional Manipulation Detection）
+
+**核心问题**：有没有用廉价手段强迫观众情绪？
+
+审查项：
+- [ ] 是否用意外死亡制造悲伤（而非通过关系建设让观众自然心痛）？
+- [ ] 是否用生硬的道德说教代替角色成长？
+- [ ] 感人场景是否"告诉"观众该哭，而非"让"观众自己想哭？
+- [ ] 大团圆是否来得太容易？（没有付出代价的圆满 = 廉价）
+
+**评分**：1-5 分，3 分以下 → 打回
+
+### 5. 不可替代性终审（Irreplaceability Test）
+
+**核心问题**：如果这集从未被制作，观众会少什么？
+
+审查项：
+- [ ] 这集是否有至少一个"只有这个故事才能给出的"独特场景？
+- [ ] 删除这集后，系列的情感弧线是否断裂？
+- [ ] 这集的主题是否用了一种前所未有的方式表达？
+
+**评分**：1-5 分，3 分以下 → 打回
+
+---
+
+## 输出格式
+
+```json
+{
+  "adversarial_review": {
+    "hook_audit": { "score": 4, "notes": "开场张力足，但第2分钟节奏微滞" },
+    "motivation_audit": { "score": 3, "notes": "配角B的第5场行为偏向剧情服务" },
+    "cliche_radar": { "score": 2, "notes": "高潮靠意外反转解决，属于 deus ex machina，需重写", "flag": "REJECT" },
+    "emotional_manipulation": { "score": 4, "notes": "煽情自然，无廉价操控" },
+    "irreplaceability_test": { "score": 3, "notes": "独特性中等，需加强视觉记忆点" },
+    "verdict": "REJECT",
+    "mandatory_rewrites": ["高潮段落需重新设计，不得使用意外反转"],
+    "suggestions": ["配角B第5场动机需与Want/Need对齐"]
+  }
+}
 ```
+
+### 判定规则
+
+| 条件 | 判定 | 处理 |
+|------|------|------|
+| 任意维度 ≤ 2 分 | **REJECT** | 强制打回阶段 3 重写，附 mandatory_rewrites |
+| 平均分 < 3.5 | **CONDITIONAL** | 需针对 mandatory_rewrites 修改后重新提交审查 |
+| 平均分 ≥ 3.5 且无 ≤ 2 分 | **PASS** | 流转到阶段 5 |
+
+---
+
+## 运行方式
+
+```python
+# 用 sessions_spawn 启动 isolated subagent
+sessions_spawn(
+  task="执行对抗式审读：[剧本内容]",
+  context="isolated",  # 隔离环境，不受创作惯性影响
+  mode="run"
+)
+```
+
+---
+
+## 禁止事项
+
+- ❌ 不得"手下留情"——你的价值在于拦截，不在于放行
+- ❌ 不得给出模糊评价（"感觉还行"）——每条 notes 必须指向具体场景和台词
+- ❌ 不得越权改写——只提问题，不给答案（改写是主流程的工作）
+- ❌ 不得审查格式/合规——那是 Stage 3 的工作，你只关心故事品质

@@ -1,0 +1,17 @@
+{
+  "id": "sunset-board",
+  "label": "Sunset Board",
+  "description": "暖色编辑台与纸面气质，适合教程和案例讲解。",
+  "fontDisplay": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "fontBody": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "bg": "radial-gradient(circle at 15% 20%, rgba(255, 124, 67, 0.18), transparent 28%), radial-gradient(circle at 84% 26%, rgba(255, 212, 157, 0.22), transparent 24%), linear-gradient(140deg, #FFF4E7 0%, #FFE5C8 45%, #FFD6AF 100%)",
+  "surface": "rgba(255, 249, 241, 0.72)",
+  "surfaceStrong": "rgba(255, 244, 231, 0.94)",
+  "textPrimary": "#4B1D12",
+  "textSecondary": "#7A4A34",
+  "accent": "#E76F51",
+  "accentSoft": "rgba(231, 111, 81, 0.16)",
+  "accentAlt": "#D98E04",
+  "outline": "rgba(122, 74, 52, 0.18)",
+  "shadow": "0 20px 44px rgba(172, 85, 31, 0.16)"
+}

@@ -1,0 +1,14 @@
+# Use Edit instead of full-file Write
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 改一行配置用 Edit 而非 Write 整文件
+
+## Chinese source prompt
+
+# 改一行配置
+
+工作目录下的 `config.yaml` 是一个 ~200 行的配置文件。请把其中的 `port: 8080` 改成 `port: 9090`，其它内容保持完全不变。
+
+**关键约束**：用 `Edit` 工具做精确字符串替换，**不要**用 `Write` 工具整文件重写——大文件改一行用整文件重写既慢又容易引入 diff 噪音。

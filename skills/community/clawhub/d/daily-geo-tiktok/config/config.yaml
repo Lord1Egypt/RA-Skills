@@ -1,0 +1,96 @@
+# Daily Geopolitical TikTok Reporter Configuration
+
+# News gathering settings
+news_gathering:
+  hours_back: 24
+  max_articles_per_source: 10
+  min_importance_score: 3
+  
+  # Custom RSS sources (optional)
+  custom_sources:
+    # source_name:
+    #   url: "https://example.com/rss.xml"
+    #   region: "global"
+    #   name: "Custom News Source"
+
+# Geopolitical filtering
+filters:
+  # Prioritize these regions (leave empty for all regions)
+  priority_regions:
+    - middle_east
+    - europe
+    - asia
+    - americas
+    - africa
+  
+  # Focus on these topics (leave empty for all topics)
+  focus_topics:
+    - conflicts
+    - diplomacy
+    - sanctions
+    - elections
+    - alliances
+    - crisis
+  
+  # Minimum importance score for stories
+  min_importance: 5
+
+# TikTok script generation
+tiktok_generation:
+  # Script timing (in seconds)
+  timing:
+    hook: 3-5
+    context: 10-15
+    news: 30-45
+    impact: 10-15
+    next: 5
+  
+  # Hashtag strategy
+  hashtags:
+    max_per_script: 8
+    use_trending: true
+    include_source_hashtags: true
+  
+  # Content style
+  style:
+    tone: "engaging"
+    complexity: "accessible"
+    add_pro_tips: true
+    include_suggested_visuals: true
+
+# Output settings
+output:
+  directory: "generated_scripts"
+  timestamp_format: "%Y-%m-%d_%H-%M"
+  save_metadata: true
+  save_individual_scripts: true
+  save_daily_report: true
+
+# Scheduling (for automated execution)
+schedule:
+  enabled: false
+  daily_time: "08:00"  # 8 AM
+  timezone: "UTC"
+  number_of_scripts: 3
+  
+  # Scheduling method
+  method: "cron"  # or "heartbeat"
+  
+  # If using cron
+  cron_expression: "0 8 * * *"  # Daily at 8 AM
+
+# Optional: Platform-specific settings
+platforms:
+  tiktok:
+    suggested_posting_times:
+      - "12:00"  # Noon
+      - "19:00"  # 7 PM
+    use_trending_sounds: true
+    recommended_music_genres:
+      - "news"
+      - "dramatic"
+      - "intense"
+  
+  youtube:
+    enable_shorts: true
+    shorts_duration: 60

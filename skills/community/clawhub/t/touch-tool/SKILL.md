@@ -1,35 +1,27 @@
 ---
-name: "Touch Tool"
-description: "Create empty files or update file timestamps. Use for file creation, timestamp management, and build system operations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/touch-tool"
-sourceUrl: "https://clawhub.ai/skills/touch-tool"
+name: touch-tool
+description: Create empty files or update file timestamps. Use for file creation, timestamp management, and build system operations.
 ---
+# Touch - File Timestamp Manager
 
-# Touch Tool
+Create empty files or update the access and modification timestamps of existing files. If the file doesn't exist, it is created empty.
 
-> Create empty files or update file timestamps. Use for file creation, timestamp management, and build system operations.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/touch-tool`
-- **Source URL:** [https://clawhub.ai/skills/touch-tool](https://clawhub.ai/skills/touch-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/touch-tool
+touch-tool [options] <file...>
+```
+
+## Options
+
+- `-a`: Change access time only
+- `-m`: Change modification time only
+- `-t STAMP`: Use specified time instead of current time
+- `-c`: Don't create file if it doesn't exist
+
+## Examples
+
+```bash
+touch-tool newfile.txt
+touch-tool -a oldfile.log
+touch-tool -t 202605011200 file.txt
 ```

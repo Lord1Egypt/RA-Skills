@@ -1,0 +1,10 @@
+{
+  "maxPerDay": 25,
+  "delayBetweenMs": 3000,
+  "dripDays": [3, 7],
+  "suppressionFile": "suppression.txt",
+  "trackingFile": "send-log.csv",
+  "from": "Your Name <hello@yourdomain.com>",
+  "senderTitle": "Founder",
+  "defaultTemplate": "Subject: {company} — quick question\n\nHi {first_name},\n\nI noticed {company} {pain_point}. We help businesses like yours fix that in under a week.\n\nWould it make sense to chat for 10 minutes this week?\n\n{sender_name}\n{sender_title}"
+}

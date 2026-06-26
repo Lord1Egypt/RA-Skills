@@ -1,35 +1,40 @@
 ---
-name: "reviewer-rebuttal-coach"
-description: "从剪贴板读取审稿意见、导师批注或评审反馈，生成逐条回复、修改计划与优先级建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reviewer-rebuttal-coach"
-sourceUrl: "https://clawhub.ai/skills/reviewer-rebuttal-coach"
+name: reviewer-rebuttal-coach
+description: 从剪贴板读取审稿意见、导师批注或评审反馈，生成逐条回复、修改计划与优先级建议。
+metadata: {"openclaw":{"emoji":"🧾","requires":{"bins":["node","pbpaste"]}}}
 ---
 
-# reviewer-rebuttal-coach
+# Reviewer Rebuttal Coach
 
-> 从剪贴板读取审稿意见、导师批注或评审反馈，生成逐条回复、修改计划与优先级建议。
+这是一个专门处理审稿意见、导师批注、答辩修改意见和项目评审反馈的 skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reviewer-rebuttal-coach`
-- **Source URL:** [https://clawhub.ai/skills/reviewer-rebuttal-coach](https://clawhub.ai/skills/reviewer-rebuttal-coach)
+## 主要用途
 
-## Overview
+当用户复制了以下内容之一时：
+- 审稿人意见
+- 导师批注
+- 答辩修改意见
+- 开题评审意见
+- 项目评审反馈
+- 编辑部修改建议
 
+你需要：
+1. 读取剪贴板文本
+2. 提取意见要点
+3. 按问题类型分类
+4. 生成逐条回复建议
+5. 生成修改任务清单
+6. 标出优先级和风险点
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 调用方式
+
+当用户说：
+- 帮我回复审稿意见
+- 读取剪贴板并生成答复
+- 帮我把这些评审意见拆成修改任务
+- 用剪贴板内容生成rebuttal
+
+你应运行：
+
 ```bash
-hermes skills install clawhub/reviewer-rebuttal-coach
-```
+node {baseDir}/scripts/read_clipboard.mjs

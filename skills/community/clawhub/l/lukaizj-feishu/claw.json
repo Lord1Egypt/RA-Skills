@@ -1,0 +1,91 @@
+{
+  "version": "0.1.0",
+  "name": "feishu",
+  "description": "Feishu (飞书) integration - Send messages, manage groups, and automate Feishu workflows",
+  "instructions": "instructions.md",
+  "tools": {
+    "auto_preload": false,
+    "entries": [
+      {
+        "name": "feishu_send_message",
+        "description": "Send a text or card message to a Feishu chat",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "chat_id": {
+              "type": "string",
+              "description": "The chat ID to send message to"
+            },
+            "message": {
+              "type": "string",
+              "description": "Message content"
+            },
+            "msg_type": {
+              "type": "string",
+              "enum": ["text", "card"],
+              "description": "Message type, text or card"
+            }
+          },
+          "required": ["chat_id", "message"]
+        }
+      },
+      {
+        "name": "feishu_create_chat",
+        "description": "Create a new Feishu group chat",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Chat group name"
+            },
+            "user_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "User IDs to add to the chat"
+            }
+          },
+          "required": ["name"]
+        }
+      },
+      {
+        "name": "feishu_list_chats",
+        "description": "List all accessible Feishu chats",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "feishu_get_token",
+        "description": "Get Feishu tenant access token",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ]
+  },
+  "env": [
+    {
+      "name": "FEISHU_APP_ID",
+      "description": "Feishu App ID from developer console",
+      "required": true
+    },
+    {
+      "name": "FEISHU_APP_SECRET",
+      "description": "Feishu App Secret",
+      "required": true
+    },
+    {
+      "name": "FEISHU_VERIFY_TOKEN",
+      "description": "Verification token for callbacks (optional)",
+      "required": false
+    }
+  ],
+  "tags": ["productivity", "integration", "messaging"],
+  "author": "Your Name",
+  "homepage": "https://github.com/yourusername/feishu-integration-skill"
+}

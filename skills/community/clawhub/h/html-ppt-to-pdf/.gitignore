@@ -1,0 +1,10 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# generated PDFs (except the ones checked in as samples)
+evals/fixtures/*.pdf
+test_*.pdf
+final.pdf
+out.pdf

@@ -1,35 +1,31 @@
 ---
-name: "design-mcp-workflow"
-description: "Indexed by skills.sh from anthropics/knowledge-work-plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/knowledge-work-plugins/design-mcp-workflow"
-sourceUrl: "https://skills.sh/anthropics/knowledge-work-plugins/design-mcp-workflow"
+name: design-mcp-workflow
+description: Design a Zoom MCP workflow for Claude. Use when deciding whether Zoom MCP fits a task, when planning tool-based AI workflows, or when separating MCP responsibilities from REST API responsibilities.
+user-invocable: false
 ---
 
-# design-mcp-workflow
+# Design MCP Workflow
 
-> Indexed by skills.sh from anthropics/knowledge-work-plugins
+Use this skill when the user wants Claude or another MCP-capable client to interact with Zoom via tool calls instead of only deterministic API code.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/knowledge-work-plugins/design-mcp-workflow`
-- **Source URL:** [https://skills.sh/anthropics/knowledge-work-plugins/design-mcp-workflow](https://skills.sh/anthropics/knowledge-work-plugins/design-mcp-workflow)
+## Covers
 
-## Overview
+- MCP fit assessment
+- REST API vs MCP boundaries
+- Hybrid architectures
+- Connector expectations
+- Whiteboard-specific MCP routing
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/knowledge-work-plugins/design-mcp-workflow
-```
+1. Decide whether the problem is agentic tooling, deterministic automation, or both.
+2. Route MCP-only tasks to [zoom-mcp](../zoom-mcp/SKILL.md).
+3. Route hybrid tasks to both [zoom-mcp](../zoom-mcp/SKILL.md) and [rest-api](../rest-api/SKILL.md).
+4. If Whiteboard is central, route to [zoom-mcp/whiteboard](../zoom-mcp/whiteboard/SKILL.md).
+5. Call out transport, auth, and client capability assumptions explicitly.
+
+## Common Mistakes
+
+- Using MCP for deterministic backend jobs that should stay in REST
+- Treating MCP as a replacement for all API design
+- Ignoring client transport support and auth requirements

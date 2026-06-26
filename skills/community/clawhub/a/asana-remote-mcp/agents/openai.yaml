@@ -1,0 +1,4 @@
+interface:
+  display_name: "Asana"
+  short_description: "Read and update Asana tasks, projects, and workspaces"
+  default_prompt: "Use the Asana MCP tools to help the user search tasks, read project details, create or update tasks, and manage their Asana workspace."

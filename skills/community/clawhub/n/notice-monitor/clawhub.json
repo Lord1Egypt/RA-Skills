@@ -1,0 +1,35 @@
+{
+  "name": "notice-monitor",
+  "version": "1.0.1",
+  "description": "通用网站公告监控工具 - 支持任意政府公告/采购/招标网站自动化监控",
+  "author": "营销总监",
+  "license": "MIT",
+  "category": "automation",
+  "tags": ["monitor", "crawler", "notification", "automation", "procurement", "government"],
+  "repository": "https://github.com/openclaw/skills/notice-monitor",
+  "homepage": "https://clawhub.com/skills/notice-monitor",
+  "icon": "🔍",
+  "screenshots": [
+    "screenshots/report-example.png"
+  ],
+  "pricing": "free",
+  "requirements": {
+    "node": ">=14.0.0",
+    "openclaw": ">=1.0.0"
+  },
+  "features": [
+    "多任务并行监控",
+    "自定义关键词过滤",
+    "多层级/多分类支持",
+    "自动去重",
+    "定时任务（Cron）",
+    "多通知渠道（DingTalk/微信/邮件/Webhook）"
+  ],
+  "useCases": [
+    "政府采购公告监控",
+    "教育行业招标追踪",
+    "医疗设备采购通知",
+    "IT 项目招标监控",
+    "任意网站公告订阅"
+  ]
+}

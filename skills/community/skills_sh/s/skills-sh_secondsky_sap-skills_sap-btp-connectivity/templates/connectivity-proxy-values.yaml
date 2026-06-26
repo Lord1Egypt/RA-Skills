@@ -1,0 +1,227 @@
+# SAP BTP Connectivity Proxy for Kubernetes - Helm Values Template
+# Source: https://github.com/SAP-docs/btp-connectivity
+#
+# Installation:
+#   helm install connectivity-proxy \
+#     oci://registry-1.docker.io/sapse/connectivity-proxy \
+#     --version <version> \
+#     --namespace <namespace> \
+#     -f connectivity-proxy-values.yaml
+
+# ============================================================
+# IMAGE CONFIGURATION
+# ============================================================
+image:
+  # Use SAP Docker registry
+  registry: docker.io/sapse
+  repository: connectivity-proxy
+  # Specify version explicitly for reproducibility
+  tag: ""  # Uses chart version if empty
+  pullPolicy: IfNotPresent
+
+# Image pull secrets for private registries
+imagePullSecrets: []
+# - name: my-registry-secret
+
+# ============================================================
+# REPLICA AND SCALING
+# ============================================================
+replicaCount: 2  # Minimum 2 for high availability
+
+# Pod disruption budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+# Horizontal Pod Autoscaler
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+# ============================================================
+# RESOURCE LIMITS
+# ============================================================
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+
+# ============================================================
+# CONNECTIVITY SERVICE INTEGRATION
+# ============================================================
+config:
+  integration:
+    connectivityService:
+      # Name of Kubernetes secret containing service credentials
+      serviceCredentialsKey: connectivity-service-key
+
+  # Subaccount configuration
+  subaccountId: "<your-subaccount-id>"
+  subaccountSubdomain: "<your-subaccount-subdomain>"
+
+  # Optional: Location ID (must match Cloud Connector configuration)
+  # locationId: "loc1"
+
+  # Region host (usually auto-detected)
+  # regionHost: "connectivitytunnel.cf.eu10.hana.ondemand.com"
+
+# ============================================================
+# PROXY SERVER CONFIGURATION
+# ============================================================
+  servers:
+    proxy:
+      # HTTP proxy settings
+      http:
+        # Enable/disable HTTP proxy
+        enabled: true
+        # Port for SOCKS5 proxy
+        port: 20003
+        # Enable mTLS (recommended for production)
+        enableMTLS: false
+
+      # Logging configuration
+      logging:
+        level: INFO  # DEBUG, INFO, WARN, ERROR
+
+      # Authorization mode
+      authorization:
+        # oauth2 or none
+        mode: oauth2
+
+# ============================================================
+# HIGH AVAILABILITY
+# ============================================================
+  highAvailability:
+    # Enable HA mode
+    enabled: true
+
+# ============================================================
+# SERVICE CONFIGURATION
+# ============================================================
+service:
+  type: ClusterIP
+  port: 20003
+  annotations: {}
+
+# ============================================================
+# ISTIO INTEGRATION (if using service mesh)
+# ============================================================
+# istio:
+#   enabled: true
+#   # Disable internal mTLS when Istio handles it
+#   config:
+#     servers:
+#       proxy:
+#         http:
+#           enableMTLS: false
+
+# ============================================================
+# NETWORK POLICIES
+# ============================================================
+networkPolicy:
+  enabled: false
+  # Ingress rules
+  ingress: []
+  # Egress rules
+  egress: []
+
+# ============================================================
+# POD CONFIGURATION
+# ============================================================
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+# Example: spread across availability zones
+# affinity:
+#   podAntiAffinity:
+#     preferredDuringSchedulingIgnoredDuringExecution:
+#       - weight: 100
+#         podAffinityTerm:
+#           labelSelector:
+#             matchExpressions:
+#               - key: app
+#                 operator: In
+#                 values:
+#                   - connectivity-proxy
+#           topologyKey: topology.kubernetes.io/zone
+
+# Security context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+
+# ============================================================
+# HEALTH CHECKS
+# ============================================================
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  failureThreshold: 3
+
+# ============================================================
+# SERVICE ACCOUNT
+# ============================================================
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# ============================================================
+# ADDITIONAL CONFIGURATION
+# ============================================================
+# Extra environment variables
+extraEnvVars: []
+# - name: MY_VAR
+#   value: "my-value"
+
+# Extra volumes
+extraVolumes: []
+
+# Extra volume mounts
+extraVolumeMounts: []
+
+# ============================================================
+# CONNECTIVITY SERVICE SECRET TEMPLATE
+# ============================================================
+# Create this secret before installing the chart:
+#
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: connectivity-service-key
+#   namespace: <namespace>
+# type: Opaque
+# stringData:
+#   connectivity_key: |
+#     {
+#       "clientid": "...",
+#       "clientsecret": "...",
+#       "url": "...",
+#       "onpremise_proxy_host": "...",
+#       "onpremise_proxy_port": "...",
+#       "onpremise_proxy_http_port": "..."
+#     }

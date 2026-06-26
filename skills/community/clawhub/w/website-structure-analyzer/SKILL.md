@@ -1,35 +1,99 @@
 ---
-name: "Website Structure Analyzer"
-description: "分析网站功能结构。当用户需要了解某个网站的功能模块、页面结构、核心业务流程、技术栈、或想对目标网站进行竞品分析时使用。触发词包括：分析网站、结构、功能、竞品、网站架构、页面结构、功能模块、网站结构分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/website-structure-analyzer"
-sourceUrl: "https://clawhub.ai/skills/website-structure-analyzer"
+name: website-structure-analyzer
+description: 分析网站功能结构。当用户需要了解某个网站的功能模块、页面结构、核心业务流程、技术栈、或想对目标网站进行竞品分析时使用。触发词包括：分析网站、结构、功能、竞品、网站架构、页面结构、功能模块、网站结构分析。
+version: 1.0.0
 ---
 
 # Website Structure Analyzer
 
-> 分析网站功能结构。当用户需要了解某个网站的功能模块、页面结构、核心业务流程、技术栈、或想对目标网站进行竞品分析时使用。触发词包括：分析网站、结构、功能、竞品、网站架构、页面结构、功能模块、网站结构分析。
+分析任意网站的功能结构，输出完整的结构化分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/website-structure-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/website-structure-analyzer](https://clawhub.ai/skills/website-structure-analyzer)
+## 工作流程
 
-## Overview
+### 第一步：收集信息
 
+使用以下工具按顺序收集网站数据：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/website-structure-analyzer
+**工具优先级：**
+1. `extract_content_from_websites` — 首选，直接提取页面内容
+2. `browser` (OpenClaw 内置) — 用于截图和交互式操作
+
+**必抓页面：**
+- 主页 (/)
+- 关于我们 (/about 或 /about-us)
+- 产品/服务页 (/products 或 /services)
+- 定价页 (/pricing)
+- 底部导航（联系方式、招聘、法律条款等）
+
+**提取内容：**
+- 导航菜单结构（所有顶层 + 二级菜单项）
+- 页面标题和副标题
+- 表单类型（注册、登录、联系、订阅等）
+- 交互元素（按钮、功能模块）
+- 技术栈特征（Meta generator、WTF、Cookie 提示）
+- Footer 链接结构
+
+### 第二步：识别功能模块
+
+根据内容，分类识别以下模块：
+
+| 模块类型 | 识别特征 |
+|---------|---------|
+| 导航系统 | 顶部菜单、侧边栏、面包屑 |
+| 用户系统 | 登录、注册、用户中心 |
+| 内容展示 | 轮播图、文章列表、产品卡片 |
+| 交互表单 | 联系表、订阅、评论、搜索 |
+| 交易系统 | 定价、购物车、结算、支付 |
+| 社区功能 | 论坛、评论、评分、分享 |
+| 数据功能 | 图表、仪表盘、导出 |
+| 媒体功能 | 视频、图库、下载 |
+
+### 第三步：输出结构化报告
+
 ```
+# 网站功能结构分析报告
+- 网站地址
+- 分析时间
+- 整体评价
+
+## 1. 信息架构
+（导航树形图）
+
+## 2. 核心功能模块
+（每个模块的功能描述）
+
+## 3. 页面结构
+（主要页面及内容概要）
+
+## 4. 技术栈推断
+（前端框架、CMS、电商平台等）
+
+## 5. 商业模式识别
+（B2B/B2C/C2C/SaaS/内容付费等）
+
+## 6. 竞品差异点
+（独特功能或设计亮点）
+
+## 7. 可借鉴之处
+（适合自身业务参考的功能）
+```
+
+### 第四步：保存报告
+
+- 分析完成后，将报告保存至 `/workspace/analysis/[域名]_[日期].md`
+- 如有截图，保存至 `/workspace/analysis/screenshots/`
+
+## 快捷命令
+
+- **竞品分析**：「分析 [URL] 的功能结构，作为竞品参考」
+- **功能评估**：「评估 [URL] 的 [具体功能] 是否值得借鉴」
+- **技术尽调**：「判断 [URL] 使用的技术栈和开发成本」
+- **页面审计**：「列出 [URL] 所有可交互的表单和功能点」
+
+## 注意事项
+
+- 先抓主页和导航，抓到完整菜单结构后再抓子页面
+- 注意识别 Single Page Application (SPA)，内容可能是 JS 动态渲染
+- 隐私政策页可了解数据收集和第三方服务
+- Robots.txt 可了解站点结构和抓取偏好
+- 相似域名（/blog、/help、/docs）与主站技术栈通常一致

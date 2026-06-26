@@ -1,0 +1,19 @@
+{
+  "models": {
+    "doubao-vision": {
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "api_key_env": "ARK_API_KEY",
+      "model": "doubao-seed-1-6-vision-250815",
+      "api_type": "responses",
+      "supports_video": false
+    },
+    "gpt-4o": {
+      "base_url": "https://api.openai.com/v1",
+      "api_key_env": "OPENAI_API_KEY",
+      "model": "gpt-4o",
+      "api_type": "responses",
+      "supports_video": false
+    }
+  },
+  "default_model": "doubao-vision"
+}

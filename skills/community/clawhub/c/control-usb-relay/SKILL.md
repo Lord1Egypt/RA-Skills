@@ -1,35 +1,45 @@
 ---
-name: "Control Usb Relay"
-description: "Control USB relay modules with on/off switching, state tracking, and automation support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/control-usb-relay"
-sourceUrl: "https://clawhub.ai/skills/control-usb-relay"
+name: Control USB Relay
+slug: control-usb-relay
+version: 1.0.2
+description: Control USB relay modules with on/off switching, state tracking, and automation support.
+metadata: {"clawdbot":{"emoji":"🔌","requires":{"bins":["python3"]},"os":["linux"]}}
 ---
 
-# Control Usb Relay
+## When to Use
 
-> Control USB relay modules with on/off switching, state tracking, and automation support.
+User wants to control a USB relay module to switch devices on/off or automate based on sensor input.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/control-usb-relay`
-- **Source URL:** [https://clawhub.ai/skills/control-usb-relay](https://clawhub.ai/skills/control-usb-relay)
+## Core Rules
 
-## Overview
+1. **Verify Hardware First** — Confirm relay is at `/dev/ttyUSB1` and user is in `dialout` group.
 
+2. **Always Initialize** — Call `relay.connect()` before any control. Wait 500ms for connection.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/control-usb-relay
-```
+3. **Use Correct Protocol** — ON: `A0 01 01 A2`, OFF: `A0 01 00 A1`. Different modules may use different protocols.
+
+4. **State May Drift** — `get_status()` tracks last command. May differ if manual override occurred.
+
+5. **Disconnect on Exit** — Always call `relay.disconnect()` to release serial port.
+
+## Data Storage
+
+No persistent storage. Relay state tracked in memory during session only.
+
+## External Endpoints
+
+| Endpoint | Purpose |
+|----------|---------|
+| `/dev/ttyUSB1` | Serial control |
+
+## Quick Reference
+
+| Topic | File |
+|-------|------|
+| Setup & examples | `setup.md` |
+| Troubleshooting | `setup.md` |
+
+## Security Notes
+
+- Physical device control — confirm with user before switching
+- Some relays need external 5V/12V power supply

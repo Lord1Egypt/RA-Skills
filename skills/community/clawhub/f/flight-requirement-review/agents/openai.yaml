@@ -1,0 +1,4 @@
+interface:
+  display_name: "机票产品需求评审"
+  short_description: "对机票 PRD、流程图和原型进行结构化评审并输出评分与建议"
+  default_prompt: "使用 $flight-requirement-review 评审这个机票需求文档，并输出结构化评分、关键问题和改进建议。"

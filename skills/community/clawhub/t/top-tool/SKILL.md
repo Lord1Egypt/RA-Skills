@@ -1,35 +1,27 @@
 ---
-name: "Top Tool"
-description: "Display real-time view of running processes. Use for system monitoring, performance debugging, and resource management."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/top-tool"
-sourceUrl: "https://clawhub.ai/skills/top-tool"
+name: top-tool
+description: Display real-time view of running processes. Use for system monitoring, performance debugging, and resource management.
 ---
+# Top - Process Activity Monitor
 
-# Top Tool
+Show real-time listing of running processes sorted by CPU or memory usage. Essential for identifying resource-intensive processes and system performance issues.
 
-> Display real-time view of running processes. Use for system monitoring, performance debugging, and resource management.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/top-tool`
-- **Source URL:** [https://clawhub.ai/skills/top-tool](https://clawhub.ai/skills/top-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/top-tool
+top-tool [options]
+```
+
+## Options
+
+- `-d N`: Update interval in seconds
+- `-u user`: Show only processes for a user
+- `-b`: Batch mode for logging
+- `-o FIELD`: Sort by specific field
+
+## Examples
+
+```bash
+top-tool
+top-tool -u root
+top-tool -b -n 1
 ```

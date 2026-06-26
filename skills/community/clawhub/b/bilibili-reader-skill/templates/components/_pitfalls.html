@@ -1,0 +1,17 @@
+{# ── 避坑指南 ── #}
+{% if pitfalls_cn %}
+<div class="section">
+    <h3 class="section-title">⚠️ 避坑指南</h3>
+    <ul class="key-points">
+        {% if pitfalls_cn is string %}
+            {% for item in pitfalls_cn.split('。') if item.strip() %}
+            <li>{{ item.strip() }}{% if not item.strip().endswith('。') %}。{% endif %}</li>
+            {% endfor %}
+        {% else %}
+            {% for pitfall in pitfalls_cn %}
+            <li>{{ pitfall }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+{% endif %}

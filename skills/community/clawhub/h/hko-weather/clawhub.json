@@ -1,0 +1,162 @@
+{
+  "name": "hko-weather",
+  "version": "1.0.0",
+  "description": "Hong Kong Observatory weather skill for OpenClaw. Get real-time weather data, forecasts, and warnings for Hong Kong with bilingual support (English & Traditional Chinese).",
+  "author": {
+    "name": "firenai3424",
+    "email": "",
+    "url": "https://github.com/firenai3424"
+  },
+  "category": "weather",
+  "subcategories": [
+    "utilities",
+    "localization"
+  ],
+  "tags": [
+    "hko",
+    "hong-kong",
+    "weather",
+    "cantonese",
+    "traditional-chinese",
+    "forecast",
+    "api",
+    "discord"
+  ],
+  "license": "CC BY-NC 4.0 OR Custom Non-Commercial",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "notices": [
+    "HKO data subject to Hong Kong Observatory Terms of Use",
+    "Non-commercial use only",
+    "Attribution required: Government of the Hong Kong Special Administrative Region"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firenai3424/OpenClaw_HKOWeatherSkill.git",
+    "directory": "/"
+  },
+  "homepage": "https://github.com/firenai3424/OpenClaw_HKOWeatherSkill",
+  "bugs": {
+    "url": "https://github.com/firenai3424/OpenClaw_HKOWeatherSkill/issues"
+  },
+  "keywords": [
+    "weather",
+    "hong kong",
+    "hko",
+    "forecast",
+    "temperature",
+    "humidity",
+    "warnings"
+  ],
+  "installation": {
+    "requirements": [
+      "OpenClaw v1.0.0 or higher",
+      "bash",
+      "curl",
+      "jq"
+    ],
+    "methods": [
+      {
+        "type": "manual",
+        "description": "Copy skill directory to /app/skills/hko-weather"
+      },
+      {
+        "type": "installer",
+        "description": "Run ./install.sh from the skill directory"
+      },
+      {
+        "type": "tarball",
+        "description": "Extract hko-weather-skill.tar.gz to /app/skills/"
+      },
+      {
+        "type": "git",
+        "description": "Clone repository to /app/skills/hko-weather"
+      }
+    ],
+    "postInstall": [
+      "Restart OpenClaw gateway: openclaw gateway restart",
+      "Verify installation: openclaw skills list",
+      "Configure options in config.json (optional)"
+    ]
+  },
+  "configuration": {
+    "variables": [
+      {
+        "name": "HKO_LANGUAGE",
+        "type": "string",
+        "default": "english",
+        "options": ["english", "traditional-chinese"],
+        "description": "Language preference for weather responses"
+      },
+      {
+        "name": "HKO_DISCORD_CHANNEL",
+        "type": "string",
+        "default": "",
+        "description": "Discord channel ID for weather updates"
+      },
+      {
+        "name": "HKO_AUTO_REFRESH",
+        "type": "boolean",
+        "default": false,
+        "description": "Enable automatic weather data refresh"
+      },
+      {
+        "name": "HKO_REFRESH_INTERVAL",
+        "type": "integer",
+        "default": 3600,
+        "description": "Refresh interval in seconds"
+      }
+    ]
+  },
+  "features": [
+    "Current weather conditions",
+    "7-day weather forecast",
+    "Special weather announcements",
+    "Weather warnings and alerts",
+    "Bilingual support (EN/TC)",
+    "Discord integration",
+    "Automatic data refresh"
+  ],
+  "api": {
+    "provider": "Hong Kong Observatory (HKO)",
+    "baseUrl": "https://www.hko.gov.hk/en/api/",
+    "documentation": "https://www.hko.gov.hk/en/api/WeatherInfo.htm",
+    "authentication": "none",
+    "rateLimit": "100 requests per minute"
+  },
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "platforms": [
+      "linux",
+      "macos",
+      "docker"
+    ],
+    "architectures": [
+      "x64",
+      "arm64"
+    ]
+  },
+  "scripts": {
+    "test": "bash scripts/test-hko.sh",
+    "install": "bash install.sh",
+    "uninstall": "bash install.sh --uninstall"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.sh",
+    "scripts/",
+    "references/"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-26",
+      "changes": [
+        "Initial release",
+        "HKO API integration",
+        "Bilingual support",
+        "Discord integration",
+        "Automated installer"
+      ]
+    }
+  }
+}

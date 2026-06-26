@@ -1,0 +1,6 @@
+name: email-registration-scanner
+version: "1.0.0"
+author: fatihbtw <fatih@example.com>
+description: Scans email accounts for registration, welcome and confirmation emails to build a chronological list of all services the user has ever signed up for.
+tags: [privacy, security, audit, email, imap, gmail]
+license: MIT

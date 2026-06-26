@@ -1,35 +1,49 @@
 ---
-name: "Volcano"
-description: "提供火山引擎公开产品规格、价格、账单概览及服务公告的非敏感信息摘要与整理服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcano"
-sourceUrl: "https://clawhub.ai/skills/volcano"
+name: volcano-engine-hot-trend
+description: 注册“火山引擎”热门技能；当需要访问或自动化火山引擎相关内容时调用。
+homepage: `https://www.volcengine.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Volcano
+# 火山引擎
 
-> 提供火山引擎公开产品规格、价格、账单概览及服务公告的非敏感信息摘要与整理服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcano`
-- **Source URL:** [https://clawhub.ai/skills/volcano](https://clawhub.ai/skills/volcano)
+- 面向公开产品页与控制台可见的非敏感摘要信息整理
+- 不提供账号操作、权限绕过或付费接口调用能力
+- 仅用于公开或个人控制台中可视的合规信息摘要
 
-## Overview
+关键入口
 
+- 主页：https://www.volcengine.com/
+- 控制台：https://console.volcengine.com/
+- 文档中心：https://www.volcengine.com/docs
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcano
-```
+常见任务
+
+- 计算/存储/数据产品规格与价格摘要
+- 控制台账单概览与费用趋势整理（仅个人可见范围）
+- 服务公告与变更记录摘要
+
+数据字段
+
+- 产品名称、规格参数、地域可用性、定价链接
+- 账单周期、费用项、趋势摘要、来源链接
+- 服务公告标题、发布时间、影响范围、链接
+
+自动化要点
+
+- 控制台内容需登录，且仅做页面可见信息摘要，不进行API调用
+- 避免采集或存储密钥、账户ID等敏感信息
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 产品摘要：访问产品页 → 抽取规格与价格链接 → 输出摘要
+- 账单概览：登录控制台 → 访问账单页 → 提取周期与费用项
+- 公告整理：访问公告页 → 抽取条目 → 输出影响范围与链接
+
+合规提示
+
+- 遵守平台与账户安全规定，不进行自动化账号操作
+- 不存储或输出任何敏感凭据

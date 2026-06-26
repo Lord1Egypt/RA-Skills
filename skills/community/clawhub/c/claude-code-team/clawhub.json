@@ -1,0 +1,116 @@
+{
+  "name": "claude-code-team",
+  "version": "2.0.0",
+  "description": "Claude Code Team 模式（OpenClaw 适配版）- 参照 Anthropic Claude Code 团队模式，自动分配团队任务，多平台支持（百炼/火山/OpenAI）",
+  "author": "davidme6",
+  "license": "MIT",
+  "homepage": "https://github.com/davidme6/openclaw-claude-code-team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidme6/openclaw-claude-code-team.git"
+  },
+  "keywords": [
+    "claude-code",
+    "team",
+    "multi-agent",
+    "task-assignment",
+    "openclaw-skill",
+    "bailian",
+    "volcengine",
+    "openai"
+  ],
+  "categories": [
+    "团队协作",
+    "任务分配",
+    "多 Agent",
+    "效率工具"
+  ],
+  "compatibility": {
+    "openclaw": ">=2026.3.0",
+    "tools": [
+      "sessions_spawn",
+      "sessions_send",
+      "sessions_history"
+    ]
+  },
+  "features": [
+    "自动识别平台（百炼/火山/OpenAI）",
+    "自动分配最优模型",
+    "项目相关自动启动团队",
+    "团队记忆持久化",
+    "Gateway 超时优化（120 秒）",
+    "连接自动清理",
+    "自动重试机制"
+  ],
+  "standardTeams": [
+    {
+      "name": "软件开发团队",
+      "members": 8,
+      "description": "负责软件开发、功能实现、代码质量"
+    },
+    {
+      "name": "技术中台团队",
+      "members": 4,
+      "description": "负责技术攻坚、架构设计、性能优化"
+    },
+    {
+      "name": "搞钱特战队",
+      "members": 10,
+      "description": "负责商业机会、变现模式、市场推广"
+    }
+  ],
+  "installation": {
+    "method": "clawhub",
+    "command": "clawhub install claude-code-team",
+    "manual": "git clone https://github.com/davidme6/openclaw-claude-code-team.git && cp -r openclaw-claude-code-team ~/.openclaw/skills/claude-code-team"
+  },
+  "usage": {
+    "examples": [
+      "软件开发团队，优化这个项目",
+      "技术中台团队，解决 Gateway 问题",
+      "搞钱特战队，分析变现机会",
+      "创建一个 AI 研究团队，包括 AI 专家、数据科学家"
+    ],
+    "autoTriggers": [
+      "团队",
+      "优化项目",
+      "修复 bug",
+      "开发功能",
+      "上传项目 + 任务"
+    ]
+  },
+  "changelog": {
+    "2.0.0": [
+      "新增多平台自动识别（百炼/火山/OpenAI）",
+      "自动分配对应平台最优模型",
+      "Gateway 超时优化（10 秒 → 120 秒）",
+      "连接自动清理机制",
+      "自动重试机制（3 次）"
+    ],
+    "1.1.0": [
+      "自动判断是否启动团队",
+      "项目相关自动启动",
+      "日常问题自己回答"
+    ],
+    "1.0.0": [
+      "初始版本",
+      "百炼模型支持",
+      "3 个标准团队配置"
+    ]
+  },
+  "performance": {
+    "startupTime": "~2 分钟",
+    "maxConcurrent": 10,
+    "timeout": 120000,
+    "successRate": "95%+"
+  },
+  "comparison": {
+    "vsClaudeCode": {
+      "taskAssignment": "✅ 对等",
+      "modelAssignment": "✅ 多平台支持",
+      "progressTracking": "✅ 团队记忆",
+      "memoryPersistence": "✅ 对等",
+      "gatewayStability": "✅ 优化后对等"
+    }
+  }
+}

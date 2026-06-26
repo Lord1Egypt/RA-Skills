@@ -1,35 +1,41 @@
----
-name: "Popup CRO"
-description: "Design optimized popups with clear CTAs triggered by exit intent, scroll, time, or click to boost lead capture and conversions."
-category: "other"
-source: "ClawHub"
-tags: [conversion, cro, popup]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sw-popup-cro"
-sourceUrl: "https://clawhub.ai/skills/sw-popup-cro"
----
+# Popup CRO Skill
 
-# Popup CRO
+## Trigger
+Design high-converting popups — exit intent, scroll-triggered, timed.
 
-> Design optimized popups with clear CTAs triggered by exit intent, scroll, time, or click to boost lead capture and conversions.
+**Trigger phrases:** "popup design", "exit intent popup", "email capture popup", "popup copy", "popup strategy"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sw-popup-cro`
-- **Source URL:** [https://clawhub.ai/skills/sw-popup-cro](https://clawhub.ai/skills/sw-popup-cro)
+## Popup Types
 
-## Overview
+### Exit Intent
+- Trigger: mouse moves toward browser close/back
+- Use for: lead capture, discount offer, content upgrade
+- Conversion rate benchmark: 2-4%
 
+### Scroll-Triggered
+- Trigger: user scrolls past X% of page
+- Use for: content upgrades, newsletter signup
+- Recommended trigger: 50-70% scroll depth
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sw-popup-cro
-```
+### Timed
+- Trigger: X seconds on page
+- Use for: announcements, special offers
+- Recommended delay: 30-60 seconds
+
+### Click-Triggered
+- Trigger: user clicks specific element
+- Use for: content upgrades, gated resources
+- Highest quality leads — they opted in voluntarily
+
+## Design Rules
+
+- One clear CTA. One offer. One action.
+- Easy to close (visible X, click outside to dismiss)
+- Mobile: use bottom bar instead of overlay popup
+- Frequency: max once per session, or once per 7 days
+- Copy: headline (5-8 words) + 1-2 lines of value prop + CTA button
+- Never interrupt a conversion flow with a popup
+
+## Output
+
+Complete popup specification: trigger rules, copy (headline + body + CTA), design guidance, targeting rules, frequency caps.

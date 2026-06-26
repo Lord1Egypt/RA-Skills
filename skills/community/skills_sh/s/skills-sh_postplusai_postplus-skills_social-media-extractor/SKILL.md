@@ -1,35 +1,49 @@
 ---
-name: "social-media-extractor"
-description: "Indexed by skills.sh from postplusai/postplus-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "postplusai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/postplusai/postplus-skills/social-media-extractor"
-sourceUrl: "https://skills.sh/postplusai/postplus-skills/social-media-extractor"
+name: social-media-extractor
+description: High-level entry point for Instagram and Meta public social data extraction when the user has not named a platform-specific workflow yet.
+metadata:
+  postplus:
+    familyId: routing-contracts
+    familyName: Routing & Contracts
 ---
 
-# social-media-extractor
+# Social Media Extractor
 
-> Indexed by skills.sh from postplusai/postplus-skills
+## Use When
+- The user wants public Instagram or Facebook/Meta content signals for ad
+  creative, benchmark, creator shortlist, UGC, or campaign asset planning.
+- The user has not named a platform-specific workflow yet.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** postplusai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/postplusai/postplus-skills/social-media-extractor`
-- **Source URL:** [https://skills.sh/postplusai/postplus-skills/social-media-extractor](https://skills.sh/postplusai/postplus-skills/social-media-extractor)
+## Scope
+- Instagram benchmark or creator shortlist work routes to Instagram skills.
+- Facebook/Meta public page, group, or post evidence routes to
+  `facebook-research`.
+- Non-Meta platforms are outside this release lane.
 
-## Overview
+## Do Not Use When
+- The task belongs to ideation, QA, or another released skill listed in the handoff section.
+- Required inputs are missing and guessing would change the result.
 
+## Required Input
+- Explicit user brief or JSON input matching the artifact contract.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/postplusai/postplus-skills/social-media-extractor
-```
+## Stop Conditions
+- Stop when required user intent, source evidence, or owned input artifacts are
+  missing and guessing would change the result.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.
+
+## Handoff
+- Return the structured output, hosted result, poll command, or explicit blocker.
+
+## Public Command Boundary
+
+- Choose the smallest matching command or workflow from the user input and run
+  it directly.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.
+- This public skill is instruction-driven. Produce the artifact described by the workflow directly from the available evidence.
+- Do not call private provider/runtime paths or unpublished local tools.
+- If the CLI returns a quote-confirmation challenge, run `postplus quote confirm --json --challenge-file <challenge.json>` and retry with the returned token.

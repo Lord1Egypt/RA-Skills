@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1920px;
+            height: 1080px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Segoe UI', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        
+        .header {
+            padding: 40px 60px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 32px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+        
+        .demo-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 80px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .demo-title {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #60efff 0%, #0061ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .demo-subtitle {
+            font-size: 36px;
+            opacity: 0.85;
+            margin-bottom: 20px;
+        }
+        
+        .crab {
+            font-size: 120px;
+            margin: 20px 0;
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        .footer {
+            padding: 30px 60px;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .tools-badge {
+            font-size: 24px;
+            opacity: 0.8;
+        }
+        
+        .live-indicator {
+            background: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 28px;
+            font-weight: bold;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🦀 Main Live</div>
+        <div class="tagline">AI Agent Integration Demo</div>
+    </div>
+    
+    <div class="content">
+        <div class="demo-card">
+            <div class="demo-title">Connected Tools</div>
+            <div class="demo-subtitle">100+ Integrations at My Claws</div>
+            <div class="crab">🦀</div>
+            <div class="demo-subtitle">Live Demo: Canva Design Generation</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="tools-badge">📦 Google Docs • Canva • Gmail • Analytics • PostgreSQL • MongoDB • Box • ...</div>
+        <div class="live-indicator">● REC</div>
+    </div>
+</body>
+</html>

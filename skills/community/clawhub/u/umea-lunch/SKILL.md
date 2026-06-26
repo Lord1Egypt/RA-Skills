@@ -1,35 +1,66 @@
 ---
-name: "Umeå Lunch"
-description: "Get today's lunch menus from restaurants in Umeå. Use when asking about lunch, restaurants, or food in Umeå. Fetches live data from umealunchguide.se."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/umea-lunch"
-sourceUrl: "https://clawhub.ai/skills/umea-lunch"
+name: umea-lunch
+description: Get today's lunch menus from restaurants in Umeå. Use when asking about lunch, restaurants, or food in Umeå. Fetches live data from umealunchguide.se.
 ---
 
-# Umeå Lunch
+# Umeå Lunch Guide
 
-> Get today's lunch menus from restaurants in Umeå. Use when asking about lunch, restaurants, or food in Umeå. Fetches live data from umealunchguide.se.
+Fetch and display lunch menus from Umeå restaurants via umealunchguide.se.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/umea-lunch`
-- **Source URL:** [https://clawhub.ai/skills/umea-lunch](https://clawhub.ai/skills/umea-lunch)
+## Quick Start
 
-## Overview
+Run the script to get today's menus:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/umea-lunch
+python3 /root/clawd/skills/umea-lunch/scripts/fetch_lunch.py
 ```
+
+### Options
+
+```bash
+# Get menus for a specific date (YYYY-MM-DD)
+python3 /root/clawd/skills/umea-lunch/scripts/fetch_lunch.py --date 2026-01-29
+
+# Filter by restaurant name (case-insensitive partial match)
+python3 /root/clawd/skills/umea-lunch/scripts/fetch_lunch.py --restaurant tonka
+
+# List all available restaurants
+python3 /root/clawd/skills/umea-lunch/scripts/fetch_lunch.py --list
+
+# Combine filters
+python3 /root/clawd/skills/umea-lunch/scripts/fetch_lunch.py --date 2026-01-29 --restaurant "o'learys"
+```
+
+## Output Format
+
+The script outputs JSON with restaurant info and lunch courses:
+
+```json
+{
+  "date": "2026-01-28",
+  "restaurants": [
+    {
+      "name": "Restaurant Name",
+      "address": "Street 123",
+      "phone": "090-123456",
+      "website": "https://...",
+      "courses": [
+        {
+          "title": "Dish Name",
+          "description": "Description of the dish",
+          "price": "149",
+          "tags": ["Vegetarisk", "Glutenfri"]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Response Guidelines
+
+When presenting lunch options:
+- Group by restaurant
+- Show dish name, description, and price
+- Mention dietary tags (🥗 vegetarisk, 🌱 vegansk, 🌾 glutenfri, 🥛 laktosfri)
+- Include address if user needs directions

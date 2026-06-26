@@ -1,35 +1,55 @@
 ---
-name: "social-media-content"
-description: "Indexed by skills.sh from svenja-dev/claude-code-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "svenja-dev"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/svenja-dev/claude-code-skills/social-media-content"
-sourceUrl: "https://skills.sh/svenja-dev/claude-code-skills/social-media-content"
+name: social-media-content
+description: Erstellt plattformoptimierte Social Media Inhalte für LinkedIn, X/Twitter, Discord, Reddit. B2B/MES-Industrie fokussiert.
 ---
+# Social Media Content
 
-# social-media-content
+## LinkedIn
 
-> Indexed by skills.sh from svenja-dev/claude-code-skills
+**Dedizierter Skill verfügbar:** Nutze `/linkedin-post`, `/linkedin-article`, `/linkedin-comment`, `/linkedin-monitor`, `/linkedin-scan`, `/linkedin-image`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** svenja-dev
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/svenja-dev/claude-code-skills/social-media-content`
-- **Source URL:** [https://skills.sh/svenja-dev/claude-code-skills/social-media-content](https://skills.sh/svenja-dev/claude-code-skills/social-media-content)
+**Kurzübersicht:**
+- Posting-Zeiten: Di-Do 8-10, 17-18 Uhr
+- Erste Zeile = Hook (vor "...mehr anzeigen")
+- Links im Kommentar, nicht im Post
+- 3-5 Hashtags am Ende
+- Regionale Anpassung: US (direct), EU (sachlich), Asia (respektvoll)
 
-## Overview
+**Features im linkedin-engagement Skill:**
+- Regionale Templates (US/EU/Asien)
+- Artikel mit Teaser-Posts
+- Bildgenerierung via Gemini API
+- Kommentar-Monitoring auf eigene Posts
+- Antwort-Vorschläge
 
+## X/Twitter
+- Unter 200 Zeichen performen besser
+- Max 2 Hashtags
+- Threads für komplexe Themen
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/svenja-dev/claude-code-skills/social-media-content
-```
+## Reddit - KEINE direkte Werbung!
+
+**Dedizierter Skill verfügbar:** Nutze `/reddit-scan`, `/reddit-draft`, `/reddit-insights`, `/reddit-monitor`
+
+**Account:** u/Ok-Painter2695
+
+**Ziel-Subreddits:**
+- r/manufacturing - Fertigungsindustrie
+- r/PLC - SPS/Automatisierung
+- r/industrialengineering - Prozessoptimierung
+- r/SCADA - Leitsysteme
+- r/automation - Industrieautomatisierung
+- r/ClaudeAI - AI-Community
+
+**Goldene Regeln:**
+1. Value first - erst helfen, dann (vielleicht) erwähnen
+2. Karma aufbauen - aktiv kommentieren, upvoten
+3. Keine Sales-Pitches - sofortiger Credibility-Verlust
+4. Subreddit-Regeln beachten - jeder Sub hat eigene Kultur
+
+**Beste Posting-Zeiten:** Mo-Fr 9-11 Uhr, 19-21 Uhr (US-Zeitzone beachten)
+
+## Discord
+- Server-Kultur erst beobachten
+- Hilfreiche Antworten in relevanten Channels
+- DMs nur nach Einladung

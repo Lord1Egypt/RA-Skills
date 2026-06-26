@@ -1,35 +1,18 @@
 ---
-name: "Md5 Tool"
-description: "Compute MD5 cryptographic hash values for files and text. Use for file integrity verification and checksum validation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/md5-tool"
-sourceUrl: "https://clawhub.ai/skills/md5-tool"
+name: md5-tool
+description: Compute MD5 cryptographic hash values for files and text. Use for file integrity verification and checksum validation.
 ---
+# MD5 - Message Digest Hash Calculator
 
-# Md5 Tool
+Calculate 128-bit MD5 hash values for files or text input. Commonly used for file integrity checking and data fingerprinting.
 
-> Compute MD5 cryptographic hash values for files and text. Use for file integrity verification and checksum validation.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/md5-tool`
-- **Source URL:** [https://clawhub.ai/skills/md5-tool](https://clawhub.ai/skills/md5-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/md5-tool
+md5-tool [options] <file>
+```
+## Examples
+```bash
+md5-tool document.pdf
+echo "data" | md5-tool
+md5-tool --check checksums.md5
 ```

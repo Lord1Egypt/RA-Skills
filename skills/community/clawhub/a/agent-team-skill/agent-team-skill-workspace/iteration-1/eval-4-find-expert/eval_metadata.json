@@ -1,0 +1,10 @@
+{
+  "eval_id": 4,
+  "eval_name": "find-expert",
+  "prompt": "我有个任务需要数据库优化，应该分配给谁？",
+  "assertions": [
+    {"id": "a1", "text": "分析了团队成员的技能", "expected": true},
+    {"id": "a2", "text": "推荐了具有数据库相关技能的成员", "expected": true},
+    {"id": "a3", "text": "推荐理由合理（基于 tags/expertise）", "expected": true}
+  ]
+}

@@ -1,0 +1,1880 @@
+[
+  {
+    "code": "ths_abord_invest_to_owner_equity_index",
+    "name": "对外投资/所有者权益",
+    "description": "财务指标（新准则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_account_receivable_index",
+    "name": "应收账款",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_account_receivable_turnover_index",
+    "name": "应收账款周转率",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_accounts_payable_index",
+    "name": "应付账款",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_accounts_payable_turnover_days_index",
+    "name": "应付账款周转天数",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_accounts_payable_turnover_index",
+    "name": "应付账款周转率",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_active_buy_large_amt_index",
+    "name": "主动买入特大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_active_buy_main_amt_index",
+    "name": "主动买入大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_active_buy_middle_amt_index",
+    "name": "主动买入中单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_active_sell_large_amt_index",
+    "name": "主动卖出特大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_active_sell_main_amt_index",
+    "name": "主动卖出大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_admin_fee_to_total_assets_index",
+    "name": "业务及管理费/总资产",
+    "description": "交易日期(100-最新,101-前一交易日,102-1周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 财务指标（新准则）/行业特殊指标资金流向指标 主动卖出中单金额 ths_active_sell_middle_amt_index",
+    "params": ""
+  },
+  {
+    "code": "ths_alpha_index",
+    "name": "Alpha",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_int_index",
+    "name": "区间成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_m_index",
+    "name": "月成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_nd_index",
+    "name": "N 日成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_w_index",
+    "name": "周成交额",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_y_index",
+    "name": "年成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_volatility_index",
+    "name": "年化波动率",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_yield_index",
+    "name": "年化收益率",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_arbr_index",
+    "name": "人气意愿指标(ARBR)",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_asset_liab_ratio_index",
+    "name": "资产负债率",
+    "description": "则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_bbi_index",
+    "name": "BBI 多空指数",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_beta_index",
+    "name": "Beta 值",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_bias_index",
+    "name": "BIAS 乖离率",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_boll_index",
+    "name": "BOLL 布林线",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_borrowing_net_add_central_bank_index",
+    "name": "向中央银行借款净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_borrowing_net_increase_amt_index",
+    "name": "拆入资金净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cac_net_income_to_oi_broker_index",
+    "name": "手续费及佣金净收入/营业收入_券商",
+    "description": "财务指标（新准则）/行业特殊指标报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/行业特殊指标",
+    "params": ""
+  },
+  {
+    "code": "ths_capital_adequacy_ratio_aa_index",
+    "name": "资本充足率_银行(算术平均)",
+    "description": "财务指标（新准则）/行业特殊指标报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/行业特殊指标",
+    "params": ""
+  },
+  {
+    "code": "ths_capital_cost_to_daa_index",
+    "name": "资本支出/折旧和摊销",
+    "description": "财务指标（新准则）/现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_cycle_index",
+    "name": "现金循环周期",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_dividend_ratio_index",
+    "name": "现金分红比例",
+    "description": "分红指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_paid_for_interests_etc_index",
+    "name": "支付利息、手续费及佣金的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_paid_for_pd_index",
+    "name": "支付保单红利的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_paid_to_staff_etc_index",
+    "name": "支付给职工以及为职工支付的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_pay_for_debt_index",
+    "name": "偿还债务支付的现金",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_from_bond_issue_index",
+    "name": "发行债券收到的现金",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_from_orig_ic_index",
+    "name": "收到原保险合同保费取得的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_absorb_invest_index",
+    "name": "吸收投资收到的现金",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_borrowing_index",
+    "name": "取得借款收到的现金",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_dspsl_invest_index",
+    "name": "收回投资收到的现金",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_interest_etc_index",
+    "name": "收取利息、手续费及佣金的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_other_fa_index",
+    "name": "收到其他与经营活动有关的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_other_ia_index",
+    "name": "收到其他与投资活动有关的现金",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_othr_fa_index",
+    "name": "收到其他与筹资活动有关的现金",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_received_of_sales_service_index",
+    "name": "销售商品、提供劳务收到的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_index",
+    "name": "涨跌",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_int_index",
+    "name": "区间涨跌",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_index",
+    "name": "涨跌幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_m_index",
+    "name": "月涨跌幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_nd_index",
+    "name": "N 日涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_w_index",
+    "name": "周涨跌幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_y_index",
+    "name": "年涨跌幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_w_index",
+    "name": "周涨跌",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_y_index",
+    "name": "年涨跌",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chgm_index",
+    "name": "月涨跌",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_int_index",
+    "name": "区间收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_m_index",
+    "name": "月收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_price_index",
+    "name": "收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_w_index",
+    "name": "周收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_y_index",
+    "name": "年收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_constituent_num_index",
+    "name": "成分股个数",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_crfgsasr_to_revenue_index",
+    "name": "销售商品提供劳务收到的现金/营业收入",
+    "description": "财务指标（新准则）/现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_current_asset_turnover_index",
+    "name": "流动资产周转率",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_current_assets_index",
+    "name": "流动资产",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_current_liab_index",
+    "name": "流动负债",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_current_mv_index",
+    "name": "流通市值",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_current_ratio_index",
+    "name": "流动比率",
+    "description": "则）/偿债能力",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_int_index",
+    "name": "区间日均成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_int_index",
+    "name": "区间日均成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_dde_10d_index",
+    "name": "10 日DDE",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_dde_20d_index",
+    "name": "20 日DDE",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_dde_5d_index",
+    "name": "5 日DDE",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_delist_date_index",
+    "name": "周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日)基本资料摘牌日期",
+    "description": "交易日期(100-最新,101-前一交易日,102-1",
+    "params": ""
+  },
+  {
+    "code": "ths_deposit_and_interbank_net_add_index",
+    "name": "客户存款和同业存放款项净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_dividend_etc_cash_paid_index",
+    "name": "分配股利、利润或偿还利息支付的现金",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_dividend_rate_index",
+    "name": "股息率",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_dividend_ratio_index",
+    "name": "分红比例",
+    "description": "分红指标",
+    "params": ""
+  },
+  {
+    "code": "ths_dma_index",
+    "name": "DMA 平均线差",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_down_days_index",
+    "name": "连跌天数",
+    "description": "技术形态",
+    "params": ""
+  },
+  {
+    "code": "ths_dwi_to_equity_atsopc_index",
+    "name": "带息债务/归属母公司股东的权益",
+    "description": "财务指标（新准则）/偿债能力",
+    "params": ""
+  },
+  {
+    "code": "ths_effect_of_exchange_chg_on_cce_index",
+    "name": "汇率变动对现金及现金等价物的影响",
+    "description": "财务数据（新准则）/现金流量表基本资料 启用日期 ths_enable_date_index",
+    "params": ""
+  },
+  {
+    "code": "ths_eps_final_share_dlt_index",
+    "name": "每股收益EPS-期末股本摊薄",
+    "description": "财务指标（新准则）/每股指标",
+    "params": ""
+  },
+  {
+    "code": "ths_equity_multiplier_index",
+    "name": "权益乘数",
+    "description": "则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_exchange_gain_index",
+    "name": "汇兑收益",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_expma_index",
+    "name": "EXPMA 指数平均数",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_final_balance_of_cce_index",
+    "name": "期末现金及现金等价物余额",
+    "description": "财务数据（新准则）/现金流量表/现金及现金等价物净增加",
+    "params": ""
+  },
+  {
+    "code": "ths_finance_cost_to_total_revenue_index",
+    "name": "财务费用/营业总收入",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_financing_buy_amt_int_index",
+    "name": "区间融资买入额",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_financing_expenses_index",
+    "name": "财务费用",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_financing_payment_amt_int_index",
+    "name": "区间融资偿还额",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_fixed_asset_index",
+    "name": "固定资产",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_fixed_asset_turnover_ratio_index",
+    "name": "固定资产周转率",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_float_ashare_index",
+    "name": "周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一)股本指标流通A 股",
+    "description": "交易日期(100-最新,101-前一交易日,102-1",
+    "params": ""
+  },
+  {
+    "code": "ths_float_ashare_mv_index",
+    "name": "流通A 股市值",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_float_ashare_to_total_shares_index",
+    "name": "流通A 股占总股本比例",
+    "description": "股本指标",
+    "params": ""
+  },
+  {
+    "code": "ths_float_bshare_mv_index",
+    "name": "流通B 股市值",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_float_bshare_to_total_shares_index",
+    "name": "流通B 股占总股本比例",
+    "description": "股本指标",
+    "params": ""
+  },
+  {
+    "code": "ths_flow_assets_to_total_assets_index",
+    "name": "流动资产/总资产",
+    "description": "股本指标 流通H 股占总股本比例 ths_float_hshare_to_total_shares_index 截止日期(100-最新)财务指标（新准则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_flow_debt_to_total_debt_index",
+    "name": "流动负债/负债合计",
+    "description": "财务指标（新准则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_eps_index",
+    "name": "预测每股收益",
+    "description": "盈利预测",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_mob_income_index",
+    "name": "预测主营业务收入",
+    "description": "盈利预测",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_np_index",
+    "name": "预测净利润",
+    "description": "盈利预测",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_pe_index",
+    "name": "预测市盈率（PE，预测）",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_fv_chg_income_index",
+    "name": "公允价值变动收益",
+    "description": "财务数据（新准则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_goods_buy_and_service_cash_pay_index",
+    "name": "购买商品、接受劳务支付的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_gross_profit_index",
+    "name": "毛利",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_gross_selling_rate_index",
+    "name": "销售毛利率",
+    "description": "则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_held_to_maturity_invest_index",
+    "name": "持有至到期投资",
+    "description": "财务数据（新准则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_int_index",
+    "name": "区间最高价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_int_index",
+    "name": "区间最高价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_m_index",
+    "name": "月最高价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_price_index",
+    "name": "最高价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_w_index",
+    "name": "周最高价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_y_index",
+    "name": "年最高价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_his_high_nearly_index",
+    "name": "近期创历史新高",
+    "description": "技术形态",
+    "params": ""
+  },
+  {
+    "code": "ths_his_low_nearly_index",
+    "name": "近期创历史新低",
+    "description": "技术形态",
+    "params": ""
+  },
+  {
+    "code": "ths_income_tax_cost_index",
+    "name": "所得税费用",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_index_base_period_index",
+    "name": "年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季)基本资料指数基期",
+    "description": "报告期(100-去年年报,101-今年一季,102-今",
+    "params": ""
+  },
+  {
+    "code": "ths_income_tax_to_total_profit_index",
+    "name": "所得税/利润总额",
+    "description": "财务指标（新准则）/收益质量",
+    "params": ""
+  },
+  {
+    "code": "ths_inflow_rate_index",
+    "name": "金额流入率",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_initial_cce_balance_index",
+    "name": "期初现金及现金等价物余额",
+    "description": "财务数据（新准则）/现金流量表/现金及现金等价物净增加",
+    "params": ""
+  },
+  {
+    "code": "ths_int_chg_ratio_index",
+    "name": "区间涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_intangible_assets_index",
+    "name": "无形资产",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_intervalavgclose_index",
+    "name": "区间平均收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_inventory_index",
+    "name": "存货",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_inventory_turnover_days_index",
+    "name": "存货周转天数",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_inventory_turnover_index",
+    "name": "存货周转率",
+    "description": "则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_income_cash_received_index",
+    "name": "取得投资收益收到的现金",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_income_index",
+    "name": "投资收益",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_income_to_total_profit_index",
+    "name": "投资收益/利润总额",
+    "description": "财务指标（新准则）/收益质量",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_paid_cash_index",
+    "name": "投资支付的现金",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_irr_to_total_debt_insurance_index",
+    "name": "投资性房地产",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/行业特殊指标财务数据（新准则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_jensen_index",
+    "name": "Jensen",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_kdj_index",
+    "name": "KDJ 随机指标",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_lending_net_add_other_org_index",
+    "name": "向其他金融机构拆入资金净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_limited_ashare_index",
+    "name": "限售A 股",
+    "description": "股本指标",
+    "params": ""
+  },
+  {
+    "code": "ths_loan_and_advancenet_add_index",
+    "name": "客户贷款及垫款净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_int_index",
+    "name": "区间最低价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_index",
+    "name": "最低价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_int_index",
+    "name": "区间最低价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_m_index",
+    "name": "月最低价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_w_index",
+    "name": "周最低价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_y_index",
+    "name": "年最低价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_lt_equity_invest_index",
+    "name": "长期股权投资",
+    "description": "财务数据（新准则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_lt_liability_ratio_index",
+    "name": "长期资本负债率",
+    "description": "财务指标（新准则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_lt_loan_index",
+    "name": "长期借款",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_ma_index",
+    "name": "MA 简单移动平均",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_macd_index",
+    "name": "MACD 指数平滑异动平均",
+    "description": "交易日期(100-最新,101-前一交易日,102-1周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日),MCAD指标选项(100-DIFF,101-DEA,102-MACD),计算周期(100-日,101-周,102-月,103-季度,104-半年,105-年) 基本资料 主证券代码 ths_main_sec_code_index技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_manage_fee_index",
+    "name": "管理费用",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_manage_fee_to_revenue_index",
+    "name": "管理费用/营业总收入",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_amtb_index",
+    "name": "融资融券余额",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_balance_index",
+    "name": "融资余额",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_repay_amt_index",
+    "name": "融资偿还额",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_sell_amt_index",
+    "name": "融资买入额",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_market_value_index",
+    "name": "总市值",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_minority_equity_index",
+    "name": "少数股东权益",
+    "description": "财务数据（新准则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_payment_vol_int_index",
+    "name": "区间融券偿还量",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_sell_vol_int_index",
+    "name": "区间融券卖出量",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_mtm_index",
+    "name": "MTM 动力指标",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_mv_csrc_alg_index",
+    "name": "总市值-证监会算法",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_naa_of_cb_and_interbank_index",
+    "name": "存放中央银行和同业款项净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_naa_of_disposal_fnncl_assets_index",
+    "name": "处置交易性金融资产净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_naaassured_saving_and_invest_index",
+    "name": "保户储金及投资款净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_nag_respond_boy_index",
+    "name": "每股净资产(相对年初增长率)",
+    "description": "财务指标（新准则）/成长能力/相对年初增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_nbcai_net_amt_to_total_profit_index",
+    "name": "营业外收支净额/利润总额",
+    "description": "财务指标（新准则）/收益质量",
+    "params": ""
+  },
+  {
+    "code": "ths_ncf_from_fa_index",
+    "name": "筹资活动产生的现金流量净额",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_ncf_from_ia_index",
+    "name": "投资活动产生的现金流量净额",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_ncf_from_oa_index",
+    "name": "经营活动产生的现金流量净额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_ncf_from_oa_ps_index",
+    "name": "每股经营活动产生的现金流量净额",
+    "description": "财务指标（新准则）/每股指标",
+    "params": ""
+  },
+  {
+    "code": "ths_ncf_of_oa_to_oa_ni_index",
+    "name": "经营活动产生的现金流量净额/经营活动净收益",
+    "description": "财务指标（新准则）/现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_ncf_of_oa_to_revenue_index",
+    "name": "经营活动产生的现金流量净额/营业收入",
+    "description": "财务指标（新准则）/现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_ncf_of_oa_to_total_liab_index",
+    "name": "经营活动产生的现金流量净额/负债合计",
+    "description": "财务指标（新准则）/偿债能力",
+    "params": ""
+  },
+  {
+    "code": "ths_net_add_in_pledge_loans_index",
+    "name": "质押贷款净增加额",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_net_add_in_repur_capital_index",
+    "name": "回购业务资金净增加额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_net_cash_amt_from_branch_index",
+    "name": "取得子公司及其他营业单位支付的现金净额",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_net_cash_of_disposal_assets_index",
+    "name": "处置固定资产、无形资产和其他长期资产收回的现金净额",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_net_cash_of_disposal_branch_index",
+    "name": "处置子公司及其他营业单位收到的现金净额",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_net_cash_received_from_rein_index",
+    "name": "收到再保业务现金净额",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_net_cf_ps_index",
+    "name": "每股现金流量净额",
+    "description": "财务指标（新准则）/每股指标",
+    "params": ""
+  },
+  {
+    "code": "ths_net_debt_to_equity_atsopc_index",
+    "name": "净债务/归属母公司股东的权益",
+    "description": "财务指标（新准则）/偿债能力",
+    "params": ""
+  },
+  {
+    "code": "ths_net_increase_in_cce_index",
+    "name": "现金及现金等价物净增加额",
+    "description": "财务数据（新准则）/现金流量表/现金及现金等价物净增加",
+    "params": ""
+  },
+  {
+    "code": "ths_net_interest_of_ta_index",
+    "name": "总资产净利率",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_net_sales_rate_index",
+    "name": "销售净利率",
+    "description": "则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_noncurrent_assets_index",
+    "name": "非流动资产",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_noncurrent_assets_to_ta_index",
+    "name": "非流动资产/总资产",
+    "description": "财务指标（新准则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_noncurrent_liab_index",
+    "name": "非流动负债",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_noncurrent_liab_to_total_liab_index",
+    "name": "非流动负债/负债合计",
+    "description": "财务指标（新准则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_np_atoopc_dnrgal_index",
+    "name": "归属母公司所有者的净利润-扣除非经常性损益",
+    "description": "财务数据（新准则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_np_atoopc_index",
+    "name": "归属母公司所有者的净利润",
+    "description": "财务数据（新准则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_np_cash_yoy_index",
+    "name": "净利润现金含量",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/成长能力/同比增长率财务指标（新准则）/现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_np_index",
+    "name": "净利润",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_np_per_share_index",
+    "name": "每股净资产",
+    "description": "则）/每股指标",
+    "params": ""
+  },
+  {
+    "code": "ths_np_to_revenue_index",
+    "name": "净利润/营业总收入",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_oa_net_income_to_total_profit_index",
+    "name": "经营活动净收益/利润总额",
+    "description": "财务指标（新准则）/收益质量",
+    "params": ""
+  },
+  {
+    "code": "ths_obv_index",
+    "name": "OBV 能量潮",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_op_index",
+    "name": "营业利润",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_op_to_revenue_index",
+    "name": "营业利润/营业总收入",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_open_int_index",
+    "name": "区间开盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_m_index",
+    "name": "月开盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_price_index",
+    "name": "开盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_w_index",
+    "name": "周开盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_operate_fa_to_ta_insurance_index",
+    "name": "经营性流动资产/总资产_保险",
+    "description": "交易日期(100-最新,101-前一交易日,102-1周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一) 财务指标（新准则）/行业特殊指标行情指标/年行情 年开盘价 ths_open_y_index",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_activity_net_income_index",
+    "name": "经营活动净收益",
+    "description": "财务数据（新准则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_cost_growth_ny_index",
+    "name": "营业利润合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_cost_index",
+    "name": "营业成本",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_cost_yoy_index",
+    "name": "营业总成本/营业总收入",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/成长能力/同比增长率财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_cycle_index",
+    "name": "营业周期",
+    "description": "则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_profit_growth_ny_index",
+    "name": "利润总额合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_profit_yoy_index",
+    "name": "营业利润合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_operating_total_revenue_index",
+    "name": "营业总收入",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_orig_ic_compen_cash_paid_index",
+    "name": "支付原保险合同同赔付款项的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_other_cash_paid_related_to_ia_index",
+    "name": "支付其他与投资活动有关的现金",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_other_cash_paid_related_to_oa_index",
+    "name": "支付其他与经营活动有关的现金",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_othrcash_paid_relating_to_fa_index",
+    "name": "支付其他与筹资活动有关的现金",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_payments_of_all_taxes_index",
+    "name": "支付的各项税费",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_pb_index",
+    "name": "（PB）",
+    "description": "估值指标市净率",
+    "params": ""
+  },
+  {
+    "code": "ths_pcf_index",
+    "name": "（PCF）",
+    "description": "估值指标市现率",
+    "params": ""
+  },
+  {
+    "code": "ths_pe_index",
+    "name": "（PE）",
+    "description": "估值指标市盈率",
+    "params": ""
+  },
+  {
+    "code": "ths_pe_ttm_index",
+    "name": "市盈率（PE，TTM）",
+    "description": "估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_phase_high_nearly_index",
+    "name": "近期创阶段新高",
+    "description": "技术形态",
+    "params": ""
+  },
+  {
+    "code": "ths_phase_low_nearly_index",
+    "name": "近期创阶段新低",
+    "description": "技术形态",
+    "params": ""
+  },
+  {
+    "code": "ths_possitive_buy_large_amt_index",
+    "name": "被动买入特大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_possitive_buy_main_amt_index",
+    "name": "被动买入大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_possitive_buy_middle_amt_index",
+    "name": "被动买入中单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_possitive_sell_large_amt_index",
+    "name": "被动卖出特大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_possitive_sell_main_amt_index",
+    "name": "被动卖出大单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_possitive_sell_middle_amt_index",
+    "name": "被动卖出中单金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_index",
+    "name": "前收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_int_index",
+    "name": "区间前收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_m_index",
+    "name": "月前收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_w_index",
+    "name": "周前收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_y_index",
+    "name": "年前收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_profit_dnrgal_to_np_index",
+    "name": "扣除非经常损益后的净利润/净利润",
+    "description": "财务指标（新准则）/收益质量",
+    "params": ""
+  },
+  {
+    "code": "ths_publish_org_index",
+    "name": "前推12 个月(TTM),109-上年三季×4/3),剔除规则(100-不调整,101-剔除负值)基本资料发布机构",
+    "description": "4/3,105-当年年报,106-最新年报(LYR),107-",
+    "params": ""
+  },
+  {
+    "code": "ths_quick_ratio_index",
+    "name": "速动比率",
+    "description": "则）/偿债能力",
+    "params": ""
+  },
+  {
+    "code": "ths_receivable_turnover_days_index",
+    "name": "应收账款周转天数",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_refund_of_tax_and_levies_index",
+    "name": "收到的税费返还",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_retained_income_ps_index",
+    "name": "每股留存收益",
+    "description": "财务指标（新准则）/每股指标",
+    "params": ""
+  },
+  {
+    "code": "ths_revenue_growth_ny_index",
+    "name": "营业收入合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_revenue_index",
+    "name": "营业收入",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_revenue_yoy_index",
+    "name": "每股营业总收入",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/成长能力/同比增长率财务指标（新准则）/每股指标",
+    "params": ""
+  },
+  {
+    "code": "ths_roe_avg_index",
+    "name": "净资产收益率-平均",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_roe_dltd_index",
+    "name": "净资产收益率-摊薄",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_roe_dnrgal_avg_index",
+    "name": "扣除非经常损益后的净资产收益率-平均",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_roe_dnrgal_dlt_index",
+    "name": "扣除非经常损益后的净资产收益率-摊薄",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_roe_growth_gm_index",
+    "name": "净资产收益率(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_roe_growth_ny_index",
+    "name": "净资产收益率(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_roic_index",
+    "name": "投入资本回报率",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_rsi_index",
+    "name": "RSI 相对强弱指标",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sales_fee_index",
+    "name": "销售费用",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_sales_fee_to_or_index",
+    "name": "销售费用/营业总收入",
+    "description": "财务指标（新准则）/盈利能力",
+    "params": ""
+  },
+  {
+    "code": "ths_sharp_annual_index",
+    "name": "Sharpe(年化)",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sharp_index",
+    "name": "Sharpe",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_amtb_index",
+    "name": "融券余额",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_payment_vol_index",
+    "name": "融券偿还量",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_sell_vol_index",
+    "name": "融券卖出量",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_vol_balance_index",
+    "name": "融券余量",
+    "description": "融资融券指标",
+    "params": ""
+  },
+  {
+    "code": "ths_small_buy_amt_index",
+    "name": "小单买入金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_small_sell_amt_index",
+    "name": "小单卖出金额",
+    "description": "资金流向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_state_owned_lp_shares_index",
+    "name": "年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季)股本指标国有法人股",
+    "description": "报告期(100-去年年报,101-今年一季,102-今",
+    "params": ""
+  },
+  {
+    "code": "ths_structure_assets_cash_cost_index",
+    "name": "构建固定资产、无形资产和其他长期资产支付的现金",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_sub_total_of_ci_from_fa_index",
+    "name": "筹资活动现金流入小计",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_sub_total_of_ci_from_ia_index",
+    "name": "投资活动现金流入小计",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_sub_total_of_ci_from_oa_index",
+    "name": "经营活动现金流入小计",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_sub_total_of_cos_from_fa_index",
+    "name": "筹资活动现金流出小计",
+    "description": "财务数据（新准则）/现金流量表/筹资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_sub_total_of_cos_from_oa_index",
+    "name": "经营活动现金流出小计",
+    "description": "财务数据（新准则）/现金流量表/经营活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_sub_total_of_cos_fromia_index",
+    "name": "投资活动现金流出小计",
+    "description": "财务数据（新准则）/现金流量表/投资活动产生的现金流量",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_index",
+    "name": "振幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_tanv_to_total_assets_index",
+    "name": "有形资产净值/总资产",
+    "description": "财务指标（新准则）/资本结构",
+    "params": ""
+  },
+  {
+    "code": "ths_td_daysint_index",
+    "name": "区间交易天数",
+    "description": "起始交易日期(100-截止日前一交易日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末) 基本资料 所属国家 ths_the_nation_index 基本资料 同花顺代码 ths_thscode_index 财务指标（新准则）/成长能力/同比增长率行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_total_asset_yoy_index",
+    "name": "总资产合计(同比增长率)",
+    "description": "起始交易日期(100-截止日前一交易日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末) 基本资料 所属国家 ths_the_nation_index 基本资料 同花顺代码 ths_thscode_index 财务指标（新准则）/成长能力/同比增长率行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_total_assets_growth_ny_index",
+    "name": "资产总计合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_assets_index",
+    "name": "资产总计",
+    "description": "则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_assets_sum_index",
+    "name": "资产总计合计",
+    "description": "财务指标（新准则）/成长能力/相对年初增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_buy_etc_cash_cost_yoy_index",
+    "name": "购买商品、接受劳务支付的现金合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_capital_turnover_index",
+    "name": "总资产周转率",
+    "description": "财务指标（新准则）/营运能力",
+    "params": ""
+  },
+  {
+    "code": "ths_total_cash_flow_yoy_index",
+    "name": "现金流量合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_cash_paid_staff_yoy_index",
+    "name": "支付给职工以及为职工支付的现金合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_cr_from_asasr_yoy_index",
+    "name": "销售商品、提供劳务收到的现金合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_equity_atoopc_index",
+    "name": "归属于母公司所有者权益合计",
+    "description": "股本指标 境内法人股合计 ths_total_domestic_lp_shares_index 截止日期(100-最新)财务数据（新准则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_equity_atsopc_growth_boy_index",
+    "name": "归属母公司股东的权益合计(相对年初增长率)",
+    "description": "财务指标（新准则）/成长能力/相对年初增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_equity_atsopc_growth_ny_index",
+    "name": "归属母公司股东的权益合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率股本指标 总流通股本 ths_total_float_shares_index 截止日期(100-最新)",
+    "params": ""
+  },
+  {
+    "code": "ths_total_float_shares_ratio_index",
+    "name": "流通股合计占总股本比例",
+    "description": "股本指标",
+    "params": ""
+  },
+  {
+    "code": "ths_total_gross_yoy_index",
+    "name": "毛利合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_liab_to_equity_atsopc_index",
+    "name": "负债合计/归属母公司股东的权益",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/成长能力/同比增长率财务指标（新准则）/偿债能力",
+    "params": ""
+  },
+  {
+    "code": "ths_total_liab_yoy_index",
+    "name": "总负债合计(同比增长率)",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/成长能力/同比增长率财务指标（新准则）/偿债能力",
+    "params": ""
+  },
+  {
+    "code": "ths_total_limited_ashare_ratio_index",
+    "name": "限售A 股合计占总股本比例",
+    "description": "股本指标",
+    "params": ""
+  },
+  {
+    "code": "ths_total_ncf_of_oa_growth_ny_index",
+    "name": "经营活动产生的现金流量净额合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_ncf_of_oa_yoy_index",
+    "name": "经营活动产生的现金流量净额合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_net_asset_yoy_index",
+    "name": "净资产合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_np_atsopc_yoy_index",
+    "name": "归属母公司股东的净利润合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_np_yoy_index",
+    "name": "净利润合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_operating_cost_index",
+    "name": "营业总成本",
+    "description": "则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_owner_equity_index",
+    "name": "所有者权益合计",
+    "description": "财务数据（新准则）/资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_profit_growth_ny_index",
+    "name": "归属母公司股东的净利润合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_profit_yoy_index",
+    "name": "利润总额合计(同比增长率)",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 财务指标（新准则）/成长能力/同比增长率财务数据（新准则）/利润表 利润总额 ths_total_profit_index",
+    "params": ""
+  },
+  {
+    "code": "ths_total_revenue_growth_ny_index",
+    "name": "营业总收入合计(N 年增长率)",
+    "description": "财务指标（新准则）/成长能力/相对N 年增长率",
+    "params": ""
+  },
+  {
+    "code": "ths_total_revenue_yoy_index",
+    "name": "营业总收入合计(同比增长率)",
+    "description": "财务指标（新准则）/成长能力/同比增长率报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-去年一季,105-去年中报,106-去年三季) 股本指标 总股本 ths_total_shares_index 截止日期(100-最新) 基本资料 交易币种 ths_trade_currency_index",
+    "params": ""
+  },
+  {
+    "code": "ths_trans_amt_index",
+    "name": "成交金额",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_treynor_index",
+    "name": "Treynor",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_index",
+    "name": "换手率",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_m_index",
+    "name": "月换手率",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_w_index",
+    "name": "周换手率",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_y_index",
+    "name": "年换手率",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_unfloat_shares_index",
+    "name": "截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末)股本指标非流通股",
+    "description": "起始交易日期(100-截止日前一交易日,101-",
+    "params": ""
+  },
+  {
+    "code": "ths_up_days_index",
+    "name": "连涨天数",
+    "description": "技术形态",
+    "params": ""
+  },
+  {
+    "code": "ths_value_chg_net_income_index",
+    "name": "价值变动净收益",
+    "description": "财务数据（新准则）/利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_value_chg_ni_to_total_profit_index",
+    "name": "价值变动净收益/利润总额",
+    "description": "财务指标（新准则）/收益质量",
+    "params": ""
+  },
+  {
+    "code": "ths_vma_index",
+    "name": "VMA 量简单移动平均",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vmacd_index",
+    "name": "VMACD 量指数平滑异动平均",
+    "description": "技术指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_index",
+    "name": "成交量",
+    "description": "行情指标/日行情",
+    "params": ""
+  }
+]

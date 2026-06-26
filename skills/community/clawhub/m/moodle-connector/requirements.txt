@@ -1,0 +1,5 @@
+requests>=2.31.0
+cryptography>=41.0.0
+playwright>=1.40.0
+mcp>=0.1.0
+

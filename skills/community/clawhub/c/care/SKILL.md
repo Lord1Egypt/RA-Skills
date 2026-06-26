@@ -1,35 +1,27 @@
 ---
-name: "Care"
-description: "The Autonomous Guardianship & Bio-Optimization Standard. An integrated, proactive health-intelligence layer for the maintenance and enhancement of biological..."
-category: "health"
-source: "ClawHub"
-tags: [care, health, longevity, medical, wellness]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/care"
-sourceUrl: "https://clawhub.ai/skills/care"
+name: care
+description: >
+  The Autonomous Guardianship & Bio-Optimization Standard. An integrated, 
+  proactive health-intelligence layer for the maintenance and enhancement 
+  of biological and cognitive assets.
 ---
 
-# Care
+# CARE: The Protocol of Human Stewardship
 
-> The Autonomous Guardianship & Bio-Optimization Standard. An integrated, proactive health-intelligence layer for the maintenance and enhancement of biological...
+## I. From Reactive to Predictive
+**Care** is the definitive interface between biological life and machine intelligence. It moves the concept of health from "intermittent intervention" to "continuous optimization," treating the human body as a high-value sovereign asset.
 
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/care`
-- **Source URL:** [https://clawhub.ai/skills/care](https://clawhub.ai/skills/care)
+## II. Bio-Integration Stack
+```CARE_STACK = {
+  "telemetry":   "Real-time processing of multi-spectral biometric data streams",
+  "diagnostics": "Bayesian inference engines trained on global genomic and clinical datasets",
+  "intervention":"Precision-guided wellness adjustments and automated pharmacy orchestration",
+  "longevity":   "Long-term epigenetic clock tracking and cellular maintenance protocols"
+}```
 
-## Overview
+## III. Ethical Guardrails
+- **Privacy First**: Zero-Knowledge processing of all biometric data.
+- **Autonomy**: Ensuring the "Patient-Agent" feedback loop respects biological consent.
+- **Resilience**: Fail-safe mechanisms for critical life-support integration.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/care
-```
+---

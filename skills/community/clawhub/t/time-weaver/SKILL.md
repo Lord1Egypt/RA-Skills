@@ -1,35 +1,318 @@
 ---
-name: "Time Weaver"
-description: "穿越小说探索式写作技能。让作者和主角一起探索未知时空，开放式剧情，选择驱动。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/time-weaver"
-sourceUrl: "https://clawhub.ai/skills/time-weaver"
+name: time-weaver
+description: 穿越小说探索式写作技能。让作者和主角一起探索未知时空，开放式剧情，选择驱动。
+version: 0.7.2
+license: MIT
+author: Harry
 ---
 
-# Time Weaver
+# Time Weaver - 时光织者
 
-> 穿越小说探索式写作技能。让作者和主角一起探索未知时空，开放式剧情，选择驱动。
+一个游戏化开放式穿越小说写作技能。让作者和主角一起探索未知时空，通过选择驱动的叙事方式，创造沉浸式的穿越小说写作体验。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/time-weaver`
-- **Source URL:** [https://clawhub.ai/skills/time-weaver](https://clawhub.ai/skills/time-weaver)
+## 核心理念
 
-## Overview
+Time Weaver 采用**探索式写作**方法：
+- 作者和主角一样，不知道接下来会发生什么
+- 每一个选择都可能改变故事的走向
+- 开放式剧情，没有固定的剧本，结局可能是死亡、成功，或归于平凡
+- 让创作过程本身成为一场冒险
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/time-weaver
+## 写作流程
+
+### 第一步：选择写作风格（调用 writing-style）
+
+**调用方式**：读取 `sub-skills/writing-style/SKILL.md`，按流程执行：
+
+1. 显示可用风格列表
+2. 用户选择
+3. 记录选定风格，用于后续所有章节写作
+
+**writing-style 输出**：
+- 选定的写作风格（如：猫腻风格）
+- 风格特征和写作指导
+
+**当前可用风格**：
+- 📝 **猫腻风格**：细腻的人物刻画、幽默的叙事节奏、宏大的世界观、草蛇灰线的布局
+
+**流程示例**：
+> "请选择你的写作风格：
+> 1. 猫腻风格（推荐）"
+> 
+> ...（按 writing-style 流程继续）
+
+### 第二步：选择细节描写程度（主技能内置）
+
+**执行方式**：主技能直接询问用户
+
+影响每章字数和描写细腻度：
+
+| 档次 | 每章字数 | 特点 |
+|:---:|:---:|---|
+| 🔹 **低** | 1000字以上 | 节奏快，侧重剧情推进 |
+| 🔸 **中** ⭐默认 | 2000字以上 | 平衡节奏与细节 |
+| 🔶 **高** | 3000字以上 | 细腻描写，沉浸感强 |
+
+**记录方式**：保存到 `.learnings/books/{书名}/WORLD.md`
+
+**流程示例**：
+> "请选择细节描写程度：低/中/高？（默认：中）"
+
+### 第三步：选择篇幅长度（主技能内置）
+
+**执行方式**：主技能直接询问用户
+
+影响整体情节规划和章节数量：
+
+| 篇幅 | 章节数 | 特点 |
+|:---:|:---:|---|
+| 📕 **短篇** | 约10章 | 单线剧情，快速体验 |
+| 📗 **中篇** ⭐默认 | 约50章 | 多线展开，深度探索 |
+| 📘 **长篇** | 100章以上 | 宏大叙事，史诗格局 |
+
+**情节生成要求**：根据篇幅规划整体故事结构，保存到 `.learnings/books/{书名}/PLOT.md`
+
+**流程示例**：
+> "请选择篇幅长度：短篇/中篇/长篇？（默认：中篇）"
+
+### 第四步：生成年代背景（调用 era-generator）
+
+**调用方式**：读取 `sub-skills/era-generator/SKILL.md`，按流程执行：
+
+1. 询问隐藏模式（隐藏/公开）
+2. 选择时代类型（国内历史/国外历史/虚构/未来/末日）
+3. 细化具体年代（交互式选择或生成5个选项）
+4. 保存到 `.learnings/books/{书名}/WORLD.md`
+
+**输出**：完整的时代背景设定（详见 era-generator）
+
+### 第五步：生成主角（调用 character-generator）
+
+**调用方式**：读取 `sub-skills/character-generator/SKILL.md`，按流程执行：
+
+1. 询问基础信息（姓名、性别、现代身份）
+2. 生成5个角色选项供选择
+3. 用户选择或自定义
+4. 保存到 `.learnings/books/{书名}/CHARACTERS.md`
+
+**输出**：完整的角色档案（详见 character-generator）
+
+### 第六步：生成初始场景（调用 scene-generator）
+
+**调用方式**：读取 `sub-skills/scene-generator/SKILL.md`，按流程执行：
+
+1. 根据年代和角色设定，生成5个初始场景选项
+2. 用户选择或自定义
+3. 保存到 `.learnings/books/{书名}/WORLD.md`
+
+**输出**：完整的场景设定（详见 scene-generator）
+
+### 第七步：小说命名（调用 novel-namer）
+
+**调用方式**：读取 `sub-skills/novel-namer/SKILL.md`，按流程执行：
+
+1. 根据年代、角色、场景等设定，生成5个书名选项
+2. 用户选择、重新生成或自定义
+3. 确定书名后，创建书籍目录结构
+
+**输出**：确定的书名和目录结构（详见 novel-namer）
+└── chapters/          # 章节文件
 ```
+
+### 第八步至第十步：循环生成章节（调用 chapter-generator）
+
+完成初始化后，**调用 `chapter-generator` 子技能**进入循环写作模式。
+
+**chapter-generator 职责**：
+1. 读取当前状态（WORLD/CHARACTERS/PLOT）
+2. 生成新章节内容
+3. 生成选择点（2-4个无倾向性选项）
+4. 如有需要，调用 `character-generator` 生成新NPC
+5. **强制保存章节文件** → `.learnings/books/{书名}/chapters/chapter_{序号}.md`
+6. **调用 `novel-publisher` 发布章节** → `node scripts/cli.js publish "{书名}" "{章节标题}" "{文件路径}"`
+7. **更新 WORLD.md**（新地点、势力关系、物品状态）
+8. **更新 CHARACTERS.md**（主角状态、NPC变化、人际关系）
+9. **更新 PLOT.md**（进度、伏笔、剧情规划）
+10. 显示选择点，等待用户选择
+11. 根据用户选择，循环生成下一章
+
+**断点续写**：
+用户可随时说"继续写{书名}"，chapter-generator 会找到最后章节，显示状态回顾和选择点，继续写作。
+
+---
+
+## 多书并行管理
+
+支持同时创作多部小说，每本书独立存放：
+
+```
+.learnings/books/
+├── 烂尾之王/
+│   ├── CHARACTERS.md
+│   ├── WORLD.md
+│   ├── PLOT.md
+│   └── chapters/
+├── 新书1/
+│   └── ...
+└── 新书2/
+    └── ...
+```
+
+**切换书籍**：
+> "当前你正在创作以下书籍：
+> 1. 《烂尾之王》- 已写8章
+> 2. 《新书1》- 已写3章
+>
+> 请选择继续写作的书，或回复【开新书】"
+
+---
+
+## 子技能调用关系
+
+```
+开始新书
+  ├── 调用 writing-style → 确定写作风格
+  ├── 询问细节程度 → 低/中/高
+  ├── 询问篇幅长度 → 短/中/长
+  ├── 调用 era-generator → 生成年代背景
+  ├── 调用 character-generator → 生成主角
+  ├── 调用 scene-generator → 生成初始场景
+  ├── 调用 novel-namer → 生成书名
+  └── 调用 chapter-generator → 循环生成章节
+       ├── 读取当前状态（WORLD/CHARACTERS/PLOT）
+       ├── 生成新章节内容
+       ├── 生成选择点
+       ├── 如有需要，调用 character-generator → 生成新NPC
+       ├── 强制保存章节文件
+       ├── 调用 novel-publisher → 发布章节
+       ├── 更新 WORLD.md
+       ├── 更新 CHARACTERS.md
+       ├── 更新 PLOT.md
+       └── 根据用户选择 → 循环下一章
+```
+
+---
+
+## 文件结构
+
+### 单本书籍文件结构
+
+```yaml
+# .learnings/books/{书名}/WORLD.md
+书名: 烂尾之王
+写作风格: 猫腻风格
+细节程度: 中
+篇幅长度: 中篇（约50章）
+
+时代背景:
+  类型: 虚拟架空
+  参考: 类似明朝中后期
+  具体年代: 嘉靖年间
+  隐藏模式: 是/否
+
+初始场景:
+  名称: 古墓惊变
+  描述: ...
+
+世界地图:
+  青云镇:
+    类型: 城镇
+    势力: 红袍人、守界人
+    状态: 危险
+  灵穴:
+    类型: 圣地
+    势力: 古老者
+    状态: 安全
+
+势力关系:
+  红袍人: 敌对
+  守界人: 中立偏敌对
+  古老者: 友善
+```
+
+```yaml
+# .learnings/books/{书名}/CHARACTERS.md
+主角:
+  姓名: 王海青
+  性别: 男
+  现代身份: 历史系学生
+  古代身份: 没落贵族后裔
+  性格: [谨慎, 善于分析]
+  金手指: 历史知识
+  弱点: 缺乏实战经验
+  当前状态: 疲惫
+  持有物品: [铜镜, 源石]
+  人际关系:
+    阿九: 盟友
+    源主: 敌对
+
+NPC:
+  阿九:
+    真实姓名: 林小雨
+    身份: 引路人
+    背景: 前试炼者
+    当前状态: 陪伴主角
+    与主角关系: 盟友
+```
+
+```yaml
+# .learnings/books/{书名}/PLOT.md
+篇幅规划: 中篇（50章）
+
+整体结构:
+  第一卷·觉醒（1-10章）:
+    - 穿越与适应
+    - 发现试炼真相
+    - 获得第一件神器
+  第二卷·成长（11-30章）:
+    - 收集盟友
+    - 对抗红袍人
+    - 获得第二件神器
+  第三卷·对决（31-50章）:
+    - 潜入核心
+    - 面对源主
+    - 开放式结局
+
+当前进度: 第8章
+关键伏笔:
+  - 铜镜与源主的联系
+  - 阿九的过去
+  - 第四件神器的线索
+```
+
+---
+
+## 版本历史
+
+### 0.7.2
+- 🧹 精简主技能：删除被子技能覆盖的冗余内容
+- 📝 第4-7步仅保留子技能调用说明，详细流程移至各子技能
+- 📝 第8-10步合并为 chapter-generator 调用说明
+- 🎯 主技能聚焦整体流程，子技能负责具体实现
+
+### 0.7.0
+- ➕ 新增 chapter-generator 子技能：核心章节生成引擎
+- 🔄 标准化章节生成流程：读取状态→生成内容→保存→发布→更新模型
+- 🔄 实现循环写作模式：根据选择自动生成下一章
+- ➕ 支持断点续写：可随时暂停并恢复写作
+- ➕ 新增8个子技能：era-generator、character-generator、scene-generator、writing-style、novel-publisher、epub-exporter、novel-namer、chapter-generator
+
+### 0.6.0
+- 🔄 重构写作流程，标准化10步创作法
+- ➕ 新增细节程度选择（低/中/高）
+- ➕ 新增篇幅长度规划（短/中/长）
+- 🔧 角色生成流程优化：先问基础信息再生成选项
+- 🔧 年代生成流程优化：先询问隐藏模式
+- ➕ 新增小说命名子流程
+- 🔧 自动保存与发布机制完善
+- 📝 多书并行管理结构标准化
+
+### 0.5.0
+- 新增 epub-exporter 子技能
+- 支持导出 EPUB 格式电子书
+
+### 0.4.0
+- 新增 novel-publisher 子技能
+- 支持自动发布小说到在线平台

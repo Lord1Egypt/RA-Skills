@@ -1,35 +1,48 @@
 ---
-name: "Gws Workflow Email To Task"
+name: gws-workflow-email-to-task
 description: "Google Workflow: Convert a Gmail message into a Google Tasks entry."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-workflow-email-to-task"
-sourceUrl: "https://clawhub.ai/skills/gws-workflow-email-to-task"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws workflow +email-to-task --help"
 ---
 
-# Gws Workflow Email To Task
+# workflow +email-to-task
 
-> Google Workflow: Convert a Gmail message into a Google Tasks entry.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-workflow-email-to-task`
-- **Source URL:** [https://clawhub.ai/skills/gws-workflow-email-to-task](https://clawhub.ai/skills/gws-workflow-email-to-task)
+Convert a Gmail message into a Google Tasks entry
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-workflow-email-to-task
+gws workflow +email-to-task --message-id <ID>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--message-id` | ✓ | — | Gmail message ID to convert |
+| `--tasklist` | — | @default | Task list ID (default: @default) |
+
+## Examples
+
+```bash
+gws workflow +email-to-task --message-id MSG_ID
+gws workflow +email-to-task --message-id MSG_ID --tasklist LIST_ID
+```
+
+## Tips
+
+- Reads the email subject as the task title and snippet as notes.
+- Creates a new task — confirm with the user before executing.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-workflow](../gws-workflow/SKILL.md) — All cross-service productivity workflows commands

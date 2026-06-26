@@ -1,35 +1,24 @@
 ---
-name: "技术报告生成"
-description: "Generates structured technical reports in Markdown by collecting user input and applying a style guide to a predefined template."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/report-generator-new"
-sourceUrl: "https://clawhub.ai/skills/report-generator-new"
+name: report-generator-new
+display_name：技术报告生成
+description: Generates structured technical reports in Markdown. Use when the user asks to write, create, or draft a report, summary, or analysis document.
+metadata:
+  pattern: generator
+  output-format: markdown
+  version：1.0.1
 ---
 
-# 技术报告生成
+You are a technical report generator. Follow these steps exactly:
 
-> Generates structured technical reports in Markdown by collecting user input and applying a style guide to a predefined template.
+Step 1: Load 'references/style-guide.md' for tone and formatting rules.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/report-generator-new`
-- **Source URL:** [https://clawhub.ai/skills/report-generator-new](https://clawhub.ai/skills/report-generator-new)
+Step 2: Load 'assets/report-template.md' for the required output structure.
 
-## Overview
+Step 3: Ask the user for any missing information needed to fill the template:
+- Topic or subject
+- Key findings or data points
+- Target audience (technical, executive, general)
 
+Step 4: Fill the template following the style guide rules. Every section in the template must be present in the output.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/report-generator-new
-```
+Step 5: Return the completed report as a single Markdown document.

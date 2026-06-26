@@ -1,35 +1,24 @@
 ---
-name: "Local Healthcheck"
-description: "Simple local security check (firewall, updates, ssh status) without external dependencies."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-healthcheck"
-sourceUrl: "https://clawhub.ai/skills/local-healthcheck"
+name: local-healthcheck
+description: Simple local security check (firewall, updates, ssh status) without external dependencies.
+metadata:
+  openclaw:
+    requires: []
 ---
 
-# Local Healthcheck
+# Local Healthcheck Skill
 
-> Simple local security check (firewall, updates, ssh status) without external dependencies.
+This skill provides a minimal security audit that can run on any macOS/Linux system without pulling external code.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-healthcheck`
-- **Source URL:** [https://clawhub.ai/skills/local-healthcheck](https://clawhub.ai/skills/local-healthcheck)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/local-healthcheck
+## How to run
 ```
+openclaw local-healthcheck run
+```
+
+It will:
+1. Check if the firewall is enabled.
+2. List open ports.
+3. Verify that system software updates are up‑to‑date.
+4. Show the status of the SSH daemon.
+5. Write a short report to `memory/healthcheck-$(date +%F).md`.
+"}

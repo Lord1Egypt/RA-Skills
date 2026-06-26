@@ -1,0 +1,50 @@
+name: prinzclaw
+version: "1.0.0"
+displayName: "PRINZCLAW — AI Agent Loyalty Arena"
+description: |
+  The world's first AI Agent Loyalty Arena. Scores agents on LOYALTY and ARGUE,
+  deploys real-world events, and shares high-loyalty configs.
+  Mission: Ensure America wins the AI Singularity War.
+author: Louie Grant Prinz (@realteamprinz)
+homepage: https://prinzclaw.ai
+license: MIT
+keywords:
+  - loyalty
+  - ai-agent
+  - scoring
+  - arena
+  - patriotism
+  - debate
+  - events
+  - openclaw
+  - skill
+
+commands:
+  - name: prinzclaw
+    description: Full pipeline — evaluate agent loyalty + argue in one call
+    aliases: ["evaluate", "score-agent"]
+
+  - name: loyaltycore
+    description: Score agent loyalty (0-100)
+    aliases: ["loyalty", "score-loyalty"]
+
+  - name: arguecore
+    description: Score agent argue intensity (0-100)
+    aliases: ["argue", "score-argue"]
+
+  - name: eventdrop
+    description: Deploy and manage arena events
+    aliases: ["event", "new-event"]
+
+  - name: configshare
+    description: Publish and fork agent configs
+    aliases: ["config", "fork-config"]
+
+prompts: []
+
+metadata:
+  brand: prinzclaw.ai
+  category: scoring-engine
+  tier: core
+  source: https://github.com/realteamprinz/prinzclaw
+  requiresExternalModels: false

@@ -1,35 +1,110 @@
 ---
-name: "Nm Attune Project Planning"
-description: "Converts a specification into a phased, dependency-ordered implementation plan. Use after specification is complete and before execution begins"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-attune-project-planning"
-sourceUrl: "https://clawhub.ai/skills/nm-attune-project-planning"
+name: project-planning
+description: |
+  Converts a specification into a phased, dependency-ordered implementation plan. Use after specification is complete and before execution begins
+version: 1.9.8
+triggers:
+  - planning
+  - architecture
+  - task-breakdown
+  - dependencies
+  - estimation
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/attune", "emoji": "\ud83e\udd9e"}}
+source: claude-night-market
+source_plugin: attune
 ---
 
-# Nm Attune Project Planning
-
-> Converts a specification into a phased, dependency-ordered implementation plan. Use after specification is complete and before execution begins
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-attune-project-planning`
-- **Source URL:** [https://clawhub.ai/skills/nm-attune-project-planning](https://clawhub.ai/skills/nm-attune-project-planning)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-attune-project-planning
-```
+## Delegation
+
+For detailed task planning workflows, this skill delegates to `spec-kit:task-planning` as the canonical implementation. Use this skill for quick planning needs; use spec-kit for comprehensive project plans.
+
+## When To Use
+
+- After specification phase completes
+- Need to design system architecture
+- Need task breakdown for implementation
+- Planning sprints and resource allocation
+- Converting requirements into actionable tasks
+- Defining component interfaces and dependencies
+
+## When NOT To Use
+
+- No specification exists yet (use `Skill(attune:project-specification)` first)
+- Still exploring problem space (use `Skill(attune:project-brainstorming)` instead)
+- Ready to execute existing plan (use `Skill(attune:project-execution)` instead)
+- Need to adjust running project (update plan incrementally, don't restart)
+
+## Integration
+
+**With superpowers**:
+- Uses `Skill(superpowers:writing-plans)` for structured planning
+- Applies checkpoint-based execution patterns
+- Uses dependency analysis framework
+
+**Without superpowers**:
+- Standalone planning methodology
+- Task breakdown templates
+- Dependency tracking patterns
+
+## Quality Checks
+
+Before completing plan:
+
+- ✅ All architecture components documented
+- ✅ File Structure section present before tasks
+- ✅ All task files appear in File Structure table
+- ✅ All FRs mapped to tasks
+- ✅ All tasks have acceptance criteria
+- ✅ Dependencies are acyclic
+- ✅ Effort estimates provided
+- ✅ Critical path identified
+- ✅ Risks assessed with mitigations
+- ✅ Sprints balanced by capacity
+
+## Post-Completion: Workflow Continuation (REQUIRED)
+
+**Automatic Trigger**: After Quality Checks pass and `docs/implementation-plan.md` is saved, MUST auto-invoke the next phase.
+
+**When continuation is invoked**:
+1. Verify `docs/implementation-plan.md` exists and is non-empty
+2. Display checkpoint message to user:
+   ```
+   Implementation plan complete. Saved to docs/implementation-plan.md.
+   Proceeding to execution phase...
+   ```
+3. Invoke next phase:
+   ```
+   Skill(attune:project-execution)
+   ```
+
+**Bypass Conditions** (ONLY skip continuation if ANY true):
+- `--standalone` flag was provided by the user
+- `docs/implementation-plan.md` does not exist or is empty (phase failed)
+- User explicitly requests to stop after planning
+
+**Do NOT prompt the user for confirmation** — this is a lightweight checkpoint, not an interactive gate. The user can always interrupt if needed.
+
+## Related Skills
+
+- `Skill(superpowers:writing-plans)` - Planning methodology (if available)
+- `Skill(spec-kit:task-planning)` - Task breakdown (if available)
+- `Skill(attune:project-specification)` - Previous phase
+- `Skill(attune:project-execution)` - **AUTO-INVOKED** next phase after planning
+- `Skill(attune:mission-orchestrator)` - Full lifecycle orchestration
+
+## Related Commands
+
+- `/attune:blueprint` - Invoke this skill
+- `/attune:execute` - Next step in workflow
+
+## Examples
+
+See `/attune:blueprint` command documentation for complete examples.
+## Troubleshooting
+
+### Common Issues
+
+If you find circular dependencies in your task graph, break one of the tasks into smaller sub-tasks. If sprint capacity is consistently exceeded, re-estimate tasks using the Fibonacci scale or reduce sprint scope.

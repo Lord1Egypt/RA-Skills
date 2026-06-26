@@ -1,0 +1,7 @@
+interface:
+  display_name: "Cocoloop"
+  short_description: "一个更快速、更安全的 Skill 管理器，用于搜索、下载、安装、更新、卸载和检查 Skills。优先使用 CocoLoop 搜索 API 获取 skill 文件；搜不到时继续在 ClawHub、skills.sh、GitHub 和公开网页中寻找可安装文件，并按当前 Agent 平台写入正确目录。"
+  default_prompt: "Use $cocoloop to help with this task."
+
+policy:
+  allow_implicit_invocation: true

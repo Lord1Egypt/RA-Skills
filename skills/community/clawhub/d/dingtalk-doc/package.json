@@ -1,0 +1,24 @@
+{
+  "name": "dingtalk-doc",
+  "version": "1.0.6",
+  "description": "钉钉文档管理技能 - 支持文档增删改查和白名单权限控制",
+  "main": "scripts/index.js",
+  "scripts": {
+    "get-token": "node scripts/dingtalk-client.js get-token",
+    "get-workspace-list": "node scripts/dingtalk-client.js get-workspace-list",
+    "list-docs": "node scripts/index.js list-docs",
+    "create-doc": "node scripts/index.js create-doc",
+    "delete-doc": "node scripts/index.js delete-doc",
+    "search": "node scripts/index.js search",
+    "get-content": "node scripts/index.js get-content",
+    "update-content": "node scripts/index.js update-content",
+    "check-permission": "node scripts/whitelist.js check"
+  },
+  "keywords": [
+    "dingtalk",
+    "knowledge-base",
+    "openclaw-skill"
+  ],
+  "author": "",
+  "license": "MIT"
+}

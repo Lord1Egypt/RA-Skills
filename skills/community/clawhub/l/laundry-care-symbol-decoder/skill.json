@@ -1,0 +1,41 @@
+{
+  "slug": "laundry-care-symbol-decoder",
+  "name": "Laundry Care Symbol Decoder Sheet",
+  "displayName": "Laundry Care Symbol Decoder Sheet",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Create a one-garment or batch laundry care sheet that decodes label symbols into meanings, actions, avoid notes, delicate-fabric warnings, and readability flags.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Home/Admin",
+  "triggerKeywords": [
+    "laundry symbols",
+    "care label decoder",
+    "clothing tag symbols",
+    "how to wash this garment",
+    "do not tumble dry symbol",
+    "washing instructions",
+    "garment care sheet",
+    "fabric care label",
+    "laundry care chart",
+    "decode clothing label"
+  ],
+  "tags": [
+    "laundry",
+    "clothing-care",
+    "home-admin",
+    "symbols",
+    "garment-care",
+    "batch-care"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

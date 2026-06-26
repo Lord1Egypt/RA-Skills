@@ -1,0 +1,22 @@
+# Materialize v0.47
+## v0.47.0
+
+#### SQL
+
+* Add the [`GRANT ROLE`](/sql/grant-role) and [`REVOKE ROLE`](/sql/revoke-role)
+  commands, which allow granting/revoking membership of one role to/from another
+  role. This is part of the work to enable **Role-based access control** (RBAC)
+  in a future release ([#11579](https://github.com/MaterializeInc/materialize/issues/11579)).
+
+* Allow rejecting user queries based on role attributes. This privilege is
+  exclusive to _superusers_. This is part of the work to enable **Role-based
+  access control** (RBAC) in a future release ([#11579](https://github.com/MaterializeInc/materialize/issues/11579)).
+
+* Add [`mz_internal.mz_dataflow_operator_parents`](/reference/system-catalog/mz_introspection/#mz_dataflow_operator_parents)
+  to the system catalog. This view describes how operators are nested into
+  scopes, by relating operators to their parent operators, which is useful for
+  internal system observability.
+
+* Add `dataflow_id` to the [`mz_compute_exports`](/reference/system-catalog/mz_introspection/#mz_compute_exports)
+  introspection source. This introspection source describes the dataflows
+  created by indexes, materialized views, and subscriptions in the system.

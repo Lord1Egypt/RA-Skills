@@ -1,0 +1,30 @@
+{
+  "jobs": [
+    {
+      "id": "finance-weekly",
+      "name": "Finance Weekly Cost Digest",
+      "enabled": true,
+      "frequency": "weekly",
+      "granularity": "weekly",
+      "metrics": ["total_cost", "active_models", "avg_cost_per_model"],
+      "models": ["gpt-5", "o3"],
+      "formats": ["json", "csv"],
+      "allowedRoles": ["admin", "analyst"],
+      "layout": {
+        "title": "Finance Weekly",
+        "sections": ["summary", "forecast", "alerts", "model_breakdown"]
+      },
+      "recipients": [
+        {
+          "channel": "email",
+          "target": "finance@example.com"
+        },
+        {
+          "channel": "slack",
+          "target": "#finops",
+          "allowedRoles": ["admin"]
+        }
+      ]
+    }
+  ]
+}

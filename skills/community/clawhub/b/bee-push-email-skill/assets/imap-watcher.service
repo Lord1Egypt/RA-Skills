@@ -1,0 +1,19 @@
+[Unit]
+Description=IMAP IDLE Watcher for OpenClaw Email Push
+After=network-online.target openclaw-gateway.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=imap-watcher
+Group=imap-watcher
+ExecStart=/opt/imap-watcher/bin/python3 /opt/imap-watcher/imap_watcher.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=imap-watcher
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

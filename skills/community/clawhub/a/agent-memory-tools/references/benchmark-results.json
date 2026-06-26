@@ -1,0 +1,82 @@
+{
+  "version": "2.8.0",
+  "date": "2026-03-23",
+  "questions": 10,
+  "precision": 96.7,
+  "questions_ok": 10,
+  "avg_latency_ms": 1,
+  "total_time_s": 0.01,
+  "backend": "local",
+  "details": [
+    {
+      "question": "What critical bug was fixed on March 1?",
+      "score": 1.0,
+      "hits": 3,
+      "total": 3,
+      "latency": 0.012785911560058594
+    },
+    {
+      "question": "How many users were migrated to Convex?",
+      "score": 1.0,
+      "hits": 1,
+      "total": 1,
+      "latency": 3.790855407714844e-05
+    },
+    {
+      "question": "What caused the dashboard performance issue?",
+      "score": 1.0,
+      "hits": 3,
+      "total": 3,
+      "latency": 3.5762786865234375e-05
+    },
+    {
+      "question": "What is Transport Rino's budget for the MVP?",
+      "score": 0.6666666666666666,
+      "hits": 2,
+      "total": 3,
+      "latency": 3.0994415283203125e-05
+    },
+    {
+      "question": "Who is the contact person at Transport Rino?",
+      "score": 1.0,
+      "hits": 2,
+      "total": 2,
+      "latency": 2.7894973754882812e-05
+    },
+    {
+      "question": "Why is Sol paused?",
+      "score": 1.0,
+      "hits": 3,
+      "total": 3,
+      "latency": 3.314018249511719e-05
+    },
+    {
+      "question": "What was the root cause of the auth regression?",
+      "score": 1.0,
+      "hits": 4,
+      "total": 4,
+      "latency": 3.0994415283203125e-05
+    },
+    {
+      "question": "How many users were affected by the auth bug?",
+      "score": 1.0,
+      "hits": 1,
+      "total": 1,
+      "latency": 2.6941299438476562e-05
+    },
+    {
+      "question": "What is the tech stack for Transport Rino?",
+      "score": 1.0,
+      "hits": 4,
+      "total": 4,
+      "latency": 2.7894973754882812e-05
+    },
+    {
+      "question": "What index was added to fix the performance issue?",
+      "score": 1.0,
+      "hits": 2,
+      "total": 2,
+      "latency": 2.6941299438476562e-05
+    }
+  ]
+}

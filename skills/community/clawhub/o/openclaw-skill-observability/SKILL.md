@@ -1,35 +1,13 @@
----
-name: "Openclaw Skill Observability"
-description: "Provides tools to monitor OpenClaw health by reporting recent errors and estimating API usage costs over the last 24 hours."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-skill-observability"
-sourceUrl: "https://clawhub.ai/skills/openclaw-skill-observability"
----
+# Observability Skill
 
-# Openclaw Skill Observability
+Tools for monitoring OpenClaw health, costs, and logs.
 
-> Provides tools to monitor OpenClaw health by reporting recent errors and estimating API usage costs over the last 24 hours.
+## Tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-skill-observability`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-skill-observability](https://clawhub.ai/skills/openclaw-skill-observability)
+### get_cost_report
+Get a report of estimated API costs for sessions active in the last 24 hours.
+- Returns: Markdown table of costs per model.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-skill-observability
-```
+### get_recent_errors
+Get a list of recent sessions that failed or were aborted (checks last 50 sessions).
+- Returns: List of problematic sessions with IDs and status.

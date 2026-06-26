@@ -1,0 +1,69 @@
+{
+  "name": "a-share-pro",
+  "version": "1.0.0",
+  "description": "A 股专业监控工具 - 轻量级自选股管理 + 多数据源实时行情",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/a-share-pro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/a-share-pro"
+  },
+  "keywords": [
+    "a-share",
+    "stock",
+    "finance",
+    "investment",
+    "china",
+    "market"
+  ],
+  "categories": ["finance", "productivity"],
+  "runtime": {
+    "type": "python3",
+    "min_version": "3.8"
+  },
+  "dependencies": [
+    "requests>=2.25.0",
+    "beautifulsoup4>=4.9.0"
+  ],
+  "entry_points": {
+    "cli": "scripts/"
+  },
+  "config": {
+    "data_dir": "~/.openclaw/a_share",
+    "watchlist_file": "~/.openclaw/a_share/watchlist.txt",
+    "transactions_file": "~/.openclaw/a_share/transactions.txt"
+  },
+  "commands": [
+    {
+      "name": "install",
+      "script": "scripts/install.sh",
+      "description": "安装并初始化数据目录"
+    },
+    {
+      "name": "add-stock",
+      "script": "scripts/add_stock.py",
+      "description": "添加股票到自选股"
+    },
+    {
+      "name": "remove-stock",
+      "script": "scripts/remove_stock.py",
+      "description": "从自选股移除股票"
+    },
+    {
+      "name": "list-stocks",
+      "script": "scripts/list_stocks.py",
+      "description": "查看自选股列表"
+    },
+    {
+      "name": "summarize",
+      "script": "scripts/summarize_performance.py",
+      "description": "获取行情汇总"
+    },
+    {
+      "name": "clear",
+      "script": "scripts/clear_watchlist.py",
+      "description": "清空自选股列表"
+    }
+  ]
+}

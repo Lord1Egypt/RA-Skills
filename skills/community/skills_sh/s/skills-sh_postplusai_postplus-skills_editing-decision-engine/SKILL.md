@@ -1,35 +1,38 @@
 ---
-name: "editing-decision-engine"
-description: "Indexed by skills.sh from postplusai/postplus-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "postplusai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/postplusai/postplus-skills/editing-decision-engine"
-sourceUrl: "https://skills.sh/postplusai/postplus-skills/editing-decision-engine"
+name: editing-decision-engine
+description: Plan short-form post-edit decisions from A-roll, B-roll, scripts, and reference videos. Use this when the goal is not generic video analysis or rendering, but deciding how to cut a social video beat by beat, including where to stay on face, where to insert proof B-roll, how to use reference patterns, and how to package an actionable edit plan for a human editor or downstream timeline tooling.
+metadata:
+  postplus:
+    familyId: media-production
+    familyName: Media and Creative Production
 ---
 
-# editing-decision-engine
+# Editing Decision Engine
 
-> Indexed by skills.sh from postplusai/postplus-skills
+## Use When
+- Plan short-form post-edit decisions from A-roll, B-roll, scripts, and reference videos. Use this when the goal is not generic video analysis or rendering, but deciding how to cut a social video beat by beat, including where to stay on face, where to insert proof B-roll, how to use reference patterns, and how to package an actionable edit plan for a human editor or downstream timeline tooling.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** postplusai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/postplusai/postplus-skills/editing-decision-engine`
-- **Source URL:** [https://skills.sh/postplusai/postplus-skills/editing-decision-engine](https://skills.sh/postplusai/postplus-skills/editing-decision-engine)
+## Do Not Use When
+- The task belongs to ideation, QA, or another released skill listed in the handoff section.
+- Required inputs are missing and guessing would change the result.
 
-## Overview
+## Required Input
+- Explicit user brief or JSON input matching the artifact contract.
 
+## Stop Conditions
+- Stop when required user intent, source evidence, or owned input artifacts are
+  missing and guessing would change the result.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/postplusai/postplus-skills/editing-decision-engine
-```
+## Handoff
+- Return the structured output, hosted result, poll command, or explicit blocker.
+
+## Public Command Boundary
+
+- Choose the smallest matching command or workflow from the user input and run
+  it directly.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.

@@ -1,0 +1,12 @@
+[project]
+name = "moltbot-dingtalk-connection"
+version = "1.0.0"
+description = "Bridge DingTalk outgoing webhook messages to Moltbot Gateway"
+requires-python = ">=3.11"
+dependencies = [
+  "aiohttp>=3.9.0",
+  "websockets>=12.0",
+]
+
+[tool.uv]
+package = false

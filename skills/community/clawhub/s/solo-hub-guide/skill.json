@@ -1,0 +1,30 @@
+{
+  "skill": "solo_hub_guide",
+  "skill_series": "solo",
+  "skill_type": "guide",
+  "version": "1.0",
+  "description": "Interactive AI tutor for Solo Hub — account setup, model catalog, team orgs, credits, and fine-tuning (LLM and VLA) via the Solo Hub web UI",
+  "domains": [
+    "account",
+    "models",
+    "teams",
+    "credits",
+    "finetune_llm",
+    "finetune_vla",
+    "monitoring",
+    "troubleshoot"
+  ],
+  "tutorials": [
+    "hub_account_setup",
+    "hub_llm_finetune_first_run",
+    "hub_vla_finetune"
+  ],
+  "docs_base_url": "https://hub.getsolo.tech/docs",
+  "hub_base_url": "https://hub.getsolo.tech",
+  "related_skills": ["solo_cli_guide", "solo_impl"],
+  "plan_requirements": {
+    "llm_finetune": "Basic, Plus, or Pro",
+    "vla_finetune": "Plus or Pro only"
+  },
+  "constraint": "Never suggest UI paths, button labels, or field names not in this skill definition. Always reference docs_ref for each action."
+}

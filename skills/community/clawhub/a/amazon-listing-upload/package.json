@@ -1,0 +1,30 @@
+{
+  "name": "amazon-seller",
+  "version": "1.0.0",
+  "description": "Amazon Seller Central listing management and optimization guide. Supports multiple marketplaces (US, UK, EU, JP) and product categories. Includes GTIN exemption workflow, FBA shipment guides, listing templates, and optimization strategies.",
+  "keywords": [
+    "amazon",
+    "seller",
+    "listing",
+    "fba",
+    "ecommerce",
+    "gtin",
+    "upc",
+    "inventory",
+    "product-upload",
+    "amazon-fba",
+    "seller-central",
+    "marketplace",
+    "product-optimization"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-skills/amazon-seller"
+  },
+  "homepage": "https://github.com/openclaw-skills/amazon-seller",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  }
+}

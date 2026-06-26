@@ -1,0 +1,29 @@
+{
+  "name": "skill-feedback-collector",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill - MCP-based human feedback collector with WebSocket UI for token throttling",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "mcp",
+    "feedback",
+    "token-throttling"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/ws": "^8.18.0",
+    "typescript": "^5.8.0"
+  }
+}

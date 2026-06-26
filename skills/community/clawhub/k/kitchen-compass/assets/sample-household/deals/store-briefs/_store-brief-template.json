@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "week_of": "2026-04-21",
+  "store_id": "replace-with-store-id",
+  "source": {
+    "type": "retailer-page",
+    "url": "https://example.com/weekly-ad",
+    "captured_at": null,
+    "notes": "Use the saved store source/retrieval recipe from household/stores.json."
+  },
+  "curated_by": "manual",
+  "notes": "Keep only the relevant deals for this store. The combined sheet will organize them by display_category.",
+  "items": [
+    {
+      "title": "Chicken thighs or drumsticks",
+      "brief_role": "major-protein",
+      "display_category": "meat",
+      "price_text": "$1.29/lb",
+      "regular_price_text": "$1.99/lb",
+      "why_it_matters": "Cheap flexible protein for sheet-pan chicken and simple roast dinners.",
+      "meal_lanes": [
+        "sheet-pan chicken",
+        "roast chicken + potatoes"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "webhook-handler",
+  "description": "Store webhook payloads",
+  "code": "async function handler(request, env) {\n  const payload = await request.json();\n  const key = `webhook:${Date.now()}`;\n  await env.KV.put(key, JSON.stringify({ event: payload.event, data: payload.data }));\n  return new Response(JSON.stringify({ success: true }), { headers: { 'Content-Type': 'application/json' } });\n}"
+}

@@ -1,0 +1,63 @@
+{
+  "name": "@kagura-agent/openclaw-zulip",
+  "version": "0.1.0",
+  "description": "OpenClaw Zulip channel plugin — topic threading, metadata DB, bot commands",
+  "type": "module",
+  "main": "./index.ts",
+  "peerDependencies": {
+    "openclaw": ">=2026.4.24"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "openclaw": "2026.4.24",
+    "typescript": "^6.0.3",
+    "vitest": "^3.1.1"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.4.24",
+      "minGatewayVersion": "2026.4.24"
+    },
+    "build": {
+      "openclawVersion": "2026.4.24",
+      "pluginSdkVersion": "2026.4.24"
+    },
+    "channel": {
+      "id": "zulip",
+      "label": "Zulip",
+      "selectionLabel": "Zulip (Realm + Bot)",
+      "detailLabel": "Zulip",
+      "docsPath": "/channels/zulip",
+      "docsLabel": "zulip",
+      "blurb": "Zulip team chat with native topic threading and stream organization.",
+      "aliases": [
+        "zulip-chat"
+      ],
+      "systemImage": "network",
+      "configuredState": {}
+    }
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "zulip",
+    "channel",
+    "chat"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kagura-agent/openclaw-zulip.git"
+  }
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "step": "asset_scene_1",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. Hook scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "asset_scene_2",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. Pain scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "asset_scene_3",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. Reveal scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "asset_scene_4",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. Features scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "asset_scene_5",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. Proof scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "asset_scene_6",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. CTA scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "asset_scene_7",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. Hook scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "asset_scene_8",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Create a 45-second product marketing video for an AI note-taking app for founders. Pain scene, 16:9, modern cinematic lighting.\",\"resolution\":\"2k\",\"styling\":{\"style\":\"photo\"}}'"
+  },
+  {
+    "step": "video_scene_1",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/video/kling-v3-omni-pro -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Animate scene 1 with cinematic product motion\",\"duration\":5}'"
+  },
+  {
+    "step": "video_scene_3",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/video/kling-v3-omni-pro -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Animate scene 3 with cinematic product motion\",\"duration\":5}'"
+  },
+  {
+    "step": "video_scene_5",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/video/kling-v3-omni-pro -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Animate scene 5 with cinematic product motion\",\"duration\":5}'"
+  },
+  {
+    "step": "video_scene_7",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/video/kling-v3-omni-pro -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"Animate scene 7 with cinematic product motion\",\"duration\":5}'"
+  },
+  {
+    "step": "voiceover",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/voiceover/elevenlabs-turbo-v2-5 -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"text\":\"Replace with stitched scene narration\",\"voice_id\":\"21m00Tcm4TlvDq8ikWAM\"}'"
+  },
+  {
+    "step": "music",
+    "provider": "freepik",
+    "command": "curl -s -X POST https://api.freepik.com/v1/ai/music-generation -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"upbeat modern product marketing background music\",\"music_length_seconds\":45}'"
+  }
+]

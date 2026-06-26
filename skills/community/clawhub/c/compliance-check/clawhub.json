@@ -1,0 +1,12 @@
+{
+  "name": "违规词·发帖前合规检查",
+  "tagline": "跟免費齊全、持續更新的詞庫對比，沒問題再上架；開箱即用，不用自己加詞",
+  "description": "Compare your draft against multiple free, comprehensive, up-to-date wordlists (CN/EN, ad law, platform rules). Pass = safe to post. No need to add or maintain wordlists—ready out of the box. Outputs pass/fail, hits by source, compliance tips, optional Markdown report.",
+  "category": "productivity",
+  "tags": ["compliance", "sensitive-words", "violation-words", "content-moderation", "pre-publish", "safety"],
+  "version": "1.3.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "",
+  "homepage": "https://github.com/kong-zi-chg/improved-guacamole"
+}

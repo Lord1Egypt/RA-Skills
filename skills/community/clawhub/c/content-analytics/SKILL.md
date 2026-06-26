@@ -1,35 +1,84 @@
----
-name: "Content Analytics"
-description: "分析掘金、小红书、知乎多平台内容表现数据，提供汇总对比和基于AI的优化建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-analytics"
-sourceUrl: "https://clawhub.ai/skills/content-analytics"
----
+# Content Analytics Skill
 
-# Content Analytics
+分析多平台内容表现数据，生成优化建议。
 
-> 分析掘金、小红书、知乎多平台内容表现数据，提供汇总对比和基于AI的优化建议。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-analytics`
-- **Source URL:** [https://clawhub.ai/skills/content-analytics](https://clawhub.ai/skills/content-analytics)
+- 掘金文章数据分析（阅读、点赞、评论、收藏）
+- 小红书数据分析（曝光、互动、转化）
+- 知乎数据分析（浏览、赞同、评论）
+- 跨平台数据汇总对比
+- AI 生成优化建议
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/content-analytics
 ```
+分析我的掘金文章表现
+```
+
+```
+帮我对比最近一周的小红书和知乎数据
+```
+
+```
+给我内容优化建议
+```
+
+## 配置
+
+### 掘金（可选）
+```json
+{
+  "juejin": {
+    "cookie": "your_juejin_cookie"
+  }
+}
+```
+
+### 小红书（可选）
+```json
+{
+  "xiaohongshu": {
+    "cookie": "your_xhs_cookie"
+  }
+}
+```
+
+## 数据源
+
+1. 掘金创作者中心 API
+2. 小红书创作者中心
+3. 知乎创作中心
+
+## 输出格式
+
+```
+📊 内容表现分析报告
+
+## 掘金（最近7天）
+- 文章数：5
+- 总阅读：12,345
+- 平均阅读：2,469
+- 点赞率：3.2%
+- 收藏率：1.8%
+
+## 优化建议
+1. 标题优化：加入数字和疑问词可提升点击率 15%
+2. 发布时间：周二/周四 20:00-22:00 流量最高
+3. 内容方向：AI 赚钱类文章互动率最高
+
+## 下周策略
+- 重点：AI 工具对比类文章
+- 发布时间：周二 21:00，周四 21:00
+- 预期阅读：15,000-20,000
+```
+
+## 技术栈
+
+- Node.js / Python
+- Playwright（网页抓取）
+- GLM-5（AI 分析）
+
+---
+
+创建时间：2026-03-11

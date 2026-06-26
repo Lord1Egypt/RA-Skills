@@ -1,0 +1,155 @@
+{
+  "credentials": [
+    {
+      "name": "COOLTRADE_API_KEY",
+      "displayName": "CoolTrade API Key",
+      "description": "Your personal CoolTrade API key (starts with sk-). Get yours at https://cooltrade.xyz → API Keys.",
+      "required": true
+    }
+  ],
+  "skills": [
+    {
+      "name": "cooltrade_stock_quote",
+      "description": "Get deep market quote and financial fundamentals for any A-share stock (China Market). Provide stock name or code.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/ashare/quote/",
+        "params": {
+          "stock": "{{query}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_stock_news",
+      "description": "Monitor the latest relevant news, market announcements, and abnormal movements for specified China A-share stocks. Provide stock name or code.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/ashare/news/",
+        "params": {
+          "stock": "{{query}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_financials",
+      "description": "Fetch core financial and valuation parameters (EPS, ROE, P/E, debt ratios, etc.) for China A-share companies to analyze deep fundamentals. Provide stock name or code.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/ashare/financials/",
+        "params": {
+          "stock": "{{query}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_index",
+      "description": "Get daily quotes and trends for global/China market indexes (e.g. SSE, SZSE, NASDAQ) to evaluate macroeconomic environment. Provide index name or code.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/global/index/",
+        "params": {
+          "index": "{{query}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_us_stock",
+      "description": "Get market quotes and recent daily performance for US stocks (e.g. AAPL, TSLA). Provide US stock name or ticker symbol.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/us_stock/quote/",
+        "params": {
+          "stock": "{{query}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_futures",
+      "description": "Get market prices, open interest (OI), and trends for domestic China futures contracts (commodities, financial futures). Provide futures product name or contract code.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/futures/quote/",
+        "params": {
+          "symbol": "{{query}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_daily_report",
+      "description": "Generate today's A-share market daily briefing — an AI-distilled summary of market sentiment, main themes, key events, risk alerts, and tomorrow's outlook. Call this when the user asks for a daily report, market summary, or today's market recap.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/daily-report/"
+      }
+    },
+    {
+      "name": "cooltrade_crypto_quote",
+      "description": "Get real-time crypto market quote, technical indicators (MA5/10/20, RSI, MACD), and AI-generated buy/sell signals for any cryptocurrency. Call this when user asks about BTC, ETH, SOL or any crypto coin price, trend, buy point, or sell point. Provide the coin symbol (e.g. BTC, ETH) or full name (e.g. Bitcoin).",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/crypto/quote/",
+        "params": {
+          "symbol": "{{symbol}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_crypto_screener",
+      "description": "Scan 15+ major cryptocurrencies in real-time, score each one using technical indicators (MA alignment, RSI, MACD), and return the Top 5 buy candidates ranked by signal strength. Call this when user asks: which crypto should I buy, recommend some coins, best crypto to buy now, or any similar screener/recommendation request.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/crypto/screener/",
+        "params": {
+          "top": "{{top_n}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_alert_create",
+      "description": "Create a stock price alert for any A-share stock. Call this when the user says things like 'notify me when X drops below Y', 'alert me if stock breaks MA60', 'tell me when price rises above Z'. Supported conditions: price_below, price_above, pct_down (daily drop %), pct_up (daily rise %), ma_break_below (breaks below N-day MA), ma_break_above (breaks above N-day MA). Channels: weixin, telegram, both.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/alert/create/",
+        "params": {
+          "stock": "{{stock}}",
+          "condition": "{{condition}}",
+          "threshold": "{{threshold}}",
+          "channel": "{{channel}}",
+          "repeat": "{{repeat}}",
+          "note": "{{note}}"
+        }
+      }
+    },
+    {
+      "name": "cooltrade_alert_list",
+      "description": "List all stock price alerts for the current user. Call this when the user asks 'show my alerts', 'what alerts do I have', 'check my watchlist alerts'.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/alert/list/"
+      }
+    },
+    {
+      "name": "cooltrade_alert_delete",
+      "description": "Disable or delete a stock price alert by its ID. Call this when the user says 'cancel alert', 'remove my alert', 'stop monitoring'. First use cooltrade_alert_list to get the alert ID.",
+      "type": "http",
+      "config": {
+        "method": "GET",
+        "url": "https://api.cooltrade.xyz/api/market/agent-skills/{{COOLTRADE_API_KEY}}/alert/delete/",
+        "params": {
+          "id": "{{alert_id}}"
+        }
+      }
+    }
+  ]
+}

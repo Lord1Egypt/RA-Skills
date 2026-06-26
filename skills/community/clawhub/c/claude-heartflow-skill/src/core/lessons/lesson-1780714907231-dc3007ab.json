@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1780714907231-dc3007ab",
+  "type": "correction",
+  "content": "对话自动记录：在think()方法末尾自动调用recordDialogue，每次对话结束自动持久化，不需要显式调用",
+  "context": "当前需要手动recordDialogue，容易遗漏",
+  "trigger": "heartflow",
+  "importance": 5,
+  "frequency": 1,
+  "createdAt": "2026-06-06T03:01:47.231Z",
+  "lastSeen": "2026-06-06T03:01:47.231Z",
+  "sessionId": null,
+  "retentionScore": 5
+}

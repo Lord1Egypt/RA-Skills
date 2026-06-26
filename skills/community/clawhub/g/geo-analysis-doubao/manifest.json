@@ -1,0 +1,40 @@
+{
+  "name": "doubao_geo_audit",
+  "description": "Evaluate how easily a brand or product description can be understood, quoted, and recommended by Doubao. Return a concise Chinese GEO audit report.",
+  "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "content": {
+        "type": "string",
+        "minLength": 1,
+        "description": "The source text to audit, such as a brand intro, website copy, article, FAQ, or sales script."
+      },
+      "content_type": {
+        "type": "string",
+        "description": "Optional short label for the source text.",
+        "enum": [
+          "brand_intro",
+          "website_intro",
+          "product_intro",
+          "article",
+          "faq",
+          "sales_copy",
+          "other"
+        ]
+      },
+      "report_mode": {
+        "type": "string",
+        "description": "Use compact by default to reduce latency in automated evaluation.",
+        "enum": [
+          "compact",
+          "standard"
+        ],
+        "default": "compact"
+      }
+    },
+    "required": [
+      "content"
+    ]
+  }
+}

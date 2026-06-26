@@ -1,0 +1,11 @@
+{
+  "source": "gmail",
+  "sourceType": "thread",
+  "externalWrite": false,
+  "text": "[REDACTED] Sender requesting follow-up on an open matter. Response required within 48 hours. Reference number [REF-ID] included in all correspondence.",
+  "observedAt": "2026-05-21T09:00:00.000Z",
+  "summary": "[REDACTED] Gmail thread requiring response — pending action",
+  "metadata": {
+    "note": "Place actual OpenClaw-read payload at .worldloops/inbox/openclaw-gmail-live.json before running guard:gmail"
+  }
+}

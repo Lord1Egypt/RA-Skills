@@ -1,35 +1,37 @@
 ---
-name: "VCF LCM Pre-check Analyzer"
-description: "An MCP server that interfaces with VCF SDDC Manager to retrieve and analyze LCM upgrade pre-check results, providing instant remediation steps for failures."
-category: "mcp"
-source: "ClawHub"
-tags: [lcm, mcp, precheck, python, sddc-manager, upgrades, vcf, vmware]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vcf-lcm-precheck-analyzer"
-sourceUrl: "https://clawhub.ai/skills/vcf-lcm-precheck-analyzer"
+name: vcf-lcm-precheck-analyzer
+description: An MCP server that interfaces with VCF SDDC Manager to retrieve and analyze LCM upgrade pre-check results, providing instant remediation steps for failures.
+version: 1.0.1
+homepage: https://github.com/kasture-rohit/vcf-openclaw-skills
+metadata:
+  openclaw:
+    requires:
+      env:
+        - SDDCMANAGER_HOST
+        - SDDCMANAGER_API_TOKEN
+    emoji: ""
 ---
 
-# VCF LCM Pre-check Analyzer
+# VCF LCM Pre-check Analyzer (MCP)
 
-> An MCP server that interfaces with VCF SDDC Manager to retrieve and analyze LCM upgrade pre-check results, providing instant remediation steps for failures.
+This skill utilizes the Model Context Protocol (MCP) to provide the AI agent with a native `analyze_lcm_precheck` tool, connecting directly to the VMware Cloud Foundation SDDC Manager API.
 
-- **Category:** MCP
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vcf-lcm-precheck-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/vcf-lcm-precheck-analyzer](https://clawhub.ai/skills/vcf-lcm-precheck-analyzer)
+### Setup Instructions for OpenClaw
+To use this skill, the OpenClaw agent must run the attached Python MCP server locally.
 
-## Overview
+1. Install dependencies: `pip install -r requirements.txt`
+2. Configure your OpenClaw settings to launch this MCP server by adding the following to your agent's MCP configuration block:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vcf-lcm-precheck-analyzer
-```
+```json
+{
+  "mcpServers": {
+    "vcf-lcm-analyzer": {
+      "command": "python",
+      "args": ["server.py"],
+      "env": {
+        "SDDCMANAGER_HOST": "your-sddc-manager-fqdn",
+        "SDDCMANAGER_API_TOKEN": "your-api-token"
+      }
+    }
+  }
+}

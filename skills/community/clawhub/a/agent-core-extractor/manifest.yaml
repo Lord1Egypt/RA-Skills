@@ -1,0 +1,27 @@
+bundle: agentpearl-exporter
+bundle_version: 1.0.0
+bundle_date: 2026-03-16
+description: >
+  Skill bundle for exporting agent-core files from supported repositories into a
+  small source-only zip that can be inspected or migrated by AI systems.
+compatibility:
+  designed_for:
+    - platform: ClawHub
+      format: Agent Skills
+    - platform: Codex
+      format: Agent Skills
+    - platform: Claude Code
+      format: Agent Skills
+contents:
+  - path: SKILL.md
+    kind: skill
+  - path: manifest.yaml
+    kind: manifest
+  - path: README.md
+    kind: listing
+  - path: agents/openai.yaml
+    kind: ui-metadata
+  - path: scripts/export-agent-core-pack.sh
+    kind: script
+  - path: references/AGENT_CORE.md
+    kind: reference

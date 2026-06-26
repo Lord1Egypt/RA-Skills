@@ -1,35 +1,29 @@
----
-name: "Pipeworx comtrade"
-description: "Retrieve international bilateral trade data, top trading partners, top commodities traded, and country ISO numeric codes via the UN Comtrade API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-comtrade"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-comtrade"
----
+# Comtrade
 
-# Pipeworx comtrade
+Comtrade MCP — UN Comtrade API for international bilateral trade data
 
-> Retrieve international bilateral trade data, top trading partners, top commodities traded, and country ISO numeric codes via the UN Comtrade API.
+## comtrade_trade_data
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-comtrade`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-comtrade](https://clawhub.ai/skills/pipeworx-comtrade)
+Get bilateral trade data between two countries (e.g., "840" for US, "156" for China). Returns trade 
 
-## Overview
+## comtrade_top_partners
 
+Find a country's top trading partners ranked by trade volume. Returns partner countries and total tr
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-comtrade
+## comtrade_top_commodities
+
+Find top commodities traded between two countries ranked by value. Returns product categories and tr
+
+## comtrade_country_codes
+
+Look up country ISO numeric codes for trade queries (e.g., "840" = US, "156" = China). Returns code 
+
+```json
+{
+  "mcpServers": {
+    "comtrade": {
+      "url": "https://gateway.pipeworx.io/comtrade/mcp"
+    }
+  }
+}
 ```

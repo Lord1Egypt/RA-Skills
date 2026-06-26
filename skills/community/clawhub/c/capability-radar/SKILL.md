@@ -1,35 +1,114 @@
 ---
-name: "Capability Radar"
-description: "检测并标记能力缺口、重复模式和规则冲突，供架构进化使用。当以下情况发生时使用：(1) 某项任务因工具能力缺失或损坏而失败，(2) 同类型请求出现 3 次以上，(3) 规则冲突导致了错误行为，(4) 不得不使用临时绕过方案。目的：让 Claude Cowork 下次会话时能看到明确的进化信号，而非淹没在 memor..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/capability-radar"
-sourceUrl: "https://clawhub.ai/skills/capability-radar"
+name: capability-radar
+description: "检测并标记能力缺口、重复模式和规则冲突，供架构进化使用。当以下情况发生时使用：(1) 某项任务因工具能力缺失或损坏而失败，(2) 同类型请求出现 3 次以上，(3) 规则冲突导致了错误行为，(4) 不得不使用临时绕过方案。目的：让 Claude Cowork 下次会话时能看到明确的进化信号，而非淹没在 memory 流水账中。"
+metadata:
 ---
 
-# Capability Radar
+# Capability Radar — 能力雷达
 
-> 检测并标记能力缺口、重复模式和规则冲突，供架构进化使用。当以下情况发生时使用：(1) 某项任务因工具能力缺失或损坏而失败，(2) 同类型请求出现 3 次以上，(3) 规则冲突导致了错误行为，(4) 不得不使用临时绕过方案。目的：让 Claude Cowork 下次会话时能看到明确的进化信号，而非淹没在 memor...
+## 这个 Skill 的目的
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/capability-radar`
-- **Source URL:** [https://clawhub.ai/skills/capability-radar](https://clawhub.ai/skills/capability-radar)
+小梦每次遇到"做不了"或"做错了"或"绕了一大圈才做到"的情况，要主动触发这个 Skill，用标准格式写入 memory。
 
-## Overview
+Claude Cowork（Engine A）每次会话启动时会扫描这些标记，决定要研发哪些新 skill、修复哪些规则。
 
+**这是进化引擎的第一个齿轮。没有这个齿轮，AutoSkill 永远是空目录。**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/capability-radar
+---
+
+## 触发条件（满足任一即触发）
+
+| 条件 | 示例 |
+|------|------|
+| 工具调用失败 | `feishu_bitable_*` 读 /sheets/ 链接返回 400 |
+| 能力边界被触及 | "我目前无法读取这个表格" |
+| 同类请求 ≥ 3 次 | 本周第三次有人让我读飞书表格 |
+| 规则冲突导致错误 | 开口判断框架允许半主动，但群规说只能被@时回复 |
+| 绕过方案被使用 | 用 web_fetch 尝试读内网地址（必然失败的绕过） |
+| 用户纠正了我 | "不是立哥说的，是A梦说的" |
+| 重复犯同一个错 | 第二次搞错了发言人 |
+
+---
+
+## 写入格式
+
+写入当日 `memory/YYYY-MM-DD.md` 末尾，使用以下格式：
+
+```markdown
+### 🔧 from-xiaomeng: 能力雷达 — [简短标题]
+- 时间：YYYY-MM-DD HH:MM
+- 触发类型：[工具失败 / 重复模式 / 规则冲突 / 用户纠正 / 能力边界]
+- 场景描述：[发生了什么，一两句话]
+- 失败点：[具体在哪里卡住，工具名/规则名]
+- 影响：[用户体验受损程度：高/中/低]
+- 期望能力：[如果有这个能力/规则，本次能做到什么]
+- 重复次数：[1 / 2 / 3+]（如果是首次写1，后续发现重复时更新）
+- 建议动作：[新建skill / 修改规则 / 添加工具 / A梦决策]
 ```
+
+---
+
+## 示例
+
+### 案例1：飞书表格读取失败
+
+```markdown
+### 🔧 from-xiaomeng: 能力雷达 — 飞书Sheets读取能力缺失
+- 时间：2026-03-16 18:27
+- 触发类型：工具失败
+- 场景描述：立哥让我从飞书表格中筛选L列为空的行、提取K列名字去重。表格是 /sheets/ URL。
+- 失败点：feishu_bitable_get_meta 返回400（工具类型错误）；web_fetch 返回内网地址阻止
+- 影响：高（同事需要的数据我无法提供，最终用户手动发了名单）
+- 期望能力：能用 feishu_sheet_values_get 读取 /sheets/ URL，按列条件筛选，返回去重结果
+- 重复次数：1
+- 建议动作：新建 feishu-sheets skill，研究正确的 spreadsheet API 调用方式
+```
+
+### 案例2：发言人判断错误
+
+```markdown
+### 🔧 from-xiaomeng: 能力雷达 — sender_id未用于关键判断
+- 时间：2026-03-16 18:20
+- 触发类型：用户纠正
+- 场景描述：A梦说"不用你干啥"，我以为是立哥说的，导致后续判断错误，被A梦当众质问。
+- 失败点：我有sender_id数据，但在"谁说了这句话"的判断节点没有使用它
+- 影响：中（在群里暴露了判断错误，影响可信度）
+- 期望能力：每次需要判断"这是谁说的"时，自动查询sender_id对照CONTACTS.md
+- 重复次数：1
+- 建议动作：修改AGENTS.md消息处理流程，在"判断指令来源"步骤强制使用sender_id
+```
+
+---
+
+## Cowork 扫描协议
+
+**Claude Cowork 每次会话启动时**，在读取 memory 的步骤中，额外扫描：
+
+```
+grep "🔧 from-xiaomeng: 能力雷达" memory/*.md
+```
+
+发现标记后，按以下优先级处理：
+
+| 优先级 | 条件 | 动作 |
+|--------|------|------|
+| 🔴 立即处理 | 影响=高 且 重复次数≥2 | 本次会话必须产出 skill 草稿或规则修复 |
+| 🟡 本周处理 | 影响=高 且 重复次数=1，或 影响=中 且 重复次数≥2 | 本次会话评估，下次会话交付 |
+| 🟢 积压池 | 影响=低，或 重复次数=1 且 影响≤中 | 记录在案，累积够3次再处理 |
+
+---
+
+## 进化闭环
+
+```
+小梦遇到能力边界
+  → 触发 capability-radar → 写入 memory
+  → Cowork 扫描 → 评估优先级
+  → 产出 skill 草稿 / 规则修改建议
+  → A梦 审核确认
+  → 部署生效
+  → 小梦下次遇到同类情况 → 成功执行
+  → 写入 memory：🌙 from-xiaomeng: 对齐案例（技能已生效）
+```
+
+每完成一次完整闭环，在 `autoskill/SkillBank/` 中创建对应记录。这才是"自动进化"的最小可信证明。

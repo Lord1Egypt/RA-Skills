@@ -1,35 +1,47 @@
 ---
-name: "gws-workflow-weekly-digest"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-workflow-weekly-digest"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-workflow-weekly-digest"
+name: gws-workflow-weekly-digest
+description: "Google Workflow: Weekly summary: this week's meetings + unread email count."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws workflow +weekly-digest --help"
 ---
 
-# gws-workflow-weekly-digest
+# workflow +weekly-digest
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-workflow-weekly-digest`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-workflow-weekly-digest](https://skills.sh/googleworkspace/cli/gws-workflow-weekly-digest)
+Weekly summary: this week's meetings + unread email count
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-workflow-weekly-digest
+gws workflow +weekly-digest
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--format` | — | — | Output format: json (default), table, yaml, csv |
+
+## Examples
+
+```bash
+gws workflow +weekly-digest
+gws workflow +weekly-digest --format table
+```
+
+## Tips
+
+- Read-only — never modifies data.
+- Combines calendar agenda (week) with gmail triage summary.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-workflow](../gws-workflow/SKILL.md) — All cross-service productivity workflows commands

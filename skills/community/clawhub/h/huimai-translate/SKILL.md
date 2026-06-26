@@ -1,35 +1,71 @@
 ---
-name: "🌐 多语言翻译"
-description: "中英日韩多语言互译，保留原格式，支持整段/全文/文档翻译。"
-category: "translation"
-source: "ClawHub"
-tags: [huimai, language, translation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-translate"
-sourceUrl: "https://clawhub.ai/skills/huimai-translate"
+name: 🌐 多语言翻译
+description: 中英日韩多语言互译，保留原格式，支持整段/全文/文档翻译。
+metadata: {"openclaw":{"emoji":"🌐","pricing":"free"}}
 ---
 
 # 🌐 多语言翻译
 
-> 中英日韩多语言互译，保留原格式，支持整段/全文/文档翻译。
+> 翻译不只是换词，是保语境、保格式、保意图。
 
-- **Category:** Translation
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-translate`
-- **Source URL:** [https://clawhub.ai/skills/huimai-translate](https://clawhub.ai/skills/huimai-translate)
+## 📜 更新日志
 
-## Overview
+### v1.0.0 (2026-05-08)
+- 初版发布
 
+## 🆕 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1️⃣ 支持语言
+| 语言 | 方向 |
+|------|------|
+| 🇨🇳 中文 | ↔ 英/日/韩 |
+| 🇬🇧 英文 | ↔ 中/日/韩 |
+| 🇯🇵 日文 | ↔ 中/英 |
+| 🇰🇷 韩文 | ↔ 中/英 |
+
+### 2️⃣ 翻译模式
+| 模式 | 说明 |
+|------|------|
+| 📝 整段翻译 | 保留段落结构和换行 |
+| ✂️ 短句翻译 | 逐句对照，适合精读 |
+| 📄 全文翻译 | 文档级别的完整翻译 |
+| 👁️ 术语解释 | 翻译+专业术语注解 |
+
+### 3️⃣ 特色
+- **格式保留**：翻译结果保持原排版
+- **术语一致性**：同一篇文档内术语统一
+- **语境感知**：根据学科领域调整用词
+- **纯离线引擎**：不经过第三方API，隐私安全
+
+## 👤 为什么做这个
+
+市面上翻译工具要么联网（隐私风险），要么翻译生硬（机器感）。我们做了一个离线版，兼顾隐私和翻译质量，尤其适合学术和正式文档。
+
+## 👔 适用人群
+- **学生**：外文文献快速阅读
+- **研究者**：论文摘要翻译
+- **职场人**：商务邮件/文档互译
+- **留学生**：日常学习翻译辅助
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。
+- **温情模式（默认）**：翻译前确认语言方向和领域
+- **专业模式（可选）**：直出翻译结果，不做确认
+
+## 💡 使用小贴士
+- 短文本适合逐句模式，长文档适合整段
+- 翻译后建议人工校对关键术语
+- 文学类内容翻译效果不如技术类
+
+## ⚠️ 免责与已知限制
+- 离线词典覆盖日常和学术词汇，极生僻词可能不准确
+- 文学/诗歌类翻译效果有限
+- 重要文件建议人工复核
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-translate
+clawhub install multi-lang-translate
 ```

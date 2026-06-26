@@ -1,35 +1,33 @@
 ---
-name: "Claude Delegate"
-description: "Delegate various coding tasks to Claude Code. Use this skill when you need assistance with code generation, bug fixing, feature implementation, code review,..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, claude, cli, coding, delegation, open, stable, tool]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-delegate"
-sourceUrl: "https://clawhub.ai/skills/claude-delegate"
+name: claude-delegate
+description: Delegate various coding tasks to Claude Code. Use this skill when you need assistance with code generation, bug fixing, feature implementation, code review, refactoring, or file exploration. It streamlines calling Claude Code for non-interactive execution, handling parameters like `--print --permission-mode bypassPermissions`. Triggers on phrases like 'write code for', 'fix this bug in', 'implement feature', 'review this pr', 'refactor', 'explore files for', 'debug', 'code task for claude'.
 ---
 
 # Claude Delegate
 
-> Delegate various coding tasks to Claude Code. Use this skill when you need assistance with code generation, bug fixing, feature implementation, code review,...
+Use this skill to delegate coding tasks to Claude Code. It simplifies the process by providing the correct command structure for non-interactive execution.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-delegate`
-- **Source URL:** [https://clawhub.ai/skills/claude-delegate](https://clawhub.ai/skills/claude-delegate)
+## Usage
 
-## Overview
+To delegate a task to Claude Code, use the `exec` tool with the `bash` command, specifying the working directory and the task as a string. Claude Code will run with `--print --permission-mode bypassPermissions` automatically.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/claude-delegate
+bash workdir:/path/to/project command:"claude --permission-mode bypassPermissions --print 'your coding task here'"
 ```
+
+### Examples
+
+*   **build a feature:**
+    ```bash
+    bash workdir:~/projects/my-app command:"claude --permission-mode bypassPermissions --print 'build a user authentication module'"
+    ```
+
+*   **refactor a module:**
+    ```bash
+    bash workdir:~/projects/my-lib command:"claude --permission-mode bypassPermissions --print 'refactor the data processing module for better performance'"
+    ```
+
+*   **review a pull request:**
+    ```bash
+    bash workdir:/tmp/pr-review command:"claude --permission-mode bypassPermissions --print 'review the changes in pull request #123 and provide feedback'"
+    ```

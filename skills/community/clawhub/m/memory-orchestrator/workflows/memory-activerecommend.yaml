@@ -1,0 +1,644 @@
+# iFlow Workflow: 主动记忆推荐系统
+# 版本: 1.0.0
+# 描述: 基于触发器的智能记忆推荐，在关键时刻主动推送相关记忆
+
+workflow:
+  id: memory-activerecommend
+  name: "主动记忆推荐系统"
+  description: "智能检测触发条件，主动推送相关记忆到当前上下文"
+  version: "1.0.0"
+
+# =====================
+# 触发器类型定义
+# =====================
+triggers:
+  # 1. 关键词触发器
+  keyword:
+    enabled: true
+    description: "检测特定关键词/实体，触发相关记忆推荐"
+    
+    patterns:
+      # 项目相关关键词
+      - name: "project-mention"
+        keywords:
+          - "项目"
+          - "工程"
+          - "repository"
+          - "仓库"
+          - "代码库"
+        action: "recommend-project-context"
+        
+      # 技术相关关键词
+      - name: "tech-stack"
+        keywords:
+          - "Python"
+          - "JavaScript"
+          - "React"
+          - "Node"
+          - "API"
+          - "数据库"
+          - "模型"
+          - "Ollama"
+          - "Whisper"
+        action: "recommend-tech-history"
+        
+      # 配置相关关键词
+      - name: "config-mention"
+        keywords:
+          - "配置"
+          - "设置"
+          - "环境变量"
+          - "API Key"
+          - "密钥"
+        action: "recommend-config-history"
+        
+      # 决策相关关键词
+      - name: "decision-mention"
+        keywords:
+          - "决定"
+          - "选择"
+          - "方案"
+          - "权衡"
+          - "原因"
+          - "为什么"
+        action: "recommend-decision-history"
+        
+      # 问题相关关键词
+      - name: "problem-mention"
+        keywords:
+          - "问题"
+          - "错误"
+          - "Bug"
+          - "失败"
+          - "异常"
+          - "不工作"
+        action: "recommend-solution-history"
+        
+      # 人物相关关键词
+      - name: "people-mention"
+        keywords:
+          - "迹大人"
+          - "Claude"
+          - "GPT"
+          - "用户"
+        action: "recommend-people-context"
+
+  # 2. 时间触发器
+  time:
+    enabled: true
+    description: "基于时间的主动推荐"
+    
+    schedules:
+      # 每日工作开始
+      - name: "morning-context"
+        cron: "0 9 * * 1-5"  # 工作日 9:00
+        action: "recommend-daily-context"
+        message: "早上好！这是今天需要关注的事项..."
+        
+      # 每周回顾
+      - name: "weekly-review"
+        cron: "0 18 * * 5"  # 周五 18:00
+        action: "recommend-weekly-summary"
+        message: "本周回顾时间！让我帮你总结..."
+        
+      # 里程碑提醒
+      - name: "milestone-check"
+        cron: "0 10 1 * *"  # 每月 1 号 10:00
+        action: "recommend-milestone-review"
+        message: "新的一月开始了，让我回顾一下上个月的进展..."
+
+  # 3. 场景触发器
+  scenario:
+    enabled: true
+    description: "检测当前工作场景，推送相关记忆"
+    
+    rules:
+      # 编码场景
+      - name: "coding-session"
+        detect:
+          - "当前目录包含 .git"
+          - "对话中包含代码块"
+          - "用户询问代码相关问题"
+        action: "recommend-coding-context"
+        priority: "high"
+        
+      # 调试场景
+      - name: "debugging-session"
+        detect:
+          - "对话中包含 'error', 'exception', 'bug'"
+          - "用户描述问题现象"
+        action: "recommend-debug-context"
+        priority: "high"
+        
+      # 规划场景
+      - name: "planning-session"
+        detect:
+          - "对话中包含 '计划', '规划', '下一步'"
+          - "用户询问 '怎么做', '如何实现'"
+        action: "recommend-planning-context"
+        priority: "medium"
+        
+      # 学习场景
+      - name: "learning-session"
+        detect:
+          - "对话中包含 '什么是', '如何理解', '解释'"
+          - "用户询问概念性问题"
+        action: "recommend-learning-context"
+        priority: "low"
+        
+      # 会议场景
+      - name: "meeting-context"
+        detect:
+          - "对话中包含 '会议', '讨论', '议程'"
+          - "时间在工作日 9-18 点"
+        action: "recommend-meeting-context"
+        priority: "medium"
+
+# =====================
+# 推荐策略
+# =====================
+recommendation-strategies:
+  # 基于相关性的推荐
+  relevance-based:
+    description: "根据当前上下文计算记忆相关性"
+    algorithm:
+      type: "hybrid"
+      components:
+        - name: "semantic-similarity"
+          weight: 0.4
+          method: "cosine-similarity"
+        - name: "keyword-match"
+          weight: 0.3
+          method: "bm25"
+        - name: "recency"
+          weight: 0.2
+          decay: "exponential"
+          half-life: 7  # 7 天半衰期
+        - name: "importance"
+          weight: 0.1
+          factors: ["decision", "milestone", "error-resolution"]
+          
+  # 基于模式的推荐
+  pattern-based:
+    description: "识别用户行为模式，预测需要的记忆"
+    patterns:
+      - name: "monday-routine"
+        condition: "day == Monday AND hour >= 9"
+        recommend: ["weekly-plan", "last-week-summary"]
+        
+      - name: "after-break"
+        condition: "idle > 30min"
+        recommend: ["last-conversation-summary", "pending-tasks"]
+        
+      - name: "context-switch"
+        condition: "project_changed"
+        recommend: ["project-context", "recent-changes"]
+
+# =====================
+# 实时推送逻辑
+# =====================
+push-mechanism:
+  # 推送条件
+  conditions:
+    # 相关度阈值
+    min_relevance: 0.6
+    
+    # 时间间隔（避免频繁推送）
+    min_interval: 300  # 5 分钟
+    
+    # 最大推送数量
+    max_items_per_push: 3
+    
+    # 推送窗口（避免打扰）
+    quiet_hours:
+      start: "23:00"
+      end: "08:00"
+      
+  # 推送优先级
+  priority:
+    critical:
+      - "配置错误历史"
+      - "安全相关决策"
+      - "正在解决的 Bug"
+    high:
+      - "当前项目上下文"
+      - "近期决策"
+      - "待办事项"
+    medium:
+      - "相关知识背景"
+      - "相似问题历史"
+    low:
+      - "一般性记忆"
+      - "历史项目信息"
+      
+  # 推送格式
+  format:
+    template: |
+      💡 相关记忆：
+      
+      {#for item in recommendations}
+      **{item.type}**: {item.summary}
+      > {item.preview}
+      _来源: {item.source} | {item.age}_
+      
+      {/for}
+      
+      _提示：回复 "更多" 查看完整内容_
+
+  # 推送通道
+  channels:
+    - type: "inline"  # 内联消息
+      enabled: true
+      
+    - type: "sidebar"  # 侧边栏提示
+      enabled: false  # 需要客户端支持
+      
+    - type: "notification"
+      enabled: true
+      sound: false
+
+# =====================
+# 推荐动作定义
+# =====================
+actions:
+  # 项目上下文推荐
+  recommend-project-context:
+    description: "推荐当前项目相关的记忆"
+    script: |
+      #!/usr/bin/env python3
+      """推荐项目相关上下文"""
+      import json
+      from pathlib import Path
+      import sys
+      sys.path.insert(0, "${WORKSPACE}/skills/local-memory/venv/lib/python3.11/site-packages")
+      
+      from sentence_transformers import SentenceTransformer
+      import faiss
+      import numpy as np
+      
+      # 获取当前项目信息
+      current_dir = Path("${CURRENT_DIR}")
+      project_name = current_dir.name
+      
+      # 构建查询
+      query = f"项目 {project_name} 配置 架构 决策"
+      
+      # 搜索相关记忆
+      model = SentenceTransformer("${WORKSPACE}/skills/local-memory/models/all-MiniLM-L6-v2")
+      query_emb = model.encode([query])
+      
+      index = faiss.read_index("${WORKSPACE}/index/memory_index.faiss")
+      with open("${WORKSPACE}/index/metadata.json") as f:
+        metadata = json.load(f)
+      
+      scores, indices = index.search(query_emb.astype(np.float32), 5)
+      
+      results = []
+      for idx, score in zip(indices[0], scores[0]):
+        if idx >= 0 and score < 1.0:  # L2 距离阈值
+          results.append({
+            "type": "project-context",
+            "source": metadata[idx]["source"],
+            "score": float(score),
+            "summary": f"项目相关记忆 (来自 {metadata[idx]['source']})"
+          })
+      
+      print(json.dumps(results, ensure_ascii=False))
+
+  # 决策历史推荐
+  recommend-decision-history:
+    description: "推荐相关决策历史"
+    script: |
+      #!/usr/bin/env python3
+      import json
+      
+      # 搜索关键词：决策、选择、决定
+      query = "${TRIGGER_CONTEXT}"
+      
+      # 调用搜索并筛选决策类型
+      # 这里简化处理，实际需要从记忆中筛选标记为"决策"的内容
+      results = []
+      
+      # 读取 MEMORY.md 查找决策相关内容
+      memory_path = "${WORKSPACE}/MEMORY.md"
+      if Path(memory_path).exists():
+        content = Path(memory_path).read_text()
+        # 简单匹配决策相关段落
+        lines = content.split('\n')
+        for i, line in enumerate(lines):
+          if any(kw in line for kw in ['决定', '选择', '方案', '原因']):
+            # 提取上下文
+            start = max(0, i - 2)
+            end = min(len(lines), i + 5)
+            context = '\n'.join(lines[start:end])
+            results.append({
+              "type": "decision",
+              "source": "MEMORY.md",
+              "preview": context[:200],
+              "relevance": 0.8
+            })
+      
+      print(json.dumps(results[:3], ensure_ascii=False))
+
+  # 解决方案历史推荐
+  recommend-solution-history:
+    description: "推荐问题解决方案历史"
+    script: |
+      #!/usr/bin/env python3
+      """推荐相似问题的解决方案"""
+      import json
+      import sys
+      sys.path.insert(0, "${WORKSPACE}/skills/local-memory/venv/lib/python3.11/site-packages")
+      
+      from sentence_transformers import SentenceTransformer
+      import faiss
+      import numpy as np
+      
+      # 构建查询：关注问题解决
+      problem_context = "${TRIGGER_CONTEXT}"
+      query = f"问题 {problem_context} 解决方案 修复"
+      
+      model = SentenceTransformer("${WORKSPACE}/skills/local-memory/models/all-MiniLM-L6-v2")
+      query_emb = model.encode([query])
+      
+      index = faiss.read_index("${WORKSPACE}/index/memory_index.faiss")
+      with open("${WORKSPACE}/index/metadata.json") as f:
+        metadata = json.load(f)
+      
+      scores, indices = index.search(query_emb.astype(np.float32), 5)
+      
+      results = []
+      for idx, score in zip(indices[0], scores[0]):
+        if idx >= 0:
+          results.append({
+            "type": "solution",
+            "source": metadata[idx]["source"],
+            "score": float(score),
+            "summary": f"类似问题解决方案 (相关度: {1/(1+score):.0%})"
+          })
+      
+      print(json.dumps(results, ensure_ascii=False))
+
+  # 每日上下文推荐
+  recommend-daily-context:
+    description: "每日工作上下文推荐"
+    script: |
+      #!/usr/bin/env python3
+      """每日上下文聚合"""
+      import json
+      from datetime import datetime, timedelta
+      from pathlib import Path
+      
+      today = datetime.now()
+      yesterday = today - timedelta(days=1)
+      
+      context = {
+        "date": today.strftime("%Y-%m-%d"),
+        "recommendations": []
+      }
+      
+      # 检查昨日日志
+      yesterday_log = Path(f"${WORKSPACE}/memory/{yesterday.strftime('%Y-%m-%d')}.md")
+      if yesterday_log.exists():
+        content = yesterday_log.read_text()
+        # 提取待办和重要事项
+        context["recommendations"].append({
+          "type": "yesterday-summary",
+          "source": yesterday_log.name,
+          "preview": content[:300]
+        })
+      
+      # 检查 MEMORY.md 中的重要事项
+      memory_path = Path("${WORKSPACE}/MEMORY.md")
+      if memory_path.exists():
+        content = memory_path.read_text()
+        # 查找带 [!] 或 TODO 标记的内容
+        for line in content.split('\n'):
+          if '[!]' in line or 'TODO' in line or '待办' in line:
+            context["recommendations"].append({
+              "type": "important",
+              "source": "MEMORY.md",
+              "preview": line
+            })
+      
+      print(json.dumps(context, ensure_ascii=False, indent=2))
+
+  # 编码场景推荐
+  recommend-coding-context:
+    description: "编码场景上下文推荐"
+    script: |
+      #!/usr/bin/env python3
+      """编码场景智能推荐"""
+      import json
+      import os
+      from pathlib import Path
+      import subprocess
+      
+      context = {
+        "scene": "coding",
+        "recommendations": []
+      }
+      
+      # 获取当前 Git 信息
+      try:
+        branch = subprocess.check_output(
+          ['git', 'branch', '--show-current'],
+          cwd="${CURRENT_DIR}",
+          stderr=subprocess.DEVNULL
+        ).decode().strip()
+        
+        if branch:
+          context["recommendations"].append({
+            "type": "git-branch",
+            "summary": f"当前分支: {branch}"
+          })
+          
+          # 查找该分支相关的历史记忆
+          # ... 搜索记忆中包含该分支名的内容
+          
+      except:
+        pass
+      
+      # 获取最近修改的文件
+      try:
+        recent_files = subprocess.check_output(
+          ['git', 'diff', '--name-only', 'HEAD~5'],
+          cwd="${CURRENT_DIR}",
+          stderr=subprocess.DEVNULL
+        ).decode().strip().split('\n')
+        
+        if recent_files:
+          context["recommendations"].append({
+            "type": "recent-changes",
+            "summary": f"最近修改: {', '.join(recent_files[:3])}"
+          })
+      except:
+        pass
+      
+      print(json.dumps(context, ensure_ascii=False))
+
+# =====================
+# 上下文提取器
+# =====================
+context-extractors:
+  # 从对话中提取关键信息
+  conversation:
+    method: "sliding-window"
+    window_size: 10  # 最近 10 轮对话
+    
+    extractors:
+      - name: "entities"
+        type: "ner"
+        model: "local-ner"
+        output: "mentioned_entities"
+        
+      - name: "topics"
+        type: "topic-modeling"
+        method: "keyword-extraction"
+        output: "current_topics"
+        
+      - name: "intent"
+        type: "classification"
+        categories: ["question", "command", "discussion", "planning"]
+        output: "user_intent"
+
+  # 从文件系统提取
+  filesystem:
+    extractors:
+      - name: "project-detect"
+        patterns: ["package.json", "*.py", "*.go", "Cargo.toml", "go.mod"]
+        
+      - name: "git-status"
+        command: "git status --porcelain"
+        
+      - name: "recent-files"
+        command: "git diff --name-only HEAD~5"
+
+# =====================
+# 状态管理
+# =====================
+state:
+  path: "${WORKSPACE}/memory/state/recommendation-state.json"
+  
+  schema:
+    last_push_time: "timestamp"
+    pushed_items: ["item_id"]
+    trigger_counts:
+      keyword: 0
+      time: 0
+      scenario: 0
+    user_feedback:
+      accepted: 0
+      dismissed: 0
+      
+  # 持久化
+  persistence:
+    enabled: true
+    save_interval: 60  # 秒
+
+# =====================
+# 反馈学习
+# =====================
+feedback-loop:
+  enabled: true
+  
+  # 用户反馈收集
+  signals:
+    - type: "explicit"
+      actions: ["accept", "dismiss", "useful", "not-relevant"]
+      
+    - type: "implicit"
+      signals:
+        - "click-through"  # 用户点击查看详情
+        - "copy-content"   # 用户复制推荐内容
+        - "continue-with-context"  # 用户基于推荐继续对话
+        
+  # 学习调整
+  learning:
+    method: "bandit"  # 多臂老虎机算法
+    parameters:
+      exploration_rate: 0.1
+      decay_rate: 0.99
+      
+  # 模型更新
+  model-update:
+    interval: 86400  # 每天
+    script: |
+      #!/usr/bin/env python3
+      """根据用户反馈调整推荐权重"""
+      import json
+      from pathlib import Path
+      
+      state_path = Path("${WORKSPACE}/memory/state/recommendation-state.json")
+      if not state_path.exists():
+        exit(0)
+      
+      with open(state_path) as f:
+        state = json.load(f)
+      
+      # 分析反馈
+      feedback = state.get("user_feedback", {})
+      accepted = feedback.get("accepted", 0)
+      dismissed = feedback.get("dismissed", 0)
+      
+      total = accepted + dismissed
+      if total > 0:
+        acceptance_rate = accepted / total
+        
+        # 调整阈值
+        if acceptance_rate > 0.7:
+          # 用户接受度高，可以更积极推荐
+          print("建议：降低 min_relevance 阈值，增加推送频率")
+        elif acceptance_rate < 0.3:
+          # 用户接受度低，需要更保守
+          print("建议：提高 min_relevance 阈值，减少推送频率")
+
+# =====================
+# 监控和日志
+# =====================
+monitoring:
+  log_path: "${WORKSPACE}/memory/state/recommendation.log"
+  
+  metrics:
+    - name: "trigger_rate"
+      type: "counter"
+      labels: ["trigger_type"]
+      
+    - name: "recommendation_latency"
+      type: "histogram"
+      buckets: [50, 100, 200, 500, 1000]
+      
+    - name: "acceptance_rate"
+      type: "gauge"
+      
+  alerting:
+    - condition: "acceptance_rate < 0.2 for 1 day"
+      action: "notify"
+      message: "推荐接受率过低，请检查推荐质量"
+
+# =====================
+# 配置开关
+# =====================
+feature-flags:
+  enabled: true
+  
+  flags:
+    keyword-trigger:
+      enabled: true
+      priority: 1
+      
+    time-trigger:
+      enabled: true
+      priority: 2
+      
+    scenario-trigger:
+      enabled: true
+      priority: 3
+      
+    feedback-learning:
+      enabled: false  # 初始关闭，稳定后开启
+      priority: 4
+      
+    multimodal-recommend:
+      enabled: false  # 需要 memory-multimodal 支持
+      priority: 5

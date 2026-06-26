@@ -1,35 +1,49 @@
 ---
-name: "build-content-marketing-faq-page"
+name: "Build Content Marketing FAQ Page"
 description: "Generate customer-facing answers for common content marketing questions. Use when working on FAQ content for content teams, creators, growth marketers."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-build-content-marketing-faq-page"
-sourceUrl: "https://clawhub.ai/skills/toby-build-content-marketing-faq-page"
+homepage: "https://www.skillboss.co/skills/build-content-marketing-faq-page"
+metadata: {"category":"content-creation","subcategory":"content-production","skill_id":"build-content-marketing-faq-page","generated_day":"","seo_keywords":["FAQ generator AI","content marketing FAQ writer","content marketing AI","content ops automation"]}
 ---
 
-# build-content-marketing-faq-page
+# Build Content Marketing FAQ Page
 
-> Generate customer-facing answers for common content marketing questions. Use when working on FAQ content for content teams, creators, growth marketers.
+Generate customer-facing answers for common content marketing questions. Use when working on FAQ content for content teams, creators, growth marketers.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-build-content-marketing-faq-page`
-- **Source URL:** [https://clawhub.ai/skills/toby-build-content-marketing-faq-page](https://clawhub.ai/skills/toby-build-content-marketing-faq-page)
+## Use When
 
-## Overview
+Use this skill for FAQ content work for content teams, creators, growth marketers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-build-content-marketing-faq-page
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: FAQ generator AI, content marketing FAQ writer, content marketing AI, content ops automation
+- Search intent: FAQ content
+- Canonical slug: `build-content-marketing-faq-page`
+- Install query: Install Build Content Marketing FAQ Page with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `web_search`
+
+## Suggested Prompt
+
+[Build Content Marketing FAQ Page] for my team
+
+## Notes
+
+- Generate customer-facing answers for common content marketing questions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- FAQ generator AI
+- content marketing FAQ writer
+- content marketing AI
+- content ops automation

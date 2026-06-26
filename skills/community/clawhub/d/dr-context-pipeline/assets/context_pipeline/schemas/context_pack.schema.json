@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "context-pack.schema.json",
+  "title": "Context Pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "task_type",
+    "must_follow",
+    "relevant_context",
+    "conflicts_or_ambiguities",
+    "unknowns_to_confirm",
+    "exclude_as_irrelevant",
+    "retrieval_notes"
+  ],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "task_type": {
+      "type": "string",
+      "enum": ["qna", "planning", "debugging", "doc_review", "ops", "briefing", "other"]
+    },
+    "must_follow": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourcedRule" }
+    },
+    "relevant_context": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourcedContext" }
+    },
+    "conflicts_or_ambiguities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourcedConflict" }
+    },
+    "unknowns_to_confirm": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["question", "why_needed"],
+        "properties": {
+          "question": { "type": "string", "minLength": 1 },
+          "why_needed": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "exclude_as_irrelevant": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "why", "sources"],
+        "properties": {
+          "item": { "type": "string", "minLength": 1 },
+          "why": { "type": "string", "minLength": 1 },
+          "sources": { "$ref": "#/$defs/sources" }
+        }
+      }
+    },
+    "retrieval_notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included_sources", "dropped_due_to_limits"],
+      "properties": {
+        "included_sources": { "type": "array", "items": { "type": "string" } },
+        "dropped_due_to_limits": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^S[0-9]+$"
+      }
+    },
+    "sourcedRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule", "why", "sources"],
+      "properties": {
+        "rule": { "type": "string", "minLength": 1 },
+        "why": { "type": "string", "minLength": 1 },
+        "sources": { "$ref": "#/$defs/sources" }
+      }
+    },
+    "sourcedContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fact_or_context", "why", "sources"],
+      "properties": {
+        "fact_or_context": { "type": "string", "minLength": 1 },
+        "why": { "type": "string", "minLength": 1 },
+        "sources": { "$ref": "#/$defs/sources" }
+      }
+    },
+    "sourcedConflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue", "options", "sources"],
+      "properties": {
+        "issue": { "type": "string", "minLength": 1 },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string", "pattern": "^S[0-9]+$" }
+        }
+      }
+    }
+  }
+}

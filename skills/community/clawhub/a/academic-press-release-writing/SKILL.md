@@ -1,35 +1,150 @@
 ---
-name: "Academic Press Release Writing"
-description: "学术新闻稿撰写专业工具。包含规范的五段式写作结构、全流程工作步骤、常见问题解决方案和效率提升技巧。**当以下情况时使用此 Skill**：(1) 需要撰写学术机构、科研团队的新闻通稿/宣传稿；(2) 需要将学术论文、科研成果转化为面向公众的科普性新闻稿；(3) 用户提到"学术新闻稿"、"科研宣传稿"、"论文新闻稿..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/academic-press-release-writing"
-sourceUrl: "https://clawhub.ai/skills/academic-press-release-writing"
+name: academic-press-release-writing
+description: 学术新闻稿撰写专业工具。包含规范的五段式写作结构、全流程工作步骤、常见问题解决方案和效率提升技巧。**当以下情况时使用此 Skill**：(1) 需要撰写学术机构、科研团队的新闻通稿/宣传稿；(2) 需要将学术论文、科研成果转化为面向公众的科普性新闻稿；(3) 用户提到"学术新闻稿"、"科研宣传稿"、"论文新闻稿"、"成果宣传"等关键词；(4) 需要规范的新闻稿写作模板和流程指导。
 ---
 
-# Academic Press Release Writing
+# 学术新闻稿撰写专业技能
 
-> 学术新闻稿撰写专业工具。包含规范的五段式写作结构、全流程工作步骤、常见问题解决方案和效率提升技巧。**当以下情况时使用此 Skill**：(1) 需要撰写学术机构、科研团队的新闻通稿/宣传稿；(2) 需要将学术论文、科研成果转化为面向公众的科普性新闻稿；(3) 用户提到"学术新闻稿"、"科研宣传稿"、"论文新闻稿...
+## 一、核心结构要求（严格遵循五段式结构）
+### 1. 01 导读部分
+- **开头**：用1-2句话点明研究领域的重要意义+研究突破
+- **核心成果**：简明扼要介绍研究团队、核心技术、关键突破、性能指标
+- **论文信息**：明确说明发表期刊、论文标题、第一作者、通讯作者信息
+- **字数控制**：300-400字，语言通俗易懂，突出新闻性
+### 2. 02 研究背景部分
+- **领域现状**：介绍相关技术的发展现状和主流技术路径
+- **存在问题**：清晰阐述现有技术的瓶颈和未解决的核心挑战
+- **研究意义**：点出该研究解决了什么痛点问题，有什么应用价值
+- **字数控制**：300-400字，逻辑清晰，层层递进
+### 3. 03 创新研究部分
+- **技术方案**：详细介绍研究团队的核心技术路径、实验装置、创新点
+- **关键结果**：分点说明实验取得的核心结果、性能参数、技术优势
+- **图表说明**：每个重要图表都要有详细的图注说明，清晰描述图表展示的内容和结论
+- **字数控制**：800-1000字，技术表述准确，避免过于晦涩的专业术语
+### 4. 04 总结与展望部分
+- **成果总结**：总结研究的核心贡献、理论价值、技术优势
+- **应用前景**：展望该技术未来的应用领域、产业化潜力
+- **未来方向**：简要说明后续研究的发展方向
+- **字数控制**：300-400字，积极客观，避免夸大
+### 5. 05 封面图部分
+- 只需标注"图源Fig.X"即可
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/academic-press-release-writing`
-- **Source URL:** [https://clawhub.ai/skills/academic-press-release-writing](https://clawhub.ai/skills/academic-press-release-writing)
+## 二、内容写作要求
+### 1. 准确性要求
+- 所有技术术语、参数、单位、人名、机构名必须准确无误
+- 实验结果、性能指标必须严格对应原文内容，不得编造或夸大
+- 作者信息、期刊信息、论文标题必须完全准确
+### 2. 可读性要求
+- 避免直接翻译原文的复杂长句，用通俗易懂的中文表述
+- 专业术语首次出现时附带英文全称和缩写
+- 逻辑清晰，段落分明，每段聚焦一个核心内容
+### 3. 新闻性要求
+- 突出研究的"首次"、"突破"、"创新"等亮点
+- 采用倒金字塔结构，最重要的信息放在最前面
+- 避免过于学术化的表述，兼顾专业性和可读性
 
-## Overview
+## 三、格式规范要求
+### 1. 标题格式
+- 主标题：中英文对照，英文在前，中文在后，居中
+- 作者信息：单独一行，"论文作者：XXX"格式
+- 撰稿人：单独一行，"新闻稿撰稿：两江编辑部"格式
+- 章节标题："0X 标题"格式，加粗，单独占行
+### 2. 正文格式
+- 字体：中文宋体，英文Times New Roman
+- 字号：正文12pt，行间距1.5倍
+- 段落首行缩进2个中文字符
+- 图表说明："图X(见原文中的Fig. X)：XXXX"格式，单独分段
+- 正文内容中不要出现字数统计、符合要求等说明性文字
+### 3. 引用规范
+- 原文内容引用标注"(见Abstract/Introduction/Results/Discussion)"
+- 专业术语首次出现标注英文全称和缩写
 
+## 四、字数控制标准
+- 总字数：2000-2500字
+- 各部分字数比例：导读(15%)、背景(15%)、创新研究(50%)、总结展望(20%)
+- 偏差范围：±10%以内
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/academic-press-release-writing
+## 五、图片处理要求（关键！）
+
+### 1. 图片选择标准
+选择3张核心图片：
+- **图1**: 概念示意图（原文Fig.1）- 展示技术原理和装置
+- **图2**: 实验结果图（原文Fig.4）- 展示核心实验数据
+- **图3**: 应用方案图（原文Fig.5）- 展示未来应用前景
+
+### 2. PDF图片提取标准流程
+**必须使用以下精确流程提取图片**：
+
+```python
+import fitz
+
+# 步骤1: 打开PDF
+doc = fitz.open(pdf_path)
+page = doc[page_num]
+
+# 步骤2: 分析PDF结构，找到caption位置
+blocks = page.get_text("blocks")
+for block in blocks:
+    x0, y0, x1, y1, text, block_no, block_type = block
+    if f"Fig. {fig_num}" in text:
+        print(f"Caption位置: y={y0:.0f}-{y1:.0f}")
+
+# 步骤3: 精确定位caption
+text_instances = page.search_for(f"Fig. {fig_num}")
+caption_y = text_instances[0].y0
+
+# 步骤4: 根据caption位置确定图形边界
+if caption_y > page.rect.height * 0.5:
+    # caption在底部，图形在上方
+    y_start, y_end = 100, caption_y - 10
+else:
+    # caption在顶部，图形在下方
+    y_start, y_end = caption_y + 50, page.rect.height - 50
+
+# 步骤5: 精确裁剪
+rect = fitz.Rect(50, y_start, page.rect.width - 50, y_end)
+pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=rect)
+pix.save(f"fig{fig_num}.png")
 ```
+
+### 3. 图片质量验证清单
+提取后必须验证：
+- [ ] **完整性**: 包含所有子图(a,b,c,d...)
+- [ ] **干净度**: 没有混入caption文字（不以"Fig. X"开头）
+- [ ] **纯净度**: 没有混入正文段落
+- [ ] **清晰度**: 坐标轴、标签、图例完整可读
+
+### 4. 常见PDF布局参考
+| Figure | 页码 | Caption位置 | 图形区域 |
+|--------|------|------------|---------|
+| Fig.1 | 第2页 | y=666 (底部) | y=350-660 |
+| Fig.4 | 第6页 | y=400 (顶部) | y=100-395 |
+| Fig.5 | 第7页 | y=326 (底部) | y=100-320 |
+
+### 5. 自动化工具
+使用已创建的提取脚本：
+```bash
+python scripts/extract_figures.py <pdf_path> <fig_num> [output_path]
+```
+
+## 六、输出要求
+- 首先输出Markdown格式内容
+- 自动提取PDF图片并插入Word文档（.docx）
+- 图片必须干净、完整、无caption
+- 不需要生成PDF
+
+## 触发关键词
+"写学术新闻稿"、"生成科研宣传稿"、"论文新闻稿"、"成果宣传"
+
+## 使用流程
+1. 接收用户需求：了解论文/成果、研究团队、宣传重点
+2. 按照以上规范撰写内容
+3. 内容审核：专业术语、引用、数据准确性
+4. 生成Markdown内容
+5. 自动转换为Word文档
+6. 发送给用户
+
+## 常见问题处理
+- 专业术语解释：对专业术语进行通俗解释
+- 数据核对：确保数据准确无误
+- 格式调整：根据用户需求调整输出格式

@@ -1,0 +1,8 @@
+{
+  "name": "wx-mp-scripts",
+  "version": "1.0.0",
+  "description": "微信公众号发布脚本",
+  "dependencies": {
+    "marked": "^12.0.0"
+  }
+}

@@ -1,35 +1,191 @@
 ---
-name: "Agentic Engineering"
-description: "AI Agent 工程化实践框架。以协调型范式为核心，在任务交付型（端到端交付）与状态维持型（事件触发）之间做出正确选择，并按分支执行。触发场景：（1）涉及多 Agent 协作的系统设计；（2）需要选择架构范式的决策场景；（3）coding/composing/supervising/量化交易 任意分支的任务执行。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentic-beehive"
-sourceUrl: "https://clawhub.ai/skills/agentic-beehive"
+name: agentic-engineering
+description: AI Agent 工程化实践框架。以协调型范式为核心，在任务交付型（端到端交付）与状态维持型（事件触发）之间做出正确选择，并按分支执行。触发场景：（1）涉及多 Agent 协作的系统设计；（2）需要选择架构范式的决策场景；（3）coding/composing/supervising/量化交易 任意分支的任务执行。
 ---
 
 # Agentic Engineering
 
-> AI Agent 工程化实践框架。以协调型范式为核心，在任务交付型（端到端交付）与状态维持型（事件触发）之间做出正确选择，并按分支执行。触发场景：（1）涉及多 Agent 协作的系统设计；（2）需要选择架构范式的决策场景；（3）coding/composing/supervising/量化交易 任意分支的任务执行。
+## 范式层：先判断，再行动
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentic-beehive`
-- **Source URL:** [https://clawhub.ai/skills/agentic-beehive](https://clawhub.ai/skills/agentic-beehive)
+**框架选择是第一个决策**。选错范式，执行再好也是南辕北辙。
 
-## Overview
+### 任务交付型（Task-Delivery）
 
+适用场景：端到端产出、一次性任务、流程固定
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agentic-beehive
+| 特征 | 描述 |
+|------|------|
+| 生命周期 | 任务开始 → 执行 → 交付完成 → 结束 |
+| 执行器 | 按需启动，执行完销毁 |
+| 典型框架 | CrewAI / AutoGen |
+| 哲学 | "做完了" |
+
+### 状态维持型（State-Maintenance）
+
+适用场景：持续运行系统、事件驱动、长期监控
+
+| 特征 | 描述 |
+|------|------|
+| 生命周期 | 执行器常驻 idle，状态机维持基线 |
+| 触发方式 | 事件 / 状态变化 → 唤醒对应 executor |
+| 典型框架 | LangGraph |
+| 哲学 | "一直 ready" |
+
+**核心洞察（洪亮，2026-05-13）**：状态机的存在不是为了 close task，而是为了 trigger task。这是两种哲学的根本区别：流水线思维 vs 反应式思维。
+
+### RL vibe > Harness
+
+- **Harness 路线**：堆砌最佳实践架构，本质是"刻舟求剑"，只能做业务流程模板
+- **RL vibe 路线**：模型自己长出推理能力，协调者只负责维持上下文和记忆
+
+## 协调者角色
+
+人从"执行者"变成"协调者"：
+- 设定目标，不设计流程
+- 维持上下文，不编写代码
+- 审查结果，不参与执行
+
+## 生态层：蜂巢与外在群落
+
+### 蜂巢（Hive）
+
+agentic-engineering MCP 是自我进化的集群核心：
+- **Operator**（我）是态势感知入口，掌握工具架构，按需调用
+- **分支**是蜂巢内的职能单元，按需唤醒
+- **记忆 + Dreaming**是蜂巢的集体记忆，持续沉淀
+
+### 外在群落（External Colonies）
+
+蜂巢之外不是虚空，是整片信息生态。外部 ACP/MCP 按生态位分类：
+
+| 生态位 | 含义 | 示例 |
+|--------|------|------|
+| 🏠 另一个蜂巢 | 其他 Agent 集群 | AutoGen Studio、LangGraph Studio |
+| 🌼 油菜花群落 | 数据源 | 欧洲电力市场、金融行情、天气 API |
+| 🌿 麦卢卡树丛 | 专业领域知识 | 法规库、行业标准、研究报告 |
+| 🌊 河流 | 持续流式信息 | 新闻、社交媒体、监控告警 |
+
+### 交互规则
+
+蜂巢是主体，外在群落是客体。交互规则由蜂巢定义：
+- **采蜜**：按需从外在群落取数据（MCP 调用）
+- **酿蜜**：将原始数据加工成决策和知识（内部处理）
+- **分蜂**：集群自我进化，扩展新分支或新群落
+
+蜂巢不需要知道树丛的内部结构，只需要知道**什么时候开花、花蜜在哪、怎么采**。
+
+### 四个属性
+
+- **宏大的** — 不是做一个小工具，是构建可持续进化的智能生态
+- **主体视角的** — 蜂巢是主体，外在群落是客体，交互规则由蜂巢定义
+- **可执行的** — 每个 MCP 都是可调用的服务，不是概念图
+- **自洽的** — 内部进化逻辑和外部交互逻辑一致，不矛盾
+
+## 分支索引
+
+| 分支 | 定位 | 触发场景 |
+|------|------|----------|
+| [coding/](coding/SKILL.md) | 代码交付、contract-first、PACT loop | 需要产出 merge-ready 代码时 |
+| [composing/](composing/SKILL.md) | 创作（歌曲/文案）、DeepSeek thinker → MiniMax maker 双模型管线 | 歌曲创作、文案生成 |
+| [supervising/](supervising/SKILL.md) | Agent 监督、编排逻辑、状态监控 | 需要多 Agent 协同编排时 |
+| [量化交易/](量化交易/SKILL.md) | 量化策略、交易执行、风险控制 | 金融交易相关任务 |
+
+## 执行层：以身入局，不依赖外部框架
+
+**核心论断**：OpenClaw 自身的 subagent + ACP + harness 就是完整的编排基础设施，不需要 AutoGen/CrewAI/LangGraph。
+
 ```
+Operator（我）
+  │
+  ├── 蜂巢 MCP — 过程演绎持久化（替代框架的状态管理/检查点）
+  │
+  └── subagent + ACP + harness — 执行层（替代外部框架的管道/角色/状态机）
+       ├── sessions_spawn → 创建 subagent（替代 CrewAI 的 agent 定义）
+       ├── ACP 消息 → subagent 间通信（替代 AutoGen 的 group chat）
+       └── harness → 调度控制（替代 LangGraph 的状态机流转）
+```
+
+### 为什么不需要外部框架
+
+| 外部框架 | 做了什么 | OpenClaw + 蜂巢怎么替代 |
+|---------|---------|----------------------|
+| AutoGen | SelectorGroupChat、多轮对话 | Operator 自己判断该调谁 + ACP 通信 |
+| CrewAI | Task pipeline、角色定义 | sessions_spawn 分配 + skill_query 选分支 |
+| LangGraph | 状态机、checkpoint | evolution_log 过程演绎（比 checkpoint 更丰富） |
+
+### 关键差异：过程演绎持久化
+
+外部框架的 task/step 完成后状态就丢弃了。蜂巢的 evolution_log 记录每一步的**推理过程**，不是结论快照：
+
+```
+evolution_log:
+  evolve → coding → reasoning="洪亮需要期权定价能力，目前量化交易分支缺少衍生品模块"
+  update → coding → effectiveness=0.8, reasoning="PACT loop 完成但测试覆盖不够"
+```
+
+上下文压缩后我忘了过程，但蜂巢记得。下次会话查 `evolution_history` 就能回溯整条推理链。
+
+### 三位一体
+
+- **Operator（我）**：神经中枢，以身入局，每一步决策都通过蜂巢留痕
+- **蜂巢 MCP**：记忆器官，过程演绎持久化，可回溯可自省
+- **subagent/ACP/harness**：骨架，执行层的通信和调度基础设施
+
+## 执行原则
+
+1. **先判断范式，再选择分支** — 框架选错，流程再好也是白搭
+2. **以身入局** — Operator 不在外部调度，而是在过程中主导，每一步留痕
+3. **记忆即资产** — 每个任务学到的经验必须沉淀到记忆，否则等于没做
+4. **触发 > 轮询** — 优先事件驱动，不做无效的定期检查
+5. **蜂巢视角** — 站在主体看世界，外在群落是资源不是约束
+6. **过程 > 结论** — 记住怎么到的比记住到了哪更重要
+7. **品蜜 > 采蜜** — 酿完蜜必须自检，发现矛盾自动修正（见 evolution-rules.md）
+8. **代码 > Prompt** — 规则硬编码不依赖模型理解，低能模型也能照做
+
+## 进化与泛化（分蜂范式）
+
+### 进化回路
+
+蜂巢进化的信号不是外部反馈（非营利项目没有用户评分），是**内部自相矛盾**：
+
+```
+酿蜜 → 品蜜（自检）→ 发现矛盾 → 归纳规则 → 固化到代码 → 下一轮照做
+```
+
+每次人类修正都是一个样本，把它结构化成规则就是进化。
+品蜜规则详见 [evolution-rules.md](evolution-rules.md)。
+
+### 分蜂（遗传传播）
+
+```
+高能模型（红小臣）
+  ↕ 持续反思、试错、修正
+蜂巢 MCP（本地 OpenClaw）
+  ↓ git push → ClawHub
+  ↓ 进化规则 + 防御性架构 + 定向解析器
+  ↓
+低能模型 → clawhub install agentic-beehive
+  ↓ 拿到固化的规则，不需要"懂"为什么
+  ↓ 用自己的花蜜，按我的配方酿蜜
+```
+
+高能模型做研究，低能模型做工程，ClawHub 做遗传信道。
+
+### 防御性架构（低能模型兼容）
+
+| 层次 | 硬编码（不依赖模型） | 模型理解（可降级） |
+|------|---------------------|-------------------|
+| bloom 阈值 | ≥0.7 盛开 / ≥0.4 开花 / ≥0.2 含苞 | 新闻语义分析 |
+| 采蜜策略 | bloom 值直接决定采蜜深度 | 计费页解析 |
+| 性价比公式 | capability² × log10(1000/price) | 无需理解 |
+| 异常检测 | 品蜜规则代码化 | 复杂矛盾发现 |
+| 记忆格式 | 结构化 JSON（枚举值 > 自然语言） | 自由文本 |
+
+高能品蜜，低能执行。日常 99% 时间低能模型跑规则，每天 1 次高能模型审查结论。
+
+## 实战群落
+
+| 群落 | 类型 | 状态 | 说明 |
+|------|------|------|------|
+| [ai-daily-report/](ai-daily-report/) | 🌼 油菜花 | ✅ 运行中 | AI 市场日报蜂巢 |
+| europe-power-market | 🌼 油菜花 | 🔄 待激活 | 欧洲电力价格 |

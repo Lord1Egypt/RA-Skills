@@ -1,0 +1,29 @@
+{
+  "name": "wechat-article",
+  "version": "1.0.0",
+  "description": "微信公众号文章生成器 - Markdown转微信HTML并上传草稿箱",
+  "main": "wechat-article.sh",
+  "author": "超哥",
+  "license": "MIT",
+  "keywords": [
+    "wechat",
+    "weixin",
+    "公众号",
+    "markdown",
+    "文章生成"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bin": {
+    "wechat-article": "./wechat-article.sh"
+  },
+  "scripts": {
+    "test": "./wechat-article.sh --help"
+  },
+  "dependencies": {
+    "curl": "*",
+    "jq": "*"
+  }
+}

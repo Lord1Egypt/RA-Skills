@@ -1,35 +1,58 @@
----
-name: "公众号内容聚合"
-description: "根据公众号名称或链接，归纳公众号定位和核心观点，帮用户选择关键词偏好并定时推送聚合内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhuchenggong-wechat-account-aggregation"
-sourceUrl: "https://clawhub.ai/skills/zhuchenggong-wechat-account-aggregation"
----
+# wechat-account-aggregation
 
-# 公众号内容聚合
+## 简介
+公众号内容聚合 Skill。根据公众号名称/链接，搜索归纳公众号类型，让用户选择关键词偏好，定时推送内容。
 
-> 根据公众号名称或链接，归纳公众号定位和核心观点，帮用户选择关键词偏好并定时推送聚合内容。
+## 使用场景
+- 用户要求整理公众号内容
+- 定时推送公众号内容
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhuchenggong-wechat-account-aggregation`
-- **Source URL:** [https://clawhub.ai/skills/zhuchenggong-wechat-account-aggregation](https://clawhub.ai/skills/zhuchenggong-wechat-account-aggregation)
+## 触发关键词
+- "整理公众号"
+- "公众号内容聚合"
+- "每天推送公众号"
+- "帮我关注公众号"
 
-## Overview
+## 触发时的询问
+用户给公众号名称/链接时，先问：
+"要用公众号内容聚合Skill整理吗？"
+- 要 → 按流程走
+- 不要 → 直接搜索展示
 
+## 流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhuchenggong-wechat-account-aggregation
-```
+### 首次（让用户选关键词）
+1. 用户给公众号名称/链接
+2. 百度搜索归纳公众号类型
+3. 给出几个关键词让用户选择
+4. 记录用户偏好到记忆
+
+### 定时推送（每天10点）
+- 已选关键词 → 按关键词推送相关内容
+- 未选过的 → 按重点推送（公众号定位、核心观点、关注价值）
+
+### 最后
+- 整理成**文案形式**推送给你看（不是表格）
+- 问"要存到公众号内容聚合库吗？"
+- 你确认后 → 存到飞书"公众号内容聚合库"
+
+## 输出格式
+| 公众号 | 定位 | 核心观点 | 关注价值 |
+|--------|------|----------|----------|
+| 腾讯研究院 | 前沿科技/AI行业 | AI落地潮 | 了解AI行业动态 |
+
+## 整理重点
+- **公众号定位** - 根据多篇文章总结公众号主要讲什么
+- **核心观点** - 文章的主要观点
+- **关注价值** - 值得关注的点
+
+## 依赖工具
+- web_search（百度搜索）
+- feishu_bitable_create_record（存飞书）
+- 记忆（记录用户偏好关键词）
+
+## 特点
+- 零成本：不用付费API
+- 百度搜索即可完成
+- 人机协作：每步确认
+- 记忆偏好：按用户选择推送

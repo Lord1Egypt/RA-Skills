@@ -1,0 +1,17 @@
+[>>] 文章标题：智慧养老正式进入AI时代
+
+[..] 正在获取 access_token...
+[OK] 获取 access_token 成功（有效期 7200 秒）
+[OK] 使用 Pillow 生成封面：C:\Users\TR\AppData\Local\Temp\tmp8onw7u7t.jpg
+
+[..] 正在上传封面图...
+[OK] 封面图上传成功，media_id = oT7S0JNrCAAVZmuf4FebKaOE0VXi4kOKwBp0cegT6buug3xooh_j0rU110g56WTt
+
+[..] 正在转换 Markdown --> 微信公众号 HTML...
+
+[..] 正在创建草稿...
+[OK] 草稿创建成功！草稿 media_id = oT7S0JNrCAAVZmuf4FebKU7ChQXcfuczFlbO_PCROzf0pjmLSceeVKlR60lmKNaM
+
+[DONE] 完成！文章《智慧养老正式进入AI时代》已成功上传至草稿箱。
+       草稿 media_id：oT7S0JNrCAAVZmuf4FebKU7ChQXcfuczFlbO_PCROzf0pjmLSceeVKlR60lmKNaM
+       请登录微信公众平台 -> 草稿箱查看。

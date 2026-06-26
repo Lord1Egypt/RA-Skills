@@ -1,0 +1,27 @@
+{
+  "name": "appliance-repair-marketing-kit",
+  "version": "1.0.0",
+  "description": "Complete digital marketing system for appliance repair businesses — OEM compliance, EPA 608 flagging, property manager B2B scripts",
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "keywords": [
+    "appliance-repair",
+    "home-services",
+    "marketing",
+    "google-lsa",
+    "local-seo",
+    "property-management",
+    "oem-parts",
+    "epa-608",
+    "reputation-management",
+    "b2b-outreach"
+  ],
+  "clawhub": {
+    "category": "home-services",
+    "subcategory": "appliance-repair",
+    "tier": "freemium",
+    "free_prompts": 1,
+    "paid_prompts": 3,
+    "price": 29
+  }
+}

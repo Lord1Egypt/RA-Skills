@@ -1,35 +1,124 @@
 ---
-name: "Hk School Selection"
-description: "全方位的香港中小學選校指導技能，涵蓋 512 所學校數據、Banding 分析、升中派位流程、一條龍資訊、不會粵語選校策略等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hk-school-selection"
-sourceUrl: "https://clawhub.ai/skills/hk-school-selection"
+name: hk-school-selection
+version: 1.0.0
+description: 全方位的香港中小學選校指導技能，涵蓋 512 所學校數據、Banding 分析、升中派位流程、一條龍資訊、不會粵語選校策略等。
+author: 伍琛尧 (Ryan Wu)
+license: MIT
+tags: [hong-kong, school, education, selection, banding, spa, through-train, chinese, parents]
+metadata:
+  clawdbot:
+    emoji: 🎓
+    category: education
+  update_frequency: monthly
+  data_source: schooland.hk, EDB
 ---
 
-# Hk School Selection
+# 香港中小學擇校技能 🎓
 
-> 全方位的香港中小學選校指導技能，涵蓋 512 所學校數據、Banding 分析、升中派位流程、一條龍資訊、不會粵語選校策略等。
+**作者**: 伍琛尧 (Ryan Wu)  
+**版本**: 1.0.0  
+**许可**: MIT  
+**数据源**: schooland.hk, 教育局 (EDB)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hk-school-selection`
-- **Source URL:** [https://clawhub.ai/skills/hk-school-selection](https://clawhub.ai/skills/hk-school-selection)
+---
 
-## Overview
+## ⚠️ 重要免责声明 (必读)
 
+> **本技能数据基于 2026-04-20 的快照，部分学校可能已停办、合并、改名或搬迁。**
+> **强烈建议您在申请前，通过电话或学校官网核实最新状态。**
+> **如发现数据错误，请反馈以更新数据库。**
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 🚀 Quick Start
+
+### 安装
 ```bash
-hermes skills install clawhub/hk-school-selection
+clawhub install hk-school-selection
 ```
+
+### 使用示例
+- "查找港岛区 Band 1 的直资中学"
+- "什么是 Band 1A？如何判断学校 Banding？"
+- "香港升中派位的三回合机制是什么？"
+- "列出所有一条龍学校及其优势"
+- "不会粤语的学生如何选校？"
+- "比较直资和私立学校的学费"
+
+---
+
+## 📋 核心能力
+
+### 1. 學校數據查詢
+- **全港中學數據庫**: 約 512 所中學（官立、資助、直資、私立、國際）
+- **分類篩選**: 地區、Band 分級、教學語言、性別、宗教、辦學團體
+- **學校詳情**: 學費、班級結構、教學語言、收生情況、升學表現
+
+### 2. Banding 分析
+- **劃分原理**: 非官方分類，參考中一新生源和中六畢業生成績
+- **分級**: Band 1A/1B/1C, Band 2A/2B/2C, Band 3A/3B/3C
+- **判斷方法**: 收生源頭、公開試成績、英文班開設情況
+
+### 3. 升中派位流程
+- **三回合機制**: 自行分配 (30%)、統一甲部 (7%)、統一乙部 (59%)
+- **時間表**: 1 月申請、4-5 月選校、7 月公布結果
+- **滿意率**: 整體 95%, 首志願 85%
+
+### 4. 一條龍學校
+- **定義**: 小學和中學結龍，小六學生可直升
+- **數量**: 38 所 (16 資助 + 15 直資 + 7 私立)
+- **優勢**: 穩定、減輕升中壓力
+
+### 5. 特殊需求選校
+- **不會粵語**: 首選全普教中 (培僑、漢華)，次選有語言支援
+- **英語較弱**: 優先選擇中文中學，有數學拔尖班
+- **語言支援標註**: 🗣️全普教中, 🗣️普通話輔助, 🌏內地生友好
+
+### 6. 學費比較
+- **官立/資助**: 免學費，雜費 HK$2,000-5,000/年
+- **直資**: HK$10,000-60,000/年
+- **私立/國際**: HK$50,000-200,000+/年
+
+### 7. 辦學團體
+- **主要團體**: 基督教 147, 天主教 88, 佛教 23, 東華三院 18, 保良局 17, 聖公會 32
+
+---
+
+## 📂 文件結構
+
+```
+hk-school-selection/
+├── SKILL.md              # 核心技能文档
+├── README.md             # 使用说明
+├── data/
+│   ├── through-train.json    # 一條龍學校名單
+│   └── schools.json          # 學校數據庫
+├── guides/
+│   ├── cantonese-free-strategy.md  # 不會粵語選校策略
+│   └── spa-process.md              # 升中派位流程
+└── templates/
+    ├── school-comparison.md    # 學校比較模板
+    └── application-checklist.md # 申請清單模板
+```
+
+---
+
+## ⚠️ 注意事项
+
+1. **Banding 非官方**: 坊间分类，仅供参考
+2. **数据时效性**: 学校收生情况年年不同，需核实
+3. **个性化建议**: 需结合孩子具体情况
+4. **地区因素**: 考虑交通、住宿、家庭位置
+
+---
+
+## 📊 数据来源
+
+- **主要来源**: schooland.hk
+- **官方来源**: 教育局 (EDB)
+- **更新频率**: 每月更新
+
+---
+
+**最后更新**: 2026-04-21  
+**维护者**: 伍琛尧 (Ryan Wu)

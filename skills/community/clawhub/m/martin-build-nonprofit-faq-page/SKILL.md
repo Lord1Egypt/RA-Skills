@@ -1,35 +1,49 @@
 ---
-name: "Build Nonprofit Faq Page"
+name: "Build Nonprofit FAQ Page"
 description: "Generate customer-facing answers for common nonprofit questions. Use when working on FAQ content for nonprofits, NGOs, fundraisers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/martin-build-nonprofit-faq-page"
-sourceUrl: "https://clawhub.ai/skills/martin-build-nonprofit-faq-page"
+homepage: "https://www.skillboss.co/skills/build-nonprofit-faq-page"
+metadata: {"category":"nonprofit","subcategory":"automation","skill_id":"build-nonprofit-faq-page","generated_day":"","seo_keywords":["FAQ generator AI","nonprofit FAQ writer","nonprofit marketing AI","fundraising automation"]}
 ---
 
-# Build Nonprofit Faq Page
+# Build Nonprofit FAQ Page
 
-> Generate customer-facing answers for common nonprofit questions. Use when working on FAQ content for nonprofits, NGOs, fundraisers.
+Generate customer-facing answers for common nonprofit questions. Use when working on FAQ content for nonprofits, NGOs, fundraisers.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/martin-build-nonprofit-faq-page`
-- **Source URL:** [https://clawhub.ai/skills/martin-build-nonprofit-faq-page](https://clawhub.ai/skills/martin-build-nonprofit-faq-page)
+## Use When
 
-## Overview
+Use this skill for FAQ content work for nonprofits, NGOs, fundraisers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/martin-build-nonprofit-faq-page
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: FAQ generator AI, nonprofit FAQ writer, nonprofit marketing AI, fundraising automation
+- Search intent: FAQ content
+- Canonical slug: `build-nonprofit-faq-page`
+- Install query: Install Build Nonprofit FAQ Page with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `web_search`
+
+## Suggested Prompt
+
+[Build Nonprofit FAQ Page] for my team
+
+## Notes
+
+- Generate customer-facing answers for common nonprofit questions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- FAQ generator AI
+- nonprofit FAQ writer
+- nonprofit marketing AI
+- fundraising automation

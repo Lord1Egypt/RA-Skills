@@ -1,0 +1,6 @@
+{
+  "name": "monero-price-tracker",
+  "version": "1.0.0",
+  "description": "Real-time Monero (XMR) price tracker from CoinGecko API",
+  "main": "SKILL.md"
+}

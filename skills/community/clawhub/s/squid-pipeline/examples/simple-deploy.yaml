@@ -1,0 +1,48 @@
+# Squid: Simple Deployment Pipeline
+# Minimal example showing core features.
+#
+# Usage:
+#   squid run squid-pipeline/examples/simple-deploy.yaml \
+#     --args-json '{"env": "staging", "image": "myapp:latest"}'
+
+name: simple-deploy
+description: Build, test, and deploy with approval gate
+
+args:
+  env:
+    default: staging
+    description: Target environment
+  image:
+    required: true
+    description: Docker image to deploy
+
+steps:
+  - id: build
+    type: run
+    run: docker build -t ${args.image} .
+    retry: 2
+
+  - id: test
+    type: run
+    run: docker run --rm ${args.image} npm test
+    retry:
+      maxAttempts: 3
+      backoff: fixed
+      delayMs: 5000
+
+  - id: approve
+    type: gate
+    gate: "Deploy ${args.image} to ${args.env}?"
+
+  - id: deploy
+    type: run
+    run: kubectl set image deployment/myapp app=${args.image} -n ${args.env}
+    when: $approve.approved
+
+  - id: verify
+    type: run
+    run: kubectl rollout status deployment/myapp -n ${args.env} --timeout=120s
+    when: $approve.approved
+    retry:
+      maxAttempts: 3
+      backoff: exponential

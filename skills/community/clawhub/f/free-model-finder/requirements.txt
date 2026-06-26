@@ -1,0 +1,2 @@
+# Free Model Finder 依赖
+# 当前版本无需额外依赖，仅使用 Python 标准库

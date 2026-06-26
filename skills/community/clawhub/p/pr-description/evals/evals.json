@@ -1,0 +1,29 @@
+{
+  "skill_name": "pr-description",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我根据这个 git diff 生成一个 PR 描述（中文）：\n```diff\n--- a/src/auth.js\n+++ b/src/auth.js\n@@ -1,5 +1,5 @@\n-function login(user, pass) {\n+function login(user, pass, token) {\n-  return user === 'admin' && pass === '1234';\n+  return (user === 'admin' && pass === '1234') || validateToken(token);\n }\n```",
+      "expected_output": "A Chinese PR description using the structured template, summarizing the addition of token validation to the `login` function in `src/auth.js`. The 'New feature' checkbox should be marked `[x]`.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Write a PR description for these changes:\n```diff\n--- a/package.json\n+++ b/package.json\n@@ -10,2 +10,3 @@\n     \"express\": \"^4.17.1\",\n+    \"cors\": \"^2.8.5\"\n```",
+      "expected_output": "An English PR description highlighting the addition of the `cors` dependency in `package.json`. The 'New feature' or 'Bug fix' (depending on inferred context) checkbox should be marked.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "生成一份中文的 PR description，这是我刚做的重构，把所有的 var 换成了 let 和 const，没有新增功能。",
+      "expected_output": "A Chinese PR description for a refactor (var to let/const). The 'Refactor / Code cleanup' checkbox must be marked `[x]`. The summary should clearly state no new features were added.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Generate a PR description for this change:\n```diff\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,3 @@\n # Project\n-This is a test.\n+This is a test project.\n+Now with more docs!\n```",
+      "expected_output": "An English PR description identifying the change as a Documentation update. The 'Documentation update' checkbox must be marked `[x]`.",
+      "files": []
+    }
+  ]
+}

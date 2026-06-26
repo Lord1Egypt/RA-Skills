@@ -1,35 +1,124 @@
----
-name: "Email Helper - 邮件助手"
-description: "提供中英文邮件草稿生成、回复建议、模板应用及收件箱邮件分类整理功能，支持正式与非正式语气调整。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-helper"
-sourceUrl: "https://clawhub.ai/skills/email-helper"
----
+# 📧 Email Helper - 邮件助手
 
-# Email Helper - 邮件助手
+## 触发规则
 
-> 提供中英文邮件草稿生成、回复建议、模板应用及收件箱邮件分类整理功能，支持正式与非正式语气调整。
+**关键词：**
+- 写邮件、邮件草稿、回复邮件
+- 邮件模板、邮件格式
+- 邮件分类、整理邮件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-helper`
-- **Source URL:** [https://clawhub.ai/skills/email-helper](https://clawhub.ai/skills/email-helper)
+**场景：**
+- 用户需要写邮件但不知道如何开头
+- 用户需要回复工作邮件
+- 用户需要整理收件箱
 
-## Overview
+## 功能描述
 
+### 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-helper
+1. **邮件草稿生成**
+   - 根据目的生成邮件
+   - 正式/非正式语气
+   - 中英文支持
+
+2. **邮件回复建议**
+   - 自动回复草稿
+   - 语气调整
+   - 快捷回复
+
+3. **邮件模板**
+   - 求职信
+   - 请假申请
+   - 商务合作
+   - 感谢信
+
+4. **邮件分类**
+   - 工作/个人分类
+   - 优先级标记
+   - 归档建议
+
+## 权限需求
+
+- [x] 文件读写（模板存储）
+- [ ] 外部 API（邮件客户端集成）
+
+## 示例对话
+
 ```
+用户：帮我写一封请假邮件
+助手：好的！帮你起草请假邮件：
+
+---
+**主题：** 请假申请 - [你的名字] - [日期]
+
+尊敬的 [领导姓名]：
+
+您好！
+
+因 [请假原因]，我需要在 [开始日期] 至 [结束日期] 期间请假 [天数] 天。
+
+请假期间的工作已安排如下：
+1. [工作交接安排 1]
+2. [工作交接安排 2]
+
+如有紧急情况，可通过 [联系方式] 联系我。
+
+恳请批准，谢谢！
+
+此致
+敬礼
+
+[你的名字]
+[日期]
+---
+
+需要我调整语气或内容吗？
+
+用户：写一封商务合作邮件
+助手：好的！商务合作邮件草稿：
+
+---
+**主题：** 商务合作洽谈 - [公司名]
+
+尊敬的 [对方姓名/团队]：
+
+您好！
+
+我是 [公司名] 的 [职位][你的名字]。我们专注于 [业务领域]...
+
+希望能与贵方探讨合作机会...
+
+期待您的回复！
+
+祝好，
+[你的名字]
+---
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/email-helper/templates.json
+{
+  "templates": [
+    {
+      "name": "请假申请",
+      "category": "工作",
+      "content": "..."
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 邮件模板库
+- [ ] 语气调整
+- [ ] 自动回复
+- [ ] 邮件客户端集成
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

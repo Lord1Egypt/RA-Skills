@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "signal": {
+    "STRONG BUY": { "zh-CN": "强烈买入", "zh-HK": "強烈買入" },
+    "BUY": { "zh-CN": "买入", "zh-HK": "買入" },
+    "HOLD": { "zh-CN": "持有", "zh-HK": "持有" },
+    "AVOID": { "zh-CN": "回避", "zh-HK": "回避" },
+    "SELL": { "zh-CN": "卖出", "zh-HK": "賣出" },
+    "ERROR": { "zh-CN": "错误", "zh-HK": "錯誤" }
+  },
+  "labels": {
+    "price": { "zh-CN": "价格", "zh-HK": "價格" },
+    "conviction": { "zh-CN": "信心", "zh-HK": "信心" },
+    "risk_flags": { "zh-CN": "风险标记", "zh-HK": "風險標記" },
+    "disclaimer": {
+      "zh-CN": "仅供参考，非投资建议。",
+      "zh-HK": "僅供參考，非投資建議。"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "emoji": "📈",
+  "primaryEnv": "AION_API_KEY",
+  "requires": {
+    "pip": ["aion-sdk", "requests"],
+    "env": ["AION_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AION_API_KEY",
+      "required": true,
+      "description": "Your AION SDK API key — get from https://pm-t1.bxingupdate.com/agents"
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Only needed for external-wallet self-custody trading. Not required if using AION managed wallets."
+    },
+    {
+      "name": "POLYGON_RPC_URL",
+      "required": false,
+      "description": "Optional custom Polygon RPC endpoint. Uses default RPC if not set."
+    },
+    {
+      "name": "MAX_POSITION_SIZE",
+      "required": false,
+      "description": "Maximum position size per market (USDC). Default: 10"
+    },
+    {
+      "name": "MIN_EDGE_THRESHOLD",
+      "required": false,
+      "description": "Minimum edge threshold required to execute trade (0-1). Default: 0.05 (5%)"
+    }
+  ],
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "momentum_trader.py"
+  }
+}

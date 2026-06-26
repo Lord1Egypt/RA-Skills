@@ -1,0 +1,41 @@
+{
+  "skill_name": "alarmkit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm adding a wake-up alarm feature to an iOS 26 app. Sketch the AlarmKit scheduling code for a one-time 7:00 AM alarm with a Snooze button, and call out the Info.plist and authorization pieces I need.",
+      "expected_output": "A source-grounded AlarmKit implementation outline that requests authorization, includes NSAlarmKitUsageDescription, schedules with AlarmManager using AlarmAttributes/AlarmPresentation, and configures snooze with CountdownDuration.postAlert rather than the .alarm convenience alone.",
+      "files": [],
+      "expectations": [
+        "Mentions NSAlarmKitUsageDescription and user authorization through AlarmManager before relying on scheduling.",
+        "Uses AlarmAttributes and AlarmPresentation.Alert with the current alert initializer shape that does not require a custom stopButton.",
+        "Configures snooze by providing Alarm.CountdownDuration with postAlert and the countdown-style AlarmConfiguration initializer, not only AlarmConfiguration.alarm(...).",
+        "Treats stopIntent and secondaryIntent as optional API parameters while recommending them when button actions need app cleanup or custom behavior."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this AlarmKit state-management plan: cache AlarmManager.shared.alarms at launch, pause any scheduled alarm, call countdown(id:) whenever the user taps Snooze, and call stop(id:) to remove both one-shot and repeating alarms. What should I fix?",
+      "expected_output": "A review that corrects the throwing alarms getter, valid lifecycle states for pause/resume/countdown, and stop behavior for one-shot versus repeating alarms.",
+      "files": [],
+      "expectations": [
+        "States that AlarmManager.shared.alarms is a throwing getter and examples should handle it with try or do/catch.",
+        "Explains that pause(id:) applies to countdown state, resume(id:) applies to paused state, and countdown(id:) applies to alerting state.",
+        "Explains that stop(id:) removes one-shot alarms but repeating alarms are scheduled again for their next occurrence.",
+        "Avoids claiming that a missing alarm from alarmUpdates always means only cancellation or a final stop; frames it as no longer scheduled with AlarmKit unless compared with app-persisted IDs."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "My timer app needs a 10-minute AlarmKit countdown with custom Lock Screen and Dynamic Island UI, plus maybe normal Home Screen widgets and APNs updates later. Which parts belong in AlarmKit, and where should I hand off to sibling skills?",
+      "expected_output": "A boundary-aware answer that keeps AlarmKit responsible for system alarms/countdowns and their countdown Live Activity handoff, while routing generic widget and push-notification work to the appropriate sibling skills.",
+      "files": [],
+      "expectations": [
+        "Keeps AlarmKit focused on system alarms/countdowns, AlarmManager, AlarmAttributes, AlarmPresentation, AlarmPresentationState, and authorization.",
+        "Clarifies that alerting UI is system-managed while countdown/paused Live Activity UI can be customized in a widget extension.",
+        "Names Apple-sourced surfaces such as Lock Screen, Dynamic Island, StandBy, and paired Apple Watch, without relying on an unsupported AlarmKit Smart Stack claim.",
+        "Routes ordinary Home Screen/timeline widget work to widgetkit or ActivityKit details to activitykit, and generic APNs setup to push-notifications instead of expanding AlarmKit scope."
+      ]
+    }
+  ]
+}

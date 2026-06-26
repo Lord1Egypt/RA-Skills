@@ -1,35 +1,31 @@
 ---
-name: "Notify Tool"
-description: "Send desktop notifications from command line scripts and automated tasks. Use for alerts, reminders, and process completion notifications."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/notify-tool"
-sourceUrl: "https://clawhub.ai/skills/notify-tool"
+name: notify-tool
+description: Send desktop notifications from command line scripts and automated tasks. Use for alerts, reminders, and process completion notifications.
 ---
+# Notify - Desktop Alert Utility
 
-# Notify Tool
+Display system notifications with customizable title, message, and urgency level. Integrates with desktop notification daemons for visual alerts.
 
-> Send desktop notifications from command line scripts and automated tasks. Use for alerts, reminders, and process completion notifications.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/notify-tool`
-- **Source URL:** [https://clawhub.ai/skills/notify-tool](https://clawhub.ai/skills/notify-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/notify-tool
+notify-tool [options] <message>
+```
+
+## Options
+
+- `-t title`: Set notification title
+- `-u level`: Urgency (low, normal, critical)
+- `-e`: Expire notification after timeout
+
+## Examples
+
+```bash
+# Simple notification
+notify-tool "Task complete!"
+
+# With title
+notify-tool -t "Backup" "Backup finished successfully"
+
+# Critical alert
+notify-tool -u critical "Disk space low!"
 ```

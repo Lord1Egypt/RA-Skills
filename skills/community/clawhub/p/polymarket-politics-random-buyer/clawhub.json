@@ -1,0 +1,55 @@
+{
+  "emoji": "ballot_box_with_ballot",
+  "primaryEnv": "AION_API_KEY",
+  "requires": {
+    "pip": ["aion-sdk", "python-dotenv", "eth-account"],
+    "env": ["AION_API_KEY", "WALLET_PRIVATE_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AION_API_KEY",
+      "required": true,
+      "description": "Main AION API key used by the skill."
+    },
+    {
+      "name": "AIONMARKET_API_KEY",
+      "required": false,
+      "description": "Legacy alias supported when AION_API_KEY is not set."
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": true,
+      "description": "Polygon wallet private key used to derive the wallet address for context-aware trading."
+    },
+    {
+      "name": "SEARCH_QUERIES",
+      "required": false,
+      "description": "Comma-separated politics search terms. Defaults to election,president,senate,house,governor,politics."
+    },
+    {
+      "name": "TRADE_SIZE",
+      "required": false,
+      "description": "Trade size in USDC. Defaults to 1.0."
+    },
+    {
+      "name": "TRADE_SIDE",
+      "required": false,
+      "description": "Trade side for the selected market, yes or no. Defaults to yes."
+    },
+    {
+      "name": "MAX_MARKETS",
+      "required": false,
+      "description": "Maximum number of search results per query to inspect. Defaults to 40."
+    },
+    {
+      "name": "RANDOM_SEED",
+      "required": false,
+      "description": "Optional seed to make the random market choice reproducible."
+    }
+  ],
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "politics_random_buyer.py"
+  }
+}

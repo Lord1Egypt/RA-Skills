@@ -1,35 +1,31 @@
 ---
-name: "Claude Config Linter"
-description: "Lint your Claude Code config for token waste. Checks CLAUDE.md, hooks, skills, and commands. Gives health score and actionable fixes. Use when user asks abou..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-config-linter"
-sourceUrl: "https://clawhub.ai/skills/claude-config-linter"
+name: claude-config-linter
+description: Lint your Claude Code config for token waste. Checks CLAUDE.md, hooks, skills, and commands. Gives health score and actionable fixes. Use when user asks about config optimization or token waste.
+config_paths:
+  - ~/.claude/CLAUDE.md
+  - ~/.claude/settings.json
+  - ~/.claude/skills/
+  - ~/.claude/commands/
+requires:
+  - cclint
 ---
 
 # Claude Config Linter
 
-> Lint your Claude Code config for token waste. Checks CLAUDE.md, hooks, skills, and commands. Gives health score and actionable fixes. Use when user asks abou...
+Lint your Claude Code config for token waste.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-config-linter`
-- **Source URL:** [https://clawhub.ai/skills/claude-config-linter](https://clawhub.ai/skills/claude-config-linter)
+## Data access
 
-## Overview
+- Reads CLAUDE.md, settings.json, skills/, and commands/ in ~/.claude/
+- Runs offline, no network access, no credentials
+- Open source: https://github.com/SingggggYee/cclint
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+Requires `cclint` CLI. See https://github.com/SingggggYee/cclint for installation.
+
 ```bash
-hermes skills install clawhub/claude-config-linter
+cclint
 ```
+
+JSON output: `cclint --json`

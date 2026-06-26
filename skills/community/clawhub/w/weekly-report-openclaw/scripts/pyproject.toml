@@ -1,0 +1,28 @@
+[project]
+name = "weekly-report-skill"
+version = "0.1.0"
+description = "Automated weekly report generation skill for OpenClaw"
+readme = "../SKILL.md"
+requires-python = ">=3.10"
+dependencies = [
+    "playwright>=1.40.0",
+    "httpx>=0.27.0",
+    "python-docx>=1.1.0",
+    "docxtpl>=0.16.0",
+    "openai>=1.12.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "pyyaml>=6.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+generate = "generate:main"
+login = "login:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["lib"]

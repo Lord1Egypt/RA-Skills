@@ -1,0 +1,9 @@
+{
+  "name": "axure-prototype-generator",
+  "version": "1.0.0",
+  "description": "Axure prototype code generator - Output JavaScript format HTML code for inline frame loading",
+  "author": "Jarvis",
+  "license": "MIT",
+  "keywords": ["Axure", "prototype", "HTML", "JavaScript", "dashboard"],
+  "main": "SKILL.md"
+}

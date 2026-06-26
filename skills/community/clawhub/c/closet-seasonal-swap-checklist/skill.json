@@ -1,0 +1,35 @@
+{
+  "name": "closet-seasonal-swap-checklist",
+  "slug": "closet-seasonal-swap-checklist",
+  "displayName": "Closet Seasonal Swap Checklist",
+  "version": "1.0.1",
+  "description": "Create a calm seasonal closet swap checklist for rotating clothes, shoes, accessories, storage bins, repairs, weather readiness, and reset tasks without donation pressure or valuation advice.",
+  "triggerKeywords": [
+    "seasonal closet swap",
+    "closet changeover checklist",
+    "rotate seasonal clothes",
+    "wardrobe season reset",
+    "winter summer closet swap",
+    "closet storage bins",
+    "seasonal wardrobe checklist",
+    "closet organization routine"
+  ],
+  "tags": [
+    "home",
+    "organization",
+    "closet",
+    "seasonal-routine",
+    "checklist"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Seasonal organization support only; do not pressure donation, discarding, selling, or valuation decisions. Keep choices practical, reversible, and user-led."
+}

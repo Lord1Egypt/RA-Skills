@@ -1,0 +1,158 @@
+---
+title: whatsapp-cloud-api-js SDK
+---
+
+# whatsapp-cloud-api-js
+
+Use the `@kapso/whatsapp-cloud-api` SDK for typed WhatsApp Cloud API calls.
+
+## Install
+
+```bash
+npm install @kapso/whatsapp-cloud-api
+```
+
+## Create a client
+
+Kapso proxy setup:
+
+```ts
+import { WhatsAppClient } from "@kapso/whatsapp-cloud-api";
+
+const client = new WhatsAppClient({
+  baseUrl: "https://api.kapso.ai/meta/whatsapp",
+  kapsoApiKey: process.env.KAPSO_API_KEY!
+});
+```
+
+Direct Meta setup:
+
+```ts
+const client = new WhatsAppClient({
+  accessToken: process.env.WHATSAPP_TOKEN!
+});
+```
+
+## Send a text message
+
+```ts
+await client.messages.sendText({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  to: "+15551234567",
+  body: "Hello from Kapso"
+});
+```
+
+## Send a raw payload
+
+```ts
+await client.messages.sendRaw({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  payload: {
+    messaging_product: "whatsapp",
+    recipient_type: "individual",
+    to: "+15551234567",
+    type: "text",
+    text: { body: "Hello from a raw payload" }
+  }
+});
+```
+
+## Send a template message
+
+```ts
+await client.messages.sendTemplate({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  to: "+15551234567",
+  template: {
+    name: "order_ready_named",
+    language: { code: "en_US" },
+    components: [
+      {
+        type: "body",
+        parameters: [
+          { type: "text", parameterName: "order_id", text: "ORDER-123" }
+        ]
+      }
+    ]
+  }
+});
+```
+
+## Send an interactive button message
+
+```ts
+await client.messages.sendInteractiveButtons({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  to: "+15551234567",
+  bodyText: "Choose an option",
+  buttons: [
+    { id: "accept", title: "Accept" },
+    { id: "decline", title: "Decline" }
+  ]
+});
+```
+
+## List conversations
+
+```ts
+const conversations = await client.conversations.list({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  status: "active",
+  limit: 20
+});
+```
+
+## Get a conversation
+
+```ts
+const conversation = await client.conversations.get({
+  conversationId: "123e4567-e89b-12d3-a456-426614174000"
+});
+```
+
+## List messages
+
+```ts
+const messages = await client.messages.query({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  conversationId: "123e4567-e89b-12d3-a456-426614174000",
+  limit: 50
+});
+```
+
+## Get a single message
+
+```ts
+const message = await client.messages.get({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  messageId: "wamid.HBgL..."
+});
+```
+
+## List messages for a conversation (shortcut)
+
+```ts
+const messages = await client.messages.listByConversation({
+  phoneNumberId: "<PHONE_NUMBER_ID>",
+  conversationId: "123e4567-e89b-12d3-a456-426614174000",
+  limit: 50
+});
+```
+
+## Get a template
+
+```ts
+const template = await client.templates.get({
+  businessAccountId: "<BUSINESS_ACCOUNT_ID>",
+  templateId: "564750795574598"
+});
+```
+
+## Notes
+
+- Use `phoneNumberId` from the connected WhatsApp number (discover via `kapso whatsapp numbers resolve --phone-number "<display-number>" --output json` or `node scripts/list-platform-phone-numbers.mjs`).
+- With Kapso proxy, keep `baseUrl` and `kapsoApiKey` set.
+- Template rules still apply (examples, button ordering, media headers).
+- History endpoints (`messages.query`, `messages.get`, `messages.listByConversation`, `conversations.list/get`) require Kapso proxy; they are not available with a direct Meta access token.
+- Requests use camelCase keys and the SDK converts to snake_case for the API; responses come back camelCase.

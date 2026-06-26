@@ -1,0 +1,7 @@
+interface:
+  display_name: "Invoice Verification Service"
+  short_description: "Initialize app keys, query recharge packages, query quota and ledger, verify invoice text, single images, or whole local directories, and create or query recharge orders through the v4 plugin API."
+  default_prompt: "Use $invoice-verification-service to initialize an invoice app key, query recharge package options, query quota or ledger, verify invoice text, verify invoice images, batch-verify all invoice images in a local folder, or create and query recharge orders through the v4 plugin API."
+
+policy:
+  allow_implicit_invocation: true

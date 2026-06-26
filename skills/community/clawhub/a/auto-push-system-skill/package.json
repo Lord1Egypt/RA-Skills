@@ -1,0 +1,30 @@
+{
+  "name": "auto-push-system-skill",
+  "version": "1.0.2",
+  "description": "Fully automated workflow for AI content monitoring and Feishu push notifications",
+  "main": "scripts/install.sh",
+  "scripts": {
+    "install": "bash scripts/install.sh",
+    "configure": "bash scripts/configure.sh",
+    "check": "bash scripts/check-content.sh",
+    "push": "bash scripts/push-content.sh",
+    "status": "bash scripts/status.sh",
+    "health": "bash scripts/health-check.sh"
+  },
+  "keywords": [
+    "automation",
+    "ai",
+    "feishu",
+    "content",
+    "workflow",
+    "push",
+    "notification"
+  ],
+  "author": "卢羽驳",
+  "license": "MIT",
+  "dependencies": {},
+  "openclaw": {
+    "type": "skill",
+    "category": "automation"
+  }
+}

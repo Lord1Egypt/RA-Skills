@@ -1,0 +1,107 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call 2 search versions for Toutiao App Keyword Search through JustOneAPI with keyword.",
+  "displayName": "Toutiao Search",
+  "endpointPath": "search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Toutiao app Keyword Search data, including matching articles, videos, and authors, for topic discovery and monitoring.",
+      "method": "GET",
+      "operationId": "searchToutiaoV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required to access the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword or query.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "",
+          "description": "Search session ID for consistent pagination (not required for the first page).",
+          "enumValues": [],
+          "location": "query",
+          "name": "searchId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/toutiao/search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "App Keyword Search",
+      "tags": [
+        "Toutiao"
+      ]
+    },
+    {
+      "description": "Get Toutiao web Keyword Search data, including this is the PC version of the search API. Note that it currently only supports retrieving the first page of results, for first-page discovery of articles, videos, and authors for trend research and monitoring.",
+      "method": "GET",
+      "operationId": "searchV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required to access the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword or query.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/toutiao/search/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Web Keyword Search",
+      "tags": [
+        "Toutiao"
+      ]
+    }
+  ],
+  "platformKey": "toutiao",
+  "primaryTag": "Toutiao",
+  "skillName": "justoneapi_toutiao_search",
+  "skillType": "interface",
+  "slug": "justoneapi-toutiao-search",
+  "sourceTitle": "OpenAPI definition"
+}

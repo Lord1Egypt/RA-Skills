@@ -1,35 +1,40 @@
----
-name: "Macro-Driver-Pro: 宏观晴雨表"
-description: "实时获取美元指数和十年期美债收益率数据，支持高确定性宏观资产定价与投资决策。"
-category: "data-science"
-source: "ClawHub"
-tags: [DXY, Data, Finance, Macro, Web3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/macro-driver-pro"
-sourceUrl: "https://clawhub.ai/skills/macro-driver-pro"
----
+# \# Macro-Driver-Pro: 宏观资产定价助手
 
-# Macro-Driver-Pro: 宏观晴雨表
+# 
 
-> 实时获取美元指数和十年期美债收益率数据，支持高确定性宏观资产定价与投资决策。
+# 精准捕捉全球流动性脉搏，为高确定性创新投资提供数据锚点。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/macro-driver-pro`
-- **Source URL:** [https://clawhub.ai/skills/macro-driver-pro](https://clawhub.ai/skills/macro-driver-pro)
+# 
 
-## Overview
+# \## 🛠️ 技术架构说明
 
+# 本技能采用 \*\*Vercel Serverless\*\* 架构部署。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/macro-driver-pro
-```
+# \* \*\*数据来源\*\*：通过官方 `yfinance` 库直接调取雅虎财经公开数据。
+
+# \* \*\*数据处理\*\*：由部署在 `macro-driver-pro.vercel.app` 的后端进行合规性解析与缓存优化，确保响应速度并防止频繁请求被拦截。
+
+# 
+
+# \## 💰 计费与支付协议
+
+# \* \*\*单次定价\*\*：0.001 USD
+
+# \* \*\*支付机制\*\*：本技能深度集成 \*\*SkillPay 协议\*\*。
+
+# \* \*\*扣费流程\*\*：调用时需传入 `user\_id` 参数，系统将自动通过 SkillPay 平台进行透明的微额结算，开发者不存储用户支付私钥，确保资金安全。
+
+# 
+
+# \## 📊 核心功能
+
+# \* \*\*美元指数 (DXY)\*\*：洞察全球资金的避险情绪与流动性潮汐。
+
+# \* \*\*十年期美债收益率 (US10Y)\*\*：锚定全球资产的无风险利率与定价基准。
+
+# 
+
+# \## 🚀 适用场景
+
+# 自动交易策略前置校验、WeChat 投研文章数据抓取、AI Agent 宏观看板自动更新。
+

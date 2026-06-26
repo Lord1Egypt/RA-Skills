@@ -1,0 +1,12 @@
+{
+  "channel": "#planning",
+  "channel_id": "C02DEF456",
+  "messages": [
+    {
+      "user": "team_member",
+      "text": "Can you review the action items from today's standup? Action required by EOD.",
+      "ts": "1716286800.000000"
+    }
+  ],
+  "count": 1
+}

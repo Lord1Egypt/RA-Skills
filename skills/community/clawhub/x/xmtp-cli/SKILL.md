@@ -1,35 +1,68 @@
 ---
-name: "XMTP CLI"
-description: "Run and script the XMTP CLI for testing, debugging, and interacting with XMTP conversations, groups, and messages. Use when the user needs init, send, list, groups, debug, sync, permissions, or content commands from the CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xmtp-cli"
-sourceUrl: "https://clawhub.ai/skills/xmtp-cli"
+name: xmtp-cli
+description: >
+  Run and script the XMTP CLI for testing, debugging, and interacting with XMTP conversations, groups, and messages.
+  Use when the user needs init, send, list, groups, debug, sync, permissions, or content commands from the CLI.
+license: MIT
+metadata:
+  author: xmtp
+  version: "1.0.0"
 ---
 
 # XMTP CLI
 
-> Run and script the XMTP CLI for testing, debugging, and interacting with XMTP conversations, groups, and messages. Use when the user needs init, send, list, groups, debug, sync, permissions, or content commands from the CLI.
+Use the `xmtp` command to test, debug, and interact with XMTP conversations, groups, and messages from the command line. This skill is the entry point; use the sub-skills below for specific CLI tasks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xmtp-cli`
-- **Source URL:** [https://clawhub.ai/skills/xmtp-cli](https://clawhub.ai/skills/xmtp-cli)
+## When to apply
 
-## Overview
+- Testing or debugging XMTP from the command line
+- Sending messages or creating and managing groups
+- Listing or finding conversations, members, and messages
+- Syncing conversations and messages
+- Managing group permissions
+- Demonstrating content types (text, markdown, attachment, transaction, deeplink, miniapp)
 
+## Sub-skills
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Sub-skill | Use when |
+|-----------|----------|
+| **setup** | Initialize CLI and configure env (init, env variables) |
+| **groups** | Create DM or group, update group metadata |
+| **send** | Send messages to address or group |
+| **list** | List conversations, members, messages; find by address or inbox |
+| **debug** | Get info, resolve address, inspect inbox |
+| **sync** | Sync conversations or sync all |
+| **permissions** | List/info group permissions, update permissions |
+| **content** | Demo text, markdown, attachment, transaction, deeplink, miniapp |
+| **debugging** | Enable CLI debug logging (XMTP_FORCE_DEBUG env) |
+
+## How to use
+
+1. Pick the sub-skill that matches the task (e.g. send message → **send**).
+2. Read that sub-skill’s `SKILL.md` and its `rules/` for step-by-step guidance.
+
+## Install
+
 ```bash
-hermes skills install clawhub/xmtp-cli
+npm install -g @xmtp/cli
+# or
+pnpm add -g @xmtp/cli
+# or
+yarn global add @xmtp/cli
 ```
+
+## Run without install
+
+```bash
+npx @xmtp/cli <command> <arguments>
+# or pnpx / yarn dlx
+```
+
+## Help
+
+```bash
+xmtp --help
+xmtp <command> --help
+```
+
+Full documentation: [docs.xmtp.org](https://docs.xmtp.org)

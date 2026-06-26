@@ -1,0 +1,13 @@
+{
+  "model_name": "chart_detection",
+  "model_path": "data/models/chart_detection.pb",
+  "optimization": {
+    "morphology": true,
+    "morphology_kernel": 3,
+    "morphology_iterations": 2,
+    "threshold": true,
+    "threshold_method": "adaptive",
+    "threshold_block_size": 11,
+    "threshold_c": 2
+  }
+}

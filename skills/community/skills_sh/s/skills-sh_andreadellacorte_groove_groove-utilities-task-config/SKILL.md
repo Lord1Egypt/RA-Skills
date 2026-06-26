@@ -1,35 +1,28 @@
 ---
-name: "groove-utilities-task-config"
-description: "Indexed by skills.sh from andreadellacorte/groove"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andreadellacorte"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-task-config"
-sourceUrl: "https://skills.sh/andreadellacorte/groove/groove-utilities-task-config"
+name: groove-utilities-task-config
+description: "Configure task backend settings interactively."
+license: MIT
+allowed-tools: Read Write Edit Glob Grep Bash(git:*) Bash(beans:*) Bash(gh:*) Bash(linear:*) Bash(npx:*) AskUserQuestion
+metadata:
+  author: andreadellacorte
 ---
 
 # groove-utilities-task-config
 
-> Indexed by skills.sh from andreadellacorte/groove
+## Outcome
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andreadellacorte
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-task-config`
-- **Source URL:** [https://skills.sh/andreadellacorte/groove/groove-utilities-task-config](https://skills.sh/andreadellacorte/groove/groove-utilities-task-config)
+The current task backend configuration is shown to the user, or updated based on provided arguments. After update, user is prompted to run `/groove-utilities-task-install` if the backend changed.
 
-## Overview
+## Acceptance Criteria
 
+- Current `tasks.backend` value is displayed with no arguments
+- Backend is updated in `.groove/index.md` frontmatter when new value provided
+- User is reminded to run `/groove-utilities-task-install` if backend changed
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-task-config
-```
+## Constraints
+
+- Read and write `.groove/index.md` frontmatter `tasks.backend` key only
+- Valid values: `beans`, `linear`, `github`, `none`
+- Reject unknown backend values with a helpful error listing valid options
+- If `.groove/index.md` does not exist, create from `skills/groove/templates/index.md` with defaults
+- Do not modify any other keys in `.groove/index.md`

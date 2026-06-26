@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="DaVinci Auto Editor icon">
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <circle cx="64" cy="64" r="34" fill="none" stroke="#d1fae5" stroke-width="10"/>
+  <path d="M64 30l18 34H46zm18 34l-18 34-18-34z" fill="#22d3ee"/>
+  <circle cx="64" cy="64" r="10" fill="#f97316"/>
+</svg>

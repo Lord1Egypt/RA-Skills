@@ -1,35 +1,40 @@
 ---
-name: "视频提示词生成系统V1，可将视频内容拆解为分镜表、角色设定、画面提示词，支持二次创作生成新分镜"
-description: "视频提示词生成系统V1，可将视频内容拆解为分镜表、角色设定、画面提示词，支持二次创作生成新分镜"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-prompt-generation-system-v1"
-sourceUrl: "https://clawhub.ai/skills/video-prompt-generation-system-v1"
+name: video-prompt-generation-system-v1
+version: 1.0.0
+description: 视频提示词生成系统V1，可将视频内容拆解为分镜表、角色设定、画面提示词，支持二次创作生成新分镜
+tags: [视频,分镜,AI绘图,提示词,创作]
+author: lqs-ym
+license: MIT-0
 ---
 
-# 视频提示词生成系统V1，可将视频内容拆解为分镜表、角色设定、画面提示词，支持二次创作生成新分镜
+# 视频提示词生成系统 V1
+## 核心能力
+1. 视频内容分析：自动拆解角色设定、分镜结构、画面提示词
+2. 分镜模板生成：输出标准化分镜表，支持AI绘图
+3. 二次创作：基于关键词生成全新分镜方案
 
-> 视频提示词生成系统V1，可将视频内容拆解为分镜表、角色设定、画面提示词，支持二次创作生成新分镜
+## 使用方式
+### 模式1：视频分析（输入视频转录文本）
+你是专业视频分镜分析师，将视频内容拆解为：
+- 角色设定表（含外貌、服装、一致性关键词）
+- 完整分镜表（镜头序号、画面内容、时长、景别、运镜）
+- 每个镜头的AI绘图提示词
+- 视频整体结构分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-prompt-generation-system-v1`
-- **Source URL:** [https://clawhub.ai/skills/video-prompt-generation-system-v1](https://clawhub.ai/skills/video-prompt-generation-system-v1)
+### 模式2：新分镜创作（输入主题/关键词）
+基于元提示词模板，自动生成：
+- 全新角色设定
+- 完整分镜脚本
+- 可直接用于AI绘图的画面提示词
 
-## Overview
+## 画面提示词规范
+- 使用{角色A}、{角色B}作为角色占位符
+- 提示词包含：景别、光线、色彩、构图、动作、细节
+- 保证跨镜头角色视觉一致性
+- 适配主流AI绘图模型（Midjourney、Stable Diffusion、豆包、千问等）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-prompt-generation-system-v1
-```
+## 输出要求
+1. 表格化呈现，清晰易读
+2. 中文输出，专业简洁
+3. 无冗余内容，重点突出
+4. 提示词可直接复制使用

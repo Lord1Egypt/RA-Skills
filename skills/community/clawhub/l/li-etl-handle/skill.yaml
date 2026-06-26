@@ -1,0 +1,64 @@
+name: li-etl-handle
+version: 1.0.1
+description: ETL 自动化处理技能 - 读取、写入、清洗、转换、合并 Excel/CSV 文件
+author: 北京老李
+license: MIT
+
+descriptions:
+  zh: ETL 自动化处理技能 - 读取、写入、清洗、转换、合并 Excel/CSV 文件
+  en: ETL Automation Skill - Read, write, clean, transform, and merge Excel/CSV files
+  fr: Compétence d'automatisation ETL - Lire, écrire, nettoyer, transformer et fusionner des fichiers Excel/CSV
+  de: ETL-Automatisierungsfähigkeit - Lesen, Schreiben, Bereinigen, Transformieren und Zusammenführen von Excel/CSV-Dateien
+  ja: ETL 自動化スキル - Excel/CSV ファイルの読み取り、書き込み、クリーニング、変換、マージ
+
+keywords:
+  - excel
+  - etl
+  - csv
+  - 数据处理
+  - office automation
+
+keywords:
+  zh:
+    - excel
+    - etl
+    - csv
+    - 数据处理
+    - 办公自动化
+  en:
+    - excel
+    - etl
+    - csv
+    - data processing
+    - office automation
+  fr:
+    - excel
+    - etl
+    - csv
+    - traitement de données
+    - automatisation de bureau
+  de:
+    - excel
+    - etl
+    - csv
+    - datenverarbeitung
+    - büroautomatisierung
+
+main: index.js
+repository: https://github.com/beijing-laoli/li-etl-handle
+homepage: https://clawhub.com/skills/li-etl-handle
+bugs: https://github.com/beijing-laoli/li-etl-handle/issues
+
+engines:
+  node: '>=14.0.0'
+
+dependencies:
+  xlsx: ^0.18.5
+  csv-parser: ^3.0.0
+  csv-stringify: ^6.4.0
+
+security:
+  note: |
+    - executeScript allows custom JavaScript execution - use with trusted code only
+    - xlsx package has known vulnerability (GHSA-4r6h-8v6p-xvw6) - only process trusted files
+    - See SECURITY_AUDIT.md for details

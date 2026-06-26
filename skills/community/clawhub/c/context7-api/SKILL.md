@@ -1,35 +1,61 @@
 ---
-name: "Context7 API Documentation Fetcher"
-description: "Fetch up-to-date library documentation via Context7 API. Use PROACTIVELY when:"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context7-api"
-sourceUrl: "https://clawhub.ai/skills/context7-api"
+name: context7
+description: |
+  Fetch up-to-date library documentation via Context7 API. Use PROACTIVELY when:
+  (1) Working with ANY external library (React, Next.js, Supabase, etc.)
+  (2) User asks about library APIs, patterns, or best practices
+  (3) Implementing features that rely on third-party packages
+  (4) Debugging library-specific issues
+  (5) Need current documentation beyond training data cutoff
+  Always prefer this over guessing library APIs or using outdated knowledge.
 ---
 
-# Context7 API Documentation Fetcher
+# Context7 Documentation Fetcher
 
-> Fetch up-to-date library documentation via Context7 API. Use PROACTIVELY when:
+Retrieve current library documentation via Context7 API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context7-api`
-- **Source URL:** [https://clawhub.ai/skills/context7-api](https://clawhub.ai/skills/context7-api)
+## Workflow
 
-## Overview
+### 1. Search for the library
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/context7-api
+python3 ~/.claude/skills/context7/scripts/context7.py search "<library-name>"
 ```
+
+Example:
+```bash
+python3 ~/.claude/skills/context7/scripts/context7.py search "next.js"
+```
+
+Returns library metadata including the `id` field needed for step 2.
+
+### 2. Fetch documentation context
+
+```bash
+python3 ~/.claude/skills/context7/scripts/context7.py context "<library-id>" "<query>"
+```
+
+Example:
+```bash
+python3 ~/.claude/skills/context7/scripts/context7.py context "/vercel/next.js" "app router middleware"
+```
+
+Options:
+- `--type txt|md` - Output format (default: txt)
+- `--tokens N` - Limit response tokens
+
+## Quick Reference
+
+| Task | Command |
+|------|---------|
+| Find React docs | `search "react"` |
+| Get React hooks info | `context "/facebook/react" "useEffect cleanup"` |
+| Find Supabase | `search "supabase"` |
+| Get Supabase auth | `context "/supabase/supabase" "authentication row level security"` |
+
+## When to Use
+
+- Before implementing any library-dependent feature
+- When unsure about current API signatures
+- For library version-specific behavior
+- To verify best practices and patterns

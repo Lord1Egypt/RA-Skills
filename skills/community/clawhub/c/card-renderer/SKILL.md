@@ -1,35 +1,53 @@
 ---
-name: "小红书卡片生成器"
-description: "为小红书文案生成不同风格的知识卡片附图（如 Mac Pro、赛博朋克、包豪斯风）。当用户需要将 Markdown 文案渲染成美观的图片卡片时使用。支持自动分段渲染封面和详情页。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/card-renderer"
-sourceUrl: "https://clawhub.ai/skills/card-renderer"
+name: card-renderer
+description: 为小红书文案生成不同风格的知识卡片附图（如 Mac Pro、赛博朋克、包豪斯风）。当用户需要将 Markdown 文案渲染成美观的图片卡片时使用。支持自动分段渲染封面和详情页。
 ---
 
-# 小红书卡片生成器
+# Card Renderer
 
-> 为小红书文案生成不同风格的知识卡片附图（如 Mac Pro、赛博朋克、包豪斯风）。当用户需要将 Markdown 文案渲染成美观的图片卡片时使用。支持自动分段渲染封面和详情页。
+本技能提供多种视觉风格的脚本，用于将文案正文渲染为 3:4 比例的小红书卡片。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/card-renderer`
-- **Source URL:** [https://clawhub.ai/skills/card-renderer](https://clawhub.ai/skills/card-renderer)
+## 可用风格
 
-## Overview
+目前支持以下风格脚本，存放在 `scripts/` 目录下：
 
+- **Mac Pro 极客风 (`render_mac_pro_card.py`)**: 模拟 macOS 窗口、深色背景、极客代码高亮感。适合技术干货、开发实战。
+- **赛博朋克风 (`render_cyber_card.py`)**: 霓虹粉青配色、格栅背景、故障艺术感。适合硬核趋势、AI 科技。
+- **包豪斯极简风 (`render_bauhaus_card.py`)**: 经典红蓝黄撞色、不对称布局、粗线条。适合设计美学、结构化知识。
+- **复古羊皮纸风 (`render_vintage_card.py`)**: 温暖的纸张质感、打字机字体、典雅的边框。适合情感故事、历史回溯。
+- **梦幻毛玻璃风 (`render_dreamy_card.py`)**: 柔和的渐变背景、毛玻璃质感、优雅的排版。适合生活方式、创意灵感。
+- **VS Code 极客风 (`render_vscode_card.py`)**: 模拟 VS Code 编辑器界面、带侧边栏和行号、代码注释风格标题。适合技术教程、代码实战。
+- **拍立得简约风 (`render_polaroid_card.py`)**: 经典的拍立得相框、底部留白手写感、简约大方。适合日常分享、感性随笔。
+- **现代杂志风 (`render_magazine_card.py`)**: 粗犷的非对称排版、超大装饰文字、瑞士平面设计感。适合高端访谈、深度解析。
+- **极简网格风 (`render_minimal_grid_card.py`)**: 干净的白底灰点背景、精确的文字对齐、带标签装饰。适合科普干货、学术总结。
+- **拼色形状风 (`render_split_color_card.py`)**: 柔和的浅色几何图形叠加、超大数字背景。适合系列教程、分步骤教学。
+- **优雅框线风 (`render_framed_minimal_card.py`)**: 精致的细框线设计、中心对齐布局、克制且高级。适合名言金句、深度观点。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+所有脚本的调用参数一致：
+
 ```bash
-hermes skills install clawhub/card-renderer
+python3 {baseDir}/scripts/<script_name>.py "标题" "副标题" "文案路径" "输出目录"
 ```
+
+### 参数说明
+
+1. **标题**: 卡片封面的主标题。
+2. **副标题**: 封面主标题下方的装饰性小字。
+3. **文案路径**: 指向包含正文的 `.md` 或 `.txt` 文件。脚本会自动过滤正文并进行分段渲染。
+4. **输出目录**: 图片生成的存放路径。脚本会自动生成 `*_cover.png` 和 `*_detail_N.png`。
+
+## 开发新风格
+
+如果需要添加新风格，请参考现有的 Python 脚本（基于 PIL 库）。每个脚本应包含：
+- `strip_emojis`: 清理不支持的字符。
+- `render_cover`: 渲染封面。
+- `render_detail`: 渲染详情页。
+- `paginate_content`: 处理长文本的分页逻辑。
+
+## 注意事项
+
+- 脚本依赖 `Pillow` 库和 macOS 系统自带字体（如 `STHeiti`、`Monaco`）。
+- 生成图片比例固定为 1080x1440 (3:4)。
+- 每个脚本输出时会打印 `MEDIA:<path>` 以便在聊天界面预览。

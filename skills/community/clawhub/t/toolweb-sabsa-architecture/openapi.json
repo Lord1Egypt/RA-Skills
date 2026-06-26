@@ -1,0 +1,261 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SABSA Security Architecture Assessment",
+    "description": "Professional Enterprise Security Architecture Maturity Analysis Platform",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Health check endpoint",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sabsa/assessment": {
+      "post": {
+        "summary": "Generate Assessment",
+        "description": "Generate comprehensive SABSA security architecture assessment",
+        "operationId": "generate_assessment_api_sabsa_assessment_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sabsa/framework": {
+      "get": {
+        "summary": "Get Framework Info",
+        "description": "Get SABSA framework information",
+        "operationId": "get_framework_info_api_sabsa_framework_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sabsa/maturity-levels": {
+      "get": {
+        "summary": "Get Maturity Levels",
+        "description": "Get maturity level definitions",
+        "operationId": "get_maturity_levels_api_sabsa_maturity_levels_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentData": {
+        "properties": {
+          "layers": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/LayerData"
+            },
+            "type": "object",
+            "title": "Layers"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "layers",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentData"
+      },
+      "AssessmentRequest": {
+        "properties": {
+          "assessmentData": {
+            "$ref": "#/components/schemas/AssessmentData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessmentData",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LayerData": {
+        "properties": {
+          "assets": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Assets",
+            "default": []
+          },
+          "motivation": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Motivation",
+            "default": []
+          },
+          "process": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Process",
+            "default": []
+          },
+          "people": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "People",
+            "default": []
+          },
+          "location": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Location",
+            "default": []
+          },
+          "time": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Time",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "LayerData"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

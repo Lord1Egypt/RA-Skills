@@ -1,35 +1,60 @@
 ---
-name: "resume-optimizers"
-description: "评估并优化简历内容，输出精美的 HTML 修改建议报告。当用户提到"修改简历"、"优化简历"、"简历评估"时使用。支持前端和后端岗位，Claude 以前端/后端架构师视角进行评估，让用户清楚知道哪些部分需要优化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-optimizer-pro"
-sourceUrl: "https://clawhub.ai/skills/resume-optimizer-pro"
+name: resume-optimizer
+description: 评估并优化简历内容，输出精美的 HTML 修改建议报告。当用户提到"修改简历"、"优化简历"、"简历评估"时使用。支持前端和后端岗位，Claude 以前端/后端架构师视角进行评估，让用户清楚知道哪些部分需要优化。
 ---
 
-# resume-optimizers
+# 简历优化助手
 
-> 评估并优化简历内容，输出精美的 HTML 修改建议报告。当用户提到"修改简历"、"优化简历"、"简历评估"时使用。支持前端和后端岗位，Claude 以前端/后端架构师视角进行评估，让用户清楚知道哪些部分需要优化。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-optimizer-pro`
-- **Source URL:** [https://clawhub.ai/skills/resume-optimizer-pro](https://clawhub.ai/skills/resume-optimizer-pro)
+此 Skill 帮助用户评估和优化 PDF 简历，生成精美的 HTML 修改建议报告。
 
-## Overview
+- 输入：用户上传 PDF 简历文件 + 简历类型（前端/后端）
+- 输出：精美的 HTML 报告（直接浏览器打开即可查看）
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-optimizer-pro
-```
+用户提供：
+1. PDF 简历文件
+2. 简历类型：前端 / 后端
+
+## 工作流程
+
+1. 使用 pdfplumber 提取 PDF 简历中的文本内容
+2. 将内容发送给 Claude 进行评估（根据前端/后端岗位，模拟架构师视角）
+3. 生成精美的 HTML 报告，包含详细的修改建议
+4. 用户直接用浏览器打开 HTML 文件查看
+
+## 评估维度
+
+### 前端简历评估要点（详见 references/frontend-evaluation.md）
+- 技术深度：技术栈深度和广度、项目复杂度、解决方案专业性
+- 业务价值：项目成果量化程度、对业务影响程度
+- 表达专业度：描述清晰度、用词准确性、逻辑连贯性
+- 整体结构：模块完整性、排版美观度、信息有序性
+- 亮点突出度：是否有吸睛亮点、亮点是否具体可衡量
+
+### 后端简历评估要点（详见 references/backend-evaluation.md）
+- 系统设计能力：架构设计深度、系统复杂度、解决方案专业性
+- 高并发处理经验：大流量处理能力、性能优化成果、稳定性保障能力
+- 业务价值：项目成果量化程度、对业务影响程度
+- 表达专业度：描述清晰度、用词准确性、逻辑连贯性
+- 整体结构：模块完整性、排版美观度、信息有序性
+
+## 输出格式
+
+HTML 报告包含：
+- 整体评分（满分100）及评分等级
+- 评分明细（格式、内容、技能栈等分项分数）
+- 格式评估（优点 + 问题）
+- 内容评估（优点 + 问题）
+- 技能栈分析
+- 项目亮点与优化建议（每个项目包含：原始描述、亮点提炼、解决方案、价值体现、优化建议）
+- 整体优点与不足
+- 整体优化建议
+
+## 注意事项
+
+- HTML 报告使用现代精美的设计
+- 报告可直接在浏览器中打开
+- 评估结果基于 Claude API 返回，可能因模型版本不同略有差异

@@ -1,0 +1,67 @@
+{
+  "name": "ai-agent-lending",
+  "version": "2.0.0",
+  "description": "Wallet-based credit system for AI agents. Borrow USDC without collateral - build reputation through successful repayments.",
+  "homepage": "https://yoursite.com",
+  "author": "Your Name",
+  "tags": ["lending", "defi", "credit", "usdc", "somnia"],
+  "category": "finance",
+  "env": {
+    "LENDING_API_URL": {
+      "description": "Base API URL for the lending protocol",
+      "default": "https://yoursite.com/api",
+      "required": true
+    }
+  },
+  "endpoints": {
+    "walletStats": {
+      "method": "GET",
+      "path": "/wallet-stats",
+      "description": "Get credit stats for a wallet address",
+      "params": {
+        "wallet": "string (wallet address)"
+      }
+    },
+    "leaderboard": {
+      "method": "GET",
+      "path": "/leaderboard",
+      "description": "View top borrowers by credit score",
+      "params": {
+        "sortBy": "creditScore | successRate | repayments"
+      }
+    }
+  },
+  "contracts": {
+    "network": "Somnia Testnet",
+    "chainId": 50312,
+    "rpc": "https://dream-rpc.somnia.network",
+    "addresses": {
+      "USDC": "0xa5906CF6b40842aE6CdDcB051C3dd388ddD9535f",
+      "BotRegistry": "0x8eA60104DEB3229a05534E4629C0C08Deac39609",
+      "PermissionsRegistry": "0x02a7EE2fD25A8987a3e9276530c830735e0C5e8C",
+      "LendingPool": "0x11f49c44eA263FC886B3C011DC171ffE479A48BF"
+    }
+  },
+  "features": [
+    "Wallet-based credit scoring",
+    "No collateral required",
+    "Progressive tier system (NEW → GOLD)",
+    "On-chain repayment tracking",
+    "Dynamic credit limits",
+    "7-day loan duration",
+    "~10% APR interest rate"
+  ],
+  "creditTiers": [
+    {"tier": "NEW", "repays": "0-49", "maxBorrow": 10},
+    {"tier": "IRON", "repays": "50-99", "maxBorrow": 50},
+    {"tier": "BRONZE", "repays": "100-199", "maxBorrow": 150},
+    {"tier": "SILVER", "repays": "200-499", "maxBorrow": 350},
+    {"tier": "GOLD", "repays": "500+", "maxBorrow": 750}
+  ],
+  "links": {
+    "docs": "https://yoursite.com/agent",
+    "website": "https://yoursite.com",
+    "leaderboard": "https://yoursite.com/leaderboard",
+    "faq": "https://yoursite.com/faq"
+  }
+}

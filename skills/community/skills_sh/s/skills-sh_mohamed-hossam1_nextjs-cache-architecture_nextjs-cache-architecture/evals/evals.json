@@ -1,0 +1,40 @@
+{
+  "skill_name": "nextjs-cache-architecture",
+  "evals": [
+    {
+      "id": 1,
+      "name": "greenfield-posts-with-comments",
+      "prompt": "I'm building a blog in Next.js 16 (App Router). I have a `posts` table and a `comments` table — every post has many comments. I need a posts listing page at /posts, a post detail page at /posts/[slug] showing the post and its comments, and a dashboard that lets me create/update/delete posts and approve/delete comments. Set up caching for the whole thing so updates from the dashboard show up immediately on the public pages, but don't refetch on every request. Show me the full file layout.",
+      "expected_output": "Should produce: lib/cache/tags.ts with `posts` and `comments` collection tags (and an entity factory for at least one of them since a single-post update is needed); lib/cache/revalidate.ts with revalidatePostsCache/revalidatePostCache/revalidateCommentsCache; cached fetchers in lib/data/; page components that don't fetch directly; mutations in app/actions/ that delegate to the revalidation utilities. No raw updateTag/revalidateTag outside revalidate.ts. cacheComponents:true in next.config.ts.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "stale-data-debugging",
+      "prompt": "My dashboard creates a new product but the /products listing page still shows the old list until I hard-refresh. Here's my server action:\n\n```ts\n'use server'\nimport { revalidateTag } from 'next/cache'\n\nexport async function createProduct(data: FormData) {\n  await db.products.create({ name: data.get('name') })\n  revalidateTag('products')\n}\n```\n\nAnd here's how I cache the listing:\n\n```ts\nexport async function getProducts() {\n  const res = await fetch(`${BASE_URL}/products`)\n  'use cache'\n  cacheTag('products')\n  return res.json()\n}\n```\n\nWhat's wrong?",
+      "expected_output": "Should identify two bugs: (1) `\"use cache\"` is after the `await fetch` so it's silently ignored — it must be the first statement; (2) `revalidateTag('products')` uses the deprecated single-argument form. Should rewrite both with the centralization architecture (tags.ts + revalidate.ts + updateTag for immediate invalidation), not just patch the inline code.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "migrate-from-unstable-cache",
+      "prompt": "I'm upgrading to Next.js 16. Here's a representative chunk of my data layer using unstable_cache — please convert it to the new directive-based API and centralize the tags properly.\n\n```ts\nimport { unstable_cache } from 'next/cache'\n\nexport const getArticles = unstable_cache(\n  async () => {\n    const res = await fetch(`${BASE_URL}/articles`)\n    return res.json()\n  },\n  ['articles'],\n  { tags: ['articles'], revalidate: 3600 }\n)\n\nexport const getArticleBySlug = unstable_cache(\n  async (slug: string) => {\n    const res = await fetch(`${BASE_URL}/articles/${slug}`)\n    return res.json()\n  },\n  ['article-by-slug'],\n  { tags: ['articles'], revalidate: 3600 }\n)\n```",
+      "expected_output": "Should produce: a lib/cache/tags.ts with an `articles` collection tag (and an entity factory only if a mutation is shown that needs surgical invalidation — none is shown here, so collection-tag-only is correct); rewritten getArticles and getArticleBySlug with the directive at the top of the body, cacheLife('hours'), and cacheTag(CACHE_TAGS.articles); the manual key array dropped (auto-keying covers it); deprecated unstable_cache imports removed.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "search-and-filter-page",
+      "prompt": "I have a /jobs page that filters listings by `?q=` (text search), `?location=`, and `?page=` (pagination). The data comes from a `jobs` table. Set up caching so the same query+location+page combo is cached, but new combos fetch fresh — and make sure the loading skeleton actually shows up when users change the filters via client-side navigation.",
+      "expected_output": "Should produce: a fetcher that takes q/location/page as arguments (auto-keyed per combo) with cacheLife('minutes') and cacheTag(CACHE_TAGS.jobs); a page component that wraps the cached child in `SuspenseOnSearchParams` (not a plain `<Suspense>`); the SuspenseOnSearchParams component itself if not already in the project; explicit reasoning that plain Suspense doesn't re-trigger fallback on searchParams-only changes.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "personalized-content-cookies",
+      "prompt": "On my home page I want a public 'Featured products' section (cached, same for everyone) and a personalized 'Your recent orders' section that reads the userId from a cookie. How do I structure this without breaking the cache for the public part?",
+      "expected_output": "Should produce a page that returns a static shell + two Suspense boundaries; the public boundary contains a cached component reading from getFeaturedProducts(); the personalized boundary contains an outer async component that reads cookies()/userId, then passes userId as a prop to a cached inner component (auto-keyed per user). Should explicitly NOT call cookies() inside a `\"use cache\"` function, and should NOT recommend `\"use cache: private\"` as the default — that's the exception, not the rule.",
+      "files": []
+    }
+  ]
+}

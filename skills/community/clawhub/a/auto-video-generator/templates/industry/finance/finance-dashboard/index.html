@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Dashboard - Finance Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #0e3d8e;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --sidebar-bg: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .bank-logo {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .bank-logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .bank-logo p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+
+        .nav-section {
+            padding: 1.5rem 0;
+        }
+
+        .nav-title {
+            padding: 0 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(26,86,219,0.15);
+            color: white;
+            border-left-color: var(--primary);
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 1.15rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            transition: margin-left 0.3s;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-header h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .page-header p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .notification-btn {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-light);
+            cursor: pointer;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 18px;
+            height: 18px;
+            background: var(--error);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .profile-dropdown:hover {
+            background: var(--bg-light);
+        }
+
+        .avatar-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Dashboard Content */
+        .dashboard {
+            padding: 2rem;
+        }
+
+        /* Account Summary Cards */
+        .account-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .account-card {
+            background: var(--white);
+            padding: 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .account-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #7c3aed);
+        }
+
+        .account-card.checking::before { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+        .account-card.savings::before { background: linear-gradient(90deg, #059669, #10b981); }
+        .account-card.investment::before { background: linear-gradient(90deg, #d97706, #f59e0b); }
+        .account-card.credit::before { background: linear-gradient(90deg, #dc2626, #ef4444); }
+
+        .account-type {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .account-number {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-family: monospace;
+            margin-bottom: 1rem;
+        }
+
+        .account-balance {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .account-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.25rem 0.65rem;
+            border-radius: 12px;
+        }
+
+        .change-positive {
+            color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .change-negative {
+            color: var(--error);
+            background: #fef2f2;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            background: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.65rem;
+        }
+
+        .action-label {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Recent Transactions */
+        .transactions-panel {
+            background: var(--white);
+            padding: 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .panel-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .view-all-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .view-all-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transaction-table th {
+            text-align: left;
+            padding: 0.85rem 1rem;
+            background: var(--bg-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .transaction-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.93rem;
+        }
+
+        .transaction-row:hover {
+            background: var(--bg-light);
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            margin-right: 0.85rem;
+        }
+
+        .icon-income { background: #f0fdf4; }
+        .icon-expense { background: #fef2f2; }
+        .icon-transfer { background: #eff6ff; }
+
+        .amount-positive {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .amount-negative {
+            color: var(--error);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-completed { background: var(--success); }
+        .status-pending { background: var(--warning); }
+
+        /* Charts Section */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: var(--white);
+            padding: 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+        }
+
+        .spending-chart {
+            height: 280px;
+            position: relative;
+            margin-top: 1.5rem;
+            border-left: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .bar-chart-bars {
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            top: 20%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+        }
+
+        .bar {
+            width: 45px;
+            background: linear-gradient(to top, var(--primary), #60a5fa);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .bar:hover {
+            background: linear-gradient(to top, var(--primary-dark), var(--primary));
+        }
+
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .category-breakdown {
+            margin-top: 1.5rem;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .category-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        .category-name {
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .category-amount {
+            font-weight: 600;
+            font-size: 0.93rem;
+        }
+
+        .category-percent {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="bank-logo">
+                <h1>🏦 SecureBank</h1>
+                <p>Digital Banking Platform</p>
+            </div>
+
+            <nav class="nav-section">
+                <div class="nav-title">Main Menu</div>
+                
+                <div class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    Dashboard
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">💳</span>
+                    Accounts
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    Transfers
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">📱</span>
+                    Mobile Pay
+                </div>
+
+                <div class="nav-title" style="margin-top: 1.5rem;">Services</div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">📄</span>
+                    Statements
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">💳</span>
+                    Cards
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    Goals
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    Investments
+                </div>
+
+                <div class="nav-title" style="margin-top: 1.5rem;">Settings</div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    Profile
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">🔒</span>
+                    Security
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-icon">❓</span>
+                    Help & Support
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="page-header">
+                    <h2>Account Overview</h2>
+                    <p>Welcome back, John! Here's your financial summary.</p>
+                </div>
+
+                <div class="user-menu">
+                    <button class="notification-btn">
+                        🔔
+                        <span class="notification-badge">3</span>
+                    </button>
+                    
+                    <div class="profile-dropdown">
+                        <div class="avatar-circle">JD</div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">John Doe</div>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary);">Premium Member</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard">
+                <!-- Account Summary Cards -->
+                <div class="account-summary">
+                    <div class="account-card checking">
+                        <div class="account-type">Checking Account</div>
+                        <div class="account-number">**** **** **** 4829</div>
+                        <div class="account-balance">$24,562.80</div>
+                        <span class="account-change change-positive">
+                            ↑ +$1,234.50 this month
+                        </span>
+                    </div>
+
+                    <div class="account-card savings">
+                        <div class="account-type">High-Yield Savings</div>
+                        <div class="account-number">**** **** **** 7512</div>
+                        <div class="account-balance">$89,234.19</div>
+                        <span class="account-change change-positive">
+                            ↑ +$892.34 this month (4.2% APY)
+                        </span>
+                    </div>
+
+                    <div class="account-card investment">
+                        <div class="account-type">Investment Portfolio</div>
+                        <div class="account-number">**** **** **** 3928</div>
+                        <div class="account-balance">$156,789.00</div>
+                        <span class="account-change change-negative">
+                            ↓ -$2,156.30 (-1.4%)
+                        </span>
+                    </div>
+
+                    <div class="account-card credit">
+                        <div class="account-type">Credit Card</div>
+                        <div class="account-number">**** **** **** 8462</div>
+                        <div class="account-balance">-$3,245.67</div>
+                        <span class="account-change change-negative">
+                            ↑ +$456.23 spending
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <div class="action-card">
+                        <div class="action-icon">💸</div>
+                        <div class="action-label">Send Money</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">📥</div>
+                        <div class="action-label">Deposit</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">💳</div>
+                        <div class="action-label">Pay Bills</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">📊</div>
+                        <div class="action-label">View Reports</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">🎯</div>
+                        <div class="action-label">Set Goals</div>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">🔄</div>
+                        <div class="action-label">Transfer</div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <!-- Spending Chart -->
+                    <div class="chart-card">
+                        <h3 class="panel-title">Monthly Spending Trend</h3>
+                        
+                        <div class="spending-chart">
+                            <div class="bar-chart-bars">
+                                <div class="bar" style="height: 55%;" data-value="$3.2K"></div>
+                                <div class="bar" style="height: 72%;" data-value="$4.1K"></div>
+                                <div class="bar" style="height: 48%;" data-value="$2.8K"></div>
+                                <div class="bar" style="height: 88%;" data-value="$5.0K"></div>
+                                <div class="bar" style="height: 64%;" data-value="$3.7K"></div>
+                                <div class="bar" style="height: 76%;" data-value="$4.3K"></div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-around; margin-top: 1rem; font-size: 0.82rem; color: var(--text-secondary);">
+                            <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+                        </div>
+                    </div>
+
+                    <!-- Category Breakdown -->
+                    <div class="chart-card">
+                        <h3 class="panel-title">Spending by Category</h3>
+                        
+                        <div class="category-breakdown">
+                            <div class="category-item">
+                                <div class="category-info">
+                                    <div class="category-color" style="background: #3b82f6;"></div>
+                                    <span class="category-name">Housing</span>
+                                </div>
+                                <div>
+                                    <span class="category-amount">$2,400</span>
+                                    <span class="category-percent">(38%)</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-info">
+                                    <div class="category-color" style="background: #ef4444;"></div>
+                                    <span class="category-name">Food & Dining</span>
+                                </div>
+                                <div>
+                                    <span class="category-amount">$1,200</span>
+                                    <span class="category-percent">(19%)</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-info">
+                                    <div class="category-color" style="background: #f59e0b;"></div>
+                                    <span class="category-name">Transportation</span>
+                                </div>
+                                <div>
+                                    <span class="category-amount">$850</span>
+                                    <span class="category-percent">(13%)</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-info">
+                                    <div class="category-color" style="background: #10b981;"></div>
+                                    <span class="category-name">Entertainment</span>
+                                </div>
+                                <div>
+                                    <span class="category-amount">$650</span>
+                                    <span class="category-percent">(10%)</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-info">
+                                    <div class="category-color" style="background: #8b5cf6;"></div>
+                                    <span class="category-name">Utilities</span>
+                                </div>
+                                <div>
+                                    <span class="category-amount">$420</span>
+                                    <span class="category-percent">(7%)</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-info">
+                                    <div class="category-color" style="background: #6b7280;"></div>
+                                    <span class="category-name">Other</span>
+                                </div>
+                                <div>
+                                    <span class="category-amount">$830</span>
+                                    <span class="category-percent">(13%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="transactions-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Recent Transactions</h3>
+                        <a href="#" class="view-all-link">View All →</a>
+                    </div>
+
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction</th>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="transaction-row">
+                                <td>
+                                    <span class="transaction-icon icon-income">💰</span>
+                                    <span>Salary Deposit - Acme Corp</span>
+                                </td>
+                                <td>Jan 15, 2024</td>
+                                <td>Income</td>
+                                <td class="amount-positive">+$5,250.00</td>
+                                <td><span class="status-dot status-completed"></span>Completed</td>
+                            </tr>
+
+                            <tr class="transaction-row">
+                                <td>
+                                    <span class="transaction-icon icon-expense">🛒</span>
+                                    <span>Whole Foods Market</span>
+                                </td>
+                                <td>Jan 14, 2024</td>
+                                <td>Groceries</td>
+                                <td class="amount-negative">-$156.42</td>
+                                <td><span class="status-dot status-completed"></span>Completed</td>
+                            </tr>
+
+                            <tr class="transaction-row">
+                                <td>
+                                    <span class="transaction-icon icon-expense">⚡</span>
+                                    <span>Electric Company - Monthly Bill</span>
+                                </td>
+                                <td>Jan 13, 2024</td>
+                                <td>Utilities</td>
+                                <td class="amount-negative">-$124.80</td>
+                                <td><span class="status-dot status-pending"></span>Pending</td>
+                            </tr>
+
+                            <tr class="transaction-row">
+                                <td>
+                                    <span class="transaction-icon icon-transfer">🏦</span>
+                                    <span>Transfer to Savings</span>
+                                </td>
+                                <td>Jan 12, 2024</td>
+                                <td>Transfer</td>
+                                <td class="amount-negative">-$1,000.00</td>
+                                <td><span class="status-dot status-completed"></span>Completed</td>
+                            </tr>
+
+                            <tr class="transaction-row">
+                                <td>
+                                    <span class="transaction-icon icon-expense">☕</span>
+                                    <span>Starbucks Coffee</span>
+                                </td>
+                                <td>Jan 11, 2024</td>
+                                <td>Dining Out</td>
+                                <td class="amount-negative">-$6.45</td>
+                                <td><span class="status-dot status-completed"></span>Completed</td>
+                            </tr>
+
+                            <tr class="transaction-row">
+                                <td>
+                                    <span class="transaction-icon icon-income">💵</span>
+                                    <span>Freelance Payment - Client XYZ</span>
+                                </td>
+                                <td>Jan 10, 2024</td>
+                                <td>Income</td>
+                                <td class="amount-positive">+$1,800.00</td>
+                                <td><span class="status-dot status-completed"></span>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Interactive navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Action cards hover effect with scale
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('.action-icon').style.transform = 'scale(1.1)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('.action-icon').style.transform = '';
+            });
+        });
+
+        // Transaction row highlight on hover
+        document.querySelectorAll('.transaction-row').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.01)';
+                this.style.transition = 'all 0.2s';
+            });
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>

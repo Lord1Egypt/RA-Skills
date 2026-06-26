@@ -1,0 +1,23 @@
+{
+  "name": "apple-design-skill",
+  "version": "1.0.0",
+  "description": "AI Skill for generating Apple-style frontend UI code",
+  "author": "",
+  "license": "MIT",
+  "tags": ["design", "apple", "ui", "frontend", "css"],
+  "category": "design-system",
+  "entry": "prompts/main.md",
+  "files": [
+    "prompts/main.md",
+    "prompts/design-tokens.md",
+    "prompts/typography.md",
+    "prompts/copywriting.md",
+    "prompts/image-curation.md",
+    "prompts/layout-patterns.md"
+  ],
+  "examples": [
+    "examples/product-landing/",
+    "examples/feature-showcase/",
+    "examples/pricing-page/"
+  ]
+}

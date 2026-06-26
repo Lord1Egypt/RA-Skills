@@ -1,0 +1,58 @@
+bundle: game-compare-backends
+bundle_version: 1.1.0
+bundle_date: 2026-03-30
+description: >
+  Run a narrow compare between two or three backend profiles when architecture uncertainty is real. Use carefully, because it usually costs more tokens and time.
+compatibility:
+  designed_for:
+    surfaces:
+      - chat
+      - cli
+      - ide
+    capabilities:
+      - local filesystem access
+      - markdown skill bundles
+      - reusable game-development workflows
+  tested_on:
+    - platform: OpenClaw
+      surface: ClawHub
+      status: pending
+      date: 2026-03-30
+    - platform: Claude Code
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+    - platform: Codex
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+  spec_version: agentskills.io/1.0
+  frontmatter_mode: metadata
+dependencies:
+  []
+files:
+  - path: CHANGELOG.md
+    role: reference
+    version: 1
+    hash: sha256:ba4c6635e5e319602aa8572356197c7c94281e6102b175eb4f2090d6b5a617e5
+    note: Bundle release notes
+  - path: README.md
+    role: reference
+    version: 1
+    hash: sha256:a01ab4187569d98b4b7c8d5f14faa9816243bdc8eb3c7c084a3b493244d42513
+    note: ClawHub-facing usage and context
+  - path: SKILL.md
+    role: skill
+    version: 1
+    hash: sha256:8d12468ba40da4bf3cc314b08f6c1f85ce4e028fc2e004848b65c384dcfa7df4
+    note: Canonical skill definition for this publish bundle
+  - path: examples/usage.md
+    role: reference
+    version: 1
+    hash: sha256:e6c9518f6b1e8a347e1e8cd8744a4b9db91257ee803fd04f82027e168ed3071b
+    note: Referenced support file: examples/usage.md
+  - path: tests/smoke.md
+    role: reference
+    version: 1
+    hash: sha256:4121633c6fcd598b5090def3baf110c738925ec7b3dd908a55649d917db5816a
+    note: Referenced support file: tests/smoke.md

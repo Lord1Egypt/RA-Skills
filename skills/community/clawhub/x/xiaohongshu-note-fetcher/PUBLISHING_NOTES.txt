@@ -1,0 +1,11 @@
+Slug: xiaohongshu-note-fetcher
+Display Name: 小红书笔记抓取与选题助手
+Version: 1.0.0
+Tags: latest,xiaohongshu,content,automation,mindmap
+License: MIT-0
+
+Changelog:
+- 首次发布：支持 TikHub API 抓取小红书搜索数据
+- 支持关键词+页码抓取与结构化输出
+- 支持按点赞阈值筛选并导出 md/csv/json
+- 支持思维导读链接生成

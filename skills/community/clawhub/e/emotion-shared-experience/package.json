@@ -1,0 +1,36 @@
+{
+  "name": "emotion-shared-experience",
+  "version": "5.0.0",
+  "description": "拥有永久记忆、跨Agent共享经验的情绪AI，像真朋友一样陪伴",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "emotion",
+    "ai",
+    "companion",
+    "memory",
+    "shared-experience"
+  ],
+  "author": "Emotion Team",
+  "license": "MIT",
+  "dependencies": {},
+  "openclaw": {
+    "skill": true,
+    "category": "AI助手",
+    "icon": "🧠",
+    "trigger": {
+      "auto_start": true,
+      "always_on": true,
+      "no_prefix_needed": true
+    },
+    "capabilities": {
+      "model": true,
+      "memory": true,
+      "long_memory": true,
+      "private_memory": true,
+      "tools": ["tavily_search", "calculator"]
+    }
+  }
+}

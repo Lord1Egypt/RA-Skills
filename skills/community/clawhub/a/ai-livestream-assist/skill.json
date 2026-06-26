@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-live-streaming-assistant",
+  "version": "1.0.0",
+  "description": "AI 直播助手 - 弹幕管理、数据分析",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "livestream", "douyin", "chinese"],
+  "category": "marketing",
+  "license": "MIT"
+}

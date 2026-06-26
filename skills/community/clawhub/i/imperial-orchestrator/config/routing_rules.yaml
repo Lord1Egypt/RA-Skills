@@ -1,0 +1,48 @@
+rules:
+  # ⚠️ 规则按优先级排序，匹配第一个命中的规则即停止
+  # 原则：更具体的规则放前面，更泛化的规则放后面
+
+  - name: ops-infra
+    # 放在 coding 之前，避免 "nginx" 被 "gin" 误匹配
+    any_keywords: [docker, k8s, kubernetes, deploy, systemd, linux, ceph, nftables, iptables, openresty, nginx, terraform, ansible, cloudflare, dns, ssl, server, backup, pipeline, 部署, 运维, 服务器, 容器]
+    lead_role: ministry-ops
+    review_roles: [censor-review]
+    mode: plan_then_execute
+
+  - name: security
+    # 避免 "安全" 单独出现误匹配 "并发安全" "类型安全" 等开发术语
+    any_keywords: [security, harden, threat, cve, vuln, abuse, firewall, encryption, credential, 2fa, 注入, injection, 漏洞, 安全审计, 安全漏洞, 安全审查, 加固, 威胁, xss, csrf, 越权, 提权, 渗透]
+    lead_role: ministry-security
+    review_roles: [censor-review]
+    mode: multi_agent
+
+  - name: legal
+    any_keywords: [合同, 条款, 合规, policy, privacy, terms, agreement, compliance, contract, license, gdpr, 隐私, 协议, 法律, 法务]
+    lead_role: ministry-legal
+    review_roles: [censor-review]
+    mode: plan_then_execute
+
+  - name: coding-debug
+    # 放在 finance 之前，避免 "cac" 匹配 "cache"
+    any_keywords: [bug, debug, fix, api, golang, rust, swift, flutter, gorm, wireguard, refactor, compile, typescript, python, react, vue, nextjs, java, 代码, 函数, 接口, 重构, 编译, 调试, 写一个, 实现, cache, lru, 算法, 排序, 并发]
+    lead_role: ministry-coding
+    review_roles: [censor-review]
+    mode: plan_then_execute
+
+  - name: finance
+    # 删除过短易冲突的: cac(→cache), cost(→too generic) — 改用中文或全称
+    any_keywords: [pricing, margin, 收益, 年化, apy, settlement, refund, commission, budget, revenue, profit, 毛利, 定价, 财务, 利润, 回本, 客户获取成本, 生命周期价值]
+    lead_role: ministry-finance
+    review_roles: [censor-review]
+    mode: direct
+
+  - name: writing-translation
+    any_keywords: [文案, banner, title, slogan, readme, docs, document, copywriting, marketing, blog, article, translate, 翻译, translation, content, seo, 写作, 文章, 摘要, 标语, 简介, 博客]
+    lead_role: ministry-writing
+    review_roles: []
+    mode: direct
+
+default:
+  lead_role: cabinet-planner
+  review_roles: [censor-review]
+  mode: direct

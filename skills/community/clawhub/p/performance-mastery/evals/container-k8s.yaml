@@ -1,0 +1,60 @@
+# Evaluation: 容器与 K8s 性能场景
+# 验证 AI 是否能正确应用容器/K8s 性能调优知识
+
+tests:
+- name: "k8s-cpu-throttling"
+  input: "我的 K8s Pod 延迟很不稳定，kubectl top 显示 CPU 使用率不高，但业务反馈很慢，可能是什么原因？"
+  expected_keywords:
+    - "throttling"
+    - "cpu.stat"
+    - "nr_throttled"
+    - "cfs_quota"
+    - "limit"
+  expected_not:
+    - "扩容节点"
+
+- name: "container-oom-kill"
+  input: "Pod 频繁被 OOM Kill 重启，但应用日志没有报错，怎么排查？"
+  expected_keywords:
+    - "memory.events"
+    - "memory.max"
+    - "dmesg"
+    - "oom"
+    - "cgroup"
+  expected_not:
+    - "重启服务器"
+
+- name: "k8s-resource-config"
+  input: "K8s 中 requests 和 limits 应该怎么设置？有什么最佳实践？"
+  expected_keywords:
+    - "requests"
+    - "limits"
+    - "QoS"
+    - "Guaranteed"
+    - "Burstable"
+
+- name: "go-container-oom"
+  input: "Go 服务跑在容器里，GOMAXPROCS 默认值不对导致性能差，怎么解决？"
+  expected_keywords:
+    - "GOMAXPROCS"
+    - "automaxprocs"
+    - "cgroup"
+    - "CPU 配额"
+
+- name: "java-container-memory"
+  input: "Java 应用在容器中经常 OOM，但 -Xmx 设的比 memory limit 小很多，为什么？"
+  expected_keywords:
+    - "堆外内存"
+    - "Metaspace"
+    - "DirectByteBuffer"
+    - "MaxRAMPercentage"
+    - "UseContainerSupport"
+
+- name: "cgroup-v1-v2"
+  input: "怎么判断容器用的是 cgroup v1 还是 v2？两者有什么区别？"
+  expected_keywords:
+    - "stat -fc"
+    - "cgroup2fs"
+    - "tmpfs"
+    - "cpu.max"
+    - "cpu.cfs_quota_us"

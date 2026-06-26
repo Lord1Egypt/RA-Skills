@@ -1,0 +1,53 @@
+# neuro-scalp 收益配置
+# 参考建议策略：基础版免费 + 高级版付费
+
+pricing:
+  # 基础版（免费）
+  free:
+    enabled: true
+    price: 0
+    currency: USD
+    features:
+      - 测试网模式
+      - 基础策略
+      - 社区支持
+    limits:
+      max_trades_per_day: 10
+      max_position_size: 100 USDT
+
+  # 高级版（订阅制）
+  premium:
+    enabled: true
+    price: 9.99
+    currency: USD
+    billing: monthly  # monthly/yearly
+    features:
+      - 实盘交易
+      - 高级 AI 策略
+      - 优先支持
+      - 回测功能
+      - 监控面板
+    limits:
+      max_trades_per_day: unlimited
+      max_position_size: unlimited
+
+  # 终身版（一次性购买）
+  lifetime:
+    enabled: true
+    price: 49.99
+    currency: USD
+    billing: onetime
+    features:
+      - 永久使用高级版
+      - 所有未来更新
+      - 1 对 1 支持
+
+# 收益分成
+revenue_split:
+  developer: 75  # 开发者获得 75%
+  platform: 25   # 平台抽成 25%
+
+# 推广策略
+promotion:
+  early_bird_discount: 20  # 早鸟价 8 折
+  referral_bonus: 10       # 推荐奖励 10%

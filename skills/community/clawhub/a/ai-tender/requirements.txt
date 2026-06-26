@@ -1,0 +1,16 @@
+# 招标文件解析工具依赖
+
+# PDF 处理
+pypdf>=3.0.0
+
+# LLM API 调用
+openai>=1.0.0
+
+# 其他工具
+python-dotenv>=1.0.0
+
+# 结果导出与预�?pandas>=2.0.0
+openpyxl>=3.1.0
+weasyprint>=60.0
+reportlab>=4.0.0
+qrcode>=7.4

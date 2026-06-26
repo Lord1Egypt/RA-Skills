@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "base_url": "http://opapi.test.51baiwang.com/router/rest",
+    "method": "baiwang.dataasset.rentallease.queryRent",
+    "version": "6.0",
+    "http_method": "POST",
+    "timeout": 30
+  },
+  "db_fixture": {
+    "connection": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "user": "your_user",
+      "password": "your_password",
+      "database": "your_database",
+      "charset": "utf8mb4"
+    },
+    "queries": [
+      {
+        "name": "tax_no",
+        "sql": "SELECT tax_no FROM company WHERE status = 1 LIMIT 1",
+        "mapping": {
+          "taxNo": "tax_no"
+        }
+      }
+    ]
+  },
+  "fixed_params": {
+    "taxNo": "{{taxNo}}"
+  },
+  "test_cases": [
+    {
+      "id": "TC_001",
+      "group": "正常流程",
+      "name": "正常查询租金数据",
+      "body": {
+        "data": {
+          "dataMonth": "202510",
+          "city": "31",
+          "pageNo": 1,
+          "pageSize": 10
+        }
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "check_page_data": true
+      }
+    },
+    {
+      "id": "TC_002",
+      "group": "必填参数",
+      "name": "缺少dataMonth参数",
+      "body": {
+        "data": {
+          "city": "31",
+          "pageNo": 1,
+          "pageSize": 10
+        }
+      },
+      "expect": {
+        "http_status": 200,
+        "error_field_exists": true
+      }
+    },
+    {
+      "id": "TC_003",
+      "group": "分页参数",
+      "name": "pageSize超限",
+      "body": {
+        "data": {
+          "dataMonth": "202510",
+          "city": "31",
+          "pageNo": 1,
+          "pageSize": 10000
+        }
+      },
+      "expect": {
+        "http_status": 200,
+        "success": false
+      }
+    },
+    {
+      "id": "TC_004",
+      "group": "枚举验证",
+      "name": "city参数非法值",
+      "body": {
+        "data": {
+          "dataMonth": "202510",
+          "city": "99",
+          "pageNo": 1,
+          "pageSize": 10
+        }
+      },
+      "expect": {
+        "http_status": 200,
+        "success": false
+      }
+    },
+    {
+      "id": "TC_005",
+      "group": "日期范围",
+      "name": "dataMonth格式错误",
+      "body": {
+        "data": {
+          "dataMonth": "2025-10",
+          "city": "31",
+          "pageNo": 1,
+          "pageSize": 10
+        }
+      },
+      "expect": {
+        "http_status": 200,
+        "success": false
+      }
+    },
+    {
+      "id": "TC_006",
+      "group": "组合条件",
+      "name": "多条件组合查询",
+      "body": {
+        "data": {
+          "dataMonth": "202509",
+          "city": "31",
+          "pageNo": 1,
+          "pageSize": 50
+        }
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true
+      }
+    }
+  ]
+}

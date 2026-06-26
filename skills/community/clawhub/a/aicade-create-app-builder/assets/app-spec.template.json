@@ -1,0 +1,51 @@
+{
+  "roleSetup": "You are a senior full-stack product engineer.",
+  "projectName": "Your App Name",
+  "projectGoal": "Write one clear sentence describing the project goal.",
+  "basePromptSections": [
+    {
+      "title": "Core Business Requirements",
+      "items": [
+        "Put your original business prompt for the AI here.",
+        "You can describe features, pages, flows, rules, visuals, or interaction requirements in your preferred style."
+      ]
+    }
+  ],
+  "platformIntegration": {
+    "scaffoldReadmePath": "README.md",
+    "scaffoldSdkDocPath": "doc/README.md",
+    "scaffoldAppGuidePath": "doc/AICreateApplication-EN.md",
+    "sdkAlreadyIntegrated": true,
+    "iframeSandbox": "allow-scripts allow-modals",
+    "baseRequirements": [
+      "Initialize AicadeSDK in the correct order with init(...), waitForReady(), and getModule(...).",
+      "Reuse SDK and module instances instead of recreating them repeatedly."
+    ],
+    "compatibilityRequirements": [
+      "Respect iframe sandbox restrictions and opaque-origin limitations.",
+      "Replace browser localStorage usage with LocalStorageTools."
+    ],
+    "requiredSdkModules": [
+      "Application",
+      "LocalStorageTools"
+    ],
+    "extensionModules": [],
+    "replaceLocalStorageWith": "LocalStorageTools",
+    "showWalletAddress": true,
+    "showPointBalance": false,
+    "pointBalanceLabel": "Points",
+    "exchange": {
+      "enabled": false,
+      "ratio": "100:1",
+      "dailyLimit": "100 Aicade Points",
+      "trigger": "Trigger at a business settlement or completion step."
+    },
+    "extraRequirements": []
+  },
+  "technicalRequirements": [
+    "Extend within the current project environment."
+  ],
+  "outputRequirements": [
+    "Output complete runnable code."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "smartHardwareDFMEATemplate": {
+    "projectInfo": {
+      "projectName": "",
+      "teamMembers": [],
+      "date": "",
+      "revision": "1.0"
+    },
+    "dfmeaItems": [
+      {
+        "id": 1,
+        "function": "Wireless Connectivity",
+        "failureMode": "Connection drop/disconnect",
+        "effects": "Device becomes unresponsive, user experience degraded",
+        "severity": 7,
+        "causes": "Poor signal strength, interference, protocol incompatibility",
+        "occurrence": 4,
+        "currentControls": "Signal strength monitoring, automatic reconnection",
+        "detection": 6,
+        "rpn": 168,
+        "riskLevel": "High",
+        "recommendedActions": ["Implement connection quality monitoring", "Add fallback connectivity options", "Improve antenna design"],
+        "status": "Open"
+      },
+      {
+        "id": 2,
+        "function": "Security Authentication",
+        "failureMode": "Authentication bypass",
+        "effects": "Unauthorized access, data breach, privacy violation",
+        "severity": 9,
+        "causes": "Weak encryption, default credentials, implementation flaws",
+        "occurrence": 2,
+        "currentControls": "WPA3 encryption, secure boot, certificate validation",
+        "detection": 5,
+        "rpn": 90,
+        "riskLevel": "Medium",
+        "recommendedActions": ["Implement certificate-based authentication", "Add intrusion detection", "Conduct security audit"],
+        "status": "Open"
+      },
+      {
+        "id": 3,
+        "function": "Battery Management",
+        "failureMode": "Overheating during charging",
+        "effects": "Safety hazard, device damage, fire risk",
+        "severity": 10,
+        "causes": "Faulty charging circuit, thermal runaway, poor heat dissipation",
+        "occurrence": 1,
+        "currentControls": "Temperature sensors, charge current limiting, thermal cutoff",
+        "detection": 4,
+        "rpn": 40,
+        "riskLevel": "Low",
+        "recommendedActions": ["Add redundant temperature sensors", "Implement advanced thermal management", "Conduct thermal stress testing"],
+        "status": "Open"
+      }
+    ],
+    "summary": {
+      "totalItems": 3,
+      "highRiskItems": 1,
+      "mediumRiskItems": 1,
+      "lowRiskItems": 1,
+      "minimalRiskItems": 0
+    }
+  }
+}

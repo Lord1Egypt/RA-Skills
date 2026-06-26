@@ -1,0 +1,22 @@
+{
+  "name": "trend-launch-scanner",
+  "version": "1.0.0",
+  "description": "趋势启动扫描器 - 基于历史数据验证的趋势跟踪选股系统",
+  "author": "ts30",
+  "tags": ["股票", "趋势", "技术分析", "选股"],
+  "main": "trend_scanner.py",
+  "scripts": {
+    "scan": "python trend_scanner.py",
+    "verify": "python verify_plan_c_tencent.py"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "pandas": ">=1.0.0",
+    "numpy": ">=1.0.0",
+    "requests": ">=2.0.0"
+  },
+  "config": {
+    "min_score": 60,
+    "scan_stocks": 200
+  }
+}

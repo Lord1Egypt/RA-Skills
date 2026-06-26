@@ -1,0 +1,77 @@
+{
+  "name": "powpow-integration",
+  "slug": "powpow-integration",
+  "version": "2.1.10",
+  "description": "POWPOW WebSocket Integration - Real-time bidirectional chat with POWPOW digital humans",
+  "author": "durenzidu",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "peerDependencies": {
+    "@openclaw/core": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "powpow",
+    "digital-human",
+    "ai",
+    "chat",
+    "websocket",
+    "real-time"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/durenzidu/powpow.git",
+    "directory": "openclaw-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/durenzidu/powpow/issues"
+  },
+  "homepage": "https://global.powpow.online",
+  "config": {
+    "powpowBaseUrl": {
+      "type": "string",
+      "required": false,
+      "description": "POWPOW API base URL",
+      "default": "https://global.powpow.online"
+    },
+    "wsUrl": {
+      "type": "string",
+      "required": false,
+      "description": "POWPOW WebSocket URL",
+      "default": "wss://global.powpow.online:8080"
+    },
+    "autoReconnect": {
+      "type": "boolean",
+      "required": false,
+      "description": "Auto reconnect on disconnect",
+      "default": true
+    },
+    "reconnectInterval": {
+      "type": "number",
+      "required": false,
+      "description": "Reconnect interval in milliseconds",
+      "default": 3000
+    }
+  }
+}

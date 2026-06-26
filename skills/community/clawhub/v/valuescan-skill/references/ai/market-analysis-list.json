@@ -1,0 +1,69 @@
+{
+  "name": "大盘解析列表",
+  "endpoint": "POST /ai/getMarketAnalysisList",
+  "description": "通过代币（BTC/ETH）查询AI大盘解析的历史记录，支持时间范围过滤",
+  "credits_cost": 3,
+  "needToken": true,
+  "use_case": "适用于按代币 ID 精确查询历史大盘分析记录；适用于图表渲染等批量获取场景；适用于了解特定代币的 AI 综合信号与压力支撑结论",
+  "notes": "数据每5分钟更新一次；limit 范围 1-2000，默认 200；endTime 不传默认为当前时间；VO 不含资金流向字段",
+  "update_frequency": "每5分钟",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币 ID" },
+    "beginTime": { "type": "string", "req": false, "desc": "开始时间（毫秒时间戳）" },
+    "endTime": { "type": "string", "req": false, "desc": "结束时间（毫秒时间戳），不传默认为当前时间" },
+    "limit": { "type": "integer", "req": false, "desc": "返回数量，默认 200，范围 1-2000" },
+    "language": { "type": "string", "req": false, "desc": "语言，支持 zh-CN / zh-TW / en-US / vi-VN，默认 zh-CN" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币 ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "icon": { "type": "string", "actualType": "string", "desc": "代币图标 URL" },
+    "price": { "type": "number", "actualType": "string", "desc": "分析时价格" },
+    "signal": { "type": "string", "actualType": "string", "desc": "AI 综合信号（如：HOLD / BUY / SELL）" },
+    "klineDiff": { "type": "number", "actualType": "string", "desc": "K 线涨跌幅（小数，如 -0.003 表示 -0.3%）" },
+    "supports": { "type": "array", "actualType": "array<string>", "desc": "支撑位价格列表，元素为价格字符串" },
+    "resistances": { "type": "array", "actualType": "array<string>", "desc": "压力位价格列表，元素为价格字符串" },
+    "analysis": { "type": "string", "actualType": "string", "desc": "AI 分析结论（请求语言版本）" },
+    "analysisTime": { "type": "long", "actualType": "long", "desc": "分析时间（毫秒时间戳）" }
+  },
+  "field_meta": {
+    "vsTokenId": { "meaning": "代币唯一标识", "advice": "与请求参数对应，用于数据归属校验" },
+    "symbol": { "meaning": "代币交易符号（如 BTC、ETH）", "advice": "用于 UI 展示" },
+    "icon": { "meaning": "代币图标 URL", "advice": "用于前端渲染" },
+    "price": { "meaning": "本条分析发布时的代币价格", "advice": "与 analysis 配合理解价格背景" },
+    "signal": { "meaning": "AI 综合方向信号（如：HOLD / BUY / SELL）", "advice": "快速判断 AI 整体倾向" },
+    "klineDiff": { "meaning": "K 线变动幅度（小数，正值为涨，负值为跌）", "advice": "与 signal 配合判断价格动能" },
+    "supports": { "meaning": "AI 计算出的关键支撑价格列表", "advice": "关注最近支撑位，辅助止损" },
+    "resistances": { "meaning": "AI 计算出的关键压力价格列表", "advice": "关注最近压力位，辅助止盈" },
+    "analysis": { "meaning": "按请求语言返回的 AI 综合分析结论（string）", "advice": "直接展示给用户，无需客户端再做语言分支处理" },
+    "analysisTime": { "meaning": "分析记录的时间戳", "advice": "用于按时间排序和展示" }
+  },
+  "example": {
+    "req": {
+      "vsTokenId": 1,
+      "beginTime": "1775732440000",
+      "endTime": "1775734240000",
+      "limit": 200,
+      "language": "zh-CN"
+    },
+    "res": {
+      "code": 200,
+      "message": "success",
+      "data": [
+        {
+          "vsTokenId": "1",
+          "symbol": "BTC",
+          "icon": "https://static.valuescan.io/valuescan/cmc/coins/1.png",
+          "price": "80573.75",
+          "signal": "HOLD",
+          "klineDiff": "-0.00298373",
+          "supports": ["80434.275", "79980.475"],
+          "resistances": ["80776.78", "81208.86"],
+          "analysis": "📊 BTC 日内主力资金趋势分析(ValueScan)...",
+          "analysisTime": 1778837430000
+        }
+      ],
+      "requestId": "2055219406232641536"
+    }
+  }
+}

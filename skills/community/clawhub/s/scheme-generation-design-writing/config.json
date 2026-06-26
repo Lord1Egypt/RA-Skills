@@ -1,0 +1,8 @@
+{
+  "projects_path": "C:\\path\\to\\your\\historical\\projects",
+  "output_path": "C:\\path\\to\\output\\directory",
+  "max_related_projects": 5,
+  "num_proposal_styles": 3,
+  "enable_figma": true,
+  "enable_image_analysis": true
+}

@@ -1,35 +1,32 @@
 ---
-name: "Network Tool"
-description: "Display and manage network interfaces, connections, and routing information. Use for network diagnostics and configuration analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/network-tool"
-sourceUrl: "https://clawhub.ai/skills/network-tool"
+name: network-tool
+description: Display and manage network interfaces, connections, and routing information. Use for network diagnostics and configuration analysis.
 ---
+# Network Tool - Interface and Connection Manager
 
-# Network Tool
+View detailed information about network interfaces, active connections, routing tables, and network statistics. Essential for troubleshooting connectivity issues and monitoring network activity.
 
-> Display and manage network interfaces, connections, and routing information. Use for network diagnostics and configuration analysis.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/network-tool`
-- **Source URL:** [https://clawhub.ai/skills/network-tool](https://clawhub.ai/skills/network-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/network-tool
+network-tool [options]
+```
+
+## Features
+
+- List all network interfaces with IP addresses and status
+- Show active network connections and listening ports
+- Display routing table and gateway information
+- Monitor interface statistics (bytes sent/received, errors)
+
+## Examples
+
+```bash
+# Show all interfaces
+network-tool -i
+
+# Display routing table
+network-tool -r
+
+# Show connections
+network-tool -c
 ```

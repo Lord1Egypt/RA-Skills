@@ -1,0 +1,40 @@
+{
+  "name": "openclaw-backup",
+  "version": "1.0.2",
+  "description": "OpenClaw 关键文件备份技能",
+  "main": "scripts/backup.js",
+  "scripts": {
+    "backup": "node scripts/backup.js",
+    "backup:full": "node scripts/backup.js --full",
+    "backup:skills": "node scripts/backup.js --skills",
+    "backup:system": "node scripts/backup.js --system",
+    "backup:workspace": "node scripts/backup.js --workspace",
+    "dry-run": "node scripts/backup.js --dry-run"
+  },
+  "keywords": [
+    "openclaw",
+    "backup",
+    "skill",
+    "ai",
+    "assistant"
+  ],
+  "author": "OpenClaw Dev Team",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "dayjs": "^1.11.10",
+    "fs-extra": "^11.2.0",
+    "tar": "^6.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

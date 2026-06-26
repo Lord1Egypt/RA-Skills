@@ -1,0 +1,30 @@
+{
+  "name": "price_alert_manager",
+  "version": "1.0.0",
+  "description": "Creates monitors and polls price alert events.",
+  "allowedTools": [],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "asin": {
+        "type": "string"
+      },
+      "buy_price": {
+        "type": "string"
+      },
+      "current_price": {
+        "type": "string"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "alert_id": {
+        "type": "string"
+      }
+    }
+  },
+  "notes": "Uses background polling + notifications; not directly callable by DOM tools.",
+  "id": "price_alert_manager"
+}

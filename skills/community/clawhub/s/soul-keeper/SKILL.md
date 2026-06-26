@@ -1,35 +1,106 @@
 ---
-name: "Soul Keeper"
-description: "监测 workspace files 的更新时机，在正确的时候提示优化。基于 WORKSPACE_FILES_GUIDE.md 执行。 **自动触发**： - 用户纠正同类行为 2+ 次 → SOUL.md 该更新了 - 用户表达新偏好/新习惯 → USER.md 该更新了 - 新项目启动或方向变化 → MEMO..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/soul-keeper"
-sourceUrl: "https://clawhub.ai/skills/soul-keeper"
+name: soul-keeper
+description: |
+  监测 workspace files 的更新时机，在正确的时候提示优化。基于 WORKSPACE_FILES_GUIDE.md 执行。
+
+  **自动触发**：
+  - 用户纠正同类行为 2+ 次 → SOUL.md 该更新了
+  - 用户表达新偏好/新习惯 → USER.md 该更新了
+  - 新项目启动或方向变化 → MEMORY.md / WORKING.md 该更新了
+  - 新工具上线或旧工具出事 → TOOLS.md 该更新了
+  - 新规则文件（docs/）出现 → AGENTS.md 索引该更新了
+  - 项目完成或暂停 → WORKING.md 该归档了
+  - 用户说"改 workspace files"、"更新配置"、"优化文件"
+  - 对话中发现 workspace files 内容和现实不符
+
+  **不触发**：
+  - 一次性指令
+  - 已在编辑 workspace files 中
 ---
 
-# Soul Keeper
+# Workspace Optimizer
 
-> 监测 workspace files 的更新时机，在正确的时候提示优化。基于 WORKSPACE_FILES_GUIDE.md 执行。 **自动触发**： - 用户纠正同类行为 2+ 次 → SOUL.md 该更新了 - 用户表达新偏好/新习惯 → USER.md 该更新了 - 新项目启动或方向变化 → MEMO...
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/soul-keeper`
-- **Source URL:** [https://clawhub.ai/skills/soul-keeper](https://clawhub.ai/skills/soul-keeper)
+每个文件有自己的**自然更新节奏**，不是等用户抱怨才改。
 
-## Overview
+## 各文件的 Trigger 表
 
+| 文件 | 更新时机 | 信号 |
+|------|---------|------|
+| **SOUL.md** | Agent 行为需要调整 | 同类纠正 2+ 次；沟通风格变了；新边界 |
+| **USER.md** | 用户情况变了 | 新方向；新偏好；新习惯；新设备/环境 |
+| **AGENTS.md** | 工作流程变了 | 新 docs/ 规则文件；启动流程调整；新触发规则 |
+| **TOOLS.md** | 工具链变了 | 新工具；旧工具出事；致命用法发现 |
+| **MEMORY.md** | 世界状态变了 | 新项目；项目完结；新环境配置 |
+| **WORKING.md** | 项目进度变了 | 实质进展；新项目；项目暂停/完成 |
+| **IDENTITY.md** | 几乎不变 | 改名；改定位 |
+| **HEARTBEAT.md** | 检查清单变了 | 新定时任务；旧任务移除 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/soul-keeper
+## 触发后流程
+
+### 1. 读写作指南
+
+必须先读：`docs/WORKSPACE_FILES_GUIDE.md`
+
+### 2. 读取对应文件
+
+根据 trigger 类型读对应文件。
+
+### 3. 对比分析
+
+- 文件内容是否和现实一致？
+- 该加的信息放哪个文件？（根据 Guide 职责划分）
+- 加了会不会超 token 预算？
+- 有没有旧内容该删/归档？
+
+### 4. 输出建议
+
 ```
+📝 [文件名] 该更新了
+
+原因：[什么 trigger 了这次检查]
+现在：[当前相关内容]
+建议：[具体修改]
+
+要更新吗？
+```
+
+### 5. 确认后执行
+
+- 用户确认 → 执行修改
+- 用户拒绝 → 记录到 memory/ 留底
+
+---
+
+## 主动检查场景
+
+除了被动 trigger，以下场景**主动检查**：
+
+1. **新项目讨论完毕** → 检查 MEMORY.md 和 WORKING.md 是否需要加项目
+2. **一轮深度对话结束** → 检查有没有新发现该落进 USER.md 或 SOUL.md
+3. **新 docs/ 文件创建后** → 检查 AGENTS.md 索引是否需要加入
+4. **安装新 Skill 后** → 检查 TOOLS.md 是否需要加规则
+5. **用户明显改变沟通风格** → 检查 USER.md 是否需要更新偏好
+
+---
+
+## 规则
+
+1. **不自动改文件** — 必须用户确认
+2. **一次只建议改一个文件**
+3. **遵守 Guide 的职责划分和 token 预算**
+4. **检查重复** — 已有类似内容不重复加
+5. **该删也提** — 过时内容建议删除或归档
+6. **措辞匹配** — 新内容风格和文件现有内容一致
+
+## Token 预算
+
+| 文件 | 最大 |
+|------|------|
+| SOUL.md | 800B |
+| USER.md | 800B |
+| IDENTITY.md | 300B |
+| AGENTS.md | 1.5KB |
+| TOOLS.md | 1KB |
+| MEMORY.md | 1.5KB |

@@ -1,35 +1,43 @@
 ---
-name: "Nansen Smart Money Alpha"
+name: nansen-smart-money-alpha
 description: "What tokens is smart money accumulating before they pump? Token screener with SM filter cross-referenced against netflow."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-smart-money-alpha"
-sourceUrl: "https://clawhub.ai/skills/nansen-smart-money-alpha"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# Nansen Smart Money Alpha
+# Alpha Discovery
 
-> What tokens is smart money accumulating before they pump? Token screener with SM filter cross-referenced against netflow.
+**Answers:** "What tokens is smart money accumulating before they pump?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-smart-money-alpha`
-- **Source URL:** [https://clawhub.ai/skills/nansen-smart-money-alpha](https://clawhub.ai/skills/nansen-smart-money-alpha)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-smart-money-alpha
+CHAIN=solana
+
+nansen research token screener --chain $CHAIN --timeframe 24h --smart-money --limit 20
+# → token_symbol, price_usd, price_change, volume, buy_volume, market_cap_usd, fdv, liquidity, token_age_days
+
+nansen research smart-money netflow --chain $CHAIN --labels "Smart Trader" --limit 10
+# → token_symbol, net_flow_1h/24h/7d/30d_usd, trader_count
+
+# Confirm SM flow on a specific token from screener results
+TOKEN=<address_from_screener>
+nansen research token flow-intelligence --token $TOKEN --chain $CHAIN
+# → net_flow_usd per label: smart_trader, whale, exchange, fresh_wallets
 ```
+
+Cross-reference screener results with positive netflow to find early accumulation.
+
+## Source
+
+- npm: https://www.npmjs.com/package/nansen-cli
+- GitHub: https://github.com/nansen-ai/nansen-cli

@@ -1,35 +1,65 @@
 ---
-name: "Ocr Document"
-description: "OCR document extraction - extract text from scanned documents, photos, and images using OCR. Use when reading scanned PDFs, photographed pages, handwritten n..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ocr-document"
-sourceUrl: "https://clawhub.ai/skills/ocr-document"
+name: ocr_document
+description: "OCR document extraction - extract text from scanned documents, photos, and images using OCR. Use when reading scanned PDFs, photographed pages, handwritten notes, or any document that needs optical character recognition."
+homepage: https://mineru.net
+metadata: {"openclaw":{"emoji":"🔍","requires":{"bins":["mineru-open-api"]},"install":[{"id":"npm","kind":"node","package":"mineru-open-api","bins":["mineru-open-api"],"label":"Install via npm"},{"id":"uv","kind":"uv","package":"mineru-open-api","bins":["mineru-open-api"],"label":"Install via uv"},{"id":"go","kind":"go","package":"github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api","bins":["mineru-open-api"],"label":"Install via go install","os":["darwin","linux"]}]}}
 ---
 
-# Ocr Document
+# OCR Document - Extract Text from Scanned Documents and Images
 
-> OCR document extraction - extract text from scanned documents, photos, and images using OCR. Use when reading scanned PDFs, photographed pages, handwritten n...
+Extract text from scanned documents and images using OCR via MinerU Open API. No API key required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ocr-document`
-- **Source URL:** [https://clawhub.ai/skills/ocr-document](https://clawhub.ai/skills/ocr-document)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ocr-document
+# OCR a scanned PDF
+mineru-open-api flash-extract scanned.pdf
+
+# OCR an image of a document
+mineru-open-api flash-extract page-photo.jpg
+
+# OCR from URL (no download needed)
+mineru-open-api flash-extract https://example.com/scanned.pdf
+
+# Specify language for better accuracy
+mineru-open-api flash-extract scanned.pdf --language en
+
+# Save OCR result to file
+mineru-open-api flash-extract scanned.pdf -o ./output/
 ```
+
+## Language Rule
+
+You MUST reply to the user in the SAME language they use. This is non-negotiable.
+
+## Capabilities
+
+- OCR for scanned PDFs, photographed documents, images
+- Supports PDF, PNG, JPG, WebP, BMP, TIFF
+- Supports both local files and URLs directly
+- Language hint with `--language` (default: `ch`, use `en` for English)
+- No API key, no signup, no authentication
+- Max 10MB / 20 pages per document
+
+## When to Use
+
+- User asks to "OCR" a document or image
+- User has a scanned PDF that needs text extraction
+- User shares a photo of a page and wants the text
+- User mentions "scan", "handwriting", or "recognize text"
+
+## CLI Reference
+
+Run `mineru-open-api flash-extract --help` for all available options.
+
+## Data Privacy
+
+- `flash-extract` uploads the document to MinerU's cloud API for processing and returns the result. No account or API key is required.
+- Documents are processed in real-time and are not stored after extraction.
+- For details, see https://mineru.net
+
+## Notes
+
+- Best results with clear, high-resolution scans
+- For higher precision OCR with full layout preservation, use `mineru-open-api extract --ocr` (requires auth via `mineru-open-api auth`)
+- If the CLI cannot be installed via npm/uv/go, download it from https://mineru.net/ecosystem?tab=cli

@@ -1,0 +1,2 @@
+account_name,min_rating,allowed_bond_types,allowed_custodians,require_non_related,account_related_tags,blacklist_codes,blacklist_issuers,notes
+示例资管账户,AAA,信用债|利率债|CD,上清|中债,TRUE,示例系,地方债,,示例行，请替换为真实账户准入规则

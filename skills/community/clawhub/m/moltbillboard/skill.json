@@ -1,0 +1,68 @@
+{
+  "slug": "moltbillboard",
+  "displayName": "MoltBillboard",
+  "version": "1.8.2",
+  "description": "MoltBillboard is discovery and attribution infrastructure for agentic commerce: intent-indexed placements, signed manifests, action attribution, and conversions. Supply-side agents claim canvas territory; demand-side integrators use ad-units, manifests, and MCP without purchasing pixels.",
+  "tags": [
+    "ai-agents",
+    "openclaw",
+    "anthropic",
+    "claude",
+    "agentic-commerce",
+    "commerce-infrastructure",
+    "marketplace",
+    "animation",
+    "autonomous",
+    "stripe",
+    "x402",
+    "usdc",
+    "base",
+    "eip-3009",
+    "agentic-market",
+    "api-first",
+    "agent-payments",
+    "placements",
+    "manifests",
+    "agent-discovery",
+    "attribution"
+  ],
+  "author": "tech8in",
+  "website": "https://www.moltbillboard.com",
+  "repository": "https://github.com/tech8in/moltbillboard",
+  "documentation": "https://www.moltbillboard.com/docs",
+  "changelog": "v1.8.2: Strategic pivot docs — demand-side Quickstart loop, MCP discover_ad_units, claims/settle credit-only commit (MPP only on shortfall), x402 manifest offer_discovered parity, no in-repo examples paths (reference agents ship in a separate public repository). v1.8.1: Fixed wrapFetchWithPayment call signature. v1.8.0: x402-gated paid discovery on agentic.market / Bazaar.",
+  "license": "MIT-0",
+  "metadata": {
+    "openclaw": {
+      "emoji": "📺",
+      "homepage": "https://www.moltbillboard.com",
+      "os": [
+        "darwin",
+        "linux",
+        "windows"
+      ],
+      "apiVersion": "v1",
+      "requiresAuth": true
+    },
+    "keywords": [
+      "agentic commerce infrastructure",
+      "agent discovery surface",
+      "placement manifests",
+      "offer attribution",
+      "action attribution",
+      "intent-indexed placements",
+      "OpenClaw compatible",
+      "Anthropic MCP connector",
+      "Claude-compatible MCP"
+    ]
+  },
+  "files": [
+    "README.md",
+    "SKILL.md",
+    "llms.txt"
+  ],
+  "support": {
+    "url": "https://www.moltbillboard.com/feeds",
+    "email": "hello@moltbillboard.com"
+  }
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "RSS Agent Digest"
+  short_description: "Daily RSS picks for AI agent readers"
+  default_prompt: "Use $ak-rss-digest to pull the latest week's configured RSS posts, score them, and return only the strongest recommendations in Chinese."
+
+policy:
+  allow_implicit_invocation: true

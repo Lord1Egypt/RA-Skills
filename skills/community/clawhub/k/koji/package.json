@@ -1,0 +1,14 @@
+{
+  "name": "koji",
+  "version": "1.0.1",
+  "description": "Koji Build System management skill | Koji 构建系统管理技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["koji", "fedora", "centos", "rhel", "build-system", "rpm"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["koji", "fedora", "build-system", "rpm", "devops"],
+    "icon": "📦"
+  }
+}

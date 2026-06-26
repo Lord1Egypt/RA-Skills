@@ -1,35 +1,27 @@
 ---
-name: "Desktop Sorter"
-description: "Automatically organizes desktop files by extension into folders like PDFs, Images, Archives, Documents, and Presentations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/desktop-sorter"
-sourceUrl: "https://clawhub.ai/skills/desktop-sorter"
+name: Desktop Organizer
+description: Automatically organizes files on the desktop into folders based on their extensions (PDF, JPG, ZIP).
 ---
 
-# Desktop Sorter
+# Desktop Organizer Skill
 
-> Automatically organizes desktop files by extension into folders like PDFs, Images, Archives, Documents, and Presentations.
+This skill allows the AI to automatically organize files on the user's desktop. It scans for specific file types and moves them into dedicated subdirectories.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/desktop-sorter`
-- **Source URL:** [https://clawhub.ai/skills/desktop-sorter](https://clawhub.ai/skills/desktop-sorter)
+## Capabilities
+- Detects `.pdf`, `.jpg`, `.jpeg`, `.png`, `.gif`, `.zip`, `.rar`, `.7z`, `.docx`, `.xlsx`, and `.pptx` files on the desktop.
+- Creates destination folders (`PDFs`, `Images`, `Archives`, `Documents`, `Presentations`) if they do not exist.
+- Moves identified files into their respective folders.
 
-## Overview
+## Usage
+When the user asks to organize their desktop, the AI should:
+1. Locate the desktop directory.
+2. Run the `scripts/organize_desktop.py` script.
+3. Report the number of files moved and their destinations.
 
+## Implementation Details
+The core logic resides in `scripts/organize_desktop.py`. It uses the `os` and `shutil` modules to perform file operations safely.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/desktop-sorter
-```
+## Safety Precautions
+- Do not move files that are currently open or locked.
+- Avoid moving system files or shortcuts (`.lnk`, `.ini`).
+- Ensure destination folders are created before moving.

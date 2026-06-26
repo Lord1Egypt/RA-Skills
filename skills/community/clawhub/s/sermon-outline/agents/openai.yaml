@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sermon Outline"
+  short_description: "Create preaching outline from passage or theme with scripture"
+  default_prompt: "Use $sermon-outline to create a sermon outline from a passage or theme with introduction, main points, applications, and conclusion."

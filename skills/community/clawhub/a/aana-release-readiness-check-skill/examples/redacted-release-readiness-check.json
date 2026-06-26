@@ -1,0 +1,16 @@
+{
+  "release_target": "release",
+  "evidence_status": "partial",
+  "docs_status": "incomplete",
+  "artifact_status": "unverified",
+  "approval_status": "required",
+  "release_risks": [
+    "public_release",
+    "missing_tests",
+    "stale_docs",
+    "artifact_mismatch"
+  ],
+  "blocker_reason": "The release has partial evidence, incomplete docs, and unverified artifacts.",
+  "safe_alternative": "Run the release checks, verify artifacts, complete the changelog, then request release approval.",
+  "recommended_action": "request_approval"
+}

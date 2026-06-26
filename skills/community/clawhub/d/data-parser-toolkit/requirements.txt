@@ -1,0 +1,5 @@
+pandas
+openpyxl
+chardet
+pyarrow
+xlrd>=2.0.0

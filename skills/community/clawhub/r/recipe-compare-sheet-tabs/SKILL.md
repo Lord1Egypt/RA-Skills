@@ -1,35 +1,27 @@
 ---
-name: "Recipe Compare Sheet Tabs"
+name: recipe-compare-sheet-tabs
 description: "Read data from two tabs in a Google Sheet to compare and identify differences."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-compare-sheet-tabs"
-sourceUrl: "https://clawhub.ai/skills/recipe-compare-sheet-tabs"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-sheets
 ---
 
-# Recipe Compare Sheet Tabs
+# Compare Two Google Sheets Tabs
 
-> Read data from two tabs in a Google Sheet to compare and identify differences.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-sheets`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-compare-sheet-tabs`
-- **Source URL:** [https://clawhub.ai/skills/recipe-compare-sheet-tabs](https://clawhub.ai/skills/recipe-compare-sheet-tabs)
+Read data from two tabs in a Google Sheet to compare and identify differences.
 
-## Overview
+## Steps
 
+1. Read the first tab: `gws sheets +read --spreadsheet SHEET_ID --range "January!A1:D"`
+2. Read the second tab: `gws sheets +read --spreadsheet SHEET_ID --range "February!A1:D"`
+3. Compare the data and identify changes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-compare-sheet-tabs
-```

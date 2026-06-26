@@ -1,0 +1,37 @@
+{
+  "slug": "local-rag-index-planner",
+  "title": "本地知识索引规划师",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "structured_brief",
+  "summary": "规划本地知识库的目录、分片粒度、命名、更新时间与访问边界，而不是直接堆 RAG。",
+  "inputHint": "资料类型、检索需求、权限边界",
+  "sections": [
+    "目标与边界",
+    "资料分层",
+    "切片策略",
+    "元数据建议",
+    "更新策略",
+    "风险与限制"
+  ],
+  "useCases": [
+    "知识库规划",
+    "本地检索设计",
+    "资料组织"
+  ],
+  "positiveExamples": [
+    "帮我规划本地知识索引结构",
+    "不要一上来就做复杂 RAG"
+  ],
+  "negativeExamples": [
+    "不要直接部署向量数据库",
+    "不要忽略权限隔离"
+  ],
+  "risk": "聚焦结构设计，避免过早工程化。",
+  "tags": [
+    "rag",
+    "indexing",
+    "knowledge",
+    "architecture"
+  ]
+}

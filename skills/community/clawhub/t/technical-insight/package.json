@@ -1,0 +1,12 @@
+{
+  "name": "technical-insight",
+  "version": "1.0.2",
+  "description": "深度技术拆解分析，超越表面文档，揭示技术方案的真实工作原理、设计权衡和潜在风险。",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["technical", "analysis", "insight", "architecture"],
+  "author": "Vincent",
+  "license": "MIT"
+}

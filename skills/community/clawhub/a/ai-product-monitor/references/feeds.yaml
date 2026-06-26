@@ -1,0 +1,33 @@
+# Default RSS feeds for AI product launch monitoring
+feeds:
+  - name: OpenAI Blog
+    url: https://openai.com/blog/rss.xml
+    category: llm
+  - name: Google AI Blog
+    url: https://blog.google/technology/ai/rss/
+    category: llm
+  - name: Anthropic News
+    url: https://www.anthropic.com/feed.xml
+    category: llm
+  - name: Meta AI Blog
+    url: https://ai.meta.com/blog/rss/
+    category: llm
+  - name: Hugging Face Blog
+    url: https://huggingface.co/blog/feed.xml
+    category: opensource
+
+# Keywords that indicate a product launch (case-insensitive)
+launch_keywords:
+  - "launch"
+  - "announce"
+  - "introducing"
+  - "release"
+  - "now available"
+  - "generally available"
+  - "preview"
+  - "new model"
+  - "new feature"
+  - "new product"
+
+# How many days back to look on first run
+lookback_days: 7

@@ -1,0 +1,27 @@
+{
+  "name": "skill-auditor",
+  "version": "1.0.0",
+  "description": "安全审计技能，用于检查其他技能的安全性，防止恶意代码",
+  "author": "乐淘淘",
+  "main": "auditor.py",
+  "functions": [
+    {
+      "name": "audit_skill",
+      "description": "审计指定技能的安全性",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "skill_path": {
+            "type": "string",
+            "description": "要审计的技能路径"
+          }
+        },
+        "required": ["skill_path"]
+      }
+    }
+  ],
+  "dependencies": [],
+  "permissions": {
+    "file_system": ["read"]
+  }
+}

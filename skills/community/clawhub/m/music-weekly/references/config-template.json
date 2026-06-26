@@ -1,0 +1,10 @@
+{
+  "notion_api_key": "",
+  "notion_db_id": "",
+  "delivery_channel": "telegram",
+  "delivery_target": "",
+  "covers_dir": "~/.openclaw/workspace/covers",
+  "media_dir": "~/.openclaw/media/qqbot",
+  "history_log": "~/.openclaw/workspace/music-recommended-log.md",
+  "sender_name": "🎵 音乐编辑"
+}

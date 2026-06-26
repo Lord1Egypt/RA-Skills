@@ -1,35 +1,21 @@
 ---
-name: "google"
-description: "Indexed by skills.sh from ceedaragents/cyrus"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ceedaragents"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ceedaragents/cyrus/google"
-sourceUrl: "https://skills.sh/ceedaragents/cyrus/google"
+name: google
+description: Search the web for information. Use when you need to look something up, find current information, or research a topic.
+allowed-tools: WebSearch, WebFetch
 ---
 
-# google
+# Google
 
-> Indexed by skills.sh from ceedaragents/cyrus
+Search the web for information.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ceedaragents
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ceedaragents/cyrus/google`
-- **Source URL:** [https://skills.sh/ceedaragents/cyrus/google](https://skills.sh/ceedaragents/cyrus/google)
+## Instructions
 
-## Overview
+1. Use WebSearch to find relevant results
+2. Use WebFetch to read specific pages if needed
+3. Include source links in your response
 
+## Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ceedaragents/cyrus/google
-```
+- "google latest typescript features"
+- "google how to use pnpm workspaces"
+- "google claude api rate limits"

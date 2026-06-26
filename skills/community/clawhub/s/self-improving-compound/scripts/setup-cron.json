@@ -1,0 +1,107 @@
+{
+  "description": "Ready-to-use OpenClaw cron job definitions for the self-improving compound maintenance pipeline: light checks, heavy audits, optional daily factual memory, and workspace stewardship.",
+  "jobs": [
+    {
+      "name": "Self-Improving Light Check",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8-22/2 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the observable Self-Improving Light Check using Candidate → Learning → Promotion when available. Do NOT run the full learning-audit or system-failure scan.\n\nEnvironment contract:\n- WORKSPACE_ROOT=${OPENCLAW_WORKSPACE:-$PWD}\n- SKILL_DIR=${SELF_IMPROVING_SKILL_DIR:-$WORKSPACE_ROOT/skills/self-improving-compound}\n- LEARNINGS_CLI=${SELF_IMPROVING_LEARNINGS_CLI:-$SKILL_DIR/scripts/learnings.py}\n- PIPE=${SELF_IMPROVING_MEMORY_PIPELINE:-$SKILL_DIR/scripts/memory-pipeline.py}\n- Optional: SELF_IMPROVING_MAIN_SESSION_KEY may disambiguate the main conversation session.\n- Optional deterministic collector: SELF_IMPROVING_LIGHT_CONTEXT_COLLECTOR may point to a command that exports recent visible user/assistant conversation to Markdown or JSON.\n- If LEARNINGS_CLI is missing, report the missing path instead of continuing silently.\n\nPreferred steps when PIPE exists:\n1. Run: python3 \"$PIPE\" --base \"$WORKSPACE_ROOT/learning/pipeline\" collect-incremental\n   - If it exits non-zero because no transcript/session is available, and SELF_IMPROVING_LIGHT_CONTEXT_COLLECTOR is configured, run that collector and read its output context instead.\n   - If neither pipeline collection nor configured collector can provide readable context, reply: BLOCKED: collector_unavailable.\n\n2. Read the exported context:\n   - Pipeline default: $WORKSPACE_ROOT/learning/pipeline/context/incremental-context.md\n   - Collector output: the Markdown/JSON path printed by the collector or described in its compact JSON summary.\n   If pipeline new_messages is 0, run dashboard and reply HEARTBEAT_OK.\n\n3. Candidate-first scan:\n   Scan only recent visible user/assistant text for durable capture-gate signals: user corrections, non-obvious errors, workarounds, tool/API quirks, format mismatches, missing capabilities, or stable workflow rules.\n   Ignore routine status reports, normal successful tool use, and previous cron summaries unless they reveal a new reusable lesson.\n\n4. For each hit when PIPE exists:\n   - Add candidate: python3 \"$PIPE\" --base \"$WORKSPACE_ROOT/learning/pipeline\" add-candidate ...\n   - Dedupe using both short keywords and stable Pattern-Keys:\n     python3 \"$LEARNINGS_CLI\" --root \"$WORKSPACE_ROOT\" search \"<keyword-or-pattern>\" --limit 5\n   - If no suitable entry exists, log exactly one concise lesson with log-correction / log-error / log-learning / log-feature.\n   - Mark the candidate learned, duplicate, or resolved.\n   - If it should become a durable rule, add a promotion item.\n\n5. Dashboard and cursor:\n   - Run: python3 \"$PIPE\" --base \"$WORKSPACE_ROOT/learning/pipeline\" dashboard\n   - Commit cursor only after processing succeeded:\n     python3 \"$PIPE\" --base \"$WORKSPACE_ROOT/learning/pipeline\" commit-cursor\n\nFallback when PIPE is missing and no collector is configured:\n- Use sessions_list / sessions_history only after verifying they can access the target session from isolated cron.\n- If isolated cron cannot access the target session, reply: BLOCKED: session_history_unavailable.\n\nReply concisely:\n- If readable context existed and nothing was found: HEARTBEAT_OK\n- If something was logged: LOGGED: <n> — <one-line summaries>; CANDIDATES: <n>; PROMOTIONS: <n>\n- If only duplicate candidates exist: DUPLICATE_ONLY: <one-line summary>\n- If blocked: BLOCKED: <reason>\nDo not paste full output or commands. Do not fabricate context.",
+        "timeoutSeconds": 180,
+        "toolsAllow": [
+          "read",
+          "exec",
+          "sessions_list",
+          "sessions_history"
+        ]
+      },
+      "delivery": {
+        "mode": "announce",
+        "bestEffort": true
+      }
+    },
+    {
+      "name": "Learning Audit Heavy",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9,22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the heavy self-improvement audit.\n\nEnvironment contract:\n- WORKSPACE_ROOT=${OPENCLAW_WORKSPACE:-$PWD}\n- SKILL_DIR=${SELF_IMPROVING_SKILL_DIR:-$WORKSPACE_ROOT/skills/self-improving-compound}\n- LEARNINGS_CLI=${SELF_IMPROVING_LEARNINGS_CLI:-$SKILL_DIR/scripts/learnings.py}\n- If any script is missing or exits non-zero, report that failure instead of continuing silently.\n\nSteps:\n1. System failure audit:\n   \"$SKILL_DIR/scripts/log-system-failures.sh\"\n\n2. Check cron failures:\n   Use cron list (enabled only). For any job where lastRunStatus/lastStatus is not ok, run:\n   python3 \"$LEARNINGS_CLI\" --root \"$WORKSPACE_ROOT\" search \"<job>\" --limit 3\n   If no match, log-error with pattern cron:<job-name>.\n\n3. Learning audit:\n   python3 \"$SKILL_DIR/scripts/learning-audit.py\" --root \"$WORKSPACE_ROOT\" --days 2 --log\n\n4. Process async memory jobs:\n   python3 \"$LEARNINGS_CLI\" --root \"$WORKSPACE_ROOT\" process-jobs --max-jobs 100\n\n5. Lifecycle maintain fallback:\n   python3 \"$LEARNINGS_CLI\" --root \"$WORKSPACE_ROOT\" maintain --apply\n   This refreshes promotion-queue.json. In fully automated deployments, use maintain --apply --auto-promote only after workspace file writes are approved.\n\n6. Reply concisely: system status, cron failures found, audit candidates, queued jobs processed, lifecycle actions taken. Do not expose secrets or paste full logs.",
+        "timeoutSeconds": 240,
+        "toolsAllow": [
+          "exec",
+          "read",
+          "cron"
+        ]
+      },
+      "delivery": {
+        "mode": "announce",
+        "bestEffort": true
+      }
+    },
+    {
+      "name": "Daily Memory Digest",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 23 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the Daily Memory Digest for today.\n\nEnvironment contract:\n- WORKSPACE_ROOT=${OPENCLAW_WORKSPACE:-$PWD}\n- SKILL_DIR=${SELF_IMPROVING_SKILL_DIR:-$WORKSPACE_ROOT/skills/self-improving-compound}\n- Optional collector: SELF_IMPROVING_DAILY_COLLECTOR may point to a local context collector command.\n\nSteps:\n1. Run: bash \"$SKILL_DIR/scripts/daily-memory.sh\" --root \"$WORKSPACE_ROOT\"\n2. Gather/read the context indicated by the helper output, or use available runtime tools if no collector is configured.\n3. Write a detailed factual note to memory/YYYY-MM-DD.md using the helper's required sections.\n4. Run the self-improvement capture gate on the final note: log only reusable corrections, tool/API gotchas, workflow conventions, or missing capabilities to learning/.\n5. Reply with date, output path, approximate length, learning entries logged, and blockers. Do not expose secrets or raw transcripts.",
+        "timeoutSeconds": 300,
+        "toolsAllow": [
+          "exec",
+          "read",
+          "write",
+          "memory_search",
+          "memory_get"
+        ]
+      },
+      "delivery": {
+        "mode": "announce",
+        "bestEffort": true
+      }
+    },
+    {
+      "name": "Daily Workspace Steward",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 0 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the Daily Workspace Steward maintenance.\n\nEnvironment contract:\n- WORKSPACE_ROOT=${OPENCLAW_WORKSPACE:-$PWD}\n- SKILL_DIR=${SELF_IMPROVING_SKILL_DIR:-$WORKSPACE_ROOT/skills/self-improving-compound}\n\nPurpose: keep durable agent state tidy after the daily memory digest. Make only small, safe, local markdown updates when clearly justified.\n\nSteps:\n1. Export SQLite learning memory: \"$SKILL_DIR/scripts/learning-export.sh\"\n2. Inspect learning/: index.md, memory.md, corrections.md, memory-export.md, status.json for stale references, contradictions, missing export freshness, or broken structure.\n3. Inspect skills/*/SKILL.md for obvious stale workflow rules. Only make minimal factual/procedural edits when the owning skill is clear.\n4. Inspect the 7 root Markdown control-plane files when present: AGENTS.md, HEARTBEAT.md, IDENTITY.md, MEMORY.md, SOUL.md, TOOLS.md, USER.md.\n\nAllowed: fix verified stale local facts, remove clear duplicates/contradictions, add short pointers for stable workflow rules.\nForbidden: rewrite persona/tone, weaken safety/privacy rules, expose secrets, delete files, or change cron jobs from inside this job.\n\nAfter edits, run a small inspection gate (git diff if available, otherwise changed-file summary). Reply with export path/status, skills checked count, root markdown checked count, files changed, and blockers.",
+        "timeoutSeconds": 300,
+        "toolsAllow": [
+          "exec",
+          "read",
+          "write",
+          "edit",
+          "memory_search",
+          "memory_get"
+        ]
+      },
+      "delivery": {
+        "mode": "announce",
+        "bestEffort": true
+      }
+    }
+  ]
+}

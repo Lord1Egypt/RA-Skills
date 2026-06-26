@@ -1,35 +1,38 @@
 ---
-name: "Feishu Doc Exporter"
-description: "Feishu Document Exporter - Batch export Feishu docs to markdown/PDF"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-doc-exporter"
-sourceUrl: "https://clawhub.ai/skills/feishu-doc-exporter"
+name: feishu-doc-exporter
+description: Feishu Document Exporter - Batch export Feishu docs to markdown/PDF
+metadata:
+  openclaw:
+    requires:
+      bins: []
 ---
 
-# Feishu Doc Exporter
+# Feishu Document Exporter
 
-> Feishu Document Exporter - Batch export Feishu docs to markdown/PDF
+Batch export Feishu documents to markdown or PDF format, features:
+- Batch export entire folders
+- Preserve document structure and formatting
+- Export images as local files
+- Support nested folder hierarchy
+- Generate table of contents
+- Support incremental export
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-doc-exporter`
-- **Source URL:** [https://clawhub.ai/skills/feishu-doc-exporter](https://clawhub.ai/skills/feishu-doc-exporter)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-doc-exporter
+# Export single document to markdown
+openclaw feishu-doc-exporter export --url "https://example.com/docx/xxx" --format markdown --output ./export
+
+# Export entire folder recursively
+openclaw feishu-doc-exporter export --folder "folder_token" --format pdf --output ./export --recursive
+
+# List all documents in a folder
+openclaw feishu-doc-exporter list --folder "folder_token"
 ```
+
+## Configuration
+
+Required Feishu API permissions:
+- `doc:document:read`
+- `drive:folder:read`
+- `drive:file:read`

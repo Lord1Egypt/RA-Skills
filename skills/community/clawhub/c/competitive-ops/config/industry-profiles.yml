@@ -1,0 +1,46 @@
+industries:
+  ai:
+    name: "AI / Machine Learning"
+    default: true
+    weights:
+      product_maturity: 0.15
+      feature_coverage: 0.25
+      pricing: 0.15
+      market_presence: 0.15
+      growth_trajectory: 0.20
+      brand_strength: 0.10
+    key_metrics:
+      - "API pricing ($/1M tokens)"
+      - "Context window size"
+      - "Model performance benchmarks"
+    swot_template: "swot-template-ai.md"
+
+  saas:
+    name: "SaaS / B2B Software"
+    weights:
+      product_maturity: 0.25
+      feature_coverage: 0.20
+      pricing: 0.15
+      market_presence: 0.15
+      growth_trajectory: 0.10
+      brand_strength: 0.15
+    key_metrics:
+      - "Net Revenue Retention"
+      - "NPS Score"
+      - "Churn Rate"
+    swot_template: "swot-template-saas.md"
+
+  fintech:
+    name: "FinTech"
+    weights:
+      product_maturity: 0.20
+      feature_coverage: 0.15
+      pricing: 0.20
+      market_presence: 0.15
+      growth_trajectory: 0.15
+      brand_strength: 0.15
+    key_metrics:
+      - "Transaction Volume"
+      - "Regulatory Compliance Score"
+      - "Security Certifications"
+    swot_template: "swot-template-fintech.md"

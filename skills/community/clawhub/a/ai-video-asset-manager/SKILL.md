@@ -1,35 +1,141 @@
 ---
-name: "AI Video Asset Manager"
-description: "AI视频制作资产管理体系。负责角色/场景/道具资产的创建、锁定、版本管理，镜头分镜规划，生成记录归档，一致性检查，返工记录。触发词：新角色、新场景、新镜头、拍视频、建资产、锁定资产、一致性检查、生成记录、返工记录、小弯开拍。当需要管理AI视频生成资产，或为新角色/场景建立资产卡时激活。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-video-asset-manager"
-sourceUrl: "https://clawhub.ai/skills/ai-video-asset-manager"
+name: ai-video-asset-manager
+description: AI视频制作资产管理体系。负责角色/场景/道具资产的创建、锁定、版本管理，镜头分镜规划，生成记录归档，一致性检查，返工记录。触发词：新角色、新场景、新镜头、拍视频、建资产、锁定资产、一致性检查、生成记录、返工记录、小弯开拍。当需要管理AI视频生成资产，或为新角色/场景建立资产卡时激活。
 ---
 
 # AI Video Asset Manager
 
-> AI视频制作资产管理体系。负责角色/场景/道具资产的创建、锁定、版本管理，镜头分镜规划，生成记录归档，一致性检查，返工记录。触发词：新角色、新场景、新镜头、拍视频、建资产、锁定资产、一致性检查、生成记录、返工记录、小弯开拍。当需要管理AI视频生成资产，或为新角色/场景建立资产卡时激活。
+基于 ViMax 多智能体视频生成框架思路，适配 Runway/Kling/可灵/即梦/Pika/Sora/Veo 等工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-video-asset-manager`
-- **Source URL:** [https://clawhub.ai/skills/ai-video-asset-manager](https://clawhub.ai/skills/ai-video-asset-manager)
+## 核心原则
 
-## Overview
+1. **资产优先** — 角色/场景/道具未锁定不开始生成
+2. **版本不覆盖** — 每次变更新建版本号
+3. **检查前置** — 一致性检查是进入下一镜头的门槛
 
+## 命名规范
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-video-asset-manager
+| 类型 | 前缀 | 示例 |
+|------|------|------|
+| 角色 | `CHAR_` | `CHAR_001_小弯` |
+| 场景 | `SCENE_` | `SCENE_001_游戏房` |
+| 道具 | `PROP_` | `PROP_001` |
+| 镜头 | `SHOT_` | `SHOT_001_01` |
+| 口播模板 | `TPL_` | `TPL_001` |
+| 参考图 | `REF_` | `REF_CHAR_001_front_v01` |
+| 生成记录 | `GEN_` | `GEN_001` |
+| 一致性检查 | `CHECK_` | `CHECK_001` |
+| 返工记录 | `RW_` | `RW_001` |
+
+## 资产状态机
+
 ```
+草稿 → 审核中 → 已锁定 → 使用中 → 已废弃
+  ↑                      ↓
+  ← ← ← ← ← ← ← 返工 ← ←
+```
+
+## 项目结构
+
+每个项目独立仓库：
+
+```
+[项目名]/
+├── 00_总览.md
+├── 01_资产库/
+│   ├── 角色/         # CHAR_XXX_名字.md
+│   ├── 场景/         # SCENE_XXX_名字.md
+│   └── 道具/         # PROP_XXX_名字.md
+├── 02_分镜/
+│   ├── 00_分镜表_模板.md
+│   └── SHOT_XXX_XX.md
+├── 03_参考图索引/
+│   ├── CHAR_XXX/
+│   ├── SCENE_XXX/
+│   ├── TPL_XXX/
+│   └── SHOT_XXX/
+├── 04_生成记录/
+│   └── GEN_XXX_描述.md
+├── 05_一致性检查/
+│   └── CHECK_XXX_镜头ID.md
+└── 06_返工记录/
+    └── RW_XXX_镜头ID.md
+```
+
+## 工作流
+
+### 新建角色资产
+
+1. 用户提供：角色名 + 外观描述（至少：发型、服装、性格）
+2. 创建 `01_资产库/角色/CHAR_XXX_名字.md`
+3. 建立 `03_参考图索引/CHAR_XXX/` 目录
+4. 用户提供或抓取参考图 URL → 下载到本地
+5. 填写外观锁定项、可/禁用提示词
+6. 状态：草稿
+
+### 锁定资产
+
+条件：角色外观经过 ≥2 次生成验证
+
+1. 确认外观锁定项全部勾选
+2. 将 frontmatter 中 `status` 改为 `已锁定`
+3. 在版本历史中新增条目
+
+### 新建镜头
+
+1. 确认关联角色/场景已锁定
+2. 创建 `02_分镜/SHOT_XXX_XX.md`
+3. 绑定资产引用（角色ID、场景ID、道具ID）
+4. 填写分镜信息（镜头号、叙事位置、景别、动作描述）
+5. 状态：草稿
+
+### 生成记录归档
+
+1. 用户提供：使用的工具（Runway/Kling/Veo等）
+2. 创建/更新 `04_生成记录/GEN_XXX_描述.md`
+3. 记录：prompt、参数、产出路径、工具
+4. 状态：已完成
+
+### 一致性检查
+
+按 `references/consistency-rules.md` 检查：
+
+| 检查项 | 通过标准 |
+|-------|---------|
+| 角色外观 | 与 `CHAR_XXX.md` 外观锁定项一致 |
+| 场景 | 与 `SCENE_XXX.md` 一致 |
+| 道具 | 与道具资产卡一致 |
+| 表情/姿态 | 在表情库/手势库范围内 |
+| 光线/色调 | 保持一致 |
+
+全部通过 → 镜头卡标记 ✅  
+有任一项不一致 → 进入返工流程
+
+### 返工记录
+
+1. 创建 `06_返工记录/RW_XXX_镜头ID.md`
+2. 记录：返工原因、不一致项、修复方案
+3. 修复后重新通过一致性检查
+
+## 常用指令
+
+| 用户说 | 执行 |
+|--------|------|
+| `新角色 [名字] [描述]` | 新建角色资产卡 |
+| `新场景 [名字] [描述]` | 新建场景资产卡 |
+| `锁定 [资产ID]` | 将资产状态改为已锁定 |
+| `新镜头 [角色ID] [场景ID]` | 新建镜头卡 |
+| `生成记录 [镜头ID] [工具]` | 引导填写生成参数 |
+| `一致性检查 [镜头ID]` | 执行一致性检查 |
+| `返工 [镜头ID]` | 创建返工记录 |
+| `下载素材 [URL]` | 下载图片到本地目录 |
+
+## 项目初始化
+
+新项目运行 `scripts/init-project.py`：
+
+```bash
+python scripts/init-project.py [项目路径] [项目名]
+```
+
+参考：`references/project-templates.md`

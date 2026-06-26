@@ -1,0 +1,43 @@
+{
+  "name": "temp-heartbeat",
+  "displayName": "Temp Heartbeat - 临时心跳任务",
+  "version": "1.0.0",
+  "description": "临时心跳任务管理器 - 允许用户设置一次性临时心跳任务，在指定时间后执行，执行完成后自动删除",
+  "author": "Spark",
+  "license": "MIT",
+  "keywords": [
+    "heartbeat",
+    "temp",
+    "reminder",
+    "定时任务",
+    "临时心跳",
+    "提醒"
+  ],
+  "categories": [
+    "效率工具",
+    "任务管理"
+  ],
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills/tree/main/temp-heartbeat-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/rfdiosuao/openclaw-skills/issues"
+  },
+  "homepage": "https://github.com/rfdiosuao/openclaw-skills/tree/main/temp-heartbeat-skill#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "capabilities": {
+    "trigger": "keyword",
+    "triggerWords": [
+      "/heart",
+      "临时心跳",
+      "temp heartbeat",
+      "定时任务"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

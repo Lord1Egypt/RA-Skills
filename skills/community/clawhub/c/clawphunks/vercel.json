@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/server.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/llms.txt",
+      "dest": "/public/llms.txt"
+    },
+    {
+      "src": "/skill.md",
+      "dest": "/public/skill.md"
+    },
+    {
+      "src": "/.well-known/agent.json",
+      "dest": "/public/.well-known/agent.json"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "src/server.ts"
+    }
+  ]
+}

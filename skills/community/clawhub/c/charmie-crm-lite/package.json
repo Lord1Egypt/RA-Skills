@@ -1,0 +1,16 @@
+{
+  "name": "charmie-crm-lite",
+  "version": "3.0.3",
+  "description": "Simple CRM with SQLite – add, search, delete, update contacts. Email and messaging are Professional features.",
+  "author": "Business Brain Solutions <BusinessBrainSolutions@WealthDaoinc.com>",
+  "homepage": "https://BusinessBrainSolutions.WealthDaoinc.com",
+  "scripts": {
+    "start": "node index.js",
+    "setup": "node setup.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "sqlite3": "^5.1.6"
+  }
+}

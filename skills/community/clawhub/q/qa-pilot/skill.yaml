@@ -1,0 +1,14 @@
+name: qa-pilot
+version: 1.0.0
+description: Self-testing skill for AI agents. Automatically tests websites & apps before reporting completion. Built for vibe coders.
+author: helal-muneer
+license: MIT
+repository: https://github.com/helal-muneer/qa-pilot
+tags:
+  - testing
+  - qa
+  - automation
+  - vibe-coding
+  - self-testing
+  - web-testing
+  - browser-testing

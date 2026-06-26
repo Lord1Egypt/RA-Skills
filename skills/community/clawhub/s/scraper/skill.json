@@ -1,0 +1,17 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "Structured extraction and cleanup for public, user-authorized web pages.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/fetch_page.py",
+    "scripts/extract_text.py",
+    "scripts/save_output.py",
+    "scripts/list_jobs.py",
+    "scripts/lib/storage.py",
+    "references/safety.md"
+  ]
+}

@@ -1,35 +1,40 @@
 ---
-name: "ScopeBlind Red Team"
-description: "Policy benchmarking runner for MCP security policies. Runs attack suites against protect-mcp policy packs, produces signed receipts and badges."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scopeblind-red-team"
-sourceUrl: "https://clawhub.ai/skills/scopeblind-red-team"
+name: scopeblind-red-team
+description: >
+  Policy benchmarking runner for MCP security policies. Runs attack suites
+  against protect-mcp policy packs, produces signed receipts and badges.
+metadata:
+  emoji: ⚔️
+  requires:
+    bins:
+      - npx
+    env: []
+  install: |
+    npm install -g @scopeblind/red-team@latest protect-mcp@latest
+  license: MIT
+  allowed-tools:
+    - Bash
+    - Read
 ---
 
-# ScopeBlind Red Team
+# ScopeBlind Red Team — Policy Benchmarking
 
-> Policy benchmarking runner for MCP security policies. Runs attack suites against protect-mcp policy packs, produces signed receipts and badges.
+## What This Skill Does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scopeblind-red-team`
-- **Source URL:** [https://clawhub.ai/skills/scopeblind-red-team](https://clawhub.ai/skills/scopeblind-red-team)
+Runs deterministic attack suites against your protect-mcp policies to verify
+they block what they should and allow what they should.
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/scopeblind-red-team
+# Run the default attack suite against a policy
+npx scopeblind-red-team --policy protect-mcp.json
+
+# Run against a specific incident policy
+npx scopeblind-red-team --policy node_modules/protect-mcp/policies/clinejection.json
 ```
+
+## Links
+
+- npm: https://npmjs.com/package/@scopeblind/red-team
+- Docs: https://scopeblind.com/docs/red-team

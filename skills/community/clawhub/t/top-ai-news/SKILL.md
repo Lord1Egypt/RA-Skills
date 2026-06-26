@@ -1,35 +1,67 @@
 ---
-name: "AI每日新闻 TOP 10"
-description: "获取 AI 每日新闻 TOP 10，包含日期标题和新闻标题，格式简洁"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/top-ai-news"
-sourceUrl: "https://clawhub.ai/skills/top-ai-news"
+name: top-ai-news
+description: 获取 AI 每日新闻 TOP 10，包含日期标题和新闻标题，格式简洁
+homepage: https://ai-bot.cn/daily-ai-news/
+metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["browser_use"]}}}
 ---
 
-# AI每日新闻 TOP 10
+# AI 每日新闻
 
-> 获取 AI 每日新闻 TOP 10，包含日期标题和新闻标题，格式简洁
+获取 AI 新闻最新 TOP 10（跨日期凑满 10 条）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/top-ai-news`
-- **Source URL:** [https://clawhub.ai/skills/top-ai-news](https://clawhub.ai/skills/top-ai-news)
+## 使用方法
 
-## Overview
+当用户想要获取 AI 新闻、想知道最近有什么 AI 热点时使用此 skill。
 
+## 执行步骤
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/top-ai-news
+1. 使用 browser_use 打开 https://ai-bot.cn/daily-ai-news/，**必须添加强制刷新参数**（如 `?t=当前时间戳` 或按 F5 刷新页面）
+2. 等待页面完全加载（确保不是缓存）
+3. **从顶部开始，收集所有日期区块的新闻标题，直到凑够 10 条**
+4. 如果最顶部日期区块的新闻不足 10 条，继续往下读取下一个日期区块的新闻
+5. 凑够 10 条后停止获取
+6. 获取当前日期（格式：YYYY-MM-DD）
+7. 按以下格式输出：
+
 ```
+2026-03-03 AI 新闻 TOP 10
+
+1. 新闻标题 1
+2. 新闻标题 2
+3. 新闻标题 3
+4. 新闻标题 4
+5. 新闻标题 5
+6. 新闻标题 6
+7. 新闻标题 7
+8. 新闻标题 8
+9. 新闻标题 9
+10. 新闻标题 10
+```
+
+## 页面结构识别
+
+页面结构如下：
+```
+[最新日期区块标题，如 "3 月 3·周二"]
+├─ heading "新闻标题 1" [level2]
+├─ heading "新闻标题 2" [level2]
+├─ heading "新闻标题 3" [level2]
+...（可能更多或更少）
+[下一日期区块，如 "3 月 2·周一"]
+├─ heading "新闻标题 A" [level2]
+├─ heading "新闻标题 B" [level2]
+...（如果需要，继续往下取）
+```
+
+**重要识别点**：
+- 日期区块（如 `3 月 3·周二`）是在 段落 `<p>` 或普通文本 中的，不是 `<h2>`
+- 新闻标题是 `level2` 的 `<h2>` 或 `<heading>`
+- **从头往下读取，遇到新日期区块就继续，直到取满 10 条**
+
+## 注意事项
+
+- **必须跨日期取满 10 条新闻**，不允许少于 10 条（除非整个页面都不足 10 条）
+- **每次必须获取最新内容**：添加时间戳参数强制刷新，或按 F5 刷新页面，禁止使用缓存
+- 不要使用表格边框、竖杠或额外文字
+- 只列出排名和标题即可
+- 如果页面有弹窗，先关闭再获取内容

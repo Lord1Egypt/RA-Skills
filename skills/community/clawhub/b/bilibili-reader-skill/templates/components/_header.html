@@ -1,0 +1,14 @@
+{# ── 标题区 ── #}
+<div class="header">
+    <h1>{{ title_cn }}</h1>
+    <div class="subtitle">{{ title_en }}</div>
+    <div class="meta">
+        <span>UP主: {{ owner }}</span>
+        <span>时长: {{ duration_str }}</span>
+        <span>播放: {{ "{:,}".format(view_count) }}</span>
+        <span>点赞: {{ "{:,}".format(like_count) }}</span>
+    </div>
+    {% if genre %}
+    <span class="genre-badge">{{ genre }}</span>
+    {% endif %}
+</div>

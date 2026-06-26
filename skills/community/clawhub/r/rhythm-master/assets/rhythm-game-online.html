@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 节奏大师 - Rhythm Master (联网版)</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .game-container {
+            width: 900px;
+            max-width: 95vw;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 50px rgba(233, 69, 96, 0.5);
+            border: 2px solid #e94560;
+        }
+
+        .game-title {
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #e94560, 0 0 40px #e94560;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #e94560; }
+            to { text-shadow: 0 0 30px #e94560, 0 0 50px #e94560; }
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .connection-status {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            font-size: 0.9em;
+        }
+
+        .connection-status.online {
+            background: rgba(0, 255, 0, 0.2);
+            color: #4ecdc4;
+        }
+
+        .connection-status.offline {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff6b6b;
+        }
+
+        .menu-screen { text-align: center; padding: 40px 20px; }
+        .game-screen { display: none; }
+        .game-over-screen { display: none; text-align: center; padding: 40px 20px; }
+        .leaderboard-screen { display: none; padding: 20px; }
+
+        .menu-button {
+            display: block;
+            width: 250px;
+            margin: 15px auto;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.6);
+        }
+
+        .menu-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .difficulty-select { margin: 20px 0; }
+        
+        .difficulty-btn {
+            padding: 10px 25px;
+            margin: 5px;
+            border: 2px solid;
+            border-radius: 25px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .difficulty-btn.easy { border-color: #96ceb4; }
+        .difficulty-btn.normal { border-color: #74b9ff; }
+        .difficulty-btn.hard { border-color: #ffd700; }
+        .difficulty-btn.expert { border-color: #ff6b6b; }
+
+        .difficulty-btn:hover, .difficulty-btn.active {
+            background: currentColor;
+            color: #000;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .info-item { color: #fff; font-size: 1.1em; }
+        .info-item span { color: #e94560; font-weight: bold; }
+
+        .combo-display {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 20px #ffd700;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .combo-display.show { opacity: 1; animation: comboPop 0.5s ease-out; }
+
+        @keyframes comboPop {
+            0% { transform: translateX(-50%) scale(0.5); }
+            50% { transform: translateX(-50%) scale(1.2); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        .game-lane {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(180deg, 
+                rgba(233, 69, 96, 0.1) 0%,
+                rgba(15, 52, 96, 0.3) 50%,
+                rgba(0, 0, 0, 0.5) 100%
+            );
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .lane-container { display: flex; height: 100%; position: relative; }
+        
+        .lane {
+            flex: 1;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .lane:last-child { border-right: none; }
+
+        .judgment-line {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent, #e94560, #ffd700, #e94560, transparent
+            );
+            box-shadow: 0 0 20px #e94560;
+            z-index: 10;
+        }
+
+        .key-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border: 3px solid;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #fff;
+            transition: all 0.1s;
+        }
+
+        .key-hint.left { border-color: #ff6b6b; }
+        .key-hint.down { border-color: #4ecdc4; }
+        .key-hint.up { border-color: #45b7d1; }
+        .key-hint.right { border-color: #96ceb4; }
+        .key-hint.space { border-color: #ffd700; }
+
+        .key-hint.pressed {
+            transform: translateX(-50%) scale(0.9);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px currentColor;
+        }
+
+        .note {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px currentColor;
+            z-index: 5;
+        }
+
+        .note.left { background: #ff6b6b; color: #ff6b6b; }
+        .note.down { background: #4ecdc4; color: #4ecdc4; }
+        .note.up { background: #45b7d1; color: #45b7d1; }
+        .note.right { background: #96ceb4; color: #96ceb4; }
+        .note.space { background: #ffd700; color: #ffd700; }
+
+        .judgment-text {
+            position: absolute;
+            left: 50%;
+            bottom: 150px;
+            transform: translateX(-50%);
+            font-size: 2em;
+            font-weight: bold;
+            opacity: 0;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .judgment-text.perfect { color: #ffd700; text-shadow: 0 0 20px #ffd700; }
+        .judgment-text.great { color: #ff6b9d; text-shadow: 0 0 20px #ff6b9d; }
+        .judgment-text.good { color: #4ecdc4; text-shadow: 0 0 20px #4ecdc4; }
+        .judgment-text.bad { color: #888; }
+        .judgment-text.miss { color: #e94560; text-shadow: 0 0 20px #e94560; }
+
+        .judgment-text.show { animation: judgmentPop 0.5s ease-out; }
+
+        @keyframes judgmentPop {
+            0% { opacity: 1; transform: translateX(-50%) scale(0.5); }
+            50% { transform: translateX(-50%) scale(1.2); }
+            100% { opacity: 0; transform: translateX(-50%) scale(1) translateY(-50px); }
+        }
+
+        .countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5em;
+            color: #fff;
+            text-shadow: 0 0 30px #e94560;
+            z-index: 100;
+            display: none;
+        }
+
+        .final-score {
+            font-size: 3em;
+            color: #ffd700;
+            text-shadow: 0 0 30px #ffd700;
+            margin: 20px 0;
+        }
+
+        .grade {
+            font-size: 4em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .grade.SSS { color: #ffd700; text-shadow: 0 0 30px #ffd700; }
+        .grade.SS { color: #ff6b9d; text-shadow: 0 0 30px #ff6b9d; }
+        .grade.S { color: #4ecdc4; text-shadow: 0 0 20px #4ecdc4; }
+        .grade.A { color: #96ceb4; }
+        .grade.B { color: #74b9ff; }
+        .grade.C { color: #a29bfe; }
+        .grade.D { color: #636e72; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .stat-item { color: #fff; }
+        .stat-value { font-size: 1.5em; font-weight: bold; color: #e94560; }
+
+        .leaderboard-title {
+            text-align: center;
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .leaderboard-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #e94560;
+            color: #fff;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: #e94560;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #fff;
+        }
+
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .leaderboard-table th {
+            background: rgba(233, 69, 96, 0.3);
+            font-weight: bold;
+        }
+
+        .leaderboard-table tr:hover { background: rgba(255, 255, 255, 0.1); }
+
+        .rank-1 { color: #ffd700; font-weight: bold; }
+        .rank-2 { color: #c0c0c0; font-weight: bold; }
+        .rank-3 { color: #cd7f32; font-weight: bold; }
+
+        .name-input {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: 2px solid #e94560;
+            border-radius: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            margin: 10px 0;
+            width: 200px;
+        }
+
+        .name-input:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        }
+
+        .loading {
+            text-align: center;
+            color: #aaa;
+            padding: 20px;
+        }
+
+        .my-rank {
+            background: rgba(233, 69, 96, 0.3);
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .game-title { font-size: 1.8em; }
+            .game-lane { height: 400px; }
+            .key-hint { width: 45px; height: 45px; font-size: 1.2em; }
+            .note { width: 40px; height: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">🎵 节奏大师</h1>
+        <p class="subtitle">RHYTHM MASTER - 全球排行榜版</p>
+
+        <div class="connection-status offline" id="connectionStatus">
+            🔄 正在连接服务器...
+        </div>
+
+        <!-- 主菜单 -->
+        <div class="menu-screen" id="menuScreen">
+            <div class="difficulty-select">
+                <p style="color: #fff; margin-bottom: 10px;">选择难度：</p>
+                <button class="difficulty-btn easy active" data-diff="easy">简单</button>
+                <button class="difficulty-btn normal" data-diff="normal">普通</button>
+                <button class="difficulty-btn hard" data-diff="hard">困难</button>
+                <button class="difficulty-btn expert" data-diff="expert">专家</button>
+            </div>
+            <button class="menu-button" id="startBtn" onclick="startGame()" disabled>▶ 开始游戏</button>
+            <button class="menu-button" onclick="showLeaderboard()">🏆 全球排行榜</button>
+            <button class="menu-button" onclick="showHowToPlay()">❓ 游戏说明</button>
+        </div>
+
+        <!-- 游戏画面 -->
+        <div class="game-screen" id="gameScreen">
+            <div class="game-info">
+                <div class="info-item">得分: <span id="score">0</span></div>
+                <div class="info-item">连击: <span id="combo">0</span></div>
+                <div class="info-item">生命: <span id="lives">♥♥♥♥♥</span></div>
+                <div class="info-item">时间: <span id="time">60</span>s</div>
+            </div>
+
+            <div class="combo-display" id="comboDisplay">0 COMBO!</div>
+            <div class="judgment-text" id="judgmentText"></div>
+            <div class="countdown" id="countdown">3</div>
+
+            <div class="game-lane" id="gameLane">
+                <div class="lane-container">
+                    <div class="lane" data-key="left"><div class="key-hint left">←</div></div>
+                    <div class="lane" data-key="down"><div class="key-hint down">↓</div></div>
+                    <div class="lane" data-key="space"><div class="key-hint space">␣</div></div>
+                    <div class="lane" data-key="up"><div class="key-hint up">↑</div></div>
+                    <div class="lane" data-key="right"><div class="key-hint right">→</div></div>
+                </div>
+                <div class="judgment-line"></div>
+            </div>
+        </div>
+
+        <!-- 游戏结束 -->
+        <div class="game-over-screen" id="gameOverScreen">
+            <h2 style="color: #fff; margin-bottom: 20px;">🎉 游戏结束</h2>
+            <div class="final-score" id="finalScore">0</div>
+            <div class="grade" id="grade">-</div>
+            
+            <div class="stats">
+                <div class="stat-item"><div>PERFECT</div><div class="stat-value" id="perfectCount">0</div></div>
+                <div class="stat-item"><div>GREAT</div><div class="stat-value" id="greatCount">0</div></div>
+                <div class="stat-item"><div>GOOD</div><div class="stat-value" id="goodCount">0</div></div>
+                <div class="stat-item"><div>BAD</div><div class="stat-value" id="badCount">0</div></div>
+                <div class="stat-item"><div>MISS</div><div class="stat-value" id="missCount">0</div></div>
+                <div class="stat-item"><div>最大连击</div><div class="stat-value" id="maxCombo">0</div></div>
+            </div>
+
+            <div id="rankInfo" style="color: #4ecdc4; font-size: 1.2em; margin: 15px 0;"></div>
+
+            <input type="text" class="name-input" id="playerName" placeholder="输入你的名字" maxlength="10">
+            <br>
+            <button class="menu-button" onclick="saveScore()">💾 保存到全球榜</button>
+            <button class="menu-button" onclick="showLeaderboard()">🏆 查看排行榜</button>
+            <button class="menu-button" onclick="backToMenu()">🔙 返回主菜单</button>
+        </div>
+
+        <!-- 排行榜 -->
+        <div class="leaderboard-screen" id="leaderboardScreen">
+            <h2 class="leaderboard-title">🏆 全球排行榜</h2>
+            
+            <div class="leaderboard-tabs">
+                <button class="tab-btn active" onclick="switchTab('all')">全部</button>
+                <button class="tab-btn" onclick="switchTab('today')">今日</button>
+                <button class="tab-btn" onclick="switchTab('week')">本周</button>
+            </div>
+
+            <div id="leaderboardContent">
+                <div class="loading">正在加载排行榜...</div>
+            </div>
+            
+            <button class="menu-button" onclick="backToMenu()" style="margin-top: 20px;">🔙 返回主菜单</button>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // Firebase 配置 - 需要替换为你自己的配置
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "your-project.firebaseapp.com",
+            databaseURL: "https://your-project-default-rtdb.firebaseio.com",
+            projectId: "your-project",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // 初始化 Firebase
+        let database;
+        let isOnline = false;
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            isOnline = true;
+            document.getElementById('connectionStatus').className = 'connection-status online';
+            document.getElementById('connectionStatus').textContent = '🌐 已连接到全球服务器';
+            document.getElementById('startBtn').disabled = false;
+        } catch (error) {
+            console.error('Firebase 初始化失败:', error);
+            document.getElementById('connectionStatus').className = 'connection-status offline';
+            document.getElementById('connectionStatus').innerHTML = 
+                '❌ 未连接服务器<br><small>请配置 Firebase 后刷新页面</small>';
+        }
+
+        // ============================================
+        // 游戏配置
+        // ============================================
+        const CONFIG = {
+            laneKeys: ['left', 'down', 'space', 'up', 'right'],
+            keyMap: {
+                'ArrowLeft': 'left', 'ArrowDown': 'down', 'ArrowUp': 'up', 
+                'ArrowRight': 'right', ' ': 'space'
+            },
+            difficulty: {
+                easy: { speed: 3, spawnRate: 1000, scoreMult: 1 },
+                normal: { speed: 4, spawnRate: 800, scoreMult: 1.2 },
+                hard: { speed: 5, spawnRate: 600, scoreMult: 1.5 },
+                expert: { speed: 7, spawnRate: 400, scoreMult: 2 }
+            },
+            judgmentWindows: { perfect: 50, great: 100, good: 150, bad: 200 },
+            judgmentScores: { perfect: 100, great: 80, good: 50, bad: 20, miss: 0 }
+        };
+
+        // ============================================
+        // 游戏状态
+        // ============================================
+        let gameState = {
+            isPlaying: false, score: 0, combo: 0, maxCombo: 0,
+            lives: 5, timeLeft: 60, notes: [],
+            stats: { perfect: 0, great: 0, good: 0, bad: 0, miss: 0 },
+            difficulty: 'easy', spawnTimer: null, gameTimer: null, animationFrame: null
+        };
+
+        let currentDifficulty = 'easy';
+        let currentTab = 'all';
+
+        // ============================================
+        // 难度选择
+        // ============================================
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentDifficulty = this.dataset.diff;
+            });
+        });
+
+        // ============================================
+        // 游戏主逻辑
+        // ============================================
+        function startGame() {
+            gameState = {
+                isPlaying: true, score: 0, combo: 0, maxCombo: 0,
+                lives: 5, timeLeft: 60, notes: [],
+                stats: { perfect: 0, great: 0, good: 0, bad: 0, miss: 0 },
+                difficulty: currentDifficulty,
+                spawnTimer: null, gameTimer: null, animationFrame: null
+            };
+
+            document.querySelectorAll('.note').forEach(n => n.remove());
+            document.getElementById('menuScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'block';
+            document.getElementById('gameOverScreen').style.display = 'none';
+            document.getElementById('leaderboardScreen').style.display = 'none';
+
+            updateDisplay();
+
+            let count = 3;
+            const countdownEl = document.getElementById('countdown');
+            countdownEl.style.display = 'block';
+            countdownEl.textContent = count;
+
+            const countInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownEl.textContent = count;
+                } else if (count === 0) {
+                    countdownEl.textContent = 'GO!';
+                } else {
+                    clearInterval(countInterval);
+                    countdownEl.style.display = 'none';
+                    startGameplay();
+                }
+            }, 1000);
+        }
+
+        function startGameplay() {
+            const config = CONFIG.difficulty[gameState.difficulty];
+
+            gameState.spawnTimer = setInterval(() => {
+                if (gameState.isPlaying) spawnNote();
+            }, config.spawnRate);
+
+            gameState.gameTimer = setInterval(() => {
+                gameState.timeLeft--;
+                updateDisplay();
+                if (gameState.timeLeft <= 0) endGame();
+            }, 1000);
+
+            gameLoop();
+        }
+
+        function spawnNote() {
+            const lanes = CONFIG.laneKeys;
+            const randomLane = lanes[Math.floor(Math.random() * lanes.length)];
+            
+            const note = document.createElement('div');
+            note.className = `note ${randomLane}`;
+            note.dataset.lane = randomLane;
+            note.style.top = '-20px';
+            
+            const lane = document.querySelector(`.lane[data-key="${randomLane}"]`);
+            lane.appendChild(note);
+
+            gameState.notes.push({
+                element: note, lane: randomLane, y: -20, hit: false
+            });
+        }
+
+        function gameLoop() {
+            if (!gameState.isPlaying) return;
+
+            const config = CONFIG.difficulty[gameState.difficulty];
+            const laneHeight = document.getElementById('gameLane').offsetHeight;
+            const judgmentLine = laneHeight - 80;
+
+            gameState.notes.forEach((note) => {
+                if (note.hit) return;
+                note.y += config.speed;
+                note.element.style.top = note.y + 'px';
+
+                if (note.y > laneHeight) {
+                    note.hit = true;
+                    note.element.remove();
+                    handleJudgment('miss');
+                }
+            });
+
+            gameState.notes = gameState.notes.filter(n => !n.hit);
+            gameState.animationFrame = requestAnimationFrame(gameLoop);
+        }
+
+        // ============================================
+        // 键盘输入
+        // ============================================
+        document.addEventListener('keydown', (e) => {
+            if (!gameState.isPlaying) return;
+            const key = CONFIG.keyMap[e.key];
+            if (!key) return;
+            e.preventDefault();
+
+            const hint = document.querySelector(`.key-hint.${key}`);
+            if (hint) hint.classList.add('pressed');
+
+            checkNoteHit(key);
+        });
+
+        document.addEventListener('keyup', (e) => {
+            const key = CONFIG.keyMap[e.key];
+            if (!key) return;
+            const hint = document.querySelector(`.key-hint.${key}`);
+            if (hint) hint.classList.remove('pressed');
+        });
+
+        function checkNoteHit(lane) {
+            const laneElement = document.querySelector(`.lane[data-key="${lane}"]`);
+            const laneRect = laneElement.getBoundingClientRect();
+            const judgmentY = laneRect.bottom - 80;
+
+            const note = gameState.notes.find(n => 
+                n.lane === lane && !n.hit && n.y > 0
+            );
+
+            if (!note) return;
+
+            const noteRect = note.element.getBoundingClientRect();
+            const noteCenter = noteRect.top + noteRect.height / 2;
+            const distance = Math.abs(noteCenter - judgmentY);
+
+            let judgment = 'miss';
+            if (distance < CONFIG.judgmentWindows.perfect) judgment = 'perfect';
+            else if (distance < CONFIG.judgmentWindows.great) judgment = 'great';
+            else if (distance < CONFIG.judgmentWindows.good) judgment = 'good';
+            else if (distance < CONFIG.judgmentWindows.bad) judgment = 'bad';
+
+            if (judgment !== 'miss') {
+                note.hit = true;
+                note.element.remove();
+                handleJudgment(judgment);
+            }
+        }
+
+        function handleJudgment(judgment) {
+            const config = CONFIG.difficulty[gameState.difficulty];
+            gameState.stats[judgment]++;
+
+            if (judgment !== 'miss') {
+                const baseScore = CONFIG.judgmentScores[judgment];
+                const comboBonus = Math.min(2.5, 1 + Math.floor(gameState.combo / 10) * 0.1);
+                gameState.score += Math.floor(baseScore * comboBonus * config.scoreMult);
+                gameState.combo++;
+                gameState.maxCombo = Math.max(gameState.maxCombo, gameState.combo);
+            } else {
+                gameState.combo = 0;
+                gameState.lives--;
+                document.querySelector('.game-lane').style.animation = 'shake 0.3s';
+                setTimeout(() => {
+                    document.querySelector('.game-lane').style.animation = '';
+                }, 300);
+            }
+
+            showJudgmentText(judgment);
+            showCombo();
+            updateDisplay();
+
+            if (gameState.lives <= 0) endGame();
+        }
+
+        function showJudgmentText(judgment) {
+            const el = document.getElementById('judgmentText');
+            el.textContent = judgment.toUpperCase();
+            el.className = `judgment-text ${judgment} show`;
+            setTimeout(() => el.classList.remove('show'), 500);
+        }
+
+        function showCombo() {
+            if (gameState.combo < 5) return;
+            const el = document.getElementById('comboDisplay');
+            el.textContent = gameState.combo + ' COMBO!';
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 1000);
+        }
+
+        function updateDisplay() {
+            document.getElementById('score').textContent = gameState.score.toLocaleString();
+            document.getElementById('combo').textContent = gameState.combo;
+            document.getElementById('time').textContent = gameState.timeLeft;
+            document.getElementById('lives').textContent = '♥'.repeat(gameState.lives);
+        }
+
+        function endGame() {
+            gameState.isPlaying = false;
+            clearInterval(gameState.spawnTimer);
+            clearInterval(gameState.gameTimer);
+            cancelAnimationFrame(gameState.animationFrame);
+
+            const totalNotes = Object.values(gameState.stats).reduce((a, b) => a + b, 0);
+            const accuracy = totalNotes > 0 
+                ? (gameState.stats.perfect + gameState.stats.great * 0.8 + gameState.stats.good * 0.5) / totalNotes 
+                : 0;
+            
+            let grade = 'D';
+            if (accuracy >= 1) grade = 'SSS';
+            else if (accuracy >= 0.95) grade = 'SS';
+            else if (accuracy >= 0.9) grade = 'S';
+            else if (accuracy >= 0.8) grade = 'A';
+            else if (accuracy >= 0.7) grade = 'B';
+            else if (accuracy >= 0.6) grade = 'C';
+
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('gameOverScreen').style.display = 'block';
+            
+            document.getElementById('finalScore').textContent = gameState.score.toLocaleString();
+            document.getElementById('grade').textContent = grade;
+            document.getElementById('grade').className = 'grade ' + grade;
+            
+            document.getElementById('perfectCount').textContent = gameState.stats.perfect;
+            document.getElementById('greatCount').textContent = gameState.stats.great;
+            document.getElementById('goodCount').textContent = gameState.stats.good;
+            document.getElementById('badCount').textContent = gameState.stats.bad;
+            document.getElementById('missCount').textContent = gameState.stats.miss;
+            document.getElementById('maxCombo').textContent = gameState.maxCombo;
+
+            // 显示预估排名
+            document.getElementById('rankInfo').textContent = '📊 分数已生成，保存后可查看全球排名！';
+        }
+
+        // ============================================
+        // 排行榜功能
+        // ============================================
+        async function saveScore() {
+            if (!isOnline) {
+                alert('❌ 未连接到服务器，无法保存分数\n\n请配置 Firebase 后刷新页面重试');
+                return;
+            }
+
+            const name = document.getElementById('playerName').value.trim() || '匿名玩家';
+            
+            const scoreData = {
+                playerName: name,
+                score: gameState.score,
+                maxCombo: gameState.maxCombo,
+                perfect: gameState.stats.perfect,
+                great: gameState.stats.great,
+                good: gameState.stats.good,
+                bad: gameState.stats.bad,
+                miss: gameState.stats.miss,
+                difficulty: gameState.difficulty,
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                date: new Date().toISOString()
+            };
+
+            try {
+                // 保存到 Firebase
+                await database.ref('leaderboard').push(scoreData);
+                
+                // 也保存到本地
+                let localLeaderboard = JSON.parse(localStorage.getItem('rhythmLeaderboard') || '[]');
+                localLeaderboard.push({...scoreData, date: new Date().toLocaleDateString()});
+                localLeaderboard.sort((a, b) => b.score - a.score);
+                localLeaderboard = localLeaderboard.slice(0, 100);
+                localStorage.setItem('rhythmLeaderboard', JSON.stringify(localLeaderboard));
+
+                alert('✅ 分数已成功保存到全球排行榜！');
+                showLeaderboard();
+            } catch (error) {
+                console.error('保存失败:', error);
+                alert('❌ 保存失败: ' + error.message);
+            }
+        }
+
+        async function showLeaderboard() {
+            document.getElementById('menuScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('gameOverScreen').style.display = 'none';
+            document.getElementById('leaderboardScreen').style.display = 'block';
+
+            await loadLeaderboard();
+        }
+
+        async function loadLeaderboard() {
+            const content = document.getElementById('leaderboardContent');
+            content.innerHTML = '<div class="loading">正在加载排行榜...</div>';
+
+            if (!isOnline) {
+                // 显示本地排行榜
+                showLocalLeaderboard();
+                return;
+            }
+
+            try {
+                let query = database.ref('leaderboard').orderByChild('score').limitToLast(50);
+                
+                const snapshot = await query.once('value');
+                const scores = [];
+                
+                snapshot.forEach(child => {
+                    scores.unshift({ id: child.key, ...child.val() });
+                });
+
+                displayLeaderboard(scores);
+            } catch (error) {
+                console.error('加载排行榜失败:', error);
+                content.innerHTML = '<div class="loading">❌ 加载失败，显示本地排行榜</div>';
+                showLocalLeaderboard();
+            }
+        }
+
+        function showLocalLeaderboard() {
+            const leaderboard = JSON.parse(localStorage.getItem('rhythmLeaderboard') || '[]');
+            displayLeaderboard(leaderboard.map((s, i) => ({ ...s, id: i })));
+        }
+
+        function displayLeaderboard(scores) {
+            const content = document.getElementById('leaderboardContent');
+            
+            if (scores.length === 0) {
+                content.innerHTML = '<div class="loading">暂无记录，快来创造历史吧！</div>';
+                return;
+            }
+
+            let html = `
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>玩家</th>
+                            <th>分数</th>
+                            <th>连击</th>
+                            <th>难度</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            scores.forEach((entry, index) => {
+                const rank = index + 1;
+                const rankClass = rank <= 3 ? `rank-${rank}` : '';
+                const date = entry.date ? new Date(entry.date).toLocaleDateString() : '未知';
+                
+                html += `
+                    <tr>
+                        <td class="${rankClass}">${rank}</td>
+                        <td>${escapeHtml(entry.playerName)}</td>
+                        <td>${entry.score.toLocaleString()}</td>
+                        <td>${entry.maxCombo}</td>
+                        <td>${entry.difficulty ? entry.difficulty.toUpperCase() : '-'}</td>
+                        <td>${date}</td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table>';
+            content.innerHTML = html;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            loadLeaderboard();
+        }
+
+        function backToMenu() {
+            document.getElementById('menuScreen').style.display = 'block';
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('gameOverScreen').style.display = 'none';
+            document.getElementById('leaderboardScreen').style.display = 'none';
+        }
+
+        function showHowToPlay() {
+            alert(`🎮 游戏说明：
+
+操作方式：
+← ↓ SPACE ↑ → 
+(方向键 + 空格键)
+
+当音符落到判定线时，按下对应按键！
+
+判定等级：
+🌟 PERFECT - 完美 (+100分)
+✨ GREAT - 很好 (+80分)
+👍 GOOD - 不错 (+50分)
+😕 BAD - 较差 (+20分)
+❌ MISS - 错过 (连击中断)
+
+连击越高，得分倍数越高！
+
+提示：
+1. 保持节奏感，跟着音乐点击
+2. 眼睛看判定线，余光看音符
+3. 宁可准确率稍低也要保持连击
+4. 多练习提高反应速度
+
+祝你游戏愉快！🎵`);
+        }
+
+        // 防止方向键滚动页面
+        window.addEventListener("keydown", function(e) {
+            if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+                e.preventDefault();
+            }
+        }, false);
+
+        // 添加震动动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

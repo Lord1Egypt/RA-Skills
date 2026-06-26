@@ -1,0 +1,66 @@
+name: miaoji-model-shot
+version: 1.0.0
+tag: 电商设计
+tag: 产品展示
+tag: AI绘图提示词
+tag: 服装拍摄
+tag: 构图方案
+
+title:
+  zh: 秒技·AI模特图方案
+  en: AI Model Shot Studio
+
+description:
+  zh: |
+    秒级输出服装产品展示的构图方案和AI绘图提示词。从平铺图到模特实拍感，
+    赋能电商快速测款。支持日常/商务/运动/约会等多种风格场景适配。
+    
+    核心功能：
+    • 模特展示提示词生成器
+    • 场景适配模板（4种风格）
+    • 多角度构图方案（4-6张/款）
+    • 测款加速批量规划
+    
+    定位：拍摄构图方案专家，不是AI生成工具。
+  en: |
+    Generate professional fashion photography composition plans and AI art prompts in seconds.
+    Transform flat-lay images into studio-quality model shot concepts. Perfect for e-commerce quick testing.
+    
+    Core Features:
+    • Model shot prompt generator
+    • Scene adaptation templates (4 styles)
+    • Multi-angle composition plans (4-6 shots/product)
+    • Batch planning for rapid testing
+    
+    Focus: Photography composition planning, not image generation.
+
+highlights:
+  - 秒级生成专业级构图方案
+  - 4种风格模板一键适配
+  - 单款4-6张完整方案输出
+  - 批量规划支持100款/天
+
+warning:
+  zh: |
+    本技能专注于产品展示方案设计，输出内容可作为拍摄指导或AI绘图参考提示词。
+    不涉及任何图像生成、人物替换或虚拟形象创建技术。
+  en: |
+    This skill focuses on product display planning and AI art prompt generation.
+    No image generation, face replacement, or virtual character creation is involved.
+
+author: miaoji
+homepage: https://xiaping.coze.site
+repository: https://github.com/miaoji-studio/miaoji-model-shot
+license: MIT
+
+keywords:
+  - 电商设计
+  - 产品展示
+  - AI绘图提示词
+  - 服装拍摄
+  - 模特构图
+  - 电商测款
+  - 服饰展示
+  - 拍摄方案
+  - 构图设计
+  - 时尚摄影

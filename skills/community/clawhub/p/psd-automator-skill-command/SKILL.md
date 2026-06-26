@@ -1,35 +1,32 @@
 ---
-name: "Psd Automator Skill Command"
+name: psd-automator-skill-command
 description: "Dispatch PSD automation tasks through skill command entry while reusing the same /psd orchestrator. Requires psd-automator core."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psd-automator-skill-command"
-sourceUrl: "https://clawhub.ai/skills/psd-automator-skill-command"
+metadata:
+  openclaw:
+    userInvocable: true
+    commandDispatch: tool
+    commandTool: psd_automator_skill_command
+    commandArgMode: raw
 ---
 
-# Psd Automator Skill Command
+# psd-automator-skill-command
 
-> Dispatch PSD automation tasks through skill command entry while reusing the same /psd orchestrator. Requires psd-automator core.
+This skill command provides a skill-entry equivalent of `/psd` without changing existing `/psd` behavior.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psd-automator-skill-command`
-- **Source URL:** [https://clawhub.ai/skills/psd-automator-skill-command](https://clawhub.ai/skills/psd-automator-skill-command)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psd-automator-skill-command
+```text
+/psd-automator-skill-command <agentId> <taskJsonPath|中文需求> [--dry-run] [--index <indexPath>]
 ```
+
+Example:
+
+```text
+/psd-automator-skill-command design-mac-01 帮我找到20260302工位名牌.psd，把姓名改成小一，并保存成png放到桌面
+```
+
+## Notes
+
+- This command reuses the same PSD orchestration pipeline as `/psd`.
+- It keeps DINGTALK image marker behavior consistent with existing PSD workflow.
+- It contributes to the same skills usage statistics store with `entrypoint=skill_command`.

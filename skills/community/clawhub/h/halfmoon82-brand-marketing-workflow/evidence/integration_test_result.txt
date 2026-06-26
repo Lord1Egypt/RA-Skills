@@ -1,0 +1,58 @@
+
+==================================================
+  1) Orchestrator — fashion brand full run
+==================================================
+  ✅ PASS  brand_brief present
+  ✅ PASS  content_strategy present
+  ✅ PASS  content_assets present
+  ✅ PASS  competitor_report present
+  ✅ PASS  performance_report present
+  ✅ PASS  iteration_plan present
+  ✅ PASS  status == ready_for_iteration
+  ✅ PASS  low_confidence == False
+  ✅ PASS  browser.compliant == True
+  ✅ PASS  authorization.has_boundary == False (draft_prepare allowed)
+
+==================================================
+  2) Authorization — publish requires pause
+==================================================
+  ✅ PASS  has_boundary == True
+  ✅ PASS  decision == pause
+  ✅ PASS  pause flag True
+  ✅ PASS  state == awaiting_confirmation
+
+==================================================
+  2b) Authorization — publish resumes on confirm
+==================================================
+  ✅ PASS  decision == allow
+  ✅ PASS  state == resumed
+
+==================================================
+  2c) Authorization — payment requires authorize_payment
+==================================================
+  ✅ PASS  decision == allow_payment
+  ✅ PASS  state == resumed
+
+==================================================
+  2d) Authorization — deny triggers degrade
+==================================================
+  ✅ PASS  decision == degrade
+  ✅ PASS  state == degraded
+
+==================================================
+  3) Browser — public collect allowed
+==================================================
+  ✅ PASS  compliant == True
+  ✅ PASS  decision == allow
+  ✅ PASS  capability_plan not empty
+
+==================================================
+  3b) Browser — bypass captcha blocked + degrade path
+==================================================
+  ✅ PASS  compliant == False
+  ✅ PASS  decision == degrade
+  ✅ PASS  degrade_to not empty
+
+==================================================
+  TOTAL: 26/26 passed ✅
+==================================================

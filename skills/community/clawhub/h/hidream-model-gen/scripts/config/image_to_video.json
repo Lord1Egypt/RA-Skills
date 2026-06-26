@@ -1,0 +1,89 @@
+{
+  "categories": {
+    "image_to_video": {
+      "name": "图生视频",
+      "name_en": "Image to Video",
+      "status": "active",
+      "default_port": "v3Pro",
+      "description": "从静态图像生成视频",
+      "warning": "生成时间较长(2-3分钟)，请谨慎调用",
+      "ports": {
+        "v3Pro": {
+          "name": "V3 Pro",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3Pro",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "高质量，生成较慢"
+        },
+        "v3L": {
+          "name": "V3 Lite",
+          "display_name": "Vivago.ai 2.0 360p",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "360p分辨率，生成速度快"
+        },
+        "kling-video": {
+          "name": "Kling Video",
+          "display_name": "Kling video O1",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_img2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "kling-video-o1",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "medium",
+          "quality": "excellent",
+          "notes": "Kling视频模型，质量优秀"
+        }
+      }
+    }
+  }
+}

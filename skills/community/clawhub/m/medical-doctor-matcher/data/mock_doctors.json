@@ -1,0 +1,180 @@
+[
+  {
+    "doctor_id": "D001",
+    "name": "张晨",
+    "hospital_id": "H002",
+    "department": "呼吸内科",
+    "title": "主任医师",
+    "rating": 4.9,
+    "specialties": [
+      "发热",
+      "咳嗽",
+      "肺部感染",
+      "哮喘",
+      "胸闷"
+    ],
+    "fee_level": "高"
+  },
+  {
+    "doctor_id": "D002",
+    "name": "李敏",
+    "hospital_id": "H002",
+    "department": "感染科",
+    "title": "副主任医师",
+    "rating": 4.8,
+    "specialties": [
+      "发热",
+      "感染",
+      "上呼吸道感染",
+      "病毒感染"
+    ],
+    "fee_level": "中"
+  },
+  {
+    "doctor_id": "D003",
+    "name": "王越",
+    "hospital_id": "H001",
+    "department": "呼吸内科",
+    "title": "主任医师",
+    "rating": 4.9,
+    "specialties": [
+      "咳嗽",
+      "呼吸困难",
+      "间质性肺病",
+      "胸闷"
+    ],
+    "fee_level": "高"
+  },
+  {
+    "doctor_id": "D004",
+    "name": "赵磊",
+    "hospital_id": "H003",
+    "department": "骨科",
+    "title": "主任医师",
+    "rating": 4.8,
+    "specialties": [
+      "膝关节疼痛",
+      "半月板损伤",
+      "骨关节炎"
+    ],
+    "fee_level": "高"
+  },
+  {
+    "doctor_id": "D005",
+    "name": "陈雪",
+    "hospital_id": "H003",
+    "department": "运动医学科",
+    "title": "副主任医师",
+    "rating": 4.7,
+    "specialties": [
+      "膝痛",
+      "运动损伤",
+      "踝扭伤",
+      "康复"
+    ],
+    "fee_level": "中"
+  },
+  {
+    "doctor_id": "D006",
+    "name": "周宁",
+    "hospital_id": "H004",
+    "department": "儿科",
+    "title": "主任医师",
+    "rating": 4.9,
+    "specialties": [
+      "儿童发热",
+      "儿童咳嗽",
+      "小儿感染"
+    ],
+    "fee_level": "中"
+  },
+  {
+    "doctor_id": "D007",
+    "name": "高峰",
+    "hospital_id": "H005",
+    "department": "心内科",
+    "title": "主任医师",
+    "rating": 4.9,
+    "specialties": [
+      "胸痛",
+      "心悸",
+      "冠心病",
+      "高血压"
+    ],
+    "fee_level": "高"
+  },
+  {
+    "doctor_id": "D008",
+    "name": "刘畅",
+    "hospital_id": "H006",
+    "department": "神经内科",
+    "title": "副主任医师",
+    "rating": 4.8,
+    "specialties": [
+      "头痛",
+      "眩晕",
+      "肢体麻木",
+      "脑血管病"
+    ],
+    "fee_level": "中"
+  },
+  {
+    "doctor_id": "D009",
+    "name": "孙楠",
+    "hospital_id": "H008",
+    "department": "全科医学科",
+    "title": "主治医师",
+    "rating": 4.6,
+    "specialties": [
+      "发热",
+      "咳嗽",
+      "腹痛",
+      "皮疹",
+      "初诊分流"
+    ],
+    "fee_level": "低"
+  },
+  {
+    "doctor_id": "D010",
+    "name": "何洁",
+    "hospital_id": "H008",
+    "department": "皮肤科",
+    "title": "主治医师",
+    "rating": 4.7,
+    "specialties": [
+      "皮疹",
+      "湿疹",
+      "过敏",
+      "瘙痒"
+    ],
+    "fee_level": "低"
+  },
+  {
+    "doctor_id": "D011",
+    "name": "杨涛",
+    "hospital_id": "H001",
+    "department": "心内科",
+    "title": "副主任医师",
+    "rating": 4.7,
+    "specialties": [
+      "胸闷",
+      "心悸",
+      "心律失常"
+    ],
+    "fee_level": "中"
+  },
+  {
+    "doctor_id": "D012",
+    "name": "杜娟",
+    "hospital_id": "H003",
+    "department": "呼吸内科",
+    "title": "主治医师",
+    "rating": 4.5,
+    "specialties": [
+      "咳嗽",
+      "哮喘",
+      "支气管炎"
+    ],
+    "fee_level": "低"
+  }
+]

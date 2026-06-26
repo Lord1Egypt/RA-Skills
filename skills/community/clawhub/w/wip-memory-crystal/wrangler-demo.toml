@@ -1,0 +1,8 @@
+name = "memory-crystal-demo"
+main = "dist/worker-demo.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "DEMO_KV"
+id = "7dab6efe89f443688e178f6135aa3f3b"

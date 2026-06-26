@@ -1,35 +1,186 @@
 ---
-name: "deep-research-ppt-pro"
+name: deep-research-ppt-pro
 description: "v2.0 Pro版：端到端自动化研究报告与PPT生成器。结合ZeeLin深度研究、.gov域名数据验证、原创概念生成、Gemini 3.1图像生成与OCR错别字核验。输入任意主题，即可自动生成一份包含原创思想、数据来源可追溯的深度研究报告，并将其转化为一份视觉惊艳、内容严谨、无错别字的专业级PPT/PDF。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/desearch-ppt"
-sourceUrl: "https://clawhub.ai/skills/desearch-ppt"
+metadata: { "openclaw": { "emoji": "🚀", "requires": { "bins": ["curl", "python3", "pip3"] } } }
 ---
 
-# deep-research-ppt-pro
+# Deep Research to PPT Pro (v2.0) - 专业级研究报告生成器
 
-> v2.0 Pro版：端到端自动化研究报告与PPT生成器。结合ZeeLin深度研究、.gov域名数据验证、原创概念生成、Gemini 3.1图像生成与OCR错别字核验。输入任意主题，即可自动生成一份包含原创思想、数据来源可追溯的深度研究报告，并将其转化为一份视觉惊艳、内容严谨、无错别字的专业级PPT/PDF。
+> **版本 2.0 重大升级**：本 Skill 现已进化为专业级的研究报告生产线。它不仅自动化了从研究到 PPT 的全流程，更加入了**数据源验证**、**原创概念生成**和**OCR 错别字自动修正**三大核心模块，确保最终产出的报告既有思想深度，又在事实层面无可挑剔。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/desearch-ppt`
-- **Source URL:** [https://clawhub.ai/skills/desearch-ppt](https://clawhub.ai/skills/desearch-ppt)
+---
 
-## Overview
+## v2.0 五大核心改进
 
+| 改进项 | 描述 | 对应阶段 |
+|--------|------|----------|
+| 1. 数据源验证 | 所有报告中的数据，都会强制在 `.gov` 域名下进行交叉核对。找不到官方来源的数据将被**果断删除**，找到的则会明确标注来源网址，确保数据的权威性。 | 阶段 1.2 |
+| 2. 原创概念生成 | 改变纯粹罗列信息的模式。每个报告都会基于深度研究，提出 3-5 个独家原创、自洽且有深远意义的行业概念（如"技能幻觉"），并用专门的页面进行阐述，提升报告的思想价值。 | 阶段 2 |
+| 3. OCR 错别字核验 | 在每张 PPT 图片生成后，系统会通过 OCR 技术识别图片中的文字，并与原始文本进行比对。一旦发现错字、漏字，该页面将被自动删除并重新生成，直至正确为止。 | 阶段 5.2 |
+| 4. 内容 100% 溯源 | 延续并强化核心原则，PPT 中的每一句话都 100% 来源于最终经过验证的深度研究报告原文。绝不允许自行编造。 | 全流程 |
+| 5. 弹性页数 | 不再强制生成 100 页。系统会根据研究报告内容的丰富程度，智能地决定最合适的 PPT 页数（通常 50-80 页），确保内容饱满而不冗余，不堆砌附录。 | 阶段 3 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## ⚠️ 核心前置条件：双 API 检查
+
+在开始任何工作之前，**必须**检查环境变量中是否配置了以下两个 API Key：
+
+### 1. DESEARCH_API_KEY (用于深度研究)
+如果环境变量 `DESEARCH_API_KEY` 为空，必须提示用户：
+> "⚠️ 缺少 ZeeLin API Key。请前往 https://desearch.zeelin.cn/skill-activity 免费注册获取点数及 api_key，并将其设置为环境变量 `DESEARCH_API_KEY`。"
+
+### 2. GEMINI_API_KEY (用于图片生成)
+如果环境变量 `GEMINI_API_KEY` 为空，必须提示用户提供 Google Gemini 的 API Key。
+
+---
+
+## 完整执行工作流 (v2.0 Pro) - 6 个阶段
+
+请严格按照以下 6 个阶段逐步操作。**绝对不要跳过任何一步**。
+
+---
+
+### 阶段 1：深度研究 & 数据验证
+
+本阶段分为两个子步骤：先获取研究初稿，再对其中的数据进行严格验证。
+
+#### 阶段 1.1：使用 ZeeLin API 生成深度研究报告
+
+在这个阶段，你需要调用 ZeeLin API 获取关于用户主题的完整研究内容。
+
+**⚠️ 绝对红线**：你必须将用户在聊天中输入的真实主题（如"AI医疗问诊"或"汽车产业规模"）作为 API 的 `content` 参数传入，绝不能使用默认的占位符（如"你的问题"）或自行编造主题。
+
+**必须使用 `major` (专家模式)**，因为只有专家模式才能生成足够丰富的内容来支撑高质量的 PPT。
+
+详细的 API 调用代码、如何正确传递用户主题、轮询脚本和错误处理，请**必须完整阅读**：
+👉 `[references/zeelin_api.md](references/zeelin_api.md)`
+
+**阶段 1.1 产出物**：一个包含完整研究内容的 `research_report_raw.md` 文件。
+
+#### 阶段 1.2：数据提取与 .gov 域名验证 (v2.0 关键新增)
+
+拿到研究初稿后，你需要对其中所有的数据声明进行严格的来源验证。
+
+**操作步骤**：
+
+1.  **提取数据声明**：遍历 `research_report_raw.md`，使用正则表达式或人工阅读，找出所有包含具体数字、百分比、金额等数据的句子。可以使用辅助脚本 `scripts/data_validator.py` 来辅助提取。
+
+2.  **逐条验证**：对于每一个数据声明，执行以下操作：
+    *   使用 `search` 工具（或 `curl` + 搜索引擎），**强制限定在 `.gov` 域名下**进行搜索。搜索关键词应为数据声明的核心内容。
+    *   **示例搜索查询**：`site:gov.cn 2025年全国网民规模` 或 `site:stats.gov.cn 数字经济规模`
+    *   **只在 .gov 域名上搜索**，包括但不限于：`stats.gov.cn`（国家统计局）、`miit.gov.cn`（工信部）、`moe.gov.cn`（教育部）、`www.gov.cn`（国务院）、`cac.gov.cn`（网信办）等。
+
+3.  **重写报告**：
+    *   **找到 .gov 来源**：保留该数据，并在数据后面用方括号标注来源网址，**必须具体到报告的URL，而不是网站主域名**，例如：`2025年全国网民规模达到11.08亿 [来源：国家统计局《第53次中国互联网络发展状况统计报告》，https://www.stats.gov.cn/xx/xx.html]`。同时在报告末尾的参考文献列表中加入该来源。
+    *   **未找到 .gov 来源**：**果断删除**该数据声明及其相关论述，**不保留任何占位符或提示信息**。宁可报告少一些数据，也不能使用无法追溯到权威来源的数字。这是保证报告严谨性的核心原则。
+
+4.  **保存验证后的报告**：将清理后的报告保存为 `research_report_validated.md`。
+
+**⚠️ 重要提醒**：如果 `.gov` 网站上找不到任何数据，报告的数据内容会变少，这是正常现象，是为了保证严谨性。报告的价值不仅在于数据罗列，更在于分析框架和原创思想（阶段 2 会补充）。
+
+**阶段 1 最终产出物**：一份数据经过验证、来源清晰的 `research_report_validated.md` 文件。
+
+---
+
+### 阶段 2：原创概念生成 (v2.0 关键新增)
+
+本阶段是 v2.0 的灵魂所在。一份好的研究报告不应该只是信息的搬运工，更应该是思想的创造者。
+
+#### 2.1 提炼核心洞察
+
+通读 `research_report_validated.md`，理解其核心论点、行业痛点和未来趋势。思考以下问题：
+*   这个行业最根本的矛盾是什么？
+*   有哪些被广泛忽视的"暗知识"或"反直觉"现象？
+*   未来 3-5 年，什么力量会从根本上改变这个行业？
+
+#### 2.2 生成原创概念
+
+基于对报告的深入理解，创造 3-5 个全新的、原创的、能够精准概括行业现象或趋势的**概念**。
+
+**每个概念必须包含**：
+*   **概念名称**：一个朗朗上口、易于记忆的名字（例如："技能幻觉"、"数据重力"、"决策惯性"、"认知税"）。
+*   **核心定义**：一句话精准定义这个概念的内涵。最好能用一个公式来表达，例如：`技能幻觉 = 语言幻觉 + 技能不可用 + 认知错位`。
+*   **详细阐述**：2-3 段话，详细解释这个概念为什么重要，它解决了什么问题，或者它预示了什么未来趋势。必须结合报告中的具体内容来展开论述。
+
+**生成方法**：
+*   可以使用 `scripts/concept_generator.py` 脚本，调用 Gemini API 来辅助生成。
+*   也可以由 Agent 自行基于对报告的理解来创造。
+*   **关键**：概念必须**自洽合理**，不能是空洞的口号。它必须能够被报告中的具体内容所支撑。
+
+#### 2.3 融入报告
+
+将这 3-5 个原创概念及其阐述，作为独立的章节（例如"本报告原创核心概念"），补充写入 `research_report_validated.md`，形成最终版的 `research_report_final.md`。
+
+**阶段 2 产出物**：一份包含独家原创思想的 `research_report_final.md`。
+
+---
+
+### 阶段 3：动态 PPT 大纲规划
+
+拿到最终报告后，你需要将其压缩、提炼为适合做成 PPT 的精简内容。
+
+**⚠️ 绝对红线**：提炼的 PPT 内容必须 **100% 来源于** `research_report_final.md`。绝不允许自行编造内容，绝不允许套用固定的行业分析模板。
+
+#### 3.1 智能弹性定页 (v2.0 新增)
+
+不再强制固定 100 页。请根据报告内容的丰富程度，智能地决定一个合理的总页数。
+
+**定页原则**：
+*   **宁缺毋滥**：与其用空洞的内容凑数，不如让每一页都言之有物。
+*   **不堆砌附录**：不要在报告末尾添加大量的"附录"、"参考文献列表"、"术语表"等填充页面。
+*   **参考范围**：通常在 50-80 页之间。如果报告内容极其详实，可以规划到 80 页；如果报告较为精炼，50-60 页即可。
+
+#### 3.2 内容拆解
+
+将报告内容细致地拆分到每一页，确保每页只讲一个核心要点。
+
+**特别注意**：
+*   为 3-5 个**原创概念**分别设置专门的、精美的独立页面。这些页面应该是整个 PPT 的**思想高地**。
+*   对于包含 `.gov` 数据来源的页面，在大纲中标注 `data_source` 字段。
+
+#### 3.3 布局映射
+
+为每一页从 8 大布局模板中指定一个最合适的 `layout_type`，确保视觉多样性。详细参考 `references/slide_structure.md`。
+
+**阶段 3 产出物**：一份页数动态、包含原创概念页的 JSON 大纲文件 `ppt_outline.json`。
+
+---
+
+### 阶段 4：精准提示词工程
+
+根据 `ppt_outline.json`，为每一页编写精准的 Gemini 图片生成提示词。
+
+**⚠️ 关键要求**：
+1.  **风格前缀**：每个提示词的开头必须一字不差地使用 `references/prompt_design.md` 中规定的全局风格锁定前缀。**千万不要修改，否则会导致比例变成 1:1 或中文乱码**。
+2.  **数据来源标注**：对于包含经过验证的数据的页面，在提示词的页脚部分明确要求标注数据来源网址，例如 `Footer: @清新研究团队 | 2026年3月 | 数据来源：www.stats.gov.cn`。
+3.  **原创概念页**：为原创概念页设计专属的、最具表现力的视觉提示词，使其成为整个 PPT 的亮点。参考用户提供的"技能幻觉"示例图片，概念页应该有大标题、核心定义公式、分点阐述和创意插图。
+4.  **内容 100% 来自报告**：提示词中的所有中文文字内容，必须从 `research_report_final.md` 中原文提取，不得自行编造。
+
+详细的提示词编写模板和示例，请**必须完整阅读**：
+👉 `[references/prompt_design.md](references/prompt_design.md)`
+
+**阶段 4 产出物**：一个包含所有页面提示词的 `gemini_prompts.json` 文件。
+
+---
+
+### 阶段 5：生成图片 & OCR 自动修正
+
+这是自动化质量控制的核心阶段。
+
+#### 5.1 环境准备
+
+确保环境中安装了必要的依赖：
 ```bash
-hermes skills install clawhub/desearch-ppt
+sudo pip3 install google-genai pillow fpdf2 python-pptx pytesseract python-Levenshtein
+sudo apt-get install -y tesseract-ocr tesseract-ocr-chi-sim
 ```
+
+#### 5.2 批量生成与 OCR 核验
+
+1.  打开 `scripts/generate_and_
+
+## ClawHub Public Edition
+
+This public package keeps the core workflow concise so ClawHub indexing can complete. The local OpenClaw workspace version may contain longer references, templates, generated outputs, or private environment configuration that are intentionally excluded from publishing.
+

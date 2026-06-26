@@ -1,35 +1,26 @@
 ---
 name: "Live Shopping"
 description: "提供带货直播间筛选、秒杀互动及红包雨抢夺指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/live-shopping"
-sourceUrl: "https://clawhub.ai/skills/live-shopping"
 ---
 
-# Live Shopping
+# 直播带货
 
-> 提供带货直播间筛选、秒杀互动及红包雨抢夺指引。
+## 筛选项
+- 价格区间/折扣力度/历史最低价对比
+- 物流时效（次日达/即时配/预约送）
+- 评分与信任度（官方店/老牌店/评价基数）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/live-shopping`
-- **Source URL:** [https://clawhub.ai/skills/live-shopping](https://clawhub.ai/skills/live-shopping)
+## 返回字段
+- 实付金额/优惠明细/物流实施轨迹
+- 售后保障期/价保状态/退换货记录
+- 评价分布/真实买家秀/直播讲解回放
 
-## Overview
+## 示例请求
+- “如何快速使用 直播带货 处理 [具体场景任务] ？”
+- “直播带货 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 结合大促节奏、库存波段与社区评价每日动态调整
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/live-shopping
-```
+## 注意事项
+- 建议搜索优惠券后再下单；确认收货前务必查验商品完整性。

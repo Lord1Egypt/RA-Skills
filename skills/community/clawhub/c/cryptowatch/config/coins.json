@@ -1,0 +1,13 @@
+{
+  "watchlist": [
+    {"id": "bitcoin", "symbol": "BTC", "name": "Bitcoin"},
+    {"id": "ethereum", "symbol": "ETH", "name": "Ethereum"},
+    {"id": "solana", "symbol": "SOL", "name": "Solana"},
+    {"id": "bnb", "symbol": "BNB", "name": "BNB"},
+    {"id": "xrp", "symbol": "XRP", "name": "XRP"},
+    {"id": "dogecoin", "symbol": "DOGE", "name": "Dogecoin"},
+    {"id": "cardano", "symbol": "ADA", "name": "Cardano"},
+    {"id": "avalanche-2", "symbol": "AVAX", "name": "Avalanche"}
+  ],
+  "alerts": []
+}

@@ -1,35 +1,227 @@
 ---
-name: "Ai绘画 Ddcd9b"
+name: ai绘画-ddcd9b
 description: "从抖音视频学习: AI绘画 — 【全108集】目前B站最全的AI绘画网课SD+ComfyUI+Midjourney保姆级教程，2025最新版！包含所有干"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-ddcd9b"
-sourceUrl: "https://clawhub.ai/skills/ai-ddcd9b"
+compatibility: opencode
+trigger: "AI绘画 / 全108集 / 目前B站最全的AI绘画网课SD / ComfyUI"
+tags: [guide, AI绘画, video-learned]
 ---
 
-# Ai绘画 Ddcd9b
+# AI绘画
 
-> 从抖音视频学习: AI绘画 — 【全108集】目前B站最全的AI绘画网课SD+ComfyUI+Midjourney保姆级教程，2025最新版！包含所有干
+> 从 @comfyui 的视频中学到的技能
+> 关键词: 全108集, 目前B站最全的AI绘画网课SD, ComfyUI, Midjourney保姆级教程, 2025最新版, 包含所有干货, 七天就能从小白到大神, 学完直接变现
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-ddcd9b`
-- **Source URL:** [https://clawhub.ai/skills/ai-ddcd9b](https://clawhub.ai/skills/ai-ddcd9b)
+## 描述
 
-## Overview
+【全108集】目前B站最全的AI绘画网课SD+ComfyUI+Midjourney保姆级教程，2025最新版！包含所有干货！七天就能从小白到大神！学完直接变现！
+
+## 操作步骤
+
+1. 理解核心概念: AI绘画
+2. 掌握关键技巧: 全108集, 目前B站最全的AI绘画网课SD, ComfyUI, Midjourney保姆级教程
+3. 参考案例: comfyui 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @comfyui
+- 学习时间: 2026-06-01 21:01
+- 领域标签: guide
+
+## 触发场景
+- 用户说"AI绘画"
+- 用户说"全108集"
+- 用户需要AI绘画相关帮助
+
+## B站学习
+> 学习时间: 2026-06-01 21:07
+
+- **捌傀**: 免费，无敏感提示词，不限次数， Ai绘画，本地模型部署，一键安装。超级ai绘画工具
+- **Ai_随风**: 720°全景图导演台（完美解决漫剧多人物场景站位——Runninghub无限画布自由创作平台）
+- **AI未来2026**: 🔥全面反超 GPT-Image-2！Ernie.Image整合包强势发力⚡图文混排全方位领先✅多项指标碾压
+
+## 融合来源: ai绘画-ddcd9b-bd3ad2
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-01 21:07
+- **衡鲍**: 【NAI3教程】地表最强二次元AI绘图模型！NovelAI3 零基础使用教程
+- **Ai_随风**: 720°全景图导演台（完美解决漫剧多人物场景站位——Runninghub无限画布自由创作平台）
+- **AI漫剧果果**: 🔥可灵AI3.0omni重磅升级！超强人物一致性不亚于seedance2.0，音画同步一站式生成，手把手带你制作爆款视频变现！！
+
+## 融合来源: ai绘画-ddcd9b-bd3ad2-974a99
+> 融合时间: 自动合并
+
+## B站学习
+> 学习时间: 2026-06-02 07:52
+
+- **Nuullll**: Intel显卡，你怎么绘世?? 【AI绘画】【i卡整合包】【秋葉绘世启动器】【IPEX】
+- **痕继痕迹**: AI绘画新玩法，把牛逼藏在图片里 - 如何用 Stable Diffusion 精准控制光影，将文字融合到图片
+- **衡鲍**: 【NAI3教程】地表最强二次元AI绘图模型！NovelAI3 零基础使用教程
+
+## 融合来源: ai绘画-ddcd9b-bd3ad2-974a99-525981
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-02 07:59
+- **Nuullll**: Intel显卡，你怎么绘世?? 【AI绘画】【i卡整合包】【秋葉绘世启动器】【IPEX】
+- **痕继痕迹**: AI绘画新玩法，把牛逼藏在图片里 - 如何用 Stable Diffusion 精准控制光影，将文字融合到图片
+- **゚゚゚゙゚闲云**: 无限画布——使用NovelAI创建出“无限大”的图像！
+> 融合时间: 自动合并
+> 学习时间: 2026-06-02 08:54
+- **Nuullll**: Intel显卡，你怎么绘世?? 【AI绘画】【i卡整合包】【秋葉绘世启动器】【IPEX】
+- **痕继痕迹**: AI绘画新玩法，把牛逼藏在图片里 - 如何用 Stable Diffusion 精准控制光影，将文字融合到图片
+- **゚゚゚゙゚闲云**: 无限画布——使用NovelAI创建出“无限大”的图像！
+> 融合时间: 自动合并
+> 学习时间: 2026-06-02 09:11
+- **Nuullll**: Intel显卡，你怎么绘世?? 【AI绘画】【i卡整合包】【秋葉绘世启动器】【IPEX】
+- **痕继痕迹**: AI绘画新玩法，把牛逼藏在图片里 - 如何用 Stable Diffusion 精准控制光影，将文字融合到图片
+- **゚゚゚゙゚闲云**: 无限画布——使用NovelAI创建出“无限大”的图像！
+
+## 融合来源: ai绘画-ddcd9b-bd3ad2-974a99-525981-435415-f297f1-4f374e
+> 融合时间: 自动合并
+
+# ai绘画-ddcd9b-bd3ad2
+> 从 @AI漫剧果果 的视频中学到的技能
+> 关键词: 可灵AI3, 0omni重磅升级, 超强人物一致性不亚于seedance2, 音画同步一站式生成, 手把手带你制作爆款视频变现
+
+## 描述
+🔥可灵AI3.0omni重磅升级！超强人物一致性不亚于seedance2.0，音画同步一站式生成，手把手带你制作爆款视频变现！！
+
+## 操作步骤
+1. 理解核心概念: ai绘画-ddcd9b-bd3ad2
+2. 掌握关键技巧: 可灵AI3, 0omni重磅升级, 超强人物一致性不亚于seedance2, 音画同步一站式生成
+3. 参考案例: AI漫剧果果 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @AI漫剧果果
+- 学习时间: 2026-06-01 21:07
+- 领域标签: business
+
+## 触发场景
+- 用户说"ai绘画-ddcd9b-bd3ad2"
+- 用户说"可灵AI3"
+- 用户需要ai绘画-ddcd9b-bd3ad2相关帮助
+
+# ai绘画-ddcd9b-bd3ad2-974a99-525981-435415-f297f1
+> 从 @痕继痕迹 的视频中学到的技能
+> 关键词: AI绘画新玩法, 把牛逼藏在图片里, 如何用, Stable, Diffusion, 精准控制光影, 将文字融合到图片
+
+## 描述
+AI绘画新玩法，把牛逼藏在图片里 - 如何用 Stable Diffusion 精准控制光影，将文字融合到图片
+
+## 操作步骤
+1. 理解核心概念: ai绘画-ddcd9b-bd3ad2-974a99-525981-435415-f297f1
+2. 掌握关键技巧: AI绘画新玩法, 把牛逼藏在图片里, 如何用, Stable
+3. 参考案例: 痕继痕迹 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @痕继痕迹
+- 学习时间: 2026-06-02 09:11
+- 领域标签: guide
+
+## 触发场景
+- 用户说"ai绘画-ddcd9b-bd3ad2-974a99-525981-435415-f297f1"
+- 用户说"AI绘画新玩法"
+- 用户需要ai绘画-ddcd9b-bd3ad2-974a99-525981-435415-f297f1相关帮助
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-ddcd9b
-```
+## B站学习 (第1轮)
+> 学习时间: 2026-06-02 09:20
+
+- **Ai_随风**: 720°全景图导演台（完美解决漫剧多人物场景站位——Runninghub无限画布自由创作平台）
+  https://www.bilibili.com/video/BV1oQGb6VEbQ
+- **捌傀**: 免费，无敏感提示词，不限次数， Ai绘画，本地模型部署，一键安装。超级ai绘画工具
+  https://www.bilibili.com/video/BV1guPNz4Efz
+- **大鹅猫工作室**: AI绘画一键去除AI感工作流
+  https://www.bilibili.com/video/BV1wN4y1Z7Zw
+
+## 融合来源: ai绘画-ddcd9b-bd3ad2
+> 融合时间: 自动合并
+
+# ai绘画-ddcd9b
+> 从 @捌傀 的视频中学到的技能
+> 关键词: 免费, 无敏感提示词, 不限次数, Ai绘画, 本地模型部署, 一键安装, 超级ai绘画工具
+
+## 描述
+免费，无敏感提示词，不限次数， Ai绘画，本地模型部署，一键安装。超级ai绘画工具
+
+## 操作步骤
+1. 理解核心概念: ai绘画-ddcd9b
+2. 掌握关键技巧: 免费, 无敏感提示词, 不限次数, Ai绘画
+3. 参考案例: 捌傀 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @捌傀
+- 学习时间: 2026-06-02 09:20
+- 领域标签: tool
+
+## 触发场景
+- 用户说"ai绘画-ddcd9b"
+- 用户说"免费"
+- 用户需要ai绘画-ddcd9b相关帮助
+
+
+## 融合来源: ai绘画-ddcd9b-bd3ad2
+> 融合时间: 自动合并
+
+# ai绘画-ddcd9b
+> 从 @捌傀 的视频中学到的技能
+> 关键词: 免费, 无敏感提示词, 不限次数, Ai绘画, 本地模型部署, 一键安装, 超级ai绘画工具
+
+## 描述
+免费，无敏感提示词，不限次数， Ai绘画，本地模型部署，一键安装。超级ai绘画工具
+
+## 操作步骤
+1. 理解核心概念: ai绘画-ddcd9b
+2. 掌握关键技巧: 免费, 无敏感提示词, 不限次数, Ai绘画
+3. 参考案例: 捌傀 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @捌傀
+- 学习时间: 2026-06-02 09:24
+- 领域标签: tool
+
+## 触发场景
+- 用户说"ai绘画-ddcd9b"
+- 用户说"免费"
+- 用户需要ai绘画-ddcd9b相关帮助
+
+
+## B站学习 (第2轮)
+> 学习时间: 2026-06-02 09:32
+
+- **Ai_随风**: 720°全景图导演台（完美解决漫剧多人物场景站位——Runninghub无限画布自由创作平台）
+  https://www.bilibili.com/video/BV1oQGb6VEbQ
+- **捌傀**: 免费，无敏感提示词，不限次数， Ai绘画，本地模型部署，一键安装。超级ai绘画工具
+  https://www.bilibili.com/video/BV1guPNz4Efz
+- **大鹅猫工作室**: AI绘画一键去除AI感工作流
+  https://www.bilibili.com/video/BV1wN4y1Z7Zw
+
+## 融合来源: ai绘画-ddcd9b-bd3ad2
+> 融合时间: 自动合并
+
+# ai绘画-ddcd9b
+> 从 @捌傀 的视频中学到的技能
+> 关键词: 免费, 无敏感提示词, 不限次数, Ai绘画, 本地模型部署, 一键安装, 超级ai绘画工具
+
+## 描述
+免费，无敏感提示词，不限次数， Ai绘画，本地模型部署，一键安装。超级ai绘画工具
+
+## 操作步骤
+1. 理解核心概念: ai绘画-ddcd9b
+2. 掌握关键技巧: 免费, 无敏感提示词, 不限次数, Ai绘画
+3. 参考案例: 捌傀 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @捌傀
+- 学习时间: 2026-06-02 09:32
+- 领域标签: tool
+
+## 触发场景
+- 用户说"ai绘画-ddcd9b"
+- 用户说"免费"
+- 用户需要ai绘画-ddcd9b相关帮助
+

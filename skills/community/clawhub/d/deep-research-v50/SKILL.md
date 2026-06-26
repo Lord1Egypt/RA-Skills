@@ -1,35 +1,116 @@
----
-name: "Deep Research Pro v5.0.1"
-description: "Performs deep research using a three-stage process: data extraction, thematic insight briefs with contradiction analysis, and narrative-driven strategic repo..."
-category: "research"
-source: "ClawHub"
-tags: [deep, insight, research, v5]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deep-research-v50"
-sourceUrl: "https://clawhub.ai/skills/deep-research-v50"
+# Skill: Deep Research Pro (v5.0 - 洞察引擎)
+
+> 版本：5.0.1
+> 描述：真深度研究技能 - 三阶段合成 + 失败即停止
+
+## 核心原则
+
+**深度不是"写得多"，而是"每一行数据都可溯源"。**
+
 ---
 
-# Deep Research Pro v5.0.1
+## 🔴 v5.0.1 强制规则（新增）
 
-> Performs deep research using a three-stage process: data extraction, thematic insight briefs with contradiction analysis, and narrative-driven strategic repo...
+### 规则1：提取失败必须明确报错
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deep-research-v50`
-- **Source URL:** [https://clawhub.ai/skills/deep-research-v50](https://clawhub.ai/skills/deep-research-v50)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deep-research-v50
+```python
+# 如果提取的数据不满足最低要求，输出：
+{
+  "error": "提取失败",
+  "reason": "样本量缺失 / 主要结果缺失 / 原文引用不足30字",
+  "suggestion": "跳过此来源或人工复核"
+}
 ```
+
+### 规则2：质量评分必须校验内容
+
+```
+质量评分逻辑：
+- 有样本量 + 主要结果 + 原文引用 ≥ 30字 → 8.0-9.0
+- 有2项 → 7.0-7.5
+- 有1项或全是"见原文" → 标记为"待验证"，不评分
+```
+
+### 规则3：报告必须区分"已验证"和"待验证"
+
+```markdown
+## 已验证结论（基于核心论文）
+
+### 结论1：LSTM在ICU场景预测准确率达0.87
+- 来源：card-002 (PMC11110807)
+- 证据：样本量1,250, 95%CI 0.82-0.91, p<0.001
+- 原文引用："The LSTM model achieved..." (Results, p.5)
+
+## 待验证线索（基于元数据）
+
+### 线索1：远程医疗或可节省成本
+- 来源：card-001 (PubMed摘要)
+- 状态：⚠️ 需人工访问原文验证
+```
+
+---
+
+## 执行流程
+
+### Step 1: 检索与提取
+
+```bash
+# 使用PubMed API获取结构化数据
+python3 scripts/extract-pmc.py <pmid>
+
+# 如果返回error，跳过该来源
+# 如果数据不全，标记为"待验证"
+```
+
+### Step 2: 卡片生成（强制校验）
+
+```markdown
+---
+source_id: card-xxx
+status: verified | pending | failed
+quality_score: 8.5 | N/A
+---
+
+## 1. 核心数据提取
+
+| 指标 | 数值 | 验证状态 |
+|------|------|----------|
+| 样本量 | 9,080 | ✅ 已提取 |
+| 主要结果 | 未提取 | ⚠️ 待验证 |
+| 原文引用 | "..."(30字+) | ✅ 已提取 |
+
+## 2. 质量说明
+
+- 数据完整度：2/3
+- 建议：访问原文验证主要结果
+```
+
+### Step 3: 报告生成（明确区分）
+
+**禁止**：混合使用"已验证"和"待验证"数据
+
+**要求**：
+- 已验证结论：单独章节
+- 待验证线索：单独章节 + 警告标识
+
+---
+
+## 质量门禁
+
+1. **卡片数量**：≥5个有完整数据的
+2. **溯源验证**：100%通过
+3. **明确区分**：已验证 vs 待验证
+
+---
+
+## v5.0.1 vs v5.0 对比
+
+| 维度 | v5.0 | v5.0.1 |
+|------|------|--------|
+| 提取失败 | 静默填充"见原文" | 明确报错 |
+| 质量评分 | 虚高(8.5分但空洞) | 必须校验内容 |
+| 报告生成 | 混合使用数据 | 明确区分已验证/待验证 |
+
+---
+
+*Skill版本：5.0.1 | 最后更新：2026-03-19*

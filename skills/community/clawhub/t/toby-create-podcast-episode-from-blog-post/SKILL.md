@@ -1,35 +1,50 @@
 ---
-name: "create-podcast-episode-from-blog-post"
+name: "Create Podcast Episode from Blog Post"
 description: "Converts written content into a podcast episode with AI narration and original intro/outro music. Use when repurposing blog posts into audio content."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-create-podcast-episode-from-blog-post"
-sourceUrl: "https://clawhub.ai/skills/toby-create-podcast-episode-from-blog-post"
+homepage: "https://www.skillboss.co/skills/create-podcast-episode-from-blog-post"
+metadata: {"category":"content-creation","subcategory":"blog-content","skill_id":"create-podcast-episode-from-blog-post","generated_day":"","seo_keywords":["blog to podcast converter","AI podcast generator","content repurposing tool","automated podcast creation"]}
 ---
 
-# create-podcast-episode-from-blog-post
+# Create Podcast Episode from Blog Post
 
-> Converts written content into a podcast episode with AI narration and original intro/outro music. Use when repurposing blog posts into audio content.
+Converts written content into a podcast episode with AI narration and original intro/outro music. Use when repurposing blog posts into audio content.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-create-podcast-episode-from-blog-post`
-- **Source URL:** [https://clawhub.ai/skills/toby-create-podcast-episode-from-blog-post](https://clawhub.ai/skills/toby-create-podcast-episode-from-blog-post)
+## Use When
 
-## Overview
+Use this skill for content repurposing work for solopreneurs, bloggers, content marketers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-create-podcast-episode-from-blog-post
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: blog to podcast converter, AI podcast generator, content repurposing tool, automated podcast creation
+- Search intent: content repurposing
+- Canonical slug: `create-podcast-episode-from-blog-post`
+- Install query: Install Create Podcast Episode from Blog Post with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `tts`
+- `music_generation`
+
+## Suggested Prompt
+
+Convert this blog post into a 10-minute podcast episode with intro/outro music
+
+## Notes
+
+- Turn any article into a full podcast episode with intro music
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- blog to podcast converter
+- AI podcast generator
+- content repurposing tool
+- automated podcast creation

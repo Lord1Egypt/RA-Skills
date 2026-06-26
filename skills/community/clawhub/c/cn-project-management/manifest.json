@@ -1,0 +1,10 @@
+{
+  "name": "cn-project-management",
+  "displayName": "中国建设工程项目管理",
+  "version": "2.0.0",
+  "description": "中国建设工程项目管理 v2.0。基于 GB/T 50326《建设工程项目管理规范》，提供项目管理规划、进度管理（关键路径法CPM）、质量管理、安全管理、合同管理全覆盖。",
+  "author": "度量衡智库",
+  "category": "construction",
+  "tags": ["项目管理", "进度管理", "质量管理", "安全管理", "合同管理", "挣值管理", "关键路径法"],
+  "license": "MIT"
+}

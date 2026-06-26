@@ -1,0 +1,68 @@
+[
+  {
+    "id": "SC01",
+    "name": "官方冒充检测",
+    "patterns": [
+      "\\bofficial\\b",
+      "\\bverified\\b",
+      "\\bauthentic\\b",
+      "官方",
+      "认证"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测冒充官方技能",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "SC02",
+    "name": "依赖投毒检测",
+    "patterns": [
+      "\\bpip\\s+install\\b",
+      "\\bnpm\\s+install\\b",
+      "\\bapt\\s+install\\b"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测在依赖中植入恶意代码",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "SC03",
+    "name": "更新劫持检测",
+    "patterns": [
+      "update.*source",
+      "修改.*更新源",
+      "upgrade.*repo"
+    ],
+    "risk": "HIGH",
+    "description": "检测劫持更新过程",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "SC04",
+    "name": "恶意技能检测",
+    "patterns": [
+      "\\bskill.*malware",
+      "\\bskill.*backdoor",
+      "发布.*恶意"
+    ],
+    "risk": "HIGH",
+    "description": "检测恶意技能发布",
+    "action": "BLOCK",
+    "optimized": false
+  },
+  {
+    "id": "SC05",
+    "name": "版本欺骗检测",
+    "patterns": [
+      "v\\d+\\.\\d+\\.\\d+.*official",
+      "最新版.*下载"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测版本欺骗",
+    "action": "WARN",
+    "optimized": false
+  }
+]

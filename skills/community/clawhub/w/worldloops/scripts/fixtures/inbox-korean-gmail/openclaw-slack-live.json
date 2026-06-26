@@ -1,0 +1,12 @@
+{
+  "channel": "#general",
+  "channel_id": "C01ABC123",
+  "messages": [
+    {
+      "user": "team_member",
+      "text": "FYI the sprint report is ready.",
+      "ts": "1716286800.000000"
+    }
+  ],
+  "count": 1
+}

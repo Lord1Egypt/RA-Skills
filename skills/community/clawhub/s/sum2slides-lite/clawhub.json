@@ -1,0 +1,18 @@
+{
+  "name": "sum2slides-lite",
+  "display_name": "Sum2Slides Lite",
+  "version": "1.0.0",
+  "description": "免费对话总结成PPT工具，支持PowerPoint和WPS，集成飞书上传",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["ppt", "summarize", "conversation", "automation", "free"],
+  "requirements": ["python-pptx>=0.6.21", "requests>=2.28.0"],
+  "features": [
+    "对话内容智能分析",
+    "自动PPT生成（支持PowerPoint/WPS）",
+    "飞书文件上传",
+    "多模板支持",
+    "权限检测和优雅降级",
+    "完全免费和开源"
+  ]
+}

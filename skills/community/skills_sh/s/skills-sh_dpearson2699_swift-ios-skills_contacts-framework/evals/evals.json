@@ -1,0 +1,41 @@
+{
+  "skill_name": "contacts-framework",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm updating an iOS 26 SwiftUI contacts screen. It currently treats only CNAuthorizationStatus.authorized as usable and hides the list for .limited. Review the approach and show the authorization handling I should use, including how someone can add more contacts later.",
+      "expected_output": "Guidance that treats .authorized and .limited as usable Contacts API states, explains limited-access restrictions, and uses ContactsUI limited-access controls.",
+      "files": [],
+      "assertions": [
+        "Treats both .authorized and .limited as states where Contacts API fetch/save code can proceed.",
+        "Explains that .limited exposes only user-granted or app-created contacts, not the whole address book.",
+        "Recommends ContactAccessButton or contactAccessPicker for expanding limited access.",
+        "Distinguishes limited-access management from CNContactPickerViewController selection."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this Contacts fetch plan: use CNContactCompleteNameKey for the displayed name, include CNContactImageDataKey by default for avatars, and fetch CNContactNoteKey so the app can show notes. What should change before I ship?",
+      "expected_output": "A source-grounded correction that uses valid name descriptors, avoids over-fetching images, and narrows the notes entitlement requirement.",
+      "files": [],
+      "assertions": [
+        "Rejects CNContactCompleteNameKey and uses CNContactFormatter.descriptorForRequiredKeys(for:) or valid individual name keys instead.",
+        "Recommends fetching only displayed fields and using thumbnail image data for list avatars instead of full image data by default.",
+        "States that CNContactNoteKey / CNContact.note requires the com.apple.developer.contacts.notes entitlement on modern Apple platforms.",
+        "Mentions that the contacts notes entitlement requires Apple approval before public App Store distribution."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want a no-permission contact picker for email selection and an incremental Contacts sync. The draft uses CNContactPickerViewController plus store.enumerateChanges(matching: CNChangeHistoryFetchRequest()). Review the API boundaries and give iOS Swift-safe guidance.",
+      "expected_output": "Guidance that keeps picker selection scoped to the user's final choice and rejects unsupported Swift change-history examples.",
+      "files": [],
+      "assertions": [
+        "States that CNContactPickerViewController does not require full Contacts authorization and returns only the user's final selection.",
+        "Mentions picker predicates such as predicateForEnablingContact or predicateForSelectionOfProperty must be configured before presentation.",
+        "Rejects store.enumerateChanges(matching:) as a nonexistent Contacts Swift API.",
+        "Explains that the change-history enumerator is Objective-C-only / unavailable in Swift and recommends CNContactStoreDidChange refetching or an explicit Objective-C bridge for true incremental history."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,514 @@
+<div class="content">
+  <h2 class="section-title page-break" id="part15">
+    <span class="num">§15</span> 项目计划
+  </h2>
+  <p class="section-en">Project Plan</p>
+  <p class="section-intro">里程碑规划、资源分配与风险管理</p>
+
+  <h3>15.1 项目里程碑</h3>
+
+  <h4>15.1.1 整体时间线</h4>
+  <div class="diagram">
+    <div class="label">项目里程碑</div>
+    <pre class="mermaid">
+gantt
+    title 项目开发时间线
+    dateFormat YYYY-MM-DD
+    section 设计阶段
+    需求确认           :done, d1, 2024-01-01, 7d
+    原型设计           :done, d2, after d1, 10d
+    UI设计             :done, d3, after d2, 14d
+
+    section 开发阶段
+    技术方案设计       :done, d4, after d3, 7d
+    后端开发           :active, d5, after d4, 30d
+    前端开发           :d6, after d4, 28d
+    接口联调           :d7, after d5, 10d
+
+    section 测试阶段
+    功能测试           :d8, after d7, 14d
+    性能测试           :d9, after d8, 5d
+    安全测试           :d10, after d8, 5d
+    Bug修复            :d11, after d9, 7d
+
+    section 发布
+    预发布验证         :d12, after d11, 3d
+    正式上线           :milestone, d13, after d12, 1d
+    </pre>
+  </div>
+
+  <h4>15.1.2 里程碑节点</h4>
+  <table>
+    <tr>
+      <th>里程碑</th>
+      <th>日期</th>
+      <th>交付物</th>
+      <th>验收标准</th>
+    </tr>
+    <tr>
+      <td>M1 需求冻结</td>
+      <td>【日期】</td>
+      <td>PRD文档、原型稿</td>
+      <td>评审通过，需求签字确认</td>
+    </tr>
+    <tr>
+      <td>M2 设计完成</td>
+      <td>【日期】</td>
+      <td>UI设计稿、设计规范</td>
+      <td>设计评审通过，切图完成</td>
+    </tr>
+    <tr>
+      <td>M3 开发完成</td>
+      <td>【日期】</td>
+      <td>可测试版本</td>
+      <td>功能开发完成，自测通过</td>
+    </tr>
+    <tr>
+      <td>M4 测试完成</td>
+      <td>【日期】</td>
+      <td>测试报告</td>
+      <td>P0用例100%通过，严重Bug修复</td>
+    </tr>
+    <tr>
+      <td>M5 正式上线</td>
+      <td>【日期】</td>
+      <td>生产环境</td>
+      <td>灰度发布无异常，监控正常</td>
+    </tr>
+  </table>
+
+  <h3>15.2 资源规划</h3>
+
+  <h4>15.2.1 团队配置</h4>
+  <table>
+    <tr>
+      <th>角色</th>
+      <th>人数</th>
+      <th>职责</th>
+      <th>投入周期</th>
+    </tr>
+    <tr>
+      <td>产品经理</td>
+      <td>1人</td>
+      <td>需求定义、项目管理</td>
+      <td>全程</td>
+    </tr>
+    <tr>
+      <td>UI设计师</td>
+      <td>1人</td>
+      <td>界面设计、交互设计</td>
+      <td>设计阶段+开发阶段</td>
+    </tr>
+    <tr>
+      <td>前端开发</td>
+      <td>2人</td>
+      <td>Web/App前端开发</td>
+      <td>开发阶段</td>
+    </tr>
+    <tr>
+      <td>后端开发</td>
+      <td>2人</td>
+      <td>服务端开发、接口设计</td>
+      <td>开发阶段</td>
+    </tr>
+    <tr>
+      <td>测试工程师</td>
+      <td>1人</td>
+      <td>测试用例、质量保障</td>
+      <td>开发中期至上线</td>
+    </tr>
+    <tr>
+      <td>运维工程师</td>
+      <td>1人</td>
+      <td>环境搭建、部署运维</td>
+      <td>开发后期至上线</td>
+    </tr>
+  </table>
+
+  <h4>15.2.2 预算估算</h4>
+  <table>
+    <tr>
+      <th>项目</th>
+      <th>明细</th>
+      <th>预算(万元)</th>
+    </tr>
+    <tr>
+      <td>人力成本</td>
+      <td>8人 x 3个月</td>
+      <td>【XX】</td>
+    </tr>
+    <tr>
+      <td>云服务</td>
+      <td>服务器、数据库、CDN等</td>
+      <td>【XX】</td>
+    </tr>
+    <tr>
+      <td>第三方服务</td>
+      <td>短信、支付、推送等</td>
+      <td>【XX】</td>
+    </tr>
+    <tr>
+      <td>测试设备</td>
+      <td>手机、平板等</td>
+      <td>【XX】</td>
+    </tr>
+    <tr>
+      <td>办公费用</td>
+      <td>场地、设备等</td>
+      <td>【XX】</td>
+    </tr>
+    <tr>
+      <td>应急储备</td>
+      <td>预算的10%</td>
+      <td>【XX】</td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>总计</strong></td>
+      <td><strong>【XX】</strong></td>
+    </tr>
+  </table>
+
+  <h3>15.3 任务分解</h3>
+
+  <h4>15.3.1 关键路径</h4>
+  <pre class="mermaid">
+graph LR
+    A[需求确认] --> B[UI设计]
+    B --> C[后端开发]
+    B --> D[前端开发]
+    C --> E[接口联调]
+    D --> E
+    E --> F[功能测试]
+    F --> G[Bug修复]
+    G --> H[上线发布]
+
+    style A fill:#D1FAE5
+    style H fill:#FEE2E2
+  </pre>
+
+  <h4>15.3.2 详细任务清单</h4>
+  <table>
+    <tr>
+      <th>阶段</th>
+      <th>任务</th>
+      <th>负责人</th>
+      <th>工期</th>
+      <th>依赖</th>
+    </tr>
+    <tr>
+      <td rowspan="3">设计</td>
+      <td>需求评审与细化</td>
+      <td>PM</td>
+      <td>3天</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>原型设计</td>
+      <td>设计师</td>
+      <td>7天</td>
+      <td>需求确认</td>
+    </tr>
+    <tr>
+      <td>UI设计</td>
+      <td>设计师</td>
+      <td>10天</td>
+      <td>原型确认</td>
+    </tr>
+    <tr>
+      <td rowspan="4">开发</td>
+      <td>数据库设计</td>
+      <td>后端</td>
+      <td>3天</td>
+      <td>技术方案</td>
+    </tr>
+    <tr>
+      <td>后端API开发</td>
+      <td>后端</td>
+      <td>20天</td>
+      <td>数据库设计</td>
+    </tr>
+    <tr>
+      <td>前端页面开发</td>
+      <td>前端</td>
+      <td>18天</td>
+      <td>UI确认</td>
+    </tr>
+    <tr>
+      <td>接口联调</td>
+      <td>前后端</td>
+      <td>7天</td>
+      <td>前后端开发完成</td>
+    </tr>
+    <tr>
+      <td rowspan="3">测试</td>
+      <td>测试用例编写</td>
+      <td>测试</td>
+      <td>5天</td>
+      <td>需求确认</td>
+    </tr>
+    <tr>
+      <td>功能测试</td>
+      <td>测试</td>
+      <td>10天</td>
+      <td>提测</td>
+    </tr>
+    <tr>
+      <td>Bug修复与回归</td>
+      <td>开发</td>
+      <td>7天</td>
+      <td>测试完成</td>
+    </tr>
+    <tr>
+      <td rowspan="2">发布</td>
+      <td>上线准备</td>
+      <td>运维</td>
+      <td>2天</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>正式发布</td>
+      <td>全员</td>
+      <td>1天</td>
+      <td>验收通过</td>
+    </tr>
+  </table>
+
+  <h3>15.4 风险管理</h3>
+
+  <h4>15.4.1 风险识别</h4>
+  <table>
+    <tr>
+      <th>风险类型</th>
+      <th>风险描述</th>
+      <th>可能性</th>
+      <th>影响</th>
+      <th>风险等级</th>
+    </tr>
+    <tr>
+      <td>技术风险</td>
+      <td>核心技术人员离职</td>
+      <td>中</td>
+      <td>高</td>
+      <td><span style="color: orange;">高</span></td>
+    </tr>
+    <tr>
+      <td>进度风险</td>
+      <td>需求变更导致延期</td>
+      <td>高</td>
+      <td>中</td>
+      <td><span style="color: orange;">高</span></td>
+    </tr>
+    <tr>
+      <td>技术风险</td>
+      <td>第三方服务不稳定</td>
+      <td>中</td>
+      <td>中</td>
+      <td><span style="color: yellow;">中</span></td>
+    </tr>
+    <tr>
+      <td>质量风险</td>
+      <td>测试不充分导致线上问题</td>
+      <td>中</td>
+      <td>高</td>
+      <td><span style="color: orange;">高</span></td>
+    </tr>
+    <tr>
+      <td>合规风险</td>
+      <td>政策变化影响业务</td>
+      <td>低</td>
+      <td>高</td>
+      <td><span style="color: yellow;">中</span></td>
+    </tr>
+  </table>
+
+  <h4>15.4.2 应对措施</h4>
+  <table>
+    <tr>
+      <th>风险</th>
+      <th>应对策略</th>
+      <th>具体措施</th>
+      <th>负责人</th>
+    </tr>
+    <tr>
+      <td>核心人员离职</td>
+      <td>缓解</td>
+      <td>代码审查、文档完善、知识共享、交叉备份</td>
+      <td>技术负责人</td>
+    </tr>
+    <tr>
+      <td>需求变更</td>
+      <td>规避</td>
+      <td>需求冻结机制、变更审批流程、版本规划</td>
+      <td>产品经理</td>
+    </tr>
+    <tr>
+      <td>第三方服务故障</td>
+      <td>缓解</td>
+      <td>降级方案、备用服务商、熔断机制</td>
+      <td>架构师</td>
+    </tr>
+    <tr>
+      <td>测试不充分</td>
+      <td>缓解</td>
+      <td>测试准入标准、自动化测试、灰度发布</td>
+      <td>测试负责人</td>
+    </tr>
+    <tr>
+      <td>政策变化</td>
+      <td>监控</td>
+      <td>关注政策动态、合规审查、预留调整空间</td>
+      <td>产品经理</td>
+    </tr>
+  </table>
+
+  <h3>15.5 沟通机制</h3>
+
+  <h4>15.5.1 例会安排</h4>
+  <table>
+    <tr>
+      <th>会议</th>
+      <th>频率</th>
+      <th>参与人</th>
+      <th>内容</th>
+    </tr>
+    <tr>
+      <td>站会</td>
+      <td>每日 9:30</td>
+      <td>开发、测试</td>
+      <td>昨日进展、今日计划、阻塞问题</td>
+    </tr>
+    <tr>
+      <td>周会</td>
+      <td>每周五</td>
+      <td>全员</td>
+      <td>周进展、风险同步、下周计划</td>
+    </tr>
+    <tr>
+      <td>评审会</td>
+      <td>按需</td>
+      <td>相关方</td>
+      <td>需求/设计/代码评审</td>
+    </tr>
+    <tr>
+      <td>复盘会</td>
+      <td>里程碑后</td>
+      <td>全员</td>
+      <td>总结经验、改进措施</td>
+    </tr>
+  </table>
+
+  <h4>15.5.2 沟通渠道</h4>
+  <ul>
+    <li><strong>即时通讯：</strong>飞书/钉钉群，日常沟通</li>
+    <li><strong>文档协作：</strong>飞书文档/Confluence，文档沉淀</li>
+    <li><strong>项目管理：</strong>Jira/禅道，任务跟踪</li>
+    <li><strong>代码管理：</strong>GitLab/GitHub，版本控制</li>
+    <li><strong>邮件：</strong>正式通知、周报</li>
+  </ul>
+
+  <h3>15.6 变更管理</h3>
+
+  <h4>15.6.1 变更流程</h4>
+  <ol>
+    <li><strong>变更申请：</strong>提出变更需求，说明原因和影响</li>
+    <li><strong>影响分析：</strong>评估对进度、成本、质量的影响</li>
+    <li><strong>变更评审：</strong>相关方评审，决定是否接受</li>
+    <li><strong>变更实施：</strong>更新计划，执行变更</li>
+    <li><strong>变更验证：</strong>验证变更效果，更新文档</li>
+  </ol>
+
+  <h4>15.6.2 变更分级</h4>
+  <table>
+    <tr>
+      <th>级别</th>
+      <th>标准</th>
+      <th>审批</th>
+    </tr>
+    <tr>
+      <td>轻微变更</td>
+      <td>不影响进度和成本，1人日内完成</td>
+      <td>技术负责人</td>
+    </tr>
+    <tr>
+      <td>一般变更</td>
+      <td>影响进度<3天或成本<5%</td>
+      <td>产品经理+技术负责人</td>
+    </tr>
+    <tr>
+      <td>重大变更</td>
+      <td>影响进度≥3天或成本≥5%</td>
+      <td>项目决策委员会</td>
+    </tr>
+  </table>
+
+  <h3>15.7 交付清单</h3>
+
+  <table>
+    <tr>
+      <th>类别</th>
+      <th>交付物</th>
+      <th>格式</th>
+      <th>负责人</th>
+    </tr>
+    <tr>
+      <td rowspan="3">产品</td>
+      <td>PRD文档</td>
+      <td>PDF/Markdown</td>
+      <td>产品经理</td>
+    </tr>
+    <tr>
+      <td>原型文件</td>
+      <td>Axure/Figma</td>
+      <td>设计师</td>
+    </tr>
+    <tr>
+      <td>UI设计稿</td>
+      <td>Figma/Sketch</td>
+      <td>设计师</td>
+    </tr>
+    <tr>
+      <td rowspan="3">技术</td>
+      <td>技术文档</td>
+      <td>Markdown</td>
+      <td>技术负责人</td>
+    </tr>
+    <tr>
+      <td>接口文档</td>
+      <td>Swagger/YAPI</td>
+      <td>后端开发</td>
+    </tr>
+    <tr>
+      <td>源代码</td>
+      <td>Git仓库</td>
+      <td>开发团队</td>
+    </tr>
+    <tr>
+      <td rowspan="3">测试</td>
+      <td>测试用例</td>
+      <td>Excel/测试平台</td>
+      <td>测试工程师</td>
+    </tr>
+    <tr>
+      <td>测试报告</td>
+      <td>PDF</td>
+      <td>测试工程师</td>
+    </tr>
+    <tr>
+      <td>性能报告</td>
+      <td>PDF</td>
+      <td>测试工程师</td>
+    </tr>
+    <tr>
+      <td rowspan="2">运维</td>
+      <td>部署文档</td>
+      <td>Markdown</td>
+      <td>运维工程师</td>
+    </tr>
+    <tr>
+      <td>运维手册</td>
+      <td>Markdown</td>
+      <td>运维工程师</td>
+    </tr>
+  </table>
+
+</div>

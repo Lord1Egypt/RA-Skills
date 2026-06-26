@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.3.0",
+  "requirement_id": "REQ-CRM-001",
+  "testcases": [
+    {
+      "id": "REQ-CRM-001-TP-001-TC-001",
+      "source_test_point": "REQ-CRM-001-TP-001",
+      "fields": {
+        "project": "集团CRM_V1.0.14",
+        "case_type": "测试用例",
+        "case_id": "REQ-CRM-001-TP-001-TC-001",
+        "requirement": "集团CRM_V1.0.14-兴光闪耀月亮晒优化",
+        "priority": "P0",
+        "title": "验证有效机构客户-累计增量排名前五Tab展示字段完整性",
+        "menu_path": "CRM/兴光闪耀/月亮晒/有效机构客户",
+        "preconditions": "1. 测试账号已登录系统，具有兴光闪耀模块查看权限；2. 预置当月有效机构客户数据不少于5条（通过数据库脚本插入），确保排名前五Tab有数据；3. 系统处于正常运行状态，月亮晒功能已上线",
+        "steps": "1. 登录系统进入兴光闪耀月亮晒页面\n2. 切换到有效机构客户-累计增量排名前五Tab\n3. 查看表头字段列表\n4. 核对每个字段的显示内容",
+        "expected_results": "1. 页面正常加载，显示兴光闪耀月亮晒页面\n2. Tab切换成功，页面显示有效机构客户-累计增量排名前五列表\n3. 表头字段包含：排名、机构名称、客户经理、累计增量、环比变化5个字段\n4. 每条数据的字段值均正确显示，无空值、乱码或格式异常",
+        "is_smoke": "是",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "正向验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "兴光闪耀",
+        "remarks": "[前台功能/正向流程] 关联规则：BR-CRM-001；核心冒烟用例"
+      }
+    },
+    {
+      "id": "REQ-CRM-001-TP-002-TC-001",
+      "source_test_point": "REQ-CRM-001-TP-002",
+      "fields": {
+        "project": "集团CRM_V1.0.14",
+        "case_type": "测试用例",
+        "case_id": "REQ-CRM-001-TP-002-TC-001",
+        "requirement": "集团CRM_V1.0.14-兴光闪耀月亮晒优化",
+        "priority": "P1",
+        "title": "验证无权限账号无法访问兴光闪耀月亮晒页面",
+        "menu_path": "CRM/兴光闪耀/月亮晒",
+        "preconditions": "1. 使用无兴光闪耀模块权限的测试账号登录（通过权限管理后台配置）；2. 系统处于正常运行状态；3. 确认该账号在权限系统中未分配兴光闪耀查看权限",
+        "steps": "1. 使用无权限账号登录系统\n2. 尝试直接访问月亮晒页面URL\n3. 观察系统响应",
+        "expected_results": "1. 登录成功，进入系统主页\n2. 页面跳转到无权限提示页，显示文案「您没有访问该功能的权限，请联系管理员」\n3. 菜单栏中兴光闪耀入口不可见或置灰",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "权限验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "兴光闪耀",
+        "remarks": "[权限控制] 关联规则：BR-AUTH-001；越权访问验证"
+      }
+    }
+  ],
+  "statistics": {
+    "total": 2,
+    "smoke_count": 1,
+    "smoke_ratio": 0.5,
+    "by_priority": {
+      "P0": 1,
+      "P1": 1,
+      "P2": 0,
+      "P3": 0
+    }
+  }
+}

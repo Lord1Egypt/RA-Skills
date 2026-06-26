@@ -1,0 +1,143 @@
+{
+  "TradeType": {
+    "description": "交易类型",
+    "values": [
+      { "value": "SPOT_GOODS", "code": 1, "description": "现货" },
+      { "value": "CONTRACT", "code": 2, "description": "合约" }
+    ]
+  },
+  "TimeParticleEnum": {
+    "description": "时间粒度枚举",
+    "values": [
+      { "value": "m5", "code": 5, "description": "5分钟" },
+      { "value": "m15", "code": 15, "description": "15分钟" },
+      { "value": "m30", "code": 30, "description": "30分钟" },
+      { "value": "H1", "code": 101, "description": "1小时" },
+      { "value": "H2", "code": 102, "description": "2小时" },
+      { "value": "H4", "code": 104, "description": "4小时" },
+      { "value": "H6", "code": 106, "description": "6小时" },
+      { "value": "H8", "code": 108, "description": "8小时" },
+      { "value": "H12", "code": 112, "description": "12小时" },
+      { "value": "H24", "code": 124, "description": "24小时" },
+      { "value": "D1", "code": 201, "description": "1天" },
+      { "value": "D2", "code": 202, "description": "2天" },
+      { "value": "D3", "code": 203, "description": "3天" },
+      { "value": "D5", "code": 205, "description": "5天" },
+      { "value": "D7", "code": 207, "description": "7天" },
+      { "value": "D10", "code": 210, "description": "10天" },
+      { "value": "D15", "code": 215, "description": "15天" },
+      { "value": "D20", "code": 220, "description": "20天" },
+      { "value": "D30", "code": 230, "description": "30天" },
+      { "value": "D40", "code": 240, "description": "40天" },
+      { "value": "D50", "code": 250, "description": "50天" },
+      { "value": "D60", "code": 260, "description": "60天" },
+      { "value": "D90", "code": 290, "description": "90天" },
+      { "value": "D120", "code": 2120, "description": "120天" },
+      { "value": "D150", "code": 2150, "description": "150天" },
+      { "value": "D180", "code": 2180, "description": "180天" },
+      { "value": "M1", "code": 301, "description": "1个月" },
+      { "value": "M2", "code": 302, "description": "2个月" },
+      { "value": "M3", "code": 303, "description": "3个月" },
+      { "value": "M4", "code": 304, "description": "4个月" },
+      { "value": "M5", "code": 305, "description": "5个月" },
+      { "value": "M6", "code": 306, "description": "6个月" },
+      { "value": "M7", "code": 307, "description": "7个月" },
+      { "value": "M8", "code": 308, "description": "8个月" },
+      { "value": "M9", "code": 309, "description": "9个月" },
+      { "value": "M10", "code": 310, "description": "10个月" },
+      { "value": "M11", "code": 311, "description": "11个月" },
+      { "value": "M12", "code": 312, "description": "12个月" },
+      { "value": "Y1", "code": 401, "description": "1年" },
+      { "value": "Y2", "code": 402, "description": "2年" },
+      { "value": "Y3", "code": 403, "description": "3年" }
+    ]
+  },
+  "BucketType": {
+    "description": "K线桶类型",
+    "values": [
+      { "value": "S1", "code": "1s", "description": "1秒" },
+      { "value": "S30", "code": "30s", "description": "30秒" },
+      { "value": "M1", "code": "1m", "description": "1分钟" },
+      { "value": "M3", "code": "3m", "description": "3分钟" },
+      { "value": "M5", "code": "5m", "description": "5分钟" },
+      { "value": "M15", "code": "15m", "description": "15分钟" },
+      { "value": "M30", "code": "30m", "description": "30分钟" },
+      { "value": "H1", "code": "1h", "description": "1小时" },
+      { "value": "H2", "code": "2h", "description": "2小时" },
+      { "value": "H4", "code": "4h", "description": "4小时" },
+      { "value": "H8", "code": "8h", "description": "8小时" },
+      { "value": "H12", "code": "12h", "description": "12小时" },
+      { "value": "D1", "code": "1d", "description": "1天" },
+      { "value": "D3", "code": "3d", "description": "3天" },
+      { "value": "W1", "code": "1w", "description": "1周" },
+      { "value": "M_1", "code": "1_m", "description": "1月" }
+    ]
+  },
+  "KlineType": {
+    "description": "K线类型（交易所）",
+    "values": [
+      { "value": "CMC", "code": "00", "description": "CMC交易所" },
+      { "value": "BINANCE_SPOT", "code": "01", "description": "币安现货" },
+      { "value": "BINANCE_CONTRACT", "code": "02", "description": "币安永续合约" },
+      { "value": "BINANCE_CONTRACT_CURRENT", "code": "03", "description": "币安当季交割合约" },
+      { "value": "BINANCE_CONTRACT_NEXT", "code": "04", "description": "币安次季交割合约" },
+      { "value": "BINANCE_CONTRACT_TRADIFI_PERPETUAL", "code": "05", "description": "币安传统金融资产永续合约" }
+    ]
+  },
+  "ChanceMessageType": {
+    "description": "机会消息类型",
+    "values": [
+      { "value": "ESCAPE", "code": 2, "description": "主力出逃" },
+      { "value": "INCREASE", "code": 3, "description": "主力增持" },
+      { "value": "REDUCE", "code": 4, "description": "主力减持" },
+      { "value": "ADD_CHANCE", "code": 5, "description": "主力入场" },
+      { "value": "QUIT_CHANCE", "code": 6, "description": "追踪结束" },
+      { "value": "GAINS", "code": 16, "description": "上涨止盈" },
+      { "value": "DRAWDOWN", "code": 17, "description": "下跌止盈" },
+      { "value": "QUIT_CHANCE2", "code": 18, "description": "追踪结束" },
+      { "value": "INCREASE_HOLDINGS_ACCELERATED", "code": 28, "description": "主动增持加速" },
+      { "value": "CHANCE_CAPITAL_PRESERVATION_REMINDER", "code": 30, "description": "保护本金" }
+    ]
+  },
+  "FundsMovementType": {
+    "description": "资金异动类型",
+    "values": [
+      { "value": "INFLOW_24H", "code": 1, "description": "短线行情异动" },
+      { "value": "INFLOW_NOT_24H", "code": 2, "description": "趋势行情异动" },
+      { "value": "STRANGE_MOVEMENT", "code": 3, "description": "Alpha" },
+      { "value": "EXIT", "code": 4, "description": "追踪结束" },
+      { "value": "VOLUME_PRICE_CRITERIA", "code": 5, "description": "FOMO" },
+      { "value": "GAINS", "code": 6, "description": "上涨止盈" },
+      { "value": "FOMO_ESCALATION", "code": 7, "description": "高风险预警" },
+      { "value": "PROTECTION", "code": 8, "description": "保护本金" },
+      { "value": "INFLOW_24H_FIRST", "code": 10, "description": "首次短线行情异动" },
+      { "value": "INFLOW_NOT_24H_FIRST", "code": 11, "description": "首次趋势行情异动" },
+      { "value": "STRANGE_MOVEMENT_FIRST", "code": 12, "description": "Alpha 首次" },
+      { "value": "VOLUME_PRICE_CRITERIA_FIRST", "code": 13, "description": "首次 FOMO" }
+    ]
+  },
+  "PriceMarketType": {
+    "description": "价格市场类型",
+    "values": [
+      { "value": "RISE", "code": 1, "description": "上涨" },
+      { "value": "DECLINE", "code": 2, "description": "下跌" }
+    ]
+  },
+  "RiskMessageType": {
+    "description": "风险消息类型",
+    "values": [
+      { "value": "SHIPPING", "code": 1, "description": "出货预警" },
+      { "value": "ADD_RISK", "code": 7, "description": "下跌风险" },
+      { "value": "QUIT_RISK", "code": 8, "description": "追踪结束" },
+      { "value": "RISK_DECLINE", "code": 19, "description": "下跌止盈" },
+      { "value": "RISK_DRAW_DOWN", "code": 21, "description": "风险回撤" },
+      { "value": "RISK_REBOUND", "code": 22, "description": "下跌后反弹" },
+      { "value": "RISK_TAKE_PROFIT", "code": 23, "description": "下跌止盈" },
+      { "value": "ADD_TO_RISK", "code": 24, "description": "下跌风险" },
+      { "value": "AND_INFLOW_24H", "code": 25, "description": "短线行情异动" },
+      { "value": "AND_INFLOW_NOT_24H", "code": 27, "description": "趋势行情异动" },
+      { "value": "REDUCED_HOLDINGS_ACCELERATED", "code": 29, "description": "持仓减少加速" },
+      { "value": "RISK_CAPITAL_PRESERVATION_REMINDER", "code": 31, "description": "保护本金" }
+    ]
+  }
+}

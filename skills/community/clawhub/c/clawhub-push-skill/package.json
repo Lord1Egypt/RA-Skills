@@ -1,0 +1,23 @@
+{
+  "name": "clawhub-push-skill",
+  "version": "1.0.0",
+  "description": "一键推送 skill 到 ClawHub registry，自动处理 acceptLicenseTerms 和文件格式问题",
+  "type": "skill",
+  "main": "push.js",
+  "keywords": [
+    "clawhub",
+    "publish",
+    "skill",
+    "registry",
+    "openclaw"
+  ],
+  "author": "Lin",
+  "license": "MIT",
+  "bin": {
+    "clawhub-push": "./push.js",
+    "clawhub-push-batch": "./batch.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}

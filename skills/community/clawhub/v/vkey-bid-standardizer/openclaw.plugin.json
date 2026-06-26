@@ -1,0 +1,15 @@
+{
+  "name": "@wuyonghui0810/vkey-bid-standardizer",
+  "type": "code",
+  "version": "0.1.0",
+  "entry": "standardize.py",
+  "displayName": "银行投标响应文档标准化工具",
+  "description": "银行投标响应文档标准化工具（v1.0）。基于 Word 样式体系（Heading 1-5 + Normal），兼容 GB/T 9704 公文格式；统一入口 standardize.py，提供 7 条流水线（all/fix/renumber/auto-number/review/convert-md/validate-patterns）。",
+  "author": "wuyonghui0810",
+  "license": "MIT",
+  "homepage": "https://github.com/wuyonghui0810/vkey-bid-standardizer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuyonghui0810/vkey-bid-standardizer.git"
+  }
+}

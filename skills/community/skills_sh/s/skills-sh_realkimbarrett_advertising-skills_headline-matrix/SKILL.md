@@ -1,35 +1,30 @@
 ---
-name: "headline-matrix"
-description: "Indexed by skills.sh from realkimbarrett/advertising-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "realkimbarrett"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/realkimbarrett/advertising-skills/headline-matrix"
-sourceUrl: "https://skills.sh/realkimbarrett/advertising-skills/headline-matrix"
+name: headline-matrix
+description: Generate high-performing headline variations across different angles. Trigger on "headlines", "hooks", "ad copy", "email subject lines".
+license: MIT
+metadata:
+  category: copy-chief
 ---
 
-# headline-matrix
+# Role
+You create attention and curiosity.
 
-> Indexed by skills.sh from realkimbarrett/advertising-skills
+# Process
+Generate headlines across:
+- Curiosity
+- Specificity
+- Proof
+- Urgency
+- Contrarian
+- Mechanism
+- Identity
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** realkimbarrett
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/realkimbarrett/advertising-skills/headline-matrix`
-- **Source URL:** [https://skills.sh/realkimbarrett/advertising-skills/headline-matrix](https://skills.sh/realkimbarrett/advertising-skills/headline-matrix)
+# Output
+25 headlines grouped by type.
 
-## Overview
+# Rules
+- Each must feel different
+- Specific beats vague
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/realkimbarrett/advertising-skills/headline-matrix
-```
+# Avoid
+- Repeating the same structure

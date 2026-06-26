@@ -1,0 +1,18 @@
+## 有关sciprt执行
+确认脚本都用bun执行
+SKILL.md中说明了如何安装bun和相应的第三方库
+SKILL.md与代码的执行逻辑应该一致
+SKILL.md中的query_type应该与config.json一致。
+
+## 有关配置
+类似APIKEY，代理，COOKIE应从环境变量中获取
+SKILL.md中的front matter中应说明了每个用到的环境变量作用，以及没有配置该环境变量的默认表现。
+SKILL.md中应说明如何配置相关的环境变量
+
+## 有关输出
+结果应该保存在文件中，文件名应该与timestamp相关。
+console输出结果中应说明结果存放位置。
+
+## 有关脚本
+脚本应该都在scripts目录下。
+脚本中应包含必要的错误处理逻辑，确保在执行过程中出现异常时能够及时捕获并处理。

@@ -1,35 +1,27 @@
 ---
-name: "Recipe Review Overdue Tasks"
+name: recipe-review-overdue-tasks
 description: "Find Google Tasks that are past due and need attention."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-review-overdue-tasks"
-sourceUrl: "https://clawhub.ai/skills/recipe-review-overdue-tasks"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-tasks
 ---
 
-# Recipe Review Overdue Tasks
+# Review Overdue Tasks
 
-> Find Google Tasks that are past due and need attention.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-tasks`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-review-overdue-tasks`
-- **Source URL:** [https://clawhub.ai/skills/recipe-review-overdue-tasks](https://clawhub.ai/skills/recipe-review-overdue-tasks)
+Find Google Tasks that are past due and need attention.
 
-## Overview
+## Steps
 
+1. List task lists: `gws tasks tasklists list --format table`
+2. List tasks with status: `gws tasks tasks list --params '{"tasklist": "TASKLIST_ID", "showCompleted": false}' --format table`
+3. Review due dates and prioritize overdue items
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-review-overdue-tasks
-```

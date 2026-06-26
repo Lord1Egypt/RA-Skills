@@ -1,0 +1,10 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-monday": {
+      "baseUrl": "https://mcp.monday.com/mcp",
+      "transport": "http",
+      "bearerTokenEnv": "MAVERICK_MONDAY_MCP_ACCESS_TOKEN"
+    }
+  }
+}

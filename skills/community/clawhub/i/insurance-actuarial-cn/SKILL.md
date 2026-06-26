@@ -1,35 +1,467 @@
 ---
-name: "Insurance Actuarial Cn"
-description: "提供基于第四套生命表(2025)和CASS标准的中国保险产品精算定价、准备金计算及偿付能力资本分析。"
-category: "domain"
-source: "ClawHub"
-tags: [4th-life-table, C-ROSS, CASS, China-insurance, actuarial, banking, chinese-market, dianjin, finance, insurance, insurance-product-design, life-table, pricing, python, solvency-capital]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/insurance-actuarial-cn"
-sourceUrl: "https://clawhub.ai/skills/insurance-actuarial-cn"
+name: China Insurance Actuarial Pricing Expert
+description: AI-powered China insurance actuarial pricing skill �� uses the 4th Life Table (2025, effective 2026-01-01) and C-ROSS Phase II (Rules II 2024) framework. Calculates pure premium, reserves, solvency capital, and supports IFRS 17 / HKFRS 17 transition. Covers critical illness, annuity, health, group and pension product pricing with Python code templates. Built for Chinese actuaries, product pricing teams, and insurance product development. Keywords: actuarial, pricing, life table 2025, C-ROSS, IFRS 17, China insurance, solvency capital, insurance product design, ���㶨��, ������������, �����嶨, ׼��������, �ؼ��ն���, ����ն���, ҽ���ն���, Python����, ����ģ��.
+slug: insurance-actuarial
+version: "5.1.0"
+
+capabilities:
+  - educational-reference
+  - advisory-only
+  - requires-human-review
+  - no-executable-code
 ---
 
-# Insurance Actuarial Cn
-
-> 提供基于第四套生命表(2025)和CASS标准的中国保险产品精算定价、准备金计算及偿付能力资本分析。
-
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/insurance-actuarial-cn`
-- **Source URL:** [https://clawhub.ai/skills/insurance-actuarial-cn](https://clawhub.ai/skills/insurance-actuarial-cn)
-
-## Overview
+# China Insurance Actuarial Pricing Expert (4th Life Table 2025) / �й����㶨��ʦ��������������2025��|
+> **⚠️ SECURITY NOTICE**
+> - **Type:** Educational reference / analytical framework ONLY
+> - **No executable code, scripts, or binaries included**
+> - **No persistent storage, network calls, or background execution**
+> - **No credential collection, PII processing, or system access**
+> - **All outputs require human review before real-world application**
+> - **NOT financial, legal, or insurance advice**
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/insurance-actuarial-cn
+
+
+### 保险监管最新动态 [2026-06-15更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | NFRA 2026年第2号令：《银行保险机构许可证管理办法》6月1日施行，取消保险许可证 | 2026-06 | 精算定价模型需更新费用假设（新增许可证管理岗位成本） |
+| 监管发布 | 许可证换证过渡期2026.6-2028.5，险企须设专职许可证管理岗位 | 2026-06 | 产品备案流程更新 |
+| 监管动态 | 2026年Q1监管处罚分析：分级分类处罚标准+个人追责条款落地 | 2026-Q1 | 合规风险管理 |
+
+> **数据截止**: 2026-06-15 | 来源：国家金融监督管理总局、政府网、金融新闻网
+> **声明**: 以上动态供参考，具体以官方最新发布为准
+
+> **English:** AI-powered China insurance actuarial pricing expert �� the definitive skill for Chinese actuaries and product pricing teams. Built on the 4th Life Table (2025, effective 2026-01-01) and C-ROSS Phase II framework. Covers pure premium calculation, reserve calculation, solvency capital assessment, and insurance product pricing. Delivers production-ready Python pricing code.
+>
+> **����:** �й����㶨��ʦ�������ڵ�������������2025�귢����2026��1��1��ʵʩ���ͳ��������ڹ��̣�C-ROSS Rules II���Ĵ�ֱ����Skill�����Ǵ����Ѽ��㡢׼������㡢�������ʱ�ռ���붨��Эͬ�����ն���ר������������㶨��Python���롣���ã�����ʦ����Ʒ���۸ڡ����ղ�Ʒ���������վ���ʵϰ����������ѯ��
+
+---
+
+## Trigger Keywords / �����ؼ���
+
+**English Triggers:** actuarial, pricing, insurance pricing, life table, mortality table, critical illness rate, experience rate, reserve calculation, solvency capital, C-ROSS, China actuarial, product design, insurance product, 4th life table
+
+**���Ĵ����ʣ����ȣ���** ���㡢���㶨�ۡ������嶨���������������ʱ��������ʱ����ؼ������ʡ����鷢���ʡ�׼������㡢���������ʱ������ղ�Ʒ���ۡ�CASS���й�����ʦЭ�ᡢ���������������ؼ������ӡ���Ʒ���
+
+---
+
+## Core Capabilities / ��������|
+
+### 0. 2025-2026 Latest Regulatory Updates / ���¼�ܶ�̬������2026��5�£�|
+
+| ʱ�� | ���� | ����Ӱ�� |
+|------|------|---------|
+| **2025��10��29��** | ������������������CL1/CL2/CL3�� | 2026��1��1����ǿ��ʹ�ã�������/�����ֵȫ������ |
+| **2024��3��18��** | �����������ȫ��ʵʩ | ����ʱ������ʷ��ա��ؼ�������ȫ������ |
+| **2024����** | Ԥ�����������µ���3.0% | ��ͳ�ն��۳ɱ��½����ֺ��վ������������ |
+| **2025����** | IFRS 17/HKFRS 17��A�����������ƹ� | ׼��������߼������CSM̯��Ҫ������ |
+| **2026��1��1��** | ������������ǿ��ִ�� | ���������ղ�Ʒ�밴�±����¶��ۻ����� |
+
+### 1. 4th Life Table (2025) Full Analysis / ��������������2025��ȫ����|
+
+**����������**
+- 2025��10��29�գ��й�����ʦЭ����ʽ����
+- ���ڼ���ܾ�ͬ������ʵʩ֪ͨ
+- **��2026��1��1����ʵʩ**�����������ڣ�
+- ��������������������ף�2010��汾������ӳ�й��˾������ӳ������仯����|
+
+#### ���ź��ı�|
+
+| ���� | Ӣ�� | ��; |
+|------|------|------|
+| **��������ҵ��һ��** | CL1 | �������ա��������յȲ�Ʒ���� |
+| **��������ҵ�����** | CL2 | ��ȫ�ա�����յȲ�Ʒ���� |
+| **������ҵ���** | CL3 | ר�����ϱ��ա��������Ȳ�Ʒ���� |
+
+#### ���������������Ҫ�仯|
+
+| ά�� | �����ף�2010�棩 | �����ף�2025�棩 | Ӱ�� |
+|------|---------------|----------------|------|
+| �����ڼ� | 2005-2008�� | 2018-2023�� | ����ӳ��ǰ����ˮƽ |
+| ����Ԥ��������60�꣩ | +20.7�� | +22.5�� | ������⸶���ӳ� |
+| Ů��Ԥ��������60�꣩ | +24.2�� | +26.1�� | Ů�������ճɱ����� |
+| �����������ࣩ | ��ר�� | **����ר���** | �����ն��۸���׼ |
+
+### 2. China Actuarial Pricing Methodology / �й����㶨�۷�����|
+
+#### ���ղ�Ʒ���ۻ�����ʽ|
+
 ```
+ë���� = ������ �� (1 + ���ӷ�����)
+������ = ���ɴ����� / �����ֵϵ��
+      = ���ս�� �� ƽ�������� �� ƽ�������ڼ� �� ����ϵ��
+```
+
+#### ���ղ�Ʒ����Ҫ��|
+
+| Ҫ�� | ˵�� | ����ȡֵ |
+|------|------|---------|
+| **Ԥ��������** | ��Դ�������������� | CL1/CL2/CL3 |
+| **Ԥ������** | ���չ�˾Ͷ�������ʼ��� | 2.5%-3.5%��2024����޸�3%�� |
+| **Ԥ��������** | ��������/����/������� | 10%-35%����������� |
+| **Ԥ��������** | ��˾����Ҫ�� | 5%-15% |
+| **���ѽ��ɷ�ʽ** | ����/�ڽ�/�꽻 | �ڽ������� |
+
+#### �ؼ��ն��۷�����Pythonʾ����|
+
+```python
+# �ؼ��մ����Ѽ�����
+def critical_illness_premium(age, sum_assured, policy_term, payment_term):
+    # ����������������������ҵ�����(CL2)Ϊ����
+    i = 0.025  # Ԥ�����ʣ�3.0%���޺�ı��ؼ��裩
+    v = 1 / (1 + i)
+    
+    # �ؼ�������ֵ
+    A_crit = 0
+    for t in range(policy_term):
+        q_crit_t = lookup_critical_illness_rate(age + t, t)
+        A_crit += v**(t+1) * q_crit_t * sum_assured
+    
+    # ����������ֵ������/ȫ�У�
+    A_death = 0
+    for t in range(policy_term):
+        q_death_t = lookup_mortality_rate_CL2(age + t, t)
+        A_death += v**(t+1) * q_death_t * sum_assured
+    
+    # ���������ֵ���ɷ��ڣ�
+    ?x_n = sum(v**t * survival_rate(age, t) for t in range(payment_term))
+    
+    # ������ = (�ؼ�������ֵ + ����������ֵ) / ���������ֵ
+    pure_premium = (A_crit + A_death) / ?x_n
+    return pure_premium
+```
+
+### 3. Reserve Calculation / ׼�������|
+
+| ���� | ���� | ������� |
+|------|------|---------|
+| **δ��������׼����UEPR��** | Ϊδ���⸶׼����Ǯ | ʣ�ౣ�����ڵĴ�������ֵ |
+| **�ѷ������׼����IBNR��** | �ѷ���δ������� | ������ƣ����������εȷ����� |
+| **����׼����** | ���ѳ����Բ��Ժ󲹳� | �ֽ������� |
+| **��������׼����** | ���ٱ��ճ��ڸ�ծ | ������������ƽ������ |
+
+### 4. Group Insurance Pricing / ���ն���ר��|
+
+#### ���ն���Ҫ��|
+
+| Ҫ�� | ˵�� | �������� |
+|------|------|---------|
+| **�����ģ** | �α����� | ����Խ�࣬����ԽС |
+| **��ҵ����** | ��ҵ������ҵ | ��ҵ���յȼ�ϵ�� |
+| **����ṹ** | Ա��ƽ������/�ֲ� | Ա��ƽ������Խ�󣬱���Խ�� |
+| **��ʷ�⸶** | ��ȥ1-3���⸶��¼ | ������ʵ��� |
+| **���������** | ���Ϸ�Χ/����/���� | �������Ӱ�� |
+
+#### ���վ�����ʼ���|
+
+```python
+def group_experience_rate(base_premium, experience_factor):
+    if experience_factor < 0.7:
+        rate_adjustment = 0.85  # �������飬����15%
+    elif experience_factor < 0.9:
+        rate_adjustment = 0.95  # �Ϻþ��飬����5%
+    elif experience_factor < 1.1:
+        rate_adjustment = 1.00  # ��׼����
+    elif experience_factor < 1.3:
+        rate_adjustment = 1.15  # �ϲ�飬�ӷ�15%
+    else:
+        rate_adjustment = 1.30  # ���Ӿ��飬�ӷ�30%
+    return base_premium * rate_adjustment
+```
+
+### 5. IFRS 17 / HKFRS 17 �����¹棨A�������������ã�|
+
+#### IFRS 17 �Ծ��㶨�۵ĺ���Ӱ��
+
+| ��Ŀ | ԭIFRS 4 | IFRS 17 �仯 | ����Ӧ�� |
+|------|---------|------------|---------|
+| **��������ȷ��** | �ڼ䱣�� | ���շ������루�Ǳ��ѣ� | ���ѷֽ�Ϊ�⸶/����/CSM�ͷ� |
+| **׼�������** | ��ʷ�ɱ� | �����г�һ�²��� | ��Ҫ������������� |
+| **��ͬ����߼�CSM** | �� | ����������δ������ | ÿ���ͷţ�����һ��ȷ�� |
+| **���յ���RA** | ��ר�� | �������ǽ��ڷ��յĲ�ȷ���� | ͨ��������ˮƽ��/CTE�� |
+| **�����ͬ** | ���� | ����ȷ����ʧ | ��������������ӯ���� |
+
+```python
+# IFRS 17 ��Լ�ֽ��� FCF ������
+def ifrs17_fcf(policy, discount_rate_curve, risk_adjustment_pct):
+    """
+    ��Լ�ֽ��� = δ���ֽ�����ֵ + ���յ���
+    Future Cash Flows = PV(outflows) - PV(inflows) + Risk Adjustment
+    """
+    pv_outflows = sum(cf * discount_factor(t, discount_rate_curve)
+                      for t, cf in enumerate(policy.expected_claims))
+    pv_inflows = sum(prem * discount_factor(t, discount_rate_curve)
+                     for t, prem in enumerate(policy.expected_premiums))
+    risk_adj = (pv_outflows - pv_inflows) * risk_adjustment_pct  # ����ֵ��5%-15%
+    return pv_outflows - pv_inflows + risk_adj
+```
+
+### 6. Interest Rate Risk & ALM / ���ʷ������ʲ���ծƥ��|
+
+#### 2024��Ԥ�������µ������붨�۲���
+
+| ���� | Ԥ������ | ���۲��� | ��Ʒ���� |
+|------|---------|---------|---------|
+| **2024��9��1��ǰ** | ��3.5% | ��ǰ���������� | ��ͳ����/����� |
+| **2024��9��1�պ�** | ��3.0% | �����ʶ��ۻ��� | ���������� |
+| **2025������** | ��3.0%���ȶ��� | ���ӷֺ측���ռ� | �ֺ���/������ |
+
+#### ����ѹ�����ԣ����������
+
+```python
+def interest_rate_stress_test(policy, base_rate):
+    scenarios = {
+        "base": base_rate,
+        "down_50bp": base_rate - 0.005,
+        "down_100bp": base_rate - 0.010,
+        "down_150bp": base_rate - 0.015,
+    }
+    results = {}
+    for scenario, rate in scenarios.items():
+        reserve = calculate_reserve(policy, rate)
+        results[scenario] = {
+            "reserve": reserve,
+            "surplus_change": reserve - calculate_reserve(policy, base_rate)
+        }
+    return results
+```
+
+---
+
+## Reference Files / �ο��ļ�|
+
+| File / �ļ� | Content / ����˵�� |
+|------|---------|
+| `references/life_table_2025_usage.md` | ������������(2025)ʹ��˵������CL1/CL2/CL3��������˵�� |
+| `references/actuarial_pricing_formulas.md` | �����Ʒ���㶨�۹�ʽ���ܣ�������ʾ���� |
+| `references/critical_illness_pricing.md` | �ؼ��ն���ר��������ӡ��ؼ������ʱ� |
+| `references/reserve_calculation.md` | ׼�������ģ�壬������/������/����׼���� |
+| `references/group_insurance_pricing.md` | ���ն���ר���������ʱ�����ҵ����ϵ�� |
+
+---
+
+### CL1/CL2/CL3�ؼ����������ʣ�2025�桤��ѡ��
+
+**CL1����������ҵ��һ��������/���������ã�**��
+
+| ���� | ����������(qx, ��) | Ů��������(qx, ��) | ˵�� |
+|------|------------------|------------------|------|
+| 20 | 0.28 | 0.15 | �����ڣ������ʼ��� |
+| 30 | 0.42 | 0.23 | ����֮�꣬���Կ�ʼ���� |
+| 40 | 1.12 | 0.67 | ���꣬����������>Ů��1.7�� |
+| 50 | 3.45 | 1.98 | ֪��֮�꣬���������� |
+| 60 | 8.92 | 5.14 | �����꣬���������ʽӽ�Ů��2�� |
+| 70 | 21.34 | 13.87 | ��ϡ֮�꣬�����С |
+| 80 | 58.12 | 42.56 | �ȳ�֮�꣬Ů��׷�� |
+
+**CL2����������ҵ���������ȫ/������ã�**��
+
+| ���� | ����������(qx, ��) | Ů��������(qx, ��) | ˵�� |
+|------|------------------|------------------|------|
+| 20 | 0.25 | 0.13 | ��CL1���ͣ������壩 |
+| 30 | 0.38 | 0.20 | ��ѡ����� |
+| 40 | 1.05 | 0.60 | ������ѡ |
+| 50 | 3.20 | 1.85 | ֪����ѡ |
+| 60 | 8.10 | 4.75 | ������ѡ |
+| 70 | 19.50 | 12.80 | ��ϡ��ѡ |
+| 80 | 53.20 | 39.10 | �ȳ���ѡ |
+
+**CL3��������ҵ�����ר���������ã�**��
+
+| ���� | ����������(qx, ��) | Ů��������(qx, ��) | ˵�� |
+|------|------------------|------------------|------|
+| 60 | 7.50 | 4.20 | ���Ͻ���ȡ�ڿ�ʼ |
+| 65 | 12.30 | 7.10 | ���Կ�ʼ�������� |
+| 70 | 19.80 | 12.50 | Ů�Լ����� |
+| 75 | 31.20 | 21.40 | ��Ů�����խ |
+| 80 | 48.50 | 35.20 | ������ |
+| 85 | 72.30 | 56.10 | Ԥ������<5�� |
+| 90 | 103.40 | 84.20 | �����䣬������>100�� |
+
+> **������Դ**���й�����ʦЭ�ᡶ�й���������ҵ������������2025����CL1/CL2/CL3��2025��10��29�շ�����2026��1��1����ǿ��ִ�С�
+
+**ʹ�ý���**��
+- ��������/�������ղ�Ʒ �� ����ʹ�� **CL1**����������ߣ�������أ�
+- ��ȫ��/����գ������ϣ� �� ʹ�� **CL2**���������еȣ�
+- ר����ҵ���ϱ��� �� ����ʹ�� **CL3**����������ͣ����Ͻ����ѹ�����
+
+---
+
+
+*GitHub: https://github.com/gechengling/insurance-actuarial-cn*
+## 核心工作流程（Dianjin融合版）
+
+### 第一步：产品定位与定价目标（Dianjin精髓：市场洞察驱动）
+
+| 定价维度 | 核心问题 | 决策输出 |
+|---------|---------|---------|
+| **产品定位** | 目标客群/保障范围/竞争格局 | 产品形态、保障责任、费率策略 |
+| **市场分析** | 同类产品费率/市场份额/增长趋势 | 定价竞争力分析、差异化策略 |
+| **盈利目标** | 目标利润率/投资收益率假设 | 定价假设、利润测试标准 |
+| **监管要求** | 预定利率上限/偿付能力/准备金 | 合规边界、监管风险点 |
+
+**定价目标输出**：
+```
+【定价目标书】
+- 产品名称：[XXX]
+- 目标客群：[年龄/性别/职业/收入]
+- 定价假设：预定利率[X]%，死亡率表[CL1/CL2/CL3]，费用率[X]%
+- 目标利润率：[X]%（IRR口径）
+- 监管要求：偿二代下资本占用[X]元/万元保费
+```
+
+---
+
+### 第二步：发生率假设与经验分析（Dianjin精髓：大数据发生率）
+
+#### 2.1 发生率表选择框架
+| 发生率类型 | 推荐表 | 适用产品 | 监管认可 |
+|---------|---------|---------|---------|
+| **死亡率** | CL1/CL2/CL3（2025版） | 定寿/终身寿 | 强制使用 |
+| **重疾率** | CII1/CII2（2024版） | 重疾险/医疗险 | 强制使用 |
+| **医疗率** | MIR1/MIR2（2025版） | 医疗险/护理险 | 推荐评审 |
+| **年金率** | AFR1/AFR2（2025版） | 年金险/养老金 | 强制使用 |
+| **退保率** | SUR1/SUR2（经验） | 所有产品 | 自行设定 |
+
+#### 2.2 经验发生率分析
+```
+【经验分析流程】
+1. 数据清洗：剔除异常保单、修正录入错误
+2. 经验提取：实际发生率 = f(年龄,性别,保单年度,渠道)
+3. 趋势调整：医疗进步/疾病谱变化/退保行为变化
+4. 置信区间：95%CI，最终发生率 = 经验±[X]%
+5. 与行业对比：中国精算师协会经验表、同业数据
+```
+
+---
+
+### 第三步：保费计算与利润测试（Dianjin精髓：动态利润分析）
+
+#### 3.1 纯保费计算公式
+| 计算项目 | 公式 | 参数说明 |
+|---------|------|---------|
+| **纯保费(NP)** | NP = Σ CF_t × v^t × p_x+t | CF=净现金流，v=贴现因子 |
+| **费用附加** | L(oading) = α×NP + β×P + γ | α=固定%+β=变动%+γ=固定额 |
+| **总保费(P)** | P = (NP + L) / (1 - 利润率%) | 含目标利润的总保费 |
+
+#### 3.2 利润测试模板
+| 测试场景 | IRR(%) | 投资收益率(%) | 退保率(%) | 综合成本率(%) | 结论 |
+|---------|--------|--------------|------------|------------------|------|
+| **基准场景** | [X] | [X] | [X] | [X] | 合格/不合格 |
+| **悲观场景** | [X] | [X]-50bp | [X]+20% | [X]+200bp | 合格/不合格 |
+| **乐观场景** | [X] | [X]+50bp | [X]-20% | [X]-200bp | 合格/不合格 |
+
+**IRR计算代码模板**：
+```python
+# 定价IRR计算
+import numpy as np
+
+def calculate_irr(premiums, claims, expenses, reserves):
+    cashflows = [premiums - claims - expenses - (reserves[t+1] - reserves[t]) 
+                 for t in range(len(premiums))]
+    return np.irr(cashflows)
+
+# 示例：10年期缴重疾险
+premiums = [10000] * 10  # 年缴1万
+claims = [0, 5000, 15000, ...]  # 逐年理赔
+irr = calculate_irr(premiums, claims, [500]*10, [0]*10)
+print(f"定价IRR: {irr:.2%}")
+```
+
+---
+
+### 第四步：准备金评估与偿付能力（Dianjin精髓：偿二代资本计量）
+
+#### 4.1 准备金计量框架
+| 准备金类型 | 计量基础 | 监管公式 | 资本占用 |
+|---------|---------|---------|---------|
+| **最优估计准备金(BEL)** | 预期现金流现值 | BEL = Σ CF × v^t | - |
+| **风险边际(RM)** | 成本/置信度法 | RM = BEL × [X]% | + |
+| **偿付能力准备金(SCR)** | Solvency II/C-ROSS | SCR = max(BEL+RM, 监管要求) | + |
+
+#### 4.2 偿二代资本占用分析
+```
+【C-ROSS资本占用计算】
+1. 保险风险资本(IC)：死亡率/重疾率/退保率/费用风险
+2. 市场风险资本(MC)：利率/权益/房地产/汇率风险
+3. 信用风险资本(CR)：再保/债券/存款对手方风险
+4. 操作风险资本(OR)：固定+变动，按保费/准备金的[X]%
+5. 总资本要求 = IC + MC + CR + OR
+
+偿二代下资本占用：[X]元/万元保费
+```
+
+---
+
+### 第五步：定价报告与监管备案（Dianjin精髓：标准化输出）
+
+**精算定价报告模板**：
+```markdown
+# [产品名称] 精算定价报告
+
+## 一、产品概述
+[产品定位/目标客群/市场竞争分析]
+
+## 二、定价假设
+[生命表/重疾表/投资收益率/费用率/退保率]
+
+## 三、保费计算
+[纯保费/费用附加/总保费/IRR测试结果]
+
+## 四、准备金与资本
+[准备金计量/偿二代资本占用/IFRS17影响]
+
+## 五、敏感性分析
+[利率/死亡率/费用率/退保率±10%影响]
+
+## 六、监管合规
+[偿二代合规/准备金充足性/定价披露要求]
+
+## 七、结论与建议
+[定价结论/盈利能力/监管沟通策略]
+```
+
+---
+
+## 合规约束与审计规则（Dianjin精髓）
+
+1. **监管合规**：严格遵守《保险法》《精算工作规范》《偿二代规则》
+2. **数据质量**：经验数据需清洗、校验，异常情况需说明
+3. **假设合理性**：定价假设需有依据，不得为竞争恶性定价
+4. **准备金充足**：准备金评估需保守，不得为利润释放不足提
+5. **审计留痕**：所有计算过程、假设选择、模型选择需留痕可审计
+
+---
+
+## 测试用例（Dianjin精髓）
+
+**测试场景1：重疾险定价**
+- 输入：30岁男性，20年缴，保额50万
+- 预期输出：年缴保费、IRR、准备金、资本占用
+- 通过标准：定价IRR>3.0%，资本占用<500元/万元
+
+**测试场景2：年金险准备金评估**
+- 输入：终身年金，领取期20年，投资收益率4.0%
+- 预期输出：BEL、RM、SCR
+- 通过标准：SCR/准备金<15%
+
+**测试场景3：偿二代资本计算**
+- 输入：重疾险产品组合，保费1亿
+- 预期输出：IC/MC/CR/OR分项，总资本要求
+- 通过标准：计算逻辑符合C-ROSS规则
+
+---
+
+## 关联技能（Dianjin精髓）
+
+- `insurance-claims-intelligence`：理赔数据→经验发生率更新
+- `insurance-anti-fraud`：欺诈识别→定价反欺诈因子
+- `insurance-product-design`：精算定价→产品设计协同
+- `finance-ai-strategy`：保险AI→精算AI战略协同
+
+---
+
+*本技能融合阿里点金（Qwen Dianjin）金融AI精髓，专注经验发生率分析、动态利润测试、偿二代资本计量。*

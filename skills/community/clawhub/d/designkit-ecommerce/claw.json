@@ -1,0 +1,88 @@
+{
+  "name": "designkit-ecommerce-skills",
+  "version": "1.1.2",
+  "author": "designkit",
+  "description": "AI design assets in seconds: remove backgrounds, restore blurry photos, and generate ecommerce listing image sets with hero/detail outputs.",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "tags": [
+    "designkit",
+    "designkit-official",
+    "ai-design-tools",
+    "ai-image-editing",
+    "background-removal",
+    "remove-background",
+    "matting",
+    "transparent-background",
+    "image-restoration",
+    "blur-fix",
+    "ecommerce-listing",
+    "listing-images",
+    "product-images",
+    "product-hero-image",
+    "creative-assets",
+    "background-cutout",
+    "white-background",
+    "photo-restoration",
+    "image-enhancement",
+    "ecommerce-image-kit",
+    "product-detail-image"
+  ],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "permissions": ["network", "filesystem", "shell"],
+  "triggers": {
+    "keywords": [
+      "remove background",
+      "background removal",
+      "transparent background",
+      "white background",
+      "cutout",
+      "matting",
+      "extract subject",
+      "remove background ai",
+      "image background remover",
+      "image restoration",
+      "restore blurry image",
+      "enhance image quality",
+      "super resolution",
+      "sharpen photo",
+      "enhance product photo",
+      "generate listing image set",
+      "ecommerce image set",
+      "product image set",
+      "product hero image",
+      "product detail image",
+      "listing hero image",
+      "listing image pack",
+      "amazon listing images",
+      "amazon listing pack",
+      "temu listing pack",
+      "launch-ready listing kit",
+      "high-converting listing style set",
+      "designkit",
+      "designkit studio"
+    ]
+  },
+  "config": {
+    "DESIGNKIT_OPENCLAW_AK": {
+      "type": "string",
+      "description": "OpenClaw/Designkit API Access Key. Shared by all sub-skills via header X-Openclaw-AK.",
+      "required": true
+    },
+    "DESIGNKIT_OPENCLAW_AK_URL": {
+      "type": "string",
+      "description": "URL for checking/getting credits. Default: https://www.designkit.com/openClaw.",
+      "required": false
+    }
+  },
+  "skills": {
+    "designkit-edit-tools": {
+      "entry": "skills/designkit-edit-tools/SKILL.md",
+      "status": "active"
+    },
+    "designkit-ecommerce-product-kit": {
+      "entry": "skills/designkit-ecommerce-product-kit/SKILL.md",
+      "status": "active"
+    }
+  }
+}

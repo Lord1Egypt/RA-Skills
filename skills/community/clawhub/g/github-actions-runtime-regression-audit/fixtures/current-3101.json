@@ -1,0 +1,23 @@
+{
+  "databaseId": 3101,
+  "workflowName": "CI",
+  "headBranch": "main",
+  "repository": {"nameWithOwner": "flowcreatebot/yf-api-saas"},
+  "jobs": [
+    {
+      "name": "test-api",
+      "startedAt": "2026-03-05T02:00:00Z",
+      "completedAt": "2026-03-05T02:10:30Z"
+    },
+    {
+      "name": "lint",
+      "startedAt": "2026-03-05T02:00:00Z",
+      "completedAt": "2026-03-05T02:02:10Z"
+    },
+    {
+      "name": "security-scan",
+      "startedAt": "2026-03-05T02:00:00Z",
+      "completedAt": "2026-03-05T02:04:00Z"
+    }
+  ]
+}

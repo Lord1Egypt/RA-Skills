@@ -1,0 +1,224 @@
+# Bold UI Template Registry
+# Lists all available design templates, both built-in and custom.
+
+templates:
+  - id: modern-clean
+    name: "Modern Clean"
+    tagline: "Fresh, colorful, and approachable — the Swiss army knife of design"
+    version: "1.0"
+    status: ready
+    keywords:
+      - modern
+      - clean
+      - colorful
+      - gradient
+      - rounded
+      - sans-serif
+    best_for:
+      - SaaS applications
+      - Developer tools
+      - General-purpose apps
+      - Dashboards
+      - Startups
+    not_for:
+      - Games and entertainment
+      - Luxury brands
+      - Print-oriented designs
+    icon_preference:
+      primary: lucide
+      fallback: [phosphor, tabler]
+      style: outline
+      stroke_width: 2
+
+  - id: pixel-retro
+    name: "Pixel Retro"
+    tagline: "8-bit nostalgia with hard edges and bold personality"
+    version: "1.0"
+    status: ready
+    keywords:
+      - pixel
+      - retro
+      - game
+      - nostalgic
+      - bold
+      - monospace
+    best_for:
+      - Games and gamification
+      - Creative tools
+      - Developer tools (playful)
+      - Personal portfolios
+    not_for:
+      - Enterprise B2B
+      - Finance
+      - Healthcare
+    icon_preference:
+      primary: lucide
+      fallback: [feather]
+      style: outline
+      stroke_width: 2.5
+
+  - id: apple-minimal
+    name: "Apple Minimal"
+    tagline: "Refined simplicity — every pixel earns its place"
+    version: "1.0"
+    status: ready
+    keywords:
+      - minimal
+      - refined
+      - premium
+      - glass
+      - rounded
+      - san-francisco
+    best_for:
+      - Consumer applications
+      - Design tools
+      - Social platforms
+      - Lifestyle apps
+    not_for:
+      - Data-heavy dashboards
+      - Enterprise admin panels
+    icon_preference:
+      primary: phosphor
+      fallback: [lucide]
+      style: thin
+      stroke_width: 1.5
+
+  - id: tech-cyberpunk
+    name: "Tech Cyberpunk"
+    tagline: "Neon nights and glowing futures — bold, dark, unmistakable"
+    version: "1.0"
+    status: ready
+    keywords:
+      - tech
+      - cyberpunk
+      - neon
+      - dark
+      - glow
+      - futuristic
+    best_for:
+      - Developer platforms
+      - Data dashboards
+      - SaaS tools
+      - Hackathon projects
+    not_for:
+      - Healthcare
+      - Family apps
+      - Conservative brands
+    icon_preference:
+      primary: phosphor
+      fallback: [lucide, hugeicons]
+      style: duotone
+      stroke_width: 2
+
+  - id: corporate-official
+    name: "Corporate Official"
+    tagline: "Trustworthy, professional, and conversion-optimized"
+    version: "1.0"
+    status: ready
+    keywords:
+      - corporate
+      - professional
+      - trustworthy
+      - gradient
+      - card-based
+      - sans-serif
+    best_for:
+      - Company websites
+      - Landing pages
+      - B2B products
+      - SaaS marketing
+    not_for:
+      - Personal blogs
+      - Experimental art projects
+    icon_preference:
+      primary: heroicons
+      fallback: [lucide, tabler]
+      style: outline
+      stroke_width: 2
+
+  - id: glassmorphism
+    name: "Glassmorphism"
+    tagline: "Translucent layers floating in colorful space"
+    version: "1.0"
+    status: ready
+    keywords:
+      - glass
+      - blur
+      - translucent
+      - layered
+      - modern
+      - premium
+    best_for:
+      - Fintech applications
+      - Premium brands
+      - Creative portfolios
+      - Dashboard cards
+    not_for:
+      - Accessibility-critical apps
+      - Low-contrast environments
+    icon_preference:
+      primary: phosphor
+      fallback: [lucide]
+      style: fill
+      stroke_width: 1.5
+
+  - id: neumorphism
+    name: "Neumorphism"
+    tagline: "Soft shadows and gentle tactility — calm and approachable"
+    version: "1.0"
+    status: ready
+    keywords:
+      - soft
+      - tactile
+      - monotone
+      - rounded
+      - calm
+      - subtle
+    best_for:
+      - Health and wellness
+      - Meditation apps
+      - Control panels
+      - IoT dashboards
+    not_for:
+      - Complex data visualization
+      - E-commerce
+    icon_preference:
+      primary: feather
+      fallback: [lucide]
+      style: outline
+      stroke_width: 2
+
+  - id: brutalist-minimal
+    name: "Brutalist Minimal"
+    tagline: "Raw honesty — function over form, maximum impact"
+    version: "1.0"
+    status: ready
+    keywords:
+      - brutalist
+      - minimal
+      - bold
+      - black-and-white
+      - raw
+      - functional
+    best_for:
+      - Documentation sites
+      - Developer blogs
+      - Tool websites
+      - Portfolios
+    not_for:
+      - Consumer marketplaces
+      - Social apps
+    icon_preference:
+      primary: feather
+      fallback: [lucide]
+      style: outline
+      stroke_width: 2
+
+# Custom template discovery paths (checked in order)
+# 1. <project_root>/.bold-ui/templates/
+# 2. ~/.claude/bold-ui/templates/
+# 3. <this-skill>/templates/   (built-in)
+
+# To add templates from GitHub, use:
+#   /bold-ui add-temp https://github.com/user/repo
+# Custom templates are appended below with `source` and `installed_at` fields.

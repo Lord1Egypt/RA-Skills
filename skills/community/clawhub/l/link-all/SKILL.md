@@ -1,35 +1,149 @@
----
-name: "Link All"
-description: "帮助用户调研、选择并配置外部平台链接方案，支持插件、CLI或API方式，完成认证和首次调用测试。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/link-all"
-sourceUrl: "https://clawhub.ai/skills/link-all"
----
+# link-all - 外部平台链接与管理
 
-# Link All
+## 概述
 
-> 帮助用户调研、选择并配置外部平台链接方案，支持插件、CLI或API方式，完成认证和首次调用测试。
+这是一个专门帮助用户链接、访问、调用、管理外部平台的 skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/link-all`
-- **Source URL:** [https://clawhub.ai/skills/link-all](https://clawhub.ai/skills/link-all)
+## 职责
 
-## Overview
+1. **寻找合适的工具和方案** - 完成用户指定平台的链接、授权、访问、管理
+2. **平台调研** - 了解平台背景信息，查找相关技术文档（API/CLI）
+3. **方案适配** - 优先查找 OpenClaw 插件，其次 CLI 工具，最后梳理 API
+4. **用户确认** - 将找到的方案发给用户选择
+5. **脚本开发** - 如需 API 则编写相关脚本
+6. **技能转化** - 首次成功链接后询问用户是否创建为 skill
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/link-all
+### 步骤 1：了解平台背景
+当用户提供要访问的平台时：
+- 搜索该平台的基本信息
+- 了解平台的定位、主要功能、认证方式
+- 确定平台是否支持 API/CLI 访问
+
+### 步骤 2：查找技术文档
+- 搜索平台官方 API 文档
+- 搜索平台官方 CLI 工具
+- 搜索开发者社区的相关资源
+
+### 步骤 3：适配方案优先级
+
 ```
+优先级 1: OpenClaw Plugins → 优先查找是否已有现成插件
+优先级 2: CLI 工具 → 查找官方或社区提供的命令行工具
+优先级 3: API 文档 → 梳理 REST API 文档，编写调用脚本
+```
+
+### 步骤 4：用户确认
+将找到的方案整理后发给用户：
+- 方案 1：使用 XXX 插件（如果存在）
+- 方案 2：使用 XXX CLI 工具
+- 方案 3：通过 API 调用（需要开发脚本）
+
+等待用户确认使用哪个方案。
+
+### 步骤 5：执行链接
+- 如果是插件：帮助安装配置
+- 如果是 CLI：帮助安装并配置认证
+- 如果是 API：编写脚本并完成首次调用测试
+
+### 步骤 6：技能转化（重要！）
+首次成功链接后，**必须**询问用户：
+```
+✅ 平台链接成功！是否需要将此平台的链接方案创建为独立的 skill？
+- "要" / "需要" → 帮用户梳理方案并创建 skill
+- "不要" / "不需要" → 结束
+```
+
+如果用户需要创建 skill：
+1. 梳理完整的链接方案（认证方式、配置参数、常用操作）
+2. 在 `~/.openclaw/skills/` 下创建新的 skill 目录
+3. 编写 SKILL.md 文件
+4. 告知用户 skill 已创建
+
+## 输出格式
+
+### 平台信息报告
+```
+## 平台：XXX
+
+### 基本信息
+- 官网：xxx
+- 类型：API/CLI/SDK
+- 认证方式：API Key/OAuth/Token
+
+### 技术文档
+- API 文档：xxx
+- CLI 工具：xxx
+- SDK：xxx
+
+### 推荐方案
+1. 方案一：xxx
+2. 方案二：xxx
+3. 方案三：xxx
+```
+
+### 链接成功报告
+```
+## ✅ XXX 平台链接成功
+
+### 配置信息
+- 认证方式：xxx
+- 配置参数：xxx
+- 测试结果：xxx
+
+### 常用操作
+- 操作 1：xxx
+- 操作 2：xxx
+
+### 是否需要创建 skill？
+请回复 "要" 或 "不要"
+```
+
+## 示例对话
+
+**用户**：帮我连接 GitHub
+
+**我**：
+```
+## 平台：GitHub
+
+### 基本信息
+- 官网：https://github.com
+- 类型：代码托管平台
+- 认证方式：Personal Access Token (PAT)
+
+### 技术文档
+- API：https://docs.github.com/rest
+- CLI：gh (GitHub CLI)
+
+### 推荐方案
+1. **方案一（推荐）**：使用 `gh` CLI 工具 - 官方出品，易用
+2. **方案二**：使用 GitHub REST API - 灵活，可开发脚本
+
+请选择方案（1 或 2）：
+```
+
+**用户**：选 1
+
+**我**：帮你安装配置 GitHub CLI...
+
+（链接成功后）
+
+```
+## ✅ GitHub 链接成功
+
+- 用户：xxx
+- 认证：SSH Key 已配置
+- 测试：✓ 已验证
+
+是否需要将此平台的链接方案创建为独立的 skill？
+- 回复 "要" 或 "不要"
+```
+
+## 注意事项
+
+- 必须按照步骤执行，不能跳过用户确认环节
+- 首次链接成功后**必须**询问用户是否需要创建 skill
+- 如果用户选择创建 skill，需要完整记录配置和操作步骤
+- 保持文档清晰，方便后续复用

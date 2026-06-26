@@ -1,35 +1,159 @@
 ---
-name: "testcase-generator-skill"
-description: "功能测试用例智能生成工具。用于根据需求文档、接口定义、数据库表结构、现有用例参考等输入， 自动生成标准格式的测试用例文档（Excel格式）。适用于：(1) 解读需求文档生成测试点 (2) 基于接口定义生成API测试用例 (3) 根据数据库表设计验证数据测试 (4) 参考现有用例生成 相似模块用例 (5) 批量生成..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/testcase-generator-skill"
-sourceUrl: "https://clawhub.ai/skills/testcase-generator-skill"
+name: testcase-generator
+description: |
+  功能测试用例智能生成工具。用于根据需求文档、接口定义、数据库表结构、现有用例参考等输入，
+  自动生成标准格式的测试用例文档（Excel格式）。适用于：(1) 解读需求文档生成测试点 (2) 
+  基于接口定义生成API测试用例 (3) 根据数据库表设计验证数据测试 (4) 参考现有用例生成 
+  相似模块用例 (5) 批量生成测试用例并导出Excel
 ---
 
-# testcase-generator-skill
+# 测试用例生成器
 
-> 功能测试用例智能生成工具。用于根据需求文档、接口定义、数据库表结构、现有用例参考等输入， 自动生成标准格式的测试用例文档（Excel格式）。适用于：(1) 解读需求文档生成测试点 (2) 基于接口定义生成API测试用例 (3) 根据数据库表设计验证数据测试 (4) 参考现有用例生成 相似模块用例 (5) 批量生成...
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/testcase-generator-skill`
-- **Source URL:** [https://clawhub.ai/skills/testcase-generator-skill](https://clawhub.ai/skills/testcase-generator-skill)
+### 1. 准备输入材料
 
-## Overview
+将以下材料放置到工作目录：
+- **需求文档**：PRD文档、需求说明、设计文档（支持.md/.docx/.txt格式）
+- **接口定义**：Swagger/OpenAPI JSON、接口文档（支持.yaml/.json格式）
+- **数据库表结构**：DDL脚本、表结构说明（支持.sql格式）
+- **现有用例**：参考用例文件（支持.xlsx/.md格式）
 
+### 2. 执行生成
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/testcase-generator-skill
+告诉AI助手：
 ```
+根据[需求文档/接口定义/数据库表]生成测试用例
+```
+
+或指定具体模块：
+```
+为"用户登录"模块生成功能测试用例
+```
+
+### 3. 获取输出
+
+生成的测试用例为Excel格式(.xlsx)，包含：
+- 用例编号
+- 用例标题
+- 前置条件
+- 测试步骤
+- 预期结果
+- 优先级
+- 用例类型
+
+---
+
+## 输入材料处理
+
+### 需求文档处理
+
+1. **提取功能点**：解析需求文档中的功能描述
+2. **识别业务流程**：梳理功能之间的关联和流程
+3. **提取测试要素**：输入、输出、边界条件
+
+### 接口定义处理
+
+解析Swagger/OpenAPI文档提取：
+- 接口路径和方法
+- 请求参数和响应结构
+- 必填字段和校验规则
+- 错误码定义
+
+### 数据库表处理
+
+解析DDL脚本提取：
+- 表名和注释
+- 字段名、类型和约束
+- 主键和外键关系
+- 索引和默认值
+
+---
+
+## 输出格式
+
+### Excel测试用例模板
+
+| 字段 | 说明 | 示例 |
+|------|------|------|
+| 用例编号 | 唯一标识 | TC_USER_LOGIN_001 |
+| 用例标题 | 用例名称 | 用户名正确密码正确登录成功 |
+| 用例类型 | 功能/接口/数据/UI | 功能测试 |
+| 优先级 | P0/P1/P2/P3 | P0 |
+| 前置条件 | 执行前提 | 用户已注册 |
+| 测试步骤 | 操作步骤 | 1.输入用户名 2.输入密码 3.点击登录 |
+| 预期结果 | 期望输出 | 登录成功跳转首页 |
+| 测试数据 | 输入数据 | 用户名:test001 密码:Test@123 |
+
+---
+
+## 生成策略
+
+### 等价类划分
+
+将输入数据划分为有效等价类和无效等价类：
+- 有效：符合业务规则的数据
+- 边界：边界值数据
+- 无效：不符合规则的数据
+
+### 边界值分析
+
+针对数值、长度、次数等边界：
+- 最小值、最大值
+- 边界-1、边界+1
+- 空值、NULL
+
+### 场景法
+
+覆盖主要场景：
+- 正常场景
+- 异常场景
+- 备用场景
+- 补偿场景
+
+### 状态迁移
+
+对于有状态的对象：
+- 状态转换图
+- 触发条件
+- 预期状态
+
+---
+
+## 脚本工具
+
+### 生成Excel用例
+
+```bash
+python scripts/generate_testcase.py --input requirements.md --output testcases.xlsx
+```
+
+参数：
+- `--input`: 输入材料路径
+- `--output`: 输出Excel路径
+- `--template`: 指定模板(可选)
+- `--format`: 输出格式xlsx/csv
+
+### 查看详细帮助
+
+```bash
+python scripts/generate_testcase.py --help
+```
+
+---
+
+## 注意事项
+
+1. **材料完整性**：材料越完整，生成用例越准确
+2. **边界条件**：重点关注边界值和异常情况
+3. **业务规则**：确保覆盖业务规则验证
+4. **用例评审**：生成后需人工评审确认
+5. **版本管理**：建议使用版本控制管理用例
+
+---
+
+## 相关文件
+
+- `references/testcase_template.xlsx` - 测试用例模板
+- `references/testcase_examples.md` - 用例示例
+- `references/priority_guide.md` - 优先级定义指南

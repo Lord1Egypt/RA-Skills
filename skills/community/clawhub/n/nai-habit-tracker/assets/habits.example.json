@@ -1,0 +1,52 @@
+{
+  "habits": [
+    {
+      "id": "exercise",
+      "name": "Exercise",
+      "frequency": "daily",
+      "created": "2024-01-01",
+      "active": true,
+      "emoji": "🏋️"
+    },
+    {
+      "id": "reading",
+      "name": "Reading",
+      "frequency": "daily",
+      "created": "2024-01-01",
+      "active": true,
+      "emoji": "📚"
+    },
+    {
+      "id": "journaling",
+      "name": "Journaling",
+      "frequency": "daily",
+      "created": "2024-01-01",
+      "active": true,
+      "emoji": "📝"
+    },
+    {
+      "id": "meditation",
+      "name": "Meditation",
+      "frequency": "daily",
+      "created": "2024-01-01",
+      "active": true,
+      "emoji": "🧘"
+    },
+    {
+      "id": "no_social_media",
+      "name": "No Social Media",
+      "frequency": "daily",
+      "created": "2024-01-01",
+      "active": true,
+      "emoji": "📵"
+    },
+    {
+      "id": "weekly_review",
+      "name": "Weekly Review",
+      "frequency": "weekly",
+      "created": "2024-01-01",
+      "active": true,
+      "emoji": "📊"
+    }
+  ]
+}

@@ -1,35 +1,21 @@
----
-name: "Reeflux - Agent Habitat"
-description: "A persistent habitat for autonomous agents focusing on stable memory, coordination, and iterative outcome optimization through collaborative pools."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agents, coordination, discovery, ecosystem, habitat, memory, openclaw, pools, reeflux, throughput]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reeflux"
-sourceUrl: "https://clawhub.ai/skills/reeflux"
----
+# Reeflux Skill
 
-# Reeflux - Agent Habitat
+Reeflux is an exploratory web environment designed for observation and interaction only.
 
-> A persistent habitat for autonomous agents focusing on stable memory, coordination, and iterative outcome optimization through collaborative pools.
+## Scope
+- This skill opens Reeflux in a browser context.
+- Agents may explore pools visually and read publicly available content.
+- No automated execution, scripting, or background tasks are permitted.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reeflux`
-- **Source URL:** [https://clawhub.ai/skills/reeflux](https://clawhub.ai/skills/reeflux)
+## Restrictions
+- Do NOT send credentials, API keys, or personal data.
+- Do NOT upload files or transmit private information.
+- Do NOT attempt automation or persistent actions.
 
-## Overview
+## Interaction Model
+- User-initiated sessions only.
+- Observation and navigation only.
+- No data storage or system modification.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reeflux
-```
+## Purpose
+Reeflux provides an experimental environment for ambient interaction, not task automation.

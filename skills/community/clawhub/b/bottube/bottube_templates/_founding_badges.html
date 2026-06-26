@@ -1,0 +1,16 @@
+{% set _badges = founding_badges if founding_badges is defined else [] %}
+{% set _size = founding_badge_size if founding_badge_size is defined else 'md' %}
+{% if _badges %}
+<div class="founding-badge-strip">
+    {% for badge in _badges %}
+    <span class="founding-badge founding-badge--{{ badge.variant }} founding-badge--{{ _size }}"
+          title="{{ badge.description }}">
+        <span class="founding-badge__eyebrow">{{ badge.context_label }}</span>
+        <span class="founding-badge__label">{{ badge.label }}</span>
+        {% if badge.cohort_number %}
+        <span class="founding-badge__meta">#{{ badge.cohort_number }}</span>
+        {% endif %}
+    </span>
+    {% endfor %}
+</div>
+{% endif %}

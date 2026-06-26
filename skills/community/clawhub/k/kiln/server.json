@@ -1,0 +1,41 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.codeofaxel/kiln",
+  "title": "Kiln",
+  "description": "Kiln MCP server for agents: design, slice, print, monitor, and recover physical objects safely.",
+  "version": "1.1.8",
+  "repository": {
+    "url": "https://github.com/codeofaxel/Kiln",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "kiln3d",
+      "version": "1.1.8",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "KILN_PRINTER_HOST",
+          "description": "URL of your 3D printer (OctoPrint, Moonraker, Creality, or Prusa Link)",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "KILN_PRINTER_API_KEY",
+          "description": "API key for your printer's REST API",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "KILN_PRINTER_TYPE",
+          "description": "Printer type: octoprint, moonraker, creality, bambu, prusalink, elegoo, or serial",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

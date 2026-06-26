@@ -1,0 +1,50 @@
+{
+  "name": "osm-p2p-hybrid",
+  "version": "1.0.1",
+  "description": "OSM-P2P Hybrid - 融合 UDP 直连与 Nostr 网络的 P2P 通讯系统",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "src/",
+    "skills/",
+    "README.md",
+    "SKILL.md",
+    "tsconfig.json"
+  ],
+  "bin": {
+    "osm-p2p": "dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli/index.js",
+    "test": "vitest run",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "nostr-tools": "^2.10.0",
+    "ora": "^8.0.1",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/qrcode": "^1.5.5",
+    "typescript": "^5.7.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "p2p",
+    "nostr",
+    "udp",
+    "hybrid",
+    "osm",
+    "openclaw"
+  ],
+  "license": "MIT"
+}

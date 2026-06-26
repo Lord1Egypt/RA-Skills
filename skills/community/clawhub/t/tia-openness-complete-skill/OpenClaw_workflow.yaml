@@ -1,0 +1,32 @@
+- skill: tia-openness-complete-skill
+  params:
+    action: create_project
+    path: "C:\\TIA_Projects"
+    name: "DemoProject"
+
+- skill: tia-openness-complete-skill
+  params:
+    action: add_plc
+    device_name: "PLC_1"
+    cpu_model: "CPU 1511-1 PN"
+
+- skill: tia-openness-complete-skill
+  params:
+    action: create_block
+    plc_name: "PLC_1"
+    block_type: "FB"
+    block_name: "MotorControl"
+    description: "电机控制，输入启动停止，输出运行"
+
+- skill: tia-openness-complete-skill
+  params:
+    action: compile_software
+    plc_name: "PLC_1"
+
+- skill: tia-openness-complete-skill
+  params:
+    action: download
+    plc_name: "PLC_1"
+    interface: "PN/IE"
+    ip_address: "192.168.0.1"
+    close_after: true

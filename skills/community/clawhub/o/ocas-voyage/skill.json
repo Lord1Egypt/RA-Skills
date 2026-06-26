@@ -1,0 +1,17 @@
+{
+  "name": "ocas-voyage",
+  "version": "2.3.0",
+  "description": "Voyage: travel planning, itinerary construction, and reservation management. Use when the user wants to plan a trip, build an itinerary, find lodging or restaurants, optimize travel logistics, or manage reservations. Trigger phrases: 'plan a trip', 'build itinerary', 'where to stay', 'restaurant recommendations for my trip', 'travel to', 'optimize my itinerary', 'update voyage'. Do not use for generic travel inspiration, visa advice, or airfare-only optimization.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-voyage/",
+      "~/openclaw/journals/ocas-voyage/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-voyage/",
+      "~/openclaw/journals/ocas-voyage/"
+    ]
+  }
+}

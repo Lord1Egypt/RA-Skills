@@ -1,0 +1,28 @@
+{
+  "webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_WEBHOOK_KEY",
+  "management_webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=MANAGEMENT_WEBHOOK_KEY",
+  "notification_settings": {
+    "send_renewal_warning": true,
+    "send_plan_created_notification": true,
+    "send_progress_update": true
+  },
+  "warning_months": {
+    "红色预警": 3,
+    "黄色预警": 4,
+    "绿色预警": 6
+  },
+  "renewal_templates": {
+    "A类-稳租方案": {
+      "适用条件": "经营良好+合作意愿强+租金承受力强/中",
+      "租金策略": "市场价或略有优惠"
+    },
+    "B类-保持方案": {
+      "适用条件": "经营一般+合作意愿中+租金承受力中",
+      "租金策略": "市场价"
+    },
+    "C类-调整方案": {
+      "适用条件": "经营困难+合作意愿弱+租金承受力弱",
+      "租金策略": "协商调整或市场化退出"
+    }
+  }
+}

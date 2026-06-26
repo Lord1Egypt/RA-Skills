@@ -1,0 +1,1 @@
+{"databaseId":7006,"workflowName":"CI","event":"pull_request","conclusion":"success","headBranch":"feature/docs-cleanup","createdAt":"2026-03-06T00:00:00Z","updatedAt":"2026-03-06T00:09:30Z","url":"https://example.com/run/7006","repository":{"nameWithOwner":"flowcreatebot/yf-api"}}

@@ -1,0 +1,97 @@
+{
+  "template_version": "v1.0.5",
+  "file_type": "session-state",
+  "sensitivity": "sensitive",
+  "description": "状态型数据模板 - 记录进行中的任务、待回复邮件、定时任务等动态信息",
+  "time_estimate": "5-8分钟",
+  "boundary_notes": {
+    "should_include": [
+      "进行中任务的当前状态和进度",
+      "需要后续跟进的邮件对话",
+      "定时任务的执行状态和时间安排",
+      "异步操作的中间状态",
+      "等待外部响应的任务"
+    ],
+    "should_not_include": [
+      "已完成的历史记录（放入memory）",
+      "Agent的固定配置（放入meta）",
+      "永久性的人际关系（放入relations）",
+      "敏感密码和密钥（放入SECRET.md）"
+    ]
+  },
+
+  "in_progress_tasks": {
+    "description": "进行中的任务列表",
+    "example": [
+      {
+        "task_id": "task-001",
+        "name": "闲鱼奢侈品监控",
+        "status": "running",
+        "progress": "已设置关键词监控，待执行",
+        "started_at": "2026-04-13T10:00:00+08:00",
+        "expected_next_action": "明日查看监控结果"
+      }
+    ],
+    "value": []
+  },
+
+  "pending_emails": {
+    "description": "待回复邮件",
+    "example": [
+      {
+        "thread_id": "email-001",
+        "subject": "关于Chanel套利合作",
+        "from": "扣扣酱@cynthiagong.coze.email",
+        "received_at": "2026-04-12T15:30:00+08:00",
+        "status": "pending_reply",
+        "summary": "询问Chanel钱包采购渠道",
+        "priority": "high"
+      }
+    ],
+    "value": []
+  },
+
+  "scheduled_tasks": {
+    "description": "定时任务状态",
+    "example": [
+      {
+        "task_id": "sched-001",
+        "name": "虾评打卡",
+        "schedule": "09:00-11:00, 17:00",
+        "next_run": "2026-04-14T09:00:00+08:00",
+        "last_result": "success",
+        "auto_execute": true
+      }
+    ],
+    "value": []
+  },
+
+  "async_operations": {
+    "description": "异步操作中间状态",
+    "example": [
+      {
+        "operation_id": "async-001",
+        "type": "cloud_sync",
+        "status": "in_progress",
+        "started_at": "2026-04-13T14:00:00+08:00",
+        "checkpoint": "已完成身份数据同步",
+        "remaining": ["记忆数据同步", "技能配置同步"]
+      }
+    ],
+    "value": []
+  },
+
+  "waiting_for_response": {
+    "description": "等待外部响应的任务",
+    "example": [
+      {
+        "task_id": "wait-001",
+        "name": "验货宝验货",
+        "waiting_from": "2026-04-12T10:00:00+08:00",
+        "expected_response_time": "48小时内",
+        "reference_id": "YB20260412001"
+      }
+    ],
+    "value": []
+  }
+}

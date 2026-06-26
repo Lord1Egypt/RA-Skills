@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microservices Monitoring &amp; Performance Report — dark-tech Theme Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    /* ── Theme: dark-tech ── */
+    :root {
+      --primary: #818CF8; --primary-light: #312E81; --accent: #A78BFA;
+      --bg: #0F172A; --surface: #1E293B; --text: #E2E8F0; --text-muted: #94A3B8;
+      --border: #334155; --success: #34D399; --warning: #FCD34D; --danger: #F87171;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace; --radius: 6px;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.55; }
+    h1 { font-size: 2rem; font-weight: 700; color: var(--primary); font-family: var(--font-mono); margin-bottom: 1.5rem; }
+    h2 { font-size: 1.4rem; font-weight: 600; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: .4rem; margin-top: 1.75rem; font-family: var(--font-mono); }
+    h3 { font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-top: 1.1rem; }
+    p { margin: .75rem 0; } a { color: var(--primary); }
+    strong { font-weight: 700; color: var(--accent); }
+    blockquote { border-left: 2px solid var(--border); margin: 1rem 0; padding: .5rem 1rem; color: var(--text-muted); font-family: var(--font-mono); font-size: .9rem; }
+
+    /* ── Shared Components ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; font-family: var(--font-mono); }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; font-family: var(--font-mono); }
+    .kpi-value { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; font-family: var(--font-mono); }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    /* Tables */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .report-table th { background: var(--surface); border-bottom: 2px solid var(--primary); padding: .7rem 1rem; text-align: left; font-weight: 600; font-family: var(--font-mono); font-size: .82rem; }
+    .report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .85rem; }
+    .report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+
+    /* Status badges */
+    .badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    .badge--wip  { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    .badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--note { background: rgba(59,130,246,.1); border-color: #3B82F6; }
+    .callout--tip { background: rgba(34,197,94,.1); border-color: #22C55E; }
+    .callout--warning { background: rgba(245,158,11,.1); border-color: #F59E0B; }
+    .callout--danger { background: rgba(239,68,68,.1); border-color: #EF4444; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .93rem; color: #111; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-dot--success { background: var(--success); }
+    .timeline-dot--warning { background: var(--warning); }
+    .timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; font-family: var(--font-mono); }
+    .timeline-content { color: var(--text); line-height: 1.6; }
+
+    /* Image */
+    .report-image { margin: 1.1rem 0; }
+    .report-image img { max-width: 100%; border-radius: var(--radius); }
+    .report-image figcaption { font-size: .82rem; color: var(--text-muted); text-align: center; margin-top: .4rem; font-family: var(--font-mono); }
+    .report-image--full { width: 100%; display: block; }
+    .report-image--left { float: left; max-width: 40%; margin-right: 1.5rem; margin-bottom: .5rem; }
+    .report-image--right { float: right; max-width: 42%; margin-left: 1.5rem; margin-bottom: .5rem; }
+    .clearfix::after { content: ''; display: table; clear: both; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .code-title { background: var(--surface); padding: .35rem 1rem; font-size: .78rem; color: var(--text-muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; background: #0D1117; }
+    .code-wrapper pre code { font-family: var(--font-mono); font-size: .84rem; line-height: 1.65; }
+
+    /* List */
+    .report-list { margin: .75rem 0; }
+    .styled-list { padding-left: 1.5rem; line-height: 1.8; }
+    .styled-list li { margin-bottom: .25rem; }
+
+    /* Diagram */
+    .diagram-wrapper { margin: 1.1rem 0; text-align: center; }
+    .diagram-wrapper svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* Chart */
+    [data-component="chart"] { margin: 1.1rem 0; }
+    .chart-title { font-size: .82rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: .5rem; }
+
+    /* Image placeholder */
+    .image-placeholder { display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 200px; color: var(--text-muted); font-size: .9rem; font-family: var(--font-mono); }
+
+    /* Animations */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── TOC ── */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease; font-family: var(--font-mono);
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.4); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .8rem; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .75rem; opacity: .85; }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 200;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,.4);
+    }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px var(--accent), 0 2px 8px rgba(0,0,0,.4); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 Print / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 Save PNG (Desktop)</button>
+    <button class="export-item" id="export-png-mobile">📱 Save PNG (Mobile)</button>
+    <button class="export-item" id="export-im-share">💬 IM Image</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="Export">↓ Export</button>
+
+
+  <!-- AI Readability Layer: Report Summary JSON -->
+  <script type="application/json" id="report-summary">
+  {
+    "title": "Microservices Monitoring & Performance Report",
+    "author": "Platform Engineering Team",
+    "date": "2025-03-15",
+    "theme": "dark-tech",
+    "abstract": "This report covers 7-day metrics for the microservices cluster including latency, availability, error rate, and throughput. P99 latency has dropped to 18ms, system availability holds at 99.97%, and v2.1.0 is stable in full production.",
+    "sections": ["System Status", "Performance Trends", "Service Inventory", "Deployment Timeline", "Call Chain Diagram", "Monitoring Queries", "Operations Notices", "Architecture Images", "System Overview"],
+    "kpis": [
+      {"label": "P99 Latency",   "value": "18ms",      "trend": "↓12%"},
+      {"label": "Availability",  "value": "99.97%",    "trend": "↑0.03%"},
+      {"label": "Error Rate",    "value": "0.03%",     "trend": "↓0.01%"},
+      {"label": "Throughput",    "value": "12.4K req/s","trend": "↑8%"}
+    ]
+  }
+  </script>
+
+  <!-- Floating TOC toggle -->
+  <button class="toc-toggle" id="toc-toggle-btn" aria-label="Contents" aria-expanded="false">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar" aria-label="Table of Contents">
+    <h4>Contents</h4>
+    <a href="#section-system-status">System Status</a>
+    <a href="#section-perf-trends">Performance Trends</a>
+    <a href="#section-service-inv">Service Inventory</a>
+    <a href="#section-deploy-timeline">Deployment Timeline</a>
+    <a href="#section-call-chain">Call Chain Diagram</a>
+    <a href="#section-monitoring-queries">Monitoring Queries</a>
+    <a href="#section-ops-notices">Operations Notices</a>
+    <a href="#section-arch-images">Architecture Images</a>
+    <a href="#section-sys-overview">System Overview</a>
+  </nav>
+
+  <div class="main-with-toc">
+    <div class="report-wrapper">
+
+      <h1>Microservices Monitoring &amp; Performance Report</h1>
+      <p class="report-meta">Platform Engineering Team &nbsp;·&nbsp; 2025-03-15 &nbsp;·&nbsp; Period: 2025-03-08 – 2025-03-14</p>
+
+      <!-- ── 1. System Status ── -->
+      <section data-section="System Status" data-summary="Key performance indicators: P99 latency 18ms, availability 99.97%, error rate 0.03%, throughput 12,400 req/s.">
+        <h2 id="section-system-status">System Status</h2>
+        <p>All four golden signals remain within SLO targets this week. <strong>P99 latency</strong> continued its downward trend following the order-svc query optimization shipped in v2.1.0. Throughput growth reflects a seasonal uptick in order volume heading into the weekend peak window.</p>
+
+        <div data-component="kpi" class="kpi-grid">
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">P99 Latency</div>
+            <div class="kpi-value" data-counter="18" data-suffix="ms">18ms</div>
+            <div class="kpi-trend kpi-trend--down">↓12% vs last week</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">Availability</div>
+            <div class="kpi-value" data-counter="99.97" data-suffix="%">99.97%</div>
+            <div class="kpi-trend kpi-trend--up">↑0.03% vs last week</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">Error Rate</div>
+            <div class="kpi-value" data-counter="0.03" data-suffix="%">0.03%</div>
+            <div class="kpi-trend kpi-trend--down">↓0.01% vs last week</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">Throughput</div>
+            <div class="kpi-value" data-counter="12.4" data-suffix="K req/s">12.4K</div>
+            <div class="kpi-trend kpi-trend--up">↑8% vs last week</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 2. Performance Trends ── -->
+      <section data-section="Performance Trends" data-summary="7-day P50/P99/P999 latency trends and per-service error rates.">
+        <h2 id="section-perf-trends">Performance Trends</h2>
+
+        <h3>Response Latency Trends (7-day)</h3>
+        <div data-component="chart" data-type="line" class="fade-in-up">
+          <p class="chart-title">P50 / P99 / P999 Latency (ms) — 2025-03-08 to 2025-03-14</p>
+          <canvas id="chart-latency"></canvas>
+          <script>
+            (function() {
+              var labels = ['Mar-08','Mar-09','Mar-10','Mar-11','Mar-12','Mar-13','Mar-14'];
+              new Chart(document.getElementById('chart-latency'), {
+                type: 'line',
+                data: {
+                  labels: labels,
+                  datasets: [
+                    {
+                      label: 'P50 Latency (ms)',
+                      data: [6, 5.8, 6.2, 5.5, 5.9, 5.7, 5.6],
+                      borderColor: '#818CF8',
+                      backgroundColor: 'rgba(129,140,248,.12)',
+                      tension: 0.35,
+                      fill: true,
+                      pointRadius: 4,
+                      pointBackgroundColor: '#818CF8'
+                    },
+                    {
+                      label: 'P99 Latency (ms)',
+                      data: [24, 22, 26, 21, 20, 19, 18],
+                      borderColor: '#A78BFA',
+                      backgroundColor: 'rgba(167,139,250,.08)',
+                      tension: 0.35,
+                      fill: true,
+                      pointRadius: 4,
+                      pointBackgroundColor: '#A78BFA'
+                    },
+                    {
+                      label: 'P999 Latency (ms)',
+                      data: [110, 98, 115, 92, 88, 85, 82],
+                      borderColor: '#34D399',
+                      backgroundColor: 'rgba(52,211,153,.06)',
+                      tension: 0.35,
+                      fill: false,
+                      borderDash: [5, 4],
+                      pointRadius: 4,
+                      pointBackgroundColor: '#34D399'
+                    }
+                  ]
+                },
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: 'top',
+                      labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 11 } }
+                    }
+                  },
+                  scales: {
+                    x: { ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 } }, grid: { color: 'rgba(51,65,85,.6)' } },
+                    y: { ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 }, callback: function(v) { return v + 'ms'; } }, grid: { color: 'rgba(51,65,85,.6)' }, beginAtZero: true }
+                  }
+                }
+              });
+            })();
+          </script>
+        </div>
+
+        <h3>Per-Service Error Rates (7-day average)</h3>
+        <div data-component="chart" data-type="bar" class="fade-in-up">
+          <p class="chart-title">Error Rate (%) — 7-day average per microservice</p>
+          <canvas id="chart-errors"></canvas>
+          <script>
+            (function() {
+              new Chart(document.getElementById('chart-errors'), {
+                type: 'bar',
+                data: {
+                  labels: ['api-gateway','auth-svc','order-svc','user-svc','payment-svc','notify-svc'],
+                  datasets: [{
+                    label: 'Error Rate (%)',
+                    data: [0.01, 0.00, 0.08, 0.02, 0.03, 0.00],
+                    backgroundColor: [
+                      'rgba(129,140,248,.75)',
+                      'rgba(52,211,153,.75)',
+                      'rgba(248,113,113,.85)',
+                      'rgba(129,140,248,.75)',
+                      'rgba(167,139,250,.75)',
+                      'rgba(52,211,153,.75)'
+                    ],
+                    borderRadius: 5
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: { labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 11 } } }
+                  },
+                  scales: {
+                    x: { ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 } }, grid: { color: 'rgba(51,65,85,.5)' } },
+                    y: {
+                      beginAtZero: true,
+                      ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 }, callback: function(v) { return v.toFixed(2) + '%'; } },
+                      grid: { color: 'rgba(51,65,85,.5)' }
+                    }
+                  }
+                }
+              });
+            })();
+          </script>
+        </div>
+      </section>
+
+      <!-- ── 3. Service Inventory ── -->
+      <section data-section="Service Inventory" data-summary="Status, latency, and uptime for 6 core microservices. Top 5 active alerts and optimization backlog.">
+        <h2 id="section-service-inv">Service Inventory</h2>
+
+        <div class="table-wrapper fade-in-up">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Status</th>
+                <th>P99 Latency</th>
+                <th>Uptime (7d)</th>
+                <th>Instances</th>
+                <th>Team</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>api-gateway</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+                <td>9ms</td>
+                <td>100.00%</td>
+                <td>6</td>
+                <td>Platform</td>
+              </tr>
+              <tr>
+                <td>auth-svc</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+                <td>5ms</td>
+                <td>100.00%</td>
+                <td>4</td>
+                <td>Identity</td>
+              </tr>
+              <tr>
+                <td>order-svc</td>
+                <td><span class="badge badge--warn">DEGRADED</span></td>
+                <td>42ms</td>
+                <td>99.91%</td>
+                <td>8</td>
+                <td>Commerce</td>
+              </tr>
+              <tr>
+                <td>user-svc</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+                <td>8ms</td>
+                <td>100.00%</td>
+                <td>4</td>
+                <td>Identity</td>
+              </tr>
+              <tr>
+                <td>payment-svc</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+                <td>11ms</td>
+                <td>100.00%</td>
+                <td>4</td>
+                <td>Finance</td>
+              </tr>
+              <tr>
+                <td>notify-svc</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+                <td>3ms</td>
+                <td>100.00%</td>
+                <td>2</td>
+                <td>Platform</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Top 5 Active Alerts</h3>
+        <div class="report-list fade-in-up">
+          <ol class="styled-list">
+            <li><strong>order-svc</strong> CPU utilization exceeded 60% threshold for 45 continuous minutes (Mar-11 14:22 UTC)</li>
+            <li><strong>order-svc</strong> P99 latency breached 40ms SLO target (Mar-11 14:35 UTC)</li>
+            <li><strong>api-gateway</strong> Single node 502 rate briefly spiked to 0.1% (Mar-09 03:17 UTC, duration: 2 min)</li>
+            <li><strong>PostgreSQL</strong> Primary instance slow query count exceeded 50/min (Mar-12 18:04 UTC)</li>
+            <li><strong>Redis</strong> Connection pool saturation reached 82% (Mar-13 20:31 UTC, duration: 8 min)</li>
+          </ol>
+        </div>
+
+        <h3>Optimization Backlog</h3>
+        <div class="report-list fade-in-up">
+          <ul class="styled-list">
+            <li>order-svc query paths lack a Redis caching layer, causing elevated read pressure on PostgreSQL</li>
+            <li>api-gateway has not yet enabled HTTP/2; upgrading is projected to reduce connection overhead by ~15%</li>
+            <li>notify-svc runs only 2 instances; expanding to 3 is required to satisfy HA policy</li>
+            <li>Missing index on <code>orders.created_at</code> triggers sequential scans on all date-range queries</li>
+            <li>Distributed trace sampling rate is 1%; increasing to 5% would improve incident diagnostic fidelity</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── 4. Deployment Timeline ── -->
+      <section data-section="Deployment Timeline" data-summary="v2.1.0 rollout from 5% canary to full production, including N+1 hotfix and rollback drill.">
+        <h2 id="section-deploy-timeline">Deployment Timeline</h2>
+        <p>This week, <strong>v2.1.0</strong> completed full production rollout, delivering order-svc query optimizations and auth-svc JWT refresh logic refactoring. The following records each deployment gate and decision point.</p>
+
+        <div data-component="timeline" class="timeline fade-in-up">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-03-10 10:15 UTC</div>
+            <div class="timeline-content"><strong>v2.1.0 Rollout Initiated</strong> — Canary traffic set to 5%. Target: us-east-1 / prod-k8s-cluster. Deploy engineer: @liuyang. Smoke tests passing.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-03-10 11:00 UTC</div>
+            <div class="timeline-content"><strong>5% Canary Stable</strong> — P99 latency 21ms, error rate 0.02%. All golden signal checks passed. Approved for traffic expansion.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--warning"></div>
+            <div class="timeline-date">2025-03-10 13:30 UTC</div>
+            <div class="timeline-content"><strong>Expanded to 50% — Warning</strong> — order-svc CPU climbed to 58%, triggering a WARNING alert. Traffic expansion paused; root-cause investigation started.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-03-10 15:00 UTC</div>
+            <div class="timeline-content"><strong>Root Cause Confirmed + Hotfix</strong> — N+1 query pattern identified in order listing endpoint. Hotfix committed, CI passed, patched image v2.1.1-patch1 pushed to registry.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--success"></div>
+            <div class="timeline-date">2025-03-11 09:00 UTC</div>
+            <div class="timeline-content"><strong>Full Rollout + Rollback Drill</strong> — v2.1.1-patch1 at 100% traffic. Rollback drill executed immediately: reverted to v2.0.8 and re-deployed within 5 minutes. Drill passed.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--success"></div>
+            <div class="timeline-date">2025-03-11 12:00 UTC</div>
+            <div class="timeline-content"><strong>Stability Confirmed</strong> — 24 consecutive hours with zero P1/P2 alerts. All SLOs met. Release locked; entering standard monitoring cycle.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 5. Call Chain Diagram ── -->
+      <section data-section="Call Chain Diagram" data-summary="Service dependency topology from Client through API Gateway to downstream services and data stores.">
+        <h2 id="section-call-chain">Call Chain Diagram</h2>
+        <p>The diagram below shows the core request path service dependency topology. Arrows represent synchronous gRPC/HTTP call directions. Dashed lines indicate conditional cache reads.</p>
+
+        <div class="diagram-wrapper fade-in-up">
+          <svg viewBox="0 0 780 370" width="780" height="370" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono', monospace" font-size="13">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#818CF8"/>
+              </marker>
+              <marker id="arrow-db" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#34D399"/>
+              </marker>
+            </defs>
+
+            <!-- Client -->
+            <rect x="20" y="140" width="110" height="44" rx="6" fill="#1E293B" stroke="#818CF8" stroke-width="1.5"/>
+            <text x="75" y="158" text-anchor="middle" fill="#818CF8" font-weight="700">Client</text>
+            <text x="75" y="174" text-anchor="middle" fill="#94A3B8" font-size="10">Browser / App</text>
+
+            <!-- Arrow: Client -> API Gateway -->
+            <line x1="130" y1="162" x2="185" y2="162" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="157" y="156" text-anchor="middle" fill="#94A3B8" font-size="10">HTTPS</text>
+
+            <!-- API Gateway -->
+            <rect x="188" y="130" width="126" height="64" rx="6" fill="#1E293B" stroke="#818CF8" stroke-width="2"/>
+            <text x="251" y="154" text-anchor="middle" fill="#818CF8" font-weight="700">API Gateway</text>
+            <text x="251" y="170" text-anchor="middle" fill="#94A3B8" font-size="10">rate-limit / auth</text>
+            <text x="251" y="184" text-anchor="middle" fill="#94A3B8" font-size="10">6 instances</text>
+
+            <!-- Arrow: API Gateway -> Auth Service -->
+            <line x1="314" y1="148" x2="378" y2="108" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="355" y="122" text-anchor="middle" fill="#94A3B8" font-size="10">gRPC</text>
+
+            <!-- Arrow: API Gateway -> Order Service -->
+            <line x1="314" y1="170" x2="378" y2="190" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="357" y="186" text-anchor="middle" fill="#94A3B8" font-size="10">gRPC</text>
+
+            <!-- Arrow: API Gateway -> User Service -->
+            <line x1="314" y1="178" x2="378" y2="258" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <!-- Auth Service -->
+            <rect x="380" y="70" width="118" height="56" rx="6" fill="#1E293B" stroke="#A78BFA" stroke-width="1.5"/>
+            <text x="439" y="94" text-anchor="middle" fill="#A78BFA" font-weight="700">Auth Service</text>
+            <text x="439" y="110" text-anchor="middle" fill="#94A3B8" font-size="10">JWT / OAuth2</text>
+            <text x="439" y="122" text-anchor="middle" fill="#94A3B8" font-size="10">4 instances</text>
+
+            <!-- Order Service -->
+            <rect x="380" y="162" width="118" height="56" rx="6" fill="#1E293B" stroke="#F87171" stroke-width="1.5"/>
+            <text x="439" y="186" text-anchor="middle" fill="#F87171" font-weight="700">Order Service</text>
+            <text x="439" y="202" text-anchor="middle" fill="#94A3B8" font-size="10">DEGRADED · 8 inst.</text>
+            <text x="439" y="214" text-anchor="middle" fill="#94A3B8" font-size="10">P99 42ms</text>
+
+            <!-- User Service -->
+            <rect x="380" y="236" width="118" height="56" rx="6" fill="#1E293B" stroke="#A78BFA" stroke-width="1.5"/>
+            <text x="439" y="260" text-anchor="middle" fill="#A78BFA" font-weight="700">User Service</text>
+            <text x="439" y="276" text-anchor="middle" fill="#94A3B8" font-size="10">profile / prefs</text>
+            <text x="439" y="288" text-anchor="middle" fill="#94A3B8" font-size="10">4 instances</text>
+
+            <!-- order-svc -> PostgreSQL -->
+            <line x1="498" y1="190" x2="578" y2="155" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <!-- order-svc -> Redis -->
+            <line x1="498" y1="204" x2="578" y2="248" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <!-- user-svc -> PostgreSQL -->
+            <line x1="498" y1="252" x2="578" y2="168" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <!-- auth-svc -> Redis (dashed) -->
+            <line x1="498" y1="108" x2="578" y2="238" stroke="#34D399" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arrow-db)"/>
+            <!-- order-svc -> Message Queue -->
+            <line x1="439" y1="218" x2="439" y2="296" stroke="#818CF8" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+            <!-- PostgreSQL -->
+            <rect x="580" y="120" width="118" height="56" rx="6" fill="#1E293B" stroke="#34D399" stroke-width="1.5"/>
+            <text x="639" y="144" text-anchor="middle" fill="#34D399" font-weight="700">PostgreSQL</text>
+            <text x="639" y="160" text-anchor="middle" fill="#94A3B8" font-size="10">primary + 2 replica</text>
+            <text x="639" y="172" text-anchor="middle" fill="#94A3B8" font-size="10">RDS · us-east-1</text>
+
+            <!-- Redis -->
+            <rect x="580" y="208" width="118" height="56" rx="6" fill="#1E293B" stroke="#34D399" stroke-width="1.5"/>
+            <text x="639" y="232" text-anchor="middle" fill="#34D399" font-weight="700">Redis</text>
+            <text x="639" y="248" text-anchor="middle" fill="#94A3B8" font-size="10">Cluster · 3 shards</text>
+            <text x="639" y="260" text-anchor="middle" fill="#94A3B8" font-size="10">session / cache</text>
+
+            <!-- Message Queue -->
+            <rect x="370" y="298" width="138" height="38" rx="6" fill="#1E293B" stroke="#818CF8" stroke-width="1.2" stroke-dasharray="4,3"/>
+            <text x="439" y="316" text-anchor="middle" fill="#818CF8" font-size="12">Message Queue</text>
+            <text x="439" y="329" text-anchor="middle" fill="#94A3B8" font-size="9">Kafka · async events</text>
+
+            <!-- Legend -->
+            <line x1="24" y1="310" x2="54" y2="310" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="60" y="314" fill="#94A3B8" font-size="11">gRPC / HTTP</text>
+            <line x1="160" y1="310" x2="190" y2="310" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <text x="196" y="314" fill="#94A3B8" font-size="11">DB connection</text>
+            <line x1="300" y1="310" x2="330" y2="310" stroke="#818CF8" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+            <text x="336" y="314" fill="#94A3B8" font-size="11">async / cached</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ── 6. Monitoring Queries ── -->
+      <section data-section="Monitoring Queries" data-summary="Go health check handler used by Kubernetes liveness and readiness probes.">
+        <h2 id="section-monitoring-queries">Monitoring Queries</h2>
+        <p>The following Go handler is used across all microservices as the standard health check endpoint, wired to both Kubernetes <strong>liveness</strong> and <strong>readiness</strong> probes. It performs lightweight dependency checks and returns structured JSON with per-component status, version, and uptime.</p>
+
+        <div class="code-wrapper fade-in-up">
+          <div class="code-title">Health Check Handler — health.go</div>
+          <pre><code class="language-go">package health
+
+import (
+	"encoding/json"
+	"net/http"
+	"time"
+)
+
+// Status constants used by all downstream consumers (Prometheus, k8s, PagerDuty).
+const (
+	StatusOK       = "ok"
+	StatusDegraded = "degraded"
+	StatusDown     = "down"
+)
+
+// HealthResponse is the canonical health check payload.
+type HealthResponse struct {
+	Status     string            `json:"status"`
+	Version    string            `json:"version"`
+	Uptime     string            `json:"uptime"`
+	Checks     map[string]string `json:"checks"`
+	ReportedAt time.Time         `json:"reported_at"`
+}
+
+var startTime = time.Now()
+
+// Handler returns an http.HandlerFunc suitable for /healthz and /readyz routes.
+// deps is a map of dependency name → check function (returns error on failure).
+func Handler(version string, deps map[string]func() error) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		overall := StatusOK
+		checks := make(map[string]string, len(deps))
+
+		for name, checkFn := range deps {
+			if err := checkFn(); err != nil {
+				checks[name] = StatusDown + ": " + err.Error()
+				overall = StatusDegraded
+			} else {
+				checks[name] = StatusOK
+			}
+		}
+
+		resp := HealthResponse{
+			Status:     overall,
+			Version:    version,
+			Uptime:     time.Since(startTime).Round(time.Second).String(),
+			Checks:     checks,
+			ReportedAt: time.Now().UTC(),
+		}
+
+		statusCode := http.StatusOK
+		if overall != StatusOK {
+			statusCode = http.StatusServiceUnavailable
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Cache-Control", "no-cache, no-store")
+		w.WriteHeader(statusCode)
+		json.NewEncoder(w).Encode(resp) //nolint:errcheck
+	}
+}
+
+// Example: wiring the handler in main.go
+//
+//   http.Handle("/healthz", health.Handler("v2.1.1", map[string]func() error{
+//       "postgres": db.Ping,
+//       "redis":    redisClient.Ping,
+//   }))</code></pre>
+        </div>
+      </section>
+
+      <!-- ── 7. Operations Notices ── -->
+      <section data-section="Operations Notices" data-summary="Monitoring methodology, performance optimization tips, maintenance window warning, and payment-svc latency danger notice.">
+        <h2 id="section-ops-notices">Operations Notices</h2>
+
+        <div data-component="callout" class="callout callout--note fade-in-up">
+          <span class="callout-icon">ℹ️</span>
+          <div class="callout-body">
+            <strong>Monitoring Methodology:</strong> All latency metrics in this report are collected via Prometheus + Grafana with a 15-second scrape interval. P99 figures use a 5-minute sliding window. Historical data is retained for 90 days. Jaeger distributed trace sampling is currently set to 1% in production; it may be temporarily raised to 10% during active incident investigation.
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--tip fade-in-up">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <strong>Performance Optimization:</strong> order-svc has a confirmed N+1 query pattern on the listing endpoint. Introducing a DataLoader or explicit JOIN is recommended for all batch read paths. Increasing Redis <code>max_idle</code> from 10 to 20 will reduce connection wait time during peak load. Also consider enabling daily auto-reset for <code>pg_stat_statements</code> at 00:00 UTC to keep slow-query data fresh.
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--warning fade-in-up">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">
+            <strong>Scheduled Maintenance Window:</strong> A 45-minute maintenance window is scheduled for 2025-03-18 02:00–02:45 UTC for PostgreSQL minor version upgrade (14.9 → 14.11) and PgBouncer config reload. All dependent services will be in read-only mode. Ensure order-svc graceful degradation is tested prior. Incident channel: <code>#platform-oncall</code>.
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--danger fade-in-up">
+          <span class="callout-icon">🚨</span>
+          <div class="callout-body">
+            <strong>Payment Service Latency Spike (Active):</strong> payment-svc P99 latency has been elevated at 180ms (SLO: 50ms) since 2025-03-14 22:10 UTC. Root cause: downstream fraud-detection API timeout. An emergency circuit-breaker has been deployed; full remediation is in progress. Do not execute any production config changes to payment-svc without SRE approval until the incident is resolved.
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 8. Architecture Images ── -->
+      <section data-section="Architecture Images" data-summary="System topology diagram and Grafana monitoring dashboard screenshot placeholders.">
+        <h2 id="section-arch-images">Architecture Images</h2>
+
+        <div class="clearfix fade-in-up">
+          <figure class="report-image report-image--right">
+            <img src="https://placehold.co/860x400/1E293B/818CF8?text=System+Topology+Diagram" alt="System Topology Diagram placeholder" style="max-width:100%; border-radius: var(--radius); border: 1px solid var(--border);">
+            <figcaption>Fig 1 — Kubernetes cluster node distribution (us-east-1, as of 2025-03-14)</figcaption>
+          </figure>
+          <p>The production cluster runs on AWS us-east-1 across three availability zones (AZ-a / AZ-b / AZ-c), with six worker nodes per AZ (c6i.2xlarge, 8 vCPU / 32 GB RAM). All microservices are deployed as Kubernetes Deployments with <strong>topologySpreadConstraints</strong> ensuring cross-AZ pod distribution so a single-AZ outage does not impact service continuity.</p>
+          <p>Istio Service Mesh handles inter-service mTLS encryption, traffic management, and observability data collection. Envoy sidecar injection is at 100%; enabling Telemetry v2 reduced Prometheus metric collection latency by approximately 18%. All egress traffic to external dependencies routes through an Istio egress gateway for auditability.</p>
+          <p>The storage tier uses RDS for PostgreSQL 14 (Multi-AZ primary + two read replicas) and ElastiCache Redis 7.0 cluster (three primaries, three replicas). Database connections are proxied through PgBouncer in transaction-pool mode with a maximum of 200 connections.</p>
+        </div>
+
+        <div class="fade-in-up" style="margin-top: 1.5rem;">
+          <figure class="report-image">
+            <div class="image-placeholder" style="height: 160px;">[ Grafana Dashboard Screenshot ]<br><span style="font-size:.75rem; display:block; margin-top:.3rem; opacity:.7">layout=full · full-width display</span></div>
+            <figcaption>Fig 2 — Grafana monitoring dashboard: 7-day key metrics overview (latency heatmap / error rate / saturation)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ── 9. System Overview ── -->
+      <section data-section="System Overview" data-summary="Architecture design philosophy, technology selection rationale, and core design principles.">
+        <h2 id="section-sys-overview">System Overview</h2>
+
+        <p>The system employs a <strong>Domain-Driven Design (DDD)</strong> microservice decomposition strategy, partitioning the business domain into six independent services: gateway, identity, commerce, user profile, payments, and notifications. Each service is independently deployed and scaled, communicating via synchronous <strong>gRPC (Protobuf)</strong> for request-response flows and <strong>Apache Kafka</strong> for asynchronous event propagation — decoupling critical business processes such as order creation → payment notification → inventory adjustment.</p>
+
+        <blockquote>
+          "When you design a distributed system, the problem you ultimately face is not a technology problem — it is a boundary problem. Service boundaries, data boundaries, failure boundaries. Draw the right boundaries and complexity is encapsulated in exactly the right places."<br>
+          — Platform Engineering Team, Architecture Principles v3.0
+        </blockquote>
+
+        <p>The observability stack conforms to the <strong>OpenTelemetry</strong> specification, unifying the three telemetry signals: Prometheus handles metrics storage and alerting; Jaeger carries distributed traces; Loki aggregates structured logs. Alerts are routed through <strong>AlertManager</strong> to PagerDuty (P1/P2) and Slack (P3/P4). MTTD target: &lt; 3 minutes. MTTR target: &lt; 15 minutes.</p>
+
+        <h3>Core Technology Stack</h3>
+        <ul class="styled-list" style="font-family: var(--font-mono); font-size: .88rem;">
+          <li>Runtime: <strong>Go 1.22</strong> (high-concurrency services) / <strong>Python 3.12</strong> (data processing pipelines)</li>
+          <li>Orchestration: <strong>Kubernetes 1.29</strong> + Helm 3 + ArgoCD (GitOps)</li>
+          <li>Service Mesh: <strong>Istio 1.21</strong> (mTLS / traffic management / circuit breaking)</li>
+          <li>Message Queue: <strong>Apache Kafka 3.7</strong> (3 brokers, RF=3, min.insync.replicas=2)</li>
+          <li>Observability: <strong>Prometheus + Grafana + Jaeger + Loki + OpenTelemetry Collector</strong></li>
+          <li>CI/CD: GitHub Actions → Docker Build → GHCR → ArgoCD Image Updater</li>
+        </ul>
+
+        <p>This report is generated automatically by the <strong>report-exporter</strong> scheduled job, which pulls data from the Prometheus HTTP API. It is published every Monday at 08:00 UTC. If you spot data anomalies, contact the <a href="mailto:sre@example.com">SRE on-call team</a> or post in the <code>#platform-metrics</code> Slack channel.</p>
+      </section>
+
+    </div><!-- /.report-wrapper -->
+  </div><!-- /.main-with-toc -->
+
+  <script>
+    // ── Highlight.js init ──
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('pre code').forEach(function(block) {
+        hljs.highlightElement(block);
+      });
+    });
+
+    // Auto-reveal in headless/screenshot environments
+    if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+    // ── Fade-in-up IntersectionObserver ──
+    (function() {
+      var items = document.querySelectorAll('.fade-in-up');
+      if (!items.length) return;
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function(el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // ── KPI counter animation ──
+    (function() {
+      var cards = document.querySelectorAll('.kpi-value[data-counter]');
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var target = parseFloat(el.getAttribute('data-counter'));
+          var suffix = el.getAttribute('data-suffix') || '';
+          var duration = 900;
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = target * eased;
+            el.textContent = (Number.isInteger(target) ? Math.round(current) : current.toFixed(2)) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          io.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      cards.forEach(function(el) { io.observe(el); });
+    })();
+
+    // ── TOC: hover-open + click-lock ──
+    (function() {
+      var btn = document.getElementById('toc-toggle-btn');
+      var sidebar = document.getElementById('toc-sidebar');
+      if (!btn || !sidebar) return;
+
+      var locked = false;
+      var hoverTimer = null;
+
+      btn.addEventListener('mouseenter', function() {
+        hoverTimer = setTimeout(function() {
+          if (!locked) { sidebar.classList.add('open'); }
+        }, 120);
+      });
+      btn.addEventListener('mouseleave', function() {
+        clearTimeout(hoverTimer);
+        if (!locked) {
+          setTimeout(function() {
+            if (!sidebar.matches(':hover')) sidebar.classList.remove('open');
+          }, 300);
+        }
+      });
+      sidebar.addEventListener('mouseleave', function() {
+        if (!locked) sidebar.classList.remove('open');
+      });
+      sidebar.addEventListener('mouseenter', function() {
+        clearTimeout(hoverTimer);
+      });
+
+      btn.addEventListener('click', function() {
+        locked = !locked;
+        sidebar.classList.toggle('open', locked);
+        btn.classList.toggle('locked', locked);
+        btn.setAttribute('aria-expanded', locked ? 'true' : 'false');
+      });
+
+      document.querySelectorAll('.toc-sidebar a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          if (!locked) { sidebar.classList.remove('open'); }
+        });
+      });
+
+      // TOC active link tracking on scroll
+      var headings = document.querySelectorAll('h2[id], h3[id]');
+      var links = document.querySelectorAll('.toc-sidebar a');
+      window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY + 80;
+        var current = '';
+        headings.forEach(function(h) {
+          if (h.offsetTop <= scrollY) current = h.id;
+        });
+        links.forEach(function(a) {
+          var href = a.getAttribute('href');
+          a.classList.toggle('active', href === '#' + current);
+        });
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    // Edit mode: hover bottom-left hotzone to reveal button, click to toggle
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+# 📊 客服问题周报 - 技能配置
+
+**技能名称**: issue-analysis-agent  
+**版本**: v1.0.0  
+**创建时间**: 2026-03-23
+
+---
+
+## 🔧 配置项
+
+### COS 配置（⚠️ 关键）
+```json
+{
+  "bucket": "claw-1301484442",
+  "region": "ap-shanghai",
+  "secret_id": "AKIDWYbw77uSntsgHeokDSTItITQAi20jLlz",
+  "secret_key": "570JTPAl8IFzaxNgokU0Lgp8IG2d1DE1",
+  "cos_path": "reports/issue_analysis/",
+  "content_type": "text/html; charset=utf-8",
+  "content_disposition": "inline",
+  "cache_control": "no-cache"
+}
+```
+
+**⚠️ 关键配置说明**:
+- `content_type`: 必须是 `text/html; charset=utf-8`，确保浏览器识别为 HTML
+- `content_disposition`: 必须是 `inline`，确保在浏览器打开而不是下载
+- `cache_control`: 设置为 `no-cache`，确保看到最新数据
+
+### 报告配置
+```json
+{
+  "chart_library": "chart.js@4.4.0",
+  "theme_color": "#667eea",
+  "font_family": "-apple-system, BlinkMacSystemFont, PingFang SC",
+  "output_format": "html",
+  "auto_upload": true
+}
+```
+
+### 告警规则
+```json
+{
+  "resolve_rate_threshold": 80,
+  "weekly_new_threshold": 50,
+  "bug_ratio_threshold": 60,
+  "platform_ratio_threshold": 60,
+  "unresolved_module_threshold": 5
+}
+```
+
+---
+
+## 📥 输入映射
+
+### Excel 列名映射（支持中英文）
+```json
+{
+  "issue_description": ["问题描述", "问题内容", "Description"],
+  "submit_date": ["提交日期", "创建日期", "Date"],
+  "week_number": ["周次", "Week"],
+  "platform": ["所属平台", "平台", "Platform"],
+  "module": ["问题模块", "模块", "Module"],
+  "reporter": ["反馈人", "提交人", "Reporter"],
+  "resolver": ["解决人", "处理人", "Resolver"],
+  "status": ["状态", "问题解决状态", "Status"],
+  "type": ["问题类型", "类型", "Type"]
+}
+```
+
+---
+
+## 📤 输出配置
+
+### 本地输出目录
+```
+/Users/master.yu/.openclaw/workspace/skills/issue-analysis-agent/output/
+├── analysis_data.json
+├── analysis_summary.md
+├── report_cn.html
+└── history/
+    └── week_XX/
+```
+
+### COS 输出路径
+```
+reports/issue_analysis/
+├── report_cn_latest.html（最新报告，覆盖更新）
+└── history/
+    ├── report_week_10.html
+    ├── report_week_11.html
+    └── report_week_12.html
+```
+
+---
+
+## 🔄 定时任务配置
+
+### 每周自动检查（可选）
+```json
+{
+  "schedule": "every",
+  "everyMs": 604800000,
+  "dayOfWeek": 1,
+  "time": "10:00",
+  "timezone": "Asia/Shanghai",
+  "action": "check_new_data"
+}
+```
+
+### 推送时间
+- **固定推送**: 每周一 15:00
+- **紧急告警**: 实时
+
+---
+
+## 📊 报告模板变量
+
+```markdown
+{{analysis_date}}      - 分析日期
+{{data_source}}        - 数据源文件名
+{{data_period}}        - 数据周期
+{{total_issues}}       - 问题总数
+{{total_change}}       - 总数环比变化
+{{resolved}}           - 已解决数
+{{resolved_rate}}      - 解决率
+{{unresolved}}         - 未解决数
+{{unresolved_rate}}    - 未解决率
+{{weekly_table}}       - 每周趋势表格
+{{type_table}}         - 问题类型表格
+{{platform_table}}     - 平台分布表格
+{{module_table}}       - 模块分布表格
+{{reporter_table}}     - 反馈人表格
+{{resolver_table}}     - 解决人表格
+{{unresolved_table}}   - 未解决表格
+{{status_table}}       - 状态分布表格
+{{insights}}           - 关键发现
+{{action_plan}}        - 行动计划
+{{summary}}            - 总结
+{{report_time}}        - 报告生成时间
+```
+
+---
+
+## 🛠️ 脚本列表
+
+### analyze.py
+- **功能**: Excel 数据读取 + 统计分析
+- **输入**: Excel 文件路径
+- **输出**: analysis_data.json + analysis_summary.md
+
+### generate_report.py
+- **功能**: HTML 报告生成
+- **输入**: analysis_data.json
+- **输出**: report_cn.html
+
+### upload_cos.py
+- **功能**: COS 文件上传
+- **输入**: HTML 文件路径
+- **输出**: 公网访问链接
+
+### weekly_report.py
+- **功能**: 周报生成主流程（整合以上脚本）
+- **输入**: Excel 文件路径
+- **输出**: 报告链接 + 摘要
+
+---
+
+## 📝 使用示例
+
+### 示例 1：单次分析
+```bash
+cd /Users/master.yu/.openclaw/workspace/skills/issue-analysis-agent
+python3 weekly_report.py /path/to/issue_data_week_13.xlsx
+```
+
+### 示例 2：对比分析
+```bash
+python3 weekly_report.py --compare week_12 week_13
+```
+
+### 示例 3：导出 CSV
+```bash
+python3 analyze.py --export-csv issue_data.xlsx
+```
+
+---
+
+## 📞 联系方式
+
+- **技能维护**: 老六 🥷
+- **问题反馈**: 飞书群 - AI Agent 团队
+- **文档位置**: `/Users/master.yu/.openclaw/workspace/skills/issue-analysis-agent/README.md`
+
+---
+
+*最后更新：2026-03-23*

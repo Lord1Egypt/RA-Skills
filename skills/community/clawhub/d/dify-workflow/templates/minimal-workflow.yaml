@@ -1,0 +1,132 @@
+# Minimal Dify Workflow Template
+# A simple Start → LLM → End workflow
+# Replace timestamps with fresh ones when using
+
+app:
+  description: Minimal workflow template
+  icon: rocket
+  icon_background: '#E4FBCC'
+  mode: workflow
+  name: Minimal Workflow
+  use_icon_as_answer_icon: false
+
+dependencies: []
+
+kind: app
+version: 0.6.0  # replace with exported version
+
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      enabled: false
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    text_to_speech:
+      enabled: false
+  graph:
+    edges:
+      # Start → LLM
+      - data:
+          sourceType: start
+          targetType: llm
+        id: start-to-llm
+        source: '1700000000001'
+        sourceHandle: source
+        target: '1700000000002'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # LLM → End
+      - data:
+          sourceType: llm
+          targetType: end
+        id: llm-to-end
+        source: '1700000000002'
+        sourceHandle: source
+        target: '1700000000003'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+    nodes:
+      # ============ START NODE ============
+      - data:
+          type: start
+          title: Start
+          desc: Input parameters
+          variables:
+            - variable: user_input
+              label: User Input
+              type: paragraph
+              required: true
+              max_length: 10000
+              options: []
+        id: '1700000000001'
+        type: custom
+        position:
+          x: 30
+          y: 275
+        width: 244
+        height: 118
+
+      # ============ LLM NODE ============
+      - data:
+          type: llm
+          title: Process
+          desc: Process with LLM
+          model:
+            # replace provider/name with values from your instance export
+            provider: langgenius/openai/openai
+            name: gpt-4o-mini
+            mode: chat
+            completion_params: {}
+          prompt_template:
+            - id: system-prompt
+              role: system
+              text: |
+                You are a helpful assistant.
+            - id: user-prompt
+              role: user
+              text: |
+                {{#1700000000001.user_input#}}
+          context:
+            enabled: false
+            variable_selector: []
+          vision:
+            enabled: false
+        id: '1700000000002'
+        type: custom
+        position:
+          x: 334
+          y: 275
+        width: 244
+        height: 118
+
+      # ============ END NODE ============
+      - data:
+          type: end
+          title: End
+          desc: Output result
+          outputs:
+            - variable: result
+              value_selector:
+                - '1700000000002'
+                - text
+        id: '1700000000003'
+        type: custom
+        position:
+          x: 638
+          y: 275
+        width: 244
+        height: 118
+
+    viewport:
+      x: 0
+      y: 0
+      zoom: 1

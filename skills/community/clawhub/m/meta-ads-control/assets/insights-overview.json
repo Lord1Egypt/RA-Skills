@@ -1,0 +1,16 @@
+{
+  "level": "campaign",
+  "date_preset": "last_7d",
+  "fields": [
+    "campaign_id",
+    "campaign_name",
+    "spend",
+    "impressions",
+    "clicks",
+    "ctr",
+    "cpc",
+    "actions",
+    "action_values",
+    "purchase_roas"
+  ]
+}

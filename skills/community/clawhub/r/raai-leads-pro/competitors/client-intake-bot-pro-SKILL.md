@@ -1,0 +1,37 @@
+# client-intake-bot-pro — ClawHub SKILL.md (скачано с clawhub.ai) **Источник:** https://clawhub.ai/kambrosgroup/client-intake-bot-pro **Автор:** @kambrosgroup **Версия:** v1.0.0 **Загрузок:** 535 | **Звёзды:** 0 **Статус безопасности:** Benign **Цена:** бесплатно --- ## Описание Automated client intake and lead qualification system — conversational intake forms, smart scoring, and automatic routing based on lead quality. ## Архитектура **Core Flow:** Lead Input → Intake Conversation → Scoring → Routing → CRM Entry ### Intake Conversation Engine
+- Conversational intake replacing static forms
+- Progressive profiling (не все вопросы сразу)
+- Conditional logic: разные пути по типу клиента
+- Objection handling на этапе intake ### Lead Scoring System **Budget Score (0-25):**
+- Confirmed budget > threshold: 25
+- Budget mentioned but vague: 15
+- No budget discussion: 5 **Timeline Score (0-25):**
+- Ready now / within 1 month: 25
+- 1-3 months: 15
+- 3-6 months: 10
+- No timeline: 0 **Fit Score (0-25):**
+- Perfect ICP match: 25
+- Good fit: 15
+- Marginal fit: 5
+- Poor fit: 0 **Authority Score (0-25):**
+- Decision maker confirmed: 25
+- Influencer with DM access: 15
+- No access to DM: 5 **Routing Logic:**
+- Hot (30+ points): Immediate sales callback within 2 hours
+- Warm (16-29 points): Nurture sequence + sales follow-up within 24h
+- Cold (0-15 points): Marketing automation sequence ## Ключевые фичи **Smart Intake Templates:**
+- B2B Service Intake (консалтинг, агентства)
+- SaaS Trial Intake
+- E-commerce Enterprise Intake
+- Real Estate Intake **Disqualification Triggers:**
+- Budget below minimum threshold
+- Timeline beyond 12 months
+- Wrong industry / wrong company size
+- No decision-making authority **CRM Export Formats:**
+- HubSpot import CSV
+- Salesforce Lead object JSON
+- Pipedrive Person/Deal JSON
+- Google Sheets template ## Триггерные команды "Set up client intake for [business type]" / "Score this intake form response" / "Route this lead" / "Build intake questions for [service]" / "Create disqualification criteria" / "Generate CRM export" ## Ограничения - Только шаблоны и логика — нет реального бота (нужна реализация в Botpress/ManyChat/Typeform)
+- Нет нативной интеграции с Telegram
+- Без русского языка и адаптации под российские реалии
+- Scoring порог не настроен — нужна ручная калибровка под бизнес

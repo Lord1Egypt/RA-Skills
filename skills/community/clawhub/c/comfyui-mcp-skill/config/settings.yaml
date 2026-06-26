@@ -1,0 +1,8 @@
+comfy_cloud_api: "https://cloud.comfy.org"
+comfy_cloud_api_key: "comfyui-xxx"
+output_dir: "output"
+image_size:
+  width: 512
+  height: 512
+default_duration: 5
+log_level: INFO

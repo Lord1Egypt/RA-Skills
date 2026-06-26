@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ubuntu Browser Session"
+  short_description: "Protected-site browser workflow for Ubuntu Server"
+  default_prompt: "Use $ubuntu-browser-session for protected-site browser tasks, session reuse, or recovery on Ubuntu Server."

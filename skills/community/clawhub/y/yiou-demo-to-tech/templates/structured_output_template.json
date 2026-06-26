@@ -1,0 +1,87 @@
+{
+  "feature": {
+    "feature_name": "",
+    "business_goal": "",
+    "user_roles": [],
+    "main_scenarios": [],
+    "target_platform": "",
+    "priority": ""
+  },
+  "pages": [
+    {
+      "page_name": "",
+      "modules": [],
+      "actions": [],
+      "source": "业务提供 | Demo 识别 | 模型推断，待确认 | 默认建议，待确认"
+    }
+  ],
+  "business_rules": [
+    {
+      "rule_name": "",
+      "description": "",
+      "priority": "P0 | P1 | P2",
+      "source": "业务提供 | Demo 识别 | 模型推断，待确认 | 默认建议，待确认"
+    }
+  ],
+  "entities": [
+    {
+      "entity_name": "",
+      "fields": [
+        {
+          "field": "",
+          "type": "",
+          "required": false,
+          "description": "",
+          "source": "业务提供 | Demo 识别 | 模型推断，待确认 | 默认建议，待确认"
+        }
+      ],
+      "storage_strategy": "persist | transient | to_be_confirmed"
+    }
+  ],
+  "apis": [
+    {
+      "api_name": "",
+      "status": "复用 | 新增 | 待确认 | 前端本地处理",
+      "method": "GET | POST | PUT | DELETE",
+      "path": "",
+      "params": [],
+      "response_fields": [],
+      "permission": "",
+      "error_handling": "",
+      "source": "业务提供 | Demo 识别 | 模型推断，待确认 | 默认建议，待确认"
+    }
+  ],
+  "edge_cases": [
+    {
+      "scenario": "",
+      "handling": "",
+      "priority": "P0 | P1 | P2"
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "",
+      "level": "阻塞开发 | 影响方案 | 可后置",
+      "impact_scope": "",
+      "default_suggestion": "",
+      "owner": "业务 | 产品 | 前端 | 后端 | 测试"
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "type": "功能验收 | 数据验收 | 交互验收 | 权限验收 | 导出验收",
+      "item": ""
+    }
+  ],
+  "development_tasks": [
+    {
+      "side": "FE | BE | QA",
+      "task": "",
+      "priority": "P0 | P1 | P2",
+      "notes": ""
+    }
+  ],
+  "maturity_level": "L1 | L2 | L3 | L4",
+  "maturity_reason": "",
+  "blocking_gaps": []
+}

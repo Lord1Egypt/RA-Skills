@@ -1,0 +1,13 @@
+{
+  "postType": "CAROUSEL",
+  "requestorId": "user123",
+  "templateId": "YOUR_TEMPLATE_ID",
+  "brandId": "YOUR_BRAND_ID",
+  "presetId": "YOUR_PRESET_ID",
+  "responseType": "PNG",
+  "aiGeneration": {
+    "type": "text",
+    "context": "5 tips for growing your LinkedIn audience in 2026:\n\n1. Post consistently 3-5 times per week\n2. Lead with a strong hook in the first line\n3. Use carousel posts for 2-3x more engagement\n4. Reply to every comment within the first hour\n5. Share personal stories, not just business advice",
+    "instructions": "Professional but conversational tone. Each slide should have one clear takeaway with a supporting detail."
+  }
+}

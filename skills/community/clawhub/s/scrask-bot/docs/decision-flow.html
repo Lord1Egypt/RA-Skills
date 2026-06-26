@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scrask decision flow</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --border: #e5e7eb;
+      --code-bg: #f3f4f6;
+      --warn: #b45309;
+      --warn-soft: #fef3c7;
+      --good: #047857;
+      --good-soft: #d1fae5;
+      --pop-bg: #ffffff;
+      --pop-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                   Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      line-height: 1.55;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    nav.toc {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 24px 16px;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+    }
+    nav.toc h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 12px 0;
+    }
+    nav.toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav.toc li { margin: 6px 0; }
+    nav.toc a {
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    nav.toc a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    main {
+      padding: 32px 48px;
+      max-width: 980px;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 28px;
+      letter-spacing: -0.01em;
+    }
+    h2 {
+      margin: 36px 0 12px 0;
+      font-size: 20px;
+      letter-spacing: -0.005em;
+    }
+    h3 {
+      margin: 24px 0 10px 0;
+      font-size: 16px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    p { margin: 8px 0 14px 0; }
+    code {
+      background: var(--code-bg);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SF Mono", Menlo, Monaco, "Courier New", monospace;
+      font-size: 0.92em;
+    }
+    a { color: var(--accent); }
+    .lede {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 720px;
+    }
+    table.thresholds {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 8px 0;
+      font-size: 14px;
+    }
+    table.thresholds th, table.thresholds td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table.thresholds th {
+      background: var(--code-bg);
+      font-weight: 600;
+      font-size: 13px;
+    }
+    table.thresholds tr.clickable { cursor: pointer; transition: background 0.15s; }
+    table.thresholds tr.clickable:hover { background: var(--accent-soft); }
+    table.thresholds code { font-size: 0.9em; }
+    .diagram {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 16px 0 24px 0;
+      overflow-x: auto;
+    }
+    .diagram .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+    .hint {
+      font-size: 13px;
+      color: var(--muted);
+      margin: -8px 0 16px 0;
+      padding: 8px 12px;
+      background: var(--accent-soft);
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .narrative {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 22px;
+      margin: 12px 0;
+    }
+    .narrative.happy { border-left: 4px solid var(--good); }
+    .narrative.ambiguous { border-left: 4px solid var(--warn); }
+    .narrative.actionable-gate { border-left: 4px solid var(--accent); }
+    .narrative h3 {
+      margin: 0 0 8px 0;
+      color: var(--fg);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 15px;
+    }
+    .narrative ol {
+      margin: 8px 0 4px 18px;
+      padding: 0;
+    }
+    .narrative ol li { margin: 4px 0; }
+
+    /* Popup detail panel */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+    }
+    .popup-overlay.open { display: flex; }
+    .popup {
+      background: var(--pop-bg);
+      border-radius: 12px;
+      max-width: 540px;
+      width: 90%;
+      padding: 24px 28px;
+      box-shadow: var(--pop-shadow);
+      position: relative;
+    }
+    .popup h3 {
+      margin: 0 0 4px 0;
+      color: var(--fg);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 18px;
+    }
+    .popup .tag {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .popup .tag.threshold { color: var(--warn); background: var(--warn-soft); }
+    .popup .tag.terminal { color: var(--good); background: var(--good-soft); }
+    .popup p { margin: 10px 0; font-size: 14px; }
+    .popup .ref {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .popup .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1;
+    }
+    .popup .close-btn:hover { color: var(--fg); }
+
+    /* Highlight clickable mermaid nodes */
+    .mermaid .node.clickable { cursor: pointer; }
+    .mermaid .node.clickable:hover rect,
+    .mermaid .node.clickable:hover polygon,
+    .mermaid .node.clickable:hover circle {
+      stroke: var(--accent) !important;
+      stroke-width: 3px !important;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      nav.toc { position: relative; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+      main { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav class="toc">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#top">Overview</a></li>
+        <li><a href="#thresholds">Thresholds</a></li>
+        <li><a href="#parser-flow">1. Parser flow</a></li>
+        <li><a href="#bot-flow">2. Bot flow</a></li>
+        <li><a href="#narratives">3. End-to-end paths</a></li>
+        <li><a href="#happy">&nbsp;&nbsp;Happy path</a></li>
+        <li><a href="#ambiguous">&nbsp;&nbsp;Ambiguous path</a></li>
+        <li><a href="#actionable-gate">&nbsp;&nbsp;Actionable gate</a></li>
+      </ul>
+      <h2 style="margin-top:28px;">Files</h2>
+      <ul>
+        <li><a href="../scripts/scrask_bot.py"><code>scrask_bot.py</code></a></li>
+        <li><a href="../SKILL.md"><code>SKILL.md</code></a></li>
+        <li><a href="decision-flow.md">Source markdown</a></li>
+      </ul>
+    </nav>
+
+    <main id="top">
+      <h1>Scrask decision flow</h1>
+      <p class="lede">
+        What happens between "user sends a screenshot" and "item saved in Calendar / Task list."
+        Click any node in either diagram, or any row in the threshold table, for a detail popup.
+      </p>
+
+      <p>
+        There are two sides. The <strong>parser side</strong>
+        (<code>scripts/scrask_bot.py</code>) is stateless: it ingests a screenshot, decides
+        what to extract, and emits a JSON intent with clarification questions baked in. The
+        <strong>bot side</strong> (the OpenClaw agent running on Telegram / iMessage / Slack)
+        is the conversation loop: it renders the parser's output, asks the clarification
+        questions, and dispatches each item to the user's installed destination skill.
+      </p>
+
+      <h2 id="thresholds">Thresholds at a glance</h2>
+      <p class="hint">Click any row to see what the threshold controls and where it lives in the code.</p>
+      <table class="thresholds">
+        <thead>
+          <tr><th>Threshold</th><th>Default</th><th>What it gates</th></tr>
+        </thead>
+        <tbody>
+          <tr class="clickable" onclick="showInfo('FALLBACK_THRESHOLD')">
+            <td><code>FALLBACK_THRESHOLD</code></td><td>0.60</td>
+            <td>Worst per-field score below this &rarr; Claude reruns the parse.</td>
+          </tr>
+          <tr class="clickable" onclick="showInfo('FALLBACK_IMPROVEMENT_MIN')">
+            <td><code>FALLBACK_IMPROVEMENT_MIN</code></td><td>0.05</td>
+            <td>Claude's result is only kept if its avg confidence beats Gemini by this much.</td>
+          </tr>
+          <tr class="clickable" onclick="showInfo('ACTIONABLE_THRESHOLD')">
+            <td><code>ACTIONABLE_THRESHOLD</code></td><td>0.70</td>
+            <td>Top-level <code>actionable_confidence</code> below this &rarr; "Is this actually an event/task?"</td>
+          </tr>
+          <tr class="clickable" onclick="showInfo('TYPE_THRESHOLD')">
+            <td><code>TYPE_THRESHOLD</code></td><td>0.70</td>
+            <td>Per-item <code>type_confidence</code> below this &rarr; "Calendar or task list?"</td>
+          </tr>
+          <tr class="clickable" onclick="showInfo('FIELD_THRESHOLD')">
+            <td><code>FIELD_THRESHOLD</code></td><td>0.70</td>
+            <td>Per mandatory field: null or below this &rarr; targeted field clarification.</td>
+          </tr>
+          <tr class="clickable" onclick="showInfo('DEFAULT_CONFIDENCE_THRESHOLD')">
+            <td><code>DEFAULT_CONFIDENCE_THRESHOLD</code></td><td>0.75</td>
+            <td>Legacy per-item gate. Only kicks in for items with no <code>confidences{}</code> block.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="parser-flow">1. Parser side &mdash; what <code>scrask_bot.py</code> does</h2>
+      <p class="hint">Click any decision diamond or step to see the relevant constant, function, and threshold.</p>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TD
+    A["User sends screenshot"] --> B["OpenClaw agent activates scrask-bot"]
+    B --> C["scrask_bot.py runs"]
+
+    C --> D{"Provider mode"}
+    D -->|openclaw| OC["OpenClaw configured<br/>vision LLM"]
+    D -->|claude| E["Claude Opus parses"]
+    D -->|gemini| F["Gemini 2.0 Flash parses"]
+    D -->|auto| AR{"Which keys are set?"}
+
+    AR -->|GEMINI_API_KEY| G["Gemini 2.0 Flash parses"]
+    AR -->|"ANTHROPIC_API_KEY only"| E
+    AR -->|Neither| OC
+
+    G --> H{"Worst per-field<br/>score &lt; 0.60?"}
+    H -->|No| K["Use Gemini result"]
+    H -->|"Yes + ANTHROPIC_API_KEY"| I["Claude Opus reruns"]
+    H -->|"Yes, no Claude key"| K
+    I --> J{"Claude avg &gt;<br/>Gemini avg + 0.05?"}
+    J -->|Yes| L["Use Claude result"]
+    J -->|No| K
+
+    E --> M["Raw parse_data"]
+    F --> M
+    K --> M
+    L --> M
+    OC --> M
+
+    M --> N{"no_actionable_content<br/>OR items empty?"}
+    N -->|Yes| O["Return: couldn't find anything"]
+    N -->|No| P["For each raw item:<br/>shape_intent"]
+
+    P --> Q["Build clarifications"]
+    Q --> R{"type_confidence<br/>&lt; 0.70?"}
+    R -->|Yes| S["Prepend type clarification:<br/>'Calendar or task list?'"]
+    R -->|No| T["Skip type clarification"]
+    S --> U["Walk mandatory fields"]
+    T --> U
+
+    U --> V["For each mandatory field:<br/>event/reminder = title, date, time<br/>task = title only"]
+    V --> W{"Value is<br/>null/empty?"}
+    W -->|Yes| X["Append clarification<br/>reason: missing"]
+    W -->|No| Y{"Per-field conf<br/>&lt; 0.70?"}
+    Y -->|Yes| Z["Append clarification<br/>reason: low_confidence"]
+    Y -->|No| AA["Field OK"]
+    X --> AB{"More fields?"}
+    Z --> AB
+    AA --> AB
+    AB -->|Yes| V
+    AB -->|No| AC["needs_confirmation =<br/>len(clarifications) &gt; 0"]
+
+    AC --> AD{"actionable_confidence<br/>&lt; 0.70?"}
+    AD -->|Yes| AE["needs_actionable_confirmation = true"]
+    AD -->|No| AF["Render summary_text"]
+    AE --> AF
+    AF --> AG["Return JSON to bot"]
+
+    click H call showInfo("FALLBACK_THRESHOLD")
+    click J call showInfo("FALLBACK_IMPROVEMENT_MIN")
+    click N call showInfo("no_actionable_content")
+    click R call showInfo("TYPE_THRESHOLD")
+    click W call showInfo("missing_field")
+    click Y call showInfo("FIELD_THRESHOLD")
+    click AC call showInfo("needs_confirmation")
+    click AD call showInfo("ACTIONABLE_THRESHOLD")
+    click P call showInfo("shape_intent")
+    click I call showInfo("claude_fallback")
+    click G call showInfo("gemini_parse")
+    click E call showInfo("claude_parse")
+    click F call showInfo("gemini_parse")
+    click O call showInfo("terminal_no_actionable")
+    click AG call showInfo("terminal_return")
+        </pre>
+      </div>
+
+      <h2 id="bot-flow">2. Bot side &mdash; what the OpenClaw agent does with the parser output</h2>
+      <p class="hint">Click any node to see how the bot is expected to behave at that step.</p>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TD
+    A["Bot receives parser JSON"] --> B{"no_actionable_content?"}
+    B -->|Yes| C["Reply: couldn't find any event or task<br/>End"]
+    B -->|No| D{"needs_actionable_confirmation?"}
+
+    D -->|Yes| E["Send: Is this actually<br/>an event or task?"]
+    E --> F{"User reply"}
+    F -->|"no / skip"| G["Reply: Got it, skipped<br/>End"]
+    F -->|yes| H["Process each item"]
+    D -->|No| H
+
+    H --> I{"Item<br/>needs_confirmation?"}
+    I -->|No| J["Route silently to<br/>destination skill"]
+    J --> K{"destination"}
+    K -->|calendar| L["calctl / accli /<br/>apple-calendar /<br/>brainz-calendar / gcal-pro"]
+    K -->|task| M["apple-reminders /<br/>things-mac / notion"]
+    L --> N["Reply: Added to Calendar..."]
+    M --> O["Reply: Added to Tasks..."]
+
+    I -->|Yes| P["Walk clarifications<br/>in order"]
+    P --> Q{"clarification.field"}
+    Q -->|type| R["Ask: Calendar or<br/>task list?"]
+    R --> S["Update item.destination"]
+    Q -->|"date / time /<br/>location / title / etc."| T["Ask: What time is X?<br/>(question from clarifications)"]
+    T --> U["Patch item field with reply"]
+    S --> V{"More clarifications?"}
+    U --> V
+    V -->|Yes| P
+    V -->|No| W{"Any reply<br/>was 'skip'?"}
+    W -->|Yes| X["Reply: Got it, skipped"]
+    W -->|No| J
+
+    H --> Y{"More items?"}
+    Y -->|Yes| I
+    Y -->|No| Z["Done"]
+    N --> Y
+    O --> Y
+    X --> Y
+
+    click B call showInfo("no_actionable_content")
+    click D call showInfo("needs_actionable_confirmation_bot")
+    click E call showInfo("actionable_gate_prompt")
+    click I call showInfo("needs_confirmation")
+    click J call showInfo("silent_dispatch")
+    click K call showInfo("destination")
+    click L call showInfo("calendar_skills")
+    click M call showInfo("task_skills")
+    click P call showInfo("clarifications_walk")
+    click Q call showInfo("clarification_field")
+    click R call showInfo("type_clarification")
+    click S call showInfo("destination_swap")
+    click T call showInfo("field_clarification")
+        </pre>
+      </div>
+
+      <h2 id="narratives">3. End-to-end paths, narrated</h2>
+
+      <div class="narrative happy" id="happy">
+        <h3>Happy path &mdash; clean meeting invite, zero clarifications</h3>
+        <ol>
+          <li>User sends screenshot. Bot acks: "Got it, analyzing&hellip;"</li>
+          <li><code>scrask_bot.py</code> runs in auto mode. Gemini parses. Worst per-field score is 0.92. No Claude fallback.</li>
+          <li><code>actionable_confidence</code> = 0.96. Above threshold, so no actionable gate.</li>
+          <li><code>shape_intent</code> walks mandatory fields for <code>type: event</code> &mdash; title, date, time all present, all above 0.85. No clarifications. <code>needs_confirmation: false</code>.</li>
+          <li>Bot reads <code>needs_confirmation: false</code>, routes to <code>calctl</code>. Skill creates the event.</li>
+          <li>Bot replies: "Added to Calendar: <strong>Team Standup</strong> &mdash; 2026-03-01 at 09:00"</li>
+        </ol>
+      </div>
+
+      <div class="narrative ambiguous" id="ambiguous">
+        <h3>Ambiguous path &mdash; vague WhatsApp "lets meet fri"</h3>
+        <ol>
+          <li>User sends screenshot. Bot acks.</li>
+          <li>Gemini parses. Time confidence is 0.0 (no time visible), date confidence is 0.60. Worst per-field score is 0.0, below 0.60 threshold &rarr; Claude reruns.</li>
+          <li>Claude's avg is 0.65, Gemini's was 0.55. Improvement 0.10 &ge; 0.05 &rarr; Claude result kept.</li>
+          <li><code>actionable_confidence</code> = 0.85. No actionable gate.</li>
+          <li><code>shape_intent</code> walks mandatory fields for <code>type: event</code>:
+            <ul>
+              <li><code>title</code> OK (above threshold)</li>
+              <li><code>date</code> below threshold &rarr; clarification <code>reason: low_confidence</code></li>
+              <li><code>time</code> is null &rarr; clarification <code>reason: missing</code></li>
+              <li><code>needs_confirmation: true</code></li>
+            </ul>
+          </li>
+          <li>Bot reads <code>clarifications[]</code> and asks: "I need to confirm: What date is meet on Friday? What time is meet on Friday?"</li>
+          <li>User replies. Bot patches the fields, routes to <code>calctl</code>, confirms "Added to Calendar: &hellip;"</li>
+        </ol>
+      </div>
+
+      <div class="narrative actionable-gate" id="actionable-gate">
+        <h3>Actionable-gate path &mdash; flyer that might just be content</h3>
+        <ol>
+          <li>User sends screenshot. Bot acks.</li>
+          <li>Parser runs. <code>actionable_confidence</code> = 0.55. Below 0.70 &rarr; <code>needs_actionable_confirmation: true</code>.</li>
+          <li>Bot leads with: "Is this actually an event or task? (55% sure) Reply <strong>yes</strong> to continue, or <strong>no</strong> to skip."</li>
+          <li>User: "no" &rarr; "Got it, skipped". Done.</li>
+          <li>User: "yes" &rarr; continue into the per-item loop (steps 5 onward from the ambiguous narrative above).</li>
+        </ol>
+      </div>
+    </main>
+  </div>
+
+  <!-- Detail popup -->
+  <div id="popup-overlay" class="popup-overlay" onclick="closeInfo(event)">
+    <div class="popup" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="closeInfo()" aria-label="Close">&times;</button>
+      <div id="popup-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // Content keyed by the same ids the mermaid `click` directives and threshold
+    // table use. Keep this in sync with the markdown source and scrask_bot.py.
+    const INFO = {
+      FALLBACK_THRESHOLD: {
+        tag: 'threshold',
+        title: 'FALLBACK_THRESHOLD = 0.60',
+        body: '<p>If the worst per-field confidence in the Gemini result drops below this, Claude reruns the parse (provided <code>ANTHROPIC_API_KEY</code> is set). The check covers every value in <code>confidences{}</code>, plus <code>type_confidence</code> and the legacy <code>confidence</code> if present.</p>',
+        ref: 'scripts/scrask_bot.py &middot; constant <code>FALLBACK_THRESHOLD</code>; used in <code>_parse_with_auto_fallback</code> via <code>_min_confidence</code>.'
+      },
+      FALLBACK_IMPROVEMENT_MIN: {
+        tag: 'threshold',
+        title: 'FALLBACK_IMPROVEMENT_MIN = 0.05',
+        body: '<p>After Claude reruns, its average confidence must beat Gemini\'s by at least this margin to be retained. If it does not, the parser keeps the Gemini result and notes the fallback was attempted (<code>_fallback_outcome: "gemini_retained"</code>).</p>',
+        ref: 'scripts/scrask_bot.py &middot; constant <code>FALLBACK_IMPROVEMENT_MIN</code>; comparison at the end of <code>_parse_with_auto_fallback</code>.'
+      },
+      ACTIONABLE_THRESHOLD: {
+        tag: 'threshold',
+        title: 'ACTIONABLE_THRESHOLD = 0.70',
+        body: '<p>Top-level gate. If the model returns <code>actionable_confidence</code> below this <em>and</em> still emits items, the parser flags <code>needs_actionable_confirmation: true</code> on the result. The bot should ask "Is this actually an event or task?" before dispatching anything.</p>',
+        ref: 'scripts/scrask_bot.py &middot; constant <code>ACTIONABLE_THRESHOLD</code>; logic in <code>main()</code> just before printing the result JSON.'
+      },
+      TYPE_THRESHOLD: {
+        tag: 'threshold',
+        title: 'TYPE_THRESHOLD = 0.70',
+        body: '<p>Per-item gate. If the model is unsure whether an item is an event or a task (<code>type_confidence &lt; 0.70</code>), <code>shape_intent</code> prepends a clarification with <code>field: "type"</code>. The bot resolves it by asking the user, and updates <code>item.destination</code> accordingly before dispatch.</p>',
+        ref: 'scripts/scrask_bot.py &middot; constant <code>TYPE_THRESHOLD</code>; consumed by <code>shape_intent</code>.'
+      },
+      FIELD_THRESHOLD: {
+        tag: 'threshold',
+        title: 'FIELD_THRESHOLD = 0.70',
+        body: '<p>Per mandatory field. For each field in <code>MANDATORY_FIELDS_BY_TYPE[item.type]</code>, if the value is null/empty OR <code>confidences[field] &lt; 0.70</code>, <code>shape_intent</code> appends a targeted clarification with <code>reason: "missing"</code> or <code>reason: "low_confidence"</code>.</p>',
+        ref: 'scripts/scrask_bot.py &middot; constant <code>FIELD_THRESHOLD</code>; loop body inside <code>shape_intent</code>.'
+      },
+      DEFAULT_CONFIDENCE_THRESHOLD: {
+        tag: 'threshold',
+        title: 'DEFAULT_CONFIDENCE_THRESHOLD = 0.75',
+        body: '<p>Legacy per-item gate. Only fires when an item has neither a <code>confidences{}</code> block nor any clarifications generated by the new path &mdash; i.e. older fixtures or external callers using the v3 schema. New code paths derive <code>needs_confirmation</code> from the clarifications list instead.</p>',
+        ref: 'scripts/scrask_bot.py &middot; constant <code>DEFAULT_CONFIDENCE_THRESHOLD</code>; fallback branch at the bottom of <code>shape_intent</code>.'
+      },
+      no_actionable_content: {
+        tag: 'decision',
+        title: 'no_actionable_content gate',
+        body: '<p>The model sets <code>no_actionable_content: true</code> when the screenshot has no event, reminder, or task at all &mdash; memes, scenery, undated shopping lists, error screenshots. The parser short-circuits with a "couldn\'t find anything" reply and skips <code>shape_intent</code>.</p>',
+        ref: 'scripts/scrask_bot.py &middot; checked in <code>main()</code> right after parsing.'
+      },
+      shape_intent: {
+        tag: 'function',
+        title: 'shape_intent(item, &hellip;)',
+        body: '<p>The most concept-dense function in the file. Takes one raw model item and produces a normalised intent: derives <code>destination</code> from <code>type</code>, computes the legacy per-item <code>confidence</code> as <code>min(confidences.values())</code>, and builds <code>clarifications[]</code> by walking the mandatory-field list for the item type.</p>',
+        ref: 'scripts/scrask_bot.py &middot; function <code>shape_intent</code>.'
+      },
+      claude_fallback: {
+        tag: 'step',
+        title: 'Claude Opus reruns',
+        body: '<p>Only invoked in <code>auto</code> mode, only when the Gemini result has a worst per-field score below <code>FALLBACK_THRESHOLD</code>, and only when <code>ANTHROPIC_API_KEY</code> is set. Claude\'s result is then compared to Gemini\'s average; the better one wins by <code>FALLBACK_IMPROVEMENT_MIN</code>.</p>',
+        ref: 'scripts/scrask_bot.py &middot; <code>_parse_with_auto_fallback</code> &rarr; <code>parse_with_claude</code>.'
+      },
+      gemini_parse: {
+        tag: 'step',
+        title: 'Gemini 2.0 Flash parses',
+        body: '<p>Default first-pass provider. Fast and cheap. Configured at <code>GEMINI_MODEL = "gemini-2.0-flash"</code>. Receives the shared <code>SYSTEM_PROMPT</code> + <code>USER_PROMPT_TEMPLATE</code> with current date and user timezone interpolated.</p>',
+        ref: 'scripts/scrask_bot.py &middot; <code>parse_with_gemini</code>.'
+      },
+      claude_parse: {
+        tag: 'step',
+        title: 'Claude Opus parses',
+        body: '<p>Used directly when <code>--provider claude</code> is forced, or as fallback in <code>auto</code> mode. Configured at <code>CLAUDE_MODEL = "claude-opus-4-6"</code>. Same prompt as Gemini for parity.</p>',
+        ref: 'scripts/scrask_bot.py &middot; <code>parse_with_claude</code>.'
+      },
+      missing_field: {
+        tag: 'decision',
+        title: 'Mandatory field is null or empty',
+        body: '<p>Per item type: <code>event</code> and <code>reminder</code> require <code>title</code>, <code>date</code>, <code>time</code>; <code>task</code> requires only <code>title</code>. A missing value here produces a clarification with <code>reason: "missing"</code> and a question pulled from <code>CLARIFICATION_QUESTIONS[field]</code>.</p>',
+        ref: 'scripts/scrask_bot.py &middot; <code>MANDATORY_FIELDS_BY_TYPE</code> + <code>CLARIFICATION_QUESTIONS</code>.'
+      },
+      needs_confirmation: {
+        tag: 'decision',
+        title: 'needs_confirmation derivation',
+        body: '<p>In the new model, <code>needs_confirmation = len(clarifications) &gt; 0</code>. The legacy per-item threshold <code>DEFAULT_CONFIDENCE_THRESHOLD</code> only kicks in for items that have neither a <code>confidences{}</code> block nor any generated clarifications &mdash; i.e. backward-compat with v3 fixtures.</p>',
+        ref: 'scripts/scrask_bot.py &middot; final lines of <code>shape_intent</code>.'
+      },
+      terminal_no_actionable: {
+        tag: 'terminal',
+        title: 'End: nothing actionable',
+        body: '<p>The parser returns a JSON envelope with <code>no_actionable_content: true</code> and <code>items: []</code>. <code>summary_text</code> says "couldn\'t find any event, reminder, or task in that screenshot." The bot should reply with that string and stop.</p>',
+        ref: 'scripts/scrask_bot.py &middot; short-circuit branch in <code>main()</code>.'
+      },
+      terminal_return: {
+        tag: 'terminal',
+        title: 'End: return JSON to bot',
+        body: '<p>The parser prints the final result envelope to stdout. The bot reads it, then drives the conversation per the bot-side flow.</p>',
+        ref: 'scripts/scrask_bot.py &middot; final <code>print(json.dumps(&hellip;))</code> in <code>main()</code>.'
+      },
+      needs_actionable_confirmation_bot: {
+        tag: 'decision',
+        title: 'Top-level actionable gate',
+        body: '<p>When <code>needs_actionable_confirmation: true</code>, the bot leads with a yes/no prompt before processing any items. On "no", the entire result is dropped; on "yes", the bot continues into the per-item loop.</p>',
+        ref: 'SKILL.md &middot; "If <code>needs_actionable_confirmation: true</code>" section.'
+      },
+      actionable_gate_prompt: {
+        tag: 'step',
+        title: 'Bot asks the actionable gate question',
+        body: '<p><code>summary_text</code> already opens with the prompt "Is this actually an event or task? (X% sure) Reply <strong>yes</strong> to continue, or <strong>no</strong> to skip." The bot sends it verbatim.</p>',
+        ref: 'scripts/scrask_bot.py &middot; top of <code>format_summary</code>.'
+      },
+      silent_dispatch: {
+        tag: 'step',
+        title: 'Silent dispatch to destination skill',
+        body: '<p>When <code>needs_confirmation: false</code> AND the actionable gate is clear, the bot invokes the destination skill without asking. Item fields go in, a confirmation reply comes out.</p>',
+        ref: 'SKILL.md &middot; "For each item &mdash; if <code>needs_confirmation: false</code>" section.'
+      },
+      destination: {
+        tag: 'decision',
+        title: 'destination = calendar | task',
+        body: '<p>Set by <code>shape_intent</code> from the item\'s <code>type</code>: <code>event</code> &rarr; <code>"calendar"</code>; <code>reminder</code> and <code>task</code> &rarr; <code>"task"</code>. The bot routes to whichever destination skill the user has installed for that kind.</p>',
+        ref: 'scripts/scrask_bot.py &middot; first lines of <code>shape_intent</code>.'
+      },
+      calendar_skills: {
+        tag: 'step',
+        title: 'Calendar destination skills',
+        body: '<p>Preference order: <code>calctl</code> &rarr; <code>accli</code> &rarr; <code>apple-calendar</code> &rarr; <code>brainz-calendar</code> &rarr; <code>gcal-pro</code> &rarr; first available. Pass <code>title</code>, <code>date</code>, <code>time</code>, <code>end_time</code>, <code>end_date</code>, <code>location</code>, <code>participants</code>, <code>description</code>, <code>recurrence</code>, <code>online_link</code>.</p>',
+        ref: 'SKILL.md &middot; "Route Each Item to a Destination Skill" section.'
+      },
+      task_skills: {
+        tag: 'step',
+        title: 'Task destination skills',
+        body: '<p>Preference order: <code>apple-reminders</code> &rarr; <code>things-mac</code> &rarr; <code>notion</code> &rarr; first available. Pass <code>title</code>, optional <code>date</code>, <code>description</code>, <code>priority</code>.</p>',
+        ref: 'SKILL.md &middot; "Route Each Item to a Destination Skill" section.'
+      },
+      clarifications_walk: {
+        tag: 'step',
+        title: 'Walk clarifications in order',
+        body: '<p>Each entry has <code>field</code>, <code>question</code> (already title-interpolated), and <code>reason</code>. Type-level clarifications lead. The bot asks the questions in order and patches each field with the user\'s reply before moving on.</p>',
+        ref: 'scripts/scrask_bot.py &middot; <code>shape_intent</code> builds the list; SKILL.md describes how to consume it.'
+      },
+      clarification_field: {
+        tag: 'decision',
+        title: 'Branch on clarification.field',
+        body: '<p>The bot has two paths: <code>field: "type"</code> mutates <code>item.destination</code>; all other fields patch <code>item[field]</code> with the reply.</p>',
+        ref: 'SKILL.md &middot; "For the special case of <code>field: \"type\"</code>" paragraph.'
+      },
+      type_clarification: {
+        tag: 'step',
+        title: 'Type clarification',
+        body: '<p>Question: "Should X go on your calendar or task list?" The user\'s answer maps to <code>destination = "calendar"</code> or <code>"task"</code>, which the bot writes back onto the item before dispatch.</p>',
+        ref: 'scripts/scrask_bot.py &middot; <code>CLARIFICATION_QUESTIONS["type"]</code>; SKILL.md handler.'
+      },
+      destination_swap: {
+        tag: 'step',
+        title: 'Update item.destination',
+        body: '<p>The user\'s reply to the type clarification changes which destination skill family the bot will dispatch to. Done in-memory in the bot; the parser never re-runs.</p>',
+        ref: 'SKILL.md &middot; "For the special case of <code>field: \"type\"</code>" paragraph.'
+      },
+      field_clarification: {
+        tag: 'step',
+        title: 'Field clarification',
+        body: '<p>The bot asks the pre-formatted question from <code>clarifications[i].question</code> (e.g. "What time is dinner with Priya?") and patches the corresponding field on the item with the user\'s reply.</p>',
+        ref: 'scripts/scrask_bot.py &middot; <code>CLARIFICATION_QUESTIONS</code>; SKILL.md handler.'
+      },
+    };
+
+    function showInfo(key) {
+      const info = INFO[key];
+      const overlay = document.getElementById('popup-overlay');
+      const content = document.getElementById('popup-content');
+      if (!info) {
+        content.innerHTML = '<h3>No detail yet</h3><p>This node does not have a detail panel.</p>';
+      } else {
+        content.innerHTML =
+          '<span class="tag ' + (info.tag || '') + '">' + (info.tag || 'detail') + '</span>' +
+          '<h3>' + info.title + '</h3>' +
+          info.body +
+          (info.ref ? '<div class="ref">' + info.ref + '</div>' : '');
+      }
+      overlay.classList.add('open');
+    }
+    function closeInfo(e) {
+      if (e && e.target.id !== 'popup-overlay' && !e.target.classList.contains('close-btn')) return;
+      document.getElementById('popup-overlay').classList.remove('open');
+    }
+    // ESC to dismiss
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') document.getElementById('popup-overlay').classList.remove('open');
+    });
+
+    // Initialise Mermaid. securityLevel 'loose' lets the `click ... call fn(arg)` directive
+    // dispatch to our top-level showInfo function.
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: 'loose',
+      theme: 'default',
+      flowchart: { curve: 'basis', htmlLabels: true }
+    });
+
+    // Mark mermaid nodes that have a click handler so the CSS hover style kicks in.
+    // Mermaid stamps `node clickable` classes when a `click` directive is present.
+    // We just need to wait until rendering is done.
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.mermaid .node').forEach(n => {
+          if (n.querySelector('a, [onclick]') || n.classList.contains('clickable')) {
+            n.classList.add('clickable');
+          }
+        });
+      }, 600);
+    });
+  </script>
+</body>
+</html>

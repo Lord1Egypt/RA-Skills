@@ -1,35 +1,40 @@
 ---
-name: "X Tweet Speedread"
-description: "X Tweet Speedread (Premium) — instant English brief for any X post. Charge-first direct mode via SkillPay (0.001 USDT/call)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/x-tweet-speedread-skill"
-sourceUrl: "https://clawhub.ai/skills/x-tweet-speedread-skill"
+name: x-tweet-speedread-skill
+description: X Tweet Speedread (Premium) — instant English brief for any X post. Charge-first direct mode via SkillPay (0.001 USDT/call).
 ---
 
-# X Tweet Speedread
+# X Tweet Speedread (Premium)
 
-> X Tweet Speedread (Premium) — instant English brief for any X post. Charge-first direct mode via SkillPay (0.001 USDT/call).
+Paste an X URL, get an instant English speedread.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/x-tweet-speedread-skill`
-- **Source URL:** [https://clawhub.ai/skills/x-tweet-speedread-skill](https://clawhub.ai/skills/x-tweet-speedread-skill)
+## Pricing
 
-## Overview
+- **0.001 USDT per call** (1 token)
+- Charge-first model
+- Low balance => return `PAYMENT_URL`
 
+## What it returns
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 3–5 key bullets
+- 1 core takeaway
+- up to 3 risks
+- up to 3 actions
+
+## Run
+
 ```bash
-hermes skills install clawhub/x-tweet-speedread-skill
+node scripts/run.js --url "https://x.com/.../status/..." --user "<user-id>"
 ```
+
+## Billing behavior
+
+- Calls SkillPay billing directly before extraction.
+- If balance is low, returns `PAYMENT_URL` and `PAYMENT_INFO`.
+- If charge succeeds, continues to fetch and summarize the X post.
+
+## Optional overrides
+
+- `SKILLPAY_BILLING_URL`
+- `SKILL_BILLING_API_KEY`
+- `SKILL_ID`
+- `SKILLPAY_PRICE_TOKEN`

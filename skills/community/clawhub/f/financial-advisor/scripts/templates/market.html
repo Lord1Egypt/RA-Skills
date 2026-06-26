@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>{{ shared_css }}</style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header" style="background:linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #0891b2 70%, #06b6d4 100%);">
+            <h1>{{ title }}</h1>
+            <p class="subtitle">多市场指数概览 · 板块排行 · 宏观热点</p>
+            <div class="header-meta">
+                <span class="header-meta-item">📅 {{ date }}</span>
+                <span class="header-meta-item">⏱ {{ generation_time }}</span>
+                <span class="header-meta-item">🔬 {{ analyst }}</span>
+            </div>
+        </div>
+
+        <nav class="report-nav" id="main-nav">
+            <div class="nav-inner">
+                <a href="#indices" class="nav-item">📊 市场指数</a>
+                <span class="nav-divider"></span>
+                {% if macro_html %}<a href="#macro" class="nav-item">🌍 宏观环境</a><span class="nav-divider"></span>{% endif %}
+                {% if ai_events_html or ai_deep_html %}<a href="#analysis" class="nav-item">🧠 AI 分析</a><span class="nav-divider"></span>{% endif %}
+                <a href="#appendix" class="nav-item">📜 免责声明</a>
+            </div>
+        </nav>
+
+        <!-- PANEL 1: 多市场指数仪表盘 -->
+        <div class="report-section section-market" id="indices">
+            <div class="section-header">
+                <div class="section-icon cyan">📊</div>
+                <h2>多市场指数概览</h2>
+                <span class="section-tag">MARKET OVERVIEW</span>
+            </div>
+            <div class="section-body">
+                {{ market_indices_html }}
+            </div>
+        </div>
+
+        <!-- PANEL 2: 宏观与热点 -->
+        {% if macro_html %}
+        <div class="report-section section-intelligence" id="macro">
+            <div class="section-header">
+                <div class="section-icon amber">🌍</div>
+                <h2>宏观经济与热点</h2>
+                <span class="section-tag">MACRO & TRENDING</span>
+            </div>
+            <div class="section-body">{{ macro_html }}</div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 3: AI 分析 -->
+        {% if ai_events_html or ai_deep_html %}
+        <div class="report-section section-conclusion" id="analysis">
+            <div class="section-header">
+                <div class="section-icon green">🧠</div>
+                <h2>AI 分析与研判</h2>
+                <span class="section-tag">AI ANALYSIS</span>
+            </div>
+            <div class="section-body">
+                {% if ai_brief_html %}{{ ai_brief_html }}{% endif %}
+                {% if ai_events_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#dbeafe;">⚡</span>关键事件影响</div>
+                    {{ ai_events_html }}
+                </div>
+                {% endif %}
+                {% if ai_deep_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#dbeafe;">🧠</span>深度分析</div>
+                    {{ ai_deep_html }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 4: 免责声明 -->
+        <div class="report-section section-appendix" id="appendix">
+            <div class="section-header">
+                <div class="section-icon slate">📜</div>
+                <h2>免责声明</h2>
+                <span class="section-tag">DISCLAIMER</span>
+            </div>
+            <div class="section-body">
+                <div class="disclaimer-inner">
+                    <h3>⚠️ 风险提示与免责声明</h3>
+                    <ul>
+                        <li>本报告基于公开市场数据自动生成，<strong>不构成任何投资建议</strong></li>
+                        <li>市场数据来源于腾讯财经 API / yfinance，不保证绝对准确</li>
+                        <li>股市有风险，投资需谨慎</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-footer">
+            <div class="divider"></div>
+            <p>报告生成时间：{{ generation_time }}</p>
+            <p style="margin-top:8px;color:#d1d5db;">Financial Data Analyzer — Market Overview</p>
+        </div>
+    </div>
+
+    <script>{{ nav_scroll_js }}</script>
+</body>
+</html>

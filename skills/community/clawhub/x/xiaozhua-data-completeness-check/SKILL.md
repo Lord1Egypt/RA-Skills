@@ -1,35 +1,32 @@
 ---
-name: "Data Completeness Check"
+name: data-completeness-check
 description: "数据完整性判断机制。通过前晚基准值 vs 早上值对比，判断 Power BI 数据是否回灌完毕。适用于任何有延迟回灌的数据源。避免发送不完整数据。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaozhua-data-completeness-check"
-sourceUrl: "https://clawhub.ai/skills/xiaozhua-data-completeness-check"
 ---
 
-# Data Completeness Check
+# 数据完整性判断
 
-> 数据完整性判断机制。通过前晚基准值 vs 早上值对比，判断 Power BI 数据是否回灌完毕。适用于任何有延迟回灌的数据源。避免发送不完整数据。
+## 方法：双时间点对比
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaozhua-data-completeness-check`
-- **Source URL:** [https://clawhub.ai/skills/xiaozhua-data-completeness-check](https://clawhub.ai/skills/xiaozhua-data-completeness-check)
+### 步骤
+1. **前一天晚上 23:30** — 抓取关键指标基准值（如 Paid Subs）
+2. **第二天早上 9:00** — 再抓一次同一指标
+3. **对比判断：**
+   - 两次值不同 → 数据有更新，可能完整
+   - 两次值相同 → 数据没跑完，继续等
+   - 达到经验参考值 → 大概率完整
 
-## Overview
+### 经验参考值（O+ 业务）
+- Paid Subs 工作日 ~14,000
+- Paid Subs 周末/节假日 ~10,000
+- Revenue 工作日 ~$20,000-25,000
 
+### 决策规则
+- 达标 + 与昨晚不同 → ✅ 数据完整，直接发简报
+- 达标但与昨晚相同 → ⚠️ 可能没跑完，等 30 分钟重试
+- 未达标 → ❌ 先发 Lei 确认，不直接发群
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaozhua-data-completeness-check
-```
+## 通用化
+此方法适用于任何有 T+1 延迟的数据源：
+- 选一个敏感指标作为"哨兵"
+- 建立该指标的经验参考范围
+- 用双时间点对比判断是否回灌完毕

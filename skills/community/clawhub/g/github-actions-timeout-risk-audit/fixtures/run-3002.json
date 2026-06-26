@@ -1,0 +1,23 @@
+{
+  "databaseId": 3002,
+  "workflowName": "Build",
+  "headBranch": "feature/retry-checkout",
+  "repository": {"nameWithOwner": "flowcreatebot/conspiracy-canvas"},
+  "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/3002",
+  "jobs": [
+    {
+      "name": "unit-tests",
+      "conclusion": "success",
+      "startedAt": "2026-03-06T07:00:00Z",
+      "completedAt": "2026-03-06T07:21:00Z",
+      "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/3002/job/1"
+    },
+    {
+      "name": "storybook-build",
+      "conclusion": "success",
+      "startedAt": "2026-03-06T07:05:00Z",
+      "completedAt": "2026-03-06T08:03:00Z",
+      "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/3002/job/2"
+    }
+  ]
+}

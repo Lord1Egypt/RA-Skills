@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Dataify Facebook events">
+  <rect width="64" height="64" rx="12" fill="#ffffff"/>
+  <rect x="10" y="12" width="44" height="42" rx="8" fill="#1877f2"/>
+  <rect x="16" y="20" width="32" height="28" rx="5" fill="#ffffff"/>
+  <rect x="20" y="16" width="4" height="10" rx="2" fill="#1877f2"/>
+  <rect x="40" y="16" width="4" height="10" rx="2" fill="#1877f2"/>
+  <rect x="20" y="30" width="8" height="6" rx="2" fill="#1877f2"/>
+  <rect x="31" y="30" width="13" height="3" rx="1.5" fill="#1877f2"/>
+  <rect x="20" y="39" width="24" height="3" rx="1.5" fill="#1877f2"/>
+</svg>

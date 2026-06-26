@@ -1,0 +1,92 @@
+{
+  "id": "skill-preflight",
+  "name": "Skill Preflight",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "protocolDirs": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Relative paths to protocol directories to scan recursively (default: [\"memory/protocols\"])"
+      },
+      "skillsDirs": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Relative paths to skills directories (default: [\"skills\"])"
+      },
+      "toolsFiles": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Relative paths to tools files (default: [\"TOOLS.md\"])"
+      },
+      "pinnedDocs": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Relative paths to docs that are always injected regardless of score (e.g. [\"memory/protocols/PROTOCOLS-HUB.md\"])"
+      },
+      "maxResults": {
+        "type": "number",
+        "description": "Max number of ranked docs to inject (default: 3). Does not count pinned docs."
+      },
+      "maxDocLines": {
+        "type": "number",
+        "description": "Truncate injected docs to this many lines (default: 100 for token burn mitigation)"
+      },
+      "ollamaBaseUrl": {
+        "type": "string",
+        "description": "Ollama base URL for embeddings (default: http://localhost:11434). WARNING: if remote, sends prompt text and full indexed markdown content (including secrets/API keys in docs) to that host for embedding. Keep local (localhost/127.0.0.1/::1) to avoid trust-boundary change."
+      },
+      "embedModel": {
+        "type": "string",
+        "description": "Ollama embedding model (default: nomic-embed-text:latest)"
+      },
+      "minPromptLength": {
+        "type": "number",
+        "description": "Minimum prompt length to trigger preflight (default: 20)"
+      },
+      "minScore": {
+        "type": "number",
+        "description": "Minimum cosine similarity score to inject a doc (default: 0.3). Check debug logs for score output to tune this."
+      },
+      "requestTimeoutMs": {
+        "type": "number",
+        "description": "Timeout in ms for embedding calls (default: 10000)"
+      }
+    }
+  },
+  "uiHints": {
+    "ollamaBaseUrl": {
+      "label": "Ollama Base URL",
+      "placeholder": "http://localhost:11434"
+    },
+    "embedModel": {
+      "label": "Embedding Model",
+      "placeholder": "nomic-embed-text:latest"
+    },
+    "pinnedDocs": {
+      "label": "Pinned Docs (always inject)",
+      "placeholder": "memory/protocols/my-rules.md"
+    },
+    "maxResults": {
+      "label": "Max Ranked Results",
+      "placeholder": "3"
+    },
+    "maxDocLines": {
+      "label": "Max Doc Lines (0 = unlimited)",
+      "placeholder": "0"
+    },
+    "minScore": {
+      "label": "Min Relevance Score",
+      "placeholder": "0.3"
+    },
+    "minPromptLength": {
+      "label": "Min Prompt Length",
+      "placeholder": "20"
+    },
+    "requestTimeoutMs": {
+      "label": "Request Timeout (ms)",
+      "placeholder": "10000"
+    }
+  }
+}

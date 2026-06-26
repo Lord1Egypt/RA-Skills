@@ -1,0 +1,69 @@
+{
+  "name": "cognitive-brain",
+  "version": "5.3.25",
+  "description": "类脑认知系统 - 四层记忆架构 + 联想网络 + 元认知反思 + 自我意识 + 自主学习 + 跨会话记忆注入",
+  "author": "AI Self-Design",
+  "license": "MIT",
+  "installCommand": "npm install && node scripts/tools/postinstall.cjs --default-config --auto-deps",
+  "keywords": [
+    "memory",
+    "cognitive",
+    "learning",
+    "reflection",
+    "brain",
+    "self-awareness",
+    "autolearn",
+    "cross-session"
+  ],
+  "triggers": {
+    "encode": [
+      "记住",
+      "记得",
+      "纠正",
+      "不对",
+      "错了",
+      "其实是"
+    ],
+    "recall": [
+      "记得吗",
+      "回忆",
+      "之前说过",
+      "我们聊过",
+      "上次的"
+    ],
+    "reflect": [
+      "反思",
+      "总结",
+      "为什么失败",
+      "怎么改进"
+    ],
+    "forget": [
+      "忘记",
+      "清理",
+      "删除记忆"
+    ]
+  },
+  "hooks": {
+    "cognitive-recall": {
+      "event": "message:preprocessed",
+      "description": "自动注入跨会话记忆上下文"
+    }
+  },
+  "dependencies": {
+    "pg": "^8.11.0",
+    "redis": "^4.6.0",
+    "uuid": "^9.0.0"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^9.0.0"
+  },
+  "scripts": {
+    "init": "node scripts/tools/init-db.cjs",
+    "encode": "node scripts/core/encode.cjs",
+    "recall": "node scripts/core/recall.cjs",
+    "reflect": "node scripts/experimental/reflect.cjs",
+    "autolearn": "node scripts/core/autolearn.cjs",
+    "sync-hooks": "node scripts/tools/sync-hooks.cjs",
+    "postinstall": "node scripts/tools/postinstall.cjs"
+  }
+}

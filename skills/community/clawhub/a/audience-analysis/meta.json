@@ -1,0 +1,16 @@
+{
+  "id": "audience_analysis",
+  "name": "受众画像分析",
+  "apiPath": "/api/audience/analyze",
+  "method": "POST",
+  "checkConfig": {
+    "path": "/api/audience/analyze",
+    "method": "POST",
+    "expectStatus": 200,
+    "body": {
+      "time_range": "30d"
+    }
+  },
+  "status": "tested",
+  "syncedAt": "2026-03-21T08:55:30.023Z"
+}

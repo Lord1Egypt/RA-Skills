@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trusted ClawHub Install Gate"
+  short_description: "Audit a local OpenClaw or ClawHub skill directory before installing it"
+  default_prompt: "Use $trusted-clawhub-install-gate to inspect a local skill folder, explain PASS, REVIEW, or BLOCK findings, check destination and active-project impact, and only install REVIEW or replace artifacts after explicit approval."

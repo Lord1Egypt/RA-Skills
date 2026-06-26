@@ -1,0 +1,9 @@
+{
+  "_comment": "飞书 open_id ↔ 云效用户 ID 映射表。请根据你的团队成员填写实际值。",
+  "_example": {
+    "feishu_open_id": "ou_your-feishu-open-id",
+    "yunxiao_user_id": "your-yunxiao-user-id",
+    "name": "团队成员姓名"
+  },
+  "members": []
+}

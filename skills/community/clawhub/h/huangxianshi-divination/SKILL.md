@@ -1,35 +1,64 @@
 ---
-name: "Huangxianshi Divination"
-description: "黄仙师灵签抽签与解签。用户说“聊签/求签/抽一签/来一签/解签/全部解签”时使用。随机抽取1签并返回吉凶、签号、签题、签诗、典故全文；支持按方向解签或全部解签。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huangxianshi-divination"
-sourceUrl: "https://clawhub.ai/skills/huangxianshi-divination"
+name: huangxianshi-divination
+description: 黄仙师灵签抽签与解签。用户说“聊签/求签/抽一签/来一签/解签/全部解签”时使用。随机抽取1签并返回吉凶、签号、签题、签诗、典故全文；支持按方向解签或全部解签。
 ---
 
-# Huangxianshi Divination
+# 黄仙师灵签（抽签 + 解签）
 
-> 黄仙师灵签抽签与解签。用户说“聊签/求签/抽一签/来一签/解签/全部解签”时使用。随机抽取1签并返回吉凶、签号、签题、签诗、典故全文；支持按方向解签或全部解签。
+## 触发与流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huangxianshi-divination`
-- **Source URL:** [https://clawhub.ai/skills/huangxianshi-divination](https://clawhub.ai/skills/huangxianshi-divination)
+1. 用户说“聊签/求签/抽签/来一签”：
+   - 执行 `draw-ritual` 抽签。
+   - 仪式感文案分 **三条独立消息** 发送：
+     1) 正在净手焚香
+     2) 签筒摇动中
+     3) 灵签已落，请接签
+   - 然后立即发结果卡片（第4条消息，不要额外等待）。
+   - 结尾提示：可直接“解签”，或指定方向（事业/财运/姻缘/健康/流年），或“全部解签”。
 
-## Overview
+2. 用户说“解签”：
+   - 若指定方向（事业/财运/姻缘/健康/流年/自身/家庭/迁居/名誉/友情/典故），只解该方向。
+   - 若说“全部解签”，输出全部解释。
+   - 若没指定签号，默认解“上一签”。
 
+3. 若用户尚未抽签就直接说“解签”：
+   - 自动先抽一签，再提示是否继续解签。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 数据源
+
+- 签数据已内置在 `data/signs_cache.json` 中
+
+## 命令
+
 ```bash
-hermes skills install clawhub/huangxianshi-divination
+python3 {baseDir}/scripts/lot_cli.py draw-ritual             # 默认：三段动画 + 结果卡
+python3 {baseDir}/scripts/lot_cli.py draw-ritual --delay 0.15
+python3 {baseDir}/scripts/lot_cli.py explain --no 12 --aspect career --format card
+python3 {baseDir}/scripts/lot_cli.py explain --aspect all --format card   # 默认上一签
 ```
+
+## 输出样式（跨端友好）
+
+不要用复杂表格，优先用简洁卡片文本：
+
+```text
+🔮 抽签中...（灵签翻动中）
+
+━━━━━━━━━━
+🎴 黄仙师灵签
+⚖️ 吉凶：下下
+🔢 签号：77
+🏷️ 签题：左慈戏曹
+📝 签诗：
+画壁化羊戏奸雄
+欺君罔上罪难容
+仙家妙术虽玄妙
+到底难逃劫数终
+━━━━━━━━━━
+可继续：解事业 / 解财运 / 解姻缘 / 全部解签
+```
+
+要求：
+- 手机端优先（短段落、少换行但清晰）。
+- 桌面端同样可读。
+- 不输出玄学恐吓措辞，不给医疗/法律等高风险确定性建议。

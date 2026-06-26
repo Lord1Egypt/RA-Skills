@@ -1,0 +1,10 @@
+{
+  "name": "smarter-content",
+  "version": "1.0.0",
+  "description": "✍️ 智能多平台内容生成器 - 从想法到成品一站式写作，自动适配微信/知乎/小红书/Blog",
+  "main": "scripts/content-generator.js",
+  "keywords": ["content", "writing", "blog", "xiaohongshu", "zhihu", "wechat", "seo", "ai-writing"],
+  "author": "rudagebil11-jpg",
+  "license": "MIT",
+  "type": "commonjs"
+}

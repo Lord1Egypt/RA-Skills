@@ -1,0 +1,56 @@
+# ClawHub Skill Metadata
+# See: https://clawhub.ai/docs/publish
+
+name: use-dingding
+displayName: Use Dingding
+version: 1.0.6
+description: Interact with DingTalk enterprise workspace using the dws CLI
+
+author:
+  name: Bruce Zhu
+  email: brucezhu88@gmail.com
+
+homepage: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli
+repository: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli
+license: Apache-2.0
+
+# Required dependencies
+requires:
+  # External binary that must be installed separately
+  binaries:
+    - name: dws
+      description: DingTalk Workspace CLI
+      install_url: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/releases
+  
+  # OAuth credentials for DingTalk
+  # Can be provided via env vars OR interactive login (recommended)
+  # Interactive login stores tokens encrypted in system keychain
+  env:
+    - name: DWS_CLIENT_ID
+      description: DingTalk App Key from Open Platform Console
+      required: true
+    - name: DWS_CLIENT_SECRET
+      description: DingTalk App Secret from Open Platform Console
+      required: true
+
+# Security notes
+security:
+  - Requires DingTalk OAuth credentials (DWS_CLIENT_ID, DWS_CLIENT_SECRET)
+  - Enterprise admin approval may be required for whitelist access
+  - Always use --dry-run before mutation operations (scripts default to dry-run)
+  - Test in sandbox enterprise before production use
+  - Install dws CLI from verified releases or build from source
+  - Prefer interactive login (dws auth login) over env vars for credential storage
+
+# Tags for discovery
+tags:
+  - dingtalk
+  - enterprise
+  - productivity
+  - chat
+  - calendar
+  - todo
+  - approval
+  - aitable
+  - attendance
+  - cli

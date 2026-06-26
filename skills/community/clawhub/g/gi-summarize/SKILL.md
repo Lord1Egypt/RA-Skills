@@ -1,35 +1,90 @@
 ---
-name: "GI Summarize"
-description: "Summarize long text, meeting notes, documents, or code into concise key points. Use when the user asks to summarize, extract key points, create meeting minut..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gi-summarize"
-sourceUrl: "https://clawhub.ai/skills/gi-summarize"
+name: gi-summarize
+description: Summarize long text, meeting notes, documents, or code into concise key points. Use when the user asks to summarize, extract key points, create meeting minutes, or condense content.
+tags: ["summarize", "productivity", "meeting-notes", "key-points", "text-extraction"]
 ---
 
-# GI Summarize
+# Summarize 文本总结
 
-> Summarize long text, meeting notes, documents, or code into concise key points. Use when the user asks to summarize, extract key points, create meeting minut...
+将长文本、会议记录、文档或代码提炼为简洁的核心要点。适用于技术文档、会议纪要、需求说明、PR 描述等场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gi-summarize`
-- **Source URL:** [https://clawhub.ai/skills/gi-summarize](https://clawhub.ai/skills/gi-summarize)
+## 何时使用
 
-## Overview
+- 用户请求「总结一下」「提炼要点」「写会议纪要」
+- 用户提供长文需要浓缩
+- 用户问「这段代码/文档主要做什么」
+- 需要从多段内容中提取共同主题
 
+## 输出格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gi-summarize
+### 1. 通用总结
+
+```markdown
+## 核心要点
+- 要点 1
+- 要点 2
+- 要点 3
+
+## 关键结论/建议
+[如有]
 ```
+
+### 2. 会议纪要
+
+```markdown
+## 会议主题
+[一句话]
+
+## 讨论要点
+- 议题 1：结论/决定
+- 议题 2：结论/决定
+
+## 待办事项
+- [ ] 责任人 - 事项 - 截止时间
+
+## 下次会议
+[如有]
+```
+
+### 3. 技术文档/代码总结
+
+```markdown
+## 功能概述
+[一句话说明]
+
+## 主要逻辑
+- 步骤/模块 1
+- 步骤/模块 2
+
+## 关键参数/接口
+[如有]
+```
+
+### 4. 需求提炼
+
+```markdown
+## 背景
+[简要]
+
+## 核心需求
+1. 需求 1
+2. 需求 2
+
+## 约束/边界
+[如有]
+```
+
+## 执行原则
+
+1. **保留关键信息**：数字、人名、时间、结论、决定
+2. **去除冗余**：重复表述、过渡语、无关细节
+3. **结构化**：用列表和标题，便于扫读
+4. **控制长度**：总结长度约为原文 10–30%，视场景调整
+5. **保留可追溯**：重要结论注明来源（如「第 X 段」）
+
+## 场景示例
+
+- **长 PR 描述** → 提炼改动范围、影响模块、测试建议
+- **多篇文档** → 提取共同主题、差异点、优先级
+- **会议录音转写** → 生成标准会议纪要
+- **需求文档** → 提炼用户故事、验收标准

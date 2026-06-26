@@ -1,0 +1,436 @@
+{% extends "base.html" %}
+
+{% block title %}Ledgers — Friday Budgeting Pro{% endblock %}
+
+{% block content %}
+<style>
+  .item-total-cell { text-align: right; white-space: nowrap; padding-right: 0.5em; color: #555; font-size: 0.9em; }
+  .item-count-cell { white-space: nowrap; color: #888; font-size: 0.85em; padding-right: 0.5em; }
+  .item-expand-cell { width: 2em; text-align: center; }
+  .btn-expand-item { background: none; border: none; cursor: pointer; font-size: 1.1em; color: #666; padding: 0 0.3em; transition: transform 0.15s; }
+  .btn-expand-item.expanded { transform: rotate(180deg); }
+  .txn-detail-row td { padding: 0; }
+  .txn-detail-cell { padding: 0.25em 0 0.25em 1.5em !important; background: #f9f9f9; }
+  .txn-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+  .txn-table tr { border-bottom: 1px solid #eee; }
+  .txn-tree { font-family: monospace; color: #aaa; padding-right: 0.3em; white-space: nowrap; }
+  .txn-date { white-space: nowrap; padding-right: 0.5em; color: #666; }
+  .txn-merchant { flex: 1; }
+  .txn-account { color: #888; padding-right: 0.5em; font-size: 0.9em; }
+  .txn-amount { text-align: right; white-space: nowrap; }
+  .txn-pending td { color: #aaa; font-style: italic; }
+  .period-selector { display: flex; gap: 0.25em; flex-wrap: wrap; margin-bottom: 1em; }
+  .period-selector a {
+    padding: 0.3em 0.75em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9em;
+    background: #f5f5f5;
+    transition: background 0.1s;
+  }
+  .period-selector a:hover { background: #e8e8e8; }
+  .period-selector a.active {
+    background: #1a73e8;
+    color: #fff;
+    border-color: #1a73e8;
+    font-weight: 600;
+  }
+</style>
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <h1>Ledgers</h1>
+    <button class="btn-primary" id="btn-add-ledger">+ Add Ledger</button>
+  </div>
+
+  <div class="period-selector" role="tablist" aria-label="Date range">
+    <a href="/ledgers?period=this_month" class="{% if period == 'this_month' %}active{% endif %}" aria-current="{% if period == 'this_month' %}page{% endif %}">This month</a>
+    <a href="/ledgers?period=last_month" class="{% if period == 'last_month' %}active{% endif %}" aria-current="{% if period == 'last_month' %}page{% endif %}">Last month</a>
+    <a href="/ledgers?period=last_3_months" class="{% if period == 'last_3_months' %}active{% endif %}" aria-current="{% if period == 'last_3_months' %}page{% endif %}">Last 3 months</a>
+    <a href="/ledgers?period=this_year" class="{% if period == 'this_year' %}active{% endif %}" aria-current="{% if period == 'this_year' %}page{% endif %}">This year</a>
+    <a href="/ledgers?period=all" class="{% if period == 'all' %}active{% endif %}" aria-current="{% if period == 'all' %}page{% endif %}">All time</a>
+  </div>
+
+  <div id="add-ledger-form" style="display:none;margin-bottom:1em;">
+    <input type="text" id="new-ledger-name" placeholder="Ledger name" style="margin-right:.5em;">
+    <button class="btn-primary" id="btn-add-ledger-submit">Create</button>
+    <button class="btn-secondary" id="btn-add-ledger-cancel">Cancel</button>
+  </div>
+
+  <div id="error-banner" style="display:none;" class="alert alert-error"></div>
+
+  <div id="ledgers-list">
+    {% if ledgers %}
+      {% for ledger in ledgers %}
+      <section class="ledger-block" data-ledger-id="{{ ledger.id }}">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h2>
+            <span class="ledger-name-display">{{ ledger.name }}</span>
+            <input class="ledger-name-input" type="text" value="{{ ledger.name }}"
+              style="display:none;font-size:inherit;font-weight:inherit;"
+              data-ledger-id="{{ ledger.id }}">
+          </h2>
+          <button class="btn-danger btn-delete-ledger" data-ledger-id="{{ ledger.id }}"
+            style="margin-left:1em;">x</button>
+        </div>
+
+        <div class="item-section" data-section="income">
+          <h3>Income</h3>
+          <table>
+            <tbody class="items-tbody" data-section="income">
+              {% for item in ledger.line_items %}
+              {% if item.item_type == "income" %}
+              <tr class="line-item-row" data-item-id="{{ item.id }}" data-line-item-id="{{ item.id }}">
+                <td class="item-name-cell">
+                  <span class="item-name-display">{{ item.name }}</span>
+                  <input class="item-name-input" type="text" value="{{ item.name }}"
+                    style="display:none;" data-item-id="{{ item.id }}"
+                    data-ledger-id="{{ ledger.id }}">
+                </td>
+                <td class="item-total-cell">C${{ "%.2f"|format(item.total) }}</td>
+                <td class="item-count-cell">{{ item.transactions|length }} transaction{% if item.transactions|length != 1 %}s{% endif %}</td>
+                <td class="item-expand-cell">
+                  {% if item.transactions %}
+                  <button class="btn-expand-item" data-item-id="{{ item.id }}" aria-label="Toggle transactions">&#8964;</button>
+                  {% endif %}
+                </td>
+                <td>
+                  <button class="btn-danger btn-delete-item" data-item-id="{{ item.id }}"
+                    data-ledger-id="{{ ledger.id }}">x</button>
+                </td>
+              </tr>
+              {% if item.transactions %}
+              <tr class="txn-detail-row" data-parent-item-id="{{ item.id }}" style="display:none;">
+                <td colspan="5" class="txn-detail-cell">
+                  <table class="txn-table">
+                    {% for tx in item.transactions %}
+                    <tr class="{% if tx.pending %}txn-pending{% endif %}">
+                      <td class="txn-tree">{% if loop.last %}&#9492;&#9472;&#9472;{% else %}&#9500;&#9472;&#9472;{% endif %}</td>
+                      <td class="txn-date">{{ tx.date }}</td>
+                      <td class="txn-merchant">{{ tx.merchant or '(unknown)' }}</td>
+                      <td class="txn-account">{{ tx.account_name or '' }}</td>
+                      <td class="txn-amount">C${{ "%.2f"|format(tx.amount) }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </td>
+              </tr>
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="add-item-row">
+            <input type="text" class="add-item-input" placeholder="Add item..."
+              data-ledger-id="{{ ledger.id }}" data-section="income">
+          </div>
+        </div>
+
+        <div class="item-section" data-section="expenses">
+          <h3>Expenses</h3>
+          <table>
+            <tbody class="items-tbody" data-section="expenses">
+              {% for item in ledger.line_items %}
+              {% if item.item_type == "expense" %}
+              <tr class="line-item-row" data-item-id="{{ item.id }}" data-line-item-id="{{ item.id }}">
+                <td class="item-name-cell">
+                  <span class="item-name-display">{{ item.name }}</span>
+                  <input class="item-name-input" type="text" value="{{ item.name }}"
+                    style="display:none;" data-item-id="{{ item.id }}"
+                    data-ledger-id="{{ ledger.id }}">
+                </td>
+                <td class="item-total-cell">C${{ "%.2f"|format(item.total) }}</td>
+                <td class="item-count-cell">{{ item.transactions|length }} transaction{% if item.transactions|length != 1 %}s{% endif %}</td>
+                <td class="item-expand-cell">
+                  {% if item.transactions %}
+                  <button class="btn-expand-item" data-item-id="{{ item.id }}" aria-label="Toggle transactions">&#8964;</button>
+                  {% endif %}
+                </td>
+                <td>
+                  <button class="btn-danger btn-delete-item" data-item-id="{{ item.id }}"
+                    data-ledger-id="{{ ledger.id }}">x</button>
+                </td>
+              </tr>
+              {% if item.transactions %}
+              <tr class="txn-detail-row" data-parent-item-id="{{ item.id }}" style="display:none;">
+                <td colspan="5" class="txn-detail-cell">
+                  <table class="txn-table">
+                    {% for tx in item.transactions %}
+                    <tr class="{% if tx.pending %}txn-pending{% endif %}">
+                      <td class="txn-tree">{% if loop.last %}&#9492;&#9472;&#9472;{% else %}&#9500;&#9472;&#9472;{% endif %}</td>
+                      <td class="txn-date">{{ tx.date }}</td>
+                      <td class="txn-merchant">{{ tx.merchant or '(unknown)' }}</td>
+                      <td class="txn-account">{{ tx.account_name or '' }}</td>
+                      <td class="txn-amount">C${{ "%.2f"|format(tx.amount) }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </td>
+              </tr>
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="add-item-row">
+            <input type="text" class="add-item-input" placeholder="Add item..."
+              data-ledger-id="{{ ledger.id }}" data-section="expenses">
+          </div>
+        </div>
+
+        {# ── Income/Expenses/Net totals footer (#166) ── #}
+        <div class="ledger-totals-row" data-ledger-totals="{{ ledger.id }}">
+          <span>
+            <span class="total-label">Total income:</span>
+            <span class="total-value" data-total="income">C${{ "%.2f"|format(ledger.totals.income) }}</span>
+          </span>
+          <span>
+            <span class="total-label">Total expenses:</span>
+            <span class="total-value" data-total="expenses">C${{ "%.2f"|format(ledger.totals.expenses) }}</span>
+          </span>
+          <span>
+            <span class="total-label">Net:</span>
+            <span class="total-value {% if ledger.totals.net > 0 %}net-positive{% elif ledger.totals.net < 0 %}net-negative{% else %}net-zero{% endif %}"
+              data-total="net">C${{ "%.2f"|format(ledger.totals.net) }}</span>
+          </span>
+        </div>
+      </section>
+      {% endfor %}
+    {% else %}
+    <p id="no-ledgers-msg">No ledgers yet. Click <strong>+ Add Ledger</strong> to create one.</p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  function showError(msg) {
+    var b = document.getElementById("error-banner");
+    b.textContent = msg;
+    b.style.display = "";
+    setTimeout(function () { b.style.display = "none"; }, 5000);
+  }
+
+  document.getElementById("btn-add-ledger").addEventListener("click", function () {
+    document.getElementById("add-ledger-form").style.display = "";
+    document.getElementById("new-ledger-name").focus();
+  });
+
+  document.getElementById("btn-add-ledger-cancel").addEventListener("click", function () {
+    document.getElementById("add-ledger-form").style.display = "none";
+    document.getElementById("new-ledger-name").value = "";
+  });
+
+  document.getElementById("btn-add-ledger-submit").addEventListener("click", function () {
+    var name = document.getElementById("new-ledger-name").value.trim();
+    if (!name) return;
+    fetch("/ledgers", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({name: name})
+    }).then(function (r) {
+      if (!r.ok) return r.json().then(function (d) { showError(d.error || "Error"); });
+      return r.json().then(function (data) {
+        document.getElementById("add-ledger-form").style.display = "none";
+        document.getElementById("new-ledger-name").value = "";
+        var msg = document.getElementById("no-ledgers-msg");
+        if (msg) msg.remove();
+        document.getElementById("ledgers-list").appendChild(buildLedgerSection(data.id, data.name));
+      });
+    }).catch(function (e) { showError(e.message); });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("btn-delete-ledger")) return;
+    var ledgerId = e.target.dataset.ledgerId;
+    if (!confirm("Delete this ledger and all its line items?")) return;
+    fetch("/ledgers/" + ledgerId, {method: "DELETE"}).then(function (r) {
+      if (r.status === 409) return r.json().then(function (d) { showError(d.error || "Cannot delete."); });
+      if (!r.ok) return r.json().then(function (d) { showError(d.error || "Error"); });
+      var section = document.querySelector("section[data-ledger-id='" + ledgerId + "']");
+      if (section) section.remove();
+    }).catch(function (e) { showError(e.message); });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("ledger-name-display")) return;
+    var section = e.target.closest("section[data-ledger-id]");
+    var ledgerId = section.dataset.ledgerId;
+    var display = e.target;
+    var input = section.querySelector("input.ledger-name-input[data-ledger-id='" + ledgerId + "']");
+    display.style.display = "none";
+    input.style.display = "";
+    input.focus();
+    input.select();
+  });
+
+  document.addEventListener("blur", function (e) {
+    if (!e.target.classList.contains("ledger-name-input")) return;
+    var input = e.target;
+    var ledgerId = input.dataset.ledgerId;
+    var name = input.value.trim();
+    var section = document.querySelector("section[data-ledger-id='" + ledgerId + "']");
+    var display = section.querySelector("span.ledger-name-display");
+    if (!name) { input.style.display = "none"; display.style.display = ""; return; }
+    fetch("/ledgers/" + ledgerId, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({name: name})
+    }).then(function (r) {
+      if (!r.ok) return r.json().then(function (d) { showError(d.error || "Rename failed"); });
+      display.textContent = name;
+      input.style.display = "none";
+      display.style.display = "";
+    }).catch(function (e) { showError(e.message); });
+  }, true);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && e.target.classList.contains("ledger-name-input")) e.target.blur();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" || !e.target.classList.contains("add-item-input")) return;
+    var input = e.target;
+    var ledgerId = input.dataset.ledgerId;
+    var section = input.dataset.section;
+    var name = input.value.trim();
+    if (!name) return;
+    fetch("/ledgers/" + ledgerId + "/items", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({name: name, section: section})
+    }).then(function (r) {
+      if (!r.ok) return r.json().then(function (d) { showError(d.error || "Error"); });
+      return r.json().then(function (data) {
+        input.value = "";
+        var tbody = input.closest(".item-section").querySelector("tbody.items-tbody");
+        tbody.appendChild(buildItemRow(data.id, data.name, ledgerId));
+      });
+    }).catch(function (e) { showError(e.message); });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("btn-delete-item")) return;
+    var itemId = e.target.dataset.itemId;
+    var ledgerId = e.target.dataset.ledgerId;
+    fetch("/ledgers/" + ledgerId + "/items/" + itemId, {method: "DELETE"})
+      .then(function (r) {
+        if (r.status === 409) {
+          return r.json().then(function (d) {
+            if (confirm(d.error + " (" + d.entry_count + " entries). Force delete?")) {
+              fetch("/ledgers/" + ledgerId + "/items/" + itemId + "?confirm=true", {method: "DELETE"})
+                .then(function (r2) {
+                  if (!r2.ok) return r2.json().then(function (d2) { showError(d2.error || "Error"); });
+                  removeItemRow(itemId);
+                });
+            }
+          });
+        }
+        if (!r.ok) return r.json().then(function (d) { showError(d.error || "Error"); });
+        removeItemRow(itemId);
+      }).catch(function (e) { showError(e.message); });
+  });
+
+  function removeItemRow(itemId) {
+    var row = document.querySelector("tr[data-item-id='" + itemId + "']");
+    if (row) row.remove();
+  }
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("item-name-display")) return;
+    var row = e.target.closest("tr[data-item-id]");
+    var display = e.target;
+    var input = row.querySelector("input.item-name-input");
+    display.style.display = "none";
+    input.style.display = "";
+    input.focus();
+    input.select();
+  });
+
+  document.addEventListener("blur", function (e) {
+    if (!e.target.classList.contains("item-name-input")) return;
+    var input = e.target;
+    var itemId = input.dataset.itemId;
+    var ledgerId = input.dataset.ledgerId;
+    var name = input.value.trim();
+    var row = document.querySelector("tr[data-item-id='" + itemId + "']");
+    var display = row.querySelector("span.item-name-display");
+    if (!name) { input.style.display = "none"; display.style.display = ""; return; }
+    fetch("/ledgers/" + ledgerId + "/items/" + itemId, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({name: name})
+    }).then(function (r) {
+      if (!r.ok) return r.json().then(function (d) { showError(d.error || "Rename failed"); });
+      display.textContent = name;
+      input.value = name;
+      input.style.display = "none";
+      display.style.display = "";
+    }).catch(function (e) { showError(e.message); });
+  }, true);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && e.target.classList.contains("item-name-input")) e.target.blur();
+  });
+
+  function buildItemRow(itemId, name, ledgerId) {
+    var tr = document.createElement("tr");
+    tr.className = "line-item-row";
+    tr.dataset.itemId = itemId;
+    tr.dataset.lineItemId = itemId;
+    tr.innerHTML =
+      '<td class="item-name-cell"><span class="item-name-display">' + esc(name) + '</span>' +
+      '<input class="item-name-input" type="text" value="' + esc(name) + '"' +
+      ' style="display:none;" data-item-id="' + itemId + '" data-ledger-id="' + ledgerId + '"></td>' +
+      '<td class="item-total-cell">C$0.00</td>' +
+      '<td class="item-count-cell">0 transactions</td>' +
+      '<td class="item-expand-cell"></td>' +
+      '<td><button class="btn-danger btn-delete-item" data-item-id="' + itemId +
+      '" data-ledger-id="' + ledgerId + '">x</button></td>';
+    return tr;
+  }
+
+  function buildLedgerSection(ledgerId, name) {
+    var section = document.createElement("section");
+    section.className = "ledger-block";
+    section.dataset.ledgerId = ledgerId;
+    section.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;">' +
+      '<h2><span class="ledger-name-display">' + esc(name) + '</span>' +
+      '<input class="ledger-name-input" type="text" value="' + esc(name) + '"' +
+      ' style="display:none;font-size:inherit;font-weight:inherit;" data-ledger-id="' + ledgerId + '"></h2>' +
+      '<button class="btn-danger btn-delete-ledger" data-ledger-id="' + ledgerId + '" style="margin-left:1em;">x</button>' +
+      '</div>' + sub(ledgerId, "income", "Income") + sub(ledgerId, "expenses", "Expenses");
+    return section;
+  }
+
+  function sub(ledgerId, key, label) {
+    return '<div class="item-section" data-section="' + key + '">' +
+      '<h3>' + label + '</h3>' +
+      '<table><tbody class="items-tbody" data-section="' + key + '"></tbody></table>' +
+      '<div class="add-item-row"><input type="text" class="add-item-input" placeholder="Add item..."' +
+      ' data-ledger-id="' + ledgerId + '" data-section="' + key + '"></div></div>';
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  // ── Drilldown: expand/collapse transactions per line item ──────────────────
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".btn-expand-item");
+    if (!btn) return;
+    var itemId = btn.dataset.itemId;
+    var detailRow = document.querySelector(".txn-detail-row[data-parent-item-id='" + itemId + "']");
+    if (!detailRow) return;
+    var isOpen = detailRow.style.display !== "none";
+    detailRow.style.display = isOpen ? "none" : "";
+    btn.classList.toggle("expanded", !isOpen);
+    btn.setAttribute("aria-expanded", !isOpen);
+  });
+})();
+</script>
+{% endblock %}

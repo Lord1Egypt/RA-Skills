@@ -1,0 +1,36 @@
+{
+  "id": "08",
+  "name": "数字创意",
+  "category": "战略性新兴产业",
+  "keywords": [
+    "数字创意",
+    "游戏",
+    "动漫",
+    "数字媒体",
+    "虚拟人",
+    "元宇宙",
+    "数字内容"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🎨",
+    "maxDescriptionLength": 200
+  }
+}

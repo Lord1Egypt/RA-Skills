@@ -1,0 +1,26 @@
+{
+  "source": "https://github.com/agenticpoa/claw-negotiate",
+  "purpose": "Lean ClawHub package generated from the public repository.",
+  "included": {
+    "root_files": [
+      "README.md",
+      ".env.example",
+      "requirements.txt"
+    ],
+    "generated_root_files": [
+      "SKILL.md"
+    ],
+    "scripts": [
+      "scripts/smoke_install.py",
+      "scripts/demo_checklist.py"
+    ],
+    "runtime_manifest": "negotiate_safe/skill_manifest.json"
+  },
+  "excluded": [
+    "tests/",
+    "hooks/",
+    "docs/",
+    "assets/",
+    "development caches"
+  ]
+}

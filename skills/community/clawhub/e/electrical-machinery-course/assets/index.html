@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伺服电机课程智能体 | 南京理工大学紫金学院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0e17;--bg2:#111827;--bg3:#1a2235;--bg4:#232d42;
+  --accent:#f59e0b;--accent2:#fbbf24;--accent-glow:rgba(245,158,11,.15);
+  --blue:#3b82f6;--blue2:#60a5fa;--blue-glow:rgba(59,130,246,.12);
+  --green:#10b981;--green2:#34d399;--green-glow:rgba(16,185,129,.12);
+  --red:#ef4444;--red2:#f87171;
+  --text:#e5e7eb;--text2:#9ca3af;--text3:#6b7280;
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.04);
+  --radius:12px;--radius-lg:20px;
+  --font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+::selection{background:var(--accent);color:#000}
+
+/* ===== Background ===== */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(245,158,11,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,158,11,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.bg-glow{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(120px)}
+.bg-glow-1{width:600px;height:600px;top:-200px;right:-100px;background:rgba(245,158,11,.06)}
+.bg-glow-2{width:500px;height:500px;bottom:-150px;left:-100px;background:rgba(59,130,246,.05)}
+
+/* ===== Layout ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* ===== Header ===== */
+header{padding:20px 0;position:sticky;top:0;z-index:100;background:rgba(10,14,23,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#d97706);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#000;font-family:var(--font-display)}
+.logo-text h1{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text);letter-spacing:.5px}
+.logo-text p{font-size:15px;color:var(--text3);letter-spacing:1px}
+.nav-tabs{display:flex;gap:4px;background:var(--bg2);border-radius:10px;padding:4px}
+.nav-tab{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .25s;border:none;background:transparent;white-space:nowrap}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{background:var(--accent);color:#000;font-weight:700;box-shadow:0 2px 12px rgba(245,158,11,.3)}
+
+/* ===== Hero ===== */
+.hero{padding:60px 0 40px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:20px;background:var(--accent-glow);border:1px solid rgba(245,158,11,.2);font-size:12px;color:var(--accent2);margin-bottom:20px;letter-spacing:.5px}
+.hero h2{font-family:var(--font-display);font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.2;margin-bottom:16px;background:linear-gradient(135deg,var(--text) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:16px;color:var(--text2);max-width:600px;margin:0 auto 32px}
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:var(--font-display);font-size:32px;font-weight:900;color:var(--accent2)}
+.hero-stat .label{font-size:12px;color:var(--text3);letter-spacing:1px;margin-top:2px}
+
+/* ===== Section ===== */
+.section{display:none;animation:fadeUp .4s ease}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== Cards ===== */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:all .3s}
+.card:hover{border-color:rgba(245,158,11,.15);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.card-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.card h3{font-family:var(--font-display);font-size:17px;font-weight:700}
+
+/* ===== Knowledge Section ===== */
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-top:24px}
+.chapter-card{cursor:pointer;position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px;transition:all .3s}
+.chapter-card:nth-child(1)::before{background:var(--accent)}
+.chapter-card:nth-child(2)::before{background:var(--blue)}
+.chapter-card:nth-child(3)::before{background:var(--green)}
+.chapter-card:nth-child(4)::before{background:#a855f7}
+.chapter-card:nth-child(5)::before{background:var(--red)}
+.chapter-card:nth-child(6)::before{background:#06b6d4}
+.chapter-num{font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+.chapter-card:nth-child(1) .chapter-num{color:var(--accent)}
+.chapter-card:nth-child(2) .chapter-num{color:var(--blue)}
+.chapter-card:nth-child(3) .chapter-num{color:var(--green)}
+.chapter-card:nth-child(4) .chapter-num{color:#a855f7}
+.chapter-card:nth-child(5) .chapter-num{color:var(--red)}
+.chapter-card:nth-child(6) .chapter-num{color:#06b6d4}
+.chapter-topics{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.topic-tag{padding:4px 10px;border-radius:6px;font-size:11px;background:var(--bg3);color:var(--text2);border:1px solid var(--border2);transition:all .2s;cursor:pointer}
+.topic-tag:hover{background:var(--accent-glow);color:var(--accent2);border-color:rgba(245,158,11,.2)}
+
+/* Knowledge Detail */
+.knowledge-detail{margin-top:24px;display:none}
+.knowledge-detail.active{display:block;animation:fadeUp .3s ease}
+.knowledge-back{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:13px;cursor:pointer;transition:all .2s;margin-bottom:20px}
+.knowledge-back:hover{color:var(--accent2);border-color:rgba(245,158,11,.2)}
+.knowledge-content{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px}
+.knowledge-content h3{font-family:var(--font-display);font-size:22px;font-weight:900;margin-bottom:20px;color:var(--accent2)}
+.knowledge-content h4{font-size:15px;font-weight:700;margin:20px 0 8px;color:var(--text)}
+.knowledge-content p,.knowledge-content li{font-size:14px;color:var(--text2);line-height:1.8}
+.knowledge-content ul{padding-left:20px;margin:8px 0}
+.knowledge-content li{margin:4px 0}
+.knowledge-content .formula{display:inline-block;padding:2px 8px;border-radius:4px;background:var(--bg3);color:var(--accent2);font-family:monospace;font-size:13px;margin:2px 0}
+
+/* ===== Quiz Section ===== */
+.quiz-controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.quiz-btn{padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .25s;border:1px solid var(--border);background:var(--bg2);color:var(--text2)}
+.quiz-btn:hover{border-color:rgba(245,158,11,.3);color:var(--accent2);box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.quiz-btn.primary{background:var(--accent);color:#000;border-color:var(--accent)}
+.quiz-btn.primary:hover{background:var(--accent2);box-shadow:0 4px 16px rgba(245,158,11,.3)}
+.quiz-chapter-select{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.quiz-chip{padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2);transition:all .2s}
+.quiz-chip:hover,.quiz-chip.active{background:var(--accent-glow);color:var(--accent2);border-color:rgba(245,158,11,.3)}
+.quiz-area{margin-top:16px}
+.quiz-progress{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.quiz-progress-bar{flex:1;height:6px;border-radius:3px;background:var(--bg3);overflow:hidden}
+.quiz-progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+.quiz-progress-text{font-size:12px;color:var(--text3);white-space:nowrap}
+.question-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-bottom:16px;animation:fadeUp .3s ease}
+.question-num{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:8px}
+.question-text{font-size:15px;font-weight:500;margin-bottom:16px;line-height:1.7}
+.question-options{display:flex;flex-direction:column;gap:8px}
+.option-btn{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-radius:10px;background:var(--bg3);border:1px solid var(--border2);cursor:pointer;transition:all .2s;text-align:left;font-size:14px;color:var(--text2)}
+.option-btn:hover{border-color:rgba(245,158,11,.2);background:var(--bg4)}
+.option-btn .opt-label{min-width:24px;height:24px;border-radius:6px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text3);flex-shrink:0}
+.option-btn.correct{background:var(--green-glow);border-color:rgba(16,185,129,.3)}
+.option-btn.correct .opt-label{background:var(--green);color:#fff}
+.option-btn.wrong{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.2)}
+.option-btn.wrong .opt-label{background:var(--red);color:#fff}
+.answer-reveal{margin-top:16px;padding:16px;border-radius:10px;background:var(--green-glow);border:1px solid rgba(16,185,129,.15);font-size:13px;color:var(--green2);line-height:1.8;display:none}
+.answer-reveal.show{display:block;animation:fadeUp .3s ease}
+.calc-answer{margin-top:16px;padding:20px;border-radius:10px;background:var(--blue-glow);border:1px solid rgba(59,130,246,.15);font-size:13px;color:var(--blue2);line-height:1.8;white-space:pre-wrap;display:none}
+.calc-answer.show{display:block;animation:fadeUp .3s ease}
+.calc-toggle{margin-top:12px;padding:8px 16px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--blue2);font-size:12px;cursor:pointer;transition:all .2s}
+.calc-toggle:hover{background:var(--blue-glow);border-color:rgba(59,130,246,.2)}
+.quiz-score{text-align:center;padding:40px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg)}
+.quiz-score .big{font-family:var(--font-display);font-size:64px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.quiz-score p{color:var(--text2);margin-top:8px}
+.qa-container{max-width:720px;margin:0 auto}
+.qa-input-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:20px}
+.qa-input-box textarea{width:100%;min-height:80px;border:1px solid var(--border);border-radius:10px;padding:12px;font-size:15px;background:var(--bg);color:var(--text);resize:vertical;line-height:1.6;font-family:inherit}
+.qa-input-box textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+.qa-input-box textarea::placeholder{color:var(--text3)}
+.qa-input-actions{display:flex;gap:10px;margin-top:12px;justify-content:flex-end}
+.qa-send-btn{padding:10px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;background:var(--accent);color:#000;border:none;transition:all .25s}
+.qa-send-btn:hover{background:var(--accent2);box-shadow:0 4px 16px rgba(245,158,11,.3)}
+.qa-send-btn:disabled{opacity:.5;cursor:not-allowed}
+.qa-clear-btn{padding:10px 16px;border-radius:10px;font-size:13px;cursor:pointer;background:var(--bg3);color:var(--text3);border:1px solid var(--border);transition:all .2s}
+.qa-clear-btn:hover{color:var(--text2);border-color:var(--text3)}
+.qa-history{display:flex;flex-direction:column;gap:16px}
+.qa-msg{border-radius:14px;padding:16px 20px;animation:fadeUp .3s ease;position:relative}
+.qa-msg-user{background:var(--accent-glow);border:1px solid rgba(245,158,11,.15);margin-left:40px}
+.qa-msg-ai{background:var(--bg2);border:1px solid var(--border);margin-right:40px}
+.qa-msg-label{font-size:11px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.qa-msg-user .qa-msg-label{color:var(--accent2)}
+.qa-msg-ai .qa-msg-label{color:var(--blue2)}
+.qa-msg-content{font-size:14px;line-height:1.8;color:var(--text)}
+.qa-msg-content .formula-inline{display:inline;background:rgba(245,158,11,.1);padding:2px 6px;border-radius:4px;font-style:italic;font-weight:600}
+.qa-typing{display:flex;align-items:center;gap:8px;padding:12px 16px;font-size:13px;color:var(--text3)}
+.qa-typing-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:qaBounce 1.2s infinite}
+.qa-typing-dot:nth-child(2){animation-delay:.2s}
+.qa-typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes qaBounce{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+.qa-suggestions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.qa-suggest-btn{padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text3);transition:all .2s}
+.qa-suggest-btn:hover{background:var(--accent-glow);color:var(--accent2);border-color:rgba(245,158,11,.3)}
+.summary-box{margin:16px 0;padding:16px 20px;border-radius:12px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15)}
+.summary-box h4{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:10px}
+.summary-box ul{margin:0;padding-left:20px}
+.summary-box li{font-size:13px;line-height:1.7;color:var(--text2)}
+.formula-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
+.formula-table th{background:rgba(245,158,11,.12);padding:8px 12px;text-align:left;font-weight:600;color:var(--accent2);border-bottom:2px solid rgba(245,158,11,.2)}
+.formula-table td{padding:7px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.formula-table tr:hover td{background:rgba(245,158,11,.04)}
+.tip-box{margin:12px 0;padding:12px 16px;border-radius:10px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);font-size:13px;color:var(--blue2);line-height:1.7}
+.warn-box{margin:12px 0;padding:12px 16px;border-radius:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);font-size:13px;color:var(--red2);line-height:1.7}
+
+/* ===== Video Section ===== */
+.video-platforms{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.platform-badge{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;background:var(--bg2);border:1px solid var(--border);font-size:13px;color:var(--text2);cursor:pointer;transition:all .2s}
+.platform-badge:hover,.platform-badge.active{border-color:rgba(245,158,11,.3);color:var(--accent2)}
+.platform-badge .dot{width:8px;height:8px;border-radius:50%}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.video-card{position:relative;overflow:hidden}
+.video-card .vid-chapter{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px}
+.video-card .vid-title{font-size:14px;font-weight:600;margin-bottom:8px;line-height:1.5}
+.video-card .vid-source{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:6px}
+.video-card .vid-desc{font-size:12px;color:var(--text2);margin-top:8px;line-height:1.6}
+.video-card .vid-link{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:12px;color:var(--blue2);text-decoration:none;transition:color .2s}
+.video-card .vid-link:hover{color:var(--accent2)}
+.mooc-section{margin-top:40px}
+.mooc-section h3{font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:16px}
+.mooc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.mooc-card{padding:16px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);transition:all .2s}
+.mooc-card:hover{border-color:rgba(245,158,11,.15)}
+.mooc-card .school{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.5px}
+.mooc-card .course{font-size:14px;font-weight:600;margin:4px 0}
+.mooc-card .platform{font-size:11px;color:var(--text3)}
+
+/* ===== Search ===== */
+.search-box{position:relative;margin-bottom:24px}
+.search-box input{width:100%;padding:14px 20px 14px 48px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:var(--font-body);outline:none;transition:all .2s}
+.search-box input:focus{border-color:rgba(245,158,11,.3);box-shadow:0 0 0 3px var(--accent-glow)}
+.search-box input::placeholder{color:var(--text3)}
+.search-box .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:16px}
+.fig-box{margin:12px 0 8px;padding:0;text-align:center}
+.fig-svg{max-width:100%;height:auto;border-radius:8px;display:block;margin:0 auto}
+.fig-caption{text-align:center;font-size:12px;color:var(--text3);margin-top:4px;padding-bottom:8px}
+.formula{display:inline;background:rgba(245,158,11,.1);padding:2px 6px;border-radius:4px;font-style:italic;font-weight:600}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .header-inner{flex-direction:column;gap:12px}
+  .nav-tabs{width:100%;justify-content:center}
+  .hero-stats{gap:24px}
+  .chapter-grid,.video-grid{grid-template-columns:1fr}
+  .mooc-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .mooc-grid{grid-template-columns:1fr}
+  .nav-tab{padding:8px 12px;font-size:12px}
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text3)}
+
+/* ===== Toast ===== */
+.toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:10px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:13px;z-index:200;transform:translateY(100px);opacity:0;transition:all .3s}
+.toast.show{transform:translateY(0);opacity:1}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">
+      <div class="logo-icon">电</div>
+      <div class="logo-text">
+        <h1>伺服电机课程智能体</h1>
+        <p>南京理工大学紫金学院 · 机器人工程</p>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="knowledge">📖 知识体系</button>
+      <button class="nav-tab" data-tab="quiz">📝 题库练习</button>
+      <button class="nav-tab" data-tab="qa">💡 问题解答</button>
+      <button class="nav-tab" data-tab="video">🎬 教学视频</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="hero">
+    <div class="hero-badge">⚡ 2026 春季学期</div>
+    <h2>掌握伺服电机，从原理到实践</h2>
+    <p>涵盖直流电机、变压器、交流绕组、异步电机、同步电机五大板块，助你系统学习、高效备考</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">5</div><div class="label">核心章节</div></div>
+      <div class="hero-stat"><div class="num">800+</div><div class="label">精选题目</div></div>
+      <div class="hero-stat"><div class="num">50+</div><div class="label">教学视频</div></div>
+      <div class="hero-stat"><div class="num">4</div><div class="label">精品课程</div></div>
+    </div>
+  </div>
+
+  <!-- ========== Knowledge Section ========== -->
+  <div class="section active" id="sec-knowledge">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="knowledge-search" placeholder="搜索知识点，如：转差率、换向、等效电路...">
+    </div>
+    <div class="chapter-grid" id="chapter-grid"></div>
+    <div class="knowledge-detail" id="knowledge-detail">
+      <button class="knowledge-back" id="knowledge-back">← 返回章节列表</button>
+      <div class="knowledge-content" id="knowledge-content"></div>
+    </div>
+  </div>
+
+  <!-- ========== Quiz Section ========== -->
+  <div class="section" id="sec-quiz">
+    <div class="quiz-chapter-select" id="quiz-chapters"></div>
+    <div class="quiz-controls">
+      <button class="quiz-btn primary" id="quiz-random">🎲 随机出题 (5题)</button>
+      <button class="quiz-btn" id="quiz-exam">📋 模拟考试 (15题)</button>
+      <button class="quiz-btn" id="quiz-reset">🔄 重置</button>
+    </div>
+    <div class="quiz-area" id="quiz-area">
+      <div style="text-align:center;padding:60px 20px;color:var(--text3)">
+        <div style="font-size:48px;margin-bottom:16px">📝</div>
+        <p style="font-size:16px;margin-bottom:8px">选择章节后点击出题</p>
+        <p style="font-size:13px">或直接点击「随机出题」开始练习</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Q&A Section ========== -->
+  <div class="section" id="sec-qa">
+    <div class="qa-container">
+      <div class="qa-input-box">
+        <textarea id="qa-input" placeholder="输入你的电机学问题，例如：直流电动机为什么不能空载运行？换向极的作用是什么？..."></textarea>
+        <div class="qa-input-actions">
+          <button class="qa-clear-btn" id="qa-clear">清空对话</button>
+          <button class="qa-send-btn" id="qa-send">💬 提问</button>
+        </div>
+      </div>
+      <div class="qa-suggestions">
+        <button class="qa-suggest-btn" data-q="直流电动机和直流发电机有什么区别？">直流电动机vs发电机</button>
+        <button class="qa-suggest-btn" data-q="变压器空载试验和短路试验分别测定什么参数？">空载/短路试验</button>
+        <button class="qa-suggest-btn" data-q="异步电动机为什么叫感应电机？转差率的意义是什么？">转差率意义</button>
+        <button class="qa-suggest-btn" data-q="同步发电机并网需要满足哪些条件？">并网条件</button>
+        <button class="qa-suggest-btn" data-q="交流绕组短距和分布的作用是什么？">短距/分布因数</button>
+        <button class="qa-suggest-btn" data-q="变压器V形曲线描述的是什么关系？">效率最大条件</button>
+      </div>
+      <div class="qa-history" id="qa-history">
+        <div style="text-align:center;padding:40px 20px;color:var(--text3)">
+          <div style="font-size:48px;margin-bottom:16px">💡</div>
+          <p style="font-size:16px;margin-bottom:8px">有问题？随时提问！</p>
+          <p style="font-size:13px">我会根据电机学知识库为你详细解答</p>
+          <p style="font-size:12px;margin-top:12px;color:var(--text3)">点击上方推荐问题快速开始，或直接输入你的疑问</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Video Section ========== -->
+  <div class="section" id="sec-video">
+    <div class="video-platforms" id="video-platforms"></div>
+    <div class="video-grid" id="video-grid"></div>
+    <div class="mooc-section">
+      <h3>🏛️ 国家级精品课程</h3>
+      <div class="mooc-grid" id="mooc-grid"></div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+const chapters = [
+  {
+    id:'dc', num:'第一章', title:'直流电机', color:'#f59e0b',
+    topics:['工作原理','基本结构','运行特性','起动与调速','制动','换向','电枢反应','绕组'],
+    content:`
+      <h3>一、直流电机</h3>
+      <h4>1.1 工作原理</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 180" class="fig-svg"><rect x="10" y="10" width="300" height="160" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><rect x="80" y="50" width="60" height="80" rx="4" fill="#fbbf24" stroke="#92400e" stroke-width="2"/><text x="110" y="95" text-anchor="middle" fill="#92400e" font-size="14" font-weight="bold">N</text><rect x="180" y="50" width="60" height="80" rx="4" fill="#60a5fa" stroke="#1e40af" stroke-width="2"/><text x="210" y="95" text-anchor="middle" fill="#1e40af" font-size="14" font-weight="bold">S</text><circle cx="155" cy="90" r="25" fill="#f8fafc" stroke="#374151" stroke-width="2"/><line x1="155" y1="65" x2="155" y2="115" stroke="#374151" stroke-width="1.5"/><line x1="130" y1="90" x2="180" y2="90" stroke="#374151" stroke-width="1.5"/><circle cx="145" cy="80" r="4" fill="#ef4444"/><circle cx="165" cy="100" r="4" fill="#3b82f6"/><text x="120" y="30" fill="#92400e" font-size="11">主磁极</text><text x="195" y="30" fill="#1e40af" font-size="11">主磁极</text><text x="155" y="155" text-anchor="middle" fill="#374151" font-size="11">电枢绕组</text><path d="M 145 80 Q 155 70 165 100" stroke="#ef4444" stroke-width="1.5" fill="none" marker-end="url(#arr)"/><defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#ef4444"/></marker></defs><text x="155" y="165" text-anchor="middle" fill="#78350f" font-size="10">直流电机基本结构示意</text></svg>
+      </div>
+      <ul>
+        <li>基本结构：定子（主磁极、换向极、机座、电刷装置）、转子（电枢铁心、电枢绕组、换向器、转轴）</li>
+        <li>直流发电机：导体在磁场中运动产生感应电动势，换向器将交流电动势转换为直流输出</li>
+        <li>直流电动机：载流导体在磁场中受电磁力产生转矩，换向器将外施直流电转换为电枢绕组中的交流电</li>
+        <li>感应电动势公式：<span class="formula">E = CₑΦn</span>（Cₑ为电动势常数，Φ为每极磁通，n为转速）</li>
+        <li>电磁转矩公式：<span class="formula">T = CₜΦIₐ</span>（Cₜ为转矩常数，Iₐ为电枢电流）</li>
+        <li>Cₑ与Cₜ的关系：<span class="formula">Cₜ = 9.55Cₑ</span></li>
+        <li>电动势方向由右手定则确定，电磁力方向由左手定则确定</li>
+      </ul>
+      <h4>1.2 电枢绕组</h4>
+      <ul>
+        <li>叠绕组：并联支路数 <span class="formula">a = p</span>（等于磁极数），适用于大电流电机</li>
+        <li>单波绕组：并联支路数 <span class="formula">a = 1</span>（恒为2条支路），适用于高电压电机</li>
+        <li>复波绕组：并联支路数 <span class="formula">a = m</span>（m为复波系数）</li>
+        <li>叠绕组节距：第一节距y₁≈τ（接近极距），合成节距y=1</li>
+        <li>波绕组节距：第一节距y₁≈τ，合成节距y=(Z±m)/p</li>
+      </ul>
+      <h4>1.3 电枢反应</h4>
+      <ul>
+        <li>电枢反应：电枢磁动势对主磁场的影响</li>
+        <li>交轴电枢反应：使主磁场发生畸变（前极尖减弱、后极尖增强），物理中性线偏移</li>
+        <li>直轴电枢反应：电刷偏离几何中性线时产生，增磁或去磁效应</li>
+        <li>电枢反应后果：①换向恶化（片间电压升高）；②磁通畸变可能导致环火</li>
+        <li>补偿措施：装设补偿绕组（嵌在主磁极极靴槽中）</li>
+      </ul>
+      <h4>1.4 运行特性</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 200" class="fig-svg"><rect x="10" y="10" width="300" height="180" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><line x1="40" y1="160" x2="280" y2="160" stroke="#374151" stroke-width="2"/><line x1="40" y1="160" x2="40" y2="30" stroke="#374151" stroke-width="2"/><text x="160" y="178" text-anchor="middle" fill="#374151" font-size="12">转矩 T</text><text x="25" y="95" text-anchor="middle" fill="#374151" font-size="12" transform="rotate(-90,25,95)">转速 n</text><line x1="40" y1="35" x2="280" y2="155" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="none"/><line x1="40" y1="35" x2="180" y2="140" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,3"/><line x1="40" y1="35" x2="280" y2="35" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,4"/><text x="200" y="148" fill="#f59e0b" font-size="11" font-weight="bold">他励/并励</text><text x="100" y="150" fill="#ef4444" font-size="11" font-weight="bold">串励</text><text x="170" y="45" fill="#3b82f6" font-size="10">n₀ 理想空载</text><circle cx="40" cy="35" r="3" fill="#3b82f6"/><circle cx="140" cy="90" r="4" fill="#10b981"/><text x="150" y="85" fill="#10b981" font-size="10">额定</text><text x="15" y="35" fill="#374151" font-size="10">n₀</text><text x="280" y="170" fill="#374151" font-size="10">TN</text><text x="290" y="148" fill="#78350f" font-size="10">直流电动机机械特性曲线</text></svg>
+      </div>
+      <ul>
+        <li><strong>发电机运行特性</strong>：</li>
+        <li>他励发电机空载特性：U₀=f(If)，反映磁路饱和情况</li>
+        <li>他励发电机外特性：U=f(I)，负载增大→电枢压降增大→端电压下降</li>
+        <li>并励发电机自励三条件：①有剩磁 ②励磁绕组接线正确 ③励磁回路电阻小于临界值Rf<Rcr</li>
+        <li>复励发电机：积复励（串励与并励同向→助磁）、差复励（反向→去磁）</li>
+        <li><strong>电动机机械特性</strong>：</li>
+        <li>他励/并励：硬特性 <span class="formula">n = U/(CₑΦ) - Rₐ·T/(CₑCₜΦ²)</span></li>
+        <li>串励：软特性，转速随负载急剧下降，<strong>严禁空载运行</strong>（飞车危险）</li>
+        <li>复励：介于并励与串励之间</li>
+        <li>理想空载转速：<span class="formula">n₀ = U/(CₑΦ)</span></li>
+        <li>机械特性斜率：<span class="formula">Δn = Rₐ/(CₑCₜΦ²)</span>，与电枢电阻成正比</li>
+      </ul>
+      <h4>1.5 起动与调速</h4>
+      <ul>
+        <li><strong>起动问题</strong>：起动时n=0→E=0→Iₐ=U/Rₐ，起动电流可达5~7倍额定</li>
+        <li>起动方法：①直接起动（仅限小容量）；②电枢串电阻起动；③降压起动（平滑、效率高）</li>
+        <li><strong>调速方法</strong>：</li>
+        <li>电枢串电阻调速：向下调速，电阻上有铜损，效率低，轻载时调速范围小</li>
+        <li>改变电枢电压调速：向下调速，效率高，平滑无级，调速范围宽</li>
+        <li>弱磁调速：向上调速（Φ减小→n₀升高），效率高，在励磁回路调节功率小</li>
+        <li>三种调速比较：降压调速最理想，弱磁调速常配合降压调速实现双向调速</li>
+      </ul>
+      <h4>1.6 制动</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 160" class="fig-svg"><rect x="10" y="10" width="300" height="140" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><rect x="20" y="30" width="90" height="100" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><rect x="120" y="30" width="90" height="100" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><rect x="220" y="30" width="90" height="100" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/><text x="65" y="55" text-anchor="middle" fill="#92400e" font-size="11" font-weight="bold">能耗制动</text><text x="65" y="75" text-anchor="middle" fill="#78350f" font-size="10">断开电源</text><text x="65" y="90" text-anchor="middle" fill="#78350f" font-size="10">串电阻耗能</text><text x="65" y="105" text-anchor="middle" fill="#78350f" font-size="10">动能→热能</text><text x="165" y="55" text-anchor="middle" fill="#991b1b" font-size="11" font-weight="bold">反接制动</text><text x="165" y="75" text-anchor="middle" fill="#7f1d1d" font-size="10">电压反接</text><text x="165" y="90" text-anchor="middle" fill="#7f1d1d" font-size="10">制动转矩最大</text><text x="165" y="105" text-anchor="middle" fill="#7f1d1d" font-size="10">损耗最大</text><text x="265" y="55" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="bold">回馈制动</text><text x="265" y="75" text-anchor="middle" fill="#1e3a8a" font-size="10">n>n₀</text><text x="265" y="90" text-anchor="middle" fill="#1e3a8a" font-size="10">回馈电网</text><text x="265" y="105" text-anchor="middle" fill="#1e3a8a" font-size="10">最经济</text><text x="160" y="148" text-anchor="middle" fill="#374151" font-size="10">直流电动机三种制动方式对比</text></svg>
+      </div>
+      <ul>
+        <li><strong>能耗制动</strong>：电枢从电源断开并串电阻，电机作发电机，动能→电能消耗在电阻上</li>
+        <li><strong>反接制动</strong>：将电枢电压反接，制动转矩最大，必须电枢串限流电阻</li>
+        <li><strong>回馈制动</strong>：电机转速超过理想空载转速（n>n₀），E>U，向电网回馈电能</li>
+        <li>回馈制动常用于电车下坡限速</li>
+        <li>三种制动比较：反接制动转矩最大但能量损耗大；回馈制动最经济</li>
+      </ul>
+      <h4>1.7 换向</h4>
+      <ul>
+        <li>换向定义：被电刷短路的换向元件中电流方向变化的过程</li>
+        <li>换向不良原因：电磁原因（电抗电动势阻碍电流变化）、机械原因、电位原因</li>
+        <li>火花等级：1级（无火花）→2级（微弱火花）→3级（明显火花）→4级（强烈火花）→5级（危险火花）</li>
+        <li>改善换向方法：①装设换向极（最常用，绕组与电枢串联）；②移动电刷；③选用合适电刷</li>
+        <li>换向极极性（电动机）：与顺着转向前方的主磁极极性相同</li>
+        <li>环火：负载突变时片间电压过高→飞弧连成环火，补偿绕组是防止环火的有效措施</li>
+      </ul>
+      <div class="summary-box">
+        <h4>⚡ 直流电机核心公式速查</h4>
+        <table class="formula-table"><tr><th>公式</th><th>含义</th></tr>
+        <tr><td>E = CₑΦn</td><td>感应电动势（发电机E>U，电动机E<U）</td></tr>
+        <tr><td>T = CₜΦIₐ</td><td>电磁转矩</td></tr>
+        <tr><td>Cₜ = 9.55Cₑ</td><td>两个常数的关系</td></tr>
+        <tr><td>n = U/(CₑΦ) - RaT/(CₑCₜΦ²)</td><td>他励电动机机械特性</td></tr>
+        <tr><td>n₀ = U/(CₑΦ)</td><td>理想空载转速</td></tr>
+        <tr><td>Iₐ = (U-E)/Ra</td><td>电枢电流（电动机）</td></tr>
+        </table>
+      </div>
+      <div class="summary-box">
+        <h4>📌 关键结论</h4>
+        <ul>
+          <li><strong>可逆性</strong>：同一台直流电机既可作电动机也可作发电机运行</li>
+          <li><strong>电动机E<U</strong>：感应电动势是反电动势，阻碍电流</li>
+          <li><strong>发电机E>U</strong>：感应电动势是源电动势，驱动电流</li>
+          <li><strong>串励严禁空载</strong>：空载时Φ极小→n₀极高→飞车危险</li>
+          <li><strong>降压调速最优</strong>：效率高、平滑、范围宽</li>
+          <li><strong>串电阻调速最差</strong>：效率低、特性变软、轻载调速范围小</li>
+          <li><strong>换向极与电枢串联</strong>：随负载自动调节换向磁场强度</li>
+          <li><strong>回馈制动最经济</strong>：电能回馈电网而非消耗</li>
+        </ul>
+      </div>`
+  },
+  {
+    id:'transformer', num:'第二章', title:'变压器', color:'#3b82f6',
+    topics:['原理与结构','空载运行','负载运行','等效电路','参数测定','运行特性','三相变压器','连接组别','并联运行','特殊变压器'],
+    content:`
+      <h3>二、变压器</h3>
+      <h4>2.1 原理与结构</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 180" class="fig-svg"><rect x="10" y="10" width="300" height="160" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/><rect x="60" y="40" width="200" height="100" rx="6" fill="#bfdbfe" stroke="#1e40af" stroke-width="2"/><rect x="75" y="50" width="50" height="80" rx="4" fill="#93c5fd" stroke="#1e40af" stroke-width="1.5"/><rect x="195" y="50" width="50" height="80" rx="4" fill="#93c5fd" stroke="#1e40af" stroke-width="1.5"/><path d="M 80 55 Q 100 55 100 65 Q 100 75 80 75 Q 100 75 100 85 Q 100 95 80 95 Q 100 95 100 105 Q 100 115 80 115 Q 100 115 125 115" stroke="#1e40af" stroke-width="1.2" fill="none"/><path d="M 200 55 Q 220 55 220 65 Q 220 75 200 75 Q 220 75 220 85 Q 220 95 200 95 Q 220 95 220 105 Q 220 115 200 115 Q 220 115 245 115" stroke="#1e40af" stroke-width="1.2" fill="none"/><text x="100" y="30" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="bold">一次绕组 N₁</text><text x="220" y="30" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="bold">二次绕组 N₂</text><text x="160" y="145" text-anchor="middle" fill="#1e3a8a" font-size="10">铁心</text><line x1="20" y1="80" x2="75" y2="80" stroke="#ef4444" stroke-width="2"/><line x1="245" y1="80" x2="310" y2="80" stroke="#10b981" stroke-width="2"/><text x="25" y="75" fill="#ef4444" font-size="10">U₁</text><text x="275" y="75" fill="#10b981" font-size="10">U₂</text><text x="160" y="165" text-anchor="middle" fill="#1e3a8a" font-size="10">变压器基本结构示意</text></svg>
+      </div>
+      <ul>
+        <li>基本结构：铁心（心式/壳式）、绕组（高压绕组在外、低压绕组在内，同心式排列绝缘方便）</li>
+        <li>铁心采用硅钢片叠装：电阻率高减小涡流损耗，磁导率高减小励磁电流</li>
+        <li>工作原理基于电磁感应定律，交变磁通在原副边绕组中产生感应电动势</li>
+        <li>电压比等于匝数比：<span class="formula">U₁/U₂ ≈ E₁/E₂ = N₁/N₂ = k</span></li>
+        <li>变压器只改变电压和电流大小，不改变频率</li>
+        <li>铁心磁通密度通常取1.4~1.7T（热轧1.4~1.45T，冷轧1.6~1.7T）</li>
+      </ul>
+      <h4>2.2 空载运行</h4>
+      <ul>
+        <li>空载电流 <span class="formula">I₀ = I₀ᵣ + I₀ₐ</span>（励磁分量+铁损分量）</li>
+        <li>励磁分量远大于铁损分量，空载电流主要是无功电流</li>
+        <li>空载电流占额定电流的比例：小型5%~10%，大型1%~2%</li>
+        <li>空载损耗主要为铁损（pFe），空载时电流很小铜损可忽略</li>
+        <li>空载合闸可能产生励磁涌流（可达5~8倍额定电流），因铁心磁通暂态过程</li>
+        <li>主磁通基本不变：<span class="formula">U₁ ≈ E₁ = 4.44fN₁Φ</span>，电压不变则Φ基本不变</li>
+      </ul>
+      <h4>2.3 负载运行与等效电路</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 140" class="fig-svg"><rect x="10" y="10" width="300" height="120" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><line x1="20" y1="70" x2="60" y2="70" stroke="#374151" stroke-width="2"/><line x1="60" y1="70" x2="160" y2="70" stroke="#374151" stroke-width="2"/><line x1="160" y1="70" x2="260" y2="70" stroke="#374151" stroke-width="2"/><line x1="260" y1="70" x2="300" y2="70" stroke="#374151" stroke-width="2"/><rect x="70" y="60" width="40" height="20" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="90" y="75" text-anchor="middle" fill="#92400e" font-size="9" font-weight="bold">R₁+jX₁</text><line x1="160" y1="30" x2="160" y2="70" stroke="#3b82f6" stroke-width="1.5"/><rect x="155" y="25" width="10" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/><text x="165" y="20" fill="#1e40af" font-size="9">Rm</text><rect x="175" y="25" width="10" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/><text x="185" y="20" fill="#1e40af" font-size="9">jXm</text><line x1="170" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="1.5"/><rect x="190" y="60" width="40" height="20" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="210" y="75" text-anchor="middle" fill="#92400e" font-size="9" font-weight="bold">R₂'+jX₂'</text><circle cx="20" cy="70" r="6" fill="#f1f5f9" stroke="#374151" stroke-width="2"/><circle cx="300" cy="70" r="6" fill="#f1f5f9" stroke="#374151" stroke-width="2"/><line x1="300" y1="70" x2="300" y2="100" stroke="#374151" stroke-width="1.5"/><line x1="280" y1="100" x2="320" y2="100" stroke="#374151" stroke-width="1.5"/><text x="290" y="95" fill="#374151" font-size="9">ZL'</text><text x="10" y="55" fill="#ef4444" font-size="10">U₁</text><text x="160" y="118" text-anchor="middle" fill="#374151" font-size="10">变压器T形等效电路</text></svg>
+      </div>
+      <ul>
+        <li>磁动势平衡：<span class="formula">N₁Ī₁ + N₂Ī₂ = N₁ī₀</span>，即 F₁+F₂=F₀</li>
+        <li>负载运行时一次侧电流由负载大小决定</li>
+        <li>T形等效电路：励磁支路（Rm+jXm）+ 一次侧（R₁+jX₁）+ 二次侧（R₂'+jX₂'）</li>
+        <li>Γ形近似等效电路：将励磁支路移到一次侧端，简化计算</li>
+        <li>简化等效电路：忽略励磁支路，仅保留串联阻抗</li>
+        <li>励磁电抗Xm反映铁心磁导率，Xm正比于磁导率</li>
+        <li>短路电抗Xk反映漏磁大小，Xk大则漏磁多</li>
+      </ul>
+      <h4>2.4 参数测定</h4>
+      <ul>
+        <li><strong>空载试验</strong>（低压侧加额定电压，高压侧开路）：</li>
+        <li>测定：铁损pFe、励磁阻抗Zm=Rm+jXm</li>
+        <li>计算：<span class="formula">Zm=U₀/I₀, Rm=p₀/I₀², Xm=√(Zm²-Rm²)</span></li>
+        <li><strong>短路试验</strong>（高压侧加低电压达额定电流，低压侧短路）：</li>
+        <li>测定：额定铜损pkN、短路阻抗Zk=Rk+jXk</li>
+        <li>计算：<span class="formula">Zk=Uk/Ik, Rk=pk/Ik², Xk=√(Zk²-Rk²)</span></li>
+        <li>短路阻抗标幺值一般0.05~0.15</li>
+      </ul>
+      <h4>2.5 运行特性</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 180" class="fig-svg"><rect x="10" y="10" width="300" height="160" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><line x1="40" y1="160" x2="280" y2="160" stroke="#374151" stroke-width="2"/><line x1="40" y1="160" x2="40" y2="25" stroke="#374151" stroke-width="2"/><text x="160" y="178" text-anchor="middle" fill="#374151" font-size="12">负载系数 β</text><text x="25" y="95" text-anchor="middle" fill="#374151" font-size="12" transform="rotate(-90,25,95)">η (%)</text><path d="M 40 155 Q 120 40 160 32 Q 200 40 280 155" stroke="#3b82f6" stroke-width="2.5" fill="none"/><circle cx="160" cy="32" r="4" fill="#ef4444"/><text x="160" y="25" text-anchor="middle" fill="#ef4444" font-size="10">ηmax</text><line x1="160" y1="32" x2="160" y2="160" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/><text x="155" y="168" fill="#ef4444" font-size="10">βm</text><path d="M 40 155 L 280 155" stroke="#92400e" stroke-width="1.5" stroke-dasharray="6,4"/><text x="160" y="150" text-anchor="middle" fill="#92400e" font-size="9">pFe (不变损耗)</text><path d="M 40 155 Q 160 110 280 60" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="6,4"/><text x="200" y="75" fill="#1e40af" font-size="9">β²pkN (可变损耗)</text><text x="160" y="155" text-anchor="middle" fill="#374151" font-size="10">变压器效率曲线 η=f(β)</text></svg>
+      </div>
+      <ul>
+        <li><strong>电压变化率</strong>：<span class="formula">ΔU% = (U₂₀ - U₂)/U₂N × 100%</span></li>
+        <li>ΔU%与负载性质、大小及短路阻抗均有关</li>
+        <li>满载时电压变化率一般为-5%~-10%（ΔU%为正表示二次电压降低）</li>
+        <li><strong>效率</strong>：<span class="formula">η = P₂/(P₂ + pFe + β²pkN) × 100%</span></li>
+        <li>效率最大条件：<strong>可变损耗 = 不变损耗</strong>，即 β²pkN = p₀</li>
+        <li>效率最大时的负载系数：<span class="formula">βm = √(p₀/pkN)</span></li>
+        <li>大容量变压器效率可达95%~98%</li>
+        <li>额定电压下铁损基本不变（不变损耗），铜损∝β²（可变损耗）</li>
+      </ul>
+      <h4>2.6 三相变压器</h4>
+      <ul>
+        <li><strong>磁路系统</strong>：</li>
+        <li>组式结构：三个独立的单相变压器铁心，三相磁路各自独立</li>
+        <li>心式结构：三相磁路共用铁心，中间相磁路较短（不完全对称）</li>
+        <li><strong>连接组别</strong>（钟面表示法）：</li>
+        <li>Y,y0（钟面0）：高低压线电动势同相</li>
+        <li>Y,d11（钟面11）：低压线电动势落后高压330°</li>
+        <li>D,yn11：高压Δ接、低压Y接有中性线引出</li>
+        <li>连接组别由绕组连接方式（Y/Δ）和端子标记决定</li>
+        <li>高压侧任一相接反→低压侧相序反转</li>
+      </ul>
+      <h4>2.7 并联运行</h4>
+      <ul>
+        <li>理想并联三条件：①变比相同 ②连接组别相同 ③短路阻抗标幺值相同</li>
+        <li>变比不等→空载二次电压不等→产生环流</li>
+        <li>连接组别不同→空载时二次电压相位不同→产生环流（最严重）</li>
+        <li>各台分担负载与短路阻抗标幺值成反比</li>
+        <li>阻抗角φk不同→有功无功比例不同→负载分配不合理</li>
+        <li>容量差别不宜过大</li>
+      </ul>
+      <h4>2.8 特殊变压器</h4>
+      <ul>
+        <li><strong>自耦变压器</strong>：有传导容量（直接传导），容量=电磁容量+传导容量，省材高效</li>
+        <li>自耦变压器的电磁容量仅为总容量的(1-1/k)部分</li>
+        <li><strong>电流互感器</strong>：二次侧<strong>严禁开路</strong>（开路→铁心磁通剧增→感应高压→危及安全）</li>
+        <li>正常运行时二次侧近似短路（接阻抗很小的电流表）</li>
+        <li><strong>电压互感器</strong>：二次侧<strong>严禁短路</strong>（短路→电流过大→绕组过热烧毁）</li>
+        <li>正常运行时二次侧近似开路（接阻抗很大的电压表）</li>
+        <li><strong>变压器油</strong>：同时起绝缘和散热双重作用</li>
+        <li>干式变压器：不用油，防火性能好</li>
+        <li>分接开关：改变高压绕组匝数→改变变比→调压</li>
+        <li>变压器温升=绕组温度-环境温度；温度每升10℃绝缘寿命减半</li>
+      </ul>
+      <div class="warn-box">⚠️ <strong>互感器安全必记</strong>：电流互感器二次侧严禁开路！电压互感器二次侧严禁短路！这是变压器实验中最重要的安全规范。</div>
+      <div class="summary-box">
+        <h4>⚡ 变压器核心公式速查</h4>
+        <table class="formula-table"><tr><th>公式</th><th>含义</th></tr>
+        <tr><td>U₁/U₂ ≈ N₁/N₂ = k</td><td>变比（电压比=匝数比）</td></tr>
+        <tr><td>I₁/I₂ ≈ N₂/N₁ = 1/k</td><td>电流比（与匝数比成反比）</td></tr>
+        <tr><td>F₁+F₂=F₀</td><td>磁动势平衡</td></tr>
+        <tr><td>ΔU% = (U₂₀-U₂)/U₂N × 100%</td><td>电压变化率</td></tr>
+        <tr><td>η = P₂/(P₂+p₀+β²pkN)</td><td>效率公式</td></tr>
+        <tr><td>βm = √(p₀/pkN)</td><td>最大效率时的负载系数</td></tr>
+        <tr><td>pCu₂=β²pkN</td><td>实际铜损</td></tr>
+        </table>
+      </div>
+      <div class="summary-box">
+        <h4>📌 关键结论</h4>
+        <ul>
+          <li><strong>主磁通不变原理</strong>：U₁不变→E₁≈U₁=4.44fNΦ→Φ基本不变（这是变压器分析的基础）</li>
+          <li><strong>效率最大条件</strong>：可变损耗=不变损耗，即β²pkN=p₀</li>
+          <li><strong>铁损是不变损耗</strong>：额定电压下铁损基本不变</li>
+          <li><strong>铜损是可变损耗</strong>：pCu=β²pkN，与负载系数平方成正比</li>
+          <li><strong>空载试验在低压侧</strong>：加额定电压更安全</li>
+          <li><strong>短路试验在高压侧</strong>：加低电压即可达额定电流</li>
+          <li><strong>并联运行负载分配</strong>：各台分担负载与短路阻抗标幺值成反比</li>
+          <li><strong>励磁涌流</strong>：空载合闸可达5~8倍额定（铁心磁通暂态饱和）</li>
+        </ul>
+      </div>`
+  },
+  {
+    id:'winding', num:'第三章', title:'交流绕组', color:'#10b981',
+    topics:['绕组术语','绕组类型','短距与分布因数','感应电动势','磁动势','谐波削弱'],
+    content:`
+      <h3>三、交流电机理论的共同问题</h3>
+      <h4>3.1 交流绕组基本术语</h4>
+      <ul>
+        <li>极距 <span class="formula">τ = Z/(2p)</span>（每个磁极下所占槽数）</li>
+        <li>节距 y：线圈两有效边跨过的槽数，整距y=τ，短距y<τ</li>
+        <li>每极每相槽数 <span class="formula">q = Z/(2pm)</span>（m为相数）</li>
+        <li>槽距角 <span class="formula">α = 360°p/Z</span>（电角度）</li>
+        <li>相带：每相在一极下所占的角度，60°相带最常用</li>
+        <li>并联支路数：单层绕组最大a=p，双层绕组最大a=2p</li>
+      </ul>
+      <h4>3.2 绕组类型</h4>
+      <ul>
+        <li><strong>单层绕组</strong>：每个槽内只放一个线圈边</li>
+        <li>等距式、同心式、链式</li>
+        <li>优点：槽满率高；缺点：不能选择短距削弱谐波</li>
+        <li><strong>双层绕组</strong>：每个槽内放上下两个线圈边</li>
+        <li>叠绕组（y=1，并联支路多）、波绕组（合成节距大，串联元件多）</li>
+        <li>优点：可选短距改善波形、端部排列整齐</li>
+      </ul>
+      <h4>3.3 短距因数与分布因数</h4>
+      <ul>
+        <li><strong>短距因数</strong> <span class="formula">kₚ₁ = sin(yα/2) ≤ 1</span></li>
+        <li>物理意义：短距绕组电动势与整距绕组电动势之比</li>
+        <li>整距时 kₚ₁ = 1，短距时 kₚ₁ < 1</li>
+        <li><strong>分布因数</strong> <span class="formula">kₐ₁ = sin(qα/2) / (q·sin(α/2)) ≤ 1</span></li>
+        <li>物理意义：分布绕组电动势与集中绕组电动势之比</li>
+        <li>集中绕组(q=1)时 kₐ₁ = 1</li>
+        <li><strong>绕组因数</strong> <span class="formula">kN₁ = kₚ₁ × kₐ₁</span>（乘积而非求和）</li>
+        <li><strong>谐波削弱</strong>：</li>
+        <li>短距可削弱谐波：消除ν次谐波取 <span class="formula">y = (ν-1)τ/ν</span></li>
+        <li>消除5次谐波取y=4τ/5；同时削弱5次7次取y=5τ/6</li>
+        <li>分布绕组也可削弱谐波，q越大削弱效果越好</li>
+      </ul>
+      <h4>3.4 感应电动势</h4>
+      <ul>
+        <li>相电动势：<span class="formula">Eφ₁ = 4.44fNΦ₁kN₁</span></li>
+        <li>线电动势：Y接 <span class="formula">EL = √3Eφ</span>；Δ接 <span class="formula">EL = Eφ</span></li>
+        <li>E与f成正比，与N成正比，与Φ成正比</li>
+        <li>频率f由转速和极对数决定：<span class="formula">f = pn/60</span></li>
+      </ul>
+      <h4>3.5 磁动势</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 180" class="fig-svg"><rect x="10" y="10" width="300" height="160" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><circle cx="160" cy="90" r="60" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><circle cx="160" cy="90" r="5" fill="#374151"/><line x1="160" y1="90" x2="215" y2="45" stroke="#ef4444" stroke-width="3" marker-end="url(#arr2)"/><defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#ef4444"/></marker></defs><text x="220" y="40" fill="#ef4444" font-size="11" font-weight="bold">F₁</text><rect x="85" y="75" width="30" height="15" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="100" y="85" text-anchor="middle" fill="#92400e" font-size="8">A</text><rect x="175" y="75" width="30" height="15" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/><text x="190" y="85" text-anchor="middle" fill="#1e40af" font-size="8">B</text><rect x="130" y="140" width="30" height="15" rx="3" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/><text x="145" y="150" text-anchor="middle" fill="#065f46" font-size="8">C</text><path d="M 215 45 A 60 60 0 1 1 160 30" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr2)"/><text x="160" y="172" text-anchor="middle" fill="#374151" font-size="10">三相旋转磁动势示意（逆时针旋转）</text></svg>
+      </div>
+      <ul>
+        <li><strong>单相绕组磁动势</strong>：脉振磁动势</li>
+        <li>幅值 <span class="formula">Fφ₁ = (4/π)·(N·kw₁/2p)·I</span></li>
+        <li>空间固定位置按时间脉振（幅值随电流变化）</li>
+        <li><strong>脉振磁动势分解定理</strong>：一个脉振磁动势可分解为两个幅值相等、转向相反的旋转磁动势</li>
+        <li><strong>三相绕组磁动势</strong>：圆形旋转磁动势</li>
+        <li>幅值 <span class="formula">F₁ = (3/2)Fφ₁</span>（1.5倍单相幅值）</li>
+        <li>条件：三相对称绕组通三对称电流</li>
+        <li>不对称电流→椭圆形旋转磁动势</li>
+        <li><strong>同步转速</strong>：<span class="formula">n₁ = 60f/p</span></li>
+        <li>旋转方向：从超前相转向滞后相；对调任意两相电源线→转向反转</li>
+        <li>2极50Hz→3000r/min；4极50Hz→1500r/min；6极50Hz→1000r/min；8极50Hz→750r/min</li>
+      </ul>
+      <div class="tip-box">💡 <strong>易混淆点</strong>：槽距角α=360°p/Z是<strong>电角度</strong>，不是机械角度！机械角度=360/Z。电角度=机械角度×p。极距τ=Z/(2p)是<strong>槽数</strong>，不是角度。绕组因数kN₁=kₚ₁<strong>×</strong>kₐ₁（乘积，不是求和！）</div>
+      <div class="summary-box">
+        <h4>⚡ 交流绕组核心公式速查</h4>
+        <table class="formula-table"><tr><th>公式</th><th>含义</th></tr>
+        <tr><td>τ = Z/(2p)</td><td>极距（槽数）</td></tr>
+        <tr><td>q = Z/(2pm)</td><td>每极每相槽数</td></tr>
+        <tr><td>α = 360°p/Z</td><td>槽距角（电角度）</td></tr>
+        <tr><td>kₚ₁ = sin(yα/2)</td><td>短距因数（≤1）</td></tr>
+        <tr><td>kₐ₁ = sin(qα/2)/(q·sin(α/2))</td><td>分布因数（≤1）</td></tr>
+        <tr><td>kN₁ = kₚ₁ × kₐ₁</td><td>绕组因数（乘积！）</td></tr>
+        <tr><td>Eφ₁ = 4.44fNΦ₁kN₁</td><td>相电动势</td></tr>
+        <tr><td>F₁ = (3/2)Fφ₁</td><td>三相旋转磁动势幅值</td></tr>
+        <tr><td>n₁ = 60f/p</td><td>同步转速</td></tr>
+        </table>
+      </div>
+      <div class="summary-box">
+        <h4>📌 关键结论</h4>
+        <ul>
+          <li><strong>kN₁=kₚ₁×kₐ₁</strong>：绕组因数是乘积，不是求和</li>
+          <li><strong>短距削弱谐波</strong>：消除ν次谐波取y=(ν-1)τ/ν；同时削弱5次7次取y=5τ/6</li>
+          <li><strong>脉振=2×旋转</strong>：脉振磁动势=2个等幅反向旋转磁动势之和</li>
+          <li><strong>三相F₁=1.5Fφ₁</strong>：旋转磁动势幅值是单相脉振幅值的1.5倍</li>
+          <li><strong>相序决定转向</strong>：对调任意两相电源线→旋转方向反转</li>
+        </ul>
+      </div>`
+  },
+  {
+    id:'async', num:'第四章', title:'异步电机', color:'#a855f7',
+    topics:['工作原理','转差率','等效电路','功率与转矩','机械特性','起动','调速','制动','单相异步电机'],
+    content:`
+      <h3>四、异步电机（感应电机）</h3>
+      <h4>4.1 工作原理</h4>
+      <ul>
+        <li>旋转磁场切割转子导体→感应电流→电磁转矩→转子旋转</li>
+        <li>转子电流由电磁感应产生，故又称感应电机</li>
+        <li>转子转速始终低于同步转速（否则无感应电动势），这是异步电机的基本特点</li>
+        <li><strong>转差率</strong>：<span class="formula">s = (n₁ - n)/n₁</span></li>
+        <li>起动时s=1；理想空载时s=0；额定运行时s≈0.01~0.05</li>
+        <li>回馈制动时s<0（n>n₁）；反接制动时s>1</li>
+        <li>转子频率：<span class="formula">f₂ = sf₁</span>，额定时f₂≈0.5~2.5Hz</li>
+      </ul>
+      <h4>4.2 等效电路</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 140" class="fig-svg"><rect x="10" y="10" width="300" height="120" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><line x1="20" y1="70" x2="300" y2="70" stroke="#374151" stroke-width="2"/><rect x="30" y="60" width="50" height="20" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="55" y="74" text-anchor="middle" fill="#92400e" font-size="9" font-weight="bold">R₁+jX₁</text><line x1="90" y1="30" x2="90" y2="70" stroke="#3b82f6" stroke-width="1.5"/><rect x="85" y="25" width="10" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/><text x="95" y="20" fill="#1e40af" font-size="9">Rm</text><rect x="105" y="25" width="10" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/><text x="115" y="20" fill="#1e40af" font-size="9">jXm</text><line x1="100" y1="30" x2="120" y2="30" stroke="#3b82f6" stroke-width="1.5"/><rect x="140" y="60" width="50" height="20" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="165" y="74" text-anchor="middle" fill="#92400e" font-size="9" font-weight="bold">R₂'+jX₂'</text><rect x="210" y="60" width="50" height="20" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/><text x="235" y="74" text-anchor="middle" fill="#065f46" font-size="9" font-weight="bold">R₂'(1-s)/s</text><circle cx="20" cy="70" r="6" fill="#f1f5f9" stroke="#374151" stroke-width="2"/><circle cx="300" cy="70" r="6" fill="#f1f5f9" stroke="#374151" stroke-width="2"/><line x1="300" y1="70" x2="300" y2="105" stroke="#374151" stroke-width="1.5"/><line x1="280" y1="105" x2="320" y2="105" stroke="#374151" stroke-width="1.5"/><text x="290" y="100" fill="#374151" font-size="9">Pmec</text><text x="10" y="55" fill="#ef4444" font-size="10">U₁</text><text x="160" y="118" text-anchor="middle" fill="#374151" font-size="10">异步电机T形等效电路</text></svg>
+      </div>
+      <ul>
+        <li><strong>频率归算</strong>：将转子侧频率f₂归算为f₁，使两侧频率相同</li>
+        <li><strong>绕组归算</strong>：将转子侧参数归算到定子侧（匝数比、相数比）</li>
+        <li>T形等效电路：定子侧(R₁+jX₁) + 励磁支路(Rm+jXm) + 转子侧(R₂'/s+jX₂')</li>
+        <li>转子侧R₂'/s分解为：<span class="formula">R₂'/s = R₂' + R₂'(1-s)/s</span></li>
+        <li>R₂'对应转子铜损，R₂'(1-s)/s对应机械功率输出</li>
+        <li>简化等效电路：忽略励磁支路（将励磁支路移到输入端）</li>
+      </ul>
+      <h4>4.3 功率与转矩</h4>
+      <ul>
+        <li><strong>功率流程</strong>：<span class="formula">P₁ → pCu₁ → Pem → pCu₂ → Pmec → pΩ+pₛ → P₂</span></li>
+        <li>输入功率 P₁ = √3U₁I₁cosφ₁</li>
+        <li>电磁功率 Pem = P₁ - pCu₁</li>
+        <li><strong>重要关系</strong>：</li>
+        <li>转子铜损：<span class="formula">pCu₂ = sPem</span></li>
+        <li>机械功率：<span class="formula">Pmec = (1-s)Pem</span></li>
+        <li>电磁转矩：<span class="formula">T = Pem/Ω₁ = Pmec/Ω</span></li>
+        <li>输出功率：<span class="formula">P₂ = Pmec - pΩ - pₛ</span></li>
+        <li>转子铜损占总损耗约50%~70%</li>
+      </ul>
+      <h4>4.4 机械特性</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 190" class="fig-svg"><rect x="10" y="10" width="300" height="170" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><line x1="40" y1="160" x2="290" y2="160" stroke="#374151" stroke-width="2"/><line x1="40" y1="160" x2="40" y2="20" stroke="#374151" stroke-width="2"/><text x="170" y="178" text-anchor="middle" fill="#374151" font-size="12">转速 n</text><text x="25" y="95" text-anchor="middle" fill="#374151" font-size="12" transform="rotate(-90,25,95)">转矩 T</text><text x="40" y="15" fill="#374151" font-size="10">n₁</text><path d="M 40 20 C 60 20 100 20 140 20 L 140 160" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/><path d="M 40 160 C 80 155 140 150 200 50 C 220 30 240 20 260 20 C 280 20 290 20 290 20" stroke="#a855f7" stroke-width="2.5" fill="none"/><circle cx="220" cy="35" r="4" fill="#ef4444"/><text x="230" y="30" fill="#ef4444" font-size="10" font-weight="bold">Tmax</text><circle cx="200" cy="100" r="4" fill="#10b981"/><text x="205" y="105" fill="#10b981" font-size="10">TN</text><circle cx="40" cy="120" r="4" fill="#f59e0b"/><text x="50" y="115" fill="#f59e0b" font-size="10">Tst</text><line x1="200" y1="100" x2="290" y2="100" stroke="#10b981" stroke-width="1" stroke-dasharray="4,3"/><text x="290" y="95" fill="#10b981" font-size="9">nN</text><line x1="40" y1="20" x2="290" y2="20" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/><text x="170" y="165" text-anchor="middle" fill="#78350f" font-size="10">异步电机机械特性曲线 T-n</text></svg>
+      </div>
+      <ul>
+        <li>机械特性曲线：T=f(s)或n=f(T)</li>
+        <li><strong>关键参数</strong>：</li>
+        <li>起动转矩Tst（s=1时的转矩）</li>
+        <li>最大转矩Tmax（临界转差率sm处）</li>
+        <li>额定转矩TN（额定运行点）</li>
+        <li>过载能力：<span class="formula">λ = Tmax/TN ≈ 1.5~2.5</span></li>
+        <li>Tmax与转子电阻无关（绕线型串电阻后Tmax不变，sm增大）</li>
+        <li>第一象限：电动机运行（T>0, n>0）</li>
+        <li>第二象限：回馈制动（n>n₁, s<0）</li>
+        <li>额定转矩：<span class="formula">TN = 9.55PN/nN</span>（PN单位kW）</li>
+      </ul>
+      <h4>4.5 起动</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 160" class="fig-svg"><rect x="10" y="10" width="300" height="140" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><rect x="20" y="30" width="70" height="100" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><rect x="100" y="30" width="70" height="100" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><rect x="180" y="30" width="70" height="100" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/><rect x="260" y="30" width="50" height="100" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/><text x="55" y="55" text-anchor="middle" fill="#991b1b" font-size="10" font-weight="bold">直接起动</text><text x="55" y="75" text-anchor="middle" fill="#7f1d1d" font-size="9">Ist:5~7IN</text><text x="55" y="90" text-anchor="middle" fill="#7f1d1d" font-size="9">Tst:不大</text><text x="135" y="55" text-anchor="middle" fill="#92400e" font-size="10" font-weight="bold">Y-Δ起动</text><text x="135" y="75" text-anchor="middle" fill="#78350f" font-size="9">Ist:1/3直</text><text x="135" y="90" text-anchor="middle" fill="#78350f" font-size="9">Tst:1/3直</text><text x="215" y="55" text-anchor="middle" fill="#1e40af" font-size="10" font-weight="bold">自耦起动</text><text x="215" y="75" text-anchor="middle" fill="#1e3a8a" font-size="9">Ist:k²直</text><text x="215" y="90" text-anchor="middle" fill="#1e3a8a" font-size="9">Tst:k²直</text><text x="285" y="55" text-anchor="middle" fill="#065f46" font-size="10" font-weight="bold">串电阻</text><text x="285" y="75" text-anchor="middle" fill="#065f46" font-size="9">减小Ist</text><text x="285" y="90" text-anchor="middle" fill="#065f46" font-size="9">增大Tst</text><text x="160" y="148" text-anchor="middle" fill="#374151" font-size="10">笼型异步电动机起动方式对比</text></svg>
+      </div>
+      <ul>
+        <li><strong>笼型异步电动机起动</strong>：</li>
+        <li>直接起动：起动电流5~7倍额定，但起动转矩不大（功率因数低）</li>
+        <li>Y-Δ起动：起动电流和转矩均降为直接的1/3，仅适用于正常运行Δ接的电动机</li>
+        <li>自耦变压器起动：起动电流=k²×直接起动电流，起动转矩=k²×直接起动转矩</li>
+        <li><strong>绕线型异步电动机起动</strong>：</li>
+        <li>转子串电阻起动：最佳起动方式，既减小电流又增大起动转矩</li>
+        <li>串电阻后特性变软，sm增大</li>
+        <li><strong>改善起动性能的特殊结构</strong>：</li>
+        <li>深槽式：起动时集肤效应使有效电阻增大→限制起动电流→增大起动转矩</li>
+        <li>双笼型：起动笼截面积小电阻大，运行笼截面积大电阻小</li>
+      </ul>
+      <h4>4.6 调速</h4>
+      <ul>
+        <li><strong>变极调速</strong>：有级调速，Y/YY（极数减半转速加倍）和Δ/YY两种接法</li>
+        <li><strong>变频调速</strong>：最理想的调速方法，平滑无级，保持U/f恒定→Φ基本不变</li>
+        <li>Φ不变的原因：<span class="formula">E₁≈4.44fNΦkw</span>，若f降U不变→Φ增大→饱和</li>
+        <li><strong>改变转差率调速</strong>：</li>
+        <li>绕线型转子串电阻调速（向下调速，效率低，特性变软）</li>
+        <li>串级调速（将转子铜损回馈电网，效率较高）</li>
+      </ul>
+      <h4>4.7 制动</h4>
+      <ul>
+        <li><strong>能耗制动</strong>：断开三相电源，在定子两相加直流励磁→恒定磁场→转子感应电流→制动转矩</li>
+        <li><strong>反接制动</strong>：将定子两相电源反接→旋转磁场反转→制动转矩（s>1）</li>
+        <li>反接制动时必须限制电流（笼型定子串电阻，绕线型转子串电阻）</li>
+        <li><strong>回馈制动</strong>：电机转速超过同步转速（n>n₁, s<0），向电网回馈电能</li>
+        <li>回馈制动常用于变频调速减速过程或重物下放</li>
+      </ul>
+      <h4>4.8 单相异步电动机</h4>
+      <ul>
+        <li>单相绕组产生脉振磁动势=正转+反转旋转磁场</li>
+        <li>起动时正反转转矩相等，合成起动转矩为零→不能自行起动</li>
+        <li><strong>起动方法</strong>：</li>
+        <li>电容分相起动：电容使辅助绕组电流与主绕组电流产生相位差→形成旋转磁场</li>
+        <li>电阻分相起动：辅助绕组电阻大→电流相位差→旋转磁场（相位差较小）</li>
+        <li>罩极起动：短路环罩住部分磁极→磁通相位差→从未罩到被罩方向旋转（不可反转）</li>
+        <li>电容运转电动机：起动后电容继续工作，运行性能较好</li>
+      </ul>
+      <div class="warn-box">⚠️ <strong>单相异步电机核心</strong>：起动转矩为零！必须通过分相（电容/电阻）或罩极产生旋转磁场才能起动。罩极电动机转向固定（从未罩到被罩），不可反转。</div>
+      <div class="summary-box">
+        <h4>⚡ 异步电机核心公式速查</h4>
+        <table class="formula-table"><tr><th>公式</th><th>含义</th></tr>
+        <tr><td>s = (n₁-n)/n₁</td><td>转差率</td></tr>
+        <tr><td>f₂ = sf₁</td><td>转子频率</td></tr>
+        <tr><td>pCu₂ = sPem</td><td>转子铜损（与转差率成正比）</td></tr>
+        <tr><td>Pmec = (1-s)Pem</td><td>机械功率</td></tr>
+        <tr><td>T = Pem/Ω₁ = Pmec/Ω</td><td>电磁转矩</td></tr>
+        <tr><td>TN = 9.55PN/nN</td><td>额定转矩（PN单位kW）</td></tr>
+        <tr><td>λ = Tmax/TN</td><td>过载能力（1.5~2.5）</td></tr>
+        <tr><td>Y-Δ: Ist/Tst降为1/3</td><td>Y-Δ起动电流转矩关系</td></tr>
+        </table>
+      </div>
+      <div class="summary-box">
+        <h4>📌 关键结论</h4>
+        <ul>
+          <li><strong>转子电流由感应产生</strong>：故称感应电机，这是与直流电机的根本区别</li>
+          <li><strong>n永远小于n₁</strong>：若n=n₁则s=0→无感应电动势→无电流→无转矩</li>
+          <li><strong>Tmax与R₂无关</strong>：绕线型串电阻后Tmax不变，sm增大</li>
+          <li><strong>变频调速最优</strong>：保持U/f恒定→Φ不变→平滑无级效率高</li>
+          <li><strong>Y-Δ仅适用Δ接电机</strong>：正常运行必须是Δ接才能用Y-Δ降压起动</li>
+          <li><strong>单相不能自起动</strong>：脉振磁动势→Tst=0→需分相或罩极</li>
+        </ul>
+      </div>`
+  },
+  {
+    id:'sync', num:'第五章', title:'同步电机', color:'#ef4444',
+    topics:['原理与结构','隐极运行分析','凸极双反应理论','运行特性','功角特性','并联运行','同步电动机','补偿机'],
+    content:`
+      <h3>五、同步电机</h3>
+      <h4>5.1 原理与结构</h4>
+      <ul>
+        <li>同步转速：<span class="formula">n = 60f/p</span>，转速与电网频率严格同步</li>
+        <li>这是同步电机的基本特点——转速恒定不变</li>
+        <li><strong>隐极式</strong>（汽轮发电机）：气隙均匀，Xd=Xq=Xt，高速旋转</li>
+        <li><strong>凸极式</strong>（水轮发电机）：气隙不均匀，Xd>Xq，低速旋转</li>
+        <li>转子上有励磁绕组（通直流电产生主磁场）和阻尼绕组（用于异步起动和抑制振荡）</li>
+        <li>定子上有三相电枢绕组（产生旋转磁场和感应电动势）</li>
+      </ul>
+      <h4>5.2 隐极同步发电机运行分析</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 180" class="fig-svg"><rect x="10" y="10" width="300" height="160" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><circle cx="160" cy="90" r="3" fill="#374151"/><line x1="160" y1="90" x2="260" y2="90" stroke="#10b981" stroke-width="2.5" marker-end="url(#a3)"/><defs><marker id="a3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#10b981"/></marker></defs><text x="265" y="88" fill="#10b981" font-size="12" font-weight="bold">U</text><line x1="160" y1="90" x2="180" y2="40" stroke="#ef4444" stroke-width="2.5" marker-end="url(#a3r)"/><defs><marker id="a3r" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#ef4444"/></marker></defs><text x="185" y="35" fill="#ef4444" font-size="12" font-weight="bold">E₀</text><line x1="260" y1="90" x2="275" y2="60" stroke="#92400e" stroke-width="2" marker-end="url(#a3y)"/><defs><marker id="a3y" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#92400e"/></marker></defs><text x="280" y="55" fill="#92400e" font-size="11" font-weight="bold">jIXd</text><line x1="260" y1="90" x2="268" y2="102" stroke="#64748b" stroke-width="1.5"/><text x="275" y="110" fill="#64748b" font-size="10">IRa</text><path d="M 165 95 A 40 40 0 0 1 170 85" stroke="#a855f7" stroke-width="1.5" fill="none"/><text x="175" y="80" fill="#a855f7" font-size="11">δ</text><path d="M 258 85 A 30 30 0 0 1 265 75" stroke="#f59e0b" stroke-width="1.5" fill="none"/><text x="270" y="70" fill="#f59e0b" font-size="10">φ</text><text x="160" y="165" text-anchor="middle" fill="#78350f" font-size="10">隐极同步发电机相量图(过励)</text></svg>
+      </div>
+      <ul>
+        <li>电动势方程：<span class="formula">Ė₀ = Ú + İRₐ + jİXd</span></li>
+        <li>E₀：励磁电动势（空载电动势）；U：端电压；I：电枢电流</li>
+        <li>Rₐ：电枢电阻（通常很小可忽略）；Xd：直轴同步电抗</li>
+        <li>隐极电机Xd=Xq=Xt（气隙均匀，只有一个同步电抗）</li>
+        <li>相量图：以U为参考，根据负载性质确定I相位，然后画出E₀</li>
+      </ul>
+      <h4>5.3 凸极同步发电机——双反应理论</h4>
+      <ul>
+        <li>凸极气隙不均匀→将电枢反应分解为直轴(d轴)和交轴(q轴)两个分量</li>
+        <li>电动势方程：<span class="formula">Ė₀ = Ú + İRₐ + jİdXd + jİqXq</span></li>
+        <li>Xd>d轴同步电抗（气隙小，磁导大）；Xq=q轴同步电抗（气隙大，磁导小）</li>
+        <li>Xd > Xq（凸极特有）</li>
+        <li>Id：直轴电流分量（去磁或助磁）；Iq：交轴电流分量（产生电磁转矩）</li>
+        <li>内功率因数角ψ（E₀与I的夹角）用于分解Id和Iq</li>
+      </ul>
+      <h4>5.4 运行特性</h4>
+      <ul>
+        <li><strong>空载特性</strong>：E₀=f(If)，反映磁路饱和情况，形状类似于磁化曲线</li>
+        <li><strong>短路特性</strong>：Ik=f(If)，短路时为直线（磁路不饱和）</li>
+        <li>由空载+短路特性求Xd不饱和值：Xd=E₀(气隙线)/Ik</li>
+        <li><strong>零功率因数负载特性</strong>：cosφ=0时U=f(If)，用于求漏抗和保梯电抗</li>
+        <li><strong>外特性</strong>：U=f(I)，恒If恒n时端电压随负载变化</li>
+        <li><strong>调整特性</strong>：If=f(I)，保持U不变时励磁电流随负载变化</li>
+      </ul>
+      <h4>5.5 功角特性</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 190" class="fig-svg"><rect x="10" y="10" width="300" height="170" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><line x1="40" y1="160" x2="290" y2="160" stroke="#374151" stroke-width="2"/><line x1="40" y1="160" x2="40" y2="20" stroke="#374151" stroke-width="2"/><text x="170" y="178" text-anchor="middle" fill="#374151" font-size="12">功角 δ (°)</text><text x="25" y="95" text-anchor="middle" fill="#374151" font-size="12" transform="rotate(-90,25,95)">Pem</text><path d="M 40 160 C 80 140 120 70 165 30 C 180 25 200 30 220 50 C 250 80 270 120 290 160" stroke="#ef4444" stroke-width="2.5" fill="none"/><path d="M 40 160 C 90 150 140 100 180 60 C 210 40 240 50 260 80 C 275 100 285 130 290 160" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6,3" fill="none"/><circle cx="165" cy="30" r="4" fill="#ef4444"/><text x="175" y="25" fill="#ef4444" font-size="10" font-weight="bold">Pmax</text><line x1="165" y1="30" x2="165" y2="160" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/><text x="165" y="168" fill="#ef4444" font-size="10">90°</text><text x="200" y="50" fill="#3b82f6" font-size="9">凸极(附加项)</text><text x="130" y="50" fill="#ef4444" font-size="9">隐极</text><circle cx="120" cy="80" r="3" fill="#10b981"/><text x="125" y="75" fill="#10b981" font-size="9">额定</text><text x="170" y="168" text-anchor="middle" fill="#78350f" font-size="10">同步发电机功角特性曲线</text></svg>
+      </div>
+      <ul>
+        <li>隐极：<span class="formula">Pem = m(E₀U/Xd)sinδ</span></li>
+        <li>凸极：<span class="formula">Pem = m(E₀U/Xd)sinδ + m(U²(Xd-Xq)/(2XdXq))sin2δ</span></li>
+        <li>δ为功角（E₀与U之间的夹角），又称功率角</li>
+        <li>凸极附加电磁功率（第二项）由Xd≠Xq引起，即使E₀=0也有附加功率</li>
+        <li>静态稳定极限δ=90°（超过则失步）</li>
+        <li>正常运行时δ通常在20°~30°左右</li>
+      </ul>
+      <h4>5.6 并联运行</h4>
+      <div class="fig-box">
+        <svg viewBox="0 0 320 180" class="fig-svg"><rect x="10" y="10" width="300" height="160" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/><line x1="40" y1="90" x2="280" y2="90" stroke="#374151" stroke-width="1.5"/><line x1="160" y1="20" x2="160" y2="160" stroke="#374151" stroke-width="1.5"/><text x="170" y="178" text-anchor="middle" fill="#374151" font-size="12">励磁电流 If</text><text x="25" y="95" text-anchor="middle" fill="#374151" font-size="12" transform="rotate(-90,25,95)">I</text><path d="M 60 160 C 80 120 120 70 160 45 C 200 70 240 120 260 160" stroke="#ef4444" stroke-width="2.5" fill="none"/><path d="M 80 160 C 100 120 130 75 160 60 C 190 75 220 120 240 160" stroke="#3b82f6" stroke-width="2" fill="none"/><path d="M 100 160 C 120 120 140 90 160 80 C 180 90 200 120 220 160" stroke="#10b981" stroke-width="2" fill="none"/><circle cx="160" cy="45" r="3" fill="#ef4444"/><circle cx="160" cy="60" r="3" fill="#3b82f6"/><circle cx="160" cy="80" r="3" fill="#10b981"/><text x="50" y="20" fill="#ef4444" font-size="9">P大</text><text x="70" y="35" fill="#3b82f6" font-size="9">P中</text><text x="90" y="50" fill="#10b981" font-size="9">P小</text><path d="M 160 45 L 160 80" stroke="#92400e" stroke-width="1.5" stroke-dasharray="4,3"/><text x="165" y="35" fill="#92400e" font-size="10">cosφ=1</text><text x="50" y="145" fill="#1e40af" font-size="10">欠励(感性)</text><text x="220" y="145" fill="#065f46" font-size="10">过励(容性)</text><text x="170" y="165" text-anchor="middle" fill="#78350f" font-size="10">同步发电机V形曲线</text></svg>
+      </div>
+      <ul>
+        <li><strong>并网条件</strong>：①相序相同 ②频率相等 ③电压相等（有效值和相位）</li>
+        <li>频率不等→产生冲击电流和振荡</li>
+        <li>电压不等→产生冲击电流</li>
+        <li>相序不同→无法并网</li>
+        <li><strong>有功调节</strong>：调原动机转矩→功角δ增大→有功功率增大</li>
+        <li><strong>无功调节</strong>：调励磁电流If</li>
+        <li>增大If→E₀增大→发出更多感性无功（过励运行）</li>
+        <li>减小If→E₀减小→吸收感性无功（欠励运行）</li>
+        <li><strong>V形曲线</strong>：不同If下有功功率P与无功功率Q的关系</li>
+        <li>各P值下Q=0的点构成cosφ=1曲线</li>
+        <li>失磁后：转入异步发电机状态，从电网吸收无功</li>
+      </ul>
+      <h4>5.7 同步电动机与补偿机</h4>
+      <ul>
+        <li>同步电动机起动转矩为零→最常用<strong>异步起动法</strong>（利用阻尼绕组）</li>
+        <li>起动步骤：①励磁绕组串电阻（防止感应高压）；②合三相电源异步起动；③接近同步转速时通直流励磁→牵入同步</li>
+        <li>过励运行→功率因数超前（容性），向电网发出感性无功</li>
+        <li>欠励运行→功率因数滞后（感性），从电网吸收感性无功</li>
+        <li>同步电动机可通过调节励磁改善电网功率因数</li>
+        <li><strong>同步补偿机</strong>：专门用于调节电网无功功率的空载运行同步电动机</li>
+        <li>过励时发出感性无功（相当于电容），欠励时吸收感性无功（相当于电感）</li>
+        <li>额定功率PN指输出电功率（发电机），额定电压UN为线电压</li>
+        <li>额定容量SN=√3UNIN，额定功率因数一般0.8~0.9</li>
+        <li>大容量发电机效率可达90%~95%</li>
+      </ul>
+      <div class="tip-box">💡 <strong>同步电动机改善功率因数</strong>：这是同步电动机的独特优势。过励运行时相当于一个电容，向电网提供感性无功功率。工厂常用同步电动机代替异步电动机来改善电网功率因数。</div>
+      <div class="summary-box">
+        <h4>⚡ 同步电机核心公式速查</h4>
+        <table class="formula-table"><tr><th>公式</th><th>含义</th></tr>
+        <tr><td>n = 60f/p</td><td>同步转速（恒定不变）</td></tr>
+        <tr><td>Ė₀ = Ú + İRa + jİXd（隐极）</td><td>隐极电动势方程</td></tr>
+        <tr><td>Ė₀ = Ú + İRa + jİdXd + jİqXq（凸极）</td><td>凸极电动势方程（双反应）</td></tr>
+        <tr><td>Pem = m(E₀U/Xd)sinδ</td><td>隐极功角特性</td></tr>
+        <tr><td>Pem = m(E₀U/Xd)sinδ + m(U²(Xd-Xq)/(2XdXq))sin2δ</td><td>凸极功角特性（含附加项）</td></tr>
+        <tr><td>δ≤90°</td><td>静态稳定极限</td></tr>
+        <tr><td>SN = √3UNIN</td><td>额定容量</td></tr>
+        </table>
+      </div>
+      <div class="summary-box">
+        <h4>📌 关键结论</h4>
+        <ul>
+          <li><strong>转速恒定</strong>：n=60f/p，与负载无关（这是同步电机最基本特征）</li>
+          <li><strong>隐极Xd=Xq</strong>：气隙均匀，只有一个同步电抗Xt</li>
+          <li><strong>凸极Xd>Xq</strong>：气隙不均匀，双反应理论分解Id和Iq</li>
+          <li><strong>E₀=0时凸极仍有功率</strong>：附加电磁功率项由Xd≠Xq产生</li>
+          <li><strong>并网三条件</strong>：相序、频率、电压（缺一则无法并网）</li>
+          <li><strong>起动转矩为零</strong>：必须用异步起动法（阻尼绕组）</li>
+          <li><strong>过励→容性（改善cosφ）</strong>：同步电动机的独特优势</li>
+          <li><strong>静态稳定δ≤90°</strong>：超过则失步</li>
+        </ul>
+      </div>`
+  },
+  {
+    id:'lab', num:'第六章', title:'电机实验', color:'#06b6d4',
+    topics:['直流电机实验','变压器实验','异步电动机实验','同步电机实验','安全规范','数据处理'],
+    content:`
+      <h3>六、电机实验与测试</h3>
+      <h4>6.1 直流电机实验</h4>
+      <ul>
+        <li><strong>他励直流电动机空载与负载特性实验</strong>：</li>
+        <li>空载实验：测定空载损耗（铁损+机械损耗）和空载特性</li>
+        <li>负载实验：测定不同负载下的转速、电流、转矩，绘制机械特性曲线</li>
+        <li><strong>并励直流发电机自励过程实验</strong>：</li>
+        <li>验证自励三条件：剩磁→接线正确→Rf<Rcr</li>
+        <li>观察空载电压从零逐渐升高到稳定值的过程</li>
+        <li><strong>直流电动机起动与调速实验</strong>：</li>
+        <li>电枢串电阻起动：测定不同起动级数下的起动电流和起动时间</li>
+        <li>降压起动：观察起动电流随电压变化的关系</li>
+        <li>调速实验：电枢串电阻调速、降压调速、弱磁调速的转速变化</li>
+        <li>制动实验：能耗制动、反接制动、回馈制动的特性测量</li>
+      </ul>
+      <h4>6.2 变压器实验</h4>
+      <ul>
+        <li><strong>单相变压器空载与短路实验</strong>：</li>
+        <li>空载实验（低压侧加额定电压）：测定pFe、Rm、Xm、Zm</li>
+        <li>短路实验（高压侧加低电压达额定电流）：测定pkN、Rk、Xk、Zk</li>
+        <li>验证铁损为不变损耗、铜损为可变损耗</li>
+        <li>计算效率特性曲线η=f(β)</li>
+        <li>计算电压变化率ΔU%随负载变化的关系</li>
+        <li><strong>三相变压器连接组别测定</strong>：</li>
+        <li>用直流法或交流法测定连接组别（钟面数）</li>
+        <li>验证Y,y0、Y,d11等常见连接组别</li>
+        <li><strong>变压器并联运行实验</strong>：</li>
+        <li>验证变比相同、组别相同、阻抗标幺值相同三个条件</li>
+        <li>测量不同条件下各台变压器分担的负载电流</li>
+        <li>特殊变压器实验：自耦变压器、电流互感器、电压互感器</li>
+      </ul>
+      <h4>6.3 异步电动机实验</h4>
+      <ul>
+        <li><strong>空载与短路（堵转）实验</strong>：</li>
+        <li>空载实验：测定空载电流、空载损耗、励磁参数（Rm、Xm）</li>
+        <li>堵转实验（转子堵住s=1）：测定堵转电流、堵转损耗、短路参数</li>
+        <li><strong>负载实验与机械特性测定</strong>：</li>
+        <li>负载实验：测定不同负载下的转速、电流、功率、效率</li>
+        <li>绘制机械特性曲线T-s或T-n</li>
+        <li>起动实验：直接起动、Y-Δ起动、自耦起动、转子串电阻起动对比</li>
+        <li>测量起动电流、起动转矩随起动方式变化的关系</li>
+      </ul>
+      <h4>6.4 同步电机实验</h4>
+      <ul>
+        <li><strong>空载、短路与零功率因数特性实验</strong>：</li>
+        <li>空载特性E₀=f(If)：反映磁路饱和程度</li>
+        <li>短路特性Ik=f(If)：短路时为直线，求Xd不饱和值</li>
+        <li>零功率因数负载特性：cosφ=0时的U=f(If)曲线</li>
+        <li>利用空载+短路+零功率因数特性求Xd、保梯电抗Xp</li>
+        <li><strong>同步发电机并网运行实验</strong>：</li>
+        <li>验证并网三条件（相序、频率、电压）</li>
+        <li>并网后有功调节：调原动机转矩观察功角和有功功率变化</li>
+        <li>并网后无功调节：调励磁电流观察V形曲线变化</li>
+        <li>同步电动机异步起动实验：观察阻尼绕组起动过程和牵入同步</li>
+      </ul>
+      <h4>6.5 实验安全规范</h4>
+      <ul>
+        <li>实验前检查接线，确认无误后方可通电</li>
+        <li>起动和调速过程中密切观察电流表，防止过电流</li>
+        <li>电流互感器二次侧严禁开路；电压互感器二次侧严禁短路</li>
+        <li>高压实验时必须有安全隔离措施</li>
+        <li>实验结束后先断电源再拆线</li>
+      </ul>
+      <h4>6.6 实验数据处理</h4>
+      <ul>
+        <li>测量数据应记录多次取平均值，减小随机误差</li>
+        <li>效率计算：<span class="formula">η = P₂/(P₂ + Σp)</span></li>
+        <li>温升计算：<span class="formula">ΔT = T绕组 - T环境</span></li>
+        <li>绘制特性曲线时注意坐标选择和刻度标注</li>
+        <li>实验报告应包含：实验目的、原理、步骤、数据、曲线、结论</li>
+      </ul>
+      <div class="warn-box">⚠️ <strong>实验安全必记</strong>：电流互感器二次侧严禁开路！电压互感器二次侧严禁短路！实验前检查接线，实验结束先断电源再拆线！高压实验必须有安全隔离措施。</div>
+      <div class="summary-box">
+        <h4>⚡ 实验核心公式速查</h4>
+        <table class="formula-table"><tr><th>实验</th><th>关键计算</th></tr>
+        <tr><td>变压器空载</td><td>Zm=U₀/I₀, Rm=p₀/I₀², Xm=√(Zm²-Rm²)</td></tr>
+        <tr><td>变压器短路</td><td>Zk=Uk/Ik, Rk=pk/Ik², Xk=√(Zk²-Rk²)</td></tr>
+        <tr><td>效率</td><td>η=P₂/(P₂+p₀+β²pkN)×100%</td></tr>
+        <tr><td>异步电机空载</td><td>Zm=U₀/I₀, 分离铁损和机械损耗</td></tr>
+        <tr><td>异步电机堵转</td><td>Zk=Uk/Ik, s=1时转子参数</td></tr>
+        <tr><td>同步空载</td><td>Xd(不饱和)=E₀(气隙线)/Ik</td></tr>
+        <tr><td>温升</td><td>ΔT=T绕组-T环境</td></tr>
+        </table>
+      </div>
+      <div class="summary-box">
+        <h4>📌 实验关键结论</h4>
+        <ul>
+          <li><strong>空载试验测铁损</strong>：空载时电流小→铜损可忽略→损耗≈铁损</li>
+          <li><strong>短路试验测铜损</strong>：短路时电压低→铁损可忽略→损耗≈铜损</li>
+          <li><strong>空载在低压侧</strong>：加额定电压更安全</li>
+          <li><strong>短路在高压侧</strong>：加低电压即可达额定电流</li>
+          <li><strong>多次测量取平均</strong>：减小随机误差</li>
+          <li><strong>先断电再拆线</strong>：实验安全第一原则</li>
+        </ul>
+      </div>`
+  }
+];
+
+const questions = [
+  // DC Motor
+  {id:1,ch:'dc',type:'choice',q:'直流发电机换向器的作用是',opts:['将直流电变为交流电','将交流电变为直流电','改变电压大小','改变电流方向'],ans:1},
+  {id:2,ch:'dc',type:'choice',q:'他励直流电动机的机械特性是',opts:['硬特性','软特性','绝对硬特性','无法确定'],ans:0},
+  {id:3,ch:'dc',type:'choice',q:'并励直流发电机自励建压的条件不包括',opts:['电机有剩磁','励磁绕组接线正确','励磁回路电阻小于临界值','电枢回路电阻为零'],ans:3},
+  {id:4,ch:'dc',type:'choice',q:'直流电动机起动时，起动电流约为额定电流的',opts:['1~2倍','3~4倍','5~7倍','10倍以上'],ans:2},
+  {id:5,ch:'dc',type:'choice',q:'弱磁调速属于',opts:['向下调速，效率低','向上调速，效率高','向下调速，效率高','向上调速，效率低'],ans:1},
+  {id:6,ch:'dc',type:'choice',q:'直流电机中改善换向最常用的方法是',opts:['移动电刷','装设换向极','选用合适的电刷','减小负载电流'],ans:1},
+  {id:7,ch:'dc',type:'choice',q:'串励直流电动机的机械特性属于',opts:['硬特性','软特性','绝对硬特性','恒功率特性'],ans:1},
+  {id:8,ch:'dc',type:'choice',q:'他励直流电动机回馈制动时，电机处于',opts:['电动机状态','发电机状态','短路状态','停转状态'],ans:1},
+  {id:9,ch:'dc',type:'calc',q:'一台他励直流电动机，PN=10kW，UN=220V，IN=53.4A，nN=1500r/min，Ra=0.4Ω。求额定电磁转矩TN和额定效率ηN。',ans:'(1) TN = 9.55 × PN/nN = 9.55 × 10000/1500 = 63.67 N·m\n(2) ηN = PN/(UN × IN) = 10000/(220 × 53.4) = 10000/11748 ≈ 85.1%'},
+  {id:10,ch:'dc',type:'calc',q:'一台并励直流发电机，PN=6kW，UN=230V，nN=1450r/min，Ra=0.92Ω，Rf=280Ω。求额定负载时电枢电流Ia和电磁功率Pem。',ans:'If = UN/Rf = 230/280 ≈ 0.82A\nIN = PN/UN = 6000/230 ≈ 26.09A\nIa = IN + If ≈ 26.91A\nPem = (UN + IaRa) × Ia ≈ 255.4 × 26.91 ≈ 6859W'},
+  // Transformer
+  {id:11,ch:'transformer',type:'choice',q:'变压器空载运行时，空载电流的主要作用是',opts:['建立主磁通','提供负载电流','产生铜损','提供机械功率'],ans:0},
+  {id:12,ch:'transformer',type:'choice',q:'变压器短路试验测得的主要损耗是',opts:['铁损','铜损','附加损耗','机械损耗'],ans:1},
+  {id:13,ch:'transformer',type:'choice',q:'变压器效率最大时，满足的条件是',opts:['铁损 = 0','铜损 = 铁损（可变损耗 = 不变损耗）','负载电流为零','输出功率最大'],ans:1},
+  {id:14,ch:'transformer',type:'choice',q:'电流互感器二次侧严禁',opts:['短路','开路','接地','接负载'],ans:1},
+  {id:15,ch:'transformer',type:'choice',q:'自耦变压器与普通双绕组变压器相比，其优点是',opts:['绝缘更好','材料省、效率高','短路阻抗更大','不需要铁心'],ans:1},
+  {id:16,ch:'transformer',type:'choice',q:'三相变压器Y,d11连接组表示的含义是',opts:['高压侧Y接，低压侧Δ接，低压线电动势落后高压线电动势330°','高压侧Y接，低压侧Δ接，落后110°','高压侧Δ接，低压侧Y接','高压侧Y接，低压侧Y接'],ans:0},
+  {id:17,ch:'transformer',type:'choice',q:'变压器并联运行的必要条件不包括',opts:['变比相同','连接组别相同','短路阻抗标幺值相同','容量相同'],ans:3},
+  {id:18,ch:'transformer',type:'choice',q:'电压互感器二次侧严禁',opts:['开路','短路','接表计','接地'],ans:1},
+  {id:19,ch:'transformer',type:'calc',q:'一台单相变压器，SN=50kVA，U₁N/U₂N=10000/230V，空载试验（低压侧）：U₀=230V，I₀=6A，p₀=380W；短路试验（高压侧）：Uk=400V，Ik=5A，pk=600W。求变比k、短路参数Rk和Xk。',ans:'(1) k = U₁N/U₂N = 10000/230 ≈ 43.48\n(2) 短路参数（高压侧）：\n  Zk = Uk/Ik = 400/5 = 80Ω\n  Rk = pk/Ik² = 600/25 = 24Ω\n  Xk = √(80² - 24²) = √5824 ≈ 76.3Ω'},
+  {id:20,ch:'transformer',type:'calc',q:'一台三相变压器，SN=1000kVA，pkN=12kW，p₀=4kW。求β=0.8、cosφ₂=0.8时的效率。',ans:'η = βSNcosφ₂/(βSNcosφ₂ + p₀ + β²pkN)\n= 0.8×1000×0.8/(0.8×1000×0.8 + 4 + 0.64×12)\n= 640/(640 + 4 + 7.68)\n= 640/651.68 ≈ 98.2%'},
+  // AC Winding
+  {id:21,ch:'winding',type:'choice',q:'交流绕组短距因数kp1的表达式为',opts:['sin(qα/2)','sin(yα/2)','cos(yα/2)','sin(πy/2τ)'],ans:1},
+  {id:22,ch:'winding',type:'choice',q:'三相绕组产生的基波磁动势是',opts:['脉振磁动势','旋转磁动势','椭圆旋转磁动势','恒定磁动势'],ans:1},
+  {id:23,ch:'winding',type:'choice',q:'旋转磁动势的转速（同步转速）公式为',opts:['n₁ = 60p/f','n₁ = 60f/p','n₁ = f/p','n₁ = 60f/2p'],ans:1},
+  {id:24,ch:'winding',type:'choice',q:'绕组因数kN1等于',opts:['kp1 + kd1','kp1 × kd1','kp1 / kd1','kp1 - kd1'],ans:1},
+  // Async Motor
+  {id:25,ch:'async',type:'choice',q:'三相异步电动机的转差率s定义为',opts:['s = n/n₁','s = (n₁ - n)/n','s = (n₁ - n)/n₁','s = n₁/n'],ans:2},
+  {id:26,ch:'async',type:'choice',q:'异步电动机额定运行时，转差率通常为',opts:['0.5~1','0.01~0.05','0.1~0.3','大于1'],ans:1},
+  {id:27,ch:'async',type:'choice',q:'异步电动机中，转子铜损与电磁功率的关系为',opts:['pCu2 = Pem','pCu2 = sPem','pCu2 = (1-s)Pem','pCu2 = Pem/s'],ans:1},
+  {id:28,ch:'async',type:'choice',q:'Y-Δ降压起动时，起动电流与直接起动电流之比为',opts:['1/√3','1/3','√3','3'],ans:1},
+  {id:29,ch:'async',type:'choice',q:'变频调速时，为保持磁通不变，应使',opts:['U/f保持恒定','f保持恒定','U保持恒定','I保持恒定'],ans:0},
+  {id:30,ch:'async',type:'choice',q:'单相异步电动机不能自行起动的原因是',opts:['起动电流太大','单相绕组产生脉振磁动势，起动转矩为零','磁通太小','转差率太大'],ans:1},
+  {id:31,ch:'async',type:'choice',q:'绕线型异步电动机转子串电阻起动的优点是',opts:['起动电流更小','既减小起动电流又增大起动转矩','起动转矩更大','起动更平稳'],ans:1},
+  {id:32,ch:'async',type:'choice',q:'深槽式异步电动机改善起动性能的原理是利用',opts:['电磁感应','集肤效应','磁饱和','温度效应'],ans:1},
+  {id:33,ch:'async',type:'calc',q:'一台三相异步电动机，PN=7.5kW，nN=1440r/min，f=50Hz，极数=4。求额定转差率sN和额定电磁转矩TN。',ans:'n₁ = 60f/p = 60×50/2 = 1500 r/min\nsN = (n₁ - nN)/n₁ = (1500 - 1440)/1500 = 0.04\nTN = 9.55 × PN/nN = 9.55 × 7500/1440 ≈ 49.74 N·m'},
+  {id:34,ch:'async',type:'calc',q:'一台三相异步电动机，Pem=10kW，sN=0.03。求转子铜损pCu2和机械功率Pmec。',ans:'pCu2 = sN × Pem = 0.03 × 10000 = 300W\nPmec = (1 - sN) × Pem = 0.97 × 10000 = 9700W'},
+  // Sync Motor
+  {id:35,ch:'sync',type:'choice',q:'同步电机的转速与电网频率的关系为',opts:['n = 60f/p','n与f无关','n = 60p/f','n = f/p'],ans:0},
+  {id:36,ch:'sync',type:'choice',q:'凸极同步发电机的双反应理论将电枢反应磁动势分解为',opts:['直轴分量和交轴分量','正序分量和负序分量','有功分量和无功分量','基波分量和谐波分量'],ans:0},
+  {id:37,ch:'sync',type:'choice',q:'同步发电机并联运行时，调节励磁电流可以调节',opts:['有功功率','无功功率','转速','频率'],ans:1},
+  {id:38,ch:'sync',type:'choice',q:'同步发电机并网条件不包括',opts:['电压相等','频率相等','相序相同','容量相同'],ans:3},
+  {id:39,ch:'sync',type:'choice',q:'同步电动机过励运行时，向电网提供',opts:['有功功率','感性无功功率','容性无功功率','既不提供有功也不提供无功'],ans:2},
+  {id:40,ch:'sync',type:'choice',q:'同步补偿机是专门用于',opts:['产生机械功率','调节电网无功功率','调节电网频率','发电'],ans:1},
+  {id:41,ch:'sync',type:'choice',q:'隐极同步发电机的功角特性公式为',opts:['Pem = mU²sinδ/Xd','Pem = mE₀Usinδ/Xd','Pem = mE₀Ucosδ/Xd','Pem = mE²sinδ/Xd'],ans:1},
+  {id:42,ch:'sync',type:'choice',q:'同步电动机最常用的起动方法是',opts:['直接起动','辅助电动机起动','异步起动法（利用阻尼绕组）','变频起动'],ans:2},
+  {id:43,ch:'sync',type:'calc',q:'一台隐极同步发电机，Xd=1.2Ω，E₀=500V（线），U=400V（线），求δ=30°时的电磁功率Pem。',ans:'E₀相 = 500/√3 ≈ 288.7V，U相 = 400/√3 ≈ 230.9V\nPem = 3 × (E₀相 × U相 / Xd) × sin30°\n= 3 × (288.7 × 230.9 / 1.2) × 0.5\n= 3 × 55453 × 0.5 ≈ 83179W ≈ 83.2kW'},
+  // Comprehensive
+  {id:44,ch:'transformer',type:'calc',q:'简述变压器空载试验和短路试验的目的及分别在哪个侧进行。',ans:'空载试验：测定铁损pFe、励磁阻抗Zm=Rm+jXm。通常在低压侧进行（低压侧加额定电压，高压侧开路）。\n\n短路试验：测定铜损pCu（短路损耗）、短路阻抗Zk=Rk+jXk。通常在高压侧进行（高压侧加低电压使电流达额定值，低压侧短路）。'},
+  {id:45,ch:'transformer',type:'calc',q:'为什么电流互感器二次侧严禁开路？',ans:'正常运行时，二次侧电流产生的磁动势近似抵消一次侧磁动势，铁心磁通很小。\n\n若二次侧开路：\n(1) 二次电流为零，一次磁动势全部用于励磁，铁心磁通急剧增大\n(2) 铁损剧增，铁心过热可能烧毁\n(3) 二次侧感应出极高电压（可达数千伏），危及人身安全和设备绝缘'},
+  {id:46,ch:'dc',type:'calc',q:'直流电动机为什么不能直接起动？常用的起动方法有哪些？',ans:'直接起动时 n=0 → E=0 → Ia=U/Ra，因Ra很小，起动电流可达5~7倍额定电流，造成：\n(1) 换向困难，产生严重火花\n(2) 机械冲击，损坏转轴和传动机构\n(3) 对电网造成过大冲击\n\n常用起动方法：电枢串电阻起动、降压起动'},
+  {id:47,ch:'async',type:'calc',q:'试述三相异步电动机变频调速的原理及V/f恒定控制的原因。',ans:'变频调速原理：改变供电频率f，同步转速n₁=60f/p随之改变，从而调节转速。\n\nV/f恒定控制原因：E₁≈4.44fNΦkw\n• f降低而U不变 → Φ增大 → 磁路饱和 → 励磁电流剧增\n• f升高而U不变 → Φ减小 → 转矩下降\n\n保持U/f恒定可使Φ基本不变，保持转矩能力并避免磁路饱和。'},
+  {id:48,ch:'sync',type:'calc',q:'同步发电机并联运行时，如何调节有功功率和无功功率？',ans:'有功功率调节：调节原动机的输入转矩（增大原动机转矩 → 功角δ增大 → 输出有功功率增大）\n\n无功功率调节：调节励磁电流If\n• 增大If → E₀增大 → 发出更多感性无功（过励）\n• 减小If → E₀减小 → 吸收感性无功（欠励）\n\nV形曲线描述了不同励磁下有功功率与无功功率的关系。'},
+  // ===== 扩充题库 200题 =====
+  // -- 直流电机 选择题 --
+  {id:49,ch:'dc',type:'choice',q:'直流电机主磁极的作用是',opts:['产生主磁场','改善换向','支撑电枢','产生感应电动势'],ans:0},
+  {id:50,ch:'dc',type:'choice',q:'直流电机换向极装在',opts:['主磁极中心','两主磁极间的几何中性线上','电刷位置','机座上'],ans:1},
+  {id:51,ch:'dc',type:'choice',q:'直流电机电枢铁心采用硅钢片叠压是为了',opts:['减小铁损','减小铜损','增加强度','降低成本'],ans:0},
+  {id:52,ch:'dc',type:'choice',q:'直流电机换向器由什么制成',opts:['铜片','硅钢片','铝片','绝缘板'],ans:0},
+  {id:53,ch:'dc',type:'choice',q:'电枢绕组中电磁力方向由什么决定',opts:['右手定则','左手定则','楞次定律','法拉第定律'],ans:1},
+  {id:54,ch:'dc',type:'choice',q:'E=CeΦn中Ce称为',opts:['电动势常数','转矩常数','磁通常数','转速常数'],ans:0},
+  {id:55,ch:'dc',type:'choice',q:'T=CTΦIa中CT称为',opts:['电动势常数','转矩常数','磁通常数','电流常数'],ans:1},
+  {id:56,ch:'dc',type:'choice',q:'Ce与CT的关系为',opts:['Ce=CT','Ce=9.55CT','CT=9.55Ce','Ce×CT=1'],ans:2},
+  {id:57,ch:'dc',type:'choice',q:'他励直流电机励磁绕组与电枢的连接为',opts:['串联','并联','各自独立','混联'],ans:2},
+  {id:58,ch:'dc',type:'choice',q:'并励直流电机励磁绕组与电枢的连接为',opts:['串联','并联','各自独立','混联'],ans:1},
+  {id:59,ch:'dc',type:'choice',q:'串励直流电机励磁绕组与电枢的连接为',opts:['串联','并联','各自独立','混联'],ans:0},
+  {id:60,ch:'dc',type:'choice',q:'复励直流电机同时具有',opts:['他励和并励绕组','并励和串励绕组','他励和串励绕组','两个并励绕组'],ans:1},
+  {id:61,ch:'dc',type:'choice',q:'他励直流发电机外特性表明负载增大时端电压',opts:['增大','基本不变','减小','先增后减'],ans:2},
+  {id:62,ch:'dc',type:'choice',q:'他励直流电动机理想空载转速n0=',opts:['U/(CeΦ)','RaIa/(CeΦ)','U/(CeΦ)-RaIa/(CeΦ)','CTΦIa/(CeΦ)'],ans:0},
+  {id:63,ch:'dc',type:'choice',q:'机械特性斜率与什么成正比',opts:['电枢电阻Ra','磁通Φ','电压U','负载T'],ans:0},
+  {id:64,ch:'dc',type:'choice',q:'电枢串电阻后特性变',opts:['硬','软','不变','更硬'],ans:1},
+  {id:65,ch:'dc',type:'choice',q:'降压人为特性的理想空载转速',opts:['不变','升高','降低','不确定'],ans:2},
+  {id:66,ch:'dc',type:'choice',q:'弱磁人为特性的理想空载转速',opts:['不变','升高','降低','不确定'],ans:1},
+  {id:67,ch:'dc',type:'choice',q:'直接起动电流大的原因是',opts:['额定电压高','电枢电阻小','磁通大','转速高'],ans:1},
+  {id:68,ch:'dc',type:'choice',q:'电枢串电阻起动的目的是',opts:['增大起动转矩','限制起动电流','提高转速','减小损耗'],ans:1},
+  {id:69,ch:'dc',type:'choice',q:'降压起动的优点是',opts:['设备简单','起动电流小且平滑','转矩大','不需额外设备'],ans:1},
+  {id:70,ch:'dc',type:'choice',q:'电枢串电阻调速属于',opts:['向上调速','向下调速','双向调速','不能调速'],ans:1},
+  {id:71,ch:'dc',type:'choice',q:'改变电枢电压调速属于',opts:['向上调速','向下调速','双向调速','不能调速'],ans:1},
+  {id:72,ch:'dc',type:'choice',q:'电枢串电阻调速的缺点是',opts:['不能向下调速','效率低','设备复杂','不平滑'],ans:1},
+  {id:73,ch:'dc',type:'choice',q:'弱磁调速的优点是',opts:['效率高且平滑','效率低','只能有级调速','设备简单'],ans:0},
+  {id:74,ch:'dc',type:'choice',q:'反接制动时电枢电压',opts:['不变','反向','为零','增大'],ans:1},
+  {id:75,ch:'dc',type:'choice',q:'回馈制动时电机转速',opts:['低于理想空载转速','高于理想空载转速','等于零','等于额定转速'],ans:1},
+  {id:76,ch:'dc',type:'choice',q:'回馈制动常用于',opts:['快速停车','限速下坡','起动过程','空载运行'],ans:1},
+  {id:77,ch:'dc',type:'choice',q:'能耗制动的能量关系是',opts:['电能回馈电网','动能消耗在电阻上','动能转势能','电能储存'],ans:1},
+  {id:78,ch:'dc',type:'choice',q:'三种制动中制动转矩最大的是',opts:['能耗制动','反接制动','回馈制动','自由停车'],ans:1},
+  {id:79,ch:'dc',type:'choice',q:'换向是指',opts:['电枢绕组电流方向改变','电刷与换向片接触改变','磁极极性改变','转速方向改变'],ans:0},
+  {id:80,ch:'dc',type:'choice',q:'换向火花的主要电磁原因是',opts:['电枢反应','电抗电动势','磁通脉动','转速波动'],ans:1},
+  {id:81,ch:'dc',type:'choice',q:'换向极绕组与电枢的连接为',opts:['并联','串联','各自独立','混联'],ans:1},
+  {id:82,ch:'dc',type:'choice',q:'换向极应装在',opts:['主磁极中心','几何中性线','电刷位置','任意位置'],ans:1},
+  // -- 直流电机 判断题 --
+  {id:83,ch:'dc',type:'choice',q:'直流电动机降压调速时理想空载转速升高。',opts:['正确','错误','不确定','视情况而定'],ans:1},
+  {id:84,ch:'dc',type:'choice',q:'直流电动机弱磁调速时理想空载转速升高。',opts:['正确','错误','不确定','视情况而定'],ans:0},
+  {id:85,ch:'dc',type:'choice',q:'串励直流电动机可以空载运行。',opts:['正确','错误','不确定','视情况而定'],ans:1},
+  {id:86,ch:'dc',type:'choice',q:'叠绕组并联支路数等于磁极数。',opts:['正确','错误','不确定','视情况而定'],ans:0},
+  {id:87,ch:'dc',type:'choice',q:'单波绕组只有两条并联支路。',opts:['正确','错误','不确定','视情况而定'],ans:0},
+  // -- 直流电机 计算题 --
+  {id:88,ch:'dc',type:'calc',q:'一台他励直流电动机，UN=220V，IN=80A，Ra=0.25Ω。求额定运行时的感应电动势E。',ans:'E = UN - IN×Ra = 220 - 80×0.25 = 200V'},
+  {id:89,ch:'dc',type:'calc',q:'一台他励直流电动机，PN=22kW，UN=220V，nN=1500r/min，Ra=0.3Ω。电枢串电阻起动，要求Ist≤2IN，求Rst。',ans:'IN=22000/220=100A, Ist=200A\nRst=UN/Ist-Ra=220/200-0.3=0.8Ω'},
+  {id:90,ch:'dc',type:'calc',q:'一台他励直流电动机，UN=440V，IN=50A，nN=1000r/min，Ra=0.5Ω。求理想空载转速n0。',ans:'CeΦ=(440-50×0.5)/1000=0.415\nn0=440/0.415≈1060r/min'},
+  // -- 变压器 选择题 --
+  {id:91,ch:'transformer',type:'choice',q:'变压器工作原理基于',opts:['电磁感应定律','欧姆定律','基尔霍夫定律','焦耳定律'],ans:0},
+  {id:92,ch:'transformer',type:'choice',q:'铁心采用硅钢片叠装主要目的是',opts:['减小铁损','减小铜损','增加强度','降低成本'],ans:0},
+  {id:93,ch:'transformer',type:'choice',q:'空载电流主要成分是',opts:['有功分量','无功分量（励磁）','负载电流','谐波电流'],ans:1},
+  {id:94,ch:'transformer',type:'choice',q:'空载损耗主要是',opts:['铜损','铁损','附加损耗','机械损耗'],ans:1},
+  {id:95,ch:'transformer',type:'choice',q:'短路损耗主要是',opts:['铁损','铜损','附加损耗','机械损耗'],ans:1},
+  {id:96,ch:'transformer',type:'choice',q:'变比k等于',opts:['U₁/U₂','I₁/I₂','P₁/P₂','N₂/N₁'],ans:0},
+  {id:97,ch:'transformer',type:'choice',q:'负载运行时磁动势平衡为',opts:['N₁Ī₁=N₂Ī₂','N₁Ī₁+N₂Ī₂=N₁Ī₀','Ī₁=Ī₂','N₁Ī₁-N₂Ī₂=0'],ans:1},
+  {id:98,ch:'transformer',type:'choice',q:'T形等效电路励磁支路包含',opts:['Rm和Xm','Rk和Xk','Ra和Xa','R₁和X₁'],ans:0},
+  {id:99,ch:'transformer',type:'choice',q:'Γ形等效电路将励磁支路移到',opts:['一次侧端','二次侧端','中间','任意位置'],ans:0},
+  {id:100,ch:'transformer',type:'choice',q:'空载试验通常在哪个侧进行',opts:['高压侧','低压侧','两侧均可','二次侧'],ans:1},
+  {id:101,ch:'transformer',type:'choice',q:'短路试验通常在哪个侧进行',opts:['高压侧','低压侧','两侧均可','一次侧'],ans:0},
+  {id:102,ch:'transformer',type:'choice',q:'电压变化率ΔU%为正表示',opts:['二次电压升高','二次电压降低','电压不变','波动'],ans:1},
+  {id:103,ch:'transformer',type:'choice',q:'效率最大条件是',opts:['铁损=0','铜损=铁损','负载电流=0','输出功率最大'],ans:1},
+  {id:104,ch:'transformer',type:'choice',q:'三相变压器组式结构铁心特点是',opts:['三相磁路独立','共用铁心','壳式','无铁心'],ans:0},
+  {id:105,ch:'transformer',type:'choice',q:'三相心式变压器铁心特点是',opts:['三相磁路独立','中间相磁路较短','无铁心','空心'],ans:1},
+  {id:106,ch:'transformer',type:'choice',q:'Y,y连接的钟面数为',opts:['0','6','11','5'],ans:0},
+  {id:107,ch:'transformer',type:'choice',q:'并联运行理想条件不包括',opts:['变比相同','连接组别相同','短路阻抗标幺值相同','容量相同'],ans:3},
+  {id:108,ch:'transformer',type:'choice',q:'变比不等并联运行时产生',opts:['环流','振动','噪声','过热'],ans:0},
+  {id:109,ch:'transformer',type:'choice',q:'自耦变压器相比普通双绕组',opts:['更安全','材料省效率高','短路阻抗大','不需要铁心'],ans:1},
+  {id:110,ch:'transformer',type:'choice',q:'自耦变压器容量等于',opts:['电磁容量','传导容量','电磁+传导容量','额定一半'],ans:2},
+  {id:111,ch:'transformer',type:'choice',q:'电压互感器正常运行近似',opts:['开路','短路','接大电阻','接电容'],ans:0},
+  {id:112,ch:'transformer',type:'choice',q:'铁心磁密通常取',opts:['0.5~0.8T','1.4~1.7T','2.0~2.5T','0.1~0.3T'],ans:1},
+  {id:113,ch:'transformer',type:'choice',q:'同心式排列优点是',opts:['绝缘方便','漏磁小','散热好','制造简单'],ans:0},
+  {id:114,ch:'transformer',type:'choice',q:'负载系数β等于',opts:['P₂/SN','I₂/I₂N','P₁/SN','I₁/I₂N'],ans:1},
+  {id:115,ch:'transformer',type:'choice',q:'额定容量SN单位是',opts:['W','kW','VA','kVA'],ans:3},
+  {id:116,ch:'transformer',type:'choice',q:'D,yn11中yn表示',opts:['高压Δ接低压Y接有中性线','低压Δ接','高压Y接','Z接'],ans:0},
+  {id:117,ch:'transformer',type:'choice',q:'变压器油主要作用是',opts:['绝缘和散热','仅绝缘','仅散热','润滑'],ans:0},
+  {id:118,ch:'transformer',type:'choice',q:'干式变压器特点是',opts:['用油绝缘','无油防火好','容量大','成本低'],ans:1},
+  {id:119,ch:'transformer',type:'choice',q:'分接开关作用是',opts:['改变频率','改变功率','改变变比调压','改变电流'],ans:2},
+  {id:120,ch:'transformer',type:'choice',q:'励磁电抗Xm反映',opts:['铁损大小','铁心磁导率高低','绕组电阻','漏磁大小'],ans:1},
+  {id:121,ch:'transformer',type:'choice',q:'短路电抗Xk反映',opts:['铁损大小','漏磁大小','励磁电流大小','铜损大小'],ans:1},
+  {id:122,ch:'transformer',type:'choice',q:'额定电压下铁损',opts:['与负载有关','基本不变','随负载增大','随负载减小'],ans:1},
+  {id:123,ch:'transformer',type:'choice',q:'铜损与β关系为',opts:['正比于β','正比于β²','与β无关','反比于β'],ans:1},
+  {id:124,ch:'transformer',type:'choice',q:'并联运行时分担负载与zk*成',opts:['正比','反比','无关','平方关系'],ans:1},
+  {id:125,ch:'transformer',type:'choice',q:'空载合闸可能产生',opts:['励磁涌流','短路电流','正常电流','零电流'],ans:0},
+  {id:126,ch:'transformer',type:'choice',q:'短路阻抗标幺值一般约',opts:['0.01~0.05','0.05~0.15','0.15~0.3','0.3~0.5'],ans:1},
+  {id:127,ch:'transformer',type:'choice',q:'变压器温升是指温度与什么之差',opts:['环境温度','额定温度','标准温度','参考温度'],ans:0},
+  {id:128,ch:'transformer',type:'choice',q:'变压器油位过低会导致',opts:['散热不良','绝缘降低','正常','无影响'],ans:0},
+  // -- 变压器 计算题 --
+  {id:129,ch:'transformer',type:'calc',q:'一台单相变压器，SN=100kVA，U₁N/U₂N=6000/230V。求I₁N和I₂N。',ans:'I₁N=100000/6000≈16.67A\nI₂N=100000/230≈434.78A'},
+  {id:130,ch:'transformer',type:'calc',q:'一台三相变压器，SN=800kVA，pkN=9.8kW，p₀=2.2kW。求βm和ηmax(cosφ=0.8)。',ans:'βm=√(2.2/9.8)≈0.474\nηmax=0.474×800×0.8/(0.474×800×0.8+2×2.2)≈98.6%'},
+  {id:131,ch:'transformer',type:'calc',q:'一台单相变压器，空载(低压):U₀=400V,I₀=5A,p₀=200W。求Rm,Xm。',ans:'Zm=400/5=80Ω, Rm=200/25=8Ω\nXm=√(80²-8²)≈79.6Ω'},
+  {id:132,ch:'transformer',type:'calc',q:'一台单相变压器，短路(高压):Uk=250V,Ik=10A,pk=300W。求Rk,Xk。',ans:'Zk=250/10=25Ω, Rk=300/100=3Ω\nXk=√(25²-3²)≈24.8Ω'},
+  // -- 交流绕组 选择题 --
+  {id:133,ch:'winding',type:'choice',q:'极距τ定义是',opts:['每个磁极下圆周距离(槽数)','相邻两槽距离','绕组节距','每相所占槽数'],ans:0},
+  {id:134,ch:'winding',type:'choice',q:'每极每相槽数q=',opts:['Z/(2pm)','2pZ/m','mZ/(2p)','Z/m'],ans:0},
+  {id:135,ch:'winding',type:'choice',q:'槽距角α=',opts:['360°/Z','360°p/Z','180°/Z','60°/q'],ans:1},
+  {id:136,ch:'winding',type:'choice',q:'短距绕组优点是',opts:['节省材料','削弱谐波电动势','增大基波电动势','减小电阻'],ans:1},
+  {id:137,ch:'winding',type:'choice',q:'分布绕组优点是',opts:['节省材料','削弱谐波电动势','增大基波电动势','减小漏抗'],ans:1},
+  {id:138,ch:'winding',type:'choice',q:'短距因数kp1意义是',opts:['短距与整距电动势比','分布效应','电阻修正','磁通修正'],ans:0},
+  {id:139,ch:'winding',type:'choice',q:'分布因数kd1意义是',opts:['分布与集中电动势比','短距效应','电抗修正','磁动势修正'],ans:0},
+  {id:140,ch:'winding',type:'choice',q:'整距绕组kp1等于',opts:['0','1','0.866','0.707'],ans:1},
+  {id:141,ch:'winding',type:'choice',q:'集中绕组kd1等于',opts:['0','1','0.966','0.866'],ans:1},
+  {id:142,ch:'winding',type:'choice',q:'单相绕组磁动势性质是',opts:['脉振磁动势','圆形旋转','椭圆形旋转','恒定磁动势'],ans:0},
+  {id:143,ch:'winding',type:'choice',q:'脉振磁动势可分解为',opts:['两个幅值相等反向旋转磁动势','一个旋转磁动势','一个恒定磁动势','两个同向旋转磁动势'],ans:0},
+  {id:144,ch:'winding',type:'choice',q:'三相旋转磁动势幅值是单相的',opts:['1倍','1.5倍','2倍','√3倍'],ans:1},
+  {id:145,ch:'winding',type:'choice',q:'旋转磁场转向取决于',opts:['电流大小','电流频率','三相电流相序','绕组匝数'],ans:2},
+  {id:146,ch:'winding',type:'choice',q:'三相6极50Hz同步转速',opts:['3000r/min','1500r/min','1000r/min','750r/min'],ans:2},
+  {id:147,ch:'winding',type:'choice',q:'三相4极50Hz同步转速',opts:['3000r/min','1500r/min','1000r/min','750r/min'],ans:1},
+  {id:148,ch:'winding',type:'choice',q:'三相2极50Hz同步转速',opts:['3000r/min','1500r/min','1000r/min','750r/min'],ans:0},
+  {id:149,ch:'winding',type:'choice',q:'三相8极50Hz同步转速',opts:['3000r/min','1500r/min','1000r/min','750r/min'],ans:3},
+  {id:150,ch:'winding',type:'choice',q:'单层绕组最大并联支路数',opts:['1','2','p','2p'],ans:2},
+  {id:151,ch:'winding',type:'choice',q:'双层绕组最大并联支路数',opts:['1','2','p','2p'],ans:3},
+  {id:152,ch:'winding',type:'choice',q:'消除5次谐波取y=',opts:['4τ/5','τ/5','τ','3τ/5'],ans:0},
+  {id:153,ch:'winding',type:'choice',q:'同时削弱5次7次谐波取y=',opts:['4τ/5','5τ/6','6τ/7','τ'],ans:1},
+  // -- 异步电机 选择题 --
+  {id:154,ch:'async',type:'choice',q:'异步电动机又称',opts:['同步电机','感应电机','直流电机','变压器'],ans:1},
+  {id:155,ch:'async',type:'choice',q:'转差率s定义为',opts:['n/n₁','(n₁-n)/n','(n₁-n)/n₁','n₁/n'],ans:2},
+  {id:156,ch:'async',type:'choice',q:'起动时s=',opts:['0','1','0.01~0.05','大于1'],ans:1},
+  {id:157,ch:'async',type:'choice',q:'理想空载时s=',opts:['0','1','0.01~0.05','无穷大'],ans:0},
+  {id:158,ch:'async',type:'choice',q:'回馈制动时s',opts:['小于0','大于1','等于0','0~1之间'],ans:0},
+  {id:159,ch:'async',type:'choice',q:'反接制动时s',opts:['小于0','大于1','等于0','0~1之间'],ans:1},
+  {id:160,ch:'async',type:'choice',q:'转子频率f₂=sf₁，额定时f₂',opts:['≈0.5~2.5Hz','≈5~10Hz','≈20~50Hz','≈100Hz'],ans:0},
+  {id:161,ch:'async',type:'choice',q:'等效电路转子侧R₂\'/s分解为',opts:['R₂\'和R₂\'(1-s)/s','R₂\'和R₂\'/s','R₂\'s和R₂\'','R₂\'和sR₂\''],ans:0},
+  {id:162,ch:'async',type:'choice',q:'机械功率Pmec与Pem关系',opts:['Pmec=Pem','Pmec=sPem','Pmec=(1-s)Pem','Pmec=Pem/s'],ans:2},
+  {id:163,ch:'async',type:'choice',q:'功率流程正确是',opts:['P₁→Pem→Pmec→P₂','P₁→P₂→Pem→Pmec','Pem→P₁→Pmec→P₂','P₂→Pmec→Pem→P₁'],ans:0},
+  {id:164,ch:'async',type:'choice',q:'最大转矩对应转差率称',opts:['额定转差率','临界转差率sm','起动转差率','空载转差率'],ans:1},
+  {id:165,ch:'async',type:'choice',q:'过载能力λ=Tmax/TN一般',opts:['1~1.5','1.5~2.5','2.5~3.5','3.5~4.5'],ans:1},
+  {id:166,ch:'async',type:'choice',q:'笼型直接起动电流约额定',opts:['1~2倍','2~3倍','5~7倍','10倍以上'],ans:2},
+  {id:167,ch:'async',type:'choice',q:'笼型直接起动转矩',opts:['很大','不大','为零','等于额定'],ans:1},
+  {id:168,ch:'async',type:'choice',q:'Y-Δ起动转矩降为直接的',opts:['1/√3','1/3','√3','3'],ans:1},
+  {id:169,ch:'async',type:'choice',q:'绕线型串电阻后最大转矩',opts:['增大','减小','不变','不确定'],ans:2},
+  {id:170,ch:'async',type:'choice',q:'绕线型串电阻后特性变',opts:['硬','软','不变','更硬'],ans:1},
+  {id:171,ch:'async',type:'choice',q:'变频调速V/f恒定原因',opts:['保持电流','保持Φ不变','保持功率','保持转速'],ans:1},
+  {id:172,ch:'async',type:'choice',q:'Y/YY变极调速YY对应',opts:['低速','高速','额定','空载'],ans:1},
+  {id:173,ch:'async',type:'choice',q:'Δ/YY变极调速YY对应',opts:['低速','高速','额定','空载'],ans:1},
+  {id:174,ch:'async',type:'choice',q:'电容分相起动原理',opts:['增大电流','产生相位差旋转磁场','减小电阻','增大磁通'],ans:1},
+  {id:175,ch:'async',type:'choice',q:'罩极电动机转向',opts:['可随意改','从未罩到被罩','从被罩到未罩','不确定'],ans:1},
+  {id:176,ch:'async',type:'choice',q:'深槽式利用集肤效应使',opts:['电阻增大','电阻减小','励磁增大','磁通增大'],ans:0},
+  {id:177,ch:'async',type:'choice',q:'双笼型起动笼特点',opts:['截面积小电阻大','截面积大电阻小','相同','无设计'],ans:0},
+  {id:178,ch:'async',type:'choice',q:'变极调速属于',opts:['无级','有级','变频','串级'],ans:1},
+  {id:179,ch:'async',type:'choice',q:'变频调速属于',opts:['有级','无级','变极','变转差率'],ans:1},
+  // -- 异步电机 计算题 --
+  {id:180,ch:'async',type:'calc',q:'一台三相异步电动机，PN=30kW，nN=1470r/min，f=50Hz，2p=4。求sN和TN。',ans:'n₁=60×50/2=1500, sN=(1500-1470)/1500=0.02\nTN=9.55×30000/1470≈194.9N·m'},
+  {id:181,ch:'async',type:'calc',q:'一台三相异步电动机，Pem=15kW，sN=0.04。求pCu2和Pmec。',ans:'pCu2=0.04×15000=600W\nPmec=0.96×15000=14400W'},
+  {id:182,ch:'async',type:'calc',q:'一台三相4极f=50Hz，nN=1455r/min。求sN和f₂。',ans:'n₁=1500, sN=(1500-1455)/1500=0.03\nf₂=0.03×50=1.5Hz'},
+  {id:183,ch:'async',type:'calc',q:'一台三相异步电动机，PN=45kW，nN=1480r/min，λ=2.2。求Tmax。',ans:'TN=9.55×45000/1480≈290.4N·m\nTmax=2.2×290.4≈638.9N·m'},
+  {id:184,ch:'async',type:'calc',q:'一台三相异步电动机，Ist/IN=6.5，Tst/TN=1.2。Y-Δ起动后Ist/IN和Tst/TN？',ans:'Ist/IN=(1/3)×6.5≈2.17\nTst/TN=(1/3)×1.2=0.4'},
+  // -- 同步电机 选择题 --
+  {id:185,ch:'sync',type:'choice',q:'同步电机转速与频率关系为',opts:['n=60f/p','n与f无关','n=60p/f','n=f/p'],ans:0},
+  {id:186,ch:'sync',type:'choice',q:'凸极同步发电机双反应理论将电枢反应分解为',opts:['直轴和交轴分量','正序负序分量','有功无功分量','基波谐波分量'],ans:0},
+  {id:187,ch:'sync',type:'choice',q:'隐极同步发电机电动势方程为',opts:['Ė₀=Ú+jİRₐ+jİXd','Ė₀=Ú+İRₐ+jİXq','Ė₀=Ú+jİRₐ+jİXt','Ė₀=Ú+jİXd+jİXq'],ans:0},
+  {id:188,ch:'sync',type:'choice',q:'功角特性Pem=m(E₀U/Xd)sinδ中δ是',opts:['功角（电动势与电压夹角）','电流与电压夹角','转速差角','负载转矩角'],ans:0},
+  {id:189,ch:'sync',type:'choice',q:'同步发电机并网条件不包括',opts:['电压相等','频率相等','相序相同','容量相同'],ans:3},
+  {id:190,ch:'sync',type:'choice',q:'调节励磁电流可调节',opts:['有功功率','无功功率','频率','转速'],ans:1},
+  {id:191,ch:'sync',type:'choice',q:'调节原动机转矩可调节',opts:['有功功率','无功功率','频率','转速'],ans:0},
+  {id:192,ch:'sync',type:'choice',q:'同步电动机过励运行时向电网提供',opts:['有功功率','感性无功功率','容性无功功率','既不发也不收'],ans:2},
+  {id:193,ch:'sync',type:'choice',q:'同步补偿机专门用于',opts:['产生机械功率','调节电网无功功率','调节频率','发电'],ans:1},
+  {id:194,ch:'sync',type:'choice',q:'同步电动机最常用起动方法是',opts:['直接起动','辅助电动机起动','异步起动法(阻尼绕组)','变频起动'],ans:2},
+  {id:195,ch:'sync',type:'choice',q:'同步发电机空载特性反映',opts:['磁路饱和情况','短路特性','负载特性','外特性'],ans:0},
+  {id:196,ch:'sync',type:'choice',q:'同步发电机短路特性反映',opts:['励磁电流与短路电流关系','稳态短路电流','短路电压','短路功率'],ans:0},
+  {id:197,ch:'sync',type:'choice',q:'同步发电机额定功率PN指',opts:['输入功率','输出电功率','电磁功率','损耗功率'],ans:1},
+  {id:198,ch:'sync',type:'choice',q:'同步发电机额定电压UN指',opts:['线电压','相电压','平均电压','峰值电压'],ans:0},
+  {id:199,ch:'sync',type:'choice',q:'同步发电机额定电流IN指',opts:['线电流','相电流','平均电流','峰值电流'],ans:0},
+  {id:200,ch:'sync',type:'choice',q:'同步发电机额定功率因数一般',opts:['0.7~0.8','0.8~0.9','0.9~0.95','>0.95'],ans:1},
+  {id:201,ch:'sync',type:'choice',q:'同步发电机效率大容量可达',opts:['70%~80%','80%~90%','90%~95%','95%以上'],ans:2},
+  {id:202,ch:'sync',type:'choice',q:'同步发电机额定频率我国为',opts:['40Hz','50Hz','60Hz','100Hz'],ans:1},
+  {id:203,ch:'sync',type:'choice',q:'同步电动机过励时功率因数',opts:['超前(容性)','滞后(感性)','为零','不变'],ans:0},
+  {id:204,ch:'sync',type:'choice',q:'同步电动机欠励时功率因数',opts:['超前(容性)','滞后(感性)','为零','不变'],ans:1},
+  {id:205,ch:'sync',type:'choice',q:'同步电动机静态稳定极限是δ=',opts:['0°','90°','180°','270°'],ans:1},
+  {id:206,ch:'sync',type:'choice',q:'同步发电机V形曲线描述的是',opts:['P-Q关系','P-U关系','P-cosφ关系','P-n关系'],ans:0},
+  {id:207,ch:'sync',type:'choice',q:'同步发电机并网时频率不等会产生',opts:['自动调整','冲击电流','无法并网','电压波动'],ans:1},
+  {id:208,ch:'sync',type:'choice',q:'同步发电机失磁后进入',opts:['电动机状态','异步发电机状态','电磁制动状态','空载状态'],ans:1},
+  // -- 同步电机 计算题 --
+  {id:209,ch:'sync',type:'calc',q:'一台三相同步发电机，SN=62.5MVA，U_N=10.5kV，cosφ_N=0.8。求I_N。',ans:'I_N=SN/(√3×U_N)=62500/(√3×10500)≈3.44kA'},
+  {id:210,ch:'sync',type:'calc',q:'一台隐极同步发电机，Xd=1.2Ω，E₀=500V(线)，U=400V(线)，δ=30°。求Pem。',ans:'E₀相=500/√3≈288.7V, U相=400/√3≈230.9V\nPem=3×(288.7×230.9/1.2)×sin30°≈83.2kW'},
+  // -- 综合实验 --
+  {id:211,ch:'transformer',type:'calc',q:'简述变压器空载试验和短路试验的目的及在哪侧进行。',ans:'空载试验:测定铁损pFe、励磁参数Zm=Rm+jXm。在低压侧加额定电压，高压侧开路。\n短路试验:测定铜损pCu、短路参数Zk=Rk+jXk。在高压侧加低电压使电流达额定值，低压侧短路。'},
+  {id:212,ch:'transformer',type:'calc',q:'为什么电流互感器二次侧严禁开路？',ans:'正常运行时二次电流近似抵消一次磁动势，铁心磁通很小。\n开路时:①二次电流为零，一次磁动势全用于励磁，磁通剧增；②铁损剧增过热；③二次感应高压危及安全。'},
+  {id:213,ch:'transformer',type:'calc',q:'为什么电压互感器二次侧严禁短路？',ans:'正常运行时二次侧接高阻抗电压表，近似开路。\n短路时:①二次电流剧增绕组过热烧毁；②一次电流随之增大；③熔断器熔断影响保护。'},
+  {id:214,ch:'sync',type:'calc',q:'简述同步发电机并网的三个条件。',ans:'(1)电压相等:待并发电机电压与电网电压有效值相等\n(2)频率相等:待并发电机频率与电网频率相等\n(3)相序相同:待并发电机与电网相序一致'},
+  {id:215,ch:'sync',type:'calc',q:'简述同步发电机失磁后的运行状态。',ans:'失磁后:①电磁功率下降；②原动机功率不变，转子加速，n>n₁；③转入异步发电机状态；④从电网吸收无功功率；⑤定子电流增大。'},
+  {id:216,ch:'sync',type:'calc',q:'简述同步电动机V形曲线及其特点。',ans:'V形曲线:不同励磁下有功功率P与无功功率Q的关系。\n特点:①欠励时吸收感性无功(滞后)；②过励时发出容性无功(超前)；③cosφ=1时对应顶点；④主要用于改善功率因数。'},
+  {id:217,ch:'dc',type:'calc',q:'直流电动机为什么不能直接起动？常用起动方法有哪些？',ans:'直接起动时E=0→Ia=U/Ra很大(5~7倍额定)，造成:①换向困难严重火花；②机械冲击；③电网冲击。\n常用方法:电枢串电阻起动、降压起动。'},
+  {id:218,ch:'async',type:'calc',q:'试述变频调速原理及V/f恒定控制的原因。',ans:'变频调速:改变f→n₁=60f/p改变→调节转速。\nV/f恒定原因:E₁≈4.44fNΦkw\n•f降U不变→Φ增大→饱和→励磁电流剧增\n•f升U不变→Φ减小→转矩下降\n保持U/f恒定使Φ基本不变。'},
+  {id:219,ch:'async',type:'calc',q:'异步电动机起动时s=1，此时转子频率f₂等于多少？',ans:'s=1时f₂=sf₁=f₁=50Hz\n起动时转子频率等于电源频率，随着转速上升f₂逐渐降低。'},
+  {id:220,ch:'dc',type:'calc',q:'一台他励直流电动机，PN=7.5kW，UN=110V，IN=82A，nN=1500r/min，Ra=0.1Ω。求Pem和Σp。',ans:'P1=110×82=9020W\npCu=82²×0.1=672.4W\nPem=9020-672.4=8347.6W\nΣp=9020-7500=1520W'},
+  {id:221,ch:'transformer',type:'calc',q:'一台三相变压器，SN=100kVA，pkN=2.4kW，p₀=0.6kW。β=0.5,cosφ=0.8时η=?',ans:'η=0.5×100×0.8/(0.5×100×0.8+0.6+0.25×2.4)\n=640/(640+0.6+0.6)=640/641.2≈99.8%'},
+  {id:222,ch:'async',type:'calc',q:'一台三相6极f=50Hz，sN=0.025。求nN和f₂。',ans:'n₁=1000, nN=1000×(1-0.025)=975r/min\nf₂=0.025×50=1.25Hz'},
+  {id:223,ch:'winding',type:'calc',q:'一台三相4极Z=36槽双层短距y=7。求τ,q,α。',ans:'τ=36/4=9, q=36/(4×3)=3\nα=360×2/36=20°'},
+  {id:224,ch:'winding',type:'calc',q:'一台三相4极Z=48槽f=50Hz，每相N=48，kN1=0.93，Φ1=0.05Wb。求Eφ和EL。',ans:'Eφ=4.44×50×48×0.05×0.93=494.5V\nEL=√3×494.5≈856.5V'},
+  {id:225,ch:'dc',type:'calc',q:'一台他励直流电动机，PN=10kW，UN=220V，IN=55A，nN=1000r/min，Ra=0.3Ω。电枢串1.5Ω后转速(T不变)。',ans:'E=220-55×0.3=203.5V\nE\'=220-55×(0.3+1.5)=121V\nn\'=1000×121/203.5≈595r/min'},
+  {id:226,ch:'dc',type:'calc',q:'一台他励直流发电机，PN=100kW，UN=230V，nN=1500r/min，Ra=0.05Ω。求IN和E。',ans:'IN=100000/230≈434.8A\nE=230+434.8×0.05=230+21.74=251.74V'},
+  {id:227,ch:'transformer',type:'calc',q:'一台单相变压器，SN=20kVA，U₁N/U₂N=380/115V。ZL=0.5+j0.8Ω，求归算到高压侧ZL\'。',ans:'k=380/115≈3.304\nZL\'=3.304²×(0.5+j0.8)=10.92×(0.5+j0.8)=5.46+j8.74Ω'},
+  {id:228,ch:'transformer',type:'calc',q:'一台三相变压器，SN=560kVA，U₁N/U₂N=10/6.3kV，Y,d11。求I₁N和I₂N。',ans:'I₁N=560/(√3×10)≈32.33A\nI₂N=560/(√3×6.3)≈51.33A'},
+  {id:229,ch:'async',type:'calc',q:'一台三相异步电动机，PN=7.5kW，UN=380V，IN=15.4A，cosφ=0.85，nN=1440r/min。求ηN和TN。',ans:'P1=√3×380×15.4×0.85≈8616W\nηN=7500/8616≈87.0%\nTN=9.55×7500/1440≈49.7N·m'},
+  {id:230,ch:'async',type:'calc',q:'一台三相异步电动机，PN=22kW，Ist/IN=7，Tst/TN=1.5。自耦(k=0.65)起动?Ist/IN和Tst/TN?',ans:'Ist/IN=0.65²×7≈2.96\nTst/TN=0.65²×1.5≈0.634'},
+  {id:231,ch:'sync',type:'calc',q:'一台同步发电机，cosφ_N=0.8，U_N=6.3kV，I_N=5.5kA。求S_N。',ans:'S_N=√3×U_N×I_N=√3×6300×5500≈61.2MVA'},
+  {id:232,ch:'dc',type:'choice',q:'并励直流发电机建压必须有剩磁，这是因为',opts:['剩磁提供初始电动势','剩磁减小损耗','剩磁改善换向','剩磁提高效率'],ans:0},
+  {id:233,ch:'dc',type:'choice',q:'直流电机电枢反应使',opts:['主磁场增强','主磁场减弱且畸变','换向改善','磁通不变'],ans:1},
+  {id:234,ch:'dc',type:'choice',q:'他励直流电动机额定效率ηN等于',opts:['PN/P1','P1/PN','Pem/P1','P2/Pem'],ans:0},
+  {id:235,ch:'transformer',type:'choice',q:'变压器一次侧和二次侧频率关系为',opts:['f₁=f₂','f₁=kf₂','f₁=f₂/k','不确定'],ans:0},
+  {id:236,ch:'transformer',type:'choice',q:'变压器负载运行时主磁通基本不变是因为',opts:['U₁≈E₁=4.44fN₁Φ','磁路不饱和','绕组电阻为零','漏磁为零'],ans:0},
+  {id:237,ch:'transformer',type:'choice',q:'三相变压器Y,d11中11表示',opts:['钟面11点位置','11次谐波','11个绕组','电压比11'],ans:0},
+  {id:238,ch:'winding',type:'choice',q:'三相绕组通不对称电流产生',opts:['圆形旋转磁动势','椭圆形旋转磁动势','脉振磁动势','恒定磁动势'],ans:1},
+  {id:239,ch:'winding',type:'choice',q:'相电动势公式E=4.44fNΦkN中kN称为',opts:['短距因数','分布因数','绕组因数','磁通因数'],ans:2},
+  {id:240,ch:'async',type:'choice',q:'异步电机等效电路中(1-s)R₂\'/s对应的功率是',opts:['转子铜损','机械功率','铁损','定子铜损'],ans:1},
+  {id:241,ch:'async',type:'choice',q:'异步电机电磁转矩T=',opts:['Pem/Ω₁','Pmec/Ω','P₂/Ω','P₁/Ω₁'],ans:0},
+  {id:242,ch:'async',type:'choice',q:'异步电机额定转矩TN=9.55PN/nN中PN单位为',opts:['W','kW','MW','HP'],ans:1},
+  {id:243,ch:'sync',type:'choice',q:'凸极同步发电机电动势方程含',opts:['仅Xd','仅Xq','Xd和Xq','Xt'],ans:2},
+  {id:244,ch:'sync',type:'choice',q:'同步发电机并网时电压不等会产生',opts:['自动调整','冲击电流','无法并网','频率波动'],ans:1},
+  {id:245,ch:'sync',type:'choice',q:'同步发电机并网时相序不同',opts:['可自动调整','产生冲击电流','无法并网','电压波动'],ans:2},
+  {id:246,ch:'dc',type:'choice',q:'直流电机稳定运行时电磁转矩与负载转矩的关系为',opts:['Te>TL','Te=TL','Te<TL','不确定'],ans:1},
+  {id:247,ch:'dc',type:'choice',q:'直流电动机额定功率是指',opts:['输入电功率','输出机械功率','电磁功率','损耗功率'],ans:1},
+  {id:248,ch:'transformer',type:'choice',q:'变压器空载合闸励磁涌流可达额定电流的',opts:['1~2倍','3~5倍','5~8倍','10倍以上'],ans:2}
+];
+
+const videos = [
+  {ch:'dc',title:'直流电机工作原理',source:'华中科技大学《电机学》精品课',platform:'中国大学MOOC',desc:'主磁极、电枢绕组、换向器基本原理动画演示',keywords:['电机学 直流电机','直流电机原理 动画']},
+  {ch:'dc',title:'直流电动机起动调速制动',source:'东南大学《电机学》',platform:'B站 / 网易公开课',desc:'三种起动方式与调速方法实验演示',keywords:['直流电动机调速']},
+  {ch:'dc',title:'换向与改善换向',source:'《电机学》教学视频',platform:'B站',desc:'换向极、电刷选择原理讲解',keywords:['电机学 换向']},
+  {ch:'transformer',title:'变压器基本原理',source:'清华大学《电机学》',platform:'中国大学MOOC / B站',desc:'铁心结构、绕组排列3D动画',keywords:['电机学 变压器','变压器等效电路']},
+  {ch:'transformer',title:'变压器运行分析',source:'华中科技大学《电机学》精品课',platform:'中国大学MOOC',desc:'T形等效电路推导、参数测定实验',keywords:['变压器等效电路']},
+  {ch:'transformer',title:'三相变压器连接组别',source:'《电机学》教学视频',platform:'B站',desc:'Yy、Yd连接组钟面法动画演示',keywords:['三相变压器连接组']},
+  {ch:'transformer',title:'自耦变压器与互感器',source:'《电机学》教学视频',platform:'B站',desc:'自耦变压器容量关系、互感器注意事项',keywords:['自耦变压器','互感器']},
+  {ch:'winding',title:'交流绕组',source:'华中科技大学《电机学》精品课',platform:'中国大学MOOC / B站',desc:'绕组术语、单层/双层绕组排列动画',keywords:['电机学 交流绕组']},
+  {ch:'winding',title:'三相旋转磁动势',source:'清华大学《电机学》',platform:'中国大学MOOC',desc:'脉振→旋转磁动势分解动画',keywords:['旋转磁动势 动画演示']},
+  {ch:'async',title:'异步电机原理',source:'华中科技大学《电机学》精品课',platform:'中国大学MOOC / B站',desc:'旋转磁场、转差率概念动画',keywords:['电机学 异步电机','转差率讲解']},
+  {ch:'async',title:'异步电动机机械特性与起动',source:'《电机学》教学视频',platform:'B站',desc:'T-s曲线、Y-Δ起动/自耦起动对比',keywords:['异步电动机起动调速']},
+  {ch:'async',title:'异步电机调速',source:'清华大学《电机学》',platform:'中国大学MOOC',desc:'变频调速V/f控制原理',keywords:['变频调速']},
+  {ch:'async',title:'单相异步电动机',source:'《电机学》教学视频',platform:'B站',desc:'脉振磁场分解、分相起动原理',keywords:['单相异步电动机']},
+  {ch:'sync',title:'同步电机原理与结构',source:'华中科技大学《电机学》精品课',platform:'中国大学MOOC / B站',desc:'隐极/凸极结构对比',keywords:['电机学 同步电机']},
+  {ch:'sync',title:'同步发电机运行特性',source:'东南大学《电机学》',platform:'中国大学MOOC',desc:'双反应理论、相量图推导',keywords:['双反应理论']},
+  {ch:'sync',title:'同步发电机并联运行',source:'清华大学《电机学》',platform:'中国大学MOOC',desc:'功角特性、V形曲线讲解',keywords:['同步发电机并联运行','V形曲线']},
+  {ch:'sync',title:'同步电动机与补偿机',source:'《电机学》教学视频',platform:'B站',desc:'异步起动法、功率因数调节',keywords:['同步电动机']},
+];
+
+const moocs = [
+  {school:'华中科技大学',course:'电机学（国家级精品课程）',teacher:'辜承林 等',platform:'中国大学MOOC / B站'},
+  {school:'清华大学',course:'电机学',teacher:'',platform:'中国大学MOOC'},
+  {school:'东南大学',course:'电机学',teacher:'',platform:'中国大学MOOC'},
+  {school:'西安交通大学',course:'电机与拖动',teacher:'',platform:'中国大学MOOC'},
+];
+
+// ===== NAV =====
+window.__navBound=true;
+// 使用事件委托（更健壮，不受DOM重建影响）
+document.querySelector('.nav-tabs').addEventListener('click',function(e){
+  const tab=e.target.closest('.nav-tab');
+  if(!tab) return;
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+tab.dataset.tab).classList.add('active');
+});
+
+// ===== KNOWLEDGE =====
+function renderChapters(filter=''){
+  const grid=document.getElementById('chapter-grid');
+  const detail=document.getElementById('knowledge-detail');
+  detail.classList.remove('active');
+  grid.style.display='';
+  grid.innerHTML='';
+  chapters.forEach(ch=>{
+    if(filter && !ch.title.includes(filter) && !ch.topics.some(t=>t.includes(filter)) && !ch.content.toLowerCase().includes(filter.toLowerCase())) return;
+    const card=document.createElement('div');
+    card.className='card chapter-card';
+    card.innerHTML=`
+      <div class="chapter-num">${ch.num}</div>
+      <h3>${ch.title}</h3>
+      <div class="chapter-topics">${ch.topics.map(t=>`<span class="topic-tag">${t}</span>`).join('')}</div>`;
+    card.addEventListener('click',()=>showChapter(ch));
+    grid.appendChild(card);
+  });
+  if(!grid.children.length) grid.innerHTML='<div style="text-align:center;padding:40px;color:var(--text3)">未找到匹配的知识点</div>';
+}
+
+function showChapter(ch){
+  const grid=document.getElementById('chapter-grid');
+  const detail=document.getElementById('knowledge-detail');
+  const content=document.getElementById('knowledge-content');
+  grid.style.display='none';
+  content.innerHTML=ch.content;
+  detail.classList.add('active');
+  window.scrollTo({top:200,behavior:'smooth'});
+}
+
+document.getElementById('knowledge-back').addEventListener('click',()=>{
+  document.getElementById('knowledge-detail').classList.remove('active');
+  document.getElementById('chapter-grid').style.display='';
+});
+
+document.getElementById('knowledge-search').addEventListener('input',e=>{
+  renderChapters(e.target.value.trim());
+});
+
+renderChapters();
+
+// ===== QUIZ =====
+let selectedChapters=new Set();
+let currentQuiz=[];
+let quizIndex=0;
+let quizScore=0;
+let quizAnswered=0;
+
+function renderQuizChapters(){
+  const el=document.getElementById('quiz-chapters');
+  el.innerHTML=chapters.map(ch=>`<button class="quiz-chip" data-ch="${ch.id}">${ch.num} ${ch.title}</button>`).join('');
+  el.querySelectorAll('.quiz-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const id=chip.dataset.ch;
+      if(selectedChapters.has(id)){selectedChapters.delete(id);chip.classList.remove('active');}
+      else{selectedChapters.add(id);chip.classList.add('active');}
+    });
+  });
+}
+renderQuizChapters();
+
+function startQuiz(count){
+  let pool=questions.filter(q=>selectedChapters.size===0||selectedChapters.has(q.ch));
+  if(!pool.length){showToast('请先选择章节');return;}
+  pool=[...pool].sort(()=>Math.random()-.5);
+  currentQuiz=pool.slice(0,Math.min(count,pool.length));
+  quizIndex=0;quizScore=0;quizAnswered=0;
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const area=document.getElementById('quiz-area');
+  if(quizIndex>=currentQuiz.length){showScore();return;}
+  const q=currentQuiz[quizIndex];
+  const chName=chapters.find(c=>c.id===q.ch)?.title||'';
+  const total=currentQuiz.length;
+  let html=`<div class="quiz-progress">
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${(quizIndex/total)*100}%"></div></div>
+    <div class="quiz-progress-text">${quizIndex+1} / ${total}</div>
+  </div><div class="question-card">
+    <div class="question-num">${chName} · 第 ${quizIndex+1} 题</div>
+    <div class="question-text">${q.q}</div>`;
+  if(q.type==='choice'){
+    const labels=['A','B','C','D'];
+    html+=`<div class="question-options">${q.opts.map((o,i)=>`<button class="option-btn" data-idx="${i}"><span class="opt-label">${labels[i]}</span><span>${o}</span></button>`).join('')}</div>
+    <div class="answer-reveal" id="ans-reveal">✅ 正确答案：${labels[q.ans]}. ${q.opts[q.ans]}</div>`;
+  } else {
+    html+=`<button class="calc-toggle" id="calc-toggle">📖 查看解答</button>
+    <div class="calc-answer" id="calc-answer">${q.ans}</div>`;
+  }
+  html+=`</div>`;
+  area.innerHTML=html;
+
+  if(q.type==='choice'){
+    area.querySelectorAll('.option-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(btn.classList.contains('correct')||btn.classList.contains('wrong'))return;
+        const idx=parseInt(btn.dataset.idx);
+        area.querySelectorAll('.option-btn').forEach(b=>{b.style.pointerEvents='none';});
+        if(idx===q.ans){btn.classList.add('correct');quizScore++;}
+        else{btn.classList.add('wrong');area.querySelectorAll('.option-btn')[q.ans].classList.add('correct');}
+        document.getElementById('ans-reveal').classList.add('show');
+        quizAnswered++;
+        setTimeout(()=>{quizIndex++;renderQuestion();},1800);
+      });
+    });
+  } else {
+    document.getElementById('calc-toggle').addEventListener('click',()=>{
+      document.getElementById('calc-answer').classList.add('show');
+      document.getElementById('calc-toggle').style.display='none';
+      quizAnswered++;
+      setTimeout(()=>{quizIndex++;renderQuestion();},2500);
+    });
+  }
+}
+
+function showScore(){
+  const area=document.getElementById('quiz-area');
+  const choiceTotal=currentQuiz.filter(q=>q.type==='choice').length;
+  const pct=choiceTotal?Math.round(quizScore/choiceTotal*100):0;
+  area.innerHTML=`<div class="quiz-score">
+    <div style="font-size:48px;margin-bottom:16px">🎉</div>
+    <div class="big">${pct}%</div>
+    <p>选择题正确 ${quizScore}/${choiceTotal}，共完成 ${quizAnswered}/${currentQuiz.length} 题</p>
+    <button class="quiz-btn primary" style="margin-top:20px" onclick="startQuiz(${currentQuiz.length})">再练一次</button>
+  </div>`;
+}
+
+document.getElementById('quiz-random').addEventListener('click',()=>startQuiz(5));
+document.getElementById('quiz-exam').addEventListener('click',()=>startQuiz(15));
+document.getElementById('quiz-reset').addEventListener('click',()=>{
+  selectedChapters.clear();
+  document.querySelectorAll('.quiz-chip').forEach(c=>c.classList.remove('active'));
+  document.getElementById('quiz-area').innerHTML=`<div style="text-align:center;padding:60px 20px;color:var(--text3)"><div style="font-size:48px;margin-bottom:16px">📝</div><p style="font-size:16px;margin-bottom:8px">选择章节后点击出题</p><p style="font-size:13px">或直接点击「随机出题」开始练习</p></div>`;
+});
+
+// ===== VIDEOS =====
+let activePlatform='all';
+function renderVideos(){
+  const platformsEl=document.getElementById('video-platforms');
+  const platforms=['all','中国大学MOOC','B站','网易公开课'];
+  const labels={'all':'全部','中国大学MOOC':'📚 中国大学MOOC','B站':'📺 B站','网易公开课':'🌐 网易公开课'};
+  platformsEl.innerHTML=platforms.map(p=>`<button class="platform-badge${p===activePlatform?' active':''}" data-p="${p}"><span class="dot" style="background:${p==='all'?'var(--accent)':p==='中国大学MOOC'?'var(--blue)':p==='B站'?'var(--green)':'#a855f7'}"></span>${labels[p]}</button>`).join('');
+  platformsEl.querySelectorAll('.platform-badge').forEach(btn=>{
+    btn.addEventListener('click',()=>{activePlatform=btn.dataset.p;renderVideos();});
+  });
+
+  const grid=document.getElementById('video-grid');
+  const filtered=activePlatform==='all'?videos:videos.filter(v=>v.platform.includes(activePlatform));
+  grid.innerHTML=filtered.map(v=>{
+    const chName=chapters.find(c=>c.id===v.ch)?.title||'';
+    const chNum=chapters.find(c=>c.id===v.ch)?.num||'';
+    const searchUrl=`https://search.bilibili.com/all?keyword=${encodeURIComponent(v.keywords[0])}`;
+    return `<div class="card video-card">
+      <div class="vid-chapter">${chNum} · ${chName}</div>
+      <div class="vid-title">${v.title}</div>
+      <div class="vid-source">📍 ${v.source} · ${v.platform}</div>
+      <div class="vid-desc">${v.desc}</div>
+      <a class="vid-link" href="${searchUrl}" target="_blank" rel="noopener">搜索观看 →</a>
+    </div>`;
+  }).join('');
+
+  const moocGrid=document.getElementById('mooc-grid');
+  moocGrid.innerHTML=moocs.map(m=>`<div class="mooc-card">
+    <div class="school">${m.school}</div>
+    <div class="course">${m.course}</div>
+    <div class="platform">${m.platform}${m.teacher?' · '+m.teacher:''}</div>
+  </div>`).join('');
+}
+renderVideos();
+
+// ===== TOAST =====
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ===== Q&A MODULE =====
+const qaHistory=document.getElementById('qa-history');
+const qaInput=document.getElementById('qa-input');
+const qaSend=document.getElementById('qa-send');
+const qaClear=document.getElementById('qa-clear');
+let qaFirstQuestion=true;
+
+// 知识库关键词匹配
+const qaKnowledge=[
+  {keywords:['直流电动机','直流电机','电动机','dc motor'],answer:`<b>直流电动机</b>是将直流电能转换为机械能的旋转电机。
+
+<b>基本原理</b>：载流导体在磁场中受电磁力产生转矩
+• 电磁转矩：T = CₜΦIₐ
+• 感应电动势：E = CₑΦn
+
+<b>分类</b>：
+• 他励：励磁绕组独立供电，机械特性硬
+• 并励：励磁与电枢并联，机械特性硬
+• 串励：励磁与电枢串联，机械特性软，<b>严禁空载</b>
+• 复励：同时有并励和串励绕组
+
+<b>与直流发电机的区别</b>：
+• 电动机：电能→机械能，E < U（反电动势）
+• 发电机：机械能→电能，E > U（源电动势）
+• 两者可逆运行，同一台电机既可作电动机也可作发电机`},
+  {keywords:['直流发电机','发电机','自励'],answer:`<b>直流发电机</b>是将机械能转换为直流电能的旋转电机。
+
+<b>基本原理</b>：导体在磁场中运动产生感应电动势，换向器将交流电动势转换为直流输出
+
+<b>并励发电机自励三条件</b>：
+① 有剩磁 → 提供初始电动势
+② 励磁绕组接线正确 → 励磁磁通加强剩磁
+③ 励磁回路电阻小于临界值 Rf < Rcr → 磁化曲线与场阻线有交点
+
+<b>自励过程</b>：剩磁→E₀→If↑→Φ↑→E↑→稳定工作点
+
+<b>他励发电机外特性</b>：负载增大→电枢压降增大→端电压下降`},
+  {keywords:['换向','换向极','火花','环火'],answer:`<b>换向</b>是指被电刷短路的换向元件中电流方向变化的过程。
+
+<b>换向不良原因</b>：
+• 电磁原因：电抗电动势阻碍电流变化（主要原因）
+• 机械原因：电刷压力不均、换向片不平整等
+• 电位原因：片间电压过高
+
+<b>火花等级</b>：1级(无火花)→2级(微弱)→3级(明显)→4级(强烈)→5级(危险)
+
+<b>改善换向方法</b>：
+① <b>装设换向极</b>（最常用）——绕组与电枢串联，抵消电抗电动势
+② 移动电刷 —— 电动机顺转向移，发电机逆转向移
+③ 选用合适电刷 —— 不同电刷材料电阻不同
+
+<b>换向极极性</b>（电动机）：与顺着转向前方的主磁极极性相同
+
+<b>环火</b>：负载突变时片间电压过高→飞弧→补偿绕组可防止`},
+  {keywords:['电枢反应','交轴','直轴'],answer:`<b>电枢反应</b>是电枢磁动势对主磁场的影响。
+
+<b>交轴电枢反应</b>（电刷在几何中性线上）：
+• 使主磁场发生畸变：前极尖减弱、后极尖增强
+• 物理中性线偏离几何中性线
+• 不直接去磁或助磁（磁路不饱和时）
+
+<b>直轴电枢反应</b>（电刷偏离几何中性线）：
+• 电刷顺转向偏移 → 去磁效应
+• 电刷逆转向偏移 → 助磁效应
+
+<b>电枢反应后果</b>：
+① 换向恶化（片间电压升高）
+② 磁通畸变可能导致环火
+③ 磁路饱和时交轴反应也有去磁效应
+
+<b>补偿措施</b>：装设补偿绕组（嵌在主磁极极靴槽中）`},
+  {keywords:['变压器','transformer','变比','匝数比'],answer:`<b>变压器</b>是基于电磁感应原理工作的静止电气设备。
+
+<b>基本原理</b>：交变磁通在原副边绕组中产生感应电动势
+• 电压比 = 匝数比：U₁/U₂ ≈ N₁/N₂ = k
+• 只改变电压和电流，不改变频率
+
+<b>基本结构</b>：
+• 铁心：心式/壳式，硅钢片叠装减小铁损
+• 绕组：高压绕组在外、低压绕组在内
+
+<b>等效电路</b>：T形、Γ形近似、简化等效电路
+
+<b>运行特性</b>：
+• 电压变化率 ΔU% = (U₂₀-U₂)/U₂N × 100%
+• 效率 η = P₂/(P₂+pFe+β²pkN) × 100%
+• 效率最大条件：可变损耗=不变损耗，即 β²pkN=p₀`},
+  {keywords:['空载试验','空载实验','短路试验','短路实验','参数测定'],answer:`<b>空载试验</b>（低压侧加额定电压，高压侧开路）：
+• 测定：铁损 pFe、励磁参数 Rm、Xm
+• 计算：Zm=U₀/I₀, Rm=p₀/I₀², Xm=√(Zm²-Rm²)
+• 空载电流主要为无功（励磁）分量
+
+<b>短路试验</b>（高压侧加低电压达额定电流，低压侧短路）：
+• 测定：额定铜损 pkN、短路参数 Rk、Xk
+• 计算：Zk=Uk/Ik, Rk=pk/Ik², Xk=√(Zk²-Rk²)
+• 短路时铁损很小可忽略
+
+<b>注意</b>：
+• 空载试验在低压侧做（安全，加额定电压）
+• 短路试验在高压侧做（加低电压即可达额定电流）
+• 参数需归算到同一侧`},
+  {keywords:['三相变压器','连接组别','钟面法','Yd','Yy'],answer:`<b>三相变压器连接组别</b>用钟面表示法表示：
+
+<b>磁路系统</b>：
+• 组式：三个独立单相铁心，三相磁路各自独立
+• 心式：共用铁心，中间相磁路较短
+
+<b>常见连接组别</b>：
+• Y,y0（钟面0）：高低压线电动势同相
+• Y,d11（钟面11）：低压落后高压330°
+• D,yn11：高压Δ接、低压Y接有中性线
+
+<b>钟面法</b>：以高压线电动势为分针（固定12点），低压线电动势为时针，时针所指即为钟面数
+
+<b>并联运行三条件</b>：①变比相同 ②连接组别相同 ③短路阻抗标幺值相同`},
+  {keywords:['自耦变压器','电流互感器','电压互感器','互感器'],answer:`<b>自耦变压器</b>：原副边有电的直接联系
+• 容量 = 电磁容量 + 传导容量
+• 电磁容量仅为总容量的(1-1/k)部分
+• 省材高效，但高低压侧有电的联系
+
+<b>电流互感器</b>：二次侧<b>严禁开路</b>！
+• 正常运行：二次侧近似短路（接电流表）
+• 开路后果：①磁通剧增 ②铁损过热 ③二次感应高压危及安全
+
+<b>电压互感器</b>：二次侧<b>严禁短路</b>！
+• 正常运行：二次侧近似开路（接电压表）
+• 短路后果：①电流剧增 ②绕组过热烧毁 ③熔断器熔断`},
+  {keywords:['异步电动机','异步电机','感应电机','转差率','转差'],answer:`<b>异步电动机</b>又称感应电机，是最常用的电动机。
+
+<b>工作原理</b>：旋转磁场切割转子导体→感应电流→电磁转矩→转子旋转
+
+<b>转差率</b>：s = (n₁-n)/n₁
+• 起动时 s=1
+• 理想空载时 s=0
+• 额定运行时 s≈0.01~0.05
+• 回馈制动时 s<0（n>n₁）
+• 反接制动时 s>1
+
+<b>为什么叫感应电机</b>？因为转子电流由电磁感应产生（不像直流电机由电刷引入），这是异步电机的基本特点。
+
+<b>重要关系</b>：
+• 转子铜损 pCu₂ = sPem
+• 机械功率 Pmec = (1-s)Pem
+• 转子频率 f₂ = sf₁`},
+  {keywords:['起动','起动方法','Y-Δ','星三角','自耦起动'],answer:`<b>笼型异步电动机起动方法</b>：
+
+① <b>直接起动</b>：Ist=5~7IN，Tst不大，仅适用于小容量
+② <b>Y-Δ起动</b>：Ist和Tst均降为直接的1/3，仅适用于Δ接电机
+③ <b>自耦变压器起动</b>：Ist=k²×直，Tst=k²×直（k为抽头比）
+
+<b>绕线型异步电动机起动</b>：
+• 转子串电阻：最佳方式！既减小电流又增大转矩
+• 串电阻后Tmax不变，sm增大
+
+<b>特殊结构改善起动</b>：
+• 深槽式：集肤效应→起动电阻大→限流增矩
+• 双笼型：起动笼电阻大，运行笼电阻小`},
+  {keywords:['调速','变频','变极','串电阻调速'],answer:`<b>异步电动机调速方法</b>：
+
+① <b>变频调速</b>（最理想）：
+• 改变f→n₁=60f/p改变→调速
+• 保持U/f恒定→Φ基本不变
+• 平滑无级，效率高，调速范围宽
+
+② <b>变极调速</b>（有级）：
+• Y/YY、Δ/YY两种接法
+• 极数减半→转速约加倍
+
+③ <b>改变转差率调速</b>：
+• 绕线型转子串电阻（向下调速，效率低）
+• 串级调速（转子铜损回馈电网，效率较高）`},
+  {keywords:['制动','能耗制动','反接制动','回馈制动'],answer:`<b>异步电动机制动方法</b>：
+
+① <b>能耗制动</b>：
+• 断开三相电源，定子两相加直流励磁
+• 产生恒定磁场→转子感应电流→制动转矩
+• 能量消耗在转子电阻上
+
+② <b>反接制动</b>：
+• 定子两相电源反接→旋转磁场反转
+• s>1，制动转矩大
+• 必须限制电流（笼型定子串电阻，绕线型转子串电阻）
+
+③ <b>回馈制动</b>：
+• n>n₁, s<0，向电网回馈电能
+• 常用于变频调速减速或重物下放
+• 最经济的制动方式`},
+  {keywords:['单相','单相异步','罩极','分相'],answer:`<b>单相异步电动机</b>：
+
+<b>为什么不能自行起动</b>？
+• 单相绕组产生脉振磁动势=正转+反转旋转磁场
+• 起动时正反转转矩相等→合成起动转矩为零
+
+<b>起动方法</b>：
+① <b>电容分相起动</b>：电容使辅助绕组电流与主绕组产生相位差→旋转磁场
+② <b>电阻分相起动</b>：辅助绕组电阻大→相位差（较小）
+③ <b>罩极起动</b>：短路环罩住部分磁极→磁通相位差→从未罩到被罩方向旋转（不可反转）
+
+<b>电容运转电动机</b>：起动后电容继续工作，运行性能较好`},
+  {keywords:['同步电机','同步发电机','同步电动机','同步转速'],answer:`<b>同步电机</b>：转速与电网频率严格同步，n=60f/p
+
+<b>分类</b>：
+• 隐极式（汽轮发电机）：气隙均匀，Xd=Xq
+• 凸极式（水轮发电机）：气隙不均匀，Xd>Xq
+
+<b>同步发电机</b>：
+• 电动势方程（隐极）：Ė₀=Ú+İRa+jİXd
+• 功角特性：Pem=m(E₀U/Xd)sinδ
+• 并网条件：相序相同、频率相等、电压相等
+
+<b>同步电动机</b>：
+• 起动方法：异步起动法（阻尼绕组）
+• 过励→发出容性无功（改善功率因数）
+• 欠励→吸收感性无功
+
+<b>同步补偿机</b>：专门调节电网无功功率`},
+  {keywords:['并联运行','并网','V形曲线','功角'],answer:`<b>同步发电机并联运行</b>：
+
+<b>并网三条件</b>：①相序相同 ②频率相等 ③电压相等
+
+<b>有功调节</b>：调原动机转矩→功角δ增大→有功增大
+<b>无功调节</b>：调励磁电流If
+• 增大If→E₀增大→发出更多感性无功（过励）
+• 减小If→E₀减小→吸收感性无功（欠励）
+
+<b>V形曲线</b>：不同If下I与If的关系
+• 每条V形曲线对应一个有功功率P值
+• 最低点cosφ=1
+• 左侧欠励（感性），右侧过励（容性）
+
+<b>功角特性</b>：Pem=m(E₀U/Xd)sinδ
+• 隐极：正弦曲线
+• 凸极：附加m(U²(Xd-Xq)/(2XdXq))sin2δ项`},
+  {keywords:['绕组','短距','分布','绕组因数','谐波'],answer:`<b>交流绕组</b>：
+
+<b>基本术语</b>：
+• 极距 τ=Z/(2p)，每极每相槽数 q=Z/(2pm)
+• 槽距角 α=360°p/Z（电角度）
+
+<b>短距因数</b>：kp₁=sin(yα/2)≤1
+• 物理意义：短距与整距电动势之比
+• 整距时kp₁=1
+
+<b>分布因数</b>：kd₁=sin(qα/2)/(q·sin(α/2))≤1
+• 物理意义：分布与集中电动势之比
+• 集中(q=1)时kd₁=1
+
+<b>绕组因数</b>：kN₁=kp₁×kd₁
+
+<b>谐波削弱</b>：
+• 短距：消除ν次谐波取y=(ν-1)τ/ν
+• 消除5次谐波取y=4τ/5
+• 同时削弱5次7次取y=5τ/6
+• 分布绕组也可削弱谐波，q越大效果越好`},
+  {keywords:['磁动势','旋转磁场','脉振'],answer:`<b>交流绕组磁动势</b>：
+
+<b>单相绕组</b>：脉振磁动势
+• 空间固定位置，幅值随时间脉振
+• Fφ₁=(4/π)(Nkw₁/2p)I
+
+<b>脉振磁动势分解定理</b>：
+一个脉振磁动势=两个幅值相等、转向相反的旋转磁动势
+
+<b>三相绕组</b>：圆形旋转磁动势
+• 幅值 F₁=(3/2)Fφ₁（1.5倍单相幅值）
+• 条件：三相对称绕组+三相对称电流
+• 不对称→椭圆形旋转磁动势
+
+<b>同步转速</b>：n₁=60f/p
+• 旋转方向：从超前相→滞后相
+• 对调任意两相电源线→转向反转`},
+  {keywords:['效率','效率最大','损耗','铁损','铜损'],answer:`<b>变压器效率</b>：
+η = P₂/(P₂+pFe+β²pkN) × 100%
+
+<b>效率最大条件</b>：可变损耗=不变损耗
+即 β²pkN = p₀（铜损=铁损）
+
+<b>效率最大时的负载系数</b>：βm=√(p₀/pkN)
+
+<b>损耗分类</b>：
+• 不变损耗（铁损pFe）：额定电压下基本不变
+• 可变损耗（铜损β²pkN）：与负载系数平方成正比
+
+<b>异步电机功率流程</b>：
+P₁→pCu₁→Pem→pCu₂→Pmec→pΩ+pₛ→P₂
+• pCu₂=sPem（转子铜损与转差率成正比）
+• Pmec=(1-s)Pem`},
+  {keywords:['机械特性','硬特性','软特性'],answer:`<b>机械特性</b>：n=f(T)或T=f(s)
+
+<b>直流电动机</b>：
+• 他励/并励：硬特性（转速随负载变化小）
+  n = U/(CₑΦ) - Ra·T/(CₑCₜΦ²)
+• 串励：软特性（转速随负载急剧下降，严禁空载）
+
+<b>异步电动机</b>：
+• 额定运行段接近线性（硬特性）
+• 最大转矩Tmax处为临界点
+• 过载能力λ=Tmax/TN≈1.5~2.5
+
+<b>人为机械特性</b>：
+• 电枢串电阻→特性变软
+• 降压→理想空载转速降低，斜率不变
+• 弱磁→理想空载转速升高`},
+  {keywords:['实验','安全','数据处理','温升'],answer:`<b>电机实验要点</b>：
+
+<b>直流电机实验</b>：空载/负载特性、自励过程、起动调速制动
+<b>变压器实验</b>：空载短路试验、连接组别测定、并联运行
+<b>异步电机实验</b>：空载堵转、负载特性、起动对比
+<b>同步电机实验</b>：空载短路零功率因数、并网运行
+
+<b>安全规范</b>：
+• 实验前检查接线，确认无误方可通电
+• 电流互感器二次侧严禁开路
+• 电压互感器二次侧严禁短路
+• 实验结束先断电源再拆线
+
+<b>数据处理</b>：
+• 多次测量取平均值减小随机误差
+• 效率 η=P₂/(P₂+Σp)
+• 温升 ΔT=T绕组-T环境`}
+];
+
+function qaMatch(question){
+  const q=question.toLowerCase();
+  let best=null,bestScore=0;
+  for(const k of qaKnowledge){
+    let score=0;
+    for(const kw of k.keywords){
+      if(q.includes(kw.toLowerCase())) score+=kw.length;
+    }
+    if(score>bestScore){bestScore=score;best=k;}
+  }
+  return bestScore>=2?best:null;
+}
+
+function qaGenerateAnswer(question){
+  const match=qaMatch(question);
+  if(match) return match.answer;
+
+  // Fallback: try to give a general helpful answer
+  const q=question.toLowerCase();
+  if(q.includes('什么')||q.includes('是什么')||q.includes('什么是')){
+    return `这是一个很好的问题！关于"${question}"，建议你先查看知识体系中相关章节的内容，也可以在题库练习中做相关题目加深理解。
+
+<b>常见相关知识点</b>：
+• 直流电机：工作原理、运行特性、起动调速制动、换向
+• 变压器：等效电路、参数测定、运行特性、并联运行
+• 交流绕组：短距分布因数、感应电动势、磁动势
+• 异步电机：转差率、等效电路、机械特性、起动调速
+• 同步电机：功角特性、并联运行、V形曲线
+
+请尝试更具体的问题，我可以给出更详细的解答！`;
+  }
+  return `感谢你的提问！关于"${question}"，这涉及到电机学的知识。
+
+我目前可以回答以下方面的问题：
+• <b>直流电机</b>：原理、特性、起动、调速、制动、换向、电枢反应
+• <b>变压器</b>：等效电路、参数测定、效率、三相连接、并联运行、互感器
+• <b>交流绕组</b>：短距/分布因数、感应电动势、磁动势、谐波削弱
+• <b>异步电机</b>：转差率、等效电路、功率转矩、起动、调速、制动、单相电机
+• <b>同步电机</b>：功角特性、并联运行、V形曲线、补偿机
+• <b>实验</b>：各类实验方法、安全规范
+
+请尝试用更具体的关键词提问，例如"换向极的作用是什么？"`;
+}
+
+function qaAddMessage(type,content){
+  const div=document.createElement('div');
+  div.className=`qa-msg qa-msg-${type}`;
+  const label=type==='user'?'🧑 你的问题':'🤖 电机学助手';
+  div.innerHTML=`<div class="qa-msg-label">${label}</div><div class="qa-msg-content">${content}</div>`;
+  qaHistory.appendChild(div);
+  div.scrollIntoView({behavior:'smooth',block:'end'});
+}
+
+function qaShowTyping(){
+  const div=document.createElement('div');
+  div.className='qa-msg qa-msg-ai';
+  div.id='qa-typing';
+  div.innerHTML=`<div class="qa-typing"><div class="qa-typing-dot"></div><div class="qa-typing-dot"></div><div class="qa-typing-dot"></div><span>正在思考...</span></div>`;
+  qaHistory.appendChild(div);
+  div.scrollIntoView({behavior:'smooth',block:'end'});
+}
+
+function qaHideTyping(){
+  const t=document.getElementById('qa-typing');
+  if(t)t.remove();
+}
+
+function qaSubmit(){
+  const q=qaInput.value.trim();
+  if(!q)return;
+  if(qaFirstQuestion){
+    qaHistory.innerHTML='';
+    qaFirstQuestion=false;
+  }
+  qaAddMessage('user',q.replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+  qaInput.value='';
+  qaSend.disabled=true;
+  qaShowTyping();
+  setTimeout(()=>{
+    qaHideTyping();
+    const answer=qaGenerateAnswer(q);
+    qaAddMessage('ai',answer);
+    qaSend.disabled=false;
+  },800+Math.random()*600);
+}
+
+qaSend.addEventListener('click',qaSubmit);
+qaInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();qaSubmit();}
+});
+qaClear.addEventListener('click',()=>{
+  qaHistory.innerHTML=`<div style="text-align:center;padding:40px 20px;color:var(--text3)">
+    <div style="font-size:48px;margin-bottom:16px">💡</div>
+    <p style="font-size:16px;margin-bottom:8px">有问题？随时提问！</p>
+    <p style="font-size:13px">我会根据电机学知识库为你详细解答</p></div>`;
+  qaFirstQuestion=true;
+});
+document.querySelectorAll('.qa-suggest-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    qaInput.value=btn.dataset.q;
+    qaSubmit();
+  });
+});
+</script>
+</body>
+</html>

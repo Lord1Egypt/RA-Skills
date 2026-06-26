@@ -1,35 +1,42 @@
 ---
-name: "json-converter"
+name: jpeng-json-converter
 description: "Convert JSON to other formats"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-json-converter"
-sourceUrl: "https://clawhub.ai/skills/jpeng-json-converter"
+version: "1.0.0"
+author: "jpeng"
+tags: ["processing", "json", "data"]
 ---
 
-# json-converter
+# JSON Converter
 
-> Convert JSON to other formats
+Convert JSON to other formats
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-json-converter`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-json-converter](https://clawhub.ai/skills/jpeng-json-converter)
+## When to Use
 
-## Overview
+- User needs processing related functionality
+- Automating json tasks
+- Data operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-json-converter
+python3 scripts/json_converter.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export JSON_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

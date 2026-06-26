@@ -1,0 +1,54 @@
+# ghostprint built-in topics
+# Add your own below, one per line. Lines starting with # are ignored.
+# Keep them simple and everyday — the goal is organic-looking noise.
+
+What's the best way to store fresh herbs?
+How do I remove a stripped screw?
+What causes hiccups?
+How long does pasta dough last in the fridge?
+What's the difference between a virus and bacteria?
+Why does the sky turn red at sunset?
+How do I clean a cast iron pan?
+What's a good substitute for buttermilk in baking?
+Why do cats purr?
+How do I fix a squeaky door hinge?
+What's the best way to remove a wine stain?
+How long should I steep green tea?
+What causes déjà vu?
+How do you fold a fitted sheet neatly?
+Why does bread go stale?
+What's the difference between jam and jelly?
+How do I get rid of fruit flies in the kitchen?
+What causes static electricity?
+How do I soften hard brown sugar?
+What's the fastest way to cool down a hot drink?
+Why do onions make you cry?
+How do I descale an electric kettle?
+What's the best way to ripen an avocado quickly?
+How do I stop a minor nosebleed?
+Why does metal feel colder than wood at room temperature?
+How do I keep cut flowers fresh longer?
+What's the difference between baking soda and baking powder?
+How do I get rid of a headache without medication?
+What causes thunder?
+How do I make my coffee less bitter?
+How do I keep bananas from turning brown?
+What's the difference between perfume and eau de toilette?
+How do I unclog a slow drain?
+Why do leaves change color in autumn?
+How do I get wax out of a candle holder?
+What causes muscle cramps?
+How do I keep lettuce crisp in the fridge?
+What's the best way to clean a wooden cutting board?
+How do I sharpen kitchen knives at home?
+Why does popcorn pop?
+How do I remove a splinter safely?
+What causes food cravings?
+How do I fix a running toilet?
+What's the best way to fold a t-shirt to save space?
+Why do we get brain freeze from cold food?
+How do I stop cut apples from going brown?
+What's the difference between a cold and the flu?
+How do I get rid of condensation on windows?
+Why does hot water sometimes freeze faster than cold?
+How do I make rice not stick to the pot?

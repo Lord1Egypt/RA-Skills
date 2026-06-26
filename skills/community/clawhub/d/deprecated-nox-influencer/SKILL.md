@@ -1,35 +1,7 @@
 ---
-name: "Nox Influencer - Creator Discovery & Influencer Marketing"
-description: "Please go to https://clawhub.ai/noxinfluencer/nox-influencer-marketing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deprecated-nox-influencer"
-sourceUrl: "https://clawhub.ai/skills/deprecated-nox-influencer"
+name: deprecated-noxinfluencer
+description: Please go to https://clawhub.ai/noxinfluencer/nox-influencer-marketing.
+metadata: {"openclaw":{"requires":{"env":["NOXINFLUENCER_API_KEY"],"bins":["noxinfluencer"]},"primaryEnv":"NOXINFLUENCER_API_KEY","install":[{"kind":"node","package":"@noxinfluencer/cli","bins":["noxinfluencer"]}],"homepage":"https://www.noxinfluencer.com/skills"}}
 ---
 
-# Nox Influencer - Creator Discovery & Influencer Marketing
-
-> Please go to https://clawhub.ai/noxinfluencer/nox-influencer-marketing.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deprecated-nox-influencer`
-- **Source URL:** [https://clawhub.ai/skills/deprecated-nox-influencer](https://clawhub.ai/skills/deprecated-nox-influencer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deprecated-nox-influencer
-```
+This one is deprecated. Visit https://clawhub.ai/noxinfluencer/nox-influencer-marketing to get latest version

@@ -1,35 +1,24 @@
----
-name: "Auto Research Claw"
-description: "Automates research by conducting literature searches, running experiments, and generating LaTeX papers from detailed research topics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-research-claw"
-sourceUrl: "https://clawhub.ai/skills/auto-research-claw"
----
+# AutoResearchClaw
 
-# Auto Research Claw
+Autonomous research pipeline that turns ideas into papers via literature search, experiments, and LaTeX generation.
 
-> Automates research by conducting literature searches, running experiments, and generating LaTeX papers from detailed research topics.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-research-claw`
-- **Source URL:** [https://clawhub.ai/skills/auto-research-claw](https://clawhub.ai/skills/auto-research-claw)
-
-## Overview
-
+Start an autonomous research run:
+`researchclaw run --topic "Your detailed research topic" --auto-approve`
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+This skill requires Python 3.11+ and various research-specific dependencies.
+
 ```bash
-hermes skills install clawhub/auto-research-claw
+cd ~/.openclaw/skills/auto-research-claw
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+./researchclaw setup
 ```
+
+## Config
+
+Default configuration is stored in `config.arc.yaml`. Bridge mode allows integration with OpenClaw internal tools (sessions, web_fetch, message).

@@ -1,0 +1,7 @@
+interface:
+  display_name: "授信报告全流程"
+  short_description: "固定模板授信调查报告：抽取、写作、终审、收口"
+  default_prompt: "Use $shouxin-report to run a fixed-template small-business credit report workflow from material intake through final review."
+
+policy:
+  allow_implicit_invocation: true

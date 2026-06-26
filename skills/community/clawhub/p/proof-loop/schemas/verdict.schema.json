@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proof Loop Verdict",
+  "type": "object",
+  "required": [
+    "task_id",
+    "phase",
+    "agent",
+    "timestamp",
+    "overall",
+    "criteria"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "overall": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNKNOWN"
+      ]
+    },
+    "criteria": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Influencer Partnership Scout",
+  "slug": "influencer-partnership-scout",
+  "version": "1.0.0",
+  "description": "Builds influencer shortlist frameworks, fit analysis, and outreach strategy for ecommerce campaigns using heuristics.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": ["influencer", "creator", "ecommerce", "ugc", "affiliate", "campaign"],
+  "trigger_keywords": ["influencer", "creator", "outreach", "ugc", "affiliate", "kol", "koc"],
+  "language": "en",
+  "outputs": "markdown",
+  "requires_api": false,
+  "readiness": "stable"
+}

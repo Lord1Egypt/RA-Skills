@@ -1,0 +1,32 @@
+name: bilibili-up-master
+version: 1.0.0
+description: B站UP主成长运营助手 - 热门监控、数据分析、竞品研究、内容策划。当用户需要监控B站热门、分析UP主数据、制定内容策略时使用。
+author: zhouli
+homepage: https://clawhub.com/skills/bilibili-up-master
+
+triggers:
+  - B站热门
+  - bilibili热门
+  - B站UP主分析
+  - B站数据
+  - B站运营
+  - 分析UP主
+  - B站内容建议
+  - B站报告
+
+features:
+  - 热门视频监控追踪
+  - UP主数据分析
+  - 视频数据查询
+  - 内容策划建议
+  - 运营报告生成
+
+compatibility:
+  platforms:
+    - openclaw
+  os:
+    - macOS
+    - Linux
+  tools:
+    - browser
+    - agent-reach

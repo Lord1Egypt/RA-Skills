@@ -1,0 +1,25 @@
+{
+  "name": "ad-production-material-library",
+  "version": "1.0.0",
+  "description": "素材库管理技能 - 提供素材的存储、检索、版本管理",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "material",
+    "library",
+    "asset",
+    "storage"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

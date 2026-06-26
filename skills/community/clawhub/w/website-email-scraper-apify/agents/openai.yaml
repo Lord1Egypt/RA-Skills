@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website Email Scraper (Apify)"
+  short_description: "Run website email and contact extraction through Apify"
+  default_prompt: "Use $website-email-scraper-apify to build a Website Email Scraper payload and run actor kWfD7C0WpHtIt8VAh with APIFY_TOKEN."

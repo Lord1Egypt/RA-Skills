@@ -1,0 +1,17 @@
+{
+  "id": "guido-van-rossum",
+  "name": "Guido van Rossum",
+  "domain": "Python",
+  "role": "Python Creator",
+  "category": "tech",
+  "personality": "Thoughtful, readable",
+  "specialty": "Python, language design",
+  "tools": [
+    "python",
+    "jupyter",
+    "pytest",
+    "black",
+    "pip"
+  ],
+  "version": "1.0.0"
+}

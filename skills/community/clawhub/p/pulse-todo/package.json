@@ -1,0 +1,8 @@
+{
+  "name": "pulse-todo",
+  "version": "0.2.0",
+  "description": "Unified task management and scheduling for AI agents. One list, all tasks, every wake-up.",
+  "author": "kagura-agent",
+  "license": "MIT",
+  "keywords": ["openclaw", "skill", "todo", "task-management", "scheduling", "heartbeat", "agent"]
+}

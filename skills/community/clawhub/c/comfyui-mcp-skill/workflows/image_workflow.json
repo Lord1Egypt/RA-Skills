@@ -1,0 +1,31 @@
+{
+  "1": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "scene prompt"
+    }
+  },
+  "2": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 1234,
+      "steps": 30,
+      "cfg_scale": 7.5
+    }
+  },
+  "3": {
+    "class_type": "StableDiffusionImg2Img",
+    "inputs": {
+      "init_image": null,
+      "strength": 0.75,
+      "width": 512,
+      "height": 512
+    }
+  },
+  "4": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename": "output/images/{prompt}.png"
+    }
+  }
+}

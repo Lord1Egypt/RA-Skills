@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{技术名称} 技术报告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.8;
+  color: #2C2C2A;
+  background: #f8f8f6;
+  padding: 2rem 1rem;
+}
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #EEEDFE;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+  color: #333;
+}
+p { margin-bottom: 1rem; }
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.92rem;
+}
+th, td {
+  border: 1px solid #e2e2e2;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+th {
+  background: #6C5CE7;
+  color: white;
+  font-weight: 500;
+}
+tr:nth-child(even) { background: #fafafe; }
+.highlight-box {
+  background: #f0efff;
+  border-left: 4px solid #6C5CE7;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+.svg-figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+.svg-figure svg {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.figure-caption {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: #636E72;
+  font-style: italic;
+}
+code {
+  background: #f4f4f8;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 1.2rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+blockquote {
+  border-left: 4px solid #6C5CE7;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #555;
+  font-style: italic;
+}
+.toc {
+  background: #f8f8fc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+.toc a {
+  color: #6C5CE7;
+  text-decoration: none;
+}
+.toc a:hover { text-decoration: underline; }
+.summary-table {
+  background: linear-gradient(135deg, #f0efff 0%, #e8f8f5 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>{技术名称} 技术报告</h1>
+  <p class="subtitle">
+    <strong>面向新人培训</strong> | {日期}<br>
+    <strong>报告生成模型</strong>：AI 智能编程助手<br>
+    <strong>目标</strong>：{一句话描述目标}
+  </p>
+
+  <div class="toc">
+    <strong>目录</strong>
+    <ol>
+      <li><a href="#s1">背景</a></li>
+      <li><a href="#s2">核心思想</a></li>
+      <li><a href="#s3">关键技巧</a></li>
+      <li><a href="#s4">完整流程</a></li>
+      <li><a href="#s5">性能分析</a></li>
+      <li><a href="#s6">适用范围与变体</a></li>
+      <li><a href="#s7">版本演进</a></li>
+      <li><a href="#s8">一页总结</a></li>
+    </ol>
+  </div>
+
+  <!-- 章节内容 + SVG 内联图示 -->
+  <h2 id="s1">1. 背景</h2>
+  <p>...</p>
+
+  <div class="svg-figure">
+    <!-- SVG 图示内联 -->
+    <p class="figure-caption">图 1：{图示说明}</p>
+  </div>
+
+  <!-- ... 后续章节 ... -->
+
+  <h2 id="s8">8. 一页总结</h2>
+  <div class="summary-table">
+    <table>
+      <tr><th>维度</th><th>内容</th></tr>
+      <tr><td>解决的问题</td><td>...</td></tr>
+      <tr><td>核心 idea</td><td>...</td></tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>

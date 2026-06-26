@@ -1,35 +1,40 @@
 ---
-name: "七窍玲珑战法 v4.0"
+name: trading-system-v4
+displayName: 七窍玲珑战法 v4.0
+slug: trading-system-v4
 description: "融合七窍玲珑×五维共振×量化闭环的完整交易系统。七维确认（1234567）+五维共振（趋势/位置/形态/时间/信号）+标准化五步闭环（分析→计划→执行→风控→复盘）+趋势/震荡双模式。适用于XAU/USD等所有可交易品种。内置九维排查、凯利仓位管理、市场适应性调整。"
-category: "blockchain"
-source: "ClawHub"
-tags: [forex, risk-management, technical-analysis, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trading-system-v4"
-sourceUrl: "https://clawhub.ai/skills/trading-system-v4"
+version: "1.0.0"
+author: "智美人团队"
+tags:
+  - trading
+  - forex
+  - system
+  - xauusd
+  - technical-analysis
+  - risk-management
+metadata:
+  openclaw:
+    emoji: "📈"
 ---
 
 # 七窍玲珑战法 v4.0
 
-> 融合七窍玲珑×五维共振×量化闭环的完整交易系统。七维确认（1234567）+五维共振（趋势/位置/形态/时间/信号）+标准化五步闭环（分析→计划→执行→风控→复盘）+趋势/震荡双模式。适用于XAU/USD等所有可交易品种。内置九维排查、凯利仓位管理、市场适应性调整。
+> 七窍玲珑 × 五维共振 × 量化闭环
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trading-system-v4`
-- **Source URL:** [https://clawhub.ai/skills/trading-system-v4](https://clawhub.ai/skills/trading-system-v4)
+## 核心能力
 
-## Overview
+1. **七维确认系统**：①②③④⑤⑥⑦七个关键K线位识别趋势
+2. **五维共振分析**：趋势+位置+形态+时间+信号同向确认
+3. **标准化五步闭环**：分析→计划→执行→风控→复盘
+4. **趋势/震荡双模式**：ADX自动判定，切换策略
+5. **九维排查+凯利仓位**：系统化决策+量化风控
 
+## 适用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trading-system-v4
-```
+- XAU/USD（伦敦金）交易
+- 所有可交易品种
+- 北京时间 20:00-24:00 核心交易窗口
+
+## 相关文件
+
+完整文档在IMA「交易知识」知识库。

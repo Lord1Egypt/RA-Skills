@@ -1,0 +1,15 @@
+{
+  "name": "gluex-interaction-scripts",
+  "version": "1.0.0",
+  "description": "Helper scripts for agents to use the GlueX protocol",
+  "main": "interact.ts",
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.29.0",
+    "@solana/web3.js": "^1.89.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0"
+  }
+}

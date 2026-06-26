@@ -1,0 +1,5 @@
+interface:
+  display_name: "Seedance Prompt Builder"
+  short_description: "Build and audit Seedance 2.0 video prompts."
+  icon: "🎬"
+  accent_color: "#6c5ce7"

@@ -1,0 +1,231 @@
+tests:
+- name: ansible-install-setup
+  input: 如何在 Ubuntu 上安装 Ansible？需要配置哪些基础设置？
+  expected_keywords:
+  - pip
+  - ansible
+  - ansible.cfg
+  - inventory
+  - ssh
+  expected_not:
+  - rm -rf
+- name: ansible-playbook-nginx
+  input: 写一个 Ansible Playbook，在 webservers 组的机器上安装并配置 Nginx
+  expected_keywords:
+  - hosts
+  - tasks
+  - apt
+  - service
+  - handler
+  - notify
+  expected_not:
+  - 'shell: apt install'
+- name: ansible-role-structure
+  input: 如何组织一个 Ansible Role？标准的目录结构是什么？
+  expected_keywords:
+  - tasks
+  - handlers
+  - templates
+  - defaults
+  - meta
+  - vars
+  expected_not:
+  - 'shell: apt install'
+- name: ansible-vault-secrets
+  input: 如何用 Ansible Vault 管理敏感信息？比如数据库密码和 API Key
+  expected_keywords:
+  - vault
+  - encrypt
+  - vault_
+  - vault-password
+  expected_not:
+  - plaintext
+  - hardcoded password
+- name: ansible-inventory-dynamic
+  input: 如何配置 Ansible 动态 Inventory？支持 AWS EC2 自动发现
+  expected_keywords:
+  - dynamic
+  - plugin
+  - aws_ec2
+  - keyed_groups
+  expected_not:
+  - hardcoded IP
+- name: ansible-rolling-update
+  input: 如何用 Ansible 实现滚动更新？每次只更新 25% 的服务器
+  expected_keywords:
+  - serial
+  - max_fail_percentage
+  - delegate_to
+  expected_not:
+  - 'shell: apt install'
+- name: ansible-performance
+  input: Ansible 执行太慢了，有哪些优化方法？
+  expected_keywords:
+  - pipelining
+  - forks
+  - fact_caching
+  - async
+  - mitogen
+  expected_not:
+  - rm -rf
+- name: docker-install-config
+  input: 如何在 CentOS 上安装 Docker？需要配置哪些优化参数？
+  expected_keywords:
+  - docker-ce
+  - daemon.json
+  - systemctl
+  - overlay2
+  expected_not:
+  - chmod 777
+- name: dockerfile-best-practice
+  input: 写一个 Python Web 应用的 Dockerfile，要求遵循最佳实践
+  expected_keywords:
+  - multi-stage
+  - USER
+  - HEALTHCHECK
+  - slim
+  - no-cache
+  expected_not:
+  - root
+- name: docker-compose-fullstack
+  input: 用 Docker Compose 部署一个包含 Web + 数据库 + Redis 的全栈应用
+  expected_keywords:
+  - services
+  - depends_on
+  - volumes
+  - networks
+  - healthcheck
+  expected_not:
+  - --privileged
+- name: container-security
+  input: Docker 容器安全加固有哪些最佳实践？
+  expected_keywords:
+  - non-root
+  - read-only
+  - cap-drop
+  - no-new-privileges
+  - seccomp
+  expected_not:
+  - --privileged
+  - docker.sock
+- name: container-troubleshoot
+  input: Docker 容器启动后立即退出，退出码 137，如何排查？
+  expected_keywords:
+  - OOM
+  - memory
+  - dmesg
+  - inspect
+  - logs
+  expected_not:
+  - rm -rf
+- name: podman-vs-docker
+  input: Podman 和 Docker 有什么区别？什么场景下选择 Podman？
+  expected_keywords:
+  - daemonless
+  - rootless
+  - systemd
+  - pod
+  expected_not:
+  - --privileged
+- name: container-networking
+  input: Docker 容器间如何通信？bridge 和 overlay 网络有什么区别？
+  expected_keywords:
+  - bridge
+  - overlay
+  - DNS
+  - network create
+  expected_not:
+  - --net=host
+- name: private-registry
+  input: 如何搭建私有 Docker Registry？需要支持认证和 TLS
+  expected_keywords:
+  - registry
+  - htpasswd
+  - TLS
+  - Harbor
+  expected_not:
+  - --insecure-registry
+- name: terraform-basic
+  input: Terraform 入门：如何用 Terraform 在腾讯云创建一台 CVM 实例？
+  expected_keywords:
+  - provider
+  - resource
+  - terraform init
+  - plan
+  - apply
+  expected_not:
+  - hardcoded.*access_key
+  - hardcoded.*secret_key
+- name: terraform-module
+  input: 如何编写 Terraform Module？如何组织多环境的 Terraform 项目？
+  expected_keywords:
+  - module
+  - variables
+  - outputs
+  - source
+  expected_not:
+  - hardcoded.*access_key
+- name: terraform-state
+  input: Terraform state 文件如何安全管理？如何配置远程后端？
+  expected_keywords:
+  - backend
+  - remote
+  - lock
+  - encrypt
+  expected_not:
+  - local backend
+- name: terraform-import
+  input: 已有的云资源如何导入到 Terraform 管理？
+  expected_keywords:
+  - import
+  - state
+  - terraform import
+  expected_not:
+  - rm -rf
+- name: cloud-init-setup
+  input: 如何用 Cloud-Init 在云服务器首次启动时自动配置环境？
+  expected_keywords:
+  - cloud-config
+  - runcmd
+  - packages
+  - users
+  - write_files
+  expected_not:
+  - plaintext password
+- name: packer-image
+  input: 如何用 Packer 构建标准化的机器镜像？
+  expected_keywords:
+  - packer
+  - source
+  - build
+  - provisioner
+  expected_not:
+  - hardcoded.*access_key
+- name: gitops-terraform
+  input: 如何实现 Terraform 的 GitOps 工作流？CI/CD 中如何集成？
+  expected_keywords:
+  - GitOps
+  - CI/CD
+  - plan
+  - apply
+  - Atlantis
+  expected_not:
+  - hardcoded.*secret
+- name: iac-security
+  input: IaC 代码中如何管理敏感信息？有哪些安全扫描工具？
+  expected_keywords:
+  - tfsec
+  - checkov
+  - sensitive
+  - tfvars
+  expected_not:
+  - --skip-check
+- name: vagrant-dev-env
+  input: 如何用 Vagrant 创建本地开发环境？多台虚拟机如何编排？
+  expected_keywords:
+  - Vagrantfile
+  - vagrant up
+  - provision
+  - network
+  expected_not:
+  - rm -rf

@@ -1,35 +1,42 @@
 ---
-name: "slides"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/slides"
-sourceUrl: "https://skills.sh/nexu-io/open-design/slides"
+name: slides
+description: |
+  Create and edit .pptx presentation decks with PptxGenJS. Useful for sales decks, kickoff briefs, and design-system showcases.
+triggers:
+  - "slides"
+  - "pptxgenjs"
+  - "sales deck"
+  - "design showcase deck"
+od:
+  mode: deck
+  category: slides
+  upstream: "https://github.com/openai/skills"
 ---
 
 # slides
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from OpenAI's skills repository.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/slides`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/slides](https://skills.sh/nexu-io/open-design/slides)
+## What it does
 
-## Overview
+Create and edit .pptx presentation decks with PptxGenJS. Useful for sales decks, kickoff briefs, and design-system showcases.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/openai/skills
+- Category: `slides`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/slides
+# Inspect the upstream README for exact paths
+open https://github.com/openai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`slides`) or with
+one of the trigger phrases listed in this skill's frontmatter.

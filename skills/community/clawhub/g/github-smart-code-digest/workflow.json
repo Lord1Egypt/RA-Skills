@@ -1,0 +1,353 @@
+{
+  "name": "github-smart-code-digest",
+  "version": "1.0.0",
+  "description": "自动监控 GitHub 仓库 Commits/PRs，AI 智能代码审查，生成可视化卡片，汇总发布到飞书 Wiki",
+  "combo": true,
+  "skills": [
+    {
+      "id": "github",
+      "name": "GitHub CLI",
+      "role": "data_source",
+      "triggers": ["collect_prs", "get_repo_info"],
+      "priority": 1
+    },
+    {
+      "id": "code-review-skill",
+      "name": "AI Code Review",
+      "role": "analysis_engine",
+      "triggers": ["review_pr", "score_issues", "filter_results"],
+      "priority": 2,
+      "depends_on": ["github"]
+    },
+    {
+      "id": "card-renderer",
+      "name": "Card Renderer",
+      "role": "visualization",
+      "triggers": ["render_cover", "render_detail"],
+      "priority": 3,
+      "depends_on": ["code-review-skill"]
+    },
+    {
+      "id": "feishu-wiki",
+      "name": "Feishu Wiki",
+      "role": "publisher",
+      "triggers": ["publish_wiki", "create_page"],
+      "priority": 4,
+      "depends_on": ["card-renderer"]
+    }
+  ],
+  "workflow": {
+    "description": "GitHub 代码审查日报/周报自动化工作流",
+    "steps": [
+      {
+        "step": 1,
+        "skill": "github",
+        "action": "list_prs_and_commits",
+        "description": "采集指定仓库在时间范围内的所有 Open PRs 和 Commits",
+        "inputs": {
+          "repos": "${config.github.repos}",
+          "since": "${args.since || config.github.default_days_ago}",
+          "until": "${args.until || now}",
+          "min_pr_lines": "${config.github.min_pr_lines || 10}"
+        },
+        "outputs": {
+          "pr_list": "/tmp/digest_prs.json",
+          "commit_summary": "/tmp/digest_commits.json"
+        },
+        "shell": {
+          "list_prs": "gh pr list --repo ${repo} --state open --search \"created:>=${since}\" --json number,title,author,createdAt,changedFiles,additions,deletions --jq '.[]'",
+          "get_diff": "gh pr diff ${pr_number} --repo ${repo} > /tmp/pr_${pr_number}.diff",
+          "get_commits": "gh api repos/${repo}/commits?since=${since_unix}&until=${until_unix} --jq '.[].commit.message'"
+        }
+      },
+      {
+        "step": 2,
+        "skill": "code-review-skill",
+        "action": "batch_review_prs",
+        "description": "对每个 PR 执行 5 维度 AI 代码审查，过滤低置信度问题",
+        "inputs": {
+          "pr_list": "/tmp/digest_prs.json",
+          "diff_files": "/tmp/pr_*.diff",
+          "min_confidence": 80
+        },
+        "outputs": {
+          "review_results": "/tmp/digest_reviews.json",
+          "summary_stats": "/tmp/digest_stats.json"
+        },
+        "review_dimensions": [
+          {
+            "id": "correctness",
+            "name": "正确性",
+            "description": "业务逻辑、边界条件、错误处理",
+            "min_confidence": 80
+          },
+          {
+            "id": "safety",
+            "name": "安全性",
+            "description": "注入、认证绕过、数据暴露",
+            "min_confidence": 80
+          },
+          {
+            "id": "maintainability",
+            "name": "可维护性",
+            "description": "代码复杂度、命名、可读性",
+            "min_confidence": 80
+          },
+          {
+            "id": "performance",
+            "name": "性能",
+            "description": "N+1 查询、内存泄漏、资源管理",
+            "min_confidence": 80
+          },
+          {
+            "id": "compliance",
+            "name": "规范合规",
+            "description": "CLAUDE.md、编码规范、测试覆盖",
+            "min_confidence": 80
+          }
+        ],
+        "aggregation": {
+          "total_prs": "count(pr_list)",
+          "total_issues": "sum(reviews[].issues.length)",
+          "critical_issues": "count(issues where confidence >= 90)",
+          "important_issues": "count(issues where confidence >= 80 and confidence < 90)",
+          "approval_ready_prs": "count(reviews where issues.length == 0)",
+          "needs_changes_prs": "count(reviews where issues.length > 0)"
+        }
+      },
+      {
+        "step": 3,
+        "skill": "card-renderer",
+        "action": "render_digest_cards",
+        "description": "将审查汇总数据生成为可视化知识卡片（封面 + 详情页）",
+        "inputs": {
+          "review_data": "/tmp/digest_reviews.json",
+          "stats": "/tmp/digest_stats.json",
+          "style": "${config.card.style || macbook-pro}",
+          "format": "${config.card.format || png}"
+        },
+        "outputs": {
+          "cover_card": "/tmp/digest_cover.png",
+          "detail_card": "/tmp/digest_detail.png"
+        },
+        "card_configs": {
+          "cover": {
+            "title": "GitHub 代码审查${args.period == 'weekly' ? '周报' : '日报'}",
+            "elements": [
+              "repo_names: 仓库列表",
+              "period: 时间范围",
+              "quality_score: 总体质量评分（五星）",
+              "pr_count: PR 总数",
+              "issue_count: 问题总数",
+              "coverage: 审查覆盖率"
+            ],
+            "style": "${config.card.style || macbook-pro}",
+            "dimensions": {
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "detail": {
+            "title": "审查详情 — ${period}",
+            "elements": [
+              "pr_distribution: 各仓库 PR 数量柱状图",
+              "issue_type_pie: 问题类型分布饼图",
+              "top_issues: Top 5 高置信度问题列表",
+              "per_repo_summary: 各仓库审查摘要表格"
+            ],
+            "style": "${config.card.style || macbook-pro}",
+            "dimensions": {
+              "width": 1200,
+              "height": 1800
+            }
+          }
+        }
+      },
+      {
+        "step": 4,
+        "skill": "feishu-wiki",
+        "action": "create_digest_page",
+        "description": "在飞书知识空间创建或更新 Wiki 页面，发布完整审查报告",
+        "inputs": {
+          "space_id": "${config.feishu.wiki_space_id}",
+          "parent_node": "${config.feishu.wiki_parent_node || null}",
+          "title": "代码审查${args.period == 'weekly' ? '周报' : '日报'} ${date_range}",
+          "review_data": "/tmp/digest_reviews.json",
+          "stats": "/tmp/digest_stats.json",
+          "cover_image": "/tmp/digest_cover.png",
+          "detail_image": "/tmp/digest_detail.png"
+        },
+        "outputs": {
+          "wiki_url": "飞书 Wiki 页面链接",
+          "wiki_node_token": "Wiki 节点 Token"
+        },
+        "page_content_template": {
+          "format": "markdown",
+          "sections": [
+            {
+              "type": "header",
+              "level": 1,
+              "text": "GitHub 代码审查${args.period == 'weekly' ? '周报' : '日报'}"
+            },
+            {
+              "type": "table",
+              "header": ["指标", "数值"],
+              "rows": [
+                ["仓库数量", "${stats.total_repos}"],
+                ["PR 总数", "${stats.total_prs}"],
+                ["问题总数", "${stats.total_issues}"],
+                ["高置信度问题（≥90%）", "${stats.critical_issues}"],
+                ["需修改 PR", "${stats.needs_changes_prs}"],
+                ["审查覆盖率", "${stats.coverage}%"],
+                ["时间范围", "${date_range}"]
+              ]
+            },
+            {
+              "type": "image",
+              "label": "审查汇总卡片",
+              "src": "file:///tmp/digest_cover.png"
+            },
+            {
+              "type": "header",
+              "level": 2,
+              "text": "各仓库审查详情"
+            },
+            {
+              "type": "loop",
+              "over": "reviews",
+              "item_var": "pr",
+              "template": {
+                "type": "callout",
+                "variant": "warning",
+                "title": "PR #${pr.number}: ${pr.title}",
+                "body": "作者: ${pr.author} | 变更: ${pr.changed_files} 文件 | +${pr.additions}/-${pr.deletions}\n问题数: ${pr.issues.length} | 状态: ${pr.issues.length > 0 ? '⚠️ 需要修改' : '✅ 可合并'}"
+              }
+            },
+            {
+              "type": "header",
+              "level": 2,
+              "text": "高置信度问题（Top 5）"
+            },
+            {
+              "type": "list",
+              "items": "${top_issues}",
+              "format": "- **[${issue.file}:${issue.line}]** ${issue.description} (置信度 ${issue.confidence}%)\n  建议: ${issue.suggestion}"
+            },
+            {
+              "type": "image",
+              "label": "详情卡片",
+              "src": "file:///tmp/digest_detail.png"
+            },
+            {
+              "type": "footer",
+              "text": "由 GitHub Smart Code Digest 自动生成 | ${generated_at}"
+            }
+          ]
+        }
+      }
+    ],
+    "error_handling": {
+      "step_1": {
+        "on_no_prs": "warn_and_continue",
+        "on_auth_failure": "fail_with_instructions",
+        "on_repo_not_found": "skip_and_log"
+      },
+      "step_2": {
+        "on_large_pr": "auto_split_review",
+        "on_review_timeout": "retry_once_then_skip",
+        "on_all_agents_agree_no_issues": "report_no_issues"
+      },
+      "step_3": {
+        "on_render_failure": "fallback_to_text_report",
+        "on_style_unavailable": "use_default_style"
+      },
+      "step_4": {
+        "on_wiki_auth_failure": "fail_with_instructions",
+        "on_space_not_found": "fail_with_error"
+      }
+    }
+  },
+  "data_flow": {
+    "artifacts": [
+      {
+        "path": "/tmp/digest_prs.json",
+        "produced_by": "step_1",
+        "consumed_by": ["step_2"],
+        "description": "GitHub PR 列表原始数据"
+      },
+      {
+        "path": "/tmp/digest_commits.json",
+        "produced_by": "step_1",
+        "consumed_by": ["step_3"],
+        "description": "Commit 汇总数据"
+      },
+      {
+        "path": "/tmp/pr_${pr_number}.diff",
+        "produced_by": "step_1",
+        "consumed_by": ["step_2"],
+        "description": "每个 PR 的文件变更 diff"
+      },
+      {
+        "path": "/tmp/digest_reviews.json",
+        "produced_by": "step_2",
+        "consumed_by": ["step_3", "step_4"],
+        "description": "AI 代码审查结果"
+      },
+      {
+        "path": "/tmp/digest_stats.json",
+        "produced_by": "step_2",
+        "consumed_by": ["step_3", "step_4"],
+        "description": "审查汇总统计"
+      },
+      {
+        "path": "/tmp/digest_cover.png",
+        "produced_by": "step_3",
+        "consumed_by": ["step_4"],
+        "description": "审查封面卡片"
+      },
+      {
+        "path": "/tmp/digest_detail.png",
+        "produced_by": "step_3",
+        "consumed_by": ["step_4"],
+        "description": "审查详情卡片"
+      }
+    ]
+  },
+  "execution_modes": {
+    "manual": {
+      "description": "手动触发，针对指定仓库生成单次报告",
+      "required_args": ["repo"],
+      "optional_args": ["since", "until", "feishu_space_id", "period"]
+    },
+    "cron_daily": {
+      "description": "每天定时生成日报",
+      "schedule": "0 9 * * *",
+      "default_period": "daily",
+      "configurable_args": ["repos", "feishu_space_id"]
+    },
+    "cron_weekly": {
+      "description": "每周定时生成周报",
+      "schedule": "0 9 * * 1",
+      "default_period": "weekly",
+      "configurable_args": ["repos", "feishu_space_id"]
+    }
+  },
+  "skill_interfaces": {
+    "github": {
+      "tools_used": ["gh pr list", "gh pr diff", "gh api repos/*/commits"],
+      "required_env": ["GH_TOKEN (via gh auth)"]
+    },
+    "code-review-skill": {
+      "agents_used": ["5 parallel agents (one per dimension)", "1 haiku for scoring"],
+      "output_format": "structured JSON with confidence scores"
+    },
+    "card-renderer": {
+      "styles": ["macbook-pro", "cyberpunk", "bauhaus"],
+      "output_format": "PNG 1200x630 (cover), PNG 1200x1800 (detail)"
+    },
+    "feishu-wiki": {
+      "api_used": ["feishu_wiki create_node", "feishu_doc write/append"],
+      "required_env": ["FEISHU_APP_ID", "FEISHU_APP_SECRET"]
+    }
+  }
+}

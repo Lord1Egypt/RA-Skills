@@ -1,0 +1,29 @@
+{
+  "mealServiceDietInfo": [
+    {
+      "head": [
+        {
+          "list_total_count": 1
+        },
+        {
+          "RESULT": {
+            "CODE": "INFO-000",
+            "MESSAGE": "정상 처리되었습니다."
+          }
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "MMEAL_SC_NM": "중식",
+          "MLSV_YMD": "20260316",
+          "CAL_INFO": "654.8 Kcal",
+          "DDISH_NM": "혼합잡곡밥 (5)<br/>쇠고기육개장 (5.6.16)<br/>닭살데리야끼볶음 (5.6.13.15.18)",
+          "ORPLC_INFO": "쇠고기(종류) : 국내산(한우)<br/>닭고기 : 국내산",
+          "NTR_INFO": "탄수화물(g) : 74.2<br/>단백질(g) : 36.9"
+        }
+      ]
+    }
+  ]
+}

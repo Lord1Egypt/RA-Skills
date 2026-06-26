@@ -1,0 +1,6 @@
+{
+  "name": "litellm-vertex-codex",
+  "version": "1.0.0",
+  "description": "Configure OpenAI Codex CLI to use Vertex AI Gemini models via LiteLLM",
+  "main": "SKILL.md"
+}

@@ -1,0 +1,31 @@
+default_output_mode: voice
+
+voice:
+  sample_rate: 16000
+  model_dir: models/pretrained_models/Fun-CosyVoice3-0.5B
+  voice_profile_path: storage/{user_id}_{target_id}/voice_profile
+
+# 视频生成 API（如火山方舟 Seedance），仅 API 调用，不支持本地模型
+# 重要：请求中的 model 必须是「推理接入点 ID」（在控制台创建），不是模型名称。见文档：https://www.volcengine.com/docs/82379/1099522
+video_generation:
+  enabled: true
+  # 推理接入点 ID（Endpoint ID），需在火山方舟控制台创建并部署视频生成模型后获得，形如 ep-20240101-xxxxx
+  model_id: "ep-m-20260314224419-xlkvq"
+  base_url: https://ark.cn-beijing.volces.com/api/v3
+  # 也可用环境变量 ARK_API_KEY
+  api_key: ""
+  poll_interval_seconds: 5
+  poll_timeout_seconds: 600
+
+rag:
+  top_k_source: 10
+  top_k_runtime: 3
+  # 前几条 source 结果带上下文
+  top_k_with_context: 3
+  # 每条上下各取几条消息（含发送者、时间）
+  context_window: 5
+  similarity_threshold: 0.35
+
+storage:
+  cache_ttl_hours: 24
+  max_cache_size_mb: 1000

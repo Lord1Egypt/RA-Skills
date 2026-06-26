@@ -1,0 +1,170 @@
+{
+  "date": "2026-03-29 11:25",
+  "platforms": {
+    "bilibili": 5,
+    "douyin": 5,
+    "weibo": 5,
+    "toutiao": 5
+  },
+  "summary": "[SUMMARY] 全平台热榜聚合摘要\n共获取 20 条热榜数据，覆盖 4 个平台\n今日热点：\n  1. [bilibili] 《洛克王国：世界》概念动画短片 | 王国的夏日清风\n  2. [bilibili] 增进友谊小游戏\n  3. [bilibili] 做了一颗百发百中的台球\n  4. [bilibili] 【纪录片】守护解放西·探案季 第5集 隐秘的对决\n  5. [bilibili] 【太阳之子 | 官方MV 】周杰伦 太阳，所到之处即带来光，随性挥洒无与伦比的音乐创意 万众期盼！雨过天晴\n",
+  "data": {
+    "bilibili": [
+      {
+        "rank": 1,
+        "title": "《洛克王国：世界》概念动画短片 | 王国的夏日清风",
+        "value": 3688981,
+        "value_text": "368万播放",
+        "author": "洛克王国世界",
+        "url": "https://b23.tv/BV14iXpBrEcD"
+      },
+      {
+        "rank": 2,
+        "title": "增进友谊小游戏",
+        "value": 931314,
+        "value_text": "93万播放",
+        "author": "三个猪鼓励",
+        "url": "https://b23.tv/BV1UjX5BpE8W"
+      },
+      {
+        "rank": 3,
+        "title": "做了一颗百发百中的台球",
+        "value": 3591163,
+        "value_text": "359万播放",
+        "author": "小狮日记",
+        "url": "https://b23.tv/BV1rjXKBnEjS"
+      },
+      {
+        "rank": 4,
+        "title": "【纪录片】守护解放西·探案季 第5集 隐秘的对决",
+        "value": 2121254,
+        "value_text": "212万播放",
+        "author": "哔哩哔哩纪录片",
+        "url": "https://b23.tv/BV1NZXHBBEbS"
+      },
+      {
+        "rank": 5,
+        "title": "【太阳之子 | 官方MV 】周杰伦 太阳，所到之处即带来光，随性挥洒无与伦比的音乐创意 万众期盼！雨过天晴",
+        "value": 11133340,
+        "value_text": "1113万播放",
+        "author": "杰威尔音乐",
+        "url": "https://b23.tv/BV162QqBTE8G"
+      }
+    ],
+    "douyin": [
+      {
+        "rank": 1,
+        "title": "2026石家庄马拉松赛",
+        "value": 11888243,
+        "value_text": "1188万热度",
+        "url": "https://www.douyin.com/search/2026%E7%9F%B3%E5%AE%B6%E5%BA%84%E9%A9%AC%E6%8B%89%E6%9D%BE%E8%B5%9B"
+      },
+      {
+        "rank": 2,
+        "title": "中国军号发布视频：真正的史诗",
+        "value": 11702963,
+        "value_text": "1170万热度",
+        "url": "https://www.douyin.com/search/%E4%B8%AD%E5%9B%BD%E5%86%9B%E5%8F%B7%E5%8F%91%E5%B8%83%E8%A7%86%E9%A2%91%EF%BC%9A%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%8F%B2%E8%AF%97"
+      },
+      {
+        "rank": 3,
+        "title": "2026中国网络媒体论坛",
+        "value": 11041419,
+        "value_text": "1104万热度",
+        "url": "https://www.douyin.com/search/2026%E4%B8%AD%E5%9B%BD%E7%BD%91%E7%BB%9C%E5%AA%92%E4%BD%93%E8%AE%BA%E5%9D%9B"
+      },
+      {
+        "rank": 4,
+        "title": "苏超主场圣地巡礼",
+        "value": 10831046,
+        "value_text": "1083万热度",
+        "url": "https://www.douyin.com/search/%E8%8B%8F%E8%B6%85%E4%B8%BB%E5%9C%BA%E5%9C%A3%E5%9C%B0%E5%B7%A1%E7%A4%BC"
+      },
+      {
+        "rank": 5,
+        "title": "清明上河园状元郎转场太有感觉了",
+        "value": 10265670,
+        "value_text": "1026万热度",
+        "url": "https://www.douyin.com/search/%E6%B8%85%E6%98%8E%E4%B8%8A%E6%B2%B3%E5%9B%AD%E7%8A%B6%E5%85%83%E9%83%8E%E8%BD%AC%E5%9C%BA%E5%A4%AA%E6%9C%89%E6%84%9F%E8%A7%89%E4%BA%86"
+      }
+    ],
+    "weibo": [
+      {
+        "rank": 1,
+        "title": "太原火灾最先起火视频曝光",
+        "value": 1055129,
+        "value_text": "105万热度",
+        "label": "新",
+        "url": "https://s.weibo.com/weibo?q=%E5%A4%AA%E5%8E%9F%E7%81%AB%E7%81%BE%E6%9C%80%E5%85%88%E8%B5%B7%E7%81%AB%E8%A7%86%E9%A2%91%E6%9B%9D%E5%85%89"
+      },
+      {
+        "rank": 2,
+        "title": "官方通报申请国家赔偿被中止办理",
+        "value": 780432,
+        "value_text": "78万热度",
+        "label": "",
+        "url": "https://s.weibo.com/weibo?q=%E5%AE%98%E6%96%B9%E9%80%9A%E6%8A%A5%E7%94%B3%E8%AF%B7%E5%9B%BD%E5%AE%B6%E8%B5%94%E5%81%BF%E8%A2%AB%E4%B8%AD%E6%AD%A2%E5%8A%9E%E7%90%86"
+      },
+      {
+        "rank": 3,
+        "title": "大国重器密集上新惊喜不断",
+        "value": 580587,
+        "value_text": "58万热度",
+        "label": "新",
+        "url": "https://s.weibo.com/weibo?q=%E5%A4%A7%E5%9B%BD%E9%87%8D%E5%99%A8%E5%AF%86%E9%9B%86%E4%B8%8A%E6%96%B0%E6%83%8A%E5%96%9C%E4%B8%8D%E6%96%AD"
+      },
+      {
+        "rank": 4,
+        "title": "美国全国爆发反对特朗普政府集会",
+        "value": 347235,
+        "value_text": "34万热度",
+        "label": "新",
+        "url": "https://s.weibo.com/weibo?q=%E7%BE%8E%E5%9B%BD%E5%85%A8%E5%9B%BD%E7%88%86%E5%8F%91%E5%8F%8D%E5%AF%B9%E7%89%B9%E6%9C%97%E6%99%AE%E6%94%BF%E5%BA%9C%E9%9B%86%E4%BC%9A"
+      },
+      {
+        "rank": 5,
+        "title": "深夜遇哭泣女子带其回家遭仙人跳",
+        "value": 297932,
+        "value_text": "29万热度",
+        "label": "新",
+        "url": "https://s.weibo.com/weibo?q=%E6%B7%B1%E5%A4%9C%E9%81%87%E5%93%AD%E6%B3%A3%E5%A5%B3%E5%AD%90%E5%B8%A6%E5%85%B6%E5%9B%9E%E5%AE%B6%E9%81%AD%E4%BB%99%E4%BA%BA%E8%B7%B3"
+      }
+    ],
+    "toutiao": [
+      {
+        "rank": 1,
+        "title": "日本舆论要求政府尽快向中国道歉",
+        "value": 34389362,
+        "value_text": "3438万热度",
+        "url": "https://www.toutiao.com/trending/7621869700113350662/?category_name=topic_innerflow&event_type=hot_board&log_pb=%7B%22category_name%22%3A%22topic_innerflow%22%2C%22cluster_type%22%3A%223%22%2C%22enter_from%22%3A%22click_category%22%2C%22entrance_hotspot%22%3A%22outside%22%2C%22event_type%22%3A%22hot_board%22%2C%22hot_board_cluster_id%22%3A%227621869700113350662%22%2C%22hot_board_impr_id%22%3A%2220260329112532C50E9EDDB9B5A06F1B5D%22%2C%22jump_page%22%3A%22hot_board_page%22%2C%22location%22%3A%22news_hot_card%22%2C%22page_location%22%3A%22hot_board_page%22%2C%22source%22%3A%22trending_tab%22%2C%22style_id%22%3A%2240132%22%2C%22title%22%3A%22%E6%97%A5%E6%9C%AC%E8%88%86%E8%AE%BA%E8%A6%81%E6%B1%82%E6%94%BF%E5%BA%9C%E5%B0%BD%E5%BF%AB%E5%90%91%E4%B8%AD%E5%9B%BD%E9%81%93%E6%AD%89%22%7D&rank=&style_id=40132&topic_id=7621869700113350662"
+      },
+      {
+        "rank": 2,
+        "title": "时隔一周张水华再获冠军",
+        "value": 31116781,
+        "value_text": "3111万热度",
+        "url": "https://www.toutiao.com/trending/7621786570001711114/?category_name=topic_innerflow&event_type=hot_board&log_pb=%7B%22category_name%22%3A%22topic_innerflow%22%2C%22cluster_type%22%3A%226%22%2C%22enter_from%22%3A%22click_category%22%2C%22entrance_hotspot%22%3A%22outside%22%2C%22event_type%22%3A%22hot_board%22%2C%22hot_board_cluster_id%22%3A%227621786570001711114%22%2C%22hot_board_impr_id%22%3A%2220260329112532C50E9EDDB9B5A06F1B5D%22%2C%22jump_page%22%3A%22hot_board_page%22%2C%22location%22%3A%22news_hot_card%22%2C%22page_location%22%3A%22hot_board_page%22%2C%22source%22%3A%22trending_tab%22%2C%22style_id%22%3A%2240132%22%2C%22title%22%3A%22%E6%97%B6%E9%9A%94%E4%B8%80%E5%91%A8%E5%BC%A0%E6%B0%B4%E5%8D%8E%E5%86%8D%E8%8E%B7%E5%86%A0%E5%86%9B%22%7D&rank=&style_id=40132&topic_id=7621786570001711114"
+      },
+      {
+        "rank": 3,
+        "title": "长护险为失能老人托底解忧",
+        "value": 28155628,
+        "value_text": "2815万热度",
+        "url": "https://www.toutiao.com/article/7622071246334755363"
+      },
+      {
+        "rank": 4,
+        "title": "强闯中使馆不法之徒部队驻地被搜查",
+        "value": 25476266,
+        "value_text": "2547万热度",
+        "url": "https://www.toutiao.com/trending/7621929575471956011/?category_name=topic_innerflow&event_type=hot_board&log_pb=%7B%22category_name%22%3A%22topic_innerflow%22%2C%22cluster_type%22%3A%221%22%2C%22enter_from%22%3A%22click_category%22%2C%22entrance_hotspot%22%3A%22outside%22%2C%22event_type%22%3A%22hot_board%22%2C%22hot_board_cluster_id%22%3A%227621929575471956011%22%2C%22hot_board_impr_id%22%3A%2220260329112532C50E9EDDB9B5A06F1B5D%22%2C%22jump_page%22%3A%22hot_board_page%22%2C%22location%22%3A%22news_hot_card%22%2C%22page_location%22%3A%22hot_board_page%22%2C%22source%22%3A%22trending_tab%22%2C%22style_id%22%3A%2240132%22%2C%22title%22%3A%22%E5%BC%BA%E9%97%AF%E4%B8%AD%E4%BD%BF%E9%A6%86%E4%B8%8D%E6%B3%95%E4%B9%8B%E5%BE%92%E9%83%A8%E9%98%9F%E9%A9%BB%E5%9C%B0%E8%A2%AB%E6%90%9C%E6%9F%A5%22%7D&rank=&style_id=40132&topic_id=7621929575471956011"
+      },
+      {
+        "rank": 5,
+        "title": "世界上顶好顶好的老太婆走了",
+        "value": 23051878,
+        "value_text": "2305万热度",
+        "url": "https://www.toutiao.com/trending/7621811298665447467/?category_name=topic_innerflow&event_type=hot_board&log_pb=%7B%22category_name%22%3A%22topic_innerflow%22%2C%22cluster_type%22%3A%222%22%2C%22enter_from%22%3A%22click_category%22%2C%22entrance_hotspot%22%3A%22outside%22%2C%22event_type%22%3A%22hot_board%22%2C%22hot_board_cluster_id%22%3A%227621811298665447467%22%2C%22hot_board_impr_id%22%3A%2220260329112532C50E9EDDB9B5A06F1B5D%22%2C%22jump_page%22%3A%22hot_board_page%22%2C%22location%22%3A%22news_hot_card%22%2C%22page_location%22%3A%22hot_board_page%22%2C%22source%22%3A%22trending_tab%22%2C%22style_id%22%3A%2240132%22%2C%22title%22%3A%22%E4%B8%96%E7%95%8C%E4%B8%8A%E9%A1%B6%E5%A5%BD%E9%A1%B6%E5%A5%BD%E7%9A%84%E8%80%81%E5%A4%AA%E5%A9%86%E8%B5%B0%E4%BA%86%22%7D&rank=&style_id=40132&topic_id=7621811298665447467"
+      }
+    ]
+  }
+}

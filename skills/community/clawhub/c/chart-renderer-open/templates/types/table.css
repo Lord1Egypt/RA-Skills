@@ -1,0 +1,5 @@
+/* ===== PLAIN TABLE ===== */
+.plain-table{width:100%;border-collapse:collapse;font-size:13px;border:1px solid var(--border);border-radius:0;overflow:hidden;margin-top:0}
+.plain-table th{background:#f7f8fa;padding:8px 12px;text-align:center;font-size:12px;font-weight:700;color:#666;border-bottom:1px solid var(--border)}
+.plain-table td{padding:8px 12px;text-align:center;border-bottom:1px solid #f0f0f0}
+.plain-table tr:last-child td{border-bottom:none}

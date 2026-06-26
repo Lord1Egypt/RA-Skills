@@ -1,0 +1,21 @@
+{
+  "name": "web3-daily",
+  "version": "2.0.0",
+  "description": "Web3 Daily Digest - Get daily crypto research with macro news, KOL sentiment, and real-time market data. No personal data required. No API keys needed.",
+  "longDescription": "An AI-powered Web3 research digest that tracks crypto news from 170+ sources, monitors 50+ KOL Twitter accounts (Chinese + English), and provides real-time market data including BTC/ETH prices and Fear & Greed Index.\n\n## Privacy & Security\n\n- Zero personal data collected\n- No wallet address needed\n- No local files created\n- No API keys required\n- All traffic encrypted via HTTPS\n\n## What You Get\n\n- Real-time BTC/ETH prices and 24h change\n- Fear & Greed Index\n- 5-8 key macro news events\n- KOL sentiment analysis (Chinese + English)\n- Bilingual support (English/Chinese)",
+  "author": "Alex Wang",
+  "license": "MIT",
+  "repository": "https://github.com/alexander10011/web3-daily",
+  "homepage": "https://github.com/alexander10011/web3-daily",
+  "keywords": [
+    "web3",
+    "crypto",
+    "bitcoin",
+    "ethereum",
+    "defi",
+    "news",
+    "digest",
+    "market",
+    "research"
+  ]
+}

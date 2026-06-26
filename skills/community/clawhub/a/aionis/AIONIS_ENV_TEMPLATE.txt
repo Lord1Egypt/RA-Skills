@@ -1,0 +1,10 @@
+AIONIS_BASE_URL=http://127.0.0.1:3001
+# If Clawbot runs inside another container, use:
+# AIONIS_BASE_URL=http://host.docker.internal:3001
+
+# Choose one auth mode
+AIONIS_API_KEY=replace_me
+# AIONIS_AUTH_BEARER=replace_me
+
+AIONIS_TENANT_ID=default
+AIONIS_SCOPE_PREFIX=clawbot

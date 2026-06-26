@@ -1,0 +1,62 @@
+{
+  "feishuApps": [
+    {
+      "label": "coordinator",
+      "appId": "cli_your_app_id",
+      "appSecret": "your_app_secret",
+      "encryptKey": "your_encrypt_key",
+      "verificationToken": "your_verification_token",
+      "botName": "Coordinator Bot"
+    },
+    {
+      "label": "specialist-a",
+      "appId": "cli_specialist_app_id",
+      "appSecret": "specialist_app_secret",
+      "encryptKey": "specialist_encrypt_key",
+      "verificationToken": "specialist_verification_token",
+      "botName": "Specialist Bot A"
+    }
+  ],
+  "relay": {
+    "callbackUrl": "https://relay.example.com/feishu/callback",
+    "logStore": {
+      "type": "bitable",
+      "appToken": "Lvfo...",
+      "tableId": "tbl...",
+      "fieldMap": {
+        "chat_id": "Chat ID",
+        "task_id": "Task ID",
+        "actor": "Actor OpenID",
+        "target": "Target",
+        "action": "Action",
+        "content": "Payload",
+        "timestamp": "Timestamp",
+        "status": "Status"
+      }
+    }
+  },
+  "chats": [
+    {
+      "chatId": "oc_primary_team",
+      "description": "Primary delivery room",
+      "allowedBots": ["coordinator", "specialist-a"],
+      "approvalPoints": [
+        {
+          "name": "plan-signoff",
+          "trigger": "state == 'ready_for_plan_approval'",
+          "approverOpenIds": ["ou_owner"]
+        }
+      ]
+    }
+  ],
+  "agentSessions": [
+    {
+      "agentId": "coordinator",
+      "sessionKey": "agent:main:feishu:group:oc_primary_team"
+    },
+    {
+      "agentId": "specialist-a",
+      "sessionKey": "agent:worker-a:feishu:group:oc_primary_team"
+    }
+  ]
+}

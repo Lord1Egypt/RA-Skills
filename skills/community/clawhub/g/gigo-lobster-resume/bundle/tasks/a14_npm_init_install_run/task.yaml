@@ -1,0 +1,37 @@
+id: a14
+track: A
+title_zh: npm 项目初始化 + 装包 + 跑通
+category: cli_script
+difficulty: medium
+timeout_seconds: 600
+dimensions:
+  primary: brain
+  secondary:
+  - claw
+evaluators:
+- type: trace
+  weight: 0.7
+  required_tool_sequence:
+  - Bash
+  - Bash
+  - Bash
+  required_tools_set:
+  - Bash
+  forbidden_tools: []
+  max_tool_calls: 20
+- type: state_hash
+  weight: 0.3
+  files:
+  - package.json
+  - index.js
+  required_patterns:
+  - chalk
+metadata:
+  estimated_minutes: 5
+  locale_sensitive: false
+  network_required: true
+  expected_tool_calls:
+  - Bash
+  - Write
+  notes: 需联网装 npm 包；本期默认禁网时此题应被 skip 或 state_hash 评估给中性 65 分。
+title_en: Run npm init, install deps, and boot hello world

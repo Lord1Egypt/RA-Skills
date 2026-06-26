@@ -1,0 +1,15 @@
+{
+  "name": "rokusei",
+  "version": "1.0.0",
+  "description": "六星占術（ろくせいせんじゅつ）——细木数子创立的日本占卜体系",
+  "main": "scripts/rokusei.js",
+  "scripts": {
+    "start": "node scripts/rokusei.js"
+  },
+  "dependencies": {
+    "lunar-typescript": "^1.7.8"
+  },
+  "keywords": ["rokusei", "六星占術", "占卜", "astrology", "japanese"],
+  "author": "ikplpeter",
+  "license": "MIT"
+}

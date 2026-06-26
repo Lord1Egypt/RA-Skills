@@ -1,35 +1,37 @@
----
-name: "Realtime Collab App"
-description: "Enables building real-time collaborative apps with features like whiteboard, live code editing, chat, CRDT sync, and presence indicators."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/realtime-collab-app"
-sourceUrl: "https://clawhub.ai/skills/realtime-collab-app"
----
+# Realtime Collaboration App
 
-# Realtime Collab App
+Build real-time collaborative applications.
 
-> Enables building real-time collaborative apps with features like whiteboard, live code editing, chat, CRDT sync, and presence indicators.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/realtime-collab-app`
-- **Source URL:** [https://clawhub.ai/skills/realtime-collab-app](https://clawhub.ai/skills/realtime-collab-app)
+- **Whiteboard** - Draw together in real-time
+- **Code Editor** - Pair programming with live sync
+- **Chat** - Real-time messaging
+- **CRDT Sync** - Conflict-free data sync
+- **Presence** - See who's online
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/realtime-collab-app
+# Create collab app
+./create-collab.sh my-app
+
+# Start development
+./dev.sh
 ```
+
+## Use Cases
+
+- Team whiteboard
+- Pair programming
+- Collaborative documents
+- Live dashboards
+
+## Requirements
+
+- Node.js 18+
+- Redis for pub/sub
+
+## Author
+
+Sunshine-del-ux

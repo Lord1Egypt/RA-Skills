@@ -1,35 +1,225 @@
 ---
-name: "guangdong-computing-policy"
-description: "聚合国内（重点广东省及广州市深圳市）算力及人工智能相关最新政策，覆盖AI大模型、智算中心、数据中心、专项债/国债支持算力建设等动态，提供简报式解读。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guangdong-computing-policy"
-sourceUrl: "https://clawhub.ai/skills/guangdong-computing-policy"
+name: guangdong-computing-policy
+description: 聚合国内（重点广东省及广州市深圳市）算力及人工智能相关最新政策，覆盖AI大模型、智算中心、数据中心、专项债/国债支持算力建设等动态，提供简报式解读。
 ---
 
-# guangdong-computing-policy
+# 广东算力&人工智能政策简报
 
-> 聚合国内（重点广东省及广州市深圳市）算力及人工智能相关最新政策，覆盖AI大模型、智算中心、数据中心、专项债/国债支持算力建设等动态，提供简报式解读。
+> 追踪国内（重点广东省/广州市/深圳市）最新算力及人工智能相关政策动态，覆盖AI大模型、智算中心、数据中心、专项债国债支持算力建设
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guangdong-computing-policy`
-- **Source URL:** [https://clawhub.ai/skills/guangdong-computing-policy](https://clawhub.ai/skills/guangdong-computing-policy)
+## 触发条件
 
-## Overview
+当用户说出以下关键词时激活此skill：
+- "最新算力政策"
+- "广东算力政策"
+- "广东智算中心政策"
+- "AI大模型政策 广东"
+- "算力专项债政策 广东"
+- "数据中心 政策 广东"
 
+## 覆盖范围
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/guangdong-computing-policy
+### 国家级机构
+- 国务院（www.gov.cn）
+- 国家发展和改革委员会（www.ndrc.gov.cn）
+- 工业和信息化部（www.miit.gov.cn）
+- 科学技术部（www.most.gov.cn）
+
+### 广东省及下辖市
+- 广东省人民政府（www.gd.gov.cn）
+- 广州市发展和改革委员会（fgw.gz.gov.cn）
+- 广州市人民政府（www.gz.gov.cn）
+- 深圳市发展和改革委员会（drc.sz.gov.cn）
+- 深圳市人民政府（www.sz.gov.cn）
+- 广东省算力协同服务网（www.sc-ainet.cn）
+- 珠海市人民政府（www.zhuhai.gov.cn）
+- 佛山市人民政府（www.foshan.gov.cn）
+
+### 权威媒体
+- 新华社（www.xinhuanet.com）
+- 人民日报（www.people.com.cn）
+- 南方日报（www.southcn.com）
+
+## 关键词
+
+算力/人工智能相关政策必须包含以下关键词**至少一个**才会被收录：
+
+### 算力基建类
+- 算力、算力基础设施、智算中心、人工智能计算中心
+- 数据中心、超算中心
+- 专项债、国债、政府专项债券
+- 算力补贴、算力扶持
+- 东数西算
+
+### AI大模型类
+- AI、人工智能、AI大模型、大模型
+
+## 工作流程
+
 ```
+Phase 1: 信息收集
+  ├─ 优先baidu-search搜索最近30天政策
+  ├─ baidu-search失败 fallback tavily-search
+  ├─ 都失败 fallback web_search
+  ├─ 筛选关键词匹配：算力/智算/大模型/数据中心/专项债相关主题
+  └─ 去重：同一政策只保留最权威来源
+      ↓
+Phase 2: 内容过滤
+  ├─ 保留：最近30天内发布
+  ├─ 保留：和算力/智算/大模型相关
+  └─ 去重
+      ↓
+Phase 3: 内容获取
+  ├─ 对搜索到的政策链接，使用 `web_fetch` 获取完整内容
+  ├─ 优先获取政策原文
+  ├─ 获取权威媒体解读作为补充
+      ↓
+Phase 4: 分类整理
+  └─ 按发布机构分类
+      ↓
+Phase 5: 输出简报
+  └─ 结构化呈现政策要点
+```
+
+## Phase 1: 信息收集
+
+### 搜索策略
+- **优先使用 `baidu-search`**（百度AI搜索，对国内政府网站支持更好）
+- 如果百度搜索不可用，fallback 到 `tavily-search`
+- 如果都不可用，fallback 到 `web_search`
+
+### 搜索关键词示例
+- `site:gd.gov.cn 算力 智算中心 政策 2026`
+- `site:gz.gov.cn 人工智能 大模型 扶持`
+- `site:ndrc.gov.cn 专项债 算力基础设施`
+
+## Phase 2: 内容过滤
+
+### 保留标准
+- **时间范围**: 最近30天内发布（从查询当天往前推30天）
+- **主题相关**: 标题或内容包含关键词（算力/智算/大模型/数据中心/专项债/国债）
+
+### 排除标准
+- 超过30天的旧政策
+- 与算力/智算/AI无关的通用政策
+- 重复报道（保留政府官网原文，排除转载）
+
+## Phase 3: 内容获取
+
+对搜索到的政策链接，使用 `web_fetch` 获取完整内容：
+- 优先获取政策原文
+- 获取权威媒体解读作为补充
+
+## Phase 4: 分类整理
+
+按发布机构分为以下类别：
+
+### 🏛️ 国务院/发改委
+国家级算力规划、专项债/国债相关政策
+
+### 🏭 工信部
+算力产业、数据中心、AI大模型产业化相关政策
+
+### 🔬 科技部
+AI算力科研创新相关政策
+
+### 🌊 广东省
+省级算力、智算中心建设扶持政策
+
+### 🏙️ 广州市
+广州市级算力相关政策
+
+### 🌆 深圳市
+深圳市级算力、AI大模型相关政策
+
+### 🏖️ 珠海市
+珠海市级相关政策
+
+### 🏭 佛山市
+佛山市级相关政策
+
+## Phase 5: 输出格式
+
+### 有政策时
+
+```markdown
+# 🖥️ 广东算力政策简报
+
+**查询日期**: YYYY年MM月DD日  
+**时间范围**: 最近30天（YYYY年MM月DD日 - YYYY年MM月DD日）  
+**数据来源**: 百度搜索 + 国家级 + 广东省政府官网
+
+---
+
+## 🏛️ 国家级
+
+### [政策标题]
+
+**核心要点**:
+- 要点1
+- 要点2
+- 要点3
+
+**原文链接**: [URL]
+**发布日期**: YYYY-MM-DD
+
+---
+
+## 🌊 广东省
+
+...（同上格式）
+
+---
+
+**共计**: X条政策  
+**下次查询**: 可随时说"最新广东算力政策"获取更新
+```
+
+### 无政策时
+
+```markdown
+# 🖥️ 广东算力政策简报
+
+**查询日期**: YYYY年MM月DD日  
+**时间范围**: 最近30天（YYYY年MM月DD日 - YYYY年MM月DD日）
+
+---
+
+## 📭 最近30天无新政策
+
+最近30天内，未查询到国家级、广东省、广州市、深圳市等机构发布算力/智算/大模型相关新政策。
+
+**建议**:
+- 可扩大时间范围查询更早的政策
+- 关注特定机构的政策动态
+- 定期查询以获取最新动态
+
+---
+
+**数据来源**: 百度搜索/国家级/广东省/广州市/深圳市政府官网  
+**下次查询**: 可随时说"最新广东算力政策"获取更新
+```
+
+## 注意事项
+
+1. **时效性**: 严格控制在30天内，超过30天的政策不纳入简报
+2. **准确性**: 优先使用政府官网原文，媒体解读仅作参考
+3. **完整性**: 每个政策需包含标题、核心要点、原文链接、发布日期
+4. **分类清晰**: 按发布机构分类，便于用户快速定位
+5. **无结果处理**: 明确告知用户"最近无新政策"，避免空输出
+
+## 示例
+
+### 用户查询
+**用户**: "最新广东算力政策"
+
+**AI**: [执行完整工作流，输出结构化简报]
+
+### 无政策情况
+**用户**: "最新广东算力政策"
+
+**AI**: [搜索完成，输出"最近30天无新政策"提示]
+
+## 参考资源
+
+- `references/policy_sources.md` - 完整政策来源网址清单

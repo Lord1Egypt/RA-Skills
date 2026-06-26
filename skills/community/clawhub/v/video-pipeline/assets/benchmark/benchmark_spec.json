@@ -1,0 +1,98 @@
+{
+  "visual_layout": {
+    "fonts": {
+      "title": {
+        "size": 56,
+        "weight": 800,
+        "color": "#ffffff",
+        "lineHeight": 1.3,
+        "textAlign": "center"
+      },
+      "subtitle": {
+        "size": 32,
+        "color": "rgba(255,255,255,0.6)",
+        "fontWeight": "normal"
+      },
+      "heading": {
+        "size": 64,
+        "weight": 800,
+        "color": "#ffffff",
+        "lineHeight": 1.2,
+        "textAlign": "center"
+      },
+      "body": {
+        "size": 44,
+        "weight": 600,
+        "color": "#818cf8"
+      }
+    },
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "rgba(255,255,255,0.6)",
+      "accent": "#818cf8",
+      "background": "linear-gradient(160deg, #0f0c29 0%, #1a1145 30%, #302b63 60%, #24243e 100%)"
+    },
+    "spacing": {
+      "paddingHorizontal": 60,
+      "marginTop": 24,
+      "marginBottom": 30
+    },
+    "layout": {
+      "width": 1080,
+      "height": 1920,
+      "fontFamily": "'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif"
+    }
+  },
+  "animation_effects": {
+    "interpolation": {
+      "opacity": {
+        "frames": [0, "fps * 0.5"],
+        "values": [0, 1],
+        "extrapolateRight": "clamp"
+      },
+      "position": {
+        "frames": [0, "fps * 0.5"],
+        "values": [40, 0],
+        "extrapolateRight": "clamp"
+      },
+      "scale": {
+        "frames": [0, "fps * 2"],
+        "values": [1, 1.08],
+        "extrapolateRight": "clamp"
+      },
+      "bokeh_animation": {
+        "frames": [0, "fps * 3"],
+        "values": [100, 180],
+        "extrapolateRight": "clamp"
+      }
+    },
+    "bokeh_effects": [
+      {
+        "width": 280,
+        "height": 280,
+        "borderRadius": "50%",
+        "background": "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)",
+        "filter": "blur(40px)"
+      },
+      {
+        "width": 200,
+        "height": 200,
+        "borderRadius": "50%",
+        "background": "radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)",
+        "filter": "blur(30px)"
+      },
+      {
+        "width": 320,
+        "height": 320,
+        "borderRadius": "50%",
+        "background": "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)",
+        "filter": "blur(50px)"
+      }
+    ],
+    "gradient_effects": {
+      "background": "linear-gradient(160deg, #0f0c29 0%, #1a1145 30%, #302b63 60%, #24243e 100%)",
+      "decoration_line": "linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent)"
+    },
+    "text_shadow": "0 4px 30px rgba(99,102,241,0.5)"
+  }
+}

@@ -1,35 +1,66 @@
 ---
-name: "Book Florist"
-description: "Book florist services through Lokuli MCP. Use when user needs to find and book florist. Triggers on requests like "book a florist", "find florist near me", or any florist service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-florist"
-sourceUrl: "https://clawhub.ai/skills/book-florist"
+name: book-florist
+description: Book florist services through Lokuli MCP. Use when user needs to find and book florist. Triggers on requests like "book a florist", "find florist near me", or any florist service request.
 ---
 
-# Book Florist
+# uook florist
 
-> Book florist services through Lokuli MCP. Use when user needs to find and book florist. Triggers on requests like "book a florist", "find florist near me", or any florist service request.
+Book florist services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-florist`
-- **Source URL:** [https://clawhub.ai/skills/book-florist](https://clawhub.ai/skills/book-florist)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-florist
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "florist",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

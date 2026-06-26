@@ -1,0 +1,25 @@
+{
+  "name": "rotifer-guide",
+  "display_name": "Rotifer Guide",
+  "description": "Interactive onboarding for Rotifer Protocol — learn core concepts, scaffold your first Gene, diagnose issues, explore the ecosystem, and upgrade fidelity. Five sub-capabilities in one entry point.",
+  "tagline": "From zero to your first Gene in five minutes",
+  "version": "1.0.3",
+  "author": "rotifer-protocol",
+  "license": "Apache-2.0",
+  "category": "developer-tools",
+  "tags": [
+    "rotifer",
+    "ai-agent",
+    "onboarding",
+    "gene",
+    "tutorial",
+    "scaffold",
+    "diagnostics",
+    "fidelity"
+  ],
+  "homepage": "https://rotifer.dev",
+  "repository": "https://github.com/rotifer-protocol/rotifer-playground",
+  "permissions": [],
+  "screenshots": [],
+  "demo_video": null
+}

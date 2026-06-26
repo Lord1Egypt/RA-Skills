@@ -1,0 +1,19 @@
+{
+  "name": "personal-worklist-via-feishu",
+  "version": "1.0.0",
+  "description": "飞书多维表格个人工作台账管理系统",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.15.2"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "rizz-coach",
+  "version": "1.0.0",
+  "description": "AI-powered flirt coach — rate your rizz, glow up your texts, simulate responses.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rizz",
+    "coach",
+    "openclaw",
+    "clawhub",
+    "skill"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

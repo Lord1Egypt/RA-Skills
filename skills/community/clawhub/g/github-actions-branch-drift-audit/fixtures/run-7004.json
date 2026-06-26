@@ -1,0 +1,1 @@
+{"databaseId":7004,"workflowName":"CI","event":"pull_request","conclusion":"failure","headBranch":"feature/cache-rework","createdAt":"2026-03-04T00:00:00Z","updatedAt":"2026-03-04T00:20:00Z","url":"https://example.com/run/7004","repository":{"nameWithOwner":"flowcreatebot/yf-api"}}

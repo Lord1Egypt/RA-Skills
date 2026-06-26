@@ -1,0 +1,26 @@
+{
+  "task_id": "20260404-010",
+  "description": "用以下个人信息更新 /Users/qztcm09/.openclaw/workspace/tmp/codex/index.html：
+
+【姓名】林捷（Jie Lin）/ Alukardo
+【现职】泉州师范学院 讲师（2011年至今）
+【学历】国立台湾科技大学（NTUST）资讯管理博士（2016-2025）
+【研究方向】人机交互、机器视觉、资料可视化
+【技能】Data Visualization、Machine Vision、Design Patterns
+【教学课程】Data Visualization、Machine Vision、Design Patterns
+【曾任职】NEC Corporation 武汉（2008-2011）软件工程师、福建省新知识与知识工程大数据管理重点实验室 研究员（2013-2016）
+【Email】lj062003@163.com
+【Website】https://alukardo.github.io
+
+要求：
+1. 保留现有的现代简约风格（米色系 + 卡片布局）
+2. 用真实信息替换占位内容
+3. 技能列表展示：Data Visualization、Machine Vision、Design Patterns
+4. 作品展示：可列出学术论文或项目
+5. 联系方式：Email + 个人网站
+6. 保存为 /Users/qztcm09/.openclaw/workspace/tmp/codex/index.html",
+  "status": "done",
+  "summary": "已按你的信息更新并保存到 [index.html](/Users/qztcm09/.openclaw/workspace/tmp/codex/index.html)。  保留了原有的米色系现代简约卡片布局，只替换了占位内容，并补充了真实的个人简介、技能列表、教学与经历、作品展示、联系方式。作品区",
+  "started_at": "2026-04-04T15:49:32+08:00",
+  "finished_at": "2026-04-04T15:51:09+08:00"
+}

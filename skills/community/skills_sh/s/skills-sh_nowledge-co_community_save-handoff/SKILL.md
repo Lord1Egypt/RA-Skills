@@ -1,35 +1,18 @@
 ---
-name: "save-handoff"
-description: "Indexed by skills.sh from nowledge-co/community"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nowledge-co"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nowledge-co/community/save-handoff"
-sourceUrl: "https://skills.sh/nowledge-co/community/save-handoff"
+name: save-handoff
+description: Save a resumable handoff summary only when the user explicitly asks. This is not a real transcript import.
 ---
 
-# save-handoff
+# Save Handoff
 
-> Indexed by skills.sh from nowledge-co/community
+Use this only when the user explicitly asks for a checkpoint, resumable summary, or handoff.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nowledge-co
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nowledge-co/community/save-handoff`
-- **Source URL:** [https://skills.sh/nowledge-co/community/save-handoff](https://skills.sh/nowledge-co/community/save-handoff)
+Cursor does not yet have a first-class Nowledge live session importer in this plugin, so do not claim a real thread save.
 
-## Overview
+When `nmem` is available, create a structured handoff summary through the terminal:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nowledge-co/community/save-handoff
+nmem --json t create -t "Cursor Session - <topic>" -c "Goal: ... Decisions: ... Files: ... Risks: ... Next: ..." -s cursor
 ```
+
+If `nmem` is unavailable, explain that plainly instead of pretending the handoff was saved.

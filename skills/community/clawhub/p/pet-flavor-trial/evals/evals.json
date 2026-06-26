@@ -1,0 +1,40 @@
+{
+  "skill_name": "pet-flavor-trial",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell freeze-dried dog treats in 4 flavors: chicken, beef, salmon, sweet potato. We want a 'flavor family bucket' so customers can try all 4 in one order. What bundle do you recommend and what copy should we put on the PDP?",
+      "expected_output": "A bundle definition table (flavors and units), bundle name, at least one PDP copy line and one cart line. Scope limited to the freeze-dried line.",
+      "files": [],
+      "expectations": [
+        "The output includes a bundle definition with flavors and units (e.g. one unit per flavor).",
+        "The output includes a clear bundle name (e.g. Flavor Explorer, Taste the Range).",
+        "The output includes at least one ready-to-use PDP copy line.",
+        "The output includes at least one cart copy line or cart display description.",
+        "Product scope is limited to the freeze-dried line or the four flavors named."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "How do I set up a multi-flavor trial pack for pet chew sticks on Shopify? We have 5 flavors and want new customers to try 3–4 without buying full bags of each.",
+      "expected_output": "Structured trial bundle (which flavors, how many units), naming, PDP and cart placement, and a brief note on Shopify implementation.",
+      "files": [],
+      "expectations": [
+        "The output includes a trial bundle definition (flavors and units).",
+        "The output includes naming and copy or placement guidance for PDP and cart.",
+        "The output includes a note on Shopify (bundle app or manual) implementation."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We have 3 flavors of freeze-dried treats and margin is tight. Suggest a small flavor trial pack that doesn't require a discount—same price as buying 3 single pouches.",
+      "expected_output": "A 3-flavor trial bundle with no discount (sum of components); bundle name; ready-to-use copy; margin note.",
+      "files": [],
+      "expectations": [
+        "The output includes a bundle with exactly 3 flavors or a 3-flavor option.",
+        "The output states no discount or same price as sum of components.",
+        "The output includes at least one ready-to-use copy line."
+      ]
+    }
+  ]
+}

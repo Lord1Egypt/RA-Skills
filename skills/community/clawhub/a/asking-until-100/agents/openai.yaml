@@ -1,0 +1,7 @@
+interface:
+  display_name: "Asking Until 100%"
+  short_description: "Repo-aware questioning before coding or building"
+  default_prompt: "Use $asking-until-100 to inspect repo context when relevant, clarify this coding or build task, and ask the highest-value questions before acting."
+
+policy:
+  allow_implicit_invocation: false

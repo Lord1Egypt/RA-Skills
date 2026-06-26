@@ -1,0 +1,9 @@
+{
+  "text": "Explicit output path test",
+  "width": 680,
+  "height": 220,
+  "format": "png",
+  "background": "#ffffff",
+  "default_color": "#111111",
+  "padding": 24
+}

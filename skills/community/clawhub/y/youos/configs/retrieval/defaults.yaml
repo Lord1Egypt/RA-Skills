@@ -1,0 +1,42 @@
+top_k_reply_pairs: 8
+top_k_documents: 3
+top_k_chunks: 3
+recency_boost_days: 60
+recency_boost_weight: 0.2
+account_boost_weight: 0.15
+
+# Semantic search settings
+semantic_weight: 0.4
+semantic_min_coverage: 0.01
+
+# Sender-aware retrieval boosts
+sender_type_boost: 0.15
+sender_domain_boost: 0.10
+
+# Per-sender-type boost multipliers (applied to match scores)
+# Cross-encoder reranking (requires sentence-transformers)
+reranker_enabled: false
+
+# Boost applied when a reply-pair's subject literally matches query tokens.
+# Historically hardcoded at construction time; surfaced for autoresearch
+# tuning. Multiplicative on the combined score.
+subject_match_boost: 0.2
+
+topic_match_boost: 0.15
+
+# Per-token contribution to `_field_match_bonus` (title/subject literal-match
+# bonus on top of BM25). Historically the literal `0.25` inside the helper.
+field_match_bonus_per_token: 0.25
+
+# BM25 lexical-score saturation. The historical hardcoded `min(rank*2, 10)`
+# is preserved here; surfaced so the autoresearch loop can A/B-tune them
+# against the golden-eval gate. scale ramps how fast lexical_score grows per
+# unit of FTS5 rank; cap is the ceiling above which all matches tie.
+lexical_scale: 2.0
+lexical_cap: 10.0
+
+sender_type_boost_map:
+  external_client: 1.3
+  personal: 0.8
+  automated: 0.3
+  internal: 1.5

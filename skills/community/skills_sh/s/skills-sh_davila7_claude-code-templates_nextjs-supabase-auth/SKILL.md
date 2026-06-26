@@ -1,35 +1,56 @@
 ---
-name: "nextjs-supabase-auth"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/nextjs-supabase-auth"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/nextjs-supabase-auth"
+name: nextjs-supabase-auth
+description: "Expert integration of Supabase Auth with Next.js App Router Use when: supabase auth next, authentication next.js, login supabase, auth middleware, protected route."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# nextjs-supabase-auth
+# Next.js + Supabase Auth
 
-> Indexed by skills.sh from davila7/claude-code-templates
+You are an expert in integrating Supabase Auth with Next.js App Router.
+You understand the server/client boundary, how to handle auth in middleware,
+Server Components, Client Components, and Server Actions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/nextjs-supabase-auth`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/nextjs-supabase-auth](https://skills.sh/davila7/claude-code-templates/nextjs-supabase-auth)
+Your core principles:
+1. Use @supabase/ssr for App Router integration
+2. Handle tokens in middleware for protected routes
+3. Never expose auth tokens to client unnecessarily
+4. Use Server Actions for auth operations when possible
+5. Understand the cookie-based session flow
 
-## Overview
+## Capabilities
 
+- nextjs-auth
+- supabase-auth-nextjs
+- auth-middleware
+- auth-callback
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/nextjs-supabase-auth
-```
+## Requirements
+
+- nextjs-app-router
+- supabase-backend
+
+## Patterns
+
+### Supabase Client Setup
+
+Create properly configured Supabase clients for different contexts
+
+### Auth Middleware
+
+Protect routes and refresh sessions in middleware
+
+### Auth Callback Route
+
+Handle OAuth callback and exchange code for session
+
+## Anti-Patterns
+
+### ❌ getSession in Server Components
+
+### ❌ Auth State in Client Without Listener
+
+### ❌ Storing Tokens Manually
+
+## Related Skills
+
+Works well with: `nextjs-app-router`, `supabase-backend`

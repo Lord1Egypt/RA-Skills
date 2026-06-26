@@ -1,0 +1,30 @@
+{
+  "name": "marsbit-crypto-news-skill",
+  "version": "0.3.2",
+  "description": "MarsBit hosted MCP skill for crypto-native Web3 news, flash, and narrative discovery on OpenClaw",
+  "author": "marsbit",
+  "license": "MIT",
+  "openclaw": {
+    "skills": {
+      "dependencies": {
+        "tools": ["exec", "read"],
+        "binaries": ["curl"],
+        "envVars": []
+      }
+    }
+  },
+  "keywords": [
+    "marsbit",
+    "web3",
+    "crypto",
+    "defi",
+    "layer2",
+    "onchain",
+    "regulation",
+    "news",
+    "flash",
+    "mcp",
+    "openclaw",
+    "hosted-mcp"
+  ]
+}

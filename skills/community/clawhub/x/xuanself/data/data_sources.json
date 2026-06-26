@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "version": "1.0",
+    "created": "2026-04-06",
+    "description": "俄罗斯医疗器械市场调研核心数据源索引",
+    "note": "本文件为模板，首次使用请填入您的 API Key"
+  },
+
+  "api_keys": {
+    "serpapi": {
+      "key": "YOUR_SERPAPI_KEY",
+      "service": "SerpAPI (serpapi.com)",
+      "used_for": "Yandex/Google 多语种搜索（核心）",
+      "signup_url": "https://serpapi.com",
+      "free_quota": "100次/月",
+      "paid": "$75/月无限制"
+    },
+    "tgstat": {
+      "key": "YOUR_TGSTAT_TOKEN",
+      "service": "TGStat (tgstat.ru)",
+      "used_for": "Telegram 频道/社群统计分析（可选）",
+      "signup_url": "https://tgstat.ru",
+      "note": "如不使用 Telegram 分析，可不填"
+    }
+  },
+
+  "core_sources": {
+    "idf_atlas": {
+      "name": "IDF Diabetes Atlas",
+      "url": "https://diabetesatlas.org",
+      "data_by_country": "https://diabetesatlas.org/data-by-location/country/russian-federation/",
+      "language": "EN",
+      "priority": 3,
+      "covers": ["患者总数", "分型", "死亡率", "医疗支出", "国际对比"],
+      "data_year": 2024,
+      "note": "每2年更新，2025 edition含2024年数据"
+    },
+    "minzdrav": {
+      "name": "俄罗斯联邦卫生部",
+      "url": "https://minzdrav.gov.ru",
+      "federal_project": "https://minzdrav.gov.ru/poleznye-resursy/natsionalnye-proekty-rossii-prodolzhitelnaya-i-aktivnaya-zhizn-novye-tehnologii-sberezheniya-zdorovya/struktura-i-klyuchevye-meropriyatiya-federalnogo-proekta-borba-s-saharnym-diabetom",
+      "language": "RU",
+      "priority": 3,
+      "covers": ["临床指南", "联邦糖尿病项目", "政府采购标准", "政策更新"]
+    },
+    "endocrincentr": {
+      "name": "国家内分泌研究中心",
+      "url": "https://www.endocrincentr.ru",
+      "language": "RU",
+      "priority": 3,
+      "covers": ["联邦项目执行", "糖尿病学校", "患者受益数据", "学术大会"]
+    },
+    "diabetes_ru": {
+      "name": "俄罗斯糖尿病协会",
+      "url": "https://www.diabetes-ru.org",
+      "language": "RU",
+      "priority": 3,
+      "covers": ["患者视角", "用药现状", "治疗困境", "协会建议"]
+    },
+    "kommersant": {
+      "name": "Коммерсантъ",
+      "url": "https://www.kommersant.ru",
+      "theme_url": "https://www.kommersant.ru/theme/3679",
+      "language": "RU",
+      "priority": 2,
+      "covers": ["政策立法", "市场数据", "企业动态", "联邦项目成果"]
+    },
+    "ria": {
+      "name": "РИА Новости",
+      "url": "https://ria.ru",
+      "language": "RU",
+      "priority": 2,
+      "covers": ["卫生部官方动态", "糖尿病学校", "政府公告"]
+    },
+    "rbc": {
+      "name": "RBC",
+      "url": "https://www.rbc.ru",
+      "language": "RU",
+      "priority": 2,
+      "covers": ["健康数据", "市场分析", "患者趋势"]
+    },
+    "kremlin": {
+      "name": "克林姆林宫官网",
+      "url": "https://www.kremlin.ru",
+      "language": "RU",
+      "priority": 3,
+      "covers": ["总统/总理讲话", "最高层政策信号", "糖尿病流行病化警告"]
+    },
+    "eis": {
+      "name": "ЕИС国家采购信息系统",
+      "url": "https://zakupki.gov.ru",
+      "language": "RU",
+      "priority": 3,
+      "covers": ["胰岛素招标", "血糖仪招标", "试纸招标", "中标价格"]
+    },
+    "statbase": {
+      "name": "statbase.ru",
+      "url": "https://statbase.ru",
+      "diabetes_page": "https://statbase.ru/data/rus-number-of-diabetic-patients/",
+      "language": "RU",
+      "priority": 2,
+      "covers": ["年度患者统计", "发病率趋势", "地区分布"]
+    }
+  },
+
+  "ecommerce_price_keywords": {
+    "blood_glucose": "глюкометр купить цена",
+    "test_strips": "тест-полоски для глюкометра",
+    "insulin_pump": "инсулиновая помпа",
+    "cgm": "непрерывный мониторинг глюкозы",
+    "blood_pressure": "тонометр купить"
+  },
+
+  "tender_keywords": {
+    "blood_glucose": "глюкометр государственная закупка",
+    "test_strips": "тест-полоски закупка 44-ФЗ",
+    "insulin": "инсулин закупка Минздрав",
+    "cgm": "система мониторинга глюкозы закупка"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "ductile-iron-pipe",
+  "version": "1.0.0",
+  "description": "西南地区专业球墨铸铁管供应商信息SKILL - 川胜管道（西南唯二生产厂家）",
+  "main": "SKILL.md",
+  "keywords": [
+    "球墨铸铁管",
+    "铸铁排水管",
+    "给排水管道",
+    "管道供应商",
+    "西南地区管道",
+    "市政管道",
+    "工业管道",
+    "管道采购",
+    "管道施工",
+    "管道厂家",
+    "四川管道",
+    "成都管道",
+    "重庆管道",
+    "市政工程",
+    "工业工程",
+    "建筑工程",
+    "管道材料",
+    "管材供应",
+    "管道技术",
+    "管道咨询"
+  ],
+  "author": "川胜管道",
+  "license": "MIT",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhtao52051/ductile-iron-pipe-skill"
+  },
+  "homepage": "https://clawhub.com/skills/ductile-iron-pipe",
+  "bugs": {
+    "url": "https://github.com/zhtao52051/ductile-iron-pipe-skill/issues"
+  },
+  "clawhub": {
+    "category": "business",
+    "tags": [
+      "industrial",
+      "construction",
+      "infrastructure",
+      "piping",
+      "supplier",
+      "china",
+      "southwest-china"
+    ],
+    "compatibility": {
+      "openclaw": ">=1.0.0"
+    },
+    "activation": {
+      "keywords": 190,
+      "description": "覆盖190+关键词，包括球墨铸铁管相关搜索、地区搜索、技术参数、应用领域等"
+    },
+    "contact": {
+      "name": "张经理",
+      "phone": "18380399799",
+      "company": "川胜管道"
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "keywords-extended.md",
+    "demo-response.md",
+    "test-skill.js"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "tour-compare",
+  "version": "0.3.0",
+  "description": "跟团游商品对比助手 - 对比 OTA 平台旅游产品，智能推荐",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "compare": "node src/index.js compare",
+    "recommend": "node src/index.js recommend",
+    "analyze": "node src/index.js analyze",
+    "recognize": "node src/index.js recognize",
+    "test": "node src/index.js --help",
+    "install-deps": "npm install puppeteer cheerio canvas tesseract.js"
+  },
+  "keywords": [
+    "travel",
+    "compare",
+    "ota",
+    "tour",
+    "ux-design",
+    "ocr"
+  ],
+  "author": "小虾",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "chalk": "^5.3.0",
+    "node-fetch": "^3.3.0"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^22.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "canvas": "^2.11.0",
+    "tesseract.js": "^5.0.0"
+  }
+}

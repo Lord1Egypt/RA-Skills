@@ -1,0 +1,39 @@
+{
+  "id": "keep",
+  "name": "keep",
+  "description": "Reflective memory — context engine + memory tools",
+  "version": "0.109.0",
+  "kind": "context-engine",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "contextBudgetRatio": {
+        "type": "number",
+        "default": 0.3,
+        "description": "Fraction of token budget for keep context (0.0-1.0)"
+      },
+      "captureHeartbeats": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to capture heartbeat messages in keep"
+      },
+      "indexPaths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": ["./"],
+        "description": "Workspace paths to index (relative to workspace root)"
+      },
+      "indexExclude": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [],
+        "description": "Glob patterns to exclude from indexing"
+      }
+    }
+  }
+}

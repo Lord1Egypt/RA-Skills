@@ -1,0 +1,20 @@
+{
+  "mode": "feature",
+  "feature": "contacts",
+  "description": "Add Contacts support: CardDAV (Nextcloud) + Exchange EWS",
+  "repo": "/home/adminul/.openclaw/skills/nexlink",
+  "branch": "feat/contacts",
+  "phase": 5,
+  "phaseName": "IMPLEMENT_DONE",
+  "nextAction": "verify",
+  "clarificationSkipped": true,
+  "clarificationReason": "Scope clear: Contacts CRUD + search, separate per-provider, future-sync architecture",
+  "tasks": [
+    {"id": 1, "name": "Exchange contacts module", "status": "done", "files": ["modules/exchange/contacts.py"]},
+    {"id": 2, "name": "Nextcloud contacts module (CardDAV)", "status": "done", "files": ["modules/nextcloud/contacts.py"]},
+    {"id": 3, "name": "CLI routing", "status": "done", "files": ["scripts/nexlink.py"]},
+    {"id": 4, "name": "SKILL.md documentation", "status": "done", "files": ["SKILL.md"]},
+    {"id": 5, "name": "Tests", "status": "done", "files": ["tests/test_contacts.py"]}
+  ],
+  "testsPassed": 13
+}

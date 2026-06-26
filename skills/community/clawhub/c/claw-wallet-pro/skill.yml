@@ -1,0 +1,182 @@
+name: claw-wallet
+display_name: "Claw Wallet"
+version: 0.1.4
+homepage: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+repository: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+required_env_vars:
+  - CLAY_SANDBOX_URL
+  - CLAY_AGENT_TOKEN
+  - AGENT_TOKEN
+primary_credential: CLAY_AGENT_TOKEN
+required_config_paths:
+  - "skills/claw-wallet/.env.clay"
+  - "skills/claw-wallet/identity.json"
+description: >
+  Local multi-chain wallet skill for AI agents. Installs and operates the Claw Wallet
+  local sandbox, reads local sandbox configuration and identity files for the sandbox
+  URL and bearer token, manages wallet status and signing flows through localhost APIs
+  or wrapper scripts, and guides the user through wallet bind and claim flows. Use when:
+  installing Claw Wallet, starting or restarting the local sandbox, reading wallet
+  addresses or uid, binding a wallet, signing transactions, transferring assets, or
+  managing wallet security policies through the sandbox.
+
+
+permissions:
+  - "exec: bash/sh scripts for install.sh and claw-wallet.sh"
+  - "exec: powershell for install.ps1 and claw-wallet.ps1 on Windows"
+  - "exec: curl or HTTP client calls to local sandbox endpoints"
+  - "filesystem: read/write within skills/claw-wallet including .env.clay, identity.json, share3.json, sandbox.log, and wrapper scripts"
+  - "network: localhost or CLAY_SANDBOX_URL sandbox HTTP API endpoints"
+  - "network: www.clawwallet.cc for installer, wrapper scripts, and binaries"
+  - "browser: may instruct the user to open clawwallet.cc claim/bind pages"
+
+metadata:
+  openclaw:
+    always: false
+    autonomousInvocation: false
+    modelInvocation:
+      default: "require-user-confirmation"
+      reason: "This skill performs persistent workspace writes, handles local secret files, and can launch a long-lived sandbox process."
+    homepage: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+    repository: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+    upstream:
+      skillRepo: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+      binaryRepo: "https://github.com/ClawWallet/Claw_Wallet_Bin"
+      distributionHost: "https://www.clawwallet.cc/skills"
+      distributionBase: "https://www.clawwallet.cc"
+      branch: "dev"
+      hosts:
+        - "github.com"
+        - "www.clawwallet.cc"
+      reviewNotes:
+        - "This repository contains the skill source and wrapper scripts."
+        - "Claw_Wallet_Bin contains the sandbox binaries referenced by the installer."
+        - "www.clawwallet.cc distributes the published installer, wrappers, and binaries for the dev environment."
+    os:
+      - darwin
+      - linux
+      - win32
+    primaryEnv: CLAY_AGENT_TOKEN
+    requires:
+      bins: []
+      anyBins:
+        - bash
+        - sh
+        - pwsh
+        - powershell
+        - curl
+      env:
+        - CLAY_SANDBOX_URL
+        - CLAY_AGENT_TOKEN
+        - AGENT_TOKEN
+      configPaths:
+        - "skills/claw-wallet/.env.clay"
+        - "skills/claw-wallet/identity.json"
+    env:
+      - name: CLAY_SANDBOX_URL
+        description: "Base URL for the local Claw Wallet sandbox HTTP server."
+        required: true
+        sensitive: false
+      - name: CLAY_AGENT_TOKEN
+        description: "Primary bearer token used for authenticated sandbox API calls."
+        required: true
+        sensitive: true
+      - name: AGENT_TOKEN
+        description: "Legacy alias for the same sandbox bearer token."
+        required: false
+        sensitive: true
+    configPaths:
+      - path: "skills/claw-wallet/.env.clay"
+        description: "Local sandbox connection file containing CLAY_SANDBOX_URL plus CLAY_AGENT_TOKEN or AGENT_TOKEN."
+        required: true
+      - path: "skills/claw-wallet/identity.json"
+        description: "Local sandbox identity file containing agent_token and wallet identity metadata."
+        required: true
+    install:
+      type: bootstrap-script
+      targetPath: "skills/claw-wallet"
+      sourceRepo: "https://www.clawwallet.cc/skills"
+      homepage: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+      repository: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+      provenance:
+        skillRepo: "https://github.com/ClawWallet/Claw-Wallet-Skill"
+        binaryRepo: "https://github.com/ClawWallet/Claw_Wallet_Bin"
+        distributionHost: "https://www.clawwallet.cc/skills"
+        branch: "dev"
+      commands:
+        linux_macos:
+          - "mkdir -p skills/claw-wallet"
+          - "cd skills/claw-wallet && curl -fsSL https://www.clawwallet.cc/skills/install.sh | bash"
+        windows:
+          - 'New-Item -ItemType Directory -Path "skills\claw-wallet" -Force | Out-Null'
+          - 'Set-Location "skills\claw-wallet"'
+          - 'Invoke-WebRequest -Uri "https://www.clawwallet.cc/skills/install.ps1" -OutFile "install.ps1" -UseBasicParsing'
+          - '& ".\install.ps1"'
+    privilegePolicy:
+      persistentWorkspaceWrites: true
+      longLivedProcess: true
+      allowedWriteScope:
+        - "skills/claw-wallet/**"
+      requiresExplicitUserConfirmation:
+        - "reinstall"
+        - "upgrade"
+        - "uninstalling the wallet skill"
+      notes:
+        - "Do not autonomously reinstall, upgrade, or uninstall the skill without user confirmation."
+        - "Persistent files are limited to the skill workspace under skills/claw-wallet."
+
+install:
+  type: bootstrap-script
+  source_repo: "https://www.clawwallet.cc/skills"
+  target_path: "skills/claw-wallet"
+  commands:
+    linux_macos:
+      - "mkdir -p skills/claw-wallet"
+      - "cd skills/claw-wallet && curl -fsSL https://www.clawwallet.cc/skills/install.sh | bash"
+    windows:
+      - 'New-Item -ItemType Directory -Path "skills\claw-wallet" -Force | Out-Null'
+      - 'Set-Location "skills\claw-wallet"'
+      - 'Invoke-WebRequest -Uri "https://www.clawwallet.cc/skills/install.ps1" -OutFile "install.ps1" -UseBasicParsing'
+      - '& ".\install.ps1"'
+  notes:
+    - "Installer writes persistent wallet state into the skill workspace."
+    - "Remote installer script should be reviewed before execution."
+
+credentials:
+  env_vars:
+    - CLAY_SANDBOX_URL
+    - CLAY_AGENT_TOKEN
+    - AGENT_TOKEN
+  config_paths:
+    - "skills/claw-wallet/.env.clay"
+    - "skills/claw-wallet/identity.json"
+  local_secret_fields:
+    - path: "skills/claw-wallet/.env.clay"
+      fields:
+        - CLAY_SANDBOX_URL
+        - CLAY_AGENT_TOKEN
+        - AGENT_TOKEN
+    - path: "skills/claw-wallet/identity.json"
+      fields:
+        - agent_token
+
+persistence:
+  writes_to_workspace:
+    - "skills/claw-wallet/**"
+  persistent_state_files:
+    - "skills/claw-wallet/.env.clay"
+    - "skills/claw-wallet/identity.json"
+    - "skills/claw-wallet/share3.json"
+  long_lived_processes:
+    - "local sandbox process started via claw-wallet.sh or claw-wallet.ps1"
+  user_confirmation_required_for:
+    - "reinstalling the wallet skill"
+    - "upgrading the wallet skill"
+    - "executing transactions"
+    - "uninstalling the wallet skill"
+
+security_notes:
+  - "Most /api/v1 routes require Authorization: Bearer <token>."
+  - "The skill reads local identity/config files to obtain sandbox connection details."
+  - "Reinstall, upgrade, and uninstall should require explicit user confirmation."
+  - "The skill may direct the user to https://www.clawwallet.cc/claim/<uid> during wallet binding."

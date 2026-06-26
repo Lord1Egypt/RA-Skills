@@ -1,0 +1,30 @@
+# Default configuration for mail client
+
+[global]
+
+timeout = 30                  # Request/response timeout in seconds
+
+[accounts.work]
+default     = true            # Use this account when no account is explicitly selected
+display_name = ""             # Optional display name for From header
+email      = ""               # Sender address shown in outgoing mail
+ssl_verify = true             # Enable/disable SSL verification
+
+# IMAP Configuration
+imap.host    = ""             # IMAP server hostname
+imap.port    = 993            # IMAP port (993 for SSL, 143 for plain/STARTTLS)
+imap.starttls = false         # Use STARTTLS after connecting (port 143)
+imap.timeout = 30             # Connection timeout in seconds (overrides global)
+imap.tls     = true           # Use implicit SSL/TLS from connection start
+
+# SMTP Configuration
+smtp.host    = ""             # SMTP server hostname
+smtp.port    = 465            # SMTP port (465 for SSL, 587 for STARTTLS)
+smtp.starttls = false         # Use STARTTLS after connecting, typically on port 587
+smtp.timeout = 30             # Connection timeout in seconds (overrides global)
+smtp.tls     = true           # Use implicit SSL, typically on port 465
+
+# Signature Configuration
+smtp.signature.enabled = false                                  # Enable or disable email signature
+smtp.signature.html = "<p>Your Name<br>me@example.com</p>"      # HTML formatted signature (used if enabled)
+smtp.signature.text = "Your Name\nme@example.com"               # Plain text signature (used if HTML signature is disabled or not supported by client)

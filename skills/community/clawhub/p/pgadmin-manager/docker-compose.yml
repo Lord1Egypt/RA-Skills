@@ -1,0 +1,23 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4:8.6
+    container_name: ${PGADMIN_CONTAINER:-codai_pgadmin}
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@codai.local}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-pgadmin}
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "127.0.0.1:${PGADMIN_PORT:-8082}:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - codai_net
+
+volumes:
+  pgadmin_data:
+
+networks:
+  codai_net:
+    external: true
+    name: ${CODAI_NETWORK:-nginx-proxy_net}

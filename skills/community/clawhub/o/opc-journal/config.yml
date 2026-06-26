@@ -1,0 +1,12 @@
+# OPC Journal - Single CLI Skill Configuration
+# Version: 2.5.1
+
+journal:
+  storage_path: "customers/{customer_id}/journal/"
+  retention_days: 365
+  privacy_level: "standard"
+
+# NOTE: This skill is LOCAL-ONLY. No network calls.
+# v2.5.2 Architecture:
+# - analyze / insights / milestones act as pure data layers.
+# - All interpretation, recommendation, and classification are left to the caller (LLM).

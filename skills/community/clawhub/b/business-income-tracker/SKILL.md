@@ -1,35 +1,65 @@
----
-name: "Business Income Tracker"
-description: "Track daily income and expenses, auto-calculate weekly/monthly ROI, monitor channels, and compare expected vs actual business revenue."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/business-income-tracker"
-sourceUrl: "https://clawhub.ai/skills/business-income-tracker"
+# Passive Income Tracker - 被动收入追踪器
+
+每日 09:00 更新收入/支出记录，周/月 ROI 自动计算。包含渠道追踪、预期收入管理、实际收款记录。决策质量提升，遗漏减少 80%。
+
 ---
 
-# Business Income Tracker
+## 触发条件
 
-> Track daily income and expenses, auto-calculate weekly/monthly ROI, monitor channels, and compare expected vs actual business revenue.
+- 用户提到 "收入追踪" 或 "支出记录"
+- 用户提到 "ROI 计算" 或 "收入统计"
+- 每日 09:00 自动检查 (手动自动化)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/business-income-tracker`
-- **Source URL:** [https://clawhub.ai/skills/business-income-tracker](https://clawhub.ai/skills/business-income-tracker)
+---
 
-## Overview
+## 核心指令
 
+### 1. 每日记录
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/business-income-tracker
+- 收入：金额/来源/日期
+- 支出：金额/类别/日期
+
+### 2. 周/月汇总
+
+- 自动计算总收入/支出
+- ROI = (收入 - 支出) / 支出
+- 渠道状态追踪
+
+### 3. 预期 vs 实际
+
+- 预期收入追踪
+- 实际收款记录
+- 差异分析
+
+---
+
+## 输出格式
+
+```markdown
+## 收入追踪报告 - {日期}
+
+### 今日记录
+- 收入：¥{N} ({来源})
+- 支出：¥{N} ({类别})
+
+### 本周汇总
+- 总收入：¥{N}
+- 总支出：¥{N}
+- ROI: {N.N}x
+
+### 渠道状态
+- {渠道 1}: ¥{N} (预期¥{N})
+- {渠道 2}: ¥{N} (预期¥{N})
 ```
+
+---
+
+## 版本信息
+
+- **版本**: 1.0.0
+- **定价**: ¥210 ($29)
+- **分类**: Business/Finance
+
+---
+
+_完整模板见 references/templates.md_

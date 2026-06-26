@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kabi-tg-cli"
+version = "0.4.1"
+description = "Telethon-powered Telegram CLI for local sync, search, and agent-friendly retrieval"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "jackwener", email = "jakevingoo@gmail.com" }]
+keywords = ["telegram", "tg", "cli", "telethon", "search", "agent"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Communications :: Chat",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "telethon>=1.36",
+    "click>=8.0",
+    "rich>=13.0",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/jackwener/tg-cli"
+Repository = "https://github.com/jackwener/tg-cli"
+Issues = "https://github.com/jackwener/tg-cli/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24", "ruff>=0.11", "twine>=6.1"]
+
+[project.scripts]
+tg = "tg_cli.cli.main:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tg_cli"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/tg_cli",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SKILL.md",
+    ".env.example",
+    "examples",
+    "tests",
+]
+
+[tool.pytest.ini_options]
+addopts = "-v"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

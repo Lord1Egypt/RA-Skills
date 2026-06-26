@@ -1,35 +1,22 @@
 ---
-name: "openclaw-session-cleaner"
-description: "OpenClaw 会话清理助手，自动清理旧会话文件、重建 sessions.json、解决文件膨胀问题"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-session-cleaner"
-sourceUrl: "https://clawhub.ai/skills/openclaw-session-cleaner"
+name: openclaw-session-cleaner
+description: OpenClaw 会话清理助手，自动清理旧会话文件、重建 sessions.json、解决文件膨胀问题
+version: 1.0.1
+author: openclaw
+license: MIT
+requires: []
+tools: ["Bash"]
 ---
 
-# openclaw-session-cleaner
+# OpenClaw Session Cleaner
 
-> OpenClaw 会话清理助手，自动清理旧会话文件、重建 sessions.json、解决文件膨胀问题
+## 触发指令
+用户提及：清理OpenClaw会话、删除旧cron会话、压缩sessions.json、重建sessions.json、会话文件膨胀
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-session-cleaner`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-session-cleaner](https://clawhub.ai/skills/openclaw-session-cleaner)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 自动执行流程（安全无风险）
+1. **检查会话文件状态**
+执行命令：统计会话文件数量 + 查看 sessions.json 大小
 ```bash
-hermes skills install clawhub/openclaw-session-cleaner
-```
+cd /home/ubuntu/.openclaw/agents/main/sessions/
+echo "当前会话文件数量：$(ls -l *.jsonl 2>/dev/null | wc -l)"
+echo "sessions.json 大小：$(du -h sessions.json 2>/dev/null | cut -f1)"

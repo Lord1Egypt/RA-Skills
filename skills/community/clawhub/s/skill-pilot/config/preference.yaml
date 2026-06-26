@@ -1,0 +1,36 @@
+# SkillPilot 用户偏好配置
+
+# 优化目标：speed | cost | quality | balanced
+optimization_goal: balanced
+
+# 预算限制：free | low | medium | high
+budget_limit: free
+
+# 最低质量要求 (0-1)
+quality_threshold: 0.7
+
+# 默认超时时间 (秒)
+timeout_preference: 30
+
+# 区域偏好：cn | global | no-preference
+region_preference: no-preference
+
+# 偏好的技能（优先级提升）
+preferred_skills: []
+
+# 避免的技能（直接使用）
+avoided_skills: []
+
+# 高级选项
+advanced:
+  # 允许并行执行（更快但消耗更多资源）
+  allow_parallel: false
+  
+  # 最大降级深度
+  max_fallback_depth: 3
+  
+  # 启用缓存
+  cache_enabled: true
+  
+  # 缓存 TTL (秒)
+  cache_ttl: 300

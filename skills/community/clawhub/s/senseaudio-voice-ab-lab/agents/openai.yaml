@@ -1,0 +1,4 @@
+interface:
+  display_name: "Voice AB Lab"
+  short_description: "Transcribe spoken briefs and batch-produce same-voice ad variants"
+  default_prompt: "Use $senseaudio-voice-ab-lab to handle either a spoken or typed campaign brief, generate multiple spoken ad variants, synthesize them with the same AudioClaw voice, and when the user asks to试听、逐条发语音、或直接在飞书里听, automatically send the generated variants one by one as Feishu audio messages instead of replying with file paths."

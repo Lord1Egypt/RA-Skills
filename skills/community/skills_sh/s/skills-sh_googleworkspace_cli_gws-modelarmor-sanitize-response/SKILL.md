@@ -1,35 +1,49 @@
 ---
-name: "gws-modelarmor-sanitize-response"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-modelarmor-sanitize-response"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-modelarmor-sanitize-response"
+name: gws-modelarmor-sanitize-response
+description: "Google Model Armor: Sanitize a model response through a Model Armor template."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "security"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws modelarmor +sanitize-response --help"
 ---
 
-# gws-modelarmor-sanitize-response
+# modelarmor +sanitize-response
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-modelarmor-sanitize-response`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-modelarmor-sanitize-response](https://skills.sh/googleworkspace/cli/gws-modelarmor-sanitize-response)
+Sanitize a model response through a Model Armor template
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-modelarmor-sanitize-response
+gws modelarmor +sanitize-response --template <NAME>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--template` | ✓ | — | Full template resource name (projects/PROJECT/locations/LOCATION/templates/TEMPLATE) |
+| `--text` | — | — | Text content to sanitize |
+| `--json` | — | — | Full JSON request body (overrides --text) |
+
+## Examples
+
+```bash
+gws modelarmor +sanitize-response --template projects/P/locations/L/templates/T --text 'model output'
+model_cmd | gws modelarmor +sanitize-response --template ...
+```
+
+## Tips
+
+- Use for outbound safety (model -> user).
+- For inbound safety (user -> model), use +sanitize-prompt.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-modelarmor](../gws-modelarmor/SKILL.md) — All filter user-generated content for safety commands

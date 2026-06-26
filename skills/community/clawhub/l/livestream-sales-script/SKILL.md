@@ -1,35 +1,31 @@
----
-name: "直播带货话术生成器"
-description: "生成专业直播带货话术脚本，涵盖开场、产品介绍、促单、互动和收尾，提升直播转化效果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/livestream-sales-script"
-sourceUrl: "https://clawhub.ai/skills/livestream-sales-script"
----
-
 # 直播带货话术生成器
 
-> 生成专业直播带货话术脚本，涵盖开场、产品介绍、促单、互动和收尾，提升直播转化效果。
+## 技能简介
+专业的直播带货话术生成工具，帮助主播生成高效转化的话术脚本。支持开场话术、产品介绍、促单逼单、互动问答等多种场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/livestream-sales-script`
-- **Source URL:** [https://clawhub.ai/skills/livestream-sales-script](https://clawhub.ai/skills/livestream-sales-script)
+## 核心功能
+1. **开场话术**：吸引观众停留的开场脚本
+2. **产品介绍**：结构化产品卖点讲解话术
+3. **促单话术**：限时优惠、库存压力等逼单技巧
+4. **互动话术**：福袋、红包、问答等互动引导
+5. **收尾话术**：引导关注、下次预告的结束语
 
-## Overview
+## 适用场景
+- 抖音/快手直播带货
+- 淘宝直播
+- 视频号直播
+- 品牌自播
 
+## 话术类型
+- 护肤美妆类
+- 服装鞋包类
+- 食品饮料类
+- 数码家电类
+- 家居百货类
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/livestream-sales-script
-```
+## 输出格式
+生成完整直播话术脚本，包括：
+- 话术类型标签
+- 具体话术内容
+- 适用时机说明
+- 语气建议

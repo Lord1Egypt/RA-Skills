@@ -1,35 +1,18 @@
----
-name: "Pptx Generator"
-description: "Create professional PowerPoint presentations from text prompts using Anthropics' design principles with auto-layout, branding, and image handling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anthropics-pptx"
-sourceUrl: "https://clawhub.ai/skills/anthropics-pptx"
----
+# PPTX Generator (Anthropics Style)
 
-# Pptx Generator
+Generate professional PowerPoint presentations from natural language prompts with Anthropics' design principles.
 
-> Create professional PowerPoint presentations from text prompts using Anthropics' design principles with auto-layout, branding, and image handling.
+## Features
+- Auto-layout based on content type (title slide, bullet points, images, charts)
+- Brand-consistent color schemes and fonts
+- Smart image placement and captioning
+- Export to .pptx or PDF
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anthropics-pptx`
-- **Source URL:** [https://clawhub.ai/skills/anthropics-pptx](https://clawhub.ai/skills/anthropics-pptx)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anthropics-pptx
+## Usage
 ```
+pptx-generator "Create a 5-slide deck about AI ethics: title, problem statement, case studies, solutions, call to action"
+```
+
+## Dependencies
+- python-pptx library
+- Pillow for image handling

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Methodology Writer"
+  short_description: "Chinese academic methodology chapter writer"
+  default_prompt: "Use $thesis-methodology-writer to write a rigorous Chinese methodology chapter after determining whether my study is qualitative or quantitative."

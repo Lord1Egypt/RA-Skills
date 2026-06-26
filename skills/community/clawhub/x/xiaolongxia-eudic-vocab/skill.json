@@ -1,0 +1,7 @@
+{
+  "name": "eudic-vocab",
+  "version": "1.0.0",
+  "description": "欧路词典生词本管理技能。支持获取单词、添加单词、删除单词、管理分类、自动生成测试题。需要用户提供 API Token。",
+  "author": "Xiaolongxia_MaoNB",
+  "license": "MIT"
+}

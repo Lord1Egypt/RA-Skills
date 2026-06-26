@@ -1,0 +1,80 @@
+{
+  "api_interfaces": [
+    {
+      "name": "newsapi",
+      "description": "NewsAPI通用新闻接口",
+      "priority": 1,
+      "speed": "fast",
+      "stability": "high",
+      "requires_key": true,
+      "success_rate": 0.95,
+      "domains": ["general"]
+    }
+  ],
+  "web_crawlers": [
+    {
+      "name": "36kr_crawler",
+      "description": "36氪科技新闻爬虫",
+      "priority": 2,
+      "speed": "medium", 
+      "stability": "medium",
+      "requires_key": false,
+      "success_rate": 0.85,
+      "domains": ["tech", "startup"]
+    },
+    {
+      "name": "huxiu_crawler", 
+      "description": "虎嗅网科技商业新闻爬虫",
+      "priority": 3,
+      "speed": "medium",
+      "stability": "medium", 
+      "requires_key": false,
+      "success_rate": 0.80,
+      "domains": ["tech", "business"]
+    },
+    {
+      "name": "eastmoney_crawler",
+      "description": "东方财富财经新闻爬虫", 
+      "priority": 4,
+      "speed": "medium",
+      "stability": "high",
+      "requires_key": false,
+      "success_rate": 0.90,
+      "domains": ["finance", "economy"]
+    },
+    {
+      "name": "people_crawler",
+      "description": "人民网时政新闻爬虫",
+      "priority": 5, 
+      "speed": "slow",
+      "stability": "high",
+      "requires_key": false,
+      "success_rate": 0.95,
+      "domains": ["politics", "society"]
+    }
+  ],
+  "rss_feeds": [
+    {
+      "name": "36kr_rss",
+      "description": "36氪RSS订阅",
+      "url": "https://www.36kr.com/feed",
+      "priority": 6,
+      "speed": "slow",
+      "stability": "high", 
+      "requires_key": false,
+      "success_rate": 0.90,
+      "domains": ["tech", "startup"]
+    },
+    {
+      "name": "huxiu_rss",
+      "description": "虎嗅RSS订阅",
+      "url": "https://www.huxiu.com/rss/0.xml", 
+      "priority": 7,
+      "speed": "slow",
+      "stability": "high",
+      "requires_key": false,
+      "success_rate": 0.88,
+      "domains": ["tech", "business"]
+    }
+  ]
+}

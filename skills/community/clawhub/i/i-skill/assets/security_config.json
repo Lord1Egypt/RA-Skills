@@ -1,0 +1,24 @@
+{
+  "data_validation": {
+    "max_evidence_length": 500,
+    "max_evidence_per_topic": 2,
+    "max_total_evidence": 20,
+    "max_topics_per_conversation": 5,
+    "max_topics_per_session": 10
+  },
+  "sanitization_rules": {
+    "remove_personal_identifiers": true,
+    "remove_sensitive_info": true,
+    "remove_profanity": true,
+    "remove_timestamps": true
+  },
+  "consent": {
+    "require_first_time_consent": true,
+    "remember_consent": true,
+    "allow_consent_revocation": true
+  },
+  "privacy": {
+    "allow_data_export": true,
+    "allow_data_deletion": true
+  }
+}

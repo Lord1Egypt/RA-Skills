@@ -1,0 +1,42 @@
+{
+  "name": "feishu-voice-reply-clean",
+  "displayName": "Feishu Voice Reply",
+  "description": "飞书语音回复技能 - 使用火山引擎 TTS 生成特色音色语音并通过飞书 API 发送。支持 MP3 转 Opus 格式、自动上传和发送。",
+  "version": "1.0.0",
+  "author": "沉寂 (chenji)",
+  "license": "MIT",
+  "keywords": [
+    "feishu",
+    "voice",
+    "tts",
+    "语音",
+    "飞书",
+    "火山引擎",
+    "audio",
+    "reply"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenji/openclaw-skills"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "scripts": {
+    "test": "bash scripts/feishu-voice-reply.sh \"测试语音\""
+  },
+  "dependencies": {
+    "ffmpeg": "*"
+  },
+  "config": {
+    "volcengine": {
+      "api_key": "环境变量：VOLC_API_KEY",
+      "resource_id": "volc.service_type.10029",
+      "default_speaker": "ICL_zh_female_tiaopigongzhu_tob"
+    },
+    "feishu": {
+      "app_id": "环境变量：FEISHU_APP_ID",
+      "app_secret": "环境变量：FEISHU_APP_SECRET"
+    }
+  }
+}

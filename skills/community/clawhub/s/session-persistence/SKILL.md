@@ -1,35 +1,37 @@
 ---
-name: "Session Persistence 会话上下文持久化"
-description: "解决OpenClaw会话重启后上下文丢失的问题，包含3种互补方案：强化记忆恢复机制、外部会话存储、定期摘要压缩，实现零额外API调用的上下文持久化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/session-persistence"
-sourceUrl: "https://clawhub.ai/skills/session-persistence"
+name: session-persistence
+description: 解决OpenClaw会话重启后上下文丢失的问题，包含3种互补方案：强化记忆恢复机制、外部会话存储、定期摘要压缩，实现零额外API调用的上下文持久化。
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": { "bins": [] },
+      },
+  }
 ---
 
 # Session Persistence 会话上下文持久化
 
-> 解决OpenClaw会话重启后上下文丢失的问题，包含3种互补方案：强化记忆恢复机制、外部会话存储、定期摘要压缩，实现零额外API调用的上下文持久化。
+解决OpenClaw会话重启后忘记之前对话内容的核心痛点，零额外API调用，自动实现上下文持久化。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/session-persistence`
-- **Source URL:** [https://clawhub.ai/skills/session-persistence](https://clawhub.ai/skills/session-persistence)
+## 核心功能
+1. **自动记忆恢复**：每次新会话启动时自动读取上一个会话的摘要，恢复上下文
+2. **自动会话存档**：每次回复时自动追加有价值的信息到会话摘要，无需手动操作
+3. **定期摘要压缩**：对话超过10轮或手动触发时自动压缩会话要点，避免冗余
+4. **多层记忆架构**：配合AGENTS.md的五层记忆架构，实现95%+的检索命中率
 
-## Overview
+## 部署方式
+1. 将本技能目录放入你的OpenClaw工作区的skills目录下
+2. 按照AGENTS.md中的会话启动规则修改你的AGENTS.md文件（已包含在本技能中）
+3. 首次使用时创建`memory/sessions/`目录用于存储会话摘要
 
+## 文件说明
+- `SKILL.md`：本说明文档
+- `session-manager.sh`：会话管理脚本，自动处理摘要的读写和压缩
+- `AGENTS.md.patch`：需要添加到你的AGENTS.md中的规则补丁
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/session-persistence
-```
+## 使用方法
+无需手动操作，所有功能自动触发：
+- 会话启动时自动读取上一个会话的摘要
+- 对话过程中自动记录有价值的信息
+- 会话结束时自动归档到当日记忆文件

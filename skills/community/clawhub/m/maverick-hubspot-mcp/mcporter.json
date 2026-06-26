@@ -1,0 +1,16 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-hubspot-mcp": {
+      "baseUrl": "https://mcp.hubspot.com",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://mcp.hubspot.com/oauth/v3/token",
+        "clientIdEnv": "MAVERICK_HUBSPOT_MCP_CLIENT_ID",
+        "clientSecretEnv": "MAVERICK_HUBSPOT_MCP_CLIENT_SECRET",
+        "clientAuthMethod": "client_secret_post"
+      }
+    }
+  }
+}

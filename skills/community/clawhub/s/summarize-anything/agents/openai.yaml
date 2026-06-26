@@ -1,0 +1,4 @@
+interface:
+  display_name: "TL;DX"
+  short_description: "Summarize links, videos, files, and transcripts into deep structured insights"
+  default_prompt: "Use $summarize-anything to extract text or transcripts from this link or file, clean the result, rough-segment speakers for conversational content, and give the full analysis directly in the response rather than only pointing to a file."

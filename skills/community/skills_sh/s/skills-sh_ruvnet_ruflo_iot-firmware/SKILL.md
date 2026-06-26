@@ -1,35 +1,15 @@
 ---
-name: "iot-firmware"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/iot-firmware"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/iot-firmware"
+name: iot-firmware
+description: Orchestrate firmware rollouts with canary deployment and anomaly-gated advancement
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_store mcp__claude-flow__memory_search Read
+argument-hint: "<deploy|advance|rollback|status|list> [options]"
 ---
+Manage firmware rollouts across device fleets.
 
-# iot-firmware
+**deploy**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot firmware deploy FLEET_ID --version VERSION`
+**advance**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot firmware advance ROLLOUT_ID`
+**rollback**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot firmware rollback ROLLOUT_ID`
+**status**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot firmware status ROLLOUT_ID`
+**list**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot firmware list`
 
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/iot-firmware`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/iot-firmware](https://skills.sh/ruvnet/ruflo/iot-firmware)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/iot-firmware
-```
+Rollout stages: pending → canary → rolling → complete (or rolled-back)

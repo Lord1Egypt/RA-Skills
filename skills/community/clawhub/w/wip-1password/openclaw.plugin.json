@@ -1,0 +1,25 @@
+{
+  "id": "op-secrets",
+  "name": "1Password Secrets",
+  "description": "Read secrets from 1Password via JS SDK (headless, service account)",
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "defaultVault": { "type": "string" },
+      "tokenPath": { "type": "string" }
+    }
+  },
+  "uiHints": {
+    "defaultVault": {
+      "label": "Default Vault",
+      "placeholder": "Agent Secrets"
+    },
+    "tokenPath": {
+      "label": "Service Account Token Path",
+      "placeholder": "~/.openclaw/secrets/op-sa-token",
+      "sensitive": true
+    }
+  }
+}

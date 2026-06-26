@@ -1,0 +1,38 @@
+{
+  "remoteAllowlist": ["/OpenClaw"],
+  "remoteAllowSubfolders": true,
+
+  "localAllowlist": ["/path/to/Uploads", "/path/to/backups"],
+  "localAllowSubfolders": true,
+
+  "defaultDownloadDir": "/path/to/downloads/quark",
+
+  "confirmDestructive": true,
+
+  "login": {
+    "url": "https://pan.quark.cn/",
+    "expected": {
+      "loggedInIndicatorText": "" 
+    }
+  },
+
+  "trash": {
+    "enabled": true,
+    "remoteTrashFolder": "/OpenClaw/.trash",
+    "retentionDays": 30
+  },
+
+  "schedule": {
+    "jobs": [
+      {
+        "name": "backup-latest-to-openclaw",
+        "cron": "0 18 * * *",
+        "localDir": "/path/to/backups",
+        "localPick": "latest",
+        "remoteDir": "/OpenClaw/Backups",
+        "createRemoteDir": true
+      }
+    ]
+  }
+}
+

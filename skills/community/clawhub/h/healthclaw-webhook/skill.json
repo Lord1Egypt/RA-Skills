@@ -1,0 +1,9 @@
+{
+  "name": "healthclaw-webhook",
+  "title": "HealthClaw",
+  "description": "Connect your iPhone and Apple Watch health data to OpenClaw. Streams Apple Health data (heart rate, HRV, sleep, steps, workouts, blood pressure) to your agent via a self-hosted webhook server. Enables AI-powered recovery scores, anomaly detection, and health trend analysis.",
+  "version": "1.0.0",
+  "tags": ["health", "apple-health", "healthkit", "ios", "wellness", "hrv", "sleep"],
+  "license": "MIT",
+  "homepage": "https://github.com/sprausliu/healthclaw"
+}

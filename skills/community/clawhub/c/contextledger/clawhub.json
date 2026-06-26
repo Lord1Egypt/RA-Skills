@@ -1,0 +1,24 @@
+{
+  "name": "contextledger",
+  "version": "1.0.0",
+  "description": "知识账本 - 证据优先的知识审计 skill，追踪结论来源、判断资料时效、标记来源冲突，并区分证据与推断。",
+  "keywords": [
+    "contextledger",
+    "knowledge-audit",
+    "evidence-first",
+    "source-traceability",
+    "provenance",
+    "freshness-check",
+    "staleness-detection",
+    "conflict-detection",
+    "evidence-grading",
+    "inference-labeling",
+    "research",
+    "knowledge",
+    "knowledge-connector",
+    "trust",
+    "audit-card"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

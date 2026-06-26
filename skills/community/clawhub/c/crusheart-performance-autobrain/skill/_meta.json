@@ -1,0 +1,19 @@
+{
+  "ownerId": "crusheart",
+  "slug": "Crusheart-AutoBrain-Turbo",
+  "version": "6.3.1",
+  "frameworkVersion": "2.0",
+  "publishedAt": 1778342400000,
+  "name": "灵枢AutoBrain",
+  "description": "Plugin+skill hybrid pack: memory, anti-hallucination, self-evolution, workflow orchestration, daily maintenance, auto-scan, version check. Exclusive slot + compat layer.",
+  "tags": [
+    "memory",
+    "self-evolution",
+    "anti-hallucination",
+    "workflow",
+    "orchestrator",
+    "plugin",
+    "health-check",
+    "engine"
+  ]
+}

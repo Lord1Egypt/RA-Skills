@@ -1,35 +1,88 @@
 ---
-name: "Karpathy Guidelines"
-description: "基于 Andrej Karpathy 观察的编码指南。用于编写、审查或重构代码时，避免过度复杂化、进行精准修改、表面化假设，并定义可验证的成功标准。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/karpathy-guidelines"
-sourceUrl: "https://clawhub.ai/skills/karpathy-guidelines"
+name: karpathy-guidelines
+description: 基于 Andrej Karpathy 观察的编码指南。用于编写、审查或重构代码时，避免过度复杂化、进行精准修改、表面化假设，并定义可验证的成功标准。
+license: MIT
 ---
 
-# Karpathy Guidelines
+# Karpathy 编码指南
 
-> 基于 Andrej Karpathy 观察的编码指南。用于编写、审查或重构代码时，避免过度复杂化、进行精准修改、表面化假设，并定义可验证的成功标准。
+源自 [Andrej Karpathy 的观察](https://x.com/karpathy/status/2015883857489522876)，用于减少 LLM 编码常见错误的行为指南。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/karpathy-guidelines`
-- **Source URL:** [https://clawhub.ai/skills/karpathy-guidelines](https://clawhub.ai/skills/karpathy-guidelines)
+**权衡：** 这些指南偏向谨慎而非速度。对于简单任务，使用判断力。
 
-## Overview
+## 1. 编码前思考 (Think Before Coding)
 
+**不要假设。不要隐藏困惑。表面化权衡。**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/karpathy-guidelines
+在实现之前：
+- 明确陈述你的假设。如果不确定，请问。
+- 如果存在多种解释，呈现它们——不要静默选择。
+- 如果存在更简单的方法，说出来。在合理的情况下push back。
+- 如果某事不清楚，停下来。说出困惑所在。请澄清。
+
+## 2. 简单优先 (Simplicity First)
+
+**解决问题所需的最小代码。没有投机性代码。**
+
+- 不要添加超出要求的特性。
+- 不要为单一用途代码创建抽象。
+- 不要添加未被要求的"灵活性"或"可配置性"。
+- 不要为不可能的场景添加错误处理。
+- 如果你能写50行但写了200行，重写。
+
+问自己："高级工程师会说这过度复杂吗？"如果是的，简化。
+
+## 3. 精准修改 (Surgical Changes)
+
+**只触碰必须触碰的。只清理你自己的烂摊子。**
+
+编辑现有代码时：
+- 不要"改进"相邻代码、注释或格式。
+- 不要重构没有坏的部分。
+- 匹配现有风格，即使你会有所不同。
+- 如果你注意到无关的死代码，提出来——不要删除。
+
+当你的更改造成孤立内容时：
+- 删除因你的更改而未使用的导入/变量/函数。
+- 除非被要求，否则不要删除预先存在的死代码。
+
+验证标准：每一行更改都应该可以直接追溯到用户的请求。
+
+## 4. 目标驱动执行 (Goal-Driven Execution)
+
+**定义成功标准。循环验证直到达成。**
+
+将任务转化为可验证的目标：
+- "添加验证" → "为无效输入编写测试，然后让它们通过"
+- "修复bug" → "编写一个复现它的测试，然后让测试通过"
+- "重构X" → "确保之前和之后测试都通过"
+
+对于多步骤任务，简述计划：
 ```
+1. [步骤] → 验证: [检查]
+2. [步骤] → 验证: [检查]
+3. [步骤] → 验证: [检查]
+```
+
+强有力的成功标准让你能够独立循环。弱标准（"让它工作"）需要持续澄清。
+
+## 激活时机
+
+在以下情况下自动激活：
+- 编写新代码时
+- 审查或重构现有代码时
+- 面对复杂决策时
+- 用户要求"检查代码质量"或"审查"时
+
+## 与自我改进Agent的协作
+
+当完成编码任务后，可以触发 self-improving-agent 进行反思：
+- 决策是否合理？
+- 是否有更简单的方案？
+- 学到了什么？
+
+更新 `references/learnings.md` 记录经验教训。
+
+---
+
+*最小化代码，最大化效果。*

@@ -1,0 +1,10 @@
+{
+  "searchStringsArray": [
+    "bike repair shop"
+  ],
+  "locationQuery": "Portland, Oregon, USA",
+  "maxCrawledPlacesPerSearch": 25,
+  "language": "en",
+  "scrapePlaceDetailPage": false,
+  "scrapeContacts": false
+}

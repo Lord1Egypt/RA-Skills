@@ -1,35 +1,74 @@
 ---
-name: "sf-novel-writer"
-description: "分阶段支持科幻（Science Fiction）小说策划、写作与润色的技能。 触发条件: "想写科幻小说"、"想创作科幻作品"、"帮我构建科幻世界观"、 "继续写科幻小说"、"设计科幻情节"、"润色科幻小说"等， 涵盖一切与科幻小说创作相关的请求。支持短篇、中篇、长篇全类型。 覆盖硬科幻、太空歌剧、反乌托邦、赛博..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sf-novel-writer"
-sourceUrl: "https://clawhub.ai/skills/sf-novel-writer"
+name: sf-novel-writer
+description: >
+  分阶段支持科幻（Science Fiction）小说策划、写作与润色的技能。
+  触发条件: "想写科幻小说"、"想创作科幻作品"、"帮我构建科幻世界观"、
+  "继续写科幻小说"、"设计科幻情节"、"润色科幻小说"等，
+  涵盖一切与科幻小说创作相关的请求。支持短篇、中篇、长篇全类型。
+  覆盖硬科幻、太空歌剧、反乌托邦、赛博朋克等各子类型。
+  也适用于对现有稿件的编辑、审阅与改进建议。
 ---
 
-# sf-novel-writer
+# SF小说创作助手
 
-> 分阶段支持科幻（Science Fiction）小说策划、写作与润色的技能。 触发条件: "想写科幻小说"、"想创作科幻作品"、"帮我构建科幻世界观"、 "继续写科幻小说"、"设计科幻情节"、"润色科幻小说"等， 涵盖一切与科幻小说创作相关的请求。支持短篇、中篇、长篇全类型。 覆盖硬科幻、太空歌剧、反乌托邦、赛博...
+通过6个阶段循序渐进地创作科幻小说的技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sf-novel-writer`
-- **Source URL:** [https://clawhub.ai/skills/sf-novel-writer](https://clawhub.ai/skills/sf-novel-writer)
+## 工作流概览
 
-## Overview
+整体流程由以下阶段构成。可根据用户需求从任意阶段开始。
 
+1. **策划·构想** → 参考 `references/phase1_worldbuilding.md`
+2. **情节设计** → 参考 `references/phase2_plot_design.md`
+3. **角色塑造** → 参考 `references/phase3_character.md`
+4. **执笔写作** → 参考 `references/phase4_writing.md`
+5. **润色·编辑** → 参考 `references/phase5_revision.md`
+6. **输出·收尾** → 按照本文件下方的步骤执行
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 阶段判断
+
+根据用户输入判断应执行的阶段：
+
+- "世界观"、"设定"、"主题"、"想法" → 第1阶段
+- "情节"、"故事梗概"、"结构"、"发展" → 第2阶段
+- "角色"、"登场人物"、"人物形象" → 第3阶段
+- "写一下"、"执笔"、"续写"、"正文" → 第4阶段
+- "润色"、"审阅"、"修改"、"改进" → 第5阶段
+- "输出"、"文件"、"完成"、"收尾" → 第6阶段
+- 意图不明时 → 向用户确认，从第1阶段开始依次建议
+
+## 项目初始化
+
+新建项目时，运行 `scripts/init_project.py` 生成项目目录：
+
 ```bash
-hermes skills install clawhub/sf-novel-writer
+python3 scripts/init_project.py <project_name>
 ```
+
+执行后将在 `/home/claude/<project_name>/` 下创建以下内容：
+- `settings.md` — 世界观与设定资料
+- `plot.md` — 情节与章节结构
+- `characters.md` — 角色设定
+- `chapters/` — 各章节正文目录
+- `notes.md` — 备忘录与创意笔记
+
+## 第6阶段：输出·收尾
+
+最终阶段按以下步骤执行：
+
+1. 对全章进行最终一致性检查（设定矛盾、角色言行、伏笔回收）
+2. 合并各章节文件，生成完整稿件
+3. 以 `.md` 或 `.docx` 格式提供给用户
+4. 输出 `.docx` 时，参考 `/mnt/skills/public/docx/SKILL.md` 进行创建
+
+## 科幻专属品质标准
+
+创作科幻小说时始终注意以下要点：
+
+- **科学自洽性**：所设定的技术体系内部不存在矛盾
+- **惊奇感（Sense of Wonder）**：具有给读者带来惊喜与智识兴奋的元素
+- **主题深度**：通过技术与未来社会，探问人类本质的深刻命题
+- **新奇元素（Novum）**：推动故事发展的独特科幻构想清晰明确
+
+## 科幻子类型参考
+
+各子类型的特征与代表作请参考 `references/sf_genre_guide.md`。

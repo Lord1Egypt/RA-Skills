@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "workingDaysOnly": true,
+  "delayMs": 3000,
+  "excludeAgents": ["main"],
+  "triggerMessage": "Please send a daily greeting to your bound channel. Requirements: 1) Compose the greeting in the user's preferred language (infer from channel history and user context); 2) Include relevant status information based on your agent role and ongoing tasks with the user (e.g., if you're a todo agent, summarize progress and today's priorities; if you're a diary agent, mention ongoing projects); 3) Use message tool to send to your bound channel; 4) End conversation after sending"
+}

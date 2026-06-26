@@ -1,0 +1,295 @@
+{
+  "factions": [
+    {
+      "id": "western_alliance",
+      "name": "Western Alliance",
+      "name_zh": "西方联盟",
+      "short_code": "WA",
+      "real_world_analog": "United States",
+      
+      "description": "Global superpower with unmatched military technology and economic influence. Seeks to maintain regional stability and protect allies.",
+      
+      "attributes": {
+        "military_tech": 95,
+        "air_power": 98,
+        "naval_power": 95,
+        "special_forces": 90,
+        "intelligence": 85,
+        "economy": 85,
+        "diplomacy": 70,
+        "public_support": 60
+      },
+      
+      "strengths": [
+        "Advanced stealth aircraft",
+        "Global logistics network",
+        "Satellite surveillance",
+        "Precision munitions",
+        "Aircraft carrier groups"
+      ],
+      
+      "weaknesses": [
+        "War-weary public",
+        "High operational costs",
+        "International scrutiny",
+        "Coalition management challenges"
+      ],
+      
+      "special_units": [
+        "Shadow Hawk Drones",
+        "Stealth Bombers",
+        "SEAL Team equivalent",
+        "Cyber warfare units"
+      ],
+      
+      "starting_resources": {
+        "budget": 1000000,
+        "intel_points": 500,
+        "diplomatic_capital": 300,
+        "public_approval": 60
+      }
+    },
+    
+    {
+      "id": "phoenix_state",
+      "name": "Phoenix State",
+      "name_zh": "凤凰国",
+      "short_code": "PS",
+      "real_world_analog": "Israel",
+      
+      "description": "Small but highly capable state with elite military and intelligence. Surrounded by hostile neighbors, relies on qualitative edge and international support.",
+      
+      "attributes": {
+        "military_tech": 90,
+        "air_power": 92,
+        "naval_power": 70,
+        "special_forces": 98,
+        "intelligence": 95,
+        "economy": 75,
+        "diplomacy": 60,
+        "public_support": 85
+      },
+      
+      "strengths": [
+        "Falcon Unit (elite special forces)",
+        "Shadow Eye intelligence agency",
+        "Steel Shield air defense",
+        "Precision strike capability",
+        "High morale"
+      ],
+      
+      "weaknesses": [
+        "Small population",
+        "Limited strategic depth",
+        "Dependence on WA support",
+        "International criticism"
+      ],
+      
+      "special_units": [
+        "Falcon Commandos",
+        "F-35 equivalent fighters",
+        "Cyber defense teams",
+        "Assassination squads"
+      ],
+      
+      "starting_resources": {
+        "budget": 400000,
+        "intel_points": 800,
+        "diplomatic_capital": 200,
+        "public_approval": 85
+      }
+    },
+    
+    {
+      "id": "mountain_republic",
+      "name": "Mountain Republic",
+      "name_zh": "山岳共和国",
+      "short_code": "MR",
+      "real_world_analog": "Iran",
+      
+      "description": "Revolutionary state with asymmetric warfare expertise. Controls vast proxy networks and possesses growing missile/drone capabilities.",
+      
+      "attributes": {
+        "military_tech": 65,
+        "air_power": 55,
+        "naval_power": 50,
+        "special_forces": 75,
+        "intelligence": 80,
+        "economy": 70,
+        "diplomacy": 60,
+        "public_support": 80
+      },
+      
+      "strengths": [
+        "Highland Corps (Revolutionary Guards)",
+        "Proxy militia network",
+        "Ballistic missiles",
+        "Drone swarms",
+        "Underground facilities",
+        "Asymmetric warfare expertise"
+      ],
+      
+      "weaknesses": [
+        "Economic sanctions",
+        "Aging air force",
+        "Technological gap",
+        "International isolation"
+      ],
+      
+      "special_units": [
+        "Highland Corps Quds Force",
+        "Shahed drone swarms",
+        "Proxy militias",
+        "Missile brigades"
+      ],
+      
+      "starting_resources": {
+        "budget": 300000,
+        "intel_points": 600,
+        "diplomatic_capital": 150,
+        "public_approval": 80
+      }
+    },
+    
+    {
+      "id": "gulf_emirates",
+      "name": "Gulf Emirates",
+      "name_zh": "海湾联盟",
+      "short_code": "GE",
+      "real_world_analog": "UAE",
+      
+      "description": "Wealthy regional power with modern military and strong economic ties. Seeks to balance relations and protect trade routes.",
+      
+      "attributes": {
+        "military_tech": 75,
+        "air_power": 80,
+        "naval_power": 65,
+        "special_forces": 70,
+        "intelligence": 70,
+        "economy": 95,
+        "diplomacy": 85,
+        "public_support": 70
+      },
+      
+      "strengths": [
+        "Modern F-16/F-35 fleet",
+        "Economic leverage",
+        "Diplomatic flexibility",
+        "Global trade hub"
+      ],
+      
+      "weaknesses": [
+        "Small military",
+        "Exposed geography",
+        "Dependence on imports"
+      ],
+      
+      "special_units": [
+        "Royal Air Force",
+        "Presidential Guard",
+        "Cyber defense units"
+      ],
+      
+      "starting_resources": {
+        "budget": 800000,
+        "intel_points": 400,
+        "diplomatic_capital": 600,
+        "public_approval": 70
+      }
+    },
+    
+    {
+      "id": "eastern_coalition",
+      "name": "Eastern Coalition",
+      "name_zh": "东方联盟",
+      "short_code": "EC",
+      "real_world_analog": "China",
+      
+      "description": "Rising global power with economic influence and growing military presence. Seeks stable energy supplies and regional influence.",
+      
+      "attributes": {
+        "military_tech": 80,
+        "air_power": 75,
+        "naval_power": 70,
+        "special_forces": 70,
+        "intelligence": 75,
+        "economy": 98,
+        "diplomacy": 80,
+        "public_support": 75
+      },
+      
+      "strengths": [
+        "Economic sanctions power",
+        "Infrastructure investments",
+        "UN Security Council veto",
+        "Growing naval presence"
+      ],
+      
+      "weaknesses": [
+        "Distant from theater",
+        "Limited expeditionary capability",
+        "Non-intervention policy constraints"
+      ],
+      
+      "special_units": [
+        "J-20 stealth fighters",
+        "Type 055 destroyers",
+        "Special operations forces"
+      ],
+      
+      "starting_resources": {
+        "budget": 900000,
+        "intel_points": 450,
+        "diplomatic_capital": 700,
+        "public_approval": 75
+      }
+    },
+    
+    {
+      "id": "desert_kingdom",
+      "name": "Desert Kingdom",
+      "name_zh": "沙漠王国",
+      "short_code": "DK",
+      "real_world_analog": "Saudi Arabia",
+      
+      "description": "Oil-rich monarchy with modern weaponry and regional ambitions. Balances religious leadership with geopolitical pragmatism.",
+      
+      "attributes": {
+        "military_tech": 75,
+        "air_power": 78,
+        "naval_power": 60,
+        "special_forces": 65,
+        "intelligence": 70,
+        "economy": 90,
+        "diplomacy": 75,
+        "public_support": 70
+      },
+      
+      "strengths": [
+        "Oil wealth",
+        "Modern F-15/Typhoon fleet",
+        "Regional influence",
+        "WA partnership"
+      ],
+      
+      "weaknesses": [
+        "Sectarian tensions",
+        "Dependence on foreign tech",
+        "Vulnerable infrastructure"
+      ],
+      
+      "special_units": [
+        "Royal Air Force",
+        "National Guard",
+        "Patriot missile batteries"
+      ],
+      
+      "starting_resources": {
+        "budget": 700000,
+        "intel_points": 350,
+        "diplomatic_capital": 500,
+        "public_approval": 70
+      }
+    }
+  ]
+}

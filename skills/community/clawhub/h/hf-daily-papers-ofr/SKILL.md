@@ -1,35 +1,45 @@
----
-name: "HF Daily Papers (OFR Edition)"
-description: "筛选并按六大领域分类推送每日 Hugging Face 热门 OFR 相关论文，支持 Markdown 和 Telegram 格式输出。"
-category: "research"
-source: "ClawHub"
-tags: [arxiv, ofr, papers, research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hf-daily-papers-ofr"
-sourceUrl: "https://clawhub.ai/skills/hf-daily-papers-ofr"
----
+# HF Daily Papers (OpenClaw Skill) — OFR 定制版
 
-# HF Daily Papers (OFR Edition)
+从 Hugging Face Daily Papers 热榜筛选 OFR 相关论文，按 6 大领域分类推送。
 
-> 筛选并按六大领域分类推送每日 Hugging Face 热门 OFR 相关论文，支持 Markdown 和 Telegram 格式输出。
+## 领域分类
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hf-daily-papers-ofr`
-- **Source URL:** [https://clawhub.ai/skills/hf-daily-papers-ofr](https://clawhub.ai/skills/hf-daily-papers-ofr)
+| 领域 | 关键词示例 |
+|------|----------|
+| 🎬 Restoration & Enhancement | restoration, denoising, super-resolution, scratch, flicker, colorization |
+| 🎞️ Video & Temporal | video, temporal, optical flow, frame interpolation, propagation |
+| ⚡ Efficient Architecture | efficient, pruning, quantization, distillation, real-time |
+| 🔭 Vision Backbone & Attention | transformer, attention, mamba, SSM, deformable, swin |
+| 🌊 Frequency & Wavelet | wavelet, frequency, fourier, FFT, DWT, subband |
+| 🎨 Diffusion & Generative Prior | diffusion, GAN, generative, flow matching, autoregressive |
 
-## Overview
+## 输出
 
+- Markdown: `recommendations/YYYY-MM-DD.md`
+- Telegram: `recommendations/YYYY-MM-DD.telegram.txt`（`--telegram` flag）
 
-## Installation
-To install this skill, run the following command in your terminal:
+## CLI
+
 ```bash
-hermes skills install clawhub/hf-daily-papers-ofr
+cd /workspace/openclaw/skills/hf-daily-papers
+python3 generator.py              # 仅 Markdown
+python3 generator.py --telegram   # Markdown + Telegram 格式
 ```
+
+## 代理
+
+默认使用 `http://127.0.0.1:7890`（Clash）。可通过环境变量覆盖：
+
+```bash
+export HF_DAILY_PAPERS_PROXY=http://127.0.0.1:7897
+```
+
+## Cron 配置
+
+- Job ID: `04db7928-d6c1-4b7d-aa9c-5bc1d399b58c`
+- 时间: 每天 08:00 上海时间
+- 推送: Telegram
+
+## 来源
+
+https://github.com/henry-y/openclaw-paper-tools

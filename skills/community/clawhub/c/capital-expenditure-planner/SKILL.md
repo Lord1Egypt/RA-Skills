@@ -1,35 +1,16 @@
----
-name: "Capital Expenditure Planner"
-description: "Provides frameworks and templates to plan capital expenditures with structured analysis, recommendations, and next steps, for informational use only."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/capital-expenditure-planner"
-sourceUrl: "https://clawhub.ai/skills/capital-expenditure-planner"
----
-
 # Capital Expenditure Planner
-
-> Provides frameworks and templates to plan capital expenditures with structured analysis, recommendations, and next steps, for informational use only.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/capital-expenditure-planner`
-- **Source URL:** [https://clawhub.ai/skills/capital-expenditure-planner](https://clawhub.ai/skills/capital-expenditure-planner)
 
 ## Overview
 
+Plans capital expenditures. This is a descriptive skill that provides frameworks and templates without executing real code.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/capital-expenditure-planner
-```
+## Safety
+- No real code execution
+- No external API calls
+- No financial transactions
+- Informational only
+
+## Outputs
+- Structured analysis
+- Actionable recommendations
+- Next steps checklist

@@ -1,0 +1,5 @@
+﻿app: OpenClaw
+version: 1.0.0
+settings:
+  debug: true
+  port: 3000

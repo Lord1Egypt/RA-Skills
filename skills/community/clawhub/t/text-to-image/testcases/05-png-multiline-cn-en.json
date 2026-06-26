@@ -1,0 +1,9 @@
+{
+  "text": "第一行中文\nSecond Line English\n第三行 mixed 中英",
+  "width": 900,
+  "height": 420,
+  "format": "png",
+  "background": "#ffffff",
+  "default_color": "#111111",
+  "padding": 32
+}

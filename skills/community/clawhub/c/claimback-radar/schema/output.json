@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["confirmation_card", "action_receipts"],
+  "properties": {
+    "confirmation_card": {
+      "type": "object",
+      "properties": {
+        "service_name": { "type": "string" },
+        "provider": { "type": "string" },
+        "amount": { "type": "string" },
+        "currency": { "type": "string" },
+        "billing_cycle": { "type": "string", "enum": ["monthly", "yearly", "one-time", "unknown"] },
+        "effective_date": { "type": "string", "format": "date" },
+        "next_charge_date": { "type": "string", "format": "date" },
+        "refund_deadline": { "type": "string", "format": "date" },
+        "refund_policy": { "type": "string" },
+        "warranty_expiry": { "type": "string", "format": "date" },
+        "warranty_scope": { "type": "string" },
+        "cancellation_method": { "type": "string" },
+        "cancellation_link": { "type": "string", "format": "uri" }
+      }
+    },
+    "action_receipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action_id": { "type": "string" },
+          "action_type": { "type": "string", "enum": ["cancel_subscription", "claim_refund", "negotiate_discount", "extend_warranty", "review_usage", "ignore"] },
+          "title": { "type": "string" },
+          "deadline": { "type": "string", "format": "date" },
+          "priority": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+          "reason": { "type": "string" },
+          "estimated_savings": { "type": "string" },
+          "cta_link": { "type": "string", "format": "uri" },
+          "steps": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["action_id", "action_type", "title", "priority", "reason"]
+      }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["upcoming_charge", "refund_window_closing", "refund_window_closed", "unused_service", "price_hike", "warranty_expiring", "warranty_expired", "auto_renew_on", "hard_to_cancel", "over_budget"]
+      }
+    },
+    "summary": {
+      "type": "string",
+      "description": "One-line human-readable summary"
+    }
+  }
+}

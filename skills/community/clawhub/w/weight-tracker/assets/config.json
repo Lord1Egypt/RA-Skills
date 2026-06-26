@@ -1,0 +1,11 @@
+{
+  "title": "Weight Tracker",
+  "language": "en",
+  "port": 8080,
+  "startWeight": 70,
+  "targetWeight": 60,
+  "startDate": "2026-01-01",
+  "endDate": "2026-03-31",
+  "startDateLabel": "01/01",
+  "endDateLabel": "03/31"
+}

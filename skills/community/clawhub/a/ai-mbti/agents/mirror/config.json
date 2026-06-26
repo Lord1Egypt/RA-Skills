@@ -1,0 +1,14 @@
+{
+  "agentId": "mirror",
+  "model": "auto",
+  "soul": "SOUL.md",
+  "workspace": {
+    "isolated": true,
+    "path": "workspace-mirror"
+  },
+  "memory": {
+    "enabled": true,
+    "scope": "agent"
+  },
+  "description": "MBTI镜像测试官——通过8道AI世界vs现实世界的镜像对照题，测出用户的双面MBTI人格"
+}

@@ -1,0 +1,8 @@
+name = "cryptofolio-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# 创建 KV 命名空间后，取消下面的注释并填入你的 KV ID
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "your-kv-namespace-id"

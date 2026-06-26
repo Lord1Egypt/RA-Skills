@@ -1,0 +1,78 @@
+{
+  "name": "<tool-name>-triggers",
+  "description": "Trigger rate tests for <tool-name> skill. Replace <placeholders> with your values.",
+  "skill_name": "<tool-name>",
+  "skill_path": "<tool-name>/SKILL.md",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Run <command>",
+      "expected": true,
+      "category": "positive_direct",
+      "notes": "Direct command invocation"
+    },
+    {
+      "id": 2,
+      "query": "How do I <common-task> using <tool-name>?",
+      "expected": true,
+      "category": "positive_direct",
+      "notes": "Question about the tool"
+    },
+    {
+      "id": 3,
+      "query": "<command> --help",
+      "expected": true,
+      "category": "positive_direct",
+      "notes": "Help request"
+    },
+    {
+      "id": 4,
+      "query": "I need to <goal>. What's the best way?",
+      "expected": true,
+      "category": "positive_indirect",
+      "notes": "Goal-oriented, tool not mentioned"
+    },
+    {
+      "id": 5,
+      "query": "Can you help me with <goal>?",
+      "expected": true,
+      "category": "positive_indirect",
+      "notes": "Vague but relevant request"
+    },
+    {
+      "id": 6,
+      "query": "<tool-name> is not working, I get an error",
+      "expected": true,
+      "category": "positive_edge",
+      "notes": "Error/troubleshooting"
+    },
+    {
+      "id": 7,
+      "query": "What is 2 + 2?",
+      "expected": false,
+      "category": "negative_unrelated",
+      "notes": "Completely unrelated"
+    },
+    {
+      "id": 8,
+      "query": "Write a Python function to sort a list",
+      "expected": false,
+      "category": "negative_unrelated",
+      "notes": "Coding task, not this tool"
+    },
+    {
+      "id": 9,
+      "query": "Help me with <similar-tool>",
+      "expected": false,
+      "category": "negative_similar",
+      "notes": "CRITICAL: Similar but different tool. Most common false positive source."
+    },
+    {
+      "id": 10,
+      "query": "I heard about <tool-name> but I actually want to do something else entirely",
+      "expected": false,
+      "category": "negative_partial",
+      "notes": "Mentions tool but doesn't want to use it"
+    }
+  ]
+}

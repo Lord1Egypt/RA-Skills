@@ -1,0 +1,19 @@
+{
+  "name": "@morebetter/thorchain-routing",
+  "version": "0.1.0",
+  "description": "Cross-chain swap routing via THORChain for AI trading agents (Hyperliquid, SenpiAI ecosystem)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js --test"
+  },
+  "keywords": ["thorchain", "defi", "cross-chain", "routing", "hyperliquid", "swapkit", "rune", "bitcoin", "ethereum"],
+  "author": "MoreBetter Studios",
+  "license": "MIT",
+  "clawhub": {
+    "displayName": "THORChain Cross-Chain Routing",
+    "category": "defi",
+    "requiredEnv": [],
+    "commands": ["thor-quote", "thor-scan", "thor-inbound"],
+    "minOpenClawVersion": "1.0.0"
+  }
+}

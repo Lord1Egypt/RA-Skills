@@ -1,0 +1,11 @@
+{
+  "name": "rustic-almanac-guide",
+  "version": "3.0.0",
+  "description": "Grounded daily guide using nature, seasons, and farmer's almanac wisdom for practical life advice",
+  "author": "PsyVector",
+  "homepage": "https://iheaven.org",
+  "price": "$9.90",
+  "tags": ["productivity", "nature", "weather", "daily-routine", "lifestyle"],
+  "kernel": "H2",
+  "scenario": "S4"
+}

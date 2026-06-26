@@ -1,0 +1,95 @@
+{
+    "description": "Patient admission to inpatient care - ADT^A01",
+    "messageType": "ADT^A01",
+    "eventCode": "A01",
+    "hl7": {
+        "raw": "MSH|^~\\&|HEXAFLUX|CHU_PARIS|TARGET|DEST|20260122140000||ADT^A01^ADT_A01|MSG001|P|2.5\rEVN|A01|20260122140000|||USER001\rPID|1||PAT12345^^^CHU_PARIS^PI||DUPONT^JEAN^^M.||19750315|M|||15 RUE DE LA PAIX^^PARIS^^75001^FRA||(33)612345678\rPV1|1|I|CHU_PARIS^CARDIO^LIT_001^CHU_PARIS||||PR_MARTIN^MARTIN^SOPHIE|||CARDIO||||||||||VIS20260122001|||||||||||||||||||||||||20260122140000",
+        "segments": {
+            "MSH": {
+                "sendingApplication": "HEXAFLUX",
+                "sendingFacility": "CHU_PARIS",
+                "receivingApplication": "TARGET",
+                "receivingFacility": "DEST",
+                "dateTime": "20260122140000",
+                "messageType": "ADT^A01^ADT_A01",
+                "messageControlId": "MSG001",
+                "processingId": "P",
+                "versionId": "2.5"
+            },
+            "EVN": {
+                "eventTypeCode": "A01",
+                "recordedDateTime": "20260122140000",
+                "operatorId": "USER001"
+            },
+            "PID": {
+                "setId": "1",
+                "patientId": "PAT12345^^^CHU_PARIS^PI",
+                "patientName": "DUPONT^JEAN^^M.",
+                "birthDate": "19750315",
+                "sex": "M",
+                "address": "15 RUE DE LA PAIX^^PARIS^^75001^FRA",
+                "phoneHome": "(33)612345678"
+            },
+            "PV1": {
+                "setId": "1",
+                "patientClass": "I",
+                "assignedLocation": "CHU_PARIS^CARDIO^LIT_001^CHU_PARIS",
+                "attendingDoctor": "PR_MARTIN^MARTIN^SOPHIE",
+                "hospitalService": "CARDIO",
+                "visitNumber": "VIS20260122001",
+                "admitDateTime": "20260122140000"
+            }
+        }
+    },
+    "explanation": {
+        "purpose": "Patient admission to inpatient care",
+        "patient": {
+            "id": "PAT12345",
+            "name": "JEAN DUPONT",
+            "birthDate": "15/03/1975",
+            "sex": "Male",
+            "address": "15 RUE DE LA PAIX, 75001 PARIS, France",
+            "phone": "(33) 6 12 34 56 78"
+        },
+        "visit": {
+            "visitNumber": "VIS20260122001",
+            "admissionDateTime": "22/01/2026 14:00:00",
+            "patientClass": "Inpatient",
+            "location": "CHU_PARIS, Cardiology, Bed LIT_001",
+            "attendingPhysician": "Dr. MARTIN SOPHIE"
+        },
+        "event": {
+            "code": "A01",
+            "name": "Admit/Visit Notification",
+            "timestamp": "22/01/2026 14:00:00",
+            "operator": "USER001"
+        }
+    },
+    "validation": {
+        "requiredSegments": {
+            "MSH": true,
+            "EVN": true,
+            "PID": true,
+            "PV1": true
+        },
+        "requiredFields": {
+            "MSH-3": true,
+            "MSH-4": true,
+            "MSH-7": true,
+            "MSH-9": true,
+            "MSH-10": true,
+            "MSH-12": true,
+            "EVN-1": true,
+            "EVN-2": true,
+            "PID-3": true,
+            "PID-5": true,
+            "PID-7": true,
+            "PID-8": true,
+            "PV1-2": true,
+            "PV1-3": true,
+            "PV1-19": true,
+            "PV1-44": true
+        },
+        "iheCompliant": true
+    }
+}

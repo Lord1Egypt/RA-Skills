@@ -1,35 +1,52 @@
 ---
-name: "Pipeworx iconify"
-description: "Search 200,000+ open-source icons across 150+ collections — Material Design, Font Awesome, Heroicons, Lucide, and more"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-iconify"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-iconify"
+name: pipeworx-iconify
+description: Search 200,000+ open-source icons across 150+ collections — Material Design, Font Awesome, Heroicons, Lucide, and more
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "🔣"
+    homepage: https://pipeworx.io/packs/iconify
 ---
 
-# Pipeworx iconify
+# Iconify
 
-> Search 200,000+ open-source icons across 150+ collections — Material Design, Font Awesome, Heroicons, Lucide, and more
+A unified API for 200,000+ open-source icons across 150+ collections including Material Design Icons, Font Awesome, Heroicons, Lucide, Tabler, and many more. Search by keyword, retrieve SVG data, or browse available collections.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-iconify`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-iconify](https://clawhub.ai/skills/pipeworx-iconify)
+## Tools
 
-## Overview
+- **`search_icons`** — Search for icons by keyword across all collections (e.g., "home", "arrow", "user")
+- **`get_icons`** — Retrieve SVG data for specific icons in a collection by prefix and name
+- **`list_collections`** — Browse all available icon collections with metadata
 
+## When to use
 
-## Installation
-To install this skill, run the following command in your terminal:
+- "I need a settings gear icon" — search for "settings" and pick from multiple styles
+- Fetching SVG icon data to embed directly in a web page or app
+- Comparing icon styles across collections (Material vs. Heroicons vs. Lucide)
+- Building an icon picker component
+
+## Example: search for "download" icons
+
 ```bash
-hermes skills install clawhub/pipeworx-iconify
+curl -s -X POST https://gateway.pipeworx.io/iconify/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_icons","arguments":{"query":"download","limit":5}}}'
+```
+
+Returns icon names with their collection prefix (e.g., "mdi:download", "heroicons:arrow-down-tray").
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-iconify": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/iconify/mcp"]
+    }
+  }
+}
 ```

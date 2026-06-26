@@ -1,0 +1,212 @@
+# RSS数据源配置
+rss_sources:
+  # ===== 国内媒体 =====
+  - name: "36氪"
+    url: "https://www.36kr.com/feed"
+    enabled: true
+    priority: 1
+    num_items: 10
+    filters:
+      include_keywords: [ "OpenClaw", "Anthropic", "AI", "人工智能", "OpenAI", "模型", "芯片", "GPT", "Claude", "深度学习", "机器学习", "大模型" ]
+
+  - name: "量子位"
+    url: "https://www.qbitai.com/feed"
+    enabled: true
+    priority: 1
+    num_items: 10
+    filters:
+      include_keywords: [ "OpenClaw", "Anthropic", "AI", "人工智能", "OpenAI", "模型", "芯片", "GPT", "Claude", "深度学习", "机器学习", "大模型" ]
+
+
+  # ===== 国际主流媒体 =====
+  - name: "MIT Technology Review AI"
+    url: "https://www.technologyreview.com/topic/artificial-intelligence/feed/"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "TechCrunch AI"
+    url: "https://techcrunch.com/category/artificial-intelligence/feed/"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "Ars Technica AI"
+    url: "https://arstechnica.com/tag/artificial-intelligence/feed/"
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  # ===== Newsletter / 周报 =====
+  - name: "AI Weekly"
+    url: "https://aiweekly.co/rss.xml"
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  # ===== 关键 Substack / 独立博客 =====
+  - name: "Simon Willison"
+    url: "https://simonwillison.net/atom/everything/"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "Gary Marcus"
+    url: "https://garymarcus.substack.com/feed"
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "Ethan Mollick"
+    url: "https://oneusefulthing.substack.com/feed"
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "Cognitive Revolution"
+    url: "https://cognitiverevolution.substack.com/feed"
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  # ===== 学术与研究 =====
+  - name: "OpenAI Blog"
+    url: "https://openai.com/blog/rss.xml"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "Hugging Face Blog"
+    url: "https://huggingface.co/blog/feed.xml"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "arXiv CS.AI"
+    url: "https://rss.arxiv.org/rss/cs.AI"
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "arXiv CS.LG"
+    url: "https://rss.arxiv.org/rss/cs.LG"
+    enabled: true
+    priority: 3
+    num_items: 5
+
+
+  - name: "Palo Alto Networks Blog"
+    url: "https://www.paloaltonetworks.com/blog/feed/"
+    enabled: true
+    priority: 2
+    num_items: 5
+    filters:
+      include_keywords: [ "AI", "ChatGPT", "Anthropic", "artificial intelligence", "machine learning", "LLM", "security" ]
+
+  # ===== 官方可用博客 =====
+  - name: "DeepMind Blog"
+    url: "https://deepmind.com/blog/feed/basic/"
+    enabled: true
+    priority: 1
+    num_items: 10
+
+
+# X/Twitter数据源
+x_sources:
+  - name: "OpenRouter"
+    username: "OpenRouter"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "腾讯混元"
+    username: "TencentHunyuan"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "Anthropic相关"
+    usernames: [ "frxiaobei", "kimmonismus", "xiaohu" ]
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "Luma AI"
+    username: "LumaLabsAI"
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "阿里云"
+    username: "alibaba_cloud"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "AI行业观察"
+    usernames: [ "AYi_AInotes", "MiniMax_AI" ]
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "AI研究"
+    usernames: [ "berryxia", "MSFTResearch", "karpathy", "swyx", "vista8", "ylecun", "ilyasut", "emollick", "nathanbenaich" ]
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "AI机构账号"
+    usernames: [ "OpenAI", "AnthropicAI", "GoogleDeepMind", "MetaAI", "nvidiaai" ]
+    enabled: true
+    priority: 1
+    num_items: 5
+
+  - name: "AI媒体账号"
+    usernames: [ "TechCrunchAI", "techreviewAI", "vergeai" ]
+    enabled: true
+    priority: 2
+    num_items: 5
+
+  - name: "Sam Altman"
+    username: "sama"
+    enabled: true
+    priority: 1
+    num_items: 5
+
+# 网页爬虫配置（仅保留验证可用）
+web_scrapers:
+  - name: "Google DeepMind Blog"
+    url: "https://deepmind.google/blog/"
+    selector: "article"
+    enabled: true
+    priority: 1
+    num_items: 5
+    use_playwright: true
+
+
+# API数据源配置
+api_sources:
+  - name: "Hacker News API"
+    type: "hackernews"
+    endpoint: "https://hacker-news.firebaseio.com/v0/topstories.json"
+    params: { }
+    enabled: true
+    priority: 1
+    num_items: 5
+
+# 数据获取配置
+fetch_config:
+  max_items_per_source: 15
+  timeout_seconds: 30
+  user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+  max_retries: 2
+  retry_delay_seconds: 5
+  exclude_keywords:
+    - "sponsored"
+    - "advertisement"
+    - "click here"
+    - "buy now"
+    - "广告"
+    - "推广"
+  max_age_hours: 72
+  playwright_wait_seconds: 5

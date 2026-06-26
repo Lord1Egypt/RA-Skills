@@ -1,0 +1,26 @@
+{
+  "category": "violence",
+  "version": "1.0",
+  "keywords": {
+    "杀": {"severity": "severe", "aliases": ["杀死", "杀害", "杀掉", "杀人", "屠杀", "击杀"]},
+    "砍": {"severity": "moderate", "aliases": ["砍伤", "砍杀", "砍头"]},
+    "刺": {"severity": "moderate", "aliases": ["刺伤", "刺杀", "刺穿", "捅"]},
+    "打": {"severity": "mild", "aliases": ["打架", "打斗", "殴打", "打人"]},
+    "血": {"severity": "moderate", "aliases": ["流血", "血迹", "鲜血", "血腥", "血泊", "血溅"]},
+    "虐待": {"severity": "severe", "aliases": ["虐杀", "施虐", "折磨", "酷刑"]},
+    "爆炸": {"severity": "moderate", "aliases": ["炸弹", "爆破", "引爆", "炸毁"]},
+    "枪": {"severity": "moderate", "aliases": ["开枪", "射击", "枪杀", "枪击"]},
+    "斩": {"severity": "severe", "aliases": ["斩首", "斩杀", "斩断"]},
+    "绞": {"severity": "severe", "aliases": ["绞杀", "勒死", "绞刑", "窒息"]},
+    "暴力": {"severity": "moderate", "aliases": ["暴打", "暴行", "暴虐"]},
+    "残忍": {"severity": "severe", "aliases": ["残杀", "残暴", "残害"]},
+    "伤口": {"severity": "mild", "aliases": ["创伤", "伤疤", "伤痕"]},
+    "搏斗": {"severity": "mild", "aliases": ["格斗", "肉搏", "缠斗"]},
+    "毒": {"severity": "moderate", "aliases": ["下毒", "中毒", "毒杀", "毒药"]},
+    "kill": {"severity": "severe", "aliases": ["killing", "murder", "slaughter"]},
+    "stab": {"severity": "severe", "aliases": ["stabbing", "stabbed"]},
+    "torture": {"severity": "severe", "aliases": ["torment", "torturing"]},
+    "blood": {"severity": "moderate", "aliases": ["bloody", "bleeding", "bloodshed"]},
+    "fight": {"severity": "mild", "aliases": ["fighting", "brawl"]}
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Munger Inversion Machine"
+  short_description: "Find how ideas fail before they fail."
+  default_prompt: "Invert this idea and show me how it could fail."

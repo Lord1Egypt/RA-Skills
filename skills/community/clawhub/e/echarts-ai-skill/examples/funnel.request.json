@@ -1,0 +1,12 @@
+{
+  "title": "Conversion funnel",
+  "chartType": "funnel",
+  "categoryField": "stage",
+  "valueField": "users",
+  "dataset": [
+    { "stage": "Visited", "users": 1200 },
+    { "stage": "Signed Up", "users": 720 },
+    { "stage": "Activated", "users": 420 },
+    { "stage": "Paid", "users": 180 }
+  ]
+}

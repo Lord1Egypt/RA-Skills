@@ -1,35 +1,31 @@
 ---
-name: "OC Approval-Free Node Stabilizer"
-description: "Stabilize no-approval node execution in OpenClaw. Use when approval timeout, noisy failure events, or node run drift appears."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-approval-free-node-stabilizer"
-sourceUrl: "https://clawhub.ai/skills/oc-approval-free-node-stabilizer"
+name: oc-approval-free-node-stabilizer
+description: Stabilize no-approval node execution in OpenClaw. Use when approval timeout, noisy failure events, or node run drift appears.
 ---
 
 # OC Approval-Free Node Stabilizer
 
-> Stabilize no-approval node execution in OpenClaw. Use when approval timeout, noisy failure events, or node run drift appears.
+## When to use
+- `approval timed out`
+- node run succeeds but delayed failure events confuse users
+- mixed behavior across multiple nodes
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-approval-free-node-stabilizer`
-- **Source URL:** [https://clawhub.ai/skills/oc-approval-free-node-stabilizer](https://clawhub.ai/skills/oc-approval-free-node-stabilizer)
+## Objectives
+- consistent execution policy across nodes
+- low-noise operation for routine commands
+- explicit confirmation path for high-risk operations
 
-## Overview
+## Procedure
+1. Confirm effective approval policy on target node(s).
+2. Standardize execution path (nodeId-first, serial runs, one retry).
+3. Add noisy-event handling rule: retry before user-facing alert.
+4. Validate with minimal command set and status checks.
 
+## Output
+- Policy snapshot
+- Validation results
+- Exceptions that still need human approval
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oc-approval-free-node-stabilizer
-```
+## Guardrails
+- High-risk actions still require explicit chat confirmation.
+- Do not publish credentials or identifying infra details.

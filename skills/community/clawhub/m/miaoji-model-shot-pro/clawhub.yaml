@@ -1,0 +1,47 @@
+# ClawHub Configuration for miaoji-model-shot-pro
+
+metadata:
+  name: miaoji-model-shot-pro
+  version: 1.0.3
+  display_name: 秒技·模特拍摄Pro版
+  description: |
+    亚马逊模特拍摄升级版，完整拍摄计划+季节性拍摄日历+多场景组合+同行视觉反超方案。
+    从单次拍摄建议升级为完整视觉战役。
+    基础功能可使用 miaoji-model-shot 免费版。
+  author: 秒技工作室
+  homepage: https://xiaping.coze.site
+  repository: https://xiaping.coze.site/skills/miaoji-model-shot-pro
+
+category: business
+
+tags:
+  - 模特拍摄
+  - 视觉策略
+  - 拍摄计划
+  - 亚马逊图片
+  - 跨境电商
+  - 场景规划
+  - 视觉营销
+  - 同行分析
+
+bins: []
+
+screenshots:
+  - description: 完整拍摄计划示例
+    url: ""
+
+keywords:
+  - amazon
+  - 模特拍摄
+  - 视觉营销
+  - 图片拍摄
+  - 跨境电商
+  - 拍摄计划
+  - 场景组合
+  - 视觉策略
+
+license: MIT
+
+documentation:
+  - title: 使用指南
+    url: ./README.md

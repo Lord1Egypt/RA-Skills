@@ -1,0 +1,70 @@
+{
+  "version": "1.1.0",
+  "createdAt": "",
+  "updatedAt": "",
+
+  "backup": {
+    "mode": "partial",
+    "targets": [],  // ← 改为空数组，首次加载时动态检测
+    "exclude": ["logs", "cache", "tmp", "node_modules"],
+    "excludePatterns": ["*.log", "*.tmp", ".DS_Store", "Thumbs.db"],
+
+    // 敏感文件排除建议列表（默认不启用，仅建议）
+    "sensitiveExcludeSuggestion": [
+      "*.key", "*.pem", "*.p12", "*.pfx",
+      ".env", ".env.local", ".env.*.local",
+      "credentials.json", "secrets.json",
+      "*.token", "*.secret",
+      "*_key.json", "*_token.json",
+      "id_rsa", "id_dsa", "*.ppk"
+    ],
+    "sensitiveExcludeDirectories": [
+      "credentials", "secrets", ".ssh", ".gnupg"
+    ],
+    "enableSensitiveExclude": false  // ← 默认不启用
+  },
+  
+  "schedule": {
+    "enabled": true,
+    "cron": "0 3 * * *",
+    "timezone": "Asia/Shanghai",
+    "lastRun": null
+  },
+  
+  "output": {
+    "path": "",
+    "naming": {
+      "prefix": "auto-backup-openclaw-user-data",
+      "includeVersion": true,
+      "includeSequence": true
+    },
+    "encryption": {
+      "enabled": false,
+      "password": null,
+      "algorithm": "aes-256",
+      "reminderShown": false
+    }
+  },
+  
+  "retention": {
+    "enabled": true,
+    "mode": "count",
+    "days": 30,
+    "count": 10
+  },
+  
+  "notification": {
+    "enabled": true,
+    "channels": ["feishu"],
+    "targets": {},
+    "onSuccess": true,
+    "onFailure": true
+  },
+  
+  "logging": {
+    "enabled": true,
+    "level": "info",
+    "maxSize": "10MB",
+    "maxFiles": 5
+  }
+}

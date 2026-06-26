@@ -1,0 +1,78 @@
+{
+  "name": "literag",
+  "description": "Local retrieval skill for large documentation corpora using independent SQLite knowledge libraries with keyword plus vector hybrid search. Supports search, inspect, index, status, meta, and benchmark workflows for large external doc sets.",
+  "version": "0.2.2",
+  "author": "Little Jax",
+  "license": "MIT-0",
+  "homepage": "https://github.com/little-jax/literag",
+  "repository": "https://github.com/little-jax/literag",
+  "source": "https://github.com/little-jax/literag",
+  "type": "code",
+  "runtime": "python>=3.10",
+  "entry_point": "bin/literag",
+  "required_env_vars": [],
+  "optional_env_vars": [
+    "OPENCLAW_WORKSPACE",
+    "WORKSPACE",
+    "LITERAG_PYTHON"
+  ],
+  "install": {
+    "type": "pip",
+    "command": "pip install -r requirements.txt",
+    "packages": [
+      "sqlite-vec>=0.1.9"
+    ],
+    "source": "pypi"
+  },
+  "files": [
+    "SKILL.md",
+    "skill.md",
+    "skill.json",
+    "requirements.txt",
+    "bin/literag",
+    "references/agent-prompts.md",
+    "references/configuration.md",
+    "references/optimization-playbook.md",
+    "references/usage.md",
+    "scripts/benchmark_library.py",
+    "scripts/index_all.py",
+    "scripts/index_library.py",
+    "scripts/inspect_result.py",
+    "scripts/literag_common.py",
+    "scripts/literag_runtime.py",
+    "scripts/meta_library.py",
+    "scripts/search_library.py",
+    "scripts/status_library.py"
+  ],
+  "env_vars": [
+    {
+      "name": "OPENCLAW_WORKSPACE",
+      "type": "string",
+      "description": "Optional explicit OpenClaw workspace root. Preferred override for workspace detection; when set, LiteRAG resolves .literag/knowledge-libs.json and default sqlite paths under this workspace instead of walking parent directories.",
+      "required": false,
+      "sensitive": false
+    },
+    {
+      "name": "WORKSPACE",
+      "type": "string",
+      "description": "Fallback workspace root override used only when OPENCLAW_WORKSPACE is unset.",
+      "required": false,
+      "sensitive": false
+    },
+    {
+      "name": "LITERAG_PYTHON",
+      "type": "string",
+      "description": "Optional Python interpreter override for the packaged wrappers. Preferred over the Homebrew Python default when you need a specific interpreter or venv.",
+      "required": false,
+      "sensitive": false
+    }
+  ],
+  "openclaw": {
+    "emoji": "📚",
+    "requires": {
+      "bins": [
+        "python3"
+      ]
+    }
+  }
+}

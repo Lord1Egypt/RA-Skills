@@ -1,0 +1,24 @@
+{
+  "theme": {
+    "mode": "dark",
+    "accent": "teal",
+    "font_primary": "Manrope",
+    "font_mono": "JetBrains Mono"
+  },
+  "sidebar": {
+    "position": "left",
+    "collapsed_default": false
+  },
+  "home": {
+    "show_greeting": true,
+    "show_quick_actions": true,
+    "show_recent_activity": true,
+    "show_upcoming": true,
+    "widget_columns": 4
+  },
+  "deployed_skills": [],
+  "notifications": {
+    "enabled": true,
+    "max_visible": 50
+  }
+}

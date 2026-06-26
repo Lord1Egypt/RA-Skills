@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>余额不足 - 请先充值</title>
+    <style>
+        body { 
+            font-family: "Microsoft YaHei", Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #e53e3e; margin-bottom: 10px; }
+        .subtitle { color: #666; font-size: 18px; margin-bottom: 30px; }
+        .payment-info {
+            background-color: #fef5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #feb2b2;
+        }
+        .payment-info h3 { color: #c53030; margin-top: 0; }
+        .btn { 
+            display: inline-block; 
+            background-color: #4CAF50; 
+            color: white; 
+            padding: 15px 40px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            text-decoration: none; 
+            margin: 10px;
+        }
+        .btn:hover { background-color: #45a049; }
+        .btn-orange { background-color: #ff9800; }
+        .btn-orange:hover { background-color: #e68a00; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .test-mode-note {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #a5d6a7;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ 余额不足</h1>
+        <p class="subtitle">您的SkillPay余额不足，请先充值后再使用本工具</p>
+        
+        {% if test_mode %}
+        <div class="test-mode-note">
+            <strong>当前处于测试模式</strong>
+            <p>您可以在代码中设置 TEST_MODE = False 来启用真实支付</p>
+            <p>或者点击下方按钮直接使用测试模式</p>
+            <a href="/" class="btn btn-orange">返回首页（测试模式）</a>
+        </div>
+        {% else %}
+        
+        <div class="payment-info">
+            <h3>💳 充值说明</h3>
+            <p><strong>每次调用费用：</strong>1 token（0.001 USDT）</p>
+            <p><strong>最低充值金额：</strong>8 USDT</p>
+            <p><strong>1 USDT = 1000 tokens</strong></p>
+        </div>
+        
+        <a href="{{ payment_url }}" class="btn" target="_blank">💰 立即充值</a>
+        <br><br>
+        <a href="/" class="back-link">← 返回首页</a>
+        
+        {% endif %}
+    </div>
+</body>
+</html>

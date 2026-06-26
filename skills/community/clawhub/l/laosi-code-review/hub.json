@@ -1,0 +1,19 @@
+﻿{
+    "description":  "Premium version with full implementation, examples, and enterprise support",
+    "minOpenClawVersion":  "1.2.0",
+    "version":  "2.0.0",
+    "tags":  [
+                 "code-review",
+                 "security",
+                 "performance",
+                 "pro"
+             ],
+    "author":  "laosi",
+    "name":  "code-review",
+    "pricing":  {
+                    "price":  3900,
+                    "model":  "one-time"
+                },
+    "license":  "MIT",
+    "displayName":  "Code Review Pro"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "调试修复"
+  short_description: "定位错误根因，给出最小修复方案，并说明验证方法。"
+  default_prompt: "使用 $code-debug 定位这个问题的根因并给出最小修复。"

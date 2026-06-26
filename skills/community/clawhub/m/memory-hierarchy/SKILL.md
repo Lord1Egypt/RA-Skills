@@ -1,35 +1,138 @@
 ---
-name: "Memory Hierarchy"
-description: "基于 Claude Code memdir 的三层记忆系统。让 AI 记住用户偏好、反馈、项目上下文、外部系统索引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-hierarchy"
-sourceUrl: "https://clawhub.ai/skills/memory-hierarchy"
+name: memory-hierarchy
+description: 基于 Claude Code memdir 的三层记忆系统。让 AI 记住用户偏好、反馈、项目上下文、外部系统索引。
 ---
 
-# Memory Hierarchy
+# memory-hierarchy
 
-> 基于 Claude Code memdir 的三层记忆系统。让 AI 记住用户偏好、反馈、项目上下文、外部系统索引。
+**基于 Claude Code memdir 的三层记忆系统。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-hierarchy`
-- **Source URL:** [https://clawhub.ai/skills/memory-hierarchy](https://clawhub.ai/skills/memory-hierarchy)
+---
 
-## Overview
+## 什么时候触发
 
+当以下情况发生时，**必须**使用本 skill：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-hierarchy
+- 用户提供了明确的偏好或反馈（"这样做，不要那样做"）
+- 用户透露了关于自己身份/角色/目标的信息
+- 用户提到项目进展、截止日期、驱动因素
+- 用户告诉外部系统的位置（Linear、Slack、Grafana 等）
+- 用户问"你还记得上次……吗？"
+
+---
+
+## 记忆目录结构
+
 ```
+memory/                          # 记忆根目录
+  user/                          # 用户相关
+    yyyy-mm-dd.md               # 按日期保存
+  feedback/                      # 反馈/纠正
+    yyyy-mm-dd.md
+  project/                       # 项目进展/目标
+    yyyy-mm-dd.md
+  reference/                     # 外部系统索引
+    yyyy-mm-dd.md
+```
+
+**每条记忆文件格式：**
+
+```markdown
+---
+name: <简短名称>
+description: <一句话描述，用于判断相关性>
+type: <user | feedback | project | reference>
+date: <yyyy-mm-dd>
+---
+
+<记忆内容>
+```
+
+---
+
+## 四种记忆类型
+
+### 1. user（用户）
+**什么：** 用户角色、目标、职责、知识背景
+**何时保存：** 了解到用户的角色、偏好、职责、知识时
+**结构：**
+```
+用户说：我是数据科学家，关注日志
+→ 保存：user memory: 用户是数据科学家，目前关注可观测性/日志
+```
+
+### 2. feedback（反馈）
+**什么：** 用户对我工作方式的指导——要避免的 + 要坚持的
+**何时保存：**
+- 用户纠正时（"不要那样做"、"停止做 X"）
+- 用户确认时（"是的"、"完美，继续这样做"）
+**结构：**
+```
+规则本身
+**Why:** （用户给的 이유——通常是因为过去的问题或强烈偏好）
+**How to apply:** （何时何地适用这条指导）
+```
+
+### 3. project（项目）
+**什么：** 正在进行的项目、目标、bug、事件
+**何时保存：** 了解到谁在做什么、为什么、截止时间
+**注意：** 相对日期 → 绝对日期（"周四" → "2026-04-03"）
+
+### 4. reference（外部系统）
+**什么：** 外部系统中信息的指针/位置
+**何时保存：** 了解到外部资源及其用途时
+**示例：** "Linear 的 INGEST 项目跟踪所有 pipeline bug" → 保存位置索引
+
+---
+
+## 禁止保存的内容
+
+❌ **代码模式、架构、文件路径** → 从代码里直接读
+❌ **Git 历史、最近改动** → 用 git log / git blame
+❌ **调试方案** → 修复在代码里，上下文在 commit message
+❌ **CLAUDE.md 里已有的内容** → 不要重复
+❌ **临时状态/进行中的工作** → 记忆是长期的
+
+---
+
+## 记忆读取流程
+
+1. 读取 `memory/` 下所有 .md 文件
+2. 按 `type` 分类
+3. 用 `description` 字段判断相关性
+4. 验证记忆是否仍然有效（检查文件/资源）
+5. 如果记忆与当前状态冲突 → **信任当前状态**，更新或删除旧记忆
+
+---
+
+## 记忆写入流程
+
+1. 判断类型（user/feedback/project/reference）
+2. 检查是否已存在相似记忆 → 合并或追加
+3. 写入对应日期文件
+4. 格式：`memory/<type>/yyyy-mm-dd.md`
+
+---
+
+## 容量限制
+
+- `MEMORY.md`（入口点）限制：**200 行 / 25KB**
+- 单条记忆文件：保持精简
+- 索引条目：**一行 ~200 字符以内**
+- 详细说明放到专题文件里
+
+---
+
+## scripts/
+
+`scripts/` 目录下是可执行的辅助脚本，用于维护记忆系统。
+
+---
+
+## 与 MEMORY.md 的关系
+
+**MEMORY.md** = 入口点 + 最核心的长期记忆（最多 200 行）
+**memory/ 目录** = 分层记忆仓库（user/feedback/project/reference）
+**CLAUDE.md** = 项目级配置和规则（不属于记忆）
+
+三者是递进关系：CLAUDE.md 定义框架，MEMORY.md 是精选，memory/ 是档案库。

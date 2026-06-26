@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/peixl/ifq-design-skills/evals/evals.schema.json",
+  "title": "IFQ Design Skills Eval Suite",
+  "type": "object",
+  "required": ["version", "purpose", "quality_principles", "scenarios"],
+  "additionalProperties": true,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": "1.0" },
+    "purpose": { "type": "string", "minLength": 30 },
+    "quality_principles": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 12 },
+      "minItems": 3
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["id", "mode", "prompt_zh", "prompt_en", "user_value", "agent_value", "agent_contract", "quality_bar"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,80}$" },
+          "mode": { "type": "string", "pattern": "^M-(0[1-9]|1[0-2])$" },
+          "prompt_zh": { "type": "string", "minLength": 12 },
+          "prompt_en": { "type": "string", "minLength": 12 },
+          "user_value": { "type": "string", "minLength": 12 },
+          "agent_value": { "type": "string", "minLength": 12 },
+          "agent_contract": {
+            "type": "object",
+            "required": ["route", "template_ids", "must_read", "tier", "verification", "fact_check_required"],
+            "additionalProperties": true,
+            "properties": {
+              "route": { "type": "string" },
+              "template_ids": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 1
+              },
+              "must_read": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 2
+              },
+              "tier": { "type": "string", "pattern": "Tier" },
+              "verification": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 2
+              },
+              "fact_check_required": { "type": "boolean" }
+            }
+          },
+          "quality_bar": {
+            "type": "object",
+            "required": ["must_include", "must_not"],
+            "additionalProperties": true,
+            "properties": {
+              "must_include": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 3
+              },
+              "must_not": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

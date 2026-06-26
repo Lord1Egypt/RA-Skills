@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技能雷达图</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .chart-title {
+    color: #e0e0e0;
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-align: center;
+    opacity: 0.8;
+  }
+  .chart-container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+  }
+  .chart-note {
+    color: #b0b0b0;
+    font-size: 12px;
+    margin-top: 14px;
+    text-align: center;
+    max-width: 380px;
+    line-height: 1.5;
+  }
+  .chart-note span {
+    color: #f48fb1;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="chart-title">技能匹配度分析</div>
+<div class="chart-container">
+  <canvas id="radarChart"></canvas>
+</div>
+<div class="chart-note">
+  差距最大的是 <span>{{gap_dimension}}</span>，这是你最需要集中突破的地方。
+</div>
+
+<script>
+  // 模板变量由 AI 替换
+  // {{labels}} → 技能维度数组，如 ["产品思维", "数据分析", "用户研究", "项目管理", "沟通表达"]
+  // {{data_current}} → 当前技能评分数组，如 [7, 4, 6, 8, 7]
+  // {{data_target}} → 目标要求评分数组，如 [8, 8, 9, 7, 8]
+  // {{label_current}} → 当前状态标签，如 "你现在"
+  // {{label_target}} → 目标要求标签，如 "目标要求"
+  // {{gap_dimension}} → 差距最大的维度名称
+
+  const labels = {{labels}};
+  const dataCurrent = {{data_current}};
+  const dataTarget = {{data_target}};
+  const labelCurrent = "{{label_current}}";
+  const labelTarget = "{{label_target}}";
+
+  const ctx = document.getElementById('radarChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: labelCurrent,
+          data: dataCurrent,
+          backgroundColor: 'rgba(100, 181, 246, 0.2)',
+          borderColor: '#64b5f6',
+          borderWidth: 2,
+          pointBackgroundColor: '#64b5f6',
+          pointRadius: 4,
+          pointHoverRadius: 6
+        },
+        {
+          label: labelTarget,
+          data: dataTarget,
+          backgroundColor: 'rgba(244, 143, 177, 0.2)',
+          borderColor: '#f48fb1',
+          borderWidth: 2,
+          pointBackgroundColor: '#f48fb1',
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      animation: {
+        duration: 1000
+      },
+      scales: {
+        r: {
+          min: 0,
+          max: 10,
+          ticks: {
+            stepSize: 2,
+            color: 'rgba(255,255,255,0.4)',
+            backdropColor: 'transparent',
+            font: { size: 10 }
+          },
+          grid: {
+            color: 'rgba(255,255,255,0.1)'
+          },
+          angleLines: {
+            color: 'rgba(255,255,255,0.1)'
+          },
+          pointLabels: {
+            color: '#e0e0e0',
+            font: { size: 12 }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e0e0e0',
+            font: { size: 12 },
+            padding: 20
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(26,26,46,0.95)',
+          titleColor: '#e0e0e0',
+          bodyColor: '#b0b0b0',
+          borderColor: 'rgba(255,255,255,0.1)',
+          borderWidth: 1,
+          callbacks: {
+            label: function(context) {
+              return context.dataset.label + ': ' + context.parsed.r + '/10';
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,35 +1,73 @@
 ---
-name: "券返双省助手"
-description: "优惠券+返利叠加省钱工具，自动查找可用优惠券并匹配最高返利渠道，双重叠加实现省钱最大化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coupon-rebate"
-sourceUrl: "https://clawhub.ai/skills/coupon-rebate"
+name: 券返双省助手
+description: 优惠券+返利叠加省钱工具，自动查找可用优惠券并匹配最高返利渠道，双重叠加实现省钱最大化。
+version: 0.1.0
 ---
 
 # 券返双省助手
 
-> 优惠券+返利叠加省钱工具，自动查找可用优惠券并匹配最高返利渠道，双重叠加实现省钱最大化。
+优惠券与返利双重叠加的省钱工具。购物前自动查找商品可用的优惠券（店铺券、平台券、隐藏券），同时匹配最高返利渠道，两者叠加使用，让每笔订单的省钱效果最大化。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coupon-rebate`
-- **Source URL:** [https://clawhub.ai/skills/coupon-rebate](https://clawhub.ai/skills/coupon-rebate)
+## 触发词
 
-## Overview
+优惠券返利、券返叠加、领券返利、双重省钱、优惠券+返利、coupon rebate、券返双省、隐藏优惠券、省钱叠加
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/coupon-rebate
+### 核心功能
+
+- **全网优惠券搜索**：自动搜索商品可用的店铺券、平台券、品类券、隐藏券
+- **券返叠加计算**：精确计算优惠券+返利叠加后的真实到手价
+- **最优组合推荐**：多张券可用时，推荐最优使用组合（有些券不能叠加）
+- **券返时效提醒**：优惠券即将过期、返利活动即将结束时及时提醒
+
+### 省钱叠加逻辑
+
+```
+商品原价
+  - 平台优惠券（满减/折扣）
+  - 店铺优惠券
+  - 跨店满减
+  = 实付金额
+  × 返利比例
+  = 返利金额
+
+真实到手价 = 实付金额 - 返利金额
+```
+
+### 优惠券类型
+
+| 券类型 | 来源 | 叠加规则 |
+|--------|------|---------|
+| 店铺券 | 店铺首页领取 | 可与平台券叠加 |
+| 平台券 | 平台活动页 | 可与店铺券叠加 |
+| 品类券 | 品类会场 | 部分可叠加 |
+| 隐藏券 | 内部优惠链接 | 优先级最高 |
+| 红包 | 签到/活动 | 通常可叠加 |
+
+### 使用场景
+
+1. **日常购物**：下单前一键查询所有可用券+返利，算出最低到手价
+2. **大促囤货**：双11/618 多重券叠加计算，找到最优凑单方案
+3. **高客单商品**：家电、数码等高价商品，券返叠加省钱效果显著
+4. **定期补货**：日用品定期购买，持续追踪最优券返组合
+
+## 输出格式
+
+```
+🎫 券返双省方案
+
+商品：[商品名称]
+原价：¥[价格]
+
+可用优惠券：
+  ① 店铺券：满[X]减[Y]
+  ② 平台券：满[X]减[Y]
+  ③ 隐藏券：[描述]
+
+返利渠道：[渠道名] 返利 [X]%
+实付金额：¥[金额]
+返利金额：¥[金额]
+真实到手价：¥[最终价格]
+总共节省：¥[节省金额]（省 [X]%）
 ```

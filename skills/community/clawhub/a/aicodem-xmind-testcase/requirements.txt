@@ -1,0 +1,3 @@
+# aicodem-xmind-testcase 依赖
+# 仅使用 Python 标准库，无需额外安装
+# zipfile, json, sys, os 均为内置模块

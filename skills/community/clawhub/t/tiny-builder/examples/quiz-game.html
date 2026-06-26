@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦁 Animal Quiz!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        #quiz-container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #title {
+            text-align: center;
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        #score-display {
+            text-align: center;
+            font-size: 28px;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        #question-container {
+            margin-bottom: 30px;
+        }
+        
+        #question-emoji {
+            text-align: center;
+            font-size: 120px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        #question-text {
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        #answers {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .answer-btn {
+            padding: 25px 30px;
+            font-size: 26px;
+            font-family: inherit;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+        
+        .answer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .answer-btn:active {
+            transform: translateY(0);
+        }
+        
+        .answer-btn.correct {
+            background: linear-gradient(135deg, #6BCF7F 0%, #43A047 100%);
+            animation: celebrate 0.5s ease-in-out;
+        }
+        
+        .answer-btn.wrong {
+            background: linear-gradient(135deg, #FF6B6B 0%, #C92A2A 100%);
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.05) rotate(2deg); }
+            75% { transform: scale(1.05) rotate(-2deg); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        #result {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+            transition: transform 0.3s ease-out;
+        }
+        
+        #result.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        #result h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        #result-emoji {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: spin 1s ease-in-out;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(0); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        #result-message {
+            font-size: 32px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        #next-btn {
+            padding: 20px 50px;
+            font-size: 28px;
+            font-family: inherit;
+            font-weight: bold;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+        }
+        
+        #next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        #next-btn:active {
+            transform: translateY(0);
+        }
+        
+        .confetti {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 3s linear forwards;
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #title {
+                font-size: 36px;
+            }
+            
+            #question-emoji {
+                font-size: 80px;
+            }
+            
+            #question-text {
+                font-size: 24px;
+            }
+            
+            .answer-btn {
+                font-size: 20px;
+                padding: 20px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1 id="title">🦁 Animal Quiz! 🦁</h1>
+        <div id="score-display">Score: <span id="score">0</span> / <span id="total">0</span></div>
+        
+        <div id="question-container">
+            <div id="question-emoji"></div>
+            <div id="question-text"></div>
+            <div id="answers"></div>
+        </div>
+    </div>
+    
+    <div id="result">
+        <h2 id="result-title"></h2>
+        <div id="result-emoji"></div>
+        <div id="result-message"></div>
+        <button id="next-btn" onclick="nextQuestion()"></button>
+    </div>
+
+    <script>
+        // Quiz questions
+        const questions = [
+            {
+                emoji: '🐶',
+                question: 'What sound does a dog make?',
+                answers: ['Woof! Woof!', 'Meow!', 'Moo!', 'Quack!'],
+                correct: 0
+            },
+            {
+                emoji: '🐱',
+                question: 'What sound does a cat make?',
+                answers: ['Woof!', 'Meow! Meow!', 'Oink!', 'Baa!'],
+                correct: 1
+            },
+            {
+                emoji: '🐮',
+                question: 'What sound does a cow make?',
+                answers: ['Neigh!', 'Cluck!', 'Moo! Moo!', 'Ribbit!'],
+                correct: 2
+            },
+            {
+                emoji: '🐷',
+                question: 'What sound does a pig make?',
+                answers: ['Hiss!', 'Chirp!', 'Roar!', 'Oink! Oink!'],
+                correct: 3
+            },
+            {
+                emoji: '🦁',
+                question: 'Where does a lion live?',
+                answers: ['In the ocean', 'In Africa', 'In the North Pole', 'In a nest'],
+                correct: 1
+            },
+            {
+                emoji: '🐸',
+                question: 'What sound does a frog make?',
+                answers: ['Ribbit! Ribbit!', 'Hoot!', 'Growl!', 'Squeak!'],
+                correct: 0
+            },
+            {
+                emoji: '🐘',
+                question: 'What is special about an elephant?',
+                answers: ['It can fly', 'It has a long trunk', 'It has stripes', 'It can swim very fast'],
+                correct: 1
+            },
+            {
+                emoji: '🐦',
+                question: 'What can a bird do that most animals cannot?',
+                answers: ['Climb trees', 'Fly in the sky', 'Swim underwater', 'Run super fast'],
+                correct: 1
+            },
+            {
+                emoji: '🐠',
+                question: 'Where do fish live?',
+                answers: ['In trees', 'In caves', 'In water', 'In the desert'],
+                correct: 2
+            },
+            {
+                emoji: '🦒',
+                question: 'What is special about a giraffe?',
+                answers: ['Very long neck', 'Very big ears', 'Very sharp teeth', 'Very fluffy tail'],
+                correct: 0
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+        
+        // Audio context for sounds
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(frequency, duration, type = 'sine') {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        function displayQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question-emoji').textContent = q.emoji;
+            document.getElementById('question-text').textContent = q.question;
+            
+            const answersDiv = document.getElementById('answers');
+            answersDiv.innerHTML = '';
+            
+            q.answers.forEach((answer, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = answer;
+                btn.onclick = () => checkAnswer(index);
+                answersDiv.appendChild(btn);
+            });
+            
+            answered = false;
+            
+            // Update score display
+            document.getElementById('total').textContent = currentQuestion;
+        }
+        
+        function checkAnswer(selected) {
+            if (answered) return;
+            answered = true;
+            
+            const q = questions[currentQuestion];
+            const buttons = document.querySelectorAll('.answer-btn');
+            const isCorrect = selected === q.correct;
+            
+            if (isCorrect) {
+                buttons[selected].classList.add('correct');
+                score++;
+                showResult(true);
+                playSound(523.25, 0.2); // C note
+                setTimeout(() => playSound(659.25, 0.2), 100); // E note
+                setTimeout(() => playSound(783.99, 0.3), 200); // G note
+                createConfetti();
+            } else {
+                buttons[selected].classList.add('wrong');
+                buttons[q.correct].classList.add('correct');
+                showResult(false);
+                playSound(200, 0.3, 'sawtooth');
+            }
+            
+            document.getElementById('score').textContent = score;
+        }
+        
+        function showResult(isCorrect) {
+            const result = document.getElementById('result');
+            const resultEmoji = document.getElementById('result-emoji');
+            const resultTitle = document.getElementById('result-title');
+            const resultMessage = document.getElementById('result-message');
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (isCorrect) {
+                resultEmoji.textContent = ['🎉', '⭐', '🌟', '✨', '🎊'][Math.floor(Math.random() * 5)];
+                resultTitle.textContent = 'AWESOME!';
+                const messages = [
+                    "You're so smart!",
+                    "You got it right!",
+                    "Amazing job!",
+                    "You're a super star!",
+                    "Incredible!"
+                ];
+                resultMessage.textContent = messages[Math.floor(Math.random() * messages.length)];
+            } else {
+                resultEmoji.textContent = '🤔';
+                resultTitle.textContent = 'Almost!';
+                resultMessage.textContent = "That's okay! You'll get the next one!";
+            }
+            
+            if (currentQuestion < questions.length - 1) {
+                nextBtn.textContent = 'Next Question! →';
+            } else {
+                nextBtn.textContent = 'See Final Score! 🏆';
+            }
+            
+            result.classList.add('show');
+        }
+        
+        function nextQuestion() {
+            document.getElementById('result').classList.remove('show');
+            
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                setTimeout(displayQuestion, 300);
+            } else {
+                showFinalScore();
+            }
+        }
+        
+        function showFinalScore() {
+            const container = document.getElementById('quiz-container');
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            let emoji, message;
+            if (percentage === 100) {
+                emoji = '🏆';
+                message = "PERFECT SCORE! You're an animal expert!";
+                createConfetti(50);
+            } else if (percentage >= 70) {
+                emoji = '⭐';
+                message = "Great job! You know a lot about animals!";
+                createConfetti(30);
+            } else {
+                emoji = '🌟';
+                message = "Good try! You're learning so much!";
+            }
+            
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <h1 style="font-size: 56px; margin-bottom: 20px;">Quiz Complete!</h1>
+                    <div style="font-size: 150px; margin: 30px 0;">${emoji}</div>
+                    <h2 style="font-size: 48px; color: #667eea; margin-bottom: 20px;">
+                        ${score} out of ${questions.length}
+                    </h2>
+                    <p style="font-size: 32px; color: #666; margin-bottom: 40px;">
+                        ${message}
+                    </p>
+                    <button onclick="location.reload()" 
+                            style="padding: 20px 50px; font-size: 28px; font-family: inherit; 
+                                   font-weight: bold; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                                   color: white; border: none; border-radius: 20px; cursor: pointer; 
+                                   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+                        Play Again! 🔄
+                    </button>
+                </div>
+            `;
+        }
+        
+        function createConfetti(count = 30) {
+            const emojis = ['🎉', '⭐', '🌟', '✨', '🎊', '💫', '🏆'];
+            
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3500);
+                }, i * 50);
+            }
+        }
+        
+        // Start the quiz
+        displayQuestion();
+    </script>
+</body>
+</html>

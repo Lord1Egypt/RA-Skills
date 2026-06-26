@@ -1,0 +1,52 @@
+name: corporate-ppt-generator
+version: 1.0.0
+author: peterpan
+license: MIT
+runtime: python
+entry: src/index.py
+min_openclaw_version: "2026.1.0"
+description: Generate PPT decks from prompts/block XML while keeping corporate brand style and template consistency.
+categories:
+  - productivity
+  - presentation
+config:
+  - key: template_file
+    type: string
+    required: false
+    default: PPT_Template.pptx
+    description: Template filename in the skill directory.
+input:
+  type: object
+  properties:
+    title:
+      type: string
+      description: Deck title used by cover fallback.
+    output_filename:
+      type: string
+      description: Output pptx filename.
+    template_file:
+      type: string
+      description: Optional template filename in skill root.
+    block_xml:
+      type: string
+      description: Block/XML payload for template-first rendering.
+    render_strategy:
+      type: string
+      enum: [template_first, template_only]
+      description: template_first allows fallback slides for unsupported block types.
+    allow_html_fallback:
+      type: boolean
+      description: When true, html/richtext blocks are converted to template content slides.
+  required:
+    - block_xml
+output:
+  type: object
+  properties:
+    output_path:
+      type: string
+    slide_count:
+      type: integer
+    fallback_count:
+      type: integer
+    message:
+      type: string

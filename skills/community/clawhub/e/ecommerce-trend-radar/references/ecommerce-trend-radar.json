@@ -1,0 +1,622 @@
+{
+  "metadata": {
+    "skill": "ecommerce-trend-radar",
+    "version": "1.0.0",
+    "updated": "2026-06-06",
+    "description": "Cross-platform e-commerce product trend engine with profit calculator"
+  },
+  "platforms": {
+    "tiktok_shop": {
+      "regions": [
+        "US",
+        "UK",
+        "Indonesia",
+        "Thailand",
+        "Vietnam",
+        "Malaysia",
+        "Philippines",
+        "Singapore"
+      ],
+      "commission_rate": "5%",
+      "payment_cycle": "T+15",
+      "top_categories": [
+        "Beauty & Personal Care",
+        "Fashion",
+        "Home & Kitchen",
+        "Electronics",
+        "Health & Wellness",
+        "Pet Supplies",
+        "Sports & Outdoors"
+      ],
+      "content_requirements": {
+        "min_videos_per_product": 3,
+        "recommended_hashtags": [
+          "#TikTokMadeMeBuyIt",
+          "#AmazonFinds",
+          "#ViralProducts"
+        ],
+        "affiliate_commission": "10-20%"
+      },
+      "monthly_visitors": "1.2B"
+    },
+    "amazon": {
+      "regions": [
+        "US",
+        "UK",
+        "DE",
+        "JP",
+        "IN",
+        "CA",
+        "AU",
+        "BR",
+        "MX",
+        "AE"
+      ],
+      "commission_rate": "8-15% (category dependent)",
+      "payment_cycle": "T+14",
+      "fulfillment": "FBA recommended for Prime badge",
+      "top_categories": [
+        "Electronics",
+        "Home & Kitchen",
+        "Books",
+        "Clothing",
+        "Toys",
+        "Sports",
+        "Health"
+      ],
+      "ppc_cost_avg": "$0.81 per click",
+      "ac_competition_index": "High"
+    },
+    "shopee": {
+      "regions": [
+        "Indonesia",
+        "Thailand",
+        "Vietnam",
+        "Malaysia",
+        "Philippines",
+        "Singapore",
+        "Taiwan",
+        "Brazil"
+      ],
+      "commission_rate": "2-6%",
+      "payment_cycle": "T+7",
+      "top_categories": [
+        "Fashion",
+        "Beauty",
+        "Home & Living",
+        "Mobile & Gadgets",
+        "Groceries"
+      ],
+      "local_seller_advantage": "Faster shipping, local language support"
+    },
+    "temu": {
+      "regions": [
+        "US",
+        "UK",
+        "DE",
+        "FR",
+        "IT",
+        "ES",
+        "JP",
+        "KR",
+        "AU"
+      ],
+      "commission_rate": "0% (marketplace model)",
+      "payment_cycle": "Varies",
+      "model": "C2M (Consumer-to-Manufacturer)",
+      "price_positioning": "Ultra-low, direct from factory",
+      "top_categories": [
+        "Home & Garden",
+        "Fashion",
+        "Electronics",
+        "Beauty",
+        "Toys",
+        "Office Supplies"
+      ]
+    },
+    "aliexpress": {
+      "regions": [
+        "Global (200+ countries)",
+        "Russia",
+        "Spain",
+        "France",
+        "Brazil",
+        "US"
+      ],
+      "commission_rate": "5-8%",
+      "payment_cycle": "Buyer confirmation + 15 days",
+      "top_categories": [
+        "Electronics",
+        "Phones",
+        "Home Improvement",
+        "Fashion",
+        "Sports"
+      ],
+      "shipping_options": [
+        "AliExpress Standard",
+        "Cainiao",
+        "ePacket",
+        "DHL"
+      ]
+    }
+  },
+  "trend_detection": {
+    "data_sources": [
+      {
+        "source": "Google Trends",
+        "metric": "Search volume index",
+        "weight": 0.3
+      },
+      {
+        "source": "TikTok hashtag growth",
+        "metric": "Video count velocity",
+        "weight": 0.25
+      },
+      {
+        "source": "Amazon Best Sellers Rank",
+        "metric": "BSR movement",
+        "weight": 0.2
+      },
+      {
+        "source": "Pinterest Trends",
+        "metric": "Pin save rate",
+        "weight": 0.1
+      },
+      {
+        "source": "AliExpress Dropshipping Center",
+        "metric": "Order volume 7d",
+        "weight": 0.1
+      },
+      {
+        "source": "Kickstarter/Indiegogo",
+        "metric": "Funding velocity",
+        "weight": 0.05
+      }
+    ],
+    "trend_lifecycle": {
+      "emerging": {
+        "signal_strength": "Low search volume, high growth rate",
+        "action": "Early test order, low MOQ",
+        "risk": "High (50% failure rate)",
+        "margin_potential": "60-80%"
+      },
+      "rising": {
+        "signal_strength": "Growing search volume, media coverage starts",
+        "action": "Scale inventory, optimize listing",
+        "risk": "Medium (30% failure rate)",
+        "margin_potential": "40-60%"
+      },
+      "peak": {
+        "signal_strength": "Maximum search volume, mainstream adoption",
+        "action": "Maximize ad spend, defend rank",
+        "risk": "Medium-Low (15% failure rate)",
+        "margin_potential": "25-40%"
+      },
+      "declining": {
+        "signal_strength": "Search volume dropping, price competition",
+        "action": "Discount inventory, prepare next trend",
+        "risk": "High if overstocked",
+        "margin_potential": "10-25%"
+      },
+      "saturated": {
+        "signal_strength": "Flat/low volume, many sellers exit",
+        "action": "Exit or pivot to accessory/upgrade",
+        "risk": "Very High",
+        "margin_potential": "5-15%"
+      }
+    }
+  },
+  "categories_database": {
+    "ai_gadgets": {
+      "sub_categories": [
+        "AI Language Earbuds",
+        "AI Pet Translators",
+        "AI Sleep Aids",
+        "AI Fitness Mirrors",
+        "AI Cooking Assistants",
+        "AI Note-takers",
+        "AI Art Frames"
+      ],
+      "seasonality": "Year-round (spike in Q4)",
+      "avg_margin": "35-55%",
+      "target_demographics": "Tech enthusiasts, 18-45, urban"
+    },
+    "home_organization": {
+      "sub_categories": [
+        "Modular Storage Systems",
+        "Pantry Organizers",
+        "Closet Systems",
+        "Under-sink Organizers",
+        "Fridge Bins",
+        "Desk Cable Management"
+      ],
+      "seasonality": "Q1 peak (New Year organization)",
+      "avg_margin": "50-70%",
+      "target_demographics": "Homeowners, renters, 25-55, female skew"
+    },
+    "pet_products": {
+      "sub_categories": [
+        "Interactive Toys",
+        "GPS Trackers",
+        "Dental Care",
+        "Calming Aids",
+        "Pet Cameras",
+        "Custom Portraits"
+      ],
+      "seasonality": "Year-round (Q4 gift spike)",
+      "avg_margin": "40-60%",
+      "target_demographics": "Pet owners, 22-65"
+    },
+    "sustainable_living": {
+      "sub_categories": [
+        "Reusable Kitchen Items",
+        "Compostable Products",
+        "Solar Gadgets",
+        "Water-saving Devices",
+        "Bamboo Alternatives",
+        "Zero-waste Kits"
+      ],
+      "seasonality": "April (Earth Day spike)",
+      "avg_margin": "45-65%",
+      "target_demographics": "Eco-conscious, 20-45, urban"
+    },
+    "fitness_wellness": {
+      "sub_categories": [
+        "Smart Jump Ropes",
+        "Posture Correctors",
+        "Resistance Bands Sets",
+        "Recovery Tools",
+        "Meditation Aids",
+        "Standing Desk Converters"
+      ],
+      "seasonality": "Jan-Mar (New Year resolution peak)",
+      "avg_margin": "45-65%",
+      "target_demographics": "Fitness beginners to enthusiasts, 18-50"
+    },
+    "kids_educational": {
+      "sub_categories": [
+        "STEM Kits",
+        "Montessori Toys",
+        "Coding Robots",
+        "Science Experiment Sets",
+        "Language Learning Devices",
+        "Art Subscription Boxes"
+      ],
+      "seasonality": "Q4 peak (holiday gifts), Aug back-to-school",
+      "avg_margin": "40-55%",
+      "target_demographics": "Parents, 28-45"
+    }
+  },
+  "profit_calculator": {
+    "parameters": [
+      "product_cost",
+      "shipping_to_warehouse",
+      "platform_commission_pct",
+      "payment_processing_pct",
+      "advertising_cac",
+      "fulfillment_cost",
+      "return_rate_pct",
+      "vat_tax_pct",
+      "target_margin_pct"
+    ],
+    "formula": "selling_price = (product_cost + shipping + fulfillment) / (1 - commission_pct/100 - payment_pct/100 - ad_cac_pct/100 - margin_pct/100)",
+    "example": {
+      "product_cost": 8.5,
+      "shipping": 2.0,
+      "fulfillment": 3.0,
+      "commission": 15,
+      "payment_processing": 3,
+      "ad_cac_pct": 10,
+      "target_margin": 35,
+      "calculated_selling_price": 28.57,
+      "profit_per_unit": 10.0,
+      "roi": 53.8
+    },
+    "breakeven_analysis": {
+      "fixed_costs": "Product photography ($200), Sample order ($150), Listing creation ($100) = $450",
+      "breakeven_units": "Fixed costs / profit per unit",
+      "example_breakeven": "$450 / $10 = 45 units to breakeven"
+    }
+  },
+  "seasonality_matrix": {
+    "Q1": [
+      "Fitness equipment",
+      "Organization products",
+      "Valentine's gifts",
+      "Tax software",
+      "Winter clearance"
+    ],
+    "Q2": [
+      "Spring cleaning",
+      "Gardening tools",
+      "Outdoor gear",
+      "Mother's/Father's Day",
+      "Graduation gifts"
+    ],
+    "Q3": [
+      "Back to school",
+      "Summer outdoor",
+      "Prime Day deals",
+      "Dorm essentials",
+      "Travel accessories"
+    ],
+    "Q4": [
+      "Holiday decor",
+      "Gift sets",
+      "Winter apparel",
+      "Black Friday doorbusters",
+      "New Year party supplies"
+    ],
+    "evergreen": [
+      "Phone cases",
+      "Pet supplies",
+      "Kitchen basics",
+      "Baby products",
+      "Health supplements"
+    ]
+  },
+  "competition_analysis": {
+    "saturation_levels": {
+      "low": "<50 competing listings, avg reviews <50",
+      "medium": "50-200 listings, avg reviews 50-200",
+      "high": "200-500 listings, avg reviews 200-500",
+      "very_high": "500+ listings, avg reviews 500+"
+    },
+    "differentiation_strategies": [
+      "Bundle with complementary product",
+      "Premium packaging upgrade",
+      "Niche sub-audience targeting",
+      "Exclusive design/IP",
+      "Content-first launch strategy",
+      "Subscription replenishment model"
+    ],
+    "moat_building": [
+      "Brand registry",
+      "Design patent",
+      "Exclusive supplier agreement",
+      "Community building",
+      "UGC campaign at launch"
+    ]
+  },
+  "hot_products_2026": {
+    "ai_accessories": [
+      {
+        "product": "AI-Powered Real-Time Language Earbuds",
+        "price_range": "$149-349",
+        "margin": "45-60%",
+        "trend_score": 5,
+        "search_growth": "+1100%",
+        "competition": "Medium",
+        "platform_best": "Amazon + TikTok Shop",
+        "target_audience": "Travelers, business professionals, language learners",
+        "sourcing": "Shenzhen manufacturers, Alibaba MOQ 500",
+        "seasonality": "Year-round, Q4 travel spike"
+      },
+      {
+        "product": "AI Pet Emotion Translator Collar",
+        "price_range": "$79-199",
+        "margin": "50-65%",
+        "trend_score": 4,
+        "search_growth": "+850%",
+        "competition": "Low-Medium",
+        "platform_best": "TikTok Shop (viral potential)",
+        "target_audience": "Pet owners 25-45, female skew",
+        "sourcing": "Specialized IoT manufacturers",
+        "seasonality": "Q4 gift season spike"
+      },
+      {
+        "product": "AI Sleep Optimization Headband",
+        "price_range": "$129-299",
+        "margin": "55-70%",
+        "trend_score": 4,
+        "search_growth": "+620%",
+        "competition": "Medium",
+        "platform_best": "Amazon + DTC website",
+        "target_audience": "Health-conscious, 30-55, high income",
+        "sourcing": "Medical-grade wearable OEMs",
+        "seasonality": "January (NY resolutions), year-round"
+      }
+    ],
+    "home_garden": [
+      {
+        "product": "Modular Vertical Garden System (Self-Watering)",
+        "price_range": "$49-129",
+        "margin": "55-70%",
+        "trend_score": 5,
+        "search_growth": "+950%",
+        "competition": "Low",
+        "platform_best": "Amazon + Etsy",
+        "target_audience": "Urban apartment dwellers, plant enthusiasts",
+        "sourcing": "Injection mold tooling required, MOQ 1000",
+        "seasonality": "March-June (spring planting)"
+      },
+      {
+        "product": "Magnetic Spice Rack System (Modular)",
+        "price_range": "$25-49",
+        "margin": "60-75%",
+        "trend_score": 4,
+        "search_growth": "+480%",
+        "competition": "Medium",
+        "platform_best": "Amazon (search-driven)",
+        "target_audience": "Home cooks, organization enthusiasts",
+        "sourcing": "Standard metal + plastic, easy to source",
+        "seasonality": "Q1 organization trend, year-round"
+      }
+    ],
+    "fitness_wellness": [
+      {
+        "product": "Smart Jump Rope with App Tracking",
+        "price_range": "$19-39",
+        "margin": "55-65%",
+        "trend_score": 4,
+        "search_growth": "+340%",
+        "competition": "Medium-High",
+        "platform_best": "TikTok Shop + Amazon",
+        "target_audience": "Fitness beginners, 18-35",
+        "sourcing": "Standard BT chip + rope, MOQ 500",
+        "seasonality": "January peak, steady year-round"
+      },
+      {
+        "product": "Posture Corrector with Biofeedback Vibration",
+        "price_range": "$39-79",
+        "margin": "50-65%",
+        "trend_score": 5,
+        "search_growth": "+720%",
+        "competition": "Low",
+        "platform_best": "Amazon + TikTok",
+        "target_audience": "Office workers, 25-50",
+        "sourcing": "Wearable tech OEMs in Shenzhen",
+        "seasonality": "Year-round (WFH trend driver)"
+      }
+    ],
+    "kids_learning": [
+      {
+        "product": "Coding Robot Kit (Screen-Free, Ages 4-8)",
+        "price_range": "$49-99",
+        "margin": "45-55%",
+        "trend_score": 4,
+        "search_growth": "+410%",
+        "competition": "Medium",
+        "platform_best": "Amazon + Museum gift shops",
+        "target_audience": "Parents 28-45, educators",
+        "sourcing": "Educational toy OEMs, safety certification required",
+        "seasonality": "Q4 holiday spike, August back-to-school"
+      },
+      {
+        "product": "Interactive AR Globe with 1000+ Facts",
+        "price_range": "$39-79",
+        "margin": "50-60%",
+        "trend_score": 5,
+        "search_growth": "+580%",
+        "competition": "Low-Medium",
+        "platform_best": "Amazon + TikTok",
+        "target_audience": "Parents, grandparents (gift), educators",
+        "sourcing": "AR tech integrated into traditional globe manufacturing",
+        "seasonality": "Q4 holiday, year-round"
+      }
+    ]
+  },
+  "supplier_database": {
+    "regions": {
+      "shenzhen_electronics": {
+        "best_for": [
+          "Smart accessories",
+          "IoT devices",
+          "Bluetooth products",
+          "Phone accessories"
+        ],
+        "moq_typical": "100-500 units",
+        "lead_time": "15-30 days",
+        "quality_note": "Huge variance, always get samples from 3+ suppliers",
+        "trade_shows": [
+          "Global Sources Electronics",
+          "HKTDC Electronics Fair"
+        ]
+      },
+      "yiwu_commodities": {
+        "best_for": [
+          "Home organization",
+          "Kitchen gadgets",
+          "Party supplies",
+          "Low-cost accessories"
+        ],
+        "moq_typical": "50-200 units",
+        "lead_time": "7-14 days",
+        "quality_note": "Low cost, acceptable for non-electronic products",
+        "trade_show": "Yiwu Commodities Fair"
+      },
+      "guangzhou_fashion": {
+        "best_for": [
+          "Clothing",
+          "Bags",
+          "Shoes",
+          "Fashion accessories"
+        ],
+        "moq_typical": "100-300 units per SKU",
+        "lead_time": "14-21 days",
+        "quality_note": "Varies widely, visit factory for quality check",
+        "trade_show": "Canton Fair"
+      },
+      "chengdu_bamboo": {
+        "best_for": [
+          "Eco-friendly products",
+          "Bamboo alternatives",
+          "Natural fiber goods"
+        ],
+        "moq_typical": "200-500 units",
+        "lead_time": "20-30 days",
+        "quality_note": "Sustainable certification available, premium pricing",
+        "trade_show": "Chengdu International Trade Fair"
+      }
+    },
+    "sourcing_best_practices": [
+      "Always order samples from 3+ suppliers before committing",
+      "Use Alibaba Trade Assurance for first orders",
+      "Negotiate: first order price = quoted, reorder = -10-15%",
+      "Hidden costs: tooling fees ($500-2000), certification ($300-1000), shipping ($2-8/kg)",
+      "Inspection: hire 3rd party QC (QIMA/AsiaInspection) for orders over $5000",
+      "Payment: 30% deposit, 70% before shipping (standard); 30/70 after inspection (ideal)"
+    ]
+  },
+  "marketing_checklist": {
+    "pre_launch": [
+      "Competitor listing analysis (top 10 results)",
+      "Keyword research (Helium 10 / Jungle Scout)",
+      "Product photography (white background + lifestyle + infographic)",
+      "A+ Content / Enhanced Brand Content design",
+      "Pricing strategy (penetration vs premium)",
+      "Inventory planning (3 months forecast)",
+      "Influencer outreach list (50+ creators in niche)"
+    ],
+    "launch_week": [
+      "PPC campaign activation (auto + manual exact)",
+      "Vine program enrollment (Amazon)",
+      "Social media announcement posts",
+      "Email list launch notification",
+      "TikTok Shop affiliate program activation",
+      "Price promotion (10-20% launch discount)"
+    ],
+    "growth_phase": [
+      "PPC optimization (negative keywords, bid adjustments)",
+      "Review generation follow-up",
+      "Bundle product creation",
+      "International marketplace expansion",
+      "Retargeting ads (Amazon DSP / Meta Ads)",
+      "Subscription model setup (Subscribe & Save)"
+    ],
+    "mature_phase": [
+      "Defend BSR with aggressive PPC on brand terms",
+      "Product line extension (variations, complementary products)",
+      "Wholesale/B2B channel exploration",
+      "User-generated content campaign",
+      "Loyalty program / email nurture sequence"
+    ]
+  },
+  "risk_factors": {
+    "intellectual_property": {
+      "risk": "Patent/copyright infringement claims",
+      "mitigation": "Patent search ($500-2000), avoid branded terms, own photography",
+      "impact": "Listing suspension, account health hit, legal fees $10K+"
+    },
+    "supply_chain": {
+      "risk": "Factory delay, quality issues, shipping disruption",
+      "mitigation": "Dual sourcing, safety stock (4 weeks), 3rd party inspection",
+      "impact": "Stockout = lost ranking, late shipment metrics hit"
+    },
+    "platform_dependency": {
+      "risk": "Single platform account suspension",
+      "mitigation": "Multi-platform presence, own DTC website, email list ownership",
+      "impact": "Revenue drop to zero overnight"
+    },
+    "trend_reversal": {
+      "risk": "Hot product becomes saturated or trend dies",
+      "mitigation": "Never overstock trending items (max 6 weeks inventory), diversification",
+      "impact": "Dead stock write-off, storage fees eating margin"
+    },
+    "regulatory": {
+      "risk": "New safety/certification requirements (CPC, FCC, CE, UKCA)",
+      "mitigation": "Pre-compliance testing, stay updated on regulations",
+      "impact": "Products held at customs, fines, forced recall"
+    }
+  }
+}

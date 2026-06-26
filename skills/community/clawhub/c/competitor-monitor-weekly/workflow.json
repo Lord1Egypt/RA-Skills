@@ -1,0 +1,137 @@
+{
+  "name": "competitor-monitor-weekly",
+  "version": "1.0.0",
+  "description": "智能竞品监控周报 - 自动抓取、分析、分发竞品动态",
+  "triggers": [
+    {
+      "type": "cron",
+      "schedule": "0 9 * * 1",
+      "description": "每周一 9:00 执行"
+    },
+    {
+      "type": "manual",
+      "command": "生成竞品周报",
+      "description": "手动触发"
+    }
+  ],
+  "steps": [
+    {
+      "id": "collect",
+      "name": "数据采集",
+      "skills": [
+        {
+          "skill": "agent-reach",
+          "action": "search",
+          "params": {
+            "platforms": "${config.competitors[*].platforms}",
+            "keywords": "${config.competitors[*].keywords}",
+            "timeRange": "7d"
+          },
+          "output": "rawContent"
+        },
+        {
+          "skill": "brave-search",
+          "action": "search",
+          "params": {
+            "query": "${config.competitors[*].keywords} 新闻 动态",
+            "freshness": "week"
+          },
+          "output": "newsContent"
+        }
+      ]
+    },
+    {
+      "id": "parse",
+      "name": "内容解析",
+      "skills": [
+        {
+          "skill": "paddleocr-doc-parsing",
+          "action": "parse",
+          "params": {
+            "input": "${steps.collect.output}",
+            "extractType": "full"
+          },
+          "output": "parsedContent"
+        }
+      ]
+    },
+    {
+      "id": "analyze",
+      "name": "智能分析",
+      "skills": [
+        {
+          "skill": "summarize",
+          "action": "summarize",
+          "params": {
+            "content": "${steps.parse.output}",
+            "format": "structured",
+            "sections": ["overview", "highlights", "insights", "actions"]
+          },
+          "output": "analysis"
+        }
+      ]
+    },
+    {
+      "id": "generate",
+      "name": "报告生成",
+      "action": "template",
+      "template": "weekly-report.md",
+      "params": {
+        "data": "${steps.analyze.output}",
+        "dateRange": "${trigger.dateRange}"
+      },
+      "output": "report"
+    },
+    {
+      "id": "distribute",
+      "name": "分发推送",
+      "skills": [
+        {
+          "skill": "n8n-workflow-automation",
+          "action": "trigger",
+          "params": {
+            "workflow": "competitor-report-distribution",
+            "payload": {
+              "report": "${steps.generate.output}",
+              "channels": "${config.output.channels}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "improve",
+      "name": "持续优化",
+      "skills": [
+        {
+          "skill": "self-improving-agent",
+          "action": "record",
+          "params": {
+            "context": "competitor-monitor-weekly",
+            "metrics": {
+              "itemsCollected": "${steps.collect.count}",
+              "parseSuccessRate": "${steps.parse.successRate}",
+              "executionTime": "${totalTime}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "errorHandling": {
+    "retry": 3,
+    "retryDelay": 300,
+    "onFailure": "notify",
+    "notifyChannels": ["feishu"]
+  },
+  "outputs": [
+    {
+      "type": "markdown",
+      "filename": "competitor-report-${date}.md"
+    },
+    {
+      "type": "json",
+      "filename": "competitor-data-${date}.json"
+    }
+  ]
+}

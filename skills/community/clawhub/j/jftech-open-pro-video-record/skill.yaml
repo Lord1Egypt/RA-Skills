@@ -1,0 +1,81 @@
+# JF Open Pro Video Record - Skill Registry Metadata
+# This file defines the skill's requirements for ClawHub registry
+
+name: jf-open-pro-video-record
+version: 1.0.1
+description: 杰峰设备录像回放技能。支持获取设备云存储录像和设备本地录像回放地址，包括录像列表查询、回放地址获取、录像下载等功能。
+
+# Runtime requirements
+runtime:
+  language: python
+  minVersion: "3.8"
+
+# Required environment variables (credentials)
+requiredEnvVars:
+  - name: JF_UUID
+    description: 杰峰开放平台用户唯一标识
+    source: https://open.jftech.com/
+  - name: JF_APPKEY
+    description: 杰峰开放平台应用 Key
+    source: https://open.jftech.com/
+  - name: JF_APPSECRET
+    description: 杰峰开放平台应用密钥
+    source: https://open.jftech.com/
+  - name: JF_MOVECARD
+    description: 签名算法偏移量 (0-9)，用于时间戳偏移增加签名安全性
+    source: https://open.jftech.com/
+
+# Optional environment variables
+optionalEnvVars:
+  - name: JF_SN
+    description: 设备序列号
+  - name: JF_USERNAME
+    description: 设备登录用户名
+    default: admin
+  - name: JF_PASSWORD
+    description: 设备登录密码（本地录像必需）
+  - name: JF_ENDPOINT
+    description: API 端点
+    default: api.jftechws.com
+
+# Network endpoints (for firewall/security configuration)
+endpoints:
+  - url: https://api.jftechws.com
+    description: 杰峰官方 API (国际)
+  - url: https://api-cn.jftech.com
+    description: 杰峰官方 API (中国大陆)
+
+# Security declarations
+security:
+  credentialsRequired: true
+  envVarsOnly: true
+  networkAccess:
+    - api.jftechws.com
+    - api-cn.jftech.com
+  fileAccess: none
+
+# Entry points
+scripts:
+  - name: cloud_video_list.py
+    description: 获取云存视频列表
+    entryPoint: scripts/cloud_video_list.py
+  - name: cloud_playback_url.py
+    description: 获取云存回放地址
+    entryPoint: scripts/cloud_playback_url.py
+  - name: local_video_list.py
+    description: 获取本地录像回放列表
+    entryPoint: scripts/local_video_list.py
+  - name: local_playback_url.py
+    description: 获取本地录像回放地址
+    entryPoint: scripts/local_playback_url.py
+
+# Tags for discovery
+tags:
+  - jf-tech
+  - 杰峰
+  - video-record
+  - playback
+  - cloud-storage
+  - local-storage
+  - 云存回放
+  - 本地录像

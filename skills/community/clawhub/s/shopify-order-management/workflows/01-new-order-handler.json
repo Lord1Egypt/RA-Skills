@@ -1,0 +1,255 @@
+{
+  "name": "Shopify — New Order Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "shopify/new-order",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "n1",
+      "name": "Order Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ],
+      "webhookId": "shopify-new-order"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst hmac = $input.first().json.headers?.['x-shopify-hmac-sha256'] || '';\n\n// Verify Shopify webhook HMAC signature\nconst secret = $env.SHOPIFY_WEBHOOK_SECRET || '';\nif (secret && hmac) {\n  const crypto = require('crypto');\n  const rawBody = JSON.stringify(body);\n  const computed = crypto.createHmac('sha256', secret).update(rawBody, 'utf8').digest('base64');\n  if (computed !== hmac) {\n    throw new Error('Invalid Shopify webhook signature');\n  }\n}\n\n// Extract order data from Shopify webhook payload\nconst order = {\n  order_id: body.id || body.order_number || '',\n  order_number: body.order_number || body.name || '',\n  customer_name: body.customer ? `${body.customer.first_name || ''} ${body.customer.last_name || ''}`.trim() : (body.shipping_address?.name || ''),\n  customer_email: body.customer?.email || body.email || '',\n  customer_phone: body.customer?.phone || body.shipping_address?.phone || '',\n  total_price: body.total_price || '0',\n  currency: body.currency || 'USD',\n  financial_status: body.financial_status || 'pending',\n  fulfillment_status: body.fulfillment_status || 'unfulfilled',\n  items_count: body.line_items ? body.line_items.length : 0,\n  items_summary: body.line_items ? body.line_items.map(i => `${i.title} x${i.quantity}`).join(', ') : '',\n  shipping_address: body.shipping_address ? `${body.shipping_address.address1 || ''}, ${body.shipping_address.city || ''}, ${body.shipping_address.country || ''}` : '',\n  created_at: body.created_at || new Date().toISOString(),\n  logged_at: new Date().toISOString()\n};\n\nreturn [{ json: order }];"
+      },
+      "id": "n2",
+      "name": "Parse Order",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHOPIFY_ORDERS_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "order_number": "={{ $json.order_number }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "customer_email": "={{ $json.customer_email }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "total_price": "={{ $json.total_price }}",
+            "currency": "={{ $json.currency }}",
+            "financial_status": "={{ $json.financial_status }}",
+            "fulfillment_status": "={{ $json.fulfillment_status }}",
+            "items_count": "={{ $json.items_count }}",
+            "items_summary": "={{ $json.items_summary }}",
+            "shipping_address": "={{ $json.shipping_address }}",
+            "created_at": "={{ $json.created_at }}",
+            "logged_at": "={{ $json.logged_at }}"
+          },
+          "matchingColumns": [
+            "order_id"
+          ],
+          "schema": [
+            {
+              "id": "order_id",
+              "displayName": "order_id",
+              "required": false,
+              "defaultMatch": true
+            },
+            {
+              "id": "order_number",
+              "displayName": "order_number",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "customer_name",
+              "displayName": "customer_name",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "customer_email",
+              "displayName": "customer_email",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "customer_phone",
+              "displayName": "customer_phone",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "total_price",
+              "displayName": "total_price",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "currency",
+              "displayName": "currency",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "financial_status",
+              "displayName": "financial_status",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "fulfillment_status",
+              "displayName": "fulfillment_status",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "items_count",
+              "displayName": "items_count",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "items_summary",
+              "displayName": "items_summary",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "shipping_address",
+              "displayName": "shipping_address",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "logged_at",
+              "displayName": "logged_at",
+              "required": false,
+              "defaultMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "n3",
+      "name": "Log to Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.SHOPIFY_ADMIN_EMAIL || 'YOUR_NOTIFICATION_EMAIL' }}",
+        "subject": "=New Order #{{ $json.order_number }} — {{ $json.currency }} {{ $json.total_price }}",
+        "message": "=<h2>New Order Received</h2><table border='1' cellpadding='8' cellspacing='0'><tr><td><strong>Order</strong></td><td>#{{ $json.order_number }}</td></tr><tr><td><strong>Customer</strong></td><td>{{ $json.customer_name }}</td></tr><tr><td><strong>Email</strong></td><td>{{ $json.customer_email }}</td></tr><tr><td><strong>Total</strong></td><td>{{ $json.currency }} {{ $json.total_price }}</td></tr><tr><td><strong>Payment</strong></td><td>{{ $json.financial_status }}</td></tr><tr><td><strong>Items</strong></td><td>{{ $json.items_summary }}</td></tr><tr><td><strong>Shipping</strong></td><td>{{ $json.shipping_address }}</td></tr></table>",
+        "options": {}
+      },
+      "id": "n4",
+      "name": "Notify Admin",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true }) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "n5",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1100,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Order Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Order": {
+      "main": [
+        [
+          {
+            "node": "Log to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Sheets": {
+      "main": [
+        [
+          {
+            "node": "Notify Admin",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

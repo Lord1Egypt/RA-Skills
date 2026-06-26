@@ -1,35 +1,32 @@
 ---
-name: "Lite Session Cleaner"
-description: "Automatically cleans up inactive sessions (older than 1 hour) and sends a notification."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lite-session-cleaner"
-sourceUrl: "https://clawhub.ai/skills/lite-session-cleaner"
+name: session-cleaner
+description: Automatically cleans up inactive sessions (older than 1 hour) and sends a notification.
+metadata:
+  {
+    "openclaw": {
+      "requires": { "bins": ["openclaw"] }
+    }
+  }
 ---
 
-# Lite Session Cleaner
+# Session Cleaner Skill
 
-> Automatically cleans up inactive sessions (older than 1 hour) and sends a notification.
+This skill is designed to be run via a cron job or periodic task to monitor and prune stale sessions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lite-session-cleaner`
-- **Source URL:** [https://clawhub.ai/skills/lite-session-cleaner](https://clawhub.ai/skills/lite-session-cleaner)
+## Usage
 
-## Overview
+The skill relies on `openclaw sessions_list` to identify old sessions and `openclaw sessions_kill` to terminate them. It can be integrated into a TaskFlow or run as a standalone script via `exec`.
 
+## Implementation Logic
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lite-session-cleaner
-```
+1. **Identify**: Use `sessions_list` to retrieve all active sessions.
+2. **Filter**: Compare the `last_activity` timestamp of each session with the current time.
+3. **Action**: For sessions where `current_time - last_activity > 3600` seconds:
+    - Send a message to the session's target channel (e.g., via `message` tool) stating: "当前会话已经结束".
+    - Execute `sessions_kill <session_id>`.
+4. **Log**: Record the cleaning action in the daily log.
+
+## Requirements
+
+- `openclaw` CLI installed and accessible.
+- Access to session metadata.

@@ -1,0 +1,22 @@
+version: 1
+display_name: Project Analyzer
+short_description: 自动分析项目并生成完整文档，支持 Apifox 对接
+default_prompt: |
+  使用此技能自动分析项目并生成完整文档体系。
+  
+  功能：
+  1. 项目结构分析 - 识别技术栈、扫描目录、分析模块
+  2. 架构文档生成 - 系统架构图、模块说明、技术选型
+  3. 配置项文档 - 配置文件分析、环境变量、配置清单
+  4. 数据库文档 - 表结构、ER图、索引分析、数据库规范
+  5. 开发规范 - 代码规范、命名约定、Git规范
+  6. 快速启动文档 - 环境要求、安装步骤、启动命令
+  7. 测试规范 - 测试框架、覆盖率要求、测试用例规范
+  8. Apifox 对接 - API文档同步、测试用例生成、接口自测
+  
+  支持技术栈：Java/Spring Boot、Node.js、Python、Go、React/Vue 前端项目
+  
+  使用示例：
+  - "分析项目 D:\my-project 并生成完整文档"
+  - "分析项目 D:\my-project 并生成数据库文档"
+  - "分析项目 D:\my-project 并对接 Apifox 项目 ID: 12345"

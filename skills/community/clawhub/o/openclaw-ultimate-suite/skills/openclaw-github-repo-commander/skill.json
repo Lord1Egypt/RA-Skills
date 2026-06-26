@@ -1,0 +1,23 @@
+{
+  "name": "github-repo-commander",
+  "version": "3.0.0",
+  "description": "A unified GitHub repository management skill that combines README polish, packaging, discoverability, privacy audits, model-agnostic refactoring guidance, and curated-list PR preparation.",
+  "author": "Dawei + Codex",
+  "homepage": "https://github.com/wd041216-bit/openclaw-github-repo-commander",
+  "metadata": {
+    "tags": [
+      "github",
+      "repository-management",
+      "privacy",
+      "open-source",
+      "llm-agnostic",
+      "readme",
+      "discoverability",
+      "presentation"
+    ],
+    "categories": [
+      "Development",
+      "Productivity"
+    ]
+  }
+}

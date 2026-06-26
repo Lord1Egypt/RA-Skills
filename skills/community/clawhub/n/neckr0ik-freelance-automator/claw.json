@@ -1,0 +1,15 @@
+{
+  "name": "neckr0ik-freelance-automator",
+  "version": "1.0.0",
+  "description": "Automate freelance workflows — find jobs, write proposals, deliver work. Supports Upwork, Fiverr, Freelancer, PeoplePerHour.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "freelance",
+    "upwork",
+    "fiverr",
+    "automation",
+    "proposals",
+    "gigs"
+  ]
+}

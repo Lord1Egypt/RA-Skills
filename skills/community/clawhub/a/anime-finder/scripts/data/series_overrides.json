@@ -1,0 +1,33 @@
+{
+  "series": [
+    {
+      "id": "jojo",
+      "match": [
+        "JOJO",
+        "JOJO的奇妙冒险",
+        "JoJo's Bizarre Adventure",
+        "JoJo no Kimyou na Bouken",
+        "ジョジョの奇妙な冒険"
+      ],
+      "canonical_query": "JOJO的奇妙冒险",
+      "bangumi_query": "JOJO的奇妙冒险",
+      "aliases": [
+        "JOJO的奇妙冒险",
+        "JoJo's Bizarre Adventure",
+        "JoJo no Kimyou na Bouken",
+        "ジョジョの奇妙な冒険"
+      ],
+      "default_preferences": {},
+      "latest_season": {
+        "bangumi_query": "飙马野郎 JOJO的奇妙冒险 第一赛段",
+        "primary_query": "STEEL BALL RUN JoJo's Bizarre Adventure",
+        "aliases": [
+          "STEEL BALL RUN JoJo's Bizarre Adventure",
+          "JoJo no Kimyou na Bouken: Steel Ball Run",
+          "Steel Ball Run"
+        ],
+        "season_number": 6
+      }
+    }
+  ]
+}

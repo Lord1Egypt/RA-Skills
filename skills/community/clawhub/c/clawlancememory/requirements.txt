@@ -1,0 +1,16 @@
+# LanceDB Memory System Dependencies
+
+# Core
+lancedb>=0.30.0
+pyarrow>=15.0.0
+
+# LangChain Integration
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-core>=0.3.0
+
+# Embedding
+zhipuai>=2.0.0
+
+# Utilities
+numpy>=1.24.0

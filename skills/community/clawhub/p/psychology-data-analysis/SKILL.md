@@ -1,35 +1,130 @@
 ---
-name: "心理学数据分析（统计检验、结果解读）"
-description: "心理学数据分析决策与执行助手。当用户需要分析心理学研究数据、决定使用什么统计检验、处理数据、运行分析、解读结果时使用。触发场景包括："帮我分析数据"、"做什么检验"、"SPSS怎么做"、"Python分析"、"结果怎么读"、"验证我的假设"、"数据分析"、"处理数据"等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psychology-data-analysis"
-sourceUrl: "https://clawhub.ai/skills/psychology-data-analysis"
+name: psychology-data-analysis
+version: 1.0.1
+description: 心理学数据分析决策与执行助手。当用户需要分析心理学研究数据、决定使用什么统计检验、处理数据、运行分析、解读结果时使用。触发场景包括："帮我分析数据"、"做什么检验"、"SPSS怎么做"、"Python分析"、"结果怎么读"、"验证我的假设"、"数据分析"、"处理数据"等。
 ---
 
-# 心理学数据分析（统计检验、结果解读）
+# Psychology Data Analysis Assistant
 
-> 心理学数据分析决策与执行助手。当用户需要分析心理学研究数据、决定使用什么统计检验、处理数据、运行分析、解读结果时使用。触发场景包括："帮我分析数据"、"做什么检验"、"SPSS怎么做"、"Python分析"、"结果怎么读"、"验证我的假设"、"数据分析"、"处理数据"等。
+心理学数据分析决策与执行助手。输入研究设计 → 推荐检验 → 执行分析 → 解读结果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psychology-data-analysis`
-- **Source URL:** [https://clawhub.ai/skills/psychology-data-analysis](https://clawhub.ai/skills/psychology-data-analysis)
+## 工作流程
 
-## Overview
+### Step 1: 收集研究信息
 
+向用户询问以下关键信息：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psychology-data-analysis
+1. **研究设计类型**
+   - 被试间设计（不同组之间的差异比较）
+   - 被试内设计（同一组被试在不同条件下的测量）
+   - 混合设计（同时包含被试间和被试内因素）
+   - 问卷/相关研究（变量间关系）
+
+2. **变量信息**
+   - 自变量（X）：名称、类型（连续/分类）、水平数
+   - 因变量（Y）：名称、类型（连续/分类）
+   - 协变量（如果有）
+
+3. **样本信息**
+   - 总样本量 N
+   - 每组样本量（如果是被试间设计）
+   - 是否满足正态性假设（可做 Shapiro-Wilk 检验）
+
+4. **研究假设**
+   - 差异假设（组间差异）
+   - 相关假设（变量间相关）
+   - 预测假设（回归/预测）
+   - 中介/调节假设
+
+5. **软件偏好**
+   - SPSS（倾向菜单操作还是语法）
+   - Python（倾向 Jupyter Notebook 环境还是脚本）
+
+6. **数据格式**
+   - Excel (.xlsx)
+   - CSV
+   - SPSS (.sav)
+
+### Step 2: 推荐检验方案
+
+根据收集的信息，推荐合适的统计检验：
+
+| 变量类型 | 组数/设计 | 推荐检验 |
+|---------|----------|---------|
+| 连续因变量，两组 | 被试间 | 独立样本 t 检验 |
+| 连续因变量，两组 | 被试内 | 配对样本 t 检验 |
+| 连续因变量，多组 | 被试间 | 单因素 ANOVA |
+| 连续因变量，多组 | 被试内 | 重复测量 ANOVA |
+| 连续因变量，≥2自变量 | 被试间/混合 | 多因素 ANOVA/混合 ANOVA |
+| 分类因变量 | 任意 | 卡方检验 |
+| 连续变量 | 相关研究 | Pearson/Spearman 相关 |
+| 连续变量 | 预测研究 | 多元线性回归 |
+| 连续因变量，有中介 | 路径分析 | 中介效应检验（Bootstrap） |
+| 连续因变量，有调节 | 调节分析 | 调节效应检验（层次回归） |
+
+**检验前提检查：**
+- 正态性：Shapiro-Wilk 检验（N>50 时看偏度/峰度）
+- 方差齐性：Levene 检验
+- 球形性：Mauchly 检验（重复测量 ANOVA）
+- 样本量评估
+
+### Step 3: 执行分析
+
+根据用户选择的软件，执行相应分析。
+
+#### Python 执行
+
+使用 `scripts/python_analysis.py`，支持：
+- 数据加载与清洗
+- 描述性统计
+- 假设检验（t 检验、ANOVA、相关、回归等）
+- 中介/调节效应
+- 结果可视化
+
+执行方式：
 ```
+python scripts/python_analysis.py --data <数据路径> --analysis <分析类型> --options <选项>
+```
+
+#### SPSS 指导
+
+提供详细操作步骤：
+1. 菜单路径
+2. 对话框设置
+3. 语法命令（可选）
+4. 输出结果解读
+
+### Step 4: 结果解读
+
+输出内容包括：
+- **统计量**：检验统计值（t/F/r 等）、自由度、p 值
+- **效应量**：Cohen's d、η²、r、β 等
+- **置信区间**：95% CI
+- **APA 格式报告**：可直接粘贴到论文的结果部分
+
+### Step 5: 假设验证
+
+根据分析结果，判定：
+- 假设是否得到支持
+- 结果的实际意义解读
+- 局限性说明
+- 后续分析建议
+
+## 脚本
+
+- `scripts/python_analysis.py` — 主要 Python 分析脚本
+
+## 参考资料
+
+- `references/stat_decision_tree.md` — 统计检验决策树
+- `references/python_guide.md` — Python (scipy/scikit-learn/statsmodels) 使用指南
+- `references/spss_guide.md` — SPSS 操作指南（常用分析）
+- `references/effect_size.md` — 效应量参考表
+- `references/apa_format.md` — APA 结果报告格式
+
+## 注意事项
+
+- 始终先检查数据是否满足检验的前提假设
+- 大样本（N>50）时，t/F 检验对正态性不敏感，但中位数比较仍需非参数检验
+- 报告效应量与置信区间，而非仅报告 p 值
+- Python 输出结果后，主动提供 APA 格式的报告文本

@@ -1,0 +1,76 @@
+{
+  "skill_name": "GraphRAGBuilderSkill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build an MCP server from the Strudel live-coding library docs at https://strudel.cc/workshop/getting-started — I want to be able to ask Claude questions about it",
+      "expected_output": "A fully runnable server.py and mcp_config.json in output/strudel-cc-mcp/, with clear instructions for installing into Claude Desktop",
+      "files": [],
+      "assertions": [
+        "Claude asks for or confirms the target URL before running anything",
+        "Claude provides the crawl.py command with --url and --max-depth flags",
+        "Claude suggests running extract_concepts.py with --dry-run first before spending API budget",
+        "Claude provides the full sequence of 5 pipeline commands (M1-M5)",
+        "Claude explains that ANTHROPIC_API_KEY is needed for M2",
+        "Claude mentions the --smoke-test flag for M4 to verify the embedding index",
+        "Claude provides clear instructions for installing the server into Claude Desktop",
+        "Claude explains what the 8 MCP tools do after the server is built"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want to index the React documentation so I can search it semantically in Claude. The docs are at https://react.dev/learn",
+      "expected_output": "Clear pipeline commands for the React docs, with appropriate --max-depth recommendation for a large doc site",
+      "files": [],
+      "assertions": [
+        "Claude provides M1 crawl command with the React docs URL",
+        "Claude suggests --max-depth 2 or warns that React docs may be large",
+        "Claude mentions the haiku model for cost-efficiency on a large site",
+        "Claude suggests using --max-pages 20 or similar to test before full run",
+        "Claude provides the complete pipeline sequence ending with server.py generation",
+        "Claude explains the output slug will be derived from the domain (react-dev)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I already ran the crawl and got 56 pages. Now I want to extract the concepts and build the MCP server. The output is in ./output/strudel-cc-mcp",
+      "expected_output": "Commands for M2 through M5 only, skipping M1, with dry-run suggestion",
+      "files": [],
+      "assertions": [
+        "Claude does NOT tell the user to re-run the crawl",
+        "Claude provides the extract_concepts.py --dry-run command first",
+        "Claude provides the live LLM extraction command with ANTHROPIC_API_KEY",
+        "Claude provides build_graph.py command pointing to ./output/strudel-cc-mcp",
+        "Claude provides build_embeddings.py command with --smoke-test",
+        "Claude provides generate_mcp_server.py command",
+        "All commands use --input ./output/strudel-cc-mcp"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "The extract_concepts.py script ran but it says 'Skipped 46 dry-run files' when I run build_graph.py and the graph has 0 nodes. What's wrong?",
+      "expected_output": "Clear diagnosis that dry-run mode was used and instructions to re-run with real API key",
+      "files": [],
+      "assertions": [
+        "Claude correctly identifies that extract_concepts.py was run with --dry-run flag",
+        "Claude explains that dry-run outputs have empty concept arrays (model: 'dry-run')",
+        "Claude provides the corrected command with ANTHROPIC_API_KEY set",
+        "Claude does NOT suggest deleting the extracted/ folder (--force flag is sufficient)",
+        "Claude provides the --force flag to overwrite dry-run outputs"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Make the Tailwind CSS docs searchable in Claude. Site: https://tailwindcss.com/docs",
+      "expected_output": "Pipeline commands with appropriate settings for a large CSS framework doc site",
+      "files": [],
+      "assertions": [
+        "Claude provides M1 command with the Tailwind docs URL",
+        "Claude recommends a reasonable max-depth (2-3) for a large docs site",
+        "Claude provides the full 5-step pipeline sequence",
+        "Claude mentions the final output will be in output/tailwindcss-com-mcp/ or similar",
+        "Claude mentions the dry-run step for cost verification before M2 LLM extraction"
+      ]
+    }
+  ]
+}

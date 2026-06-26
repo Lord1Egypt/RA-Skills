@@ -1,35 +1,66 @@
 ---
-name: "CP2K Cross-Code Input Studio"
-description: "Generate, refine, explain, and cross-convert CP2K-centered input drafts for computational chemistry and materials workflows. Use when a user wants a CP2K .in..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cp2k-crosscode-input-studio"
-sourceUrl: "https://clawhub.ai/skills/cp2k-crosscode-input-studio"
+name: cp2k-crosscode-input-studio
+description: Generate, refine, explain, and cross-convert CP2K-centered input drafts for computational chemistry and materials workflows. Use when a user wants a CP2K .inp file, asks to turn a natural-language request plus structure file into a runnable draft, wants help choosing conservative CP2K defaults, needs an existing CP2K input reviewed for task mapping, periodicity, SCF mode, basis/potential choices, k-points, dispersion, MD settings, or warning flags, or wants a CP2K draft translated into Gaussian, VASP, ORCA, or Quantum ESPRESSO input files. Helpful for CP2K input generation, input translation, quantum chemistry setup, materials simulation setup, and cross-code draft preparation.
 ---
 
-# CP2K Cross-Code Input Studio
+# CP2K input generator
 
-> Generate, refine, explain, and cross-convert CP2K-centered input drafts for computational chemistry and materials workflows. Use when a user wants a CP2K .in...
+Generate a practical CP2K draft, not a fake “final validated setup”. Prefer explicit assumptions, conservative defaults, and warnings over false certainty.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cp2k-crosscode-input-studio`
-- **Source URL:** [https://clawhub.ai/skills/cp2k-crosscode-input-studio](https://clawhub.ai/skills/cp2k-crosscode-input-studio)
+## Follow this workflow
 
-## Overview
+1. Read `references/design-rules.md`.
+2. Read `references/job-spec-schema.md` to understand the normalized contract.
+3. Read only the references needed for the current task:
+   - `references/cp2k-task-map.md` for task routing
+   - `references/cp2k-defaults.md` for safe defaults
+   - `references/cp2k-kinds.md` for basis/potential choices
+   - `references/ambiguity-policy.md` for under-specified requests
+   - `references/structure-sources.md` when the user needs a structure source rather than already having one
+   - `references/conversion-rules.md` when the user wants Gaussian/VASP/ORCA/Quantum ESPRESSO drafts derived from the CP2K draft or normalized spec
+4. Normalize the request before drafting the CP2K input.
+5. Generate three deliverables whenever possible:
+   - `normalized.json`
+   - `job.inp`
+   - `report.md`
 
+## Output discipline
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cp2k-crosscode-input-studio
-```
+Always make these clear:
+- interpreted task
+- detected system type
+- periodicity assumption
+- major defaults applied
+- warnings / review-required items
+
+Do not silently invent scientifically decisive inputs such as nontrivial charge, spin state for uncertain open-shell systems, or detailed periodic settings for an xyz file pretending to be a crystal.
+
+## Use the bundled scripts when helpful
+
+These scripts are local helper utilities for deterministic text generation inside the skill folder. They are intended for transparent, offline preprocessing/rendering of CP2K draft files, not hidden network actions or privileged system changes.
+
+- `scripts/normalize-request.py`: normalize a raw request JSON into the standard job spec
+- `scripts/render-cp2k-input.py`: render a CP2K input draft from the normalized spec and a structure file
+- `scripts/generate_cp2k_bundle.py`: one-shot pipeline that writes `normalized.json`, `job.inp`, and `report.md`
+- `scripts/convert-cp2k-input.py`: convert a generated CP2K draft into a conservative Gaussian, VASP, ORCA, or Quantum ESPRESSO draft
+
+## Current supported draft space
+
+Support is strongest for:
+- molecular xyz jobs
+- single-point energy
+- geometry optimization
+- cell optimization for periodic systems
+- short test MD inputs
+- vibrational analysis drafts
+- conservative periodic-material drafts with heuristic k-points
+- draft conversion from the generated CP2K input/spec into Gaussian, VASP, ORCA, and Quantum ESPRESSO input sets
+
+For harder cases like transition states, NEB, unusual excited-state methods, or poorly defined transition-metal spin states, generate a conservative draft only if the workflow is still interpretable and mark the risky fields for manual review.
+
+Do not pretend that every structure format is parsed equally deeply. If the renderer cannot deterministically recover element-wise KIND data from the provided structure file, keep the draft conservative, surface the limitation in `report.md`, and require manual review instead of fabricating details.
+
+If converting a CP2K input into another code, prefer CP2K drafts generated by this skill itself. Treat arbitrary hand-written CP2K files as only partially supported unless they stay close to the emitted block structure.
+file, keep the draft conservative, surface the limitation in `report.md`, and require manual review instead of fabricating details.
+
+If converting a CP2K input into another code, prefer CP2K drafts generated by this skill itself. Treat arbitrary hand-written CP2K files as only partially supported unless they stay close to the emitted block structure.

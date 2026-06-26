@@ -1,0 +1,4 @@
+interface:
+  display_name: "产品需求大法-评审沙盘"
+  short_description: "帮助产品经理澄清需求、共创产品文档并预演多角色评审"
+  default_prompt: "使用 $pm-requirement-review-sandbox 帮我澄清一个产品需求，并默认生成 PDF 版评审沙盘文档。"

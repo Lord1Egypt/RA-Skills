@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iKuai 路由报表</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0a0f1e;color:#e2e8f0;min-height:100vh;font-size:13px}
+.lay{padding:20px;max-width:1400px;margin:0 auto}
+/* header */
+.head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#111827;border-bottom:1px solid #1f2937;border-radius:12px;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.head h1{font-size:18px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.head-info{display:flex;gap:20px;align-items:center;font-size:12px;flex-wrap:wrap}
+.head-info span.text-muted{color:#64748b}
+.head-info span.text-primary{color:#38bdf8}
+.divider{width:1px;height:24px;background:#334155}
+/* tabs */
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:#1f2937;color:#94a3b8;transition:all .2s}
+.tab:hover{background:#374151}
+.tab.active{background:#1d4ed8;color:#fff}
+/* grid */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+.g4{grid-template-columns:1fr 1fr 1fr 1fr}
+/* card */
+.card{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:20px;margin-bottom:0}
+.card h2{font-size:13px;font-weight:600;color:#f1f5f9;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #1f2937;display:flex;align-items:center;gap:6px}
+/* section */
+.sec{margin-bottom:20px}
+.tag{display:inline-block;font-size:9px;padding:1px 6px;border-radius:3px;background:#1e293b;color:#38bdf8;margin-right:6px;letter-spacing:.05em;text-transform:uppercase}
+/* info rows */
+.ir{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #1a2234;font-size:12px}
+.ir:last-child{border-bottom:none}
+.ir-lbl{color:#64748b}
+.ir-val{color:#e2e8f0;font-weight:500}
+.badge{display:inline-block;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:600}
+.bg-green{background:#0d2818;color:#4ade80}
+.bg-red{background:#2d0d0d;color:#f87171}
+.bg-blue{background:#0f172a;color:#7dd3fc}
+.bg-yellow{background:#2d1f06;color:#fbbf24}
+.bg-purple{background:#1a0f2e;color:#c084fc}
+.bg-orange{background:#2d1a06;color:#fb923c}
+.bg-gray{background:#1f2937;color:#94a3b8}
+/* stat */
+.stat-box{background:#0d1525;border:1px solid #1f2937;border-radius:10px;padding:14px 10px;text-align:center}
+.stat-big{font-size:22px;font-weight:700}
+.stat-lbl{font-size:10px;color:#64748b;text-transform:uppercase;margin-top:2px;letter-spacing:.05em}
+/* progress */
+.prog{height:5px;background:#1f2937;border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px}
+/* table */
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:8px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#475569;border-bottom:1px solid #1f2937;white-space:nowrap}
+td{padding:8px 10px;font-size:12px;color:#cbd5e1;border-bottom:1px solid #1a2234}
+tr:hover td{background:#1a2537}
+/* rank */
+.rank{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;font-size:10px;font-weight:700}
+.r1{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000}
+.r2{background:#334155;color:#94a3b8}
+.rn{background:#1f2937;color:#64748b}
+/* chart */
+.chart-wrap{position:relative;height:200px}
+.chart-wrap-l{position:relative;height:240px}
+canvas{display:block}
+/* nic row */
+.nic{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;margin-bottom:6px;font-size:12px}
+.nic-green{background:#0d2818;border:1px solid #1a3d2a}
+.nic-red{background:#2d0d0d;border:1px solid #3d1a1a}
+.nic-gray{background:#1a1f2e;border:1px solid #2a2f3a}
+.nic-lbl{font-family:monospace;font-weight:600;width:44px}
+.nic-info{flex:1;color:#64748b;font-family:monospace;font-size:11px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dot-green{background:#4ade80;box-shadow:0 0 6px #4ade8066}
+.dot-red{background:#f87171;box-shadow:0 0 6px #f8717166}
+.dot-gray{background:#475569}
+/* log */
+.log-item{display:flex;align-items:flex-start;gap:10px;padding:6px 8px;border-radius:6px;margin-bottom:2px;font-size:12px}
+.log-item:hover{background:#1a2537}
+.log-time{color:#475569;font-size:11px;white-space:nowrap;padding-top:1px;min-width:140px}
+.log-icon{font-size:13px;min-width:16px;text-align:center}
+.log-msg{flex:1}
+.log-ok{color:#4ade80}
+.log-warn{color:#fbbf24}
+.log-info{color:#64748b}
+/* legend */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:11px;color:#64748b}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+/* footer */
+.footer{margin-top:24px;border-top:1px solid #1f2937;padding-top:16px}
+.footer h2{font-size:12px;font-weight:600;color:#475569;margin-bottom:12px;text-transform:uppercase;letter-spacing:.1em}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(500px,1fr));gap:8px}
+.src-item{background:#0d1525;border:1px solid #1f2937;border-radius:8px;padding:10px 14px;font-size:11px}
+.src-item .src-cmd{font-family:monospace;color:#38bdf8;margin-bottom:2px}
+.src-item .src-out{font-family:monospace;color:#475569;font-size:10px;max-height:60px;overflow:hidden;white-space:pre}
+.src-note{color:#64748b;font-size:11px;margin-top:8px;text-align:center}
+/* realtime */
+.rt-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rt-card{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:16px}
+.rt-card h3{font-size:12px;font-weight:600;color:#f1f5f9;margin-bottom:12px}
+.rt-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12px}
+.rt-lbl{color:#64748b}
+.rt-val{font-weight:600;font-family:monospace}
+/* hide */
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="lay">
+
+<!-- Header -->
+<div class="head">
+  <h1>iKuai 路由报表</h1>
+  <div class="head-info">
+    <div><span class="text-muted">固件</span><br><span class="text-primary">4.0.210-beta x64</span></div>
+    <div class="divider"></div>
+    <div><span class="text-muted">路由 IP</span><br><span>10.10.10.253</span></div>
+    <div class="divider"></div>
+    <div><span class="text-muted">WAN IP</span><br><span class="text-primary">10.64.211.237</span></div>
+    <div class="divider"></div>
+    <div><span class="text-muted">在线/总设备</span><br><span class="text-primary">24 / 28</span></div>
+    <div class="divider"></div>
+    <div><span class="text-muted">生成时间</span><br><span id="ts">--</span></div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab active" onclick="showTab('overview')">总览</button>
+  <button class="tab" onclick="showTab('network')">网络配置</button>
+  <button class="tab" onclick="showTab('traffic')">流量分析</button>
+  <button class="tab" onclick="showTab('security')">安全状态</button>
+  <button class="tab" onclick="showTab('logs')">系统日志</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="tab-overview">
+  <div class="sec">
+    <div class="grid g4">
+      <div class="card">
+        <h2><span class="tag">SYS</span>系统状态</h2>
+        <div class="ir"><span class="ir-lbl">设备名称</span><span class="ir-val" style="color:#4ade80">iKuai</span></div>
+        <div class="ir"><span class="ir-lbl">固件版本</span><span class="ir-val">4.0.210-beta x64</span></div>
+        <div class="ir"><span class="ir-lbl">构建日期</span><span class="ir-val">2026-04-16</span></div>
+        <div class="ir"><span class="ir-lbl">运行时间</span><span class="ir-val" style="color:#4ade80">4d 16h 0m</span></div>
+        <div class="ir"><span class="ir-lbl">设备总数</span><span class="ir-val">28 台</span></div>
+        <div class="ir"><span class="ir-lbl">当前在线</span><span class="ir-val" style="color:#38bdf8">24 台</span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">RES</span>资源使用</h2>
+        <div style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span class="text-muted">CPU (3核)</span><span style="color:#38bdf8;font-weight:600">均值 2.34%</span></div>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1"><div class="prog"><div class="prog-fill" style="width:2.0%;background:#3b82f6"></div></div><div style="font-size:9px;color:#475569;text-align:center;margin-top:2px">核0 2.01%</div></div>
+            <div style="flex:1"><div class="prog"><div class="prog-fill" style="width:3.0%;background:#10b981"></div></div><div style="font-size:9px;color:#475569;text-align:center;margin-top:2px">核1 3.00%</div></div>
+            <div style="flex:1"><div class="prog"><div class="prog-fill" style="width:2.0%;background:#f59e0b"></div></div><div style="font-size:9px;color:#475569;text-align:center;margin-top:2px">核2 2.00%</div></div>
+          </div>
+        </div>
+        <div style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span class="text-muted">内存</span><span style="color:#4ade80;font-weight:600">32%</span></div>
+          <div class="prog"><div class="prog-fill" style="width:32%;background:#4ade80"></div></div>
+          <div style="font-size:10px;color:#64748b;margin-top:3px">648 MB / 2025 MB</div>
+        </div>
+        <div class="grid g3" style="margin-top:10px">
+          <div class="stat-box"><div class="stat-big" style="color:#38bdf8">24</div><div class="stat-lbl">在线</div></div>
+          <div class="stat-box"><div class="stat-big" style="color:#4ade80">24</div><div class="stat-lbl">有线</div></div>
+          <div class="stat-box"><div class="stat-big" style="color:#64748b">0</div><div class="stat-lbl">无线</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">FLOW</span>流量总览</h2>
+        <div style="margin-bottom:12px">
+          <div class="text-muted" style="font-size:10px;margin-bottom:2px">总下行</div>
+          <div style="font-size:24px;font-weight:700;color:#38bdf8">222.71 GB</div>
+        </div>
+        <div style="margin-bottom:12px">
+          <div class="text-muted" style="font-size:10px;margin-bottom:2px">总上行</div>
+          <div style="font-size:24px;font-weight:700;color:#4ade80">26.83 GB</div>
+        </div>
+        <div class="grid g2">
+          <div class="stat-box"><div class="stat-big" style="color:#fbbf24">331</div><div class="stat-lbl">连接数</div></div>
+          <div class="stat-box"><div class="stat-big" style="color:#38bdf8">283.1K</div><div class="stat-lbl">KB/s</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">NET</span>物理网口</h2>
+        <div class="nic nic-green"><span class="dot dot-green"></span><span class="nic-lbl" style="color:#4ade80">eth0</span><span class="nic-info">LAN · Virtio · 62:cd:d5:6c:0f:0c · Up</span><span class="badge bg-green">UP</span></div>
+        <div class="nic nic-gray"><span class="dot dot-gray"></span><span class="nic-lbl" style="color:#64748b">eth1</span><span class="nic-info">LAN · Intel I211 · e4:3a:6e:2b:c8:ef · Down</span><span class="badge bg-gray">DOWN</span></div>
+        <div class="nic nic-green"><span class="dot dot-green"></span><span class="nic-lbl" style="color:#4ade80">eth2</span><span class="nic-info">LAN · Intel I211 · e4:3a:6e:2b:c8:f0 · 1000M</span><span class="badge bg-green">UP</span></div>
+        <div class="nic nic-gray"><span class="dot dot-gray"></span><span class="nic-lbl" style="color:#64748b">eth3</span><span class="nic-info">LAN · Intel I211 · e4:3a:6e:2b:c8:f1 · Down</span><span class="badge bg-gray">DOWN</span></div>
+        <div class="nic nic-gray"><span class="dot dot-gray"></span><span class="nic-lbl" style="color:#64748b">eth4</span><span class="nic-info">LAN · Intel I211 · e4:3a:6e:2b:c8:f2 · Down</span><span class="badge bg-gray">DOWN</span></div>
+        <div class="nic nic-red"><span class="dot dot-red"></span><span class="nic-lbl" style="color:#f87171">eth5</span><span class="nic-info">WAN · Intel I211 · e4:3a:6e:2b:c8:f3 · 1000M</span><span class="badge bg-red">ACTIVE</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="sec">
+    <div class="grid g2">
+      <div class="card">
+        <h2><span class="tag">CHT</span>流量分布</h2>
+        <div class="chart-wrap"><canvas id="cPie"></canvas></div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div><span id="downpct">下行 —</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div><span id="uppct">上行 —</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">CHT</span>协议类型占比</h2>
+        <div class="chart-wrap"><canvas id="cProto"></canvas></div>
+        <div class="legend" id="protoLegend"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="grid g2">
+      <div class="card">
+        <h2><span class="tag">CHT</span>应用流量 Top 10</h2>
+        <div class="chart-wrap-l"><canvas id="cApp"></canvas></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">CHT</span>设备流量 Top 10</h2>
+        <div class="chart-wrap-l"><canvas id="cDev"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Realtime interface -->
+  <div class="sec">
+    <div class="card">
+      <h2><span class="tag">RT</span>接口实时流量 <span style="font-weight:400;font-size:10px;color:#475569;margin-left:6px">采样于 2026-05-05 09:43</span></h2>
+      <div class="rt-grid">
+        <div class="rt-card">
+          <h3><span class="badge bg-green">LAN</span> eth0 @ 10.10.10.253</h3>
+          <div class="grid g2" style="gap:8px;margin:10px 0">
+            <div class="stat-box"><div class="stat-big" style="color:#38bdf8">283.1</div><div class="stat-lbl">KB/s 下载</div></div>
+            <div class="stat-box"><div class="stat-big" style="color:#4ade80">142.1</div><div class="stat-lbl">KB/s 上传</div></div>
+          </div>
+          <div class="rt-row"><span class="rt-lbl">总下载</span><span class="rt-val" style="color:#38bdf8">222.71 GB</span></div>
+          <div class="rt-row"><span class="rt-lbl">总上传</span><span class="rt-val" style="color:#4ade80">26.83 GB</span></div>
+          <div class="rt-row"><span class="rt-lbl">连接数</span><span class="rt-val">331</span></div>
+        </div>
+        <div class="rt-card">
+          <h3><span class="badge bg-red">WAN</span> wan1 @ 10.64.211.237</h3>
+          <div class="grid g2" style="gap:8px;margin:10px 0">
+            <div class="stat-box"><div class="stat-big" style="color:#38bdf8">283.1</div><div class="stat-lbl">KB/s 下载</div></div>
+            <div class="stat-box"><div class="stat-big" style="color:#4ade80">142.1</div><div class="stat-lbl">KB/s 上传</div></div>
+          </div>
+          <div class="rt-row"><span class="rt-lbl">总下载</span><span class="rt-val" style="color:#38bdf8">222.71 GB</span></div>
+          <div class="rt-row"><span class="rt-lbl">总上传</span><span class="rt-val" style="color:#4ade80">26.83 GB</span></div>
+          <div class="rt-row"><span class="rt-lbl">连接数</span><span class="rt-val" style="color:#fbbf24">331</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NETWORK -->
+<div id="tab-network" class="hide">
+  <div class="sec">
+    <div class="grid g2">
+      <div class="card">
+        <h2><span class="tag">WAN</span>WAN 口配置</h2>
+        <div class="ir"><span class="ir-lbl">接口名</span><span class="ir-val" style="color:#f87171">wan1</span></div>
+        <div class="ir"><span class="ir-lbl">接入方式</span><span class="ir-val"><span class="badge bg-red">PPPoE</span></span></div>
+        <div class="ir"><span class="ir-lbl">用户名</span><span class="ir-val" style="font-family:monospace;font-size:11px">w18214600173</span></div>
+        <div class="ir"><span class="ir-lbl">密码</span><span class="ir-val" style="font-family:monospace;font-size:11px;color:#64748b">******</span></div>
+        <div class="ir"><span class="ir-lbl">WAN IP</span><span class="ir-val" style="color:#38bdf8;font-family:monospace">10.64.211.237</span></div>
+        <div class="ir"><span class="ir-lbl">网关</span><span class="ir-val" style="font-family:monospace">10.64.0.1</span></div>
+        <div class="ir"><span class="ir-lbl">子网掩码</span><span class="ir-val" style="font-family:monospace">255.255.255.255</span></div>
+        <div class="ir"><span class="ir-lbl">PPPoE DNS 1</span><span class="ir-val" style="font-family:monospace">211.139.29.150</span></div>
+        <div class="ir"><span class="ir-lbl">PPPoE DNS 2</span><span class="ir-val" style="font-family:monospace">211.139.29.170</span></div>
+        <div class="ir"><span class="ir-lbl">物理网卡</span><span class="ir-val" style="font-family:monospace">eth5 (Intel I211)</span></div>
+        <div class="ir"><span class="ir-lbl">MTU / MRU</span><span class="ir-val">1480</span></div>
+        <div class="ir"><span class="ir-lbl">连接模式</span><span class="ir-val">持续在线</span></div>
+        <div class="ir"><span class="ir-lbl">PPPoE 状态</span><span class="ir-val"><span class="badge bg-green">已连接</span></span></div>
+        <div class="ir"><span class="ir-lbl">线路检测</span><span class="ir-val"><span class="badge bg-green">成功</span> www.baidu.com</span></div>
+        <div class="ir"><span class="ir-lbl">检测模式</span><span class="ir-val">持续检测</span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">LAN</span>LAN 口配置</h2>
+        <div class="ir"><span class="ir-lbl">LAN IP</span><span class="ir-val" style="color:#38bdf8;font-family:monospace;font-size:16px;font-weight:700">10.10.10.253</span></div>
+        <div class="ir"><span class="ir-lbl">子网掩码</span><span class="ir-val" style="font-family:monospace">255.255.255.0 (/24)</span></div>
+        <div class="ir"><span class="ir-lbl">DHCP</span><span class="ir-val"><span class="badge bg-green">已启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">地址池</span><span class="ir-val" style="font-family:monospace;font-size:11px">10.10.10.2 - 10.10.10.250</span></div>
+        <div class="ir"><span class="ir-lbl">DHCP 租期</span><span class="ir-val">120 分钟</span></div>
+        <div class="ir"><span class="ir-lbl">LAN NAT</span><span class="ir-val"><span class="badge bg-green">启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">物理网卡</span><span class="ir-val" style="font-family:monospace;font-size:11px">eth0 (Virtio)</span></div>
+        <div class="ir"><span class="ir-lbl">DNS 1</span><span class="ir-val" style="font-family:monospace">114.114.114.114</span></div>
+        <div class="ir"><span class="ir-lbl">DNS 2</span><span class="ir-val" style="font-family:monospace">119.29.29.29</span></div>
+        <div class="ir"><span class="ir-lbl">接口模式</span><span class="ir-val">路由模式</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="grid g2">
+      <div class="card">
+        <h2><span class="tag">DNS</span>DNS 配置</h2>
+        <div class="ir"><span class="ir-lbl">DNS 转发</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">DNS 服务器 1</span><span class="ir-val" style="font-family:monospace;color:#38bdf8">114.114.114.114</span></div>
+        <div class="ir"><span class="ir-lbl">DNS 服务器 2</span><span class="ir-val" style="font-family:monospace">119.29.29.29</span></div>
+        <div class="ir"><span class="ir-lbl">DoH</span><span class="ir-val" style="font-family:monospace;font-size:10px;color:#64748b">https://doh.pub/dns-query</span></div>
+        <div class="ir"><span class="ir-lbl">缓存 TTL</span><span class="ir-val">300 秒</span></div>
+        <div class="ir"><span class="ir-lbl">DNS 防御</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">NAT</span>端口转发 / DMZ / NAT</h2>
+        <div class="ir"><span class="ir-lbl">端口转发 (DNAT)</span><span class="ir-val"><span class="badge bg-gray">0 条规则</span></span></div>
+        <div class="ir"><span class="ir-lbl">DMZ 主机</span><span class="ir-val"><span class="badge bg-gray">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">NAT 规则</span><span class="ir-val"><span class="badge bg-gray">0 条规则</span></span></div>
+        <div class="ir"><span class="ir-lbl">NAT 状态</span><span class="ir-val"><span class="badge bg-green">启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">Fast NAT</span><span class="ir-val"><span class="badge bg-red">关闭</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="grid g3">
+      <div class="card">
+        <h2><span class="tag">VPN</span>PPTP VPN</h2>
+        <div class="ir"><span class="ir-lbl">状态</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">服务器 IP</span><span class="ir-val" style="font-family:monospace">10.0.0.1</span></div>
+        <div class="ir"><span class="ir-lbl">地址池</span><span class="ir-val" style="font-family:monospace;font-size:10px">10.0.0.2-10.0.0.254</span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">VPN</span>L2TP VPN</h2>
+        <div class="ir"><span class="ir-lbl">状态</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">服务器 IP</span><span class="ir-val" style="font-family:monospace">10.1.0.1</span></div>
+        <div class="ir"><span class="ir-lbl">地址池</span><span class="ir-val" style="font-family:monospace;font-size:10px">10.1.0.2-10.1.0.254</span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">QOS</span>QoS 带宽控制</h2>
+        <div class="ir"><span class="ir-lbl">IP QoS</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">MAC QoS</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">IP QoS 规则</span><span class="ir-val" style="color:#64748b">0 条</span></div>
+        <div class="ir"><span class="ir-lbl">WAN 下载限速</span><span class="ir-val"><span class="badge bg-red">未限速</span></span></div>
+        <div class="ir"><span class="ir-lbl">WAN 上传限速</span><span class="ir-val"><span class="badge bg-red">未限速</span></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAFFIC -->
+<div id="tab-traffic" class="hide">
+  <div class="sec">
+    <div class="card">
+      <h2><span class="tag">PROTO</span>协议流量分布 (按应用分类)</h2>
+      <div style="height:220px"><canvas id="cProtoBar"></canvas></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="card">
+      <h2><span class="tag">APP</span>应用流量明细 <span id="appTotal" style="font-weight:400;font-size:11px;color:#64748b;margin-left:8px">共 20 个应用，总流量 38.89 GB</span></h2>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>#</th><th>应用名称</th><th>分类</th><th>二级分类</th><th>下行</th><th>上行</th><th>总流量</th><th>占比</th><th style="width:140px">流量分布</th></tr></thead>
+          <tbody id="appBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="card">
+      <h2><span class="tag">DEV</span>设备流量明细 <span id="devCount" style="font-weight:400;font-size:11px;color:#64748b;margin-left:8px">共 20 台设备</span></h2>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>#</th><th>IP 地址</th><th>MAC 地址</th><th>设备类型</th><th>下行</th><th>上行</th><th>总流量</th><th>占比</th><th style="width:140px">流量分布</th></tr></thead>
+          <tbody id="devBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div id="tab-security" class="hide">
+  <div class="sec">
+    <div class="grid g3">
+      <div class="card">
+        <h2><span class="tag">ACL</span>IP 访问控制</h2>
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:36px;font-weight:700;color:#f87171">0</div>
+          <div style="font-size:12px;color:#64748b;margin-top:4px">ACL 规则数</div>
+          <div style="margin-top:8px"><span class="badge bg-red">无规则</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">L7</span>L7 应用规则</h2>
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:36px;font-weight:700;color:#64748b">0</div>
+          <div style="font-size:12px;color:#64748b;margin-top:4px">L7 规则数</div>
+          <div style="margin-top:8px"><span class="badge bg-gray">无规则</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">URL</span>URL 过滤</h2>
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:36px;font-weight:700;color:#64748b">0</div>
+          <div style="font-size:12px;color:#64748b;margin-top:4px">URL 规则数</div>
+          <div style="margin-top:8px"><span class="badge bg-gray">无规则</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="grid g3">
+      <div class="card">
+        <h2><span class="tag">MAC</span>MAC 过滤</h2>
+        <div class="ir"><span class="ir-lbl">过滤模式</span><span class="ir-val"><span class="badge bg-gray">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">MAC 规则数</span><span class="ir-val" style="color:#64748b">0</span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">DOMAIN</span>域名黑名单</h2>
+        <div class="ir"><span class="ir-lbl">黑名单规则数</span><span class="ir-val" style="color:#64748b">0</span></div>
+        <div class="ir"><span class="ir-lbl">状态</span><span class="ir-val"><span class="badge bg-gray">未启用</span></span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">VPN</span>VPN 服务</h2>
+        <div class="ir"><span class="ir-lbl">PPTP</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">L2TP</span><span class="ir-val"><span class="badge bg-red">未启用</span></span></div>
+        <div class="ir"><span class="ir-lbl">OpenVPN</span><span class="ir-val"><span class="badge bg-gray">未配置</span></span></div>
+        <div class="ir"><span class="ir-lbl">WireGuard</span><span class="ir-val"><span class="badge bg-gray">未配置</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="grid g2">
+      <div class="card">
+        <h2><span class="tag">SYS</span>系统安全配置</h2>
+        <div class="ir"><span class="ir-lbl">Web 管理 LAN</span><span class="ir-val" style="font-family:monospace;font-size:11px">80 / 443</span></div>
+        <div class="ir"><span class="ir-lbl">Web 管理 WAN</span><span class="ir-val"><span class="badge bg-green">已开放</span></span></div>
+        <div class="ir"><span class="ir-lbl">SSH 远程</span><span class="ir-val"><span class="badge bg-red">关闭</span></span></div>
+        <div class="ir"><span class="ir-lbl">FTP 远程</span><span class="ir-val"><span class="badge bg-red">关闭</span></span></div>
+        <div class="ir"><span class="ir-lbl">LAN NAT</span><span class="ir-val"><span class="badge bg-green">启用</span></span></div>
+      </div>
+      <div class="card">
+        <h2><span class="tag">USERS</span>在线设备明细 <span style="font-weight:400;font-size:11px;color:#64748b">(24台)</span></h2>
+        <div style="overflow-y:auto;max-height:300px">
+          <table>
+            <thead><tr><th>IP</th><th>设备</th><th>厂商</th><th>连接</th></tr></thead>
+            <tbody id="onlineBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGS -->
+<div id="tab-logs" class="hide">
+  <div class="sec">
+    <div class="card">
+      <h2><span class="tag">LOG</span>系统日志 <span style="font-weight:400;font-size:11px;color:#64748b;margin-left:8px">共 160 条</span></h2>
+      <div style="max-height:600px;overflow-y:auto;padding-right:4px" id="logContainer"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA SOURCES -->
+<div class="footer">
+  <h2>📋 数据来源 / ikuai-cli 命令</h2>
+  <div class="src-grid" id="srcGrid"></div>
+  <div class="src-note" id="srcNote"></div>
+</div>
+
+</div><!-- /lay -->
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────
+const fmt=v=>{if(v>=1e12)return(v/1e12).toFixed(2)+' TB';if(v>=1e9)return(v/1e9).toFixed(2)+' GB';if(v>=1e6)return(v/1e6).toFixed(2)+' MB';if(v>=1e3)return(v/1e3).toFixed(2)+' KB';return v+' B';};
+const fmtNum=v=>{if(v>=1e6)return(v/1e6).toFixed(2)+' M';if(v>=1e3)return(v/1e3).toFixed(2)+' K';return v;};
+
+const totalDown=222706666418;
+const totalUp=26826348181;
+const totalFlow=totalDown+totalUp;
+
+const protocols=[
+  {name:"休闲娱乐",total:50150404167},
+  {name:"网络协议",total:40493022685},
+  {name:"未知应用",total:19503151943},
+  {name:"传输下载",total:4020692917},
+  {name:"社交通讯",total:2679485722},
+  {name:"效率工具",total:1396722780},
+  {name:"办公协作",total:788512602},
+  {name:"生活服务",total:699571654},
+  {name:"学习教育",total:59167380},
+  {name:"网络游戏",total:10229760},
+  {name:"金融理财",total:1916265},
+];
+
+const apps=[
+  {name:"SSL",cat:"基础协议",sub:"网络协议",down:11121241176,up:1191889243,total:12313130419},
+  {name:"未知协议",cat:"未知应用",sub:"未知应用",down:10974327924,up:380963902,total:11355291826},
+  {name:"HTTPS",cat:"基础协议",sub:"网络协议",down:1542068994,up:1072593911,total:2614662905},
+  {name:"Apple私有协议",cat:"通用协议",sub:"网络协议",down:2201359706,up:313562502,total:2514922208},
+  {name:"抖音视频数据",cat:"视频软件",sub:"休闲娱乐",down:2211867539,up:22069696,total:2233937235},
+  {name:"微信视频号",cat:"视频软件",sub:"休闲娱乐",down:2126530761,up:18011321,total:2144542082},
+  {name:"抖音直播数据",cat:"直播软件",sub:"休闲娱乐",down:635582001,up:28286823,total:663868824},
+  {name:"爱奇艺PPS视频",cat:"视频软件",sub:"休闲娱乐",down:496164854,up:11672231,total:507837085},
+  {name:"字节跳动通用协议",cat:"通用协议",sub:"网络协议",down:261283736,up:124638078,total:385921814},
+  {name:"GitHub",cat:"开发者工具",sub:"效率工具",down:373864315,up:6552594,total:380416909},
+  {name:"今日头条视频数据",cat:"视频软件",sub:"休闲娱乐",down:377752777,up:1074328,total:378827105},
+  {name:"AppleAppStore",cat:"应用商店",sub:"传输下载",down:349034582,up:2788105,total:351822687},
+  {name:"网页下载",cat:"文件传输",sub:"网络协议",down:345774355,up:4101499,total:349875854},
+  {name:"DNS",cat:"基础协议",sub:"网络协议",down:325722492,up:14184257,total:339906749},
+  {name:"ToDesk",cat:"远程工具",sub:"效率工具",down:296073562,up:6644598,total:302718160},
+  {name:"抖音短视频",cat:"视频软件",sub:"休闲娱乐",down:222558059,up:40079112,total:262637171},
+  {name:"网页浏览",cat:"基础协议",sub:"网络协议",down:236227114,up:7612358,total:243839472},
+  {name:"腾讯视频",cat:"视频软件",sub:"休闲娱乐",down:215532419,up:1429459,total:216961878},
+  {name:"QUIC",cat:"基础协议",sub:"网络协议",down:194005955,up:11287168,total:205293123},
+  {name:"小米监控",cat:"安防监控",sub:"生活服务",down:6534029,up:103418513,total:109952542},
+];
+
+const terminals=[
+  {ip:"10.10.10.24",mac:"00:04:4b:e8:03:40",down:676211998,up:17991412,total:694203410,type:"Proxmox"},
+  {ip:"10.10.10.250",mac:"00:11:32:a1:1c:a4",down:2934100,up:4716363,total:7650463,type:"群晖NAS"},
+  {ip:"10.10.10.4",mac:"00:16:f5:50:ab:93",down:5896914,up:9000290,total:14897204,type:"Proxmox"},
+  {ip:"10.10.10.16",mac:"04:e2:29:d9:10:26",down:267623,up:565552,total:833175,type:"小米路由RA70"},
+  {ip:"10.10.10.25",mac:"18:fa:b7:11:c5:2b",down:1047055627,up:30349158,total:1077404785,type:"Apple"},
+  {ip:"10.10.10.15",mac:"34:ee:16:34:f8:7f",down:10860904,up:560619,total:11421523,type:"Proxmox"},
+  {ip:"10.10.10.18",mac:"3e:d3:e8:ab:3a:89",down:722090787,up:20862438,total:742953225,type:"iPhone"},
+  {ip:"10.10.10.19",mac:"48:70:1e:b2:f0:21",down:2840217,up:57104220,total:59944437,type:"Xiaomi"},
+  {ip:"10.10.10.11",mac:"58:b6:23:41:46:e5",down:174832,up:190752,total:365584,type:"小米智能晾衣架"},
+  {ip:"10.10.10.9",mac:"58:b6:23:76:04:4b",down:170930,up:187521,total:358451,type:"小米智能门铃"},
+  {ip:"10.10.10.6",mac:"60:7e:a4:e5:fa:7e",down:1501071,up:18574869,total:20075940,type:"小米摄像头"},
+  {ip:"10.10.10.5",mac:"64:64:4a:7d:00:dc",down:2230410,up:1036441,total:3266851,type:"小爱同学X08A"},
+  {ip:"10.10.10.8",mac:"6e:37:74:2c:7e:ec",down:205605694,up:3254032,total:208859726,type:"iPhone"},
+  {ip:"10.10.10.13",mac:"70:86:ce:94:e6:26",down:146744,up:172090,total:318834,type:"Proxmox"},
+  {ip:"10.10.10.14",mac:"90:0f:0c:b8:8b:95",down:17851457,up:8996229,total:26847686,type:"Proxmox"},
+  {ip:"10.10.10.2",mac:"9c:9d:7e:7d:a0:e8",down:468396,up:397808,total:866204,type:"小米路由RA70"},
+  {ip:"10.10.10.17",mac:"9c:9d:7e:7e:2d:97",down:484753,up:457932,total:942685,type:"iStoreOS"},
+  {ip:"10.10.10.3",mac:"b0:4a:39:28:1c:cb",down:241502,up:189212,total:430714,type:"石头扫地机器人"},
+  {ip:"10.10.10.20",mac:"b8:50:d8:50:64:4e",down:156524,up:174404,total:330928,type:"米家微波炉"},
+  {ip:"10.10.10.19",mac:"bc:24:11:69:ac:25",down:3237493864,up:705721556,total:3943215420,type:"iStoreOS 易有云"},
+];
+terminals.sort((a,b)=>b.total-a.total);
+
+const onlineClients=[
+  {ip:"10.10.10.6",hostname:"chuangmi_camera_039a01",vendor:"Xiaomi",conn:7},
+  {ip:"10.10.10.11",hostname:"viomi-airer-vcy102",vendor:"Xiaomi",conn:1},
+  {ip:"10.10.10.14",hostname:"",vendor:"Proxmox",conn:7},
+  {ip:"10.10.10.254",hostname:"",vendor:"Xiaomi",conn:49},
+  {ip:"10.10.10.17",hostname:"",vendor:"Proxmox",conn:1},
+  {ip:"10.10.10.4",hostname:"",vendor:"Proxmox",conn:1},
+  {ip:"10.10.10.24",hostname:"",vendor:"Proxmox",conn:4},
+  {ip:"10.10.10.248",hostname:"",vendor:"Synology",conn:2},
+  {ip:"10.10.10.3",hostname:"roborock-vacuum-a29",vendor:"Roborock",conn:1},
+  {ip:"10.10.10.233",hostname:"",vendor:"Unknown",conn:2},
+  {ip:"10.10.10.252",hostname:"",vendor:"iStoreOS",conn:95},
+  {ip:"10.10.10.5",hostname:"XiaoAiTongXueX08A",vendor:"Xiaomi",conn:8},
+  {ip:"10.10.10.2",hostname:"MiWiFi-RA70",vendor:"Xiaomi",conn:1},
+  {ip:"10.10.10.7",hostname:"",vendor:"Hualai",conn:7},
+  {ip:"10.10.10.20",hostname:"",vendor:"Xiaomi",conn:1},
+  {ip:"10.10.10.10",hostname:"VEEdeMBP",vendor:"Apple",conn:29},
+  {ip:"10.10.10.21",hostname:"VUM",vendor:"Unknown",conn:1},
+  {ip:"10.10.10.9",hostname:"linp-doorbell-g04",vendor:"Xiaomi",conn:1},
+  {ip:"10.10.10.250",hostname:"",vendor:"Synology",conn:6},
+  {ip:"10.10.10.18",hostname:"iPhone",vendor:"Apple",conn:6},
+];
+
+const logs=[
+  {t:"2025-03-20 07:10:21",c:"系统关闭",s:"warn"},
+  {t:"2025-03-20 07:11:13",c:"系统启动",s:"info"},
+  {t:"2025-03-20 07:37:23",c:"系统启动",s:"info"},
+  {t:"2025-03-20 07:48:08",c:"线路检测: 接口(eth1)连接.",s:"ok"},
+  {t:"2025-03-20 07:48:32",c:"线路检测: 接口(eth1)断开.",s:"warn"},
+  {t:"2025-03-20 07:48:35",c:"线路检测: 接口(eth1)连接.",s:"ok"},
+  {t:"2025-03-20 15:48:40",c:"系统启动",s:"info"},
+  {t:"2025-03-20 15:48:40",c:"线路检测: (wan1)线路检测成功",s:"ok"},
+  {t:"2025-03-20 15:48:51",c:"升级DPI特征库成功",s:"ok"},
+  {t:"2025-04-06 23:59:32",c:"线路检测: 接口(eth5)连接.",s:"ok"},
+  {t:"2025-04-07 00:00:02",c:"系统启动",s:"info"},
+  {t:"2025-05-30 14:43:25",c:"系统关闭",s:"warn"},
+  {t:"2025-05-30 14:45:55",c:"系统关闭",s:"warn"},
+  {t:"2025-05-30 14:48:45",c:"线路检测: 接口(eth1)连接.",s:"ok"},
+  {t:"2025-05-30 14:49:15",c:"系统启动",s:"info"},
+  {t:"2025-05-30 15:01:32",c:"线路检测: 接口(eth1)断开.",s:"warn"},
+  {t:"2026-05-05 09:00:00",c:"线路检测: (wan1)线路检测成功",s:"ok"},
+  {t:"2026-05-05 09:00:00",c:"系统运行中",s:"info"},
+];
+
+const sources=[
+  {cmd:"ikuai-cli monitor system --format json",out:'{"sysinfo":{"hostname":"iKuai","version":"4.0.210","uptime":403228,...}}'},
+  {cmd:"ikuai-cli monitor traffic-summary --format json",out:'{"terminal_total":28,"terminal_total_flow":7384724693,...}'},
+  {cmd:"ikuai-cli monitor app-traffic-summary --format json",out:'{"proto3_day_total":153,"proto3_day_total_flow":38889867699,...}'},
+  {cmd:"ikuai-cli monitor protocols --format json",out:'{"data":[{"proto_name":"休闲娱乐","total":50150404167},...]}'},
+  {cmd:"ikuai-cli monitor clients-online --format json",out:'{"total":27,"data":[...]}'},
+  {cmd:"ikuai-cli monitor interfaces-physical --format json",out:'{"ether_info":{"eth0":{"link":1},...}}'},
+  {cmd:"ikuai-cli network wan --format json",out:'{"data":[{"pppoe_ip_addr":"10.64.211.237",...}]}'},
+  {cmd:"ikuai-cli network lan list --format json",out:'{"data":[{"ip_mask":"10.10.10.253/255.255.255.0",...}]}'},
+  {cmd:"ikuai-cli network dns get --format json",out:'{"data":[{"dns1":"114.114.114.114",...}]}'},
+  {cmd:"ikuai-cli security acl list --format json",out:'{"data":[],"total":0}'},
+  {cmd:"ikuai-cli qos ip list --format json",out:'{"data":[],"total":0}'},
+  {cmd:"ikuai-cli log system --format json --human-time",out:'{"total":160,"data":[...]}'},
+];
+
+const COLORS=['#3b82f6','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#14b8a6','#f97316','#6366f1','#84cc16','#06b6d4'];
+
+// ─── TABS ────────────────────────────────────────────────────
+const chartTabs={'overview':1,'traffic':1};
+
+function showTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('[id^=tab-]').forEach(t=>t.classList.add('hide'));
+  document.getElementById('tab-'+name).classList.remove('hide');
+  document.querySelectorAll('.tab').forEach(b=>{
+    if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(name))b.classList.add('active');
+  });
+  if(chartTabs[name]){setTimeout(()=>{animateDraw();},10);}
+}
+
+// ─── CHART GEOMETRY REGISTRY ─────────────────────────────────
+const geo={};
+function regGeo(id,fields){geo[id]=fields;}
+
+// ─── HOVER SYSTEM ────────────────────────────────────────────
+let hover={id:null,index:null};
+let rafId=null;
+
+function chartMouseMove(e){
+  const cvs=e.currentTarget;
+  const id=cvs.id;
+  if(!geo[id])return;
+  const rect=cvs.getBoundingClientRect();
+  const mx=(e.clientX-rect.left)*(cvs.width/rect.width);
+  const my=(e.clientY-rect.top)*(cvs.height/rect.height);
+  const g=geo[id];
+  if(g.type==='donut'){
+    const dx=mx-g.cx,dy=my-g.cy;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<g.hole||dist>g.r){hover={id:null,index:null};}
+    else{
+      let angle=Math.atan2(dy,dx);
+      if(angle<-Math.PI/2)angle+=Math.PI*2;
+      const normalized=(angle-Math.PI/2)%(Math.PI*2);
+      if(normalized<0)normalized+=Math.PI*2;
+      let acc=0,idx=0;
+      for(let i=0;i<g.slices.length;i++){
+        if(normalized>=acc&&normalized<acc+g.slices[i].angle){idx=i;break;}
+        acc+=g.slices[i].angle;
+      }
+      hover={id,index:idx};
+    }
+  } else if(g.type==='barH'){
+    for(let i=0;i<g.bars.length;i++){
+      const b=g.bars[i];
+      if(mx>=b.x&&mx<=b.x+b.w&&my>=b.y&&my<=b.y+b.h){hover={id,index:i};break;}
+    }
+  } else if(g.type==='barV'){
+    for(let i=0;i<g.bars.length;i++){
+      const b=g.bars[i];
+      if(mx>=b.x&&mx<=b.x+b.w&&my>=b.y&&my<=b.y+b.h){hover={id,index:i};break;}
+    }
+  }
+  cancelAnimationFrame(rafId);
+  rafId=requestAnimationFrame(redrawHover);
+}
+
+function redrawHover(){
+  const {id,index}=hover;
+  if(id&&index!==null&&geo[id]){
+    const g=geo[id];
+    if(g.type==='donut'){
+      const cols=g.args[2].slice();
+      cols[index]=glow(cols[index]);
+      drawDonut(id,g.args[0],g.args[1],cols,1,index);
+    } else if(g.type==='barH'){
+      drawBarH(id,g.args[0],g.args[1],g.args[2],1,index);
+    } else if(g.type==='barV'){
+      drawBarV(id,g.args[0],g.args[1],g.args[2],1,index);
+    }
+  }
+}
+
+function glow(hex){
+  const r=parseInt(hex.slice(1,3),16);
+  const g=parseInt(hex.slice(3,5),16);
+  const b=parseInt(hex.slice(5,7),16);
+  const blend=(n,o)=>Math.round(n*0.5+o*0.5);
+  return`rgb(${blend(255,r)},${blend(255,g)},${blend(255,b)})`;
+}
+
+function chartMouseLeave(e){
+  hover={id:null,index:null};
+  cancelAnimationFrame(rafId);
+  rafId=requestAnimationFrame(()=>animateDraw());
+}
+
+function attachHover(id){const c=document.getElementById(id);if(c){c.addEventListener('mousemove',chartMouseMove);c.addEventListener('mouseleave',chartMouseLeave);}}
+
+// ─── DRAW DONUT ─────────────────────────────────────────────
+function drawDonut(canvas,labels,data,colors,animPct,hoverIdx=null){
+  const cvs=document.getElementById(canvas);
+  if(!cvs)return;
+  const ctx=cvs.getContext('2d');
+  const W=cvs.parentNode.offsetWidth||300;
+  const H=cvs.parentNode.offsetHeight||200;
+  cvs.width=W;cvs.height=H;
+  const cx=W/2,cy=H/2;
+  const r=Math.min(cx,cy)*0.7;
+  const hole=r*0.55;
+  const total=data.reduce((a,b)=>a+b,0);
+  let cur=-Math.PI/2;
+  const slices=[];
+  data.forEach((v,i)=>{
+    const angle=(v/total)*Math.PI*2*animPct;
+    const isHover=i===hoverIdx;
+    const expand=isHover?10:0;
+    const mid=cur+angle/2;
+    const ox=Math.cos(mid)*expand,oy=Math.sin(mid)*expand;
+    const col=isHover?glow(colors[i%colors.length]):colors[i%colors.length];
+    ctx.beginPath();
+    ctx.moveTo(cx+ox,cy+oy);
+    ctx.arc(cx+ox,cy+oy,isHover?r+5:r,cur,cur+angle);
+    ctx.closePath();
+    ctx.fillStyle=col;
+    ctx.globalAlpha=isHover?1:0.5+0.5*animPct;
+    if(isHover){ctx.shadowColor=colors[i%colors.length];ctx.shadowBlur=18;}
+    ctx.fill();
+    ctx.shadowBlur=0;ctx.globalAlpha=1;
+    slices.push({start:cur,angle,totalAngle:v/total*Math.PI*2,color:colors[i%colors.length]});
+    cur+=angle;
+  });
+  ctx.beginPath();ctx.arc(cx,cy,hole,0,Math.PI*2);
+  ctx.fillStyle='#111827';ctx.fill();
+  ctx.fillStyle='#94a3b8';ctx.font='10px sans-serif';ctx.textAlign='center';
+  ctx.fillText('总流量',cx,cy-6);
+  ctx.fillStyle='#f1f5f9';ctx.font='bold 13px sans-serif';
+  ctx.fillText(fmt(total),cx,cy+10);
+  if(hoverIdx!==null&&hoverIdx!==undefined){
+    const s=slices[hoverIdx];
+    if(s){
+      const pct=((s.totalAngle/(Math.PI*2))*100).toFixed(1);
+      const mid=s.start+s.angle/2;
+      const tx=cx+Math.cos(mid)*(r+25);
+      const ty=cy+Math.sin(mid)*(r+25);
+      const txt=labels[hoverIdx]+': '+fmt(data[hoverIdx])+' ('+pct+'%)';
+      ctx.font='bold 11px sans-serif';
+      const tw=ctx.measureText(txt).width;
+      const bx=tx-tw/2-8,by=ty-14;
+      ctx.fillStyle='rgba(17,24,39,0.92)';
+      ctx.beginPath();ctx.roundRect(bx,by,tw+16,20,6);ctx.fill();
+      ctx.strokeStyle=s.color;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.roundRect(bx,by,tw+16,20,6);ctx.stroke();
+      ctx.fillStyle='#f1f5f9';ctx.fillText(txt,tx,ty);
+    }
+  }
+  regGeo(canvas,{type:'donut',cx,cy,r,hole,startAngle:-Math.PI/2,slices,args:[labels,data,colors]});
+}
+
+// ─── DRAW BAR H ─────────────────────────────────────────────
+function drawBarH(canvas,labels,data,colors,animPct,hoverIdx=null){
+  const cvs=document.getElementById(canvas);
+  if(!cvs)return;
+  const ctx=cvs.getContext('2d');
+  const W=cvs.parentNode.offsetWidth||300,H=cvs.parentNode.offsetHeight||200;
+  cvs.width=W;cvs.height=H;
+  const max=Math.max(...data);
+  const barH=Math.min(18,(H-30)/data.length-5);
+  const labelW=80,chartW=W-labelW-10;
+  ctx.clearRect(0,0,W,H);
+  const bars=[];
+  data.forEach((v,i)=>{
+    const y=H-20-(i*(barH+4));
+    const bw=Math.max(2,(v/max)*chartW*animPct);
+    const isHover=i===hoverIdx;
+    ctx.fillStyle=isHover?glow(colors[i%colors.length]):colors[i%colors.length];
+    ctx.globalAlpha=isHover?1:0.5+0.5*animPct;
+    ctx.beginPath();ctx.roundRect(labelW,y,bw,barH,2);ctx.fill();
+    if(isHover){ctx.shadowColor=colors[i%colors.length];ctx.shadowBlur=12;ctx.fill();ctx.shadowBlur=0;}
+    ctx.globalAlpha=1;
+    ctx.fillStyle='#94a3b8';ctx.font='10px sans-serif';ctx.textAlign='right';
+    ctx.fillText(labels[i]||'',labelW-4,y+barH/2+3);
+    ctx.fillStyle=isHover?'#f1f5f9':'#94a3b8';ctx.textAlign='left';
+    ctx.fillText(fmt(v),(labelW+bw+4),(y+barH/2+3));
+    bars.push({x:labelW,y,w:bw,h:barH});
+  });
+  ctx.strokeStyle='#1f2937';ctx.beginPath();ctx.moveTo(labelW,H-18);ctx.lineTo(W,H-18);ctx.stroke();
+  regGeo(canvas,{type:'barH',bars,args:[labels,data,colors]});
+}
+
+// ─── DRAW BAR V ─────────────────────────────────────────────
+function drawBarV(canvas,labels,data,colors,animPct,hoverIdx=null){
+  const cvs=document.getElementById(canvas);
+  if(!cvs)return;
+  const ctx=cvs.getContext('2d');
+  const W=cvs.parentNode.offsetWidth||300,H=cvs.parentNode.offsetHeight||200;
+  cvs.width=W;cvs.height=H;
+  const max=Math.max(...data),N=data.length,slotW=(W-10)/N,barW=Math.max(4,slotW*0.65);
+  ctx.clearRect(0,0,W,H);
+  const bars=[];
+  data.forEach((v,i)=>{
+    const bh=Math.max(2,((v/max)*(H-30))*animPct);
+    const x=5+i*slotW+(slotW-barW)/2,y=H-20-bh;
+    const isHover=i===hoverIdx;
+    ctx.fillStyle=isHover?glow(colors[i%colors.length]):colors[i%colors.length];
+    ctx.globalAlpha=isHover?1:0.5+0.5*animPct;
+    ctx.beginPath();ctx.roundRect(x,y,barW,bh,2);ctx.fill();
+    if(isHover){ctx.shadowColor=colors[i%colors.length];ctx.shadowBlur=12;ctx.fill();ctx.shadowBlur=0;}
+    ctx.globalAlpha=1;
+    ctx.fillStyle='#475569';ctx.font='9px sans-serif';ctx.textAlign='center';
+    const lbl=labels[i]||'';
+    ctx.fillText(lbl.length>6?lbl.slice(0,5)+'…':lbl,x+barW/2,H-5);
+    if(v>max*0.25||isHover){ctx.fillStyle=isHover?'#f1f5f9':'#64748b';ctx.fillText(fmtNum(v),x+barW/2,y-2);}
+    bars.push({x,y,w:barW,h:bh});
+  });
+  ctx.strokeStyle='#1f2937';ctx.beginPath();ctx.moveTo(0,H-18);ctx.lineTo(W,H-18);ctx.stroke();
+  regGeo(canvas,{type:'barV',bars,args:[labels,data,colors]});
+}
+
+// ─── ANIMATION LOOP ─────────────────────────────────────────
+const DURATION=800;
+
+async function animateDraw(){
+  const t0=performance.now();
+  function frame(now){
+    const pct=1-Math.pow(1-Math.min((now-t0)/DURATION,1),3);
+    drawDonut('cPie',['下行','上行'],[totalDown,totalUp],['#3b82f6','#10b981'],pct);
+    drawDonut('cProto',protocols.slice(0,6).map(p=>p.name),protocols.slice(0,6).map(p=>p.total),COLORS,pct);
+    drawBarH('cApp',apps.slice(0,10).map(a=>a.name),apps.slice(0,10).map(a=>a.total),COLORS,pct);
+    drawBarV('cDev',terminals.slice(0,10).map(t=>t.ip.split('.').slice(-1)[0]),terminals.slice(0,10).map(t=>t.total),['#3b82f6'],pct);
+    drawBarV('cProtoBar',protocols.map(p=>p.name),protocols.map(p=>p.total),COLORS,pct);
+    if(pct<1){requestAnimationFrame(frame);}
+    else{['cPie','cProto','cApp','cDev','cProtoBar'].forEach(attachHover);}
+  }
+  requestAnimationFrame(frame);
+}
+
+// ─── INIT ────────────────────────────────────────────────────
+setTimeout(()=>{
+  // timestamp
+  document.getElementById('ts').textContent=new Date().toLocaleString('zh-CN');
+  // pct labels
+  document.getElementById('downpct').textContent='下行 '+fmt(totalDown)+' ('+(totalDown/totalFlow*100).toFixed(1)+'%)';
+  document.getElementById('uppct').textContent='上行 '+fmt(totalUp)+' ('+(totalUp/totalFlow*100).toFixed(1)+'%)';
+  // protocol legend
+  const pLegend=document.getElementById('protoLegend');
+  if(pLegend){
+    pLegend.innerHTML=protocols.slice(0,6).map((p,i)=>
+      '<div class="legend-item"><div class="legend-dot" style="background:'+COLORS[i]+'"></div>'+p.name+' '+((p.total/totalFlow)*100).toFixed(1)+'%</div>'
+    ).join('');
+  }
+  // app table
+  document.getElementById('appBody').innerHTML=apps.map((a,i)=>{
+    const pct=((a.total/38889867699)*100).toFixed(2);
+    const barW=((a.total/apps[0].total)*100).toFixed(1);
+    const rc=i<3?'r1':i<10?'r2':'rn';
+    return'<tr><td><span class="rank '+rc+'">'+(i+1)+'</span></td><td style="font-weight:500">'+a.name+'</td><td style="color:#64748b;font-size:11px">'+a.cat+'</td><td style="color:#475569;font-size:10px">'+a.sub+'</td><td><span class="badge bg-blue">'+fmt(a.down)+'</span></td><td><span class="badge bg-green">'+fmt(a.up)+'</span></td><td><span class="badge bg-orange">'+fmt(a.total)+'</span></td><td style="color:#64748b;font-size:11px">'+pct+'%</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog" style="flex:1"><div class="prog-fill" style="width:'+barW+'%;background:#f97316"></div></div><span style="font-size:10px;color:#64748b;width:36px;text-align:right">'+barW+'%</span></div></td></tr>';
+  }).join('');
+  // dev table
+  document.getElementById('devBody').innerHTML=terminals.map((t,i)=>{
+    const pct=((t.total/totalFlow)*100).toFixed(2);
+    const barW=((t.total/terminals[0].total)*100).toFixed(1);
+    const rc=i<3?'r1':i<10?'r2':'rn';
+    return'<tr><td><span class="rank '+rc+'">'+(i+1)+'</span></td><td style="font-family:monospace;font-weight:500">'+t.ip+'</td><td style="font-family:monospace;font-size:10px;color:#475569">'+t.mac+'</td><td style="font-size:11px;color:#64748b">'+t.type+'</td><td><span class="badge bg-blue">'+fmt(t.down)+'</span></td><td><span class="badge bg-green">'+fmt(t.up)+'</span></td><td><span class="badge bg-orange">'+fmt(t.total)+'</span></td><td style="color:#64748b;font-size:11px">'+pct+'%</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog" style="flex:1"><div class="prog-fill" style="width:'+barW+'%;background:#3b82f6"></div></div><span style="font-size:10px;color:#64748b;width:36px;text-align:right">'+barW+'%</span></div></td></tr>';
+  }).join('');
+  // online clients
+  document.getElementById('onlineBody').innerHTML=onlineClients.map(c=>
+    '<tr><td style="font-family:monospace;font-size:11px">'+c.ip+'</td><td style="font-size:11px">'+(c.hostname||'—')+'</td><td style="font-size:10px;color:#64748b">'+c.vendor+'</td><td style="font-family:monospace;font-size:11px;color:#fbbf24">'+c.conn+'</td></tr>'
+  ).join('');
+  // logs
+  document.getElementById('logContainer').innerHTML=logs.map(l=>{
+    const cls=l.s==='ok'?'log-ok':l.s==='warn'?'log-warn':'log-info';
+    const icon=l.s==='ok'?'✅':l.s==='warn'?'⚠️':'ℹ️';
+    return'<div class="log-item"><span class="log-time">'+l.t+'</span><span class="log-icon">'+icon+'</span><span class="log-msg '+cls+'">'+l.c+'</span></div>';
+  }).join('');
+  // data sources
+  document.getElementById('srcGrid').innerHTML=sources.map(s=>
+    '<div class="src-item"><div class="src-cmd">'+s.cmd+'</div><div class="src-out">'+s.out+'</div></div>'
+  ).join('');
+  document.getElementById('srcNote').textContent='数据获取时间: '+new Date().toLocaleString('zh-CN')+' · 路由器: 10.10.10.253 · 固件: 4.0.210-beta x64';
+  animateDraw();
+},100);
+
+window.addEventListener('resize',()=>{
+  clearTimeout(window._resizeTimer);
+  window._resizeTimer=setTimeout(()=>{animateDraw();},200);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "YYYY-MM-DD": {
+    "mask": 0,
+    "domains": [],
+    "modules": [],
+    "entities": [],
+    "system_tags": [],
+    "free_tags": [],
+    "priority": "medium"
+  }
+}

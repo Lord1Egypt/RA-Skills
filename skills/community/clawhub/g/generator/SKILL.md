@@ -1,35 +1,58 @@
 ---
-name: "Generator"
+name: generator
+version: "2.0.0"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+license: MIT-0
+tags: [generator, tool, utility]
 description: "Create placeholder data, test fixtures, and sample datasets for dev work. Use when generating mocks, building fixtures, or scaffolding content templates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generator"
-sourceUrl: "https://clawhub.ai/skills/generator"
 ---
 
 # Generator
 
-> Create placeholder data, test fixtures, and sample datasets for dev work. Use when generating mocks, building fixtures, or scaffolding content templates.
+Content generator — create placeholder data, test fixtures, sample datasets, and templates.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generator`
-- **Source URL:** [https://clawhub.ai/skills/generator](https://clawhub.ai/skills/generator)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `generator help` | Show usage info |
+| `generator run` | Run main task |
+| `generator status` | Check current state |
+| `generator list` | List items |
+| `generator add <item>` | Add new item |
+| `generator export <fmt>` | Export data |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/generator
+generator help
+generator run
+generator status
 ```
+
+## Examples
+
+```bash
+# Get started
+generator help
+
+# Run default task
+generator run
+
+# Export as JSON
+generator export json
+```
+
+## Output
+
+Results go to stdout. Save with `generator run > output.txt`.
+
+## Configuration
+
+Set `GENERATOR_DIR` to change data directory. Default: `~/.local/share/generator/`
+
+---
+*Powered by BytesAgain | bytesagain.com*
+*Feedback & Feature Requests: https://bytesagain.com/feedback*

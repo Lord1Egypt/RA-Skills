@@ -1,0 +1,13 @@
+{
+  "name": "haiku",
+  "displayName": "🌸 俳句风",
+  "description": "日式俳句感，意境悠远",
+  "template": "· · ·\n{season}の{name}",
+  "emoji": "🌸",
+  "seal": "",
+  "contextMode": {
+    "work": "· · ·",
+    "casual": "· · ·\n{season}の{name} {emoji}"
+  },
+  "preview": "· · ·\n春の小橘 🌸"
+}

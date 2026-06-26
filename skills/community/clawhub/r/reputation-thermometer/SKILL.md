@@ -1,35 +1,69 @@
 ---
-name: "声誉体温计"
-description: "舆情风险预诊工具。单段文本快速风险评估，输出风险评分 (1-10)、风险等级 (蓝/黄/橙/红/黑)、传播力×危害力矩阵。适用于客服筛查、社交媒体预检。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reputation-thermometer"
-sourceUrl: "https://clawhub.ai/skills/reputation-thermometer"
+name: reputation-thermometer
+description: 舆情风险预诊工具。单段文本快速风险评估，输出风险评分 (1-10)、风险等级 (蓝/黄/橙/红/黑)、传播力×危害力矩阵。适用于客服筛查、社交媒体预检。
 ---
 
-# 声誉体温计
+# 声誉体温计 v4.0 (精简版)
 
-> 舆情风险预诊工具。单段文本快速风险评估，输出风险评分 (1-10)、风险等级 (蓝/黄/橙/红/黑)、传播力×危害力矩阵。适用于客服筛查、社交媒体预检。
+AI 时代舆情"体温计"——快速判断哪条内容会爆。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reputation-thermometer`
-- **Source URL:** [https://clawhub.ai/skills/reputation-thermometer](https://clawhub.ai/skills/reputation-thermometer)
+## 核心功能
 
-## Overview
+- **三维分析**: 情绪烈度 × 传播潜力 × AI 伪造嫌疑
+- **风险等级**: 🔵蓝 (1-2.9) 🟡黄 (3-4.9) 🟠橙 (5-6.9) 🔴红 (7-8.9) ⚫黑 (9-10)
+- **行业识别**: 食品/医疗/教育/金融/娱乐/职场
+- **ML 分类器**: 轻量级贝叶斯 + 规则加权
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/reputation-thermometer
+# 标准报告
+python scripts/analyze_risk.py "文本"
+
+# JSON 输出
+python scripts/analyze_risk.py -j "文本"
 ```
+
+## 风险等级响应
+
+| 等级 | 评分 | 响应时限 | 处理 |
+|-----|------|---------|------|
+| ⚫ 黑 | 9-10 | 1h | 启动危机预案 |
+| 🔴 红 | 7-8.9 | 2h | 高度关注 |
+| 🟠 橙 | 5-6.9 | 4h | 建议关注 |
+| 🟡 黄 | 3-4.9 | 24h | 保持观察 |
+| 🔵 蓝 | 1-2.9 | - | 暂不处理 |
+
+## 行业模板
+
+| 行业 | 关键词 | 响应 |
+|-----|-------|------|
+| 食品/餐饮 | 中毒/呕吐/老鼠/地沟油 | 1h |
+| 医疗/健康 | 死亡/误诊/疫苗 | 1h |
+| 教育/培训 | 体罚/虐待/跑路 | 2h |
+| 金融/理财 | 暴雷/失联/无法兑付 | 2h |
+| 娱乐/明星 | 吸毒/出轨/偷税 | 4h |
+| 职场/劳动 | 996/裁员/pua | 12h |
+
+## 案例
+
+| 输入 | 结果 |
+|-----|------|
+| "幼儿园食物中毒，50 名儿童送医" | 9.0/10, ⚫黑 |
+| "歌手吸毒被抓，粉丝脱粉" | 7.5/10, 🔴红 |
+| "餐厅吃出老鼠，顾客呕吐" | 6.2/10, 🟠橙 |
+| "公司 996 加班，员工抱怨" | 3.5/10, 🟡黄 |
+| "这家餐厅很好吃" | 1.0/10, 🔵蓝 |
+
+## 限制
+
+✅ 适合：单点预诊、初步筛查  
+❌ 不适合：全网监控、深度分析
+
+## 版本
+
+v4.1 (2026-03-24) - 精简版 (单脚本，14KB，137 行)
+
+## 协议
+
+MIT License

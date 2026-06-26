@@ -1,0 +1,138 @@
+{
+  "default_theme": "lapis",
+  "default_highlight": "solarized-light",
+  "themes": [
+    {
+      "id": "lapis",
+      "label": "Lapis",
+      "name_zh": "青金石",
+      "source": "builtin",
+      "wenyan_theme": "lapis",
+      "highlight": "solarized-light",
+      "description": "冷调科技蓝，适合教程、评测、工具介绍。",
+      "preview_background": "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
+      "accent": "#4870ac"
+    },
+    {
+      "id": "default",
+      "label": "Default",
+      "name_zh": "默认",
+      "source": "builtin",
+      "wenyan_theme": "default",
+      "highlight": "github",
+      "description": "简洁稳妥，适合资讯、总结、日报。",
+      "preview_background": "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
+      "accent": "#374151"
+    },
+    {
+      "id": "orangeheart",
+      "label": "Orangeheart",
+      "name_zh": "暖橙",
+      "source": "builtin",
+      "wenyan_theme": "orangeheart",
+      "highlight": "github",
+      "description": "暖色杂志感，适合人物、品牌、案例文章。",
+      "preview_background": "linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%)",
+      "accent": "#ea580c"
+    },
+    {
+      "id": "rainbow",
+      "label": "Rainbow",
+      "name_zh": "彩虹",
+      "source": "builtin",
+      "wenyan_theme": "rainbow",
+      "highlight": "atom-one-light",
+      "description": "色彩活泼，适合活动、清单、创意内容。",
+      "preview_background": "linear-gradient(135deg, #fef3c7 0%, #ede9fe 50%, #dbeafe 100%)",
+      "accent": "#7c3aed"
+    },
+    {
+      "id": "pie",
+      "label": "Pie",
+      "name_zh": "少数派风",
+      "source": "builtin",
+      "wenyan_theme": "pie",
+      "highlight": "github",
+      "description": "现代锐利，适合观点、方法论、深度分析。",
+      "preview_background": "linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)",
+      "accent": "#6d28d9"
+    },
+    {
+      "id": "maize",
+      "label": "Maize",
+      "name_zh": "玉米黄",
+      "source": "builtin",
+      "wenyan_theme": "maize",
+      "highlight": "xcode",
+      "description": "浅暖纸感，适合教程、拆解、轻阅读。",
+      "preview_background": "linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%)",
+      "accent": "#d97706"
+    },
+    {
+      "id": "purple",
+      "label": "Purple",
+      "name_zh": "优雅紫",
+      "source": "builtin",
+      "wenyan_theme": "purple",
+      "highlight": "atom-one-light",
+      "description": "柔和优雅，适合专栏、随笔、访谈。",
+      "preview_background": "linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%)",
+      "accent": "#7c3aed"
+    },
+    {
+      "id": "phycat",
+      "label": "Phycat",
+      "name_zh": "薄荷猫",
+      "source": "builtin",
+      "wenyan_theme": "phycat",
+      "highlight": "dracula",
+      "description": "薄荷清新，适合科技资讯、产品上手、工具流。",
+      "preview_background": "linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)",
+      "accent": "#059669"
+    },
+    {
+      "id": "aurora",
+      "label": "Aurora",
+      "name_zh": "极光",
+      "source": "custom",
+      "css_path": "themes/aurora.css",
+      "highlight": "github",
+      "description": "渐变标题和清爽层次，适合 AI 趋势、产品观察。",
+      "preview_background": "linear-gradient(135deg, #ecfeff 0%, #d1fae5 100%)",
+      "accent": "#0f766e"
+    },
+    {
+      "id": "newsroom",
+      "label": "Newsroom",
+      "name_zh": "报刊室",
+      "source": "custom",
+      "css_path": "themes/newsroom.css",
+      "highlight": "github",
+      "description": "报刊专栏风，适合评论、行业观察、长文。",
+      "preview_background": "linear-gradient(135deg, #fafaf9 0%, #e7e5e4 100%)",
+      "accent": "#991b1b"
+    },
+    {
+      "id": "sage",
+      "label": "Sage",
+      "name_zh": "手记绿",
+      "source": "custom",
+      "css_path": "themes/sage.css",
+      "highlight": "xcode",
+      "description": "柔和笔记感，适合经验总结、个人成长、复盘。",
+      "preview_background": "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)",
+      "accent": "#166534"
+    },
+    {
+      "id": "ember",
+      "label": "Ember",
+      "name_zh": "余烬",
+      "source": "custom",
+      "css_path": "themes/ember.css",
+      "highlight": "atom-one-light",
+      "description": "暖调杂志封面感，适合故事、案例、品牌内容。",
+      "preview_background": "linear-gradient(135deg, #fff7ed 0%, #fde68a 100%)",
+      "accent": "#b45309"
+    }
+  ]
+}

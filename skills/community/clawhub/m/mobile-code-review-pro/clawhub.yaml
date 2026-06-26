@@ -1,0 +1,47 @@
+name: mobile-code-review-pro
+version: 1.0.0
+description: Expert-level code review for React Native and native iOS/Android applications
+price: 999
+category: development
+author: App Incubator
+homepage: https://github.com/appincubator/mobile-code-review-pro
+
+emoji: 📱
+
+requires:
+  bins:
+    - bash
+
+files:
+  - SKILL.md
+  - templates/code-review-checklist.md
+
+entrypoints:
+  - name: mobile-code-review
+    description: Perform comprehensive mobile code review
+    examples:
+      - "Perform mobile code review for iOS app"
+      - "Review React Native codebase for performance"
+      - "Assess React Native to Native migration"
+      - "Prepare codebase for acquisition due diligence"
+
+target_users:
+  - Startups preparing for acquisition
+  - Companies with React Native performance issues
+  - Teams considering React Native → Native migration
+  - Engineering leaders wanting code quality audit
+  - VC firms conducting technical due diligence
+
+features:
+  - Architecture analysis and scalability assessment
+  - Performance audit (startup, memory, battery, network)
+  - Code quality review and tech debt identification
+  - Security assessment and vulnerability detection
+  - React Native → Native migration viability
+  - Acquisition preparation for due diligence
+
+limitations:
+  - Requires access to codebase
+  - Build environment access needed for profiling
+  - Manual review required for complex architecture decisions
+  - Migration assessment is advisory only

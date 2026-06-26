@@ -1,0 +1,2 @@
+akshare==1.18.40
+requests==2.32.3

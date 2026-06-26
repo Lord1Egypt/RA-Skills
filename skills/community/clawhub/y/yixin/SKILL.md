@@ -1,35 +1,26 @@
 ---
-name: "Yixin"
+name: "易信"
+version: "1.0.0"
 description: "易信（已停运）- 网易电信合作社交应用历史存档"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yixin"
-sourceUrl: "https://clawhub.ai/skills/yixin"
+tags: ["social", "archived", "netease"]
+author: "ClawSkills Team"
+category: "social"
+status: "archived"
 ---
 
-# Yixin
+# 易信（已停运）
 
-> 易信（已停运）- 网易电信合作社交应用历史存档
+易信已停止运营或已边缘化，本技能作为历史存档保留。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yixin`
-- **Source URL:** [https://clawhub.ai/skills/yixin](https://clawhub.ai/skills/yixin)
+## 产品简介
 
-## Overview
+易信曾是中国互联网生态中的一款产品，现已停止服务。
 
+## 替代方案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yixin
-```
+如果你需要类似功能，可以考虑当前主流的同类产品。
+
+---
+
+**最后更新**: 2026-03-16
+**状态**: 已存档

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能评估报告 - multi-agent-cn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .score-section {
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        
+        .score-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #ffbb33 0%, #ff8800 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .score-label {
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2:before {
+            content: "";
+            width: 5px;
+            height: 30px;
+            background: #667eea;
+            margin-right: 15px;
+            border-radius: 3px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .metric-title {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .issues-list {
+            margin-top: 20px;
+        }
+        
+        .issue {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .issue.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        
+        .issue.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+        
+        .issue.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 技能评估报告</h1>
+            <p>multi-agent-cn</p>
+            <p style="margin-top: 10px; opacity: 0.8;">生成时间: 2026-04-14_16-45-28</p>
+        </div>
+        
+        <div class="score-section">
+            <div class="score-card">
+                <div class="score-circle">
+                    78
+                </div>
+                <div class="score-label">综合评分</div>
+                <p style="color: #666; margin-top: 10px;">
+                    ⚠️ 技能质量良好，有改进空间
+                </p>
+            </div>
+        </div>
+        
+        <!-- 基础评估 -->
+        
+        <div class="section">
+            <h2>📊 基础评估</h2>
+            <div class="metrics-grid">
+                
+            <div class="metric-card">
+                <div class="metric-title">basic</div>
+                <div class="metric-value">24/30</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80.0%"></div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">code</div>
+                <div class="metric-value">20.5/25</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 82.0%"></div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">security</div>
+                <div class="metric-value">24.0/25</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 96.0%"></div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">performance</div>
+                <div class="metric-value">10/20</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50.0%"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- 代码质量 -->
+        
+        <div class="section">
+            <h2>🔧 代码质量</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">代码质量分数</div>
+                    <div class="metric-value">82/100</div>
+                </div>
+            </div>
+            <div class="issues-list">
+                
+            <div class="issue suggestion">
+                <strong>scripts/main.py</strong>: 建议添加异常处理
+            </div>
+            <div class="issue suggestion">
+                <strong>scripts/__init__.py</strong>: 建议添加异常处理
+            </div>
+            <div class="issue suggestion">
+                <strong>tests/__init__.py</strong>: 建议添加异常处理
+            </div>
+            <div class="issue suggestion">
+                <strong>tests/test_basic.py</strong>: 建议添加异常处理
+            </div>
+            </div>
+        </div>
+        
+        <!-- 安全检查 -->
+        
+        <div class="section">
+            <h2>🔒 安全检查</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">安全分数</div>
+                    <div class="metric-value">96/100</div>
+                </div>
+            </div>
+            <div class="issues-list">
+                
+            <div class="issue warning">
+                <strong>scripts/main.py</strong>: 建议为脚本添加可执行权限
+            </div>
+            <div class="issue warning">
+                <strong>scripts/__init__.py</strong>: 建议为脚本添加可执行权限
+            </div>
+            </div>
+        </div>
+        
+        <!-- 性能测试 -->
+        
+        
+        <!-- 改进建议 -->
+        
+        <div class="section">
+            <h2>💡 改进建议</h2>
+            <div class="issues-list">
+                
+            <div class="issue success">
+                <strong>1.</strong> 为 scripts/main.py 添加异常处理
+            </div>
+            <div class="issue success">
+                <strong>2.</strong> 为 scripts/__init__.py 添加异常处理
+            </div>
+            <div class="issue success">
+                <strong>3.</strong> 为 tests/test_basic.py 添加异常处理
+            </div>
+            <div class="issue success">
+                <strong>4.</strong> 为 tests/__init__.py 添加异常处理
+            </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🦞 轻量级自主优化技能 - 自动生成报告</p>
+        </div>
+    </div>
+</body>
+</html>

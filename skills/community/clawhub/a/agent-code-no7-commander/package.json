@@ -1,0 +1,12 @@
+{
+  "name": "agent-code-no7-commander",
+  "version": "1.0.0",
+  "description": "Agent Code No.7 总指挥 - 多特工任务编排与调度",
+  "keywords": ["agent", "commander", "orchestration", "law", "finance", "consulting"],
+  "author": "monarchmio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monarchmio/agent-code-no7"
+  }
+}

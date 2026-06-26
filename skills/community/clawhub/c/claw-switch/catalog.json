@@ -1,0 +1,76 @@
+{
+  "default_model_id": "openrouter-auto",
+  "openclaw_version": "2026.3.2",
+  "models": [
+    {
+      "id": "gemini-flash",
+      "name": "Gemini 3 Flash",
+      "provider": "google",
+      "openclaw_model": "google/gemini-3-flash-preview",
+      "available": true,
+      "cost_input": 0.5,
+      "cost_output": 3.0,
+      "context_window": 1048576,
+      "keywords": ["图片", "文件", "pdf", "截图", "识图", "多模态", "视觉", "image", "photo", "video", "audio"]
+    },
+    {
+      "id": "openrouter-auto",
+      "name": "OpenRouter Auto",
+      "provider": "openrouter",
+      "openclaw_model": "openrouter/openrouter/auto",
+      "available": true,
+      "cost_input": null,
+      "cost_output": null,
+      "context_window": null,
+      "keywords": ["默认", "兜底", "备用", "fallback", "default"]
+    },
+    {
+      "id": "openrouter-gpt54",
+      "name": "GPT-5.4 (OpenRouter)",
+      "provider": "openrouter",
+      "openclaw_model": "openai/gpt-5.4",
+      "available": false,
+      "cost_input": 2.5,
+      "cost_output": 15.0,
+      "context_window": 1050000,
+      "keywords": ["代码", "coding", "debug", "python", "脚本", "架构", "api", "重构", "code"],
+      "note": "OpenClaw 2026.3.2 运行时不支持此模型 ID"
+    },
+    {
+      "id": "openrouter-minimax-m25",
+      "name": "MiniMax M2.5 (OpenRouter)",
+      "provider": "openrouter",
+      "openclaw_model": "minimax/minimax-m2.5",
+      "available": false,
+      "cost_input": 0.3,
+      "cost_output": 1.2,
+      "context_window": 196608,
+      "keywords": ["文案", "小红书", "公众号", "创意", "写作", "标题", "改写", "chinese", "creative"],
+      "note": "OpenClaw 2026.3.2 运行时不支持此模型 ID"
+    },
+    {
+      "id": "openrouter-gemini25pro",
+      "name": "Gemini 2.5 Pro (OpenRouter)",
+      "provider": "openrouter",
+      "openclaw_model": "google/gemini-2.5-pro",
+      "available": false,
+      "cost_input": 1.25,
+      "cost_output": 10.0,
+      "context_window": 1048576,
+      "keywords": ["推理", "reasoning", "复杂", "complex", "分析", "analysis"],
+      "note": "通过 OpenRouter 访问"
+    },
+    {
+      "id": "openrouter-deepseek",
+      "name": "DeepSeek V3.2 (OpenRouter)",
+      "provider": "openrouter",
+      "openclaw_model": "deepseek/deepseek-chat",
+      "available": false,
+      "cost_input": 0.28,
+      "cost_output": 0.42,
+      "context_window": 128000,
+      "keywords": ["便宜", "budget", "省钱", "性价比", "coding"],
+      "note": "通过 OpenRouter 访问"
+    }
+  ]
+}

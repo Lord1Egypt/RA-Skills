@@ -1,0 +1,36 @@
+{
+  "name": "design-analysis",
+  "version": "1.0.0",
+  "description": "自动化设计分析工具，用于分析设计素材（截图、设计稿）并生成结构化的HTML演示文档",
+  "main": "index.js",
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "analysis",
+    "html",
+    "presentation",
+    "ui",
+    "ux"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "openclaw": {
+    "capabilities": [
+      "file:read",
+      "file:write",
+      "file:scan"
+    ],
+    "permissions": {
+      "file system": "可以读取设计素材文件夹并写入HTML文件",
+      "network": null
+    },
+    "usage": "用于将设计素材分析并生成HTML演示文档，适用于设计评审、方案展示等场景"
+  }
+}

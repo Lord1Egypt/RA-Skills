@@ -1,0 +1,13 @@
+{
+  "postType": "CAROUSEL",
+  "requestorId": "user123",
+  "templateId": "YOUR_TEMPLATE_ID",
+  "brandId": "YOUR_BRAND_ID",
+  "presetId": "YOUR_PRESET_ID",
+  "responseType": "PNG",
+  "aiGeneration": {
+    "type": "x",
+    "context": "https://x.com/username/status/1234567890123456789",
+    "instructions": "Maintain the original voice and key points. Make it visually engaging for LinkedIn."
+  }
+}

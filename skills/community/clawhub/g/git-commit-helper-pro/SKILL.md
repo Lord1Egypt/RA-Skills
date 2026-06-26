@@ -1,35 +1,54 @@
----
-name: "Git Commit Helper Pro"
-description: "Automatically generates standardized Git commit messages by analyzing code changes, supporting multiple languages and Conventional Commits format."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/git-commit-helper-pro"
-sourceUrl: "https://clawhub.ai/skills/git-commit-helper-pro"
----
+# Git Commit Helper
 
-# Git Commit Helper Pro
+智能 Git Commit Message 生成器 - 根据代码变更自动生成规范的 commit message。
 
-> Automatically generates standardized Git commit messages by analyzing code changes, supporting multiple languages and Conventional Commits format.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/git-commit-helper-pro`
-- **Source URL:** [https://clawhub.ai/skills/git-commit-helper-pro](https://clawhub.ai/skills/git-commit-helper-pro)
+- 🤖 **智能分析**：分析 git diff，理解代码变更内容
+- 📝 **规范生成**：生成符合 Conventional Commits 规范的 message
+- 🌍 **多语言**：支持中文和英文 commit message
+- 🎯 **类型识别**：自动识别 feat/fix/docs/style/refactor/test/chore 等类型
+- ⚡ **一键使用**：复制即可用，支持自定义修改
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/git-commit-helper-pro
 ```
+帮我生成 commit message
+```
+
+或在 git 仓库中：
+```
+git add .
+分析当前变更并生成 commit message
+```
+
+## 输出示例
+
+```
+feat(user): 添加用户登录验证功能
+
+- 实现 JWT token 生成和验证
+- 添加登录接口 /api/auth/login
+- 添加密码加密处理
+- 编写单元测试
+
+Closes #123
+```
+
+## 支持的类型
+
+- `feat`: 新功能
+- `fix`: 修复 bug
+- `docs`: 文档更新
+- `style`: 代码格式调整
+- `refactor`: 代码重构
+- `test`: 测试相关
+- `chore`: 构建/工具/配置
+
+## 作者
+
+倒里牢数 · 严谨专业版
+
+## 版本
+
+1.0.0

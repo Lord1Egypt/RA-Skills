@@ -1,0 +1,70 @@
+{
+  "name": "powpow-simple",
+  "version": "1.0.0",
+  "description": "POWPOW Simple - 简化版 POWPOW 数字人创建 Skill，支持用户注册、数字人创建和管理",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/**/*",
+    "SKILL.md",
+    "skill.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "powpow",
+    "digital-human",
+    "map",
+    "avatar",
+    "creation"
+  ],
+  "author": "durenzidu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/durenzidu/powpow-simple.git"
+  },
+  "bugs": {
+    "url": "https://github.com/durenzidu/powpow-simple/issues"
+  },
+  "homepage": "https://github.com/durenzidu/powpow-simple#readme",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

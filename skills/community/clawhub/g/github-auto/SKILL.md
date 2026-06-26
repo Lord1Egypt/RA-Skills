@@ -1,35 +1,24 @@
 ---
-name: "🤖 GitHub自动管家"
-description: "自动化管理GitHub仓库、PR、Issue、CI/CD。无需API Key，安装即用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-auto"
-sourceUrl: "https://clawhub.ai/skills/github-auto"
+name: 🤖 GitHub自动管家
+description: 自动化管理GitHub仓库、PR、Issue、CI/CD。无需API Key，安装即用。
+metadata: {"openclaw":{"emoji":"🤖"}}
 ---
 
 # 🤖 GitHub自动管家
 
-> 自动化管理GitHub仓库、PR、Issue、CI/CD。无需API Key，安装即用。
+> 无需API Key，安装即用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-auto`
-- **Source URL:** [https://clawhub.ai/skills/github-auto](https://clawhub.ai/skills/github-auto)
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。
 
-## Overview
+- **温情模式（默认）**：输出正能量+改进建议
+- **专业模式（可选）**：直出结果
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装
 ```bash
-hermes skills install clawhub/github-auto
+clawhub install github-auto
 ```
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+- **反馈建议**: 欢迎邮件反馈使用问题或功能建议

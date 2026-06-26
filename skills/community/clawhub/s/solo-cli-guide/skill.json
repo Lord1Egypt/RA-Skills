@@ -1,0 +1,13 @@
+{
+  "skill": "solo_cli_guide",
+  "skill_series": "solo",
+  "skill_type": "guide",
+  "version": "1.0",
+  "description": "Interactive AI tutor for Solo CLI — robot arm setup, calibration, teleoperation, data collection, and policy training",
+  "domains": ["environment", "device", "teleoperation", "data", "training"],
+  "robot_types_supported": ["SO100", "SO101", "Koch", "bimanual_SO100", "bimanual_SO101", "RealMan"],
+  "docs_base_url": "https://docs.getsolo.tech",
+  "tutorials": ["solo_first_run", "solo_record_to_train"],
+  "related_skills": ["solo_hub_guide", "solo_impl"],
+  "constraint": "Never suggest commands not in this skill definition. Always reference docs_ref for each action."
+}

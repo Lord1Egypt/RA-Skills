@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.3.0",
+  "requirement_id": "REQ-TRADE-001",
+  "testcases": [
+    {
+      "id": "TC-001",
+      "source_test_point": "TP-001",
+      "fields": {
+        "project": "集团交易系统",
+        "case_type": "测试用例",
+        "case_id": "TC-001",
+        "requirement": "REQ-TRADE-001",
+        "priority": "P0",
+        "title": "未成交买入委托正常撤单",
+        "menu_path": "交易/委托管理",
+        "preconditions": "1. 投资者A已登录交易系统，账户状态正常，具有委托撤单权限；2. 预置2条当日未成交委托记录（股票代码600001/600002，委托数量1000股，委托价格10.500元），通过委托下单接口创建；3. 交易系统处于交易时段（9:30-11:30或13:00-15:00）",
+        "steps": "1. 投资者登录交易客户端\n2. 进入委托查询页面，选择未成交委托 W001\n3. 点击撤单按钮，确认撤单\n4. 系统向交易所发送撤单指令\n5. 交易所返回撤单成功回报",
+        "expected_results": "1. 登录成功，进入交易主页\n2. 委托列表显示 W001，状态为'未成交'\n3. 弹出撤单确认对话框\n4. 系统显示'撤单处理中'\n5. 委托 W001 状态变为'已撤单'，冻结资金 10000 元释放至可用余额",
+        "is_smoke": "是",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "正向验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "交易",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-002",
+      "source_test_point": "TP-002",
+      "fields": {
+        "project": "集团交易系统",
+        "case_type": "测试用例",
+        "case_id": "TC-002",
+        "requirement": "REQ-TRADE-001",
+        "priority": "P0",
+        "title": "部分成交委托撤单",
+        "menu_path": "交易/委托管理",
+        "preconditions": "1. 投资者A已登录交易系统，账户状态正常，具有委托撤单权限；2. 预置1条部分成交委托记录（委托1000股，已成交400股，未成交600股），通过委托下单接口+撮合成交接口创建；3. 交易系统处于交易时段",
+        "steps": "1. 投资者登录交易客户端\n2. 进入委托查询页面，选择部分成交委托 W002\n3. 点击撤单按钮，确认撤单\n4. 交易所返回撤单成功回报",
+        "expected_results": "1. 登录成功\n2. 委托列表显示 W002，状态为'部分成交'\n3. 弹出撤单确认对话框，提示将撤销未成交的 600 股\n4. W002 状态变为'部分撤单'，未成交部分对应冻结资金 6000 元释放，已成交 400 股不受影响",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "分支验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "交易",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    }
+  ],
+  "statistics": {
+    "total": 2,
+    "smoke_count": 1,
+    "smoke_ratio": 0.5,
+    "by_priority": {
+      "P0": 2,
+      "P1": 0,
+      "P2": 0,
+      "P3": 0
+    }
+  }
+}

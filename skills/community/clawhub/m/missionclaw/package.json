@@ -1,0 +1,19 @@
+{
+  "name": "missionclaw",
+  "version": "1.0.0",
+  "description": "Integrates Velo with MissionClaw for project management",
+  "entry": "index.js",
+  "commands": [
+    {
+      "name": "/mc",
+      "description": "Send project to MissionClaw team"
+    },
+    {
+      "name": "/missionclaw",
+      "description": "Send project to MissionClaw team"
+    }
+  ],
+  "env": {
+    "MISSIONCLAW_URL": "http://localhost:3000"
+  }
+}

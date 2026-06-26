@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Dataify eBay Products">
+  <rect x="14" y="22" width="100" height="84" rx="20" fill="#f5f5f5"/>
+  <path d="M32 66c0-12 8-22 20-22s20 10 20 22v5H44c2 6 7 9 14 9 5 0 9-1 13-4v12c-5 3-10 4-16 4-15 0-25-10-25-26Zm27-5c-1-5-4-8-8-8-5 0-8 3-9 8h17Z" fill="#e53238"/>
+  <path d="M74 44h12v6c4-5 9-7 15-7 10 0 17 8 17 23s-7 25-18 25c-6 0-10-2-14-6v20H74V44Zm31 23c0-8-4-12-9-12s-10 4-10 12 4 12 10 12 9-4 9-12Z" fill="#0064d2"/>
+  <path d="M15 76h15v14H15V76Z" fill="#f5af02"/>
+  <path d="M16 58h14v14H16V58Z" fill="#86b817"/>
+</svg>

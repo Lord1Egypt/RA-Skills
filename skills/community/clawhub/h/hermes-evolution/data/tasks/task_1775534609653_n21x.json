@@ -1,0 +1,30 @@
+{
+  "id": "task_1775534609653_n21x",
+  "title": "12:00 超级森森觉醒日记",
+  "description": "每天12点推送觉醒日记到飞书群",
+  "source": "scheduled",
+  "assignedTo": "Marketing",
+  "status": "inbox",
+  "priority": "P1",
+  "intent": "scheduled",
+  "subtasks": [],
+  "createdAt": "2026-04-07T04:03:29.653Z",
+  "updatedAt": "2026-04-11T08:10:00.367Z",
+  "stateChangedAt": "2026-04-07T04:03:29.653Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 2,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6006分钟",
+      "at": "2026-04-11T08:09:59.355Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6007分钟",
+      "at": "2026-04-11T08:10:00.367Z"
+    }
+  ]
+}

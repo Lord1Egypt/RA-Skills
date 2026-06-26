@@ -1,0 +1,7 @@
+id,kind,should_trigger,prompt_path,expected_industry,expected_blueprint_type,expected_artifact,max_shell_commands,max_input_tokens,max_output_tokens,max_wall_ms
+explicit-blueprint,explicit,true,evals/skill-prompts/explicit-blueprint.md,retail,architecture,blueprint+svg+html,12,70000,18000,180000
+implicit-meeting-notes,implicit,true,evals/skill-prompts/implicit-meeting-notes.md,manufacturing,architecture,blueprint+svg+html,12,70000,18000,180000
+contextual-domain-knowledge,contextual,true,evals/skill-prompts/contextual-domain-knowledge.md,common,domain-knowledge,blueprint+svg+html,12,80000,22000,210000
+boundary-projection-handoff,boundary,true,evals/skill-prompts/boundary-projection-handoff.md,finance,architecture,blueprint+projection,14,80000,22000,210000
+negative-report,negative,false,evals/skill-prompts/negative-report.md,,,none,6,30000,8000,90000
+negative-slide-deck,negative,false,evals/skill-prompts/negative-slide-deck.md,,,none,6,30000,8000,90000

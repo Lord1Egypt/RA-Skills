@@ -1,0 +1,8 @@
+{
+  "name": "pagerduty-agent",
+  "version": "1.0.0",
+  "description": "PagerDuty agent for AI workflows — trigger, acknowledge and resolve incidents, query on-call schedules, manage services and maintenance windows via REST API. Zero dependencies.",
+  "main": "pagerduty.js",
+  "author": "clawdbotworker",
+  "license": "MIT"
+}

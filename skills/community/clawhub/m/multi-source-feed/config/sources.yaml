@@ -1,0 +1,264 @@
+# ─────────────────────────────────────────────
+# Multi-Source Feed — Source Configuration
+# This is a starter list — not exhaustive.
+# Customize it for your interests:
+#   - Disable sources you don't need (enabled: false)
+#   - Add your own RSS feeds (type: rss, 4 lines each)
+#   - See README.md for instructions
+# ─────────────────────────────────────────────
+
+sources:
+
+  # ── X / Twitter (reads existing feed_raw.json) ──────────────
+  - name: x-main
+    type: x_feed
+    enabled: true
+    raw_json_path: feed_raw.json   # relative to project root
+    tags: [x, social]
+
+  # ── Hacker News ─────────────────────────────────────────────
+  - name: hn-frontpage
+    type: hn
+    enabled: true
+    hits_per_page: 30
+    min_score: 20
+    tags: [hn, tech]
+
+  # ── GitHub Trending ─────────────────────────────────────────
+  - name: github-daily
+    type: github_trending
+    enabled: true
+    since: daily
+    tags: [github, open-source]
+
+  # ── AI Company Blogs (via RSS) ──────────────────────────────
+  - name: openai-blog
+    type: rss
+    enabled: true
+    url: https://openai.com/blog/rss.xml
+    max_items: 10
+    tags: [ai, openai, blog]
+
+  - name: google-ai-blog
+    type: rss
+    enabled: true
+    url: https://blog.google/technology/ai/rss/
+    max_items: 10
+    tags: [ai, google, blog]
+
+  - name: meta-engineering
+    type: rss
+    enabled: true
+    url: https://engineering.fb.com/feed/
+    max_items: 10
+    tags: [meta, engineering, blog]
+
+  - name: deepmind-blog
+    type: rss
+    enabled: true
+    url: https://deepmind.google/blog/rss.xml
+    max_items: 10
+    tags: [ai, deepmind, blog]
+
+  - name: microsoft-ai-blog
+    type: rss
+    enabled: true
+    url: https://blogs.microsoft.com/ai/feed/
+    max_items: 10
+    tags: [ai, microsoft, blog]
+
+  - name: nvidia-blog
+    type: rss
+    enabled: true
+    url: https://blogs.nvidia.com/feed/
+    max_items: 10
+    tags: [ai, nvidia, blog]
+
+  - name: huggingface-blog
+    type: rss
+    enabled: true
+    url: https://huggingface.co/blog/feed.xml
+    max_items: 10
+    tags: [ai, huggingface, blog]
+
+  # ── Tech Media ────────────────────────────────────────────────
+  - name: techcrunch-ai
+    type: rss
+    enabled: true
+    url: https://techcrunch.com/category/artificial-intelligence/feed/
+    max_items: 10
+    tags: [media, techcrunch, ai]
+
+  - name: theverge-ai
+    type: rss
+    enabled: true
+    url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+    max_items: 10
+    tags: [media, theverge, ai]
+
+  - name: mit-tech-review-ai
+    type: rss
+    enabled: true
+    url: https://www.technologyreview.com/topic/artificial-intelligence/feed
+    max_items: 10
+    tags: [media, mit, ai]
+
+  - name: wired-ai
+    type: rss
+    enabled: true
+    url: https://www.wired.com/feed/tag/ai/latest/rss
+    max_items: 10
+    tags: [media, wired, ai]
+
+  - name: ars-technica
+    type: rss
+    enabled: true
+    url: https://feeds.arstechnica.com/arstechnica/index
+    max_items: 10
+    tags: [media, arstechnica, tech]
+
+  - name: platformer
+    type: rss
+    enabled: true
+    url: https://www.platformer.news/rss/
+    max_items: 10
+    tags: [media, platformer, tech-policy]
+
+  # ── Independent Blogs / Newsletters (via RSS) ───────────────
+  - name: simon-willison
+    type: rss
+    enabled: true
+    url: https://simonwillison.net/atom/everything/
+    max_items: 10
+    tags: [blog, ai, dev-tools]
+
+  - name: lilian-weng
+    type: rss
+    enabled: true
+    url: https://lilianweng.github.io/index.xml
+    max_items: 10
+    tags: [blog, ai, ml-research]
+
+  - name: chip-huyen
+    type: rss
+    enabled: true
+    url: https://huyenchip.com/feed.xml
+    max_items: 10
+    tags: [blog, ai, mlops]
+
+  - name: stratechery
+    type: rss
+    enabled: true
+    url: https://stratechery.com/feed/
+    max_items: 10
+    tags: [blog, tech-strategy]
+
+  - name: one-useful-thing
+    type: rss
+    enabled: true
+    url: https://www.oneusefulthing.org/feed
+    max_items: 10
+    tags: [blog, ai, applications]
+
+  - name: ahead-of-ai
+    type: rss
+    enabled: true
+    url: https://magazine.sebastianraschka.com/feed
+    max_items: 10
+    tags: [newsletter, ai, ml-research]
+
+  - name: benedict-evans
+    type: rss
+    enabled: true
+    url: https://www.ben-evans.com/benedictevans?format=rss
+    max_items: 10
+    tags: [blog, tech-strategy, analysis]
+
+  # ── VC / Ecosystem ────────────────────────────────────────────
+  - name: yc-blog
+    type: rss
+    enabled: true
+    url: https://www.ycombinator.com/blog/rss
+    max_items: 10
+    tags: [vc, yc, startup]
+
+  - name: a16z
+    type: rss
+    enabled: true
+    url: https://www.a16z.news/feed
+    max_items: 10
+    tags: [vc, a16z, startup]
+
+  - name: sequoia-capital
+    type: rss
+    enabled: true
+    url: https://www.sequoiacap.com/feed/
+    max_items: 10
+    tags: [vc, sequoia, startup]
+
+  # ── AI Research / Academic (via RSS) ─────────────────────────
+  - name: arxiv-cs-ai
+    type: rss
+    enabled: true
+    url: https://rss.arxiv.org/rss/cs.AI
+    max_items: 15
+    tags: [research, arxiv, ai]
+
+  - name: arxiv-cs-lg
+    type: rss
+    enabled: true
+    url: https://rss.arxiv.org/rss/cs.LG
+    max_items: 15
+    tags: [research, arxiv, machine-learning]
+
+  # ── Reddit (JSON API, no auth needed) ────────────────────────────
+  - name: reddit-sideproject
+    type: reddit
+    enabled: true
+    subreddit: SideProject
+    sort: hot
+    max_items: 15
+    tags: [reddit, sideproject, indie]
+
+  - name: reddit-localllama
+    type: reddit
+    enabled: true
+    subreddit: LocalLLaMA
+    sort: hot
+    max_items: 15
+    tags: [reddit, localllama, ai, open-source]
+
+  # ── Product Hunt (GraphQL API, needs PRODUCTHUNT_API_TOKEN) ──────
+  - name: producthunt
+    type: producthunt
+    enabled: true
+    max_items: 15
+    posted_after_days: 2
+    tags: [producthunt, product, startup]
+
+  # ── Web Search (Tavily) ─────────────────────────────────────────
+  # Catches trending topics not in any feed. Needs TAVILY_API_KEY env var.
+  - name: search-ai-products
+    type: web_search
+    enabled: true
+    query: "AI product launches and updates today"
+    max_results: 8
+    days: 2
+    topic: news
+    tags: [search, ai, product]
+
+  - name: search-ai-funding
+    type: web_search
+    enabled: true
+    query: "AI startup funding rounds and acquisitions this week"
+    max_results: 5
+    days: 2
+    topic: news
+    tags: [search, ai, funding]
+
+  # ── Anthropic (custom scraper, no public RSS) ─────────────────
+  - name: anthropic-news
+    type: anthropic_news
+    enabled: true
+    max_items: 10
+    tags: [ai, anthropic, blog]

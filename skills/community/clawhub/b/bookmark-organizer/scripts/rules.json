@@ -1,0 +1,11 @@
+{
+  "ai-art": ["civitai", "huggingface", "leonardo.ai", "midjourney", "stable diffusion", "lora", "prompt", "art", "image", "diffusion", "generat", "upscal", "enhanc", "绘图", "绘画", "画", "模型", "图", "replicate.com", "hotpot.ai"],
+  "ai-music": ["music", "audio", "voice", "speech", "sound", "tts", "suno", "udio", "mureka", "boomy", "作词", "作曲", "编曲", "歌曲"],
+  "dev-tools": ["github", "gitlab", "stackoverflow", "vscode", "python", "javascript", "docker", "api", "docs", "tutorial", "colab.research"],
+  "games-mods": ["nexusmods", "3dmgame", "steam", "ign", "gamespot", "rom", "emulator", "mod"],
+  "video-media": ["youtube", "bilibili", "vimeo", "netflix", "meijutt", "movie", "film", "anime"],
+  "shopping": ["amazon", "ebay", "taobao", "jd.com", "aliexpress", "shop", "store", "market"],
+  "news-reading": ["news", "blog", "medium", "reddit", "hacker news", "知乎", "zhihu", "wikipedia"],
+  "social": ["twitter", "x.com", "facebook", "instagram", "linkedin", "discord", "telegram"],
+  "tab-groups": ["group", "tabs set aside", "已搁置", "组"]
+}

@@ -1,0 +1,511 @@
+[
+  {
+    "id": "fb_1773279522322_s15tti4f5",
+    "timestamp": "2026-03-12T01:38:42.322Z",
+    "timeRange": "all",
+    "totalFeedback": 2,
+    "clustering": {
+      "totalClusters": 2,
+      "summary": {
+        "byCategory": [
+          {
+            "category": "accuracy",
+            "count": 1,
+            "percentage": 50
+          },
+          {
+            "category": "general",
+            "count": 1,
+            "percentage": 50
+          }
+        ],
+        "bySentiment": [
+          {
+            "sentiment": "positive",
+            "count": 2,
+            "percentage": 100
+          }
+        ],
+        "byRating": [
+          {
+            "rating": "5",
+            "count": 1,
+            "percentage": 50
+          }
+        ]
+      }
+    },
+    "trends": {
+      "data": [
+        {
+          "period": "all",
+          "count": 2,
+          "explicitCount": 1,
+          "implicitCount": 1,
+          "avgRating": "5.00",
+          "positiveRatio": "1.00"
+        }
+      ],
+      "direction": "stable",
+      "confidence": 0,
+      "summary": {
+        "peakPeriod": {
+          "period": "all",
+          "count": 2,
+          "explicitCount": 1,
+          "implicitCount": 1,
+          "avgRating": "5.00",
+          "positiveRatio": "1.00"
+        },
+        "lowestPeriod": {
+          "period": "all",
+          "count": 2,
+          "explicitCount": 1,
+          "implicitCount": 1,
+          "avgRating": "5.00",
+          "positiveRatio": "1.00"
+        }
+      }
+    },
+    "sentiment": {
+      "distribution": {
+        "positive": 2,
+        "negative": 0,
+        "neutral": 0,
+        "unknown": 0
+      },
+      "percentages": {
+        "positive": 100,
+        "negative": 0,
+        "neutral": 0,
+        "unknown": 0
+      },
+      "dominant": "positive",
+      "sentimentScore": "1.00"
+    },
+    "categories": [
+      {
+        "name": "accuracy",
+        "count": 1,
+        "avgRating": "5.00",
+        "sentimentDistribution": {
+          "positive": 1,
+          "negative": 0,
+          "neutral": 0
+        }
+      },
+      {
+        "name": "general",
+        "count": 1,
+        "avgRating": null,
+        "sentimentDistribution": {
+          "positive": 1,
+          "negative": 0,
+          "neutral": 0
+        }
+      }
+    ],
+    "patterns": [
+      {
+        "type": "time_patterns",
+        "description": "Peak activity hours",
+        "data": [
+          {
+            "hour": 9,
+            "count": 2
+          }
+        ],
+        "severity": "info"
+      },
+      {
+        "type": "behavioral_patterns",
+        "description": "Most common implicit user behaviors",
+        "data": [
+          {
+            "signal": "completion",
+            "count": 1
+          }
+        ],
+        "severity": "info"
+      }
+    ]
+  },
+  {
+    "id": "fb_1773279533858_0k2xoxk8g",
+    "timestamp": "2026-03-12T01:38:53.858Z",
+    "timeRange": "all",
+    "totalFeedback": 6,
+    "clustering": {
+      "totalClusters": 2,
+      "summary": {
+        "byCategory": [
+          {
+            "category": "general",
+            "count": 4,
+            "percentage": 67
+          },
+          {
+            "category": "accuracy",
+            "count": 2,
+            "percentage": 33
+          }
+        ],
+        "bySentiment": [
+          {
+            "sentiment": "positive",
+            "count": 4,
+            "percentage": 67
+          },
+          {
+            "sentiment": "negative",
+            "count": 2,
+            "percentage": 33
+          }
+        ],
+        "byRating": [
+          {
+            "rating": "5",
+            "count": 2,
+            "percentage": 33
+          }
+        ]
+      }
+    },
+    "trends": {
+      "data": [
+        {
+          "period": "all",
+          "count": 6,
+          "explicitCount": 2,
+          "implicitCount": 4,
+          "avgRating": "5.00",
+          "positiveRatio": "0.67"
+        }
+      ],
+      "direction": "stable",
+      "confidence": 0,
+      "summary": {
+        "peakPeriod": {
+          "period": "all",
+          "count": 6,
+          "explicitCount": 2,
+          "implicitCount": 4,
+          "avgRating": "5.00",
+          "positiveRatio": "0.67"
+        },
+        "lowestPeriod": {
+          "period": "all",
+          "count": 6,
+          "explicitCount": 2,
+          "implicitCount": 4,
+          "avgRating": "5.00",
+          "positiveRatio": "0.67"
+        }
+      }
+    },
+    "sentiment": {
+      "distribution": {
+        "positive": 4,
+        "negative": 2,
+        "neutral": 0,
+        "unknown": 0
+      },
+      "percentages": {
+        "positive": 67,
+        "negative": 33,
+        "neutral": 0,
+        "unknown": 0
+      },
+      "dominant": "positive",
+      "sentimentScore": "0.33"
+    },
+    "categories": [
+      {
+        "name": "general",
+        "count": 4,
+        "avgRating": null,
+        "sentimentDistribution": {
+          "positive": 2,
+          "negative": 2,
+          "neutral": 0
+        }
+      },
+      {
+        "name": "accuracy",
+        "count": 2,
+        "avgRating": "5.00",
+        "sentimentDistribution": {
+          "positive": 2,
+          "negative": 0,
+          "neutral": 0
+        }
+      }
+    ],
+    "patterns": [
+      {
+        "type": "recurring_issues",
+        "description": "Categories with most negative feedback",
+        "data": [
+          {
+            "category": "general",
+            "count": 2
+          }
+        ],
+        "severity": "high"
+      },
+      {
+        "type": "time_patterns",
+        "description": "Peak activity hours",
+        "data": [
+          {
+            "hour": 9,
+            "count": 6
+          }
+        ],
+        "severity": "info"
+      },
+      {
+        "type": "behavioral_patterns",
+        "description": "Most common implicit user behaviors",
+        "data": [
+          {
+            "signal": "completion",
+            "count": 2
+          },
+          {
+            "signal": "high_retry_rate",
+            "count": 1
+          },
+          {
+            "signal": "high_engagement",
+            "count": 1
+          }
+        ],
+        "severity": "info"
+      }
+    ]
+  },
+  {
+    "id": "fb_1773279540556_atbs78mko",
+    "timestamp": "2026-03-12T01:39:00.555Z",
+    "timeRange": "week",
+    "totalFeedback": 9,
+    "clustering": {
+      "totalClusters": 3,
+      "summary": {
+        "byCategory": [
+          {
+            "category": "general",
+            "count": 6,
+            "percentage": 67
+          },
+          {
+            "category": "accuracy",
+            "count": 2,
+            "percentage": 22
+          },
+          {
+            "category": "helpfulness",
+            "count": 1,
+            "percentage": 11
+          }
+        ],
+        "bySentiment": [
+          {
+            "sentiment": "positive",
+            "count": 5,
+            "percentage": 56
+          },
+          {
+            "sentiment": "negative",
+            "count": 4,
+            "percentage": 44
+          }
+        ],
+        "byRating": [
+          {
+            "rating": "5",
+            "count": 2,
+            "percentage": 22
+          },
+          {
+            "rating": "4",
+            "count": 1,
+            "percentage": 11
+          }
+        ]
+      }
+    },
+    "trends": {
+      "data": [
+        {
+          "period": "3月6日周五",
+          "count": 0,
+          "explicitCount": 0,
+          "implicitCount": 0,
+          "avgRating": null,
+          "positiveRatio": 0
+        },
+        {
+          "period": "3月7日周六",
+          "count": 0,
+          "explicitCount": 0,
+          "implicitCount": 0,
+          "avgRating": null,
+          "positiveRatio": 0
+        },
+        {
+          "period": "3月8日周日",
+          "count": 0,
+          "explicitCount": 0,
+          "implicitCount": 0,
+          "avgRating": null,
+          "positiveRatio": 0
+        },
+        {
+          "period": "3月9日周一",
+          "count": 0,
+          "explicitCount": 0,
+          "implicitCount": 0,
+          "avgRating": null,
+          "positiveRatio": 0
+        },
+        {
+          "period": "3月10日周二",
+          "count": 0,
+          "explicitCount": 0,
+          "implicitCount": 0,
+          "avgRating": null,
+          "positiveRatio": 0
+        },
+        {
+          "period": "3月11日周三",
+          "count": 0,
+          "explicitCount": 0,
+          "implicitCount": 0,
+          "avgRating": null,
+          "positiveRatio": 0
+        },
+        {
+          "period": "3月12日周四",
+          "count": 9,
+          "explicitCount": 3,
+          "implicitCount": 6,
+          "avgRating": "4.67",
+          "positiveRatio": "0.56"
+        }
+      ],
+      "direction": "increasing",
+      "confidence": 1,
+      "summary": {
+        "peakPeriod": {
+          "period": "3月12日周四",
+          "count": 9,
+          "explicitCount": 3,
+          "implicitCount": 6,
+          "avgRating": "4.67",
+          "positiveRatio": "0.56"
+        },
+        "lowestPeriod": {
+          "period": "3月6日周五",
+          "count": 0,
+          "explicitCount": 0,
+          "implicitCount": 0,
+          "avgRating": null,
+          "positiveRatio": 0
+        }
+      }
+    },
+    "sentiment": {
+      "distribution": {
+        "positive": 5,
+        "negative": 4,
+        "neutral": 0,
+        "unknown": 0
+      },
+      "percentages": {
+        "positive": 56,
+        "negative": 44,
+        "neutral": 0,
+        "unknown": 0
+      },
+      "dominant": "positive",
+      "sentimentScore": "0.11"
+    },
+    "categories": [
+      {
+        "name": "general",
+        "count": 6,
+        "avgRating": null,
+        "sentimentDistribution": {
+          "positive": 2,
+          "negative": 4,
+          "neutral": 0
+        }
+      },
+      {
+        "name": "accuracy",
+        "count": 2,
+        "avgRating": "5.00",
+        "sentimentDistribution": {
+          "positive": 2,
+          "negative": 0,
+          "neutral": 0
+        }
+      },
+      {
+        "name": "helpfulness",
+        "count": 1,
+        "avgRating": "4.00",
+        "sentimentDistribution": {
+          "positive": 1,
+          "negative": 0,
+          "neutral": 0
+        }
+      }
+    ],
+    "patterns": [
+      {
+        "type": "recurring_issues",
+        "description": "Categories with most negative feedback",
+        "data": [
+          {
+            "category": "general",
+            "count": 4
+          }
+        ],
+        "severity": "high"
+      },
+      {
+        "type": "time_patterns",
+        "description": "Peak activity hours",
+        "data": [
+          {
+            "hour": 9,
+            "count": 9
+          }
+        ],
+        "severity": "info"
+      },
+      {
+        "type": "behavioral_patterns",
+        "description": "Most common implicit user behaviors",
+        "data": [
+          {
+            "signal": "completion",
+            "count": 2
+          },
+          {
+            "signal": "high_retry_rate",
+            "count": 2
+          },
+          {
+            "signal": "high_engagement",
+            "count": 2
+          }
+        ],
+        "severity": "info"
+      }
+    ]
+  }
+]

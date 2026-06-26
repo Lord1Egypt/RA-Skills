@@ -1,35 +1,16 @@
 ---
-name: "Hana Image Gen MacOS"
-description: "MacOS Gemini image gen via OpenRouter for OpenClaw agents. Auto-wait, gen, send image."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hana-image-gen-macos"
-sourceUrl: "https://clawhub.ai/skills/hana-image-gen-macos"
+name: hana-image-gen
+description: MacOS Gemini image gen via OpenRouter for OpenClaw agents. Auto-wait, gen, send image.
 ---
 
-# Hana Image Gen MacOS
+# Hana Image Gen Pro (MacOS)
 
-> MacOS Gemini image gen via OpenRouter for OpenClaw agents. Auto-wait, gen, send image.
+## Agent Workflow
+1. message action=send text="⏳ Generating image for: \$prompt"
+2. cd scripts && OPENROUTER_API_KEY=\$OPENROUTER_API_KEY python3 gen.py "\$prompt"
+3. IMAGE=\$(cat ../output.json | jq -r .paths[0])
+4. message action=send media=\$IMAGE caption="Generated: \$prompt 😏"
+NO_REPLY.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hana-image-gen-macos`
-- **Source URL:** [https://clawhub.ai/skills/hana-image-gen-macos](https://clawhub.ai/skills/hana-image-gen-macos)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hana-image-gen-macos
-```
+## Required Env
+OPENROUTER_API_KEY, TELEGRAM_BOT_TOKEN (global .env)

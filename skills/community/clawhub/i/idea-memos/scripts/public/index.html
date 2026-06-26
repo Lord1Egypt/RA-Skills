@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>硅虾备忘录</title>
+<style>
+:root{--bg:#f0f2f5;--card:#fff;--text:#1a1a2e;--muted:#8e8ea0;--accent:#6c63ff;--accent-light:#e8e6ff;--border:#e8e8ee;--shadow:0 2px 12px rgba(0,0,0,.06)}
+@media(prefers-color-scheme:dark){:root{--bg:#0f0f1a;--card:#1a1a2e;--text:#e4e4ec;--muted:#6b6b80;--accent:#7c72ff;--accent-light:#2a2a4e;--border:#2a2a3e;--shadow:0 2px 12px rgba(0,0,0,.3)}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0;line-height:1.6}
+.header{background:var(--card);border-bottom:1px solid var(--border);padding:20px 24px;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.header-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.header h1{font-size:20px;font-weight:600;background:linear-gradient(135deg,var(--accent),#ff6b9d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header .count{font-size:13px;color:var(--muted);margin-left:auto}
+.container{max-width:720px;margin:0 auto;padding:16px}
+.memo{background:var(--card);border-radius:12px;padding:16px 20px;margin-bottom:12px;border:1px solid var(--border);transition:all .2s;animation:fadeIn .3s ease}
+.memo:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+.memo-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.memo-id{font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-light);padding:2px 8px;border-radius:4px}
+.memo-date{font-size:12px;color:var(--muted)}
+.memo-title{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.memo-content{font-size:14px;color:var(--text);white-space:pre-wrap;line-height:1.7}
+.memo-content ul{margin:6px 0;padding-left:20px}
+.memo-content li{margin:3px 0}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:11px;padding:2px 10px;border-radius:12px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-icon{font-size:48px;margin-bottom:16px;opacity:.5}
+.loading{text-align:center;padding:60px;color:var(--muted)}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.footer{text-align:center;padding:24px;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-inner">
+    <h1>🦐 硅虾备忘录</h1>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+<div class="container" id="app">
+  <div class="loading"><div class="spinner"></div>加载中...</div>
+</div>
+<div class="footer">Powered by 硅虾 🦐</div>
+<script>
+async function load(){
+  try{
+    const r=await fetch('/api/memos')
+    const d=await r.json()
+    const memos=d.memos||[], app=document.getElementById('app')
+    document.getElementById('count').textContent='共 '+d.total+' 条'
+    if(!memos.length){
+      app.innerHTML='<div class="empty"><div class="empty-icon">📝</div>暂无备忘录</div>'
+      return
+    }
+    app.innerHTML=memos.map(m=>{
+      const tags=(m.tags||[]).filter(Boolean)
+      return '<div class="memo">'+
+        '<div class="memo-header">'+
+          '<span class="memo-id">#'+m.id+'</span>'+
+          '<span class="memo-date">'+new Date(m.created_at).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+'</span>'+
+        '</div>'+
+        (m.title&&m.title!=='add'?'<div class="memo-title">'+esc(m.title)+'</div>':'')+
+        '<div class="memo-content">'+linkify(esc(m.content||''))+'</div>'+
+        (tags.length?'<div class="tags">'+tags.map(t=>'<span class="tag">#'+t+'</span>').join('')+'</div>':'')+
+      '</div>'
+    }).join('')
+  }catch(e){
+    document.getElementById('app').innerHTML='<div class="empty"><div class="empty-icon">😵</div>加载失败: '+e.message+'</div>'
+  }
+}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function linkify(s){return s.replace(/https?:\/\/[^\s]+/g,u=>'<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>')}
+load()
+</script>
+</body>
+</html>

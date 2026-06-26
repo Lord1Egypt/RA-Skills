@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChangeBrief"
+  short_description: "变化简报官：对比前后知识快照，告诉你最近真正变了什么"
+  default_prompt: "Use $changebrief to compare the previous and current knowledge snapshots, surface important additions, changed claims, stale conclusions, conflicts that need a decision, and the top three changes worth immediate action, and answer in Chinese."

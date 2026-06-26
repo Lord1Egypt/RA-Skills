@@ -1,0 +1,81 @@
+{
+  "_comment": "Tailwind theme extracted from Stitch-generated HTML <head> block. Update after each project. Sync with tailwind.config.js extend.theme.",
+  "_instructions": "Extract the tailwind.config JSON object from the <script> tag in Stitch HTML and paste here. Then reference these values in your tailwind.config.js to ensure components use theme-mapped classes.",
+
+  "example": {
+    "colors": {
+      "primary": {
+        "DEFAULT": "#2D6A4F",
+        "50": "#f0fdf4",
+        "100": "#dcfce7",
+        "500": "#2D6A4F",
+        "600": "#166534",
+        "foreground": "#ffffff"
+      },
+      "background": "#FAFAF8",
+      "surface": "#F0ECE7",
+      "surface-dark": "#161B27",
+      "foreground": "#1C2B22",
+      "muted": "#6B7C74",
+      "border": "#DDD9D4",
+      "success": "#10B981",
+      "error": "#EF4444",
+      "warning": "#F59E0B"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "DEFAULT": "8px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "2xl": "20px",
+      "full": "9999px"
+    },
+    "fontFamily": {
+      "sans": ["Inter", "system-ui", "sans-serif"],
+      "display": ["Fraunces", "Georgia", "serif"],
+      "mono": ["JetBrains Mono", "Consolas", "monospace"]
+    },
+    "spacing": {
+      "section": "80px",
+      "section-lg": "128px",
+      "container-px": "48px",
+      "container-px-mobile": "24px"
+    }
+  },
+
+  "tailwindConfigSnippet": {
+    "_usage": "Paste your extracted values into tailwind.config.js like this:",
+    "theme": {
+      "extend": {
+        "colors": "/* paste colors from above */",
+        "borderRadius": "/* paste borderRadius from above */",
+        "fontFamily": "/* paste fontFamily from above */"
+      }
+    }
+  },
+
+  "cssCustomProperties": {
+    "_comment": "Equivalent CSS custom properties for the color system. Place in globals.css :root block.",
+    "_light": {
+      "--background": "#FAFAF8",
+      "--foreground": "#1C2B22",
+      "--surface": "#F0ECE7",
+      "--primary": "#2D6A4F",
+      "--primary-foreground": "#ffffff",
+      "--muted": "#6B7C74",
+      "--border": "#DDD9D4",
+      "--ring": "#2D6A4F"
+    },
+    "_dark": {
+      "--background": "#0D1117",
+      "--foreground": "#F8FAFC",
+      "--surface": "#161B27",
+      "--primary": "#7C3AED",
+      "--primary-foreground": "#ffffff",
+      "--muted": "#94A3B8",
+      "--border": "#1E293B",
+      "--ring": "#7C3AED"
+    }
+  }
+}

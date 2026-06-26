@@ -1,0 +1,39 @@
+{
+  "skill_name": "tiered-quantity-discounts-skincare",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell a vitamin C serum at $48 and a moisturizer at $42. Gross margin is around 58%. We want to do a 'buy more save more' on these two products only. What tier structure do you recommend and what copy should we put on the PDP?",
+      "expected_output": "A tier table (e.g. 1 / 2 / 3+ with discount %), margin check for 58% gross margin, and at least one PDP copy line. Product scope limited to the two SKUs.",
+      "files": [],
+      "expectations": [
+        "The output includes a tier table with quantity and discount % (e.g. 1 / 2 / 3+).",
+        "The output includes a margin check or effective margin note for 58% gross margin.",
+        "The output includes at least one ready-to-use PDP copy line.",
+        "Product scope is limited to the two SKUs (serum and moisturizer)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "How do I set up quantity breaks for my skincare store on Shopify? We have serums and moisturizers and want customers to buy 2 or 3 at a time.",
+      "expected_output": "Structured tier recommendation, margin-safe guidance, copy/placement for PDP and cart, and a brief note on Shopify (app or native) implementation.",
+      "files": [],
+      "expectations": [
+        "The output includes a tier recommendation (quantity → discount).",
+        "The output includes copy or placement guidance for PDP and cart.",
+        "The output includes a note on Shopify implementation (app or native)."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our margin is tight—we can't go below 50% effective margin. Suggest a conservative quantity discount for our best-selling moisturizer ($52).",
+      "expected_output": "Tiers that keep effective margin at or above 50%; tier table with effective price and margin; ready-to-use copy.",
+      "files": [],
+      "expectations": [
+        "The output includes a tier table with effective price and/or effective margin per tier.",
+        "All suggested tiers keep effective margin at or above 50%.",
+        "The output includes at least one ready-to-use copy line."
+      ]
+    }
+  ]
+}

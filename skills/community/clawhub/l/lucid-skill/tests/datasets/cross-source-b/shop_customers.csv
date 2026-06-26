@@ -1,0 +1,6 @@
+customer_id,customer_name,email,city
+C001,Alice Wang,alice@example.com,Shanghai
+C002,Bob Li,bob@example.com,Beijing
+C003,Carol Zhang,carol@example.com,Shenzhen
+C004,David Chen,david@example.com,Hangzhou
+C005,Eve Liu,eve@example.com,Guangzhou

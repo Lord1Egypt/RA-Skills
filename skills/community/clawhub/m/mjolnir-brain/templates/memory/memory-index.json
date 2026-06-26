@@ -1,0 +1,12 @@
+{
+  "version": "2.0",
+  "updated_at": "",
+  "partitions": [],
+  "settings": {
+    "max_partitions": 20,
+    "default_max_size_kb": 20,
+    "fallback_to_memory_md": true,
+    "max_concurrent_load": 3,
+    "auto_update_index": true
+  }
+}

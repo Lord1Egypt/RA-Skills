@@ -1,0 +1,9 @@
+{
+  "id": "default-model",
+  "name": "Default Model",
+  "description": "Set the default model persistently via /default_model command",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  }
+}

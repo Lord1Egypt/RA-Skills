@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "skill": {
+    "id": "blogger-auto-publish",
+    "name": "Blogger Auto-Publish",
+    "version": "1.1.0",
+    "description": "Automatically publish Markdown articles to Google Blogger",
+    "author": "Paco Guo",
+    "license": "MIT",
+    "homepage": "https://clawhub.ai/skills/blogger-auto-publish",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/rainco2008/blogger-auto-publish"
+    },
+    "keywords": [
+      "blogger",
+      "automation",
+      "publishing",
+      "markdown",
+      "google",
+      "openclaw"
+    ],
+    "compatibility": {
+      "openclaw": ">=2026.3.0"
+    },
+    "requirements": [
+      "Node.js >= 14.0.0",
+      "Google API credentials",
+      "Blogger blog with write permissions"
+    ],
+    "triggerKeywords": [
+      "blogger",
+      "publish",
+      "自动发布",
+      "文章发布",
+      "markdown to blogger",
+      "blogger api",
+      "google blogger",
+      "auto publish",
+      "blog automation"
+    ],
+    "files": [
+      "SKILL.md",
+      "SETUP.md",
+      "package.json",
+      "skill-manifest.json",
+      "auth.js",
+      "config.js",
+      "publish.js",
+      "credentials-example.json",
+      "references/",
+      "scripts/",
+      "assets/",
+      "posts/"
+    ],
+    "installScript": "scripts/setup-blogger.sh",
+    "created": "2026-04-10T12:00:00Z",
+    "updated": "2026-04-10T12:00:00Z"
+  }
+}

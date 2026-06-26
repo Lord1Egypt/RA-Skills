@@ -1,0 +1,12 @@
+{
+  "name": "Auditoria de Segurança",
+  "tagline": "Verifica skills do OpenClaw contra código malicioso, prompt injection e vulnerabilidades",
+  "description": "Protege contra ClawHavoc e outros ataques verificando código malicioso, APIs perigosas, exfiltração de dados e práticas inseguras. Identifica 824+ patterns de ataque conhecidos. Essencial para desenvolvedores brasileiros que querem segurança ao instalar skills de terceiros. Gera relatórios detalhados em português com níveis de risco.",
+  "category": "security",
+  "tags": ["seguranca", "security", "auditoria", "audit", "portugues", "brasil", "clawhavoc", "malware"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/eve-agent/seguranca-auditoria/issues",
+  "homepage": "https://github.com/eve-agent/seguranca-auditoria"
+}

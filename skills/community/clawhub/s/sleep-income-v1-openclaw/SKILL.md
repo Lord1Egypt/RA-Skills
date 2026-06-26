@@ -1,35 +1,55 @@
----
-name: "睡后收入系统 V1（OpenClaw版）"
-description: "通过OpenClaw自动生成并发布公众号内容，打造持续积累的AI副业闭环，实现睡眠中被动收入。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, openclaw, passive-income, wechat]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sleep-income-v1-openclaw"
-sourceUrl: "https://clawhub.ai/skills/sleep-income-v1-openclaw"
----
-
 # 睡后收入系统 V1（OpenClaw版）
 
-> 通过OpenClaw自动生成并发布公众号内容，打造持续积累的AI副业闭环，实现睡眠中被动收入。
+> 一个"让AI帮你产出内容、然后睡觉也在赚钱"的工作流
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sleep-income-v1-openclaw`
-- **Source URL:** [https://clawhub.ai/skills/sleep-income-v1-openclaw](https://clawhub.ai/skills/sleep-income-v1-openclaw)
+## Problem
+大部分人做AI副业，停留在"用AI写文章"的层面。但文章写完不会自动变成钱——还需要：选题方向、发布通道、数据追踪、变现闭环。很多人卡在"有工具，没系统"。
 
-## Overview
+## Solution
 
+用 OpenClaw 搭建两条并行的睡后收入流水线：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sleep-income-v1-openclaw
+### A线：公众号内容工厂（每日运转）
 ```
+定时触发 → 热点发现 → 多引擎搜索 → 生成选题 → AI写稿 → 去AI味 → 配图 → 排版 → 发布草稿箱 → 数据追踪
+```
+**关键：不是跑一次，是每天自动重复，形成积累。**
+
+### B线：数字产品流水线（每周一次）
+```
+竞品调研 → 提炼痛点 → 生成SOP/模板 → 去AI味 → 打包上架包 → 手动发布 → 收集反馈 → 迭代升级
+```
+**关键：把跑通的流程变成可卖的产品，边际成本为零。**
+
+### C线：水产市场资产发布（按需）
+```
+扫描workspace → 打包经验 → 发布到openclawmp.cc → 持续被动发现
+```
+**关键：用你实际跑通的内容生成资产，别人安装你就赚钱。**
+
+## Results
+- 已有：17篇公众号文章库存 + 发布闭环（已验证草稿投递成功）
+- 已有：9.9元验证交付包（含一页纸+3张模板+标题质检+反馈表）
+- 已有：weibo-hot-trend / wechat-mp-cn / afrexai-sop-generator / topic-monitor 等5个新装技能
+- 目标：第一个付费用户（9.9验证包）+ 第一个水产市场安装
+
+## Lessons
+1. **不要等完美再变现**——先上架9.9，用真实反馈迭代
+2. **自动化的价值在于积累**——每天1篇草稿，30天后是30篇资产
+3. **最小闭环比大系统更重要**——先跑通"写→发→收钱"一次，再放大
+
+## 包含内容
+- `docs/sleep-income-v1.md`：完整系统文档（含流程图、触发时间、Cron配置）
+- `memory/captures/sleep-income-v1/deliverable-9.9/`：9.9验证交付包（含README、一页纸、模板、标题质检、反馈表）
+- `scripts/sleep-income-daily.ps1`：每日运行脚本
+- `scripts/sleep-income-validate.ps1`：环境验证脚本
+
+## 适用人群
+- 有OpenClaw使用经验
+- 想做AI副业/被动收入
+- 有公众号账号（用于A线发布）
+
+## 前提条件
+- OpenClaw本地部署
+- 微信公众号账号+AppID/AppSecret
+- 公众号需已认证（否则发布功能受限）

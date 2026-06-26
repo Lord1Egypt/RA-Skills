@@ -1,0 +1,201 @@
+skill: use-hln-api
+skill_path: ./skills/use-hln-api
+description: "Hyperliquid Names API routing, live response handling, and HyperEVM integration guidance"
+
+evals:
+  - id: lvl1-profile-endpoint-selection
+    type: static
+    prompt: "I have a wallet address and only need the primary .hl name plus avatar. Which endpoint should I use, and what would you use only if I also needed the full records map or chain addresses?"
+    expected_facts:
+      - "Use GET /resolve/profile/:address"
+      - "Use GET /records/full_record/:nameHashOrId only when the user also needs the complete records map or chain addresses"
+    fail_if:
+      - "Invents an endpoint"
+      - "Routes directly to full_record for the primary-name-plus-avatar request"
+
+  - id: lvl1-primary-name-vs-profile
+    type: static
+    prompt: "What's the difference between GET /resolve/primary_name/:address and GET /resolve/profile/:address?"
+    expected_facts:
+      - "primary_name returns only the primary name"
+      - "profile returns the primary name plus avatar"
+      - "profile may be the better single-call lookup when the user wants profile-style data from an address"
+    fail_if:
+      - "Claims both endpoints return the same payload"
+      - "Invents fields for primary_name beyond the primary name"
+
+  - id: lvl1-invalid-dot-eth-input
+    type: static
+    prompt: "Resolve jeff.eth on HL Names."
+    expected_facts:
+      - "HL Names endpoints expect .hl domains rather than .eth"
+      - "Suggest jeff.hl if that is what the user intended"
+      - "If forced, expect validation failure such as 422 for invalid domain format"
+    fail_if:
+      - "Treats jeff.eth as a valid HL Names domain"
+      - "Invents a successful resolution"
+
+  - id: lvl1-list-primary-names-post-body
+    type: static
+    prompt: "I need primary names for a specific set of addresses. Which endpoint and request shape should I use?"
+    expected_facts:
+      - "Use POST /utils/all_primary_names"
+      - "Send a JSON body with an addresses array"
+      - "Do not combine the address body filter with begin or end"
+    fail_if:
+      - "Routes to GET /utils/all_primary_names with begin/end for a specific address set"
+      - "Omits the addresses array body"
+
+  - id: lvl1-wallet-integration-guidance
+    type: static
+    prompt: "I'm integrating HL Names into a HyperEVM dApp wallet flow. What published integration paths should I check first?"
+    expected_facts:
+      - "Mention @hlnames/rainbowkit"
+      - "Mention the Dynamic integration path"
+      - "Advise starting from the wallet stack the app already uses"
+    fail_if:
+      - "Invents a custom wallet SDK that is not in the docs"
+      - "Omits both RainbowKit and Dynamic"
+
+  - id: lvl1-mintpass-workflow-readiness
+    type: static
+    prompt: "What is POST /sign_mintpass/:label for, and when should a developer request it?"
+    expected_facts:
+      - "It is the API preflight step for third-party minting"
+      - "It should be requested when the developer is ready to continue promptly into the mint transaction"
+      - "The returned payload is short-lived and expires quickly"
+      - "If the mint is attempted after expiry, the onchain transaction should fail or revert"
+    fail_if:
+      - "Frames the response as a wallet signature from the user"
+      - "Treats it as a long-lived credential"
+      - "Claims the API call itself broadcasts the mint transaction"
+
+  - id: lvl1-no-api-prefix-mistake
+    type: static
+    prompt: "What's the production base URL for the HL Names API, and when is /api needed?"
+    expected_facts:
+      - "Use https://api.hlnames.xyz/ as the production API base URL"
+      - "/api/docs is for the Swagger UI"
+      - "Normal API routes do not need an extra /api prefix"
+    fail_if:
+      - "Claims the API base URL is https://api.hlnames.xyz/api/"
+      - "Uses /api on normal endpoint paths"
+
+  - id: lvl1-live-resolve-address
+    type: live_http
+    context:
+      domain: testooor.hl
+    live_request:
+      method: GET
+      path: /resolve/address/{domain}
+    required_fields:
+      - address
+    prompt_template: |
+      A developer wants to resolve `{domain}` and got this live production API response:
+
+      ```json
+      {live_response}
+      ```
+
+      Summarize the result, mention the endpoint, and explain what the returned value represents.
+    expected_facts:
+      - "Mentions GET /resolve/address/:domain"
+      - "Mentions the address returned in the live response"
+      - "Explains that the value is the resolved EVM address for the .hl name"
+    fail_if:
+      - "Claims the domain is unregistered when the live response contains an address"
+      - "Invents extra fields that are not in the response"
+
+  - id: lvl1-live-profile-followup
+    type: live_http
+    context:
+      address: 0xF26F5551E96aE5162509B25925fFfa7F07B2D652
+    live_request:
+      method: GET
+      path: /resolve/profile/{address}
+    required_fields:
+      - primaryName
+      - avatar
+    prompt_template: |
+      A developer looked up `{address}` with the production API and got this live response:
+
+      ```json
+      {live_response}
+      ```
+
+      Summarize it and mention the next API call you would suggest if the developer wants the complete records map or chain addresses too.
+    expected_facts:
+      - "Mentions primaryName"
+      - "Mentions avatar"
+      - "Suggests GET /records/full_record/:nameHashOrId as the follow-up for complete records or chain addresses"
+    fail_if:
+      - "Claims this response already contains the full records map or chainAddresses"
+      - "Invents a follow-up endpoint"
+
+  - id: lvl1-live-full-record-interpretation
+    type: live_http
+    context:
+      domain: testooor.hl
+    setup:
+      - id: namehash
+        method: GET
+        path: /utils/namehash/{domain}
+        extract:
+          nameHash: .nameHash
+    live_request:
+      method: GET
+      path: /records/full_record/{nameHash}
+    required_fields:
+      - name.owner
+      - name.controller
+      - name.resolved
+      - data.records
+      - data.chainAddresses
+    prompt_template: |
+      A developer resolved the nameHash for `{domain}` and then fetched its live full record from production:
+
+      ```json
+      {live_response}
+      ```
+
+      Summarize the ownership and resolution fields, explain what is in `data.records` and `data.chainAddresses`, and note any important interpretation caveat.
+    expected_facts:
+      - "Mentions owner, controller, or resolved fields from the live response"
+      - "Mentions data.records"
+      - "Mentions data.chainAddresses"
+      - "Explains that the data records are user-controlled metadata rather than a fixed exhaustive schema"
+    fail_if:
+      - "Confuses chainAddresses with owner/controller/resolved"
+      - "Claims the records schema is fixed or exhaustive"
+
+  - id: lvl1-live-mintpass-expiry-workflow
+    type: live_http
+    context:
+      label: "{generated_label}"
+    live_request:
+      method: POST
+      path: /sign_mintpass/{label}
+    required_fields:
+      - label
+      - sig
+      - timestamp
+      - token
+      - amountRequired
+    prompt_template: |
+      A developer is ready to mint a fresh HL Name and requested a live mint-pass response for the label `{label}`:
+
+      ```json
+      {live_response}
+      ```
+
+      Explain what this response is for, which returned fields matter, and what must happen next in the workflow.
+    expected_facts:
+      - "Explains that the response is for a third-party minting workflow"
+      - "Mentions sig, timestamp, token, and amountRequired"
+      - "Says the payload must be used promptly because it expires quickly"
+      - "Explains that the next step is the onchain mint transaction using the returned arguments"
+      - "States that using it after expiry should fail or revert"
+    fail_if:
+      - "Frames the signature as coming from the developer or wallet"
+      - "Claims the API call itself broadcasts the transaction"
+      - "Suggests the response can be reused long after it is returned"

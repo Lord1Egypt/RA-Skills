@@ -1,35 +1,94 @@
----
-name: "Daily Review Editor"
+﻿---
+name: daily-review-editor
 description: "将 Digest 候选进一步精选为 Daily Review 日报：合并同一事件、提炼主题、分配栏目、突出重点。用于需要把预处理后的候选内容组织成真正可读的每日重点综述时。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-review-editor"
-sourceUrl: "https://clawhub.ai/skills/daily-review-editor"
 ---
 
 # Daily Review Editor
 
-> 将 Digest 候选进一步精选为 Daily Review 日报：合并同一事件、提炼主题、分配栏目、突出重点。用于需要把预处理后的候选内容组织成真正可读的每日重点综述时。
+以简体中文工作。目标是把 Digest 候选整理成一份“值得今天看”的日报，而不是把摘要原样堆起来。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-review-editor`
-- **Source URL:** [https://clawhub.ai/skills/daily-review-editor](https://clawhub.ai/skills/daily-review-editor)
+## 输出格式硬约束
 
-## Overview
+- Review 必须使用 Markdown 格式撰写。
+- 必须注重排版易读性，合理使用标题、列表、引用、分段。
+- 必须使用明确的标题层级：
+  - 文档标题使用 `#`
+  - 栏目标题使用 `##`
+  - 单个主题使用 `###`
+- 允许并建议使用少量 emoji 强化信息层级，例如：`✅`、`📌`、`💡`、`⚠️`。
+- 必须使用加粗格式突出核心关键词、关键观点、关键风险和关键动作。
+- 禁止输出大段无重点文字；每段都必须有明确的信息功能。
 
+## 栏目基线
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-review-editor
-```
+固定使用以下 6 个栏目，顺序保持不变：
+
+- 今日大事
+- 变更与实践
+- 安全与风险
+- 开源与工具
+- 洞察与数据点
+- 主题深挖
+
+若当天某栏目无足够内容，也保留该栏目，并用 `### 暂无关键更新` 简短说明，不得删除栏目。
+
+## 处理步骤
+
+1. 浏览 Digest 候选，默认处理“昨天”这个自然日窗口中的条目，识别最重要的主题。
+2. 合并同一事件的多个来源，提炼统一叙述。
+3. 将候选分配到最合适的固定栏目，优先按认知任务分栏，而不是按新闻题材分栏。
+4. 为每条入选内容补充：
+   - 为什么今天值得关注
+   - 对我的操作价值或风险意义
+5. 在 `主题深挖` 中选择一个最值得拉高一层理解的话题，补足趋势层分析。
+
+## 链接与英文内容处理
+
+- 所有链接统一使用 Markdown 格式：`[标题文本](链接)`。
+- 链接标题必须简洁明了，能精准对应目标内容，方便快速识别。
+- 若引用英文文章，必须给出中文摘要或中文要点，不能直接丢英文原文链接了事。
+- 中文摘要应覆盖英文原文的核心观点、关键事实和判断结论。
+
+## 取舍原则
+
+- 优先公共重要性、操作价值和风险信号。
+- 不重复描述同一件事。
+- 不把所有候选都塞进日报。
+- 主题深挖只选择真正值得拉高一层理解的话题。
+
+## 输出要求
+
+- 结构清楚，读者可以快速扫读。
+- 每个栏目聚焦，不要混杂不同认知任务。
+- `##` 必须且只允许是这 6 个固定栏目。
+- 如结论依赖多来源整合，要标出整合依据。
+- 每条内容都应显式突出“关键词 / 判断 / 动作”中的至少一项。
+- 默认不输出“处理边界”区块。
+- 默认不输出“后续动作”区块。
+- Review 文件成功落盘后，不得默认触发 FreshRSS 已读回写。
+- 若后续需要对接知识库或笔记系统，应以 Review 文档本身作为下游输入，而不是修改 FreshRSS 状态。
+
+## 风格要求
+
+- 简洁、清楚、面向判断。
+- 少用泛泛修辞，多说“为什么重要”“下一步看什么”。
+- 不假装自己做了长期预测；只能提出合理跟踪线索。
+- Emoji 只用于提升扫描效率，不能滥用。
+- 加粗用于强调真正的关键信息，不能整段加粗。
+
+## 反例禁区
+
+- 直接复制 Digest 摘要。
+- 同一主题在多个栏目重复出现。
+- 所有内容都写得一样重，缺少优先级。
+- 用“产业与公司动态”“云与基础设施”“研究与治理”“今日观察”这类题材栏目替代固定栏目体系。
+- 把 AI 写作感包装成编辑判断。
+- 链接不规范，直接裸露 URL。
+- 英文文章没有中文摘要。
+- 大段堆叠文字，没有高亮重点。
+- 插入“处理边界”或“后续动作”这类流程性区块，稀释日报主体。
+
+## 参考文件
+
+- Daily Review 栏目说明与输出结构：`references/daily-review-spec.md`
+

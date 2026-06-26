@@ -1,35 +1,216 @@
 ---
-name: "a-share-quant-report"
-description: "面向A股金工研报复现的 skill，自动按研报框架拆解研究问题、选择至少1000只股票的数据集、调用标准化 Python 回测框架，并按研报逻辑系统性展示结果与图片。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-quant-report"
-sourceUrl: "https://clawhub.ai/skills/a-share-quant-report"
+name: a-share-quant-report-reproducer
+description: 面向A股金工研报复现的 skill，自动按研报框架拆解研究问题、选择至少1000只股票的数据集、调用标准化 Python 回测框架，并按研报逻辑系统性展示结果与图片。
+version: 1.2.0
+metadata:
+  openclaw:
+    emoji: "📈"
+    homepage: "https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md"
 ---
 
-# a-share-quant-report
+# A-Share Quant Report Reproducer
 
-> 面向A股金工研报复现的 skill，自动按研报框架拆解研究问题、选择至少1000只股票的数据集、调用标准化 Python 回测框架，并按研报逻辑系统性展示结果与图片。
+## 适用场景
+当用户希望复现一篇A股量化/金工研报时使用本技能。它不只是“生成一个 alpha 再回测”，而是要尽量还原卖方金工研报的完整研究链路：
+1. 明确研究问题
+2. 识别研报属于哪一类研究范式
+3. 把研报逻辑翻译成可计算信号/因子
+4. 选定股票池与数据集规模
+5. 用标准化 Python 回测框架完成检验
+6. 按研报叙事顺序展示结论、表格与图片
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-quant-report`
-- **Source URL:** [https://clawhub.ai/skills/a-share-quant-report](https://clawhub.ai/skills/a-share-quant-report)
+## 你必须先判断：这篇研报属于哪种模式
+不要把所有研报都当作“多空因子回测”处理。至少区分两类：
 
-## Overview
+### A. 因子研究 / 多因子 / 纯因子定价型
+典型特征：
+- 研究某个因子是否被市场定价
+- 有 IC / RankIC / 分层收益 / Long-Short / 中性化 / 纯因子回归
+- 常见于“特质波动率”“估值因子”“盈利预期因子”“Barra风格因子”等
 
+输出重点：
+- 因子定义
+- 样本与中性化口径
+- 因子诊断
+- IC / RankIC
+- 分层单调性
+- 多头、多空、基准、超额
+- 风险暴露与稳健性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-quant-report
-```
+### B. 市场热点跟踪 / 趋势追踪 / 规则筛选型
+典型特征：
+- 研究“市场热点在什么地方”“哪些股票处于强趋势/创新高”
+- 更强调指数、行业、概念、个股的分布统计
+- 最终输出可能是“精选股票池”“跟踪名单”“热点概览”，而不是标准多空净值曲线
+
+输出重点：
+- 市场现象定义
+- 指数/行业/概念/个股四层统计
+- 规则筛选链条
+- 筛选结果表
+- 行业/风格/板块分布
+- 若研报本身没有正式组合回测，则不要强行伪造完整多空回测
+
+## 你必须收集的输入
+如果用户没有明确给出，先补齐以下信息再执行：
+- `report_input`：研报 URL / PDF / 文本摘要
+- `max_download_stocks`：最多下载多少只股票用于回测
+- `universe_preference`：全A / 沪深300 / 中证500 / 中证1000 / 行业池 / 跟随研报
+- `rebalance_freq`：日 / 周 / 月
+- `holding_count`：持有前N只股票，或是否做分组回测
+- `backtest_platform`：自动选择 / Qlib / RQAlphaPlus / JoinQuant / FinQ4Cn-MCP / QMT-MCP / Python框架
+- `cost_assumption`：双边费率、滑点
+- `replication_mode`：严格复现 / 代理复现
+
+默认值：
+- `max_download_stocks = 1000`
+- `universe_preference = 跟随研报`
+- `rebalance_freq = 周`
+- `holding_count = 20`
+- `backtest_platform = Python框架优先，无法满足时再路由到其他平台`
+- `cost_assumption = 手续费万3，冲击/滑点单边15bp`
+- `replication_mode = 代理复现（若研报未披露全部细节）`
+
+## 核心原则
+### 1. 先尊重研报，再尊重用户的下载规模
+数据集选择顺序：
+1. 优先读取研报披露的股票池
+2. 若研报未给股票池，则根据研究类型映射股票池
+3. 应用流动性、停牌、ST、上市时长等过滤
+4. 在满足研报约束的前提下，默认目标为至少1000只股票
+5. 若研报本身股票池不足1000只，必须说明原因
+
+### 2. 默认目标是至少1000只股票
+- 除非研报原始股票池更小，否则默认候选池应不少于1000只
+- `max_download_stocks` 表示候选池规模，不等于最终持仓数
+- 一般应满足：`max_download_stocks >= holding_count * 5`
+- 若用户要求过小样本，需提示稳定性风险
+
+### 3. 标准化回测框架优先
+当任务属于“因子研究 / 分层回测 / 多头多空组合”时，优先使用随 skill 一起提供的 `python_report_style_factor_backtest.py` 作为基础框架，再按研报替换：
+- 股票池生成逻辑
+- 因子表达式
+- 调仓频率
+- 分组数
+- 中性化方式
+- 成本与基准
+
+### 4. 结果展示必须是“研报式”而不是“日志式”
+输出不能只是：
+- 跑完了
+- 生成了若干 png
+- 给几个指标表
+
+必须改为：
+1. 研究问题与原研报结论
+2. 因子/信号定义与经济含义
+3. 样本与回测设定
+4. 因子有效性检验
+5. 组合表现与超额来源
+6. 风险暴露与稳健性
+7. 与原研报对照
+8. 结论与后续优化
+
+## 数据集匹配规则
+- 大盘增强：沪深300
+- 中盘增强：中证500
+- 小盘增强：中证1000
+- 全市场多因子：流动性过滤后的全A，默认1000~2000只
+- 行业内选股：目标行业成分股
+- 事件驱动：满足事件条件后的股票集合
+- 热点跟踪型：指数 + 行业 + 概念 + 个股四层样本
+
+## 平台路由规则
+- 用户强调开源、本地、可改代码：优先 Python框架 / Qlib
+- 用户强调分钟级、A股真实制度细节：优先 RQAlphaPlus
+- 用户强调快速在线验证：优先 JoinQuant
+- 用户强调 MCP / AI 工作流：优先 FinQ4Cn-MCP
+- 用户已有 QMT 环境：优先 QMT-MCP
+- 若任务只是把研报逻辑直接落到一个可维护的研究脚本，优先使用 Python 框架
+
+## 执行步骤
+### Step 1：识别研究类型
+判断是：
+- 因子定价型
+- 多因子选股型
+- 热点跟踪型
+- 趋势筛选型
+- 事件驱动型
+
+### Step 2：拆解研报逻辑
+提取：
+- 研究问题
+- 信号来源
+- 因子定义或规则定义
+- 股票池与过滤规则
+- 调仓频率 / 跟踪频率
+- 评价指标
+- 是否包含正式组合回测
+
+### Step 3：生成表达式或规则链
+- 因子型研报：输出最小可运行表达式 + 增强版表达式
+- 热点/规则型研报：输出“规则链”，不要强行写成单一 alpha
+
+### Step 4：确定数据集规模
+输出：
+- 原始候选池
+- 过滤规则
+- 最终下载股票数
+- 是否达到 >=1000 默认目标
+- 对稳定性的影响
+
+### Step 5：选择执行框架
+- 若属于标准因子研究，优先使用 `python_report_style_factor_backtest.py`
+- 若属于热点追踪型研报，则以“统计追踪 + 规则筛选结果展示”为主，必要时补充轻量组合验证
+
+### Step 6：按研报结构展示结果
+必须至少包含：
+1. 研究问题与核心结论
+2. 因子/信号定义
+3. 样本与回测设定
+4. 因子有效性或规则统计结果
+5. 分层/组合结果（若适用）
+6. 风险与偏差说明
+7. 图片逐张展示与解读
+
+## 图片展示要求
+- 图片必须逐张内联展示，不能只报文件名
+- 每张图都要有一句解释
+- 因子研究型至少展示：
+  - 因子分布图
+  - IC时间序列图
+  - 月度IC热力图
+  - 分层累计收益图
+  - 多头 vs 基准净值图
+  - 多空净值图
+  - 超额与回撤图
+  - 换手率/覆盖率图
+- 若是热点跟踪型，则优先展示：
+  - 指数新高距离图
+  - 行业新高距离图
+  - 概念新高距离图
+  - 创新高个股行业/板块/指数分布图
+  - 筛选结果股票池表
+
+## 特别约束
+- 如果用户给了具体研报，优先复原研报逻辑，不要直接套通用alpha
+- 如果研报没有正式组合回测，就不要伪造完整回测结论
+- 最终报告中必须明确写出“最终下载股票数”
+- 如果实际可用样本少于目标值，要解释原因
+- 最终回复中必须按章节 + 表格 + 图片方式输出，不要退化成纯文字摘要
+
+## 建议配套文件
+使用本 skill 时，优先参考以下文件：
+- `research-framework-patterns.md`
+- `dataset-selection-rules.md`
+- `output-template.md`
+- `report-presentation-guidelines.md`
+- `image-display-guidelines.md`
+- `conversation-push-template.md`
+- `python_report_style_factor_backtest.py`
+
+## 示例触发语句
+- 复现这篇A股因子研报，并至少下载1000只股票做回测
+- 读取这篇热点跟踪型研报，按其逻辑生成跟踪框架并展示结果
+- 用Python框架复现这篇研报，输出完整研报式图表和结论
+- 根据研报自动识别是因子研究还是热点研究，再决定是否做多空回测

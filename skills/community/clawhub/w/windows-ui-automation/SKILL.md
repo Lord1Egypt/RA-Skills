@@ -1,35 +1,56 @@
 ---
-name: "Windows UI Automation"
-description: "Automate Windows GUI interactions (mouse, keyboard, windows) using PowerShell. Use when the user needs to simulate user input on the desktop, such as moving the cursor, clicking buttons, typing text in non-web apps, or managing window states."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, desktop, powershell]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/windows-ui-automation"
-sourceUrl: "https://clawhub.ai/skills/windows-ui-automation"
+name: windows-ui-automation
+description: Automate Windows GUI interactions (mouse, keyboard, windows) using PowerShell. Use when the user needs to simulate user input on the desktop, such as moving the cursor, clicking buttons, typing text in non-web apps, or managing window states.
 ---
 
 # Windows UI Automation
 
-> Automate Windows GUI interactions (mouse, keyboard, windows) using PowerShell. Use when the user needs to simulate user input on the desktop, such as moving the cursor, clicking buttons, typing text in non-web apps, or managing window states.
+Control the Windows desktop environment programmatically.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/windows-ui-automation`
-- **Source URL:** [https://clawhub.ai/skills/windows-ui-automation](https://clawhub.ai/skills/windows-ui-automation)
+## Core Capabilities
 
-## Overview
+- **Mouse**: Move, click (left/right/double), drag.
+- **Keyboard**: Send text, press special keys (Enter, Tab, Alt, etc.).
+- **Windows**: Find, focus, minimize/maximize, and screenshot windows.
 
+## Usage Guide
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/windows-ui-automation
+### Mouse Control
+
+Use the provided PowerShell script `mouse_control.ps1.txt`:
+
+```powershell
+# Move to X, Y
+powershell -File skills/windows-ui-automation/mouse_control.ps1.txt -Action move -X 500 -Y 500
+
+# Click at current position
+powershell -File skills/windows-ui-automation/mouse_control.ps1.txt -Action click
+
+# Right click
+powershell -File skills/windows-ui-automation/mouse_control.ps1.txt -Action rightclick
 ```
+
+### Keyboard Control
+
+Use `keyboard_control.ps1.txt`:
+
+```powershell
+# Type text
+powershell -File skills/windows-ui-automation/keyboard_control.ps1.txt -Text "Hello World"
+
+# Press Enter
+powershell -File skills/windows-ui-automation/keyboard_control.ps1.txt -Key "{ENTER}"
+```
+
+### Window Management
+
+To focus a window by title:
+```powershell
+$wshell = New-Object -ComObject WScript.Shell; $wshell.AppActivate("Notepad")
+```
+
+## Best Practices
+
+1. **Safety**: Always move the mouse slowly or include delays between actions.
+2. **Verification**: Take a screenshot before and after complex UI actions to verify state.
+3. **Coordinates**: Remember that coordinates (0,0) are at the top-left of the primary monitor.

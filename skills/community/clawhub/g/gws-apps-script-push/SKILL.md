@@ -1,35 +1,51 @@
 ---
-name: "Gws Apps Script Push"
+name: gws-apps-script-push
+version: 1.0.0
 description: "Google Apps Script: Upload local files to an Apps Script project."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-apps-script-push"
-sourceUrl: "https://clawhub.ai/skills/gws-apps-script-push"
+metadata:
+  openclaw:
+    category: "productivity"
+    requires:
+      bins: ["gws"]
+    cliHelp: "gws apps-script +push --help"
 ---
 
-# Gws Apps Script Push
+# apps-script +push
 
-> Google Apps Script: Upload local files to an Apps Script project.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-apps-script-push`
-- **Source URL:** [https://clawhub.ai/skills/gws-apps-script-push](https://clawhub.ai/skills/gws-apps-script-push)
+Upload local files to an Apps Script project
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-apps-script-push
+gws apps-script +push --script <ID>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--script` | ✓ | — | Script Project ID |
+| `--dir` | — | — | Directory containing script files (defaults to current dir) |
+
+## Examples
+
+```bash
+gws script +push --script SCRIPT_ID
+gws script +push --script SCRIPT_ID --dir ./src
+```
+
+## Tips
+
+- Supports .gs, .js, .html, and appsscript.json files.
+- Skips hidden files and node_modules automatically.
+- This replaces ALL files in the project.
+
+> [!CAUTION]
+> This is a **write** command — confirm with the user before executing.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-apps-script](../gws-apps-script/SKILL.md) — All manage and execute apps script projects commands

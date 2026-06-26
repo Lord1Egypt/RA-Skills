@@ -1,35 +1,23 @@
 ---
-name: "get-pr-comments"
-description: "Indexed by skills.sh from cursor/plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cursor"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cursor/plugins/get-pr-comments"
-sourceUrl: "https://skills.sh/cursor/plugins/get-pr-comments"
+name: get-pr-comments
+description: Fetch and summarize review comments from the active pull request
 ---
 
-# get-pr-comments
+# Get PR comments
 
-> Indexed by skills.sh from cursor/plugins
+## Trigger
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cursor
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cursor/plugins/get-pr-comments`
-- **Source URL:** [https://skills.sh/cursor/plugins/get-pr-comments](https://skills.sh/cursor/plugins/get-pr-comments)
+Need a concise, actionable summary of feedback on the active pull request.
 
-## Overview
+## Workflow
 
+1. Resolve the active PR for the current branch.
+2. Fetch review comments and discussion comments.
+3. Group feedback by severity and actionability.
+4. Return a concise action list.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/cursor/plugins/get-pr-comments
-```
+## Output
+
+- Grouped feedback summary
+- Action list ordered by priority
+- Open questions that still need clarification

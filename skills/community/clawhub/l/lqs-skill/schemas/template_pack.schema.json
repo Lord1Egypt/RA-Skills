@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lqs.local/skill/schemas/template_pack.schema.json",
+  "title": "TemplatePack",
+  "type": "object",
+  "required": ["version", "templates"],
+  "properties": {
+    "version": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "origin": { "type": "string" },
+    "templates": {
+      "type": "object",
+      "required": ["controller", "model", "view", "migration"],
+      "properties": {
+        "controller": { "type": "object", "required": ["path", "target"] },
+        "model": { "type": "object", "required": ["path", "target"] },
+        "view": { "type": "object", "required": ["path", "target"] },
+        "migration": { "type": "object", "required": ["path", "target"] }
+      }
+    },
+    "contracts": { "type": "object" }
+  }
+}

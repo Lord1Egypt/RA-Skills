@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meeting Minutes Retriever"
+  short_description: "Read meeting minutes or list meeting-note files"
+  default_prompt: "Use $meeting-minutes-retriever to either read one meeting note from a local path or URL, or list meeting-note files in a local directory before answering questions about the meeting."

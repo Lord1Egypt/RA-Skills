@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AStock Daily Config",
+  "type": "object",
+  "required": ["portfolio"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "default": "1.0.0"
+    },
+    "portfolio": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "code"],
+        "properties": {
+          "name": {"type": "string"},
+          "code": {"type": "string"}
+        }
+      }
+    },
+    "push_schedule": {
+      "type": "object",
+      "properties": {
+        "morning": {"type": "object", "properties": {"enabled": {"type": "boolean"}, "time": {"type": "string"}}},
+        "close": {"type": "object", "properties": {"enabled": {"type": "boolean"}, "time": {"type": "string"}}},
+        "night": {"type": "object", "properties": {"enabled": {"type": "boolean"}, "time": {"type": "string"}}}
+      }
+    },
+    "portfolio_tracking": {
+      "type": "object",
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "times": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "weekend": {
+      "type": "object",
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "times": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

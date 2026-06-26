@@ -1,0 +1,58 @@
+# jd_criteria.md template
+# Field keys are English (machine-readable). Values follow the user's language.
+# This file is written to ~/.openclaw/workspace/jd_criteria.md by the jd-triage skill.
+
+schema_version: 1
+criteria_version: 1     # increments on every user-driven update (S1/S2/S5); used to flag old history entries
+last_updated: # ISO-8601 date, e.g. 2026-05-20
+
+# History detail level for jd_history.md entries:
+#   minimal  — title, company, verdict, date only
+#   standard — + 6-axis stars, one-liner, triggered red lines (default)
+#   full     — + raw JD text + parsed fields (warning: may contain recruiter contact / private comp)
+history_detail: standard
+
+# ─────────────────────────────────────────────
+# Profile — who you are right now
+# ─────────────────────────────────────────────
+profile:
+  years_of_experience:        # integer
+  current_title_company:      # free text, e.g. "PM @ Acme"
+  current_salary:             # number + currency, e.g. "30k CNY/month" or "120k USD/yr"
+
+# ─────────────────────────────────────────────
+# Hard gates — any failure → ❌ OUT
+# ─────────────────────────────────────────────
+hard_gates:
+  salary_floor:               # number + currency; minimum acceptable
+  target_cities: []           # list, e.g. ["Beijing", "Remote"]
+  lifestyle_tier:             # one of: strict_9to5 | standard | crunch | always_on
+  hard_red_lines: []          # list of free-text dealbreakers, e.g.
+                              #   - "growth / 增长 / 转化 in core responsibilities"
+                              #   - "reports to growth head"
+                              #   - "K12 / 续报 / 焦虑型产品"
+
+# ─────────────────────────────────────────────
+# Soft axes — scored 1–5 against each JD
+# ─────────────────────────────────────────────
+soft_axes:
+  target_title_keywords: []   # list, e.g. ["Agent PM", "AI Product", "Developer Tools PM"]
+  target_industries: []       # list, e.g. ["AI", "DevTools", "Creative Tools"]
+
+  company_type_preferences:   # map of type → 1-5
+    foreign_company:          # 外企
+    model_company:            # 模型公司 (Anthropic, Moonshot, MiniMax, etc.)
+    domestic_big_tech:        # 民营大厂
+    mid_size:
+    startup:
+
+  company_size_preferences:   # map of size bucket → 1-5
+    under_50:
+    "50_to_500":
+    "500_to_5000":
+    over_5000:
+
+  vibe_anchors_positive: []   # 3-5 companies/products you'd love to work at
+                              # e.g. ["Notion", "Linear", "Duolingo", "Stripe"]
+  vibe_anchors_negative: []   # 3-5 companies/products you'd reject
+                              # e.g. ["Zuoyebang", "TAL Education"]

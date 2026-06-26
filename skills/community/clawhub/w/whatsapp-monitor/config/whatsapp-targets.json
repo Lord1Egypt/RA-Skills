@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "openclaw": {
+    "host": "localhost",
+    "port": 18789,
+    "timeout_seconds": 30,
+    "retry_attempts": 3
+  },
+  "targets": [
+    {
+      "name": "工作团队群",
+      "type": "group",
+      "identifier": "工作群聊的ID或名称",
+      "enabled": true,
+      "keywords": ["紧急", "截止", "阻塞", "问题", "帮忙", "会议"],
+      "priority": "high"
+    },
+    {
+      "name": "项目讨论群",
+      "type": "group",
+      "identifier": "项目群聊的ID或名称",
+      "enabled": true,
+      "keywords": ["状态", "进度", "里程碑", "测试", "部署"],
+      "priority": "medium"
+    },
+    {
+      "name": "重要联系人",
+      "type": "contact",
+      "identifier": "+8612345678900@c.us",
+      "enabled": true,
+      "keywords": ["重要", "紧急", "直接联系", "马上"],
+      "priority": "high"
+    }
+  ],
+  "monitoring": {
+    "scan_interval_minutes": 5,
+    "batch_size": 10,
+    "max_age_hours": 24,
+    "alert_on_high_priority": true,
+    "include_context_messages": 2
+  }
+}

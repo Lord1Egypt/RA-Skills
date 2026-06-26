@@ -1,0 +1,11 @@
+{
+  "_comment": "⚠️ 此配置文件只能由用户手动编辑，AI 禁止修改！",
+  "workspaces": [
+    {
+      "workspaceId": "eLvJDSRX3l4moO87",
+      "workspaceName": "AI可写知识库一级目录",
+      "allowRootWrite": true,
+      "whitelist": ["/"]
+    }
+  ]
+}

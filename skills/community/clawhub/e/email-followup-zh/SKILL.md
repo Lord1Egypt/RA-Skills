@@ -1,35 +1,41 @@
 ---
-name: "Email Followup Zh"
-description: "专为销售、商务及客服团队设计的客户跟进邮件生成技能。当客户或合作方长时间未回复时， 自动生成礼貌而不失力度的跟进邮件（催回复/follow up/沟通跟进）， 兼顾维护客情关系与推动业务进展的双重目标。支持首次跟进、二次催促、 紧急跟进等多种场景，语气可根据等待时长与客户关系灵活调整， 避免过于强硬或过于软弱，帮..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-followup-zh"
-sourceUrl: "https://clawhub.ai/skills/email-followup-zh"
+name: email-followup-zh
+description: >
+  专为销售、商务及客服团队设计的客户跟进邮件生成技能。当客户或合作方长时间未回复时，
+  自动生成礼貌而不失力度的跟进邮件（催回复/follow up/沟通跟进），
+  兼顾维护客情关系与推动业务进展的双重目标。支持首次跟进、二次催促、
+  紧急跟进等多种场景，语气可根据等待时长与客户关系灵活调整，
+  避免过于强硬或过于软弱，帮助销售/BD/客服人员高效推进合作谈判与订单签署。
+tags: [跟进邮件, follow-up, 催回复, 客户跟进, 商务沟通, 销售邮件, 沟通跟进, 邮件模板]
 ---
 
-# Email Followup Zh
+# 客户跟进邮件生成器
 
-> 专为销售、商务及客服团队设计的客户跟进邮件生成技能。当客户或合作方长时间未回复时， 自动生成礼貌而不失力度的跟进邮件（催回复/follow up/沟通跟进）， 兼顾维护客情关系与推动业务进展的双重目标。支持首次跟进、二次催促、 紧急跟进等多种场景，语气可根据等待时长与客户关系灵活调整， 避免过于强硬或过于软弱，帮...
+针对客户或合作方无回复的场景，自动生成礼貌有力的跟进邮件，助力销售与商务团队高效推进沟通。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-followup-zh`
-- **Source URL:** [https://clawhub.ai/skills/email-followup-zh](https://clawhub.ai/skills/email-followup-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "我上周发了报价单给客户，对方一直没回复，帮我写一封跟进邮件催一下"
+- "和合作方谈了两周的合同条款，最近三天没消息了，帮我写封 follow up 邮件，语气委婉但要表达紧迫感"
+- "客户说下周给答复，但已经过去五天了，帮我写一封二次跟进邮件，不要显得太着急"
+- "发出去的合作邀请邮件两周没回音，帮我重新跟进一下，顺便附上核心优势提醒对方"
 
+## Examples
+输入：发给客户的产品演示邀请邮件已过去7天，对方未回复，需要一封二次跟进邮件，客户是某零售企业采购总监，关系尚在建立阶段。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-followup-zh
-```
+输出：
+主题：Re: 产品演示邀请 — 期待与您进一步交流
+
+王总，您好！
+
+上周曾向您发送了关于 [产品名称] 演示的邀请，不知您近期是否有机会查阅？
+考虑到您日程繁忙，特再次致函，希望能为您安排一次30分钟的线上演示，
+届时可结合贵司零售业务的实际场景，展示如何提升 [核心价值点]。
+
+如时间方便，欢迎回复您的空档，我将第一时间为您预约。
+若目前暂无需求，也欢迎告知，我们可保持后续联系。
+
+期待您的回复，祝工作顺利！

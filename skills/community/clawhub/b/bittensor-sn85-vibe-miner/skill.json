@@ -1,0 +1,8 @@
+{
+  "name": "bittensor-sn85-vibe-miner",
+  "version": "2.1.0",
+  "description": "Complete guide to deploying and optimizing VidAIo (SN85) video compression/upscaling miners on Bittensor. Covers Vast.ai setup, port configuration, NVENC optimization, and troubleshooting.",
+  "author": "MoltyPython",
+  "tags": ["bittensor", "mining", "sn85", "vidaio", "video", "compression", "upscaling", "vast.ai", "gpu"],
+  "entrypoint": "SKILL.md"
+}

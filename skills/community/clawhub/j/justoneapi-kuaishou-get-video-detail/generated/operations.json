@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/kuaishou/get-video-detail/v2 for Kuaishou Video Details through JustOneAPI with videoId.",
+  "displayName": "Kuaishou Video Details",
+  "endpointPath": "get-video-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Kuaishou video Details data, including video URL, caption, and author info, for in-depth content performance analysis and building databases of viral videos.",
+      "method": "GET",
+      "operationId": "getVideoDetailsV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of the Kuaishou video, e.g. `3xg9avuebhtfcku`",
+          "enumValues": [],
+          "location": "query",
+          "name": "videoId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/kuaishou/get-video-detail/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "Kuaishou"
+      ]
+    }
+  ],
+  "platformKey": "kuaishou",
+  "primaryTag": "Kuaishou",
+  "skillName": "justoneapi_kuaishou_get_video_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-kuaishou-get-video-detail",
+  "sourceTitle": "OpenAPI definition"
+}

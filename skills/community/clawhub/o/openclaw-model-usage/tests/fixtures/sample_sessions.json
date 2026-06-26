@@ -1,0 +1,25 @@
+{
+  "agent:sample-agent:discord:channel:123": {
+    "sessionId": "parent-session",
+    "displayName": "discord:#sample-agent",
+    "channel": "discord",
+    "groupChannel": "#sample-agent",
+    "chatType": "channel",
+    "status": "done",
+    "startedAt": 1774518900000,
+    "updatedAt": 1774522800000,
+    "sessionFile": "/tmp/sample-agent/sessions/parent-session.jsonl"
+  },
+  "agent:sample-agent:subagent:abc123": {
+    "sessionId": "child-session",
+    "label": "sample-subagent-task",
+    "channel": "discord",
+    "status": "done",
+    "spawnDepth": 1,
+    "subagentRole": "leaf",
+    "spawnedBy": "agent:sample-agent:discord:channel:123",
+    "startedAt": 1774601700000,
+    "updatedAt": 1774602000000,
+    "sessionFile": "/tmp/sample-agent/sessions/child-session.jsonl"
+  }
+}

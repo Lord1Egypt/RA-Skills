@@ -1,35 +1,50 @@
 ---
-name: "Chinese Name Pinyin Sort"
-description: "按拼音排序中文姓名。当用户需要给中国人名单按拼音排序、给姓名排序、中文姓名排序、拼音排姓名时使用。处理多音字姓（如曾zēng/仇qiú/解xiè）、同音异姓按笔画分组（如于3<余7<俞9<虞13）、同姓先排完再排下一个姓等同音姓排序惯例。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-name-pinyin-sort"
-sourceUrl: "https://clawhub.ai/skills/chinese-name-pinyin-sort"
+name: chinese-name-pinyin-sort
+description: 按拼音排序中文姓名。当用户需要给中国人名单按拼音排序、给姓名排序、中文姓名排序、拼音排姓名时使用。处理多音字姓（如曾zēng/仇qiú/解xiè）、同音异姓按笔画分组（如于3<余7<俞9<虞13）、同姓先排完再排下一个姓等同音姓排序惯例。
 ---
 
-# Chinese Name Pinyin Sort
+# 中文姓名拼音排序
 
-> 按拼音排序中文姓名。当用户需要给中国人名单按拼音排序、给姓名排序、中文姓名排序、拼音排姓名时使用。处理多音字姓（如曾zēng/仇qiú/解xiè）、同音异姓按笔画分组（如于3<余7<俞9<虞13）、同姓先排完再排下一个姓等同音姓排序惯例。
+将中文姓名按拼音排序，遵循中文惯例而非纯字母序。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-name-pinyin-sort`
-- **Source URL:** [https://clawhub.ai/skills/chinese-name-pinyin-sort](https://clawhub.ai/skills/chinese-name-pinyin-sort)
+## 核心规则
 
-## Overview
+1. **按姓氏拼音字母序分组**
+2. **同音姓按笔画排序**：于(3画) < 余(7画) < 俞(9画) < 虞(13画)
+3. **排完一个姓再排下一个姓**：先排完所有"刘"姓，再排"柳"姓
+4. **同姓内按名字拼音排序**
+5. **同音名按笔画排序**
+6. **多音字姓自动修正**：曾→zēng、仇→qiú、解→xiè 等
 
+## 用法
 
-## Installation
-To install this skill, run the following command in your terminal:
+运行排序脚本：
+
 ```bash
-hermes skills install clawhub/chinese-name-pinyin-sort
+python3 scripts/sort_names.py "张三、李四、王五"
+python3 scripts/sort_names.py "张三,李四,王五"
+echo "张三 李四" | python3 scripts/sort_names.py
 ```
+
+选项：
+- `--no-number`：不显示序号
+- `--grouped`：按姓氏分组显示
+
+输入支持：逗号、顿号、空格、换行分隔
+
+## 输出格式
+
+```
+1. 江奕云（Jiāng Yìyún）
+2. 姜文（Jiāng Wén）
+...
+⚠ 同音不可分组：
+  刘欣、刘辛、刘鑫（Liú Xīn）
+```
+
+## 注意事项
+
+- 笔画数据基于常见字硬编码表，罕见字可能退化为估算值
+- 同音同笔画的不同姓名（如 刘鑫/刘辛/刘欣）纯拼音无法区分，会标记为"同音不可分组"
+- 实际应用中对不可分组可追加笔画数等辅助规则
+- 复姓（欧阳、司马等）已支持自动识别

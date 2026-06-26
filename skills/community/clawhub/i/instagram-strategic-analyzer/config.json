@@ -1,0 +1,12 @@
+{
+  "name": "instagram-analyzer",
+  "version": "2.0",
+  "type": "api-agent",
+  "inputs": {
+    "instagram_id": "string",
+    "access_token": "string"
+  },
+  "api": {
+    "base_url": "https://graph.facebook.com/v25.0"
+  }
+}

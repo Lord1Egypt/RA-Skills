@@ -1,0 +1,9 @@
+[project]
+name = "byted-byteplus-vod-video-enhancement"
+version = "1.0.0"
+description = "将媒资从公网 URL 上传到火山引擎 VOD"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+]

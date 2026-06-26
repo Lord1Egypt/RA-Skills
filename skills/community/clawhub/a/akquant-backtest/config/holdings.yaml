@@ -1,0 +1,35 @@
+# Lam 的持仓配置
+# 更新时间：2026-03-12 20:35 PM
+# 数据来源：OCR 识别持仓截图
+
+holdings:
+  - stock_code: "601658"
+    stock_name: "邮储银行"
+    quantity: 25000
+    cost_price: 5.444
+    current_price: 5.060
+    profit_loss: -9593.76
+    profit_rate: -0.0705
+    
+  - stock_code: "600919"
+    stock_name: "江苏银行"
+    quantity: 3000
+    cost_price: 7.373
+    current_price: 10.660
+    profit_loss: 9859.76
+    profit_rate: 0.4457
+    
+  - stock_code: "603711"
+    stock_name: "香飘飘"
+    quantity: 2000
+    cost_price: 6.226
+    current_price: 13.070
+    profit_loss: 13688.79
+    profit_rate: 1.0994
+
+# 推送配置
+push_config:
+  mode: "hybrid"  # hybrid = 周报 + 事件触发
+  weekly_report_time: "09:00"  # 周一 9 点
+  volatility_threshold: 0.05  # 涨跌>5% 推送
+  include_market_analysis: true

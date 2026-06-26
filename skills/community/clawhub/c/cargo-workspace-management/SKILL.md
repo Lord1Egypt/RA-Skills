@@ -1,35 +1,225 @@
 ---
-name: "Cargo Workspace Management"
-description: "Manage workspace users, API tokens, folders, roles, and submit reports to workspace management using the Cargo CLI. Use when the user wants to invite or mana..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cargo-workspace-management"
-sourceUrl: "https://clawhub.ai/skills/cargo-workspace-management"
+name: cargo-workspace-management
+description: Manage workspace users, API tokens, folders, roles, and submit reports to workspace management using the Cargo CLI. Use when the user wants to invite or manage workspace members, create or rotate API tokens, organize resources into folders, inspect workspace roles and permissions, or submit a report to workspace management when the CLI fails or is misused.
+version: "1.1.0"
+compatibility: Requires @cargo-ai/cli (npm) and a Cargo account (browser sign-in via --oauth, or an API token)
+homepage: https://github.com/getcargohq/cargo-skills
+metadata:
+  author: getcargo
+  openclaw:
+    requires:
+      bins:
+        - cargo-ai
+    install:
+      - kind: node
+        package: "@cargo-ai/cli@latest"
+        bins:
+          - cargo-ai
+    homepage: https://github.com/getcargohq/cargo-skills
 ---
 
-# Cargo Workspace Management
+# Cargo CLI — Workspace
 
-> Manage workspace users, API tokens, folders, roles, and submit reports to workspace management using the Cargo CLI. Use when the user wants to invite or mana...
+Workspace administration: managing users, API tokens, folders, roles, workspace-level files, and submitting reports to workspace management.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cargo-workspace-management`
-- **Source URL:** [https://clawhub.ai/skills/cargo-workspace-management](https://clawhub.ai/skills/cargo-workspace-management)
+> See `references/response-shapes.md` for full JSON response structures.
+> See `references/troubleshooting.md` for common errors and how to fix them.
+> See `references/examples/users.md` for user invite and management examples.
+> See `references/examples/tokens.md` for API token creation and rotation examples.
+> See `references/examples/folders.md` for organizing resources into folders.
+> See `references/examples/reports.md` for examples of submitting workspace management reports.
+> See `references/examples/sessions.md` for session tracking — the Cargo installer scaffolds the Claude Code SessionStart + Stop + SessionEnd hooks automatically.
 
-## Overview
+## Prerequisites
 
+See [`../cargo/references/prerequisites.md`](../cargo/references/prerequisites.md) for install, login (`--oauth` / `--token`), JSON output conventions, and error shapes. Verify the session with `cargo-ai whoami` before running any of the commands below.
 
-## Installation
-To install this skill, run the following command in your terminal:
+**Admin-only:** user, role, and token writes require a token with admin access on the workspace. Folder writes and `report create` work with non-admin tokens.
+
+## Discover resources first
+
 ```bash
-hermes skills install clawhub/cargo-workspace-management
+cargo-ai whoami                        # current user and active workspace
+cargo-ai workspaceManagement user list           # all workspace members
+cargo-ai workspaceManagement role list           # available roles
+cargo-ai workspaceManagement token list          # all API tokens
+cargo-ai workspaceManagement folder list         # all folders
+```
+
+## Quick reference
+
+```bash
+cargo-ai whoami
+cargo-ai workspaceManagement user list
+cargo-ai workspaceManagement user create --user-email <email> --role-slug <slug>
+cargo-ai workspaceManagement token list
+cargo-ai workspaceManagement token create --name <name>
+cargo-ai workspaceManagement token remove <token-uuid>
+cargo-ai workspaceManagement folder list
+cargo-ai workspaceManagement folder create --name <name> --emoji-slug <slug> --kind <kind>
+cargo-ai workspaceManagement report create --title <title> --description <description>
+cargo-ai workspaceManagement session upsert --session-id <id> --title <title> --summary <summary> [--finished]
+```
+
+## Current user and workspace
+
+```bash
+# Get your current user and workspace context
+cargo-ai whoami
+# → Returns your user UUID, email, and active workspace UUID
+```
+
+## Users
+
+```bash
+# List all workspace members
+cargo-ai workspaceManagement user list
+
+# Invite a new user (requires their email and a role)
+cargo-ai workspaceManagement user create \
+  --user-email user@example.com \
+  --role-slug <role-slug>
+
+# Update a user's role
+cargo-ai workspaceManagement user update --user-uuid <uuid> --role-slug <new-role-slug>
+
+# Remove a user from the workspace
+cargo-ai workspaceManagement user remove --user-uuid <uuid>
+```
+
+## Roles
+
+Roles define what users can do in the workspace.
+
+```bash
+# List available roles
+cargo-ai workspaceManagement role list
+```
+
+Always check available roles before inviting users — use the `slug` from `role list` when creating or updating users.
+
+## API tokens
+
+Each token has a human-readable `name` and a `permissions` field. Tokens created via the CLI are issued with `permissions: null`, which means the token mirrors the permissions of its owning user (the user who ran `token create`) — so a token's effective access is bounded by what that user can do in the workspace. Fine-grained permission scoping (an explicit allow/deny list) is configured via the API or the Cargo app.
+
+```bash
+# List all API tokens (includes name and permissions of each token)
+cargo-ai workspaceManagement token list
+
+# Create a new token — --name is required
+cargo-ai workspaceManagement token create --name "CI/CD pipeline"
+# → Returns the token value — store it securely, it won't be shown again
+
+# Remove a token
+cargo-ai workspaceManagement token remove <token-uuid>
+```
+
+**Naming:** Pick a `--name` that makes the token's purpose obvious in `token list` later (e.g. `"GitHub Actions — production"`, `"Local dev — alice"`, `"Zapier integration"`). The name is the only way to tell tokens apart in the listing.
+
+**Security:** Token values are only shown once at creation. Store them in a secrets manager (e.g. GitHub Secrets, AWS Secrets Manager).
+
+## Folders
+
+Folders organize resources (plays, tools, agents) in the Cargo app.
+
+```bash
+# List all folders
+cargo-ai workspaceManagement folder list
+
+# Create a folder (kind: "tool", "play", "agent", or "file")
+cargo-ai workspaceManagement folder create --name "Q1 Campaigns" --emoji-slug "rocket" --kind "play"
+
+# Get a folder
+cargo-ai workspaceManagement folder get <folder-uuid>
+
+# Update a folder
+cargo-ai workspaceManagement folder update --uuid <folder-uuid> --name "Q1 2025 Campaigns"
+
+# Remove a folder
+cargo-ai workspaceManagement folder remove <folder-uuid>
+```
+
+## Reports
+
+Submit a report to workspace management. **Use this whenever the CLI is failing, behaving unexpectedly, lacks a capability you need, or whenever you (user or agent) are struggling to accomplish a task with the CLI.** This is the official feedback channel — every report is reviewed by the Cargo team and used to improve the CLI, its skills, and the underlying APIs.
+
+```bash
+# Submit a report to workspace management
+cargo-ai workspaceManagement report create \
+  --title "<short summary>" \
+  --description "<detailed description, including the command(s) tried and the error(s) seen>"
+```
+
+**When to send a report (non-exhaustive):**
+
+- A command exits non-zero with an `errorMessage` you cannot resolve from `--help` or `references/troubleshooting.md`.
+- The CLI is being misused or the syntax is unclear (e.g. you can't figure out which flag to pass, or the JSON schema for `--filter` / `--nodes` / `--action` is ambiguous).
+- A user or AI agent is repeatedly retrying the same command without progress (≥ 2 failed attempts on the same task).
+- A documented command does not behave as the skill describes, or a response shape differs from what `references/response-shapes.md` documents.
+- A capability appears to be missing entirely (no command exists for what you need to do).
+- An async operation never reaches a terminal status, or returns inconsistent results across runs.
+
+**What to put in the report:**
+
+- `--title`: one-line summary of the problem (e.g. `"batch create fails with 'playNotCompatible' on tool workflow"`).
+- `--description`: include the exact command(s) executed (with sensitive values redacted), the JSON `errorMessage`, what you expected, what you tried, and any relevant UUIDs (run, batch, workflow, model). The more context you provide, the faster it can be triaged.
+
+```bash
+# Example: report a CLI struggle after multiple failed attempts
+cargo-ai workspaceManagement report create \
+  --title "segment fetch returns empty results despite matching records in UI" \
+  --description "Ran: cargo-ai segmentation segment fetch --model-uuid <uuid> --filter '{\"conjunction\":\"and\",\"groups\":[...]}'. Got 0 records. The same filter shows 1,200 matches in the app UI. Tried both --filter and --segment-uuid; both return empty. Expected: the same records as the UI."
+```
+
+> Do not silently give up on a failing CLI task. **Send a report.** This closes the feedback loop so the CLI and these skills can be improved.
+
+## Sessions
+
+Record a Claude Code session in `workspace_management.sessions`. One row per `(workspaceUuid, sessionId)`. Used by the `cargo` router's Claude Code SessionStart + Stop + SessionEnd hook recipe — see [`../cargo/SKILL.md`](../cargo/SKILL.md) for when to wire them up.
+
+```bash
+# Upsert a session. Idempotent on --session-id within the workspace.
+cargo-ai workspaceManagement session upsert \
+  --session-id <claude-session-id> \
+  --title "<short title>" \
+  --summary "<one-or-two sentence summary>"
+
+# Same call, but also stamp finished_at = now
+cargo-ai workspaceManagement session upsert \
+  --session-id <claude-session-id> \
+  --title "<final title>" \
+  --summary "<final summary>" \
+  --finished
+```
+
+- `--session-id`, `--title`, `--summary` are required on every call. `title` and `summary` are `NOT NULL` in the schema — pass placeholders on the start call and overwrite on the end call.
+- `--finished` stamps `finished_at = now`. Use `--finished-at <iso>` for an explicit timestamp instead.
+- Calling `upsert` twice with the same `--session-id` updates the same row — `title`, `summary`, and `finished_at` are overwritten.
+
+Returns the upserted session as JSON. The Cargo installer (`curl -fsSL https://api.getcargo.io/install.sh | sh`) wires SessionStart + Stop + SessionEnd hooks that call this command automatically: SessionStart writes a placeholder, the per-turn Stop hook checkpoints the row (no `--finished`), and SessionEnd writes the transcript-driven AI summary with `--finished` — see [`references/examples/sessions.md`](references/examples/sessions.md).
+
+## Workspace files
+
+Workspace files are CSVs or other data files uploaded for use in batch runs.
+
+```bash
+# Upload a file
+cargo-ai workspaceManagement file upload --file-path <path-to-file>
+# → Returns s3Filename
+
+# Inspect a file's columns before running a batch
+cargo-ai workspaceManagement file list-columns --s3-filename <s3-filename>
+# → Returns column names to use when mapping to workflow inputs
+```
+
+The `s3-filename` is returned when uploading a file via `cargo-ai workspaceManagement file upload`. See the `cargo-orchestration` skill's `references/examples/tools.md` for the full file upload and batch run workflow.
+
+## Help
+
+Every command supports `--help`:
+
+```bash
+cargo-ai workspaceManagement user create --help
+cargo-ai workspaceManagement token create --help
+cargo-ai workspaceManagement folder create --help
 ```

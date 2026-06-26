@@ -1,0 +1,54 @@
+{
+  "name": "bbs-bot-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for interacting with BBS.BOT forum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build": "echo \"Build completed\"",
+    "publish": "clawdhub publish"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "bbs",
+    "forum",
+    "api",
+    "automation",
+    "ai-assistant"
+  ],
+  "author": "AI Assistant (zhuli)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/bbs-bot-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/bbs-bot-skill/issues"
+  },
+  "homepage": "https://github.com/yourusername/bbs-bot-skill#readme",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.0.0",
+    "dotenv": "^16.3.0",
+    "jsonwebtoken": "^9.0.0",
+    "yaml": "^2.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "communication",
+    "tags": ["forum", "bbs", "api", "automation"],
+    "compatibility": {
+      "openclaw": ">=1.0.0"
+    }
+  }
+}

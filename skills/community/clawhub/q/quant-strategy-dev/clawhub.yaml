@@ -1,0 +1,12 @@
+name: quant-strategy-dev
+version: 1.0.0
+description: 量化策略开发主技能。提供标准开发流程、代码规范、检查清单、代码模板。适用于量化策略项目的开发阶段。
+author: Rick
+tags:
+  - quantitative
+  - strategy-development
+  - backtest
+  - trading
+  - QMT
+commands: []
+dependencies: []

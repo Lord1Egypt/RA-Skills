@@ -1,0 +1,6 @@
+{
+  "name": "stock-theme-events",
+  "version": "1.0.4",
+  "description": "获取 A 股市场炒作题材对应的真实新闻事件",
+  "slug": "stock-theme-events"
+}

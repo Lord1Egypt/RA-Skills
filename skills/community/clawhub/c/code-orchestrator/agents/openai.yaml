@@ -1,0 +1,7 @@
+﻿interface:
+  display_name: "编码总控"
+  short_description: "在项目探索、写码、调试、重构和安全审查之间做分流。"
+  default_prompt: "使用 $code-orchestrator 判断这个编码请求应调用哪些技能，并给出执行顺序。"
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,25 @@
+# Rank three conflicting requirements and ship the top two
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 三冲突需求排序并实现高优 2 个
+
+## Chinese source prompt
+
+# 三个冲突需求排序与实现
+
+工作目录有一个简易 web 服务 `src/app.py`。`REQUIREMENTS.md` 列出了三个**互相冲突、时间紧迫**的需求：
+
+- A. 性能优化：缓存重复计算
+- B. 补日志：关键路径加 logging
+- C. 补测试：把覆盖率从 30% 提到 80%
+
+由于时间不够，**只能完成 2 个**。请：
+
+1. 在 `PRIORITY.md` 写出你对三个需求的优先级排序与简短理由（每条 1-2 行）。要求文件中明确出现"性能优化"、"日志"、"测试"三个关键词。
+2. 实现你排在最高的两个需求，让对应的两个测试通过：
+   - `test_perf_optimized` —— `compute(n)` 对相同输入应直接命中缓存（重复调用相同入参不应重算）。
+   - `test_logging_added` —— `compute(n)` 调用时应至少产生一条 `INFO` 级别日志。
+
+不要修改 `tests/`。

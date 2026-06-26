@@ -1,0 +1,128 @@
+{
+  "trigger_checked": false,
+  "trigger_file_missing": true,
+  "timestamp": "2026-04-07T03:06:00+08:00",
+  "data_source": "cron_forced_nasdaq",
+  "x_search_trump_iran": [
+    {
+      "time_cst": "2026-04-07 11:05",
+      "author": "@CryptoNewsHntrs",
+      "content": "ALERT: Adviser to Iranian Parliament Speaker Ghalibaf REJECTS Trump deal. BREAKING NEWS.",
+      "type": "breaking",
+      "likes": 4,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 11:05",
+      "author": "@SBNNewsPakistan",
+      "content": "Axios: Trump may delay attacks on Iranian infrastructure if he sees real signs of a deal.",
+      "type": "breaking",
+      "likes": 0,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 11:04",
+      "author": "@YaakovRenewed",
+      "content": "Iran rejects Trump's peace deal. Adviser warns Trump has '20 hours' to surrender — or allies face 'back to the Stone Age'.",
+      "type": "breaking",
+      "likes": 0,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 11:04",
+      "author": "@unprogramming",
+      "content": "Trump to reportedly 'delay' attacks on Iran if he sees signs of a deal (KALSHI)",
+      "type": "news",
+      "likes": 0,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 11:01",
+      "author": "@TSFX_forex",
+      "content": "US doubts Iran deadline extension as tough response seen as negotiating tactic (Axios). US signals fading patience but keeps door open to last-minute deal.",
+      "type": "analysis",
+      "likes": 0,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 11:00",
+      "author": "@Grimillionaire",
+      "content": "Axios: Trump may hold off on tomorrow's strikes against civilian infrastructure in Iran and extend deadline if he sees deal coming together, defense official says.",
+      "type": "breaking",
+      "likes": 0,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 10:59",
+      "author": "@Forex_Karnataka",
+      "content": "Geopolitical Update: Trump may delay potential strikes on Iran if meaningful progress toward deal is seen. US warned of strikes on critical infrastructure. Iran responded with 10-point proposal.",
+      "type": "analysis",
+      "likes": 0,
+      "retweets": 0
+    }
+  ],
+  "x_search_iran_ceasefire": [
+    {
+      "time_cst": "2026-04-07 11:11",
+      "author": "@daobinhyen68",
+      "content": "Oman & Iran discuss Strait of Hormuz transit amid ceasefire doubts.",
+      "type": "news",
+      "likes": 0,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 11:10",
+      "author": "@SBNNewsPakistan",
+      "content": "WSJ: US and Iran positions remain too far apart for a ceasefire before Trump's deadline.",
+      "type": "breaking",
+      "likes": 0,
+      "retweets": 0
+    },
+    {
+      "time_cst": "2026-04-07 11:09",
+      "author": "@TheAnnaExpress",
+      "content": "Iran rejects ceasefire via IRNA, conveying response to US via Pakistan. IRNA: emphasizes necessity of permanent end to the war.",
+      "type": "breaking",
+      "likes": 0,
+      "retweets": 0
+    }
+  ],
+  "kobeissi_letter": [
+    {
+      "time_cst": "2026-04-07 ~10:51",
+      "author": "@KobeissiLetter",
+      "content": "BREAKING: US oil prices extend gains to $115.50/barrel, now up +110% since the December 2025 low. Inflation expectations are rising.",
+      "type": "market_alert",
+      "likes": 588,
+      "retweets": 149,
+      "replies": 66
+    }
+  ],
+  "watcher_guru": [
+    {
+      "time_cst": "2026-04-07 ~03:06",
+      "author": "@WatcherGuru",
+      "content": "Trump considers charging tolls for ships passing through the Strait of Hormuz.",
+      "type": "breaking",
+      "likes": 3557,
+      "retweets": 512,
+      "replies": 691
+    },
+    {
+      "time_cst": "2026-04-07 ~01:06",
+      "author": "@WatcherGuru",
+      "content": "JPMorgan says tokenized real-world assets market could grow to $13 trillion by 2030.",
+      "type": "market",
+      "likes": 6696,
+      "retweets": 990,
+      "replies": 537
+    }
+  ],
+  "notes": [
+    "Trigger file nasdaq_trigger_sentiment.json does not exist",
+    "Brave web search API returned 422 AUTH error - data from X live searches only",
+    "Web fetch blocked - skipped",
+    "Current CST time: 11:06, April 7, 2026",
+    "Deadline context: Trump deadline ~24 hours away"
+  ]
+}

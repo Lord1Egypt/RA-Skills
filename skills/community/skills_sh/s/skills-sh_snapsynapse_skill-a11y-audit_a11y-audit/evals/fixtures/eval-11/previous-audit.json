@@ -1,0 +1,49 @@
+{
+  "date": "2026-04-01",
+  "tool": "a11y-audit report.js v1",
+  "pages": [
+    "https://example.com/",
+    "https://example.com/blog/post-a",
+    "https://example.com/blog/post-b"
+  ],
+  "lighthouse": {
+    "status": "skipped",
+    "reason": "Fixture data"
+  },
+  "summary": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 1,
+    "minor": 0
+  },
+  "violations": [
+    {
+      "rule": "color-contrast",
+      "impact": "serious",
+      "wcag": [
+        "1.4.3"
+      ],
+      "pages": [
+        "https://example.com/blog/post-a",
+        "https://example.com/blog/post-b"
+      ],
+      "instances": 2
+    },
+    {
+      "rule": "region",
+      "impact": "moderate",
+      "wcag": [],
+      "pages": [
+        "https://example.com/"
+      ],
+      "instances": 1
+    }
+  ],
+  "matrix": {
+    "1.4.3": "fail",
+    "2.4.1": "pass",
+    "4.1.2": "manual"
+  },
+  "runtime_url": "https://example.com",
+  "expected_url": "https://example.com"
+}

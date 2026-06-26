@@ -1,0 +1,7 @@
+interface:
+  display_name: "KeplerJAI Contract Draft"
+  short_description: "Draft contracts from Word templates with a stable runner."
+  default_prompt: "Use $keplerjai-contract-draft to inspect the template, prepare a structured contract job, and generate a draft from the provided business terms."
+
+policy:
+  allow_implicit_invocation: true

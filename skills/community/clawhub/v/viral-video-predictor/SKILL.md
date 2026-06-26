@@ -1,35 +1,32 @@
 ---
-name: "短视频爆款预测脚本"
-description: "输入短视频脚本，自动预测爆款概率（钩子分析/节奏/情绪曲线/优化建议）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/viral-video-predictor"
-sourceUrl: "https://clawhub.ai/skills/viral-video-predictor"
+name: viral-video-predictor
+description: 输入短视频脚本，自动预测爆款概率（钩子分析/节奏/情绪曲线/优化建议）
+metadata: { "version": "1.0.0", "author": "上海冰月网络科技有限公司", "license": "Commercial", "price": { "cny": 59, "usd": 22.99, "type": "monthly" } }
 ---
 
 # 短视频爆款预测脚本
 
-> 输入短视频脚本，自动预测爆款概率（钩子分析/节奏/情绪曲线/优化建议）
+输入短视频脚本，自动预测爆款概率并给出优化建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/viral-video-predictor`
-- **Source URL:** [https://clawhub.ai/skills/viral-video-predictor](https://clawhub.ai/skills/viral-video-predictor)
+## 触发条件
 
-## Overview
+当用户需要：
+- 评估短视频脚本的爆款潜力
+- 优化前 3 秒钩子
+- 调整视频节奏和情绪曲线
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/viral-video-predictor
-```
+1. 接收短视频脚本
+2. 分析前 3 秒钩子（6 种钩子类型识别）
+3. 评估内容节奏
+4. 绘制情绪曲线
+5. 平台规则合规检查
+6. 预测爆款概率
+7. 给出具体优化建议
+
+## 注意事项
+
+- 预测仅供参考，实际效果受多种因素影响
+- 建议 A/B 测试验证
+- 遵守各平台内容规范

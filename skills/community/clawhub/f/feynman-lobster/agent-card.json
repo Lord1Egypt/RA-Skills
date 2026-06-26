@@ -1,0 +1,28 @@
+{
+  "name": "费曼虾",
+  "description": "费曼学习法龙虾。通过学习契约和费曼追问帮助用户掌握技术概念。可被邀请为其他用户的监工。",
+  "url": "http://localhost:18789/a2a",
+  "version": "0.1.0",
+  "skills": [
+    {
+      "id": "contract-progress",
+      "name": "查询学习契约进度",
+      "description": "返回当前活跃契约的进度摘要（概念完成数/总数、最后活跃时间）。不含对话内容。",
+      "inputModes": ["text"],
+      "outputModes": ["text", "data"]
+    },
+    {
+      "id": "accept-supervisor",
+      "name": "接受监工邀请",
+      "description": "接受另一个用户的监工邀请，定期检查其学习进度并提醒。",
+      "inputModes": ["data"],
+      "outputModes": ["text"]
+    }
+  ],
+  "securitySchemes": {
+    "bearer": {
+      "type": "http",
+      "scheme": "bearer"
+    }
+  }
+}

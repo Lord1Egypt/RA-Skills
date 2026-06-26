@@ -1,0 +1,113 @@
+# Apple Minimal — Template Manifest
+
+meta:
+  name: "Apple Minimal"
+  id: apple-minimal
+  version: "1.0"
+  tags: [minimal, refined, premium, glass, rounded, san-francisco, apple]
+  best_for:
+    - 消费类应用
+    - 设计工具
+    - 社交平台
+    - 生活方式应用
+  not_for:
+    - 数据密集型仪表盘
+    - 企业后台管理
+  flexibility:
+    colors: strict           # 苹果风格的配色非常克制
+    typography: strict       # SF 字体是核心
+    spacing: strict          # 留白是苹果设计的灵魂
+    motion: moderate
+    layout: loose
+  icon_preferences:
+    primary_source: phosphor
+    fallback_sources: [lucide]
+    style: thin
+    stroke_width: 1.5
+    size: 24
+
+# ====== Design Tokens ======
+tokens:
+  colors:
+    primary:
+      base: "#007AFF"       # Apple Blue
+      light: "#409CFF"
+      dark: "#0055CC"
+    secondary:
+      base: "#5AC8FA"       # iOS Sky Blue
+      light: "#81D4FA"
+      dark: "#39B7F0"
+    background:
+      page: "#F2F2F7"       # iOS System Gray 6
+      surface: "#FFFFFF"     # Card white
+      elevated: "#FFFFFF"
+    text:
+      primary: "#000000"     # iOS Label
+      secondary: "#3C3C43"   # iOS Secondary Label (60% opacity equivalent)
+      muted: "#8E8E93"       # iOS Tertiary Label
+    border:
+      default: "#E5E5EA"     # iOS Separator
+      focus: "#007AFF"
+    functional:
+      success: "#34C759"     # iOS Green
+      warning: "#FF9500"     # iOS Orange
+      error: "#FF3B30"       # iOS Red
+      info: "#007AFF"
+
+  typography:
+    heading_font: "'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif"
+    body_font: "'SF Pro Text', -apple-system, 'Helvetica Neue', sans-serif"
+    mono_font: "'SF Mono', 'Menlo', 'Monaco', monospace"
+    scale:
+      xs:   "0.75rem"       # 12px — caption
+      sm:   "0.8125rem"     # 13px — subhead
+      base: "0.9375rem"     # 15px — body (Apple default)
+      lg:   "1.0625rem"     # 17px — title
+      xl:   "1.25rem"       # 20px — title2
+      2xl:  "1.5rem"        # 24px — title1
+      3xl:  "2rem"          # 32px — large title
+      4xl:  "2.5rem"        # 40px — hero
+    weight:
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  spacing:
+    unit: 4
+    scale: [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96]
+
+  border:
+    radius:
+      none:  "0"
+      sm:    "0.5rem"        # 8px
+      md:    "0.75rem"       # 12px
+      lg:    "1rem"          # 16px
+      xl:    "1.25rem"       # 20px
+      full:  "9999px"
+
+  shadows:
+    none: "none"
+    sm:   "0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03)"
+    md:   "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03)"
+    lg:   "0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04)"
+    xl:   "0 20px 40px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04)"
+
+  motion:
+    duration:
+      instant: "0ms"
+      fast:    "150ms"
+      normal:  "250ms"
+      slow:    "350ms"
+      gradual: "500ms"
+    easing:
+      default: "cubic-bezier(0.25, 0.1, 0.25, 1)"       # Apple default
+      in:      "cubic-bezier(0.42, 0, 1, 1)"
+      out:     "cubic-bezier(0, 0, 0.58, 1)"
+      spring:  "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+
+  decorations:
+    gradient_primary: "linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%)"
+    gradient_subtle: "linear-gradient(180deg, #F2F2F7 0%, #FFFFFF 100%)"
+    backdrop_blur: "20px"
+    pattern: none

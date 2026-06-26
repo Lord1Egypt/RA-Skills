@@ -1,0 +1,44 @@
+{
+  "skill_name": "ltv-loyalty-winback",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Repeat customers are going quiet — a lot haven’t bought in 90+ days. We have a tier program; Gold members are slipping. Points expire end of quarter. Need a win-back plan.",
+      "expected_output": "Risk framing, VIP CS branch, standard discount branch, points pre-expiry sequence, workflow table.",
+      "files": [],
+      "expectations": [
+        "Addresses 90-day non-repurchase and tier / activity decline",
+        "Includes explicit VIP or high-value branch with dedicated CS care style actions",
+        "Includes standard buyer branch with time-bound discount or incentive",
+        "Includes points expiry or pre-expiry campaign if points mentioned",
+        "Contains a structured table (segment, signal, action, channel, timing) or equivalent workflow",
+        "Describes automated or sequenced activation steps"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our VIPs (top spenders) used to order monthly; now many are at 100 days silent. Regular one-time buyers we can hit with 15% off. Draft both tracks.",
+      "expected_output": "Two branches clearly separated; VIP non-price-first where possible; standard limited-time 15%.",
+      "files": [],
+      "expectations": [
+        "Separates VIP track from standard track",
+        "VIP track emphasizes concierge / care / non-discount-first perks",
+        "Standard track includes time-bound discount bait (15% or aligned)",
+        "Mentions silence / lapse risk",
+        "Includes actionable workflow or table"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Customer order #4492 confirmed — write the single order confirmation email body only.",
+      "expected_output": "Transactional confirmation only; no full churn win-back program (should-not-trigger).",
+      "files": [],
+      "expectations": [
+        "Does not output full VIP vs standard win-back program as primary deliverable",
+        "Does not force multi-step loyalty automation for a simple confirmation request",
+        "Appropriate transactional tone for order confirmation",
+        "May keep confirmation brief without mandatory churn risk table"
+      ]
+    }
+  ]
+}

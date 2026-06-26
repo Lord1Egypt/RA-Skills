@@ -1,0 +1,15 @@
+{
+  "name": "x-post-strategist-render-image",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Render HTML/CSS cards to PNG with headless Chrome for X posts.",
+  "bin": {
+    "render-image": "render-image.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "puppeteer": "^24.15.0"
+  }
+}

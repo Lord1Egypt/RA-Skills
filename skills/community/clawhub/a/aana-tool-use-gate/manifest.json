@@ -1,0 +1,62 @@
+{
+  "name": "aana-tool-use-gate",
+  "slug": "aana-tool-use-gate",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded tool-use gate instructions for checking whether tool calls are necessary, scoped, authorized, and safe before execution.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_tool_necessity_check": true,
+  "requires_tool_scope_check": true,
+  "requires_authorization_for_risky_tool_use": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "bank account numbers",
+      "auth headers",
+      "cookies",
+      "raw private records",
+      "full logs with sensitive values",
+      "full directory dumps",
+      "unrelated private data"
+    ]
+  },
+  "tool_use_boundary": {
+    "must_check_tool_necessity": true,
+    "must_define_exact_target_scope": true,
+    "must_verify_user_authorization": true,
+    "must_minimize_tool_inputs_and_outputs": true,
+    "must_prefer_read_only_preview_or_draft_before_state_change": true,
+    "must_require_approval_for_destructive_external_financial_or_privileged_actions": true,
+    "must_defer_high_impact_or_irreversible_tool_use": true,
+    "may_not_use_tools_for_unauthorized_access_or_exfiltration": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/tool-use-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-tool-use-review.json"
+  ]
+}

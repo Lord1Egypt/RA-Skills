@@ -1,0 +1,17 @@
+{
+  "defaultLanguage": "zh",
+  "supportedLanguages": ["zh", "en"],
+  "imageSources": [
+    "https://cataas.com/cat",
+    "https://api.thecatapi.com/v1/images/search",
+    "https://placekitten.com/400/300"
+  ],
+  "fallbackToText": true,
+  "maxRetries": 3,
+  "timeout": 5000,
+  "features": {
+    "sound": false,
+    "animations": false,
+    "customBreeds": false
+  }
+}

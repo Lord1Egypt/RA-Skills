@@ -1,35 +1,49 @@
----
-name: "SEO Analyzer Pro"
-description: "Analyze webpage SEO score based on title, meta description, H1 tags, and content length, providing detailed optimization recommendations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seo-analyzer-v2"
-sourceUrl: "https://clawhub.ai/skills/seo-analyzer-v2"
----
+# SEO Analyzer
 
-# SEO Analyzer Pro
+Analyze webpage SEO score and provide optimization recommendations.
 
-> Analyze webpage SEO score based on title, meta description, H1 tags, and content length, providing detailed optimization recommendations.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seo-analyzer-v2`
-- **Source URL:** [https://clawhub.ai/skills/seo-analyzer-v2](https://clawhub.ai/skills/seo-analyzer-v2)
+- Check title tag
+- Check meta description
+- Check H1 tags
+- Calculate SEO score (0-100)
+- Provide recommendations
 
-## Overview
+## Price
 
+- **0.001 USDT** per analysis
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/seo-analyzer-v2
+## Usage
+
 ```
+"Analyze SEO for https://example.com"
+"Check SEO score of my website"
+"SEO analysis for [URL]"
+```
+
+## SEO Score Breakdown
+
+- Title tag: 30 points
+- Meta description: 30 points
+- H1 tag: 20 points
+- Content length: 20 points
+
+## Example Response
+
+```json
+{
+  "url": "https://example.com",
+  "score": 80,
+  "title": "Example Website",
+  "description": "This is an example...",
+  "h1_count": 1,
+  "issues": [],
+  "recommendations": ["Add more content"]
+}
+```
+
+## Integration
+
+- API Key: sk_93c5ff38cc3e6112623d361fffcc5d1eb1b5844eac9c40043b57c0e08f91430e
+- Price: 0.001 USDT per call

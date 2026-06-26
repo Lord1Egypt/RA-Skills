@@ -1,0 +1,66 @@
+{
+  "name": "mpp-skill",
+  "version": "2.1.0",
+  "description": "Machine Payments Protocol (MPP) skill for ClaudeHub/OpenClaw agents — pay-as-you-go Mobula API calls via Tempo",
+  "type": "module",
+  "main": "src/index.ts",
+  "bin": {
+    "mpp": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "bun src/index.ts"
+  },
+  "keywords": [
+    "mpp",
+    "mobula",
+    "tempo",
+    "x402",
+    "claudehub",
+    "openclaw",
+    "agent",
+    "skill"
+  ],
+  "author": "Florent Tapponnier",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Flotapponnier/mpp-skill.git"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "dependencies": {
+    "viem": "^2.48.4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "bun": ">=1.0.0"
+  },
+  "clawhub": {
+    "runtime": "bun",
+    "env": {
+      "optional": [
+        "MOBULA_API_BASE_URL"
+      ]
+    },
+    "permissions": {
+      "filesystem": [
+        "~/.mpp-skill/",
+        ".claude/claudeclaw/wallets/",
+        ".claude/claudeclaw/wallet.secret"
+      ],
+      "network": [
+        "https://mpp.mobula.io",
+        "https://rpc.tempo.xyz",
+        "https://relay.link"
+      ]
+    },
+    "wallet": {
+      "type": "hot",
+      "purpose": "Hold ~$1 of USDC.e on Tempo (chainId 4217) for pay-as-you-go MPP API calls (~$0.0004/call). Private keys are AES-256-GCM encrypted at rest.",
+      "spendingPolicy": "Each call consumes the amount specified in the server's 402 challenge. The skill rejects challenges >$0.01 to prevent runaway charges."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "tamar-resume-tailor",
+  "version": "1.4.0",
+  "description": "Tailor resumes for specific job applications using the Tamar AI API. Uploads a resume, matches it against a job description or URL, applies natural-language feedback, and downloads a PDF.",
+  "author": "evgenyshneyderman",
+  "license": "MIT",
+  "permissions": ["network", "filesystem"],
+  "config": {
+    "tamar_api_key": {
+      "type": "string",
+      "required": true,
+      "description": "Tamar API key (obtain from https://ask-tamar.com → Profile → API Keys). Stored in ~/.tamarrc by the `tamar auth` command.",
+      "secret": true
+    }
+  },
+  "entry": "instructions.md",
+  "tags": ["resume", "career", "jobs", "ai", "productivity"],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0"
+}

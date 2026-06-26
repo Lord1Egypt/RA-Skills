@@ -1,0 +1,78 @@
+# 360 Power Saver - CPU调频状态™ 模块
+# 展示 CPU 频率和电源计划状态
+
+Add-Type -AssemblyName PresentationFramework
+
+function Show-CPUStatus {
+    # 获取 CPU 信息
+    $cpu = Get-WmiObject Win32_Processor
+    $cpuName = $cpu.Name.Trim()
+    $maxSpeed = $cpu.MaxClockSpeed
+    $currentSpeed = $cpu.CurrentClockSpeed
+    $numCores = $cpu.NumberOfCores
+    $numLogical = $cpu.NumberOfLogicalProcessors
+
+    # 获取 CPU 占用
+    $cpuUsage = Get-WmiObject Win32_Processor | Measure-Object -Property LoadPercentage -Average | Select-Object -ExpandProperty Average
+
+    # 获取当前电源计划
+    $powerScheme = powercfg /getactivescheme 2>$null
+    $schemeName = if ($powerScheme -match '\((.+)\)') { $matches[1] } else { "未知" }
+
+    # 获取所有电源计划
+    $allSchemes = powercfg /list 2>$null
+    $schemeList = @()
+    $allSchemes -split "`n" | ForEach-Object {
+        if ($_ -match '\{([a-f0-9-]+)\}\s+(.+?)(\s+\*)?$') {
+            $schemeList += [PSCustomObject]@{
+                Name = $matches[2].Trim()
+                IsActive = $_ -match '\*'
+            }
+        }
+    }
+
+    # 计算频率百分比
+    $freqPercent = if ($maxSpeed -gt 0) { [math]::Round(($currentSpeed / $maxSpeed) * 100, 0) } else { 0 }
+    $barLen = [math]::Round($freqPercent / 5)
+    $bar = "█" * $barLen + "░" * (20 - $barLen)
+
+    # 构建消息
+    $msg = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "   360°省电大师 - CPU调频状态`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+
+    $msg += "🖥️ CPU 信息`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "   型号: $cpuName`n"
+    $msg += "   核心: $numCores 核 / $numLogical 线程`n`n"
+
+    $msg += "⚡ 频率状态`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "   最大频率: $maxSpeed MHz`n"
+    $msg += "   当前频率: $currentSpeed MHz`n"
+    $msg += "   [$bar] $freqPercent%`n`n"
+
+    $msg += "📈 性能状态`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "   CPU 占用: $cpuUsage%`n"
+    $msg += "   电源计划: $schemeName`n`n"
+
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "📋 可用电源计划`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    
+    foreach ($scheme in $schemeList) {
+        $prefix = if ($scheme.IsActive) { "→ " } else { "   " }
+        $suffix = if ($scheme.IsActive) { " (当前)" } else { "" }
+        $msg += "$prefix$($scheme.Name)$suffix`n"
+    }
+
+    $msg += "`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "💡 提示：切换至「节能」计划可降低功耗`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+    [System.Windows.MessageBox]::Show($msg, "360°省电大师 - CPU调频状态", "OK", "Information")
+}
+
+# 执行
+Show-CPUStatus

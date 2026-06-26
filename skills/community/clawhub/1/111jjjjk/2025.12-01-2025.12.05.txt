@@ -1,0 +1,73 @@
+mcp 修改
+
+
+llm-inference-service
+cn.cmri.ai.controller.CMStoreController#save
+http://10.73.171.38:30110/largemodel/llmstudio/inference/CMStore/app/save
+
+{
+    "chatMode": "llm",
+    "name": "cgm_test",
+    "avatar": "public/avatar/1762498777498_1762498777496_1762498777487_text2Image.jpg",
+    "desc": "cgm_test",
+    "mobileCertify": 0,
+    "prolog": "",
+    "modelId": "jiutian-lan",
+    "params": {},
+    "prompt": "使用用户的输入内容（图片内容或者文件内容）进行吹牛逼！",
+    "example": [
+        {
+            "question": "帮忙吹牛逼",
+            "file": {
+                "path": "",
+                "name": "",
+                "type": "",
+                "size": 0,
+                "status": "",
+                "message": ""
+            }
+        },
+        {
+            "question": "",
+            "file": {
+                "path": "",
+                "name": "",
+                "type": "",
+                "size": 0,
+                "status": "",
+                "message": ""
+            }
+        }
+    ],
+    "plugList": [],
+    "mcpList": [
+        "68f1ec87897276532ef56008",
+        "68b6b37cff6d755e0ff31fd1"
+    ],
+    "workflowList": [
+        {
+            "id": "691fbf732ac1572f1122ed32",
+            "canvasType": "PRIVATE_RELEASE"
+        }
+    ],
+    "showRefer": 0,
+    "klBases": [],
+    "memory": 0,
+    "userVisibleMemory": 0,
+    "appType": 6,
+    "showSuggestInput": 1,
+    "cards": {},
+    "id": "690d98e00b367959f1fcc8dd",
+    "answerModelId": "Qwen3-32B-fc",
+    "temperature": 0.8,
+    "topP": 0.36,
+    "planModel": "qwen3-32b",
+    "historyRound": 6,
+    "rerankModel": "BAAI/bge-reranker-large",
+    "kbSearchModel": "forced",
+    "searchType": 0,
+    "rerank": 1,
+    "topN": 3,
+    "threshold": 0.65,
+    "agentCardId": ""
+}

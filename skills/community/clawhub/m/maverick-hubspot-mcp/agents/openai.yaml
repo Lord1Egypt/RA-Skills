@@ -1,0 +1,4 @@
+interface:
+  display_name: "HubSpot"
+  short_description: "Read and update HubSpot CRM contacts, deals, and companies"
+  default_prompt: "Use the HubSpot MCP tools to help the user search CRM records, read deal and contact details, log activities, and update properties in their HubSpot portal."

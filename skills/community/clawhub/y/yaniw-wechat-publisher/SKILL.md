@@ -1,35 +1,205 @@
 ---
-name: "wechat-publisher"
-description: "用于管理多个微信公众号的内容创作和发布。当用户提到"公众号发布"、"写公众号文章"、"给某个公众号发文"、"切换公众号"、"查看公众号发布情况"、"微信发文"或需要为公众号生成内容、封面图、发布文章时,自动触发此技能。支持多账号管理、内容生成、封面设计、自动发布等完整流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yaniw-wechat-publisher"
-sourceUrl: "https://clawhub.ai/skills/yaniw-wechat-publisher"
+name: yaniw-wechat-publisher
+description: 用于管理多个微信公众号的内容创作和发布。当用户提到"公众号发布"、"写公众号文章"、"给某个公众号发文"、"切换公众号"、"查看公众号发布情况"、"微信发文"或需要为公众号生成内容、封面图、发布文章时,自动触发此技能。支持多账号管理、内容生成、封面设计、自动发布等完整流程。
 ---
 
-# wechat-publisher
+# 微信公众号发布器
 
-> 用于管理多个微信公众号的内容创作和发布。当用户提到"公众号发布"、"写公众号文章"、"给某个公众号发文"、"切换公众号"、"查看公众号发布情况"、"微信发文"或需要为公众号生成内容、封面图、发布文章时,自动触发此技能。支持多账号管理、内容生成、封面设计、自动发布等完整流程。
+## 技能简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yaniw-wechat-publisher`
-- **Source URL:** [https://clawhub.ai/skills/yaniw-wechat-publisher](https://clawhub.ai/skills/yaniw-wechat-publisher)
+帮助用户管理多个微信公众号，自动化内容创作和发布流程。支持账号切换、内容生成、封面设计、自动发布等完整工作流。
 
-## Overview
+## 触发条件
 
+当用户提到以下关键词时自动触发：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yaniw-wechat-publisher
+- "给【公众号名称】写一篇文章"
+- "今天要发公众号"
+- "今天要发微信"
+- "切换到【公众号名称】"
+- "查看公众号发布情况"
+- "生成公众号封面图"
+- "发布到公众号草稿箱"
+- "列出所有公众号"
+- "公众号发文"
+- "微信发文"
+
+## 重要原则（必须严格遵守）
+
+⚠️ **严格遵循确认机制，每个环节都需要用户确认，绝对不能自动跳过**
+
+1. **内容生成后** → 必须等待用户确认内容是否满意
+2. **封面生成后** → 必须等待用户选择喜欢的风格
+3. **发布之前** → 必须确认文章和封面都已就绪
+
+## 标准工作流程
+
+### 第一步：识别和切换公众号
+
+1. 检查用户提到的公众号名称
+2. 加载配置文件（按以下顺序查找）：
+   - 用户指定的配置文件路径
+   - `references/my_accounts.json`
+   - `references/config.json`
+   - `references/multi_account_config.json`
+   - `references/config.template.json`（模板示例）
+3. 切换到对应公众号的工作目录
+4. 显示当前公众号状态
+
+**示例输出：**
+
 ```
+✅ 已切换到"我与AI那些事"公众号
+📂 工作目录：公众号-我与AI那些事/
+📅 今日日期：2026-03-12
+📝 今日已发布：0篇
+```
+
+### 第二步：生成文章内容
+
+1. 根据用户口述主题生成文章
+2. 文章必须包含：
+   - 标题（不要表情符号）
+   - 摘要关键字（40字左右，以#开头，空格结束）
+   - 正文内容（符合公众号风格）
+   - 文末话题关键字（10个相关话题，直接写在正文结尾）
+3. 注意：正文结尾不要转载声明和更新时间
+4. 保存文章到：`公众号-{名称}/articles/{日期}/{标题}.md`
+5. **⚠️ 等待用户确认内容**
+
+### 第三步：生成封面图
+
+**前置条件：用户确认文章内容没问题**
+
+1. 根据文章内容生成5种风格的封面图
+2. 使用 `assets/cover_templates/` 中的模板
+3. 封面图尺寸：900x383 像素
+4. **⚠️ 等待用户选择风格**
+
+**封面风格列表：**
+
+| 编号 | 风格名称 | 颜色特征 |
+|-----|---------|---------|
+| 1 | 紫色科技风 | 渐变紫色调，科技感 |
+| 2 | 蓝色科技风 | 深蓝色调，专业感 |
+| 3 | 粉色渐变风 | 粉红色调，温馨感 |
+| 4 | 橙色活力风 | 橙色色调，活力感 |
+| 5 | 绿色清新风 | 绿色色调，清新感 |
+
+### 第四步：截图并发布
+
+**前置条件：用户选择封面风格**
+
+1. 使用 Playwright 将 HTML 截图为 PNG (900x383)
+2. 上传封面图到微信服务器获取 media_id
+3. 调用微信公众号 API 发布文章到草稿箱
+4. 记录发布日志
+
+## 常用场景
+
+### 场景1：列出所有公众号
+
+**用户说：** "列出所有公众号"
+
+**执行操作：**
+1. 读取配置文件
+2. 显示所有公众号列表及状态
+
+### 场景2：切换公众号
+
+**用户说：** "切换到家有野猫"
+
+**执行操作：**
+1. 更新当前激活的公众号
+2. 加载新公众号的配置
+
+### 场景3：查看今日发布情况
+
+**用户说：** "今天所有公众号发了什么？"
+
+**执行操作：**
+1. 遍历所有公众号
+2. 读取每个公众号的发布日志
+3. 汇总显示
+
+## 资源使用指南
+
+### 脚本目录 (scripts/)
+
+- `init_account.py` - 初始化公众号目录结构
+- `switch_account.py` - 切换当前激活的公众号
+- `generate_article.py` - 生成文章内容
+- `generate_covers.py` - 生成封面图 HTML
+- `screenshot_cover.py` - 截图生成 PNG
+- `publish_to_wechat.py` - 发布到微信公众号
+- `log_publish.py` - 记录发布日志
+
+### 参考文档目录 (references/)
+
+- `config.template.json` - 配置模板（不含敏感信息，首次使用请复制此文件）
+- `my_accounts.json` - 你的私人配置（需自行创建，包含 AppID/AppSecret）
+- `workflow_guide.md` - 详细的工作流程说明
+- `article_format.md` - 文章标题、摘要、正文格式要求
+- `cover_styles.md` - 5种封面风格的详细说明
+
+### 资源模板目录 (assets/)
+
+- `cover_templates/style_1_purple.html` - 紫色科技风模板
+- `cover_templates/style_2_blue.html` - 蓝色科技风模板
+- `cover_templates/style_3_pink.html` - 粉色渐变风模板
+- `cover_templates/style_4_orange.html` - 橙色活力风模板
+- `cover_templates/style_5_green.html` - 绿色清新风模板
+
+## 配置文件说明
+
+配置文件支持自定义路径，AI 会按以下顺序查找：
+
+1. 用户指定的配置文件路径（推荐）
+2. `references/my_accounts.json`（你的私人配置）
+3. `references/config.json`（你的私人配置）
+4. `references/multi_account_config.json`（你的私人配置）
+5. `references/config.template.json`（模板示例，仅包含示例数据）
+
+**首次使用：**
+
+1. 复制 `references/config.template.json`
+2. 重命名为 `references/my_accounts.json`
+3. 填写你的 AppID/AppSecret
+
+配置文件包含：
+
+- 所有公众号的 AppID/AppSecret
+- 每个公众号的主题色和默认封面风格
+- 封面图的5种风格定义
+
+⚠️ **安全提示：请勿将包含 AppSecret 的配置文件提交到公开仓库**
+
+## 错误处理
+
+| 错误情况 | 处理方式 |
+|---------|---------|
+| 公众号不存在 | 提示用户先添加配置 |
+| 文章生成失败 | 显示错误信息，让用户重试 |
+| 封面图生成失败 | 检查模板文件，提示用户重试 |
+| 截图失败 | 检查 Playwright 是否安装 |
+| 发布失败（IP白名单错误） | 提示用户设置IP白名单，并提供当前IP地址 |
+| 发布失败（AppID/AppSecret错误） | 提示用户检查配置文件 |
+
+### IP白名单错误处理
+
+如果发布失败，AI 会：
+
+1. 检测错误码是否为 40164（IP白名单错误）
+2. 自动获取用户当前IP地址
+3. 提供详细的设置步骤：
+   - 访问微信公众平台【开发 - 基本配置 - IP白名单】
+   - 添加显示的IP地址
+   - 等待5-10分钟后重试
+
+## 注意事项
+
+1. **严格遵循确认机制**：每个环节都要用户确认，不能自动跳过
+2. **配置隔离**：每个公众号有独立的配置和目录
+3. **日志记录**：每次发布都要记录详细日志
+4. **日期管理**：文章和封面按日期组织
+5. **多账号支持**：支持同时管理多个公众号

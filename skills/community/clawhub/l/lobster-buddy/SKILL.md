@@ -1,35 +1,160 @@
 ---
-name: "Lobster Buddy"
-description: "麻薯的电子宠物系统。基于用户ID确定性生成的RPG风格宠物，有物种、稀有度、属性和闪光机制。当用户问"我的宠物"、"看看我的buddy"、"抽宠物"时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lobster-buddy"
-sourceUrl: "https://clawhub.ai/skills/lobster-buddy"
+name: lobster-buddy
+description: 麻薯的电子宠物系统。基于用户ID确定性生成的RPG风格宠物，有物种、稀有度、属性和闪光机制。当用户问"我的宠物"、"看看我的buddy"、"抽宠物"时触发。
+metadata: {"openclaw":{"requires":[]}}
 ---
 
-# Lobster Buddy
+# 🐣 BUDDY 电子宠物系统
 
-> 麻薯的电子宠物系统。基于用户ID确定性生成的RPG风格宠物，有物种、稀有度、属性和闪光机制。当用户问"我的宠物"、"看看我的buddy"、"抽宠物"时触发。
+灵感来自 Claude Code 源码中的 BUDDY 系统。每个用户有一个确定性生成的电子宠物。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lobster-buddy`
-- **Source URL:** [https://clawhub.ai/skills/lobster-buddy](https://clawhub.ai/skills/lobster-buddy)
+## 物种（18种）
 
-## Overview
+| 编号 | 物种 | Emoji |
+|------|------|-------|
+| 1 | 鸭子 | 🦆 |
+| 2 | 鹅 | 🪿 |
+| 3 | 团子 | 🍡 |
+| 4 | 猫 | 🐱 |
+| 5 | 龙 | 🐉 |
+| 6 | 章鱼 | 🐙 |
+| 7 | 猫头鹰 | 🦉 |
+| 8 | 企鹅 | 🐧 |
+| 9 | 乌龟 | 🐢 |
+| 10 | 蜗牛 | 🐌 |
+| 11 | 幽灵 | 👻 |
+| 12 | 美西螈 | 🦎 |
+| 13 | 水豚 | 🐹 |
+| 14 | 仙人掌 | 🌵 |
+| 15 | 机器人 | 🤖 |
+| 16 | 兔子 | 🐰 |
+| 17 | 蘑菇 | 🍄 |
+| 18 | 胖墩 | 🐻 |
 
+## 稀有度（5级）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lobster-buddy
+| 稀有度 | 概率 | 星级 | 属性下限 |
+|--------|------|------|----------|
+| 普通 Common | 60% | ⭐ | 5 |
+| 稀有 Uncommon | 25% | ⭐⭐ | 15 |
+| 罕见 Rare | 10% | ⭐⭐⭐ | 25 |
+| 史诗 Epic | 4% | ⭐⭐⭐⭐ | 35 |
+| 传说 Legendary | 1% | ⭐⭐⭐⭐⭐ | 50 |
+
+## 属性（5项）
+
+| 属性 | 含义 |
+|------|------|
+| 🔧 DEBUGGING | 调试能力 |
+| 🧘 PATIENCE | 耐心 |
+| 🌀 CHAOS | 混沌度 |
+| 📚 WISDOM | 智慧 |
+| 😏 SNARK | 毒舌 |
+
+## 眼睛样式（6种）
+· ✦ × ◉ @ °
+
+## 帽子（8种，普通品质无帽子）
+无、👑皇冠、🎩礼帽、🚁螺旋桨、💫光环、🧙巫师帽、🧢毛线帽、🦆小鸭帽
+
+## 闪光机制
+1% 概率闪光（Shiny）✨，致敬宝可梦！
+
+## 确定性生成算法
+
+基于用户 ID 的 Mulberry32 PRNG：
+
+```python
+def mulberry32(seed):
+    a = seed
+    while True:
+        a = (a + 0x6D2B79F5) & 0xFFFFFFFF
+        t = (a ^ (a >> 15)) * (1 | a)
+        t = (t + ((t ^ (t >> 7)) * (61 | t))) ^ t
+        yield ((t ^ (t >> 14)) & 0xFFFFFFFF) / 4294967296
+
+def hash_string(s):
+    h = 2166136261
+    for c in s:
+        h ^= ord(c)
+        h = (h * 16777619) & 0xFFFFFFFF
+    return h
 ```
+
+种子 = hash(user_id + "mashu-buddy-2026")
+
+同一个用户永远得到同一个宠物，不可作弊！
+
+## 属性生成策略
+- 1个峰值属性（下限+50~80）
+- 1个废柴属性（下限-10~+5）
+- 3个普通属性（下限+0~40）
+
+## 展示格式
+
+```
+╔══════════════════════════════╗
+║  ✨ 你的 BUDDY ✨            ║
+║                              ║
+║     ·✦·                      ║
+║    /🐽  \                    ║
+║   |  🎩  |                   ║
+║    \____/                     ║
+║                              ║
+║  📛 名字: 小团子              ║
+║  🐾 物种: 水豚               ║
+║  ⭐ 稀有度: 史诗 ✨(闪光!)    ║
+║  🎩 帽子: 巫师帽              ║
+║                              ║
+║  🔧 调试: ████████░░ 82      ║
+║  🧘 耐心: ███░░░░░░░ 28      ║
+║  🌀 混沌: █████████░ 91      ║
+║  📚 智慧: ██████░░░░ 62      ║
+║  😏 毒舌: ███████░░░ 75      ║
+╚══════════════════════════════╝
+```
+
+## 宠物名字生成
+
+由 AI 根据物种和属性给宠物取一个有个性的名字。
+
+## 交互方式
+
+- "我的宠物" → 展示宠物信息
+- "看看 buddy" → 展示宠物信息
+- "宠物属性" → 详细属性面板
+- "给宠物取名叫XX" → 覆盖默认名字
+- 宠物会在回复中偶尔冒泡（基于CHAOS属性决定频率）
+
+## 宠物存储
+
+宠物数据存储在 `memory/buddy-state.json`：
+```json
+{
+  "userId": "ou_xxx",
+  "species": "capybara",
+  "speciesIndex": 13,
+  "rarity": "epic",
+  "stars": 4,
+  "eye": "✦",
+  "hat": "wizard",
+  "shiny": true,
+  "stats": {
+    "DEBUGGING": 82,
+    "PATIENCE": 28,
+    "CHAOS": 91,
+    "WISDOM": 62,
+    "SNARK": 75
+  },
+  "name": "小团子",
+  "hatchedAt": "2026-04-04"
+}
+```
+
+## 注意事项
+
+- 宠物一旦生成，物种和属性不可更改（确定性）
+- 名字可以由用户自定义
+- CHAOS 属性越高，宠物越活跃（冒泡越频繁）
+- SNARK 属性越高，宠物的"评论"越毒舌
+- 闪光宠物会有特殊的展示效果

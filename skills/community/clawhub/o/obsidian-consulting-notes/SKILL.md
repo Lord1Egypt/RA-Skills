@@ -1,35 +1,166 @@
 ---
-name: "obsidian-consulting-notes"
-description: "Obsidian咨询MD笔记自动拆分整理技能。当用户提到Obsidian MD笔记整理、拆分咨询文档为MD原子笔记、清理Obsidian无效MD笔记、给Obsidian MD笔记补全标签时触发。支持将长文档（Word/PDF/长MD）拆分为符合Obsidian原子化规范的MD文件，并自动完成筛选、分类、打标、关联..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/obsidian-consulting-notes"
-sourceUrl: "https://clawhub.ai/skills/obsidian-consulting-notes"
+name: obsidian-consulting-notes
+description: "Obsidian咨询MD笔记自动拆分整理技能。当用户提到Obsidian MD笔记整理、拆分咨询文档为MD原子笔记、清理Obsidian无效MD笔记、给Obsidian MD笔记补全标签时触发。支持将长文档（Word/PDF/长MD）拆分为符合Obsidian原子化规范的MD文件，并自动完成筛选、分类、打标、关联提示等全流程。适用于咨询顾问知识库管理场景，三库体系：01_问题诊断库/02_解决方案库/03_交付输出库。"
 ---
 
-# obsidian-consulting-notes
+# Obsidian 咨询 MD 笔记自动拆分整理
 
-> Obsidian咨询MD笔记自动拆分整理技能。当用户提到Obsidian MD笔记整理、拆分咨询文档为MD原子笔记、清理Obsidian无效MD笔记、给Obsidian MD笔记补全标签时触发。支持将长文档（Word/PDF/长MD）拆分为符合Obsidian原子化规范的MD文件，并自动完成筛选、分类、打标、关联...
+## 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/obsidian-consulting-notes`
-- **Source URL:** [https://clawhub.ai/skills/obsidian-consulting-notes](https://clawhub.ai/skills/obsidian-consulting-notes)
+本技能服务于咨询顾问知识库（工作区 `/000咨询顾问/`），
+实现将原始文档自动转换、筛选、拆分、归类、打标，
+输出符合 Obsidian 原子化笔记规范的 MD 文件，并写入对应二级文件夹。
 
-## Overview
+读取 `references/taxonomy.md` 获取完整目录与标签体系。
+读取 `references/workflow.md` 获取各指令的详细操作流程。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/obsidian-consulting-notes
+## 触发指令与对应流程
+
+| 触发词 | 执行流程 |
+|---|---|
+| `Obsidian MD笔记整理` | 全流程：筛选 → 转换 → 拆分 → 归类 → 打标 → 关联提示 |
+| `拆分咨询文档为MD原子笔记` | 核心拆分流程：转换 → 识别知识点 → 原子化拆分 → 命名 → 打标 → 关联提示 |
+| `清理Obsidian无效MD笔记` | 清理流程：扫描 → 筛选无效内容 → 标记重复 → 归档临时参考 |
+| `给Obsidian MD笔记补全标签` | 补标流程：扫描缺标文件 → 推断标签 → 写入 YAML frontmatter |
+
+---
+
+## 核心前提
+
+1. 仅处理 MD 文件及可转换为 MD 的文档（Word、PDF）；Word/PDF 先转换为纯文本 MD，再进入后续流程。
+2. 严格遵循 Obsidian **原子化**要求：单个 MD 文件仅保留**一个核心内容**，禁止堆砌多个知识点。
+3. 所有操作均对应三库体系的一级文件夹和二级文件夹，不新增冗余目录。
+4. 目录结构与标签体系详见 `references/taxonomy.md`。
+
+---
+
+## Step 1：自动筛选（前置步骤）
+
+**保留**（进入拆分流程）：
+- 含关键词「诊断、方案、工具、模板、案例、话术」且包含可拆分的实操内容。
+
+**剔除**（不处理）：
+- 含「理论、学术、宣传」且无实操内容；
+- 无法拆分为单核心的纯冗余内容。
+
+**临时归档**（转 MD 后存入 `临时参考/`，不打标不拆分）：
+- 有潜在参考价值但无法拆分为原子笔记的文档。
+
+---
+
+## Step 2：文档转换
+
+- Word（.docx）：提取纯文本，去除复杂格式，保留标题层级和列表结构，输出为 MD。
+- PDF：提取文字内容，按段落分组，输出为 MD。
+- 已是 MD 的文件直接进入 Step 3。
+
+---
+
+## Step 3：原子化拆分（核心）
+
+### 拆分逻辑
+
+识别文档中的独立「知识点 / 工具 / 案例片段 / 方法步骤」，按**单核心原则**拆分，每个知识点生成一个 MD 文件。
+
+**识别信号**（满足任一即可独立拆分）：
+- 独立标题（## 或 ### 级别）
+- 独立工具名称或方法名
+- 完整案例描述（背景 + 做法 + 结果）
+- 独立话术模板或问题清单
+
+### 文件命名规则
+
+格式：`{前缀}-{关键词}.md`
+
+前缀规则（按内容归属）：
+- 属于问题诊断库 → `诊断-`
+- 属于解决方案库 → `方案-`
+- 属于交付输出库 → `交付-`
+
+关键词：取该笔记核心主题的 2-4 个汉字，简洁明确。
+
+示例：`诊断-5Why用法.md`、`方案-OKR落地步骤.md`、`交付-战略汇报模板.md`
+
+### 拆分后 MD 文件结构
+
+```markdown
+---
+tags:
+  - "#一级库标签"        # #问题诊断 / #解决方案 / #交付输出
+  - "#领域标签"          # 如 #战略管理 #人力资源
+  - "#辅助标签"          # 如 #可复用工具 #实战案例 #话术模板 #理论框架
+---
+
+# {核心标题}
+
+{核心内容，保留实操细节，去除冗余排版}
+
+## 关联笔记
+- 关联关键词：{关键词1}、{关键词2}、{关键词3（可选）}
 ```
+
+---
+
+## Step 4：自动归类
+
+参照 `references/taxonomy.md` 中的关键词映射表，确定目标文件夹路径：
+
+1. 按文件名前缀确定一级库（`01_`/`02_`/`03_`）；
+2. 按内容领域关键词确定二级文件夹（如「薪酬」→ `人力资源/`）；
+3. 完整路径示例：`02_解决方案库/人力资源/方案-薪酬体系设计.md`
+
+---
+
+## Step 5：自动打标
+
+在文件 YAML frontmatter 的 `tags` 字段中写入三层标签：
+
+1. **一级标签**（必选 1 个）：`#问题诊断`、`#解决方案`、`#交付输出`
+2. **领域标签**（必选 1 个）：对应 18 个领域之一，详见 `references/taxonomy.md`
+3. **辅助标签**（必选 1 个，不重复）：
+   - `#可复用工具`：可跨项目直接使用的工具或模板
+   - `#实战案例`：真实案例或案例片段
+   - `#话术模板`：话术脚本、汇报模板、邮件模板
+   - `#理论框架`：方法论、框架模型
+
+---
+
+## Step 6：关联提示
+
+为每条 MD 笔记的「关联笔记」模块，标注 1-3 个潜在关联关键词，格式：
+
+```markdown
+## 关联笔记
+- 关联关键词：战略解码、目标拆解、KPI设计
+```
+
+关联关键词取自：同领域高频词、互补工具名、上下游流程节点。
+
+---
+
+## 清理流程（`清理Obsidian无效MD笔记`）
+
+1. 扫描目标文件夹下所有 MD 文件；
+2. 标记**无效文件**：无实操内容、纯理论、空文件；
+3. 识别**重复笔记**：文件名相似度 ≥ 80% 或正文内容相似度 ≥ 80%，保留最新版，旧版在文件名末尾追加 `_重复` 标记；
+4. 将无法归类但有价值的文件移至 `临时参考/`；
+5. 输出清理报告（列出每个操作及文件路径）。
+
+---
+
+## 补标流程（`给Obsidian MD笔记补全标签`）
+
+1. 扫描目标文件夹，找出缺少 YAML frontmatter 或标签不完整的 MD 文件；
+2. 按 Step 4 & Step 5 逻辑推断正确标签；
+3. 使用 `replace_in_file` 工具将标签写入文件头部 YAML frontmatter；
+4. 输出补标报告（列出每个文件及新增标签）。
+
+---
+
+## 批量处理建议
+
+- 每批处理不超过 **20 个文件**，处理完一批后汇报进度再继续；
+- 处理前先输出拟操作清单，等用户确认后再执行写入操作；
+- 所有文件操作均使用 `write_to_file` 或 `replace_in_file`，不删除原文件（移动用重命名路径实现）。

@@ -1,0 +1,59 @@
+{
+  "domain": "投顾域",
+  "level": "L2",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_advisory.md",
+  "includes_L1": true,
+  "entity_states": {
+    "投顾服务": ["待分配(PendingAssign)", "服务中(InService)", "暂停服务(Suspended)", "投顾变更中(Transferring)", "服务到期(Expired)", "已解约(Terminated)"],
+    "组合策略": ["设计中(Designing)", "审核中(Reviewing)", "已发布(Published)", "运作中(Running)", "暂停跟投(SuspendedNew)", "清盘中(Winding)", "已清盘(Closed)"],
+    "签约合同": ["申请中(Applying)", "适当性校验中(Checking)", "协议签署中(Signing)", "冷静期(CoolingOff)", "已生效(Active)", "暂停中(Paused)", "解约申请中(Terminating)", "已解约(Terminated)"],
+    "费用状态": ["待计提(PendingAccrual)", "已计提(Accrued)", "待扣收(PendingDeduct)", "已扣收(Deducted)", "扣收失败(DeductFailed)"]
+  },
+  "state_transitions": [
+    {"entity": "签约合同", "from": "申请中", "trigger": "系统受理", "to": "适当性校验中"},
+    {"entity": "签约合同", "from": "适当性校验中", "trigger": "校验通过", "to": "协议签署中"},
+    {"entity": "签约合同", "from": "协议签署中", "trigger": "签署完成", "to": "冷静期"},
+    {"entity": "签约合同", "from": "冷静期", "trigger": "24小时期满+回访确认", "to": "已生效"},
+    {"entity": "签约合同", "from": "冷静期", "trigger": "客户撤回", "to": "已撤回(终态)"},
+    {"entity": "签约合同", "from": "已生效", "trigger": "客户暂停", "to": "暂停中"},
+    {"entity": "签约合同", "from": "暂停中", "trigger": "暂停超过90天", "to": "解约申请中"},
+    {"entity": "签约合同", "from": "解约申请中", "trigger": "持仓清算完成", "to": "已解约"},
+    {"entity": "投顾服务", "from": "服务中", "trigger": "投顾离职", "to": "投顾变更中"},
+    {"entity": "投顾服务", "from": "投顾变更中", "trigger": "新投顾确认接手", "to": "服务中"}
+  ],
+  "allowed_operations": {
+    "签约-冷静期": ["客户撤回签约"],
+    "签约-已生效": ["跟投交易", "暂停", "解约申请"],
+    "签约-暂停中": ["恢复跟投", "解约"],
+    "组合-运作中": ["调仓", "止盈止损", "分红"],
+    "投顾服务-服务中": ["发布投资建议", "调仓操作", "客户沟通"]
+  },
+  "forbidden_operations": {
+    "签约-冷静期": ["执行交易(冷静期内不可生效)"],
+    "签约-已解约": ["重新签约(需新建签约)"],
+    "组合-暂停跟投": ["新客户签约跟投"],
+    "投顾-静默期": ["发布相关标的研报/建议"]
+  },
+  "role_permission_matrix": [
+    {"role": "投顾人员", "permissions": ["发布投资建议(需合规审核)", "调仓操作", "客户服务"]},
+    {"role": "客户", "permissions": ["签约/解约", "暂停/恢复跟投", "查询组合表现"]},
+    {"role": "合规人员", "permissions": ["投资建议审核", "利益冲突检测", "投顾资质管理"]},
+    {"role": "运营人员", "permissions": ["组合发布管理", "费用计提", "客户分配"]}
+  ],
+  "cross_system_dependencies": [
+    {"system": "交易系统", "interaction": "调仓指令执行、委托下单"},
+    {"system": "客户系统", "interaction": "适当性校验、客户信息"},
+    {"system": "行情系统", "interaction": "止盈止损触发、组合净值计算"},
+    {"system": "合规系统", "interaction": "投资建议审核、利益冲突检测"},
+    {"system": "费用系统", "interaction": "管理费计提、业绩报酬计算"}
+  ],
+  "core_calculation_rules": [
+    {"name": "日管理费", "formula": "日管理费 = 前一日跟投资产 × 年管理费率 / 365"},
+    {"name": "业绩报酬(高水位法)", "formula": "仅在净值创新高时计提：超额收益 × 业绩报酬比例(10%-20%)"},
+    {"name": "止盈触发", "formula": "个股浮盈达到+20%触发止盈建议"},
+    {"name": "止损触发", "formula": "个股浮亏达到-10%触发止损建议；组合回撤-8%触发全面止损"},
+    {"name": "冷静期", "formula": "签约完成时间 + 24小时 = 冷静期结束时间"},
+    {"name": "暂停自动解约", "formula": "暂停天数 ≥ 90天触发自动解约流程"}
+  ]
+}

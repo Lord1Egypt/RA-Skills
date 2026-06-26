@@ -1,35 +1,291 @@
----
-name: "Evidence Anchor"
-description: "标准化定义和验收项目证据锚点，确保长期记忆可验证、可追溯、可复用，支持多层级证据及定期复核流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/evidence-anchor"
-sourceUrl: "https://clawhub.ai/skills/evidence-anchor"
+# evidence-anchor Skill
+
+**版本：** v1.0  
+**创建日期：** 2026-04-26  
+**来源：** Agent 记忆补强两层方法论验证  
+
 ---
 
-# Evidence Anchor
+## 用途
 
-> 标准化定义和验收项目证据锚点，确保长期记忆可验证、可追溯、可复用，支持多层级证据及定期复核流程。
+标准化定义和验收"证据锚点"，确保长期记忆不是"口头记忆"，而是可验证、可回溯、可复用的资产。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/evidence-anchor`
-- **Source URL:** [https://clawhub.ai/skills/evidence-anchor](https://clawhub.ai/skills/evidence-anchor)
+---
 
-## Overview
+## 适用场景
 
+- 项目记忆需要沉淀证据
+- 结果闭环型记忆写入
+- 跨 agent 交接时需要统一证据口径
+- 定期复盘时需要验证历史结论
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/evidence-anchor
+---
+
+## 证据分级
+
+### Level 1：直接证据（最强）
+
+**定义：** 可直接验证项目状态/结果的原始证据。
+
+**示例：**
+| 类型 | 示例 |
+|------|------|
+| 线上验证 | `https://example.com/` 返回 200 OK |
+| 文件路径 | `/opt/xxx/app/current/index.html` |
+| 配置路径 | `/etc/nginx/conf.d/xxx.conf` |
+| Commit hash | `abc123def` |
+| CI 日志 | `GitHub Actions Run #456` |
+| 部署时间戳 | `YYYY-MM-DD HH:MM TZ` |
+| 签署文件 | `projects/xxx-contract-signed.pdf` |
+| 银行流水 | `bank-statement-YYYY-MM.pdf` |
+
+**验收标准：**
+- 路径/URL 可直接访问或查验
+- 时间戳精确到日（最好到时分）
+- 文件真实存在且内容匹配
+
+---
+
+### Level 2：间接证据（中等）
+
+**定义：** 可佐证项目进展，但不能直接证明结果的证据。
+
+**示例：**
+| 类型 | 示例 |
+|------|------|
+| 设计文档 | `projects/xxx-design.md` |
+| 会议纪要 | `meetings/2026-04-16-xxx.md` |
+| 方案草稿 | `projects/xxx-plan-v0.md` |
+| 工作卡 | `xxx-work-card.md` |
+| 基线文件 | `xxx.baseline.js` |
+
+**验收标准：**
+- 文档真实存在
+- 内容与所述项目相关
+- 有明确创建/修改日期
+
+**使用限制：**
+- 不能单独支撑 DONE 状态
+- 可支撑 PARTIAL 状态（设计已完成，实施未启动）
+
+---
+
+### Level 3：引用证据（最弱）
+
+**定义：** 对他人陈述/记忆的引用，不能独立验证。
+
+**示例：**
+| 类型 | 示例 |
+|------|------|
+| 记忆引用 | `memory/2026-04-16.md` 中的记录 |
+| 口头确认 | "用户说已经完成了" |
+| 二手转述 | "听某某说部署好了" |
+
+**验收标准：**
+- 引用路径明确
+- 原始来源可追溯
+
+**使用限制：**
+- 不能单独作为项目状态证据
+- 仅可作为辅助佐证
+- 优先追 Level 1/2 证据
+
+---
+
+## 证据锚点定义规范
+
+### 标准格式
+
+每条证据锚点应包含：
+
+```markdown
+- **证据类型**：[线上验证/文件路径/配置路径/日志记录/签署文件/其他]
+- **证据路径**：[具体路径或 URL]
+- **验证方式**：[如何查验该证据]
+- **证据结论**：[该证据支撑什么结论]
 ```
+
+### 示例
+
+#### 示例 1：官网修复证据（脱敏版）
+```markdown
+- **证据类型**：线上验证 + 文件路径
+- **证据路径**：
+  - `https://example.com/` 返回 200 OK
+  - `/opt/xxx/app/current/index.html`
+  - `/etc/nginx/conf.d/xxx.conf`
+- **验证方式**：
+  - curl 线上 URL
+  - SSH 登录服务器查看文件
+  - readback Nginx 配置
+- **证据结论**：官网主链路已恢复，Nginx 配置已修复
+```
+
+#### 示例 2：部署项目证据（脱敏版）
+```markdown
+- **证据类型**：文件路径 + 健康检查
+- **证据路径**：
+  - `/opt/xxx/docker-compose.yml`
+  - `/health` 端点返回 200
+- **验证方式**：
+  - SSH 查看部署文件
+  - curl https://example.com/health
+- **证据结论**：部署骨架已落地，健康检查可用
+```
+
+#### 示例 3：融资项目证据（脱敏版）
+```markdown
+- **证据类型**：文档路径 + 许可记录
+- **证据路径**：
+  - `projects/xxx-finance.md`
+  - 许可记录（YYYY-MM-DD 取得）
+- **验证方式**：
+  - 读取项目文档
+  - 查验许可编号/官方记录
+- **证据结论**：融资方案已形成，许可已落地，银行贷款未见落地证据
+```
+
+---
+
+## 证据验收流程
+
+### Step 1：识别证据类型
+```
+判断证据属于：
+- Level 1（直接证据）
+- Level 2（间接证据）
+- Level 3（引用证据）
+```
+
+### Step 2：验证证据有效性
+```
+检查：
+- 路径/URL 是否真实存在
+- 内容是否与所述匹配
+- 日期是否在合理范围内
+- 是否有篡改/过期风险
+```
+
+### Step 3：判断证据支撑力
+```
+对照状态判断：
+- DONE：需要 Level 1 证据支撑关键阶段
+- PARTIAL：Level 1 + Level 2 混合
+- BLOCKED：只有 Level 2/3 或无证据
+```
+
+### Step 4：写入记忆
+```
+按标准格式写入：
+- 证据类型
+- 证据路径
+- 验证方式
+- 证据结论
+```
+
+### Step 5：定期复核
+```
+建议每 1-3 个月复核：
+- 线上 URL 是否仍可达
+- 文件是否仍存在于路径
+- 配置是否仍生效
+- 是否有新证据可补充
+```
+
+---
+
+## 证据与状态映射
+
+| 项目状态 | 必需证据 | 可选证据 |
+|----------|----------|----------|
+| **DONE** | Level 1 证据支撑所有关键阶段 | Level 2 辅助说明设计/背景 |
+| **PARTIAL** | Level 1 证据支撑已落地阶段 + Level 2 说明未落地阶段 | Level 3 引用记忆 |
+| **BLOCKED** | Level 2 证明任务已接收 + Level 3 说明阻塞原因 | - |
+
+---
+
+## 常见陷阱
+
+### 陷阱 1：只有文档没有实施证据
+**表现：** 只有 `xxx-plan.md`，没有部署/签署/上线证据
+
+**解法：** 明确标注"设计已完成，实施未启动"，状态最多报 PARTIAL
+
+### 陷阱 2：证据路径模糊
+**表现：** "服务器上有"、"应该部署了"
+
+**解法：** 强制要求具体路径，如 `/opt/xxx/app/current`
+
+### 陷阱 3：用 Level 3 撑 DONE
+**表现：** 只有"听某某说完成了"，没有 Level 1 证据
+
+**解法：** 降级为 PARTIAL/BLOCKED，直到拿到 Level 1 证据
+
+### 陷阱 4：证据过期未更新
+**表现：** URL 已 404、文件已删除、配置已覆盖
+
+**解法：** 定期复核，证据失效时同步更新记忆状态
+
+---
+
+## 证据锚点模板
+
+### 模板 1：线上服务证据
+```markdown
+- **证据类型**：线上验证
+- **证据路径**：`https://[domain]/[path]`
+- **验证方式**：curl / browser 访问
+- **预期结果**：返回 [状态码] / 显示 [内容]
+- **证据结论**：[支撑什么结论]
+```
+
+### 模板 2：服务器文件证据
+```markdown
+- **证据类型**：文件路径
+- **证据路径**：`/path/to/file`
+- **验证方式**：SSH 登录 + cat/ls
+- **预期结果**：文件存在，内容包含 [关键信息]
+- **证据结论**：[支撑什么结论]
+```
+
+### 模板 3：配置证据
+```markdown
+- **证据类型**：配置路径
+- **证据路径**：`/path/to/config.conf`
+- **验证方式**：readback 配置文件
+- **预期结果**：配置包含 [关键规则]
+- **证据结论**：[支撑什么结论]
+```
+
+### 模板 4：日志证据
+```markdown
+- **证据类型**：日志记录
+- **证据路径**：`memory/YYYY-MM-DD.md` 或 `logs/xxx.log`
+- **验证方式**：读取日志文件
+- **预期结果**：日志包含 [关键事件/时间戳]
+- **证据结论**：[支撑什么结论]
+```
+
+---
+
+## 相关 Skill
+
+- `memory-backfill` - 记忆补强标准化流程
+- `result-closure-memory` - 结果闭环型记忆写入规范
+- `taskflow` - 任务流管理
+
+---
+
+## 维护者
+
+- 创建者：小强（qiang）
+- 创建日期：2026-04-26
+- 来源项目：Agent 记忆补强两层方法论验证
+
+---
+
+## 变更日志
+
+| 版本 | 日期 | 变更内容 |
+|------|------|----------|
+| v1.0 | 2026-04-26 | 初始版本，基于 4 位 agent 验证通过 |

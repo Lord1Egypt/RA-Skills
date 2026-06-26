@@ -1,35 +1,214 @@
 ---
-name: "investoday-stock-market-broadcast"
-description: "面向A股盘面播报与市场情绪快评，聚焦市场涨跌分布、指数表现、热点主线与盘中阶段解读。基于今日投资金融数据接口，输出口播化、结构化的盘面行情播报。触发词：盘面播报、早盘、午盘、盘中、收盘后、市场怎么样、盘面总结。"
-category: "other"
-source: "ClawHub"
-tags: [after-close, intraday-broadcast, market-broadcast, market-recap, market-sentiment, midday-session, morning-session, sector-rotation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-stock-market-broadcast"
-sourceUrl: "https://clawhub.ai/skills/investoday-stock-market-broadcast"
+name: investoday-stock-market-broadcast
+title: "盘面行情播报"
+version: 1.3.0
+description: 面向A股盘面播报与市场情绪快评，聚焦市场涨跌分布、指数表现、热点主线与盘中阶段解读。基于今日投资金融数据接口，输出口播化、结构化的盘面行情播报。触发词：盘面播报、早盘、午盘、盘中、收盘后、市场怎么样、盘面总结。
+tags:
+  - market-broadcast
+  - market-sentiment
+  - morning-session
+  - midday-session
+  - intraday-broadcast
+  - after-close
+  - sector-rotation
+  - market-recap
+metadata:
+  clawdbot:
+    emoji: "🕒"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-stock-market-broadcast
+# 🕒 盘面行情播报
 
-> 面向A股盘面播报与市场情绪快评，聚焦市场涨跌分布、指数表现、热点主线与盘中阶段解读。基于今日投资金融数据接口，输出口播化、结构化的盘面行情播报。触发词：盘面播报、早盘、午盘、盘中、收盘后、市场怎么样、盘面总结。
+面向 A 股盘面播报与市场情绪快评，聚焦市场涨跌分布、指数表现、热点主线与盘中阶段解读。基于今日投资金融数据接口，输出口播化、结构化的盘面行情播报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-stock-market-broadcast`
-- **Source URL:** [https://clawhub.ai/skills/investoday-stock-market-broadcast](https://clawhub.ai/skills/investoday-stock-market-broadcast)
+## 触发场景
 
-## Overview
+- 用户询问当前市场怎么样、现在盘面强不强、热点在哪
+- 用户要求生成早盘、午盘、盘中或收盘后的市场播报
+- 用户希望快速理解市场情绪、热点轮动与接下来需要关注的信号
+- 关键词：盘面播报、早盘、午盘、盘中、收盘后、市场怎么样、盘面总结、热点轮动、市场情绪
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-stock-market-broadcast
+**示例 1：即时播报**
 ```
+现在市场怎么样，来一段盘面播报。
+```
+
+**示例 2：午盘总结**
+```
+帮我做个午盘播报，看看今天情绪和热点。
+```
+
+**示例 3：收盘后复盘**
+```
+收盘后帮我快速总结一下今天 A 股盘面。
+```
+
+> 💡 本 Skill 偏“市场实时播报与情绪快评”。若用户想深挖某条热点主线背后的事件链与影响路径，优先使用 `热点事件解码`；若用户想看板块层面的卖方共识、机构主线与分歧，优先使用 `板块研报解读`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 市场核心工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 市场涨跌分布 | `market/change-ratio-status` | GET | 获取上涨家数、下跌家数、涨停跌停等市场广度数据 |
+| 指数实时行情 | `index-quote/realtime` | POST | 获取主要宽基指数的最新行情 |
+| 新闻资讯 | `news` | GET | 获取近 24 小时市场相关资讯，用于提炼热点与催化 |
+
+## 数据获取流程
+
+Agent 根据当前时间判断盘面阶段后，按以下流程获取数据：
+
+- **Step 1：市场涨跌分布**：工具ID `market/change-ratio-status`
+- **Step 2：主要指数实时行情**：工具ID `index-quote/realtime` (POST)，参数 `indexCodes=000001 indexCodes=399001 indexCodes=399006 indexCodes=000300`
+- **Step 3：新闻资讯（近24小时）**：工具ID `news`，参数 `beginTime=<24小时前> endTime=<当前时间> pageNum=1 pageSize=10`
+
+> **并行优化**：Step 1-3 可并行调用。新闻只作为热点与催化补充，盘面播报仍以市场广度和指数表现为主。
+
+## 分析框架（4步）
+
+Agent 获取数据后，按以下 4 步框架进行结构化分析：
+
+### Step 1：判断盘面阶段与播报口径
+
+**目标**：先确认当前属于早盘、午盘、盘中、收盘后还是非交易时间，决定播报语气和重点。
+
+**数据来源**：当前时间
+
+分析要点：
+- 早盘：强调开盘强弱与主线试探
+- 午盘：强调半日总结与午后观察点
+- 盘中：强调即时强弱与热点轮动
+- 收盘后：强调全天总结与次日关注方向
+- 非交易时间：给出温和提示，不输出完整盘面结构
+
+**输出**：盘面阶段与播报风格。
+
+### Step 2：判断市场整体强弱与情绪温度
+
+**目标**：通过涨跌家数与涨跌停结构判断市场广度和风险偏好。
+
+**数据来源**：`market/change-ratio-status`
+
+分析要点：
+- 上涨家数、下跌家数、平盘家数对比
+- 涨停、跌停、强势股与弱势股数量
+- 市场是普涨、普跌还是结构分化
+
+**输出**：市场情绪与整体强弱判断。
+
+### Step 3：判断指数分化与主线结构
+
+**目标**：通过宽基指数判断市场风格分化情况。
+
+**数据来源**：`index-quote/realtime`
+
+分析要点：
+- 上证指数、深证成指、创业板指、沪深300表现
+- 大盘/成长风格是否分化
+- 指数是否与市场广度相互印证
+
+**输出**：指数强弱与风格分化结论。
+
+### Step 4：提炼热点与后续观察方向
+
+**目标**：从新闻中提炼最相关的市场热点，并给出后续需要关注的验证信号。
+
+**数据来源**：`news`
+
+分析要点：
+- 只保留与 A 股盘面直接相关的 2-3 条新闻或事件
+- 说明热点对应的市场交易逻辑
+- 给出接下来需跟踪的热点持续性、情绪回落或风险信号
+
+**输出**：热点催化总结与关注方向。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 上涨家数明显高于下跌家数且涨停家数较多 | 市场风险偏好较强 | ✅ 积极 |
+| 下跌家数明显高于上涨家数且跌停家数增加 | 市场风险偏好偏弱 | ⚠️ 警惕 |
+| 指数分化明显、涨跌家数接近 | 结构性行情 | 📊 中性 |
+| 创业板明显强于沪深300 | 成长风格活跃 | 🟡 关注 |
+| 沪深300明显强于创业板 | 大盘权重风格占优 | 🟡 关注 |
+| 热点新闻与盘面方向一致 | 主线交易逻辑较清晰 | ✅ 积极 |
+| 新闻较多但盘面无明显响应 | 热点发酵有限 | 📊 中性 |
+| 情绪极热且强势股数量快速增加 | 短期情绪升温 | 🟡 关注 |
+| 情绪快速回落且跌停数上升 | 风险释放压力增大 | 🔴 高风险 |
+
+## 输出格式
+
+```markdown
+# 🕒 A股盘面播报
+
+> 播报时间：YYYY-MM-DD HH:mm | 盘面阶段：早盘/午盘/盘中/收盘后 | 数据来源：今日投资
+
+## 一、盘面概览
+
+（用 2-3 句话先概括当前盘面阶段、市场强弱、情绪状态和热点方向）
+
+## 二、指数表现
+
+- 上证指数：
+- 深证成指：
+- 创业板指：
+- 沪深300：
+
+## 三、市场情绪
+
+- 上涨家数 / 下跌家数 / 平盘家数
+- 涨停 / 跌停情况
+- 市场整体是普涨、普跌还是结构分化
+
+## 四、热点与催化
+
+- 热点事件：
+- 盘面影响：
+- 热点归纳：
+
+## 五、关注方向
+
+- 接下来更值得关注的方向
+- 接下来要验证的信号
+- 需要警惕的盘面风险
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确当前盘面阶段、市场情绪和主线方向
+- 给出后续需要重点验证的市场信号
+
+## ⚠️ 风险提示
+
+**以上内容基于实时行情与公开资讯整理，存在时效性，仅供参考。**
+```
+
+## 执行示例
+
+用户说：“现在市场怎么样，来一段午盘播报。”
+
+1. 先判断当前盘面阶段
+2. 并行调用 `market/change-ratio-status`、`index-quote/realtime` 与 `news`
+3. 先判断市场广度与情绪，再补充指数分化和热点主线
+4. 输出口播化、结构化盘面播报
+5. 在结尾写出后续需要重点关注的盘面信号
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

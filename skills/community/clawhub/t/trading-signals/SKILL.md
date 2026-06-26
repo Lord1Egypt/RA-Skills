@@ -1,35 +1,109 @@
 ---
-name: "量化交易信号"
-description: "量化交易信号系统。基于多种技术指标（MACD、RSI、KDJ、布林带、均线）生成买卖信号。支持金叉死叉、底背离、顶背离、超买超卖等信号。适用于股票和加密货币。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trading-signals"
-sourceUrl: "https://clawhub.ai/skills/trading-signals"
+name: trading-signals
+description: 量化交易信号系统。基于多种技术指标（MACD、RSI、KDJ、布林带、均线）生成买卖信号。支持金叉死叉、底背离、顶背离、超买超卖等信号。适用于股票和加密货币。
 ---
 
 # 量化交易信号
 
-> 量化交易信号系统。基于多种技术指标（MACD、RSI、KDJ、布林带、均线）生成买卖信号。支持金叉死叉、底背离、顶背离、超买超卖等信号。适用于股票和加密货币。
+基于技术指标的量化交易信号系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trading-signals`
-- **Source URL:** [https://clawhub.ai/skills/trading-signals](https://clawhub.ai/skills/trading-signals)
+## 快速开始
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 安装依赖
 ```bash
-hermes skills install clawhub/trading-signals
+pip3 install yfinance numpy --break-system-packages
 ```
+
+### 生成信号
+```bash
+python3 scripts/signals.py AAPL
+python3 scripts/signals.py BTC-USD
+python3 signals.py 0700.HK
+```
+
+## 信号类型
+
+### 1. MACD 信号
+| 信号 | 条件 |
+|------|------|
+| 金叉 | DIF 从下往上穿过 DEA |
+| 死叉 | DIF 从上往下穿过 DEA |
+| 底背离 | 价格创新低，MACD没创新低 |
+| 顶背离 | 价格创新高，MACD没创新高 |
+
+### 2. RSI 信号
+| 信号 | 条件 |
+|------|------|
+| 超买 | RSI > 70 |
+| 超卖 | RSI < 30 |
+| 金叉 | RSI从下往上突破50 |
+| 死叉 | RSI从上往下突破50 |
+
+### 3. KDJ 信号
+| 信号 | 条件 |
+|------|------|
+| 金叉 | K线从下往上穿过D线 |
+| 死叉 | K线从上往下穿过D线 |
+| 超买 | J > 100 |
+| 超卖 | J < 0 |
+
+### 4. 均线信号
+| 信号 | 条件 |
+|------|------|
+| 多头排列 | MA5 > MA10 > MA20 |
+| 空头排列 | MA5 < MA10 < MA20 |
+| 价格上穿均线 | 价格从下往上突破均线 |
+| 价格下穿均线 | 价格从上往下突破均线 |
+
+### 5. 布林带信号
+| 信号 | 条件 |
+|------|------|
+| 突破上轨 | 价格突破布林带上轨 |
+| 突破下轨 | 价格突破布林带下轨 |
+| 中轨支撑 | 价格回踩中轨 |
+
+## 信号强度
+
+| 强度 | 说明 |
+|------|------|
+| ⭐⭐⭐ 强 | 多个指标共振 |
+| ⭐⭐ 中等 | 2个指标一致 |
+| ⭐ 弱 | 单个指标信号 |
+
+## 输出示例
+
+```
+===== 量化信号: 苹果 AAPL =====
+📊 周期: 日线 | 数据: 60根K线
+
+💰 价格: $257.46
+
+📊 MACD信号:
+   DIF: -1.59 | DEA: 0.86 | MACD: -4.90
+   信号: ⚫ 死叉 | 状态: 空头
+
+📊 RSI信号:
+   RSI(14): 48.52
+   信号: 中性区域
+
+📊 KDJ信号:
+   K: 35.2 | D: 42.1 | J: 21.3
+   信号: 🔵 超卖区域 | K、D下行
+
+📊 均线信号:
+   MA5: 257.02 | MA10: 257.16 | MA20: 255.31
+   信号: 🔴 空头排列
+
+📊 布林带:
+   上轨: 269.31 | 中轨: 257.77 | 下轨: 246.23
+   信号: ⚪ 中轨下方运行
+
+🎯 综合信号:
+   强度: ⭐⭐ 偏空
+   建议: 观望或减仓
+   关注: 等RSI超卖或MACD金叉
+```
+
+## 风险提示
+
+⚠️ 本技能仅供分析参考，不构成投资建议。交易有风险，投资需谨慎。

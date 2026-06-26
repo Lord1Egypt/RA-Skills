@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main-stack">
+  {% if page.report and page.selected_file %}
+  <section class="card analysis-hero">
+    <div>
+      <div class="feature-note">{{ page.title }}</div>
+      <h2>{{ page.report.title }}</h2>
+    </div>
+    {% if page.report.subtitle %}
+    <p>{{ page.report.subtitle }}</p>
+    {% endif %}
+    <div class="summary-inline">
+      {% if page.report.report_time %}
+      <span class="summary-pill">创建时间：{{ page.report.report_time }}</span>
+      {% endif %}
+      <span class="summary-pill">文件：{{ page.selected_file.name }}</span>
+      <span class="summary-pill">章节：{{ page.report.sections|length }}</span>
+      <span class="summary-pill">表格：{{ page.report.table_count }}</span>
+    </div>
+    {% if page.report.highlights %}
+    <div class="chip-list">
+      {% for item in page.report.highlights %}
+      <span class="chip">{{ item }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if page.report.intro_html %}
+    <div class="article-body">{{ page.report.intro_html }}</div>
+    {% endif %}
+  </section>
+
+  <section class="grid">
+    {% for item in page.summary_cards %}
+    <div class="card">
+      <div class="muted">{{ item.label }}</div>
+      <div class="metric">{{ item.value }}</div>
+    </div>
+    {% endfor %}
+  </section>
+
+  {% if page.charts %}
+  <section class="analysis-grid">
+    {% for chart in page.charts %}
+    <div class="chart-card">
+      <div class="stack">
+        <h3>{{ chart.title }}</h3>
+        {% if chart.subtitle %}
+        <p>{{ chart.subtitle }}</p>
+        {% endif %}
+      </div>
+      <div class="chart-list">
+        {% for item in chart.bars %}
+        <div class="chart-row">
+          <div class="chart-meta">
+            <div class="chart-label">
+              <strong>{{ item.label }}</strong>
+              {% if item.secondary %}
+              <span>{{ item.secondary }}</span>
+              {% endif %}
+            </div>
+            <span class="chart-value">{{ item.display }}</span>
+          </div>
+          <div class="chart-track">
+            <span class="chart-fill {{ item.tone }}" style="width: {{ item.width }}%;"></span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+  {% endif %}
+
+  <section class="page-layout">
+    <aside class="sidebar">
+      <div class="card stack">
+        <div>
+          <div class="feature-note">{{ page.title }}</div>
+          <h3>报告选择</h3>
+          <p class="muted">左侧菜单按报告主标题和创建时间自动生成。</p>
+        </div>
+        {% if page.files %}
+        <div class="file-list">
+          {% for item in page.files %}
+          <a class="file-card {% if page.selected_file and item.name == page.selected_file.name %}active{% endif %}" href="/stock-analysis?file={{ item.name }}">
+            <strong>{{ item.display_title }}</strong>
+            <div class="file-meta">
+              <span>创建时间：{{ item.display_time }}</span>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="muted">目录内还没有可展示的 Markdown、TXT 或 JSON 报告。</p>
+        {% endif %}
+      </div>
+      {% if page.nav_sections %}
+      <div class="card stack" style="margin-top: 16px;">
+        <div>
+          <h3>章节导航</h3>
+          <p class="muted">快速跳转到当前报告的核心部分。</p>
+        </div>
+        <div class="section-nav">
+          {% for section in page.nav_sections %}
+          <a class="section-link" href="#{{ section.anchor_id }}">{{ section.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </aside>
+
+    <div class="main-stack">
+      {% if page.report and page.selected_file %}
+      <section class="card stack">
+        <div class="section-title">
+          <div>
+            <h2>报告正文</h2>
+          </div>
+        </div>
+        {% for section in page.report.sections %}
+        <article class="report-section" id="{{ section.anchor_id }}">
+          <h3>{{ section.title }}</h3>
+          <div class="article-body">{{ section.body_html }}</div>
+        </article>
+        {% endfor %}
+      </section>
+      {% else %}
+      <section class="empty-state">
+        <h2>暂无个股分析报告</h2>
+        <p class="muted">{{ page.empty_hint }}</p>
+      </section>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}

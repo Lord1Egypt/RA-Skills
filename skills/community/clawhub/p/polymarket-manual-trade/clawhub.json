@@ -1,0 +1,32 @@
+{
+  "emoji": "🎯",
+  "requires": {
+    "env": ["SIMMER_API_KEY", "WALLET_PRIVATE_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": false,
+    "entrypoint": "manual_trade.py"
+  },
+  "tunables": {
+    "default_order_type": {
+      "description": "Default order type when --order is not specified",
+      "type": "string",
+      "default": "FAK",
+      "enum": ["FAK", "GTC", "FOK"]
+    },
+    "default_amount": {
+      "description": "Default dollar amount when --amount is not specified",
+      "type": "number",
+      "default": 10
+    },
+    "default_venue": {
+      "description": "Default trading venue",
+      "type": "string",
+      "default": "polymarket",
+      "enum": ["polymarket", "sim"]
+    }
+  }
+}

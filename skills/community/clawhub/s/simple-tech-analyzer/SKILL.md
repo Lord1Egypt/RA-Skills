@@ -1,35 +1,60 @@
----
-name: "Simple Tech Analyzer"
-description: "提供MACD、KDJ、RSI和成交量的基础技术指标分析及买卖信号提示，支持实时交易时段更新。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/simple-tech-analyzer"
-sourceUrl: "https://clawhub.ai/skills/simple-tech-analyzer"
+# simple-tech-analyzer - 简易技术分析器
+
+**版本**: 1.0.0
+
+**免费工具** - 基础技术指标分析
+
 ---
 
-# Simple Tech Analyzer
+## 功能
 
-> 提供MACD、KDJ、RSI和成交量的基础技术指标分析及买卖信号提示，支持实时交易时段更新。
+- ✅ MACD 金叉/死叉检测
+- ✅ KDJ 超买/超卖判断
+- ✅ RSI 强弱分析
+- ✅ 成交量异动提醒
+- ✅ 基础买卖信号
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/simple-tech-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/simple-tech-analyzer](https://clawhub.ai/skills/simple-tech-analyzer)
+---
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/simple-tech-analyzer
 ```
+分析股票：600745 / 闻泰科技
+```
+
+---
+
+## 升级服务
+
+需要更深入的缠论结构分析、中枢识别、买卖点精准定位？
+
+👉 **[贾维斯缠论监控服务](https://clawhub.ai/15910701838/jarvis-stock-monitor)**
+
+| 套餐 | 价格 | 功能 |
+|------|------|------|
+| 体验版 | ¥99/周 | 3 只股票 + 缠论日报 |
+| 标准版 | ¥299/月 | 10 只股票 + 实时买卖点 |
+| 专业版 | ¥799/月 | 30 只股票 + 一对一指导 |
+
+**免费 vs 付费对比**：
+
+| 功能 | 免费 | 付费 |
+|------|------|------|
+| 基础指标 | ✅ | ✅ |
+| 缠论分型 | ❌ | ✅ |
+| 笔/线段 | ❌ | ✅ |
+| 中枢识别 | ❌ | ✅ |
+| 买卖点 | ❌ | ✅ |
+| 实时预警 | ❌ | ✅ |
+
+---
+
+## 技术实现
+
+- 数据源：通达信本地数据
+- 指标：MACD/KDJ/RSI/量比
+- 更新：交易时段实时
+
+---
+
+*免费工具，仅供参考，不构成投资建议*

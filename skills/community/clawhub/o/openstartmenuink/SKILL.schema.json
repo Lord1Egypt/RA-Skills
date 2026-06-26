@@ -1,0 +1,27 @@
+{
+  "name": "OpenStartMenuInk",
+  "author": "ClawUser",
+  "version": "1.0.0",
+  "description": "自动搜索并保存 Windows 开始菜单中的所有快捷方式，根据用户指令快速打开应用",
+  "category": "productivity",
+  "tags": ["开始菜单", "快捷方式", "应用打开", "快速启动", "Windows"],
+  "main": "main.ps1",
+  "dependencies": ["powershell"],
+  "permissions": ["filesystem"],
+  "platforms": ["windows"],
+  "minPlatformVersion": "10.0.19041",
+  "features": {
+    "scan": true,
+    "open": true,
+    "autoRefresh": true,
+    "fuzzyMatch": true
+  },
+  "config": {
+    "scanPaths": [
+      "{USERPROFILE}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs",
+      "{PROGRAMDATA}\Microsoft\Windows\Start Menu\Programs"
+    ],
+    "autoSave": true,
+    "cacheFile": "C:\\Users\\$USERNAME\\AppData\\Local\\OpenClaw\\Skills\\OpenStartMenuInk\\cache.txt"
+  }
+}

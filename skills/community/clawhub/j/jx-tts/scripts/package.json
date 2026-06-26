@@ -1,0 +1,9 @@
+{
+  "name": "skillboss-tts-script",
+  "version": "1.0.0",
+  "description": "Helper script for SkillBoss API Hub TTS",
+  "main": "generate_speech.js",
+  "dependencies": {
+    "commander": "^11.0.0"
+  }
+}

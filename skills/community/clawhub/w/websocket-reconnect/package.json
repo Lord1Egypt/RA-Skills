@@ -1,0 +1,27 @@
+{
+  "name": "websocket-reconnect",
+  "version": "1.0.0",
+  "description": "WebSocket connection management with exponential backoff + jitter retry, heartbeat detection, and circuit breaker pattern",
+  "main": "scripts/websocket-reconnect.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "websocket",
+    "reconnect",
+    "exponential-backoff",
+    "jitter",
+    "heartbeat",
+    "circuit-breaker",
+    "retry"
+  ],
+  "author": "custom",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.14.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

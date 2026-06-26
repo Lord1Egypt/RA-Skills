@@ -1,0 +1,133 @@
+{
+  "common_diseases": {
+    "犬瘟热": {
+      "species": ["dog"],
+      "symptoms": ["发热", "咳嗽", "流脓鼻涕", "眼屎增多", "腹泻", "脚垫增厚"],
+      "urgency": "high",
+      "advice": "立即就医！高度传染，需隔离其他宠物。",
+      "treatment_principle": "抗病毒+对症支持治疗"
+    },
+    "犬细小病毒": {
+      "species": ["dog"],
+      "symptoms": ["呕吐", "血便", "精神萎靡", "不吃东西", "发热"],
+      "urgency": "high",
+      "advice": "立即就医！幼犬致死率高。",
+      "treatment_principle": "禁食禁水+输液+抗病毒"
+    },
+    "猫传腹(FIP)": {
+      "species": ["cat"],
+      "symptoms": ["腹围增大", "发热", "消瘦", "食欲下降", "黄疸"],
+      "urgency": "high",
+      "advice": "立即就医，需长期治疗。",
+      "treatment_principle": "GS-441524抗病毒治疗"
+    },
+    "猫下泌尿道疾病": {
+      "species": ["cat"],
+      "symptoms": ["频繁蹲猫砂盆", "尿血", "排尿困难", "在猫砂盆外排尿"],
+      "urgency": "medium",
+      "advice": "尽快就医，公猫尿道堵塞可能致命。",
+      "treatment_principle": "导尿+输液+饮食管理"
+    },
+    "皮肤病": {
+      "species": ["dog", "cat"],
+      "symptoms": ["脱毛", "瘙痒", "红疹", "皮屑", "结痂"],
+      "urgency": "low",
+      "advice": "建议就诊，避免自行用药。",
+      "treatment_principle": "刮片检查+针对性用药"
+    },
+    "肠胃炎": {
+      "species": ["dog", "cat"],
+      "symptoms": ["呕吐", "腹泻", "食欲下降", "精神萎靡"],
+      "urgency": "medium",
+      "advice": "禁食6-12小时观察，若持续呕吐腹泻请就医。",
+      "treatment_principle": "止吐+补液+消炎"
+    }
+  },
+  "vaccine_schedules": {
+    "dog": {
+      "puppy": [
+        {"age_weeks": "6-8", "vaccine": "第一针联苗(卫佳伍/卫佳捌)", "note": "首次免疫"},
+        {"age_weeks": "10-12", "vaccine": "第二针联苗", "note": "间隔21-28天"},
+        {"age_weeks": "14-16", "vaccine": "第三针联苗+狂犬疫苗", "note": "完成基础免疫"}
+      ],
+      "adult_annual": [
+        {"interval": "每年", "vaccine": "联苗加强+狂犬加强", "note": "年度免疫"}
+      ]
+    },
+    "cat": {
+      "kitten": [
+        {"age_weeks": "8", "vaccine": "第一针猫三联", "note": "首次免疫"},
+        {"age_weeks": "12", "vaccine": "第二针猫三联", "note": "间隔21-28天"},
+        {"age_weeks": "16", "vaccine": "第三针猫三联+狂犬", "note": "完成基础免疫"}
+      ],
+      "adult_annual": [
+        {"interval": "每年", "vaccine": "猫三联加强+狂犬加强", "note": "年度免疫"}
+      ]
+    }
+  },
+  "deworm_schedules": {
+    "internal": {
+      "puppy_kitten": "2周龄开始，每2周一次至12周龄，之后每月一次至6月龄",
+      "adult": "每3个月一次"
+    },
+    "external": {
+      "monthly": "每月一次体外驱虫（跳蚤/蜱虫）"
+    }
+  },
+  "drug_database": {
+    "阿莫西林克拉维酸": {
+      "category": "抗生素",
+      "indications": ["呼吸道感染", "泌尿道感染", "皮肤感染"],
+      "dosage_dog": "12.5-25mg/kg，每12小时",
+      "dosage_cat": "12.5-25mg/kg，每12小时",
+      "contraindications": ["青霉素过敏"],
+      "interactions": ["避免与氨基糖苷类同用"],
+      "side_effects": ["呕吐", "腹泻"],
+      "notes": "与食物同服可减少胃肠反应"
+    },
+    "美洛昔康": {
+      "category": "非甾体抗炎药",
+      "indications": ["疼痛", "炎症", "关节炎"],
+      "dosage_dog": "0.2mg/kg首剂，之后0.1mg/kg/天",
+      "dosage_cat": "仅限单次注射，口服慎用",
+      "contraindications": ["肾功能不全", "胃溃疡", "脱水"],
+      "interactions": ["避免与其他NSAIDs或糖皮质激素合用"],
+      "side_effects": ["胃肠道溃疡", "肾损伤"],
+      "notes": "猫对NSAIDs敏感，需特别谨慎"
+    }
+  },
+  "breed_info": {
+    "金毛寻回犬": {
+      "size": "大型犬",
+      "lifespan": "10-12年",
+      "common_health_issues": ["髋关节发育不良", "皮肤病", "心脏病", "肿瘤"],
+      "care_tips": ["定期运动", "注意关节保护", "定期皮肤检查"]
+    },
+    "布偶猫": {
+      "size": "大型猫",
+      "lifespan": "12-17年",
+      "common_health_issues": ["肥厚性心肌病(HCM)", "多囊肾病(PKD)", "泌尿道疾病"],
+      "care_tips": ["定期心脏超声", "鼓励饮水", "定期梳毛"]
+    },
+    "柯基犬": {
+      "size": "小型犬",
+      "lifespan": "12-15年",
+      "common_health_issues": ["椎间盘疾病", "髋关节发育不良", "眼疾"],
+      "care_tips": ["控制体重", "避免剧烈跳跃", "定期眼科检查"]
+    }
+  },
+  "emergency_symptoms": {
+    "critical": {
+      "description": "需立即就医",
+      "symptoms": ["呼吸困难", "大量出血", "无法站立", "持续抽搐", "误食毒物", "严重外伤", "难产"]
+    },
+    "urgent": {
+      "description": "尽快就医（2小时内）",
+      "symptoms": ["持续呕吐超过3次", "腹泻带血", "无法排尿", "腹部膨大", "眼球突出"]
+    },
+    "monitor": {
+      "description": "观察24小时，恶化就医",
+      "symptoms": ["轻度呕吐1-2次", "食欲下降", "轻微腹泻", "精神略差"]
+    }
+  }
+}

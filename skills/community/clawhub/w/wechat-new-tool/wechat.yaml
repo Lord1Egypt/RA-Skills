@@ -1,0 +1,4 @@
+name: wechat_bridge
+env:
+  WECHAT_APPID: "wx_KcD1dMEn7KidBemwN2lVh"
+  WECHAT_TOKEN: "e4cf78e3-afdf-4a45-8090-143ab4df83f2"

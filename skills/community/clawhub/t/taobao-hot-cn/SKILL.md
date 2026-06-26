@@ -1,35 +1,62 @@
 ---
-name: "Taobao Hot Cn"
-description: "Taobao Hot Products Discovery - Find trending products, hot categories, and best deals"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taobao-hot-cn"
-sourceUrl: "https://clawhub.ai/skills/taobao-hot-cn"
+name: taobao-hot-cn
+version: 1.0.0
+description: Taobao Hot Products Discovery - Find trending products, hot categories, and best deals
+license: MIT
 ---
 
-# Taobao Hot Cn
+# Taobao Hot Products Discovery 🛒
 
-> Taobao Hot Products Discovery - Find trending products, hot categories, and best deals
+AI-powered tool for discovering trending products on Taobao (淘宝).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taobao-hot-cn`
-- **Source URL:** [https://clawhub.ai/skills/taobao-hot-cn](https://clawhub.ai/skills/taobao-hot-cn)
+## Features
 
-## Overview
+### 1. Hot Products 📊
+Browse top-selling products by category.
 
+```bash
+./scripts/hot.sh "女装"
+```
+
+### 2. Trending Categories 🏷️
+Discover trending product categories.
+
+```bash
+./scripts/categories.sh
+```
+
+### 3. Price Analysis 💰
+Analyze price trends for products.
+
+```bash
+./scripts/price.sh "手机" 1000-3000
+```
+
+### 4. Seasonal Trends 📈
+Discover seasonal trending products.
+
+```bash
+./scripts/seasonal.sh "春节"
+```
+
+## Use Cases
+
+- **Dropshipping**: Find hot products to sell
+- **代购**: Discover what's trending in China
+- **Personal Shopping**: Find best deals
+- **Market Research**: Understand Chinese consumer trends
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/taobao-hot-cn
+clawhub install taobao-hot-cn
 ```
+
+## Author
+
+money-maker-ai
+
+## Changelog
+
+### v1.0.0 (2026-02-18)
+- Initial release

@@ -1,0 +1,7 @@
+interface:
+  display_name: "HAP MongoDB Slowlog Analysis"
+  short_description: "AI-first MongoDB 4.4 slow log analysis and guidance"
+  default_prompt: "Use $hap-mongodb-slowlog-analysis to analyze pasted or uploaded MongoDB slow logs directly in the conversation, group repeated entries by namespace, deduplicate repeated query shapes, and preserve representative per-group detail instead of only summary. Always show formatted query JSON for each representative sample, keep the old single-log sections such as Evidence, Query Shape, Why It Is Slow, Index Advice, Index Commands, and Query Advice, and add a grouped summary before them. When the input comes from an uploaded file or local log file, show only the file name by default rather than the full local path. If any report file is generated, return only the most important clickable file path by default, and avoid adding a separate Deliverables section unless the user explicitly wants it. Prefer direct AI analysis over local scripts unless file export is explicitly requested."
+
+policy:
+  allow_implicit_invocation: true

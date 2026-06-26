@@ -1,35 +1,251 @@
----
-name: "SZZG007 Web Deep Research"
-description: "基于17+平台自动深度调研市场、竞品及客户背景，生成详实报告，支持多角度趋势与风险分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/szzg007-web-deep-research"
-sourceUrl: "https://clawhub.ai/skills/szzg007-web-deep-research"
+# szzg007-web-deep-research - 全网深度调研专家
+
+**版本:** 1.0  
+**创建日期:** 2026-03-30  
+**作者:** MOSSRIVER 团队
+
 ---
 
-# SZZG007 Web Deep Research
+## 技能描述
 
-> 基于17+平台自动深度调研市场、竞品及客户背景，生成详实报告，支持多角度趋势与风险分析。
+自主在全网进行深度调研，覆盖 17+ 平台，自动整理调研报告。专为市场情报、竞品分析、客户背调设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/szzg007-web-deep-research`
-- **Source URL:** [https://clawhub.ai/skills/szzg007-web-deep-research](https://clawhub.ai/skills/szzg007-web-deep-research)
+---
 
-## Overview
+## 支持平台
 
+### 社交媒体 (8 个)
+| 平台 | 查询内容 |
+|------|---------|
+| Twitter/X | 品牌提及、行业趋势、KOL 动态 |
+| Reddit | 用户讨论、产品评价、痛点收集 |
+| YouTube | 产品评测、使用教程、竞品视频 |
+| Instagram | 视觉内容、网红种草、热门标签 |
+| LinkedIn | 公司信息、决策人背景、招聘动态 |
+| TikTok | 病毒内容、年轻用户偏好 |
+| 小红书 | 中国用户评价、种草笔记 |
+| 微博 | 中国品牌动态、热点话题 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/szzg007-web-deep-research
+### 商业平台 (5 个)
+| 平台 | 查询内容 |
+|------|---------|
+| GitHub | 开源项目、技术趋势 |
+| Product Hunt | 新品发布、用户反馈 |
+| 阿里巴巴 | 供应商信息、价格对比 |
+| 亚马逊 | 产品评价、销量排名 |
+| Shopify | 独立站分析、竞品店铺 |
+
+### 其他 (4 个)
+| 平台 | 查询内容 |
+|------|---------|
+| 微信公众号 | 行业文章、品牌动态 |
+| 抖音 | 短视频内容、直播带货 |
+| B 站 | 长视频评测、用户弹幕 |
+| RSS/网页 | 自定义来源监控 |
+
+---
+
+## 核心功能
+
+### 1. 市场调研
+- 行业趋势分析
+- 市场规模估算
+- 增长机会识别
+- 风险因素评估
+
+### 2. 竞品分析
+- 竞品产品线梳理
+- 价格策略分析
+- 营销渠道识别
+- 用户评价汇总
+
+### 3. 客户背调
+- 公司信息查询
+- 决策人背景调查
+- 社交媒体活跃度
+- 采购能力评估
+
+### 4. 趋势监控
+- 热门话题追踪
+- 新兴品牌发现
+- 用户需求变化
+- 技术创新动态
+
+---
+
+## 触发词
+
 ```
+"帮我调研一下这个市场"
+"查一下这个公司的背景"
+"全网搜索这个产品的评价"
+"竞品分析报告"
+"市场趋势分析"
+"客户背调"
+"szzg007 深度调研"
+```
+
+---
+
+## 使用方法
+
+### 基础用法
+```
+调研一下收纳盒市场
+```
+
+### 高级用法
+```
+调研一下收纳盒市场
+- 目标市场：美国
+- 关注平台：Amazon, Instagram, TikTok
+- 输出格式：Markdown 报告
+- 深度：深度 (默认快速/标准/深度)
+```
+
+### 客户背调
+```
+背调这个客户：company@example.com
+- 公司名：ABC Company
+- 关注点：采购能力、信用记录
+```
+
+---
+
+## 输出模板
+
+```markdown
+# 市场调研报告
+
+**调研主题:** XXX  
+**调研时间:** 2026-03-30  
+**调研深度:** 深度  
+**覆盖平台:** 12 个
+
+## 执行摘要
+- 市场规模：$XXB (2026)
+- 增长率：XX% YoY
+- 主要玩家：A, B, C
+- 关键趋势：1, 2, 3
+
+## 竞品分析
+
+### 竞品 A
+- 产品线：XX 款
+- 价格区间：$XX-$XX
+- 主要渠道：Amazon, Shopify
+- 用户评价：4.5/5 (1200 条评价)
+
+### 竞品 B
+...
+
+## 用户洞察
+- 核心痛点：1, 2, 3
+- 购买决策因素：价格、质量、设计
+- 热门关键词：XXX, YYY, ZZZ
+
+## 机会识别
+1. [机会 1] - 依据
+2. [机会 2] - 依据
+
+## 风险因素
+1. [风险 1] - 缓解建议
+2. [风险 2] - 缓解建议
+
+## 数据来源
+- Twitter: XX 条推文
+- Reddit: XX 个讨论
+- Amazon: XX 条评价
+- ...
+```
+
+---
+
+## 配置说明
+
+### 环境变量
+```bash
+# Tavily API (主要搜索源)
+TAVILY_API_KEY=your_key
+
+# Agent-Reach (可选，用于社交媒体)
+AGENT_REACH_API_KEY=your_key
+
+# 输出语言
+WEB_RESEARCH_LANG=zh-CN
+
+# 并发请求数
+WEB_RESEARCH_CONCURRENCY=5
+```
+
+### 工作空间
+```
+~/.openclaw/workspace/skills/szzg007-web-deep-research/
+├── SKILL.md
+├── templates/          # 报告模板
+├── examples/           # 调研案例
+├── scripts/
+│   ├── research.py     # 主脚本
+│   ├── twitter.py      # Twitter 查询
+│   ├── reddit.py       # Reddit 查询
+│   └── report.py       # 报告生成
+└── cache/              # 查询缓存
+```
+
+---
+
+## 示例
+
+### 示例 1: 市场调研
+**输入:**
+```
+调研一下美国收纳盒市场
+```
+
+**输出:**
+```markdown
+# 美国收纳盒市场调研报告
+
+## 执行摘要
+- 市场规模：$3.2B (2026)
+- 增长率：8.5% YoY
+- 主要玩家：The Container Store, IKEA, Amazon Basics
+- 关键趋势：彩色设计、可堆叠、环保材质
+
+## 竞品分析
+### The Container Store
+- 产品线：150+ 款
+- 价格区间：$15-$120
+- 主要渠道：线下店 + 电商
+- 用户评价：4.3/5
+
+### IKEA
+- 产品线：80+ 款
+- 价格区间：$5-$50
+- 主要渠道：线下店 + 电商
+- 用户评价：4.1/5
+
+## 用户洞察
+- 核心痛点：空间小、难整理、不美观
+- 购买决策因素：尺寸匹配、透明度、价格
+- 热门关键词："stackable", "clear", "colorful"
+
+## 机会识别
+1. 彩色收纳盒 - 市场少见，差异化明显
+2. 可堆叠设计 - 用户高度关注
+3. 环保材质 - 年轻消费者偏好
+```
+
+---
+
+## 与其他技能协作
+
+| 技能 | 协作方式 |
+|------|---------|
+| szzg007-product-analyzer | 输入竞品信息 → 卖点分析 |
+| szzg007-customer-crm | 输入客户名 → 背调报告 |
+| szzg007-email-business-manager | 输入调研结果 → 营销话术 |
+
+---
+
+_此技能专为 MOSSRIVER 跨境电商设计，持续优化中。_

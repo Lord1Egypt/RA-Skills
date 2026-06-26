@@ -1,0 +1,26 @@
+interface:
+  display_name: "Semantic Scholar"
+  short_description: "Search academic papers, traverse citations, find authors, and get recommendations via the Semantic Scholar API with built-in rate limiting and retries"
+  brand_color: "#1857B6"
+
+policy:
+  allow_implicit_invocation: true
+
+capabilities:
+  - Keyword-based broad relevance search (search_relevance)
+  - Boolean precise search with phrases, required, excluded, OR terms (search_bulk + build_bool_query)
+  - Full-text snippet/passage search (search_snippets)
+  - Single-paper lookup by DOI, arXiv, PMID, PMCID, CorpusId, MAG, ACL, SHA, or URL
+  - Forward and backward citation traversal (get_citations, get_references)
+  - Single-seed and multi-seed paper recommendations (find_similar, recommend)
+  - Author search, profile lookup, and publication listing
+  - Batch paper and author lookups (batch_papers, batch_authors)
+  - Filter by year, publication date, venue, fields of study, min citations, pub types, open access
+  - Export results to BibTeX, Markdown, or JSON
+  - Automatic rate limiting (1.1s gap) and exponential backoff retries on 429/504
+  - Single-script execution pattern that avoids sequential API call ping-pong
+
+prerequisites:
+  - python3
+  - pip package `requests`
+  - Optional S2_API_KEY for higher rate limits (request at https://www.semanticscholar.org/product/api#api-key)

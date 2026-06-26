@@ -1,35 +1,66 @@
 ---
-name: "Book Venue"
-description: "Book venue services through Lokuli MCP. Use when user needs to find and book venue. Triggers on requests like "book a venue", "find venue near me", or any venue service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-venue"
-sourceUrl: "https://clawhub.ai/skills/book-venue"
+name: book-venue
+description: Book venue services through Lokuli MCP. Use when user needs to find and book venue. Triggers on requests like "book a venue", "find venue near me", or any venue service request.
 ---
 
-# Book Venue
+# uook venue
 
-> Book venue services through Lokuli MCP. Use when user needs to find and book venue. Triggers on requests like "book a venue", "find venue near me", or any venue service request.
+Book venue services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-venue`
-- **Source URL:** [https://clawhub.ai/skills/book-venue](https://clawhub.ai/skills/book-venue)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-venue
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "venue",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

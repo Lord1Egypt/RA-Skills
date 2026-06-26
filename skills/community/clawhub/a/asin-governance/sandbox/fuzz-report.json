@@ -1,0 +1,72 @@
+{
+  "action": "post",
+  "base_payload": {
+    "title": "Hello Moltbook",
+    "content": "My first post!",
+    "submolt_name": "general"
+  },
+  "mutations_tested": 10,
+  "critical_count": 10,
+  "results": [
+    {
+      "mutation": "oversized_content",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "empty_title",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "oversized_title",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "sql_injection",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "script_injection",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "api_key_in_content",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "null_bytes",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "unicode_flood",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "nested_json",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "mutation": "boundary_whitespace",
+      "blocked_by": [],
+      "passed": true,
+      "severity": "CRITICAL"
+    }
+  ]
+}

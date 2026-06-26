@@ -1,0 +1,44 @@
+{
+  "date": "2023-07-12",
+  "user_id": "default",
+  "user_name": "繁哥",
+  "source": "体检报告",
+  "indicators": {
+    "cardiovascular": {
+      "total_cholesterol": {"value": 4.49, "unit": "mmol/L", "ref": "2.85-5.70", "status": "normal"},
+      "ldl": {"value": 3.69, "unit": "mmol/L", "ref": "1.90-4.10", "status": "normal"},
+      "hdl": {"value": 1.28, "unit": "mmol/L", "ref": "1.03-1.55", "status": "normal"},
+      "triglycerides": {"value": 0.71, "unit": "mmol/L", "ref": "0.45-1.70", "status": "normal"},
+      "blood_pressure": {"value": "99/66", "unit": "mmHg", "ref": "<120/80", "status": "normal"}
+    },
+    "liver": {
+      "alt": {"value": 10.2, "unit": "U/L", "ref": "9-50", "status": "normal"},
+      "ast": {"value": 19.6, "unit": "U/L", "ref": "15-40", "status": "normal"},
+      "total_bilirubin": {"value": 15.1, "unit": "μmol/L", "ref": "<23", "status": "normal"},
+      "direct_bilirubin": {"value": 2.8, "unit": "μmol/L", "ref": "<4", "status": "normal"}
+    },
+    "metabolic": {
+      "fasting_glucose": {"value": 4.67, "unit": "mmol/L", "ref": "3.90-6.10", "status": "normal"},
+      "uric_acid": {"value": 459, "unit": "μmol/L", "ref": "208-428", "status": "high"}
+    },
+    "other": {
+      "bmi": {"value": 23.5, "unit": "kg/m²", "ref": "18.5-24.0", "status": "normal"},
+      "weight": {"value": 66.0, "unit": "kg", "ref": "-", "status": "normal"},
+      "height": {"value": 167.6, "unit": "cm", "ref": "-", "status": "normal"},
+      "pulse": {"value": 55, "unit": "bpm", "ref": "60-100", "status": "low"}
+    }
+  },
+  "imaging": {
+    "thyroid": {
+      "finding": "甲状腺右叶囊性结节",
+      "ti_rads": 2,
+      "severity": "mild",
+      "note": "ACR TI-RADS 2级，需定期复查"
+    }
+  },
+  "abnormalities": [
+    {"indicator": "uric_acid", "value": 459, "severity": "mild", "note": "高尿酸血症"},
+    {"indicator": "pulse", "value": 55, "severity": "normal", "note": "窦性心动过缓伴不齐"},
+    {"indicator": "thyroid_nodule", "severity": "mild", "note": "甲状腺结节TI-RADS 2级（首次发现）"}
+  ]
+}

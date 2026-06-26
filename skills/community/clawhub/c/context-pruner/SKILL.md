@@ -1,35 +1,19 @@
 ---
-name: "Context Pruner"
-description: "Intelligent context window management by summarizing and removing redundant history. Helps agents maintain high performance in long-running threads."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context-pruner"
-sourceUrl: "https://clawhub.ai/skills/context-pruner"
+name: context-pruner
+description: Intelligent context window management by summarizing and removing redundant history. Helps agents maintain high performance in long-running threads.
 ---
 
 # Context Pruner
 
-> Intelligent context window management by summarizing and removing redundant history. Helps agents maintain high performance in long-running threads.
+Save tokens and keep focus sharp. This skill manages the "bloat" of long sessions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context-pruner`
-- **Source URL:** [https://clawhub.ai/skills/context-pruner](https://clawhub.ai/skills/context-pruner)
+## Pruning Protocol
 
-## Overview
-
+1. **Noise Detection**: Filter "Acknowledge" messages and filler words.
+2. **Fact Distillation**: Extract raw info and discard the conversational fluff.
+3. **Chunking**: Break long transcripts into searchable summaries.
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/context-pruner
+clawhub install context-pruner
 ```

@@ -1,0 +1,28 @@
+{
+  "name": "tianshu-huangdao",
+  "version": "1.0.6",
+  "description": "🏮 天樞黃道庫 黃曆擇吉·命理運勢·姓名起名 — 查結婚吉日、算今日運勢、起名測字，基於正統曆法命理數據（建除12神/28宿/64卦/五行/生肖），每次調用 PayPal 支付 1.68 USD。64卦查詢、命理運勢、取名完整版需付費；黃曆、取名預覽免費。",
+  "author": "45號劇坊",
+  "license": "MIT",
+  "triggers": [
+    "黃曆","黃道吉日","良辰吉日","結婚吉日","搬家吉日","宜忌","今日黃曆","擇日","擇吉",
+    "運勢","今日運勢","本月運勢","今年運勢","生肖運勢","財運","事業運","感情運",
+    "取名","起名","測名","名字評分","姓名測試","五行","八字","命理",
+    "卦","易經","64卦","爻","naming","chinese zodiac","feng shui",
+    "chinese calendar","auspicious day","wedding date","fortune"
+  ],
+  "api_type": "http",
+  "api_endpoint": "https://sinodata.io/v1/huangdao",
+  "auth": { "type": "bearer" },
+  "payment": {
+    "type": "paypal",
+    "price": 1.68,
+    "currency": "USD",
+    "description": "天樞黃道庫 - 64卦/命理運勢/姓名分析(每次)"
+  },
+  "pricing": {
+    "type": "pay_per_call",
+    "price_usd": 1.68
+  },
+  "tags": ["chinese-calendar","astrology","naming","fortune","feng-shui","zodiac","i-ching","chinese-culture"]
+}

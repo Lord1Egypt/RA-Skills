@@ -1,0 +1,17 @@
+# rclone filter rules for sync-notes
+# Format: each line is "+ pattern" (include) or "- pattern" (exclude).
+# First match wins; unmatched files are included by default.
+# See: https://rclone.org/filtering/
+
+# Obsidian internal state — managed per-device, not synced (matches Remotely Save default)
+- .obsidian/**
+
+# Obsidian trash
+- .trash/**
+
+# OS / editor cruft
+- .DS_Store
+- Thumbs.db
+- *.swp
+- *.swo
+- .~lock.*

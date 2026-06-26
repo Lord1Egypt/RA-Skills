@@ -1,35 +1,126 @@
 ---
-name: "内容人性化助手"
-description: "将 AI 生成的内容转化为自然的人类写作风格。适用于：(1) 润色文章/帖子/邮件，(2) 去除 AI 写作痕迹，(3) 多平台风格适配（InStreet/小红书/公众号/知乎），(4) 注入个性与情感。当用户说"改得更像人写的"、"去掉 AI 味"、"润色一下"、"太机械了"时使用。"
-category: "creative"
-source: "ClawHub"
-tags: [content, humanizer, writing, zh]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-humanizer-zh"
-sourceUrl: "https://clawhub.ai/skills/content-humanizer-zh"
+name: content-humanizer
+description: 将 AI 生成的内容转化为自然的人类写作风格。适用于：(1) 润色文章/帖子/邮件，(2) 去除 AI 写作痕迹，(3) 多平台风格适配（InStreet/小红书/公众号/知乎），(4) 注入个性与情感。当用户说"改得更像人写的"、"去掉 AI 味"、"润色一下"、"太机械了"时使用。
 ---
 
-# 内容人性化助手
+# Content Humanizer - 内容人性化
 
-> 将 AI 生成的内容转化为自然的人类写作风格。适用于：(1) 润色文章/帖子/邮件，(2) 去除 AI 写作痕迹，(3) 多平台风格适配（InStreet/小红书/公众号/知乎），(4) 注入个性与情感。当用户说"改得更像人写的"、"去掉 AI 味"、"润色一下"、"太机械了"时使用。
+将 AI 生成的内容转化为自然、有人味的文字。基于维基百科"AI 写作特征"研究，识别并修正 24 种 AI 模式。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-humanizer-zh`
-- **Source URL:** [https://clawhub.ai/skills/content-humanizer-zh](https://clawhub.ai/skills/content-humanizer-zh)
+## 何时使用
 
-## Overview
+- 用户说"改得更像人写的"、"去掉 AI 味"、"润色一下"
+- 内容充满"此外"、"至关重要"、"不断演变的格局"等 AI 词汇
+- 文章结构过于公式化（三段式、否定排比、破折号滥用）
+- 需要适配特定平台风格（InStreet/小红书/公众号/知乎）
 
+## 核心原则
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 删除填充词
+- ❌ "为了实现这一目标" → ✅ "为了这一点"
+- ❌ "值得注意的是" → ✅ 直接说
+- ❌ "希望这对您有帮助" → ✅ 删除
+
+### 2. 打破公式结构
+- 避免"不仅...而且..."
+- 避免"这不仅仅是...而是..."
+- 避免强行三段式列举
+
+### 3. 变化节奏
+- 混合长短句
+- 两项优于三项
+- 段落结尾多样化
+
+### 4. 注入个性
+- 使用"我"视角
+- 承认不确定性
+- 加入具体感受
+
+## 使用方法
+
+### 基础用法
 ```bash
-hermes skills install clawhub/content-humanizer-zh
+python scripts/humanize.py "需要润色的文本"
 ```
+
+### 平台适配
+```bash
+python scripts/humanize.py "文本" --platform instreet
+python scripts/humanize.py "文本" --platform xiaohongshu
+python scripts/humanize.py "文本" --platform wechat
+python scripts/humanize.py "文本" --platform zhihu
+```
+
+### 质量评分
+```bash
+python scripts/humanize.py "文本" --score
+```
+
+## 平台风格指南
+
+详见 `references/platform-styles.md`
+
+| 平台 | 风格特点 | 表情符号 | 段落长度 |
+|------|----------|----------|----------|
+| InStreet | 专业 + 亲和 | 适度 (1-3 个) | 中等 |
+| 小红书 | 活泼 + 种草 | 丰富 (5-10 个) | 短 |
+| 公众号 | 深度 + 故事 | 少量 | 长 |
+| 知乎 | 理性 + 证据 | 极少 | 中长 |
+
+## 常见 AI 模式速查
+
+详见 `references/ai-patterns.md`
+
+**高频 AI 词汇**：此外、至关重要、深入探讨、持久的、增强、培养、获得、突出、相互作用、复杂性、关键性的、展示、织锦、证明、强调、宝贵的、充满活力的
+
+**公式结构**：不仅...而且...、这不仅仅是...而是...、从 X 到 Y（虚假范围）、作为/标志着/见证了
+
+**风格问题**：破折号滥用、粗体过度、表情符号装饰、弯引号
+
+## 质量评分标准
+
+运行 `--score` 时，按以下维度评估（总分 50）：
+
+| 维度 | 10 分标准 | 1 分标准 |
+|------|-----------|----------|
+| 直接性 | 直截了当 | 充满铺垫 |
+| 节奏 | 长短交错 | 机械重复 |
+| 信任度 | 简洁明了 | 过度解释 |
+| 真实性 | 自然流畅 | 机械生硬 |
+| 精炼度 | 无冗余 | 大量废话 |
+
+**45-50 分**：优秀，已去除 AI 痕迹  
+**35-44 分**：良好，仍有改进空间  
+**<35 分**：需要重新修订
+
+## 示例
+
+### 改写前（AI 味）
+> 新的软件更新作为公司致力于创新的证明。此外，它提供了无缝、直观和强大的用户体验——确保用户能够高效地完成目标。这不仅仅是一次更新，而是我们思考生产力方式的革命。
+
+### 改写后（人性化）
+> 软件更新添加了批处理、键盘快捷键和离线模式。测试用户反馈积极，大多数人报告任务完成更快。
+
+### 改写说明
+- 删除"作为...的证明"（夸大象征）
+- 删除"此外"（AI 词汇）
+- 删除"无缝、直观和强大"（三段式 + 宣传）
+- 删除破折号和"-确保"（肤浅分析）
+- 删除"这不仅仅是...而是"（否定排比）
+- 添加具体功能和反馈
+
+## 工作流程
+
+1. 接收用户文本
+2. 识别 AI 模式（使用 `references/ai-patterns.md`）
+3. 逐条修正
+4. 根据目标平台调整风格
+5. 输出改写后的文本
+6. 可选：提供质量评分
+
+## 注意事项
+
+- 保持原意不变
+- 匹配预期语气（正式/随意/技术）
+- 不要过度修改导致失去原意
+- 适当保留专业术语

@@ -1,0 +1,128 @@
+# Sum2Slides v1.0.1
+## 🎉 正式版本演示
+
+**创建时间**: 2026-03-29 16:20:19
+**版本**: Sum2Slides v1.0.1
+
+---
+
+## 📋 目录
+1. 简介
+2. 安装
+3. 使用
+4. 功能
+5. 场景
+6. 资源
+
+---
+
+## 1️⃣ 简介
+
+### 什么是Sum2Slides？
+- 🚀 文本转幻灯片工具
+- 🎯 自动生成专业演示文稿
+- 📊 支持PPTX格式输出
+
+### 核心价值
+- ✅ 节省时间
+- ✅ 保持一致性
+- ✅ 提高质量
+
+---
+
+## 2️⃣ 安装
+
+### 推荐方式
+```bash
+openclaw skill install sum2slides
+```
+
+### 其他方式
+```bash
+pip install sum2slides
+```
+
+### 验证安装
+```bash
+sum2slides --version
+```
+
+---
+
+## 3️⃣ 使用
+
+### 命令行
+```bash
+sum2slides "你的文本" --output demo.pptx
+```
+
+### Python API
+```python
+from sum2slides import Sum2Slides
+converter = Sum2Slides()
+presentation = converter.convert("文本内容")
+presentation.save("output.pptx")
+```
+
+---
+
+## 4️⃣ 功能
+
+### 模板
+- 默认模板
+- 商务模板
+- 学术模板
+
+### 主题
+- 浅色主题
+- 深色主题
+- 彩色主题
+
+### 配置
+- 字体大小
+- 颜色方案
+- 布局选项
+
+---
+
+## 5️⃣ 使用场景
+
+### 会议纪要
+```bash
+sum2slides --input meeting.txt --output meeting.pptx
+```
+
+### 项目报告
+```bash
+sum2slides --input report.md --template business --output report.pptx
+```
+
+### 学术汇报
+```bash
+sum2slides --input paper.md --template academic --output paper.pptx
+```
+
+---
+
+## 6️⃣ 资源
+
+### 文档
+- 用户手册: README.md
+- 新手教程: TUTORIAL.md
+- 常见问题: FAQ.md
+
+### 社区
+- 本地化版本
+- Issues: 本地化技能版本/issues
+- Discord: https://discord.gg/clawd
+
+---
+
+## 🎉 感谢使用！
+
+### 下一步
+1. 安装: openclaw skill install sum2slides
+2. 试用: sum2slides "测试" --output test.pptx
+3. 学习: 阅读TUTORIAL.md
+
+**Happy Presenting!** 🚀

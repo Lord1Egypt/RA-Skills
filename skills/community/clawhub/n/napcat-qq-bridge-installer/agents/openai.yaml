@@ -1,0 +1,7 @@
+interface:
+  display_name: "NapCat QQ Bridge Installer"
+  short_description: "Install or repair a local Windows QQ bridge with NapCat, WSL, and OpenClaw."
+  default_prompt: "Use $napcat-qq-bridge-installer only when the user explicitly wants to install or repair a local Windows QQ bot bridge with NapCat and OpenClaw."
+
+policy:
+  allow_implicit_invocation: false

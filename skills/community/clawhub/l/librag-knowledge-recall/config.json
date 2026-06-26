@@ -1,0 +1,14 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "api_key": "SK-please-replace-me",
+  "kb_id": 1,
+  "recall_mode": "hybrid",
+  "vector_top_k": 20,
+  "fulltext_top_k": 20,
+  "return_tree": true,
+  "has_source_text": true,
+  "has_score": true,
+  "filter_effective": true,
+  "reasoning_enhance": true,
+  "score_threshold": 0
+}

@@ -1,0 +1,7 @@
+node_modules/
+.env
+test_outputs.js
+test_sheets.js
+credentials.json
+token.json
+output/

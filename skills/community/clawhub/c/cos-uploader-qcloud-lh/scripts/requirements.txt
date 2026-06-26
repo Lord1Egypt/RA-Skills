@@ -1,0 +1,2 @@
+cos-python-sdk-v5>=1.9.30
+cryptography>=41.0.0

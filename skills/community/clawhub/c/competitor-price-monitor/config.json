@@ -1,0 +1,8 @@
+{
+  "name": "competitor-price-monitor",
+  "version": "1.0.0",
+  "description": "Automatically track competitor pricing, product launches, and feature changes. Get alerts on price drops, new products, and weekly competitive intelligence reports.",
+  "author": "GIA Digital",
+  "tags": ["competitor", "pricing", "monitoring", "intelligence", "market-research"],
+  "category": "business"
+}

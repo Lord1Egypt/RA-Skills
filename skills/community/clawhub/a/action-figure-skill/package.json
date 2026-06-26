@@ -1,0 +1,16 @@
+{
+  "name": "action-figure-skill",
+  "version": "2.0.1",
+  "type": "module",
+  "description": "AI Action Figure Generator \u2014 AI-powered ai action figure generator toy packaging",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

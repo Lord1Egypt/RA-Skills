@@ -1,0 +1,26 @@
+{
+  "_comment": "Synapse Skills 配置文件 — 复制为 config.json 并修改路径",
+  "_docs": "https://github.com/synapse-skills/synapse-code#configuration",
+
+  "pipeline": {
+    "workspace": "~/pipeline-workspace",
+    "enabled": true,
+    "auto_log": true
+  },
+
+  "gitnexus": {
+    "enabled": true,
+    "auto_analyze": false
+  },
+
+  "synapse": {
+    "knowledge_dir": ".knowledge",
+    "memory_dir": ".synapse/memory",
+    "auto_log_enabled": true
+  },
+
+  "paths": {
+    "pipeline_script": "~/pipeline-workspace/pipeline.py",
+    "pipeline_summary": "/tmp/pipeline_summary.json"
+  }
+}

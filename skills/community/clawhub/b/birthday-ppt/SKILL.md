@@ -1,35 +1,46 @@
----
-name: "Birthday PPT Creator"
-description: "Generate customized kindergarten birthday PPTs with name, birth date, photos, themed colors, cute decorations, and animated titles using python-pptx."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/birthday-ppt"
-sourceUrl: "https://clawhub.ai/skills/birthday-ppt"
----
+# birthday-ppt skill
 
-# Birthday PPT Creator
+## 触发场景
+- 家长为幼儿园小朋友制作生日PPT
+- 需要附带成长照片的生日纪念相册
+- 制作儿童生日主题演示文稿
 
-> Generate customized kindergarten birthday PPTs with name, birth date, photos, themed colors, cute decorations, and animated titles using python-pptx.
+## 功能
+使用 python-pptx 生成精美的幼儿园生日PPT，支持：
+- 🎂 多页生日主题幻灯片
+- 📷 插入成长照片（本地路径或URL）
+- 🎈 可爱配色和装饰
+- ✨ 动画效果标题
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/birthday-ppt`
-- **Source URL:** [https://clawhub.ai/skills/birthday-ppt](https://clawhub.ai/skills/birthday-ppt)
+## 输入参数
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| name | 小朋友名字 | "小雨" |
+| birth_date | 出生日期 | "2020-05-20" |
+| photos | 照片列表（本地路径或URL） | ["/root/photo1.jpg", "https://..."] |
+| output | 输出文件路径 | "birthday_ppt.pptx" |
+| theme | 主题色（pink/blue/purple/yellow） | "pink" |
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/birthday-ppt
+## 使用方式
 ```
+使用 python-pptx 创建生日PPT，调用 birthday_ppt_create 命令：
+- 输入：名字、出生日期、照片路径列表、输出路径、主题色
+- 输出：完整的 .pptx 文件
+```
+
+## 依赖
+- python-pptx
+- Pillow (处理图片)
+
+## 输出
+生成幼儿园生日主题PPT，包含：
+1. 封面（名字 + 生日蛋糕 + 气球装饰）
+2. 目录页
+3. 成长照片页（每页1-4张照片，配文字说明）
+4. 祝福页（家长寄语）
+5. 结束页（谢谢观看 + 生日蛋糕动画效果）
+
+## 照片要求
+- 支持 jpg/png/jpeg/gif
+- 建议 16:9 或 4:3 比例
+- 自动居中裁剪为合适尺寸

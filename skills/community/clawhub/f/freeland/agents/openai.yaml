@@ -1,0 +1,7 @@
+interface:
+  display_name: "Freeland"
+  short_description: "Wallet, cards, OTP inbox, Freeman chat, eSIM, VPN, and crypto invoices for agents"
+  default_prompt: "Use $freeland to check my account, manage wallet and cards, fetch OTP codes, talk to Mr. Freeman, buy eSIM or VPN services, and create a crypto invoice when I ask for payment collection."
+
+policy:
+  allow_implicit_invocation: true

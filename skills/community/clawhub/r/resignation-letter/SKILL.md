@@ -1,35 +1,57 @@
 ---
-name: "Resignation Letter"
+name: "resignation-letter"
+version: "3.0.0"
 description: "Generate professional resignation letters from templates. Use when preparing to resign."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resignation-letter"
-sourceUrl: "https://clawhub.ai/skills/resignation-letter"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Resignation Letter
+# resignation-letter
 
-> Generate professional resignation letters from templates. Use when preparing to resign.
+Generate professional resignation letters from templates. Use when preparing to resign.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resignation-letter`
-- **Source URL:** [https://clawhub.ai/skills/resignation-letter](https://clawhub.ai/skills/resignation-letter)
+## Commands
 
-## Overview
+### `create`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/resignation-letter
+scripts/script.sh create <name company last_day>
 ```
+
+### `template`
+
+```bash
+scripts/script.sh template <style>
+```
+
+### `checklist`
+
+```bash
+scripts/script.sh checklist
+```
+
+### `timeline`
+
+```bash
+scripts/script.sh timeline <last_day>
+```
+
+### `formal`
+
+```bash
+scripts/script.sh formal <name company>
+```
+
+### `casual`
+
+```bash
+scripts/script.sh casual <name company>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/resignation-letter/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

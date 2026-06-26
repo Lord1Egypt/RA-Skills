@@ -1,0 +1,19 @@
+# 隱私保護：永遠不上傳私密語法庫
+green_tea_modules.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

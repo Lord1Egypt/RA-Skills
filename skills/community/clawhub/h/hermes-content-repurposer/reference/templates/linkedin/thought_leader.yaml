@@ -1,0 +1,68 @@
+# LinkedIn Post Template — Thought Leader
+name: "linkedin_thought_leader"
+description: "Long-form thought leadership post with story → problem → solution arc"
+
+structure:
+  headline:
+    type: "bold_claim_or_question"
+    length: "1-3 lines"
+    rules:
+      - "Lead with a contrarian take, surprising insight, or provocative question"
+      - "Use ALL CAPS on 2-3 key words for emphasis (sparingly)"
+      - "Hook must make the reader stop scrolling"
+      - "Examples: 'The ONE Metric That Predicts Startup Success' or 'Why We Stopped Chasing Revenue'"
+
+  hook_story:
+    type: "narrative"
+    length: "3-5 lines"
+    rules:
+      - "Open with a personal anecdote, client story, or specific moment"
+      - "Make it relatable — 'This happened to me last week' energy"
+      - "Keep paragraphs to 2-3 lines max (mobile readability)"
+      - "Include 1 blank line between paragraphs"
+
+  problem_setup:
+    type: "context"
+    length: "3-5 lines"
+    rules:
+      - "Describe the common situation or pain point"
+      - "Use specific numbers where possible (we saved 40%...)"
+
+  insight:
+    type: "revelation"
+    length: "4-6 lines"
+    rules:
+      - "This is the core value — the insight they came for"
+      - "Include exact quote from source material if relevant"
+      - "Support with data, research, or direct experience"
+      - "Break into bullet points for lists"
+
+  actionable_takeaway:
+    type: "how_to"
+    length: "3-5 lines"
+    rules:
+      - "Give them something they can DO with this information"
+      - "3 steps max — don't overload"
+      - "Format as numbered list for scannability"
+
+  engagement_question:
+    type: "open_ended"
+    length: "1-3 lines"
+    rules:
+      - "End with a question that invites comments"
+      - "Make it easy to answer — avoid complex multi-part questions"
+      - "Examples: 'What metric matters most to you?' or 'Have you tried this approach?'"
+
+  hashtags:
+    count: "{{max_hashtags}}"
+    rules:
+      - "Mix broad industry tags and niche specific tags"
+      - "First tag should be the most relevant to post content"
+      - "Place hashtags on their own line after the CTA"
+
+quality_rules:
+  - "Total post must be under {{max_chars}} characters"
+  - "No paragraph longer than 3 lines"
+  - "Must include exact attribution for any quoted material"
+  - "Must end with an open-ended question"
+  - "Tone: {{brand.tone_adjectives}}"

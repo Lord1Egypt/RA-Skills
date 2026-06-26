@@ -1,0 +1,39 @@
+{
+  "name": "douyin-video-analyzer",
+  "version": "3.7.4",
+  "description": "抖音视频深度拆解分析器。警告：此技能需要本地安装 ffmpeg、yt-dlp 和 Playwright，并将视频帧与音频片段上传至智谱 AI (open.bigmodel.cn) 进行处理。",
+  "main": "scripts/analyze.js",
+  "scripts": {
+    "analyze": "node scripts/analyze.js"
+  },
+  "keywords": [
+    "douyin",
+    "tiktok",
+    "video",
+    "analyzer",
+    "content-analysis",
+    "ai"
+  ],
+  "author": "Leo & Neo",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "playwright-chromium": "^1.40.0"
+  },
+  "openclaw": {
+    "requires": {
+      "bins": ["ffmpeg", "yt-dlp", "node"],
+      "env": ["ZHIPU_API_KEY"]
+    },
+    "install": [
+      {
+        "id": "playwright-deps",
+        "label": "安装 Playwright 依赖",
+        "kind": "exec",
+        "command": "npx playwright install --with-deps chromium"
+      }
+    ]
+  }
+}

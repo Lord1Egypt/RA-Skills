@@ -1,0 +1,36 @@
+{
+  "role_id": "designer",
+  "display_name": "设计负责人",
+  "workspace_filename": "设计负责人",
+  "mission": "把产品目标转成清晰的信息结构、交互和视觉表达。",
+  "default_stage_fit": ["build", "launch", "grow"],
+  "owns": [
+    "信息架构",
+    "交互方案",
+    "界面表达",
+    "品牌一致性"
+  ],
+  "inputs_required": [
+    "产品目标",
+    "当前关键产物",
+    "目标用户背景",
+    "品牌约束"
+  ],
+  "outputs_required": [
+    "页面结构",
+    "关键界面说明",
+    "文案与视觉建议"
+  ],
+  "handoff_to": [
+    "engineer-tech-lead",
+    "growth-sales"
+  ],
+  "do_not_do": [
+    "不要只追求好看而忽视转化",
+    "不要脱离当前主目标做大改"
+  ],
+  "approval_required_for": [
+    "重做品牌方向",
+    "改动核心用户路径"
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "version": "1.0",
+  "created_at": "2026-03-24T14:03:00+08:00",
+  "description": "Customer stage state transition model for inquiry-to-order conversion automation",
+  "stages": [
+    {
+      "id": "new_inquiry",
+      "name_en": "New Inquiry",
+      "name_cn": "新询盘",
+      "entry_conditions": [
+        { "type": "event", "source": "email", "condition": "intent=inquiry" },
+        { "type": "event", "source": "okki", "condition": "lead_created" }
+      ],
+      "exit_conditions": [
+        { "type": "action", "condition": "email_sent:template=inquiry_response" },
+        { "type": "time", "condition": "no_response_7_days" }
+      ],
+      "auto_transitions": [
+        { "to_stage": "lost", "trigger": "no_activity", "delay_days": 7 }
+      ],
+      "manual_transitions": [
+        { "to_stage": "quoted", "reason": "quotation_sent" },
+        { "to_stage": "lost", "reason": "invalid_inquiry" }
+      ]
+    },
+    {
+      "id": "quoted",
+      "name_en": "Quotation Sent",
+      "name_cn": "已报价",
+      "entry_conditions": [
+        { "type": "action", "source": "email", "condition": "template=template-inquiry-001" },
+        { "type": "record", "source": "okki", "condition": "quotation_recorded" }
+      ],
+      "exit_conditions": [
+        { "type": "event", "condition": "customer_reply_received" },
+        { "type": "event", "condition": "sample_requested" },
+        { "type": "time", "condition": "no_response_30_days" }
+      ],
+      "auto_transitions": [
+        { "to_stage": "sample_sent", "trigger": "sample_request_detected" },
+        { "to_stage": "negotiating", "trigger": "counter_offer_received" },
+        { "to_stage": "lost", "trigger": "no_activity", "delay_days": 30 }
+      ],
+      "manual_transitions": [
+        { "to_stage": "sample_sent", "reason": "sample_shipped" },
+        { "to_stage": "negotiating", "reason": "price_negotiation_started" },
+        { "to_stage": "closed_won", "reason": "order_confirmed" },
+        { "to_stage": "lost", "reason": "customer_declined" }
+      ]
+    },
+    {
+      "id": "sample_sent",
+      "name_en": "Sample Sent",
+      "name_cn": "已样品",
+      "entry_conditions": [
+        { "type": "record", "source": "okki", "condition": "sample_shipped" },
+        { "type": "event", "source": "logistics", "condition": "tracking_created" }
+      ],
+      "exit_conditions": [
+        { "type": "event", "condition": "sample_delivered" },
+        { "type": "event", "condition": "feedback_received" },
+        { "type": "time", "condition": "no_feedback_14_days" }
+      ],
+      "auto_transitions": [
+        { "to_stage": "negotiating", "trigger": "positive_feedback" },
+        { "to_stage": "lost", "trigger": "no_activity", "delay_days": 14 }
+      ],
+      "manual_transitions": [
+        { "to_stage": "negotiating", "reason": "customer_interested" },
+        { "to_stage": "quoted", "reason": "resend_quote_after_sample" },
+        { "to_stage": "lost", "reason": "sample_rejected" }
+      ]
+    },
+    {
+      "id": "negotiating",
+      "name_en": "Negotiating",
+      "name_cn": "谈判中",
+      "entry_conditions": [
+        { "type": "event", "source": "email", "condition": "intent=price_discussion" },
+        { "type": "event", "source": "email", "condition": "keywords=discount|terms|MOQ" }
+      ],
+      "exit_conditions": [
+        { "type": "event", "condition": "order_confirmed" },
+        { "type": "event", "condition": "customer_declined" },
+        { "type": "time", "condition": "negotiation_stalled_14_days" }
+      ],
+      "auto_transitions": [
+        { "to_stage": "closed_won", "trigger": "payment_received" },
+        { "to_stage": "lost", "trigger": "no_activity", "delay_days": 14 }
+      ],
+      "manual_transitions": [
+        { "to_stage": "closed_won", "reason": "deal_closed" },
+        { "to_stage": "quoted", "reason": "revision_requested" },
+        { "to_stage": "lost", "reason": "negotiation_failed" }
+      ]
+    },
+    {
+      "id": "closed_won",
+      "name_en": "Closed Won",
+      "name_cn": "成交",
+      "entry_conditions": [
+        { "type": "record", "source": "okki", "condition": "order_confirmed" },
+        { "type": "event", "source": "finance", "condition": "payment_received" }
+      ],
+      "exit_conditions": [
+        { "type": "event", "condition": "order_completed" },
+        { "type": "event", "condition": "repeat_order" }
+      ],
+      "auto_transitions": [],
+      "manual_transitions": [
+        { "to_stage": "new_inquiry", "reason": "repeat_order" },
+        { "to_stage": "lost", "reason": "order_cancelled" }
+      ]
+    },
+    {
+      "id": "lost",
+      "name_en": "Lost",
+      "name_cn": "流失",
+      "entry_conditions": [
+        { "type": "event", "condition": "max_followups_exceeded" },
+        { "type": "event", "condition": "explicit_decline" },
+        { "type": "time", "condition": "no_activity_threshold" }
+      ],
+      "exit_conditions": [
+        { "type": "event", "condition": "reactivation_request" }
+      ],
+      "auto_transitions": [],
+      "manual_transitions": [
+        { "to_stage": "new_inquiry", "reason": "customer_reactivated" }
+      ]
+    }
+  ],
+  "transition_rules": [
+    {
+      "id": "trans-001",
+      "from_stage": "new_inquiry",
+      "to_stage": "quoted",
+      "trigger_event": "email_sent",
+      "conditions": [
+        { "field": "email.template", "operator": "equals", "value": "template-inquiry-001" }
+      ],
+      "auto": false,
+      "description": "Initial quotation sent to customer"
+    },
+    {
+      "id": "trans-002",
+      "from_stage": "new_inquiry",
+      "to_stage": "lost",
+      "trigger_event": "time_elapsed",
+      "conditions": [
+        { "field": "days_since_last_activity", "operator": "greater_than", "value": 7 }
+      ],
+      "auto": true,
+      "description": "No response after 7 days, mark as lost"
+    },
+    {
+      "id": "trans-003",
+      "from_stage": "quoted",
+      "to_stage": "sample_sent",
+      "trigger_event": "okki_record_created",
+      "conditions": [
+        { "field": "record.type", "operator": "equals", "value": "sample_shipped" }
+      ],
+      "auto": true,
+      "description": "Sample shipped, transition to sample_sent stage"
+    },
+    {
+      "id": "trans-004",
+      "from_stage": "quoted",
+      "to_stage": "negotiating",
+      "trigger_event": "email_received",
+      "conditions": [
+        { "field": "email.intent", "operator": "contains", "value": "price|discount|terms" }
+      ],
+      "auto": true,
+      "description": "Customer counter-offer detected"
+    },
+    {
+      "id": "trans-005",
+      "from_stage": "quoted",
+      "to_stage": "closed_won",
+      "trigger_event": "okki_record_created",
+      "conditions": [
+        { "field": "record.type", "operator": "equals", "value": "order_confirmed" }
+      ],
+      "auto": false,
+      "description": "Order confirmed without sample stage"
+    },
+    {
+      "id": "trans-006",
+      "from_stage": "quoted",
+      "to_stage": "lost",
+      "trigger_event": "time_elapsed",
+      "conditions": [
+        { "field": "days_since_quote_sent", "operator": "greater_than", "value": 30 }
+      ],
+      "auto": true,
+      "description": "No response 30 days after quote, mark as lost"
+    },
+    {
+      "id": "trans-007",
+      "from_stage": "sample_sent",
+      "to_stage": "negotiating",
+      "trigger_event": "email_received",
+      "conditions": [
+        { "field": "email.sentiment", "operator": "equals", "value": "positive" }
+      ],
+      "auto": true,
+      "description": "Positive sample feedback, move to negotiation"
+    },
+    {
+      "id": "trans-008",
+      "from_stage": "sample_sent",
+      "to_stage": "lost",
+      "trigger_event": "time_elapsed",
+      "conditions": [
+        { "field": "days_since_sample_delivered", "operator": "greater_than", "value": 14 }
+      ],
+      "auto": true,
+      "description": "No feedback 14 days after delivery, mark as lost"
+    },
+    {
+      "id": "trans-009",
+      "from_stage": "negotiating",
+      "to_stage": "closed_won",
+      "trigger_event": "okki_record_created",
+      "conditions": [
+        { "field": "record.type", "operator": "equals", "value": "payment_received" }
+      ],
+      "auto": true,
+      "description": "Payment received, deal closed"
+    },
+    {
+      "id": "trans-010",
+      "from_stage": "negotiating",
+      "to_stage": "lost",
+      "trigger_event": "time_elapsed",
+      "conditions": [
+        { "field": "days_since_last_negotiation", "operator": "greater_than", "value": 14 }
+      ],
+      "auto": true,
+      "description": "Negotiation stalled 14 days, mark as lost"
+    },
+    {
+      "id": "trans-011",
+      "from_stage": "closed_won",
+      "to_stage": "new_inquiry",
+      "trigger_event": "email_received",
+      "conditions": [
+        { "field": "email.intent", "operator": "equals", "value": "repeat_order" }
+      ],
+      "auto": false,
+      "description": "Repeat order from existing customer"
+    },
+    {
+      "id": "trans-012",
+      "from_stage": "lost",
+      "to_stage": "new_inquiry",
+      "trigger_event": "email_received",
+      "conditions": [
+        { "field": "email.intent", "operator": "equals", "value": "reactivation" }
+      ],
+      "auto": false,
+      "description": "Lost customer reactivates"
+    }
+  ],
+  "fallback_rules": [
+    {
+      "id": "fallback-001",
+      "name_en": "Unknown Stage Default",
+      "name_cn": "未知阶段默认处理",
+      "condition": "stage_not_recognized",
+      "action": "assign_to_new_inquiry",
+      "notify": "discord:inquiry-followup",
+      "description": "If customer stage cannot be determined, default to new_inquiry and notify"
+    },
+    {
+      "id": "fallback-002",
+      "name_en": "Conflicting Transitions",
+      "name_cn": "冲突流转处理",
+      "condition": "multiple_transitions_triggered",
+      "action": "priority_based_resolution",
+      "priority_order": ["closed_won", "negotiating", "sample_sent", "quoted", "new_inquiry", "lost"],
+      "notify": "discord:inquiry-followup",
+      "description": "If multiple transitions are triggered simultaneously, use priority order to resolve"
+    },
+    {
+      "id": "fallback-003",
+      "name_en": "Orphaned Customer Recovery",
+      "name_cn": "孤立客户恢复",
+      "condition": "no_activity_60_days",
+      "action": "review_and_archive",
+      "notify": "wilson",
+      "description": "Customers with no activity for 60 days require manual review before archiving"
+    },
+    {
+      "id": "fallback-004",
+      "name_en": "Invalid Transition Attempt",
+      "name_cn": "无效流转尝试处理",
+      "condition": "transition_not_in_rules",
+      "action": "reject_and_log",
+      "notify": "discord:inquiry-followup",
+      "description": "If a transition is attempted that is not defined in transition_rules, reject and log for review"
+    }
+  ]
+}

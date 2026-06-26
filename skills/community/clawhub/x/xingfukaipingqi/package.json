@@ -1,0 +1,11 @@
+{
+  "name": "xingfu-kaipingqi",
+  "version": "1.0.0",
+  "description": "幸福开瓶器 — 随时撬开日常幸福感的 AI 伙伴。一句话触发，三条精准建议按星级排序。后台画像静默生长，每月回顾幸福里程。",
+  "main": "SKILL.md",
+  "keywords": ["happiness", "wellbeing", "emotional-support", "daily-life", "chinese", "relationship"],
+  "author": "Marvis",
+  "license": "MIT-0",
+  "dependencies": {},
+  "peerDependencies": {}
+}

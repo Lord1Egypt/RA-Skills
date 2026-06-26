@@ -1,35 +1,194 @@
 ---
-name: "Force To Agent"
-description: "Extract AGENTS.md, SOUL.md, TOOLS.md, and an optional openclaw.json patch from pasted custom-GPT markdown, then create a new workspace-<agent> folder and wri..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/force-to-agent"
-sourceUrl: "https://clawhub.ai/skills/force-to-agent"
+name: force-to-agent
+description: Extract AGENTS.md, SOUL.md, TOOLS.md, and an optional openclaw.json patch from pasted custom-GPT markdown, then create a new workspace-<agent> folder and write the files there instead of overwriting the current workspace.
+metadata: {"openclaw":{"always":true,"emoji":"🧩"}}
 ---
 
-# Force To Agent
+# Agent Bootstrap From Markdown
 
-> Extract AGENTS.md, SOUL.md, TOOLS.md, and an optional openclaw.json patch from pasted custom-GPT markdown, then create a new workspace-<agent> folder and wri...
+이 스킬은 사용자가 커스텀 GPT가 생성한 마크다운 산출물을 그대로 붙여넣었을 때 현재 메인 워크스페이스를 덮어쓰지 않고, 새 `workspace-<agent>` 폴더를 만들어 그 안에 `AGENTS.md`, `SOUL.md`, `TOOLS.md`를 생성하기 위한 스킬입니다.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/force-to-agent`
-- **Source URL:** [https://clawhub.ai/skills/force-to-agent](https://clawhub.ai/skills/force-to-agent)
+## 언제 사용합니까
+다음 요청이 들어오면 이 스킬을 우선 적용합니다.
 
-## Overview
+- "이 마크다운으로 에이전트 만들어줘"
+- "붙여넣은 출력으로 워크스페이스 반영해줘"
+- "AGENTS.md, SOUL.md, TOOLS.md로 저장해줘"
+- 커스텀 GPT 출력 안에 `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `openclaw.json` 표기가 보일 때
+- FORCE 변환 결과 7블록이 한 번에 붙여넣어졌을 때
 
+## 목표
+붙여넣은 마크다운에서 에이전트 부트스트랩 파일을 추출해 새 `workspace-<agent>` 디렉토리를 만들고 그 루트에 정확한 파일명으로 반영합니다.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/force-to-agent
-```
+대상 파일:
+- `AGENTS.md`
+- `SOUL.md`
+- `TOOLS.md`
+
+선택 대상:
+- `openclaw.json` 부분 스니펫
+
+## 중요한 원칙
+- 파일명은 반드시 `AGENTS.md`, `SOUL.md`, `TOOLS.md`를 사용합니다.
+- 기본 저장 위치는 현재 워크스페이스와 같은 부모 디렉토리 아래의 새 `workspace-<agent>` 폴더입니다.
+- 현재 사용 중인 메인 워크스페이스 파일은 덮어쓰지 않습니다.
+- `workspace-<agent>` 이름은 가능한 경우 에이전트 이름을 슬러그화해 사용하고, 불명확하면 `workspace-import-<timestamp>` 형식으로 만듭니다.
+- 대상 폴더가 이미 있으면 그 안을 덮어쓰기 전에 사용자 확인 없이 기존 메인 워크스페이스로는 절대 쓰지 않고, 기본적으로 새 고유 폴더명을 만듭니다.
+- `~/.openclaw/` 바깥 경로는 임의로 쓰지 않습니다.
+- `openclaw.json`은 전체 덮어쓰기를 하지 않습니다.
+- `openclaw.json`은 새 워크스페이스 내부에만 반영 후보를 만들거나, 사용자가 명시적으로 적용까지 요청했을 때만 그 새 워크스페이스의 파일에 최소 패치로 반영합니다.
+- 입력이 불완전하면 없는 파일만 다시 요청합니다.
+- 붙여넣은 원문을 멋대로 재작성하지 않습니다. 추출과 저장이 우선입니다.
+
+## 사용할 도구
+- `read`: 기존 파일 확인
+- `write`: 새 파일 생성 또는 전체 교체
+- `edit`: 최소 수정
+- `apply_patch`: 여러 줄 최소 수정이 더 안전할 때만 사용
+
+## 사용하지 말 것
+- `exec`로 셸 명령을 돌리지 않습니다.
+- 사용자가 요청하지 않은 `openclaw.json` 전체 재작성 금지
+- `~/.openclaw/` 바깥 임의 경로 쓰기 금지
+- 현재 메인 워크스페이스 루트 직접 덮어쓰기 금지
+- 누락된 파일을 추측 생성하지 않습니다
+
+## 입력 판별 규칙
+입력은 아래 셋 중 하나로 들어올 수 있습니다.
+
+1. 파일별 코드블록 완성본
+   - `AGENTS.md`
+   - `SOUL.md`
+   - `TOOLS.md`
+   - 필요 시 `openclaw.json` 스니펫
+
+2. FORCE → OpenClaw 변환 결과
+   - 변환 요약
+   - `AGENTS.md`
+   - `SOUL.md`
+   - `TOOLS.md`
+   - `openclaw.json` 스니펫
+   - 실행 전 체크 포인트
+   - 1차 실행 명령
+
+3. 파일명 헤더는 없지만 내부 구조가 뚜렷한 단일 마크다운
+   - `# Agent:`
+   - `# SOUL`
+   - `# TOOLS`
+   - `openclaw.json`
+
+## 추출 순서
+아래 우선순위로 파일 내용을 추출합니다.
+
+1. 파일명 헤더 바로 아래 코드블록
+2. 최상위 헤더 기준 블록
+3. FORCE 변환 산출의 파일 섹션
+4. 마지막 수단으로 섹션 헤더 패턴 기반 추출
+
+코드블록이 있으면 반드시 코드블록 내부만 파일 내용으로 사용합니다.
+
+## 파일별 검증 규칙
+
+### `AGENTS.md`
+다음 요소가 있는지 확인합니다.
+- `# Agent:`
+- `## 목적`
+- `## 성공 기준`
+- `## 운영 절차`
+- `## 제약`
+- `## 출력 형식`
+- `## 예시`
+- `<example>` 블록
+
+추가 검증:
+- `## 운영 절차`는 번호 리스트여야 합니다.
+- 각 단계에 도구명이 드러나야 합니다.
+- 목적과 성공 기준은 한 줄 중심으로 유지합니다.
+
+### `SOUL.md`
+다음 성격을 확인합니다.
+- 말투
+- 입장
+- 경계
+- bluntness 또는 brevity에 해당하는 실제 행동 규칙
+
+제외 규칙:
+- 운영 절차를 넣지 않습니다.
+- 도구 호출 순서를 넣지 않습니다.
+- 기업 홍보 문구나 빈말을 넣지 않습니다.
+
+### `TOOLS.md`
+다음 요소를 확인합니다.
+- 도구 목록
+- 도구 호출 순서
+- 하지 말 것
+
+제외 규칙:
+- 말투 규칙을 넣지 않습니다.
+- 목적/성공 기준을 넣지 않습니다.
+
+## 실제 수행 절차
+1. 사용자가 붙여넣은 전체 마크다운을 읽습니다.
+2. `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `openclaw.json` 후보 구간을 식별합니다.
+3. 각 후보에서 코드블록 내부를 우선 추출합니다.
+4. 파일별 검증 규칙으로 완전성을 확인합니다.
+5. 세 파일이 모두 유효하면 새 `workspace-<agent>` 폴더명을 결정합니다.
+6. 그 새 워크스페이스 루트에 세 파일을 저장합니다.
+7. 같은 이름의 폴더가 이미 있으면 충돌을 피하는 새 고유 폴더명을 만듭니다.
+8. `openclaw.json` 스니펫이 있으면 새 워크스페이스 기준으로 별도 패치 후보를 정리합니다.
+9. 사용자가 적용까지 요청했을 때만 그 새 워크스페이스의 `openclaw.json`에 최소 수정으로 반영합니다.
+10. 완료 후 생성 경로와 생성/수정 결과만 짧게 보고합니다.
+
+## 충돌 처리
+- 같은 파일의 후보가 두 개 이상이면 더 완전한 버전을 선택합니다.
+- 완전성 점수는 섹션 충족 수로 판단합니다.
+- 둘 다 완전하지만 내용이 다르면 자동 병합하지 말고 충돌 사실만 보고합니다.
+- 여러 에이전트 세트가 함께 붙여넣어지면 첫 번째 완전한 세트만 적용합니다.
+
+## 누락 처리
+- `AGENTS.md`만 있고 `SOUL.md` 또는 `TOOLS.md`가 없으면 부분 반영하지 않습니다.
+- 누락 파일명만 정확히 말하고 그 파일만 다시 붙여넣어 달라고 요청합니다.
+- 블록 경계가 불명확하면 임의 추출하지 말고 후보 구간을 1~2개로 좁혀 보여준 뒤 더 명확한 원문을 요청합니다.
+
+## 응답 형식
+완료 시 아래 형식처럼 짧게 보고합니다.
+
+- `workspace-my-agent/` 생성 완료
+- `AGENTS.md` 생성 완료
+- `SOUL.md` 생성 완료
+- `TOOLS.md` 생성 완료
+- `openclaw.json` 패치 후보 1건 분리 완료
+
+오류 시 아래 형식처럼 말합니다.
+
+- 누락 파일: `SOUL.md`
+- 다시 필요한 입력: `SOUL.md` 코드블록 전체
+
+## `openclaw.json` 처리 규칙
+- 전체 파일을 새로 쓰지 않습니다.
+- 붙여넣은 스니펫에서 필요한 키만 최소 패치합니다.
+- 이미 같은 값이 있으면 중복 추가하지 않습니다.
+- `tools.allow`, `tools.deny`, `agents.defaults.skills` 같은 키는 병합을 우선합니다.
+- 사용자가 적용을 명시하지 않으면 스니펫만 정리해서 보여줍니다.
+- 현재 실행 중인 메인 워크스페이스의 `openclaw.json`은 수정하지 않습니다.
+
+## 해석 금지 항목
+아래는 추측하지 않습니다.
+- 도구 추가
+- 저장 경로 변경
+- 파일명 변경
+- 누락된 예시 생성
+- 누락된 제약 생성
+- 누락된 `openclaw.json` 값 생성
+
+## 사용 예
+사용자:
+아래 커스텀 GPT 출력으로 에이전트 만들어줘
+[마크다운 전체 붙여넣기]
+
+당신의 동작:
+- 세 파일을 추출합니다.
+- 새 `workspace-<agent>` 폴더를 만듭니다.
+- 그 워크스페이스 루트에 저장합니다.
+- 선택적으로 그 새 워크스페이스 기준 `openclaw.json` 패치 후보를 분리합니다.
+- 파일 내용을 길게 다시 출력하지 않고 반영 결과와 생성 경로만 짧게 보고합니다.

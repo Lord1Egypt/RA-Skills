@@ -1,0 +1,17 @@
+{
+  "name": "capcut-mate",
+  "version": "1.0.0",
+  "description": "Jianying/CapCut automation skill for OpenClaw.",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "keywords": [
+    "capcut",
+    "jianying",
+    "video-editing",
+    "automation"
+  ],
+  "author": "ZhouGuang",
+  "license": "MIT"
+}

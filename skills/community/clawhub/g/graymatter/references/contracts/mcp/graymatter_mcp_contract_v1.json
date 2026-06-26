@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://valkyrlabs.com/graymatter/contracts/mcp/v1",
+  "title": "GrayMatter MCP Portable Tool Contract v1",
+  "type": "object",
+  "required": ["version", "tools"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"const": "v1"},
+    "tools": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["name", "inputSchema", "outputSchema", "errors"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "enum": [
+              "memory_query",
+              "memory_get",
+              "memory_put",
+              "memory_put_batch",
+              "memory_link",
+              "memory_health",
+              "memory_replay_deferred"
+            ]
+          },
+          "inputSchema": {"type": "object"},
+          "outputSchema": {"type": "object"},
+          "errors": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["code", "retryable"],
+              "additionalProperties": false,
+              "properties": {
+                "code": {"type": "string", "minLength": 1},
+                "retryable": {"type": "boolean"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

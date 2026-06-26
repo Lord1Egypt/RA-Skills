@@ -1,35 +1,134 @@
 ---
-name: "Forms And Validation"
-description: "Designs form structure, validation rules, error handling, and accessible form UX. Use when 表单, 校验, 提交, 受控组件, form validation, 错误提示, or form UX."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/forms-and-validation"
-sourceUrl: "https://clawhub.ai/skills/forms-and-validation"
+name: forms-and-validation
+description: Designs form structure, validation rules, error handling, and accessible form UX. Use when 表单, 校验, 提交, 受控组件, form validation, 错误提示, or form UX.
 ---
 
-# Forms And Validation
+# 表单与校验（Forms and Validation）
 
-> Designs form structure, validation rules, error handling, and accessible form UX. Use when 表单, 校验, 提交, 受控组件, form validation, 错误提示, or form UX.
+帮助设计表单结构、校验规则、错误提示与无障碍表单体验。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/forms-and-validation`
-- **Source URL:** [https://clawhub.ai/skills/forms-and-validation](https://clawhub.ai/skills/forms-and-validation)
+## 触发场景
 
-## Overview
+- 用户说「表单」「校验」「提交」「受控组件」「form validation」「错误提示」
+- 需求：多字段、联动、异步校验、防重复提交、无障碍
 
+## 分析维度
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/forms-and-validation
+### 1. 表单结构
+
+| 要点 | 做法 |
+|------|------|
+| 受控 vs 非受控 | 需校验/联动用受控；简单场景可用非受控 + ref |
+| 状态集中 | 单表单用 useState 或 useReducer；复杂用 React Hook Form / Formik / 自管理 |
+| 字段命名 | name 与后端一致，便于序列化与错误映射 |
+
+### 2. 校验时机与规则
+
+| 时机 | 适用 |
+|------|------|
+| 失焦 (blur) | 单字段格式（邮箱、手机、长度） |
+| 输入中 (change) | 实时格式提示，避免提交才报错 |
+| 提交时 | 必填、跨字段、异步校验（如用户名是否存在） |
+
+| 规则 | 实现 |
+|------|------|
+| 必填、长度、格式 | 正则或 Zod/Yup/ajv 等 schema |
+| 跨字段 | 如「密码与确认一致」「起止日期」在 submit 或 schema 里校验 |
+| 异步 | 防抖后调接口，结果写回字段错误状态 |
+
+### 3. 错误展示与无障碍
+
+| 要点 | 做法 |
+|------|------|
+| 错误位置 | 字段下方或旁侧，与字段 id 关联 |
+| 关联 | `aria-describedby` 指向错误文案的 id；`aria-invalid="true"` 当有误 |
+| 提交失败 | 列表汇总 + 滚动到首个错误字段并 focus |
+| 读屏 | 错误文案在 DOM 中且与控件关联，便于读屏朗读 |
+
+### 4. 提交与防重复
+
+| 要点 | 做法 |
+|------|------|
+| 防重复提交 | 提交中禁用按钮或 loading 态，避免多次触达接口 |
+| 成功/失败 | 成功跳转或提示；失败保留填写内容并展示错误 |
+| 重置 | 明确「清空」与「重置为初始值」语义 |
+
+## 执行流程
+
+### 1. 先搞清楚用户在哪个阶段
+
+| 用户描述 | 实际需求 | 第一步 |
+|---------|---------|-------|
+| 「表单怎么写」「从零做一个表单」 | 设计表单结构 | 问：字段有哪些？有没有联动/异步校验？用什么框架？ |
+| 「校验怎么做」「怎么提示错误」 | 校验逻辑 | 问：是已有表单加校验，还是新写？校验时机要 blur 还是 submit？ |
+| 「表单提交报错了」「校验没触发」 | 具体 bug | 直接看代码，定位问题，不要先讲理论 |
+| 「用 RHF 还是 Formik」 | 选型 | 给明确推荐：RHF（性能好、非受控、与 Zod 配合好）；Formik 适合已有项目迁移成本低的场景 |
+
+### 2. 设计表单时，按这个顺序推进
+
+**第一步：确认字段和规则**
+
+让用户列出字段，或者读现有代码，整理出：
+- 每个字段的类型（文本/选择/文件/日期）
+- 必填/选填
+- 格式规则（邮箱/手机/长度限制）
+- 有没有跨字段校验（密码确认、起止日期）
+- 有没有异步校验（用户名是否已存在）
+
+**第二步：给出选型建议**
+
+- 字段 ≤ 5 个、无联动 → `useState` 足够，不需要引入库
+- 字段多、有联动、需要性能 → React Hook Form + Zod
+- 已有 Formik 的项目 → 继续用 Formik，不要为了换而换
+
+**第三步：给完整代码，不要只给片段**
+
+包含：表单结构 + 校验规则 + 错误展示 + 提交处理 + 防重复提交。
+
+### 3. 校验逻辑的决策
+
+遇到这些情况，按以下方式处理：
+
+- **用户没说校验时机** → 默认 blur 触发单字段校验，submit 触发全量校验
+- **有异步校验** → 必须加防抖（300-500ms），校验中显示 loading 状态，不要让用户等着没反馈
+- **跨字段校验**（如密码确认）→ 放在 schema 层（Zod `refine`）而不是单字段校验里
+- **后端返回字段级错误** → 用 `setError` 写回对应字段，不要只 toast
+
+### 4. 无障碍是必须的，不是可选的
+
+每个表单方案都要包含：
+- 每个 input 有对应 `<label>`（`for`/`id` 关联，不是 placeholder 代替 label）
+- 错误信息用 `aria-describedby` 关联到对应字段
+- 有错误时字段加 `aria-invalid="true"`
+- 提交失败后焦点移到第一个错误字段
+
+不要等用户问「无障碍怎么做」才加，直接写进方案里。
+
+## 输出模板
+
+```markdown
+## 表单与校验方案
+
+### 表单范围
+- 字段：…（必填/选填、格式）
+- 特殊：异步校验 / 联动 / 文件
+
+### 结构与选型
+- 状态：受控 + React Hook Form / Formik / 自管理
+- 校验：Zod / Yup / 自定义
+
+### 校验规则（按字段）
+| 字段 | 时机 | 规则 |
+|------|------|------|
+| … | blur/change/submit | … |
+
+### 错误与无障碍
+- 展示方式：…
+- aria / 焦点 / 汇总：…
 ```
+
+## 项目相关
+
+- React：受控 + useState 或 React Hook Form + Zod；错误用 setError / 字段级 error
+- Vue：v-model + 计算/校验；可配合 VeeValidate 或自写
+- 无障碍：每个 input 配 label（for/id）；错误用 aria-describedby 指向同一 id

@@ -1,0 +1,27 @@
+{
+  "approval_id": "a2941003-ecb3-41bc-8522-088b9bae1f41",
+  "plan_id": "test_plan",
+  "risk_level": "medium",
+  "agent_id": "test_agent",
+  "agent_role": "",
+  "status": "approved",
+  "tier": "agent_self",
+  "approver": "chief_01",
+  "reason": "Looks good",
+  "created_at": "2026-04-14T16:07:35.643909+00:00",
+  "expires_at": "2026-04-14T16:17:35.643889+00:00",
+  "history": [
+    {
+      "action": "submit",
+      "actor": "test_agent",
+      "note": "Risk: medium, Tier: agent_self",
+      "timestamp": "2026-04-14T16:07:35.643914+00:00"
+    },
+    {
+      "action": "approve",
+      "actor": "chief_01",
+      "note": "Looks good",
+      "timestamp": "2026-04-14T16:07:35.701836+00:00"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "review_id": "review_856b2cd5_20260602",
+  "overall_decision": "pass",
+  "confidence": 0.9,
+  "review_mode": "review_only",
+  "validation_report": {
+    "schema_valid": true,
+    "dag_valid": true,
+    "skills_bound": true,
+    "scope_valid": true
+  },
+  "issues": [],
+  "suggested_actions": [
+    "进行语义评审（LLM 主导的 7 维度评审）"
+  ],
+  "reviewed_at": "2026-06-02T10:50:37.669640"
+}

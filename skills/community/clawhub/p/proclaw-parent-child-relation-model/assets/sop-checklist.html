@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亲子关系SOP执行检查清单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .meta-bar {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .meta-item {
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .meta-item input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 14px;
+            width: 80px;
+        }
+        
+        .meta-item input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .phase-header {
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .phase-header:hover {
+            background: #f8f9fa;
+        }
+        
+        .phase-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+        
+        .phase-title {
+            flex: 1;
+        }
+        
+        .phase-title h2 {
+            font-size: 1.2em;
+            margin-bottom: 3px;
+        }
+        
+        .phase-title p {
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        .phase-toggle {
+            font-size: 1.5em;
+            color: #999;
+            transition: transform 0.3s;
+        }
+        
+        .phase.collapsed .phase-toggle {
+            transform: rotate(-90deg);
+        }
+        
+        .phase-content {
+            padding: 0 25px 25px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .phase.collapsed .phase-content {
+            display: none;
+        }
+        
+        .step {
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .step-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        
+        .step-checkbox.checked {
+            background: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-desc {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .step-action {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+        
+        .step-action strong {
+            color: #27ae60;
+        }
+        
+        .step-action input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #27ae60;
+        }
+        
+        .notes-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .notes-section h3 {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .notes-section textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        .notes-section textarea:focus {
+            outline: none;
+            border-color: #27ae60;
+        }
+        
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        .scene-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .scene-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .scene-card h4 {
+            color: #3498db;
+            margin-bottom: 8px;
+        }
+        
+        .scene-card ol {
+            padding-left: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        
+        .scene-card li {
+            margin-bottom: 5px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .print-btn,
+            .phase-toggle {
+                display: none;
+            }
+            
+            .phase {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin-bottom: 15px;
+            }
+            
+            .phase-content {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>亲子关系SOP执行检查清单</h1>
+            <p>六大阶段标准化执行流程 | 特殊场景应对指南</p>
+            <div class="meta-bar">
+                <div class="meta-item">
+                    姓名: <input type="text" placeholder="孩子姓名">
+                </div>
+                <div class="meta-item">
+                    日期: <input type="text" id="current-date">
+                </div>
+                <div class="meta-item">
+                    第 <input type="text" placeholder="1" style="width:30px"> 周
+                </div>
+            </div>
+        </div>
+        
+        <!-- 阶段1：问题识别 -->
+        <div class="phase">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">1</div>
+                <div class="phase-title">
+                    <h2>问题识别阶段</h2>
+                    <p>识别问题类型和严重程度</p>
+                </div>
+                <div class="phase-toggle">▼</div>
+            </div>
+            <div class="phase-content">
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">记录具体问题表现</div>
+                            <div class="step-desc">观察并记录孩子的问题行为，包括时间、地点、触发因素</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>描述你观察到的具体问题行为
+                                <input type="text" placeholder="例：孩子做作业时经常走神，完成时间比同学长">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">区分问题类型</div>
+                            <div class="step-desc">判断属于主体性问题、能量问题、情绪问题还是关系问题</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>选择问题类型
+                                <input type="text" placeholder="主体性缺失 / 能量枯竭 / 情绪困难 / 亲子冲突">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">评估严重程度</div>
+                            <div class="step-desc">1=轻微/偶尔 3=中等/经常 5=严重/持续</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>给出严重程度评分(1-5)
+                                <input type="text" placeholder="评分: ___">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">识别触发因素</div>
+                            <div class="step-desc">什么情况下容易出现这个问题？</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>列出触发因素
+                                <input type="text" placeholder="例：作业难度大/父母催促/疲劳时">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 阶段2：诊断分析 -->
+        <div class="phase">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">2</div>
+                <div class="phase-title">
+                    <h2>诊断分析阶段</h2>
+                    <p>使用四轴模型进行系统诊断</p>
+                </div>
+                <div class="phase-toggle">▼</div>
+            </div>
+            <div class="phase-content">
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">四轴评分</div>
+                            <div class="step-desc">评估控制权、解释权、能量流、责任归属四个维度</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>各轴评分(1-5)
+                                <input type="text" placeholder="控制权:__ 解释权:__ 能量流:__ 责任归属:__">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">追问5个为什么</div>
+                            <div class="step-desc">逐层深入找到根本原因</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>记录追问过程
+                                <input type="text" placeholder="为什么1:... 为什么2:... ...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">确定本质问题</div>
+                            <div class="step-desc">基于分析确定最核心的问题</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>描述本质问题
+                                <input type="text" placeholder="例：本质是孩子的自主感被剥夺，而非不专心">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 阶段3：方案制定 -->
+        <div class="phase">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">3</div>
+                <div class="phase-title">
+                    <h2>方案制定阶段</h2>
+                    <p>制定针对性的干预方案</p>
+                </div>
+                <div class="phase-toggle">▼</div>
+            </div>
+            <div class="phase-content">
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">选择干预方案</div>
+                            <div class="step-desc">根据问题类型选择对应方案</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>选择方案
+                                <input type="text" placeholder="自主归还 / 能量修复 / 边界建立 / 联结重建">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">设计具体步骤</div>
+                            <div class="step-desc">将方案分解为可执行的步骤</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>列出步骤
+                                <input type="text" placeholder="步骤1:... 步骤2:... 步骤3:...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">设定预期目标</div>
+                            <div class="step-desc">明确要达成的具体目标</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>设定目标
+                                <input type="text" placeholder="例：2周内孩子能自主安排30分钟作业时间">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 阶段4：执行实施 -->
+        <div class="phase">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">4</div>
+                <div class="phase-title">
+                    <h2>执行实施阶段</h2>
+                    <p>按计划执行并观察反馈</p>
+                </div>
+                <div class="phase-toggle">▼</div>
+            </div>
+            <div class="phase-content">
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">开始执行</div>
+                            <div class="step-desc">按照制定的步骤开始执行</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>记录开始时间和第一个行动
+                                <input type="text" placeholder="行动:...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">观察记录</div>
+                            <div class="step-desc">记录孩子的反应和变化</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>每日记录观察
+                                <input type="text" placeholder="观察:...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">及时调整</div>
+                            <div class="step-desc">根据观察到的反馈进行微调</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>记录调整
+                                <input type="text" placeholder="调整:...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 阶段5：效果评估 -->
+        <div class="phase">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">5</div>
+                <div class="phase-title">
+                    <h2>效果评估阶段</h2>
+                    <p>评估干预效果并决定下一步</p>
+                </div>
+                <div class="phase-toggle">▼</div>
+            </div>
+            <div class="phase-content">
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">对比目标</div>
+                            <div class="step-desc">实际效果与预期目标的对比</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>评估效果
+                                <input type="text" placeholder="显著改善 / 部分改善 / 无改善 / 恶化">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">分析原因</div>
+                            <div class="step-desc">为什么有效/无效？</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>分析原因
+                                <input type="text" placeholder="原因:...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">决定下一步</div>
+                            <div class="step-desc">继续/调整/转介</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>决定
+                                <input type="text" placeholder="继续当前方案 / 调整方案 / 寻求专业帮助">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 阶段6：迭代优化 -->
+        <div class="phase">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">6</div>
+                <div class="phase-title">
+                    <h2>迭代优化阶段</h2>
+                    <p>总结经验，持续改进</p>
+                </div>
+                <div class="phase-toggle">▼</div>
+            </div>
+            <div class="phase-content">
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">总结经验</div>
+                            <div class="step-desc">这次经历学到了什么？</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>记录经验
+                                <input type="text" placeholder="经验:...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="step-content">
+                            <div class="step-title">更新方案库</div>
+                            <div class="step-desc">将有效的策略加入方案库</div>
+                            <div class="step-action">
+                                <strong>执行：</strong>记录有效策略
+                                <input type="text" placeholder="策略:...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 特殊场景SOP -->
+        <div class="phase">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">!</div>
+                <div class="phase-title">
+                    <h2>特殊场景应急SOP</h2>
+                    <p>高频突发场景的标准应对流程</p>
+                </div>
+                <div class="phase-toggle">▼</div>
+            </div>
+            <div class="phase-content">
+                <div class="scene-cards">
+                    <div class="scene-card">
+                        <h4>孩子情绪崩溃</h4>
+                        <ol>
+                            <li>保持自身冷静</li>
+                            <li>提供安全空间</li>
+                            <li>陪伴但不干涉</li>
+                            <li>确认情绪</li>
+                            <li>等待恢复后连接</li>
+                        </ol>
+                    </div>
+                    <div class="scene-card">
+                        <h4>亲子冲突后修复</h4>
+                        <ol>
+                            <li>自我暂停</li>
+                            <li>自我反思</li>
+                            <li>选择时机</li>
+                            <li>道歉修复</li>
+                            <li>肢体连接</li>
+                            <li>共同展望</li>
+                        </ol>
+                    </div>
+                    <div class="scene-card">
+                        <h4>孩子拒绝沟通</h4>
+                        <ol>
+                            <li>停止追问</li>
+                            <li>表达关心</li>
+                            <li>提供空间</li>
+                            <li>保持在场</li>
+                            <li>等待时机</li>
+                        </ol>
+                    </div>
+                    <div class="scene-card">
+                        <h4>孩子做错事</h4>
+                        <ol>
+                            <li>确保安全</li>
+                            <li>关注情绪</li>
+                            <li>了解经过</li>
+                            <li>讨论后果</li>
+                            <li>引导解决</li>
+                            <li>表达信任</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 笔记区 -->
+        <div class="notes-section">
+            <h3>执行笔记</h3>
+            <textarea placeholder="记录执行过程中的重要观察、感受、思考和建议..."></textarea>
+        </div>
+        
+        <!-- 进度 -->
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text">已完成 0/18 项</div>
+    </div>
+    
+    <button class="print-btn" onclick="window.print()">打印检查清单</button>
+    
+    <script>
+        // 设置当前日期
+        document.getElementById('current-date').value = new Date().toISOString().split('T')[0];
+        
+        function togglePhase(header) {
+            header.parentElement.classList.toggle('collapsed');
+        }
+        
+        function toggleCheck(checkbox) {
+            checkbox.classList.toggle('checked');
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const total = document.querySelectorAll('.step-checkbox').length;
+            const checked = document.querySelectorAll('.step-checkbox.checked').length;
+            const percent = Math.round((checked / total) * 100);
+            
+            document.querySelector('.progress-fill').style.width = percent + '%';
+            document.querySelector('.progress-text').textContent = `已完成 ${checked}/${total} 项 (${percent}%)`;
+        }
+    </script>
+</body>
+</html>

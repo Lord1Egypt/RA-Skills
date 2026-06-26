@@ -1,35 +1,40 @@
 ---
-name: "Download Tools"
-description: "CLI download tools for YouTube and WeChat"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/download-tools"
-sourceUrl: "https://clawhub.ai/skills/download-tools"
+name: download-tools
+description: CLI download tools for YouTube and WeChat
+metadata:
+  {
+    "openclaw": {
+      "requires": { "bins": ["curl", "yt-dlp"] },
+      "install": [
+        { "id": "yt-dlp", "kind": "brew", "package": "yt-dlp" },
+        { "id": "ffmpeg", "kind": "brew", "package": "ffmpeg" }
+      ]
+    }
+  }
 ---
 
 # Download Tools
 
-> CLI download tools for YouTube and WeChat
+A collection of CLI download tools for YouTube and WeChat articles.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/download-tools`
-- **Source URL:** [https://clawhub.ai/skills/download-tools](https://clawhub.ai/skills/download-tools)
+## Tools
 
-## Overview
+### wechat-dl.sh
+Download WeChat articles as TXT.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/download-tools
+./wechat-dl.sh "https://mp.weixin.qq.com/s/xxx" [output_name]
+```
+
+### yt-audio.sh
+Download YouTube audio as MP3.
+
+```bash
+./yt-audio.sh "https://youtube.com/watch?v=xxx" [output_name]
+```
+
+## Install
+
+```bash
+brew install yt-dlp ffmpeg
 ```

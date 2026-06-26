@@ -1,0 +1,21 @@
+{
+  "geo_locations": {
+    "countries": [
+      "DE"
+    ]
+  },
+  "age_min": 25,
+  "age_max": 54,
+  "publisher_platforms": [
+    "facebook",
+    "instagram"
+  ],
+  "facebook_positions": [
+    "feed",
+    "video_feeds"
+  ],
+  "instagram_positions": [
+    "stream",
+    "story"
+  ]
+}

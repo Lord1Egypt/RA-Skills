@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* Instagram风格现代卡片样式 - 优化版 */
+.card-instagram {
+  /* uD83CuDFA8 默认Instagram经典渐变模式 */
+  --ig-gradient-primary: #833ab4;
+  --ig-gradient-secondary: #fd1d1d;
+  --ig-gradient-tertiary: #fcb045;
+  --ig-surface: rgba(255, 255, 255, 0.8);
+  --ig-surface-variant: rgba(255, 255, 255, 0.8);
+  --ig-text-primary: #1a1a1a;
+  --ig-accent: #e91e63;
+  --ig-border: rgba(255, 255, 255, 0.3);
+  --ig-shadow: rgba(0, 0, 0, 0.1);
+  --ig-glow: rgba(131, 58, 180, 0.3);
+
+  background: linear-gradient(
+    135deg,
+    var(--ig-gradient-primary) 0%,
+    var(--ig-gradient-secondary) 50%,
+    var(--ig-gradient-tertiary) 100%
+  );
+  padding: calc(var(--spacing) * 6);
+  position: relative;
+  --highlight-color: var(--ig-accent);
+}
+
+/* uD83CuDF38 粉紫梦幻模式 - 优化版 */
+.card-instagram.purple-pink-mode {
+  --ig-gradient-primary: #667eea;
+  --ig-gradient-secondary: #764ba2;
+  --ig-gradient-tertiary: #f093fb;
+  --ig-surface: rgba(255, 255, 255, 0.65);
+  --ig-surface-variant: rgba(255, 255, 255, 0.8);
+  --ig-text-primary: #1a1a1a;
+  --ig-accent: #ff6b9d;
+  --ig-border: rgba(255, 255, 255, 0.25);
+  --ig-shadow: rgba(102, 126, 234, 0.2);
+  --ig-glow: rgba(240, 147, 251, 0.4);
+}
+
+/* uD83CuDF05 日落橙模式 - 优化版 */
+.card-instagram.sunset-mode {
+  --ig-gradient-primary: #ff6b35;
+  --ig-gradient-secondary: #f7931e;
+  --ig-gradient-tertiary: #ffb347;
+  --ig-surface: rgba(255, 255, 255, 0.65);
+  --ig-surface-variant: rgba(255, 255, 255, 0.8);
+  --ig-text-primary: #1a1a1a;
+  --ig-accent: #fd79a8;
+  --ig-border: rgba(255, 255, 255, 0.2);
+  --ig-shadow: rgba(255, 107, 53, 0.3);
+  --ig-glow: rgba(255, 179, 71, 0.5);
+}
+
+/* uD83CuDF19 深蓝夜空模式 - 优化版 */
+.card-instagram.night-mode {
+  --ig-gradient-primary: #2c3e50;
+  --ig-gradient-secondary: #34495e;
+  --ig-gradient-tertiary: #4a69bd;
+  --ig-surface: rgba(255, 255, 255, 0.1);
+  --ig-surface-variant: rgba(255, 255, 255, 0.05);
+  --ig-text-primary: #ffffff;
+  --ig-accent: #74b9ff;
+  --ig-border: rgba(255, 255, 255, 0.15);
+  --ig-shadow: rgba(44, 62, 80, 0.4);
+  --ig-glow: rgba(116, 185, 255, 0.3);
+}
+
+/* ✨ 新增：极光模式 */
+.card-instagram.aurora-mode {
+  --ig-gradient-primary: #00c9ff;
+  --ig-gradient-secondary: #92fe9d;
+  --ig-gradient-tertiary: #00d2ff;
+  --ig-surface: rgba(255, 255, 255, 0.65);
+  --ig-surface-variant: rgba(255, 255, 255, 0.8);
+  --ig-text-primary: #1a1a1a;
+  --ig-accent: #26c6da;
+  --ig-border: rgba(255, 255, 255, 0.25);
+  --ig-shadow: rgba(0, 201, 255, 0.2);
+  --ig-glow: rgba(146, 254, 157, 0.4);
+}
+
+/* uD83CuDF3A 新增：珊瑚模式 */
+.card-instagram.coral-mode {
+  --ig-gradient-primary: #ff7675;
+  --ig-gradient-secondary: #fd79a8;
+  --ig-gradient-tertiary: #fdcb6e;
+  --ig-surface: rgba(255, 255, 255, 0.65);
+  --ig-surface-variant: rgba(255, 255, 255, 0.8);
+  --ig-text-primary: #1a1a1a;
+  --ig-accent: #ff9ff3;
+  --ig-border: rgba(255, 255, 255, 0.3);
+  --ig-shadow: rgba(255, 118, 117, 0.3);
+  --ig-glow: rgba(253, 203, 110, 0.4);
+}
+
+/* uD83CuDF43 新增：薄荷模式 */
+.card-instagram.mint-mode {
+  --ig-gradient-primary: #00b894;
+  --ig-gradient-secondary: #00cec9;
+  --ig-gradient-tertiary: #55efc4;
+  --ig-surface: rgba(255, 255, 255, 0.8);
+  --ig-surface-variant: rgba(255, 255, 255, 0.7);
+  --ig-text-primary: #2d3436;
+  --ig-accent: #00b894;
+  --ig-border: rgba(255, 255, 255, 0.4);
+  --ig-shadow: rgba(0, 184, 148, 0.15);
+  --ig-glow: rgba(85, 239, 196, 0.3);
+}
+
+/* uD83CuDF1F 新增：金色奢华模式 */
+.card-instagram.luxury-mode {
+  --ig-gradient-primary: #d4af37;
+  --ig-gradient-secondary: #ffd700;
+  --ig-gradient-tertiary: #ffed4e;
+  --ig-surface: rgba(0, 0, 0, 0.6);
+  --ig-surface-variant: rgba(0, 0, 0, 0.6);
+  --ig-text-primary: #ffffff;
+  --ig-accent: #ffb347;
+  --ig-border: rgba(212, 175, 55, 0.3);
+  --ig-shadow: rgba(212, 175, 55, 0.4);
+  --ig-glow: rgba(255, 215, 0, 0.5);
+}
+
+/* uD83CuDFAF 新增：暗黑模式 */
+.card-instagram.dark-mode {
+  --ig-gradient-primary: #1a1a1a;
+  --ig-gradient-secondary: #2d2d2d;
+  --ig-gradient-tertiary: #404040;
+  --ig-surface: rgba(255, 255, 255, 0.1);
+  --ig-surface-variant: rgba(255, 255, 255, 0.02);
+  --ig-text-primary: #ffffff;
+  --ig-accent: #bb86fc;
+  --ig-border: rgba(255, 255, 255, 0.1);
+  --ig-shadow: rgba(0, 0, 0, 0.5);
+  --ig-glow: rgba(187, 134, 252, 0.2);
+}
+
+/* ⚫ 新增：纯黑模式 */
+.card-instagram.black-mode {
+  --ig-gradient-primary: #000000;
+  --ig-gradient-secondary: #1a1a1a;
+  --ig-gradient-tertiary: #2d2d2d;
+  --ig-text-primary: #ffffff;
+  --ig-surface-variant: rgba(255, 255, 255, 0.2);
+  --ig-accent: #ffffff;
+  --ig-border: rgba(255, 255, 255, 0.2);
+  --ig-shadow: rgba(0, 0, 0, 0.6);
+  --ig-glow: rgba(255, 255, 255, 0.1);
+}
+
+/* ⚪ 新增：纯白模式 */
+.card-instagram.white-mode {
+  --ig-gradient-primary: #ffffff;
+  --ig-gradient-secondary: #f8f9fa;
+  --ig-gradient-tertiary: #e9ecef;
+  --ig-text-primary: #1a1a1a;
+  --ig-accent: #000000;
+  --ig-border: rgba(0, 0, 0, 0.1);
+  --ig-shadow: rgba(0, 0, 0, 0.1);
+  --ig-glow: rgba(0, 0, 0, 0.05);
+}
+
+.black-mode.card-instagram li::before {
+  color: var(--ig-gradient-secondary);
+}
+
+.white-mode .card-content,
+.black-mode .card-content {
+  background: none;
+  border: 0;
+  backdrop-filter: none;
+  padding: 0;
+}
+
+/* 毛玻璃效果背景装饰 - 增强版 */
+.card-instagram::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 50%, var(--ig-glow) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--ig-glow) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, var(--ig-glow) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* 主卡片内容容器 - 优化版 */
+.card-content {
+  background: var(--ig-surface);
+  color: var(--ig-text-primary);
+  border-radius: 16px;
+  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 8)
+    calc(var(--spacing) * 8) calc(var(--spacing) * 8);
+  height: 100%;
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--ig-border);
+  position: relative;
+}
+
+.card-instagram h1 {
+  font-size: calc(var(--spacing) * 7);
+  font-weight: 700;
+  color: var(--ig-text-primary);
+  margin-top: calc(var(--spacing) * 4);
+}
+
+.card-instagram h2 {
+  font-size: calc(var(--spacing) * 6);
+  font-weight: 600;
+  color: var(--ig-text-primary);
+  margin-top: calc(var(--spacing) * 3.5);
+}
+
+.card-instagram h3 {
+  font-size: calc(var(--spacing) * 4.5);
+  font-weight: 500;
+  color: var(--ig-text-primary);
+  margin-top: calc(var(--spacing) * 2.5);
+}
+
+.card-instagram li {
+  line-height: 1.8;
+  margin-top: calc(var(--spacing) * 4);
+}
+
+/* 链接样式 - 增强版 */
+.card-instagram a {
+  color: var(--ig-accent);
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+}
+
+.card-instagram a::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -0.5);
+  left: 0;
+  width: 0;
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(
+    135deg,
+    var(--ig-gradient-primary),
+    var(--ig-gradient-tertiary)
+  );
+}
+
+.card-instagram hr {
+  border: none;
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ig-border),
+    transparent
+  );
+  margin: calc(var(--spacing) * 6) 0;
+}
+
+.card-instagram blockquote {
+  background: var(--ig-surface-variant);
+  border-color: var(--ig-accent);
+}
+
+.card-instagram li {
+  position: relative;
+  margin-top: calc(var(--spacing) * 2.5);
+}
+
+.card-instagram li::before {
+  font-family:
+    PingFang SC,
+    -apple-system,
+    BlinkMacSystemFont,
+    Hiragino Sans GB,
+    Segoe UI,
+    Microsoft YaHei,
+    Arial,
+    sans-serif;
+  position: absolute;
+  left: calc(var(--spacing) * -7.5);
+  top: calc(var(--spacing) * 0.5);
+  width: calc(var(--spacing) * 5.5);
+  height: calc(var(--spacing) * 5.5);
+  background: var(--ig-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: calc(var(--spacing) * 3);
+  color: white;
+  box-shadow: 0 2px 8px var(--ig-shadow);
+}
+
+.card-instagram ol > li::before {
+  content: attr(data-index);
+}
+
+.card-instagram ul > li::before {
+  content: "✓";
+}
+
+.card-instagram th,
+.card-instagram td {
+  border-bottom: 1px solid var(--ig-border);
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+}
+
+.card-instagram th {
+  background: var(--ig-surface-variant);
+  color: var(--ig-accent);
+  border-bottom: 2px solid var(--ig-accent);
+  font-weight: 600;
+}
+
+.card-instagram tr:nth-child(even) {
+  background: var(--ig-surface-variant);
+}
+.card-instagram code:not(pre code) {
+  background: var(--ig-surface-variant);
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1);
+  border-radius: 4px;
+  font-size: calc(var(--spacing) * 3.5);
+  color: var(--ig-text-primary);
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-instagram">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

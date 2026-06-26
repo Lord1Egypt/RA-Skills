@@ -1,0 +1,77 @@
+{
+  "save_format": {
+    "version": "1.0",
+    "game_name": "rpg-text",
+    "player": {
+      "name": "string",
+      "race": "string",
+      "job": "string",
+      "level": "integer",
+      "experience": "integer",
+      "health": "integer",
+      "max_health": "integer",
+      "mana": "integer",
+      "max_mana": "integer",
+      "stats": {
+        "str": "integer",
+        "dex": "integer",
+        "con": "integer",
+        "int": "integer",
+        "wis": "integer",
+        "cha": "integer"
+      },
+      "position": {
+        "x": "integer",
+        "y": "integer"
+      },
+      "status_effects": ["array of status effect names"]
+    },
+    "inventory": {
+      "items": {
+        "item_name": "count"
+      },
+      "equipped": {
+        "head": "item_name or null",
+        "body": "item_name or null",
+        "legs": "item_name or null",
+        "r_hand": "item_name or null",
+        "l_hand": "item_name or null",
+        "rings": ["ring1", "ring2 or null"]
+      },
+      "money": {
+        "cc": "copper coins",
+        "sc": "silver coins",
+        "ec": "electrum coins",
+        "gc": "gold coins",
+        "pc": "platinum coins"
+      },
+      "gems": {
+        "gem_name": "count"
+      }
+    },
+    "quests": {
+      "active": ["quest_name"],
+      "completed": ["quest_name"],
+      "failed": ["quest_name"]
+    },
+    "game_time": {
+      "day": "integer",
+      "hour": "integer",
+      "minute": "integer",
+      "season": "string"
+    },
+    "map_explored": {
+      "location_name": "boolean"
+    },
+    "metadata": {
+      "saved_at": "ISO timestamp",
+      "play_time_minutes": "integer"
+    }
+  },
+  "autosave": {
+    "enabled": true,
+    "interval_turns": 10,
+    "filename": "autosave.json"
+  },
+  "max_saves": 10
+}

@@ -1,0 +1,12 @@
+{
+  "name": "iclick-openclaw",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Try",
+  "license": "ISC",
+  "description": "iClick OpenClaw Skill",
+  "dependencies": {
+    "iclick-auto": "^1.0.5",
+    "ws": "^8.19.0"
+  }
+}

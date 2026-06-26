@@ -1,35 +1,27 @@
 ---
-name: "financial-calculator"
-description: "Indexed by skills.sh from dkyazzentwatwa/chatgpt-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dkyazzentwatwa"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/financial-calculator"
-sourceUrl: "https://skills.sh/dkyazzentwatwa/chatgpt-skills/financial-calculator"
+name: financial-calculator
+description: Run loan, investment, NPV, retirement, savings, and risk calculations with schedules and charts. Use for deterministic financial modeling tasks.
 ---
 
-# financial-calculator
+# Financial Calculator
 
-> Indexed by skills.sh from dkyazzentwatwa/chatgpt-skills
+Use deterministic calculations instead of ad hoc spreadsheet math when the user needs precise financial outputs.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dkyazzentwatwa
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/financial-calculator`
-- **Source URL:** [https://skills.sh/dkyazzentwatwa/chatgpt-skills/financial-calculator](https://skills.sh/dkyazzentwatwa/chatgpt-skills/financial-calculator)
+## Use This For
 
-## Overview
+- Loan and mortgage math
+- Investment growth and savings goals
+- NPV, IRR, and payback analysis
+- Retirement projections and withdrawal planning
+- Monte Carlo style risk scenarios
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/financial-calculator
-```
+1. Confirm units and assumptions first: rates, compounding, time horizon, taxes, and inflation.
+2. Use `scripts/financial_calc.py` as the source of truth for the computation.
+3. Return both the answer and the assumptions that materially drive it.
+
+## Guardrails
+
+- Treat outputs as calculations, not personalized financial advice.
+- Surface simplifying assumptions and scenario sensitivity.

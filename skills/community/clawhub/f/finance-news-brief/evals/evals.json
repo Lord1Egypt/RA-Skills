@@ -1,0 +1,89 @@
+{
+  "skill_name": "finance-news-brief",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我生成一份今日财经简报，我需要了解美联储最新动态、A股、港股和美股的行情，以及大宗商品价格变化。输出 Markdown 和 PDF 两个文件，保存在 /tmp/ 目录下。",
+      "expected_output": "生成结构完整的中文财经简报，包含宏观/美股/港股/A股四大板块，并输出 /tmp/finance_brief_YYYYMMDD.md 和 /tmp/finance_brief_YYYYMMDD.pdf 两个文件。",
+      "files": [],
+      "assertions": [
+        {
+          "name": "包含四大板块",
+          "type": "content_check",
+          "description": "Markdown 文件中包含宏观、美股、港股、A股四个板块标题"
+        },
+        {
+          "name": "输出 Markdown 文件",
+          "type": "file_exists",
+          "description": "在 /tmp/ 目录下存在 finance_brief_*.md 文件"
+        },
+        {
+          "name": "输出 PDF 文件",
+          "type": "file_exists",
+          "description": "在 /tmp/ 目录下存在 finance_brief_*.pdf 文件"
+        },
+        {
+          "name": "包含执行摘要",
+          "type": "content_check",
+          "description": "简报包含'执行摘要'或'摘要'部分"
+        },
+        {
+          "name": "包含信息来源",
+          "type": "content_check",
+          "description": "至少一条新闻条目注明了信息来源（Bloomberg/Reuters/财新等）"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "今天市场有什么大事？帮我搜一下最新财经新闻，整理成报告。",
+      "expected_output": "主动触发 skill，搜集最新财经新闻，生成结构化中文简报并输出 Markdown 和 PDF 文件。",
+      "files": [],
+      "assertions": [
+        {
+          "name": "主动触发生成流程",
+          "type": "behavior_check",
+          "description": "使用 WebSearch 搜集了多个板块的新闻，而非只回答几句话"
+        },
+        {
+          "name": "生成文件而非仅输出文字",
+          "type": "file_exists",
+          "description": "最终产出了 .md 文件和 .pdf 文件"
+        },
+        {
+          "name": "内容时效性",
+          "type": "content_check",
+          "description": "简报提及当天或最近 24 小时的具体数据或事件"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我想看看昨晚美股收盘情况以及今早港股的开盘动态，还有原油价格。帮我整理一份简报，要有 PDF 版，放到 /tmp/reports/ 目录下。",
+      "expected_output": "搜集美股、港股、大宗商品相关新闻，生成包含这三个板块的简报，PDF 保存到 /tmp/reports/。",
+      "files": [],
+      "assertions": [
+        {
+          "name": "覆盖美股板块",
+          "type": "content_check",
+          "description": "简报包含美股收盘相关内容"
+        },
+        {
+          "name": "覆盖港股板块",
+          "type": "content_check",
+          "description": "简报包含港股相关内容"
+        },
+        {
+          "name": "覆盖大宗商品",
+          "type": "content_check",
+          "description": "简报包含原油或大宗商品价格相关内容"
+        },
+        {
+          "name": "PDF 保存到指定目录",
+          "type": "file_exists",
+          "description": "PDF 文件保存在 /tmp/reports/ 目录下"
+        }
+      ]
+    }
+  ]
+}

@@ -1,35 +1,7 @@
 ---
-name: "zoom-out"
-description: "Indexed by skills.sh from vinvcn/mattpocock-skills-zh-cn"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "vinvcn"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/vinvcn/mattpocock-skills-zh-cn/zoom-out"
-sourceUrl: "https://skills.sh/vinvcn/mattpocock-skills-zh-cn/zoom-out"
+name: zoom-out
+description: 让 agent zoom out，并给出更广的 context 或更高层 perspective。Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.
+disable-model-invocation: true
 ---
 
-# zoom-out
-
-> Indexed by skills.sh from vinvcn/mattpocock-skills-zh-cn
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** vinvcn
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/vinvcn/mattpocock-skills-zh-cn/zoom-out`
-- **Source URL:** [https://skills.sh/vinvcn/mattpocock-skills-zh-cn/zoom-out](https://skills.sh/vinvcn/mattpocock-skills-zh-cn/zoom-out)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/vinvcn/mattpocock-skills-zh-cn/zoom-out
-```
+我不熟悉这块代码。上升一层 abstraction。给我一张所有相关 modules 和 callers 的地图。

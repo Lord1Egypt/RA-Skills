@@ -1,35 +1,167 @@
 ---
-name: "破晓"
+priority: 999
+name: 破晓
 description: "🌅 全时段股市资讯生成器。根据当前时间自动判断生成早报/午评/收盘报告，支持交易日检测、模块化新闻抓取、微信友好格式输出。专为投资人设计，助力快速决策。"
-category: "blockchain"
-source: "ClawHub"
-tags: [chinese, news, report, stock, market, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/poxiao"
-sourceUrl: "https://clawhub.ai/skills/poxiao"
+metadata:
+  {
+    "builtin_skill_version": "3.0",
+    "copaw":
+      {
+        "emoji": "🌅",
+        "requires": {},
+        "auto_load": true,
+        "global": true,
+        "trigger_keywords": [
+          "破晓", "早报", "午评", "收盘", "复盘", "股市资讯", "行情分析",
+          "开盘", "收盘报告", "午间点评", "早盘", "盘后", "日评"
+        ]
+      }
+  }
 ---
 
-# 破晓
+# 🌅 破晓 - 全时段股市资讯生成器
 
-> 🌅 全时段股市资讯生成器。根据当前时间自动判断生成早报/午评/收盘报告，支持交易日检测、模块化新闻抓取、微信友好格式输出。专为投资人设计，助力快速决策。
+> **模块化设计 · 自动判断报告类型 · 微信友好格式**
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/poxiao`
-- **Source URL:** [https://clawhub.ai/skills/poxiao](https://clawhub.ai/skills/poxiao)
+---
 
-## Overview
+## ⚠️ 铁律
 
+### 🔴 铁律一：必须打开网页查询实时数据（最高优先级！）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/poxiao
+**所有行情数据（指数、涨跌家数、板块排行、资金流向）必须通过浏览器访问东方财富等网页实时抓取！**
+
 ```
+❌ 错误：凭记忆写数据、用 API 接口（经常返回空或报错）、搜索二手信息
+✅ 正确：用 edgeuse/browser_use 打开东方财富网页 → snapshot/screenshot → 从页面提取数据
+
+必须打开的页面：
+1. 东方财富行情中心：https://quote.eastmoney.com/center/gridlist.html#hs_a_board（三大指数、涨跌家数）
+2. 东方财富板块排行：https://quote.eastmoney.com/center/boardrank.html（板块涨跌排行）
+3. 东方财富资金流向：https://data.eastmoney.com/zjlx/dpzjlx.html（北向资金、主力流向）
+4. 东方财富大盘星图：https://quote.eastmoney.com/stockhotmap/（热力图，注意可能遇滑块验证）
+
+⚠️ 数据不准宁可少写，绝不编造！用户一眼就能看出数据对不对！
+```
+
+### 🔴 铁律二：搜索关键词必须包含今日日期
+
+**所有搜索关键词必须包含今日日期！没有日期的搜索 = 无效搜索！**
+
+```
+❌ 错误：搜索 "AI 大模型 最新动态"
+✅ 正确：搜索 "AI 大模型 最新动态 2026 年 3 月 13 日"
+```
+
+**新闻必须在 24 小时内，超过 24 小时 = 废纸！**
+
+---
+
+## 🔧 执行流程（模块化，按步骤读取文档）
+
+```
+Step 0: 初始化 ──► 读取 steps/00-init.md
+    ├─ 获取当前时间
+    ├─ 判断报告类型（早报/午评/收盘报告）
+    └─ 检查是否交易日
+
+Step 1: 实时行情抓取 ──► 读取 steps/01-realtime-data.md（⚠️ 必须先做！）
+    ├─ 打开东方财富行情中心（必须！）
+    ├─ 抓取三大指数、涨跌家数、成交额
+    ├─ 打开板块排行页面，抓板块涨跌
+    └─ 打开资金流向页面，抓北向/主力数据
+
+Step 2: 新闻抓取 ──► 读取 steps/02-fetch-news.md
+    ├─ 并行搜索各新闻源
+    ├─ 时效性验证（24 小时铁律）
+    └─ 数据清洗
+
+Step 2.5: 大盘星图 ──► 读取 steps/02-5-heatmap.md
+    ├─ 获取东方财富热力图数据
+    ├─ 统计涨跌家数、涨跌停家数
+    └─ 分析市场赚钱效应和热点聚集
+
+Step 3-5: 报告生成（根据 Step 0 判断的结果选择）
+    ├─ 早报模式 ──► 读取 steps/03-morning.md
+    ├─ 午评模式 ──► 读取 steps/04-midday.md
+    └─ 收盘模式 ──► 读取 steps/05-closing.md
+
+Step 6: 格式输出 ──► 读取 steps/06-format.md
+    └─ 生成微信友好格式（HTML/Markdown）
+```
+
+---
+
+## 📁 步骤文档
+
+| 步骤 | 文档 | 功能 |
+|------|------|------|
+| Step 0 | `steps/00-init.md` | 时间判断、报告类型、交易日检测 |
+| **Step 1** | **`steps/01-realtime-data.md`** | **⚠️ 实时行情抓取（浏览器打开网页，必须！）** |
+| Step 2 | `steps/02-fetch-news.md` | 新闻抓取（通用模块） |
+| Step 2.5 | `steps/02-5-heatmap.md` | 大盘星图（全市场热力图） |
+| Step 3 | `steps/03-morning.md` | 早报生成（开盘前） |
+| Step 4 | `steps/04-midday.md` | 午评生成（11:30-13:00） |
+| Step 5 | `steps/05-closing.md` | 收盘报告生成（15:00 后） |
+| Step 6 | `steps/06-format.md` | 微信友好格式输出 |
+
+---
+
+## 🚨 触发场景
+
+- 🟢 早报：9:00 前，"早报"、"早盘"、"开盘前"
+- 🟢 午评：11:30-13:00，"午评"、"午间"、"半日复盘"
+- 🟢 收盘报告：15:00 后，"收盘"、"复盘"、"日评"
+- 🟢 通用："破晓"、"股市资讯"（自动判断时间）
+
+---
+
+## 📅 报告类型判断规则
+
+| 时间段 | 报告类型 | 内容重点 |
+|--------|----------|----------|
+| **06:00-09:15** | 🌅 早报 | 隔夜外盘、今日策略、行业前瞻 |
+| **11:30-13:00** | 🌞 午评 | 上午行情、板块异动、午后展望 |
+| **15:00-23:00** | 🌙 收盘报告 | 全天复盘、龙虎榜、明日展望 |
+| **非交易时间** | ⚠️ 提示非交易日 | 周末/节假日提醒 |
+
+---
+
+## 📊 交易日检测
+
+**A 股交易日历**：
+- 周一至周五（法定节假日除外）
+- 上午：9:30-11:30
+- 下午：13:00-15:00
+
+**检测逻辑**：
+1. 获取今日日期
+2. 判断是否为周末（周六/周日）
+3. 判断是否为法定节假日（需查询日历）
+4. 非交易日 → 提示用户，可选择生成"周末特别版"或跳过
+
+---
+
+## ❌ 禁止行为
+
+- ❌ **不打开网页直接写行情数据**（这是最严重的错误！必须打开东方财富等页面实时抓取）
+- ❌ 凭记忆或估计写指数、涨跌家数
+- ❌ 使用东方财富 API（push2.eastmoney.com 等，经常返回空或 422 错误）
+- ❌ 搜索二手行情信息代替网页实时抓取
+- ❌ 搜索关键词不带日期
+- ❌ 使用超过 24 小时的旧新闻
+- ❌ 链接是媒体主页而非具体文章
+- ❌ 不判断交易日直接生成
+- ❌ 输出格式不适合手机阅读
+
+---
+
+## 📝 版本
+
+| 版本 | 更新内容 |
+|------|----------|
+| **3.2.0** | **🔴 新增铁律：必须打开网页查询实时数据；新增 steps/01-realtime-data.md；步骤文件重新编号；禁止使用东方财富 API** |
+| 3.1.0 | 新增大盘星图（热力图）模块，午评/收盘报告加入星图分析 |
+| 3.0.0 | 模块化重构，支持早报/午评/收盘报告，交易日检测 |
+| 2.1.0 | 流式处理优化，日期强制搜索 |
+| 2.0.0 | 初始版本 |

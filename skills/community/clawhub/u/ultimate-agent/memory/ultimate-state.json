@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "active_projects": [],
+  "learned_lessons": [],
+  "created_agents": [],
+  "last_heartbeat": {
+    "timestamp": 1772708105.231659,
+    "proactive_issues": [],
+    "improvement_opportunities": [],
+    "agent_needs": [],
+    "recommended_actions": []
+  },
+  "performance_metrics": {},
+  "last_updated": 1772708105.231662
+}

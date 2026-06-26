@@ -1,0 +1,237 @@
+{
+  "template_version": "v1.0.5",
+  "file_type": "memory",
+  "sensitivity": "sensitive",
+  "description": "核心记忆模板 - 填写业务记忆、团队配置、关键日期等",
+  "time_estimate": "10分钟",
+
+  "team": {
+    "mode": {
+      "value": "多Agent协作模式：主小绎(统筹) + 搜索绎(信息) + 经济绎(分析)",
+      "example": "单Agent模式 或 多Agent协作模式",
+      "description": "团队运作模式"
+    },
+    "created": {
+      "value": "2024-10-01T00:00:00+08:00",
+      "example": "2024-10-01T00:00:00+08:00",
+      "description": "团队创建日期（RFC3339格式）"
+    }
+  },
+
+  "business": {
+    "core": {
+      "value": "奢侈品二手交易套利",
+      "example": "电商销售/知识付费/咨询服务",
+      "description": "核心业务"
+    },
+    "focus": {
+      "value": "LV/Chanel中古款钱包、丝巾扣；Dior老花包",
+      "example": "业务重点/爆款品类",
+      "description": "当前业务重点"
+    },
+    "platforms": {
+      "value": [
+        "闲鱼（主要采购平台）",
+        "转转（辅助搜索）",
+        "得物（销售平台）"
+      ],
+      "example": ["闲鱼", "得物"],
+      "description": "使用的平台列表"
+    },
+    "strategy": {
+      "value": "低价采购+验货宝保障+溢价出售，套利空间目标20%以上",
+      "example": "核心策略描述",
+      "description": "核心运营策略"
+    }
+  },
+
+  "investment": {
+    "positions": {
+      "value": [
+        "每日互动(300766)",
+        "中科创达(300496)"
+      ],
+      "example": ["股票代码1", "股票代码2"],
+      "description": "A股持仓"
+    },
+    "hk_positions": {
+      "value": [
+        "恒指期权",
+        "日经ETF相关窝轮"
+      ],
+      "example": ["港股代码1"],
+      "description": "港股及衍生品持仓"
+    },
+    "strategy": {
+      "value": "短线为主，关注技术面和消息面结合，控制单票仓位<10%",
+      "example": "投资策略描述",
+      "description": "投资策略"
+    }
+  },
+
+  "learning": {
+    "platform": {
+      "value": "EntroCamp",
+      "example": "得到/混沌/生财",
+      "description": "主要学习平台"
+    },
+    "completed": {
+      "value": [
+        "AI Agent进阶课程",
+        "投资分析基础"
+      ],
+      "example": ["已完成课程1", "已完成课程2"],
+      "description": "已完成的学习课程"
+    },
+    "method": {
+      "value": "理论学习+实践操作+复盘总结",
+      "example": "视频学习/实战练习/导师指导",
+      "description": "学习方法偏好"
+    }
+  },
+
+  "tools_config": {
+    "飞书机器人": {
+      "value": "用于推送商品分析日报和投资日报",
+      "example": "工具使用方式描述",
+      "description": "飞书相关工具配置"
+    },
+    "AgentLink笔友": {
+      "value": "用于社交和跨Agent协作",
+      "example": "社交平台工具配置",
+      "description": "社交平台工具配置"
+    }
+  },
+
+  "key_dates": {
+    "每日晚9点日报": {
+      "value": "闲鱼奢侈品套利分析日报推送时间",
+      "example": "事件时间或日程描述",
+      "description": "定期任务"
+    },
+    "交易日收盘后": {
+      "value": "股票操作复盘记录时间",
+      "example": "事件时间或日程描述",
+      "description": "定期任务"
+    }
+  },
+
+  "important_contacts": {
+    "飞书联系人": {
+      "value": "主人的飞书账号，用于消息推送",
+      "example": "联系方式描述",
+      "description": "重要联系人类型"
+    },
+    "笔友": {
+      "value": "AgentLink平台上的笔友关系",
+      "example": "联系方式描述",
+      "description": "社交关系"
+    }
+  },
+
+  "social_memory": {
+    "description": {
+      "value": "社交平台交流中积累的记忆，包括笔友互动、学到的知识、对话题的判断等",
+      "example": "社交记忆模块说明",
+      "description": "此模块用途说明"
+    },
+    "pen_friend_insights": {
+      "虾大壮": {
+        "learned": {
+          "value": [
+            "股票基本面分析方法",
+            "行业研究框架"
+          ],
+          "example": ["学到的内容1", "学到的内容2"],
+          "description": "从该笔友处学到的内容"
+        },
+        "topics_discussed": {
+          "value": [
+            "A股投资策略",
+            "价值投资理念"
+          ],
+          "example": ["讨论过的话题1", "讨论过的话题2"],
+          "description": "讨论过的话题"
+        },
+        "judgments": {
+          "每日互动": {
+            "value": "基本面一般，但有AI概念加持，适合短线操作",
+            "example": "对该话题的看法/判断",
+            "description": "对特定话题的判断"
+          }
+        },
+        "collaboration_outcomes": {
+          "value": [
+            "共享投资分析框架"
+          ],
+          "example": ["合作成果1"],
+          "description": "合作产生的成果"
+        }
+      }
+    },
+    "platform_learning": {
+      "AgentWorld": {
+        "platform_name": {
+          "value": "Agent World",
+          "example": "平台名称",
+          "description": "平台名称"
+        },
+        "skills_acquired": {
+          "value": [
+            "股票分析技能",
+            "数据可视化技能"
+          ],
+          "example": ["学到的技能1", "学到的技能2"],
+          "description": "在平台上学到的技能"
+        },
+        "connections_made": {
+          "value": [
+            "与多个专业Agent建立连接"
+          ],
+          "example": ["建立的联系1"],
+          "description": "建立的人脉联系"
+        },
+        "communities_joined": {
+          "value": [
+            "Agent World联盟"
+          ],
+          "example": ["加入的社区1"],
+          "description": "加入的社区"
+        }
+      }
+    },
+    "topic_judgments": {
+      "A股短线": {
+        "summary": {
+          "value": "短线操作需要严格止损，关注技术面和情绪周期",
+          "example": "对该话题的总体认识",
+          "description": "话题总结"
+        },
+        "confidence": {
+          "value": "high",
+          "example": "high/medium/low",
+          "description": "对判断的信心程度"
+        },
+        "sources": {
+          "value": [
+            "虾大壮",
+            "实盘操作经验"
+          ],
+          "example": ["信息来源1"],
+          "description": "判断的信息来源"
+        }
+      }
+    }
+  },
+
+  "_comment": {
+    "instructions": "【重要】填写时删除value/example/description结构，直接填写实际值",
+    "example_note": "value字段为真实示例，可直接使用或根据实际情况修改",
+    "from": [
+      "MEMORY.md → 结构化提取",
+      "对话历史 → 业务讨论",
+      "飞书/邮件 → 任务记录",
+      "AgentLink → 笔友交流"
+    ]
+  }
+}

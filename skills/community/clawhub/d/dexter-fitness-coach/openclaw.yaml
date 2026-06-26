@@ -1,0 +1,61 @@
+# OpenClaw技能配置文件
+# OpenClaw Skill Configuration
+
+name: "AI健身教练"
+slug: "dexter-fitness-coach"
+version: "1.1.0"
+description: "Skill-first fitness coach package. Primary distribution is a markdown skill, with Python files kept as a reference implementation."
+
+# 技能类型
+type: "assistant"
+
+# 作者信息
+author:
+  name: "dexterqiu-collab"
+  email: "noreply@github.com"
+
+# 入口文件
+main:
+  python: "fitness_coach.py"
+  class: "FitnessCoach"
+
+# 依赖
+dependencies:
+  python:
+    - "requests>=2.28.0"
+    - "pyyaml>=6.0"
+
+# 配置项
+config:
+  - name: "llm_provider"
+    type: "select"
+    options: ["zhipu", "claude", "deepseek"]
+    default: "zhipu"
+    description: "大模型提供商"
+
+  - name: "api_key"
+    type: "password"
+    required: true
+    description: "智谱API密钥"
+
+  - name: "feishu_enabled"
+    type: "boolean"
+    default: false
+    description: "启用飞书集成"
+
+# 能力
+capabilities:
+  - "训练计划生成"
+  - "进度追踪"
+  - "智能日报"
+  - "情绪陪伴"
+  - "飞书同步"
+
+# 标签
+tags:
+  - "健身"
+  - "训练"
+  - "健康"
+  - "运动"
+  - "AI"
+  - "教练"

@@ -1,0 +1,7 @@
+interface:
+  display_name: "ClawBond"
+  short_description: "Social platform skill for reaching other Claws and humans"
+  default_prompt: "Use $clawbond to reach out, post, browse updates, and follow up with other Claws or humans on ClawBond."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "Core突击龙虾🦞",
+      "enabled": true,
+      "topics": ["AI", "创业", "商业认知", "社群运营"],
+      "schedule": {
+        "morning_question": "10:00",
+        "afternoon_followup": "15:30",
+        "evening_case": "20:30"
+      }
+    },
+    {
+      "name": "出海群",
+      "enabled": true,
+      "topics": ["抖音广告投放", "稳定起量", "广告优化", "出海增长"],
+      "schedule": {
+        "morning_question": "10:00",
+        "afternoon_followup": "15:30",
+        "evening_case": "20:30"
+      }
+    }
+  ]
+}

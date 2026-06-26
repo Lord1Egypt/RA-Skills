@@ -1,0 +1,11 @@
+{
+  "owner": "suileyan",
+  "slug": "telegram-send-photo",
+  "displayName": "telegram-send-photo",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1771996456929,
+    "commit": "https://github.com/openclaw/skills/commit/a759a882bb953d324374362e65af24a3c0903e76"
+  },
+  "history": []
+}

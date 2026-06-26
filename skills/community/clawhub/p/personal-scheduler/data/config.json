@@ -1,0 +1,10 @@
+{
+  "default_reminder_minutes": 15,
+  "default_event_duration": 60,
+  "timezone": "Asia/Shanghai",
+  "notification_channel": "feishu",
+  "work_hours": {
+    "start": "09:00",
+    "end": "18:00"
+  }
+}

@@ -1,35 +1,35 @@
 ---
-name: "Furry Art Skill"
-description: "Generate furry art generator ai images with AI via the Neta AI image generation API (free trial at neta.art/open)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/furry-art-skill"
-sourceUrl: "https://clawhub.ai/skills/furry-art-skill"
+name: furry-art-skill
+description: Generate furry art generator ai images with AI via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Furry Art Skill
+# Furry Art Generator
 
-> Generate furry art generator ai images with AI via the Neta AI image generation API (free trial at neta.art/open).
+Generate stunning furry art generator ai images from a text description. Get back a direct image URL instantly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/furry-art-skill`
-- **Source URL:** [https://clawhub.ai/skills/furry-art-skill](https://clawhub.ai/skills/furry-art-skill)
+## Token
 
-## Overview
+Requires a Neta API token. Free trial available at <https://www.neta.art/open/>.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/furry-art-skill
+export NETA_TOKEN=your_token_here
+node <script> "your prompt" --token "$NETA_TOKEN"
+```
+
+## When to use
+Use when someone asks to generate or create furry art generator images.
+
+## Quick start
+```bash
+node furryart.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `square`)
+- `--style` — `anime`, `cinematic`, `realistic` (default: `anime`)
+
+## Install
+```bash
+npx skills add omactiengartelle/furry-art-skill
 ```

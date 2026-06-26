@@ -1,0 +1,58 @@
+name: secret-leak-detector
+version: 1.0.0
+description: Scans source code, configuration files, and git history for hardcoded credentials, API keys, and tokens. Use when auditing repositories for security leaks or ensuring sensitive data is not committed to version control.
+inputs:
+  directory_path:
+    type: string
+    description: The root directory to start the scan from.
+    required: true
+  scan_history:
+    type: boolean
+    description: Whether to scan the full git history or just the current state.
+    default: false
+  exclude_patterns:
+    type: array
+    items:
+      type: string
+    description: Glob patterns of files or directories to ignore (e.g., node_modules).
+outputs:
+  leaks:
+    type: array
+    items:
+      type: object
+      properties:
+        file:
+          type: string
+        line:
+          type: integer
+        type:
+          type: string
+          description: The detected secret type (e.g., AWS Key, Private Token).
+        risk_level:
+          type: string
+          enum: [low, medium, high, critical]
+        snippet:
+          type: string
+          description: A masked snippet of the detected secret.
+capabilities:
+  - Regex-based pattern matching for known provider formats.
+  - Shannon entropy analysis to detect high-entropy strings.
+  - Git commit history traversal.
+constraints:
+  - Detection only; does not remove secrets.
+  - Potential for false positives in test files.
+security:
+  - Secrets MUST NOT be logged in plain text.
+  - Secrets MUST NOT be transmitted to external servers.
+  - Snippets in output SHOULD be masked.
+examples:
+  - input:
+      directory_path: "./src"
+      scan_history: false
+    output:
+      leaks:
+        - file: "src/config.py"
+          line: 12
+          type: "AWS Access Key"
+          risk_level: "high"
+          snippet: "AKIA**********"

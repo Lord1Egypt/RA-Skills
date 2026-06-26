@@ -1,35 +1,116 @@
+# 每日 15:30 市场简报 - 固收 + 赛道分析
+
 ---
-name: "xqant daily market report"
-description: "每日15:30生成大盘走势、行业涨跌、债券市场及固收+赛道预测的市场简报，含风险提示和成交量分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xqant-daily-market-report"
-sourceUrl: "https://clawhub.ai/skills/xqant-daily-market-report"
+name: xqant-daily-market-report
+description: 生成每日 15:30 固收 + 市场简报，包含大盘走势、行业涨跌、债券市场和赛道预测
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📊",
+        "homepage": "https://clawhub.ai/skills/xqant-daily-market-report",
+        "requires": { "bins": [] },
+      },
+  }
 ---
 
-# xqant daily market report
+**用途**: 在每个交易日 15:30 自动生成市场简报，包含大盘走势、行业涨跌、债券市场和固收 + 赛道预测。
 
-> 每日15:30生成大盘走势、行业涨跌、债券市场及固收+赛道预测的市场简报，含风险提示和成交量分析。
+**触发条件**: 用户请求"15:30 市场简报"、"今日市场总结"、"固收 + 赛道预测"等。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xqant-daily-market-report`
-- **Source URL:** [https://clawhub.ai/skills/xqant-daily-market-report](https://clawhub.ai/skills/xqant-daily-market-report)
+---
 
-## Overview
+## 工作流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xqant-daily-market-report
+### 1. 获取大盘数据
+使用 Wind 精确查询:
 ```
+000001.SH → 上证指数
+000300.SH → 沪深 300
+399001.SZ → 深证成指
+399006.SZ → 创业板指
+000688.CSI → 科创 50
+881001.WI → 万得全 A
+```
+
+### 2. 获取行业涨跌
+查询申万一级行业涨跌幅，提取前 10 名和后 5 名。
+
+### 3. 获取债券市场
+查询:
+- 10 年期国债收益率 (000018.CSI)
+- 30 年期国债收益率 (000019.CSI)
+- 国债期货主力合约
+
+### 4. 固收 + 赛道预测
+基于当日市场行情，分析四个赛道的预期表现:
+- 低波固收+ (30 只产品池)
+- 90 天极低波动 (5 只产品池)
+- 中波固收+ (22 只产品池)
+- 高波固收+ (30 只产品池)
+
+### 5. 生成报告
+输出 Markdown 格式报告，包含:
+- 大盘表现 (涨跌幅 + 成交量)
+- 行业涨跌排行
+- 债券市场
+- 固收 + 赛道预测
+- 风险提示
+
+---
+
+## 注意事项
+
+1. **数据时效性**: 必须使用当日最新收盘数据
+2. **产品池一致性**: 固收 + 赛道预测必须基于 STANDARD/蚂蚁固收 + 竞品清单 (最终版).md 的 87 只产品
+3. **归因逻辑**: 赛道预测需结合当日行业涨跌与固收 + 持仓特征
+4. **风险提示**: 必须包含成交缩量、追高意愿、补跌风险等关键风险点
+
+---
+
+## 参考文件
+
+- **产品清单**: `STANDARD/蚂蚁固收 + 竞品清单 (最终版).md`
+- **执行规范**: `STANDARD/固收 + 竞品监控执行规范.md`
+- **MEMORY**: `MEMORY.md`
+- **市场数据查询**: `references/market_data.md`
+
+---
+
+## 示例输出
+
+```markdown
+# 2026-03-24 15:30 市场简报
+
+## 📈 大盘表现
+- 上证指数：+1.78% → 3881.28 点
+- 深证成指：+1.43% → 13536.56 点
+- 创业板指：+0.50% → 3251.55 点
+- 科创 50：+2.33% → 1290.79 点 ⭐领涨
+
+**成交额**: 2.1 万亿元 (较前日缩量 3486 亿)
+
+## 🏢 行业涨跌
+**领涨前 5**:
+1. 环保 +4.29%
+2. 纺织服饰 +3.99%
+3. 建筑材料 +3.66%
+4. 有色金属 +3.60%
+5. 社会服务 +3.35%
+
+## 📉 债券市场
+- 10 年期国债收益率：2.37% (较上周下行 1bp)
+- 30 年期国债收益率：较上周下行 1.87bp
+
+## 🎯 固收 + 赛道预测
+**今日受益赛道**:
+- ✅ 低波/90 天赛道：债市稳健 + 股市普涨
+- ✅ 中波赛道：配置均衡，受益于环保、有色金属
+- ⚠️ 高波赛道：弹性较大，注意石油/煤炭回调风险
+```
+
+---
+
+**作者**: 投资小龙虾 🦞  
+**版本**: v1.0  
+**更新日期**: 2026-03-24

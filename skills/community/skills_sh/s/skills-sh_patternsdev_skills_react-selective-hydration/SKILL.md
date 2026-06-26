@@ -1,35 +1,69 @@
 ---
-name: "react-selective-hydration"
-description: "Indexed by skills.sh from patternsdev/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "patternsdev"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/patternsdev/skills/react-selective-hydration"
-sourceUrl: "https://skills.sh/patternsdev/skills/react-selective-hydration"
+name: react-selective-hydration
+description: Teaches selective hydration combined with streaming SSR in React 18+. Use when you need to prioritize hydrating interactive components while streaming the rest of the page.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+license: MIT
+metadata:
+  author: patterns.dev
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
-# react-selective-hydration
+# Selective Hydration
 
-> Indexed by skills.sh from patternsdev/skills
+In previous articles, we covered how SSR with hydration can improve user experience. React is able to (quickly) generate a tree on the server using the `renderToString` method that the `react-dom/server` library provides, which gets sent to the client after the entire tree has been generated. The rendered HTML is non interactive, until the JavaScript bundle has been fetched and loaded, after which React walks down the tree to hydrate and attaches the handlers.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** patternsdev
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/patternsdev/skills/react-selective-hydration`
-- **Source URL:** [https://skills.sh/patternsdev/skills/react-selective-hydration](https://skills.sh/patternsdev/skills/react-selective-hydration)
+However, this approach can lead to some performance issues due to some limitations with the current implementation.
 
-## Overview
+## When to Use
 
+- Use this when you want to make parts of your SSR page interactive before all JavaScript has loaded
+- This is helpful when slow components (e.g., data-fetching components) are blocking the entire page's hydration
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/patternsdev/skills/react-selective-hydration
-```
+## Instructions
+
+- Use `Suspense` boundaries to delineate independently hydratable chunks of UI
+- Use `renderToPipeableStream` (Node) or `renderToReadableStream` (edge) for streaming SSR
+- Place heavy data-fetching components inside `Suspense` so they don't delay sibling hydration
+- Ensure critical interactive components are not inside long-lived loading fallbacks
+- Use `hydrateRoot` (React 18+) to benefit from selective hydration
+
+## Details
+
+Before the server-rendered HTML tree is able to get sent to the client, all components need to be ready. This means that components that may rely on an external API call or any process that could cause some delays, might end up blocking smaller components from being rendered quickly.
+
+Besides a slower tree generation, another issue is the fact that React only hydrates the tree once. This means that before React is able to hydrate any of the components, it needs to have fetched the JavaScript for all of the components before it's able to hydrate any of them. This means that smaller components (with smaller bundles) have to wait for the larger components's code to be fetched and loaded, until React is able to hydrate anything on your website. During this time, the website remained non-interactive.
+
+React 18 solves these problems by allowing us to combine streaming server-side rendering with a new approach to hydration: Selective Hydration!
+
+Instead of using `renderToString`, modern React SSR uses `renderToPipeableStream()` on Node runtimes or `renderToReadableStream()` on Web Stream runtimes.
+
+These APIs, in combination with `hydrateRoot()` and `Suspense`, make it possible to start streaming HTML without having to wait for the larger components to be ready. This means that we can lazy-load components when using SSR without blocking the hydration of the rest of the page.
+
+The `Comments` component, which earlier slowed down the tree generation and TTI, is now wrapped in `Suspense`. This tells React to not let this component slow down the rest of the tree generation. Instead, React inserts the fallback components as the initially rendered HTML, and continues to generate the rest of the tree before it's sent to the client.
+
+In the meantime, we're still fetching the external data that we need for the `Comments` component.
+
+Selective hydration makes it possible to already hydrate the components that were sent to the client, even before the `Comments` component has been sent!
+
+Once the data for the `Comments` component is ready, React starts streaming the HTML for this component, as well as a small `<script>` to replace the fallback loader.
+
+React starts the hydration after the new HTML has been injected.
+
+React 18 fixes some issues that people often encountered when using SSR with React.
+
+Streaming rendering allows you to start streaming components as soon as they're ready, without risking a slower FCP and TTI due to components that might take longer to generate on the server.
+
+Components can be hydrated as soon as they're streamed to the client, since we no longer have to wait for all JavaScript to load to start hydrating and can start interacting with the app before all components have been hydrated.
+
+## Source
+
+- [patterns.dev/react/react-selective-hydration](https://patterns.dev/react/react-selective-hydration)
+
+### References
+
+- [New Suspense SSR Architecture in React 18](https://github.com/reactwg/react-18/discussions/37)

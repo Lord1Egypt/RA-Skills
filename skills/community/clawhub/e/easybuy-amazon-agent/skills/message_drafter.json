@@ -1,0 +1,76 @@
+{
+  "name": "message_drafter",
+  "version": "1.1.0",
+  "description": "Drafts an after-sales message (price adjustment/refund) based on order and price context.",
+  "allowedTools": [
+    "browser.query"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "issue_summary": {
+        "type": "string"
+      },
+      "desired_resolution": {
+        "type": "string"
+      },
+      "order_id": {
+        "type": "string"
+      },
+      "asin": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "buy_price": {
+        "type": "string"
+      },
+      "current_price": {
+        "type": "string"
+      },
+      "observed_date": {
+        "type": "string"
+      },
+      "tone": {
+        "type": "string"
+      },
+      "language": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "issue_summary"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "draft_message": {
+        "type": "string"
+      },
+      "summary": {
+        "type": "string"
+      }
+    }
+  },
+  "notes": "No direct sending; used before amazon_contact_flow. Include order id, item title, buy price, current price, and observed date when available.",
+  "examples": [
+    {
+      "input": {
+        "issue_summary": "Price dropped after purchase",
+        "desired_resolution": "Refund the difference",
+        "order_id": "114-1234567-1234567",
+        "title": "Wireless Headphones",
+        "buy_price": "$59.99",
+        "current_price": "$49.99",
+        "observed_date": "2026-03-04"
+      },
+      "output": {
+        "summary": "Request price adjustment for a recent order.",
+        "draft_message": "Dear support, I noticed the price for Wireless Headphones has dropped since my purchase (Order 114-1234567-1234567). I paid $59.99, the current price is $49.99 (observed 2026-03-04). Please refund the difference. Thank you."
+      }
+    }
+  ],
+  "id": "message_drafter"
+}

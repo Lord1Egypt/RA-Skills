@@ -1,35 +1,53 @@
 ---
-name: "mcp-sanctions-check"
-description: "Check names against the OFAC SDN (Specially Designated Nationals) sanctions list via MCP. Downloads and caches official SDN CSV, auto-refreshes every 24h. Ca..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-sanctions-check"
-sourceUrl: "https://clawhub.ai/skills/mcp-sanctions-check"
+name: mcp-sanctions-check
+description: Check names against the OFAC SDN (Specially Designated Nationals) sanctions list via MCP. Downloads and caches official SDN CSV, auto-refreshes every 24h. Case-insensitive token matching with optional country filter. Use when agents need compliance screening before financial transactions.
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - npx
+    emoji: 🛡️
 ---
 
-# mcp-sanctions-check
+# Sanctions Check (OFAC SDN)
 
-> Check names against the OFAC SDN (Specially Designated Nationals) sanctions list via MCP. Downloads and caches official SDN CSV, auto-refreshes every 24h. Ca...
+Screen names against the US Treasury OFAC Specially Designated Nationals list.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-sanctions-check`
-- **Source URL:** [https://clawhub.ai/skills/mcp-sanctions-check](https://clawhub.ai/skills/mcp-sanctions-check)
+## Setup
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-sanctions-check
+```json
+{
+  "mcpServers": {
+    "sanctions-check": {
+      "command": "npx",
+      "args": ["-y", "@vbotholemu/mcp-sanctions-check"]
+    }
+  }
+}
 ```
+
+## Tool: `check_sanctions`
+
+| Parameter | Type   | Required | Description |
+|-----------|--------|----------|-------------|
+| name      | string | yes      | Name to check against SDN list |
+| country   | string | no       | Country to narrow results |
+
+### Example
+
+Check "John Doe" → returns match status, matched entries with type/programs/remarks, and timestamp.
+
+## How It Works
+
+- Downloads official OFAC SDN CSV on first call
+- Caches locally, refreshes every 24 hours
+- Case-insensitive, token-based matching (handles name variations)
+- Returns structured JSON with match boolean, entries array, and check timestamp
+
+## When to Use
+
+- Before processing payments or financial transactions
+- Customer onboarding / KYC screening
+- Compliance checks for international business
+- Charter booking verification (BVI, international waters)

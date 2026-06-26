@@ -1,0 +1,5 @@
+requests>=2.28.0
+Pillow>=9.0.0
+numpy>=1.21.0
+tos>=2.6.0
+pypdf>=4.0.0

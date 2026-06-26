@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "",
+  "taskToolMap": {},
+  "workflowCache": {},
+  "config": {
+    "memoizeThreshold": {
+      "successRate": 0.8,
+      "minCount": 3
+    },
+    "cacheExpiryDays": 30,
+    "searchTriggers": {
+      "newTaskType": true,
+      "toolFailure": true,
+      "cacheExpired": true,
+      "userRequest": true
+    }
+  }
+}

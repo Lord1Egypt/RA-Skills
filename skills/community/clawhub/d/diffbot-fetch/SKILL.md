@@ -1,35 +1,24 @@
 ---
-name: "Diffbot Fetch"
-description: "Fetch and extract clean article content from any URL using the Diffbot Article API. Returns clean Markdown."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/diffbot-fetch"
-sourceUrl: "https://clawhub.ai/skills/diffbot-fetch"
+name: diffbot-fetch
+description: Fetch and extract clean article content from any URL using the Diffbot Article API. Returns clean Markdown.
+requires:
+  - ENV: DIFFBOT_API_KEY
 ---
 
 # Diffbot Fetch
 
-> Fetch and extract clean article content from any URL using the Diffbot Article API. Returns clean Markdown.
+Use this skill to fetch and extract clean article content from any URL using the Diffbot Article API. Use this when you need to read the main text of an article, blog post, or news story without the clutter of ads, navigation, or sidebars.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/diffbot-fetch`
-- **Source URL:** [https://clawhub.ai/skills/diffbot-fetch](https://clawhub.ai/skills/diffbot-fetch)
+## Setup
 
-## Overview
+You need a Diffbot API token to use this skill. Set it as an environment variable:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/diffbot-fetch
+export DIFFBOT_API_KEY="your_token_here"
+```
+
+## Usage
+
+```bash
+uv run fetch.py "https://example.com/article"
 ```

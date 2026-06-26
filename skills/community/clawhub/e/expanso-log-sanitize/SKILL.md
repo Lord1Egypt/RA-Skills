@@ -1,35 +1,35 @@
----
-name: "Expanso log-sanitize"
-description: "Sanitize log entries by removing passwords, tokens, and other sensitive patterns using Expanso Edge pipelines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-log-sanitize"
-sourceUrl: "https://clawhub.ai/skills/expanso-log-sanitize"
----
+# log-sanitize
 
-# Expanso log-sanitize
+"Sanitize log entries by removing passwords, tokens, and sensitive patterns"
 
-> Sanitize log entries by removing passwords, tokens, and other sensitive patterns using Expanso Edge pipelines.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-log-sanitize`
-- **Source URL:** [https://clawhub.ai/skills/expanso-log-sanitize](https://clawhub.ai/skills/expanso-log-sanitize)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-log-sanitize
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/log-sanitize/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

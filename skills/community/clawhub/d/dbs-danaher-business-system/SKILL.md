@@ -1,35 +1,171 @@
 ---
-name: "DBS 丹纳赫业务系统"
-description: "丹纳赫业务系统（DBS - Danaher Business System）核心技能体系。 基于DBS三大支柱：精益（Lean）、增长（Growth）、领导力（Leadership）， 提炼为可操作、可评估的8项核心技能 + 4P框架 + 精益方法论。 整合丹纳赫400+战略并购与DBS结合方法论，涵盖并购全流程..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dbs-danaher-business-system"
-sourceUrl: "https://clawhub.ai/skills/dbs-danaher-business-system"
+name: dbs-danaher-business-system
+description: |
+  丹纳赫业务系统（DBS - Danaher Business System）核心技能体系。 
+  基于DBS三大支柱：精益（Lean）、增长（Growth）、领导力（Leadership），
+  提炼为可操作、可评估的8项核心技能 + 4P框架 + 精益方法论。
+  整合丹纳赫400+战略并购与DBS结合方法论，涵盖并购全流程、投后整合、分拆剥离与价值创造。
+  适用于企业数字化转型、运营优化、精益管理体系建设、并购整合、文化变革。
+  触发词：DBS、丹纳赫、Danaher、4P框架、精益管理、六西格玛、持续改善、
+  价值流图、A3报告、5S管理、标准化作业、Kaizen、Voice of Customer、
+  根本原因分析、问题解决、VSM、标准作业、政策部署、拉动系统、SPIN销售、
+  并购整合、M&A、投后赋能、分拆剥离、价值创造、戴维斯双击、XBS。
+agent_created: true
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+tags:
+  - 精益管理
+  - 丹纳赫
+  - DBS
+  - 并购整合
+  - 运营优化
+  - 六西格玛
+  - 价值流图
+  - 持续改善
 ---
 
-# DBS 丹纳赫业务系统
+# 丹纳赫业务系统（DBS）核心技能体系
 
-> 丹纳赫业务系统（DBS - Danaher Business System）核心技能体系。 基于DBS三大支柱：精益（Lean）、增长（Growth）、领导力（Leadership）， 提炼为可操作、可评估的8项核心技能 + 4P框架 + 精益方法论。 整合丹纳赫400+战略并购与DBS结合方法论，涵盖并购全流程...
+> Danaher Business System — 世界级运营管理体系 + 并购整合双轮驱动
+>
+> **来源：** 基于《丹纳赫业务系统（DBS）的核心技能体系》PDF、《丹纳赫模式》及IMA知识库
+> **版本：** 3.0（并购整合增强版）| **更新：** 2026-05-04
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dbs-danaher-business-system`
-- **Source URL:** [https://clawhub.ai/skills/dbs-danaher-business-system](https://clawhub.ai/skills/dbs-danaher-business-system)
+---
 
-## Overview
+## DBS三大支柱与核心技能总览
 
+DBS以三大支柱（**精益 Lean**、**增长 Growth**、**领导力 Leadership**）为核心，提炼为8项可操作、可评估的核心技能，辅以4P框架（Plan, Process, People, Performance）提供战略支撑。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dbs-danaher-business-system
-```
+---
+
+## 八大核心技能详解
+
+### 技能1：价值流图与浪费识别（VSM & Waste Identification）
+通过"观看"（Gemba Walk）和价值流图分析，系统识别七大浪费并设计未来精益状态图。
+**核心要素：** 绘制当前状态价值流图、识别改善爆发点、设计未来精益状态图
+**工具：** VSM图、流程框数据箱、改善爆发便签
+
+### 技能2：标准作业与5S可视化管理（Standard Work & 5S）
+定义人机结合的最佳方式（节拍时间、工作顺序、标准在制品），通过5S与可视化看板驱动持续改善。
+**核心要素：** 标准作业组合表、5S各步骤实施、单元KPI看板
+**工具：** 标准作业组合表、5S检查清单、+QDIP可视化看板
+
+### 技能3：拉动系统与现场库存管理（Pull System & IMAG）
+从推动式生产转向拉动式生产，通过看板、超市库存、PSI协同实现物料按需流动。
+**核心要素：** 看板数量计算、点对点领料超市、IMAG日清
+**工具：** 看板计算表、PSI协同会议模板、库存行动清单
+
+### 技能4：问题解决与根因分析（Problem Solving & RCA）
+运用结构化流程从KPI差距出发，找到根本原因并实施可持续的纠正措施。
+**核心要素：** 区分表象/认知点/原因点、鱼骨图与因果链分析、对策责任分配
+**工具：** 丹纳赫问题解决（PSP）表格、因果链模板
+
+### 技能5：日常管理与政策部署（Daily Management & Policy Deployment）
+将战略目标通过政策部署矩阵层层分解，结合每日巡视使高层战略与一线执行形成闭环。
+**核心要素：** 三层PD矩阵、每日巡视流程、目标跟踪与纠正
+**工具：** PD矩阵表、每日管理看板、运营节奏卡
+
+### 技能6：价值销售与客户之声（Value Selling & VoC）
+以客户问题为焦点，通过SPIN提问法挖掘痛点，量化产品价值，实现价值共创。
+**核心要素：** 显性/隐性需求区分、SPIN四步提问、角色扮演评分
+**工具：** SPIN角色扮演评估表、价值量化ROI模型、客户细分矩阵
+
+### 技能7：创新构思与加速产品开发（Ideation & NPD）
+通过结构化创意生成（TRIZ、领先用户法）与产品概念开发流程缩短产品上市周期。
+**核心要素：** "切换帽子"练习、7个创意概念生成、风险分析与成本评估
+**工具：** 创意构思漏斗、QFD表、产品概念评估矩阵
+
+### 技能8：人才培养与沉浸式领导力（Talent & Leadership）
+通过70-20-10学习发展模式、种子培育及导师制培养未来领导者。
+**核心要素：** 沉浸计划、少即是多原则、岗位轮岗深度>速度
+**工具：** 沉浸计划检查清单、业务案例模拟陈述模板
+
+---
+
+## 丹纳赫商业模式：长青并购基金 + 管理咨询机构
+
+四阶段进化：杠杆并购控股公司 → 精益运营工业公司 → 全球化多元化集团 → 专注医疗健康科技公司
+关键指标：营收CAGR≈12%，毛利率24%→61%，营业利润率5%→28%
+
+---
+
+## 400+战略并购与DBS结合方法论
+
+三管齐下并购流程：业务发展（运营公司层）+ 战略发展（集团层）+ 企业发展（交易执行）
+价值创造公式：β优化（进入更高成长低周期市场）+ α创造（DBS赋能+纪律性投资）= 戴维斯双击
+
+---
+
+## DBS投后整合三大支柱
+
+1. **组织保障**：首长负责制 + DBSO驻场辅导（大型并购可达50人+）
+2. **战略设计**：轻重缓急，少即是多，3-5个独特整合要素
+3. **DBS导入**：有舍有得，耐心有道，八大基础工具必导入，大型并购≈3年完整导入
+
+---
+
+## 分拆剥离三大原则
+
+策略驱动 + 零存整取 + 架构灵活
+丹纳赫系企业总市值约2230亿美元（含福迪威、Veralto、Vontier、盈纬达）
+
+---
+
+## 4P框架（战略支撑）
+
+- **Plan**：战略部署/X矩阵/年度运营计划
+- **Process**：精益流程/VSM/单件流/拉动系统
+- **People**：技能矩阵/多技能培养/领导力开发
+- **Performance**：KPI仪表板/每日管理/PDCA循环
+
+---
+
+## 核心方法论
+
+- **Kaizen持续改善**：小步快跑，全员参与
+- **六西格玛DMAIC**：定义→测量→分析→改进→控制
+- **精益管理五原则**：价值→价值流→流动→拉动→完美
+- **5S管理**：整理→整顿→清扫→清洁→素养
+
+---
+
+## XBS五步建设法
+
+1. 思想动员先行（创造紧迫感）
+2. 明确战略和目标（全面自我评估）
+3. 建立内外部支持组织（XBS负责人+1-3%团队）
+4. 积小胜为大胜（频尔首年300+次改善活动）
+5. 实时衡量持续进步（月度/季度/年度回顾）
+
+---
+
+## 战略并购四步法
+
+Step1定战略 → Step2育标的（5-10年孵育）→ Step3做交易（三重正确选择）→ Step4创价值（DBS赋能）
+
+---
+
+## DBS中国实践
+
+中国市场营收占比3%→12%，年均CAGR 13%。本土企业学习案例：美的MBS、药明生物WBS、瓶子星球JOS等。
+
+---
+
+## 使用场景速查
+
+| 场景 | 推荐模块 |
+|------|---------|
+| 运营优化 | 技能1-4（VSM/5S/拉动/RCA）|
+| 精益体系建设 | 技能1-4 + 4P框架 |
+| 战略并购 | 四步法 + 三管齐下方法论 |
+| 投后整合 | DBS投后整合 + XBS建设法 |
+| 业务组合优化 | 分拆剥离最佳实践 |
+
+---
+
+**维护者：** Jack Wang (wdj) | CFO, 上海三文投资集团  
+**版本：** 3.0（并购整合增强版）| **更新日期：** 2026-05-04

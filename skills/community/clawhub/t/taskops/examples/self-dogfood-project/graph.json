@@ -1,0 +1,431 @@
+{
+  "project": {
+    "id": "dogfood-phase1-project",
+    "title": "Dogfood TaskOps on its own repo",
+    "description": "A richer self-dogfood run that exercises repeated phases, step edges, direct statuses, and expected-vs-actual records",
+    "goal": "Prove the Phase 1 TaskOps contract is usable on a small real workflow",
+    "steps": [
+      {
+        "id": "step-self-dogfood",
+        "projectId": "dogfood-phase1-project",
+        "stepType": "implementation",
+        "description": "Exercise TaskOps against its own Phase 1 contract",
+        "phases": [
+          {
+            "id": "phase-diverge-surface-1",
+            "stepId": "step-self-dogfood",
+            "phaseType": "diverge",
+            "description": "Read the frozen Phase 1 contract surfaces",
+            "rootNodeId": "phase-diverge-surface-1-root",
+            "nodes": [
+              {
+                "id": "phase-diverge-surface-1-root",
+                "phaseId": "phase-diverge-surface-1",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-diverge-surface-1",
+                "status": "done"
+              },
+              {
+                "id": "node-read-phase1-spec",
+                "phaseId": "phase-diverge-surface-1",
+                "nodeType": "work",
+                "title": "Read the Phase 1 spec",
+                "description": "Recover the frozen hierarchy, simplifications, and acceptance criteria",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-4823a8aeb3",
+                    "nodeId": "node-read-phase1-spec",
+                    "expected": "Recover the frozen Phase 1 hierarchy and operating simplifications",
+                    "actual": "The spec already freezes the project/step/phase hierarchy, shared status vocabulary, direct edits, and expected-vs-actual node results",
+                    "status": "done",
+                    "artifacts": [
+                      "references/phase1-graph-task-spec.md"
+                    ],
+                    "at": "2026-04-24T02:43:12+00:00"
+                  }
+                ]
+              },
+              {
+                "id": "node-read-cli-surface",
+                "phaseId": "phase-diverge-surface-1",
+                "nodeType": "work",
+                "title": "Read the CLI reference",
+                "description": "Recover the actual command surface for direct graph edits",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-a6d7aada13",
+                    "nodeId": "node-read-cli-surface",
+                    "expected": "Recover the live CLI surface for direct graph editing",
+                    "actual": "The CLI already supports init, add-step, add-phase, add-node, connect edges, direct set-status, write-result, validate, and summary",
+                    "status": "done",
+                    "artifacts": [
+                      "references/cli.graph-task.md"
+                    ],
+                    "at": "2026-04-24T02:43:12+00:00"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-surface-1",
+                "phaseId": "phase-diverge-surface-1",
+                "fromNodeId": "phase-diverge-surface-1-root",
+                "toNodeId": "node-read-phase1-spec",
+                "edgeType": "flow"
+              },
+              {
+                "id": "edge-surface-2",
+                "phaseId": "phase-diverge-surface-1",
+                "fromNodeId": "node-read-phase1-spec",
+                "toNodeId": "node-read-cli-surface",
+                "edgeType": "dependency"
+              }
+            ],
+            "status": "done"
+          },
+          {
+            "id": "phase-verify-surface-1",
+            "stepId": "step-self-dogfood",
+            "phaseType": "verify",
+            "description": "Confirm the current contract is usable for live dogfooding",
+            "rootNodeId": "phase-verify-surface-1-root",
+            "nodes": [
+              {
+                "id": "phase-verify-surface-1-root",
+                "phaseId": "phase-verify-surface-1",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-verify-surface-1",
+                "status": "done"
+              },
+              {
+                "id": "node-verify-phase1-usable",
+                "phaseId": "phase-verify-surface-1",
+                "nodeType": "work",
+                "title": "Verify the Phase 1 surface is usable",
+                "description": "Decide whether the current contract is ready for a live dogfood run",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-058f3fce84",
+                    "nodeId": "node-verify-phase1-usable",
+                    "expected": "Decide whether the current contract is ready for a live dogfood run",
+                    "actual": "Yes — the Phase 1 surface is already usable for a small real workflow, and the best next check is a richer self-dogfood example",
+                    "status": "done",
+                    "artifacts": [],
+                    "at": "2026-04-24T02:43:12+00:00",
+                    "notes": "The contract is intentionally direct; the main unanswered question is ergonomics under longer use"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-verify-1",
+                "phaseId": "phase-verify-surface-1",
+                "fromNodeId": "phase-verify-surface-1-root",
+                "toNodeId": "node-verify-phase1-usable",
+                "edgeType": "flow"
+              }
+            ],
+            "status": "done"
+          },
+          {
+            "id": "phase-diverge-execution-2",
+            "stepId": "step-self-dogfood",
+            "phaseType": "diverge",
+            "description": "Build a richer self-dogfood example run",
+            "rootNodeId": "phase-diverge-execution-2-root",
+            "nodes": [
+              {
+                "id": "phase-diverge-execution-2-root",
+                "phaseId": "phase-diverge-execution-2",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-diverge-execution-2",
+                "status": "done"
+              },
+              {
+                "id": "node-build-self-dogfood-example",
+                "phaseId": "phase-diverge-execution-2",
+                "nodeType": "work",
+                "title": "Build the self-dogfood example",
+                "description": "Use the CLI to create a richer example that exercises repeated phases, step edges, and direct status updates",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-6b62dde9de",
+                    "nodeId": "node-build-self-dogfood-example",
+                    "expected": "Exercise repeated phases, step edges, statuses, and result records in one real example",
+                    "actual": "Built a richer self-dogfood run that uses repeated phases, a project-level step edge, explicit node edges, and direct status updates",
+                    "status": "done",
+                    "artifacts": [
+                      "examples/self-dogfood-project/graph.json",
+                      "examples/self-dogfood-project/summary.md"
+                    ],
+                    "at": "2026-04-24T02:43:12+00:00"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-execution-1",
+                "phaseId": "phase-diverge-execution-2",
+                "fromNodeId": "phase-diverge-execution-2-root",
+                "toNodeId": "node-build-self-dogfood-example",
+                "edgeType": "flow"
+              }
+            ],
+            "status": "done"
+          },
+          {
+            "id": "phase-verify-execution-2",
+            "stepId": "step-self-dogfood",
+            "phaseType": "verify",
+            "description": "Validate the generated run and inspect the summary",
+            "rootNodeId": "phase-verify-execution-2-root",
+            "nodes": [
+              {
+                "id": "phase-verify-execution-2-root",
+                "phaseId": "phase-verify-execution-2",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-verify-execution-2",
+                "status": "done"
+              },
+              {
+                "id": "node-validate-self-dogfood",
+                "phaseId": "phase-verify-execution-2",
+                "nodeType": "work",
+                "title": "Validate the generated run",
+                "description": "Run validate and inspect the generated summary for the self-dogfood example",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-4456001b6e",
+                    "nodeId": "node-validate-self-dogfood",
+                    "expected": "Prove the generated self-dogfood run stays structurally valid",
+                    "actual": "Validation passed on the generated run and the summary remained inspectable after repeated edits",
+                    "status": "done",
+                    "artifacts": [
+                      "examples/self-dogfood-project/summary.md"
+                    ],
+                    "at": "2026-04-24T02:43:12+00:00"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-execution-2",
+                "phaseId": "phase-verify-execution-2",
+                "fromNodeId": "phase-verify-execution-2-root",
+                "toNodeId": "node-validate-self-dogfood",
+                "edgeType": "flow"
+              }
+            ],
+            "status": "done"
+          },
+          {
+            "id": "phase-commit-execution-1",
+            "stepId": "step-self-dogfood",
+            "phaseType": "commit",
+            "description": "Lock the main conclusion from the execution step",
+            "rootNodeId": "phase-commit-execution-1-root",
+            "nodes": [
+              {
+                "id": "phase-commit-execution-1-root",
+                "phaseId": "phase-commit-execution-1",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-commit-execution-1",
+                "status": "done"
+              },
+              {
+                "id": "node-lock-execution-findings",
+                "phaseId": "phase-commit-execution-1",
+                "nodeType": "work",
+                "title": "Lock the execution finding",
+                "description": "Capture the main conclusion from the execution step",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-f4ddf21ed8",
+                    "nodeId": "node-lock-execution-findings",
+                    "expected": "Capture the main conclusion from the execution step",
+                    "actual": "Dogfooding confirmed that the Phase 1 contract is already usable for small real work without a separate mutation engine",
+                    "status": "done",
+                    "artifacts": [],
+                    "at": "2026-04-24T02:43:12+00:00",
+                    "notes": "The next pressure point is ergonomic help around closing phases and steps"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-commit-1",
+                "phaseId": "phase-commit-execution-1",
+                "fromNodeId": "phase-commit-execution-1-root",
+                "toNodeId": "node-lock-execution-findings",
+                "edgeType": "flow"
+              }
+            ],
+            "status": "done"
+          }
+        ],
+        "phaseEdges": [
+          {
+            "id": "phase-edge-1",
+            "stepId": "step-self-dogfood",
+            "fromPhaseId": "phase-diverge-surface-1",
+            "toPhaseId": "phase-verify-surface-1"
+          },
+          {
+            "id": "phase-edge-2",
+            "stepId": "step-self-dogfood",
+            "fromPhaseId": "phase-verify-surface-1",
+            "toPhaseId": "phase-diverge-execution-2"
+          },
+          {
+            "id": "phase-edge-3",
+            "stepId": "step-self-dogfood",
+            "fromPhaseId": "phase-diverge-execution-2",
+            "toPhaseId": "phase-verify-execution-2"
+          },
+          {
+            "id": "phase-edge-4",
+            "stepId": "step-self-dogfood",
+            "fromPhaseId": "phase-verify-execution-2",
+            "toPhaseId": "phase-commit-execution-1"
+          }
+        ],
+        "status": "done"
+      },
+      {
+        "id": "step-followups",
+        "projectId": "dogfood-phase1-project",
+        "stepType": "review",
+        "description": "Reduce the dogfood exercise to concrete next-step guidance",
+        "phases": [
+          {
+            "id": "phase-converge-findings-1",
+            "stepId": "step-followups",
+            "phaseType": "converge",
+            "description": "Synthesize what the dogfood run actually taught us",
+            "rootNodeId": "phase-converge-findings-1-root",
+            "nodes": [
+              {
+                "id": "phase-converge-findings-1-root",
+                "phaseId": "phase-converge-findings-1",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-converge-findings-1",
+                "status": "done"
+              },
+              {
+                "id": "node-summarize-findings",
+                "phaseId": "phase-converge-findings-1",
+                "nodeType": "work",
+                "title": "Summarize the dogfood findings",
+                "description": "Reduce the test to concrete strengths and rough edges",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-99a0fa344f",
+                    "nodeId": "node-summarize-findings",
+                    "expected": "Reduce the dogfood run to concrete strengths and rough edges",
+                    "actual": "Strengths: repeated phases, step edges, and result records compose cleanly. Rough edge: root, phase, step, and project completion still require explicit direct updates.",
+                    "status": "done",
+                    "artifacts": [],
+                    "at": "2026-04-24T02:43:12+00:00",
+                    "notes": "That rough edge is acceptable in Phase 1, but it is the clearest future ergonomic target"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-findings-1",
+                "phaseId": "phase-converge-findings-1",
+                "fromNodeId": "phase-converge-findings-1-root",
+                "toNodeId": "node-summarize-findings",
+                "edgeType": "flow"
+              }
+            ],
+            "status": "done"
+          },
+          {
+            "id": "phase-commit-findings-1",
+            "stepId": "step-followups",
+            "phaseType": "commit",
+            "description": "Choose the next smallest improvement without adding hidden automation",
+            "rootNodeId": "phase-commit-findings-1-root",
+            "nodes": [
+              {
+                "id": "phase-commit-findings-1-root",
+                "phaseId": "phase-commit-findings-1",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-commit-findings-1",
+                "status": "done"
+              },
+              {
+                "id": "node-choose-next-improvement",
+                "phaseId": "phase-commit-findings-1",
+                "nodeType": "work",
+                "title": "Choose the next smallest improvement",
+                "description": "Select a low-complexity follow-up that preserves the direct-edit model",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-e09a456218",
+                    "nodeId": "node-choose-next-improvement",
+                    "expected": "Pick the next smallest improvement that preserves the direct-edit model",
+                    "actual": "Stay with direct edits, but consider a visible helper later for closing a phase or step without introducing hidden transitions",
+                    "status": "done",
+                    "artifacts": [],
+                    "at": "2026-04-24T02:43:12+00:00"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-findings-2",
+                "phaseId": "phase-commit-findings-1",
+                "fromNodeId": "phase-commit-findings-1-root",
+                "toNodeId": "node-choose-next-improvement",
+                "edgeType": "flow"
+              }
+            ],
+            "status": "done"
+          }
+        ],
+        "phaseEdges": [
+          {
+            "id": "phase-edge-5",
+            "stepId": "step-followups",
+            "fromPhaseId": "phase-converge-findings-1",
+            "toPhaseId": "phase-commit-findings-1"
+          }
+        ],
+        "status": "done"
+      }
+    ],
+    "stepEdges": [
+      {
+        "id": "step-edge-1",
+        "projectId": "dogfood-phase1-project",
+        "fromStepId": "step-self-dogfood",
+        "toStepId": "step-followups"
+      }
+    ],
+    "status": "done"
+  }
+}

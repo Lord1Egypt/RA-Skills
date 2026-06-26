@@ -1,35 +1,18 @@
 ---
-name: "magister.net"
-description: "Fetch schedule, grades, and infractions from https://magister.net 🇳🇱 portal"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/magister"
-sourceUrl: "https://clawhub.ai/skills/magister"
+name: magister
+description: Fetch schedule, grades, and infractions from https://magister.net 🇳🇱 portal
+metadata: {"clawdbot":{"emoji":"🇲","requires":{"bins":["node"],"env":["MAGISTER_HOST","MAGISTER_USER","MAGISTER_PASSWORD"]}}}
 ---
+# Commands
 
-# magister.net
-
-> Fetch schedule, grades, and infractions from https://magister.net 🇳🇱 portal
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/magister`
-- **Source URL:** [https://clawhub.ai/skills/magister](https://clawhub.ai/skills/magister)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/magister
+node magister.mjs students                       # list students (works for parent and child credentials)
+node magister.mjs schedule <id> <from> <to>      # schedule, YYYY-MM-DD dates
+node magister.mjs grades <aanmelding_id> [top]   # grades (default top=50)
+node magister.mjs infractions <id> <from> <to>   # absences
 ```
+
+# Flow
+
+Run `students` first to get each student's `id` and `aanmelding_id`. Use `id` for schedule and infractions, `aanmelding_id` for grades.
+

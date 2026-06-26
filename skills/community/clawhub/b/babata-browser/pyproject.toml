@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "babata-browser"
+version = "3.1.0"
+description = "巴巴塔浏览器控制工具 — CloakBrowser C++级反检测(30/30 bot test pass) + Playwright fallback 双后端轻量浏览器自动化"
+requires-python = ">=3.10"
+dependencies = [
+    "playwright>=1.40",
+    "cloakbrowser>=0.3",
+]
+
+[project.optional-dependencies]
+playwright-only = ["playwright>=1.40"]
+
+[project.scripts]
+babata-browser = "scripts.babata_browser:main_cli"
+
+[tool.setuptools.packages.find]
+include = ["scripts*"]

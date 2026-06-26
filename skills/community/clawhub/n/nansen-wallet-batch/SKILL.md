@@ -1,35 +1,26 @@
 ---
-name: "Nansen Wallet Batch"
+name: nansen-wallet-batch
 description: "Which of these addresses are smart money? Batch-profile a list in one call."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-wallet-batch"
-sourceUrl: "https://clawhub.ai/skills/nansen-wallet-batch"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
-
-# Nansen Wallet Batch
-
-> Which of these addresses are smart money? Batch-profile a list in one call.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-wallet-batch`
-- **Source URL:** [https://clawhub.ai/skills/nansen-wallet-batch](https://clawhub.ai/skills/nansen-wallet-batch)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-wallet-batch
+ADDRESSES="0xaddr1,0xaddr2,0xaddr3,..." CHAIN=ethereum
+nansen research profiler batch --addresses "$ADDRESSES" --chain $CHAIN --include labels,balance
+# → .data.{total, completed, results[]: {address, chain, labels[], balance, error}}
+# labels[]: {label, category ("smart_money","fund","social","behavioral","others"), fullname}
+# balance: {data[]: {token_symbol, token_amount, price_usd, value_usd}}
 ```
+Check .error per result — invalid addresses return an error message, not a crash. Skip those.
+Keep addresses where any label.category == "smart_money" or "fund". Omit balance for faster checks.

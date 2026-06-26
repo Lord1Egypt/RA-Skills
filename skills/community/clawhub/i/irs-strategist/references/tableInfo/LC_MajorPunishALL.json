@@ -1,0 +1,172 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "公告日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "PublTitle",
+        "columnChiName": "公告标题",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "IssuanceOrg",
+        "columnChiName": "发布机构",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "发布机构（IssuanceOrg）：与机构基本资料表（LC_InstiArchive）中的“企业编号（CompanyCode）”关联，得到处罚机构的具体详情。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "AdminNumber",
+        "columnChiName": "行政文号",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "49.72"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "AdminState",
+        "columnChiName": "行政状态",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "行政状态(AdminState)与(CT_SystemConst)表中的DM字段关联，令LB = 1747，得到行政状态的具体描述：1-正常，2-维持，3-立案调查，4-送达公告，5-举行听证，6-提起诉讼，7-审理终结，8-延期回复，9-已回复，98-不予受理，99-撤消。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "IllegalType",
+        "columnChiName": "违规类型",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 1,
+        "fieldExplain": "1744",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "AdminReconN",
+        "columnChiName": "行政复议文号",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "EventContent",
+        "columnChiName": "事项内容",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.01"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "ManageResolve",
+        "columnChiName": "处理决定",
+        "columnType": "varchar(2000)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "InvolveStock",
+        "columnChiName": "涉及股票",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 2,
+        "fieldExplain": "对应SecuMain表中的InnerCode字段",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "RID",
+        "columnChiName": "非文本记录ID",
+        "columnType": "bigint",
+        "isNullable": 1,
+        "remark": "非文本记录ID（RID）：与“公司公告原文非文本 LC_NotTextAnnouncement”的【ID】字段关联，可获得公告详情",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "AdminType",
+        "columnChiName": "行政类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 3,
+        "fieldExplain": "1782",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

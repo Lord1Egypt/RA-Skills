@@ -1,0 +1,9 @@
+{
+  "command": "git status",
+  "decision": "allow",
+  "agent": {
+    "detected": "unknown",
+    "trust_level": "medium",
+    "detection_method": "none"
+  }
+}

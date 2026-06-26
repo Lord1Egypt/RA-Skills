@@ -1,0 +1,50 @@
+{
+  "agents": [
+    {
+      "id": "health_advisor",
+      "name": "健康顾问",
+      "description": "负责健康、运动、饮食、体检提醒",
+      "sessionKey": "agent:health_advisor:main",
+      "enabled": true,
+      "schedule": {
+        "daily_check": "08:00",
+        "weekly_review": "Sunday 20:00"
+      }
+    },
+    {
+      "id": "parenting_advisor",
+      "name": "育儿顾问",
+      "description": "负责育儿、教育、家庭活动、成长记录",
+      "sessionKey": "agent:parenting_advisor:main",
+      "enabled": true,
+      "schedule": {
+        "daily_check": "09:00",
+        "weekly_review": "Sunday 21:00"
+      }
+    },
+    {
+      "id": "startup_advisor",
+      "name": "创业顾问",
+      "description": "负责创业、流量、AI 咨询、内容创作",
+      "sessionKey": "agent:startup_advisor:main",
+      "enabled": true,
+      "schedule": {
+        "daily_check": "10:00",
+        "weekly_review": "Sunday 22:00"
+      }
+    },
+    {
+      "id": "investment_advisor",
+      "name": "投资顾问",
+      "description": "负责投资、理财、财务规划、风险评估",
+      "sessionKey": "agent:investment_advisor:main",
+      "enabled": true,
+      "schedule": {
+        "daily_check": "11:00",
+        "weekly_review": "Sunday 23:00"
+      }
+    }
+  ],
+  "created_at": "2026-03-04T11:48:00+08:00",
+  "updated_at": "2026-03-04T11:48:00+08:00"
+}

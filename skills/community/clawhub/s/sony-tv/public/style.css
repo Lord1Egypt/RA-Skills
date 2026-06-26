@@ -1,0 +1,361 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #1a1a1a;
+  --surface-hover: #252525;
+  --surface-active: #333;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --text-dim: #888;
+  --accent: #0066ff;
+  --accent-glow: rgba(0, 102, 255, 0.3);
+  --danger: #ff3b30;
+  --success: #34c759;
+  --netflix: #e50914;
+  --youtube: #ff0000;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sony-logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text);
+}
+
+.tv-model {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-left: 8px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--success);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Sections */
+.section {
+  padding: 16px 20px;
+}
+
+.section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+/* Buttons - base */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn:active {
+  background: var(--surface-active);
+  transform: scale(0.96);
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Power Row */
+.power-row {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-power {
+  flex: 1;
+  padding: 14px;
+  border-color: rgba(255, 59, 48, 0.3);
+  color: var(--danger);
+}
+
+.btn-power:active {
+  background: rgba(255, 59, 48, 0.15);
+}
+
+.btn-power-on {
+  flex: 1;
+  padding: 14px;
+  border-color: rgba(52, 199, 89, 0.3);
+  color: var(--success);
+}
+
+.btn-power-on:active {
+  background: rgba(52, 199, 89, 0.15);
+}
+
+/* D-Pad */
+.dpad-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 64px);
+  gap: 4px;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+.btn-dpad {
+  padding: 0;
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.btn-dpad:active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.btn-dpad svg {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-up {
+  grid-column: 2;
+  grid-row: 1;
+  border-radius: var(--radius) var(--radius) 4px 4px;
+}
+
+.btn-left {
+  grid-column: 1;
+  grid-row: 2;
+  border-radius: var(--radius) 4px 4px var(--radius);
+}
+
+.btn-right {
+  grid-column: 3;
+  grid-row: 2;
+  border-radius: 4px var(--radius) var(--radius) 4px;
+}
+
+.btn-down {
+  grid-column: 2;
+  grid-row: 3;
+  border-radius: 4px 4px var(--radius) var(--radius);
+}
+
+.btn-confirm {
+  grid-column: 2;
+  grid-row: 2;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  margin: auto;
+}
+
+.btn-confirm:active {
+  background: #0052cc;
+  transform: scale(0.92);
+}
+
+/* Function Rows */
+.func-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.func-row:last-child {
+  margin-bottom: 0;
+}
+
+.btn-func {
+  flex: 1;
+  padding: 12px 8px;
+  font-size: 13px;
+}
+
+.btn-func svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Volume */
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-vol {
+  flex: 1;
+  padding: 14px 8px;
+}
+
+.volume-display {
+  min-width: 60px;
+  text-align: center;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+#volumeText {
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+/* Channel */
+.channel-row {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-ch {
+  flex: 1;
+  padding: 14px;
+}
+
+/* Input Grid */
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.btn-input {
+  padding: 14px 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Media Row */
+.media-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-media {
+  width: 56px;
+  height: 48px;
+  padding: 0;
+}
+
+.btn-media:active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.btn-play {
+  width: 64px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.btn-play:active {
+  background: #0052cc;
+}
+
+/* Feedback Toast */
+.feedback {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 20px 32px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  text-align: center;
+}
+
+.feedback.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Desktop adjustments */
+@media (min-width: 480px) {
+  .remote {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .remote {
+    max-width: 400px;
+  }
+}

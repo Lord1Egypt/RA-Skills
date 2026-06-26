@@ -1,0 +1,23 @@
+{
+  "name": "elastolink",
+  "version": "1.0.0",
+  "description": "elastolink - openclaw skills",
+  "keywords": [
+    "elastolink"
+  ],
+  "homepage": "https://github.com/elastolink/skills#readme",
+  "bugs": {
+    "url": "https://github.com/elastolink/skills/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elastolink/skills.git"
+  },
+  "license": "MIT",
+  "author": "neo <netkiller@msn.com>",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "skill",
+  "name": "edit",
+  "lastUpdated": "2026-03-18T02:45:47.020414+08:00",
+  "totalExecutions": 7,
+  "successCount": 0,
+  "failureCount": 7,
+  "experiences": [
+    {
+      "mistake": "oldText不匹配 exact text（空格、换行不一致）",
+      "when": "替换文件内容",
+      "avoidance": "oldText必须完全匹配原文件内容，包括所有空格和换行，复制原文时要完整复制",
+      "count": 5
+    },
+    {
+      "mistake": "修改后不验证结果，重复修改导致内容重复",
+      "when": "完成替换后",
+      "avoidance": "修改后必须读取文件验证修改正确，再进行下一步",
+      "count": 2
+    }
+  ],
+  "patterns": {
+    "commonMistakes": [
+      "oldText 不匹配原始文本（空格/换行不一致）",
+      "修改后不验证结果，导致内容重复错误",
+      "一次修改多处，匹配失败难以调试",
+      "只改单个属性，上下文不够导致多匹配失败"
+    ],
+    "bestPractices": [
+      "oldText 必须完全匹配原文，包括所有空格和换行",
+      "修改后立即读取验证，确保正确再继续",
+      "小步修改，一次只改一处，降低失败概率",
+      "多匹配场景要带上足够上下文（前后几行）确保唯一匹配"
+    ]
+  }
+}

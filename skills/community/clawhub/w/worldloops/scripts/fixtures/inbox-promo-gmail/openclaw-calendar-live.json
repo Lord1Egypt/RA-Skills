@@ -1,0 +1,13 @@
+{
+  "events": [
+    {
+      "id": "daily-brief-test-cal-002",
+      "summary": "Weekly planning review",
+      "description": "Regular sync meeting.",
+      "start": "2026-05-21T14:00:00.000Z",
+      "end": "2026-05-21T15:00:00.000Z",
+      "location": "Zoom"
+    }
+  ],
+  "count": 1
+}

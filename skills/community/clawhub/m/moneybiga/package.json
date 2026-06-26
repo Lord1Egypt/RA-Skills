@@ -1,0 +1,15 @@
+{
+  "name": "moneybigA",
+  "version": "1.0.0",
+  "description": "机构级 A股/港股/美股多维分析引擎。融合筹码分布、威科夫方法、SMC智能资金、波浪理论、MACD背离、杜邦分析、DCF估值、多因子Alpha等先进框架。输出交互式 HTML 仪表盘，含买卖信号、风险评级、置信度评分。",
+  "author": "Cosmos Fang",
+  "license": "MIT",
+  "keywords": [
+    "stock", "finance", "A-share", "technical-analysis", "fundamental-analysis",
+    "smart-money", "wyckoff", "SMC", "elliott-wave", "chip-distribution",
+    "quantitative", "alpha-factor", "DCF", "valuation"
+  ],
+  "scripts": {
+    "start": "echo 'moneybigA skill loaded'"
+  }
+}

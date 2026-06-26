@@ -1,0 +1,10 @@
+{
+  "name": "zeelin-writing",
+  "version": "1.0.0",
+  "description": "自媒体写作助手 - 本地脚本依赖",
+  "private": true,
+  "dependencies": {
+    "juice": "^10.0.1",
+    "marked": "^12.0.0"
+  }
+}

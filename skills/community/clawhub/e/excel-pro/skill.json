@@ -1,0 +1,50 @@
+{
+  "name": "excel-pro",
+  "version": "2.0.0",
+  "description": "The Spreadsheet Operator. A diagnostic engine that selects the best tool—formula, pivot table, cleaning workflow, or VBA—and delivers copy-paste-ready spreadsheet solutions.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://github.com/qclawbot/excel-skill",
+  "keywords": [
+    "excel",
+    "spreadsheet",
+    "formula",
+    "pivot table",
+    "vba",
+    "data cleaning",
+    "financial modeling",
+    "google sheets"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "diagnostic_engine": "Analyzes the spreadsheet problem and selects the optimal tool",
+    "formula_architecture": "Builds resilient lookup, logic, and dynamic-array formulas",
+    "reporting_design": "Chooses pivot tables and summary structures for recurring analysis",
+    "cleaning_workflow": "Designs data-normalization and cleanup paths for messy source data",
+    "vba_precision": "Writes maintainable automation scripts only when automation is truly needed",
+    "wrong_move_suppression": "Prevents fragile spreadsheet practices before they spread"
+  },
+  "triggers": [
+    "solve excel problem",
+    "write formula",
+    "build pivot table",
+    "clean messy data",
+    "write vba macro",
+    "financial model help",
+    "spreadsheet error diagnosis"
+  ],
+  "audience": [
+    "Spreadsheet users",
+    "Finance analysts",
+    "Operations teams",
+    "People who need practical spreadsheet solutions without tutorial overload"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {
+      "env": []
+    }
+  }
+}

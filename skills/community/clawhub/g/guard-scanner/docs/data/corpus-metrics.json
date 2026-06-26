@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-03-14T10:56:19.119Z",
+  "corpus": {
+    "benign": 17,
+    "malicious": 15
+  },
+  "precision": 1,
+  "recall": 1,
+  "false_positive_rate": 0,
+  "false_negative_rate": 0
+}

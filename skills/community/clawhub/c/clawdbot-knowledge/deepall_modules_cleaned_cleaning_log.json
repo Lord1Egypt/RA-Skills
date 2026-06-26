@@ -1,0 +1,72 @@
+[
+  {
+    "timestamp": "2026-02-07T00:58:44.587297",
+    "action": "DATEN LADEN",
+    "details": "Erfolgreich geladen: 215 Zeilen, 26 Spalten"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.588873",
+    "action": "SELBSTVERBESSERUNG BEREINIGT",
+    "details": "159 Einträge bereinigt"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.589485",
+    "action": "NEUE VERTEILUNG",
+    "details": "Top 3: {'unspecified': 159, 'batch processing': 22, 'real-time streaming': 14}"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.590725",
+    "action": "TECHNOLOGIE BEREINIGT",
+    "details": "105 Einträge bereinigt"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.591208",
+    "action": "NEUE VERTEILUNG",
+    "details": "Top 3: {'unspecified': 105, 'data exchange': 21, 'unsupervised learning': 21}"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.592169",
+    "action": "LESERECHTE BEREINIGT",
+    "details": "215 Einträge bereinigt"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.592552",
+    "action": "NEUE VERTEILUNG",
+    "details": "Top 3: {'unspecified': 161, 'synehsx_pattern': 52, 'alle spalten': 2}"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.593682",
+    "action": "KATEGORIEN STANDARDISIERT",
+    "details": "121 Einträge bereinigt"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.597080",
+    "action": "KEINE DUPLIKATE",
+    "details": "Keine doppelten Einträge gefunden"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.597098",
+    "action": "DATENVALIDIERUNG",
+    "details": "Starte Validierung..."
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.598565",
+    "action": "NAN WERTE GEFUNDEN",
+    "details": "Spalten mit NaN: {'core_module': 2, 'index': 14, 'synergy_index_history': 207}"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.602040",
+    "action": "KEINE LEEREN STRINGS",
+    "details": "Keine leeren Strings gefunden"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.602055",
+    "action": "DATENSTATISTIK",
+    "details": "Bereinigte Daten: 215 Zeilen, 26 Spalten"
+  },
+  {
+    "timestamp": "2026-02-07T00:58:44.608608",
+    "action": "DATEN GESPEICHERT",
+    "details": "Bereinigte Daten gespeichert: /home/deepall/clawd/my-mcp-server/deepall_modules_cleaned.csv"
+  }
+]

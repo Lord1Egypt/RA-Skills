@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-01T08:48:18.187564",
+  "items": [
+    {
+      "id": "c3436d4d",
+      "title": "A股模拟账户 - 持仓5只（美的/中联/泸州/胜宏/鹏鼎），每只10万，共50万",
+      "created": "2026-04-01T08:48:11.766982",
+      "deadline": "2026-04-01",
+      "status": "pending",
+      "tag": "paper_trading",
+      "system": true,
+      "notes": "昨日扫描候选股，09:25推送买入信号，15:05每日扫描持仓止损止盈"
+    },
+    {
+      "id": "ecb77cf5",
+      "title": "BTC MACD实盘监控 - 监控MACD金叉/死叉信号，diff<100每分钟检查，diff<200每5分钟检查",
+      "created": "2026-04-01T08:48:18.187549",
+      "deadline": null,
+      "status": "pending",
+      "tag": "btc_monitor",
+      "system": true,
+      "notes": "脚本: monitor_macd.py，pending队列推送至QQ，HEARTBEAT每30分钟推送一次"
+    }
+  ]
+}

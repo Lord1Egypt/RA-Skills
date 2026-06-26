@@ -1,0 +1,15 @@
+{
+  "exact_rules": [
+    {"pattern": "白云", "replacement": "黑水"},
+    {"pattern": "南方", "replacement": "北风"},
+    {"pattern": "南航", "replacement": "北辰"},
+    {"pattern": "国际货站", "replacement": "超级货站"},
+    {"pattern": "进港室", "replacement": "进口室"},
+    {"pattern": "广州", "replacement": "镇北"}
+  ],
+  "regex_rules": [
+    {"pattern": "1[3-9]\\d{9}", "label": "手机号"},
+    {"pattern": "\\d{6}(?:19|20)\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\\d|3[01])\\d{3}[\\dXx]", "label": "身份证号"},
+    {"pattern": "[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}", "label": "邮箱"}
+  ]
+}

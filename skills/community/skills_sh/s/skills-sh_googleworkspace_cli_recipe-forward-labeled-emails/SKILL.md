@@ -1,35 +1,29 @@
 ---
-name: "recipe-forward-labeled-emails"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-forward-labeled-emails"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-forward-labeled-emails"
+name: recipe-forward-labeled-emails
+description: "Find Gmail messages with a specific label and forward them to another address."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
 ---
 
-# recipe-forward-labeled-emails
+# Forward Labeled Gmail Messages
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-forward-labeled-emails`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-forward-labeled-emails](https://skills.sh/googleworkspace/cli/recipe-forward-labeled-emails)
+Find Gmail messages with a specific label and forward them to another address.
 
-## Overview
+## Steps
 
+1. Find labeled messages: `gws gmail users messages list --params '{"userId": "me", "q": "label:needs-review"}' --format table`
+2. Get message content: `gws gmail users messages get --params '{"userId": "me", "id": "MSG_ID"}'`
+3. Forward via new email: `gws gmail +send --to manager@company.com --subject 'FW: [Original Subject]' --body 'Forwarding for your review:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-forward-labeled-emails
-```
+[Original Message Body]'`
+

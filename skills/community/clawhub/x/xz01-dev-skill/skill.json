@@ -1,0 +1,33 @@
+{
+  "name": "xz01-dev-skill",
+  "version": "1.0.44",
+  "description": "Hermes xz01 workflow skill: role boundaries, theme-only template development, validation gates, visual-only search, dynamic dual-end navigation, full-page visual QA, iconized app/game resources, and strict xz01_demo pagination including common_data page-code chain validation with data-volume-aware empty pagination handling.",
+  "tags": [
+    "xz01-dev-skill",
+    "xz01规范",
+    "xz01",
+    "hermes",
+    "openclaw",
+    "template-workflow",
+    "theme-only",
+    "visual-only-search",
+    "dynamic-navigation",
+    "dual-end-navigation",
+    "list-pagination",
+    "xz01-demo-pagination",
+    "common-data-chain",
+    "page-code",
+    "no-custom-pager",
+    "non-rank-list-pages",
+    "pc-page-numbers",
+    "mobile-prev-next",
+    "read-only-boundary",
+    "detail-pages",
+    "mixed-sidebar",
+    "validation",
+    "full-page-screenshot",
+    "visual-qa",
+    "resource-cards",
+    "iconized-app-items"
+  ]
+}

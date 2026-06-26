@@ -1,35 +1,63 @@
 ---
-name: "GitHub Code Analyzer"
-description: "Clone and analyze GitHub project code quality using DeepSeek AI"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-code-analyzer"
-sourceUrl: "https://clawhub.ai/skills/github-code-analyzer"
+name: github-code-analyzer
+description: Clone and analyze GitHub project code quality using DeepSeek AI
 ---
-
 # GitHub Code Analyzer
 
-> Clone and analyze GitHub project code quality using DeepSeek AI
+A skill for analyzing GitHub repository code quality, bugs, and security issues using DeepSeek AI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-code-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/github-code-analyzer](https://clawhub.ai/skills/github-code-analyzer)
+## Features
 
-## Overview
+- Clone any public GitHub repository
+- Analyze project structure
+- Identify code bugs and security vulnerabilities
+- Provide improvement suggestions
+- Support multiple AI models
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/github-code-analyzer
 ```
+analyze https://github.com/owner/repo
+analyze https://github.com/owner/repo --model deepseek
+```
+
+## Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| repo | string | GitHub repository URL | required |
+| model | string | AI model to use (deepseek, deepseek-coder) | deepseek |
+
+## Examples
+
+```bash
+# Analyze a repository
+analyze https://github.com/Openwrt-Passwall/openwrt-passwall
+
+# Use specific model
+analyze https://github.com/facebook/react --model deepseek-coder
+```
+
+## Supported Models
+
+- `deepseek` - General purpose analysis
+- `deepseek-coder` - Optimized for code analysis
+
+## Output
+
+The analyzer provides:
+1. Project structure overview
+2. Code quality assessment
+3. Bug and security issue identification
+4. Improvement suggestions
+
+## Technical Details
+
+- Uses git clone with --depth 1 for fast cloning
+- Samples code files from multiple languages
+- Integrates with DeepSeek API for AI analysis
+- Falls back to structure-only analysis if API fails
+
+## License
+
+MIT

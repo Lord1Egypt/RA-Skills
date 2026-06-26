@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>公众号文章批量抓取工具</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: "Microsoft YaHei", Arial, sans-serif; 
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        .tab-container { margin-bottom: 20px; }
+        .tabs { display: flex; border-bottom: 2px solid #eee; }
+        .tab { 
+            padding: 12px 24px; 
+            cursor: pointer; 
+            background-color: #fff; 
+            border: none; 
+            font-size: 16px;
+            margin-right: 4px;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab.active { background-color: #07c160; color: #fff; }
+        .tab-content { background-color: #fff; padding: 30px; border-radius: 0 8px 8px 8px; display: none; }
+        .tab-content.active { display: block; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #34495e; }
+        input, textarea, select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            font-size: 14px;
+        }
+        .btn { 
+            background-color: #07c160; 
+            color: #fff; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .btn:hover { background-color: #06ad56; }
+        .btn-success { background-color: #27ae60; }
+        .btn-success:hover { background-color: #229954; }
+        .btn-warning { background-color: #f39c12; }
+        .btn-warning:hover { background-color: #e67e22; }
+        .btn-danger { background-color: #e74c3c; }
+        .btn-danger:hover { background-color: #c0392b; }
+        .btn:disabled { background-color: #95a5a6; cursor: not-allowed; }
+        .status-info { 
+            padding: 15px; 
+            border-radius: 4px; 
+            margin: 20px 0;
+            display: none;
+        }
+        .status-info.running { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .status-info.completed { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-info.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .articles-table { margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background-color: #f8f9fa; font-weight: bold; }
+        .export-buttons { margin-top: 20px; text-align: right; }
+        .tips { 
+            background-color: #e3f2fd; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            color: #1565c0;
+        }
+        .payment-note {
+            background-color: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .test-mode {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress {
+            height: 100%;
+            background-color: #07c160;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📰 微信公众号文章批量抓取工具</h1>
+        
+        {% if test_mode %}
+        <div class="test-mode">
+            ✅ 当前处于测试模式，无需真实支付即可使用所有功能
+        </div>
+        {% else %}
+        <div class="payment-note">
+            <strong>💳 支付说明：</strong>每次使用本工具收取 0.001 USDT，请先完成支付验证
+            <br><a href="/pay" class="btn btn-warning" style="margin-top: 10px;">点击支付</a>
+        </div>
+        {% endif %}
+
+        <div class="tips">
+            <strong>💡 使用提示：</strong>
+            <ul>
+                <li>输入微信公众号主页链接，即可批量抓取历史文章</li>
+                <li>支持导出为Markdown、Excel格式</li>
+                <li>自动提取文章标题、发布时间、阅读量、点赞量等数据</li>
+                <li>已抓取的文章自动去重，不会重复抓取</li>
+                <li>当前为演示版本，返回模拟数据，实际使用需要配置真实抓取逻辑</li>
+            </ul>
+        </div>
+
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('scrape')">新建抓取</button>
+                <button class="tab" onclick="switchTab('history')">历史任务</button>
+            </div>
+
+            <!-- 新建抓取 -->
+            <div class="tab-content active" id="scrape-tab">
+                <div class="form-group">
+                    <label for="oa-url">公众号主页链接：</label>
+                    <input type="text" id="oa-url" placeholder="例如：https://mp.weixin.qq.com/mp/homepage?__biz=MzI5NDEwNzA1Mw==&hid=1&sn=abcdefg">
+                </div>
+                <div class="form-group">
+                    <label for="max-count">最大抓取数量：</label>
+                    <select id="max-count">
+                        <option value="10">最新10篇</option>
+                        <option value="50">最新50篇</option>
+                        <option value="100" selected>最新100篇</option>
+                        <option value="500">最新500篇</option>
+                        <option value="9999">全部文章</option>
+                    </select>
+                </div>
+                <button class="btn btn-success" onclick="startScrape()">🚀 开始抓取</button>
+                
+                <div class="status-info" id="status-info">
+                    <h3 id="status-text">正在抓取中...</h3>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress" style="width: 0%"></div>
+                    </div>
+                    <p id="status-detail"></p>
+                </div>
+
+                <div id="articles-container" style="display: none; margin-top: 30px;">
+                    <h3>抓取完成，共 <span id="article-count">0</span> 篇文章</h3>
+                    <div class="export-buttons">
+                        <button class="btn btn-warning" onclick="exportData('markdown')">📝 导出Markdown</button>
+                        <button class="btn btn-success" onclick="exportData('excel')">📊 导出Excel</button>
+                    </div>
+                    <div class="articles-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>文章标题</th>
+                                    <th>作者</th>
+                                    <th>发布时间</th>
+                                    <th>阅读量</th>
+                                    <th>点赞</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="articles-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史任务 -->
+            <div class="tab-content" id="history-tab">
+                <h3>历史抓取任务</h3>
+                <div id="history-list">
+                    <p>暂无历史任务</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTaskId = null;
+
+        // 切换标签
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            if (tabName === 'history') loadHistory();
+        }
+
+        // 开始抓取
+        async function startScrape() {
+            const url = document.getElementById('oa-url').value;
+            const maxCount = document.getElementById('max-count').value;
+            
+            if (!url || !url.includes('mp.weixin.qq.com')) {
+                alert('请输入有效的微信公众号链接');
+                return;
+            }
+
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '抓取中...';
+
+            document.getElementById('status-info').style.display = 'block';
+            document.getElementById('status-info').className = 'status-info running';
+            document.getElementById('status-text').textContent = '正在抓取中...';
+            document.getElementById('progress').style.width = '0%';
+            document.getElementById('articles-container').style.display = 'none';
+
+            try {
+                const res = await fetch('/create_task', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `url=${encodeURIComponent(url)}&max_count=${maxCount}`
+                });
+                const data = await res.json();
+                
+                currentTaskId = data.task_id;
+                document.getElementById('article-count').textContent = data.article_count;
+                
+                // 模拟进度
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    document.getElementById('progress').style.width = `${Math.min(progress, 100)}%`;
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        showResults();
+                    }
+                }, 300);
+                
+            } catch (e) {
+                document.getElementById('status-info').className = 'status-info error';
+                document.getElementById('status-text').textContent = '抓取失败，请重试';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🚀 开始抓取';
+            }
+        }
+
+        // 显示抓取结果
+        async function showResults() {
+            document.getElementById('status-info').className = 'status-info completed';
+            document.getElementById('status-text').textContent = '抓取完成！';
+            document.getElementById('progress').style.width = '100%';
+            
+            try {
+                const res = await fetch(`/articles/${currentTaskId}`);
+                const data = await res.json();
+                
+                let html = '';
+                data.articles.forEach(article => {
+                    html += `
+                        <tr>
+                            <td>${article.title}</td>
+                            <td>${article.author}</td>
+                            <td>${article.publish_time}</td>
+                            <td>${article.read_count}</td>
+                            <td>${article.like_count}</td>
+                            <td><a href="${article.url}" target="_blank" class="btn" style="font-size: 12px; padding: 4px 8px;">查看原文</a></td>
+                        </tr>
+                    `;
+                });
+                document.getElementById('articles-table-body').innerHTML = html;
+                document.getElementById('articles-container').style.display = 'block';
+            } catch (e) {
+                alert('加载文章列表失败');
+            }
+        }
+
+        // 导出数据
+        function exportData(format) {
+            if (!currentTaskId) {
+                alert('请先完成抓取');
+                return;
+            }
+            window.open(`/export/${currentTaskId}/${format}`);
+        }
+
+        // 加载历史任务
+        async function loadHistory() {
+            // 模拟历史数据
+            document.getElementById('history-list').innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>任务ID</th>
+                            <th>公众号</th>
+                            <th>状态</th>
+                            <th>文章数量</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>demo-task-001</td>
+                            <td>示例公众号</td>
+                            <td>已完成</td>
+                            <td>20</td>
+                            <td>${new Date().toLocaleString()}</td>
+                            <td><button class="btn" style="padding: 4px 8px; font-size: 12px;" onclick="exportData('markdown')">导出</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        }
+    </script>
+</body>
+</html>

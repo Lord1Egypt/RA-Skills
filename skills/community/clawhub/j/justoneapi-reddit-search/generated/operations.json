@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/reddit/search/v1 for Reddit Keyword Search through JustOneAPI with keyword.",
+  "displayName": "Reddit Keyword Search",
+  "endpointPath": "search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Reddit keyword Search data, including titles, authors, and subreddit context, for topic discovery and monitoring.",
+      "method": "GET",
+      "operationId": "searchRedditV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search query keywords.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination token to retrieve the next set of results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "after",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/reddit/search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Keyword Search",
+      "tags": [
+        "Reddit"
+      ]
+    }
+  ],
+  "platformKey": "reddit",
+  "primaryTag": "Reddit",
+  "skillName": "justoneapi_reddit_search",
+  "skillType": "interface",
+  "slug": "justoneapi-reddit-search",
+  "sourceTitle": "OpenAPI definition"
+}

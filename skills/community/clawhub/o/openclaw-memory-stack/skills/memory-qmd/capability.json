@@ -1,0 +1,15 @@
+{
+  "capability_version": 1,
+  "backend": "qmd",
+  "supported_modes": ["exact", "semantic", "grep"],
+  "requires_credentials": false,
+  "requires_external_service": false,
+  "cold_start_ms": 200,
+  "probe": {
+    "l1_install": "command -v qmd",
+    "l2_runtime": "[ -d \"$HOME/.cache/qmd/models\" ] && [ -n \"$(ls -A \"$HOME/.cache/qmd/models\" 2>/dev/null)\" ]",
+    "l3_functional": "qmd search test --limit 1 --json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); exit(0)\"",
+    "l3_deep": null
+  },
+  "install_hint": "bun install -g @tobilu/qmd"
+}

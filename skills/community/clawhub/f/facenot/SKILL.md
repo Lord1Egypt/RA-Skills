@@ -1,35 +1,25 @@
----
-name: "facequet"
-description: "Extracts the first post text from a given Facebook URL using server-side scraping without handling login or JavaScript content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/facenot"
-sourceUrl: "https://clawhub.ai/skills/facenot"
----
+# Facebook Post Reader (skill mẫu)
 
-# facequet
+Mô tả:
+- Skill này cố gắng truy cập một URL (ví dụ profile hoặc bài viết) và lấy nội dung "bài viết đầu tiên" trên trang đó.
+- Lưu ý: Facebook và nhiều trang hiện đại sử dụng JavaScript/đăng nhập; script này là "server-side scraping" đơn giản và có thể không hoạt động với các trang yêu cầu JS hoặc đăng nhập. Xem phần "Lưu ý" bên dưới.
 
-> Extracts the first post text from a given Facebook URL using server-side scraping without handling login or JavaScript content.
+Input:
+- url (string): URL trang web cần đọc
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/facenot`
-- **Source URL:** [https://clawhub.ai/skills/facenot](https://clawhub.ai/skills/facenot)
+Output (JSON):
+- status: "success" hoặc "error"
+- content: nội dung văn bản đã lấy hoặc thông báo lỗi
 
-## Overview
+Cấu trúc file:
+- SKILL.md
+- manifest.json
+- scripts/skill.py
+- requirements.txt
+- references/schema.md
+- references/queries.md
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/facenot
-```
+Lưu ý quan trọng:
+- Nếu trang yêu cầu đăng nhập (như Facebook cá nhân), script này có thể không lấy được nội dung.
+- Để xử lý Facebook / trang động, cần dùng browser automation (Puppeteer/Playwright) với cookie đã đăng nhập.
+- Dùng skill này đúng pháp luật và chính sách của nền tảng khi crawl nội dung.

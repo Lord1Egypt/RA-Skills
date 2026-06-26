@@ -1,0 +1,77 @@
+{
+  "profiles": {
+    "wechat_mp": {
+      "name": "微信公众号",
+      "list_url": "https://mp.weixin.qq.com/cgi-bin/appmsgcopyright?action=orignal&type=1",
+      "selectors": {
+        "article_row": "tr",
+        "title": "td:nth-child(1)",
+        "date": "td:nth-child(2)",
+        "link": "a",
+        "next_page": "a.page_next:not(.page_disabled)"
+      },
+      "content_selectors": [
+        "#js_content",
+        ".rich_media_content",
+        "article",
+        ".post-content"
+      ],
+      "wait_after_load": 3,
+      "need_login": true
+    },
+    "zhihu_column": {
+      "name": "知乎专栏",
+      "list_url": "https://www.zhihu.com/people/{username}/posts",
+      "selectors": {
+        "article_row": ".ArticleItem",
+        "title": ".ContentItem-title a",
+        "date": ".ContentItem-time",
+        "link": ".ContentItem-title a",
+        "next_page": ".Pagination-next"
+      },
+      "content_selectors": [
+        ".Post-RichTextContainer",
+        ".RichText",
+        "article"
+      ],
+      "wait_after_load": 2,
+      "need_login": false
+    },
+    "juejin": {
+      "name": "掘金",
+      "list_url": "https://juejin.cn/user/{user_id}/posts",
+      "selectors": {
+        "article_row": ".entry",
+        "title": ".title",
+        "date": ".date",
+        "link": ".title a",
+        "next_page": ".next-page"
+      },
+      "content_selectors": [
+        ".markdown-body",
+        "article",
+        ".article-content"
+      ],
+      "wait_after_load": 2,
+      "need_login": false
+    },
+    "custom": {
+      "name": "自定义网站",
+      "list_url": "",
+      "selectors": {
+        "article_row": "",
+        "title": "",
+        "date": "",
+        "link": "",
+        "next_page": ""
+      },
+      "content_selectors": [],
+      "wait_after_load": 3,
+      "need_login": false
+    }
+  },
+  "default_profile": "wechat_mp",
+  "save_dir": "~/.openclaw/workspace/knowledge/articles",
+  "sleep_between_downloads": 1.5,
+  "max_pages": 50
+}

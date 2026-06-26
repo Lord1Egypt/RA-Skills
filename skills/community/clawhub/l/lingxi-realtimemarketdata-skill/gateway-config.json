@@ -1,0 +1,35 @@
+{
+  "active_env": "PROD",
+  "base_urls": {
+    "prod": "https://zx.app.gtja.com:8443/"
+  },
+  "gateway_paths": {
+    "market": "mcp/marketdata",
+    "mqtt": "mcp/mqtt"
+  },
+  "gateways": {
+    "market": "https://zx.app.gtja.com:8443/mcp/marketdata",
+    "mqtt": "https://zx.app.gtja.com:8443/mcp/mqtt"
+  },
+  "known_domains": [
+    "market",
+    "mqtt"
+  ],
+  "discovered_tools": [
+    {
+      "domain": "market",
+      "gateway": "market",
+      "toolName": "marketdata-tool",
+      "description": "自定义榜单功能，可以获得证券的行情",
+      "label": "行情",
+      "params": [
+        "code",
+        "market_data_mask",
+        "product_mask"
+      ],
+      "callExample": "node skill-entry.js call market marketdata-tool code= market_data_mask= product_mask="
+    }
+  ],
+  "learned_at": "2026-03-20T10:51:20.965Z",
+  "last_updated": "2026-03-20T10:51:20.966Z"
+}

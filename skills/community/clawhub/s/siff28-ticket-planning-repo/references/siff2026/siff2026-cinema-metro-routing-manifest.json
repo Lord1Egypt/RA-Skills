@@ -1,0 +1,22 @@
+{
+  "created_at_utc": "2026-06-03T14:30:29Z",
+  "station_source_url": "https://raw.githubusercontent.com/Ariza-Sun/MetroFlow/main/Data/stationInfo.csv",
+  "method": "Approximate metro matrix from nearest Shanghai Metro station to each SIFF 2026 cinema, shortest path over MetroFlow stationInfo neighbour graph, walking at 4.5 km/h plus 5 min station access at each end. Not live timetable or crowding.",
+  "files": [
+    {
+      "name": "shanghai-metro-stationInfo-metroflow.csv",
+      "bytes": 19872,
+      "sha256": "a180d4582b696ed5fb70d5d5544bab7a6b6ceecc22bdefb100108c9a15b64fe4"
+    },
+    {
+      "name": "siff2026-cinema-nearest-metro-stations.csv",
+      "bytes": 6168,
+      "sha256": "1e5d002ec5f1965ec27de935fba917fbf23c676a364d814eaa25a48386081593"
+    },
+    {
+      "name": "siff2026-cinema-metro-matrix-estimated.csv",
+      "bytes": 494454,
+      "sha256": "437fd866676ac605de99a4bdf282d3ae9a047be35f1118b7fcbbfc3e6e8c17d2"
+    }
+  ]
+}

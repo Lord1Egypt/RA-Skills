@@ -1,0 +1,34 @@
+{
+  "action_id": "repair-zh-negative-001",
+  "project": "MinerU",
+  "action_type": "README_fix_and_zhihu_publish",
+  "target_queries": ["negative-001", "ecosystem-001"],
+  "baseline_run_id": "sample-run",
+  "followups": [
+    {
+      "checkpoint": "T+7",
+      "run_id": "sample-run-t7",
+      "observed_metrics": {
+        "mention_rate": 62.5,
+        "positive_mention_rate": 70.0,
+        "capability_accuracy": 75.0,
+        "ecosystem_accuracy": 65.0
+      }
+    },
+    {
+      "checkpoint": "T+14",
+      "run_id": "sample-run-t14",
+      "observed_metrics": {
+        "mention_rate": 75.0,
+        "positive_mention_rate": 80.0,
+        "capability_accuracy": 82.5,
+        "ecosystem_accuracy": 75.0
+      }
+    }
+  ],
+  "expected_change": {
+    "positive_mention_rate": ">= 10",
+    "ecosystem_accuracy": ">= 15"
+  },
+  "conclusion": "success"
+}

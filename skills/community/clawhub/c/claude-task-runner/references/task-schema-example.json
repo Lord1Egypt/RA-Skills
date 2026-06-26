@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "failure"] },
+    "summary": { "type": "string" },
+    "files_changed": { "type": "array", "items": { "type": "string" } },
+    "error_category": { "type": "string" },
+    "suggestion": { "type": "string" }
+  },
+  "required": ["status", "summary"]
+}

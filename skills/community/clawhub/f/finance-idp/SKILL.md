@@ -1,35 +1,85 @@
----
-name: "Finance Idp"
-description: "基于财务能力模型分析人员能力差距，生成针对当前与目标职位的个性化发展行动计划与评估方案"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-idp"
-sourceUrl: "https://clawhub.ai/skills/finance-idp"
----
+# Skill: 财务能力差距分析与发展计划
 
-# Finance Idp
+## 基础信息
+- **Slug**: finance-idp
+- **Version**: 1.0.0
+- **名称**: 财务人员个人发展计划(IDP)
+- **描述**: 基于能力模型对财务人员进行能力差距分析，输出个人发展计划
+- **作者**: 户部 (hubu)
+- **标签**: 财务, IDP, 人才发展, 能力差距
 
-> 基于财务能力模型分析人员能力差距，生成针对当前与目标职位的个性化发展行动计划与评估方案
+## 输入参数
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-idp`
-- **Source URL:** [https://clawhub.ai/skills/finance-idp](https://clawhub.ai/skills/finance-idp)
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| current_position | string | 是 | 员工当前职位 |
+| target_position | string | 是 | 目标职位（晋升方向） |
+| self_assessment | object | 是 | 能力自评，格式：{能力名: [自评分, 目标分]} |
+| strategy | string | 否 | 集团业务战略方向 |
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-idp
+### 自评格式示例
+```json
+{
+  "资金管理": [3, 5],
+  "融资筹划": [2, 5],
+  "预算管理": [4, 5]
+}
 ```
+
+## 输出格式
+
+### 能力差距分析表
+
+| 能力维度 | 当前水平 | 目标要求 | 差距 | 紧迫度 |
+|----------|----------|----------|------|--------|
+| ... | ... | ... | ... | 高/中/低 |
+
+### 发展行动计划
+
+```markdown
+## 发展目标(SMART原则)
+## 发展行动建议
+### 在岗历练
+### 导师辅导
+### 培训/认证
+### 自我学习
+## 时间节点与评估方式
+```
+
+## 发展行动类型
+
+### 在岗历练
+- 牵头项目
+- 轮岗机会
+- 专项负责人
+
+### 导师辅导
+- 内部导师匹配
+- 辅导主题确定
+
+### 培训认证
+- 内部培训
+- 外部认证
+- 专业证书
+
+### 自我学习
+- 推荐阅读
+- 行业报告
+- 线上资源
+
+## 使用示例
+
+```
+员工当前职位：预算主管
+目标职位：预算经理
+自评数据：资金管理3/5、融资筹划2/5、预算管理4/5
+战略方向：未来两年将大力拓展海外业务
+```
+
+## 触发关键词
+- IDP
+- 个人发展计划
+- 能力差距
+- 人才发展
+- 晋升评估
+- 培训计划

@@ -1,0 +1,8 @@
+{
+  "name": "Skill Lookup",
+  "description": "Search, retrieve, and install Agent Skills from the prompts.chat registry using MCP tools.",
+  "version": "1.0.0",
+  "identifier": "skill-lookup",
+  "author": "f-prompts.chat",
+  "category": "meta"
+}

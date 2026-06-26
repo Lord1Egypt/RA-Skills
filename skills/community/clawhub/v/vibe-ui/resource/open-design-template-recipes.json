@@ -1,0 +1,850 @@
+{
+  "schemaVersion": "vibe-ui/open-design-template-recipes/v3",
+  "generatedAt": "2026-06-04T09:52:41.482Z",
+  "source": "Vibe UI recipes distilled from OpenDesign design-templates and Vibe Gate workflow requirements.",
+  "upstream": {
+    "repo": "nexu-io/open-design",
+    "commit": "18169ee52ac6f24eef277dba345a9f3a0e4e1b36",
+    "path": "design-templates",
+    "license": "Apache-2.0"
+  },
+  "templates": [
+    {
+      "id": "vibe:commerce-home",
+      "aliases": [
+        "commerce-home",
+        "shopping-home",
+        "marketplace-home",
+        "retail-home",
+        "ecommerce-home"
+      ],
+      "name": "Vibe UI commerce home recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign web-prototype and marketplace/landing patterns",
+      "sourcePaths": [
+        "design-templates/web-prototype",
+        "design-templates/saas-landing"
+      ],
+      "pageType": "landing",
+      "description": "A shoppable homepage recipe for ecommerce, marketplace, retail, and lifestyle product stores.",
+      "tags": [
+        "landing",
+        "commerce",
+        "shopping",
+        "retail",
+        "marketplace",
+        "products",
+        "conversion"
+      ],
+      "requiredSections": [
+        "Hero that makes the first viewport unmistakably a shopping experience with product imagery, brand promise, primary shopping CTA, secondary category CTA, and visible product proof.",
+        "Category entry section with the required category names, short category descriptors, and stable navigation targets.",
+        "Featured product grid with product names, prices, material/spec/use notes, accessible save/cart affordances, and no fake discounts.",
+        "Editorial or curator-pick section that explains why a product set belongs together using concrete shopping guidance.",
+        "New arrivals, seasonal edit, or collection module with fresh product evidence and a shopping CTA.",
+        "Trust, service, curation, material, care, shipping, or return notes grounded in neutral product evidence.",
+        "FAQ or objection handling for quality, fit, returns, authenticity, and selection logic.",
+        "Final shopping CTA that returns to products, categories, or new arrivals."
+      ],
+      "sectionIntent": [
+        "Prove this is a store before the shopper scrolls.",
+        "Help shoppers choose a browsing path.",
+        "Give enough product evidence to make shopping feel real.",
+        "Replace fake reviews with curation logic.",
+        "Sustain conversion without SaaS pricing/workflow tropes."
+      ],
+      "proofStrategy": "product-evidence",
+      "requiredSignals": [
+        "product names",
+        "product prices",
+        "material notes",
+        "category paths",
+        "shopping CTA",
+        "FAQ objections"
+      ],
+      "forbiddenSignals": [
+        "Book a demo",
+        "Get started",
+        "Learn more",
+        "fake discounts",
+        "fake reviews",
+        "logo wall",
+        "10x growth"
+      ],
+      "dataOdIdMap": [
+        "hero",
+        "category-entry",
+        "featured-products",
+        "editor-pick",
+        "new-arrivals",
+        "trust-service",
+        "faq",
+        "final-cta",
+        "footer"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll.",
+        "All required categories named in the brief appear exactly where required.",
+        "Product cards include name, price, and at least one material/spec/use note."
+      ],
+      "pagePreflight": [
+        "The hero does not read like SaaS, AI, or consulting; it reads like shopping.",
+        "Use product evidence only unless the brief provides real reviews, metrics, or brand relationships.",
+        "Do not substitute category names with synonyms when the brief provides exact labels.",
+        "Use local, user-owned, or project-owned assets; avoid remote hotlinked stock imagery in final deliverables."
+      ]
+    },
+    {
+      "id": "vibe:product-launch",
+      "aliases": [
+        "product-launch",
+        "launch-page",
+        "app-launch",
+        "plugin-launch",
+        "open-source-launch"
+      ],
+      "name": "Vibe UI product launch recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign product-launch, waitlist, web-prototype, and saas-landing patterns",
+      "sourcePaths": [
+        "design-templates/html-ppt-product-launch",
+        "design-templates/waitlist-page",
+        "design-templates/web-prototype",
+        "design-templates/saas-landing"
+      ],
+      "pageType": "landing",
+      "description": "A launch page recipe for apps, plugins, tools, open-source projects, and new product releases.",
+      "tags": [
+        "landing",
+        "launch",
+        "product",
+        "app",
+        "plugin",
+        "open-source",
+        "release"
+      ],
+      "requiredSections": [
+        "Hero with product name, literal offer, launch status, primary try/install/join CTA, secondary proof/demo CTA, and product-state visual.",
+        "Problem-to-use-case section that names who the launch is for and what default behavior it replaces.",
+        "Feature narrative with 3-5 concrete modules tied to first-use moments.",
+        "Demo, install, workflow, or quick-start section with sequential steps and real commands or states when relevant.",
+        "Evidence section using changelog, GitHub, docs, integrations, screenshots, benchmarks, or neutral proof categories.",
+        "Roadmap, compatibility, or launch notes that set truthful expectations.",
+        "FAQ and final CTA for trial, install, waitlist, or docs."
+      ],
+      "sectionIntent": [
+        "Make launch readiness clear.",
+        "Show first-use path.",
+        "Avoid generic feature cards.",
+        "Give truthful proof without invented traction."
+      ],
+      "proofStrategy": "product-state-evidence",
+      "requiredSignals": [
+        "launch status",
+        "first-use flow",
+        "product modules",
+        "demo or install path",
+        "evidence categories"
+      ],
+      "forbiddenSignals": [
+        "fake waitlist count",
+        "fake logos",
+        "10x",
+        "revolutionary",
+        "coming soon countdown"
+      ],
+      "dataOdIdMap": [
+        "hero",
+        "audience-use-case",
+        "feature-modules",
+        "quickstart-demo",
+        "evidence",
+        "launch-notes",
+        "faq",
+        "final-cta"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "CTA labels must be Try, Install, Join, View demo, Read docs, or another product-specific action.",
+        "Do not invent launch traction, customers, stars, funding, or rankings."
+      ]
+    },
+    {
+      "id": "vibe:pricing-page",
+      "aliases": [
+        "pricing-page",
+        "plans-page",
+        "compare-plans",
+        "subscription-pricing"
+      ],
+      "name": "Vibe UI pricing page recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign pricing-page",
+      "sourcePaths": [
+        "design-templates/pricing-page"
+      ],
+      "pageType": "pricing",
+      "description": "A pricing page recipe with plan hierarchy, comparison logic, proof, and objection handling.",
+      "tags": [
+        "pricing",
+        "plans",
+        "subscription",
+        "conversion",
+        "comparison"
+      ],
+      "requiredSections": [
+        "Pricing hero with product-specific value, plan framing, and optional monthly/annual toggle.",
+        "Plan cards with tier names, prices, positioning, feature bullets, recommended-plan treatment, and direct CTAs.",
+        "Feature comparison table grouped by buyer-relevant categories.",
+        "Trust, security, billing, or procurement notes using real or neutral evidence.",
+        "FAQ for billing, cancellation, limits, teams, support, and enterprise needs.",
+        "Final conversion CTA aligned to the recommended plan or sales path."
+      ],
+      "sectionIntent": [
+        "Make tier choice fast.",
+        "Explain tradeoffs.",
+        "Handle pricing anxiety."
+      ],
+      "proofStrategy": "pricing-evidence",
+      "requiredSignals": [
+        "plan names",
+        "prices",
+        "recommended plan",
+        "comparison rows",
+        "billing FAQ"
+      ],
+      "forbiddenSignals": [
+        "placeholder price",
+        "$X",
+        "fake discount",
+        "fake customer logo",
+        "unlimited everything"
+      ],
+      "dataOdIdMap": [
+        "pricing-hero",
+        "plan-cards",
+        "comparison-table",
+        "billing-proof",
+        "faq",
+        "final-cta"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Prices must be plausible or intentionally omitted with clear contact labels.",
+        "Do not use vague feature rows that could apply to any SaaS."
+      ]
+    },
+    {
+      "id": "vibe:waitlist-page",
+      "aliases": [
+        "waitlist-page",
+        "coming-soon",
+        "early-access",
+        "beta-signup"
+      ],
+      "name": "Vibe UI waitlist page recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign waitlist-page",
+      "sourcePaths": [
+        "design-templates/waitlist-page"
+      ],
+      "pageType": "landing",
+      "description": "A focused pre-launch page recipe for email capture, early access, and beta signup.",
+      "tags": [
+        "landing",
+        "waitlist",
+        "coming-soon",
+        "beta",
+        "email-capture"
+      ],
+      "requiredSections": [
+        "Minimal hero with product name, honest launch status, concise offer, and one email/signup CTA.",
+        "Short product promise or preview with 2-4 concrete capabilities.",
+        "Audience fit or early-access criteria.",
+        "Privacy, cadence, or expectation note for what happens after joining.",
+        "Optional visual brand moment that follows DESIGN.md without overpowering the form."
+      ],
+      "sectionIntent": [
+        "Capture interest without fake urgency.",
+        "Make the promise understandable.",
+        "Set expectations."
+      ],
+      "proofStrategy": "honest-preview",
+      "requiredSignals": [
+        "email input",
+        "one primary CTA",
+        "launch status",
+        "expectation note"
+      ],
+      "forbiddenSignals": [
+        "fake countdown",
+        "fake signup count",
+        "fake testimonials",
+        "multiple competing CTAs",
+        "emoji decoration"
+      ],
+      "dataOdIdMap": [
+        "hero",
+        "signup-form",
+        "preview",
+        "audience-fit",
+        "expectation-note"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll.",
+        "There is exactly one primary conversion path."
+      ],
+      "pagePreflight": [
+        "Do not invent scarcity or traction.",
+        "Email input must be accessible and valid on mobile."
+      ]
+    },
+    {
+      "id": "vibe:docs-home",
+      "aliases": [
+        "docs-home",
+        "docs-page",
+        "developer-docs",
+        "api-docs"
+      ],
+      "name": "Vibe UI docs home recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign docs-page",
+      "sourcePaths": [
+        "design-templates/docs-page"
+      ],
+      "pageType": "docs",
+      "description": "A documentation entry or article recipe with navigable structure, code examples, and reading rhythm.",
+      "tags": [
+        "docs",
+        "developer",
+        "api",
+        "documentation",
+        "content"
+      ],
+      "requiredSections": [
+        "Docs shell with sidebar or top navigation and current location.",
+        "Article or docs-home hero with title, summary, and quick links.",
+        "Code, configuration, or API example that matches the brief.",
+        "Callout, warning, or note using DESIGN.md component rules.",
+        "Related pages, next/previous navigation, or learning path."
+      ],
+      "sectionIntent": [
+        "Help readers orient fast.",
+        "Make examples inspectable.",
+        "Avoid marketing decoration inside docs."
+      ],
+      "proofStrategy": "example-evidence",
+      "requiredSignals": [
+        "navigation",
+        "quick links",
+        "code example",
+        "callout",
+        "next navigation"
+      ],
+      "forbiddenSignals": [
+        "marketing hero overload",
+        "unreadable code block",
+        "decorative gradient behind article text"
+      ],
+      "dataOdIdMap": [
+        "docs-shell",
+        "article-header",
+        "quick-links",
+        "code-example",
+        "callout",
+        "next-nav"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Article width and code blocks must stay readable on mobile.",
+        "Callouts use documented tokens."
+      ]
+    },
+    {
+      "id": "vibe:dashboard",
+      "aliases": [
+        "dashboard",
+        "admin-dashboard",
+        "ops-dashboard",
+        "analytics-dashboard"
+      ],
+      "name": "Vibe UI dashboard recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign dashboard patterns",
+      "sourcePaths": [
+        "design-templates/dashboard",
+        "design-templates/live-dashboard",
+        "design-templates/github-dashboard"
+      ],
+      "pageType": "dashboard",
+      "description": "A dense but readable operational dashboard recipe for product, finance, social, and workflow tools.",
+      "tags": [
+        "dashboard",
+        "admin",
+        "ops",
+        "analytics",
+        "workflow"
+      ],
+      "requiredSections": [
+        "Persistent navigation with clear current location.",
+        "Primary workflow header with search, filter, and action affordances.",
+        "Grounded metric or status row without invented growth claims.",
+        "Main table, feed, chart, kanban, or queue matched to the domain.",
+        "Secondary insight, activity, or detail panel.",
+        "Empty, loading, active, and error states where relevant."
+      ],
+      "sectionIntent": [
+        "Prioritize repeated use.",
+        "Expose state and next action.",
+        "Avoid marketing composition."
+      ],
+      "proofStrategy": "operational-state",
+      "requiredSignals": [
+        "current state",
+        "filters",
+        "primary action",
+        "main work surface",
+        "status labels"
+      ],
+      "forbiddenSignals": [
+        "oversized marketing hero",
+        "fake growth metric",
+        "nested decorative cards"
+      ],
+      "dataOdIdMap": [
+        "app-shell",
+        "workflow-header",
+        "status-row",
+        "main-work-surface",
+        "side-panel",
+        "state-examples"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Information hierarchy should be readable in 10 seconds.",
+        "Controls need stable dimensions and accessible labels."
+      ]
+    },
+    {
+      "id": "vibe:kanban-board",
+      "aliases": [
+        "kanban-board",
+        "task-board",
+        "project-board"
+      ],
+      "name": "Vibe UI kanban board recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign kanban-board",
+      "sourcePaths": [
+        "design-templates/kanban-board"
+      ],
+      "pageType": "dashboard",
+      "description": "A kanban workflow recipe for boards, stages, tasks, owners, and operational state.",
+      "tags": [
+        "dashboard",
+        "kanban",
+        "tasks",
+        "workflow",
+        "project-management"
+      ],
+      "requiredSections": [
+        "Board shell with workspace, view switcher, filters, and primary action.",
+        "Columns with clear stage names, counts, and stable widths.",
+        "Task cards with title, owner, status, due/priority metadata, and domain-specific evidence.",
+        "Detail, activity, or inspector panel when the brief requires deeper context.",
+        "Empty and overflow states for columns."
+      ],
+      "sectionIntent": [
+        "Make workflow state visible.",
+        "Preserve scan density.",
+        "Avoid cards that all look identical."
+      ],
+      "proofStrategy": "workflow-state",
+      "requiredSignals": [
+        "column names",
+        "task cards",
+        "owners",
+        "status",
+        "filters"
+      ],
+      "forbiddenSignals": [
+        "fake velocity metric",
+        "decorative hero",
+        "unbounded card height"
+      ],
+      "dataOdIdMap": [
+        "board-shell",
+        "board-toolbar",
+        "kanban-columns",
+        "task-card",
+        "detail-panel",
+        "empty-state"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Columns should not resize when cards change content.",
+        "Mobile behavior must choose horizontal scroll or stacked stages intentionally."
+      ]
+    },
+    {
+      "id": "vibe:mobile-app",
+      "aliases": [
+        "mobile-app",
+        "app-screen",
+        "mobile-ui"
+      ],
+      "name": "Vibe UI mobile app recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign mobile-app",
+      "sourcePaths": [
+        "design-templates/mobile-app"
+      ],
+      "pageType": "profile",
+      "description": "A mobile app screen recipe for product flows, content surfaces, and touch-first UI.",
+      "tags": [
+        "mobile",
+        "app",
+        "touch",
+        "screen",
+        "product"
+      ],
+      "requiredSections": [
+        "Mobile app shell with status/navigation treatment appropriate to the target platform.",
+        "Primary task surface with visible state, content, and one clear next action.",
+        "Secondary controls, tabs, or contextual actions with touch-safe sizing.",
+        "Empty, loading, or feedback state where the flow needs it."
+      ],
+      "sectionIntent": [
+        "Design for thumb reach.",
+        "Keep hierarchy compact.",
+        "Avoid desktop landing-page thinking."
+      ],
+      "proofStrategy": "product-state",
+      "requiredSignals": [
+        "mobile shell",
+        "primary action",
+        "touch targets",
+        "state"
+      ],
+      "forbiddenSignals": [
+        "desktop hero",
+        "tiny tap targets",
+        "hover-only interaction",
+        "horizontal clipping"
+      ],
+      "dataOdIdMap": [
+        "mobile-shell",
+        "primary-task",
+        "secondary-actions",
+        "state-feedback"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Use stable dimensions for fixed-format mobile surfaces.",
+        "Tap targets should be at least 44px where possible."
+      ]
+    },
+    {
+      "id": "vibe:mobile-onboarding",
+      "aliases": [
+        "mobile-onboarding",
+        "onboarding-flow",
+        "app-onboarding"
+      ],
+      "name": "Vibe UI mobile onboarding recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign mobile-onboarding",
+      "sourcePaths": [
+        "design-templates/mobile-onboarding",
+        "design-templates/mobile-app"
+      ],
+      "pageType": "profile",
+      "description": "A mobile onboarding flow recipe for first-run setup, value reveal, and conversion.",
+      "tags": [
+        "mobile",
+        "onboarding",
+        "signup",
+        "first-run",
+        "app"
+      ],
+      "requiredSections": [
+        "Onboarding frame with product identity, progress indication, and current step.",
+        "Step content that explains one decision or value at a time.",
+        "Input, choice, or permission request with clear consequence copy.",
+        "Primary continue action and quiet secondary skip/back affordance.",
+        "Success or next-step state."
+      ],
+      "sectionIntent": [
+        "Reduce first-run anxiety.",
+        "Avoid asking too much at once.",
+        "Make progress clear."
+      ],
+      "proofStrategy": "guided-state",
+      "requiredSignals": [
+        "progress",
+        "step label",
+        "primary continue",
+        "input or choice",
+        "next step"
+      ],
+      "forbiddenSignals": [
+        "dark pattern",
+        "fake urgency",
+        "unlabeled permission request",
+        "tiny text"
+      ],
+      "dataOdIdMap": [
+        "onboarding-shell",
+        "progress",
+        "step-content",
+        "choice-control",
+        "primary-action",
+        "success-state"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Each step should have one main decision.",
+        "Do not hide skip/back when the brief requires reversibility."
+      ]
+    },
+    {
+      "id": "vibe:portfolio-profile",
+      "aliases": [
+        "portfolio-profile",
+        "personal-site",
+        "creator-profile",
+        "profile-landing"
+      ],
+      "name": "Vibe UI portfolio profile recipe",
+      "source": "Vibe UI distilled recipe from OpenDesign profile, blog, and poster-style templates",
+      "sourcePaths": [
+        "design-templates/blog-post",
+        "design-templates/magazine-poster",
+        "design-templates/web-prototype"
+      ],
+      "pageType": "profile",
+      "description": "A profile and portfolio recipe for creators, designers, engineers, writers, and independent builders.",
+      "tags": [
+        "profile",
+        "portfolio",
+        "creator",
+        "personal-site",
+        "case-studies"
+      ],
+      "requiredSections": [
+        "Identity hero with name, role, location/context, and primary contact or work CTA.",
+        "Selected work or case-study section with specific project evidence.",
+        "Capability, values, or process section that does not read like generic resume filler.",
+        "Writing, talks, experiments, clients, or proof section using real or neutral evidence.",
+        "Contact and final CTA."
+      ],
+      "sectionIntent": [
+        "Make the person legible.",
+        "Show proof through work.",
+        "Avoid SaaS landing tropes."
+      ],
+      "proofStrategy": "work-evidence",
+      "requiredSignals": [
+        "name",
+        "role",
+        "selected work",
+        "project evidence",
+        "contact CTA"
+      ],
+      "forbiddenSignals": [
+        "Book a demo",
+        "trusted by fake logos",
+        "generic feature cards",
+        "AI gradient hero"
+      ],
+      "dataOdIdMap": [
+        "identity-hero",
+        "selected-work",
+        "capabilities",
+        "proof",
+        "contact"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Do not make a personal page look like a B2B SaaS landing page.",
+        "Project entries should include concrete nouns and outcomes."
+      ]
+    },
+    {
+      "id": "open-design:saas-landing",
+      "aliases": [
+        "saas-landing",
+        "od:saas-landing"
+      ],
+      "name": "Vibe UI SaaS landing recipe",
+      "source": "nexu-io/open-design design-templates/saas-landing distilled by Vibe UI",
+      "sourcePaths": [
+        "design-templates/saas-landing"
+      ],
+      "pageType": "landing",
+      "description": "A compact recipe for product-led SaaS landing pages with strict section identity, proof, and self-review.",
+      "tags": [
+        "landing",
+        "saas",
+        "marketing",
+        "product",
+        "conversion"
+      ],
+      "requiredSections": [
+        "Hero with product name, literal value proposition, one primary CTA, one secondary CTA, and visible product proof.",
+        "Credibility strip with real integrations, customers, or neutral proof placeholders that do not invent metrics.",
+        "Feature narrative with 3-5 concrete workflow modules instead of generic benefit cards.",
+        "Product walkthrough or how-it-works section with sequential steps and UI states.",
+        "Use-case or audience section that maps product capability to user roles.",
+        "Pricing teaser or conversion block aligned to the selected DESIGN.md rhythm.",
+        "FAQ and final CTA using the same visual system as the hero."
+      ],
+      "sectionIntent": [
+        "Make product value inspectable.",
+        "Show workflow fit.",
+        "Handle objections without fake proof."
+      ],
+      "proofStrategy": "product-or-neutral-evidence",
+      "requiredSignals": [
+        "product name",
+        "primary CTA",
+        "feature modules",
+        "workflow steps",
+        "FAQ"
+      ],
+      "forbiddenSignals": [
+        "fake logo wall",
+        "invented metric",
+        "lorem ipsum",
+        "generic AI copy"
+      ],
+      "dataOdIdMap": [
+        "hero",
+        "credibility",
+        "features",
+        "walkthrough",
+        "use-cases",
+        "pricing-cta",
+        "faq",
+        "final-cta"
+      ],
+      "layoutNotes": [
+        "Give every top-level section a stable data-od-id for review and iteration.",
+        "Use DESIGN.md colors, typography, spacing, radius, shadows, density, and interaction rules as the source of truth.",
+        "Keep Design Read, dials, TODOs, and internal scaffold text out of the visible UI.",
+        "Make section rhythm match the job of each section rather than repeating equal card grids everywhere."
+      ],
+      "p0SelfCheck": [
+        "Every visible color is a DESIGN.md token or a documented derivative.",
+        "Primary CTAs name the user action rather than using generic labels.",
+        "No copied logos, trademarks, proprietary assets, official claims, fake metrics, or placeholder proof remain.",
+        "Desktop and mobile layouts have no overlapping text, clipped controls, or horizontal scroll."
+      ],
+      "pagePreflight": [
+        "Hero names the product and buyer-visible value in the first viewport.",
+        "CTA labels are product-specific and not just Get started or Learn more.",
+        "Proof strategy is explicit: real evidence, real integrations, product state, or neutral evidence categories.",
+        "No visible Design Read, dials, TODO, or internal scaffold text ships in the UI.",
+        "Section rhythm is not only repeated equal card grids; each section has a distinct job."
+      ]
+    }
+  ]
+}

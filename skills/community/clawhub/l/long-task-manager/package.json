@@ -1,0 +1,43 @@
+{
+  "name": "long-task-manager",
+  "version": "1.0.0",
+  "description": "AI Agent长时间任务处理框架 - 解决超时、实时进度追踪、异步执行",
+  "main": "lib/long_task_manager.py",
+  "keywords": [
+    "agent",
+    "task",
+    "async",
+    "progress",
+    "queue",
+    "timeout",
+    "background"
+  ],
+  "author": "BI Alpha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/long-task-manager"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://docs.openclaw.ai/skills/long-task-manager",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "categories": [
+    "utility",
+    "productivity"
+  ],
+  "skill": {
+    "id": "long-task-manager",
+    "name": "Long Task Manager",
+    "displayName": "长时间任务管理器",
+    "description": "解决AI Agent长时间任务超时问题，支持实时进度追踪、异步执行、任务取消",
+    "version": "1.0.0",
+    "runtime": "python",
+    "entry": "lib/long_task_manager.py",
+    "documentation": "SKILL.md",
+    "readme": "README.md"
+  }
+}

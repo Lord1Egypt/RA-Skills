@@ -1,0 +1,134 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "marketing-os/schemas/operator_task.schema.json",
+    "title": "Operator Task",
+    "description": "Schema for individual executable tasks created by the Marketing Operator",
+    "type": "object",
+    "required": [
+        "task_id",
+        "title",
+        "description",
+        "priority",
+        "owner",
+        "deadline",
+        "status",
+        "expected_result"
+    ],
+    "properties": {
+        "task_id": {
+            "type": "string",
+            "pattern": "^TASK-[A-Z0-9]+-[0-9]{3}$",
+            "description": "Unique task identifier, format: TASK-{mission_id}-{sequence}"
+        },
+        "title": {
+            "type": "string",
+            "minLength": 10,
+            "description": "Action-oriented task title starting with a verb"
+        },
+        "description": {
+            "type": "string",
+            "minLength": 20,
+            "description": "Detailed, unambiguous instructions for execution"
+        },
+        "priority": {
+            "type": "string",
+            "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+            ],
+            "description": "Task priority level"
+        },
+        "owner": {
+            "type": "string",
+            "enum": [
+                "agent",
+                "human",
+                "api"
+            ],
+            "description": "Who/what executes this task"
+        },
+        "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Task deadline in ISO 8601"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "pending",
+                "in_progress",
+                "completed",
+                "blocked",
+                "failed",
+                "cancelled"
+            ],
+            "description": "Current task status"
+        },
+        "expected_result": {
+            "type": "string",
+            "description": "Measurable expected outcome"
+        },
+        "success_metric": {
+            "type": "string",
+            "description": "KPI used to measure task success"
+        },
+        "actual_result": {
+            "type": "string",
+            "description": "Actual result after completion"
+        },
+        "dependencies": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Task IDs that must complete before this task"
+        },
+        "estimated_effort": {
+            "type": "string",
+            "description": "Estimated time to complete (e.g., '2 hours', '1 day')"
+        },
+        "actual_effort": {
+            "type": "string",
+            "description": "Actual time spent after completion"
+        },
+        "channel": {
+            "type": "string",
+            "description": "Marketing channel this task targets"
+        },
+        "budget_allocated": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Budget allocated to this task"
+        },
+        "budget_spent": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Budget actually spent"
+        },
+        "blockers": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Current blockers preventing progress"
+        },
+        "notes": {
+            "type": "string",
+            "description": "Additional context or notes"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "completed_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

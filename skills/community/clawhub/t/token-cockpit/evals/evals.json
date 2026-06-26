@@ -1,0 +1,30 @@
+{
+  "skill_name": "token-cockpit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "report-and-project",
+      "prompt": "My OpenClaw costs have been creeping up and I don't really know why. My usage log is at /sessions/serene-dreamy-ritchie/mnt/OpenClaw/skills/token-cockpit/sample_usage.jsonl — can you break down where the money's going by model and tell me roughly what I'm on track to spend this month?",
+      "expected_output": "Runs token_cockpit.py report on the log. Reports a total spend (~$15) and a monthly projection (~$43), and identifies the most expensive model (claude-opus at roughly half the cost). Notes the projection is an extrapolation.",
+      "files": [],
+      "assertions": [
+        {"text": "Reports a total spend figure", "kind": "qualitative"},
+        {"text": "Gives a projected monthly spend", "kind": "qualitative"},
+        {"text": "Identifies claude-opus as the most expensive model", "kind": "qualitative"},
+        {"text": "Runs the bundled token_cockpit.py tool rather than estimating by hand", "kind": "qualitative"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "find-savings",
+      "prompt": "I want to cut my token bill. Using the usage log at /sessions/serene-dreamy-ritchie/mnt/OpenClaw/skills/token-cockpit/sample_usage.jsonl, where am I wasting money and how much could I realistically save?",
+      "expected_output": "Runs token_cockpit.py route (and/or simulate). Identifies that many small calls are running on claude-opus and could move to a cheaper model, quantifies an estimated savings figure, and caveats that savings assume equal tokens and adequate quality.",
+      "files": [],
+      "assertions": [
+        {"text": "Identifies small calls on a premium model (claude-opus) as the main waste", "kind": "qualitative"},
+        {"text": "Quantifies an estimated savings amount", "kind": "qualitative"},
+        {"text": "Includes a caveat about verifying quality / that savings are estimates", "kind": "qualitative"}
+      ]
+    }
+  ]
+}

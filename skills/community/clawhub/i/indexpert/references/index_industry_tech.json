@@ -1,0 +1,603 @@
+{
+  "category": "行业主题",
+  "sub_category": "科技产业",
+  "description": "理财通行业主题-科技产业指数名单",
+  "count": 99,
+  "indices": [
+    {
+      "code": "000171.CSI",
+      "name": "中国战略新兴产业成份指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000171"
+    },
+    {
+      "code": "000682.SH",
+      "name": "上证科创板新一代信息技术指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000682"
+    },
+    {
+      "code": "000685.SH",
+      "name": "上证科创板芯片指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000685",
+      "miniapp_link": "#小程序://腾讯理财通/9VKUVYxOEv4Ur7A"
+    },
+    {
+      "code": "000935.SH",
+      "name": "中证信息技术指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000935"
+    },
+    {
+      "code": "000936.CSI",
+      "name": "中证通信服务指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000936"
+    },
+    {
+      "code": "000993.SH",
+      "name": "中证全指信息技术指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000993"
+    },
+    {
+      "code": "000998.CSI",
+      "name": "中证TMT产业主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000998"
+    },
+    {
+      "code": "399264.SZ",
+      "name": "创业板软件指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399264"
+    },
+    {
+      "code": "399276.SZ",
+      "name": "创业板科技指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399276"
+    },
+    {
+      "code": "399285.SZ",
+      "name": "深证物联网50指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399285"
+    },
+    {
+      "code": "399389.SZ",
+      "name": "国证通信指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399389"
+    },
+    {
+      "code": "399415.SZ",
+      "name": "大数据100",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399415"
+    },
+    {
+      "code": "399416.SZ",
+      "name": "大数据300",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399416"
+    },
+    {
+      "code": "399610.SZ",
+      "name": "深证电子信息传媒产业50指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399610"
+    },
+    {
+      "code": "399804.SZ",
+      "name": "中证体育产业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399804"
+    },
+    {
+      "code": "399811.SZ",
+      "name": "中证申万电子行业投资指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399811"
+    },
+    {
+      "code": "399970.SZ",
+      "name": "中证移动互联网指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399970"
+    },
+    {
+      "code": "399971.SZ",
+      "name": "中证传媒指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399971"
+    },
+    {
+      "code": "399994.SZ",
+      "name": "中证信息安全主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399994"
+    },
+    {
+      "code": "930601.CSI",
+      "name": "中证软件服务指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930601"
+    },
+    {
+      "code": "930625.CSI",
+      "name": "中证沪港深互联网指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930625"
+    },
+    {
+      "code": "930651.CSI",
+      "name": "中证计算机主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930651"
+    },
+    {
+      "code": "930652.CSI",
+      "name": "中证电子指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930652"
+    },
+    {
+      "code": "930712.CSI",
+      "name": "中证物联网主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930712"
+    },
+    {
+      "code": "930713.CSI",
+      "name": "中证人工智能主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930713"
+    },
+    {
+      "code": "930725.CSI",
+      "name": "中证车联网主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930725"
+    },
+    {
+      "code": "930781.CSI",
+      "name": "中证影视主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930781"
+    },
+    {
+      "code": "930790.CSI",
+      "name": "中证娱乐主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930790"
+    },
+    {
+      "code": "930821.CSI",
+      "name": "中证虚拟现实主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930821"
+    },
+    {
+      "code": "930851.CSI",
+      "name": "中证云计算与大数据主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930851"
+    },
+    {
+      "code": "930901.CSI",
+      "name": "中证动漫游戏指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930901"
+    },
+    {
+      "code": "930902.CSI",
+      "name": "中证大数据产业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930902"
+    },
+    {
+      "code": "930967.CSI",
+      "name": "中证港股通信息技术综合指数(HKD)",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930967"
+    },
+    {
+      "code": "931071.CSI",
+      "name": "中证人工智能产业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931071"
+    },
+    {
+      "code": "931079.CSI",
+      "name": "中证5G通信主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931079"
+    },
+    {
+      "code": "931087.CSI",
+      "name": "中证科技龙头指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931087"
+    },
+    {
+      "code": "931144.CSI",
+      "name": "中证通信技术主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931144"
+    },
+    {
+      "code": "931160.CSI",
+      "name": "中证全指通信设备指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931160"
+    },
+    {
+      "code": "931165.CSI",
+      "name": "中证新兴科技100策略指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931165"
+    },
+    {
+      "code": "931186.CSI",
+      "name": "中证科技50策略指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931186"
+    },
+    {
+      "code": "931187.CSI",
+      "name": "中证科技100指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931187"
+    },
+    {
+      "code": "931235.CSI",
+      "name": "中证电信主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931235"
+    },
+    {
+      "code": "931247.CSI",
+      "name": "中证信息技术应用创新产业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931247"
+    },
+    {
+      "code": "931271.CSI",
+      "name": "中证通信设备主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931271"
+    },
+    {
+      "code": "931380.CSI",
+      "name": "中证科技50指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931380"
+    },
+    {
+      "code": "931406.CSI",
+      "name": "中证5G产业50指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931406"
+    },
+    {
+      "code": "931442.CSI",
+      "name": "中证沪港深科技100指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931442"
+    },
+    {
+      "code": "931447.CSI",
+      "name": "中证科技先锋指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931447"
+    },
+    {
+      "code": "931461.CSI",
+      "name": "中证电子50指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931461"
+    },
+    {
+      "code": "931469.CSI",
+      "name": "中证云计算50指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931469"
+    },
+    {
+      "code": "931470.CSI",
+      "name": "中证沪港深云计算产业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931470"
+    },
+    {
+      "code": "931487.CSI",
+      "name": "中证沪港深人工智能50指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931487"
+    },
+    {
+      "code": "931494.CSI",
+      "name": "中证消费电子主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931494"
+    },
+    {
+      "code": "931495.CSI",
+      "name": "中证工业互联网主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931495"
+    },
+    {
+      "code": "931524.CSI",
+      "name": "中证沪港深科技龙头指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931524"
+    },
+    {
+      "code": "931529.CSI",
+      "name": "中证诚通国企数字经济指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931529"
+    },
+    {
+      "code": "931573.CSI",
+      "name": "中证港股通科技指数(HKD)",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931573"
+    },
+    {
+      "code": "931573CNY00.CSI",
+      "name": "中证港股通科技指数(CNY)",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931573CNY00"
+    },
+    {
+      "code": "931574CNY00.CSI",
+      "name": "中证香港科技指数(CNY)",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931574CNY00"
+    },
+    {
+      "code": "931575.CSI",
+      "name": "中证沪港深物联网主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931575"
+    },
+    {
+      "code": "931580.CSI",
+      "name": "中证沪港深游戏及文化传媒指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931580"
+    },
+    {
+      "code": "931582.CSI",
+      "name": "中证数字经济主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931582"
+    },
+    {
+      "code": "931583.CSI",
+      "name": "中证沪港深数字经济主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931583"
+    },
+    {
+      "code": "931637.CSI",
+      "name": "中证港股通互联网指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931637"
+    },
+    {
+      "code": "931743.CSI",
+      "name": "中证半导体材料设备主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931743"
+    },
+    {
+      "code": "931865.CSI",
+      "name": "中证半导体产业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931865"
+    },
+    {
+      "code": "932038.CSI",
+      "name": "中证国新央企科技引领指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932038"
+    },
+    {
+      "code": "932052.CSI",
+      "name": "中证诚通央企科技创新指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932052"
+    },
+    {
+      "code": "932066.CSI",
+      "name": "中证半导体行业精选指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932066"
+    },
+    {
+      "code": "932087.CSI",
+      "name": "中证全指集成电路指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932087"
+    },
+    {
+      "code": "932094.CSI",
+      "name": "中证全指软件开发指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932094"
+    },
+    {
+      "code": "932138.CSI",
+      "name": "中证全指电子行业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932138"
+    },
+    {
+      "code": "950125.CSI",
+      "name": "上证科创板半导体材料设备主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950125"
+    },
+    {
+      "code": "950162.CSI",
+      "name": "上证科创板芯片设计主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950162"
+    },
+    {
+      "code": "950180.CSI",
+      "name": "上证科创板人工智能指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950180"
+    },
+    {
+      "code": "970070.CNI",
+      "name": "创业板人工智能指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=970070"
+    },
+    {
+      "code": "980017.CNI",
+      "name": "国证半导体芯片",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980017"
+    },
+    {
+      "code": "980030.CNI",
+      "name": "国证消费电子主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980030"
+    },
+    {
+      "code": "980034.CNI",
+      "name": "国证工业软件主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980034"
+    },
+    {
+      "code": "987008.CNI",
+      "name": "国证港股通科技指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=987008"
+    },
+    {
+      "code": "987022.CNI",
+      "name": "国证港股通互联网指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=987022"
+    },
+    {
+      "code": "990001.CSI",
+      "name": "中华交易服务半导体芯片行业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=990001"
+    },
+    {
+      "code": "995066.SSI",
+      "name": "华证专精特新100指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995066"
+    },
+    {
+      "code": "CN5075.CNI",
+      "name": "国证信息技术创新主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CN5075"
+    },
+    {
+      "code": "h30007.CSI",
+      "name": "中证芯片产业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30007"
+    },
+    {
+      "code": "h30182.CSI",
+      "name": "中证全指计算机指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30182"
+    },
+    {
+      "code": "h30184.CSI",
+      "name": "中证全指半导体产品与设备指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30184"
+    },
+    {
+      "code": "h30202.CSI",
+      "name": "中证全指软件指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30202"
+    },
+    {
+      "code": "h30257.CSI",
+      "name": "中证500信息技术指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30257"
+    },
+    {
+      "code": "h30318.CSI",
+      "name": "中证科技传媒通信150指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30318"
+    },
+    {
+      "code": "h30365.CSI",
+      "name": "中证文娱传媒指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30365"
+    },
+    {
+      "code": "h30372.CSI",
+      "name": "中证社会发展安全产业主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30372"
+    },
+    {
+      "code": "h30535.CSI",
+      "name": "中证互联网指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30535"
+    },
+    {
+      "code": "HSCSSE.HI",
+      "name": "恒生A股专精特新企业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSCSSE"
+    },
+    {
+      "code": "HSIII.HI",
+      "name": "恒生互联网科技业指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSIII"
+    },
+    {
+      "code": "HSSCITI.HI",
+      "name": "恒生港股通科技主题指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCITI"
+    },
+    {
+      "code": "HSSCNE.HI",
+      "name": "恒生港股通新经济指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCNE"
+    },
+    {
+      "code": "HSSCT.HI",
+      "name": "恒生港股通中国科技指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCT"
+    },
+    {
+      "code": "HSTECH.HI",
+      "name": "恒生科技指数",
+      "sub_category": "科技产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSTECH"
+    }
+  ]
+}

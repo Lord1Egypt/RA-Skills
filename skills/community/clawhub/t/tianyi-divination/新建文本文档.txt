@@ -1,0 +1,1 @@
+clawhub skill publish . --slug tianyi-divination --name "中国传统术数实战-算卦" --version 1.0.3 --changelog "二次更新" --tags "latest"

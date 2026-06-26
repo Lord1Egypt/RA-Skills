@@ -1,0 +1,197 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "enable_forward": true,
+    "width_mode": "fill"
+  },
+  "header": {
+    "template": "purple",
+    "title": {
+      "tag": "plain_text",
+      "content": "📊 __DASHBOARD_TITLE__"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "__DASHBOARD_SUBTITLE__"
+    },
+    "text_tag_list": [
+      {
+        "tag": "text_tag",
+        "text": { "tag": "plain_text", "content": "__PERIOD__" },
+        "color": "purple"
+      }
+    ]
+  },
+  "body": {
+    "direction": "vertical",
+    "vertical_spacing": "medium",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**核心结论**：__KEY_CONCLUSION__（用 <font color='green'> 或 <font color='red'> 强调关键数字）"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "fields": [
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**💰 __METRIC_1_NAME__**\n<font color='green'>__METRIC_1_VALUE__</font>\n<font color='grey'>环比 __METRIC_1_DELTA__</font>" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**📦 __METRIC_2_NAME__**\n<font color='green'>__METRIC_2_VALUE__</font>\n<font color='grey'>环比 __METRIC_2_DELTA__</font>" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**👥 __METRIC_3_NAME__**\n__METRIC_3_VALUE__\n<font color='grey'>环比 __METRIC_3_DELTA__</font>" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**📈 __METRIC_4_NAME__**\n__METRIC_4_VALUE__\n<font color='grey'>环比 __METRIC_4_DELTA__</font>" }
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "bisect",
+        "horizontal_spacing": "8px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**📈 __CHART_1_TITLE__**"
+              },
+              {
+                "tag": "chart",
+                "aspect_ratio": "1:1",
+                "chart_spec": {
+                  "type": "bar",
+                  "data": {
+                    "values": [
+                      { "类别": "__CAT_1__", "值": 0 },
+                      { "类别": "__CAT_2__", "值": 0 },
+                      { "类别": "__CAT_3__", "值": 0 }
+                    ]
+                  },
+                  "xField": "类别",
+                  "yField": "值",
+                  "label": { "visible": true }
+                }
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**🍰 __CHART_2_TITLE__**"
+              },
+              {
+                "tag": "chart",
+                "aspect_ratio": "1:1",
+                "chart_spec": {
+                  "type": "pie",
+                  "data": {
+                    "values": [
+                      { "分类": "__SEG_1__", "占比": 0 },
+                      { "分类": "__SEG_2__", "占比": 0 },
+                      { "分类": "__SEG_3__", "占比": 0 }
+                    ]
+                  },
+                  "categoryField": "分类",
+                  "valueField": "占比",
+                  "label": { "visible": true }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "collapsible_panel",
+        "expanded": false,
+        "header": {
+          "title": { "tag": "markdown", "content": "**📋 明细数据（点击展开）**" },
+          "background_color": "grey",
+          "padding": "4px 8px 4px 8px",
+          "icon": {
+            "tag": "standard_icon",
+            "token": "down-small-ccm_outlined",
+            "size": "16px 16px"
+          },
+          "icon_position": "right",
+          "icon_expanded_angle": -180
+        },
+        "elements": [
+          {
+            "tag": "markdown",
+            "content": "| 项目 | 数值 | 状态 |\n|------|------|------|\n| __ROW_1__ | __ROW_1_VALUE__ | <text_tag color='green'>正常</text_tag> |\n| __ROW_2__ | __ROW_2_VALUE__ | <text_tag color='orange'>关注</text_tag> |\n| __ROW_3__ | __ROW_3_VALUE__ | <text_tag color='red'>异常</text_tag> |"
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "horizontal_spacing": "8px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "📊 完整报表" },
+                "type": "primary",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "open_url", "default_url": "__REPORT_URL__" }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "📥 导出数据" },
+                "type": "default",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "open_url", "default_url": "__EXPORT_URL__" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "text_size": "notation",
+        "content": "<font color='grey'>📡 数据更新于 __UPDATE_TIME__ · 来源：__SOURCE__</font>"
+      }
+    ]
+  }
+}

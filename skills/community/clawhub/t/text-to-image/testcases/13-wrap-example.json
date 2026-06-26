@@ -1,0 +1,9 @@
+{
+  "text": "This is a longer sentence that should wrap into multiple lines.",
+  "width": 420,
+  "height": 220,
+  "font_size": 28,
+  "background": "#ffffff",
+  "default_color": "#222222",
+  "padding": 20
+}

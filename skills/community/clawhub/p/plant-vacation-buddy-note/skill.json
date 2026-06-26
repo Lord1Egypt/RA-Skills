@@ -1,0 +1,47 @@
+{
+  "slug": "plant-vacation-buddy-note",
+  "name": "Plant Watering Vacation Buddy Note",
+  "displayName": "Plant Watering Vacation Buddy Note",
+  "version": "1.0.1",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Builds a room-by-room vacation plant sitter handoff note with water amounts, timing, photo slots, visit checklist, and skip-if-unsure instructions without toxicity claims or invented plant care.",
+  "category": "Urgent Admin Logistics",
+  "tags": [
+    "plant care handoff",
+    "vacation sitter",
+    "watering note",
+    "home logistics",
+    "printable checklist"
+  ],
+  "trigger_keywords": [
+    "plant vacation note",
+    "plant sitter instructions",
+    "plant watering vacation template",
+    "plant care handoff",
+    "water my plants while away",
+    "vacation plant checklist"
+  ],
+  "use_cases": [
+    "Create a sitter-ready watering note before travel.",
+    "Organize plants by room with exact owner-provided water amounts.",
+    "Add photo slots and skip-if-unsure rules for quick handoff."
+  ],
+  "requires": {},
+  "requiresApi": false,
+  "requires_api": false,
+  "hasExecutableCode": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "promptOnly": true,
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Sitter handoff only, not plant diagnosis or long-term horticulture planning.",
+    "No toxic plant claims or safety claims about pets, children, or people.",
+    "Do not invent plant species, care needs, water amounts, light needs, or pest treatments.",
+    "Use skip-if-unsure instructions whenever details are unclear."
+  ]
+}

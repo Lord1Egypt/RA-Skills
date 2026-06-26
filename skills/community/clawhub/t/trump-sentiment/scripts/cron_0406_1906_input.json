@@ -1,0 +1,120 @@
+{
+  "trigger_checked": false,
+  "trigger_file_missing": true,
+  "timestamp": "2026-04-06T19:06:00+08:00",
+  "data_source": "cron_nasdaq_trigger",
+  "x_search_trump_iran": [
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@ConciousLabRat",
+      "content": "Markets open → Trump floods feed with 'potential deal' headlines. Markets close → threats of bombing Iran 'back to the stone age' or hitting power plants if Strait of Hormuz stays shut. This seesaw has dragged on for over a month.",
+      "type": "analysis",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@madlife1000",
+      "content": "Trump is the one begging for a deal. Iran said no deal.",
+      "type": "direct",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:04",
+      "author": "@astronglady",
+      "content": "I can't see why Iran would negotiate when Trump shows them no respect. What would make them think a compulsive lying narcissist would respect any deal?",
+      "type": "opinion",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:04",
+      "author": "@EzemFrancis",
+      "content": "Iran says intelligence chief killed by US-Israeli strike, as Trump threatens 'hell' if deal not made (from businessandtransport.com)",
+      "type": "breaking",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:04",
+      "author": "@KurdishDoctrine",
+      "content": "Trump is playing a high-stakes game of 'coercive diplomacy.' By floating the idea of arming ethnic minorities, he's trying to scare Iran into a compromise. He's using the Kurdish 'bogeyman' as a bargaining chip for a deal he desperately wants to sign.",
+      "type": "analysis",
+      "likes": null,
+      "retweets": null
+    }
+  ],
+  "x_search_iran_ceasefire": [
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@shedblood178",
+      "content": "Iran mediators 'reject temporary ceasefire' after receiving new plan to end war (from independent.co.uk)",
+      "type": "breaking",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@Owaye_T",
+      "content": "Iran should ask for a ceasefire, so you say, how did this war start, which American soldier or citizen was hurt for America to attack Iran?",
+      "type": "question",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@A_K_Mandhan",
+      "content": "BREAKING: While Pakistan was presenting its ceasefire proposal to Tehran, Israel was carrying out targeted strikes on key Iranian figures. Both happened overnight, between April 5 and April 6. The Islamabad proposal.",
+      "type": "breaking",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@mvwillo1610",
+      "content": "Iran will not agree to a temporary ceasefire, they need a permanent solution to US imperialism and destabilisation in their region.",
+      "type": "position",
+      "likes": null,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@Happyfeet23443",
+      "content": "Bomb Iran Saturday always turns into Ceasefire Monday? Every weekend is the same thing. 1 like, 9 views",
+      "type": "satire",
+      "likes": 1,
+      "retweets": null
+    },
+    {
+      "time_cst": "2026-04-06 19:05",
+      "author": "@RuDauntless",
+      "content": "Iranian officials made clear to mediators they don't want to be caught in a Gaza or Lebanon situation where there is a ceasefire on paper, but the US and Israel can attack again whenever they want to.",
+      "type": "analysis",
+      "likes": null,
+      "retweets": null
+    }
+  ],
+  "kobeissi_letter": [
+    {
+      "time_cst": "2026-04-06 ~07:06 (12h ago)",
+      "author": "@KobeissiLetter",
+      "content": "Oil prices are now crossing above $115/barrel in the US. As a result, our models indicate that if current levels are sustained another ~7 weeks, US CPI inflation will rise to ~3.7%. This would put US inflation at its highest level since September 2023.",
+      "type": "market_alert",
+      "likes": 3305,
+      "retweets": 526,
+      "replies": 175
+    }
+  ],
+  "watcher_guru": [
+    {
+      "note": "No recent Iran/Oil tweets found - only pinned tweet visible"
+    }
+  ],
+  "notes": [
+    "Trigger file nasdaq_trigger_sentiment.json does not exist",
+    "Brave web search API returned 422 AUTH error - skipped",
+    "Web fetch blocked - skipped",
+    "All data from X.com live searches"
+  ]
+}

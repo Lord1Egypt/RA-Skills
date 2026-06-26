@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/copd-tracker.json",
+  "title": "COPDTracker",
+  "description": "Data structure definition for COPD management",
+  "type": "object",
+  "properties": {
+    "lung_function": {
+      "type": "object",
+      "properties": {
+        "date": {"type": "string", "format": "date"},
+        "post_bronchodilator": {
+          "type": "object",
+          "properties": {
+            "fev1": {"type": "number", "minimum": 0.5, "maximum": 8.0},
+            "fev1_percent_predicted": {"type": "integer", "minimum": 10, "maximum": 120},
+            "fvc": {"type": "number", "minimum": 1.0, "maximum": 10.0},
+            "fev1_fvc_ratio": {"type": "number", "minimum": 0.2, "maximum": 1.0}
+          }
+        },
+        "gold_grade": {
+          "type": "string",
+          "enum": ["1级", "2级", "3级", "4级"]
+        },
+        "interpretation": {
+          "type": "string",
+          "enum": ["轻度气流受限", "中度气流受限", "重度气流受限", "极重度气流受限"]
+        }
+      }
+    },
+    "cat_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "total_score": {"type": "integer", "minimum": 0, "maximum": 40},
+          "max_score": {"type": "integer", "const": 40},
+          "interpretation": {
+            "type": "string",
+            "enum": ["轻度影响", "中度影响", "重度影响", "极重度影响"]
+          },
+          "impact_level": {
+            "type": "string",
+            "enum": ["低", "中", "高", "极高"]
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "cough": {"type": "integer", "minimum": 0, "maximum": 5},
+              "sputum": {"type": "integer", "minimum": 0, "maximum": 5},
+              "chest_tightness": {"type": "integer", "minimum": 0, "maximum": 5},
+              "breathlessness_climbing": {"type": "integer", "minimum": 0, "maximum": 5},
+              "activity_limitation": {"type": "integer", "minimum": 0, "maximum": 5},
+              "confidence_outdoors": {"type": "integer", "minimum": 0, "maximum": 5},
+              "sleep": {"type": "integer", "minimum": 0, "maximum": 5},
+              "energy": {"type": "integer", "minimum": 0, "maximum": 5}
+            }
+          }
+        },
+        "required": ["date", "total_score"]
+      }
+    },
+    "mmrc_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "grade": {"type": "integer", "minimum": 0, "maximum": 4},
+          "severity": {
+            "type": "string",
+            "enum": ["轻度呼吸困难", "中度呼吸困难", "重度呼吸困难"]
+          }
+        },
+        "required": ["date", "grade"]
+      }
+    },
+    "symptoms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "symptom_type": {
+            "type": "string",
+            "enum": ["dyspnea", "cough", "sputum", "wheeze"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["mild", "moderate", "severe"]
+          },
+          "details": {
+            "type": "object",
+            "properties": {
+              "sputum_color": {
+                "type": "string",
+                "enum": ["white", "clear", "yellow", "green", "purulent"]
+              },
+              "sputum_volume": {
+                "type": "string",
+                "enum": ["scanty", "moderate", "abundant"]
+              },
+              "cough_frequency": {
+                "type": "string",
+                "enum": ["daily", "weekly", "occasional"]
+              },
+              "wheeze_timing": {
+                "type": "string",
+                "enum": ["exertion", "constant", "none"]
+              }
+            }
+          }
+        },
+        "required": ["date", "symptom_type"]
+      }
+    },
+    "exacerbations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "severity": {
+            "type": "string",
+            "enum": ["mild", "moderate", "severe"]
+          },
+          "triggers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["viral_infection", "bacterial_infection", "air_pollution", "weather_change", "non_adherence"]
+            }
+          },
+          "symptoms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["increased_dyspnea", "increased_sputum", "purulent_sputum", "wheezing", "fever"]
+            }
+          },
+          "treatment": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "hospitalized": {"type": "boolean"},
+          "recovery_days": {"type": "integer", "minimum": 0},
+          "created_at": {"type": "string", "format": "date-time"}
+        },
+        "required": ["id", "date", "severity"]
+      }
+    },
+    "medications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "medication_id": {"type": "string"},
+          "name": {"type": "string"},
+          "dosage": {"type": "string"},
+          "frequency": {"type": "string"},
+          "device_type": {
+            "type": "string",
+            "enum": ["MDI", "DPI", "nebulizer", "oral", "other"]
+          },
+          "indication": {"type": "string"},
+          "start_date": {"type": "string", "format": "date"}
+        },
+        "required": ["medication_id", "name", "dosage"]
+      }
+    },
+    "vaccinations": {
+      "type": "object",
+      "properties": {
+        "influenza": {
+          "type": "object",
+          "properties": {
+            "last_vaccinated": {"type": "string", "format": "date"},
+            "next_due": {"type": "string", "format": "date"}
+          }
+        },
+        "pneumococcal_pcv13": {
+          "type": "object",
+          "properties": {
+            "vaccinated": {"type": "boolean"},
+            "date": {"type": "string", "format": "date"}
+          }
+        },
+        "pneumococcal_ppsv23": {
+          "type": "object",
+          "properties": {
+            "vaccinated": {"type": "boolean"},
+            "date": {"type": "string", "format": "date"},
+            "next_due": {"type": "string", "format": "date"}
+          }
+        }
+      }
+    },
+    "gold_assessment": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string",
+          "enum": ["A", "B", "C", "D"]
+        },
+        "cat_score": {"type": "integer"},
+        "mmrc_grade": {"type": "integer"},
+        "exacerbations_per_year": {"type": "integer"}
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "exacerbations_this_year": {"type": "integer"},
+        "exacerbations_last_year": {"type": "integer"},
+        "last_cat_score": {"type": "integer"},
+        "last_mmrc_grade": {"type": "integer"}
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

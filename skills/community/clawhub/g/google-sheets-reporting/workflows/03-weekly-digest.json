@@ -1,0 +1,174 @@
+{
+  "name": "Sheets Report — Weekly Digest",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1"
+            }
+          ]
+        }
+      },
+      "id": "n1",
+      "name": "Weekly Monday 9AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_REPORT_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Data",
+          "mode": "list"
+        },
+        "options": {}
+      },
+      "id": "n2",
+      "name": "Read Primary Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        200
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_REPORT_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet2",
+          "mode": "list"
+        },
+        "options": {}
+      },
+      "id": "n3",
+      "name": "Read Secondary Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        400
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const primaryRows = $('Read Primary Sheet').all().map(i => i.json);\nconst secondaryRows = $('Read Secondary Sheet').all().map(i => i.json);\nconst now = new Date();\nconst weekStart = new Date(now - 7 * 24 * 60 * 60 * 1000);\nconst reportDate = now.toISOString().split('T')[0];\nconst weekStartDate = weekStart.toISOString().split('T')[0];\n\n// Helper: summarize a sheet's numeric columns\nfunction summarize(rows, label) {\n  if (rows.length === 0) return `<p><strong>${label}:</strong> No data</p>`;\n\n  const columns = Object.keys(rows[0]);\n  const numericCols = columns.filter(col => {\n    const sample = rows.slice(0, 10).map(r => r[col]).filter(v => v !== '' && v != null);\n    return sample.length > 0 && sample.every(v => !isNaN(parseFloat(v)));\n  });\n\n  let html = `<h3>${label} (${rows.length} rows)</h3>`;\n  if (numericCols.length === 0) {\n    return html + '<p>No numeric columns found</p>';\n  }\n\n  html += '<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\"><tr><th>Metric</th><th>Sum</th><th>Average</th><th>Min</th><th>Max</th></tr>';\n  for (const col of numericCols) {\n    const vals = rows.map(r => parseFloat(r[col])).filter(v => !isNaN(v));\n    if (vals.length === 0) continue;\n    const sum = Math.round(vals.reduce((a, b) => a + b, 0) * 100) / 100;\n    const avg = Math.round(sum / vals.length * 100) / 100;\n    html += `<tr><td><strong>${col}</strong></td><td>${sum}</td><td>${avg}</td><td>${Math.min(...vals)}</td><td>${Math.max(...vals)}</td></tr>`;\n  }\n  html += '</table>';\n  return html;\n}\n\nconst primarySummary = summarize(primaryRows, 'Primary Data');\nconst secondarySummary = summarize(secondaryRows, 'Secondary Data');\n\nreturn [{\n  json: {\n    report_date: reportDate,\n    week_start: weekStartDate,\n    primary_rows: primaryRows.length,\n    secondary_rows: secondaryRows.length,\n    primary_summary: primarySummary,\n    secondary_summary: secondarySummary\n  }\n}];"
+      },
+      "id": "n4",
+      "name": "Build Digest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.REPORT_EMAIL || 'YOUR_NOTIFICATION_EMAIL' }}",
+        "subject": "=Weekly Digest — {{ $json.week_start }} to {{ $json.report_date }}",
+        "message": "=<h2>Weekly Data Digest</h2><p><strong>Period:</strong> {{ $json.week_start }} to {{ $json.report_date }}</p>{{ $json.primary_summary }}{{ $json.secondary_summary }}<hr><p><em>This report is generated automatically every Monday at 9 AM.</em></p>",
+        "options": {}
+      },
+      "id": "n5",
+      "name": "Send Digest",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Weekly Monday 9AM": {
+      "main": [
+        [
+          {
+            "node": "Read Primary Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Secondary Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Primary Sheet": {
+      "main": [
+        [
+          {
+            "node": "Build Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Secondary Sheet": {
+      "main": [
+        [
+          {
+            "node": "Build Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Digest": {
+      "main": [
+        [
+          {
+            "node": "Send Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Restart Resume"
+  short_description: "Durable restart follow-up protocol"
+  default_prompt: "Use $gateway-restart-resume to restart OpenClaw without losing the user follow-up."

@@ -1,0 +1,13 @@
+{
+  "name": "groq-voice-transcriber",
+  "version": "1.0.0",
+  "description": "Голосовые сообщения через Groq Whisper API",
+  "entry": "handler.py",
+  "trigger": {
+    "type": "audio",
+    "channels": ["telegram"]
+  },
+  "env": {
+    "GROQ_API_KEY": "required"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "name": "team-collab",
+  "version": "1.2.0",
+  "description": "多模型团队协作系统 - 8人专业团队（产品经理、程序员、设计师、测试、审查员、法律顾问、艺术专家、市场分析专家）协作完成项目",
+  "author": "Jarvis",
+  "license": "MIT",
+  "keywords": [
+    "team",
+    "collaboration",
+    "multi-agent",
+    "ai-team",
+    "product-manager",
+    "developer",
+    "designer",
+    "tester",
+    "legal",
+    "art",
+    "market"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidme6/team-collab"
+  },
+  "skills": {
+    "roles": [
+      {
+        "id": "product_manager",
+        "name": "产品经理",
+        "model": "bailian/qwen-plus"
+      },
+      {
+        "id": "developer",
+        "name": "程序员",
+        "model": "bailian/glm-5"
+      },
+      {
+        "id": "designer",
+        "name": "设计师",
+        "model": "bailian/qwen3.5-plus"
+      },
+      {
+        "id": "tester",
+        "name": "测试工程师",
+        "model": "deepseek-coder"
+      },
+      {
+        "id": "reviewer",
+        "name": "代码审查员",
+        "model": "bailian/qwen-max"
+      },
+      {
+        "id": "legal_advisor",
+        "name": "法律顾问",
+        "model": "bailian/qwen-max"
+      },
+      {
+        "id": "art_expert",
+        "name": "艺术专家",
+        "model": "bailian/qwen3.5-plus"
+      },
+      {
+        "id": "market_analyst",
+        "name": "市场分析专家",
+        "model": "bailian/qwen-plus"
+      }
+    ]
+  }
+}

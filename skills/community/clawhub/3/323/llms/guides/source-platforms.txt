@@ -1,0 +1,188 @@
+--------------------------------------------------------------------------------
+title: "Source Platforms"
+description: "Guide to the different source platforms supported by @tiktok-fe/skills CLI."
+source: "/llms/guides/source-platforms.txt"
+--------------------------------------------------------------------------------
+
+# Source Platforms
+
+Skills can be sourced from multiple platforms. Use the `--source` parameter to specify where to find or install skills.
+
+## Available Sources
+
+| Source | `--source` Value | Description |
+|--------|------------------|-------------|
+| Internal Registry | `local` | Skills hosted on ai-skills.bytedance.net |
+| GitHub | `github` | Community skills on GitHub |
+| GitLab | `gitlab` | Community skills on GitLab |
+| ByteDance Internal | `codebase` | ByteDance internal Git (code.byted.org) |
+| skills.sh | `wellknown` | Curated skills from skills.sh |
+
+## Source Resolution Logic
+
+The CLI resolves the source automatically based on the input format (from test coverage):
+
+| Input | `--source` | `--skill` | Result |
+|-------|------------|-----------|--------|
+| `https://github.com/owner/repo` | — | — | `repo-all` (install all skills) |
+| `https://github.com/owner/repo` | — | `skill-name` | `repo` (install specific skills) |
+| `my-skill` | `local` | — | `api` (registry lookup) |
+| `owner/repo` | `github` | — | `repo-all` |
+| `owner/repo` | `github` | `skill-name` | `repo` |
+| `owner/repo` | `gitlab` | — | `repo-all` |
+| `owner/repo` | `gitlab` | `skill-name` | `repo` |
+| `team/repo` | `codebase` | `skill-name` | `api` (with repo context) |
+| `owner/repo` | — | — | Auto-detect platform |
+| `owner/repo` | — | `skill-name` | `api` (registry with repo hint) |
+| `just-a-name` | — | — | `api` (registry lookup) |
+| Invalid URL | — | — | `error` |
+| `owner/repo` | `bitbucket` | — | `error` (unsupported) |
+
+## Internal Registry (`local`)
+
+Skills hosted on the Skill Hub registry at ai-skills.bytedance.net.
+
+### Characteristics
+
+- Curated and reviewed
+- Version management with auto-increment
+- Fast downloads from internal network
+- Guaranteed availability
+
+### Usage
+
+```bash
+# Search internal skills
+ai-skills find react --source local --pure
+
+# Install internal skill
+ai-skills add skill-name --source local --project --pure
+
+# Install with specific source (from codebase repo)
+ai-skills add team/repo --source codebase --skill skill-name --project --pure
+```
+
+## GitHub
+
+Community skills hosted on GitHub repositories.
+
+### Characteristics
+
+- Community-driven
+- Direct from source
+- May contain multiple skills per repository
+- Requires `--skill` flag for specific skills, or omit to install all
+
+### Usage
+
+```bash
+# Install specific skill from GitHub
+ai-skills add owner/repo --source github --skill skill-name --project --pure
+
+# Install using full URL
+ai-skills add https://github.com/owner/repo --skill skill-name --project --pure
+
+# Install all skills from a GitHub repository
+ai-skills add owner/repo --source github --project --pure
+
+# Install multiple specific skills
+ai-skills add owner/repo --source github --skill skill1 --skill skill2 --project --pure
+```
+
+### Repository Structure
+
+GitHub skill repositories typically organize skills as subdirectories:
+
+```
+repo/
+├── skill-1/
+│   └── SKILL.md
+├── skill-2/
+│   ├── SKILL.md
+│   └── examples/
+└── README.md
+```
+
+## GitLab
+
+Community skills hosted on GitLab repositories.
+
+### Characteristics
+
+- Similar to GitHub
+- Supports self-hosted GitLab instances (resolved to `gitlab.com` by default)
+- Same repository structure as GitHub
+
+### Usage
+
+```bash
+# Install from GitLab
+ai-skills add owner/repo --source gitlab --skill skill-name --project --pure
+
+# Install all from GitLab repo
+ai-skills add owner/repo --source gitlab --project --pure
+```
+
+## ByteDance Internal (`codebase`)
+
+Skills from ByteDance internal Git platforms (code.byted.org, bits.bytedance.net).
+
+### Characteristics
+
+- Internal only, requires ByteDance network access
+- Skills are registered in the internal registry with repo context
+- Uses `api` resolution (not direct Git clone)
+- **Visibility**: Web and API do not list or return codebase skills (list/search/get/by-repo/by-owner all filter them out). Install telemetry is never uploaded; track-install API rejects codebase requests.
+
+### Usage
+
+```bash
+# Install from internal Git
+ai-skills add team/repo --source codebase --skill skill-name --project --pure
+```
+
+## skills.sh (`wellknown`)
+
+Curated skills from the skills.sh community registry.
+
+### Characteristics
+
+- Well-known community skills
+- Cross-referenced from skills.sh
+- High-quality curation
+
+### Usage
+
+```bash
+# Install from skills.sh
+ai-skills add skill-name --source wellknown --project --pure
+```
+
+## Searching by Source
+
+Filter search results by source platform:
+
+```bash
+# Search only internal skills
+ai-skills find react --filter internal --pure
+
+# Search only community skills
+ai-skills find react --filter community --pure
+
+# Search specific source
+ai-skills find react --source github --pure
+```
+
+## Source Selection Guide
+
+| Scenario | Recommended Source |
+|----------|-------------------|
+| Enterprise/work projects | `local` or `codebase` |
+| Open source projects | `github` or `wellknown` |
+| Quick, trusted skills | `local` or `wellknown` |
+| Self-hosted GitLab | `gitlab` |
+| ByteDance internal | `codebase` |
+
+## Auto-Detection
+
+When `--source` is omitted and the input looks like `owner/repo`, the CLI attempts to auto-detect the platform by checking if the repository exists on known platforms. If detection fails, an error is returned.

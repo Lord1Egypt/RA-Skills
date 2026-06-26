@@ -1,0 +1,16 @@
+# Data source fallback policy (extensible; primary path uses yfinance).
+version: "1.0.0"
+defaults:
+  timeout_sec: 45
+  retries: 2
+markets:
+  us:
+    primary: yahoo_yfinance
+    fallbacks: []
+  hk:
+    primary: yahoo_yfinance
+    fallbacks: []
+  cn:
+    primary: yahoo_yfinance
+    fallbacks: []
+# Future: add akshare/eastmoney with opt-in env TAI_ALPHA_CN_SOURCE=akshare

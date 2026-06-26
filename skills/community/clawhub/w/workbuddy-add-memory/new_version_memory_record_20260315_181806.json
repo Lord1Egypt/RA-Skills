@@ -1,0 +1,96 @@
+{
+  "record_time": "2026-03-15T18:18:06.464233",
+  "skill_version": "v3.0",
+  "skill_author": "zcg007",
+  "workspace": "/Users/josieyang/WorkBuddy/20260315162030/skills",
+  "total_memories": 160,
+  "relevant_memories": 15,
+  "memory_sources": [
+    "/Users/josieyang/.workbuddy/global_summaries/",
+    "/Users/josieyang/.workbuddy/unified_memory/",
+    "/Users/josieyang/.workbuddy/skills/",
+    "/Users/josieyang/.workbuddy/learnings/"
+  ],
+  "relevant_results": [
+    {
+      "index": 1,
+      "title": "在GitHub上创建 `workbuddy-add-memory` 仓库",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/GITHUB_MANUAL_GUIDE.md",
+      "similarity": 0,
+      "category": "skill",
+      "content_preview": "# GitHub仓库手动创建指南 - zcg007账户\n\n## 🎯 目标\n在GitHub上创建 `workbuddy-add-memory` 仓库\n\n## 📋 账户信息\n- **用户名**: zcg0..."
+    },
+    {
+      "index": 2,
+      "title": "- **技能ID**: workbuddy-add-memory",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/UPLOAD_GUIDE.md",
+      "similarity": 0,
+      "category": "skill",
+      "content_preview": "# SkillHub 上传指南 - 精简版\n\n## 📋 技能信息\n- **技能ID**: workbuddy-add-memory\n- **版本**: 1.0.0\n- **安全等级**: P2 (安全..."
+    },
+    {
+      "index": 3,
+      "title": "---",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/SKILL.md",
+      "similarity": 0,
+      "category": "excel",
+      "content_preview": "---\nname: workbuddy-add-memory\ntitle: WorkBuddy 增强记忆技能\nversion: 1.0.0\ndescription: 为WorkBuddy添加智能记忆管..."
+    },
+    {
+      "index": 4,
+      "title": "- **技能名称**: workbuddy-add-memory",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory/INSTALLATION_AND_TEST.md",
+      "similarity": 0,
+      "category": "excel",
+      "content_preview": "# workbuddy-add-memory技能 v3.0 安装和测试报告\n\n## 📋 基本信息\n- **技能名称**: workbuddy-add-memory\n- **版本**: v3.0\n- *..."
+    },
+    {
+      "index": 5,
+      "title": "**为WorkBuddy添加智能记忆管理功能：自动知识蒸馏→智能检索→工作前回忆**",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/SKILL_OLD.md",
+      "similarity": 0,
+      "category": "excel",
+      "content_preview": "# WorkBuddy 增强记忆技能 (WorkBuddy Add-Memory Skill)\n\n## 功能描述\n**为WorkBuddy添加智能记忆管理功能：自动知识蒸馏→智能检索→工作前回忆**\n..."
+    },
+    {
+      "index": 6,
+      "title": "{",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/工作原则检查报告.json",
+      "similarity": 0,
+      "category": "excel",
+      "content_preview": "{\n  \"total_principles\": 5,\n  \"highest_priority\": 2,\n  \"medium_priority\": 1,\n  \"low_priority\": 2,\n  \"..."
+    },
+    {
+      "index": 7,
+      "title": "这是一个为WorkBuddy用户设计的增强记忆技能，用于：",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/README.md",
+      "similarity": 0,
+      "category": "excel",
+      "content_preview": "# WorkBuddy 增强记忆技能 (WorkBuddy Add-Memory Skill)\n\n## 🎯 技能概述\n\n这是一个为WorkBuddy用户设计的增强记忆技能，用于：\n1. **自动化知识..."
+    },
+    {
+      "index": 8,
+      "title": "相比使用密码，**SSH密钥方式**更安全、更方便：",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/github_ssh_setup.md",
+      "similarity": 0,
+      "category": "skill",
+      "content_preview": "# GitHub SSH密钥方式配置指南\n\n## 🎯 **推荐的安全上传方式**\n\n相比使用密码，**SSH密钥方式**更安全、更方便：\n\n### **✅ SSH方式的优势**\n1. **更安全**：..."
+    },
+    {
+      "index": 9,
+      "title": "SKILLHUB UPLOAD",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory-backup/SKILLHUB_UPLOAD.md",
+      "similarity": 0,
+      "category": "excel",
+      "content_preview": "# SkillHub 上传指南 - WorkBuddy 增强记忆技能\n\n## 📋 技能信息\n\n### 基本信息\n- **技能名称**: WorkBuddy 增强记忆技能 (WorkBuddy Add-..."
+    },
+    {
+      "index": 10,
+      "title": "{",
+      "source": "/Users/josieyang/.workbuddy/skills/workbuddy-add-memory/.workbuddy/preparation_output/preparation_data_20260315_175756.json",
+      "similarity": 0,
+      "category": "excel",
+      "content_preview": "{\n  \"task_description\": \"处理尤米教育财务报表\",\n  \"task_analysis\": {\n    \"description\": \"处理尤米教育财务报表\",\n    \"pri..."
+    }
+  ]
+}

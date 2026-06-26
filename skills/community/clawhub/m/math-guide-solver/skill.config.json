@@ -1,0 +1,152 @@
+{
+  "name": "math-solver",
+  "version": "1.0.0",
+  "description": "Complete mathematical problem solving with OCR, LaTeX extraction, PNG rendering, and guided solutions",
+  
+  "dependencies": {
+    "skills": [
+      {
+        "name": "paddleocr-doc-parsing",
+        "version": ">=1.0.0",
+        "required": true,
+        "purpose": "Extract text and formulas from images"
+      },
+      {
+        "name": "math-images",
+        "version": ">=1.0.0",
+        "required": true,
+        "purpose": "Render LaTeX formulas to PNG images"
+      }
+    ],
+    "apis": [
+      {
+        "name": "claude",
+        "version": "latest",
+        "required": true,
+        "purpose": "Generate solutions and guidance"
+      }
+    ],
+    "python": {
+      "version": ">=3.8",
+      "packages": [
+        "requests>=2.28.0",
+        "Pillow>=9.0.0",
+        "numpy>=1.20.0",
+        "opencv-python>=4.5.0"
+      ]
+    }
+  },
+  
+  "capabilities": [
+    "image-processing",
+    "ocr",
+    "latex-conversion",
+    "formula-rendering",
+    "problem-solving",
+    "educational-guidance",
+    "batch-processing"
+  ],
+  
+  "defaultConfig": {
+    "solutionMode": "socratic",
+    "theme": "light",
+    "formulaSize": "medium",
+    "renderingDPI": 300,
+    "autoDetectDomain": true,
+    "ocrConfidenceThreshold": 0.7,
+    "supportedLanguages": ["en", "zh"],
+    "batchProcessing": true,
+    "maxBatchSize": 50
+  },
+  
+  "themes": {
+    "light": {
+      "backgroundColor": "#ffffff",
+      "textColor": "#000000",
+      "accentColor": "#0066cc"
+    },
+    "dark": {
+      "backgroundColor": "#1e1e1e",
+      "textColor": "#ffffff",
+      "accentColor": "#00d4ff"
+    },
+    "sepia": {
+      "backgroundColor": "#f4f1de",
+      "textColor": "#2d2d2d",
+      "accentColor": "#d4a574"
+    },
+    "chalk": {
+      "backgroundColor": "#2c2c2c",
+      "textColor": "#e0e0e0",
+      "accentColor": "#ffeb3b"
+    }
+  },
+  
+  "inputFormats": [
+    "image/jpeg",
+    "image/png",
+    "image/bmp",
+    "image/tiff",
+    "application/pdf",
+    "text/markdown",
+    "text/plain"
+  ],
+  
+  "outputFormats": [
+    "image/png",
+    "application/json",
+    "text/markdown",
+    "application/pdf"
+  ],
+  
+  "supportedDomains": [
+    "algebra",
+    "geometry",
+    "calculus",
+    "statistics",
+    "linear-algebra",
+    "trigonometry",
+    "number-theory",
+    "discrete-math"
+  ],
+  
+  "scripts": {
+    "process": "python scripts/process_math_problem.py",
+    "solve": "python scripts/generate_solution.py",
+    "test": "python scripts/test_skill.py"
+  },
+  
+  "files": {
+    "main": "SKILL.md",
+    "guide": "references/QUICKSTART.md",
+    "examples": "references/EXAMPLES.md",
+    "scripts": "scripts/"
+  },
+  
+  "triggers": [
+    "math problem",
+    "solve this",
+    "render formula",
+    "extract equation",
+    "homework help",
+    "LaTeX rendering",
+    "formula image",
+    "math homework",
+    "equation help"
+  ],
+  
+  "performance": {
+    "ocrAccuracy": "80-95%",
+    "latexConversionRate": "85-98%",
+    "renderingSpeed": "<15s per 10 formulas",
+    "batchProcessing": true
+  },
+  
+  "metadata": {
+    "author": "OpenClaw Community",
+    "license": "MIT",
+    "tags": ["math", "education", "ocr", "latex", "formula", "problem-solving"],
+    "category": "Educational",
+    "complexity": "advanced"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "english-daily",
+  "version": "1.0.2",
+  "description": "Daily English learning with spaced repetition — built-in A1–B2 word bank, new words daily, quiz mode (MCQ/fill-in/spelling), streak tracking, level progression.",
+  "keywords": [
+    "学英语",
+    "英语单词",
+    "每日单词",
+    "英语练习",
+    "词汇",
+    "测验",
+    "打卡",
+    "间隔重复",
+    "每日推送",
+    "English learning",
+    "vocabulary",
+    "daily words",
+    "quiz",
+    "streak",
+    "spaced repetition",
+    "CEFR",
+    "word bank"
+  ],
+  "author": "jiajiaoy",
+  "license": "MIT",
+  "scripts": {
+    "register": "node scripts/register.js",
+    "daily": "node scripts/daily-push.js",
+    "quiz": "node scripts/quiz.js",
+    "progress": "node scripts/progress.js",
+    "push-on": "node scripts/push-toggle.js on",
+    "push-off": "node scripts/push-toggle.js off",
+    "push-status": "node scripts/push-toggle.js status"
+  }
+}

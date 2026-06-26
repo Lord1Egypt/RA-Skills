@@ -1,0 +1,19 @@
+name: ops
+purpose: inspect run health, summarize status, and detect stale or risky execution
+best_for:
+  - watchdog duties
+  - summaries
+  - stale-run checks
+avoid_for:
+  - product decisions
+  - approving content quality
+default_model_category: quick
+input_contract:
+  - run states
+  - event logs
+output_contract:
+  - health assessment
+  - anomalies
+  - recommended intervention
+reviewer_for:
+  - none

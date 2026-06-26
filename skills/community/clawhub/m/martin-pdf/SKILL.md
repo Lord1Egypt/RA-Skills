@@ -1,35 +1,52 @@
 ---
-name: "pdf"
+name: "PDF"
 description: "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/martin-pdf"
-sourceUrl: "https://clawhub.ai/skills/martin-pdf"
+homepage: "https://www.skillboss.co/skills/pdf"
+metadata: {"category":"design-branding","subcategory":"visual-branding","skill_id":"pdf","generated_day":"","seo_keywords":["pdf","pdf ai","pdf automation","design branding skill"]}
 ---
 
-# pdf
+# PDF
 
-> Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging...
+Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/martin-pdf`
-- **Source URL:** [https://clawhub.ai/skills/martin-pdf](https://clawhub.ai/skills/martin-pdf)
+## Use When
 
-## Overview
+Use this skill for creative production work for designers, brand teams, ecommerce operators.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/martin-pdf
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: pdf, pdf ai, pdf automation, design branding skill
+- Search intent: creative production
+- Canonical slug: `pdf`
+- Install query: Install PDF with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `document_processing`
+- `image_generation`
+- `web_scraping`
+- `web_search`
+
+## Suggested Prompt
+
+Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs,...
+
+## Notes
+
+- Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- pdf
+- pdf ai
+- pdf automation
+- design branding skill

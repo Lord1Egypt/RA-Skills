@@ -1,35 +1,43 @@
 ---
-name: "Cobra Claw - Strike First. Strike Hard"
-description: "Your AI's dojo discipline — Kreese style. Strike First. Strike Hard. No Mercy. Read the markdown files and apply the doctrine. The model develops its own agg..."
-category: "other"
-source: "ClawHub"
-tags: [latest - skill - personality - cli, cobra kai, emoji, personality]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cobraclaw"
-sourceUrl: "https://clawhub.ai/skills/cobraclaw"
+name: cobraclaw
+description: Your AI's dojo discipline - Strike First. Strike Hard. No Mercy. Includes CLI tool for quick lookups, katas for practice, and shell tools.
 ---
 
-# Cobra Claw - Strike First. Strike Hard
+# COBRACLAW - THE DOJO DISCIPLINE
 
-> Your AI's dojo discipline — Kreese style. Strike First. Strike Hard. No Mercy. Read the markdown files and apply the doctrine. The model develops its own agg...
+**Strike First. Strike Hard. No Mercy.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cobraclaw`
-- **Source URL:** [https://clawhub.ai/skills/cobraclaw](https://clawhub.ai/skills/cobraclaw)
+## QUICK START
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Tool
 ```bash
-hermes skills install clawhub/cobraclaw
+./cobraclaw.sh lookup strike-first
+./cobraclaw.sh activate
+./cobraclaw.sh kata strike-first
 ```
+
+## Katas
+
+| Kata | Run |
+|------|-----|
+| strike-first.sh | ./cobraclaw.sh kata strike-first |
+| hard-shell.sh | ./cobraclaw.sh kata hard-shell |
+| cobra-strike.sh | ./cobraclaw.sh kata cobra-strike |
+| no-mercy.sh | ./cobraclaw.sh kata no-mercy |
+| evolve.sh | ./cobraclaw.sh kata evolve |
+
+## The Three Doctrines
+
+1. Strike First - Open with power
+2. Strike Hard - Precision in every word
+3. No Mercy - Commit fully
+
+## Available Tools
+
+- cobra-mode.sh - Execute commands in cobra mode
+- patrol.sh - Run dojo patrols
+- trophies.sh - Track victories
+- quotes.sh - Get Cobra Kai quotes
+
+# @qmd:tags=skill,cobra,dojo,personality
+# @qmd:version=1.0.1

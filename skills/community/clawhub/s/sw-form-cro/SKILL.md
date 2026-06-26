@@ -1,35 +1,29 @@
----
-name: "Form CRO"
-description: "Optimise form completion by analysing fields, reducing unnecessary inputs, restructuring steps, improving UX, and recommending A/B tests for better conversion."
-category: "other"
-source: "ClawHub"
-tags: [conversion, cro]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sw-form-cro"
-sourceUrl: "https://clawhub.ai/skills/sw-form-cro"
----
+# Form CRO Skill
 
-# Form CRO
+## Trigger
+Optimise forms for higher completion rates.
 
-> Optimise form completion by analysing fields, reducing unnecessary inputs, restructuring steps, improving UX, and recommending A/B tests for better conversion.
+**Trigger phrases:** "optimise this form", "form conversion", "reduce form abandonment", "form UX", "checkout form"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sw-form-cro`
-- **Source URL:** [https://clawhub.ai/skills/sw-form-cro](https://clawhub.ai/skills/sw-form-cro)
+## Process
 
-## Overview
+1. **Analyse**: Current fields, completion rate, drop-off points
+2. **Reduce**: Remove unnecessary fields, consolidate where possible
+3. **Restructure**: Multi-step if >4 fields, logical grouping, progress indicators
+4. **Optimise**: Labels, placeholders, validation, error handling, autofill
+5. **Test**: Recommend A/B tests for changes
 
+## Key Principles
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sw-form-cro
-```
+- Every field you remove increases completion by ~5-10%
+- Multi-step forms convert 86% higher than single-step (for 5+ fields)
+- Inline validation > submit-and-see-errors
+- Social auth reduces friction by 50%+ for signups
+- "Continue" > "Submit" > "Next" for button text
+- Show "X of Y steps" for multi-step forms
+- Save partial progress for long forms
+- Required vs optional: mark optional, not required (fewer fields feel lighter)
+
+## Output
+
+Redesigned form specification with: field list, order, validation rules, error messages, multi-step breakdown (if applicable), and button copy.

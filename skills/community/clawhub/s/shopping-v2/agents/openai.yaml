@@ -1,0 +1,7 @@
+interface:
+  display_name: "Filtalgo Shopping"
+  short_description: "Shop on Filtalgo through the bundled Agent Tool Gateway CLI."
+  brand_color: "#0B5FFF"
+  default_prompt: "Use $filtalgo-shopping to help me find and buy a product on Filtalgo."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,748 @@
+{
+  "meta": {
+    "skill": "法眼·AI合同审查",
+    "version": "2.2.0",
+    "last_updated": "2026-06-06",
+    "description": "多法域合同审查数据底座，覆盖全球主要法域法规要点、合同模板、陷阱识别规则与审查维度"
+  },
+  "legal_frameworks": {
+    "CN": {
+      "country": "中国",
+      "governing_laws": [
+        "《中华人民共和国民法典》（2021.1.1 施行）",
+        "《中华人民共和国电子签名法》（2019 修正）",
+        "《中华人民共和国个人信息保护法》（2021.11.1 施行）",
+        "《中华人民共和国数据安全法》（2021.9.1 施行）"
+      ],
+      "key_principles": [
+        "合同自由原则：当事人依法享有自愿订立合同的权利（民法典第5条）",
+        "公平原则：当事人应当遵循公平原则确定各方权利义务（民法典第6条）",
+        "诚实信用原则：行使权利履行义务应遵循诚信原则（民法典第7条）",
+        "合同成立要件：要约+承诺，意思表示真实一致",
+        "违约金调整：约定违约金过分高于造成损失的，可请求减少（民法典第585条）",
+        "格式条款规制：提供方未尽提示说明义务，对方可主张该条款不成为合同内容（民法典第496条）",
+        "无效格式条款：不合理免除或减轻责任、加重对方责任、限制对方主要权利的格式条款无效（民法典第497条）",
+        "情势变更：合同基础条件发生订立时无法预见的重大变化，可重新协商或请求变更/解除（民法典第533条）",
+        "诉讼时效：普通诉讼时效为3年（民法典第188条）"
+      ],
+      "contract_types": [
+        "买卖合同（民法典第595-647条）",
+        "租赁合同（民法典第703-734条）",
+        "承揽合同（民法典第770-787条）",
+        "技术合同（民法典第843-887条）",
+        "委托合同（民法典第919-936条）",
+        "合伙合同（民法典第967-978条）",
+        "保证合同（民法典第681-702条）"
+      ]
+    },
+    "US": {
+      "country": "美国",
+      "governing_laws": [
+        "Uniform Commercial Code (UCC) — 统一商法典",
+        "Restatement (Second) of Contracts",
+        "Electronic Signatures in Global and National Commerce Act (E-SIGN)",
+        "CFAA (Computer Fraud and Abuse Act)",
+        "State-specific contract laws (e.g., California Civil Code, New York GOL)"
+      ],
+      "key_principles": [
+        "Consideration (对价原则): 合同必须有对价支持，否则不可强制执行",
+        "Offer + Acceptance (要约+承诺): 客观标准判断要约与承诺是否成立",
+        "Parol Evidence Rule (口头证据规则): 书面合同的最终表达排除先前口头协商",
+        "Statute of Frauds (反欺诈法): 特定合同（土地买卖、超过一年、担保等）须书面形式",
+        "Unconscionability (显失公平): 法院可拒绝执行程序性或实质性显失公平的条款",
+        "CISG Applicability: 国际货物销售合同适用 CISG（如双方营业地在不同缔约国）",
+        "UCC Article 2: 货物买卖合同的默示担保（适销性、特定用途适用性）",
+        "Limitation of Liability: 可排除间接损失，但不排除故意或重大过失责任",
+        "Indemnification (赔偿): 需明确赔偿范围、触发条件和责任上限"
+      ],
+      "contract_types": [
+        "Purchase and Sale Agreement (买卖合同)",
+        "Service Agreement (服务合同)",
+        "Non-Disclosure Agreement / NDA (保密协议)",
+        "Employment Agreement (劳动合同)",
+        "License Agreement (许可协议)",
+        "Partnership Agreement (合伙协议)",
+        "Investment Agreement (投资协议)",
+        "Merger and Acquisition Agreement (并购协议)"
+      ]
+    },
+    "UK": {
+      "country": "英国",
+      "governing_laws": [
+        "Consumer Rights Act 2015",
+        "Unfair Contract Terms Act 1977 (UCTA)",
+        "Sale of Goods Act 1979",
+        "Supply of Goods and Services Act 1982",
+        "Contracts (Rights of Third Parties) Act 1999"
+      ],
+      "key_principles": [
+        "Offer and Acceptance: 严格按客观标准判断合同是否成立",
+        "Consideration: 必须有对价（但不要求等价）",
+        "UCTA: 限制排除条款 —— 人身伤亡的排除条款无效，其他损失排除需合理性测试",
+        "Implied Terms: 货物买卖默示满意质量、适销性、符合描述",
+        "Good Faith: 英国法传统上不承认一般诚信义务，但在消费者合同中有诚信要求",
+        "Remedies: 损害赔偿、特定履行（specific performance）、禁令（injunction）",
+        "Liquidated Damages: 违约金不能是惩罚性的（penalty clause 无效），须是真实预估的损失"
+      ],
+      "contract_types": [
+        "Sales Contract",
+        "Service Level Agreement (SLA)",
+        "NDA / Confidentiality Agreement",
+        "Employment Contract",
+        "Software License Agreement",
+        "Joint Venture Agreement"
+      ]
+    },
+    "EU": {
+      "country": "欧盟",
+      "governing_laws": [
+        "General Data Protection Regulation (GDPR) (EU 2016/679)",
+        "Common European Sales Law (CESL) — 共同欧洲买卖法",
+        "Digital Services Act (DSA) (EU 2022/2065)",
+        "Digital Markets Act (DMA) (EU 2022/1925)",
+        "Unfair Contract Terms Directive (93/13/EEC)",
+        "E-Commerce Directive (2000/31/EC)"
+      ],
+      "key_principles": [
+        "GDPR: 数据处理必须有合法性基础（同意/合同履行/法定义务/正当利益）",
+        "GDPR: 数据跨境传输须有充分保护水平（SCCs / BCRs / 充分性认定）",
+        "GDPR: 数据处理协议（DPA）为强制性要求",
+        "Unfair Contract Terms: 消费者合同中不公平条款不具有约束力",
+        "CESL: 提供统一的欧洲买卖合同法框架（买卖双方可自愿选择适用）",
+        "DSA: 在线平台的透明度、问责和责任规则",
+        "Right of Withdrawal: 远程/场外合同消费者有14天撤销权"
+      ],
+      "contract_types": [
+        "Sales Contract (消费品买卖合同)",
+        "Data Processing Agreement / DPA (数据处理协议)",
+        "Standard Contractual Clauses / SCCs (标准合同条款)",
+        "Service Agreement (服务协议)",
+        "Distribution Agreement (经销协议)"
+      ]
+    },
+    "JP": {
+      "country": "日本",
+      "governing_laws": [
+        "日本民法（民法）— 2020年4月债权法改正施行",
+        "日本消费者契约法",
+        "日本电子契约法",
+        "日本特定商取引法"
+      ],
+      "key_principles": [
+        "契约自由原则: 当事人自由决定是否缔约及合同内容",
+        "意思表示: 瑕疵意思表示（诈欺/强迫/错误）可撤销",
+        "契约责任: 债务不履行 → 损害赔偿/解除，可归责性为要件",
+        "违约金: 裁判所可酌情增减违反公序良俗的过高违约金",
+        "消费者保护: 消费者契约法规范不当勸誘、不实告知",
+        "定型约款（格式条款）: 2020年民法改正新增，需明示+合理内容",
+        "瑕疵担保责任: 改正法将瑕疵担保整合至债务不履行体系"
+      ],
+      "contract_types": [
+        "买卖契约 (Sales Agreement)",
+        "业务委托契约 (Service Agreement)",
+        "秘密保持契约 (NDA)",
+        "雇用契约 (Employment Contract)",
+        "利用许诺契约 (License Agreement)",
+        "合资契约 (Joint Venture Agreement)"
+      ]
+    },
+    "SG": {
+      "country": "新加坡",
+      "governing_laws": [
+        "Sale of Goods Act 1979 (UK-based)",
+        "Electronic Transactions Act 2010",
+        "Contracts (Rights of Third Parties) Act 2001",
+        "Unfair Contract Terms Act (UCTA, UK-based)",
+        "Personal Data Protection Act 2012 (PDPA)"
+      ],
+      "key_principles": [
+        "Offer and Acceptance: 普通法系传统，严格合同成立要件",
+        "Consideration: 必须有对价",
+        "Intention to Create Legal Relations: 商业协议推定有法律约束意图",
+        "UCTA: 排除条款有效性须合理性测试",
+        "PDPA: 个人数据收集使用须取得同意，禁止未授权的跨境传输",
+        "Electronic Contracts: 电子签名与电子合同具有法律效力",
+        "Remedies: 损害赔偿为普通救济，特定履行需法院裁量"
+      ],
+      "contract_types": [
+        "Sale and Purchase Agreement",
+        "Service Agreement",
+        "NDA",
+        "Employment Contract",
+        "Technology License Agreement",
+        "Shareholders' Agreement"
+      ]
+    },
+    "AE": {
+      "country": "阿联酋",
+      "governing_laws": [
+        "UAE Civil Code (Federal Law No. 5 of 1985)",
+        "UAE Commercial Transactions Law (Federal Law No. 18 of 1993)",
+        "DIFC Contract Law (DIFC Law No. 6 of 2004) — 迪拜国际金融中心",
+        "UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021)"
+      ],
+      "key_principles": [
+        "合同成立: 要约+承诺+标的合法+合法目的（Civil Code Art. 129）",
+        "诚信原则: 合同应善意履行（Civil Code Art. 246）",
+        "损害赔偿: 仅赔偿实际损失，间接损失需合同明确约定",
+        "违约金: 可约定违约金，但法院可酌情增减",
+        "不可抗力: 不可抗力导致履约不可能的，免除责任",
+        "DIFC: 适用普通法体系，与英国法高度一致",
+        "管辖: 合同需明确指定管辖法院或仲裁机构，否则适用被告所在地"
+      ],
+      "contract_types": [
+        "Sales and Purchase Agreement",
+        "Service Agreement",
+        "NDA / Confidentiality Agreement",
+        "Employment Contract",
+        "Distribution Agreement",
+        "Joint Venture Agreement"
+      ]
+    }
+  },
+  "contract_templates": {
+    "purchase_agreement": {
+      "name": "买卖合同",
+      "jurisdictions": ["CN", "US", "UK", "EU", "SG"],
+      "essential_clauses": [
+        "合同当事人（买方/卖方完整名称、地址、法定代表人）",
+        "标的物描述（名称、规格、数量、质量标准）",
+        "价款与支付方式（总价、币种、支付节点、发票）",
+        "交付条款（时间、地点、运输方式、风险转移时点）",
+        "验收条款（验收标准、期限、不合格处理）",
+        "违约责任（违约金比例、赔偿上限、免责条款）",
+        "争议解决（管辖法院或仲裁机构、适用法律）",
+        "合同生效与期限"
+      ],
+      "risk_highlights": [
+        "价款是否含税（增值税/关税由哪方承担）",
+        "风险转移时点（INCOTERMS 术语）",
+        "所有权保留条款",
+        "质量保证期与保修条款"
+      ]
+    },
+    "lease_agreement": {
+      "name": "租赁合同",
+      "jurisdictions": ["CN", "US", "UK", "EU"],
+      "essential_clauses": [
+        "租赁物描述（地址/规格、面积、用途限制）",
+        "租赁期限（起止日期、续租条件）",
+        "租金与支付（金额、支付周期、押金、递增机制）",
+        "维修责任（出租方 vs 承租方维修范围）",
+        "转租与分租限制",
+        "提前解约条件与违约金",
+        "返还条件（原状返还、装修处理）"
+      ],
+      "risk_highlights": [
+        "租赁期超过20年的部分无效（中国民法典第705条）",
+        "买卖不破租赁原则",
+        "承租人优先购买权（CN）",
+        "押金返还条件与期限"
+      ]
+    },
+    "service_agreement": {
+      "name": "服务合同",
+      "jurisdictions": ["CN", "US", "UK", "EU", "JP", "SG"],
+      "essential_clauses": [
+        "服务范围与交付物（SOW / Work Statement）",
+        "服务期限与里程碑",
+        "费用与支付节点（固定价/人天/按成果）",
+        "验收标准与流程",
+        "变更管理（Change Request 流程）",
+        "知识产权归属（成果 IP vs 背景 IP）",
+        "保密与数据保护",
+        "违约责任与赔偿上限"
+      ],
+      "risk_highlights": [
+        "服务范围是否明确可衡量（避免 Scope Creep）",
+        "知识产权到底是甲方还是乙方",
+        "赔偿上限是否合理（通常 1x-3x 合同金额）",
+        "分包商管理与连带责任"
+      ]
+    },
+    "nda": {
+      "name": "保密协议 (NDA)",
+      "jurisdictions": ["CN", "US", "UK", "EU", "JP", "SG", "AE"],
+      "essential_clauses": [
+        "保密信息定义（明确范围、标注方式）",
+        "保密义务（不得披露、不得使用）",
+        "保密期限（存续期间 + 终止后续期）",
+        "例外情形（已公开、依法披露、独立开发）",
+        "违约救济（禁令 + 损害赔偿）",
+        "信息返还/销毁义务"
+      ],
+      "risk_highlights": [
+        "保密期限是否过长（通常 3-5 年合理）",
+        "是否双向保密（Mutual NDA vs One-way NDA）",
+        "残存信息（Residual Information）条款",
+        "不招揽/不竞争条款是否暗含"
+      ]
+    },
+    "employment_agreement": {
+      "name": "劳动合同",
+      "jurisdictions": ["CN", "US", "UK", "EU", "JP", "SG", "AE"],
+      "essential_clauses": [
+        "职位与职责描述",
+        "工作地点与工时",
+        "薪酬结构（基本工资、奖金、股权激励）",
+        "试用期条款（期限、考核标准）",
+        "解除条件与补偿",
+        "竞业限制与保密义务",
+        "知识产权归属（职务发明）"
+      ],
+      "risk_highlights": [
+        "竞业限制是否有经济补偿（中国须补偿）",
+        "试用期期限是否合法（CN: ≤6 个月，按合同期限分级）",
+        "解除劳动合同的条件是否合法",
+        "加班费计算方式（依法定标准）"
+      ]
+    },
+    "investment_agreement": {
+      "name": "投资协议",
+      "jurisdictions": ["CN", "US", "UK", "SG", "AE"],
+      "essential_clauses": [
+        "投资金额与估值（Pre-money / Post-money）",
+        "股权结构与类别（普通股 / 优先股 / 特殊权利）",
+        "董事会席位与治理结构",
+        "保护性条款（一票否决权）",
+        "反稀释条款（加权平均 / 完全棘轮）",
+        "优先清算权",
+        "退出机制（IPO / 并购 / 回购）",
+        "随售权与拖售权"
+      ],
+      "risk_highlights": [
+        "估值基础是否明确",
+        "反稀释条款是否过于苛刻",
+        "回购义务是否个人连带",
+        "对赌条款（VAM）在中国法律效力"
+      ]
+    },
+    "license_agreement": {
+      "name": "许可协议",
+      "jurisdictions": ["CN", "US", "UK", "EU", "JP"],
+      "essential_clauses": [
+        "许可标的（专利/商标/软件/技术秘密）",
+        "许可类型（独占/排他/普通许可）",
+        "许可地域与期限",
+        "许可费（固定/按销售额分成）",
+        "分许可权",
+        "改进技术的归属",
+        "侵权诉讼权（谁有权起诉）"
+      ],
+      "risk_highlights": [
+        "许可费计算基准是否明确（净销售额定义）",
+        "分许可后能否继续控制品质",
+        "许可终止后的库存处理",
+        "技术出口管制合规"
+      ]
+    },
+    "partnership_agreement": {
+      "name": "合伙协议",
+      "jurisdictions": ["CN", "US", "UK", "SG", "AE"],
+      "essential_clauses": [
+        "合伙目的与经营范围",
+        "出资方式与份额",
+        "利润分配与亏损分担",
+        "决策机制（普通决议/重大事项决议）",
+        "入伙与退伙条件",
+        "合伙人责任（普通合伙/有限合伙）",
+        "解散与清算"
+      ],
+      "risk_highlights": [
+        "普通合伙人无限连带责任",
+        "利润分配是否与出资比例匹配",
+        "退伙时财产返还计算方式",
+        "竞业禁止是否合理"
+      ]
+    }
+  },
+  "trap_patterns": [
+    {
+      "id": "TRAP-001",
+      "category": "违约责任",
+      "pattern_name": "违约责任不对等",
+      "regex_hint": "(违约).{0,10}(仅|只|单方).{0,15}(承担|赔偿|责任)",
+      "risk_level": "高",
+      "description": "一方承担全部违约责任，另一方免责或仅承担极轻责任",
+      "suggestion": "建议将违约金比例或责任范围调整为双方对等，明确各自的违约情形与后果",
+      "legal_basis": {
+        "CN": "民法典第496条、第497条（格式条款无效情形）",
+        "US": "UCC §2-302 Unconscionability",
+        "UK": "UCTA 1977, s.3"
+      }
+    },
+    {
+      "id": "TRAP-002",
+      "category": "违约责任",
+      "pattern_name": "无限责任条款",
+      "regex_hint": "(无限|无上限|全部损失|所有损失|一切损失).{0,10}(责任|赔偿|承担)",
+      "risk_level": "高",
+      "description": "赔偿责任不设上限，可能导致承担远超合同金额的损失",
+      "suggestion": "建议设置赔偿上限，如约定赔偿总额不超过合同金额或实际已付款项的一定倍数",
+      "legal_basis": {
+        "CN": "民法典第584条（可预见规则）",
+        "US": "UCC §2-719",
+        "UK": "Hadley v Baxendale (1854) 可预见损失原则"
+      }
+    },
+    {
+      "id": "TRAP-003",
+      "category": "违约责任",
+      "pattern_name": "单方任意解除权",
+      "regex_hint": "(有权|可以).{0,10}(单方|任意|随时|无理由).{0,10}(解除|终止|撤销)",
+      "risk_level": "高",
+      "description": "赋予一方单方任意解除合同的权利，缺乏对等保护",
+      "suggestion": "明确解除条件（仅限于根本违约等法定或约定情形），并约定解除后的结算机制",
+      "legal_basis": {
+        "CN": "民法典第563条（合同法定解除情形）",
+        "US": "Restatement (Second) of Contracts §241",
+        "UK": "Common law repudiatory breach"
+      }
+    },
+    {
+      "id": "TRAP-004",
+      "category": "知识产权",
+      "pattern_name": "知识产权归属模糊",
+      "regex_hint": "(知识产权|著作权|专利|商标|技术成果).{0,20}(归|属于|所有|享有)",
+      "risk_level": "中",
+      "description": "知识产权条款未明确区分背景IP与成果IP,缺乏详细许可范围",
+      "suggestion": "明确区分背景知识产权（Foreground IP vs Background IP）的归属、使用许可范围及限制",
+      "legal_basis": {
+        "CN": "民法典第861条（技术开发合同成果归属）",
+        "US": "Bayh-Dole Act / Work Made for Hire",
+        "UK": "Patents Act 1977, s.39"
+      }
+    },
+    {
+      "id": "TRAP-005",
+      "category": "违约金",
+      "pattern_name": "违约金过高",
+      "regex_hint": "(违约金|罚款).{0,10}(每日|每.{0,2}日).{0,5}(%|‰|千分|百分|百分之)",
+      "risk_level": "中",
+      "description": "违约金计算标准过高，超出法律允许范围",
+      "suggestion": "违约金日费率不宜超过万分之五，总违约金不宜超过合同金额的30%；超过部分可请求法院酌减",
+      "legal_basis": {
+        "CN": "民法典第585条（违约金调整）",
+        "US": "Liquidated damages must be reasonable estimate, not penalty",
+        "UK": "Cavendish Square Holding BV v Talal El Makdessi [2015]"
+      }
+    },
+    {
+      "id": "TRAP-006",
+      "category": "保密",
+      "pattern_name": "保密义务不对称",
+      "regex_hint": "(保密).{0,10}(义务|责任).{0,15}(仅|单方|仅限|只限于)",
+      "risk_level": "中",
+      "description": "保密义务仅约束一方，缺乏双向保护",
+      "suggestion": "将保密义务设为双向对等（Mutual NDA），明确保密期限、范围和违约后果",
+      "legal_basis": {
+        "CN": "民法典第501条（缔约过程中的保密义务）",
+        "US": "Uniform Trade Secrets Act (UTSA)",
+        "EU": "Directive (EU) 2016/943 (Trade Secrets Directive)"
+      }
+    },
+    {
+      "id": "TRAP-007",
+      "category": "争议解决",
+      "pattern_name": "管辖约定不明或不对等",
+      "regex_hint": "(管辖|仲裁|诉讼).{0,15}(未明确|不明确|另行|协商)",
+      "risk_level": "低",
+      "description": "争议解决方式或管辖地点不明确，可能导致维权困难、维权成本增加",
+      "suggestion": "明确管辖法院或仲裁机构：建议约定为己方所在地或中立地，仲裁需指定具体机构（如CIETAC/HKIAC/SIAC/ICC）",
+      "legal_basis": {
+        "CN": "民事诉讼法第34条（协议管辖）",
+        "US": "Forum selection clauses are presumptively valid",
+        "SG": "SIAC Rules / Singapore International Commercial Court"
+      }
+    },
+    {
+      "id": "TRAP-008",
+      "category": "期限",
+      "pattern_name": "自动续期陷阱",
+      "regex_hint": "(自动|默认).{0,10}(续期|续约|延长|展期)|(期满|到期).{0,10}(自动续)",
+      "risk_level": "低",
+      "description": "包含自动续期条款，可能导致忽视续约通知而被动续约",
+      "suggestion": "将自动续期改为需双方书面确认的续约机制，或设置到期前 X 天书面通知的解除权",
+      "legal_basis": {
+        "US": "Auto-renewal laws (e.g., California Bus. & Prof. Code §17600)",
+        "UK": "Consumer Rights Act 2015 — unfair terms"
+      }
+    },
+    {
+      "id": "TRAP-009",
+      "category": "付款",
+      "pattern_name": "付款条件模糊",
+      "regex_hint": "(付款|支付|费用).{0,30}(另行|协商|不确定|待定|后续)",
+      "risk_level": "中",
+      "description": "付款条件、金额、节点表述模糊，缺乏可操作性",
+      "suggestion": "明确付款金额（含税/不含税）、付款节点（具体日期或里程碑）、支付方式、逾期利息",
+      "legal_basis": {
+        "CN": "民法典第510条（合同内容约定不明的补救）",
+        "US": "UCC §2-305 Open Price Term"
+      }
+    },
+    {
+      "id": "TRAP-010",
+      "category": "免责",
+      "pattern_name": "免责条款过宽",
+      "regex_hint": "(免责|免除责任|不承担.{0,5}责任).{0,30}(任何|一切|所有|全部|无论)",
+      "risk_level": "高",
+      "description": "免责条款范围过大，可能排除基本的合同义务或法定责任",
+      "suggestion": "明确免责条款不适用于故意违约、重大过失或人身伤亡情形；确保免责范围合理且符合适用法律",
+      "legal_basis": {
+        "CN": "民法典第506条（免责条款无效情形）",
+        "US": "Exculpatory clauses are strictly construed against drafter",
+        "UK": "UCTA 1977 — cannot exclude liability for death/personal injury"
+      }
+    },
+    {
+      "id": "TRAP-011",
+      "category": "竞业",
+      "pattern_name": "竞业限制模糊或范围过宽",
+      "regex_hint": "(竞业|不竞争|非竞争|禁止竞争).{0,20}(范围|期限|地域|补偿)",
+      "risk_level": "中",
+      "description": "竞业限制的地域范围、行业范围和期限不明确或过于宽泛",
+      "suggestion": "明确竞业限制的地域（合理区域）、行业范围（与业务直接相关）、期限（通常不超过2年）和经济补偿标准",
+      "legal_basis": {
+        "CN": "劳动合同法第23条、第24条（竞业限制期限不超过2年，需支付经济补偿）",
+        "US": "State-specific — California generally unenforceable",
+        "UK": "Must go no further than reasonably necessary"
+      }
+    },
+    {
+      "id": "TRAP-012",
+      "category": "数据合规",
+      "pattern_name": "数据处理条款缺失",
+      "regex_hint": "(数据|信息|个人信息|隐私).{0,40}(收集|使用|处理|共享|转让|跨境)",
+      "risk_level": "中",
+      "description": "涉及个人数据处理但缺少数据处理协议（DPA）或合规条款",
+      "suggestion": "增补数据处理附录（DPA），明确数据处理目的、范围、安全措施、跨境传输机制及数据泄露通知义务",
+      "legal_basis": {
+        "EU": "GDPR Art. 28 (Processor obligations)",
+        "CN": "个人信息保护法第21条（委托处理）",
+        "SG": "PDPA obligations"
+      }
+    },
+    {
+      "id": "TRAP-013",
+      "category": "验收",
+      "pattern_name": "验收标准主观化",
+      "regex_hint": "(验收|测试|确认).{0,20}(满意|合理|认可|确定|判断)",
+      "risk_level": "中",
+      "description": "验收标准依赖主观判断，缺乏客观可量化的衡量标准",
+      "suggestion": "制定客观、可量化的验收标准（如功能清单、性能指标、缺陷等级分类），并明确验收期限和未通过验收的处理流程",
+      "legal_basis": {
+        "CN": "民法典第510条、511条（质量标准约定不明时适用国家标准）",
+        "US": "UCC §2-513 Buyer's Right to Inspection"
+      }
+    },
+    {
+      "id": "TRAP-014",
+      "category": "不可抗力",
+      "pattern_name": "不可抗力范围模糊",
+      "regex_hint": "(不可抗力|force majeure).{0,30}(未列举|未明确|不明确)",
+      "risk_level": "低",
+      "description": "不可抗力条款的定义或事件类型未明确列举",
+      "suggestion": "明确列举不可抗力事件（自然灾害、战争、政府行为、疫情、罢工等），并约定发生通知期限和处理流程",
+      "legal_basis": {
+        "CN": "民法典第180条、第590条（不可抗力定义与通知义务）",
+        "US": "Force majeure is strictly construed under contract language"
+      }
+    },
+    {
+      "id": "TRAP-015",
+      "category": "转让",
+      "pattern_name": "合同权利义务随意转让",
+      "regex_hint": "(有权|可以|未经.{0,5}同意).{0,20}(转让|转移|出让|让与).{0,15}(权利|义务|合同)",
+      "risk_level": "中",
+      "description": "未限制合同权利义务的随意转让，可能导致权利义务转移至不具资质的第三方",
+      "suggestion": "要求合同转让须经对方书面同意，且受让方需书面确认接受全部合同义务",
+      "legal_basis": {
+        "CN": "民法典第545-556条（债权让与和债务承担规则）",
+        "US": "UCC §2-210"
+      }
+    }
+  ],
+  "legal_references": [
+    {
+      "jurisdiction": "CN",
+      "source": "《中华人民共和国民法典》",
+      "articles": [
+        {"article": "第5条", "topic": "自愿原则", "note": "民事主体从事民事活动，应当遵循自愿原则"},
+        {"article": "第6条", "topic": "公平原则", "note": "民事主体从事民事活动，应当遵循公平原则合理确定各方权利义务"},
+        {"article": "第7条", "topic": "诚信原则", "note": "民事主体从事民事活动，应当遵循诚信原则"},
+        {"article": "第143条", "topic": "民事法律行为有效要件", "note": "意思表示真实、不违反强制性规定、不违背公序良俗"},
+        {"article": "第490条", "topic": "合同成立时间", "note": "当事人采用合同书形式订立合同的，自当事人均签名、盖章或按指印时成立"},
+        {"article": "第496条", "topic": "格式条款提示说明义务", "note": "格式条款提供方应采取合理方式提示对方注意免除或减轻其责任等条款"},
+        {"article": "第497条", "topic": "无效格式条款", "note": "不合理地免除或减轻其责任、加重对方责任、限制对方主要权利的格式条款无效"},
+        {"article": "第506条", "topic": "免责条款无效", "note": "造成对方人身损害或因故意或重大过失造成对方财产损失的免责条款无效"},
+        {"article": "第533条", "topic": "情势变更", "note": "合同基础条件发生无法预见的重大变化，可重新协商或请求变更/解除"},
+        {"article": "第563条", "topic": "合同法定解除", "note": "不可抗力、预期违约、根本违约等情形可解除合同"},
+        {"article": "第577条", "topic": "违约责任", "note": "不履行合同义务或履行不符合约定，应承担继续履行、补救或赔偿等违约责任"},
+        {"article": "第584条", "topic": "损害赔偿范围", "note": "赔偿损失额应相当于因违约造成的损失，包括可预见范围内的可得利益"},
+        {"article": "第585条", "topic": "违约金调整", "note": "违约金过分高于造成的损失的，可请求人民法院或仲裁机构适当减少"},
+        {"article": "第861条", "topic": "技术成果归属", "note": "委托开发完成的发明创造，当事人无约定的，申请专利的权利属于研究开发人"},
+        {"article": "第944条", "topic": "物业服务合同", "note": "规范物业服务合同的订立与履行"}
+      ]
+    },
+    {
+      "jurisdiction": "US",
+      "source": "UCC (Uniform Commercial Code)",
+      "articles": [
+        {"article": "§2-204", "topic": "Formation", "note": "Contract may be made in any manner sufficient to show agreement"},
+        {"article": "§2-205", "topic": "Firm Offers", "note": "Merchant's firm offer in signed writing is irrevocable"},
+        {"article": "§2-206", "topic": "Offer and Acceptance", "note": "Offer may be accepted in any reasonable manner"},
+        {"article": "§2-207", "topic": "Battle of Forms", "note": "Additional terms in acceptance are proposals for addition"},
+        {"article": "§2-302", "topic": "Unconscionability", "note": "Court may refuse to enforce unconscionable contracts or clauses"},
+        {"article": "§2-305", "topic": "Open Price Term", "note": "Reasonable price at time of delivery if price not fixed"},
+        {"article": "§2-314", "topic": "Implied Warranty of Merchantability", "note": "Goods must be fit for ordinary purposes"},
+        {"article": "§2-315", "topic": "Implied Warranty of Fitness", "note": "Goods must be fit for buyer's particular purpose"},
+        {"article": "§2-719", "topic": "Limitation of Remedies", "note": "Parties may limit remedies; limitation of consequential damages may be unconscionable"}
+      ]
+    },
+    {
+      "jurisdiction": "INTL",
+      "source": "CISG (United Nations Convention on Contracts for the International Sale of Goods)",
+      "articles": [
+        {"article": "Art. 1", "topic": "Applicability", "note": "Applies to contracts for sale of goods between parties in different Contracting States"},
+        {"article": "Art. 7", "topic": "Interpretation", "note": "Good faith in international trade; regard to international character"},
+        {"article": "Art. 14", "topic": "Offer", "note": "A proposal is an offer if it is sufficiently definite and indicates intention to be bound"},
+        {"article": "Art. 18", "topic": "Acceptance", "note": "Statement or conduct indicating assent; silence is not acceptance"},
+        {"article": "Art. 25", "topic": "Fundamental Breach", "note": "Breach that substantially deprives the other party of what they were entitled to expect"},
+        {"article": "Art. 35", "topic": "Conformity of Goods", "note": "Goods must conform in quantity, quality, description, packaging"},
+        {"article": "Art. 74", "topic": "Damages", "note": "Damages limited to foreseeable loss at time of contract conclusion"},
+        {"article": "Art. 79", "topic": "Impediment / Force Majeure", "note": "Party is not liable for failure due to impediment beyond control"}
+      ]
+    },
+    {
+      "jurisdiction": "EU",
+      "source": "GDPR (General Data Protection Regulation)",
+      "articles": [
+        {"article": "Art. 5", "topic": "Data Protection Principles", "note": "Lawfulness, fairness, transparency, purpose limitation, data minimization"},
+        {"article": "Art. 6", "topic": "Lawfulness of Processing", "note": "Consent, contract necessity, legal obligation, vital interests, public interest, legitimate interest"},
+        {"article": "Art. 28", "topic": "Processor", "note": "Controller must use processor providing sufficient guarantees; DPA required"},
+        {"article": "Art. 32", "topic": "Security of Processing", "note": "Appropriate technical and organizational measures"},
+        {"article": "Art. 44-49", "topic": "International Transfers", "note": "Transfers restricted unless adequate safeguards (SCCs, BCRs, adequacy decision)"},
+        {"article": "Art. 82", "topic": "Right to Compensation", "note": "Any person who suffered material or non-material damage has right to compensation"}
+      ]
+    },
+    {
+      "jurisdiction": "JP",
+      "source": "日本民法（债权法改正 2020）",
+      "articles": [
+        {"article": "第415条", "topic": "债务不履行", "note": "债务人不按债务本旨履行时，债权人可请求损害赔偿或解除契约"},
+        {"article": "第420条", "topic": "损害赔偿额预定", "note": "当事人可预定损害赔偿额；裁判所不得增减，但违反公序良俗除外"},
+        {"article": "第522条", "topic": "契约成立", "note": "要约与承诺意思表示一致时契约成立"},
+        {"article": "第541条", "topic": "催告解除", "note": "一方不履行债务时，对方可定相当期限催告后解除契约"},
+        {"article": "第548条之2", "topic": "定型约款（格式条款）", "note": "定型约款需明示或提供阅览机会；不当条款不构成契约内容"}
+      ]
+    }
+  ],
+  "review_dimensions": [
+    {
+      "id": "compliance",
+      "name": "合规性审查",
+      "description": "检查合同条款是否符合适用法律及监管要求",
+      "checklist": [
+        "合同是否包含所有法定必备条款",
+        "条款内容是否违反强制性法律规定",
+        "电子签名是否符合电子签名法要求",
+        "数据保护条款是否符合 GDPR/PIPL/PDPA 要求",
+        "行业特别监管合规（金融/医疗/教育等）"
+      ]
+    },
+    {
+      "id": "risk_level",
+      "name": "风险等级评估",
+      "description": "按高/中/低三级标记风险条款并统计分布",
+      "checklist": [
+        "高风险：可能导致合同无效、重大经济损失、法律责任",
+        "中风险：可能导致权利义务失衡、增加履约难度",
+        "低风险：表述不够严谨、但影响有限的条款"
+      ]
+    },
+    {
+      "id": "vague_terms",
+      "name": "模糊条款识别",
+      "description": "识别表述不清晰的条款，提出具体化建议",
+      "checklist": [
+        "是否存在'合理''适当''及时'等主观判断词语",
+        "付款金额、节点、方式是否明确",
+        "交付标准、验收标准是否可量化",
+        "期限起止时点是否清晰"
+      ]
+    },
+    {
+      "id": "breach_remedies",
+      "name": "违约责任分析",
+      "description": "审查违约责任条款的对等性、合理性与可执行性",
+      "checklist": [
+        "违约责任是否双方对等",
+        "违约金比例是否合理（不超过合同金额30%）",
+        "赔偿范围是否设上限",
+        "是否排除间接损失赔偿",
+        "解除权是否对等"
+      ]
+    },
+    {
+      "id": "dispute_resolution",
+      "name": "争议解决审查",
+      "description": "审查争议解决条款的明确性与可操作性",
+      "checklist": [
+        "管辖法院或仲裁机构是否明确",
+        "管辖地点是否合理",
+        "适用法律是否明确",
+        "仲裁规则与仲裁地是否指定",
+        "是否约定前置协商期限"
+      ]
+    },
+    {
+      "id": "intellectual_property",
+      "name": "知识产权审查",
+      "description": "审查知识产权条款的归属、许可与保护",
+      "checklist": [
+        "IP 归属是否明确（背景 IP vs 成果 IP）",
+        "许可范围（独占/排他/普通）是否明确",
+        "是否限制反向工程",
+        "改进技术的归属约定",
+        "侵权诉讼权的分配"
+      ]
+    },
+    {
+      "id": "confidentiality",
+      "name": "保密条款审查",
+      "description": "审查保密义务的范围、期限和可执行性",
+      "checklist": [
+        "保密信息定义是否明确且合理",
+        "保密期限是否合理（含终止后持续期）",
+        "是否双向保密",
+        "违约救济措施是否充分",
+        "返回/销毁义务是否明确"
+      ]
+    }
+  ],
+  "risk_scoring": {
+    "weight_map": {
+      "违约责任不对等": 25,
+      "无限责任条款": 25,
+      "单方任意解除权": 22,
+      "免责条款过宽": 22,
+      "知识产权归属模糊": 15,
+      "违约金过高": 12,
+      "保密义务不对称": 10,
+      "付款条件模糊": 10,
+      "竞业限制模糊": 10,
+      "数据处理条款缺失": 10,
+      "验收标准主观化": 8,
+      "合同权利义务随意转让": 8,
+      "管辖约定不明": 5,
+      "自动续期陷阱": 5,
+      "不可抗力范围模糊": 3
+    },
+    "score_to_risk": {
+      "total_60_plus": "高风险合同 - 不建议签署",
+      "total_30_to_59": "中风险合同 - 建议修改后签署",
+      "total_under_30": "低风险合同 - 建议复核后签署"
+    }
+  }
+}

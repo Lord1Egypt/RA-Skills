@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn DevOps"
+  short_description: "LabEx DevOps courses and hands-on labs (MCP catalog)"
+  default_prompt: "Use $learn-devops to find LabEx DevOps courses and hands-on labs."

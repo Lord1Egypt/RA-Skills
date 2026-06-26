@@ -1,35 +1,155 @@
----
-name: "Github Ops"
-description: "指导使用 Git 命令规范上传本地文件到 GitHub，涵盖初始化、分支管理、大文件处理及冲突解决方案。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/upload"
-sourceUrl: "https://clawhub.ai/skills/upload"
----
+### 技能名称：GitHub 文件上传与版本管理专家
 
-# Github Ops
+### 技能描述
 
-> 指导使用 Git 命令规范上传本地文件到 GitHub，涵盖初始化、分支管理、大文件处理及冲突解决方案。
+本技能旨在指导 Agent 掌握通过 Git 命令行工具将本地文件高效、规范地上传至 GitHub 远程仓库的完整流程。它不仅涵盖了基础的代码提交步骤，更深入解析了 Git 的核心概念、分支管理策略以及大文件处理方案。Agent 将学会如何像专业开发者一样思考版本控制，确保每一次上传都安全、清晰且可追溯。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/upload`
-- **Source URL:** [https://clawhub.ai/skills/upload](https://clawhub.ai/skills/upload)
+### 核心指令集
 
-## Overview
+#### 1. 核心概念与准备工作
 
+在执行任何上传操作前，必须先理解三个核心概念，这就像寄快递一样简单明了：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/upload
+- **远程仓库 (Remote Repository)：** 相当于你在 GitHub 上租用的“专属储物柜”，用于长期存储和备份代码。
+- **本地仓库 (Local Repository)：** 相当于你电脑上的“待寄包裹”，里面装着你编写的项目文件。
+- `.gitignore`** 文件：** 相当于“不寄清单”，它告诉 Git 哪些文件（如缓存、临时文件、大体积依赖包）不需要上传，以避免仓库臃肿或泄露敏感信息。
+
+**准备步骤：**
+
+1. **创建远程仓库：** 登录 GitHub，点击右上角“+”号，选择“New repository”，输入仓库名称并创建。复制生成的仓库地址（URL）。
+2. **配置本地环境：** 确保你的项目文件夹中已包含需要提交的代码，并在根目录下创建或更新了 `.gitignore` 文件，排除了不必要的文件。
+
+#### 2. 标准上传流程
+
+遵循标准的七步工作流，确保每一次提交都清晰、规范。
+
+- **步骤一：进入项目目录**
+在终端中切换到你的本地项目文件夹。
+
 ```
+cd path/to/your/project
+```
+
+- **步骤二：初始化本地仓库**
+如果这是第一次操作，需要将当前文件夹初始化为 Git 仓库。
+
+```
+git init
+```
+
+- 执行后，目录下会生成一个隐藏的 `.git` 文件夹，标志着 Git 开始接管版本管理。
+- **步骤三：关联远程仓库**
+将本地仓库与 GitHub 上的远程仓库进行配对。
+
+```
+git remote add origin <你的仓库URL>
+```
+
+- **步骤四：添加文件到暂存区**
+将你想要上传的文件“打包”，准备提交。
+
+```
+git add .
+```
+
+- 这条命令会将所有更改（除了 `.gitignore` 中排除的文件）添加到暂存区。
+- **步骤五：提交更改**
+将暂存区的文件正式记录到本地历史中，并附上清晰的提交信息。
+
+```
+git commit -m "feat: 初始化项目结构"
+```
+
+- 提交信息应简洁明了，说明本次更改的目的。
+- **步骤六：同步远程分支**
+在推送前，先拉取远程仓库的最新状态，避免冲突。使用 `--rebase` 参数可以保持提交历史的线性整洁。
+
+```
+git pull --rebase origin master
+```
+
+- **步骤七：推送到远程仓库**
+最后，将本地的提交正式上传到 GitHub。
+
+```
+git push -u origin master
+```
+
+- `-u` 参数会将本地分支与远程分支关联，后续直接使用 `git push` 即可。
+
+#### 3. 分支管理与协作
+
+为了更高效地管理代码，应养成使用分支的习惯。
+
+- **创建新分支：** 在开始新功能或修复 Bug 前，从主分支创建一个新分支。
+
+```
+git checkout -b feature/new-login
+```
+
+- **切换分支：** 在不同分支间切换以进行不同任务的开发。
+
+```
+git checkout master
+```
+
+- **合并分支：** 当功能开发完成后，将其合并回主分支。
+
+```
+git checkout master
+git merge feature/new-login
+```
+
+#### 4. 大文件处理方案
+
+GitHub 对单个文件的大小有限制（通常为 100MB）。对于模型文件、大型数据集等，需要使用 Git LFS (Large File Storage)。
+
+- **安装 Git LFS：** 首次使用时，需在命令行中安装。
+
+```
+git lfs install
+```
+
+- **追踪大文件：** 告诉 Git LFS 需要追踪哪些类型的文件。
+
+```
+git lfs track "*.zip"
+```
+
+- **提交与推送：** 之后的操作与标准流程一致，Git LFS 会自动处理大文件的上传和下载。
+
+### 常见问题排查
+
+#### 推送被拒绝
+
+- **症状：** 执行 `git push` 时提示 `rejected`。
+- **原因：** 通常是因为远程仓库有本地没有的提交。
+- **解决方案：** 先执行 `git pull --rebase origin master` 将远程的更新合并到本地，解决可能出现的冲突后，再执行 `git push`。
+
+#### 提交了不该提交的文件
+
+- **症状：** 不小心将密码文件或大型依赖库上传到了仓库。
+- **解决方案：**
+    1. 立即在 `.gitignore` 中添加该文件的路径。
+    2. 使用 `git rm --cached <文件名>` 将其从 Git 跟踪中移除。
+    3. 提交更改并推送：`git commit -m "chore: 移除敏感文件"` 和 `git push`。
+
+#### 提交历史混乱
+
+- **症状：** 提交记录中出现大量无意义的“Merge branch...”信息。
+- **解决方案：** 养成使用 `git pull --rebase` 而非 `git pull` 的习惯，这能保持提交历史的线性，使其更加清晰易读。
+
+### 技能扩展建议
+
+#### 自动化工作流
+
+扩展技能，学习使用 GitHub Actions。通过编写 YAML 配置文件，实现代码提交后自动运行测试、自动构建或自动部署，打造持续集成/持续部署（CI/CD）流水线。
+
+#### 交互式变基
+
+掌握 `git rebase -i` 命令。它允许你在推送前整理本地的提交历史，例如将多个零碎的提交合并为一个，或修改提交信息，使项目历史更加整洁和专业。
+
+#### 保护主分支
+
+在 GitHub 仓库设置中启用分支保护规则。可以要求所有推送到主分支的代码必须通过 Pull Request 合并，并且必须通过 CI 检查和
+

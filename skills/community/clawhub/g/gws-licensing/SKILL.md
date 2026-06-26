@@ -1,35 +1,46 @@
 ---
-name: "Gws Licensing"
+name: gws-licensing
+version: 1.0.0
 description: "Google Workspace Enterprise License Manager: Manage product licenses."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-licensing"
-sourceUrl: "https://clawhub.ai/skills/gws-licensing"
+metadata:
+  openclaw:
+    category: "productivity"
+    requires:
+      bins: ["gws"]
+    cliHelp: "gws licensing --help"
 ---
 
-# Gws Licensing
+# licensing (v1)
 
-> Google Workspace Enterprise License Manager: Manage product licenses.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-licensing`
-- **Source URL:** [https://clawhub.ai/skills/gws-licensing](https://clawhub.ai/skills/gws-licensing)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-licensing
+gws licensing <resource> <method> [flags]
 ```
+
+## API Resources
+
+### licenseAssignments
+
+  - `delete` — Revoke a license.
+  - `get` — Get a specific user's license by product SKU.
+  - `insert` — Assign a license.
+  - `listForProduct` — List all users assigned licenses for a specific product SKU.
+  - `listForProductAndSku` — List all users assigned licenses for a specific product SKU.
+  - `patch` — Reassign a user's product SKU with a different SKU in the same product. This method supports patch semantics.
+  - `update` — Reassign a user's product SKU with a different SKU in the same product.
+
+## Discovering Commands
+
+Before calling any API method, inspect it:
+
+```bash
+# Browse resources and methods
+gws licensing --help
+
+# Inspect a method's required params, types, and defaults
+gws schema licensing.<resource>.<method>
+```
+
+Use `gws schema` output to build your `--params` and `--json` flags.
+

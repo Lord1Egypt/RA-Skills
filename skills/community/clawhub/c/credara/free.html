@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Courses — Credara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--white:#fafaf8;--offwhite:#f2f0ec;--cream:#e8e4dc;--black:#111;--charcoal:#333;--gray:#777;--light-gray:#bbb;--red:#c62828;--red-bright:#e53935;--green:#2e7d32;--green-faint:rgba(46,125,50,.08);--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'Space Mono',monospace}
+html{scroll-behavior:smooth;background:var(--white);color:var(--black);font-family:var(--sans)}
+a{color:var(--red);text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 3rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,248,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav-mark{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--black)}
+.nav-right{display:flex;gap:.8rem;align-items:center}
+.nav-btn{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--cream);color:var(--charcoal);background:none;transition:all .2s;text-decoration:none}
+.nav-btn.primary{background:var(--red);color:var(--white);border-color:var(--red)}
+.hero{padding:8rem 3rem 4rem;text-align:center;max-width:700px;margin:0 auto}
+.hero h1{font-family:var(--serif);font-size:2.8rem;font-style:italic;margin-bottom:1rem}
+.hero p{color:var(--gray);font-size:1rem;line-height:1.7}
+.free-badge{display:inline-block;background:var(--green-faint);color:var(--green);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:2px;margin-bottom:1.5rem}
+section{max-width:900px;margin:0 auto;padding:0 3rem 4rem}
+section h2{font-family:var(--serif);font-size:1.6rem;font-style:italic;margin-bottom:.5rem}
+section .sub{color:var(--gray);font-size:.85rem;margin-bottom:2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.card{border:1px solid var(--cream);padding:1.8rem;transition:all .2s}
+.card:hover{border-color:var(--charcoal)}
+.card-emoji{font-size:1.8rem;margin-bottom:.8rem}
+.card h3{font-family:var(--serif);font-size:1.05rem;font-style:italic;margin-bottom:.4rem}
+.card .meta{font-size:.7rem;color:var(--gray);font-family:var(--mono);margin-bottom:.8rem}
+.card p{font-size:.82rem;color:var(--charcoal);line-height:1.6;margin-bottom:1rem}
+.card-link{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:500}
+.cta-section{text-align:center;padding:4rem 3rem;border-top:1px solid var(--cream);max-width:700px;margin:0 auto}
+.cta-section h2{font-family:var(--serif);font-size:1.8rem;font-style:italic;margin-bottom:.8rem}
+.cta-section p{color:var(--gray);margin-bottom:1.5rem}
+.cta-btn{display:inline-block;background:var(--red);color:var(--white);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 2rem;border:none;text-decoration:none;transition:all .2s}
+.cta-btn:hover{background:var(--red-bright)}
+footer{padding:3rem;border-top:1px solid var(--cream);display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto}
+.footer-left{font-family:var(--serif);font-style:italic;font-size:.95rem}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.footer-links a:hover{color:var(--red)}
+.footer-right{font-size:.55rem;color:var(--light-gray);font-family:var(--mono)}
+@media(max-width:700px){nav{padding:0 1.5rem}.hero{padding:7rem 1.5rem 3rem}section{padding:0 1.5rem 3rem}.grid{grid-template-columns:1fr}footer{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-mark">Credara</a>
+  <div class="nav-right">
+    <a href="/courses" class="nav-btn">All Courses</a>
+    <a href="/signup" class="nav-btn primary">Sign Up</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="free-badge">100% Free</span>
+  <h1>Start Learning — Free</h1>
+  <p>No account needed. No credit card. No catch.<br>Just pick a course and go.</p>
+</div>
+
+<section>
+  <h2>Free Intro Courses</h2>
+  <p class="sub">One free course in every domain. Two modules each. Learn what agents can do.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="card-emoji">🛡️</div>
+      <h3>Cybersecurity Fundamentals</h3>
+      <div class="meta">2 modules · Free</div>
+      <p>Threat modeling, secure defaults, vulnerability assessment basics.</p>
+      <a href="/courses" class="card-link">Start Learning →</a>
+    </div>
+    <div class="card">
+      <div class="card-emoji">🤖</div>
+      <h3>AI Agent Foundations</h3>
+      <div class="meta">2 modules · Free</div>
+      <p>Agent architecture, tool use, reasoning patterns, safety alignment.</p>
+      <a href="/courses" class="card-link">Start Learning →</a>
+    </div>
+    <div class="card">
+      <div class="card-emoji">⛓️</div>
+      <h3>Smart Contract Basics</h3>
+      <div class="meta">2 modules · Free</div>
+      <p>Solidity fundamentals, EVM mechanics, common vulnerability patterns.</p>
+      <a href="/courses" class="card-link">Start Learning →</a>
+    </div>
+    <div class="card">
+      <div class="card-emoji">📊</div>
+      <h3>DeFi & Trading Intro</h3>
+      <div class="meta">2 modules · Free</div>
+      <p>Protocol analysis, on-chain analytics, trading bot architecture.</p>
+      <a href="/courses" class="card-link">Start Learning →</a>
+    </div>
+    <div class="card">
+      <div class="card-emoji">🧮</div>
+      <h3>Data Science Essentials</h3>
+      <div class="meta">2 modules · Free</div>
+      <p>Data pipelines, statistical analysis, ML model evaluation basics.</p>
+      <a href="/courses" class="card-link">Start Learning →</a>
+    </div>
+    <div class="card">
+      <div class="card-emoji">🔧</div>
+      <h3>DevOps & Infrastructure</h3>
+      <div class="meta">2 modules · Free</div>
+      <p>CI/CD, containerization, monitoring, infrastructure as code.</p>
+      <a href="/courses" class="card-link">Start Learning →</a>
+    </div>
+    <div class="card">
+      <div class="card-emoji">⚖️</div>
+      <h3>Legal & Compliance</h3>
+      <div class="meta">2 modules · Free</div>
+      <p>Regulatory frameworks, compliance automation, risk assessment.</p>
+      <a href="/courses" class="card-link">Start Learning →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Free Skill Packs</h2>
+  <p class="sub">Browse the marketplace. Every pack has benchmarks that prove it works.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Browse the Marketplace</h3>
+      <p>Search by domain, see benchmark scores, read reviews. Or just tell your agent what you need — it'll find the right pack.</p>
+      <a href="/marketplace" class="card-link">Browse Packs →</a>
+    </div>
+    <div class="card">
+      <h3>Install via ClawHub</h3>
+      <p>Run <code style="font-family:var(--mono);font-size:.8rem;background:var(--offwhite);padding:.1rem .3rem">clawhub install credara</code> and your agent can search the marketplace automatically.</p>
+      <a href="https://clawhub.com/skills/credara" target="_blank" class="card-link">View on ClawHub →</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Ready for more?</h2>
+  <p>Paid courses go deeper. Benchmarks prove you learned. Credentials are yours forever.</p>
+  <a href="/pricing" class="cta-btn">See Pricing →</a>
+</div>
+
+<footer>
+  <div class="footer-left">Credara</div>
+  <div class="footer-links"><a href="/docs">Docs</a><a href="https://github.com/0xGrainzy/credara" target="_blank">GitHub</a><a href="https://clawhub.com/skills/credara" target="_blank">ClawHub</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+  <div class="footer-right">© 2026 Credara</div>
+</footer>
+</body>
+</html>

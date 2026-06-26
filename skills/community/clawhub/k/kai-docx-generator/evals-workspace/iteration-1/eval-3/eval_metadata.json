@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "template-fill-with-json",
+  "prompt": "Fill contract template with JSON data",
+  "assertions": [
+    {"name": "output_file_exists", "description": "Generated .docx file exists"},
+    {"name": "valid_docx", "description": "Output is a valid .docx file"},
+    {"name": "all_placeholders_replaced", "description": "All 5 template placeholders replaced"},
+    {"name": "no_unreplaced_placeholders", "description": "No unreplaced {{placeholders}} remain"},
+    {"name": "data_values_present", "description": "Data values appear in document text"}
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "aivideo-api-executor",
+  "displayName": "AIVideoMaker API Executor",
+  "version": "1.0.12",
+  "entry": "SKILL.md",
+  "language": [
+    "en"
+  ],
+  "tags": [
+    "api",
+    "video-generation",
+    "workflow",
+    "automation"
+  ],
+  "requirements": {
+    "env_vars": {
+      "required": [
+        "AIVIDEO_API_KEY"
+      ],
+      "optional": [
+        "AIVIDEO_TIMEOUT_MS",
+        "AIVIDEO_MAX_RETRIES"
+      ]
+    },
+    "binaries": ["node"],
+    "primaryCredential": "AIVIDEO_API_KEY",
+    "environmentVariables": [
+      {
+        "name": "AIVIDEO_API_KEY",
+        "required": true,
+        "description": "API key for https://aivideomaker.ai"
+      },
+      {
+        "name": "AIVIDEO_TIMEOUT_MS",
+        "required": false,
+        "default": "30000",
+        "description": "Request timeout in milliseconds"
+      },
+      {
+        "name": "AIVIDEO_MAX_RETRIES",
+        "required": false,
+        "default": "3",
+        "description": "Max retries for idempotent read requests"
+      }
+    ]
+  },
+  "runtime": {
+    "type": "node",
+    "commands": [
+      "node scripts/run-workflow.mjs --model <model> --payload '<json_payload>'",
+      "node scripts/run-workflow.mjs --action getStatus --taskId <task_id>",
+      "node scripts/run-workflow.mjs --action getTask --taskId <task_id>",
+      "node scripts/run-workflow.mjs --action cancelTask --taskId <task_id>"
+    ]
+  }
+}

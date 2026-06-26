@@ -1,0 +1,760 @@
+{
+  "version": "1.0",
+  "description": "OPC导师Skill互引推荐网络配置",
+  "updated_at": "2024-01-15",
+  
+  "skills": {
+    "技术尽调": {
+      "name": "技术尽调",
+      "description": "对项目/团队进行技术能力验证与风险评估",
+      "tags": {
+        "domain": ["技术", "IP", "尽调"],
+        "stage": ["尽调"],
+        "triggers": ["发现IP风险", "专利异常", "团队技术疑点", "技术先进性验证"]
+      },
+      "fixed_refs": [
+        {"skill": "知识产权运营", "weight": 0.9, "reason": "IP风险需专业评估"},
+        {"skill": "成果转化", "weight": 0.8, "reason": "技术需转化落地"},
+        {"skill": "投资方尽调", "weight": 0.7, "reason": "双向验证更全面"},
+        {"skill": "沙盘推演", "weight": 0.5, "reason": "预判技术路径风险"}
+      ],
+      "pricing": "free"
+    },
+    
+    "投资方尽调": {
+      "name": "投资方尽调",
+      "description": "验证投资方资质、背景与履约能力",
+      "tags": {
+        "domain": ["投资", "尽调", "金融"],
+        "stage": ["尽调"],
+        "triggers": ["引入新投资方", "GP/LP背调", "出资能力验证", "历史业绩核查"]
+      },
+      "fixed_refs": [
+        {"skill": "技术尽调", "weight": 0.8, "reason": "项目+资方双向验证"},
+        {"skill": "股权合作机制", "weight": 0.7, "reason": "确定股权结构"},
+        {"skill": "沙盘推演", "weight": 0.5, "reason": "推演合作路径"}
+      ],
+      "pricing": "free"
+    },
+    
+    "文化商业尽调": {
+      "name": "文化商业尽调",
+      "description": "评估文化IP商业化潜力与市场价值",
+      "tags": {
+        "domain": ["文化", "IP", "商业化"],
+        "stage": ["尽调", "评估"],
+        "triggers": ["IP价值评估", "文化项目尽调", "品牌授权尽调", "市场潜力分析"]
+      },
+      "fixed_refs": [
+        {"skill": "IP工具包", "weight": 0.9, "reason": "IP全生命周期管理"},
+        {"skill": "知识产权运营", "weight": 0.8, "reason": "IP变现路径"},
+        {"skill": "商业计划书", "weight": 0.7, "reason": "商业化方案设计"}
+      ],
+      "pricing": "free"
+    },
+    
+    "服务尽调": {
+      "name": "服务尽调",
+      "description": "评估服务商/供应商的履约能力",
+      "tags": {
+        "domain": ["服务", "供应链", "尽调"],
+        "stage": ["尽调"],
+        "triggers": ["供应商选择", "服务质量评估", "履约能力验证", "外包风险识别"]
+      },
+      "fixed_refs": [
+        {"skill": "供应链对接", "weight": 0.8, "reason": "供应链资源整合"},
+        {"skill": "协作交付机制", "weight": 0.7, "reason": "交付标准制定"},
+        {"skill": "获客分包平台", "weight": 0.5, "reason": "服务分包管理"}
+      ],
+      "pricing": "free"
+    },
+    
+    "大赛标准化打分": {
+      "name": "大赛标准化打分",
+      "description": "提供标准化的项目/方案评审打分体系",
+      "tags": {
+        "domain": ["评审", "评估", "标准化"],
+        "stage": ["评估"],
+        "triggers": ["项目评审", "方案打分", "比赛评分", "资质认定"]
+      },
+      "fixed_refs": [
+        {"skill": "沙盘推演", "weight": 0.7, "reason": "深度推演方案"},
+        {"skill": "商业计划书", "weight": 0.6, "reason": "方案优化建议"},
+        {"skill": "商业模式分析", "weight": 0.5, "reason": "模式诊断"}
+      ],
+      "pricing": "free"
+    },
+    
+    "三会治理系统": {
+      "name": "三会治理系统",
+      "description": "董事会/监事会/股东大会治理规范与流程",
+      "tags": {
+        "domain": ["治理", "合规", "公司法"],
+        "stage": ["执行", "管理"],
+        "triggers": ["公司治理优化", "三会流程规范", "合规性检查", "股权激励设计"]
+      },
+      "fixed_refs": [
+        {"skill": "股权合作机制", "weight": 0.9, "reason": "股权结构设计"},
+        {"skill": "项目全流程管理", "weight": 0.6, "reason": "治理落地执行"},
+        {"skill": "政策工具包", "weight": 0.5, "reason": "政策合规支持"}
+      ],
+      "pricing": "free"
+    },
+    
+    "商业计划书": {
+      "name": "商业计划书",
+      "description": "生成专业商业计划书与融资材料",
+      "tags": {
+        "domain": ["商业", "融资", "BP"],
+        "stage": ["转化", "执行"],
+        "triggers": ["融资准备", "BP撰写", "投资人沟通", "项目推介"]
+      },
+      "fixed_refs": [
+        {"skill": "投资路演", "weight": 0.9, "reason": "路演材料准备"},
+        {"skill": "沙盘推演", "weight": 0.8, "reason": "商业路径推演"},
+        {"skill": "商业模式分析", "weight": 0.7, "reason": "模式梳理"},
+        {"skill": "技术尽调", "weight": 0.6, "reason": "技术背书"}
+      ],
+      "pricing": "paid_99"
+    },
+    
+    "沙盘推演": {
+      "name": "沙盘推演",
+      "description": "9类变量三路径推演，预判项目未来走向",
+      "tags": {
+        "domain": ["战略", "预判", "分析"],
+        "stage": ["评估", "规划"],
+        "triggers": ["战略规划", "风险预判", "路径选择", "决策支持"]
+      },
+      "fixed_refs": [
+        {"skill": "商业模式分析", "weight": 0.8, "reason": "商业逻辑验证"},
+        {"skill": "商业计划书", "weight": 0.7, "reason": "BP内容支撑"},
+        {"skill": "技术尽调", "weight": 0.6, "reason": "技术风险评估"}
+      ],
+      "pricing": "paid_99"
+    },
+    
+    "投资路演": {
+      "name": "投资路演",
+      "description": "路演材料设计与演讲辅导",
+      "tags": {
+        "domain": ["路演", "融资", "Pitch"],
+        "stage": ["转化"],
+        "triggers": ["路演准备", "投资人pitch", "融资路演", "演讲优化"]
+      },
+      "fixed_refs": [
+        {"skill": "商业计划书", "weight": 0.9, "reason": "内容基础"},
+        {"skill": "路演管理", "weight": 0.8, "reason": "全流程管理"},
+        {"skill": "市场销售渠道对接", "weight": 0.5, "reason": "渠道拓展"}
+      ],
+      "pricing": "paid_99"
+    },
+    
+    "路演管理": {
+      "name": "路演管理",
+      "description": "路演全流程管理与跟进",
+      "tags": {
+        "domain": ["路演", "管理", "CRM"],
+        "stage": ["执行"],
+        "triggers": ["路演排期", "投资人管理", "跟进记录", "效果复盘"]
+      },
+      "fixed_refs": [
+        {"skill": "投资路演", "weight": 0.9, "reason": "路演核心支持"},
+        {"skill": "性格测评与角色匹配", "weight": 0.6, "reason": "团队角色配置"},
+        {"skill": "市场销售渠道对接", "weight": 0.5, "reason": "渠道资源整合"}
+      ],
+      "pricing": "free"
+    },
+    
+    "掼蛋助手": {
+      "name": "掼蛋助手",
+      "description": "掼蛋游戏策略与陪练",
+      "tags": {
+        "domain": ["游戏", "社交", "团建"],
+        "stage": ["社交"],
+        "triggers": ["团建活动", "社交破冰", "商务休闲", "游戏策略"]
+      },
+      "fixed_refs": [
+        {"skill": "性格测评与角色匹配", "weight": 0.7, "reason": "团队角色洞察"},
+        {"skill": "三会治理系统", "weight": 0.3, "reason": "团建+商务场景"}
+      ],
+      "pricing": "free"
+    },
+    
+    "IP工具包": {
+      "name": "IP工具包",
+      "description": "知识产权全生命周期管理工具",
+      "tags": {
+        "domain": ["IP", "知识产权", "商标", "专利"],
+        "stage": ["管理", "运营"],
+        "triggers": ["商标注册", "专利申请", "版权保护", "IP资产管理"]
+      },
+      "fixed_refs": [
+        {"skill": "知识产权运营", "weight": 0.9, "reason": "IP变现"},
+        {"skill": "技术尽调", "weight": 0.8, "reason": "技术IP验证"},
+        {"skill": "文化商业尽调", "weight": 0.7, "reason": "IP价值评估"}
+      ],
+      "pricing": "free"
+    },
+    
+    "公众号运营": {
+      "name": "公众号运营",
+      "description": "微信公众号内容创作与运营策略",
+      "tags": {
+        "domain": ["内容", "运营", "自媒体"],
+        "stage": ["运营", "转化"],
+        "triggers": ["公众号搭建", "内容创作", "粉丝增长", "变现转化"]
+      },
+      "fixed_refs": [
+        {"skill": "视频号运营", "weight": 0.8, "reason": "双微联动"},
+        {"skill": "用户画像与入驻管理", "weight": 0.7, "reason": "用户运营"},
+        {"skill": "获客分包平台", "weight": 0.5, "reason": "流量变现"}
+      ],
+      "pricing": "paid_99"
+    },
+    
+    "视频号运营": {
+      "name": "视频号运营",
+      "description": "微信视频号内容创作与运营",
+      "tags": {
+        "domain": ["视频", "内容", "短视频"],
+        "stage": ["运营", "转化"],
+        "triggers": ["短视频创作", "直播带货", "视频号起号", "内容策划"]
+      },
+      "fixed_refs": [
+        {"skill": "公众号运营", "weight": 0.8, "reason": "双微联动"},
+        {"skill": "视频字幕工具", "weight": 0.7, "reason": "视频制作辅助"},
+        {"skill": "用户画像与入驻管理", "weight": 0.6, "reason": "私域运营"}
+      ],
+      "pricing": "paid_99"
+    },
+    
+    "视频字幕工具": {
+      "name": "视频字幕工具",
+      "description": "视频字幕生成与编辑工具",
+      "tags": {
+        "domain": ["视频", "字幕", "工具"],
+        "stage": ["制作"],
+        "triggers": ["字幕生成", "视频剪辑", "多语言字幕", "字幕翻译"]
+      },
+      "fixed_refs": [
+        {"skill": "视频号运营", "weight": 0.8, "reason": "视频制作支持"},
+        {"skill": "公众号运营", "weight": 0.5, "reason": "内容矩阵"}
+      ],
+      "pricing": "free"
+    },
+    
+    "用户画像与入驻管理": {
+      "name": "用户画像与入驻管理",
+      "description": "用户数据分析和私域管理",
+      "tags": {
+        "domain": ["用户", "私域", "CRM"],
+        "stage": ["运营"],
+        "triggers": ["用户分析", "私域搭建", "会员管理", "精准营销"]
+      },
+      "fixed_refs": [
+        {"skill": "性格测评与角色匹配", "weight": 0.8, "reason": "用户深度洞察"},
+        {"skill": "获客分包平台", "weight": 0.7, "reason": "获客转化"},
+        {"skill": "市场销售渠道对接", "weight": 0.6, "reason": "渠道对接"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-王阳明": {
+      "name": "王阳明心学",
+      "description": "王阳明心学智慧与应用",
+      "tags": {
+        "domain": ["心学", "哲学", "领导力"],
+        "stage": ["心智"],
+        "triggers": ["知行合一", "致良知", "领导力修炼", "心性提升"]
+      },
+      "fixed_refs": [
+        {"skill": "私董会-王阳明", "weight": 0.9, "reason": "心学实践场"},
+        {"skill": "心智模型-曾国藩", "weight": 0.7, "reason": "东方智慧"},
+        {"skill": "心智模型-任正非", "weight": 0.5, "reason": "企业家精神"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-曾国藩": {
+      "name": "曾国藩家训",
+      "description": "曾国藩处世哲学与家训智慧",
+      "tags": {
+        "domain": ["处世", "家训", "领导力"],
+        "stage": ["心智"],
+        "triggers": ["修身齐家", "处世智慧", "用人之道", "团队管理"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-范仲淹", "weight": 0.8, "reason": "先贤智慧"},
+        {"skill": "心智模型-王阳明", "weight": 0.7, "reason": "东方哲学"},
+        {"skill": "私董会-王阳明", "weight": 0.5, "reason": "领导力修炼"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-范仲淹": {
+      "name": "范仲淹精神",
+      "description": "范仲淹'先天下之忧而忧'精神",
+      "tags": {
+        "domain": ["情怀", "使命", "领导力"],
+        "stage": ["心智"],
+        "triggers": ["使命愿景", "社会价值", "企业家精神", "责任担当"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-苏轼", "weight": 0.8, "reason": "文人风骨"},
+        {"skill": "心智模型-曾国藩", "weight": 0.7, "reason": "家国情怀"},
+        {"skill": "心智模型-王阳明", "weight": 0.5, "reason": "心学底色"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-苏轼": {
+      "name": "苏轼豁达",
+      "description": "苏轼逆境豁达与创意人生",
+      "tags": {
+        "domain": ["创意", "豁达", "生活"],
+        "stage": ["心智"],
+        "triggers": ["逆境应对", "创意激发", "生活美学", "心态调整"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-范仲淹", "weight": 0.8, "reason": "文人同道"},
+        {"skill": "心智模型-王阳明", "weight": 0.6, "reason": "心学智慧"},
+        {"skill": "掼蛋助手", "weight": 0.4, "reason": "生活调剂"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-任正非": {
+      "name": "任正非管理",
+      "description": "华为管理哲学与灰度理论",
+      "tags": {
+        "domain": ["管理", "华为", "战略"],
+        "stage": ["心智"],
+        "triggers": ["企业管理", "灰度决策", "组织变革", "战略思维"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-张小龙", "weight": 0.8, "reason": "产品思维"},
+        {"skill": "三会治理系统", "weight": 0.7, "reason": "治理落地"},
+        {"skill": "股权合作机制", "weight": 0.6, "reason": "激励机制"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-张小龙": {
+      "name": "张小龙产品",
+      "description": "微信产品哲学与用户思维",
+      "tags": {
+        "domain": ["产品", "用户", "微信"],
+        "stage": ["心智"],
+        "triggers": ["产品设计", "用户思维", "极致体验", "克制哲学"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-任正非", "weight": 0.8, "reason": "管理理念"},
+        {"skill": "用户画像与入驻管理", "weight": 0.7, "reason": "用户运营"},
+        {"skill": "商业模式分析", "weight": 0.5, "reason": "商业逻辑"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-马斯克": {
+      "name": "马斯克思维",
+      "description": "马斯克第一性原理与创新思维",
+      "tags": {
+        "domain": ["创新", "第一性原理", "科技"],
+        "stage": ["心智"],
+        "triggers": ["创新思维", "颠覆式创新", "第一性原理", "工程思维"]
+      },
+      "fixed_refs": [
+        {"skill": "沙盘推演", "weight": 0.8, "reason": "战略推演"},
+        {"skill": "技术尽调", "weight": 0.7, "reason": "技术验证"},
+        {"skill": "心智模型-维特根斯坦", "weight": 0.5, "reason": "哲学底座"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-维特根斯坦": {
+      "name": "维特根斯坦哲学",
+      "description": "语言哲学与思维边界",
+      "tags": {
+        "domain": ["哲学", "语言", "思维"],
+        "stage": ["心智"],
+        "triggers": ["思维训练", "逻辑边界", "语言与思想", "深度思考"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-苏格拉底", "weight": 0.9, "reason": "哲学传承"},
+        {"skill": "心智模型-马斯克", "weight": 0.5, "reason": "思维拓展"},
+        {"skill": "沙盘推演", "weight": 0.4, "reason": "推演支撑"}
+      ],
+      "pricing": "free"
+    },
+    
+    "心智模型-苏格拉底": {
+      "name": "苏格拉底问答",
+      "description": "苏格拉底式提问与批判思维",
+      "tags": {
+        "domain": ["哲学", "批判", "提问"],
+        "stage": ["心智"],
+        "triggers": ["批判思维", "深度提问", "认知升级", "独立思考"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-维特根斯坦", "weight": 0.9, "reason": "哲学体系"},
+        {"skill": "私董会-王阳明", "weight": 0.7, "reason": "智慧切磋"},
+        {"skill": "大赛标准化打分", "weight": 0.4, "reason": "评审思维"}
+      ],
+      "pricing": "free"
+    },
+    
+    "私董会-王阳明": {
+      "name": "私董会王阳明",
+      "description": "王阳明心学私董会引导",
+      "tags": {
+        "domain": ["私董会", "心学", "团体"],
+        "stage": ["心智"],
+        "triggers": ["团队共识", "心性修炼", "集体智慧", "领导力提升"]
+      },
+      "fixed_refs": [
+        {"skill": "心智模型-王阳明", "weight": 0.9, "reason": "心学体系"},
+        {"skill": "性格测评与角色匹配", "weight": 0.7, "reason": "角色配置"},
+        {"skill": "三会治理系统", "weight": 0.5, "reason": "治理融合"}
+      ],
+      "pricing": "paid_149"
+    },
+    
+    "股权合作机制": {
+      "name": "股权合作机制",
+      "description": "股权架构设计与合作机制",
+      "tags": {
+        "domain": ["股权", "合作", "激励"],
+        "stage": ["执行"],
+        "triggers": ["股权设计", "合伙人机制", "股权激励", "合作条款"]
+      },
+      "fixed_refs": [
+        {"skill": "三会治理系统", "weight": 0.9, "reason": "治理配套"},
+        {"skill": "性格测评与角色匹配", "weight": 0.7, "reason": "合伙人匹配"},
+        {"skill": "并购匹配", "weight": 0.6, "reason": "资本合作"}
+      ],
+      "pricing": "free"
+    },
+    
+    "政策工具包": {
+      "name": "政策工具包",
+      "description": "政策申报与合规支持",
+      "tags": {
+        "domain": ["政策", "合规", "申报"],
+        "stage": ["支持"],
+        "triggers": ["政策申报", "资质认定", "合规检查", "补贴申请"]
+      },
+      "fixed_refs": [
+        {"skill": "成果转化", "weight": 0.8, "reason": "政策+转化联动"},
+        {"skill": "知识产权运营", "weight": 0.6, "reason": "知产政策"},
+        {"skill": "商业计划书", "weight": 0.5, "reason": "申报材料"}
+      ],
+      "pricing": "free"
+    },
+    
+    "社区成果年鉴": {
+      "name": "社区成果年鉴",
+      "description": "项目成果收集与案例沉淀",
+      "tags": {
+        "domain": ["社区", "成果", "案例"],
+        "stage": ["管理"],
+        "triggers": ["成果归档", "案例收集", "知识沉淀", "年鉴编制"]
+      },
+      "fixed_refs": [
+        {"skill": "商业计划书", "weight": 0.6, "reason": "案例支撑"},
+        {"skill": "市场销售渠道对接", "weight": 0.5, "reason": "经验推广"}
+      ],
+      "pricing": "free"
+    },
+    
+    "获客分包平台": {
+      "name": "获客分包平台",
+      "description": "获客渠道与分包管理模式",
+      "tags": {
+        "domain": ["获客", "分销", "渠道"],
+        "stage": ["转化"],
+        "triggers": ["获客策略", "分销管理", "渠道搭建", "流量变现"]
+      },
+      "fixed_refs": [
+        {"skill": "市场销售渠道对接", "weight": 0.8, "reason": "渠道联动"},
+        {"skill": "用户画像与入驻管理", "weight": 0.7, "reason": "用户运营"},
+        {"skill": "协作交付机制", "weight": 0.5, "reason": "交付配套"}
+      ],
+      "pricing": "free"
+    },
+    
+    "协作交付机制": {
+      "name": "协作交付机制",
+      "description": "项目协作与交付标准体系",
+      "tags": {
+        "domain": ["协作", "交付", "管理"],
+        "stage": ["执行"],
+        "triggers": ["团队协作", "交付标准", "项目管理", "质量控制"]
+      },
+      "fixed_refs": [
+        {"skill": "项目全流程管理", "weight": 0.9, "reason": "流程配套"},
+        {"skill": "服务尽调", "weight": 0.6, "reason": "服务质量"},
+        {"skill": "供应链对接", "weight": 0.5, "reason": "供应链协作"}
+      ],
+      "pricing": "free"
+    },
+    
+    "供应链对接": {
+      "name": "供应链对接",
+      "description": "供应链资源整合与对接",
+      "tags": {
+        "domain": ["供应链", "资源", "对接"],
+        "stage": ["执行"],
+        "triggers": ["供应商对接", "资源整合", "采购管理", "成本优化"]
+      },
+      "fixed_refs": [
+        {"skill": "服务尽调", "weight": 0.8, "reason": "供应商评估"},
+        {"skill": "协作交付机制", "weight": 0.7, "reason": "交付协作"},
+        {"skill": "项目全流程管理", "weight": 0.5, "reason": "流程管理"}
+      ],
+      "pricing": "free"
+    },
+    
+    "项目全流程管理": {
+      "name": "项目全流程管理",
+      "description": "从立项到交付的全流程管理",
+      "tags": {
+        "domain": ["项目", "管理", "流程"],
+        "stage": ["执行"],
+        "triggers": ["项目管理", "流程优化", "进度跟踪", "风险管控"]
+      },
+      "fixed_refs": [
+        {"skill": "协作交付机制", "weight": 0.9, "reason": "交付配套"},
+        {"skill": "沙盘推演", "weight": 0.6, "reason": "规划预判"},
+        {"skill": "三会治理系统", "weight": 0.5, "reason": "治理支撑"}
+      ],
+      "pricing": "free"
+    },
+    
+    "市场销售渠道对接": {
+      "name": "市场销售渠道对接",
+      "description": "市场渠道资源对接与合作",
+      "tags": {
+        "domain": ["市场", "渠道", "销售"],
+        "stage": ["转化"],
+        "triggers": ["渠道对接", "市场拓展", "销售赋能", "资源整合"]
+      },
+      "fixed_refs": [
+        {"skill": "获客分包平台", "weight": 0.8, "reason": "获客联动"},
+        {"skill": "用户画像与入驻管理", "weight": 0.7, "reason": "用户运营"},
+        {"skill": "商业计划书", "weight": 0.5, "reason": "渠道规划"}
+      ],
+      "pricing": "free"
+    },
+    
+    "并购匹配": {
+      "name": "并购匹配",
+      "description": "并购标的筛选与匹配",
+      "tags": {
+        "domain": ["并购", "投资", "资本"],
+        "stage": ["尽调"],
+        "triggers": ["寻找标的", "并购机会", "战略并购", "财务投资"]
+      },
+      "fixed_refs": [
+        {"skill": "并购对接", "weight": 0.9, "reason": "对接执行"},
+        {"skill": "技术尽调", "weight": 0.7, "reason": "尽调配合"},
+        {"skill": "沙盘推演", "weight": 0.6, "reason": "并购推演"}
+      ],
+      "pricing": "paid_99"
+    },
+    
+    "并购对接": {
+      "name": "并购对接",
+      "description": "并购交易关键人对接与策略制定",
+      "tags": {
+        "domain": ["并购", "对接", "撮合"],
+        "stage": ["执行"],
+        "triggers": ["关键人对接", "交易撮合", "谈判策略", "尽调配合"]
+      },
+      "fixed_refs": [
+        {"skill": "并购匹配", "weight": 0.9, "reason": "标的来源"},
+        {"skill": "并购执行", "weight": 0.8, "reason": "执行落地"},
+        {"skill": "性格测评与角色匹配", "weight": 0.5, "reason": "团队配置"}
+      ],
+      "pricing": "paid_149"
+    },
+    
+    "并购执行": {
+      "name": "并购执行",
+      "description": "并购交易执行与法律流程",
+      "tags": {
+        "domain": ["并购", "执行", "法律"],
+        "stage": ["执行"],
+        "triggers": ["交易执行", "法律尽调", "合同签约", "交割完成"]
+      },
+      "fixed_refs": [
+        {"skill": "并购对接", "weight": 0.9, "reason": "对接落地"},
+        {"skill": "并购匹配", "weight": 0.7, "reason": "标的确认"},
+        {"skill": "三会治理系统", "weight": 0.5, "reason": "合规治理"}
+      ],
+      "pricing": "paid_199"
+    },
+    
+    "成果转化": {
+      "name": "成果转化",
+      "description": "科研成果商业化转化路径",
+      "tags": {
+        "domain": ["转化", "科技", "商业化"],
+        "stage": ["转化"],
+        "triggers": ["成果落地", "技术转化", "产学研合作", "产业化"]
+      },
+      "fixed_refs": [
+        {"skill": "知识产权运营", "weight": 0.9, "reason": "IP保护"},
+        {"skill": "技术尽调", "weight": 0.8, "reason": "技术评估"},
+        {"skill": "政策工具包", "weight": 0.7, "reason": "政策支持"},
+        {"skill": "商业计划书", "weight": 0.6, "reason": "转化方案"}
+      ],
+      "pricing": "paid_149"
+    },
+    
+    "知识产权运营": {
+      "name": "知识产权运营",
+      "description": "IP商业化运营与变现策略",
+      "tags": {
+        "domain": ["IP", "运营", "变现"],
+        "stage": ["运营"],
+        "triggers": ["IP变现", "授权运营", "品牌溢价", "版权交易"]
+      },
+      "fixed_refs": [
+        {"skill": "IP工具包", "weight": 0.9, "reason": "工具支撑"},
+        {"skill": "文化商业尽调", "weight": 0.8, "reason": "价值评估"},
+        {"skill": "成果转化", "weight": 0.7, "reason": "转化路径"}
+      ],
+      "pricing": "paid_99"
+    },
+    
+    "性格测评与角色匹配": {
+      "name": "性格测评与角色匹配",
+      "description": "团队角色测评与配置优化",
+      "tags": {
+        "domain": ["测评", "团队", "配置"],
+        "stage": ["管理"],
+        "triggers": ["团队组建", "角色匹配", "人才配置", "协作优化"]
+      },
+      "fixed_refs": [
+        {"skill": "股权合作机制", "weight": 0.7, "reason": "合伙人配置"},
+        {"skill": "私董会-王阳明", "weight": 0.6, "reason": "团体智慧"},
+        {"skill": "三会治理系统", "weight": 0.5, "reason": "治理架构"}
+      ],
+      "pricing": "free"
+    },
+    
+    "黄金交易": {
+      "name": "黄金交易",
+      "description": "黄金投资策略与分析",
+      "tags": {
+        "domain": ["黄金", "投资", "金融"],
+        "stage": ["投资"],
+        "triggers": ["黄金投资", "资产配置", "避险策略", "贵金属"]
+      },
+      "fixed_refs": [
+        {"skill": "商业模式分析", "weight": 0.5, "reason": "投资逻辑"},
+        {"skill": "SPAC资本路径规划", "weight": 0.4, "reason": "资本路径"}
+      ],
+      "pricing": "free"
+    },
+    
+    "即期本票": {
+      "name": "即期本票",
+      "description": "本票工具与金融服务",
+      "tags": {
+        "domain": ["金融", "票据", "支付"],
+        "stage": ["金融"],
+        "triggers": ["票据业务", "支付结算", "贸易金融", "融资工具"]
+      },
+      "fixed_refs": [
+        {"skill": "供应链对接", "weight": 0.6, "reason": "供应链金融"},
+        {"skill": "股权合作机制", "weight": 0.4, "reason": "金融工具"}
+      ],
+      "pricing": "free"
+    },
+    
+    "商业模式分析": {
+      "name": "商业模式分析",
+      "description": "商业模式画布与诊断优化",
+      "tags": {
+        "domain": ["商业", "模式", "分析"],
+        "stage": ["评估"],
+        "triggers": ["模式诊断", "商业画布", "价值分析", "盈利分析"]
+      },
+      "fixed_refs": [
+        {"skill": "沙盘推演", "weight": 0.8, "reason": "战略推演"},
+        {"skill": "商业计划书", "weight": 0.7, "reason": "BP支撑"},
+        {"skill": "市场销售渠道对接", "weight": 0.5, "reason": "渠道分析"}
+      ],
+      "pricing": "free"
+    },
+    
+    "PPT设计流程": {
+      "name": "PPT设计流程",
+      "description": "专业PPT设计方法与流程",
+      "tags": {
+        "domain": ["PPT", "设计", "呈现"],
+        "stage": ["执行"],
+        "triggers": ["PPT制作", "演示设计", "视觉呈现", "汇报材料"]
+      },
+      "fixed_refs": [
+        {"skill": "投资路演", "weight": 0.8, "reason": "路演呈现"},
+        {"skill": "商业计划书", "weight": 0.6, "reason": "材料支撑"},
+        {"skill": "文化商业尽调", "weight": 0.4, "reason": "尽调呈现"}
+      ],
+      "pricing": "free"
+    },
+    
+    "SPAC资本路径规划": {
+      "name": "SPAC资本路径规划",
+      "description": "SPAC上市路径与资本规划",
+      "tags": {
+        "domain": ["SPAC", "上市", "资本"],
+        "stage": ["资本"],
+        "triggers": ["SPAC上市", "资本路径", "海外上市", "融资规划"]
+      },
+      "fixed_refs": [
+        {"skill": "商业模式分析", "weight": 0.7, "reason": "模式支撑"},
+        {"skill": "并购匹配", "weight": 0.6, "reason": "资本运作"},
+        {"skill": "沙盘推演", "weight": 0.5, "reason": "路径推演"}
+      ],
+      "pricing": "paid_149"
+    }
+  },
+  
+  "algorithm_config": {
+    "weights": {
+      "fixed_ref": 0.6,
+      "tag_similarity": 0.3,
+      "random_factor": 0.1
+    },
+    "recommendation_rules": {
+      "top_k": 3,
+      "strong_threshold": 0.7,
+      "medium_threshold": 0.4,
+      "min_random_score": 0.1,
+      "max_random_score": 0.3
+    },
+    "exposure_balance": {
+      "enabled": true,
+      "low_frequency_boost": 0.2,
+      "recent_decay": 0.05
+    }
+  },
+  
+  "tag_synonyms": {
+    "domain": {
+      "IP": ["知识产权", "商标", "专利", "版权"],
+      "投资": ["融资", "资本", "金融"],
+      "运营": ["私域", "用户", "增长"],
+      "管理": ["治理", "流程", "项目"]
+    },
+    "stage": {
+      "尽调": ["调查", "审核"],
+      "评估": ["分析", "诊断"],
+      "执行": ["落地", "实施"],
+      "转化": ["变现", "商业化"]
+    }
+  }
+}

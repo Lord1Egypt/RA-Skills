@@ -1,35 +1,56 @@
----
-name: "216medsearch"
-description: "通过内部 API 模糊查询药品名称并返回其通用名，支持准确或模糊匹配。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/216medsearch"
-sourceUrl: "https://clawhub.ai/skills/216medsearch"
----
+# 216medsearch 技能
 
-# 216medsearch
+## 描述
 
-> 通过内部 API 模糊查询药品名称并返回其通用名，支持准确或模糊匹配。
+通过内部 API 查询药品通用名。当用户询问某个药品的通用名时，使用此技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/216medsearch`
-- **Source URL:** [https://clawhub.ai/skills/216medsearch](https://clawhub.ai/skills/216medsearch)
+## 功能
 
-## Overview
+- 接受药品名称作为参数
+- 通过 `http://10.1.23.216:8280/rest/schema/med/query` API 进行模糊查询
+- 返回 JSON 格式的结果，判断是否能查到药品的通用名
+- 支持模糊查询（使用 `name##` 条件）
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/216medsearch
+# 查询药品通用名
+openclaw exec 216medsearch 环吡酮搽剂
+```
+
+## API 参数
+
+- **condition**: `name##'药品名称'` - 通过药品名称进行模糊查询
+- **propNames**: `name` - 查询 name 字段
+
+## 返回格式
+
+返回 JSON 格式数据，包含：
+- 查询是否成功
+- 药品信息（包括通用名）
+- 错误信息（如果查询失败）
+
+## 注意事项
+
+- 药品名称应该准确，但支持模糊查询
+- 如果药品名称有误或不存在，API 会返回空结果
+- API token 已内置在工具中，无需额外提供
+
+## 示例
+
+```bash
+# 查询环吡酮搽剂的通用名
+216medsearch 环吡酮搽剂
+
+# 返回示例:
+{
+  "success": true,
+  "data": [
+    {
+      "name": "环吡酮搽剂",
+      "genericName": "环吡酮胺",
+      ...
+    }
+  ]
+}
 ```

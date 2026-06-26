@@ -1,0 +1,139 @@
+[
+  {
+    "id": "fb_1773279522319_dhcjr6na0",
+    "timestamp": "2026-03-12T01:38:42.319Z",
+    "type": "explicit",
+    "sessionId": "test_session_1",
+    "rating": 5,
+    "comment": "Great response!",
+    "category": "accuracy",
+    "metadata": {},
+    "source": "cli"
+  },
+  {
+    "id": "fb_1773279522320_wd8jy5thp",
+    "timestamp": "2026-03-12T01:38:42.320Z",
+    "type": "implicit",
+    "sessionId": "test_session_2",
+    "signal": "completion",
+    "metrics": {
+      "responseTime": 2500
+    },
+    "context": {},
+    "inferredSentiment": "positive"
+  },
+  {
+    "id": "fb_1773279522323_udcj65384",
+    "timestamp": "2026-03-12T01:38:42.323Z",
+    "type": "implicit",
+    "sessionId": "test_session_3",
+    "signal": "high_retry_rate",
+    "metrics": {
+      "confidence": 0.8,
+      "sessionId": "test_session_3",
+      "retryCount": 5,
+      "completionRate": 0.5,
+      "abandoned": false,
+      "followUpQuestions": 3
+    },
+    "context": {
+      "autoDetected": true,
+      "inferredIssue": "user struggling with response"
+    },
+    "inferredSentiment": "negative"
+  },
+  {
+    "id": "fb_1773279522323_ohdyp5i7j",
+    "timestamp": "2026-03-12T01:38:42.323Z",
+    "type": "implicit",
+    "sessionId": "test_session_3",
+    "signal": "high_engagement",
+    "metrics": {
+      "confidence": 0.75,
+      "sessionId": "test_session_3",
+      "retryCount": 5,
+      "completionRate": 0.5,
+      "abandoned": false,
+      "followUpQuestions": 3
+    },
+    "context": {
+      "autoDetected": true,
+      "inferredIssue": null
+    },
+    "inferredSentiment": "negative"
+  },
+  {
+    "id": "fb_1773279533854_96l7g4ssg",
+    "timestamp": "2026-03-12T01:38:53.854Z",
+    "type": "explicit",
+    "sessionId": "test_session_1",
+    "rating": 5,
+    "comment": "Great response!",
+    "category": "accuracy",
+    "metadata": {},
+    "source": "cli"
+  },
+  {
+    "id": "fb_1773279533857_y6tfohg7u",
+    "timestamp": "2026-03-12T01:38:53.857Z",
+    "type": "implicit",
+    "sessionId": "test_session_2",
+    "signal": "completion",
+    "metrics": {
+      "responseTime": 2500
+    },
+    "context": {},
+    "inferredSentiment": "positive"
+  },
+  {
+    "id": "fb_1773279533860_8iuzf6mjq",
+    "timestamp": "2026-03-12T01:38:53.860Z",
+    "type": "implicit",
+    "sessionId": "test_session_3",
+    "signal": "high_retry_rate",
+    "metrics": {
+      "confidence": 0.8,
+      "sessionId": "test_session_3",
+      "retryCount": 5,
+      "completionRate": 0.5,
+      "abandoned": false,
+      "followUpQuestions": 3
+    },
+    "context": {
+      "autoDetected": true,
+      "inferredIssue": "user struggling with response"
+    },
+    "inferredSentiment": "negative"
+  },
+  {
+    "id": "fb_1773279533860_eocinkkp4",
+    "timestamp": "2026-03-12T01:38:53.860Z",
+    "type": "implicit",
+    "sessionId": "test_session_3",
+    "signal": "high_engagement",
+    "metrics": {
+      "confidence": 0.75,
+      "sessionId": "test_session_3",
+      "retryCount": 5,
+      "completionRate": 0.5,
+      "abandoned": false,
+      "followUpQuestions": 3
+    },
+    "context": {
+      "autoDetected": true,
+      "inferredIssue": null
+    },
+    "inferredSentiment": "negative"
+  },
+  {
+    "id": "fb_1773279537642_m1kdap2ay",
+    "timestamp": "2026-03-12T01:38:57.642Z",
+    "type": "explicit",
+    "sessionId": "unknown",
+    "rating": "4",
+    "comment": "Good but could be better",
+    "category": "helpfulness",
+    "metadata": {},
+    "source": "cli"
+  }
+]

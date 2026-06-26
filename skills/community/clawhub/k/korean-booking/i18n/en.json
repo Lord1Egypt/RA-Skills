@@ -1,0 +1,12 @@
+{
+  "keyword_labels": ["Chinese name", "English name", "Pinyin", "Initials"],
+  "not_found": "Please provide the clinic name and I'll generate the booking guide for you.",
+  "title": "## {name} Booking Guide",
+  "direct_link": "🔗 Book directly here: {url}",
+  "channel_ios": "1. 🍎 iOS Booking\nSearch \"BeautsGO\" on the App Store, download and install the app 📥.\nIn the search bar, type {search_keywords} to find {name}.\nView address 📍, hours ⏰, price list 💰 and promotions.\nTap [Book Now] or [Consult], fill in your details and submit ✅.",
+  "channel_android": "2. 🤖 Android Booking\nSearch \"BeautsGO\" on Google Play, download and install the app 📲.\nIn the search bar, type {search_keywords} to find {name}.\nView clinic details: address, hours, prices and promotions.\nTap [Book Now] or [Consult], fill in your details and submit ✅.",
+  "channel_wechat_mini": "3. 📱 WeChat Mini-Program (no app download needed)\nOpen WeChat, search for the \"BeautsGO\" mini-program.\nType {search_keywords} in the search bar to find {name}.\nView clinic details: address, hours, price list and promotions.\nTap [Book Now] or [Consult] to submit ✅.",
+  "channel_wechat_oa": "4. 🟢 WeChat Official Account\nSearch [BeautsGO] in WeChat and follow the official account 💬.\nTap [Book Now] in the menu and enter {search_keywords} ⚡.\n💡 Alternative: search WeChat ID BeautsGOkr to add our service account.",
+  "channel_web": "5. 🌐 Web Booking (desktop)\nVisit the BeautsGO website: https://www.beautsgo.com\nEnter {search_keywords} in the search bar to find {name}.\nView full clinic info including photos, doctors and prices.\nClick [Book] and submit your details ✅.",
+  "tips": "📌 Tips:\nAll channels support Chinese, English, Japanese, Thai and more\nYou will receive an SMS/app notification after booking — keep your phone on\nTo modify a booking, go to \"My Bookings\" or contact support\nSupport hours: 9:00–18:00 (UTC+8)"
+}

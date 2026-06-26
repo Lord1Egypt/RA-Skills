@@ -1,0 +1,3 @@
+display_name: Telegram Mini App Security Auditor
+short_description: Audit TMA auth, tokens, CORS, PII, launch risk
+default_prompt: Audit this Telegram Mini App project and produce a PASS/REVIEW/BLOCK report.

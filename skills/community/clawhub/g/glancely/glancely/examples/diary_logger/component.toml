@@ -1,0 +1,25 @@
+[component]
+name        = "diary_logger"
+title       = "Diary"
+version     = "0.1.0"
+description = "Time-tracked activities logged to a user-owned Google Calendar."
+
+[panel]
+enabled         = true
+order           = 10
+freshness_hours = 24
+
+[storage]
+# Diary entries live in Google Calendar (the user's source of truth).
+# We only keep a tiny local cache of category overrides.
+tables = ["diary_category_overrides"]
+
+[deps]
+python = ["google-auth", "google-auth-oauthlib", "google-api-python-client"]
+
+[diary_logger]
+# Set by install.sh after the user picks/creates a calendar.
+# Override locally with env GLANCE_DIARY_CALENDAR_ID.
+calendar_name = "Glance Diary"
+default_category = "prod"
+default_timezone = "America/Denver"

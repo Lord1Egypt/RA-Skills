@@ -1,0 +1,11 @@
+{
+  "name": "vps-guardian",
+  "version": "1.0.0",
+  "description": "Autonomous VPS monitoring and auto-remediation — kills runaway procs, frees disk, restarts dead services, hardens security. Not alerts. Action.",
+  "main": "SKILL.md",
+  "clawhub": {
+    "type": "skill",
+    "price": "0.00",
+    "category": "devops"
+  }
+}

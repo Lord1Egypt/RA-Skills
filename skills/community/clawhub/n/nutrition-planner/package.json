@@ -1,0 +1,16 @@
+{
+  "name": "nutrition-planner",
+  "version": "1.0.1",
+  "description": "Personal nutrition and meal planning system with calorie tracking and recipe recommendations",
+  "main": "scripts/nutrition-planner",
+  "bin": {
+    "nutrition-planner": "scripts/nutrition-planner"
+  },
+  "keywords": ["openclaw", "skill", "nutrition", "meal", "diet", "health"],
+  "author": "harrylabs0913",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabs0913/nutrition-planner.git"
+  }
+}

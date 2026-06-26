@@ -1,35 +1,40 @@
 ---
-name: "File Organizer Skill"
-description: "Organize files in directories by grouping them into folders based on their extensions or date. Includes Dry-Run, Recursive, and Undo capabilities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/file-organizer-skill"
-sourceUrl: "https://clawhub.ai/skills/file-organizer-skill"
+name: file-organizer-skill
+description: Organize files in directories by grouping them into folders based on their extensions or date. Includes Dry-Run, Recursive, and Undo capabilities.
 ---
 
-# File Organizer Skill
+# File Organizer (Gold Standard)
 
-> Organize files in directories by grouping them into folders based on their extensions or date. Includes Dry-Run, Recursive, and Undo capabilities.
+## Features
+- **Smart Sorting**: Group by Extension (Default) or Date (Year/Month).
+- **Safety**: Conflict resolution (auto-rename), Dry Run mode, and Undo capability.
+- **Deep Clean**: Recursive scanning option.
+- **Audit**: Generates `organize_history.json` for tracking.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/file-organizer-skill`
-- **Source URL:** [https://clawhub.ai/skills/file-organizer-skill](https://clawhub.ai/skills/file-organizer-skill)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Basic Sort (by Extension)
 ```bash
-hermes skills install clawhub/file-organizer-skill
+python3 scripts/organize.py /path/to/folder
 ```
+
+### Date Sort (Year/Month)
+Great for photos or archives.
+```bash
+python3 scripts/organize.py /path/to/folder --date
+```
+
+### Dry Run (Simulate)
+See what *would* happen without moving anything.
+```bash
+python3 scripts/organize.py /path/to/folder --dry-run
+```
+
+### Undo
+Revert changes using the history file.
+```bash
+python3 scripts/organize.py --undo /path/to/folder/organize_history.json
+```
+
+## Config
+Modify `scripts/organize.py` `get_default_mapping()` to add custom extensions.

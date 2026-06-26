@@ -1,35 +1,40 @@
 ---
-name: "hybrid-search-implementation"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/hybrid-search-implementation"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/hybrid-search-implementation"
+name: hybrid-search-implementation
+description: "Combine vector and keyword search for improved retrieval. Use when implementing RAG systems, building search engines, or when neither approach alone provides sufficient recall."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# hybrid-search-implementation
+# Hybrid Search Implementation
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Patterns for combining vector similarity and keyword-based search.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/hybrid-search-implementation`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/hybrid-search-implementation](https://skills.sh/sickn33/antigravity-awesome-skills/hybrid-search-implementation)
+## Use this skill when
 
-## Overview
+- Building RAG systems with improved recall
+- Combining semantic understanding with exact matching
+- Handling queries with specific terms (names, codes)
+- Improving search for domain-specific vocabulary
+- When pure vector search misses keyword matches
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/hybrid-search-implementation
-```
+- The task is unrelated to hybrid search implementation
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

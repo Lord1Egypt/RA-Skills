@@ -1,0 +1,37 @@
+{
+  "name": "claude-for-safari",
+  "version": "1.0.0",
+  "description": "Give your AI Agent the power to control Safari on macOS. No extensions, no separate browser.",
+  "keywords": [
+    "claude",
+    "safari",
+    "ai",
+    "agent",
+    "browser",
+    "automation",
+    "macos",
+    "applescript",
+    "claude-code",
+    "skill",
+    "safari-extension"
+  ],
+  "homepage": "https://safari.skilljam.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SDLLL/claude-for-safari"
+  },
+  "bugs": {
+    "url": "https://github.com/SDLLL/claude-for-safari/issues"
+  },
+  "author": {
+    "name": "SDLLL",
+    "url": "https://x.com/Sidrel0610"
+  },
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README_CN.md",
+    "LICENSE"
+  ]
+}

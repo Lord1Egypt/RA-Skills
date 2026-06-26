@@ -1,0 +1,79 @@
+# ClawHub Package Configuration
+# 亚马逊运营硅基军团
+
+name: amazon-ops-silicon-army
+version: 1.1.8
+type: skill
+description: 亚马逊运营硅基军团 - 面向跨境电商卖家的AI运营策略顾问平台，20个专业分析维度覆盖选品→Listing→广告→库存→定价全链路
+
+author:
+  name: WangM-A3
+  email: wangm@a3.tech
+  github: https://github.com/WangM-A3
+
+repository:
+  type: git
+  url: https://github.com/WangM-A3/amazon-ops-agents
+
+keywords:
+  - amazon
+  - ecommerce
+  - fba
+  - ppc
+  - listing
+  - cross-border
+  - strategy
+  - 跨境电商
+  - 亚马逊运营
+
+categories:
+  - ecommerce-ai
+  - productivity
+  - business-tools
+
+triggers:
+  - 选品
+  - List
+  - 广告
+  - ACOS
+  - PPC
+  - FBA
+  - Listing
+  - 跟卖
+  - 差评
+  - VINE
+  - 品牌
+  - 利润
+  - 库存
+  - 定价
+  - 合规
+  - 亚马逊运营
+  - Amazon Seller
+
+compatibility:
+  platforms:
+    - coze
+    - openclaw
+    - clawhub
+  minOpenClawVersion: "1.0.0"
+
+features:
+  - 20个专业分析维度覆盖全链路
+  - 智能分析路由
+  - 纯策略顾问，无需任何账号授权
+  - 4个预置分析流程
+  - 策略迭代优化机制
+
+pricing:
+  basic:
+    price: 599
+    currency: CNY
+    period: month
+  professional:
+    price: 2999
+    currency: CNY
+    period: month
+  enterprise:
+    price: 29999
+    currency: CNY
+    period: month

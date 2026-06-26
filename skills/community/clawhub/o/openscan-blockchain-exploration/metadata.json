@@ -1,0 +1,9 @@
+{
+  "version": "0.0.3",
+  "organization": "OpenScan",
+  "date": "March 2026",
+  "abstract": "On-chain blockchain analysis skill for AI agents. Provides procedural knowledge for transaction history, gas analysis, token tracking, and address profiling using the openscan CLI.",
+  "references": [
+    "https://github.com/openscan-explorer"
+  ]
+}

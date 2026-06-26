@@ -1,35 +1,33 @@
 ---
-name: "Auto Agent 4974 F58bc0"
+name: auto-agent-4974-f58bc0
 description: "从抖音视频学习: auto_agent_4974 — 一口气搞懂 Notion Custom Agent（测评与教程）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-agent-4974-f58bc0"
-sourceUrl: "https://clawhub.ai/skills/auto-agent-4974-f58bc0"
+compatibility: opencode
+trigger: "auto_agent_4974 / 一口气搞懂 / Notion / Custom"
+tags: [guide, auto_agent_4974, video-learned]
 ---
 
-# Auto Agent 4974 F58bc0
+# auto_agent_4974
 
-> 从抖音视频学习: auto_agent_4974 — 一口气搞懂 Notion Custom Agent（测评与教程）
+> 从 @二一的笔记 的视频中学到的技能
+> 关键词: 一口气搞懂, Notion, Custom, Agent, 测评与教程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-agent-4974-f58bc0`
-- **Source URL:** [https://clawhub.ai/skills/auto-agent-4974-f58bc0](https://clawhub.ai/skills/auto-agent-4974-f58bc0)
+## 描述
 
-## Overview
+一口气搞懂 Notion Custom Agent（测评与教程）
 
+## 操作步骤
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-agent-4974-f58bc0
-```
+1. 理解核心概念: auto_agent_4974
+2. 掌握关键技巧: 一口气搞懂, Notion, Custom, Agent
+3. 参考案例: 二一的笔记 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @二一的笔记
+- 学习时间: 2026-06-02 09:33
+- 领域标签: guide
+
+## 触发场景
+- 用户说"auto_agent_4974"
+- 用户说"一口气搞懂"
+- 用户需要auto_agent_4974相关帮助

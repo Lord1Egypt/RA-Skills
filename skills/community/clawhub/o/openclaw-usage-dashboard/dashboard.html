@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Usage Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e1a; --bg2: #0f1525; --bg3: #141930; --bg4: #1a2040;
+      --border: #1e2a45; --border-light: #243058;
+      --text: #e2e8f0; --text-dim: #8fa3c4; --text-muted: #4a6080;
+      --accent: #38bdf8; --teal: #14b8a6; --amber: #f59e0b; --red: #ef4444; --green: #22c55e;
+      --period-hour: #3b82f6; --period-day: #ef4444; --period-week: #f97316;
+      --period-month: #a855f7; --period-year: #22c55e;
+      --radius: 12px; --radius-sm: 8px; --gap: 16px;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.5; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+    .app { max-width: 1600px; margin: 0 auto; padding: 0 var(--gap); }
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(10,14,26,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+    .header-inner { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; max-width: 1600px; margin: 0 auto; padding: 0 var(--gap); }
+    .header-title { display: flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 700; color: var(--text); white-space: nowrap; }
+    .header-title .lobster { font-size: 1.4rem; }
+    .header-subtitle { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; }
+    .header-spacer { flex: 1; }
+    .period-selector { display: flex; gap: 4px; background: var(--bg3); border-radius: var(--radius-sm); padding: 3px; border: 1px solid var(--border); }
+    .period-btn { padding: 5px 10px; border: none; background: transparent; color: var(--text-dim); border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; min-width: 44px; min-height: 32px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .pill-btn { padding: 3px 9px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); border-radius: 999px; font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+    .pill-btn:hover { border-color: var(--border-light); color: var(--text-dim); }
+    .pill-btn.active { background: var(--bg4); border-color: var(--accent); color: var(--accent); }
+    .period-btn:hover { background: var(--bg4); color: var(--text); }
+    .period-btn.active { color: white; }
+    .period-btn[data-period="hour"].active { background: var(--period-hour); }
+    .period-btn[data-period="day"].active { background: var(--period-day); }
+    .period-btn[data-period="week"].active { background: var(--period-week); }
+    .period-btn[data-period="month"].active { background: var(--period-month); }
+    .period-btn[data-period="year"].active { background: var(--period-year); }
+    .period-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .period-btn .shortcut { font-size: 0.6rem; opacity: 0.6; background: rgba(255,255,255,0.1); border-radius: 3px; padding: 0 3px; }
+    .btn-refresh { display: flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--bg3); border: 1px solid var(--border); color: var(--text-dim); border-radius: var(--radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; min-height: 36px; }
+    .btn-refresh:hover { background: var(--bg4); border-color: var(--border-light); color: var(--text); }
+    .btn-refresh.loading .refresh-icon { animation: spin 1s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .main { padding: var(--gap) 0; display: flex; flex-direction: column; gap: var(--gap); }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .card-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    .card-title { font-size: 0.8rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+    .card-body { padding: 16px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 6px var(--teal); animation: pulse 2s infinite; flex-shrink: 0; }
+    .status-dot.warn { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+    .status-dot.error { background: var(--red); box-shadow: 0 0 6px var(--red); animation: none; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .skeleton { background: linear-gradient(90deg, var(--bg3) 25%, var(--bg4) 50%, var(--bg3) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .skeleton-text { height: 14px; border-radius: 4px; margin: 4px 0; }
+    .spinner { width: 24px; height: 24px; border: 2px solid var(--border-light); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .chart-container { position: relative; width: 100%; overflow: hidden; }
+    .chart-canvas { width: 100%; display: block; cursor: crosshair; }
+    .chart-legend { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 16px; border-top: 1px solid var(--border); }
+    .legend-item { display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: var(--radius-sm); cursor: pointer; transition: opacity 0.15s, background 0.15s; font-size: 0.75rem; color: var(--text-dim); border: 1px solid transparent; min-height: 28px; }
+    .legend-item:hover { background: var(--bg3); border-color: var(--border); }
+    .legend-item.hidden-series { opacity: 0.35; }
+    .legend-color { width: 20px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+    .legend-dashed { width: 20px; height: 2px; background: repeating-linear-gradient(to right, white 0, white 4px, transparent 4px, transparent 8px); flex-shrink: 0; }
+    .chart-tooltip { position: absolute; background: var(--bg3); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 0.75rem; color: var(--text); pointer-events: none; opacity: 0; transition: opacity 0.1s; z-index: 10; max-width: 240px; min-width: 140px; backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+    .chart-tooltip.visible { opacity: 1; }
+    .tooltip-time { color: var(--text-muted); font-size: 0.7rem; margin-bottom: 6px; }
+    .tooltip-row { display: flex; align-items: center; gap: 6px; padding: 2px 0; }
+    .tooltip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .tooltip-label { color: var(--text-dim); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tooltip-value { font-weight: 700; color: var(--text); }
+    .no-data { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 16px; gap: 12px; text-align: center; }
+    .no-data-icon { font-size: 3rem; opacity: 0.5; }
+    .no-data-title { font-size: 1rem; font-weight: 600; color: var(--text-dim); }
+    .no-data-desc { font-size: 0.8rem; color: var(--text-muted); max-width: 360px; line-height: 1.6; }
+    .model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--gap); }
+    .model-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; transition: border-color 0.15s, box-shadow 0.15s; position: relative; overflow: hidden; }
+    .model-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--model-color, var(--accent)); }
+    .model-card:hover { border-color: var(--border-light); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .model-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .model-name { font-size: 0.85rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .model-provider { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+    .model-badge { font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; background: var(--bg4); color: var(--text-dim); }
+    .model-requests { font-size: 1.4rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
+    .model-requests-label { font-size: 0.72rem; color: var(--text-muted); margin-left: 4px; }
+    .token-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+    .token-chip { display: flex; align-items: center; gap: 4px; padding: 3px 7px; background: var(--bg3); border-radius: 6px; font-size: 0.72rem; border: 1px solid var(--border); }
+    .token-chip .label { color: var(--text-muted); font-weight: 700; font-size: 0.62rem; }
+    .token-chip .value { color: var(--text); font-weight: 700; font-family: var(--font-mono); }
+    .rate-gauge { margin-top: 12px; }
+    .rate-gauge-label { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--text-muted); margin-bottom: 4px; }
+    .rate-bar { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; border: 1px solid var(--border); }
+    .rate-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease, background 0.3s; background: var(--teal); }
+    .rate-fill.warn { background: var(--amber); }
+    .rate-fill.critical { background: var(--red); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: var(--gap); }
+    .stat-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .stat-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .stat-label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 2px; }
+    .stat-value { font-size: 1rem; font-weight: 700; color: var(--text); font-family: var(--font-mono); }
+    .stat-sub { font-size: 0.68rem; color: var(--text-muted); margin-top: 1px; }
+    .heatmap { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+    .heatmap-grid { display: grid; grid-template-columns: 28px repeat(24, minmax(12px, 1fr)); gap: 2px; min-width: 320px; }
+    .heatmap-label { font-size: 0.6rem; color: var(--text-muted); display: flex; align-items: center; justify-content: flex-end; padding-right: 4px; }
+    .heatmap-hour-label { font-size: 0.55rem; color: var(--text-muted); text-align: center; }
+    .heatmap-cell { aspect-ratio: 1; border-radius: 2px; background: var(--bg3); transition: transform 0.1s; }
+    .heatmap-cell:hover { transform: scale(1.2); z-index: 1; }
+    .health-strip { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .health-item { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; }
+    .health-label { color: var(--text-muted); }
+    .health-value { color: var(--text); font-weight: 600; font-family: var(--font-mono); }
+    .health-bar { width: 60px; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+    .health-bar-fill { height: 100%; border-radius: 2px; background: var(--teal); transition: width 0.5s ease; }
+    .health-bar-fill.warn { background: var(--amber); }
+    .health-bar-fill.crit { background: var(--red); }
+    .footer { text-align: center; padding: 20px 16px; font-size: 0.72rem; color: var(--text-muted); border-top: 1px solid var(--border); line-height: 1.8; }
+    .footer a { color: var(--text-dim); text-decoration: none; }
+    .footer a:hover { color: var(--accent); text-decoration: underline; }
+    .data-banner { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 14px; font-size: 0.72rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .data-banner strong { color: var(--text-dim); }
+    .data-banner-spacer { flex: 1; }
+    .error-card { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius); padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+    .error-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .error-title { font-weight: 600; color: #fca5a5; font-size: 0.85rem; margin-bottom: 4px; }
+    .error-msg { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+    .chart-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--bg2); z-index: 5; border-radius: var(--radius-sm); }
+    .section-title { font-size: 0.8rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; background: var(--bg4); color: var(--text-dim); border: 1px solid var(--border); }
+    .agent-dots { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .agent-dot { display: flex; align-items: center; gap: 5px; padding: 3px 8px; background: var(--bg3); border-radius: 6px; border: 1px solid var(--border); font-size: 0.7rem; }
+    .agent-dot span { color: var(--text-dim); }
+    .agent-dot em { color: var(--text-muted); font-style: normal; }
+    .hidden { display: none !important; }
+
+    @media (max-width: 600px) {
+      .period-btn .shortcut { display: none; }
+      .period-btn { padding: 5px 8px; min-width: 36px; }
+      .header-subtitle { display: none; }
+      .model-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-title">
+      <span class="lobster" role="img" aria-label="lobster">🦞</span>
+      <div>
+        OpenClaw Usage Dashboard
+        <div class="header-subtitle">v2.0 &middot; Data stays local</div>
+      </div>
+    </div>
+    <div id="modelInfoBadge" style="display:none;align-items:center;gap:6px;font-size:0.72rem;padding:4px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:999px;color:var(--text-muted);white-space:nowrap;"></div>
+    <div class="header-spacer"></div>
+    <div class="period-selector" role="group" aria-label="Time period">
+      <button class="period-btn" data-period="hour" onclick="setPeriod('hour')" title="Last hour (1)">Hour <span class="shortcut">1</span></button>
+      <button class="period-btn" data-period="day" onclick="setPeriod('day')" title="Last 24h (2)">Day <span class="shortcut">2</span></button>
+      <button class="period-btn" data-period="week" onclick="setPeriod('week')" title="Last 7 days (3)">Week <span class="shortcut">3</span></button>
+      <button class="period-btn" data-period="month" onclick="setPeriod('month')" title="Last 30 days (4)">Month <span class="shortcut">4</span></button>
+      <button class="period-btn" data-period="year" onclick="setPeriod('year')" title="Last year (5)">Year <span class="shortcut">5</span></button>
+    </div>
+    <button class="btn-refresh" id="refreshBtn" onclick="loadData()" aria-label="Refresh">
+      <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+      Refresh
+    </button>
+  </div>
+</header>
+
+<div class="app">
+  <main class="main" id="mainContent">
+
+    <div class="data-banner" id="dataBanner" style="display:none">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="bannerText">Loading...</span>
+      <div class="data-banner-spacer"></div>
+      <span id="bannerTime" style="color:var(--text-muted)"></span>
+    </div>
+
+    <div id="errorCard" class="error-card hidden">
+      <span class="error-icon">⚠️</span>
+      <div>
+        <div class="error-title">Failed to load dashboard data</div>
+        <div class="error-msg" id="errorMsg"></div>
+      </div>
+    </div>
+
+    <!-- Timeline Hero -->
+    <div class="card" id="timelineCard">
+      <div class="card-header">
+        <span>📈</span>
+        <span class="card-title">Request Timeline</span>
+        <div style="flex:1"></div>
+        <div style="display:flex;gap:4px;margin-right:8px">
+          <button class="pill-btn active" id="filterModels" onclick="setTimelineFilter('models')" title="Show by model">Models</button>
+          <button class="pill-btn" id="filterAgents" onclick="setTimelineFilter('agents')" title="Show by agent">Agents</button>
+          <button class="pill-btn" id="filterBoth" onclick="setTimelineFilter('both')" title="Show both">Both</button>
+        </div>
+        <span class="badge" id="timelineTotal" style="display:none"></span>
+      </div>
+      <div class="card-body" style="padding:12px 8px 0">
+        <div class="chart-container" id="chartContainer" style="height:220px">
+          <canvas class="chart-canvas" id="timelineChart" style="height:220px"></canvas>
+          <div class="chart-tooltip" id="chartTooltip"></div>
+          <div class="chart-loading" id="chartLoading">
+            <div class="spinner"></div>
+          </div>
+          <div id="chartNoData" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:12px;text-align:center;padding:48px 16px;">
+            <div class="no-data-icon">📊</div>
+            <div class="no-data-title">No timeline data</div>
+            <div class="no-data-desc">No requests in this period. Try a longer time range.</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-legend" id="chartLegend"></div>
+    </div>
+
+
+    <!-- Model Cards -->
+    <div>
+      <div class="section-title">
+        🤖 Models
+        <span class="badge" id="modelCount"></span>
+      </div>
+      <div class="model-grid" id="modelGrid">
+        <div class="model-card"><div class="skeleton skeleton-text" style="width:60%;height:16px;margin-bottom:8px"></div><div class="skeleton skeleton-text" style="width:40%"></div><div class="skeleton skeleton-text" style="width:80%;height:28px;margin:12px 0 8px"></div><div class="skeleton skeleton-text"></div></div>
+        <div class="model-card"><div class="skeleton skeleton-text" style="width:70%;height:16px;margin-bottom:8px"></div><div class="skeleton skeleton-text" style="width:35%"></div><div class="skeleton skeleton-text" style="width:60%;height:28px;margin:12px 0 8px"></div><div class="skeleton skeleton-text"></div></div>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <!-- Token Efficiency -->
+      <div class="card" id="efficiencyCard">
+        <div class="card-header"><span>⚡</span><span class="card-title">Token Efficiency</span></div>
+        <div class="card-body" id="efficiencyBody">
+          <div class="skeleton skeleton-text" style="width:80%"></div>
+          <div class="skeleton skeleton-text" style="width:60%;margin-top:8px"></div>
+          <div class="skeleton skeleton-text" style="width:70%;margin-top:8px"></div>
+        </div>
+      </div>
+      <!-- Session Activity -->
+      <div class="card" id="activityCard">
+        <div class="card-header"><span>💬</span><span class="card-title">Session Activity</span></div>
+        <div class="card-body" id="activityBody">
+          <div class="skeleton skeleton-text" style="width:80%"></div>
+          <div class="skeleton skeleton-text" style="width:60%;margin-top:8px"></div>
+          <div class="skeleton skeleton-text" style="height:80px;margin-top:12px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Health -->
+    <div class="health-strip" id="healthStrip">
+      <span style="font-size:0.72rem;color:var(--text-muted)">Loading system info...</span>
+    </div>
+
+    <footer class="footer">
+      <div>🦞 <strong>OpenClaw Usage Dashboard v2.0</strong> &middot; Built by <a href="https://github.com/vanhuelsing" target="_blank" rel="noopener">@vanhuelsing</a> &middot; Data stays local</div>
+      <div style="margin-top:4px"><a href="https://github.com/vanhuelsing" target="_blank" rel="noopener">GitHub</a> &middot; <a href="https://clawhub.com" target="_blank" rel="noopener">ClawHub</a></div>
+    </footer>
+  </main>
+</div>
+
+<script>
+
+// ── State ──────────────────────────────────────────────────────────────────
+let currentPeriod = 'day';
+let dashData = null;
+let hiddenSeries = new Set();
+let timelineFilter = 'models'; // 'models' | 'agents' | 'both'
+
+const AGENT_PALETTE = ['#a78bfa','#fb923c','#34d399','#f472b6','#60a5fa','#fbbf24','#e879f9','#4ade80'];
+function getAgentColor(id) {
+  const keys = Object.keys(dashData?.agentStats || {}).sort();
+  const idx = keys.indexOf(id);
+  if (idx < 0) return AGENT_PALETTE[0];
+  return AGENT_PALETTE[idx % AGENT_PALETTE.length];
+}
+
+function setTimelineFilter(mode) {
+  timelineFilter = mode;
+  hiddenSeries = new Set();
+  ['filterModels','filterAgents','filterBoth'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+  const map = { models: 'filterModels', agents: 'filterAgents', both: 'filterBoth' };
+  document.getElementById(map[mode])?.classList.add('active');
+  if (dashData) {
+    const modelIds = Object.keys(dashData.models || {}).sort((a,b)=>(dashData.models[b].requests||0)-(dashData.models[a].requests||0));
+    renderTimeline(dashData, modelIds);
+  }
+}
+let modelColors = {};
+let configModels = [];
+let configInfo = {};  // full config including primary/fallback model
+let isLoading = false;
+
+const PERIOD_MS = { hour: 3600000, day: 86400000, week: 604800000, month: 2592000000, year: 31536000000 };
+
+// ── Formatters ────────────────────────────────────────────────────────────
+function fmt(n) {
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'k';
+  return new Intl.NumberFormat().format(Math.round(n));
+}
+function fmtDuration(ms) {
+  if (!ms || ms < 0) return '—';
+  if (ms < 1000) return ms + 'ms';
+  if (ms < 60000) return (ms / 1000).toFixed(1) + 's';
+  if (ms < 3600000) return Math.round(ms / 60000) + 'm';
+  return (ms / 3600000).toFixed(1) + 'h';
+}
+
+function fmtUptime(s) {
+  if (!s) return '—';
+  const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+  if (d > 0) return d + 'd ' + h + 'h';
+  if (h > 0) return h + 'h ' + m + 'm';
+  return m + 'm';
+}
+function fmtTime(ts, pms) {
+  const d = new Date(ts);
+  if (pms <= 3600000) return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  if (pms <= 86400000) return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  if (pms <= 7 * 86400000) return d.toLocaleDateString([], { weekday: 'short' }) + ' ' + d.toLocaleTimeString([], { hour: '2-digit' });
+  return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+}
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ── Color generation (stable, gap-maximizing) ─────────────────────────────
+function getModelColor(modelId) {
+  if (modelColors[modelId]) return modelColors[modelId];
+  try {
+    const stored = JSON.parse(localStorage.getItem('oc_mc') || '{}');
+    if (stored[modelId]) { modelColors[modelId] = stored[modelId]; return stored[modelId]; }
+  } catch {}
+  const usedHues = Object.values(modelColors).map(c => { const m = c.match(/hsl\((\d+)/); return m ? +m[1] : 0; });
+  let hue = 180;
+  if (usedHues.length > 0) {
+    const s = [...new Set(usedHues)].sort((a,b) => a-b);
+    let maxGap = 0, start = 0;
+    for (let i = 0; i < s.length; i++) {
+      const gap = (s[(i+1)%s.length] - s[i] + 360) % 360;
+      if (gap > maxGap) { maxGap = gap; start = s[i]; }
+    }
+    hue = (start + maxGap / 2) % 360;
+    if (hue > 52 && hue < 72) hue = 160;
+  }
+  const color = 'hsl(' + Math.round(hue) + ',70%,62%)';
+  modelColors[modelId] = color;
+  try { const s = JSON.parse(localStorage.getItem('oc_mc') || '{}'); s[modelId] = color; localStorage.setItem('oc_mc', JSON.stringify(s)); } catch {}
+  return color;
+}
+
+// ── Model metadata ────────────────────────────────────────────────────────
+function modelName(id) {
+  const cm = configModels.find(m => m.id === id);
+  if (cm && cm.name) return cm.name;
+  return id.split('/').pop().replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+}
+function modelProvider(id) {
+  const cm = configModels.find(m => m.id === id);
+  if (cm) return cm.provider;
+  if (/claude/.test(id)) return 'anthropic';
+  if (/gpt|o3|o1/.test(id)) return 'openai';
+  if (/gemini/.test(id)) return 'google';
+  if (/kimi|moonshot/.test(id)) return 'moonshot';
+  const p = id.split('/'); if (p.length > 1) return p[0];
+  return 'unknown';
+}
+
+// ── Period management ─────────────────────────────────────────────────────
+function setPeriod(period) {
+  const btn = document.querySelector('[data-period="' + period + '"]');
+  if (!btn || btn.disabled) return;
+  currentPeriod = period;
+  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  hiddenSeries.clear();
+  loadData();
+}
+
+function updatePeriodButtons(rangeDays) {
+  const avail = { hour: true, day: rangeDays >= 0.04, week: rangeDays >= 1, month: rangeDays >= 7, year: rangeDays >= 30 };
+  let bestPeriod = 'hour';
+  document.querySelectorAll('.period-btn').forEach(btn => {
+    const p = btn.dataset.period;
+    btn.disabled = !avail[p];
+    if (avail[p]) bestPeriod = p;
+  });
+  if (!avail[currentPeriod]) { setPeriod(bestPeriod); return false; }
+  return true;
+}
+
+// ── Data loading ──────────────────────────────────────────────────────────
+async function loadConfig() {
+  try {
+    const r = await fetch('/api/config');
+    if (r.ok) {
+      const d = await r.json();
+      configModels = d.models || [];
+      configInfo = d;
+      renderModelBadge(d);
+    }
+  } catch {}
+}
+
+function renderModelBadge(cfg) {
+  const badge = document.getElementById('modelInfoBadge');
+  if (!badge) return;
+  const primary = cfg.primaryModelAlias || (cfg.primaryModel ? cfg.primaryModel.split('/').pop() : null);
+  const fallback = cfg.fallbackModelAlias || (cfg.fallbackModel ? cfg.fallbackModel.split('/').pop() : null);
+  if (!primary && !fallback) { badge.style.display = 'none'; return; }
+  const parts = [];
+  if (primary) parts.push('<span style="color:var(--accent)">Primary:</span> <strong style="color:var(--text)">' + esc(primary) + '</strong>');
+  if (fallback) parts.push('<span style="color:var(--text-muted)">Fallback:</span> <span style="color:var(--text-dim)">' + esc(fallback) + '</span>');
+  badge.innerHTML = parts.join(' <span style="color:var(--border-light)">•</span> ');
+  badge.style.display = 'flex';
+}
+
+let pendingPeriod = null;
+
+async function loadData() {
+  if (isLoading) {
+    // Queue the current period to load after current completes
+    pendingPeriod = currentPeriod;
+    return;
+  }
+  isLoading = true;
+  pendingPeriod = null;
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('loading');
+  document.getElementById('chartLoading').style.display = 'flex';
+  document.getElementById('errorCard').classList.add('hidden');
+
+  try {
+    const [sR, syR] = await Promise.all([
+      fetch('/api/stats?period=' + currentPeriod),
+      fetch('/api/system'),
+    ]);
+    if (!sR.ok) throw new Error('Stats API returned ' + sR.status);
+    dashData = await sR.json();
+    const sysData = syR.ok ? await syR.json() : null;
+    updatePeriodButtons(dashData.dataRangeDays || 0);
+    renderAll(dashData, sysData);
+
+  } catch (e) {
+    document.getElementById('errorCard').classList.remove('hidden');
+    document.getElementById('errorMsg').textContent = String(e.message);
+  } finally {
+    isLoading = false;
+    btn.classList.remove('loading');
+    document.getElementById('chartLoading').style.display = 'none';
+    // If a period change was requested while loading, process it now
+    if (pendingPeriod && pendingPeriod !== currentPeriod) {
+      const p = pendingPeriod;
+      pendingPeriod = null;
+      setPeriod(p);
+    } else if (pendingPeriod) {
+      pendingPeriod = null;
+      loadData();
+    }
+  }
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
+function renderAll(data, sysData) {
+  const modelIds = Object.keys(data.models || {}).sort(
+    (a, b) => (data.models[b].requests || 0) - (data.models[a].requests || 0)
+  );
+  renderBanner(data);
+  renderTimeline(data, modelIds);
+  renderModels(data, modelIds);
+  renderEfficiency(data);
+  renderActivity(data);
+  renderHealth(sysData);
+}
+
+function renderBanner(data) {
+  const banner = document.getElementById('dataBanner');
+  banner.style.display = 'flex';
+  const n = data.processedSessions || 0;
+  const total = data.totalStats?.totalRequests || 0;
+  const dot = document.getElementById('statusDot');
+  if (n === 0) {
+    document.getElementById('bannerText').innerHTML = '<strong>No usage data yet</strong> — Make your first request to see stats!';
+    dot.className = 'status-dot warn';
+  } else {
+    const range = data.dataRangeDays > 0 ? ' &middot; ' + data.dataRangeDays.toFixed(1) + ' days history' : '';
+    document.getElementById('bannerText').innerHTML =
+      'Showing <strong>' + n.toLocaleString() + '</strong> sessions &middot; <strong>' + fmt(total) + '</strong> requests' + range;
+    dot.className = 'status-dot';
+  }
+  document.getElementById('bannerTime').textContent = 'Updated ' + new Date().toLocaleTimeString();
+}
+
+// ── Timeline / Line Chart ─────────────────────────────────────────────────
+function renderTimeline(data, modelIds) {
+  const timeline = data.timeline || [];
+  const badge = document.getElementById('timelineTotal');
+  const legend = document.getElementById('chartLegend');
+  const pms = PERIOD_MS[currentPeriod];
+
+  const noDataEl = document.getElementById('chartNoData');
+  const canvasEl = document.getElementById('timelineChart');
+  if (timeline.length === 0) {
+    if (noDataEl) noDataEl.style.display = 'flex';
+    if (canvasEl) canvasEl.style.visibility = 'hidden';
+    legend.innerHTML = '';
+    badge.style.display = 'none';
+    return;
+  }
+  if (noDataEl) noDataEl.style.display = 'none';
+  if (canvasEl) canvasEl.style.visibility = 'visible';
+
+  badge.style.display = 'flex';
+  badge.textContent = fmt(data.totalStats?.totalRequests || 0) + ' requests';
+
+  const canvas = document.getElementById('timelineChart');
+  if (!canvas) return;
+
+  // Build series based on filter mode
+  const agentIds = Object.keys(data.agentStats || {}).sort((a,b)=>(data.agentStats[b]||0)-(data.agentStats[a]||0));
+  let series = [];
+  if (timelineFilter === 'models' || timelineFilter === 'both') {
+    series.push({ id: '__total__', label: 'Total', dashed: true, color: 'rgba(255,255,255,0.75)', getValue: b => b.total || 0 });
+    for (const id of modelIds) series.push({ id, label: modelName(id), dashed: false, color: getModelColor(id), getValue: b => b[id] || 0 });
+  }
+  if (timelineFilter === 'agents' || timelineFilter === 'both') {
+    for (const id of agentIds) {
+      series.push({ id: 'agent:' + id, label: id, dashed: false, color: getAgentColor(id), getValue: b => (b.agents?.[id]) ? Object.values(b.agents[id]).reduce((s,v)=>s+v,0) : 0 });
+    }
+  }
+
+  drawChart(canvas, timeline, series, pms);
+
+  // Render legend
+  legend.innerHTML = series.map(s =>
+    '<div class="legend-item ' + (hiddenSeries.has(s.id) ? 'hidden-series' : '') + '" onclick="toggleSeries(\'' + esc(s.id) + '\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'||event.key===\' \')toggleSeries(\'' + esc(s.id) + '\')">' +
+    (s.dashed ? '<div class="legend-dashed"></div>' : '<div class="legend-color" style="background:' + esc(s.color) + '"></div>') +
+    '<span>' + esc(s.label) + '</span></div>'
+  ).join('');
+}
+
+function toggleSeries(id) {
+  if (hiddenSeries.has(id)) hiddenSeries.delete(id); else hiddenSeries.add(id);
+  if (dashData) {
+    const modelIds = Object.keys(dashData.models || {}).sort((a,b)=>(dashData.models[b].requests||0)-(dashData.models[a].requests||0));
+    renderTimeline(dashData, modelIds);
+  }
+}
+
+
+function drawChart(canvas, timeline, series, pms) {
+  const container = canvas.parentElement;
+  const W = Math.max(container.clientWidth || 600, 280);
+  const H = Math.max(container.clientHeight || 220, 120);
+  const dpr = window.devicePixelRatio || 1;
+
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const PAD = { top: 14, right: 16, bottom: 32, left: 42 };
+  const cW = W - PAD.left - PAD.right;
+  const cH = H - PAD.top - PAD.bottom;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Series to draw (filter hidden)
+  const drawSeries = series.filter(s => !hiddenSeries.has(s.id));
+
+  // Max value
+  let maxVal = 0;
+  for (const b of timeline) {
+    for (const s of drawSeries) {
+      const v = s.getValue(b);
+      if (v > maxVal) maxVal = v;
+    }
+  }
+  if (maxVal === 0) maxVal = 1;
+
+  const ts0 = timeline[0].ts, ts1 = timeline[timeline.length - 1].ts;
+  const tsR = ts1 - ts0 || 1;
+  const xFor = ts => PAD.left + ((ts - ts0) / tsR) * cW;
+  const yFor = v => PAD.top + cH - (v / maxVal) * cH;
+
+  // Grid + Y labels
+  const fontSz = Math.max(9, Math.min(11, W / 60));
+  for (let i = 0; i <= 4; i++) {
+    const y = PAD.top + (cH / 4) * i;
+    ctx.strokeStyle = 'rgba(30,42,69,0.9)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W - PAD.right, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(74,96,128,0.9)';
+    ctx.font = fontSz + 'px sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(fmt(maxVal * (1 - i / 4)), PAD.left - 4, y + 4);
+  }
+
+  // X labels
+  const xCount = Math.min(6, timeline.length);
+  const xStep = Math.max(1, Math.floor(timeline.length / xCount));
+  ctx.fillStyle = 'rgba(74,96,128,0.9)';
+  ctx.textAlign = 'center';
+  for (let i = 0; i < timeline.length; i += xStep) {
+    ctx.fillText(fmtTime(timeline[i].ts, pms), xFor(timeline[i].ts), H - PAD.bottom + 14);
+  }
+
+  // Draw each series
+  for (const s of drawSeries) {
+    const pts = timeline.map(b => ({ x: xFor(b.ts), y: yFor(s.getValue(b)) }));
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = s.dashed ? 1.5 : 2;
+    ctx.globalAlpha = s.dashed ? 0.65 : 0.9;
+    ctx.setLineDash(s.dashed ? [6, 4] : []);
+    ctx.beginPath();
+    let first = true;
+    for (const p of pts) {
+      if (first) { ctx.moveTo(p.x, p.y); first = false; } else ctx.lineTo(p.x, p.y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+
+    // Dots for sparse data
+    if (timeline.length <= 24 && !s.dashed) {
+      ctx.fillStyle = s.color;
+      for (const p of pts) { ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI*2); ctx.fill(); }
+    }
+  }
+
+  // Tooltip — extract modelIds from series (series may include agents, total, etc.)
+  const chartModelIds = series.filter(s => !s.dashed && !s.id.startsWith('agent:')).map(s => s.id);
+  const tooltip = document.getElementById('chartTooltip');
+  canvas.onmousemove = e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    if (mx < PAD.left || mx > W - PAD.right) { tooltip.classList.remove('visible'); return; }
+    const pct = (mx - PAD.left) / cW;
+    const target = ts0 + pct * tsR;
+    let closest = timeline[0], minD = Infinity;
+    for (const b of timeline) { const d = Math.abs(b.ts - target); if (d < minD) { minD = d; closest = b; } }
+    const rows = [];
+    if (!hiddenSeries.has('__total__')) rows.push('<div class="tooltip-row"><div class="tooltip-dot" style="background:rgba(255,255,255,0.7)"></div><span class="tooltip-label">Total</span><span class="tooltip-value">' + fmt(closest.total||0) + '</span></div>');
+    for (const mid of chartModelIds) {
+      if (!hiddenSeries.has(mid) && (closest[mid]||0) > 0) {
+        rows.push('<div class="tooltip-row"><div class="tooltip-dot" style="background:' + esc(getModelColor(mid)) + '"></div><span class="tooltip-label">' + esc(modelName(mid)) + '</span><span class="tooltip-value">' + fmt(closest[mid]) + '</span></div>');
+      }
+    }
+    // Agent breakdown
+    const agents = closest.agents || {};
+    const agentIds = Object.keys(agents).sort();
+    if (agentIds.length > 0) {
+      rows.push('<div style="margin-top:5px;padding-top:5px;border-top:1px solid var(--border);font-size:0.68rem;color:var(--text-muted)">Agents</div>');
+      for (const aid of agentIds) {
+        const agentData = agents[aid];
+        const agentTotal = Object.values(agentData).reduce((s, n) => s + n, 0);
+        // Model breakdown within agent
+        const modelBreakdown = Object.entries(agentData)
+          .sort((a,b) => b[1]-a[1])
+          .map(([mid, cnt]) => esc(modelName(mid)) + ':' + cnt)
+          .join(', ');
+        const modelHint = modelBreakdown ? '<span style="color:var(--text-muted);margin-left:4px;font-size:0.65rem">' + modelBreakdown + '</span>' : '';
+        rows.push('<div class="tooltip-row" style="padding-left:4px"><span style="color:var(--text-dim);font-size:0.7rem">🤖 ' + esc(aid) + '</span>' + modelHint + '<span class="tooltip-value" style="margin-left:auto">' + agentTotal + '</span></div>');
+      }
+    }
+    tooltip.innerHTML = '<div class="tooltip-time">' + esc(fmtTime(closest.ts, pms)) + '</div>' + rows.join('');
+    const tooltipWidth = Math.min(240, W / 2);
+    const tx = mx + 12 + tooltipWidth > W ? mx - tooltipWidth - 8 : mx + 12;
+    const ty = Math.max(e.clientY - rect.top - 40, 8);
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top = ty + 'px';
+    tooltip.style.maxWidth = tooltipWidth + 'px';
+    tooltip.classList.add('visible');
+  };
+  canvas.onmouseleave = () => tooltip.classList.remove('visible');
+}
+
+// ── Model Cards ───────────────────────────────────────────────────────────
+function renderModels(data, modelIds) {
+  const grid = document.getElementById('modelGrid');
+  document.getElementById('modelCount').textContent = modelIds.length;
+
+  if (modelIds.length === 0) {
+    grid.innerHTML = '<div class="model-card" style="grid-column:1/-1"><div class="no-data"><div class="no-data-icon">🤖</div><div class="no-data-title">No model usage data</div><div class="no-data-desc">No API requests found in this period. Try a longer time range.</div></div></div>';
+    return;
+  }
+
+  grid.innerHTML = modelIds.map((id, idx) => {
+    const m = data.models[id];
+    const color = getModelColor(id);
+    const name = esc(modelName(id));
+    const prov = esc(modelProvider(id));
+    const rl = data.rateLimits?.[id];
+
+    let gaugeHtml = '';
+    if (rl && rl.limitRequests && rl.usedRequests !== undefined) {
+      const pct = Math.min(100, Math.round((rl.usedRequests / rl.limitRequests) * 100));
+      const cls = pct >= 90 ? 'critical' : pct >= 70 ? 'warn' : '';
+      gaugeHtml = '<div class="rate-gauge"><div class="rate-gauge-label"><span>Rate Limit (req)</span><span>' + fmt(rl.usedRequests) + ' / ' + fmt(rl.limitRequests) + '</span></div><div class="rate-bar"><div class="rate-fill ' + cls + '" style="width:' + pct + '%"></div></div></div>';
+    } else if (rl && rl.limitTokens && rl.usedTokens !== undefined) {
+      const pct = Math.min(100, Math.round((rl.usedTokens / rl.limitTokens) * 100));
+      const cls = pct >= 90 ? 'critical' : pct >= 70 ? 'warn' : '';
+      gaugeHtml = '<div class="rate-gauge"><div class="rate-gauge-label"><span>Rate Limit (tokens)</span><span>' + fmt(rl.usedTokens) + ' / ' + fmt(rl.limitTokens) + '</span></div><div class="rate-bar"><div class="rate-fill ' + cls + '" style="width:' + pct + '%"></div></div></div>';
+    }
+
+    const cacheHtml = m.cacheRead > 0 ? '<div class="token-chip"><span class="label">C</span><span class="value">' + fmt(m.cacheRead) + '</span></div>' : '';
+
+    return '<div class="model-card" style="--model-color:' + esc(color) + '">' +
+      '<div class="model-header"><div><div class="model-name">' + name + '</div><div class="model-provider">' + prov + '</div></div><div class="model-badge">#' + (idx+1) + '</div></div>' +
+      '<div style="display:flex;align-items:baseline;gap:4px"><span class="model-requests">' + fmt(m.requests) + '</span><span class="model-requests-label">requests</span></div>' +
+      '<div class="token-row"><div class="token-chip"><span class="label">R</span><span class="value">' + fmt(m.inputTokens) + '</span></div><div class="token-chip"><span class="label">W</span><span class="value">' + fmt(m.outputTokens) + '</span></div>' + cacheHtml + '</div>' +
+      gaugeHtml +
+      '</div>';
+  }).join('');
+}
+
+// ── Token Efficiency ──────────────────────────────────────────────────────
+function renderEfficiency(data) {
+  const body = document.getElementById('efficiencyBody');
+  const eff = data.efficiency || {};
+  const ts = data.totalStats || {};
+
+  const totalR = ts.totalRequests || 0;
+  const cacheHitRatio = eff.cacheHitRatio || 0;
+  const avgPrompt = eff.avgPromptSize || 0;
+  const avgOut = totalR > 0 ? Math.round((ts.totalOutput || 0) / totalR) : 0;
+
+  body.innerHTML =
+    stat('💡', 'Avg Prompt Size', avgPrompt > 0 ? fmt(avgPrompt) + ' tokens' : '—', 'input tokens per request') +
+    stat('📦', 'Cache Hit Ratio', cacheHitRatio > 0 ? cacheHitRatio + '%' : '—', 'of reads served from cache') +
+    stat('📤', 'Avg Output Size', avgOut > 0 ? fmt(avgOut) + ' tokens' : '—', 'output tokens per request') +
+    stat('🔢', 'Total Requests', fmt(totalR), fmt(ts.totalInput||0) + ' in · ' + fmt(ts.totalOutput||0) + ' out');
+}
+
+function stat(icon, label, value, sub) {
+  return '<div class="stat-item"><div class="stat-icon">' + icon + '</div><div><div class="stat-label">' + esc(label) + '</div><div class="stat-value">' + esc(value) + '</div><div class="stat-sub">' + esc(sub) + '</div></div></div>';
+}
+
+// ── Session Activity ──────────────────────────────────────────────────────
+function renderActivity(data) {
+  const body = document.getElementById('activityBody');
+  const eff = data.efficiency || {};
+  const agentStats = data.agentStats || {};
+  const hourly = data.hourlyActivity || new Array(24).fill(0);
+
+  const agentDots = Object.entries(agentStats)
+    .sort((a,b) => b[1] - a[1])
+    .slice(0, 12)
+    .map(([id, count]) => '<div class="agent-dot"><span>' + esc(id) + '</span> <em>' + count + '</em></div>')
+    .join('');
+
+  body.innerHTML =
+    stat('🗂️', 'Sessions', fmt(data.sessionCount || 0), 'in selected period') +
+    stat('⏱️', 'Avg Duration', fmtDuration(eff.avgSessionDurationMs || 0), 'per session') +
+    (agentDots ? '<div style="margin:8px 0 4px;font-size:0.7rem;color:var(--text-muted)">Agents</div><div class="agent-dots">' + agentDots + '</div>' : '') +
+    renderHeatmap(hourly);
+}
+
+function renderHeatmap(hourly) {
+  if (!hourly || hourly.every(v => v === 0)) return '';
+  const maxH = Math.max(...hourly, 1);
+  let cells = '';
+  // Hours 0-23
+  for (let h = 0; h < 24; h++) {
+    const v = hourly[h] || 0;
+    const pct = v / maxH;
+    const color = pct > 0.7 ? '14,184,166' : '56,189,248';
+    const bg = v > 0 ? 'rgba(' + color + ',' + (pct * 0.85 + 0.1) + ')' : 'var(--bg3)';
+    cells += '<div class="heatmap-cell" style="background:' + bg + '" title="' + h + ':00 — ' + v + ' sessions"></div>';
+  }
+  const hourLabels = Array.from({length:24}, (_,i) => i % 6 === 0 ? ('<div class="heatmap-hour-label">' + i + 'h</div>') : '<div></div>').join('');
+  return '<div style="margin-top:12px;font-size:0.7rem;color:var(--text-muted);margin-bottom:4px">Activity by hour of day</div><div class="heatmap"><div class="heatmap-grid"><div></div>' + hourLabels + '<div class="heatmap-label">→</div>' + cells + '</div></div>';
+}
+
+// ── System Health ─────────────────────────────────────────────────────────
+function renderHealth(sys) {
+  const strip = document.getElementById('healthStrip');
+  if (!sys) { strip.innerHTML = '<span style="font-size:0.72rem;color:var(--text-muted)">System info unavailable</span>'; return; }
+
+  const ramPct = sys.ramTotalMB > 0 ? Math.round((sys.ramUsedMB / sys.ramTotalMB) * 100) : 0;
+  const ramClass = sys.memPressure === 'critical' ? 'crit' : sys.memPressure === 'warn' ? 'warn' : ramPct >= 90 ? 'crit' : ramPct >= 75 ? 'warn' : '';
+  const ramLabel = sys.ramTotalMB >= 1024
+    ? (sys.ramUsedMB / 1024).toFixed(1) + ' / ' + (sys.ramTotalMB / 1024).toFixed(0) + ' GB'
+    : sys.ramUsedMB + ' MB';
+
+  strip.innerHTML = [
+    healthItem('🧠', 'RAM', sys.ramUsedMB ? ramLabel : '?', ramPct, ramClass),
+    sys.diskFreeGB !== null ? healthItem('💾', 'Disk Free', sys.diskFreeGB + ' GB', null) : '',
+    healthItem('⏰', 'Uptime', fmtUptime(sys.uptimeSeconds), null),
+    healthItem('🦞', 'OpenClaw', sys.version || 'Unknown', null),
+    healthItem('⬡', 'Node', sys.nodeVersion || '—', null),
+  ].filter(Boolean).join('<div style="width:1px;height:24px;background:var(--border);flex-shrink:0"></div>');
+}
+
+function healthItem(icon, label, value, pct, barClass) {
+  const bar = pct !== null ? '<div class="health-bar"><div class="health-bar-fill ' + (barClass||'') + '" style="width:' + pct + '%"></div></div>' : '';
+  return '<div class="health-item"><span>' + icon + '</span><div><div class="health-label">' + esc(label) + '</div><div class="health-value">' + esc(value) + '</div></div>' + bar + '</div>';
+}
+
+// ── Keyboard shortcuts ────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  const periods = ['hour','day','week','month','year'];
+  if (e.key >= '1' && e.key <= '5') {
+    const p = periods[+e.key - 1];
+    if (p) setPeriod(p);
+  } else if (e.key === 'r' || e.key === 'R') {
+    loadData();
+  }
+});
+
+// ── Resize handler ────────────────────────────────────────────────────────
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (dashData) {
+      const modelIds = Object.keys(dashData.models || {}).sort((a,b)=>(dashData.models[b].requests||0)-(dashData.models[a].requests||0));
+      renderTimeline(dashData, modelIds);
+    }
+  }, 200);
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────
+(async function init() {
+  // Set default active period
+  document.querySelector('[data-period="day"]').classList.add('active');
+  
+  await loadConfig();
+  await loadData();
+
+  // Auto-refresh every 5 minutes
+  setInterval(() => { if (!isLoading) loadData(); }, 5 * 60 * 1000);
+})();
+</script>
+</body>
+</html>

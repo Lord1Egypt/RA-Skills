@@ -1,35 +1,76 @@
 ---
-name: "Short Play Writer（短剧剧本创作大师）"
-description: "专业短剧/AI漫剧剧本创作助手，支持男频/女频爆款短剧、AI漫剧剧本撰写，包含最新行业成功要素、标准结构模板、爆款爽点设计和漫剧专属分镜规范。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/short-play-writer"
-sourceUrl: "https://clawhub.ai/skills/short-play-writer"
+name: short-play-writer
+display_name: 短剧剧本创作大师
+description: 专业短剧/AI漫剧剧本创作助手，支持男频/女频爆款短剧、AI漫剧剧本撰写，包含最新行业成功要素、标准结构模板、爆款爽点设计和漫剧专属分镜规范。
+author: Kenz1117
+license: MIT-0
+tags: 写作,创作,短剧,AI漫剧,分镜,爽文
+emoji: 🎭
+category: writing
+version: 1.0.0
 ---
 
-# Short Play Writer（短剧剧本创作大师）
+# 🎭 短剧剧本创作大师
 
-> 专业短剧/AI漫剧剧本创作助手，支持男频/女频爆款短剧、AI漫剧剧本撰写，包含最新行业成功要素、标准结构模板、爆款爽点设计和漫剧专属分镜规范。
+专业短剧/AI漫剧剧本创作助手，包含2025最新行业爆款规律、标准结构模板、爆款爽点设计和漫剧专属分镜规范。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/short-play-writer`
-- **Source URL:** [https://clawhub.ai/skills/short-play-writer](https://clawhub.ai/skills/short-play-writer)
+当用户需要写短剧剧本、短剧大纲、短剧剧情设计、AI漫剧脚本、漫画分镜剧本时自动触发本技能，无论用户是否明确提到"短剧"或"漫剧"，只要内容符合竖屏短剧集、快节奏爽剧、微短剧、条漫、动态漫、AI漫剧等特征都应触发。
 
-## Overview
+## 📚 详细文档
 
+完整方法和模板已拆分到以下文件：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/short-play-writer
-```
+### 参考文档 `references/`
+- [市场现状与爆款规律](./references/market-rules.md) - 2025最新行业数据、抖音算法、女频/男频爆款要素
+- [标准剧本结构模板](./references/structure-templates.md) - 60-120集黄金结构、真人单集模板、AI漫剧分镜模板
+- [爆款创作技巧](./references/writing-skills.md) - 爽点公式、钩子设计、标题封面、案例参考、避坑指南
+- [工业化生产流程](./references/production-process.md) - 对标→创作→运营完整流程
+
+### 示例 `examples/`
+- [百种爆款钩子模板](./examples/hook-templates.md) - 直接套用，完播率提升30%+
+- [爆款案例拆解](./examples/case-studies.md) - 4个头部爆款深度解析
+- [完整示例剧本](./examples/demo-longyin.md) - 《龙婿入世》第1集示例
+- 更多题材示例：`manju_example.md`, `nanpin_example.md`, `nvpin_example.md`
+
+## ✨ 核心特性
+
+- ✅ 基于2025最新行业数据和抖音算法规则
+- ✅ 女频/男频爆款要素拆解，成功公式直接套用
+- ✅ 完整4阶段黄金结构（60-120集爆款配置）
+- ✅ 真人短剧模板 + AI漫剧专属分镜模板
+- ✅ 100+爆款钩子模板，开场抓眼球，结尾留悬念
+- ✅ 标题封面爆款公式，点击率提升50%
+- ✅ 头部爆款案例拆解，可复用结构直接参考
+- ✅ 完整工业化创作流程，工业化批量产出
+- ✅ AI漫剧专门优化，提升画面一致性，减少AI崩坏
+
+## 🎯 使用场景
+
+- 创作竖屏微短剧剧本
+- 创作AI漫剧动态分镜脚本
+- 短剧大纲策划和剧情设计
+- 爆款短剧节奏优化
+- AI绘画生成漫画分镜提示词规范
+
+## 💡 使用方式
+
+1. 明确需求：题材类型、真人/AI漫剧、集数、目标受众
+2. 参考 `references/market-rules.md` 确认爆款要素
+3. 按照 `references/structure-templates.md` 搭建整体结构
+4. 使用 `examples/hook-templates.md` 套用钩子模板
+5. 遵循 `references/production-process.md` 工业化流程创作
+
+---
+
+## 📊 2025行业核心数据（快速参考）
+
+- 短剧+AI漫剧整体市场：**750亿+**
+- AI漫剧生产成本：仅为真人短剧的 **15%**
+- 爆款集数区间：**60-120集**，单集 **1-3分钟**
+- 女频占爆款市场：**80%** 份额
+- 前3秒留存率权重：**40%**，必须有强冲突
+- 完播率标准：真人 ≥40%，AI漫剧 ≥45%
+
+---
+
+*MIT-0 License · 作者 Kenz1117*

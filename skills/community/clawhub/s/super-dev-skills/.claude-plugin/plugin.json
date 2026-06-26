@@ -1,0 +1,16 @@
+{
+  "name": "super-dev-skills",
+  "description": "全栈之神·自进化零缺陷交付套件 — 需求深访+共享语言+TDD+感官级UI/UX验证+供应链安全门禁+分层记忆系统+技能自我进化。内化 agent-skills 精华，每次任务自动沉淀经验、持续越用越强。",
+  "version": "1.0.0",
+  "author": {
+    "name": "WeedFire"
+  },
+  "homepage": "https://github.com/WeedFire",
+  "repository": "https://github.com/WeedFire/super-dev-skills",
+  "license": "MIT",
+  "keywords": [
+    "skills", "tdd", "super-dev", "security", "architecture", "ux",
+    "code-quality", "requirements", "fullstack", "self-evolving",
+    "agent-skills", "ddriven-development", "ubiquitous-language"
+  ]
+}

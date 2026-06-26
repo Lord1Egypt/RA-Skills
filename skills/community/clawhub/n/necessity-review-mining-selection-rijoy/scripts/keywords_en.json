@@ -1,0 +1,8 @@
+{
+  "Function not met": ["won't cut", "won't cut through", "doesn't fit", "doesn't hold", "won't open", "won't close", "doesn't work", "no effect", "not sturdy", "won't hold", "unstable"],
+  "Durability/life": ["rust", "rusts", "break", "crack", "loose", "glue fail", "fell off", "after few uses", "soon", "broke", "not durable", "paint chips", "warp"],
+  "Size/fit": ["too small", "too big", "won't fit", "doesn't fit", "wrong size", "wrong model", "size", "wrong model", "doesn't fit my"],
+  "Experience": ["hard to clean", "awkward", "bulky", "annoying", "inconvenient", "complicated", "hard to use", "awkward to hold", "slippery", "hard to store"],
+  "Safety/odor": ["smell", "strong odor", "odor", "sharp", "cut", "tips over", "leak", "seep", "unsafe"],
+  "Not as described": ["not like image", "not as described", "not as said", "not as claimed", "unclear", "exaggerated", "different", "misleading", "false"]
+}

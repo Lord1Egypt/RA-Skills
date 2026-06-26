@@ -1,0 +1,7 @@
+bio
+biopython
+dataclasses
+numpy
+pandas
+pysam
+requests

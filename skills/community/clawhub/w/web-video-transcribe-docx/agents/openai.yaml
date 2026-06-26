@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Video Transcribe DOCX"
+  short_description: "Extract web media, transcribe Chinese audio, and export TXT or DOCX"
+  default_prompt: "Use $web-video-transcribe-docx to extract media from a web page or media URL, transcribe the audio into cleaned Chinese text, and generate a Word document."

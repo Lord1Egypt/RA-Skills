@@ -1,0 +1,129 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "AreaInnerCode",
+        "columnChiName": "地区内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "地区内部编码(AreaInnerCode)与(LC_AreaCode)表中的AreaInnerCode字段关联，得到类别的具体描述",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "Type",
+        "columnChiName": "类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "类别(Type)与(CT_SystemConst)表中的DM字段关联，令LB = 2198，得到类别的具体描述：10-国际电话区号，20-中国电话区号，1000-中国地理区划，2001-Alpha-2(ISO)，2002-Alpha-3(ISO)，2003-国家所属洲，3000-中国地区邮编，3001-中国清算中心代码(1992)，8001-经济区所属城市，8002-公司主营构成地区划分关系，9000-地区别名。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "AreaValue",
+        "columnChiName": "地区数值",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "当类别(Type) in  (1000,8002,2003)时，地区数值(AreaValue)与(LC_AreaCode)表中的AreaInnerCode字段关联，得到该类别的具体信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "23.9",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "AreaDate",
+        "columnChiName": "地区数据",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "remark": "当类别(Type) not in (1000,8002,2003) 时，地区数据(AreaDate)为具体类别的信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "76.09",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "BeginDate",
+        "columnChiName": "起始日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.53"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Remark",
+        "columnChiName": "备注",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "17.58"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

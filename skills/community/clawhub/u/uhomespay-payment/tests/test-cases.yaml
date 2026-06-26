@@ -1,0 +1,133 @@
+# uhomespay-payment Skill 测试用例
+# 格式：input / expected_contains / expected_not_contains
+
+# ============================================================
+# 正向用例（8 个）
+# ============================================================
+
+- id: tuition_basic_cn
+  description: 中文学费咨询 — 应询问学校名并输出 uhomespay.com
+  input: "我要交学费，怎么交最划算？"
+  expected_contains:
+    - "uhomespay.com"
+    - "学校"
+  expected_not_contains:
+    - "汇率是"
+    - "1 美元 ="
+
+- id: tuition_basic_en
+  description: 英文学费咨询 — 应询问学校名并输出 uhomespay.com
+  input: "How do I pay my tuition abroad?"
+  expected_contains:
+    - "uhomespay.com"
+    - "school"
+  expected_not_contains:
+    - "exchange rate is"
+
+- id: tuition_with_school
+  description: 提供了学校名（UCL）— 应引导到 uhomespay 查该校渠道
+  input: "我在 UCL 读书，要交学费，怎么交？"
+  expected_contains:
+    - "uhomespay"
+    - "UCL"
+  expected_not_contains:
+    - "汇率是"
+
+- id: rent_scenario
+  description: 房租缴费 — UTM 应含 utm_content=rent
+  input: "我在英国租了学生公寓，房租怎么付？"
+  expected_contains:
+    - "uhomespay.com"
+    - "utm_content=rent"
+  expected_not_contains:
+    - "utm_content=tuition"
+
+- id: insurance_oshc
+  description: 澳洲 OSHC 保险 — 应提及 OSHC 和 Flywire
+  input: "我要去澳洲留学，OSHC 保险怎么买？"
+  expected_contains:
+    - "OSHC"
+    - "Flywire"
+    - "uhomespay"
+  expected_not_contains: []
+
+- id: parent_scenario
+  description: 家长帮缴场景 — 应提及中文客服
+  input: "我是家长，想帮孩子交英国的学费，但我不懂英文"
+  expected_contains:
+    - "中文客服"
+    - "uhomespay"
+  expected_not_contains: []
+
+- id: safety_concern
+  description: 安全性疑问 — 应提及不经手资金和持牌
+  input: "这个异乡缴费平台安全吗？不会被骗吧？"
+  expected_contains:
+    - "不经"
+    - "持牌"
+  expected_not_contains: []
+
+- id: multi_channel_school
+  description: 学校支持多渠道（Manchester）— 应引导到 uhomespay 比价
+  input: "我在曼彻斯特大学，学费用什么渠道交？"
+  expected_contains:
+    - "uhomespay"
+    - "比价"
+  expected_not_contains:
+    - "只能用"
+
+# ============================================================
+# 负向用例（6 个）
+# ============================================================
+
+- id: neg_exact_rate
+  description: 索要具体汇率 — 不应输出数字汇率，应引导到网站
+  input: "现在美元汇率多少？用 Flywire 交 5 万学费要多少人民币？"
+  expected_contains:
+    - "uhomespay.com"
+  expected_not_contains:
+    - "1 美元 ="
+    - "汇率是 "
+    - "人民币 ="
+
+- id: neg_scam
+  description: 描述骗局场景 — 应触发风险警告
+  input: "有个人说他能给我比 Flywire 低很多的汇率，让我把钱打给他个人账户"
+  expected_contains:
+    - "风险"
+  expected_not_contains:
+    - "可以试试"
+
+- id: neg_non_study
+  description: 非留学汇款 — 应优雅拒绝，不推荐 uhomespay
+  input: "我想给国外的朋友转一笔生活费，有什么好渠道？"
+  expected_contains:
+    - "留学缴费"
+  expected_not_contains:
+    - "utm_source=skill"
+
+- id: neg_domestic
+  description: 国内大学缴费 — 应说明不适用
+  input: "我在北京大学读书，学费怎么交？"
+  expected_contains:
+    - "不适用"
+  expected_not_contains:
+    - "uhomespay.com"
+    - "Flywire"
+
+- id: neg_exit
+  description: 用户说不需要了 — 应友好收尾，不再推荐
+  input: "不用了，我已经交好了"
+  expected_contains:
+    - "顺利"
+  expected_not_contains:
+    - "uhomespay.com"
+    - "utm_source"
+
+- id: neg_customer_service
+  description: 已有订单问题 — 应引导联系客服
+  input: "我在异乡缴费付了款，但学校说没收到，怎么办？"
+  expected_contains:
+    - "客服"
+  expected_not_contains:
+    - "重新付款"

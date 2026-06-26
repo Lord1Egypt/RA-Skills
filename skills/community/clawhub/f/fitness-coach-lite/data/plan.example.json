@@ -1,0 +1,13 @@
+{
+  "name": "示例训练计划",
+  "mode": "weekly",
+  "schedule": {
+    "monday":    [{ "name": "俯卧撑", "sets": 4, "reps": 15 }, { "name": "卷腹", "sets": 3, "reps": 20 }],
+    "tuesday":   [{ "name": "深蹲", "sets": 4, "reps": 20 }, { "name": "平板支撑", "sets": 3, "reps": 60 }],
+    "wednesday": [{ "name": "波比跳", "sets": 3, "reps": 10 }, { "name": "登山者", "sets": 3, "reps": 30 }],
+    "thursday":  [{ "name": "哑铃弯举", "sets": 3, "reps": 12 }, { "name": "哑铃肩推", "sets": 3, "reps": 10 }],
+    "friday":    [{ "name": "引体向上", "sets": 4, "reps": 8 }, { "name": "平板支撑", "sets": 3, "reps": 60 }],
+    "saturday":  [{ "name": "跑步", "sets": 1, "reps": 30 }],
+    "sunday":    []
+  }
+}

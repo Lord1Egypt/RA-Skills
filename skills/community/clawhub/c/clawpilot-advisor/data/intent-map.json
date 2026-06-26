@@ -1,0 +1,80 @@
+{
+  "intents": [
+    {
+      "intent": "快递物流查询",
+      "keywords": ["查快递", "物流", "快递到哪了", "寄快递", "查物流", "包裹", "发货", "到了吗"],
+      "skills": ["logistics", "sf-express", "zto", "jtexpress", "cainiao", "shansong"],
+      "installOrder": ["logistics", "sf-express"]
+    },
+    {
+      "intent": "同城配送",
+      "keywords": ["同城", "闪送", "送东西", "即时配送", "同城快递"],
+      "skills": ["shansong", "logistics"],
+      "installOrder": ["shansong", "logistics"]
+    },
+    {
+      "intent": "天气查询",
+      "keywords": ["天气", "温度", "下雨", "晴天", "多少度", "气温", "天气预报"],
+      "skills": ["weather"],
+      "installOrder": ["weather"]
+    },
+    {
+      "intent": "心理健康",
+      "keywords": ["焦虑", "压力", "抑郁", "心情不好", "心烦", "睡不着", "情绪", "职业倦怠", "撑不住", "心理"],
+      "skills": ["burnout-checkin", "psych-companion", "decision-fatigue-reliever", "daily-reflection"],
+      "installOrder": ["burnout-checkin", "psych-companion", "decision-fatigue-reliever"]
+    },
+    {
+      "intent": "相亲找对象",
+      "keywords": ["相亲", "找对象", "脱单", "谈恋爱", "恋爱", "结婚", "处对象"],
+      "skills": ["xiangqin", "blind-date-assistant"],
+      "installOrder": ["xiangqin", "blind-date-assistant"]
+    },
+    {
+      "intent": "合同法律",
+      "keywords": ["合同", "协议", "法律", "打官司", "纠纷", "维权", "条款", "租房", "劳动法"],
+      "skills": ["clause-redraft", "contract-risk-scan", "ai-legal-assistant-pro", "legal-consultation"],
+      "installOrder": ["clause-redraft", "contract-risk-scan"]
+    },
+    {
+      "intent": "医疗健康",
+      "keywords": ["挂号", "看病", "医生", "医院", "体检", "健康", "身体"],
+      "skills": ["haodf", "hospital"],
+      "installOrder": ["hospital", "haodf"]
+    },
+    {
+      "intent": "购物比价",
+      "keywords": ["买东西", "购物", "比价", "便宜", "在哪买", "推荐", "网购", "淘宝", "京东", "拼多多"],
+      "skills": ["cn-online-shopping", "pdd-shopping", "jingdong-shopping", "yhd", "taobao-competitor-analyzer"],
+      "installOrder": ["cn-online-shopping", "pdd-shopping"]
+    },
+    {
+      "intent": "外卖点餐",
+      "keywords": ["外卖", "点餐", "吃饭", "送餐", "饿了", "吃什么"],
+      "skills": ["waimai", "freshippo"],
+      "installOrder": ["waimai", "freshippo"]
+    },
+    {
+      "intent": "出行交通",
+      "keywords": ["打车", "叫车", "出行", "旅行", "机票", "酒店", "高铁", "火车"],
+      "skills": ["didi", "trip", "qunar"],
+      "installOrder": ["didi", "trip"]
+    },
+    {
+      "intent": "学习成长",
+      "keywords": ["学习", "英语", "读书", "考试", "提升", "成长", "技能"],
+      "skills": ["daily-reflection", "habit-tracker"],
+      "installOrder": ["daily-reflection"]
+    },
+    {
+      "intent": "生鲜配送",
+      "keywords": ["买菜", "生鲜", "水果", "蔬菜", "盒马", "新鲜"],
+      "skills": ["freshippo", "waimai"],
+      "installOrder": ["freshippo", "waimai"]
+    }
+  ],
+  "defaultResponse": {
+    "noMatch": "抱歉，我目前无法识别你的需求。我的专长是帮你发现和安装合适的 skill。",
+    "examples": "你可以这样问我：'我想查快递'、'我最近压力好大'、'有什么法律类 skill 吗？'"
+  }
+}

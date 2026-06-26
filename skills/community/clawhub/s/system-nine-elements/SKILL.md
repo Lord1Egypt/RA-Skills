@@ -1,35 +1,57 @@
 ---
-name: "System Nine Elements"
-description: "系统九要素 — 将任意对象视作系统来解构的九维度框架。 当用户需要：把某事物当系统拆解、研究一个系统的内部机理、系统性解构一个问题、设计一个系统、写深度分析报告时激活。 激活词：九要素、系统拆解、像系统一样分析、把它拆解成系统、把X当作系统"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/system-nine-elements"
-sourceUrl: "https://clawhub.ai/skills/system-nine-elements"
+name: system-nine-elements
+version: 1.0.0
+description: |
+  系统九要素 — 将任意对象视作系统来解构的九维度框架。
+  当用户需要：把某事物当系统拆解、研究一个系统的内部机理、系统性解构一个问题、设计一个系统、写深度分析报告时激活。
+  激活词：九要素、系统拆解、像系统一样分析、把它拆解成系统、把X当作系统
 ---
 
-# System Nine Elements
+# 系统九要素
 
-> 系统九要素 — 将任意对象视作系统来解构的九维度框架。 当用户需要：把某事物当系统拆解、研究一个系统的内部机理、系统性解构一个问题、设计一个系统、写深度分析报告时激活。 激活词：九要素、系统拆解、像系统一样分析、把它拆解成系统、把X当作系统
+将任意对象视作**系统**，像工程师一样解构其内部运行机理。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/system-nine-elements`
-- **Source URL:** [https://clawhub.ai/skills/system-nine-elements](https://clawhub.ai/skills/system-nine-elements)
+---
 
-## Overview
+## 框架总览
 
+| 要素 | 检查要点 | 核心问题 |
+|------|---------|---------|
+| 基元 | 识别最小功能/决策单元 | 最底层不可再拆的单元是什么？ |
+| 结构 | 构建要素关联网络 | 各部分如何连接？关系是什么？ |
+| 索引 | 建立多维坐标定位体系 | 如何精准定位系统内任意节点？ |
+| 模式 | 提炼重复出现的运行规律 | 什么规律反复出现？ |
+| 执行 | 设计可操作的SOP流程 | 事情如何一步一步发生？ |
+| 整合 | 跨模块协同机制 | 模块之间如何协调？ |
+| 统摄 | 确立核心约束条件 | 什么是最关键的边界和限制？ |
+| 核心 | 定位关键价值驱动因子 | 什么因素最能解释系统表现差异？ |
+| 输出 | 定义可量化交付物 | 系统的成果如何衡量？ |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/system-nine-elements
-```
+详细说明与分析示例见 `references/nine-elements.md`
+
+---
+
+## 分析流程
+
+**第一步：确认系统边界**
+明确分析对象是什么，它的边界在哪里，什么在系统外部。
+
+**第二步：按九要素依次拆解**
+不必严格按顺序，可根据分析目的灵活选取重点要素深入。
+
+**第三步：找要素之间的关联**
+九要素不是孤立存在的，找出它们之间的依赖关系和传导链条。
+
+**第四步：综合输出系统画像**
+整合九要素分析，输出整体系统画像与关键洞察。
+
+---
+
+## 输出格式
+
+每个要素给出：
+- **核心发现**（这个要素揭示了什么）
+- **关键洞察**（一句话）
+
+最终综合，输出：
+> **系统画像**：这个系统是什么，它的运作逻辑，关键约束，关键驱动因子，以及它在更大环境中的位置。

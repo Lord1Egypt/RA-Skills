@@ -1,0 +1,77 @@
+================================================================
+PROMPT 1 — "What changed in AAPL's 10-K risk factors this year?"
+================================================================
+(Verified output of: python3 scripts/risk_diff.py diff AAPL)
+
+# AAPL — Risk Factors Diff
+_2024 10-K  →  2025 10-K_  (2024-11-01 → 2025-10-31)
+
+**Churn:** 90.5%  ·  **Added:** 4  ·  **Removed:** 5  ·  **Modified:** 10  ·  **Unchanged:** 2
+
+## New themes
+- **Regulation** — 3 new paragraphs
+- **Litigation** — 3 new paragraphs
+- **Workforce** — 2 new paragraphs
+- **Cybersecurity** — 1 new paragraph
+- **AI / ML** — 1 new paragraph
+- **Climate / ESG** — 1 new paragraph
+- **Supply chain** — 1 new paragraph
+
+## Added (4)
+- Item 1A. Risk Factors The following summarizes factors that could have a material adverse effect on the Company's business, reputation, results of operations, financial condition and stock price. …
+- Following any interruption to its business, the Company can require substantial recovery time, incur significant expenditures to resume operations, and lose significant sales. … _[Regulation, Litigation, Workforce]_
+- The outcome of litigation or government investigations is inherently uncertain. … _[Cybersecurity, AI / ML, Climate / ESG, Supply chain, Regulation, Litigation, Workforce]_
+- The technology industry, including, in some instances, the Company, is subject to intense media, political and regulatory scrutiny… _[Regulation, Litigation]_
+
+## Removed (5)
+- Item 1A. Risk Factors The Company's business, reputation, results of operations, financial condition and stock price can be affected by a number of factors…
+- Global markets for the Company's products and services are highly competitive and subject to rapid technological change…
+- The Company depends on component and product manufacturing and logistical services provided by outsourcing partners…
+- Regulatory changes and other actions that materially adversely affect the Company's business may be announced with little or no advance notice…
+- The Company is also subject to the examination of its tax returns and other tax matters…
+
+## Modified (10)
+- **similarity 0.77**
+  - was: The Company's business can be impacted by political events, trade and other international disputes, geopolitical tensions…
+  - now: The Company's business can be impacted by political events, trade and other international disputes, geopolitical tensions… (re-scoped + extended)
+- **similarity 0.65** (privacy / data protection language rewritten)
+- **similarity 0.67** (carrier/reseller dependency reframed)
+- **similarity 0.65** (cybersecurity attack surface description updated)
+- … 6 more
+
+---
+_Free tier output. For semantic novelty ranking, run `python3 scripts/risk_diff.py novelty AAPL` (premium)._
+
+
+================================================================
+PROMPT 2 — "Compare Tesla's 10-K risk factors between 2022 and 2024"
+================================================================
+(Verified scan row for TSLA most-recent diff. Full --years 2024 2022 follows
+ the same structure as the AAPL diff above — see live skill output.)
+
+| Ticker | Year | Added | Removed | Modified | Churn % | Top new theme |
+|--------|------|-------|---------|----------|---------|---------------|
+| TSLA   | 2025 | 18    | 6       | 14       | 80.9    | Supply chain  |
+
+Interpretation a user can read off this directly:
+- TSLA disclosed 18 net-new risk paragraphs in the most recent 10-K
+- 14 prior risks were materially rewritten (not just word-tweaked)
+- Top theme by added-paragraph count was Supply chain
+- 80.9% churn is unusually high — corroborates a year of major operational
+  changes (often a signal to read the full Added section)
+
+
+================================================================
+PROMPT 3 — "Multi-ticker scan for a morning brief: AAPL TSLA NVDA META AMZN"
+================================================================
+(Output shape — actual numbers populate per run from live EDGAR data)
+
+| Ticker | Year | Added | Removed | Modified | Churn % | Top new theme |
+|--------|------|-------|---------|----------|---------|---------------|
+| AAPL   | 2025 | 4     | 5       | 10       | 90.5    | Regulation    |
+| TSLA   | 2025 | 18    | 6       | 14       | 80.9    | Supply chain  |
+| NVDA   | 2025 | …     | …       | …        | …       | …             |
+| META   | 2025 | …     | …       | …        | …       | …             |
+| AMZN   | 2025 | …     | …       | …        | …       | …             |
+
+The user gets one markdown-pasteable table per morning, run as a single command.

@@ -1,0 +1,16 @@
+name: amazon-pricing-intelligence
+version: 1.0.0
+description: "亚马逊科学定价策略助手 — 帮助卖家告别「定价靠拍脑袋，利润全靠运气」的时代。提供成本核算、同行参考、促销定价、利润优化和调价建议，让每一分利润都有据可依。"
+tags:
+  - amazon
+  - pricing
+  - ecommerce
+  - strategy
+  - profitability
+author:
+  name: WangM-A3
+  homepage: https://github.com/amazon-ops
+license: MIT
+homepage: https://github.com/amazon-ops/amazon-pricing-intelligence
+repository: https://github.com/amazon-ops/amazon-pricing-intelligence
+issues: https://github.com/amazon-ops/amazon-pricing-intelligence/issues

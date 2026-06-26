@@ -1,35 +1,95 @@
----
-name: "定时早报生成"
-description: "每天定时生成综合、财经、科技等主题的个性化早报，自动推送到飞书并支持手动触发查看。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dingbao-zoubao"
-sourceUrl: "https://clawhub.ai/skills/dingbao-zoubao"
----
+# 定时早报生成 Skill
 
-# 定时早报生成
+> 每天定时生成个性化早报，推送到飞书。结合新闻聚合能力，支持综合/财经/科技/AI等多场景。
 
-> 每天定时生成综合、财经、科技等主题的个性化早报，自动推送到飞书并支持手动触发查看。
+## 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dingbao-zoubao`
-- **Source URL:** [https://clawhub.ai/skills/dingbao-zoubao](https://clawhub.ai/skills/dingbao-zoubao)
+- ✅ **多场景早报**：综合、财经、科技、AI深度、股市五大主题
+- ✅ **定时推送**：每天自定义时间自动生成并推送（如 08:00）
+- ✅ **飞书直达**：直接推送到飞书，包含摘要 + 精选内容 + emoji分类
+- ✅ **手动触发**：支持随时说"今天早报"立即生成
+- ✅ **去重机制**：自动过滤30天内已推送的重复内容
 
-## Overview
+## 触发词
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dingbao-zoubao
 ```
+今天早报
+生成早报
+今日资讯
+早间简报
+财经早报
+科技早报
+```
+
+## 使用方法
+
+### 手动生成
+
+```
+今天早报
+综合早报
+给我一份科技早报
+```
+
+### 查看帮助
+
+```
+早报帮助
+设置早报时间
+```
+
+## 定时配置
+
+设置每天推送时间：
+
+```
+设置早报时间 08:00
+每天早上8点推早报
+```
+
+查看当前配置：
+
+```
+早报配置
+早报状态
+```
+
+## 输出示例
+
+```
+📰 综合早报 | 2026-04-22
+━━━━━━━━━━━━━━━━━━━━
+🔴 重要 | OpenAI 发布 GPT-5，震惊业界
+   摘要：GPT-5 在推理测试中得分首次超过人类...
+   [查看全文]
+
+🔵 科技 | Anthropic 发布 Claude 4
+   摘要：上下文窗口扩展至 100 万 tokens...
+   [查看全文]
+
+🟢 创投 | Figure AI 完成新一轮融资
+   摘要：估值达 26 亿美元，...
+   [查看全文]
+━━━━━━━━━━━━━━━━━━━━
+📊 共抓取 48 条 | 去重后 12 条 | 耗时 3.2s
+```
+
+## 技术实现
+
+- **新闻来源**：优先调用全网新闻聚合助手（如已安装）
+- **生成引擎**：AI 总结 + 关键词分类 + emoji 标注
+- **定时调度**：OpenClaw cron（需配置推送时间）
+- **推送通道**：飞书 IM 消息（富文本 post 格式）
+
+## 定价参考
+
+| 版本 | 价格 | 说明 |
+|------|------|------|
+| 免费版 | ¥0 | 每天1次，手动触发 |
+| 付费版 | ¥29-99/月 | 定时自动推送，多场景 |
+
+## 依赖
+
+- OpenClaw 框架
+- 飞书 IM 消息工具
+- 可选：全网新闻聚合助手（增强信源）

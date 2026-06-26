@@ -1,0 +1,1 @@
+腺苷酸激酶（adenylate kinase）催化2ADP ↔ ATP + AMP，维持腺苷酸池平衡。核苷二磷酸激酶（nucleoside diphosphate kinase）通过乒乓机制实现磷酸基团在不同核苷二磷酸间的转移。肌酸激酶（creatine kinase）在可逆反应中连接ATP与磷酸肌酸系统，尤其在高能耗组织中起缓冲作用。所有反应均需Mg²⁺作为辅因子。

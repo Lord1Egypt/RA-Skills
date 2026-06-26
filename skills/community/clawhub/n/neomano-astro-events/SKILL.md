@@ -1,35 +1,45 @@
 ---
-name: "Neomano Astro Events (Local Sky + ISS)"
-description: "Provides local astronomical visibility including moon phase, rise/set times, planet viewing windows, and optional ISS pass predictions by location and date."
-category: "other"
-source: "ClawHub"
-tags: [astronomy, iss, offline, planets, stargazing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neomano-astro-events"
-sourceUrl: "https://clawhub.ai/skills/neomano-astro-events"
+name: neomano-astro-events
+description: Astronomy visibility helper for a given location (lat/lon). Lists what you can see tonight and in the next days: Moon phase and rise/set, planet visibility windows, and optional ISS passes. Use when the user asks for astronomical events visible from their coordinates/city.
+metadata: {"clawdbot":{"emoji":"🔭","requires":{"bins":["python3"]}}}
 ---
 
-# Neomano Astro Events (Local Sky + ISS)
+## Inputs
 
-> Provides local astronomical visibility including moon phase, rise/set times, planet viewing windows, and optional ISS pass predictions by location and date.
+- Location: `lat`, `lon` (or city).
+- Timezone (IANA) or UTC offset (default: infer/ask; Ecuador mainland is UTC-5).
+- Horizon constraints (optional): open/urban.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neomano-astro-events`
-- **Source URL:** [https://clawhub.ai/skills/neomano-astro-events](https://clawhub.ai/skills/neomano-astro-events)
+## One-time setup
 
-## Overview
+Create venv and install deps:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/neomano-astro-events
+python3 {baseDir}/scripts/bootstrap_venv.py
 ```
+
+Note: the `.venv/` directory is intentionally not shipped in the skill package; each user creates it locally.
+
+## Run
+
+```bash
+python3 {baseDir}/scripts/run.py tonight --lat -2.039958 --lon -79.892266 --tz "America/Guayaquil"
+python3 {baseDir}/scripts/run.py next --lat -2.039958 --lon -79.892266 --tz "America/Guayaquil" --days 7
+```
+
+## Privacy / offline-by-design
+
+This skill computes everything **locally**.
+
+- No paid APIs.
+- No external astronomy services.
+- It only downloads **public datasets** (free):
+  - JPL ephemeris file (DE421) used by Skyfield.
+  - ISS TLE text from Celestrak (for ISS passes).
+
+## What it outputs
+
+- Twilight window (astronomical dusk → dawn)
+- Moon phase + rise/set
+- Planets: best viewing window (altitude above horizon)
+- ISS passes (rise / culminate / set) for the next hours

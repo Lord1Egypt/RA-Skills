@@ -1,0 +1,23 @@
+[
+  {
+    "generation": 1,
+    "best_fitness": 0.5,
+    "avg_fitness": 0.5,
+    "elite_count": 3,
+    "population_size": 10
+  },
+  {
+    "generation": 2,
+    "best_fitness": 0.3,
+    "avg_fitness": 0.29999999999999993,
+    "elite_count": 3,
+    "population_size": 10
+  },
+  {
+    "generation": 3,
+    "best_fitness": 0.3,
+    "avg_fitness": 0.29999999999999993,
+    "elite_count": 3,
+    "population_size": 10
+  }
+]

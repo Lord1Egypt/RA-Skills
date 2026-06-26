@@ -1,0 +1,25 @@
+{
+  "display_name": "以史为鉴",
+  "slug": "yi-shi-wei-jian",
+  "repository_name": "LearnFromHistory-skill",
+  "version": "0.1.4",
+  "description": "以史为鉴 yi-shi-wei-jian: use/call this Chinese-history decision sandbox when users explicitly mention 以史为鉴、借古鉴今、历史类比、沙盘推演, or ask realistic organization/business/team strategy questions about reform, internal conflict, weak-vs-strong competition, unstable alliances, control rights, leadership replacement, attack/defense timing, or adding sourced historical cases.",
+  "license": "MIT",
+  "entry": "SKILL.md",
+  "language": "zh-CN",
+  "homepage": "https://github.com/GreatXiaoRY/LearnFromHistory-skill",
+  "compatibility": [
+    "claude-code",
+    "openclaw",
+    "agentskills-compatible"
+  ],
+  "distribution": {
+    "type": "git",
+    "repository": "https://github.com/GreatXiaoRY/LearnFromHistory-skill.git",
+    "install_slug": "yi-shi-wei-jian"
+  },
+  "runtime": {
+    "python": "3.10+",
+    "external_api_required": false
+  }
+}

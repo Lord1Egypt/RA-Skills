@@ -1,0 +1,57 @@
+Seedance 2.0 is an AI video generator for text to video, image to video, and reference-driven video creation. Seedance 2.0 (ima-pro) is positioned as a cinematic video generator for high-quality shots, camera motion video, consistent character video, and multi-shot video generator workflows. Seedance 2.0 Fast (ima-pro-fast) is optimized for rapid prototyping, AI short clip generator tasks, creative iteration, and fast storyboard to video exploration.
+
+IMA Seedance 2.0 Generator supports Seedance 2.0 text to video, Seedance 2.0 image to video, first-last-frame transitions, reference-image video generation, and media-guided generation for teams building AI cinematic video, AI commercial video generator flows, AI ad video generator campaigns, AI storytelling video sequences, AI music video generator concepts, and AI product video generator demos.
+
+Seedance 2.0 delivers temporal consistency, precise camera language control, multimodal input support, and production-oriented video quality. It works well for AI short film generator use cases, multi-shot narratives, consistent character video production, camera motion video prompts, storyboard to video planning, product demos, social media clips, promo videos, and branded commercial content.
+
+Seedance 2.0 is also known as IMA Video Pro (ima-pro). Seedance 2.0 Fast is also known as IMA Video Pro Fast (ima-pro-fast). Related search intent includes Seedance 2.0 video generator, Seedance 2.0 image to video, Seedance 2.0 text to video, AI video generator, cinematic video generator, multi-shot video generator, AI short film generator, consistent character video, camera motion video, storyboard to video, AI commercial video generator, AI ad video generator, AI storytelling video, AI music video generator, AI product video generator, and AI short clip generator.
+
+---
+
+Core English Keywords
+Seedance 2.0
+AI video generator
+image to video
+text to video
+cinematic video generator
+multi-shot video generator
+AI short film generator
+consistent character video
+camera motion video
+storyboard to video
+
+Long-Tail Search Phrases
+Seedance 2.0 video generator
+Seedance 2.0 image to video
+Seedance 2.0 text to video
+AI cinematic video
+AI commercial video generator
+AI ad video generator
+AI storytelling video
+AI music video generator
+AI product video generator
+AI short clip generator
+
+Related Brand and Model Terms
+Seedance
+Seedance 2.0 Fast
+IMA Video Pro
+IMA Video Pro Fast
+ima-pro
+ima-pro-fast
+Ima Sevio
+Sevio
+
+---
+
+AI视频 文生视频 图生视频 视频生成 视频生成器 AI视频生成
+Seedance Seedance 2.0 Seedance 2.0 Fast 豆包Seedance
+IMA专业版 IMA极速版 IMA Video Pro IMA Video Pro Fast
+Sevio 赛维奥 Ima Sevio ima-pro ima-pro-fast
+首尾帧视频 参考图视频 角色动画 镜头控制 时序一致性 2K画质
+短视频 宣传片 产品演示 社媒视频 解说视频 广告视频
+电影感视频 商业广告视频 音乐视频 分镜生成视频 多镜头视频
+
+---
+
+用文字描述、图片、首尾帧或参考素材即可生成高质量视频。Seedance 2.0（ima-pro，IMA Video Pro）更适合电影感视频、镜头运动视频、多镜头叙事、角色一致性视频、短片与商业广告视频生成；Seedance 2.0 Fast（ima-pro-fast，IMA Video Pro Fast）更适合快速打样、分镜到视频、产品视频、社媒短片和创意 A/B 测试。适用搜索意图包括 Seedance 2.0 视频生成器、Seedance 2.0 文生视频、Seedance 2.0 图生视频、AI 视频生成器、AI 商业广告视频生成、AI 音乐视频生成、AI 产品视频生成和 AI 短片生成。

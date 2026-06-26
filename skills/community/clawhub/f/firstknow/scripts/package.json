@@ -1,0 +1,10 @@
+{
+  "name": "firstknow-skill-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "FirstKnow skill scripts — onboarding, deep analysis, portfolio sync",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.4.7"
+  }
+}

@@ -1,35 +1,62 @@
 ---
-name: "Policy Japan Korea"
-description: "日本经产省+韩国关税厅政策查询，覆盖K-REACH/K-ICS/J-MOSS等认证。做日韩生意必备。"
-category: "other"
-source: "ClawHub"
-tags: [huimai, japan-korea, policy]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-japan-korea-policy"
-sourceUrl: "https://clawhub.ai/skills/huimai-japan-korea-policy"
+name: 🇯🇵🇰🇷 日韩市场政策查询Skill
+description: 日本经产省+韩国关税厅政策查询，覆盖K-REACH/K-ICS/J-MOSS等认证。做日韩生意必备。
+metadata: {"openclaw":{"emoji":"🇯🇵🇰🇷"}}
 ---
 
-# Policy Japan Korea
+# 🇯🇵🇰🇷 日韩市场政策查询Skill
 
-> 日本经产省+韩国关税厅政策查询，覆盖K-REACH/K-ICS/J-MOSS等认证。做日韩生意必备。
+> 日本和韩国看着近，认证标准和法规体系完全不同。一个查JIS，一个查KC，搞混了清关卡几个月。这个Skill就是帮你在两个体系之间无缝切换。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-japan-korea-policy`
-- **Source URL:** [https://clawhub.ai/skills/huimai-japan-korea-policy](https://clawhub.ai/skills/huimai-japan-korea-policy)
+## 📜 更新日志
 
-## Overview
+### v2.0.0 (2026-05-03)
+- **大改版**：新增日本化审法/韩国K-REACH注册状态查询
+- 新增：日韩FTA原产地规则对比
+- 新增：日本METI安全认证/KC认证对照
+- 优化：支持日文/韩文关键词识别
 
+### v1.0.0 (2026-04-24)
+- 初版发布
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 👤 为什么做这个
+
+日韩市场做起来最纠结——两国都离得近，但认证体系简直是两个世界观。日本按行业分类，韩国按风险分级。之前一个朋友电子产品进韩国，因为没搞清楚KC认证的范围，货在釜山港扣了两个月。这个Skill就是想把这种坑帮大家绕过去。
+
+## 典型用法
+
+```
+你: "日本进口充电器需要什么认证"
+我: 电气用品安全法(PSE)判定 → 菱形PSE/圆形PSE → 登录检查机构 → 进口商备案
+
+你: "韩国化妆品进口申报要求"
+我: 韩国化妆品法 → MFDS事前备案 → 功能性化妆品审查 → 标签要求(KC)
+```
+
+## 👔 适用人群
+- **日韩贸易商**：清关前预审，减少海关扣货
+- **化妆品/电子产品出口**：认证合规一步查清
+- **跨境电商（Coupang/Qoo10卖家）**：平台合规要求核查
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：先给结论再附数据，风险提示+应对策略
+- **专业模式（可选）**：直出数据，适合熟手
+
+## 💡 使用小贴士
+- 日本区分"报告义务"和"确认义务"很重要，问清楚再报
+- 韩国K-REACH预注册期限要盯紧，错过就要重新来过
+- 日本PSE认证分菱形和圆形，菱形是强制，圆形是自愿，别弄反
+
+## ⚠️ 免责与已知限制
+- 日韩法规更新频繁，建议以官方公告为准
+- 韩国K-REACH注册周期视物质类型不同，结果取普遍参考值
+- 部分JIS标准只有日文原版，翻译可能有偏差
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-japan-korea-policy
+clawhub install policy-japan-korea
 ```

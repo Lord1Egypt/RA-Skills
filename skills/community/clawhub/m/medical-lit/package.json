@@ -1,0 +1,12 @@
+{
+  "name": "medical-lit",
+  "version": "0.1.0",
+  "description": "Medical literature search and synthesis via PubMed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openclaw", "skill", "medical", "pubmed", "literature"],
+  "author": "Anightmare2",
+  "license": "MIT"
+}

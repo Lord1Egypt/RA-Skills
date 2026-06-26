@@ -1,0 +1,99 @@
+{
+  "_comment": "Bird Buddy Home Assistant Dashboard Config",
+  "_instructions": [
+    "Create a new dashboard with url_path: bird-buddy (hyphen required).",
+    "Open the dashboard, switch to Edit mode, open Raw Config Editor,",
+    "and paste the 'lovelace_config' object below.",
+    "Adjust entity IDs if your ha-birdbuddy install uses different names."
+  ],
+  "dashboard_meta": {
+    "url_path": "bird-buddy",
+    "title": "Bird Buddy",
+    "icon": "mdi:bird",
+    "show_in_sidebar": true
+  },
+  "lovelace_config": {
+    "title": "Bird Buddy",
+    "views": [
+      {
+        "title": "Bird Buddy",
+        "icon": "mdi:bird",
+        "path": "bird-buddy",
+        "cards": [
+          {
+            "type": "picture-entity",
+            "entity": "camera.bird_buddy_camera",
+            "name": "Bird Buddy Live",
+            "show_state": true,
+            "show_name": true,
+            "camera_view": "auto"
+          },
+          {
+            "type": "glance",
+            "title": "Feeder Status",
+            "entities": [
+              {
+                "entity": "sensor.birdbuddy_battery",
+                "name": "Battery",
+                "icon": "mdi:battery"
+              },
+              {
+                "entity": "sensor.birdbuddy_temperature",
+                "name": "Temp",
+                "icon": "mdi:thermometer"
+              },
+              {
+                "entity": "sensor.birdbuddy_food_level",
+                "name": "Food",
+                "icon": "mdi:food"
+              },
+              {
+                "entity": "sensor.birdbuddy_signal_strength",
+                "name": "Signal",
+                "icon": "mdi:wifi"
+              },
+              {
+                "entity": "sensor.birdbuddy_feeder_state",
+                "name": "State",
+                "icon": "mdi:bird"
+              }
+            ]
+          },
+          {
+            "type": "entity",
+            "entity": "sensor.birdbuddy_recent_visitor",
+            "name": "Last Visitor",
+            "icon": "mdi:feather"
+          },
+          {
+            "type": "entities",
+            "title": "Notification Toggles",
+            "icon": "mdi:bell",
+            "entities": [
+              {
+                "entity": "input_boolean.bird_buddy_new_bird_detected",
+                "name": "New Bird Detected"
+              },
+              {
+                "entity": "input_boolean.bird_buddy_rare_species_alert",
+                "name": "Rare Species Alert"
+              },
+              {
+                "entity": "input_boolean.bird_buddy_low_battery_alert",
+                "name": "Low Battery Alert"
+              },
+              {
+                "entity": "input_boolean.bird_buddy_offline_alert",
+                "name": "Offline Alert"
+              },
+              {
+                "entity": "input_boolean.bird_buddy_daily_summary",
+                "name": "Daily Summary"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

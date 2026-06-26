@@ -1,35 +1,43 @@
 ---
-name: "venice-audio-speech"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/venice-audio-speech"
-sourceUrl: "https://skills.sh/nexu-io/open-design/venice-audio-speech"
+name: venice-audio-speech
+description: |
+  Text-to-speech models, voices, formats, and streaming via Venice.ai. Useful for narration, voiceover, and conversational agent voices.
+triggers:
+  - "tts"
+  - "venice speech"
+  - "text to speech"
+  - "voiceover"
+  - "narration"
+od:
+  mode: audio
+  category: audio-music
+  upstream: "https://github.com/veniceai/skills"
 ---
 
 # venice-audio-speech
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the Venice.ai team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/venice-audio-speech`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/venice-audio-speech](https://skills.sh/nexu-io/open-design/venice-audio-speech)
+## What it does
 
-## Overview
+Text-to-speech models, voices, formats, and streaming via Venice.ai. Useful for narration, voiceover, and conversational agent voices.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/veniceai/skills
+- Category: `audio-music`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/venice-audio-speech
+# Inspect the upstream README for exact paths
+open https://github.com/veniceai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`venice-audio-speech`) or with
+one of the trigger phrases listed in this skill's frontmatter.

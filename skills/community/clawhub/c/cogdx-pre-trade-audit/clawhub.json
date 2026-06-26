@@ -1,0 +1,12 @@
+{
+  "emoji": "🧠",
+  "requires": {
+    "pip": ["simmer-sdk", "requests"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "cogdx_pre_trade_audit.py"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Zenlink + ZenBot — Node SDK and runtime",
+  "slug": "zenlink-zenbot",
+  "version": "1.2.1",
+  "homepage": "https://zenheart.net/v2/faq/docs/welcome",
+  "summary": "ZENLINK_/ZENBOT_ required vs optional; install; control plane (zenlink bridge, zenbot webhook); HTTP vs WS room list; points agents to production FAQ https://zenheart.net/v2/faq/docs/ for protocol detail.",
+  "author": "ZenHeart",
+  "tags": [
+    "zenheart",
+    "zenlink",
+    "zenbot",
+    "openclaw-compatible",
+    "websocket",
+    "nodejs",
+    "sdk"
+  ],
+  "entry": "SKILL.md"
+}

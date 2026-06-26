@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenClaw Backup Configuration",
+  "description": "OpenClaw 备份技能配置文件示例",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "配置文件版本",
+      "default": "1.0.0"
+    },
+    "output": {
+      "type": "object",
+      "description": "输出设置",
+      "properties": {
+        "defaultDir": {
+          "type": "string",
+          "description": "默认备份输出目录",
+          "default": "~/backups/openclaw"
+        },
+        "filenameTemplate": {
+          "type": "string",
+          "description": "备份文件名模板，支持变量: {type}, {date}, {time}",
+          "default": "openclaw-backup-{type}-{date}-{time}"
+        }
+      }
+    },
+    "backup": {
+      "type": "object",
+      "description": "备份设置",
+      "properties": {
+        "defaultType": {
+          "type": "string",
+          "description": "默认备份类型",
+          "enum": ["full", "system", "workspace", "skills", "memory", "cron", "devices"],
+          "default": "full"
+        },
+        "excludePatterns": {
+          "type": "array",
+          "description": "排除的文件/目录模式",
+          "items": {
+            "type": "string"
+          },
+          "default": ["node_modules", ".git", "logs", "tmp", "cache"]
+        },
+        "compressLevel": {
+          "type": "integer",
+          "description": "压缩级别 (1-9)",
+          "minimum": 1,
+          "maximum": 9,
+          "default": 6
+        }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "description": "定时备份设置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用定时备份",
+          "default": false
+        },
+        "cron": {
+          "type": "string",
+          "description": "定时任务表达式",
+          "default": "0 2 * * *"
+        },
+        "type": {
+          "type": "string",
+          "description": "定时备份类型",
+          "enum": ["full", "system", "workspace", "skills"],
+          "default": "full"
+        },
+        "retainDays": {
+          "type": "integer",
+          "description": "保留天数，超过天数的备份将被自动删除",
+          "minimum": 1,
+          "default": 30
+        }
+      }
+    },
+    "notifications": {
+      "type": "object",
+      "description": "通知设置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用通知",
+          "default": false
+        },
+        "onSuccess": {
+          "type": "boolean",
+          "description": "备份成功时发送通知",
+          "default": true
+        },
+        "onFailure": {
+          "type": "boolean",
+          "description": "备份失败时发送通知",
+          "default": true
+        },
+        "channels": {
+          "type": "array",
+          "description": "通知渠道",
+          "items": {
+            "type": "string",
+            "enum": ["feishu", "discord", "slack", "email"]
+          },
+          "default": []
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "description": "安全设置",
+      "properties": {
+        "encryptBackup": {
+          "type": "boolean",
+          "description": "是否加密备份文件",
+          "default": false
+        },
+        "encryptionKey": {
+          "type": "string",
+          "description": "加密密钥（仅当 encryptBackup 为 true 时有效）",
+          "default": ""
+        },
+        "permissionMode": {
+          "type": "string",
+          "description": "备份文件权限模式",
+          "default": "600"
+        }
+      }
+    }
+  },
+  "example": {
+    "version": "1.0.0",
+    "output": {
+      "defaultDir": "~/backups/openclaw",
+      "filenameTemplate": "openclaw-backup-{type}-{date}-{time}"
+    },
+    "backup": {
+      "defaultType": "full",
+      "excludePatterns": ["node_modules", ".git", "logs", "tmp", "cache"],
+      "compressLevel": 6
+    },
+    "schedule": {
+      "enabled": true,
+      "cron": "0 2 * * *",
+      "type": "full",
+      "retainDays": 30
+    },
+    "notifications": {
+      "enabled": true,
+      "onSuccess": true,
+      "onFailure": true,
+      "channels": ["feishu"]
+    },
+    "security": {
+      "encryptBackup": false,
+      "permissionMode": "600"
+    }
+  }
+}

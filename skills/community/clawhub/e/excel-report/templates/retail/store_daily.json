@@ -1,0 +1,110 @@
+{
+  "id": "retail_store_daily",
+  "name": "门店销售日报表",
+  "name_en": "Store Sales Daily Report",
+  "industry": "retail",
+  "scene": "销售监控",
+  "description": "每日门店销售数据监控、品类销售分析，适配连锁零售、商超场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "date", "label": "日期", "type": "date", "required": true, "aliases": ["日期", "date", "销售日期", "统计日期"]},
+        {"field": "store", "label": "门店名称", "type": "string", "required": true, "aliases": ["门店名称", "store", "门店", "店铺", "分店"]},
+        {"field": "category", "label": "品类", "type": "string", "aliases": ["品类", "category", "商品类别", "分类"]},
+        {"field": "sales", "label": "销售额", "type": "number", "aliases": ["销售额", "sales", "销售金额", "营业额"]},
+        {"field": "quantity", "label": "销量", "type": "number", "aliases": ["销量", "quantity", "销售数量", "件数"]},
+        {"field": "traffic", "label": "客流量", "type": "number", "aliases": ["客流量", "traffic", "客流", "进店人数"]},
+        {"field": "promo_type", "label": "促销活动类型", "type": "string", "aliases": ["促销活动类型", "promo_type", "促销类型", "活动类型"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_sales",
+          "label": "总销售额",
+          "formula": "SUM(sales)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "avg_ticket",
+          "label": "平均客单价",
+          "formula": "SUM(sales)/SUM(traffic)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "conversion_rate",
+          "label": "转化率",
+          "formula": "SUM(quantity)/SUM(traffic)",
+          "format": "percent",
+          "style": "gauge"
+        },
+        {
+          "id": "store_count",
+          "label": "门店数量",
+          "formula": "COUNT_DISTINCT(store)",
+          "format": "number",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "store_compare",
+          "type": "bar",
+          "title": "各门店销售额对比",
+          "x": "store",
+          "y": ["sales"],
+          "series_names": ["销售额"],
+          "position": {"row": 1, "col": 1, "width": 15, "height": 10}
+        },
+        {
+          "id": "category_pie",
+          "type": "pie",
+          "title": "各品类销售额占比",
+          "dimension": "category",
+          "metric": "sales",
+          "position": {"row": 1, "col": 18, "width": 10, "height": 8}
+        },
+        {
+          "id": "traffic_trend",
+          "type": "line",
+          "title": "客流vs销售趋势",
+          "x": "date",
+          "y": ["traffic", "sales"],
+          "series_names": ["客流量", "销售额"],
+          "dual_axis": true,
+          "position": {"row": 12, "col": 1, "width": 15, "height": 8}
+        },
+        {
+          "id": "promo_compare",
+          "type": "bar",
+          "title": "促销vs非促销销售额对比",
+          "x": "promo_type",
+          "y": ["sales"],
+          "position": {"row": 12, "col": 18, "width": 10, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "门店排名",
+      "type": "ranking",
+      "source": "原始数据",
+      "group_by": ["store"],
+      "metrics": [
+        {"field": "sales", "agg": "SUM", "label": "销售额"},
+        {"field": "quantity", "agg": "SUM", "label": "销量"},
+        {"field": "traffic", "agg": "SUM", "label": "客流量"}
+      ],
+      "computed_fields": [
+        {"field": "avg_ticket", "label": "客单价", "formula": "sales / traffic", "format": "currency"}
+      ],
+      "sort_by": {"field": "sales", "order": "desc"}
+    }
+  ],
+  "output_filename": "零售业-门店销售日报-{date}.xlsx"
+}

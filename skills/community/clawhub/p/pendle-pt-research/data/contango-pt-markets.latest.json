@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-04-02T03:14:26.625628+00:00",
+  "targetCount": 11,
+  "contangoGlobalPtCount": 6,
+  "verifiedMarketCount": 0,
+  "markets": [],
+  "notes": "Contango verification uses the public pendle-external-integration config repo. Zero matches means no exact support confirmation for the current target PT set, not that Contango lacks Pendle PT support globally."
+}

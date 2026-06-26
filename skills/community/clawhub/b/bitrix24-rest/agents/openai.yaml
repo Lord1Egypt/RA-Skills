@@ -1,0 +1,15 @@
+interface:
+  display_name: "Bitrix24"
+  short_description: "Bitrix24 CRM, tasks, chat, and MCP workflows"
+  default_prompt: "Use $bitrix24 to work with Bitrix24 CRM, tasks, chat, calendar, drive, users, and MCP docs."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "bitrix24-docs"
+      description: "Official Bitrix24 MCP documentation server"
+      transport: "streamable_http"
+      url: "https://mcp-dev.bitrix24.tech/mcp"
+env:
+  - BITRIX24_WEBHOOK_URL
+policy:
+  allow_implicit_invocation: true

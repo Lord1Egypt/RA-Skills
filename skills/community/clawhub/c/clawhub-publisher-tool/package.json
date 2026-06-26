@@ -1,0 +1,7 @@
+{
+  "name": "clawhub-publisher-tool",
+  "displayName": "ClawHub发布助手",
+  "version": "1.0.3",
+  "description": "一键发布技能到ClawHub平台，自动完成登录、版本更新、发布全流程",
+  "homepage": "https://clawhub.ai/skills/clawhub-publisher-tool"
+}

@@ -1,35 +1,91 @@
 ---
-name: "Streamtime"
-description: "Streamtime (streamtime.net). Use this skill for ANY Streamtime request — reading, creating, and updating data. Whenever a task involves Streamtime, use this..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-streamtime"
-sourceUrl: "https://clawhub.ai/skills/oo-streamtime"
+name: oo-streamtime
+description: "Streamtime (streamtime.net). Use this skill for ANY Streamtime request — reading, creating, and updating data. Whenever a task involves Streamtime, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Streamtime"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["streamtime"]
+  icon: "https://static.oomol.com/logo/third-party/streamtime.svg"
 ---
 
 # Streamtime
 
-> Streamtime (streamtime.net). Use this skill for ANY Streamtime request — reading, creating, and updating data. Whenever a task involves Streamtime, use this...
+Operate **Streamtime** through your OOMOL-connected account. This skill calls the `streamtime` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-streamtime`
-- **Source URL:** [https://clawhub.ai/skills/oo-streamtime](https://clawhub.ai/skills/oo-streamtime)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected Streamtime. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-streamtime
+oo connector schema "streamtime" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "streamtime" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `create_company` — Create a company in Streamtime for the authenticated organisation. [write]
+- `create_company_contact` — Create a contact under a Streamtime company. [write]
+- `create_job` — Create a Streamtime job linked to a company, rate card, and optional contact. [write]
+- `get_company` — Get a Streamtime company by ID.
+- `get_contact` — Get a Streamtime contact by ID.
+- `get_job` — Get a Streamtime job by ID.
+- `get_organisation` — Get the authenticated Streamtime organisation details.
+- `list_branches` — List the Streamtime branches available to the authenticated organisation.
+- `list_company_contacts` — List the contacts that belong to a Streamtime company.
+- `list_rate_cards` — List the Streamtime rate cards available to the authenticated organisation.
+- `list_users` — List the Streamtime users available to the authenticated organisation.
+- `update_company` — Update a Streamtime company by ID. [write]
+- `update_contact` — Update a Streamtime contact by ID. [write]
+- `update_job` — Update a Streamtime job by ID. [write]
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Streamtime state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Streamtime is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=streamtime
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- Streamtime homepage: https://www.streamtime.net

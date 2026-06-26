@@ -1,0 +1,56 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_i18n_save_define_designer",
+    "description": "Save internationalization translation definitions. Used to maintain multi-language translation structure and content within the application",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "translateList": {
+          "type": "array",
+          "description": "Internationalization translation list (supports grouping and multi-level structure)",
+          "items": {
+            "$ref": "#/definitions/Translate"
+          }
+        }
+      },
+      "required": ["translateList"],
+      "definitions": {
+        "Translate": {
+          "type": "object",
+          "description": "Internationalization translation item or translation group",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Translation item ID, 16-digit lowercase English random string, e.g., dcukarpyabqke, cannot be duplicated"
+            },
+            "key": {
+              "type": "string",
+              "description": "Translation identifier (e.g., button.submit, menu.user)"
+            },
+            "isDirectory": {
+              "type": "boolean",
+              "description": "Whether it is a group directory"
+            },
+            "children": {
+              "type": "array",
+              "description": "Sub-translation items (used when isDirectory=true)",
+              "items": {
+                "$ref": "#/definitions/Translate"
+              }
+            },
+            "content": {
+              "type": "object",
+              "description": "Translation content, key is language ID, value is translation text in the corresponding language",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["id", "key", "isDirectory"],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

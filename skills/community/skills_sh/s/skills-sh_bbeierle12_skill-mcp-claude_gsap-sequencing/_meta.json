@@ -1,0 +1,19 @@
+{
+  "name": "gsap-sequencing",
+  "description": "Complex GSAP timelines including labels, callbacks, nested timelines, and position parameters. Use when orchestrating multi-step animations, building animation sequences, or creating coordinated motion. Essential for cinematic animations and complex UI choreography.",
+  "tags": [
+    "animation",
+    "javascript",
+    "code-generation"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "template",
+  "depends_on": [
+    "gsap-fundamentals"
+  ],
+  "enhances": [],
+  "last_reviewed_at": "2026-06-19",
+  "review_score": 60,
+  "relevance_tier": "B"
+}

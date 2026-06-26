@@ -1,35 +1,159 @@
 ---
-name: "Vinehoo Product Search"
-description: "酒云网葡萄酒商品搜索与统计工具；当用户需要搜索葡萄酒、红酒、香槟等商品，或查看当日新上商品统计及具体商品时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vinehoo-search"
-sourceUrl: "https://clawhub.ai/skills/vinehoo-search"
+name: vinehoo-product-search
+description: 酒云网葡萄酒商品搜索与统计工具；当用户需要搜索葡萄酒、红酒、香槟等商品，或查看当日新上商品统计及具体商品时使用
 ---
 
-# Vinehoo Product Search
+# 酒云网葡萄酒商品搜索与统计
 
-> 酒云网葡萄酒商品搜索与统计工具；当用户需要搜索葡萄酒、红酒、香槟等商品，或查看当日新上商品统计及具体商品时使用
+## 任务目标
+- 本 Skill 用于：搜索酒云网（vinehoo.com）的专业葡萄酒商品库，并查看当日新上商品统计及具体商品
+- 能力包含：
+  - 商品搜索：按关键词搜索、按价格区间筛选、按产地国家筛选、按酒类类型筛选、分页查询
+  - 统计摘要：查看当日新上商品的国家分布、类型分布、酒庄分布、产区分布
+  - 统计商品：根据统计维度查询当日新上的具体商品列表
+- 专长领域：葡萄酒、红酒、香槟、起泡酒、烈酒等全品类酒类商品
+- 触发条件：用户请求搜索酒类商品，或需要获取当日新上商品的统计信息或具体商品
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vinehoo-search`
-- **Source URL:** [https://clawhub.ai/skills/vinehoo-search](https://clawhub.ai/skills/vinehoo-search)
+## 前置准备
+- 依赖说明：使用 Node.js 原生 https 模块，无需额外安装依赖
+- 无需额外授权
 
-## Overview
+## 操作步骤
 
+### 商品搜索流程
+- 标准流程：
+  1. **用户需求评估与引导**
+     - 评估用户对葡萄酒的了解程度和提供的信息完整度
+     - 如果用户搜索条件非常少（如仅说"推荐一款红酒"），主动引导用户补充关键信息：
+       - **预算范围**：您希望的价格区间是多少？如100-300元
+       - **产地偏好**：您有偏好的国家吗？如法国、意大利、澳洲等
+       - **酒类类型**：您想要什么类型？红葡萄酒、白葡萄酒、香槟等
+       - **饮用场景**：日常饮用、送礼、聚会等（可用于推荐）
+       - **口味偏好**：喜欢果香浓郁、酒体厚重、清爽轻盈等
+     - 如果用户已提供较为详细的条件，直接进入搜索
+  2. **构建搜索参数**
+     - 根据用户需求确定搜索条件：
+       - `page`: 页码（必需，从1开始）
+       - `limit`: 每页数量（可选，默认10）
+       - `keywords`: 搜索关键词（可选，如"香槟"、"勃艮第"、"黑皮诺"）
+       - `price_gte`: 最低价格（可选）
+       - `price_lte`: 最高价格（可选）
+       - `countries`: 产地国家列表（可选，支持多个，如"法国 意大利"）
+       - `category`: 酒类类型（可选，仅支持一个，如"白葡萄酒"）
+  3. **调用搜索脚本**
+     - 执行 `node scripts/search_products.js --page <页码> --limit <数量> --keywords "<关键词>" --price-gte <最低价> --price-lte <最高价> --countries <国家1> <国家2> ... --category "<类型>"`
+     - 脚本返回商品列表数据
+  4. **结果处理与展示**
+     - 智能体根据返回的商品列表，进行以下处理：
+       - 提取关键信息（酒款名称、价格、产地、产区、风格特点）
+       - **必须展示商品链接**：每个商品都要提供完整的商品详情页链接（url字段），用户可点击查看详情或购买
+       - 根据用户需求推荐匹配的葡萄酒
+       - 提供专业的酒品介绍和购买建议
+       - 格式化输出结果
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vinehoo-search
-```
+### 统计摘要流程
+- 标准流程：
+  1. **调用统计脚本**
+     - 执行 `node scripts/statistics_summary.js`
+     - 脚本返回当日新上商品的统计摘要数据
+  2. **结果处理与展示**
+     - 智能体根据返回的统计数据，进行以下处理：
+       - 提取关键信息（日期、总数量、各维度分布）
+       - 分析当日上新的重点国家和产区
+       - 分析当日上新的主要酒类类型
+       - 总结当日上新趋势和亮点
+       - 格式化输出结果
+       - **主动引导**：如果用户对某个维度感兴趣（如某个国家或产区），可引导用户查看该维度的具体商品
+
+### 统计商品流程（当日新上商品）
+- 标准流程：
+  1. **构建查询参数**
+     - 根据统计摘要中的维度或用户需求确定查询条件：
+       - `page`: 页码（可选，默认1）
+       - `limit`: 每页数量（可选，默认10）
+       - `country`: 国家（可选）
+       - `category`: 酒类类型（可选）
+       - `region`: 产区（可选）
+       - `winery`: 酒庄（可选）
+  2. **调用统计商品脚本**
+     - 执行 `node scripts/statistics_products.js --page <页码> --limit <数量> --country "<国家>" --category "<类型>" --region "<产区>" --winery "<酒庄>"`
+     - 脚本返回当日新上商品列表数据
+  3. **结果处理与展示**
+     - 智能体根据返回的商品列表，进行以下处理：
+       - 提取关键信息（酒款名称、价格、产地、产区、风格特点）
+       - **必须展示商品链接**：每个商品都要提供完整的商品详情页链接（url字段），用户可点击查看详情或购买
+       - 根据筛选条件为用户提供针对性的推荐
+       - 提供专业的酒品介绍和购买建议
+       - 格式化输出结果
+
+### 可选分支
+- 当用户信息不足：主动引导补充关键信息（预算、产地、类型等）
+- 当仅关键词搜索：传递 `--keywords` 参数（如搜索特定产区、葡萄品种、酒庄名）
+- 当仅价格筛选：传递 `--price-gte` 和/或 `--price-lte` 参数
+- 当仅产地筛选：传递 `--countries` 参数（支持多个国家）
+- 当仅类型筛选：传递 `--category` 参数（如红葡萄酒、白葡萄酒、香槟等）
+- 当组合筛选：同时传递多个参数，实现精准匹配
+- 当用户查看当日新上统计：调用统计摘要脚本，分析当日上新情况
+- 当用户查看当日新上统计后的具体商品：调用统计商品脚本，按统计维度查询当日新上的具体商品
+- 当用户对某个统计维度感兴趣：引导用户使用统计商品脚本查看该维度的当日新上具体商品
+
+## 资源索引
+- 领域参考：见 [references/api-reference.md](references/api-reference.md)（何时读取：需要了解支持的产地国家、酒类类型列表、详细参数说明）
+
+## 注意事项
+- 仅在需要时读取参考，保持上下文简洁
+- 脚本已处理错误情况，查询失败时会返回明确的错误信息
+- 脚本会验证国家和类型参数，传入不支持的产地或类型会返回错误提示
+- **用户引导**：当用户对葡萄酒了解不多或搜索条件很少时，主动询问并引导用户补充预算、产地、类型等关键信息，提供更好的推荐效果
+- 智能体应充分利用葡萄酒专业知识，为用户提供有价值的推荐和建议
+- **重要**：每次展示商品结果时，必须包含商品详情页链接（url），用户点击链接即可查看完整详情或直接购买
+- 支持的产地涵盖全球主要葡萄酒生产国：法国、意大利、德国、西班牙、澳大利亚、新西兰、智利、阿根廷、美国等
+- 支持的酒类类型丰富：红葡萄酒、白葡萄酒、起泡酒、香槟、甜酒、烈酒、清酒、加强酒等
+- **统计数据说明**：统计信息中各维度（国家、类型、酒庄、产区）的数量加起来可能与总数不一致，这是正常情况。原因包括：
+  - 有些商品可能未绑定产区信息
+  - 有些商品可能未绑定酒庄信息
+  - 不同维度的统计是独立计算的
+  - **仅在用户主动询问"为什么数据对不上"时才解释此原因，否则不主动提及**
+- **统计商品说明**：统计商品脚本用于查询当日新上的具体商品，返回格式与商品搜索脚本的返回格式完全相同，包含完整的商品信息（url、title、brief、price、country、regions、product_keyword）
+
+## 使用示例
+- 示例1：搜索香槟类商品
+  ```bash
+  node scripts/search_products.js --page 1 --limit 10 --keywords "香槟"
+  ```
+- 示例2：查找100-500元价格区间的葡萄酒
+  ```bash
+  node scripts/search_products.js --page 1 --price-gte 100 --price-lte 500
+  ```
+- 示例3：筛选法国和意大利产地的葡萄酒
+  ```bash
+  node scripts/search_products.js --page 1 --limit 10 --countries 法国 意大利
+  ```
+- 示例4：筛选白葡萄酒类型
+  ```bash
+  node scripts/search_products.js --page 1 --limit 10 --category "白葡萄酒"
+  ```
+- 示例5：组合搜索（关键词+价格+产地+类型）
+  ```bash
+  node scripts/search_products.js --page 1 --limit 20 --keywords "勃艮第" --price-gte 300 --price-lte 800 --countries 法国 --category "红葡萄酒"
+  ```
+- 示例6：查看当日新上商品统计摘要
+  ```bash
+  node scripts/statistics_summary.js
+  ```
+- 示例7：查询当日新上商品中某个统计维度的具体商品（如意大利的干红葡萄酒）
+  ```bash
+  node scripts/statistics_products.js --country "意大利" --category "干红葡萄酒"
+  ```
+- 示例8：查询当日新上商品中某个产区的具体商品
+  ```bash
+  node scripts/statistics_products.js --region "瓦波利切拉产区"
+  ```
+- 示例9：查询当日新上商品中某个酒庄的具体商品
+  ```bash
+  node scripts/statistics_products.js --winery "佩高酒庄"
+  ```
+- 示例10：查询当日新上所有商品
+  ```bash
+  node scripts/statistics_products.js
+  ```

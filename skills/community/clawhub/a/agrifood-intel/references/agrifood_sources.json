@@ -1,0 +1,91 @@
+{
+  "skill_name": "Global Food & Agriculture Intelligence",
+  "slug": "agrifood-intel",
+  "version": "1.0.0",
+  "data_sources": {
+    "food_security_and_hunger": [
+      {"name": "FAO Food Price Index (FFPI)", "url": "https://www.fao.org/worldfoodsituation/foodpricesindex/en/", "type": "monthly", "coverage": "global commodity food prices"},
+      {"name": "WFP HungerMap Live", "url": "https://hungermap.wfp.org/", "type": "real-time", "coverage": "90+ countries food security"},
+      {"name": "FAO SOFI (State of Food Security)", "url": "https://www.fao.org/publications/sofi/en/", "type": "annual", "coverage": "global hunger and malnutrition"},
+      {"name": "IPC (Integrated Food Security Phase Classification)", "url": "https://www.ipcinfo.org/", "type": "ongoing", "coverage": "35+ crisis countries, famine early warning"},
+      {"name": "FEWS NET (Famine Early Warning)", "url": "https://fews.net/", "type": "monthly", "coverage": "30+ countries"},
+      {"name": "IFPRI Global Food Policy Report", "url": "https://www.ifpri.org/", "type": "annual", "coverage": "global food policy analysis"}
+    ],
+    "crop_and_production": [
+      {"name": "USDA WASDE (World Agricultural Supply & Demand)", "url": "https://www.usda.gov/oce/commodity/wasde", "type": "monthly", "coverage": "global grains, oilseeds, cotton"},
+      {"name": "FAOSTAT", "url": "https://www.fao.org/faostat/en/", "type": "annual/ongoing", "coverage": "245 countries, 20 years of data"},
+      {"name": "AMS Agricultural Market Info System", "url": "https://www.amis-outlook.org/", "type": "monthly", "coverage": "G20+ major crop markets"},
+      {"name": "Gro Intelligence", "url": "https://www.gro-intelligence.com/", "type": "real-time", "coverage": "AI-driven agricultural analytics"},
+      {"name": "CropProphet", "url": "https://www.cropprophet.com/", "type": "daily", "coverage": "weather-driven yield forecasts"},
+      {"name": "IGC International Grains Council", "url": "https://www.igc.int/", "type": "monthly", "coverage": "grains, rice, oilseeds trade"}
+    ],
+    "commodity_prices": [
+      {"name": "CBOT/CME Agricultural Futures", "url": "https://www.cmegroup.com/markets/agriculture.html", "type": "real-time", "coverage": "corn, soybeans, wheat, livestock"},
+      {"name": "Euronext Agricultural Futures", "url": "https://live.euronext.com/en/products/commodities-futures", "type": "real-time", "coverage": "EU milling wheat, rapeseed"},
+      {"name": "DCE Dalian Commodity Exchange", "url": "https://www.dce.com.cn/", "type": "real-time", "coverage": "China soybeans, corn, palm oil"},
+      {"name": "World Bank Commodity Markets", "url": "https://www.worldbank.org/en/research/commodity-markets", "type": "monthly", "coverage": "all agri commodities Pink Sheet"}
+    ],
+    "climate_and_environment": [
+      {"name": "NOAA Climate Prediction Center", "url": "https://www.cpc.ncep.noaa.gov/", "type": "daily/monthly", "coverage": "global weather, ENSO outlook"},
+      {"name": "IPCC Assessment Reports", "url": "https://www.ipcc.ch/", "type": "periodic", "coverage": "climate science on agriculture"},
+      {"name": "NASA Earth Observatory (NDVI/GPP)", "url": "https://earthobservatory.nasa.gov/", "type": "real-time", "coverage": "satellite vegetation indices"},
+      {"name": "JRC MARS Crop Monitoring", "url": "https://mars.jrc.ec.europa.eu/", "type": "10-day", "coverage": "EU + neighbors crop yield forecasting"}
+    ],
+    "agritech_and_innovation": [
+      {"name": "AgFunder Agrifood Tech Investment Report", "url": "https://agfunder.com/research/", "type": "annual", "coverage": "global agrifood tech VC"},
+      {"name": "FAO Digital Agriculture Reports", "url": "https://www.fao.org/digital-agriculture/en/", "type": "ongoing", "coverage": "e-agriculture, precision farming"},
+      {"name": "UC Davis AgTech Directory", "url": "https://agtech.ucdavis.edu/", "type": "ongoing", "coverage": "startup landscape"}
+    ],
+    "trade_and_supply_chain": [
+      {"name": "WTO Agricultural Trade Data", "url": "https://www.wto.org/english/res_e/statis_e/merch_trade_stat_e.htm", "type": "ongoing", "coverage": "global agri trade flows"},
+      {"name": "ITC Trade Map", "url": "https://www.trademap.org/", "type": "ongoing", "coverage": "220 countries bilateral ag trade"},
+      {"name": "FAO GIEWS (Global Info & Early Warning)", "url": "https://www.fao.org/giews/en/", "type": "quarterly", "coverage": "crop prospects and food situation"}
+    ],
+    "fisheries_and_aquaculture": [
+      {"name": "FAO SOFIA (State of World Fisheries)", "url": "https://www.fao.org/fishery/en/sofia", "type": "biennial", "coverage": "global fisheries, aquaculture"},
+      {"name": "Global Fishing Watch", "url": "https://globalfishingwatch.org/", "type": "real-time", "coverage": "AIS vessel tracking, IUU monitoring"}
+    ]
+  },
+  "key_commodities_tracked": {
+    "grains": ["Wheat (HRW, SRW, EU milling)", "Corn/Maize", "Rice (Thai, Vietnamese, Indian)", "Barley", "Sorghum"],
+    "oilseeds_and_protein": ["Soybeans", "Soybean Meal", "Soybean Oil", "Rapeseed/Canola", "Palm Oil (CPO)", "Sunflower Oil"],
+    "soft_commodities": ["Coffee (Arabica, Robusta)", "Cocoa", "Sugar (raw, white)", "Cotton", "Orange Juice (FCOJ)"],
+    "livestock_and_dairy": ["Live Cattle", "Lean Hogs", "Butter", "Skim Milk Powder (SMP)", "Whole Milk Powder (WMP)", "Cheese"],
+    "fertilizer": ["Urea", "DAP (Diammonium Phosphate)", "MOP (Potash/Muriate)", "Ammonia", "Phosphate Rock"]
+  },
+  "food_systems_models": [
+    "FAO Global Food System Model (GLOBIOM-based)",
+    "IFPRI IMPACT Model (partial equilibrium)",
+    "Wageningen MAGNET (CGE model)",
+    "Potsdam MAgPIE (land-use optimization)",
+    "USDA ERS Baseline Projections (10-year)"
+  ],
+  "critical_agrifood_issues_2026": [
+    "Fertilizer affordability post-Ukraine shock",
+    "Black Sea Grain Corridor alternatives",
+    "India rice export restrictions and global impact",
+    "EU Farm to Fork regulatory timeline",
+    "El Niño / La Niña crop impact cycles",
+    "African Swine Fever and livestock diseases",
+    "Alternative proteins (precision fermentation, cultivated meat)",
+    "Regenerative agriculture carbon credit markets",
+    "Water scarcity for irrigation (Colorado, Indus, Nile basins)",
+    "Gene-edited crops (CRISPR) regulatory divergence",
+    "Vertical farming economics at scale",
+    "Food waste reduction mandates (EU, China, California)"
+  ],
+  "food_crisis_hotspots": {
+    "unit": "IPC Phase 3+ (Crisis or worse)",
+    "data": [
+      {"country": "Sudan", "phase_3plus_population_m": 17.7, "drivers": "conflict, displacement"},
+      {"country": "Ethiopia", "phase_3plus_population_m": 15.8, "drivers": "drought, conflict in Tigray/Amhara"},
+      {"country": "DRC", "phase_3plus_population_m": 23.4, "drivers": "conflict, displacement"},
+      {"country": "Yemen", "phase_3plus_population_m": 17.0, "drivers": "conflict, economic collapse"},
+      {"country": "Afghanistan", "phase_3plus_population_m": 15.3, "drivers": "economic, drought"},
+      {"country": "Nigeria", "phase_3plus_population_m": 24.9, "drivers": "insecurity, inflation"},
+      {"country": "Somalia", "phase_3plus_population_m": 4.3, "drivers": "drought, conflict"},
+      {"country": "Haiti", "phase_3plus_population_m": 5.0, "drivers": "gang violence, economic collapse"}
+    ]
+  }
+}
+（内容由AI生成，仅供参考）

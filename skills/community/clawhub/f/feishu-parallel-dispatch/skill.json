@@ -1,0 +1,19 @@
+{
+  "name": "feishu-parallel-dispatch",
+  "version": "1.0.1",
+  "description": "Spawn one background child task per substantial Feishu prompt so the foreground chat stays responsive.",
+  "author": "Dawei",
+  "metadata": {
+    "tags": [
+      "feishu",
+      "dispatch",
+      "parallel",
+      "subagents",
+      "async"
+    ],
+    "categories": [
+      "Productivity",
+      "Automation"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "uplo-enterprise-it",
+  "display_name": "UPLO Enterprise IT — Technology Operations & Security Intelligence",
+  "description": "AI-powered enterprise IT intelligence spanning DevOps, cybersecurity, and engineering. Unified search across infrastructure, security, and architecture documentation.",
+  "version": "1.0.0",
+  "author": "UPLO",
+  "tags": [
+    "enterprise-it",
+    "infrastructure",
+    "security",
+    "knowledge-management"
+  ],
+  "config": {
+    "agentdocs_url": {
+      "type": "string",
+      "required": true,
+      "description": "Your UPLO instance URL (e.g., https://app.uplo.ai)"
+    },
+    "api_key": {
+      "type": "string",
+      "required": true,
+      "secret": true,
+      "description": "Your UPLO MCP token"
+    }
+  },
+  "mcp": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@agentdocs1/mcp-server",
+      "--http"
+    ],
+    "env": {
+      "AGENTDOCS_URL": "${config.agentdocs_url}",
+      "API_KEY": "${config.api_key}",
+      "DEFAULT_PACKS": "it_devops,cybersecurity,engineering"
+    },
+    "transport": "http",
+    "url": "${config.agentdocs_url}/mcp"
+  },
+  "capabilities": [
+    "search_knowledge",
+    "search_with_context",
+    "get_policy",
+    "export_org_context",
+    "get_directives"
+  ],
+  "identity_patch": "identity-patch.md"
+}

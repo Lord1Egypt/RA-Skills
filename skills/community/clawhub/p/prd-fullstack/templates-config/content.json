@@ -1,0 +1,41 @@
+{
+  "name": "content",
+  "displayName": "内容类",
+  "keywords": ["内容", "文章", "视频", "资讯", "新闻", "推荐", "订阅", "媒体", "阅读", "播放"],
+  "description": "适用于内容平台、资讯App、视频平台、阅读产品等",
+  "sections": {
+    "overview": {
+      "focus": ["内容生产", "分发推荐", "消费体验"],
+      "specialFields": ["推荐算法", "内容审核", "创作者激励"]
+    },
+    "requirements": {
+      "commonFeatures": [
+        "内容展示",
+        "推荐系统",
+        "内容搜索",
+        "收藏/历史",
+        "内容创作工具"
+      ]
+    },
+    "userStories": {
+      "roles": ["内容消费者", "内容创作者", "平台审核员"]
+    },
+    "data": {
+      "specialEvents": [
+        "内容曝光",
+        "内容点击",
+        "播放进度",
+        "完播/跳出",
+        "内容互动"
+      ]
+    }
+  },
+  "flowcharts": {
+    "autoGenerate": true,
+    "commonFlows": [
+      "内容推荐流程",
+      "内容发布流程",
+      "内容审核流程"
+    ]
+  }
+}

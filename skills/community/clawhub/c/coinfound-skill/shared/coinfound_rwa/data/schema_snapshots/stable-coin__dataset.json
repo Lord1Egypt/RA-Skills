@@ -1,0 +1,108 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "stable-coin.dataset",
+  "inferred_schema": {
+    "properties": {
+      "list": {
+        "items": {
+          "properties": {
+            "coinNetworks": {
+              "items": {
+                "properties": {
+                  "activeAddress30D": {
+                    "type": "number"
+                  },
+                  "contractAddress": {
+                    "type": "string"
+                  },
+                  "holders": {
+                    "type": "number"
+                  },
+                  "holdersChange30d": {
+                    "type": "number"
+                  },
+                  "marketCap": {
+                    "type": "number"
+                  },
+                  "marketCapChange7d": {
+                    "type": "number"
+                  },
+                  "networkName": {
+                    "type": "string"
+                  },
+                  "platform": {
+                    "type": "string"
+                  },
+                  "transferVolume1M": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "activeAddress30D",
+                  "contractAddress",
+                  "holders",
+                  "holdersChange30d",
+                  "marketCap",
+                  "marketCapChange7d",
+                  "networkName",
+                  "platform",
+                  "transferVolume1M"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "description": {
+              "type": "string"
+            },
+            "issuerName": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "ticker": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "coinNetworks",
+            "description",
+            "issuerName",
+            "name",
+            "ticker"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "list"
+    ],
+    "type": "object"
+  },
+  "notes": [
+    "Snapshot captured with ticker=USDT.",
+    "Dataset contains nested coinNetworks, so shape family is dataset_nested_networks."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/stable-coin/dataset/USDT",
+    "path_params": {
+      "ticker": "USDT"
+    },
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/stable-coin/dataset/USDT"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "data_keys": [
+      "list"
+    ],
+    "list_length": 1,
+    "message": "success"
+  },
+  "shape_family": "dataset_nested_networks",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/stable-coin__dataset.json"
+}

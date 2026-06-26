@@ -1,0 +1,4 @@
+interface:
+  display_name: "领域专家地图"
+  short_description: "快速梳理一个领域的代表专家、核心共识、关键分歧和入门路线。"
+  default_prompt: "我想快速学习【领域名称】。请找出代表专家、核心共识、重要分歧、对照表和入门学习路线。"

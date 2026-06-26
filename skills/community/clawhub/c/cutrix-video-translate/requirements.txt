@@ -1,0 +1,2 @@
+# Pin for reproducible agent environments; bump minor/patch when releasing SDK.
+cutrix-video-translate-sdk>=0.0.2,<1.0.0

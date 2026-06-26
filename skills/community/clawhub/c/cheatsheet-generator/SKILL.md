@@ -1,35 +1,227 @@
 ---
-name: "Cheatsheet Generator"
-description: "速查表生成器。当用户说"生成 XXX 速查表"、"XXX 速查"、"XXX 快速参考"、"XXX 命令大全"时触发，生成结构化的 Markdown 速查表，支持导出保存。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cheatsheet-generator"
-sourceUrl: "https://clawhub.ai/skills/cheatsheet-generator"
+name: cheatsheet-generator
+description: 速查表生成器。当用户说"生成 XXX 速查表"、"XXX 速查"、"XXX 快速参考"、"XXX 命令大全"时触发，生成结构化的 Markdown 速查表，支持导出保存。
+metadata:
+  {
+    "openclaw": { "emoji": "📋" },
+  }
 ---
 
-# Cheatsheet Generator
+# 速查表生成器 📋
 
-> 速查表生成器。当用户说"生成 XXX 速查表"、"XXX 速查"、"XXX 快速参考"、"XXX 命令大全"时触发，生成结构化的 Markdown 速查表，支持导出保存。
+> 生成结构化速查表，沉淀实战经验，支持导出分享
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cheatsheet-generator`
-- **Source URL:** [https://clawhub.ai/skills/cheatsheet-generator](https://clawhub.ai/skills/cheatsheet-generator)
+---
 
-## Overview
+## 触发词
 
+### 生成速查表
+当用户消息包含以下关键词时触发：
+- "生成 XXX 速查表"
+- "XXX 速查"
+- "XXX 快速参考"
+- "XXX 命令大全"
+- "XXX 配置指南"
+- "XXX 手册"
+- "XXX cheat sheet"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cheatsheet-generator
+### 搜索模板
+当用户消息包含以下关键词时触发：
+- "搜索 XXX 速查表"
+- "查找 XXX"
+- "找 XXX 相关的速查表"
+- "有没有 XXX 的速查表"
+
+---
+
+## 输出格式
+
+使用 **Markdown 格式**，包含以下模块：
+
+### 1️⃣ 前置准备（检查清单）
+```markdown
+## 📋 前置准备
+
+- [ ] 检查项 1
+- [ ] 检查项 2
 ```
+
+### 2️⃣ 核心命令/步骤
+```markdown
+## 🚀 核心命令
+
+```bash
+命令 1  # 说明
+命令 2  # 说明
+```
+
+### 3️⃣ 常见问题
+```markdown
+## ⚠️ 常见问题
+
+**Q**: 问题 1？
+
+**A**: 解答 1
+```
+
+### 4️⃣ 实用示例
+```markdown
+## 💡 实用示例
+
+示例 1 说明
+```
+
+---
+
+## 支持的主题
+
+### 内置模板（技术类）
+| 主题 | 触发词 | 说明 |
+|------|--------|------|
+| npm 发布 | `npm 速查表`、`npm 发布` | npm 包发布完整指南 |
+| OpenClaw 技能开发 | `技能开发速查表`、`OpenClaw 技能` | OpenClaw 技能开发指南 |
+| Git 常用命令 | `Git 速查表`、`Git 命令` | Git 高频命令速查 |
+
+### AI 生成（支持任何领域）✨
+**支持非技术领域的速查表！**
+
+如果用户请求的主题没有内置模板，使用 AI 动态生成，支持：
+- 🏠 **生活类**：咖啡冲泡、健身动作、旅行攻略
+- 💪 **健康类**：运动指南、饮食建议、冥想技巧
+- 📚 **学习类**：语言学习、考试复习、知识总结
+- 💼 **工作类**：会议组织、时间管理、沟通技巧
+- 🍳 **美食类**：菜谱、烘焙技巧、调酒配方
+- 🎨 **兴趣类**：摄影技巧、绘画入门、音乐理论
+- ... **任何领域都可以！**
+
+**示例**：
+```
+生成咖啡冲泡速查表
+→ 📋 咖啡冲泡速查表（AI 生成）
+
+生成健身深蹲速查表
+→ 📋 健身深蹲速查表（AI 生成）
+
+生成英语时态速查表
+→ 📋 英语时态速查表（AI 生成）
+```
+
+---
+
+## 导出功能
+
+生成速查表后，主动询问用户：
+
+> 📁 需要保存为 Markdown 文件吗？
+> - 保存：保存到 `~/Documents/cheatsheets/XXX-速查表.md`
+> - 不保存：仅显示
+
+保存后告知文件路径，方便后续查阅。
+
+---
+
+## 使用示例
+
+### 示例 1：npm 发布速查表
+```
+用户：生成 npm 发布速查表
+
+助手：📋 npm 发布速查表
+
+## 📋 前置准备
+- [ ] README.md 完整
+- [ ] LICENSE 正确（MIT-0）
+- [ ] package.json 元数据完整
+...
+
+需要保存为 Markdown 文件吗？
+```
+
+### 示例 2：Git 速查表
+```
+用户：Git 速查表
+
+助手：📋 Git 常用命令速查表
+
+## 🚀 核心命令
+```bash
+git status        # 查看状态
+git add .         # 添加所有文件
+...
+```
+```
+
+### 示例 3：自定义主题
+```
+用户：生成 Docker 速查表
+
+助手：📋 Docker 速查表（AI 生成）
+
+（AI 根据知识库生成 Docker 相关速查表）
+```
+
+---
+
+## 模板管理
+
+### 添加新模板
+1. 在 `templates/` 目录创建 JSON 文件
+2. 定义模板结构（sections）
+3. 测试渲染效果
+
+### 模板结构
+```json
+{
+  "id": "npm-publish",
+  "title": "npm 发布速查表",
+  "keywords": ["npm", "发布", "publish"],
+  "sections": [
+    {
+      "name": "📋 前置准备",
+      "type": "checklist",
+      "items": ["检查项 1", "检查项 2"]
+    },
+    {
+      "name": "🚀 核心命令",
+      "type": "commands",
+      "items": [
+        {"cmd": "npm login", "desc": "登录 npm"}
+      ]
+    }
+  ]
+}
+```
+
+---
+
+## 注意事项
+
+1. **内容质量优先**
+   - 内置模板必须经过实战验证
+   - 不要从网上抄袭，用自己的经验
+
+2. **及时更新**
+   - 发现新坑 → 更新到速查表
+   - 用户反馈 → 优化内容
+
+3. **导出功能**
+   - 保存后告知文件路径
+   - 支持追加到已有文件
+
+---
+
+## 扩展方向
+
+### v1.1.0
+- [ ] 支持 PDF 导出
+- [ ] 支持分享链接
+- [ ] 模板市场（用户贡献）
+
+### v1.2.0
+- [ ] 团队协作（共享模板库）
+- [ ] 版本管理（模板更新历史）
+- [ ] 智能推荐（根据使用习惯）
+
+---
+
+*版本：v1.0.0 | 作者：万万粥 | 最后更新：2026-03-23*

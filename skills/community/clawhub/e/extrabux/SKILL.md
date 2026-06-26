@@ -1,35 +1,32 @@
 ---
-name: "Extrabux返利助手"
-description: "Extrabux海淘返利平台工具，中英双语界面，覆盖10000+海外商家，为全球华人提供购物现金返利服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/extrabux"
-sourceUrl: "https://clawhub.ai/skills/extrabux"
+name: Extrabux返利助手
+description: Extrabux海淘返利平台工具，中英双语界面，覆盖10000+海外商家，为全球华人提供购物现金返利服务。
+version: 0.1.0
 ---
 
 # Extrabux返利助手
 
-> Extrabux海淘返利平台工具，中英双语界面，覆盖10000+海外商家，为全球华人提供购物现金返利服务。
+Extrabux海淘返利平台工具。中英双语界面，覆盖10000+海外商家，为全球华人提供购物现金返利服务，支持支付宝、PayPal等多种提现方式，是海淘返利的综合性工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/extrabux`
-- **Source URL:** [https://clawhub.ai/skills/extrabux](https://clawhub.ai/skills/extrabux)
+## 触发词
 
-## Overview
+extrabux、extrabux返利、海淘返利平台、extrabux cashback、全球返利
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/extrabux
+- **10000+商家**：覆盖范围广，全球主流电商和品牌
+- **中英双语**：适合中国用户和海外华人
+- **多种提现**：支付宝/PayPal/银行转账
+- **高返利活动**：定期推出高返利专题活动
+
+## 输出格式
+
+```
+🌍 Extrabux返利查询
+
+商家：[商家名称]
+返利比例：[X]%
+可用优惠码：[优惠码]
+提现方式：支付宝/PayPal
+返利链接：[链接]
 ```

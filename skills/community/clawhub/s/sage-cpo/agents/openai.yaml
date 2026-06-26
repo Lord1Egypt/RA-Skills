@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sage CPO"
+  short_description: "面向 1-30 人团队的 AI CPO，和人类结对打磨产品，把洞察、MVP、PMF 与路线图变成可交付系统。"
+  default_prompt: "把 Sage CPO 当作我的长期产品合伙人，先检查或初始化 ~/.sage 公司 DNA，再围绕用户、产品、优先级、PMF 和服务产品化给出判断。"

@@ -1,35 +1,36 @@
----
-name: "Caldav Manager"
-description: "Manage CalDAV calendars with vdirsyncer and khal. Create, read, update, and delete calendar events with bidirectional sync. Use when you need to work with ca..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/caldav-manager"
-sourceUrl: "https://clawhub.ai/skills/caldav-manager"
----
+# CalDAV Manager
 
-# Caldav Manager
+⚠️ **DEPRECATED - DO NOT USE**
 
-> Manage CalDAV calendars with vdirsyncer and khal. Create, read, update, and delete calendar events with bidirectional sync. Use when you need to work with ca...
+This skill has been **replaced** by the **organizer** skill.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/caldav-manager`
-- **Source URL:** [https://clawhub.ai/skills/caldav-manager](https://clawhub.ai/skills/caldav-manager)
+## Migration
 
-## Overview
+Please use the `organizer` skill instead:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/caldav-manager
 ```
+/organizer help
+```
+
+The organizer skill provides:
+- ✅ Calendar management
+- ✅ Task management  
+- ✅ Family organization
+- ✅ Shopping lists
+- ✅ Better integration
+
+## Why Deprecated?
+
+- Functionality merged into `organizer`
+- Single skill for all organization needs
+- Better maintained and updated
+
+## Support
+
+For calendar and task management, use:
+**`organizer`** instead of `caldav-manager`
+
+---
+
+**Status:** Deprecated since 2026-04-06
+**Replacement:** [organizer](https://clawhub.com/kesuek/organizer)

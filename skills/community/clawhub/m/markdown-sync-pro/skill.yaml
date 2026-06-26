@@ -1,0 +1,23 @@
+name: markdown-sync-pro
+description: Markdown 一键同步到 Notion、GitHub Wiki、Medium 等平台
+version: 1.0.0
+author: openclaw
+entry: bin/publish
+commands:
+  - name: publish
+    description: 将 Markdown 文件发布到指定平台
+    usage: |
+      /publish <markdown-file> --to <platforms> [options]
+      
+      Platforms:
+        github      发布到 GitHub Wiki
+        notion      发布到 Notion
+        medium      发布到 Medium
+        html        导出为 HTML 文件
+      
+      Options:
+        --repo <owner/repo>    GitHub 仓库（用于 github 平台）
+        --title <title>        自定义标题
+        --output <path>        输出目录（用于 html 平台）
+        --dry-run              预览模式
+        --help, -h             显示帮助信息

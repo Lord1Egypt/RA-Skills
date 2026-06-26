@@ -1,0 +1,23 @@
+# 多Agent记忆系统配置
+
+memory:
+  vector_model: "nomic-embed-text-v1.5"
+  vector_dim: 768
+  search_mode: "rrf"  # rrf / vector / bm25
+  workspace: "/tmp/memory-workspace"
+
+hooks:
+  enabled: true
+  count: 8
+
+rrf:
+  k: 60
+  weights:
+    bm25: 0.2
+    vector: 0.5
+    graph: 0.3
+
+llm:
+  api_key: ""
+  api_host: "https://coding.dashscope.aliyuncs.com"
+  model: "qwen3.5-plus"

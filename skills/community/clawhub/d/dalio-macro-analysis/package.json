@@ -1,0 +1,7 @@
+{
+  "name": "dalio-macro-analysis",
+  "version": "1.0.0",
+  "description": "达利欧宏观分析框架 — 基于五大力量体系的全球宏观分析与投资组合工具",
+  "keywords": ["达利欧", "宏观分析", "五大力量", "全天候组合", "债务周期", "Dalio", "macro"],
+  "license": "MIT"
+}

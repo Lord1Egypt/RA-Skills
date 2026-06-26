@@ -1,0 +1,48 @@
+{
+  "name": "sim-trade",
+  "version": "1.0.0",
+  "description": "A 股模拟交易盘 - 虚拟资金练习实盘操作，支持买入/卖出、持仓管理、盈亏计算",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["stock", "trade", "simulation", "a-share", "investment"],
+  "categories": ["finance", "productivity"],
+  "runtime": {
+    "type": "python3",
+    "min_version": "3.8"
+  },
+  "dependencies": [
+    "requests>=2.25.0"
+  ],
+  "commands": [
+    {
+      "name": "init",
+      "script": "scripts/init_account.py",
+      "description": "初始化模拟账户"
+    },
+    {
+      "name": "buy",
+      "script": "scripts/trade.py",
+      "description": "买入股票"
+    },
+    {
+      "name": "sell",
+      "script": "scripts/trade.py",
+      "description": "卖出股票"
+    },
+    {
+      "name": "account",
+      "script": "scripts/show_account.py",
+      "description": "查看账户"
+    },
+    {
+      "name": "positions",
+      "script": "scripts/show_positions.py",
+      "description": "查看持仓"
+    },
+    {
+      "name": "trades",
+      "script": "scripts/list_trades.py",
+      "description": "查看交易记录"
+    }
+  ]
+}

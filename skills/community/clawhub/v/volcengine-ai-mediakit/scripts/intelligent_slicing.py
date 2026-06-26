@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+"""
+intelligent_slicing.py — 智能场景切分
+
+用法:
+  python <SKILL_DIR>/scripts/intelligent_slicing.py '<json_args>'
+  python <SKILL_DIR>/scripts/intelligent_slicing.py @params.json
+
+json_args 字段见 references/19-intelligent-slicing.md
+"""
+import sys, os, json
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from vod_common import init_and_parse, build_media_input, out, bail
+
+def main():
+    client, sp, args = init_and_parse()
+
+    t     = args.get("type", "Vid")
+    video = args.get("video")
+    if not video:
+        bail("intelligent_slicing: video 不能为空")
+
+    min_duration = float(args.get("min_duration", 2.0))
+    threshold    = float(args.get("threshold", 15.0))
+
+    params = {
+        "Input": build_media_input(t, video, sp),
+        "Operation": {
+            "Type": "Task",
+            "Task": {
+                "Type":    "Segment",
+                "Segment": {
+                    "MinDuration": min_duration,
+                    "Threshold":   threshold,
+                },
+            },
+        },
+    }
+    out(client.submit_media(params, "intelligentSlicing", sp))
+
+if __name__ == "__main__":
+    main()

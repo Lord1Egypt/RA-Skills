@@ -1,0 +1,37 @@
+{
+  "name": "event-orchestrator",
+  "version": "0.1.0",
+  "description": "基于事件驱动架构 (EDA) 的技能编排器",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/ tests/"
+  },
+  "keywords": [
+    "event-driven",
+    "orchestrator",
+    "skill",
+    "openclaw"
+  ],
+  "author": "王的奴隶 · 严谨专业版",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
+      }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
+}

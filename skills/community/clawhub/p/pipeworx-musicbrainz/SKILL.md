@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx musicbrainz"
-description: "MusicBrainz MCP — wraps MusicBrainz Web Service v2 (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-musicbrainz"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-musicbrainz"
+name: pipeworx-musicbrainz
+description: MusicBrainz MCP — wraps MusicBrainz Web Service v2 (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/musicbrainz
 ---
 
-# Pipeworx musicbrainz
+# pipeworx-musicbrainz
 
-> MusicBrainz MCP — wraps MusicBrainz Web Service v2 (free, no auth)
+MusicBrainz MCP — wraps MusicBrainz Web Service v2 (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-musicbrainz`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-musicbrainz](https://clawhub.ai/skills/pipeworx-musicbrainz)
+## Tools
 
-## Overview
+- `search_artists`
+- `get_artist`
+- `search_releases`
+- `get_release`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-musicbrainz
+```json
+{
+  "mcpServers": {
+    "pipeworx-musicbrainz": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/musicbrainz/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/musicbrainz](https://pipeworx.io/packs/musicbrainz)

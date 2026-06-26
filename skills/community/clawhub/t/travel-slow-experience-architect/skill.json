@@ -1,0 +1,20 @@
+{
+  "name": "Slow Travel Experience Architect",
+  "slug": "travel-slow-experience-architect",
+  "version": "1.0.0",
+  "description": "Designs meaningful slow travel experiences",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel slow experience architect",
+    "slow travel experience architect"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

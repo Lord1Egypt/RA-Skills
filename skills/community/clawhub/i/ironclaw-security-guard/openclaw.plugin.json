@@ -1,0 +1,64 @@
+{
+  "id": "ironclaw-security-guard",
+  "name": "IronClaw Security Guard",
+  "version": "0.2.0",
+  "description": "Defense-in-depth security guard for OpenClaw: dangerous tool blocking, prompt-injection guidance, secret redaction, and audit logging.",
+  "skills": [
+    "./skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "monitorOnly": {
+        "type": "boolean",
+        "default": false
+      },
+      "blockDestructiveShell": {
+        "type": "boolean",
+        "default": true
+      },
+      "protectSensitivePaths": {
+        "type": "boolean",
+        "default": true
+      },
+      "redactSecretsInMessages": {
+        "type": "boolean",
+        "default": true
+      },
+      "networkDenyByDefault": {
+        "type": "boolean",
+        "default": false
+      },
+      "allowedOutboundHosts": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "127.0.0.1",
+          "localhost"
+        ]
+      },
+      "auditLogPath": {
+        "type": "string"
+      },
+      "protectedPathPatterns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "blockedCommandPatterns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="70" x2="1460" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8EAD6"/>
+      <stop offset="0.55" stop-color="#E5C291"/>
+      <stop offset="1" stop-color="#B86D3D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="120" y="120" fill="#6A3517" font-size="62" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Localized by Default</text>
+  <text x="122" y="166" fill="#925128" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">English as the default UI, then adapt to each local system and ritual context</text>
+
+  <rect x="120" y="230" width="1360" height="520" rx="34" fill="#FFF8EF" fill-opacity="0.92"/>
+
+  <text x="170" y="320" fill="#A25A31" font-size="30" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Launch languages</text>
+  <text x="170" y="390" fill="#5B3017" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif">English</text>
+  <text x="170" y="442" fill="#5B3017" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif">中文简体</text>
+  <text x="170" y="494" fill="#5B3017" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif">中文繁體</text>
+  <text x="170" y="546" fill="#5B3017" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif">日本語</text>
+  <text x="170" y="598" fill="#5B3017" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif">ไทย</text>
+
+  <text x="610" y="320" fill="#A25A31" font-size="30" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Locale behavior</text>
+  <text x="610" y="390" fill="#5B3017" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">1. Detect host system language</text>
+  <text x="610" y="440" fill="#5B3017" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">2. Load matching UI and voice pack</text>
+  <text x="610" y="490" fill="#5B3017" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">3. Apply region-specific ritual templates</text>
+  <text x="610" y="540" fill="#5B3017" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">4. Fall back to English if unsupported</text>
+  <text x="610" y="590" fill="#5B3017" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">5. Allow manual switching later</text>
+
+  <text x="1140" y="320" fill="#A25A31" font-size="30" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Voice examples</text>
+  <text x="1140" y="390" fill="#5B3017" font-size="23" font-family="'Helvetica Neue', Arial, sans-serif">EN: "Your merit summary is ready."</text>
+  <text x="1140" y="438" fill="#5B3017" font-size="23" font-family="'Helvetica Neue', Arial, sans-serif">中文: "今天的功德值总结已完成。"</text>
+  <text x="1140" y="486" fill="#5B3017" font-size="23" font-family="'Helvetica Neue', Arial, sans-serif">日本語: "本日の功徳サマリーができました。"</text>
+  <text x="1140" y="534" fill="#5B3017" font-size="23" font-family="'Helvetica Neue', Arial, sans-serif">ไทย: "สรุปแต้มบุญของวันนี้พร้อมแล้ว"</text>
+
+  <text x="120" y="822" fill="#6A3517" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">Designed for global Buddhist deployment without forcing one language, one tone, or one ritual culture onto everyone.</text>
+</svg>

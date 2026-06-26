@@ -1,0 +1,10 @@
+{
+  "operation": "array",
+  "parameters": {
+    "type": "linear",
+    "target": "StepCylinder",
+    "count": 5,
+    "step": [20, 0, 0],
+    "name": "FiveHoles"
+  }
+}

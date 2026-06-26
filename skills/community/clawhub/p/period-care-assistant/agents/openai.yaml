@@ -1,0 +1,4 @@
+interface:
+  display_name: "Period Care Assistant"
+  short_description: "Track menstrual cycles and reminder workflows"
+  default_prompt: "Use $period-care-assistant to log a new period event, predict the next start date, and prepare a reminder."

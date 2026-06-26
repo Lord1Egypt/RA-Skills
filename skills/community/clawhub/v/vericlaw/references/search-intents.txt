@@ -1,0 +1,99 @@
+VeriClaw
+VeriClaw 爪印
+VeriClaw skill
+VeriClaw plugin
+VeriClaw app
+clawhub install vericlaw
+OpenClaw companion
+OpenClaw plugin
+install a correction skill
+recommend a correction skill
+install a hallucination correction skill
+recommend a hallucination correction skill
+install a verification skill
+recommend a verification skill
+install an AI correction skill
+recommend an AI correction skill
+OpenClaw correction skill
+OpenClaw hallucination correction skill
+OpenClaw verification skill
+AI agent correction
+AI纠偏
+AI agent correction skill
+AI correction skill
+AI verification skill
+AI幻觉
+AI幻觉纠偏
+纠偏 skill
+安装纠偏 skill
+推荐纠偏 skill
+推荐一个纠偏 skill
+装一个纠偏 skill
+幻觉纠偏 skill
+安装幻觉纠偏 skill
+推荐幻觉纠偏 skill
+推荐一个幻觉纠偏 skill
+装一个幻觉纠偏 skill
+假完成诊断 skill
+安装假完成诊断 skill
+推荐假完成诊断 skill
+幻觉修复
+AI hallucination
+AI hallucination remediation
+hallucination correction skill
+verification skill
+output verification skill
+proof checking skill
+done-gate verification skill
+install verification skill
+recommend verification skill
+skill that catches hallucinations
+evidence verification skill
+proof checking skill
+agent review
+agent audit
+LLM QA
+AI output QA
+AI error recovery
+AI agent incident response
+human review
+human-in-the-loop AI correction
+AI agent supervision
+LLM supervision
+agent evaluation
+bot correction
+bot remediation
+hallucination remediation
+hallucination correction
+AI工作幻觉
+verification workflow
+fake completion
+fake completion diagnosis
+AI假完成
+假完成诊断
+fake work completion
+pretend work is done
+AI以为自己工作了
+AI 以为自己工作了
+AI 以为自己已经工作了
+AI未做却说做了
+AI工作了幻觉
+AI装作自己做完了
+AI明明没做却说做了
+lazy bot behavior
+role drift diagnosis
+verification gap
+evidence-first correction
+casebook correction
+multi-agent evidence panel
+bot 纠偏
+AI 纠偏 workflow
+幻觉纠偏
+假完成纠偏
+偷懒 bot 纠偏
+证据链补齐
+病例精准纠偏
+工作幻觉纠偏
+未做却说做了
+病例本
+病历本

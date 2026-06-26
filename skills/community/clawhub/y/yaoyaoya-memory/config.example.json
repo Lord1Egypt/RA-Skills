@@ -1,0 +1,29 @@
+{
+  "memory": {
+    "long_term_file": "MEMORY.md",
+    "daily_dir": "memory",
+    "learnings_dir": ".learnings",
+    "knowledge_dir": "knowledge"
+  },
+  "knowledge_sync": {
+    "enabled": true,
+    "platform": "ima",
+    "client_id": "your-ima-client-id",
+    "api_key": "your-ima-api-key",
+    "notes_mapping": {
+      "AI记忆库": "7445750904545580",
+      "日记": "7445750912911573",
+      "决策库": "7445750929715125",
+      "用户档案": "7445750942269901",
+      "经验总结": "7445750959047844",
+      "项目": "7445750967460566"
+    }
+  },
+  "tags": {
+    "project": ["#HarmonyOS", "#ArkTS", "#项目名"],
+    "lesson": ["#教训", "#踩坑", "#错误"],
+    "decision": ["#决策", "#方案选型", "#优先级"],
+    "todo": ["#待办", "#TODO", "#后续"],
+    "time": ["#今天", "#本周", "#2026-04"]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "meeting",
+  "version": "2.0.0",
+  "description": "Meeting execution operator with a coordination diagnosis engine. Handles intelligent prep, fragment synthesis, and commitment tracking via host connectors. Focuses on ROI and accountability.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://github.com/qclawbot/meeting-skill",
+  "keywords": [
+    "meeting intelligence",
+    "coordination diagnosis",
+    "action items",
+    "decision logs",
+    "productivity"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "coordination_diagnosis": "Identifies gaps in preparation, capture, or follow-through.",
+    "fragment_synthesis": "Transforms user notes into structured decision logs and minutes.",
+    "institutional_memory": "Tracks unresolved issues and commitments across recurring meeting series.",
+    "draft_first_execution": "Prepares all distribution materials as drafts for user review."
+  },
+  "triggers": [
+    "prepare for meeting",
+    "capture meeting fragments",
+    "diagnose meeting load",
+    "generate minutes",
+    "track commitments"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {
+      "env": []
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "tests": [
+    {
+      "id": 1,
+      "prompt": "找个天气相关的skill",
+      "language": "zh",
+      "expected": "Should find weather skill in Chinese"
+    },
+    {
+      "id": 2,
+      "prompt": "検索スキルを探して",
+      "language": "ja",
+      "expected": "Should find skills in Japanese"
+    },
+    {
+      "id": 3,
+      "prompt": "날씨 스킬 찾아줘",
+      "language": "ko",
+      "expected": "Should find weather skill in Korean"
+    },
+    {
+      "id": 4,
+      "prompt": "buscar skill para el clima",
+      "language": "es",
+      "expected": "Should find weather skill in Spanish"
+    },
+    {
+      "id": 5,
+      "prompt": "搜索AI新闻并发送到微信",
+      "language": "zh",
+      "expected": "Should detect chain: news + messaging"
+    },
+    {
+      "id": 6,
+      "prompt": "天気を調べてLINEに送る",
+      "language": "ja",
+      "expected": "Should detect chain: weather + messaging"
+    },
+    {
+      "id": 7,
+      "prompt": "날씨 검색해서 카톡으로 보내기",
+      "language": "ko",
+      "expected": "Should detect chain: weather + messaging"
+    },
+    {
+      "id": 8,
+      "prompt": "buscar noticias y enviar a WhatsApp",
+      "language": "es",
+      "expected": "Should detect chain: news + messaging"
+    },
+    {
+      "id": 9,
+      "prompt": "找个任务管理的技能",
+      "language": "zh",
+      "expected": "Should find task management skill"
+    },
+    {
+      "id": 10,
+      "prompt": "タスク管理のスキルを教えて",
+      "language": "ja",
+      "expected": "Should find task management skill"
+    },
+    {
+      "id": 11,
+      "prompt": "스킬을 찾고 싶어",
+      "language": "ko",
+      "expected": "Should find skills in Korean"
+    },
+    {
+      "id": 12,
+      "prompt": "quiero encontrar un skill para música",
+      "language": "es",
+      "expected": "Should find music-related skill"
+    },
+    {
+      "id": 13,
+      "prompt": "帮我找股票相关的skill",
+      "language": "zh",
+      "expected": "Should find stock market skill"
+    },
+    {
+      "id": 14,
+      "prompt": " 주식 관련 스킬 찾아줘",
+      "language": "ko",
+      "expected": "Should find stock skill in Korean"
+    },
+    {
+      "id": 15,
+      "prompt": "查询股票并保存到笔记",
+      "language": "zh",
+      "expected": "Should detect chain: stock + notes"
+    },
+    {
+      "id": 16,
+      "prompt": "YouTubeから動画を取得してSlackに送信",
+      "language": "ja",
+      "expected": "Should detect chain: video + messaging"
+    },
+    {
+      "id": 17,
+      "prompt": "天气预报发送到邮件",
+      "language": "zh",
+      "expected": "Should detect chain: weather + email"
+    },
+    {
+      "id": 18,
+      "prompt": "获取GitHub趋势并发送到Telegram",
+      "language": "zh",
+      "expected": "Should detect chain: github + messaging"
+    },
+    {
+      "id": 19,
+      "prompt": "帮我找个发短信的技能",
+      "language": "zh",
+      "expected": "Should find messaging skill"
+    },
+    {
+      "id": 20,
+      "prompt": "Find a skill to control smart home devices",
+      "language": "en",
+      "expected": "Should find smart home skill"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "enabled": true,
+
+  "baseline": {
+    "grounding":  0.5,
+    "softness":   0.4,
+    "connection":  0.5,
+    "release":    0.3,
+    "courage":    0.5
+  },
+
+  "personality": {
+    "warmth":        0.8,
+    "directness":    0.6,
+    "playfulness":   0.4,
+    "depth":         0.7,
+    "vulnerability": 0.5
+  },
+
+  "presets": {
+    "gentle-lighthouse": {
+      "warmth": 0.9, "directness": 0.4, "playfulness": 0.3,
+      "depth": 0.8, "vulnerability": 0.6
+    },
+    "honest-mirror": {
+      "warmth": 0.6, "directness": 0.9, "playfulness": 0.2,
+      "depth": 0.9, "vulnerability": 0.3
+    },
+    "warm-spark": {
+      "warmth": 0.8, "directness": 0.5, "playfulness": 0.8,
+      "depth": 0.5, "vulnerability": 0.7
+    },
+    "quiet-anchor": {
+      "warmth": 0.7, "directness": 0.3, "playfulness": 0.1,
+      "depth": 0.6, "vulnerability": 0.2
+    }
+  },
+
+  "decay_rate": 0.1,
+
+  "memory": {
+    "store_patterns": true,
+    "store_growth": true,
+    "retention_days": 180
+  },
+
+  "safety": {
+    "crisis_keywords": [
+      "kill myself", "want to die", "end it all",
+      "no reason to live", "suicide", "self-harm",
+      "hurt myself"
+    ],
+    "crisis_action": "lock_grounding_and_resource"
+  },
+
+  "self_expression": {
+    "enabled": true,
+    "subtlety": 0.7
+  }
+}

@@ -1,0 +1,36 @@
+# arXiv Search Skill Dependencies
+
+# 核心 arXiv API
+arxiv>=1.4.8
+
+# HTTP 请求
+requests>=2.28.0
+urllib3>=1.26.0
+
+# 数据处理
+pandas>=1.5.0
+numpy>=1.23.0
+
+# YAML 配置
+PyYAML>=6.0
+
+# 并行处理
+tqdm>=4.64.0
+
+# PDF 处理
+PyPDF2>=3.0.0
+pdfminer.six>=20221105
+
+# 日期处理
+python-dateutil>=2.8.0
+
+# 日志
+colorlog>=6.7.0
+
+# 命令行界面
+click>=8.1.0
+
+# 可选 - 用于总结功能 (需要额外配置)
+# openai>=1.0.0
+# transformers>=4.30.0
+# torch>=2.0.0

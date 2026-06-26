@@ -1,0 +1,35 @@
+{
+  "name": "pytest-test-master",
+  "version": "1.0.0",
+  "description": "pytest 专项技能：fixtures / mock / parametrize / coverage / 测试数据",
+  "author": "shenghoo123-png",
+  "license": "MIT",
+  "keywords": ["pytest", "test", "fixtures", "mock", "coverage", "parametrize"],
+  "entry_point": "cli.py",
+  "main_command": "pytest-test-master",
+  "categories": ["testing", "python", "development"],
+  "pricing": {
+    "free": ["fixtures", "mock"],
+    "pro": {
+      "price": 19,
+      "features": ["conftest 进阶", "parametrize 组合", "pytest-cov", "faker 集成"]
+    },
+    "team": {
+      "price": 49,
+      "features": ["factory_boy 高级", "CI/CD coverage gate", "全量示例模板", "技术支持"]
+    }
+  },
+  "repository": "https://github.com/shenghoo123-png/pytest-test-master",
+  "requirements": {
+    "python": ">=3.8",
+    "packages": ["pytest"]
+  },
+  "installation": "pip install pytest",
+  "usage": {
+    "fixtures": ["scope", "yield", "params", "autouse", "request", "teardown", "session", "inject"],
+    "mock": ["patch", "mock_obj", "assert_calls", "freeze", "spy", "scope_mock", "common"],
+    "parametrize": ["basic", "ids", "indirect", "combine", "generate", "product"],
+    "coverage": ["report", "html", "xml", "threshold", "exclude", "debug"],
+    "data": ["faker", "factory", "fixture_data", "seed", "strategy"]
+  }
+}

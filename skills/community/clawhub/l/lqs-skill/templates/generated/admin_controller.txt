@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * Auto-generated template from LQS project patterns.
+ * Module: {{module}}
+ * Entity: {{Entity}}
+ */
+class {{Entity}}Controller extends {{base_controller}}
+{
+    use \repositories\HoutaiRepository;
+
+    /**
+     * 列表页面渲染
+     */
+    public function indexAction()
+    {
+        {{index_assignments}}
+        $this->display();
+    }
+
+    /**
+     * 列表数据格式化
+     * @return Closure
+     */
+    protected function listAjaxIteration()
+    {
+        return function ({{model_class}} $item) {
+            {{list_item_mapping}}
+            return $item;
+        };
+    }
+
+    /**
+     * 可选：where 特殊转换
+     */
+    protected function getSearchWhereParam()
+    {
+        {{search_where_logic}}
+    }
+
+    /**
+     * 可选：字段名映射（如 aff_code -> aff）
+     */
+    protected function formatKey($key, $value)
+    {
+        {{format_key_logic}}
+    }
+
+    protected function getModelClass(): string
+    {
+        return {{model_class}}::class;
+    }
+
+    protected function getPkName(): string
+    {
+        return '{{pk}}';
+    }
+
+    protected function getLogDesc(): string
+    {
+        return '{{log_desc}}';
+    }
+
+    protected function getDesc($query): string
+    {
+        {{desc_logic}}
+    }
+}

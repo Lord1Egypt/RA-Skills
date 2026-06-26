@@ -1,0 +1,62 @@
+{
+  "title": "Sales are exploding",
+  "purpose": "Persuade executives that sales jumped dramatically.",
+  "chart_type": "bar",
+  "data_points": 4,
+  "variables": [
+    "quarter",
+    "sales_millions"
+  ],
+  "data_grain": "one row per quarter",
+  "encodings": {
+    "x": "quarter",
+    "y": "sales_millions",
+    "color": "quarter"
+  },
+  "axes": {
+    "x_labeled": false,
+    "y_labeled": false,
+    "units_shown": false,
+    "y_zero_baseline": false,
+    "y_scale": "linear",
+    "same_scale_across_panels": true,
+    "axis_break": false,
+    "dual_axis": false
+  },
+  "labels": {
+    "direct_labels": false,
+    "legend": true,
+    "source_shown": false,
+    "definitions_shown": false,
+    "annotations": []
+  },
+  "context": {
+    "denominator_shown": null,
+    "uncertainty_shown": false,
+    "sample_size_shown": false,
+    "comparison_baseline_shown": false,
+    "time_range_justified": false
+  },
+  "design": {
+    "grid": "none",
+    "decorations": [
+      "drop shadow",
+      "gradient background"
+    ],
+    "three_d": true,
+    "background_image": true,
+    "uses_area_for_quantity": false,
+    "uses_volume_for_quantity": false,
+    "color_count": 10,
+    "color_is_only_identifier": true
+  },
+  "integrity_measurements": {
+    "data_effect_percent": 8,
+    "visual_effect_percent": 80
+  },
+  "medium": {
+    "destination": "slide",
+    "color_required": true,
+    "minimum_text_size_pt": 6
+  }
+}

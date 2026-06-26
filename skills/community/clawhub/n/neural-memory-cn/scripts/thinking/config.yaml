@@ -1,0 +1,85 @@
+# Neural Memory Configuration Template
+# This file will be auto-generated during setup with user-specific paths.
+# For LLM integration, configure via environment variable or setup script.
+
+thinking:
+  enabled: true
+  mode: "smart"
+  
+  enhanced:
+    use_intent_layer: true
+    use_semantic_engine: true
+    use_lazy_loading: true
+    use_llm_analysis: false  # Set to true after configuring LLM
+
+  triggers:
+    - after_learning: true
+    - daily_integration: true
+    - user_query: true
+    - heartbeat: true
+
+  parameters:
+    default_max_depth: 3
+    decay_factor: 0.8
+    min_activation: 0.15
+    result_limit: 20
+    auto_synapse_creation: true
+    semantic_similarity: true
+
+  intent:
+    use_llm: false  # Enable after configuring API
+    llm_base_url: ""  # Configure via setup or environment
+    llm_model: ""     # Configure via setup or environment
+    llm_api_key: ""   # NEVER hardcode API keys here!
+    relevance_threshold: 0.4
+    max_related_neurons: 10
+
+  semantic:
+    embedding_model: "local"  # Use local keyword matching by default
+    cache_dir: ""  # Auto-set during setup
+
+  storage:
+    hot_cache_size: 100
+    lazy_loading: true
+
+  maintenance:
+    enabled: true
+    decay_interval_days: 30
+    prune_low_confidence: true
+    confidence_threshold: 0.3
+
+  protection:
+    enabled: true
+    protected_types: ["preference", "personality", "identity", "user_profile", "user_preference"]
+    allow_update_protected: true
+    allow_delete_protected: false
+
+  integration:
+    memory_search_enhancement: true
+    create_thinking_endpoint: true
+    auto_link_knowledge: true
+
+logging:
+  level: "INFO"
+  log_activations: false
+  log_thinking_sessions: false
+  retention_days: 30
+
+# ============================================
+# LLM Configuration Guide / LLM 配置指南
+# ============================================
+# To enable LLM-based intent analysis:
+# 要启用基于 LLM 的意图分析：
+#
+# Option 1: Environment variable / 方式1：环境变量
+#   export NEURAL_MEMORY_LLM_API_KEY="your-api-key"
+#   export NEURAL_MEMORY_LLM_BASE_URL="https://openrouter.ai/api/v1"
+#   export NEURAL_MEMORY_LLM_MODEL="openai/gpt-3.5-turbo"
+#
+# Option 2: Setup script / 方式2：安装脚本
+#   python setup.py --api-key "your-key" --model "your-model"
+#
+# Option 3: Edit config.yaml after setup / 方式3：安装后编辑配置文件
+#   Set intent.use_llm: true
+#   Set intent.llm_api_key, llm_base_url, llm_model
+# ============================================

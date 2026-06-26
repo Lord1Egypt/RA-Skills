@@ -1,0 +1,92 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内部编码（InnerCode）：与“债券代码对照表（Bond_Code）”中的“统一内部编码（InnerCode）”关联，得到保证券的具体信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "公告日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "TermType",
+        "columnChiName": "条款类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "条款类型(TermType)与(CT_SystemConst)表中的DM字段关联，令LB = 2032，得到条款类型的具体描述：1-利息条款描述，2-支付机制说明，3-提前还本条款，101-发行人赎回权，103-发行人利息递延权，105-发行人调整票面利率选择权，106-发行人续期选择权，107-发行人减记条款，109-回拨选择权，201-持有人回售权，202-持有人提前兑付权，203-持有人定向转让权，205-持有人延期选择权，207-持有人可调换选择权，209-持有人可转换选择权，301-合并，401-暂停索偿权，501-债务减计(核销)和转股条款，601-投资者保护条款，701-债务回购，999-其他，60101-交叉保护条款，60102-控制权变更条款，60103-事先约束条款，60104-事先承诺条款，60105-偿债保障承诺条款，60106-代偿事项投资人保护条款，6010301-出售/转移重大资产，6010302-对外提供重大担保，6010303-股权委托管理协议变更，6010304-质押或减持上市子公司股权，6010305-名股实债，6010306-对外重大投资，6010307-债券担保限制，6010308-债务重组，6010401-经营维持承诺，6010402-财务指标承诺，6010403-评级承诺，6010404-年报按时披露承诺，6010405-无保留审计意见承诺，6010501-资产池承诺，6010502-流动性支持承诺，6010503-担保承诺。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "TermRemark",
+        "columnChiName": "条款说明",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "46.28"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

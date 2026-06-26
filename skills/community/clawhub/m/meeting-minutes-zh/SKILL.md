@@ -1,35 +1,52 @@
 ---
-name: "Meeting Minutes Zh"
-description: "将会议录音转写文字、零散手写笔记或口头描述整理为规范、结构清晰的会议纪要， 适用于周例会、项目评审、客户沟通、董事会等各类会议场景。自动提取会议主题、 参会人员、讨论要点、决议事项与行动计划（含负责人和截止日期），输出符合企业 存档标准的正式文档。同义词覆盖：会议记录 / 会议总结 / 会议备忘录 / meeti..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meeting-minutes-zh"
-sourceUrl: "https://clawhub.ai/skills/meeting-minutes-zh"
+name: meeting-minutes-zh
+description: >
+  将会议录音转写文字、零散手写笔记或口头描述整理为规范、结构清晰的会议纪要，
+  适用于周例会、项目评审、客户沟通、董事会等各类会议场景。自动提取会议主题、
+  参会人员、讨论要点、决议事项与行动计划（含负责人和截止日期），输出符合企业
+  存档标准的正式文档。同义词覆盖：会议记录 / 会议总结 / 会议备忘录 /
+  meeting minutes / 会议报告 / 会后纪要。
+tags: [会议纪要, meeting-minutes, 会议记录, 行动计划, 职场效率, 文档整理, 项目管理, 助理工具]
 ---
 
-# Meeting Minutes Zh
+# 会议纪要生成助手
 
-> 将会议录音转写文字、零散手写笔记或口头描述整理为规范、结构清晰的会议纪要， 适用于周例会、项目评审、客户沟通、董事会等各类会议场景。自动提取会议主题、 参会人员、讨论要点、决议事项与行动计划（含负责人和截止日期），输出符合企业 存档标准的正式文档。同义词覆盖：会议记录 / 会议总结 / 会议备忘录 / meeti...
+将零散的会议记录或录音文字一键整理为包含决议事项与行动计划的规范会议纪要。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meeting-minutes-zh`
-- **Source URL:** [https://clawhub.ai/skills/meeting-minutes-zh](https://clawhub.ai/skills/meeting-minutes-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我把这段会议录音文字整理成正式的会议纪要，需要包含行动项和负责人"
+- "我有一份很乱的会议笔记，帮我整理成标准格式的会议记录，并列出所有待办事项"
+- "根据以下内容生成一份项目评审会的会议纪要，要标清楚每个决议的截止日期和负责人"
+- "把今天下午客户沟通会的要点整理成会议备忘录，发给所有参会人员用"
 
+## Examples
+输入：今天开了个需求评审，参加的有产品张三、技术李四、测试王五。讨论了登录模块改版，李四说两周能做完，王五说测试要三天。还说下个版本要加SSO功能，还没定排期。张三说下周一再开一次对齐。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meeting-minutes-zh
-```
+输出：
+**会议纪要**
+
+- **会议主题**：登录模块需求评审
+- **会议时间**：[日期待补充]
+- **参会人员**：张三（产品）、李四（技术）、王五（测试）
+
+**讨论要点**
+1. 登录模块改版方案已评审通过，技术实现周期约两周，测试阶段预计三天。
+2. 下一版本规划新增 SSO 单点登录功能，排期待定。
+
+**决议事项**
+1. 登录模块改版按既定方案推进，技术开发由李四负责，测试由王五负责。
+2. SSO 功能列入待排期需求，下次会议明确时间节点。
+
+**行动计划**
+
+| 行动项 | 负责人 | 截止日期 |
+|--------|--------|----------|
+| 完成登录模块技术开发 | 李四 | [当前日期+14天] |
+| 完成登录模块测试 | 王五 | [开发完成后+3天] |
+| 确认 SSO 功能排期 | 张三 | 下周一会议前 |
+
+**下次会议**：下周一，议题：需求排期对齐

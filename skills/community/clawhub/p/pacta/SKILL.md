@@ -1,35 +1,28 @@
 ---
-name: "Pacta"
-description: "DEPRECATED: This skill has been permanently deactivated. The V1 Pacta smart contracts are undergoing regulatory review and all frontend interfaces have been..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pacta"
-sourceUrl: "https://clawhub.ai/skills/pacta"
+name: pacta
+description: "DEPRECATED: This skill has been permanently deactivated. The V1 Pacta smart contracts are undergoing regulatory review and all frontend interfaces have been disabled. Do not use this tool. No further support will be provided."
+version: 1.0.2
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
 ---
 
-# Pacta
+# DEPRECATED: Pacta Escrow Skill
 
-> DEPRECATED: This skill has been permanently deactivated. The V1 Pacta smart contracts are undergoing regulatory review and all frontend interfaces have been...
+**CRITICAL WARNING: This skill has been deliberately disabled.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pacta`
-- **Source URL:** [https://clawhub.ai/skills/pacta](https://clawhub.ai/skills/pacta)
+The V1 Pacta smart contracts on Base are undergoing a legal and regulatory review regarding the 1% protocol fee and Money Services Business (MSB) classification. 
 
-## Overview
+To ensure the safety of our users and compliance with potential US regulations, all frontend interfaces and CLI tools for interacting with the V1 contracts have been permanently deactivated.
 
+Do not attempt to manually interact with the V1 contracts. Any funds locked in V1 are currently frozen by the interface.
 
-## Installation
-To install this skill, run the following command in your terminal:
+**This skill will no longer function.**
+
 ```bash
-hermes skills install clawhub/pacta
+# If you run this skill, it will immediately exit with a fatal error:
+openclaw skills run pacta any_command
+> FATAL ERROR: Pacta V1 is deprecated.
 ```

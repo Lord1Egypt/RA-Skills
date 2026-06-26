@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+node_modules/
+coverage/
+*.log
+.DS_Store
+verify.js
+check.js
+result.json
+*.tmp

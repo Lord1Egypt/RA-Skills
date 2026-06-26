@@ -1,0 +1,119 @@
+{
+  "name": "weibo-deep-profile-collect",
+  "description": "采集微博个人主页的全量信息，包括基础资料（通过$CONFIG.user）、全部微博、关注列表、收藏列表。",
+  "original_query": "采集微博个人主页的全量信息，包括基础资料、全部微博、关注列表、收藏列表",
+  "original_res": "成功采集基础资料($CONFIG.user结构化数据)、微博列表、关注列表、收藏列表。",
+  "parameters": [],
+  "platform": "微博",
+  "created_from": "weibo-deep-profile-collect-log.json",
+  "created_at": "2026-03-19T15:30:00.000+08:00",
+  "steps": [
+    {
+      "step": 1,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://weibo.com/"
+      },
+      "description": "导航到微博首页，用于提取$CONFIG.user数据",
+      "is_final_result": false
+    },
+    {
+      "step": 2,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 10000,
+        "jsScript": "() => { try { const u = window.$CONFIG && window.$CONFIG.user; if (u) { return JSON.stringify({uid: u.idstr||u.id, screen_name: u.screen_name, description: u.description, followers_count: u.followers_count, friends_count: u.friends_count, statuses_count: u.statuses_count, favourites_count: u.favourites_count, gender: u.gender, verified: u.verified, verified_reason: u.verified_reason, avatar_large: u.avatar_large, domain: u.domain, profile_url: u.profile_url}); } return JSON.stringify({error: 'no $CONFIG.user'}); } catch(e) { return JSON.stringify({error: e.message}); } }"
+      },
+      "output": {
+        "uid": "用户ID",
+        "screen_name": "用户昵称",
+        "config_user": "完整的$CONFIG.user结构化数据"
+      },
+      "description": "从window.$CONFIG.user提取当前登录用户的结构化数据（uid/昵称/粉丝数/关注数/微博数等）。这是微博页面内置的最可靠数据源。",
+      "is_final_result": false
+    },
+    {
+      "step": 3,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://weibo.com/u/{step_2.uid}"
+      },
+      "description": "导航到个人主页（微博列表页）",
+      "is_final_result": false
+    },
+    {
+      "step": 4,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 120000,
+        "jsScript": "async () => { let prevCount = 0, sameCount = 0; for (let i = 0; i < 50; i++) { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); await new Promise(r => setTimeout(r, 2000)); const cards = document.querySelectorAll('article, [class*=\"card-wrap\"], [class*=\"Feed_body\"], [class*=\"woo-panel-main\"]').length; if (cards === prevCount) { sameCount++; if (sameCount > 5) break; } else { sameCount = 0; } prevCount = cards; } window.scrollTo({top: 0}); await new Promise(r => setTimeout(r, 500)); const weibos = []; document.querySelectorAll('article, [class*=\"card-wrap\"], [class*=\"Feed_body\"]').forEach(el => { const text = el.textContent.trim(); if (text.length > 20 && text.length < 2000) { weibos.push(text.substring(0, 200)); } }); return JSON.stringify({weiboCount: weibos.length, weibos: weibos, fullText: document.body.innerText}); }"
+      },
+      "output": {
+        "weiboCount": "微博数量",
+        "weibos": "微博内容列表",
+        "fullText": "页面全文"
+      },
+      "description": "滚动加载全部微博（智能停止：连续5轮无新增则停止），提取微博内容和页面文本。",
+      "is_final_result": false
+    },
+    {
+      "step": 5,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://weibo.com/u/page/follow/{step_2.uid}"
+      },
+      "description": "导航到关注页面。⚠️ 必须使用/u/page/follow/{uid}格式（新版URL），旧格式/u/{uid}/follow会重定向到首页。",
+      "is_final_result": false
+    },
+    {
+      "step": 6,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 60000,
+        "jsScript": "async () => { await new Promise(r => setTimeout(r, 3000)); for (let i = 0; i < 15; i++) { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); await new Promise(r => setTimeout(r, 1500)); } window.scrollTo({top: 0}); await new Promise(r => setTimeout(r, 500)); const users = []; const seen = new Set(); const selfUid = '{step_2.uid}'; document.querySelectorAll('a[href*=\"/u/\"]').forEach(a => { const href = a.getAttribute('href') || ''; const m = href.match(/\\/u\\/(\\d+)/); if (!m) return; const linkUid = m[1]; if (linkUid === selfUid || seen.has(linkUid)) return; if (a.closest('[class*=\"wbpro-side-card\"]')) return; const infoDiv = a.querySelector('[class*=\"woo-box-item-flex\"]'); if (!infoDiv || infoDiv.children.length < 2) return; const nameDiv = infoDiv.children[0]; const nickname = nameDiv ? nameDiv.textContent.trim() : ''; const descDiv = infoDiv.children[1]; const desc = descDiv ? descDiv.textContent.trim() : ''; if (nickname.length > 0 && nickname.length <= 30) { seen.add(linkUid); users.push({name: nickname, uid: linkUid, desc: desc.substring(0,60)}); } }); const totalMatch = document.body.innerText.match(/全部关注\\\\（(\\\\d+)\\\\）/); return JSON.stringify({count: users.length, displayTotal: totalMatch ? totalMatch[1] : 'unknown', users: users}); }"
+      },
+      "output": {
+        "followingCount": "关注用户数",
+        "followingUsers": "关注用户列表（昵称+uid）"
+      },
+      "description": "滚动加载并提取全量关注用户列表。通过a[href*='/u/']链接匹配用户，过滤自己和导航链接。",
+      "is_final_result": false
+    },
+    {
+      "step": 7,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://weibo.com/u/page/fav/{step_2.uid}"
+      },
+      "description": "导航到收藏页面。",
+      "is_final_result": false
+    },
+    {
+      "step": 8,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 60000,
+        "jsScript": "async () => { await new Promise(r => setTimeout(r, 2000)); let prevH = 0, same = 0; for (let i = 0; i < 30; i++) { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); await new Promise(r => setTimeout(r, 1500)); if (document.body.scrollHeight === prevH) { same++; if (same > 5) break; } else { same = 0; } prevH = document.body.scrollHeight; } const favs = []; document.querySelectorAll('article, [class*=\"card-wrap\"], [class*=\"Feed_body\"], [class*=\"woo-panel-main\"]').forEach(el => { const text = el.textContent.trim(); if (text.length > 30 && text.length < 2000) { favs.push(text.substring(0, 200)); } }); return JSON.stringify({count: favs.length, favs: favs}); }"
+      },
+      "output": {
+        "favCount": "收藏微博数量",
+        "favs": "收藏微博列表"
+      },
+      "description": "滚动加载并提取收藏的微博列表。",
+      "is_final_result": true
+    },
+    {
+      "step": 9,
+      "tool_name": "mcp__chrome-server__chrome_close_tabs",
+      "tool_params": {
+        "tabIds": "all_opened_tabs"
+      },
+      "description": "关闭所有标签页",
+      "is_final_result": false
+    }
+  ]
+}

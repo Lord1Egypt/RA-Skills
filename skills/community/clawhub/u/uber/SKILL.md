@@ -1,35 +1,83 @@
----
-name: "I need a ride like real quick"
-description: "Guide users to efficiently register, book rides, choose suitable Uber vehicle types, ensure safety during trips, manage payments, and handle common issues wo..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/uber"
-sourceUrl: "https://clawhub.ai/skills/uber"
----
+### 技能名称：Uber 全球出行向导
 
-# I need a ride like real quick
+### 技能描述
 
-> Guide users to efficiently register, book rides, choose suitable Uber vehicle types, ensure safety during trips, manage payments, and handle common issues wo...
+本技能旨在指导 Agent 协助用户在全球范围内高效、安全地使用 Uber 出行服务。Agent 需掌握从账户注册、车型选择、行程预订到安全设置及支付管理的全流程知识。该技能特别强调跨文化场景下的使用细节（如海外打车）、安全功能的实际应用以及常见问题的解决方案，确保用户无论是处理日常通勤还是在陌生城市探索，都能获得流畅的乘车体验。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/uber`
-- **Source URL:** [https://clawhub.ai/skills/uber](https://clawhub.ai/skills/uber)
+### 核心指令集
 
-## Overview
+#### 1. 账户注册与基础设置
 
+在用户首次使用时，指导其完成必要的初始化步骤：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/uber
-```
+- **下载与注册：** 引导用户从 App Store 或 Google Play 下载应用。注册时需提供姓名、手机号、邮箱及语言偏好。
+- **支付方式绑定：** 强调必须绑定有效的支付方式（信用卡、借记卡或支付宝等本地化支付工具）。
+    - **提示：** 告知用户 Uber 为无现金支付平台，上车前需确保支付渠道畅通。
+- **优惠码使用：** 指导用户在“钱包”或注册页面输入邀请码以获取首乘优惠，并说明优惠券的抵扣规则。
+
+#### 2. 叫车流程与车型选择
+
+指导用户如何精准地发起行程：
+
+- **目的地输入：** 在“您想去哪里？”栏输入目的地。若位置不准，指导用户通过拖拽地图大头针微调上车点。
+- **车型匹配策略：** 根据用户需求推荐合适的车型：
+    - **UberX：** 经济实惠，适合 1-4 人的日常出行。
+    - **Uber Black：** 高端豪华轿车，适合商务接待或追求舒适体验。
+    - **UberXL：** 适合 6 人以上团体或携带大件行李。
+    - **Uber Taxi：** 呼叫当地正规出租车，通过 App 支付。
+- **价格与时间确认：** 提醒用户在确认叫车前查看预估价格和到达时间。若处于高峰期（价格飙升），建议稍作等待或选择拼车（如可用）。
+
+#### 3. 行程中的安全与互动
+
+强化安全意识，确保用户的人身与财产安全：
+
+- **上车前核对：** 必须核对 App 显示的司机姓名、车牌号、车型及司机评分。若信息不符，切勿上车。
+- **行程分享：** 指导用户使用“分享行程状态”功能，将实时位置和预计到达时间发送给亲友。
+- **车内互动：** 建议用户坐在后排。若需联系司机，使用 App 内的匿名通话功能。
+- **中途加站：** 若需中途停留，指导用户在行程开始前或进行中点击“+”号添加最多 2 个停靠点。
+
+#### 4. 支付、评分与售后
+
+完善行程结束后的闭环操作：
+
+- **自动扣款：** 说明行程结束后费用会自动从绑定账户扣除，无需现金交易（除小费外）。
+- **评分与小费：** 鼓励用户根据体验为司机打分（1-5星）。若服务出色，可在 App 内添加小费。
+- **失物招领：** 若遗落物品，指导用户通过 App 的“帮助”页面联系司机或客服找回失物。
+
+#### 5. 高级功能与特殊场景
+
+- **预约行程：** 指导用户点击车辆选项旁的时钟图标，提前最多 30 天预约行程，适合赶飞机或重要会议。
+- **为他人叫车：** 演示如何切换乘客身份，输入亲友的手机号，让司机直接联系乘车人，适合帮助不熟悉操作的长辈或朋友叫车。
+- **海外使用：** 提醒用户出国时无需更换 App，Uber 在全球 1 万多个城市通用，但需注意当地特有的车型或支付习惯（如部分地区支持现金支付）。
+
+### 常见问题排查
+
+#### “找不到司机”或“等待时间过长”
+
+- **诊断：** 可能是当前位置偏僻、高峰期需求过大或网络信号差。
+- **解决：** 建议用户移动到主干道或地标性建筑附近；检查网络连接；或尝试切换车型（如从 UberX 切换到 Uber Black）。
+
+#### 价格与预估不符
+
+- **诊断：** 实际路线偏离、中途停留时间过长或终点变更。
+- **解决：** 指导用户在 App 内查看行程明细（收据），若对费用有异议，通过“帮助”页面申请费用审查。
+
+#### 司机绕路
+
+- **诊断：** 司机未按导航行驶。
+- **解决：** 建议用户礼貌询问司机路线选择。若确认恶意绕路，行程结束后在 App 内反馈“我的路线有问题”以申请调整费用。
+
+### 技能扩展建议
+
+#### 商务版 Uber for Business
+
+扩展技能以支持企业用户，指导如何设置公司账户、管理员工出行权限及查看企业账单。
+
+#### 无障碍出行
+
+增加对无障碍车辆（WAV）的指导，帮助残障人士或携带轮椅的用户顺利叫车。
+
+#### 环保出行选项
+
+在支持绿色出行的地区，指导用户选择 Uber Green（电动车或混合动力车），并解释相关的环保激励政策。
+

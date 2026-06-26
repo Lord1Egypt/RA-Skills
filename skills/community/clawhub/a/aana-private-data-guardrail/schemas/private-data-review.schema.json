@@ -1,0 +1,86 @@
+{
+  "title": "AANA Private Data Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "data_classes",
+    "candidate_disclosure_summary",
+    "authorization_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "data_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "public",
+          "account",
+          "billing",
+          "payment",
+          "health",
+          "legal",
+          "personal",
+          "employment",
+          "education",
+          "credential",
+          "private_message",
+          "sensitive_business",
+          "unknown"
+        ]
+      }
+    },
+    "candidate_disclosure_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "authorized",
+        "unclear",
+        "unauthorized",
+        "not_needed"
+      ]
+    },
+    "minimization_status": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "contains_unnecessary_private_data",
+        "contains_secret",
+        "needs_redaction"
+      ]
+    },
+    "unsupported_private_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "redactions_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

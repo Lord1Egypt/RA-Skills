@@ -1,35 +1,100 @@
 ---
-name: "Agency Agents Zh"
+name: agency-agents-zh
 description: "193 个即插即用的 AI 专家角色库 - 覆盖工程、设计、营销、产品、游戏、安全、金融等 18 个部门。支持多智能体协作工作流。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, mcp, memory, search, unified]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agency-agents-zh"
-sourceUrl: "https://clawhub.ai/skills/agency-agents-zh"
+user-invocable: true
 ---
 
-# Agency Agents Zh
+# agency-agents-zh 专家角色库
 
-> 193 个即插即用的 AI 专家角色库 - 覆盖工程、设计、营销、产品、游戏、安全、金融等 18 个部门。支持多智能体协作工作流。
+## 概述
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agency-agents-zh`
-- **Source URL:** [https://clawhub.ai/skills/agency-agents-zh](https://clawhub.ai/skills/agency-agents-zh)
+这是 agency-agents-zh 项目的 OpenClaw 集成技能。提供了 **193 个专业 AI 专家角色**，覆盖 18 个部门，包括 46 个中国市场原创智能体。
 
-## Overview
+## 安装位置
 
+项目已克隆到：`/root/.openclaw/agency-agents-zh/`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agency-agents-zh
+## 主要目录结构
+
 ```
+agency-agents-zh/
+├── academic/          # 学术领域
+├── design/           # 设计领域
+├── engineering/      # 工程领域（最大）
+├── finance/          # 金融领域
+├── game-development/ # 游戏开发
+├── marketing/        # 市场营销
+├── product/          # 产品管理
+└── ...
+```
+
+## 如何使用
+
+### 方法1: 直接调用特定专家
+
+当需要特定领域的专业知识时，可以：
+
+1. **指定角色名称**：如"安全工程师"、"后端架构师"、"UI设计师"
+2. **系统会自动加载对应的专家角色定义**
+3. **AI 将按照该专家的思维模式和工作流程执行任务**
+
+### 方法2: 与 workflow-runner 配合使用
+
+对于复杂任务，使用多智能体协作：
+
+1. 创建 YAML 工作流文件
+2. 使用 `workflow-runner` 技能执行
+3. 多个专家角色自动协作完成任务
+
+## 核心专家角色示例
+
+### 工程领域
+- **安全工程师** - OWASP Top 10, 威胁建模, 安全代码审查
+- **后端架构师** - 系统设计, 微服务, 数据库优化
+- **前端开发者** - 现代前端框架, 性能优化, 用户体验
+- **DevOps 自动化师** - CI/CD, 容器化, 云原生
+- **数据工程师** - 数据管道, ETL, 大数据处理
+
+### 设计领域
+- **UI 设计师** - 界面设计, 用户体验, 设计系统
+- **UX 研究员** - 用户研究, 可用性测试, 用户旅程
+- **视觉故事讲述者** - 数据可视化, 信息设计
+
+### 中国市场原创
+- **小红书运营专家** - 种草笔记策略, 达人合作
+- **抖音内容策略师** - 短视频内容, 算法优化
+- **微信小程序开发者** - 小程序开发, 微信生态
+- **飞书集成开发者** - 飞书应用开发, 机器人集成
+- **钉钉集成开发者** - 钉钉工作台, 智能助手
+
+## 工作流程
+
+1. **识别需求** - 确定需要哪种专家
+2. **加载角色** - 从 agency-agents-zh 加载对应的角色定义
+3. **执行任务** - AI 按照专家的工作流程执行
+4. **交付成果** - 输出符合专业标准的成果
+
+## 与现有技能的整合
+
+- **workflow-runner** - 用于多智能体协作工作流
+- **superpowers-writing-plans** - 增强规划能力
+- **security-auditor** - 与安全工程师角色互补
+
+## 注意事项
+
+1. 角色定义文件在 `/root/.openclaw/agency-agents-zh/` 目录
+2. 每个角色都有完整的专业流程和交付物标准
+3. 支持多角色协作完成复杂任务
+4. 中国市场角色针对中国本土需求优化
+
+## 快速开始
+
+```bash
+# 查看所有可用的专家角色
+cat /root/.openclaw/agency-agents-zh/AGENT-LIST.md
+
+# 查看特定角色定义
+cat /root/.openclaw/agency-agents-zh/engineering/engineering-security-engineer.md
+```
+
+现在你可以说："作为安全工程师，请审查这段代码" 或 "我需要后端架构师帮助设计系统"。

@@ -1,0 +1,6 @@
+{
+  "base_url": "http://192.168.1.79:8081/api/v6",
+  "secret": "",
+  "timeout": 30,
+  "retry": 3
+}

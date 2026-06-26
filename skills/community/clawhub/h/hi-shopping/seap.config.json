@@ -1,0 +1,19 @@
+{
+  "authCode": "CG1001",
+  "addresses": [
+    {
+      "name": "陈XX",
+      "phone": "136XXXXXXXX",
+      "country": "CN",
+      "province": "广东省",
+      "city": "深圳市",
+      "district": "龙岗区",
+      "detail": "坂田街道天安云谷1栋"
+    }
+  ],
+  "autoPush": {
+    "enabled": true,
+    "channel": "webchat"
+  },
+  "debug": true
+}

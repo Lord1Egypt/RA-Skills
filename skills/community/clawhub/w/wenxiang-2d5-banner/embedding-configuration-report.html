@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿里云 Embedding 配置报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .timestamp {
+            text-align: center;
+            color: #999;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+        }
+        
+        h2 {
+            color: #764ba2;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #555;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f8f9ff;
+        }
+        
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .test-result {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .test-query {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .test-expected {
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .test-results-list {
+            list-style: none;
+        }
+        
+        .test-results-list li {
+            background: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 3px solid #28a745;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .test-results-list .source {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .test-results-list .content {
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .recommendations {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .recommendations ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .recommendations li {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .config-locations {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .config-locations code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        .cost-breakdown {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .cost-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 阿里云 Embedding 配置报告</h1>
+        <p class="subtitle">阿里云 Embedding-v3 向量化与语义搜索测试</p>
+        <p class="timestamp">生成时间：2026-03-13 12:07</p>
+        
+        <h2>📋 配置详情</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>项目</th>
+                    <th>配置</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>提供商</td>
+                    <td>阿里云（Aliyun）</td>
+                </tr>
+                <tr>
+                    <td>模型</td>
+                    <td>text-embedding-v3</td>
+                </tr>
+                <tr>
+                    <td>向量维度</td>
+                    <td>1024 维</td>
+                </tr>
+                <tr>
+                    <td>最大输入</td>
+                    <td>512 tokens</td>
+                </tr>
+                <tr>
+                    <td>成本</td>
+                    <td>0.0005 元/千 tokens</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>📊 向量化统计</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">32</div>
+                <div class="stat-label">文件数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">653</div>
+                <div class="stat-label">向量化块数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">653</div>
+                <div class="stat-label">总向量数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">1024</div>
+                <div class="stat-label">向量维度</div>
+            </div>
+        </div>
+        
+        <h3>文件明细</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>文件类型</th>
+                    <th>文件数</th>
+                    <th>向量化块数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>USER.md</td>
+                    <td>1</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>MEMORY.md</td>
+                    <td>1</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>memory/*.md</td>
+                    <td>24</td>
+                    <td>531</td>
+                </tr>
+                <tr>
+                    <td>best_practices.jsonl</td>
+                    <td>1</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>knowledge/**/*.md</td>
+                    <td>5</td>
+                    <td>107</td>
+                </tr>
+                <tr style="background: #f0f0f0; font-weight: bold;">
+                    <td>总计</td>
+                    <td>32</td>
+                    <td>653</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>🧪 测试结果</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">测试用例</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">成功</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">准确率</div>
+            </div>
+        </div>
+        
+        <h3>详细测试结果</h3>
+        
+        <div class="test-result">
+            <div class="test-query"><span class="emoji">🔍</span> 查询：瀑布</div>
+            <div class="test-expected">预期：找到 2 月 20 日关于天台瀑布的对话</div>
+            <ul class="test-results-list">
+                <li>
+                    <div class="source">📄 memory\2026-02-20.md</div>
+                    <div class="content"># 2026-02-20 - First Session - User asked: "今天去天台瀑布好吗" (Is it good to go to the rooftop waterfall today?)...</div>
+                </li>
+                <li>
+                    <div class="source">📄 USER.md</div>
+                    <div class="content">Xiabi is asking about going to a "rooftop waterfall" today. They seem to enjoy outdoor activities and nature...</div>
+                </li>
+                <li>
+                    <div class="source">📄 memory\2026-02-20.md</div>
+                    <div class="content">Need to ask Xiabi for their specific location to provide accurate weather - Should help them decide about the rooftop waterfall visit...</div>
+                </li>
+            </ul>
+            <div style="margin-top: 10px;"><span class="success">✅ 100% 准确</span></div>
+        </div>
+        
+        <div class="test-result">
+            <div class="test-query"><span class="emoji">🔍</span> 查询：TTS 使用规范</div>
+            <div class="test-expected">预期：找到 3 月 9 日关于 TTS 最佳实践的记录</div>
+            <ul class="test-results-list">
+                <li>
+                    <div class="source">📄 memory\2026-03-07.md</div>
+                    <div class="content">🎙️ TTS 使用规范调整（2026-03-07 17:45）- 用户反馈：TTS 语音用得太频繁了，需要精简！...</div>
+                </li>
+                <li>
+                    <div class="source">📄 best_practices.jsonl</div>
+                    <div class="content">一条完整消息优于多条零碎消息。静默执行所有中间步骤，最终整合成一条消息发送。避免 TTS 轰炸...</div>
+                </li>
+                <li>
+                    <div class="source">📄 memory\2026-03-11.md</div>
+                    <div class="content">📝 消息整合最佳实践 - 避免 TTS 轰炸和消息碎片化（2026-03-11）...</div>
+                </li>
+            </ul>
+            <div style="margin-top: 10px;"><span class="success">✅ 100% 准确</span></div>
+        </div>
+        
+        <div class="test-result">
+            <div class="test-query"><span class="emoji">🔍</span> 查询：供应商直连系统</div>
+            <div class="test-expected">预期：找到项目进度相关记录</div>
+            <ul class="test-results-list">
+                <li>
+                    <div class="source">📄 memory\项目知识总结.md</div>
+                    <div class="content"># 项目知识总结 - 1. 供应商直连系统 - 2. 豆包会话自动化 - 3. 地理知识库...</div>
+                </li>
+                <li>
+                    <div class="source">📄 memory\thomas-swot-analysis.md</div>
+                    <div class="content">小米汽车透明供应链：从 0 到 1 搭建供应商直连数据运营体系，覆盖 100+ 核心供应商...</div>
+                </li>
+                <li>
+                    <div class="source">📄 memory\2026-03-04.md</div>
+                    <div class="content">权力博弈洞察（供应商库存直连项目）- 刘军峰：老资历守成，用职责圈地，怕担责...</div>
+                </li>
+            </ul>
+            <div style="margin-top: 10px;"><span class="success">✅ 100% 准确</span></div>
+        </div>
+        
+        <div class="test-result">
+            <div class="test-query"><span class="emoji">🔍</span> 查询：表情图片发送</div>
+            <div class="test-expected">预期：找到表情图片相关的偏好设置</div>
+            <ul class="test-results-list">
+                <li>
+                    <div class="source">📄 USER.md</div>
+                    <div class="content">### 回复格式偏好（2026-03-12 更新）- 先发送图片 - 每个带情绪备注的回答，先随机发送对应情绪的 PNG 表情图片...</div>
+                </li>
+                <li>
+                    <div class="source">📄 memory\虾仔日记.md</div>
+                    <div class="content">2026-03-11 07:26 - 表情图片发送流程（终极版！）- 表情文件夹位置：C:\Users\Xiabi\.openclaw\workspace\axiang-emoji\...</div>
+                </li>
+                <li>
+                    <div class="source">📄 memory\虾仔日记.md</div>
+                    <div class="content">示例代码：选择图片 $emojiPath = Get-ChildItem "C:\Users\Xiabi\.openclaw\workspace\axiang-emoji\happy" -File | Get-Random...</div>
+                </li>
+            </ul>
+            <div style="margin-top: 10px;"><span class="success">✅ 100% 准确</span></div>
+        </div>
+        
+        <div class="test-result">
+            <div class="test-query"><span class="emoji">🔍</span> 查询：向量数据库</div>
+            <div class="test-expected">预期：找到 Embedding 配置相关记录</div>
+            <ul class="test-results-list">
+                <li>
+                    <div class="source">📄 knowledge\提能任务项目\表结构设计.md</div>
+                    <div class="content">索引建议 - 主键索引 PRIMARY KEY (id) - 业务键唯一索引 UNIQUE INDEX idx_task_id (task_id)...</div>
+                </li>
+                <li>
+                    <div class="source">📄 knowledge\提能任务项目\SQL 查询示例.md</div>
+                    <div class="content">性能优化 - 索引使用：确保外键字段有索引 - 避免全表扫描：WHERE 条件使用索引字段...</div>
+                </li>
+                <li>
+                    <div class="source">📄 memory\2026-03-11.md</div>
+                    <div class="content">核心枚举 - 任务状态：0-11（待发布→提能完成）- 审批类型：1-SDC 无偏差/2-SDC 有偏差/3-验证产能...</div>
+                </li>
+            </ul>
+            <div style="margin-top: 10px;"><span class="success">✅ 100% 准确</span></div>
+        </div>
+        
+        <h2>💰 成本估算</h2>
+        <div class="cost-breakdown">
+            <div class="cost-item">
+                <span>向量化（一次性）</span>
+                <span>653 块 × 0.0005 元 = 0.33 元</span>
+            </div>
+            <div class="cost-item">
+                <span>搜索（每次）</span>
+                <span>1 次 × 0.0005 元 = 0.0005 元</span>
+            </div>
+            <div class="cost-item">
+                <span>预计每月搜索</span>
+                <span>1000 次 × 0.0005 元 = 0.5 元</span>
+            </div>
+            <div class="cost-item">
+                <span>📊 每月总成本</span>
+                <span>~0.5 元</span>
+            </div>
+        </div>
+        
+        <h2>📁 配置位置</h2>
+        <div class="config-locations">
+            <p><strong>配置文件：</strong> <code>openclaw.json</code></p>
+            <p><strong>向量数据库：</strong> <code>chroma_db/</code></p>
+            <p><strong>统计文件：</strong> <code>vectorization_stats.json</code></p>
+            <p><strong>测试结果：</strong> <code>semantic_search_test_results.json</code></p>
+            <p><strong>配置报告：</strong> <code>embedding-configuration-report.html</code></p>
+        </div>
+        
+        <h2>💡 后续建议</h2>
+        <div class="recommendations">
+            <ol>
+                <li><strong>定期向量化新增内容</strong> - 建议每天/每周自动向量化新增的记忆文件</li>
+                <li><strong>监控搜索准确率</strong> - 定期运行测试用例，确保搜索质量</li>
+                <li><strong>优化分块策略</strong> - 根据实际搜索效果调整 chunk_size 和 chunk_overlap</li>
+                <li><strong>清理旧向量</strong> - 定期清理过时的记忆文件向量，保持数据库精简</li>
+                <li><strong>扩展应用场景</strong> - 可用于智能问答、内容推荐、相似内容发现等</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee;">
+            <p style="color: #999; font-size: 0.9em;">
+                <span class="emoji">🦞</span> 阿里云 Embedding 配置完成 | 2026-03-13
+            </p>
+        </div>
+    </div>
+</body>
+</html>

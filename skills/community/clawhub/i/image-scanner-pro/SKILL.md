@@ -1,35 +1,28 @@
----
-name: "Image Scanner Pro"
-description: "Scan image folders and use Gemini 2.0 Flash to analyze and categorize photos by photography attributes like composition, lighting, and style."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-scanner-pro"
-sourceUrl: "https://clawhub.ai/skills/image-scanner-pro"
----
+# image-scanner-pro
 
-# Image Scanner Pro
+## Description
+扫描图片文件夹，调用视觉大模型（Gemini 2.0 Flash）深度分析每张照片的摄影属性：景别、主体、场景、光线、氛围、影调、产品、物件、陈设。
 
-> Scan image folders and use Gemini 2.0 Flash to analyze and categorize photos by photography attributes like composition, lighting, and style.
+## Triggers
+- 分析摄影作品
+- 识别图片内容
+- 扫描并分类图片
+- 批量分析照片风格
+- 整理作品集
+- 识别图片颜色和风格
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-scanner-pro`
-- **Source URL:** [https://clawhub.ai/skills/image-scanner-pro](https://clawhub.ai/skills/image-scanner-pro)
+## Capabilities
+- 扫描目录中的所有图片文件
+- 调用视觉模型分析每张图片
+- 识别专业摄影属性（景别/主体/光线/影调等）
+- 按拍摄内容自动分类
+- 生成详细分析报告
+- 支持批量处理
 
-## Overview
+## Requirements
+- 需要配置视觉模型 API（Gemini 2.0 Flash）
+- 安装依赖：npm install @google/generative-ai
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/image-scanner-pro
-```
+node skills/image-scanner-pro/index.js --path <目录路径> --api-key <Gemini Key> --output report.json

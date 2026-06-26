@@ -1,35 +1,21 @@
 ---
-name: "Crypto Whale Monitor"
-description: "Monitors large cryptocurrency wallet balances (whales) on-chain using Web3 RPC to detect potential market-moving activity. Can read from `references/wallets...."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-whale-monitor"
-sourceUrl: "https://clawhub.ai/skills/crypto-whale-monitor"
+name: crypto-whale-monitor
+description: Monitors large cryptocurrency wallet balances (whales) on-chain using Web3 RPC to detect potential market-moving activity. Can read from `references/wallets.md` or accept custom addresses.
 ---
 
 # Crypto Whale Monitor
 
-> Monitors large cryptocurrency wallet balances (whales) on-chain using Web3 RPC to detect potential market-moving activity. Can read from `references/wallets....
+This skill contains the logic to connect to blockchain explorers and track large balances for a defined set of "whale" wallets.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-whale-monitor`
-- **Source URL:** [https://clawhub.ai/skills/crypto-whale-monitor](https://clawhub.ai/skills/crypto-whale-monitor)
+## Workflow
 
-## Overview
+1. **Define Wallets**: Add known whale addresses to `references/wallets.md`.
+2. **Execute**: Run `npm start` (or `./scripts/monitor.js`) to scan the list.
+3. **Analyze**: Review output for "WHALE DETECTED" alerts.
+4. **Schedule**: Set up a cron job to run `npm start` periodically for automated monitoring.
 
+## Scripts
+- `scripts/monitor.js`: Core logic for checking balances via public RPC. Reads from `references/wallets.md` by default.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crypto-whale-monitor
-```
+## References
+- `references/wallets.md`: A list of known, public whale wallet addresses.

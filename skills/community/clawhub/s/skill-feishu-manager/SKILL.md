@@ -1,35 +1,42 @@
 ---
-name: "Feishu Manager"
-description: "Comprehensive Feishu (飞书) management toolkit for documents, knowledge bases, bitables, and cloud storage."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-feishu-manager"
-sourceUrl: "https://clawhub.ai/skills/skill-feishu-manager"
+name: skill-feishu-manager
+description: |
+  Comprehensive Feishu (飞书) management toolkit for documents, knowledge bases, bitables, and cloud storage.
 ---
 
-# Feishu Manager
+# Feishu Manager Skill
 
-> Comprehensive Feishu (飞书) management toolkit for documents, knowledge bases, bitables, and cloud storage.
+Complete toolkit for managing Feishu workspace.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-feishu-manager`
-- **Source URL:** [https://clawhub.ai/skills/skill-feishu-manager](https://clawhub.ai/skills/skill-feishu-manager)
+## Tools Used
 
-## Overview
+- feishu_doc - Document operations
+- feishu_wiki - Knowledge base operations  
+- feishu_bitable_* - Table operations
+- feishu_drive - Cloud storage operations
 
+## Quick Reference
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-feishu-manager
-```
+### Documents
+- Read: feishu_doc { "action": "read", "doc_token": "ABC123" }
+- Create: feishu_doc { "action": "create", "title": "New Doc" }
+- Write: feishu_doc { "action": "write", "doc_token": "ABC123", "content": "# Title" }
+
+### Wiki
+- List spaces: feishu_wiki { "action": "spaces" }
+- Create page: feishu_wiki { "action": "create", "space_id": "...", "title": "Page" }
+
+### Bitable
+- Create table: feishu_bitable_create_app { "name": "Project" }
+- List records: feishu_bitable_list_records { "app_token": "...", "table_id": "..." }
+
+### Drive
+- List folder: feishu_drive { "action": "list", "folder_token": "..." }
+- Create folder: feishu_drive { "action": "create_folder", "name": "New" }
+
+## Permissions Required
+
+- docx:document
+- wiki:wiki
+- drive:drive
+- bitable:data

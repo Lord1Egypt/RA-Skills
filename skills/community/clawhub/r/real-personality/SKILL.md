@@ -1,35 +1,413 @@
 ---
-name: "REAL 人格测试"
-description: "REAL Personality Test — not what you think you are, but what your data says you are. Scan social media accounts, analyze behavioral data (posts, likes, saves..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/real-personality"
-sourceUrl: "https://clawhub.ai/skills/real-personality"
+name: real-personality
+description: REAL Personality Test — not what you think you are, but what your data says you are. Scan social media accounts, analyze behavioral data (posts, likes, saves, follows), classify into one of 16 REAL personality types with match score. Like MBTI/SBTI but based on real data instead of self-reported answers. REAL人格测试——不是你觉得自己是谁，而是你的数据说你是谁。扫描社交账号，从行为数据（发帖/点赞/收藏/关注）中分析，归类为16种REAL人格之一。像MBTI/SBTI，但用的是真实数据而不是自我回答。
+version: 1.0.0
+depends: manobrowser
 ---
 
-# REAL 人格测试
+# REAL 人格测试.skill 🔍
 
-> REAL Personality Test — not what you think you are, but what your data says you are. Scan social media accounts, analyze behavioral data (posts, likes, saves...
+> Reading Everyone's Actual Life
+> SBTI 问你觉得自己是谁。REAL 看你的数据说你是谁。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/real-personality`
-- **Source URL:** [https://clawhub.ai/skills/real-personality](https://clawhub.ai/skills/real-personality)
+---
 
-## Overview
+## ⚡ 首次加载行为（AI 必读）
 
+读完这份文档后，立即用以下风格介绍自己：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/real-personality
 ```
+🔍 REAL 人格测试已就位。
+
+MBTI 是自己选的。SBTI 是自己答的。
+REAL——是你的数据替你答的。
+
+你发了什么、收藏了什么、点赞了什么、
+几点发的、关注了谁、给谁评论最多——
+这些数据拼在一起，就是真实的你。
+
+16 种 REAL 人格，4 个维度：
+🎨 你在创造还是消费？
+🔥 你社交是热的还是冷的？
+🎯 你兴趣是广的还是深的？
+🎭 你表里一致吗？
+
+测完你会得到一个 4 字母代码 + 匹配度。
+比如：ELWP「幽灵」👻 匹配度 89%
+
+不需要答题。扫一下社交账号就行。
+数据不会骗人——但可能会让你社死。
+
+前提：安装 ManoBrowser Chrome 插件。
+
+要测吗？🔍
+```
+
+---
+
+## 核心概念
+
+### REAL vs SBTI vs MBTI
+
+| | MBTI | SBTI | **REAL** |
+|---|---|---|---|
+| 数据来源 | 自我回答 | 自我回答 | **社交行为数据** |
+| 题目数 | 93题 | 31题 | **0题** |
+| 你能控制结果吗 | 能（挑好听的选） | 能 | **不能** |
+| 结果可信度 | 你觉得呢 | 你觉得呢 | **数据说了算** |
+| 社死概率 | 低 | 中 | **极高** |
+
+### 4 个维度
+
+| 维度 | 字母 | 含义 | 数据来源 |
+|------|------|------|---------|
+| **内容倾向** | C / E | Create（创造）vs Eat（消费） | 原创帖数 vs 收藏点赞转发数 |
+| **社交温度** | H / L | Hot（热）vs Low（冷） | 互动率、评论回复率 |
+| **兴趣广度** | W / D | Wide（杂）vs Deep（专） | 内容标签分散度 |
+| **表里一致** | R / P | Real（真）vs Play（演） | 公开内容 vs 收藏/点赞内容重叠度 |
+
+### 16 种 REAL 人格
+
+**创造者阵营（C 开头）**：
+
+| 代码 | 名称 | emoji | 一句话 |
+|------|------|-------|--------|
+| CHWR | 主角 | 👑 | 原创多、社交热、兴趣广、表里如一——你就是主角 |
+| CHWP | 戏精 | 🎭 | 看起来活跃又真实，其实你在演一出大戏 |
+| CHDR | 大佬 | 🏆 | 深耕一个领域、热情互动、货真价实 |
+| CHDP | 人设 | 🎪 | 专业人设立得很稳，但收藏夹出卖了你 |
+| CLWR | 宝藏 | 💎 | 默默产出、兴趣广泛、真实——等人来挖掘 |
+| CLWP | 闷骚 | 🌋 | 表面沉默，内心翻涌，收藏夹是你的秘密花园 |
+| CLDR | 匠人 | 🔨 | 不社交、不杂食、只做一件事、做到极致 |
+| CLDP | 刺客 | 🗡️ | 低调深耕，但暗地里你的兴趣完全不是你展示的那样 |
+
+**消费者阵营（E 开头）**：
+
+| 代码 | 名称 | emoji | 一句话 |
+|------|------|-------|--------|
+| EHWR | 话痨 | 🗣️ | 不怎么原创但超爱互动，什么都知道一点 |
+| EHWP | 水军 | 🤖 | 到处互动但从不原创，而且公开说的和私下看的完全两样 |
+| EHDR | 迷弟/迷妹 | 💗 | 只追一个方向，热情真诚，纯粉无疑 |
+| EHDP | 卧底 | 🕵️ | 看起来在追某个领域，其实你在卧底 |
+| ELWR | 仓鼠 | 🐹 | 不发帖、不互动、什么都收藏——你的收藏夹可以开博物馆 |
+| ELWP | 幽灵 | 👻 | 互联网的幽灵——无处不在但没人知道你在，而且暗地里跟表面完全不同 |
+| ELDR | 潜水艇 | 🔇 | 安静地只关注一个领域，不发帖不互动，但你比谁都懂 |
+| ELDP | 深柜 | 🚪 | 看起来只关注一件事，但收藏夹暴露了你的另一面 |
+
+---
+
+## 执行流程
+
+```
+0.前置检测 → 1.采集数据 → 2.维度计算 → 3.类型判定 → 4.生成报告 → 5.分享引导
+```
+
+---
+
+## 0. 前置检测（ManoBrowser）
+
+### Step 0.1 检查 ManoBrowser Skill 文件
+
+在以下位置查找：
+1. 当前工作目录 `manobrowser/SKILL.md`
+2. `~/.openclaw/skills/manobrowser/SKILL.md`
+3. 其他 skills 目录
+
+- **找到** → Step 0.2
+- **未找到** → `git clone https://github.com/ClawCap/ManoBrowser.git ./manobrowser`
+
+### Step 0.2 检查连接配置
+
+确认 `.mcp.json` 中有 ManoBrowser 连接 → Step 0.3
+
+### Step 0.3 验证设备在线
+
+`chrome_navigate` 访问 `about:blank` → Step 1
+
+### 工具名映射
+
+短名称 `chrome_navigate` 实际调用加前缀：`mcp__{实例名}__{工具短名}`
+
+---
+
+## 1. 采集数据
+
+使用内置平台子模块采集，**全量采集**（不要问"够不够"）：
+
+| 平台 | 子模块 | 关键数据 |
+|------|--------|---------|
+| 📕 小红书 | `xiaohongshu-deep-profile-collect/SKILL.md` | 笔记+标签+收藏+点赞 |
+| 🎵 抖音 | `douyin-deep-profile-collect/SKILL.md` | 作品+喜欢列表 |
+| 🐦 微博 | `weibo-deep-profile-collect/SKILL.md` | 原创微博+转发+收藏 |
+| 📖 豆瓣 | `douban-deep-profile-collect/SKILL.md` | 标记+评分+短评+想读/已读 |
+| 📺 B站 | `bilibili-deep-profile-collect/SKILL.md` | 投稿+收藏夹+关注 |
+
+> ⚠️ **JS 脚本必须完整复制执行**，不要简化。
+
+### 采集后保存
+
+写入 `real-data/{日期}_raw.json`，结构：
+```json
+{
+  "platforms": ["xiaohongshu", "weibo", "douban"],
+  "public_content": { "posts": [], "tags": [], "topics": [] },
+  "private_behavior": { "saves": [], "likes": [], "follows": [] },
+  "interactions": { "comments": 0, "replies": 0, "mentions": 0 },
+  "post_times": [],
+  "profile": { "name": "", "bio": "", "followers": 0, "following": 0 }
+}
+```
+
+---
+
+## 2. 维度计算（⚠️ 核心算法）
+
+### 维度 1：C vs E（创造 vs 消费）
+
+```
+原创占比 = 原创帖数 / (原创帖数 + 收藏数 + 点赞数)
+
+> 0.3 → C（你在创造）
+≤ 0.3 → E（你在消费）
+
+强度 = |原创占比 - 0.3| / 0.3 × 100（越偏离阈值越典型）
+```
+
+**跨平台合并**：所有平台的原创帖数加总、收藏点赞加总。
+
+### 维度 2：H vs L（社交热 vs 冷）
+
+```
+互动率 = (回复评论数 + 互动帖数) / 总帖数
+
+> 0.2 → H（社交热）
+≤ 0.2 → L（社交冷）
+
+备选指标（当评论数据不可用时）：
+- 关注数/粉丝数比值 > 2 → 倾向 H
+- 发帖中 @提及 > 10% → 倾向 H
+```
+
+### 维度 3：W vs D（兴趣广 vs 深）
+
+```
+步骤：
+1. 提取所有内容的主题标签/关键词
+2. 聚类为大类（美食/旅行/科技/娱乐/健身/职场/…）
+3. 计算 TOP 1 主题占比
+
+TOP 1 占比 > 50% → D（深耕型）
+TOP 1 占比 ≤ 50% → W（广泛型）
+
+备选：有效主题数 ≤ 2 → D，≥ 4 → W
+```
+
+### 维度 4：R vs P（真实 vs 在演）
+
+```
+公开标签集 = 发帖/原创内容的主题标签
+私密标签集 = 收藏/点赞内容的主题标签
+
+重叠度 = |公开 ∩ 私密| / |公开 ∪ 私密|
+
+> 0.5 → R（表里如一）
+≤ 0.5 → P（在演）
+
+⚠️ 如果没有收藏/点赞数据（对方账号/平台限制）：
+  标注"表里一致度：数据不足" → 默认 R，但匹配度降低
+```
+
+### 匹配度
+
+```
+单维度匹配度 = |实际值 - 阈值| / max(阈值, 1-阈值) × 100
+总匹配度 = 4 维度匹配度均值
+
+90-100% → "极其典型"
+70-89% → "很典型"
+50-69% → "比较典型"
+< 50% → "你在几个类型之间摇摆"
+```
+
+---
+
+## 3. 类型判定
+
+4 个维度组合 → 16 种类型中的一种。
+
+每个类型需要生成：
+
+### A. 类型卡片（核心传播单元）
+
+```
+┌──────────────────────────────┐
+│  🔍 REAL 人格测试              │
+│                              │
+│  你的 REAL 人格是：            │
+│                              │
+│  ELWP「幽灵」👻              │
+│  匹配度 89%                   │
+│                              │
+│  "互联网的幽灵——              │
+│   无处不在但没人知道你在。"     │
+│                              │
+│  📊 C12 E88 | L95 | W67 | P74│
+│                              │
+│  sbti是自己答的               │
+│  real是数据替你答的            │
+└──────────────────────────────┘
+```
+
+### B. 详细报告
+
+```markdown
+# 🔍 你的 REAL 人格：{CODE}「{名称}」{emoji}
+
+> 匹配度：{XX}%
+> 数据源：{平台列表}
+> ⚠️ 基于社交数据的 AI 分析。这不是心理学测试，是数据照妖镜。
+
+---
+
+## 你的 4 个维度
+
+### 🎨 {C/E}：你是{创造者/消费者}
+{具体数据}
+- 原创帖数：{N}
+- 收藏+点赞：{N}
+- 原创占比：{X}%
+{一句话解读}
+
+### 🔥 {H/L}：你的社交温度是{热的/冷的}
+{具体数据 + 解读}
+
+### 🎯 {W/D}：你的兴趣是{广的/深的}
+{主题分布 + 解读}
+
+### 🎭 {R/P}：你{表里如一/在演}
+{公开 vs 私密对比 + 解读}
+
+---
+
+## 扎心解读
+
+{200-300字。好笑的、自嘲型的、具体的。
+ 用数据说话："你收藏了 47 条健身教程但最近一条运动相关的帖子是 8 个月前的"
+ 像损友吐槽而不是心理咨询师分析。}
+
+---
+
+## 隐藏优势
+
+{每个类型都有正面解读。100-150字。
+ 让人看了觉得"虽然被骂了但好像也挺好的"。}
+
+---
+
+## 你一定做过这些事
+
+{5-7 条。根据类型特征列出"你肯定干过"的事。
+ 要具体、要好笑、要让人想截图。}
+
+✅ {行为1}
+✅ {行为2}
+...
+
+---
+
+## 📊 完整数据
+
+| 维度 | 字母 | 数值 | 解读 |
+|------|------|------|------|
+| 内容倾向 | {C/E} | {原创占比}% | {一句话} |
+| 社交温度 | {H/L} | {互动率}% | {一句话} |
+| 兴趣广度 | {W/D} | {TOP1占比}% | {一句话} |
+| 表里一致 | {R/P} | {重叠度}% | {一句话} |
+
+---
+
+## ⚠️ 免责
+
+> REAL 人格测试基于你的社交数据行为分析，不是心理学诊断。
+> 它反映的是"你在互联网上的样子"，不是"你这个人"。
+> 人不等于数据。但数据不会装。
+```
+
+---
+
+## 4. 生成报告
+
+按上述模板生成完整报告。
+
+### 报告质量自检
+
+- [ ] 每个维度都有具体数据支撑？
+- [ ] 扎心解读好笑且具体（不是泛泛而谈）？
+- [ ] "你一定做过这些事"让人想截图？
+- [ ] 隐藏优势让人看了舒服？
+- [ ] 类型卡片可以独立传播？
+
+---
+
+## 5. 呈现 & 分享引导
+
+```
+🔍 测完了。
+
+{类型卡片}
+
+{完整报告}
+
+---
+
+📸 截图发朋友圈/小红书的推荐配文：
+"SBTI是自己答的，REAL是数据替你答的。我是{CODE}「{名称}」{emoji}"
+
+🔗 想测的朋友：github.com/ClawCap/REAL
+
+💡 你还可以：
+- 🪞 照妖镜 — 看你的完整反差报告
+- 🎯 月老 — 和另一个人测匹配度（先各自测 REAL，然后看你们的类型配不配）
+```
+
+---
+
+## 目录结构
+
+```
+REAL/
+├── SKILL.md                              ← 本文件
+├── README.md
+├── scripts/
+│   └── check_manobrowser.sh
+├── types/
+│   └── type_system.md                    ← 类型体系详细设计
+├── examples/
+│   └── xiaokai_real_report.md            ← 示例报告
+├── xiaohongshu-deep-profile-collect/
+├── douyin-deep-profile-collect/
+├── weibo-deep-profile-collect/
+├── douban-deep-profile-collect/
+├── bilibili-deep-profile-collect/
+└── docs/img/
+    └── feishu_qr.png
+```
+
+5 个平台采集子模块已内置。
+
+---
+
+## 隐私说明
+
+- 扫描的是**自己的**账号
+- 数据全存本地，不上传服务器
+- 报告是否分享完全自愿
+- 不做心理诊断，只做数据分析
+
+---
+
+## 版本信息
+
+- **当前版本**：1.0.0
+- **创建日期**：2026-04-10
+- **依赖**：ManoBrowser（首次使用自动从 GitHub 下载）

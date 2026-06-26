@@ -1,0 +1,18 @@
+{
+  "name": "holding-analyzer-skill",
+  "version": "2.0.0-free",
+  "description": "持仓偏离度分析 Skill - 使用东方财富API获取真实ETF数据（免费版本）",
+  "main": "src/index.js",
+  "author": "亚勇电脑",
+  "license": "MIT",
+  "keywords": [
+    "etf",
+    "holding",
+    "analysis",
+    "eastmoney",
+    "free"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

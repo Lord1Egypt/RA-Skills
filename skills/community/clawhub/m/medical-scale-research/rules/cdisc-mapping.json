@@ -1,0 +1,166 @@
+{
+  "name": "CDISC Domain 自动推荐规则",
+  "version": "1.0",
+  "last_updated": "2026-04-19",
+  "description": "基于量表类型和关键词自动推荐 SDTM/ADaM Domain",
+  
+  "rules": [
+    {
+      "id": "QOL_001",
+      "keywords": ["生活质量", "quality of life", "QOL", "HRQoL", "health-related quality of life"],
+      "sdtm_domain": "QS",
+      "sdtm_category": "Findings About Questionnaires",
+      "adam_domain": "ADQS",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - QS domain for questionnaire data",
+      "notes": "生活质量类量表默认映射到 QS"
+    },
+    {
+      "id": "SYM_001",
+      "keywords": ["症状", "symptom", "symptom assessment", "symptom score"],
+      "sdtm_domain": "QS",
+      "sdtm_category": "Findings About Questionnaires",
+      "adam_domain": "ADQS",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - Symptom assessments are questionnaire findings",
+      "notes": "症状评估量表映射到 QS"
+    },
+    {
+      "id": "MH_001",
+      "keywords": ["病史", "medical history", "disease history", "past history"],
+      "sdtm_domain": "MH",
+      "sdtm_category": "Medical History",
+      "adam_domain": "ADMH",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - MH domain for medical history",
+      "notes": "病史采集映射到 MH"
+    },
+    {
+      "id": "CM_001",
+      "keywords": ["合并用药", "concomitant medication", "medication history", "drug use"],
+      "sdtm_domain": "CM",
+      "sdtm_category": "Concomitant Medications",
+      "adam_domain": "ADCM",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - CM domain for concomitant medications",
+      "notes": "合并用药映射到 CM"
+    },
+    {
+      "id": "AE_001",
+      "keywords": ["不良事件", "adverse event", "AE", "safety event", "side effect"],
+      "sdtm_domain": "AE",
+      "sdtm_category": "Adverse Events",
+      "adam_domain": "ADAE",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - AE domain for adverse events",
+      "notes": "不良事件映射到 AE"
+    },
+    {
+      "id": "VS_001",
+      "keywords": ["生命体征", "vital signs", "blood pressure", "heart rate", "temperature", "体重", "身高"],
+      "sdtm_domain": "VS",
+      "sdtm_category": "Vital Signs",
+      "adam_domain": "ADVS",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - VS domain for vital signs",
+      "notes": "生命体征映射到 VS"
+    },
+    {
+      "id": "LB_001",
+      "keywords": ["实验室", "laboratory", "lab test", "blood test", "生化", "血常规"],
+      "sdtm_domain": "LB",
+      "sdtm_category": "Laboratory Test Results",
+      "adam_domain": "ADLB",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - LB domain for laboratory results",
+      "notes": "实验室检查映射到 LB"
+    },
+    {
+      "id": "PE_001",
+      "keywords": ["体格检查", "physical examination", "physical exam", "体检"],
+      "sdtm_domain": "PE",
+      "sdtm_category": "Physical Examination",
+      "adam_domain": "ADPE",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - PE domain for physical examinations",
+      "notes": "体格检查映射到 PE"
+    },
+    {
+      "id": "EG_001",
+      "keywords": ["心电图", "ECG", "EKG", "electrocardiogram"],
+      "sdtm_domain": "EG",
+      "sdtm_category": "Electrocardiogram Findings",
+      "adam_domain": "ADEG",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - EG domain for ECG findings",
+      "notes": "心电图映射到 EG"
+    },
+    {
+      "id": "RS_001",
+      "keywords": ["疾病状态", "disease status", "response", "progression", "肿瘤评估"],
+      "sdtm_domain": "RS",
+      "sdtm_category": "Disease Response",
+      "adam_domain": "ADRS",
+      "confidence": "high",
+      "basis": "SDTMIG v3.4 - RS domain for disease response assessments",
+      "notes": "肿瘤反应评估映射到 RS"
+    },
+    {
+      "id": "MI_001",
+      "keywords": ["微生物", "microbiology", "culture", "bacteria", "virus"],
+      "sdtm_domain": "MI",
+      "sdtm_category": "Microbiology",
+      "adam_domain": "ADMI",
+      "confidence": "medium",
+      "basis": "SDTMIG v3.4 - MI domain for microbiology findings",
+      "notes": "微生物检查映射到 MI"
+    },
+    {
+      "id": "TR_001",
+      "keywords": ["移植", "transplant", "graft"],
+      "sdtm_domain": "TR",
+      "sdtm_category": "Transplantation",
+      "adam_domain": "ADTR",
+      "confidence": "medium",
+      "basis": "SDTMIG v3.4 - TR domain for transplantation",
+      "notes": "移植相关信息映射到 TR"
+    }
+  ],
+  
+  "fallback": {
+    "sdtm_domain": "QS",
+    "adam_domain": "ADQS",
+    "confidence": "low",
+    "notes": "无法匹配时使用 QS 作为默认 Domain（问卷类）"
+  },
+  
+  "confidence_levels": {
+    "high": "关键词直接匹配，置信度>80%",
+    "medium": "关键词部分匹配，置信度 50-80%",
+    "low": "基于上下文推断，置信度<50%"
+  },
+  
+  "examples": [
+    {
+      "scale_name": "EORTC QLQ-C30",
+      "matched_keywords": ["quality of life", "QOL"],
+      "recommended_sdtm": "QS",
+      "recommended_adam": "ADQS",
+      "confidence": "high"
+    },
+    {
+      "scale_name": "ECOG PS",
+      "matched_keywords": ["performance status", "功能状态"],
+      "recommended_sdtm": "QS",
+      "recommended_adam": "ADQS",
+      "confidence": "high"
+    },
+    {
+      "scale_name": "RECIST 1.1",
+      "matched_keywords": ["tumor response", "疾病状态"],
+      "recommended_sdtm": "RS",
+      "recommended_adam": "ADRS",
+      "confidence": "high"
+    }
+  ]
+}

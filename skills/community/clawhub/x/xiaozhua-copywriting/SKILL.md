@@ -1,35 +1,38 @@
 ---
-name: "Copywriting"
+name: copywriting
 description: "文案优化与措辞调整。根据角色（产品负责人/汇报人/团队成员）、场景（给老板/给同事/给客服/给群聊）、受众调整措辞风格和内容深度。支持简化、正式化、口语化、中英文切换。使用场景：给老板的汇报措辞、回复客服的产品视角、群消息优化、邮件起草。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaozhua-copywriting"
-sourceUrl: "https://clawhub.ai/skills/xiaozhua-copywriting"
 ---
 
-# Copywriting
+# 文案优化
 
-> 文案优化与措辞调整。根据角色（产品负责人/汇报人/团队成员）、场景（给老板/给同事/给客服/给群聊）、受众调整措辞风格和内容深度。支持简化、正式化、口语化、中英文切换。使用场景：给老板的汇报措辞、回复客服的产品视角、群消息优化、邮件起草。
+## 核心原则
+- 用户偏好简洁，讨厌啰嗦
+- 先理解角色关系，再调措辞
+- 一句话能说清的不用两句
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaozhua-copywriting`
-- **Source URL:** [https://clawhub.ai/skills/xiaozhua-copywriting](https://clawhub.ai/skills/xiaozhua-copywriting)
+## 角色适配
 
-## Overview
+### 给老板汇报
+- 结论先行，数据支撑
+- 不要铺垫，直说判断
+- 用"我们"不用"我建议"
 
+### 给同级同事
+- 平等讨论，给出观点
+- 可以有分歧，但要有理由
+- 简洁但不省略逻辑
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaozhua-copywriting
-```
+### 给下属/客服
+- 产品负责人视角
+- 明确产品侧会做什么
+- "这个问题产品侧跟进"
+
+### 群消息
+- 控制长度，一屏能看完
+- 重点加粗
+- 不用"您好""请问"等客套
+
+## 常用模式
+- **简化**：去掉修饰词、合并重复、删除显而易见的内容
+- **正式化**：去口语、加数据、结构化
+- **口语化**：去书面感、加语气词、缩短句子

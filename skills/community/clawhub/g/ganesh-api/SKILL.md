@@ -1,35 +1,19 @@
 ---
-name: "Ganesh API"
-description: "Ganesh Image Hosting API for image hosting. Use when user mentions "Ganesh", "upload image", "image hosting", or asks about image sharing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ganesh-api"
-sourceUrl: "https://clawhub.ai/skills/ganesh-api"
+name: ganesh
+description: Ganesh Image Hosting API for image hosting. Use when user mentions "Ganesh", "upload
+  image", "image hosting", or asks about image sharing.
 ---
 
-# Ganesh API
+# Ganesh Image Hosting
 
-> Ganesh Image Hosting API for image hosting. Use when user mentions "Ganesh", "upload image", "image hosting", or asks about image sharing.
+Ganesh is a free image hosting service. Upload images and get URLs for sharing, embedding in articles, or using in documentation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ganesh-api`
-- **Source URL:** [https://clawhub.ai/skills/ganesh-api](https://clawhub.ai/skills/ganesh-api)
+## When to Use
 
-## Overview
+- Upload images to get shareable URLs
+- Host images for blog posts or documentation
+- Get image URLs for use in Markdown content
+- Anonymous image uploads (no account needed)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ganesh-api
-```
+## API Reference
+Once you have your Client ID, you can use the Ganesh API to upload images. The full documentation is available at https://ishortn.ink/ganesh-official-api , and changes frequently, so refer to the official docs for the latest endpoints and parameters.

@@ -1,35 +1,62 @@
----
-name: "UmowaGenerator"
-description: "Generator profesjonalnych umów prawnych dla osób prywatnych i małych firm w Polsce, tworzący zgodne z Kodeksem Cywilnym dokumenty."
-category: "other"
-source: "ClawHub"
-tags: [dzielo, firma, polska, prawo, umowa, wynajem, zlecenie]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/umowa-generator"
-sourceUrl: "https://clawhub.ai/skills/umowa-generator"
----
+# UmowaGenerator — Generator Umów Prawnych
 
-# UmowaGenerator
+## Description
+Generator profesjonalnych umów prawnych dla osób prywatnych i małych firm w Polsce. Tworzy czytelne, zgodne z Kodeksem Cywilnym umowy: zlecenie, o dzieło, najmu, przedwstępna i inne.
 
-> Generator profesjonalnych umów prawnych dla osób prywatnych i małych firm w Polsce, tworzący zgodne z Kodeksem Cywilnym dokumenty.
+## Features
+- **Umowa zlecenie** — dla usług, pracowników tymczasowych, opiekunek, kierowców
+- **Umowa o dzieło** — dla twórców, grafików, programistów, konsultantów
+- **Umowa najmu mieszkania** — wzór z kaucją, protokołem zdawczo-odbiorczym
+- **Umowa przedwstępna** — zakupu mieszkania, samochodu (PRO)
+- **Walidacja danych** — sprawdza kompletność przed wydrukiem
+- **Generator PDF** — eksport do pliku (PRO)
+- **Wysyłanie mailem** — wyślij umowę bezpośrednio z aplikacji (PRO)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/umowa-generator`
-- **Source URL:** [https://clawhub.ai/skills/umowa-generator](https://clawhub.ai/skills/umowa-generator)
+## Wymagania
+- Python 3.8+ (opcjonalnie)
+- OpenClaw z zainstalowanym skillem
+- Dane stron: imię, nazwisko, adres, PESEL/NIP
 
-## Overview
+## Usage
+Użytkownik podaje:
+1. Typ umowy (zlecenie, o dzieło, najmu)
+2. Dane zleceniodawcy/zleceniobiorcy (lub wynajmującego/najemcy)
+3. Przedmiot umowy, wynagrodzenie, termin
 
+Skill automatycznie:
+- Sprawdza czy wszystkie wymagane dane są podane
+- Generuje profesjonalny dokument
+- Dodaje odpowiednie klauzule i paragrafy
+- Podpowiada co jeszcze warto uwzględnić
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/umowa-generator
+## Przykłady użycia
 ```
+"Utwórz umowę zlecenie dla opiekunki"
+"Wygeneruj umowę o dzieło dla programisty"
+"Potrzebuję umowę najmu mieszkania"
+"Jak napisać umowę przedwstępną zakupu mieszkania?"
+```
+
+## Wersja PRO (12.29 zł brutto)
+- Umowa przedwstępna zakupu mieszkania
+- Umowa sprzedaży samochodu
+- Umowa poufności (NDA)
+- Eksport do PDF gotowy do wydruku
+- Wysyłanie umowy mailem bezpośrednio do drugiej strony
+- Priorytetowa obsługa mailowa
+- Kontakt: tomaszpedzierski.infinity@wp.pl
+
+**Jak wykupić?** Wyślij maila na tomaszpedzierski.infinity@wp.pl — odpowiem z linkiem do płatności.
+
+## Autor
+**Twórca:** Tomasz Pędzierski
+
+## Licencja
+MIT License
+
+## Status
+✅ Gotowy do użycia
+
+---
+
+*UmowaGenerator — profesjonalne umowy prawne bez prawnika*

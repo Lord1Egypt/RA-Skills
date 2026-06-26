@@ -1,0 +1,16 @@
+{
+  "description": "arXiv 论文机构信息数据库（自动累积）",
+  "updated": "2026-04-16",
+  "affiliations": {
+    "2604.12986": ["Independent Researcher"],
+    "2604.13016": ["Tsinghua University", "THUNLP"],
+    "2604.13006": ["University of Southern California", "Intel AI"],
+    "2604.13029": ["Huawei Technologies Co., Ltd."],
+    "2604.13021": ["University of Michigan", "Massachusetts General Hospital"],
+    "2604.13035": ["Rice University"],
+    "2604.12967": ["University of Minnesota", "Amazon"],
+    "2604.12955": ["Amazon"],
+    "2604.13024": ["Independent"],
+    "2604.12946": ["University of Chicago", "UC Berkeley"]
+  }
+}

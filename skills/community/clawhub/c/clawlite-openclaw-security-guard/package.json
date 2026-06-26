@@ -1,0 +1,12 @@
+{
+  "name": "openclaw-security-guard",
+  "version": "0.2.1",
+  "description": "This skill should be used when the user asks to harden agent workflows, audit prompts, commands, URLs, or paths, scan a third-party skill before install or publish, review a skill folder for secrets or unsafe scripts, or add a lightweight OpenClaw security guard before publishing and automation.",
+  "keywords": ["openclaw","security","prompt-injection","command-injection","ssrf","path-traversal","secret-detection","clawhub","skill-audit","ai-safety"],
+  "private": true,
+  "type": "module",
+  "bin": {
+    "openclaw-security-check": "./scripts/security-check.mjs",
+    "openclaw-security-audit": "./scripts/audit-skill-dir.mjs"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "ai-agent-oversight",
+  "version": "1.0.0",
+  "description": "AI Agent Oversight & Safety - monitoring, constraining, and governing autonomous AI agents in production",
+  "author": "OpenClaw",
+  "license": "MIT"
+}

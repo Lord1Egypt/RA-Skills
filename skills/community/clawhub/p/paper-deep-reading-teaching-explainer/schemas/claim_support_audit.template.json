@@ -1,0 +1,21 @@
+{
+  "paper_id": "",
+  "paper_title": "",
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "claim_text": "",
+      "innovation_point": "",
+      "evidence_types": [],
+      "evidence_locations": [],
+      "support_strength": "strong|medium|weak|missing",
+      "notes": ""
+    }
+  ],
+  "overall_judgment": {
+    "best_supported_claims": [],
+    "weakest_supported_claims": [],
+    "overclaim_risk": "",
+    "innovation_type": "incremental|cross_domain|boundary_breaking|hybrid"
+  }
+}

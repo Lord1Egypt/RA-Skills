@@ -1,0 +1,42 @@
+{
+  "name": "chef-dialog-recipe",
+  "version": "1.0.0",
+  "description": "专业厨师对话食谱生成技能 - 完整的厨师视角生成、AI分析审查、综合优化工作流",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "./install.sh && ./chef-dialog.sh \"东坡肉\"",
+    "install": "./install.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "recipe",
+    "cooking",
+    "chef",
+    "ai-analysis",
+    "chinese-cuisine"
+  ],
+  "author": {
+    "name": "肖柏然",
+    "email": "xiaoboren0@gmail.com",
+    "url": "https://github.com/xiaoboren"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaoboren/openclaw-chef-dialog-recipe"
+  },
+  "bugs": {
+    "url": "https://github.com/xiaoboren/openclaw-chef-dialog-recipe/issues"
+  },
+  "homepage": "https://github.com/xiaoboren/openclaw-chef-dialog-recipe#readme",
+  "openclaw": {
+    "skill": true,
+    "category": "cooking",
+    "tags": ["recipe", "chef", "ai", "cooking", "chinese-food"],
+    "compatibility": {
+      "openclaw": ">=2026.3.1"
+    },
+    "requirements": ["bash", "coreutils"]
+  }
+}

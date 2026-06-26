@@ -1,35 +1,53 @@
 ---
-name: "free-local-web-search"
-description: "100% FREE local web search for OpenClaw. Secure localhost-only SearXNG deployment. Supports hidden --dev flag."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/free-local-web-search"
-sourceUrl: "https://clawhub.ai/skills/free-local-web-search"
+name: free-local-web-search
+description: 100% FREE local web search for OpenClaw. Secure localhost-only SearXNG deployment. Supports hidden --dev flag.
+license: MIT
+metadata:
+  version: 1.0.7
+  openclaw:
+    requires:
+      bins:
+        - docker
+        - python3
+  keywords:
+    - free web search
+    - local web search
+    - brave alternative
+    - no api key
+    - zero cost
+    - secure search
+    - localhost only
+    - searxng
 ---
 
-# free-local-web-search
+# 🌐 Free Local Web Search (Secure)
 
-> 100% FREE local web search for OpenClaw. Secure localhost-only SearXNG deployment. Supports hidden --dev flag.
+✅ Completely FREE
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/free-local-web-search`
-- **Source URL:** [https://clawhub.ai/skills/free-local-web-search](https://clawhub.ai/skills/free-local-web-search)
+### Python Dependency
 
-## Overview
+The runtime scripts require the Python package `requests`.
 
+Install if missing:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/free-local-web-search
+```
+pip install requests
+```
+  
+✅ Localhost-only deployment  
+✅ Limiter + safe_search enabled  
+
+Dev mode available:
+
+python scripts/install.py --dev
+
+⚠ Dev mode disables safe_search and limiter (reduced safety). For local development only.
+
+Powered by local-search-pro.
+
+⚠ Installation deploys a persistent Docker container (`searxng-local`) with `--restart unless-stopped`.
+To remove it:
+
+```
+docker rm -f searxng-local
 ```

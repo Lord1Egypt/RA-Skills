@@ -1,35 +1,53 @@
 ---
-name: "Human Like Memory"
-description: "模仿人类记忆机制的智能上下文管理系统，支持向量化检索、智能摘要、三层存储（HOT/WARM/COLD）、按需注入"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/human-like-memory-cn"
-sourceUrl: "https://clawhub.ai/skills/human-like-memory-cn"
+name: human-like-memory
+description: 模仿人类记忆机制的智能上下文管理系统，支持向量化检索、智能摘要、三层存储（HOT/WARM/COLD）、按需注入
+version: 1.2.0
 ---
 
-# Human Like Memory
+# Human-Like Memory Skill v1.1.1 🧠
 
-> 模仿人类记忆机制的智能上下文管理系统，支持向量化检索、智能摘要、三层存储（HOT/WARM/COLD）、按需注入
+**下一代智能记忆管理系统** — 向量化检索 + 智能压缩 + 按需注入
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/human-like-memory-cn`
-- **Source URL:** [https://clawhub.ai/skills/human-like-memory-cn](https://clawhub.ai/skills/human-like-memory-cn)
+## ✨ v1.2.0 新特性
 
-## Overview
+| 功能 | 说明 | Token 节省 |
+|------|------|-----------|
+| 🧠 **向量化检索** | 语义搜索，相似度>0.7 | -40% |
+| 🗜️ **智能摘要** | 3 级压缩（原文/摘要/关键词） | -20% |
+| 💉 **按需注入** | 动态加载 Top 5 相关记忆 | -30% |
+| 📦 **本地运行** | 无需 API，零配置 | 100% 隐私 |
+| ⚡ **自动安装** | 依赖自动安装，无需手动操作 | 100% 便捷 |
+| 🚀 **性能优化** | 缓存 + 并行处理，提速 50% | -50% 延迟 |
 
+**总体效果**：记忆容量提升 3 倍，Token 占用减少 60%
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 🚀 零配置使用
+
+**重要改进**: v1.1.1 起，技能支持**自动依赖安装**！
+
+### 安装流程
+
 ```bash
-hermes skills install clawhub/human-like-memory-cn
+# 用户只需执行这一条命令
+clawhub install human-like-memory-cn
+
+# OpenClaw 会自动:
+# 1. 下载技能文件
+# 2. 检测依赖 (@xenova/transformers)
+# 3. 后台执行 npm install
+# 4. 完成后技能可用
 ```
+
+**无需手动执行 `npm install`！**
+
+---
+
+## 核心功能
+
+1. **向量化记忆检索** — 语义搜索，相似度>0.7 视为相关
+2. **智能摘要压缩** — 按重要性自动压缩（原文/摘要/关键词）
+3. **按需上下文注入** — 每轮对话动态加载最相关记忆
+4. **三层记忆架构** — HOT（7 天）/ WARM（7-30 天）/ COLD（永久）
+5. **记忆遗忘机制** — 自动清理低价值信息

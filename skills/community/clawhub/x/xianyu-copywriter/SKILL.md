@@ -1,35 +1,230 @@
 ---
-name: "闲鱼文案生成器"
+name: xianyu-copywriter
+version: 1.0.0
 description: "批量生成电商产品文案，支持淘宝/拼多多/闲鱼/京东，包含标题 + 详情 + 卖点"
-category: "domain"
-source: "ClawHub"
-tags: [copywriting, ecommerce, secondhand, xianyu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xianyu-copywriter"
-sourceUrl: "https://clawhub.ai/skills/xianyu-copywriter"
+author: xiaokai-ai
+license: MIT
+platforms:
+  - openclaw
+  - cursor
+  - claude-code
+tags:
+  - ecommerce
+  - copywriting
+  - taobao
+  - xianyu
+  - chinese
+price: 19.9
 ---
 
-# 闲鱼文案生成器
+# 电商文案生成器
 
-> 批量生成电商产品文案，支持淘宝/拼多多/闲鱼/京东，包含标题 + 详情 + 卖点
+批量生成电商产品文案，支持淘宝/拼多多/闲鱼/京东，包含标题 + 详情 + 卖点。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xianyu-copywriter`
-- **Source URL:** [https://clawhub.ai/skills/xianyu-copywriter](https://clawhub.ai/skills/xianyu-copywriter)
+## When to Activate
 
-## Overview
+Trigger when the user mentions: 电商文案，产品描述，淘宝标题，闲鱼文案，商品详情.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xianyu-copywriter
+1. **Confirm inputs:**
+   - 产品名称/类型 (required)
+   - 目标平台 (taobao/xianyu/pinduoduo/jd)
+   - 价格区间 (optional)
+   - 目标人群 (optional: 学生党/上班族/宝妈/等)
+   - 文案数量 (default: 5, max: 50)
+   - 风格偏好 (optional: 专业型/种草型/促销型/故事型)
+
+2. **Generate content by platform:**
+
+### 淘宝/天猫标题 (30 字内)
 ```
+{核心关键词} {属性词} {卖点词} {场景词}
+示例：2026 新款夏季透气运动鞋男跑步鞋轻便减震健身鞋
+```
+
+### 拼多多标题 (强调价格/促销)
+```
+{促销词}+{核心词}+{规格}+{卖点}
+示例：【买一送一】夏季冰丝 T 恤男短袖透气速干运动上衣
+```
+
+### 闲鱼文案 (个人卖家风格)
+```
+{成色描述}
+{入手渠道}
+{转手原因}
+{产品亮点}
+{价格优势}
+{交易方式}
+```
+
+### 产品详情页 (5 段式)
+```
+【痛点引入】- 描述用户痛点
+【产品介绍】- 核心功能和参数
+【卖点展示】- 3-5 个核心卖点
+【使用场景】- 具体使用场景
+【信任背书】- 售后保障/用户评价
+```
+
+3. **SEO 优化:**
+   - 包含搜索热词
+   - 避免违禁词 (最/第一/唯一等)
+   - 关键词自然分布
+
+4. **转化优化:**
+   - 紧迫感 (限时/限量)
+   - 从众心理 (已售/好评)
+   - 风险逆转 (包邮/退换)
+
+## Output Format
+
+```markdown
+## 电商文案生成结果
+
+### 产品：{产品名称}
+
+---
+
+## 淘宝标题 (5 个)
+1. {标题 1}
+2. {标题 2}
+3. {标题 3}
+4. {标题 4}
+5. {标题 5}
+
+---
+
+## 拼多多标题 (3 个)
+1. {标题 1}
+2. {标题 2}
+3. {标题 3}
+
+---
+
+## 闲鱼文案 (2 个)
+
+### 文案 1
+{完整文案}
+
+### 文案 2
+{完整文案}
+
+---
+
+## 产品详情页
+
+### 痛点引入
+{内容}
+
+### 产品介绍
+{内容}
+
+### 核心卖点
+- 卖点 1
+- 卖点 2
+- 卖点 3
+
+### 使用场景
+{内容}
+
+### 信任背书
+{内容}
+
+---
+
+## 推荐话题标签
+#标签 1 #标签 2 #标签 3
+
+---
+
+**使用建议:**
+- A/B 测试不同标题看点击率
+- 根据竞品调整价格策略
+- 定期优化关键词
+```
+
+## Examples
+
+**输入:**
+```
+产品：无线蓝牙耳机
+平台：taobao
+价格：¥99-199
+人群：学生党
+数量：5
+```
+
+**输出:**
+```markdown
+## 电商文案生成结果
+
+### 产品：无线蓝牙耳机
+
+---
+
+## 淘宝标题 (5 个)
+1. 无线蓝牙耳机 5.3 降噪超长续航运动跑步入耳式适用苹果华为小米
+2. 2026 新款蓝牙耳机无线运动跑步专用超长待机续航降噪高音质
+3. 蓝牙耳机无线 5.3 入耳式降噪超长续航适用 iPhone 安卓通用
+4. 运动蓝牙耳机无线挂耳式跑步健身专用防水防汗超长续航
+5. 学生党蓝牙耳机无线高音质降噪超长续航性价比之王
+
+---
+
+## 产品详情页
+
+### 痛点引入
+是不是经常遇到这些烦恼？
+- 耳机续航太差，听半天就没电
+- 音质模糊，听歌像在听收音机
+- 佩戴不舒服，戴久了耳朵疼
+- 连接不稳定，动不动就断连
+
+### 产品介绍
+这款无线蓝牙耳机采用最新蓝牙 5.3 芯片，
+单次续航 8 小时，配合充电仓可达 40 小时。
+13mm 大动圈单元，三频均衡，低音浑厚。
+人体工学设计，久戴不痛。
+
+### 核心卖点
+- ✅ 蓝牙 5.3 芯片，连接更稳定
+- ✅ 40 小时超长续航，一周充一次
+- ✅ 13mm 大动圈，HIFI 音质
+- ✅ IPX5 防水，运动无惧汗水
+- ✅ 触控操作，切歌/接听一键搞定
+
+### 使用场景
+- 🎵 通勤路上，沉浸式听歌
+- 🏃 运动健身，稳固不掉
+- 📞 办公会议，清晰通话
+- 🎮 游戏娱乐，低延迟
+
+### 信任背书
+- 7 天无理由退换
+- 1 年质保
+- 全国包邮
+- 30 天 + 好评 1000+
+
+---
+
+**使用建议:**
+- A/B 测试不同标题看点击率
+- 根据竞品调整价格策略
+- 定期优化关键词
+```
+
+## Pricing
+
+- **Free tier:** 5 generations per day
+- **Pro tier:** ¥19.9/month - unlimited generations
+
+## Support
+
+Issues: https://github.com/xiaokai-ai/ecommerce-copywriter
+Docs: https://clawhub.ai/skills/ecommerce-copywriter
+
+---
+
+*Made with ❤️ by Xiao Kai AI*

@@ -1,0 +1,21 @@
+name: git-standup
+description: 分析 Git 提交自动生成工作日报
+version: 1.0.0
+author: openclaw
+entry: bin/daily-standup
+commands:
+  - name: daily-standup
+    description: 生成指定日期范围的工作日报
+    usage: |
+      /daily-standup [options]
+      
+      Options:
+        --date DATE            指定日期（默认今天，格式: YYYY-MM-DD）
+        --since DATE           起始时间（Git 日期格式）
+        --until DATE           结束时间
+        --author AUTHOR        按作者筛选
+        --repos PATHS          多个仓库路径（逗号分隔）
+        --format FORMAT        输出格式: markdown, json（默认 markdown）
+        --group-by TYPE        分组方式: repo, type, date（默认 type）
+        --output, -o FILE      输出文件路径
+        --help, -h             显示帮助

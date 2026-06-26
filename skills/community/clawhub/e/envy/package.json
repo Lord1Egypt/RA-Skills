@@ -1,0 +1,16 @@
+{
+  "name": "envy",
+  "version": "1.1.0",
+  "description": "Envy Trading System — Non-custodial AI trading agent for crypto perpetual futures. 85M+ data points, signal scoring, strategy assembly, portfolio optimization, live monitoring, position management.",
+  "scripts": {
+    "start": "node envy.js help"
+  },
+  "dependencies": {
+    "ethers": "^6.0.0",
+    "ws": "^8.0.0",
+    "yaml": "^2.0.0"
+  },
+  "keywords": ["crypto", "trading", "signals", "backtesting", "monitor", "controller", "envy", "openclaw"],
+  "author": "envy",
+  "license": "MIT"
+}

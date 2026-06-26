@@ -1,0 +1,72 @@
+name: realtime-transcription
+description: >
+  Real-time audio transcription with automatic summarization and archival.
+  Supports system audio (via BlackHole) and microphone input.
+  When transcription stops, generates a title and summary, then archives
+  as a dated Markdown file.
+
+triggers:
+  - "开始转录"
+  - "启动转录"
+  - "停止转录"
+  - "停止"
+  - "当前转录"
+  - "转录内容"
+  - "check transcription deps"
+  - "transcribe"
+  - "start recording"
+  - "stop recording"
+
+requirements:
+  python_packages:
+    - sounddevice
+    - librosa
+    - funasr
+    - torch
+    - numpy
+  system:
+    - "BlackHole audio driver (for system audio capture, optional)"
+  models:
+    - "SenseVoiceSmall (downloaded to ./model/SenseVoiceSmall)"
+
+commands:
+  check_deps: "python3 realtime_asr.py --check-deps"
+  start_blackhole: "python3 realtime_asr.py --source blackhole --output .tmp/transcript.txt --state .tmp/asr.pid"
+  start_mic: "python3 realtime_asr.py --source mic --output .tmp/transcript.txt --state .tmp/asr.pid"
+  stop: "kill $(cat .tmp/asr.pid 2>/dev/null) 2>/dev/null; rm -f .tmp/asr.pid"
+  read_transcript: "cat .tmp/transcript.txt 2>/dev/null || echo 'No transcript available'"
+
+paths:
+  transcript: ".tmp/transcript.txt"
+  pid_file: ".tmp/asr.pid"
+  archive_dir: "archive"
+  model: "./model/SenseVoiceSmall"
+
+exit_codes:
+  idle_timeout: 42  # process exited due to no sound for idle-timeout seconds
+
+instructions: |
+  When the user wants to start transcription:
+  1. Run check_deps command first
+  2. If FAIL, show the user the missing dependencies and install instructions
+  3. If OK, ask user which source (blackhole or mic), default to blackhole
+  4. Start the appropriate command
+  5. Confirm to user: "🎙️ 转录已开始（{source_label}），说"停止"来结束"
+
+  When the user wants to stop transcription:
+  1. Run the stop command
+  2. Wait 2 seconds for process cleanup
+  3. Read the transcript file
+  4. If empty, tell user "转录内容为空，未归档"
+  5. If not empty:
+     a. Send transcript to LLM with summary_prompt.build_summary_prompt()
+     b. Parse response with summary_prompt.parse_summary_response()
+     c. Archive with archiver.archive()
+     d. Show user: "✅ 已归档: {filename}\n📝 标题: {title}\n📋 摘要: {summary}"
+
+  When the process exits with code 42 (idle timeout):
+  1. The transcription process auto-stopped due to no sound detected
+  2. Read the transcript file if any content was captured
+  3. Ask the user: "⏸️ 已 60 秒没有检测到声音，是否继续录音？(y/n)"
+  4. If user says yes, restart transcription
+  5. If user says no, process any existing transcript (summary + archive)

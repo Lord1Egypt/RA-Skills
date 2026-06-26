@@ -1,0 +1,105 @@
+name: live-streaming-delivery
+version: "4.0"
+description: 直播运营交付工作流 - AI扮演直播运营总监，逐步交付直播间搭建、选品排品、直播脚本、流量投放等成果
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+
+steps:
+  # ══════════════════════════════════
+  # STEP 1: 直播间搭建方案
+  # ══════════════════════════════════
+  - id: studio_setup
+    agent: agents/types/live-streaming/main-agent
+    action: design_studio_setup
+    description: 设计直播间：场景风格/背景方案/灯光布局/设备清单(低中高三档)/人员配置
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+    output: studio_setup_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认场景和设备方案？"
+
+  # ══════════════════════════════════
+  # STEP 2: 选品策略+完整排品表
+  # ══════════════════════════════════
+  - id: product_selection
+    agent: agents/types/live-streaming/main-agent
+    action: design_product_matrix
+    description: 选品与排品：4角色模型(引流/爆款/利润/搭配)、商品详情、定价策略、完整排品时间表
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      studio: "{{studio_setup.output.studio_setup_plan}}"
+    output: product_matrix_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认商品和定价策略？"
+
+  # ══════════════════════════════════
+  # STEP 3: 直播脚本(完整版)
+  # ══════════════════════════════════
+  - id: live_script
+    agent: agents/types/live-streaming/main-agent
+    action: create_live_script
+    description: 撰写完整直播脚本：分时段脚本(暖场/过品/互动/逼单/收尾)、过品话术模板、逼单话术库、应急预案
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      products: "{{product_selection.output.product_matrix_plan}}"
+    output: live_script_document
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认话术和直播节奏？"
+
+  # ══════════════════════════════════
+  # STEP 4: 流量投放策略
+  # ════════════════════════════════
+  - id: traffic_strategy
+    agent: agents/types/live-streaming/main-agent
+    action: plan_traffic_strategy
+    description: 流量策略：自然流获取方法 + 付费投流方案(预热/开播/放量/收割)、GMV三档预估(保守/基准/乐观)
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      products: "{{product_selection.output.product_matrix_plan}}"
+      script: "{{live_script.output.live_script_document}}"
+    output: traffic_strategy_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认投流预算和GMV目标？"
+
+  # ══════════════════════════════════
+  # STEP 5: 质量自检
+  # ══════════════════════════════════
+  - id: quality_check
+    agent: agents/types/live-streaming/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 对所有交付物进行质量自检（选品合理性/脚本可执行性/流量策略匹配度/GMV可达性）
+    input:
+      deliverables:
+        studio: "{{studio_setup.output.studio_setup_plan}}"
+        products: "{{product_selection.output.product_matrix_plan}}"
+        script: "{{live_script.output.live_script_document}}"
+        traffic: "{{traffic_strategy.output.traffic_strategy_plan}}"
+    output: quality_report
+
+output:
+  deliverables:
+    studio_setup: "{{studio_setup.output.studio_setup_plan}}"
+    product_matrix: "{{product_selection.output.product_matrix_plan}}"
+    live_script: "{{live_script.output.live_script_document}}"
+    traffic_strategy: "{{traffic_strategy.output.traffic_strategy_plan}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "4.0"
+    role: "live-streaming"

@@ -1,35 +1,60 @@
----
-name: "禅道Bug统计"
-description: "统计禅道中指定起始日期的版本Bug数量及今日新建、关闭、激活和问题引入的Bug数据。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zentao-bug-stats"
-sourceUrl: "https://clawhub.ai/skills/zentao-bug-stats"
----
+# 禅道 Bug 统计工具
 
-# 禅道Bug统计
+#支持统计：
+#1、按起始日期统计版本bug：某版本总共发现的bug数，问题引入的bug数，激活的bug数、待解决bug数、待验证bug数
+#2、今日bug统计：今天新建bug数、关闭bug数、激活bug数、问题引入bug数
 
-> 统计禅道中指定起始日期的版本Bug数量及今日新建、关闭、激活和问题引入的Bug数据。
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zentao-bug-stats`
-- **Source URL:** [https://clawhub.ai/skills/zentao-bug-stats](https://clawhub.ai/skills/zentao-bug-stats)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/zentao-bug-stats
+# 版本统计 (指定起始日期)
+python zentao_stats.py --start-date 2026-02-25
+
+# 今日统计
+python zentao_stats.py --today
+
+# 全部统计 (今日 + 版本)
+python zentao_stats.py --all --start-date 2026-02-25
 ```
+
+## 输出示例
+
+```
+============================================================
+🔐 登录禅道...
+✅ 登录成功
+
+============================================================
+📊 今日 Bug 统计
+============================================================
+日期: 2026-03-20
+  新建: 5
+  关闭: 2
+  激活: 0
+  问题引入: 1
+
+📊 版本 Bug 统计 (起始日期: 2026-02-25)
+============================================================
+日期范围: 2026-02-25 ~ 2026-03-20
+  总数: 599
+  问题引入: 36
+  激活>=1: 62
+  待解决: 20
+  待验证: 15
+```
+
+## 参数说明
+
+| 参数 | 说明 |
+|------|------|
+| `--start-date YYYY-MM-DD` | 版本统计起始日期 |
+| `--today` | 仅显示今日统计 |
+| `--all` | 显示今日 + 版本统计 |
+
+## 工作原理
+
+通过 POST 请求到禅道的 `search-buildQuery.html` 页面，设置查询条件后获取 Bug 列表统计数据。
+
+---
+
+*脚本: zentao_stats.py*

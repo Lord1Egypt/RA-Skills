@@ -1,0 +1,33 @@
+{
+  "name": "agentmemory-adapter",
+  "version": "1.0.3",
+  "purpose": "Codex and ClawHub skill bundle for installing, auditing, and hardening AgentMemory integrations.",
+  "upstream": {
+    "repository": "https://github.com/rohitg00/agentmemory",
+    "package": "@agentmemory/agentmemory",
+    "package_version_verified": "0.9.22",
+    "verified_at": "2026-05-28"
+  },
+  "publish_surface": [
+    "SKILL.md",
+    "agents/openai.yaml",
+    "references/agentmemory-deep-analysis.md",
+    "references/platform-recipes.md",
+    "references/source-manifest.json",
+    "scripts/check_agentmemory.py"
+  ],
+  "positioning": {
+    "primary_user_job": "Make AgentMemory reliable across Codex, OpenClaw, and project workspaces.",
+    "not_official_upstream": true,
+    "unsupported_claims": [
+      "official upstream AgentMemory project",
+      "best memory framework",
+      "credential-free remote security"
+    ]
+  },
+  "safety_claims": [
+    "Does not require credentials for local installs.",
+    "Never prints AGENTMEMORY_SECRET.",
+    "Refuses to send bearer tokens over plaintext non-loopback HTTP."
+  ]
+}

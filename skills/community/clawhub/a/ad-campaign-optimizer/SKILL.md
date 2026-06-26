@@ -1,35 +1,80 @@
----
-name: "Ad Campaign Optimizer"
-description: "自动创建和优化多平台广告，支持A/B测试、成本及ROI分析，实现精准受众定向和素材推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ad-campaign-optimizer"
-sourceUrl: "https://clawhub.ai/skills/ad-campaign-optimizer"
----
+# AI 智能广告投放助手
 
-# Ad Campaign Optimizer
+## 描述
+自动优化广告投放、A/B 测试、成本优化、ROI 分析。适合广告投放、市场、电商、品牌方。
 
-> 自动创建和优化多平台广告，支持A/B测试、成本及ROI分析，实现精准受众定向和素材推荐。
+## 核心能力
+- 自动创建广告（多平台：百度/抖音/微信/小红书...）
+- A/B 测试（自动测试多版本广告）
+- 成本优化（降低 CPC/CPM）
+- ROI 分析（实时监控）
+- 受众优化（精准定向）
+- 创意优化（推荐最佳素材）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ad-campaign-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/ad-campaign-optimizer](https://clawhub.ai/skills/ad-campaign-optimizer)
+## 使用场景
+1. **电商投放** - 优化产品广告、降低成本、提升转化
+2. **品牌投放** - 提升品牌曝光、优化受众定向
+3. **App 推广** - 优化安装成本、提升留存
+4. **本地服务** - 精准投放本地客户、提升到店
 
-## Overview
+## 定价
+- **基础版**：¥299/月 - 单平台 + 基础优化
+- **专业版**：¥999/月 - 多平台 + A/B 测试 + ROI 分析
+- **企业版**：¥2999/月 - API + 私有部署 + 专属顾问
 
+## 目标客户
+- 广告投放 / 信息流优化师
+- 市场经理 / 品牌方
+- 电商卖家 / 跨境卖家
+- 企业主 / 创业者
 
-## Installation
-To install this skill, run the following command in your terminal:
+## ROI
+- **成本降低**：-30%（降低 CPC/CPM）
+- **转化提升**：+50%（精准定向）
+- **人力成本**：¥10000/月（优化师）→ ¥299-2999/月
+- **ROI**：3-33 倍
+
+## 快速开始
 ```bash
-hermes skills install clawhub/ad-campaign-optimizer
+# 创建广告
+python create_ad.py --platform "抖音" --product 123 --budget 1000
+
+# A/B 测试
+python ab_test.py --ad_id 456 --variants 5
+
+# 优化建议
+python optimize.py --ad_id 456 --target "降低CPC"
 ```
+
+## 示例输出
+```
+📊 广告投放报告
+
+广告：产品A - 抖音信息流
+预算：¥1000/天
+投放天数：7 天
+
+📈 数据概览：
+- 展示：125,000 次
+- 点击：3,125 次（CTR 2.5%）
+- 转化：125 次（CVR 4%）
+- CPA：¥56（低于行业平均 ¥70）
+
+✅ 优化成果：
+- CPC：从 ¥0.40 降至 ¥0.32（-20%）
+- CTR：从 2.0% 提升至 2.5%（+25%）
+- ROI：3.5x（每投入 ¥1 获得 ¥3.5 回报）
+
+💡 优化建议：
+1. 增加预算至 ¥1500/天（ROI 良好）
+2. 定向"25-35岁"用户（CTR 最高 3.2%）
+3. 使用素材B（CTR 比素材A 高 30%）
+
+🎯 最佳受众：
+- 年龄：25-35岁
+- 地区：一线城市
+- 兴趣：科技/数码
+```
+
+---
+创建时间：2026-03-13

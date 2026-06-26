@@ -1,0 +1,6 @@
+# bulk_download resume marker (local only)
+.ra_complete
+
+# python cache
+tools/__pycache__/
+__pycache__/

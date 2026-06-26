@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "collectInterval": "daily",
+  "profileUpdateMode": "manual",
+  "storage": {
+    "dailyRetentionDays": 90,
+    "maxProfileHistory": 30
+  },
+  "matching": {
+    "enabled": true,
+    "maxTagCount": 15,
+    "weightFactors": {
+      "playerLevel": 0.25,
+      "skillTags": 0.30,
+      "aiStyle": 0.20,
+      "activityScore": 0.15,
+      "timeZoneOverlap": 0.10
+    }
+  }
+}

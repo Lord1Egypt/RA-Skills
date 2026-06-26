@@ -1,0 +1,12 @@
+{
+  "name": "context-engine",
+  "version": "1.0.0",
+  "description": "A skill for managing context in OpenClaw agents",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests defined\""
+  },
+  "keywords": ["openclaw", "context", "memory"],
+  "author": "deus-pandora",
+  "license": "MIT"
+}

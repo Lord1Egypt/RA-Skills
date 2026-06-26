@@ -1,0 +1,22 @@
+{
+  "name": "baijiahao-browser",
+  "version": "2.0.0",
+  "description": "百家号自动发布技能（浏览器版）：基于 OpenClaw 内置浏览器，零依赖 Python，任意 OpenClaw 环境均可运行。",
+  "main": "SKILL.md",
+  "scripts": {},
+  "keywords": ["baijiahao", "百家号", "publish", "automation", "browser"],
+  "author": "Maynor",
+  "license": "MIT",
+  "repository": "",
+  "homepage": "",
+  "openclaw": {
+    "skill": true,
+    "category": "publishing",
+    "language": "agent"
+  },
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "package.json"
+  ]
+}

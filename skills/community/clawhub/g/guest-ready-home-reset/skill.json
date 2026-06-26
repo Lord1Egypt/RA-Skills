@@ -1,0 +1,35 @@
+{
+  "slug": "guest-ready-home-reset",
+  "name": "guest-ready-home-reset",
+  "displayName": "Guest-Ready Home Reset",
+  "version": "1.0.1",
+  "description": "Build a fast guest-ready home reset with a 60-minute plan, supplies list, task assignments, essentials setup, privacy checks, and welcome note template.",
+  "triggerKeywords": [
+    "guests are coming",
+    "guest ready home",
+    "quick home reset",
+    "60 minute cleaning plan",
+    "prepare for overnight guests",
+    "welcome note template",
+    "last minute guests",
+    "guest bathroom reset"
+  ],
+  "tags": [
+    "home-routine",
+    "guests",
+    "cleaning",
+    "hosting",
+    "home-reset"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Includes privacy, allergy, scent sensitivity, pet exposure, cleaning chemical, and trip-hazard prompts."
+}

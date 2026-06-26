@@ -1,35 +1,33 @@
----
-name: "Pipeworx clickup"
-description: "Access and manage ClickUp tasks, spaces, folders, and create new tasks using the ClickUp REST API v2 with your API key."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-clickup"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-clickup"
----
+# Clickup
 
-# Pipeworx clickup
+ClickUp MCP — wraps the ClickUp REST API v2 (BYO API key)
 
-> Access and manage ClickUp tasks, spaces, folders, and create new tasks using the ClickUp REST API v2 with your API key.
+## clickup_list_tasks
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-clickup`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-clickup](https://clawhub.ai/skills/pipeworx-clickup)
+List all tasks in a ClickUp list. Returns task ID, name, status, priority, assignees, due date, and 
 
-## Overview
+## clickup_get_task
 
+Fetch full task details including name, description, status, priority, assignees, tags, and time tra
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-clickup
+## clickup_create_task
+
+Create a new task in a ClickUp list. Provide list ID, task name, and optionally priority and assigne
+
+## clickup_list_spaces
+
+List all spaces in your ClickUp workspace. Returns space ID, name, and status.
+
+## clickup_list_folders
+
+List all folders in a ClickUp space. Provide space ID (e.g., "789"). Returns folder ID, name, and li
+
+```json
+{
+  "mcpServers": {
+    "clickup": {
+      "url": "https://gateway.pipeworx.io/clickup/mcp"
+    }
+  }
+}
 ```

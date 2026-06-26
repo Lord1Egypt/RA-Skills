@@ -1,0 +1,53 @@
+{
+  "protocol": "morpho",
+  "chain": {
+    "name": "arbitrum",
+    "chainId": 42161
+  },
+  "collateralAssets": [
+    {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
+    }
+  ],
+  "borrowAssets": [
+    {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+    }
+  ],
+  "unitOfAccount": "USD",
+  "riskPreset": "core",
+  "oraclePreference": "direct-first",
+  "activationMode": "allow-activation",
+  "executionMode": "live",
+  "marketShapeIntent": "single-market",
+  "rpcPreference": {
+    "rpcUrl": "https://replace-with-arbitrum-rpc.example",
+    "allowPublicFallback": false
+  },
+  "morphoCoreAddress": "0x1111111111111111111111111111111111111111",
+  "morphoPolicy": {
+    "defaultIrmAddress": "0x2222222222222222222222222222222222222222",
+    "defaultLltv": "860000000000000000"
+  },
+  "feedFunding": {
+    "mode": "classify-only",
+    "executionMode": "direct",
+    "acknowledgement": "I understand this may send real transactions to fund Api3 feeds and deploy required communal proxies before Morpho deployment.",
+    "rpcUrl": "https://replace-with-arbitrum-rpc.example",
+    "privateKeyEnv": "LIVE_SIGNER_ENV",
+    "deployCommunalProxy": true
+  },
+  "send": {
+    "enabled": true,
+    "dryRun": false,
+    "rpcUrl": "https://replace-with-arbitrum-rpc.example",
+    "privateKeyEnv": "LIVE_SIGNER_ENV"
+  },
+  "broadcast": {
+    "enabled": true,
+    "acknowledgement": "I understand this may deploy a Morpho oracle adapter and create a Morpho market using the activated Api3 feed path.",
+    "signerAddress": "0x3333333333333333333333333333333333333333"
+  }
+}

@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudySeat Buddy - 校园学习空间推荐助手</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f0f4f3;--card:#fff;--primary:#2e7d6f;--primary-light:#e6f2ef;--primary-dark:#1a5c50;--accent:#f5a623;--danger:#d9534f;--danger-light:#fceaea;--text:#2c3e50;--text-sec:#7f8c8d;--border:#dce6e3;--shadow:0 2px 12px rgba(46,125,111,.1);--admin:#6a5acd;--admin-light:#ede9fe;--admin-dark:#4a3aab;--step1:#2e7d6f;--step2:#3a9d8e;--step3:#f5a623}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+
+/* ===== LOGIN PAGE ===== */
+#loginPage{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8f5e9 0%,#e0f2f1 30%,#e0f7fa 70%,#e8eaf6 100%);position:relative;overflow:hidden}
+#loginPage::before{content:"";position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:rgba(46,125,111,.08)}
+#loginPage::after{content:"";position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(58,157,142,.08)}
+.login-card{background:#fff;border-radius:20px;padding:40px 36px 32px;width:400px;max-width:92vw;box-shadow:0 8px 40px rgba(46,125,111,.12);position:relative;z-index:1;text-align:center}
+.login-logo{font-size:48px;margin-bottom:8px}
+.login-title{font-size:24px;font-weight:700;color:var(--primary-dark);letter-spacing:.5px}
+.login-subtitle{font-size:14px;color:var(--text-sec);margin-top:4px;margin-bottom:28px}
+.login-form{text-align:left}
+.login-form .form-group{margin-bottom:16px}
+.login-form .form-group label{display:block;font-size:12px;font-weight:500;color:var(--text-sec);margin-bottom:6px}
+.login-form .form-group input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;background:#fafcfb;transition:border-color .2s;outline:none}
+.login-form .form-group input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(46,125,111,.1)}
+.login-btn{width:100%;padding:12px;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;background:linear-gradient(135deg,#2e7d6f,#3a9d8e);color:#fff;transition:all .2s;margin-top:4px;letter-spacing:.5px}
+.login-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(46,125,111,.3)}
+.login-btn:active{transform:scale(.98)}
+.login-error{display:none;background:var(--danger-light);color:var(--danger);padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;text-align:center}
+.login-error.show{display:block}
+.login-hint{margin-top:24px;padding:16px;background:var(--primary-light);border-radius:10px;text-align:left}
+.login-hint h4{font-size:13px;font-weight:600;color:var(--primary-dark);margin-bottom:8px}
+.login-hint .hint-row{font-size:12px;color:var(--text-sec);line-height:1.8}
+.login-hint .hint-row code{background:rgba(46,125,111,.12);padding:2px 6px;border-radius:4px;font-family:Menlo,Consolas,monospace;font-size:11px;color:var(--primary-dark)}
+.login-hint .hint-role{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.login-hint .hint-role .role-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.login-hint .hint-role .role-dot.student{background:var(--primary)}
+.login-hint .hint-role .role-dot.admin{background:var(--admin)}
+.login-hint .hint-role-name{font-weight:600;font-size:12px}
+
+/* ===== APP SHELL ===== */
+#appPage{display:none}
+.header{background:linear-gradient(135deg,#2e7d6f 0%,#3a9d8e 100%);color:#fff;padding:20px 32px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:16px}
+.header h1{font-size:20px;font-weight:600;letter-spacing:.5px}
+.header p{font-size:13px;opacity:.85;margin-top:2px}
+.header .logo{font-size:28px}
+.header-right{display:flex;align-items:center;gap:12px}
+.role-tag{font-size:12px;font-weight:600;padding:4px 14px;border-radius:20px;letter-spacing:.5px}
+.role-tag.student{background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.5)}
+.role-tag.admin{background:rgba(106,90,205,.3);border:1.5px solid rgba(160,140,255,.5)}
+.logout-btn{background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.35);color:#fff;padding:6px 16px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s}
+.logout-btn:hover{background:rgba(255,255,255,.25)}
+
+/* ===== STUDENT PAGE ===== */
+#studentPage{display:none}
+.main{display:flex;gap:24px;padding:24px 32px;max-width:1400px;margin:0 auto}
+.left{width:370px;flex-shrink:0}
+.right{flex:1;min-width:0}
+.card{background:var(--card);border-radius:12px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
+.card h2{font-size:15px;font-weight:600;color:var(--primary-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:var(--text-sec);margin-bottom:4px}
+.form-group select,.form-group input{width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:#fafcfb;transition:border-color .2s;outline:none}
+.form-group select:focus,.form-group input:focus{border-color:var(--primary)}
+.form-group input[type=number]{-moz-appearance:textfield}
+.form-group input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text);cursor:pointer;background:var(--primary-light);padding:4px 10px;border-radius:6px;border:1.5px solid transparent;transition:all .2s}
+.checks label:has(input:checked){border-color:var(--primary);background:#d0ece7}
+.checks input{display:none}
+.btn{width:100%;padding:10px;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-primary:active{transform:scale(.98)}
+
+/* ===== THREE-STEP WIZARD ===== */
+.step-progress{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:18px;padding:0 4px}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0;transition:all .3s;position:relative;z-index:1}
+.step-dot.s1{background:var(--step1)}
+.step-dot.s2{background:var(--step2)}
+.step-dot.s3{background:var(--step3)}
+.step-dot.inactive{background:#c8d6d3;color:#7f8c8d}
+.step-line{flex:1;height:3px;background:#c8d6d3;margin:0 -2px;border-radius:2px;position:relative}
+.step-line.done{background:var(--primary)}
+.step-section{margin-bottom:16px;padding:14px 16px;border-radius:10px;border-left:4px solid var(--border);background:#fafcfb;transition:all .3s}
+.step-section.active-s1{border-left-color:var(--step1);background:rgba(46,125,111,.04)}
+.step-section.active-s2{border-left-color:var(--step2);background:rgba(58,157,142,.04)}
+.step-section.active-s3{border-left-color:var(--step3);background:rgba(245,166,35,.04)}
+.step-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.step-num.s1{background:var(--step1)}
+.step-num.s2{background:var(--step2)}
+.step-num.s3{background:var(--step3)}
+.step-title{font-size:13px;font-weight:600;color:var(--primary-dark)}
+
+/* ===== DEMO BUTTONS ===== */
+.demo-btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.demo-btn{padding:8px 12px;border:1.5px solid var(--primary);border-radius:8px;background:#fff;color:var(--primary);font-size:12px;cursor:pointer;text-align:left;transition:all .2s;line-height:1.4}
+.demo-btn:hover{background:var(--primary-light)}
+.demo-btn .demo-title{font-weight:600;display:block}
+.demo-btn .demo-desc{color:var(--text-sec);font-size:11px}
+
+/* ===== STRATEGY CARD ===== */
+.strategy-card{background:linear-gradient(135deg,#e6f2ef 0%,#f0f7f5 50%,#fff8e1 100%);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:16px;border:1.5px solid rgba(46,125,111,.15)}
+.strategy-card .strat-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.strategy-card .strat-icon{font-size:28px}
+.strategy-card .strat-mode{font-size:16px;font-weight:700;color:var(--primary-dark)}
+.strategy-card .strat-strategy{font-size:13px;color:var(--primary);font-weight:500;padding:4px 12px;background:rgba(46,125,111,.1);border-radius:6px;display:inline-block;margin-bottom:10px}
+.strategy-card .strat-details{display:flex;flex-wrap:wrap;gap:6px}
+.strategy-card .strat-tag{font-size:11px;padding:3px 10px;border-radius:12px;font-weight:500;display:inline-flex;align-items:center;gap:4px}
+.strat-tag.plus{background:#e8f5e9;color:#2e7d32}
+.strat-tag.prior{background:#e3f2fd;color:#1565c0}
+.strat-tag.avoid{background:#fff3e0;color:#e65100}
+.strat-tag.weight{background:#f3e5f5;color:#7b1fa2}
+
+/* ===== RESULT CARDS ===== */
+.mode-badge{display:inline-block;background:var(--primary);color:#fff;font-size:12px;font-weight:500;padding:4px 12px;border-radius:6px;margin-bottom:12px}
+.result-card{background:var(--card);border-radius:12px;padding:16px 20px;box-shadow:var(--shadow);margin-bottom:12px;border-left:4px solid var(--border);position:relative;transition:all .3s}
+.result-card.rank-1{border-left-color:var(--primary)}
+.result-card.rank-2{border-left-color:#3a9d8e}
+.result-card.rank-3{border-left-color:#6bb8ac}
+.rank-tag{position:absolute;top:12px;right:16px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:5px}
+.rank-tag.best{background:var(--primary);color:#fff}
+.rank-tag.alt{background:var(--primary-light);color:var(--primary-dark)}
+.result-card .room-name{font-size:16px;font-weight:600;color:var(--primary-dark)}
+.result-card .time-row{font-size:12px;color:var(--text-sec);margin-top:4px}
+.result-card .time-row .avail{color:var(--primary);font-weight:500}
+.result-card .features{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.result-card .feat{font-size:11px;padding:3px 8px;border-radius:4px;background:var(--primary-light);color:var(--primary-dark)}
+.result-card .feat.warn{background:#fff3e0;color:#e65100}
+.result-card .feat.no{background:var(--danger-light);color:var(--danger)}
+.score-bar{display:flex;align-items:center;gap:8px;margin-top:8px}
+.score-bar .bar{flex:1;height:8px;background:#e8eeec;border-radius:4px;overflow:hidden}
+.score-bar .bar .fill{height:100%;border-radius:4px;transition:width .6s ease}
+.score-bar .score{font-size:13px;font-weight:600;color:var(--primary-dark);min-width:60px;text-align:right}
+.result-card .reason{font-size:12px;color:var(--text-sec);margin-top:6px;line-height:1.5}
+.soft-notice{background:#fff8e1;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#8d6e00;border:1px solid #ffe082}
+
+/* ===== FEEDBACK BUTTONS ===== */
+.fb-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
+.fb-btn{padding:4px 10px;border:1.5px solid var(--border);border-radius:6px;background:#fff;font-size:11px;color:var(--text-sec);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:3px}
+.fb-btn:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
+.fb-btn:active{transform:scale(.95)}
+.fb-btn.clicked{border-color:var(--primary);color:#fff;background:var(--primary);pointer-events:none}
+.fb-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--primary-dark);color:#fff;padding:10px 24px;border-radius:10px;font-size:13px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.2);z-index:9999;animation:fbToastIn .3s ease,fbToastOut .3s ease 1.7s forwards}
+@keyframes fbToastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes fbToastOut{from{opacity:1;transform:translateX(-50%) translateY(0)}to{opacity:0;transform:translateX(-50%) translateY(20px)}}
+
+/* ===== AVOIDED (SPLIT) ===== */
+.avoided{border-radius:12px;padding:16px 20px;margin-top:16px}
+.avoided-hard{background:var(--danger-light);margin-top:16px}
+.avoided-hard h3{font-size:14px;font-weight:600;color:var(--danger);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.avoided-soft{background:#fff8e1;border:1.5px solid #ffe082;margin-top:10px}
+.avoided-soft h3{font-size:14px;font-weight:600;color:#8d6e00;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.avoid-item{font-size:12px;margin-bottom:8px;padding:8px 12px;border-radius:6px;line-height:1.5}
+.avoided-hard .avoid-item{background:rgba(217,83,79,.08);color:#791f1f;padding-left:32px;position:relative}
+.avoided-hard .avoid-item::before{content:"✕";position:absolute;left:10px;top:8px;font-weight:700;font-size:13px;color:var(--danger)}
+.avoided-soft .avoid-item{background:rgba(245,166,35,.08);color:#6d5600;padding-left:32px;position:relative}
+.avoided-soft .avoid-item::before{content:"⚠";position:absolute;left:10px;top:7px;font-size:12px}
+.avoid-item .avoid-id{font-weight:600}
+.avoid-item .avoid-reason{display:block;font-size:11px;margin-top:2px;opacity:.85}
+
+/* ===== HEATMAP ===== */
+.heatmap-card{background:var(--card);border-radius:12px;padding:20px;box-shadow:var(--shadow);margin-top:16px}
+.heatmap-card h3{font-size:15px;font-weight:600;color:var(--primary-dark);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.heatmap-card .hm-subtitle{font-size:12px;color:var(--text-sec);margin-bottom:14px}
+.heatmap-legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px;padding:8px 12px;background:#fafcfb;border-radius:8px}
+.heatmap-legend .leg-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text-sec)}
+.heatmap-legend .leg-dot{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+.leg-dot.green{background:#4caf50}
+.leg-dot.gray{background:#bdbdbd}
+.leg-dot.red{background:#ef5350}
+.leg-dot.yellow{background:#ffc107}
+.hm-building{margin-bottom:14px}
+.hm-building-title{font-size:13px;font-weight:600;color:var(--primary-dark);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.hm-grid{display:flex;flex-wrap:wrap;gap:8px}
+.hm-cell{width:64px;height:48px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;position:relative;font-size:12px;font-weight:600;border:1.5px solid transparent}
+.hm-cell:hover{transform:scale(1.08);z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.hm-cell.hm-green{background:#e8f5e9;color:#2e7d32;border-color:#a5d6a7}
+.hm-cell.hm-gray{background:#f5f5f5;color:#757575;border-color:#e0e0e0}
+.hm-cell.hm-red{background:#ffebee;color:#c62828;border-color:#ef9a9a}
+.hm-cell.hm-yellow{background:#fffde7;color:#f57f17;border-color:#fff176}
+.hm-cell .hm-id{font-size:12px;font-weight:700}
+.hm-cell .hm-status{font-size:9px;font-weight:400;opacity:.8}
+.hm-tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#2c3e50;color:#fff;padding:8px 12px;border-radius:8px;font-size:11px;line-height:1.5;white-space:nowrap;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,.2);pointer-events:none}
+.hm-tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c3e50}
+.hm-cell:hover .hm-tooltip{display:block}
+
+.empty-state{text-align:center;padding:48px 20px;color:var(--text-sec)}
+.empty-state .empty-icon{font-size:48px;margin-bottom:12px;opacity:.4}
+.empty-state p{font-size:14px}
+.footer-note{text-align:center;font-size:11px;color:var(--text-sec);margin:20px 0;padding:0 32px}
+
+/* ===== ADMIN PAGE ===== */
+#adminPage{display:none}
+.admin-container{padding:24px 32px;max-width:1100px;margin:0 auto}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px}
+.stat-card{background:var(--card);border-radius:12px;padding:20px;box-shadow:var(--shadow);text-align:center;border-top:3px solid var(--primary)}
+.stat-card.purple{border-top-color:var(--admin)}
+.stat-card.orange{border-top-color:var(--accent)}
+.stat-card.red{border-top-color:var(--danger)}
+.stat-card .stat-num{font-size:32px;font-weight:700;color:var(--primary-dark);margin-bottom:4px}
+.stat-card.purple .stat-num{color:var(--admin-dark)}
+.stat-card.orange .stat-num{color:#e65100}
+.stat-card.red .stat-num{color:var(--danger)}
+.stat-card .stat-label{font-size:13px;color:var(--text-sec);font-weight:500}
+.admin-section{background:var(--card);border-radius:12px;padding:20px;box-shadow:var(--shadow);margin-bottom:20px}
+.admin-section h3{font-size:15px;font-weight:600;color:var(--primary-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.admin-section.purple h3{color:var(--admin-dark)}
+.fb-table{width:100%;border-collapse:collapse;font-size:13px}
+.fb-table th{text-align:left;padding:8px 10px;background:var(--primary-light);color:var(--primary-dark);font-weight:600;font-size:12px;border-radius:6px}
+.fb-table.purple th{background:var(--admin-light);color:var(--admin-dark)}
+.fb-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text)}
+.fb-table tr:last-child td{border-bottom:none}
+.fb-noise{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}
+.fb-noise.good{background:#e8f5e9;color:#2e7d32}
+.fb-noise.bad{background:var(--danger-light);color:var(--danger)}
+.fb-noise.mid{background:#fff3e0;color:#e65100}
+.switch-btn{background:linear-gradient(135deg,var(--primary),#3a9d8e);color:#fff;border:none;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.switch-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(46,125,111,.3)}
+.switch-btn:active{transform:scale(.98)}
+
+/* ===== ADMIN STATUS MANAGEMENT ===== */
+.status-manager{background:var(--card);border-radius:12px;padding:20px;box-shadow:var(--shadow);margin-bottom:20px;border-top:3px solid var(--admin)}
+.status-manager h3{font-size:15px;font-weight:600;color:var(--admin-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.status-form{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.status-form .sf-group{display:flex;flex-direction:column;gap:4px;min-width:140px}
+.status-form .sf-group label{font-size:11px;font-weight:500;color:var(--text-sec)}
+.status-form .sf-group select,.status-form .sf-group input{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:#fafcfb;outline:none;transition:border-color .2s}
+.status-form .sf-group select:focus,.status-form .sf-group input:focus{border-color:var(--admin)}
+.status-save-btn{padding:8px 20px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:var(--admin);color:#fff;transition:all .2s;white-space:nowrap}
+.status-save-btn:hover{background:var(--admin-dark);transform:translateY(-1px)}
+.status-save-btn:active{transform:scale(.96)}
+.status-current{margin-top:16px;padding:12px 16px;background:var(--admin-light);border-radius:10px}
+.status-current h4{font-size:13px;font-weight:600;color:var(--admin-dark);margin-bottom:8px}
+.status-current .sc-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(106,90,205,.1);font-size:12px}
+.status-current .sc-item:last-child{border-bottom:none}
+.sc-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.sc-badge.normal{background:#e8f5e9;color:#2e7d32}
+.sc-badge.occupied{background:#fff3e0;color:#e65100}
+.sc-badge.maintenance{background:var(--danger-light);color:var(--danger)}
+.sc-badge.suspended{background:#ede9fe;color:var(--admin-dark)}
+
+/* ===== OPERATION LOG ===== */
+.op-log{background:var(--card);border-radius:12px;padding:20px;box-shadow:var(--shadow);margin-bottom:20px;border-top:3px solid var(--accent)}
+.op-log h3{font-size:15px;font-weight:600;color:#e65100;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.op-log-list{max-height:200px;overflow-y:auto}
+.op-log-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;line-height:1.5}
+.op-log-item:last-child{border-bottom:none}
+.op-log-time{color:var(--text-sec);white-space:nowrap;min-width:130px;font-family:Menlo,Consolas,monospace;font-size:11px}
+.op-log-action{color:var(--text)}
+
+/* ===== RESTORE BUTTON ===== */
+.restore-btn{padding:10px 24px;border:2px solid var(--danger);border-radius:10px;background:#fff;color:var(--danger);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.restore-btn:hover{background:var(--danger);color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(217,83,79,.3)}
+.restore-btn:active{transform:scale(.96)}
+
+/* ===== DATA SOURCE HINT ===== */
+.data-source-hint{text-align:center;margin:16px 0 8px;padding:12px 24px;font-size:11px;color:var(--text-sec);background:linear-gradient(135deg,rgba(46,125,111,.04),rgba(106,90,205,.04));border-radius:10px;border:1px dashed var(--border);line-height:1.6}
+.data-source-hint strong{color:var(--primary-dark)}
+
+@media(max-width:860px){.main{flex-direction:column;padding:16px}.left{width:100%}.admin-grid{grid-template-columns:1fr 1fr}.hm-grid{gap:6px}.hm-cell{width:52px;height:40px}}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="loginPage">
+  <div class="login-card">
+    <div class="login-logo">🏫</div>
+    <div class="login-title">StudySeat Buddy</div>
+    <div class="login-subtitle">校园学习空间推荐助手</div>
+    <div id="loginError" class="login-error">账号或密码错误，请使用演示账号登录。</div>
+    <div class="login-form">
+      <div class="form-group">
+        <label>账号</label>
+        <input type="text" id="loginUser" placeholder="请输入账号" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>密码</label>
+        <input type="password" id="loginPass" placeholder="请输入密码">
+      </div>
+      <button class="login-btn" id="loginBtn">登 录</button>
+    </div>
+    <div class="login-hint">
+      <h4>🔑 演示账号</h4>
+      <div class="hint-row">
+        <div class="hint-role"><span class="role-dot student"></span><span class="hint-role-name">学生端</span></div>
+        账号：<code>student</code> &nbsp; 密码：<code>123456</code>
+      </div>
+      <div class="hint-row" style="margin-top:6px">
+        <div class="hint-role"><span class="role-dot admin"></span><span class="hint-role-name">管理员端</span></div>
+        账号：<code>admin</code> &nbsp; 密码：<code>admin123</code>
+      </div>
+    </div>
+    <div style="margin-top:20px;font-size:10px;color:var(--text-sec);line-height:1.5">当前为比赛演示版登录，仅用于功能展示，真实部署时应接入学校统一身份认证或后端账号系统。</div>
+  </div>
+</div>
+
+<!-- ===== APP PAGE (Student + Admin) ===== -->
+<div id="appPage">
+  <div class="header">
+    <div class="header-left">
+      <span class="logo">🏫</span>
+      <div>
+        <h1>StudySeat Buddy</h1>
+        <p>校园学习空间决策助手 — 智能推荐 · 模式识别 · 避坑说明</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="roleTag" class="role-tag student">学生端</span>
+      <button class="logout-btn" id="logoutBtn">退出登录</button>
+    </div>
+  </div>
+
+  <!-- STUDENT PAGE -->
+  <div id="studentPage">
+    <div class="main">
+      <div class="left">
+        <div class="card">
+          <!-- Step Progress Bar -->
+          <div class="step-progress">
+            <div class="step-dot s1" id="stepDot1">1</div>
+            <div class="step-line" id="stepLine1"></div>
+            <div class="step-dot s2" id="stepDot2">2</div>
+            <div class="step-line" id="stepLine2"></div>
+            <div class="step-dot s3" id="stepDot3">3</div>
+          </div>
+
+          <!-- Step 1: When -->
+          <div class="step-section active-s1" id="step1Section">
+            <div class="step-header">
+              <span class="step-num s1">1</span>
+              <span class="step-title">什么时候使用？</span>
+            </div>
+            <div class="form-group">
+              <label>星期</label>
+              <select id="qDay"><option value="周一">周一</option><option value="周二">周二</option><option value="周三" selected>周三</option><option value="周四">周四</option><option value="周五">周五</option><option value="周六">周六</option><option value="周日">周日</option></select>
+            </div>
+            <div class="form-group">
+              <label>时间段</label>
+              <select id="qPeriod"><option value="上午">上午 (8:00-12:00)</option><option value="下午" selected>下午 (14:00-18:00)</option><option value="晚上">晚上 (19:00-22:00)</option><option value="custom">自定义</option></select>
+            </div>
+            <div id="customTimeRow" class="form-group" style="display:none">
+              <label>自定义时间</label>
+              <div style="display:flex;gap:8px;align-items:center">
+                <input type="time" id="qStart" value="14:00" style="width:48%">
+                <span style="color:var(--text-sec)">—</span>
+                <input type="time" id="qEnd" value="16:00" style="width:48%">
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Where -->
+          <div class="step-section active-s2" id="step2Section">
+            <div class="step-header">
+              <span class="step-num s2">2</span>
+              <span class="step-title">在哪里使用？</span>
+            </div>
+            <div class="form-group">
+              <label>校区</label>
+              <select id="qCampus"><option value="全校">全校</option><option value="北区" selected>北区</option><option value="南区">南区</option><option value="综合楼">综合楼</option></select>
+            </div>
+            <div class="form-group">
+              <label>人数</label>
+              <input type="number" id="qPeople" value="1" min="1" max="200">
+            </div>
+          </div>
+
+          <!-- Step 3: How -->
+          <div class="step-section active-s3" id="step3Section">
+            <div class="step-header">
+              <span class="step-num s3">3</span>
+              <span class="step-title">想怎么学习？</span>
+            </div>
+            <div class="form-group">
+              <label>学习模式</label>
+              <select id="qMode"><option value="普通自习">普通自习</option><option value="备考模式" selected>备考模式</option><option value="赶DDL模式">赶DDL模式</option><option value="小组讨论模式">小组讨论模式</option><option value="晚自习模式">晚自习模式</option></select>
+            </div>
+            <div class="form-group">
+              <label>偏好标签</label>
+              <div class="checks">
+                <label><input type="checkbox" id="pPlug" checked> 🔌 有插座</label>
+                <label><input type="checkbox" id="pQuiet" checked> 🤫 安静</label>
+                <label><input type="checkbox" id="pAC"> ❄️ 空调</label>
+                <label><input type="checkbox" id="pDorm"> 🏠 近宿舍</label>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="searchBtn">🔍 开始推荐</button>
+          <div class="demo-btns">
+            <button class="demo-btn" id="demoBtn1"><span class="demo-title">📅 演示 1：周三下午北区安静自习</span><span class="demo-desc">1人 · 备考模式 · 有插座+安静</span></button>
+            <button class="demo-btn" id="demoBtn2"><span class="demo-title">👥 演示 2：周三下午北区小组讨论</span><span class="demo-desc">6人 · 小组讨论模式 · 有插座+安静</span></button>
+            <button class="demo-btn" id="demoBtn3"><span class="demo-title">🌙 演示 3：周三晚上综合楼晚自习</span><span class="demo-desc">1人 · 晚自习模式 · 有插座+安静</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="right" id="results">
+        <div class="empty-state">
+          <div class="empty-icon">📚</div>
+          <p>点击"开始推荐"或选择一键演示，查看推荐结果</p>
+        </div>
+      </div>
+    </div>
+    <div class="data-source-hint">📊 当前推荐结合了<strong>课程占用</strong>、<strong>教室基础信息</strong>、<strong>现场反馈</strong>和<strong>管理员临时状态</strong>，为您提供多维度的智能决策参考。</div>
+    <div class="footer-note">⚠️ 当前使用示例数据进行演示，实际推荐需接入学校教室管理系统。匹配度仅用于排序展示，不代表真实可用率。</div>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="adminPage">
+    <div class="admin-container">
+      <div class="admin-grid" id="adminStats"></div>
+
+      <!-- 教室状态模拟管理 -->
+      <div class="status-manager">
+        <h3>🎛️ 教室状态模拟管理</h3>
+        <div class="status-form">
+          <div class="sf-group">
+            <label>选择教室</label>
+            <select id="statusRoom"></select>
+          </div>
+          <div class="sf-group">
+            <label>设置状态</label>
+            <select id="statusCode">
+              <option value="正常">正常开放</option>
+              <option value="临时占用">临时占用</option>
+              <option value="维修">维修</option>
+              <option value="暂停开放">暂停开放</option>
+            </select>
+          </div>
+          <div class="sf-group" style="flex:1;min-width:180px">
+            <label>备注</label>
+            <input type="text" id="statusNote" placeholder="例：临时安排会议，14:00-16:00">
+          </div>
+          <button class="status-save-btn" id="statusSaveBtn">💾 保存状态</button>
+        </div>
+        <div class="status-current" id="statusCurrent">
+          <h4>📋 当前异常状态教室</h4>
+          <div style="font-size:12px;color:var(--text-sec)">所有教室均为正常开放状态</div>
+        </div>
+      </div>
+
+      <!-- 操作记录 -->
+      <div class="op-log">
+        <h3>📝 操作记录</h3>
+        <div class="op-log-list" id="opLogList">
+          <div class="op-log-item"><span class="op-log-time">—</span><span class="op-log-action">暂无操作记录</span></div>
+        </div>
+      </div>
+
+      <!-- 反馈表格 -->
+      <div class="admin-section purple">
+        <h3>💬 最近反馈示例</h3>
+        <div id="adminFeedback"></div>
+      </div>
+
+      <!-- 恢复默认数据 -->
+      <div style="text-align:center;margin:20px 0">
+        <button class="restore-btn" id="restoreBtn">🔄 恢复默认演示数据</button>
+      </div>
+
+      <div style="text-align:center;margin-top:12px">
+        <button class="switch-btn" id="switchToStudentBtn">🎓 切换到学生端体验</button>
+      </div>
+    </div>
+    <div class="footer-note">⚠️ 当前使用示例数据进行演示，实际管理需接入学校教室管理系统。</div>
+  </div>
+</div>
+
+<script>
+// StudySeat Buddy - Demo Application (Enhanced)
+(function(){
+"use strict";
+
+// === AUTH ===
+var ACCOUNTS = {};
+ACCOUNTS["student"] = {pw:"123456", role:"student"};
+ACCOUNTS["admin"] = {pw:"admin123", role:"admin"};
+var curUser = null;
+
+function $(id){return document.getElementById(id)}
+
+function doLogin(){
+  var u = $("loginUser").value.trim();
+  var p = $("loginPass").value;
+  if(ACCOUNTS[u] && ACCOUNTS[u].pw === p){
+    $("loginError").className = "login-error";
+    curUser = {username:u, role:ACCOUNTS[u].role};
+    $("loginPage").style.display = "none";
+    $("appPage").style.display = "block";
+    if(curUser.role === "admin"){
+      $("roleTag").textContent = "管理员端";
+      $("roleTag").className = "role-tag admin";
+      $("studentPage").style.display = "none";
+      $("adminPage").style.display = "block";
+      renderAdmin();
+    } else {
+      $("roleTag").textContent = "学生端";
+      $("roleTag").className = "role-tag student";
+      $("studentPage").style.display = "block";
+      $("adminPage").style.display = "none";
+      runDemo(1);
+    }
+  } else {
+    $("loginError").className = "login-error show";
+  }
+}
+
+function doLogout(){
+  curUser = null;
+  $("loginUser").value = "";
+  $("loginPass").value = "";
+  $("loginError").className = "login-error";
+  $("loginPage").style.display = "flex";
+  $("appPage").style.display = "none";
+  $("studentPage").style.display = "none";
+  $("adminPage").style.display = "none";
+}
+
+function goStudent(){
+  $("roleTag").textContent = "学生端";
+  $("roleTag").className = "role-tag student";
+  $("adminPage").style.display = "none";
+  $("studentPage").style.display = "block";
+  runDemo(1);
+}
+
+// === DATA ===
+var classrooms=[
+{id:"A101",campus:"北区",building:"A栋",floor:"1层",cap:60,plug:"全部有",ac:"有",quiet:3,open:"07:00-22:00",scene:"个人自习、小型上课",mode:["赶DDL","普通自习"],sit:"适合久坐",risk:"靠近入口人流较多，安静度一般",note:"靠近入口，人流较多",status:"正常"},
+{id:"A103",campus:"北区",building:"A栋",floor:"1层",cap:50,plug:"全部有",ac:"有",quiet:3,open:"—",scene:"—",mode:[],sit:"—",risk:"—",note:"装修维修中",status:"维修"},
+{id:"A201",campus:"北区",building:"A栋",floor:"2层",cap:80,plug:"全部有",ac:"有",quiet:4,open:"07:00-22:00",scene:"个人自习、中型上课",mode:["普通自习","赶DDL"],sit:"适合久坐",risk:"容量较大，单人自习氛围不如小教室",note:"",status:"正常"},
+{id:"A202",campus:"北区",building:"A栋",floor:"2层",cap:45,plug:"部分有",ac:"有",quiet:4,open:"07:00-22:00",scene:"小组讨论、研讨课",mode:["小组讨论","备考"],sit:"适合久坐",risk:"部分区域插座不可用",note:"有白板，适合围坐",status:"正常"},
+{id:"A301",campus:"北区",building:"A栋",floor:"3层",cap:100,plug:"全部有",ac:"有",quiet:3,open:"07:00-22:00",scene:"大型上课、讲座",mode:["普通自习"],sit:"一般",risk:"阶梯教室，不适合围坐，安静度低",note:"阶梯教室，不适合围坐",status:"正常"},
+{id:"A302",campus:"北区",building:"A栋",floor:"3层",cap:50,plug:"全部有",ac:"有",quiet:5,open:"08:00-21:00",scene:"个人自习、备考",mode:["备考","普通自习"],sit:"适合久坐",risk:"需刷卡进入，忘带校园卡无法进入",note:"最安静，需刷卡进入",status:"正常"},
+{id:"B101",campus:"北区",building:"B栋",floor:"1层",cap:40,plug:"部分有",ac:"无",quiet:3,open:"07:30-21:00",scene:"个人自习",mode:["普通自习"],sit:"一般",risk:"靠近食堂午饭时较吵，无空调夏天闷热",note:"靠近食堂，午饭时较吵",status:"正常"},
+{id:"B103",campus:"北区",building:"B栋",floor:"1层",cap:45,plug:"全部有",ac:"有",quiet:3,open:"—",scene:"—",mode:[],sit:"—",risk:"—",note:"设备更新，2026-06-01恢复",status:"暂停开放"},
+{id:"B201",campus:"北区",building:"B栋",floor:"2层",cap:70,plug:"全部有",ac:"有",quiet:4,open:"07:00-22:00",scene:"个人自习、上课",mode:["赶DDL","普通自习"],sit:"适合久坐",risk:"容量偏大，上课时段可能被占",note:"",status:"正常"},
+{id:"B202",campus:"北区",building:"B栋",floor:"2层",cap:30,plug:"全部有",ac:"有",quiet:5,open:"08:00-21:30",scene:"小组讨论(≤6人)、研讨",mode:["小组讨论","备考"],sit:"适合久坐",risk:"座位较少(仅30座)，小组预约时可能满员",note:"小型研讨室，适合6人以内",status:"正常"},
+{id:"B301",campus:"北区",building:"B栋",floor:"3层",cap:90,plug:"全部有",ac:"有",quiet:3,open:"07:00-22:00",scene:"大型上课、自习",mode:["普通自习"],sit:"一般",risk:"容量过大，单人自习氛围差",note:"",status:"正常"},
+{id:"C101",campus:"南区",building:"C栋",floor:"1层",cap:55,plug:"全部有",ac:"有",quiet:4,open:"07:00-22:00",scene:"个人自习、上课",mode:["普通自习","备考"],sit:"适合久坐",risk:"近宿舍但非北区",note:"近宿舍区，步行5分钟",status:"正常"},
+{id:"C201",campus:"南区",building:"C栋",floor:"2层",cap:65,plug:"全部有",ac:"有",quiet:4,open:"07:00-22:00",scene:"个人自习、上课",mode:["普通自习","赶DDL"],sit:"适合久坐",risk:"",note:"",status:"正常"},
+{id:"C202",campus:"南区",building:"C栋",floor:"2层",cap:35,plug:"部分有",ac:"有",quiet:5,open:"08:00-21:00",scene:"备考、个人自习",mode:["备考","晚自习"],sit:"适合久坐",risk:"部分插座不可用，南区非北区",note:"安静优先，适合备考",status:"正常"},
+{id:"C301",campus:"南区",building:"C栋",floor:"3层",cap:120,plug:"全部有",ac:"有",quiet:2,open:"07:00-22:00",scene:"大型讲座、报告",mode:[],sit:"一般",risk:"阶梯教室回声大，不适合自习",note:"大型阶梯教室，回声较大",status:"正常"},
+{id:"D101",campus:"南区",building:"D栋",floor:"1层",cap:50,plug:"无",ac:"有",quiet:4,open:"07:30-21:30",scene:"个人自习",mode:["普通自习"],sit:"一般",risk:"无插座，长时间用电设备无法使用",note:"无插座，不建议长时间用电",status:"正常"},
+{id:"D201",campus:"南区",building:"D栋",floor:"2层",cap:80,plug:"全部有",ac:"有",quiet:3,open:"07:00-22:00",scene:"上课、自习",mode:["赶DDL","普通自习"],sit:"适合久坐",risk:"安静度一般",note:"",status:"正常"},
+{id:"D202",campus:"南区",building:"D栋",floor:"2层",cap:40,plug:"全部有",ac:"有",quiet:4,open:"08:00-21:30",scene:"小组讨论、研讨",mode:["小组讨论","备考"],sit:"适合久坐",risk:"可能有课程占用",note:"可移动桌椅，适合围坐",status:"正常"},
+{id:"D301",campus:"南区",building:"D栋",floor:"3层",cap:60,plug:"部分有",ac:"无",quiet:5,open:"08:00-21:00",scene:"备考、个人自习",mode:["备考","晚自习"],sit:"一般",risk:"无空调，夏天闷热不适",note:"最安静楼层，无空调慎选夏天",status:"正常"},
+{id:"Z101",campus:"综合楼",building:"综合楼",floor:"1层",cap:200,plug:"全部有",ac:"有",quiet:2,open:"07:00-22:00",scene:"大型报告、活动",mode:[],sit:"不适合久坐",risk:"大报告厅，不适合自习",note:"大报告厅，不适合自习",status:"正常"},
+{id:"Z201",campus:"综合楼",building:"综合楼",floor:"2层",cap:60,plug:"全部有",ac:"有",quiet:4,open:"07:00-22:00",scene:"个人自习、上课",mode:["普通自习","赶DDL"],sit:"适合久坐",risk:"",note:"",status:"正常"},
+{id:"Z301",campus:"综合楼",building:"综合楼",floor:"3层",cap:45,plug:"全部有",ac:"有",quiet:5,open:"08:00-21:00",scene:"自习专用、备考",mode:["备考","晚自习"],sit:"适合久坐",risk:"禁止喧哗，说话会被提醒",note:"自习专用楼层，禁止喧哗",status:"正常"},
+{id:"Z302",campus:"综合楼",building:"综合楼",floor:"3层",cap:30,plug:"全部有",ac:"有",quiet:5,open:"08:00-21:00",scene:"小组讨论(≤6人)、自习",mode:["小组讨论","备考"],sit:"适合久坐",risk:"座位较少，小组时段可能满员",note:"自习专用，适合2-6人小组",status:"正常"}
+];
+
+var schedule=[
+{id:"A101",day:"周一",s:"08:00",e:"09:45",ev:"高等数学",type:"硬"},
+{id:"A101",day:"周一",s:"10:05",e:"11:50",ev:"线性代数",type:"硬"},
+{id:"A201",day:"周一",s:"08:00",e:"09:45",ev:"大学英语",type:"硬"},
+{id:"A201",day:"周一",s:"14:00",e:"15:45",ev:"数据结构",type:"硬"},
+{id:"A301",day:"周一",s:"08:00",e:"11:50",ev:"思政课",type:"硬"},
+{id:"B201",day:"周一",s:"10:05",e:"11:50",ev:"程序设计基础",type:"硬"},
+{id:"B201",day:"周一",s:"14:00",e:"17:50",ev:"实验课",type:"硬"},
+{id:"C101",day:"周一",s:"08:00",e:"09:45",ev:"物理",type:"硬"},
+{id:"C201",day:"周一",s:"14:00",e:"15:45",ev:"经济学原理",type:"硬"},
+{id:"D201",day:"周一",s:"08:00",e:"11:50",ev:"专业课",type:"硬"},
+{id:"Z201",day:"周一",s:"19:00",e:"20:45",ev:"选修课",type:"硬"},
+{id:"A101",day:"周二",s:"14:00",e:"15:45",ev:"概率论",type:"硬"},
+{id:"A202",day:"周二",s:"08:00",e:"09:45",ev:"小组研讨课",type:"硬"},
+{id:"A202",day:"周二",s:"14:00",e:"15:45",ev:"创业课",type:"硬"},
+{id:"B101",day:"周二",s:"08:00",e:"11:50",ev:"化学实验",type:"硬"},
+{id:"B201",day:"周二",s:"08:00",e:"09:45",ev:"操作系统",type:"硬"},
+{id:"C101",day:"周二",s:"10:05",e:"11:50",ev:"高等数学",type:"硬"},
+{id:"C201",day:"周二",s:"08:00",e:"09:45",ev:"英语写作",type:"硬"},
+{id:"D201",day:"周二",s:"14:00",e:"15:45",ev:"管理学",type:"硬"},
+{id:"D201",day:"周二",s:"16:05",e:"17:50",ev:"会计学",type:"硬"},
+{id:"Z201",day:"周二",s:"08:00",e:"09:45",ev:"体育理论",type:"硬"},
+{id:"A101",day:"周三",s:"08:00",e:"09:45",ev:"大学语文",type:"硬"},
+{id:"A201",day:"周三",s:"10:05",e:"11:50",ev:"数学分析",type:"硬"},
+{id:"A301",day:"周三",s:"14:00",e:"17:50",ev:"大型讲座",type:"硬"},
+{id:"B201",day:"周三",s:"10:05",e:"11:50",ev:"数据库原理",type:"硬"},
+{id:"B301",day:"周三",s:"08:00",e:"11:50",ev:"电路基础",type:"硬"},
+{id:"C101",day:"周三",s:"14:00",e:"15:45",ev:"马克思主义",type:"硬"},
+{id:"D202",day:"周三",s:"08:00",e:"09:45",ev:"团队项目课",type:"硬"},
+{id:"D202",day:"周三",s:"14:00",e:"15:45",ev:"用户体验设计",type:"硬"},
+{id:"Z201",day:"周三",s:"10:05",e:"11:50",ev:"心理健康课",type:"硬"},
+{id:"Z301",day:"周三",s:"19:00",e:"20:45",ev:"晚自习(有监考)",type:"软"},
+{id:"A101",day:"周四",s:"10:05",e:"11:50",ev:"统计学",type:"硬"},
+{id:"A201",day:"周四",s:"08:00",e:"09:45",ev:"信号与系统",type:"硬"},
+{id:"A202",day:"周四",s:"10:05",e:"11:50",ev:"研讨课",type:"硬"},
+{id:"B201",day:"周四",s:"14:00",e:"15:45",ev:"编译原理",type:"硬"},
+{id:"C201",day:"周四",s:"10:05",e:"11:50",ev:"财务管理",type:"硬"},
+{id:"C202",day:"周四",s:"08:00",e:"09:45",ev:"备考辅导",type:"硬"},
+{id:"D201",day:"周四",s:"08:00",e:"11:50",ev:"工程图学",type:"硬"},
+{id:"Z201",day:"周四",s:"14:00",e:"15:45",ev:"选修讲座",type:"硬"},
+{id:"A101",day:"周五",s:"08:00",e:"11:50",ev:"期末考试",type:"硬"},
+{id:"A201",day:"周五",s:"14:00",e:"15:45",ev:"网络安全",type:"硬"},
+{id:"B101",day:"周五",s:"10:05",e:"11:50",ev:"实验课",type:"硬"},
+{id:"B201",day:"周五",s:"08:00",e:"09:45",ev:"软件工程",type:"硬"},
+{id:"C101",day:"周五",s:"08:00",e:"09:45",ev:"高等数学",type:"硬"},
+{id:"D202",day:"周五",s:"10:05",e:"11:50",ev:"产品设计",type:"硬"},
+{id:"Z201",day:"周五",s:"08:00",e:"17:50",ev:"毕业答辩",type:"硬"},
+{id:"A201",day:"周六",s:"09:00",e:"11:00",ev:"补课",type:"硬"},
+{id:"B201",day:"周六",s:"14:00",e:"17:00",ev:"社团活动",type:"硬"},
+{id:"C101",day:"周六",s:"09:00",e:"11:00",ev:"英语补课",type:"硬"},
+{id:"Z301",day:"周日",s:"09:00",e:"17:00",ev:"考研自习",type:"软"},
+{id:"A301",day:"周日",s:"14:00",e:"17:00",ev:"大型活动彩排",type:"硬"}
+];
+
+var feedback=[
+{date:"2026-05-13",time:"14:00",id:"A302",crowd:"较少",noise:"安静",plug:"正常",text:"下午人很少，非常安静，插座都能用，需要刷卡"},
+{date:"2026-05-12",time:"19:30",id:"A302",crowd:"适中",noise:"较安静",plug:"正常",text:"晚上人稍多但依然安静，学习氛围好"},
+{date:"2026-05-13",time:"15:00",id:"B202",crowd:"较少",noise:"安静",plug:"正常",text:"研讨室很安静，只有2个人，插座充足"},
+{date:"2026-05-11",time:"14:30",id:"A201",crowd:"较多",noise:"较吵",plug:"正常",text:"下午人比较多，有人在后排小声讨论，安静度不如3层"},
+{date:"2026-05-12",time:"16:00",id:"A201",crowd:"适中",noise:"较安静",plug:"正常",text:"4点后人变少了，安静了一些，插座都正常"},
+{date:"2026-05-10",time:"12:00",id:"B101",crowd:"拥挤",noise:"较吵",plug:"部分损坏",text:"午饭时间太吵了，而且靠窗那一排插座坏了2个"},
+{date:"2026-05-13",time:"20:00",id:"Z301",crowd:"较少",noise:"安静",plug:"正常",text:"晚自习氛围很好，禁止喧哗执行到位"},
+{date:"2026-05-12",time:"10:00",id:"D202",crowd:"适中",noise:"适中",plug:"正常",text:"有课占用到9:45，10点后才空出来，插座正常"},
+{date:"2026-05-09",time:"14:00",id:"A301",crowd:"适中",noise:"较吵",plug:"正常",text:"虽然没课但100座太大，有人在后排走动，不如小教室安静"},
+{date:"2026-05-13",time:"19:00",id:"B201",crowd:"较多",noise:"适中",plug:"正常",text:"晚上有人在自习也有人在讨论，氛围一般"},
+{date:"2026-05-11",time:"08:30",id:"A302",crowd:"空旷",noise:"安静",plug:"正常",text:"早上8点几乎没人，完美安静，刷卡进入"},
+{date:"2026-05-12",time:"14:00",id:"B101",crowd:"较多",noise:"较吵",plug:"部分损坏",text:"下午没空调又闷又吵，插座也有坏的，不推荐夏天来"}
+];
+
+// User feedback list (dynamic)
+var userFeedbacks = [];
+
+// === OPERATION LOG ===
+var opLog = [];
+
+function addOpLog(action){
+  var now = new Date();
+  var ds = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  var ts = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  opLog.unshift({time:ds+' '+ts, action:action});
+  if(opLog.length>20) opLog.length=20;
+  renderOpLog();
+}
+
+function renderOpLog(){
+  var h='';
+  if(opLog.length===0){h='<div class="op-log-item"><span class="op-log-time">—</span><span class="op-log-action">暂无操作记录</span></div>';}
+  else{for(var i=0;i<opLog.length;i++){h+='<div class="op-log-item"><span class="op-log-time">'+opLog[i].time+'</span><span class="op-log-action">'+opLog[i].action+'</span></div>';}}
+  $('opLogList').innerHTML=h;
+}
+
+// === ORIGINAL DATA BACKUP (for restore) ===
+var origClassroomStatus = {};
+var origNotes = {};
+for(var _i=0;_i<classrooms.length;_i++){origClassroomStatus[classrooms[_i].id]=classrooms[_i].status;origNotes[classrooms[_i].id]=classrooms[_i].note;}
+var origFeedback = feedback.slice();
+var origSchedule = schedule.slice();
+
+// === ADMIN ===
+function renderAdmin(){
+  var total=classrooms.length,norm=0,rep=0;
+  for(var i=0;i<classrooms.length;i++){if(classrooms[i].status==="正常")norm++;else rep++;}
+  var dd="周三",hc=0,sc=0;
+  for(var j=0;j<schedule.length;j++){if(schedule[j].day===dd){if(schedule[j].type==="硬")hc++;else sc++;}}
+  var h='';
+  h+='<div class="stat-card"><div class="stat-num">'+total+'</div><div class="stat-label">教室总数</div></div>';
+  h+='<div class="stat-card"><div class="stat-num">'+norm+'</div><div class="stat-label">正常开放教室</div></div>';
+  h+='<div class="stat-card orange"><div class="stat-num">'+rep+'</div><div class="stat-label">维修/暂停开放</div></div>';
+  h+='<div class="stat-card red"><div class="stat-num">'+hc+'</div><div class="stat-label">'+dd+'硬占用数量</div></div>';
+  h+='<div class="stat-card purple"><div class="stat-num">'+sc+'</div><div class="stat-label">'+dd+'软占用数量</div></div>';
+  $("adminStats").innerHTML=h;
+
+  // Populate status room dropdown
+  var roomOpts='<option value="">-- 选择教室 --</option>';
+  for(var ri=0;ri<classrooms.length;ri++){roomOpts+='<option value="'+classrooms[ri].id+'">'+classrooms[ri].id+' ('+classrooms[ri].building+' '+classrooms[ri].floor+')</option>';}
+  $('statusRoom').innerHTML=roomOpts;
+  $('statusCode').value='正常';
+  $('statusNote').value='';
+
+  // Render current abnormal status
+  renderStatusCurrent();
+
+  // Feedback table
+  var allFb = feedback.concat(userFeedbacks);
+  var fh='<table class="fb-table purple"><tr><th>日期</th><th>教室</th><th>人流</th><th>噪音</th><th>插座</th><th>反馈内容</th></tr>';
+  var fs=allFb.slice(0,8);
+  for(var k=0;k<fs.length;k++){var f=fs[k];var nc=(f.noise==="安静"||f.noise==="较安静")?"good":(f.noise==="较吵"||f.noise==="吵闹")?"bad":"mid";
+  fh+='<tr><td>'+f.date+'</td><td><strong>'+f.id+'</strong></td><td>'+f.crowd+'</td><td><span class="fb-noise '+nc+'">'+f.noise+'</span></td><td>'+f.plug+'</td><td style="max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="'+f.text+'">'+f.text+'</td></tr>';}
+  fh+='</table>';
+  $("adminFeedback").innerHTML=fh;
+
+  // Render operation log
+  renderOpLog();
+}
+
+function renderStatusCurrent(){
+  var h='<h4>📋 当前异常状态教室</h4>';
+  var hasAbnormal=false;
+  for(var i=0;i<classrooms.length;i++){
+    var rm=classrooms[i];
+    if(rm.status!=='正常'){
+      hasAbnormal=true;
+      var badgeClass=rm.status==='临时占用'?'occupied':rm.status==='维修'?'maintenance':'suspended';
+      h+='<div class="sc-item"><strong>'+rm.id+'</strong><span class="sc-badge '+badgeClass+'">'+rm.status+'</span>'+(rm.note?'<span style="color:var(--text-sec)">备注：'+rm.note+'</span>':'')+'</div>';
+    }
+  }
+  if(!hasAbnormal) h+='<div style="font-size:12px;color:var(--text-sec)">所有教室均为正常开放状态</div>';
+  $('statusCurrent').innerHTML=h;
+}
+
+function saveStatus(){
+  var roomId=$('statusRoom').value;
+  var statusCode=$('statusCode').value;
+  var note=$('statusNote').value.trim();
+  if(!roomId){alert('请先选择一个教室');return;}
+  var rm=null;
+  for(var i=0;i<classrooms.length;i++){if(classrooms[i].id===roomId){rm=classrooms[i];break;}}
+  if(!rm){alert('教室不存在');return;}
+  var oldStatus=rm.status;
+  rm.status=statusCode;
+  if(note) rm.note=note;
+  else if(statusCode==='正常') rm.note=origNotes[roomId]||'';
+  renderAdmin();
+  addOpLog('管理员将 <strong>'+roomId+'</strong> 标记为「'+statusCode+'」'+(note?'（'+note+'）':''));
+}
+
+function restoreDefaults(){
+  for(var i=0;i<classrooms.length;i++){
+    classrooms[i].status=origClassroomStatus[classrooms[i].id]||'正常';
+    classrooms[i].note=origNotes[classrooms[i].id]||'';
+  }
+  feedback.length=0;
+  for(var j=0;j<origFeedback.length;j++) feedback.push(origFeedback[j]);
+  userFeedbacks.length=0;
+  renderAdmin();
+  addOpLog('管理员<strong>恢复默认演示数据</strong>，所有教室状态和反馈已还原');
+}
+
+// === HELPERS ===
+function t2m(t){var p=t.split(":");return parseInt(p[0])*60+parseInt(p[1])}
+function periodRange(p,s,e){if(p==="上午")return["08:00","11:50"];if(p==="下午")return["14:00","17:50"];if(p==="晚上")return["19:00","22:00"];return[s||"14:00",e||"16:00"];}
+function stars(n){return "★".repeat(n)+"☆".repeat(5-n)}
+function plugC(p){return p==="全部有"?"feat":p==="部分有"?"warn":"no"}
+function acC(a){return a==="有"?"feat":"no"}
+
+function fbScore(id){var sc=0;for(var i=0;i<feedback.length;i++){if(feedback[i].id!==id)continue;var n=feedback[i].noise,c=feedback[i].crowd,p=feedback[i].plug;if((n==="安静"||n==="较安静")&&(c==="较少"||c==="空旷")&&p==="正常")sc+=3;if(n==="较吵"||n==="吵闹"||c==="拥挤"||c==="较多")sc-=5;if(p==="部分损坏"||p==="不可用"||p==="不足")sc-=8;}return Math.max(-15,Math.min(10,sc));}
+
+function isOv(s1,e1,s2,e2){var a=t2m(s1),b=t2m(e1),c=t2m(s2),d=t2m(e2);return a<d&&c<b;}
+function isOpen(oH,qs,qe){if(oH==="—")return false;var ps=oH.split("-");return t2m(ps[0])<=t2m(qs)&&t2m(ps[1])>=t2m(qe);}
+
+function calcSc(rm,qs,qe,mode,pe,pf,cp){
+  var sc=0;var pw=(mode==="赶DDL模式")?40:30;
+  if(pf.plug){if(rm.plug==="全部有")sc+=pw;else if(rm.plug==="部分有")sc+=Math.floor(pw/2);}
+  var qW=(mode==="备考模式")?8:5;if(pf.quiet)sc+=rm.quiet*qW;else sc+=rm.quiet*2;
+  var ratio=rm.cap/pe;if(ratio>=2&&ratio<=4)sc+=15;else if(ratio>4&&ratio<=8)sc+=5;else sc+=2;
+  if(pf.ac&&rm.ac==="有")sc+=10;else if(rm.ac==="有")sc+=5;
+  if(cp!=="全校"&&rm.campus===cp)sc+=20;else if(cp==="全校")sc+=5;
+  if(pf.dorm&&rm.note.indexOf("宿舍")>=0)sc+=10;
+  if(mode==="小组讨论模式"){if(rm.note.indexOf("围坐")>=0||rm.note.indexOf("白板")>=0)sc+=25;if(rm.cap>=pe&&rm.cap<=pe*4)sc+=20;if(rm.plug==="全部有")sc+=15;}
+  if(mode==="备考模式"&&rm.quiet>=4&&rm.cap<=60)sc+=10;
+  if(mode==="赶DDL模式"){var op=rm.open.split("-");if(op.length===2&&t2m(op[1])>=t2m("22:00"))sc+=10;}
+  if(mode==="晚自习模式"){var op2=rm.open.split("-");if(op2.length===2&&t2m(op2[1])>=t2m("21:00"))sc+=15;}
+  sc+=fbScore(rm.id);return Math.min(100,Math.max(0,sc));
+}
+
+function findCf(id,day,qs,qe){var h=[],s=[];for(var i=0;i<schedule.length;i++){if(schedule[i].id!==id||schedule[i].day!==day)continue;if(isOv(schedule[i].s,schedule[i].e,qs,qe)){if(schedule[i].type==="硬")h.push(schedule[i]);else s.push(schedule[i]);}}return{hard:h,soft:s};}
+
+// === STRATEGY DEFINITIONS ===
+var STRATEGIES = {
+  "普通自习": {
+    label:"普通自习", icon:"📖",
+    strategy:"综合平衡",
+    tags:[{t:"安静 + 插座综合评估",c:"plus"},{t:"中等容量优先",c:"prior"},{t:"避开大型教室",c:"avoid"}]
+  },
+  "备考模式": {
+    label:"备考模式", icon:"🎯",
+    strategy:"安静优先 + 插座优先 + 中型教室优先 + 避开人流区",
+    tags:[{t:"安静权重 ×1.6",c:"weight"},{t:"中小教室优先(≤60座)",c:"prior"},{t:"插座必须充足",c:"plus"},{t:"避开大型/嘈杂教室",c:"avoid"}]
+  },
+  "赶DDL模式": {
+    label:"赶DDL模式", icon:"⚡",
+    strategy:"插座优先 + 开放时间长优先 + 可久坐优先",
+    tags:[{t:"插座权重 ×1.3",c:"weight"},{t:"开放至22:00+加分",c:"prior"},{t:"适合久坐",c:"plus"},{t:"安静要求降低",c:"avoid"}]
+  },
+  "小组讨论模式": {
+    label:"小组讨论模式", icon:"👥",
+    strategy:"白板/围坐优先 + 小型空间优先 + 插座充足优先",
+    tags:[{t:"可围坐/白板 +25分",c:"weight"},{t:"小型空间(2-4倍人数)",c:"prior"},{t:"插座充足",c:"plus"},{t:"避开阶梯教室",c:"avoid"}]
+  },
+  "晚自习模式": {
+    label:"晚自习模式", icon:"🌙",
+    strategy:"开放到晚优先 + 安静优先 + 软占用提醒优先",
+    tags:[{t:"开放至21:00+加分",c:"weight"},{t:"安静环境优先",c:"prior"},{t:"软占用提醒",c:"plus"},{t:"避开早关闭教室",c:"avoid"}]
+  }
+};
+
+// === SEARCH ===
+function doSearch(){
+  var day=$("qDay").value,per=$("qPeriod").value;
+  var rng=periodRange(per,$("qStart").value,$("qEnd").value);
+  var qs=rng[0],qe=rng[1],cp=$("qCampus").value;
+  var pe=parseInt($("qPeople").value)||1,mode=$("qMode").value;
+  var pf={plug:$("pPlug").checked,quiet:$("pQuiet").checked,ac:$("pAC").checked,dorm:$("pDorm").checked};
+  var res=[],hardAvoid=[],softAvoid=[];
+  for(var i=0;i<classrooms.length;i++){var r=classrooms[i];
+    // Hard exclusions: maintenance / suspended / admin temp occupied
+    if(r.status==="维修"||r.status==="暂停开放"){hardAvoid.push({id:r.id,reason:r.status==="维修"?"维修中，暂不可用":"暂停开放（"+r.note+"）",detail:r.note});continue;}
+    if(r.status==="临时占用"){hardAvoid.push({id:r.id,reason:"管理员临时标记为占用",detail:r.note?"管理员备注："+r.note:"教室被管理员临时标记为占用，暂不可使用"});continue;}
+    // Campus filter
+    if(cp!=="全校"&&r.campus!==cp)continue;
+    // Not open during requested time
+    if(!isOpen(r.open,qs,qe)){hardAvoid.push({id:r.id,reason:"开放时段 "+r.open+" 不覆盖 "+qs+"-"+qe,detail:"教室开放时段为 "+r.open+"，无法满足 "+qs+"-"+qe+" 的需求"});continue;}
+    // Capacity too small
+    if(r.cap<pe){hardAvoid.push({id:r.id,reason:"容量 "+r.cap+" 座 < "+pe+" 人",detail:"该教室仅容纳 "+r.cap+" 人，无法满足 "+pe+" 人的需求"});continue;}
+    // Hard schedule conflict
+    var cf=findCf(r.id,day,qs,qe);
+    if(cf.hard.length>0){var evs=cf.hard.map(function(c){return c.ev+"("+c.s+"-"+c.e+")"}).join("、");hardAvoid.push({id:r.id,reason:day+" "+evs+"，硬占用",detail:day+" "+qs+"-"+qe+" 有课程/活动："+evs+"，教室不可使用"});continue;}
+    // Passed all hard checks - now evaluate soft concerns
+    var softConcern = "";
+    if(r.risk && r.risk.length > 0) softConcern = r.risk;
+    res.push({room:r,score:calcSc(r,qs,qe,mode,pe,pf,cp),softConflicts:cf.soft,softConcern:softConcern});
+  }
+  // Identify soft-avoid rooms (passed filters but score is low or has risk)
+  res.sort(function(a,b){return b.score-a.score});
+  // Mark low-scoring rooms as "not prioritized"
+  var topRes = res.slice(0,3);
+  var softAvoidFromRes = [];
+  for(var j=3;j<res.length&&j<8;j++){
+    var rm2=res[j].room;
+    var reason2 = "";
+    if(rm2.cap>80) reason2="容量过大("+rm2.cap+"座)，单人自习氛围不如中型教室";
+    else if(rm2.quiet<=2) reason2="安静度仅"+rm2.quiet+"分，环境嘈杂不适合专注学习";
+    else if(rm2.plug==="无") reason2="无插座，长时间使用电脑不便";
+    else if(rm2.note.indexOf("报告厅")>=0||rm2.note.indexOf("大型")>=0) reason2=rm2.note+"，不适合个人自习";
+    else reason2=rm2.risk||"综合评分较低，优先推荐其他教室";
+    softAvoidFromRes.push({id:rm2.id,reason:reason2});
+  }
+  // Also check for special rooms not in campus that should be noted
+  var allNormalRooms = classrooms.filter(function(c){return c.status==="正常" && (cp==="全校"||c.campus===cp) && isOpen(c.open,qs,qe) && c.cap>=pe && findCf(c.id,day,qs,qe).hard.length===0;});
+  for(var m=0;m<allNormalRooms.length;m++){
+    var cr=allNormalRooms[m];
+    var isTop=topRes.some(function(t){return t.room.id===cr.id;});
+    var isSoft=softAvoidFromRes.some(function(t){return t.id===cr.id;});
+    if(!isTop&&!isSoft){
+      var sr="";
+      if(cr.cap>100) sr="大型教室("+cr.cap+"座)，自习氛围不如中小教室";
+      else if(cr.quiet<=2) sr="安静度仅"+cr.quiet+"分，噪音风险较高";
+      else if(cr.plug==="无") sr="无插座，不适合长时间用电";
+      else sr=cr.risk||"综合评分偏低";
+      if(sr) softAvoidFromRes.push({id:cr.id,reason:sr});
+    }
+  }
+  softAvoidFromRes=softAvoidFromRes.slice(0,5);
+  hardAvoid=hardAvoid.slice(0,5);
+
+  renderRes(topRes,hardAvoid,softAvoidFromRes,day,qs,qe,mode,pe,cp);
+}
+
+function renderRes(res,hardAvoid,softAvoid,day,qs,qe,mode,pe,cp){
+  var h='';
+
+  // Strategy Card
+  var strat = STRATEGIES[mode] || STRATEGIES["普通自习"];
+  h+='<div class="strategy-card">';
+  h+='<div class="strat-header"><span class="strat-icon">'+strat.icon+'</span><div><div class="strat-mode">当前识别：'+strat.label+'</div><div class="strat-strategy">推荐策略：'+strat.strategy+'</div></div></div>';
+  h+='<div class="strat-details">';
+  for(var si=0;si<strat.tags.length;si++){var tg=strat.tags[si];h+='<span class="strat-tag '+tg.c+'">'+tg.t+'</span>';}
+  h+='</div></div>';
+
+  // Query summary
+  h+='<div class="card" style="padding:12px 16px"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="mode-badge">🧠 '+mode+'</span><span style="font-size:12px;color:var(--text-sec)">查询：'+day+" "+qs+"-"+qe+' · '+cp+' · '+pe+'人</span></div></div>';
+
+  if(res.length===0){h+='<div class="empty-state"><div class="empty-icon">😕</div><p>没有找到符合条件的教室，试试放宽条件</p></div>';$("results").innerHTML=h;return;}
+
+  // Result cards
+  for(var i=0;i<res.length;i++){
+    var r=res[i],rm=r.room;
+    var isB=i===0;
+    var sC=r.score>=90?"#1D9E75":r.score>=70?"#3a9d8e":r.score>=50?"#f5a623":"#d9534f";
+    h+='<div class="result-card rank-'+(i+1)+'"><span class="rank-tag '+(isB?"best":"alt")+'">'+(isB?"🏆 最优选择":"推荐 #"+(i+1))+'</span>';
+    h+='<div class="room-name">'+rm.id+' · '+rm.building+' '+rm.floor+'</div>';
+    h+='<div class="time-row">本次可用：<span class="avail">'+qs+' - '+qe+'</span>（开放时段：'+rm.open+'）</div>';
+    h+='<div class="features"><span class="feat">容量 '+rm.cap+' 座</span><span class="'+plugC(rm.plug)+'">插座 '+rm.plug+'</span><span class="'+acC(rm.ac)+'">空调 '+rm.ac+'</span><span class="feat">安静 '+stars(rm.quiet)+'</span></div>';
+    h+='<div class="score-bar"><div class="bar"><div class="fill" style="width:'+r.score+'%;background:'+sC+'"></div></div><span class="score">匹配度 '+r.score+'/100</span></div>';
+    var reason="";if(mode==="备考模式")reason="备考优选：安静"+rm.quiet+"分+插座"+rm.plug+"+"+rm.cap+"座";
+    else if(mode==="赶DDL模式")reason="赶DDL优选：插座"+rm.plug+"+开放至"+rm.open.split("-")[1];
+    else if(mode==="小组讨论模式")reason="小组优选："+(rm.note.indexOf("围坐")>=0?"可围坐":"")+(" "+rm.cap+"座适合"+pe+"人");
+    else if(mode==="晚自习模式")reason="晚自习优选：开放至"+rm.open.split("-")[1]+(rm.quiet>=4?"+安静":"");
+    else reason="综合推荐：安静"+rm.quiet+"分+插座"+rm.plug+"+"+rm.cap+"座";
+    if(rm.risk&&rm.risk.indexOf("刷卡")>=0)reason+="（需刷卡）";
+    h+='<div class="reason">💡 '+reason+'</div>';
+    if(r.softConflicts.length>0){for(var j=0;j<r.softConflicts.length;j++){var sc2=r.softConflicts[j];h+='<div class="soft-notice">📢 软占用提醒：'+sc2.s+'-'+sc2.e+' 有 '+sc2.ev+'，可进入但须遵守规则</div>';}}
+    // Feedback buttons
+    h+='<div class="fb-actions" data-room="'+rm.id+'">';
+    h+='<span style="font-size:11px;color:var(--text-sec);margin-right:4px">现场反馈：</span>';
+    h+='<button class="fb-btn" onclick="window._fbClick(this,\''+rm.id+'\',\'人很多\')">👥 人很多</button>';
+    h+='<button class="fb-btn" onclick="window._fbClick(this,\''+rm.id+'\',\'很安静\')">🤫 很安静</button>';
+    h+='<button class="fb-btn" onclick="window._fbClick(this,\''+rm.id+'\',\'插座坏了\')">🔌 插座坏了</button>';
+    h+='<button class="fb-btn" onclick="window._fbClick(this,\''+rm.id+'\',\'门锁了\')">🔒 门锁了</button>';
+    h+='<button class="fb-btn" onclick="window._fbClick(this,\''+rm.id+'\',\'适合小组\')">👥 适合小组</button>';
+    h+='</div>';
+    h+='</div>';
+  }
+
+  // Hard avoided
+  if(hardAvoid.length>0){
+    h+='<div class="avoided avoided-hard"><h3>🚫 硬性排除</h3>';
+    for(var k=0;k<hardAvoid.length;k++){
+      h+='<div class="avoid-item"><span class="avoid-id">'+hardAvoid[k].id+'</span>'+hardAvoid[k].reason;
+      if(hardAvoid[k].detail) h+='<span class="avoid-reason">'+hardAvoid[k].detail+'</span>';
+      h+='</div>';
+    }
+    h+='</div>';
+  }
+
+  // Soft avoided
+  if(softAvoid.length>0){
+    h+='<div class="avoided avoided-soft"><h3>⚠️ 不优先推荐</h3>';
+    for(var m2=0;m2<softAvoid.length;m2++){
+      h+='<div class="avoid-item"><span class="avoid-id">'+softAvoid[m2].id+'</span>'+softAvoid[m2].reason+'</div>';
+    }
+    h+='</div>';
+  }
+
+  // Heatmap
+  h += renderHeatmap(day, qs, qe, cp, res);
+
+  $("results").innerHTML=h;
+}
+
+// === HEATMAP ===
+function renderHeatmap(day, qs, qe, cp, topRes){
+  var topIds = {};
+  for(var i=0;i<topRes.length;i++) topIds[topRes[i].room.id]=true;
+  // Get rooms for the selected campus
+  var rooms = classrooms.filter(function(c){
+    if(cp!=="全校") return c.campus===cp;
+    return true;
+  });
+  // Group by building
+  var buildings = {};
+  for(var j=0;j<rooms.length;j++){
+    var b=rooms[j].building;
+    if(!buildings[b]) buildings[b]=[];
+    buildings[b].push(rooms[j]);
+  }
+  var h='<div class="heatmap-card"><h3>🗺️ 教学楼空闲热力图</h3>';
+  h+='<div class="hm-subtitle">当前校区教室状态一览 · '+day+' '+qs+'-'+qe+'</div>';
+  // Legend
+  h+='<div class="heatmap-legend">';
+  h+='<div class="leg-item"><div class="leg-dot green"></div>推荐教室</div>';
+  h+='<div class="leg-item"><div class="leg-dot gray"></div>空闲但不优先</div>';
+  h+='<div class="leg-item"><div class="leg-dot red"></div>硬占用/维修/暂停</div>';
+  h+='<div class="leg-item"><div class="leg-dot yellow"></div>有风险/降权</div>';
+  h+='</div>';
+
+  var buildingKeys = Object.keys(buildings);
+  for(var bk=0;bk<buildingKeys.length;bk++){
+    var bName=buildingKeys[bk];
+    var bRooms=buildings[bName];
+    h+='<div class="hm-building"><div class="hm-building-title">'+bName+'</div><div class="hm-grid">';
+    for(var ri=0;ri<bRooms.length;ri++){
+      var rm=bRooms[ri];
+      var cellClass="",tip="",statusLabel="";
+      // Determine cell status
+      if(rm.status==="维修"||rm.status==="暂停开放"){
+        cellClass="hm-red";
+        statusLabel=rm.status==="维修"?"维修":"暂停";
+        tip=rm.id+"："+rm.note;
+      } else {
+        var cf2=findCf(rm.id,day,qs,qe);
+        if(cf2.hard.length>0){
+          cellClass="hm-red";
+          statusLabel="占用";
+          var evNames=cf2.hard.map(function(c){return c.ev}).join("、");
+          tip=rm.id+"："+day+" "+evNames+"，硬占用";
+        } else if(!isOpen(rm.open,qs,qe)){
+          cellClass="hm-red";
+          statusLabel="关闭";
+          tip=rm.id+"：开放时段 "+rm.open+" 不覆盖";
+        } else if(topIds[rm.id]){
+          cellClass="hm-green";
+          statusLabel="推荐";
+          var rData=topRes.filter(function(t){return t.room.id===rm.id;})[0];
+          tip=rm.id+"：推荐，匹配度"+(rData?rData.score:"")+"分";
+          if(rm.note) tip+="，"+rm.note;
+        } else if(rm.risk&&rm.risk.length>0&&rm.quiet<=3){
+          cellClass="hm-yellow";
+          statusLabel="风险";
+          tip=rm.id+"："+rm.risk;
+        } else {
+          cellClass="hm-gray";
+          statusLabel="空闲";
+          tip=rm.id+"：空闲可用";
+          if(rm.risk) tip+="，"+rm.risk;
+        }
+      }
+      h+='<div class="hm-cell '+cellClass+'"><div class="hm-id">'+rm.id+'</div><div class="hm-status">'+statusLabel+'</div><div class="hm-tooltip">'+tip+'</div></div>';
+    }
+    h+='</div></div>';
+  }
+  h+='</div>';
+  return h;
+}
+
+// === FEEDBACK CLICK HANDLER ===
+window._fbClick = function(btn, roomId, type){
+  if(btn.classList.contains("clicked")) return;
+  btn.classList.add("clicked");
+  btn.textContent = "✓ "+type;
+  // Show toast
+  var toast = document.createElement("div");
+  toast.className = "fb-toast";
+  toast.textContent = "✅ 反馈已记录，后续推荐会参考该反馈。";
+  document.body.appendChild(toast);
+  setTimeout(function(){if(toast.parentNode)toast.parentNode.removeChild(toast);},2000);
+  // Add to feedback list
+  var today = new Date();
+  var dateStr = today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+  var timeStr = String(today.getHours()).padStart(2,"0")+":"+String(today.getMinutes()).padStart(2,"0");
+  var fbEntry = {date:dateStr,time:timeStr,id:roomId,crowd:"—",noise:"—",plug:"—",text:"【现场反馈】"+type};
+  userFeedbacks.push(fbEntry);
+  feedback.push(fbEntry);
+};
+
+function toggleCT(){var v=$("qPeriod").value;$("customTimeRow").style.display=v==="custom"?"block":"none";}
+
+function runDemo(n){
+  if(n===1){$("qDay").value="周三";$("qPeriod").value="custom";$("qStart").value="14:00";$("qEnd").value="16:00";$("qCampus").value="北区";$("qPeople").value="1";$("qMode").value="备考模式";$("pPlug").checked=true;$("pQuiet").checked=true;$("pAC").checked=false;$("pDorm").checked=false;toggleCT();}
+  else if(n===2){$("qDay").value="周三";$("qPeriod").value="custom";$("qStart").value="14:00";$("qEnd").value="16:00";$("qCampus").value="北区";$("qPeople").value="6";$("qMode").value="小组讨论模式";$("pPlug").checked=true;$("pQuiet").checked=true;$("pAC").checked=false;$("pDorm").checked=false;toggleCT();}
+  else{$("qDay").value="周三";$("qPeriod").value="晚上";$("qCampus").value="综合楼";$("qPeople").value="1";$("qMode").value="晚自习模式";$("pPlug").checked=true;$("pQuiet").checked=true;$("pAC").checked=false;$("pDorm").checked=false;toggleCT();}
+  doSearch();
+}
+
+// === BIND EVENTS ===
+$("loginBtn").addEventListener("click", doLogin);
+$("logoutBtn").addEventListener("click", doLogout);
+$("searchBtn").addEventListener("click", doSearch);
+$("qPeriod").addEventListener("change", toggleCT);
+$("demoBtn1").addEventListener("click", function(){runDemo(1)});
+$("demoBtn2").addEventListener("click", function(){runDemo(2)});
+$("demoBtn3").addEventListener("click", function(){runDemo(3)});
+$("switchToStudentBtn").addEventListener("click", goStudent);
+$("statusSaveBtn").addEventListener("click", saveStatus);
+$("restoreBtn").addEventListener("click", function(){if(confirm('确认恢复默认演示数据？将清空所有临时状态修改和临时反馈。'))restoreDefaults();});
+
+// Enter key login
+$("loginUser").addEventListener("keydown", function(e){if(e.key==="Enter")doLogin();});
+$("loginPass").addEventListener("keydown", function(e){if(e.key==="Enter")doLogin();});
+
+})();
+</script>
+</body>
+</html>

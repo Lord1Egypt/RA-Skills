@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "lastUpdate": 1776675374,
+  "memories": [
+    {
+      "id": "mem_2026-04-20_674518",
+      "type": "boss_preference",
+      "importance": 8,
+      "timestamp": 1776674518,
+      "date": "2026-04-20",
+      "content": "老板喜欢吃川菜，讨厌粤菜",
+      "tags": "",
+      "context": "",
+      "tier": "permanent",
+      "file": "/home/xiaomin/.openclaw/workspace/skills/auto-memory/memory/permanent/2026-04-20.md",
+      "confirmed": false
+    },
+    {
+      "id": "mem_2026-04-20_674526",
+      "type": "boss_decision",
+      "importance": 9,
+      "timestamp": 1776674526,
+      "date": "2026-04-20",
+      "content": "团建目的地定为贵州，5月底出发",
+      "tags": "",
+      "context": "",
+      "tier": "permanent",
+      "file": "/home/xiaomin/.openclaw/workspace/skills/auto-memory/memory/permanent/2026-04-20.md",
+      "confirmed": false
+    },
+    {
+      "id": "mem_2026-04-20_675374",
+      "type": "PREF",
+      "importance": 8,
+      "timestamp": 1776675374,
+      "date": "2026-04-20",
+      "content": "喜欢吃川菜",
+      "tags": "",
+      "context": "",
+      "tier": "current",
+      "file": "/home/xiaomin/.openclaw/workspace/skills/auto-memory/memory/current/2026-04-20.md",
+      "confirmed": false
+    },
+    {
+      "id": "mem_2026-04-20_675374",
+      "type": "DEC",
+      "importance": 9,
+      "timestamp": 1776675374,
+      "date": "2026-04-20",
+      "content": "去贵州，5月底出发。我喜欢吃川菜，但最近觉得粤菜也不错。今天心情不错，公司季度业绩很好，我觉得很有成就感",
+      "tags": "",
+      "context": "",
+      "tier": "current",
+      "file": "/home/xiaomin/.openclaw/workspace/skills/auto-memory/memory/current/2026-04-20.md",
+      "confirmed": false
+    },
+    {
+      "id": "mem_2026-04-20_675374",
+      "type": "EMOT",
+      "importance": 6,
+      "timestamp": 1776675374,
+      "date": "2026-04-20",
+      "content": "心情不错",
+      "tags": "",
+      "context": "",
+      "tier": "current",
+      "file": "/home/xiaomin/.openclaw/workspace/skills/auto-memory/memory/current/2026-04-20.md",
+      "confirmed": false
+    },
+    {
+      "id": "mem_2026-04-20_675374",
+      "type": "LEARN",
+      "importance": 8,
+      "timestamp": 1776675374,
+      "date": "2026-04-20",
+      "content": "。我喜欢吃川菜，但最近觉得粤菜也不错。今天心情不错，公司季度业绩很好，我觉得很有成就感",
+      "tags": "",
+      "context": "",
+      "tier": "current",
+      "file": "/home/xiaomin/.openclaw/workspace/skills/auto-memory/memory/current/2026-04-20.md",
+      "confirmed": false
+    }
+  ],
+  "custom_types": {}
+}

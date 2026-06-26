@@ -1,0 +1,40 @@
+{
+  "name": "comfyui-mcp-skill",
+  "version": "1.0.0",
+  "description": "AI 视频生成技能，基于 ComfyUI 的 MCP 服务",
+  "author": "lemnt-ai",
+  "license": "MIT",
+  "homepage": "https://github.com/lemnt-ai/comfyui-mcp-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lemnt-ai/comfyui-mcp-server.git"
+  },
+  "keywords": [
+    "mcp",
+    "comfyui",
+    "ai-video",
+    "video-generation",
+    "nanobot-skill"
+  ],
+  "nanobot": {
+    "emoji": "🎬",
+    "category": "AI Tools",
+    "tags": ["video", "ai", "comfyui", "generation"]
+  },
+  "scripts": {
+    "start": "python server.py --transport http --host 0.0.0.0 --port 18060",
+    "dev": "python server.py --transport stdio",
+    "docker": "docker-compose up -d"
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "fastmcp": "latest",
+    "requests": "latest"
+  },
+  "peerDependencies": {
+    "comfyui": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

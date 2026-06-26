@@ -1,0 +1,6 @@
+{
+  "skill_path": "/mnt/shared-storage-user/llmit/user/tangyinhao/skills/openclaw_skills/wuhaichao87/clawhub-publish-tool/SKILL.md",
+  "skill_scene": "Clawdbot Tools",
+  "reasoning": "核心是将本地 skill 发布到 ClawHub，属于 Clawdbot 相关工具。",
+  "raw_prediction": "{\n  \"skill_scene\": \"Clawdbot Tools\",\n  \"reasoning\": \"核心是将本地 skill 发布到 ClawHub，属于 Clawdbot 相关工具。\"\n}"
+}

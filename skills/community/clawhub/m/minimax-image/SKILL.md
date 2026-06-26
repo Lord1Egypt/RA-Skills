@@ -1,35 +1,62 @@
 ---
-name: "minimax文生图技能"
-description: "使用MiniMax图像生成API进行文生图。支持文字描述生成图片，适用于PPT配图、封面图、内容配图等场景。触发词：生成图片、文生图、创建图片、MiniMax图片。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/minimax-image"
-sourceUrl: "https://clawhub.ai/skills/minimax-image"
+name: minimax-image
+description: 使用MiniMax图像生成API进行文生图。支持文字描述生成图片，适用于PPT配图、封面图、内容配图等场景。触发词：生成图片、文生图、创建图片、MiniMax图片。
+version: 1.0.0
+author: TJMtaotao
+tags: [图片生成, AI绘画, 文生图, MiniMax]
 ---
 
-# minimax文生图技能
+# MiniMax 图像生成技能
 
-> 使用MiniMax图像生成API进行文生图。支持文字描述生成图片，适用于PPT配图、封面图、内容配图等场景。触发词：生成图片、文生图、创建图片、MiniMax图片。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/minimax-image`
-- **Source URL:** [https://clawhub.ai/skills/minimax-image](https://clawhub.ai/skills/minimax-image)
+使用 MiniMax API 进行文本到图像生成（Text-to-Image）。
 
-## Overview
+## API 信息
 
+- **接口地址**: https://api.minimaxi.com/v1/image_generation
+- **模型**: image-01
+- **比例**: 支持 16:9, 1:1, 9:16 等
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 输入要求
+
+| 参数 | 说明 | 必填 |
+|------|------|------|
+| prompt | 图片描述文本 | ✅ |
+| aspect_ratio | 宽高比（默认16:9） | 否 |
+| n | 生成数量（默认1，最大4） | 否 |
+
+## 使用方法
+
+### 命令行调用
+
 ```bash
-hermes skills install clawhub/minimax-image
+python3 /path/to/scripts/generate.py "你的图片描述" --ratio 16:9 --num 1
 ```
+
+### Python调用
+
+```python
+from minimax_image import MiniMaxImage
+
+client = MiniMaxImage(api_key="your-api-key")
+result = client.generate("蓝色科技风格PPT封面，标题：深度学习")
+image_urls = result["image_urls"]
+```
+
+## 输出
+
+- 返回生成的图片URL列表
+- 图片自动保存至 `{output}/{date}/` 目录
+
+## 依赖
+
+```
+pip install requests
+```
+
+## API Key 配置
+
+API Key通过环境变量 `MINIMAX_API_KEY` 设置，或在初始化时传入。
+
+获取地址：https://platform.minimaxi.com/

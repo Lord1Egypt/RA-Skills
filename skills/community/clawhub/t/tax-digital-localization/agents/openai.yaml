@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tax Digital Localization"
+  short_description: "Localize Chinese tax-system copy for 6 markets"
+  default_prompt: "Use $tax-digital-localization to localize these Chinese tax-system strings for Singapore."

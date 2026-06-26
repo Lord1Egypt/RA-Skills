@@ -1,0 +1,11 @@
+{
+  "name": "captions-and-clips-from-youtube-link",
+  "version": "2.1.0",
+  "license": "MIT",
+  "description": "Turn YouTube videos into viral short-form clips with captions using MakeAIClips API — supports karaoke, typewriter, cinematic + 10 more styles",
+  "author": "nosselil",
+  "tags": ["video", "youtube", "clips", "captions", "tiktok", "reels", "shorts", "ai", "openclaw", "agent-skill", "video-editing", "content-creation", "social-media", "ffmpeg", "subtitles"],
+  "requires": {
+    "env": ["MAKEAICLIPS_API_KEY"]
+  }
+}

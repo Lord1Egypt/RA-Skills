@@ -1,0 +1,24 @@
+# CyberLens Skill Requirements
+# Install with: pip install -r requirements.txt
+
+# HTTP client for async requests
+httpx>=0.25.0
+
+# HTML parsing for content analysis
+beautifulsoup4>=4.12.0
+
+# Data validation and serialization
+# CVE-2024-3772 is fixed in Pydantic 2.4.0+ for the 2.x line.
+pydantic>=2.4.0
+
+# Config file parsing
+pyyaml>=6.0
+
+# PDF report generation
+reportlab>=4.0.0
+
+# Development dependencies (install with: pip install -r requirements-dev.txt)
+# pytest>=7.0.0
+# pytest-asyncio>=0.21.0
+# black>=23.0.0
+# mypy>=1.0.0

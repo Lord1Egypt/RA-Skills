@@ -1,0 +1,10 @@
+{
+  "name": "workspace-db",
+  "version": "1.0.0",
+  "description": "Workspace Documentation and Tree Database Manager",
+  "main": "SKILL.md",
+  "openclaw": {
+    "skill": true,
+    "category": "database"
+  }
+}

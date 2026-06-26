@@ -1,35 +1,43 @@
----
-name: "API Doc Generator"
-description: "Automatically generate OpenAPI/Swagger API documentation by analyzing function signatures and extracting parameter and return types from Python, JavaScript,..."
-category: "software-development"
-source: "ClawHub"
-tags: [api, doc]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-doc-generator"
-sourceUrl: "https://clawhub.ai/skills/api-doc-generator"
----
-
 # API Doc Generator
 
-> Automatically generate OpenAPI/Swagger API documentation by analyzing function signatures and extracting parameter and return types from Python, JavaScript,...
+自动从代码生成 API 文档。
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-doc-generator`
-- **Source URL:** [https://clawhub.ai/skills/api-doc-generator](https://clawhub.ai/skills/api-doc-generator)
+## 功能
 
-## Overview
+- 分析代码中的函数/方法签名
+- 自动提取参数和返回值类型
+- 生成 OpenAPI/Swagger 格式文档
+- 支持 Python、JavaScript、TypeScript、Go
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/api-doc-generator
+- "生成API文档"
+- "API文档"
+- "生成接口文档"
+- "openapi"
+- "swagger"
+
+## 示例
+
+```
+用户: 帮我把这个Python函数生成API文档
+助手: (使用此skill生成OpenAPI文档)
+```
+
+## 输出格式
+
+```json
+{
+  "openapi": "3.0.0",
+  "info": { "title": "API", "version": "1.0.0" },
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "获取用户列表",
+        "parameters": [...],
+        "responses": { "200": {...} }
+      }
+    }
+  }
+}
 ```

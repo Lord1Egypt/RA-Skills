@@ -1,35 +1,79 @@
 ---
-name: "distributed-tracing"
-description: "Indexed by skills.sh from wshobson/agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wshobson"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wshobson/agents/distributed-tracing"
-sourceUrl: "https://skills.sh/wshobson/agents/distributed-tracing"
+name: distributed-tracing
+description: Implement distributed tracing with Jaeger and Tempo to track requests across microservices and identify performance bottlenecks. Use when debugging microservices, analyzing request flows, or implementing observability for distributed systems.
 ---
 
-# distributed-tracing
+# Distributed Tracing
 
-> Indexed by skills.sh from wshobson/agents
+Implement distributed tracing with Jaeger and Tempo for request flow visibility across microservices.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wshobson
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wshobson/agents/distributed-tracing`
-- **Source URL:** [https://skills.sh/wshobson/agents/distributed-tracing](https://skills.sh/wshobson/agents/distributed-tracing)
+## Purpose
 
-## Overview
+Track requests across distributed systems to understand latency, dependencies, and failure points.
 
+## When to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wshobson/agents/distributed-tracing
+- Debug latency issues
+- Understand service dependencies
+- Identify bottlenecks
+- Trace error propagation
+- Analyze request paths
+
+## Detailed patterns and worked examples
+
+Detailed pattern documentation lives in `references/details.md`. Read that file when the navigation tier above is insufficient.
+
+## Best Practices
+
+1. **Sample appropriately** (1-10% in production)
+2. **Add meaningful tags** (user_id, request_id)
+3. **Propagate context** across all service boundaries
+4. **Log exceptions** in spans
+5. **Use consistent naming** for operations
+6. **Monitor tracing overhead** (<1% CPU impact)
+7. **Set up alerts** for trace errors
+8. **Implement distributed context** (baggage)
+9. **Use span events** for important milestones
+10. **Document instrumentation** standards
+
+## Integration with Logging
+
+### Correlated Logs
+
+```python
+import logging
+from opentelemetry import trace
+
+logger = logging.getLogger(__name__)
+
+def process_request():
+    span = trace.get_current_span()
+    trace_id = span.get_span_context().trace_id
+
+    logger.info(
+        "Processing request",
+        extra={"trace_id": format(trace_id, '032x')}
+    )
 ```
+
+## Troubleshooting
+
+**No traces appearing:**
+
+- Check collector endpoint
+- Verify network connectivity
+- Check sampling configuration
+- Review application logs
+
+**High latency overhead:**
+
+- Reduce sampling rate
+- Use batch span processor
+- Check exporter configuration
+
+
+## Related Skills
+
+- `prometheus-configuration` - For metrics
+- `grafana-dashboards` - For visualization
+- `slo-implementation` - For latency SLOs

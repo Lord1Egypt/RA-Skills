@@ -1,0 +1,10 @@
+# 药学系统招标信息收集定时任务
+# 每天早上8:30执行
+
+30 8 * * * cd /home/eio/.openclaw/workspace/skills/pharmaceutical-bidding && npm start >> /home/eio/.openclaw/workspace/skills/pharmaceutical-bidding/logs/cron.log 2>&1
+
+# 任务说明：
+# 30 8 * * * 表示每天早上8:30
+# cd /home/eio/.openclaw/workspace/skills/pharmaceutical-bidding 切换到技能目录
+# npm start 启动技能
+# >> /home/eio/.openclaw/workspace/skills/pharmaceutical-bidding/logs/cron.log 2>&1 记录日志到文件

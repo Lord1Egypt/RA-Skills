@@ -1,0 +1,29 @@
+{
+  "namespace": "user",
+  "name": "04-text-to-image",
+  "displayName": "04 Text To Image",
+  "description": "根据提示词生成短剧画面",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "prompt": { "type": "string" },
+      "negative_prompt": { "type": "string" }
+    },
+    "required": ["prompt"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "image_url": { "type": "string" }
+    },
+    "required": ["image_url"]
+  },
+  "runtime": "nodejs",
+  "entry": "skill.js",
+  "environment": {
+    "API_KEY": {},
+    "API_BASE": {},
+    "MODEL_NAME": {}
+  }
+}

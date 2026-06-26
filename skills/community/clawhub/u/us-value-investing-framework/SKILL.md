@@ -1,35 +1,52 @@
 ---
-name: "US Stock Valuation Model - Value Investing Framework / 美股估值模型-价值投资框架"
-description: "Structured bilingual framework to evaluate US stocks by quality, moat, management, valuation, and risk for buy/watch/avoid decisions and monitoring."
-category: "domain"
-source: "ClawHub"
-tags: [finance, us-stocks, valuation-model, value-investing, investing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/us-value-investing-framework"
-sourceUrl: "https://clawhub.ai/skills/us-value-investing-framework"
+name: us-value-investing-framework
+description: US stock valuation model skill (English-first + 中文) based on financial report data. Use when you need to apply explicit rules: ROE > 15% for 3+ years, debt ratio < 50%, free cash flow > 80% of net income, moat assessment (brand/network effect/cost advantage), then output investment rating (A/B/C/D) with reasons.
 ---
 
-# US Stock Valuation Model - Value Investing Framework / 美股估值模型-价值投资框架
+# US Stock Valuation Model - Value Investing Framework (EN + 中文)
 
-> Structured bilingual framework to evaluate US stocks by quality, moat, management, valuation, and risk for buy/watch/avoid decisions and monitoring.
+This skill is an explicit rule-based value model focused on US stocks.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/us-value-investing-framework`
-- **Source URL:** [https://clawhub.ai/skills/us-value-investing-framework](https://clawhub.ai/skills/us-value-investing-framework)
+## Input
 
-## Overview
+Company financial report data (structured JSON), including:
+- 3+ years of ROE
+- Debt ratio
+- Free cash flow and net income
+- Moat assessment: brand / network effect / cost advantage
 
+Use the bundled template: `references/input-template.json`.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Decision Rules (strict)
+
+1. **ROE rule**: ROE > 15% for at least 3 consecutive years
+2. **Leverage rule**: Debt ratio < 50%
+3. **Cash conversion rule**: Free cash flow > 80% of net income
+4. **Moat rule**: evaluate brand/network effect/cost advantage
+
+## Output
+
+- Investment rating: **A / B / C / D**
+- Reasons (pass/fail explanation per rule)
+- Bilingual summary (EN main + 中文摘要)
+
+## Run
+
 ```bash
-hermes skills install clawhub/us-value-investing-framework
+python3 scripts/evaluate_company.py \
+  --input references/input-template.json \
+  --out .state/eval.json \
+  --markdown .state/eval.md
 ```
+
+## Rating policy
+
+- **A**: all 4 rules pass
+- **B**: 3 rules pass
+- **C**: 2 rules pass
+- **D**: 0-1 rule pass
+
+## Resources
+
+- `scripts/evaluate_company.py`: deterministic evaluator
+- `references/input-template.json`: input schema example

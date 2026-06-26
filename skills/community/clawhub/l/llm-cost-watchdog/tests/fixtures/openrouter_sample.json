@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": "anthropic/claude-sonnet-4.6",
+      "name": "Anthropic: Claude Sonnet 4.6",
+      "pricing": {"prompt": "0.000003", "completion": "0.000015"},
+      "context_length": 200000
+    },
+    {
+      "id": "openai/gpt-4o",
+      "name": "OpenAI: GPT-4o",
+      "pricing": {"prompt": "0.0000025", "completion": "0.00001"}
+    },
+    {
+      "id": "qwen/qwen-2.5-72b-instruct",
+      "name": "Qwen: Qwen 2.5 72B Instruct",
+      "pricing": {"prompt": "0.00000012", "completion": "0.00000039"}
+    },
+    {
+      "id": "free-tier/model",
+      "name": "A free model (should be filtered)",
+      "pricing": {"prompt": "0", "completion": "0"}
+    },
+    {
+      "id": "broken/model",
+      "name": "Broken pricing (non-numeric)",
+      "pricing": {"prompt": "abc", "completion": "0.00001"}
+    }
+  ]
+}

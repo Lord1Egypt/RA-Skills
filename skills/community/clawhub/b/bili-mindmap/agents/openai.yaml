@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bili Mindmap"
+  short_description: "从 B 站视频链接提取内容并导出 XMind 思维导图。"
+  default_prompt: "Use $bili-mindmap to turn a Bilibili video link into a structured `.xmind` mind map."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>OpenClaw 聊天</title>
+<style>
+html{font-size:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(135deg,#0a1628,#0f3460,#16213e);color:#e0e0e0;height:100vh;display:flex;flex-direction:column;-webkit-text-size-adjust:100%}
+.chat-header{padding:12px 16px;background:rgba(15,52,96,.9);display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(79,195,247,.15);backdrop-filter:blur(10px)}
+.chat-header .back{background:none;border:none;color:#4fc3f7;font-size:16px;cursor:pointer}
+.chat-header .title{font-weight:500;flex:1}
+.chat-header .status{width:8px;height:8px;border-radius:50%;background:#e94560}
+.chat-header .status.on{background:#81c784}
+.messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:78%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}
+.msg.sent{align-self:flex-end;background:linear-gradient(135deg,#1a5276,#2e86c1);color:#e0e0e0;border-bottom-right-radius:4px}
+.msg.recv{align-self:flex-start;background:rgba(15,52,96,.7);color:#e0e0e0;border-bottom-left-radius:4px;border:1px solid rgba(79,195,247,.1)}
+.msg img{max-width:100%;border-radius:8px;margin-top:4px}
+.chat-input{padding:10px 12px;background:rgba(15,52,96,.8);display:flex;gap:8px;align-items:center;border-top:1px solid rgba(79,195,247,.15);backdrop-filter:blur(10px)}
+.chat-input input{flex:1;background:rgba(10,22,40,.8);border:1px solid rgba(79,195,247,.25);border-radius:20px;padding:10px 16px;color:#e0e0e0;font-size:14px;outline:none}
+.chat-input input:focus{border-color:#4fc3f7;box-shadow:0 0 8px rgba(79,195,247,.2)}
+.chat-input button{width:40px;height:40px;border-radius:50%;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-input .send{background:#e94560;color:#fff}
+.chat-input .img-btn{background:#0f3460;color:#4fc3f7}
+</style>
+</head>
+<body>
+
+<div class="chat-header">
+  <button class="back" onclick="history.back()">← 返回</button>
+  <span class="title">🤖 OpenClaw 聊天机器人</span>
+  <span class="status" id="wsStatus"></span>
+</div>
+<div class="messages" id="msgs"></div>
+<div class="chat-input">
+  <input type="file" id="imgInput" accept="image/*" style="display:none" onchange="sendImg(event)">
+  <button class="img-btn" onclick="document.getElementById('imgInput').click()">📷</button>
+  <input id="msgInput" placeholder="输入消息…" onkeydown="if(event.key==='Enter')sendMsg()">
+  <button class="send" onclick="sendMsg()">➤</button>
+</div>
+
+<script>
+// ─── 配置 ─────────────────────────────────────────────
+const API = new URLSearchParams(location.search).get('api') || 'https://ai0000.cn/zz/';
+
+let myId = null;
+let localMsgs = {};
+let ocSeenIds = JSON.parse(localStorage.getItem('zz_oc_seen') || '[]');
+
+const $ = id => document.getElementById(id);
+function genId() { return 'uuid-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8); }
+
+// ─── 初始化 ───────────────────────────────────────────
+async function init() {
+  const p = new URLSearchParams(location.search);
+  myId = p.get('id');
+  if (!myId) { alert('请扫描二维码进入'); return; }
+  localStorage.setItem('zz_id', myId);
+  localMsgs = JSON.parse(localStorage.getItem('zz_oc_local')||'{}');
+  renderMsgs();
+  scrollBottom();
+  connectWS();
+  setInterval(pollReply, 3000);
+}
+
+// ─── HTTP 轮询收消息 ───────────────────────────────────
+
+function connectWS() {
+  // 手机端不需要 WebSocket，改用 HTTP 轮询
+  $('wsStatus').className = 'status on';
+  console.log('[轮询] 启动');
+}
+
+function pollReply() {
+  fetch(API + '?uid=' + myId, { cache: 'no-store' })
+    .then(r => r.json())
+    .then(data => {
+      if (!data || !data.content || data.to !== myId) return;
+      const mid = data.msg_id || '';
+      if (mid && !ocSeenIds.includes(mid)) {
+        ocSeenIds.push(mid);
+        if (ocSeenIds.length > 200) ocSeenIds = ocSeenIds.slice(-200);
+        localStorage.setItem('zz_oc_seen', JSON.stringify(ocSeenIds));
+        addMsg('recv', data.content, data.isImage);
+        renderMsgs();
+      }
+    })
+    .catch(() => {});
+}
+
+// ─── 聊天 ─────────────────────────────────────────────
+function getMsgs() { return localMsgs['oc'] || []; }
+
+function addMsg(dir, content, isImage) {
+  if (!localMsgs['oc']) localMsgs['oc'] = [];
+  localMsgs['oc'].push({ dir, content, isImage, ts: Date.now() });
+  if (localMsgs['oc'].length > 500) localMsgs['oc'] = localMsgs['oc'].slice(-500);
+  localStorage.setItem('zz_oc_local', JSON.stringify(localMsgs));
+}
+
+function renderMsgs() {
+  const el = $('msgs');
+  el.innerHTML = '';
+  getMsgs().forEach(m => {
+    const div = document.createElement('div');
+    div.className = `msg ${m.dir === 'sent' ? 'sent' : 'recv'}`;
+    if (m.isImage) div.innerHTML = `<img src="${m.content}" loading="lazy">`;
+    else div.textContent = m.content;
+    el.appendChild(div);
+  });
+  scrollBottom();
+}
+
+function scrollBottom() {
+  const el = $('msgs');
+  el.scrollTop = el.scrollHeight;
+}
+
+// ─── 发送 ─────────────────────────────────────────────
+async function sendMsg() {
+  const input = $('msgInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg('sent', text);
+  renderMsgs();
+
+  const msg = { msg_id: genId(), from: myId, to: myId, content: text, ts: Date.now() };
+
+  try {
+    await fetch(API, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(msg) });
+  } catch {
+    addMsg('recv', '⚠️ 发送失败');
+    renderMsgs();
+  }
+}
+
+async function sendImg(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  e.target.value = '';
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  await new Promise((r, j) => { img.onload = r; img.onerror = j; img.src = URL.createObjectURL(file); });
+
+  let w = img.width, h = img.height;
+  const max = 800;
+  if (w > max || h > max) { if (w > h) { h *= max/w; w=max; } else { w *= max/h; h=max; } }
+  canvas.width = w; canvas.height = h;
+  ctx.drawImage(img, 0, 0, w, h);
+
+  let quality = 0.7, dataUrl;
+  do { dataUrl = canvas.toDataURL('image/jpeg', quality); quality -= 0.1; } while (dataUrl.length > 200000 && quality > 0.1);
+
+  addMsg('sent', dataUrl, true);
+  renderMsgs();
+
+  const msg = { msg_id: genId(), from: myId, to: myId, content: dataUrl, isImage: true, ts: Date.now() };
+  try { await fetch(API, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(msg) }); }
+  catch { addMsg('recv', '⚠️ 图片发送失败'); renderMsgs(); }
+}
+
+// ─── 启动 ─────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

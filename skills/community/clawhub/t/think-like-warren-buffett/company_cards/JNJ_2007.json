@@ -1,0 +1,38 @@
+{
+  "ticker": "JNJ",
+  "company": "Johnson & Johnson",
+  "analysis_year": 2007,
+  "data_source": "Johnson & Johnson FY2006 annual report, SEC EDGAR; Berkshire 2007 annual report",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.279, "metric_used": "ROE", "years_averaged": "2004-2006", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.05, "fcf": 11582, "net_income": 11053, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.14, "pass": true },
+    "g4_revenue_trend": { "description": "Sales and earnings grew steadily across pharmaceuticals, medical devices, and consumer products into 2006.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "No visible two-year structural gross-margin decay; economics remained stable across the diversified healthcare portfolio.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.060, "net_income_m": 11053, "ev_m": 184000, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "Johnson & Johnson combined trusted consumer brands, device scale, global distribution, and healthcare relationships across multiple categories. No single rival could easily replicate the portfolio breadth, regulatory infrastructure, and channel presence that made the franchise so resilient.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "sales_2006_usd_m": 53324,
+    "net_income_2006_usd_m": 11053,
+    "operating_cash_flow_2006_usd_m": 14248,
+    "capex_2006_usd_m": 2666,
+    "berkshire_cost_2007_usd_m": 3943
+  },
+
+  "control_groups": [
+    { "ticker": "PFE", "company": "Pfizer", "year": 2007, "gates_failed": ["g4_revenue_trend", "g5_gross_margin_trend"], "conclusion": "PASS — looming patent pressure and weaker quality of growth made the economics less dependable." },
+    { "ticker": "MRK", "company": "Merck", "year": 2007, "gates_failed": ["g4_revenue_trend", "g6_earnings_yield"], "conclusion": "PASS — a strong company, but less diversified and still working through post-Vioxx uncertainty." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "By year-end 2007 Berkshire held 64.3M Johnson & Johnson shares at a cost of about $3.94B.",
+  "actual_result": "Johnson & Johnson produced the kind of stable defensive performance the underwriting implied, even though Berkshire later redeployed capital elsewhere.",
+  "verdict": "✅ aligned",
+  "key_insight": "A diversified healthcare franchise can look plain on the surface and still qualify as a high-quality Buffett-style compounder."
+}

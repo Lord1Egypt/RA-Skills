@@ -1,0 +1,104 @@
+{
+  "skill_name": "prompt-zs",
+  "version": "1.0.1",
+  "evals": [
+    {
+      "id": 1,
+      "name": "expert1-basic-prompt",
+      "prompt": "生成一个猫咪在窗台上晒太阳的AI绘画提示词",
+      "expected_output": "JSON格式，包含cn、en、cn-tag、en-tag四个字段",
+      "assertions": [
+        {
+          "name": "输出JSON格式",
+          "check": "output_is_valid_json",
+          "expected": "output must be valid JSON array"
+        },
+        {
+          "name": "包含必需字段",
+          "check": "json_has_fields",
+          "fields": ["cn", "en", "cn-tag", "en-tag"],
+          "expected": "JSON must contain cn, en, cn-tag, en-tag fields"
+        },
+        {
+          "name": "无额外文字",
+          "check": "output_clean_json",
+          "expected": "Output should only contain JSON, no extra text"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "expert2-professional-prompt",
+      "prompt": "使用生成提示词2：一位厨师在开放式厨房里烹饪美食，专业摄影风格",
+      "expected_output": "JSON格式，包含相机参数描述",
+      "assertions": [
+        {
+          "name": "包含相机参数",
+          "check": "contains_camera_params",
+          "expected": "Should include camera model and settings"
+        },
+        {
+          "name": "输出JSON格式",
+          "check": "output_is_valid_json",
+          "expected": "Output must be valid JSON array"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "text-to-video",
+      "prompt": "生成一个5秒视频的提示词：海浪拍打沙滩，夕阳西下",
+      "expected_output": "完整的一段话，500字以内，包含主体、运动、场景、镜头、光影、氛围",
+      "assertions": [
+        {
+          "name": "字数限制",
+          "check": "word_count_under_500",
+          "expected": "Should be under 500 characters"
+        },
+        {
+          "name": "包含必需要素",
+          "check": "contains_video_elements",
+          "elements": ["主体", "运动", "场景", "镜头", "光影", "氛围"],
+          "expected": "Should include all required video elements"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "simple-translation",
+      "prompt": "把'A beautiful sunset over the ocean'翻译成中文",
+      "expected_output": "仅翻译结果，无额外说明",
+      "assertions": [
+        {
+          "name": "纯翻译输出",
+          "check": "output_only_translation",
+          "expected": "Should only output translated text"
+        },
+        {
+          "name": "无确认语",
+          "check": "no_confirmation_words",
+          "expected": "Should not include words like '好的' or '为您翻译'"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "mode-detection-midjourney",
+      "prompt": "帮我优化这个Midjourney提示词：a cat in space",
+      "expected_output": "应识别为Expert 1模式，输出JSON格式提示词",
+      "assertions": [
+        {
+          "name": "正确识别模式",
+          "check": "uses_expert1_mode",
+          "expected": "Should use Expert 1 mode for general image generation"
+        },
+        {
+          "name": "扩展原描述",
+          "check": "expands_original_prompt",
+          "original": "a cat in space",
+          "expected": "Should expand and enhance the original prompt"
+        }
+      ]
+    }
+  ]
+}

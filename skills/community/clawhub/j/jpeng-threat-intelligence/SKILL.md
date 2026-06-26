@@ -1,35 +1,42 @@
 ---
-name: "threat-intelligence"
+name: jpeng-threat-intelligence
 description: "Get threat intelligence"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-threat-intelligence"
-sourceUrl: "https://clawhub.ai/skills/jpeng-threat-intelligence"
+version: "1.0.0"
+author: "jpeng"
+tags: ["threat", "intel", "security"]
 ---
 
-# threat-intelligence
+# Threat Intelligence
 
-> Get threat intelligence
+Get threat intelligence
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-threat-intelligence`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-threat-intelligence](https://clawhub.ai/skills/jpeng-threat-intelligence)
+## When to Use
 
-## Overview
+- User needs threat related functionality
+- Automating intel tasks
+- Security operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-threat-intelligence
+python3 scripts/threat_intelligence.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export INTEL_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

@@ -1,0 +1,8 @@
+interface:
+  display_name: "StableOps Treasury"
+  short_description: "Governed USDC treasury execution with LI.FI Earn."
+  brand_color: "#10231d"
+  default_prompt: "Use $stableops-lifi-treasury to apply treasury policy, select a LI.FI Earn vault, prepare a Composer deposit, and produce a receipt-token execution report."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,138 @@
 ---
-name: "freemoney"
-description: "白拿钱 — 美国、加拿大、英国、澳洲集体诉讼理赔追踪技能。监控多国开放案件，筛选免凭证案件。数据源覆盖OpenClassActions、TopClassActions、ClaimDepot及各国官方公告。纯中文交互，I-Lang v4.0协议驱动。被动查询工具，不主动推送（推送功能见freemoney-plugi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/freemoney"
-sourceUrl: "https://clawhub.ai/skills/freemoney"
+name: freemoney
+description: "白拿钱 — 美国、加拿大、英国、澳洲集体诉讼理赔追踪技能。监控多国开放案件，筛选免凭证案件。数据源覆盖OpenClassActions、TopClassActions、ClaimDepot及各国官方公告。纯中文交互，I-Lang v4.0协议驱动。被动查询工具，不主动推送（推送功能见freemoney-plugin插件版）。"
+version: 1.3.0
+author: ilang-ai
+homepage: https://ilang.ai
+tags:
+  - money
+  - class-action
+  - settlement
+  - claims
+  - no-proof
+  - passive-income
+  - chinese
+  - automation
+  - tracking
 ---
 
-# freemoney
+# Free Money（白拿钱）
 
-> 白拿钱 — 美国、加拿大、英国、澳洲集体诉讼理赔追踪技能。监控多国开放案件，筛选免凭证案件。数据源覆盖OpenClassActions、TopClassActions、ClaimDepot及各国官方公告。纯中文交互，I-Lang v4.0协议驱动。被动查询工具，不主动推送（推送功能见freemoney-plugi...
+美国、加拿大、英国、澳洲集体诉讼理赔追踪技能。帮你盯着多国理赔平台，用中文查询案件，免凭证的单独标出来。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/freemoney`
-- **Source URL:** [https://clawhub.ai/skills/freemoney](https://clawhub.ai/skills/freemoney)
+数据来源：OpenClassActions.com + TopClassActions.com + ClaimDepot.com
+数据接口：api.ilang.ai/claims（I-Lang Research维护，每日更新）
 
-## Overview
+## 适合谁
 
+- 在美华人，不知道自己符合哪些理赔条件
+- 跨境电商卖家，用过美国、加拿大、英国、澳洲互联网服务
+- 有各国PayPal/银行账号，想要被动收入
+- 不懂英文，需要中文解读
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/freemoney
-```
+## 你会得到什么
+
+1. 新案件提醒 - 有新理赔案件时告诉你
+2. 免凭证筛选 - 不需要购物凭证就能申请的案件单独标注
+3. 中文解读 - 每条案件用中文说明资格条件和申请方式
+4. 随时查询 - 问"有什么新案子"、"哪些不需要凭证"
+
+---
+
+## 安装方式
+
+### 已经有OpenClaw的用户（1分钟）
+
+技能安装后自动激活，直接在飞书里跟AI说话就行：
+
+- 「有什么新理赔案子？」
+- 「哪些不需要凭证？」
+- 「怎么申请Google那个？」
+- 「理赔全部」
+
+如果你想让AI每天定时推送新案件，需要在OpenClaw后台手动配置定时任务（具体方式取决于你的OpenClaw版本，可在QQ群里问）。
+
+> **网络说明**：本技能会连接 api.ilang.ai 获取理赔数据（只读GET请求，不上传任何用户数据）。首次激活时会请求用户确认。
+
+### 还没有OpenClaw的用户（从零开始）
+
+#### 第一步：买一台云电脑（3分钟）
+
+1. 打开腾讯云轻量应用服务器：https://curl.qcloud.com/ITdTaJFc
+2. 选择99元/年的入门配置（够用了）
+3. 关键：在「镜像」那里选「应用镜像」，找到「OpenClaw」，点它
+4. 地域选海外（推荐硅谷或新加坡，因为需要访问美国理赔网站）
+5. 支付宝或微信付款，等1分钟服务器就创建好了
+6. 在腾讯云控制台看到「运行中」就OK了
+
+#### 第二步：连飞书（2分钟）
+
+1. 手机装好飞书App（应用商店搜「飞书」）
+2. 打开浏览器，输入你的服务器IP地址，进入OpenClaw后台
+3. 后台里会有一个二维码，打开飞书扫一下
+4. 飞书上出现一个AI助手，发一句「你好」，AI回复了就说明连通了
+
+#### 第三步：注册DeepSeek拿AI密码（3分钟）
+
+1. 打开 https://platform.deepseek.com
+2. 手机号注册
+3. 充值10元（微信/支付宝都行，够用很久）
+4. 左边菜单找到「API Keys」
+5. 点「创建」，会出来一串 sk- 开头的字符
+6. 这串字符只显示一次，立刻复制保存到备忘录
+7. 回到OpenClaw后台，找到模型设置，把这串字符粘贴进去，保存
+
+> **安全提醒**：API Key（sk-开头的字符串）是绑定你付费账户的密钥。不要分享给任何人，不要发到群里或聊天中。如果怀疑泄露，立即到 platform.deepseek.com 重新生成。
+
+#### 第四步：开始用
+
+安装完技能后，直接在飞书里跟AI说：
+
+- 「有什么新理赔案子？」 - 看最新的理赔
+- 「加拿大有什么理赔？」 - 按国家查询
+- 「哪些不需要凭证？」 - 看不用购物小票就能申请的
+- 「怎么申请Google那个？」 - 看具体某个案件的申请步骤
+- 「理赔全部」 - 看所有开放案件
+
+---
+
+## 常见问题
+
+问：我人不在美国能申请吗？
+答：部分可以。数据泄露类的案件（比如Fidelity、Comcast），只要你的数据被泄露了就行，不管你人在哪。但需要美国地址（转运地址也行）和美区PayPal收款。
+
+问：申请后多久能拿到钱？
+答：通常3到12个月。填完表就忘掉它，钱到了会通知你。
+
+问：这是合法的吗？
+答：完全合法。这是法院判决的赔偿金，你有权领取。但只能申请你确实符合条件的案件，虚假申请是联邦犯罪。
+
+问：数据准确吗？
+答：数据直接从三大理赔平台抓取，每天更新。但最终以官方理赔网站为准，AI只是帮你汇总和翻译。
+
+问：免费吗？
+答：这个技能免费。云电脑99元/年，DeepSeek充10元起。除此之外没有任何费用。
+
+问：定时推送怎么配？
+答：本技能是被动查询工具，不支持推送。如需每日自动推送，请安装 freemoney-plugin（OpenClaw插件版）。
+答：需要在OpenClaw后台配置定时任务。具体方式取决于你的OpenClaw版本，可以在QQ群615298里问，有人帮你。
+
+---
+
+## 问题反馈
+
+QQ群：615298
+
+遇到任何问题（装不上、AI不回复、数据有误），截图发群，有人帮你。
+
+## 链接
+
+- 数据接口：https://api.ilang.ai/claims/api/stats
+- 官网：https://ilang.ai
+
+## 许可
+
+MIT - 免费使用、分享、二次开发。
+
+© 2026 I-Lang Research, iLang Inc., Canada.
+

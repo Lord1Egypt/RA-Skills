@@ -1,0 +1,6 @@
+{
+  "source": "github",
+  "sourceType": "pr",
+  "externalWrite": false,
+  "text": "PR #512: Add input validation to the signals API — review requested. This signal is missing the required observedAt field and will be rejected by the validator."
+}

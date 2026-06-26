@@ -1,35 +1,30 @@
 ---
-name: "快递追踪助手"
+name: cn-kuaidi-tracker
 description: "快递追踪助手。输入快递单号查询物流状态，自动识别快递公司。"
-category: "other"
-source: "ClawHub"
-tags: [delivery, logistics, personal, tracking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-kuaidi-tracker"
-sourceUrl: "https://clawhub.ai/skills/cn-kuaidi-tracker"
+metadata: {"openclaw": {"emoji": "📦"}}
 ---
 
 # 快递追踪助手
 
-> 快递追踪助手。输入快递单号查询物流状态，自动识别快递公司。
+输入单号，查询物流状态。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-kuaidi-tracker`
-- **Source URL:** [https://clawhub.ai/skills/cn-kuaidi-tracker](https://clawhub.ai/skills/cn-kuaidi-tracker)
+## 功能
+- 输入单号查询物流
+- 自动识别快递公司
+- 本地追踪列表管理
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 用法
 ```bash
-hermes skills install clawhub/cn-kuaidi-tracker
+python3 scripts/express_tracker.py "添加快递 SF1234567890"
+python3 scripts/express_tracker.py "查 SF1234567890"
+python3 scripts/express_tracker.py "查快递"
 ```
+
+## 支持快递公司
+顺丰、中通、圆通、韵达、申通、极兔、京东、EMS、邮政、德邦
+
+## 数据接口
+快递100公开查询接口，无需注册。
+
+## 数据存储
+本地JSON文件：`~/.qclaw/skills/cn-express-tracker/data/express.json`

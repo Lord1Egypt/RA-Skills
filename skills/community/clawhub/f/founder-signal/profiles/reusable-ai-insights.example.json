@@ -1,0 +1,78 @@
+{
+  "profile_id": "reusable-ai-insights",
+  "enabled": false,
+  "product_name": "Reusable AI Insights",
+  "product_one_liner": "A workflow for saving, exporting, searching, and reusing valuable AI chat outputs.",
+  "target_audience": "AI-heavy builders, solo founders, students, researchers, and knowledge workers who lose useful ChatGPT, Claude, or Gemini answers after the conversation ends",
+  "keywords": [
+    "export conversation",
+    "save chat",
+    "backup chats",
+    "conversation history",
+    "full conversation",
+    "reuse answers",
+    "search chat history",
+    "download data"
+  ],
+  "subreddits": [
+    "ChatGPT",
+    "ObsidianMD",
+    "PKMS",
+    "productivity",
+    "Notion"
+  ],
+  "excluded_reddit_urls": [],
+  "verified_evidence_snapshots": [],
+  "discovery_mode": "live",
+  "discovery_terms": [
+    "ChatGPT export",
+    "save ChatGPT",
+    "conversation history",
+    "export conversation",
+    "backup chats",
+    "download ChatGPT data",
+    "search chat history"
+  ],
+  "live_discovery_terms": [
+    "save chat",
+    "conversation history",
+    "export conversation",
+    "search chat history"
+  ],
+  "research_terms": [
+    "ChatGPT export",
+    "save ChatGPT",
+    "download ChatGPT data",
+    "search chat history"
+  ],
+  "scoring_terms": [
+    "export conversation",
+    "save chat",
+    "backup chats",
+    "conversation history",
+    "full conversation",
+    "reuse answers",
+    "search chat history",
+    "archive prompts",
+    "download data",
+    "lost chat"
+  ],
+  "negative_scoring_terms": [
+    "jailbreak",
+    "roleplay",
+    "pretend",
+    "convinced gpt",
+    "which model",
+    "subscription",
+    "benchmark",
+    "grok",
+    "vs claude"
+  ],
+  "max_candidates": 10,
+  "max_post_age_days": 7,
+  "preferred_post_age_hours": 72,
+  "min_comment_count": 0,
+  "max_comment_count": 250,
+  "history_ttl_days": 45,
+  "max_action_cards": 1
+}

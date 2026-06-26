@@ -1,0 +1,13 @@
+{
+  "name": "open-health-link-scripts",
+  "version": "1.0.0",
+  "description": "Node.js scripts for Open Health Link (current integration: breo Scalp5)",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

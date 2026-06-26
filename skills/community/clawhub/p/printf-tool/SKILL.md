@@ -1,35 +1,28 @@
 ---
-name: "Printf Tool"
-description: "Format and print data with precise control over output format. Use for formatted output with padding, precision, and type specifications."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/printf-tool"
-sourceUrl: "https://clawhub.ai/skills/printf-tool"
+name: printf-tool
+description: Format and print data with precise control over output format. Use for formatted output with padding, precision, and type specifications.
 ---
+# Printf - Formatted Output Utility
 
-# Printf Tool
+Format and display data using format specifiers similar to C printf. Supports string, integer, floating-point, and hexadecimal formatting with width and precision control.
 
-> Format and print data with precise control over output format. Use for formatted output with padding, precision, and type specifications.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/printf-tool`
-- **Source URL:** [https://clawhub.ai/skills/printf-tool](https://clawhub.ai/skills/printf-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/printf-tool
+printf-tool <format> [arguments...]
+```
+
+## Common Format Specifiers
+
+- `%s`: String
+- `%d`: Integer
+- `%f`: Floating point
+- `%x`: Hexadecimal
+- `%05d`: Zero-padded integer (5 digits)
+
+## Examples
+
+```bash
+printf-tool "Name: %s, Age: %d" "Alice" 30
+printf-tool "Price: $%.2f" 19.99
+printf-tool "%010d" 42
 ```

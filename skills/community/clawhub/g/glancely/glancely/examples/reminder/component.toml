@@ -1,0 +1,18 @@
+[component]
+name        = "reminder"
+title       = "Reminders"
+version     = "0.1.0"
+description = "Personal reminders with morning digest + 4-hour check-ins."
+
+[panel]
+enabled         = true
+order           = 30
+freshness_hours = 24
+
+[storage]
+tables = ["reminders"]
+
+[cron]
+schedule    = "25 8 * * *"
+command     = "python3 scripts/prompt.py"
+description = "Morning reminder digest"

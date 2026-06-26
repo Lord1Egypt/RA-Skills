@@ -1,0 +1,8 @@
+{
+  "id": "analyze_tools_system",
+  "prompt": "请分析 /Users/mars/.openclaw/workspace/claude-code-source/src/tools.ts 文件。\n\n重点关注：\n1. 工具系统的架构设计\n2. 工具注册和发现机制  \n3. 条件加载（feature flags）\n4. 与 OpenClaw 工具系统的对比\n\n输出简洁的技术分析，不超过300字。",
+  "context": {},
+  "status": "pending",
+  "created_at": "2026-04-03T09:55:27.668355",
+  "result_file": "/Users/mars/.openclaw/workspace/skills/claude-bridge/results/analyze_tools_system.json"
+}

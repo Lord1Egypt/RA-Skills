@@ -1,0 +1,73 @@
+# deliverable-schema.yaml — 交付物结构验证 Schema
+
+schema_version: "1.0"
+created: "YYYY-MM-DD"
+
+# PPTX 交付物 Schema
+pptx:
+  required_files:
+    - pattern: "*.pptx"
+      description: "主 PPTX 文件"
+
+  optional_files:
+    - pattern: "charts/*.png"
+      description: "图表图片"
+    - pattern: "charts/*.jpg"
+      description: "图表图片"
+    - pattern: "*/修订日志.md"
+      description: "修订日志"
+    - pattern: "*/validation/*.md"
+      description: "验证记录"
+
+  validation_rules:
+    - name: page-count
+      description: "页数必须等于约定页数"
+      severity: P0
+
+    - name: chart-references
+      description: "所有图表文件必须存在且被 PPTX 引用"
+      severity: P0
+
+    - name: fonts-embedded
+      description: "关键字体必须嵌入"
+      severity: P1
+
+    - name: hyperlinks-valid
+      description: "超链接必须有效"
+      severity: P1
+
+    - name: forbidden-terms-scan
+      description: "禁用词扫描通过"
+      severity: P0
+
+    - name: no-internal-codes
+      description: "正文/图表/脚注中不包含内部代号"
+      severity: P0
+
+    - name: revision-log
+      description: "修订日志存在且记录完整"
+      severity: P1
+
+# DOCX 交付物 Schema
+docx:
+  required_files:
+    - pattern: "*.docx"
+      description: "主 DOCX 文件"
+
+  validation_rules:
+    - name: forbidden-terms-scan
+      severity: P0
+    - name: internal-codes-scan
+      severity: P0
+
+# HTML 交付物 Schema
+html:
+  required_files:
+    - pattern: "*.html"
+      description: "主 HTML 文件"
+
+  validation_rules:
+    - name: no-broken-links
+      severity: P1
+    - name: fonts-embedded
+      severity: P1

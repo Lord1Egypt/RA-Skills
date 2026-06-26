@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patent Intelligence Report - {{ client_name }}</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Alpine.js for interactivity -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
+  <!-- Custom Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            threat: {
+              critical: '#dc2626',
+              high: '#ea580c',
+              medium: '#ca8a04',
+              low: '#16a34a',
+              none: '#6b7280'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      .patent-card { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      body { background: white; }
+    }
+    
+    .patent-card {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .patent-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen" x-data="{ filter: 'all', search: '' }">
+  <!-- Print Button -->
+  <div class="no-print fixed top-4 right-4 z-50 flex gap-2">
+    <button onclick="document.getElementById('charts-section').scrollIntoView()" 
+            class="bg-gray-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-700 transition">
+      📊 Charts
+    </button>
+    <button onclick="window.print()" 
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition">
+      🖨️ Print / Save PDF
+    </button>
+  </div>
+
+  <div class="max-w-5xl mx-auto p-6">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-8 rounded-xl shadow-lg mb-8">
+      <div class="flex justify-between items-start">
+        <div>
+          <h1 class="text-4xl font-bold mb-2">Patent Intelligence Report</h1>
+          <p class="text-blue-200 text-lg">{{ client_name }}</p>
+          <p class="text-blue-300">Week of {{ report_date }}</p>
+        </div>
+        <div class="text-right">
+          <div class="text-5xl font-bold">{{ stats.total }}</div>
+          <div class="text-blue-200">Patents Analyzed</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="bg-white rounded-xl shadow-md p-6 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">📋 Executive Summary</h2>
+      
+      <!-- Quick Stats Grid -->
+      <div class="grid grid-cols-4 gap-4 mb-6">
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+          <p class="text-red-600 text-sm font-medium">Critical Threats</p>
+          <p class="text-3xl font-bold text-red-700">{{ stats.critical }}</p>
+        </div>
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-4 rounded">
+          <p class="text-orange-600 text-sm font-medium">High Priority</p>
+          <p class="text-3xl font-bold text-orange-700">{{ stats.high }}</p>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+          <p class="text-yellow-700 text-sm font-medium">Medium Priority</p>
+          <p class="text-3xl font-bold text-yellow-800">{{ stats.medium }}</p>
+        </div>
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+          <p class="text-green-600 text-sm font-medium">Low/Monitor</p>
+          <p class="text-3xl font-bold text-green-700">{{ stats.low }}</p>
+        </div>
+      </div>
+
+      <!-- Key Findings -->
+      {% if stats.critical > 0 %}
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+        <div class="flex items-center gap-2 text-red-800 font-semibold mb-2">
+          <span>🚨</span>
+          <span>Critical Alert: {{ stats.critical }} patents require immediate attention</span>
+        </div>
+        <p class="text-red-700 text-sm">
+          Competitors are filing patents in core technology areas that may threaten 
+          {{ client_name }}'s competitive position. Review recommended actions for each patent below.
+        </p>
+      </div>
+      {% endif %}
+
+      <!-- Top Competitors -->
+      {% if stats.by_company %}
+      <div class="mt-4">
+        <h3 class="font-semibold text-gray-700 mb-2">Top Competitor Activity</h3>
+        <div class="flex flex-wrap gap-2">
+          {% for company, count in stats.by_company.items() %}
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+            {{ company }}: {{ count }} patents
+          </span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </section>
+
+    <!-- Charts Section -->
+    <section id="charts-section" class="bg-white rounded-xl shadow-md p-6 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">📊 Analytics Dashboard</h2>
+      
+      <div class="grid grid-cols-2 gap-6">
+        <!-- Threat Distribution -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Threat Level Distribution</h3>
+          <canvas id="threatChart" width="400" height="300"></canvas>
+        </div>
+        
+        <!-- Company Activity -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Patents by Competitor</h3>
+          <canvas id="companyChart" width="400" height="300"></canvas>
+        </div>
+      </div>
+
+      <!-- Technology Categories -->
+      {% if stats.by_technology %}
+      <div class="mt-8">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Technology Focus Areas</h3>
+        <div class="flex flex-wrap gap-3">
+          {% for tech, count in stats.by_technology.items() %}
+          <div class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-lg">
+            <span class="font-medium text-gray-800">{{ tech }}</span>
+            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">{{ count }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </section>
+
+    <!-- Patent Cards Section -->
+    <section class="mb-8">
+      <div class="flex justify-between items-center mb-6 section-header">
+        <h2 class="text-2xl font-bold text-gray-800">🔍 Detailed Patent Analysis</h2>
+        
+        <!-- Filter & Search Controls -->
+        <div class="no-print flex gap-3">
+          <input 
+            type="text" 
+            x-model="search" 
+            placeholder="Search patents..."
+            class="border border-gray-300 rounded-lg px-4 py-2 w-64 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+          <select x-model="filter" 
+                  class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+            <option value="all">All Threats</option>
+            <option value="Critical">⚠️ Critical Only</option>
+            <option value="High">🔶 High Only</option>
+            <option value="Medium">🔸 Medium Only</option>
+            <option value="Low">✅ Low Only</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Patent Cards -->
+      <div class="space-y-4">
+        {% for patent in patents %}
+        {% set threat_color = threat_colors.get(patent.threat_level, '#6b7280') %}
+        <article 
+          class="patent-card bg-white rounded-xl shadow-md overflow-hidden border-l-4"
+          style="border-color: {{ threat_color }}"
+          x-show="(filter === 'all' || filter === '{{ patent.threat_level }}') && 
+                   (search === '' || '{{ patent.title }}'.toLowerCase().includes(search.toLowerCase()) || 
+                    '{{ patent.company }}'.toLowerCase().includes(search.toLowerCase()))"
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 translate-y-4"
+          x-transition:enter-end="opacity-100 translate-y-0"
+        >
+          <div class="p-6">
+            <!-- Header -->
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex-1 pr-4">
+                <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ patent.title }}</h3>
+                <p class="text-gray-600 flex items-center gap-2">
+                  <span class="font-medium">{{ patent.company }}</span>
+                  <span class="text-gray-400">•</span>
+                  <span>{{ patent.publication_date or patent.filing_date }}</span>
+                  {% if patent.patent_id %}
+                  <span class="text-gray-400">•</span>
+                  <span class="text-gray-500 font-mono text-sm">{{ patent.patent_id }}</span>
+                  {% endif %}
+                </p>
+              </div>
+              <span 
+                class="px-3 py-1 rounded-full text-sm font-semibold text-white flex-shrink-0"
+                style="background-color: {{ threat_color }}"
+              >
+                {{ patent.threat_level or 'Unknown' }}
+              </span>
+            </div>
+
+            <!-- Abstract -->
+            {% if patent.abstract %}
+            <div class="mb-4">
+              <p class="text-gray-700 leading-relaxed">
+                <span class="font-semibold text-gray-900">Abstract:</span>
+                {{ patent.abstract[:300] }}{% if patent.abstract|length > 300 %}...{% endif %}
+              </p>
+            </div>
+            {% endif %}
+
+            <!-- Technology Tags -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              {% if patent.technology_category %}
+              <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium">
+                {{ patent.technology_category }}
+              </span>
+              {% endif %}
+              {% if patent.technology_area %}
+              <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs font-medium">
+                {{ patent.technology_area }}
+              </span>
+              {% endif %}
+              {% if patent.inventor %}
+              <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                👤 {{ patent.inventor[:50] }}{% if patent.inventor|length > 50 %}...{% endif %}
+              </span>
+              {% endif %}
+            </div>
+
+            <!-- Strategic Analysis -->
+            {% if patent.strategic_analysis or patent.analysis %}
+            <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-400">
+              <h4 class="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                <span>💡</span>
+                <span>Strategic Analysis</span>
+              </h4>
+              <div class="text-gray-700 text-sm leading-relaxed space-y-2">
+                {{ patent.strategic_analysis or patent.analysis }}
+              </div>
+              
+              <!-- Action Tags -->
+              <div class="mt-3 flex flex-wrap gap-2">
+                {% if patent.action_recommended %}
+                <span class="text-xs px-2 py-1 bg-orange-100 text-orange-800 rounded font-medium">
+                  ⚡ {{ patent.action_recommended }}
+                </span>
+                {% endif %}
+                {% if patent.affected_business_area %}
+                <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">
+                  🏢 {{ patent.affected_business_area }}
+                </span>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- Footer Links -->
+            <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center no-print">
+              <div class="text-sm text-gray-500">
+                {% if patent.filing_date %}
+                Filed: {{ patent.filing_date }}
+                {% endif %}
+              </div>
+              <div class="flex gap-2">
+                {% if patent.epo_link %}
+                <a href="{{ patent.epo_link }}" 
+                   target="_blank"
+                   class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                  🔗 View on EPO →
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+
+      <!-- No Results Message -->
+      <div 
+        x-show="search !== '' && $el.querySelectorAll('article:not(.hidden)').length === 0"
+        class="text-center py-12 text-gray-500"
+      >
+        <p class="text-lg">No patents match your search criteria.</p>
+        <button 
+          @click="search = ''; filter = 'all'"
+          class="mt-2 text-blue-600 hover:text-blue-800"
+        >
+          Clear filters
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-500 text-sm mt-12 pt-8 border-t">
+      <p class="font-medium">Generated by EPO Patent Intelligence System</p>
+      <p class="mt-1">{{ report_date }} • Confidential</p>
+      <p class="mt-2 text-xs text-gray-400">
+        Data sourced from European Patent Office (EPO) Open Patent Services
+      </p>
+    </footer>
+  </div>
+
+  <!-- Initialize Charts -->
+  <script>
+    // Threat Distribution Chart
+    const threatCtx = document.getElementById('threatChart').getContext('2d');
+    new Chart(threatCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Critical', 'High', 'Medium', 'Low'],
+        datasets: [{
+          data: [{{ stats.critical }}, {{ stats.high }}, {{ stats.medium }}, {{ stats.low }}],
+          backgroundColor: ['#dc2626', '#ea580c', '#ca8a04', '#16a34a'],
+          borderWidth: 2,
+          borderColor: '#fff'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { 
+            position: 'bottom',
+            labels: { padding: 20, usePointStyle: true }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((context.raw / total) * 100).toFixed(1);
+                return `${context.label}: ${context.raw} (${percentage}%)`;
+              }
+            }
+          }
+        }
+      }
+    });
+    
+    // Company Activity Chart
+    {% if stats.by_company %}
+    const companyCtx = document.getElementById('companyChart').getContext('2d');
+    new Chart(companyCtx, {
+      type: 'bar',
+      data: {
+        labels: {{ stats.by_company.keys() | list | tojson }},
+        datasets: [{
+          label: 'Patents Filed',
+          data: {{ stats.by_company.values() | list | tojson }},
+          backgroundColor: '#3b82f6',
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.raw} patents`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { stepSize: 1 }
+          }
+        }
+      }
+    });
+    {% endif %}
+  </script>
+</body>
+</html>

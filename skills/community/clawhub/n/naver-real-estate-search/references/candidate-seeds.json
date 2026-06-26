@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "updated_at": 1773970000,
+  "policy": {
+    "production_entry_rule": "verification_status가 verified 또는 weak-verified 이고, complex_id/name/address 정합성이 확인된 항목만 entries에 넣는다.",
+    "excluded_rule": "generated 결과에서 complex_id가 있더라도 이름/주소 검증이 실패했거나 429/오염된 cache에 기대는 항목은 entries에 넣지 않는다."
+  },
+  "entries": [
+    {
+      "complex_id": "1147",
+      "name": "리센츠",
+      "address": "서울특별시 송파구 잠실동",
+      "household_count": 5563,
+      "aliases": [
+        "리센츠",
+        "잠실 리센츠",
+        "잠실리센츠",
+        "리센츠아파트"
+      ],
+      "verification_status": "verified",
+      "note": "운영용 verified warm-cache seed"
+    }
+  ],
+  "manual_review_queue": [
+    {
+      "name": "엘스",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "review_status": "excluded-for-now",
+      "reason": "generated가 complex_id 1147(리센츠)로 잘못 수렴했다. 429 환경에서 오염된 cache candidate가 끼어든 케이스로 보고 운영 seed에서 제외한다.",
+      "next_action": "direct complex URL/ID를 확보한 뒤 verified 또는 weak-verified로 재검수한다."
+    },
+    {
+      "name": "트리지움",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "review_status": "excluded-for-now",
+      "reason": "generated가 complex_id 1147(리센츠)로 잘못 수렴했다. 잠실 대단지 군집에서 alias 충돌 위험이 있다.",
+      "next_action": "잠실권 단지는 URL/ID 기반 baseline을 별도로 확보해 분리 검증한다."
+    },
+    {
+      "name": "은마",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "review_status": "manual-verification-needed",
+      "reason": "generated evidence상 complex_id를 확보하지 못했다. 서울 핵심 단지라 운영 가치가 높지만 현재 자동 생성만으로는 불충분하다.",
+      "next_action": "네이버 complex URL/ID를 직접 확보해 대치동 주소 일치 여부를 확인한 후 seed 추가를 검토한다."
+    },
+    {
+      "name": "래미안대치팰리스",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "review_status": "manual-verification-needed",
+      "reason": "자동 생성에서 complex_id 미확보. 대치권 비교 질의에 중요하지만 현재는 운영 seed로 승격 불가.",
+      "next_action": "브랜드명/띄어쓰기 변형을 줄인 direct URL/ID baseline을 먼저 수집한다."
+    },
+    {
+      "name": "아크로리버파크",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "review_status": "manual-verification-needed",
+      "reason": "generated unresolved. 반포권 대표 단지지만 HTML 후보 추출만으로는 안정적으로 못 잡는다.",
+      "next_action": "반포동 direct complex URL/ID로 seed를 만든 뒤 weak-verified 이상일 때만 entries로 승격한다."
+    },
+    {
+      "name": "래미안원베일리",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "review_status": "manual-verification-needed",
+      "reason": "generated unresolved. 신축/브랜드 단지라 검색량은 높지만 자동 검색 안정성은 낮다.",
+      "next_action": "반포 원베일리/래미안원베일리 alias를 분리한 수동 검증 seed를 마련한다."
+    },
+    {
+      "name": "목동신시가지7단지",
+      "district": "양천구",
+      "neighborhood": "목동",
+      "review_status": "manual-verification-needed",
+      "reason": "숫자 단지형 이름이라 parser와 검색 결과가 흔들린다.",
+      "next_action": "목동 7단지/목동신시가지7단지/목동신시가지 7단지 alias를 유지하되 complex_id 확정 전까지 entries에 넣지 않는다."
+    },
+    {
+      "name": "신월시영아파트",
+      "district": "양천구",
+      "neighborhood": "신월동",
+      "review_status": "blocked-but-high-priority",
+      "reason": "403 차단으로 generated가 막혔다. 다만 alias 난이도가 높아서 운영상 seed 가치가 크다.",
+      "next_action": "신월시영 complex URL/ID를 수동 확보해 최우선으로 baseline seed에 추가한다."
+    },
+    {
+      "name": "답십리두산위브",
+      "district": "동대문구",
+      "neighborhood": "답십리동",
+      "review_status": "manual-verification-needed",
+      "reason": "실사용 질의 빈도가 높은데 현재 production seed/candidate-cache에 없음. 네이버 complex ID를 아직 수동 확정하지 못했다.",
+      "next_action": "direct complex URL/ID를 확보하면 production seed로 승격하고, 그 전까지는 reference seed fallback으로 후보 탐색 응답을 보강한다."
+    }
+  ],
+  "review_summary": {
+    "accepted_for_production": [
+      "리센츠"
+    ],
+    "excluded_due_to_wrong_match": [
+      "엘스",
+      "트리지움"
+    ],
+    "pending_manual_verification": [
+      "은마",
+      "래미안대치팰리스",
+      "아크로리버파크",
+      "래미안원베일리",
+      "목동신시가지7단지",
+      "신월시영아파트",
+      "답십리두산위브"
+    ],
+    "priority_backfill_targets": [
+      "신월시영아파트",
+      "답십리두산위브",
+      "은마",
+      "래미안대치팰리스",
+      "래미안원베일리",
+      "아크로리버파크",
+      "목동신시가지7단지",
+      "엘스",
+      "트리지움"
+    ]
+  }
+}

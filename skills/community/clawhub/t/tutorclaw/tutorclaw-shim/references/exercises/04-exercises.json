@@ -1,0 +1,30 @@
+[
+  {
+    "id": "04-01",
+    "topic": "data-structures",
+    "difficulty": "easy",
+    "question": "Create a list of 5 integers and print the first and last element without using index -1.",
+    "hint": "The last index of a list of length n is n-1. Use len() to find n."
+  },
+  {
+    "id": "04-02",
+    "topic": "data-structures",
+    "difficulty": "medium",
+    "question": "Create a dictionary with keys `name`, `age`, and `language`. Print each key-value pair on its own line using a for loop.",
+    "hint": "Use dict.items() to iterate over key-value pairs."
+  },
+  {
+    "id": "04-03",
+    "topic": "data-structures",
+    "difficulty": "medium",
+    "question": "Start with a list `numbers = [4, 7, 2, 9, 1, 5]`. Without using `sort()` or `sorted()`, find and print the largest number using a for loop.",
+    "hint": "Keep a variable to track the largest value seen so far. Update it each time you find a bigger number."
+  },
+  {
+    "id": "04-04",
+    "topic": "data-structures",
+    "difficulty": "hard",
+    "question": "Given `words = [\"apple\", \"banana\", \"apple\", \"cherry\", \"banana\", \"apple\"]`, count how many times each word appears using a dictionary, then print each word and its count.",
+    "hint": "Loop over the list. For each word, use dict.get(word, 0) to retrieve the current count before incrementing it."
+  }
+]

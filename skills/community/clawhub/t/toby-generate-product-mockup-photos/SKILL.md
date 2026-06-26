@@ -1,35 +1,60 @@
 ---
-name: "Generate Product Mockup Photos"
-description: "Create polished ecommerce product mockup photos with clean backgrounds, consistent framing, and on-brand visuals for launches and catalogs."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, skillboss]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-generate-product-mockup-photos"
-sourceUrl: "https://clawhub.ai/skills/toby-generate-product-mockup-photos"
+name: Generate Product Mockup Photos
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+description: "Create polished ecommerce mockup images with clean backgrounds, consistent framing, and on-brand visual direction for product launches and catalog pages."
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+allowed-tools: Bash, Read
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+metadata:
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+  openclaw:
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+    emoji: "📝"
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+    homepage: "https://www.skillboss.co/skills/generate-product-mockup-photos"
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 ---
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 
 # Generate Product Mockup Photos
 
-> Create polished ecommerce product mockup photos with clean backgrounds, consistent framing, and on-brand visuals for launches and catalogs.
+Create polished ecommerce mockup images with clean backgrounds, consistent framing, and on-brand visual direction for product launches and catalog pages.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-generate-product-mockup-photos`
-- **Source URL:** [https://clawhub.ai/skills/toby-generate-product-mockup-photos](https://clawhub.ai/skills/toby-generate-product-mockup-photos)
+## Use When
 
-## Overview
+Use this skill for e-commerce work for startups, solopreneurs, agencies.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-generate-product-mockup-photos
-```
+1. Clarify the audience, goal, constraints, and required output format.
+2. Produce a strong first draft optimized for the business use case.
+3. Use the relevant SkillBoss capabilities to generate supporting assets or enrich the result.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## APIs Used
+
+- `image_generation`
+
+## Suggested Prompt
+
+Generate 5 product photos of a minimalist ceramic coffee mug on a white background
+
+## SEO Keywords
+
+- AI product photography
+- product mockup generator
+- e-commerce photo creator
+- automated product images
+
+## Notes
+
+- Create professional product images with clean backgrounds
+- Review outputs before external publication or automated execution.

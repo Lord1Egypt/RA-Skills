@@ -1,0 +1,4 @@
+interface:
+  display_name: "海康云眸设备基础管理"
+  short_description: "注册、删除、查询、重启海康云眸设备。"
+  default_prompt: "Use $hik-cloud-device-management to manage Hik-Cloud devices for create, delete, rename, query, status, count, or reboot tasks."

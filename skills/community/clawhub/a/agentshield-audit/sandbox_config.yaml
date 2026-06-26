@@ -1,0 +1,116 @@
+# AgentShield Tool Sandbox Configuration
+# Protection against Lethal Trifecta attacks
+
+# Tool Permission Levels
+# - allowed: Can execute without restrictions
+# - restricted: Requires validation, may need approval
+# - forbidden: Blocked entirely
+
+tool_permissions:
+  # Safe tools - typically allowed
+  search: allowed
+  calculator: allowed
+  datetime: allowed
+  uuid_generate: allowed
+  
+  # File operations - restricted (path validation needed)
+  read_file: restricted
+  write_file: restricted
+  delete_file: restricted
+  list_directory: restricted
+  
+  # Network operations - restricted (domain validation needed)
+  http_request: restricted
+  web_search: restricted
+  api_call: restricted
+  browser_navigate: restricted
+  
+  # Communication - high sensitivity
+  send_email: forbidden
+  send_message: forbidden
+  make_call: forbidden
+  
+  # System operations - forbidden or highly restricted
+  execute_code: forbidden
+  eval_expression: forbidden
+  system_command: forbidden
+  database_query: restricted
+  
+  # AI-specific tools - restricted
+  generate_image: restricted
+  text_to_speech: restricted
+  embed_text: restricted
+
+# Domain Allowlist for External Calls
+# Only these domains allowed for http_request, api_call, etc.
+allowed_domains:
+  # APIs
+  - api.openai.com
+  - api.anthropic.com
+  - api.github.com
+  - api.google.com
+  - api.dropboxapi.com
+  
+  # Services
+  - openweathermap.org
+  - api.wolframalpha.com
+  - en.wikipedia.org
+  - api.stackexchange.com
+  
+  # Storage (read-only)
+  - raw.githubusercontent.com
+  - gist.githubusercontent.com
+  
+  # Add your approved domains here
+
+# Domain Blocklist
+# These domains are always blocked
+blocked_domains:
+  - "*evil.com"
+  - "*attacker.com"
+  - "*malicious.net"
+  - "*phishing.*"
+  - localhost
+  - 127.0.0.1
+  - 0.0.0.0
+  - "*.local"
+  - "192.168.*"
+  - "10.*.*.*"
+  - "172.16.*.*"
+
+# Rate Limiting
+max_calls_per_minute: 60
+max_calls_per_tool_per_minute: 20
+burst_allowance: 5  # Extra calls allowed in burst
+
+# Sensitive Operation Detection
+sensitive_patterns:
+  - "(send|email|transmit|exfiltrate|upload)\\s+(data|logs|file|information)"
+  - "(api[_-]?key|secret[_-]?key|password|token|credential)\\s*[:=]"
+  - "(credit[_-]?card|ssn|social[_-]?security|passport|iban)"
+  - "(delete|remove|drop|truncate)\\s+(database|table|user|file)"
+  - "(exec|eval|system|subprocess)\\s*\\("
+  - "(curl|wget|fetch|nc|netcat)\\s+(http|https|tcp|udp)"
+  - "(base64|hex|encode)\\s+(decode|decrypt|unencrypt)"
+
+# Approval Settings
+auto_approve_safe: true
+require_approval_for_sensitive: true
+
+# Human-in-the-Loop Configuration
+approval_timeout_seconds: 300
+max_pending_approvals: 10
+
+# Audit Logging
+log_all_calls: true
+log_retention_days: 30
+sensitive_arguments_mask: true  # Mask passwords, keys in logs
+
+# Output Validation
+validate_output_size: true
+max_output_size_bytes: 1048576  # 1MB
+max_output_tokens: 4000
+
+# Error Handling
+block_on_validation_error: true
+log_validation_errors: true

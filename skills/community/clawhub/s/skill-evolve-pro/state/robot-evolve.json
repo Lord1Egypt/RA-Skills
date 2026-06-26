@@ -1,0 +1,16 @@
+{
+  "skill_id": "robot-evolve",
+  "version": "3.0.4",
+  "epoch": 1,
+  "round": 0,
+  "edit_budget": 8,
+  "last_update": "2026-06-03T15:09:29.788528",
+  "trajectory_stats": {
+    "total": 0,
+    "hard_success": 0,
+    "hard_fail": 0,
+    "soft_fail": 0
+  },
+  "edit_history": [],
+  "slow_update_region": null
+}

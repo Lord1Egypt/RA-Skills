@@ -1,35 +1,30 @@
 ---
-name: "chat-format"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/chat-format"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/chat-format"
+name: chat-format
+description: Format prompts for different LLM providers with chat templates and HNSW-powered context retrieval
+argument-hint: "<prompt> [--provider anthropic|openai|local]"
+allowed-tools: mcp__claude-flow__ruvllm_chat_format mcp__claude-flow__ruvllm_hnsw_create mcp__claude-flow__ruvllm_hnsw_add mcp__claude-flow__ruvllm_hnsw_route mcp__claude-flow__ruvllm_status Bash
 ---
 
-# chat-format
+# Chat Format
 
-> Indexed by skills.sh from ruvnet/ruflo
+Format prompts for multi-provider LLM inference with context retrieval.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/chat-format`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/chat-format](https://skills.sh/ruvnet/ruflo/chat-format)
+## When to use
 
-## Overview
+When preparing prompts for different LLM providers (Claude, GPT, Gemini, Ollama) or building RAG pipelines with HNSW-powered context retrieval.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/chat-format
-```
+1. **Format chat** — call `mcp__claude-flow__ruvllm_chat_format` with messages and target provider
+2. **Create HNSW index** — call `mcp__claude-flow__ruvllm_hnsw_create` for context retrieval
+3. **Add documents** — call `mcp__claude-flow__ruvllm_hnsw_add` to index documents
+4. **Route query** — call `mcp__claude-flow__ruvllm_hnsw_route` to find relevant context
+5. **Check status** — call `mcp__claude-flow__ruvllm_status` for provider availability
+
+## Supported providers
+
+- Anthropic (Claude) — native format
+- OpenAI (GPT) — chat completion format
+- Google (Gemini) — generative AI format
+- Ollama — local model format
+- Cohere — generate/chat format

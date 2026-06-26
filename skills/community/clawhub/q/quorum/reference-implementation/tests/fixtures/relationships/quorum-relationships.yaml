@@ -1,0 +1,8 @@
+relationships:
+  - type: documents
+    source: code-c.py
+    docs: doc-a.md
+
+  - type: implements
+    spec: spec-b.yaml
+    impl: code-c.py

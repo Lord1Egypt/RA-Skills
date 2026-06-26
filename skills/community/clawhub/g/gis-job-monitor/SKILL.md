@@ -1,35 +1,170 @@
 ---
-name: "GIS 校招监控"
-description: "测绘/GIS 专业校招信息监控技能。使用场景：用户需要搜索、监控或定期推送测绘类、地理信息系统（GIS）专业的招聘信息时触发。支持筛选国央企、事业单位、大厂等优先级，可定时执行推送最新校招岗位。"
-category: "devops"
-source: "ClawHub"
-tags: [campus-recruiting, career, china, gis, monitoring]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gis-job-monitor"
-sourceUrl: "https://clawhub.ai/skills/gis-job-monitor"
+name: gis-job-monitor
+description: 测绘/GIS 专业校招信息监控技能。使用场景：用户需要搜索、监控或定期推送测绘类、地理信息系统（GIS）专业的招聘信息时触发。支持筛选国央企、事业单位、大厂等优先级，可定时执行推送最新校招岗位。
 ---
 
-# GIS 校招监控
+# GIS/测绘校招监控技能
 
-> 测绘/GIS 专业校招信息监控技能。使用场景：用户需要搜索、监控或定期推送测绘类、地理信息系统（GIS）专业的招聘信息时触发。支持筛选国央企、事业单位、大厂等优先级，可定时执行推送最新校招岗位。
+## 核心功能
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gis-job-monitor`
-- **Source URL:** [https://clawhub.ai/skills/gis-job-monitor](https://clawhub.ai/skills/gis-job-monitor)
+本技能帮助用户监控和推送测绘类、GIS 专业的校园招聘信息，包括：
 
-## Overview
+1. **实时搜索** - 搜索全网最新测绘/GIS 校招岗位
+2. **网站监控** - 定期检查指定招聘网站（国聘网、微信公众号等）
+3. **智能筛选** - 按学历（本科）、单位类型（国央企/事业单位/大厂/私企）筛选
+4. **定时推送** - 设置每日/每周定时推送最新岗位
 
+## 目标网站
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 核心渠道
+- **国聘网** (https://gpxd.iguopin.com/) - 国企事业单位招聘主渠道
+- **自然资源部人才资源开发中心** - 测绘系统事业单位
+- **高校就业网** - 武大、同济、矿大等测绘强校
+
+### 企业渠道
+- **超图软件** (SuperMap)
+- **航天宏图**
+- **中科星图**
+- **百度/阿里/腾讯** - 地图相关部门
+- **华为** - 河图/地图业务
+
+### 招聘平台
+- 国聘网 (www.iguopin.com)
+- 智联招聘（筛选国企标签）
+- BOSS 直聘
+- 前程无忧
+
+## 搜索关键词
+
+使用以下关键词组合进行搜索：
+
+```
+测绘工程 校园招聘 2026
+地理信息系统 GIS 本科 招聘
+遥感科学与技术 校招
+自然资源部 事业单位招聘
+测绘院 招聘 应届
+国土空间规划 招聘
+```
+
+## 工作流程
+
+### 1. 一次性搜索
+
+用户说"搜索测绘校招信息"时：
+
+1. 使用 `web_search` 搜索最新招聘信息
+2. 筛选 2026 年发布的岗位
+3. 按优先级排序：国央企 > 事业单位 > 大厂 > 其他私企
+4. 整理成清单发送给用户
+
+### 2. 定时监控
+
+用户设置定时推送时：
+
+1. 使用 `dingtalk-cron-job` 创建定时任务
+2. 任务调用本技能的监控脚本
+3. 执行搜索并对比上次推送结果
+4. 仅推送新增岗位
+
+### 3. 网站深度抓取
+
+对于重点网站（如国聘网）：
+
+1. 使用 `browser` 工具访问网站
+2. 导航到测绘/GIS 相关分类
+3. 提取岗位详情（单位、要求、截止日期）
+4. 保存结果到 `references/latest-jobs.md`
+
+## 筛选标准
+
+### 优先级排序
+1. **国央企** - 中国测绘科学研究院、中铁、中建、中交等
+2. **事业单位** - 各省市测绘院、自然资源部门下属单位
+3. **大厂** - 超图、航天宏图、BAT 地图部门
+4. **其他私企** - 民营测绘公司
+
+### 学历要求
+- 主要筛选：本科
+- 可选包含：硕士（如用户要求）
+
+### 时间范围
+- 默认：最近 1 个月
+- 可调整：最近 1 周 / 2 周 / 3 个月
+
+## 输出格式
+
+推送信息包含：
+
+```
+【测绘/GIS 校招】2026-03-15 新增 3 岗
+
+🏛️ 中国测绘科学研究院
+   岗位：测绘工程师（应届）
+   学历：本科及以上
+   专业：测绘工程、遥感、GIS
+   截止：2026-04-30
+   链接：https://...
+
+🏢 超图软件
+   岗位：GIS 开发工程师
+   学历：本科
+   专业：地理信息系统、计算机
+   截止：2026-04-15
+   链接：https://...
+```
+
+## 脚本说明
+
+### scripts/search-jobs.py
+
+执行搜索和筛选的主脚本。
+
+用法：
 ```bash
-hermes skills install clawhub/gis-job-monitor
+python scripts/search-jobs.py --keyword "测绘" --degree "本科" --days 30
+```
+
+参数：
+- `--keyword`: 搜索关键词
+- `--degree`: 学历要求（本科/硕士）
+- `--days`: 最近 N 天的信息
+- `--output`: 输出文件路径
+
+### scripts/compare-jobs.py
+
+对比新旧岗位列表，提取新增岗位。
+
+用法：
+```bash
+python scripts/compare-jobs.py --old references/latest-jobs.md --new /tmp/new-jobs.md
+```
+
+## 参考资料
+
+- `references/job-sites.md` - 详细招聘网站列表和直达链接
+- `references/company-list.md` - 国央企/大厂名单及招聘特点
+- `references/latest-jobs.md` - 最新抓取结果（运行时生成）
+
+## 注意事项
+
+1. **API 依赖** - 需要配置 Brave Search API 密钥才能使用网络搜索
+2. **浏览器服务** - 深度抓取需要浏览器服务正常运行
+3. **反爬处理** - 部分网站有反爬，需控制访问频率
+4. **信息时效** - 校招信息更新快，建议每日或每周推送
+
+## 定时任务示例
+
+用户说"每天推送最新测绘校招"时，创建：
+
+```bash
+openclaw cron add \
+  --name "测绘校招日报" \
+  --cron "0 9 * * *" \
+  --tz "Asia/Shanghai" \
+  --session isolated \
+  --message "请执行 gis-job-monitor 技能，搜索并推送最新测绘/GIS 校招信息给用户。" \
+  --deliver \
+  --channel "clawdbot-dingtalk" \
+  --to "<senderStaffId>"
 ```

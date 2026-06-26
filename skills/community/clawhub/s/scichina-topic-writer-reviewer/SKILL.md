@@ -1,35 +1,175 @@
 ---
-name: "科普智创审校助手"
-description: "科普智创审校助手。当用户提到「科普中国热点创作」「科普工作」「热点采集与科普写作」或类似意图时激活。执行以下流程：(1) 监控 kepuchina.cn 整理热门文章与关键字；(2) 根据关键字为用户拟写科普文章；(3) 执行科学性审查与引用来源核查，防止大模型幻觉。英文名：SciChina Topic Writ..."
-category: "other"
-source: "ClawHub"
-tags: [ScienceChina HotspotCollection ScienceWriting FactCheck SourceReview AntiHallucination]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scichina-topic-writer-reviewer"
-sourceUrl: "https://clawhub.ai/skills/scichina-topic-writer-reviewer"
+name: sci-china-reviewer
+version: 0.1.2
+description: 科普智创审校助手。当用户提到「科普中国热点创作」「科普工作」「热点采集与科普写作」或类似意图时激活。执行以下流程：(1) 监控 kepuchina.cn 整理热门文章与关键字；(2) 根据关键字为用户拟写科普文章；(3) 执行科学性审查与引用来源核查，防止大模型幻觉。英文名：SciChina Topic Writer & Reviewer。
 ---
 
 # 科普智创审校助手
 
-> 科普智创审校助手。当用户提到「科普中国热点创作」「科普工作」「热点采集与科普写作」或类似意图时激活。执行以下流程：(1) 监控 kepuchina.cn 整理热门文章与关键字；(2) 根据关键字为用户拟写科普文章；(3) 执行科学性审查与引用来源核查，防止大模型幻觉。英文名：SciChina Topic Writ...
+**英文名：** SciChina Topic Writer & Reviewer
+**版本：** 0.1.2
+**激活关键字：** 科普中国热点创作、科普工作、热点采集与科普写作
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scichina-topic-writer-reviewer`
-- **Source URL:** [https://clawhub.ai/skills/scichina-topic-writer-reviewer](https://clawhub.ai/skills/scichina-topic-writer-reviewer)
+**v0.1.2 更新说明：**
+- 明确飞书文档写入应使用 XML 格式内容（而非纯 Markdown），避免中文乱码
 
-## Overview
+---
 
+## 错误处理
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 场景 | 处理方式 |
+|------|---------|
+| Tavily 搜索失败 | 降级到 curl 直接抓取 kepuchina.cn |
+| 抓取超时 | 重试1次，失败则使用已有缓存或跳过 |
+| 关键字不足20个 | 如实报告，不捏造 |
+| 参考文献无法验证 | 标注「来源待核实」，不写入不真实内容 |
+| 飞书写入失败 | 先发预览给用户，提示稍后重试 |
+
+---
+
+## 标准化工作流
+
+### 步骤 1：热点采集
+
+使用以下工具链采集科普中国（kepuchina.cn）最新热门内容：
+
 ```bash
-hermes skills install clawhub/scichina-topic-writer-reviewer
+# 方法A：Tavily搜索
+tavily_search(query="site:kepuchina.cn 2026年4月", depth=basic, max=20)
+
+# 方法B：curl直接抓取
+curl -s "https://www.kepuchina.cn/" -H "User-Agent: Mozilla/5.0 ..."
+
+# 方法C：tavily_extract抓取页面内容
+tavily_extract(urls=["https://www.kepuchina.cn/"], query="热门文章 标题 关键字")
 ```
+
+**整理目标：** 找出昨天至今阅读量/点击率最高的 10 篇文章，提取每篇文章的标题和核心关键字。
+
+---
+
+### 步骤 2：关键字提取与去重
+
+从 10 篇热门文章中提取关键字，目标是整理出 **20 个**，然后剔除：
+
+- 重复关键字
+- 语义高度重叠的关键字（如「高血压」和「血压」保留更精准的「高血压」）
+- 过于宽泛的主题词（如「健康」单独出现时无实质内容）
+
+**最终输出：** 剩余的关键字列表（几个就报几个）。
+
+---
+
+### 步骤 3：用户确认主题
+
+向用户确认本次创作主题：
+
+> 已从科普中国整理出 N 篇热门文章，提炼出以下关键字：[列表]。请问您希望以哪个/哪些关键字为主题进行科普创作？
+
+等待用户明确回复后再进入步骤 4。
+
+---
+
+### 步骤 4：科普文章拟写
+
+根据用户确认的关键字，撰写科普文章。要求：
+
+**结构规范：**
+- 标题（吸引但准确）
+- 一句话核心摘要（≤50字）
+- 科学背景/原理（权威来源支撑）
+- 实用信息/建议
+- 常见误区/辟谣（如适用）
+- 参考文献（必须真实可查）
+
+**写作原则：**
+- 科学性优先，避免夸大
+- 语言通俗，面向公众
+- 禁止凭空捏造数据或专家言论
+- 禁止在参考文献中写入不存在的论文/链接
+
+---
+
+### 步骤 5：三重审校（防幻觉机制）
+
+#### 5.1 科学性审查
+
+逐项核查：
+- [ ] 文章中所有**数据**是否有可靠来源？
+- [ ] 所有**专家引用**是否真实存在（姓名、单位、主要观点吻合）？
+- [ ] 所有**疾病症状、治疗方法**描述是否与权威医学资料一致？
+- [ ] 禁止出现「研究表明」「专家称」等无具体来源的说法
+
+#### 5.2 引用来源审查
+
+- [ ] 每条参考文献的**DOI/URL**是否真实存在？
+- [ ] 用 Tavily 搜索验证关键引用的准确性
+- [ ] 优先使用：一手来源（政府官网、权威期刊）> 科普媒体转载 > 自媒体描述
+
+#### 5.3 事实核查
+
+- [ ] 执行 `tavily_search` 验证文章核心事实
+- [ ] 搜索格式：`"[文章中的核心观点]" site:gov.cn` 或 `site:kepuchina.cn`
+- [ ] 若发现与权威来源不符，立即标注并修正
+
+---
+
+### 步骤 6：输出定稿 → 写入飞书文档
+
+审校通过后，执行以下输出：
+
+#### 6.1 本地输出（发给用户预览）
+
+1. **定稿文章**（Markdown 格式，含标题、摘要、正文、参考文献）
+2. **参考文献清单**（每条附可验证链接）
+3. **审校报告**：通过 / 发现问题数 / 修改说明
+
+#### 6.2 写入飞书文档
+
+**使用 `feishu_doc` 工具创建飞书文档并写入内容：**
+
+1. 先用 `lark-cli wiki +node-create` 在个人知识库创建 wiki 节点：
+```bash
+lark-cli wiki +node-create \
+  --space-id "7621391289904516315" \
+  --parent-node-token "SERDwHBAniUqqBkx5vNctvgKn6f" \
+  --title "[科普智创] 主题：XXX | YYYY-MM-DD"
+# → 获得 obj_token（即 doc_token）
+```
+
+2. 用 `feishu_doc` 写入内容（**content 须为 XML 格式，禁止直接传 Markdown**）：
+```
+feishu_doc(action=create, title="[科普智创] 主题：XXX | YYYY-MM-DD", content=<XML格式内容>, doc_token=<obj_token>)
+```
+
+**内容转 XML 注意事项：**
+- 换行 → `<br/>`，`<` → `&lt;`，`>` → `&gt;`，`&` → `&amp;`
+- 标题用 `<h1>`，正文用 `<p>`，列表用 `<ul>/<li>`
+- 推荐用 Python 做批量转义
+
+> ⚠️ **禁止直接传 Markdown 字符串给 `feishu_doc` 的 content 参数**（会导致中文乱码）。必须先转成 XML 格式再写入。
+**文档命名规范：**
+- 标题格式：`[科普智创] 主题：XXXX | YYYY-MM-DD`
+- 文件名中的「主题」使用用户确认的关键字
+
+**写入后：**
+- 将飞书文档链接发送给用户
+- 在本地记录文档链接至 `memory/YYYY-MM-DD.md`
+
+若审校中发现问题，先修改再输出，不输出未通过审校的文章。
+
+**写入飞书文档前：**
+- grant_to_requester=true（授予文档编辑权限）
+- content 为纯 Markdown 内容
+
+---
+
+## 质量红线
+
+| 禁止事项 | 正确做法 |
+|---------|---------|
+|捏造专家姓名/职位 | 写出真实专家，全名+机构可查 |
+|捏造论文标题/DOI | 写出真实论文，可用 DOI.cn / PubMed 验证 |
+|使用「研究表明」无具体文献 | 写出论文全名、期刊、年份 |
+|夸大效果/编造数据 | 使用真实数据，无法确认真实数据时说明「据公开报道」 |
+|使用过时或已被证伪的理论 | 核查文献发表时间，优先使用近5年权威来源 |

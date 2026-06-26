@@ -1,0 +1,23 @@
+{
+  "name": "forge-obsidian-brain",
+  "version": "1.0.0",
+  "description": "CLI tool for managing an AI's Obsidian vault with note CRUD, bidirectional sync, capture commands, fuzzy search, regex search, and intelligent resurface. Operates entirely locally with no network access.",
+  "author": "Atilla",
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "vault",
+    "notes",
+    "knowledge-base",
+    "memory",
+    "sync",
+    "search",
+    "fuzzy",
+    "brain",
+    "local-only"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Temmpp13/forge-obsidian-brain"
+  }
+}

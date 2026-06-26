@@ -1,0 +1,26 @@
+{
+  "api_key": "YOUR_32_CHARACTER_API_KEY_HERE",
+  "workflows": {
+    "text_to_image": {
+      "workflow_id": "YOUR_WORKFLOW_ID",
+      "description": "Text to image generation workflow",
+      "default_inputs": {
+        "prompt": "a beautiful landscape",
+        "negative_prompt": "",
+        "width": 1024,
+        "height": 1024,
+        "steps": 20,
+        "cfg_scale": 7.5
+      }
+    },
+    "image_to_image": {
+      "workflow_id": "YOUR_WORKFLOW_ID_2",
+      "description": "Image to image transformation workflow",
+      "default_inputs": {
+        "image_url": "",
+        "prompt": "transform this image",
+        "strength": 0.75
+      }
+    }
+  }
+}

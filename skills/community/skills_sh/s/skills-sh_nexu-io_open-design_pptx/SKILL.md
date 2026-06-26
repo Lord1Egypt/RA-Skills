@@ -1,35 +1,43 @@
 ---
-name: "pptx"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/pptx"
-sourceUrl: "https://skills.sh/nexu-io/open-design/pptx"
+name: pptx
+description: |
+  Read, generate, and adjust PowerPoint slides, layouts, and templates. Useful for executive decks, training material, and product reviews.
+triggers:
+  - "pptx"
+  - "powerpoint"
+  - "slide deck"
+  - "create slides"
+  - "edit pptx"
+od:
+  mode: deck
+  category: slides
+  upstream: "https://github.com/anthropics/skills/tree/main/skills/pptx"
 ---
 
 # pptx
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Anthropic's official skills repository.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/pptx`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/pptx](https://skills.sh/nexu-io/open-design/pptx)
+## What it does
 
-## Overview
+Read, generate, and adjust PowerPoint slides, layouts, and templates. Useful for executive decks, training material, and product reviews.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/anthropics/skills/tree/main/skills/pptx
+- Category: `slides`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/pptx
+# Inspect the upstream README for exact paths
+open https://github.com/anthropics/skills/tree/main/skills/pptx
 ```
+
+Then ask the agent to invoke this skill by name (`pptx`) or with
+one of the trigger phrases listed in this skill's frontmatter.

@@ -1,35 +1,64 @@
 ---
-name: "Kvstore"
-description: "In-memory key-value store with TTL for AI agents. Set, get, delete, list, flush, and stats. Supports any JSON value, optional TTL per key, and prefix-based k..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gh-kvstore"
-sourceUrl: "https://clawhub.ai/skills/gh-kvstore"
+name: gh-kvstore
+description: "In-memory key-value store with TTL for AI agents. Set, get, delete, list, flush, and stats. Supports any JSON value, optional TTL per key, and prefix-based key listing. Like a lightweight Redis for agent pipelines."
+metadata: {"openclaw":{"emoji":"🗄️","requires":{"bins":["python"]},"install":[{"id":"pip","kind":"uv","packages":["fastapi","uvicorn","pydantic"]}]}}
 ---
 
-# Kvstore
+# KVStore
 
-> In-memory key-value store with TTL for AI agents. Set, get, delete, list, flush, and stats. Supports any JSON value, optional TTL per key, and prefix-based k...
+Lightweight key-value store for agent state, caching, and data sharing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gh-kvstore`
-- **Source URL:** [https://clawhub.ai/skills/gh-kvstore](https://clawhub.ai/skills/gh-kvstore)
+## Start the server
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gh-kvstore
+uvicorn kvstore.app:app --port 8013
 ```
+
+## Set a value
+
+```bash
+curl -s -X POST http://localhost:8013/v1/set \
+  -H "Content-Type: application/json" \
+  -d '{"key": "user:1", "value": {"name": "Alice", "role": "admin"}}' | jq
+```
+
+## Set with TTL (auto-expires)
+
+```bash
+curl -s -X POST http://localhost:8013/v1/set \
+  -H "Content-Type: application/json" \
+  -d '{"key": "cache:token", "value": "abc123", "ttl_seconds": 3600}' | jq
+```
+
+## Get a value
+
+```bash
+curl -s http://localhost:8013/v1/get/user:1 | jq
+```
+
+Returns `key`, `value` (any JSON), and `ttl_remaining` (seconds until expiry, or null).
+
+## List keys by prefix
+
+```bash
+curl -s "http://localhost:8013/v1/keys?prefix=user:" | jq
+```
+
+## Delete / Flush / Stats
+
+```bash
+curl -s -X DELETE http://localhost:8013/v1/delete/user:1 | jq
+curl -s -X POST http://localhost:8013/v1/flush | jq
+curl -s http://localhost:8013/v1/stats | jq
+```
+
+## Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | /v1/set | Set a key-value pair (optional TTL) |
+| GET | /v1/get/{key} | Get value by key |
+| DELETE | /v1/delete/{key} | Delete a key |
+| GET | /v1/keys | List keys (optional ?prefix=) |
+| POST | /v1/flush | Delete all keys |
+| GET | /v1/stats | Hit/miss counts and total keys |

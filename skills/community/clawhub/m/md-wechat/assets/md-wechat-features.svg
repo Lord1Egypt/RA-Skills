@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.9" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGradient)"/>
+  
+  <!-- Title -->
+  <text x="400" y="55" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle">md-wechat 核心功能</text>
+  <text x="400" y="82" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.9" text-anchor="middle">命令行批量排版 + OpenClaw 技能</text>
+  
+  <!-- Card 1: 命令行批量处理 -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="110" width="220" height="160" rx="12" fill="url(#cardGradient)"/>
+    <circle cx="150" cy="145" r="22" fill="#4CAF50" opacity="0.15"/>
+    <text x="150" y="152" font-family="Arial, sans-serif" font-size="24" fill="#4CAF50" text-anchor="middle">⚡</text>
+    <text x="150" y="190" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">命令行批量处理</text>
+    <text x="150" y="215" font-family="monospace" font-size="11" fill="#666" text-anchor="middle">node scripts/convert.js</text>
+    <text x="150" y="232" font-family="monospace" font-size="11" fill="#666" text-anchor="middle">article.md</text>
+    <text x="150" y="255" font-family="Arial, sans-serif" font-size="12" fill="#888" text-anchor="middle">一行命令完成排版</text>
+  </g>
+  
+  <!-- Card 2: 配置提取与复用 -->
+  <g filter="url(#shadow)">
+    <rect x="290" y="110" width="220" height="160" rx="12" fill="url(#cardGradient)"/>
+    <circle cx="400" cy="145" r="22" fill="#2196F3" opacity="0.15"/>
+    <text x="400" y="152" font-family="Arial, sans-serif" font-size="24" fill="#2196F3" text-anchor="middle">🔄</text>
+    <text x="400" y="190" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">配置提取与复用</text>
+    <text x="400" y="215" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">从排版文件提取样式</text>
+    <text x="400" y="235" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">一键复用到新文章</text>
+    <text x="400" y="255" font-family="Arial, sans-serif" font-size="12" fill="#888" text-anchor="middle">保持统一样式风格</text>
+  </g>
+  
+  <!-- Card 3: OpenClaw 技能 -->
+  <g filter="url(#shadow)">
+    <rect x="540" y="110" width="220" height="160" rx="12" fill="url(#cardGradient)"/>
+    <circle cx="650" cy="145" r="22" fill="#9C27B0" opacity="0.15"/>
+    <text x="650" y="152" font-family="Arial, sans-serif" font-size="24" fill="#9C27B0" text-anchor="middle">🤖</text>
+    <text x="650" y="190" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">OpenClaw 技能</text>
+    <text x="650" y="215" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">clawhub install md-wechat</text>
+    <text x="650" y="235" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">直接对话完成排版</text>
+    <text x="650" y="255" font-family="Arial, sans-serif" font-size="12" fill="#888" text-anchor="middle">AI 助手自动化处理</text>
+  </g>
+  
+  <!-- Bottom Features Row -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="295" width="720" height="80" rx="12" fill="url(#cardGradient)"/>
+    <text x="400" y="325" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">完整功能支持</text>
+    
+    <!-- Feature icons -->
+    <text x="100" y="355" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">📐</text>
+    <text x="100" y="372" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">数学公式</text>
+    
+    <text x="220" y="355" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">📊</text>
+    <text x="220" y="372" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">Mermaid图表</text>
+    
+    <text x="340" y="355" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">💻</text>
+    <text x="340" y="372" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">代码高亮</text>
+    
+    <text x="460" y="355" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🍎</text>
+    <text x="460" y="372" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">Mac代码块</text>
+    
+    <text x="580" y="355" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">📦</text>
+    <text x="580" y="372" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">自动安装依赖</text>
+    
+    <text x="700" y="355" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🎨</text>
+    <text x="700" y="372" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">样式内联</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="400" y="410" font-family="Arial, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" opacity="0.9">基于 doocs/md 开发 | 有意捐赠给 doocs 社区</text>
+  
+  <!-- Links -->
+  <g>
+    <rect x="180" y="435" width="160" height="36" rx="18" fill="#ffffff" opacity="0.2"/>
+    <text x="260" y="458" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">GitHub: italks/md-wechat</text>
+  </g>
+  <g>
+    <rect x="460" y="435" width="160" height="36" rx="18" fill="#ffffff" opacity="0.2"/>
+    <text x="540" y="458" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">ClawHub: clawhub.ai</text>
+  </g>
+</svg>

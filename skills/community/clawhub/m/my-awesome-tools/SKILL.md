@@ -1,35 +1,35 @@
----
-name: "My Awesome Tools"
-description: "Suite of shell scripts for developers to generate Chrome extensions, GitHub READMEs, SaaS landing pages, tech blogs, tweet threads, and automate code reviews."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-awesome-tools"
-sourceUrl: "https://clawhub.ai/skills/my-awesome-tools"
----
-
 # My Awesome Tools
 
-> Suite of shell scripts for developers to generate Chrome extensions, GitHub READMEs, SaaS landing pages, tech blogs, tweet threads, and automate code reviews.
+Collection of powerful shell scripts for developers to boost productivity.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-awesome-tools`
-- **Source URL:** [https://clawhub.ai/skills/my-awesome-tools](https://clawhub.ai/skills/my-awesome-tools)
+## Scripts Included
 
-## Overview
+- **chrome-extension-generator** - Generate Chrome extension templates
+- **code-review-assistant** - AI-powered code review automation
+- **github-readme-generator** - Beautiful GitHub README files
+- **saas-landing-page** - SaaS landing page generator
+- **tech-blog-generator** - Technical blog template generator
+- **tweet-thread-generator** - Twitter thread creator
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/my-awesome-tools
+# Generate a Chrome extension
+./chrome-extension-generator.sh "My Extension" "Description"
+
+# Generate GitHub README
+./github-readme-generator.sh "Project Name"
+
+# Generate SaaS landing page
+./saas-landing-page.sh "My SaaS"
 ```
+
+## Requirements
+
+- Bash 4.0+
+- Git
+- Node.js (for some templates)
+
+## Author
+
+Sunshine-del-ux

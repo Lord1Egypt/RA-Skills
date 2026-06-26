@@ -1,0 +1,119 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券内部编码（InnerCode）：与“债券代码对照表（Bond_Code）”中的“债券内部编码（InnerCode）”关联，得到债券的交易代码、债券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "NoticeStartDate",
+        "columnChiName": "提示日期起始日",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "NoticeEndDate",
+        "columnChiName": "提示日期截止日",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "NoticeType",
+        "columnChiName": "提示信息类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "提示信息类别(NoticeType)与(CT_SystemConst)表中的DM字段关联，令LB = 204，得到提示信息类别的具体描述：1-上市日，2-公告停牌，3-特殊停牌，4-增发新股停牌，5-股权登记日，6-除权除息日，7-最后交易日，8-红利发放日，9-配股权证交易日，10-股东大会召开日，11-送转股到账日，12-可转换债券转股日，13-债券停止交易日，14-债券摘牌日，15-债券付息登记日，16-债券付息除息日，17-缴款日，18-吸收合并换股日，19-中文全称更改日，20-证券简称更改日，21-送转股上市日，23-债券付息日，24-债券兑付登记日，25-债券兑付日，26-发行结果公告日，27-提前赎回公告提示，30-终止上市，32-暂停上市，34-恢复上市，35-代办转让，36-退市风险警示，37-撤销退市风险警示，38-网下配售结果公布日，39-网上申购资金解冻日，40-新股网上发行中签率公布日，41-新股网上发行中签号公布日，42-股权分置沟通后复牌日，43-股权分置股权登记日，44-股权分置方案实施日，46-股权分置对价股上市日，47-股权分置现金发放日，48-股权分置追送登记日，49-股权分置追送上市日，50-中报预约披露日，51-年报预约披露日，52-第一季报预约披露日，53-第三季报预约披露日，54-股权分置限售流通日，55-追送对价现金发放日，57-权证行权日，60-入选指数，61-剔出指数，62-开放式基金暂停赎回，63-开放式基金暂停申购，64-开放式基金终止，65-基金申购赎回开放日，66-份额配对转换开通日，68-基金拆分折算日，69-基金拆分折算变更登记日，70-公告提示，71-季报提示，73-7%涨跌提示，74-增发预案公布日，75-回购预案公布日，76-股份回购实施日，80-发行审核提示，83-发行审核结果，90-重要财经提示，91-优先股预案公布日，92-优先股上市日/转让日，93-优先股派息日，94-优先股转股日，95-优先股赎回日，96-股转价格调整公告日，97-计划赎回日，99-其他，100-新股网上发行，101-新股网下发行，102-新股初步询价日，103-网下申购资金退款日，104-债券注册日，105-网上路演日，106-投资者交流日，107-债券招标发行，108-初步询价及现场推介日，109-CDR初始生成公告日，110-退市整理期，111-招股意向书公告日，112-发行公告日，113-上市公告日，114-招股说明书公告日，115-新股网上缴款日，116-新股网下缴款日，117-暂停上市风险提示，118-网下投资者提交核查资料日，119-暂停基金运作，120-撤销暂停上市风险警示，121-接收权益文件，122-配号日，123-弃配及交收日，124-放弃申购申报日，125-摘牌日，126-权益分配预案公告日，127-权益分配实施公告日，128-网下路演日，129-网上申购配号日，130-网下配售投资者配号日，131-回售/赎回资金发放日，132-回售登记期，133-赎回登记日，134-转股价调整日，135-新股网下摇号抽签日，136-新股网上摇号抽签日，137-吸收合并现金选择权股权登记日，138-退市风险预警提示公告日，139-退市最后交易日，140-暂停转股日，141-上市初期，142-网下申购限额对应资产规模基准日，143-退市风险预警消除公告日，144-老股东优先配售日，145-网上配售结果公布日，152-股东大会召开公告日，153-股东大会股权登记日，154-终止上市决定公告日，155-拟设立先行赔付基金公告日，156-正式设立先行赔付基金公告日，157-虚假陈述实施日，158-虚假陈述揭露日，159-虚假陈述基准日，161-会议登记日，162-出资人组会议，171-新股发行价格区间公告日，172-新股发行价格确定公告日，173-新股网上发行中签结果公布日，174-新股中止发行公告日，175-新股暂缓发行公告日，181-增发股东大会公告日，182-增发公开发行日，183-增发网下申购定金缴款日，184-增发网下原有限售条件流通股股东配售日，185-增发网下原有限售条件流通股股东缴款日，186-增发网上申购缴款日，187-增发网下累计投标询价结果公告日，188-增发网下申购补缴余款日，189-增发网上中签结果公告日，190-增发获准日，201-其他风险警示，202-撤销其他风险警示，210-吸收合并现金选择权股权申报日，211-吸收合并换股股权登记日，212-吸收合并异议股东换股申报日，999-暂无合适分类。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "Content",
+        "columnChiName": "提示信息内容",
+        "columnType": "varchar(2000)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "SuspendTime",
+        "columnChiName": "停牌时间",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "停牌时间(SuspendTime)与(CT_SystemConst)表中的DM字段关联，令LB = 1148，得到停牌时间的具体描述：1-一小时，2-一天，3-半天，5-开盘后临时，7-待人工跟踪，8-未定，9-其他，10-永久。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.56",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.36"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

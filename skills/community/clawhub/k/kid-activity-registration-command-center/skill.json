@@ -1,0 +1,43 @@
+{
+  "slug": "kid-activity-registration-command-center",
+  "name": "Kid Activity Registration Command Center",
+  "version": "1.0.0",
+  "type": "prompt-flow",
+  "description": "Organizes child activity registrations with deadline tracking, document checklists, payments, gear, schedules, transportation, and follow-up reminders.",
+  "author": "Bell (design)",
+  "license": "MIT-0",
+  "category": "Home and Family Administration",
+  "target_user": "Parents, caregivers, guardians, and family organizers managing multiple child activities or seasonal registration windows.",
+  "tags": [
+    "family-admin",
+    "kids-activities",
+    "registration-checklist",
+    "deadline-tracker",
+    "activity-planning",
+    "caregiver-organization"
+  ],
+  "trigger_keywords": [
+    "kids activity registration checklist template",
+    "register my child for activities",
+    "track camp registration deadlines",
+    "organize sports signups",
+    "after-school activity registration",
+    "kid activity command center"
+  ],
+  "use_cases": [
+    "Managing child activity registration deadlines",
+    "Comparing activity options and family capacity",
+    "Tracking forms, waivers, payments, and receipts",
+    "Preparing calendar handoffs for pickups and drop-offs"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

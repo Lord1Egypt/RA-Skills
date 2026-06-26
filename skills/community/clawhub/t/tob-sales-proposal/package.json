@@ -1,0 +1,38 @@
+{
+  "name": "tob-sales-proposal",
+  "version": "1.2.0",
+  "description": "ToB销售提案生成器 - 基于19年实战经验",
+  "main": "src/index.js",
+  "bin": {
+    "tob-sales-proposal": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "jest",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "tob",
+    "sales",
+    "proposal",
+    "b2b",
+    "openclaw",
+    "skill"
+  ],
+  "author": "李宁 <lining434@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "inquirer": "^8.2.6",
+    "chalk": "^4.1.2",
+    "handlebars": "^4.7.8",
+    "fs-extra": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.50.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

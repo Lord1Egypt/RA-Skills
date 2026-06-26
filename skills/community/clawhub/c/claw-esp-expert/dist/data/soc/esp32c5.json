@@ -1,0 +1,60 @@
+{
+  "chip": "esp32c5",
+  "series": "ESP32-C5",
+  "arch": "RISC-V Single-Core",
+  "vendor": "Espressif",
+  "physical_limits": {
+    "gpio_range": [0, 28],
+    "total_gpios": 29,
+    "input_only_pins": {
+      "pins": [],
+      "restriction": "NONE",
+      "has_internal_pull": true,
+      "warning": "ESP32-C5 没有经典 ESP32 风格的纯输入 GPIO 域，但启动引脚与 SPI0/1 保留引脚仍需严格审计。"
+    },
+    "internal_flash_psram": {
+      "pins": [23, 24, 25, 26, 27, 28],
+      "interface": "SPI0_SPI1",
+      "warning": "根据 ESP-IDF GPIO 文档，GPIO23-28 通常用于 SPI0/1（常见为 SPI Flash/封装内存），不建议作为普通 GPIO 使用。"
+    },
+    "strapping_pins": {
+      "pins": [2, 8, 9, 24, 25],
+      "critical_logic": {
+        "2": "启动配置引脚；外部上下拉会影响下载/启动行为。",
+        "8": "启动配置引脚；错误电平可能导致启动模式异常。",
+        "9": "下载/启动相关引脚；上电期间不宜被外设强驱动。",
+        "24": "该引脚兼具启动配置与 SPI0/1 保留属性，严禁作为通用 GPIO 依赖。",
+        "25": "该引脚兼具启动配置与 SPI0/1 保留属性，严禁作为通用 GPIO 依赖。"
+      },
+      "audit_level": "CRITICAL"
+    }
+  },
+  "peripherals": {
+    "adc": {
+      "adc1": [0, 1, 2, 3, 4, 5, 6],
+      "adc2": [],
+      "conflict": {
+        "target": "adc2",
+        "with": "Wi-Fi",
+        "warning": "ESP32-C5 当前规则库未启用 ADC2/Wi-Fi 冲突审计，因为公开资料主要聚焦 ADC1 通道。"
+      }
+    },
+    "uart_default": {
+      "uart0": { "tx": 16, "rx": 17, "role": "Console/Log (board-dependent)" }
+    }
+  },
+  "expert_audit_rules": [
+    {
+      "id": "ERR_FLASH_PINS",
+      "condition": "GPIO 23-28 configured as I/O",
+      "level": "FATAL",
+      "message": "检测到对 ESP32-C5 SPI0/1 保留引脚的操作。"
+    },
+    {
+      "id": "WARN_STRAPPING",
+      "condition": "Strapping pin configured or externally driven",
+      "level": "WARNING",
+      "message": "ESP32-C5 启动配置引脚需要谨慎使用。"
+    }
+  ]
+}

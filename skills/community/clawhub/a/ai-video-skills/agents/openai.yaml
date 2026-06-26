@@ -1,0 +1,4 @@
+interface:
+  display_name: "ai-video-skills"
+  short_description: "Access the world's leading models in one place to produce videos"
+  default_prompt: "Use $ai-video-skills to create videos of {subject}."

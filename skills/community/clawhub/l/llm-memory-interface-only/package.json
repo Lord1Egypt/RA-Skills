@@ -1,0 +1,28 @@
+{
+  "name": "llm-memory-integration",
+  "version": "9.0.0",
+  "description": "LLM Memory Integration - 纯接口包。提供 Memory、Search、Vector 接口定义，实现由私有包提供。",
+  "license": "MIT-0",
+  "author": "xkzs2007",
+  "homepage": "https://clawhub.ai/skill/llm-memory-integration",
+  "keywords": ["llm", "embedding", "memory", "search", "vector", "interface"],
+  "requirements": {
+    "binaries": {
+      "required": [],
+      "description": "纯接口包，无运行时依赖"
+    },
+    "envVars": {
+      "required": [],
+      "optional": [],
+      "description": "纯接口包，无需环境变量"
+    },
+    "network": {
+      "required": false,
+      "description": "纯接口包，无网络访问"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://cnb.cool/llm-memory-integrat/llm.git"
+  }
+}

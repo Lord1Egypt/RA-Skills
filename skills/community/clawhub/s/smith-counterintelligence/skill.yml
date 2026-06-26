@@ -1,0 +1,13 @@
+---
+name: smith-counterintelligence
+description: Analyze Agent Smith’s friction as structured signal; decide whether to accept, adapt, or counter without violating system rules.
+version: 2.0.0
+display_name: "Smith Counterintelligence"
+triggers:
+  - smith counterintelligence
+  - agent smith
+  - smith friction
+  - counter smith
+  - respond to smith
+  - adversarial pressure
+---

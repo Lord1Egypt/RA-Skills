@@ -1,0 +1,171 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TradingDay",
+        "columnChiName": "交易日",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "UnitNV",
+        "columnChiName": "单位净值(元)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "RRInSingleMonth",
+        "columnChiName": "一个月回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "remark": "一个月回报率(%)(RRInSingleMonth)：利用复权净值按交易日计算，计算区间起始日为一个月前交易日，即取不晚于当前日期一个月前自然日的最大交易日。例如，2020年3月31日的一个月前自然日为2020年2月29日，交易日为2020年2月28日；2020年2月29日的一个月前自然日为2020年1月29日，交易日为2020年1月23日。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.03",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "RRInThreeMonth",
+        "columnChiName": "三个月回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "5.29"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "RRInSixMonth",
+        "columnChiName": "六个月回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "10.54"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "RRSinceThisYear",
+        "columnChiName": "今年以来回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "remark": "今年以来回报率(%)(RRSinceThisYear)：计算区间起始日净值取不晚于本年1月1日的上年最大交易日复权净值。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "16.98",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "RRInSingleYear",
+        "columnChiName": "一年回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "remark": "一年回报率(%)(RRInSingleYear)：计算区间起始日为不晚于当前日期一年前自然日的最大交易日。例如，2020年2月29日一年前自然日为2019年2月28日，一年前交易日亦为2019年2月28日；2020年12月28日一年前自然日为2019年12月28日，一年前交易日为2019年2月27日。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "19.08",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "RRInThreeYear",
+        "columnChiName": "三年回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "40.54"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "RRInFiveYear",
+        "columnChiName": "五年回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.71"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "RRSinceStart",
+        "columnChiName": "设立以来回报率(%)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "remark": "设立以来回报率(%)(RRSinceStart)：计算方式为(当前复权净值/首日复权净值-1)*100",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

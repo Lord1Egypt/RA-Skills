@@ -1,0 +1,8 @@
+{
+  "name": "semgrepll",
+  "description": "Local semantic code search",
+  "install": "pip install semgrepll",
+  "env": {
+    "EMBED_BACKEND": "auto"
+  }
+}

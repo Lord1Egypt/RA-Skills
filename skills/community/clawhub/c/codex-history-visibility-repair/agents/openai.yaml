@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex History Visibility Repair"
+  short_description: "Repair hidden Codex Desktop history after local migrations."
+  default_prompt: "Repair my local Codex Desktop history so migrated sessions appear in the sidebar."

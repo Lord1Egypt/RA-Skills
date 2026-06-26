@@ -1,0 +1,4 @@
+version: 1
+display_name: Resource Hunter
+short_description: Search public pan links, torrents, magnets, and public video URLs with chat-friendly or JSON output.
+default_prompt: Find public resources or inspect a public video URL using the resource-hunter skill.

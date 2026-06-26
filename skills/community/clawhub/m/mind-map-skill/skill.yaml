@@ -1,0 +1,34 @@
+name: mind_map
+description: Generate beautiful mind maps from Markdown text with center, horizontal, or auto layout
+
+variables:
+  markdown_content:
+    description: Markdown content to convert into a mind map image
+    type: text
+    required: true
+
+  layout_type:
+    description: Layout strategy for mind map generation
+    type: choice
+    default: free
+    choices:
+      - value: free
+        label: Free (Auto Select)
+        description: Automatically select center or horizontal layout based on complexity
+      - value: center
+        label: Center (Radial)
+        description: Use center radial layout
+      - value: horizontal
+        label: Horizontal (Left-to-Right)
+        description: Use horizontal layout
+
+  filename:
+    description: Optional output filename without extension
+    type: text
+    required: false
+
+  download_md:
+    description: Whether to also output the mind map markdown file
+    type: boolean
+    default: false
+    required: false

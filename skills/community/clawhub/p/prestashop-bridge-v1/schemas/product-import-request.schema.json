@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProductImportRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "batch_id",
+    "items",
+    "options"
+  ],
+  "properties": {
+    "batch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reference",
+          "name",
+          "price_ht",
+          "stock_quantity"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "fr",
+              "en"
+            ],
+            "properties": {
+              "fr": {
+                "type": "string"
+              },
+              "en": {
+                "type": "string"
+              }
+            }
+          },
+          "price_ht": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "stock_quantity": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "images_to_download": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "create_if_missing",
+        "update_if_exists",
+        "skip_images_errors"
+      ],
+      "properties": {
+        "create_if_missing": {
+          "type": "boolean"
+        },
+        "update_if_exists": {
+          "type": "boolean"
+        },
+        "skip_images_errors": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

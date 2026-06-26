@@ -1,0 +1,4 @@
+interface:
+  display_name: "Binance Futures Strategy Analysis"
+  short_description: "Analyze Binance perpetual setups from public futures data"
+  default_prompt: "Use $binance-futures-strategy-analysis to analyze BTC or ETH perpetual futures and return a structured Chinese report with a BUY, SELL, or HOLD recommendation."

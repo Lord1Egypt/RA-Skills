@@ -1,35 +1,114 @@
 ---
-name: "claw-security-panel"
-description: "OpenClaw 安全检查面板（Python 3.7+ 兼容）。用户发送"启动安全检查"时触发，按四大类检查：接入安全、权限安全、执行安全、韧性安全。生成带 token 的临时 HTML 页面，含风险详情子页面和一键修复功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-security-panel"
-sourceUrl: "https://clawhub.ai/skills/claw-security-panel"
+name: claw-security-panel
+description: OpenClaw 安全检查面板（Python 3.7+ 兼容）。用户发送"启动安全检查"时触发，按四大类检查：接入安全、权限安全、执行安全、韧性安全。生成带 token 的临时 HTML 页面，含风险详情子页面和一键修复功能。
 ---
 
-# claw-security-panel
+# OpenClaw Security Panel v2
 
-> OpenClaw 安全检查面板（Python 3.7+ 兼容）。用户发送"启动安全检查"时触发，按四大类检查：接入安全、权限安全、执行安全、韧性安全。生成带 token 的临时 HTML 页面，含风险详情子页面和一键修复功能。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-security-panel`
-- **Source URL:** [https://clawhub.ai/skills/claw-security-panel](https://clawhub.ai/skills/claw-security-panel)
+用户发送以下消息时触发：
+- "启动安全检查"
+- "安全检查"
+- "检查安全配置"
 
-## Overview
+## 检查框架（四大类）
 
+### A. 接入安全 (Access Security) 🔐
+- **HTTPS 加密**：检查是否启用 HTTPS
+- **网关绑定**：检查是否暴露在公网（0.0.0.0 vs 127.0.0.1）
+- **端口配置**：检查是否使用默认端口 18789
+- **认证机制**：检查是否配置口令/token 认证
+- **登录来源检测**：检查历史登录日志，识别非常用地 IP 登录风险，提供 ACL 策略配置建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claw-security-panel
+### B. 权限安全 (Permission Security) 👤
+- **运行用户**：检查是否以 root 运行
+- **关键文件保护**：检查预加载的.json 和.md 文件是否有防修改声明（#lock/#protected）
+- **文件权限**：检查工作区文件权限设置
+- **明文密码检测**：扫描安装目录下是否有明文密码保存
+
+### C. 执行安全 (Execution Security) ⚙️
+- **版本检查**：当前 OpenClaw 版本
+- **漏洞扫描**：已知 CVE 漏洞检查
+- **插件风险**：已安装技能的安全风险
+- **高风险命令检测**：检查近 3 天执行命令历史，识别增加用户、删除文件、修改密码、端口转发等高风险操作
+
+### D. 韧性安全 (Resilience Security) 🛡️
+- **登录 IP**：检查已登录 IP 是否异常（外部 IP 检测）
+- **备份状态**：检查配置和工作区备份
+- **版本控制**：检查 git 仓库状态
+
+## 功能特性
+
+### 1. 主页面
+- 整体风险等级展示
+- 四大类检查概览
+- 通过检测项统计（不计入低风险）
+- 风险数量统计
+- 右侧"查看风险详情"按钮
+
+### 2. 风险详情子页面 (/claw_security_pannel/risks)
+- 风险列表，每项包含：
+  - 风险等级标签（HIGH/MEDIUM/LOW）
+  - 详细描述
+  - 修复方案说明
+  - 修复后影响提示（避免误修复）
+  - 可自动修复/需人工修复标识
+- 勾选框（仅可自动修复的风险可勾选）
+- 一键修复按钮
+
+### 3. 修复功能
+- **可自动修复**：文件权限、备份创建等
+- **需人工修复**：HTTPS 配置、密码迁移、认证配置等
+  - 禁止勾选
+  - 显示"🔧 需人工修复"标识
+  - 提供详细修复指南
+
+## 输出格式
+
+### 主页面
 ```
+http://127.0.0.1:18790/claw_security_pannel?token=<token>
+```
+
+### 风险详情子页面
+```
+http://127.0.0.1:18790/claw_security_pannel/risks?token=<token>
+```
+
+## API 接口
+
+### GET /claw_security_pannel/api/report
+获取完整检查报告 JSON
+
+### POST /claw_security_pannel/api/fix
+```json
+{
+  "token": "<token>",
+  "riskIds": ["id1", "id2"]
+}
+```
+
+响应：
+```json
+{
+  "success": true,
+  "fixed": ["风险项 1", "风险项 2"],
+  "errors": [],
+  "message": "成功修复 2 项"
+}
+```
+
+## 环境要求
+
+- **Python 版本**: Python 3.7+
+- **依赖**: 仅使用 Python 标准库
+- **兼容性**: 已针对 Python 3.7-3.12 测试
+
+## 注意事项
+
+- Token 有效期 30 分钟
+- 面板服务运行在独立端口（18790）
+- 通过检测的项直接显示"通过"，不计入风险统计
+- 敏感操作（如密码修改）必须人工确认
+- 修复前会显示修复后的影响提示

@@ -1,0 +1,91 @@
+{
+  "skill_name": "bigmodel-image-video",
+  "version": "2.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "simple-image-generation",
+      "prompt": "生成一张可爱的橘猫图片",
+      "expected_output": "成功生成图片并返回 URL",
+      "type": "image",
+      "assertions": [
+        {
+          "name": "返回图片URL",
+          "check": "output contains URL starting with https://"
+        },
+        {
+          "name": "脚本执行成功",
+          "check": "exit code is 0"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "book-cover-generation",
+      "prompt": "帮我制作一个武侠小说的封面，要刀光剑影的感觉",
+      "expected_output": "生成竖版武侠风格封面图片",
+      "type": "image",
+      "assertions": [
+        {
+          "name": "使用竖版尺寸",
+          "check": "size parameter is 1024x1792"
+        },
+        {
+          "name": "包含武侠元素",
+          "check": "prompt contains 武侠/刀剑/江湖 keywords"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "batch-generation",
+      "prompt": "批量生成 4 张不同季节的风景图片",
+      "expected_output": "生成 4 张图片（春夏秋冬）",
+      "type": "batch",
+      "assertions": [
+        {
+          "name": "生成4张图片",
+          "check": "output contains 4 URLs"
+        },
+        {
+          "name": "保存批量结果",
+          "check": "batch_results.json file exists"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "video-generation",
+      "prompt": "生成一个 5 秒的海边日落视频",
+      "expected_output": "成功生成视频并返回 URL",
+      "type": "video",
+      "assertions": [
+        {
+          "name": "返回视频URL",
+          "check": "output contains video URL"
+        },
+        {
+          "name": "视频时长5秒",
+          "check": "duration parameter is 5"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "high-quality-product",
+      "prompt": "生成一个高质量的产品展示图，白色背景上的蓝色运动鞋",
+      "expected_output": "生成高质量产品图片",
+      "type": "image",
+      "assertions": [
+        {
+          "name": "使用高质量设置",
+          "check": "quality parameter is hd"
+        },
+        {
+          "name": "使用正方形尺寸",
+          "check": "size parameter is 1024x1024"
+        }
+      ]
+    }
+  ]
+}

@@ -1,35 +1,49 @@
 ---
-name: "build-brand-design-faq-page"
+name: "Build Brand Design FAQ Page"
 description: "Generate customer-facing answers for common brand design questions. Use when working on FAQ content for designers, brand teams, ecommerce operators."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-build-brand-design-faq-page"
-sourceUrl: "https://clawhub.ai/skills/toby-build-brand-design-faq-page"
+homepage: "https://www.skillboss.co/skills/build-brand-design-faq-page"
+metadata: {"category":"design-branding","subcategory":"visual-branding","skill_id":"build-brand-design-faq-page","generated_day":"","seo_keywords":["FAQ generator AI","brand design FAQ writer","brand design AI","creative ops automation"]}
 ---
 
-# build-brand-design-faq-page
+# Build Brand Design FAQ Page
 
-> Generate customer-facing answers for common brand design questions. Use when working on FAQ content for designers, brand teams, ecommerce operators.
+Generate customer-facing answers for common brand design questions. Use when working on FAQ content for designers, brand teams, ecommerce operators.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-build-brand-design-faq-page`
-- **Source URL:** [https://clawhub.ai/skills/toby-build-brand-design-faq-page](https://clawhub.ai/skills/toby-build-brand-design-faq-page)
+## Use When
 
-## Overview
+Use this skill for FAQ content work for designers, brand teams, ecommerce operators.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-build-brand-design-faq-page
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: FAQ generator AI, brand design FAQ writer, brand design AI, creative ops automation
+- Search intent: FAQ content
+- Canonical slug: `build-brand-design-faq-page`
+- Install query: Install Build Brand Design FAQ Page with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `web_search`
+
+## Suggested Prompt
+
+[Build Brand Design FAQ Page] for my team
+
+## Notes
+
+- Generate customer-facing answers for common brand design questions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- FAQ generator AI
+- brand design FAQ writer
+- brand design AI
+- creative ops automation

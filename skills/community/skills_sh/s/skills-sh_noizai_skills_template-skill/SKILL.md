@@ -1,35 +1,54 @@
 ---
-name: "template-skill"
-description: "Indexed by skills.sh from noizai/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "noizai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/noizai/skills/template-skill"
-sourceUrl: "https://skills.sh/noizai/skills/template-skill"
+name: template-skill
+description: Reusable template for authoring new Agent Skills with clear triggers, workflow, and I/O contracts.
 ---
 
-# template-skill
+# <skill-name>
 
-> Indexed by skills.sh from noizai/skills
+[简体中文](./SKILL.zh-CN.md) | English
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** noizai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/noizai/skills/template-skill`
-- **Source URL:** [https://skills.sh/noizai/skills/template-skill](https://skills.sh/noizai/skills/template-skill)
+One-line description of what this skill solves.
 
-## Overview
+## Triggers
 
+- trigger keyword 1
+- trigger keyword 2
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/noizai/skills/template-skill
-```
+## Use Cases
+
+- Typical scenario 1
+- Typical scenario 2
+- Typical scenario 3
+
+## Inputs
+
+- Required inputs:
+  - `field_a`: Description
+  - `field_b`: Description
+- Optional inputs:
+  - `field_c`: Description
+
+## Outputs
+
+- Success output format (example)
+- Failure output format (example)
+
+## Workflow
+
+1. Validate input completeness
+2. Build request parameters
+3. Execute core action
+4. Format outputs
+5. Provide retry or fallback strategy on failure
+
+## Limitations
+
+- Clearly define capability boundaries
+- Explain common failure causes
+
+## Examples
+
+- Input example:
+  - `...`
+- Output example:
+  - `...`

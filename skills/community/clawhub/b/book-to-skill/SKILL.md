@@ -1,35 +1,159 @@
 ---
-name: "Book to Skill Converter 书本即技能"
-description: "根据上传的书籍自动提取技能和思维方式并创建新skill。用于：当用户上传一本书（PDF、TXT、EPUB等），希望从中提取核心技能、方法论或思维方式，并生成一个可复用的skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-to-skill"
-sourceUrl: "https://clawhub.ai/skills/book-to-skill"
+name: book-to-skill
+description: 根据上传的书籍自动提取技能和思维方式并创建新skill。用于：当用户上传一本书（PDF、TXT、EPUB等），希望从中提取核心技能、方法论或思维方式，并生成一个可复用的skill。
 ---
 
-# Book to Skill Converter 书本即技能
+# Book to Skill
 
-> 根据上传的书籍自动提取技能和思维方式并创建新skill。用于：当用户上传一本书（PDF、TXT、EPUB等），希望从中提取核心技能、方法论或思维方式，并生成一个可复用的skill。
+从书籍中提取技能并自动创建新skill的元技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-to-skill`
-- **Source URL:** [https://clawhub.ai/skills/book-to-skill](https://clawhub.ai/skills/book-to-skill)
+## 支持的书籍格式
 
-## Overview
+- PDF (.pdf)
+- TXT (.txt)
+- EPUB (.epub)
+- MOBI (.mobi)
+- DOCX (.docx)
+- Markdown (.md)
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-to-skill
+### 1. 读取书籍内容
+
+根据文件格式选择合适的读取方式：
+
+**PDF**: 使用pdf skill读取文本内容
 ```
+使用pdf skill提取PDF中的文本
+```
+
+**EPUB/MOBI**: 使用适当的库解析
+```
+Python epub库或mobi库提取内容
+```
+
+**TXT/MD**: 直接读取文本
+
+**DOCX**: 使用docx skill读取
+
+### 2. 分析书籍内容
+
+分析并提取以下内容：
+
+1. **核心主题**：书籍主要讨论什么问题
+2. **关键概念**：书中的重要术语和定义
+3. **方法论**：作者提出的具体方法、框架或流程
+4. **思维方式**：书中的思考模式或心智模型
+5. **实践步骤**：可操作的具体步骤或技巧
+6. **应用场景**：这些技能适合用在什么场景
+
+### 3. 生成Skill结构
+
+根据分析结果，生成新skill的以下组成部分：
+
+```
+新skill名称/
+├── SKILL.md
+│   ├── YAML frontmatter (name, description)
+│   └── 核心内容 (方法论、步骤、实践指导)
+└── references/ (可选)
+    ├── 详细方法论.md
+    └── 案例和示例.md
+```
+
+### 4. Skill命名规范
+
+- 使用英文或中英文混合
+- 名称应该体现核心技能
+- 示例：
+  - "thinking-in-first-principles" (第一性原理思考)
+  - "系统思考" (Systems Thinking)
+  - "高效能人士的七个习惯" (可以提取为具体技能)
+
+## Skill模板结构
+
+根据书籍内容选择合适的模板：
+
+### 模板A：方法论型
+
+```yaml
+---
+name: skill-name
+description: [一句话描述这个skill是什么及何时使用]
+---
+
+# 技能名称
+
+## 概述
+[简短的背景介绍]
+
+## 核心方法论
+[主要的方法框架]
+
+## 具体步骤
+1. [步骤1]
+2. [步骤2]
+3. [步骤3]
+
+## 实践技巧
+- [技巧1]
+- [技巧2]
+
+## 应用场景
+- [场景1]
+- [场景2]
+
+## 常见误区
+- [误区1]
+- [误区2]
+```
+
+### 模板B：思维方式型
+
+```yaml
+---
+name: skill-name
+description: [思维方式的描述及适用场景]
+---
+
+# 思维方式名称
+
+## 什么是这种思维方式
+[定义和核心要点]
+
+## 如何培养
+[具体练习方法]
+
+## 应用示例
+[实际应用案例]
+
+## 注意事项
+[使用这种思维方式的要点]
+```
+
+### 模板C：综合型
+
+结合方法论和思维方式，适合内容丰富的书籍。
+
+## 生成流程
+
+1. **提取章节要点**：快速浏览目录和章节标题
+2. **深度阅读**：理解核心内容
+3. **结构化输出**：按照模板生成skill
+4. **用户确认**：展示生成的skill给用户审核
+5. **保存到本地**：将生成的skill保存到用户指定位置
+
+## 输出示例
+
+如果用户上传《第一性原理》，生成的skill可能包含：
+
+- name: first-principles-thinking
+- description: 第一性原理思考方法。用于：当需要从根本上分析问题、突破传统思维定式时
+- 内容包括：定义、实践步骤、案例、常见问题
+
+## 注意事项
+
+- 保持skill简洁，遵循"concise is key"原则
+- 提取最核心、最可操作的内容
+- 生成的skill应该可以直接使用
+- 如果书籍内容太泛，建议聚焦在1-2个核心技能上

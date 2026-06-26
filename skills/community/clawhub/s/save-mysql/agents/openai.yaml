@@ -1,0 +1,4 @@
+interface:
+  display_name: "URL Parameter Saver"
+  short_description: "Extracts URL parameters and saves them into MySQL"
+  icon: "link"

@@ -1,35 +1,31 @@
----
-name: "Ai Autotester"
-description: "Automates code testing by analyzing tasks, planning subtasks, executing tests, validating results, and providing detailed reports and summaries."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-autotester"
-sourceUrl: "https://clawhub.ai/skills/ai-autotester"
----
+# AI_AutoTester
 
-# Ai Autotester
+## Purpose
+自動化測試程式碼
 
-> Automates code testing by analyzing tasks, planning subtasks, executing tests, validating results, and providing detailed reports and summaries.
+## Primary Agents
+Tester
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-autotester`
-- **Source URL:** [https://clawhub.ai/skills/ai-autotester](https://clawhub.ai/skills/ai-autotester)
+## Notes
+單獨測試或流程節點
 
-## Overview
+## Inputs
+- task: 要執行的任務描述
+- context: 額外上下文（可選）
+- constraints: 限制條件（可選）
 
+## Outputs
+- plan/result/report（依任務類型）
+- logs/summary
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-autotester
-```
+## Workflow (default)
+1. Analyze task
+2. Plan subtasks
+3. Execute by role
+4. Validate result
+5. Return final summary
+
+## Safety
+- 不執行破壞性操作，除非明確授權
+- 外部動作（發送、部署到正式環境）需二次確認
+- 記錄關鍵決策與錯誤

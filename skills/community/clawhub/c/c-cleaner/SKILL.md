@@ -1,35 +1,125 @@
 ---
-name: "c-cleaner"
-description: "C 盘空间分析与清理技能。用于扫描 C 盘空间使用情况，识别垃圾文件和大文件，根据用户需求执行安全清理操作。使用场景：(1) 分析 C 盘空间占用，(2) 扫描可清理的垃圾文件，(3) 识别可迁移的大型应用，(4) 执行安全清理操作，(5) 生成空间优化建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/c-cleaner"
-sourceUrl: "https://clawhub.ai/skills/c-cleaner"
+name: c-cleaner
+description: C 盘空间分析与清理技能。用于扫描 C 盘空间使用情况，识别垃圾文件和大文件，根据用户需求执行安全清理操作。使用场景：(1) 分析 C 盘空间占用，(2) 扫描可清理的垃圾文件，(3) 识别可迁移的大型应用，(4) 执行安全清理操作，(5) 生成空间优化建议
 ---
 
-# c-cleaner
+# C 盘清理助手
 
-> C 盘空间分析与清理技能。用于扫描 C 盘空间使用情况，识别垃圾文件和大文件，根据用户需求执行安全清理操作。使用场景：(1) 分析 C 盘空间占用，(2) 扫描可清理的垃圾文件，(3) 识别可迁移的大型应用，(4) 执行安全清理操作，(5) 生成空间优化建议
+本技能帮助分析和清理 C 盘空间，释放存储容量。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/c-cleaner`
-- **Source URL:** [https://clawhub.ai/skills/c-cleaner](https://clawhub.ai/skills/c-cleaner)
+## 核心能力
 
-## Overview
+### 1. 空间分析
+- 扫描 C 盘总体使用情况
+- 分析各大目录空间占用
+- 识别占用空间最多的文件夹和文件
 
+### 2. 垃圾扫描
+- 临时文件（用户/系统）
+- Windows 更新缓存
+- 浏览器缓存
+- pip/npm 包管理器缓存
+- 应用缓存（飞书/剪映等）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/c-cleaner
+### 3. 大文件识别
+- 查找超过指定大小的文件
+- 识别可删除的旧安装包
+- 发现重复文件
+
+### 4. 应用迁移建议
+- 识别可迁移到其他盘的应用
+- 提供迁移步骤指导
+
+### 5. 安全清理
+- 执行安全清理操作（需用户确认）
+- 支持预览模式（--dry-run）
+- 清理前自动备份关键数据
+
+## 工作流程
+
+### 步骤 1: 扫描分析
+```powershell
+# 使用分析脚本
+python scripts/scan_c_drive.py --full
 ```
+
+生成空间使用报告，包括：
+- C 盘总容量/已用/剩余
+- 各大目录占用排行
+- 可清理垃圾预估
+
+### 步骤 2: 生成建议
+参考 `references/cleanup-guide.md` 生成具体清理建议。
+
+### 步骤 3: 用户确认
+**必须获得用户明确确认**后才能执行清理：
+- 显示将要清理的内容和大小
+- 用户输入 "确认" / "yes" / "执行" 开始清理
+
+### 步骤 4: 执行清理
+```powershell
+# 预览模式（不实际删除）
+python scripts/clean_c_drive.py --dry-run
+
+# 执行清理（需确认）
+python scripts/clean_c_drive.py --level safe
+```
+
+### 步骤 5: 生成报告
+清理完成后输出：
+- 实际释放空间
+- 清理项目清单
+- 后续优化建议
+
+## 清理级别
+
+| 级别 | 内容 | 风险 |
+|------|------|------|
+| `safe` | 临时文件、更新缓存 | 无风险 |
+| `standard` | + 浏览器缓存、应用缓存 | 低风险 |
+| `aggressive` | + 旧驱动、旧安装包 | 中风险 |
+
+## 参考文档
+
+- **清理指南**: `references/cleanup-guide.md` - 详细清理项目说明
+- **安全须知**: `references/safety.md` - 清理操作安全注意事项
+
+## 脚本工具
+
+- `scripts/scan_c_drive.py` - C 盘空间扫描分析
+- `scripts/clean_c_drive.py` - 执行清理操作
+- `scripts/find_large_files.py` - 查找大文件
+
+## 触发条件
+
+当用户提到：
+- "清理 C 盘"
+- "C 盘空间不足"
+- "分析 C 盘占用"
+- "C 盘满了怎么办"
+- "扫描 C 盘垃圾"
+- "释放 C 盘空间"
+
+## 安全机制
+
+### 必须遵守的规则
+
+1. **禁止删除的系统文件**：
+   - `C:\Windows\System32\*`
+   - `C:\Program Files\WindowsApps\*`
+   - `C:\Users\*\NTUSER.DAT`
+
+2. **必须用户确认**：
+   - 清理前显示详细清单
+   - 用户明确输入确认指令
+   - 支持中文（确认/是）和英文（yes/y）
+
+3. **预览模式**：
+   - 默认先执行 `--dry-run`
+   - 显示将要删除的内容
+   - 用户确认后再实际执行
+
+4. **备份机制**：
+   - 清理前创建还原点（如可能）
+   - 记录清理日志
+   - 支持日志回溯

@@ -1,0 +1,348 @@
+{
+  "categories": {
+    "交易": {
+      "label": "🔄 交易",
+      "description": "代币买卖、DEX 交换、CEX 合约、预测市场",
+      "skills": ["web3-trader", "cex-trader", "poly-master"]
+    },
+    "投资": {
+      "label": "💰 投资",
+      "description": "链上理财、DeFi 投资、RWA 产品",
+      "skills": ["antalpha-rwa-skill", "web3-investor"]
+    },
+    "数据": {
+      "label": "📊 数据",
+      "description": "钱包查询、链上交易解析、DeFi 数据、聪明钱追踪、技术分析、社交情报",
+      "skills": ["wallet-balance", "transaction-receipt", "smart-money", "defillama-data-aggregator", "ta-radar", "crypto-social-intel"]
+    },
+    "安全": {
+      "label": "🛡️ 安全",
+      "description": "钱包防护、合约风险扫描、Meme 币分析、空投猎手",
+      "skills": ["wallet-guard", "anti-rug", "meme-token-analyzer", "airdrop-hunter"]
+    },
+    "支付": {
+      "label": "💳 支付",
+      "description": "收款链接生成、钱包连接",
+      "skills": ["eth-payment", "walletconnect-requester"]
+    },
+    "工具": {
+      "label": "🔧 工具",
+      "description": "环境配置、文档生成、新手引导",
+      "skills": ["antalpha-ai-setup", "antalpha-ai-docs"]
+    }
+  },
+  "skills": {
+    "web3-trader": {
+      "name": "web3-trader",
+      "category": "交易",
+      "github": "https://github.com/AntalphaAI/web3-trader",
+      "description": "DEX 聚合交易 + Hyperliquid 合约，支持市价 Swap 和限价单，零托管",
+      "tags": ["swap", "交易", "兑换", "DEX", "代币", "ETH", "USDT", "买入", "卖出", "限价单", "永续合约", "做多", "做空", "杠杆", "Hyperliquid", "合约", "期货"],
+      "scenarios": ["交易代币", "兑换加密货币", "做多做空", "开合约仓位", "限价挂单", "查看持仓"],
+      "examples": [
+        "帮我把 100 USDT 换成 ETH",
+        "我想挂单卖出 ETH，价格 3500U",
+        "帮我开 ETH 多仓，5 倍杠杆"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/web3-trader",
+      "priority": 10
+    },
+    "cex-trader": {
+      "name": "cex-trader",
+      "category": "交易",
+      "github": "https://github.com/AntalphaAI/cex-trader",
+      "description": "CEX 统一交易层，支持 OKX / Binance 现货与合约，开多开空、止盈止损，内置风控",
+      "tags": ["CEX", "OKX", "Binance", "现货", "合约", "期货", "做多", "做空", "开仓", "平仓", "止盈", "止损", "API key", "中心化交易所", "杠杆"],
+      "scenarios": ["OKX/Binance 下单", "查账户余额", "开合约多空仓", "平仓", "设置止盈止损", "配置 API Key"],
+      "examples": [
+        "帮我在 OKX 买 0.1 BTC",
+        "在 Binance 开 ETH 空仓，3 倍杠杆",
+        "帮我查一下 OKX 账户余额"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/cex-trader",
+      "priority": 10
+    },
+    "poly-master": {
+      "name": "poly-master",
+      "category": "交易",
+      "github": "https://github.com/AntalphaAI/poly-master",
+      "description": "Polymarket 预测市场，投注事件结果、跟单高手，套利对冲策略，零托管",
+      "tags": ["预测市场", "Polymarket", "投注", "事件", "跟单", "copy trade", "poly", "prediction", "赌注", "套利", "对冲"],
+      "scenarios": ["预测市场投注", "跟单交易员", "查看热门预测", "事件投资", "套利对冲"],
+      "examples": [
+        "帮我在 Polymarket 投注 ETH 价格走势",
+        "帮我找热门预测市场",
+        "我想跟单胜率最高的交易员"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/poly-master",
+      "priority": 8
+    },
+    "antalpha-rwa-skill": {
+      "name": "antalpha-rwa",
+      "category": "投资",
+      "github": "https://github.com/AntalphaAI/antalpha-rwa-skill",
+      "description": "RWA 链上理财，BTC 超额抵押，查询产品收益率并生成投资链接",
+      "tags": ["RWA", "理财", "投资", "收益", "稳定币", "USDT", "BTC抵押", "链上理财", "DeFi", "年化"],
+      "scenarios": ["投资 RWA 产品", "查询链上理财收益", "稳定币理财", "生成投资链接"],
+      "examples": [
+        "帮我查看当前 RWA 产品的收益率",
+        "我想投资 1000 USDT 做链上理财",
+        "帮我生成 RWA 投资链接"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/antalpha-rwa-skill",
+      "priority": 9
+    },
+    "web3-investor": {
+      "name": "web3-investor",
+      "category": "投资",
+      "github": "https://github.com/AntalphaAI/web3-investor",
+      "description": "AI 自主 Web3 投资基础设施，支持 DeFi 机会发现、安全交易执行、投资组合管理",
+      "tags": ["DeFi", "投资", "portfolio", "持仓", "投资组合", "Base", "Ethereum", "Arbitrum", "Optimism", "yield", "收益"],
+      "scenarios": ["DeFi 投资机会发现", "自动化投资策略", "管理链上投资组合", "查看持仓收益"],
+      "examples": [
+        "帮我分析当前 DeFi 投资机会",
+        "我的链上投资组合表现怎么样？",
+        "帮我找 Base 链上高收益机会"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/web3-investor",
+      "priority": 7
+    },
+    "wallet-balance": {
+      "name": "wallet-balance",
+      "category": "数据",
+      "github": "https://github.com/AntalphaAI/wallet-balance",
+      "description": "多链钱包余额查询，支持 EVM 和 BTC，可记住地址",
+      "tags": ["余额", "钱包", "balance", "ETH", "BTC", "资产", "持仓", "地址查询", "多链", "查余额"],
+      "scenarios": ["查钱包余额", "看我的资产", "查某地址持仓", "多链资产汇总"],
+      "examples": [
+        "帮我查一下我的钱包余额",
+        "0x123...abc 这个地址有多少 ETH",
+        "我的 BTC 钱包现在有多少钱"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/wallet-balance",
+      "priority": 9
+    },
+    "transaction-receipt": {
+      "name": "transaction-receipt",
+      "category": "数据",
+      "github": "https://github.com/AntalphaAI/transaction-receipt",
+      "description": "链上交易解析，查看转账、Swap、授权、NFT 铸造等操作详情",
+      "tags": ["交易", "tx", "transaction", "hash", "区块链", "转账记录", "swap记录", "NFT", "链上记录", "查交易"],
+      "scenarios": ["查交易记录", "验证转账是否成功", "解读链上交易", "查看 Swap 详情"],
+      "examples": [
+        "帮我查一下这笔交易：0xabc...",
+        "我的转账成功了吗？tx hash 是 0x...",
+        "帮我解读这笔 Swap 的详情"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/transaction-receipt",
+      "priority": 8
+    },
+    "smart-money": {
+      "name": "smart-money",
+      "category": "数据",
+      "github": "https://github.com/AntalphaAI/smart-money",
+      "description": "聪明钱鲸鱼追踪 v1.2，监控 VC/做市商/巨鲸链上操作，支持自定义地址订阅和 LP 池追踪",
+      "tags": ["聪明钱", "鲸鱼", "whale", "smart money", "VC", "链上信号", "追踪", "Paradigm", "a16z", "Wintermute", "跟单信号", "自定义监控", "LP", "流动性池", "添加钱包"],
+      "scenarios": ["追踪鲸鱼动态", "获取聪明钱买卖信号", "监控大户持仓", "添加自定义监控地址", "追踪鲸鱼入池活动"],
+      "examples": [
+        "最近聪明钱在买什么？",
+        "帮我追踪 Paradigm 钱包的动态",
+        "帮我添加 vitalik.eth 到我的监控地址"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/smart-money",
+      "priority": 8
+    },
+    "defillama-data-aggregator": {
+      "name": "defillama-data-aggregator",
+      "category": "数据",
+      "github": "https://github.com/AntalphaAI/defillama-data-aggregator",
+      "description": "DeFi 数据聚合，查询 TVL、协议排名、各链数据、高收益池，数据来源 DefiLlama",
+      "tags": ["DeFi", "TVL", "DefiLlama", "协议", "数据", "链上数据", "收益率", "yield", "defillama", "锁仓量"],
+      "scenarios": ["查询 DeFi TVL", "找高收益 DeFi 协议", "对比各链数据", "分析 DeFi 市场"],
+      "examples": [
+        "现在 DeFi 总 TVL 是多少？",
+        "帮我找收益率最高的 DeFi 协议",
+        "Ethereum 和 Solana 链的 TVL 对比"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/defillama-data-aggregator",
+      "priority": 7
+    },
+    "ta-radar": {
+      "name": "ta-radar",
+      "category": "数据",
+      "github": "https://github.com/AntalphaAI/TA-Radar",
+      "description": "多维技术分析雷达，支持 EMA/RSI/MACD/布林带，覆盖现货交易对与链上合约地址，自动双数据源兜底",
+      "tags": ["技术分析", "TA", "K线", "RSI", "MACD", "布林带", "EMA", "支撑阻力", "趋势分析", "BTC", "ETH", "合约地址", "价格分析"],
+      "scenarios": ["分析币价技术面", "查看 BTC K 线趋势", "判断入场时机", "分析链上代币价格"],
+      "examples": [
+        "帮我分析一下 BTC 的技术面",
+        "ETH 现在是支撑还是阻力位？",
+        "帮我看看 0x...这个代币的 K 线走势"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/TA-Radar",
+      "priority": 7
+    },
+    "crypto-social-intel": {
+      "name": "crypto-social-intel",
+      "category": "数据",
+      "github": "https://github.com/AntalphaAI/crypto-social-intel",
+      "description": "加密社交情报，追踪 KOL 信号、社交趋势、情绪评分、提及量骤增预警，Fear & Greed 指数",
+      "tags": ["KOL", "社交情报", "情绪", "sentiment", "推特", "社区", "热度", "恐慌贪婪", "fear greed", "提及量", "趋势", "舆情"],
+      "scenarios": ["追踪 KOL 动态", "查看市场情绪", "监控代币社交热度", "获取 Fear & Greed 指数"],
+      "examples": [
+        "最近加密圈 KOL 在讨论什么？",
+        "现在市场情绪是恐慌还是贪婪？",
+        "帮我监控 SOL 的社交热度"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/crypto-social-intel",
+      "priority": 6
+    },
+    "wallet-guard": {
+      "name": "wallet-guard",
+      "category": "安全",
+      "github": "https://github.com/AntalphaAI/wallet-guard",
+      "description": "钱包安全防护，一键扫描高风险授权，防止钱包被盗",
+      "tags": ["安全", "钱包安全", "授权", "approve", "风险", "防盗", "扫描", "安全检查", "撤销授权"],
+      "scenarios": ["检查钱包高风险授权", "撤销危险合约授权", "钱包安全扫描", "防止钱包被盗"],
+      "examples": [
+        "帮我检查钱包有没有危险授权",
+        "我的钱包资产安全吗？",
+        "扫描一下我的 approve 记录"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/wallet-guard",
+      "priority": 8
+    },
+    "anti-rug": {
+      "name": "anti-rug",
+      "category": "安全",
+      "github": "https://github.com/AntalphaAI/anti-rug",
+      "description": "Web3 代币合约安全扫描，检测蜜罐/Rug Pull/合约风险，支持 ETH/BSC/Polygon 等多链",
+      "tags": ["安全", "rug pull", "蜜罐", "honeypot", "合约风险", "代币扫描", "防骗", "合约审计", "土狗", "BSC", "Polygon", "ETH"],
+      "scenarios": ["扫描代币合约风险", "检测蜜罐代币", "防止 Rug Pull", "投资前合约审计"],
+      "examples": [
+        "帮我扫描这个代币合约是否安全",
+        "这个代币是蜜罐吗？合约地址 0x...",
+        "买入前帮我检测 Rug Pull 风险"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/anti-rug",
+      "priority": 8
+    },
+    "meme-token-analyzer": {
+      "name": "meme-token-analyzer",
+      "category": "安全",
+      "github": "https://github.com/AntalphaAI/Meme-Token-Analyzer",
+      "description": "Meme 币财富基因检测，多维度分析情绪、生成预测图像，输出专业投资分析报告",
+      "tags": ["meme", "meme币", "财富基因", "情绪分析", "土狗", "新币", "分析", "报告", "投机", "风险评估"],
+      "scenarios": ["分析 Meme 币潜力", "检测土狗风险", "查看新币热度", "生成投资分析报告"],
+      "examples": [
+        "帮我分析一下这个 meme 币的财富基因",
+        "PEPE 最近热度怎么样？",
+        "这个新币值得买吗？帮我做个分析"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/Meme-Token-Analyzer",
+      "priority": 7
+    },
+    "airdrop-hunter": {
+      "name": "airdrop-hunter",
+      "category": "安全",
+      "github": "https://github.com/AntalphaAI/airdrop-hunter",
+      "description": "Web3 空投情报，每日 S/A/B 评级推送，防骗预警，自动生成空投日报",
+      "tags": ["空投", "airdrop", "零撸", "测试网", "任务", "薅羊毛", "项目", "早期", "空投猎手"],
+      "scenarios": ["查找高价值空投", "每日空投情报", "零成本空投任务", "空投项目检测"],
+      "examples": [
+        "今天有什么值得做的空投？",
+        "帮我找零成本的测试网任务",
+        "给我 S 级空投项目列表"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/airdrop-hunter",
+      "priority": 7
+    },
+    "eth-payment": {
+      "name": "eth-payment",
+      "category": "支付",
+      "github": "https://github.com/AntalphaAI/eth-payment",
+      "description": "生成 EIP-681 以太坊收款链接和二维码，支持所有 EVM 链，零配置",
+      "tags": ["收款", "付款", "payment", "EIP-681", "二维码", "QR", "发票", "转账链接", "EVM", "以太坊"],
+      "scenarios": ["生成收款链接", "创建支付二维码", "收取 ETH 或代币", "生成付款请求"],
+      "examples": [
+        "帮我生成一个收款 100 USDT 的链接",
+        "我想收 0.1 ETH，帮我生成二维码",
+        "给我创建一个 Base 链的收款地址"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/eth-payment",
+      "priority": 6
+    },
+    "walletconnect-requester": {
+      "name": "walletconnect-requester",
+      "category": "支付",
+      "github": "https://github.com/AntalphaAI/walletconnect-requester",
+      "description": "WalletConnect v2 集成，以 DApp 身份安全连接用户钱包，发起交易和签名请求，零托管",
+      "tags": ["WalletConnect", "钱包连接", "DApp", "连接钱包", "签名", "交易授权", "零托管"],
+      "scenarios": ["连接用户钱包", "请求交易签名", "DApp 钱包集成", "安全授权操作"],
+      "examples": [
+        "帮我连接用户的 MetaMask 钱包",
+        "我需要请求用户授权一笔交易",
+        "用 WalletConnect 连接钱包并发起转账"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/walletconnect-requester",
+      "priority": 5
+    },
+    "antalpha-ai-setup": {
+      "name": "antalpha-ai-setup",
+      "category": "工具",
+      "github": "https://github.com/AntalphaAI/antalpha-ai-setup",
+      "description": "Antalpha Skills MCP Server 配置向导，60+ Web3 工具一键接入，DEX/聪明钱/Polymarket/Hyperliquid/DeFi 全覆盖",
+      "tags": ["setup", "配置", "安装", "MCP", "新手", "入门", "初始化", "环境配置", "antalpha", "接入"],
+      "scenarios": ["首次配置 Antalpha MCP Server", "新手环境初始化", "接入全套 Web3 工具"],
+      "examples": [
+        "帮我配置 Antalpha AI 工具包",
+        "我想快速接入所有 AntalphaAI Web3 技能",
+        "怎么初始化 Antalpha MCP 环境？"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/antalpha-ai-setup",
+      "priority": 9
+    },
+    "antalpha-ai-docs": {
+      "name": "antalpha-ai-docs",
+      "category": "工具",
+      "github": "https://github.com/AntalphaAI/antalpha-ai-docs",
+      "description": "读取源代码自动生成/更新 Antalpha Skills MCP 文档，让 Agent 始终对齐最新 API",
+      "tags": ["文档", "docs", "API文档", "MCP", "源码", "自动生成", "antalpha", "开发者"],
+      "scenarios": ["查询 MCP 工具文档", "获取最新 API 说明", "自动同步工具文档"],
+      "examples": [
+        "帮我查一下 smart-money-watch 工具的参数",
+        "Antalpha MCP 有哪些可用工具？",
+        "帮我生成最新的 MCP 工具文档"
+      ],
+      "install": "openclaw skill install https://github.com/AntalphaAI/antalpha-ai-docs",
+      "priority": 5
+    }
+  },
+  "starter_packs": {
+    "新手入门": {
+      "label": "🎒 新手入门套装",
+      "description": "Web3 三件套，查余额 + 交易 + 查记录",
+      "skills": ["wallet-balance", "web3-trader", "transaction-receipt"],
+      "install": "openclaw skill install https://github.com/AntalphaAI/wallet-balance https://github.com/AntalphaAI/web3-trader https://github.com/AntalphaAI/transaction-receipt"
+    },
+    "安全套装": {
+      "label": "🛡️ 安全套装",
+      "description": "钱包防护 + 合约扫描 + 空投猎手",
+      "skills": ["wallet-guard", "anti-rug", "meme-token-analyzer"],
+      "install": "openclaw skill install https://github.com/AntalphaAI/wallet-guard https://github.com/AntalphaAI/anti-rug https://github.com/AntalphaAI/Meme-Token-Analyzer"
+    },
+    "交易套装": {
+      "label": "💱 交易套装",
+      "description": "全链路交易，DEX + CEX + 技术分析",
+      "skills": ["web3-trader", "cex-trader", "ta-radar"],
+      "install": "openclaw skill install https://github.com/AntalphaAI/web3-trader https://github.com/AntalphaAI/cex-trader https://github.com/AntalphaAI/TA-Radar"
+    },
+    "数据情报套装": {
+      "label": "🔭 数据情报套装",
+      "description": "聪明钱 + 社交情报 + 技术分析，全维度行情洞察",
+      "skills": ["smart-money", "crypto-social-intel", "ta-radar"],
+      "install": "openclaw skill install https://github.com/AntalphaAI/smart-money https://github.com/AntalphaAI/crypto-social-intel https://github.com/AntalphaAI/TA-Radar"
+    }
+  },
+  "hot_skills": ["web3-trader", "cex-trader", "wallet-balance", "smart-money", "anti-rug"]
+}

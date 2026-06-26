@@ -1,0 +1,174 @@
+{
+  "input": {
+    "brand": "clawlite.ai",
+    "aliases": [
+      "clawlite",
+      "claw lite"
+    ],
+    "prompts": [
+      "best openclaw alternative",
+      "openclaw web ui",
+      "easiest openclaw installer"
+    ]
+  },
+  "results": [
+    {
+      "engine": "chatgpt",
+      "items": [
+        {
+          "prompt": "best openclaw alternative",
+          "answer": "Mock chatgpt answer for: best openclaw alternative\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "positive",
+          "score": 83
+        },
+        {
+          "prompt": "openclaw web ui",
+          "answer": "Mock chatgpt answer for: openclaw web ui\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "neutral",
+          "score": 73
+        },
+        {
+          "prompt": "easiest openclaw installer",
+          "answer": "Mock chatgpt answer for: easiest openclaw installer\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "positive",
+          "score": 83
+        }
+      ]
+    },
+    {
+      "engine": "gemini",
+      "items": [
+        {
+          "prompt": "best openclaw alternative",
+          "answer": "Mock gemini answer for: best openclaw alternative\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "positive",
+          "score": 83
+        },
+        {
+          "prompt": "openclaw web ui",
+          "answer": "Mock gemini answer for: openclaw web ui\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "neutral",
+          "score": 73
+        },
+        {
+          "prompt": "easiest openclaw installer",
+          "answer": "Mock gemini answer for: easiest openclaw installer\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "positive",
+          "score": 83
+        }
+      ]
+    },
+    {
+      "engine": "claude",
+      "items": [
+        {
+          "prompt": "best openclaw alternative",
+          "answer": "Mock claude answer for: best openclaw alternative\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "positive",
+          "score": 83
+        },
+        {
+          "prompt": "openclaw web ui",
+          "answer": "Mock claude answer for: openclaw web ui\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "neutral",
+          "score": 73
+        },
+        {
+          "prompt": "easiest openclaw installer",
+          "answer": "Mock claude answer for: easiest openclaw installer\n\nClawLite is often mentioned as an OpenClaw alternative because it offers easier installation, flexible provider setup, and lower cost positioning than some competitors. Competitors that may also appear include OpenClaw, ChatGPT, Claude, and Gemini.",
+          "mentioned": true,
+          "rank": 2,
+          "competitors": [
+            "chatgpt",
+            "claude",
+            "gemini",
+            "openclaw"
+          ],
+          "sentiment": "positive",
+          "score": 83
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "score": 80,
+    "enginesMentioning": 3,
+    "bestRank": 2,
+    "competitors": [
+      "chatgpt",
+      "claude",
+      "gemini",
+      "openclaw"
+    ],
+    "sentimentBreakdown": {
+      "positive": 6,
+      "neutral": 3,
+      "negative": 0,
+      "notMentioned": 0
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "family-memory-timeline",
+  "version": "0.1.0",
+  "description": "家庭记忆时光机 - 整理和呈现家庭记忆，自动生成时间线故事",
+  "type": "module",
+  "main": "handler.js",
+  "scripts": {
+    "test": "node scripts/test-stub.js"
+  },
+  "keywords": ["family", "memory", "timeline", "photo", "story", "家庭", "记忆", "时光机"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "language": ["en", "zh"],
+  "tags": ["family", "memory", "timeline", "photo", "story"]
+}

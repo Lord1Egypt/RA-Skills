@@ -1,0 +1,15 @@
+{
+  "name": "wechat-ai-monitor",
+  "version": "1.0.0",
+  "description": "微信公众号AI/科技监控工具",
+  "main": "skill.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["wechat", "ai", "monitor", "tech", "rss"],
+  "author": "Molty",
+  "license": "MIT",
+  "dependencies": {
+    "requests": "^2.25.0"
+  }
+}

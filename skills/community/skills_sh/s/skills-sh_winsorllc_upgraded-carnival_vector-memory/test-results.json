@@ -1,0 +1,22 @@
+{
+  "passed": 4,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "Module exports",
+      "status": "passed"
+    },
+    {
+      "name": "Cosine similarity calculation",
+      "status": "passed"
+    },
+    {
+      "name": "vstore error handling",
+      "status": "passed"
+    },
+    {
+      "name": "Vector storage structure",
+      "status": "passed"
+    }
+  ]
+}

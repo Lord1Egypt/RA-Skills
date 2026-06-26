@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}} | 完整行程规划</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, {{COLOR1}} 0%, {{COLOR2}} 100%); padding: 20px; }
+    .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }
+    .header { background: linear-gradient(135deg, {{COLOR1}} 0%, {{COLOR2}} 100%); color: white; padding: 40px; text-align: center; }
+    .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .header .subtitle { font-size: 1.2em; opacity: 0.9; }
+    .header .flag { font-size: 2em; margin: 10px; }
+    .content { padding: 40px; }
+    .section { margin-bottom: 40px; }
+    .section-title { font-size: 1.8em; color: {{COLOR1}}; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid {{COLOR1}}; }
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    th { background: linear-gradient(135deg, {{COLOR1}} 0%, {{COLOR2}} 100%); color: white; padding: 15px; text-align: left; font-weight: 600; }
+    td { padding: 15px; border-bottom: 1px solid #eee; }
+    tr:hover { background: #f8f9ff; }
+    .rank { display: inline-block; width: 30px; height: 30px; line-height: 30px; text-align: center; border-radius: 50%; font-weight: bold; color: white; }
+    .rank-1 { background: #ffd700; } .rank-2 { background: #c0c0c0; } .rank-3 { background: #cd7f32; }
+    .price { font-weight: bold; color: #e74c3c; font-size: 1.1em; }
+    .route-highlight { font-weight: bold; color: {{COLOR1}}; }
+    .route-highlight-best { font-weight: bold; color: #27ae60; font-size: 1.05em; }
+    .transport-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin: 2px; }
+    .badge-flight { background: #e3f2fd; color: #1976d2; } .badge-train { background: #e8f5e9; color: #388e3c; } .badge-bus { background: #fff3e0; color: #f57c00; }
+    .flight-card { background: #f8f9ff; border-left: 4px solid {{COLOR1}}; padding: 20px; margin: 20px 0; border-radius: 4px; }
+    .flight-card h3 { color: {{COLOR1}}; margin-bottom: 15px; }
+    .flight-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .flight-table th { background: {{COLOR1}}; color: white; padding: 12px; text-align: left; font-weight: 600; }
+    .flight-table td { padding: 12px; border-bottom: 1px solid #ddd; }
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .pros, .cons { padding: 20px; border-radius: 8px; }
+    .pros { background: #d4edda; border: 1px solid #c3e6cb; } .cons { background: #f8d7da; border: 1px solid #f5c6cb; }
+    .pros h4 { color: #155724; margin-bottom: 10px; } .cons h4 { color: #721c24; margin-bottom: 10px; }
+    .pros ul, .cons ul { list-style: none; }
+    .pros li:before { content: "✅ "; } .cons li:before { content: "❌ "; }
+    .recommendation { background: linear-gradient(135deg, {{COLOR1}} 0%, {{COLOR2}} 100%); color: white; padding: 30px; border-radius: 8px; margin: 30px 0; }
+    .recommendation h2 { margin-bottom: 20px; }
+    .recommendation .highlight { font-size: 2em; font-weight: bold; display: block; margin: 15px 0; }
+    .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+    .comparison-card { background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .comparison-card.best { border-color: #ffd700; background: #fff8e6; }
+    .comparison-card h4 { color: {{COLOR1}}; margin-bottom: 15px; }
+    .itinerary { background: #f8f9ff; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .itinerary-item { display: flex; margin: 15px 0; padding: 15px; background: white; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .itinerary-day { background: {{COLOR1}}; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold; min-width: 120px; text-align: center; }
+    .itinerary-content { flex: 1; padding-left: 20px; }
+    .budget-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .budget-table td { padding: 12px; border-bottom: 1px solid #eee; }
+    .budget-table tr:last-child td { border-bottom: none; font-weight: bold; font-size: 1.2em; background: #f8f9ff; }
+    .tips { background: #fff3cd; border: 1px solid #ffc107; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .tips ul { list-style: none; }
+    .tips li:before { content: "⚠️ "; }
+    .footer { background: #f8f9ff; padding: 20px; text-align: center; color: #666; font-size: 0.9em; }
+    @media (max-width: 768px) { .header h1 { font-size: 1.8em; } .content { padding: 20px; } .pros-cons { grid-template-columns: 1fr; } .itinerary-item { flex-direction: column; } .itinerary-day { margin-bottom: 10px; } .itinerary-content { padding-left: 0; } table { font-size: 0.9em; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="flag">{{FLAG}}</div>
+      <h1>{{TITLE}}</h1>
+      <div class="subtitle">{{SUBTITLE}}</div>
+      <div style="margin-top: 15px; font-size: 1.1em;">📅 {{DATE}}</div>
+    </div>
+    
+    <div class="content">
+      <!-- 方案对比总表 -->
+      <div class="section">
+        <h2 class="section-title">📊 所有方案价格对比</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr><th>排名</th><th>方案类型</th><th>路线</th><th>总价格</th><th>差价</th><th>特点</th></tr>
+            </thead>
+            <tbody>
+              {{PLAN_ROWS}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- 交通方式对比 -->
+      <div class="section">
+        <h2 class="section-title">✈️🚄 交通方式对比</h2>
+        <div class="comparison-grid">
+          <div class="comparison-card best">
+            <h4>✈️ 飞机 - 最便宜</h4>
+            <p class="price" style="font-size: 2em;">¥{{FLIGHT_PRICE}}</p>
+            <p><strong>时间:</strong> {{FLIGHT_TIME}}</p>
+            <div class="pros" style="margin-top: 15px;"><ul><li>价格便宜</li><li>时间短</li><li>提前预订优惠</li></ul></div>
+            <div class="cons" style="margin-top: 15px;"><ul><li>需往返机场</li><li>廉航不含行李</li><li>受天气影响</li></ul></div>
+          </div>
+          <div class="comparison-card">
+            <h4>🚄 火车 - 最方便</h4>
+            <p class="price" style="font-size: 2em;">¥{{TRAIN_PRICE}}</p>
+            <p><strong>时间:</strong> {{TRAIN_TIME}}</p>
+            <div class="pros" style="margin-top: 15px;"><ul><li>市中心到市中心</li><li>风景优美</li><li>行李不限重</li></ul></div>
+            <div class="cons" style="margin-top: 15px;"><ul><li>价格较高</li><li>时间较长</li><li>需提前订票</li></ul></div>
+          </div>
+          <div class="comparison-card">
+            <h4>🚌 大巴 - 最省钱</h4>
+            <p class="price" style="font-size: 2em;">¥{{BUS_PRICE}}</p>
+            <p><strong>时间:</strong> {{BUS_TIME}}</p>
+            <div class="pros" style="margin-top: 15px;"><ul><li>价格最低</li><li>省一晚酒店</li><li>夜行可选</li></ul></div>
+            <div class="cons" style="margin-top: 15px;"><ul><li>时间很长</li><li>较累</li><li>空间狭小</li></ul></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 推荐方案详情 -->
+      <div class="section">
+        <h2 class="section-title">🏆 推荐方案详情</h2>
+        {{RECOMMENDED_PLANS}}
+      </div>
+      
+      <!-- 行程建议 -->
+      <div class="section">
+        <h2 class="section-title">📝 详细行程建议</h2>
+        <div class="itinerary">
+          {{ITINERARY_ITEMS}}
+        </div>
+      </div>
+      
+      <!-- 预算估算 -->
+      <div class="section">
+        <h2 class="section-title">💰 预算估算</h2>
+        <table class="budget-table">
+          {{BUDGET_ROWS}}
+        </table>
+      </div>
+      
+      <!-- 注意事项 -->
+      <div class="section">
+        <h2 class="section-title">⚠️ 完整注意事项</h2>
+        <div class="tips">
+          <h3 style="color: #856404; margin-bottom: 15px;">📋 出行前准备</h3>
+          <ul>{{TIPS_PREPARE}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🎒 行李准备</h3>
+          <ul>{{TIPS_LUGGAGE}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">✈️ 交通注意事项</h3>
+          <ul>{{TIPS_TRANSPORT}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🏨 住宿注意事项</h3>
+          <ul>{{TIPS_HOTEL}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🍽️ 餐饮注意事项</h3>
+          <ul>{{TIPS_FOOD}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🎫 景点注意事项</h3>
+          <ul>{{TIPS_ATTRACTION}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🔒 安全注意事项</h3>
+          <ul>{{TIPS_SAFETY}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">📱 通讯与网络</h3>
+          <ul>{{TIPS_COMM}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">💡 其他实用提示</h3>
+          <ul>{{TIPS_OTHER}}</ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">⚠️ 特别提示</h3>
+          <ul>{{TIPS_SPECIAL}}</ul>
+        </div>
+      </div>
+      
+      <!-- 推荐总结 -->
+      <div class="recommendation">
+        <h2>🏆 最终推荐</h2>
+        <span class="highlight">{{RECOMMEND_NAME}}</span>
+        <span class="highlight">总价格：{{RECOMMEND_PRICE}}</span>
+        <div style="margin-top: 20px;">
+          {{RECOMMEND_DETAILS}}
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>基于实时航班数据生成 | 行程规划报告</p>
+      <p style="margin-top: 10px;">生成时间：{{GENERATE_DATE}}</p>
+    </div>
+  </div>
+</body>
+</html>

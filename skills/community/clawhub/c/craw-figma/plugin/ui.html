@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0f0f1a;
+    --surface: #1a1a2e;
+    --surface2: #16213e;
+    --accent: #7c5cfc;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --text: #e0e0e0;
+    --text-dim: #8892a4;
+    --border: 1px solid rgba(255,255,255,0.06);
+  }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 12px; padding: 0; overflow-x: hidden; }
+  .header { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: var(--surface); border-bottom: var(--border); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .dot.connected { background: var(--green); box-shadow: 0 0 6px rgba(46,204,113,0.5); }
+  .header .info { flex: 1; }
+  .header .info .title { font-size: 12px; font-weight: 600; }
+  .header .info .sub { font-size: 10px; color: var(--text-dim); margin-top: 1px; }
+  .project-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; background: var(--surface2); border-radius: 4px; font-size: 10px; color: var(--accent); border: 1px solid rgba(124,92,252,0.2); cursor: default; }
+  .selection { padding: 8px 12px; background: var(--surface2); border-bottom: var(--border); font-size: 11px; min-height: 32px; }
+  .selection .label { color: var(--text-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+  .selection .node-info { display: flex; gap: 6px; flex-wrap: wrap; }
+  .selection .node-info .tag { display: inline-block; padding: 1px 6px; background: rgba(124,92,252,0.15); border-radius: 3px; font-size: 10px; color: var(--accent); }
+  .selection .node-info .none { color: var(--text-dim); }
+  .log-section { padding: 8px 12px; }
+  .log-section .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-dim); margin-bottom: 6px; }
+  .log { background: rgba(0,0,0,0.3); border-radius: 6px; padding: 8px; max-height: 220px; overflow-y: auto; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 10px; line-height: 1.6; }
+  .log::-webkit-scrollbar { width: 4px; }
+  .log::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .log p { margin: 1px 0; padding: 1px 4px; border-radius: 2px; }
+  .log p.cmd { color: #64b5f6; }
+  .log p.done { color: var(--green); }
+  .log p.err { color: var(--red); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="dot" id="dot"></div>
+    <div class="info">
+      <div class="title">Craw Figma</div>
+      <div class="sub" id="statusText">Plugin Active</div>
+    </div>
+    <span class="project-badge" id="projectBadge">📁 —</span>
+  </div>
+  <div class="selection">
+    <div class="label">🎯 Selection</div>
+    <div class="node-info" id="selectionInfo"><span class="none">None</span></div>
+  </div>
+  <div class="log-section">
+    <div class="label">Activity</div>
+    <div class="log" id="log"></div>
+  </div>
+  <script>
+    var dot = document.getElementById('dot');
+    var statusText = document.getElementById('statusText');
+    var logEl = document.getElementById('log');
+    var projectBadge = document.getElementById('projectBadge');
+    var selectionInfo = document.getElementById('selectionInfo');
+    var CONNECTOR = 'http://localhost:9199';
+    var connected = false;
+
+    function addLog(t, c) {
+      var p = document.createElement('p');
+      p.className = c || '';
+      p.textContent = t;
+      logEl.appendChild(p);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function sendToPlugin(m) {
+      parent.postMessage({ pluginMessage: m }, '*');
+    }
+
+    function get(url, cb) {
+      var x = new XMLHttpRequest();
+      x.open('GET', url, true);
+      x.timeout = 5000;
+      x.onload = function() {
+        try { cb(null, JSON.parse(x.responseText)); }
+        catch(e) { cb(null, null); }
+      };
+      x.onerror = function(e) { cb(e, null); };
+      x.send();
+    }
+
+    function post(url, b, cb) {
+      var x = new XMLHttpRequest();
+      x.open('POST', url, true);
+      x.setRequestHeader('Content-Type', 'application/json');
+      x.timeout = 5000;
+      x.onload = function() {
+        try { cb(null, JSON.parse(x.responseText)); }
+        catch(e) { cb(null, null); }
+      };
+      x.onerror = function(e) { cb(e, null); };
+      x.send(b);
+    }
+
+    function checkHealth() {
+      get(CONNECTOR + '/health?t=' + Date.now(), function(err, data) {
+        if (err || !data) {
+          if (connected) {
+            connected = false;
+            dot.className = 'dot';
+            statusText.textContent = 'Disconnected';
+            addLog('\u26A0\uFE0F Disconnected', 'err');
+          }
+          return;
+        }
+        if (!connected) {
+          connected = true;
+          dot.className = 'dot connected';
+          statusText.textContent = 'Connected to Craw';
+          addLog('\uD83E\uDD80 Connected to Craw', '');
+        }
+      });
+    }
+
+    function pollCommand() {
+      get(CONNECTOR + '/next-command?t=' + Date.now(), function(err, data) {
+        if (err || !data) return;
+        if (data.command) {
+          sendToPlugin({ type: 'command', cmd: data.command });
+        }
+      });
+    }
+
+    // Handle messages from plugin code
+    window.addEventListener('message', function(event) {
+      var msg = event.data.pluginMessage || event.data;
+      if (!msg) return;
+
+      if (msg.type === 'page-info') {
+        projectBadge.textContent = '\uD83D\uDCC1 ' + msg.name;
+        return;
+      }
+      if (msg.type === 'selection-update') {
+        if (msg.nodes && msg.nodes.length > 0) {
+          var h = '';
+          msg.nodes.forEach(function(n) {
+            h += '<span class="tag">' + n.name + ' <span style="color:var(--text-dim)">' + n.type + '</span></span>';
+          });
+          selectionInfo.innerHTML = h;
+        } else {
+          selectionInfo.innerHTML = '<span class="none">None</span>';
+        }
+        return;
+      }
+      if (msg.type === 'log') {
+        addLog(msg.text, msg.level);
+        return;
+      }
+      // Plugin wants to send command result to connector
+      if (msg.type === 'command-result') {
+        post(CONNECTOR + '/result', JSON.stringify({ id: msg.commandId, status: msg.status, data: msg.data }), function() {});
+        return;
+      }
+      // Plugin sends exported PNG as base64 via connector
+      if (msg.type === 'export-base64') {
+        post(CONNECTOR + '/upload-png', JSON.stringify({ id: msg.id, base64: msg.base64, format: msg.format, name: msg.name }), function() {});
+        return;
+      }
+      // Plugin wants us to poll
+      if (msg.type === 'poll-command') {
+        pollCommand();
+        return;
+      }
+    });
+
+    checkHealth();
+    setInterval(checkHealth, 3000);
+    // Also poll commands directly from UI in case plugin ready is slow
+    setInterval(pollCommand, 2000);
+    setTimeout(pollCommand, 500);
+  </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+This folder is the clean ClawHub upload bundle for OpenClaw Studio.
+It intentionally excludes logs, pid files, jsonl history, runtime state, and __pycache__.

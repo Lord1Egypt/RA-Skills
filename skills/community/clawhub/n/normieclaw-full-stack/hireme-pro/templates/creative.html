@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1e293b; line-height: 1.5; padding: 0; }
+  .hero { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; padding: 40px 36px 28px; }
+  .hero h1 { font-size: 34px; font-weight: 800; margin-bottom: 4px; }
+  .hero .tagline { font-size: 15px; font-weight: 300; color: #e0e7ff; margin-bottom: 14px; }
+  .hero .contact { font-size: 13px; color: #c7d2fe; }
+  .hero .contact span { margin-right: 14px; }
+  .content { padding: 28px 36px; }
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #6366f1; margin-bottom: 12px; padding-bottom: 4px; border-bottom: 2px solid #e0e7ff; }
+  .summary { font-size: 14px; color: #475569; line-height: 1.7; }
+  .experience-entry { margin-bottom: 18px; padding-left: 16px; border-left: 3px solid #e0e7ff; }
+  .entry-header h3 { font-size: 16px; font-weight: 700; color: #1e293b; }
+  .company { font-size: 14px; color: #6366f1; font-weight: 500; }
+  .dates { font-size: 13px; color: #94a3b8; }
+  ul { margin: 6px 0 0 18px; }
+  li { font-size: 14px; margin-bottom: 4px; color: #334155; }
+  .education-entry { margin-bottom: 10px; }
+  .education-entry h3 { font-size: 15px; font-weight: 600; }
+  .institution { font-size: 13px; color: #6366f1; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill { background: #eef2ff; color: #4338ca; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>{{name}}</h1>
+    <div class="tagline">{{summary}}</div>
+    <div class="contact">
+      <span>{{contact.email}}</span>
+      <span>{{contact.phone}}</span>
+      <span>{{contact.location}}</span>
+      <span>{{contact.linkedin}}</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="section">
+      <div class="section-title">Experience</div>
+      {{experience_section}}
+    </div>
+
+    <div class="section">
+      <div class="section-title">Education</div>
+      {{education_section}}
+    </div>
+
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <p>{{skills_list}}</p>
+    </div>
+  </div>
+</body>
+</html>

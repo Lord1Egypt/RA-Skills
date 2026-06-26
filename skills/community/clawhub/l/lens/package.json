@@ -1,0 +1,8 @@
+{
+  "name": "lens-skill",
+  "version": "1.2.3",
+  "description": "An evolving digital shadow for OpenClaw.",
+  "author": "Joshua Britt",
+  "private": false,
+  "type": "module"
+}

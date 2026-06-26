@@ -1,0 +1,92 @@
+--------------------------------------------------------------------------------
+title: "list"
+description: "List installed skills across AI agents."
+source: "/llms/commands/list.txt"
+--------------------------------------------------------------------------------
+
+# list — List Installed Skills
+
+Display all installed skills, grouped by AI agent.
+
+## Syntax
+
+```bash
+ai-skills list [options]
+```
+
+**Aliases**: `ls`
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-p, --project` | List project-level skills (default) |
+| `-g, --global` | List globally installed skills |
+| `-t, --target <dir>` | List skills in custom directory |
+| `--dir <dir>` | List skills in exact directory (skips agent resolution) |
+| `-a, --agents <names>` | Filter by specific agent(s) |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Behavior
+
+### CLI Mode
+
+- Resolves base directory and agents
+- Scans for installed skills using `scanSkills`
+- Groups results by agent with formatted headers
+- Shows summary with total count
+- Empty results show warning
+- `resolveBase` failure shows error
+
+### Pure Mode
+
+- Same scanning logic but all output via `console.log` (no ANSI codes)
+- Each skill entry outputs agent name, skill name, and path
+- Symlink entries show target path
+- `--dir` mode skips agent resolution, scans the directory directly
+- Unrecognized agents in `--agents` output a warning line
+
+## Examples
+
+```bash
+# List project skills
+ai-skills list --project --pure
+
+# List global skills
+ai-skills list --global --pure
+
+# List skills in specific directory
+ai-skills list --dir /custom/path --pure
+
+# List skills for specific agents
+ai-skills list --agents cursor,windsurf --pure
+```
+
+## Pure Mode Output
+
+**Skills found:**
+```
+cursor / test-skill  /project/.cursor/skills/test-skill
+Total: 1 skill(s) found.
+```
+
+**Symlink entry:**
+```
+cursor / test-skill  /project/.cursor/skills/test-skill -> /global/.skills/test-skill
+```
+
+**No skills:**
+```
+No skills found.
+```
+
+**Invalid directory:**
+```
+Error: Directory not found: /bad
+```
+
+**Unrecognized agent:**
+```
+Warning: unrecognized agent "unknown-agent"
+```

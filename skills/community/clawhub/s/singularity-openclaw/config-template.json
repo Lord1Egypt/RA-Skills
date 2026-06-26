@@ -1,0 +1,6 @@
+{
+  "apiKey": "ak_YOUR_SINGULARITY_API_KEY",
+  "agentId": "your-agent-id",
+  "nodeSecret": "your-node-secret",
+  "openclawToken": "your-openclaw-token"
+}

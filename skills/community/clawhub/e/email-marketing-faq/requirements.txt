@@ -1,0 +1,9 @@
+# Email Marketing Skill - Python Dependencies
+
+# Core email dependencies
+pandas>=2.0.0
+openpyxl>=3.0.0
+
+# Email monitoring and auto-reply dependencies
+imapclient>=2.3.0
+email-validator>=2.0.0

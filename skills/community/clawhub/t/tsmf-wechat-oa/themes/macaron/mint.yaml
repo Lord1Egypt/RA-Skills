@@ -1,0 +1,75 @@
+name: 马卡龙薄荷
+description: 清爽自然的马卡龙薄荷色系，适合健康、环保、清新向文章
+keywords:
+  - 健康
+  - 环保
+  - 清新
+  - 自然
+  - 植物
+  - 绿茶
+  - 瑜伽
+  - 养生
+  - 有机
+  - 绿色
+  - 生态
+  - 环保生活
+  - 健康饮食
+colors:
+  primary: "#14b8a6"
+  accent: "#0d9488"
+  secondary: "#ccfbf1"
+  background: "#f0fdfa"
+  text: "#3d5a5a"
+  text_light: "#3d5a5a"
+  border: "#5eead4"
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.8"
+    letter_spacing: "0.3px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "20px"
+    font_weight: "bold"
+    margin: "24px 0 16px 0"
+    padding: "0 16px"
+    text_align: "center"
+  h2:
+    font_size: "17px"
+    font_weight: "bold"
+    margin: "20px 0 12px 0"
+    padding: "12px 16px"
+    border_radius: "8px"
+  h3:
+    font_size: "16px"
+    font_weight: "bold"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "15px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_left: "4px solid #5eead4"
+    line_height: "1.7"
+  code_inline:
+    font_size: "14px"
+    padding: "2px 6px"
+    border_radius: "4px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "8px"
+    border: "1px solid #99f6e4"
+    line_height: "1.6"
+  list:
+    font_size: "16px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.8"
+  separator:
+    border_top: "2px solid #99f6e4"
+    margin: "24px 20%"
+  image:
+    border_radius: "12px"

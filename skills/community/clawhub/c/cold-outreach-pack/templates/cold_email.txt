@@ -1,0 +1,86 @@
+# Cold Email Templates
+
+## B2B SaaS Template
+
+```
+Subject: [Name], quick question about [Company]
+
+Hi [Name],
+
+I noticed [specific insight about their company or role].
+
+Most [role] struggle with [common pain point] - we've helped [similar company] achieve [specific result].
+
+Would a 10-minute call make sense to explore if there's a fit?
+
+Best,
+[Your name]
+```
+
+## Investor Outreach Template
+
+```
+Subject: [Company] founder reaching out
+
+Hi [Name],
+
+I'm building [company] - [one sentence on what you do].
+
+I know you're invested in [sector], and I'd love to get your perspective on [specific question].
+
+No pitch - just genuinely curious about your thoughts.
+
+Best,
+[Your name]
+```
+
+## Partnership Template
+
+```
+Subject: Partnership idea for [Company]
+
+Hi [Name],
+
+I've been following [Company]'s work on [project/initiative] - impressive stuff.
+
+We work with companies like [similar companies] to [value proposition].
+
+Would you be open to a quick call to explore if there's a natural fit?
+
+Best,
+[Your name]
+```
+
+## Freelancer Client Template
+
+```
+Subject: Quick question about [Company]'s [need]
+
+Hi [Name],
+
+I help [target companies] with [service] - currently working with [2-3 examples].
+
+Saw your post about [topic] and had some ideas that might help.
+
+Worth a quick 10-minute chat?
+
+Best,
+[Your name]
+```
+
+## Job Seeker's Outreach Template
+
+```
+Subject: [Role] opportunity question
+
+Hi [Name],
+
+I'm reaching out about potential opportunities at [Company].
+
+[One sentence on background + why this company specifically].
+
+Would you be open to a brief call to learn more about the team?
+
+Best,
+[Your name]
+```

@@ -1,0 +1,19 @@
+{
+  "emoji": "📊",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": "0 8 * * *",
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "calibration_report.py"
+  },
+  "tunables": [
+    {"env": "CALIB_JOURNAL_PATH", "type": "string", "default": "", "label": "Path to trade journal JSONL"},
+    {"env": "CALIB_MIN_TRADES", "type": "number", "default": 10, "range": [1, 100], "step": 1, "label": "Min trades to show a breakdown segment"},
+    {"env": "CALIB_LOOKBACK_DAYS", "type": "number", "default": 30, "range": [7, 365], "step": 7, "label": "Lookback window in days"},
+    {"env": "CALIB_INCLUDE_UNRESOLVED", "type": "boolean", "default": false, "label": "Include unresolved trades in counts"}
+  ]
+}

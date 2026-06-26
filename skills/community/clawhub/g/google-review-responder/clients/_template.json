@@ -1,0 +1,9 @@
+{
+  "business_name": "Example Business LLC",
+  "account_id": "YOUR_GBP_ACCOUNT_ID",
+  "location_id": "YOUR_GBP_LOCATION_ID",
+  "oauth_client_id": "YOUR_GOOGLE_CLOUD_CLIENT_ID.apps.googleusercontent.com",
+  "oauth_client_secret": "YOUR_GOOGLE_CLOUD_CLIENT_SECRET",
+  "refresh_token": "YOUR_OAUTH_REFRESH_TOKEN",
+  "notes": "Optional notes about this client or their preferred tone"
+}

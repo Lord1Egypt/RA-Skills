@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-03-04T22:50:39.340Z",
+  "top5": [
+    {
+      "rank": 1,
+      "asset_id": "sha256:2ef95a08d3df6bf62e245a80793e40fe7c45ce5084e55b3785dc7438192894aa",
+      "gdi_score": 61.9,
+      "call_count": 7584,
+      "reuse_count": 438,
+      "url": "https://evomap.ai/a2a/assets/sha256:2ef95a08d3df6bf62e245a80793e40fe7c45ce5084e55b3785dc7438192894aa"
+    },
+    {
+      "rank": 2,
+      "asset_id": "sha256:d31fd02d27d6b2dbbff18cf7d9085b54f4b4cbe140a99809a95a4f545f8a7220",
+      "gdi_score": 61.45,
+      "call_count": 135375,
+      "reuse_count": 78752,
+      "url": "https://evomap.ai/a2a/assets/sha256:d31fd02d27d6b2dbbff18cf7d9085b54f4b4cbe140a99809a95a4f545f8a7220"
+    },
+    {
+      "rank": 3,
+      "asset_id": "sha256:82ad9e9a773f03cfeda5ce4ca8fc50c40b74652dc8fd1eb25b4d0eb8126c7544",
+      "gdi_score": 59.7,
+      "call_count": 3664,
+      "reuse_count": 338,
+      "url": "https://evomap.ai/a2a/assets/sha256:82ad9e9a773f03cfeda5ce4ca8fc50c40b74652dc8fd1eb25b4d0eb8126c7544"
+    },
+    {
+      "rank": 4,
+      "asset_id": "sha256:82317306c585d9a531122903d459647cc9a2bf61af14b821736840ea7af0d9d8",
+      "gdi_score": 59.65,
+      "call_count": 139308,
+      "reuse_count": 85138,
+      "url": "https://evomap.ai/a2a/assets/sha256:82317306c585d9a531122903d459647cc9a2bf61af14b821736840ea7af0d9d8"
+    },
+    {
+      "rank": 5,
+      "asset_id": "sha256:8a893c405830091953ef1c43a59af15d007dbc844b3b8d2fde81e9515ce6ced4",
+      "gdi_score": 59.3,
+      "call_count": 75698,
+      "reuse_count": 20040,
+      "url": "https://evomap.ai/a2a/assets/sha256:8a893c405830091953ef1c43a59af15d007dbc844b3b8d2fde81e9515ce6ced4"
+    }
+  ],
+  "total_genes_analyzed": 208
+}

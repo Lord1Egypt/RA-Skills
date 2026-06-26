@@ -1,0 +1,23 @@
+{
+  "name": "@opensea/skill",
+  "version": "2.15.2",
+  "description": "Agent Skills for the OpenSea API — query NFT and token data, execute Seaport trades, swap ERC20 tokens, set up wallets, and build AI agent tools.",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/ProjectOpenSea/opensea-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProjectOpenSea/opensea-skill"
+  },
+  "keywords": [
+    "opensea",
+    "nft",
+    "seaport",
+    "agent-skill",
+    "mcp",
+    "skill"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

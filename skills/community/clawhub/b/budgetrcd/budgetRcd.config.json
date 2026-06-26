@@ -1,0 +1,52 @@
+{
+  "_comment": "budgetRcd 个人配置 - 所有操作都在此路径下进行",
+  "user": "Asher",
+  "timezone": "Asia/Shanghai",
+  "paths": {
+    "root": "~/Documents/02_Personal/01_Budget",
+    "data": "~/Documents/02_Personal/01_Budget/data",
+    "config": "~/Documents/02_Personal/01_Budget/config",
+    "images": "~/Documents/02_Personal/01_Budget/images"
+  },
+  "budget_rules": {
+    "weekday": 100,
+    "weekend": 200
+  },
+  "pools": {
+    "food": {
+      "name": "餐饮",
+      "budget": 2500
+    },
+    "fun": {
+      "name": "娱乐",
+      "budget": 300
+    },
+    "extra": {
+      "name": "额外开销",
+      "budget": 500
+    },
+    "fixed": {
+      "name": "固定支出",
+      "budget": 200
+    },
+    "transport": {
+      "name": "交通",
+      "budget": 200
+    }
+  },
+  "dynamic_budget": {
+    "enabled": true
+  },
+  "reminder_day": 16,
+  "pool_name_to_id": {
+    "餐饮": "food",
+    "娱乐": "fun",
+    "额外": "extra",
+    "额外开销": "extra",
+    "固定": "fixed",
+    "固定支出": "fixed",
+    "话费": "fixed",
+    "交通": "transport",
+    "地铁": "transport"
+  }
+}

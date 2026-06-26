@@ -1,0 +1,721 @@
+{
+  "producer": "slide-creator",
+  "manifest_version": "1.0.0",
+  "generated_at": "2026-04-25",
+  "upstream_repo": "slide-creator",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "source_snapshot_root": "source_snapshot",
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "global_reference_refs": [
+    "references/aurora-mesh.md",
+    "references/base-css.md",
+    "references/blue-sky-starter.html",
+    "references/bold-signal.md",
+    "references/brief-template.json",
+    "references/chinese-chan.md",
+    "references/composition-8.md",
+    "references/composition-guide.md",
+    "references/creative-voltage.md",
+    "references/dark-botanical.md",
+    "references/data-story.md",
+    "references/design-quality.md",
+    "references/design-system.md",
+    "references/diagram-patterns.md",
+    "references/electric-studio.md",
+    "references/enterprise-dark.md",
+    "references/glassmorphism.md",
+    "references/html-template.md",
+    "references/impeccable-anti-patterns.md",
+    "references/js-engine.md",
+    "references/modern-newspaper.md",
+    "references/neo-brutalism.md",
+    "references/neo-retro-dev.md",
+    "references/neon-cyber.md",
+    "references/notebook-tabs.md",
+    "references/paper-ink.md",
+    "references/pastel-geometry.md",
+    "references/planning-template.md",
+    "references/pptx-extraction.md",
+    "references/review-checklist.md",
+    "references/split-pastel.md",
+    "references/style-index.md",
+    "references/swiss-modern.md",
+    "references/terminal-green.md",
+    "references/title-profile-registry.json",
+    "references/title-quality.md",
+    "references/vintage-editorial.md",
+    "references/workflow.md"
+  ],
+  "global_reference_snapshot_refs": [
+    "source_snapshot/references/aurora-mesh.md",
+    "source_snapshot/references/base-css.md",
+    "source_snapshot/references/blue-sky-starter.html",
+    "source_snapshot/references/bold-signal.md",
+    "source_snapshot/references/brief-template.json",
+    "source_snapshot/references/chinese-chan.md",
+    "source_snapshot/references/composition-8.md",
+    "source_snapshot/references/composition-guide.md",
+    "source_snapshot/references/creative-voltage.md",
+    "source_snapshot/references/dark-botanical.md",
+    "source_snapshot/references/data-story.md",
+    "source_snapshot/references/design-quality.md",
+    "source_snapshot/references/design-system.md",
+    "source_snapshot/references/diagram-patterns.md",
+    "source_snapshot/references/electric-studio.md",
+    "source_snapshot/references/enterprise-dark.md",
+    "source_snapshot/references/glassmorphism.md",
+    "source_snapshot/references/html-template.md",
+    "source_snapshot/references/impeccable-anti-patterns.md",
+    "source_snapshot/references/js-engine.md",
+    "source_snapshot/references/modern-newspaper.md",
+    "source_snapshot/references/neo-brutalism.md",
+    "source_snapshot/references/neo-retro-dev.md",
+    "source_snapshot/references/neon-cyber.md",
+    "source_snapshot/references/notebook-tabs.md",
+    "source_snapshot/references/paper-ink.md",
+    "source_snapshot/references/pastel-geometry.md",
+    "source_snapshot/references/planning-template.md",
+    "source_snapshot/references/pptx-extraction.md",
+    "source_snapshot/references/review-checklist.md",
+    "source_snapshot/references/split-pastel.md",
+    "source_snapshot/references/style-index.md",
+    "source_snapshot/references/swiss-modern.md",
+    "source_snapshot/references/terminal-green.md",
+    "source_snapshot/references/title-profile-registry.json",
+    "source_snapshot/references/title-quality.md",
+    "source_snapshot/references/vintage-editorial.md",
+    "source_snapshot/references/workflow.md"
+  ],
+  "global_demo_refs": [
+    "demos/ai-native-org-transformation-guide-zh.html",
+    "demos/aurora-mesh-en.html",
+    "demos/aurora-mesh-zh.html",
+    "demos/blue-sky-en.html",
+    "demos/blue-sky-zh.html",
+    "demos/bold-signal-en.html",
+    "demos/bold-signal-zh.html",
+    "demos/chinese-chan-en.html",
+    "demos/chinese-chan-zh.html",
+    "demos/creative-voltage-en.html",
+    "demos/creative-voltage-zh.html",
+    "demos/dark-botanical-en.html",
+    "demos/dark-botanical-zh.html",
+    "demos/data-story-en.html",
+    "demos/data-story-zh.html",
+    "demos/electric-studio-en.html",
+    "demos/electric-studio-zh.html",
+    "demos/enterprise-dark-en.html",
+    "demos/enterprise-dark-zh.html",
+    "demos/glassmorphism-en.html",
+    "demos/glassmorphism-zh.html",
+    "demos/modern-newspaper-en.html",
+    "demos/modern-newspaper-zh.html",
+    "demos/neo-brutalism-en.html",
+    "demos/neo-brutalism-zh.html",
+    "demos/neo-retro-dev-en.html",
+    "demos/neo-retro-dev-zh.html",
+    "demos/neon-cyber-en.html",
+    "demos/neon-cyber-zh.html",
+    "demos/notebook-tabs-en.html",
+    "demos/notebook-tabs-zh.html",
+    "demos/paper-ink-en.html",
+    "demos/paper-ink-zh.html",
+    "demos/pastel-geometry-en.html",
+    "demos/pastel-geometry-zh.html",
+    "demos/slide-creator-intro.html",
+    "demos/split-pastel-en.html",
+    "demos/split-pastel-zh.html",
+    "demos/swiss-modern-en.html",
+    "demos/swiss-modern-zh.html",
+    "demos/terminal-green-en.html",
+    "demos/terminal-green-zh.html",
+    "demos/vintage-editorial-en.html",
+    "demos/vintage-editorial-zh.html"
+  ],
+  "global_demo_snapshot_refs": [
+    "source_snapshot/demos/ai-native-org-transformation-guide-zh.html",
+    "source_snapshot/demos/aurora-mesh-en.html",
+    "source_snapshot/demos/aurora-mesh-zh.html",
+    "source_snapshot/demos/blue-sky-en.html",
+    "source_snapshot/demos/blue-sky-zh.html",
+    "source_snapshot/demos/bold-signal-en.html",
+    "source_snapshot/demos/bold-signal-zh.html",
+    "source_snapshot/demos/chinese-chan-en.html",
+    "source_snapshot/demos/chinese-chan-zh.html",
+    "source_snapshot/demos/creative-voltage-en.html",
+    "source_snapshot/demos/creative-voltage-zh.html",
+    "source_snapshot/demos/dark-botanical-en.html",
+    "source_snapshot/demos/dark-botanical-zh.html",
+    "source_snapshot/demos/data-story-en.html",
+    "source_snapshot/demos/data-story-zh.html",
+    "source_snapshot/demos/electric-studio-en.html",
+    "source_snapshot/demos/electric-studio-zh.html",
+    "source_snapshot/demos/enterprise-dark-en.html",
+    "source_snapshot/demos/enterprise-dark-zh.html",
+    "source_snapshot/demos/glassmorphism-en.html",
+    "source_snapshot/demos/glassmorphism-zh.html",
+    "source_snapshot/demos/modern-newspaper-en.html",
+    "source_snapshot/demos/modern-newspaper-zh.html",
+    "source_snapshot/demos/neo-brutalism-en.html",
+    "source_snapshot/demos/neo-brutalism-zh.html",
+    "source_snapshot/demos/neo-retro-dev-en.html",
+    "source_snapshot/demos/neo-retro-dev-zh.html",
+    "source_snapshot/demos/neon-cyber-en.html",
+    "source_snapshot/demos/neon-cyber-zh.html",
+    "source_snapshot/demos/notebook-tabs-en.html",
+    "source_snapshot/demos/notebook-tabs-zh.html",
+    "source_snapshot/demos/paper-ink-en.html",
+    "source_snapshot/demos/paper-ink-zh.html",
+    "source_snapshot/demos/pastel-geometry-en.html",
+    "source_snapshot/demos/pastel-geometry-zh.html",
+    "source_snapshot/demos/slide-creator-intro.html",
+    "source_snapshot/demos/split-pastel-en.html",
+    "source_snapshot/demos/split-pastel-zh.html",
+    "source_snapshot/demos/swiss-modern-en.html",
+    "source_snapshot/demos/swiss-modern-zh.html",
+    "source_snapshot/demos/terminal-green-en.html",
+    "source_snapshot/demos/terminal-green-zh.html",
+    "source_snapshot/demos/vintage-editorial-en.html",
+    "source_snapshot/demos/vintage-editorial-zh.html"
+  ],
+  "presets": [
+    {
+      "slug": "bold-signal",
+      "preset": "Bold Signal",
+      "contract_id": "slide-creator/bold-signal",
+      "contract_version": "1.0.0",
+      "family": "high-contrast-keynote",
+      "producer_version_tested": "2.16.0",
+      "contract_path": "presets/bold-signal.json",
+      "source_refs": [
+        "references/bold-signal.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/bold-signal-zh.html",
+        "demos/bold-signal-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/bold-signal.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/bold-signal-zh.html",
+        "source_snapshot/demos/bold-signal-en.html"
+      ]
+    },
+    {
+      "slug": "electric-studio",
+      "preset": "Electric Studio",
+      "contract_id": "slide-creator/electric-studio",
+      "contract_version": "1.0.0",
+      "family": "clean-professional-studio",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/electric-studio.json",
+      "source_refs": [
+        "references/electric-studio.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/electric-studio-zh.html",
+        "demos/electric-studio-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/electric-studio.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/electric-studio-zh.html",
+        "source_snapshot/demos/electric-studio-en.html"
+      ]
+    },
+    {
+      "slug": "creative-voltage",
+      "preset": "Creative Voltage",
+      "contract_id": "slide-creator/creative-voltage",
+      "contract_version": "1.0.0",
+      "family": "energetic-retro-modern",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/creative-voltage.json",
+      "source_refs": [
+        "references/creative-voltage.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/creative-voltage-zh.html",
+        "demos/creative-voltage-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/creative-voltage.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/creative-voltage-zh.html",
+        "source_snapshot/demos/creative-voltage-en.html"
+      ]
+    },
+    {
+      "slug": "dark-botanical",
+      "preset": "Dark Botanical",
+      "contract_id": "slide-creator/dark-botanical",
+      "contract_version": "1.0.0",
+      "family": "elegant-premium-botanical",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/dark-botanical.json",
+      "source_refs": [
+        "references/dark-botanical.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/dark-botanical-zh.html",
+        "demos/dark-botanical-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/dark-botanical.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/dark-botanical-zh.html",
+        "source_snapshot/demos/dark-botanical-en.html"
+      ]
+    },
+    {
+      "slug": "blue-sky",
+      "preset": "Blue Sky",
+      "contract_id": "slide-creator/blue-sky",
+      "contract_version": "1.0.0",
+      "family": "bright-card-stack",
+      "producer_version_tested": "2.16.0",
+      "contract_path": "presets/blue-sky.json",
+      "source_refs": [
+        "references/blue-sky-starter.html",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/blue-sky-zh.html",
+        "demos/blue-sky-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/blue-sky-starter.html",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/blue-sky-zh.html",
+        "source_snapshot/demos/blue-sky-en.html"
+      ]
+    },
+    {
+      "slug": "notebook-tabs",
+      "preset": "Notebook Tabs",
+      "contract_id": "slide-creator/notebook-tabs",
+      "contract_version": "1.0.0",
+      "family": "editorial-organized-notebook",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/notebook-tabs.json",
+      "source_refs": [
+        "references/notebook-tabs.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/notebook-tabs-zh.html",
+        "demos/notebook-tabs-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/notebook-tabs.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/notebook-tabs-zh.html",
+        "source_snapshot/demos/notebook-tabs-en.html"
+      ]
+    },
+    {
+      "slug": "pastel-geometry",
+      "preset": "Pastel Geometry",
+      "contract_id": "slide-creator/pastel-geometry",
+      "contract_version": "1.0.0",
+      "family": "friendly-soft-geometric",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/pastel-geometry.json",
+      "source_refs": [
+        "references/pastel-geometry.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/pastel-geometry-zh.html",
+        "demos/pastel-geometry-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/pastel-geometry.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/pastel-geometry-zh.html",
+        "source_snapshot/demos/pastel-geometry-en.html"
+      ]
+    },
+    {
+      "slug": "split-pastel",
+      "preset": "Split Pastel",
+      "contract_id": "slide-creator/split-pastel",
+      "contract_version": "1.0.0",
+      "family": "playful-modern-split",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/split-pastel.json",
+      "source_refs": [
+        "references/split-pastel.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/split-pastel-zh.html",
+        "demos/split-pastel-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/split-pastel.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/split-pastel-zh.html",
+        "source_snapshot/demos/split-pastel-en.html"
+      ]
+    },
+    {
+      "slug": "vintage-editorial",
+      "preset": "Vintage Editorial",
+      "contract_id": "slide-creator/vintage-editorial",
+      "contract_version": "1.0.0",
+      "family": "witty-personality-editorial",
+      "producer_version_tested": "2.17.0",
+      "contract_path": "presets/vintage-editorial.json",
+      "source_refs": [
+        "references/vintage-editorial.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/vintage-editorial-zh.html",
+        "demos/vintage-editorial-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/vintage-editorial.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/vintage-editorial-zh.html",
+        "source_snapshot/demos/vintage-editorial-en.html"
+      ]
+    },
+    {
+      "slug": "neon-cyber",
+      "preset": "Neon Cyber",
+      "contract_id": "slide-creator/neon-cyber",
+      "contract_version": "1.0.0",
+      "family": "futuristic-cyberpunk-tech",
+      "producer_version_tested": "2.17.0",
+      "contract_path": "presets/neon-cyber.json",
+      "source_refs": [
+        "references/neon-cyber.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/neon-cyber-zh.html",
+        "demos/neon-cyber-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/neon-cyber.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/neon-cyber-zh.html",
+        "source_snapshot/demos/neon-cyber-en.html"
+      ]
+    },
+    {
+      "slug": "terminal-green",
+      "preset": "Terminal Green",
+      "contract_id": "slide-creator/terminal-green",
+      "contract_version": "1.0.0",
+      "family": "developer-terminal-mono",
+      "producer_version_tested": "2.16.0",
+      "contract_path": "presets/terminal-green.json",
+      "source_refs": [
+        "references/terminal-green.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/terminal-green-zh.html",
+        "demos/terminal-green-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/terminal-green.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/terminal-green-zh.html",
+        "source_snapshot/demos/terminal-green-en.html"
+      ]
+    },
+    {
+      "slug": "swiss-modern",
+      "preset": "Swiss Modern",
+      "contract_id": "slide-creator/swiss-modern",
+      "contract_version": "1.0.0",
+      "family": "editorial-swiss",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/swiss-modern.json",
+      "source_refs": [
+        "references/swiss-modern.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/swiss-modern-zh.html",
+        "demos/swiss-modern-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/swiss-modern.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/swiss-modern-zh.html",
+        "source_snapshot/demos/swiss-modern-en.html"
+      ],
+      "support_tiers": [
+        "canonical",
+        "compatible",
+        "fallback"
+      ]
+    },
+    {
+      "slug": "paper-ink",
+      "preset": "Paper & Ink",
+      "contract_id": "slide-creator/paper-ink",
+      "contract_version": "1.0.0",
+      "family": "literary-thoughtful-editorial",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/paper-ink.json",
+      "source_refs": [
+        "references/paper-ink.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/paper-ink-zh.html",
+        "demos/paper-ink-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/paper-ink.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/paper-ink-zh.html",
+        "source_snapshot/demos/paper-ink-en.html"
+      ]
+    },
+    {
+      "slug": "aurora-mesh",
+      "preset": "Aurora Mesh",
+      "contract_id": "slide-creator/aurora-mesh",
+      "contract_version": "1.0.0",
+      "family": "premium-saas-aurora",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/aurora-mesh.json",
+      "source_refs": [
+        "references/aurora-mesh.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/aurora-mesh-zh.html",
+        "demos/aurora-mesh-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/aurora-mesh.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/aurora-mesh-zh.html",
+        "source_snapshot/demos/aurora-mesh-en.html"
+      ]
+    },
+    {
+      "slug": "enterprise-dark",
+      "preset": "Enterprise Dark",
+      "contract_id": "slide-creator/enterprise-dark",
+      "contract_version": "1.0.0",
+      "family": "consulting-dark",
+      "producer_version_tested": "2.15.0",
+      "contract_path": "presets/enterprise-dark.json",
+      "source_refs": [
+        "references/enterprise-dark.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/enterprise-dark-zh.html",
+        "demos/enterprise-dark-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/enterprise-dark.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/enterprise-dark-zh.html",
+        "source_snapshot/demos/enterprise-dark-en.html"
+      ]
+    },
+    {
+      "slug": "glassmorphism",
+      "preset": "Glassmorphism",
+      "contract_id": "slide-creator/glassmorphism",
+      "contract_version": "1.0.0",
+      "family": "translucent-consumer-modern",
+      "producer_version_tested": "2.17.0",
+      "contract_path": "presets/glassmorphism.json",
+      "source_refs": [
+        "references/glassmorphism.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/glassmorphism-zh.html",
+        "demos/glassmorphism-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/glassmorphism.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/glassmorphism-zh.html",
+        "source_snapshot/demos/glassmorphism-en.html"
+      ]
+    },
+    {
+      "slug": "neo-brutalism",
+      "preset": "Neo-Brutalism",
+      "contract_id": "slide-creator/neo-brutalism",
+      "contract_version": "1.0.0",
+      "family": "bold-uncompromising-manifesto",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/neo-brutalism.json",
+      "source_refs": [
+        "references/neo-brutalism.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/neo-brutalism-zh.html",
+        "demos/neo-brutalism-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/neo-brutalism.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/neo-brutalism-zh.html",
+        "source_snapshot/demos/neo-brutalism-en.html"
+      ]
+    },
+    {
+      "slug": "chinese-chan",
+      "preset": "Chinese Chan",
+      "contract_id": "slide-creator/chinese-chan",
+      "contract_version": "1.0.0",
+      "family": "contemplative-editorial-serif",
+      "producer_version_tested": "unknown",
+      "contract_path": "presets/chinese-chan.json",
+      "source_refs": [
+        "references/chinese-chan.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/chinese-chan-zh.html",
+        "demos/chinese-chan-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/chinese-chan.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/chinese-chan-zh.html",
+        "source_snapshot/demos/chinese-chan-en.html"
+      ]
+    },
+    {
+      "slug": "data-story",
+      "preset": "Data Story",
+      "contract_id": "slide-creator/data-story",
+      "contract_version": "1.0.0",
+      "family": "data-visual-narrative",
+      "producer_version_tested": "2.14.0",
+      "contract_path": "presets/data-story.json",
+      "source_refs": [
+        "references/data-story.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/data-story-zh.html",
+        "demos/data-story-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/data-story.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/data-story-zh.html",
+        "source_snapshot/demos/data-story-en.html"
+      ]
+    },
+    {
+      "slug": "modern-newspaper",
+      "preset": "Modern Newspaper",
+      "contract_id": "slide-creator/modern-newspaper",
+      "contract_version": "1.0.0",
+      "family": "authoritative-editorial-news",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/modern-newspaper.json",
+      "source_refs": [
+        "references/modern-newspaper.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/modern-newspaper-zh.html",
+        "demos/modern-newspaper-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/modern-newspaper.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/modern-newspaper-zh.html",
+        "source_snapshot/demos/modern-newspaper-en.html"
+      ]
+    },
+    {
+      "slug": "neo-retro-dev",
+      "preset": "Neo-Retro Dev",
+      "contract_id": "slide-creator/neo-retro-dev",
+      "contract_version": "1.0.0",
+      "family": "opinionated-handmade-dev",
+      "producer_version_tested": "2.18.0",
+      "contract_path": "presets/neo-retro-dev.json",
+      "source_refs": [
+        "references/neo-retro-dev.md",
+        "references/html-template.md"
+      ],
+      "demo_refs": [
+        "demos/neo-retro-dev-zh.html",
+        "demos/neo-retro-dev-en.html"
+      ],
+      "source_snapshot_refs": [
+        "source_snapshot/references/neo-retro-dev.md",
+        "source_snapshot/references/html-template.md"
+      ],
+      "demo_snapshot_refs": [
+        "source_snapshot/demos/neo-retro-dev-zh.html",
+        "source_snapshot/demos/neo-retro-dev-en.html"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_api_query_define_designer",
+		"description": "Query the detailed definition of a single API based on API ID. (Read-only operation, no modifications are made)",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"apiId": {
+					"type": "string",
+					"description": "API's unique ID"
+				}
+			},
+			"required": [
+				"apiId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

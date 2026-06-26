@@ -1,0 +1,167 @@
+{
+  "library_version": "2026-05-09.curated-prompt-video-samples.v2",
+  "updated_at": "2026-05-09T02:59:59Z",
+  "source": "operator_curated_pippit_prompt_video_library",
+  "notes": [
+    "Curated prompt-video samples are read-only craft references for learning how prompt structure maps to an actual short-video result.",
+    "Study the opening attention move, shot progression, topic-specific proof, and payoff timing. Do not copy the outside creator identity, exact dialogue, or premise.",
+    "Only real moving-video samples belong here. Static-image outputs and product ads stay out."
+  ],
+  "samples": [
+    {
+      "id": "pippit-fluffy-sweetheart-kitten-dialogue-20260509t021702z",
+      "source_platform": "pippit",
+      "source_surface": "for_you_detail",
+      "sample_kind": "prompt_to_video",
+      "media_kind": "video",
+      "creator_handle": "@FluffySweetheart",
+      "title": "Kitten smell gag dialogue",
+      "topic_tags": [
+        "pets",
+        "comedy",
+        "dialogue",
+        "home",
+        "reaction"
+      ],
+      "learning_focus": [
+        "fixed medium close-up staging",
+        "character voice contrast",
+        "repetition with escalation",
+        "reaction payoff before the 15-second floor"
+      ],
+      "is_product_ad": false,
+      "duration_seconds": 15.066666,
+      "aspect_ratio": "9:16",
+      "prompt_language": "en",
+      "prompt_text": "The film features a realistic shooting style, with a bright and warm indoor home scene. A fixed medium close-up shot focuses on the kitten held in the man's hands [@Image 1], while part of the man's face is visible. The kitten stretches out its paw, as if inviting its owner to ask a question. At the 1st second: the man smiles and asks the kitten, \"Does it smell bad?\", while light and playful xylophone music plays in the background. At the 2nd second: the kitten in [@Image 1] answers in a cute child's voice, \"No, it doesn't smell bad.\" At the 3rd-4th second: the man exaggerates and asks again, \"Does it smell bad? It smells so bad!\" At the 5th second: the kitten in [@Image 1] (child's voice) hurriedly retorts, \"No, it doesn't smell bad.\" At the 6th second: the man teases, \"Then smell it yourself,\" while gently bringing the kitten's paw close to its nose. At the 7th-8th second: the man observes the kitten's reaction and smiles again, asking, \"Does it smell bad?\" At the 9th second: the kitten in [@Image 1] (child's voice) lets out an exaggerated gagging sound, leaning back slightly, displaying a comical expression of being overwhelmed by the stench. At the 10th second: The man lets out a hearty laugh, and the music naturally ends amidst the laughter, with no subtitles throughout.",
+      "source_mp4_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T021702Z-fluffy-sweetheart/source.mp4",
+      "source_manifest_public_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T021702Z-fluffy-sweetheart/manifest.public.json",
+      "curation_notes": "Non-product-ad Pippit For You sample captured from a real detail page with readable mdl cache media.",
+      "craft_notes": "The prompt states the concrete visual setup first, then times nearly every beat second-by-second, keeps the camera stable, and lands the comic payoff before the short-video floor runs out."
+    },
+    {
+      "id": "pippit-softbabevibes-jungle-martial-arts-20260509t022748z",
+      "source_platform": "pippit",
+      "source_surface": "for_you_detail",
+      "sample_kind": "prompt_to_video",
+      "media_kind": "video",
+      "creator_handle": "@SoftBabeVibes✨",
+      "title": "Jungle temple martial-arts heroine",
+      "topic_tags": [
+        "action",
+        "martial-arts",
+        "female-lead",
+        "cinematic",
+        "temple"
+      ],
+      "learning_focus": [
+        "camera move in the opening second",
+        "clear action beat timing",
+        "environment plus costume specificity",
+        "strong closing pose as payoff"
+      ],
+      "is_product_ad": false,
+      "duration_seconds": 15.066666,
+      "aspect_ratio": "9:16",
+      "prompt_language": "en",
+      "prompt_text": "The shot begins as a medium close-up and quickly dollies out to a full shot, revealing the entire scene. A confident woman with dark wavy hair, red lipstick, wearing a black leather jacket, black leather pants, and dark sunglasses stands in the center. She is surrounded by several men in black suits. [0.0s-1.0s] The woman stands powerfully, staring at the camera as a female voice says 'already defeated'. [1.0s-5.0s] As the intense electronic music kicks in, she launches into a dynamic martial arts sequence. She spins and delivers powerful punches and kicks to the men, who are thrown back by the force. Each impact creates a bright white and pink flash of light. The men fall to the ground, defeated. [5.0s-8.0s] The woman ends in a confident, wide-legged stance, looking directly at the camera, and slowly adjusts her sunglasses with both hands. The scene is set in an ancient temple within a Southeast Asian jungle, with overgrown vines and moss on stone carvings. The style is cinematic, with dramatic lighting from shafts of sunlight filtering through the jungle canopy. The audio features intense electronic music and synchronized, powerful punch and impact sound effects. No watermarks.",
+      "source_mp4_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T022747Z-softbabevibes/source.mp4",
+      "source_manifest_public_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T022747Z-softbabevibes/manifest.public.json",
+      "curation_notes": "Non-product-ad action/fantasy example captured from a real Pippit detail page with readable mdl cache media.",
+      "craft_notes": "This prompt opens with an immediate camera move, spends the middle on tightly timed action beats, and uses costume, extras, lighting, and setting detail to keep the action concrete instead of abstract."
+    },
+    {
+      "id": "pippit-softbabevibes-desert-bunker-long-take-20260509t025617z",
+      "source_platform": "pippit",
+      "source_surface": "for_you_detail",
+      "sample_kind": "prompt_to_video",
+      "media_kind": "video",
+      "creator_handle": "@SoftBabeVibes✨",
+      "title": "Desert-to-bunker long take transition",
+      "topic_tags": [
+        "sci-fi",
+        "long-take",
+        "desert",
+        "transition",
+        "interior-reveal"
+      ],
+      "learning_focus": [
+        "single continuous shot language",
+        "world transition inside one camera move",
+        "clear scene blocks with timed progression",
+        "audio mood shift matched to environment change"
+      ],
+      "is_product_ad": false,
+      "duration_seconds": 10.066666,
+      "aspect_ratio": "9:16",
+      "prompt_language": "en",
+      "prompt_text": "[TEXT-TO-VIDEO GENERATION]\n\nCAMERA: A cinematic long take, the camera follows from behind an African-American man in a dark hoodie as he walks forward.\n\nSCENE: (0-2s) He walks across a vast, desolate desert with red sand under a hazy, orange sky, passing by giant saxophones half-buried in the sand. In the distance is the silhouette of a futuristic city. (2-4s) As he walks, a modern, concrete bunker entrance with an open doorway magically materializes from swirling sand directly in his path. (4-8s) The camera follows him as he walks through the doorway, seamlessly transitioning from the orange, hazy desert into a warm, sunlit 1970s-style living room with an orange shag carpet and a leather sofa. The camera continues to dolly forward into the room, passing the man, as the view settles on the cozy interior where a woman sits on the floor. The style is hyper-realistic, with a stark contrast between the Blade Runner 2049-esque exterior and the warm, retro interior. The audio begins with an epic, atmospheric synth score that transitions to quiet, ambient room sounds as the camera enters the house.\n\nOUTPUT: Single continuous video clip, high-fidelity rendering, smooth temporal coherence, no watermarks, synced audio.",
+      "source_mp4_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T025616Z-softbabevibes/source.mp4",
+      "source_manifest_public_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T025616Z-softbabevibes/manifest.public.json",
+      "curation_notes": "Batch-browsed non-product-ad sci-fi example accepted after auto-swiping and uploaded from a direct mdl-backed capture.",
+      "craft_notes": "This sample is useful for studying continuous camera intent, environment handoff, and how explicit timed scene blocks can stay coherent without cutting."
+    },
+    {
+      "id": "pippit-fluffy-sweetheart-forest-soul-levitation-20260509t025937z",
+      "source_platform": "pippit",
+      "source_surface": "for_you_detail",
+      "sample_kind": "prompt_to_video",
+      "media_kind": "video",
+      "creator_handle": "@FluffySweetheart",
+      "title": "Forest soul-separation levitation",
+      "topic_tags": [
+        "fantasy",
+        "supernatural",
+        "forest",
+        "static-camera",
+        "transformation"
+      ],
+      "learning_focus": [
+        "single locked composition with internal event progression",
+        "effect timing anchored to exact seconds",
+        "clear contrast between physical body and supernatural duplicate",
+        "mood carried by lighting plus ambient score"
+      ],
+      "is_product_ad": false,
+      "duration_seconds": 15.066666,
+      "aspect_ratio": "9:16",
+      "prompt_language": "en",
+      "prompt_text": "The camera is static, positioned at a low angle, capturing a full shot of a woman lying on a forest path in a one-point perspective. The video begins with the woman lying motionless. At 0.5 seconds, a translucent, glowing, ethereal duplicate of her soul materializes and separates from her physical body. This soul, initially in the same pose, floats horizontally above her. From 1.5 to 7 seconds, the soul gracefully rotates to an upright position and slowly ascends into the air with a serene expression, as if levitating. The physical body on the ground remains still. The scene is a tranquil, dense forest with a dirt path and tall trees. The style is photorealistic with a fantasy, magical touch, featuring soft, diffused lighting for a mystical, dreamlike ambiance. The soul is semi-transparent with a soft white glow. The audio is mystical, ethereal, atmospheric instrumental music with a slow, flowing rhythm.",
+      "source_mp4_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T025937Z-fluffysweetheart/source.mp4",
+      "source_manifest_public_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T025937Z-fluffysweetheart/manifest.public.json",
+      "curation_notes": "Batch-browsed non-product-ad fantasy example accepted after skipping stale mdl cache and switching to a later readable rank.",
+      "craft_notes": "The prompt demonstrates how a static camera can still create progression by moving the subject state, not the lens, while keeping the magical effect concrete and staged."
+    },
+    {
+      "id": "pippit-neon-dark-mode-hazmat-sprite-sheet-20260509t025956z",
+      "source_platform": "pippit",
+      "source_surface": "for_you_detail",
+      "sample_kind": "prompt_to_video",
+      "media_kind": "video",
+      "creator_handle": "@NeonDarkMode",
+      "title": "Hazmat sprite-sheet character animation",
+      "topic_tags": [
+        "pixel-art",
+        "game-assets",
+        "sprite-sheet",
+        "character-design",
+        "hazmat"
+      ],
+      "learning_focus": [
+        "spec-driven prompt structure",
+        "asset-format constraints expressed in plain language",
+        "character detail hierarchy",
+        "animation directions and frame-count requirements"
+      ],
+      "is_product_ad": false,
+      "duration_seconds": 12.066666,
+      "aspect_ratio": "9:16",
+      "prompt_language": "en",
+      "prompt_text": "Pixel art sprite sheet for an RPG Maker character, 48x48 resolution, transparent background. A modified Class A hazmat suit, less baggy with an external oxygen tank and gas mask. Features include: utility belt (knife, flashlight), CB radio on the shoulder strap, and reflective visor. Show 4-directional animation (Down, Left, Right, Up) with 3 frames each (Step 1, Idle, Step 2). Suit is slightly weathered with Backrooms-style eerie lighting. Pixel art style, clean outlines, muted colors (yellow/gray/black), no shading.",
+      "source_mp4_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T025955Z-neondarkmode/source.mp4",
+      "source_manifest_public_url": "https://pub-b60956ff14f743ceaf79459a4a785f78.r2.dev/study/pippit/20260509T025955Z-neondarkmode/manifest.public.json",
+      "curation_notes": "Batch-browsed non-product-ad game-asset example accepted after mdl-rank rotation; moving output verified before inclusion.",
+      "craft_notes": "This is a useful counterexample to scene prompts: it shows a compact spec format for constrained visual generation where dimensions, facing directions, and accessory requirements matter more than narrative beats."
+    }
+  ]
+}

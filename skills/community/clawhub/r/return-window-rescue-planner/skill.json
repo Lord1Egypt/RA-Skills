@@ -1,0 +1,44 @@
+{
+  "slug": "return-window-rescue-planner",
+  "name": "Return Window Rescue Planner",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build an urgent return action sheet for items with deadlines, packing needs, proof, route order, and a final checklist.",
+  "author": "Bell (design)",
+  "license": "MIT-0",
+  "language": "en",
+  "hasExecutableCode": false,
+  "category": "Home & Life Admin / Urgent Logistics",
+  "target_user": "Busy shoppers, households, assistants, and anyone trying to complete product returns before deadlines.",
+  "tags": [
+    "life-admin",
+    "returns",
+    "deadlines",
+    "logistics",
+    "shopping",
+    "checklist"
+  ],
+  "trigger_keywords": [
+    "I need to return these before the deadline",
+    "plan my returns",
+    "return window is closing",
+    "organize my returns",
+    "what do I need to pack for returns"
+  ],
+  "use_cases": [
+    "Triage expiring return windows",
+    "Gather receipts and return proof",
+    "Prepare packages and labels",
+    "Plan a store or carrier drop-off route",
+    "Create a final before-you-go checklist"
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "runtime": "noExec",
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P1"
+}

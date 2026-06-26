@@ -1,0 +1,142 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze JD.com workflows with JustOneAPI, including product Details, product Comments, and shop Product List.",
+  "displayName": "JD.com",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get JD.com product Comments data, including ratings, timestamps, and reviewer signals, for customer feedback analysis and product research.",
+      "method": "GET",
+      "operationId": "getItemCommentsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "A unique product identifier on JD.com (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Page number for paginated comments.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/jd/get-item-comments/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Comments",
+      "tags": [
+        "JD.com"
+      ]
+    },
+    {
+      "description": "Get JD.com product Details data, including pricing, images, and shop information, for catalog analysis, product monitoring, and ecommerce research.",
+      "method": "GET",
+      "operationId": "getJdItemDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "A unique product identifier on JD.com (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/jd/get-item-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "JD.com"
+      ]
+    },
+    {
+      "description": "Get JD.com shop Product List data, including item titles, prices, and images, for catalog tracking and seller research.",
+      "method": "GET",
+      "operationId": "getJdShopItemListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "A unique shop identifier on JD.com (Shop ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "shopId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Page number for paginated comments.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/jd/get-shop-item-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Shop Product List",
+      "tags": [
+        "JD.com"
+      ]
+    }
+  ],
+  "platformKey": "jd",
+  "primaryTag": "JD.com",
+  "skillName": "justoneapi_jd",
+  "slug": "justoneapi-jd",
+  "sourceTitle": "OpenAPI definition"
+}

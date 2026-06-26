@@ -1,0 +1,122 @@
+# Team Memory v2.4.0 - 示例配置
+# 这是示例文件，展示如何配置你的团队
+# 实际使用时，复制此文件为 skill-config.yaml 并修改
+# schema-version 表示数据结构版本，不等同于产品版本。
+
+schema-version: "2.0"
+
+members:
+  - id: member-001
+    name: "张三"
+    alias: "ZS"
+    role: "后端开发工程师"
+    level: "P6"
+    team: "交易组"
+    join-date: "2023-03-15"
+    manager-notes: "技术扎实，主动性强"
+    
+  - id: member-002
+    name: "李四"
+    alias: "LS"
+    role: "前端开发工程师"
+    level: "P5"
+    team: "用户端组"
+    join-date: "2022-08-01"
+    manager-notes: "执行力强，需提升主动性"
+    
+  - id: member-003
+    name: "王五"
+    alias: "WW"
+    role: "全栈工程师"
+    level: "P6"
+    team: "交易组"
+    join-date: "2021-11-20"
+    manager-notes: "即将满3年，考虑晋升"
+
+# 评价维度定义
+categories:
+  technical:
+    name: "技术能力"
+    description: "代码质量、架构设计、技术深度、学习能力"
+    weight: 0.25
+    
+  collaboration:
+    name: "协作沟通"
+    description: "跨团队协作、沟通效率、冲突处理、文档撰写"
+    weight: 0.20
+    
+  delivery:
+    name: "项目交付"
+    description: "按时交付、质量把控、owner意识、风险预警"
+    weight: 0.25
+    
+  leadership:
+    name: "团队影响"
+    description: "知识分享、帮助他人、流程改进、文化建设"
+    weight: 0.15
+    
+  growth:
+    name: "成长潜力"
+    description: "学习速度、接受挑战、自我驱动、职业规划"
+    weight: 0.15
+
+# 评级标准
+rating-scale:
+  excellent:
+    score: 5
+    label: "优秀"
+    description: "超出预期，可树立为标杆"
+    threshold: "90-100分"
+    
+  positive:
+    score: 4
+    label: "良好"
+    description: "符合预期，稳定输出"
+    threshold: "75-89分"
+    
+  neutral:
+    score: 3
+    label: "一般"
+    description: "正常表现，无突出亮点"
+    threshold: "60-74分"
+    
+  concern:
+    score: 2
+    label: "需关注"
+    description: "低于预期，需要沟通改进"
+    threshold: "40-59分"
+    
+  serious:
+    score: 1
+    label: "严重"
+    description: "多次低于预期，需立即干预"
+    threshold: "0-39分"
+
+# 快捷输入映射
+shortcuts:
+  张三: "member-001"
+  ZS: "member-001"
+  李四: "member-002"
+  LS: "member-002"
+  王五: "member-003"
+  WW: "member-003"
+
+# 系统配置
+settings:
+  data-path: "~/.config/opencode/skills/team-memory/data"
+  
+  backup:
+    enabled: true
+    frequency: "daily"
+    retention: "90days"
+    cloud-sync: false
+  
+  reminders:
+    weekly-report: "friday-17:00"
+    monthly-review: "last-day"
+    quarterly-assessment: "quarter-end"
+    
+  output:
+    default-format: "markdown"
+    include-charts: false
+    language: "zh-CN"

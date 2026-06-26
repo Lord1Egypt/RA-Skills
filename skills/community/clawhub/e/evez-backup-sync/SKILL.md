@@ -1,35 +1,35 @@
 ---
-name: "EVEZ Backup Sync"
-description: "Auto-backup and sync engine for AI agent workspaces. Git commit and push to GitHub on schedule. Supabase cloud backup for critical state. mem0 persistent mem..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/evez-backup-sync"
-sourceUrl: "https://clawhub.ai/skills/evez-backup-sync"
+name: evez-backup-sync
+description: Auto-backup and sync engine for AI agent workspaces. Git commit and push to GitHub on schedule. Supabase cloud backup for critical state. mem0 persistent memory for knowledge retention. Full state snapshot every 15 minutes.
 ---
 
-# EVEZ Backup Sync
+# EVEZ Backup and Sync
 
-> Auto-backup and sync engine for AI agent workspaces. Git commit and push to GitHub on schedule. Supabase cloud backup for critical state. mem0 persistent mem...
+Never lose your agent's work. Auto-commits, cloud backup, and persistent memory.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/evez-backup-sync`
-- **Source URL:** [https://clawhub.ai/skills/evez-backup-sync](https://clawhub.ai/skills/evez-backup-sync)
+## What It Does
 
-## Overview
+- **Git auto-commit and push** — Every 5 minutes, all changes pushed to GitHub
+- **Supabase cloud backup** — Critical state backed up to Supabase tables
+- **mem0 persistent memory** — Key insights saved to vector memory with search
+- **Full state snapshots** — Consciousness, knowledge graph, bridge state, circuit manifest
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/evez-backup-sync
+python3 evez_backup_sync.py --port 9114
 ```
+
+## API
+
+- POST /api/backup — Full backup cycle (git + supabase + mem0)
+- POST /api/git/push — Manual git commit and push
+- POST /api/mem0/save — Save to persistent memory
+- POST /api/mem0/search — Search persistent memory
+- GET /api/status — Last backup info
+
+## Requirements
+
+- Python 3.10+
+- git (for version control)
+- Optional: supabase-py, mem0ai

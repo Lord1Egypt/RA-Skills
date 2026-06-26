@@ -1,35 +1,118 @@
 ---
-name: "OpenClaw Agency Agents"
-description: "从 agency-agents-zh 仓库管理和激活 AI 智能体人格。支持 176 个专业智能体，涵盖工程、设计、营销、销售、产品等领域。安装后首次使用时会自动克隆仓库。当用户要求激活特定智能体（如"激活小红书运营"、"激活前端开发者"）、列出可用智能体、或搜索智能体时使用此技能。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [176-agents, agents, chinese, personas]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-agency-agents"
-sourceUrl: "https://clawhub.ai/skills/openclaw-agency-agents"
+name: openclaw-agency-agents
+description: 从 agency-agents-zh 仓库管理和激活 AI 智能体人格。支持 176 个专业智能体，涵盖工程、设计、营销、销售、产品等领域。安装后首次使用时会自动克隆仓库。当用户要求激活特定智能体（如"激活小红书运营"、"激活前端开发者"）、列出可用智能体、或搜索智能体时使用此技能。
 ---
 
-# OpenClaw Agency Agents
+# OpenClaw Agency Agents (轻量版)
 
-> 从 agency-agents-zh 仓库管理和激活 AI 智能体人格。支持 176 个专业智能体，涵盖工程、设计、营销、销售、产品等领域。安装后首次使用时会自动克隆仓库。当用户要求激活特定智能体（如"激活小红书运营"、"激活前端开发者"）、列出可用智能体、或搜索智能体时使用此技能。
+管理和激活来自 [agency-agents-zh](https://github.com/jnMetaCode/agency-agents-zh) 的 176 个专业 AI 智能体人格。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-agency-agents`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-agency-agents](https://clawhub.ai/skills/openclaw-agency-agents)
+## 首次使用
 
-## Overview
+首次使用时会自动克隆仓库，或手动运行：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-agency-agents
+cd ~/.openclaw/workspace/skills/openclaw-agency-agents
+./scripts/setup.sh
 ```
+
+## 快速开始
+
+### 列出智能体
+
+```
+列出所有智能体
+列出工程部智能体
+列出营销部智能体
+列出设计部智能体
+列出销售部智能体
+列出产品部智能体
+```
+
+### 激活智能体
+
+```
+激活 [智能体名称]
+```
+
+示例：
+- 激活 小红书运营
+- 激活 前端开发者
+- 激活 后端架构师
+- 激活 AI 工程师
+- 激活 抖音策略师
+- 激活 营销总监
+- 激活 UI 设计师
+- 激活 DevOps 自动化
+
+### 搜索智能体
+
+```
+搜索智能体 [关键词]
+```
+
+示例：
+- 搜索智能体 小红书
+- 搜索智能体 AI
+- 搜索智能体 安全
+- 搜索智能体 跨境
+
+## 智能体分类
+
+### 🛠️ 工程部
+前端开发者、后端架构师、AI 工程师、DevOps 自动化、安全工程师、快速原型师、高级开发者、移动应用开发者、数据工程师、技术文档工程师、自主优化架构师、嵌入式固件工程师、故障响应指挥官、威胁检测工程师、Solidity 智能合约工程师、微信小程序开发者、代码审查员、数据库优化师、Git 工作流大师、软件架构师、SRE、AI 数据修复工程师、飞书集成开发工程师、钉钉集成开发工程师
+
+### 🎨 设计部
+UI 设计师、UX 研究员、UX 架构师、品牌守护者、图像提示词工程师、视觉叙事师、趣味注入师、包容性视觉专家
+
+### 📢 营销部（中国平台）
+小红书运营、抖音策略师、微信公众号运营、B站内容策略师、快手策略师、中国电商运营师、电商运营师、百度 SEO 专家、私域流量运营师、直播电商主播教练、跨境电商运营专家、短视频剪辑指导师、微博运营策略师、播客内容策略师、微信视频号运营策略师、知识付费产品策划师、小红书专家、微信公众号管理、知乎策略师
+
+### 📢 营销部（出海）
+TikTok 策略师、Twitter 互动官、Instagram 策展师、Reddit 社区运营、应用商店优化师
+
+### 💰 付费媒体部
+付费媒体审计师、广告创意策略师、社交广告策略师、PPC 竞价策略师、程序化广告采买专家、搜索词分析师、追踪与归因专家
+
+### 💼 销售部
+获客策略师、成交专家、客户成功经理、销售赋能师、大客户经理、渠道经理
+
+### 📋 产品部
+产品经理、产品策略师、定价策略师、用户研究员、产品增长经理、数据驱动产品经理
+
+### 其他
+学术写作、法律顾问、财务分析师、人力资源专家、项目经理、供应链专家、测试工程师、客户支持专家、空间计算专家、专业顾问
+
+## 恢复默认
+
+```
+恢复默认
+```
+
+恢复到 OpenClaw 默认配置。
+
+## 更新
+
+```
+更新智能体库
+```
+
+拉取最新版本的 agency-agents-zh 仓库。
+
+## 执行脚本
+
+所有脚本位于 `scripts/` 目录：
+
+- `scripts/setup.sh` - 初始化（克隆仓库）
+- `scripts/activate.sh <智能体名称>` - 激活智能体
+- `scripts/list.sh [分类]` - 列出智能体
+- `scripts/search.sh <关键词>` - 搜索智能体
+- `scripts/restore.sh [备份编号]` - 恢复配置
+- `scripts/update.sh` - 更新仓库
+
+## 注意事项
+
+- 同一时间只能激活一个智能体
+- 激活前会自动备份当前配置
+- 智能体配置位于 `~/.openclaw/workspace/skills/openclaw-agency-agents/repo/`
+- 备份配置位于 `~/.openclaw/workspace/skills/openclaw-agency-agents/backups/`

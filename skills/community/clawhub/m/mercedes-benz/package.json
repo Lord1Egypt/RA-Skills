@@ -1,0 +1,24 @@
+{
+  "name": "mbusa-skill",
+  "version": "0.0.3",
+  "description": "An OpenClaw skill and REST API to find Mercedes-Benz dealerships and live vehicle inventory.",
+  "main": "src/tool.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["openclaw", "mbusa", "skill", "agent", "tool", "api"],
+  "author": "Kaushik Datta <kaudata@yahoo.com>",
+  "homepage": "https://github.com/yourusername/mbusa-dealer-skill#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/mbusa-dealer-skill.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

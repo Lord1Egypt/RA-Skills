@@ -1,0 +1,10 @@
+{
+  "model_name": "axis",
+  "config_path": "data/config/axis.config",
+  "optimization": {
+    "multithread": true,
+    "batch_size": 10,
+    "cache_size": 100,
+    "timeout": 30
+  }
+}

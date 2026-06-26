@@ -1,0 +1,130 @@
+{
+  "pipelineId": "483ef487-d7bd-4713-9f6e-92c9a9119549",
+  "taskId": "task-claw-design-mowhxob4",
+  "level": "L2+",
+  "requiredStages": [
+    "spec",
+    "spec-review-gate",
+    "test-case-authoring",
+    "ux-acceptance-authoring",
+    "commercial-acceptance-authoring",
+    "contract",
+    "contract-review-gate",
+    "implement",
+    "review",
+    "smoke-test",
+    "ux-acceptance",
+    "pm-commercial-review",
+    "regression",
+    "publish-generalization-gate",
+    "deploy",
+    "verify",
+    "post-release-validation",
+    "ledger"
+  ],
+  "skippedStages": [],
+  "stages": {
+    "spec": {
+      "stageId": "spec",
+      "status": "completed",
+      "artifacts": [
+        {
+          "type": "spec",
+          "path": "projects/claw-design/docs/design/impl-spec-wave-b01-b03-c02-c05.md",
+          "title": "FR-B01/B03/C02-C05 Implementation Spec"
+        }
+      ],
+      "startedAt": "2026-05-08T05:50:28.435Z",
+      "completedAt": "2026-05-16T04:10:00.000Z"
+    },
+    "spec-review-gate": {
+      "stageId": "spec-review-gate",
+      "status": "active",
+      "artifacts": [],
+      "startedAt": "2026-05-16T04:10:00.000Z"
+    },
+    "test-case-authoring": {
+      "stageId": "test-case-authoring",
+      "status": "pending",
+      "artifacts": []
+    },
+    "ux-acceptance-authoring": {
+      "stageId": "ux-acceptance-authoring",
+      "status": "pending",
+      "artifacts": []
+    },
+    "commercial-acceptance-authoring": {
+      "stageId": "commercial-acceptance-authoring",
+      "status": "pending",
+      "artifacts": []
+    },
+    "contract": {
+      "stageId": "contract",
+      "status": "pending",
+      "artifacts": []
+    },
+    "contract-review-gate": {
+      "stageId": "contract-review-gate",
+      "status": "pending",
+      "artifacts": []
+    },
+    "implement": {
+      "stageId": "implement",
+      "status": "pending",
+      "artifacts": []
+    },
+    "review": {
+      "stageId": "review",
+      "status": "pending",
+      "artifacts": []
+    },
+    "smoke-test": {
+      "stageId": "smoke-test",
+      "status": "pending",
+      "artifacts": []
+    },
+    "ux-acceptance": {
+      "stageId": "ux-acceptance",
+      "status": "pending",
+      "artifacts": []
+    },
+    "pm-commercial-review": {
+      "stageId": "pm-commercial-review",
+      "status": "pending",
+      "artifacts": []
+    },
+    "regression": {
+      "stageId": "regression",
+      "status": "pending",
+      "artifacts": []
+    },
+    "publish-generalization-gate": {
+      "stageId": "publish-generalization-gate",
+      "status": "pending",
+      "artifacts": []
+    },
+    "deploy": {
+      "stageId": "deploy",
+      "status": "pending",
+      "artifacts": []
+    },
+    "verify": {
+      "stageId": "verify",
+      "status": "pending",
+      "artifacts": []
+    },
+    "post-release-validation": {
+      "stageId": "post-release-validation",
+      "status": "pending",
+      "artifacts": []
+    },
+    "ledger": {
+      "stageId": "ledger",
+      "status": "pending",
+      "artifacts": []
+    }
+  },
+  "currentStage": "spec",
+  "createdAt": "2026-05-08T05:50:28.434Z",
+  "updatedAt": "2026-05-08T05:50:28.436Z"
+}

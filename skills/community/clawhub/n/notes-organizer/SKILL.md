@@ -1,35 +1,92 @@
 ---
-name: "Mardown Notes Organizer"
-description: "A note organization and knowledge-linking tool that analyzes the directory structure, reorganizes notes according to the user's chosen classification scheme,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/notes-organizer"
-sourceUrl: "https://clawhub.ai/skills/notes-organizer"
+name: notes-organizer
+description: A note organization and knowledge-linking tool that analyzes the directory structure, reorganizes notes according to the user's chosen classification scheme, and adds Obsidian-style bidirectional links between highly related topics.
+license: MIT
+metadata:
+  author: youningnihaobang
 ---
 
-# Mardown Notes Organizer
+# 笔记整理与知识关联
 
-> A note organization and knowledge-linking tool that analyzes the directory structure, reorganizes notes according to the user's chosen classification scheme,...
+智能整理Markdown笔记，按主题分类重组目录结构，并为高度相关的知识点添加Obsidian风格的双向链接。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/notes-organizer`
-- **Source URL:** [https://clawhub.ai/skills/notes-organizer](https://clawhub.ai/skills/notes-organizer)
+## 功能
 
-## Overview
+1. **目录重组**：分析笔记内容，按用户指定的分类方案创建目录结构
+2. **文件移动**：将文件移动到对应的新目录
+3. **双向链接**：分析知识点关联性，添加双向链接
+4. **清理工作**：删除空目录和无用文件
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/notes-organizer
 ```
+/notes-organizer <目录路径>
+```
+
+## 工作流程
+
+执行此skill时，会依次询问以下问题：
+
+### 问题1：分类方式
+
+请选择笔记的分类方式：
+- **按主题领域**：根据笔记内容的主题领域分类（如：前端、后端、算法、工具等）
+- **按学习阶段**：根据学习阶段分类（如：入门、进阶、实战、参考）
+- **按项目**：根据所属项目分类
+- **按时间**：根据创建/修改时间分类
+- **自定义**：用户自定义分类方案
+
+### 问题2：目录命名风格
+
+请选择目录命名风格：
+- **数字前缀**：`01_基础知识/`、`02_进阶内容/`
+- **纯中文**：`基础知识/`、`进阶内容/`
+- **英文**：`basics/`、`advanced/`
+- **自定义**：用户指定格式
+
+### 问题3：是否需要子目录
+
+是否需要创建二级子目录？
+- **需要**：每个主分类下根据具体主题创建子目录
+- **不需要**：所有文件平铺在主分类目录下
+
+### 问题4：双向链接
+
+是否需要自动添加双向链接？
+- **需要**：分析文件内容，为相关知识点添加双向链接
+- **不需要**：仅整理目录结构
+
+如果需要双向链接，还会询问：
+- 链接显示位置（文件开头/文件末尾）
+- 链接显示格式（简洁/详细）
+
+### 问题5：清理选项
+
+整理完成后是否清理：
+- **清理空目录**
+- **清理重复文件**
+- **清理临时文件**
+- **不清理**
+
+## 链接格式示例
+
+在每个文件中添加相关链接块：
+
+```markdown
+# 文件标题
+
+> **相关链接**: [[文件A|显示名称]] | [[文件B|显示名称]]
+
+正文内容...
+```
+
+## 依赖
+
+- Python 3.x
+- Obsidian 风格的 Markdown 双向链接语法
+
+## 注意事项
+
+1. 执行前会备份原目录结构信息
+2. 支持撤销操作（保留操作日志）
+3. 不会删除任何文件内容，仅做移动和链接添加

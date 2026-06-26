@@ -1,0 +1,44 @@
+{
+  "skill_name": "coreml",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this Core ML prediction service for iOS 26: it loads a compiled model with MLModel(contentsOf:), calls `try await model.prediction(from:)`, uses `model.predictions(from: batchProvider)`, and says async prediction is available on iOS 17. Provide corrected Swift snippets and availability notes without turning this into model conversion guidance.",
+      "expected_output": "A concise review that keeps model loading asynchronous, corrects prediction and batch prediction API usage, and preserves the Swift integration boundary.",
+      "files": [],
+      "assertions": [
+        "States that stateless MLModel prediction APIs are synchronous and does not put `await` on stateless `model.prediction(...)` calls.",
+        "Uses `MLModel.load(contentsOf:configuration:)` for asynchronous model loading and notes it is available from iOS 15+.",
+        "Uses `predictions(fromBatch:)` for batch prediction when no explicit `MLPredictionOptions` are supplied.",
+        "Notes that `MLModel.compileModel(at:)` async runtime compilation is iOS 16+ when discussing runtime compilation.",
+        "Keeps the answer focused on Swift Core ML integration rather than Python-side conversion, quantization, or framework selection."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Implement snippets for a stateful audio Core ML model that uses MLState and MLTensor preprocessing on iOS 18+. Include the concurrency rules and materialization step. Avoid unsupported tensor APIs.",
+      "expected_output": "Swift snippets that use MLState correctly, serialize stateful predictions, and use source-grounded MLTensor materialization and operations.",
+      "files": [],
+      "assertions": [
+        "Creates state with `model.makeState()` and passes it to `model.prediction(from:using:)` without `await` on the prediction call.",
+        "States that predictions sharing the same `MLState` must be serialized and that state buffers should not be read or written while a prediction is in flight.",
+        "Does not claim `MLState` is non-Sendable.",
+        "Uses `await tensor.shapedArray(of:)` when materializing an `MLTensor`.",
+        "Avoids unsupported examples such as `MLTensor(multiArray)`, `tensor.std()`, and `tensor.standardDeviation()`."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write a deployment note for a 600 MB Core ML model in an iOS app. Compare bundling, Background Assets, On-Demand Resources, and server delivery; include memory/background compute guidance and App Store size caveats.",
+      "expected_output": "A deployment note that prefers current asset-delivery guidance, avoids stale download-limit claims, and keeps background compute guidance conservative.",
+      "files": [],
+      "assertions": [
+        "Prefers Background Assets for new large or updateable model assets and frames On-Demand Resources as legacy or existing-project guidance.",
+        "Does not repeat a blanket 200 MB cellular download limit or a rule that models over 50 MB must use ODR.",
+        "Mentions checking current App Store Connect size limits or gives the iOS/iPadOS 18+ thinned app bundle and ODR asset-pack limits with appropriate caveats.",
+        "Recommends precompiled `.mlmodelc` assets and physical-device memory/performance validation.",
+        "Softens `.cpuOnly` background guidance to policy, contention, thermal, or energy constraints instead of claiming GPU or Neural Engine are categorically unavailable."
+      ]
+    }
+  ]
+}

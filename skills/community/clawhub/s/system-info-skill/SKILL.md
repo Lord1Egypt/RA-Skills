@@ -1,35 +1,63 @@
----
-name: "system-info-skill"
-description: "Query system information including OS, CPU, memory, and disk usage. Use when users ask about system configuration, resource usage, performance diagnostics, o..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/system-info-skill"
-sourceUrl: "https://clawhub.ai/skills/system-info-skill"
+﻿---
+name: system-info-skill
+description: Query system information including OS, CPU, memory, and disk usage. Use when users ask about system configuration, resource usage, performance diagnostics, or basic system info. Supports Windows, Linux, and macOS.
 ---
 
-# system-info-skill
+# System Information Query
 
-> Query system information including OS, CPU, memory, and disk usage. Use when users ask about system configuration, resource usage, performance diagnostics, o...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/system-info-skill`
-- **Source URL:** [https://clawhub.ai/skills/system-info-skill](https://clawhub.ai/skills/system-info-skill)
-
-## Overview
-
+Quick system information query including OS, CPU, memory, and disk.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+Install from ClawHub:
+
 ```bash
-hermes skills install clawhub/system-info-skill
+npx clawhub install system-info-skill
 ```
+
+Or install from local .skill file:
+
+```bash
+openclaw skills install system-info-skill.skill
+```
+
+## Usage
+
+### Query All System Information
+
+```bash
+python scripts/system_info.py
+```
+
+### Query Specific Information
+
+```bash
+# CPU only
+python scripts/system_info.py --cpu
+
+# Memory only
+python scripts/system_info.py --memory
+
+# Disk only
+python scripts/system_info.py --disk
+```
+
+## Example Output
+
+```
+=== System Information ===
+
+OS: Windows 10
+CPU: Intel Core i7-9700K
+CPU Cores: 8
+Total Memory: 16.0 GB
+Memory Used: 8.5 GB (53%)
+Total Disk: 512.0 GB
+Disk Used: 256.0 GB (50%)
+```
+
+## Notes
+
+- Requires Python 3.6+
+- Cross-platform support
+- No additional dependencies required

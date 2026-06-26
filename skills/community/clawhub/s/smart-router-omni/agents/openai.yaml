@@ -1,0 +1,8 @@
+interface:
+  display_name: "Smart Router Omni"
+  short_description: "Choose the best installed skill or skill chain across general and OpenClaw-style environments."
+  default_prompt: "Use $smart-router-omni to inspect the environment and installed skills, then route this request to the best skill or skill chain."
+
+policy:
+  allow_implicit_invocation: true
+

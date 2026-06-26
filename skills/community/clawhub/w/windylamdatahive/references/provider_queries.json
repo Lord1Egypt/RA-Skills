@@ -1,0 +1,9 @@
+{
+  "Uber": "from:noreply@uber.com subject:(\"trip with Uber\")",
+  "Bolt": "from:(bolt.eu OR receipts-poland@bolt.eu) subject:(\"Your Bolt ride\" OR \"Your Bolt trip\")",
+  "Yandex": "from:(go@yandex.ru OR taxi.yandex.ru OR noreply@yandex.ru) subject:(\"electronic ride receipt\" OR \"Ride report\" OR \"ride receipt\")",
+  "Lyft": "from:(lyftmail.com OR lyft.com) subject:(\"Your ride with\")",
+  "FreeNow": "from:(free-now.com OR mytaxi.com OR no-reply@free-now.com OR no-reply@mytaxi.com) subject:(\"Your trip receipt\" OR \"Your FREE NOW receipt\" OR \"Your mytaxi receipt\" OR \"Receipt for your trip\")",
+  "Curb": "from:(curbmobility.com OR ridecharge.com) subject:(\"Your receipt\" OR \"Trip receipt\")",
+  "Via": "from:(ridewithvia.com OR via.com) subject:(\"Your receipt\" OR \"Your trip\")"
+}

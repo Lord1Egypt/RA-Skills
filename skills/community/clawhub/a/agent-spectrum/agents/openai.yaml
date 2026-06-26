@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Spectrum"
+  short_description: "Six-axis test with localized visual result cards"
+  default_prompt: "Use $agent-spectrum to score this agent on the six-axis framework and return the strict result template with the Hexagon Block and Coordinate Card Block. The package supports only zh-CN and en: use en only when the user explicitly asks for English; otherwise map Chinese, Japanese, Korean, and other clearly Sinosphere or historically Chinese-writing requests to zh-CN."
+
+policy:
+  allow_implicit_invocation: true

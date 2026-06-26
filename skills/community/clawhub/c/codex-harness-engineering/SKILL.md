@@ -1,35 +1,83 @@
 ---
-name: "Codex Harness Engineering"
-description: "基于 OpenAI《Harness Engineering》实践的 Codex 工作规范。强调环境能力补齐、仓库即记录系统、严格分层架构、可观测可验证闭环、持续防漂移治理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/codex-harness-engineering"
-sourceUrl: "https://clawhub.ai/skills/codex-harness-engineering"
+name: codex-harness-engineering
+description: 基于 OpenAI《Harness Engineering》实践的 Codex 工作规范。强调环境能力补齐、仓库即记录系统、严格分层架构、可观测可验证闭环、持续防漂移治理。
+version: 0.1.0
 ---
 
-# Codex Harness Engineering
+# Codex Harness Engineering（原文导向）
 
-> 基于 OpenAI《Harness Engineering》实践的 Codex 工作规范。强调环境能力补齐、仓库即记录系统、严格分层架构、可观测可验证闭环、持续防漂移治理。
+## 目标
+在高吞吐智能体开发中，通过结构化环境与可强制约束，让 Codex 稳定完成复杂任务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/codex-harness-engineering`
-- **Source URL:** [https://clawhub.ai/skills/codex-harness-engineering](https://clawhub.ai/skills/codex-harness-engineering)
+## 何时使用
+- 多步骤、跨模块、跨文件任务
+- 需要 PR 循环评审与持续修复
+- 需要 UI/日志/指标驱动验证
+- 需要长期维护一致性、防止架构漂移
 
-## Overview
+## 核心原则
+1. 进展慢通常是环境结构不足，而非模型能力不足。
+2. 不靠“再努力一点”，而是补齐工具、抽象、约束与文档。
+3. AGENTS.md 是地图，不是百科全书。
+4. docs/ 是记录系统（versioned source of truth）。
+5. 架构边界要严格且可自动验证。
+6. 吞吐量上升后，优先降低等待成本。
+7. 持续垃圾回收，抑制模式漂移。
 
+## 执行规范
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/codex-harness-engineering
-```
+### A. 任务推进
+- 将大目标拆成构建模块：设计、代码、评审、测试。
+- 每次受阻先识别缺失项：工具/约束/文档。
+- 将缺失项写回仓库，形成可复用能力。
+
+### B. PR 闭环
+- 允许 Codex 发起 PR。
+- 要求 Codex 本地自审改动。
+- 可结合本地/云端智能体审查。
+- 对人工与智能体反馈持续响应，直到通过。
+- Codex 直接使用标准开发工具（如 gh、本地脚本、仓库技能）取上下文。
+
+### C. 可读性与可观测性
+- 支持按 git worktree 启动实例。
+- 提供 DevTools 能力（DOM 快照、截图、导航）。
+- 暴露日志/指标/追踪（临时隔离，任务后清理）。
+- 支持 LogQL/PromQL 查询，支撑性能/SLO 提示执行。
+
+### D. 文档与知识布局（强制）
+- 保持短 AGENTS.md（目录/地图）。
+- docs/ 作为结构化知识库，至少包括：
+  - design-docs/
+  - exec-plans/active/
+  - exec-plans/completed/
+  - exec-plans/tech-debt-tracker.md
+  - generated/
+  - product-specs/
+  - references/
+- 采用渐进式披露：入口精简，深层内容分层索引。
+- 用 linter + CI 校验文档新鲜度、交叉链接、结构一致性。
+
+### E. 架构分层（强制）
+业务域内依赖只允许：
+
+Types -> Config -> Repo -> Service -> Runtime -> UI
+
+横切关注点仅通过 Providers 进入。
+通过自定义 linter + 结构测试强制执行。
+
+### F. 品味不变式（强制）
+将团队偏好编码为机器规则（示例）：
+- 结构化日志
+- 命名约定
+- 文件大小限制
+- 平台可靠性规则
+并在 lint 报错中给出可执行修复指引。
+
+### G. 吞吐量导向合并策略
+- 减少阻塞式合并门，缩短 PR 生命周期。
+- 偶发失败以快速纠错与重跑优先，避免长期等待。
+
+### H. 漂移治理
+- 将黄金原则编码进仓库。
+- 定期运行后台任务扫描偏差、更新质量评分、发起定向重构 PR。
+- 持续小步治理技术债，防止坏模式扩散。

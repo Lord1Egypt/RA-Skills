@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_automatic_update_group",
+    "description": "Edit automation group.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+		"ID": {
+          "type": "string",
+          "description": "Automation group ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Automation group name."
+        }
+      },
+      "required": ["ID","name"]
+    }
+  }
+}

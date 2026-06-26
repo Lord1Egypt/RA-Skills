@@ -1,0 +1,54 @@
+{
+  "run_number": "v6_forced_2234",
+  "run_time_cst": "2026-04-05 22:34 CST",
+  "trigger": "nasdaq_sentiment_forced",
+  "web_search_status": "failed_422_subscription_invalid",
+  "report": {
+    "theme": "Trump Iran deal negotiations",
+    "signal_strength": "HIGH",
+    "sentiment": "bullish_ceasefire_but_skeptical",
+    "timeline": [
+      {
+        "time_cst": "2026-04-05 22:34",
+        "source": "X @MacroRiskWatch",
+        "content": "Trump says he believes a deal with Iran could happen quickly - geopolitical risk premium declining rapidly in markets",
+        "interactions": {"replies": 0, "retweets": 0, "likes": 0}
+      },
+      {
+        "time_cst": "2026-04-05 22:33",
+        "source": "X @easystreetjesus",
+        "content": "Today we are going to threaten to blow up Iran. Tomorrow Trump will say we made a deal and we won again. Make a big deal about a soldier we never rescued. Then Iran will shoot more missiles and deny Americans rescued anyone.",
+        "interactions": {"replies": 0, "retweets": 0, "likes": 0}
+      },
+      {
+        "time_cst": "2026-04-05 22:33",
+        "source": "X @Baxt38000",
+        "content": "Market opens in 12 hours and suddenly Trump is talking about a deal with Iran. He's clearly scared. Absolutely pathetic.",
+        "quote_source": "X @BRICSinfo",
+        "quote_content": "JUST IN: President Trump says there is a good chance of a deal with Iran within 24 hours.",
+        "interactions": {"replies": 0, "retweets": 0, "likes": 0}
+      },
+      {
+        "time_cst": "2026-04-05 22:19",
+        "source": "X @BRICSinfo",
+        "content": "JUST IN: President Trump says there is a good chance of a deal with Iran within 24 hours.",
+        "interactions": {"replies": 0, "retweets": 0, "likes": 0}
+      }
+    ],
+    "market_impact": {
+      "oil": "DOWN_expected (Iran supply restoration)",
+      "vix": "DOWN (geopolitical risk premium narrows)",
+      "nasdaq_futures": "UP (risk-on if deal confirmed)",
+      "gold": "DOWN (safe haven demand falls)"
+    },
+    "bullish_case": "Iran deal = geopolitical risk reduction = stocks up, oil down",
+    "bearish_case": "Trump bluffing before market open = fake news risk",
+    "notes": [
+      "All tweets brand new (0 interactions) - no crowd validation yet",
+      "Kobeissi Letter (165.3万 followers) not yet posted on Iran",
+      "BRICSinfo is the primary news source for Trump quote",
+      "Market opens in ~12 hours - timing is notable"
+    ],
+    "next_key_node": "Trump/Iran official confirmation within 24 hours"
+  }
+}

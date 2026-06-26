@@ -1,35 +1,75 @@
----
-name: "ip-query"
-description: "查询当前设备的公共IP地址及其地理位置和ISP等相关信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ip-query"
-sourceUrl: "https://clawhub.ai/skills/ip-query"
----
+# IP Query Skill
 
-# ip-query
+查询当前公共IP地址及相关信息。
 
-> 查询当前设备的公共IP地址及其地理位置和ISP等相关信息。
+## 描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ip-query`
-- **Source URL:** [https://clawhub.ai/skills/ip-query](https://clawhub.ai/skills/ip-query)
+这个技能用于查询当前设备的公共IP地址，以及可选的附加信息（如地理位置、ISP等）。
 
-## Overview
+## 何时使用
 
+当用户提到以下关键词时激活此技能：
+- IP地址
+- 我的IP
+- 公网IP
+- 当前IP
+- 查询IP
+- ip address
+- my ip
+- public ip
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ip-query
+## 使用方法
+
+### 基本查询
+- "我的IP地址是什么？"
+- "查询当前IP"
+- "公网IP是多少？"
+
+### 详细查询
+- "显示我的IP和位置信息"
+- "查询IP的详细信息"
+
+## 功能
+
+1. **查询公共IP地址** - 使用公共API获取当前设备的公网IP
+2. **获取位置信息** (可选) - 根据IP查询地理位置
+3. **获取ISP信息** (可选) - 查询网络服务提供商
+
+## 依赖
+
+- `curl` 或 `wget` - 用于HTTP请求
+- `jq` (可选) - 用于解析JSON响应
+
+## 实现
+
+技能使用以下公共API：
+- 主要API: `https://api.ipify.org?format=json` (返回纯IP)
+- 备用API: `https://ipinfo.io/json` (返回详细信息)
+
+## 示例输出
+
 ```
+🌐 您的公共IP地址: 123.45.67.89
+
+📍 位置信息:
+- 城市: 北京
+- 地区: 北京市
+- 国家: 中国
+- 经纬度: 39.9042, 116.4074
+
+🏢 网络信息:
+- ISP: 中国电信
+- 组织: China Telecom
+
+🔒 隐私提示: 这是您的公网IP地址，请勿随意分享。
+```
+
+## 安全提示
+
+- 此技能仅查询公共IP地址，不涉及私人网络信息
+- 使用公共API，数据可能被API提供商记录
+- 建议仅在需要时查询
+
+## 脚本
+
+主要脚本位于 `scripts/ip_query.sh`，包含完整的IP查询功能。

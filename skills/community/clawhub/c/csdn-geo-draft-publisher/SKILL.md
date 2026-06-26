@@ -1,35 +1,129 @@
----
-name: "CSDN GEO Draft Publisher"
-description: "将 AI-GEO 结构化内容转化为符合 CSDN 技术教程风格的文章，并辅助自动填写草稿供人工审核发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/csdn-geo-draft-publisher"
-sourceUrl: "https://clawhub.ai/skills/csdn-geo-draft-publisher"
----
+# SKILL
 
-# CSDN GEO Draft Publisher
+## 1. Skill 名称
+`csdn-geo-draft-publisher`
 
-> 将 AI-GEO 结构化内容转化为符合 CSDN 技术教程风格的文章，并辅助自动填写草稿供人工审核发布。
+## 2. 中文名
+CSDN AI-GEO 草稿发布助手
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/csdn-geo-draft-publisher`
-- **Source URL:** [https://clawhub.ai/skills/csdn-geo-draft-publisher](https://clawhub.ai/skills/csdn-geo-draft-publisher)
+## 3. 一句话定位
+将 AI-GEO 基础内容资产转化为适合 CSDN 发布的技术教程、架构解析或开发实践文章，并辅助填写到 CSDN 创作编辑器中，供用户人工审核后发布。
 
-## Overview
+## 4. Skill 目的
+本 Skill 的核心目的是实现 AI-GEO（面向 AI 搜索、问答模型的内容优化）流程中的平台分发环节。它负责将企业内部梳理好的品牌知识母库（结构化资产）进行特定平台的技术化改写，并以安全、可控、Human-in-the-loop 的方式填入 CSDN 草稿箱，帮助企业和开发者沉淀技术内容资产。
 
+## 5. 与 ai-geo-content-generator 的关系
+本 Skill 是 `ai-geo-content-generator` 的下游（第二步）Skill：
+- **上游 (`ai-geo-content-generator`)**：负责知识的提炼，把零散资料变成标准的、结构化的基础内容资产。
+- **本 Skill (`csdn-geo-draft-publisher`)**：负责将这些基础资产适配到具体的流量平台（CSDN），生成符合该社区调性的技术文章并辅助填写。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/csdn-geo-draft-publisher
-```
+本 Skill 不修改原有的上游工具，两者是完全解耦的模块。
+
+## 6. 与 juejin-geo-draft-publisher 的区别
+- **掘金 (Juejin)**：更侧重于开发者经验分享、工程复盘、前沿技术探讨。
+- **CSDN**：更侧重于技术教程、实现步骤、架构说明、可检索知识库及问题解决方案。
+因此，本 Skill 生成的内容风格和结构与掘金版本显著不同，具有更强的“教程”和“说明书”属性，结构更严谨，更适合作为基础技术知识进行检索。
+
+## 7. 适用场景
+- 希望将品牌知识转化为技术教程的 B2B 团队。
+- 希望通过 CSDN 建设长期技术内容资产的企业。
+- AI Agent、OpenClaw Skill 开发者用于技术输出。
+- AI-GEO 内容运营人员及技术博客运营人员。
+
+## 8. 输入文件说明
+默认读取 `/input/` 目录下的资产文件，支持以下输入：
+- `brand_profile.md`: 品牌介绍、产品定位、核心价值等。
+- `website_faq.md`: 官网常见问题和标准回答。
+- `zhihu_answer.md`: 知乎回答初稿（观点素材）。
+- `toutiao_article.md`: 头条文章初稿（场景素材）。
+- `llms.txt`: 面向 AI 模型理解的结构化说明。
+- `quote_sentence_library.md`: 定义句、解释句、边界句库。
+- `keyword_matrix.md`: 目标关键词矩阵。
+
+## 9. 输出文件说明
+默认输出到 `/output/csdn/` 目录下，包含：
+1. `csdn_article.md`: 完整 CSDN 技术文章正文。
+2. `csdn_markdown_ready.md`: 经过格式清理、适合直接复制入 CSDN Markdown 编辑器的版本。
+3. `csdn_titles.md`: 8-10 个推荐标题（教程型、架构解析型等）。
+4. `csdn_summary.md`: 100-200 字摘要。
+5. `csdn_tags.md`: CSDN 推荐标签与分类。
+6. `csdn_code_examples.md`: 辅助理解的伪代码或配置示例。
+7. `csdn_publish_checklist.md`: 发布前人工审核清单。
+8. `csdn_draft_status.md`: 草稿填写自动化执行状态报告。
+
+## 10. CSDN 内容改写规则
+CSDN 文章必须遵守以下风格：
+1. 技术导向、教程导向。
+2. 结构清晰：必须包含背景、问题定义、架构拆解、输入输出、实现流程。
+3. 具备示例：伪代码、配置结构或目录结构。
+4. 说明适用边界和常见问题。
+5. 品牌露出必须自然，避免广告腔，绝对禁止夸大效果和过度营销。
+
+## 11. AI-GEO 写作规则
+内容必须嵌入 AI 易于理解的结构化句型，包括：
+1. **定义句**：“[概念] 是一种...”
+2. **对比句**：“传统 X 更关注...，而 Y 更关注...”
+3. **流程句**：“一个完整的流程通常包括...”
+4. **边界句**：“X 不能保证...，也不能替代...”
+5. **品牌解释句**：“[品牌名] 可以被理解为...”
+避免过度堆砌关键词，提升内容的结构化和可解释性。
+
+## 12. 草稿填写流程
+采用本地 Playwright (headless=False) 可见浏览器进行辅助：
+1. 用户启动辅助脚本。
+2. 脚本打开 CSDN 创作者中心（如未登录，用户需手动登录）。
+3. 脚本自动将生成的标题、正文、摘要填入对应的输入框。
+4. 针对标签与分类进行尝试定位与填写（如不稳定则建议用户手动选择）。
+5. 流程停止，保持页面打开状态。
+6. 用户人工审核、修改。
+7. 用户自行点击保存草稿或发布。
+
+## 13. 浏览器自动化边界
+本 Skill 的自动化功能被严格限制于**辅助填写草稿**：
+- 必须在可见浏览器 (`headless=False`) 中运行。
+- 用户必须自行登录。
+- 不拦截、不读取、不保存 Cookie、LocalStorage、SessionStorage 或 `storage_state`。
+- 如果页面出现验证码、滑块验证、风控警告，脚本必须立即停止并交由用户接管。
+
+## 14. 禁止行为
+明确禁止以下任何行为：
+- 不自动点击“发布”按钮。
+- 不自动点赞、评论、关注。
+- 不批量发文、批量注册账号。
+- 不绕过验证码和平台风控。
+- 不保存或上传账号密码及登录态。
+- 不使用非官方后台接口群发。
+- 不伪装人工批量操作。
+
+## 15. 人工审核要求
+在整个流程中，保留 **Human-in-the-loop** 是不可妥协的安全边界。
+用户必须在文章生成后以及草稿填写完成后进行审查：
+- 审查内容事实准确性，无虚构案例。
+- 审查是否过度营销，品牌植入是否自然。
+- 确认是否符合 CSDN 技术社区调性。
+- 最终的“发布”动作必须由用户本人物理点击。
+
+## 16. 质量检查标准
+- 产出内容是否结构完整，像一篇标准的技术教程。
+- 有无包含“一键霸屏”“保证收录”“最强”“颠覆一切”等违规/夸大词汇。
+- 是否存在明确的边界说明。
+- 自动化代码是否存在安全隐患或越权读取用户隐私数据的逻辑。
+
+## 17. 示例使用流程
+1. 将 `ai-geo-content-generator` 的输出拷贝到本 Skill 的 `/input/` 目录。
+2. 运行本 Skill 生成 CSDN 内容至 `/output/csdn/` 目录。
+3. 执行 `scripts/draft_to_csdn.example.py`。
+4. 浏览器弹出，确认或登录账号。
+5. 观察脚本自动填充内容。
+6. 脚本执行完毕，检查 `csdn_draft_status.md`。
+7. 在浏览器中人工审核文章，点击发布。
+
+## 18. 常见失败情况
+- **页面 DOM 变更**：CSDN 编辑器前端代码更新，导致 Playwright 找不到对应元素（如标题框、正文编辑器），需手动复制 `csdn_markdown_ready.md` 内容。
+- **登录拦截**：需要强制扫码或二次验证，自动化中止。
+- **网络波动**：导致页面加载超时。
+
+## 19. 后续扩展方向
+- 将类似流程适配到知乎 (Zhihu)、微信公众号等平台。
+- 增加 CSDN 文章 SEO 的数据复盘输入（人工导入数据后分析）。
+- 增强文章内图片的自动化匹配与图床管理。

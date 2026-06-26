@@ -1,0 +1,9 @@
+name: 医学文献检索
+id: medical-lit
+version: 0.1.0
+price: 0
+description: Medical literature search and synthesis via PubMed. Use when looking up clinical studies, drug information, treatment guidelines, or any biomedical research.
+tags:
+  - medical
+  - pubmed
+  - literature

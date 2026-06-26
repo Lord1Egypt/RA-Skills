@@ -1,0 +1,25 @@
+{
+  "name": "Capital Expenditure Planner",
+  "slug": "capital-expenditure-planner",
+  "version": "1.0.0",
+  "description": "Prioritizes capex options using business impact, payback, timing, and risk tradeoffs.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "capex",
+    "investment-planning",
+    "payback",
+    "prioritization"
+  ],
+  "trigger_keywords": [
+    "capex planning",
+    "equipment investment decision",
+    "payback analysis",
+    "capital budget prioritization",
+    "capex roadmap"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

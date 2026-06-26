@@ -1,0 +1,13 @@
+{
+  "name": "@stomme/sora-video",
+  "version": "1.0.0",
+  "description": "AI video generation using OpenAI Sora 2 API with marketing-focused prompt templates",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "keywords": ["sora", "video", "ai-generation", "marketing", "openai"],
+  "license": "UNLICENSED",
+  "private": true
+}

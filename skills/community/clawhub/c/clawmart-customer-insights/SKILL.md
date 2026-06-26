@@ -1,35 +1,138 @@
----
-name: "ClawMart Customer Insights"
-description: "分析客户行为和成交数据，提供客户分级、成交预测及个性化营销建议，助力精准跟进和转化提升。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawmart-customer-insights"
-sourceUrl: "https://clawhub.ai/skills/clawmart-customer-insights"
----
+# Customer Insights Skill
 
-# ClawMart Customer Insights
+分析客户数据，发现成交机会。
 
-> 分析客户行为和成交数据，提供客户分级、成交预测及个性化营销建议，助力精准跟进和转化提升。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawmart-customer-insights`
-- **Source URL:** [https://clawhub.ai/skills/clawmart-customer-insights](https://clawhub.ai/skills/clawmart-customer-insights)
+- 客户行为分析
+- 成交预测
+- 客户分级
+- 最佳跟进时机
+- 个性化营销建议
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawmart-customer-insights
 ```
+分析我最近的客户数据
+```
+
+```
+哪些客户最可能成交？
+```
+
+```
+给我营销优化建议
+```
+
+## 配置
+
+### 客户数据源
+```json
+{
+  "sources": {
+    "wechat": "微信聊天记录",
+    "email": "邮件往来",
+    "crm": "CRM 系统（可选）"
+  }
+}
+```
+
+## 输出格式
+
+```
+📊 客户洞察报告
+
+## 客户概览
+- 总客户：127 人
+- 活跃客户：45 人（35%）
+- 成交客户：32 人（25%）
+- 复购客户：12 人（38% 复购率）
+
+## 客户分级
+
+### 🌟 VIP 客户（5 人）
+高价值、高忠诚度
+1. 张总 - 累计 ¥120,000 - 复购 4 次
+2. 李经理 - 累计 ¥85,000 - 复购 3 次
+...
+
+### 💎 高潜力客户（12 人）
+高意向、待转化
+1. 王先生 - 咨询 3 次 - 预算 ¥50,000
+2. 赵女士 - 咨询 2 次 - 预算 ¥30,000
+...
+
+### 📋 普通客户（30 人）
+低活跃、需激活
+...
+
+### ⚠️ 流失风险（8 人）
+长期未联系
+...
+
+## 成交预测
+
+### 本月预测
+- 预计成交：8 单
+- 预计金额：¥180,000
+- 置信度：75%
+
+### 高概率成交（>70%）
+1. 王先生 - ¥50,000 - 概率 85%
+   - 行动：电话跟进
+   
+2. 赵女士 - ¥30,000 - 概率 78%
+   - 行动：提供案例
+
+## 最佳跟进时机
+
+### 按时间
+- 上午 10:00-11:00：回复率 55%
+- 下午 15:00-16:00：回复率 48%
+- 晚上 20:00-21:00：回复率 42%
+
+### 按星期
+- 周二：回复率最高（52%）
+- 周四：回复率次高（48%）
+- 周一/周五：回复率较低（35%）
+
+## 个性化建议
+
+### 张总（VIP）
+- 下次跟进：3 月 15 日
+- 建议内容：新服务介绍
+- 预期需求：¥30,000
+
+### 王先生（高潜力）
+- 下次跟进：立即
+- 建议内容：案例 + 优惠
+- 预期成交：¥50,000
+
+## 营销优化建议
+
+1. **提升转化率**
+   - 增加案例展示
+   - 提供分期付款
+   - 缩短响应时间
+
+2. **激活沉睡客户**
+   - 发送优惠活动
+   - 分享新案例
+   - 提供免费咨询
+
+3. **提升复购率**
+   - 定期回访
+   - 会员优惠
+   - 推荐奖励
+```
+
+## 技术栈
+
+- Node.js / Python
+- GLM-5（数据分析）
+- 本地存储
+
+---
+
+创建时间：2026-03-11
+作者：ClawMart

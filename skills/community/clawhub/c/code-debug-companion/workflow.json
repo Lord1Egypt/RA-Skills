@@ -1,0 +1,86 @@
+{
+  "name": "code-debug-companion",
+  "displayName": "Code Debug Companion",
+  "version": "1.0.0",
+  "description": "AI 驱动的智能代码调试助手，自动诊断错误、搜索解决方案、修复代码并验证。",
+  "category": "开发",
+  "triggers": ["调试", "debug", "报错", "修复", "错误分析", "代码诊断"],
+  "skills": [
+    {
+      "name": "code-review",
+      "role": "根因分析：分析错误类型、定位问题代码、识别潜在逻辑缺陷",
+      "workflow": "分析错误堆栈 → 定位相关代码文件 → 识别根因"
+    },
+    {
+      "name": "brave-search",
+      "role": "解决方案搜索：在 StackOverflow、GitHub Issues、官方文档中搜索类似问题",
+      "workflow": "提取错误关键词 → 搜索类似问题 → 过滤有效解决方案"
+    },
+    {
+      "name": "setup-unit-test",
+      "role": "测试覆盖生成：为修复方案生成边界情况和正常路径的单元测试",
+      "workflow": "分析修复点 → 生成边界测试 → 生成正常路径测试 → 输出测试报告"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "错误信息解析",
+        "skill": "user-input",
+        "action": "接收错误信息（终端输出/截图/日志），解析错误类型和堆栈"
+      },
+      {
+        "step": 2,
+        "name": "根因分析",
+        "skill": "code-review",
+        "action": "分析错误类型、定位相关代码、识别根因和影响范围",
+        "output": "问题诊断报告（错误类型 + 根因 + 影响文件）"
+      },
+      {
+        "step": 3,
+        "name": "解决方案搜索",
+        "skill": "brave-search",
+        "action": "搜索类似问题的成熟解决方案，整理出 2-3 个可行方案",
+        "output": "解决方案列表（含来源和匹配度）"
+      },
+      {
+        "step": 4,
+        "name": "修复方案生成",
+        "skill": "internal",
+        "action": "结合根因分析和解决方案，生成最优修复代码",
+        "output": "修复代码（含注释说明）"
+      },
+      {
+        "step": 5,
+        "name": "测试用例生成",
+        "skill": "setup-unit-test",
+        "action": "为修复方案生成边界测试和正常路径测试",
+        "output": "单元测试文件列表"
+      },
+      {
+        "step": 6,
+        "name": "报告输出",
+        "skill": "internal",
+        "action": "生成完整的调试报告，包含诊断、搜索结果、修复方案、测试结果",
+        "output": "结构化调试报告"
+      }
+    ]
+  },
+  "outputFormat": {
+    "bugDiagnosis": "🐛 问题诊断：{错误类型} / {根因分析} / {影响范围}",
+    "searchResults": "🔍 类似问题：{来源} - {标题} (匹配度: {score}%)",
+    "fixSolution": "✅ 修复方案：{文件} / {修改内容}",
+    "testCases": "🧪 测试用例：{数量} 个测试覆盖此场景",
+    "changedFiles": "📁 变更文件：{文件列表}"
+  },
+  "supportedLanguages": [
+    "JavaScript",
+    "TypeScript",
+    "Python",
+    "Go",
+    "Rust",
+    "Java",
+    "C++"
+  ]
+}

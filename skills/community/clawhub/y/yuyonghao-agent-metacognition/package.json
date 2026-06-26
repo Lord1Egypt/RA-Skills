@@ -1,0 +1,21 @@
+{
+  "name": "agent-metacognition",
+  "version": "0.1.0",
+  "description": "元认知系统 - 使 Agent 具备自我监控、反思能力、学习策略调整和认知负荷管理能力",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/metacognition.test.js"
+  },
+  "keywords": [
+    "metacognition",
+    "self-monitoring",
+    "reflection",
+    "cognitive-load",
+    "learning-strategy"
+  ],
+  "author": "Agent",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

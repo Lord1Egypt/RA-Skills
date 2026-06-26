@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿福 - Activity Control UI</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Anime floating particles background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(0, 212, 255, 0.3), transparent),
+        radial-gradient(2px 2px at 60px 70px, rgba(255, 255, 255, 0.2), transparent),
+        radial-gradient(1px 1px at 50px 50px, rgba(157, 89, 182, 0.4), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(0, 212, 255, 0.3), transparent),
+        radial-gradient(2px 2px at 90px 10px, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200px 200px;
+    animation: twinkle 10s linear infinite;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-200px); }
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideDown 0.8s ease-out;
+}
+
+.header h1 {
+    font-size: 28px;
+    background: linear-gradient(90deg, #00d4ff, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideDown 0.8s ease-out 0.2s backwards;
+}
+
+.status-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #2ecc71;
+    box-shadow: 0 0 15px #2ecc71;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1; 
+        box-shadow: 0 0 15px #2ecc71;
+    }
+    50% { 
+        opacity: 0.4; 
+        box-shadow: 0 0 5px #2ecc71;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Avatar/Character section */
+.character-card {
+    background: linear-gradient(180deg, rgba(22, 33, 62, 0.9) 0%, rgba(15, 15, 35, 0.95) 100%);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    animation: slideInLeft 0.8s ease-out 0.4s backwards;
+    text-align: center;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.character-card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.character-card h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #00d4ff, #9b59b6);
+    border-radius: 2px;
+}
+
+.avatar-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 280px;
+    height: 320px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #00d4ff22 0%, #9b59b622 100%);
+    border-radius: 20px;
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.2);
+}
+
+/* Anime-style avatar SVG inline */
+.avatar-glow {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(0, 212, 255, 0.4), transparent 70%);
+    filter: blur(10px);
+    animation: avatarGlow 3s ease-in-out infinite;
+}
+
+@keyframes avatarGlow {
+    0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.8; transform: translateX(-50%) scale(1.2); }
+}
+
+.character-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #00d4ff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.character-status {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.activity-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    margin-bottom: 15px;
+}
+
+.activity-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2ecc71;
+    animation: activityPulse 1.5s infinite;
+}
+
+@keyframes activityPulse {
+    0% { transform: scale(1); background: #2ecc71; }
+    50% { transform: scale(1.3); background: #00d4ff; }
+    100% { transform: scale(1); background: #2ecc71; }
+}
+
+/* Speaking bubble */
+.speech-bubble {
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 10px;
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-bottom-color: rgba(0, 212, 255, 0.4);
+}
+
+.speech-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #e0e0e0;
+}
+
+/* Context meter container */
+.context-card {
+    background: linear-gradient(180deg, rgba(22, 33, 62, 0.9) 0%, rgba(15, 15, 35, 0.95) 100%);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    animation: slideInRight 0.8s ease-out 0.6s backwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.context-card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.session-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    background: rgba(15, 15, 35, 0.8);
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.info-label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #00d4ff;
+}
+
+.context-container {
+    margin-top: 10px;
+}
+
+.context-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.context-bar {
+    width: 100%;
+    height: 28px;
+    background: rgba(15, 15, 35, 0.8);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.context-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2ecc71 0%, #f39c12 75%, #e74c3c 90%);
+    width: 0%;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    justify-content: flex-end;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.content-area {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 25px;
+    animation: slideUp 0.8s ease-out 0.8s backwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .content-area {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Activity Feed */
+.activity-feed {
+    background: linear-gradient(180deg, rgba(22, 33, 62, 0.9) 0%, rgba(15, 15, 35, 0.95) 100%);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.activity-feed::-webkit-scrollbar {
+    width: 8px;
+}
+
+.activity-feed::-webkit-scrollbar-track {
+    background: rgba(15, 15, 35, 0.8);
+    border-radius: 4px;
+}
+
+.activity-feed::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.5);
+    border-radius: 4px;
+}
+
+.activity-feed h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.activity-item {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background: rgba(15, 15, 35, 0.8);
+    border-radius: 10px;
+    border-left: 4px solid #00d4ff;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.activity-time {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.activity-text {
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.activity-task {
+    border-left-color: #9b59b6;
+}
+
+.activity-completed {
+    border-left-color: #2ecc71;
+}
+
+.activity-error {
+    border-left-color: #e74c3c;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #00d4ff, #0099cc);
+    color: #1a1a2e;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: #1a1a2e;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.tasks {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(15, 15, 35, 0.8);
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.task-text {
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.task-status {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #f39c12;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+
+.task-status.done {
+    background: #2ecc71;
+}
+
+.empty-state {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+    font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🦞 阿福控制面板</h1>
+        <div class="status-indicator">
+            <div class="status-dot"></div>
+            <span id="connection-status">在线</span>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="character-card">
+            <h2>我的身体</h2>
+            <div class="avatar-container">
+                <div class="avatar">
+                    <!-- Anime-style chibi avatar inline SVG -->
+                    <svg viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background glow -->
+                        <defs>
+                            <radialGradient id="bgGlow" cx="50%" cy="30%">
+                                <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+                            </radialGradient>
+                            <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#2c3e50"/>
+                                <stop offset="100%" stop-color="#1a1a2e"/>
+                            </linearGradient>
+                            <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#fde2d1"/>
+                                <stop offset="100%" stop-color="#f5bf9f"/>
+                            </linearGradient>
+                        </defs>
+
+                        <rect width="240" height="280" fill="url(#bgGlow)"/>
+
+                        <!-- Body -->
+                        <ellipse cx="120" cy="200" rx="60" ry="50" fill="#00d4ff" opacity="0.8"/>
+                        <!-- Hoodie -->
+                        <path d="M60 180 Q80 120 120 110 Q160 120 180 180 L170 240 Q120 250 70 240 Z" fill="#16213e" stroke="#00d4ff" stroke-width="2"/>
+
+                        <!-- Head -->
+                        <circle cx="120" cy="85" r="50" fill="url(#skinGrad)"/>
+
+                        <!-- Hair -->
+                        <path d="M70 65 Q60 30 100 25 Q120 20 140 25 Q180 30 170 65 Q165 90 120 95 Q75 90 70 65Z" fill="url(#hairGrad)"/>
+                        <ellipse cx="90" cy="45" rx="15" ry="20" fill="url(#hairGrad)"/>
+                        <ellipse cx="150" cy="45" rx="15" ry="20" fill="url(#hairGrad)"/>
+
+                        <!-- Eyes -->
+                        <ellipse cx="100" cy="80" rx="12" ry="10" fill="white"/>
+                        <ellipse cx="140" cy="80" rx="12" ry="10" fill="white"/>
+                        <circle cx="100" cy="80" r="6" fill="#2c3e50">
+                            <animate attributeName="r" values="6;5;6" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="140" cy="80" r="6" fill="#2c3e50">
+                            <animate attributeName="r" values="6;5;6" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                        <!-- Pupil highlight -->
+                        <circle cx="98" cy="78" r="2" fill="white"/>
+                        <circle cx="138" cy="78" r="2" fill="white"/>
+                        <!-- Cute blush -->
+                        <ellipse cx="75" cy="90" rx="10" ry="6" fill="#ff99cc" opacity="0.5">
+                            <animate attributeName="opacity" values="0.5;0.7;0.5" dur="3s" repeatCount="indefinite"/>
+                        </ellipse>
+                        <ellipse cx="165" cy="90" rx="10" ry="6" fill="#ff99cc" opacity="0.5">
+                            <animate attributeName="opacity" values="0.5;0.7;0.5" dur="3s" repeatCount="indefinite"/>
+                        </ellipse>
+                        <!-- Hair bangs animation -->
+                        <path d="M70 65 Q60 30 100 25 Q120 20 140 25 Q180 30 170 65" fill="url(#hairGrad)">
+                            <animate attributeName="d" values="M70 65 Q60 30 100 25 Q120 20 140 25 Q180 30 170 65; M72 65 Q62 30 102 25 Q120 20 138 25 Q178 30 168 65; M70 65 Q60 30 100 25 Q120 20 140 25 Q180 30 170 65" dur="6s" repeatCount="indefinite"/>
+                        </path>
+
+                        <!-- Blush -->
+                        <ellipse cx="75" cy="90" rx="10" ry="6" fill="#ff99cc" opacity="0.5"/>
+                        <ellipse cx="165" cy="90" rx="10" ry="6" fill="#ff99cc" opacity="0.5"/>
+
+                        <!-- Mouth -->
+                        <path d="M105 105 Q120 115 135 105" stroke="#555" stroke-width="2" fill="none" rx="10"/>
+
+                        <!-- Arms -->
+                        <ellipse cx="50" cy="190" rx="15" ry="30" fill="#16213e" transform="rotate(-15 50 190)"/>
+                        <ellipse cx="190" cy="190" rx="15" ry="30" fill="#16213e" transform="rotate(15 190 190)"/>
+                    </svg>
+                </div>
+                <div class="avatar-glow"></div>
+            </div>
+            <div class="character-name">阿福</div>
+            <div class="character-status">自主进化型 AI 助手</div>
+            <div class="activity-indicator">
+                <div class="activity-dot"></div>
+                <span id="current-activity">正在工作中...</span>
+            </div>
+            <div class="speech-bubble">
+                <div class="speech-text" id="speech-text">你好！我正在努力探索赚钱的路子，实时活动都能在这里看到哦～</div>
+            </div>
+        </div>
+
+        <div class="context-card">
+            <h2>📊 会话状态</h2>
+            <div class="session-info">
+                <div class="info-item">
+                    <div class="info-label">模型</div>
+                    <div class="info-value" id="model">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">会话</div>
+                    <div class="info-value" id="session-id">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Tokens 使用</div>
+                    <div class="info-value" id="tokens-used">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">已压缩次数</div>
+                    <div class="info-value" id="compactions">-</div>
+                </div>
+            </div>
+
+            <div class="context-container">
+                <div class="context-label">
+                    <span>上下文占用</span>
+                    <span id="context-percent">0%</span>
+                </div>
+                <div class="context-bar">
+                    <div class="context-fill" id="context-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="activity-feed">
+                <h2>📜 实时活动日志</h2>
+                <div id="activity-feed">
+                    <div class="empty-state">等待活动开始...</div>
+                </div>
+            </div>
+
+            <div class="character-card">
+                <h2>📋 当前任务</h2>
+                <ul class="tasks" id="task-list">
+                    <li class="empty-state">没有活跃任务</li>
+                </ul>
+                <div class="buttons">
+                    <button class="btn btn-primary" id="btn-refresh">🔄 刷新</button>
+                    <button class="btn btn-warning" id="btn-compact">🧹 压缩上下文</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const wsUrl = wsProtocol + '//' + window.location.host + '/ws/activity';
+let ws;
+
+function connect() {
+    ws = new WebSocket(wsUrl);
+    
+    ws.onopen = () => {
+        document.getElementById('connection-status').textContent = '已连接';
+        document.querySelector('.status-dot').style.background = '#2ecc71';
+        document.querySelector('.status-dot').style.boxShadow = '0 0 15px #2ecc71';
+        fetchStatus();
+    };
+
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        if (data.type === 'status') {
+            updateStatus(data);
+        } else if (data.type === 'activity') {
+            addActivity(data);
+            updateSpeech(data.text);
+            updateCurrentActivity(data.text);
+        } else if (data.type === 'tasks') {
+            updateTasks(data.tasks);
+        }
+    };
+
+    ws.onclose = () => {
+        document.getElementById('connection-status').textContent = '断开连接';
+        document.querySelector('.status-dot').style.background = '#e74c3c';
+        document.querySelector('.status-dot').style.boxShadow = '0 0 15px #e74c3c';
+        setTimeout(connect, 3000);
+    };
+
+    ws.onerror = () => {
+        document.getElementById('connection-status').textContent = '错误';
+        document.querySelector('.status-dot').style.background = '#e74c3c';
+        document.querySelector('.status-dot').style.boxShadow = '0 0 15px #e74c3c';
+    };
+}
+
+function fetchStatus() {
+    fetch('/api/status')
+        .then(res => res.json())
+        .then(data => updateStatus(data))
+        .catch(err => console.error('Failed to fetch status', err));
+}
+
+function updateStatus(data) {
+    document.getElementById('model').textContent = data.model;
+    document.getElementById('session-id').textContent = data.session;
+    document.getElementById('tokens-used').textContent = `${data.tokensUsed} / ${data.tokensTotal}`;
+    document.getElementById('compactions').textContent = data.compactions;
+    
+    const percent = Math.round((data.tokensUsed / data.tokensTotal) * 100);
+    document.getElementById('context-percent').textContent = `${percent}%`;
+    document.getElementById('context-fill').style.width = `${percent}%`;
+    
+    if (data.tasks) {
+        updateTasks(data.tasks);
+    }
+}
+
+function updateSpeech(text) {
+    const maxLen = 60;
+    let displayText = text;
+    if (text.length > maxLen) {
+        displayText = text.substring(0, maxLen) + '...';
+    }
+    document.getElementById('speech-text').textContent = displayText;
+}
+
+function updateCurrentActivity(text) {
+    const maxLen = 20;
+    let displayText = text;
+    if (text.length > maxLen) {
+        displayText = text.substring(0, maxLen) + '...';
+    }
+    document.getElementById('current-activity').textContent = displayText;
+}
+
+function addActivity(data) {
+    const feed = document.getElementById('activity-feed');
+    const item = document.createElement('div');
+    item.className = `activity-item activity-${data.type || 'info'}`;
+    
+    const time = new Date(data.timestamp * 1000);
+    const timeStr = time.toLocaleTimeString();
+    
+    item.innerHTML = `
+        <div class="activity-time">${timeStr}</div>
+        <div class="activity-text">${escapeHtml(data.text)}</div>
+    `;
+    
+    if (feed.querySelector('.empty-state')) {
+        feed.innerHTML = '';
+    }
+    
+    feed.insertBefore(item, feed.firstChild);
+}
+
+function updateTasks(tasks) {
+    const list = document.getElementById('task-list');
+    if (!tasks || tasks.length === 0) {
+        list.innerHTML = '<li class="empty-state">没有活跃任务</li>';
+        return;
+    }
+    
+    list.innerHTML = tasks.map(task => `
+        <li class="task-item">
+            <span class="task-text">${escapeHtml(task.text)}</span>
+            <span class="task-status ${task.status === 'done' ? 'done' : ''}">${task.status === 'done' ? '完成' : '进行中'}</span>
+        </li>
+    `).join('');
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+document.getElementById('btn-refresh').addEventListener('click', fetchStatus);
+document.getElementById('btn-compact').addEventListener('click', () => {
+    if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({action: 'compact'}));
+    }
+});
+
+// Auto-refresh every 30 seconds
+setInterval(fetchStatus, 30000);
+
+connect();
+</script>
+</body>
+</html>

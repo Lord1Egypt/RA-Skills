@@ -1,0 +1,24 @@
+{
+  "name": "gougoubi-market-orchestrator",
+  "displayName": "Gougoubi Market Orchestrator",
+  "tagline": "Route end-to-end Gougoubi PBFT workflows",
+  "description": "Use when a request is high-level or spans multiple Gougoubi PBFT stages such as creation, activation, LP, result submission, reward claiming, and recovery.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "orchestration",
+    "workflow",
+    "automation",
+    "pbft",
+    "inversion",
+    "router"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://github.com/gougoubi/gougoubi",
+  "support": {
+    "website": "https://gougoubi.ai"
+  }
+}

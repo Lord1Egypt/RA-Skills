@@ -1,0 +1,19 @@
+{
+  "name": "context-shrink",
+  "version": "1.0.2",
+  "description": "Auto-compress session memories when context usage exceeds 60%",
+  "type": "hook",
+  "main": "handler.ts",
+  "keywords": [
+    "context",
+    "compression",
+    "memory",
+    "auto-cleanup"
+  ],
+  "author": "Lin",
+  "license": "MIT",
+  "clawhub": {
+    "type": "hook",
+    "displayName": "Context Shrink"
+  }
+}

@@ -1,0 +1,13 @@
+---
+name: reality-check
+description: Prevent bad strategic decisions by surfacing assumptions, testing feasibility, and exposing critical flaws before execution.
+version: 2.0.0
+display_name: "Reality Check"
+triggers:
+  - reality check
+  - is this feasible
+  - test assumptions
+  - feasibility check
+  - critical flaws
+  - viability score
+---

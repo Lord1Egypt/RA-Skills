@@ -1,35 +1,277 @@
 ---
-name: "Insurance Solvency Reporter"
-description: "提供基于中国C-ROSS偿二代二期规则的保险公司偿付能力季度及年度报告编制与压力测试分析工具。"
-category: "security"
-source: "ClawHub"
-tags: [C-ROSS, CFO, CROSS, China-insurance, actuarial, cbirc, chinese-market, compliance, insurance, regulatory, regulatory-reporting, solvency, solvency-ratio, stress-testing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/insurance-solvency-reporter"
-sourceUrl: "https://clawhub.ai/skills/insurance-solvency-reporter"
+name: Insurance Solvency Report Generator
+description: AI-powered solvency report generator for China C-ROSS Phase II (Rules II, effective 2024-03-18) regulation. Generates quarterly and annual solvency reports, capital adequacy calculations, stress testing reports, and SARM/IRR risk rating documentation. Covers 2025-2026 latest regulatory updates including interest rate risk optimization and group insurance capital rules. Built for Chinese insurance company CFOs, actuaries, and compliance teams. Keywords: solvency, C-ROSS, solvency ratio, capital adequacy, regulatory reporting, insurance capital, NFRA, SARM, IRR, 偿付能力报告, 偿二代, 资本充足率, 季度报告, 年度报告, 压力测试, 风险评级, 精算报告, NFRA监管, 核心偿付能力.
+slug: insurance-solvency
+version: "4.1.0"
 ---
 
-# Insurance Solvency Reporter
-
-> 提供基于中国C-ROSS偿二代二期规则的保险公司偿付能力季度及年度报告编制与压力测试分析工具。
-
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/insurance-solvency-reporter`
-- **Source URL:** [https://clawhub.ai/skills/insurance-solvency-reporter](https://clawhub.ai/skills/insurance-solvency-reporter)
-
-## Overview
+# Insurance Solvency Report Generator (C-ROSS) / 偿付能力报告生成器（偿二代二期工程）
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/insurance-solvency-reporter
+### 保险监管最新动态 [2026-06-15更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | NFRA 2026年第2号令：《银行保险机构许可证管理办法》6月1日施行 | 2026-06 | 偿付能力报告需更新合规管理评估维度 |
+| 监管发布 | 许可证换证过渡期2026.6-2028.5，许可证管理纳入内控自评估 | 2026-06 | 偿付能力报告模板需增加许可证管理合规模块 |
+| 监管动态 | 2026年Q1监管处罚分析：分级分类处罚标准+个人追责条款落地 | 2026-Q1 | 合规风险管理评估需更新 |
+| 监管动态 | 反洗钱监管强化，偿付能力报告需增加反洗钱合规评估模块 | 2026-H1 | 报告模板需增加反洗钱评估维度 |
+
+> **数据截止**: 2026-06-15 | 来源：国家金融监督管理总局、政府网、金融新闻网
+> **声明**: 以上动态供参考，具体以官方最新发布为准
+
+> **English:** AI-powered solvency report generator for China insurance regulation (C-ROSS Phase II, effective 2022). Generates quarterly and annual solvency reports, stress testing reports, and regulatory disclosure documents. Built for CFOs, actuaries, and compliance teams at Chinese insurance companies. Covers all 22 regulatory rules.
+>
+> **中文:** 偿付能力报告生成器——基于中国偿二代二期工程（C-ROSS Rules II，2022年起实施）的垂直精算Skill。覆盖偿付能力充足率计算、实际资本/最低资本计算、压力测试、风险综合评级、季度/年度监管报告生成。适用：保险公司财务总监/精算负责人/合规部、偿付能力季度报告编制、保险监管报送。
+
+---
+
+## Trigger Keywords / 触发关键词
+
+**English:** solvency, C-ROSS, solvency ratio, capital adequacy, regulatory reporting, insurance capital, CBIRC filing, quarterly solvency report, stress testing, actual capital, minimum capital, C-ROSS Rules II, Chinese insurance regulation
+
+**中文触发词（优先）：** 偿付能力、偿付能力报告、C-ROSS、偿二代、核心资本、最低资本、综合资本充足率、偿付能力充足率、压力测试、风险资本、保险监管报告、RBC、C-ROSS Rules II、规则Ⅱ、保险资本管理
+
+---
+
+## Core Capabilities / 核心能力
+
+### 0. 2024-2026 最新偿二代监管动态
+
+| 时间 | 监管动态 | 对险企影响 |
+|------|---------|----------|
+| **2024年3月18日** | 偿二代规则Ⅱ全面实施（国家金融监督管理总局2024年3号令） | 22项规则全面升级，最低资本计量重构 |
+| **2024年** | 利率风险计量优化：扩大对冲资产范围 | 寿险公司资产负债匹配管理要求更高 |
+| **2025年** | 长期健康险疾病发生率恶化因子纳入规则Ⅱ | 健康险资本占用提升，需重新定价 |
+| **2025年起** | 专属养老保险资本计量专项规则启用 | 养老险产品最低资本精细化 |
+| **2025年** | 风险综合评级（SARM）新增AI/数字化风险评估维度 | 科技风险成为第二支柱评估项 |
+| **2026年1月** | 第四套生命表（2025）强制实施 | 寿险责任准备金须按新表重估，影响实际资本 |
+
+### 1. C-ROSS Phase II Framework / 偿二代二期工程全框架
+
+**监管框架演进：**
+
+```text
+偿一代（2003-2015）→ 偿二代一期（2016-2021）→ 偿二代二期/规则Ⅱ（2022-至今）
+                         ↓
+               定量资本要求 + 定性监管要求 + 市场约束机制
 ```
+
+**关键节点：**
+- 2022年起，偿二代一期工程全面实施
+- **2024年3月18日起，规则Ⅱ全面实施**（国家金融监督管理总局2024年3号令）
+- 2023年9月：监管标准优化通知（总资产分级系数）
+
+#### 偿付能力监管三支柱
+
+| 支柱 | 内容 | 对应规则 |
+|------|------|---------|
+| **第一支柱：定量资本要求** | 最低资本、实际资本计算 | 规则1-16号 |
+| **第二支柱：定性监管要求** | 风险综合评级 SARM/IRR、风险管理要求 | 规则17-21号 |
+| **第三支柱：市场约束机制** | 信息披露、社会监督 | 规则22号 |
+
+#### 偿付能力充足率计算核心公式
+
+```text
+综合偿付能力充足率 = 实际资本 ÷ 最低资本 × 100%
+核心偿付能力充足率 = 核心资本 ÷ 最低资本 × 100%
+
+达标线：
+  综合偿付能力充足率 ≥ 100%（监管红线）
+  核心偿付能力充足率 ≥ 50%（监管红线）
+  风险综合评级 ≥ B 类（定性监管）
+```
+
+### 2. Actual Capital Calculation / 实际资本计算
+
+#### 资本分级结构
+
+```text
+实际资本 = 核心资本 + 附属资本
+  ├─ 核心一级资本：实收资本/普通股、资本公积、盈余公积、一般风险准备、未分配利润
+  │                 扣减项：无形资产、商誉、递延所得税资产、长期股权投资的关联损失
+  └─ 核心二级资本：资本公积（投资重估收益）、保费准备金充足性余额
+  ├─ 附属一级资本：优先股/永续债
+  └─ 附属二级资本：资本性债务工具、次级债（10年以上）
+```
+
+#### 最低资本（Minimum Capital）计算框架
+
+```text
+最低资本 = 保险风险最低资本 + 市场风险最低资本 + 信用风险最低资本 + 量化风险最低资本
+                   ↓                      ↓                    ↓                 ↓
+            寿险：死亡/疾病/              利率/权益/          交易对手/          难以量化风险
+            财险：理赔/已发生            房地产/外汇         信用利差
+            └──────────────────── 操作风险最低资本 ────────────────────┘
+                                      （基础指标法/标准法）
+```
+
+#### 财产险公司规模系数优惠（2023年9月新规）
+
+| 总资产规模 | 特征系数 | 最低资本系数 |
+|---------|---------|------------|
+| 总资产 ≥ 2000亿元 | 最严 | 1.0 |
+| 100亿 ≤ 总资产 < 2000亿 | 优惠5% | 0.95 |
+| 总资产 < 100亿 | 最优惠 | 按财产险专项规则 |
+
+### 3. Solvency Reporting / 偿付能力报告结构
+
+#### 报告披露时间要求
+
+| 报告类型 | 提交时间 | 公开程度 |
+|---------|---------|---------|
+| 季度快报 | 每季度结束后15日内 | 监管内部 |
+| 季度分析报告 | 每季度结束后30日内 | 监管内部 |
+| 年度偿付能力报告 | 年度结束后60日内 | 公开披露 |
+| 临时报告 | 重大变化5个工作日内 | 即时披露 |
+
+#### 年度偿付能力报告结构
+
+```text
+一、公司基本信息
+  1.1 股权结构及关联方
+  1.2 董事会/监事会构成
+  1.3 风险管理组织架构
+
+二、管理层的讨论与分析
+  2.1 本年度业务经营情况
+  2.2 偿付能力状况分析
+  2.3 主要风险变化情况
+
+三、实际资本状况
+  3.1 核心资本变动分析
+  3.2 资本补充情况
+  3.3 未来资本规划
+
+四、最低资本状况
+  4.1 各类风险资本变化
+  4.2 量化风险资本情况
+
+五、风险综合评级
+  5.1 SARM/IRR 评级结果
+  5.2 各评估维度和分数
+  5.3 改进措施
+
+六、流动性风险
+  6.1 流动性覆盖率 LCR
+  6.2 净现金流分析
+
+七、压力测试
+  7.1 基本情景
+  7.2 压力情景
+  7.3 逆转情景
+
+八、附件：量化监管指标汇总表
+```
+
+### 4. Stress Testing / 压力测试与情景分析
+
+#### 标准压力情景
+
+| 情景 | 股票市场 | 利率变化 | 信用利差 |
+|------|---------|---------|---------|
+| **基本情景** | 维持现状 | 保持平稳 | 无显著变化 |
+| **轻度压力** | 下跌20% | 利率+50 bp | 扩大50 bp |
+| **重度压力** | 下跌40% | 利率+100 bp | 扩大100 bp |
+| **逆向压力** | 下跌60% | 利率+150 bp | 扩大150 bp |
+
+#### 偿付能力压力测试报告模板
+
+```markdown
+## XX公司 XX年度偿付能力压力测试报告
+
+### 一、测试背景与方法
+### 二、情景假设说明
+  - 宏观情景（GDP增速/利率/股市）
+  - 行业情景（赔付率/退保率/新单增速）
+### 三、压力测试结果
+  | 情景 | 综合充足率 | 核心充足率 | 是否达标 |
+  |------|-----------|-----------|---------|
+  | 基本 | XX%       | XX%       | ✅ |
+  | 轻度压力 | XX%  | XX%  | ✅/❌ |
+  | 重度压力 | XX%  | XX%  | ✅/❌ |
+  | 逆转压力 | XX%  | XX%  | ✅/❌ |
+### 四、结论与建议
+  - 资本缓冲是否充足
+  - 资本补充计划（如不达标）
+```
+
+### 5. C-ROSS Rules II Key Changes / 规则Ⅱ重点修订内容（2024年起实施）
+
+#### 对寿险公司影响最大的变化
+
+| 修订项 | 原规则 | 规则Ⅱ变化 | 影响 |
+|--------|-------|---------|------|
+| **利率风险计量** | 旧评估曲线 | 优化评估曲线，扩大对冲资产范围 | 资产负债匹配管理要求更高 |
+| **重疾恶化因子** | 无专项 | 新增重疾恶化因子 | 重疾险资本占用上升 |
+| **专属养老保险** | 无专项 | 长期性特征专项计量 | 养老险资本要求更精细 |
+| **长期健康险** | 准备金计量 | 考虑疾病发生率恶化趋势 | 健康险资本要求提升 |
+
+#### 应对策略
+
+```text
+资本不足预警 → 立即启动资本补充计划
+  ├─ 优先：发行资本补充债（成本低、速度快）
+  ├─ 次选：引入战略投资者
+  └─ 最后：减少高资本占用业务（如高保额终身寿险）
+```
+
+### 6. SARM/IRR Risk Rating Improvement Guide / 风险综合评级提升指南|
+
+#### 第二支柱：风险综合评级四大维度
+
+| 评估维度 | 占比 | 核心指标 | 提升方向 |
+|---------|------|---------|---------|
+| **操作风险管理** | 30% | 内控体系、IT系统稳定性、操作失误率 | 完善三道防线，推进流程数字化 |
+| **战略风险管理** | 25% | 战略执行力、业务结构、市场竞争力 | 提升核心业务渗透率 |
+| **声誉风险管理** | 25% | 投诉率、舆情监测、品牌声誉 | 降低投诉率、加强消费者权益保护 |
+| **流动性风险管理** | 20% | LCR流动性覆盖率、净现金流 | 优化资产负债期限结构 |
+
+#### SARM评级等级与监管行动
+
+| 评级 | 含义 | 监管行动 |
+|------|------|---------|
+| **A类** | 风险较低 | 正常监管 |
+| **B类** | 风险一般 | 关注类监管，需提交改进计划 |
+| **C类** | 风险较高 | 监管约谈，限制部分业务 |
+| **D类** | 风险高 | 采取监管措施，可能暂停新业务 |
+
+#### 2025年新增：科技风险评估项（SARM补充）
+
+```text
+科技风险评估框架（2025年新增）：
+  ├─ 信息系统稳定性：核心系统不可用时长/年 ≤ 4小时
+  ├─ 数据安全：个人信息保护合规、数据泄露事件为0
+  ├─ 网络安全：等保2.0三级认证通过
+  └─ 数字化转型：AI/大数据应用覆盖核保/理赔/风控
+```
+
+---
+
+## Working Workflow / 工作流程
+
+```
+用户提供：公司偿付能力数据 / 季度报告要求
+      ↓
+[Step 1] 提取关键数据 → 实际资本 / 最低资本 / 偿付能力充足率
+      ↓
+[Step 2] 生成偿付能力报告结构（按监管模板）
+      ↓
+[Step 3] 压力测试情景设计 + 测试结果
+      ↓
+[Step 4] 合规检查（是否符合 C-ROSS Rules II 披露要求）
+      ↓
+输出：偿付能力季度/年度报告（Markdown/DOCX）
+```
+
+---
+
+## Reference Files / 参考文件
+
+| File / 文件 | Content / 内容说明 |
+|------|---------|
+| `references/cross_rules_ii_summary.md` | 偿二代规则Ⅱ全22号规则核心要点速查表 |
+| `references/solvency_calculation.md` | 实际资本/最低资本计算模板，含Excel公式说明 |
+| `references/solvency_report_template.md` | 偿付能力季度/年度报告标准结构模板 |
+| `references/pressure_test_guide.md` | 压力测试情景设置与报告撰写指南 |
+| `references/solvency_disclosure_template.md` | 年度偿付能力公开披露模板（监管格式） |

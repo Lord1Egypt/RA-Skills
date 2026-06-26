@@ -1,35 +1,105 @@
 ---
-name: "Temu Promotion EU"
-description: "Temu 欧洲站电商促销 API，经 LinkFox 网关转发 Partner EU Promotion / 促销活动 相关 bg/temu 接口（活动创建、报名、查询、优惠券/秒杀等，接口将按 Partner 文档逐条接入）。当用户提到 Temu EU 促销、促销活动、优惠券、秒杀、活动报名、promotion..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-temu-promotion-eu"
-sourceUrl: "https://clawhub.ai/skills/linkfox-temu-promotion-eu"
+name: linkfox-temu-promotion-eu
+version: 1.0.0
+category: product-sourcing
+description: Temu 欧洲站电商促销 API，经 LinkFox 网关转发 Partner EU Promotion / 促销活动 相关 bg/temu 接口（活动创建、报名、查询、优惠券/秒杀等，接口将按 Partner 文档逐条接入）。当用户提到 Temu EU 促销、促销活动、优惠券、秒杀、活动报名、promotion campaign、product-inventory 促销 时触发。商品管理用 linkfox-temu-manage-product-eu；价格用 linkfox-temu-price-eu；订单用 linkfox-temu-order-eu。
 ---
 
-# Temu Promotion EU
+# Temu 欧洲站 — 电商促销（Promotion）
 
-> Temu 欧洲站电商促销 API，经 LinkFox 网关转发 Partner EU Promotion / 促销活动 相关 bg/temu 接口（活动创建、报名、查询、优惠券/秒杀等，接口将按 Partner 文档逐条接入）。当用户提到 Temu EU 促销、促销活动、优惠券、秒杀、活动报名、promotion...
+本 skill（`linkfox-temu-promotion-eu`）覆盖 Partner Platform for EU **Promotion / 电商促销**（促销活动、优惠券、活动报名等；Partner 后台菜单可能显示为 Marketing/Promotion）相关 `bg.*` / `temu.*` 接口（`menu_code` 与各 `sub_menu_code` 以 Partner 后台为准，见 [partner-eu-catalog.md](./references/partner-eu-catalog.md)）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-temu-promotion-eu`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-temu-promotion-eu](https://clawhub.ai/skills/linkfox-temu-promotion-eu)
+已接入 **6** 条 Partner **Promotion** 接口，清单见 [partner-eu-catalog.md](./references/partner-eu-catalog.md)。
 
-## Overview
+**网关（本 skill 内置）**：
 
+| 能力 | 方法 | 路径 |
+|------|------|------|
+| 促销 OpenAPI（`eu_promotion_*`、`temu_eu_proxy`） | POST | `https://tool-gateway.linkfox.com/temu/proxy` |
+| 加签文件下载 | POST | `https://tool-gateway.linkfox.com/temu/fileDownload` |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 相关 skill
+
+| 场景 | skill |
+|------|--------|
+| **促销/营销活动**（本 skill） | **`linkfox-temu-promotion-eu`** |
+| 广告 Ads | `linkfox-temu-ads-eu` |
+| 商品列表/详情/编辑/库存/上下架 | `linkfox-temu-manage-product-eu` |
+| 发品 | `linkfox-temu-add-product-eu` |
+| 价格/供货价、定价单 | `linkfox-temu-price-eu` |
+| 订单列表/详情 | `linkfox-temu-order-eu` |
+| 退货与退款 | `linkfox-temu-returns-refunds-eu` |
+| 网关与 Temu token | 本 skill `scripts/` |
+
+## API Usage
+
+| 文档 | 内容 |
+|------|------|
+| [api.md](./references/api.md) | 网关、鉴权、错误码、接入约定 |
+| [partner-eu-catalog.md](./references/partner-eu-catalog.md) | 接口目录 + Partner URL + 脚本（随接入更新） |
+| [apis/README.md](./references/apis/README.md) | **按接口分文件**（`apis/<type-slug>.md`） |
+
+## 默认参数
+
+| 字段 | 默认 | 说明 |
+|------|------|------|
+| site | `eu` | Partner EU |
+| managementType | `semi-managed` | 半托管（具体接口以 Partner 文档为准） |
+| tokenPurpose | `product-inventory` | 与商品/促销场景一致（见 [access-token.md](./references/access-token.md)） |
+
+## 鉴权
+
+1. **LinkFox**：`LINKFOXAGENT_API_KEY` → Header `Authorization` + `Token`
+2. **Temu**：`accessToken` 或 `storeKey`（`storeKey` 时建议带 `tokenPurpose=product-inventory`）
+
+## Scripts
+
+| 脚本 | 说明 |
+|------|------|
+| `temu_eu_proxy.py` | 任意 type |
+| `temu_eu_file_download.py` | 加签下载 |
+| `eu_promotion_activity_query.py` | `bg.promotion.activity.query` |
+| `eu_promotion_activity_candidate_goods_query.py` | `bg.promotion.activity.candidate.goods.query` |
+| `eu_promotion_activity_goods_query.py` | `bg.promotion.activity.goods.query` |
+| `eu_promotion_activity_goods_enroll.py` | `bg.promotion.activity.goods.enroll` |
+| `eu_promotion_activity_goods_operation_query.py` | `bg.promotion.activity.goods.operation.query` |
+| `eu_promotion_activity_goods_update.py` | `bg.promotion.activity.goods.update` |
+
+## 接入新接口（约定）
+
+你每提供一条 Partner 文档（`type` + `sub_menu_code` + URL + Request/Response 参数表），将：
+
+1. 新增 `references/apis/<type-slug>.md`（完整入参/出参层级）
+2. 新增 `scripts/eu_promotion_<slug>.py`（调用 `_eu_promotion_script.run_cli`）
+3. 更新 [partner-eu-catalog.md](./references/partner-eu-catalog.md)、[apis/README.md](./references/apis/README.md) 与本表
+
+## 示例（通用代理）
+
 ```bash
-hermes skills install clawhub/linkfox-temu-promotion-eu
+export LINKFOXAGENT_API_KEY="<key>"
+
+python scripts/temu_eu_proxy.py '{
+  "accessToken": "TOKEN",
+  "tokenPurpose": "product-inventory",
+  "type": "<TEMU_API_TYPE>",
+  "params": {
+    "request": {}
+  }
+}'
 ```
+
+**Feedback：** `skillName`：`linkfox-temu-promotion-eu`
+
+## 网关与授权脚本
+
+| 脚本 | 说明 |
+|------|------|
+| `check_linkfox_token.py` | 校验 LinkFox 用户 Token |
+| `temu_token_guide.py` | Temu accessToken 后台授权步骤 |
+| `save_temu_access_token.py` | 保存 accessToken 到本地 |
+| `list_temu_access_tokens.py` | 列出已保存 token |
+| `get_temu_access_token.py` | 读取已保存 token |
+| `temu_proxy.py` | 通用网关转发（多 site） |
+| `temu_file_download.py` | 加签文件下载（多 site） |
+
+授权说明：[references/access-token.md](./references/access-token.md)

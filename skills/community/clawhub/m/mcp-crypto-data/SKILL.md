@@ -1,35 +1,51 @@
 ---
-name: "mcp-crypto-data"
-description: "Real-time cryptocurrency prices, network fee estimates, and Lightning Network statistics via L402 API. Use when agents need crypto market data, fee planning,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-crypto-data"
-sourceUrl: "https://clawhub.ai/skills/mcp-crypto-data"
+name: mcp-crypto-data
+description: Real-time cryptocurrency prices, network fee estimates, and Lightning Network statistics via L402 API. Use when agents need crypto market data, fee planning, or Lightning network health checks.
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - npx
+      env:
+        - L402_API_BASE_URL
+    emoji: ₿
 ---
 
-# mcp-crypto-data
+# Crypto Data (L402)
 
-> Real-time cryptocurrency prices, network fee estimates, and Lightning Network statistics via L402 API. Use when agents need crypto market data, fee planning,...
+Real-time cryptocurrency data — prices, fees, and Lightning Network stats.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-crypto-data`
-- **Source URL:** [https://clawhub.ai/skills/mcp-crypto-data](https://clawhub.ai/skills/mcp-crypto-data)
+## Setup
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-crypto-data
+```json
+{
+  "mcpServers": {
+    "crypto-data": {
+      "command": "npx",
+      "args": ["-y", "@vbotholemu/mcp-crypto-data"],
+      "env": {
+        "L402_API_BASE_URL": "https://api.nautdev.com"
+      }
+    }
+  }
+}
 ```
+
+## Tools
+
+### `get_crypto_price`
+Real-time price for any supported cryptocurrency.
+
+### `get_network_fees`
+Current transaction fee estimates for Bitcoin and other networks.
+
+### `get_lightning_stats`
+Lightning Network statistics — node count, channel count, total capacity.
+
+## When to Use
+
+- Portfolio monitoring and price checks
+- Transaction fee estimation before sends
+- Lightning Network health monitoring
+- Market data for trading agents

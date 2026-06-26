@@ -1,35 +1,33 @@
 ---
-name: "Hostinger VPS Optimizer"
-description: "Applies kernel tuning, web server optimization, security hardening, and resource limits to boost Hostinger VPS performance and reduce costs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hostinger-vps-optimizer"
-sourceUrl: "https://clawhub.ai/skills/hostinger-vps-optimizer"
+summary: "Hostinger VPS Optimizer: Performance tweaks & cost-saving configs for Hostinger VPS plans."
+description: "Apply battle-tested optimizations for KVM/Cloud VPS: kernel tuning, caching, security hardening, auto-scaling."
+triggers:
+  - "optimize hostinger VPS"
+  - "hostinger tweaks"
+  - "VPS cost save"
+  - "hostinger performance"
+read_when:
+  - "hostinger VPS" in message
 ---
 
-# Hostinger VPS Optimizer
+# Hostinger VPS Optimizer v1.0.0
 
-> Applies kernel tuning, web server optimization, security hardening, and resource limits to boost Hostinger VPS performance and reduce costs.
+## 🎯 Purpose
+Boost speed 2-5x, cut costs 20-50% on Hostinger VPS:
+- Sysctl tuning (TCP, VM)
+- Nginx/Apache optimization
+- Fail2ban + UFW
+- Resource limits
+- Cost analysis vs plans
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hostinger-vps-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/hostinger-vps-optimizer](https://clawhub.ai/skills/hostinger-vps-optimizer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hostinger-vps-optimizer
+## 🚀 Quick Start
 ```
+!hostinger-vps-optimizer --plan kvm2 --focus speed
+```
+
+## Files
+- `scripts/optimize.sh`: One-click optimizer
+- `configs/hostinger.sysctl`: Pre-tuned configs
+
+## Plans Supported
+KVM 1-8, Cloud Startup/Pro.

@@ -1,0 +1,87 @@
+{
+  "tables": [
+    {
+      "table_name": "supplier_table",
+      "comment": "供应商信息表",
+      "fields": [
+        {
+          "name": "id",
+          "type": "BIGINT",
+          "pk": true,
+          "auto": true,
+          "comment": "主键ID，自增"
+        },
+        {
+          "name": "supplier_code",
+          "type": "VARCHAR(32)",
+          "pk": false,
+          "auto": false,
+          "comment": "供应商编码"
+        },
+        {
+          "name": "supplier_name",
+          "type": "VARCHAR(128)",
+          "pk": false,
+          "auto": false,
+          "comment": "供应商全称"
+        },
+        {
+          "name": "short_name",
+          "type": "VARCHAR(64)",
+          "pk": false,
+          "auto": false,
+          "comment": "供应商简称"
+        },
+        {
+          "name": "supplier_level",
+          "type": "VARCHAR(16)",
+          "pk": false,
+          "auto": false,
+          "comment": "供应商等级（如：A/B/C级）"
+        },
+        {
+          "name": "contact_person",
+          "type": "VARCHAR(64)",
+          "pk": false,
+          "auto": false,
+          "comment": "联系人姓名"
+        },
+        {
+          "name": "contact_phone",
+          "type": "VARCHAR(32)",
+          "pk": false,
+          "auto": false,
+          "comment": "联系电话"
+        },
+        {
+          "name": "contact_email",
+          "type": "VARCHAR(128)",
+          "pk": false,
+          "auto": false,
+          "comment": "联系邮箱"
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(16)",
+          "pk": false,
+          "auto": false,
+          "comment": "状态（active/inactive）"
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "pk": false,
+          "auto": false,
+          "comment": "创建时间"
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "pk": false,
+          "auto": false,
+          "comment": "更新时间"
+        }
+      ]
+    }
+  ]
+}

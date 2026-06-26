@@ -1,35 +1,43 @@
 ---
-name: "capture"
-description: "Indexed by skills.sh from camacho/ai-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "camacho"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/camacho/ai-skills/capture"
-sourceUrl: "https://skills.sh/camacho/ai-skills/capture"
+name: capture
+description: Creates a draft GitHub Issue with triage label from natural language description.
 ---
 
-# capture
+## Inputs
+- Free-text description of an idea, bug, or feature request
 
-> Indexed by skills.sh from camacho/ai-skills
+## Steps
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** camacho
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/camacho/ai-skills/capture`
-- **Source URL:** [https://skills.sh/camacho/ai-skills/capture](https://skills.sh/camacho/ai-skills/capture)
+1. **Parse the description** to detect type:
+   | Keywords | Type | Labels |
+   |----------|------|--------|
+   | error, crash, broken, fix, bug, fails, regression | Bug | `triage`, `bug` |
+   | add, want, should, new, feature, enhance, improve | Feature | `triage`, `enhancement` |
+   | Default | Feature | `triage`, `enhancement` |
 
-## Overview
+2. **Create GitHub Issue**:
+   ```bash
+   gh issue create \
+     --title "<concise title from description>" \
+     --body "<full description>" \
+     --label "triage" --label "<bug or enhancement>"
+   ```
 
+3. **Return** the issue number and URL.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/camacho/ai-skills/capture
-```
+## Fallback
+
+If `gh` is not available or GitHub access fails:
+1. Try GitHub MCP tools (if available)
+2. If neither works → append to `ai-workspace/scratchpad.md`:
+   ```markdown
+   ## Captured [date]
+   **Type**: [bug/feature]
+   **Description**: [text]
+   _Failed to create GitHub Issue — saved here as fallback._
+   ```
+   Inform the user that the capture was saved locally.
+
+## Edge Cases
+- No description provided → ask the user to describe the idea/bug
+- Offline / no GitHub access → scratchpad fallback (see above)

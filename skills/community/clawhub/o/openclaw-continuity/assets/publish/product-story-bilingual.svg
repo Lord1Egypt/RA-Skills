@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw Continuity bilingual product story</title>
+  <desc id="desc">A comic-style bilingual product illustration explaining OpenClaw Continuity: remember, reconnect, follow up, and adjust settings naturally.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="48%" stop-color="#eef8ff"/>
+      <stop offset="100%" stop-color="#f7fff1"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fffaf3"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#b99b82" flood-opacity="0.28"/>
+    </filter>
+    <style>
+      .title { font: 800 60px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; fill: #6f2c1d; }
+      .sub { font: 500 26px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; fill: #5f5751; }
+      .panel-title { font: 800 30px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; fill: #40251d; }
+      .body { font: 500 22px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; fill: #504742; }
+      .small { font: 500 18px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; fill: #645b55; }
+      .chip { font: 700 18px -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; fill: #6f2c1d; }
+      .mono { font: 700 19px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #3f342f; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" rx="44" fill="url(#bg)"/>
+  <circle cx="1355" cy="125" r="170" fill="#ffe1c7" opacity="0.55"/>
+  <circle cx="185" cy="770" r="155" fill="#d9f1ff" opacity="0.72"/>
+  <path d="M1170 820 C1260 720 1420 760 1490 640" fill="none" stroke="#d2eec6" stroke-width="28" stroke-linecap="round" opacity="0.75"/>
+
+  <text x="95" y="110" class="title">OpenClaw Continuity</text>
+  <text x="95" y="154" class="sub">Remember the right thing. Reconnect the right topic. Follow up naturally.</text>
+  <text x="95" y="191" class="sub">記住對的事，接回對的主題，自然關心與追蹤。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="88" y="248" width="330" height="470" rx="34" fill="url(#card)" stroke="#ffe0c2" stroke-width="2"/>
+    <rect x="452" y="248" width="330" height="470" rx="34" fill="url(#card)" stroke="#d9efff" stroke-width="2"/>
+    <rect x="816" y="248" width="330" height="470" rx="34" fill="url(#card)" stroke="#e4f4d8" stroke-width="2"/>
+    <rect x="1180" y="248" width="330" height="470" rx="34" fill="url(#card)" stroke="#f2e1ff" stroke-width="2"/>
+  </g>
+
+  <g>
+    <text x="123" y="306" class="panel-title">1. Hold it</text>
+    <text x="123" y="338" class="body">「晚點再接」不再消失。</text>
+    <rect x="123" y="380" width="235" height="74" rx="22" fill="#fff0df"/>
+    <text x="145" y="410" class="small">User: later, please</text>
+    <text x="145" y="438" class="small">使用者：晚點再聊</text>
+    <path d="M166 520 C170 482 215 472 247 494 C282 470 330 486 331 529 C332 579 249 615 249 615 C249 615 160 575 166 520Z" fill="#ffb992"/>
+    <text x="145" y="665" class="mono">staged_memory</text>
+  </g>
+
+  <g>
+    <text x="487" y="306" class="panel-title">2. Reconnect</text>
+    <text x="487" y="338" class="body">`/new` 可選怎麼接。</text>
+    <rect x="487" y="380" width="235" height="54" rx="22" fill="#e8f6ff"/>
+    <text x="510" y="414" class="mono">/new</text>
+    <path d="M548 518 C588 480 650 480 691 518" fill="none" stroke="#7db8d6" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="553" cy="548" r="38" fill="#bae5ff"/>
+    <circle cx="687" cy="548" r="38" fill="#bae5ff"/>
+    <path d="M592 548 L648 548" stroke="#5f98b4" stroke-width="10" stroke-linecap="round"/>
+    <text x="500" y="636" class="chip">recent 4 turns</text>
+    <text x="500" y="666" class="chip">last user intent</text>
+    <text x="500" y="696" class="chip">follow-up focus</text>
+  </g>
+
+  <g>
+    <text x="851" y="306" class="panel-title">3. Care with time</text>
+    <text x="851" y="338" class="body">時間感只輔助，不搶主線。</text>
+    <circle cx="982" cy="505" r="93" fill="#fff5d8" stroke="#e8b45d" stroke-width="10"/>
+    <circle cx="982" cy="505" r="12" fill="#6f2c1d"/>
+    <path d="M982 505 L982 445" stroke="#6f2c1d" stroke-width="9" stroke-linecap="round"/>
+    <path d="M982 505 L1032 527" stroke="#6f2c1d" stroke-width="9" stroke-linecap="round"/>
+    <rect x="862" y="635" width="110" height="42" rx="21" fill="#eaf8e2"/>
+    <text x="888" y="662" class="chip">sleep</text>
+    <rect x="986" y="635" width="116" height="42" rx="21" fill="#e8f6ff"/>
+    <text x="1005" y="662" class="chip">wake</text>
+    <text x="858" y="704" class="small">quiet hours / cooldown / closure</text>
+  </g>
+
+  <g>
+    <text x="1215" y="306" class="panel-title">4. Adjust by talking</text>
+    <text x="1215" y="338" class="body">設定不用只靠改檔。</text>
+    <rect x="1215" y="382" width="240" height="76" rx="24" fill="#f7edff"/>
+    <text x="1236" y="413" class="small">"Use last user intent"</text>
+    <text x="1236" y="441" class="small">「改成最後意圖」</text>
+    <rect x="1215" y="510" width="240" height="76" rx="24" fill="#fff0df"/>
+    <text x="1236" y="541" class="small">"Quieter after midnight"</text>
+    <text x="1236" y="569" class="small">「半夜安靜一點」</text>
+    <text x="1220" y="664" class="mono">setup-check</text>
+    <text x="1220" y="694" class="mono">setup-apply</text>
+  </g>
+
+  <rect x="95" y="785" width="1410" height="58" rx="29" fill="#ffffff" opacity="0.82"/>
+  <text x="130" y="822" class="small">Skill-layer package only: continuity, setup, memory routing, and guards. Channel delivery belongs to the OpenClaw host.</text>
+</svg>

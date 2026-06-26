@@ -6,9 +6,10 @@ This repository is a comprehensive registry of **90,896** Hermes-compatible AI a
 - `registry.json`: Consolidated minified metadata index.
 - `skills/built-in/`: 75 core skills with full prompts.
 - `skills/optional/`: 95 extension skills with full prompts.
-- `skills/community/`: Partitioned metadata markdown files for community registries.
+- `skills/community/`: **Full offline skill folders** (~88% downloaded) for community registries — real `SKILL.md` + bundled `scripts/`, `references/`, `skill-card.md`, `_meta.json`, assets. Path: `skills/community/<source>/<first_char>/<identifier>/`.
 - `tools/search.py`: Command-line tool for offline search.
-- `tools/fetch_content.py`: Downloader to fetch community skill implementation on-demand.
+- `tools/bulk_download.py`: v3 bulk downloader of **full skill folders** (ClawHub ZIP + GitHub per-repo tree cache). Resumable via git-ignored `.ra_complete` markers. Env: `CLAWHUB_TOKEN`, `GITHUB_TOKEN`.
+- `tools/fetch_content.py`: On-demand single-skill full-folder fetcher.
 - `tools/test_all.py`: Verification script to test all functions.
 
 ## 📐 Project Rules

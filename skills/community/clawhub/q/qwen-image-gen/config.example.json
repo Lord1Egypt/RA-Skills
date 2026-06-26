@@ -1,0 +1,38 @@
+{
+  "apiKey": "sk-xxxx",
+  "baseUrl": "https://dashscope.aliyuncs.com",
+  "defaultGoal": "quality",
+  "goals": {
+    "cheap": {
+      "tier": "draft",
+      "size": "2048*2048"
+    },
+    "balanced": {
+      "tier": "standard",
+      "size": "1664*928"
+    },
+    "quality": {
+      "tier": "final",
+      "size": "2048*2048"
+    }
+  },
+  "defaultTier": "final",
+  "tiers": {
+    "draft": {
+      "model": "qwen-image-2.0",
+      "mode": "sync",
+      "size": "2048*2048"
+    },
+    "standard": {
+      "model": "qwen-image-max",
+      "mode": "sync",
+      "size": "1664*928"
+    },
+    "final": {
+      "model": "qwen-image-2.0-pro",
+      "mode": "sync",
+      "size": "2048*2048"
+    }
+  },
+  "outputDir": "./outputs"
+}

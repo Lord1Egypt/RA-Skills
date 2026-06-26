@@ -1,0 +1,47 @@
+{
+  "name": "pm-agent",
+  "version": "1.3.0",
+  "description": "Opinionated PM agent that pushes back: catches Solution Smuggling in PRDs, computes 63% annual from 8% monthly churn, flags Metrics Theater, and coaches PM→Director→CPO transitions.",
+  "keywords": [
+    "pm-agent",
+    "openclaw-skill",
+    "agent-skill",
+    "pm-copilot",
+    "prd-review",
+    "saas-diagnostics",
+    "churn-calculator",
+    "metrics-analysis",
+    "anti-pattern-detection",
+    "pm-career",
+    "solution-smuggling",
+    "feature-factory",
+    "quality-gates",
+    "claude-code",
+    "cursor",
+    "codex",
+    "windsurf",
+    "ai-agent",
+    "skill-md",
+    "opinionated-pm"
+  ],
+  "homepage": "https://clawhub.ai/Digidai/pm-agent",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Digidai/product-manager-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Digidai/product-manager-skills/issues"
+  },
+  "author": "Gene Dai <gene@genedai.me> (https://genedai.me/)",
+  "license": "CC-BY-NC-SA-4.0",
+  "files": [
+    "SKILL.md",
+    "knowledge/",
+    "templates/",
+    "examples/",
+    "STARTER-PROMPTS.md",
+    "README.zh-CN.md",
+    "README.md",
+    "LICENSE"
+  ]
+}

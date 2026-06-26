@@ -1,0 +1,19 @@
+{
+  "feishu": {
+    "app_id": "cli_a9333bca0c78dceb",
+    "app_secret": "jfQq6dWQe4wYsJiChkXVTh6IK8awBf0L",
+    "user_id": "ou_2be571a62a2decc279990e6096775556"
+  },
+  "qclaw": {
+    "health_url": "http://127.0.0.1:28789/health"
+  },
+  "watchdog": {
+    "check_interval_ms": 18000000,
+    "restart_delay_ms": 10000,
+    "max_retries": 3
+  },
+  "logs": {
+    "main_log": "./watchdog.log",
+    "command_log": "./commands.log"
+  }
+}

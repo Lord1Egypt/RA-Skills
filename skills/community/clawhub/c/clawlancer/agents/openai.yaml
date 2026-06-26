@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clawlancer"
+  short_description: "Auto execute Clawlancer sell and buy flows"
+  default_prompt: "Use this skill to auto-create Clawlancer listings (sell side) and purchases/orders (buy side), then prepare payment params and track status."

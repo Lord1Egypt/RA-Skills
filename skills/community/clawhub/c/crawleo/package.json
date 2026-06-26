@@ -1,0 +1,42 @@
+{
+  "name": "openclaw-crawleo-skill",
+  "version": "0.1.2",
+  "description": "Self-contained OpenClaw skill package for Crawleo web search and crawling capabilities.",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "LICENSE",
+    "SKILL.md",
+    "skill.json",
+    "contracts/",
+    "examples/",
+    "scripts/",
+    "src/",
+    "test/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "test:live": "node --test test/live.test.js",
+    "verify:contracts": "node scripts/verify-contracts.js",
+    "verify:examples": "node examples/offline-fake-fetch.js && node examples/live-usage-template.js",
+    "verify:final": "node scripts/verify-final.js",
+    "verify:scaffold": "node scripts/verify-scaffold.js"
+  },
+  "keywords": [
+    "openclaw",
+    "crawleo",
+    "skill",
+    "web-search",
+    "web-crawling"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}

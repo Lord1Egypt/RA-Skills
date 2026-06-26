@@ -1,0 +1,118 @@
+# Neumorphism — Template Manifest
+
+meta:
+  name: "Neumorphism"
+  id: neumorphism
+  version: "1.0"
+  tags: [soft, tactile, monotone, rounded, calm, subtle]
+  best_for:
+    - 健康与养生
+    - 冥想应用
+    - 控制面板
+    - IoT 仪表盘
+  not_for:
+    - 复杂数据可视化
+    - 电商平台
+  flexibility:
+    colors: strict           # 单色系是灵魂
+    typography: moderate
+    spacing: moderate
+    motion: moderate
+    layout: loose
+  icon_preferences:
+    primary_source: feather
+    fallback_sources: [lucide]
+    style: outline
+    stroke_width: 2
+    size: 22
+
+# ====== Design Tokens ======
+tokens:
+  colors:
+    primary:
+      base: "#A78BFA"       # Soft Purple
+      light: "#C4B5FD"
+      dark: "#8B5CF6"
+    secondary:
+      base: "#6EE7B7"       # Soft Mint
+      light: "#A7F3D0"
+      dark: "#34D399"
+    background:
+      page: "#E8E5F0"       # Soft lavender-gray
+      surface: "#E8E5F0"    # Same as page (neumorphic key)
+      elevated: "#E8E5F0"
+    text:
+      primary: "#4C3F6B"
+      secondary: "#7C6F9B"
+      muted: "#A89BBF"
+    border:
+      default: "transparent"
+      focus: "#A78BFA"
+    functional:
+      success: "#6EE7B7"
+      warning: "#FCD34D"
+      error: "#FCA5A5"
+      info: "#93C5FD"
+
+  typography:
+    heading_font: "'Inter', 'SF Pro Display', -apple-system, sans-serif"
+    body_font: "'Inter', 'SF Pro Text', -apple-system, sans-serif"
+    mono_font: "'JetBrains Mono', 'Fira Code', monospace"
+    scale:
+      xs:   "0.75rem"       # 12px
+      sm:   "0.875rem"      # 14px
+      base: "0.9375rem"     # 15px
+      lg:   "1.125rem"      # 18px
+      xl:   "1.25rem"       # 20px
+      2xl:  "1.5rem"        # 24px
+      3xl:  "2rem"          # 32px
+      4xl:  "2.25rem"       # 36px
+    weight:
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  spacing:
+    unit: 4
+    scale: [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64]
+
+  border:
+    radius:
+      none:  "0"
+      sm:    "0.75rem"       # 12px — small buttons
+      md:    "1rem"          # 16px — cards
+      lg:    "1.25rem"       # 20px — large cards
+      xl:    "1.5rem"        # 24px — modals
+      full:  "9999px"
+
+  shadows:
+    none: "none"
+    # Neumorphic shadows: light source top-left
+    sm:   "8px 8px 16px rgba(163, 163, 180, 0.4), -8px -8px 16px rgba(255, 255, 255, 0.8)"
+    md:   "12px 12px 24px rgba(163, 163, 180, 0.4), -12px -12px 24px rgba(255, 255, 255, 0.8)"
+    lg:   "16px 16px 32px rgba(163, 163, 180, 0.4), -16px -16px 32px rgba(255, 255, 255, 0.8)"
+    xl:   "20px 20px 40px rgba(163, 163, 180, 0.4), -20px -20px 40px rgba(255, 255, 255, 0.8)"
+    # Pressed/inset state
+    inset_sm: "inset 4px 4px 8px rgba(163, 163, 180, 0.3), inset -4px -4px 8px rgba(255, 255, 255, 0.7)"
+    inset_md: "inset 6px 6px 12px rgba(163, 163, 180, 0.3), inset -6px -6px 12px rgba(255, 255, 255, 0.7)"
+
+  motion:
+    duration:
+      instant: "0ms"
+      fast:    "150ms"
+      normal:  "300ms"
+      slow:    "500ms"
+      gradual: "800ms"
+    easing:
+      default: "cubic-bezier(0.4, 0, 0.2, 1)"
+      in:      "cubic-bezier(0.4, 0, 1, 1)"
+      out:     "cubic-bezier(0, 0, 0.2, 1)"
+      spring:  "cubic-bezier(0.25, 1.2, 0.5, 1)"
+
+  decorations:
+    gradient_primary: "none"
+    gradient_subtle: "none"
+    pattern: none
+    flat_design: true       # No gradients, no transparency — pure light/shadow
+    light_source: "top-left" # Light direction for shadow consistency

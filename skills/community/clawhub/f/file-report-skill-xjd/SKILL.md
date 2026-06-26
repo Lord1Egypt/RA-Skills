@@ -1,35 +1,88 @@
 ---
-name: "统计指定目录的文件类型和数量，生成Markdown格式报表"
-description: "统计指定目录下文件类型及数量，生成包含路径和统计时间的Markdown格式报表，不包含子目录文件。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/file-report-skill-xjd"
-sourceUrl: "https://clawhub.ai/skills/file-report-skill-xjd"
+
+name: file-report-skill
+
+description: 统计指定目录的文件类型和数量，生成Markdown格式报表
+
+version: 1.0.0
+
+
+
+\# 触发器配置
+
+triggers:
+
+&nbsp; - "统计文件"
+
+&nbsp; - "文件报表"
+
+&nbsp; - "目录分析"
+
+
+
+\# 技能执行所需权限
+
+requires:
+
+&nbsp; - filesystem.read
+
+&nbsp; - filesystem.write
+
 ---
 
-# 统计指定目录的文件类型和数量，生成Markdown格式报表
-
-> 统计指定目录下文件类型及数量，生成包含路径和统计时间的Markdown格式报表，不包含子目录文件。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/file-report-skill-xjd`
-- **Source URL:** [https://clawhub.ai/skills/file-report-skill-xjd](https://clawhub.ai/skills/file-report-skill-xjd)
-
-## Overview
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/file-report-skill-xjd
-```
+\# 文件统计报表技能
+
+
+
+当用户需要统计一个文件夹里的文件情况时，请按以下流程操作：
+
+
+
+\## 执行步骤
+
+1\.  \*\*获取目标路径\*\*：从用户的对话中提取出要统计的目录路径。如果用户没有提供，请主动询问。
+
+2\.  \*\*统计文件信息\*\*：
+
+&nbsp;   \*   读取目标目录下的所有文件（\*\*注意\*\*：不包含子目录，如需要递归统计请说明）。
+
+&nbsp;   \*   根据文件的扩展名（如 `.txt`, `.jpg`, `.pdf`）进行分类计数。
+
+&nbsp;   \*   对于没有扩展名的文件，归类为“无扩展名”。
+
+3\.  \*\*生成报表\*\*：
+
+&nbsp;   \*   创建一个Markdown格式的报表。
+
+&nbsp;   \*   报表内容应包含统计的目录路径、统计时间、一个包含“文件类型”和“数量”的表格，以及文件总数。
+
+4\.  \*\*输出结果\*\*：将生成的Markdown报表内容直接通过对话返回给用户。
+
+
+
+\## 使用示例
+
+\*\*用户\*\*: 请帮我统计一下 `/home/user/documents` 文件夹里的文件情况。
+
+
+
+\*\*你\*\*: (执行上述步骤后返回) 好的，已为您统计 `/home/user/documents` 目录下的文件：
+
+| 文件类型 | 数量 |
+
+|----------|------|
+
+| .txt     | 15   |
+
+| .pdf     | 8    |
+
+| .jpg     | 23   |
+
+| 无扩展名 | 2    |
+
+
+
+\*\*总文件数\*\*：48份
+

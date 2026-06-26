@@ -1,0 +1,13 @@
+{
+  "name": "Grizzly SMS",
+  "tagline": "SMS verification & virtual numbers — MCP server + OpenClaw Skill",
+  "description": "MCP server and OpenClaw Skill for Grizzly SMS API. Request virtual numbers for Telegram, WhatsApp, Instagram, Uber and 500+ services. Check SMS codes, manage activations, get balance, crypto wallet for top-up (USDT TRC-20). OpenClaw Skill: API key in dialog, full registration workflow, formatted output. Compatible with Cursor, Claude Desktop, OpenClaw.",
+  "category": "productivity",
+  "tags": ["sms", "verification", "mcp", "openclaw", "skill", "grizzly-sms", "otp", "phone-numbers", "virtual-numbers"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://github.com/GrizzlySMS-Git/grizzly-sms-mcp",
+  "support_url": "https://github.com/GrizzlySMS-Git/grizzly-sms-mcp/issues",
+  "support": "https://grizzlysms.com/docs"
+}

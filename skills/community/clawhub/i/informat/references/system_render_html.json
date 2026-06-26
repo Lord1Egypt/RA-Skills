@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_render_html",
+    "description": "Render HTML code content using iframe.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "srcdoc": {
+          "type": "string",
+          "description": "Inline HTML content to be embedded and rendered"
+        }
+      },
+      "required": [
+        "srcdoc"
+      ]
+    }
+  }
+}

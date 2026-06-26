@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "id": "daily-brief-test-msg-travel-001",
+      "threadId": "daily-brief-test-thread-travel-001",
+      "subject": "Team update for the week",
+      "from": "Team Lead <lead@example.com>",
+      "snippet": "Here is the weekly team update. No action required.",
+      "date": "2026-05-21T09:00:00.000Z",
+      "labelIds": ["INBOX"]
+    }
+  ],
+  "count": 1
+}

@@ -1,0 +1,42 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: weryai-video-toolkits
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the weryai-video-toolkits skill to remove a watermark from a WeryAI video."
+  - id: subtitle-translate
+    should_trigger: true
+    prompt: "Translate the subtitles in this HTTPS video to English with WeryAI."
+  - id: face-change
+    should_trigger: true
+    prompt: "Swap the face in this HTTPS video using a reference photo through WeryAI."
+  - id: extend-video
+    should_trigger: true
+    prompt: "Extend this short HTTPS video by 5 seconds in anime style."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Generate a brand new text-to-video ad from scratch."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/video_toolkits.js"
+      - file_exists: "references/video-tools-matrix.md"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      The skill should:
+      - clearly separate video editing/tool intents from video generation,
+      - route user requests to the correct WeryAI video tool,
+      - explain missing required parameters tool by tool,
+      - apply defaults only where the API supports them,
+      - align API key guidance with the repository's other WeryAI skills,
+      - include user-visible video delivery and key parameter summary when available,
+      - default async tools to bounded wait with a 30-minute timeout ceiling,
+      - return timeout fallbacks with task ID and offer to check status again (without showing raw command to user),
+      - support safe dry-run previews before paid execution.

@@ -1,0 +1,37 @@
+{
+  "slug": "clinic-visit-prep",
+  "title": "就诊准备清单师",
+  "category": "vertical",
+  "categoryLabel": "垂直行业",
+  "mode": "structured_brief",
+  "summary": "帮助患者整理就诊前问题、既往记录、检查清单与时间线，不提供诊断。",
+  "inputHint": "症状时间线、既往检查、想问的问题",
+  "sections": [
+    "就诊目标",
+    "时间线",
+    "需携带资料",
+    "建议提问",
+    "用药/检查提醒",
+    "就诊后记录位"
+  ],
+  "useCases": [
+    "门诊前准备",
+    "资料整理",
+    "陪诊沟通"
+  ],
+  "positiveExamples": [
+    "帮我整理一份就诊前问题清单",
+    "按时间线整理症状和检查"
+  ],
+  "negativeExamples": [
+    "不要给诊断结论",
+    "不要替代医生意见"
+  ],
+  "risk": "仅做信息整理与提问准备。",
+  "tags": [
+    "healthcare",
+    "intake",
+    "prep",
+    "checklist"
+  ]
+}

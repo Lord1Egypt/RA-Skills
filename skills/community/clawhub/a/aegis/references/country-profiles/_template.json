@@ -1,0 +1,64 @@
+{
+  "country_code": "XX",
+  "country_name": "Country Name",
+  "country_slug": "country-name",
+  "emergency": {
+    "number": "112",
+    "ambulance": "",
+    "police": "",
+    "fire": "",
+    "agency": "National Emergency Agency Name",
+    "website": "https://...",
+    "social": {
+      "twitter": "@...",
+      "telegram": ""
+    },
+    "app": "",
+    "sms_alerts": ""
+  },
+  "embassies": {
+    "us": {
+      "url": "https://xx.usembassy.gov/",
+      "emergency": "",
+      "address": ""
+    },
+    "uk": {
+      "url": "https://www.gov.uk/world/organisations/british-embassy-...",
+      "emergency": "",
+      "address": ""
+    },
+    "travel_advisory_urls": {
+      "us": "https://travel.state.gov/content/travel/en/traveladvisories/...",
+      "uk": "https://www.gov.uk/foreign-travel-advice/..."
+    }
+  },
+  "sources": {
+    "tier0": [],
+    "tier1": [],
+    "tier2": []
+  },
+  "airports": {
+    "primary": []
+  },
+  "shelters": {
+    "info_url": "",
+    "guidance": "",
+    "key_locations": []
+  },
+  "evacuation": {
+    "airports": [],
+    "land_borders": [],
+    "sea_ports": [],
+    "guidance": ""
+  },
+  "infrastructure": {
+    "water": "",
+    "power": "",
+    "telecom": "",
+    "currency": ""
+  },
+  "threat_keywords_local": [],
+  "language": "en",
+  "timezone": "UTC",
+  "utc_offset": "+00:00"
+}

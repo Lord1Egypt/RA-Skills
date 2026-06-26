@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Text Mining Analysis of Symptom Patterns in Medical Chatbot Conversations",
+    "arxiv_id": "2512.00768v1",
+    "pdf_url": "https://arxiv.org/pdf/2512.00768v1.pdf"
+  },
+  {
+    "title": "A Survey on Active Learning and Human-in-the-Loop Deep Learning for Medical Image Analysis",
+    "arxiv_id": "1910.02923v2",
+    "pdf_url": "https://arxiv.org/pdf/1910.02923v2.pdf"
+  },
+  {
+    "title": "Building medical image classifiers with very limited data using segmentation networks",
+    "arxiv_id": "1808.05205v1",
+    "pdf_url": "https://arxiv.org/pdf/1808.05205v1.pdf"
+  },
+  {
+    "title": "TransMorph: Transformer for unsupervised medical image registration",
+    "arxiv_id": "2111.10480v6",
+    "pdf_url": "https://arxiv.org/pdf/2111.10480v6.pdf"
+  },
+  {
+    "title": "Uncertainty-aware multi-view co-training for semi-supervised medical image segmentation and domain a",
+    "arxiv_id": "2006.16806v1",
+    "pdf_url": "https://arxiv.org/pdf/2006.16806v1.pdf"
+  }
+]

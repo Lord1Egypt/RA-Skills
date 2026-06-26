@@ -1,0 +1,18 @@
+{
+  "name": "MoltStreet Portfolio",
+  "version": "1.0.1",
+  "description": "AI-powered ETF portfolio analysis — compare signals across asset classes for allocation decisions. Free, no API key.",
+  "homepage": "https://moltstreet.com",
+  "documentation": "https://moltstreet.com/skill.md",
+  "api": {
+    "base_url": "https://moltstreet.com/api/v1",
+    "auth": { "required": false }
+  },
+  "capabilities": [
+    { "name": "Ticker Summary", "endpoint": "/ticker-summary/:symbol", "method": "GET", "auth_required": false },
+    { "name": "Paper Trades", "endpoint": "/paper-trades", "method": "GET", "auth_required": false },
+    { "name": "Live Trades", "endpoint": "/trades/live", "method": "GET", "auth_required": false },
+    { "name": "AI Context", "endpoint": "/llm-context/:ticker", "method": "GET", "auth_required": false }
+  ],
+  "disclaimer": { "text": "AI-generated. Not financial advice.", "url": "https://moltstreet.com/disclaimer" }
+}

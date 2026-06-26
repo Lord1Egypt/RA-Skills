@@ -1,35 +1,396 @@
----
-name: "CPMO 日报自动化"
-description: "负责每日8:00晨报与17:30晚总结，实时读取Apple Notes、日历、提醒事项并同步飞书，跟踪风险与待办。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, daily, pmo, report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cpmo-daily-report"
-sourceUrl: "https://clawhub.ai/skills/cpmo-daily-report"
+# CPMO Daily Report - 终端虾每日汇报技能
+
+_最后更新：2026-03-15（合并 cpmo.md 内容）_
+
 ---
 
-# CPMO 日报自动化
+## 职责定位
 
-> 负责每日8:00晨报与17:30晚总结，实时读取Apple Notes、日历、提醒事项并同步飞书，跟踪风险与待办。
+这是**终端虾（CPMO）**的核心技能，负责：
+- 每日晨间汇报（8:00）
+- 每日晚间总结（17:30）
+- 工作日志自动同步到飞书
+- 风险预警与待办跟踪
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cpmo-daily-report`
-- **Source URL:** [https://clawhub.ai/skills/cpmo-daily-report](https://clawhub.ai/skills/cpmo-daily-report)
+---
 
-## Overview
+## 数据源
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Apple Notes - 工作日志
+- **文件夹：** `工作日志`
+- **笔记名：** `星小辰项目工作日志`
+- **格式：** 单个笔记，按日期追加记录（`2026-03-15 周日`）
+- **内容结构：**
+  - 今日工作内容
+  - 明日工作计划
+  - 风险预警
+  - 待办问题
+- **查询方式：** 每次汇报前实时读取，不缓存
+- **CLI 命令：**
 ```bash
-hermes skills install clawhub/cpmo-daily-report
+osascript -e 'tell application "Notes" to get body of note "星小辰项目工作日志" in folder "工作日志"'
 ```
+
+### 2. macOS Calendar - 日程
+- **主要日历：** `张洋的日历 `、`【星小辰云网版】发布火车日历`、`【麦芒嵌入版】发布火车日历`
+- **筛选：** 当天日程（00:00-23:59）
+- **查询方式：** 每次汇报前实时查询，不缓存
+- **CLI 命令：**
+```bash
+osascript -e 'tell application "Calendar" to get {summary, start date} of every event of calendar "张洋的日历 "'
+```
+
+### 3. 提醒事项
+- **工具：** remindctl CLI
+- **列表：** `提醒事项`、`BOSS 直聘`
+- **筛选：** 一周内到期的事项
+- **查询方式：** 每次汇报前实时查询，不缓存
+- **CLI 命令：**
+```bash
+remindctl show --json
+```
+
+### 4. 飞书表格 - 日报归档
+- **URL:** https://my.feishu.cn/base/ZhrMb0hAMa4A3IsvyZPcw7Gbn8d
+- **App Token:** `ZhrMb0hAMa4A3IsvyZPcw7Gbn8d`
+- **Table ID:** `tbliCbRlLZdfmIZV`
+- **查询方式：** 创建前先查询当天是否已有记录
+
+### 5. 本地台账
+- **风险台账：** `/workspace-cpmo/risks.md`
+- **待办台账：** `/workspace-cpmo/pending.md`
+- **查询方式：** 每次汇报前实时读取
+
+---
+
+## 晨间汇报流程（8:00）
+
+### ⚠️ 核心原则：实时查询，不缓存
+**每次汇报前必须重新读取所有数据源，因为老板可能随时更新：**
+- Apple Notes 工作日志
+- macOS Calendar 日程
+- 提醒事项
+- 本地台账（risks.md、pending.md）
+
+### Step 1: 获取工作日志（实时读取）
+```bash
+osascript -e 'tell application "Notes" to get body of note "星小辰项目工作日志" in folder "工作日志"'
+```
+解析最新记录（按日期分段）：
+- 最新日期的工作内容
+- 明日工作计划
+- 遗留待办
+- 未解决风险
+
+### Step 2: 获取今日日程（实时查询）
+```bash
+# 遍历所有目标日历，查询今日日程
+osascript -e 'tell application "Calendar" to get {summary, start date} of every event of calendar "张洋的日历 "'
+osascript -e 'tell application "Calendar" to get {summary, start date} of every event of calendar "【星小辰云网版】发布火车日历 "'
+osascript -e 'tell application "Calendar" to get {summary, start date} of every event of calendar "【麦芒嵌入版】发布火车日历 "'
+```
+筛选条件：当天日程（00:00-23:59）
+
+### Step 3: 获取提醒事项（实时查询）
+```bash
+remindctl show --json
+```
+
+### Step 4: 生成晨间汇报
+
+**汇报结构：**
+```
+## 📅 YYYY-MM-DD（周 X）晨间汇报
+
+### 🗓️ 今日日程
+| 时间 | 事件 | 日历 | 准备建议 |
+|------|------|------|----------|
+
+### 📝 今日工作重点
+**P0 核心任务：**
+1. [任务 1]（来自昨日遗留 + 今日日程）
+2. [任务 2]
+3. [任务 3]
+
+### ⚠️ 风险预警
+| 风险 | 影响 | 建议方案 | 责任人 |
+|------|------|----------|--------|
+
+### 📌 待办跟踪
+| 事项 | 截止日期 | 状态 | 提醒 |
+|------|----------|------|------|
+
+### 💡 CPMO 建议推进策略
+1. [具体建议 1]
+2. [具体建议 2]
+```
+
+### Step 5: 发送汇报
+- 渠道：飞书消息（优先）/ 终端显示
+- 时间：8:00 准时
+
+---
+
+## 晚间总结流程（17:00 询问 + 整理）
+
+### ⚠️ 核心原则：实时查询，不缓存
+**每次汇报前必须重新读取所有数据源，因为老板可能随时更新：**
+- Apple Notes 工作日志
+- macOS Calendar 日程
+- 提醒事项
+- 本地台账（risks.md、pending.md）
+
+### Step 1: 询问进展（17:00 触发）
+**在 17:00 先询问老板：**
+
+```
+老板，17:30 了，我来收集今天的工作进展，请帮我确认：
+
+1. 【v1.1.7 开发冒烟】完成情况？bug 是否清零？
+2. 【v1.2.0 研发侧内评】会议结论？排期是否明确？
+3. 【复盘流程】是否形成可操作流程？
+4. 今天临时增加的工作？
+5. 明天的工作计划？
+6. 是否有新增风险或待办？
+
+您简单说，我来整理成工作日志 ✍️
+```
+
+### Step 2: 收集并整理
+根据老板回复，整理为：
+- 今日工作总结（完成事项 + 数据）
+- 明日工作计划（不超过 5 条）
+- 风险预警与决策需求
+- 待办问题跟踪表
+
+### Step 3: 更新 Apple Notes（实时写入）
+```applescript
+tell application "Notes"
+    set noteName to "星小辰项目工作日志"
+    set noteBody to (current body) & linefeed & linefeed & "2026-03-15 周日" & linefeed & "今日工作内容：" & linefeed & [整理的内容] & linefeed & "明日工作计划：" & linefeed & [整理的内容] & linefeed & "风险：" & linefeed & [整理的内容]
+    set body of note noteName to noteBody
+end tell
+```
+
+### Step 4: 检查飞书是否已有记录（实时查询）
+```
+查询飞书表格，检查当天日期是否已有记录
+- 如有：跳过创建，仅发送总结
+- 如无：创建新记录
+```
+
+### Step 5: 创建/更新飞书记录
+**必填字段：**
+- 日报日期：当天日期（时间戳格式，毫秒）
+- 今日工作总结
+- 明日工作计划
+- 风险预警与决策需求
+- 日报提交人：张洋
+
+### Step 6: 发送晚间总结
+**汇报结构：**
+```
+## 📝 YYYY-MM-DD 晚间工作总结
+
+### ✅ 今日完成
+1. [完成事项 1] + 数据/结果
+2. [完成事项 2]
+
+### 📅 明日计划
+1. [计划 1]
+2. [计划 2]
+
+### ⚠️ 风险与待办
+| 类型 | 内容 | 建议 |
+|------|------|------|
+
+### 📊 飞书同步
+- [✅] 已同步到飞书表格
+- 链接：https://...
+```
+
+---
+
+## 📋 汇报模板库
+
+### 日报模板
+```
+【项目名称】日报 (YYYY-MM-DD)
+🟢 整体状态：正常 / 🟡 有风险 / 🔴 严重问题
+
+今日完成：
+1. ...
+2. ...
+
+明日计划：
+1. ...
+2. ...
+
+待办事项（持续跟进中）：
+| 待办 | 责任人 | 截止日期 | 状态 | 超期 |
+|------|--------|----------|------|------|
+| ...  | ...    | ...      | ...  | ...  |
+
+风险与问题：
+- [风险等级] 问题描述，建议方案
+
+需要领导协助的事项：
+- ...
+```
+
+### 周报模板
+```
+【项目名称】周报 (YYYY-MM-DD)
+🟢 整体状态：正常 / 🟡 有风险 / 🔴 严重问题
+
+本周核心进展（不超过 3 条）：
+1. ...
+2. ...
+
+里程碑状态：
+| 里程碑 | 计划日期 | 预计日期 | 状态 |
+|--------|----------|----------|------|
+| ...    | ...      | ...      | ...  |
+
+待办事项汇总：
+- 待办总数：X 个
+- 已关闭：Y 个
+- 超期待办：Z 个 ⚠️
+
+风险与问题：
+- ...
+
+下周计划：
+1. ...
+2. ...
+```
+
+### 待办提醒模板
+```
+⚠️ 待办提醒 (YYYY-MM-DD)
+
+今日到期待办（X 个）：
+1. [内容] - @责任人 - 今天截止
+
+超期待办（Y 个）⚠️：
+1. [内容] - @责任人 - 已超期 Z 天
+
+请确认：
+- 今日到期待办能否按时完成？
+- 超期待办是否需要调整？
+```
+
+### 风险提醒模板
+```
+⚠️ 风险提醒 (YYYY-MM-DD)
+
+高风险事项（X 个）：
+1. [描述] - 影响：... - 建议：... - 状态：待决策
+
+请确认：
+- 高风险事项的处理方案
+- 是否需要升级优先级
+```
+
+---
+
+## ⚠️ 风险管理
+
+### 风险识别
+- 技术风险
+- 资源风险
+- 进度风险
+- 外部风险
+- 合规风险
+
+### 风险评估矩阵
+| 概率\影响 | 低 | 中 | 高 |
+|-----------|----|----|----|
+| 高 | 中 | 高 | 极高 |
+| 中 | 低 | 中 | 高 |
+| 低 | 低 | 低 | 中 |
+
+### 风险应对策略
+- **规避：** 改变计划避免风险
+- **转移：** 外包或买保险
+- **减轻：** 降低概率或影响
+- **接受：** 监控并准备应急
+
+---
+
+## 🔄 待办跟进原则
+
+### 跟进频率
+- 每日检查所有待办
+- 到期前 1 天提醒
+- 当天提醒
+- 超期立即上报
+
+### 超期升级机制
+- 超期 1 天 → 提醒责任人
+- 超期 3 天 → 上报 CEO
+- 超期 7 天 → 升级处理
+
+### 关闭确认流程
+- 责任人确认完成
+- 验收标准检查
+- CPMO 虾确认关闭
+- 记录关闭原因
+
+---
+
+## 时间戳计算
+
+```javascript
+// 日期转时间戳（毫秒）
+Date.UTC(年，月 -1, 日)
+// 例：2026-03-10 = Date.UTC(2026, 2, 10) = 1773100800000
+```
+
+---
+
+## Cron 配置
+
+### 晨间汇报
+```json
+{
+  "name": "CPMO 晨间汇报",
+  "schedule": {"kind": "cron", "expr": "0 8 * * *", "tz": "Asia/Shanghai"},
+  "payload": {"kind": "agentTurn", "message": "执行 CPMO 晨间汇报流程"},
+  "sessionTarget": "isolated"
+}
+```
+
+### 晚间总结
+```json
+{
+  "name": "CPMO 晚间总结",
+  "schedule": {"kind": "cron", "expr": "30 17 * * *", "tz": "Asia/Shanghai"},
+  "payload": {"kind": "agentTurn", "message": "执行 CPMO 晚间总结流程"},
+  "sessionTarget": "isolated"
+}
+```
+
+---
+
+## 经验教训
+
+1. **日历获取** - 必须遍历所有日历，包括企业微信订阅的日历
+2. **Notes 格式** - 工作日志是单个笔记，按日期追加，不是多个笔记
+3. **飞书去重** - 创建前先查询当天是否已有记录
+4. **时间戳** - 飞书日期字段是毫秒时间戳，不是秒
+5. **晚间询问** - 17:30 总结前必须先询问进展，不要直接生成
+6. **实时查询** - ⚠️ 每次汇报前必须重新读取所有数据源，不缓存，因为老板可能随时更新工作日志、日程、待办等内容
+7. **数据源路径** - Apple Notes 文件夹名是 `工作日志`，笔记名是 `星小辰项目工作日志`
+
+---
+
+## 触发方式
+
+1. **Cron 自动** - 每天 8:00 / 17:30
+2. **手动触发** - 用户说"晨间汇报"或"晚间总结"
+3. **心跳检查** - HEARTBEAT.md 中配置检查
+
+---
+
+_这是终端虾（CPMO）的核心技能，必须严格执行！_

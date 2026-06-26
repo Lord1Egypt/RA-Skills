@@ -1,0 +1,98 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-04-04",
+  "themes": {
+    "builtin": {
+      "description": "wenyan-cli 内置主题",
+      "themes": [
+        {
+          "id": "default",
+          "name": "默认主题",
+          "description": "A clean, classic layout ideal for long-form reading."
+        },
+        {
+          "id": "orangeheart",
+          "name": "橙心",
+          "description": "A vibrant and elegant theme in warm orange tones."
+        },
+        {
+          "id": "rainbow",
+          "name": "彩虹",
+          "description": "A colorful, lively theme with a clean layout."
+        },
+        {
+          "id": "lapis",
+          "name": "青金石",
+          "description": "A minimal and refreshing theme in cool blue tones."
+        },
+        {
+          "id": "pie",
+          "name": "派派风格",
+          "description": "Inspired by sspai.com and Misty — modern, sharp, and stylish."
+        },
+        {
+          "id": "maize",
+          "name": "玉米色",
+          "description": "A crisp, light theme with a soft maize palette."
+        },
+        {
+          "id": "purple",
+          "name": "紫色",
+          "description": "Clean and minimalist, with a subtle purple accent."
+        },
+        {
+          "id": "phycat",
+          "name": "物理猫",
+          "description": "a mint-green theme with clear structure and hierarchy."
+        }
+      ]
+    },
+    "custom": {
+      "description": "自定义卡片式主题",
+      "themes": [
+        {
+          "id": "card-tech-dark",
+          "name": "卡片科技暗色",
+          "description": "深色科技感卡片式布局，适合技术文章和 AI 内容展示",
+          "file": "card-tech-dark.html",
+          "style": "card",
+          "based_on": "design-ads",
+          "colors": {
+            "background": "#0a0e27",
+            "accent": "#6366f1",
+            "gradient": "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)"
+          },
+          "features": [
+            "卡片式布局",
+            "深色背景",
+            "渐变强调色",
+            "悬停动效"
+          ]
+        },
+        {
+          "id": "card-neon-light",
+          "name": "卡片霓虹浅色",
+          "description": "浅色霓虹风格卡片布局，清新现代，适合教程和指南",
+          "file": "card-neon-light.html",
+          "style": "card",
+          "based_on": "design-ads-light",
+          "colors": {
+            "background": "#f8fafc",
+            "accent": "#06b6d4",
+            "gradient": "linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%)"
+          },
+          "features": [
+            "卡片式布局",
+            "浅色背景",
+            "霓虹效果",
+            "清新现代"
+          ]
+        }
+      ]
+    }
+  },
+  "usage": {
+    "builtin": "使用 wenyan publish -f article.md -t <theme_id>",
+    "custom": "使用主题切换脚本或 HTML 注入方式"
+  }
+}

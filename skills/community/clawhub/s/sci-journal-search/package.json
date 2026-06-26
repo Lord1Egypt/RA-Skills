@@ -1,0 +1,26 @@
+{
+  "name": "sci-journal-search",
+  "version": "1.5.0",
+  "description": "SCI 期刊查询工具 - 支持中科院分区（新锐分区）、JCR 分区查询，内置 130+ 期刊简称自动扩展",
+  "author": "clawbot",
+  "license": "MIT",
+  "keywords": [
+    "sci",
+    "journal",
+    "partition",
+    "中科院分区",
+    "新锐分区",
+    "academic",
+    "research",
+    "query"
+  ],
+  "scripts": {
+    "query": "python3 scripts/query.py",
+    "letpub": "python3 scripts/query-letpub.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "changelog": "v1.5.0: 修复 --letpub 参数使用期刊简称的问题，现在使用扩展后的全称查询 LetPub；修复浏览器查询后完全关闭"
+}

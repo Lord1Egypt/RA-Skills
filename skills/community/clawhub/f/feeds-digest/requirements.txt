@@ -1,0 +1,5 @@
+feedparser>=6.0.10
+requests>=2.31.0
+click>=8.1.7
+pyyaml>=6.0.1
+python-dateutil>=2.8.2

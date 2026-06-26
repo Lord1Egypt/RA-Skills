@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/consult.json",
+  "title": "MDTConsultation",
+  "description": "多学科专家会诊(MDT)记录的数据结构定义",
+  "type": "object",
+  "properties": {
+    "consultation_id": {
+      "type": "string",
+      "description": "会诊唯一标识符",
+      "pattern": "^cons_[0-9]{17}$"
+    },
+    "consultation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "会诊日期时间 (ISO 8601 格式)"
+    },
+    "data_range": {
+      "type": "object",
+      "description": "分析数据范围",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["all", "recent", "date", "date_range"],
+          "description": "范围类型"
+        },
+        "value": {
+          "type": "string",
+          "description": "范围值 (如数字N、日期YYYY-MM-DD)"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "起始日期"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "结束日期"
+        }
+      }
+    },
+    "specialties_involved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "specialty_code": {
+            "type": "string",
+            "enum": ["cardio", "endo", "gastro", "nephro", "heme", "resp", "neuro", "onco", "ortho", "derma", "pedia", "gyne", "general", "psych"],
+            "description": "专科代码"
+          },
+          "specialty_name": {
+            "type": "string",
+            "description": "专科名称"
+          },
+          "findings": {
+            "type": "string",
+            "description": "该专科分析发现"
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "该专科建议"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"],
+            "description": "优先级"
+          }
+        }
+      },
+      "description": "参与会诊的专科列表"
+    },
+    "medical_data_analyzed": {
+      "type": "object",
+      "description": "分析的医疗数据",
+      "properties": {
+        "test_records_count": {
+          "type": "integer",
+          "description": "检查记录数量"
+        },
+        "test_types": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "检查类型列表"
+        },
+        "abnormal_findings_count": {
+          "type": "integer",
+          "description": "异常发现数量"
+        },
+        "chronic_conditions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "慢性疾病列表"
+        }
+      }
+    },
+    "comprehensive_assessment": {
+      "type": "object",
+      "description": "综合评估",
+      "properties": {
+        "overall_health_status": {
+          "type": "string",
+          "enum": ["excellent", "good", "fair", "poor"],
+          "description": "整体健康状态"
+        },
+        "key_findings": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "关键发现"
+        },
+        "risk_factors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "factor": {"type": "string"},
+              "level": {"type": "string", "enum": ["high", "medium", "low"]},
+              "description": {"type": "string"}
+            }
+          },
+          "description": "风险因素"
+        }
+      }
+    },
+    "prioritized_recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "priority": {
+            "type": "string",
+            "enum": ["urgent", "high", "medium", "low"]
+          },
+          "category": {
+            "type": "string",
+            "enum": ["lifestyle", "medication", "follow_up", "further_testing", "specialist_referral", "monitoring"]
+          },
+          "recommendation": {"type": "string"},
+          "target_specialty": {"type": "string"},
+          "timeframe": {"type": "string"}
+        }
+      },
+      "description": "优先级排序的综合建议"
+    },
+    "follow_up_plan": {
+      "type": "object",
+      "description": "随访计划",
+      "properties": {
+        "next_consultation": {
+          "type": "string",
+          "format": "date",
+          "description": "下次会诊日期"
+        },
+        "monitoring_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": {"type": "string"},
+              "frequency": {"type": "string"},
+              "target_value": {"type": "string"}
+            }
+          },
+          "description": "监测项目"
+        },
+        "red_flags": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "需要立即就医的警示症状"
+        }
+      }
+    },
+    "safety_disclaimer": {
+      "type": "string",
+      "description": "安全免责声明"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "version": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    }
+  },
+  "required": ["consultation_id", "consultation_date", "specialties_involved"],
+  "additionalProperties": false
+}

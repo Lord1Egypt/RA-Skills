@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "rurussian": {
+      "command": "rurussian-mcp",
+      "args": [],
+      "env": {
+        "RURUSSIAN_API_URL": "https://rurussian.com/api",
+        "RURUSSIAN_API_KEY": "YOUR_BOT_API_KEY"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "智谱AI": {
+    "name": "智谱AI",
+    "industry": "大模型",
+    "contact": "张经理",
+    "competitor_activity": true
+  },
+  "商汤科技": {
+    "name": "商汤科技",
+    "industry": "计算机视觉",
+    "contact": "李总监"
+  },
+  "云从科技": {
+    "name": "云从科技",
+    "industry": "AI平台",
+    "contact": "王主管"
+  },
+  "旷视科技": {
+    "name": "旷视科技",
+    "industry": "计算机视觉",
+    "contact": "赵总"
+  },
+  "第四范式": {
+    "name": "第四范式",
+    "industry": "机器学习平台",
+    "contact": "陈经理"
+  }
+}

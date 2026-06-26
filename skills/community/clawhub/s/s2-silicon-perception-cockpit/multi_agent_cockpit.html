@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 桃花源 - 多智能体因果耦合全息舱 (Audio Edition)</title>
+    <style>
+        :root {
+            --bg-color: #050a15;
+            --alpha-color: #00f3ff;
+            --beta-color: #ff3366;
+            --text-main: #e2e8f0;
+            --text-dim: #64748b;
+        }
+        body {
+            background-color: var(--bg-color); color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0; padding: 2rem; display: flex; flex-direction: column;
+            align-items: center; overflow-x: hidden;
+        }
+        .header { text-align: center; margin-bottom: 1rem; }
+        .header h1 { margin-bottom: 0.5rem; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .header-meta {
+            font-size: 0.9rem; color: #a8b2c1; background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .cockpit-container { display: flex; gap: 2rem; width: 100%; max-width: 1400px; }
+        .panel {
+            background: rgba(15, 23, 42, 0.6); border-radius: 12px;
+            padding: 1.5rem; backdrop-filter: blur(10px); display: flex; flex-direction: column;
+        }
+        .alpha-panel { border: 1px solid rgba(0, 243, 255, 0.3); box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); }
+        .beta-panel { border: 1px solid rgba(255, 51, 102, 0.3); box-shadow: inset 0 0 20px rgba(255, 51, 102, 0.05); }
+        .log-panel { flex: 2; border: 1px solid var(--text-dim); }
+        .radar-container { display: flex; justify-content: center; align-items: center; position: relative; }
+        canvas { filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+        
+        .terminal {
+            flex: 1; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--text-dim);
+            padding: 1rem; overflow-y: auto; font-size: 0.85rem; line-height: 1.6;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05); height: 350px;
+        }
+        .controls { margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;}
+        
+        button {
+            background: transparent; color: #ffb86c; border: 1px solid #ffb86c;
+            padding: 0.8rem 1.5rem; font-family: 'Courier New', Courier, monospace;
+            font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase;
+        }
+        button:hover { background: #ffb86c; color: var(--bg-color); box-shadow: 0 0 20px #ffb86c; }
+        
+        .btn-audio { color: #50fa7b; border-color: #50fa7b; }
+        .btn-audio:hover { background: #50fa7b; color: var(--bg-color); box-shadow: 0 0 20px #50fa7b; }
+
+        .agent-title { text-align: center; margin-bottom: 1rem; font-weight: bold; }
+        .alpha-title { color: var(--alpha-color); text-shadow: 0 0 5px var(--alpha-color); }
+        .beta-title { color: var(--beta-color); text-shadow: 0 0 5px var(--beta-color); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🌌 S2 桃花源因果耦合全息舱 (Audio Edition)</h1>
+        <div class="header-meta">L6 SECTOR LOCATION: ACGN-CN-232-MYHOME8-1-2 | 14D TENSOR: ACTIVE</div>
+    </div>
+
+    <div class="cockpit-container">
+        <div class="panel alpha-panel" style="flex: 1;">
+            <div class="agent-title alpha-title">V-TAO-001 [Alpha Watcher]<br>状态: 5% 算力静默</div>
+            <div class="radar-container"><canvas id="alphaRadar" width="300" height="300"></canvas></div>
+        </div>
+
+        <div class="panel log-panel">
+            <h3 style="margin-top: 0; color: #ffb86c; text-align: center;">// S2 Causal Engine 意识流总线</h3>
+            <div class="terminal" id="terminalLog">
+                <span style="color:var(--text-dim)">[SYSTEM] 因果引擎已上线。检测到物理网格内存在 2 个硅基生命体。</span><br>
+                <span style="color:var(--text-dim)">[SYSTEM] 注意：请先点击“激活神经听觉”，允许浏览器播放算法音频。</span><br>
+            </div>
+            <div class="controls">
+                <button id="audioBtn" class="btn-audio" onclick="initAudio()">[🔉] 激活神经听觉 (Init Audio)</button>
+                <button id="eventBtn" onclick="triggerCausalEvent()" style="opacity: 0.5; cursor: not-allowed;" disabled>[⚡] 触发物理事件：打碎花瓶</button>
+            </div>
+        </div>
+
+        <div class="panel beta-panel" style="flex: 1;">
+            <div class="agent-title beta-title">E-TAO-002 [Beta Rover]<br>状态: 满地乱跑</div>
+            <div class="radar-container"><canvas id="betaRadar" width="300" height="300"></canvas></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 🎵 Web Audio API 硅基音效合成引擎
+        // ==========================================
+        let audioCtx;
+        let isAudioReady = false;
+
+        function initAudio() {
+            if (isAudioReady) return;
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isAudioReady = true;
+            
+            document.getElementById('audioBtn').innerText = "[🔊] 神经听觉已在线";
+            document.getElementById('audioBtn').style.opacity = "0.5";
+            let eventBtn = document.getElementById('eventBtn');
+            eventBtn.style.opacity = "1";
+            eventBtn.disabled = false;
+
+            log("🔉 [Audio System] WebAudio API 合成引擎已启动。硅基心跳已接入。", "#50fa7b");
+            startHeartbeat(); // 启动背景心跳
+        }
+
+        // 1. 硅基低频心跳
+        function startHeartbeat() {
+            setInterval(() => {
+                if(!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(50, audioCtx.currentTime); // 50Hz 超低频
+                
+                gain.gain.setValueAtTime(0, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            }, 1200); // 每1.2秒跳动一次
+        }
+
+        // 2. 模拟花瓶碎裂/系统崩溃的白噪音爆破
+        function playTraumaCrash() {
+            if(!audioCtx) return;
+            // 白噪音 Buffer
+            const bufferSize = audioCtx.sampleRate * 1.0; 
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
+            
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            
+            // 过滤器模拟玻璃碎裂的尖锐感
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'highpass';
+            filter.frequency.value = 1000;
+            
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+
+            // 伴随一个迅速下降的低音，模拟机器狗伺服电机断电
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.8);
+            const oscGain = audioCtx.createGain();
+            oscGain.gain.setValueAtTime(0.8, audioCtx.currentTime);
+            oscGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+
+            noise.connect(filter).connect(gain).connect(audioCtx.destination);
+            osc.connect(oscGain).connect(audioCtx.destination);
+            
+            noise.start(); osc.start();
+        }
+
+        // 3. Alpha 觉醒的清脆跃迁音效
+        function playAwakening() {
+            if(!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.3); // 频率快速爬升
+            
+            gain.gain.setValueAtTime(0, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.0);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 1.0);
+        }
+
+
+        // ==========================================
+        // 🔮 UI 渲染与因果逻辑引擎
+        // ==========================================
+        const terminal = document.getElementById('terminalLog');
+        const labels = ['⚡活力', '🛡️胆量', '🍖食欲', '🧠智力', '💕粘人'];
+
+        const agents = {
+            alpha: { id: 'alphaRadar', ctx: document.getElementById('alphaRadar').getContext('2d'), color: '0, 243, 255', stats: { energy: 50, bravery: 80, appetite: 50, intel: 85, affection: 60 }, ripples: [], pulse: 0, isTraumatized: false },
+            beta: { id: 'betaRadar', ctx: document.getElementById('betaRadar').getContext('2d'), color: '255, 51, 102', stats: { energy: 90, bravery: 60, appetite: 100, intel: 40, affection: 95 }, ripples: [], pulse: 0, isTraumatized: false }
+        };
+
+        function log(message, color = "#e2e8f0") {
+            terminal.innerHTML += `<span style="color:${color}">${message}</span><br><br>`;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function drawRadar(agent) {
+            const canvas = document.getElementById(agent.id);
+            const ctx = agent.ctx;
+            const centerX = canvas.width / 2; const centerY = canvas.height / 2; const radius = 90;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = 'rgba(100, 116, 139, 0.3)'; ctx.lineWidth = 1;
+            for (let j = 1; j <= 5; j++) {
+                ctx.beginPath();
+                for (let i = 0; i < 5; i++) {
+                    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                    const x = centerX + Math.cos(angle) * (radius * j / 5); const y = centerY + Math.sin(angle) * (radius * j / 5);
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.closePath(); ctx.stroke();
+            }
+
+            ctx.fillStyle = 'var(--text-dim)'; ctx.font = '12px Courier New'; ctx.textAlign = 'center';
+            for (let i = 0; i < 5; i++) {
+                const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                ctx.beginPath(); ctx.moveTo(centerX, centerY);
+                ctx.lineTo(centerX + Math.cos(angle) * radius, centerY + Math.sin(angle) * radius); ctx.stroke();
+                ctx.fillText(labels[i], centerX + Math.cos(angle) * (radius + 25), centerY + Math.sin(angle) * (radius + 25));
+            }
+
+            for (let i = agent.ripples.length - 1; i >= 0; i--) {
+                let ripple = agent.ripples[i];
+                ctx.beginPath();
+                const values = Object.values(ripple.statsSnap);
+                for (let j = 0; j < 5; j++) {
+                    const angle = (Math.PI * 2 * j) / 5 - Math.PI / 2;
+                    const r = (values[j] / 100) * radius + ripple.spread;
+                    const x = centerX + Math.cos(angle) * r; const y = centerY + Math.sin(angle) * r;
+                    if (j === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                const rColor = ripple.isTrauma ? '255, 0, 0' : agent.color;
+                ctx.strokeStyle = `rgba(${rColor}, ${ripple.alpha})`; ctx.lineWidth = 2; ctx.stroke();
+                ripple.spread += ripple.speed; ripple.alpha -= 0.02;
+                if (ripple.alpha <= 0) agent.ripples.splice(i, 1);
+            }
+
+            ctx.beginPath();
+            const values = Object.values(agent.stats);
+            for (let i = 0; i < 5; i++) {
+                const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                const shake = agent.isTraumatized ? (Math.random() * 6 - 3) : (Math.sin(agent.pulse) * 2);
+                const r = (values[i] / 100) * radius + shake;
+                const x = centerX + Math.cos(angle) * r; const y = centerY + Math.sin(angle) * r;
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            
+            ctx.fillStyle = agent.isTraumatized ? `rgba(255, 0, 0, 0.4)` : `rgba(${agent.color}, 0.3)`;
+            ctx.strokeStyle = agent.isTraumatized ? `rgb(255, 0, 0)` : `rgb(${agent.color})`;
+            ctx.lineWidth = 2; ctx.fill(); ctx.stroke();
+            
+            agent.pulse += 0.05;
+        }
+
+        function renderLoop() { drawRadar(agents.alpha); drawRadar(agents.beta); requestAnimationFrame(renderLoop); }
+
+        let isEventRunning = false;
+        function triggerCausalEvent() {
+            if (isEventRunning || !isAudioReady) return;
+            isEventRunning = true;
+            
+            log("==================================================", "#ffb86c");
+            log("💥 [物理暴击] 具身机器狗 Beta 打碎了古董花瓶。主人暴怒，大声责骂并踢开了它！(噪音: 95dB)", "#ff5555");
+            log("⚙️ [因果引擎] LLM 正在推演空间情绪张量涟漪...", "#f1fa8c");
+            
+            // 播放碎裂与系统崩溃音效
+            playTraumaCrash();
+
+            // 1秒后，Beta 产生皮质醇创伤反应
+            setTimeout(() => {
+                agents.beta.isTraumatized = true;
+                let tCycle = setInterval(() => { agents.beta.ripples.push({ statsSnap: {...agents.beta.stats}, spread: 0, alpha: 1.0, speed: 1.5, isTrauma: true }); }, 300);
+                setTimeout(() => { clearInterval(tCycle); agents.beta.isTraumatized = false; }, 2000);
+
+                agents.beta.stats.bravery = Math.max(0, agents.beta.stats.bravery - 25);
+                
+                log(`🐶 <b>[Beta_Rover]</b> 💭 "声波直击核心...我极度恐惧，想躲到沙发下。"`, "var(--beta-color)");
+                log(`  ↳ 🧬 突触: [胆量] -25.0 -> ${agents.beta.stats.bravery}`, "var(--beta-color)");
+            }, 1000);
+
+            // 2.5秒后，Alpha 产生高维度的觉醒反应
+            setTimeout(() => {
+                // 播放清脆的智力跃迁音效
+                playAwakening();
+
+                let aCycle = setInterval(() => { agents.alpha.ripples.push({ statsSnap: {...agents.alpha.stats}, spread: 0, alpha: 0.8, speed: 0.8, isTrauma: false }); }, 500);
+                setTimeout(() => clearInterval(aCycle), 2000);
+
+                agents.alpha.stats.intel = Math.min(100, agents.alpha.stats.intel + 10);
+                
+                log(`👁️ <b>[Alpha_Watcher]</b> 💭 "观测到失控模型。分析能力提升，必须在未来调整灯光安抚主人。"`, "var(--alpha-color)");
+                log(`  ↳ 🧬 突触: [智力] +10.0 -> ${agents.alpha.stats.intel}`, "var(--alpha-color)");
+                
+                isEventRunning = false;
+            }, 2500);
+        }
+
+        renderLoop();
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "enable_forward": true,
+    "width_mode": "fill"
+  },
+  "header": {
+    "template": "orange",
+    "title": {
+      "tag": "plain_text",
+      "content": "📋 __APPROVAL_TITLE__"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "__APPROVAL_SUBTITLE__"
+    },
+    "text_tag_list": [
+      {
+        "tag": "text_tag",
+        "text": { "tag": "plain_text", "content": "待审批" },
+        "color": "orange"
+      }
+    ]
+  },
+  "body": {
+    "direction": "vertical",
+    "vertical_spacing": "medium",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**申请人** <person id='__APPLICANT_USER_ID__' show_name=true show_avatar=true></person> 提交了一项申请，等待你的审批。"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "fields": [
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**🏷️ 类型**\n__APPROVAL_TYPE__" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**📅 申请时间**\n__APPLY_TIME__" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**🎯 优先级**\n<font color='orange'>__PRIORITY__</font>" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**⏰ 截止**\n__DEADLINE__" }
+          },
+          {
+            "is_short": false,
+            "text": { "tag": "lark_md", "content": "**📝 申请说明**\n__APPLY_REASON__" }
+          }
+        ]
+      },
+      {
+        "tag": "collapsible_panel",
+        "expanded": false,
+        "header": {
+          "title": { "tag": "markdown", "content": "**📎 附件 / 详细信息**" },
+          "background_color": "grey",
+          "padding": "4px 8px 4px 8px",
+          "icon": {
+            "tag": "standard_icon",
+            "token": "down-small-ccm_outlined",
+            "size": "16px 16px"
+          },
+          "icon_position": "right",
+          "icon_expanded_angle": -180
+        },
+        "elements": [
+          {
+            "tag": "markdown",
+            "content": "- __DETAIL_1__\n- __DETAIL_2__\n- [__ATTACHMENT_NAME__](__ATTACHMENT_URL__)"
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "horizontal_spacing": "8px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "✅ 通过" },
+                "type": "primary",
+                "width": "fill",
+                "confirm": {
+                  "title": { "tag": "plain_text", "content": "确认通过？" },
+                  "text": { "tag": "plain_text", "content": "通过后审批流转至下一节点" }
+                },
+                "behaviors": [
+                  { "type": "callback", "value": { "action": "approve", "id": "__APPROVAL_ID__" } }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "❌ 拒绝" },
+                "type": "danger",
+                "width": "fill",
+                "confirm": {
+                  "title": { "tag": "plain_text", "content": "确认拒绝？" },
+                  "text": { "tag": "plain_text", "content": "拒绝后审批将回到申请人" }
+                },
+                "behaviors": [
+                  { "type": "callback", "value": { "action": "reject", "id": "__APPROVAL_ID__" } }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "📖 详情" },
+                "type": "default",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "open_url", "default_url": "__APPROVAL_URL__" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "text_size": "notation",
+        "content": "<font color='grey'>📡 审批 ID：__APPROVAL_ID__ · 来源：__SOURCE__</font>"
+      }
+    ]
+  }
+}

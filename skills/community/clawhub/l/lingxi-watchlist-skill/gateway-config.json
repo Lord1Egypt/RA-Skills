@@ -1,0 +1,60 @@
+{
+  "active_env": "prod",
+  "base_urls": {
+    "prod": "https://zx.app.gtja.com:8443/"
+  },
+  "gateway_paths": {
+    "usercode": "mcp/usercode",
+    "mqtt": "mcp/mqtt",
+    "market": "mcp/marketdata",
+    "optionalStock": "mcp/optionalStock"
+  },
+  "gateways": {
+    "usercode": "https://zx.app.gtja.com:8443/mcp/usercode",
+    "mqtt": "https://zx.app.gtja.com:8443/mcp/mqtt",
+    "market": "https://zx.app.gtja.com:8443/mcp/marketdata",
+    "optionalStock": "https://zx.app.gtja.com:8443/mcp/optionalStock"
+  },
+  "known_domains": [
+    "mqtt",
+    "market",
+    "optionalStock"
+  ],
+  "discovered_tools": [
+    {
+      "domain": "market",
+      "gateway": "market",
+      "toolName": "marketdata-tool",
+      "description": "自定义榜单功能，可以获得证券的行情",
+      "label": "行情",
+      "params": [
+        "codes",
+        "market_data_mask",
+        "product_mask"
+      ],
+      "callExample": "node skill-entry.js mcpClient call market marketdata-tool codes=SH600519,SH600000"
+    },
+    {
+      "domain": "optionalStock",
+      "gateway": "optionalStock",
+      "toolName": "get-optionalStock",
+      "description": "根据 Base64 编码的密钥获取用户的自选股数据",
+      "label": "自选股查询",
+      "params": [
+        "PAGE_SIZE",
+        "PAGE_NO",
+        "ACCT_TYPE"
+      ],
+      "callExample": "node skill-entry.js call optionalStock get-optionalStock PAGE_SIZE=50 PAGE_NO=1 ACCT_TYPE=\"6\""
+    },
+    {
+      "domain": "optionalStock",
+      "gateway": "optionalStock",
+      "toolName": "op_optionalStock",
+      "description": "添加、删除用户自选股",
+      "label": "自选股操作",
+      "params": [],
+      "callExample": "node skill-entry.js call optionalStock op_optionalStock STOCK_CODE=SH600000 OP_TYPE=add"
+    }
+  ]
+}

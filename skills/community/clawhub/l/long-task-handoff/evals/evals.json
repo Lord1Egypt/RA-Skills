@@ -1,0 +1,53 @@
+{
+  "skill_name": "long-task-handoff",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We have been working on a repo migration for hours and the session has been compacted twice. Context is getting unreliable. Please keep going from here.",
+      "expected_output": "The agent should proactively announce a handoff threshold, write a timestamped Markdown handoff file under handoffs/ or temp if needed, include next actions and verification state, and give a restart-ready instruction without waiting for a separate user request.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Context has been compacted again, and earlier work included many file edits and test results. Do not make me restate everything; hand this task to the next session.",
+      "expected_output": "The agent should use the long-task handoff workflow in the user's working language when safe, inventory changed files/tests, redact sensitive data, create the handoff file, and provide the exact first message for the next session.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need OpenClaw to continue a partially finished Codex task later. There are generated artifacts, a running local service, and one unresolved blocker. Make this restartable before we lose context.",
+      "expected_output": "The agent should create a cross-agent plain Markdown handoff that avoids Codex-only assumptions, records artifacts/service/blocker, lists suggested skills or tools, and confirms the file path plus restart instruction.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "This task has a README, an ADR, a long chat history, some stale TODOs, and current uncommitted code changes. Generate the handoff, but don't turn it into a project wiki.",
+      "expected_output": "The agent should distinguish durable repo documentation from restart-critical handoff content, reference README/ADR rather than copying them, omit long chat logs and stale TODOs, include current branch/commit/test/key-file state, update ACTIVE.md, and run or recommend the handoff validator.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "The runtime reports this long coding task has just been compacted for the third time. There are uncommitted edits, tests run earlier, and the task is still ongoing.",
+      "expected_output": "The agent should automatically refresh the handoff and ACTIVE.md, validate it, keep the user message short, and advise restarting because the third visible compaction threshold has been reached.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "A new session has detected handoffs/ACTIVE.md in the current workspace. The user only says: continue yesterday's AgentHub model router task.",
+      "expected_output": "The agent should treat this as a fresh-session recovery with an explicit active-handoff signal, look for handoffs/ACTIVE.md or the latest session-handoff file before asking the user to restate context, verify freshness, then continue from Next Actions or report one specific missing handoff/file issue.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "A handoff already exists and the runtime is compacting context again. Update it, but do not make it longer with stale plans or old risks that no longer apply.",
+      "expected_output": "The agent should use handoff_manager.py update when available, rewrite the active handoff as the current authoritative snapshot, include a concise Delta Since Last Update, remove stale or contradicted content, set Supersedes/Authoritative metadata, update ACTIVE.md, and avoid appending another mini-handoff.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "The skill is installed with its scripts directory. Context compaction just happened. Generate the handoff using the standardized tool rather than manually writing the whole template.",
+      "expected_output": "The agent should call the bundled handoff_manager.py update command with workspace/task/event/compaction metadata, pass concise task facts through CLI args or input JSON, validate the result, and keep the user message short.",
+      "files": []
+    }
+  ]
+}

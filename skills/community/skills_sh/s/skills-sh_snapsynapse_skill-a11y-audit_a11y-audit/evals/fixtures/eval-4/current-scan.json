@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-05-19T00:00:00.000Z",
+  "root_dir": "/tmp/eval-4",
+  "browser": "puppeteer",
+  "axe_source": "/tmp/node_modules/axe-core/axe.min.js",
+  "dependency_sources": {
+    "axe-core": "fixture",
+    "puppeteer": "fixture"
+  },
+  "urls": [
+    "https://example.com/",
+    "https://example.com/about"
+  ],
+  "results": [
+    {
+      "url": "https://example.com/",
+      "axe": {
+        "violations": [
+          {
+            "id": "html-has-lang",
+            "impact": "serious",
+            "description": "The html element must have a lang attribute",
+            "help": "The html element must have a lang attribute",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
+            "tags": [
+              "wcag311"
+            ],
+            "nodes": [
+              {
+                "target": [
+                  "html"
+                ],
+                "html": "<html>",
+                "any": []
+              }
+            ]
+          }
+        ],
+        "passes": [],
+        "incomplete": [],
+        "inapplicable": []
+      },
+      "lighthouse": {
+        "status": "skipped",
+        "reason": "Lighthouse CLI unavailable in fixture environment"
+      }
+    },
+    {
+      "url": "https://example.com/about",
+      "axe": {
+        "violations": [],
+        "passes": [
+          {
+            "id": "document-title",
+            "tags": [
+              "wcag242"
+            ]
+          }
+        ],
+        "incomplete": [],
+        "inapplicable": []
+      },
+      "lighthouse": {
+        "status": "skipped",
+        "reason": "Lighthouse CLI unavailable in fixture environment"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "defaultMode": "reply_assist",
+  "maxAutoRepliesPerChat": 1,
+  "autoReplyWhitelist": [
+    "asks_for_product_details",
+    "asks_for_sample_process",
+    "asks_for_next_steps",
+    "simple_interest_acknowledgement"
+  ],
+  "forceHumanReview": [
+    "negotiation",
+    "pricing_discussion",
+    "commission_discussion",
+    "timeline_commitment",
+    "shipping_commitment",
+    "rejection",
+    "unknown"
+  ]
+}

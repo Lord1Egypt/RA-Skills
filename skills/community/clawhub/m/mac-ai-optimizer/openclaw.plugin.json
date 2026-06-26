@@ -1,0 +1,21 @@
+{
+  "id": "mac-ai-optimizer",
+  "name": "Mac AI Optimizer",
+  "description": "Optimize macOS for AI workloads. Reduce idle memory from 6GB to 2.5GB, configure Docker limits, enable SSH remote management. Turn 8GB Mac into AI server node.",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "optimizeLevel": {
+        "type": "string",
+        "enum": ["safe", "moderate", "aggressive"],
+        "description": "Optimization level: safe (UI only), moderate (UI + services), aggressive (all + SSH)"
+      }
+    }
+  },
+  "uiHints": {
+    "optimizeLevel": { "label": "Optimization Level", "placeholder": "moderate" }
+  },
+  "skills": ["skills/mac-ai-optimizer"]
+}

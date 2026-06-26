@@ -1,0 +1,179 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Toutiao workflows with JustOneAPI, including article Details, user Profile, and app Keyword Search across 4 operations.",
+  "displayName": "Toutiao",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Toutiao article Details data, including article ID, title, and author information, for content performance analysis and media monitoring and verifying article authenticity and metadata retrieval.",
+      "method": "GET",
+      "operationId": "getToutiaoArticleDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required to access the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier of the Toutiao article.",
+          "enumValues": [],
+          "location": "query",
+          "name": "id",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/toutiao/get-article-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Article Details",
+      "tags": [
+        "Toutiao"
+      ]
+    },
+    {
+      "description": "Get Toutiao user Profile data, including user ID, nickname, and avatar, for influencer profiling and audience analysis and monitoring creator performance and growth.",
+      "method": "GET",
+      "operationId": "getToutiaoUserDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required to access the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier of the Toutiao user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/toutiao/get-user-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Toutiao"
+      ]
+    },
+    {
+      "description": "Get Toutiao app Keyword Search data, including matching articles, videos, and authors, for topic discovery and monitoring.",
+      "method": "GET",
+      "operationId": "searchToutiaoV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required to access the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword or query.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "",
+          "description": "Search session ID for consistent pagination (not required for the first page).",
+          "enumValues": [],
+          "location": "query",
+          "name": "searchId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/toutiao/search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "App Keyword Search",
+      "tags": [
+        "Toutiao"
+      ]
+    },
+    {
+      "description": "Get Toutiao web Keyword Search data, including this is the PC version of the search API. Note that it currently only supports retrieving the first page of results, for first-page discovery of articles, videos, and authors for trend research and monitoring.",
+      "method": "GET",
+      "operationId": "searchV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required to access the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword or query.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/toutiao/search/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Web Keyword Search",
+      "tags": [
+        "Toutiao"
+      ]
+    }
+  ],
+  "platformKey": "toutiao",
+  "primaryTag": "Toutiao",
+  "skillName": "justoneapi_toutiao",
+  "slug": "justoneapi-toutiao",
+  "sourceTitle": "OpenAPI definition"
+}

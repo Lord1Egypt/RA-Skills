@@ -1,0 +1,40 @@
+{
+  "skill_name": "agent-team-skill",
+  "iteration": 1,
+  "timestamp": "2026-03-27",
+  "configurations": [
+    {
+      "name": "with_skill",
+      "pass_rate": 1.0,
+      "total_assertions": 13,
+      "passed_assertions": 13,
+      "avg_time_seconds": 52.1,
+      "avg_tokens": 22696,
+      "evals": [
+        {"eval_id": 1, "name": "list-members", "passed": 2, "total": 2, "time_seconds": 46.6, "tokens": 22436},
+        {"eval_id": 2, "name": "add-member", "passed": 5, "total": 5, "time_seconds": 46.8, "tokens": 22435},
+        {"eval_id": 3, "name": "set-leader", "passed": 3, "total": 3, "time_seconds": 60.8, "tokens": 23349},
+        {"eval_id": 4, "name": "find-expert", "passed": 3, "total": 3, "time_seconds": 54.3, "tokens": 22564}
+      ]
+    },
+    {
+      "name": "without_skill",
+      "pass_rate": 1.0,
+      "total_assertions": 13,
+      "passed_assertions": 13,
+      "avg_time_seconds": 56.6,
+      "avg_tokens": 21413,
+      "evals": [
+        {"eval_id": 1, "name": "list-members", "passed": 2, "total": 2, "time_seconds": 48.4, "tokens": 20097},
+        {"eval_id": 2, "name": "add-member", "passed": 5, "total": 5, "time_seconds": 51.0, "tokens": 20388},
+        {"eval_id": 3, "name": "set-leader", "passed": 3, "total": 3, "time_seconds": 74.5, "tokens": 23967},
+        {"eval_id": 4, "name": "find-expert", "passed": 3, "total": 3, "time_seconds": 52.6, "tokens": 21188}
+      ]
+    }
+  ],
+  "delta": {
+    "pass_rate": 0.0,
+    "time_seconds": -4.5,
+    "tokens": 1283
+  }
+}

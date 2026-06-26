@@ -1,0 +1,21 @@
+{
+  "name": "Error Monitor Fix",
+  "description": "错误监控 - OpenClaw 系统级错误扫描与修复建议（Gateway/端口/会话）",
+  "version": "3.0.0",
+  "identifier": "error-monitor-fix",
+  "author": "c32",
+  "category": "monitoring",
+  "tags": [
+    "error",
+    "monitor",
+    "auto-fix",
+    "log"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "systemd": true
+  },
+  "scripts": {
+    "postinstall": "bash scripts/install.sh"
+  }
+}

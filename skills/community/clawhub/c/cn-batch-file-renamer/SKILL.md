@@ -1,35 +1,56 @@
 ---
-name: "Cn Batch File Renamer"
+slug: cn-batch-file-renamer
+name: Batch File Renamer
+version: "1.0.0"
 description: "Batch rename files with customizable patterns. Support prefix, suffix, sequential numbering. Dry-run mode available. Pure Python, no API key required."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-batch-file-renamer"
-sourceUrl: "https://clawhub.ai/skills/cn-batch-file-renamer"
+keywords: rename, batch, file, tool
+license: MIT-0
+tags:
+  - tools
 ---
 
-# Cn Batch File Renamer
+# Batch File Renamer
 
-> Batch rename files with customizable patterns. Support prefix, suffix, sequential numbering. Dry-run mode available. Pure Python, no API key required.
+Rename multiple files at once with patterns.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-batch-file-renamer`
-- **Source URL:** [https://clawhub.ai/skills/cn-batch-file-renamer](https://clawhub.ai/skills/cn-batch-file-renamer)
+## Features
 
-## Overview
+- Add prefix to filenames
+- Add suffix before extension
+- Sequential numbering (001, 002, ...)
+- Dry-run mode (preview without changes)
+- Pure Python, no external dependencies
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-batch-file-renamer
 ```
+# Preview renaming
+python3 scripts/batch_rename.py --dir ./photos --prefix "vacation_" --dry-run
+
+# Actually rename
+python3 scripts/batch_rename.py --dir ./photos --prefix "vacation_"
+```
+
+## Examples
+
+Rename files in a directory:
+- photo.jpg → vacation_001.jpg
+- image.png → vacation_002.png
+- pic.gif → vacation_003.gif
+
+## Notes
+
+- Preserves file extensions
+- Does not overwrite existing files
+- Use --dry-run first to preview changes
+
+## Exit Codes
+
+- 0: Success
+- 1: Directory not found or permission error
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

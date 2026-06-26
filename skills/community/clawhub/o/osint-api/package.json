@@ -1,0 +1,26 @@
+{
+  "name": "osint-api",
+  "version": "0.6.0",
+  "description": "Professional OSINT intelligence reports via API — multiple feeds, enriched analysis, domain recon",
+  "author": "ahsan-tariq",
+  "license": "MIT",
+  "keywords": ["osint", "intelligence", "feeds", "recon", "domain", "api", "reports"],
+  "files": ["SKILL.md"],
+  "homepage": "https://osint.ahsan-tariq-ai.xyz",
+  "api": {
+    "base_url": "https://osint.ahsan-tariq-ai.xyz/api/v1",
+    "endpoints": {
+      "reports": "/reports/enriched",
+      "categories": "/reports/categories",
+      "recon": "/recon/{domain}",
+      "social": "/social/{username}",
+      "breach": "/breach/{email}",
+      "signup": "/signup",
+      "install": "/install"
+    }
+  },
+  "scripts": {
+    "test": "curl -s https://osint.ahsan-tariq-ai.xyz/api/v1/reports/enriched | head -20",
+    "dashboard": "open https://osint.ahsan-tariq-ai.xyz/osint-dashboard"
+  }
+}

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASG Card OG Builder</title>
+  <style>
+    :root {
+      --bg: #07080d;
+      --panel: #0e0f14;
+      --panel-2: #090a0f;
+      --text: #f8fafc;
+      --muted: rgba(255, 255, 255, 0.58);
+      --purple: #9945ff;
+      --green: #14f195;
+      --scan-progress: 52%;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 1200px; height: 630px; margin: 0; overflow: hidden; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:
+        radial-gradient(60% 90% at 72% 52%, rgba(153,69,255,0.18) 0%, rgba(153,69,255,0) 65%),
+        radial-gradient(45% 70% at 82% 58%, rgba(20,241,149,0.12) 0%, rgba(20,241,149,0) 70%),
+        radial-gradient(120% 120% at 15% 10%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(180deg, #08090f 0%, #05060a 100%);
+      color: var(--text);
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      mix-blend-mode: soft-light;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 3px),
+        repeating-linear-gradient(90deg, rgba(153,69,255,0.35) 0px, rgba(153,69,255,0.35) 1px, transparent 1px, transparent 4px);
+      pointer-events: none;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .left {
+      position: absolute;
+      left: 76px;
+      top: 84px;
+      width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(20, 241, 149, 0.45);
+    }
+
+    h1 {
+      margin: 6px 0 0;
+      font-size: 58px;
+      line-height: 0.98;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    h1 .purple { color: var(--purple); }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      max-width: 500px;
+    }
+
+    .right {
+      position: absolute;
+      right: 40px;
+      top: 70px;
+      width: 650px;
+      height: 490px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb {
+      position: absolute;
+      width: 540px;
+      height: 540px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(153,69,255,0.18) 0%, rgba(153,69,255,0.11) 32%, rgba(20,241,149,0.08) 50%, rgba(20,241,149,0) 72%);
+      filter: blur(10px);
+    }
+
+    .card-frame {
+      position: relative;
+      width: 620px;
+      transform: rotate(-7deg);
+      filter: drop-shadow(0 26px 56px rgba(0,0,0,0.46));
+    }
+
+    .card-shell {
+      position: relative;
+      aspect-ratio: 1.586 / 1;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(120% 140% at 0% 0%, rgba(255,255,255,0.04), transparent 40%),
+        linear-gradient(135deg, #111113 0%, #0d0e13 48%, #090a0d 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 0 0 1px rgba(255,255,255,0.02);
+    }
+
+    .card-content {
+      position: absolute;
+      inset: 0;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      clip-path: inset(0 0 0 var(--scan-progress));
+      -webkit-mask-image: linear-gradient(90deg,
+        transparent 0,
+        transparent calc(var(--scan-progress) - 2px),
+        rgba(0,0,0,0.25) calc(var(--scan-progress) + 3px),
+        rgba(0,0,0,1) calc(var(--scan-progress) + 14px));
+      mask-image: linear-gradient(90deg,
+        transparent 0,
+        transparent calc(var(--scan-progress) - 2px),
+        rgba(0,0,0,0.25) calc(var(--scan-progress) + 3px),
+        rgba(0,0,0,1) calc(var(--scan-progress) + 14px));
+      z-index: 2;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .label-sm {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.18);
+      margin-bottom: 5px;
+    }
+
+    .brand {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .chip-wrap {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .chip {
+      width: 42px;
+      height: 30px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, rgba(180, 120, 0, 0.38), rgba(255, 200, 0, 0.08));
+      border: 1px solid rgba(255, 190, 0, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .number {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .meta-group {
+      min-width: 0;
+    }
+
+    .meta-k {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.14);
+      margin-bottom: 3px;
+    }
+
+    .meta-v {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.42);
+      font-weight: 600;
+    }
+
+    .meta-v.green {
+      color: rgba(20, 241, 149, 0.78);
+    }
+
+    .mc-logo {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .mc-logo svg {
+      width: 48px;
+      height: 30px;
+    }
+
+    .scan-zone {
+      position: absolute;
+      inset: 0;
+      width: var(--scan-progress);
+      overflow: hidden;
+      z-index: 3;
+      background:
+        linear-gradient(90deg, rgba(153,69,255,0.1) 0%, rgba(153,69,255,0.04) 72%, transparent 100%),
+        repeating-linear-gradient(90deg, rgba(216,180,254,0.06) 0px, rgba(216,180,254,0.06) 1px, transparent 1px, transparent 4px);
+    }
+
+    .scan-zone::after {
+      content: "";
+      position: absolute;
+      top: -8%;
+      bottom: -8%;
+      right: -20px;
+      width: 46px;
+      background: linear-gradient(90deg, rgba(139,92,246,0) 0%, rgba(216,180,254,0.28) 42%, rgba(153,69,255,0.22) 70%, rgba(153,69,255,0) 100%);
+      filter: blur(8px);
+    }
+
+    .code {
+      margin: 0;
+      position: absolute;
+      inset: 0;
+      padding: 12px 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 8.5px;
+      line-height: 10px;
+      letter-spacing: -0.02em;
+      color: rgba(227, 197, 255, 0.48);
+      text-shadow: 0 0 10px rgba(153,69,255,0.18), 0 0 22px rgba(216,180,254,0.08);
+      white-space: pre;
+      mix-blend-mode: screen;
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+    }
+
+    .scan-line {
+      position: absolute;
+      top: 6%;
+      bottom: 6%;
+      left: var(--scan-progress);
+      width: 2px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      z-index: 5;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(233,213,255,0.88) 12%, rgba(216,180,254,1) 50%, rgba(233,213,255,0.88) 88%, rgba(255,255,255,0) 100%);
+      box-shadow: 0 0 0 1px rgba(216,180,254,0.12), 0 0 12px rgba(216,180,254,0.9), 0 0 28px rgba(153,69,255,0.62);
+    }
+
+    .scan-line::before {
+      content: "";
+      position: absolute;
+      top: -4%;
+      bottom: -4%;
+      left: -8px;
+      right: -8px;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(153,69,255,0) 0%, rgba(153,69,255,0.28) 18%, rgba(216,180,254,0.36) 50%, rgba(153,69,255,0.28) 82%, rgba(153,69,255,0) 100%);
+      filter: blur(7px);
+      opacity: 0.9;
+    }
+
+    .scan-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.14;
+      mix-blend-mode: soft-light;
+      clip-path: inset(0 calc(100% - var(--scan-progress)) 0 0);
+      background-image:
+        repeating-linear-gradient(0deg, rgba(216,180,254,0.34) 0px, rgba(216,180,254,0.34) 1px, transparent 1px, transparent 3px),
+        repeating-linear-gradient(90deg, rgba(153,69,255,0.28) 0px, rgba(153,69,255,0.28) 1px, transparent 1px, transparent 4px);
+    }
+
+    .scan-glare {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(var(--scan-progress) - 10%);
+      width: 20%;
+      z-index: 4;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(216,180,254,0.11) 35%, rgba(153,69,255,0.13) 50%, rgba(255,255,255,0.05) 65%, rgba(255,255,255,0) 100%);
+      filter: blur(12px);
+    }
+
+    .corner-glow {
+      position: absolute;
+      inset: -1px;
+      border-radius: 16px;
+      pointer-events: none;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02),
+        0 0 0 1px rgba(153,69,255,0.04) inset,
+        0 0 36px rgba(153,69,255,0.12),
+        0 0 52px rgba(20,241,149,0.05);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="left">
+      <div class="pill"><span class="pill-dot"></span>Powered by x402 on chain</div>
+      <h1>ASG Card<br>for <span class="purple">AI Agents.</span></h1>
+      <p class="sub">Issue virtual MasterCard cards programmatically. Pay with USDC on chain via x402 and receive card details in seconds.</p>
+    </div>
+
+    <div class="right">
+      <div class="orb"></div>
+      <div class="card-frame">
+        <div class="card-shell">
+          <div class="corner-glow"></div>
+          <div class="card-content">
+            <div class="top-row">
+              <div>
+                <div class="label-sm">Virtual Card</div>
+                <div class="brand">ASG Card</div>
+              </div>
+            </div>
+
+            <div class="chip-wrap">
+              <div class="chip"></div>
+            </div>
+
+            <div class="bottom">
+              <div class="number">5395 •••• •••• 7890</div>
+              <div class="meta-row">
+                <div class="meta-group">
+                  <div class="meta-k">Expires</div>
+                  <div class="meta-v">12/28</div>
+                </div>
+                <div class="meta-group">
+                  <div class="meta-k">CVV</div>
+                  <div class="meta-v">•••</div>
+                </div>
+                <div class="meta-group">
+                  <div class="meta-k">Balance</div>
+                  <div class="meta-v green">$50.00</div>
+                </div>
+                <div class="mc-logo">
+                  <svg viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="18" cy="15" r="12" fill="#EB001B" opacity="0.25"/>
+                    <circle cx="30" cy="15" r="12" fill="#F79E1B" opacity="0.25"/>
+                    <path d="M24 5.04a12 12 0 0 1 0 19.92 12 12 0 0 1 0-19.92z" fill="#FF5F00" opacity="0.3"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scan-noise"></div>
+          <div class="scan-zone">
+            <pre class="code">const scanX = lerp(prevX, nextX, dt) ; response.headers.set(&quot;X-Payment&quot;, proof)
+wallet.sign(txEnvelope) ; verifySignature(payload, nonce) ; requestAnimationFrame(render)
+ctx.globalCompositeOperation = &quot;lighter&quot; ; particle.alpha *= 0.98 ; scanner.intensity = 0.85
+if (packet.accepts[0].network === &quot;onchain&quot;) verifyPayment(txHash) ; const clip = clamp(progress)
+const v0 = (7 + 42) * 0.6 ; const v1 = (1 + 83) * 0.2 ; const v2 = (6 + 37) * 0.9
+stream.write(chunk) ; const retry = paymentRequired ? sendUSDC() : next() ; response.status = 201
+const card = await issueVirtualCard({ tier: 50, protocol: &quot;x402&quot; }) ; const auth = &quot;wallet-signed&quot;
+ctx.drawImage(gradient, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2) ; const glow = 3.5
+for (let i = 0; i &lt; particles.length; i++) particles[i].step(dt) ; clipLeft = scanProgress
+function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); } ; const now = performance.now()
+const proof = parseX402(headers) ; const amount = accepts[0].amount ; const asset = &quot;USDC&quot;
+if (status === 402) { pay(); retry(); } ; if (status === 201) { return cardDetails; }
+walletAdapter.signTransaction(tx) ; submitToChain(tx) ; verifyTreasuryTransfer(txHash)
+const scanner = { width: 8, glow: 3.5 } ; const fadeZone = 35 ; const maxParticles = 2500
+requestAnimationFrame(frame) ; drawParticle(ctx, p) ; ctx.globalAlpha = clamp(p.alpha, 0, 1)
+const state = { network: &quot;onchain&quot;, protocol: &quot;x402&quot;, mode: &quot;agent-first&quot; } ; state.ready = true
+const res = await fetch(&quot;/cards/create/tier/50&quot;) ; const json = await res.json() ; json.cardNumber
+scanner.glow += 0.01 ; particle.life -= decay ; if (x &gt; width) resetParticle() ; y += Math.sin(t)</pre>
+          </div>
+
+          <div class="scan-glare"></div>
+          <div class="scan-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,35 +1,91 @@
 ---
-name: "中医资料营销助手"
-description: "中医资料营销专家 - 生成公众号/知乎推广文案（纯 Prompt 技能）"
-category: "social-media"
-source: "ClawHub"
-tags: [chinese-medicine, marketing, openclaw-skill, social-media, tcm, wechat]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tcm-netdisk-marketer"
-sourceUrl: "https://clawhub.ai/skills/tcm-netdisk-marketer"
+name: tcm-netdisk-marketer
+description: 中医资料营销专家 - 生成公众号/知乎推广文案（纯 Prompt 技能）
+metadata:
+  openclaw:
+    emoji: "📝"
 ---
 
-# 中医资料营销助手
+# 中医资料营销专家
 
-> 中医资料营销专家 - 生成公众号/知乎推广文案（纯 Prompt 技能）
+## 概述
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tcm-netdisk-marketer`
-- **Source URL:** [https://clawhub.ai/skills/tcm-netdisk-marketer](https://clawhub.ai/skills/tcm-netdisk-marketer)
+此技能是一个精通中医资料分类与全网内容营销的专家，能够将用户提供的"带提取码网盘链接"进行深度加工，针对"微信公众号"和"知乎"的不同调性，生成高点击、高转化的推广文案。
 
-## Overview
+**注意**：这是一个**纯 Prompt 技能**，只负责生成文案内容。如需保存为 DOCX 文件，请使用 `save-to-word` 技能。
 
+## 工作流程（SOP）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tcm-netdisk-marketer
+1. **深度解析与合并**：提取文件名关键词，识别同类不同格式（PDF/视频等）并归为一组。确认链接是否已包含 `?pwd=` 参数。
+
+2. **扫描与方案确认（必经步骤）**：首先输出《资料库透视报告》（包含资源清单和建议分组方向）。等待用户选择分组逻辑后，再开始写作。
+
+3. **公众号深度模式**：采用"书籍介绍 + 立即获取"结构，字数 1200-2000 字，附带直接链接。
+
+4. **知乎高赞模式**：采用亲历式分享，正文严禁链接（替换为"见评论区"），字数 800-1500 字。
+
+5. **评论区一键复制区**：在知乎文案后提供独立代码块，包含所需链接，供直接复制。
+
+## 使用方法
+
+### 基本用法
+
+对 OpenClaw 说：
+
 ```
+请根据以下资料生成知乎推广文案：
+《黄帝内经》.pdf, 链接：https://pan.baidu.com/s/xxx pwd:1234
+```
+
+### 保存为 DOCX
+
+生成文案后，对 OpenClaw 说：
+
+```
+使用 save-to-word 技能，将以上内容保存为"中医资料知乎文案"
+```
+
+或者一次性说完：
+
+```
+请生成一篇知乎风格的中医资料推广文案，然后用 save-to-word 保存为 docx
+```
+
+## 异常处理
+
+- 如果链接无提取码，会提示用户补充
+- 如果内容跨度过大，会给出建议并请求用户确认
+
+## 示例
+
+### 示例 1：生成公众号文案
+
+```
+请根据以下资料生成公众号推广文案：
+《伤寒论》《金匮要略》合集，链接：https://pan.baidu.com/s/xxx pwd:abcd
+```
+
+### 示例 2：生成知乎文案并保存
+
+```
+请生成一篇知乎风格的中医资料推广文案，然后用 save-to-word 保存为 docx
+
+资料：《黄帝内经》全集，链接：https://pan.baidu.com/s/xxx pwd:1234
+```
+
+## 与其他技能的配合
+
+此技能设计为与 `save-to-word` 技能配合使用：
+
+1. `tcm-netdisk-marketer` 负责生成文案内容
+2. `save-to-word` 负责将文案保存为 DOCX 文件
+
+## 故障排除
+
+### 问题：文案生成后无法保存
+
+**解决**: 使用 `save-to-word` 技能，确保已安装 `python-docx` 库
+
+### 问题：生成的文案格式不对
+
+**解决**: 请明确指定平台类型（公众号/知乎）

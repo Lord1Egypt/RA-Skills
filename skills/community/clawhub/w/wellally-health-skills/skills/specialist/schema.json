@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/specialist-consultation.json",
+  "title": "SpecialistConsultation",
+  "description": "专科专家咨询的数据结构定义",
+  "type": "object",
+  "properties": {
+    "consultation_id": {
+      "type": "string",
+      "description": "咨询唯一标识符",
+      "pattern": "^spec_[0-9]{17}$"
+    },
+    "consultation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "咨询时间"
+    },
+    "specialty": {
+      "type": "object",
+      "description": "专科信息",
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": ["cardio", "endo", "gastro", "nephro", "heme", "resp", "neuro", "onco", "ortho", "derma", "pedia", "gyne", "general", "psych"]
+        },
+        "name": {"type": "string"},
+        "skill_file": {"type": "string"}
+      }
+    },
+    "data_range": {
+      "type": "object",
+      "description": "分析数据范围",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["all", "recent", "date", "date_range", "default"]
+        },
+        "value": {"type": "string"},
+        "record_count": {"type": "integer"}
+      }
+    },
+    "chronic_disease_data": {
+      "type": "object",
+      "description": "慢性病管理数据 (如存在)",
+      "properties": {
+        "has_chronic_disease": {"type": "boolean"},
+        "disease_name": {"type": "string"},
+        "diagnosis_date": {"type": "string", "format": "date"},
+        "classification": {"type": "string"},
+        "control_status": {
+          "type": "object",
+          "properties": {
+            "achievement_rate": {"type": "number"},
+            "average_values": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "target_range": {"type": "string"}
+          }
+        },
+        "complications": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "risk_assessment": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "very_high"]
+        }
+      }
+    },
+    "medical_data_analyzed": {
+      "type": "object",
+      "description": "分析的医疗数据",
+      "properties": {
+        "test_records_count": {"type": "integer"},
+        "abnormal_findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "test_name": {"type": "string"},
+              "finding": {"type": "string"},
+              "severity": {"type": "string"}
+            }
+          }
+        },
+        "normal_findings": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "specialist_analysis": {
+      "type": "object",
+      "description": "专科分析报告",
+      "properties": {
+        "summary": {"type": "string"},
+        "key_findings": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "interpretation": {"type": "string"},
+        "differential_considerations": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "recommendations": {
+      "type": "object",
+      "description": "建议",
+      "properties": {
+        "lifestyle": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "dietary": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "medical_followup": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {"type": "string"},
+              "priority": {"type": "string"},
+              "timeframe": {"type": "string"}
+            }
+          }
+        },
+        "red_flags": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "safety_disclaimer": {
+      "type": "string",
+      "description": "安全免责声明"
+    }
+  },
+  "required": ["consultation_id", "consultation_date", "specialty"],
+  "additionalProperties": false
+}

@@ -1,35 +1,12 @@
----
-name: "小五子 - 理财分析"
-description: "监测黄金、债券等资产，捕捉滞胀信号，自动分析宏观环境并推送预警至Feishu平台。"
-category: "domain"
-source: "ClawHub"
-tags: [bond, finance, gold, xiaowuzi]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaowuzi-gene-financial"
-sourceUrl: "https://clawhub.ai/skills/xiaowuzi-gene-financial"
----
-
-# 小五子 - 理财分析
-
-> 监测黄金、债券等资产，捕捉滞胀信号，自动分析宏观环境并推送预警至Feishu平台。
-
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaowuzi-gene-financial`
-- **Source URL:** [https://clawhub.ai/skills/xiaowuzi-gene-financial](https://clawhub.ai/skills/xiaowuzi-gene-financial)
-
-## Overview
+\# 理财分析工作流 (Financial Analysis)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaowuzi-gene-financial
-```
+
+专注于市场宏观信号的捕捉与自动化交易逻辑分析。
+
+1\. 多资产监测：覆盖黄金 (Gold)、债券 (Bond) 等核心资产。
+
+2\. 滞胀信号捕捉：针对复杂宏观环境设计的监控逻辑。
+
+3\. 自动预警：支持将实时分析结论推送到 Feishu 等平台。
+

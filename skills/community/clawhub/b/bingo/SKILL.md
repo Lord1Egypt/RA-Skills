@@ -1,35 +1,57 @@
 ---
-name: "Bingo"
+name: "bingo"
+version: "3.0.0"
 description: "Generate and play bingo cards with number calling and verification. Use when running bingo games."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bingo"
-sourceUrl: "https://clawhub.ai/skills/bingo"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Bingo
+# bingo
 
-> Generate and play bingo cards with number calling and verification. Use when running bingo games.
+Generate and play bingo cards with number calling and verification. Use when running bingo games.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bingo`
-- **Source URL:** [https://clawhub.ai/skills/bingo](https://clawhub.ai/skills/bingo)
+## Commands
 
-## Overview
+### `card`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bingo
+scripts/script.sh card
 ```
+
+### `call`
+
+```bash
+scripts/script.sh call
+```
+
+### `new-game`
+
+```bash
+scripts/script.sh new-game
+```
+
+### `history`
+
+```bash
+scripts/script.sh history
+```
+
+### `check`
+
+```bash
+scripts/script.sh check <numbers>
+```
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/bingo/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

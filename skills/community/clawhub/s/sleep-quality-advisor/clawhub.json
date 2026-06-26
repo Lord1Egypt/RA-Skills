@@ -1,0 +1,6 @@
+{
+  "name": "sleep-quality-advisor",
+  "version": "0.1.0",
+  "description": "Sleep quality analysis and advice",
+  "entry": "scripts/handler.py"
+}

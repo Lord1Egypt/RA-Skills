@@ -1,0 +1,50 @@
+{
+  "paper_slug": "",
+  "code_available": false,
+  "training_artifacts_available": false,
+  "repository_audit": {
+    "repo_path_or_url": "",
+    "readme_present": false,
+    "dependency_spec_present": false,
+    "docker_or_container_present": false,
+    "training_entrypoints": [],
+    "evaluation_entrypoints": [],
+    "config_files": [],
+    "pretrained_weights_available": false,
+    "exact_result_commands_present": false
+  },
+  "paper_to_code_mapping": [
+    {
+      "paper_object": "",
+      "paper_location": "",
+      "code_path": "",
+      "function_or_class": "",
+      "config_key": "",
+      "evidence_strength": "missing | weak | medium | strong",
+      "risk": ""
+    }
+  ],
+  "training_run_audit": [
+    {
+      "run_or_config": "",
+      "dataset": "",
+      "seed": "",
+      "hardware": "",
+      "time": "",
+      "key_hyperparameters": {},
+      "result": "",
+      "matches_paper": "unknown | yes | no | partial",
+      "notes": ""
+    }
+  ],
+  "risks": [
+    {
+      "risk_id": "",
+      "risk_axis": "data | model | loss | optimizer | baseline | metric | seed | compute | release | license | ethics",
+      "risk_description": "",
+      "likely_defense_question": "",
+      "safe_answer": "",
+      "needed_evidence": ""
+    }
+  ]
+}

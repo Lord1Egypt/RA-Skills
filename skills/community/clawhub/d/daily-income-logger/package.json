@@ -1,0 +1,21 @@
+{
+  "name": "daily-income-logger",
+  "version": "1.0.0",
+  "description": "自动记录每日各平台收入，生成收入报告和趋势分析",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests\""
+  },
+  "keywords": [
+    "income",
+    "revenue",
+    "logging",
+    "tracking",
+    "freelance",
+    "creator-economy"
+  ],
+  "author": "mesiyoq965-sudo",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

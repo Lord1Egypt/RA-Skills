@@ -1,0 +1,217 @@
+<link href="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/layout/error.97102178.css" rel="stylesheet"><!DOCTYPE html><html><head>  <link href="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/default~layout/base/base_css_4web2~layout/base/meta~layout/base/meta_bak~layout/base_badjs.97101585.css" rel="stylesheet"><link href="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/default~layout/base/meta~layout/base_badjs.97101587.css" rel="stylesheet"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"><!-- <meta name="referrer" content="origin-when-crossorigin"> --><meta charset="utf-8"><script type="text/javascript">
+//上报测速 --初始点
+window._points = [+new Date()];
+
+//上报测速 --js加载完成点,通过编译工具加在seajs.use回调中
+function wx_main(mod) {
+  window._points && (window._points[3] = +new Date());
+};
+
+window.wx = {
+  uin: "" || "0",
+  lang: "zh_CN"
+};
+</script><script crossorigin type="text/javascript" src="https://res.wx.qq.com/mpres/zh_CN/htmledition/pages/modules/common/badjs7cf189.js"></script><script crossorigin type="text/javascript" src="https://res.wx.qq.com/mpres/zh_CN/htmledition/pages/modules/base/jserr7cf189.js"></script><script type="text/javascript">
+
+//如果cdn挂了资源拉不到 触发此上报
+window.wx_loaderror = function(ele) {
+  var _img = new Image();
+  var key = 63;
+  if (ele && ele.tagName && ele.tagName.toLowerCase() == "script") {
+    key = 64;
+    //js资源挂了页面报到特殊地方
+  }
+  _img.src = "https://badjs.weixinbridge.com/badjs?id=11&uin=" + (wx && wx.uin) + "&msg=" + encodeURIComponent("link_error:" + (ele && (ele.href || ele.src))) + "|link&from=" + encodeURIComponent(location.href) + "&level=4&_t=" + (+new Date);
+
+  var key_img = new Image();
+  key_img.src = "https://mp.weixin.qq.com/misc/jslog?id=" + key + "&content=link_error&level=error";
+  if (typeof WX_BJ_REPORT != "undefined" && WX_BJ_REPORT.BadJs && typeof WX_BJ_REPORT.BadJs.report == "function") {
+    if (ele && ele.tagName && ele.tagName.toLowerCase() == "script") {
+      WX_BJ_REPORT.BadJs.report("jsLoadedError", ele.href || ele.src, { mid: "mpResourceMonitor" })
+    } else {
+      WX_BJ_REPORT.BadJs.report("cssLoadedError", ele.href || ele.src, { mid: "mpResourceMonitor" })
+    }
+  }
+};
+</script><link id="shortcut" rel="shortcut icon" type="image/x-icon" href=""><link rel="mask-icon" href="https://res.wx.qq.com/a/wx_fed/assets/res/MjliNWVm.svg" color="#4C4C4C"><link rel="apple-touch-icon-precomposed" href="https://res.wx.qq.com/a/wx_fed/assets/res/OTE0YTAw.png"><!-- <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/layout_head7cf18a.css" /><link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base.css?i18n" /><link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/lib7cf18a.css" /><link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/weui-desktop_skin7cf18a.css" /> --><!--#0002#--><!--%0002%--><script type="text/javascript">
+  var serviceType = "" * 1;
+
+  if(/(registermidpage|readtemplate|findacct|resetpwd|announce|opshowpage)/.test(window.location.href)) {
+    document.title = '微信公众平台';
+    document.getElementById('shortcut').href = 'https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico';
+  } else {
+    if (serviceType === 2) {
+      document.title = '服务号';
+    } else {
+      document.title = '公众号';
+    }
+    document.getElementById('shortcut').href = 'https://res.wx.qq.com/a/fed_upload/9300e7ac-cec5-4454-b75c-f92260dd5b47/logo-mp.ico';
+  }
+</script><script>
+  // 从旧的op law页面跳转到新的op law页面
+  // 获得目前url上的query参数
+  const querys = window.location.href.match(/[^&=?]+=[^&]*/g);
+  const params = [];
+  querys.length > 0 && querys.map((elem) => {
+    const item = elem.split('=');
+    params[item[0]] = item[1];
+  });
+  // 检查是否在旧的op law页面
+  if(params.t == 'business/faq_operation_tmpl' && params.type == 'info') {
+    // 获取目前url上的锚点
+    const node = window.location.href.split('#')[1];
+    let url = 'https://mp.weixin.qq.com/mp/opshowpage?action=newoplaw';
+    // 假如url上有锚点
+    if (node) {
+      // 替换成新op law的锚点格式并在url末端加上
+      url += "#t" + node.replace('dot', '-').replace('_', '-');
+    }
+    // 跳转到新op law页面
+    window.location.href = url;
+  }
+
+  // Windows下设置滚动条样式
+  if (navigator.userAgent.indexOf('Windows') > -1) {
+    var style = document.createElement('style');
+    style.innerHTML = '::-webkit-scrollbar-track-piece {background-color: #FFFFFF;} ::-webkit-scrollbar {width: 6px; height: 6px;} ::-webkit-scrollbar-thumb {background-color: #c2c2c2; background-clip: padding-box; min-height: 28px;} ::-webkit-scrollbar-thumb:hover {background-color: #A0A0A0;}';
+    document.head.appendChild(style);
+  }
+</script><script src="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/default~layout/base/base_css_4web2~layout/base/meta~layout/base/meta_bak~layout/base_badjs_fe.c2df1d11.js" onerror="wx_loaderror(this)" crossorigin="anonymous"></script><script src="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/default~layout/base/meta~layout/base_badjs_fe.73866e04.js" onerror="wx_loaderror(this)" crossorigin="anonymous"></script><script src="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/layout/base/meta_fe.e25e4fa4.js" onerror="wx_loaderror(this)" crossorigin="anonymous"></script>  <!-- <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/page/page_error.css" /> -->  </head><body class="zh_CN weui-desktop-page_simple page_error page_timeout">  <div class="mp-head" id="header">    <link href="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/layout/base/head-box.97102168.css" rel="stylesheet"><script type="text/javascript">
+    //上报测速 --css加载完成点
+    window._points&&(window._points[1]=+new Date());
+</script><div class="weui-desktop-head" id="mp_header">    <div class="weui-desktop-head__inner">      <div class="weui-desktop-layout">        <a id="m_open" href="javascript:;" class="weui-desktop-btn__head-opr weui-desktop__unfold-menu-opr">展开</a>        <div class="weui-desktop-layout__side">          <h1 class="weui-desktop-logo">                        <a href="/" title="公众号" class="weui-desktop-logo__inner"></a>                      </h1>        </div>        <div class="weui-desktop-layout__extra">          <!-- 企业号不显示顶部的所有的链接 -->                      <!-- inside -->                        <div class="weui-desktop-account">              <!-- 如果是小程序就不出现了 -->                                                                          </div>                      <!-- 给企业号加退出按钮 -->                  </div>      </div>    </div></div><script type="text/javascript">
+(function() {
+  // 初始化消息未读
+  var eleHeadBoxAccountNum = document.getElementById('headBoxAccountNum')
+  if (eleHeadBoxAccountNum && eleHeadBoxAccountNum.dataset && eleHeadBoxAccountNum.dataset.notify) {
+    var headBoxAccountNum = parseInt(eleHeadBoxAccountNum.dataset.notify)
+    if (headBoxAccountNum) {
+      eleHeadBoxAccountNum.style.display = 'block'
+      eleHeadBoxAccountNum.innerHTML = headBoxAccountNum > 99 ? '99+' : headBoxAccountNum
+    }
+  }
+
+  // 改为css方案来实现了
+  // var isShow = false,
+  //     timer;
+  // var btnAccountOpr = document.getElementById('js_btn_account_opr'),
+  //     divAccountOpr = document.getElementById('js_div_account_opr'),
+  //     divContainer = document.body;
+  // if (!!btnAccountOpr && !!divAccountOpr) {
+  //   divAccountOpr.style.display = 'none';
+  //   var onShow = function() {
+  //     clearTimeout(timer);
+  //     divAccountOpr.style.display = 'block';
+  //     isShow = true;
+  //   };
+  //   var onHide = function() {
+  //     clearTimeout(timer);
+  //     timer = setTimeout(function() {
+  //       divAccountOpr.style.display = 'none';
+  //       isShow = false;
+  //     }, 300);
+  //   };
+  //   if (!!window.addEventListener) {
+  //     btnAccountOpr.addEventListener('mouseenter', onShow);
+  //     btnAccountOpr.addEventListener('mouseleave', onHide);
+  //     divAccountOpr.addEventListener('mouseenter', onShow);
+  //     divAccountOpr.addEventListener('mouseleave', onHide);
+  //   } else {
+  //     btnAccountOpr.attachEvent('onmouseenter', onShow);
+  //     btnAccountOpr.attachEvent('onmouseleave', onHide);
+  //     divAccountOpr.attachEvent('onmouseenter', onShow);
+  //     divAccountOpr.attachEvent('onmouseleave', onHide);
+  //   }
+  // }
+})();
+</script><script src="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/layout/base/head-box_fe.ec8fe319.js" onerror="wx_loaderror(this)" crossorigin="anonymous"></script>  </div>  <div id="body" class="mp-body">    <div class="weui-desktop-layout weui-desktop-layout_global">      <div class="weui-desktop-layout__main">        <div class="weui-desktop-layout__main__area">          <div class="weui-desktop-layout__main__inner">            <div class="weui-desktop-panel">              <div class="page_error_msg">                <div class="inner">                  <span class="icon_wrp">                    <i class="icon_page_error"></i>                  </span>                  <div class="msg_content">                    <!-- 页面公告 @jaminqian -->                    <div id="_js_announcement"></div><script type="text/html" id="_js_announcement_tpl">
+  {each announcement_list as item i}
+    <div class="page_msg announcement_msg mini{if item.type === 0} with_closed{/if}">
+      <div class="inner">
+        <span class="msg_icon_wrp"><i class="icon_msg_mini {if item.type === 0}info{else}warn{/if}"></i></span>
+        <div class="msg_content">
+          <p>{=item.content}</p>
+        </div>
+        {if item.type === 0}
+          <span class="msg_closed js_msg_close">关闭</span>
+        {/if}
+      </div>
+    </div>
+  {/each}
+</script>                            <h2>                <span id="info"></span>                                请重新<a id='jumpUrl' href='/'>登录</a>                        </h2>        <script>
+        var pathname = location.pathname,
+        search = location.search;
+        var jumpUrlDom = document.getElementById('jumpUrl');
+        if (jumpUrlDom) {
+                jumpUrlDom.setAttribute('href','/cgi-bin/loginpage?url='+encodeURIComponent(pathname + search));
+        }
+
+        var ret="200003";
+        if(ret=="280001"){
+                document.getElementById('info').innerHTML="当前账号密码已修改，如非账号管理员本人操作修改，请尽快修改密码。";
+        }else if(ret=="280002"){
+                document.getElementById('info').innerHTML="当前账号登录邮箱已修改，如非账号管理员本人操作修改，请重新找回。";
+        }else if(ret=="280003"){
+                document.getElementById('info').innerHTML="当前账号密码已修改，如非账号管理员本人操作修改，请重新找回。";
+        }else if(ret=="200003"){
+                document.getElementById('info').innerHTML="登录超时，";
+                //document.getElementById('info').innerHTML="";
+        }else if(ret=="430002"){//视频原创申诉过期
+                document.getElementById('info').innerHTML="申诉已过期";
+        }
+        </script>                  </div>                </div>              </div>            </div>          </div>        </div>      </div>    </div>  </div>  </div>  </div>  </div>  <div class="mp-foot" id="footer">  <div class="weui-desktop-foot">    <div class="weui-desktop-foot__info">      <div class="weui-desktop-links weui-desktop-link-group weui-desktop-link-group_split">                <a class="weui-desktop-link" href="http://www.tencent.com/zh-cn/index.shtml" target="_blank">关于腾讯</a>        <a class="weui-desktop-link" href="/cgi-bin/readtemplate?t=home/agreement_tmpl&type=info&lang=zh_CN&token=" target="_blank">服务协议</a>        <a class="weui-desktop-link" href="/webpoc/ruleCenter?type=oa " target="_blank">规则中心</a>         <!--<a class="weui-desktop-link" href="/cgi-bin/opshowpage?action=dispelinfo&lang=zh_CN&begin=1&count=9" target="_blank">辟谣中心</a>-->        <a class="weui-desktop-link" href="http://kf.qq.com/product/weixinmp.html" target="_blank">腾讯客服</a>                        <!-- <a class="weui-desktop-link" href="mailto:weixinmp@qq.com" target="_blank">联系邮箱</a> -->                <a class="weui-desktop-link" href="/acct/infringementlogin?action=getkey_brand&lang=zh_CN" target="_blank">侵权投诉</a>                      </div>    </div>    <div class="weui-desktop-foot__extra">      <!--#00002#-->      <p class="weui-desktop-link">Copyright &copy; 2012-2026 Tencent. All Rights Reserved.</p>      <!--%00002%-->    </div>  </div></div><script type="text/javascript">
+//上报测速 --dom加载完成点
+window._points&&(window._points[2]=+new Date());
+</script>    <!-- mp 不再支持 ie浏览器 -->  <script type="text/javascript">
+  // mp 不再支持 ie浏览器 @sankigan
+  // 额外提示不支持webcomponent的浏览器升级 @daisyhhuang
+  (function() {
+    setTimeout(function() {
+      // 为兼容可选链等高级语法在tpl文件中的使用。未来如果需要使用更多新特性可以考虑加loader降级 @orinyang
+      function checkBrowserVersion(ua){
+        const chromeRegex = /Chrome\/([0-9]+(?:\.[0-9]+)*)/;
+        const safariRegex = /Version\/([0-9]+(?:\.[0-9]+)*)/; 
+        const firefoxRegex = /Firefox\/([0-9]+(?:\.[0-9]+)*)/;
+
+        let chromeVersion = ua.match(chromeRegex);
+        if(chromeVersion){
+          return parseFloat(chromeVersion[1]) < 80;
+        }
+        let safariVersion = ua.match(safariRegex);
+        if(safariVersion){
+          return parseFloat(safariVersion[1]) < 13.1;
+        }
+        let firefoxVersion = ua.match(firefoxRegex);
+        if(firefoxVersion){
+          return parseFloat(firefoxVersion[1]) < 74;
+        }
+        return false;
+      }
+
+      function checkIE() {
+        var ua = navigator.userAgent;
+
+        var isSupportShadow =  window.customElements &&  (document.head.createShadowRoot || document.head.attachShadow);
+        // 分别判断是否是 ie11 以下以及是否是 ie11 浏览器 非chromium内核edge浏览器
+        if (
+          (ua.indexOf('compatible') > -1 && ua.indexOf('MSIE') > -1)
+          || (ua.indexOf('Trident') > -1 && ua.indexOf("rv:11.0") > -1)
+          || ua.indexOf('edge') > -1
+          || !isSupportShadow || checkBrowserVersion(ua)
+        ) {
+          // 因为 web2 也有同样的逻辑，这里去重
+          if (!document.querySelector('.js_ie_notsupport')) {
+            var div = document.createElement('div');
+            div.innerHTML = '<div class="js_ie_notsupport" style="width: 100%;min-width: 280px;padding: 5px 30px;display: inline-block;position: fixed;top: 0px;left: 0px;text-align: center;z-index: 9999;background-color: #EAA000;color: #FFFFFF;">当前浏览器版本过低，请将浏览器更新为新版本QQ浏览器或Chrome浏览器，以获得更好的体验</div>';
+            document.body.appendChild(div);
+          }
+        }
+      }
+      if (window.attachEvent) {
+        window.attachEvent('onload', checkIE);
+      } else if (window.addEventListener) {
+        window.addEventListener('load', checkIE, false);
+      }
+    }, 10);
+  })();
+</script><script src="https://res.wx.qq.com/mpres/zh_CN/htmledition/js/layout/error_fe.566ae7fe.js" onerror="wx_loaderror(this)" crossorigin="anonymous"></script></body></html>

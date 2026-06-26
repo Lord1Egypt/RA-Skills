@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{date}} - 子弹笔记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .date {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            color: #666;
+        }
+
+        .weather-icon {
+            font-size: 32px;
+        }
+
+        .content {
+            font-size: 18px;
+            line-height: 2.2;
+            color: #555;
+        }
+
+        .note-item {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .note-item:last-child {
+            border-bottom: none;
+        }
+
+        .symbol {
+            font-size: 20px;
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .symbol.priority {
+            color: #e74c3c;
+            font-size: 24px;
+        }
+
+        .symbol.task {
+            color: #3498db;
+        }
+
+        .symbol.event {
+            color: #2ecc71;
+        }
+
+        .symbol.note {
+            color: #f39c12;
+        }
+
+        .symbol.migration {
+            color: #9b59b6;
+        }
+
+        .symbol.scheduled {
+            color: #1abc9c;
+        }
+
+        .note-text {
+            flex: 1;
+        }
+
+        .time {
+            color: #999;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+        }
+
+        .emoji-decoration {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 20px;
+            }
+
+            .date {
+                font-size: 22px;
+            }
+
+            .content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="date">
+                {{date_display}}
+            </div>
+            <div class="weather">
+                <span class="weather-icon">{{weather_icon}}</span>
+                <span>{{weather}}</span>
+                <span>{{temperature}}</span>
+            </div>
+        </div>
+
+        <div class="content">
+            {{notes_html}}
+        </div>
+
+        <div class="footer">
+            ✨ 子弹笔记 - Bullet Journal ✨
+        </div>
+    </div>
+</body>
+</html>

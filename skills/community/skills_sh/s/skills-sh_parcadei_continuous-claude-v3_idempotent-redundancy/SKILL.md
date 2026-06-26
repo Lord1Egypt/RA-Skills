@@ -1,35 +1,29 @@
 ---
-name: "idempotent-redundancy"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/idempotent-redundancy"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/idempotent-redundancy"
+name: idempotent-redundancy
+description: Idempotent Redundancy
+user-invocable: false
 ---
 
-# idempotent-redundancy
+# Idempotent Redundancy
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When adding redundant paths (fallbacks, belt-and-suspenders), make them idempotent.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/idempotent-redundancy`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/idempotent-redundancy](https://skills.sh/parcadei/continuous-claude-v3/idempotent-redundancy)
+## Pattern
 
-## Overview
+Redundancy without idempotency causes loops, churn, or data corruption.
 
+## DO
+- Use `_is_merge: true` for Braintrust updates
+- Check if value exists before writing (fallback only if missing)
+- Use atomic write/rename for file operations
+- Make reconciliation steps safe to run repeatedly
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/idempotent-redundancy
-```
+## DON'T
+- Write unconditionally in fallback paths
+- Allow multiple writers to overwrite each other
+- Fire "repair" actions that can trigger more repairs
+
+## Source Sessions
+- a541f08a: "Redundancy is good only if idempotent"
+- 1c21e6c8: "Belt-and-suspenders, but make it idempotent"
+- 6a9f2d7a: "Idempotent repair hooks"

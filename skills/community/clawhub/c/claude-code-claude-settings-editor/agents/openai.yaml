@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude Settings Editor"
+  short_description: "Edit Claude settings and hook config"
+  default_prompt: "Help me update Claude settings with the right file scope and valid JSON structure."

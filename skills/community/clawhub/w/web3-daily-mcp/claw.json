@@ -1,0 +1,59 @@
+{
+  "name": "web3-daily-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Web3 Daily - Real-time Web3 research digest with macro news, KOL sentiment, market data, and personalized wallet analysis.",
+  "author": "alexwang",
+  "license": "MIT",
+  "type": "mcp",
+  "runtime": "node",
+  "entryPoint": "dist/index.js",
+  "command": "node",
+  "args": ["dist/index.js"],
+  "tags": [
+    "web3",
+    "crypto",
+    "defi",
+    "research",
+    "digest",
+    "news",
+    "blockchain",
+    "wallet",
+    "mcp"
+  ],
+  "repository": "https://github.com/alexander10011/web3-daily-mcp",
+  "tools": [
+    {
+      "name": "get_public_digest",
+      "description": "Get today's Web3 public digest with macro news, KOL sentiment, and market data"
+    },
+    {
+      "name": "get_personalized_digest",
+      "description": "Get personalized Web3 digest based on wallet's on-chain behavior"
+    },
+    {
+      "name": "get_wallet_profile",
+      "description": "Analyze wallet's on-chain behavior and investment style"
+    },
+    {
+      "name": "get_market_overview",
+      "description": "Get current BTC/ETH prices and Fear & Greed Index"
+    }
+  ],
+  "privacy": {
+    "dataCollection": [
+      {
+        "type": "wallet_address",
+        "purpose": "Generate on-chain profile and personalized digest (only for personalized features)",
+        "storage": "Server-side only",
+        "retention": "24-hour cache"
+      }
+    ],
+    "externalServices": [
+      {
+        "name": "J4Y Backend API",
+        "url": "https://j4y-production.up.railway.app",
+        "purpose": "Process data and generate digests"
+      }
+    ]
+  }
+}

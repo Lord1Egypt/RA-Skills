@@ -1,35 +1,33 @@
 ---
-name: "Batch Processor Zh"
-description: "批量处理 / 批量转换 / 文件批处理 / batch processing / document automation。支持PDF转Word、Excel转换、发票提取、合同分析等多类型文件并行处理。适用于HR批量审阅简历、财务批量导入报表、采购批量核对订单、法务批量归档合同、运营批量重命名素材、行政批量更新模板..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/batch-processor-zh"
-sourceUrl: "https://clawhub.ai/skills/batch-processor-zh"
+name: batch-processor-zh
+description: >
+  批量处理 / 批量转换 / 文件批处理 / batch processing / document automation。支持PDF转Word、Excel转换、发票提取、合同分析等多类型文件并行处理。适用于HR批量审阅简历、财务批量导入报表、采购批量核对订单、法务批量归档合同、运营批量重命名素材、行政批量更新模板等职场高频场景。一次性处理数百份文件，自动化提取关键信息、批量转换格式、并行执行多任务，彻底消除重复性手工操作。常见搜索触发词：怎样批量处理文件、如何快速批量转换格式、批量提取表格数据、多文件并行处理、批量自动化工具、节省批处理时间、大批量文档转换、职场批处理效率。
+tags: [批量处理, batch-processing, 文件转换, 批量转换, 并行处理, 文档自动化, 办公自动化, 职场提效, 批量导入, 多文件处理]
 ---
 
-# Batch Processor Zh
+# 批量文档处理
 
-> 批量处理 / 批量转换 / 文件批处理 / batch processing / document automation。支持PDF转Word、Excel转换、发票提取、合同分析等多类型文件并行处理。适用于HR批量审阅简历、财务批量导入报表、采购批量核对订单、法务批量归档合同、运营批量重命名素材、行政批量更新模板...
+批量处理多份文档，支持并行执行转换、提取、分析等操作，适合需要重复处理大量文件的职场场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/batch-processor-zh`
-- **Source URL:** [https://clawhub.ai/skills/batch-processor-zh](https://clawhub.ai/skills/batch-processor-zh)
+## Tools Required
+- office-mcp：batch_convert
 
-## Overview
+## Usage
+- "把这个文件夹里的100份PDF合同全部转成Word文档"
+- "批量提取所有发票图片中的金额和日期信息，汇总成表格"
+- "把本月所有周报文件统一更新页眉，加上公司Logo和日期"
 
+## Examples
+输入：将 `/reports/2024/` 目录下的 80 份 Excel 月报批量转换为 PDF，并按"部门_月份"格式重命名
+输出：
+```
+批量处理完成：
+✅ 成功：80 份
+❌ 失败：0 份
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/batch-processor-zh
+处理结果示例：
+- 销售部_2024年1月.pdf
+- 市场部_2024年1月.pdf
+- 财务部_2024年1月.pdf
+...（共80份，已保存至 /reports/2024/pdf/）
 ```

@@ -1,0 +1,33 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_textindex_search",
+		"description": "Search search engine data by keywords. Supports filtering and pagination. Usually call _query_all_textindex_list first before calling this tool",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Search engine module ID obtained through _textindex_module_list interface"
+				},
+				"keyword": {
+					"type": "string",
+					"description": "Search keyword"
+				},
+				"pageIndex": {
+					"type": "integer",
+					"description": "Page number, starting from 1",
+					"default": 1
+				},
+				"pageSize": {
+					"type": "integer",
+					"description": "Number of records per page",
+					"default": 50
+				}
+			},
+			"required": [
+				"moduleId", "keyword"
+			]
+		}
+	}
+}

@@ -1,35 +1,37 @@
----
-name: "Business API Recorder"
-description: "通过Chrome扩展记录目标系统业务流程的完整API调用，生成详细接口文档和实现方案辅助AI重构。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/business-api-recorder"
-sourceUrl: "https://clawhub.ai/skills/business-api-recorder"
----
-
 # Business API Recorder
 
-> 通过Chrome扩展记录目标系统业务流程的完整API调用，生成详细接口文档和实现方案辅助AI重构。
+通过Chrome扩展控制浏览器，打开目标系统网址，分析业务场景并完整记录API调用，为AI重构生成完整实现文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/business-api-recorder`
-- **Source URL:** [https://clawhub.ai/skills/business-api-recorder](https://clawhub.ai/skills/business-api-recorder)
+---
 
-## Overview
+**作者**: 周坚  
+**邮箱**: zhoujdev@163.com  
+**版本**: 1.0.0  
+**许可证**: MIT  
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/business-api-recorder
-```
+## 适用场景
+
+- 分析内部办公系统的业务流程
+- 记录业务表单的完整API调用链
+- 为AI重构业务功能获取真实接口数据
+- 生成API接口文档和数据字典
+- 探索系统的安全边界和运行机制
+
+## 效果预览
+
+完成一次业务分析后，将输出：
+
+1. **API调用日志** - 完整的请求/响应记录（JSON格式）
+2. **完整实现文档** - 按模板生成，包含：
+   - 业务流程（主流程 + 分支场景）
+   - API接口清单（请求/响应参数）
+   - 数据字典（枚举值、树形结构）
+   - 业务规则（验证约束）
+   - 前端实现要点
+   - 错误处理
+   - 参考示例
+   - 抓包日志样本
+
+这些文档可以直接用于AI重构该业务功能。

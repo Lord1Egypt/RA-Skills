@@ -1,0 +1,14 @@
+{
+  "name": "calendar-extractor",
+  "version": "0.6.0",
+  "description": "Extract calendar events from recent recording and keyboard transcripts and push a markdown digest to your iOS chat. Runs on demand and is auto-run by the javis-server session dispatcher (no approve-to-run card); extracted events are written PENDING and become solid only when the user taps Confirm in the iOS calendar table. Triggers: 'today's meetings', 'calendar extract', '今日会议', '提取日历'.",
+  "keywords": ["today's meetings", "calendar extract", "今日会议", "提取日历"],
+  "license": "MIT",
+  "scripts": {
+    "register": "node scripts/register.js",
+    "fetch": "node scripts/calendar-extractor.js",
+    "push": "node scripts/calendar-extractor.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" }
+}

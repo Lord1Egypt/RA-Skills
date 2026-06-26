@@ -1,35 +1,28 @@
 ---
-name: "Youtube Download"
-description: "Downloads YouTube videos to ~/Downloads. Use when user wants to download a YouTube video to their machine."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-download"
-sourceUrl: "https://clawhub.ai/skills/youtube-download"
+name: download
+description: Downloads YouTube videos to ~/Downloads. Use when user wants to download a YouTube video to their machine.
+metadata: {"openclaw": {"emoji": "⬇️", "requires": {"bins": ["yt-dlp"]}, "install": [{"id": "brew", "kind": "brew", "formula": "yt-dlp", "bins": ["yt-dlp"], "label": "Install yt-dlp (brew)"}], "user-invocable": true}}
 ---
 
-# Youtube Download
+# Download
 
-> Downloads YouTube videos to ~/Downloads. Use when user wants to download a YouTube video to their machine.
+Downloads YouTube videos to your ~/Downloads folder using yt-dlp.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-download`
-- **Source URL:** [https://clawhub.ai/skills/youtube-download](https://clawhub.ai/skills/youtube-download)
+## What it does
 
-## Overview
+- Takes a YouTube URL as input
+- Downloads the best available quality (video + audio merged to MP4)
+- Saves to ~/Downloads with the video title as filename
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/youtube-download
+{baseDir}/download.sh "https://youtube.com/watch?v=VIDEO_ID"
 ```
+
+Or just give me the URL and I'll run it for you.
+
+## Requirements
+
+- yt-dlp must be installed: `brew install yt-dlp`
+- On first run, if yt-dlp is missing, the skill will prompt you to install it

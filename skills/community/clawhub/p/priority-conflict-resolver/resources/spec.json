@@ -1,0 +1,37 @@
+{
+  "slug": "priority-conflict-resolver",
+  "title": "优先级冲突化解器",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "面对多个目标、有限资源与冲突时，输出排序、牺牲说明、边界与不做清单。",
+  "inputHint": "目标列表、资源约束、冲突描述",
+  "sections": [
+    "任务排序",
+    "排序依据",
+    "必须牺牲的事项",
+    "沟通口径",
+    "复盘点",
+    "重新评估触发器"
+  ],
+  "useCases": [
+    "排期冲突",
+    "资源有限",
+    "范围控制"
+  ],
+  "positiveExamples": [
+    "帮我处理多个项目的优先级冲突",
+    "生成不做清单和取舍说明"
+  ],
+  "negativeExamples": [
+    "不要替代人事绩效决策",
+    "不要伪造资源承诺"
+  ],
+  "risk": "排序结果是辅助建议，最终取舍需人工确认。",
+  "tags": [
+    "priority",
+    "tradeoff",
+    "planning",
+    "strategy"
+  ]
+}

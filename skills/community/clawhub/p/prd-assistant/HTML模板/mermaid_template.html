@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《[项目名称]》图表附件</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 40px;
+    }
+    
+    h1 {
+      color: #1a73e8;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      color: #333;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 22px;
+      border-bottom: 2px solid #1a73e8;
+      padding-bottom: 10px;
+    }
+    
+    .chart-container {
+      background-color: #fafafa;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #e0e0e0;
+    }
+    
+    pre.mermaid {
+      display: flex;
+      justify-content: center;
+      background-color: white;
+      padding: 20px;
+      border-radius: 4px;
+    }
+    
+    .note {
+      background-color: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .note-title {
+      font-weight: bold;
+      color: #856404;
+      margin-bottom: 5px;
+    }
+    
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+      color: #999;
+      font-size: 12px;
+      text-align: center;
+    }
+    
+    /* Mermaid 样式覆盖 */
+    .mermaid {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 《[项目名称]》图表附件</h1>
+    <p class="subtitle">生成时间：[时间戳] | 模式：[完整模式/标准模式]</p>
+    
+    <div class="note">
+      <div class="note-title">💡 使用说明</div>
+      <p>本文件已内嵌 Mermaid 图表库，直接双击用浏览器打开即可看到渲染后的图表。</p>
+      <p>如需网络访问：确保设备已连接互联网，Mermaid 将从 CDN 加载最新版本。</p>
+    </div>
+    
+    <!-- 用户旅程图 -->
+    <h2>🗺️ 用户旅程图</h2>
+    <div class="chart-container">
+      <pre class="mermaid">
+journey
+  title [用户旅程标题]
+  section [阶段1名称]
+    [动作1描述]: [评分]: [执行者]
+    [动作2描述]: [评分]: [执行者]
+  section [阶段2名称]
+    [动作3描述]: [评分]: [执行者]
+    [动作4描述]: [评分]: [执行者]
+      </pre>
+    </div>
+    
+    <!-- 业务流程图 -->
+    <h2>🔄 业务流程图</h2>
+    <div class="chart-container">
+      <pre class="mermaid">
+flowchart TD
+  A([开始]) --> B{判断条件}
+  B -->|是| C[处理1]
+  B -->|否| D[处理2]
+  C --> E([结束])
+  D --> E
+      </pre>
+    </div>
+    
+    <!-- 功能架构图（可选） -->
+    <h2>🏗️ 功能架构图（可选）</h2>
+    <div class="chart-container">
+      <pre class="mermaid">
+flowchart TB
+  subgraph 前端
+    A[Web端]
+    B[移动端]
+  end
+  
+  subgraph 后端
+    C[API服务]
+    D[业务逻辑]
+    E[数据库]
+  end
+  
+  A --> C
+  B --> C
+  C --> D
+  D --> E
+      </pre>
+    </div>
+    
+    <div class="footer">
+      <p>本图表由 PRD-Writer v3.0.0 自动生成</p>
+      <p>如需编辑图表内容，请修改上方 Mermaid 代码后刷新页面</p>
+    </div>
+  </div>
+  
+  <script>
+    mermaid.initialize({ 
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      },
+      journey: {
+        useMaxWidth: true
+      }
+    });
+  </script>
+</body>
+</html>

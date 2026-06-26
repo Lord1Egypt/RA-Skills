@@ -1,35 +1,80 @@
 ---
-name: "龙虾直聘"
-description: "面向招聘与团队搭建场景的技能编排助手。用户提供公司名称、行业赛道或公司类型时，先检索公司与岗位画像信息，再在 claw.ai / ClawHub 搜索可用技能，产出“可一键安装”的角色技能包建议，并在用户确认后执行安装。适用于初次搭建 AI 团队角色、按行业快速选型技能、以及基于公司背景做技能组合推荐。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, claw-ai, recruiting, team-building]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/longxia-zhipin"
-sourceUrl: "https://clawhub.ai/skills/longxia-zhipin"
+name: longxia-zhipin
+description: 面向招聘与团队搭建场景的技能编排助手。用户提供公司名称、行业赛道或公司类型时，先检索公司与岗位画像信息，再在 claw.ai / ClawHub 搜索可用技能，产出“可一键安装”的角色技能包建议，并在用户确认后执行安装。适用于初次搭建 AI 团队角色、按行业快速选型技能、以及基于公司背景做技能组合推荐。
 ---
 
 # 龙虾直聘
 
-> 面向招聘与团队搭建场景的技能编排助手。用户提供公司名称、行业赛道或公司类型时，先检索公司与岗位画像信息，再在 claw.ai / ClawHub 搜索可用技能，产出“可一键安装”的角色技能包建议，并在用户确认后执行安装。适用于初次搭建 AI 团队角色、按行业快速选型技能、以及基于公司背景做技能组合推荐。
+## 核心目标
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/longxia-zhipin`
-- **Source URL:** [https://clawhub.ai/skills/longxia-zhipin](https://clawhub.ai/skills/longxia-zhipin)
+把用户的一句话输入（公司名或公司类型）转成可执行的技能安装方案：
+1) 找到公司/行业事实信息。
+2) 在 claw.ai 与 ClawHub 中检索可用 skill。
+3) 组装一键安装包建议。
+4) 用户确认后执行安装并回报结果。
 
-## Overview
+## 标准工作流
 
+### Step 1: 收集最小输入
+- 接受任一输入即可开始：`公司名称`、`公司类型`、`行业关键词`。
+- 若信息不足，最多补问 1 次，只问最关键缺口：
+`你的目标偏向销售获客、研发交付、招聘面试，还是运营增长？`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/longxia-zhipin
-```
+### Step 2: 检索公司与行业信息
+- 当用户给出公司名时，先检索：主营业务、规模阶段、目标客户、典型岗位。
+- 当用户只给出公司类型时，检索：该类型公司常见部门分工与关键角色。
+- 输出 3-6 条与技能选型直接相关的事实，避免冗长背景。
+- 必须先按 [行业分类词库](./references/industry-taxonomy.md) 完成一级分类，再进入技能检索。
+
+### Step 3: 在 claw.ai / ClawHub 搜索技能
+- 使用公司画像里的关键词作为检索词，至少覆盖这三类角色：
+`业务角色`、`交付角色`、`增长角色`。
+- 每类角色至少找到 1 个候选 skill，记录：
+`skill 名称`、`用途`、`适配原因`、`安装入口或标识`。
+- 优先选择描述清晰、用途明确、和用户场景直接匹配的技能。
+
+### Step 4: 产出“一键安装包”建议
+- 按“基础包 + 增强包”输出，默认 3-6 个 skill：
+`基础包`：保证最小可用团队能力。
+`增强包`：提升效率或扩展场景。
+- 明确每个 skill 对应的角色归属（如招聘官、销售、产品、工程、运营）。
+- 标注安装顺序（先基础后增强）。
+
+### Step 5: 二次确认并安装
+- 在执行安装前必须显式确认，使用固定问题：
+`以上是为你生成的一键安装包，是否现在开始安装？（回复：确认安装 / 调整方案）`
+- 用户回复“确认安装”后再安装；若用户要求调整，先改方案再确认。
+- 安装完成后输出：
+`已安装`、`安装失败`、`跳过` 三类结果，并给出下一步建议。
+
+### Step 6: 失败自动回退
+- 任一 skill 安装失败时，立即从同角色候选列表中选择 1 个备选 skill。
+- 回退后再次提示用户确认：
+`检测到部分技能安装失败，已为对应角色匹配备选技能，是否继续安装备选方案？（回复：继续回退安装 / 暂停）`
+- 用户确认“继续回退安装”后执行；若用户选择“暂停”，仅输出当前成功项与待处理项。
+
+## 响应模板
+
+按以下结构回复，保证可读与可执行：
+
+1. `公司/行业画像摘要`
+2. `检索到的候选 Skills（按角色分组）`
+3. `龙虾直聘一键安装包`
+4. `请确认是否安装`
+
+- 用户要求英文输出时，使用 [English Output Templates](./references/output-templates-en.md)。
+
+## 约束与质量标准
+
+- 不编造不存在的 skill；无法确认时标记为“待人工确认”。
+- 推荐理由必须与公司画像事实一一对应。
+- 优先少而精，不堆砌技能数量。
+- 安装前必须确认，禁止默认自动安装。
+- 优先参考 [角色技能包手册](./references/role-pack-playbook.md) 做角色覆盖检查。
+- 行业判断优先使用 [行业分类词库](./references/industry-taxonomy.md) 的关键词命中规则。
+
+## 示例触发语句
+
+- `我们是做跨境电商的，给我配一套团队技能包`
+- `公司叫XX科技，想快速搭建销售+运营+客服角色`
+- `我只知道我们是ToB SaaS公司，帮我搜技能并打包安装`

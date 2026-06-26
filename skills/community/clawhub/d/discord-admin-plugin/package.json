@@ -1,0 +1,13 @@
+{
+  "name": "@openclaw/discord-admin",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.ts",
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.31",
+    "discord.js": "^14"
+  },
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  }
+}

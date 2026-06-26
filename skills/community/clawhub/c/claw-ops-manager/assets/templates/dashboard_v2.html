@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claw 运营管理中心 v2.0</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .version-badge {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .operation-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .operation-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(4px);
+        }
+
+        .operation-item.failed {
+            border-left-color: #ef4444;
+        }
+
+        .operation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .operation-desc {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .operation-meta {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .operation-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-sm {
+            padding: 5px 12px;
+            font-size: 12px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .snapshot-tag {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+
+        .alert-item {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .alert-item.high {
+            background: #fee2e2;
+            border-left-color: #ef4444;
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .alert-type {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .alert-message {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-input, .filter-select {
+            padding: 8px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .filter-input {
+            flex: 1;
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>⚡ Claw 运营管理中心</h1>
+                <span class="version-badge">v2.0 - 自动快照 & 友好描述</span>
+            </div>
+            <button class="btn btn-primary" onclick="refreshAll()">🔄 刷新</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">总操作数</div>
+                <div class="stat-value" id="total-ops">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">失败操作</div>
+                <div class="stat-value" id="failed-ops">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">快照数量</div>
+                <div class="stat-value" id="snapshots-count">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">活跃告警</div>
+                <div class="stat-value" id="alerts-count">-</div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">📋 操作记录（含快照）</div>
+                </div>
+
+                <div class="filters">
+                    <input type="text" class="filter-input" id="search-input" placeholder="🔍 搜索操作..." onkeyup="filterOperations()">
+                    <select class="filter-select" id="status-filter" onchange="filterOperations()">
+                        <option value="">全部</option>
+                        <option value="success">成功</option>
+                        <option value="failed">失败</option>
+                        <option value="snapshot">有快照</option>
+                    </select>
+                </div>
+
+                <div id="operations-list"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">🚨 告警</div>
+                </div>
+                <div id="alerts-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 回滚确认对话框 -->
+    <div id="rollback-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">⚠️ 确认回滚</div>
+            <p id="rollback-message">确定要回滚到这个快照吗？</p>
+            <div style="margin-top: 20px; text-align: right;">
+                <button class="btn" onclick="closeRollbackModal()">取消</button>
+                <button class="btn btn-danger" onclick="confirmRollback()">确认回滚</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allOperations = [];
+        let selectedSnapshotId = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshAll();
+            setInterval(refreshAll, 30000);
+        });
+
+        async function refreshAll() {
+            await Promise.all([
+                loadStats(),
+                loadOperations(),
+                loadAlerts()
+            ]);
+        }
+
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+
+                document.getElementById('total-ops').textContent = stats.total_operations;
+                document.getElementById('failed-ops').textContent = stats.failed_operations;
+                document.getElementById('alerts-count').textContent = stats.unresolved_alerts;
+                document.getElementById('snapshots-count').textContent = stats.snapshots_count || 0;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        async function loadOperations() {
+            try {
+                const response = await fetch('/api/operations?limit=100');
+                allOperations = await response.json();
+                displayOperations();
+            } catch (error) {
+                console.error('Error loading operations:', error);
+            }
+        }
+
+        function filterOperations() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const status = document.getElementById('status-filter').value;
+
+            const filtered = allOperations.filter(op => {
+                if (search && !op.friendly_name?.toLowerCase().includes(search)) {
+                    return false;
+                }
+                if (status === 'success' && !op.success) return false;
+                if (status === 'failed' && op.success) return false;
+                if (status === 'snapshot' && !op.snapshot_id) return false;
+                return true;
+            });
+
+            displayOperations(filtered);
+        }
+
+        function displayOperations(operations = null) {
+            const ops = operations || allOperations;
+            const container = document.getElementById('operations-list');
+
+            if (ops.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>暂无操作记录</p></div>';
+                return;
+            }
+
+            let html = '';
+            ops.forEach(op => {
+                const time = new Date(op.timestamp).toLocaleString('zh-CN');
+                const statusClass = op.success ? 'badge-success' : 'badge-danger';
+                const statusText = op.success ? '✓ 成功' : '✗ 失败';
+                const itemClass = op.success ? '' : 'failed';
+                const snapshotTag = op.snapshot_id ? `<span class="snapshot-tag">📸 快照: ${op.snapshot_id.substring(0, 8)}</span>` : '';
+
+                html += `
+                    <div class="operation-item ${itemClass}">
+                        <div class="operation-header">
+                            <div class="operation-desc">${op.friendly_name || op.action} ${snapshotTag}</div>
+                            <span class="badge ${statusClass}">${statusText}</span>
+                        </div>
+                        <div class="operation-meta">
+                            🕐 ${time} | 🛠️ ${op.tool_name}
+                        </div>
+                        ${op.snapshot_id ? `
+                            <div class="operation-actions" style="margin-top: 10px;">
+                                <button class="btn btn-sm btn-primary" onclick="showRollbackModal('${op.snapshot_id}', '${op.friendly_name}')">
+                                    🔄 回滚到此操作前
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/alerts?resolved=false');
+                const alerts = await response.json();
+
+                const container = document.getElementById('alerts-list');
+
+                if (alerts.length === 0) {
+                    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">✅</div><p>暂无告警</p></div>';
+                    return;
+                }
+
+                let html = '';
+                alerts.forEach(alert => {
+                    const time = new Date(alert.timestamp).toLocaleString('zh-CN');
+                    const severityClass = alert.severity || 'medium';
+
+                    html += `
+                        <div class="alert-item ${severityClass}">
+                            <div class="alert-header">
+                                <div class="alert-type">${alert.alert_type}</div>
+                                <button class="btn btn-sm btn-success" onclick="resolveAlert(${alert.id})">解决</button>
+                            </div>
+                            <div class="alert-message">${alert.message}</div>
+                            <div style="font-size: 12px; color: #999; margin-top: 8px;">${time}</div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            } catch (error) {
+                console.error('Error loading alerts:', error);
+            }
+        }
+
+        async function resolveAlert(id) {
+            try {
+                await fetch(`/api/alerts/${id}/resolve`, { method: 'POST' });
+                loadAlerts();
+                loadStats();
+            } catch (error) {
+                console.error('Error resolving alert:', error);
+            }
+        }
+
+        function showRollbackModal(snapshotId, description) {
+            selectedSnapshotId = snapshotId;
+            document.getElementById('rollback-message').textContent =
+                `确定要回滚到操作"${description}"之前的状态吗？\\n\\n快照ID: ${snapshotId}`;
+            document.getElementById('rollback-modal').classList.add('active');
+        }
+
+        function closeRollbackModal() {
+            document.getElementById('rollback-modal').classList.remove('active');
+            selectedSnapshotId = null;
+        }
+
+        async function confirmRollback() {
+            if (!selectedSnapshotId) return;
+
+            try {
+                const response = await fetch(`/api/snapshots/${selectedSnapshotId}/rollback`, {
+                    method: 'POST'
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('✅ 回滚成功！\\n\\n恢复的文件: ' + result.restored_files.length);
+                    closeRollbackModal();
+                } else {
+                    alert('❌ 回滚失败: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error rolling back:', error);
+                alert('❌ 回滚失败: ' + error.message);
+            }
+        }
+
+        // 点击模态框外部关闭
+        document.getElementById('rollback-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRollbackModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,35 +1,31 @@
----
-name: "detect opened proxy"
-description: "Detects active system proxy settings on Windows and macOS, tests proxy availability, and returns results in JSON format."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/proxy-detect"
-sourceUrl: "https://clawhub.ai/skills/proxy-detect"
----
+# Proxy Detector Skill
 
-# detect opened proxy
+## Description
+A skill that detects system proxy settings and provides proxy information in JSON format.
 
-> Detects active system proxy settings on Windows and macOS, tests proxy availability, and returns results in JSON format.
+## Usage
+Run the proxy detector to get current proxy settings:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/proxy-detect`
-- **Source URL:** [https://clawhub.ai/skills/proxy-detect](https://clawhub.ai/skills/proxy-detect)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/proxy-detect
+python proxy_detector.py
 ```
+
+## Output Format
+The tool outputs proxy information in JSON format with the following structure:
+
+```json
+{
+  "address": "http://localhost:15236",
+  "isActive": true
+}
+```
+
+## Features
+- Detects system proxy settings for Windows and macOS
+- Tests if the detected proxy is actually running
+- Falls back to common proxy addresses if no system proxy is found
+- Provides clear JSON output for easy parsing
+
+## Requirements
+- Python 3.6+
+- No external dependencies

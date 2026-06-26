@@ -1,35 +1,7 @@
 ---
-name: "grill-with-docs"
-description: "Indexed by skills.sh from mattpocock/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mattpocock"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mattpocock/skills/grill-with-docs"
-sourceUrl: "https://skills.sh/mattpocock/skills/grill-with-docs"
+name: grill-with-docs
+description: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.
+disable-model-invocation: true
 ---
 
-# grill-with-docs
-
-> Indexed by skills.sh from mattpocock/skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mattpocock
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mattpocock/skills/grill-with-docs`
-- **Source URL:** [https://skills.sh/mattpocock/skills/grill-with-docs](https://skills.sh/mattpocock/skills/grill-with-docs)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mattpocock/skills/grill-with-docs
-```
+Run a `/grilling` session, using the `/domain-modeling` skill.

@@ -1,0 +1,28 @@
+{
+  "name": "iclawd-email",
+  "version": "1.0.0",
+  "description": "Agent skill: Give your AI agent a real email address at @iclawd.email",
+  "keywords": [
+    "ai-agent",
+    "email",
+    "mcp",
+    "skill",
+    "agent-skill",
+    "iclawd",
+    "dkim",
+    "pgp",
+    "model-context-protocol"
+  ],
+  "homepage": "https://iclawd.email",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karimibadr/iclawd-email-skill"
+  },
+  "license": "MIT",
+  "author": "Voko.Live",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "_meta.json"
+  ]
+}

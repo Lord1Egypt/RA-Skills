@@ -1,0 +1,104 @@
+{
+  "date": "2026-03-10",
+  "from": "Koszalin",
+  "to": "München Hbf (tief)",
+  "legs": [
+    {
+      "train": "IC 58100",
+      "category": "IC",
+      "number": "58100",
+      "from": "Koszalin",
+      "dep": "08:45",
+      "to": "Szczecin Glowny",
+      "arr": "11:04"
+    },
+    {
+      "train": "Bus RB66",
+      "category": "Bus",
+      "number": "RB66",
+      "from": "Szczecin Krzysztofa Kolumba",
+      "dep": "11:26",
+      "to": "Angermünde",
+      "arr": "13:21"
+    },
+    {
+      "train": "RE3 3309",
+      "category": "RE",
+      "line": "RE3",
+      "number": "3309",
+      "from": "Angermünde",
+      "dep": "13:32",
+      "to": "Berlin Gesundbrunnen",
+      "arr": "14:22"
+    },
+    {
+      "train": "ICE 933",
+      "category": "ICE",
+      "number": "933",
+      "from": "Berlin Gesundbrunnen",
+      "dep": "14:57",
+      "to": "Halle(Saale)Hbf",
+      "arr": "16:16"
+    },
+    {
+      "train": "S5X",
+      "category": "S",
+      "line": "S5X",
+      "number": "S5X",
+      "from": "Halle(Saale)Hbf",
+      "dep": "16:31",
+      "to": "Zwickau(Sachs)Hbf",
+      "arr": "18:09"
+    },
+    {
+      "train": "RE3 74026",
+      "category": "RE",
+      "line": "RE3",
+      "number": "74026",
+      "from": "Zwickau(Sachs)Hbf",
+      "dep": "18:26",
+      "to": "Hof Hbf",
+      "arr": "19:31"
+    },
+    {
+      "train": "RE31 4892",
+      "category": "RE",
+      "line": "RE31",
+      "number": "4892",
+      "from": "Hof Hbf",
+      "dep": "19:40",
+      "to": "Marktredwitz",
+      "arr": "20:03"
+    },
+    {
+      "train": "RB23 79745",
+      "category": "RB",
+      "line": "RB23",
+      "number": "79745",
+      "from": "Marktredwitz",
+      "dep": "20:15",
+      "to": "Regensburg Hbf",
+      "arr": "22:10"
+    },
+    {
+      "train": "RE22 57939",
+      "category": "RE",
+      "line": "RE22",
+      "number": "57939",
+      "from": "Regensburg Hbf",
+      "dep": "22:17",
+      "to": "Freising",
+      "arr": "23:29"
+    },
+    {
+      "train": "S1",
+      "category": "S",
+      "line": "S1",
+      "number": "S1",
+      "from": "Freising",
+      "dep": "23:34",
+      "to": "München Hbf (tief)",
+      "arr": "00:15"
+    }
+  ]
+}

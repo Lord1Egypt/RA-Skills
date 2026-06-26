@@ -1,0 +1,167 @@
+# 文章创作流水线模板
+
+> 从素材抓取到公众号发布的完整流水线
+
+## 元数据
+
+```yaml
+name: article-pipeline
+version: 1.0.0
+description: 抓取网页素材 → 生成公众号文章 → 自动排版发布
+intent_type: content_creation
+author: openclaw-skill-compounder
+created: 2026-04-30
+```
+
+## 流水线定义
+
+### Step 1: 素材抓取
+
+```yaml
+step: 1
+skill: web-content-fetcher
+trigger: 用户提供URL或搜索关键词
+timeout: 30s
+
+input:
+  source: "${user_input}"
+  fetch_options:
+    extract_images: true
+    extract_links: true
+    max_depth: 2
+    
+output:
+  result_field: "content"
+  metadata:
+    - source_url
+    - title
+    - publish_date
+    - word_count
+  confidence_weight: 0.9
+```
+
+### Step 2: 内容生成
+
+```yaml
+step: 2
+skill: writing-agent
+trigger: step_1 完成
+timeout: 60s
+depends_on: step_1
+
+input:
+  text: "${step_1.result.content}"
+  context:
+    article_type: "${user.article_type || '专业技术分享'}"
+    target_audience: "${user.target_audience || '技术从业者'}"
+    tone: "${user.tone || '专业严谨'}"
+    min_words: "${user.min_words || 1500}"
+    max_words: "${user.max_words || 3000}"
+    
+output:
+  result_field: "article_text"
+  metadata:
+    - word_count
+    - outline
+    - key_points
+  confidence_weight: 0.85
+```
+
+### Step 3: 格式排版
+
+```yaml
+step: 3
+skill: wechat-mp-upload
+trigger: step_2 完成
+timeout: 30s
+depends_on: step_2
+
+input:
+  text: "${step_2.result.article_text}"
+  context:
+    title: "${user.article_title || step_1.result.title}"
+    author: "${user.name || '善人'}"
+    need_cover: "${user.need_cover || true}"
+    auto_publish: "${user.auto_publish || false}"
+    
+output:
+  result_field: "formatted_content"
+  metadata:
+    - html_preview
+    - image_count
+    - estimated_read_time
+  confidence_weight: 0.95
+```
+
+### Step 4: 发布（可选）
+
+```yaml
+step: 4
+skill: wechat-mp-upload
+trigger: step_3 完成 + user.auto_publish == true
+timeout: 20s
+depends_on: step_3
+optional: true
+
+input:
+  action: publish
+  content: "${step_3.result.formatted_content}"
+  
+output:
+  result_field: "publish_result"
+  metadata:
+    - publish_url
+    - publish_time
+    - article_id
+```
+
+## 数据流转
+
+```yaml
+data_flow:
+  step_1_to_step_2:
+    content → text
+    title → context.article_title
+    
+  step_2_to_step_3:
+    article_text → text
+    outline → metadata.outline
+    
+  step_3_to_step_4:
+    formatted_content → content
+```
+
+## 异常处理
+
+```yaml
+error_handling:
+  step_1_failure:
+    strategy: fallback
+    fallback_skill: playwright-scraper-skill
+    message: "网页抓取失败，尝试备用方案"
+    
+  step_2_failure:
+    strategy: retry
+    max_attempts: 2
+    message: "内容生成失败，尝试简化要求"
+    
+  step_3_failure:
+    strategy: skip_optional
+    continue_without_format: true
+    message: "排版失败，将输出原始文本"
+```
+
+## 适用场景
+
+- 看到好文章，想借鉴写自己的
+- 抓取技术文档，写学习笔记
+- 采集行业资讯，整理成深度文章
+
+## 触发词示例
+
+```
+"帮我抓取这个网页的内容写篇文章"
+"把这篇公众号文章改写成我的风格"
+"抓取素材生成技术分享文章"
+"我想写篇文章，帮我找些素材"
+```

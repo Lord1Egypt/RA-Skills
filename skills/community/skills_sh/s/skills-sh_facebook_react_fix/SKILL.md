@@ -1,35 +1,17 @@
 ---
-name: "fix"
-description: "Indexed by skills.sh from facebook/react"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "facebook"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/facebook/react/fix"
-sourceUrl: "https://skills.sh/facebook/react/fix"
+name: fix
+description: Use when you have lint errors, formatting issues, or before committing code to ensure it passes CI.
 ---
 
-# fix
+# Fix Lint and Formatting
 
-> Indexed by skills.sh from facebook/react
+## Instructions
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** facebook
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/facebook/react/fix`
-- **Source URL:** [https://skills.sh/facebook/react/fix](https://skills.sh/facebook/react/fix)
+1. Run `yarn prettier` to fix formatting
+2. Run `yarn linc` to check for remaining lint issues
+3. Report any remaining manual fixes needed
 
-## Overview
+## Common Mistakes
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/facebook/react/fix
-```
+- **Running prettier on wrong files** - `yarn prettier` only formats changed files
+- **Ignoring linc errors** - These will fail CI, fix them before committing

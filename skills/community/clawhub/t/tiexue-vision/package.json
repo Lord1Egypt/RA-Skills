@@ -1,0 +1,17 @@
+{
+  "name": "openclaw-vision-skill",
+  "version": "1.0.0",
+  "description": "图片文字+物体+场景全能识别并写回",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "postinstall": "node -e \"console.log('依赖已安装，准备使用')\""
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.12.0",
+    "onnxruntime-node": "^1.15.0",
+    "tesseract.js": "^5.0.5",
+    "axios": "^1.7.2",
+    "node-fetch": "^3.3.2"
+  }
+}

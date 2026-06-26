@@ -1,0 +1,12 @@
+{
+  "databaseId": 9105,
+  "workflowName": "CI",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "headBranch": "main",
+  "createdAt": "2026-03-06T08:00:00Z",
+  "url": "https://github.com/acme/api/actions/runs/9105",
+  "repository": {
+    "nameWithOwner": "acme/api"
+  }
+}

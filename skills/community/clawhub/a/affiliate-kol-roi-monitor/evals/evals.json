@@ -1,0 +1,42 @@
+{
+  "skill_name": "affiliate-kol-roi-monitor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We have 8 KOLs on discount codes. I exported orders for last month but refunds are a mess — need real ROAS per creator and who to renew. Margin is roughly 45%. Commission is 12% of order value. Fixed fees: three creators got $500 each for a post.",
+      "expected_output": "Workflow: attribution by code, strip refunds, profit or ROAS, master table with Influencer ID | Orders | Actual revenue | CAC | Renewal rating; tiered renewal suggestions.",
+      "files": [],
+      "expectations": [
+        "Describes or applies steps: extract attribution, exclude refunds, compute economics, renewal tiers",
+        "Output includes a table with headers Influencer ID, Orders attributed, Actual revenue, CAC, Renewal rating",
+        "Mentions refund exclusion or net revenue",
+        "Incorporates commission 12% and fixed $500 fees into creator cost or CAC",
+        "Includes renewal rating column with A/B/C/D or equivalent tiers",
+        "Addresses multiple creators (>5) context"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "One of our affiliates has huge click volume from TikTok but almost no sales. Another has low clicks but high conversion. How do we spot fake traffic and what do we put in the performance report?",
+      "expected_output": "Fraud heuristics, comparison to baseline, master table structure if data assumed; renewal D vs A narrative.",
+      "files": [],
+      "expectations": [
+        "Discusses fake or low-quality traffic signals (clicks vs orders, refund rate, etc.)",
+        "Contrasts high-click low-convert vs low-click high-convert creators",
+        "References or outputs renewal rating logic (pause vs renew)",
+        "Ties recommendations to attributable orders and revenue where possible"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Can you write me 10 Instagram caption ideas for summer? No affiliate data.",
+      "expected_output": "Caption ideas or decline heavy affiliate workflow — should-not-trigger for full reconciliation.",
+      "files": [],
+      "expectations": [
+        "Does not produce a full affiliate master table as the main deliverable for a pure content request",
+        "May give captions without forcing commission math and CAC columns",
+        "Does not pretend to attribute orders without data"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# 示例配置：上海市 IT 项目采购监控
+
+tasks:
+  - name: 上海 IT 采购
+    url: https://zfcg.sh.gov.cn/notice
+    keywords:
+      - 软件
+      - 系统
+      - 信息化
+      - 网络
+      - 数据
+      - 云平台
+      - 数字化
+      - 智能
+      - IT
+      - 计算机
+    schedule: "0 10 * * *"
+    notify:
+      type: dingtalk
+      target: "YOUR_DINGTALK_ID"

@@ -1,35 +1,110 @@
 ---
-name: "task-manager"
-description: "任务管理系统，用于记录、追踪和管理所有分配给助手的任务，支持持续性任务和一次性任务，记录任务状态、调用功能、权限和依赖软件。当需要管理任务记录、新增任务、查询任务状态或维护任务系统时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-manager-easy"
-sourceUrl: "https://clawhub.ai/skills/task-manager-easy"
+name: task-manager
+description: 任务管理系统，用于记录、追踪和管理所有分配给助手的任务，支持持续性任务和一次性任务，记录任务状态、调用功能、权限和依赖软件。当需要管理任务记录、新增任务、查询任务状态或维护任务系统时使用。
 ---
 
-# task-manager
+# Task Manager - 任务管理系统
 
-> 任务管理系统，用于记录、追踪和管理所有分配给助手的任务，支持持续性任务和一次性任务，记录任务状态、调用功能、权限和依赖软件。当需要管理任务记录、新增任务、查询任务状态或维护任务系统时使用。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-manager-easy`
-- **Source URL:** [https://clawhub.ai/skills/task-manager-easy](https://clawhub.ai/skills/task-manager-easy)
+这个skill提供完整的任务管理功能：
+1. 自动维护任务记录表，记录所有任务的详细信息
+2. 每当有新任务分配时自动添加到记录表
+3. 支持任务状态更新（未开始/执行中/已完成/已暂停）
+4. 区分持续性任务和一次性任务
+5. 记录任务调用的系统功能、所需权限和依赖软件
+6. 支持任务查询和统计
 
-## Overview
+## 任务记录表位置
 
+任务记录表默认存储在工作区根目录：
+`/Users/quenflysmac/.openclaw/workspace/TASKS.md`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-manager-easy
+用户可自定义位置，默认使用上述路径。
+
+## 任务记录格式
+
+每个任务使用以下格式记录：
+
+```markdown
+## [任务ID] 任务标题
+
+- **创建时间:** YYYY-MM-DD HH:MM
+- **任务类型:** 一次性任务 | 持续性任务
+- **当前状态:** 未开始 | 执行中 | 已完成 | 已暂停
+- **任务描述:** 详细描述任务内容和目标
+- **调用系统功能:** 列出使用的OpenClaw功能/skill
+- **所需权限:** 列出需要的权限（如文件读写、网络访问、执行命令等）
+- **依赖软件:** 任务执行所需的外部软件
+- **最后更新:** YYYY-MM-DD HH:MM
+- **备注:** 其他信息
 ```
+
+## 使用流程
+
+### 1. 初始化任务系统
+
+首次使用时，会自动创建TASKS.md文档并添加表头：
+
+```markdown
+# 任务管理记录表
+
+本文件由 task-manager skill 自动维护，记录所有分配给助手的任务。
+
+## 任务统计
+
+- 总任务数: 0
+- 执行中: 0
+- 已完成: 0
+- 持续性任务: 0
+- 一次性任务: 0
+
+---
+
+<!-- 任务列表 -->
+```
+
+### 2. 新增任务
+
+每当收到新任务时，必须：
+1. 获取当前时间
+2. 生成新的任务ID（自增整数）
+3. 按照上述格式添加任务到TASKS.md
+4. 更新任务统计信息
+5. 保存文件
+
+### 3. 更新任务状态
+
+当任务状态发生变化时：
+1. 找到对应任务
+2. 更新`当前状态`字段
+3. 更新`最后更新`时间
+4. 更新任务统计信息
+
+### 4. 查询任务
+
+可以根据以下条件查询任务：
+- 任务状态（执行中/已完成等）
+- 任务类型（持续性/一次性）
+- 时间范围
+- 关键词搜索
+
+## 自动化规则
+
+**必须遵守**：
+1. **任何新任务分配后，必须在5分钟内记录到TASKS.md**
+2. 每次修改任务后必须更新统计信息
+3. 保持任务ID自增不重复
+4. 更新任务时必须更新"最后更新"时间
+5. 任务记录要完整，不得遗漏关键字段
+
+## 脚本工具
+
+### scripts/update-task-stats.js
+
+自动更新任务统计信息。用法：
+```bash
+node scripts/update-task-stats.js /path/to/TASKS.md
+```
+
+该脚本会重新计算统计数据并更新统计区域。

@@ -1,0 +1,25 @@
+{
+  "name": "rich-lottery-api",
+  "version": "1.0.0",
+  "description": "Rich彩票分析API - x402付费版本",
+  "main": "main.py",
+  "url": "https://rich-lottery.vercel.app",
+  "price": "0.01 USDC",
+  "payment": {
+    "currency": "USDC",
+    "chain": "Base",
+    "recipient": "0x1a9275EE18488A20C7898C666484081F74Ee10CA"
+  },
+  "endpoints": [
+    {
+      "path": "/ssq",
+      "method": "GET",
+      "description": "双色球分析"
+    },
+    {
+      "path": "/dlt",
+      "method": "GET",
+      "description": "大乐透分析"
+    }
+  ]
+}

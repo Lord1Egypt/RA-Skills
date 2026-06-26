@@ -1,0 +1,28 @@
+{
+  "emoji": "🔥",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": "3,8,13,18,23,28,33,38,43,48,53,58 * * * *",
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "eth_midcandle.py"
+  },
+  "tunables": [
+    {"env": "SIMMER_ETHMC_AGENT_ID",  "type": "string",  "default": "",     "label": "Polymarket Agent ID"},
+    {"env": "SIMMER_ETHMC_BET_SIZE",  "type": "number",  "default": 5.0,    "range": [1.0, 100.0],   "step": 1.0,    "label": "Bet size (USDC)"},
+    {"env": "SIMMER_ETHMC_THRESHOLD", "type": "number",  "default": 0.0012, "range": [0.0005, 0.005],"step": 0.0001, "label": "ETH momentum threshold (5m % change)"},
+    {"env": "SIMMER_ETHMC_BTC_GATE",  "type": "number",  "default": 0.0015, "range": [0.0005, 0.005],"step": 0.0001, "label": "BTC veto gate threshold (0 = disabled)"},
+    {"env": "SIMMER_ETHMC_VOL_RATIO", "type": "number",  "default": 0.0,    "range": [0.0, 3.0],     "step": 0.1,    "label": "Min volume ratio (0 = disabled)"},
+    {"env": "SIMMER_ETHMC_MIN_ENTRY", "type": "number",  "default": 0.45,   "range": [0.10, 0.60],   "step": 0.01,   "label": "Min entry price"},
+    {"env": "SIMMER_ETHMC_MAX_ENTRY", "type": "number",  "default": 0.65,   "range": [0.50, 0.90],   "step": 0.01,   "label": "Max entry price"},
+    {"env": "SIMMER_ETHMC_1M_CONFIRM","type": "boolean", "default": false,   "label": "Require 1m candle confirmation (OFF by default)"},
+    {"env": "SIMMER_ETHMC_SKIP_HOURS","type": "string",  "default": "13,17", "label": "UTC hours to skip (comma-separated)"},
+    {"env": "SIMMER_ETHMC_WEBHOOK",   "type": "string",  "default": "",     "label": "Discord webhook URL (optional)"},
+    {"env": "SIMMER_ETHMC_MAX_POS",      "type": "number", "default": 50.0, "range": [5.0, 500.0], "step": 5.0, "label": "Max position size for smart sizing (USDC)"},
+    {"env": "SIMMER_ETHMC_SIZING_PCT",   "type": "number", "default": 0.03, "range": [0.01, 0.20], "step": 0.01, "label": "Portfolio % per trade for smart sizing"},
+    {"env": "SIMMER_ETHMC_MAX_LOSSES", "type": "number", "default": 3, "range": [1, 10], "step": 1, "label": "Circuit breaker: max consecutive losses before pause (0 = disabled)"}
+  ]
+}

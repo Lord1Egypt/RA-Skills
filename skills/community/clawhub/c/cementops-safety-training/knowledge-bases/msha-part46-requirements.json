@@ -1,0 +1,199 @@
+{
+  "metadata": {
+    "skill": "cementops-safety-training",
+    "domain": "MSHA Part 46 Training Requirements",
+    "regulation": "30 CFR Part 46",
+    "version": "1.0.0",
+    "last_updated": "2026-04-01"
+  },
+  "training_categories": {
+    "new_miner_training": {
+      "regulation_ref": "30 CFR 46.5",
+      "required_hours": 24,
+      "timing": "No less than 4 hours before new miner begins work; remaining 20 hours within 90 calendar days",
+      "condition": "Before working alone or unsupervised",
+      "required_topics": [
+        {
+          "topic": "Introduction to the work environment",
+          "description": "Tour of mine site, layout of facilities, identification of key personnel, reporting structure"
+        },
+        {
+          "topic": "Recognition and avoidance of hazards",
+          "description": "Site-specific hazards including highwalls, mobile equipment, electrical, chemical, and dust exposures"
+        },
+        {
+          "topic": "Emergency procedures",
+          "description": "Evacuation routes, alarm systems, rally points, fire response, injury reporting, emergency contacts"
+        },
+        {
+          "topic": "Health and safety aspects of assigned tasks",
+          "description": "Task-specific hazards, required PPE, safe work procedures, equipment-specific training"
+        },
+        {
+          "topic": "Statutory rights of miners",
+          "description": "Right to report hazards, Part 46 protections, anti-discrimination provisions under Section 105(c), right to request MSHA inspection"
+        },
+        {
+          "topic": "Authority and responsibility of supervisors and miners' representatives",
+          "description": "Chain of command for safety, role of safety committee, miners' representative rights"
+        },
+        {
+          "topic": "Introduction to rules and procedures for reporting hazards",
+          "description": "Near-miss reporting, hazard identification forms, corrective action process"
+        },
+        {
+          "topic": "Self-rescue and respiratory devices",
+          "description": "Location and use of self-rescue devices, dust masks, respirators as applicable"
+        }
+      ],
+      "notes": "New miner must be accompanied by an experienced miner at all times until 24-hour requirement is met"
+    },
+    "experienced_miner_training": {
+      "regulation_ref": "30 CFR 46.6",
+      "required_hours": 8,
+      "timing": "Before starting work at the new mine",
+      "condition": "Miner has at least 12 months cumulative mining experience and has received new miner training",
+      "required_topics": [
+        "Introduction to the work environment at the new mine",
+        "Recognition and avoidance of hazards present at the new mine",
+        "Emergency and evacuation procedures at the new mine",
+        "Health and safety aspects of tasks to be assigned",
+        "Statutory rights of miners",
+        "Authority and responsibility of supervisors and miners' representatives"
+      ]
+    },
+    "annual_refresher_training": {
+      "regulation_ref": "30 CFR 46.8",
+      "required_hours": 8,
+      "timing": "Within 12 months of last refresher or initial training completion",
+      "frequency": "Annual",
+      "content_guidance": [
+        "Must include instruction on changes at the mine that could adversely affect safety or health",
+        "Must address site-specific hazards",
+        "Should cover accident and injury trends from the prior year",
+        "Should include updated regulatory changes",
+        "Can be delivered in segments over the 12-month period"
+      ],
+      "recommended_topics_for_cement_plants": [
+        "LOTO refresher and recent incident review",
+        "Confined space entry procedures update",
+        "Respirable crystalline silica exposure and controls",
+        "Mobile equipment and pedestrian interaction",
+        "Fall protection and working at heights",
+        "Kiln and pyroprocessing area hazards",
+        "Emergency response and evacuation drill review",
+        "New or revised plant procedures"
+      ]
+    },
+    "task_training": {
+      "regulation_ref": "30 CFR 46.7",
+      "required_hours": "No minimum; must be sufficient to perform task safely",
+      "timing": "Before miner performs the new task",
+      "triggers": [
+        "Miner is assigned a new task not previously trained on",
+        "Change in equipment or procedures for an existing task",
+        "Observation reveals miner is not performing task safely",
+        "Miner is reassigned to an area with different hazards"
+      ],
+      "requirements": [
+        "Training must address equipment-specific hazards and safe operating procedures",
+        "Must include practice or demonstration under observation of competent person",
+        "Competency must be evaluated before miner performs task independently"
+      ],
+      "common_cement_plant_tasks_requiring_training": [
+        "Operating front-end loader in quarry",
+        "Kiln observation and burner adjustment",
+        "Confined space entry in silos or mills",
+        "LOTO on conveyor drives and motors",
+        "Grinding media charging in ball mills",
+        "Refractory demolition and installation",
+        "Hot work (welding/cutting) in process areas",
+        "Chemical handling for water treatment",
+        "Overhead crane and rigging operations",
+        "Forklift operation in warehouse and packing areas"
+      ]
+    },
+    "site_specific_hazard_awareness": {
+      "regulation_ref": "30 CFR 46.11",
+      "required_hours": "No minimum; must be adequate",
+      "timing": "Before the person goes to the mine site",
+      "applicable_to": [
+        "Visitors to the mine site",
+        "Contractors and their employees",
+        "Delivery drivers",
+        "Maintenance contractors",
+        "Environmental monitoring personnel",
+        "Any non-employee entering mine property"
+      ],
+      "minimum_content": [
+        "Site-specific hazards (mobile equipment, highwalls, process areas, traffic patterns)",
+        "Emergency and evacuation procedures",
+        "PPE requirements for the areas to be visited",
+        "Restricted areas and access limitations",
+        "Escort requirements if applicable"
+      ]
+    }
+  },
+  "training_plan_requirements": {
+    "regulation_ref": "30 CFR 46.3",
+    "format": "Written document",
+    "approval": "Must be approved by MSHA District Manager upon request",
+    "required_contents": [
+      "Mine name, MSHA mine ID, and operator name",
+      "Name and position of person responsible for health and safety training",
+      "General description of teaching methods and course materials",
+      "Approximate duration of each type of training",
+      "List of competent persons who will provide training",
+      "Procedures for evaluating training effectiveness"
+    ],
+    "availability": "Must be available at the mine site for inspection by MSHA and for examination by miners and their representatives",
+    "update_triggers": [
+      "Change in mine operations that affect training needs",
+      "Change in competent persons delivering training",
+      "MSHA notification of deficiency",
+      "Change in applicable regulations"
+    ]
+  },
+  "record_keeping": {
+    "regulation_ref": "30 CFR 46.9",
+    "retention_period_years": 3,
+    "retention_note": "Records for currently employed miners must be kept for duration of employment plus 3 years",
+    "required_fields": [
+      "Trainee name",
+      "Type of training (new miner, experienced miner, refresher, task, hazard awareness)",
+      "Duration of training (hours)",
+      "Date(s) training was provided",
+      "Description of training content and materials used",
+      "Name of competent person who provided training",
+      "Evaluation of trainee competency (method and result)",
+      "Signature of competent person or documentation of electronic verification"
+    ],
+    "format": "Paper or electronic records are acceptable; must be readily accessible for MSHA inspection",
+    "common_deficiencies": [
+      "Missing task training records for specific equipment",
+      "No documentation of competency evaluation",
+      "Expired refresher training (beyond 12-month window)",
+      "Incomplete contractor/visitor hazard awareness records",
+      "Training records not available at the mine site during inspection"
+    ]
+  },
+  "competent_person_requirement": {
+    "regulation_ref": "30 CFR 46.2(b)",
+    "definition": "A person designated by the production-operator or independent contractor who has the ability, training, knowledge, or experience to provide training to miners in his or her area of expertise",
+    "qualifications": [
+      "Must be able to effectively communicate the training content",
+      "Must have knowledge and experience in the subject matter",
+      "Does not require formal instructor certification",
+      "May be an employee of the mine operator or an outside trainer"
+    ],
+    "documentation": "Competent persons must be listed in the training plan with their areas of expertise",
+    "cement_plant_examples": [
+      "Plant safety manager for general safety topics",
+      "Maintenance supervisor for LOTO and equipment-specific training",
+      "Quarry foreman for mobile equipment and blasting procedures",
+      "Process engineer for kiln and mill operation safety",
+      "Certified first aid/CPR instructor for first aid training",
+      "Outside vendor trainer for specialized equipment"
+    ]
+  }
+}

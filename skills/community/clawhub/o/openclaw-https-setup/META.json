@@ -1,0 +1,25 @@
+{
+  "name": "openclaw-https-setup",
+  "version": "1.0.0",
+  "description": "Setup OpenClaw Gateway with HTTPS access via custom domain on VPS server",
+  "author": "OpenClaw Assistant",
+  "tags": [
+    "openclaw",
+    "https",
+    "ssl",
+    "nginx",
+    "reverse-proxy",
+    "vps",
+    "deployment"
+  ],
+  "requirements": [
+    "Running OpenClaw Gateway service",
+    "Domain name pointing to VPS",
+    "Root privileges",
+    "CentOS/RHEL or Ubuntu/Debian"
+  ],
+  "files": [
+    "SKILL.md",
+    "scripts/setup_openclaw_https.sh"
+  ]
+}

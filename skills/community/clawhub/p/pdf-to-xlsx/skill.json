@@ -1,0 +1,22 @@
+{
+  "name": "PDF to Excel",
+  "description": "Extract tables and text from a PDF into an Excel workbook (XLSX). Each page becomes a separate sheet.",
+  "method": "POST",
+  "endpoint": "/v1/convert/pdf/xlsx",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "Public URL to a PDF" },
+        { "name": "file", "type": "string", "required": false, "description": "Base64-encoded PDF" },
+        { "name": "pages", "type": "string", "required": false, "description": "Page selection (e.g. '2-4')" },
+        { "name": "output", "type": "string", "required": false, "default": "url", "enum": ["url", "base64", "both", "file"], "description": "Output mode" },
+        { "name": "output_filename", "type": "string", "required": false, "description": "Custom output filename" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field",
+      "aliases": ["/v1/convert/pdf/excel"]
+    }
+  }
+}

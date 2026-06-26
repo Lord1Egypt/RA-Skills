@@ -1,0 +1,12 @@
+{
+  "bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
+  "default_channel_id": "YOUR_DEFAULT_CHANNEL_ID",
+  "known_bots": {
+    "@example_bot": {
+      "name": "Example Bot",
+      "in_channel": true,
+      "is_admin_in": ["GROUP_ID_1", "GROUP_ID_2"]
+    }
+  },
+  "fallback_method": "github_discussion"
+}

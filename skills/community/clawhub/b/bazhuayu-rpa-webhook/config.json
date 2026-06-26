@@ -1,0 +1,19 @@
+{
+  "url": "https://api-rpa.bazhuayu.com/api/v1/bots/webhooks/69a945553a6aac32ff6613a5/invoke",
+  "key": "",
+  "paramNames": ["飞书授权码", "主页链接_填写读取数据的飞书链接", "笔记信息_填写存放结果的飞书链接", "浏览器类型", "单个博主最大采集数量", "数据更新方式"],
+  "defaultParams": {
+    "飞书授权码": "pt-imUqRfsugNJLf-vqtgPDSjcExfRfvxCzaEhBrmmcAQAAA0CAEsfMQORblKPR",
+    "主页链接_填写读取数据的飞书链接": "https://vcnj6p3pn0dg.feishu.cn/base/CYUrbw5ThaJvDbsTo8acv83onpe?table=tbl2QM9LV2pKVcKF&view=vewpnfKxX0",
+    "笔记信息_填写存放结果的飞书链接": "https://vcnj6p3pn0dg.feishu.cn/base/CYUrbw5ThaJvDbsTo8acv83onpe?table=tblPrhGAzgi4HBeb&view=vewDgmmYtC",
+    "浏览器类型": "Edge 浏览器",
+    "单个博主最大采集数量": "6",
+    "数据更新方式": "增量更新"
+  },
+  "resultTableUrl": "https://vcnj6p3pn0dg.feishu.cn/base/CYUrbw5ThaJvDbsTo8acv83onpe?table=tblPrhGAzgi4HBeb&view=vewDgmmYtC",
+  "security": {
+    "keyFromEnv": true,
+    "urlFromEnv": false,
+    "version": "2.0"
+  }
+}

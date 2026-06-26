@@ -1,0 +1,25 @@
+{
+  "taskId": "task-001",
+  "snapshotType": "phase_形成输出",
+  "timestamp": "2026-03-17T20:57:07.093Z",
+  "metadata": {
+    "phase": "形成输出",
+    "summary": "已生成报告"
+  },
+  "snapshot": {
+    "task_id": "task-001",
+    "task_title": "调研 AI Agent 基础设施项目：LangChain",
+    "task_type": "research",
+    "overall_status": "completed",
+    "current_phase": "形成输出",
+    "progress_percent": 100,
+    "current_action": "正在进行：形成输出",
+    "why_not_done": null,
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.091Z",
+    "updated_at": "2026-03-17T20:57:07.093Z"
+  }
+}

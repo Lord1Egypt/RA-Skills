@@ -1,0 +1,75 @@
+{
+  "name": "academic-suite",
+  "version": "3.5.0",
+  "description": "Complete Academic Research & Writing Suite — One-click installation of the full Academic Pipeline ecosystem with all 8 dependencies",
+  "author": "eric-promax",
+  "license": "MIT",
+  "licenseUrl": "https://opensource.org/licenses/MIT",
+  "category": "Academic Research",
+  "tags": [
+    "academic",
+    "research",
+    "writing",
+    "pipeline",
+    "paper",
+    "thesis",
+    "literature-review",
+    "peer-review",
+    "de-ai"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eric-promax/academic-agents.git"
+  },
+  "homepage": "https://clawhub.ai/eric-promax/academic-suite",
+  "documentation": "https://feishu.cn/docx/GRb7dGij9olddExTBsCcpoaCnWg",
+  "bugs": {
+    "url": "https://github.com/eric-promax/academic-agents/issues"
+  },
+  "dependencies": [
+    "ima-skills",
+    "academic-search",
+    "deep-research",
+    "academic-paper",
+    "academic-paper-reviewer",
+    "humanizer",
+    "humanizer-zh",
+    "integrity_verification_agent"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "install": "bash install.sh"
+  },
+  "engines": {
+    "openclaw": ">=2026.4.21",
+    "node": ">=22.0.0"
+  },
+  "keywords": [
+    "academic-pipeline",
+    "research",
+    "writing",
+    "paper",
+    "thesis",
+    "literature-review",
+    "peer-review",
+    "humanizer",
+    "de-ai",
+    "academic-integrity"
+  ],
+  "meta": {
+    "suite": true,
+    "lastUpdated": "2026-05-14",
+    "changelog": {
+      "3.5.0": {
+        "date": "2026-05-14",
+        "changes": [
+          "首次发布 academic-suite 元技能包",
+          "整合 8 个依赖技能，一键安装",
+          "阶段编号统一为连续整数（1-12）",
+          "新增 5 项启动配置询问",
+          "新增 Stage 10 HUMANIZE 去 AI 化"
+        ]
+      }
+    }
+  }
+}

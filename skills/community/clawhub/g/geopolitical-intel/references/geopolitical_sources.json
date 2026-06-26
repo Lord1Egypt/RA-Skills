@@ -1,0 +1,99 @@
+{
+  "skill_name": "Geopolitical Risk & Global Governance Intelligence",
+  "slug": "geopolitical-intel",
+  "version": "1.0.0",
+  "data_sources": {
+    "conflict_and_security": [
+      {"name": "ACLED (Armed Conflict Location & Event Data)", "url": "https://acleddata.com/", "type": "real-time", "coverage": "240+ countries, 2M+ events"},
+      {"name": "UCDP Uppsala Conflict Data Program", "url": "https://ucdp.uu.se/", "type": "annual/ongoing", "coverage": "global, 1946-present"},
+      {"name": "SIPRI (Stockholm Peace Research)", "url": "https://www.sipri.org/", "type": "ongoing", "coverage": "global, arms transfers, military expenditure"},
+      {"name": "CRS Congressional Research Service", "url": "https://crsreports.congress.gov/", "type": "ongoing", "coverage": "US foreign policy analysis"},
+      {"name": "IISS Military Balance", "url": "https://www.iiss.org/publications/the-military-balance/", "type": "annual", "coverage": "173 countries defense data"},
+      {"name": "Global Terrorism Database (GTD)", "url": "https://www.start.umd.edu/gtd/", "type": "annual", "coverage": "200,000+ terrorism events, 1970-present"},
+      {"name": "JANES Defence Intelligence", "url": "https://www.janes.com/", "type": "real-time", "coverage": "global open-source defense"},
+      {"name": "Crisis Group CrisisWatch", "url": "https://www.crisisgroup.org/crisiswatch", "type": "monthly", "coverage": "80+ conflict zones"}
+    ],
+    "sanctions_and_trade": [
+      {"name": "OFAC Sanctions List (US Treasury)", "url": "https://sanctionssearch.ofac.treas.gov/", "type": "real-time", "coverage": "US sanctions programs"},
+      {"name": "EU Sanctions Map", "url": "https://www.sanctionsmap.eu/", "type": "real-time", "coverage": "EU restrictive measures"},
+      {"name": "UN Sanctions List", "url": "https://www.un.org/securitycouncil/content/un-sc-consolidated-list", "type": "real-time", "coverage": "UNSC sanctions"},
+      {"name": "WTO Trade Monitoring Database", "url": "https://tmdb.wto.org/", "type": "semi-annual", "coverage": "global trade measures"},
+      {"name": "Global Trade Alert", "url": "https://www.globaltradealert.org/", "type": "real-time", "coverage": "discriminatory trade interventions"},
+      {"name": "BIS Entity List (US Commerce)", "url": "https://www.bis.doc.gov/", "type": "real-time", "coverage": "export controls, chip restrictions"}
+    ],
+    "governance_and_institutions": [
+      {"name": "World Bank Governance Indicators (WGI)", "url": "https://www.worldbank.org/en/publication/worldwide-governance-indicators", "type": "annual", "coverage": "215 economies, 6 dimensions"},
+      {"name": "Freedom House Freedom in the World", "url": "https://freedomhouse.org/report/freedom-world", "type": "annual", "coverage": "210 countries/territories"},
+      {"name": "V-Dem (Varieties of Democracy)", "url": "https://v-dem.net/", "type": "annual", "coverage": "202 countries, 1789-present"},
+      {"name": "Fragile States Index (FFP)", "url": "https://fragilestatesindex.org/", "type": "annual", "coverage": "179 countries, 12 indicators"},
+      {"name": "Economist Intelligence Unit Democracy Index", "url": "https://www.eiu.com/n/campaigns/democracy-index/", "type": "annual", "coverage": "167 countries"},
+      {"name": "Transparency International CPI", "url": "https://www.transparency.org/en/cpi/", "type": "annual", "coverage": "180 countries"}
+    ],
+    "un_and_multilateral": [
+      {"name": "UN Digital Library", "url": "https://digitallibrary.un.org/", "type": "ongoing", "coverage": "UN documents, resolutions, voting records"},
+      {"name": "UN Treaty Collection", "url": "https://treaties.un.org/", "type": "ongoing", "coverage": "560+ multilateral treaties"},
+      {"name": "G20 Research Group", "url": "https://www.g20.utoronto.ca/", "type": "ongoing", "coverage": "G20 summit documents"},
+      {"name": "BRICS Information Portal", "url": "https://infobrics.org/", "type": "ongoing", "coverage": "BRICS+ expansion analysis"},
+      {"name": "NATO Official Documents", "url": "https://www.nato.int/cps/en/natohq/documents.htm", "type": "ongoing", "coverage": "collective defense"}
+    ],
+    "cyber_and_information": [
+      {"name": "ENISA Threat Landscape", "url": "https://www.enisa.europa.eu/topics/cyber-threats", "type": "annual", "coverage": "EU cyber threats"},
+      {"name": "CISA Alerts (US)", "url": "https://www.cisa.gov/", "type": "real-time", "coverage": "US cyber alerts"},
+      {"name": "Recorded Future", "url": "https://www.recordedfuture.com/", "type": "real-time", "coverage": "threat intelligence"},
+      {"name": "Citizen Lab", "url": "https://citizenlab.ca/", "type": "ongoing", "coverage": "digital surveillance, spyware"}
+    ],
+    "think_tanks_and_analysis": [
+      {"name": "CFR Council on Foreign Relations", "url": "https://www.cfr.org/", "type": "ongoing", "coverage": "Global Memo, backgrounders"},
+      {"name": "Chatham House", "url": "https://www.chathamhouse.org/", "type": "ongoing", "coverage": "international affairs"},
+      {"name": "Carnegie Endowment", "url": "https://carnegieendowment.org/", "type": "ongoing", "coverage": "global think tank network"},
+      {"name": "RAND Corporation", "url": "https://www.rand.org/", "type": "ongoing", "coverage": "defense + policy analysis"},
+      {"name": "CSIS (Center for Strategic & Int'l Studies)", "url": "https://www.csis.org/", "type": "ongoing", "coverage": "US foreign/defense policy"},
+      {"name": "IFRI (French Institute of Int'l Relations)", "url": "https://www.ifri.org/", "type": "ongoing", "coverage": "European foreign policy"},
+      {"name": "Brookings Institution", "url": "https://www.brookings.edu/", "type": "ongoing", "coverage": "governance + economics"}
+    ]
+  },
+  "geopolitical_flashpoints": [
+    {"region": "South China Sea", "parties": "China, Philippines, Vietnam, Malaysia, Brunei, Taiwan, US", "status": "active", "triggers": "island construction, maritime militia, US-FONOPS"},
+    {"region": "Taiwan Strait", "parties": "China, Taiwan, US", "status": "elevated", "triggers": "cross-strait rhetoric, military drills, arms sales"},
+    {"region": "Ukraine-Russia", "parties": "Ukraine, Russia, NATO", "status": "hot", "triggers": "territorial shifts, negotiation impasse, energy infrastructure"},
+    {"region": "Middle East", "parties": "Israel, Iran, Saudi Arabia, Yemen/Houthis", "status": "fragile", "triggers": "nuclear program, proxy warfare, Red Sea security"},
+    {"region": "Korean Peninsula", "parties": "North Korea, South Korea, US, China", "status": "dormant-volatile", "triggers": "missile tests, diplomatic breakdowns"},
+    {"region": "Indo-Pacific Quad", "parties": "US, Japan, India, Australia", "status": "strategic", "triggers": "technological cooperation, maritime domain awareness"},
+    {"region": "Sahel/Central Africa", "parties": "Mali, Burkina Faso, Niger, DRC, Wagner/Africa Corps", "status": "hot", "triggers": "coup contagion, jihadist insurgency, mineral resources"},
+    {"region": "Venezuela-Guyana (Essequibo)", "parties": "Venezuela, Guyana, Brazil, CARICOM", "status": "tense", "triggers": "offshore oil, territorial claim"},
+    {"region": "Arctic", "parties": "Russia, US, Canada, Norway, Denmark, China", "status": "strategic", "triggers": "NSR shipping, resource competition, militarization"},
+    {"region": "Balkans", "parties": "Serbia, Kosovo, Bosnia, EU", "status": "dormant", "triggers": "ethnic tensions, EU accession fatigue"}
+  ],
+  "sanctions_taxonomy": {
+    "comprehensive": ["Iran", "North Korea", "Syria", "Cuba"],
+    "sectoral_targeted": ["Russia (post-2022)", "Venezuela", "Belarus", "Myanmar"],
+    "entity_list": ["Huawei", "SMIC", "CATL (partial)", "Wagner Group"],
+    "thematic": ["Magnitsky (human rights)", "Counter-narcotics", "Cyber-related", "Anti-terrorism"]
+  },
+  "global_governance_challenges_2026": [
+    "UN Security Council reform (veto deadlock)",
+    "Bretton Woods 2.0 (World Bank/IMF quota reform)",
+    "AI governance fragmentation (EU AI Act vs. US light-touch vs. China regulation)",
+    "Digital sovereignty (data localization, digital services taxes)",
+    "Climate finance gap ($100B→$1T annual commitment debate)",
+    "WHO Pandemic Accord negotiations",
+    "Outer space governance (ASAT debris, lunar mining)",
+    "Global minimum tax (Pillar 2 OECD implementation)"
+  ],
+  "defense_spending_top10_2025": {
+    "unit": "USD billions",
+    "data": [
+      {"rank": 1, "country": "USA", "spending": 948, "gdp_pct": 3.4},
+      {"rank": 2, "country": "China", "spending": 296, "gdp_pct": 1.7},
+      {"rank": 3, "country": "Russia", "spending": 109, "gdp_pct": 5.9},
+      {"rank": 4, "country": "India", "spending": 83, "gdp_pct": 2.4},
+      {"rank": 5, "country": "Saudi Arabia", "spending": 75, "gdp_pct": 7.1},
+      {"rank": 6, "country": "UK", "spending": 74, "gdp_pct": 2.3},
+      {"rank": 7, "country": "Germany", "spending": 72, "gdp_pct": 1.8},
+      {"rank": 8, "country": "Japan", "spending": 60, "gdp_pct": 1.4},
+      {"rank": 9, "country": "South Korea", "spending": 55, "gdp_pct": 2.8},
+      {"rank": 10, "country": "France", "spending": 53, "gdp_pct": 1.9}
+    ]
+  }
+}
+（内容由AI生成，仅供参考）

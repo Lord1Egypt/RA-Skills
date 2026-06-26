@@ -1,0 +1,16 @@
+﻿name: customer-visit-prep
+version: 1.0.0
+description: 瀹㈡埛鎷滆涓€绔欏紡鍑嗗鎶€鑳?- 杈撳叆瀹㈡埛鍚?鑳屾櫙+鎷滆鐩殑锛岃嚜鍔ㄨ緭鍑烘嫓璁跨瓥鐣?璇濇湳+娉ㄦ剰浜嬮」
+author: Dick Dunkel
+homepage: https://clawhub.ai/skills/customer-visit-prep
+license: MIT-0
+tags:
+  - sales
+  - meddic
+  - visit-prep
+  - preparation
+category: sales
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md

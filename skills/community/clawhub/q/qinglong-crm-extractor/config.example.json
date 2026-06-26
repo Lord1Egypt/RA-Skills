@@ -1,0 +1,7 @@
+{
+  "space_center": "肯尼迪航天中心",
+  "default_spaceship": "SpaceX-Dragon-001",
+  "oxygen_threshold": 20,
+  "emergency_contact": "地面控制中心",
+  "debug": false
+}

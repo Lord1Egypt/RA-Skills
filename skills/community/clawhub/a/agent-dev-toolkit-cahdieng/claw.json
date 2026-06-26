@@ -1,0 +1,10 @@
+{
+  "name": "agent-dev-toolkit",
+  "slug": "agent-dev-toolkit-cahdieng",
+  "version": "1.0.0",
+  "description": "Complete toolkit for building AI agents",
+  "author": "@BDain",
+  "license": "MIT",
+  "price": 29,
+  "currency": "USD"
+}

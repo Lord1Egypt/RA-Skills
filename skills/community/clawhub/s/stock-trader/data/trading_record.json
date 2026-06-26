@@ -1,0 +1,19 @@
+{
+  "init_cash": 50000,
+  "current_cash": 50000,
+  "positions": {},
+  "trades": [],
+  "daily_reports": [
+    {
+      "date": "2026-03-10",
+      "cash": 50000,
+      "stock_value": 0,
+      "total_assets": 50000,
+      "profit": 0,
+      "profit_pct": 0.0,
+      "positions": 0
+    }
+  ],
+  "start_date": "2026-03-10",
+  "last_update": "2026-03-10 15:04:04"
+}

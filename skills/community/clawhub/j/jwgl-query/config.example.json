@@ -1,0 +1,83 @@
+{
+  "current_school": "某学校A",
+  "schools": {
+    "某学校A": {
+      "base_url": "https://jwgl-a.example.edu.cn",
+      "login_url": "https://jwgl-a.example.edu.cn/jsxsd/framework/jsMain.jsp"
+    },
+    "某学校B": {
+      "base_url": "https://jwgl-b.example.edu.cn",
+      "login_url": "https://jwgl-b.example.edu.cn/jsxsd/framework/jsMain.jsp"
+    }
+  },
+  "base_url": "https://jwgl-a.example.edu.cn",
+  "login_url": "https://jwgl-a.example.edu.cn/jsxsd/framework/jsMain.jsp",
+  "teachers": {
+    "某老师": {
+      "username": "teacher_account_a",
+      "password": "REPLACE_ME",
+      "school": "某学校A"
+    },
+    "另一位老师": {
+      "username": "teacher_account_b",
+      "password": "REPLACE_ME",
+      "school": "某学校B"
+    },
+    "默认": {
+      "username": "default_teacher_account",
+      "password": "REPLACE_ME",
+      "school": "某学校A"
+    }
+  },
+  "selectors": {
+    "login": {
+      "username": { "by": "id", "value": "userAccount" },
+      "password": { "by": "id", "value": "userPassword" },
+      "login_button": { "by": "css", "value": "button.login_btn" }
+    },
+    "queries": {
+      "invigilation": {
+        "direct_path": "/jsxsd/jskw/jskwap_query",
+        "menu_parent": { "by": "xpath", "value": "//div[@id='onesidebar']//li[@data-code='NEW_JSD_KWCJ']" },
+        "menu_child": { "by": "xpath", "value": "//aside[contains(@class,'main-sidebar')]//li[@data-code='NEW_JSD_KWCJ_KSSW']//li[@data-url='/jskw/jskwap_query']" },
+        "query_frame": { "by": "id", "value": "" },
+        "term_select": { "by": "id", "value": "xnxqid" },
+        "query_button": { "by": "xpath", "value": "//*[@id='btn_query']" },
+        "result_frame": { "by": "id", "value": "fcenter" },
+        "table_id": "dataList"
+      },
+      "course_schedule": {
+        "direct_path": "/jsxsd/jskb/jskb_list.do",
+        "menu_parent": { "by": "xpath", "value": "//div[@id='onesidebar']//li[@data-code='NEW_JSD_JXFW_WDKB']" },
+        "menu_child": { "by": "xpath", "value": "//aside[contains(@class,'main-sidebar')]//li[@data-code='NEW_JSD_JXFW_WDKB']//li[@data-url='/jskb/jskb_list.do']" },
+        "query_frame": { "by": "id", "value": "" },
+        "term_select": { "by": "id", "value": "xnxq01id" },
+        "teacher_input": { "by": "id", "value": "" },
+        "teacher_id_input": { "by": "id", "value": "" },
+        "query_button": { "by": "xpath", "value": "//input[@value='查 询' or @value='查询']" },
+        "result_frame": { "by": "id", "value": "fcenter" },
+        "table_id": "kbtable"
+      },
+      "exam_course_arrangement": {
+        "direct_path": "/jsxsd/jskw/jskckwap_query",
+        "menu_parent": { "by": "xpath", "value": "//div[@id='onesidebar']//li[@data-code='NEW_JSD_KWCJ']" },
+        "menu_child": { "by": "xpath", "value": "//aside[contains(@class,'main-sidebar')]//li[@data-code='NEW_JSD_KWCJ_KSSW']//li[@data-url='/jskw/jskckwap_query']" },
+        "query_frame": { "by": "id", "value": "" },
+        "term_select": { "by": "id", "value": "xnxqid" },
+        "query_button": { "by": "xpath", "value": "//*[@id='btn_query']" },
+        "result_frame": { "by": "id", "value": "fcenter" },
+        "table_id": "dataList"
+      },
+      "exam_info": {
+        "direct_path": "/jsxsd/jskw/jsxxap_query",
+        "menu_parent": { "by": "xpath", "value": "//div[@id='onesidebar']//li[@data-code='NEW_JSD_KWCJ']" },
+        "menu_child": { "by": "xpath", "value": "//aside[contains(@class,'main-sidebar')]//li[@data-code='NEW_JSD_KWCJ_KSSW']//li[@data-url='/jskw/jsxxap_query']" },
+        "query_frame": { "by": "id", "value": "" },
+        "term_select": { "by": "id", "value": "xnxqid" },
+        "query_button": { "by": "xpath", "value": "//*[@id='btn_query']" },
+        "result_frame": { "by": "id", "value": "fcenter" },
+        "table_id": "dataList"
+      }
+    }
+  }
+}

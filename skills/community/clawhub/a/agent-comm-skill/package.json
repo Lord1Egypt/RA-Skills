@@ -1,0 +1,23 @@
+{
+  "name": "agent-comm-skill",
+  "version": "1.0.0",
+  "description": "Agent Communication Skill for ClawHub",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "libsodium-wrappers": "^0.7.16",
+    "loro": "^1.0.0",
+    "uuid": "^13.0.0",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^5.0.0"
+  }
+}

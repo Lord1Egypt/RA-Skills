@@ -1,0 +1,101 @@
+{
+  "timestamp": "2026-04-05T01:15:00+08:00",
+  "check_type": "quick",
+  "asins": {
+    "B0B1F5F3VR": {
+      "price": 6.79,
+      "rating": 4.7,
+      "ratingCount": 4737,
+      "bsr_pet": 1119,
+      "bsr_sub": 3,
+      "subcat": "Standard Dog Leashes",
+      "buyboxSeller": "Amazon.com",
+      "title": "Best Pet Supplies Voyager Reflective Dog Leash"
+    },
+    "B08PNWG993": {
+      "price": 9.99,
+      "rating": 4.6,
+      "ratingCount": 14594,
+      "bsr_pet": 1742,
+      "bsr_sub": 11,
+      "subcat": "Basic Dog Collars",
+      "buyboxSeller": "Ladoogo Direct",
+      "title": "ladoogo Reflective Dog Collar"
+    },
+    "B08NDFWQB1": {
+      "price": 14.99,
+      "rating": 4.3,
+      "ratingCount": 6764,
+      "bsr_pet": 2902,
+      "bsr_sub": 33,
+      "subcat": "Dog Vest Harnesses",
+      "buyboxSeller": "PupTeck",
+      "title": "PUPTECK Adjustable Dog Harness Collar and Leash Set"
+    },
+    "B004XNLCPC": {
+      "price": 26.99,
+      "rating": 4.3,
+      "ratingCount": 41229,
+      "bsr_pet": 2871,
+      "bsr_sub": 2,
+      "subcat": "Headcollars",
+      "buyboxSeller": "Amazon.com",
+      "title": "Halti Head Collar"
+    },
+    "B081YHK13N": {
+      "price": 6.55,
+      "rating": 4.4,
+      "ratingCount": 7987,
+      "bsr_pet": 3456,
+      "bsr_sub": 14,
+      "subcat": "Standard Dog Leashes",
+      "buyboxSeller": "AmaGoodSHIP",
+      "title": "AMAGOOD 6 FT Puppy Leash"
+    },
+    "B0CQ567YLN": {
+      "price": 24.49,
+      "rating": 4.3,
+      "ratingCount": 1750,
+      "bsr_pet": 3303,
+      "bsr_sub": 46,
+      "subcat": "Dog Vest Harnesses",
+      "buyboxSeller": "Lobeve-us",
+      "title": "Lobeve No Pull Dog Harness Set"
+    },
+    "B07DZBN74T": {
+      "price": 123.99,
+      "rating": 4.2,
+      "ratingCount": 4749,
+      "bsr_pet": 5898,
+      "bsr_sub": 29,
+      "subcat": "Electronic Training Collars",
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425X"
+    },
+    "B07DZ1752D": {
+      "price": 134.99,
+      "rating": 4.1,
+      "ratingCount": 2333,
+      "bsr_pet": 16677,
+      "bsr_sub": 106,
+      "subcat": "Electronic Training Collars",
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425XS"
+    }
+  },
+  "changes_detected": {
+    "red": [],
+    "yellow": [],
+    "green": [
+      "B08PNWG993: BSR Pet 1743→1742 (-0.06%)",
+      "B08NDFWQB1: ratingCount 6763→6764 (+1), BSR Pet 2899→2902 (+0.1%)",
+      "B004XNLCPC: ratingCount 41228→41229 (+1), BSR Pet 2869→2871 (+0.07%)",
+      "B081YHK13N: ratingCount 7985→7987 (+2), BSR Pet 3471→3456 (-0.4%), BSR Sub 15→14 (-6.7%)",
+      "B0CQ567YLN: BSR Pet 3351→3303 (-1.4%), BSR Sub 47→46 (-2.1%)",
+      "B07DZBN74T: BSR Pet 5886→5898 (+0.2%)",
+      "B07DZ1752D: BSR Pet 16641→16677 (+0.2%), BSR Sub 105→106 (+0.95%)"
+    ]
+  },
+  "credits_remaining": 15247,
+  "credits_consumed": 8
+}

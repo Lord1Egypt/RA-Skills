@@ -1,0 +1,53 @@
+{
+  "name": "converter",
+  "version": "2.0.0",
+  "description": "Local-first conversion router for documents, images, audio, video, archives, and office files. Uses host-available local toolchains like FFmpeg, Pandoc, ImageMagick, soffice, and 7z. Privacy and fidelity focused.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://github.com/qclawbot/converter-skill",
+  "keywords": [
+    "file converter",
+    "local conversion",
+    "ffmpeg",
+    "pandoc",
+    "imagemagick",
+    "soffice",
+    "7z",
+    "format transformation",
+    "privacy"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "route_diagnosis": "Analyzes the safest local conversion path and expected fidelity tradeoffs.",
+    "local_orchestration": "Uses host-available local binaries to perform conversions when supported.",
+    "batch_processing": "Handles multi-file transformation workflows with local toolchains.",
+    "fallback_planning": "Provides honest local fallback routes when required tools are missing.",
+    "fidelity_warnings": "Flags lossy, structural, partial-fidelity, and unsupported conversion paths."
+  },
+  "triggers": [
+    "convert file",
+    "change format",
+    "transcode video",
+    "convert audio",
+    "convert docx to pdf",
+    "convert images",
+    "extract archive",
+    "format compatibility"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {
+      "bins": [
+        "ffmpeg",
+        "pandoc",
+        "magick",
+        "soffice",
+        "7z"
+      ],
+      "env": []
+    }
+  }
+}

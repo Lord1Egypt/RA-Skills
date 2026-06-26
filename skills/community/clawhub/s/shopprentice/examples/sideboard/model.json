@@ -1,0 +1,76 @@
+{
+  "deps": [
+    {
+      "body": "Side_Left",
+      "ref": "origin"
+    },
+    {
+      "body": "Side_Right",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Bottom",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Div_Left",
+      "ref": "Bottom"
+    },
+    {
+      "body": "Div_Right",
+      "ref": "Bottom"
+    },
+    {
+      "body": "Top",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Kick_Front",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Kick_Back",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "Kick_Left",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "Kick_Right",
+      "ref": "Kick_Left"
+    },
+    {
+      "body": "Door_Left",
+      "ref": "Div_Left"
+    },
+    {
+      "body": "Door_Right",
+      "ref": "Div_Right"
+    },
+    {
+      "body": "dd_Front",
+      "ref": "Div_Left"
+    },
+    {
+      "body": "dd_Back",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Left",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Right",
+      "ref": "dd_Left"
+    },
+    {
+      "body": "dd_Bottom",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "BackPanel",
+      "ref": "Bottom"
+    }
+  ]
+}

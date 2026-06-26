@@ -1,0 +1,22 @@
+{
+  "name": "local-skill-installer",
+  "title": "Local Skill Installer",
+  "version": "1.0.0",
+  "description": "Install a local OpenClaw skill from a zip file by unzipping, validating, moving it into the active Skills directory, and verifying the result.",
+  "author": "Alex + ChatGPT",
+  "entry": "SKILL.md",
+  "category": "utility",
+  "tags": [
+    "openclaw",
+    "skill",
+    "installer",
+    "local",
+    "utility"
+  ],
+  "license": "MIT",
+  "visibility": "public",
+  "notes": [
+    "This is a conservative metadata file prepared for ClawHub packaging.",
+    "If ClawHub requires a stricter schema, adjust keys to the platform's exact validator output."
+  ]
+}

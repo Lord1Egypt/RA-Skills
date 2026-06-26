@@ -1,0 +1,4 @@
+interface:
+  display_name: "Promo Video Maker"
+  short_description: "Run one-shot or project-based video production with an internal creative team."
+  default_prompt: "Use $promo-video-maker to produce a video deliverable or manage a project flow with quoting, writing, design, storyboard, audio, generation, and workspace handoff."

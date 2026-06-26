@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-03-21T11:04:10.657092",
+  "data_source": "AkShare真实涨停股数据",
+  "n_samples": 305,
+  "n_features": 10,
+  "selected_features": [
+    "change_pct",
+    "turnover_rate",
+    "day_of_week",
+    "is_monday",
+    "relative_to_market",
+    "amount_rank",
+    "turnover_rank",
+    "change_rank",
+    "momentum_score",
+    "strength_score"
+  ],
+  "test_r2": 0.9817916877096491,
+  "test_mae": 0.08730128316383848,
+  "test_accuracy": 1.0,
+  "cv_r2_mean": -1.5594402462757397,
+  "cv_r2_std": 3.1338540731782456,
+  "train_r2": 0.9622902192865493,
+  "overfitting": -0.019501468423099744
+}

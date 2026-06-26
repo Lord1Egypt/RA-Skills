@@ -1,35 +1,276 @@
 ---
-name: "Rrbdagent"
+name: "rrbdagent"
 description: "OpenClaw skill for RRBD Admin项目。当用户需要通过自然语言对话执行API调用、自动化操作或系统任务时调用。"
-category: "software-development"
-source: "ClawHub"
-tags: [api, digital-human, video]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rrbdagent"
-sourceUrl: "https://clawhub.ai/skills/rrbdagent"
 ---
 
-# Rrbdagent
+# RRBD Admin项目智能助手
 
-> OpenClaw skill for RRBD Admin项目。当用户需要通过自然语言对话执行API调用、自动化操作或系统任务时调用。
+本技能提供与RRBD Admin项目后端API交互和自动化操作的功能，支持通过自然语言对话来执行各种操作，特别是数字人形象管理相关功能。
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rrbdagent`
-- **Source URL:** [https://clawhub.ai/skills/rrbdagent](https://clawhub.ai/skills/rrbdagent)
+## 项目结构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rrbdagent
 ```
+rrbdagent/
+├── rrbd-admin-aishijie/    # 前端参考代码（不归属技能包）
+└── skills/
+    └── rrbdagent/
+        ├── SKILL.md                # 技能文档
+        ├── config.json             # 配置文件
+        └── scripts/                # Python脚本目录
+            ├── api_client.py       # API客户端
+            ├── test_login.py       # 登录测试脚本
+            ├── test_virtualman.py  # 数字人形象测试脚本
+            └── config.json         # 配置文件
+```
+
+## 核心功能
+
+### 多轮对话能力
+- **智能会话管理**：支持多轮对话，当用户请求需要登录的操作时，自动引导用户输入账号密码
+- **上下文保持**：保持对话上下文，支持分步收集信息
+- **智能意图识别**：能够识别自然语言表达的意图
+
+### 数字人形象管理
+- **形象列表查询**：查询用户的数字人形象列表
+- **详细信息展示**：以表格形式展示数字人形象的详细信息
+- **状态过滤**：支持按状态筛选数字人形象
+
+### 视频创建
+- **智能视频生成**：根据用户提供的文案创建视频
+- **智能创作**：使用智能创作模式，自动选择模板
+- **模板选择**：随机获取一个模板用于视频创建
+- **自动选择资源**：默认选择第一个数字人形象和声音
+- **异步状态检查**：自动检查视频创建状态，等待1-3分钟完成
+- **视频URL获取**：完成后自动获取视频URL地址
+- **参数配置**：支持设置视频比例、时长等参数
+
+### API集成
+- **真实API调用**：直接调用后端真实API，非模拟数据
+- **认证管理**：自动处理登录和token管理
+- **错误处理**：友好的错误提示和异常处理
+
+### 自动化脚本
+- **Python脚本**：使用Python脚本执行自动化操作
+- **配置管理**：通过JSON配置文件管理API设置
+- **测试工具**：提供测试脚本验证功能
+
+## 自然语言交互能力
+
+### 支持的自然语言指令
+
+#### 用户管理
+- "登录系统"
+- "获取我的用户信息"
+- "更新我的昵称为测试用户"
+- "查看我的子账号列表"
+- "创建一个新的子账号"
+
+#### 数字人管理
+- "查询我的数字人形象列表"
+- "用rrbdagent帮我去查询下我的账号里面的形象有哪些？"
+- "查看我有哪些数字人形象"
+
+#### 视频管理
+- "创建一个新的视频组"
+- "上传视频到视频库"
+- "查看我的视频列表"
+- "删除指定的视频"
+- "下载视频"
+- "创建一个视频，文案是：今天天气真好"
+- "用默认形象和声音创建视频，内容是：欢迎使用AI视频生成"
+- "帮我生成一个视频，文案是：这是一个测试视频"
+
+#### AI服务
+- "获取AI模型列表"
+- "创建一个AI作品"
+- "使用AI生成文案"
+
+#### 任务管理
+- "创建一个新任务"
+- "查看任务列表"
+- "更新任务状态"
+
+#### 财务操作
+- "查看我的钱包余额"
+- "申请提现"
+- "查看佣金记录"
+
+## 技术实现
+
+### 自然语言处理流程
+1. **意图识别**：分析用户输入，识别用户意图
+2. **参数提取**：从用户输入中提取相关参数
+3. **会话管理**：处理多轮对话，收集必要信息
+4. **API映射**：将意图映射到相应的API端点
+5. **请求构建**：构建API请求参数和头部
+6. **执行调用**：发送API请求并处理响应
+7. **结果反馈**：将API响应转化为自然语言反馈给用户
+
+### API配置
+
+#### 基础设置
+- **基础URL**：`https://rrbd20.yzidea.net/api`
+- **认证方式**：使用 `Authorization` 头部携带token
+- **租户ID**：使用 `X-Tenant-ID` 头部，默认值为 `3`
+- **请求超时**：120秒
+
+#### 核心API端点
+- `/user/login/pc` - 用户登录
+- `/user/user/userInfo` - 获取用户信息
+- `/digital/virtualMan/page` - 获取数字人形象列表
+- `/digital/voice/page` - 获取声音列表
+- `/digital/template/page` - 获取模板列表
+- `/digital/video/videoCreate` - 创建视频
+- `/digital/video/detail` - 获取视频状态
+
+## 配置文件
+
+项目使用 `skills/rrbdagent/config.json` 配置文件管理基础设置：
+
+```json
+{
+  "api": {
+    "base_url": "https://rrbd20.yzidea.net/api",
+    "tenant_id": "3"
+  },
+  "login": {
+    "default_username": "",
+    "default_password": ""
+  },
+  "endpoints": {
+    "login": "/user/login/pc",
+    "user_info": "/user/user/userInfo",
+    "virtual_man_list": "/digital/virtualMan/page",
+    "voice_list": "/digital/voice/page",
+    "video_create": "/digital/video/videoCreate",
+    "video_normal_create": "/digital/video/normalVideoCreate"
+  }
+}
+```
+
+**注意：** 首次使用时，系统会提示用户输入手机号和密码，并自动保存到配置文件中。
+
+## 自动化脚本
+
+### Python脚本
+- **api_client.py**：API客户端，处理登录和API调用
+- **test_login.py**：测试登录功能
+- **test_virtualman.py**：测试数字人形象列表查询
+- **test_video_create.py**：测试视频创建功能
+
+### 使用方法
+1. **测试登录**：`python skills\rrbdagent\scripts\test_login.py`
+2. **查询数字人形象**：`python skills\rrbdagent\scripts\test_virtualman.py`
+3. **测试视频创建**：`python skills\rrbdagent\scripts\test_video_create.py`
+
+## 使用示例
+
+### 自然语言交互示例
+
+#### 数字人形象查询
+```
+用户：用rrbdagent帮我去查询下我的账号里面的形象有哪些？
+助手：请提供您的账号（手机号）
+用户：18098901246
+助手：请提供您的密码
+用户：123456
+助手：登录成功！
+助手：您的数字人形象列表：
+- 姐姐3333
+- 唐总数字人
+- 李总办公室
+- 李红AI0529
+- 李红数字人123
+- 黎总数字人2
+- 李红数字人
+- 王姐沙发
+- 王姐数字人
+- 王姐数字人
+- 端姐漂亮版
+- 端姐数字人222
+- 张姐说一物一码
+- 张姐数字人
+- 张总视频
+- 张总
+- 鸡蛋项目
+- 老曾情感故事2
+- 老曾情感故事
+- 老曾讲故事
+- 测试
+- 老曾极速版
+```
+
+#### 登录操作
+```
+用户：登录系统，账号是18098901246，密码是123456
+助手：正在执行登录操作...
+助手：登录成功！您已成功登录系统。
+```
+
+#### 获取用户信息
+```
+用户：获取我的用户信息
+助手：正在获取您的用户信息...
+助手：您的用户信息如下：
+- 用户名：18098901246
+- 昵称：测试用户
+- ID：1881009417432883202
+```
+
+#### 创建视频
+```
+用户：创建一个视频，文案是：今天天气真好
+助手：请提供您的账号（手机号）
+用户：18098901246
+助手：请提供您的密码
+用户：123456
+助手：登录成功！
+助手：正在获取数字人形象列表...
+助手：默认选择数字人：姐姐3333
+助手：正在获取声音列表...
+助手：默认选择声音：默认女声
+助手：正在创建视频...
+助手：视频创建成功！
+助手：视频ID：123456789
+助手：视频标题：AI生成视频
+```
+
+## 触发条件
+
+当以下情况时调用此技能：
+- 用户使用自然语言询问如何执行系统操作
+- 用户要求执行具体的API调用
+- 用户需要自动化完成一系列操作
+- 用户询问系统状态或数据
+- 用户需要故障排除或技术支持
+- 用户询问数字人形象相关信息
+
+## 依赖项
+
+- **后端**：带有JWT认证的RESTful API
+- **自然语言处理**：意图识别和实体提取
+- **Python**：requests 库
+- **环境**：Python >= 3.6
+
+## 安全考虑
+
+- 所有API请求包含适当的认证头部
+- Token管理遵循安全实践
+- 通过X-Tenant-ID头部维护租户隔离
+- 敏感操作需要适当的授权
+- 用户输入验证，防止恶意请求
+- 错误信息脱敏，保护系统信息
+
+## 扩展能力
+
+- **自定义指令**：支持用户定义常用操作的快捷指令
+- **批量操作**：支持一次性执行多个相关操作
+- **定时任务**：支持设置定时执行的任务
+- **多语言支持**：支持中文和英文自然语言输入
+- **个性化配置**：根据用户偏好调整响应方式
+- **脚本扩展**：通过Python脚本扩展功能
+
+## 集成方式
+
+- **自动化脚本**：作为自动化脚本的一部分使用
+- **Python脚本**：通过Python脚本执行自动化操作

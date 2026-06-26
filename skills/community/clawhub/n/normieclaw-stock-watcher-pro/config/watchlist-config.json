@@ -1,0 +1,76 @@
+{
+  "_comment": "Stock Watcher Pro — Configuration File. Edit these settings to customize your experience.",
+
+  "timezone": "America/New_York",
+  "_timezone_note": "Your local timezone. Briefing times are converted from ET to this timezone. Use IANA format (e.g., America/Chicago, America/Denver, America/Los_Angeles, Europe/London).",
+
+  "briefing_schedule": {
+    "pre_market": {
+      "enabled": true,
+      "time": "06:00",
+      "_note": "Local time. Default 6:00 AM — gives you time to read before the 9:30 AM ET open."
+    },
+    "mid_day": {
+      "enabled": true,
+      "time": "12:30",
+      "_note": "Eastern Time. Catches the midday pulse."
+    },
+    "post_market": {
+      "enabled": true,
+      "time": "16:30",
+      "_note": "Eastern Time. Right after the close."
+    },
+    "weekly_wrap": {
+      "enabled": true,
+      "day": "friday",
+      "_note": "Appended to Friday's post-market briefing."
+    }
+  },
+
+  "alert_thresholds": {
+    "filing_impact_alert": 7,
+    "_filing_note": "Impact score (1-10) that triggers an immediate alert instead of waiting for the next briefing. Default 7 = material events only.",
+
+    "thesis_change_alert": true,
+    "_thesis_note": "Alert when a thesis status changes (e.g., bullish → weakening). Set to false to only see thesis changes in briefings.",
+
+    "insider_trade_minimum_usd": 100000,
+    "_insider_note": "Minimum dollar value of insider transactions (Form 4) to include in briefings. Filters out routine small grants."
+  },
+
+  "edgar_settings": {
+    "check_interval_hours": 2,
+    "_interval_note": "How often to check EDGAR for new filings during market hours. Default every 2 hours.",
+
+    "forms_monitored": ["8-K", "10-K", "10-Q", "4", "DEF 14A"],
+    "_forms_note": "SEC form types to monitor. 8-K (current events), 10-K (annual), 10-Q (quarterly), 4 (insider trades), DEF 14A (proxy).",
+
+    "rate_limit_delay_ms": 500,
+    "_rate_note": "Milliseconds between EDGAR API requests. SEC requires max 10 req/sec. 500ms is conservative and safe.",
+
+    "user_agent_email": "",
+    "_email_note": "SEC requires a valid contact email in the User-Agent header. Set this to your email address."
+  },
+
+  "source_settings": {
+    "rediscovery_interval_days": 30,
+    "_rediscovery_note": "How often to re-run source discovery for each ticker. Default monthly.",
+
+    "health_check_day": "sunday",
+    "_health_note": "Day of week to run source health checks (verify URLs still work, update quality scores).",
+
+    "min_quality_score": 20,
+    "_quality_note": "Sources below this score are flagged for removal. Scale is 0-100."
+  },
+
+  "display_preferences": {
+    "briefing_format": "structured",
+    "_format_note": "Options: 'structured' (emoji headers, sections) or 'compact' (dense paragraph style).",
+
+    "include_competitor_signals": true,
+    "_competitor_note": "Include competitor news in briefings. Set to false if you only want direct holdings coverage.",
+
+    "max_news_items_per_ticker": 3,
+    "_max_note": "Maximum news items per ticker in each briefing. Keeps briefings scannable."
+  }
+}

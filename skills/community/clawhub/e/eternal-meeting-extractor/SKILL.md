@@ -1,35 +1,31 @@
 ---
-name: "Eternal Meeting Extractor"
-description: "Extracts summaries, decisions, action items, key points, questions, and attendees from meeting transcripts or notes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eternal-meeting-extractor"
-sourceUrl: "https://clawhub.ai/skills/eternal-meeting-extractor"
+name: meeting-extractor
+description: Extract action items, decisions, and key points from meeting transcripts or notes. Use when the user has meeting notes, call transcripts, or recorded meeting text and wants: action items extracted, decisions highlighted, summary generated, or follow-up tasks identified. Triggers on "summarize meeting", "extract action items", "meeting notes", "what were the decisions", "meeting recap".
 ---
 
-# Eternal Meeting Extractor
+# Meeting Extractor
 
-> Extracts summaries, decisions, action items, key points, questions, and attendees from meeting transcripts or notes.
+Parse meeting transcripts into structured summaries with action items.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eternal-meeting-extractor`
-- **Source URL:** [https://clawhub.ai/skills/eternal-meeting-extractor](https://clawhub.ai/skills/eternal-meeting-extractor)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/eternal-meeting-extractor
+python3 scripts/meeting.py extract transcript.txt
+python3 scripts/meeting.py extract --format json transcript.txt
+python3 scripts/meeting.py extract --followup transcript.txt
 ```
+
+## What It Extracts
+
+- **Summary** — 3-5 sentence overview
+- **Decisions** — Agreed-upon choices
+- **Action Items** — Tasks with owners and deadlines
+- **Key Points** — Important discussion topics
+- **Questions** — Unresolved questions needing answers
+- **Attendees** — Who participated
+
+## Output Formats
+
+- Text (default) — Human-readable summary
+- JSON — Machine-readable for task systems
+- Markdown — For documentation/wiki

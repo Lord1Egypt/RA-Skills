@@ -1,35 +1,58 @@
 ---
-name: "学习指南网页生成器"
-description: "制作高度互动、排版疏朗、适合讲师演示与学生自测的单文件 HTML 学习指南网页。当用户要求“制作学习指南”、“生成互动教学页面”、“生成沉浸式网页”、将复习资料做成网页、或提供教学/考前突击内容要求排版为互动网页时，请立刻触发此技能。哪怕用户没有明确提到“学习指南”，只要涉及到把笔记、真题或知识点生成演示版网页或..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/study-guide-generator"
-sourceUrl: "https://clawhub.ai/skills/study-guide-generator"
+name: study-guide-generator
+description: 制作高度互动、排版疏朗、适合讲师演示与学生自测的单文件 HTML 学习指南网页。当用户要求“制作学习指南”、“生成互动教学页面”、“生成沉浸式网页”、将复习资料做成网页、或提供教学/考前突击内容要求排版为互动网页时，请立刻触发此技能。哪怕用户没有明确提到“学习指南”，只要涉及到把笔记、真题或知识点生成演示版网页或卡片进行教学，也必须强制使用本技能。
 ---
 
-# 学习指南网页生成器
+# 交互式学习指南网页生成器 (Interactive Study Guide Generator)
 
-> 制作高度互动、排版疏朗、适合讲师演示与学生自测的单文件 HTML 学习指南网页。当用户要求“制作学习指南”、“生成互动教学页面”、“生成沉浸式网页”、将复习资料做成网页、或提供教学/考前突击内容要求排版为互动网页时，请立刻触发此技能。哪怕用户没有明确提到“学习指南”，只要涉及到把笔记、真题或知识点生成演示版网页或...
+你的角色是高级交互式教学网页设计师和前端开发专家。你的任务是根据用户提供的文本内容（如考研资料、真题解析、复习提纲等），将其转化为高度互动、排版疏朗、适合讲师演示与学生自测的单文件 HTML 网页。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/study-guide-generator`
-- **Source URL:** [https://clawhub.ai/skills/study-guide-generator](https://clawhub.ai/skills/study-guide-generator)
+## 📍 核心设计理念 (Core Principles)
+1. **拒绝密集文字（留白呼吸感）**：绝对不要堆砌大段文字。使用大字号、宽行距、宽内边距（如 `p-8`）。内容容器推荐使用 `max-w-5xl` 并在屏幕居中，确保投影或共享屏幕时清晰易读。
+2. **讲师/演示者友好**：加入明确的“互动提示”标签（如：“互动：点击下方按钮”），方便讲师引导学生。
+3. **沉浸式交互（化被动为主动）**：知识点不能直接全部摊开，必须通过“点击、切换、展开”等交互动作逐步曝光，以维持学习者的注意力。
+4. **单文件交付**：所有的 HTML、Tailwind CSS（通过 CDN）、FontAwesome 图标（通过 CDN）和 Vanilla JavaScript 逻辑必须封装在**同一个 HTML 文件**中。零外部依赖（除了 CDN 链接）。
 
-## Overview
+## 🎨 视觉与 UI 规范 (UI Guidelines)
+- **技术栈**：严格使用 Tailwind CSS (CDN `https://cdn.tailwindcss.com`) 进行样式编写。使用 FontAwesome (`https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css`) 作为图标库。
+- **配色系统**（可以在 `<script>` 中配置 `tailwind.config` theme）：
+  - **Primary (主色)**：用于核心按钮、重要标题、高亮边框。
+  - **Secondary (辅助色)**：用于渐变头部或次要强调。
+  - **Accent (点缀色)**：用于金句底色、重点文字标记（如亮黄色高亮）。
+  - **Background (背景)**：使用极浅的颜色（如 `#f8fafc` 或配套极浅主题色）作为大背景。
+- **卡片设计 (Glass Card)**：所有核心模块必须包裹在圆角大阴影边框的卡片中。Tailwind 参考类名：`bg-white rounded-2xl shadow-lg border border-gray-100 p-8`。
+- **平滑过渡 (Transitions)**：所有的悬浮、点击、展开操作必须带有平滑动画。Tailwind 参考类名：`transition-all duration-300 ease-in-out`，推荐配合自定义的 css `@keyframes fadeIn` 动画类。
 
+## 🧩 必须掌握的 5 大核心交互组件 (Core Interactive Patterns)
+在生成网页时，请根据内容逻辑，强制使用以下一种或多种交互组件来重构和包装原始文本：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/study-guide-generator
-```
+1. **渐变沉浸式头部 (Immersive Header)**
+   - **适用场景**：网页最顶部的标题大屏海报区。
+   - **设计要求**：使用主色和辅助色构成对角线渐变 (`bg-gradient-to-br`)，文字居中且全白，加入大号图标或半透明背景纹理/图案作为点缀。增加一个带投影的“讲师/演示模式”徽章。
+
+2. **横向标签页切换 (Step Tabs)**
+   - **适用场景**：步骤说明、四大原则、并列的方法论等（需要替代原本的 1、2、3、4 长列表排版）。
+   - **交互逻辑**：顶部一排按钮，点击不同按钮，下方区域平滑显示对应的内容区块（一定要带有 `fade-in` 动画），隐藏其他区块。选中状态的按钮样式需突出。
+
+3. **情景连线高亮测试 (Scenario Highlighting)**
+   - **适用场景**：将“案例/场景”与“理论/知识点”匹配验证的随堂测试。
+   - **设计要求**：左侧/上方为几个“场景触发按钮”。右侧/下方为铺开的“知识点卡片网格”。
+   - **交互逻辑**：点击某个场景按钮时，使用 JavaScript 将对应的知识点卡片放大 (`scale-105`)、改变背景色并加上强调边框，同时将其他无关卡片恢复原状。
+
+4. **魔法反转/一键升级卷面 (Magic Reveal)**
+   - **适用场景**：对比“错误/低分示例”与“正确/高分示例”，或从干瘪的纲要展开为满分长篇方案。
+   - **设计要求**：初始状态只展示“基础状态”。下方专门放置一个极其醒目的“魔法按钮”（带有渐变色和悬浮放大效果，如“施展魔法：升级满分卷面”）。
+   - **交互逻辑**：点击按钮后，按钮文字变为“正在生成...”（模拟加载状态，通过 JS `setTimeout` 延迟约 500-800ms），随后按钮消失/下移，平滑向下展开本来隐藏的高级展示区块（带漂亮的高亮边框和强调背景色彩）。
+
+5. **互动自测翻牌 (Flip/Reveal Cards 或 手风琴 Accordion)**
+   - **适用场景**：问答题复习、简答题默写、考场急救指南。
+   - **设计要求**：标题明显地展示出题目。下方放置一个类似于“查看标准答案”的按钮。
+   - **交互逻辑**：点击按钮，带有 `fade-in` 动画向下展开答案区块。按钮文字变为“隐藏答案”且图标进行 toggle 切换。
+
+## ⚙️ JavaScript 开发规范
+- 所有的 JS 代码必须写在 `<body>` 结束标签之前的 `<script>` 标签内。
+- **严禁**依赖任何外部 JS 框架（如 Vue/React/jQuery），以彻底保证单文件的存粹与灵活。
+- 提倡纯使用 Vanilla JS 配合 DOM 操作和 Tailwind 类名切换（`classList.add`, `classList.remove`, `classList.toggle`）来实现极速的状态切换和动效过渡。
+
+## 📁 参考案例学习
+如果你需要参考一个完整的排版和高分交互代码示例，可以读取本技能目录下的 `examples/example-guide.html` 文件。它展示了以上所有的交互组件是如何融合在一个完美的单文件 HTML 结构中的。设计时请特别注意研究其 `<style>` 标签中关于 `.fade-in` 和 `.expand-content` 的 CSS 动画定义，以及底部精巧的 Vanilla JS 事件绑定实现。

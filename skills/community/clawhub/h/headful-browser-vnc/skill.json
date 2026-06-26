@@ -1,0 +1,36 @@
+{
+  "name": "headful-browser-vnc",
+  "version": "0.1.0",
+  "description": "Headful Chromium with VNC/noVNC operator UI and Chrome CDP exports (cookies, screenshots, outerHTML).",
+  "author": "Waylon Song",
+  "maintainer": "https://github.com/WaylonSong",
+  "homepage": "https://github.com/WaylonSong/headful-browser-vnc",
+  "license": "MIT",
+  "entrypoint": "SKILL.md",
+  "platforms": [
+    "linux"
+  ],
+  "tags": [
+    "browser",
+    "vnc",
+    "novnc",
+    "chromium",
+    "automation",
+    "cdp"
+  ],
+  "requires_privileges": [
+    "network",
+    "systemd (optional)",
+    "disk write (out/)",
+    "secret/material access (cookies, html)"
+  ],
+  "required_env": [
+    "VNC_PASSFILE",
+    "REMOTE_DEBUG_PORT",
+    "PROXY_URL",
+    "OUT_DIR",
+    "ALLOW_CHROME_FORCE_RESTART",
+    "CHROME_USER_DATA_DIR",
+    "VNC_IMPLEMENTATION"
+  ]
+}

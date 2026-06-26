@@ -1,0 +1,7 @@
+interface:
+  display_name: "KeplerJAI Bulletin Publish"
+  short_description: "用于 KeplerJAI 简讯采集、发布与汇总的技能包。"
+  default_prompt: "Use $keplerjai-bulletin-publish to run the KeplerJAI bulletin collection, validation, publish, and summary workflow."
+
+policy:
+  allow_implicit_invocation: true

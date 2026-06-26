@@ -1,0 +1,22 @@
+{
+  "name": "GitHub Issue Fix Planner",
+  "description": "Generate a step-by-step plan to fix a GitHub issue.",
+  "version": "1.0.0",
+  "entrypoint": "main.py",
+  "inputs": {
+    "issue_title": {
+      "type": "string",
+      "description": "Title of the GitHub issue"
+    },
+    "issue_description": {
+      "type": "string",
+      "description": "Description of the GitHub issue"
+    }
+  },
+  "outputs": {
+    "fix_plan": {
+      "type": "string",
+      "description": "Step-by-step fix plan"
+    }
+  }
+}

@@ -1,0 +1,195 @@
+[
+  {
+    "number": 1,
+    "category": "阶段 1：基础设施",
+    "task": "环境搭建任务 - 数据库架构、依赖等",
+    "steps": [
+      { "step": "初始化 Git 仓库并配置 .gitignore", "completed": false },
+      { "step": "创建并激活 Python 虚拟环境", "completed": false },
+      { "step": "创建 requirements.txt 或 pyproject.toml 并安装依赖 (FastAPI, SQLAlchemy, Pydantic, Alembic 等)", "completed": false },
+      { "step": "设计初始数据库 ER 图", "completed": false },
+      { "step": "配置数据库连接字符串和环境变量 (.env)", "completed": false },
+      { "step": "初始化 Alembic 迁移环境", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 2,
+    "category": "阶段 1：基础设施",
+    "task": "核心基础设施任务",
+    "steps": [
+      { "step": "搭建 FastAPI 应用骨架 (main.py)", "completed": false },
+      { "step": "配置全局日志系统 (Logging)", "completed": false },
+      { "step": "实现全局异常处理中间件", "completed": false },
+      { "step": "定义统一的 API 响应模型 (Response Model)", "completed": false },
+      { "step": "设置 CORS 和基础安全配置", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 3,
+    "category": "阶段 2：核心实现",
+    "task": "主要功能任务 1 (提案创建)",
+    "steps": [
+      { "step": "定义提案 (Proposal) 的 SQLAlchemy 模型", "completed": false },
+      { "step": "定义提案创建的 Pydantic Schema", "completed": false },
+      { "step": "实现创建提案的 Service 层逻辑", "completed": false },
+      { "step": "开发 POST /proposals API 接口", "completed": false },
+      { "step": "验证输入数据的有效性", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 4,
+    "category": "阶段 2：核心实现",
+    "task": "主要功能任务 2 (提案编辑与状态管理)",
+    "steps": [
+      { "step": "定义提案更新的 Pydantic Schema", "completed": false },
+      { "step": "实现更新提案状态的 Service 层逻辑", "completed": false },
+      { "step": "开发 PUT/PATCH /proposals/{id} API 接口", "completed": false },
+      { "step": "添加状态流转校验逻辑 (例如：草稿 -> 审核中)", "completed": false },
+      { "step": "确保只有拥有者或管理员可编辑", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 5,
+    "category": "阶段 2：核心实现",
+    "task": "主要功能任务 3 (提案查询与列表)",
+    "steps": [
+      { "step": "实现带有分页功能的查询 Service", "completed": false },
+      { "step": "开发 GET /proposals 列表接口", "completed": false },
+      { "step": "开发 GET /proposals/{id} 详情接口", "completed": false },
+      { "step": "添加筛选和排序功能 (如按时间、状态筛选)", "completed": false },
+      { "step": "优化数据库查询性能", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 6,
+    "category": "阶段 3：集成",
+    "task": "API 集成任务",
+    "steps": [
+      { "step": "集成用户认证系统 (获取当前用户)", "completed": false },
+      { "step": "对接外部通知服务 (如邮件或消息通知)", "completed": false },
+      { "step": "确保 API 鉴权机制正常工作", "completed": false },
+      { "step": "调试与其他微服务的接口调用", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 7,
+    "category": "阶段 3：集成",
+    "task": "UI 集成任务",
+    "steps": [
+      { "step": "开发提案列表前端页面", "completed": false },
+      { "step": "开发提案创建/编辑表单组件", "completed": false },
+      { "step": "对接后端 API 并处理加载状态", "completed": false },
+      { "step": "处理前端错误提示与交互反馈", "completed": false },
+      { "step": "完成端到端流程联调", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 8,
+    "category": "阶段 4：质量与文档",
+    "task": "核心业务逻辑单元测试",
+    "steps": [
+      { "step": "搭建 Pytest 测试框架", "completed": false },
+      { "step": "编写 Service 层业务逻辑测试用例", "completed": false },
+      { "step": "Mock 数据库会话和外部依赖", "completed": false },
+      { "step": "覆盖正常路径和异常边界情况", "completed": false },
+      { "step": "确保测试覆盖率达到目标", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 9,
+    "category": "阶段 4：质量与文档",
+    "task": "API 接口集成测试",
+    "steps": [
+      { "step": "配置测试数据库", "completed": false },
+      { "step": "编写 API 路由集成测试 (TestClient)", "completed": false },
+      { "step": "验证完整的请求-响应周期", "completed": false },
+      { "step": "测试权限控制和数据隔离", "completed": false },
+      { "step": "清理测试数据", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 10,
+    "category": "阶段 4：质量与文档",
+    "task": "更新 API 文档",
+    "steps": [
+      { "step": "完善 Pydantic 模型的 Field 描述", "completed": false },
+      { "step": "为 API 路由添加 summary 和 task", "completed": false },
+      { "step": "在 Swagger UI 中检查文档显示", "completed": false },
+      { "step": "添加示例请求和响应数据", "completed": false },
+      { "step": "导出 OpenAPI 规范文件", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 11,
+    "category": "阶段 4：质量与文档",
+    "task": "更新用户文档",
+    "steps": [
+      { "step": "编写功能使用手册", "completed": false },
+      { "step": "更新 README.md 的部署说明", "completed": false },
+      { "step": "记录环境变量配置说明", "completed": false },
+      { "step": "编写常见问题解答 (FAQ)", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 12,
+    "category": "阶段 5：部署",
+    "task": "数据库迁移",
+    "steps": [
+      { "step": "生成最终的 Alembic 迁移脚本", "completed": false },
+      { "step": "在本地/开发环境验证迁移脚本", "completed": false },
+      { "step": "备份目标数据库", "completed": false },
+      { "step": "执行数据库结构变更", "completed": false },
+      { "step": "验证数据完整性", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 13,
+    "category": "阶段 5：部署",
+    "task": "部署到预发布环境",
+    "steps": [
+      { "step": "构建 Docker 镜像或打包应用", "completed": false },
+      { "step": "更新预发布环境配置", "completed": false },
+      { "step": "部署新版本服务", "completed": false },
+      { "step": "检查服务健康状态", "completed": false },
+      { "step": "验证关键功能可用性", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 14,
+    "category": "阶段 5：部署",
+    "task": "验证测试",
+    "steps": [
+      { "step": "执行冒烟测试 (Smoke Test)", "completed": false },
+      { "step": "进行用户验收测试 (UAT)", "completed": false },
+      { "step": "检查日志监控是否有异常", "completed": false },
+      { "step": "验证性能指标是否符合预期", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 15,
+    "category": "阶段 5：部署",
+    "task": "部署到生产环境",
+    "steps": [
+      { "step": "制定发布计划和回滚策略", "completed": false },
+      { "step": "在生产环境执行数据库迁移", "completed": false },
+      { "step": "灰度发布或全量发布新版本", "completed": false },
+      { "step": "配置生产环境监控报警", "completed": false },
+      { "step": "进行线上最终验证", "completed": false }
+    ],
+    "passes": false
+  }
+]

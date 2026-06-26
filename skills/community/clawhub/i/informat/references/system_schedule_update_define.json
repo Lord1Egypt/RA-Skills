@@ -1,0 +1,96 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_schedule_update_define",
+    "description": "Update existing scheduled task definition. Must explicitly declare the fields to be modified in this update through updateFieldList.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Scheduled task ID"
+        },
+        "updateFieldList": {
+          "type": "array",
+          "description": "List of fields to be updated in this operation",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": "Scheduled task type. Can only fill in one of the following values: default (default periodic scheduling), cron (Cron expression scheduling, must provide cron field at the same time)."
+        },
+        "cron": {
+          "type": "string"
+        },
+        "invokeType": {
+          "type": "string",
+          "description": "Invocation type. Can only fill in one of the following values: automatic (call automation, must provide automaticId at the same time), script (call script, must provide scriptId and scriptFunc at the same time)."
+        },
+        "automaticId": {
+          "type": "string"
+        },
+        "scriptId": {
+          "type": "string"
+        },
+        "scriptFunc": {
+          "type": "string"
+        },
+        "schedulePeriod": {
+          "type": "string",
+          "description": "Scheduling period (used when type=default). Can only fill in one of the following values: day (every day), week (every week, with scheduleWeekList), dualweek (every two weeks, with scheduleWeekList), month (every month, with scheduleDayList), interval (by interval, with scheduleInterval)."
+        },
+        "scheduleWeekList": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          }
+        },
+        "scheduleDayList": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+          }
+        },
+        "scheduleTriggeredTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "scheduleInterval": {
+          "type": "integer"
+        },
+        "retryCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "misfireHandlingType": {
+          "type": "string"
+        },
+        "misfireThreshold": {
+          "type": "integer"
+        },
+        "isEnable": {
+          "type": "boolean"
+        },
+        "serverIdList": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "updateFieldList"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

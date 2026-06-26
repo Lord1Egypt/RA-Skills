@@ -1,0 +1,12 @@
+{
+  "name": "Soul Question",
+  "tagline": "Ask the questions you can't ask yourself",
+  "description": "You can't see your own blind spots. Soul Question reads your conversations, meeting notes, journals, or any text, and finds the cracks in your thinking — contradictions, untested assumptions, value-behavior gaps, frame locks. Then it turns those cracks into 1-3 questions that might change how you think. Not a coach. Not a summarizer. Just the questions you didn't know you needed to face.",
+  "category": "productivity",
+  "tags": ["reflection", "thinking", "metacognition", "questions", "blind-spots", "self-awareness"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/plaud/soul-question/issues",
+  "homepage": "https://github.com/plaud/soul-question"
+}

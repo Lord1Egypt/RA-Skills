@@ -1,0 +1,30 @@
+{
+  "name": "@openclaw/usdc-dance-evvm-payment",
+  "version": "1.0.0",
+  "description": "Pay with USDC.d via x402 protocol on Story Aeneid EVVM using Privy",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test"
+  },
+  "keywords": [
+    "openclaw",
+    "evvm",
+    "x402",
+    "usdc",
+    "payment",
+    "story-aeneid",
+    "layerzero",
+    "privy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^6.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.33",
+    "typescript": "^5.9.3"
+  }
+}

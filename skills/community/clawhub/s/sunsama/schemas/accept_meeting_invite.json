@@ -1,0 +1,14 @@
+{
+  "name": "accept_meeting_invite",
+  "description": "Accept a calendar meeting invite on behalf of the user. This commits the user's attendance and modifies their calendar. Confirm the event title, organizer, and date with the user before executing.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "eventId": {
+        "type": "string",
+        "description": "The ID of the calendar event"
+      }
+    },
+    "required": ["eventId"]
+  }
+}

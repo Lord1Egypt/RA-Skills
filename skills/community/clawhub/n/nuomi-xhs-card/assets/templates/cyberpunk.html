@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 赛博朋克风格 ===== */
+/* 为赛博朋克风格自定义波浪线颜色 */
+.card-cyberpunk .wavy-underline {
+  text-decoration-color: #00ffff;
+}
+
+/* 封面样式 */
+.card-cover-cyberpunk {
+  border-radius: 0;
+  background: #0d0e19;
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.2),
+    0 0 10px rgba(255, 0, 128, 0.2);
+  position: relative;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+
+  --highlight-color: #00ffff;
+  --highlight-bg-color: rgba(0, 255, 255, 0.2);
+}
+
+/* 故障线效果 */
+.card-cover-cyberpunk:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+}
+
+/* 顶部霓虹线 */
+.card-cover-cyberpunk:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 2);
+  background: linear-gradient(90deg, #ff0080, #00ffff);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+  z-index: 30;
+}
+
+.card-cover-cyberpunk .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 14, 25, 0.3),
+    rgba(13, 14, 25, 0.8)
+  );
+  z-index: 2;
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-cyberpunk .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(13, 14, 25, 0.95),
+    rgba(13, 14, 25, 0.8) 50%,
+    rgba(13, 14, 25, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+  z-index: 10;
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-cyberpunk .cover-content {
+  background: rgba(13, 14, 25, 0.9);
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  padding: calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 10;
+}
+
+/* 标题装饰 - 故障效果 */
+.card-cover-cyberpunk .cover-title {
+  color: #fff;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 3.75);
+  text-shadow:
+    0 0 5px rgba(0, 255, 255, 0.7),
+    0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.card-cover-cyberpunk .cover-title:before {
+  content: attr(data-text);
+  position: absolute;
+  left: calc(var(--spacing) * -0.5);
+  top: 0;
+  color: rgba(255, 0, 128, 0.8);
+  overflow: hidden;
+  clip-path: rect(20px 990px 40px 0px);
+  text-shadow: none;
+  opacity: 0.8;
+}
+
+.card-cover-cyberpunk .cover-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(90deg, #ff0080, transparent);
+}
+
+.card-cover-cyberpunk .cover-description {
+  color: #e0e0e0;
+}
+
+.card-cover-cyberpunk .cover-tag {
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  border-radius: 0;
+
+  font-size: calc(var(--spacing) * 3);
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.card-cover-cyberpunk .cover-tag:hover {
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+.card-cover-cyberpunk .cover-date {
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: calc(var(--spacing) * 3);
+}
+
+/* 添加扫描线效果 */
+.card-cover-cyberpunk .cover-image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c4S8BAAAAAXklEQVR4nO3RMQoAIAxDwYhYrNtf8f//dBEHQRvBQTuDtcgAAAAAAK8DUmtC0M02Y0IYJ0yYMGHChAkTJkyYMGHChAkTJkyYMGHChAkTJkyYMGHChAkTJkzY3TaD2zqpBV+pIGXnAAAAAElFTkSuQmCC");
+  opacity: 0.05;
+  z-index: 6;
+  pointer-events: none;
+}
+/* 卡片样式 */
+.card-cyberpunk {
+  width: 100%;
+  background: #0d0e19;
+  padding: calc(var(--spacing) * 7.5) calc(var(--spacing) * 6.25);
+  font-family: "Rajdhani", "Orbitron", "PingFang SC", sans-serif;
+  position: relative;
+  box-shadow:
+    0 0 25px rgba(0, 255, 255, 0.2),
+    0 0 5px rgba(255, 0, 128, 0.15);
+  color: #e0e0e0;
+}
+
+/* 背景网格效果 */
+.card-cyberpunk:before {
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(rgba(18, 16, 36, 0.8) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 16, 36, 0.8) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+/* 故障艺术装饰 */
+.card-cyberpunk:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: calc(var(--spacing) * 2.5);
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(0, 255, 255, 0.8) 15%,
+    rgba(255, 0, 128, 0.8) 25%,
+    transparent 35%
+  );
+  opacity: 0.7;
+  filter: blur(1px);
+  transform: skewX(-20deg);
+  /* animation: glitch 10s infinite linear; */
+  z-index: 2;
+}
+
+@keyframes glitch {
+  0% {
+    top: calc(var(--spacing) * -2.5);
+    opacity: 0.7;
+  }
+  20% {
+    top: calc(var(--spacing) * 10);
+    opacity: 0.4;
+  }
+  40% {
+    top: calc(var(--spacing) * 20);
+    opacity: 0.6;
+  }
+  60% {
+    top: calc(var(--spacing) * 30);
+    opacity: 0.3;
+  }
+  80% {
+    top: calc(var(--spacing) * 45);
+    opacity: 0.5;
+  }
+  100% {
+    top: calc(var(--spacing) * 60);
+    opacity: 0;
+  }
+}
+
+.card-cyberpunk .card-content-inner {
+  position: relative;
+  z-index: 3;
+}
+
+.card-cyberpunk .card-content {
+  position: relative;
+  background: rgba(13, 14, 25, 0.7);
+  padding: calc(var(--spacing) * 5);
+  height: calc(100% - calc(var(--spacing) * 17.75));
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1) inset;
+}
+
+/* 主标题样式 - 赛博朋克风格 */
+.card-cyberpunk h1 {
+  font-size: calc(var(--spacing) * 7);
+  position: relative;
+  color: #fff;
+  margin: 0 0 calc(var(--spacing) * 6.25) 0;
+  font-weight: 700;
+
+  padding: 0 0 calc(var(--spacing) * 2.5) 0;
+  text-shadow:
+    0 0 5px rgba(0, 255, 255, 0.7),
+    0 0 10px rgba(0, 255, 255, 0.5);
+  border-bottom: 2px solid rgba(255, 0, 128, 0.5);
+}
+
+/* 标题故障效果 */
+.card-cyberpunk h1:before {
+  content: attr(data-text);
+  position: absolute;
+  left: calc(var(--spacing) * -0.5);
+  top: 0;
+  color: rgba(255, 0, 128, 0.8);
+  overflow: hidden;
+  clip-path: rect(20px 990px 40px 0px);
+  text-shadow: none;
+  opacity: 0.8;
+}
+
+/* 副标题样式 */
+.card-cyberpunk h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #00ffff;
+  margin: calc(var(--spacing) * 6.25) 0 calc(var(--spacing) * 3.75) 0;
+  font-weight: 600;
+  position: relative;
+
+  padding-left: calc(var(--spacing) * 3.75);
+  border-left: 3px solid rgba(255, 0, 128, 0.7);
+}
+
+/* 段落样式 */
+.card-cyberpunk p {
+  color: #e0e0e0;
+  font-size: inherit;
+  text-align: justify;
+}
+
+.card-cyberpunk strong {
+  color: #ff0080;
+  font-weight: 700;
+  text-shadow: 0 0 3px rgba(255, 0, 128, 0.5);
+}
+
+.card-cyberpunk em {
+  color: #00ffff;
+  font-style: italic;
+  text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
+}
+
+.card-cyberpunk p a {
+  color: #00ffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0 calc(var(--spacing) * 0.75);
+}
+
+.card-cyberpunk p a:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.7);
+}
+
+.card-cyberpunk p a:before {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -0.5);
+  left: 0;
+  width: 100%;
+  height: calc(var(--spacing) * 0.25);
+  background: rgba(0, 255, 255, 0.5);
+  animation: link-glitch 2s infinite;
+}
+
+@keyframes link-glitch {
+  0% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  85% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(3px);
+  }
+  95% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* 有序列表样式 */
+.card-cyberpunk li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 3.75);
+  color: #e0e0e0;
+  line-height: 1.6;
+  font-size: inherit;
+}
+
+/* 序号赛博朋克风格 */
+.card-cyberpunk li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -9);
+  top: calc(var(--spacing) * -0.5);
+  width: calc(var(--spacing) * 7);
+  height: calc(var(--spacing) * 7);
+  background: rgba(255, 0, 128, 0.2);
+  color: #00ffff;
+  text-align: center;
+  line-height: calc(var(--spacing) * 7);
+  font-weight: bold;
+  font-size: calc(var(--spacing) * 3.5);
+  border: 1px solid rgba(255, 0, 128, 0.5);
+  box-shadow: 0 0 5px rgba(255, 0, 128, 0.3);
+}
+
+/* 小标题样式 */
+.card-cyberpunk h3 {
+  display: block;
+  color: #00ffff;
+  margin: calc(var(--spacing) * 5) 0 calc(var(--spacing) * 2.5) 0;
+  font-size: calc(var(--spacing) * 4);
+  font-weight: 700;
+
+  text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
+}
+
+/* 表格样式 */
+.card-cyberpunk table {
+  border-collapse: collapse;
+  margin: calc(var(--spacing) * 5) 0;
+  width: 100%;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  background: rgba(13, 14, 25, 0.5);
+}
+
+.card-cyberpunk th {
+  background-color: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  padding: calc(var(--spacing) * 2.5);
+  text-align: left;
+  font-weight: 600;
+  font-size: calc(var(--spacing) * 3.5);
+  letter-spacing: 1px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.card-cyberpunk td {
+  color: #e0e0e0;
+  padding: calc(var(--spacing) * 2.5);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.card-cyberpunk tr:nth-child(even) {
+  background-color: rgba(0, 255, 255, 0.05);
+}
+
+/* 代码块样式 */
+.card-cyberpunk pre {
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  background-color: rgba(13, 14, 25, 0.7);
+  padding: calc(var(--spacing) * 3.75);
+  overflow-x: auto;
+  font-size: calc(var(--spacing) * 3.5);
+  color: #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1) inset;
+}
+
+.card-cyberpunk code:not(pre code) {
+  background-color: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1);
+  font-size: calc(var(--spacing) * 3.6);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+/* 引用块样式 */
+.card-cyberpunk blockquote {
+  background-color: rgba(255, 0, 128, 0.1);
+  border-left: 3px solid rgba(255, 0, 128, 0.5);
+  color: #e0e0e0;
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 5) 0;
+  font-style: italic;
+  position: relative;
+}
+
+.card-cyberpunk blockquote:before {
+  content: ">";
+  position: absolute;
+  top: calc(var(--spacing) * 1.25);
+  left: calc(var(--spacing) * 1.25);
+  color: rgba(255, 0, 128, 0.3);
+  font-size: calc(var(--spacing) * 6);
+}
+
+.card-content ol,
+.card-content ul {
+  padding-left: calc(var(--spacing) * 10);
+}
+.card-cyberpunk ul > li:before {
+  content: ">";
+  font-size: calc(var(--spacing) * 3);
+  font-weight: bold;
+}
+
+/* 水平线样式 */
+.card-cyberpunk hr {
+  height: calc(var(--spacing) * 0.5);
+  border: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.5),
+    rgba(255, 0, 128, 0.5),
+    transparent
+  );
+  margin: calc(var(--spacing) * 6.25) 0;
+}
+
+/* 图片样式 */
+.card-cyberpunk img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  position: relative;
+  filter: contrast(1.1) brightness(1.1);
+}
+
+/* 图片故障效果 */
+.card-cyberpunk img:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 128, 0.2),
+    rgba(0, 255, 255, 0.2)
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* 添加赛博朋克风格的页脚装饰 */
+.card-cyberpunk .card-footer {
+  text-align: right;
+  margin-top: calc(var(--spacing) * 7.5);
+  font-size: calc(var(--spacing) * 3);
+  color: rgba(0, 255, 255, 0.7);
+
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  padding-top: calc(var(--spacing) * 3.75);
+}
+
+/* 添加故障文本效果类 */
+.card-cyberpunk .glitch-text {
+  position: relative;
+  color: #00ffff;
+}
+
+.card-cyberpunk .glitch-text:before,
+.card-cyberpunk .glitch-text:after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-cyberpunk .glitch-text:before {
+  left: calc(var(--spacing) * 0.5);
+  text-shadow: -1px 0 rgba(255, 0, 128, 0.7);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim-1 5s infinite linear alternate-reverse;
+}
+
+.card-cyberpunk .glitch-text:after {
+  left: calc(var(--spacing) * -0.5);
+  text-shadow: -1px 0 rgba(0, 255, 255, 0.7);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim-2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip: rect(27px, 9999px, 30px, 0);
+  }
+  10% {
+    clip: rect(42px, 9999px, 78px, 0);
+  }
+  20% {
+    clip: rect(13px, 9999px, 10px, 0);
+  }
+  30% {
+    clip: rect(24px, 9999px, 26px, 0);
+  }
+  40% {
+    clip: rect(76px, 9999px, 81px, 0);
+  }
+  50% {
+    clip: rect(35px, 9999px, 39px, 0);
+  }
+  60% {
+    clip: rect(57px, 9999px, 62px, 0);
+  }
+  70% {
+    clip: rect(10px, 9999px, 16px, 0);
+  }
+  80% {
+    clip: rect(40px, 9999px, 44px, 0);
+  }
+  90% {
+    clip: rect(56px, 9999px, 59px, 0);
+  }
+  100% {
+    clip: rect(89px, 9999px, 98px, 0);
+  }
+}
+
+/* 添加霓虹文本效果 */
+.card-cyberpunk .neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 15px rgba(0, 255, 255, 0.5),
+    0 0 20px rgba(0, 255, 255, 0.4),
+    0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* 添加终端风格代码块 */
+.card-cyberpunk .terminal {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  padding: calc(var(--spacing) * 3.75);
+  color: #00ffff;
+  position: relative;
+  margin: calc(var(--spacing) * 5) 0;
+}
+
+.card-cyberpunk .terminal:before {
+  content: "> ";
+  color: #00ffff;
+  position: absolute;
+  top: calc(var(--spacing) * 3.75);
+  left: calc(var(--spacing) * 3.75);
+}
+
+.card-cyberpunk .terminal code {
+  display: block;
+  padding-left: calc(var(--spacing) * 3.75);
+  line-height: 1.5;
+}
+
+/* 添加数据面板效果 */
+.card-cyberpunk .data-panel {
+  background: rgba(13, 14, 25, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  position: relative;
+}
+
+.card-cyberpunk .data-panel:before {
+  content: "DATA";
+  position: absolute;
+  top: calc(var(--spacing) * -2.5);
+  left: calc(var(--spacing) * 2.5);
+  background: #0d0e19;
+  color: #00ffff;
+  font-size: calc(var(--spacing) * 3);
+  padding: 0 calc(var(--spacing) * 1.25);
+}
+
+/* 添加扫描线效果 */
+.card-cyberpunk .card-content:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.3;
+}
+
+/* 添加霓虹边框效果 */
+.card-cyberpunk .neon-border {
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  box-shadow:
+    0 0 5px rgba(0, 255, 255, 0.5),
+    0 0 10px rgba(0, 255, 255, 0.3),
+    inset 0 0 5px rgba(0, 255, 255, 0.2);
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+}
+
+/* 添加故障分隔线 */
+.card-cyberpunk .glitch-divider {
+  height: calc(var(--spacing) * 0.75);
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 0, 128, 0.5),
+    rgba(0, 255, 255, 0.5),
+    transparent
+  );
+  position: relative;
+  margin: calc(var(--spacing) * 6.25) 0;
+}
+
+.card-cyberpunk .glitch-divider:before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -0.5);
+  left: 30%;
+  width: 40%;
+  height: calc(var(--spacing) * 1.75);
+  background: rgba(255, 0, 128, 0.5);
+  filter: blur(4px);
+  animation: divider-glitch 3s infinite alternate;
+}
+
+@keyframes divider-glitch {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(30px);
+  }
+  75% {
+    opacity: 0.6;
+    transform: translateX(-20px);
+  }
+}
+
+/* 添加数字化噪点效果 */
+.card-cyberpunk .noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c4S8BAAAAAXklEQVR4nO3RMQoAIAxDwYhYrNtf8f//dBEHQRvBQTuDtcgAAAAAAK8DUmtC0M02Y0IYJ0yYMGHChAkTJkyYMGHChAkTJkyYMGHChAkTJkyYMGHChAkTJkzY3TaD2zqpBV+pIGXnAAAAAElFTkSuQmCC");
+  opacity: 0.05;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* 添加霓虹按钮效果 */
+.card-cyberpunk .neon-button {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  margin: calc(var(--spacing) * 2.5) 0;
+
+  letter-spacing: 1px;
+  font-size: calc(var(--spacing) * 3.5);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.card-cyberpunk .neon-button:hover {
+  background: rgba(0, 255, 255, 0.1);
+  color: #fff;
+  box-shadow:
+    0 0 5px rgba(0, 255, 255, 0.8),
+    0 0 10px rgba(0, 255, 255, 0.5),
+    0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+/* 添加数据标签效果 */
+.card-cyberpunk .data-tag {
+  display: inline-block;
+  background: rgba(255, 0, 128, 0.1);
+  color: #ff0080;
+  border: 1px solid rgba(255, 0, 128, 0.5);
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+  margin: 0 calc(var(--spacing) * 1.25);
+  font-size: calc(var(--spacing) * 3);
+
+  letter-spacing: 1px;
+}
+
+/* 添加高亮区块 */
+.card-cyberpunk .highlight-block {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #00ffff;
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  position: relative;
+}
+
+.card-cyberpunk .highlight-block:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+/* 添加警告区块 */
+.card-cyberpunk .warning-block {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #ff0080;
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  position: relative;
+}
+
+.card-cyberpunk .warning-block:before {
+  content: "!";
+  position: absolute;
+  top: calc(var(--spacing) * 3.75);
+  left: calc(var(--spacing) * -3.75);
+  width: calc(var(--spacing) * 6.25);
+  height: calc(var(--spacing) * 6.25);
+  background: #ff0080;
+  color: #000;
+  border-radius: 50%;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6.25);
+  font-weight: bold;
+}
+
+/* 添加卡片头部装饰 */
+.card-cyberpunk .card-header {
+  position: relative;
+  height: calc(var(--spacing) * 1.25);
+  background: linear-gradient(90deg, #ff0080, #00ffff);
+  margin-bottom: calc(var(--spacing) * 5);
+  flex: 0 0 auto;
+}
+
+.card-cyberpunk .card-header:before {
+  content: "CYBER";
+  position: absolute;
+  top: calc(var(--spacing) * 2.5);
+  right: 0;
+  font-size: calc(var(--spacing) * 2.5);
+  color: #00ffff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+/* 添加卡片底部装饰 */
+.card-cyberpunk .card-footer {
+  position: relative;
+  margin-top: calc(var(--spacing) * 7.5);
+  padding-top: calc(var(--spacing) * 3.75);
+  border-top: 1px solid rgba(0, 255, 255, 0.3);
+  font-size: calc(var(--spacing) * 2.5);
+  color: rgba(0, 255, 255, 0.7);
+
+  letter-spacing: 1px;
+  text-align: right;
+}
+
+.card-cyberpunk .card-footer:after {
+  content: "// END TRANSMISSION";
+  position: absolute;
+  bottom: calc(var(--spacing) * 0);
+  left: 0;
+  font-size: calc(var(--spacing) * 2);
+  color: rgba(255, 0, 128, 0.7);
+}
+
+/* 添加进度条效果 */
+.card-cyberpunk .progress-bar {
+  width: 100%;
+  height: calc(var(--spacing) * 2.5);
+  background: rgba(0, 0, 0, 0.3);
+  margin: calc(var(--spacing) * 3.75) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-cyberpunk .progress-bar:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.7),
+    rgba(0, 255, 255, 0.3)
+  );
+  /* animation: progress 2s infinite linear; */
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* 添加全局故障动画效果 */
+.card-cyberpunk {
+  animation: card-glitch 10s infinite;
+}
+
+@keyframes card-glitch {
+  0%,
+  100% {
+    filter: none;
+  }
+  92% {
+    filter: none;
+  }
+  92.5% {
+    filter: hue-rotate(90deg) brightness(1.1);
+  }
+  93% {
+    filter: none;
+  }
+  93.5% {
+    filter: brightness(1.2) contrast(1.2);
+  }
+  94% {
+    filter: none;
+  }
+  98% {
+    filter: none;
+  }
+  98.2% {
+    filter: brightness(1.2) contrast(1.3) hue-rotate(-20deg);
+  }
+  98.4% {
+    filter: none;
+  }
+}
+
+.card-cyberpunk mark:before {
+  content: "ALERT";
+  position: absolute;
+  top: calc(var(--spacing) * -3.75);
+  left: 0;
+  font-size: calc(var(--spacing) * 2);
+  color: rgba(0, 255, 255, 0.7);
+}
+
+.card-cyberpunk .card-footer {
+  text-align: right;
+}
+
+.card-cyberpunk .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-cyberpunk">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

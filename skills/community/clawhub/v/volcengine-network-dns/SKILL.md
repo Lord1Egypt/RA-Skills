@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Network Dns"
-description: "DNS record management on Volcengine networking services. Use when users need zone record query/update, traffic routing changes, or DNS propagation troubleshooting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-network-dns"
-sourceUrl: "https://clawhub.ai/skills/volcengine-network-dns"
+name: volcengine-network-dns
+description: DNS record management on Volcengine networking services. Use when users need zone record query/update, traffic routing changes, or DNS propagation troubleshooting.
 ---
 
-# Volcengine Network Dns
+# volcengine-network-dns
 
-> DNS record management on Volcengine networking services. Use when users need zone record query/update, traffic routing changes, or DNS propagation troubleshooting.
+Manage DNS records with strict change scoping and verification steps.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-network-dns`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-network-dns](https://clawhub.ai/skills/volcengine-network-dns)
+## Execution Checklist
 
-## Overview
+1. Confirm domain zone, record type, and target value.
+2. Query existing records before modifications.
+3. Apply add/update/delete operation with TTL constraints.
+4. Validate propagation using authoritative and recursive checks.
 
+## Safety Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-network-dns
-```
+- Avoid blind overwrite; diff against existing records.
+- Keep rollback values in output.
+- Minimize TTL before migration windows.
+
+## References
+
+- `references/sources.md`

@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "description": "跨境上市可行性评估数据库",
+    "version": "2.0.0",
+    "date": "2026-05-17"
+  },
+  "evaluation_dimensions": {
+    "financial_performance": {
+      "weight": 0.30,
+      "description": "财务表现对标",
+      "metrics": ["净资产收益率", "营业收入利润率", "总资产报酬率", "EBITDA率"]
+    },
+    "risk_profile": {
+      "weight": 0.25,
+      "description": "风险状况评估",
+      "metrics": ["资产负债率", "现金流动负债比率", "速动比率"]
+    },
+    "growth_potential": {
+      "weight": 0.25,
+      "description": "增长潜力评估",
+      "metrics": ["研发经费投入强度", "营业总收入增长率", "利润总额增长率"]
+    },
+    "market_compatibility": {
+      "weight": 0.20,
+      "description": "市场兼容性评估",
+      "metrics": ["行业分布", "上市类型匹配", "估值水平对比"]
+    }
+  },
+  "feasibility_levels": {
+    "A+": {"min_score": 85, "description": "高度可行", "recommendation": "建议积极推进，优先选择18A/8A等适当章节"},
+    "A":  {"min_score": 70, "description": "较为可行", "recommendation": "建议完善财务数据后推进"},
+    "B":  {"min_score": 55, "description": "基本可行", "recommendation": "需在关键指标上达到行业中等水平"},
+    "C":  {"min_score": 40, "description": "有待改善", "recommendation": "建议先改善财务表现再考虑上市"},
+    "D":  {"min_score": 25, "description": "暂不可行", "recommendation": "需大幅改善财务指标和治理结构"},
+    "E":  {"min_score": 0,  "description": "不建议", "recommendation": "当前财务状况远低于上市标准"}
+  },
+  "hkex_requirements": {
+    "main_board": {
+      "profit_test": {"min_profit_hkd": 60e6, "years": 3, "min_revenue_hkd": 500e6},
+      "market_cap_test": {"min_market_cap_hkd": 4e9, "min_revenue_hkd": 500e6},
+      "pre_profit_test": {"min_market_cap_hkd": 1.5e9}
+    },
+    "gem": {
+      "market_cap_test": {"min_market_cap_hkd": 150e6, "min_cash_flow_hkd": 30e6, "years": 2}
+    }
+  }
+}

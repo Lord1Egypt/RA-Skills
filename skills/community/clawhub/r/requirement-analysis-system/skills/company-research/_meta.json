@@ -1,0 +1,14 @@
+{
+  "name": "company-research",
+  "displayName": "客户调研",
+  "version": "1.0.0",
+  "description": "深度分析目标客户公司，理解决策链和业务痛点，提升 B2B 赢单率",
+  "author": "Elatia (基于 Product-Manager-Skills 提炼)",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "company-research", "b2b", "sales", "component"],
+  "category": "Product Management",
+  "type": "component",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

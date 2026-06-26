@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-03-12T00:00:00.000Z",
+  "skillName": "xiaobai-print",
+  "description": "小白打印助手。通过本地 MCP bridge 调用打印相关工具，按既定工作流执行设备检查、能力确认、文件上传、任务创建和短状态确认。",
+  "bridge": {
+    "rawInputUrl": "http://127.0.0.1:8787",
+    "baseUrl": "http://127.0.0.1:8787",
+    "toolCatalogUrl": "http://127.0.0.1:8787/mcp/tools",
+    "toolInvokeBaseUrl": "http://127.0.0.1:8787/mcp/tools"
+  },
+  "tools": [
+    {
+      "name": "deviceReadyCheck",
+      "description": "检查打印设备是否在线且可用；成功时通常还会返回设备状态和打印机基础信息。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true,
+        "description": "通常无需参数；如果 bridge 或上游服务要求额外字段，可按其约定传入。"
+      }
+    },
+    {
+      "name": "deviceGetCapability",
+      "description": "获取打印设备支持的纸张尺寸、介质、彩色和双面能力。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true,
+        "description": "通常无需参数；如果 bridge 或上游服务要求额外字段，可按其约定传入。"
+      }
+    },
+    {
+      "name": "printCreate",
+      "description": "创建打印任务，参数会透传到 bridge 对接的上游 printCreate。A4 图片（jpg/jpeg）默认按文档模式打印；只有在用户明确确认需要 A4 照片纸时才传 media_type=photo。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true,
+        "description": "请传入上游 printCreate 所需的 JSON 字段，常见内容包括文件地址、文件名、打印份数、纸张尺寸、纸张类型、单双面、页码范围、奇偶页、彩色模式等。A4 图片默认推荐 A4 + plain/默认；只有在用户明确确认需要 A4 照片纸时才传 media_type=photo。"
+      }
+    },
+    {
+      "name": "getCosUploadToken",
+      "description": "获取文件上传凭证，通常由 uploadFile 间接使用。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true,
+        "description": "通常无需参数。"
+      }
+    },
+    {
+      "name": "uploadFile",
+      "description": "上传本地文件并返回可传给 printCreate 的 CDN 地址。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "本地文件的绝对路径"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "文件名（含扩展名），不提供则从路径中提取"
+          }
+        },
+        "required": [
+          "filePath"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "orderGetStatus",
+      "description": "查询打印任务状态。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true,
+        "description": "请传入 bridge 或上游状态查询接口要求的 JSON 字段。"
+      }
+    },
+    {
+      "name": "orderCancel",
+      "description": "取消打印任务。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true,
+        "description": "请传入 bridge 或上游取消接口要求的 JSON 字段。"
+      }
+    }
+  ]
+}

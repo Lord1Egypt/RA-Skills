@@ -1,0 +1,21 @@
+{
+  "name": "haresh-product-search",
+  "description": "Search e-commerce products via n8n webhook integration",
+  "entry": "index.js",
+  "tools": [
+    {
+      "name": "search_products",
+      "description": "Search products using the n8n webhook",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Product search query"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ]
+}

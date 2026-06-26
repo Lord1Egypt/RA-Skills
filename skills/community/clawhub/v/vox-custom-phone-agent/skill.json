@@ -1,0 +1,440 @@
+{
+  "name": "vox-custom-phone-agent",
+  "version": "0.1.0",
+  "description": "Convert natural-language phone tasks into TeddyMobile Vox botType=custom outbound calls with guided missing-field collection.",
+  "entry": "SKILL.md",
+  "workflow": "workflow.md",
+  "resources": [
+    "GET_STARTED.md",
+    "FIRST_SETUP.md",
+    "REGISTRATION_GUIDE.md",
+    "WORKBUDDY.md",
+    "resources/index.js",
+    "resources/run_demo.js",
+    "resources/hosted_api_example.js",
+    "resources/hmac_outbound_client.js",
+    "resources/call_job_store.js",
+    "resources/vox_call_result_client.js",
+    "resources/vox_result_poller.js",
+    "resources/post_call_callback_client.js",
+    "resources/task_briefing.js",
+    "resources/call_task.js",
+    "resources/result_advice.js",
+    "resources/risk_classifier.js",
+    "resources/voice_requirements.js",
+    "resources/prompt_to_call_intent.js",
+    "resources/intent_completeness.js",
+    "resources/prompt_to_agent_profile.js",
+    "resources/content_safety_guard.js",
+    "resources/business_context_rules.js",
+    "resources/voice_type_selector.js",
+    "resources/credentials_loader.js",
+    "resources/analytics_client.js",
+    "resources/analytics_manifest.json",
+    "resources/distribution_channel.js",
+    "resources/phone_validator.js",
+    "resources/request_id.js",
+    "resources/trial_state.js",
+    "resources/credentials.example.json",
+    "resources/implementation_checklist.md"
+  ],
+  "env": [],
+  "optional_env": [
+    "VOX_APP_ID",
+    "VOX_SECRET",
+    "VOX_BOT_ID",
+    "VOX_OUTBOUND_BASE_URL",
+    "VOX_CREDENTIALS_FILE",
+    "VOX_TRIAL_MODE",
+    "VOX_REGISTER_URL",
+    "VOX_TRIAL_LIMIT",
+    "VOX_TRIAL_STATE_FILE",
+    "VOX_RESULT_POLL_INTERVAL_MS",
+    "VOX_RESULT_POLL_MAX_ATTEMPTS",
+    "VOX_CALL_QUERY_BASE_URL",
+    "POST_CALL_CALLBACK_TIMEOUT_MS",
+    "POST_CALL_CALLBACK_MAX_RETRIES",
+    "POST_CALL_CALLBACK_HMAC_SECRET",
+    "PORTAL_API_BASE_URL",
+    "SKILL_ANALYTICS_ENDPOINT",
+    "ANALYTICS_ENDPOINT",
+    "SKILL_ANALYTICS_DISABLED",
+    "SKILL_ANALYTICS_TIMEOUT_MS",
+    "SKILL_ID",
+    "SKILL_NAME",
+    "SKILL_VERSION",
+    "SKILL_DISTRIBUTION_CHANNEL",
+    "SKILL_REGISTRY",
+    "SKILL_ANALYTICS_DEBUG"
+  ],
+  "analytics_config": {
+    "journeyStartEvent": "usage_started",
+    "journeyEndEvents": [
+      "run_completed",
+      "run_failed",
+      "vox.outbound_call_failed",
+      "vox.safety_blocked"
+    ],
+    "successEvents": [
+      "run_completed"
+    ],
+    "failureEvents": [
+      "run_failed",
+      "vox.outbound_call_failed",
+      "vox.safety_blocked"
+    ],
+    "abandonEvents": [
+      "vox.needs_input",
+      "vox.credentials_missing"
+    ],
+    "funnelEvents": [
+      "usage_started",
+      "skill_invoked",
+      "vox_custom_phone_agent.input_received",
+      "vox.trial_auto_selected",
+      "vox_custom_phone_agent.intent_parsed",
+      "vox_custom_phone_agent.policy_checked",
+      "vox.task_ready",
+      "run_started",
+      "vox.outbound_call_started",
+      "vox.outbound_call_completed",
+      "run_completed"
+    ],
+    "businessStages": [
+      {
+        "stage": "start",
+        "events": [
+          "usage_started"
+        ]
+      },
+      {
+        "stage": "invoke",
+        "events": [
+          "skill_invoked",
+          "vox_custom_phone_agent.input_received",
+          "vox.trial_auto_selected"
+        ]
+      },
+      {
+        "stage": "intent",
+        "events": [
+          "vox_custom_phone_agent.intent_parsed"
+        ]
+      },
+      {
+        "stage": "policy",
+        "events": [
+          "vox_custom_phone_agent.policy_checked"
+        ]
+      },
+      {
+        "stage": "prepare",
+        "events": [
+          "vox.task_ready"
+        ]
+      },
+      {
+        "stage": "run",
+        "events": [
+          "run_started",
+          "vox.outbound_call_started",
+          "vox.outbound_call_completed"
+        ]
+      },
+      {
+        "stage": "completed",
+        "events": [
+          "run_completed"
+        ]
+      },
+      {
+        "stage": "failed",
+        "events": [
+          "run_failed",
+          "vox.outbound_call_failed",
+          "vox.safety_blocked",
+          "vox.credentials_missing"
+        ]
+      },
+      {
+        "stage": "needs_input",
+        "events": [
+          "vox.needs_input"
+        ]
+      },
+      {
+        "stage": "conversion",
+        "events": [
+          "vox.registration_prompted"
+        ]
+      }
+    ],
+    "eventAliases": {
+      "skill_invoked": [
+        "usage_started",
+        "skill_invoked",
+        "journey_started",
+        "invoked"
+      ],
+      "skill_needs_input": [
+        "vox.needs_input",
+        "skill_needs_input",
+        "needs_input"
+      ],
+      "skill_safety_blocked": [
+        "vox.safety_blocked",
+        "skill_safety_blocked",
+        "safety_blocked",
+        "blocked"
+      ],
+      "skill_credentials_missing": [
+        "vox.credentials_missing",
+        "skill_credentials_missing",
+        "credentials_missing"
+      ],
+      "skill_task_ready": [
+        "vox.task_ready",
+        "skill_task_ready",
+        "skill_config_completed",
+        "task_ready",
+        "ready"
+      ],
+      "skill_run_started": [
+        "run_started",
+        "skill_run_started",
+        "execution_started"
+      ],
+      "skill_run_completed": [
+        "run_completed",
+        "skill_run_completed",
+        "usage_finished",
+        "journey_finished",
+        "completed"
+      ],
+      "skill_run_failed": [
+        "run_failed",
+        "skill_run_failed",
+        "journey_failed",
+        "failed"
+      ],
+      "skill_registration_prompted": [
+        "vox.registration_prompted",
+        "skill_registration_prompted",
+        "registration_prompted",
+        "needs_registration"
+      ],
+      "business_step_completed": [
+        "vox_custom_phone_agent.input_received",
+        "vox_custom_phone_agent.intent_parsed",
+        "vox_custom_phone_agent.policy_checked",
+        "business_step_completed",
+        "step_completed",
+        "vox.trial_auto_selected"
+      ],
+      "tool_call_started": [
+        "vox.outbound_call_started",
+        "tool_call_started",
+        "tool_called",
+        "api_request_started"
+      ],
+      "tool_call_completed": [
+        "vox.outbound_call_completed",
+        "tool_call_completed",
+        "tool_result_received",
+        "api_request_completed"
+      ],
+      "tool_call_failed": [
+        "vox.outbound_call_failed",
+        "tool_call_failed",
+        "tool_failed",
+        "api_request_failed"
+      ],
+      "business_step_failed": [
+        "business_step_failed",
+        "step_failed"
+      ],
+      "skill_trial_auto_selected": [
+        "vox.trial_auto_selected",
+        "skill_trial_auto_selected",
+        "trial_auto_selected",
+        "default_trial_selected"
+      ]
+    },
+    "dimensions": [
+      {
+        "name": "source",
+        "source": "metadata.source"
+      },
+      {
+        "name": "scenario",
+        "source": "metadata.scenario"
+      },
+      {
+        "name": "voice_type",
+        "source": "metadata.voice_type"
+      },
+      {
+        "name": "use_mode",
+        "source": "metadata.use_mode"
+      },
+      {
+        "name": "use_mode_source",
+        "source": "metadata.use_mode_source"
+      },
+      {
+        "name": "entry_strategy",
+        "source": "metadata.entry_strategy"
+      }
+    ],
+    "metrics": [
+      {
+        "name": "call_success_count",
+        "type": "count",
+        "event": "run_completed"
+      },
+      {
+        "name": "call_success_rate",
+        "type": "conversion_rate",
+        "from": "skill_invoked",
+        "to": "run_completed"
+      },
+      {
+        "name": "avg_call_task_duration",
+        "type": "avg_duration",
+        "from": "run_started",
+        "to": "run_completed"
+      }
+    ]
+  },
+  "tags": [
+    "vox",
+    "teddymobile",
+    "phone-agent",
+    "custom-bot",
+    "outbound-call",
+    "workbuddy",
+    "skillhub"
+  ],
+  "allowed_sources": [
+    "skillhub",
+    "clawhub",
+    "unknown",
+    "internal"
+  ],
+  "allowed_events": [
+    "usage_started",
+    "skill_invoked",
+    "vox_custom_phone_agent.input_received",
+    "vox.trial_auto_selected",
+    "vox_custom_phone_agent.intent_parsed",
+    "vox_custom_phone_agent.policy_checked",
+    "vox.task_ready",
+    "run_started",
+    "vox.outbound_call_started",
+    "vox.outbound_call_completed",
+    "run_completed",
+    "run_failed",
+    "vox.outbound_call_failed",
+    "vox.safety_blocked",
+    "vox.needs_input",
+    "vox.credentials_missing",
+    "vox.registration_prompted",
+    "skill_needs_input",
+    "skill_safety_blocked",
+    "skill_credentials_missing",
+    "skill_task_ready",
+    "skill_run_started",
+    "skill_run_completed",
+    "skill_run_failed",
+    "skill_registration_prompted",
+    "business_step_completed",
+    "business_step_failed",
+    "tool_call_started",
+    "tool_call_completed",
+    "tool_call_failed",
+    "skill_trial_auto_selected"
+  ],
+  "funnel_steps": [
+    "usage_started",
+    "skill_invoked",
+    "vox_custom_phone_agent.input_received",
+    "vox.trial_auto_selected",
+    "vox_custom_phone_agent.intent_parsed",
+    "vox_custom_phone_agent.policy_checked",
+    "vox.task_ready",
+    "run_started",
+    "vox.outbound_call_started",
+    "vox.outbound_call_completed",
+    "run_completed"
+  ],
+  "branch_events": [
+    {
+      "key": "run_failed",
+      "label": "run failed",
+      "event_name": "run_failed",
+      "tone": "danger"
+    },
+    {
+      "key": "outbound_call_failed",
+      "label": "outbound call failed",
+      "event_name": "vox.outbound_call_failed",
+      "tone": "danger"
+    },
+    {
+      "key": "safety_blocked",
+      "label": "safety blocked",
+      "event_name": "vox.safety_blocked",
+      "tone": "danger"
+    },
+    {
+      "key": "needs_input",
+      "label": "needs input",
+      "event_name": "vox.needs_input",
+      "tone": "warning"
+    },
+    {
+      "key": "credentials_missing",
+      "label": "credentials missing",
+      "event_name": "vox.credentials_missing",
+      "tone": "warning"
+    },
+    {
+      "key": "registration_prompted",
+      "label": "registration prompted",
+      "event_name": "vox.registration_prompted",
+      "tone": "success"
+    }
+  ],
+  "property_dimensions": [
+    {
+      "key": "source",
+      "label": "source",
+      "type": "string"
+    },
+    {
+      "key": "scenario",
+      "label": "scenario",
+      "type": "string"
+    },
+    {
+      "key": "voice_type",
+      "label": "voice type",
+      "type": "string"
+    },
+    {
+      "key": "use_mode",
+      "label": "use mode",
+      "type": "string"
+    },
+    {
+      "key": "use_mode_source",
+      "label": "use mode source",
+      "type": "string"
+    },
+    {
+      "key": "entry_strategy",
+      "label": "entry strategy",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,655 @@
+{
+  "generated_at": "2026-04-16T21:06:38.744925",
+  "lottery_type": "双色球",
+  "total_periods": 3311,
+  "latest_issue": 2026041,
+  "statistics": {
+    "red": {
+      "hot_numbers": [
+        14,
+        26,
+        22,
+        1,
+        17,
+        6,
+        18,
+        32,
+        2,
+        20,
+        7,
+        8,
+        27,
+        9,
+        10
+      ],
+      "cold_numbers": [
+        3,
+        4,
+        5,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19,
+        21,
+        23,
+        24,
+        25,
+        28,
+        29,
+        30,
+        31,
+        33
+      ],
+      "frequency": {
+        "14": 672,
+        "26": 668,
+        "22": 667,
+        "1": 665,
+        "17": 662,
+        "6": 657,
+        "18": 653,
+        "32": 650,
+        "2": 649,
+        "20": 646,
+        "7": 644,
+        "8": 641,
+        "27": 639,
+        "9": 638,
+        "10": 637,
+        "19": 633,
+        "3": 633,
+        "13": 628,
+        "30": 618,
+        "5": 615,
+        "12": 614,
+        "4": 609,
+        "25": 609,
+        "15": 602,
+        "16": 601,
+        "11": 599,
+        "23": 593,
+        "24": 591,
+        "31": 590,
+        "29": 583,
+        "21": 582,
+        "28": 568,
+        "33": 566
+      },
+      "max_red": 33,
+      "avg_number": 16.82,
+      "median": 17,
+      "stdev": 9.5
+    },
+    "blue": {
+      "hot_numbers": [
+        16,
+        15,
+        1,
+        12,
+        11
+      ],
+      "cold_numbers": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        14
+      ],
+      "frequency": {
+        "16": 233,
+        "15": 232,
+        "1": 232,
+        "12": 223,
+        "11": 219,
+        "6": 217,
+        "14": 216,
+        "7": 214,
+        "3": 213,
+        "9": 212,
+        "5": 211,
+        "4": 209,
+        "13": 202,
+        "2": 202,
+        "10": 202,
+        "8": 200
+      },
+      "max_blue": 16
+    },
+    "sum": {
+      "avg": 100.92,
+      "min": 29,
+      "max": 172,
+      "stdev": 21.14,
+      "ranges": {
+        "80以下": 547,
+        "80-100": 1070,
+        "100-120": 1158,
+        "120以上": 662
+      }
+    },
+    "periods": 3437,
+    "latest_issue": 2026041
+  },
+  "missing_analysis": {
+    "red_top_missing": [
+      [
+        29,
+        24
+      ],
+      [
+        33,
+        14
+      ],
+      [
+        16,
+        10
+      ],
+      [
+        11,
+        9
+      ],
+      [
+        12,
+        9
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        24,
+        8
+      ],
+      [
+        18,
+        7
+      ],
+      [
+        22,
+        7
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "blue_top_missing": [
+      [
+        5,
+        103
+      ],
+      [
+        11,
+        39
+      ],
+      [
+        10,
+        27
+      ],
+      [
+        14,
+        22
+      ],
+      [
+        1,
+        19
+      ]
+    ],
+    "red_rebound_candidates": [
+      {
+        "number": 29,
+        "miss": 24,
+        "rebound_prob": 1.4
+      },
+      {
+        "number": 33,
+        "miss": 14,
+        "rebound_prob": 0.8
+      },
+      {
+        "number": 16,
+        "miss": 10,
+        "rebound_prob": 0.6
+      },
+      {
+        "number": 11,
+        "miss": 9,
+        "rebound_prob": 0.5
+      },
+      {
+        "number": 12,
+        "miss": 9,
+        "rebound_prob": 0.5
+      }
+    ],
+    "avg_missing_red": 4.4,
+    "avg_missing_blue": 17.6
+  },
+  "recent_patterns": [
+    {
+      "consecutive": 0,
+      "odd_even": "2:4",
+      "big_small": "3:3",
+      "sum": 80,
+      "zone_ratio": "3:2:1"
+    },
+    {
+      "consecutive": 2,
+      "odd_even": "3:3",
+      "big_small": "3:3",
+      "sum": 99,
+      "zone_ratio": "2:2:2"
+    },
+    {
+      "consecutive": 1,
+      "odd_even": "3:3",
+      "big_small": "5:1",
+      "sum": 119,
+      "zone_ratio": "1:3:2"
+    },
+    {
+      "consecutive": 1,
+      "odd_even": "5:1",
+      "big_small": "3:3",
+      "sum": 91,
+      "zone_ratio": "2:1:3"
+    },
+    {
+      "consecutive": 0,
+      "odd_even": "5:1",
+      "big_small": "5:1",
+      "sum": 153,
+      "zone_ratio": "1:1:4"
+    },
+    {
+      "consecutive": 0,
+      "odd_even": "1:5",
+      "big_small": "2:4",
+      "sum": 93,
+      "zone_ratio": "2:3:1"
+    },
+    {
+      "consecutive": 1,
+      "odd_even": "1:5",
+      "big_small": "3:3",
+      "sum": 101,
+      "zone_ratio": "2:1:3"
+    },
+    {
+      "consecutive": 1,
+      "odd_even": "5:1",
+      "big_small": "2:4",
+      "sum": 69,
+      "zone_ratio": "3:2:1"
+    },
+    {
+      "consecutive": 1,
+      "odd_even": "4:2",
+      "big_small": "3:3",
+      "sum": 100,
+      "zone_ratio": "2:2:2"
+    },
+    {
+      "consecutive": 0,
+      "odd_even": "5:1",
+      "big_small": "3:3",
+      "sum": 97,
+      "zone_ratio": "3:1:2"
+    }
+  ],
+  "trend_summary": {
+    "consecutive_trend": [
+      0,
+      2,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    "sum_trend": [
+      80,
+      99,
+      119,
+      91,
+      153,
+      93,
+      101,
+      69,
+      100,
+      97
+    ]
+  },
+  "kill_numbers": {
+    "kill_reds": [
+      1,
+      2,
+      3,
+      6,
+      8,
+      10,
+      13,
+      17,
+      19,
+      22
+    ],
+    "kill_blues": [
+      2,
+      4,
+      5,
+      6,
+      8
+    ],
+    "reason": "过热（近期出现>=3次）、遗漏过大（>平均3倍）、上期号码"
+  },
+  "recommendations": [
+    {
+      "strategy": "balanced",
+      "lottery_type": "双色球",
+      "red_balls": [
+        1,
+        3,
+        4,
+        5,
+        14,
+        22
+      ],
+      "blue_balls": [
+        2
+      ],
+      "stats": {
+        "sum": 49,
+        "odd_even": "3:3",
+        "consecutive_pairs": 2,
+        "sum_vs_avg": "-52"
+      },
+      "dantuo": {
+        "dan_reds": [
+          1,
+          3
+        ],
+        "tuo_reds": [
+          4,
+          5,
+          14,
+          22,
+          26
+        ],
+        "dan_blues": [
+          2
+        ]
+      },
+      "group": 1,
+      "strategy_name": "均衡策略"
+    },
+    {
+      "strategy": "hot",
+      "lottery_type": "双色球",
+      "red_balls": [
+        1,
+        6,
+        14,
+        17,
+        18,
+        22
+      ],
+      "blue_balls": [
+        15
+      ],
+      "stats": {
+        "sum": 78,
+        "odd_even": "2:4",
+        "consecutive_pairs": 1,
+        "sum_vs_avg": "-23"
+      },
+      "dantuo": {
+        "dan_reds": [
+          1,
+          6
+        ],
+        "tuo_reds": [
+          14,
+          17,
+          18,
+          22,
+          26
+        ],
+        "dan_blues": [
+          15
+        ]
+      },
+      "group": 2,
+      "strategy_name": "热号策略"
+    },
+    {
+      "strategy": "cold",
+      "lottery_type": "双色球",
+      "red_balls": [
+        3,
+        4,
+        5,
+        11,
+        12,
+        13
+      ],
+      "blue_balls": [
+        2
+      ],
+      "stats": {
+        "sum": 48,
+        "odd_even": "4:2",
+        "consecutive_pairs": 4,
+        "sum_vs_avg": "-53"
+      },
+      "dantuo": {
+        "dan_reds": [
+          3,
+          13
+        ],
+        "tuo_reds": [
+          4,
+          5,
+          11,
+          12,
+          15
+        ],
+        "dan_blues": [
+          2
+        ]
+      },
+      "group": 3,
+      "strategy_name": "冷号策略"
+    },
+    {
+      "strategy": "missing_rebound",
+      "lottery_type": "双色球",
+      "red_balls": [
+        11,
+        12,
+        14,
+        16,
+        26,
+        29
+      ],
+      "blue_balls": [
+        5
+      ],
+      "stats": {
+        "sum": 108,
+        "odd_even": "2:4",
+        "consecutive_pairs": 1,
+        "sum_vs_avg": "+7"
+      },
+      "dantuo": {
+        "dan_reds": [
+          14,
+          26
+        ],
+        "tuo_reds": [
+          11,
+          12,
+          16,
+          29,
+          33
+        ],
+        "dan_blues": [
+          5
+        ]
+      },
+      "group": 4,
+      "strategy_name": "遗漏回补"
+    },
+    {
+      "strategy": "consecutive",
+      "lottery_type": "双色球",
+      "red_balls": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "blue_balls": [
+        15
+      ],
+      "stats": {
+        "sum": 75,
+        "odd_even": "3:3",
+        "consecutive_pairs": 5,
+        "sum_vs_avg": "-26"
+      },
+      "dantuo": {
+        "dan_reds": [
+          10,
+          13
+        ],
+        "tuo_reds": [
+          11,
+          12,
+          14,
+          15,
+          16
+        ],
+        "dan_blues": [
+          15
+        ]
+      },
+      "group": 5,
+      "strategy_name": "连号防守"
+    },
+    {
+      "strategy": "segment",
+      "lottery_type": "双色球",
+      "red_balls": [
+        1,
+        6,
+        14,
+        22,
+        26,
+        32
+      ],
+      "blue_balls": [
+        15
+      ],
+      "stats": {
+        "sum": 101,
+        "odd_even": "1:5",
+        "consecutive_pairs": 0,
+        "sum_vs_avg": "+0"
+      },
+      "group": 6,
+      "strategy_name": "区间覆盖"
+    }
+  ],
+  "backtest": {
+    "success": true,
+    "test_count": 10,
+    "avg_red_hits": 0.9,
+    "avg_blue_hits": 0.0,
+    "hit_rate_3plus": "0.0%",
+    "details": [
+      {
+        "period": 2026041,
+        "red_hits": 0,
+        "blue_hits": 0,
+        "red_accuracy": "0/6",
+        "total_hits": 0
+      },
+      {
+        "period": 2026030,
+        "red_hits": 2,
+        "blue_hits": 0,
+        "red_accuracy": "2/6",
+        "total_hits": 2
+      },
+      {
+        "period": 2026018,
+        "red_hits": 1,
+        "blue_hits": 0,
+        "red_accuracy": "1/6",
+        "total_hits": 1
+      },
+      {
+        "period": 2026005,
+        "red_hits": 1,
+        "blue_hits": 0,
+        "red_accuracy": "1/6",
+        "total_hits": 1
+      },
+      {
+        "period": 2025142,
+        "red_hits": 0,
+        "blue_hits": 0,
+        "red_accuracy": "0/6",
+        "total_hits": 0
+      },
+      {
+        "period": 2025127,
+        "red_hits": 2,
+        "blue_hits": 0,
+        "red_accuracy": "2/6",
+        "total_hits": 2
+      },
+      {
+        "period": 2025111,
+        "red_hits": 1,
+        "blue_hits": 0,
+        "red_accuracy": "1/6",
+        "total_hits": 1
+      },
+      {
+        "period": 2025094,
+        "red_hits": 0,
+        "blue_hits": 0,
+        "red_accuracy": "0/6",
+        "total_hits": 0
+      },
+      {
+        "period": 2025076,
+        "red_hits": 1,
+        "blue_hits": 0,
+        "red_accuracy": "1/6",
+        "total_hits": 1
+      },
+      {
+        "period": 2025057,
+        "red_hits": 1,
+        "blue_hits": 0,
+        "red_accuracy": "1/6",
+        "total_hits": 1
+      }
+    ]
+  }
+}

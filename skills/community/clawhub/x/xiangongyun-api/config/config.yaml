@@ -1,0 +1,7 @@
+# 仙宫云 API 配置文件
+
+# API 基础配置
+api:
+  base_url: "https://api.xiangongyun.com"
+  # 请将下方的 access_token 替换为你的仙宫云 API 访问令牌
+  access_token: "YOUR_ACCESS_TOKEN_HERE"

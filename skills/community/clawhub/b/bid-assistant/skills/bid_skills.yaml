@@ -1,0 +1,150 @@
+skills:
+  - id: B01_opportunity_intake
+    name: 招标机会接收
+    purpose: 接收招标公告、链接、截图或群消息，识别是否为招标机会。
+    inputs: [message_text, attachments, urls]
+    outputs: [opportunity_raw_record, source_type]
+
+  - id: B02_tender_notice_summary
+    name: 招标公告摘要
+    purpose: 提取项目名称、采购人、预算、报名时间、截止时间、采购方式等信息。
+    inputs: [opportunity_raw_record]
+    outputs: [opportunity_brief]
+
+  - id: B03_tender_document_parse
+    name: 招标文件解析
+    purpose: 解析招标文件结构、章节和关键要求。
+    inputs: [tender_document]
+    outputs: [document_outline, extracted_sections]
+
+  - id: B04_qualification_requirement_extract
+    name: 资格条件提取
+    purpose: 提取资质、业绩、人员、财务、信誉、联合体等资格条件。
+    inputs: [extracted_sections]
+    outputs: [qualification_requirements]
+
+  - id: B05_scoring_criteria_extract
+    name: 评分标准提取
+    purpose: 提取商务、技术、价格、服务、案例等评分项。
+    inputs: [extracted_sections]
+    outputs: [scoring_criteria]
+
+  - id: B06_submission_requirement_extract
+    name: 提交要求提取
+    purpose: 提取投标截止时间、格式、签章、份数、上传平台、保证金等要求。
+    inputs: [extracted_sections]
+    outputs: [submission_requirements]
+
+  - id: B07_bid_no_bid_evaluation
+    name: 投标可行性评估
+    purpose: 根据资格条件、公司能力、预算、周期和风险判断是否建议投标。
+    inputs: [qualification_requirements, company_materials, project_context]
+    outputs: [bid_recommendation, risks, missing_capabilities]
+
+  - id: B08_company_material_match
+    name: 公司素材匹配
+    purpose: 匹配公司资质、案例、人员、方案素材和历史标书。
+    inputs: [requirements, company_materials]
+    outputs: [matched_materials, missing_materials]
+
+  - id: B09_bid_task_breakdown
+    name: 投标任务拆解
+    purpose: 生成投标任务清单、责任人、截止时间和协同节点。
+    inputs: [tender_analysis_report, submission_requirements]
+    outputs: [task_list, milestones]
+
+  - id: B10_response_outline_generate
+    name: 响应目录生成
+    purpose: 根据招标文件要求生成投标响应目录。
+    inputs: [tender_document_outline, scoring_criteria, submission_requirements]
+    outputs: [response_outline]
+
+  - id: B11_technical_solution_draft
+    name: 技术方案初稿生成
+    purpose: 基于招标要求、模板和案例素材生成技术方案章节初稿。
+    inputs: [response_outline, technical_materials, case_materials]
+    outputs: [technical_draft, sections_need_human_input]
+
+  - id: B12_business_document_check
+    name: 商务材料检查
+    purpose: 检查营业执照、资质、人员、业绩、授权、承诺函等商务材料。
+    inputs: [business_documents, qualification_requirements]
+    outputs: [business_check_result, missing_items]
+
+  - id: B13_compliance_review
+    name: 标书合规审查
+    purpose: 对照招标文件检查缺项、格式、签章、页码、材料顺序等问题。
+    inputs: [bid_draft, tender_requirements]
+    outputs: [compliance_issues, review_summary]
+
+  - id: B14_deviation_risk_review
+    name: 响应偏离风险审查
+    purpose: 检查技术、商务、服务承诺是否存在响应偏离或前后不一致。
+    inputs: [bid_draft, tender_requirements]
+    outputs: [deviation_risks, inconsistency_items]
+
+  - id: B15_clarification_question_generate
+    name: 澄清问题生成
+    purpose: 生成需要向采购人或代理机构澄清的问题。
+    inputs: [tender_analysis_report, risks]
+    outputs: [clarification_questions]
+
+  - id: B16_bid_retro_summary
+    name: 投标复盘
+    purpose: 根据投标过程和结果生成复盘报告，沉淀可复用素材。
+    inputs: [bid_result, process_records, review_report]
+    outputs: [retro_report, reusable_assets]
+
+  - id: B17_source_material_digitize
+    name: 原材料数字化检查
+    purpose: 将招标文件、作业设计、样例标书和行业知识库转为可检索文本，并检查评分表、技术参数和关键数字是否保留完整。
+    inputs: [tender_documents, design_documents, sample_bids, knowledge_sources]
+    outputs: [digitized_material_index, missing_or_broken_sections, key_number_list]
+
+  - id: B18_score_model_build
+    name: 评分模型建立
+    purpose: 抽取评分模块、分值、评分档次、实质性要求和客观分证明材料，建立“凭什么得分”的响应模型。
+    inputs: [scoring_criteria, qualification_requirements, submission_requirements]
+    outputs: [score_model_table, objective_material_checklist, response_depth_suggestion]
+
+  - id: B19_substantive_requirement_index
+    name: 实质性要求无负偏离索引
+    purpose: 将技术、商务、格式和提交要求逐条映射到我方响应、偏离情况和对应章节，降低废标风险。
+    inputs: [tender_requirements, business_terms, technical_requirements]
+    outputs: [no_deviation_index, rejection_risk_items, required_confirmations]
+
+  - id: B20_sample_bid_compare
+    name: 样例标书对比分析
+    purpose: 对比样例标书和目标项目，识别可借鉴结构、不可继承内容、错误项目残留和需重写章节。
+    inputs: [sample_bid_text, target_project_profile, design_documents]
+    outputs: [borrowable_elements, conflict_items, rewrite_scope]
+
+  - id: B21_service_scheme_structure_design
+    name: 服务方案结构设计
+    purpose: 根据评分模型和作业设计生成服务方案十二章结构、三张索引表、篇幅分配和章节写作定位。
+    inputs: [score_model_table, no_deviation_index, design_documents, project_profile]
+    outputs: [service_scheme_structure, score_index_table, commitment_evidence_chain]
+
+  - id: B22_chapter_draft_expand
+    name: 章节正文扩写
+    purpose: 按作业设计、技术规范和章节定位生成项目化正文，展开专项实施细则、SOP、逐月计划、风险预案和验收资料包。
+    inputs: [service_scheme_structure, design_documents, knowledge_base, case_materials]
+    outputs: [chapter_drafts, sections_need_human_input, evidence_material_requests]
+
+  - id: B23_ai_tone_cleanup
+    name: 投标文件表达净化
+    purpose: 检查并替换 AI 腔、内部评分策略词、夸张词和不适合政府采购文件的表达。
+    inputs: [bid_draft, taboo_word_list]
+    outputs: [cleanup_report, replacement_suggestions, remaining_risk_phrases]
+
+  - id: B24_chart_placeholder_plan
+    name: 图表占位与图表目录
+    purpose: 根据服务方案章节生成图表占位目录、关键流程图/横道图/组织架构图清单和图表放置位置。
+    inputs: [service_scheme_structure, chapter_drafts, score_model_table]
+    outputs: [chart_catalog, chart_placeholders, chart_generation_brief]
+
+  - id: B25_final_consistency_check
+    name: 提交前一致性检查
+    purpose: 检查项目名称、编号、采购人、关键数字、服务期限、样例残留、商务响应和废标风险是否一致。
+    inputs: [final_bid_draft, tender_documents, design_documents, no_deviation_index]
+    outputs: [consistency_check_report, fatal_risks, final_confirmation_items]

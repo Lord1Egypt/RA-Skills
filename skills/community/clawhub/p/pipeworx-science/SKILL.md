@@ -1,35 +1,37 @@
----
-name: "Pipeworx science"
-description: "Provides real-time data on ISS location, recent earthquakes, local air quality, and NASA's Astronomy Picture of the Day with images and explanations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-science"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-science"
----
+# Science
 
-# Pipeworx science
+A bundle of four live science data feeds: ISS tracking, earthquake monitoring, air quality, and NASA's Astronomy Picture of the Day.
 
-> Provides real-time data on ISS location, recent earthquakes, local air quality, and NASA's Astronomy Picture of the Day with images and explanations.
+## get_iss_location
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-science`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-science](https://clawhub.ai/skills/pipeworx-science)
+Returns the current latitude and longitude of the International Space Station in real time.
 
-## Overview
+## get_earthquakes
 
+Recent earthquakes from the USGS. Filter by lookback window (1-30 days) and minimum magnitude (default 4.0). Results include magnitude, location description, depth, coordinates, and tsunami warning status.
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-science
+curl -X POST https://gateway.pipeworx.io/science/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_earthquakes","arguments":{"days":7,"min_magnitude":5.0}}}'
+```
+
+## get_air_quality
+
+Air quality measurements near any lat/lon from the OpenAQ network. Returns PM2.5, PM10, ozone, and other pollutant readings from the five closest monitoring stations.
+
+## get_apod
+
+NASA's Astronomy Picture of the Day. Pass a date (YYYY-MM-DD) or omit for today. Returns the image URL, HD URL, title, explanation, and copyright info.
+
+## Connect your client
+
+```json
+{
+  "mcpServers": {
+    "science": {
+      "url": "https://gateway.pipeworx.io/science/mcp"
+    }
+  }
+}
 ```

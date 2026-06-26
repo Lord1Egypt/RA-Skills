@@ -1,35 +1,237 @@
 ---
-name: "investoday-stock-financial-analysis"
-description: "面向A股个股财务质量分析，聚焦盈利能力、利润质量、成长持续性、现金流与财务安全性。基于今日投资金融数据接口，自动识别股票代码并输出结构化财务分析报告。触发词：财务分析、盈利能力、现金流、资产负债、偿债能力、利润质量。"
-category: "other"
-source: "ClawHub"
-tags: [balance-sheet, cash-flow, earnings-quality, financial-analysis, financial-safety, growth-analysis, profitability, solvency]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-stock-financial-analysis"
-sourceUrl: "https://clawhub.ai/skills/investoday-stock-financial-analysis"
+name: investoday-stock-financial-analysis
+title: "股票财务分析"
+version: 1.3.0
+description: 面向A股个股财务质量分析，聚焦盈利能力、利润质量、成长持续性、现金流与财务安全性。基于今日投资金融数据接口，自动识别股票代码并输出结构化财务分析报告。触发词：财务分析、盈利能力、现金流、资产负债、偿债能力、利润质量。
+tags:
+  - financial-analysis
+  - profitability
+  - earnings-quality
+  - cash-flow
+  - balance-sheet
+  - solvency
+  - financial-safety
+  - growth-analysis
+metadata:
+  clawdbot:
+    emoji: "📊"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-stock-financial-analysis
+# 📊 股票财务分析
 
-> 面向A股个股财务质量分析，聚焦盈利能力、利润质量、成长持续性、现金流与财务安全性。基于今日投资金融数据接口，自动识别股票代码并输出结构化财务分析报告。触发词：财务分析、盈利能力、现金流、资产负债、偿债能力、利润质量。
+面向 A 股个股财务质量分析，聚焦盈利能力、利润质量、成长持续性、现金流与财务安全性。基于今日投资金融数据接口，自动识别股票代码并输出结构化财务分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-stock-financial-analysis`
-- **Source URL:** [https://clawhub.ai/skills/investoday-stock-financial-analysis](https://clawhub.ai/skills/investoday-stock-financial-analysis)
+## 触发场景
 
-## Overview
+- 用户询问某只股票的财务情况、盈利能力、利润质量或财务安全性
+- 用户希望判断公司报表质量、现金流匹配度、资产负债结构是否健康
+- 用户想知道“这家公司财务稳不稳”“赚的钱是不是有质量”“报表有没有压力”
+- 关键词：财务分析、盈利能力、利润质量、现金流、资产负债、偿债能力、财务安全、成长性、报表分析
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-stock-financial-analysis
+**示例 1：综合财务分析**
 ```
+帮我分析一下浪潮信息的财务情况。
+```
+
+**示例 2：利润质量判断**
+```
+宁德时代的利润质量怎么样？现金流能不能跟上？
+```
+
+**示例 3：财务安全性**
+```
+中国中铁负债高不高，财务上安全吗？
+```
+
+> 💡 支持输入股票名称或 6 位股票代码。若用户只提供名称，先通过 `search` 识别标的，再进入财务分析流程。若用户更关心“贵不贵”，优先使用 `股票估值分析`；若更关心“走势强不强”，优先使用 `股票技术分析`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 基础工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 综合标的搜索 | `search` | GET | 通过关键字搜索股票代码 |
+| 股票基本信息 | `stock/basic-info` | GET | 获取股票名称、行业、主营业务等基础信息 |
+
+### 财务核心工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 盈利能力指标 | `stock/finance/profit-ability` | GET | 获取 ROE、ROA、毛利率、净利率等盈利指标 |
+| 成长能力指标 | `stock/finance/growth-ability` | GET | 获取营收增速、净利润增速等成长指标 |
+| 利润表 | `stock/income-statements` | GET | 获取收入、营业利润、归母净利润等报表数据 |
+| 现金流量表 | `stock/cash-flows` | GET | 获取经营现金流、销售收现等数据 |
+| 资产负债表 | `stock/balance-sheets` | GET | 获取总资产、总负债、流动资产、流动负债等数据 |
+| 财务实力指标 | `stock/finance/financial-strength` | GET | 获取利息保障倍数、现金负债率、股东权益比率等财务安全指标 |
+
+## 数据获取流程
+
+用户提供股票名称或代码后，Agent 按以下流程获取数据：
+
+- **Step 0：标的识别（如用户输入名称而非代码）**：工具ID `search`，参数 `key=<股票名称> type=11`
+- **Step 1：股票基本信息**：工具ID `stock/basic-info`，参数 `stockCode=<code>`
+- **Step 2：盈利能力指标**：工具ID `stock/finance/profit-ability`，参数 `stockCode=<code>`
+- **Step 3：成长能力指标**：工具ID `stock/finance/growth-ability`，参数 `stockCode=<code>`
+- **Step 4：利润表（近4期）**：工具ID `stock/income-statements`，参数 `stockCode=<code> pageNum=1 pageSize=4`
+- **Step 5：现金流量表（近4期）**：工具ID `stock/cash-flows`，参数 `stockCode=<code> pageNum=1 pageSize=4`
+- **Step 6：资产负债表（近4期）**：工具ID `stock/balance-sheets`，参数 `stockCode=<code> pageNum=1 pageSize=4`
+- **Step 7：财务实力指标**：工具ID `stock/finance/financial-strength`，参数 `stockCode=<code>`
+
+> **并行优化**：完成 Step 0 的代码识别后，Step 1-7 可并行调用；分析时以最新一期财报为主，并用最近 2-4 期数据辅助判断趋势。
+
+## 分析框架（5步）
+
+Agent 获取数据后，按以下 5 步框架进行结构化分析：
+
+### Step 1：建立公司财务画像
+
+**目标**：确认公司所处行业、主营业务与分析口径，避免把周期股、金融股与普通制造/成长股混为一谈。
+
+**数据来源**：`stock/basic-info`
+
+分析要点：
+- 确认股票名称、行业、主营业务与报告期
+- 判断公司更偏成长型、周期型、金融型还是重资产型
+- 明确后续分析时应更重视的口径（如周期股更重资产负债表，成长股更重利润与现金流匹配）
+
+**输出**：公司财务画像与后续重点分析口径。
+
+### Step 2：评估赚钱能力
+
+**目标**：判断公司是否具备稳定且有质量的盈利能力。
+
+**数据来源**：`stock/finance/profit-ability` + `stock/income-statements`
+
+分析要点：
+- ROE、ROA、毛利率、净利率是否处于较好水平
+- 收入、营业利润、归母净利润是否形成较稳定的盈利链条
+- 若毛利率高但净利率低，需说明费用率或非经营性损耗压力
+
+**输出**：盈利能力强弱判断与主要支撑指标。
+
+### Step 3：评估利润质量与现金流匹配度
+
+**目标**：判断利润是否“真赚钱”，还是存在利润好看、现金流偏弱的问题。
+
+**数据来源**：`stock/income-statements` + `stock/cash-flows`
+
+分析要点：
+- 经营现金流与归母净利润的匹配程度
+- 销售收现能力、经营现金流/收入的表现
+- 若净利润增长快但经营现金流偏弱，应提示利润兑现质量风险
+
+**输出**：利润质量判断、现金流匹配度及主要风险点。
+
+### Step 4：评估成长持续性
+
+**目标**：判断增长是阶段性波动还是具有延续性。
+
+**数据来源**：`stock/finance/growth-ability` + `stock/income-statements`
+
+分析要点：
+- 营收增速、净利润增速的方向是否一致
+- 收入增长与利润增长是否互相印证
+- 若营收增长但利润下滑，需提示成本、费用或需求质量问题
+
+**输出**：成长持续性判断与增长质量结论。
+
+### Step 5：评估财务安全性
+
+**目标**：判断公司是否存在杠杆压力、短债压力或偿付能力风险。
+
+**数据来源**：`stock/balance-sheets` + `stock/finance/financial-strength`
+
+分析要点：
+- 总负债、流动负债、资产负债率是否过高
+- 利息保障倍数、现金负债率、股东权益比率是否健康
+- 若短债压力偏大且经营现金流不足，应明确提示安全边际偏弱
+
+**输出**：财务安全性结论、关键风险与综合财务评价。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| ROE > 15% 且净利率 > 10% | 盈利能力较强 | ✅ 积极 |
+| 毛利率同比提升且营业利润同步增长 | 盈利改善具备持续性 | ✅ 积极 |
+| 经营现金流 / 归母净利润 > 1 | 利润兑现质量较高 | ✅ 积极 |
+| 经营现金流 / 归母净利润在 0.7-1.0 | 利润与现金流基本匹配 | 📊 中性 |
+| 经营现金流 / 归母净利润 < 0.7 | 利润质量偏弱 | ⚠️ 警惕 |
+| 营收增速 > 20% 且净利润增速 > 20% | 高成长状态 | ✅ 积极 |
+| 营收增速为正但净利润增速为负 | 增长质量分化 | 🟡 关注 |
+| 资产负债率 > 70% | 杠杆偏高 | ⚠️ 警惕 |
+| 利息保障倍数 < 2 | 偿债缓冲较弱 | 🔴 高风险 |
+| 现金负债率持续下降且流动负债上升 | 短期偿债压力加大 | 🔴 高风险 |
+
+## 输出格式
+
+```markdown
+# 📊 [股票名称] 财务分析报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、公司财务画像
+
+（公司所处行业、主营业务、当前报告期、分析口径）
+
+## 二、盈利能力分析
+
+（ROE、ROA、毛利率、净利率、营业利润等判断）
+
+## 三、利润质量与现金流
+
+（经营现金流、收现能力、利润兑现质量）
+
+## 四、成长持续性
+
+（营收增速、净利润增速、增长匹配情况）
+
+## 五、财务安全性
+
+（资产负债率、利息保障倍数、现金负债率等）
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确写出强项、短板与需继续跟踪的财务信号
+```
+
+## 证据约束（必须遵守）
+
+1. 每个分析结论至少给出 2 个数值证据；没有数据则写“该维度数据不足，暂无法判断”
+2. 不允许只给判断不给数据
+3. 时间对比必须标注具体期数，如“2025Q3 vs 2024Q3”或“最新一期 vs 上一期”
+4. 百分比统一保留 2 位小数，金额优先使用“亿元”
+5. 不得引用输入数据之外的新闻、政策、传闻或主观臆测
+6. 不给买卖建议、仓位建议、目标价或交易时点
+7. 若报表口径明显不可比，必须说明“口径可能存在差异，不宜直接横向比较”
+
+## 执行示例
+
+用户说：“帮我分析一下比亚迪的财务质量。”
+
+1. 通过 `search` 获取股票代码
+2. 并行调用 `stock/basic-info`、`stock/finance/profit-ability`、`stock/finance/growth-ability`、三张报表与 `stock/finance/financial-strength`
+3. 先建立公司财务画像，再依次分析盈利能力、利润质量、成长持续性与财务安全性
+4. 输出 Markdown 格式财务分析报告
+5. 在结尾给出综合结论与后续需跟踪的财务信号
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

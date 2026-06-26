@@ -1,0 +1,18 @@
+{
+  "skill_id": "hireme",
+  "display_name": "HireMe Pro",
+  "description": "Job search command center with application tracking, resume management, and interview prep.",
+  "icon": "Briefcase",
+  "accent_color": "#2563eb",
+  "sidebar": { "route": "/jobs", "label": "Job Hunt", "icon": "Briefcase", "children": [{"label":"Dashboard","route":"/jobs"},{"label":"Applications","route":"/jobs/applications","icon":"KanbanSquare"},{"label":"Resumes","route":"/jobs/resumes","icon":"FileText"},{"label":"Interview Prep","route":"/jobs/prep","icon":"MessageSquare"}] },
+  "database": { "prefix": "hm", "tables": [
+    { "name": "hm_profiles", "description": "Job seeker profile", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"full_name","type":"TEXT"},{"name":"email","type":"TEXT"},{"name":"target_role","type":"TEXT"},{"name":"target_industries","type":"TEXT[]","default":"{}"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+    { "name": "hm_resumes", "description": "Resume versions", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"title","type":"TEXT"},{"name":"version_label","type":"TEXT"},{"name":"json_content","type":"JSONB","default":"{}"},{"name":"is_master","type":"BOOLEAN","default":false},{"name":"file_url","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+    { "name": "hm_applications", "description": "Job applications tracker", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"company","type":"TEXT"},{"name":"role","type":"TEXT"},{"name":"url","type":"TEXT"},{"name":"resume_id","type":"UUID"},{"name":"status","type":"TEXT","default":"wishlist"},{"name":"date_applied","type":"DATE"},{"name":"salary_range","type":"TEXT"},{"name":"notes","type":"TEXT"},{"name":"contacts","type":"JSONB","default":"[]"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_hm_applications_user","columns":["user_id","status"]},{"name":"idx_hm_applications_date","columns":["user_id","date_applied DESC"]}] },
+    { "name": "hm_prep_sessions", "description": "Interview prep sessions", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"application_id","type":"UUID","references":"hm_applications(id)"},{"name":"user_id","type":"UUID"},{"name":"session_type","type":"TEXT","default":"behavioral"},{"name":"questions","type":"JSONB","default":"[]"},{"name":"mock_results","type":"JSONB","default":"{}"},{"name":"score_pct","type":"INTEGER"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+    { "name": "hm_activity_log", "description": "Job hunt activity log", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"application_id","type":"UUID"},{"name":"action","type":"TEXT"},{"name":"details","type":"JSONB","default":"{}"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_hm_activity_log_user","columns":["user_id","created_at DESC"]}] }
+  ] },
+  "widgets": [{ "id": "active-applications", "type": "stat", "title": "Active Applications", "description": "Applications in progress", "size": "1x1" }],
+  "settings": [{ "key": "target_role", "label": "Target Role", "type": "text", "default": "" }],
+  "sync": { "mode": "direct", "source_files": [] }
+}

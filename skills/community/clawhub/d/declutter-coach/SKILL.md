@@ -1,35 +1,19 @@
----
-name: "Declutter Coach"
-description: "Provides step-by-step decluttering plans with sorting rules and resale options for specific spaces like wardrobes, bookshelves, or drawers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/declutter-coach"
-sourceUrl: "https://clawhub.ai/skills/declutter-coach"
----
-
-# Declutter Coach
-
-> Provides step-by-step decluttering plans with sorting rules and resale options for specific spaces like wardrobes, bookshelves, or drawers.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/declutter-coach`
-- **Source URL:** [https://clawhub.ai/skills/declutter-coach](https://clawhub.ai/skills/declutter-coach)
+# Declutter Coach（整理教练）
 
 ## Overview
+帮助用户对特定空间（衣柜、书架、抽屉等）进行整理，提供分步计划、断舍离原则和变现渠道。
 
+## Trigger
+- 整理衣柜/房间
+- 断舍离
+- 东西太多
+- 收纳建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/declutter-coach
-```
+## Workflow
+1. 识别整理目标区域
+2. 给出断舍离分类原则
+3. 提供分步执行计划（含时间估算）
+4. 给出闲置变现渠道
+
+## Output
+JSON: {targetArea, declutterPlan{steps[], category_rules[], time_estimate}, tips[], donationChannels[]}

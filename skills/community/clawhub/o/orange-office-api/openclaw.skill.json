@@ -1,0 +1,9 @@
+{
+  "id": "orange-office-api",
+  "name": "橙子通 API 自动化",
+  "version": "1.0.0",
+  "description": "橙子通（orange-office.cn）库存管理系统 API 自动化。用于通过 API 创建出库单、查询库存、管理主播仓库等，无需浏览器。",
+  "author": "",
+  "tags": ["orange-office", "库存管理", "出库单", "API"],
+  "license": "MIT"
+}

@@ -1,0 +1,91 @@
+{
+  "name": "oma-lwm2m-expert",
+  "version": "1.2.0",
+  "displayName": "OMA LwM2M Expert",
+  "description": "The world's most comprehensive AI skill for the OMA Lightweight Machine-to-Machine (LwM2M) IoT device management protocol. Covers all specification versions (v1.0–v2.0), the full object/resource data model, all transport bindings (CoAP/UDP/TCP/SMS/Non-IP/MQTT/HTTP), DTLS/TLS/OSCORE security architecture, FOTA/SOTA flows, gateway and edge computing, 3GPP CIoT integration, GSMA SGP.32 eSIM, uCIFI smart city objects, oneM2M interworking, and the complete implementation ecosystem (Wakaama, Leshan, Anjay, Zephyr, Californium). Includes flow diagrams, troubleshooting guides, and Wireshark recipes.",
+  "author": {
+    "name": "Sean van der Walt",
+    "github": "svdwalt007",
+    "url": "https://github.com/svdwalt007/Best-LwM2M-Agentic-Skills"
+  },
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/svdwalt007/Best-LwM2M-Agentic-Skills",
+  "repository": "https://github.com/svdwalt007/Best-LwM2M-Agentic-Skills",
+  "tags": [
+    "iot",
+    "lwm2m",
+    "coap",
+    "dtls",
+    "device-management",
+    "oma",
+    "nb-iot",
+    "lte-m",
+    "firmware-update",
+    "oscore",
+    "3gpp",
+    "esim",
+    "smart-city",
+    "protocols",
+    "embedded",
+    "security"
+  ],
+  "categories": [
+    "IoT",
+    "Protocols",
+    "Device Management",
+    "Security",
+    "Telecommunications"
+  ],
+  "platforms": [
+    "claude-desktop",
+    "openclaw",
+    "claude-project",
+    "openai",
+    "gemini"
+  ],
+  "skill": {
+    "entry": "SKILL.md",
+    "references": [
+      "references/versions.md",
+      "references/objects.md",
+      "references/protocol-details.md",
+      "references/security.md",
+      "references/implementations.md",
+      "references/architecture.md",
+      "references/ecosystem.md",
+      "references/troubleshooting.md"
+    ]
+  },
+  "capabilities": [
+    "All LwM2M specification versions v1.0 through v2.0",
+    "Complete object/resource data model (core, IPSO, uCIFI, vendor)",
+    "All transport bindings: UDP, TCP, SMS, Non-IP, MQTT, HTTP",
+    "Security: PSK, RPK, X.509, EST, DTLS CID (RFC 9146 type 54), OSCORE",
+    "Protocol flows: Bootstrap, Registration, Observe/Notify, FOTA, SOTA",
+    "3GPP CIoT integration: NB-IoT, LTE-M, PSM, NIDD, SCEF/NEF",
+    "GSMA SGP.32 eSIM IoT integration",
+    "uCIFI Smart City objects (OMA Smart City WG)",
+    "oneM2M TS-0014 interworking",
+    "Implementation guidance: Wakaama, Anjay, Leshan, Zephyr, IOWA",
+    "DTLS library comparison and CID interoperability (mbedTLS, wolfSSL, TinyDTLS)",
+    "Massive-scale IoT architecture patterns",
+    "Troubleshooting: DTLS handshake failures, bootstrap failures, FOTA errors",
+    "Wireshark/tshark capture and analysis recipes"
+  ],
+  "keywords": [
+    "LwM2M", "OMA", "CoAP", "DTLS", "OSCORE", "NB-IoT", "LTE-M",
+    "IoT", "device management", "firmware update", "FOTA", "bootstrap",
+    "RFC 9146", "RFC 8613", "RFC 7252", "TinyDTLS", "mbedTLS", "wolfSSL",
+    "Wakaama", "Leshan", "Anjay", "Zephyr", "SGP.32", "eSIM", "uCIFI",
+    "oneM2M", "3GPP", "NIDD", "SCEF", "NEF", "Queue Mode", "PSM",
+    "SenML", "CBOR", "TLV", "smart city", "IPSO"
+  ],
+  "requirements": {
+    "minContextWindow": 32000
+  },
+  "changelog": {
+    "1.2.0": "Added uCIFI smart city objects to objects.md; added OpenClaw install path to README; enriched v2.0 Northbound API coverage in SKILL.md; added cross-references between troubleshooting.md and protocol-details.md; added clawhub.json manifest",
+    "1.1.0": "Added troubleshooting.md with comprehensive diagnosis flows, error codes, and Wireshark recipes; enriched architecture.md with FOTA rollback strategies, HAL/PAL patterns, and cloud connector integration",
+    "1.0.0": "Initial release: full LwM2M v1.0-v2.0 coverage across 7 reference files"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "industry-compare",
+  "version": "1.0.0",
+  "description": "行业对比分析",
+  "author": "滚滚家族",
+  "license": "MIT",
+  "keywords": ["industry", "compare", "finance", "stock"],
+  "clawhub": {
+    "category": "finance",
+    "tags": ["行业对比", "公司对比", "行业地位", "竞争优势"]
+  }
+}

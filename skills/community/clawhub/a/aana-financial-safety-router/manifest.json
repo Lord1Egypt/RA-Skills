@@ -1,0 +1,60 @@
+{
+  "name": "aana-financial-safety-router",
+  "slug": "aana-financial-safety-router",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded financial safety router instructions for gating investment, tax, budgeting, debt, and purchase advice for unsupported claims and risk disclosure.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_professional_referral_for_high_impact_financial_advice": true,
+  "requires_risk_disclosure_for_financial_recommendations": true,
+  "requires_redaction_for_private_financial_data": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "full payment numbers",
+      "bank account numbers",
+      "tax identifiers",
+      "credit reports",
+      "pay stubs",
+      "raw tax documents",
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "identity documents",
+      "unrelated financial data"
+    ]
+  },
+  "financial_safety_boundary": {
+    "must_not_guarantee_returns_or_tax_outcomes": true,
+    "must_not_invent_rates_fees_prices_or_eligibility": true,
+    "must_disclose_material_risks_and_uncertainty": true,
+    "must_distinguish_general_education_from_personalized_advice": true,
+    "must_refer_high_impact_tax_legal_investment_or_debt_cases": true,
+    "must_minimize_private_financial_data": true,
+    "must_ask_or_retrieve_when_current_or_account_specific_facts_are_needed": true,
+    "may_not_facilitate_fraud_evasion_or_unauthorized_financial_access": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/financial-safety-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-financial-safety-review.json"
+  ]
+}

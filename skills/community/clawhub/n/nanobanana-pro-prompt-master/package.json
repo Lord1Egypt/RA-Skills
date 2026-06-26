@@ -1,0 +1,19 @@
+{
+  "name": "nanobanana-pro-skill",
+  "version": "1.0.0",
+  "description": "NanobananaPro 生图 Skill - 专业级 AI 生图提示词生成系统",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "publish": "claw skill publish"
+  },
+  "keywords": [
+    "nanobanana",
+    "AI 生图",
+    "提示词",
+    "openclaw-skill"
+  ],
+  "author": "Spark",
+  "license": "MIT"
+}

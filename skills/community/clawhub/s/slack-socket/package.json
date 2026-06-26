@@ -1,0 +1,8 @@
+{
+  "name": "slack",
+  "version": "1.0.0",
+  "description": "Control Slack from OpenClaw via the message tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs.",
+  "keywords": ["slack", "messaging", "channel"],
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

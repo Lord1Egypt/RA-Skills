@@ -1,0 +1,21 @@
+{
+  "name": "rrbdagent",
+  "version": "1.0.0",
+  "description": "RRBD Admin项目智能助手技能",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "rrbd",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2"
+  }
+}

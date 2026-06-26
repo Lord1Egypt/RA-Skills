@@ -1,0 +1,24 @@
+{
+  "_comment": "招聘飞书 Agent 时，将下方三段分别合并进 openclaw.json 对应位置。将 {agentId}/{appId}/{appSecret}/{agentName} 替换为实际值。",
+
+  "channels_feishu_accounts_新增项": {
+    "{agentId}": {
+      "appId": "{appId}",
+      "appSecret": "{appSecret}"
+    }
+  },
+
+  "agents_list_新增项": {
+    "id": "{agentId}",
+    "workspace": "/Users/${USER}/.openclaw/workspace/[agentId]",
+    "name": "{agentName}"
+  },
+
+  "bindings_新增项": {
+    "agentId": "{agentId}",
+    "match": {
+      "channel": "feishu",
+      "accountId": "{agentId}"
+    }
+  }
+}

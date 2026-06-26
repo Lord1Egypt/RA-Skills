@@ -1,0 +1,25 @@
+{
+  "slug": "wellknown-audit-corpus-skill",
+  "name": "Agent Well-Known Readiness Audit",
+  "type": "skill",
+  "price": 9,
+  "category": "agent-commerce",
+  "backend": "https://wellknown-audit-corpus.mtree.workers.dev",
+  "paid": "Audit an agent/API origin for well-known discovery, x402 pricing, OpenAPI/MCP readiness, and install blockers before an agent integrates it.",
+  "tags": [
+    "well-known",
+    "agent-card",
+    "mcp",
+    "x402",
+    "openapi",
+    "agent-readiness",
+    "discovery-audit"
+  ],
+  "endpoints": [
+    "POST /v1/wellknowns/readiness_report \u2014 $0.05 x402",
+    "POST /v1/wellknowns/compare \u2014 $0.10 x402"
+  ],
+  "friction": "Buyer needs an x402-capable HTTP client/wallet only for paid backend calls; free discovery probes work with plain fetch/curl.",
+  "description": "Audit an agent/API origin for well-known discovery, x402 pricing, OpenAPI/MCP readiness, and install blockers before an agent integrates it.",
+  "status": "upload-ready; ClawMart publish currently blocked until creator account is enabled for the API key"
+}

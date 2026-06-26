@@ -1,0 +1,4 @@
+收件邮箱,抄送邮箱,称呼,产品名称
+alice@example.com,bob@example.com|charlie@example.com,Alice,专业订阅服务
+bob@example.com,,Bob,高级会员
+charlie@example.com,david@example.com,Charlie,免费试用

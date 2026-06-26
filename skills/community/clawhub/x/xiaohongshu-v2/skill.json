@@ -1,0 +1,20 @@
+{
+  "name": "xiaohongshu-v2",
+  "version": "2.0.0",
+  "description": "小红书自动化技能 V2 - 基于 CDP 的完整自动化方案，支持登录、发布、搜索、互动",
+  "author": "Tina",
+  "entry": "SKILL.md",
+  "tools": [
+    "scripts/cli.py"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "chrome": ">=120"
+  },
+  "capabilities": [
+    "xiaohongshu:login",
+    "xiaohongshu:publish",
+    "xiaohongshu:search",
+    "xiaohongshu:interact"
+  ]
+}

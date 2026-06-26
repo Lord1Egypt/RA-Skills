@@ -1,0 +1,10 @@
+name: test-echo
+title: Test Parameter Skill
+version: "1.0.0"
+author: test
+description: OpenClaw 2026.3.13 test skill with parameters
+inputs:
+  - name: name
+    type: string
+    required: true
+    description: Input your name

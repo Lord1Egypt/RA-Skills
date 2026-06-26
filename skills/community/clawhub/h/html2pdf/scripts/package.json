@@ -1,0 +1,15 @@
+{
+  "name": "html-to-pdf",
+  "version": "1.0.0",
+  "description": "Convert HTML to PDF using headless Chrome (Puppeteer)",
+  "main": "html-to-pdf.js",
+  "scripts": {
+    "convert": "node html-to-pdf.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "cnc-quote-system",
+  "version": "1.0.0",
+  "description": "CNC智能报价系统 - 基于RAG的制造零件报价工具",
+  "author": {
+    "name": "Timo",
+    "email": "miscdd@163.com",
+    "alias": "海狸 (Beaver)",
+    "motto": "靠得住、能干事、在状态"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cnc",
+    "quote",
+    "rag",
+    "vector-search",
+    "manufacturing",
+    "ai-agent"
+  ],
+  "dependencies": {
+    "python": ">=3.8",
+    "faiss-cpu": ">=1.7.4",
+    "numpy": ">=1.21.0"
+  },
+  "openclaw": {
+    "priority": "P1",
+    "category": "agent-worker",
+    "triggers": [
+      "CNC报价",
+      "零件报价",
+      "制造报价"
+    ]
+  }
+}

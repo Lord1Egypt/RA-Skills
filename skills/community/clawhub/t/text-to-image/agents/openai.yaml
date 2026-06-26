@@ -1,0 +1,4 @@
+interface:
+  display_name: "Text to Image"
+  short_description: "Render styled text into sized image outputs"
+  default_prompt: "Use $text-to-image to render text into an image file path with size, font size, format, and color controls."

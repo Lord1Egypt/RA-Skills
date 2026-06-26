@@ -1,0 +1,30 @@
+domain_name: marketing
+task_types:
+  - strategy-design
+  - campaign-planning
+  - content-angle
+  - brand-positioning
+required_slots:
+  - product
+  - target_users
+  - campaign_goal
+  - output_format
+optional_slots:
+  - budget
+  - channels
+  - duration
+  - competitors
+clarify_templates:
+  - "这次更偏品牌传播、用户增长，还是直接转化？"
+  - "目标用户是谁？有没有初步画像？"
+  - "你希望我输出策略框架、传播方案，还是内容方向？"
+rewrite_template: >
+  请以市场策略顾问视角，围绕【{product}】，面向【{target_users}】，
+  针对【{campaign_goal}】输出【{output_format}】，
+  并给出定位、渠道、内容方向和效果指标建议。
+review_checklist:
+  - 产品是否明确
+  - 目标用户是否清晰
+  - 营销目标是否明确
+  - 输出形式是否说明
+risk_level: low

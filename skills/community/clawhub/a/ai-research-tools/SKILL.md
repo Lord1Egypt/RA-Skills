@@ -1,35 +1,311 @@
----
-name: "AI科研工具全景指南"
-description: "整合多智能体协作与接口标准化，实现科研数据快速获取、论文复现、审稿回复及报告自动生成，提升AI辅助学术效率。"
-category: "research"
-source: "ClawHub"
-tags: [academic, agent-laboratory, ai-research, paper-replication, research-tools, review-response, stata]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-research-tools"
-sourceUrl: "https://clawhub.ai/skills/ai-research-tools"
+# AI 科研工具全景指南
+
+> 论文复现 · 自主研究 · 审稿提效 · 多智能体协作
+
 ---
 
-# AI科研工具全景指南
+## 一、核心定位
 
-> 整合多智能体协作与接口标准化，实现科研数据快速获取、论文复现、审稿回复及报告自动生成，提升AI辅助学术效率。
+本技能整合 AI 科研工具完整生态，覆盖：
+- 数据获取提速 · 论文复现实战 · 审稿回复提效 · 多智能体系统 · 聚合平台
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-research-tools`
-- **Source URL:** [https://clawhub.ai/skills/ai-research-tools](https://clawhub.ai/skills/ai-research-tools)
+⚡ **核心理念**：AI 是科研效率放大器，承担耗时基础工作，研究者保留核心判断。
 
-## Overview
+---
 
+## 二、数据获取提速
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-research-tools
+### 2.1 MCP 接口方案
+
+| 项目 | 详情 |
+|------|------|
+| **核心能力** | 对接国内外多类学术、政府数据源 |
+| **效率提升** | 找数据：1个月 → 1次 MCP 操作 |
+| **代表工具** | MCP 协议（Model Context Protocol）|
+
+**MCP 优势**：
+- 标准化接口，一次配置多源调用
+- 支持中文环境（人大 DeepAnalyze）
+- 实时更新数据源
+
+### 2.2 人大 DeepAnalyze
+
+| 项目 | 详情 |
+|------|------|
+| **出品** | 中国人民大学 |
+| **核心能力** | 自主完成：找数据 → 跑分析 → 写报告 |
+| **适用环境** | 中文环境（国内数据/政策研究）|
+
+**典型流程**：
 ```
+用户输入研究问题 → DeepAnalyze 自动找数据
+→ 跑统计分析 → 生成完整报告 → 输出结论
+```
+
+---
+
+## 三、论文复现实战
+
+### 3.1 Stata Skill 复现方案
+
+| 项目 | 详情 |
+|------|------|
+| **速度** | 10 分钟复现 AER 顶刊论文 |
+| **方法** | Stata 代码 → Python 转译 |
+| **验证结果** | 核心系数、标准误、显著性水平全部匹配 ✅ |
+
+**技术细节**：
+- 保留原始 Stata 逻辑
+- Python 语法等价转换
+- 自动对标显著性阈值
+
+### 3.2 三大自主研究系统
+
+#### 🧪 Agent Laboratory
+
+| 项目 | 详情 |
+|------|------|
+| **Star** | 5500+ ⭐ |
+| **效果** | 降低研究成本 **84%** |
+| **定位** | 端到端研究助手 |
+
+#### 🧪 AI-Scientist-v2
+
+| 项目 | 详情 |
+|------|------|
+| **突破** | 首篇 AI 撰写且通过同行评审的论文 ✅ |
+| **意义** | AI 科研产出获学术界认可 |
+
+#### 🧪 ARIS
+
+| 项目 | 详情 |
+|------|------|
+| **能力** | 隔夜完成自主研究 |
+| **适用** | 紧急研究任务 / 快速文献综述 |
+
+---
+
+## 四、审稿回复提效
+
+### 4.1 三大提效工具
+
+#### 📝 review-response
+
+| 功能 | 说明 |
+|------|------|
+| **自动分类** | 智能识别审稿意见类型 |
+| **起草回复** | 按类别生成回复草稿 |
+| **效率提升** | 审稿周期 6-8 个月 → **2 周** |
+
+#### 📝 ai-research-feedback
+
+| 功能 | 说明 |
+|------|------|
+| **AI 审稿模拟** | 6 个 AI 代理模拟顶刊审稿流程 |
+| **覆盖维度** | 方法论 / 数据 / 创新性 / 写作 |
+
+#### 📝 paper-slide-deck
+
+| 功能 | 说明 |
+|------|------|
+| **一键转 PPT** | 论文内容自动生成演示文稿 |
+| **适用场景** | 会议报告 / 答辩 / 组会分享 |
+
+### 4.2 审稿回复周期对比
+
+```
+传统方式：6-8 个月
+    ↓
+AI 辅助：2 周
+效率提升：10-20x
+```
+
+---
+
+## 五、多智能体系统
+
+### 5.1 角色分离分工模式
+
+#### CoPaper.AI
+
+```
+Supervisor（统筹）
+    ├── 选题代理
+    ├── 分析代理
+    ├── 写作代理
+    └── 审核代理
+```
+
+**优势**：各司其职，减少 AI "幻觉"，提高整体质量
+
+#### 港大 AI-Researcher
+
+| 能力 | 说明 |
+|------|------|
+| **端到端** | 从文献 → 论文全流程 |
+| **适用** | 英文论文 / 国际期刊 |
+
+#### 人大 DeepAnalyze
+
+| 能力 | 说明 |
+|------|------|
+| **中文环境** | 国内数据/政策研究 |
+| **自主实证** | 自动建模 + 分析 + 报告 |
+
+### 5.2 多智能体架构优势
+
+| 传统方式 | 多智能体协作 |
+|---------|-------------|
+| 单 AI 输出，质量不稳定 | 角色分工，互相校验 |
+| 人工协调多个工具 | Supervisor 自动调度 |
+| 容易出现 AI 幻觉 | 审核代理降低错误率 |
+
+---
+
+## 六、聚合生态平台
+
+### 6.1 三大平台对比
+
+| 平台 | Skills 数量 | Star 数 | 特色 |
+|------|------------|---------|------|
+| **ClawHub** | 13,729+ | - | OpenClaw 官方生态 |
+| **VoltAgent** | 5,400+ | 44,791 ⭐ | 多智能体框架 |
+| **antigravity** | 1,340+ | 30,578 ⭐ | 轻量级聚合 |
+
+### 6.2 配套资源
+
+| 资源 | 说明 |
+|------|------|
+| 官方指南 | 快速上手教程 |
+| 学术讲座 | 视频教学 |
+| 因果推断入门教材 | 方法论基础 |
+
+---
+
+## 七、AI vs 人类分工
+
+### 7.1 AI 承担的工作
+
+| 类型 | 占比 | AI 能力 |
+|------|------|--------|
+| **数据查找** | 80% | MCP 接口自动抓取 |
+| **代码转译** | 90% | Stata → Python |
+| **文献整理** | 70% | 自动摘要 + 分类 |
+| **统计分析** | 75% | 自动化建模 |
+| **审稿分类** | 80% | NLP 智能分类 |
+| **PPT 生成** | 85% | 一键转换 |
+
+### 7.2 人类保留的工作
+
+| 工作 | 原因 |
+|------|------|
+| **研究问题定义** | 需要领域直觉和创造力 |
+| **结论解读** | 需要判断实际意义 |
+| **学术贡献定性** | 需要主观评估创新性 |
+| **同行评审** | 人类信用背书 |
+
+---
+
+## 八、使用场景速查
+
+| 场景 | 推荐工具 |
+|------|---------|
+| 复现 AER 顶刊论文 | Stata Skill + Python 转译 |
+| 快速文献综述 | ARIS（隔夜完成）|
+| 审稿回复 | review-response + ai-research-feedback |
+| 论文转 PPT | paper-slide-deck |
+| 中文实证研究 | 人大 DeepAnalyze |
+| 全流程自主研究 | Agent Laboratory |
+| AI 生成论文（首篇同行评审）| AI-Scientist-v2 |
+| 多智能体协作写论文 | CoPaper.AI |
+| 数据获取 | MCP 接口 |
+
+---
+
+## 九、快速上手指南
+
+### 第一步：配置数据源（MCP）
+
+```bash
+# 安装 MCP 工具
+npx clawhub@latest install mcp-tools
+
+# 配置学术数据源
+openclaw mcp add academic --connector arxiv --connector semantic-scholar
+```
+
+### 第二步：选择复现工具
+
+```bash
+# 安装 Stata Skill
+npx clawhub@latest install stata-skill
+
+# 使用 Python 转译
+stata-to-python --input paper.do --output paper.py
+```
+
+### 第三步：使用审稿工具
+
+```bash
+# 安装审稿回复助手
+npx clawhub@latest install review-response
+
+# 一键转 PPT
+npx clawhub@latest install paper-slide-deck
+```
+
+---
+
+## 十、注意事项
+
+```
+✅ 正确姿势：
+- AI 承担耗时基础工作
+- 人类保留核心判断
+- 交叉验证 AI 生成的结论
+
+⚠️ 注意事项：
+- AI 可能产生"幻觉"，需人工审核
+- 论文中使用 AI 生成内容需声明
+- 遵守各平台使用条款
+```
+
+---
+
+## 十一、与其他技能的关联
+
+| 本技能 | 关联技能 | 关系 |
+|--------|---------|------|
+| AI科研工具 | `mckinsey-frameworks` | 战略分析框架辅助研究设计 |
+| AI科研工具 | `thinking-knowledge-system` | 思考四层次（问题定义）|
+| AI科研工具 | `knowledge-system-guide` | 知识体系构建（文献管理）|
+| AI科研工具 | `investor-reading-list` | 投资研究（金融论文复现）|
+
+---
+
+## 十二、使用方式
+
+### 触发场景
+
+```
+用户说「复现一篇 AER 论文」→ Stata Skill + 转译流程
+用户说「快速做文献综述」→ ARIS 工具
+用户说「帮我回复审稿意见」→ review-response
+用户说「论文转 PPT」→ paper-slide-deck
+用户说「AI 能帮我做研究吗」→ 展示完整工具链
+用户说「多智能体研究系统」→ CoPaper.AI / 港大 AI-Researcher
+```
+
+### 组合使用
+
+```
+用户：「我想做一篇关于中国资本市场的实证论文」
+→ 人大 DeepAnalyze（数据 + 分析）
+→ Stata Skill（复现方法）
+→ review-response（审稿回复）
+→ paper-slide-deck（答辩展示）
+```
+
+---
+
+*本技能整合 AI 科研工具完整生态，助力高效学术研究*

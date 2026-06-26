@@ -1,0 +1,45 @@
+{
+  "total_windows": 63,
+  "boss_windows": [
+    {
+      "title": "BOSS直聘",
+      "has_boss": true,
+      "left": 452,
+      "top": 208,
+      "width": 802,
+      "height": 602,
+      "area": 482804,
+      "visible": 1,
+      "isActive": false,
+      "isMinimized": false,
+      "isMaximized": false
+    },
+    {
+      "title": "boss-agent - 文件资源管理器",
+      "has_boss": true,
+      "left": -21333,
+      "top": -21333,
+      "width": 158,
+      "height": 26,
+      "area": 4108,
+      "visible": 1,
+      "isActive": false,
+      "isMinimized": true,
+      "isMaximized": false
+    },
+    {
+      "title": ".env - boss-agent - Cursor",
+      "has_boss": true,
+      "left": -21333,
+      "top": -21333,
+      "width": 158,
+      "height": 26,
+      "area": 4108,
+      "visible": 1,
+      "isActive": false,
+      "isMinimized": true,
+      "isMaximized": false
+    }
+  ],
+  "analysis_time": "main"
+}

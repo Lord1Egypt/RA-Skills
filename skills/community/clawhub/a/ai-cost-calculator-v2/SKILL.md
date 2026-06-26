@@ -1,35 +1,195 @@
 ---
-name: "Ai Cost Calculator"
-description: "AI 成本计算器 - 对比各大模型成本，优化 API 支出。适合：AI 应用开发者、成本敏感用户。"
-category: "other"
-source: "ClawHub"
-tags: [chinese, pricing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-cost-calculator-v2"
-sourceUrl: "https://clawhub.ai/skills/ai-cost-calculator-v2"
+name: ai-cost-calculator
+version: "1.2.4"
+description: AI 成本计算器 - 对比各大模型成本，优化 API 支出。适合：AI 应用开发者、成本敏感用户。
+metadata:
+  openclaw:
+    emoji: "🧮"
+    requires:
+      bins: ["curl"]
 ---
 
-# Ai Cost Calculator
+# AI 成本计算器 Skill
 
-> AI 成本计算器 - 对比各大模型成本，优化 API 支出。适合：AI 应用开发者、成本敏感用户。
+对比各大 AI 模型成本，帮你省钱。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-cost-calculator-v2`
-- **Source URL:** [https://clawhub.ai/skills/ai-cost-calculator-v2](https://clawhub.ai/skills/ai-cost-calculator-v2)
+## 支持模型
 
-## Overview
+| 模型 | 输入价格 | 输出价格 | 特点 |
+|------|----------|----------|------|
+| GPT-4o | $2.5/1M | $10/1M | 多模态，性能强 |
+| GPT-4o-mini | $0.15/1M | $0.6/1M | 性价比高 |
+| Claude 3.5 Sonnet | $3/1M | $15/1M | 编程强 |
+| Claude 3 Haiku | $0.25/1M | $1.25/1M | 快速便宜 |
+| DeepSeek V3 | ¥1/1M | ¥2/1M | 国内最便宜 |
+| GLM-4 | ¥10/1M | ¥10/1M | 国产大模型 |
+| Qwen-Max | ¥20/1M | ¥20/1M | 阿里云 |
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 计算成本
+
+```
+计算 10 万字用 DeepSeek V3 的成本
+```
+
+### 模型对比
+
+```
+对比 GPT-4o 和 DeepSeek V3 处理 100 万 tokens 的成本
+```
+
+### 推荐模型
+
+```
+推荐最适合日常对话的便宜模型
+```
+
+## 成本计算公式
+
+```
+总成本 = (输入tokens × 输入价格 + 输出tokens × 输出价格) / 1000000
+```
+
+### 示例计算
+
+**场景：处理 10 万字文档**
+
+| 模型 | 输入成本 | 输出成本 | 总计 |
+|------|----------|----------|------|
+| GPT-4o | $0.25 | $1.00 | $1.25 |
+| Claude 3.5 Sonnet | $0.30 | $1.50 | $1.80 |
+| DeepSeek V3 | ¥0.10 | ¥0.20 | ¥0.30 (≈$0.04) |
+| GLM-4 | ¥1.00 | ¥1.00 | ¥2.00 |
+
+**DeepSeek 比 GPT-4o 便宜 30 倍！**
+
+## 快速对比脚本
+
 ```bash
-hermes skills install clawhub/ai-cost-calculator-v2
+# 计算不同模型的月度成本
+# 假设：每天 10 万 tokens，30 天
+
+echo "📊 月度成本对比（日用量 10 万 tokens）"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "GPT-4o:           \$"$(echo "scale=2; 0.1 * 30 * 2.5 / 100 + 0.1 * 30 * 10 / 100" | bc)
+echo "GPT-4o-mini:      \$"$(echo "scale=2; 0.1 * 30 * 0.15 / 100 + 0.1 * 30 * 0.6 / 100" | bc)
+echo "Claude Sonnet:    \$"$(echo "scale=2; 0.1 * 30 * 3 / 100 + 0.1 * 30 * 15 / 100" | bc)
+echo "DeepSeek V3:      ¥"$(echo "scale=2; 0.1 * 30 * 1 + 0.1 * 30 * 2" | bc)
+echo "GLM-4:            ¥"$(echo "scale=2; 0.1 * 30 * 10 + 0.1 * 30 * 10" | bc)
+```
+
+## 省钱策略
+
+### 1. 分层使用
+
+```
+简单任务 → GPT-4o-mini / DeepSeek V3
+复杂任务 → Claude Sonnet / GPT-4o
+```
+
+### 2. 缓存结果
+
+```
+相同问题 → 缓存回答 → 避免重复调用
+```
+
+### 3. 批量处理
+
+```
+多条消息 → 合并一次请求 → 减少请求次数
+```
+
+### 4. 选择性使用
+
+```
+不需要高级模型的任务 → 用便宜模型
+- 翻译：DeepSeek 足够
+- 摘要：GPT-4o-mini 足够
+- 编程：Claude Sonnet 最佳
+```
+
+## 价格监控
+
+### 获取最新价格
+
+```bash
+# OpenAI 官方
+curl -s "https://openai.com/api/pricing" | grep -oP '\$[\d.]+/1M'
+
+# DeepSeek 官方
+curl -s "https://api.deepseek.com/zh-CN/zh/cewin" | grep -oP '¥[\d.]+/百万'
+```
+
+### 价格变化提醒
+
+```
+设置价格预警：当 GPT-4o 降价超过 20% 时通知我
+```
+
+## 输出格式
+
+### 成本报告
+
+```
+🧮 AI 成本计算报告
+━━━━━━━━━━━━━━━━━━━━
+📝 输入：100,000 tokens
+📝 输出：50,000 tokens
+
+💰 各模型成本：
+  GPT-4o:           $0.75
+  GPT-4o-mini:      $0.08
+  Claude Sonnet:    $1.05
+  DeepSeek V3:      ¥0.20 (≈$0.03)
+
+✅ 最省钱选择：DeepSeek V3
+💸 最大差价：35 倍
+```
+
+## 注意事项
+
+- 价格实时变动，以官网为准
+- 部分模型有免费额度
+- 国内模型可能需要实名
+- 企业用户有批量折扣
+
+---
+
+创建：2026-03-12
+更新：2026-03-14
+版本：1.1
+
+## 🆕 v1.1 更新
+
+### 新增模型
+
+| 模型 | 输入价格 | 输出价格 | 特点 |
+|------|----------|----------|------|
+| GLM-5 | ¥0.5/1M | ¥2/1M | 最新智谱，性价比极高 |
+| DeepSeek V3.2 | ¥1/1M | ¥2/1M | 国产最强，价格亲民 |
+| Qwen-2.5-Max | ¥20/1M | ¥20/1M | 阿里最新 |
+| Doubao-1.5 | ¥0.8/1M | ¥2/1M | 字节跳动 |
+
+### 性价比排行（2026-03）
+
+1. **DeepSeek V3** - 最便宜，日常首选
+2. **GLM-5** - 国产新贵，API 稳定
+3. **GPT-4o-mini** - 国际入门首选
+4. **Claude Haiku** - 编程辅助
+
+### 省钱实战案例
+
+**场景：每天处理 10 万字**
+- GPT-4o：$37.5/月
+- DeepSeek V3：¥9/月（≈$1.2）
+- **年省：$430+**
+
+### 推荐策略
+
+```
+预算敏感 → DeepSeek V3 / GLM-5
+编程任务 → Claude Sonnet / DeepSeek V3
+多模态 → GPT-4o / Qwen-VL
+企业稳定 → GPT-4o / GLM-4
 ```

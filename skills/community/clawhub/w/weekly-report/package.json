@@ -1,0 +1,9 @@
+{
+  "name": "weekly-report",
+  "version": "1.0.0",
+  "description": "周报生成器，自动汇总本周工作",
+  "main": "index.js",
+  "author": "黄豆豆",
+  "license": "MIT",
+  "keywords": ["周报", "效率", "办公"]
+}

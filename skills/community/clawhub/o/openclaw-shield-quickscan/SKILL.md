@@ -1,35 +1,42 @@
 ---
-name: "OpenClaw Shield Quick Scan"
-description: "Run a fast OpenClaw Shield scan on a folder or file, then summarize severity counts, top findings, and recommended next actions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-shield-quickscan"
-sourceUrl: "https://clawhub.ai/skills/openclaw-shield-quickscan"
+name: openclaw-shield-quickscan
+description: "Run a fast OpenClaw Shield scan and summarize actionable findings. Use when users ask to scan a folder or repository for credential theft, data exfiltration patterns, suspicious command execution, risky network behavior, or a quick security triage report."
 ---
 
 # OpenClaw Shield Quick Scan
 
-> Run a fast OpenClaw Shield scan on a folder or file, then summarize severity counts, top findings, and recommended next actions.
+Use this skill to run a fast scan and produce a short triage summary.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-shield-quickscan`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-shield-quickscan](https://clawhub.ai/skills/openclaw-shield-quickscan)
+## Inputs
 
-## Overview
+- `target_path` (required): folder or file to scan.
+- `scanner_path` (optional): defaults to `projects/OpenClaw-Shield/src/scanner.py`.
+- `output_path` (optional): defaults to `/tmp/openclaw-shield-report.json`.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Verify `target_path` exists.
+2. Verify `scanner_path` exists. If missing, ask user to install OpenClaw Shield.
+3. Run the scanner.
+4. Summarize the report with `scripts/summarize_report.py`.
+5. Return severity counts, top findings, and next actions.
+
+## Commands
+
 ```bash
-hermes skills install clawhub/openclaw-shield-quickscan
+python3 "projects/OpenClaw-Shield/src/scanner.py" "<target_path>" --output "/tmp/openclaw-shield-report.json"
+python3 scripts/summarize_report.py "/tmp/openclaw-shield-report.json"
 ```
+
+If the scanner is not installed:
+
+```bash
+clawhub install openclaw-shield
+```
+
+## Response Contract
+
+- Always include total findings and severity breakdown.
+- If there are findings, include up to 5 highest-severity items with file path and line.
+- If no findings exist, clearly state scan completed with no detected issues.
+- Keep output concise and actionable.

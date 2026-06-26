@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest improvements for persona quality or platform compatibility
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What limitation are you facing?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe your expected behavior and target framework(s).
+    validations:
+      required: true
+  - type: checkboxes
+    id: platforms
+    attributes:
+      label: Target platforms
+      options:
+        - label: Cursor
+        - label: Claude
+        - label: OpenClaw
+        - label: Other runtimes

@@ -1,0 +1,231 @@
+{
+  "brand_name": "Aurora Lane",
+  "normalized_input": {
+    "brand_name": "Aurora Lane",
+    "brand_positioning": "minimal premium everyday wear",
+    "brand_tone": "calm sharp poetic",
+    "target_audience": [
+      "urban professionals",
+      "ages 25-40"
+    ],
+    "use_cases": [
+      "daily wear",
+      "commute",
+      "light social scenes"
+    ],
+    "channels": [
+      "xiaohongshu",
+      "weibo",
+      "douyin"
+    ],
+    "content_goals": [
+      "brand awareness",
+      "community building",
+      "content production"
+    ],
+    "brand_dos": [
+      "poetic short copy",
+      "clean visual language"
+    ],
+    "brand_donts": [
+      "aggressive promotions"
+    ],
+    "competitor_scope": [
+      "UNIQLOZH public signals",
+      "MINIMALAB public signals"
+    ],
+    "kpis": [
+      "reach",
+      "saves",
+      "engagement_rate",
+      "conversion"
+    ],
+    "constraints": {
+      "budget": "medium",
+      "language": "zh-CN",
+      "region": "CN",
+      "compliance": "public+authorized-only"
+    }
+  },
+  "brand_brief": {
+    "brand_summary": {
+      "positioning": "minimal premium everyday wear",
+      "tone": "calm sharp poetic",
+      "audience": "urban professionals, ages 25-40",
+      "goals": "brand awareness, community building, content production"
+    },
+    "channels": [
+      "xiaohongshu",
+      "weibo",
+      "douyin"
+    ],
+    "use_cases": [
+      "daily wear",
+      "commute",
+      "light social scenes"
+    ],
+    "dos": [
+      "poetic short copy",
+      "clean visual language"
+    ],
+    "donts": [
+      "aggressive promotions"
+    ],
+    "competitor_scope": [
+      "UNIQLOZH public signals",
+      "MINIMALAB public signals"
+    ],
+    "kpis": [
+      "reach",
+      "saves",
+      "engagement_rate",
+      "conversion"
+    ],
+    "constraints": {
+      "budget": "medium",
+      "region": "CN",
+      "compliance": "public+authorized-only"
+    },
+    "low_confidence": false
+  },
+  "content_strategy": {
+    "content_pillars": [
+      "brand story",
+      "product utility",
+      "social proof",
+      "platform-native education"
+    ],
+    "style_rules": [
+      "tone=calm sharp poetic",
+      "preserve brand constraints",
+      "prefer reusable post patterns"
+    ],
+    "channel_rules": {
+      "xiaohongshu": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ],
+      "weibo": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ],
+      "douyin": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ]
+    },
+    "keywords": [
+      "minimal premium everyday wear",
+      "calm sharp poetic"
+    ]
+  },
+  "content_assets": {
+    "topics": [
+      "Aurora Lane origin story",
+      "Aurora Lane use case story"
+    ],
+    "titles": [
+      "Aurora Lane: a simple introduction"
+    ],
+    "posts": [
+      "Draft post placeholder"
+    ],
+    "scripts": [
+      "Draft short-form script placeholder"
+    ],
+    "comment_replies": [
+      "Reply template placeholder"
+    ],
+    "platform_variants": [
+      "xiaohongshu",
+      "weibo",
+      "douyin"
+    ]
+  },
+  "competitor_clusters": {
+    "themes": {
+      "uniqlozh": [
+        {
+          "theme": "uniqlozh",
+          "tone": "unknown"
+        }
+      ],
+      "minimalab": [
+        {
+          "theme": "minimalab",
+          "tone": "unknown"
+        }
+      ]
+    },
+    "theme_keys": [
+      "theme",
+      "format",
+      "tone",
+      "frequency",
+      "hook"
+    ]
+  },
+  "performance_score": {
+    "scores": {
+      "brand_consistency": 5,
+      "channel_fit": 5,
+      "clarity": 5,
+      "actionability": 5
+    },
+    "overall": 20,
+    "notes": "initial run for Aurora Lane"
+  },
+  "authorization": {
+    "has_boundary": false,
+    "reasons": [],
+    "authorization_request": "",
+    "human_assist": {},
+    "state": "running",
+    "decision": "allow",
+    "pause": false,
+    "fallback": "",
+    "resume_condition": "",
+    "allowed_scope": "public+authorized-only"
+  },
+  "browser": {
+    "requested_action": "collect_public_signals",
+    "normalized_action": "collect_public_signals",
+    "platform": "xiaohongshu",
+    "allowed_actions": [
+      "collect_public_signals",
+      "gather_authorized_data",
+      "open_public_page",
+      "prepare_draft_publication",
+      "read_public_content"
+    ],
+    "blocked_actions": [
+      "bypass_captcha",
+      "bypass_login",
+      "bypass_rate_limits",
+      "evade_platform_controls",
+      "stealth_scraping"
+    ],
+    "capability_plan": [
+      "navigate",
+      "state",
+      "extract likes/comments/saves/public metadata"
+    ],
+    "compliance": {
+      "compliant": true,
+      "decision": "allow",
+      "reasons": [],
+      "degrade_to": []
+    },
+    "notes": "browser capability and compliance are unified: execute only within compliant scope"
+  },
+  "iteration_plan": {
+    "changes_for_next_cycle": [
+      "Refine content pillars based on observed engagement",
+      "Add competitor examples from public/authorized sources",
+      "Tune platform variants for strongest channel"
+    ],
+    "human_approval_needed": false
+  },
+  "status": "ready_for_iteration",
+  "low_confidence": false
+}

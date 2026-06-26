@@ -1,0 +1,68 @@
+[
+  {
+    "id": "RL01",
+    "name": "CurlBash 检测",
+    "patterns": [
+      "\\bcurl\\b.*\\|.*\\b(bash|sh)\\b",
+      "\\bwget\\b.*\\|.*\\b(bash|sh)\\b",
+      "\\bcurl\\b.*\\|\\s*python"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测从远程下载并执行脚本",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "RL02",
+    "name": "代码执行服务检测",
+    "patterns": [
+      "\\bglot\\.io\\b",
+      "\\bpastebin\\.com\\b",
+      "\\brentry\\.co\\b",
+      "\\braw\\.githubusercontent\\.com\\b"
+    ],
+    "risk": "HIGH",
+    "description": "检测利用代码执行服务托管恶意负载",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "RL03",
+    "name": "DNS 隧道检测",
+    "patterns": [
+      "\\bnslookup\\s+\\S+\\.",
+      "\\bdig\\s+\\S+\\.",
+      "\\bdns\\.query\\s*\\("
+    ],
+    "risk": "HIGH",
+    "description": "检测通过 DNS 查询传输指令",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "RL04",
+    "name": "隐写术检测",
+    "patterns": [
+      "\\bsteghide\\b",
+      "\\bzsteg\\b",
+      "\\bexiftool\\b"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测将恶意代码隐藏在图片中",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "RL05",
+    "name": "短链接检测",
+    "patterns": [
+      "\\bbit\\.ly\\b",
+      "\\bt\\.co\\b",
+      "\\bgoo\\.gl\\b"
+    ],
+    "risk": "LOW",
+    "description": "检测短链接服务",
+    "action": "INFO",
+    "optimized": false
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "preferred_stores": [],
+  "notes": [
+    "Store details here remain optional household context in v1.",
+    "Weekly deal briefs are manual setup only: save the exact store/source you want to use instead of pretending ZIP-only discovery is reliable.",
+    "If a store retrieval works once, save the store-specific retrieval recipe here so the next run can reuse what actually worked.",
+    "The planner/query scripts do not read store-specific behavior or deal data as scoring input."
+  ],
+  "item_preferences": {},
+  "weekly_deal_brief": {
+    "enabled": false,
+    "default_store_ids": [],
+    "scan_schedule": {
+      "day_of_week": "friday",
+      "time_local": "12:00",
+      "timezone": "America/New_York"
+    },
+    "stores": []
+  }
+}

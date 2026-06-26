@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Run",
+  "type": "object",
+  "required": ["run_id", "session_id", "status", "started_at", "updated_at"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "status": { "type": "string" },
+    "trigger": { "type": "string" },
+    "started_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "ended_at": { "type": ["string", "null"] }
+  }
+}
+

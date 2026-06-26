@@ -1,0 +1,94 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-02-22T20:34:14.197174",
+  "interests": [
+    {
+      "id": "ai-topic-01",
+      "type": "topic",
+      "value": "人工智能",
+      "keywords": [
+        "AI",
+        "大模型",
+        "AGI",
+        "机器学习",
+        "深度学习"
+      ],
+      "priority": "high",
+      "sources": [
+        "tech",
+        "news"
+      ],
+      "created_at": "2026-02-22T20:30:00+08:00"
+    },
+    {
+      "id": "tech-topic-01",
+      "type": "topic",
+      "value": "科技动态",
+      "keywords": [
+        "科技",
+        "互联网",
+        "初创公司",
+        "融资",
+        "IPO"
+      ],
+      "priority": "medium",
+      "sources": [
+        "tech"
+      ],
+      "created_at": "2026-02-22T20:30:00+08:00"
+    },
+    {
+      "id": "person-01",
+      "type": "person",
+      "value": "马斯克",
+      "keywords": [
+        "Elon Musk",
+        "Musk",
+        "Tesla",
+        "SpaceX",
+        "X",
+        "Twitter"
+      ],
+      "priority": "medium",
+      "sources": [
+        "all"
+      ],
+      "created_at": "2026-02-22T20:30:00+08:00"
+    },
+    {
+      "id": "12a5fcb8",
+      "type": "topic",
+      "value": "区块链",
+      "keywords": [
+        "区块链"
+      ],
+      "priority": "medium",
+      "sources": [
+        "all"
+      ],
+      "created_at": "2026-02-22T20:34:14.197148"
+    },
+    {
+      "id": "kickstarter-01",
+      "type": "source",
+      "value": "Kickstarter 超热门项目",
+      "keywords": [
+        "crowdfunding",
+        "kickstarter"
+      ],
+      "priority": "medium",
+      "sources": [
+        "kickstarter"
+      ],
+      "created_at": "2026-02-22T21:45:00+08:00"
+    }
+  ],
+  "settings": {
+    "daily_digest_time": "09:00",
+    "timezone": "Asia/Shanghai",
+    "max_results_per_interest": 10,
+    "search_lookback_hours": 24,
+    "delivery_channel": "slack",
+    "slack_channel": "#general"
+  }
+}

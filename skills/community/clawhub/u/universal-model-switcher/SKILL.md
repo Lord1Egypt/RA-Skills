@@ -1,35 +1,41 @@
 ---
-name: "Universal Model Switcher"
-description: "Universal Model Switcher V7.1.0 - Only switch within your existing models."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/universal-model-switcher"
-sourceUrl: "https://clawhub.ai/skills/universal-model-switcher"
+name: universal-model-switcher
+description: Universal Model Switcher V7.1.0 - Only switch within your existing models.
+version: 7.1.1
+author: davidme6
 ---
 
-# Universal Model Switcher
+# Universal Model Switcher V7.1.1
 
-> Universal Model Switcher V7.1.0 - Only switch within your existing models.
+## Core Principle
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/universal-model-switcher`
-- **Source URL:** [https://clawhub.ai/skills/universal-model-switcher](https://clawhub.ai/skills/universal-model-switcher)
+Only switch within models you already have. No cost concerns.
 
-## Overview
+## Switch Rules
 
+### 1. Multimodal First
+- Image/Video/Audio -> qwen3.5-plus
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/universal-model-switcher
-```
+### 2. Task-based Switch
+- Code -> glm-5
+- Reasoning -> qwen3-max  
+- Chat -> qwen3.5-plus (best all-rounder)
+- Long Doc -> qwen3.5-plus (256K)
+- Office -> MiniMax-M2.5
+
+### 3. Subagent Keep Professional
+- Tech Expert -> glm-5
+- Reasoning Expert -> qwq-plus
+- Market Hunter -> qwen3-max
+
+## Your Model Pool
+
+| Task | Best | Backup |
+|------|------|--------|
+| Code | glm-5 | qwen3-coder-plus |
+| Reasoning | qwen3-max | qwen3.5-397b-a17b |
+| Multimodal | qwen3.5-plus | - |
+| Chat | qwen3.5-plus | - |
+| Office | MiniMax-M2.5 | - |
+
+Version: 7.1.0

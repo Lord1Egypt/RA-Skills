@@ -1,0 +1,3 @@
+interface:
+  display_name: "Neway Commerce OS"
+  short_description: "Generate a full-stack commerce site skeleton with React, Vite, Hono, AI sales assistant, Stripe-style checkout, and EdgeOne deployment."

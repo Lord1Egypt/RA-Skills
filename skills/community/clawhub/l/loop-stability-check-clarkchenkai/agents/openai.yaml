@@ -1,0 +1,7 @@
+interface:
+  display_name: "Loop Stability Check"
+  short_description: "Diagnose unstable loops before they waste more cycles."
+  default_prompt: "Use $loop-stability-check to inspect this workflow loop, name the instability pattern, and recommend guardrails or a halt condition."
+
+policy:
+  allow_implicit_invocation: true

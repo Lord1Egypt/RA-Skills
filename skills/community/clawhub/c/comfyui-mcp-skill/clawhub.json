@@ -1,0 +1,77 @@
+{
+  "name": "comfyui-mcp-skill",
+  "displayName": "ComfyUI MCP 视频生成",
+  "description": "AI 视频生成技能，支持文生视频、分镜生成、视频合成",
+  "version": "1.0.0",
+  "author": "lemnt-ai",
+  "license": "MIT",
+  "homepage": "https://github.com/lemnt-ai/comfyui-mcp-server",
+  "repository": "https://github.com/lemnt-ai/comfyui-mcp-server",
+  "icon": "🎬",
+  "category": "AI Tools",
+  "tags": ["video", "ai", "comfyui", "generation", "mcp"],
+  "main": "server.py",
+  "runtime": "python",
+  "minPythonVersion": "3.10",
+  "entryPoint": {
+    "command": "python",
+    "args": ["server.py", "--transport", "http", "--port", "18060"],
+    "cwd": ".",
+    "env": {
+      "COMFYUI_HOST": "localhost",
+      "COMFYUI_PORT": "8188"
+    }
+  },
+  "tools": [
+    {
+      "name": "generate_video",
+      "description": "根据提示词生成 AI 视频"
+    },
+    {
+      "name": "generate_storyboard",
+      "description": "生成视频分镜脚本"
+    },
+    {
+      "name": "compose_video",
+      "description": "合成多个视频片段"
+    },
+    {
+      "name": "download_video",
+      "description": "下载生成的视频"
+    },
+    {
+      "name": "check_progress",
+      "description": "查询生成任务进度"
+    }
+  ],
+  "dependencies": [
+    "fastmcp",
+    "requests",
+    "aiohttp"
+  ],
+  "peerDependencies": {
+    "comfyui": {
+      "required": true,
+      "version": ">=1.0.0",
+      "description": "需要本地运行 ComfyUI 服务"
+    }
+  },
+  "configuration": {
+    "properties": {
+      "comfyuiHost": {
+        "type": "string",
+        "default": "localhost",
+        "description": "ComfyUI 服务器地址"
+      },
+      "comfyuiPort": {
+        "type": "integer",
+        "default": 8188,
+        "description": "ComfyUI 端口"
+      }
+    }
+  },
+  "publish": {
+    "platform": "clawhub",
+    "visibility": "public"
+  }
+}

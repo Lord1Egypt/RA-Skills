@@ -1,35 +1,111 @@
----
-name: "淘股吧A股市场复盘"
-description: "自动抓取淘股吧“今日推荐”前N个帖子内容，整理整体行情、板块表现与多数作者观点总结。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taoguba-picks-digest"
-sourceUrl: "https://clawhub.ai/skills/taoguba-picks-digest"
----
+# 淘股吧今日推荐抓取整理技能
 
-# 淘股吧A股市场复盘
+## 描述
+自动浏览淘股吧网站，进入"今日推荐"专栏，抓取排名前N的帖子，阅读完整内容后整理总结输出。
+使用 agent-browser 进行页面交互获取帖子链接，成功后后台静默抓取内容。
 
-> 自动抓取淘股吧“今日推荐”前N个帖子内容，整理整体行情、板块表现与多数作者观点总结。
+## 功能
+- 使用 agent-browser 导航到淘股吧首页
+- 如果需要登录，使用环境变量中的账号密码进行登录
+- 定位并点击"今日推荐"栏目获取前15个帖子的url
+- 获取url成功后使用后台静默抓取所有url内容
+- 如果url获取不成功，则继续在浏览器中依次打开浏览帖子获取内容
+- 整理总结：整体行情、板块表现、多数作者观点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taoguba-picks-digest`
-- **Source URL:** [https://clawhub.ai/skills/taoguba-picks-digest](https://clawhub.ai/skills/taoguba-picks-digest)
+## 使用场景
+用户要求"浏览淘股吧今日推荐，整理前15个帖子观点"时使用。
 
-## Overview
+## 配置要求
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 环境变量（如果需要登录）
+请在运行前配置以下环境变量：
 ```bash
-hermes skills install clawhub/taoguba-picks-digest
+export TAOGUBA_USERNAME="你的账号"
+export TAOGUBA_PASSWORD="你的密码"
+```
+
+第一次使用时，如果遇到登录界面，会提示你配置环境变量。
+
+## 操作步骤
+
+### 1. 使用 agent-browser 打开淘股吧首页
+```bash
+agent-browser open https://www.tgb.cn/
+agent-browser wait --load networkidle
+agent-browser snapshot -i
+```
+
+### 2. 检查是否需要登录
+- 如果快照中出现"账号登录"按钮/表单，则需要登录：
+  - 找到用户名/账号输入框，使用环境变量 `$TAOGUBA_USERNAME` 填充
+  - 找到密码输入框，使用环境变量 `$TAOGUBA_PASSWORD` 填充
+  - 点击登录按钮，等待页面加载完成
+- 如果不需要登录，直接下一步
+
+### 3. 点击"今日推荐"栏目
+在导航栏中找到"今日推荐"栏目/标签，点击切换：
+```bash
+agent-browser find text "今日推荐" click
+agent-browser wait --load networkidle
+agent-browser snapshot -i
+```
+
+### 4. 获取前15个帖子的URL
+遍历当前页面中"今日推荐"栏目下的帖子链接：
+```bash
+# 提取前15个帖子的href属性
+# 保存到 urls.txt 文件
+```
+每个帖子URL格式为 `https://www.tgb.cn/a/xxxx`。
+
+### 5. 根据获取结果选择后续操作
+
+#### 情况A：成功获取15个URL → 后台静默抓取
+不需要继续浏览器操作，改用后台批量抓取：
+- 逐行读取 urls.txt 中的URL
+- 对每个URL调用 `web_fetch` 获取内容，保存为 markdown 文件
+- 所有URL抓取完成后，进入步骤6整理总结
+
+**注意**：敏感的账号密码信息不会写入任何文件，仅在环境变量中使用。
+
+#### 情况B：获取URL不成功 → 浏览器逐个打开抓取
+如果通过agent-browser提取URL失败，则继续在浏览器中操作：
+- 依次点击每个帖子标题打开帖子
+- 对每个打开的帖子，获取页面正文内容
+- 保存内容后关闭标签页，继续下一个
+- 收集完所有内容后进入步骤6
+
+### 6. 整理总结输出
+整理所有帖子内容，输出包含以下部分：
+1. **整体总结** - 市场概况、成交量、整体情绪
+2. **市场判断** - 趋势、板块表现（强弱分类）
+3. **多数作者观点** - 操作策略共识、投资理念交流
+4. **焦点个股** - 被多次提到的股票
+
+## 注意事项
+- 账号密码仅用于登录，不会记录到任何技能文件或日志中
+- 每个帖子只需要总结主要观点，不用整理评论区
+- 保持客观，只整理作者表达的观点，不添加额外判断
+- 输出格式清晰，使用markdown分级
+
+## 示例输出结构
+```
+# 淘股吧"今日推荐"（YYYY年MM月DD日）前15篇帖子 整体总结
+
+## 一、整体行情概况
+...
+
+## 二、板块表现
+| 板块 | 表现 | 代表个股 |
+|------|------|----------|
+| ... | ... | ... |
+
+## 三、多数作者的共同观点
+...
+
+## 四、焦点个股
+...
+
+## 五、小结
+...
 ```

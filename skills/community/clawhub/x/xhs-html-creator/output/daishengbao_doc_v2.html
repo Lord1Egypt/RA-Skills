@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>证件物品篇 v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #FFF8F0; font-family: 'Noto Sans SC', sans-serif; overflow: hidden; position: relative; }
+.bg-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,140,100,0.06) 28px, rgba(180,140,100,0.06) 29px); }
+.tape { position: absolute; width: 140px; height: 34px; background: rgba(255,230,150,0.8); transform: rotate(-2deg); box-shadow: 0 2px 5px rgba(0,0,0,0.12); }
+.tape-1 { top: 18px; left: 28px; }
+.tape-2 { top: 18px; right: 28px; transform: rotate(2deg); }
+.header-bar { position: absolute; top: 0; left: 0; right: 0; height: 120px; background: linear-gradient(135deg, #E8956E, #D4756B); display: flex; align-items: center; justify-content: center; }
+.header-bar h1 { font-size: 54px; color: white; font-family: 'Ma Shan Zheng', cursive; letter-spacing: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+.section-icon { position: absolute; top: 138px; left: 50%; transform: translateX(-50%); font-size: 70px; }
+.item-list { position: absolute; top: 230px; left: 50px; right: 50px; }
+.item-row { display: flex; align-items: flex-start; margin-bottom: 18px; background: #FFFDF5; border-radius: 12px; padding: 16px 20px; border-left: 6px solid #E8956E; box-shadow: 0 3px 8px rgba(0,0,0,0.08); }
+.item-num { min-width: 46px; height: 46px; background: #E8956E; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; margin-right: 18px; flex-shrink: 0; }
+.item-content { flex: 1; }
+.item-name { font-size: 30px; font-weight: 900; color: #3D2010; margin-bottom: 6px; }
+.item-desc { font-size: 22px; color: #8B6F5C; line-height: 1.55; }
+.tag { display: inline-block; background: #FFE5E5; color: #D4756B; font-size: 18px; padding: 3px 12px; border-radius: 12px; margin-top: 6px; font-weight: bold; }
+.bottom-note { position: absolute; bottom: 50px; left: 50px; right: 50px; background: #FFF0E0; border: 3px dashed #D4A574; border-radius: 14px; padding: 18px 28px; font-size: 24px; color: #8B6914; text-align: center; line-height: 1.7; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="header-bar"><h1>📋 证件物品篇</h1></div>
+<div class="section-icon">📁</div>
+<div class="item-list">
+  <div class="item-row">
+    <div class="item-num">1</div>
+    <div class="item-content">
+      <div class="item-name">身份证</div>
+      <div class="item-desc">夫妻双方都要带，办理住院和出生证明用</div>
+      <span class="tag">必带</span>
+    </div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">2</div>
+    <div class="item-content">
+      <div class="item-name">医保卡</div>
+      <div class="item-desc">出院时直接结算报销</div>
+      <span class="tag">必带</span>
+    </div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">3</div>
+    <div class="item-content">
+      <div class="item-name">产检本 + 母子健康手册</div>
+      <div class="item-desc">整个孕期的检查记录，医生必看</div>
+      <span class="tag">必带</span>
+    </div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">4</div>
+    <div class="item-content">
+      <div class="item-name">准生证</div>
+      <div class="item-desc">部分医院住院要登记，有的可以现场办</div>
+      <span class="tag">⚠️ 视情况</span>
+    </div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">5</div>
+    <div class="item-content">
+      <div class="item-name">银行卡 + 少量现金</div>
+      <div class="item-desc">押金一般5000-10000，现金备着应急</div>
+      <span class="tag">必带</span>
+    </div>
+  </div>
+</div>
+<div class="bottom-note">💡 所有证件统一放一个文件袋，放在产房包最外层，紧急时一目了然</div>
+</body>
+</html>

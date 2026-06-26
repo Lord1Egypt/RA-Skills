@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title>Preset selection / 预设选择</title>
+  <desc>Four bilingual presets included in cc-statusline 0.1.0.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020" />
+      <stop offset="55%" stop-color="#10192b" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  
+<style>
+  .bg { fill: url(#bg); }
+  .panel { fill: #111827; stroke: #243041; stroke-width: 1.2; }
+  .panel-soft { fill: #0f172a; stroke: #243041; stroke-width: 1.2; }
+  .panel-muted { fill: #0b1220; stroke: #1f2937; stroke-width: 1.2; }
+  .terminal { fill: #0b1020; stroke: #334155; stroke-width: 1.2; }
+  .title { fill: #f8fafc; font: 700 34px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .subtitle { fill: #94a3b8; font: 500 17px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .section { fill: #e2e8f0; font: 700 21px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .body { fill: #dbe4f0; font: 500 18px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .small { fill: #94a3b8; font: 500 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .mono { fill: #e5edf7; font: 600 19px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .mono-small { fill: #dbe4f0; font: 500 17px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .mono-tiny { fill: #cbd5e1; font: 500 15px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .chip { fill: #0f172a; stroke: #334155; stroke-width: 1; }
+  .chip-text { fill: #cbd5e1; font: 600 14px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .badge { fill: #1d4ed8; }
+  .badge-text { fill: #eff6ff; font: 700 14px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .accent-text { fill: #7dd3fc; font: 700 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .green { fill: #86efac; }
+  .yellow { fill: #fde68a; }
+  .orange { fill: #fdba74; }
+  .pink { fill: #f9a8d4; }
+  .blue { fill: #93c5fd; }
+  .muted { fill: #64748b; }
+</style>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900" rx="0"/>
+  <rect x="48" y="38" width="1504" height="824" rx="28" fill="rgba(15,23,42,0.65)" stroke="#334155" stroke-width="1.2"/>
+  <text class="title" x="90" y="102">Preset selection / 预设选择</text>
+  <text class="subtitle" x="90" y="136">Four bilingual presets included in cc-statusline 0.1.0.</text>
+  <rect class="panel" x="90" y="182" width="680" height="260" rx="24"/>
+<rect x="90" y="182" width="680" height="10" rx="24" fill="#8b5cf6"/>
+<text class="section" x="116" y="230">Full / 完整版</text>
+<text class="small" x="116" y="259">Three-line default preset · 3 行默认预设</text>
+<rect class="badge" x="662" y="206" width="78" height="30" rx="15"/>
+<text class="badge-text" x="701" y="226" text-anchor="middle">3 lines</text>
+<text class="body" x="116" y="300">Line 1: model · modes · version · active</text>
+<text class="body" x="116" y="334">Line 2: context · tools · cwd · git</text>
+<text class="body" x="116" y="368">Line 3: ctx_tokens · sum_tokens · duration · cost</text>
+<text class="body" x="116" y="402">Closest to the current Miluer layout / 最接近当前 Miluer 风格</text>
+<rect class="panel" x="830" y="182" width="680" height="260" rx="24"/>
+<rect x="830" y="182" width="680" height="10" rx="24" fill="#38bdf8"/>
+<text class="section" x="856" y="230">Standard / 标准版</text>
+<text class="small" x="856" y="259">Balanced daily preset · 适合日常使用</text>
+<rect class="badge" x="1402" y="206" width="78" height="30" rx="15"/>
+<text class="badge-text" x="1441" y="226" text-anchor="middle">2 lines</text>
+<text class="body" x="856" y="300">Line 1: model · modes · version · active</text>
+<text class="body" x="856" y="334">Line 2: context · tools · cwd · git</text>
+<text class="body" x="856" y="368">Line 3: (empty)</text>
+<text class="body" x="856" y="402">Less noise, same essentials / 更均衡、更易读</text>
+<rect class="panel" x="90" y="478" width="680" height="260" rx="24"/>
+<rect x="90" y="478" width="680" height="10" rx="24" fill="#94a3b8"/>
+<text class="section" x="116" y="526">Minimal / 极简版</text>
+<text class="small" x="116" y="555">Single-line essentials only · 单行只保留关键项</text>
+<rect class="badge" x="662" y="502" width="78" height="30" rx="15"/>
+<text class="badge-text" x="701" y="522" text-anchor="middle">1 line</text>
+<text class="body" x="116" y="596">Line 1: model · version · active · cost</text>
+<text class="body" x="116" y="630">Line 2: (empty)</text>
+<text class="body" x="116" y="664">Line 3: (empty)</text>
+<text class="body" x="116" y="698">Best when you want the lowest visual noise / 视觉干扰最低</text>
+<rect class="panel" x="830" y="478" width="680" height="260" rx="24"/>
+<rect x="830" y="478" width="680" height="10" rx="24" fill="#10b981"/>
+<text class="section" x="856" y="526">Developer / 开发者版</text>
+<text class="small" x="856" y="555">Git + token focused preset · 强调 Git 与 Token</text>
+<rect class="badge" x="1402" y="502" width="78" height="30" rx="15"/>
+<text class="badge-text" x="1441" y="522" text-anchor="middle">3 lines</text>
+<text class="body" x="856" y="596">Line 1: model · modes · active</text>
+<text class="body" x="856" y="630">Line 2: cwd · git · context</text>
+<text class="body" x="856" y="664">Line 3: ctx_tokens · sum_tokens · duration · cost</text>
+<text class="body" x="856" y="698">Optimized for active coding sessions / 面向高频开发会话</text>
+<text class="accent-text" x="90" y="792">Preset names, labels, and descriptions stay bilingual in the skill UI / 预设名、描述与关键提示都会保持双语。</text>
+</svg>

@@ -1,0 +1,7 @@
+display_name: UniProfit Mail Assistant
+short_description: Send approved emails through UniProfit with a mail_send API key.
+default_prompt: Deliver approved email content through a verified UniProfit mail account and report send status clearly.
+required_environment_variables:
+  - UNIPROFIT_API_BASE_URL
+  - UNIPROFIT_MAIL_SEND_KEY
+primary_credential: UNIPROFIT_MAIL_SEND_KEY

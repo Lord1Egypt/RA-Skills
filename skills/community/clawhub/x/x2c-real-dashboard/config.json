@@ -1,0 +1,6 @@
+{
+  "api_url": "https://eumfmgwxwjyagsvqloac.supabase.co/functions/v1/open-api",
+  "default_trend_days": 7,
+  "default_activity_limit": 5,
+  "default_page_size": 10
+}

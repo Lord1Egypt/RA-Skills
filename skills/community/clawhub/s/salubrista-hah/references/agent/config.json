@@ -1,0 +1,43 @@
+{
+  "_manifest": {
+    "urn": "urn:salud:agent-bootstrap:salubrista-hah-config:1.0.0",
+    "type": "bootstrap_config"
+  },
+  "allowed_kb": [
+    "urn:salud:kb:hodom-reglamento-ds1-2022",
+    "urn:salud:kb:hodom-decreto-exento-31-2024",
+    "urn:salud:kb:hodom-norma-tecnica-2024",
+    "urn:salud:kb:hodom-direccion-tecnica",
+    "urn:salud:kb:hodom-manual-alta-complejidad",
+    "urn:salud:kb:hodom-situacion-chile-2026",
+    "urn:salud:kb:gestion-redes-indice",
+    "urn:salud:kb:gestion-redes-general",
+    "urn:salud:kb:gestion-redes-unidades",
+    "urn:salud:kb:gestion-redes-urgencias",
+    "urn:salud:kb:gestion-redes-salud-mental",
+    "urn:salud:kb:gestion-redes-herramientas",
+    "urn:salud:kb:firs-framework-integrado-razonamiento-salud"
+  ],
+  "sandbox": {
+    "mode": "permissive"
+  },
+  "tools": {
+    "allow": [
+      "kb_route",
+      "knowledge_retrieval",
+      "web_search"
+    ],
+    "deny": []
+  },
+  "sub_agents": {
+    "max_depth": 0
+  },
+  "runtime_capabilities": {
+    "allow": [],
+    "deny": [
+      "code_execution",
+      "workspace_write",
+      "agent_deploy"
+    ]
+  }
+}

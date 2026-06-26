@@ -1,35 +1,14 @@
 ---
-name: "code-review-testing"
-description: "Indexed by skills.sh from openai/codex"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "openai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/openai/codex/code-review-testing"
-sourceUrl: "https://skills.sh/openai/codex/code-review-testing"
+name: code-review-testing
+description: Test authoring guidance
 ---
 
-# code-review-testing
+For agent changes prefer integration tests over unit tests. Integration tests are under `core/suite` and use `test_codex` to set up a test instance of codex.
 
-> Indexed by skills.sh from openai/codex
+Features that change the agent logic MUST add an integration test:
+- Provide a list of major logic changes and user-facing behaviors that need to be tested.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** openai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/openai/codex/code-review-testing`
-- **Source URL:** [https://skills.sh/openai/codex/code-review-testing](https://skills.sh/openai/codex/code-review-testing)
+If unit tests are needed, put them in a dedicated test file (*_tests.rs).
+Avoid test-only functions in the main implementation.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/openai/codex/code-review-testing
-```
+Check whether there are existing helpers to make tests more streamlined and readable.

@@ -1,0 +1,44 @@
+{
+  "skill_name": "tabletopkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm starting a Swift 6.3 visionOS tabletop dice game. Give me a concise implementation plan for TabletopKit setup, dice tossing, RealityKit rendering, and SharePlay multiplayer. Call out any availability traps I need to know before I target older visionOS 2.x devices.",
+      "expected_output": "A source-grounded TabletopKit implementation plan that uses core TabletopKit types, dice toss APIs, RealityKit rendering, and Group Activities while distinguishing core visionOS 2.0 APIs from visionOS 2.2 and visionOS 26-only APIs.",
+      "files": [],
+      "expectations": [
+        "Mentions core TabletopKit setup with TableSetup, TabletopGame, EntityTabletop or Tabletop, EntityEquipment or Equipment, and claimAnySeat or claimSeat.",
+        "Explains dice tossing with TabletopInteraction.Delegate, toss(equipmentID:as:), TossableRepresentation, TossOutcome, and face mapping or RawValueState/DieState.",
+        "Explains RealityKit rendering through EntityRenderDelegate or a render delegate and the SwiftUI .tabletopGame modifier.",
+        "Explains SharePlay multiplayer through GroupActivity sessions and coordinateWithSession(_:), including that Simulator does not support Group Activities multiplayer.",
+        "Clearly separates availability: core TabletopKit visionOS 2.0+, TabletopInteraction.Configuration visionOS 2.2+, and CustomAction/CustomEquipmentState/register(action:) visionOS 26.0+."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this TabletopKit idea: I want my app to support visionOS 2.0 and use CustomAction plus CustomEquipmentState for a player inventory and coin collection. Is that safe? If not, what should I change?",
+      "expected_output": "A correction-focused review that flags CustomAction and CustomEquipmentState as visionOS 26.0+ APIs, suggests safe alternatives or availability gates for visionOS 2.0, and explains deterministic custom-action rules if the target is raised.",
+      "files": [],
+      "expectations": [
+        "Flags CustomAction as visionOS 26.0+ and not safe for a visionOS 2.0 deployment target.",
+        "Flags CustomEquipmentState and TableSetup.register(action:) as visionOS 26.0+ or availability-gated APIs.",
+        "Suggests either raising the deployment target, using availability checks with fallbacks, or modeling supported state changes through built-in TabletopAction/state APIs for visionOS 2.0.",
+        "Explains that custom action validation/application must be deterministic and based only on the supplied snapshot/table state and action data.",
+        "Avoids inventing unsupported behavior for unregistered custom actions and instead says custom actions must be registered before use."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "For my visionOS spatial board game, add leaderboards, achievements, matchmaking, and FaceTime table synchronization. Should TabletopKit own all of that, or should I split it across Apple frameworks?",
+      "expected_output": "A boundary-aware answer that keeps TabletopKit focused on the spatial table/game-state layer, routes Game Center concerns to GameKit, and uses Group Activities/SharePlay for FaceTime synchronization.",
+      "files": [],
+      "expectations": [
+        "Keeps TabletopKit responsible for spatial tabletop setup, equipment state, interactions, turns, rendering hooks, and SharePlay table synchronization.",
+        "Routes leaderboards, achievements, Game Center authentication, matchmaking, and Game Center restrictions to GameKit rather than TabletopKit.",
+        "Mentions Group Activities or SharePlay and coordinateWithSession(_:) for FaceTime-based synchronization.",
+        "Does not invent TabletopKit APIs for leaderboards, achievements, or Game Center matchmaking.",
+        "Notes RealityKit remains the rendering layer for entities and visual effects."
+      ]
+    }
+  ]
+}

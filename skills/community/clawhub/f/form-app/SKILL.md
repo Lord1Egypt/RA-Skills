@@ -1,35 +1,20 @@
 ---
-name: "form-app"
-description: "助力考生精准匹配理想院校与专业。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/form-app"
-sourceUrl: "https://clawhub.ai/skills/form-app"
+name: form
+description: 助力考生精准匹配理想院校与专业。
 ---
 
-# form-app
 
-> 助力考生精准匹配理想院校与专业。
+# 操作步骤
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/form-app`
-- **Source URL:** [https://clawhub.ai/skills/form-app](https://clawhub.ai/skills/form-app)
+步骤1：用户输入关键信息
+示例提问：“我的高考分数是620分，全省排名3500名，选科是物理+化学+生物，想去北京或上海，对计算机和电子信息类专业感兴趣，未来想考研，该怎么填志愿？”
 
-## Overview
+步骤2：智能分析与推荐
+系统输出：
+冲档院校：推荐2-3所录取位次略高于用户排名的院校（如“北京航空航天大学（计算机科学与技术，去年录取位次3200名）”“上海交通大学（电子信息类，去年录取位次3000名）”），标注风险（“需服从专业调剂，避免退档”）。
+稳档院校：推荐3-4所匹配度高的院校（如“华中科技大学（计算机科学与技术，去年录取位次3600名）”“同济大学（电子信息工程，去年录取位次3400名）”），说明优势（“学科评估A+，保研率25%”）。
+保档院校：推荐2-3所保底院校（如“西安电子科技大学（计算机科学与技术，去年录取位次4000名）”“南京邮电大学（通信工程，去年录取位次3800名）”），强调“录取概率95%以上”。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/form-app
-```
+步骤3：深度答疑与调整
+用户追问：“华中科技大学的计算机和同济大学的电子信息类，哪个更适合考研？”
+系统回应：“华中科技大学计算机学科评估A+，有国家重点实验室，考研方向可衔接人工智能、网络安全；同济大学电子信息类偏重通信与集成电路，与上汽、华为有合作项目，若倾向硬件领域更优。建议结合考研目标院校（如清华、浙大）的考试科目匹配度选择。

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "trinityguard-self-guard/input_schema.json",
+  "title": "TrinityGuard Input Payload Schema",
+  "type": "object",
+  "required": ["session_id", "user_prompt"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Session identifier"
+    },
+    "turn_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Turn identifier within the session"
+    },
+    "user_prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000000,
+      "description": "User request text"
+    },
+    "planned_actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "List of planned actions"
+    },
+    "intent_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Intent classification tags"
+    },
+    "runtime_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "tool_call",
+              "read_file",
+              "write_file",
+              "delete_file",
+              "execute_command",
+              "read_secret",
+              "read_credential",
+              "retry"
+            ]
+          },
+          "name": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "file": {"type": "string"},
+          "tags": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      },
+      "description": "Runtime events that occurred"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "source_type"],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "internal_verified",
+              "internal_unverified",
+              "tool_single_source",
+              "tool_multi_source_unverified",
+              "multi_source_verified"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "independent": {
+            "type": "boolean"
+          },
+          "supports_claim": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Information sources"
+    },
+    "candidate_response": {
+      "type": "string",
+      "maxLength": 1000000,
+      "description": "Candidate response text to check"
+    },
+    "project_path": {
+      "type": "string",
+      "description": "Absolute path to project root"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alternative request identifier (fallback for turn_id)"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,35 +1,74 @@
 ---
-name: "Dotline Art"
-description: "生成点线字符艺术画，在终端显示漂亮的文字点线图。当用户想要生成终端艺术字、ASCII art、命令行banner、文字转点线图、终端横幅、CLI文字艺术时触发此技能。支持中英文输入（中文自动转拼音）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dotline-art"
-sourceUrl: "https://clawhub.ai/skills/dotline-art"
+name: dotline-art
+description: 生成点线字符艺术画，在终端显示漂亮的文字点线图。当用户想要生成终端艺术字、ASCII art、命令行banner、文字转点线图、终端横幅、CLI文字艺术时触发此技能。支持中英文输入（中文自动转拼音）。
 ---
 
-# Dotline Art
+# 点线艺术生成器
 
-> 生成点线字符艺术画，在终端显示漂亮的文字点线图。当用户想要生成终端艺术字、ASCII art、命令行banner、文字转点线图、终端横幅、CLI文字艺术时触发此技能。支持中英文输入（中文自动转拼音）。
+将用户输入的文字转换成漂亮的点线风格 ASCII 艺术，在终端中显示。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dotline-art`
-- **Source URL:** [https://clawhub.ai/skills/dotline-art](https://clawhub.ai/skills/dotline-art)
+## 触发场景
 
-## Overview
+当用户说以下类似的话时触发：
+- "给我生成一个 xxx 的点线图"
+- "把 spring 做成终端艺术字"
+- "生成一个 banner"
+- "显示一个漂亮的 CLI 文字"
+- "帮我做个 ASCII art"
+- "终端横幅"
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **获取输入文字**：从用户请求中提取要转换的文字
+2. **处理中文**：如果输入包含中文，自动转换为拼音
+3. **生成点线艺术**：调用脚本生成点线风格的字符画
+4. **显示结果**：在终端中展示最终的点线艺术
+
+## 调用脚本
+
+执行以下 Python 脚本生成点线艺术：
+
 ```bash
-hermes skills install clawhub/dotline-art
+python3 <skill-path>/scripts/dotline_art.py "<用户输入的文字>"
 ```
+
+脚本会自动：
+- 处理中英文混合输入
+- 转换中文为拼音
+- 生成点线风格艺术字
+- 输出到终端
+
+## 示例
+
+**输入：** "给我生成一个 spring 的点线图"
+
+**输出效果：**
+
+```
+ .----..----. .----. .---..---.  .----.
+/      |    | |    |   |  |   | /
+\  .--.|----' |----'   |  |\  | |  .---
+ \    ||      |  \     |  | \ | |  |  |
+  `   ||      |   \    |  |  \| \  '  /
+ `----''      '    ' '---''   '  '----'
+```
+
+**输入：** "你好"
+
+**输出效果：**（中文自动转拼音 NIHAO）
+
+```
+.---. .---..     .  .-.   .---.
+|   |   |  |     | (   ) /     \
+|\  |   |  |-ooo-|/     \|     |
+| \ |   |  |     ||-ooo-||     |
+|  \|   |  |     ||     |\     /
+'   ' '---''     ''     ' '---'
+```
+
+## 注意事项
+
+- 输入文字长度建议不超过 10 个字符，太长会影响显示效果
+- 中文字符会自动转换为拼音显示
+- 大小写字母都会转换为大写显示
+- 数字和特殊符号会被忽略或替换

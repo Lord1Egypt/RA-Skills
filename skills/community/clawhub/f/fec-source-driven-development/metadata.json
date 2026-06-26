@@ -1,0 +1,58 @@
+{
+  "id": "fec-source-driven-development",
+  "name": "来源驱动开发",
+  "category": "maintenance-docs",
+  "tags": [
+    "source-driven",
+    "official-docs",
+    "versioning",
+    "framework-docs",
+    "decision-record"
+  ],
+  "summary": "Source-driven frontend workflow for checking project facts, official documentation, version-sensitive APIs, migration assumptions, and decision evidence.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "maintenance-docs",
+    "source-driven",
+    "official-docs",
+    "versioning",
+    "framework-docs",
+    "decision-record"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when frontend decisions depend on framework, library, browser, runtime, package, API, or platform behavior that may have changed, including official documentation checks, version-sensitive patterns, migration choices, or public interface assumptions; Chinese triggers include 查官方文档, 以源码为准, source-driven, 版本差异.",
+  "source": "skills/fec-source-driven-development",
+  "references": [],
+  "relations": {
+    "relatedSkills": [
+      "fec-doc-sync",
+      "fec-dependency-upgrade",
+      "fec-api-integration",
+      "fec-vite-project-standard",
+      "fec-nextjs-project-standard",
+      "fec-nuxt-project-standard"
+    ],
+    "boundaryWorkflows": [
+      "Use documentation sync when source-verified decisions change public docs, runtime docs, or metadata.",
+      "Use API integration when source checking leads to frontend-backend contract or error-shape changes.",
+      "Use framework project workflows when the source-verified behavior is specific to Vite, Next.js, Nuxt, React, or Vue."
+    ],
+    "capabilityTags": [
+      "source-driven",
+      "official-docs",
+      "version-sensitive"
+    ]
+  }
+}

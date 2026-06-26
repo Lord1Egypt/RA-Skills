@@ -1,0 +1,8 @@
+interface:
+  display_name: "KML Toolkit"
+  short_description: "Inspect and validate KML and KMZ safely."
+  default_prompt: "Use $kml to summarize, validate, or extract placemark information from a KML or KMZ file, including geometry counts, bbox, folders, overlays, and coordinate issues."
+
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI短视频脚本生成器</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background: #667eea;
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .btn-primary {
+            background: #667eea;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        .hook-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .shot-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .cta-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-white mb-4">🤖 AI短视频脚本生成器</h1>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        生成参数
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">视频主题</label>
+                            <input type="text" class="form-control" id="topic" placeholder="比如：Python入门技巧">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">目标平台</label>
+                            <select class="form-select" id="platform">
+                                <option value="抖音">抖音</option>
+                                <option value="快手">快手</option>
+                                <option value="视频号">视频号</option>
+                                <option value="小红书">小红书</option>
+                                <option value="YouTube Shorts">YouTube Shorts</option>
+                                <option value="TikTok">TikTok</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">视频时长</label>
+                            <select class="form-select" id="duration">
+                                <option value="15">15秒</option>
+                                <option value="30">30秒</option>
+                                <option value="60">60秒</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary w-100" id="generateBtn">
+                            ✨ 生成脚本
+                        </button>
+                        <hr>
+                        <h6>历史脚本</h6>
+                        <div id="scriptList" class="list-group">
+                            <div class="list-group-item text-center text-muted">
+                                加载中...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        生成结果
+                    </div>
+                    <div class="card-body" id="result">
+                        <div class="text-center text-muted py-5">
+                            请填写左侧参数，点击生成按钮开始
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 加载历史脚本
+        function loadScripts() {
+            fetch('/scripts')
+                .then(res => res.json())
+                .then(data => {
+                    const list = document.getElementById('scriptList');
+                    if (data.scripts.length === 0) {
+                        list.innerHTML = '<div class="list-group-item text-center text-muted">暂无历史脚本</div>';
+                        return;
+                    }
+                    list.innerHTML = '';
+                    data.scripts.forEach(script => {
+                        const item = document.createElement('a');
+                        item.className = 'list-group-item list-group-item-action';
+                        item.href = 'javascript:;';
+                        item.innerHTML = `
+                            <strong>${script.topic}</strong><br>
+                            <small>${script.platform} | ${script.duration}秒 | ${new Date(script.created_at).toLocaleString()}</small>
+                        `;
+                        item.onclick = () => loadScript(script.id);
+                        list.appendChild(item);
+                    });
+                });
+        }
+
+        // 加载单个脚本
+        function loadScript(id) {
+            fetch(`/script/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    renderScript(data.script);
+                });
+        }
+
+        // 渲染脚本
+        function renderScript(script) {
+            const result = document.getElementById('result');
+            result.innerHTML = `
+                <div class="hook-box">
+                    <h5>🎣 黄金3秒Hook</h5>
+                    <p>${script.hook}</p>
+                </div>
+                
+                <h5>🎬 分镜头脚本</h5>
+                ${script.shots.map(shot => `
+                    <div class="shot-item">
+                        <strong>${shot.time}</strong>: ${shot.description}
+                    </div>
+                `).join('')}
+                
+                <div class="mt-4">
+                    <h5>🎤 口播词</h5>
+                    <p>${script.voiceover}</p>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>📝 字幕文案</h5>
+                    <p>${script.subtitle}</p>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>🎵 背景音乐建议</h5>
+                    <p>${script.bgm}</p>
+                </div>
+                
+                <div class="cta-box">
+                    <h5>🔔 结尾CTA</h5>
+                    <p>${script.cta}</p>
+                </div>
+                
+                <div class="mt-4 text-end">
+                    <button class="btn btn-success me-2" onclick="exportScript()">📥 导出脚本</button>
+                    <button class="btn btn-danger" onclick="deleteScript('${script.id}')">🗑️ 删除</button>
+                </div>
+            `;
+            window.currentScript = script;
+        }
+
+        // 生成脚本
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const topic = document.getElementById('topic').value;
+            const platform = document.getElementById('platform').value;
+            const duration = document.getElementById('duration').value;
+            
+            if (!topic) {
+                alert('请输入视频主题');
+                return;
+            }
+            
+            const btn = this;
+            btn.disabled = true;
+            btn.innerHTML = '生成中...';
+            
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({topic, platform, duration})
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    renderScript(data.script);
+                    loadScripts();
+                } else {
+                    alert('生成失败：' + data.error);
+                }
+            })
+            .catch(() => alert('生成失败，请重试'))
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = '✨ 生成脚本';
+            });
+        });
+
+        // 导出脚本
+        function exportScript() {
+            const script = window.currentScript;
+            if (!script) return;
+            
+            const content = `# ${script.topic} 短视频脚本
+平台：${script.platform}
+时长：${script.duration}秒
+
+## 黄金3秒Hook
+${script.hook}
+
+## 分镜头脚本
+${script.shots.map(shot => `- ${shot.time}: ${shot.description}`).join('\n')}
+
+## 口播词
+${script.voiceover}
+
+## 字幕文案
+${script.subtitle}
+
+## 背景音乐
+${script.bgm}
+
+## 结尾CTA
+${script.cta}
+`;
+            
+            const blob = new Blob([content], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${script.topic}_脚本.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 删除脚本
+        function deleteScript(id) {
+            if (!confirm('确定要删除这个脚本吗？')) return;
+            
+            fetch(`/script/${id}`, {method: 'DELETE'})
+                .then(res => res.json())
+                .then(() => {
+                    document.getElementById('result').innerHTML = '<div class="text-center text-muted py-5">请填写左侧参数，点击生成按钮开始</div>';
+                    loadScripts();
+                });
+        }
+
+        // 页面加载完成
+        document.addEventListener('DOMContentLoaded', function() {
+            loadScripts();
+        });
+    </script>
+</body>
+</html>

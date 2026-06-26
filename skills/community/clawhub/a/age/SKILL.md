@@ -1,35 +1,29 @@
 ---
-name: "Age"
-description: "age file encryption reference — the modern, simple alternative to GPG. Covers key generation, X25519 encryption, SSH key support, passphrase mode, pipe patte..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/age"
-sourceUrl: "https://clawhub.ai/skills/age"
+name: age
+version: 1.0.0
+description: >
+  age file encryption reference — the modern, simple alternative to GPG.
+  Covers key generation, X25519 encryption, SSH key support, passphrase mode,
+  pipe patterns, SOPS integration, YubiKey plugins, and security considerations.
+  By Filippo Valsorda.
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+tags: [age, encryption, security, gpg, x25519, sops, privacy, crypto]
 ---
 
-# Age
+# age Encryption Reference
 
-> age file encryption reference — the modern, simple alternative to GPG. Covers key generation, X25519 encryption, SSH key support, passphrase mode, pipe patte...
+Simple, modern file encryption with age.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/age`
-- **Source URL:** [https://clawhub.ai/skills/age](https://clawhub.ai/skills/age)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/age
-```
+| Command | Description |
+|---------|-------------|
+| `intro` | Overview, philosophy, GPG comparison |
+| `keygen` | Key generation, SSH keys, management |
+| `encrypt` | Encryption operations and pipe patterns |
+| `decrypt` | Decryption and error handling |
+| `recipes` | Backups, git, team sharing, SOPS |
+| `plugins` | YubiKey, TPM, rage, passage ecosystem |
+| `security` | Threat model and security limits |

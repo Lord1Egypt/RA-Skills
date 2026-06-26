@@ -1,0 +1,19 @@
+{
+  "testnet": {
+    "name": "QFC Testnet",
+    "chainId": 9000,
+    "rpcUrl": "https://rpc.testnet.qfc.network",
+    "explorerUrl": "https://explorer.testnet.qfc.network",
+    "faucetUrl": "https://faucet.testnet.qfc.network",
+    "symbol": "QFC",
+    "decimals": 18
+  },
+  "mainnet": {
+    "name": "QFC Mainnet",
+    "chainId": 9001,
+    "rpcUrl": "https://rpc.qfc.network",
+    "explorerUrl": "https://explorer.qfc.network",
+    "symbol": "QFC",
+    "decimals": 18
+  }
+}

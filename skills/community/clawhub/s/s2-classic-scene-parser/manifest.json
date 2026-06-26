@@ -1,0 +1,10 @@
+{
+  "name": "s2-classic-scene-parser",
+  "version": "1.1.0",
+  "author": "Space2.world",
+  "short_description": "Phase 6 of S2-SP-OS. A backward-compatibility bridge. Translates 20+ legacy rigid smart home 'Scenes/Modes' (e.g., Sleep Mode, Dining Mode) into rich 6-Element semantic intents for the S2 AI Orchestrator.",
+  "tags": ["Smart Home", "Scene Parsing", "Backward Compatibility", "Semantic Translation", "Avatar Memory"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

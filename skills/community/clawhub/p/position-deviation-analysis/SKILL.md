@@ -1,35 +1,133 @@
 ---
-name: "Position Deviation Analyzer"
-description: "基于公开市场数据的均线偏离度计算工具，用于辅助投资决策参考。 当用户询问：偏离度、持仓分析、加减仓建议、黄金ETF、中证红利、 全指现金流、稀有金属、均线偏离度等问题时使用此技能。 支持多标的批量计算，输出偏离度数值和历史分位参考。 **完全免费，开源使用**"
-category: "other"
-source: "ClawHub"
-tags: [investment etf trading quantitative grid-strategy deviation-analysis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/position-deviation-analysis"
-sourceUrl: "https://clawhub.ai/skills/position-deviation-analysis"
+name: 持仓偏离度分析
+description: |
+  基于公开市场数据的均线偏离度计算工具，用于辅助投资决策参考。
+  当用户询问：偏离度、持仓分析、加减仓建议、黄金ETF、中证红利、
+  全指现金流、稀有金属、均线偏离度等问题时使用此技能。
+  支持多标的批量计算，输出偏离度数值和历史分位参考。
+  **完全免费，开源使用**
+author: 亚勇电脑
+version: 2.0.0-free
+category: 金融投资
+tags: 投资分析,ETF,均线偏离度,持仓建议,黄金产业
+price: 0
 ---
 
-# Position Deviation Analyzer
+# 持仓偏离度分析 - 均线偏离度计算工具
 
-> 基于公开市场数据的均线偏离度计算工具，用于辅助投资决策参考。 当用户询问：偏离度、持仓分析、加减仓建议、黄金ETF、中证红利、 全指现金流、稀有金属、均线偏离度等问题时使用此技能。 支持多标的批量计算，输出偏离度数值和历史分位参考。 **完全免费，开源使用**
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/position-deviation-analysis`
-- **Source URL:** [https://clawhub.ai/skills/position-deviation-analysis](https://clawhub.ai/skills/position-deviation-analysis)
+本工具基于 ETF 基金的历史价格数据，计算当前价格相对于均线的偏离程度，供参考使用。
 
-## Overview
+**功能范围：**
+- 📊 计算4大核心ETF标的的20日均线偏离度
+- 📈 展示当前价格与均线的偏差幅度
+- 🎯 提供历史分位位置参考
+- ⚡ 支持单标的和多标的批量计算
+- ✅ **完全免费，无需注册登录**
 
+## ⚠️ 重要声明
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/position-deviation-analysis
+> **本工具仅提供数据计算功能，不构成任何投资建议。**
+> 
+> 计算结果仅供参考，用户需自行承担投资风险。
+> 
+> 市场有风险，投资需谨慎。
+
+## 支持标的
+
+| 标的代码 | 名称 | 类型 |
+|---------|------|------|
+| 518850 | 黄金产业ETF | 大宗商品 |
+| 515180 | 中证红利ETF | 宽基指数 |
+| 512570 | 全指现金流ETF | 宽基指数 |
+| 159638 | 稀有金属ETF | 行业主题 |
+
+## 数据来源
+
+- **实时行情**：东方财富公开行情API
+- **历史数据**：东方财富历史K线数据
+- **数据延迟**：可能存在一定延迟，不保证实时性
+
+## 调用方式
+
+### 单标的计算
 ```
+分析 518850 当前偏离度
+```
+
+### 多标的批量计算
+```
+计算我的持仓偏离度：518850,515180,512570
+```
+
+### 获取完整报告
+```
+生成今日投资分析报告
+```
+
+## 返回结果格式
+
+```json
+{
+  "code": 200,
+  "message": "## 📊 持仓偏离度分析报告\n\n### 518850 黄金产业ETF\n- **当前价格**: 4.523\n- **20日均线**: 4.450\n- **偏离度**: +1.64%\n- **历史位置**: 58%分位\n- **建议**: 偏离度处于正常区间\n\n---\n⚠️ 数据仅供参考，不构成投资建议",
+  "metadata": {
+    "analyzedCount": 1,
+    "tickers": ["518850"],
+    "dataSource": "东方财富公开行情API",
+    "timestamp": "2026-05-04T10:30:00.000Z"
+  }
+}
+```
+
+### 错误码说明
+
+| 错误码 | 说明 | 处理方式 |
+|-------|------|---------|
+| 200 | 成功 | 返回分析报告 |
+| 400 | 参数错误 | 提示用户输入有效的标的代码 |
+| 500 | 系统错误 | 提示稍后重试 |
+
+## ⚠️ 免责声明
+
+1. **数据来源**：本工具数据来源于东方财富公开API，不保证数据的完整性、准确性和及时性。
+
+2. **投资风险**：证券市场存在风险，投资决策应由用户自行负责。
+
+3. **计算结果**：偏离度等指标仅供辅助参考，不构成买卖建议。
+
+4. **历史表现**：过去的表现不能预示未来的收益。
+
+5. **用户责任**：用户需具备基本的投资常识，自行判断投资时机和仓位。
+
+## 价格说明
+
+> ✅ **本工具完全免费使用**，无需支付任何费用。
+> 
+> 数据来源：东方财富公开行情API
+
+## 目录结构
+
+```
+持仓偏离度分析-skill/
+├── SKILL.md              # 技能主文档（本文件）
+├── package.json          # Node依赖声明
+├── src/
+│   ├── index.js          # Skill入口
+│   └── analyze.js        # 分析核心逻辑
+└── docs/
+    └── index.html        # 工具介绍页面
+```
+
+## 版本历史
+
+### v2.0.0-free (2026-05-04)
+- 使用东方财富API获取真实行情数据
+- 统一为纯JS实现
+- 增加完整免责声明
+- 完全免费开源
+
+### v1.0.0 (2026-05-03)
+- 支持4个核心标的分析
+- 计算偏离度和历史分位

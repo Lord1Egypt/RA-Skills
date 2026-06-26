@@ -1,35 +1,35 @@
 ---
-name: "Pandoc Rust"
-description: "A powerful document conversion tool supporting Html, Markdown, Docx, PDF, and LaTeX formats. Provides bidirectional conversion between these formats using a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pandoc-rs"
-sourceUrl: "https://clawhub.ai/skills/pandoc-rs"
+name: pandoc-rs
+description: A powerful document conversion tool supporting Html, Markdown, Docx, PDF, and LaTeX formats. Provides bidirectional conversion between these formats using a WebAssembly-based engine similar to Pandoc.
 ---
 
-# Pandoc Rust
+# Pandoc Rs
 
-> A powerful document conversion tool supporting Html, Markdown, Docx, PDF, and LaTeX formats. Provides bidirectional conversion between these formats using a...
+A WebAssembly-based document conversion tool that converts between Html, Markdown, Docx, PDF, and LaTeX formats.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pandoc-rs`
-- **Source URL:** [https://clawhub.ai/skills/pandoc-rs](https://clawhub.ai/skills/pandoc-rs)
+## Trigger when
 
-## Overview
+The user asks to convert documents between Html, Markdown, Docx, PDF, or LaTeX formats. Examples: "convert this markdown to PDF", "export as Word document", "transform HTML to LaTeX", "change docx to markdown".
 
+中文触发条件：请求在 Html、Markdown、Docx、PDF、LaTeX 格式之间转换文档时触发。示例：「把 Markdown 转 PDF」、「导出为 Word 文档」、「HTML 转 LaTeX」、「docx 转 markdown」。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pandoc-rs
-```
+## Quick Start
+
+1. Download the WASM file using `wasm-sandbox-download` or let it cache automatically
+2. Use `wasm-sandbox-run` with `--work-dir` parameter to specify the directory containing input files (or current working directory)
+3. Execute conversion, stats, or validation commands
+
+**⚠️ Important:** Always use `--work-dir <directory>` with `wasm-sandbox-run` to grant filesystem access.
+
+## Supported Conversions
+
+- Markdown ↔ Html
+- Markdown ↔ Docx
+- Markdown ↔ LaTeX
+- Html ↔ LaTeX
+- Docx → Html
+- Docx → Markdown
+
+## Resources
+
+For detailed usage instructions and examples, see [USAGE.md](references/USAGE.md).

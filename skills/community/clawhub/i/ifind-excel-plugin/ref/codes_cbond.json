@@ -1,0 +1,1442 @@
+[
+  {
+    "code": "ths_holder_held_num_cbond",
+    "name": "持有人持有数量",
+    "description": "持有人指标",
+    "params": ""
+  },
+  {
+    "code": "ths_holder_held_ratio_cbond",
+    "name": "持有人持有比例",
+    "description": "持有人指标",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_cost_explain_cbond",
+    "name": "发行费用说明",
+    "description": "截止日期(100-最新),排名(0-前10 名,1-第1 名,2-第2 名,3-第3 名,4-第4 名,5-第5 名,6-第6 名,7-第7 名,8-第8 名,9-第9 名,10-第10 名) 发行指标/发行费用持有人指标 持有人名称 ths_holder_name_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_total_issue_cost_cbond",
+    "name": "发行费用合计",
+    "description": "发行指标/发行费用发行指标/发行费用",
+    "params": ""
+  },
+  {
+    "code": "ths_csrc_approval_ad_cbond",
+    "name": "网上获配比例% THS_ONLINE_PLACE_RATIO_CBOND证监会批准公告日",
+    "description": "发行指标/发行结果发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_holders_meeting_ad_cbond",
+    "name": "股东大会公告日",
+    "description": "发行指标/发行结果发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_ir_online_issue_pur_code_cbond",
+    "name": "网上发行申购代码",
+    "description": "发行指标/发行结果发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_allocated_amt_cbond",
+    "name": "网下获配金额",
+    "description": "发行指标/发行结果发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_valid_pur_account_num_cbond",
+    "name": "网下有效申购户数",
+    "description": "发行指标/发行结果 网下中签率 ths_offline_lottery_ratio_cbond发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_valid_pur_amt_cbond",
+    "name": "网下有效申购金额",
+    "description": "发行指标/发行结果发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_online_blocked_fund_cbond",
+    "name": "网上冻结资金",
+    "description": "发行指标/发行结果发行指标/发行结果 网上中签率 ths_online_lottery_ratio_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_online_signing_date_cb",
+    "name": "网上中签号发布日",
+    "description": "发行指标/发行结果发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_online_valid_pur_people_num_cbond",
+    "name": "网上有效申购户数",
+    "description": "发行指标/发行结果发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_place_amt_ps_cbond",
+    "name": "每股配售额",
+    "description": "发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_underwrite_balance_cbond",
+    "name": "包销余额",
+    "description": "发行指标/发行结果",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_ad_cbond",
+    "name": "发行公告日",
+    "description": "发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_result_ad_cbond",
+    "name": "发行结果公告日",
+    "description": "发行指标/基本发行指标 发行方式 ths_issue_method_cbond发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_lot_win_rate_npp_cbond",
+    "name": "网下申购定金比例(%)",
+    "description": "发行指标/基本发行指标发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_to_oi_issue_date_cbond",
+    "name": "网下向机构投资者发行日期",
+    "description": "发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_to_oi_issue_num_npp_cbond",
+    "name": "网下向机构投资者发行数量(不含优先配售)",
+    "description": "发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_valid_pur_num_npp_cbond",
+    "name": "网下有效申购户数(不含优先配售)",
+    "description": "发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_valid_pur_share_npp_cbond",
+    "name": "网下有效申购手数(不含优先配售)老股东配售代码",
+    "description": "发行指标/基本发行指标发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_old_holder_allot_date_cbond",
+    "name": "老股东配售日期",
+    "description": "发行指标/基本发行指标发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_old_holder_allot_payment_date_cbond",
+    "name": "老股东配售缴款日",
+    "description": "发行指标/基本发行指标发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_online_issue_num_no_preferred_cbond",
+    "name": "网上发行日期",
+    "description": "发行指标/基本发行指标发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_online_issue_pur_code_cbond",
+    "name": "网上发行申购代码",
+    "description": "发行指标/基本发行指标发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_online_lot_win_rate_npp_cbond",
+    "name": "网上发行申购价格",
+    "description": "发行指标/基本发行指标发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_online_over_pur_rate_npp_cbond",
+    "name": "网上发行超额认购倍数(不含优先配售)",
+    "description": "发行指标/基本发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_warrant_holders_meeting_ad_cbond",
+    "name": "股东大会公告日",
+    "description": "分离交易可转换债券权证指标分离交易可转换债券权证指标 发行公告日 ths_cb_warrant_issue_ad_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_warrant_issue_method_cbond",
+    "name": "债券权证指标发行方式",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_warrant_plan_ad_cbond",
+    "name": "债券权证指标预案公告日",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_warrant_stock_short_name_cbond",
+    "name": "债券权证指标正股简称",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_dur_cbond",
+    "name": "债券权证指标存续期限",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_is_strike_price_or_ratio_adjst_cbond",
+    "name": "行权价及行权比例是否调整",
+    "description": "分离交易可转换债券权证指标",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_date_cbond",
+    "name": "债券权证指标发行日期",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_last_strike_date_cbond",
+    "name": "最后行权日期",
+    "description": "分离交易可转换债券权证指标 发行对象 ths_issue_object_cbond分离交易可转换债券权证指标",
+    "params": ""
+  },
+  {
+    "code": "ths_last_td_date_cbond",
+    "name": "债券权证指标最后交易日",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_listing_quantity_cbond",
+    "name": "债券权证指标上市数量",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_orig_strike_ratio_cbond",
+    "name": "初始行权比例",
+    "description": "分离交易可转换债券权证指标",
+    "params": ""
+  },
+  {
+    "code": "ths_per_bond_cbond",
+    "name": "每张债券附认股权证数量",
+    "description": "分离交易可转换债券权证指标",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_mothod_cbond",
+    "name": "债券权证指标结算方式",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_strike_code_cbond",
+    "name": "债券权证指标行权代码",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_strike_price_or_ratio_formular_cbond",
+    "name": "行权价及比例调整公式",
+    "description": "分离交易可转换债券权证指标分离交易可转换债券权证指标",
+    "params": ""
+  },
+  {
+    "code": "ths_strike_short_name_cbond",
+    "name": "债券权证指标行权简称",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_subsist_ed_cbond",
+    "name": "存续截止日期",
+    "description": "分离交易可转换债券权证指标分离交易可转换债券权证指标",
+    "params": ""
+  },
+  {
+    "code": "ths_warrant_code_cbond",
+    "name": "债券权证指标权证代码",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_warrant_type_cbond",
+    "name": "债券权证指标权证类型",
+    "description": "分离交易可转换",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_conversion_ratio_cbond",
+    "name": "累计转股比例",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_conversion_dlt_ratio_cbond",
+    "name": "转股稀释率%",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_conversion_premium_rate_cbond",
+    "name": "转股溢价率",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_float_shares_dlt_rate_cbond",
+    "name": "对流通股稀释率%",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_next_interest_date_cbond",
+    "name": "下一付息日",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_pure_bond_value_cbond",
+    "name": "纯债价值",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_remain_duration_y_cbond",
+    "name": "剩余期限(年)",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_surplus_years_cbond",
+    "name": "加权剩余年限",
+    "description": "分析指标",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_amt_y_cbond",
+    "name": "债券年成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_avg_price_y_cbond",
+    "name": "债券年均价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_ratio_y_cbond",
+    "name": "债券年涨跌幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_y_cbond",
+    "name": "债券年涨跌",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_close_y_cbond",
+    "name": "债券年收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_high_y_cbond",
+    "name": "债券年最高价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_low_y_cbond",
+    "name": "债券年最低价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_open_y_cbond",
+    "name": "债券年开盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_pre_close_y_cbond",
+    "name": "债券年前收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_vol_y_cbond",
+    "name": "债券年成交量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_amt_y_cbond",
+    "name": "正股年成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_price_y_cbond",
+    "name": "正股年均价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_turnover_y_cbond",
+    "name": "正股年平均换手率",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_ratio_y_cbond",
+    "name": "正股年涨跌幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_y_cbond",
+    "name": "正股年涨跌",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_close_y_cbond",
+    "name": "正股年收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_close_y_cbond",
+    "name": "正股年最高收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_y_cbond",
+    "name": "正股年最高价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_close_y_cbond",
+    "name": "正股年最低收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_y_cbond",
+    "name": "正股年最低价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_open_y_cbond",
+    "name": "正股年开盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_pre_close_y_cbond",
+    "name": "正股年前收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_swing_y_cbond",
+    "name": "正股年振幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_turnover_y_cbond",
+    "name": "正股年换手率",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_nd_cbond",
+    "name": "N 日成交金额",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 行情指标/区间行情行情指标/年行情 正股年成交量 ths_stock_vol_y_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_nd_cbond",
+    "name": "N 日均价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_amt_int_cbond",
+    "name": "债券区间成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_int_cbond",
+    "name": "债券区间涨跌",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_ratio_int_cbond",
+    "name": "债券区间涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_close_int_cbond",
+    "name": "债券区间收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_high_int_cbond",
+    "name": "债券区间最高价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_int_avg_price_cbond",
+    "name": "债券区间均价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_low_int_cbond",
+    "name": "债券区间最低价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_open_int_cbond",
+    "name": "债券区间开盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_pre_close_int_cbond",
+    "name": "债券区间前收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_nd_cbond",
+    "name": "N 日涨跌",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_vol_int_cbond",
+    "name": "债券区间成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_median_nd_cbond",
+    "name": "中位数",
+    "description": "N 日收盘价",
+    "params": ""
+  },
+  {
+    "code": "ths_close_three_fourth_bit_nd_cbond",
+    "name": "3/4 位数指标",
+    "description": "N 日收盘价3/4 位数指标 ths_close_three_fourth_bit_nd_cbond 交易时间(100-最新),价格类型(101-全价,100-净价,102-收益率) 行情指标/区间行情 N 日收盘价 ths_closend_cbond 交易时间(100-最新),价格类型(101-全价,100-净价,102-收益率)",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_amt_int_cbond",
+    "name": "正股区间成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_amt_nday_bond",
+    "name": "正股N 日成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_price_int_cbond",
+    "name": "正股区间均价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_prx_nday_bond",
+    "name": "正股N 日成交均价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_turnover_int_cbond",
+    "name": "正股区间平均换手率",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_turnover_nday_bond",
+    "name": "正股N 日日均换手率",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_int_cbond",
+    "name": "正股区间涨跌",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_ratio_int_cbond",
+    "name": "正股区间涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_ratio_nday_bond",
+    "name": "正股N 日涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_close_int_cbond",
+    "name": "正股区间收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_close_int_cbond",
+    "name": "正股区间最高收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_int_cbond",
+    "name": "正股区间最高价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_close_int_cbond",
+    "name": "正股区间最低收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_int_cbond",
+    "name": "正股区间最低价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_open_int_cbond",
+    "name": "正股区间开盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_pre_close_int_cbond",
+    "name": "正股区间前收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_swing_int_cbond",
+    "name": "正股区间振幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_swing_nday_bond",
+    "name": "正股N 日振幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_turnover_int_cbond",
+    "name": "正股区间换手率",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_turnover_nday_bond",
+    "name": "正股N 日换手率",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_vol_int_cbond",
+    "name": "正股区间成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_vol_nday_bond",
+    "name": "正股N 日成交量",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 行情指标/区间行情 N 日成交量 ths_vol_nd_cbond 交易时间(100-最新)行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_amt_cbond",
+    "name": "债券成交额",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_avg_price_cbond",
+    "name": "债券均价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_cbond",
+    "name": "债券涨跌",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_ratio_cbond",
+    "name": "债券涨跌幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_close_cbond",
+    "name": "债券收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_high_cbond",
+    "name": "债券最高价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_low_cbond",
+    "name": "债券最低价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_open_cbond",
+    "name": "债券开盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_pre_close_cbond",
+    "name": "债券前收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_vol_cbond",
+    "name": "债券成交量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_amt_cbond",
+    "name": "正股成交额",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_price_cbond",
+    "name": "正股均价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_cbond",
+    "name": "正股涨跌",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_ratio_cbond",
+    "name": "正股涨跌幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_close_cbond",
+    "name": "正股收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_cbond",
+    "name": "正股最高价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_cbond",
+    "name": "正股最低价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_open_cbond",
+    "name": "正股开盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_pre_close_cbond",
+    "name": "正股前收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_swing_cbond",
+    "name": "正股振幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_turnover_cbond",
+    "name": "正股换手率",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_vol_cbond",
+    "name": "正股成交量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_cbond",
+    "name": "换手率%",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_amt_m_cbond",
+    "name": "债券月成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_avg_price_m_cbond",
+    "name": "债券月均价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_ratio_m_cbond",
+    "name": "债券月涨跌幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chgm_cbond",
+    "name": "债券月涨跌",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_close_m_cbond",
+    "name": "债券月收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_high_m_cbond",
+    "name": "债券月最高价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_low_m_cbond",
+    "name": "债券月最低价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_open_m_cbond",
+    "name": "债券月开盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_pre_close_m_cbond",
+    "name": "债券月前收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_vol_m_cbond",
+    "name": "债券月成交量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_amt_m_cbond",
+    "name": "正股月成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_price_m_cbond",
+    "name": "正股月均价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_turnover_m_cbond",
+    "name": "正股月平均换手率",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_ratio_m_cbond",
+    "name": "正股月涨跌幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chgm_cbond",
+    "name": "正股月涨跌",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_close_m_cbond",
+    "name": "正股月收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_close_m_cbond",
+    "name": "正股月最高收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_m_cbond",
+    "name": "正股月最高价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_close_m_cbond",
+    "name": "正股月最低收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_m_cbond",
+    "name": "正股月最低价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_open_m_cbond",
+    "name": "正股月开盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_pre_close_m_cbond",
+    "name": "正股月前收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_swingm_cbond",
+    "name": "正股月振幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_turnover_m_cbond",
+    "name": "正股月换手率",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_vol_m_cbond",
+    "name": "正股月成交量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_amt_w_cbond",
+    "name": "债券周成交额",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_avg_price_w_cbond",
+    "name": "债券周均价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_ratio_w_cbond",
+    "name": "债券周涨跌幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_chg_w_cbond",
+    "name": "债券周涨跌",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_close_w_cbond",
+    "name": "债券周收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_high_w_cbond",
+    "name": "债券周最高价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_low_w_cbond",
+    "name": "债券周最低价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_open_w_cbond",
+    "name": "债券周开盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_pre_close_w_cbond",
+    "name": "债券周前收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_vol_w_cbond",
+    "name": "债券周成交量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_amt_w_cbond",
+    "name": "正股周成交额",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_price_w_cbond",
+    "name": "正股周均价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_avg_turnover_w_cbond",
+    "name": "正股周平均换手率",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_ratio_w_cbond",
+    "name": "正股周涨跌幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_chg_w_cbond",
+    "name": "正股周涨跌",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_close_w_cbond",
+    "name": "正股周收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_close_w_cbond",
+    "name": "正股周最高收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_high_w_cbond",
+    "name": "正股周最高价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_close_w_cbond",
+    "name": "正股周最低收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_low_w_cbond",
+    "name": "正股周最低价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_open_w_cbond",
+    "name": "正股周开盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_pre_close_w_cbond",
+    "name": "正股周前收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_swing_w_cbond",
+    "name": "正股周振幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_turnover_w_cbond",
+    "name": "正股周换手率",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_vol_w_cbond",
+    "name": "料行情指标/周行情正股周成交量",
+    "description": "转债资料/基本资",
+    "params": ""
+  },
+  {
+    "code": "ths_asset_evaluate_org_cbond",
+    "name": "资产评估机构",
+    "description": "转债资料/基本资料 债券余额 ths_bond_balance_cbond 日期(100-最新)",
+    "params": ""
+  },
+  {
+    "code": "ths_convertible_debt_code_cbond",
+    "name": "转债代码",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_convertible_debt_short_name_cbond",
+    "name": "转债简称",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_cpas_cbond",
+    "name": "会计师事务所",
+    "description": "转债资料/基本资料转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_credit_right_agent_cbond",
+    "name": "债权代理人",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_deputy_main_underwriter_cbond",
+    "name": "副主承销商",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_grnt_cbond",
+    "name": "担保人",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_grnt_period_cbond",
+    "name": "担保期限",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_interest_begin_date_cbond",
+    "name": "起息日期",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_credit_rating_cbond",
+    "name": "发行信用评级",
+    "description": "转债资料/基本资料 利率类型 ths_interest_type_cbond转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_interest_cbond",
+    "name": "发行利率",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_term_cbond",
+    "name": "发行期限",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_issuer_name_cn_cbond",
+    "name": "发行人中文名称",
+    "description": "转债资料/基本资料转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_law_firm_cbond",
+    "name": "律师事务所",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_listed_exchange_cbond",
+    "name": "上市地点",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_main_underwrite_cbond",
+    "name": "主承销商",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_code_cbond",
+    "name": "正股代码",
+    "description": "转债资料/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_stop_listing_date_bond",
+    "name": "终止上市日期",
+    "description": "转债资料/基本资料转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_add_resale_price_explain_cbond",
+    "name": "附加回售价格说明",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_cndtn_resale_ed_cbond",
+    "name": "条件回售截止日期",
+    "description": "转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_cndtn_resale_sd_cbond",
+    "name": "条件回售起始日期",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款 相对回售期 ths_relative_resale_period_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_resale_interest_process_cbond",
+    "name": "款/回售条款利息处理",
+    "description": "转债资料/转债条",
+    "params": ""
+  },
+  {
+    "code": "ths_resale_price_explain_cbond",
+    "name": "回售价格说明",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_resale_trigger_calc_mti_cbond",
+    "name": "回售触发计算最大时间区间回售触发计算时间区间",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_resale_trigger_ratio_cbond",
+    "name": "回售触发比例",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款 时点回售数 ths_time_point_resalenum_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_timing_resale_clause_content_cbond",
+    "name": "时点回售条款全文",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_uncndtn_resale_ed_cbond",
+    "name": "无条件回售结束日期",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_uncndtn_resale_price_cbond",
+    "name": "无条件回售价",
+    "description": "转债资料/转债条款/回售条款转债资料/转债条款/回售条款",
+    "params": ""
+  },
+  {
+    "code": "ths_compen_interest_explain_cbond",
+    "name": "补偿利率说明",
+    "description": "转债资料/转债条款/利率条款 补偿利率 ths_compen_interest_cbond转债资料/转债条款/利率条款",
+    "params": ""
+  },
+  {
+    "code": "ths_is_adjust_by_deposit_interest_cbond",
+    "name": "是否随存款利率调整",
+    "description": "转债资料/转债条款/利率条款 付息说明 ths_interest_payment_explain_cbond转债资料/转债条款/利率条款",
+    "params": ""
+  },
+  {
+    "code": "ths_isinterest_compensation_cbond",
+    "name": "是否有利息补偿",
+    "description": "转债资料/转债条款/利率条款转债资料/转债条款/利率条款",
+    "params": ""
+  },
+  {
+    "code": "ths_cndtn_redemp_ed_cbond",
+    "name": "条件赎回截止日期",
+    "description": "转债资料/转债条款/赎回条款转债资料/转债条款/赎回条款",
+    "params": ""
+  },
+  {
+    "code": "ths_is_redemp_clause_of_time_cbond",
+    "name": "是否有时点赎回条款",
+    "description": "转债资料/转债条款/赎回条款 利息处理 ths_interest_process_cbond转债资料/转债条款/赎回条款",
+    "params": ""
+  },
+  {
+    "code": "ths_redemp_clause_cbond",
+    "name": "款/赎回条款赎回条款",
+    "description": "转债资料/转债条",
+    "params": ""
+  },
+  {
+    "code": "ths_redemp_price_explain_cbond",
+    "name": "赎回价格说明",
+    "description": "转债资料/转债条款/赎回条款转债资料/转债条款/赎回条款",
+    "params": ""
+  },
+  {
+    "code": "ths_redemp_triggercalc_mti_cbond",
+    "name": "赎回触发比例",
+    "description": "转债资料/转债条款/赎回条款转债资料/转债条款/赎回条款",
+    "params": ""
+  },
+  {
+    "code": "ths_redemp_triggercalc_time_int_cbond",
+    "name": "赎回触发计算时间区间",
+    "description": "转债资料/转债条款/赎回条款转债资料/转债条款/赎回条款 相对赎回期 ths_relative_redemp_period_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_timing_redemp_clause_content_cbond",
+    "name": "时点赎回条款全文",
+    "description": "转债资料/转债条款/赎回条款 时点赎回数 ths_time_point_redemp_num_cbond转债资料/转债条款/赎回条款",
+    "params": ""
+  },
+  {
+    "code": "ths_correct_pricedl_explain_cbond",
+    "name": "修正价格底线说明",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_correct_times_limit_cbond",
+    "name": "修正次数限制",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_down_correct_trigger_calc_int_cbond",
+    "name": "向下修正触发计算时间区间",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_down_correct_trigger_calc_mti_cbond",
+    "name": "向下修正触发计算最大时间区间",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_is_arith_avg_price_cbond",
+    "name": "是否为算术平均价",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_is_special_down_correct_clause_cbond",
+    "name": "是否有特别向下修正条款",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_special_correction_end_time_cbond",
+    "name": "特别修正结束时间",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_special_correction_range_cbond",
+    "name": "特别修正幅度",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_special_correction_start_time_cbond",
+    "name": "特别修正起始时间",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_special_modified_clause_cbond",
+    "name": "特别向下修正条款全文",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_timepoint_correct_clause_cbond",
+    "name": "时点修正条款全文",
+    "description": "转债资料/转债条款/特别向下修正条款",
+    "params": ""
+  },
+  {
+    "code": "ths_trigger_ratio_cbond",
+    "name": "触发比例",
+    "description": "转债资料/转债条款/特别向下修正条款转债资料/转债条款/转股条款 强制转股日 ths_compulsory_transfer_date_cbond",
+    "params": ""
+  },
+  {
+    "code": "ths_compulsory_transfer_price_cbond",
+    "name": "强制转股价格",
+    "description": "转债资料/转债条款/转股条款",
+    "params": ""
+  }
+]

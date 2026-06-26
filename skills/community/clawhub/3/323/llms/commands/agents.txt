@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------
+title: "agents"
+description: "List all supported AI agents and their installation status."
+source: "/llms/commands/agents.txt"
+--------------------------------------------------------------------------------
+
+# agents — List Supported Agents
+
+Display all supported AI agents with their installation status on the current machine.
+
+## Syntax
+
+```bash
+ai-skills agents [options]
+```
+
+**Aliases**: `agent`
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-i, --installed` | Show only installed agents |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Behavior
+
+### CLI Mode
+
+Displays a formatted list with agent names and installation status indicators. Shows title, colored agent names, and summary counts.
+
+### Pure Mode
+
+- **All agents**: Lists each agent with `[x]` (installed) or `[ ]` (not installed) prefix, followed by a summary line
+- **`--installed`**: Lists only installed agent names
+- **No agents found**: Outputs `No agents found`
+
+## Examples
+
+```bash
+# List all agents with status
+ai-skills agents --pure
+
+# List only installed agents
+ai-skills agents --installed --pure
+```
+
+## Pure Mode Output
+
+**All agents:**
+```
+[x] cursor (Cursor)
+[ ] trae (Trae)
+[ ] claude-code (Claude Code)
+Total: 3, Installed: 1
+```
+
+**Installed only (`--installed`):**
+```
+Installed: cursor
+```
+
+**No agents:**
+```
+No agents found
+```

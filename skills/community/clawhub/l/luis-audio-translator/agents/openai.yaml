@@ -1,0 +1,4 @@
+interface:
+  display_name: "Luis Audio Translator"
+  short_description: "Convert, edit, inspect, and decode local audio files"
+  default_prompt: "Process these audio files locally by converting, compressing, merging, splitting, clipping, extracting audio from video, inspecting metadata, or decoding supported cache formats."

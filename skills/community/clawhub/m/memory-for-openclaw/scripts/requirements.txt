@@ -1,0 +1,14 @@
+# Long-Term Memory Engine — dependencies
+# Core
+sqlite-vec==0.1.0
+
+# Embedding (choose one)
+# Option A: Local model (free, ~500MB download)
+sentence-transformers>=2.2.0
+
+# Option B: API-based (for professional version)
+# openai>=1.0.0
+
+# Utilities
+numpy>=1.24.0
+json5>=0.9.0

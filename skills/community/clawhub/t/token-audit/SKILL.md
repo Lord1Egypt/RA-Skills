@@ -1,35 +1,52 @@
 ---
-name: "Token Audit"
-description: "Workspace token consumption analyzer for OpenClaw agents. Scans workspace files, estimates token counts across 6 major models (GPT-4, Claude, Gemini, Llama,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/token-audit"
-sourceUrl: "https://clawhub.ai/skills/token-audit"
+name: token-audit
+version: 0.2.0
+description: >
+  Workspace token consumption analyzer for OpenClaw agents. Scans workspace
+  files, estimates token counts across 6 major models (GPT-4, Claude, Gemini,
+  Llama, Mistral, Qwen), and surfaces hidden cost drivers. Identifies bloated
+  context, redundant files, and optimization opportunities. Free, zero
+  dependencies, no API keys.
+author: "Cael (@CaelMaximus)"
+license: MIT
+tags:
+  - security
+  - tokens
+  - cost
+  - optimization
+  - workspace
+  - caelguard
 ---
 
 # Token Audit
 
-> Workspace token consumption analyzer for OpenClaw agents. Scans workspace files, estimates token counts across 6 major models (GPT-4, Claude, Gemini, Llama,...
+Analyze your OpenClaw workspace token consumption and costs across multiple models.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/token-audit`
-- **Source URL:** [https://clawhub.ai/skills/token-audit](https://clawhub.ai/skills/token-audit)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Scan your workspace
 ```bash
-hermes skills install clawhub/token-audit
+python3 scripts/token-audit.py
 ```
+
+### Scan a specific path
+```bash
+python3 scripts/token-audit.py --workspace /path/to/workspace
+```
+
+### JSON output
+```bash
+python3 scripts/token-audit.py --json
+```
+
+## What It Finds
+
+- Total token count per model (GPT-4, Claude 3, Gemini, Llama 3, Mistral, Qwen)
+- Per-file token breakdown sorted by size
+- Estimated costs per model at current pricing
+- Files that are disproportionately large vs their utility
+- Optimization recommendations
+
+## Part of Caelguard
+
+Free, open-source agent security toolkit. See also: [shellguard-scanner](https://clawhub.com/Justincredible-tech/shellguard-scanner)

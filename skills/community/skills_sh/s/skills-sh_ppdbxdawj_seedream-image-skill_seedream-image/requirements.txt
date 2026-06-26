@@ -1,0 +1,2 @@
+volcengine>=1.0.200
+requests>=2.28.0

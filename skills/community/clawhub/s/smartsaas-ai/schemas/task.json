@@ -1,0 +1,22 @@
+{
+  "resource": "task",
+  "endpoint": "POST /api/protected/projects/:projectId/work-packages/:workPackageId/tasks",
+  "backendSource": "Projects.mjs (TaskSchema)",
+  "createScript": "scripts/create-task.sh",
+  "fields": {
+    "task_title": { "type": "string", "required": true },
+    "description": { "type": "string", "required": true },
+    "related_product": { "type": "string", "required": false },
+    "assigned_to": { "type": "array", "required": false, "notes": "ObjectIds ref user_stores" },
+    "completed": { "type": "boolean", "required": false, "notes": "default false" },
+    "flagged": { "type": "boolean", "required": false, "notes": "default false" },
+    "status": { "type": "string", "required": false },
+    "start_date": { "type": "Date", "required": false },
+    "end_date": { "type": "Date", "required": false },
+    "date_range": { "type": "object", "required": false },
+    "can_fail": { "type": "boolean", "required": false, "notes": "default false" },
+    "notes": { "type": "array", "required": false },
+    "createdBy": { "type": "ObjectId", "required": true, "notes": "Set by backend" },
+    "access_list": { "type": "array", "required": false }
+  }
+}

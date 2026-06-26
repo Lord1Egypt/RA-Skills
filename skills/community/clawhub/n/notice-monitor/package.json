@@ -1,0 +1,33 @@
+{
+  "name": "notice-monitor",
+  "version": "1.0.1",
+  "description": "通用网站公告监控工具 - 支持任意政府公告/采购/招标网站自动化监控",
+  "main": "src/monitor.js",
+  "bin": {
+    "notice-monitor": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/monitor.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "monitor",
+    "notice",
+    "procurement",
+    "crawler",
+    "automation",
+    "openclaw",
+    "skill"
+  ],
+  "author": "营销总监",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "yaml": "^2.3.0",
+    "commander": "^11.0.0",
+    "node-cron": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

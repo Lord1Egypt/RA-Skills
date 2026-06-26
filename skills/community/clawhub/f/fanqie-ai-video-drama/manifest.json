@@ -1,0 +1,18 @@
+# Fanqie Novel AI Video Drama Batch Generator
+
+## Features
+- Auto split multi-chapter novel into episodes
+- Generate AI manhua / digital human video
+- Auto voiceover, subtitle, cover, title, tags
+- Batch output for Douyin/ Kuaishou/ Fanqie series
+
+## Input
+- Multi-chapter novel text
+- type: manhua / zhenren
+- style: xufu / ancient / modern / fantasy
+
+## Output
+- final_video.mp4
+- cover.jpg
+- info.json
+- script.md

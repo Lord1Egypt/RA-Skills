@@ -1,35 +1,147 @@
 ---
-name: "中文公文写作"
-description: "用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文..."
-category: "creative"
-source: "ClawHub"
-tags: [ai-compute, chinese, gongwen, official-document, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-official-writing"
-sourceUrl: "https://clawhub.ai/skills/chinese-official-writing"
+name: chinese_official_writing
+description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
+license: MIT-0
+category: writing
+tags:
+  - chinese
+  - official-document
+  - writing
+  - gongwen
+  - ai-compute
+metadata:
+  version: "1.4.8"
+  compatible_agents:
+    - codex
+    - claude-code
+    - openclaw
+    - hermes
+    - qwen-code
+    - minimax-skills
+    - glm-skills
+    - autoclaw
+    - kimi-code-cli
+    - trae
+    - baidu-comate-ai-ide
+    - generic-agent-skills
+  qwen_code:
+    install_personal: "~/.qwen/skills/chinese-official-writing"
+    install_project: ".qwen/skills/chinese-official-writing"
+    entry: "SKILL.md"
+  openclaw:
+    version: "1.4.8"
+    emoji: "📝"
+    tags:
+      - chinese
+      - official-document
+      - writing
+      - gongwen
+      - ai-compute
 ---
 
-# 中文公文写作
+# 中文公文写作 Skill
 
-> 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文...
+让你的 AI Agent 写出更像正式公文的请示、报告、通知、方案和讲话稿：文种不乱、行文关系不乱、办理要素不漏，尽量减少 AI 腔。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-official-writing`
-- **Source URL:** [https://clawhub.ai/skills/chinese-official-writing](https://clawhub.ai/skills/chinese-official-writing)
+装上后，你可以直接说：
 
-## Overview
+- “帮我起草一份项目请示”：按一文一事、请批事项、依据和请批语组织正文。
+- “审查这份方案有没有 AI 味”：检查旁白式写法、教学腔、口语化判断和二元包装句。
+- “写一份 AI 算力租赁方案”：按需求来源、Token/资源测算、成本边界、SLA、安全和验收组织正文。
+- “把这份报告压缩到 800 字”：顺稿、去重、去口语化，同时保留关键办理要素。
 
+覆盖 27+ 种中文正式文种。不用于文学创作、营销文案、社交媒体贴文、英文写作、批量语料生成或规避人工审核。法律、财务、采购、审计和正式签发结论仍需人工复核。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装
+
 ```bash
-hermes skills install clawhub/chinese-official-writing
+openclaw skills install chinese-official-writing
 ```
+
+旧版 CLI 兼容命令：`clawhub install chinese-official-writing`。
+
+其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
+https://github.com/gongyu0918-debug/chinese-official-writing-skill
+
+当前版本：`chinese-official-writing@1.4.8`
+
+ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
+
+## 适用场景
+
+| 你需要的 | 直接说 |
+| --- | --- |
+| 法定公文 | 通知、请示、报告、函、批复、意见、决定、公告、通告、通报、纪要等 |
+| 事务材料 | 方案、可研、总结、调研报告、讲话稿、致辞、述职报告 |
+| 技术材料 | AI 算力可研、GPU/服务器租赁、SLA 保障、成本对比 |
+| 审稿润色 | 顺稿、压缩、去口语化、降 AI 味、格式核验 |
+
+## 核心能力
+
+### 起草
+
+- 文种路由：判断该用请示、报告、通知、函还是其他文种。
+- 办理要素核对：检查主体、对象、事项、时限、附件、反馈渠道是否齐全。
+- 论证链条：按文种组织正文逻辑，请示先写请批事项，方案先写目标任务。
+- 视角控制：从发文单位、报告单位或项目单位视角写，不写成教程。
+
+### 审稿
+
+- 低 AI 味审查：检查旁白句、教学腔、二元包装句和口语化判断。
+- 重复事项检测：提示相邻段落换词重复、胶水段落和空泛套话。
+- 标题核验：检查正文是否跑题，标题是否漂移或过度承诺。
+- 交付完整性：检查落款、日期、用户指定事项和未完成占位是否处理干净。
+
+### 算力和租赁材料
+
+- 按“需求来源 -> Token/资源测算 -> 成本边界 -> SLA/安全/验收”组织材料。
+- 不写技术空话，每项成本和服务要求尽量落到业务场景、边界和验收。
+
+## 快速试用
+
+```text
+起草一份关于举办中小学人工智能教师培训的请示。要求一文一事，写清经费来源，结尾使用“妥否，请批示。”
+```
+
+```text
+审查这份建设方案，指出文种错位、视角错位、AI 腔、重复事项和未完成占位。
+```
+
+```text
+起草一段算力资源租赁技术服务需求，写清并发、SLA、数据安全、费用上限和验收指标，不指定品牌和型号。
+```
+
+## 质量保证
+
+270 条合成反例用于发布前规则回归检查，主要验证文种、占位符、AI 腔和结构风险是否退化；该指标不代表真实业务胜率。完整评测方法、测试脚本和多平台安装说明见 GitHub 仓库。
+
+## 反馈
+
+- 问题和建议：https://github.com/gongyu0918-debug/chinese-official-writing-skill/issues
+- ClawHub 页面：https://clawhub.ai/gongyu0918-debug/chinese-official-writing
+
+## License
+
+MIT-0
+
+## Agent 使用规则
+
+安装后执行写作任务时，仍按以下规则处理：
+
+1. 先判断文种，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
+2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
+3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
+4. 成文时按 `references/argument-chains.md` 组织段落，每段服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
+5. 起草、改稿、复核、排版交付先按 `references/workflow.md` 判定任务模式；用户已有提纲、模板、标题顺序时优先保留；事实不足时先完成可用正文，再在正文后列待确认事项或“补充以下信息后，文章会更完整”，不在正文前中断成稿或连续追问；后续轮次用户未补齐事实时仍继续执行本轮修改，不把待确认事项升级为阻断条件。
+6. 多材料合稿按 `references/workflow.md` 区分原文已有事实、压实合并表达和待确认补充；数据冲突不得默认就高或自选最优。
+7. 起草或改写输出正式正文；用户要求检查、审一下、格式核验或语气检查时，审稿或复核输出问题位置、风险层级和修改建议，不默认重写全文，不做 0-100 分评分。
+8. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
+9. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
+10. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
+11. 联网搜索只用于事实核查、双重验证和时效性来源；默认不外搜，只有用户明确要求搜索或核验公开来源，或任务含“最新/当前/今日/现行政策/近期数据”等时效事实时才可联网核验。搜索后在正文外说明来源、日期或检索口径；不因出现单位名称就搜索单位公开样文、固定格式或写作风格。
+12. 用户要求 Word、docx、GB/T 9704、红头、发文字号、签发、版记或正式文件时，先按 `references/format-gbt9704.md` 做正式交付前要素核对卡和缺项清单，再交给 DOCX/document 技能或现有文档工具；不得编造文号、签发人、印章、密级、版记等要素。
+13. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
+14. 正式 Word 输出前不得残留 Markdown `**`、代码块或标题井号；检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
+15. 轻量语气替换只作建议层，不新增硬清洗；去口语化必须保留原文事实，不补造依据、数据、成效或责任安排；去 AI 味看成簇问题，不把单个正式词或单个转折当作硬清洗理由；句群节奏和模板化痕迹只作软性审稿项，公文去 AI 味不是聊天化，不加入第一人称、反问、口语插入或情绪化表达。
+16. 社区技能和公开样文只借鉴流程思路、检查维度和 prompt/markdown 组织方式；不复制社区代码、脚本、正则、模板正文、大段 prompt 或固定话术，也不扩大默认联网、强制确认、硬清洗或重排版范围。
+17. 长篇限字稿件先做篇幅预算，压缩铺垫、重复和套话，保留措施、责任、时限和结尾落点，避免头重脚轻或草草收尾。

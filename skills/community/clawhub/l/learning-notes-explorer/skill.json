@@ -1,0 +1,18 @@
+{
+  "name": "learning-notes-explorer",
+  "description": "学习笔记 - Explore, search, and synthesize personal learning notes. Use when user asks about 笔记整理、学习回顾、知识搜索、笔记查询, or wants to explore their accumulated learning notes across topics. An interface to personal knowledge base.",
+  "version": "1.0.0",
+  "author": "Golden Bean",
+  "entry": "handler.py",
+  "language": "python",
+  "input": {
+    "type": "text",
+    "description": "Search query, topic, or command for exploring notes"
+  },
+  "output": {
+    "type": "structured",
+    "format": "markdown"
+  },
+  "tags": ["learning", "notes", "knowledge", "search", "review"],
+  "related_skills": ["book-knowledge-extractor", "summarize", "second-brain-triage", "zettelkasten-writing-coach"]
+}

@@ -1,35 +1,23 @@
 ---
-name: "Code Stats"
-description: "Visualizes repository complexity by counting files, lines of code, and grouping by extension. Use to assess project size or growth."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-stats"
-sourceUrl: "https://clawhub.ai/skills/code-stats"
+name: code-stats
+description: Visualizes repository complexity by counting files, lines of code, and grouping by extension. Use to assess project size or growth.
 ---
 
 # Code Stats
 
-> Visualizes repository complexity by counting files, lines of code, and grouping by extension. Use to assess project size or growth.
+Analyzes the current workspace to provide development metrics.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-stats`
-- **Source URL:** [https://clawhub.ai/skills/code-stats](https://clawhub.ai/skills/code-stats)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/code-stats
+node skills/code-stats/index.js [path]
 ```
+
+Defaults to current working directory if path is omitted.
+
+## Output
+
+JSON object with:
+- `files`: Total file count.
+- `lines`: Total line count (approximate).
+- `byExt`: Breakdown by file extension.

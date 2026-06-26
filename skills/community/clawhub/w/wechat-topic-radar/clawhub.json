@@ -1,0 +1,79 @@
+{
+  "id": "wechat-topic-radar",
+  "slug": "wechat-topic-radar",
+  "name": "公众号爆款选题雷达",
+  "version": "1.0.0",
+  "description": "全网热点聚合分析工具，智能发现公众号爆款选题。采集知乎、微博、小红书、公众号等多平台热点，通过综合热度算法识别高潜力选题，提供切入角度建议、竞品分析和内容差异化方案。",
+  "author": {
+    "name": "liujian",
+    "email": "sxzxlj@163.com"
+  },
+  "tags": [
+    "内容创作",
+    "公众号",
+    "热点分析",
+    "选题工具",
+    "数据分析",
+    "新媒体运营"
+  ],
+  "categories": [
+    "content-creation",
+    "data-analysis"
+  ],
+  "language": "zh-CN",
+  "license": "MIT",
+  "pricing": {
+    "model": "freemium",
+    "free": {
+      "description": "基础热点扫描，每日10次，3个平台"
+    },
+    "paid": {
+      "price": 49,
+      "currency": "USD",
+      "period": "monthly",
+      "description": "无限扫描次数，全平台支持，深度分析报告，API调用"
+    }
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "dependencies": [
+      "requests>=2.28.0",
+      "numpy>=1.21.0",
+      "jieba>=0.42.1",
+      "plotly>=5.0.0",
+      "pyyaml>=6.0"
+    ]
+  },
+  "entry": {
+    "command": "python scripts/radar_main.py",
+    "args": ["scan"]
+  },
+  "config": {
+    "file": "config/config.yaml",
+    "schema": {
+      "platforms": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["百度", "微博", "知乎", "今日头条", "抖音", "B站热搜", "B站日榜", "掘金", "CSDN", "GitHub", "网易新闻", "少数派", "爱范儿", "V2EX", "HackerNews"]
+        }
+      },
+      "limit_per_platform": {
+        "type": "integer",
+        "minimum": 10,
+        "maximum": 100
+      }
+    }
+  },
+  "features": [
+    "多平台热点采集",
+    "综合热度算法",
+    "智能选题建议",
+    "竞品分析",
+    "可视化报告",
+    "JSON数据导出"
+  ],
+  "homepage": "",
+  "repository": "",
+  "documentation": "README.md"
+}

@@ -1,0 +1,49 @@
+{
+  "callback_token": "YOUR_CALLBACK_TOKEN",
+  "callback_encoding_aes_key": "YOUR_ENCODING_AES_KEY_43_CHARS",
+  "corp_id": "YOUR_CORP_ID",
+  "agent_id": 1000002,
+  "corp_secret": "YOUR_CORP_SECRET",
+  "archive_token": "YOUR_ARCHIVE_TOKEN",
+  
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8400,
+    "debug": false
+  },
+  
+  "database": {
+    "path": "wework_combined.db",
+    "backup_enabled": true,
+    "backup_interval_hours": 24
+  },
+  
+  "logging": {
+    "level": "INFO",
+    "file": "wework_service.log",
+    "max_size_mb": 100,
+    "backup_count": 5
+  },
+  
+  "security": {
+    "enable_ip_whitelist": false,
+    "ip_whitelist": ["127.0.0.1"],
+    "rate_limit_enabled": true,
+    "rate_limit_per_minute": 60
+  },
+  
+  "cloudflare": {
+    "tunnel_enabled": true,
+    "tunnel_name": "wework-tunnel",
+    "domain": "wework.yourdomain.com",
+    "protocol": "https"
+  },
+  
+  "features": {
+    "enable_message_storage": true,
+    "enable_attachment_storage": true,
+    "enable_user_tracking": true,
+    "enable_room_tracking": true,
+    "auto_cleanup_days": 90
+  }
+}

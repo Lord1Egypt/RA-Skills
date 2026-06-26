@@ -1,0 +1,66 @@
+global_keywords:
+- 外挂
+- 辅助
+- 透视
+- 自瞄
+- 破解
+- 科技
+- 脚本
+- 代练
+- 刷分
+- 封号
+- 解封
+keyword_rules:
+  logic_mode: OR
+  match_mode: substring
+  case_sensitive: false
+targets:
+  - id: hok_001
+    type: group
+    identifier: waigua61
+    note: 游戏外挂🇨🇳王者荣耀外挂/和平精英外挂/暗区突围外挂辅助 (7348人)
+
+  - id: hok_002
+    type: channel
+    identifier: SJZACE
+    note: Heihezi科技社区│三角洲│王者荣耀│和平精英 (19406人)
+
+  - id: hok_003
+    type: channel
+    identifier: WGKJO
+    note: 王者荣耀/和平精英/三角洲游戏外挂🅥 (251870人)
+
+  - id: hok_004
+    type: group
+    identifier: waigua_ii
+    note: 王者荣耀/和平精英/三角洲游戏外挂waigua🅥 (5212人)
+
+  - id: hok_005
+    type: group
+    identifier: waiguab8
+    note: 王者荣耀外挂/和平精英外挂/全网游戏外挂 waigua (1246人)
+
+  - id: hok_006
+    type: channel
+    identifier: klzrr
+    note: 公益破解|三角洲|无畏契约|失控进化|和平|王者|暗区| (已存在于DB)
+
+  - id: hok_007
+    type: channel
+    identifier: txbb881
+    note: 游戏-王者荣耀-和平精英外挂软件破解 (已存在于DB)
+
+  - id: hok_008
+    type: channel
+    identifier: wg0007
+    note: 王者荣耀·和平精英外挂🅥 (已存在于DB)
+
+  - id: hok_009
+    type: channel
+    identifier: wanghok
+    note: 王者荣耀 | Honor of Kings (3412人)
+
+  - id: hok_010
+    type: channel
+    identifier: mbxwbg
+    note: 游戏外挂破解软件 (已存在于DB)

@@ -1,0 +1,21 @@
+{
+  "name": "trade-qualifier",
+  "version": "1.0.0",
+  "description": "B2B外贸客户筛选技能 - 6维度深度评估 + A/B/C/D智能分级",
+  "main": "SKILL.md",
+  "keywords": [
+    "coze-skill",
+    "b2b",
+    "lead-qualification",
+    "scoring",
+    "foreign-trade"
+  ],
+  "author": "cloud-travel-skills",
+  "license": "MIT",
+  "clawhub": {
+    "category": "business",
+    "tags": ["外贸", "客户筛选", "BOI评分", "B2B"],
+    "platform": "coze",
+    "compatibility": "Coze/Caw通用"
+  }
+}

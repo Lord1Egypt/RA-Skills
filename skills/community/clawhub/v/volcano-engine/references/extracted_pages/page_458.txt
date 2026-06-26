@@ -1,0 +1,18 @@
+from  langchain_openai import  ChatOpenAI
+from  langchain_core.prompts import  PromptTemplate
+import  os
+llm = ChatOpenAI(
+# Replace with your API Key     
+    openai_api_key=os.environ.get( "ARK_API_KEY" ), 
+# The base URL for model invocation
+    openai_api_base= "https://ark.cn-beijing.volces.com/api/v3" ,   
+# Replace with Model ID
+    model= "doubao-seed-1-6-251015" , 
+)
+template = """Question: {question}
+Answer: Let's think step by step."""
+prompt = PromptTemplate.from_template(template)
+question = "What NFL team won the Super Bowl in the year Justin Beiber was born?"
+llm_chain = prompt | llm
+print (llm_chain.invoke(question))PythonAPI参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 453/485

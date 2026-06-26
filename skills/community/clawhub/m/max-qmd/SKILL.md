@@ -1,35 +1,26 @@
 ---
-name: "Max QMD Search"
-description: "Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/max-qmd"
-sourceUrl: "https://clawhub.ai/skills/max-qmd"
+name: qmd
+description: Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode.
+homepage: https://tobi.lutke.com
+metadata: {"clawdbot":{"emoji":"📝","requires":{"bins":["qmd"]},"install":[{"id":"node","kind":"node","package":"https://github.com/tobi/qmd","bins":["qmd"],"label":"Install qmd (node)"}]}}
 ---
 
-# Max QMD Search
+# qmd
 
-> Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode.
+Use `qmd` to index local files and search them.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/max-qmd`
-- **Source URL:** [https://clawhub.ai/skills/max-qmd](https://clawhub.ai/skills/max-qmd)
+Indexing
+- Add collection: `qmd collection add /path --name docs --mask "**/*.md"`
+- Update index: `qmd update`
+- Status: `qmd status`
 
-## Overview
+Search
+- BM25: `qmd search "query"`
+- Vector: `qmd vsearch "query"`
+- Hybrid: `qmd query "query"`
+- Get doc: `qmd get docs/path.md:10 -l 40`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/max-qmd
-```
+Notes
+- Embeddings/rerank use Ollama at `OLLAMA_URL` (default `http://localhost:11434`).
+- Index lives under `~/.cache/qmd` by default.
+- MCP mode: `qmd mcp`.

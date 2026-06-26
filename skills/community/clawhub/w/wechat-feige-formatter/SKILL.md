@@ -1,35 +1,140 @@
 ---
-name: "Wechat Feige Formatter"
-description: "公众号排版工具。用户提供任意格式的文章内容（草稿、纯文字、已有 Markdown 均可）， AI 自动识别结构、添加排版标记，生成专业公众号 HTML。 Use when: 用户说"帮我排版"、"转成公众号格式"、"生成 HTML"；用户上传文章内容或文件 NOT for: 纯文本渲染；用户只想预览已有 HTML"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-feige-formatter"
-sourceUrl: "https://clawhub.ai/skills/wechat-feige-formatter"
+name: wechat-feige-formatter
+description: >
+  公众号排版工具。用户提供任意格式的文章内容（草稿、纯文字、已有 Markdown 均可），
+  AI 自动识别结构、添加排版标记，生成专业公众号 HTML。
+  Use when: 用户说"帮我排版"、"转成公众号格式"、"生成 HTML"；用户上传文章内容或文件
+  NOT for: 纯文本渲染；用户只想预览已有 HTML
 ---
 
-# Wechat Feige Formatter
+## 核心原则
 
-> 公众号排版工具。用户提供任意格式的文章内容（草稿、纯文字、已有 Markdown 均可）， AI 自动识别结构、添加排版标记，生成专业公众号 HTML。 Use when: 用户说"帮我排版"、"转成公众号格式"、"生成 HTML"；用户上传文章内容或文件 NOT for: 纯文本渲染；用户只想预览已有 HTML
+**用户不需要懂任何排版语法。** 用户给什么内容都接受，AI 负责理解内容并生成标准格式，再调用工具转换。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-feige-formatter`
-- **Source URL:** [https://clawhub.ai/skills/wechat-feige-formatter](https://clawhub.ai/skills/wechat-feige-formatter)
+---
 
-## Overview
+## Workflow
 
+### 第一步：接收用户内容
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-feige-formatter
+接受以下任意形式的输入：
+- 上传的 `.md` 文件（带或不带排版标记）
+- 上传的 `.txt` 文件
+- 直接粘贴的文字内容（草稿、大纲、聊天记录水平都可以）
+- 提供的本地文件路径
+
+**不要要求用户手动添加排版标记。** 内容理解和格式转换是 AI 的工作。
+
+---
+
+### 第二步：AI 智能排版（核心步骤）
+
+**必须先读取 `references/排版优化规则.md`**，按规则对内容进行分析和重组，生成符合 formatter 语法要求的标准 Markdown。
+
+**7 项识别任务（全部执行）：**
+
+1. **识别流程/步骤** → `> STEP XX` 卡片
+2. **识别核心观点/结论** → `> ✨` 要点框
+3. **识别小贴士/注意事项** → `> 💡` 提示框
+4. **标记关键词** → `==词==` 高亮
+5. **识别代码/指令/Prompt** → `` > 🤖 PROMPT: `` 框
+6. **识别子话题** → `### 小标题`
+7. **修正格式错误** → 特殊框内部无空行，每行以 `> ` 开头
+8. **不新增原文没有的内容** → 不在章节标题下方插入"本节xxx"、"本节介绍xxx"等概述句，只对原文做格式标记
+
+**最重要的格式规范：**
+
+```markdown
+# ✅ 正确：框内无空行，每行有 > 前缀
+> ✨ 标题
+> 第一行内容
+> 第二行内容
+
+# ❌ 错误：中间有空行（会导致格式崩坏）
+> ✨ 标题
+
+> 内容行
 ```
+
+**章节标题语法（普通 ## 即可，formatter 自动生成 PART 卡片）：**
+```markdown
+## 章节标题                  # formatter 自动编号为 PART 01/02/03...
+## 主标题 | 副标题           # 支持副标题
+```
+
+**BREAKING 开篇**：formatter 自动从 `#` 标题生成（不填副标题，避免与正文重复）。如需定制副标题或特殊样式，使用手动写法：
+```markdown
+## BREAKING
+- bold: 新方式的标题（大号黑字）
+- subtitle: 一句概括全文的说明（与正文不重复）
+- strikethrough: 旧方式（删除线，可选）
+- highlight: 核心亮点句（主色字体，可选）
+- date: 2026.03
+
+⚠️ 重要：每个字段必须以 `- ` 开头（列表格式），直接写 `key: value` 会当成正文输出！
+```
+
+生成优化后的标准 Markdown，保存为临时文件，供下一步使用。
+
+---
+
+### 第三步：调用转换脚本
+
+使用 `scripts/formatter.py` 将优化后的 Markdown 转换为 HTML：
+
+```bash
+python3 {skill_dir}/scripts/formatter.py {input_md} --output {output_html}
+```
+
+可选参数：
+```bash
+# 自定义品牌色（默认桃色 #DE7356）
+python3 {skill_dir}/scripts/formatter.py {input_md} --output {output_html} --brand-color "#660874"
+
+# 关闭图片内嵌（默认开启，本地图片自动转 base64，方便复制到公众号）
+python3 {skill_dir}/scripts/formatter.py {input_md} --output {output_html} --no-embed-images
+```
+
+**默认行为**：
+- 本地图片自动转 base64 内嵌（无需额外参数，直接复制粘贴即可带图）
+- HTML 页面内置「主题色」切换器，可在预览时实时切换 6 套配色，再点「一键复制」
+
+**Python 版本要求**：Python 3.6+，仅用标准库，无第三方依赖。
+
+---
+
+### 第四步：返回结果
+
+1. 生成最终 HTML 文件
+2. 启动本地服务预览（如果环境支持）
+3. 告知用户：HTML 文件路径在哪、如何复制到公众号编辑器使用
+
+---
+
+## 排版元素速查
+
+| 元素 | formatter 语法 | 触发场景 |
+|------|---------------|---------|
+| PART 章节卡片（渐变橙色） | `## 标题` | 文章大章节 |
+| BREAKING 开篇框 | 自动生成（或手动 `## BREAKING`） | 每篇文章开头 |
+| STEP 步骤卡片 | `> STEP 01 标题` + `> 说明` | 有顺序的步骤/流程 |
+| ✨ 要点框 | `> ✨ 标题` + `> 内容` | 核心结论、重要观点 |
+| 💡 提示框 | `> 💡 标题` + `> 内容` | 小贴士、注意事项、建议 |
+| 关键词高亮 | `==词==` | 专业术语、核心概念、产品名 |
+| 🤖 指令框 | `> 🤖 PROMPT:` + `> 内容` | 代码、命令、AI Prompt |
+| 代码块 | ` ```lang ``` ` | 较长代码片段 |
+| ### 小标题 | `### 标题` | 章节内子话题 |
+| **加粗** | `**词**` | 句子内强调词 |
+
+---
+
+## 常见场景
+
+| 场景 | 操作 |
+|------|------|
+| 给草稿排版 | 直接粘贴草稿内容，说"帮我排版" |
+| 给已有 Markdown 排版 | 上传 .md 文件，AI 自动检查并补全排版标记 |
+| 调整品牌色 | 说"用蓝色排版"，AI 会在调用时加 --brand-color 参数 |
+| 修改某个元素 | 说"把第二章改成步骤格式"，AI 重新生成并预览 |
+</content>
+</invoke>

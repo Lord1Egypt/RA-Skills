@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{效果名称} · 手势控制</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script src="./gesture-scene.js"></script>
+<script>
+// ── {物体类名}类 ──
+class {物体类名} {
+  constructor(x, y, vx, vy) {
+    this.vx = vx;
+    this.vy = vy;
+    this.alpha = 1.0;
+    
+    // TODO: 初始化属性（大小、颜色、生命周期等）
+    const size = 10;
+    const hue = 0.5; // 0-1范围
+    const saturation = 0.8;
+    const lightness = 0.6;
+    
+    // 创建几何体和材质
+    const geometry = new THREE.SphereGeometry(size, 16, 16);
+    const material = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(hue, saturation, lightness),
+      transparent: true,
+      opacity: this.alpha,
+    });
+    
+    // 创建网格
+    this.mesh = new THREE.Mesh(geometry, material);
+    this.mesh.position.set(x, y, 0);
+  }
+
+  update() {
+    // TODO: 更新位置、状态（每帧调用）
+    this.mesh.position.x += this.vx;
+    this.mesh.position.y += this.vy;
+    
+    // 更新透明度
+    this.alpha -= 0.01; // 示例衰减
+    this.mesh.material.opacity = Math.max(this.alpha, 0);
+  }
+
+  isDead() {
+    // 返回 true 表示物体已消失
+    return this.alpha <= 0;
+  }
+}
+
+// ── 创建场景 ──
+const scene = new GestureScene({
+  title: '{效果名称} · 手势控制',
+  create: (x, y, vx, vy) => new {物体类名}(x, y, vx, vy),
+  spawnRate: {每帧生成数量},      // 1-5，高密度效果用 3-5
+  burstRate: {爆发数量},         // 3-15，鼠标按下时的生成数量
+  maxObjects: {物体上限},        // 100-5000，根据效果复杂度调整
+  background: [{背景色}],        // [r, g, b] 颜色值 (0-1范围)
+  handVelocityScale: {速度缩放}, // 1.0-2.0，手势速度放大倍数
+});
+</script>
+</body>
+</html>

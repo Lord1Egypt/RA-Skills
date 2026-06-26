@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手势控制 · 示例列表</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0a0a1a 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #64dcff, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: rgba(255,255,255,0.5);
+      font-size: 1rem;
+      margin-bottom: 50px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      width: 100%;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(100,220,255,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .card-tag {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 4px 12px;
+      background: rgba(100,220,255,0.15);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: rgba(100,220,255,0.9);
+    }
+    .usage {
+      margin-top: 60px;
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .usage h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.9);
+    }
+    .usage pre {
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.8);
+    }
+    .usage code {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    }
+    .comment { color: rgba(255,255,255,0.4); }
+    .keyword { color: #c792ea; }
+    .string { color: #c3e88d; }
+    .func { color: #82aaff; }
+    .prop { color: #f78c6c; }
+  </style>
+</head>
+<body>
+  <h1>手势控制</h1>
+  <p class="subtitle">用手势或鼠标控制物体 · 选择一个示例开始</p>
+
+  <div class="grid">
+    <a href="references/particles.html" class="card">
+      <div class="card-icon">✨</div>
+      <div class="card-title">粒子拖尾</div>
+      <div class="card-desc">经典粒子效果，手指移动产生彩色粒子拖尾，鼠标按下可爆发更多粒子</div>
+      <span class="card-tag">粒子系统</span>
+    </a>
+
+    <a href="references/butterfly.html" class="card">
+      <div class="card-icon">🦋</div>
+      <div class="card-title">蝴蝶飞舞</div>
+      <div class="card-desc">手指移动释放蝴蝶，翅膀扇动、随机飞舞，逐渐消失在空中</div>
+      <span class="card-tag">精灵动画</span>
+    </a>
+
+    <a href="references/ripple.html" class="card">
+      <div class="card-icon">💧</div>
+      <div class="card-title">水波纹</div>
+      <div class="card-desc">手指触碰水面产生涟漪，同心圆向外扩散，多个波纹可叠加</div>
+      <span class="card-tag">波纹效果</span>
+    </a>
+  </div>
+
+  <div class="usage">
+    <h2>如何创建新手势控制场景</h2>
+    <pre><code><span class="comment">&lt;!-- 引入依赖 --&gt;</span>
+&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"</span>&gt;&lt;/script&gt;
+&lt;script src=<span class="string">"gesture-scene.js"</span>&gt;&lt;/script&gt;
+
+&lt;script&gt;
+<span class="comment">// 定义你的物体类，只需实现两个方法</span>
+<span class="keyword">class</span> <span class="func">MyObject</span> {
+  <span class="func">constructor</span>(x, y, vx, vy) {
+    <span class="comment">// 创建 Three.js 几何体和材质</span>
+    <span class="keyword">const</span> geometry = <span class="keyword">new</span> THREE.<span class="func">SphereGeometry</span>(10, 16, 16);
+    <span class="keyword">const</span> material = <span class="keyword">new</span> THREE.<span class="func">MeshBasicMaterial</span>({
+      color: <span class="keyword">new</span> THREE.<span class="func">Color</span>().<span class="func">setHSL</span>(0.5, 0.8, 0.6),
+      transparent: <span class="keyword">true</span>,
+      opacity: 1.0,
+    });
+    
+    <span class="comment">// 创建网格</span>
+    <span class="keyword">this</span>.mesh = <span class="keyword">new</span> THREE.<span class="func">Mesh</span>(geometry, material);
+    <span class="keyword">this</span>.mesh.position.<span class="func">set</span>(x, y, 0);
+    <span class="keyword">this</span>.alpha = 1.0;
+  }
+  
+  <span class="func">update</span>() {
+    <span class="comment">// 更新位置、状态</span>
+    <span class="keyword">this</span>.mesh.position.x += <span class="keyword">this</span>.vx;
+    <span class="keyword">this</span>.mesh.position.y += <span class="keyword">this</span>.vy;
+    <span class="keyword">this</span>.alpha -= 0.01;
+    <span class="keyword">this</span>.mesh.material.opacity = Math.<span class="func">max</span>(<span class="keyword">this</span>.alpha, 0);
+  }
+  
+  <span class="func">isDead</span>() {
+    <span class="comment">// 返回 true 表示物体已消失</span>
+    <span class="keyword">return</span> <span class="keyword">this</span>.alpha <= 0;
+  }
+}
+
+<span class="comment">// 创建场景</span>
+<span class="keyword">const</span> scene = <span class="keyword">new</span> <span class="func">GestureScene</span>({
+  title: <span class="string">'我的手势控制'</span>,
+  create: (x, y, vx, vy) => <span class="keyword">new</span> <span class="func">MyObject</span>(x, y, vx, vy),
+  spawnRate: 3,      <span class="comment">// 每帧生成数量</span>
+  burstRate: 10,     <span class="comment">// 鼠标按下时的爆发数量</span>
+  maxObjects: 2000,  <span class="comment">// 物体上限</span>
+  background: [0.02, 0.02, 0.05],  <span class="comment">// 背景色 [r, g, b]</span>
+});
+&lt;/script&gt;</code></pre>
+  </div>
+</body>
+</html>

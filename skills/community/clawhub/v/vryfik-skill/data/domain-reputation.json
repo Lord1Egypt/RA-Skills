@@ -1,0 +1,65 @@
+{
+  "version": "1.0.2",
+  "updated": "2026-04-28",
+  "scores": {
+    "S": 1.0,
+    "A": 0.8,
+    "B": 0.6,
+    "C": 0.4,
+    "unknown": 0.3,
+    "blocked": 0.0
+  },
+  "tiers": {
+    "S": [
+      "github.com",
+      "stackoverflow.com",
+      "mdn.mozilla.org",
+      "developer.mozilla.org",
+      "npmjs.com",
+      "docs.python.org",
+      "react.dev",
+      "vuejs.org",
+      "typescriptlang.org",
+      "nodejs.org",
+      "developer.apple.com",
+      "developer.android.com",
+      "docs.microsoft.com",
+      "learn.microsoft.com",
+      "go.dev",
+      "rust-lang.org",
+      "pkg.go.dev",
+      "docs.rs",
+      "cloud.google.com",
+      "aws.amazon.com",
+      "docs.docker.com",
+      "kubernetes.io"
+    ],
+    "A": [
+      "medium.com",
+      "dev.to",
+      "css-tricks.com",
+      "smashingmagazine.com",
+      "freecodecamp.org",
+      "digitalocean.com",
+      "web.dev",
+      "hackernoon.com",
+      "blog.logrocket.com",
+      "codesandbox.io",
+      "stackblitz.com"
+    ],
+    "B": [
+      "reddit.com",
+      "hashnode.com",
+      "quora.com",
+      "zhihu.com",
+      "juejin.cn",
+      "csdn.net",
+      "cnblogs.com",
+      "segmentfault.com"
+    ],
+    "C": [
+      "w3schools.com"
+    ],
+    "blocked": []
+  }
+}

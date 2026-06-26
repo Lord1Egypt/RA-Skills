@@ -1,0 +1,33 @@
+# sql configuration - EXAMPLE ONLY
+# Copy this to config/config.yml and fill in your values
+# NEVER commit config/config.yml (it is gitignored)
+
+sql:
+  server: "your-sql-server-hostname"    # e.g. 10.0.0.110 or sql.example.com
+  database: "your_database_name"         # e.g. Oblio_Memories
+  username: "your_sql_username"
+  # password: leave blank, set env SQL_PASSWORD instead
+  # connection_string: "DRIVER={ODBC Driver 17 for SQL Server};SERVER=...;"
+
+corpus:
+  importance_threshold: 7     # Min importance (1-10) to enter dream corpus
+  lookback_days: 2             # How many days back to pull memories
+
+dreaming:
+  workspace_dir: "/absolute/path/to/.openclaw/workspace"
+  phases:
+    light:
+      enabled: true
+    rem:
+      enabled: true
+    deep:
+      enabled: true
+  archive_after_days: 7        # Prune dream .md files older than this
+
+confluence:
+  enabled: false
+  domain: ""                   # e.g. yourorg.atlassian.net
+  email: ""
+  # api_token: leave blank, set env CONFLUENCE_API_TOKEN instead
+  space_key: ""
+  parent_page_id: ""           # Confluence page ID for Memory Palace parent

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dpp-storyboard"
+version = "0.1.0"
+description = "Minimal Doubao-Seed storyboard CLI"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "tos>=2.8.7",
+  "pydantic>=2.8.0",
+  "python-dotenv>=1.0.1",
+  "volcengine-python-sdk[ark]>=5.0.21",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2.0",
+]
+
+[project.scripts]
+dpp-storyboard = "dpp_storyboard.__main__:main"
+dpp-generate-material = "dpp_storyboard.material_generate_main:main"
+dpp-placement = "dpp_storyboard.placement_main:main"
+dpp-compose-best = "dpp_storyboard.composition_main:main"
+dpp-preview-prompt = "dpp_storyboard.preview_prompt_main:main"
+dpp-final-cut = "dpp_storyboard.finalcut_main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

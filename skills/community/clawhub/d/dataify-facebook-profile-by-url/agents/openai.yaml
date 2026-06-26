@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Facebook Profile By URL"
+  short_description: "Submit Dataify Facebook personal profile tasks by URL"
+  icon_small: "./assets/dataify-facebook-profile-by-url-small.svg"
+  icon_large: "./assets/dataify-facebook-profile-by-url-large.svg"
+  default_prompt: "Use $dataify-facebook-profile-by-url to submit Facebook personal profile Builder tasks by URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,55 @@
+这是 AudioClaw 实时字幕系统的长语音测试样本。<break time=500>
+接下来这段音频会故意混合中文、英文、数字、日期、专有名词，以及长短不一的句子，<break time=300>
+用于验证系统输出采集、语音识别、字幕刷新、以及后续的双语翻译显示能力。<break time=700>
+
+第一段，我们先从一段较为自然的中文说明开始。<break time=400>
+今天是二零二六年四月一日，地点是上海。<break time=300>
+我们正在验证一个基于 SenseAudio、BlackHole、以及 AudioClaw 工作区脚本的实时双行字幕原型。<break time=500>
+这个原型需要持续接收系统播放的音频，自动识别句子边界，并在桌面浮层中稳定显示最新内容。<break time=700>
+
+第二段，我们加入一些英文短句。<break time=400>
+Please note that the subtitle overlay should update in place, instead of flickering on every partial result. <break time=400>
+The original line should arrive first, and the translated line should appear later when the translation becomes available. <break time=700>
+
+第三段，我们加入数字和符号。<break time=400>
+测试编号是 A C dash zero zero seven。<break time=300>
+网络接口地址是 api dot senseaudio dot c n。<break time=300>
+推荐采样率是一万六千赫兹，单声道，十六位小端 P C M。<break time=300>
+如果你在日志里看到状态码四零零零二五，说明当前并发配额不足，需要稍后重试或者切换为单流模式。<break time=800>
+
+第四段，我们加入一些较长的复合句。<break time=400>
+当系统同时播放会议录音、浏览器视频、或者课程讲解时，字幕系统不应该因为旧句子的迟到结果而把新句子覆盖掉，<break time=300>
+相反，它应该根据 segment I D 精准定位到当前正在显示的那一条记录，然后在必要时只补充翻译文本，而不是整窗重绘。<break time=900>
+
+第五段，我们再加入中英混合术语。<break time=400>
+这里会出现一些常见的工程词汇，比如 WebSocket，overlay window，session log，background worker，floating subtitle，graceful shutdown，和 automatic fallback。<break time=500>
+如果语音识别系统能比较稳定地处理这些词，说明后续接会议场景会更有把握。<break time=800>
+
+第六段，我们模拟一个偏口语化的说明。<break time=400>
+好，我们现在假设你正在看一个技术演讲视频，演讲者语速有时候很快，有时候会停顿思考，<break time=300>
+偶尔还会说一句英文，再回到中文。<break time=300>
+在这种情况下，如果字幕延迟太高，或者每句都要等很久才显示，用户体验就会明显下降。<break time=700>
+所以我们希望系统至少做到三点：第一，原文尽快出现；第二，刷新不要乱跳；第三，停止播放之后能够尽快收尾出完整句子。<break time=1000>
+
+第七段，我们加入更适合翻译测试的内容。<break time=400>
+今天的目标不是追求完美翻译，而是先保证字幕的时序关系正确。<break time=300>
+For real world usage, consistency is often more important than occasional brilliance. <break time=300>
+If the subtitle arrives half a second later but stays stable, users can usually tolerate it. <break time=300>
+If it jumps, rewrites itself, and loses context, they will notice immediately. <break time=900>
+
+第八段，我们加入一段相对正式的播报腔。<break time=400>
+下面播报一则模拟通知。<break time=300>
+请各位测试人员确认，系统默认输出设备已经切换到多输出设备，<break time=300>
+并确保 BlackHole 两通道已经被包含在音频链路中。<break time=300>
+如果没有完成这一步，采集器虽然能够抓到字节流，但实际内容将是静音。<break time=800>
+
+第九段，我们故意加入几个容易混淆的表达。<break time=400>
+例如，实时识别和文件识别的行为并不总是完全相同。<break time=300>
+例如，record only 模式、automatic mode、以及不同的 V A D threshold，都会影响结果的切分时机。<break time=300>
+例如，原文流和翻译流如果共用同一套额度，也可能出现一条成功、一条失败的情况。<break time=900>
+
+第十段，我们做一个结尾。<break time=400>
+如果你现在依然能够听到清晰连续的语音，并且在桌面上看到稳定更新的字幕，<break time=300>
+那么说明这份长语音测试样本已经达到了目的。<break time=300>
+接下来你可以把它用于系统输出采集验证、悬浮字幕刷新验证、或者原文加翻译双行显示验证。<break time=500>
+本段测试到此结束，谢谢。 

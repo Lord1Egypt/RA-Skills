@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "repo": {
+      "type": "string",
+      "default": "https://example.com/user/repo"
+    },
+    "cron": {
+      "type": "string",
+      "default": "0 */5 * * *"
+    },
+    "excludes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [
+        "agents/*/sessions/*.jsonl",
+        "skills/*/node_modules/",
+        "canvas/*",
+        "logs/*",
+        "workspace/memory/.dreams/",
+        "*.tmp",
+        ".DS_Store"
+      ]
+    },
+    "lfs_threshold_mb": {
+      "type": "number",
+      "default": 10
+    },
+    "lfs_extensions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [
+        ".bin",
+        ".gguf",
+        ".safetensors",
+        ".pt",
+        ".pth",
+        ".onnx",
+        ".msgpack",
+        ".model"
+      ]
+    },
+    "push_retries": {
+      "type": "number",
+      "default": 3
+    },
+    "push_retry_interval_ms": {
+      "type": "number",
+      "default": 60000
+    },
+    "logMax": {
+      "type": "number",
+      "default": 10
+    }
+  },
+  "required": ["repo"]
+}

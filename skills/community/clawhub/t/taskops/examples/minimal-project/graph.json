@@ -1,0 +1,95 @@
+{
+  "project": {
+    "id": "example-project",
+    "title": "Example TaskOps project",
+    "description": "A minimal example project for the TaskOps skill",
+    "goal": "Show a valid graph with a result record",
+    "steps": [
+      {
+        "id": "step-implementation",
+        "projectId": "example-project",
+        "stepType": "implementation",
+        "description": "Implement simple state handling",
+        "phases": [
+          {
+            "id": "phase-diverge-1",
+            "stepId": "step-implementation",
+            "phaseType": "diverge",
+            "description": "Explore implementation options",
+            "rootNodeId": "phase-diverge-1-root",
+            "nodes": [
+              {
+                "id": "phase-diverge-1-root",
+                "phaseId": "phase-diverge-1",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-diverge-1",
+                "status": "pending"
+              },
+              {
+                "id": "node-compare-state",
+                "phaseId": "phase-diverge-1",
+                "nodeType": "work",
+                "title": "Compare state libraries",
+                "description": "Check Zustand and Redux for current scope",
+                "status": "done",
+                "results": [
+                  {
+                    "id": "result-33e5eead0c",
+                    "nodeId": "node-compare-state",
+                    "expected": "Choose a candidate state library",
+                    "actual": "Selected Zustand after comparing setup cost and complexity",
+                    "status": "done",
+                    "artifacts": [],
+                    "at": "2026-04-23T16:52:53+00:00",
+                    "notes": "Good enough for the current scope"
+                  }
+                ]
+              }
+            ],
+            "edges": [
+              {
+                "id": "edge-diverge-1",
+                "phaseId": "phase-diverge-1",
+                "fromNodeId": "phase-diverge-1-root",
+                "toNodeId": "node-compare-state",
+                "edgeType": "flow"
+              }
+            ],
+            "status": "pending"
+          },
+          {
+            "id": "phase-verify-1",
+            "stepId": "step-implementation",
+            "phaseType": "verify",
+            "description": "Verify the state management choice",
+            "rootNodeId": "phase-verify-1-root",
+            "nodes": [
+              {
+                "id": "phase-verify-1-root",
+                "phaseId": "phase-verify-1",
+                "nodeType": "root",
+                "title": "Root",
+                "description": "Root node for phase phase-verify-1",
+                "status": "pending"
+              }
+            ],
+            "edges": [],
+            "status": "pending"
+          }
+        ],
+        "phaseEdges": [
+          {
+            "id": "phase-edge-1",
+            "stepId": "step-implementation",
+            "fromPhaseId": "phase-diverge-1",
+            "toPhaseId": "phase-verify-1"
+          }
+        ],
+        "status": "pending"
+      }
+    ],
+    "stepEdges": [],
+    "status": "pending"
+  }
+}

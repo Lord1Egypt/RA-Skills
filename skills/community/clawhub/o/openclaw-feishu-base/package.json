@@ -1,0 +1,24 @@
+{
+  "name": "openclaw-feishu-base",
+  "version": "0.2.7",
+  "type": "module",
+  "description": "Unified Feishu Base/Bitable management plugin for OpenClaw with table, field, and record operations.",
+  "keywords": [
+    "openclaw",
+    "feishu",
+    "lark",
+    "base",
+    "bitable"
+  ],
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.59.0",
+    "@sinclair/typebox": "^0.34.48",
+    "openclaw": "^2026.3.22",
+    "zod": "^4.3.6"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

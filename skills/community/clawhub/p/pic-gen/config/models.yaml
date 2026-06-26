@@ -1,0 +1,25 @@
+# pic-gen 模型配置
+# 用户首次使用需要填写各模型 API Key
+# 支持平台：qwen（通义万相）、banana（Flux）、dalle（DALL-E 3）
+
+default: qwen
+
+models:
+  qwen:
+    enabled: true
+    api_key: ""              # 填入 DashScope API Key
+    model: "qwen-image-2.0-pro"
+    default_size: "1024*1024"
+    default_style: "auto"
+
+  banana:
+    enabled: false
+    api_key: ""              # 填入 Banana API Key
+    model: "flux-dev"
+    default_size: "1024*1024"
+
+  dalle:
+    enabled: false
+    api_key: ""              # 填入 OpenAI API Key
+    model: "dall-e-3"
+    default_size: "1024*1024"

@@ -1,0 +1,7 @@
+interface:
+  display_name: "PPT Maker"
+  short_description: "根据 Markdown 快速生成 PPT"
+  default_prompt: "Use $ppt-maker to generate a PowerPoint deck from Markdown for this task."
+
+policy:
+  allow_implicit_invocation: true

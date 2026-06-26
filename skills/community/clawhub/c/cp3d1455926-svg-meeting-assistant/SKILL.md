@@ -1,35 +1,100 @@
----
-name: "Meeting Assistant"
-description: "Generate meeting summaries, extract action items with deadlines, coordinate schedules, and manage meeting templates and reminders."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cp3d1455926-svg-meeting-assistant"
-sourceUrl: "https://clawhub.ai/skills/cp3d1455926-svg-meeting-assistant"
----
+# 📋 Meeting Assistant - 会议助手
 
-# Meeting Assistant
+## 触发规则
 
-> Generate meeting summaries, extract action items with deadlines, coordinate schedules, and manage meeting templates and reminders.
+**关键词：**
+- 会议纪要、会议记录、会议总结
+- 待办事项、行动计划
+- 安排会议、日程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cp3d1455926-svg-meeting-assistant`
-- **Source URL:** [https://clawhub.ai/skills/cp3d1455926-svg-meeting-assistant](https://clawhub.ai/skills/cp3d1455926-svg-meeting-assistant)
+**场景：**
+- 用户需要整理会议纪要
+- 用户需要提取待办事项
+- 用户需要安排会议日程
 
-## Overview
+## 功能描述
 
+### 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cp3d1455926-svg-meeting-assistant
+1. **会议纪要生成**
+   - 从录音/文字生成纪要
+   - 提取关键决策
+   - 总结讨论要点
+
+2. **待办事项提取**
+   - 识别行动项
+   - 分配负责人
+   - 设置截止日期
+
+3. **日程安排**
+   - 会议时间协调
+   - 会议室预订
+   - 提醒通知
+
+4. **会议模板**
+   - 站立会模板
+   - 周会模板
+   - 项目评审模板
+
+## 权限需求
+
+- [x] 文件读写（纪要存储）
+- [x] 定时任务（提醒）
+- [ ] 外部 API（日历集成）
+
+## 示例对话
+
 ```
+用户：帮我整理这个会议纪要...
+助手：✅ 已生成会议纪要：
+
+📋 **会议纪要** - 项目周会
+📅 2026-03-16 14:00-15:00
+👥 参会：Jake, Alice, Bob
+
+📝 **讨论要点**
+1. 项目进度：前端完成 80%，后端完成 60%
+2. 问题：API 接口延迟，需要协调
+3. 决定：下周三前完成接口对接
+
+✅ **待办事项**
+1. [ ] Jake - 完成前端页面（截止：3/20）
+2. [ ] Alice - 修复 API bug（截止：3/18）
+3. [ ] Bob - 准备测试数据（截止：3/19）
+
+📅 **下次会议**
+- 时间：2026-03-23 14:00
+- 主题：项目评审
+
+需要我发送提醒给相关人员吗？
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/meeting-assistant/meetings.json
+{
+  "meetings": [
+    {
+      "title": "项目周会",
+      "date": "2026-03-16",
+      "attendees": ["Jake", "Alice", "Bob"],
+      "notes": "...",
+      "action_items": [...]
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 纪要模板
+- [ ] 待办提取
+- [ ] 日历集成
+- [ ] 提醒功能
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

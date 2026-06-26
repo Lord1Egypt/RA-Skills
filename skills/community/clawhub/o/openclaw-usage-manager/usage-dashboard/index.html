@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Max Usage Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0f1117;
+    color: #e4e4e7;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .header .sub { font-size: 13px; color: #71717a; margin-bottom: 8px; }
+  .header .updated { font-size: 13px; color: #71717a; }
+  .header .updated .time { color: #a1a1aa; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .card-title { font-size: 18px; font-weight: 600; }
+  .badge {
+    font-size: 11px; padding: 3px 8px; border-radius: 9999px; font-weight: 500;
+  }
+  .badge-ok { background: #052e16; color: #4ade80; }
+  .badge-warn { background: #422006; color: #fbbf24; }
+  .badge-error { background: #450a0a; color: #f87171; }
+  .section { margin-bottom: 18px; }
+  .section:last-child { margin-bottom: 0; }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;
+  }
+  .section-title { font-size: 14px; font-weight: 600; color: #d4d4d8; }
+  .section-meta { font-size: 12px; color: #71717a; }
+  .bar-bg {
+    width: 100%; height: 8px; background: #27272a; border-radius: 4px; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 4px; transition: width 0.6s ease;
+  }
+  .bar-fill.warn { background: #f59e0b; }
+  .bar-fill.danger { background: #ef4444; }
+  .pct { font-size: 13px; font-weight: 500; color: #a1a1aa; margin-top: 4px; text-align: right; }
+  .separator { border: none; border-top: 1px solid #27272a; margin: 16px 0; }
+  .loading {
+    text-align: center; padding: 60px 0; color: #71717a; font-size: 14px;
+    grid-column: 1 / -1;
+  }
+  .spinner {
+    display: inline-block; width: 20px; height: 20px;
+    border: 2px solid #27272a; border-top-color: #60a5fa; border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .controls { text-align: center; margin-bottom: 24px; }
+  .btn {
+    background: #27272a; color: #d4d4d8; border: 1px solid #3f3f46;
+    padding: 6px 16px; border-radius: 6px; font-size: 13px; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: #3f3f46; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .auto-label { font-size: 12px; color: #71717a; margin-left: 12px; }
+  .error-card {
+    background: #1c1012; border-color: #450a0a; text-align: center; padding: 40px; color: #f87171;
+  }
+  .setup-hint {
+    max-width: 600px; margin: 40px auto; text-align: center; color: #71717a;
+    line-height: 1.8; font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Claude Max Usage Dashboard</h1>
+  <div class="sub">Multiple account usage at a glance</div>
+  <div class="updated">Last update: <span class="time" id="lastUpdated">--</span></div>
+</div>
+
+<div class="controls">
+  <button class="btn" id="refreshBtn">Refresh</button>
+  <label class="auto-label">
+    <input type="checkbox" id="autoRefresh" checked> Auto-refresh every 60s
+  </label>
+</div>
+
+<div class="grid" id="dashboard">
+  <div class="loading"><span class="spinner"></span>Loading...</div>
+</div>
+
+<script>
+const CSRF_TOKEN = '__CSRF_TOKEN__';
+const ACCENT = ['#3b82f6','#8b5cf6','#f59e0b','#10b981','#ec4899','#06b6d4','#f97316','#84cc16','#e879f9'];
+let autoTimer = null;
+
+// --- DOM helpers (no innerHTML for dynamic data) ---
+function el(tag, attrs, ...children) {
+  const e = document.createElement(tag);
+  if (attrs) {
+    for (const [k, v] of Object.entries(attrs)) {
+      if (k === 'text') { e.textContent = v; continue; }
+      if (k === 'style' && typeof v === 'object') { Object.assign(e.style, v); continue; }
+      if (k === 'className') { e.className = v; continue; }
+      e.setAttribute(k, v);
+    }
+  }
+  for (const c of children) {
+    if (typeof c === 'string') e.appendChild(document.createTextNode(c));
+    else if (c) e.appendChild(c);
+  }
+  return e;
+}
+
+function timeUntil(isoStr) {
+  if (!isoStr) return '';
+  const diff = new Date(isoStr) - Date.now();
+  if (diff <= 0) return 'Resetting soon';
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  if (h > 24) { const d = Math.floor(h / 24); return `Resets in ${d}d ${h % 24}h`; }
+  return `Resets in ${h}h ${m}m`;
+}
+
+function resetDay(isoStr) {
+  if (!isoStr) return '';
+  const d = new Date(isoStr);
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  return `Resets ${days[d.getDay()]} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+function barFillClass(pct) {
+  if (pct >= 0.8) return 'bar-fill danger';
+  if (pct >= 0.6) return 'bar-fill warn';
+  return 'bar-fill';
+}
+
+function buildBadge(status) {
+  const map = { allowed: ['OK', 'badge badge-ok'], rejected: ['Limited', 'badge badge-error'] };
+  const [text, cls] = map[status] || ['?', 'badge badge-warn'];
+  return el('span', { className: cls, text });
+}
+
+function buildBar(pct, color) {
+  const cls = barFillClass(pct);
+  const bg = (pct < 0.6) ? color : undefined;
+  const fill = el('div', { className: cls, style: { width: `${Math.min(pct * 100, 100)}%`, ...(bg ? { background: bg } : {}) } });
+  return el('div', { className: 'bar-bg' }, fill);
+}
+
+function buildSection(title, meta, pct, color) {
+  const header = el('div', { className: 'section-header' },
+    el('span', { className: 'section-title', text: title }),
+    el('span', { className: 'section-meta', text: meta })
+  );
+  const bar = buildBar(pct, color);
+  const pctText = el('div', { className: 'pct', text: `${Math.round(pct * 100)}% used` });
+  return el('div', { className: 'section' }, header, bar, pctText);
+}
+
+function buildCard(data, idx) {
+  const color = ACCENT[idx % ACCENT.length];
+
+  if (data.error) {
+    const card = el('div', { className: 'card error-card' },
+      el('div', { className: 'card-title', text: data.label || '?' }),
+      el('p', { style: { marginTop: '12px' }, text: data.error })
+    );
+    return card;
+  }
+
+  const s = data.session, w = data.weekly, sn = data.sonnet;
+
+  const cardHeader = el('div', { className: 'card-header' },
+    el('div', { className: 'card-title', style: { color }, text: data.label }),
+    buildBadge(data.status)
+  );
+
+  const sessionSection = buildSection('Current Session', timeUntil(s.resetAt), s.utilization, color);
+  const sep = el('hr', { className: 'separator' });
+  const weeklySection = buildSection('Weekly (All Models)', resetDay(w.resetAt), w.utilization, color);
+  const sonnetSection = buildSection('Sonnet Only', resetDay(sn.resetAt), sn.utilization, color);
+  sonnetSection.style.marginTop = '14px';
+
+  return el('div', { className: 'card' }, cardHeader, sessionSection, sep, weeklySection, sonnetSection);
+}
+
+async function refresh() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true; btn.textContent = 'Loading...';
+  const grid = document.getElementById('dashboard');
+  try {
+    const res = await fetch('/api/usage', {
+      method: 'POST',
+      headers: { 'x-dashboard-csrf': CSRF_TOKEN },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    grid.textContent = ''; // clear safely
+
+    if (data.error) {
+      grid.appendChild(el('div', { className: 'setup-hint', text: data.error }));
+      return;
+    }
+    const keys = Object.keys(data).sort();
+    keys.forEach((k, i) => grid.appendChild(buildCard(data[k], i)));
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+  } catch (e) {
+    grid.textContent = '';
+    const msg = el('div', { className: 'loading', style: { color: '#f87171' }, text: `Error: ${e.message}` });
+    grid.appendChild(msg);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Refresh';
+  }
+}
+
+function setupAutoRefresh() {
+  if (autoTimer) clearInterval(autoTimer);
+  if (document.getElementById('autoRefresh').checked) autoTimer = setInterval(refresh, 60000);
+}
+document.getElementById('refreshBtn').addEventListener('click', refresh);
+document.getElementById('autoRefresh').addEventListener('change', setupAutoRefresh);
+setupAutoRefresh();
+refresh();
+</script>
+</body>
+</html>

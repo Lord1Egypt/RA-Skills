@@ -1,0 +1,190 @@
+{
+  "skill": {
+    "name": "global-video-title-generator",
+    "version": "1.0.0",
+    "description": "Global Video Title Generator for YouTube and TikTok International",
+    "author": "BTC 5",
+    "license": "Commercial",
+    "category": "content-generation",
+    "tags": ["youtube", "tiktok", "video", "title", "generator", "international", "global", "seo", "viral"],
+    "website": "https://videotitlegen.com",
+    "support_email": "support@videotitlegen.com"
+  },
+  "platforms": {
+    "youtube": {
+      "max_title_length": 100,
+      "min_title_length": 20,
+      "recommended_length": 50,
+      "seo_required": true,
+      "hashtags_supported": true,
+      "max_hashtags": 3,
+      "characteristics": ["descriptive", "clickable", "seo_optimized", "curiosity_gap"]
+    },
+    "tiktok": {
+      "max_title_length": 150,
+      "min_title_length": 10,
+      "recommended_length": 80,
+      "seo_required": false,
+      "hashtags_supported": true,
+      "max_hashtags": 5,
+      "characteristics": ["short", "punchy", "engaging", "trendy", "hashtag_rich"]
+    }
+  },
+  "languages": {
+    "supported": ["en", "es", "pt", "fr", "de", "ja", "ko", "ru", "ar", "hi"],
+    "default": "en",
+    "auto_translate": true,
+    "translation_provider": "google",
+    "quality_levels": ["basic", "good", "excellent"]
+  },
+  "categories": {
+    "youtube": ["tech", "gaming", "education", "entertainment", "lifestyle", "finance", "health", "music", "sports", "news"],
+    "tiktok": ["dance", "comedy", "educational", "beauty", "cooking", "fitness", "gaming", "travel", "diy", "animals"]
+  },
+  "monetization": {
+    "currency": "USD",
+    "free_tier": {
+      "daily_generations": 5,
+      "supported_languages": ["en"],
+      "supported_platforms": ["youtube", "tiktok"],
+      "require_registration": false,
+      "features": ["basic_titles", "single_language", "no_seo", "no_trends"]
+    },
+    "pricing_tiers": [
+      {
+        "name": "Basic",
+        "price_usd": 9.99,
+        "billing_cycle": "monthly",
+        "generations_per_month": 500,
+        "cost_per_generation": 0.02,
+        "languages": "all",
+        "platforms": ["youtube", "tiktok"],
+        "features": ["seo_optimization", "trend_analysis", "multi_language", "hashtag_suggestions"],
+        "support": "email_only",
+        "api_access": "limited"
+      },
+      {
+        "name": "Pro",
+        "price_usd": 29.99,
+        "billing_cycle": "monthly",
+        "generations_per_month": 2000,
+        "cost_per_generation": 0.015,
+        "languages": "all + custom",
+        "platforms": ["youtube", "tiktok", "api"],
+        "features": ["advanced_seo", "viral_score", "batch_generation", "custom_templates", "analytics"],
+        "support": "priority_email",
+        "api_access": "full"
+      },
+      {
+        "name": "Enterprise",
+        "price_usd": 99.99,
+        "billing_cycle": "monthly",
+        "generations_per_month": "unlimited",
+        "cost_per_generation": "volume_based",
+        "languages": "all + priority",
+        "platforms": "all + custom",
+        "features": ["custom_models", "analytics_dashboard", "white_label", "dedicated_support", "sla"],
+        "support": "24_7_chat_phone",
+        "api_access": "enterprise"
+      }
+    ],
+    "payment_providers": ["stripe", "paypal", "crypto"],
+    "refund_policy": {
+      "money_back_days": 30,
+      "prorated_refunds": true,
+      "free_tier_no_refund": true
+    }
+  },
+  "generation": {
+    "max_titles_per_request": 20,
+    "default_count": 5,
+    "quality_levels": ["standard", "premium", "viral"],
+    "seo_optimization": {
+      "enabled": true,
+      "keyword_density": "2-3%",
+      "title_structure": ["keyword_first", "power_words", "numbers", "brackets"],
+      "avoid_words": ["clickbait", "misleading", "spammy"]
+    },
+    "viral_factors": {
+      "curiosity_gap": true,
+      "emotional_triggers": true,
+      "social_proof": true,
+      "urgency": true,
+      "specificity": true
+    },
+    "trend_integration": {
+      "enabled": true,
+      "sources": ["google_trends", "twitter_trends", "tiktok_trending", "youtube_trending"],
+      "update_frequency": "hourly",
+      "regional_trends": true
+    }
+  },
+  "api": {
+    "base_url": "https://api.videotitlegen.com/v1",
+    "rate_limits": {
+      "free": {"requests_per_day": 5, "requests_per_second": 1},
+      "basic": {"requests_per_month": 500, "requests_per_second": 5},
+      "pro": {"requests_per_month": 2000, "requests_per_second": 10},
+      "enterprise": {"requests_per_month": "unlimited", "requests_per_second": 50}
+    },
+    "authentication": {
+      "methods": ["api_key", "oauth2", "jwt"],
+      "key_expiry_days": 365,
+      "rotation_recommended_days": 90
+    },
+    "response_formats": ["json", "xml", "csv"],
+    "webhooks": {
+      "supported": true,
+      "events": ["generation_complete", "usage_limit", "trend_alert", "system_update"]
+    }
+  },
+  "analytics": {
+    "track_usage": true,
+    "track_performance": true,
+    "privacy_compliant": true,
+    "data_retention_days": 90,
+    "export_formats": ["csv", "json", "pdf"],
+    "dashboards": {
+      "user": true,
+      "admin": true,
+      "enterprise": true
+    }
+  },
+  "security": {
+    "encryption": {
+      "in_transit": "tls_1_3",
+      "at_rest": "aes_256",
+      "key_management": "aws_kms"
+    },
+    "compliance": ["gdpr", "ccpa", "soc2", "iso27001"],
+    "audit_logging": true,
+    "penetration_testing": "quarterly",
+    "bug_bounty": true
+  },
+  "support": {
+    "channels": ["email", "chat", "phone", "community"],
+    "response_times": {
+      "free": "48_hours",
+      "basic": "24_hours",
+      "pro": "4_hours",
+      "enterprise": "1_hour"
+    },
+    "documentation": {
+      "api_docs": true,
+      "tutorials": true,
+      "video_guides": true,
+      "code_examples": true
+    },
+    "community": {
+      "discord": true,
+      "twitter": true,
+      "youtube": true,
+      "blog": true
+    }
+  },
+  "roadmap": {
+    "q2_2026": ["instagram_support", "twitter_support", "analytics_dashboard", "browser_extension"],
+    "q3_2026": ["thumbnail_suggestions", "description_generation", "competitor_analysis", "bulk_upload"],
+    "q4_2026": ["voiceover_scripts", "editing_suggestions", "growth_analytics", "creator_marketplace"]
+  }
+}

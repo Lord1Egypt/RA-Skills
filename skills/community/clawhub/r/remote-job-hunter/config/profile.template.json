@@ -1,0 +1,32 @@
+{
+  "_comment": "Copy this file, fill in your details, and pass it with --profile-config",
+  "name": "Your Full Name",
+  "profile_id": "your-name",
+  "domain": "ai-ml",
+  "resume_path": "~/path/to/resume.docx or ~/path/to/resume.pdf",
+  "email": "your.jobs@email.com",
+  "phone": "+1234567890",
+  "linkedin_url": "https://linkedin.com/in/yourprofile",
+  "target_roles": [
+    "Role Title 1",
+    "Role Title 2"
+  ],
+  "salary_min_usd": 130000,
+  "remote_only": true,
+  "work_from_anywhere": true,
+  "exclude_keywords": [
+    "US only",
+    "onsite",
+    "hybrid",
+    "must be located"
+  ],
+  "dry_run": true,
+  "auto_apply_threshold": 80,
+  "max_daily_applications": 15,
+  "whatsapp_delivery": "+1234567890",
+  "credentials": {
+    "_note": "Credentials are stored separately in OpenClaw auth-profiles.json \u2014 never store passwords in this file",
+    "_docs": "See https://github.com/RajkiranVS/openclaw-remote-job-hunter#security"
+  },
+  "_resume_note": "resume_path supports .docx (Word) and .pdf formats"
+}

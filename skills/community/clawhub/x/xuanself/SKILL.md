@@ -1,35 +1,188 @@
 ---
-name: "Xuanself"
+name: "xuanself"
+version: "1.0.0"
 description: "🩺 医疗器械俄罗斯市场深度调研标准工作流。专为俄罗斯 Country Manager 定制，整合多语种实时搜索（SerpAPI）、医学进展追踪、患者群体数据（IDF）、政府机构动态监控，输出章节完整、排版专业、可直接交付的 Word 报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xuanself"
-sourceUrl: "https://clawhub.ai/skills/xuanself"
+description_zh: "医疗器械俄罗斯市场深度调研工作流（多语种+患者数据+政府动态+专业Word报告）"
+description_en: "Medical device Russia market research workflow (multilingual, IDF patient data, government monitoring, professional Word report)"
+allowed-tools: "Read,Write,ExecuteCommand,WebFetch,WebSearch,Task,UseSkill"
+user-invocable: true
+tags: ["医疗器械", "俄罗斯市场", "俄罗斯Country Manager", "医疗器械报告", "医学进展", "多语种调研", "糖尿病", "血糖检测", "Word报告", "实时数据", "IDF", "SerpAPI", "市场调研", "俄语"]
+emoji: "🩺"
+author: "WorkBuddy Custom"
+homepage: "https://github.com/workbuddy/xuanself"
+license: "MIT"
 ---
 
-# Xuanself
+# 🩺 Xuanself — 医疗器械俄罗斯市场调研标准工作流
 
-> 🩺 医疗器械俄罗斯市场深度调研标准工作流。专为俄罗斯 Country Manager 定制，整合多语种实时搜索（SerpAPI）、医学进展追踪、患者群体数据（IDF）、政府机构动态监控，输出章节完整、排版专业、可直接交付的 Word 报告。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xuanself`
-- **Source URL:** [https://clawhub.ai/skills/xuanself](https://clawhub.ai/skills/xuanself)
+Xuanself 是一套经过实战验证的医疗器械俄罗斯市场深度调研标准工作流。它整合了**多语种实时搜索**、**医学研究进展追踪**、**患者群体数据分析**、**政府机关动态监控**四大维度，输出**章节结构完整、排版专业规范、数据实时可查**的 Word 交付报告。
 
-## Overview
+> **典型场景**：作为医疗器械俄罗斯国家经理（Country Manager），需要对俄罗斯血糖检测设备、血压计等品类进行深度市场调研，报告需包含行业动态、竞争格局、市场容量、医学进展、患者数据、政府政策与招标信息，数据时效要求**当天最新**。
 
+> **触发词**：`生成俄罗斯医疗器械报告`、`xuanself报告`、`俄罗斯医疗器械最新动态`、`俄罗斯医疗器械市场调研` 等。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xuanself
+---
+
+## 核心标准体系（5大支柱）
+
+### ① 信息获取路径（SerpAPI + 数据源矩阵）
+
+| 维度 | 数据来源 | 语言 | 优先级 | 数据类型 |
+|:---|:---|:---:|:---:|:---|
+| **患者统计** | IDF Diabetes Atlas (diabetesatlas.org) | EN | ⭐⭐⭐ | 患者数/死亡率/医疗支出 |
+| **患者统计** | 俄罗斯卫生部 (minzdrav.gov.ru) | RU | ⭐⭐⭐ | 联邦项目执行数据 |
+| **患者统计** | НМИЦ эндокринологии (endocrincentr.ru) | RU | ⭐⭐⭐ | 联邦糖尿病项目成果 |
+| **行业新闻** | Коммерсантъ (kommersant.ru) | RU | ⭐⭐⭐ | 政策/立法/市场动态 |
+| **行业新闻** | РИА Новости (ria.ru) / RBC (rbc.ru) | RU | ⭐⭐ | 卫生部官方/大众健康报道 |
+| **政府动态** | kremlin.ru（最高层政策信号）| RU | ⭐⭐⭐ | 政策信号 |
+| **政府动态** | 联邦杜马健康委员会 | RU | ⭐⭐ | 立法进展 |
+| **机构动态** | Росздравнадзор / Роспотребнадзор | RU | ⭐⭐ | 医疗质量/健康管理 |
+| **电商价格** | Wildberries / Ozon / Яндекс.Маркет | RU | ⭐⭐⭐ | 零售价格区间 |
+| **招标数据** | ЕИС (zakupki.gov.ru) | RU | ⭐⭐⭐ | 政府招标/中标价 |
+| **学术进展** | МИЭТ / НМИЦ 学术出版物 | RU | ⭐⭐ | 新技术原型 |
+| **搜索** | SerpAPI（Yandex + Google 双引擎）| 多语 | ⭐⭐⭐ | 实时网络搜索 |
+
+**核心搜索工具**：SerpAPI（通过 `multi_lang_search.py` 统一调用），Yandex 优先，俄语关键词 + site:限定，确保搜索结果质量。
+
+### ② 报告结构标准（三大必填章节）
+
+任何俄罗斯医疗器械市场报告，必须包含以下章节（品类词替换后通用）：
+
 ```
+封面（Cover）
+├── 报告标题、国家、品类、日期
+├── 关键元数据（数据来源、数据时效）
+└── 保密声明
+
+一、行业概况与定义
+├── 1.1 品类定义与分类（监管分类、品类范围）
+├── 1.2 行业最新动态（近3个月实时新闻）
+├── 1.3 ★ 患者群体数据 ⭐⭐⭐（必填）
+│   ├── IDF 权威统计（最新年份）
+│   ├── 患者分型占比（1型/2型/其他）
+│   ├── 发病率/死亡率趋势
+│   ├── 地区分布
+│   └── 风险因素分析
+├── 1.4 ★ 医学研究进展与新技术动态 ⭐⭐⭐（必填）
+│   ├── 临床指南更新（2025-2026年）
+│   ├── 新药物/新技术（GLP-1、CGM、胰岛素泵等）
+│   ├── 国产技术突破
+│   └── 联邦糖尿病防治项目成果
+├── 1.5 ★ 国家机关与医疗机构动态 ⭐⭐⭐（必填）
+│   ├── 最新政策与立法（2026年实时）
+│   ├── 医疗机构与专业网络
+│   ├── 政府招标动态（实时）
+│   └── 所有数据标注来源URL+采集时间
+
+二、市场容量与规模
+├── 2.1 TAM/SAM/SOM 估算
+├── 2.2 市场增速（CAGR）
+└── 2.3 细分市场结构
+
+三、竞争格局
+四、渠道与定价
+五、监管与准入
+N. 风险与建议
+```
+
+**三大强制章节**（⭐⭐⭐ 每次报告必填，缺失则报告不合格）：
+- `1.3 患者群体数据`：IDF/卫生部权威统计，发病率/患病率/死亡率，地区分布
+- `1.4 医学研究进展与新技术动态`：临床指南更新时间节点，新药物/设备/技术，关键政策文件
+- `1.5 国家机关与医疗机构动态`：2026年实时新闻，招标公告，政策信号
+
+### ③ 数据时效标准（绝对红线）
+
+| 数据类型 | 时效要求 | 说明 |
+|:---|:---|:---|
+| 行业新闻/政策 | **当天实时** | 2026年4月报告：所有新闻必须为2026年4月当日或之前 |
+| 患者统计数据 | **当年或上年** | IDF Atlas 2025（截止2024年统计）可用，需注明 |
+| 医学指南更新 | **近12个月内** | 优先2025-2026年更新版本 |
+| 电商价格 | **近30天内** | 随时间波动，需标注采集日期 |
+| 招标数据 | **近6个月内** | 历史招标分析可放宽至1年 |
+| 市场容量预测 | **近12个月内** | 优先采用最新机构预测 |
+
+**绝对红线**：禁止在报告中使用过时数据而不注明来源年份。
+
+### ④ 报告口径标准
+
+- **权威优先**：WHO > IDF > 俄罗斯卫生部 > 国家统计局 > 行业协会 > 新闻报道
+- **多方印证**：关键数据至少引用2个独立来源
+- **数据粒度**：价格必须含最低/中位/最高价，不接受单一价格
+- **中俄对照**：医疗器械术语首次出现时附俄文原文（如：глюкометр = 血糖仪）
+
+### ⑤ Word 排版标准 v2
+
+所有报告导出 Word 时，必须使用 `word_exporter.py v2`（详见 `scripts/word_exporter.py`）：
+
+| 元素 | 标准 |
+|:---|:---|
+| H1 标题 | 深蓝 15pt，加粗，段前分页，左侧蓝色装饰线 |
+| H2/H3/H4 | 中蓝→浅蓝→深灰递减 |
+| 表格 | 深蓝表头+白色字+斑马纹，自适应列宽 |
+| 引用块 | 左侧4px蓝色边框+浅蓝背景 |
+| 内联格式 | **bold** / *italic* / `code` / [链接](url) 全部保留 |
+| 页眉页脚 | 页眉：标题+日期；页脚：机密声明+页码 |
+
+---
+
+## 标准化工作流程
+
+```
+Phase 1 需求确认
+  → 目标国家 + 品类 + 日期范围 + 特殊关注点
+
+Phase 2 并行数据采集（SerpAPI）
+  → 医学进展 + 患者统计 + 政府政策 + 行业新闻 + 招标数据
+
+Phase 3 深度抓取（WebFetch）
+  → IDF Atlas > 卫生部 > НМИЦ（优先级递减）
+
+Phase 4 报告撰写
+  → 强制包含三大必填章节（1.3/1.4/1.5）
+
+Phase 5 Word 导出（v2 排版）
+  → 封面解析 + 表格 + 内联格式 + 分页
+
+Phase 6 质量审核
+  → 来源标注 + 时效检查 + 章节完整性
+```
+
+---
+
+## 三大常见陷阱
+
+| 陷阱 | 原因 | 解决方案 |
+|:---|:---|:---|
+| SerpAPI 未被调用 | 某些模块直接调用 `search()` 而非 `search_concurrent()` | 统一通过 `MultiLangSearch` 走 SerpAPI |
+| 内联格式丢失 | `_clean_markdown()` 剥离了 `**`/`*` 等符号 | 格式处理移到 `_parse_inline()` 中 |
+| 患者数据缺失 | 未按强制章节要求撰写 | 1.3/1.4/1.5 章节必须填写 |
+
+---
+
+## 文件结构
+
+```
+xuanself/
+├── SKILL.md              本文件，完整标准体系文档
+├── README.md             快速启动指南（最终用户）
+├── PORTING_NOTES.md      配置说明（API Key / 依赖安装）
+├── LICENSE               MIT 开源协议
+├── MANIFEST.json         发布清单
+├── scripts/
+│   ├── word_exporter.py  Word导出器 v2（专业排版全实现）
+│   └── run_report.py     快捷导出脚本
+└── data/
+    └── data_sources.json 核心数据源索引模板（需填入个人API Key）
+```
+
+## 依赖
+
+- Python 3.8+
+- `pip install python-docx fake-useragent beautifulsoup4 lxml requests matplotlib pillow`
+- **API Key**：SerpAPI（yandex/google搜索）、TGStat（可选，Telegram分析）
+
+---
+
+*Xuanself v1.0.0 — 2026年4月，沉淀自俄罗斯医疗器械血糖检测设备深度调研实战经验。*

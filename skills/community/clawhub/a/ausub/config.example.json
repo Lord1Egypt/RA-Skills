@@ -1,0 +1,17 @@
+{
+  "symbol": "518880.SH",
+  "base_amount": 1000,
+  "min_multiplier": 0.6,
+  "max_multiplier": 1.8,
+  "rules": {
+    "oversold_rsi": 35,
+    "weak_rsi_max": 45,
+    "neutral_rsi_max": 60,
+    "hot_rsi": 68,
+    "discount_to_ma20": -0.03,
+    "premium_to_ma20": 0.05,
+    "ma20_near_band": 0.01,
+    "drawdown_weak": 0.04,
+    "deep_drawdown": 0.08
+  }
+}

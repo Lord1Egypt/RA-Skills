@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.openclaw.ai/schemas/mcp-config.json",
+  "_comment": "OpenClaw MCP 插件配置 — 将此文件内容合并到 ~/.openclaw/openclaw.json 的 mcpServers 中",
+  "mcpServers": {
+    "whobot-knowledge": {
+      "command": "python3",
+      "args": ["mcp-server/server.py"],
+      "cwd": "<path-to-openclaw-whobot-skill>",
+      "transportType": "stdio"
+    }
+  }
+}

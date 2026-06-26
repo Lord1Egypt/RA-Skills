@@ -1,0 +1,4 @@
+interface:
+  display_name: "A股信号"
+  short_description: "用筹码、共振、KDJ、威科夫、缠论分析A股结构与风险。"
+  default_prompt: "分析002594这只票。"

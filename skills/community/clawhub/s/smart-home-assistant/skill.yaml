@@ -1,0 +1,17 @@
+home_assistant:
+  url: "http://homeassistant.local:8123"
+  token: "${HA_TOKEN}"
+
+units:
+  power: ["W", "kW"]
+  energy: ["Wh", "kWh"]
+
+rules:
+  - name: "High Power Shutoff"
+    threshold_watts: 2000
+    time_window: { after: "06:00", before: "22:00" }
+    require_occupancy: "off"
+    action: "turn_off"
+
+outputs:
+  default: ["summary", "table"]

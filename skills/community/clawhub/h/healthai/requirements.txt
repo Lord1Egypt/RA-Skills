@@ -1,0 +1,19 @@
+# 健康管理技能 Python 依赖
+# 中国大陆推荐用镜像安装：pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 核心功能
+pdfplumber>=0.10.0        # PDF文本提取
+python-docx>=0.8.11       # Word文档解析
+pytesseract>=0.3.10       # 图片OCR文字识别
+Pillow>=10.0.0            # 图片处理
+
+# 数据处理
+openpyxl>=3.1.0           # Excel处理
+pandas>=2.0.0             # 数据分析
+
+# 安装命令（国内镜像）
+# pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 系统依赖（需单独安装）
+# macOS: brew install tesseract poppler
+# Linux: sudo apt-get install tesseract-ocr poppler-utils

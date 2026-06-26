@@ -1,35 +1,25 @@
----
-name: "ClawHub Intro Skill"
-description: "Demonstration skill showcasing ClawHub skill structure with metadata, description, and usage examples for publishing to the ClawHub registry."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-intro-skill"
-sourceUrl: "https://clawhub.ai/skills/clawhub-intro-skill"
----
+# ClawHub: Intro Skill
 
-# ClawHub Intro Skill
+Краткое описание
+- ClawHub — демонстрационный скилл, показывающий структуру для публикации в ClawHub.
 
-> Demonstration skill showcasing ClawHub skill structure with metadata, description, and usage examples for publishing to the ClawHub registry.
+Что делает
+- Содержит описание, метаданные и примеры использования для публикации в реестр ClawHub.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-intro-skill`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-intro-skill](https://clawhub.ai/skills/clawhub-intro-skill)
+Установка (для пользователя)
+- CLI: `clawhub install clawhub-intro-skill`
 
-## Overview
+Публикация (для автора)
+- Пример команды (в каталоге скила):
 
+  clawhub publish ./ --slug clawhub-intro-skill --name "ClawHub Intro Skill" --version 0.1.0 --tags latest
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawhub-intro-skill
-```
+Файлы в пакете
+- `SKILL.md` — этот файл, основной контент и инструкция.
+- `skill.json` — машинно-читаемые метаданные для реестра.
+- `README.md` — краткая инструкция и ссылки.
+- `example.md` — пример использования и демонстрация.
+
+Теги: demo, clawhub, tutorial
+
+Лицензия: MIT

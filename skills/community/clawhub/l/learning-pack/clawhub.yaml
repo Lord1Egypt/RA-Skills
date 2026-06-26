@@ -1,0 +1,6 @@
+name: zhongshu-skill-pack
+displayName: 三省六部·技能学习包
+version: 1.0.0
+description: 适合新手的 OpenClaw 技能学习包，包含 10 个核心技能
+author: 中书省
+tags: [learning, beginner, openclaw]

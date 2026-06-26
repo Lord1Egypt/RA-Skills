@@ -1,0 +1,30 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_save_define_object",
+    "description": "Save or update a single object structure (Define Object) in the application definition.\n\n【Purpose】\n- AI modifies object structure\n- Create new Define objects\n- Automatically fix configuration errors\n- Application structure adjustment\n\n【Prerequisites (Must Follow)】\n- Must first call _app_get_define_object_type to get valid type\n- Must call _app_get_define_object to read current structure before modification\n- Cannot construct structure out of thin air\n\n【Important Notes】\n- This operation will modify the draft version structure\n- Will not directly affect the published version\n- Should call verification interface before publishing after saving\n\n【Hierarchy Rules】\n\n1️⃣ App-level objects:\n- scope must be \"App\"\n\n2️⃣ Module-level objects:\n- scope must be the id of the corresponding ModuleDefine\n- Cannot be empty\n\n【Mandatory Rules】\n- scope, id, type, content are all required\n- type must come from _app_get_define_object_type\n- content must be a complete JSON string\n- If scope and type hierarchy do not match, must report error\n- It is recommended to call _app_check_setting for verification after saving\n",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "description": "Parent scope identifier.\n\n- App-level objects: fill in \"App\"\n- Module-level objects: fill in the id of the corresponding ModuleDefine"
+        },
+        "id": {
+          "type": "string",
+          "description": "Object unique identifier id. If it is a new object, it must be a valid new id; if it is an update, it must be an existing id"
+        },
+        "type": {
+          "type": "string",
+          "description": "Object type. Must come from the return value of _app_get_define_object_type"
+        },
+        "content": {
+          "type": "string",
+          "description": "Complete object structure JSON string. Must be a complete Define object structure, partial fields are not allowed"
+        }
+      },
+      "required": ["scope", "id", "type", "content"],
+      "additionalProperties": false
+    }
+  }
+}

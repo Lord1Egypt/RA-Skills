@@ -1,35 +1,49 @@
 ---
-name: "Qclaw"
-description: "整理QQ输入法公开官网、下载页、帮助中心与功能说明的版本入口、权限说明与常见问题信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/iqclaw"
-sourceUrl: "https://clawhub.ai/skills/iqclaw"
+name: qq-input-method
+description: 注册“QQ 输入法”技能；用于工具类产品公开页面、功能说明、下载入口与帮助信息整理。
+homepage: `https://qq.pinyin.cn/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
-# Qclaw
+# QQ 输入法
 
-> 整理QQ输入法公开官网、下载页、帮助中心与功能说明的版本入口、权限说明与常见问题信息。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/iqclaw`
-- **Source URL:** [https://clawhub.ai/skills/iqclaw](https://clawhub.ai/skills/iqclaw)
+- 面向公开官网、下载页、帮助中心、功能说明页与公告页的信息整理
+- 不提供设备控制、权限绕过、非公开安装包、系统破解或风控规避能力
+- 仅处理公开可见的功能说明、版本入口、帮助信息与使用边界
 
-## Overview
+关键入口
 
+- 主页：https://qq.pinyin.cn/
+- 下载与版本：官网中的下载页、版本说明、平台支持入口
+- 帮助与功能：帮助中心、FAQ、功能介绍、隐私或权限说明入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/iqclaw
-```
+常见任务
+
+- 功能模块、版本差异、平台支持与下载入口整理
+- 权限说明、隐私说明、常见问题与故障排查入口汇总
+- 更新日志、公告页与帮助目录提取
+
+数据字段
+
+- 平台支持、版本入口、功能模块、链接
+- 权限说明、隐私政策、帮助页、FAQ 链接
+- 更新日志、公告页、下载地址、系统要求
+
+自动化要点
+
+- 工具类产品经常按系统平台区分，整理时明确 Android、iOS、Windows、macOS 差异
+- 优先以官方权限说明和隐私政策为准，避免过度推断
+- 不处理设备调试、系统破解、越权访问或私有数据导出
+
+示例流程
+
+- 版本整理：访问 QQ Input Method 下载页 → 提取平台与版本入口 → 输出清单
+- 功能摘要：进入功能说明页 → 提取核心能力与限制 → 输出摘要
+- 帮助汇总：访问帮助中心与隐私页 → 输出常见问题与权限说明
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

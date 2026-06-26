@@ -1,35 +1,133 @@
 ---
-name: "Team Outing Planner"
-description: "帮助公司团队规划团建活动目的地。收集团队成员的偏好（活动类型、预算、时间等），综合分析推荐最佳目的地，并通过flyai查询详细信息。适用于团建规划、集体出游、公司活动等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/team-outing-planner"
-sourceUrl: "https://clawhub.ai/skills/team-outing-planner"
+name: team-outing-planner
+description: 帮助公司团队规划团建活动目的地。收集团队成员的偏好（活动类型、预算、时间等），综合分析推荐最佳目的地，并通过flyai查询详细信息。适用于团建规划、集体出游、公司活动等场景。
 ---
 
-# Team Outing Planner
+# 团建目的地规划助手
 
-> 帮助公司团队规划团建活动目的地。收集团队成员的偏好（活动类型、预算、时间等），综合分析推荐最佳目的地，并通过flyai查询详细信息。适用于团建规划、集体出游、公司活动等场景。
+帮助团队找到一个让大家都满意的团建目的地。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/team-outing-planner`
-- **Source URL:** [https://clawhub.ai/skills/team-outing-planner](https://clawhub.ai/skills/team-outing-planner)
+## 工作流程
 
-## Overview
+### 第1步：收集团队信息
 
+收集以下基本信息：
+- **团队人数**：参与人数
+- **出发城市**：团队所在城市
+- **预计日期**：活动日期或时间范围
+- **预算范围**：人均预算（元）
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第2步：收集成员偏好
+
+支持两种方式收集偏好：
+
+**方式A - 交互式收集**（适合小团队）：
+依次询问每位成员的偏好
+
+**方式B - 批量输入**（适合大团队）：
+使用JSON格式一次性输入，参考 [preferences-template.md](preferences-template.md)
+
+每位成员需提供：
+
+| 维度 | 选项 |
+|------|------|
+| 活动类型偏好 | 自然风光 / 历史古迹 / 主题乐园 / 温泉度假 / 户外运动 / 城市观光 |
+| 运动强度 | 轻松休闲 / 适度活动 / 挑战型 |
+| 特殊需求 | 行动不便 / 恐高 / 晕车 / 饮食限制 / 无 |
+
+### 第3步：智能分析推荐
+
+根据收集的信息，综合分析：
+
+1. **偏好权重计算**
+   - 统计各类型偏好的占比
+   - 识别"一票否决"项（如有人恐高则排除高空项目）
+   
+2. **筛选匹配目的地**
+   - 结合出发城市、预算、时间筛选可行目的地
+   - 优先推荐满足多数人偏好的地点
+
+3. **输出推荐结果**
+   - 推荐 **Top 3** 目的地
+   - 每个目的地说明匹配度和理由
+
+### 第4步：查询目的地详情
+
+使用 flyai 命令查询推荐目的地的详细信息：
+
 ```bash
-hermes skills install clawhub/team-outing-planner
+# 搜索景点信息
+flyai search-poi --city-name "{城市名}" --keyword "{目的地}" --category "{类型}"
+
+# 搜索酒店信息
+flyai search-hotel --dest-name "{城市名}" --poi-name "{目的地}" --check-in-date {入住日期} --check-out-date {离店日期}
+
+# 综合搜索
+flyai keyword-search --query "{城市} 团建 {活动类型}"
 ```
+
+### 第5步：输出最终方案
+
+**同时完成以下两项输出：**
+
+#### A. 对话框内展示（Markdown格式）
+
+```markdown
+## 🎯 推荐目的地 Top 3
+
+### 1. {目的地名称} ⭐ 匹配度 {X}%
+**推荐理由**：{为什么适合这个团队}
+
+![](图片URL)
+
+- 📍 地址：{地址}
+- 💰 预估费用：{人均费用}
+- 🎮 适合活动：{活动类型}
+- ⚠️ 注意事项：{特殊提醒}
+
+[点击查看详情](预订链接)
+
+---
+### 2. ...
+### 3. ...
+
+## 📋 综合对比
+
+| 目的地 | 匹配度 | 人均费用 | 车程 | 适合人群 |
+|--------|--------|----------|------|----------|
+| ... | ... | ... | ... | ... |
+
+---
+*基于 fly.ai 实时数据*
+```
+
+#### B. 自动生成 HTML 文件
+
+**必须执行**：将推荐结果生成为精美的 HTML 文件
+
+1. **文件路径**：`~/team-outing-recommendation.html`
+2. **自动打开**：生成后执行 `open ~/team-outing-recommendation.html`
+3. **HTML 模板**：参考 [html-template.md](html-template.md)
+
+## 特殊情况处理
+
+### 偏好冲突严重
+如果团队偏好差异过大（如一半人想户外，一半人想休闲）：
+1. 推荐兼顾型目的地（如度假村，有多种活动可选）
+2. 建议分组活动方案
+
+### 有特殊需求成员
+- 有行动不便者：优先推荐无障碍设施完善的目的地
+- 有恐高者：避免高空项目为主的目的地
+- 有晕车者：优先近距离或有高铁直达的目的地
+
+## flyai 命令参考
+
+| 命令 | 用途 |
+|------|------|
+| `search-poi` | 搜索景点，支持城市、类型、等级筛选 |
+| `search-hotel` | 搜索酒店，支持星级、价格排序 |
+| `keyword-search` | 自然语言搜索，适合综合查询 |
+
+景点类型参数值：
+`自然风光` `山湖田园` `森林丛林` `峡谷瀑布` `沙滩海岛` `温泉` `主题乐园` `历史古迹` `博物馆` `户外活动`

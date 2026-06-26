@@ -1,0 +1,17 @@
+{
+  "name": "lanxin-media",
+  "version": "1.0.0",
+  "description": "蓝信媒体发送技能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "lanxin",
+    "media",
+    "skill"
+  ],
+  "author": "",
+  "license": "MIT"
+}

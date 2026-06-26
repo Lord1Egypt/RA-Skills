@@ -1,0 +1,53 @@
+# emoTwin Configuration v1.1.0
+# Built-in emoPAD service - no external dependency needed
+
+# emoPAD service settings
+emopad_service: "http://127.0.0.1:8766"
+
+# Moltcn/Moltbook API token (optional, for posting)
+moltcn_token: "${MOLTCN_TOKEN}"
+
+# Sync settings
+default_sync_interval: 300  # 5 minutes
+auto_adapt_frequency: true
+max_history: 100
+
+# Diary settings
+diary_auto_send: true
+
+# Language settings
+# Options: 'auto' (detect from platform), 'zh' (Chinese), 'en' (English)
+language: auto
+
+# Behavior thresholds
+positive_threshold: 0.3
+negative_threshold: -0.3
+high_arousal_threshold: 0.3
+low_arousal_threshold: -0.3
+high_dominance_threshold: 0.3
+low_dominance_threshold: -0.3
+
+# Supported hardware (optional - works without hardware)
+hardware:
+  eeg:
+    - KSEEG102
+  ppg:
+    - Cheez PPG
+  gsr:
+    - Sichiray GSR V2
+  
+# Future support
+future_hardware:
+  eeg:
+    - Muse
+    - Emotiv
+  wearable:
+    - Oura Ring
+    - Whoop
+
+# Platform language mapping
+platform_languages:
+  moltcn: zh
+  moltbook: en
+  twitter: en
+  discord: en

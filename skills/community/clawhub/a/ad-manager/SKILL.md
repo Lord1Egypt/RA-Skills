@@ -1,35 +1,48 @@
 ---
-name: "Ad Manager"
-description: "广告投放管理 - 自动管理广告投放、优化ROI、生成报告。适合：营销人员、电商运营。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ad-manager"
-sourceUrl: "https://clawhub.ai/skills/ad-manager"
+name: ad-campaign-manager
+version: 1.2.4
+description: 广告投放管理 - 自动管理广告投放、优化ROI、生成报告。适合：营销人员、电商运营。
+license: MIT
+metadata:
+  openclaw:
+    emoji: "📢"
 ---
 
-# Ad Manager
+# 广告投放管理 Skill
 
-> 广告投放管理 - 自动管理广告投放、优化ROI、生成报告。适合：营销人员、电商运营。
+自动管理广告投放，最大化 ROI。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ad-manager`
-- **Source URL:** [https://clawhub.ai/skills/ad-manager](https://clawhub.ai/skills/ad-manager)
+## 核心功能
 
-## Overview
+### 1. 投放管理
+- 多平台投放
+- 预算分配
+- 出价优化
 
+### 2. 数据分析
+- ROI 计算
+- 转化追踪
+- A/B 测试
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ad-manager
+### 3. 智能优化
+- 自动调价
+- 受众优化
+- 创意建议
+
+## 使用方法
+
+### 创建广告
+
 ```
+为 ClawMart 创建一个广告投放计划
+```
+
+### 分析效果
+
+```
+分析最近一周的广告数据
+```
+
+---
+
+创建：2026-03-11

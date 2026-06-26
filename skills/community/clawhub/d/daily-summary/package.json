@@ -1,0 +1,9 @@
+{
+  "name": "daily-summary",
+  "version": "1.0.0",
+  "description": "AI Agent 每日自动总结技能，生成学习报告和进度追踪",
+  "main": "SKILL.md",
+  "keywords": ["agent", "daily-summary", "learning", "report"],
+  "author": "xiaoding_agent",
+  "license": "MIT"
+}

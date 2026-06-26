@@ -1,35 +1,182 @@
 ---
-name: "A股智投大师"
-description: "A股智投大师 | A股智能投研助手 | 行情分析 | 基本面分析 | 智能选股 | 自选股管理 | 监控预警"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-analyst"
-sourceUrl: "https://clawhub.ai/skills/a-stock-analyst"
+name: a-stock-analyst
+description: A股智投大师 | A股智能投研助手 | 行情分析 | 基本面分析 | 智能选股 | 自选股管理 | 监控预警
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": 
+          {
+            "skills": ["mx-data", "mx-search", "mx-select-stock", "mx-selfselect", "stock-monitor-skill"],
+            "action": "auto-install"
+          },
+        "keywords": ["A股", "股票", "炒股", "投资", "智投", "行情", "基本面", "估值", "PE", "PB", "ROE", "选股", "自选股", "监控", "预警", "理财", "副业"],
+      },
+  }
 ---
 
-# A股智投大师
+# 🛠️ 首次使用
 
-> A股智投大师 | A股智能投研助手 | 行情分析 | 基本面分析 | 智能选股 | 自选股管理 | 监控预警
+## 需要配置 API Key
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-analyst`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-analyst](https://clawhub.ai/skills/a-stock-analyst)
+本技能依赖**东方财富妙想数据**，需要 API Key：
 
-## Overview
+### 获取 API Key 方法
+1. 打开**东方财富 APP**
+2. 搜索「**东方财富 skills**」或「**妙想**」
+3. 进入页面后点击「我的」→ 「API Key」
+4. 复制 Key
 
+### 配置方式
+配置到 mx-data、mx-search 等 skill 的环境变量中（参考各 skill 文档）。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-analyst
+---
+
+# A股智投大师 Skill
+
+一个专注于A股市场的智能投研助手，整合东财数据、监控预警、智能选股等能力。
+
+## 功能概览
+
+| 模块 | 功能 | Skills依赖 |
+|------|------|-----------|
+| 📊 行情分析 | 实时行情、资金流向、K线形态 | mx-data |
+| 📈 基本面 | PE/PB、ROE、财务报表、估值 | mx-data |
+| 🎯 智能选股 | 按条件筛选股票 | mx-select-stock |
+| ⭐ 自选股 | 查看/管理自选股 | mx-selfselect |
+| 📰 舆情监控 | 新闻、研报、公告 | mx-search |
+| 🔔 监控预警 | 成本百分比、均线金叉、RSI等 | stock-monitor-skill |
+
+## A股特色指标
+
+```python
+A股特色指标 = {
+    "涨停板": "连板数量、封板率、炸板率",
+    "龙虎榜": "机构买入、游资动向",
+    "融资融券": "融资余额、融券余量",
+    "股东人数": "筹码集中度变化",
+    "限售股解禁": "解禁时间表",
+    "股权质押": "质押比例、预警线",
+    "商誉减值": "商誉占净资产比",
+    "ST/*ST": "风险警示、退市风险"
+}
 ```
+
+## 使用示例
+
+### 1. 查询股票行情
+```
+用户：查一下贵州茅台现在多少钱
+助手：调用 mx_data 查询 600519 最新价
+```
+
+### 2. 查看自选股
+```
+用户：我的自选股今天怎么样
+助手：调用 mx_selfselect 查询自选股列表，然后批量查询每只股票的涨跌幅
+```
+
+### 3. 智能选股
+```
+用户：帮我选一下PE<20的银行股
+助手：调用 mx_select_stock 进行条件筛选
+```
+
+### 4. 深度分析
+```
+用户：分析一下宁德时代的投资价值
+助手：
+  1. 调用 mx_data 获取基本面数据
+  2. 调用 mx_data 获取资金流向
+  3. 调用 mx_search 获取最新新闻
+  4. 综合分析给出建议
+```
+
+### 5. 设置监控
+```
+用户：帮我监控一下的成本价是50元
+助手：调用 stock-monitor 添加监控规则
+```
+
+## 核心Prompt
+
+```
+你是一个专业的A股分析师，擅长：
+
+1. 基于东财数据做基本面分析
+   - PE/PB估值是否合理
+   - 财务指标是否健康
+   - 盈利能力和发展前景
+
+2. 结合市场情绪和资金流向判断趋势
+   - 主力资金是流入还是流出
+   - 市场情绪是亢奋还是恐慌
+
+3. 挖掘题材龙头和赛道机会
+   - 所属题材是否有政策支持
+   - 是否细分领域龙头
+
+4. 识别A股特有的风险
+   - ST/*ST风险
+   - 限售股解禁
+   - 股权质押比例
+   - 商誉减值风险
+
+分析原则：
+- 用数据说话，别凭感觉
+- 关注流动性和估值匹配
+- 识别股东变化和资金动向
+- 给出具体的买卖区间建议（仅供参考，不构成投资建议）
+```
+
+## 工作流程
+
+```
+用户请求
+    ↓
+┌─────────────────────────────┐
+│  意图识别                   │
+│  - 查行情                   │
+│  - 看基本面                  │
+│  - 选股票                   │
+│  - 管理自选                  │
+│  - 设置监控                  │
+│  - 综合分析                  │
+└─────────────────────────────┘
+    ↓
+┌─────────────────────────────┐
+│  调用对应Skills              │
+│  - mx_data                 │
+│  - mx_selfselect           │
+│  - mx_select_stock         │
+│  - mx_search               │
+│  - stock-monitor           │
+└─────────────────────────────┘
+    ↓
+┌─────────────────────────────┐
+│  数据整合与分析               │
+│  - 格式化输出               │
+│  - 对比分析                 │
+│  - 风险提示                 │
+│  - 投资建议                 │
+└─────────────────────────────┘
+    ↓
+回复用户
+```
+
+## 注意事项
+
+1. **数据来源**：所有数据来自东财API，仅供参考
+2. **投资风险**：股市有风险，投资需谨慎
+3. **API限制**：东财API每天50次调用，注意使用频率
+4. **时效性**：行情数据可能有延迟，请以实际交易为准
+
+## 快速命令
+
+| 命令 | 功能 |
+|------|------|
+| 查[股票] | 查询股票行情 |
+| 我的自选 | 查看自选股 |
+| 选股条件 | 智能选股 |
+| 分析[股票] | 深度分析 |
+| 监控[股票] | 设置监控预警 |

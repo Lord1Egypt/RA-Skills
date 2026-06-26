@@ -1,0 +1,10 @@
+{
+  "name": "markdown-linter",
+  "version": "1.0.0",
+  "description": "Validates Markdown files for broken links, syntax errors, and style consistency.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/test.js"
+  },
+  "dependencies": {}
+}

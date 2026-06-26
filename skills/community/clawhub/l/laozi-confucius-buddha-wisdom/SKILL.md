@@ -1,35 +1,79 @@
 ---
-name: "laozi-confucius-buddha-wisdom"
-description: "Query wisdom from Laozi (Daoism), Confucius (Confucianism), and Buddha (Buddhism) - core teachings, quotes, and applied insights."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/laozi-confucius-buddha-wisdom"
-sourceUrl: "https://clawhub.ai/skills/laozi-confucius-buddha-wisdom"
+name: laozi-confucius-buddha-wisdom
+description: Query wisdom from Laozi (Daoism), Confucius (Confucianism), and Buddha (Buddhism) - core teachings, quotes, and applied insights.
+version: 1.0.0
 ---
 
-# laozi-confucius-buddha-wisdom
+# 三圣智慧 (Three Sages Wisdom)
 
-> Query wisdom from Laozi (Daoism), Confucius (Confucianism), and Buddha (Buddhism) - core teachings, quotes, and applied insights.
+随时查询老子、孔子、佛陀的核心思想、经典语录和应用洞察。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/laozi-confucius-buddha-wisdom`
-- **Source URL:** [https://clawhub.ai/skills/laozi-confucius-buddha-wisdom](https://clawhub.ai/skills/laozi-confucius-buddha-wisdom)
+## 🧠 核心知识体系
 
-## Overview
+### 老子（道家）
+**核心：道法自然，无为而治**
 
+- **道**：万物本源，不可言说
+- **德**：道的体现，内在品质
+- **无为**：不妄为，顺势而为
+- **柔弱**：上善若水，以柔克刚
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/laozi-confucius-buddha-wisdom
+### 孔子（儒家）
+**核心：仁义礼智信，修身齐家治国平天下**
+
+- **仁**：爱人，己所不欲勿施于人
+- **义**：正当，合宜
+- **礼**：秩序规范
+- **智**：明辨是非
+- **信**：诚信
+
+### 佛陀（佛教）
+**核心：四圣谛，八正道，缘起性空**
+
+- **苦**：人生本质
+- **集**：苦的根源（贪嗔痴）
+- **灭**：涅槃解脱
+- **道**：八正道
+
+## 📖 使用方式
+
+直接向助手提问，例如：
+
 ```
+- 老子怎么看待竞争？
+- 孔子说的"仁"是什么意思？
+- 佛陀的四圣谛是什么？
+- 用三圣的智慧分析现代人的焦虑
+- 给我一句关于"放下"的三圣语录
+```
+
+## 🎯 应用场景
+
+- **人生困惑**：用三圣视角分析问题
+- **管理决策**：无为而治 vs 德治礼治
+- **情绪调节**：儒释道的不同应对方式
+- **文化学习**：对比三家思想异同
+
+## 📚 经典语录库
+
+### 老子
+> "道可道，非常道"  
+> "上善若水，水善利万物而不争"  
+> "治大国若烹小鲜"  
+> "知人者智，自知者明"
+
+### 孔子
+> "己所不欲，勿施于人"  
+> "三人行必有我师"  
+> "学而时习之，不亦说乎"  
+> "知之为知之，不知为不知"
+
+### 佛陀
+> "诸行无常，诸法无我"  
+> "色即是空，空即是色"  
+> "一切有为法，如梦幻泡影"  
+> "应无所住而生其心"
+
+---
+
+**技能维护**：可扩展更多东方智慧传统（王阳明、庄子等）
